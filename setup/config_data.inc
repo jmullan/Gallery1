@@ -752,7 +752,13 @@ $constants = array_merge($constants,
 		"desc" => sprintf(_("This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."), "<b>"._("no")."</b>"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 	       	"value" => "yes"
-		),
+	),
+	"slideshowMode" => array(
+		"prompt" => _("Slideshow Mode"),
+		"desc" => _("This allows you to set the default mode for the slideshow.  \"Java Applet\" requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. \"JavaScript\" is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."),
+		"choices" => array("applet" => _("Java Applet"), "high" => _("JavaScript")),
+		"value" => "applet"
+	),
 	"group7_end" => array (
 		"type"          => "group_end",
         ),

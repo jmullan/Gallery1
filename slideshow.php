@@ -101,7 +101,7 @@ if (!empty($albumName) && !$gallery->session->offline) {
 }
 
 if (!isset($mode) || !isset($modes[$mode])) {
-	$mode = key($modes);
+	$mode = isset($modes[$gallery->app->slideshowMode]) ? $gallery->app->slideshowMode : "high";
 }
 
 include(dirname(__FILE__) . "/includes/slideshow/$mode.inc");
