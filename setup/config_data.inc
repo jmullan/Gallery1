@@ -252,7 +252,7 @@ $constants = array_merge(
 		"desc" => sprintf(_("The filesystem path to the 'jpegtran' utility.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."), 
 			'<i>/usr/local/bin/jpegtran</i>', 
 			'<i>c:\\bin\\jpegtran.exe</i>') .
-			"<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.3.5") . ")</b></font>",
+			"<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
 		"value" => locateFile("jpegtran"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
@@ -343,7 +343,7 @@ $constants = array_merge(
 	"ML_mode" => array(
 		"prompt" => _("Multi language mode"), 
 		"desc" => _("Gallery has three multi language modes.  These affect the language that a user will see when visiting the site") .
-			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.3.5") . ")</b></font>",
+			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"choices" => array(
 				1 => "1: " . _("Gallery is only displayed in one language"), 
@@ -356,7 +356,7 @@ $constants = array_merge(
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
 		"desc" => _("These languages will be available as user choices in a drop down menu, if you have chosen language mode 3") .
-			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.3.5") . ")</b></font>",
+			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
 		"multiple_choices" => gallery_languages(),
 		"value" => array_keys(gallery_languages())
 	),
@@ -473,6 +473,14 @@ $defaults = array(
 		"value" => 640,
 		"choices" => array("off" => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024)
 	),
+	"resize_file_size" => array(
+		"prompt" => _("Resized images file size"),
+		"desc" => _("The default target size (in kilobyte) of resized JPEG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to \"0\" for no target size.").
+			  "<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
+		"value" => 100,
+		"optional" => 1,
+		"type" => "text"
+	),
 	"fit_to_window" => array(
 		"prompt" => _("Fit-to-window"),
 		"desc" => _("When viewing photos which don't have an intermediary version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke"),
@@ -550,28 +558,28 @@ $defaults = array(
 	"item_owner_modify" => array(
 		"prompt" => _("Photo owner modification"),
 		"desc" => _("Allow photo owners to edit and rotate/flip their own photos?") .
-			  "<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.3.5") . ")</b></font>",
+			  "<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes",
 	),
 	"item_owner_delete" => array(
 		"prompt" => _("Photo owner deletion"),
 		"desc" => _("Allow photo owners to delete their own photos?") .
-			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.3.5") . ")</b></font>",
+			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes",
 	),
 	"item_owner_display" => array(
 		"prompt" => _("Photo owner display"),
 		"desc" => _("Display the name of photo owners with the caption?") .
-			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.3.5") .")</b></font>",
+			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4") .")</b></font>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
 	"add_to_beginning" => array(
 		"prompt" => _("Add to beginning"),
 		"desc" => _("New images added to beginning rather than end of albums") .
-			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.3.5") .")</b></font>",
+			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4") .")</b></font>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),

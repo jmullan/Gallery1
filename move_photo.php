@@ -137,12 +137,15 @@ if ($gallery->session->albumName && isset($index)) {
 							$postAlbum->setPhoto($newphoto,$newPhotoIndex);
 
 							/* resize the photo if needed */
-							if ($postAlbum->fields["resize_size"] > 0 ) {
+							if ($postAlbum->fields["resize_size"] > 0  || $postAlbum->fields["resize_file_size"] > 0) {
 								$photo = $postAlbum->getPhoto($newPhotoIndex);
 								list($w, $h) = $photo->image->getRawDimensions();
+								$size = $photo->image->getRawFilesize();
 								if ($w > $postAlbum->fields["resize_size"] ||
-								    $h > $postAlbum->fields["resize_size"]) {
+								    $h > $postAlbum->fields["resize_size"] ||
+								    $size > $postAlbum->fields["resize_file_size"]) {
 									if (($postAlbum->fields["resize_size"] == $gallery->album->fields["resize_size"]) &&
+									    ($postAlbum->fields["resize_file_size"] == $gallery->album->fields["resize_file_size"]) &&
 									   ($myresized)) {
 										$pathToResized="$mydir/$myresized.$mytype";
 									} else {
@@ -150,7 +153,7 @@ if ($gallery->session->albumName && isset($index)) {
 										echo "- " . _("Resizing photo") ."<br>";
 										my_flush();
 									}
-									$postAlbum->resizePhoto($newPhotoIndex, $postAlbum->fields["resize_size"], $pathToResized);
+									$postAlbum->resizePhoto($newPhotoIndex, $postAlbum->fields["resize_size"], $postAlbum->fields["resize_file_size"], $pathToResized);
 								}
 							}
 							
@@ -299,8 +302,8 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <?php
 } // end else
 if (!$uptodate) {
-	print '<span class="error"> <br>' _("WARNING: Some of the albums need to be upgraded to the current version of gallery.") . '</span>  ' .
-	<a href='. makeGalleryUrl("upgrade_album.php").'><br>'. _("Upgrade now") . '</a>.<p>';
+	print '<span class="error"> <br>' . _("WARNING: Some of the albums need to be upgraded to the current version of gallery.") . '</span>  ' .
+	'<a href='. makeGalleryUrl("upgrade_album.php").'><br>'. _("Upgrade now") . '</a>.<p>';
 }
 ?>
 <br>

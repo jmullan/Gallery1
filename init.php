@@ -135,10 +135,12 @@ require($GALLERY_BASEDIR . "classes/Comment.php");
 if (!isset($GALLERY_NO_SESSIONS)) {
     require($GALLERY_BASEDIR . "session.php");
 }
-initLanguage();
+if (!isset($GALLERY_EMBEDDED_INSIDE)) { 
+	initLanguage();
+}
+
 /* Make sure that Gallery is set up properly */
 gallerySanityCheck();
-
 
 if (isset($GALLERY_EMBEDDED_INSIDE) &&
     !strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {

@@ -52,6 +52,7 @@ class Album {
 		$this->fields["returnto"] = $gallery->app->default["returnto"];
 		$this->fields["thumb_size"] = $gallery->app->default["thumb_size"];
 		$this->fields["resize_size"] = $gallery->app->default["resize_size"];
+		$this->fields["resize_file_size"] = $gallery->app->default["resize_file_size"];
 		$this->fields["rows"] = $gallery->app->default["rows"];
 		$this->fields["cols"] = $gallery->app->default["cols"];
 		$this->fields["fit_to_window"] = $gallery->app->default["fit_to_window"];
@@ -141,6 +142,7 @@ class Album {
 		$changed = 0;
 		$check = array("thumb_size", 
 				"resize_size", 
+				"resize_file_size", 
 				"rows", 
 				"cols",
 				"fit_to_window", 
@@ -597,12 +599,12 @@ class Album {
 		rmdir($dir);
 	}
 
-	function resizePhoto($index, $target, $pathToResized="") {
+	function resizePhoto($index, $target, $filesize=0, $pathToResized="") {
 		$this->updateSerial = 1;
 
 		$photo = &$this->getPhoto($index);
 		if (!$photo->isMovie()) {
-			$photo->resize($this->getAlbumDir(), $target, $pathToResized);
+			$photo->resize($this->getAlbumDir(), $target, $filesize, $pathToResized);
 		}
 	}
 
@@ -1148,6 +1150,7 @@ class Album {
 				$nestedAlbum->fields["background"] = $this->fields["background"];
 				$nestedAlbum->fields["thumb_size"] = $this->fields["thumb_size"];
 				$nestedAlbum->fields["resize_size"] = $this->fields["resize_size"];
+				$nestedAlbum->fields["resize_file_size"] = $this->fields["resize_file_size"];
 				$nestedAlbum->fields["returnto"] = $this->fields["returnto"];
 				$nestedAlbum->fields["rows"] = $this->fields["rows"];
 				$nestedAlbum->fields["cols"] = $this->fields["cols"];

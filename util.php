@@ -295,6 +295,17 @@ function isImage($tag) {
     return in_array($tag, acceptableImageList());
 }
 
+function isJPG($file) {
+    if (($type = getimagesize($file)) == FALSE)
+        return false;
+
+    if ($type[2] == 2) {
+	    return true;
+    } else {
+	    return false;
+    }
+}
+
 function isMovie($tag) {
     return in_array($tag, acceptableMovieList());
 }
@@ -355,8 +366,11 @@ function my_flush() {
 	print str_repeat(" ", 4096);	// force a flush
 }
 
-function resize_image($src, $dest, $target) {
+function resize_image($src, $dest, $target, $target_fs=0) {
 	global $gallery;				
+	if (!isJPG($src)) {
+		$target_fs =0; // can't compress other images
+	}
 	if (!strcmp($src,$dest)) {
 		$useTemp = true;
 		$out = "$dest.tmp";
@@ -364,41 +378,47 @@ function resize_image($src, $dest, $target) {
 	else {
 		$out = $dest;
 	}
-
 	/* Check for images smaller then target size, don't blow them up. */
-    $regs = getDimensions($src);
-	if ($regs[0] <= $target && $regs[1] <= $target) {
+	$regs = getDimensions($src);
+	if ($regs[0] <= $target && $regs[1] <= $target && 
+			($target_fs == 0 || fs_filesize($src)/1000 < $target_fs)) {
 		if ($useTemp == false) {
 			fs_copy($src, $dest);
 		}
 		return 1;
-    }
-
-	switch($gallery->app->graphics)
-	{
-	case "NetPBM":
-		$err = exec_wrapper(toPnmCmd($src) .
-				" | " . 
-				NetPBM("pnmscale",
-					" -xysize $target $target") .
-				" | " . fromPnmCmd($out));
-		break;
-	case "ImageMagick":
-		$src = fs_import_filename($src);
-		$out = fs_import_filename($out);
-		$err = exec_wrapper(ImCmd("convert", "-quality ".
-			$gallery->app->jpegImageQuality . 
-			" -size ". $target ."x". $target ." $src".
-			" -geometry ". $target ."x" . $target .
-			" +profile icm +profile iptc $out"));
-		break;
-	default:
-		if (isDebugging())
-			echo "<br>" . _("You have no graphics package configured for use!")."<br>";
-		return 0;
-		break;
 	}
 
+	$max_quality=$gallery->app->jpegImageQuality;
+	$min_quality=5;
+	$quality=$max_quality;
+	if ($target_fs > 0) {
+		processingMsg(sprintf(_("target file size %d kbytes"), $target_fs));
+	}
+	$filesize = fs_filesize($src)/1000;
+	do {
+		compress_image($src, $out, $target, $quality);
+		if ($target_fs > 0) {
+			processingMsg(sprintf(_("file size %d kbytes - trying quality %d%%"), 
+						$filesize, $quality));
+			clearstatcache();
+			$filesize= fs_filesize($out)/1000;
+			if ($filesize < $target_fs) {
+				$min_quality=$quality;
+			} else if ($filesize > $target_fs){
+				$max_quality=$quality;
+			} else if ($filesize == $target_fs){
+				$min_quality=$quality;
+				$max_quality=$quality;
+			}
+			$quality=round(($max_quality + $min_quality)/2);
+		}
+	} while ($target_fs != 0 && ($max_quality-$min_quality > 2) &&
+			(abs(($filesize-$target_fs)/$target_fs) > .02 ));
+
+	if ($target_fs > 0) {
+		processingMsg(sprintf(_("Done. file size %.2f kbytes, quality %d%%"),
+					$filesize, $quality));
+	}
 	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
 		if ($useTemp) {
 			fs_copy($out, $dest);
@@ -600,14 +620,17 @@ function toPnmCmd($file) {
 	}
 }
 
-function fromPnmCmd($file) {
+function fromPnmCmd($file, $quality=NULL) {
 	global $gallery;
+	if ($quality == NULL) {
+		$quality=$gallery->app->jpegImageQuality;
+	}
 
 	if (eregi("\.png(\.tmp)?\$", $file)) {
 		$cmd = NetPBM("pnmtopng");
 	} else if (eregi("\.jpe?g(\.tmp)?\$", $file)) {
 		$cmd = NetPBM($gallery->app->pnmtojpeg,
-			      "--quality=" . $gallery->app->jpegImageQuality);
+			      "--quality=" . $quality);
 	} else if (eregi("\.gif(\.tmp)?\$", $file)) {
 		$cmd = NetPBM("ppmquant", "256") . " | " . NetPBM("ppmtogif");
 	}
@@ -1585,7 +1608,9 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 					if ($w > $gallery->album->fields["resize_size"] ||
 					    $h > $gallery->album->fields["resize_size"]) {
 						processingMsg("- " . sprintf(_("Resizing %s"), $name));
-						$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
+						$gallery->album->resizePhoto($index, 
+							$gallery->album->fields["resize_size"],
+							$gallery->album->fields["resize_file_size"]);
 					}
 				}
 				
@@ -1695,6 +1720,7 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
                 $gallery->album->fields["returnto"]        = $parentAlbum->fields["returnto"];
                 $gallery->album->fields["thumb_size"]      = $parentAlbum->fields["thumb_size"];
                 $gallery->album->fields["resize_size"]     = $parentAlbum->fields["resize_size"];
+                $gallery->album->fields["resize_file_size"]     = $parentAlbum->fields["resize_file_size"];
                 $gallery->album->fields["rows"]            = $parentAlbum->fields["rows"];
                 $gallery->album->fields["cols"]            = $parentAlbum->fields["cols"];
                 $gallery->album->fields["fit_to_window"]   = $parentAlbum->fields["fit_to_window"];
@@ -1939,5 +1965,32 @@ function vd($x, $string="") {
 function Gallery() {
 	return "Gallery";
 }
-
+function compress_image($src, $out, $target, $quality) {
+	global $gallery;
+	switch($gallery->app->graphics)
+	{
+		case "NetPBM":
+			$err = exec_wrapper(toPnmCmd($src) .
+					(($target > 0) ?  (" | " . NetPBM("pnmscale",
+						" -xysize $target $target") ) :
+					"")  .
+					" | " . fromPnmCmd($out, $quality));
+			break;
+		case "ImageMagick":
+			$src = fs_import_filename($src);
+			$out = fs_import_filename($out);
+			$err = exec_wrapper(ImCmd("convert", "-quality ".
+					$quality . 
+					" -size ". $target ."x". $target .
+					" $src".
+					" -geometry ". $target ."x" . $target .
+					" +profile icm +profile iptc $out"));
+			break;
+		default:
+			if (isDebugging())
+				echo "<br>" . _("You have no graphics package configured for use!")."<br>";
+			return 0;
+			break;
+	}
+}
 ?>

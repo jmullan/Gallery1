@@ -1,3 +1,22 @@
+2003-08-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b107
+
+	* Updated all refs to 1.3.5 to 1.4, except version number.
+
+	* Added filesize restriction for resize, and bump album version
+	  to store this value for each album.  If this value is set, the 
+	  compress function will be called repeatedly to get as close as 
+	  possible to this size.
+	  	- changes to move_photo.php resizing
+
+	* Stop language initialition in embedded galleries.
+
+	* Fixed bug that print statement in move_photo.php
+	
+	* Fixed bug in displaying number hidden albums in view album (thanks to
+	  Eelco Brolman)
+
+	* Change "configurations wizard" to "configuration wizard".
+
 2003-08-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b106
 	
 	* Fixed bug in diagnositics so it will run without gettext defined.

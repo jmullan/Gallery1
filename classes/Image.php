@@ -33,6 +33,7 @@ class Image {
 	var $thumb_height;
 	var $raw_width;
 	var $raw_height;
+	var $raw_filesize;
 	var $version;
 
 	function Image() {
@@ -52,6 +53,8 @@ class Image {
 			$this->raw_height = $h;
 			$this->width = $w;
 			$this->height = $h;
+			clearstatcache();
+			$this->raw_filesize= fs_filesize("$dir/$this->name.$this->type")/1000;
 		}
 	}
 
@@ -83,6 +86,8 @@ class Image {
 				list($w, $h) = getDimensions($filename);
 				$this->raw_width = $w;
 				$this->raw_height = $h;
+				clearstatcache();
+				$this->raw_filesize= fs_filesize($filename);
 				$changed = 1;
 			}
 		}
@@ -95,7 +100,7 @@ class Image {
 		return $changed;
 	}
 
-	function resize($dir, $target, $pathToResized="") {
+	function resize($dir, $target, $filesize, $pathToResized) {
 		global $gallery;
 
 		/* getting rid of the resized image */
@@ -117,7 +122,7 @@ class Image {
 			} else {
 				$ret = resize_image("$dir/$name.$type",
 					     "$dir/$name.sized.$this->type",
-					     $target);
+					     $target, $filesize);
 			}
 			
 			#-- resized image is not always a jpeg ---
@@ -249,6 +254,12 @@ class Image {
 
 	function getRawDimensions() {
 		return array($this->raw_width, $this->raw_height);
+	}
+	function setRawFileSize($size) { 
+		$this->raw_filesize=$size;	
+	}
+	function getRawFileSize() { 
+		return $this->raw_filesize;
 	}
 }	
 

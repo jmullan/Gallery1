@@ -535,9 +535,9 @@ class AlbumItem {
 		return isMovie($this->image->type);
 	}
 
-	function resize($dir, $target, $pathToResized="") {
+	function resize($dir, $target, $filesize, $pathToResized) {
 		if ($this->image) {
-			$this->image->resize($dir, $target, $pathToResized);
+			$this->image->resize($dir, $target, $filesize, $pathToResized);
 		}
 	}
 	function setExtraField($name, $value)

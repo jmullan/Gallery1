@@ -59,13 +59,13 @@ if ($gallery->session->albumName && isset($index)) {
 				echo("<br> ". _("Processing image") . " $i...");
 				my_flush();
 				set_time_limit($gallery->app->timeLimit);
-				$gallery->album->resizePhoto($i, $resize);
+				$gallery->album->resizePhoto($i, $resize, $resize_file_size);
 			}
 		} else {
 			echo("<br> ". _("Resizing 1 photo..."));
 			my_flush();
 			set_time_limit($gallery->app->timeLimit);
-			$gallery->album->resizePhoto($index, $resize);
+			$gallery->album->resizePhoto($index, $resize, $resize_file_size);
 		}
 		$gallery->album->save();
 		dismissAndReload();
@@ -76,13 +76,17 @@ if ($gallery->session->albumName && isset($index)) {
 <center>
 <font size=+1><?php echo _("Resizing photos") ?></a>
 <br>
-<?php echo _("This will resize your photos so that the longest side of the photo is equal to the target size below. ") ?>
-
-<p>
+<?php echo _("This will resize your photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size. ") ?>
 
 <?php echo $all ? _("What is the target size for all the photos in this album?") : _("What is the target size for this photo?") ?>
-<br>
+<p>
 <?php echo makeFormIntro("resize_photo.php"); ?>
+<p>
+<?php print _("Target filesize") ?> 
+<input type="text" size=4 name="resize_file_size" value="<?php print $gallery->album->fields["resize_file_size"] ?>" >  kbytes
+<p>
+<?php print _("Maximum side length in pixels") ?> 
+<p>
 <input type=hidden name=index value=<?php echo $index ?>>
 <input type=submit name=resize value="<?php echo _("Original Size") ?>">
 <input type=submit name=resize value="1024">
@@ -92,6 +96,7 @@ if ($gallery->session->albumName && isset($index)) {
 <input type=submit name=resize value="600">
 <input type=submit name=resize value="500">
 <input type=submit name=resize value="400">
+<br>
 <input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 

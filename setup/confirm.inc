@@ -303,8 +303,8 @@ $view .= row_wrap("&nbsp;");
 $data .= "/* Defaults */\n";
 $view .= row_wrap("/* Defaults */\n");
 foreach ($defaults as $key => $val) {
-	if (!$$key && !$defaults[$key]["optional"]) {
-		$view .= error_missing($defaults[$key]["desc"]);
+	if (!$$key && !isset($defaults[$key]["optional"])) {
+		$view .= error_missing($defaults[$key]["prompt"]);
 		$error = 1;
 	} else {
 	        if (get_magic_quotes_gpc()) {

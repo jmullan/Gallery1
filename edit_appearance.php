@@ -56,6 +56,7 @@ if (isset($save)) {
 	$gallery->album->fields["background"] = $background;
 	$gallery->album->fields["thumb_size"] = $thumb_size;
 	$gallery->album->fields["resize_size"] = $resize_size;
+	$gallery->album->fields["resize_file_size"] = $resize_file_size;
 	$gallery->album->fields["returnto"] = $returnto;
 	$gallery->album->fields["rows"] = $rows;
 	$gallery->album->fields["cols"] = $cols;
@@ -144,6 +145,10 @@ if (isset($save)) {
 <tr>
 <td><?php echo _("Auto-Resize") ?></td>
 <td><select name="resize_size"><?php echo selectOptions($gallery->album, "resize_size", array("off", 400, 500, 600, 640, 700, 800, 1024)) ?></select></td>
+</tr>
+<tr>
+<td><?php echo _("Auto-Resize file size kilobytes (\"0\" or blank for no size restriction)") ?></td>
+<td><input type=text name="resize_file_size" value="<?php echo $gallery->album->fields["resize_file_size"] ?>"></td>
 </tr>
 <tr>
 <td><?php echo _("Show <i>Return to</i> link") ?></td>
