@@ -18,6 +18,13 @@
     <span class="fineprint">
     <?php print poweredBy() ?>
     </span>
+    <?php
+    if (! isset($GALLERY_EMBEDDED_INSIDE)) { 
+	    global $id;
+	    print "<br><br>";
+	    print album_validation_link($gallery->session->albumName, $id);
+	    print "Not valid yet.";
+    } ?>
     </td>
 	  </tr></table>
 

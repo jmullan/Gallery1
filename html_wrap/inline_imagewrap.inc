@@ -2,6 +2,13 @@
 // $Id$
 
 //-- shorten the variables for convinience ---
+if (!empty($GLOBALS['HTTP_GET_VARS']["GALLERY_BASEDIR"]) ||
+	       	!empty($GLOBALS['HTTP_POST_VARS']["GALLERY_BASEDIR"]) ||
+	       	!empty($GLOBALS['HTTP_COOKIE_VARS']["GALLERY_BASEDIR"])) {
+       	print _("Security violation") ."\n";
+       	exit;
+}
+
 $borderWidth = $gallery->html_wrap['borderWidth'];
 $borderColor = $gallery->html_wrap['borderColor'];
 $pixelImage = isset($gallery->html_wrap['pixelImage']) ?
@@ -40,15 +47,15 @@ case "solid":
 ?>
   <table width="1%" border="0" cellspacing="0" cellpadding="0">
     <tr bgcolor="<?php echo $borderColor ?>">
-      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" height="1"></td>
+      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" height="1" alt=""></td>
     </tr>
     <tr>
-      <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" ></td>
+      <td bgcolor="<?php echo $borderColor ?>" width="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>"  alt=""></td>
       <td align="center"><?php echo $href_tag ?></td>
-      <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1"></td>
+      <td bgcolor="<?php echo $borderColor ?>" width="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1" alt=""></td>
     </tr>
     <tr bgcolor="<?php echo $borderColor ?>">
-      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1"></td>
+      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1" alt=""></td>
     </tr>
   </table>
   <?php
