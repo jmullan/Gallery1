@@ -125,21 +125,25 @@ if ($searchstring) {
 			$numPhotos = $searchAlbum->numPhotos($gallery->user->canWriteToAlbum($searchAlbum));
 			for ($j = 1; $j <= $numPhotos; $j++) {
 				$searchCaption = $searchAlbum->getCaption($j);
-				if (eregi($searchstring, $searchCaption)) {
+				$searchKeywords = $searchAlbum->getKeywords($j);
+				if ((eregi($searchstring, $searchCaption)) || (eregi($searchstring, $searchKeywords))) {
 					if (!$searchAlbum->isHidden($j) || 
 				    	$searchAlbum->isOwner($uid) || 
 			    	    	$gallery->user->isAdmin()) {
 						$photoMatch = 1;
 						$id = $searchAlbum->getPhotoId($j);
-						$searchCaption = eregi_replace($searchstring, "<b>$searchstring</b>",$searchCaption);  // cause search word to be bolded
+						// cause search word to be bolded
+						$searchCaption = eregi_replace($searchstring, "<b>$searchstring</b>",$searchCaption);
+						$searchKeywords = eregi_replace($searchstring, "<b>$searchstring</b>",$searchKeywords);
 						$searchdraw["bordercolor"] = $borderColor;
 						$searchdraw["top"] = true;
 						$searchdraw["photolink"] = $searchAlbum->getThumbnailTag($j, $thumbSize);
 						$searchdraw["photoURL"] = makeGalleryUrl($searchAlbum->fields['name'], $id);
-						$searchdraw["Text2"] = "<span class=desc>$searchCaption";
+						$searchdraw["Text2"] = "<span class=desc>$searchCaption</span>";
 						$searchdraw["Text1"] = "<span class=fineprint>From Album:&nbsp&nbsp<a href=" .
                                 			makeGalleryUrl($searchAlbum->fields['name']) . ">" .
                                 			$searchAlbum->fields['title'] . "</a></span>";
+						$searchdraw["Text3"] = "<span class=fineprint>KEYWORDS:&nbsp&nbsp $searchKeywords</span>";
 						include($GALLERY_BASEDIR . "layout/searchdraw.inc");
 					}
 				}

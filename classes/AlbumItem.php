@@ -28,6 +28,15 @@ class AlbumItem {
 	var $highlightImage;
 	var $isAlbumName;
 	var $clicks;
+	var $keywords;
+
+	function setKeyWords($kw) {
+		$this->keywords = $kw;
+	}
+
+	function getKeyWords() {
+		return $this->keywords;
+        }
 
 	function resetItemClicks() {
 		$this->clicks = 0;

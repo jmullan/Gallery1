@@ -448,6 +448,18 @@ class Album {
 		$this->setPhoto($photo, $index);
 	}
 
+	function getKeywords($index) {
+		$photo = $this->getPhoto($index);
+		return $photo->getKeywords();
+	}
+
+	function setKeyWords($index, $keywords) {
+		$photo = $this->getPhoto($index);
+		$photo->setKeywords($keywords);
+		$this->setPhoto($photo, $index);
+        }
+
+
 	function rotatePhoto($index, $direction) {
 		$photo = $this->getPhoto($index);
 		$photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"]);

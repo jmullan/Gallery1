@@ -27,6 +27,7 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	
 if ($save) {
 	$gallery->album->setCaption($index, stripslashes($data));
+	$gallery->album->setKeywords($index, stripslashes($keywords));
 	$gallery->album->save();
 	dismissAndReload();
 	return;
@@ -50,6 +51,12 @@ box below.
 <input type=hidden name="index" value="<?= $index ?>">
 <textarea name="data" rows=5 cols=40>
 <?= $gallery->album->getCaption($index) ?>
+</textarea>
+<br><br>
+Enter "keywords" for this photo in the text box below.
+<br><br>
+<textarea name="keywords" rows=1 cols=40>
+<?= $gallery->album->getKeywords($index) ?>
 </textarea>
 
 <br><br>
