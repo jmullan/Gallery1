@@ -35,6 +35,7 @@ if (!$page) {
 	$page = 1;
 }
 
+$albumDB = new albumDB();
 
 $rows = $album->fields["rows"];
 $cols = $album->fields["cols"];
@@ -67,7 +68,7 @@ $imageCellWidth = floor(100 / $cols) . "%";
 $fullWidth = $cols * $album->fields["thumb_size"];
 
 // Account for cell spacing/padding
-$fullWidth += ($cols * 5); 
+$fullWidth += ($cols * 6); 
 
 $navigator["page"] = $page;
 $navigator["pageVar"] = "page";
@@ -81,7 +82,16 @@ if ($app->feature["rewrite"]) {
 $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
 
-$breadcrumb["text"][0] = "Gallery: <a href=albums.php>".$app->galleryTitle."</a>";
+if ($album->fields[parentAlbumName]) {
+	$top = $app->photoAlbumURL;
+	$myAlbum=$albumDB->getAlbumbyName($album->fields[parentAlbumName]);
+	$breadtext[0] = "Gallery: <a href=albums.php>".$app->galleryTitle."</a>";
+	$breadtext[1] = "Album: <a href=$top/view_album.php?set_albumName=".$album->fields[parentAlbumName].">".$myAlbum->fields["title"]."</a>";
+} else {
+	$breadtext[0] = "Gallery: <a href=albums.php>".$app->galleryTitle."</a>";
+}
+
+$breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $bordercolor;
 ?>
 
@@ -166,6 +176,7 @@ $adminText .="</span>";
 $adminCommands = "<span class =\"admin\">";
 if ($user->canAddToAlbum($album)) {
 	$adminCommands .= '<a href="#" onClick="'.popup("add_photos.php?albumName=$albumName").'">[Add Photos]</a>&nbsp;';
+	$adminCommands .= '<a href=do_command.php?cmd=new-album&parentName=' . $albumName . '&return=view_album.php?page=1>[New Nested Album]</a>&nbsp;';
 }
 
 if ($user->canWriteToAlbum($album)) {
@@ -260,11 +271,21 @@ if ($numPhotos) {
 			echo("<img src=images/pixel_trans.gif width=$borderwidth height=1>");
 			echo("</td><td>");
 
-			$id = $album->getPhotoId($i);
-			if ($album->isMovie($id)) {
+		$id = $album->getPhotoId($i);
+		if ($album->isMovie($id)) {
 				echo("<a href=" . $album->getPhotoPath($i) . " target=other>" . 
 					$album->getThumbnailTag($i) .
 					"</a>");
+			} elseif ($album->isAlbumName($i)) {
+				$myAlbumName = $album->isAlbumName($i);
+				$myAlbum = $albumDB->getAlbumbyName($myAlbumName);
+				if ($myAlbum->numPhotos(1)) {
+					$myHighlightTag = $myAlbum->getThumbnailTag($myAlbum->getHighlight());
+				} else {
+					$myHighlightTag = "<span class=title>Empty!</span>";
+				}
+				echo("<a href=" . makeGalleryUrl($myAlbumName) . ">" . 
+					$myHighlightTag . "</a>");
 			} else {
 				echo("<a href=" . makeGalleryUrl($albumName, $id) . ">" .
 					$album->getThumbnailTag($i) .
@@ -295,22 +316,49 @@ if ($numPhotos) {
 			echo("<td width=$imageCellWidth valign=bottom align=center>");
 			echo("<form name='image_form_$i'>"); // put form outside caption to compress lines
 			echo "<center><span class=\"caption\">";
-			echo($album->getCaption($i)."<br>");
+			$id = $album->getPhotoId($i);
+			if ($album->isAlbumName($i)) {
+				$myAlbum = $albumDB->getAlbumbyName($album->isAlbumName($i));
+				$myDescription = $myAlbum->fields[description];
+				$buf = "";
+				$buf = $buf."<b>Album: ".$myAlbum->fields[title]."</b>";
+				if ($myDescription != "No description") {
+					$buf = $buf."<br>".$myDescription."";
+				}
+				echo($buf."<br>");
+			} else {
+				echo($album->getCaption($i)."<br>");
+			}
 			echo "</span>";
 
-			$id = $album->getPhotoId($i);
 			if (($user->canDeleteFromAlbum($album)) || ($user->canWriteToAlbum($album)) ||
 				($user->canChangeTextOfAlbum($album))) {
-				$label = ($album->isMovie($id)) ? "Movie" : "Photo";
+				if ($album->isMovie($id)) {
+					$label = "Movie";
+				} elseif ($album->isAlbumName($i)) {
+					$label = "Album";
+				} else {
+					$label = "Photo";
+				}
 				echo("<select style='FONT-SIZE: 10px;' name='s' ".
 					"onChange='imageEditChoice(document.image_form_$i.s)'>");
 				echo("<option value=''><< Edit $label>></option>");
 			}
 			if ($user->canChangeTextOfAlbum($album)) {
-				echo("<option value='edit_caption.php?index=$i'>Edit Caption</option>");
+				if ($album->isAlbumName($i)) {
+					if ($user->canChangeTextOfAlbum($myAlbum)) {	
+						echo("<option value='edit_field.php?set_albumName={$myAlbum->fields[name]}&field=title'>Edit Title</option>");
+						echo("<option value='edit_field.php?set_albumName={$myAlbum->fields[name]}&field=description'>Edit Description</option>");
+					}
+					if ($user->isAdmin() || $user->isOwnerOfAlbum($myAlbum)) {
+						echo("<option value='rename_album.php?set_albumName={$myAlbum->fields[name]}&index=$i'>Rename Album</option>");
+					}
+				} else {
+					echo("<option value='edit_caption.php?index=$i'>Edit Caption</option>");
+				}
 			}
 			if ($user->canWriteToAlbum($album)) {
-				if (!$album->isMovie($id)) {
+				if (!$album->isMovie($id) && !$album->isAlbumName($i)) {
 					echo("<option value='edit_thumb.php?index=$i'>Edit Thumbnail</option>");
 					echo("<option value='rotate_photo.php?index=$i'>Rotate $label</option>");
 					echo("<option value='highlight_photo.php?index=$i'>Highlight $label</option>");
@@ -323,7 +371,13 @@ if ($numPhotos) {
 				}
 			}
 			if ($user->canDeleteFromAlbum($album)) {
-				echo("<option value='delete_photo.php?index=$i'>Delete $label</option>");
+				if($album->isAlbumName($i)) { 
+					if($user->canDeleteAlbum($myAlbum)) {
+						echo("<option value='delete_photo.php?index=$i&albumDelete=1'>Delete $label</option>");	
+					}
+				} else {
+					echo("<option value='delete_photo.php?index=$i'>Delete $label</option>");
+				}
 			}
 			if (($user->canDeleteFromAlbum($album)) || ($user->canWriteToAlbum($album)) ||
 							($user->canChangeTextOfAlbum($album))) {
