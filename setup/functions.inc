@@ -138,6 +138,8 @@ function check_graphics()
 		"giftopnm", 
 		"pngtopnm", 
 		"ppmtojpeg", 
+		"ppmtogif", 
+		"pnmtopng", 
 		"pnmscale", 
 		"pnmfile",
 		"pnmrotate",
