@@ -56,5 +56,8 @@ require('session.php');
 $album = new Album;
 if ($albumName) {
 	$album->load($albumName);
+	if ($album->integrityCheck()) {
+		$album->save();
+	}
 }
 ?>
