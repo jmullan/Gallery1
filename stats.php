@@ -92,10 +92,13 @@ if ( $type == "comments" ) {
 	$showComments = 1;
 	$cache = new cacheCtrl( $gallery->app->stats_commentsCacheOn, $gallery->app->stats_commentsCacheExpireSecs );
 }
+/*
+** Commented out, because the rating code is broken.
 else if ( $type == "ratings" ) {
 	$showRatings = 1;
 	$cache = new cacheCtrl( $gallery->app->stats_ratingsCacheOn, $gallery->app->stats_ratingsCacheExpireSecs );
 }
+*/
 else if ( $type == "views" ) {
 	$showViews = 1;
 	$cache = new cacheCtrl($gallery->app->stats_viewsCacheOn, $gallery->app->stats_viewsCacheExpireSecs);
@@ -144,11 +147,11 @@ if (!empty( $svi )) {
 if (!empty( $svo )) {
 	$showVotes = $svo;
 }
-
+/*
 if (!empty( $sra )) {
 	$showRatings = $sra;
 }
-
+*/
 if (!empty( $sco )) {
 	$showComments = $sco;
 }
@@ -334,10 +337,11 @@ if ( !$useCache ) {
 			}
 
 			// Haplo code to make sense of the Gallery rankings.
+			/*
 			if ( isset($showRatings) || $type == "ratings" ) {
 				$ratingAverageList = getRatingAverage();
 			}
-
+			*/
 			$numPhotos = $statsAlbum->numPhotos(1);
 			for ($j = 1; $j <= $numPhotos; $j++) {
 				if ( $debug > 1 ) {
@@ -402,13 +406,13 @@ if ( !$useCache ) {
 							else {
 								$commentDate = 0;
 							}
-
+							/*
 							if ( isset($showRatings) || $type == "ratings" ) {
 								if ( $debug > 2 ) {
 									echo _("Getting Ratings"). "<br>";
 								}
 
-								if (isset($ratingAverageList[$j])) {
+								if (!empty($ratingAverageList[$j])) {
 									$ratingCount = $ratingAverageList[$j]['count'];
 									if ( $ratingAverageList[$j]['average'] != 0 ) {
 										// Only show rating when sufficient votes have been cast.
@@ -424,6 +428,7 @@ if ( !$useCache ) {
 									}
 								}
 							}
+							*/
 
 							if ( $type == "random" ) {
 								$randomNum = rand();
@@ -1002,7 +1007,9 @@ function randomsort($a, $b) {
 function makeStatsUrl( $urlpage ) {
 	global $type, $period, $album, $thumbSize;
 	global $showCaption, $showAlbumLink, $showDescription;
-	global $showUploadDate, $showViews, $showVotes, $showRatings, $showComments, $showCaptureDate;
+	global $showUploadDate, $showViews, $showVotes;
+//	global $showRatings;
+	global $showComments, $showCaptureDate;
 	global $showAddComment, $showAddVote, $showAlbumOwner, $showGrid, $numRows, $numCols;
 	global $photosPerPage, $totalPhotosReq, $reverseOrder;
 	global $timeMonth, $timeYear, $timeDay;
@@ -1014,7 +1021,7 @@ function makeStatsUrl( $urlpage ) {
 		"sud" => $showUploadDate,
 		"svi" => $showViews,
 		"svo" => $showVotes,
-		"sra" => $showRatings,
+//		"sra" => $showRatings,
 		"sco" => $showComments,
 		"scd" => $showCaptureDate,
 		"sac" => $showAddComment,
@@ -1124,7 +1131,9 @@ function getWidthFromTag($str) {
 
 function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcount ) {
 	global $addLinksPos, $showAddComment, $showAddVote, $page, $showAlbumOwner, $showCaptureDate, $showUploadDate;
-	global $showViews, $gallery, $showVotes, $showRatings, $showComments, $newestCommentsFirst;
+	global $showViews, $gallery, $showVotes;
+//	global $showRatings;
+	global $showComments, $newestCommentsFirst;
 	global $showCaption, $showAlbumLink, $showDescription, $showGrid,  $imageCellWidth;
 
 	if ( $showGrid ) {
@@ -1294,14 +1303,14 @@ if ( $showViews &&
 	echo "\n</tr>";
 }
 
-if ( $showVotes ) {
+if ( !empty($showVotes )) {
 	echo "\n<tr>";
 	echo "\n\t". '<td width="105" class="fineprint">' . _("Votes:") .'</td>';
 	echo "\n\t". '<td class="fineprint">'. $statsAlbum->getItemSVotes($photoIndex) .'</td>';
 	echo "\n</tr>";
 }
 
-if ( $showRatings ) {
+if ( !empty($showRatings)) {
 	switch ($rating) {
 		case -2:
 		$photoRateCounts = '';
