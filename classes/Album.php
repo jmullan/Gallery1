@@ -542,17 +542,17 @@ class Album {
 		return $photo->isHidden();
 	}
 
-	function deletePhoto($index, $forceResetHighlight="0") {
+	function deletePhoto($index, $forceResetHighlight="0", $recursive=1) {
 		$this->updateSerial = 1;
 		$photo = array_splice($this->photos, $index-1, 1);
 		// need to check for nested albums and delete them ...
-		if ($photo[0]->isAlbumName) {
+		if ($recursive && $photo[0]->isAlbumName) {
 			$albumName = $photo[0]->isAlbumName;
 			$album = new Album();
 			$album->load($albumName);
 			$album->delete();
 		}
-                /* are we deleteing the highlight? pick a new one */
+                /* are we deleting the highlight? pick a new one */
 		$needToRehighlight = 0;
 		if ( ($photo[0]->isHighlight()) && ($this->numPhotos(1) > 0) && (!$forceResetHighlight==-1)) {
 			$needToRehighlight = 1;
