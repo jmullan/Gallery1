@@ -80,7 +80,7 @@ foreach ($constants as $key => $val) {
 			}
 		}
 
-		$data .= constant($key, $$key);
+		$data .= one_constant($key, $$key);
 		$view .= row_wrap(constant($key, $$key));
 	}
 	echo "<input type=hidden name=$key value=\"{$$key}\">";

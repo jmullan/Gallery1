@@ -41,7 +41,7 @@ function locateFile($filename) {
 	}
 }
 
-function constant($key, $value) {
+function one_constant($key, $value) {
 	return "\$app->$key = \"$value\";\n";
 }
 
