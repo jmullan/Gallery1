@@ -53,7 +53,7 @@ for all_po in $pofiles ; do
 	echo "$tab Updating ..."
 	head -1 $all_po > tmp.po
 	echo "#" >> tmp.po
-	echo "# Version: 1_4_2-RC2" >> tmp.po
+	echo "# Version: 1_4_2" >> tmp.po
 	echo "#" >> tmp.po
 	tail +5 $all_po >> tmp.po
 	mv tmp.po $all_po
@@ -70,7 +70,7 @@ for all_nls in $nlsfiles ; do
 	echo "$tab Updating ..."
 	head -20 $all_nls > tmp.nls
 	echo " *" >> tmp.nls
-	echo " * Version: 1_4_2-RC2" >> tmp.nls
+	echo " * Version: 1_4_2" >> tmp.nls
 	tail +23 $all_nls >> tmp.nls
 	mv tmp.nls $all_nls
 done

@@ -45,17 +45,20 @@ for all_CF in $Cfiles ; do
 
 	echo "$tab Language = $lang"
 
+	echo "">> $all_CF	
 	echo "$tab Updating ..."
-	echo "2003-11-27  Jens Tkotz <jens@peino.de> 1.4.2-cvs-b37" >> $all_CF
-	echo "" >> $all_CF	
-	echo "  * Copied Files from 1.4.1 into 1.4.2" >> $all_CF
-	echo "" >> $all_CF	
-	echo "  * Sync against latest changes." >> $all_CF	
-	echo "" >> $all_CF
+		
+	echo "2004-02-12" >> $all_CF
+#  Jens Tkotz <jens@peino.de> 1.4.2-cvs-b37" >> $all_CF
+#	echo "" >> $all_CF	
+#	echo "  * Copied Files from 1.4.1 into 1.4.2" >> $all_CF
+#	echo "" >> $all_CF	
+#	echo "  * Sync against latest changes." >> $all_CF	
+#	echo "" >> $all_CF
 
-echo "===============================================================================
-                                 v1.4.2-RC1 release
-===============================================================================
+echo "===============================================================================" >> $all_CF
+echo "                                 v1.4.2 Release" >> $all_CF
+echo "===============================================================================" >> $all_CF
 #read trash
 done
 
