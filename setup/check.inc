@@ -71,7 +71,9 @@ foreach ($checklist as $check) {
 			$warning++;
 		} else {
 			echo "\t\t\t\t<p class=\"error\">" . _("Failed!") ."</p>";
-			echo "\n\t\t\t<p>" . $check[$key] ."</p>";
+		       	if (isset($check) && isset($check[$key])) {
+			       	echo "\n\t\t\t<p>" . $check[$key] ."</p>";
+			}
 			$error = 1;
 		}
 

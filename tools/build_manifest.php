@@ -179,9 +179,8 @@ $files=array(	"AUTHORS",
 		"layout/navtablemiddle.inc",
 	       	"layout/searchdraw.inc",
 	       	"platform/fs_unix.php",
-	       	"platform/fs_win32.php");
-
-$setup = array(	"setup/.htaccess",
+	       	"platform/fs_win32.php",
+		"setup/.htaccess",
 	       	"setup/backup_albums.php",
 	       	"setup/check.inc",
 	       	"setup/check_imagemagick.php",
@@ -212,27 +211,29 @@ fwrite($fd, "<?php\n\n");
 fwrite($fd, "/*\n * DO NOT EDIT!!!  This file is created by build_manifest.php.\n * Edit that file and re-run via command line to modify this.\n */\n\n");
 fwrite($fd, "\$versions=array();\n");
 
+$error=false;
 foreach ($files as $file) {
        	$version=getCVSVersion($file);
-       	if (!$version) {
-	       	print "skipping $file\n";
+       	if ($version === NULL) {
+	       	print "ERROR: $file missing\n";
+		$error=true;
+       	} else if ($version === "") {
+	       	print "ERROR: \$id missing from $file\n";
+		$error=true;
        	} else {
 	       	fwrite($fd, "\$versions['$file']='$version';\n");
        	}
 }	
 
-// fwrite($fd, "\nif (fs_is_readable(\$GALLERY_BASEDIR.'setup')) {\n"); // }
-foreach ($setup as $file) {
-       	$version=getCVSVersion($file);
-       	if (!$version) {
-	       	print "skipping $file\n";
-       	} else {
-	       	fwrite($fd, "\$versions['$file']='$version';\n");
-       	}
-}
-
-// fwrite($fd,  "}\n");
 fwrite($fd, "?>\n");
+fclose($fd);
+if (!$error) {
+	print "Done\n";
+	exit(0);
+} else {
+	print "Please fix errors and re-run\n";
+	exit(1);
+}
 
 
 
