@@ -2573,7 +2573,7 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 					. ($target ? "-size ${target}x${target} " : '')
 					. ($keepProfiles ? ' ' : ' +profile \'*\' ')					
 					. $src
-					. ($target ? " -geometry ${target}x${target}" : '')
+					. ($target ? " -geometry ${target}x${target} " : '')
 					. $out));
 			break;
 		default:
