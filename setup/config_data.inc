@@ -82,8 +82,8 @@ $constants = array(
 		"value" => locateFile("mv"),
 	),
 	"movieThumbnail" => array(
-		"desc" => "The thumbnail image URL to show for movies",
-		"value" => $GALLERY_URL . "/images/movie.thumb.jpg"
+		"desc" => "The path to the thumbnail image to show for movies",
+		"value" => $GALLERY_DIR . "/images/movie.thumb.jpg"
 	),
 	"albumDir" => array(
 		"desc" => "The full path on physical disk to the directory " .
