@@ -15,6 +15,13 @@ that this has your current config information already in it.
 <input type=hidden name=prev_page value="check">
 <?
 foreach ($constants as $key => $val) {
+
+	/* Support $app-> for backwards compatibility */
+	if ($app->$key) {
+		$val["value"] = $app->$key;
+	}
+
+	/* $gallery->app-> is the desired container, however */
 	if ($gallery->app->$key) {
 		$val["value"] = $gallery->app->$key;
 	}
@@ -31,6 +38,13 @@ foreach ($constants as $key => $val) {
 }
 
 foreach ($defaults as $key => $val) {
+
+	/* Support $app-> for backwards compatibility */
+	if ($app->default[$key]) {
+		$val["value"] = $app->default[$key];
+	}
+
+	/* $gallery->app-> is the desired container, however */
 	if ($gallery->app->default[$key]) {
 		$val["value"] = $gallery->app->default[$key];
 	}
