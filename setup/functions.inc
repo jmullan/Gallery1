@@ -223,6 +223,10 @@ function check_exif($location="")
 
 function check_generate_array($string)
 {
+	if (ini_get ('magic_quotes_gpc')) {
+		$string = stripslashes ($string);
+	}
+	
 	$fail = array();
 	$success = array();
 	eval ("\$array=array(".restoreQuotes($string).");");
