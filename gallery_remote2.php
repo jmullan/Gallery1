@@ -341,7 +341,6 @@ function gr_fetch_album_images( &$gallery, &$response ) {
 
 	global $GR_STAT;
 
-	$tmpURL = $gallery->app->albumDirURL;
 	$tmpImageNum = 0;
 	foreach($gallery->album->photos as $albumItemObj) {
 		if(empty($albumItemObj->isAlbumName)) { //Make sure this object is a picture, not an album
@@ -383,7 +382,7 @@ function gr_fetch_album_images( &$gallery, &$response ) {
 		}
 	}
 	$response->setProperty( 'image_count', $tmpImageNum );
-	$response->setProperty( 'baseurl', $tmpURL.'/'.$gallery->session->albumName.'/' );
+	$response->setProperty( 'baseurl', $gallery->album->getAlbumDirURL('full').'/' );
 
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Fetch images successful.' );
