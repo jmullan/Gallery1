@@ -231,7 +231,7 @@ if (!$gallery->session->offline) { ?>
 
   function hideProgressAndReload() {
 	hideProgress();
-	history.go(0);
+	location.reload();
   }
 
   function imageEditChoice(selected_select) {
