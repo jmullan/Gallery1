@@ -1,4 +1,9 @@
-2001-09-09  Bharat Mediratta  <bharat@menalto.com> (1.2.1-cvs-b1)
+2001-09-09  Bharat Mediratta  <bharat@menalto.com> (1.2.1-cvs-b2)
+
+	* Fixed the sporadic session timeout bug!  It was caused by the click
+	  counter code stuffing way too much data into the cookie.  Cookies
+	  have a 1024 byte limit and the new stuff we were putting in would
+	  eventually cause the session id to drop out.  D'oh!
 
 	* Fixed issues with sucking images via the web:
 	  - Fixed timeout bug when parsing large HTML files 
