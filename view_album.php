@@ -364,7 +364,7 @@ if ($numPhotos) {
 		$i = $rowStart;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
-			echo("<td width=$imageCellWidth valign=bottom align=center>");
+			echo("<td width=$imageCellWidth valign=top align=center>");
 
 			// put form outside caption to compress lines
 			echo makeFormIntro("view_album.php", array("name" => "image_form_$i")); 
