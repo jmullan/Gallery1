@@ -26,9 +26,21 @@ require_once(dirname(__FILE__) . '/init.php');
 list($index, $cmd, $return, $parentName, $rebuild_type, $albumName) = 
   getRequestVar(array('index', 'cmd', 'return', 'parentName', 'rebuild_type', 'albumName'));
 
+/* 
+ * Test for relative URL, which we know to be local.  If URL contains ://
+ * assume that it's remote and test it against our local full URLs
+ * to ensure security.  Don't check for http:// or https:// because
+ * for all we know, someone put their album URL on a gopher server...
+ */
+if ($return[0] != '/' && strstr($return, '://') !== false) {
+    if (strncmp($return, $gallery->app->photoAlbumURL, strlen($gallery->app->photoAlbumURL)) || 
+	    strncmp($return, $gallery->app->albumDirURL, strlen($gallery->app->albumDirURL))) {
+	die _('Attempted security breach.');
+    }
+}	
 
 /* This is used for deleting comments from stats.php */
-if(!empty($albumName)) {
+if (!empty($albumName)) {
 	$gallery->album = new Album();
 	$gallery->album->load($albumName);
 }

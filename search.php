@@ -24,7 +24,8 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-$searchstring = removeTags(getRequestVar('searchstring'));
+/* urldecode, remove tags, and then encode htmlspecial chars to make string display-safe */
+$searchstring = htmlspecialchars(removeTags(urldecode(getRequestVar('searchstring'))));
 
 $borderColor = $gallery->app->default["bordercolor"];
 $thumbSize = $gallery->app->default["thumb_size"];
