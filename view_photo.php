@@ -649,7 +649,6 @@ includeHtmlWrap("inline_photo.footer");
 	<input type="hidden" name="submitEmailMe">
 		</form>
 <?php }
-
 includeLayout('navtablebegin.inc');
 includeLayout('navphoto.inc');
 $breadcrumb["top"] = false;
@@ -664,11 +663,9 @@ if ($fitToWindow) {
 	calculateNewSize();
 //-->
 </script>
-<?php
+<?php 
 }
-includeHtmlWrap("photo.footer");
-?>
-<?php if (isset($printShutterflyForm)) { ?>
+if (isset($printShutterflyForm)) { ?>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value="1">
   <input type=hidden name=protocol value="SFP,100">
@@ -729,6 +726,7 @@ if (isset($printEZPrintsForm)) { ?>
   <input type="hidden" name="startwith" value="cart">
 </form>
 <?php }
+	includeHtmlWrap("photo.footer");
 	if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>

@@ -2611,7 +2611,7 @@ function emailLogMessage($logmsg, $result) {
 		mail($gallery->app->adminEmail, 
 			$subject,
 			emailDisclaimer().$logmsg,
-			"From: " . $gallery->app->senderEmail);
+			"From: " . $gallery->app->senderEmail . "\r\n");
 	}
 }
 function logMessage ($msg, $logfile) {
