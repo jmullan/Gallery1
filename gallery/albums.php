@@ -187,7 +187,6 @@ for ($i = $start; $i <= $end; $i++) {
   <? } ?>
 
   <br>
-  </span>
   <span class="fineprint">
    Last changed on <?=$album->getLastModificationDate()?>.  
    This album contains <?=pluralize($album->numPhotos(0), "item", "no")?>.
