@@ -1,0 +1,27 @@
+<?php
+// $Id$
+// This is the default search header (for the search results
+// page: albums.php). It's companion is search.footer.default. 
+//
+// To override this header, create a file called search.header
+// in this directory. 
+//
+// NOTE: This header gets inserted below the <body> tag.
+// 
+?>
+<?php
+includeHtmlWrap("wrapper.header");
+?>
+
+<table width="100%" border=0>
+  <tr>
+    <td>
+      <span class="head">
+        <?php echo $gallery->app->galleryTitle ?> :: <?php echo _("Search") ?>
+      </span>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+
+
