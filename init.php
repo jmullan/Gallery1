@@ -71,8 +71,9 @@ if (!$gallery->user) {
 $gallery->album = new Album;
 if ($gallery->session->albumName) {
 	$gallery->album->load($gallery->session->albumName);
-	if ($gallery->album->integrityCheck()) {
-		$gallery->album->save(0);
+	if ($gallery->album->versionOutOfDate()) {
+		require("upgrade_album.php");
+		exit;
 	}
 }
 ?>
