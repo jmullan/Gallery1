@@ -4,6 +4,7 @@ CONTENTS
   3. How do I install Gallery if I only have FTP access?
   4. My webserver doesn't have NetPBM!  Help!  Aiee!
   5. How do I customize Gallery?
+  6. I can't upload large files!
 
 1. WHAT IS GALLERY?
 
@@ -134,6 +135,22 @@ at the end and modify it.
 If you come up with cool themes feel free to send them to me and I'll
 include them in the gallery package (or create a theme library of some
 kind).  
+
+
+6. I CAN'T UPLOAD LARGE FILES!
+
+PHP imposes a restriction on the size of a file upload.  This may get
+in the way of uploading large zip files.  To increase the limit, you
+can set the both the "upload_max_size" and "post_max_size" parameters
+in your system's php.ini to a large values (like "1000M" for 1000
+megabytes).  Gallery attempts to modify those values in the local
+.htaccess file, but not all servers are set up to pay attention to
+that file so you may have to do it by hand.
+
+Even so, there is a limit to the size of a file that PHP can handle, 
+even if you remove this restriction.  Users have reported having issues
+uploading files greater than 20MB.  Your mileage may vary.
+
 
 
 
