@@ -58,6 +58,12 @@ default: // use frames directory
 
   $base = $gallery->app->photoAlbumURL . "/html_wrap/frames/$frame";
   include (dirname(__FILE__) . "/frames/$frame/frame.def");
+  $hLL = $hRR = 1;
+  if (stristr($HTTP_SERVER_VARS['HTTP_USER_AGENT'], 'safari')) {
+    // Safari ignores height="100%" for table
+    $hLL = $imageHeight - $heightLLT - $heightLLB;
+    $hRR = $imageHeight - $heightRRT - $heightRRB;
+  }
   ?>
 
   <table align="center" width="1" border="0" cellspacing="0" cellpadding="0">
@@ -84,7 +90,7 @@ default: // use frames directory
 	    </tr>
 	    <?php } ?>
 	    <tr>
-		<td width="<?php echo $widthLL ?>" style="background-image:url(<?php echo "$base/$imageLL" ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="<?php echo ($imageHeight - $heightLLT - $heightLLB) ?>" alt="FRAME"></td>
+		<td width="<?php echo $widthLL ?>" style="background-image:url(<?php echo "$base/$imageLL" ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="<?php echo $hLL ?>" alt="FRAME"></td>
 	    </tr>
 	    <?php if ($heightLLB > 0) { ?>
 	    <tr>
@@ -104,7 +110,7 @@ default: // use frames directory
 	    </tr>
 	    <?php } ?>
 	    <tr>
-		<td width="<?php echo $widthRR ?>" style="background-image:url(<?php echo "$base/$imageRR" ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="<?php echo ($imageHeight - $heightRRT - $heightRRB) ?>" alt="FRAME"></td>
+		<td width="<?php echo $widthRR ?>" style="background-image:url(<?php echo "$base/$imageRR" ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="<?php echo $hRR ?>" alt="FRAME"></td>
 	    </tr>
 	    <?php if ($heightRRB > 0) { ?>
 	    <tr>
