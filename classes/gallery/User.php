@@ -122,7 +122,7 @@ class Gallery_User extends Abstract_User {
 	       	$rec_pass_hash=substr(md5($this->password.
 					$this->uid.microtime()), 0, 5);
 		$this->recoverPassHash = md5($rec_pass_hash);
-	       	return makeGalleryUrl('new_password.php', array('hash' => $rec_pass_hash, 'uname' => $this->getUsername()));
+	       	return str_replace("&amp;", "&", makeGalleryUrl('new_password.php', array('hash' => $rec_pass_hash, 'uname' => $this->getUsername())));
 	}
 
 	function checkRecoverPasswordHash($hash) {

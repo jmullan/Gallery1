@@ -2676,6 +2676,7 @@ function emailDisclaimer() {
 
 
 function gallery_mail($to, $subject, $msg, $logmsg, $from = NULL) {
+	global $gallery;
 	if ($gallery->app->emailOn == "no") {
 	       	gallery_error(_("Email not sent as it is disabled for this gallery"));
 		return false;
