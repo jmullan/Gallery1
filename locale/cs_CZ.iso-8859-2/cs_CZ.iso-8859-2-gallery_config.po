@@ -17,15 +17,15 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
-# Michal Bayer <misa@bayercz.com>, 2003
+# Michal Bayer <misa@bayercz.com>, 2003-2005
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
 "POT-Creation-Date: 2005-01-11 15:46+0100\n"
-"PO-Revision-Date: 2003-10-21 14:55+0100\n"
-"Last-Translator: Jens Tkotz <jens AT peino DOT de>\n"
+"PO-Revision-Date: 2005-01-16 08:47+0100\n"
+"Last-Translator: Misa <misa@bayercz.com>\n"
 "Language-Team: CZ_Czech <coyot AT i DOT love DOT pinknet DOT cz>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-2\n"
@@ -66,23 +66,23 @@ msgstr "Ne¾ budete pokraèovat, musíte tyto chyby odstranit."
 
 #: ../errors/unconfigured.php:25
 msgid "1."
-msgstr ""
+msgstr "1."
 
 #: ../errors/unconfigured.php:26
 msgid "Create an empty file .htaccess and an empty file config.php"
-msgstr ""
+msgstr "Vytvoøte prázdné soubory .htaccess a config.php"
 
 #: ../errors/unconfigured.php:28
 msgid "2."
-msgstr ""
+msgstr "2."
 
 #: ../errors/unconfigured.php:29
 msgid "Create an albums folder for your pictures and movies."
-msgstr ""
+msgstr "Vytvoøte adresáø pro va¹e fotky."
 
 #: ../errors/unconfigured.php:32
 msgid "Make sure that both files and the folder are read and writeable for your webserver !"
-msgstr ""
+msgstr "Ujistìte se, ¾e adresáø a soubory mají nastavené práva pro ètení a zápis pro vá¹ webserver."
 
 #: ../errors/unconfigured.php:37
 #, fuzzy, php-format
@@ -91,9 +91,9 @@ msgstr "A pak pus»te %sPrùvodce konfirurací%s."
 
 #: ../setup/check.inc:27 ../setup/confirm.inc:28 ../setup/constants.inc:31
 #: ../setup/defaults.inc:27
-#, fuzzy, php-format
+#, php-format
 msgid "Gallery Configuration Wizard: Step %d"
-msgstr "Gallery: konfiguraèní re¾im"
+msgstr "Konfiguraèní re¾im Gallery: krok %d"
 
 #: ../setup/check.inc:31
 msgid "This is the Gallery system check page."
@@ -159,11 +159,13 @@ msgstr "Va¹e instalace obsahuje varování, ale vìt¹inou by to nemìlo vadit. Pokra
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "Instalace probìhla úspì¹nì! Tak hurá do toho!"
 
-#: ../setup/check.inc:163 ../setup/constants.inc:45 ../setup/constants.inc:160
-#: ../setup/defaults.inc:46 ../setup/defaults.inc:134
-#, fuzzy
+#: ../setup/check.inc:163
+#: ../setup/constants.inc:45
+#: ../setup/constants.inc:160
+#: ../setup/defaults.inc:46
+#: ../setup/defaults.inc:134
 msgid "Next Step"
-msgstr "Dal¹í stránka"
+msgstr "Dal¹í krok"
 
 #: ../setup/check_imagemagick.php:30
 #, fuzzy
@@ -196,7 +198,7 @@ msgstr "Vypadá to, ¾e Gallery nebyla správnì zkonfigurována. Spus»te a dokonèete
 #: ../setup/check_imagemagick.php:75 ../setup/check_netpbm.php:75
 #: ../setup/functions.inc:1252
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../setup/check_imagemagick.php:85 ../setup/check_netpbm.php:85
 msgid "Let us see if we can figure out what operating system you are using."
@@ -431,11 +433,11 @@ msgstr[2] ""
 
 #: ../setup/check_versions.php:132
 msgid "All files are up-to-date."
-msgstr ""
+msgstr "V¹echny soubory jsou aktuální."
 
 #: ../setup/check_versions.php:138
 msgid "The following files are up-to-date."
-msgstr ""
+msgstr "V¹echny následující soubory jsou aktuální."
 
 #: ../setup/config_data.inc:63
 msgid "unknown"
@@ -483,11 +485,11 @@ msgstr "Kontroluji, jak je stará verze %s %s ."
 
 #: ../setup/config_data.inc:100
 msgid "Check to see if you are running PHP 4.1.0 or greater."
-msgstr ""
+msgstr "Kontroluji zda máte PHP 4.1.0, nebo novìj¹í."
 
 #: ../setup/config_data.inc:100
 msgid "Since Gallery 1.4.5 Gallery needs at least PHP 4.1.0, this is due to that some versions of PHP have bugs that cause Gallery to fail and that older Version does not have required functionality."
-msgstr ""
+msgstr "Od verze 1.4.5 potøebuje Gallery minimálnì PHP 4.1.0, proto¾e nìkteré verze PHP obsahovali chyby, které zpùsobovali neèinnost Gallery."
 
 #: ../setup/config_data.inc:102
 #, fuzzy, php-format
@@ -646,9 +648,8 @@ msgid "Checking to see if you have the latest versions of all Gallery files."
 msgstr ""
 
 #: ../setup/config_data.inc:245
-#, fuzzy
 msgid "General settings"
-msgstr "Zobraz nastavené"
+msgstr "Hlavní nastavení"
 
 #: ../setup/config_data.inc:249
 msgid "Gallery Title"
@@ -1123,22 +1124,21 @@ msgstr "Napøíklad %s zobrazí datum a èas takto: %s."
 
 #: ../setup/config_data.inc:681
 msgid "Email and Registration"
-msgstr ""
+msgstr "E-mail a registrace"
 
 #: ../setup/config_data.inc:682
 #, php-format
 msgid "If you are having problems with email, please run the %s diagnostic."
 msgstr ""
 
-#: ../setup/config_data.inc:683 ../setup/diagnostics.php:92
-#, fuzzy
+#: ../setup/config_data.inc:683
+#: ../setup/diagnostics.php:92
 msgid "Check Email"
-msgstr "Oznaèit v¹e"
+msgstr "Zkontrolovat e-mail"
 
 #: ../setup/config_data.inc:686
-#, fuzzy
 msgid "Enable email"
-msgstr "Jméno nebo e-mail"
+msgstr "Zapnout e-mail"
 
 #: ../setup/config_data.inc:688
 #, php-format
@@ -1154,18 +1154,16 @@ msgid "You need to enable this setting if you want to enable Self Registration."
 msgstr ""
 
 #: ../setup/config_data.inc:696
-#, fuzzy
 msgid "Admin email address"
-msgstr "E-mailová adresa"
+msgstr "E-mailová adresa admina"
 
 #: ../setup/config_data.inc:697
 msgid "Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know whom to reach in case of problems. You may specify more than one address by separating them with commas."
 msgstr ""
 
 #: ../setup/config_data.inc:705
-#, fuzzy
 msgid "Sender email address"
-msgstr "IP adresa serveru"
+msgstr "E-mailová adresa odesílatele"
 
 #: ../setup/config_data.inc:706
 msgid "Set this value to a valid working email address.  Emails that are automatically sent by Gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients."
@@ -1173,7 +1171,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:714
 msgid "Email subject prefix"
-msgstr ""
+msgstr "Prefix v subjektu e-mailu"
 
 #: ../setup/config_data.inc:715
 msgid "All Gallery emails will have this as the first part of their subject."
@@ -1203,7 +1201,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:741
 msgid "Allow visitors to self register."
-msgstr ""
+msgstr "Dovolit nav¹tìvníkùm zaregistrovat se."
 
 #: ../setup/config_data.inc:742
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
@@ -1214,14 +1212,12 @@ msgid "This option requires the Email feature to be enabled."
 msgstr ""
 
 #: ../setup/config_data.inc:746
-#, fuzzy
 msgid "Email"
-msgstr "Ulo¾ a odejdi"
+msgstr "E-mail"
 
 #: ../setup/config_data.inc:749
-#, fuzzy
 msgid "Self registered users can create albums."
-msgstr "U¾ivatel mù¾e zakládat alba"
+msgstr "Mù¾e u¾ivatel, který se sám zaregistroval zakládat alba"
 
 #: ../setup/config_data.inc:750
 msgid "Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled."
@@ -1283,7 +1279,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:793
 msgid "SMTP Server"
-msgstr ""
+msgstr "SMTP Server"
 
 #: ../setup/config_data.inc:794
 msgid "The name or IP address of the SMTP Server you want to use."
@@ -1299,7 +1295,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:811
 msgid "SMTP Port"
-msgstr ""
+msgstr "SMTP Port"
 
 #: ../setup/config_data.inc:812
 msgid "The port on the SMTP server you are connecting to."
@@ -1307,16 +1303,15 @@ msgstr ""
 
 #: ../setup/config_data.inc:820
 msgid "SMTP account name"
-msgstr ""
+msgstr "SMTP u¾ivatelské jméno"
 
 #: ../setup/config_data.inc:821
 msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
 msgstr ""
 
 #: ../setup/config_data.inc:829
-#, fuzzy
 msgid "SMTP password"
-msgstr "Heslo administrátora"
+msgstr "SMTP heslo"
 
 #: ../setup/config_data.inc:830
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
@@ -1324,7 +1319,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:845
 msgid "Gallery wide slideshow"
-msgstr "·¹iroká slideshow Gallery"
+msgstr "©iroká slideshow Gallery"
 
 #: ../setup/config_data.inc:846
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
@@ -1786,15 +1781,13 @@ msgstr ""
 
 #: ../setup/config_data.inc:1184 ../setup/config_data.inc:1225
 #: ../setup/config_data.inc:1233 ../setup/config_data.inc:1241
-#, fuzzy
 msgid "Yes"
-msgstr "ano"
+msgstr "Ano"
 
 #: ../setup/config_data.inc:1185 ../setup/config_data.inc:1226
 #: ../setup/config_data.inc:1234 ../setup/config_data.inc:1242
-#, fuzzy
 msgid "No"
-msgstr "Poznámka"
+msgstr "Ne"
 
 #: ../setup/config_data.inc:1189
 msgid "RSS Content"
@@ -2526,23 +2519,26 @@ msgstr "Tady mù¾ete zmnit rùzná nastavení Gallery. Pokud tak èiníte poprvé, byla
 msgid "Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step."
 msgstr ""
 
-#: ../setup/constants.inc:42 ../setup/constants.inc:157
-#: ../setup/defaults.inc:43 ../setup/defaults.inc:131
-#, fuzzy
+#: ../setup/constants.inc:42
+#: ../setup/constants.inc:157
+#: ../setup/defaults.inc:43
+#: ../setup/defaults.inc:131
 msgid "Previous Step"
-msgstr "Pøedchozí stránka"
+msgstr "Pøedchozí krok"
 
-#: ../setup/constants.inc:43 ../setup/constants.inc:158
-#: ../setup/defaults.inc:44 ../setup/defaults.inc:132
-#, fuzzy
+#: ../setup/constants.inc:43
+#: ../setup/constants.inc:158
+#: ../setup/defaults.inc:44
+#: ../setup/defaults.inc:132
 msgid "Previous Tab"
-msgstr "Pøedchozí stránka"
+msgstr "Pøedchozí zálo¾ka"
 
-#: ../setup/constants.inc:44 ../setup/constants.inc:159
-#: ../setup/defaults.inc:45 ../setup/defaults.inc:133
-#, fuzzy
+#: ../setup/constants.inc:44
+#: ../setup/constants.inc:159
+#: ../setup/defaults.inc:45
+#: ../setup/defaults.inc:133
 msgid "Next Tab"
-msgstr "Dal¹í stránka"
+msgstr "Dal¹í zálo¾ka"
 
 #: ../setup/constants.inc:46 ../setup/constants.inc:161
 #: ../setup/defaults.inc:47 ../setup/defaults.inc:135
@@ -3252,7 +3248,7 @@ msgstr "Úspìch!"
 
 #: ../setup/write.inc:178
 msgid "Your configuration has been successfully saved!"
-msgstr "Vae¹ nastavení bylo správnì ulo¾eno!"
+msgstr "Va¹e nastavení bylo správnì ulo¾eno!"
 
 #: ../setup/write.inc:186
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
@@ -3361,97 +3357,3 @@ msgstr "Jméno"
 msgid "A textured wooden frame"
 msgstr ""
 
-#, fuzzy
-#~ msgid "Version of ImageMagick being used"
-#~ msgstr "V¹ech %d binárek ImageMagick nalezeno."
-
-#, fuzzy
-#~ msgid "Enable caching for comments"
-#~ msgstr "Jméno nebo e-mail"
-
-#, fuzzy
-#~ msgid "Enable caching for ratings"
-#~ msgstr "Jméno nebo e-mail"
-
-#, fuzzy
-#~ msgid "The full URL to the Gallery web application.  E.g. %s"
-#~ msgstr "Plná cesta k webové aplikaci Gallery - napø. %s"
-
-#, fuzzy
-#~ msgid "The full URL to your album directory (specified above) on your web server.  E.g. %s"
-#~ msgstr "Pln= URL k adresáøi alb, uvedenému vý¹e, na va¹em webserveru. Napø. %s."
-
-#, fuzzy
-#~ msgid "Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP 4.0.0 uses a different file upload protocol, and versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can. <p>"
-#~ msgstr "Kontroluji, jestli provozujete PHP4. V nìkterých verzích PHP jsou chyby, které znemo¾òují pou¾ití Gallery. PHP 4.0.0 pou¾ívá jiný protokol nahrávání souborù. Verze 4.0.3 a 4.0.3pl1 mají chybu v unserialization code, co¾ zpùsobuje, ¾e Gallery nemù¾e èíst své vlastní databáze. Pokud mù¾ete, nahrajte do systému PHP 4.0.4pl1 nebo novìj¹í.<p>"
-
-#, fuzzy
-#~ msgid "Embed Gallery"
-#~ msgstr "Gallery"
-
-#, fuzzy
-#~ msgid "with donation"
-#~ msgstr "%s bez dotace"
-
-#, fuzzy
-#~ msgid "without donation"
-#~ msgstr "%s bez dotace"
-
-#, fuzzy
-#~ msgid "The filesystem path to the <b>zipinfo</b> binary.  This is optional so if you don't have it, don't worry about it too much."
-#~ msgstr "Cesta k binárce zipinfo. Není nutné zadat - pokud jej nemáte, netrapte se tím."
-
-#~ msgid "Gallery in Configuration Mode"
-#~ msgstr "Gallery je v konfiguraèním re¾imu"
-
-#~ msgid "Gallery: Configuration Mode"
-#~ msgstr "Gallery: konfiguraèní re¾im"
-
-#, fuzzy
-#~ msgid "To configure gallery, run the %sConfiguration Wizard%s."
-#~ msgstr "Nastavení Gallery proveïte pomocí %sprùvodce nastavením%s"
-
-#~ msgid "If you've finished your configuration but you're still seeing this page, that's because for safety's sake we don't let you run Gallery in an insecure mode."
-#~ msgstr "Jestli¾e jste ukonèili konfiguraci Gallery a pøesto se zobrazuje tato stránka, je to zpùsobeno ochranou, která neumo¾òuje prohlí¾et fotky mimo bezpeèený re¾im."
-
-#~ msgid "You need to switch to secure mode before you can use it.  Here's how:"
-#~ msgstr "Musíte Gallery pøepnout do zabezpeèeného re¾imu. Dìlá se to takto:"
-
-#~ msgid "Then just reload this page and all should be well."
-#~ msgstr "Pak obnovte stránku a v¹e by mìlo fungovat."
-
-#~ msgid "%s with shell access"
-#~ msgstr "%s s pøístupem do shellu."
-
-#~ msgid "/path/to/your/gallery"
-#~ msgstr "/cesta/k/va¹í/Gallery"
-
-#~ msgid "%s with FTP access"
-#~ msgstr "%s s pøístupem pøes FTP"
-
-#, fuzzy
-#~ msgid "Gallery must be configured before you can use it. First, you must put Gallery in Configuration Mode. Here's how:"
-#~ msgstr "Gallery musí být pøed pou¾itím zkonfigurována. Nejdøíve aktivujte konfuguraèní re¾im - takto:"
-
-#, fuzzy
-#~ msgid "Don't forget to run this to make your Gallery secure!"
-#~ msgstr "Nezapomeòte spustit %s, abyste Gallery zabezpeèili"
-
-#, fuzzy
-#~ msgid "Gallery won't run if it is not in secure mode."
-#~ msgstr "Gallery nelze pou¾ít, pokud není pøepnuta do bezpeèného re¾imu"
-
-#, fuzzy
-#~ msgid "errors"
-#~ msgstr "Chyba"
-
-#, fuzzy
-#~ msgid "Gallery Configuration :: Frames"
-#~ msgstr "Konfigurace Gallery"
-
-#~ msgid "Error:"
-#~ msgstr "Chyba:"
-
-#, fuzzy
-#~ msgid "Here you can customize the default values for new albums that you create.  Note that these are not <b>master switches</b> (i.e., if you turn a setting on here, you can still turn it off in a given album).  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
-#~ msgstr "Zde mù¾ete zmìnit standardní nastavení pro nová alba. Nejsou to <b>pevná nastavení</b>, tak¾e kdy¾ zde nìjakou funkci zapnete, mù¾ete ji pro kterékoliv album vypnout. Pokud nastavujete Gallery poprvé, byla automaticky naètena vhodná standardní nastavení. I pøesto budete nejspí¹e muset provést nìkteré drobné zmìny. Pokud jste ji¾ Gallery nastavovali, je na této stránce va¹e aktuální nastavení, tak¾e nejspí¹e nebudete mít moc práce."
