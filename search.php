@@ -21,6 +21,7 @@
 <? require($GALLERY_BASEDIR . "init.php"); ?>
 <?
 $borderColor = $gallery->app->default["bordercolor"];
+$thumbSize = $gallery->app->default["thumb_size"];
 ?>
 <? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html>
@@ -93,7 +94,7 @@ if ($searchstring) {
 				$photoURL = makeGalleryUrl($searchAlbum->fields['name']);
 				$searchdraw["bordercolor"] = $borderColor;
 				$searchdraw["top"] = true;
-				$searchdraw["photolink"] = $searchAlbum->getHighlightTag(100);
+				$searchdraw["photolink"] = $searchAlbum->getHighlightTag($thumbSize);
 				$searchdraw["photoURL"] = $photoURL;
 				$searchdraw["Text1"] = "<span class=title><a href=$photoURL>$searchTitle</a></span>";
 				$searchdraw["Text2"] = "<span class=desc>$searchDescription</span>";
@@ -133,7 +134,7 @@ if ($searchstring) {
 						$searchCaption = eregi_replace($searchstring, "<b>$searchstring</b>",$searchCaption);  // cause search word to be bolded
 						$searchdraw["bordercolor"] = $borderColor;
 						$searchdraw["top"] = true;
-						$searchdraw["photolink"] = $searchAlbum->getThumbnailTag($j, 100);
+						$searchdraw["photolink"] = $searchAlbum->getThumbnailTag($j, $thumbSize);
 						$searchdraw["photoURL"] = makeGalleryUrl($searchAlbum->fields['name'], $id);
 						$searchdraw["Text2"] = "<span class=desc>$searchCaption";
 						$searchdraw["Text1"] = "<span class=fineprint>From Album:&nbsp&nbsp<a href=" .
