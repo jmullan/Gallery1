@@ -311,19 +311,6 @@ function acceptableFormatList() {
     return array_merge(acceptableImageList(), acceptableMovieList());
 }
 
-/* These are custom fields that are turned on and off at an album
- * level, and are populated for each photo automatically, without the
- * user typing values.  The $value of each pair should be translated
- * as appropriate in the ML version.
- */
-
-function automaticFieldsList() {
-	return array("Upload Date" => _("Upload Date"),
-		"Capture Date" => _("Capture Date"),
-		"Dimensions" => _("Image Size"),
-		"EXIF" => _("Additional EXIF Data"));
-}
-
 function isImage($tag) {
     return in_array($tag, acceptableImageList());
 }

@@ -87,15 +87,19 @@ if (isset($save)) {
 </center>
 <span class="popup">
 <table>
-<tr><td valign="top"><b><?php echo _("Caption") ?>:</b></td>
+<tr>
+	<td valign="top"><b><?php echo _("Caption") ?>:</b></td>
 <?php echo makeFormIntro("edit_caption.php", 
 			array("name" => "theform", 
 				"method" => "POST")); ?>
+
 <input type=hidden name="index" value="<?php echo $index ?>">
-<td><textarea name="data" rows=4 cols=40>
-<?php echo $gallery->album->getCaption($index) ?>
-</textarea></td></tr>
+	<td><textarea name="data" rows=4 cols=40><?php echo $gallery->album->getCaption($index) ?></textarea></td>
+</tr>
 <?php
+
+$translateableFields=translateableFields();
+
 foreach ($gallery->album->getExtraFields() as $field)
 {
 	if (in_array($field, array_keys(automaticFieldsList())))
@@ -103,26 +107,28 @@ foreach ($gallery->album->getExtraFields() as $field)
 		continue;
 	}
         $value=$gallery->album->getExtraField($index, $field);
-	if ($field == "Title")
-	{
-		print "<tr><td valign=top><b>" . _("Title") .":<b></td><td>";
-		print "<input type=text name=\"extra_fields[$field]\" value=\"$value\" size=\"40\">";
+
+	if (in_array($field, array_keys($translateableFields))) {
+		$fieldLabel=$translateableFields[$field];
+		$rows=1;
+	} else {
+		$fieldLabel=$field;
+		$rows=3;
 	}
-	else
-	{
-		print "<tr><td valign=top><b>$field:<b></td><td>";
-		print "<textarea name=\"extra_fields[$field]\" rows=4 cols=40>";
-		print "$value</textarea>";
-	}
-	print "</td></tr>";
+
+	echo "\n<tr>";		
+	echo "\n\t". '<td valign="top"><b>'. $fieldLabel .':</b></td>';
+	echo "\n\t". '<td><textarea name="extra_fields['. $field .']" rows="'. $rows .'" cols="40">'. $value .'</textarea></td>';
+	echo "\n</tr>";
 }
 ?>
-<tr><td valign=top><b><?php echo _("Keywords") ?>:</b></td>
-<td><textarea name="keywords" rows=1 cols=40>
-<?php echo $gallery->album->getKeywords($index) ?>
-</textarea></td></tr>
-</span>
+
+<tr>
+	<td valign=top><b><?php echo _("Keywords") ?>:</b></td>
+	<td><textarea name="keywords" rows=1 cols=40><?php echo $gallery->album->getKeywords($index) ?></textarea></td>
+</tr>
 </table>
+</span>
 <?php
 // get the itemCaptureDate
 if (isset($error)) {

@@ -447,4 +447,28 @@ function unhtmlentities ($string)
 return $return;
 }
 
+/* These are custom fields that are turned on and off at an album
+ * level, and are populated for each photo automatically, without the
+ * user typing values.  The $value of each pair should be translated
+ * as appropriate in the ML version.
+ */
+
+function automaticFieldsList() {
+        return array(
+		'Upload Date' 	=> _("Upload Date"),
+                'Capture Date' 	=> _("Capture Date"),
+                'Dimensions' 	=> _("Image Size"),
+                'EXIF' 		=> _("Additional EXIF Data"));
+}
+
+/* These are custom fields which can be entered manual by the User
+** Since they are used often, we translated them.
+*/
+
+function translateableFields() {
+	return array(
+		'Title'		=> _("Title"),
+		'Description'	=> _("Description"));
+}
+
 ?>
