@@ -31,7 +31,6 @@ if (!$page) {
     $page = 1;
 }
 
-$albumDB = new albumDB();
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 
 if (!$perPage) {
