@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
 "POT-Creation-Date: 2004-09-22 02:30+0200\n"
-"PO-Revision-Date: 2004-08-05 18:46-0300\n"
+"PO-Revision-Date: 2004-10-08 18:46-0300\n"
 "Last-Translator: Daniel Neto <danielneto AT terra DOT com DOT br>\n"
 "Language-Team: Daniel Neto <danielneto AT terra DOT com DOT br>\n"
 "MIME-Version: 1.0\n"
@@ -179,23 +179,23 @@ msgstr ""
 msgid "Search"
 msgstr "Buscar foto ou álbum"
 
-#: ../albums.php:147
-#, fuzzy, php-format
+#: ../albums.php:143
+#, php-format
 msgid "1 album"
 msgid_plural "%d albums"
 msgstr[0] "1 álbum"
-msgstr[1] "1 álbum"
+msgstr[1] "%d álbuns"
 
 #: ../albums.php:147
 msgid "no albums"
 msgstr "nenhum álbuns"
 
-#: ../albums.php:149
-#, fuzzy, php-format
+#: ../albums.php:145
+#, php-format
 msgid "1 top-level album"
 msgid_plural "%d top-level albums"
 msgstr[0] "1 álbum principal"
-msgstr[1] "1 álbum principal"
+msgstr[1] "%d álbuns principais"
 
 #: ../albums.php:149
 msgid "No top-level albums"
@@ -206,23 +206,23 @@ msgstr "Nenhum álbum principal"
 msgid "%d total"
 msgstr "%d no total"
 
-#: ../albums.php:153 ../view_album.php:271
-#, fuzzy, php-format
+#: ../albums.php:149 ../view_album.php:268
+#, php-format
 msgid "1 image"
 msgid_plural "%d images"
 msgstr[0] "1 imagem"
-msgstr[1] "1 imagem"
+msgstr[1] "%d imagens"
 
 #: ../albums.php:153 ../view_album.php:271
 msgid "no images"
 msgstr "nenhuma imagem"
 
-#: ../albums.php:154 ../view_album.php:272
-#, fuzzy, php-format
+#: ../albums.php:150 ../view_album.php:269
+#, php-format
 msgid "1 page"
 msgid_plural "%d pages"
 msgstr[0] "1 página"
-msgstr[1] "1 página"
+msgstr[1] "%d páginas"
 
 #: ../albums.php:154
 msgid "no pages"
@@ -351,24 +351,24 @@ msgstr "Renomear este álbum"
 msgid "Last changed on %s."
 msgstr "Última alteração em %s."
 
-#: ../albums.php:392
-#, fuzzy, php-format
+#: ../albums.php:387
+#, php-format
 msgid "This album contains 1 item"
 msgid_plural "This album contains %d items"
-msgstr[0] "Este álbum contem %s."
-msgstr[1] "Este álbum contem %s."
+msgstr[0] "Este álbum contem 1 item"
+msgstr[1] "Este álbum contem %d itens"
 
 #: ../albums.php:397
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Este álbum foi visto %s desde %s."
 
-#: ../albums.php:398 ../view_album.php:905 ../view_album.php:929
-#, fuzzy, php-format
+#: ../albums.php:393 ../view_album.php:918 ../view_album.php:941
+#, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "1 vez"
-msgstr[1] "1 vez"
+msgstr[1] "%d vezes"
 
 #: ../albums.php:398
 msgid "0 times"
@@ -410,12 +410,12 @@ msgstr "itens neste álbum"
 msgid "on"
 msgstr "em"
 
-#: ../captionator.php:181
-#, fuzzy, php-format
+#: ../captionator.php:175
+#, php-format
 msgid "one page"
 msgid_plural "%d pages"
-msgstr[0] "nenhuma página"
-msgstr[1] "nenhuma página"
+msgstr[0] "uma página"
+msgstr[1] "%d páginas"
 
 #: ../captionator.php:210 ../captionator.php:322
 msgid "Save and Exit"
@@ -671,14 +671,12 @@ msgid "Copy a range of photos to a new album:"
 msgstr "Copiar uma faixa de fotos para um novo álbum:"
 
 #: ../copy_photo.php:134
-#, fuzzy
 msgid "To copy just one photo, make First and Last the same."
-msgstr "Para copiar apenas uma foto, coloque a Primeira e a Última como as mesmas"
+msgstr "Para copiar apenas uma foto, coloque a Primeira e a Última como as mesmas."
 
 #: ../copy_photo.php:135 ../move_photo.php:268
-#, fuzzy
 msgid "Nested albums in this range will be ignored."
-msgstr "Álbuns ramificados nesta faixa serão ignorados"
+msgstr "Álbuns ramificados nesta faixa serão ignorados."
 
 #: ../copy_photo.php:144 ../move_photo.php:277
 msgid "First"
@@ -1147,7 +1145,6 @@ msgid "Field"
 msgstr "Campo"
 
 #: ../extra_fields.php:172 ../poll_properties.php:138
-#, fuzzy
 msgid "Apply values to nested albums."
 msgstr "Aplicar dados aos álbuns ramificados."
 
@@ -1775,18 +1772,18 @@ msgid "Album: %s"
 msgstr "Álbum: %s"
 
 #: ../lib/voting.php:303
-#, fuzzy, php-format
+#, php-format
 msgid "1 voter"
 msgid_plural "%d voters"
 msgstr[0] "1 eleitor"
-msgstr[1] "1 eleitor"
+msgstr[1] "%d eleitores"
 
 #: ../lib/voting.php:315
-#, fuzzy, php-format
+#, php-format
 msgid "Result from one voter"
 msgid_plural "Result of %d voters"
-msgstr[0] "Resultados de %s."
-msgstr[1] "Resultados de %s."
+msgstr[0] "Resultados de um eleitor"
+msgstr[1] "Resultados de %d eleitores"
 
 #: ../lib/voting.php:324
 #, php-format
@@ -1821,11 +1818,11 @@ msgid "%s: %s"
 msgstr "%s: %s"
 
 #: ../lib/voting.php:368
-#, fuzzy, php-format
+#, php-format
 msgid "one vote"
 msgid_plural "%d votes"
-msgstr[0] "Sem votos"
-msgstr[1] "Sem votos"
+msgstr[0] "Um voto"
+msgstr[1] "%d votos"
 
 #: ../login.php:35 ../login.php:39 ../publish_xp.php:56 ../publish_xp.php:99
 #, php-format
@@ -2027,9 +2024,8 @@ msgid "Move a range of photos to a new album:"
 msgstr "Mover uma faixa de fotos para um novo álbum:"
 
 #: ../move_photo.php:267
-#, fuzzy
 msgid "To move just one photo, make First and Last the same."
-msgstr "Para mover apenas uma foto, coloque a Primeira e a Última como as mesmas"
+msgstr "Para mover apenas uma foto, coloque a Primeira e a Última como as mesmas."
 
 #: ../move_photo.php:322
 msgid "Note: items that have votes will lose these votes when moved to another album"
@@ -2079,12 +2075,12 @@ msgstr "Problema em enviar e-mail para %s"
 msgid "%s added, %s skipped"
 msgstr "%s adicionados, %s omitidos"
 
-#: ../multi_create_user.php:123 ../multi_create_user.php:124
-#, fuzzy, php-format
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, php-format
 msgid "1 user"
 msgid_plural "%d users"
 msgstr[0] "1 usuário"
-msgstr[1] "1 usuário"
+msgstr[1] "%d usuários"
 
 #: ../multi_create_user.php:144
 msgid "Create Users"
@@ -2767,9 +2763,8 @@ msgid "Find Orphans"
 msgstr "encontrar álbuns órfãos"
 
 #: ../tools/find_orphans.php:203
-#, fuzzy
 msgid "Orphaned Albums:"
-msgstr "Álbuns Órfãos"
+msgstr "Álbuns Órfãos:"
 
 #: ../tools/find_orphans.php:204
 #, fuzzy
@@ -3230,12 +3225,12 @@ msgstr "Não pude abrir arquivo de trava (%s)!"
 msgid "Could not acquire lock (%s)!"
 msgstr "Não pude obter trava (%s)!"
 
-#: ../util.php:2043
-#, fuzzy, php-format
+#: ../util.php:1989
+#, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "1 acesso"
-msgstr[1] "1 acesso"
+msgstr[1] "%d acessos"
 
 #: ../util.php:2048
 msgid "Sub-albums"
@@ -3379,9 +3374,8 @@ msgid "No Skin"
 msgstr ""
 
 #: ../util.php:2892
-#, fuzzy, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
-msgstr "<dt>Nenhum</dt><dd>O visual original.</dd>"
+msgstr "<dt>%s</dt><dd>O visual original.</dd>"
 
 #: ../util.php:2925 ../util.php:2928
 msgid "unknown"
@@ -3439,12 +3433,12 @@ msgstr "Informação EXIF"
 msgid "navigate UP"
 msgstr "navegação ACIMA"
 
-#: ../view_album.php:270
-#, fuzzy, php-format
+#: ../view_album.php:267
+#, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
 msgstr[0] "1 sub-álbum"
-msgstr[1] "1 sub-álbum"
+msgstr[1] "%d sub-álbuns"
 
 #: ../view_album.php:270
 msgid "No albums"
@@ -3567,12 +3561,12 @@ msgstr "Você DEVE clicar em %s para que seu voto seja gravado."
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Você tem um total de %s e pode alterá-los se você desejar."
 
-#: ../view_album.php:644
-#, fuzzy, php-format
+#: ../view_album.php:636
+#, php-format
 msgid "1 vote"
 msgid_plural "%d votes"
 msgstr[0] "1 voto"
-msgstr[1] "1 voto"
+msgstr[1] "%d voto"
 
 #: ../view_album.php:649
 msgid "You can change your choices if you wish."
@@ -3600,12 +3594,12 @@ msgstr "Alteração: "
 msgid "Contains: "
 msgstr "Contém: "
 
-#: ../view_album.php:889
-#, fuzzy, php-format
+#: ../view_album.php:903
+#, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "1 item"
-msgstr[1] "1 item"
+msgstr[1] "%d itens"
 
 #: ../view_album.php:905 ../view_album.php:929
 msgid "Viewed:"
@@ -3772,46 +3766,3 @@ msgstr "Adicionando marca d'água em álbum."
 msgid "No items to watermark."
 msgstr "Nenhuma imagem para realizar marca d'água."
 
-#, fuzzy
-#~ msgid "Images"
-#~ msgstr "Visualizar imagens"
-
-#~ msgid "Apply to nested Albums"
-#~ msgstr "Aplicar aos álbuns ramificados"
-
-#~ msgid "Correct Them!"
-#~ msgstr "Corrija-os"
-
-#~ msgid "You are no allowed to perform this action !"
-#~ msgstr "Você não está autorizado a realizar esta ação!"
-
-#~ msgid "Do you really want to delete this Album?"
-#~ msgstr "Você realmente deseja apagar este álbum?"
-
-#~ msgid "Rebuilding Thumbnails"
-#~ msgstr "Reconstruindo Miniaturas"
-
-#~ msgid "Leave blank if no caption is specified."
-#~ msgstr "Deixar em branco se nenhum texto for especificado."
-
-#~ msgid "Use file creation date stamp as caption if no caption is specified."
-#~ msgstr "Usar a data de criação do arquivo como legenda se nenhuma legenda for especificada."
-
-#~ msgid "Set photo captions with original filenames."
-#~ msgstr "Colocar legendas das fotos como nomes dos arquivos originais."
-
-#~ msgid "Set photo captions with file creation times."
-#~ msgstr "Colocar legendas das fotos como hora dos arquivos."
-
-#~ msgid "You must specify a username"
-#~ msgstr "Você deve especificar um nome de usuário"
-
-#~ msgid "You must specify a password"
-#~ msgstr "Você deve especificar uma senha"
-
-#~ msgid "There was an unknown failure in the %s call!"
-#~ msgstr "Ocorreu uma falha desconhecida na chamada %s!"
-
-#, fuzzy
-#~ msgid "Invalid file type; %s !"
-#~ msgstr "Tipo de arquivo desconhecido: %s"
