@@ -68,7 +68,7 @@ if ($gallery->session->albumName && isset($index)) {
 				if ($newAlbum == "ROOT") { // moving "album" to ROOT location
 					$myAlbum = $gallery->album->getNestedAlbum($index);
 					$myAlbum->fields[parentAlbumName] = 0;
-					$gallery->album->deletePhoto($index); 
+					$gallery->album->deletePhoto($index, 0, 0); 
 					$myAlbum->save();
 					$gallery->album->save();
 				} else { // moving "album" to another album
@@ -76,7 +76,9 @@ if ($gallery->session->albumName && isset($index)) {
 					if ($postAlbum != $myAlbum) { // we don't ever want to point an album back at itself!!!
 						$postAlbum->addNestedAlbum($gallery->album->isAlbumName($index)); // copy "album" to new album
 						$myAlbum->fields[parentAlbumName] = $postAlbum->fields[name];
-						$gallery->album->deletePhoto($index); // delete "album" from original album
+
+						// delete "album" from original album
+						$gallery->album->deletePhoto($index, 0, 0);
 						$postAlbum->save();
 						$gallery->album->save();
 						$myAlbum->save();
