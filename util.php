@@ -2535,7 +2535,7 @@ function compress_image($src, $out, $target, $quality) {
 		case "NetPBM":
 			$err = exec_wrapper(toPnmCmd($src) .
 				(($target > 0) ? (' | ' .NetPBM('pnmscale',
-				' -xysize $target $target')) : '')
+				" -xysize $target $target")) : '')
 				. ' | ' . fromPnmCmd($out, $quality));
 			/* copy over EXIF data if a JPEG if $keepProfiles is
 			 * set. Unfortunately, we can't also keep comments. */ 
