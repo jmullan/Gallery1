@@ -317,10 +317,10 @@ function process($file, $tag, $name, $caption, $setCaption="") {
 			        $newFile = tempnam($gallery->app->tmpDir, "gallery");
 				if (move_uploaded_file($file, $newFile)) {
 				    $file = $newFile;
-
-				    /* Make sure we remove this file when we're done */
-				    $temp_files[$file]++;
 				}
+				
+				/* Make sure we remove this file when we're done */
+				$temp_files[$newFile]++;
 			}
 		    
 			msg("- Adding $name");
