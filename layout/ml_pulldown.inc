@@ -14,16 +14,23 @@ function ML_reload() {
 <?php
 	if ($GALLERY_EMBEDDED_INSIDE) {
 		$urlTemp = ($HTTP_GET_VARS['include'] ? $HTTP_GET_VARS['include'] : '');        
-		$language_names=$nuke_langname ;
 	} else {
         	$urlTemp = end(explode("/", $HTTP_SERVER_VARS["PHP_SELF"]));
-		$language_names=$langname;
 	}
 	$nls = getNLS();
 	foreach ($gallery->app->available_lang as $value) {
-		if ($gallery->language == $value) $selected="selected"; else $selected="";
+		// Only use language from config.php if its defined in nls.php
+		if (! isset($nls['languages'][$value])) continue;
+		if (isset($GALLERY_EMBEDDED_INSIDE) && ! $nls['nuke'][$value]) continue;
+		
 		$args = $HTTP_GET_VARS;
-		$args["newlang"]=$value;
+		if ($GALLERY_EMBEDDED_INSIDE) {
+			$args["newlang"]=$nls['nuke'][$value];
+		} else {
+			$args["newlang"]=$value;
+		}
+
+		if ($gallery->language == $value) $selected="selected"; else $selected="";
 		echo "\n\t\t<option value=\"".makeGalleryUrl(
 				$urlTemp,
 				$args)."\" $selected>" . $nls['languages'][$value] ."</option>";

@@ -1741,7 +1741,7 @@ function findInPath($program)
 }
 
 function initLanguage() {
-	global $gallery, $GALLERY_BASEDIR, $newlang, $translation, $HTTP_SERVER_VARS;
+	global $gallery, $GALLERY_BASEDIR, $newlang, $translation, $HTTP_SERVER_VARS, $HTTP_COOKIE_VARS, $HTTP_GET_VARS, $GALLERY_EMBEDDED_INSIDE;
 
 // Detect Browser Language
 	$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
@@ -1762,9 +1762,15 @@ $nls = getNLS();
 
 // Check if we are in Nuke or in which Mode and set language
 
-if (isset($GALLERY_EMBEDDED_INSIDE) && isset($HTTP_COOKIE_VARS['lang'])) {
+if (isset($GALLERY_EMBEDDED_INSIDE)) {
 	// We're in NUKE
-	$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
+	if (isset($HTTP_GET_VARS['newlang'])) {
+		// if there was a new language given, use it
+		$gallery->nuke_language=$HTTP_GET_VARS['newlang'];	
+	} elseif (isset($HTTP_COOKIE_VARS['lang'])) {
+		// if not and a language is given by NUKE Cookie use it
+		$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
+	}
 	$gallery->language=$nls['aliases'][$gallery->nuke_language];
 } else {
 	//We're not in Nuke

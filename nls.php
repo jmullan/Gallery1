@@ -32,6 +32,7 @@
 function getNLS () {
 
 // If you add a new language please order in alphatical by its name
+	$nls['languages']['zh_TW'] = 'Chinese (Traditional) (&#x6b63;&#x9ad4;&#x4e2d;&#x6587;)';
 	$nls['languages']['de_DE'] = 'Deutsch';
 	$nls['languages']['en_GB'] = 'English (UK)';
 	$nls['languages']['en_US'] = 'English (US)';
@@ -45,13 +46,13 @@ function getNLS () {
 	$nls['languages']['no_NO'] = 'Norsk bokm&aring;l';
 	$nls['languages']['pl_PL'] = 'Polski';
 	$nls['languages']['pt_PT'] = 'Portugu&ecirc;s';
-	$nls['languages']['ru_RU'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (Windows)';
-	$nls['languages']['ru_RU.koi8r'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (KOI8-R)';
+	$nls['languages']['ru_RU'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)';
+	$nls['languages']['ru_RU.koi8r'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (KOI8-R)';
 	$nls['languages']['sv_SE'] = 'Svenska';
 
-	/**
-	 ** Aliases for languages with different browser and gettext codes
-	 **/
+/**
+ ** Aliases for languages with different browser and gettext codes
+ **/
 	
 	$nls['aliases']['de'] = 'de_DE';
 	$nls['aliases']['en'] = 'en_US';
@@ -67,6 +68,10 @@ function getNLS () {
 	$nls['aliases']['pt'] = 'pt_PT';
 	$nls['aliases']['ru'] = 'ru_RU';
 	$nls['aliases']['sv'] = 'sv_SE';
+
+/**
+ ** Aliases for languages which we substitte or send by NUKE
+ **/
 	
 	$nls['aliases']['de_LI'] = 		'de_DE' ;
 	$nls['aliases']['de_LU'] = 		'de_DE' ;
@@ -130,14 +135,16 @@ function getNLS () {
 	
 	$nls['aliases']['spanish'] = 		'es_ES' ;
 	
-	/**
-	 ** Charsets
-	 **/
-	
-	// Add your own charsets, if your system uses others than "normal"
+/**
+ ** Charsets
+ **
+ ** Add your own charsets, if your system uses others than "normal"
+ **
+ **/	
 	
 	$nls['default']['charset'] = 'ISO-8859-1';
 	
+	$nls['charset']['zh_TW'] = 'BIG5';
 	$nls['charset']['pl_PL'] = 'ISO-8859-2';
 	$nls['charset']['ru_RU'] = 'windows-1251';
 	$nls['charset']['ru_RU.KOI8-R'] = 'KOI8-R';
@@ -147,16 +154,47 @@ function getNLS () {
 	//$nls['charset']['de_DE']='de_DE.ISO-8859-15@euro' ;
 	//$nls['charset']['lt_LT'] = 'ISO-8859-13';
 	
-	
-	// Direction
+
+
+/**
+ ** Multibyte charsets
+ **/
+
+	$nls['multibyte']['BIG5'] = true;
+	$nls['multibyte']['UTF-8'] = true;	
+
+/**
+ ** Direction
+ **/
 	
 	$nls['default']['direction'] = 'ltr';
 	$nls['direction']['he_IL'] = 'rtl' ;
-	
-	// Alignment
+
+/**
+ ** Alignment
+ **/
 	
 	$nls['default']['align'] = 'left';
 	$nls['align']['he_IL'] = 'right' ;
-	return $nls;
+
+/**
+ ** Nuke
+ **/
+	$nls['nuke']['zh_TW'] = 'chinese' ;
+	$nls['nuke']['de_DE'] = 'german';
+	$nls['nuke']['en_US'] = 'english';
+	$nls['nuke']['es_ES'] = 'spanish';
+	$nls['nuke']['fr_FR'] = 'french';
+	$nls['nuke']['it_IT'] = 'italian';
+	$nls['nuke']['is_IS'] = 'icelandic';
+	$nls['nuke']['lt_LT'] = 'lithuanian';
+	$nls['nuke']['nl_NL'] = 'dutch';
+	$nls['nuke']['no_NO'] = 'norwegian';
+	$nls['nuke']['pl_PL'] = 'polish';
+	$nls['nuke']['pt_PT'] = 'portuguese';
+	$nls['nuke']['ru_RU'] = 'russian';
+	$nls['nuke']['sv_SE'] = 'swedish';
+
+return $nls;
 }
 ?>

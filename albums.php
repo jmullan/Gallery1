@@ -175,6 +175,7 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 <!-- top nav -->
 <?php
 include($GALLERY_BASEDIR . "layout/navigator.inc");
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 ?>
 
 
@@ -377,7 +378,7 @@ include($GALLERY_BASEDIR . "layout/navigator.inc");
 
 <!-- gallery.footer begin -->
 <?php
-include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
+
 includeHtmlWrap("gallery.footer");
 ?>
 <!-- gallery.footer end -->
