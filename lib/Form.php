@@ -173,6 +173,14 @@ function formVar($name) {
 			return($HTTP_POST_VARS[$name]);
 		}
 	}
+
+	if (is_array($_REQUEST) && !empty($_REQUEST[$name])) {
+		if (!strncmp($_REQUEST[$name], 'false', 5)) {
+			return false;
+		} else {
+			return ($_REQUEST[$name]);
+		}
+	}
 }
 
 
@@ -180,7 +188,11 @@ function emptyFormVar($name) {
 	global $HTTP_GET_VARS;
 	global $HTTP_POST_VARS;
 
-	return !isset($HTTP_GET_VARS[$name]) && !isset($HTTP_POST_VARS[$name]);
+	$ret = !isset($HTTP_GET_VARS[$name]) && !isset($HTTP_POST_VARS[$name]);
+	if (is_array($_REQUEST)) {
+		$ret = $ret && !isset($_REQUEST[$name]);
+	}
+	return $ret;
 }
 
 ?>
