@@ -38,7 +38,6 @@ if ($id) {
 }
 $photo = $album->getPhoto($index);
 $photoURL = $album->getAlbumDirURL() . "/" . $photo->image->name . "." . $photo->image->type;
-$fitToWindow = !strcmp($album->fields["fit_to_window"], "yes") && !$album->isResized($index);
 list($imageWidth, $imageHeight) = $photo->image->getDimensions();
 
 $do_fullOnly = !strcmp($fullOnly,"on") &&
@@ -46,6 +45,7 @@ $do_fullOnly = !strcmp($fullOnly,"on") &&
 if ($do_fullOnly) {
 	$full = 1;
 }
+$fitToWindow = !strcmp($album->fields["fit_to_window"], "yes") && !$album->isResized($index) && !$full;
 
 if ($full) {
 	$fullTag = "?full=1";
@@ -151,9 +151,9 @@ if ($album->fields["textcolor"]) {
 if ($fitToWindow) { 
 ?>
 
-  function fitToWindow() {
+  function fitToWindow(do_resize) {
 	var changed = 0;
-	var heightMargin = 30;
+	var heightMargin = 150;
 	var widthMargin = 30;
 	var imageHeight = <?=$imageHeight?>;
 	var imageWidth = <?=$imageWidth?>;
@@ -181,20 +181,29 @@ if ($fitToWindow) {
 		changed = 1;
 	}
 
-	if (changed) {
-		if (document.all) {
-			// We're in IE where we can just resize the image.
-			var img = document.images.photo;
-			img.height = imageHeight;
-			img.width = imageWidth;
-		} else {
-			// In Netscape we've got to rewrite the DIV container.
-			container = document.layers["zoom"];
-			container.document.write('<img src=\"<?=$photoURL?>\" ' +
-						'width=' + imageWidth + 
-						' height=' + imageHeight + '>');
-			container.document.close();
+	if (do_resize) {
+		var img = document.images.photo;
+		img.height = imageHeight;
+		img.width = imageWidth;
+	} else {
+		if (changed) {
+			document.write('<a href="<?=makeGalleryUrl($albumName, $id, "full=1")?>">');
 		}
+		document.write('<img name=photo src="<?=$photoURL?>" border=0 width=' +
+		                 imageWidth + ' height=' + imageHeight + '>');
+		if (changed) {
+			document.write('</a>');
+		}
+	}
+  }
+
+  function doResize() {
+	if (document.all) {
+		// We're in IE where we can just resize the image.
+		fitToWindow(true);
+	} else {
+		// In Netscape we've got to reload the page.
+		document.reload();
 	}
   }
 
@@ -206,8 +215,8 @@ if ($fitToWindow) {
   </script>
 </head>
 
-<? if ($fitToWindow && !$full) { ?>
-<body onLoad='fitToWindow()' onResize='fitToWindow()'>
+<? if ($fitToWindow) { ?>
+<body onResize='doResize()'>
 <? } else { ?>
 <body>
 <? } ?>
@@ -290,10 +299,6 @@ includeHtmlWrap("inline_photo.header");
 
 
 <?
-if ($fitToWindow) {
-	echo "<div align=left id=\"zoom\" " .
-		"style=\"height:$imageHeight; width:$imageWidth; top:0; left:0; position: relative\">";
-}
 echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
 echo("<tr bgcolor=$bordercolor>");
 echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
@@ -312,9 +317,7 @@ echo "<center>";
 $photoTag = $album->getPhotoTag($index, $full);
 
 if (!$album->isMovie($index)) {
-	if ($fitToWindow) {
-		$photoTag = "<img name=photo src=$photoURL border=0 width=$imageWidth height=$imageHeight>";
-	} else if ($album->isResized($index) && !$do_fullOnly) { 
+	if ($album->isResized($index) && !$do_fullOnly) { 
 		if ($full) { 
 			echo "<a href=" . makeGalleryUrl($albumName, $id) . ">";
 	 	} else {
@@ -327,7 +330,19 @@ if (!$album->isMovie($index)) {
 	$openAnchor = 1;
 }
 
+if ($fitToWindow) { ?>
+<script language="javascript1.2">
+	// <!--
+	fitToWindow();
+	// -->
+</script><noscript><?
+}
+
 echo $photoTag;
+
+if ($fitToWindow) {
+	echo "</noscript>";
+}
 
 if ($openAnchor) {
 	echo "</a>";
@@ -347,10 +362,6 @@ echo("<td height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
 echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
 echo("</tr>");
 echo("</table>");
-
-if ($fitToWindow) {
-	echo "</div>";
-}
 ?>
 
 <table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
