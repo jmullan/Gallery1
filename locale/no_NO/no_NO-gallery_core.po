@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-04-06 16:07+0200\n"
+"POT-Creation-Date: 2004-04-10 01:30+0200\n"
 "PO-Revision-Date: 2004-04-06 12:35+0100\n"
 "Last-Translator: Sverre M. Vikan <sverre@urven.net>\n"
 "Language-Team: Sverre M. Vikan <sverre@urven.net>\n"
@@ -89,10 +89,10 @@ msgstr "Lagre"
 #: ../includes/add_photos/add_form_one.inc:72
 #: ../includes/add_photos/add_url.inc:52 ../login.php:132
 #: ../modify_user.php:159 ../move_album.php:111 ../move_album.php:131
-#: ../move_photo.php:238 ../multi_create_user.php:173 ../new_password.php:136
-#: ../register.php:147 ../rename_album.php:122 ../reset_votes.php:70
-#: ../resize_photo.php:125 ../sort_album.php:122 ../user_preferences.php:126
-#: ../watermark_album.php:88
+#: ../move_photo.php:238 ../move_photo.php:325 ../multi_create_user.php:173
+#: ../new_password.php:136 ../register.php:147 ../rename_album.php:122
+#: ../reset_votes.php:70 ../resize_photo.php:125 ../sort_album.php:122
+#: ../user_preferences.php:126 ../watermark_album.php:88
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -426,7 +426,7 @@ msgstr "Albumtekst:"
 msgid "Caption"
 msgstr "Bildetekst"
 
-#: ../captionator.php:281 ../extra_fields.php:116 ../lib/lang.php:479
+#: ../captionator.php:281 ../extra_fields.php:116 ../lib/lang.php:488
 msgid "Title"
 msgstr "Tittel"
 
@@ -434,7 +434,7 @@ msgstr "Tittel"
 msgid "Keywords"
 msgstr "Stikkord"
 
-#: ../captionator.php:293 ../lib/lang.php:468
+#: ../captionator.php:293 ../lib/lang.php:477
 msgid "Capture Date"
 msgstr "Dato fotografert"
 
@@ -644,12 +644,12 @@ msgstr "Siste"
 msgid "New Album"
 msgstr "Nytt Album"
 
-#: ../copy_photo.php:200
+#: ../copy_photo.php:200 ../move_photo.php:319
 #, php-format
 msgid "WARNING: Some of the albums need to be upgraded to the current version of %s."
 msgstr "ADVARSEL: Noen album må oppgraderes til gjeldende versjon av %s."
 
-#: ../copy_photo.php:201
+#: ../copy_photo.php:201 ../move_photo.php:320
 msgid "Upgrade now"
 msgstr "Oppgrader nå"
 
@@ -658,8 +658,8 @@ msgid "Copy to Album!"
 msgstr "Kopièr til album!"
 
 #: ../copy_photo.php:210 ../delete_photo.php:141 ../edit_thumb.php:139
-#: ../move_album.php:137 ../resize_photo.php:138 ../rotate_photo.php:103
-#: ../view_photo_properties.php:178
+#: ../move_album.php:137 ../move_photo.php:331 ../resize_photo.php:138
+#: ../rotate_photo.php:103 ../view_photo_properties.php:178
 msgid "no album / index specified"
 msgstr "ingen album / indeks spesifisert"
 
@@ -691,24 +691,24 @@ msgstr "Gallery Registrering"
 msgid "Email sent to %s."
 msgstr "Epost sendt til %s."
 
-#: ../create_user.php:128 ../edit_appearance.php:200
-#: ../edit_appearance.php:220 ../edit_appearance.php:224
-#: ../edit_appearance.php:277 ../edit_appearance.php:281
-#: ../edit_appearance.php:305 ../edit_appearance.php:312
-#: ../edit_appearance.php:316 ../edit_appearance.php:320
-#: ../edit_appearance.php:324 ../edit_appearance.php:328
-#: ../edit_appearance.php:332 ../modify_user.php:124 ../modify_user.php:127
+#: ../create_user.php:128 ../edit_appearance.php:230
+#: ../edit_appearance.php:251 ../edit_appearance.php:258
+#: ../edit_appearance.php:317 ../edit_appearance.php:324
+#: ../edit_appearance.php:360 ../edit_appearance.php:370
+#: ../edit_appearance.php:377 ../edit_appearance.php:384
+#: ../edit_appearance.php:391 ../edit_appearance.php:398
+#: ../edit_appearance.php:405 ../modify_user.php:124 ../modify_user.php:127
 #: ../multi_create_user.php:165 ../poll_properties.php:103
 msgid "yes"
 msgstr "ja"
 
-#: ../create_user.php:128 ../edit_appearance.php:200
-#: ../edit_appearance.php:220 ../edit_appearance.php:224
-#: ../edit_appearance.php:277 ../edit_appearance.php:281
-#: ../edit_appearance.php:305 ../edit_appearance.php:312
-#: ../edit_appearance.php:316 ../edit_appearance.php:320
-#: ../edit_appearance.php:324 ../edit_appearance.php:328
-#: ../edit_appearance.php:332 ../modify_user.php:124 ../modify_user.php:127
+#: ../create_user.php:128 ../edit_appearance.php:230
+#: ../edit_appearance.php:251 ../edit_appearance.php:258
+#: ../edit_appearance.php:317 ../edit_appearance.php:324
+#: ../edit_appearance.php:360 ../edit_appearance.php:370
+#: ../edit_appearance.php:377 ../edit_appearance.php:384
+#: ../edit_appearance.php:391 ../edit_appearance.php:398
+#: ../edit_appearance.php:405 ../modify_user.php:124 ../modify_user.php:127
 #: ../multi_create_user.php:165 ../poll_properties.php:103
 msgid "no"
 msgstr "nei"
@@ -799,191 +799,191 @@ msgstr "Bearbeider bilde %d..."
 msgid "Rebuilding 1 thumbnail..."
 msgstr "Gjenoppretter 1 ikon..."
 
-#: ../edit_appearance.php:108 ../edit_appearance.php:115
+#: ../edit_appearance.php:108 ../edit_appearance.php:114
 msgid "Album Properties"
 msgstr "Albumegenskaper"
 
-#: ../edit_appearance.php:124
+#: ../edit_appearance.php:123
 msgid "Album Summary"
 msgstr "Albumoppsummering"
 
-#: ../edit_appearance.php:132
+#: ../edit_appearance.php:131
 msgid "Album Title"
 msgstr "Albumtittel"
 
-#: ../edit_appearance.php:150
+#: ../edit_appearance.php:171
 msgid "Background Color"
 msgstr "Bakgrunnsfarge"
 
-#: ../edit_appearance.php:154
+#: ../edit_appearance.php:175
 msgid "Text Color"
 msgstr "Tekstfarge"
 
-#: ../edit_appearance.php:158
+#: ../edit_appearance.php:179
 msgid "Link Color"
 msgstr "Linkfarge"
 
-#: ../edit_appearance.php:162
+#: ../edit_appearance.php:183
 msgid "Background Image"
 msgstr "Bakgrunnsbilde"
 
-#: ../edit_appearance.php:166
+#: ../edit_appearance.php:187
 msgid "Font"
 msgstr "Skrifttype"
 
-#: ../edit_appearance.php:170
+#: ../edit_appearance.php:191
 msgid "Borders"
 msgstr "Kantlinjer"
 
-#: ../edit_appearance.php:171 ../edit_appearance.php:172
-#: ../edit_appearance.php:184 ../edit_appearance.php:192
+#: ../edit_appearance.php:193 ../edit_appearance.php:208
+#: ../edit_appearance.php:219
 msgid "off"
 msgstr "av"
 
-#: ../edit_appearance.php:175
+#: ../edit_appearance.php:198
 msgid "Border color"
 msgstr "Kantlinjefarge"
 
-#: ../edit_appearance.php:179
+#: ../edit_appearance.php:202
 msgid "Thumbnail size"
 msgstr "Ikonstørrelse"
 
-#: ../edit_appearance.php:183
+#: ../edit_appearance.php:206
 msgid "Maximum dimensions of intermediate sized images"
 msgstr "Største dimensjoner for bilder i mellomstørrelse"
 
-#: ../edit_appearance.php:187
+#: ../edit_appearance.php:213
 msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "Maksimum filstørrelse for JPEG/PNG-bilder i mellomstørrelse i kilobytes (0 eller tom for ingen restriksjoner)"
 
-#: ../edit_appearance.php:191
+#: ../edit_appearance.php:217
 msgid "Maximum dimensions of full sized images"
 msgstr "Største dimensjoner for bilder i full størrelse"
 
-#: ../edit_appearance.php:192
+#: ../edit_appearance.php:219
 #, php-format
 msgid "%d (%d MPix)"
 msgstr "%d (%d MPix)"
 
-#: ../edit_appearance.php:195
+#: ../edit_appearance.php:224
 msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "Maksimum filstørrelse for JPEG/PNG-bilder i full størrelse i kilobytes (0 eller tom for ingen restriksjoner)"
 
-#: ../edit_appearance.php:199
+#: ../edit_appearance.php:228
 msgid "Show <i>Return to</i> link"
 msgstr "Vis <i>Returner til</i>-link"
 
-#: ../edit_appearance.php:203
+#: ../edit_appearance.php:235
 msgid "Rows"
 msgstr "Rader"
 
-#: ../edit_appearance.php:211
+#: ../edit_appearance.php:242
 msgid "Columns"
 msgstr "Kolonner"
 
-#: ../edit_appearance.php:219
+#: ../edit_appearance.php:249
 msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr "Tilpass vindusstørrelse for<br>bilder uten kopi med endret størrelse"
 
-#: ../edit_appearance.php:223
+#: ../edit_appearance.php:256
 msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
 msgstr "Gi besøkende mulighet til å velge<br>full eller endret størrelse på bilder"
 
-#: ../edit_appearance.php:227
+#: ../edit_appearance.php:263
 msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "Hvilke utskriftstjenester ønsker<br>du å la besøkende bruke?"
 
-#: ../edit_appearance.php:238
+#: ../edit_appearance.php:274
 msgid "with donation"
 msgstr "med donasjon"
 
-#: ../edit_appearance.php:239
+#: ../edit_appearance.php:275
 msgid "without donation"
 msgstr "uten donasjon"
 
-#: ../edit_appearance.php:272
+#: ../edit_appearance.php:308
 msgid "Slideshow Type"
 msgstr "Type fremvisningfremvisning"
 
-#: ../edit_appearance.php:273
+#: ../edit_appearance.php:310
 msgid "Off"
 msgstr "Av"
 
-#: ../edit_appearance.php:273
+#: ../edit_appearance.php:310
 msgid "Ordered"
 msgstr "Sortert"
 
-#: ../edit_appearance.php:273
+#: ../edit_appearance.php:310
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: ../edit_appearance.php:276
+#: ../edit_appearance.php:315
 msgid "Include sub-albums in slideshow"
 msgstr "Inkludér under-album i fremvisning"
 
-#: ../edit_appearance.php:280
+#: ../edit_appearance.php:322
 msgid "Allow slideshow to loop"
 msgstr "Tillat fremvisninger å gå i sløyfe"
 
-#: ../edit_appearance.php:285
+#: ../edit_appearance.php:330
 msgid "Slideshow Length"
 msgstr "Lengde på fremvisning"
 
-#: ../edit_appearance.php:289
+#: ../edit_appearance.php:334
 msgid "Album Frame"
 msgstr "Albumramme"
 
-#: ../edit_appearance.php:293
+#: ../edit_appearance.php:341
 msgid "Thumb Frame"
 msgstr "Ikonramme"
 
-#: ../edit_appearance.php:297
+#: ../edit_appearance.php:348
 msgid "Image Frame"
 msgstr "Bilderamme"
 
-#: ../edit_appearance.php:304
+#: ../edit_appearance.php:358
 msgid "Display EXIF data?"
 msgstr "Vise EXIF-data?"
 
-#: ../edit_appearance.php:311
+#: ../edit_appearance.php:368
 msgid "Display click counter for this album?"
 msgstr "Vise treff-teller for dette albumet?"
 
-#: ../edit_appearance.php:315
+#: ../edit_appearance.php:375
 msgid "Display owners name with caption"
 msgstr "Vis eiers navn med bildetekst"
 
-#: ../edit_appearance.php:319
+#: ../edit_appearance.php:382
 msgid "Allow item owners to modify their images"
 msgstr "Tillat eiere av objekter å endre sine bilder"
 
-#: ../edit_appearance.php:323
+#: ../edit_appearance.php:389
 msgid "Allow item owners to delete their images"
 msgstr "Tillat eiere av objekter å slette egne bilder"
 
-#: ../edit_appearance.php:327
+#: ../edit_appearance.php:396
 msgid "Add new items at beginning of album"
 msgstr "Legg til nye objekter i begynnelsen av album"
 
-#: ../edit_appearance.php:331
+#: ../edit_appearance.php:403
 msgid "Display clickable image dimensions"
 msgstr "Vis klikkbare bildedimensjoner"
 
-#: ../edit_appearance.php:337
+#: ../edit_appearance.php:412
 msgid "Apply values to nested Albums (except Album Title and Summary)."
 msgstr "Legge til verdier til under-album (bortsett fra Tittel og Oppsummering)."
 
-#: ../edit_appearance.php:340 ../extra_fields.php:177
+#: ../edit_appearance.php:415 ../extra_fields.php:177
 #: ../poll_properties.php:147
 msgid "Apply"
 msgstr "Bruk"
 
-#: ../edit_appearance.php:341 ../extra_fields.php:178
+#: ../edit_appearance.php:416 ../extra_fields.php:178
 #: ../poll_properties.php:148
 msgid "Undo"
 msgstr "Angre"
 
-#: ../edit_appearance.php:342 ../extra_fields.php:179
+#: ../edit_appearance.php:417 ../extra_fields.php:179
 #: ../poll_properties.php:149 ../rotate_photo.php:95
 msgid "Close"
 msgstr "Lukk"
@@ -1645,19 +1645,19 @@ msgstr "Fjern alle"
 msgid "Invert Selection"
 msgstr "Inverter valget"
 
-#: ../lib/lang.php:467
+#: ../lib/lang.php:476
 msgid "Upload Date"
 msgstr "Dato opplastet"
 
-#: ../lib/lang.php:469
+#: ../lib/lang.php:478
 msgid "Image Size"
 msgstr "Bildestørrelse"
 
-#: ../lib/lang.php:470
+#: ../lib/lang.php:479
 msgid "Additional EXIF Data"
 msgstr "Ytterligere EXIF-data"
 
-#: ../lib/lang.php:480
+#: ../lib/lang.php:489
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -1793,7 +1793,7 @@ msgstr "Flytt!"
 msgid "Nest within another Album:"
 msgstr "Plasser inni et annet album:"
 
-#: ../move_album.php:130
+#: ../move_album.php:130 ../move_photo.php:324
 msgid "Move to Album!"
 msgstr "Flytt til album!"
 
@@ -2043,13 +2043,13 @@ msgstr "Returnér til  %s"
 msgid "Results Breakdown"
 msgstr "Resultater Forkortet"
 
-#: ../poll_results.php:157 ../util.php:2280 ../view_album.php:544
+#: ../poll_results.php:157 ../util.php:2165 ../view_album.php:544
 #: ../view_album.php:844
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: ../poll_results.php:172 ../util.php:2347
+#: ../poll_results.php:172 ../util.php:2232
 msgid "No votes so far."
 msgstr "Ingen stemmer så langt."
 
@@ -2734,290 +2734,290 @@ msgstr "Filen %s eksisterer ikke ?!"
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP's %s kan ikke fastslå dimensjoner."
 
-#: ../util.php:247 ../util.php:554 ../util.php:785 ../util.php:831
-#: ../util.php:2744
+#: ../util.php:247 ../util.php:540 ../util.php:771 ../util.php:817
+#: ../util.php:2629
 msgid "You have no graphics package configured for use!"
 msgstr "Du har ingen grafikkpakke konfigurert for bruk!"
 
-#: ../util.php:341 ../util.php:357
+#: ../util.php:327 ../util.php:343
 msgid "Not closing this window because debug mode is on"
 msgstr "Lukker ikke dette vinduet fordi debug modus er på"
 
-#: ../util.php:402
+#: ../util.php:388
 msgid "No resizing required"
 msgstr "Ingen endring av størrelse nødvendig"
 
-#: ../util.php:425
+#: ../util.php:411
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "målstørrelse for fil %d kbytes"
 
-#: ../util.php:431 ../util.php:461
+#: ../util.php:417 ../util.php:447
 #, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> filstørrelse %d kbytes"
 
-#: ../util.php:432
+#: ../util.php:418
 #, php-format
 msgid "trying quality %d%%"
 msgstr "forsøker størrelse %d%%"
 
-#: ../util.php:462
+#: ../util.php:448
 msgid "Done."
 msgstr "Utført."
 
-#: ../util.php:558
+#: ../util.php:544
 msgid "No watermark name specified!"
 msgstr "Intet vannmerkenavn spesifisert!"
 
-#: ../util.php:850
+#: ../util.php:836
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "Kall til %s feilet i %s for filen %s!"
 
-#: ../util.php:856
+#: ../util.php:842
 #, php-format
 msgid "File %s type %d."
 msgstr "Fil %s type %d."
 
-#: ../util.php:871
+#: ../util.php:857
 #, php-format
 msgid "There was an unknown failure in the %s call!"
 msgstr "Det var en ukjent feil i %s-kallet!"
 
-#: ../util.php:895 ../util.php:918
+#: ../util.php:881 ../util.php:904
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Ukjent filtype: %s"
 
-#: ../util.php:1500
+#: ../util.php:1415
 #, php-format
 msgid "Can't write to %s."
 msgstr "Kan ikke skrive til %s."
 
-#: ../util.php:1507
+#: ../util.php:1422
 #, php-format
 msgid "Can't read %s."
 msgstr "Kan ikke lese %s."
 
-#: ../util.php:1619
+#: ../util.php:1532
 msgid "Select Album"
 msgstr "Velg Album"
 
-#: ../util.php:1625
+#: ../util.php:1538
 msgid "Top Level"
 msgstr "Øverste nivå"
 
-#: ../util.php:1646 ../util.php:1696
+#: ../util.php:1559 ../util.php:1609
 msgid "current location"
 msgstr "gjeldende plassering"
 
-#: ../util.php:1698
+#: ../util.php:1611
 msgid "self"
 msgstr "seg selv"
 
-#: ../util.php:1865
+#: ../util.php:1750
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Kunne ikke åpne låsfil (%s)!"
 
-#: ../util.php:1870
+#: ../util.php:1755
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Kunne ikke hente lås (%s)!"
 
-#: ../util.php:1954
+#: ../util.php:1839
 msgid "1 hit"
 msgstr "1 treff"
 
-#: ../util.php:1954
+#: ../util.php:1839
 msgid "hits"
 msgstr "treff"
 
-#: ../util.php:1954
+#: ../util.php:1839
 msgid "0 hits"
 msgstr "0 treff"
 
-#: ../util.php:1959
+#: ../util.php:1844
 msgid "Sub-albums"
 msgstr "Under-album"
 
-#: ../util.php:2213 ../view_album.php:602 ../view_album.php:632
+#: ../util.php:2098 ../view_album.php:602 ../view_album.php:632
 #: ../view_album.php:1081
 msgid "Vote"
 msgstr "Stemme"
 
-#: ../util.php:2256
+#: ../util.php:2141
 msgid "Total points in brackets"
 msgstr "Totalt antall poeng i parentes"
 
-#: ../util.php:2261
+#: ../util.php:2146
 msgid "Average points in brackets"
 msgstr "Gjennomsnittlig antall poeng i parentes"
 
-#: ../util.php:2308 ../util.php:2323
+#: ../util.php:2193 ../util.php:2208
 msgid "1 voter"
 msgstr "1 stemmer"
 
-#: ../util.php:2309 ../util.php:2323
+#: ../util.php:2194 ../util.php:2208
 msgid "voters"
 msgstr "stemmere"
 
-#: ../util.php:2310 ../util.php:2324
+#: ../util.php:2195 ../util.php:2209
 msgid "0 voters"
 msgstr "0 stemmere"
 
-#: ../util.php:2321
+#: ../util.php:2206
 #, php-format
 msgid "Results from %s."
 msgstr "Resultater fra %s."
 
-#: ../util.php:2334
+#: ../util.php:2219
 #, php-format
 msgid "%s: %s points; "
 msgstr "%s: %s poeng;"
 
-#: ../util.php:2340
+#: ../util.php:2225
 #, php-format
 msgid "Key - %s"
 msgstr "Nøkkel - %s"
 
-#: ../util.php:2371
+#: ../util.php:2256
 msgid "Poll results:"
 msgstr "Valgresultater:"
 
-#: ../util.php:2374
+#: ../util.php:2259
 msgid "No votes"
 msgstr "Ingen stemmer"
 
-#: ../util.php:2378
+#: ../util.php:2263
 #, php-format
 msgid "Number %d overall."
 msgstr "Nummer %d totalt."
 
-#: ../util.php:2383
+#: ../util.php:2268
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: ../util.php:2384 ../view_album.php:607
+#: ../util.php:2269 ../view_album.php:607
 msgid "1 vote"
 msgstr "1 stemme"
 
-#: ../util.php:2384 ../view_album.php:607
+#: ../util.php:2269 ../view_album.php:607
 msgid "votes"
 msgstr "stemmer"
 
-#: ../util.php:2384
+#: ../util.php:2269
 msgid "0 votes"
 msgstr "0 stemmer"
 
-#: ../util.php:2395
+#: ../util.php:2280
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Hopper over %s (ZIP-støtte ikke aktivert)"
 
-#: ../util.php:2540
+#: ../util.php:2425
 #, php-format
 msgid "Adding %s"
 msgstr "Legger til %s"
 
-#: ../util.php:2558
+#: ../util.php:2443
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Behøver du hjelp?  Se i  %s%s FAQ%s"
 
-#: ../util.php:2564
+#: ../util.php:2449
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Hopper over %s (kan ikke håndtere %s-format)"
 
-#: ../util.php:2703
+#: ../util.php:2588
 msgid "documentation"
 msgstr "Dokumentasjon"
 
-#: ../util.php:2729
+#: ../util.php:2614
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Kan ikke ta vare på EXIF-data (jhead ikke installert)"
 
-#: ../util.php:2754
+#: ../util.php:2639
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generert av %s v%s"
 
-#: ../util.php:2756
+#: ../util.php:2641
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Kjører %s v%s"
 
-#: ../util.php:2806
+#: ../util.php:2691
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Hopper over ugyldig epostadresse %s"
 
-#: ../util.php:2872
+#: ../util.php:2757
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Obs: Dette er en automatisk generert epost sendt fra siden %s.  Om du har mottatt denne ved en feiltakelse, vennligst se bort fra denne meldingen."
 
-#: ../util.php:2874
+#: ../util.php:2759
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Rapporter misbruk til %s"
 
-#: ../util.php:2890
+#: ../util.php:2775
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Epost ikke sendt da støtte for epost er slått av for dette galleriet"
 
-#: ../util.php:2894
+#: ../util.php:2779
 msgid "Email not sent as no address provided"
 msgstr "Epost ikke sendt da ingen adresser ble gitt"
 
-#: ../util.php:2899
+#: ../util.php:2784
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Epost ikke sendt til %s da det ikke er en gyldig adresse"
 
-#: ../util.php:2914
+#: ../util.php:2799
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Avsenders adresse %s er ugyldig, bruker %s."
 
-#: ../util.php:2938 ../util.php:2943
+#: ../util.php:2823 ../util.php:2828
 msgid "not shown"
 msgstr "ikke vist"
 
-#: ../util.php:2947
+#: ../util.php:2832
 msgid "Message"
 msgstr "Melding"
 
-#: ../util.php:2951
+#: ../util.php:2836
 msgid "Email sent"
 msgstr "Epost er sendt"
 
-#: ../util.php:2953
+#: ../util.php:2838
 msgid "Email not sent"
 msgstr "Epost er ikke sendt"
 
-#: ../util.php:2967
+#: ../util.php:2852
 #, php-format
 msgid "Last comment %s."
 msgstr "Siste kommentar %s."
 
-#: ../util.php:2978
+#: ../util.php:2864
 msgid "FAILED"
 msgstr "FEILET"
 
-#: ../util.php:2987
+#: ../util.php:2873
 msgid "Email activity"
 msgstr "Epostaktivitet"
 
-#: ../util.php:3005
+#: ../util.php:2891
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kan ikke åpne loggfilen: %s"
 
-#: ../util.php:3012
+#: ../util.php:2898
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3036,53 +3036,53 @@ msgstr ""
 "\n"
 "Gallery @ Administrator ved %s."
 
-#: ../util.php:3021 ../util.php:3023
+#: ../util.php:2907 ../util.php:2909
 msgid "gallery title"
 msgstr "galleriets tittel"
 
-#: ../util.php:3022
+#: ../util.php:2908
 msgid "gallery URL"
 msgstr "galleriets URL"
 
-#: ../util.php:3043
+#: ../util.php:2929
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>Ingen</dt><dd>Det originale utseendet </dd>"
 
-#: ../util.php:3089 ../util.php:3094
+#: ../util.php:2975 ../util.php:2980
 msgid "None"
 msgstr "Ingen"
 
-#: ../util.php:3090 ../util.php:3095
+#: ../util.php:2976 ../util.php:2981
 msgid "Dots"
 msgstr "Prikker"
 
-#: ../util.php:3091 ../util.php:3096
+#: ../util.php:2977 ../util.php:2982
 msgid "Solid"
 msgstr "Fast"
 
-#: ../util.php:3094
+#: ../util.php:2980
 msgid "No frames"
 msgstr "Ingen rammer"
 
-#: ../util.php:3095
+#: ../util.php:2981
 msgid "Just a simple dashed border around the thumb."
 msgstr "Bare en enkel oppstykket ramme rundt ikonet."
 
-#: ../util.php:3096
+#: ../util.php:2982
 msgid "Just a simple solid border around the thumb."
 msgstr "Bare en enkel fast ramme rundt ikonet."
 
-#: ../util.php:3117
+#: ../util.php:3003
 #, php-format
 msgid "Skipping %s."
 msgstr "Hopper over %s"
 
-#: ../util.php:3123
+#: ../util.php:3009
 #, php-format
 msgid "Can't open %s"
 msgstr "Kan ikke åpne %s"
 
-#: ../util.php:3214 ../util.php:3233
+#: ../util.php:3100 ../util.php:3119
 msgid "Not valid yet"
 msgstr "Ikke gyldig ennå"
 
@@ -3326,15 +3326,15 @@ msgstr "Hei! Legg til bilder."
 msgid "This album is empty."
 msgstr "Dette albumet er tomt."
 
-#: ../view_album.php:1107 ../view_photo.php:793
+#: ../view_album.php:1107 ../view_photo.php:797
 msgid "Email me when:"
 msgstr "Send epost til meg når:"
 
-#: ../view_album.php:1108 ../view_photo.php:794
+#: ../view_album.php:1108 ../view_photo.php:798
 msgid "Comments are added"
 msgstr "Kommentarer er lagt til"
 
-#: ../view_album.php:1111 ../view_photo.php:798
+#: ../view_album.php:1111 ../view_photo.php:802
 msgid "Other changes are made"
 msgstr "Andre endringer er gjort"
 
