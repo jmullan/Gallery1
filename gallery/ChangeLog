@@ -1,3 +1,12 @@
+2001-03-27  Bharat Mediratta  <bharat@menalto.com>
+
+	* Added code to track the version of Gallery used to create a
+	  specific session.  If that version doesn't match the current
+	  version of the code then destroy the session.  In general this
+	  prevents problems when you upgrade Gallery.  Specifically this
+	  fixes the problem that after you upgrade from 1.0b7 and earlier
+	  you can't change pages in the album.
+
 2001-03-25  Bharat Mediratta  <bharat@menalto.com>
 
 	* Fixed a bug in the setup code that caused you not to see the
