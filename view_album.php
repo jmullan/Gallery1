@@ -121,7 +121,7 @@ if ($gallery->album->fields["textcolor"]) {
   </style>
 </head>
 
-<body onUnload='hideProgress()'> 
+<body> 
 <? } ?>
 
   <script language="javascript1.2">
@@ -136,6 +136,11 @@ if ($gallery->album->fields["textcolor"]) {
 		statusWin.close();
 		statusWin = void(0);
 	}
+  }
+
+  function hideProgressAndReload() {
+	hideProgress();
+	document.location.reload();
   }
 
   function imageEditChoice(selected_select) {
