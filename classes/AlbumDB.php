@@ -107,6 +107,17 @@ class AlbumDB {
 		return $list[$index-1];
 	}
 
+	function getAlbumbyName($name) {
+		$list = $this->albumList;
+		$indexLimit = count($list);
+		for ($i=0; $i<$indexLimit; $i++) {
+			if ($list[$i]->fields["name"] == $name) {
+				return $list[$i];
+			}
+		}
+		return 0;
+	}
+
 	function moveAlbum($user, $index, $newIndex) {
 
 		// This is tricky.  The old and new indices are only relevant
@@ -122,8 +133,8 @@ class AlbumDB {
 		//
 
 		$visible = $this->getVisibleAlbums($user);
-		$album1 = $visible[$index];
-		$album2 = $visible[$newIndex];
+		$album1 = $visible[$index-1];
+		$album2 = $visible[$newIndex-1];
 
 		// Locate absolute indices of the target and destination
 		for ($i = 0; $i < sizeof($this->albumList); $i++) {
@@ -136,10 +147,10 @@ class AlbumDB {
 
 		if ($newIndex == 1) {
 			// Move to beginning
-			$this->moveAlbumAbsolute($absIndex, 1);
+			$this->moveAlbumAbsolute($absIndex, 0);
 		} else if ($newIndex == sizeof($visible)) {
 			// Move to end
-			$this->moveAlbumAbsolute($absIndex, sizeof($this->albumList));
+			$this->moveAlbumAbsolute($absIndex, sizeof($this->albumList)-1);
 		} else {
 			// Move to relative spot
 			$this->moveAlbumAbsolute($absIndex, $absNewIndex);
@@ -150,16 +161,16 @@ class AlbumDB {
 
 	function moveAlbumAbsolute($index, $newIndex) {
 		/* Pull album out */
-		$name = array_splice($this->albumOrder, $index-1, 1);
+		$name = array_splice($this->albumOrder, $index, 1);
 
 		/* Add it back in */
-		array_splice($this->albumOrder, $newIndex-1, 0, $name);
+		array_splice($this->albumOrder, $newIndex, 0, $name);
 	}
 
 	function getVisibleAlbums($user) {
 		$list = array();
 		foreach ($this->albumList as $album) {
-			if ($user->canReadAlbum($album)) {
+			if ($user->canReadAlbum($album) && $album->isRoot()) {
 				array_push($list, $album);
 			}
 		}

@@ -26,6 +26,7 @@ class AlbumItem {
 	var $hidden;
 	var $highlight;
 	var $highlightImage;
+	var $isAlbumName;
 
 	function hide() {
 		$this->hidden = 1;
@@ -157,7 +158,7 @@ class AlbumItem {
 		$name = $this->image->name;
 		$tag = $this->image->type;
 
-		if (!strcmp($tag, "avi") || !strcmp($tag, "mpg")) {
+		if (isMovie($tag)) {
 			/* Use a preset thumbnail */
 			copy($app->movieThumbnail, "$dir/$name.thumb.jpg");
 			$this->thumbnail = new Image;
@@ -265,6 +266,14 @@ class AlbumItem {
 
 	function getCaption() {
 		return $this->caption;
+	}
+
+	function setIsAlbumName($name) {
+		$this->isAlbumName = $name;
+	}
+
+	function getIsAlbumName() {
+		return $this->isAlbumName;
 	}
 
 	function isMovie() {

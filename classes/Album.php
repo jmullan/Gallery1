@@ -47,8 +47,35 @@ class Album {
 
 		$everybody = $userDB->getEverybody();
 		$this->setPerm("canRead", $everybody->getUid(), 1);
+		$this->fields["parentAlbumName"] = 0;
 	}
 
+	function isRoot() {
+		if ($this->fields["parentAlbumName"]) return 0;
+		else return 1;
+	}
+
+	function getNestedAlbum($index) {
+		global $albumDB;
+		
+		if (!$albumDB) $albumDB = new AlbumDB();
+		$albumName = $this->isAlbumName($index);
+        	$album = $albumDB->getAlbumbyName($albumName);
+		return $album;	
+	}
+
+	function getRootAlbumName() {
+		global $albumDB;
+
+		if ($this->fields[parentAlbumName]) {
+			$parentAlbum = $albumDB->getAlbumbyName($this->fields[parentAlbumName]);
+			$returnValue = $parentAlbum->getRootAlbumName();
+		} else {
+			$returnValue = $this->fields[name];
+		}
+		return $returnValue;
+	}
+				
 	function integrityCheck() {
 		global $app;
 
@@ -215,6 +242,12 @@ class Album {
 		return 0;
 	}
 
+	function addNestedAlbum($albumName) {
+		$item = new AlbumItem();
+		$item->isAlbumName = $albumName;
+		$this->photos[] = $item;
+	}
+
 	function hidePhoto($index) {
 		$photo = $this->getPhoto($index);
 		$photo->hide();
@@ -234,7 +267,13 @@ class Album {
 
 	function deletePhoto($index) {
 		$photo = array_splice($this->photos, $index-1, 1);
-		                
+		// need to check for nested albums and delete them ...
+		if ($photo->isAlbumName) {
+			$albumDB = new AlbumDB;
+			$albumName = $photo->isAlbumName;
+			$album = $albumDB->getAlbumbyName($albumName);
+			$album->delete();
+		}
                 /* are we deleteing the highlight? pick a new one */
 		$needToRehighlight = 0;
 		if ($photo[0]->isHighlight() && ($this->numPhotos(1) > 0)) {
@@ -252,12 +291,21 @@ class Album {
 
 	function getThumbnailTag($index, $attrs="") {
 		$photo = $this->getPhoto($index);
-		return $photo->getThumbnailTag($this->getAlbumDirURL(), $attrs);
+		if ($photo->isAlbumName) {
+			$myAlbum = $this->getNestedAlbum($index);
+			return $myAlbum->getHighlightTag($myAlbum->getAlbumDirURL(), $attrs);
+		} else {	
+			return $photo->getThumbnailTag($this->getAlbumDirURL(), $attrs);
+		}
 	}
 
 	function getHighlightTag($attrs="") {
-		$photo = $this->getPhoto($this->getHighlight());
-		return $photo->getHighlightTag($this->getAlbumDirURL(), $attrs);
+		if ($this->numPhotos(1)) {	
+			$photo = $this->getPhoto($this->getHighlight());
+			return $photo->getHighlightTag($this->getAlbumDirURL(), $attrs);
+		} else {
+			return "No Highlight";
+		}
 	}
 
 	function getPhotoTag($index, $full) {
@@ -376,6 +424,18 @@ class Album {
 		$photo = $this->getPhoto($index);
 		return $photo->isMovie();
 	}
+
+	function isAlbumName($index) {
+		$photo = $this->getPhoto($index);
+		return $photo->isAlbumName;
+	}
+
+        function setIsAlbumName($index, $name) {
+                $photo = $this->getPhoto($index);
+                $photo->setIsAlbumName($name);
+                $this->setPhoto($photo, $index);
+        }
+
 
 	function getLastModificationDate() {
 		global $app;
