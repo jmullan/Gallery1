@@ -3,7 +3,7 @@
    $Id$
 
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2004 Bharat Mediratta
+ * Copyright (C) 2000-2005 Bharat Mediratta
  *
  * This file Copyright (C) 2003-2004 Joan McGalliard
  * 
