@@ -554,7 +554,8 @@ function unhtmlentities ($string) {
 			'EUC-KR',
 			'windows-1257',
 			'KOI8-U',
-			'cp1250'
+			'cp1250',
+			'windows-1256'
 		);
 		if (! in_array($charset, $diashowProblemCharsets)) {
 			$return = html_entity_decode($string,ENT_COMPAT ,$charset);

@@ -3089,7 +3089,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 	if (isset($extra_fields) && $withExtraFields) {
 		$CF=getExtraFieldsValues($index, $extra_fields, $full);
 		if ($CF) {
-			$tables = array( _("Custom Fields") => $CF);
+			$tables = array("" => $CF);
 		}
 	}
 
