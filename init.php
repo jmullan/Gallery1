@@ -143,10 +143,10 @@ initLanguage();
 gallerySanityCheck();
 
 if (isset($GALLERY_EMBEDDED_INSIDE) &&
-	strpos($GALLERY_EMBEDDED_INSIDE, "nuke") >0) {
+	!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
         include($GALLERY_BASEDIR . "classes/Database.php");
 
-	if ($GALLERY_EMBEDDED_INSIDE == 'postnuke') {
+	if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
 	/* We're in embedded in Postnuke */
 
 	    if (!function_exists("pnUserGetVar")) {

@@ -12,6 +12,8 @@ function ML_reload() {
 <td valign="top" align="right">
     <select style="font-size:8pt;" name="newlang" onChange="ML_reload()" size="1">
 <?php
+	global $GALLERY_EMBEDDED_INSIDE_TYPE;
+
 	// we have 2+1 ways: phpnuke, postnuke or standalone
 	if ($GALLERY_EMBEDDED_INSIDE) {
 		$urlTemp = ($HTTP_GET_VARS['include'] ? $HTTP_GET_VARS['include'] : '');        
@@ -29,7 +31,7 @@ function ML_reload() {
 
 		$args = $HTTP_GET_VARS;
 		if (isset($GALLERY_EMBEDDED_INSIDE)) {
-			if ($GALLERY_EMBEDDED_INSIDE == 'postnuke') {
+			if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
 				/* postnuke */
 				if (! isset($nls['postnuke'][$value])) continue;
 				$args["newlang"]=$nls['postnuke'][$value];

@@ -1801,7 +1801,7 @@ function findInPath($program)
 
 function initLanguage() {
 
-	global $gallery, $GALLERY_BASEDIR, $GALLERY_EMBEDDED_INSIDE;
+	global $gallery, $GALLERY_BASEDIR, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $HTTP_SERVER_VARS, $HTTP_COOKIE_VARS, $HTTP_GET_VARS, $HTTP_SESSION_VARS;
 
 	// $locale is *NUKEs locale var
@@ -1844,7 +1844,7 @@ function initLanguage() {
 			$gallery->nuke_language=$newlang;
 		} else {
 			//No new language. Lets see which Nuke we use and look for a language
-			if (isset($GLOBALS['pnconfig']) && function_exists("authorised")) {
+			if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
 				/* postnuke */
 				if (isset($HTTP_SESSION_VARS['PNSVlang'])) {
 					$gallery->nuke_language=$HTTP_SESSION_VARS['PNSVlang'];

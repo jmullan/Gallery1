@@ -4,12 +4,13 @@
 // known PHP applications and then decorates Gallery appropriately.
 
 global $GALLERY_EMBEDDED_INSIDE;
+global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
 if(isset($GALLERY_EMBEDDED_INSIDE)) {
 	global $PHP_SELF;
 
-	if (($GALLERY_EMBEDDED_INSIDE == 'postnuke' && !defined("LOADED_AS_MODULE")) ||
-		($GALLERY_EMBEDDED_INSIDE == 'phpnule' && !eregi("modules.php", $PHP_SELF))) {
+	if (($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke' && !defined("LOADED_AS_MODULE")) ||
+		($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnule' && !eregi("modules.php", $PHP_SELF))) {
 			die ("You can't access this file directly...");
 	}
 
