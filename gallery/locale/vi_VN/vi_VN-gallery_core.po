@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1
+# Version: 1_4_1-u2
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -19,6 +19,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
+#
+# A.L.T <leanh@airland.kiev.ua>, 2003
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
@@ -224,11 +226,11 @@ msgstr "Những người có thể xem đầy đủ (nguyên gốc) ảnh."
 
 #: ../album_permissions.php:311
 msgid "Users who can add comments."
-msgstr "Những người có thể thêm ảnh."
+msgstr "Những người có thể thêm lời bình."
 
 #: ../album_permissions.php:326
 msgid "Users who can view comments."
-msgstr "Những người có thể thêm ảnh."
+msgstr "Những người có thể xem lời bình."
 
 #: ../album_permissions.php:345 ../manage_users.php:117 ../photo_owner.php:110
 #: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:70
@@ -1321,14 +1323,14 @@ msgid "An email has been sent to the address stored for %s.  Follow the instruct
 msgstr "Một email đã được gửi tới địa chỉ lưu giữ cho %s.  Hãy làm theo chỉ dẫn để đổi mật khẩu của bạn.  Nếu bạn không nhận được email này, xin hãy liên hệ với ban QT Thư viện ảnh."
 
 #: ../login.php:166
-#, fuzzy, php-format
+#, php-format
 msgid "Email could not be sent.  Please contact %s administrators for a new password"
-msgstr "Không gửi được email.  Xin hãy liên hệ ban QT %s để lấy mật khẩu mới"
+msgstr "Không gửi được email.  Xin hãy liên hệ quản trị %s để lấy mật khẩu mới"
 
 #: ../login.php:170
-#, fuzzy, php-format
+#, php-format
 msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
-msgstr "Không có địa chỉ email hợp lệ của tài khoản này.  Xin hãy liên hệ ban QT %s để lấy mật khẩu mới"
+msgstr "Không có địa chỉ email hợp lệ của tài khoản này.  Xin hãy liên hệ quản trị %s để lấy mật khẩu mới"
 
 #: ../login.php:173 ../new_password.php:42 ../new_password.php:46
 msgid "Not a valid username"
@@ -1449,7 +1451,6 @@ msgid "Note: items that have votes will lose these votes if moved to an album wi
 msgstr "Chú ý: những ảnh đã được bình chọn sẽ mất bình chọn nếu được chuyển tới một album không có chức năng bình chọn tương thích.  Những album tương thích được đánh dấu bằng một &quot;%s&quot;."
 
 #: ../multi_create_user.php:50 ../multi_create_user.php:137
-#, fuzzy
 msgid "Create Multiple Users"
 msgstr "Tạo Nhiều Thành Viên"
 
@@ -1860,9 +1861,8 @@ msgid "Your account information is contained within the email."
 msgstr "Thông tin tài khoản của bạn có chứa trong email."
 
 #: ../register.php:127
-#, fuzzy
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
-msgstr "Không gửi được email.  Xin hãy liên hệ ban QT thư viện ảnh để đăng ký trên trang này"
+msgstr "Không gửi được email.  Xin hãy liên hệ quản trị thư viện ảnh để đăng ký trên trang này"
 
 #: ../register.php:147
 msgid "Your account information will be sent to the email address you provide."
@@ -2124,7 +2124,7 @@ msgstr "Trình diễn ảnh cho Thư viện ảnh :: %s"
 #: ../slideshow.php:234
 #, php-format
 msgid "%d Random Images from album :: %s"
-msgstr "%s ảnh ngẫu nhiên từ album :: %s"
+msgstr "%d ảnh ngẫu nhiên từ album :: %s"
 
 #: ../slideshow.php:238
 #, php-format
@@ -2448,7 +2448,7 @@ msgstr "Không yêu cầu chỉnh cỡ"
 #: ../util.php:426
 #, php-format
 msgid "target file size %d kbytes"
-msgstr "dung lượng file chọn %s kbytes"
+msgstr "dung lượng file chọn %d kbytes"
 
 #: ../util.php:432 ../util.php:462
 #, php-format
@@ -2472,7 +2472,7 @@ msgstr "Truy xuất tới %s bị lỗi trong %s cho file %s!"
 #: ../util.php:656
 #, php-format
 msgid "File %s type %d."
-msgstr "File %s loại %s."
+msgstr "File %s loại %d."
 
 #: ../util.php:671
 #, php-format
@@ -2587,7 +2587,7 @@ msgstr "Không bình chọn"
 #: ../util.php:2065
 #, php-format
 msgid "Number %d overall."
-msgstr "Số lượng %s toàn bộ."
+msgstr "Số lượng %d toàn bộ."
 
 #: ../util.php:2070
 #, php-format
@@ -2783,60 +2783,60 @@ msgstr "Không thể mở %s"
 
 #: ../util.php:3184
 msgid "File missing or unreadable.  Please install then re-run this test."
-msgstr ""
+msgstr "File đã mất hoặc không thể đọc được.  Hãy cài đặt và chạy lại bước thử này."
 
 #: ../util.php:3188
 #, php-format
 msgid "Please ensure that %s is the latest version."
-msgstr ""
+msgstr "Hãy chắc chắn rằng %s là phiên bản mới nhất."
 
 #: ../util.php:3193
 #, php-format
 msgid "Testing status of %d files."
-msgstr ""
+msgstr "Kiểm tra trạng thái của %d files."
 
 #: ../util.php:3200
-#, fuzzy, php-format
+#, php-format
 msgid "Cannot read file %s."
-msgstr "Không thể đọc %s."
+msgstr "Không thể đọc file %s."
 
 #: ../util.php:3202
 msgid "File missing or unreadable."
-msgstr ""
+msgstr "File đã mất hoặc không thể đọc được."
 
 #: ../util.php:3207
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
-msgstr ""
+msgstr "Thông tin phiên bản không thấy trong %s.  File hoặc là phiên bản cũ hoặc hỏng."
 
 #: ../util.php:3209
 msgid "Missing version"
-msgstr ""
+msgstr "Mất phiên bản"
 
 #: ../util.php:3216
 #, php-format
 msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-msgstr ""
+msgstr "Vấn đề với %s.  Phiên bản yêu cầu %s (hoặc mới hơn) nhưng chỉ thấy %s."
 
 #: ../util.php:3218
 #, php-format
 msgid "Expected version %s (or greater) but found %s."
-msgstr ""
+msgstr "Phiên bản yêu cầu %s (hoặc mới hơn) nhưng chỉ thấy %s."
 
 #: ../util.php:3222
 #, php-format
 msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-msgstr ""
+msgstr "%s tốt.  Phiên bản thực (%s) là mới gần đây hơn so với yêu cầu (%s)"
 
 #: ../util.php:3224
 #, php-format
 msgid "%s is a more recent version than expected.  Expected version %s but found %s."
-msgstr ""
+msgstr "%s là mới gần đây hơn so với yêu cầu.  Phiên bản yêu cầu %s nhưng chỉ thấy %s."
 
 #: ../util.php:3228
 #, php-format
 msgid "%s OK"
-msgstr ""
+msgstr "%s tốt"
 
 #: ../view_album.php:274
 msgid "1 sub-album"
@@ -2959,12 +2959,12 @@ msgstr " hoặc "
 #: ../view_album.php:608
 #, php-format
 msgid "To vote for an image, click on %s."
-msgstr "Để bình chọn cho một ảnh, nhấn vào %s."
+msgstr "Để bình chọn cho một ảnh, chọn vào %s."
 
 #: ../view_album.php:609
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
-msgstr "Bạn phải nhấn vào %s để bình chọn của bạn được ghi lại."
+msgstr "Bạn phải nhấn vào %s để lựa chọn của bạn được ghi lại."
 
 #: ../view_album.php:613
 #, php-format

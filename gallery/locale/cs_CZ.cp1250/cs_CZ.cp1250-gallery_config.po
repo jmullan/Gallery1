@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1
+# Version: 1_4_1-u1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -20,7 +20,8 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 #
-# FIRST AUTHOR Michal Bayer <misa@bayercz.com>, 2003
+# Michal Bayer <misa@bayercz.com>, 2003
+# Coyot <coyot@i.love.pinknet.cz>, 2003
 #
 msgid ""
 msgstr ""
@@ -468,7 +469,7 @@ msgstr "Kontroluji, zda PHP bìží v <b>Bezpeèném módu</b>. Bezpeèný mód je zabezp
 #: ../setup/config_data.inc:56
 #, php-format
 msgid "<b>safe_mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."
-msgstr "Na tomto serveru je PHP v  <b>Bezpeèném módu</b>. Pokud chcete Gallery používat, musíte Bezpeèný mód vypnout. Informace najdete ve FAQ, na fórech, na nápovìdní stránce na %sGallery serveru%s a na %PHP serveru%s."
+msgstr "Na tomto serveru je PHP v  <b>Bezpeèném módu</b>. Pokud chcete Gallery používat, musíte Bezpeèný mód vypnout. Informace najdete ve FAQ, na fórech, na nápovìdní stránce na %sGallery serveru%s a na %sPHP serveru%s."
 
 #: ../setup/config_data.inc:62
 #, php-format
@@ -544,7 +545,7 @@ msgid "Check to see if PHP is compiled with <b>GNU gettext</b> support for fast 
 msgstr "Kontroluji, zda je PHP zkompilováno s podporou <b>GNU gettext</b> pro rychlé pøeklady."
 
 #: ../setup/config_data.inc:136
-#, php-format
+#, fuzzy, php-format
 msgid "Your PHP does not have <b>GNU gettext</b> support installed.  To include it, you'll need to recompile PHP (see the %sPHP docs%s for more information). Multi-language support is still available in Gallery without <b>gettext</b>, but the pages may take slightly longer to load."
 msgstr "Vaše PHP nepodporuje <b>GNU gettext</b>. Multilinguální verze Gallery je použitelná i bez podpory <b>GNU gettext</b>, ale stránky se budou nahrávat pomaleji."
 
@@ -805,7 +806,7 @@ msgid "The filesystem path to the <b>unzip</b> binary.  This is optional so if y
 msgstr "Cesta k binárce <b>unzip</b>. Není nutné zadat - pokud jej nemáte, netrapte se tím."
 
 #: ../setup/config_data.inc:381
-#, php-format
+#, fuzzy, php-format
 msgid "The filesystem path to the <b>jhead</b> EXIF parser.  This is optional so if you don't have it, don't worry about it too much.  E.g. %s or %s"
 msgstr "Cesta k binárce <b>jhead</b>. Není nutné zadat - pokud jej nemáte, netrapte se tím."
 
@@ -2122,12 +2123,12 @@ msgstr "Musíte zadat heslo pro uživatele %s."
 #: ../setup/functions.inc:1275
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "Vypadá to, že Gallery je již zkonfigurována, protože je zde %d uživatelù s oprávnìním administrátora, ale žadný uživatel %d. Nemusíte zadávat heslo, ale pokud je zadáte, Gallery vytvoøí uživatele %s s tímto heslem."
+msgstr "Vypadá to, že Gallery je již zkonfigurována, protože je zde %d uživatelù s oprávnìním administrátora, ale žadný uživatel %s. Nemusíte zadávat heslo, ale pokud je zadáte, Gallery vytvoøí uživatele %s s tímto heslem."
 
 #: ../setup/functions.inc:1282
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
-msgstr "Vypadá to, že Gallery je již zkonfigurována, protože je zde uživatel %d. Nemusíte zadávat heslo, ale pokud je zadáte, Gallery zmìní heslo uživatele %s."
+msgstr "Vypadá to, že Gallery je již zkonfigurována, protože je zde uživatel %s. Nemusíte zadávat heslo, ale pokud je zadáte, Gallery zmìní heslo uživatele %s."
 
 #: ../setup/functions.inc:1289
 msgid "Admin password"
@@ -2250,7 +2251,3 @@ msgstr "Chybí vám buï %s  nebo %s."
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "Zobraz nastavení"
-
-#, fuzzy
-#~ msgid "Albums URL"
-#~ msgstr "Alba"

@@ -109,7 +109,7 @@ for po_file in $all_po ; do
 	if [ -e ../locale/$lang/LC_MESSAGES ] ; then
 		echo $rc_ok
 		echo -n "$tab Making $lang/LC_MESSAGES/$filename file"
-			msgfmt $po_file --output-file=../locale/$lang/LC_MESSAGES/$filename && {
+			msgfmt --check $po_file --output-file=../locale/$lang/LC_MESSAGES/$filename && {
 				echo $rc_ok
 			} || {
 				echo $rc_failed
@@ -121,7 +121,7 @@ for po_file in $all_po ; do
 		mkdir -p ../locale/$lang/LC_MESSAGES && {
 			echo $rc_ok
 			echo -n "$tab Making ../locale/$lang/LC_MESSAGES/$filename file"
-			msgfmt $po_file --output-file=../locale/$lang/LC_MESSAGES/$filename && {
+			msgfmt --check $po_file --output-file=../locale/$lang/LC_MESSAGES/$filename && {
 				echo $rc_ok
 			} || {
 				echo $rc_failed

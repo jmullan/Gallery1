@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1
+# Version: 1_4_1-u1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -260,7 +260,7 @@ msgid "If that is not right (or if it is blank), re-run the configuration wizard
 msgstr "Jos tieto ei ole oikein (tai jos tietoa ei ole), aja asennusvelho uudelleen ja anna %s:n sijaintiedot."
 
 #: ../setup/check_imagemagick.php:111 ../setup/check_netpbm.php:111
-#, php-format
+#,fuzzy, php-format
 msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
 msgstr "<b>Huom!</b> Hakemistosi (%s) ei ole open_basedir -listalla %s"
 
@@ -347,7 +347,7 @@ msgid "SUCCESS!"
 msgstr "Onnistui!"
 
 #: ../setup/check_mail.php:46
-#, php-format
+#, fuzzy, php-format
 msgid "Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
 msgstr "Testisähköposti on lähetetty osoitteeseen <b>%s</b>, joten sen pitäisi saapua muutamasa minuutissa. Jos viesti ei tule perille, tarkista, että onko osoite oikea. Jos et silti saa viestiä, viestiominaisuus täytyy disabloida tältä palvelimelta joten et voi käyttää sitä ennen korjaamista."
 
@@ -418,7 +418,7 @@ msgstr ""
 #: ../setup/config_data.inc:17
 #, php-format
 msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
-msgstr "Galleria puoltaa NetPBM 9.9:&auml; tai uudempaa.  Voit asentaa tarvittavat bin&auml;&auml;rit %sGallerian%s sivuilta. Tai voit k&auml;&auml;nt&auml;&auml; ja asentaa koko NetPBM-paketin %NetPBM%s omilta sivuilta."
+msgstr "Galleria puoltaa NetPBM 9.9:&auml; tai uudempaa.  Voit asentaa tarvittavat bin&auml;&auml;rit %sGallerian%s sivuilta. Tai voit k&auml;&auml;nt&auml;&auml; ja asentaa koko NetPBM-paketin %sNetPBM%s omilta sivuilta."
 
 #: ../setup/config_data.inc:23
 msgid "<br><b>Note:</b> You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead."
@@ -537,14 +537,14 @@ msgstr "Tarkasta, ett&auml; <b>jpegtran</b> on asennettu jotta Galleria voi suor
 #: ../setup/config_data.inc:127
 #, php-format
 msgid "I can't find <b>jpegtran</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."
-msgstr "En l&ouml;yd&auml; <b>jpegtran</b>:ia. Jos se on asennettu, mutta se ei sijatise webbipalvelimen polussa, asia OK - voit m&auml;&auml;ritt&auml;&auml; polun jpegtran:in osalta k&auml;sin seuraavalla sivulla. Jos sit&auml; ei ole asennettu, voit asentaa sen k&auml;sin. jpegtran on vapaasti levitett&auml;v&auml; ty&ouml;kalu, jota levitt&auml;&auml; itsen&auml;inen JPEG-ryhm&auml; (osa libjpeg:i&auml;). Sorsakoodin l&ouml;yd&auml;t %sIJG:n kotisivulta%s. Bin&auml;&auml;rit l&ouml;yd&auml;t %JPEG Club%s:n webbisivuilta tai libjpeg-paketista Linuxin distribuutiosta."
+msgstr "En l&ouml;yd&auml; <b>jpegtran</b>:ia. Jos se on asennettu, mutta se ei sijatise webbipalvelimen polussa, asia OK - voit m&auml;&auml;ritt&auml;&auml; polun jpegtran:in osalta k&auml;sin seuraavalla sivulla. Jos sit&auml; ei ole asennettu, voit asentaa sen k&auml;sin. jpegtran on vapaasti levitett&auml;v&auml; ty&ouml;kalu, jota levitt&auml;&auml; itsen&auml;inen JPEG-ryhm&auml; (osa libjpeg:i&auml;). Sorsakoodin l&ouml;yd&auml;t %sIJG:n kotisivulta%s. Bin&auml;&auml;rit l&ouml;yd&auml;t %sJPEG Club%s:n webbisivuilta tai libjpeg-paketista Linuxin distribuutiosta."
 
 #: ../setup/config_data.inc:134
 msgid "Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."
 msgstr "Tarkasta, ett&auml; PHP on k&auml;&auml;nnetty <b>GNU gettextin</b> kanssa nopeita kielten k&auml;&auml;nn&ouml;ksi&auml; varten."
 
 #: ../setup/config_data.inc:136
-#, php-format
+#,fuzzy, php-format
 msgid "Your PHP does not have <b>GNU gettext</b> support installed.  To include it, you'll need to recompile PHP (see the %sPHP docs%s for more information). Multi-language support is still available in Gallery without <b>gettext</b>, but the pages may take slightly longer to load."
 msgstr "K&auml;ytt&auml;m&auml;si PHP:ssa ei ole <b>gettext</b> -tukea asennettuna.  Lis&auml;t&auml;ksesi gettext -tuen, sinun tulee k&auml;&auml;nt&auml;&auml; PHP uudelleen. Lis&auml;tietoa voit lukea sivulta %s. Huomaa kuitenkin, ett&auml; monikielisyystuki on silti tarjolla Galleriassa, vaikkei <b>gettext</b> olisikaan k&auml;ytett&auml;viss&auml;, mutta t&auml;ll&ouml;in sivut latautuvat hieman kauemman aikaa."
 
@@ -1408,7 +1408,7 @@ msgstr "Äänestyksen asetukset"
 #: ../setup/config_data.inc:936
 #, php-format
 msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."
-msgstr "Tämä antaa käyttäjien äänestää tai arvostella albumiesi sisältöjä. Aseta oletusasetukset äänestyksestä tänne, ja ne pätevät uusiin albumeihin, ja kaikkiin vanhoihin kunhan ensiksi päivität versioon 1.4.1."
+msgstr "Tämä antaa käyttäjien äänestää tai arvostella albumiesi sisältöjä. Aseta oletusasetukset äänestyksestä tänne, ja ne pätevät uusiin albumeihin, ja kaikkiin vanhoihin kunhan ensiksi päivität versioon %s"
 
 #: ../setup/config_data.inc:939
 msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
@@ -1987,7 +1987,7 @@ msgstr "Galleria ei l&ouml;yt&auml;nyt yht&auml;&auml;n lokaalia. PHP-palvelimes
 #: ../setup/functions.inc:646
 #, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
-msgstr "Galleria ei l&ouml;yt&auml;nyt j&auml;rjestelm&auml;lokaaleja. Monikielisyystoiminnot ovat t&auml;m&auml;n vuoksi pois p&auml;&auml;lt&auml;. Asenna vastaavat lokaalit tai pyyd&auml; palveluntarjoajaasi tekem&auml;&auml;n t&auml;m&auml; puolestasi. T&auml;m&auml; ongelma on tunnettu %s j&auml;rjestelmiss&auml;. T&auml;ss&auml; tapauksessa tutustu t&auml;h&auml;n %Debian locale HOWTO%s-tiedostoon."
+msgstr "Galleria ei l&ouml;yt&auml;nyt j&auml;rjestelm&auml;lokaaleja. Monikielisyystoiminnot ovat t&auml;m&auml;n vuoksi pois p&auml;&auml;lt&auml;. Asenna vastaavat lokaalit tai pyyd&auml; palveluntarjoajaasi tekem&auml;&auml;n t&auml;m&auml; puolestasi. T&auml;m&auml; ongelma on tunnettu %s j&auml;rjestelmiss&auml;. T&auml;ss&auml; tapauksessa tutustu t&auml;h&auml;n %sDebian locale HOWTO%s-tiedostoon."
 
 #: ../setup/functions.inc:648
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
@@ -2088,7 +2088,7 @@ msgstr "Korjaa tämä ennenkuin jatkat"
 #: ../setup/functions.inc:1197 ../setup/functions.inc:1201
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
-msgstr "Katso %sCheck Versions% jos haluat lisätietoja."
+msgstr "Katso %sCheck Versions%s jos haluat lisätietoja."
 
 #: ../setup/functions.inc:1200
 #, php-format
@@ -2096,7 +2096,7 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d tiedostoa ovat tuoreempia kuin mitä odotettiin.  Tämä on ok jos käytät esijulkaisua, beta-versiota, CVS-versiota tai muokattua koodia."
 
 #: ../setup/functions.inc:1205
-#, php-format
+#, fuzzy, php-format
 msgid "All %d tested files up-to-date."
 msgstr "Kaikki testatut tiedostot ovat ajantasalla."
 
@@ -2227,7 +2227,7 @@ msgstr "Se tallentaa tietosi joten sinun ei tarvitse sy&ouml;tt&auml;&auml; kaik
 #: ../setup/write.inc:188
 #, php-format
 msgid "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."
-msgstr "Jos haluat, voit liittyä %s postituslistalle. Se on erittäin passiivinen postituslista, joka tiedoittaa sinua tärkeistä muutoksista Galleriassa. Tämä on se lista, missä ilmoitamme uusista versoista, tärkeistä ohjelmointivirhekorjauksista ja kaikista tietoturvaongelmista sekä niiden korjauksista."
+msgstr "Jos haluat, voit liittyä %s postituslistalle. Se on erittäin passiivinen postituslista, joka tiedoittaa sinua tärkeistä muutoksista %s. Tämä on se lista, missä ilmoitamme uusista versoista, tärkeistä ohjelmointivirhekorjauksista ja kaikista tietoturvaongelmista sekä niiden korjauksista."
 
 #: ../setup/write.inc:195
 msgid "Enter the Gallery"
@@ -2250,7 +2250,3 @@ msgstr "Sinulta puuttuu joko %s tai %s."
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "Tarkastele asetuksia"
-
-#, fuzzy
-#~ msgid "Albums URL"
-#~ msgstr "Albumit"
