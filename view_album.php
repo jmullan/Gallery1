@@ -804,6 +804,9 @@ if ($numPhotos) {
 				$myAlbum = new Album;
 				$myAlbum->load($myAlbumName);
 			}       
+			else {
+				$myAlbum = NULL;
+			}
                         
 			if ($gallery->album->isAlbumName($i)) {
 			    $iWidth = $gallery->album->fields['thumb_size'];
