@@ -139,6 +139,7 @@ includeLayout('navigator.inc');
 			$rowStart = 0;
 			$i = 0;
 			$numPhotos = sizeof($ranks);
+		       	$result = false;
 		
 			while ($i < $numPhotos) {
 				/* Do the inline_albumthumb header row */
@@ -154,6 +155,7 @@ includeLayout('navigator.inc');
 						$i++;
 						continue;
 					}
+					$result=true;
 					$albumName=$gallery->album->isAlbumName($index);
 					if ($albumName) {
 						$album=$gallery->album->getSubAlbum($index);
@@ -169,8 +171,10 @@ includeLayout('navigator.inc');
 				}
 				echo("</tr>");
 		
-				$rowCount++;
 				$rowStart = $i;
+			}
+			if (!$result) {
+				print _("No votes so far.");
 			}
 		?>
 		

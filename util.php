@@ -1794,6 +1794,10 @@ function getVotingID()
 function canVote()
 {
 	global $gallery;
+	if ($gallery->album->numPhotos($gallery->user->canWriteToAlbum(
+					$gallery->album)) == 0) {
+	       return false; 
+	}	       
 	if ($gallery->album->getVoterClass() == "Everybody")
 	{
 		return true;

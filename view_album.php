@@ -572,12 +572,12 @@ if ($gallery->album->getPollShowResults())
 {
         list($buf, $results)=showResultsGraph( $gallery->album->getPollNumResults());
 	print $buf;
-}
-if ($gallery->album->getPollShowResults() && $results)
-{
-	print '<a href="' . makeGalleryUrl("poll_results.php",
-		array("set_albumName" => $gallery->session->albumName)).
-		'">' ._("See full poll results") . '</a><br>';
+       	if ($results)
+       	{
+	       	print '<a href="' . makeGalleryUrl("poll_results.php",
+	       	array("set_albumName" => $gallery->session->albumName)).
+		      	'">' ._("See full poll results") . '</a><br>';
+       	}
 }
 
 echo makeFormIntro("view_album.php",
