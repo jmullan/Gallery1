@@ -92,6 +92,7 @@ if (!strcmp($op, "modload")) {
 		       );
 	
 	if (!in_array($include, $safe_to_include)) {
+	    $include = escapeshellcmd($include);
 	    print "Security error!  The file you tried to include ";
 	    print "is not on the <b>approved file list</b>.  To include ";
 	    print "this file you must edit Gallery's index.php ";
