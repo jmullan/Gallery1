@@ -211,12 +211,13 @@ class Album {
 		global $gallery;
 
 		$dir = $gallery->app->albumDir . "/$name";
-		
 		$tmp = getFile("$dir/album.dat");
 		if ($tmp) {
 			$this = unserialize($tmp);
 			$this->fields["name"] = $name;
+			return 1;
 		}
+		return 0;
 	}
 
 	function isLoaded() {
