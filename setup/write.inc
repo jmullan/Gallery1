@@ -167,6 +167,7 @@ include_once(GALLERY_BASE . '/classes/UserDB.php');
 include_once(GALLERY_BASE . '/classes/gallery/UserDB.php');
 
 $userDB = new Gallery_UserDB();
+$userDB->version = $gallery->user_version;
 $admin = $userDB->getOrCreateUser("admin");
 
 if (strlen($editPassword[2]) > 0) {

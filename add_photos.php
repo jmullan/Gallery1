@@ -137,8 +137,9 @@ if ($gallery->user->isAdmin()) {
     $modes["admin"] = _("Admin");
 }
 
+
 if (!isset($mode) || !isset($modes[$mode])) {
-	$mode = key($modes);
+	$mode = isset($modes[$gallery->app->uploadMode]) ? $gallery->app->uploadMode : "form";
 }
 ?>
 

@@ -468,11 +468,17 @@ $constants =  array_merge(
 	),
 
 	"gallery_thumb_frame_style" => array(
-		"prompt" => "Frame around albums",
+		"prompt" => _("Frame around albums"),
 		"desc" => _("On the main page, the image representing each album has a frame around it.  The following styles are available:") .
 			available_frames(true),
 		"choices" => available_frames(),
 		"value" => "simple_book"
+	),
+	"uploadMode" => array(
+		"prompt" => _("Default upload method"),
+		"desc" => _("Which method of uploading photos should be defaulted to for users who don't specify?"),
+		"choices" => array("form" => _("Form-based Upload"), "applet_mini" => _("Mini-Applet"), "applet" => _("Full-Applet")),
+		"value" => "form",
 	),
 	"group3_end"	=> array (
 		"type"		=> "group_end",

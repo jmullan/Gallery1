@@ -167,10 +167,13 @@ class Gallery_UserDB extends Abstract_UserDB {
 	}
 
 	function getOrCreateUser($username) {
+		global $gallery;
+
 		$user = $this->getUserByUsername($username);
 		if (!$user) {
 			$user = new Gallery_User();
 			$user->setUsername($username);
+			$user->version = $gallery->user_version;
 		}
 		return $user;
 	}

@@ -67,6 +67,7 @@ if (isset($create)) {
 		$tmpUser->setEmail($email);
 		$tmpUser->origEmail=$email;
 		$tmpUser->setDefaultLanguage($defaultLanguage);
+		$tmpUser->version = $gallery->user_version;
 		$tmpUser->log("register");
 		$tmpUser->save();
 		print sprintf(_("User %s created"), $uname) . "<br><br>";
