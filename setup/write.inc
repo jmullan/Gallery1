@@ -1,10 +1,13 @@
 <?php /* $Id$ */ ?>
+
 <?php
-require("../classes/User.php");
-require("../classes/gallery/User.php");
-require("../classes/NobodyUser.php");
-require("../classes/LoggedInUser.php");
-require("../classes/EverybodyUser.php");
+
+require_once("../classes/User.php");
+require_once("../classes/gallery/User.php");
+require_once("../classes/NobodyUser.php");
+require_once("../classes/LoggedInUser.php");
+require_once("../classes/EverybodyUser.php");
+
 require("../errors/configure_instructions.php");
 $start_string = "# BEGIN Gallery section";
 $end_string = "# END Gallery section.  Add User changes below this line";
@@ -125,39 +128,51 @@ if ($fd = @fs_fopen($outfile, "a")) {
  * have a cow when it tries to verify that the $gallery->app->userDir exists.
  */
 include("../config.php");
-include("../classes/UserDB.php");
-include("../classes/gallery/UserDB.php");
+include_once("../classes/UserDB.php");
+include_once("../classes/gallery/UserDB.php");
 
 $userDB = new Gallery_UserDB();
 $admin = $userDB->getOrCreateUser("admin");
-$admin->setPassword($editPassword);
-$admin->setIsAdmin(true);
-if (!$admin->getFullName()) {
-	$admin->setFullName("Administrator");
-}
-if (!$admin->getEmail() && isset($adminEmail)) {
-       	$admin->setEmail($adminEmail);
-}
-$admin->setCanCreateAlbums(true);
-$admin->save();
 
+if (strlen($editPassword) >0) {
+	$message=sprintf(_("The Password for user %s was changed"),"'admin'");
+	$admin->setPassword($editPassword);
+	
+	if (! $admin->isAdmin()) {
+		$message=sprintf(_("An account called %s has been created for you with the password you specified."),"'admin'");
+		$admin->setIsAdmin(true);
+		if (!$admin->getFullName()) {
+			$admin->setFullName("Administrator");
+		}
+		if (!$admin->getEmail() && isset($adminEmail)) {
+       			$admin->setEmail($adminEmail);
+		}
+		$admin->setCanCreateAlbums(true);
+		$admin->save();
+	}
+}
 ?>
 
 <title><?php echo _("Success!") ?></title>
 <center>
-<table width=600><tr><td>
-<center>
-<font size=+2><?php echo _("Your configuration has been successfully saved!") ?></font>
-<p>
-<table cellspacing="1" cellpadding="4" border="1"><tr><td>
-<?php echo sprintf(_("An account called %s has been created for you with the password you specified."), '<i>admin</i>') ?>
-</td></tr></table>
-<p>
-<font size=+2 color=red><?php echo _("Note") ?>!</font>
+<div style="width:600px;text-align:center">
+
+<div class="header"><?php echo _("Your configuration has been successfully saved!") ?></div>
+<?php
+if (isset($message)) {
+	echo '<p><table cellspacing="1" cellpadding="4" border="1">';
+	echo "\n\t<tr><td>$message</td></tr>";
+	echo "\n</table></p>";
+}
+?>
+<div class="sitedesc"><span style="font-size: 1.2em; color:red"><?php echo _("Note") ?>!</span>
+
 <br>
-<?php echo sprintf(_("Don't forget to run %s to make your Gallery secure!"),
-		configure("secure"))?>:
-</center>
+<?php 
+	echo _("Don't forget to run this to make your Gallery secure!");
+	configure("secure");
+?>
+</div>
 <br>
 <font size=+1>
 <?php echo _("Gallery won't run if it is not in secure mode") ?></font>.
@@ -173,9 +188,8 @@ $admin->save();
 <br><br><br><br>
 
 <img src="../images/gallery-tag.png">
-</center>
 
-</td></tr></table>
+</div>
 
 <?php
 function fail($file) {

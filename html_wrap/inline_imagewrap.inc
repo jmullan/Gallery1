@@ -40,25 +40,15 @@ case "solid":
 ?>
   <table width="1%" border="0" cellspacing="0" cellpadding="0">
     <tr bgcolor="<?php echo $borderColor ?>">
-      <td colspan="3" height="<?php echo $borderWidth ?>">
-        <img src="<?php echo $pixelImage ?>" height="1">
-      </td>
+      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" height="1"></td>
     </tr>
     <tr>
-      <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderWidth ?>">
-        <img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" >
-      </td>
-      <td align="center">
-        <?php echo $href_tag ?>
-      </td>
-      <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderWidth ?>">
-        <img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1">
-      </td>
+      <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" ></td>
+      <td align="center"><?php echo $href_tag ?></td>
+      <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1"></td>
     </tr>
     <tr bgcolor="<?php echo $borderColor ?>">
-      <td colspan="3" height="<?php echo $borderWidth ?>">
-        <img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1">
-      </td>
+      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1"></td>
     </tr>
   </table>
   <?php
@@ -69,6 +59,55 @@ default: // use frames directory
   include "$GALLERY_BASEDIR/html_wrap/frames/$frame/frame.def";
   ?>
 
-  <table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>"><img src="<?php echo "$base/$imageTL" ?>" border="0" width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>" alt="FRAME"></td><td><table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><img src="<?php echo "$base/$imageTTL" ?>" border="0" width="<?php echo $widthTTL ?>" height="<?php echo $heightTTL ?>" alt="FRAME"></td><td><img src="<?php echo "$base/$imageTT" ?>" border="0" width="<?php echo $imageWidth - $widthTTL - $widthTTR ?>" height="<?php echo $heightTT ?>" alt="FRAME"></td><td><img src="<?php echo "$base/$imageTTR" ?>" border="0" width="<?php echo $widthTTR ?>" height="<?php echo $heightTTR ?>" alt="FRAME"></td></tr></table></td><td><img src="<?php echo "$base/$imageTR" ?>" border="0" width="<?php echo $widthTR ?>" height="<?php echo $heightTR ?>" alt="FRAME"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0"><tr><td><img src="<?php echo "$base/$imageLLT" ?>" border="0" width="<?php echo $widthLLT ?>" height="<?php echo $heightLLT ?>" alt="FRAME"></td></tr><tr><td width="<?php echo $widthLL ?>" height="<?php echo $imageHeight - $heightLLT - $heightLLB ?>" style="background-image:url(<?php echo "$base/$imageLL" ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1" alt="FRAME"></td></tr><tr><td><img src="<?php echo "$base/$imageLLB" ?>" border="0" width="<?php echo $widthLLB ?>" height="<?php echo $heightLLB ?>" alt="FRAME"></td></tr></table></td><td><table cellspacing="0" cellpadding="0"><tr><td align="center" width="<?php echo $imageWidth ?>" height="<?php echo $imageHeight ?>"><?php echo $href_tag ?></td></tr></table></td><td><table border="0" cellspacing="0" cellpadding="0"><tr><td><img src="<?php echo "$base/$imageRRT" ?>" border="0" width="<?php echo $widthRRT ?>" height="<?php echo $heightRRT ?>" alt="FRAME"></td></tr><tr><td width="<?php echo $widthRR ?>" height="<?php echo $imageHeight - $heightRRT - $heightRRB ?>" style="background-image:url(<?php echo "$base/$imageRR" ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1" alt="FRAME"></td></tr><tr><td><img src="<?php echo "$base/$imageRRB" ?>" border="0" width="<?php echo $widthRRB ?>" height="<?php echo $heightRRB ?>" alt="FRAME"></td></tr></table></td></tr><tr><td width="<?php echo $widthBL ?>" height="<?php echo $heightBL ?>"><img src="<?php echo "$base/$imageBL" ?>" border="0" width="<?php echo $widthBL ?>" height="<?php echo $heightBL ?>" alt="FRAME"></td><td><table width="1" border="0" cellspacing="0" cellpadding="0"><tr><td><img src="<?php echo "$base/$imageBBL" ?>" border="0" width="<?php echo $widthBBL ?>" height="<?php echo $heightBBL ?>" alt="FRAME"></td><td><img src="<?php echo "$base/$imageBB" ?>" border="0" width="<?php echo $imageWidth - $widthBBL - $widthBBR ?>" height="<?php echo $heightBB ?>" alt="FRAME"></td><td><img src="<?php echo "$base/$imageBBR" ?>" border="0" width="<?php echo $widthBBR ?>" height="<?php echo $heightBBR ?>" alt="FRAME"></td></tr></table></td><td><img src="<?php echo "$base/$imageBR" ?>" border="0" width="<?php echo $widthBR ?>" height="<?php echo $heightBR ?>" alt="FRAME"></td></tr>
+  <table width="1" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+	<td width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>"><img src="<?php echo "$base/$imageTL" ?>" border="0" width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>" alt="FRAME"></td>
+	<td><table width="1" border="0" cellspacing="0" cellpadding="0">
+	    <tr>
+		<td><img src="<?php echo "$base/$imageTTL" ?>" border="0" width="<?php echo $widthTTL ?>" height="<?php echo $heightTTL ?>" alt="FRAME"></td>
+		<td><img src="<?php echo "$base/$imageTT" ?>" border="0" width="<?php echo $imageWidth - $widthTTL - $widthTTR ?>" height="<?php echo $heightTT ?>" alt="FRAME"></td>
+		<td><img src="<?php echo "$base/$imageTTR" ?>" border="0" width="<?php echo $widthTTR ?>" height="<?php echo $heightTTR ?>" alt="FRAME"></td>
+	    </tr>
+	    </table></td>
+	<td><img src="<?php echo "$base/$imageTR" ?>" border="0" width="<?php echo $widthTR ?>" height="<?php echo $heightTR ?>" alt="FRAME"></td>
+  </tr>
+  <tr>
+	<td><table border="0" cellspacing="0" cellpadding="0">
+	    <tr>
+		<td><img src="<?php echo "$base/$imageLLT" ?>" border="0" width="<?php echo $widthLLT ?>" height="<?php echo $heightLLT ?>" alt="FRAME"></td>
+	    </tr>
+	    <tr>
+		<td width="<?php echo $widthLL ?>" height="<?php echo $imageHeight - $heightLLT - $heightLLB ?>" style="background-image:url(<?php echo "$base/$imageLL" ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1" alt="FRAME"></td>
+	    </tr>
+	    <tr>
+		<td><img src="<?php echo "$base/$imageLLB" ?>" border="0" width="<?php echo $widthLLB ?>" height="<?php echo $heightLLB ?>" alt="FRAME"></td>
+	    </tr></table></td>
+	<td><table cellspacing="0" cellpadding="0">
+	     <tr>
+		<td align="center" width="<?php echo $imageWidth ?>" height="<?php echo $imageHeight ?>"><?php echo $href_tag ?></td>
+	     </tr>
+	    </table></td>
+	<td><table border="0" cellspacing="0" cellpadding="0">
+	    <tr>
+		<td><img src="<?php echo "$base/$imageRRT" ?>" border="0" width="<?php echo $widthRRT ?>" height="<?php echo $heightRRT ?>" alt="FRAME"></td>
+	    </tr>
+	    <tr>
+		<td width="<?php echo $widthRR ?>" height="<?php echo $imageHeight - $heightRRT - $heightRRB ?>" style="background-image:url(<?php echo "$base/$imageRR" ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1" alt="FRAME"></td>
+	    </tr>
+	    <tr>
+		<td><img src="<?php echo "$base/$imageRRB" ?>" border="0" width="<?php echo $widthRRB ?>" height="<?php echo $heightRRB ?>" alt="FRAME"></td>
+	    </tr></table></td>
+  </tr>
+  <tr>
+	<td width="<?php echo $widthBL ?>" height="<?php echo $heightBL ?>"><img src="<?php echo "$base/$imageBL" ?>" border="0" width="<?php echo $widthBL ?>" height="<?php echo $heightBL ?>" alt="FRAME"></td>
+	<td><table width="1" border="0" cellspacing="0" cellpadding="0">
+	    <tr>
+		<td><img src="<?php echo "$base/$imageBBL" ?>" border="0" width="<?php echo $widthBBL ?>" height="<?php echo $heightBBL ?>" alt="FRAME"></td>
+		<td><img src="<?php echo "$base/$imageBB" ?>" border="0" width="<?php echo $imageWidth - $widthBBL - $widthBBR ?>" height="<?php echo $heightBB ?>" alt="FRAME"></td>
+		<td><img src="<?php echo "$base/$imageBBR" ?>" border="0" width="<?php echo $widthBBR ?>" height="<?php echo $heightBBR ?>" alt="FRAME"></td>
+	    </tr>
+	    </table></td>
+	<td><img src="<?php echo "$base/$imageBR" ?>" border="0" width="<?php echo $widthBR ?>" height="<?php echo $heightBR ?>" alt="FRAME"></td>
+  </tr>
   </table>
 <?php } // end of switch ?>

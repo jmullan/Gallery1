@@ -393,18 +393,20 @@ if (!$error) {
 </div>
 <p align="center">
 	<input type=submit name="go_back" value="<- <?php echo _("Edit Config") ?>">
-<?php if (!$error) { ?>
- <input type=submit name="go_next" value="<?php echo _("Save Config") ?> ->">
-<?php } else { ?>
-<br><div class="error" id="top">
-<?php echo sprintf(_("%s.  Details below."), pluralize_n($error, _("One error"), _("errors"), _("no errors"))); } ?>
-	</div>
+<?php if (!$error) {
+		echo '<input type=submit name="go_next" value="' . _("Save Config") .' ->">';
+	} else {
+		echo '<br><div class="error" id="top">';
+		echo sprintf(_("%s.  Details below."), pluralize_n($error, _("One error"), _("errors"), _("no errors")));
+		echo '</div>';
+	}
+?>
 </p>
 
 <?php echo $view; ?>
 <input type="hidden" name="data" value="<?php echo urlencode($data) ?>">
 
-<div align="center">
+<p align="center">
 <input type="submit" name="go_back" value="<- <?php echo _("Edit Config") ?>">
 <?php if (!$error) {
 	echo '<input type=submit name="go_next" value="'. _("Save Config") . '->">';
@@ -414,5 +416,4 @@ if (!$error) {
 	echo '<br>' . _("Please go back and fix them!");
 	echo '</p>';
 } ?>
-</div>
-
+</p>

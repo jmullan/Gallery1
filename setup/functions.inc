@@ -1167,4 +1167,62 @@ if (!function_exists('array_filter1')) {
 	       	return $output;
        	}
 }
+
+function check_admins() {
+
+	global $gallery;
+	global $GALLERY_BASEDIR;
+
+	if (isset($gallery->app->userDir)) {
+		require($GALLERY_BASEDIR . "classes/User.php");
+		require($GALLERY_BASEDIR . "classes/EverybodyUser.php");
+		require($GALLERY_BASEDIR . "classes/NobodyUser.php");
+		require($GALLERY_BASEDIR . "classes/LoggedInUser.php");
+		require($GALLERY_BASEDIR . "classes/UserDB.php");
+
+		require($GALLERY_BASEDIR . "classes/gallery/UserDB.php");
+        	require($GALLERY_BASEDIR . "classes/gallery/User.php");
+
+	
+		$userDB = new Gallery_UserDB();
+
+		$admins=array();
+		foreach ($userDB->getUidList() as $uid) {
+			$tmpUser = $userDB->getUserByUid($uid);
+
+			if ($tmpUser->isAdmin()) {
+				$admins[]=$tmpUser->getUsername();
+			}
+		}
+	}
+
+	if (empty($admins)) {
+		$result=array(
+			"desc" => sprintf(_("You must enter a password for the %s account. This is only needed the first time you configure your gallery.  If you reconfigure your gallery its not needed to enter it again."), "'admin'") . newIn("1.4.1")
+		);
+	}
+	else if (! in_array("admin",$admins)) {
+		$result=array(
+			"desc" => sprintf(_("It seems you already configured gallery, because there are %d admin accounts.  But not a user called %s.  You dont have to enter a password.  But if you do so Gallery will create a user called %s with that password."), sizeof($admin), "'admin'", "'admin'") . newIn("1.4.1"),
+			"optional" => 1,
+			"remove_empty" => true
+		);
+	}
+	else {
+		$result=array(
+			"desc" => sprintf(_("It seems you already configured gallery, because the %s user exists.  You dont have to enter a password.  But if you do so Gallery will change the password for the user called %s."), "'admin'", "'admin'") . newIn("1.4.1"),
+			"optional" => 1,
+			"remove_empty" => true
+		);
+	}
+
+$result=array_merge($result,array(
+	"prompt" => _("Admin password"),
+	"type" => "text",
+	"dont-write" => 1,
+	"value" => "",
+	"attrs" => array("size" => 50)
+));
+return $result;
+}
 ?>

@@ -797,8 +797,10 @@ function _getStyleSheetLink($filename) {
 
 	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
 		$base = $gallery->app->photoAlbumURL;
-	} else {
+	} elseif (stristr($HTTP_SERVER_VARS['REQUEST_URI'],"setup")) {
 		$base = "..";
+	} else {
+		$base = ".";
 	}
 
 	if (fs_file_exists($sheetdomainpath) && !broken_link($sheetdomainpath)) {

@@ -168,15 +168,7 @@ $constants =  array_merge(
 		"type" => "text",
 		"attrs" => array("size" => 50)
 	),
-	"editPassword" => array(
-		"prompt" => _("Admin password"),
-		"desc" => '(<font color=red>' . _('REQUIRED') . '</font>) '.
-		sprintf(_("The password for the %s account.  Unfortunately, you're required to re-enter this every time you reconfigure Gallery.  We'll fix this in a future release!"), '<i>admin</i>'),
-		"type" => "text",
-		"dont-write" => 1,
-		"value" => "",
-		"attrs" => array("size" => 50)
-	),
+	"editPassword" => check_admins(),
 
 	"separator1" => array (
 		"type" => "separator",
@@ -1007,7 +999,7 @@ $defaults = array(
 		"value" => "simple_book"
 	),
 	"thumb_frame" => array(
-		"prompt" => "Frame around thumbs",
+		"prompt" => _("Frame around thumbs"),
 		"desc" => _("This frame will appear around the thumbnail image representing a photo or movie.") .
 	      	newIn("1.4.1"),
 		"choices" => available_frames(),
@@ -1015,7 +1007,7 @@ $defaults = array(
 	),
 	
 	"image_frame" => array(
-		"prompt" => "Frame around images",
+		"prompt" => _("Frame around images"),
 		"desc" => _("This frame will appear around fulled sized and resized photos.") .
 		newIn("1.4.1"),
 		"choices" => available_frames(),
