@@ -20,7 +20,6 @@
  * $Id$
  */
 ?>
-<?php /* $Id$ */ ?>
 <?php
 
 	require(dirname(__FILE__) . '/init.php');

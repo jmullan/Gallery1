@@ -20,7 +20,6 @@
  * $Id$
  */
 ?>
-<?php /* $Id$ */ ?>
 <?php
 /*
  * Turn down the error reporting to just critical errors for now.

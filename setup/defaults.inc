@@ -20,7 +20,6 @@
  * $Id$
  */
 ?>
-<?php /* $Id$ */ ?>
 
 <input type="hidden" name="this_page" value="defaults">
 <input type="hidden" name="next_page" value="confirm">
