@@ -32,7 +32,7 @@ $numAlbums = $albumDB->numAlbums($user);
 if (!$albumListPage) {
 	$albumListPage = 1;
 }
-$perPage = 5;
+$perPage = $app->default["albumsPerPage"];
 $maxPages = max(ceil($numAlbums / $perPage), 1);
 
 if ($albumListPage > $maxPages) {
@@ -40,7 +40,7 @@ if ($albumListPage > $maxPages) {
 }
 
 $navigator["page"] = $albumListPage;
-$navigator["pageVar"] = "albumListPage";
+$navigator["pageVar"] = "set_albumListPage";
 $navigator["url"] = "albums.php";
 $navigator["maxPages"] = $maxPages;
 $navigator["spread"] = 6;
