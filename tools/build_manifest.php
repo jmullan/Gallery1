@@ -29,14 +29,14 @@
 ?>
 <?php
 $GALLERY_BASEDIR="./";
-include 'util.php';
-include($GALLERY_BASEDIR . "platform/fs_unix.php");
 if (php_sapi_name() != "cli") {
 	print _("This page is for development use only.");
 	print "<br>";
 	exit;
 }
 
+include 'util.php';
+include($GALLERY_BASEDIR . "platform/fs_unix.php");
 if (!fs_is_readable("setup")) {
        	print "Cannot build manifest unless in config mode";
 	print "\n";
