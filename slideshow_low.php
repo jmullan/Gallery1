@@ -507,7 +507,9 @@ array("set_albumName" => $gallery->session->albumName)) ?>">[<?php echo _("back 
 </form>
 
 
-<?php includeHtmlWrap("slideshow.footer"); ?>
+<?php 
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
+includeHtmlWrap("slideshow.footer"); ?>
 
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

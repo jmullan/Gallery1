@@ -126,6 +126,7 @@ function printSlideshowPhotos($slide_full, $what = PHOTO_ALL) {
 	    $caption = str_replace("\"", " ", $caption);
 	    $caption = str_replace("\n", " ", $caption);
 	    $caption = str_replace("\r", " ", $caption);	    
+
 	    
 	    // Print out the entry for this image as Javascript
 	    print "photo_captions[$photo_count] = \"$caption\";\n";
@@ -632,7 +633,9 @@ array("set_albumName" => $gallery->session->albumName)) ?>">[<?php echo _("back 
 </form>
 
 
-<?php includeHtmlWrap("slideshow.footer"); ?>
+<?php 
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
+includeHtmlWrap("slideshow.footer"); ?>
 
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

@@ -333,6 +333,7 @@ if ($numPhotos) {
 <br>
 
 <?php
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 includeHtmlWrap("album.footer");
 ?>
 

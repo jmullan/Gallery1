@@ -48,7 +48,7 @@ function editField($album, $field) {
 function editCaption($album, $index) {
 	global $gallery;
 
-	$buf = $album->getCaption($index);
+	$buf = nl2br($album->getCaption($index));
 	$buf .= $album->getCaptionName($index);
 	if (($gallery->user->canChangeTextOfAlbum($album) ||
                ($gallery->album->getItemOwnerModify() && 
@@ -118,23 +118,23 @@ function build_popup_url($url, $url_is_complete=0) {
 	return $url;
 }
 
-function popup($url, $url_is_complete=0) {
+function popup($url, $url_is_complete=0, $height=500,$width=500) {
 
         $url = build_popup_url($url, $url_is_complete);
 	return popup_js($url, "Edit", 
-		"height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
+		"height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
 }
 
 function popup_js($url, $window, $attrs) {
 	return "javascript:nw=window.open($url,'$window','$attrs');nw.opener=self;return false;";
 }
 
-function popup_status($url) {
-	$attrs = "height=150,width=350,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
+function popup_status($url, $height=150, $width=350) {
+	$attrs = "height=$height,width=$witdth,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
 	return "open('" . makeGalleryUrl($url) . "','Status','$attrs');";
 }
 
-function popup_link($title, $url, $url_is_complete=0, $online_only=true) {
+function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=500,$width=500) {
     static $popup_counter = 0;
     global $gallery;
 
@@ -149,7 +149,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true) {
     
     $a1 = "<a id=\"$link_name\" target=\"Edit\" href=$url onClick=\"".
 	popup_js("document.getElementById('$link_name').href", "Edit",
-		 "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
+		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
 	"\">";
     
     return "$a1<nobr>$title</nobr></a> ";

@@ -153,6 +153,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
 	        $adminCommands .= popup_link("[" . _("login") . "]", "login.php", 0);
+	        // $adminCommands .= popup_link("[" . _("login") . "]", "login.php", 0, true, 250, 500);
 	}
 }
 
@@ -371,6 +372,7 @@ include($GALLERY_BASEDIR . "layout/navigator.inc");
 
 <!-- gallery.footer begin -->
 <?php
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 includeHtmlWrap("gallery.footer");
 ?>
 <!-- gallery.footer end -->

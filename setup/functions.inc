@@ -500,7 +500,9 @@ function check_absent_locales()
 		$success[] = _("All gallery locales are available on this host");
 	} else if (sizeof($avail_locales) <= 1 || $missing_locales == $avail_locales) {
 	    if (ini_get('open_basedir')) {
-		$fail[] = _("We were unable to detect any locales.  However, your server is configured with the <a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\">open_basedir</a> restriction so this may be interfering with the way that we detect locales.  If you don't have any locales installed, the date format will not change for different languages.  Either way, it is ok to continue.");
+		$fail[] = sprintf(_("We were unable to detect any locales.  However, your server is configured with the %sopen_basedir%s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."),
+				'<a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir">', 
+				'</a>');
 	    } else {
 		$fail[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
 	    }

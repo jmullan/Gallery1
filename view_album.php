@@ -348,6 +348,7 @@ if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 					doCommand("logout", array(), "view_album.php", array("page" => $page)) .
 				  ">[" . _("logout") . "]</a>";
 	} else {
+	//	$adminCommands .= popup_link("[". _("login") ."]", "login.php", 0, true, 250, 500);
 		$adminCommands .= popup_link("[". _("login") ."]", "login.php", 0);
 	} 
 }
@@ -520,7 +521,7 @@ if ($numPhotos) {
 				</span>
 <?php
 			} else {
-				echo($gallery->album->getCaption($i));
+				echo(nl2br($gallery->album->getCaption($i)));
 				echo($gallery->album->getCaptionName($i));
 				// indicate with * if we have a comment for a given photo
 				if ((!strcmp($gallery->album->fields["public_comments"], "yes")) && 
@@ -693,6 +694,7 @@ if (strcmp($gallery->album->fields["returnto"], "no")) {
 }
 
 
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 includeHtmlWrap("album.footer");
 ?>
 

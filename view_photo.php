@@ -703,6 +703,7 @@ include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 </table>
 
 <?php
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 includeHtmlWrap("photo.footer");
 ?>
 

@@ -241,6 +241,7 @@ $breadcrumb["bottom"] = true;
 include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?>
 <?php 
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 includeHtmlWrap("search.footer");
 ?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>

@@ -1,7 +1,7 @@
 <?php if ($gallery->app->ML_mode == 3) { ?>
 <script language="JavaScript">
 function ML_reload() {
-	var newlang=document.TopForm.newlang[document.TopForm.newlang.selectedIndex].value ;
+	var newlang=document.MLForm.newlang[document.MLForm.newlang.selectedIndex].value ;
 	<?php
 		$len=strpos($HTTP_SERVER_VARS['REQUEST_URI'],"&newlang");
 		if ($len == FALSE) $len=strlen($HTTP_SERVER_VARS['REQUEST_URI']);
@@ -14,7 +14,9 @@ function ML_reload() {
 }
 </script>
 
-	<form name="TopForm">
+	<form name="MLForm">
+	<table width="100%">
+	<tr>
 <td valign="top" align="right">
     <select style="font-size:8pt;" name="newlang" onChange="ML_reload()" size="1">
 <?php
@@ -30,6 +32,6 @@ function ML_reload() {
 	}
 ?>
 	</select>
-	</td>
+	</td></tr></table>
 	</form>
 <?php } ?>

@@ -177,6 +177,7 @@ $breadcrumb["top"] = true;
 $breadcrumb["bottom"] = true;
 include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 includeHtmlWrap("album.footer");
 ?>
 
