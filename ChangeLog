@@ -1,3 +1,13 @@
+2000-09-28  Bharat Mediratta  <bharat@menalto.com>
+
+	* Setup code: Made the code that detects the webserver uid more
+	  robust so that it'll work in the absence of posix (it falls back
+	  on 'whoami')
+
+	* Setup code: Removed extra commas at the end of array
+	  initializers as they caused parse problems on earlier versions
+	  of PHP 4  
+
 2000-09-19  Bharat Mediratta  <bharat@menalto.com>
 
 	* Added error checking code to allow us to catch photos that we
