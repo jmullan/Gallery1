@@ -6,7 +6,6 @@ require($GALLERY_BASEDIR . "setup/init.php");
 
 initLanguage();
 if (getOS() == OS_WINDOWS) {
-       	include($GALLERY_BASEDIR . "platform/fs_win32.php");
        	if (fs_file_exists("SECURE")) {
 	       	print _("You cannot access this file while gallery is in secure mode.");
 	       	exit;
@@ -99,7 +98,7 @@ if  ($errors) {
 	       	print "<div class=\"emphasis\">$file:</div> &nbsp;&nbsp;&nbsp;&nbsp;$error<br>\n";
        	}
 } else {
-	print '<br><br><span class="Success">';
+	print '<br><br><span class="successlong">';
        	print "All versions up-to-date<br>";
 	print '</span>';
 }
