@@ -1,9 +1,9 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2003 Bharat Mediratta
- * 
- * This file created by Joan McGalliard, Copyright 2003
+ * Copyright (C) 2000-2004 Bharat Mediratta
+ *
+ * This file Copyright (C) 2003-2004 Joan McGalliard
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
