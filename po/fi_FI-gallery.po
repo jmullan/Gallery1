@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-09-25 01:11+0200\n"
+"POT-Creation-Date: 2003-09-25 15:14+0200\n"
 "PO-Revision-Date: 2003-09-17 15:05+0200\n"
 "Last-Translator: Jussi Karppanen <bitti@bitti.eu.org>\n"
 "Language-Team: Finnish <oasalo@st.jyu.fi>\n"
@@ -216,7 +216,7 @@ msgid "Users who can view full (original) images."
 msgstr "K&auml;ytt&auml;j&auml;t, joilla on oikeus n&auml;hd&auml; t&auml;ysikokoiset alkuper&auml;iskuvat."
 
 #: ../album_permissions.php:289 ../manage_users.php:117 ../photo_owner.php:105
-#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:68
+#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:70
 #: ../view_photo_properties.php:173
 msgid "Done"
 msgstr "Valmis"
@@ -613,7 +613,16 @@ msgstr "K&auml;ytt&auml;j&auml;tunnus %s on jo olemassa"
 msgid "Password must be at least 3 characters"
 msgstr "Salasanan tulee olla v&auml;hint&auml;&auml;n 3 merkki&auml; pitk&auml;"
 
-#: ../classes/gallery/UserDB.php:360
+#: ../classes/gallery/UserDB.php:314
+#, fuzzy, php-format
+msgid "Checking user %d of %d . . . . "
+msgstr "P&auml;ivitet&auml;&auml;n kuvaa %d %d kuvasta..."
+
+#: ../classes/gallery/UserDB.php:319
+msgid "skipped"
+msgstr ""
+
+#: ../classes/gallery/UserDB.php:364
 #, php-format
 msgid "Problem adding %s:"
 msgstr ""
@@ -4133,7 +4142,7 @@ msgstr "Kuva latautuu..."
 msgid "of"
 msgstr "jstk"
 
-#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:56
+#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "Ole hyv&auml; ja odota..."
 
@@ -4299,15 +4308,19 @@ msgstr "P&auml;ivit&auml;mme sen. T&auml;m&auml; vie hetken aikaa."
 msgid "Your data will not be harmed in any way by this process."
 msgstr "Tiedostoillesi ei k&auml;y mit&auml;&auml;n t&auml;m&auml;n prosessin aikana."
 
-#: ../upgrade_users.php:62
+#: ../upgrade_users.php:56
+msgid "If you get an error, and only some users are upgraded, try refreshing the page to upgrade remaining users."
+msgstr ""
+
+#: ../upgrade_users.php:64
 msgid "There was a problem upgrading users.  Please check messages above, and try again"
 msgstr "K&auml;ytt&auml;jien p&auml;ivityksess&auml; ilmeni ongelma. Lue yl&auml;puoliset virheilmoitukset ja yrit&auml; uudelleen"
 
-#: ../upgrade_users.php:63
+#: ../upgrade_users.php:65
 msgid "Retry"
 msgstr "Yrit&auml; uudelleen"
 
-#: ../upgrade_users.php:67
+#: ../upgrade_users.php:69
 msgid "Users upgraded successfully."
 msgstr "K&auml;ytt&auml;jien p&auml;ivitys onnistui."
 

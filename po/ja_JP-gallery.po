@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-09-25 01:11+0200\n"
+"POT-Creation-Date: 2003-09-25 15:14+0200\n"
 "PO-Revision-Date: 2003-09-22 09:05+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m@yahoo.co.jp>\n"
 "Language-Team: Japanese <ken_w3m@yahoo.co.jp>\n"
@@ -218,7 +218,7 @@ msgid "Users who can view full (original) images."
 msgstr "完全な(元の)画像を閲覧できるユーザ"
 
 #: ../album_permissions.php:289 ../manage_users.php:117 ../photo_owner.php:105
-#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:68
+#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:70
 #: ../view_photo_properties.php:173
 msgid "Done"
 msgstr "完了"
@@ -607,7 +607,16 @@ msgstr "%s というユーザは既に存在します"
 msgid "Password must be at least 3 characters"
 msgstr "パスワードは3文字以上でないといけません"
 
-#: ../classes/gallery/UserDB.php:360
+#: ../classes/gallery/UserDB.php:314
+#, fuzzy, php-format
+msgid "Checking user %d of %d . . . . "
+msgstr "アイテム %d / %d をアップグレード中. . . "
+
+#: ../classes/gallery/UserDB.php:319
+msgid "skipped"
+msgstr ""
+
+#: ../classes/gallery/UserDB.php:364
 #, php-format
 msgid "Problem adding %s:"
 msgstr ""
@@ -4097,7 +4106,7 @@ msgstr "画像読み込み中..."
 msgid "of"
 msgstr ""
 
-#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:56
+#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "待ってね..."
 
@@ -4259,15 +4268,19 @@ msgstr "アップグレードするには若干時間がかかります"
 msgid "Your data will not be harmed in any way by this process."
 msgstr "この作業においてあなたのデータははどのような形の被害も受けません。"
 
-#: ../upgrade_users.php:62
+#: ../upgrade_users.php:56
+msgid "If you get an error, and only some users are upgraded, try refreshing the page to upgrade remaining users."
+msgstr ""
+
+#: ../upgrade_users.php:64
 msgid "There was a problem upgrading users.  Please check messages above, and try again"
 msgstr ""
 
-#: ../upgrade_users.php:63
+#: ../upgrade_users.php:65
 msgid "Retry"
 msgstr "再試行"
 
-#: ../upgrade_users.php:67
+#: ../upgrade_users.php:69
 msgid "Users upgraded successfully."
 msgstr ""
 

@@ -44,6 +44,7 @@ function getNLS () {
         $nls['language']['zh_TW'] = 'Traditional Chinese (&#32321;&#39636;&#20013;&#25991;)';
 	$nls['language']['zh_TW.utf8'] = 'Traditional Chinese (&#32321;&#39636;&#20013;&#25991;) (UTF-8)';
 	$nls['language']['bg_BG'] = '&#x0411;&#x044a;&#x043b;&#x0433;&#x0430;&#x0440;&#x0441;&#x043a;&#x0438;';
+	$nls['language']['ca_ES'] = 'Catal&#xe0;';
 	$nls['language']['cs_CZ'] = '&#x010c;esky';
 	$nls['language']['da_DK'] = 'Dansk';
 	$nls['language']['de_DE'] = 'Deutsch';
@@ -75,6 +76,7 @@ function getNLS () {
  ** Aliases for languages with different browser and gettext codes
  **/
 
+	$nls['alias']['ca'] = 'ca_ES';
 	$nls['alias']['cs'] = 'cs_CZ';	
 	$nls['alias']['da'] = 'da_DK';
 	$nls['alias']['de'] = 'de_DE';
@@ -103,6 +105,9 @@ function getNLS () {
  ** Aliases for languages which we substitte or send by NUKE
  **/
 	$nls['alias']['bg_BG.CP1251'] =         'bg_BG' ;
+
+	$nls['alias']['catala'] =               'ca_ES' ;
+        $nls['alias']['ca_ES.ISO8859-1'] =      'ca_ES' ;
 
 	$nls['alias']['czech'] =                'cs_CZ' ;
 	$nls['alias']['cs_CZ.ISO8859-1'] =      'cs_CZ' ;
@@ -270,6 +275,7 @@ function getNLS () {
  ** phpNuke
  **/
 	$nls['phpnuke']['pt_BR'] = 'brazilian' ;
+	$nls['phpnuke']['ca_ES'] = 'catala' ;
 	$nls['phpnuke']['zh_TW'] = 'chinese' ;
 	$nls['phpnuke']['cs_CZ'] = 'czech' ;
 	$nls['phpnuke']['da_DK'] = 'danish';

@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-09-25 01:11+0200\n"
+"POT-Creation-Date: 2003-09-25 15:14+0200\n"
 "PO-Revision-Date: 2003-09-14 17:26-0300\n"
 "Last-Translator: Daniel Neto <dnetod@yahoo.com.br>\n"
 "Language-Team: Daniel Neto <danielneto@terra.com.br>\n"
@@ -218,7 +218,7 @@ msgid "Users who can view full (original) images."
 msgstr "Usuários que podem ver imagens em tamanho original."
 
 #: ../album_permissions.php:289 ../manage_users.php:117 ../photo_owner.php:105
-#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:68
+#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:70
 #: ../view_photo_properties.php:173
 msgid "Done"
 msgstr "Feito"
@@ -615,7 +615,16 @@ msgstr "Um usuário com o nome de %s já existe"
 msgid "Password must be at least 3 characters"
 msgstr "Senha deve ser pelo menos de 3 caracteres"
 
-#: ../classes/gallery/UserDB.php:360
+#: ../classes/gallery/UserDB.php:314
+#, fuzzy, php-format
+msgid "Checking user %d of %d . . . . "
+msgstr "Atualizando item %d de %d . . ."
+
+#: ../classes/gallery/UserDB.php:319
+msgid "skipped"
+msgstr ""
+
+#: ../classes/gallery/UserDB.php:364
 #, php-format
 msgid "Problem adding %s:"
 msgstr ""
@@ -4136,7 +4145,7 @@ msgstr "Imagem está sendo carregada..."
 msgid "of"
 msgstr "de"
 
-#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:56
+#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "Por favor Aguarde..."
 
@@ -4302,15 +4311,19 @@ msgstr "Nós iremos atualizá-lo. Isso leverá apenas um tempo."
 msgid "Your data will not be harmed in any way by this process."
 msgstr "Seus dados não serão danificados, de maneira alguma, por este processo."
 
-#: ../upgrade_users.php:62
+#: ../upgrade_users.php:56
+msgid "If you get an error, and only some users are upgraded, try refreshing the page to upgrade remaining users."
+msgstr ""
+
+#: ../upgrade_users.php:64
 msgid "There was a problem upgrading users.  Please check messages above, and try again"
 msgstr "Ocorreu um problema ao atualizar os usuários. Por favor, verifique as mensagens acima e tente novamente"
 
-#: ../upgrade_users.php:63
+#: ../upgrade_users.php:65
 msgid "Retry"
 msgstr "Tente novamente"
 
-#: ../upgrade_users.php:67
+#: ../upgrade_users.php:69
 msgid "Users upgraded successfully."
 msgstr "Usuários atualizados com sucesso."
 

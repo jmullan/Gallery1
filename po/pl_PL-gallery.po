@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-09-25 01:11+0200\n"
+"POT-Creation-Date: 2003-09-25 15:14+0200\n"
 "PO-Revision-Date: 2003-09-20 10:45+0100\n"
 "Last-Translator: Krzysztof Jankowski [kaYtek] <kaytek@daw.pl>\n"
 "Language-Team: nocnyMark <kaytek@daw.pl>\n"
@@ -219,7 +219,7 @@ msgid "Users who can view full (original) images."
 msgstr "U¿ytkownicy mog±cy ogl±daæ pe³no-wymiarowe obrazki."
 
 #: ../album_permissions.php:289 ../manage_users.php:117 ../photo_owner.php:105
-#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:68
+#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:70
 #: ../view_photo_properties.php:173
 msgid "Done"
 msgstr "Zrobione"
@@ -608,7 +608,16 @@ msgstr "U¿ytkownik o nazwie %s juz istnieje"
 msgid "Password must be at least 3 characters"
 msgstr "Has³o musi byæ conajmniej 3 znakowe"
 
-#: ../classes/gallery/UserDB.php:360
+#: ../classes/gallery/UserDB.php:314
+#, fuzzy, php-format
+msgid "Checking user %d of %d . . . . "
+msgstr "Aktualizacja pozycji %d z %d . . ."
+
+#: ../classes/gallery/UserDB.php:319
+msgid "skipped"
+msgstr ""
+
+#: ../classes/gallery/UserDB.php:364
 #, php-format
 msgid "Problem adding %s:"
 msgstr ""
@@ -4092,7 +4101,7 @@ msgstr "Obrazek jest ³adowany..."
 msgid "of"
 msgstr "z"
 
-#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:56
+#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "Prosze poczekaj..."
 
@@ -4254,15 +4263,19 @@ msgstr "Zaktualizujemy. To mo¿e potrwaæ kilka minut."
 msgid "Your data will not be harmed in any way by this process."
 msgstr "¯aden z obrazków nie ucierpi w tym procesie."
 
-#: ../upgrade_users.php:62
+#: ../upgrade_users.php:56
+msgid "If you get an error, and only some users are upgraded, try refreshing the page to upgrade remaining users."
+msgstr ""
+
+#: ../upgrade_users.php:64
 msgid "There was a problem upgrading users.  Please check messages above, and try again"
 msgstr "Zainstnia³ problem przy aktualizacji u¿ytkowników. Sprawd¼ co napisane poni¿ej i sprobój jeszcze raz"
 
-#: ../upgrade_users.php:63
+#: ../upgrade_users.php:65
 msgid "Retry"
 msgstr "Powtórz"
 
-#: ../upgrade_users.php:67
+#: ../upgrade_users.php:69
 msgid "Users upgraded successfully."
 msgstr "Aktualizacja u¿ytkowników udana."
 

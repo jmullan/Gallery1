@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-09-25 01:11+0200\n"
+"POT-Creation-Date: 2003-09-25 15:14+0200\n"
 "PO-Revision-Date: 2003-07-03 16:00+0100\n"
 "Last-Translator: Jens Tkotz <jens@f2h9.de>\n"
 "Language-Team: German <jens@f2h9.de\n"
@@ -216,7 +216,7 @@ msgid "Users who can view full (original) images."
 msgstr "Benutzer, die die Bilder in voller (Original-) Gr&ouml;sse betrachten d&uuml;rfen."
 
 #: ../album_permissions.php:289 ../manage_users.php:117 ../photo_owner.php:105
-#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:68
+#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:70
 #: ../view_photo_properties.php:173
 msgid "Done"
 msgstr "Fertig"
@@ -325,7 +325,7 @@ msgstr "Anmelden"
 
 #: ../albums.php:179
 msgid "register"
-msgstr ""
+msgstr "Registrieren"
 
 #: ../albums.php:208
 msgid "Attention Gallery Administrator!"
@@ -605,10 +605,19 @@ msgstr "Ein Benutzer mit dem Namen %s existiert bereits."
 msgid "Password must be at least 3 characters"
 msgstr "Das Passwort muss mindestens 3 Zeichen lang sein."
 
-#: ../classes/gallery/UserDB.php:360
+#: ../classes/gallery/UserDB.php:314
+#, php-format
+msgid "Checking user %d of %d . . . . "
+msgstr "Pr&uuml;fe Benutzer %d von %d . . ."
+
+#: ../classes/gallery/UserDB.php:319
+msgid "skipped"
+msgstr "&Uuml;bersprungen"
+
+#: ../classes/gallery/UserDB.php:364
 #, php-format
 msgid "Problem adding %s:"
-msgstr ""
+msgstr "Es gab ein Problem beim hinzuf&uuml;gen von %s:"
 
 #: ../copy_photo.php:47
 msgid "Copy Photo"
@@ -617,12 +626,12 @@ msgstr "Photo kopieren"
 #: ../copy_photo.php:59
 #, php-format
 msgid "Invalid album selected: %s"
-msgstr ""
+msgstr "Ung&uuml;ltuges Album: %s"
 
 #: ../copy_photo.php:63 ../copy_photo.php:136
 #, php-format
 msgid "Can't copy album #%d"
-msgstr ""
+msgstr "Album #%d konnte nicht kopiert werden"
 
 #: ../copy_photo.php:70
 #, php-format
@@ -1353,12 +1362,12 @@ msgstr "Anmelden"
 
 #: ../login.php:139
 msgid "Forgotten your password?"
-msgstr ""
+msgstr "Passwort vergessen ?"
 
 #: ../login.php:149
 #, php-format
 msgid "The last request for a password was left than %d minutes ago.  Please check for previous email, or wait before trying again."
-msgstr ""
+msgstr "Die letzte Anfrage nach Ihrem Passwort war vor %d Minuten.  Bitte schauen Sie in Ihr Emailpostfach, oder warten Sie bevor Sie es erneut versuchen."
 
 #: ../login.php:153
 msgid "New password request"
@@ -1387,12 +1396,12 @@ msgstr ""
 #: ../login.php:165
 #, php-format
 msgid "Email could not be sent.  Please contact %s adminstrators for a new password"
-msgstr ""
+msgstr "Die Email konnte nicht gesendet werden. Bitte wenden Sie sich an den %s Admin fu&uml;r ein neues Passwort"
 
 #: ../login.php:169
 #, php-format
 msgid "There is no valid email for this account.  Please contact %s adminstrators for a new password"
-msgstr ""
+msgstr "Es wurde keine g&uuml;ltige Email f&uuml;r diesen Account angegeben.  Bitte wenden Sie sich an den %s Admin fu&uml;r ein neues Passwort"
 
 #: ../login.php:172 ../new_password.php:42 ../new_password.php:46
 msgid "Not a valid username"
@@ -1424,7 +1433,7 @@ msgstr "Es existieren keine Benutzer. Erstellen Sie einen."
 
 #: ../manage_users.php:111
 msgid "Bulk Create"
-msgstr ""
+msgstr "Massenverarbeitung"
 
 #: ../manage_users.php:114
 msgid "Modify"
@@ -1537,7 +1546,7 @@ msgstr ""
 #: ../multi_create_user.php:115
 #, php-format
 msgid "%s added, %s skipped"
-msgstr ""
+msgstr "%s hinzugef&uuml;gt, %s &uuml;bersprungen"
 
 #: ../multi_create_user.php:116 ../multi_create_user.php:117
 msgid "1 user"
@@ -2714,9 +2723,8 @@ msgid "Show the album tree"
 msgstr "Albumbaum zeigen"
 
 #: ../setup/config_data.inc:313
-#, fuzzy
 msgid "If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page)."
-msgstr "Wenn Sie diese Option einschalten, werden Sie eine komplette Liste aller Unteralben sehen, wenn Sie in der obersten Ebene sind.  Dies macht die Navigation zu einem speziellen Unteralbum viel leichter.  Es kann aber auch sein, dass dadurch die Optik der Gallery-Seite stark verunstaltet wird.  Wird per default auf <b>Nein</b> gesetzt."
+msgstr "Wenn Sie diese Option einschalten, werden Sie eine komplette Liste aller Unteralben sehen auf der Startseite der Gallery sehen., wenn Sie in der obersten Ebene sind.  Dies macht die Navigation zu einem speziellen Unteralbum viel leichter.  Es kann aber auch sein, dass dadurch die Optik der Gallery-Seite stark verunstaltet wird."
 
 #: ../setup/config_data.inc:318
 msgid "Highlight size"
@@ -2797,7 +2805,6 @@ msgid "Cache EXIF data"
 msgstr "Cache EXIF-Daten"
 
 #: ../setup/config_data.inc:398
-#, fuzzy
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
 msgstr "Es besteht die M&ouml;glichkeit, die EXIF Daten der JPEG Bilder zu cachen, nachdem Sie das erste Mal geladen wurden.  Der Nachteil ist, dass wenn Sie diese Daten cachen, Ihre Album Daten sehr gross werden und die Betrachtung langsamer wird.  Wenn diese Daten nicht gecached werden, m&uuml;ssen Sie jedesmal geladen werden, wenn ein Benutzer die Eigenschaften des Photos sehen will."
 
@@ -2815,9 +2822,9 @@ msgid "Default language"
 msgstr "Standardsprache"
 
 #: ../setup/config_data.inc:422
-#, fuzzy, php-format
+#, php-format
 msgid "This is the language you will see as %s, and what users will see if no other preference is set."
-msgstr "Dies ist das,was sie als %s sehen, und was die Benutzer sehen werden, wenn keine anderen Einstellungen gemacht wurden."
+msgstr "Dies ist die %s und Sprache die Benutzer als Standard bekommenehen, wenn keine anderen Einstellungen gemacht wurden."
 
 #: ../setup/config_data.inc:429
 msgid "Multi language mode"
@@ -2840,9 +2847,8 @@ msgid "The User can choose the language via pulldown menu or flags."
 msgstr "Der Benutzer kann die Sprache per Auswahlliste oder Flaggen selber ausw&auml;hlen."
 
 #: ../setup/config_data.inc:439
-#, fuzzy
 msgid "Available languages"
-msgstr "Gallery Sprache"
+msgstr "Verf&uuml;gbare Sprachen"
 
 #: ../setup/config_data.inc:442
 msgid "These languages will be available as user choices in a pulldown menu or flags, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3."
@@ -2853,14 +2859,12 @@ msgid "Show flags?"
 msgstr "Zeige Flaggen?"
 
 #: ../setup/config_data.inc:449
-#, fuzzy
 msgid "In Mode 3 you can choose to display flags instead of a small pulldown menu for the available languages."
-msgstr "Falls Sie Modus 3 verwenden, haben Sie die M&ouml;glichkeit zwischen einem schlanken Pulldown Menu oder Flaggen zu w&auml;hlen. Wird per default auf <b>nein</b> gesetzt, da es nur ein <i>eye catcher</i> ist."
+msgstr "Falls Sie Modus 3 verwenden, haben Sie die M&ouml;glichkeit zwischen einem schlanken Pulldown Menu oder Flaggen zu w&auml;hlen."
 
 #: ../setup/config_data.inc:456
-#, fuzzy
 msgid "Format for date strings."
-msgstr "Format welches f&uuml;r die Datum Anzeige benutzt werden soll."
+msgstr "Format f&uuml;r die Datum Anzeige."
 
 #: ../setup/config_data.inc:457 ../setup/config_data.inc:468
 #, php-format
@@ -2903,14 +2907,12 @@ msgid "If you are having problems with email, please run the %s diagnostic."
 msgstr ""
 
 #: ../setup/config_data.inc:488 ../setup/diagnostics.php:73
-#, fuzzy
 msgid "Check Email"
-msgstr "W&auml;hle alle"
+msgstr "Email &uuml;berpr&uuml;fen"
 
 #: ../setup/config_data.inc:492
-#, fuzzy
 msgid "Enable email"
-msgstr "Name oder Email: "
+msgstr "Emailfunktionalit&auml;ten aktivieren"
 
 #: ../setup/config_data.inc:494
 #, php-format
@@ -2926,9 +2928,8 @@ msgid "Set this value to a valid working email address to receive email notices 
 msgstr ""
 
 #: ../setup/config_data.inc:509
-#, fuzzy
 msgid "Sender email address"
-msgstr "IP-Adresse des Servers"
+msgstr "Absender Adresse der Emails"
 
 #: ../setup/config_data.inc:510
 msgid "Set this value to a valid working email address.  Emails that are automatically sent by gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients."
@@ -2960,9 +2961,8 @@ msgid "Enabling this will allow visitors to your site to create their own login 
 msgstr ""
 
 #: ../setup/config_data.inc:542
-#, fuzzy
 msgid "Self registered users can create albums."
-msgstr "Benutzer kann Alben anlegen"
+msgstr ""
 
 #: ../setup/config_data.inc:543
 msgid "Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before then can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled."
@@ -3376,9 +3376,9 @@ msgid "Number of results displayed"
 msgstr "Anzahl der zu anzeigenden Ergebnisse."
 
 #: ../setup/config_data.inc:910
-#, fuzzy, php-format
+#, php-format
 msgid "If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"
-msgstr "Wenn %s %s ist, zeige diese Anzahl von Top-Bilder auf der Vorschauseite.  (Die kompletten Ergebnisse sind auf einer separaten Seite verf&uuml;gbar.)"
+msgstr "Wenn %s %s ist, wird ein Graph mit dieser Anzahl von Ergebnissen gezeigt. (Die kompletten Ergebnisse sind auf einer separaten Seite verf&uuml;gbar.)"
 
 #: ../setup/config_data.inc:918
 msgid "Orientation of vote choices?"
@@ -3520,14 +3520,12 @@ msgid "This doesn't mean that they won't work, however it does mean that we can'
 msgstr "Dies bedeutet nicht, dass diese falsch sind, es bedeutet nur, dass Sie nicht von der Gallery als korrekt verifiziert werden k&ouml;nnen. Wenn es Ihnen nicht m&ouml;glich ist, Bilder hochzuladen, werden Sie einen Blick in die F.A.Q und/oder die %sDiagnose Seite%s, um Ihre Problem zu l&ouml;sen."
 
 #: ../setup/confirm.inc:383
-#, fuzzy
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it."
-msgstr "Diese Seite dient zur Best&auml;tigung, dass alle Ihre Angaben korrekt sind.  Wenn Sie diese Seite verwirrt, k&ouml;nnen Sie sie getrost ignorieren (es sei denn, Sie sehen rote Schrift, welche auf Fehler deutet)."
+msgstr "Diese Seite dient zur Best&auml;tigung, dass alle Ihre Angaben korrekt sind.  Wenn Sie diese Seite verwirrt, k&ouml;nnen Sie sie getrost ignorieren."
 
 #: ../setup/confirm.inc:385
-#, fuzzy
 msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
-msgstr "Diese Seite dient zur Best&auml;tigung, dass alle Ihre Angaben korrekt sind.  Wenn Sie diese Seite verwirrt, k&ouml;nnen Sie sie getrost ignorieren (es sei denn, Sie sehen rote Schrift, welche auf Fehler deutet)."
+msgstr "Diese Seite dient zur Best&auml;tigung, dass alle Ihre Angaben korrekt sind.  Es sind Fehler vorhanden welche Sie zuerst beheben m&uuml;ssen bevor Sie Ihre Konfiguration speichern k&ouml;nnen."
 
 #: ../setup/confirm.inc:390 ../setup/confirm.inc:403
 msgid "Edit Config"
@@ -3547,7 +3545,6 @@ msgid "One error"
 msgstr ""
 
 #: ../setup/confirm.inc:395
-#, fuzzy
 msgid "errors"
 msgstr "Fehler"
 
@@ -3769,9 +3766,9 @@ msgid "There are %d locales where Gallery was able to identify them correct. You
 msgstr ""
 
 #: ../setup/functions.inc:583
-#, fuzzy, php-format
+#, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. But you can choose another locale for those."
-msgstr "Das Datum in diesen Sprachen wird eventuell nicht korrekt angezeigt werden, da die entsprechenden locales nicht vorhanden sind:"
+msgstr "Das Datum in %d Sprachen wird eventuell nicht korrekt angezeigt werden, da die entsprechenden locales nicht vorhanden sind. Aber Sie k&ouml;nnen einen Ersatz w&auml;hlen."
 
 #: ../setup/functions.inc:588
 #, php-format
@@ -3792,7 +3789,6 @@ msgid "Locale Selection required"
 msgstr "Locale Auswahl ben&ouml;tigt"
 
 #: ../setup/functions.inc:742
-#, fuzzy
 msgid "There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "Es ist mehr als eine passende locale information auf Ihrem System vorhanden f&uuml;r die folgenden Sprachen vorhanden. Bitte w&auml;hlen Sie das naheliegenste aus."
 
@@ -3801,9 +3797,8 @@ msgid "This is <b>only</b> for date & time format. You only need to edit the lan
 msgstr ""
 
 #: ../setup/functions.inc:778 ../setup/functions.inc:788
-#, fuzzy
 msgid "System locale"
-msgstr "System Pr&uuml;fseite"
+msgstr "System locale"
 
 #: ../setup/functions.inc:811
 msgid "Locale problems"
@@ -3845,9 +3840,8 @@ msgid "Valid admin email address given."
 msgstr ""
 
 #: ../setup/functions.inc:1070
-#, fuzzy
 msgid "You must specify valid admin email addresses"
-msgstr "Sie m&uuml;ssen ein Passwort angeben."
+msgstr "Sie m&uuml;ssen eine g&uuml;ltige Admin Emailadresse angeben."
 
 #: ../setup/functions.inc:1078
 #, php-format
@@ -3859,9 +3853,8 @@ msgid "Valid sender email address given."
 msgstr ""
 
 #: ../setup/functions.inc:1089
-#, fuzzy
 msgid "You must specify a valid sender email address"
-msgstr "Sie m&uuml;ssen einen Benutzernamen angeben"
+msgstr "Sie m&uuml;ssen eine g&uuml;ltige Absender Emailadresse angeben"
 
 #: ../setup/functions.inc:1092 ../setup/functions.inc:1095
 #, php-format
@@ -3874,14 +3867,13 @@ msgid "this is new in version %s"
 msgstr "Dies ist neu seit Version %s"
 
 #: ../setup/functions.inc:1119
-#, fuzzy, php-format
+#, php-format
 msgid "Return to %s."
-msgstr "R&uuml;ckkehr zu %s"
+msgstr "R&uuml;ckkehr zu %s."
 
 #: ../setup/functions.inc:1120
-#, fuzzy
 msgid "Configuration Wizard"
-msgstr "Gallery : Konfigurationsmodus"
+msgstr "Konfigurationsassistent"
 
 #: ../setup/index.php:21
 msgid "Gallery Configuration"
@@ -4057,7 +4049,7 @@ msgstr "Bild wird geladen..."
 msgid "of"
 msgstr "von"
 
-#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:56
+#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "Bitte warten..."
 
@@ -4219,15 +4211,19 @@ msgstr "Gallery wird nun eine Aktualisierung vornehmen.   Dies kann etwas dauern
 msgid "Your data will not be harmed in any way by this process."
 msgstr "Ihre Daten durch diesen Prozess ver&auml;ndert."
 
-#: ../upgrade_users.php:62
+#: ../upgrade_users.php:56
+msgid "If you get an error, and only some users are upgraded, try refreshing the page to upgrade remaining users."
+msgstr ""
+
+#: ../upgrade_users.php:64
 msgid "There was a problem upgrading users.  Please check messages above, and try again"
 msgstr "Es gab Problem bei der Aktualisierung der Benutzerdaten. Bitte &uuml;berpr&uuml;fen Sie die Meldungen und probieren Sie es erneut."
 
-#: ../upgrade_users.php:63
+#: ../upgrade_users.php:65
 msgid "Retry"
 msgstr "Neustart"
 
-#: ../upgrade_users.php:67
+#: ../upgrade_users.php:69
 msgid "Users upgraded successfully."
 msgstr "Die Benutzers wurden erfolgreich aktualisiert."
 
@@ -4512,9 +4508,9 @@ msgid "[Note: This is an automatically generated email message sent from the web
 msgstr ""
 
 #: ../util.php:2636
-#, fuzzy, php-format
+#, php-format
 msgid "Report abuse to %s."
-msgstr "R&uuml;ckkehr zu %s"
+msgstr ""
 
 #: ../util.php:2651
 msgid "Email not sent as it is disabled for this gallery"
@@ -4530,9 +4526,8 @@ msgid "Email not sent to %s as it is not a valid address"
 msgstr ""
 
 #: ../util.php:2680
-#, fuzzy
 msgid "Email sent"
-msgstr "Email-Adresse"
+msgstr "Email wurde gesendet"
 
 #: ../util.php:2705
 #, php-format
@@ -4548,9 +4543,9 @@ msgid "Email activity"
 msgstr ""
 
 #: ../util.php:2743
-#, fuzzy, php-format
+#, php-format
 msgid "Cannot open logfile: %s"
-msgstr "Konnte die lock Datei (%s) nicht &ouml;ffnen!"
+msgstr "Konnte die Logdatei: %s nicht &ouml;ffnen"
 
 #: ../util.php:2750
 #, php-format
@@ -4566,14 +4561,12 @@ msgid ""
 msgstr ""
 
 #: ../util.php:2760 ../util.php:2762
-#, fuzzy
 msgid "gallery title"
 msgstr "Galerietitel"
 
 #: ../util.php:2761
-#, fuzzy
 msgid "gallery URL"
-msgstr "Gallery Link"
+msgstr "Gallery URL"
 
 #: ../view_album.php:270
 msgid "1 sub-album"

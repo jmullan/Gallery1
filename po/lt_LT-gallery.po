@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-09-25 01:11+0200\n"
+"POT-Creation-Date: 2003-09-25 15:14+0200\n"
 "PO-Revision-Date: 2003-01-02 19:56+0200\n"
 "Last-Translator: Aladdin <aladdin@antakalnis.lt>\n"
 "Language-Team: Aladdin <aladdin@antakalnis.lt>\n"
@@ -227,7 +227,7 @@ msgid "Users who can view full (original) images."
 msgstr "Vartotojai, kurie gali þiûrëti originalaus dydþio nuotraukas."
 
 #: ../album_permissions.php:289 ../manage_users.php:117 ../photo_owner.php:105
-#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:68
+#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:70
 #: ../view_photo_properties.php:173
 msgid "Done"
 msgstr "Atlikta"
@@ -637,7 +637,16 @@ msgstr ""
 msgid "Password must be at least 3 characters"
 msgstr "Slaptaþodis turi bûti bent jau ið trijø simboliø"
 
-#: ../classes/gallery/UserDB.php:360
+#: ../classes/gallery/UserDB.php:314
+#, php-format
+msgid "Checking user %d of %d . . . . "
+msgstr ""
+
+#: ../classes/gallery/UserDB.php:319
+msgid "skipped"
+msgstr ""
+
+#: ../classes/gallery/UserDB.php:364
 #, php-format
 msgid "Problem adding %s:"
 msgstr ""
@@ -4254,7 +4263,7 @@ msgstr "Nuotrauka kraunasi..."
 msgid "of"
 msgstr "ið"
 
-#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:56
+#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "Praðome palaukti..."
 
@@ -4434,15 +4443,19 @@ msgstr "Mes galime juos atnaujinti. Tai gali uþtrukti, ypaè jei albumas yra dide
 msgid "Your data will not be harmed in any way by this process."
 msgstr "Ðio proceso metu Jûsø nuotraukos tikrai nebus sugadintos:)"
 
-#: ../upgrade_users.php:62
+#: ../upgrade_users.php:56
+msgid "If you get an error, and only some users are upgraded, try refreshing the page to upgrade remaining users."
+msgstr ""
+
+#: ../upgrade_users.php:64
 msgid "There was a problem upgrading users.  Please check messages above, and try again"
 msgstr ""
 
-#: ../upgrade_users.php:63
+#: ../upgrade_users.php:65
 msgid "Retry"
 msgstr ""
 
-#: ../upgrade_users.php:67
+#: ../upgrade_users.php:69
 msgid "Users upgraded successfully."
 msgstr ""
 

@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-09-25 01:11+0200\n"
+"POT-Creation-Date: 2003-09-25 15:14+0200\n"
 "PO-Revision-Date: 2003-09-15 15:09+0900\n"
 "Last-Translator: CheolMin Lee <cmlee@users.sourceforge.net>\n"
 "Language-Team: Korean <cmlee@users.sourceforge.net>\n"
@@ -216,7 +216,7 @@ msgid "Users who can view full (original) images."
 msgstr "원래 크기의 이미지를 볼 수 있는 사용자"
 
 #: ../album_permissions.php:289 ../manage_users.php:117 ../photo_owner.php:105
-#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:68
+#: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:70
 #: ../view_photo_properties.php:173
 msgid "Done"
 msgstr "종료"
@@ -605,7 +605,16 @@ msgstr "%s는 이미 존재하는 사용자입니다"
 msgid "Password must be at least 3 characters"
 msgstr "암호는 적어도 3자 이상이어야 합니다"
 
-#: ../classes/gallery/UserDB.php:360
+#: ../classes/gallery/UserDB.php:314
+#, fuzzy, php-format
+msgid "Checking user %d of %d . . . . "
+msgstr "업그레이드 중(%d/%d) . . . "
+
+#: ../classes/gallery/UserDB.php:319
+msgid "skipped"
+msgstr ""
+
+#: ../classes/gallery/UserDB.php:364
 #, php-format
 msgid "Problem adding %s:"
 msgstr ""
@@ -4087,7 +4096,7 @@ msgstr "사진 로딩 중..."
 msgid "of"
 msgstr ""
 
-#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:56
+#: ../slideshow.php:473 ../slideshow_low.php:257 ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "잠시만 기다리세요..."
 
@@ -4249,15 +4258,19 @@ msgstr "지금 업그레이드 합니다. 약간의 시간이 소요됩니다."
 msgid "Your data will not be harmed in any way by this process."
 msgstr "이 과정으로 당신의 데이터가 손상되는 일은 없습니다."
 
-#: ../upgrade_users.php:62
+#: ../upgrade_users.php:56
+msgid "If you get an error, and only some users are upgraded, try refreshing the page to upgrade remaining users."
+msgstr ""
+
+#: ../upgrade_users.php:64
 msgid "There was a problem upgrading users.  Please check messages above, and try again"
 msgstr "업그레이 도중 문제가 발생했습니다. 위 메시지 내용을 체크하시고 다시 시도하세요"
 
-#: ../upgrade_users.php:63
+#: ../upgrade_users.php:65
 msgid "Retry"
 msgstr "재시도"
 
-#: ../upgrade_users.php:67
+#: ../upgrade_users.php:69
 msgid "Users upgraded successfully."
 msgstr "사용자 업그레이드가 성공적으로 끝났습니다."
 
