@@ -526,7 +526,7 @@ if ($borderwidth == 0) {
 	$borderwidth = 1;
 }
 
-if ($page == 1 && !empty($gallery->album->fields)) {
+if ($page == 1 && !empty($gallery->album->fields["summary")) {
 	echo '<div align="center"><p class="vasummary">'. $gallery->album->fields["summary"] . '</p></div>';
 }
 
