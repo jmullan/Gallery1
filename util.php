@@ -64,8 +64,7 @@ function popup($url) {
 function getDimensions($file) {
 	global $app;				
 
-	exec("$app->pnmDir/anytopnm $file 2>/dev/null | " .
-	     "$app->pnmDir/pnmfile ",
+	exec(getAnyToPnmCmd($file, "| $app->pnmDir/pnmfile "),
 	     $lines,
 	     $status);
 
@@ -153,9 +152,9 @@ function my_flush() {
 function resize_image($src, $dest, $target) {
 	global $app;				
 
-	exec("$app->pnmDir/anytopnm $src 2>/dev/null | " .
-	     "$app->pnmDir/pnmscale -xysize $target $target | ".
-	     "$app->pnmDir/ppmtojpeg > $dest");
+	exec_wrapper(getAnyToPnmCmd($src,
+		     "| $app->pnmDir/pnmscale -xysize $target $target ".
+		     "| $app->pnmDir/ppmtojpeg > $dest"));
 
 	if (file_exists("$dest") && filesize("$dest") > 0) {
 		return 1;
@@ -167,8 +166,7 @@ function resize_image($src, $dest, $target) {
 function valid_image($file) {
 	global $app;
 	
-	exec("$app->pnmDir/anytopnm $file 2>/dev/null |" .
-	     "$app->pnmDir/pnmfile",
+	exec(getAnyToPnmCmd($file, "| $app->pnmDir/pnmfile"),
 	     $results,
 	     $status);
 
@@ -178,4 +176,31 @@ function valid_image($file) {
 		return 0;
 	}
 }
-	
+
+function getAnyToPnmCmd($file, $args) {
+	global $app;
+
+	return sprintf($app->anytopnm, 
+			$file . 
+			// " >&/dev/null " . 
+			$args);
+}
+
+function exec_wrapper($cmd) {
+	global $app;
+
+	// echo "<p><b> About to exec [$cmd]</b>";
+	exec($cmd, $results, $status);
+
+	// print "<br> Results: <pre>" . join("\n", $results);
+	// print "<br> Status: $status";
+
+	if ($status == 0) {
+		return 0;
+	} else {
+		if ($results) {
+			error(join("<br>", $results));
+		}
+		return 1;
+	}
+}
