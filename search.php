@@ -41,7 +41,7 @@ if ($searchstring) {
 ?>
 <table width=100% border=0 cellspacing=0>
 <tr>
-<?= makeSearchFormIntro(); ?>
+<?= makeGetFormIntro("search.php"); ?>
 <td valign="middle" align="right">
 <span class="admin"> Search Again: </span>
 <input style="font-size=10px;" type="text" name="searchstring" value="<?= $searchstring ?>" size="25">
@@ -56,7 +56,7 @@ if ($searchstring) {
 <!-- search.header ends -->
 <!-- Top Nav -->
 <?
-$breadtext[0] = "Gallery: <a href=". makeGalleryUrl() . ">".$gallery->app->galleryTitle."</a>";
+$breadtext[0] = "Gallery: <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
 $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;
@@ -91,7 +91,7 @@ if ($searchstring) {
            		$albumMatch = 1;
            		$searchTitle = eregi_replace($searchstring, "<b>$searchstring</b>",$searchTitle);  // cause search word to be bolded
 				$searchDescription = eregi_replace($searchstring, "<b>$searchstring</b>",$searchDescription);  // cause search word to be bolded
-				$photoURL = makeGalleryUrl($searchAlbum->fields['name']);
+				$photoURL = makeAlbumUrl($searchAlbum->fields['name']);
 				$searchdraw["bordercolor"] = $borderColor;
 				$searchdraw["top"] = true;
 				$searchdraw["photolink"] = $searchAlbum->getHighlightTag($thumbSize);
@@ -155,10 +155,10 @@ if ($searchstring) {
 						$searchdraw["bordercolor"] = $borderColor;
 						$searchdraw["top"] = true;
 						$searchdraw["photolink"] = $searchAlbum->getThumbnailTag($j, $thumbSize);
-						$searchdraw["photoURL"] = makeGalleryUrl($searchAlbum->fields['name'], $id);
+						$searchdraw["photoURL"] = makeAlbumUrl($searchAlbum->fields['name'], $id);
 						$searchdraw["Text2"] = "<span class=desc>$searchCaption</span>";
 						$searchdraw["Text1"] = "<span class=fineprint>From Album:&nbsp&nbsp<a href=" .
-                                			makeGalleryUrl($searchAlbum->fields['name']) . ">" .
+                                			makeAlbumUrl($searchAlbum->fields['name']) . ">" .
                                 			$searchAlbum->fields['title'] . "</a></span>";
 						if ($keywordMatch) { // only display Keywords if there was a keyword match
 							$searchdraw["Text3"] = "<span class=fineprint>KEYWORDS:&nbsp&nbsp $searchKeywords</span><br>";
@@ -182,7 +182,7 @@ else {
 ?>
 <br>Search the Gallery's Album and Photo<br> titles and descriptions:<br>
 	<table width=100% border=0 cellspacing=0>
-	<tr><?= makeSearchFormIntro(); ?>
+	<tr><?= makeGetFormIntro("search.php"); ?>
 	<td valign="middle" align="left">
 	<input type="text" name="searchstring" value="<?= $searchstring ?>" size="25">
 	<input type="submit" value="Go!">
@@ -193,7 +193,7 @@ else {
 <?
 }
 echo "<br>";
-$breadtext[0] = "Gallery: <a href=". makeGalleryUrl() . ">".$gallery->app->galleryTitle."</a>";
+$breadtext[0] = "Gallery: <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
 $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;
