@@ -96,7 +96,7 @@ if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
 	    include($GALLERY_BASEDIR . "classes/postnuke/UserDB.php");
 	    include($GALLERY_BASEDIR . "classes/postnuke/User.php");
 
-	    $gallery->database{"db"} = $dbconn;
+	    $gallery->database{"db"} = $GLOBALS['dbconn'];
 	    $gallery->database{"prefix"} = $GLOBALS['pnconfig']['prefix'] . "_";
 
 	    /* Load our user database (and user object) */
