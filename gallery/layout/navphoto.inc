@@ -1,3 +1,4 @@
+<!-- $Id$ -->
 <?php
 // Calculate the beginning and ending of the navigator range
 $begin = 0;

@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
  */
 ?>
 <?php
@@ -317,7 +319,9 @@ function dismissAndReload() {
 }
 
 function reload() {
-	echo "<BODY onLoad='opener.location.reload()'>";
+	echo '<script language="javascript1.2">';
+	echo 'opener.location.reload()';
+	echo '</script>';
 }
 
 function dismissAndLoad($url) {
@@ -436,6 +440,9 @@ function rotate_image($src, $dest, $target) {
 		    $im_cmd = "-rotate";             
 		} else if (!strcmp($target, "-90")) {
 		    $target = "90";
+		    $im_cmd = "-rotate";
+		} else if (!strcmp($target, "180")) {
+		    $target = "180";
 		    $im_cmd = "-rotate";
 		} else if (!strcmp($target, "fv")) {
 		    $target = "";

@@ -1,3 +1,4 @@
+<!-- $Id$ -->
 <?php if(!$embeddedAlbum == 1)
 {
 ?>

@@ -1,3 +1,4 @@
+<!-- $Id$ -->
 <center>
 <font size=+2> Gallery Setup: Step 4 </font>
 <br>

@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
  */
 ?>
 <?php
@@ -42,6 +44,8 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 <head>
   <title>Rotate/Flip Photo</title>
   <?php echo getStyleSheetLink() ?>
+  <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+  <META HTTP-EQUIV="expires" CONTENT="0"> 
 </head>
 <body>
 
@@ -53,19 +57,19 @@ if ($gallery->session->albumName && isset($index)) {
 	 Rotating/Flipping photo.
 	 <br>
 	 (this may take a while)
-	</center>
 <?php
 		my_flush();
                 set_time_limit($gallery->app->timeLimit);
 		$gallery->album->rotatePhoto($index, $rotate);
 		$gallery->album->save();
-		dismissAndReload();
-		return;
+		reload();
+		print "<p>Manipulate again?";
 	} else {
 ?>
 
 <center>
 How do you want to manipulate this photo?
+<?php } ?>
 <br /><br />
 <?php $args = array("albumName" => $gallery->album->fields["name"], "index" => $index); ?>
 Rotate: [ 
@@ -84,14 +88,13 @@ Rotate: [
 <?php $args["rotate"] = "fv"; ?>
 <a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>Vertical</a>
  ]<br /><br />
-<a href="javascript:void(parent.close())">Cancel</a>
+<a href="javascript:void(parent.close())">Close</a>
 <br />
 
 <p>
 <?php echo $gallery->album->getThumbnailTag($index) ?>
 
 <?php
-	}
 } else {
 	gallery_error("no album / index specified");
 }

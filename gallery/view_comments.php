@@ -19,6 +19,8 @@
  *
  * This page Created by Joseph D. Scheve ( chevy@tnatech.com ) for the
  * very pimp application that is Gallery.
+ *
+ * $Id$
  */
 ?>
 <?php

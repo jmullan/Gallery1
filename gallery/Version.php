@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
  */
 ?>
 <?php
@@ -38,7 +40,7 @@ if (!$gallery) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = "1.3.5-cvs-item_owner_branch-b1";
+$gallery->version = "1.3.5-cvs-item_owner_branch-b2";
 $gallery->config_version = 36;
 $gallery->album_version = 11;
 $gallery->remote_protocol_version = 1;

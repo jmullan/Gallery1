@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
  */
 ?>
 <?php
@@ -478,8 +480,7 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 echo("</tr><tr>");
 echo("<td $bordercolor width=$borderwidth>");
 echo("<img src=$top/images/pixel_trans.gif width=$borderwidth height=1>");
-echo("</td><td>");
-echo "<center>";
+echo("</td><td align='center'>");
 
 $photoTag = $gallery->album->getPhotoTag($index, $full);
 if (!$gallery->album->isMovie($id)) {
@@ -539,7 +540,7 @@ $field="Upload Date";
 $key=array_search($field, $extra_fields);
 if (is_int($key))
 {
-	print "<tr><td valign=top><b>$field:<b></td><td>".
+	print "<tr><td valign=top><b>Upload Date:<b></td><td>".
 		date("m-d-Y H:i:s" , $gallery->album->getUploadDate($index)).
 		"</td></tr>";
 	unSet($extra_fields[$key]);
@@ -550,7 +551,7 @@ $key=array_search($field, $extra_fields);
 if (is_int($key))
 {
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-	print "<tr><td valign=top><b>$field:<b></td><td>".
+	print "<tr><td valign=top><b>Capture Date:<b></td><td>".
 	       $itemCaptureDate[mon] . "-" . $itemCaptureDate[mday] . "-" . 
 	       $itemCaptureDate[year] . " ".  $itemCaptureDate[hours] . ":" . 
 	       $itemCaptureDate[minutes] . ":" . $itemCaptureDate[seconds].
@@ -649,7 +650,7 @@ include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 </td>
 </tr>
 </table>
-</center>
+
 <?php
 includeHtmlWrap("photo.footer");
 ?>

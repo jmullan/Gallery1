@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
  */
 ?>
 <?php
@@ -164,12 +166,12 @@ class AlbumDB {
 		return $list[$index-1];
 	}
 
-	function getAlbumbyName($name) {
+	function getAlbumbyName($name, $load=TRUE) {
 		global $gallery;
 		/* Look for an exact match */
 		foreach ($this->albumList as $album) {
 			if ($album->fields["name"] == $name) {
-				if (!$album->transient->photosloaded) {
+				if (!$album->transient->photosloaded && $load) {
 					$album->loadPhotos($gallery->app->albumDir . "/$name");
 				}
 				return $album;
@@ -179,7 +181,7 @@ class AlbumDB {
 		/* Look for a match that is case insensitive */
 		foreach ($this->albumList as $album) {
 			if (!strcasecmp($album->fields["name"], $name)) {
-				if (!$album->transient->photosloaded) {
+				if (!$album->transient->photosloaded && $load) {
 					$album->loadPhotos($gallery->app->albumDir . "/$name");
 				}
 				return $album;

@@ -1,3 +1,4 @@
+<!-- $Id$ -->
 <?php
 // Calculate the beginning and ending of the navigator range
 $begin = max($navigator["page"] - $navigator["spread"], 1);
@@ -141,4 +142,3 @@ if ($navigator["page"] == $navigator["maxPages"]) {
     <td colspan="11" bgcolor="<?php echo $borderIn?>"><?php echo $pixelImage?></td>
   </tr>
 </table>
-    

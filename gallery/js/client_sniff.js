@@ -10,6 +10,8 @@
 // Revised 26 Mar 01 to correct Opera detection
 // Revised 02 Oct 01 to add IE6 detection
 
+// $Id$
+
 // Everything you always wanted to know about your JavaScript client
 // but were afraid to ask. Creates "is_" variables indicating:
 // (1) browser vendor:

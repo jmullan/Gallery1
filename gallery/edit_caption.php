@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
  */
 ?>
 <?php
@@ -90,13 +92,14 @@ foreach ($gallery->album->getExtraFields() as $field)
 		continue;
 	}
         $value=$gallery->album->getExtraField($index, $field);
-	print "<tr><td valign=top><b>$field:<b></td><td>";
 	if ($field == "Title")
 	{
+		print "<tr><td valign=top><b>Title:<b></td><td>";
 		print "<input type=text name=\"extra_fields[$field]\" value=\"$value\" size=\"40\">";
 	}
 	else
 	{
+		print "<tr><td valign=top><b>$field:<b></td><td>";
 		print "<textarea name=\"extra_fields[$field]\" rows=4 cols=40>";
 		print "$value</textarea>";
 	}

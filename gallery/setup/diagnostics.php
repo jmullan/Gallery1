@@ -1,3 +1,4 @@
+  <!-- $Id$ -->
   <html>
     <head>
       <title> Gallery Diagnostics Page </title>

@@ -1,3 +1,4 @@
+<!-- $Id$ -->
 <?php
 
 $common_messages["getting-netpbm"] =
