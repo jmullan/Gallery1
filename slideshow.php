@@ -131,7 +131,15 @@ $numDisplayed = 0;
 // Find the correct starting point, accounting for hidden photos
 $index = getNextPhoto(0);
 $photo_count = 0;
-while ($numDisplayed < $numPhotos) { 
+while ($numDisplayed < $numPhotos) {
+    if ($index > $numPhotos) {
+	/*
+	 * We went past the end -- this can happen if the last element is an
+	 * album that we can't read.
+	 */
+	break;
+    }
+    
     $photo = $gallery->album->getPhoto($index);
     $numDisplayed++;
 

@@ -148,6 +148,13 @@ $numDisplayed = 0;
 $index = getNextPhoto(0);
 $photo_count = 0;
 while ($numDisplayed < $numPhotos) { 
+    if ($index > $numPhotos) {
+	/*
+	 * We went past the end -- this can happen if the last element is an
+	 * album that we can't read.
+	 */
+	break;
+    }
     $photo = $gallery->album->getPhoto($index);
     $numDisplayed++;
 
