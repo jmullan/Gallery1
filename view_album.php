@@ -425,7 +425,7 @@ if (!empty($adminOptionHTML)) {
 	    . "\tkey = document.forms.admin_options_form.admin_select.value;\n"
 	    . "\tswitch (adminOptions[key].action) {\n"
 	    . "\tcase 'popup':\n"
-	    . "\t\tnw = window.open(adminOptions[key].value, 'Edit', 'height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');\n"
+	    . "\t\tnw = window.open(adminOptions[key].value, 'Edit', 'height=500,width=600,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');\n"
 	    . "\t\tnw.opener=self;\n"
 	    . "\t\tbreak;\n"
 	    . "\tcase 'url':\n"

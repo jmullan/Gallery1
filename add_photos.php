@@ -112,7 +112,7 @@ if (isset($mode)) {
 	}
 -->
 </style>
-<script language="Javascript">
+<script type="text/javascript" language="Javascript">
 <!--
 	function reloadPage() {
 		document.count_form.submit();
@@ -121,7 +121,7 @@ if (isset($mode)) {
 // -->
 </script>
 </head>
-<body dir="<?php echo $gallery->direction ?>" onload="window.focus()">
+<body dir="<?php echo $gallery->direction ?>" onload="window.focus()" class="popup">
 
 <?php
 
@@ -155,15 +155,14 @@ if (!isset($mode) || !isset($modes[$mode])) {
 <?php
 foreach ($modes as $m => $mt) {
 	$url=makeGalleryUrl('add_photos.php',array('mode' => $m));
-	echo "<td>";
 	if ($m == $mode) {
-		echo "<li><a href=\"$url\" class=\"active\">$mt</a></li>";
+		echo "\n\t<li><a href=\"$url\" class=\"active\">$mt</a></li>";
 	} else {
-		echo "<li><a href=\"$url\">$mt</a></li>";
+		echo "\n\t<li><a href=\"$url\">$mt</a></li>";
 	}
-	echo "</td>";
 }
 ?>
+
 </ul>
 
 <?php

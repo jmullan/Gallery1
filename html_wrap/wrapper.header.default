@@ -93,7 +93,16 @@ if(isset($GALLERY_EMBEDDED_INSIDE)) {
 		// Sort out the page title
 		$page_title .= $gallery->app->galleryTitle;
 
-		include ($phpbb_root_path . "includes/page_header.php");
+		// Verify that the $phpbb_root_path isn't overwritten with a remote exploit
+		if (!realpath($phpbb_root_path)) {
+                	print _("Security violation") ."\n";
+			exit;
+		} else {
+			if (! defined(PHPBB_ROOT_PATH)) {
+				define("PHPBB_ROOT_PATH", $phpbb_root_path);
+			}
+			include (PHPBB_ROOT_PATH . "includes/page_header.php");
+		}
 	break;
 
 	case 'GeekLog':

@@ -22,34 +22,31 @@
 ?>
 
 <p>
+<?php
+	echo _("Upload any images found at this location.");
+	echo _("The location can either be a URL or a local directory on the server.");
+?>
+<br>
+<?php 
+	echo '<p><b>'. _("Tip:") . '</b> ';
+	echo _("FTP images to a directory on your server then provide that path here!");
+?>
+</p>
 
-<?php echo makeFormIntro("save_photos.php",
+<?php 
+	echo makeFormIntro("save_photos.php",
 			array("name" => "uploadurl_form",
-				"method" => "POST")); ?>
-<?php echo _("Or, upload any images found at this location.") ?>
-<?php echo _("The location can either be a URL or a directory on the server.") ?>
+				"method" => "POST"));
+?>
+<input type="text" name="urls[]" size="40">
+<p>
+<input type="radio" name="setCaption" value="1" checked><?php echo _("Set photo captions with original filenames.") ?>
 <br>
+<input type="radio" name="setCaption" value="2"><?php echo _("Set photo captions with file creation times.") ?>
+</p>
 
-&nbsp;&nbsp;<?php echo _("Tip: FTP images to a directory on your server then provide that path here!") ?>
-<br>
-
-<input type="text" name="urls[]" size=40>
-<br>
-<input type="radio" name="setCaption" <?php
-  if (!isset($setCaption) || ($setCaption < 2) ) {
-    print "checked ";
-  }
-?> value="1"><?php echo _("Set photo captions with original filenames.") ?> <br/>
-<input type="radio" name="setCaption" <?php
-  if (isset($setCaption) && ($setCaption > 1) ) {
-    print "checked ";
-  }
-?> value="2"><?php echo _("Set photo captions with file creation times.") ?>
-<br>
-<center>
+<p align="center">
 <input type="button" value="<?php echo _("Submit URL or directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()'>
 <input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</center>
-</form>
-
 </p>
+</form>

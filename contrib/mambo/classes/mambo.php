@@ -20,16 +20,26 @@ if (@$mosConfig_error_reporting === 0) {
 	error_reporting( $mosConfig_error_reporting );
 }
 
-$local_backup_path = $mosConfig_absolute_path.'/administrator/backups';
-$media_path = $mosConfig_absolute_path.'/media/';
-$image_path = $mosConfig_absolute_path.'/images/stories';
+// Verify that the $mosConfig_absolute_path isn't overwritten with a remote exploit
+if (!realpath($mosConfig_absolute_path)) {
+	print _("Security violation") ."\n";
+	exit;
+} else {
+	if (! defined('MOSCONFIG_ABSOLUTE_PATH')) {
+		define("MOSCONFIG_ABSOLUTE_PATH", $mosConfig_absolute_path);
+	}
+}
+
+$local_backup_path = MOSCONFIG_ABSOLUTE_PATH. '/administrator/backups';
+$media_path = MOSCONFIG_ABSOLUTE_PATH. '/media/';
+$image_path = MOSCONFIG_ABSOLUTE_PATH. '/images/stories';
 $image_size = 100;
 
-include_once( "$mosConfig_absolute_path/version.php" );
+include_once(MOSCONFIG_ABSOLUTE_PATH . '/version.php');
 
-require_once( "$mosConfig_absolute_path/classes/database.php" );
-require_once( "$mosConfig_absolute_path/classes/gacl.class.php" );
-require_once( "$mosConfig_absolute_path/classes/gacl_api.class.php" );
+require_once(MOSCONFIG_ABSOLUTE_PATH . '/classes/database.php');
+require_once(MOSCONFIG_ABSOLUTE_PATH . '/classes/gacl.class.php');
+require_once(MOSCONFIG_ABSOLUTE_PATH . '/classes/gacl_api.class.php');
 
 /**
 * MOS Mainframe class
@@ -275,7 +285,7 @@ class mosMainFrame {
 		$this->_config->db = $mosConfig_db;
 		$this->_config->dbprefix = $mosConfig_dbprefix;
 		$this->_config->lang = $mosConfig_lang;
-		$this->_config->absolute_path = $mosConfig_absolute_path;
+		$this->_config->absolute_path = MOSCONFIG_ABSOLUTE_PATH;
 		$this->_config->live_site = $mosConfig_live_site;
 		$this->_config->sitename = $mosConfig_sitename;
 		$this->_config->shownoauth = $mosConfig_shownoauth;

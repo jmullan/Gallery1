@@ -66,6 +66,9 @@ if (getOS() == OS_WINDOWS) {
 } else {
 	require(GALLERY_BASE . '/platform/fs_unix.php');
 }
+      
+	include (GALLERY_BASE . '/config.php');
+	require (GALLERY_BASE . '/Version.php');
 
 /* Set Language etc. */
 	initLanguage();
@@ -74,6 +77,8 @@ if (getOS() == OS_WINDOWS && fs_file_exists("SECURE")) {
 		echo _("Gallery is in secure mode and cannot be configured. If you want to configure it, you must run the <b>configure.bat</b> script in the gallery directory then reload this page.");
 		exit;
 }
+
+
 
 /* We do this to get the config stylesheet */
 	$GALLERY_OK=false;

@@ -24,15 +24,13 @@
 
 	/* 
 	** Its important to have this as first position.
-	** Otherwise constants are defined.
+	** Otherwise constants are not defined.
 	*/
 	require (dirname(__FILE__) . '/init.php');
 	
-	include (GALLERY_BASE . '/config.php');
-	require (GALLERY_BASE . '/Version.php');
-
 	require (dirname(__FILE__) . '/functions.inc');
 	require (dirname(__FILE__) . '/config_data.inc');
+
 ?>
 <?php echo doctype(); ?>
 <html>
