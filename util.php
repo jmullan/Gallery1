@@ -1096,7 +1096,8 @@ function netPbm($cmd, $args="") {
 	global $gallery;
 
 	$cmd = fs_import_filename($gallery->app->pnmDir . "/$cmd");
-	if (!isDebugging()) {
+	if (!isDebugging() && $cmd != "ppmquant") {
+		// ppmquant doesn't like --quiet for some reason
 		$cmd  .= " --quiet";
 	}
 	$cmd .= " $args";

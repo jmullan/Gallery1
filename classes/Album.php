@@ -1098,42 +1098,63 @@ class Album {
 	       	}
 
 		/* auto-rotate the photo if needed */
-	       	if (!empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes' 
-			    && !empty($gallery->app->use_exif) && $gallery->app->use_exif) {
+	       	if (!empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  &&
+			    (!empty($gallery->app->use_exif) && $gallery->app->use_exif) || 
+			    (!empty($gallery->app->exiftags) && $gallery->app->exiftags)) {
+
 		       	$index = $this->numPhotos(1);
 		       	$exifData = $this->getExif($index);
-		       	if (isset($exifData['Orientation']) && $orientation = trim($exifData['Orientation'])) {
-			       	$photo = $this->getPhoto($index);
-			       	switch ($orientation) {
-				       	case "rotate 90":
-					       	$rotate = -90;
-				       	break;
-				       	case "rotate 180":
-					       	$rotate = 180;
+
+			if (isset($exifData['Orientation'])) {
+				$orientation = trim($exifData['Orientation']);
+			} else if (isset($exifData['Image Orientation'])) {
+				$orientation = trim($exifData['Image Orientation']);
+			} else {
+				$orientation = '';
+			}
+
+			$photo = $this->getPhoto($index);
+			switch ($orientation) {
+				case "Right-Hand, Top":    // exiftags
+				case "rotate 90":          // jhead
+					$rotate = -90;
 					break;
-				       	case "rotate 270":
-					       	$rotate = 90;
-				       	break;
-				       	case "flip horizontal":
-					       	$rotate = 'fh';
-				       	break;
-				       	case "flip vertical":
-					       	$rotate = 'fv';
-				       	break;
-				       	case 'transpose':
-				       	$rotate = 'tr';
-				       	break;
-				       	case 'transverse':
-				       	$rotate = 'tv';
-				       	break;
-				       	default:
-				       	$rotate = 0;
-			       	}
-			       	if ($rotate) {
-				       	$this->rotatePhoto($index, $rotate, true);
-				       	processingMsg("- ". _("Photo auto-rotated/transformed"));
-			       	}
-		       	}
+
+				case "Bottom, Right-Hand": // exiftags
+				case "rotate 180":	   // jhead
+					$rotate = 180;
+					break;
+
+				case "Left-Hand, Bottom":  // exiftags
+				case "rotate 270":	   // jhead
+					$rotate = 90;
+					break;
+
+				case "flip horizontal":
+					$rotate = 'fh';
+					break;
+
+				case "flip vertical":
+					$rotate = 'fv';
+					break;
+
+				case 'transpose':
+					$rotate = 'tr';
+					break;
+
+				case 'transverse':
+					$rotate = 'tv';
+					break;
+
+				default:
+					$rotate = 0;
+					break;
+			}
+
+			if ($rotate) {
+				$this->rotatePhoto($index, $rotate, true);
+				processingMsg("- ". _("Photo auto-rotated/transformed"));
+			}
 	       	}
 	       	/*move to the beginning if needed */
 	       	if ($this->getAddToBeginning() ) {
