@@ -39,8 +39,8 @@ class Image {
 			list($w, $h) = getDimensions("$dir/$this->name.$this->type");
 			$this->width = $w;
 			$this->height = $h;
-			if (file_exists("$dir/$this->resizedName.jpg")) {
-				unlink("$dir/$this->resizedName.jpg");
+			if (file_exists("$dir/$this->resizedName.$this->type")) {
+				unlink("$dir/$this->resizedName.$this->type");
 			}
 			$this->resizedName = "";
 		/* doing a resize */
@@ -49,13 +49,13 @@ class Image {
 			$type = $this->type;
 
 			$ret = resize_image("$dir/$name.$type",
-					     "$dir/$name.sized.jpg",
+					     "$dir/$name.sized.$this->type",
 					     $target);
 			
 			#-- resized image is always a jpeg ---
 			if ($ret) {
 				$this->resizedName = "$name.sized";
-				list($w, $h) = getDimensions("$dir/$name.sized.jpg");
+				list($w, $h) = getDimensions("$dir/$name.sized.$this->type");
 				$this->height = $w;
 				$this->width = $h;
 			}
@@ -63,11 +63,11 @@ class Image {
 	}
 
 	function delete($dir) {
-		if (file_exists("$dir/$this->resizedName.jpg")) {
-			unlink("$dir/$this->resizedName.jpg");
+		if (file_exists("$dir/$this->resizedName.$this->type")) {
+			unlink("$dir/$this->resizedName.$this->type");
 		}
-		if (file_exists("$dir/$this->name.highlight.jpg")) {
-			unlink("$dir/$this->name.highlight.jpg");
+		if (file_exists("$dir/$this->name.highlight.$this->type")) {
+			unlink("$dir/$this->name.highlight.$this->type");
 		}
 		unlink("$dir/$this->name.$this->type");
 	}
@@ -83,7 +83,7 @@ class Image {
 			if ($full) {
 				return "<img src=$dir/$this->name.$this->type $attrs>";
 			} else {
-				return "<img src=$dir/$this->resizedName.jpg $attrs>";
+				return "<img src=$dir/$this->resizedName.$this->type $attrs>";
 			}
 		} else {
 			return "<img src=$dir/$this->name.$this->type width=$this->width height=$this->height $attrs>";
@@ -91,7 +91,7 @@ class Image {
 	}
 
 	function getName($dir) {
-		if (file_exists("$dir/$this->resizedName.jpg")) {
+		if (file_exists("$dir/$this->resizedName.$this->type")) {
 			return $this->resizedName;
 		} else {
 			return $this->name;

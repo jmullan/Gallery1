@@ -52,21 +52,21 @@ class AlbumItem {
 		$tag = $this->image->type;
 		if ($this->highlight) {
 			$ret = resize_image("$dir/$name.$tag",
-					     "$dir/$name.highlight.jpg",
+					     "$dir/$name.highlight.$tag",
 					     $app->highlight_size);
 
 			if ($ret) {
-				list($w, $h) = getDimensions("$dir/$name.highlight.jpg");
+				list($w, $h) = getDimensions("$dir/$name.highlight.$tag");
 
 				$high = new Image;
-				$high->setFile($dir, "$name.highlight", "jpg");
+				$high->setFile($dir, "$name.highlight", "$tag");
 				$high->setDimensions($w, $h);
 				$this->highlightImage = $high;
 			}
 		}
 		else {
-			if (file_exists("$dir/$name.highlight.jpg")) {
-				unlink("$dir/$name.highlight.jpg");
+			if (file_exists("$dir/$name.highlight.$tag")) {
+				unlink("$dir/$name.highlight.$tag");
 			}
 		}	
 	}
@@ -101,23 +101,14 @@ class AlbumItem {
 		$name = $this->image->name;
 		$type = $this->image->type;
 
-		/* GD doesn't do rotation!?!? */
-		$cmd = toPnmCmd("$dir/$name.$type", 
-			"| $app->pnmDir/pnmrotate $direction".
-			"| $app->pnmDir/ppmtojpeg > $dir/tmp.jpg");
-
+		$cmd = toPnmCmd("$dir/$name.$type") .
+			"| $app->pnmDir/pnmrotate $direction" .
+			"| " . fromPnmCmd("$dir/tmp.$type");
 		exec_wrapper($cmd);
 		
-		if (file_exists("$dir/tmp.jpg") && filesize("$dir/tmp.jpg") > 0) {
-			copy("$dir/tmp.jpg", "$dir/$name.jpg");
-			unlink("$dir/tmp.jpg");
-		}
-
-		/* The file is now a jpeg.  If it wasn't a jpeg before then
-		 * clean up the old file 
-		 */
-		if (strcmp($type, "jpg")) {
-			$this->delete($dir);
+		if (file_exists("$dir/tmp.$type") && filesize("$dir/tmp.$type") > 0) {
+			copy("$dir/tmp.$type", "$dir/$name.$type");
+			unlink("$dir/tmp.$type");
 		}
 
 		$isResized = $this->isResized();
@@ -140,32 +131,15 @@ class AlbumItem {
 		/*
 	 	 * Sanity: make sure we can handle the file first.
 		 */
-		if (!valid_image("$dir/$name.$tag") &&
-		    !strcmp($tag, "avi") &&
-		    !strcmp($tag, "mpg")) {
+		if (!strcmp($tag, "avi") &&
+		    !strcmp($tag, "mpg") && 
+		    !valid_image("$dir/$name.$tag")) {
 			return "Invalid image: $name.$tag";
 		}
 
-		/*
-		 * If the image is a GIF, convert it to a JPEG.  This is because
-		 * GD no longer has support for GIFs and we want to use GD to make
-		 * the thumbnail.
-		 */
-		if (!strcmp($tag, "gif")) {
-			exec_wrapper("$app->pnmDir/giftopnm $dir/$name.gif | ".
-				     "$app->pnmDir/ppmtojpeg > $dir/$name.jpg");
-			$tag = "jpg";
-			unlink("$dir/$name.gif");
-		} 
-
-		/* Set our image.  It might not load if this is a movie. */
-		list($w, $h) = getDimensions("$dir/$name.$tag");
+		/* Set our image. */
 		$this->image = new Image;
 		$this->image->setFile($dir, $name, $tag);
-
-		if ($w != 0 && $h != 0) {
-			$this->image->setDimensions($w, $h);
-		}
 
 		if (!strcmp($tag, "avi") || !strcmp($tag, "mpg")) {
 			/* Use a preset thumbnail */
@@ -176,16 +150,21 @@ class AlbumItem {
 			list($w, $h) = getDimensions("$dir/$name.thumb.jpg");
 			$this->thumbnail->setDimensions($w, $h);
 		} else {
+			list($w, $h) = getDimensions("$dir/$name.$tag");
+			if ($w != 0 && $h != 0) {
+				$this->image->setDimensions($w, $h);
+			}
+
 			/* Make thumbnail */
 			$ret = resize_image("$dir/$name.$tag",
-					     "$dir/$name.thumb.jpg",
+					     "$dir/$name.thumb.$tag",
 					     $thumb_size);
 
 			if ($ret) { 
 				$this->thumbnail = new Image;
-				$this->thumbnail->setFile($dir, "$name.thumb", "jpg");
+				$this->thumbnail->setFile($dir, "$name.thumb", $tag);
 	
-				list($w, $h) = getDimensions("$dir/$name.thumb.jpg");
+				list($w, $h) = getDimensions("$dir/$name.thumb.$tag");
 				$this->thumbnail->setDimensions($w, $h);
 			} else {
 				return "Unable to make thumbnail ($ret)";
