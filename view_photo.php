@@ -263,6 +263,23 @@ if (!$album->isMovie($id)) {
 		}
 	}
 
+    
+	if (!strcmp($album->fields["use_exif"],"yes") && (!strcmp($photo->image->type,"jpg")) &&
+	    ($app->use_exif)) {
+		$adminCommands .= "<a href=\"#\" onClick=\"".
+						popup($app->photoAlbumURL."/view_photo_properties.php?index=$index").
+						"\">[Photo Properties]</a>&nbsp;&nbsp;";
+	}
+
+
+	if (strcmp($album->fields["print_photos"],"none")) {
+		if (strlen($adminCommands) > 0) {
+			$adminCommands .="<br>";
+		}
+		$adminCommands .= "<a href=# onClick=\"document.sflyc4p.submit();return false\">[Order a Print of this Photo on Shutterfly]</a>";
+	}
+
+
 	if ($adminCommands) {
 		$adminCommands = "<span class=\"admin\">$adminCommands</span>";
 		$adminbox["commands"] = $adminCommands;
@@ -370,15 +387,13 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 <table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
 <!-- caption -->
 <tr>
+<td colspan=3 align=center>
+<span class="caption"><?= editCaption($album, $index, $edit) ?></span>
+<br><br>
+</td>
 <?
 if (!strcmp($album->fields["print_photos"],"none") ||
     $album->isMovie($id)) {
-?>
-<td colspan=3 align=center>
-<span class="caption"><?= editCaption($album, $index, $edit) ?></span>
-<br>
-</td>
-<?
 } else {
 $hostname = $GLOBALS["SERVER_NAME"];
 $protocal = "http";
@@ -394,12 +409,6 @@ if ($photo->image->resizedName) {
 }
 list($imageWidth, $imageHeight) = $photo->image->getRawDimensions($album->getAlbumDir());
 ?>
-<td colspan=2 align=left>
-<span class="caption"><?= editCaption($album, $index, $edit) ?></span>
-<br><br>
-</td>
-<td align=right>
-<span class="caption"><a href=# onClick="document.sflyc4p.submit();return false">Order a Print of this Photo on Shutterfly</a></span>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value=1>
   <input type=hidden name=protocol value="SFP,100">
@@ -413,14 +422,13 @@ list($imageWidth, $imageHeight) = $photo->image->getRawDimensions($album->getAlb
   <input type=hidden name=imthumb-1 value="<?= $thumbImage ?>">
   <input type=hidden name=imbkprntb-1 value="Hi">
 </form>
-</td>
 <?
 }
 ?>
 </tr>
 
 <?
-echo("<tr><td colspan=3>");
+
 includeHtmlWrap("inline_photo.footer");
 echo("</td></tr>");
 ?>
