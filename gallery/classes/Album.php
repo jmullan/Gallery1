@@ -1350,7 +1350,7 @@ class Album {
 			if ($photo->isAlbum()) {
 				$album = new Album();
 				$album->load($photo->getAlbumName(), false);
-				if (($user->canReadAlbum($album) && !$album->isHiddenRecurse()) || $user->canWriteToAlbum($album)) {
+				if (($user->canReadAlbum($album) && !$photo->isHidden()) || $user->canWriteToAlbum($album)) {
 					$numAlbums++;
 					if ($returnVisibleItems) {
 						$visibleItems[++$numVisibleItems] = $i;
