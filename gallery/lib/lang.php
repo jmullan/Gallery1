@@ -440,7 +440,16 @@ function unhtmlentities ($string) {
 			$charset=$nls['default']['charset'];
 		}
 
-		if ($charset != 'UTF-8') {
+		$diashowProblemCharsets=array(
+			'UTF-8', 
+			'ISO-8859-9', 
+			'ISO-8859-2',
+			'EUC-KR',
+			'windows-1257',
+			'KOI8-U',
+			'cp1250'
+		);
+		if (! in_array($charset, $diashowProblemCharsets)) {
 			$return = html_entity_decode($string,ENT_COMPAT ,$charset);
 		}
 		else {
