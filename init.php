@@ -99,17 +99,18 @@ if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
 /*
  * Detect if we're running under SSL and adjust the URL accordingly.
  */
-if (isset($HTTP_SERVER_VARS["HTTPS"]) &&
-    stristr($HTTP_SERVER_VARS["HTTPS"], "on")) {
-	$gallery->app->photoAlbumURL = 
-		eregi_replace("^http:", "https:", $gallery->app->photoAlbumURL);
-	$gallery->app->albumDirURL = 
-		eregi_replace("^http:", "https:", $gallery->app->albumDirURL);
-} else {
-	$gallery->app->photoAlbumURL = 
-		eregi_replace("^https:", "http:", $gallery->app->photoAlbumURL);
-	$gallery->app->albumDirURL = 
-		eregi_replace("^https:", "http:", $gallery->app->albumDirURL);
+if(isset($gallery->app)) {
+	if (isset($HTTP_SERVER_VARS["HTTPS"] ) && stristr($HTTP_SERVER_VARS["HTTPS"], "on")) {
+		$gallery->app->photoAlbumURL = 
+			eregi_replace("^http:", "https:", $gallery->app->photoAlbumURL);
+		$gallery->app->albumDirURL = 
+			eregi_replace("^http:", "https:", $gallery->app->albumDirURL);
+	} else {
+		$gallery->app->photoAlbumURL = 
+			eregi_replace("^https:", "http:", $gallery->app->photoAlbumURL);
+		$gallery->app->albumDirURL = 
+			eregi_replace("^https:", "http:", $gallery->app->albumDirURL);
+	}
 }
 
 /* 

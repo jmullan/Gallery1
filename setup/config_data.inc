@@ -280,7 +280,8 @@ $constants = array_merge(
 	),
 	"tmpDir" => array(
 		"prompt" => _("Temporary directory"),
-		"desc" => sprintf(_("The filesystem path to a temporary directory.  Eg. %s or %s.  Note that if you have open_basedir configured on your system, then this temporary directory must be inside the open_basedir path!  In that case you may need to create the tmp directory yourself and make sure that it's writable by the webserver process."),
+		"desc" => '(<font color=red>' . _('REQUIRED') . '</font>) '.
+			  sprintf(_("The filesystem path to a temporary directory.  Eg. %s or %s.  Note that if you have open_basedir configured on your system, then this temporary directory must be inside the open_basedir path!  In that case you may need to create the tmp directory yourself and make sure that it's writable by the webserver process."),
 		'<i>/tmp</i>','<i>c:\\windows\\temp</i>'),
 		"value" => getenv("TMP"),
 		"filename" => 1,
@@ -336,7 +337,7 @@ $constants = array_merge(
 		"optional" => 1, 
 		"desc" => sprintf(_("This is what you will see as %s, and what users will see if no other preference is set."), 'admin'),
 		"choices" => gallery_languages(),
-		"value" => "en_US"
+		"value" => $gallery->language
 	),
 	"ML_mode" => array(
 		"prompt" => _("Multi language mode"), 

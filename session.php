@@ -70,7 +70,12 @@ if (!$gallery->register_globals) {
  * to see if the session container variable is already set.  If not, then
  * create the appropriate container for it.
  */
-$sessionVar = $gallery->app->sessionVar . "_" . md5($gallery->app->userDir);
+
+if(! isset($gallery->app->sessionVar)) {
+	$sessionVar = "gallery_session_".md5(getcwd()); 
+} else {
+	$sessionVar = $gallery->app->sessionVar . "_" . md5($gallery->app->userDir);
+}
 session_register($sessionVar);
 
 if (isset($$sessionVar)) {
@@ -91,7 +96,7 @@ if (isset($$sessionVar)) {
 	session_register($sessionVar);
 
 	/* Create a new session container */
-	if ($useStdClass) {
+	if (isset($useStdClass)) {
 		$$sessionVar = new stdClass();
 	} else {
 		$$sessionVar = new GallerySession();

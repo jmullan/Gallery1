@@ -699,7 +699,7 @@ function _getStyleSheetLink($filename) {
         $sheetname = "css/$filename.css";
 	$sheetpath = "${GALLERY_BASEDIR}$sheetname";
 
-	if ($gallery->app && $gallery->app->photoAlbumURL) {
+	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
 		$base = $gallery->app->photoAlbumURL;
 	} else {
 		$base = ".";
@@ -1729,6 +1729,7 @@ function findInPath($program)
 
 function initLanguage() {
 	global $gallery, $GALLERY_BASEDIR, $newlang, $translation, $HTTP_SERVER_VARS;
+
 // Detect Browser Language
 	$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
         $lang_pieces=explode ("-",$lang[0]);
@@ -1739,50 +1740,57 @@ function initLanguage() {
 		$gallery->browser_language=strtolower($lang_pieces[0])."_".strtoupper($lang_pieces[1]) ;
         }
 
-// Check if we already have a language
-// Use this only if user dont want Browserlanguage only
-
+// If we are we have no Mode, use Browserlanguage
 	if (!isset($gallery->app->ML_mode)) {
 		$gallery->app->ML_mode = 2;
 	}
 
-	if ($gallery->app->ML_mode > 1 && isset($gallery->session)) {
-		$gallery->language=$gallery->session->language;
-	}
+$nls = getNLS();
 
+// Check if we are in Nuke or in which Mode and set language
 
-// Check in which Mode or Nuke and set language
-//
-	$nls = getNLS();
-	if ($gallery->app->ML_mode == 1) {
+if (isset($GALLERY_EMBEDDED_INSIDE) && isset($HTTP_COOKIE_VARS['lang'])) {
+	// We're in NUKE
+	$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
+	$gallery->language=$langalias[$gallery->nuke_language];
+} else {
+	//We're not in Nuke
+	switch ($gallery->app->ML_mode) {
+	    case 1:
+			//Static Language
 		$gallery->language = $gallery->app->default_language;
-	} elseif ($gallery->app->ML_mode == 2 and !isset( $gallery->language)) {
-		// Use Browser Language
+        	break;
+	    case 2:
+			// Use Browser Language
 		$gallery->language=$gallery->browser_language;
-	} elseif ($gallery->app->ML_mode == 3 and ($newlang)) {
-		// Check New language
-		// Use Alias if
-		if ($nls['alias'][$newlang]) $newlang=$nls['alias'][$newlang] ;
-		// use Language if its okay, otherwise use default
-		// Set Language to the User selected language
-		if ($nls['languages'][$newlang] ||$nuke_langname[$newlang]) {
-			$gallery->language=$newlang;
-		} else {
-			$gallery->language = $gallery->app->default_language;
-		}	
-	} elseif ($GALLERY_EMBEDDED_INSIDE) {
-		// We're in NUKE ... so there should be an alias
-		$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
-		$gallery->language=$langalias[$gallery->nuke_language];
+        	break;
+	    case 3:
+		if ($newlang) {
+			// Check New language
+			// Use Alias if
+			if ($nls['alias'][$newlang]) $newlang=$nls['alias'][$newlang] ;
+			// use Language if its okay, otherwise use default
+			// Set Language to the User selected language
+			if ($nls['languages'][$newlang] ||$nuke_langname[$newlang]) {
+				$gallery->language=$newlang;
+			} else {
+				$gallery->language = $gallery->app->default_language;
+			}	
+		}
+		break;
 	}
+}
 
 /* Fall back to Default Language if :
 	- we cant detect Language
 	- Nuke sends an unsupported
-	- We are in Config Mode
-*/			
-	if (! $gallery->language) {
-		$gallery->language = $gallery->app->default_language;
+*/
+	if (! isset($gallery->language)) {
+		if (isset($gallery->app->default_language)) {
+			$gallery->language = $gallery->app->default_language;
+		} else {
+			$gallery->language = $gallery->browser_language;
+		}
 	}
 
 // if an alias for a language is given, use it
@@ -1797,9 +1805,8 @@ function initLanguage() {
 
 
 // locale
-
 		//locale okay
-		if ($gallery->app->locale_alias[$gallery->language]) {
+		if (isset($gallery->app->locale_alias[$gallery->language])) {
 			$gallery->locale=$gallery->app->locale_alias[$gallery->language];
 		} else {
 			$gallery->locale=$gallery->language;
@@ -1879,6 +1886,7 @@ if (in_array("gettext", get_loaded_extensions())) {
 	
 
 }
+
 function po_filename() {
 	global $GALLERY_BASEDIR, $gallery;
 	$filename=$GALLERY_BASEDIR ."locale/" . $gallery->language . "/gallery.po";

@@ -5,17 +5,17 @@ esc=`echo -en "\033"`
 tab="${esc}[5G"
 clear
 
-if [ -z $1 ] ; then
+if [ -z $1 ] || [ ! -z $1 ]  && [ -z $2 ] ; then
 	echo -e "\nusage :"
 	echo "sh update_po_files.sh -all for all .po file"
-	echo -e "or sh update_po_files.sh -<language_COUNTRY> for only one. e.g. sh update_po_files.sh -de_DE\n" 
+	echo -e "or sh update_po_files.sh -po <language_COUNTRY> for only one. e.g. sh update_po_files.sh -po de_DE\n" 
 	exit
 fi
 
-if [ $1 != "-all" ] && [ ! -e "$1-gallery.po" ] ; then
-	echo -e "\n$1-gallery.po does not exist or your paramater was wrong"
+if [ $1 != "-all" ] && [ ! -e "$2-gallery.po" ] ; then
+	echo -e "\n$2-gallery.po does not exist or your paramater was wrong"
 	echo -e "\nusage :"
-	echo -e "sh update_po_files.sh -<language_COUNTRY> for only one. e.g. sh update_po_files.sh -de_DE\n" 
+	echo -e "sh update_po_files.sh -po <language_COUNTRY> for only one. e.g. sh update_po_files.sh -po de_DE\n" 
 	exit
 fi
 
@@ -47,7 +47,5 @@ if [ $1 = "-all" ] ; then
 		msgmerge -U $all_po gallery.pot --no-wrap -v || exit
 	done
 else
-#	msgmerge -U $1-gallery.po gallery.pot --no-wrap -v
-	msgmerge -U $1-gallery.po gallery.pot -v
-
+	msgmerge -U $2-gallery.po gallery.pot --no-wrap -v
 fi
