@@ -1132,7 +1132,9 @@ function printChildren($albumName,$depth=0) {
 				}
 				echo "<div style=\"margin: 0px 0px 0px 20px\">";
 				echo "<span class=fineprint>";
-				echo "<a href=\"$myName\">$val2 $val3</a>\n";
+				echo "<a href=\"";
+				echo makeAlbumUrl($myName);
+				echo "\">$val2 $val3</a>\n";
 				printChildren($myName,$depth+1);
 				echo "</span>";
 				echo "</div>";
