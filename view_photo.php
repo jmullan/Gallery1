@@ -144,6 +144,10 @@ if ($album->fields["textcolor"]) {
   <script language="javascript1.2">
   // <!--
 
+<?
+if ($fitToWindow) { 
+?>
+
   function fitToWindow() {
 	var changed = 0;
 	var heightMargin = 30;
@@ -175,9 +179,9 @@ if ($album->fields["textcolor"]) {
 	}
 
 	if (changed) {
-		var img = document.images.photo;
 		if (document.all) {
 			// We're in IE where we can just resize the image.
+			var img = document.images.photo;
 			img.height = imageHeight;
 			img.width = imageWidth;
 		} else {
@@ -190,6 +194,10 @@ if ($album->fields["textcolor"]) {
 		}
 	}
   }
+
+<? 
+} // if ($fitToWindow)
+?>
 
   // -->
   </script>
