@@ -93,6 +93,7 @@ check_proto_version( $response );
 // some debug output
 //$response->setProperty( "debug_session_albumName", $gallery->session->albumName);
 $response->setProperty( "debug_album", $gallery->album->fields["name"]);
+$response->setProperty( "debug_gallery_version", $gallery->version);
 
 if ($gallery->user) {
 	$response->setProperty( "debug_user", $gallery->user->getUsername());
@@ -141,10 +142,10 @@ echo $response->listprops();
 
 
 function gr_login( &$gallery, &$response, &$uname, &$password ) {
-
 	global $GR_STAT, $GR_VER;
 
 	if (!$uname | !$password) {
+		$response->setProperty( "server_version", $GR_VER['MAJ'].".".$GR_VER['MIN'] );
 		$response->setProperty( 'status', $GR_STAT['LOGIN_MISSING'] );
 		$response->setProperty( 'status_text', 'Login parameters not found.' );
 		return 0;
