@@ -1,3 +1,16 @@
+2001-02-10  Bharat Mediratta  <bharat@sinia.com>
+
+	* It appears that certain flavors of PHP4 prepend "Content-Type"
+	  info to upload images.  This totally confuses NetPBM because
+	  this info isn't exactly part of the image file specification.	
+	  This leads to errors like:
+	
+		ppmtojpeg: EOF / read error reading magic number
+		Not a JPEG file: starts with 0x43 0x6f
+
+	  I fixed this by preprocessing upload images and looking for
+	  the Content-Type string and removing it.
+
 2001-02-08  Bharat Mediratta  <bharat@sinia.com>
 
 	* Updated the README file to have better instructions for
