@@ -1015,14 +1015,17 @@ function safe_serialize($obj, $file) {
 
 		/* 
 		 * Make the current copy the backup, and then 
-		 * write the new current copy
+		 * write the new current copy.  There's a race condition here;
+		 * two processes may try to do the initial rename() at the same
+		 * time.  In that case the initial rename will fail, but we'll
+		 * ignore that.  The second rename() will always go through (and
+		 * the second process's changes will probably overwrite the first
+		 * process's changes).
 		 */
 		if (fs_file_exists($file)) {
-			$success = fs_rename($file, "$file.bak") &&
-				   fs_rename($tmpfile, $file);
-		} else {
-			$success = fs_rename($tmpfile, $file);
+			fs_rename($file, "$file.bak");
 		}
+		fs_rename($tmpfile, $file);
 	}
 
 	return $success;
