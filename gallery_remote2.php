@@ -52,10 +52,10 @@ if (empty ($cmd)) {
 header("Content-type: text/plain");
 
 /*
- * Gallery remote protocol version 2.9
+ * Gallery remote protocol version 2.10
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 9;
+$GR_VER['MIN'] = 10;
 
 
 /*
@@ -295,9 +295,10 @@ function gr_album_properties( &$gallery, &$response ) {
 	if ($max_dimension == 'off') {
 		$max_dimension = 0;
 	}
-
+	print_r($gallery->album);
 	$response->setProperty( 'auto_resize', $max_dimension );
 	$response->setProperty( 'extra_fields', $gallery->album->getExtraFields() );
+	$response->setProperty( 'add_to_beginning', $gallery->album->fields['add_to_beginning'] );
 
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Album properties retrieved successfully.' );
