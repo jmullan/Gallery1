@@ -631,7 +631,7 @@ $adminbox["commands"] = '';
 if ($gallery->user->isAdmin()) {
 	$adminbox["commands"] = '[<a href="'. makeGalleryURL('stats-wizard.php') .'">'. _("Back to stats-wizard") .'</a>] ';
 }
-$adminbox["commands"] .= '[<a href="'. makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>]';
+$adminbox["commands"] .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>]';
 
 
 if (!empty($gallery->app->stats_foruser)) {

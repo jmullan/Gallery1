@@ -85,7 +85,7 @@ $borderColor = $gallery->app->default["bordercolor"];
 $navigator["fullWidth"] = 100;
 $navigator["widthUnits"] = "%";
 $adminbox["text"] ='<span class="head">'. _("Admin options") .'</span>';
-$adminbox["commands"] = '<a href="'. makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>';
+$adminbox["commands"] = '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>]';
 
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');

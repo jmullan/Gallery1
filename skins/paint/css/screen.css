@@ -25,7 +25,7 @@ A   	{ color: #404040; text-decoration: none; }
 A:link	{ color: #404040; text-decoration: none; }
 A:visited { color: #404040; text-decoration: none; }
 A:active { color: #404040; }
-A:hover	{ color: #C0C0C0; }
+A:hover	{ color: #FFFFFF; }
 /* 
    text styles 
 */
@@ -176,28 +176,18 @@ A:hover	{ color: #C0C0C0; }
 	{ 
 	  font-size: 10px; 
 	}
-.popuphead
-	{
-	  font-size: 16px;
- 	  font-weight: bold;
-	  color: #404040;
-	}
-.popup
-	{
-	  font-size: 12px;
-	  font-weight: bold;
-	  color: #404040;	  
-	}
+
 .editlink,  /* Used for the [edit] tags */
-.editlink a,
-.editlink a:link,
-.editlink a:visited,
-.editlink a:active
-	{
-	  font-size: 10px;
-	  font-weight: normal;
-	  color: #404040;
-	}
+.editlink a {
+    font-size: 10px;
+    font-weight: normal;
+    color: #404040;
+}
+
+.editlink a:hover {
+    color: #FFFFFF;
+}
+
 .modnavbox  /* main navigation bar next and previous */ 
 	{ 
 	  font-family:verdana, arial, sans-serif;	
@@ -357,4 +347,36 @@ A:hover	{ color: #C0C0C0; }
         padding:2px;
         margin-top:10px;
         width:80%;
+}
+
+#admibox {
+}
+
+#adminbox td {
+    color: #C0C0C0;
+}
+
+#adminbox a {
+    color: #C0C0C0;
+}
+
+#adminbox a:hover {
+    color: #FFFFFF;
+}  
+
+
+.popuphead {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-image: url(../images/mod_navbar.jpg);
+    margin: 2px;
+}
+
+.popup {
+    font-size: 12px;
+    font-weight: bold;
+    color: #404040;	  
+    background-image: url(../images/mod_descbg.jpg);
+    margin: 2px;
 }
