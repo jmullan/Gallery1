@@ -113,9 +113,11 @@ doctype();
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Change User Preferences") ?></div>
 <div class="popup" align="center">
-<?php echo _("You can change your user information here.") ?>
-<?php echo _("If you want to change your password, you must provide your old password and then enter the new one twice.") ?>
-<?php echo _("You can change your username to any combination of letters and digits.") ?>
+<?php 
+	echo _("You can change your user information here.");
+	echo _("If you want to change your password, you must provide your old password and then enter the new one twice.");
+	echo _("You can change your username to any combination of letters and digits.");
+?>
 
 <br>
 
@@ -131,14 +133,16 @@ doctype();
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
 </form>
-
+</div>
 <script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
 document.usermodify_form.uname.focus();
 //--> 
 </script>
-<?php print gallery_validation_link("user_preferences.php"); ?>
 </div>
+
+<?php print gallery_validation_link("user_preferences.php"); ?>
+
 </body>
 </html>

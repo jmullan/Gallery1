@@ -21,16 +21,38 @@
    default text styles - background and colors overriden by
    album 'bgcolor', 'background', and 'textcolor' properties.
 */
-BODY  
-	{ 
-          font-family: Verdana, Arial, Helvetica, sans-serif;
-	  font-size: 10pt; 
-	}
-TD, P 
-	{ 
+
+body {
+    font-family: Geneva,Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    background-color: #749BFB;
+    color: #FFFFFF;
+}
+
+img {
+    border: none;
+}
+
+td,p 	{ 
 	  font-family: Verdana, Arial, Helvetica, sans-serif;
-	  font-size: 10pt; 
+	  font-size: 10px; 
 	}
+
+a {
+    font-family: Verdana,Helvetica,sans-serif;
+    text-decoration: none;
+    color: #4E2192;
+}
+
+a:hover {
+    font-family: Verdana,Helvetica,sans-serif;
+    text-decoration: underline;
+    color: yellow;
+}
+
+textarea:focus, input:focus, select:focus {
+	background-color: #FFFFDA;
+}
 
 /* 
    text styles 
@@ -108,7 +130,7 @@ TD, P
         {
           font-family: Verdana, Arial, Helvetica, sans-serif;
           font-weight: normal;
-          color: blue;
+          color: #FBFF7F;
           font-size: 12px;
         }
 
@@ -215,6 +237,7 @@ TD, P
 	}
 .modnavboxtop  /*navagation bar top of screen where admin buttons show*/
 	{
+	background-color: #5E72CC;
  
      }
 .modnavboxmid  /*navagation bar middle where the link for the albums show*/
@@ -228,8 +251,7 @@ TD, P
 
 .popupbody  /* controls the background of popup. */ 
 	 {
- 		margin: 25px;
-  		background-color: #808080;
+	   color: #000;
 	 }
 	
 .popuphead  /* controls the title and background */ 
@@ -238,12 +260,12 @@ TD, P
 	   font-size: 14px;
 	   font-weight: bold;
 	   line-height: 150%;
-	   color: #202020;
+	   color: #FFF;
 	   padding-left: 5px;
-	   border-top: 1px solid #000000;
-	   border-left: 1px solid #000000;
-	   border-right: 1px solid #000000;
-	   background-color: #c0c0c0;
+	   border-top: 1px solid #FFF;
+	   border-left: 1px solid #FFF;
+	   border-right: 1px solid #FFF;
+	   background-color: #6274CB;
  	}
 
 .popup /* controls the main text and message body */
@@ -253,8 +275,8 @@ TD, P
 	   font-weight: none;
 	   color: #202020;
 	   padding: 5px;
-	   border: 1px solid #000000;
-	   background-color: #ffffff;
+	   border: 1px solid #FFF;
+	   background-color: #F0F0F0;
 	   margin-bottom: 10px;  
 	 }
 
@@ -265,8 +287,8 @@ TD, P
 	   line-height: 120%;
 	   color: #202020;
 	   padding: 2px;
-	   border: 1px solid #000000;
-	   background-color: #c0c0c0;
+	   border: 1px solid #FFF;
+	   background-color: #C0C0C0;
 	 }
 
 /* CSS ID for the add photos popup */
@@ -318,7 +340,51 @@ TD, P
 	  color:#000000;
 	}
 
-#tabnav a:hover
-	{
-		color: #444
-	}
+#tabnav a:hover {
+	color: #444
+}
+
+#adminbox {
+}
+
+#adminbox td {
+	background-color: #6274CB; 
+	font-size: 10px; font-weight: bold;
+	vertical-align:bottom;
+}
+
+#adminbox a {
+	color: #DBFFFF;
+}
+
+#adminbox a:hover {
+	color: yellow;
+}
+
+#menu td {
+	text-align:center;
+	vertical-align:bottom;
+}
+
+#menu a {
+   display: block;
+   font-family: Verdana,Helvetica,sans-serif;
+   font-size: 10px;
+   text-decoration: none;
+   color: #FFFFFF;
+/* uncomment this and the below to have a nice hover effect.
+   padding: 2px;
+   -moz-border-radius: 3px;
+*/
+}
+
+#menu a:hover {
+   color: yellow;
+/*
+   border-bottom: 1px solid #66A;
+   border-right: 1px solid #66A;
+   border-top: 1px solid #224;
+   border-left: 1px solid #224;
+   padding: 1px;
+*/
+}

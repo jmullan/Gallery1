@@ -33,28 +33,6 @@ if (!$gallery->user->isAdmin()) {
 	exit;
 }
 
-doctype();
-?>
-
-<html>
-<head>
-<title><?php echo $gallery->app->galleryTitle ?></title>
-<?php 
-	common_header() ;
-?>
-  <style>
-	td.adm_options { vertical-align:top; height:30px; padding: 5px; }
-  </style>
-</head>
-<body dir="<?php echo $gallery->direction ?>">
-<?php  
-        includeHtmlWrap("gallery.header");
-?>
-<div style="text-align:right"><a href="<?php echo makeAlbumUrl(); ?>"><?php echo _("Return to Gallery"); ?></a></div>
-
-<div class="head"><?php echo _("Admin options"); ?></div>
-<?php
-
 if ($gallery->user->isAdmin()) {
 
 	$adminOptions[] = array( 'text' => _("statistics"), 
@@ -86,9 +64,34 @@ function cmp ($a, $b) {
 
 usort($adminOptions, "cmp");
 
-$breadcrumb["bordercolor"] = $gallery->app->default["bordercolor"];
+doctype();
+?>
+<html>
+<head>
+<title><?php echo $gallery->app->galleryTitle ?></title>
+<?php 
+	common_header() ;
+?>
+  <style>
+	td.adm_options { vertical-align:top; height:30px; padding: 5px; }
+  </style>
+</head>
+<body dir="<?php echo $gallery->direction ?>">
+<?php  
+        
+includeHtmlWrap("gallery.header");
 
+$borderColor = $gallery->app->default["bordercolor"];
+$navigator["fullWidth"] = 100;
+$navigator["widthUnits"] = "%";
+$adminbox["text"] ='<span class="head">'. _("Admin options") .'</span>';
+$adminbox["commands"] = '<a href="'. makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>';
+
+includeLayout('navtablebegin.inc');
+includeLayout('adminbox.inc');
+includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
+includeLayout('navtableend.inc');
 includeLayout('ml_pulldown.inc');
 
 if(!empty($adminOptions)) {
@@ -109,10 +112,8 @@ if(!empty($adminOptions)) {
 
 $validation_file = basename(__FILE__);
 includeHtmlWrap("general.footer");
-?>
-<!-- gallery.footer end -->
 
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
 <?php } ?>

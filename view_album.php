@@ -405,59 +405,63 @@ $adminCommands = '';
 $adminJSFrame = '';
 /* build up drop-down menu and related javascript */
 if (!empty($adminOptionHTML)) {
-    $adminJSFrame .= "<script language=\"javascript1.2\" type=\"text/JavaScript\">\n"
-	    . "adminOptions = new Object;\n"
-	    . $adminJavaScript
-	    . "\nfunction execAdminOption() {\n"
-	    . "\tkey = document.forms.admin_options_form.admin_select.value;\n"
-            . "\tdocument.forms.admin_options_form.admin_select.selectedIndex = 0;\n"
-            . "\tdocument.forms.admin_options_form.admin_select.blur();\n"
-	    . "\tswitch (adminOptions[key].action) {\n"
-	    . "\tcase 'popup':\n"
-	    . "\t\tnw = window.open(adminOptions[key].value, 'Edit', 'height=500,width=600,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');\n"
-	    . "\t\tnw.opener=self;\n"
-	    . "\t\tbreak;\n"
-	    . "\tcase 'url':\n"
-	    . "\t\tdocument.location = adminOptions[key].value;\n"
-	    . "\t\tbreak;\n"
-	    . "\t}\n"
-	    . "}\n"
-	    . "</script>\n\n";
+	$adminJSFrame .= "<script language=\"javascript1.2\" type=\"text/JavaScript\">\n"
+	  . "adminOptions = new Object;\n"
+	  . $adminJavaScript
+	  . "\nfunction execAdminOption() {\n"
+	  . "\tkey = document.forms.admin_options_form.admin_select.value;\n"
+	  . "\tdocument.forms.admin_options_form.admin_select.selectedIndex = 0;\n"
+	  . "\tdocument.forms.admin_options_form.admin_select.blur();\n"
+	  . "\tswitch (adminOptions[key].action) {\n"
+	  . "\tcase 'popup':\n"
+	  . "\t\tnw = window.open(adminOptions[key].value, 'Edit', 'height=500,width=600,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');\n"
+	  . "\t\tnw.opener=self;\n"
+	  . "\t\tbreak;\n"
+	  . "\tcase 'url':\n"
+	  . "\t\tdocument.location = adminOptions[key].value;\n"
+	  . "\t\tbreak;\n"
+	  . "\t}\n"
+	  . "}\n"
+	  . "</script>\n\n";
     
-    $adminCommands .= "\n\t<select class=\"adminform\" name=\"admin_select\" onChange=\"execAdminOption()\">\n";
-    $adminCommands .= "\t\t<option value=\"\">&laquo; " . _('admin options') . " &raquo;</option>\n";
-    $adminCommands .= $adminOptionHTML;
-    $adminCommands .= "\t</select>\n";
+	$iconElements[] = "\n\t<select class=\"adminform\" name=\"admin_select\" onChange=\"execAdminOption()\">\n"
+	  . "\t\t<option value=\"\">&laquo; " . _('admin options') . " &raquo;</option>\n"
+	  . $adminOptionHTML
+	  . "\t</select>\n";
 }
 
-$userCommands = '';
-if ($gallery->album->fields["slideshow_type"] != "off" && ($numPhotos != 0 || ($numVisibleItems != 0 && $gallery->album->fields['slideshow_recursive'] == "yes"))) {
-       	$userCommands .= "<a class=\"admin\" href=\"" . 
-	       	makeGalleryUrl("slideshow.php",
-			       	array("set_albumName" => $albumName)) .
-	      	'">['. _("slideshow") ."]</a>";
+if ($gallery->album->fields["slideshow_type"] != "off" && 
+      ($numPhotos != 0 || ($numVisibleItems != 0 && $gallery->album->fields['slideshow_recursive'] == "yes"))) {
+	$iconText = getIconText('display.gif', _("slideshow"));
+	$iconElements[] = '<a href="'
+	  . makeGalleryUrl("slideshow.php",
+	    array("set_albumName" => $albumName)) .'">'. $iconText .'</a>';
 }
 
 /* User is allowed to view ALL comments */
 if ( ($gallery->app->comments_enabled == 'yes' && $gallery->album->lastCommentDate("no") != -1) &&
 	((isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes") ||
 	$gallery->user->canViewComments($gallery->album))) {
-                $userCommands .= "\t". '<a href="'. makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)) . '">' .
-                        '[' . _("view&nbsp;comments") . "]</a>\n";
+		$iconText = getIconText('showcomment.gif', _("view&nbsp;comments"));
+                $iconElements[] = '<a href="'. 
+			makeGalleryUrl("view_comments.php",
+			  array("set_albumName" => $gallery->session->albumName)) . '">'. $iconText .'</a>';
 }
 
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 	if ($gallery->user->isLoggedIn()) {
-	        $userCommands .= "\t<a class=\"admin\" href=\"" .
-					doCommand("logout", array(), "view_album.php", array("page" => $page)) .
-				  "\">[" . _("logout") . "]</a>\n";
+		$iconText = getIconText('exit.gif', _("logout"));
+		$iconElements[] = '<a href="'. 
+		  doCommand("logout", array(), "view_album.php", 
+		    array("page" => $page)) .'">'. $iconText .'</a>';
 	} else {
-		$userCommands .= "\t" . popup_link("[". _("login") ."]", "login.php", false, true, 500, 500, 'admin') . "\n";
+		$iconText = getIconText('identity.gif', _("login"));
+		$iconElements[] = popup_link($iconText, "login.php", false, true, 500, 500);
 	} 
 }
 
 $adminbox["text"] = $adminText;
-$adminbox["commands"] =	$adminCommands . $userCommands;
+$adminbox["commands"] =	$adminCommands . makeIconMenu($iconElements);
 $adminbox["bordercolor"] = $bordercolor;
 
 if (!empty($adminOptionHTML)) {

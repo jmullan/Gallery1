@@ -209,6 +209,10 @@ if ( !$gallery->session->offline) {
 
 $adminbox["text"] = _("Slide Show");
 $adminbox["bordercolor"] = $borderColor;
+
+$navigator["fullWidth"] = '100';
+$navigator["widthUnits"] = '%';
+
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
 includeLayout('navtablemiddle.inc');

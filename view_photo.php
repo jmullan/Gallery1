@@ -296,14 +296,15 @@ if ($fitToWindow) {
 <td>
 <?php
 
-$adminCommands = '';
-$page_url=makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0));
+$adminText = '';
+$page_url = makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0));
+
 if (!$gallery->album->isMovie($id)) {
 	print "<a id=\"photo_url\" href=\"$photoURL\" ></a>\n";
 	print '<a id="page_url" href="'. $page_url .'"></a>'."\n";
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		$adminCommands .= popup_link("[" . _("resize photo") ."]", 
-			"resize_photo.php?index=$index", false, true, 500, 500, 'admin');
+		$iconText = getIconText('window_fullscreen.gif', _("resize photo"));
+		$iconElements[] = popup_link($iconText, "resize_photo.php?index=$index", false, true, 500, 500);
 	}
 
 	if ($gallery->user->canDeleteFromAlbum($gallery->album) || 
@@ -326,8 +327,10 @@ if (!$gallery->album->isMovie($id)) {
 		} else {
 			$nextId = $gallery->album->getPhotoId($nextIndex);
 		}
-		$adminCommands .= '&nbsp;' . popup_link("[" . _("delete photo") ."]", 
-			"delete_photo.php?id=$id&nextId=$nextId", false, true, 500, 500, 'admin');
+
+		$iconText = getIconText('delete.gif', _("delete photo"));
+		$iconElements[] = popup_link($iconText,
+			"delete_photo.php?id=$id&nextId=$nextId", false, true, 500, 500);
 	}
 
 	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes") &&
@@ -337,13 +340,12 @@ if (!$gallery->album->isMovie($id)) {
 		$lparams['set_fullOnly'] = (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) ? "on" : "off";
 		$link = makeAlbumURL($gallery->session->albumName, $id, $lparams);
 
-		$adminCommands .= '&nbsp;' . _('View Images') .':&nbsp;[&nbsp;';
+		$adminText = '&nbsp;' . _('View Images') .':&nbsp;[&nbsp;';
 		if (!isset($gallery->session->fullOnly) ||
-				strcmp($gallery->session->fullOnly,"on"))
-		{
-			$adminCommands .= _('normal') . "&nbsp;|&nbsp;<a class=\"admin\" href=\"$link\">" . _('full') .'</a>&nbsp;]';
+				strcmp($gallery->session->fullOnly,"on")) {
+			$adminText .= _('normal') . "&nbsp;|&nbsp;<a class=\"admin\" href=\"$link\">" . _('full') .'</a>&nbsp;]';
 		} else {
-			$adminCommands .= "<a class=\"admin\" href=\"$link\">" . _("normal") .'</a>&nbsp;|&nbsp;'. _('full') .'&nbsp;]';
+			$adminText .= "<a class=\"admin\" href=\"$link\">" . _("normal") .'</a>&nbsp;|&nbsp;'. _('full') .'&nbsp;]';
 		}
 	} 
 	
@@ -354,7 +356,9 @@ if (!$gallery->album->isMovie($id)) {
 	    (eregi("jpe?g\$", $photo->image->type)) &&
 	    isset($gallery->app->use_exif)) {
 		$albumName = $gallery->session->albumName;
-		$adminCommands .= '&nbsp;' . popup_link("[" . _("photo properties") ."]", "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false, 500, 500, 'admin');
+		$iconText = getIconText('frame_query.gif', _("photo properties"));
+		$iconElements[] =  popup_link($iconText, 
+		  "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false, 500, 500);
 	}
 
 	if (isset($gallery->album->fields["print_photos"]) &&
@@ -423,7 +427,7 @@ if (!$gallery->album->isMovie($id)) {
 				$selectCommand .= "<option value=\"$name\">${fullName[$name]}</option>";
 			}
 			$selectCommand .= '</select>';
-			$adminCommands .= '[' . sprintf(_('process this photo with %s'), $selectCommand) . ']';
+			$adminText .= '[' . sprintf(_('process this photo with %s'), $selectCommand) . ']';
 		/* just print out text if only one option */
 		} elseif ($numServices == 1 && isset($printServices[@key($printServices)]['checked'])) {
 			$name = @key($printServices);
@@ -444,7 +448,7 @@ if (!$gallery->album->isMovie($id)) {
 				break;
 			}
 			if (!empty($name)) {
-				$adminCommands .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" .
+				$adminText .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" .
 						    sprintf(_('process this photo with %s'), $fullName[$name]) . ']</a>';
 			}
 		}
@@ -485,19 +489,21 @@ if (!$gallery->album->isMovie($id)) {
 	}
 }
 
-$userCommands = "";
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 	if ($gallery->user->isLoggedIn()) {
-		$userCommands .= "\t<a class=\"admin\" href=\"" .
+		$iconText = getIconText('exit.gif', _("logout"));
+		$iconElements[] = '<a href="'.
 				doCommand("logout", array(), "view_album.php", array("page" => $page)) .
-					"\">[" . _("logout") . "]</a>\n";
+					'">'. $iconText .'</a>';
 	} else {
-		$userCommands .= "\t" . popup_link("[". _("login") ."]", "login.php", false, true, 500, 500, 'admin') . "\n";
+		$iconText = getIconText('identity.gif', _("login"));
+		$iconElements[] = popup_link($iconText, "login.php", false, true, 500, 500);
         }
 }
 includeLayout('navtablebegin.inc');
-	
-$adminbox["commands"] = $adminCommands . $userCommands;
+
+$adminbox["text"] = $adminText;	
+$adminbox["commands"] = makeIconMenu($iconElements);;
 $adminbox["bordercolor"] = $bordercolor;
 includeLayout('adminbox.inc');
 includeLayout('navtablemiddle.inc');
@@ -524,13 +530,9 @@ if ($bordercolor) {
 </table>
 </form>
 
-<table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
-<tr><td colspan=3>
-<?php
-includeHtmlWrap("inline_photo.header");
-?>
-</td></tr>
-</table>
+<div width="<?php echo $mainWidth ?>">
+<?php includeHtmlWrap("inline_photo.header"); ?>
+</div>
 
 <!-- image -->
 <a name="image"></a>

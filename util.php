@@ -2396,9 +2396,10 @@ function galleryDocs($class='') {
 		else {  // When first time config without $gallery set.
 			$url='../docs/index.html';
 		}
-		return "<a class=\"$class\" style=\"white-space:nowrap;\" href=\"$url\">[" .  _("documentation").']</a>';
+		return $url;
+	} else {
+		return NULL;
 	}
-	return NULL;
 }
 
 function getImVersion() {
@@ -3558,6 +3559,40 @@ function getParentAlbums($childAlbum, $addChild=false) {
 	$parentNameArray = array_reverse($parentNameArray);
 
 	return $parentNameArray;
+}
+
+function getIconText($iconName='', $altText='') {
+	global $gallery;
+	$text = $altText;
+
+	if (isset($gallery->app->useIcons) && $gallery->app->useIcons != "no") {
+		if ($gallery->app->useIcons == 'both') {
+			$altText = '';
+		}
+		if(file_exists(dirname(__FILE__) .'/images/icons/'. $iconName)) {
+			$imgSrc = $gallery->app->photoAlbumURL .'/images/icons/'. $iconName;
+			$linkText = '<img src="'. $imgSrc .'" title="'. $altText .'" alt="'. $altText. '">';
+
+			if ($gallery->app->useIcons == "both") {
+				$linkText .= "<br>$text";
+			}
+		}
+	}
+
+	if (empty($linkText)) {
+		$linkText = ' ['. $text . '] ';
+	}
+
+	return $linkText;
+}
+
+function makeIconMenu($iconElements) {
+	$html = "\n". '<table border="0" id="menu"><tr>';
+	foreach($iconElements as $element) {
+		$html .= "\n\t". '<td>'.  $element .'</td>';
+	}
+	$html .= "</tr></table>";
+	return $html;
 }
 
 require_once(dirname(__FILE__) . '/lib/lang.php');

@@ -33,14 +33,15 @@
 */
 
 require(GALLERY_BASE. '/Version.php');
-$docs = galleryDocs() ? galleryDocs() : _("documentation");
+$docs = galleryDocs() ? '<a href="'. galleryDocs() .'">'. _("documentation") .'</a>' : _("documentation");
+
 $error = 0;
 $viewheader = "";
 $outfile_list=array("config.php" => false, ".htaccess" => true);
 foreach ($outfile_list as $outfile => $optional) {
 	if (!fs_file_exists(GALLERY_CONFDIR . "/$outfile") && !$optional) {
 		$error++;
-		$viewheader .= "<p>" . gallery_error(sprintf(_("You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
+		$viewheader .= '<p>'. gallery_error(sprintf(_("You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", $docs) ."</p>\n");
 		${str_replace('.', '', $outfile) . "_file"} = 0;
 	}
 	elseif ($fd = @fs_fopen(GALLERY_CONFDIR ."/$outfile", "a")) {

@@ -253,6 +253,15 @@ $constants =  array_merge(
 		'attrs' => array('size' => 50)
 	),
 	'editPassword' => check_admins(),
+	'useIcons' => array(
+		'prompt' => _("Use Icons ?"),
+		'desc' => _("You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."),
+		'choices' => array(	'both' => _("Icons and text"),
+					'no' => _("Text only"),
+					'yes' => _("Icons only")
+			),
+		'value' => 'no'
+	),
 	'skinname' => array(
 		'prompt' => _("Skin Name"),
 		'desc' => _("Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4.") . 

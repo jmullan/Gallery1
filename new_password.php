@@ -44,7 +44,7 @@ if (empty($uname) ) {
 }
 
 $errorCount=0;
-if ( isset($save)) {
+if (!empty($save)) {
 	if (empty($new_password1) ) {
 	       	$gErrors["new_password1"] = _("You must provide your new password.");
 	       	$errorCount++;

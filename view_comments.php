@@ -58,7 +58,7 @@ $upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height
 if ($gallery->album->fields['returnto'] != 'no') {
 	$breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" .
 		$gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
-	foreach ($gallery->album->getParentAlbums() as $name => $title) {
+	foreach ($gallery->album->getParentAlbums(true) as $name => $title) {
 		$breadcrumb["text"][] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($name) . "\">" .
 			$title. "&nbsp;" . $upArrowURL . "</a>";
 	}
@@ -133,6 +133,9 @@ $adminbox["text"] = _("Comments for this Album");
 $adminbox["commands"] = "<a class=\"admin\" href=\"" . makeAlbumUrl($gallery->session->albumName) . "\">[". _("return to album") ."]</a>";
 $adminbox["bordercolor"] = $bordercolor;
 
+$navigator['fullWidth'] = '100';
+$navigator['widthUnits'] ='%';
+
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
 includeLayout('navtablemiddle.inc');
@@ -190,9 +193,8 @@ includeLayout('ml_pulldown.inc');
 $validation_file = 'view_comments.php';
 $validation_args = array('set_albumName' => $gallery->session->albumName);
 includeHtmlWrap("general.footer");
-?>
 
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 
 </body>
 </html>

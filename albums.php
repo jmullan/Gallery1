@@ -173,7 +173,8 @@ if (!empty($gallery->app->stats_foruser)) {
 }
 
 /* Admin Text (right side) */
-$adminCommands = "";
+
+$adminCommands = '';
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 
@@ -182,48 +183,53 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 }
 
 if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
-    	 $adminCommands .= "\n". '<a class="admin" style="white-space:nowrap;" href="' . makeGalleryUrl("slideshow.php",
-	 array("set_albumName" => null)) .
-	       	'">['._("slideshow") . ']</a> ';
+	$iconText = getIconText('display.gif', _("slideshow"));
+	$iconElements[] = "\n". '<a href="'. makeGalleryUrl("slideshow.php",array("set_albumName" => null)) . 
+		'">'. $iconText .'</a>';
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
-	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . doCommand("new-album", array(), "view_album.php") . '">[' . _("new album") . ']</a> ';
+	$iconText = getIconText('folder_new.gif', _("new album"));
+	$iconElements[] = '<a href="' . doCommand("new-album", array(), "view_album.php") .'">'. $iconText .'</a> ';
 }
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	if ($gallery->userDB->canModifyUser()) {
-		$adminCommands .= popup_link("[". _("preferences") ."]", 
-			"user_preferences.php", false, true, 500, 500, 'admin')
-			. ' ';
+		$iconText = getIconText('yast_sysadmin.gif', _("preferences"));
+		$iconElements[] = popup_link($iconText, "user_preferences.php", false, true, 500, 500);
 	}
 
 	if ($gallery->user->isAdmin() ||
 	        $gallery->userDB->canCreateUser() ||
         	$gallery->userDB->canDeleteUser()) {
 		
-		$doc = galleryDocs('admin');
-	        if ($doc) {
-        	        $adminCommands .= "$doc ";
+		$docsUrl = galleryDocs('admin');
+	        if ($docsUrl) {
+			$iconText = getIconText('info.gif', _("documentation"));
+			$iconElements[] = "<a href=\"$docsUrl\">". $iconText .'</a>';
 	        }
-	        $adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . makeGalleryUrl('admin-page.php') . '">[' . _("admin page") .']</a> ';
+
+		$iconText = getIconText('kdf.gif', _("admin page"));
+		$iconElements[] = '<a href="'. makeGalleryUrl('admin-page.php') .'">'. $iconText .'</a> ';
 	}	
 	if (!$GALLERY_EMBEDDED_INSIDE) {
-		$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . doCommand("logout", array(), "albums.php"). '">[' . _("logout") .']</a>';
+		$iconText = getIconText('exit.gif', _("logout"));
+		$iconElements[] = '<a href="'. doCommand("logout", array(), "albums.php") .'">'. $iconText .'</a>';
 	}
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
-	        $adminCommands .= popup_link("[" . _("login") . "]", "login.php", false, true, 500, 500, 'admin');
-		
+		$iconText = getIconText('identity.gif', _("login"));
+	        $iconElements[] = popup_link($iconText, "login.php", false, true, 500, 500);
+			
             if (!strcmp($gallery->app->selfReg, 'yes')) {
-                $adminCommands .= ' ';
-                $adminCommands .= popup_link('[' . _("register") . ']', 'register.php', false, true, 500, 500, 'admin');
+		$iconText = getIconText('yast_sysadmin2.gif', _("register"));
+	        $iconElements[] = popup_link($iconText, "register.php", false, true, 500, 500);
             }
 	}
 }
 
 $adminbox["text"] = $adminText;
-$adminbox["commands"] = $adminCommands;
+$adminbox["commands"] = $adminCommands . makeIconMenu($iconElements);
 $adminbox["bordercolor"] = $borderColor;
 
 includeLayout('navtablebegin.inc');
@@ -241,7 +247,7 @@ echo "<!-- End top nav -->";
 /* Display warnings about broken albums */
 if ( (sizeof($albumDB->brokenAlbums) || sizeof($albumDB->outOfDateAlbums)) && $gallery->user->isAdmin()) {
 
-	echo "\n<center><div style=\"width:60%; border-style:outset; border-width:5px; border-color:red; padding: 5px\">";
+	echo "\n<center><div style=\"width:60%; border-style:outset; border-width:5px; border-color:red; padding: 5px;\">";
 	echo "\n<p class=\"head\"><u>". _("Attention Gallery Administrator!") ."</u></p>";
 
 	if (sizeof($albumDB->brokenAlbums)) {
