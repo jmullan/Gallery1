@@ -129,7 +129,7 @@ function editCaption($album, $index) {
 	return $buf;
 }
 
-function viewComments($index, $addComments, $page_url, $newestFirst = false) {
+function viewComments($index, $addComments, $page_url, $newestFirst = false, $addType = '') {
         global $gallery;
 	global $commentdraw;
 	global $i;
@@ -167,7 +167,14 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false) {
 	}
 	
 	if ($addComments) {
-		if (isset($gallery->app->comments_addType) && $gallery->app->comments_addType == "inside") {
+		/* Default is the popup link. 
+		** addType given through function call overrides default.
+		*/
+		if (empty($addType)) {
+			$addtype = (isset($gallery->app->comments_addType) ? $gallery->app->comments_addType : "popup");
+		}
+		if ( 
+		     ($addType == 'inside')) {
 			echo '<form name="theform" method="post" action="'. $page_url .'">';
 			drawCommentAddForm($commenter_name);
 			echo "</form>";

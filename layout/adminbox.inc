@@ -7,13 +7,17 @@
 global $adminbox, $navigator;
 
 // If the border color is not passed in, we do a black/white combo
-if ($adminbox["bordercolor"]) {
+if (isset ($adminbox["bordercolor"])) {
 	$borderIn = $adminbox["bordercolor"];
 } else {
 	$borderIn = "#FFFFFF";
 }
-if (!isset($adminbox["commands"])) {
-	$adminbox["commands"] = "";
+
+$checklist = array('commands', 'text');
+foreach ($checklist as $check) {
+	if (!isset($adminbox[$check])) {
+		$adminbox[$check] = '';
+	}
 }
 
 $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"pixel_trans\">";
@@ -26,7 +30,7 @@ if (isset($navigator["fullWidth"]) && isset($navigator["widthUnits"])) {
 ?>
 <table<?php echo $width; ?> border="0" cellspacing="0" cellpadding="0" class="modnavboxtop">
 <?php
-if ($adminbox["top"]) {
+if (isset($adminbox["top"])) {
 }
 ?>
   <tr> 
@@ -37,8 +41,4 @@ if ($adminbox["top"]) {
         </form>
     </td>
   </tr>
-<?php
-if (!$adminbox["top"]) {
-}
-?>
 </table>    

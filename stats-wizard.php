@@ -50,8 +50,8 @@ function stats_showBlock($block, $caption=null) {
 			break;
 			case 'select':
 					echo "\n\t". '<td><select name="'. $option .'">';
-					foreach ($attr['options'] as $opt) {
-							echo "\n\t\t<option>$opt</option>";
+					foreach ($attr['options'] as $optkey => $optvalue) {
+							echo "\n\t\t<option value=\"$optkey\">$optvalue</option>";
 					}
 					echo "\n\t</select></td>";
 			break;
@@ -120,8 +120,10 @@ doctype();
 		'sgr'	=> array('type' => 'checkbox', 'checked' => '', 	'text' => _("Use Grid Layout")),
 		'rows'	=> array('type' => 'text', 'default' => (isset($gallery->app->default["rows"])) ? $gallery->app->default["rows"] : 3, 		'text' => _("Controls the number of rows to display in grid mode")),
 		'cols'	=> array('type' => 'text', 'default' => (isset($gallery->app->default["cols"])) ? $gallery->app->default["cols"] : 3, 		'text' => _("Controls the number of columns to display in grid mode")),
-		'addLinksPos' => array ('type' => 'select', 'options' => array ('abovecomments', 'oncaptionline', 'abovestats', 'belowcomments'),	'text' => _("Position of the add vote and add comment links"))
-	);
+		'addLinksPos' => array ('type' => 'select', 'options' => array ('abovecomments'	=> _("Above the comments"), 
+										'oncaptionline'	=> _("In the caption line"),
+										'abovestats'	=> _("Above the stats"),
+										'belowcomments'	=> _("Below the comments")), 	'text' => _("Position of the add vote and add comment links")));
 
 	$filters = array(
 		'ty'	=> array('type' => 'text', 'default' => '', 'text' => _("Filter by year")),
@@ -151,7 +153,7 @@ doctype();
 	
 	echo "\n</tr>";
 	echo "\n</table>";
-	echo "\n". '<input type="submit" value="'. _("Show me the statistic") . '">';
+	echo "\n". '<input type="submit" value="'. _("Show statistics") . '">';
 	echo "\n</form>";
 
 

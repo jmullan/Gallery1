@@ -67,6 +67,7 @@ if (isset($save)) {
 		$gallery->album->addComment($id, stripslashes($comment_text), $IPNumber, $commenter_name);
 		$gallery->album->save();
 		emailComments($id, $comment_text, $commenter_name);
+		// Note: In stats.php this causes the browser to show a message about POST data ...
 		dismissAndReload();
 		return;
        	}

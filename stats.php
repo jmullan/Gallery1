@@ -1604,9 +1604,8 @@ $statsAlbum->canViewComments($gallery->user->getUid()) ) {
 	if ( !$showGrid ) {
 		echo "<br clear=all>";
 	}
-	echo "<span class=\"fineprint\">Comments: / index: $photoIndex</span>";
-
-	viewComments($photoIndex, $gallery->user->canAddComments($statsAlbum), "DISCO1", $newestCommentsFirst);
+	$gallery->album = $statsAlbum;
+	viewComments($photoIndex, $gallery->user->canAddComments($statsAlbum), "DISCO1", $newestCommentsFirst, 'popup');
 }
 
 if ( $addLinksPos == 'belowcomments' ) {

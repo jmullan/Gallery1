@@ -206,6 +206,13 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <div class="popuphead"><?php echo _("Find Orphans") ?></div>
 <?php
 
+$adminCommands = '[<a href="'. makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>] ';
+
+$adminbox["commands"] = $adminCommands;
+$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
+includeLayout('adminbox.inc');
+includeLayout('ml_pulldown.inc');
+
 if (empty($action)) { 
 	if (!empty($orphanAlbums)) { ?>
 		<p class="popup"><?php echo _("Orphaned Albums:") . " " . sizeof($orphanAlbums) ?></p>
@@ -291,10 +298,6 @@ _("Files")) . "</p>";
 	if ($action == "images") deleteOrphanedImages($orphanImages);
 }
 
-	echo "\n<p><a href=\"" . makeAlbumUrl() . "\">"._("Return to Gallery")."</a></p>";
-?>
-<hr>
-<?php 
 	includeHtmlWrap("gallery.footer"); 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>

@@ -50,9 +50,19 @@ doctype();
 <body dir="<?php echo $gallery->direction ?>">
 <?php  
         includeHtmlWrap("gallery.header");
+
 ?>
 <p align="center" class="popuphead"><?php echo _("Find and remove comment spam") ?></p>
-<div style="text-align:right"><a href="<?php echo makeAlbumUrl(); ?>"><?php echo _("Return to Gallery"); ?></a></div>
+<?php
+
+$adminCommands = '[<a href="'. makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>] ';
+
+$adminbox["commands"] = $adminCommands;
+$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
+includeLayout('adminbox.inc');
+includeLayout('ml_pulldown.inc');
+
+?>
 <table width="100%">
 <tr>
 <?php
@@ -135,7 +145,8 @@ function deleteComments() {
 	}
 
 	printf("<h3> %s </h3>",
-	       sprintf(_("Deleted %d spam comments"), $removedTotal));
+		pluralize_n2(ngettext("Deleted %d spam comment.", "Deleted %d spam comments.", $removedTotal), 
+				$removedTotal, _("No comment deleted.")));
     }
 }
 
@@ -187,7 +198,7 @@ function findBlacklistedComments() {
 		   $totals['comments'],
 		   $elapsed));
     if (empty($list)) {
-	printf("<h3>%s</h3>", _("No spam comments"));
+	printf("<h3>%s</h3>", _("No spam comments."));
     } else {
 	print makeFormIntro("tools/despam-comments.php", array("method" => "POST"));
 	print "\n<table>";
@@ -252,7 +263,9 @@ function editBlacklist() {
 	    if (!$success) {
 		printf("<h3>%s</h3>", _("Error saving blacklist!"));
 	    } else {
-		printf("<h3>%s (%d)</h3>", _("Removed from blacklist"), sizeof($removed));
+		printf("<h3>%s</h3>",
+			pluralize_n2(ngettext("Deleted %d entry from blacklist.", "Deleted %d entries from blacklist", sizeof($removed)), 
+				 sizeof($removed)));
 		print "<ul>";
 		foreach (array_keys($removed) as $entry) {
 		    printf("<li> %s </li>", $entry);
@@ -295,7 +308,7 @@ function updateBlacklist() {
 	printf("<h3>%s</h3>", _("Error saving blacklist!"));
     } else {
 	if (!empty($added)) {
-	    printf("<h3>%s (%d)</h3>", _("Added to blacklist"), sizeof($added));
+	    printf("<h3>%s</h3>", _("Added to blacklist:"));
 	    print "<ul>";
 	    foreach (array_keys($added) as $entry) {
 		printf("<li> %s </li>", $entry);
@@ -304,7 +317,7 @@ function updateBlacklist() {
 	}
 	
 	if (!empty($dupes)) {
-	    printf("<h3>%s (%d)</h3>", _("Duplicates (not added)"), sizeof($dupes));
+	    printf("<h3>%s</h3>", _("Following duplicates were not added:"));
 	    print "<ul>";
 	    foreach (array_keys($dupes) as $entry) {
 		printf("<li> %s </li>", $entry);

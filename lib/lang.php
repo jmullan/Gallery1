@@ -27,6 +27,9 @@
 ** 1.) We can use %s and %d in translation
 ** 2.) We can use a special "none" without modifying the plural definition.
 ** Note: The redundant $count is always needed, when you use %d
+**
+** Example of normal use:
+** pluralize_n2(ngettext("1 car", "5 cars", $numCars), $numCars, _("No cars"));
 */
 function pluralize_n2($singPlu, $count, $none='') {
 	if ($count == 0 && $none != '') {
@@ -36,12 +39,12 @@ function pluralize_n2($singPlu, $count, $none='') {
 	}
 }
 
-function getBrowserLanguage() {
-	/* Detect the first Language of users Browser
-	** Some Browser only send 2 digits like he or de.
-	** This is caught later with the aliases
-	*/
 
+/* Detect the first Language of users Browser
+** Some Browser only send 2 digits like he or de.
+** This is caught later with the aliases
+*/
+function getBrowserLanguage() {
 	if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"])) {
 		$lang = explode (",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 
@@ -66,15 +69,15 @@ function getBrowserLanguage() {
 	return $browserLang;
 }
 
-function setLangDefaults($nls) {
-	/*
-	** Set Gallery Default:
-	** - language
-	** - charset
-	** - direction
-	** - alignment
-	*/
 
+/*
+** Set Gallery Default:
+** - language
+** - charset
+** - direction
+** - alignment
+*/
+function setLangDefaults($nls) {
 	global $gallery;
 
 	$gallery->language 	= 'en_US';
@@ -83,6 +86,10 @@ function setLangDefaults($nls) {
 	$gallery->align		= $nls['default']['alignment'];
 }
 
+/*
+** This function tries to get the languge given by the Environment.
+** if no language is found, or Gallery was not able to get it, NULL is returned.
+*/
 function getEnvLang() {
 
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
@@ -385,11 +392,12 @@ function getTranslationFile() {
 return $translationfile;
 }
 
+/* Substitute ngettext function
+** NOTE: this is the first primitive Step !!
+** It fully ignores the plural definition !!
+*/
 function emulate_ngettext() {
-	// Substitute ngettext function
-	/* NOTE: this is the first primitive Step !!
-	   It fully ignores the plural definition !!
-	*/
+
 
 	global $translation;
 	global $gallery;
