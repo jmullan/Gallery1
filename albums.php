@@ -162,7 +162,7 @@ if ($gallery->app->gallery_slideshow_type != "off") {
 if ($gallery->user->isAdmin()) {
 	$doc = galleryDocs('admin');
 	if ($doc) {
-		$adminCommands .= "[$doc]&nbsp;";
+		$adminCommands .= "$doc&nbsp;";
 	}
 }
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 

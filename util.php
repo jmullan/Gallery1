@@ -2413,7 +2413,7 @@ function Gallery() {
 function galleryDocs($class='') {
 	global $GALLERY_BASEDIR;
 	if (fs_file_exists($GALLERY_BASEDIR."docs/index.html")) {
-		return "<a class=\"$class\" href=\"${GALLERY_BASEDIR}docs/index.html\">" .  _("documentation").'</a>';
+		return "<a class=\"$class\" href=\"${GALLERY_BASEDIR}docs/index.html\">[" .  _("documentation").']</a>';
 	}
 	return NULL;
 }
