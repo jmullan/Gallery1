@@ -775,7 +775,7 @@ function getNextPhoto($idx) {
 		$idx++;
 	}
 
-	if ($gallery->album->isAlbumName($idx)) {
+	if ($idx <= $numPhotos && $gallery->album->isAlbumName($idx)) {
 		// do not display a nexted album if the user doesn't
 		// have permission to view it.
 		if ($gallery->album->isAlbumName($idx)) {
