@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.3\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-03-04 02:18+0100\n"
-"PO-Revision-Date: 2004-02-23 20:25+0100\n"
+"POT-Creation-Date: 2004-03-09 15:01+0100\n"
+"PO-Revision-Date: 2004-03-05 15:17+0100\n"
 "Last-Translator: jact <jachavar@terra.es>\n"
 "Language-Team: spanish <jachavar@terra.es>\n"
 "MIME-Version: 1.0\n"
@@ -453,9 +453,8 @@ msgid "Note:"
 msgstr "Nota:"
 
 #: ../setup/config_data.inc:44
-#, fuzzy
 msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead."
-msgstr "<br><b>Nota:</b> Puede instalar los binarios desde el sitio web de Gallery incluso si no tiene acceso como root en su máquina. Si no puede continuar trabajando, inténtelo dejando la ruta a NetPBM en blanco y use ImageMagick en su lugar."
+msgstr "Puede instalar los binarios desde el sitio web de Gallery incluso si no tiene acceso como root en su máquina. Si no puede continuar trabajando, inténtelo dejando la ruta a NetPBM en blanco y use ImageMagick en su lugar."
 
 #: ../setup/config_data.inc:47
 msgid "I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date."
@@ -467,9 +466,8 @@ msgid "Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and in
 msgstr "Gallery prefiere la versión 5.4.8 de ImageMagick o posteriores. Puede compilar e instalar el paquete completo de ImageMagick desde la %spágina web de ImageMagick%s."
 
 #: ../setup/config_data.inc:54
-#, fuzzy
 msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead."
-msgstr "<br><b>Nota:</b> También tiene disponibles los binarios para varios sistemas operativos. Si no puede seguir trabajando, inténtelo dejando la ruta a ImageMagick en blanco y use NetPBM en su lugar."
+msgstr "ambién tiene disponibles los binarios para varios sistemas operativos. Si no puede seguir trabajando, inténtelo dejando la ruta a ImageMagick en blanco y use NetPBM en su lugar."
 
 #: ../setup/config_data.inc:57
 #, php-format
@@ -497,11 +495,11 @@ msgstr "Está ejecutando la versión %s de PHP, la cual tiene errores conocidos qu
 
 #: ../setup/config_data.inc:81
 msgid "Were are using a predefined Variable and the output it buggy in some PHP Version."
-msgstr ""
+msgstr "Usamos una variable predefinida y la salida no funciona bien en algunas versiones de PHP."
 
 #: ../setup/config_data.inc:83
 msgid "It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"
-msgstr ""
+msgstr "Parece que su PHP tiene un problema con __FILE__, por favor actualícelo con una versión más reciente"
 
 #: ../setup/config_data.inc:87
 msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
@@ -595,7 +593,6 @@ msgid "Check to see what languages are available."
 msgstr "Comprobando los idiomas que están disponibles."
 
 #: ../setup/config_data.inc:180
-#, fuzzy
 msgid "Testing to see which <b>system</b> locales (if any) are absent."
 msgstr "Comprobando qué idiomas están ausentes en el <b>sistema</b>."
 
@@ -757,7 +754,6 @@ msgid "Auto-rotate images"
 msgstr "Auto-rotar imágenes"
 
 #: ../setup/config_data.inc:351
-#, fuzzy
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras."
 msgstr "Seleccionando esta opción, Gallery intenta rotar las imágenes automáticamente en la subida al servidor, basándose en la información sobre orientación almacenada en los datos EXIF del JPEG que ponen algunas cámaras digitales. Esto requiere la versión 1.9 del analizador jhead o posterior (vea arriba)."
 
@@ -1005,7 +1001,7 @@ msgid "Enable email"
 msgstr "Habilitar correo"
 
 #: ../setup/config_data.inc:554
-#, fuzzy, php-format
+#, php-format
 msgid "Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."
 msgstr "Habilita el correo en toda la galería. Si establece esto a %s entonces nada del resto de esta sección se aplicará."
 
@@ -1068,7 +1064,6 @@ msgid "Allow visitors to self register."
 msgstr "Permite a los visitantes auto-registrarse."
 
 #: ../setup/config_data.inc:608
-#, fuzzy
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
 msgstr "Activando esto, permitirá a los visitantes de su sitio crear sus propias cuentas de usuario."
 
@@ -2303,7 +2298,7 @@ msgstr "dirección de correo electrónico"
 
 #: ../setup/functions.inc:1380
 msgid "Predefined Variable works fine"
-msgstr ""
+msgstr "La variable predefinida funciona bien"
 
 #: ../setup/functions.inc:1397
 msgid "File missing or unreadable.  Please install then re-run this test."
@@ -2489,5 +2484,3 @@ msgstr "Se ha dejado %s o %s."
 msgid "Review Settings"
 msgstr "Revisar la configuración"
 
-#~ msgid "Here you can customize the default values for new albums that you create.  Note that these are not <b>master switches</b> (i.e., if you turn a setting on here, you can still turn it off in a given album).  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
-#~ msgstr "Aquí puede personalizar los valores por defecto de los álbumes que cree. Estos no son <b>interruptores maestros</b> (por ejemplo, si activa un parámetro aquí, todavía puede desactivarlo en un álbum determinado). Si esta es la primera vez que personaliza Gallery, se dará cuenta que hemos intentado poner unos valores por defecto razonables para usted. Si ya ha configurado Gallery con anterioridad, notará que esta página ha cargado sus parámetros actuales, así que probablemente no necesitará realizar muchos cambios."
