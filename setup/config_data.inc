@@ -1,35 +1,45 @@
 <?
 $checklist = array(
 	"htaccess" => array(
-		"desc" => "Allow the Gallery .htaccess file to set " .
-			"application specific configuration options for the " .
-			"Gallery application.",
+		"desc" => "Allow the Gallery <b>.htaccess</b> file to set " .
+			  "application specific configuration options " .
+			  "for the Gallery application.  This is controlled " .
+			  "by the webserver owner so it's not always possible " .
+			  "for you to change it.  The main drawbacks to not " .
+			  "having this are that you may not be able to upload " .
+			  "files > 2MB (eg, big ZIP files) and you may not be " .
+			  "able to use mod_rewrite (see below).",
 	     	"func" => "check_htaccess",
-		"why" => "You may need to enter the following into " .
-			"your web server's httpd.conf file: <br><pre>" .
-			"&lt;Directory " .
-			dirname(dirname(getenv("SCRIPT_FILENAME")))
-			. "&gt;\n\tAllowOverride Options FileInfo\n" .
-			"&lt;/Directory&gt;"
+		"why" => "Enter the following into your web server's httpd.conf " .
+			 "file: <br><pre>" .
+			 "&lt;Directory " .
+			 dirname(dirname(getenv("SCRIPT_FILENAME"))) .
+			 "&gt;\n\tAllowOverride Options FileInfo\n" .
+			 "&lt;/Directory&gt;",
+		"optional" => 1,
 	),
 	"php4" => array(
-		"desc" => "Check to see if you are using the right " .
-			"version of PHP.",
+		"desc" => "Check to see if you are PHP 4.  Note that Gallery does " .
+			"not function optimally with either 4.0.3 or 4.0.3pl1",
 	     	"func" => "check_php",
 		"why" => "You're running version " . phpversion() .
 			". You need to upgrade to PHP ${MIN_PHP_MAJOR_VERSION}"
 	),
 	"mod_rewrite" => array(
 		"desc" => "Check to see if your webserver is compiled with " .
-			"mod_rewrite.  Mod_rewrite allows the Gallery to use ".
-			"shorter URLs that are easy to mail around.  It's not ".
-			"essential, however.",
+			"<b>mod_rewrite</b>.  Mod_rewrite allows the Gallery to use ".
+			"shorter URLs that are easier to read and look nicer when " .
+			"you mail them to your web-challenged relatives. " .
+			"It's not an essential feature.",
 	     	"func" => "check_mod_rewrite",
-		"why" => "Mod_rewrite appears not to be installed.  We'll use " .
-			"longer URLs in the Gallery.  If you want to turn it on " .
-			"You need to reconfigure Apache with the <ul>" .
+		"why" => "Either <b>mod_rewrite</b> is not installed or your " .
+			"<b>.htaccess</b> file is not enabled (see above).  Either " .
+			"way, we'll have to use longer URLs in the Gallery.  If you " .
+			"want to turn it on I'd suggest that you make sure that your " .
+			"<b>.htaccess</b> file works and then if it still doesn't work " .
+			" you may need to reconfigure Apache with the <ul>" .
 			"<b>--enable-module=rewrite</b> </ul> flag and then " .
-			"rebuild and reinstall apache.",
+			"rebuild and reinstall Apache.",
 		"optional" => 1,
 	), 
 	"NetPBM" => array(
@@ -94,10 +104,6 @@ $constants = array(
 		"desc" => "The path to the 'unzip' binary",
 		"value" => locateFile("unzip"),
 		"optional" => 1
-	),
-	"mv" => array(
-		"desc" => "The path to your 'mv' binary",
-		"value" => locateFile("mv"),
 	),
 	"movieThumbnail" => array(
 		"desc" => "The path to the thumbnail image to show for movies",
@@ -167,11 +173,6 @@ $defaults = array(
 	"page" => array(
 		"desc" => "Starting page",
 		"value" => 1
-	),
-	"edit" => array(
-		"desc" => "Start off in edit mode",
-		"value" => "no",
-		"choices" => array("yes", "no")
 	),
 	"returnto" => array(
 		"desc" => "Display the 'Return to Album List' link",
