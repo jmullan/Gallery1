@@ -8,6 +8,12 @@ clear
 ACTUALPATH=${0%/*}
 cd $ACTUALPATH
 
+#make sure the pot file is uptodate:
+
+echo -n "making gallery.pot . . . "
+sh create_po_template.sh
+
+echo "done".
 #find all .po files
 echo -n "checking for .po files ...."
 ls ??_??-*.po >/dev/null 2>/dev/null || {
