@@ -38,6 +38,18 @@ if (!$user->canWriteToAlbum($album)) {
 $albumDB = new AlbumDB();
 
 if ($albumName && isset($index)) {
+
+	if ($newAlbum) { // moving album to a nested location
+		if ($album->fields[name] != $newAlbum) {
+			$album->fields[parentAlbumName] = $newAlbum;
+			$album->save();
+			$newAlbum = $albumDB->getAlbumbyName($newAlbum);
+			$newAlbum->addNestedAlbum($album->fields[name]);
+			$newAlbum->save();
+		}
+		dismissAndReload();
+		return;
+	}
 	if (isset($newIndex)) {
 		$albumDB->moveAlbum($user, $index, $newIndex);
 		$albumDB->save();
@@ -72,7 +84,25 @@ if ($album->numPhotos(1)) {
 	echo $album->getThumbnailTag($album->getHighlight());
 }
 ?>
-
+<p>
+<br>
+<b>OR</b>
+<br>
+<br>
+Nest within another Album:
+<p>
+<form name=move_to_album_form>
+<input type=hidden name="index" value="<?=$index?>">
+<select name="newAlbum">
+<?
+printAlbumOptionList(0,1)  
+?>
+</select>
+<br>
+<br>
+<input type=submit value="Move to Album!">
+<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+</form>
 <?
 	}
 } else {
