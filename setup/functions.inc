@@ -272,10 +272,13 @@ function check_safe_mode()
 {
 	$fail = array();
 	$success = array();
-	if (ini_get("safe_mode")) {
-		$fail["fail-safe-mode"]++;
-	} else {
+	$safe_mode = ini_get("safe_mode");
+	if (empty($safe_mode) ||
+	    !strcasecmp($safe_mode, "off") ||
+	    !strcasecmp($safe_mode, "false")) {
 		$success[] = "safe mode is off";
+	} else {
+		$fail["fail-safe-mode"]++;
 	}
 	return array($success, $fail);
 }
