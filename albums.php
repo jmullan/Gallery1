@@ -257,7 +257,7 @@ for ($i = $start; $i <= $end; $i++) {
   </td>
   <!-- End Image Cell -->
   <!-- Begin Text Cell -->
-  <td align=<?php echo $gallery->align ?> valign=top>
+  <td align=<?php echo $gallery->alignment ?> valign=top>
   <span class="title">
   <a href=<?php echo $albumURL ?>>
   <?php _("title") ?>
