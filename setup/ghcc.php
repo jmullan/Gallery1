@@ -23,6 +23,14 @@
  */
 ?>
 <?php
+/* load necessary functions */
+if (stristr (__FILE__, '/var/lib/gallery/setup')) {
+	/* Gallery runs on a Debian System */
+	require ('/usr/share/gallery/util.php');
+} else {
+	require (dirname(dirname(__FILE__)) . '/util.php');
+}
+
 /*
 ** When we are in Windows we need a check if we secured.
 ** We dont check when not in Windows, as we assume the permissions are set correct.		
