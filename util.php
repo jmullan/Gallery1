@@ -171,7 +171,7 @@ function popup($url, $url_is_complete=0, $height=500,$width=500) {
 }
 
 function popup_js($url, $window, $attrs) {
-	if (ereg("^http|^ftp", $url)) {
+	if (ereg("^http|^ftp|&amp;", $url)) {
 		$url = "'$url'";
 	}
 	return "nw=window.open($url,'$window','$attrs');nw.opener=self;return false;";
