@@ -76,7 +76,7 @@ if (!strcmp($submit, "Backup"))
 				}
 			}
 	}
-	if (strlen($error_text == 0))
+	if (strlen($error_text) == 0)
 	{
 		backup();
 		exit;
@@ -117,15 +117,15 @@ if (!isset($zip_path)) { $zip_path="/usr/bin/zip";}
 <table>
 
 <tr> <td>Backup Method:</td> <td><input type="radio" name="backup_method" value="tgz" align="middle" <?php ($backup_method == "tgz") ? print 'checked' : '' ?> >tar/gzip</td> </tr>
-<tr> <td></td> <td><input type="radio" name="backup_method" value="zip" align="middle" <?php $backup_method =="zip" ? print 'checked' : '' ?> >Zip</td> </tr>
+<tr> <td></td> <td><input type="radio" name="backup_method" value="zip" align="middle" <?php $backup_method =="zip" ? print 'checked' : '' ?> >zip</td> </tr>
 <tr><td></td> </tr>
 <tr> <td>Files to backup:</td> <td><input type="radio" name="target_files" value="all" align="middle" <?php $target_files =="all" ? print 'checked' : '' ?> >All files</td> </tr>
 <tr> <td></td> <td><input type="radio" name="target_files" value="dat" align="middle" <?php $target_files =="dat" ? print 'checked' : '' ?> >Data files only</td> </tr>
-<tr> <td>Zip path</td> <td><input name="zip_path" value="<?php echo $zip_path ?>" size=30></td> </tr>
-<tr> <td>Tar path</td> <td><input name="tar_path" value="<?php echo $tar_path ?>" size=30></td> </tr>
-<tr> <td>Gzip path</td> <td><input name="gzip_path" value="<?php echo $gzip_path ?>" size=30></td> </tr>
-<tr> <td>Find path</td> <td><input name="find_path" value="<?php echo $find_path ?>" size=30></td> </tr>
-<tr> <td>Xargs path</td> <td><input name="xargs_path" value="<?php echo $xargs_path ?>" size=30></td> </tr>
+<tr> <td>zip path</td> <td><input name="zip_path" value="<?php echo $zip_path ?>" size=30></td> </tr>
+<tr> <td>tar path</td> <td><input name="tar_path" value="<?php echo $tar_path ?>" size=30></td> </tr>
+<tr> <td>gzip path</td> <td><input name="gzip_path" value="<?php echo $gzip_path ?>" size=30></td> </tr>
+<tr> <td>find path</td> <td><input name="find_path" value="<?php echo $find_path ?>" size=30></td> </tr>
+<tr> <td>xargs path</td> <td><input name="xargs_path" value="<?php echo $xargs_path ?>" size=30></td> </tr>
 </table>
 </table>
 <p>
@@ -140,10 +140,10 @@ if (!isset($zip_path)) { $zip_path="/usr/bin/zip";}
 <ol>
 <li> On Linux/Unix systems, tar/gzip is recommended.
 <li> On windows system, choose zip backup, and ensure the path for the zip.exe is correct.
-<li> Zip file backup requires enough space in the temporary directory to create a zip file before downloading.
+<li> Zip file backup requires enough space in the temporary directory to create a zip file of entire backup before downloading.
 <li> Data files backup will <b>not</b> backup your images, and is recommended before upgrade.
-<li> If you choose a tar/gzip backup of data files only, you need to have correct paths for <b>xargs</b> and <b>find</b>, otherwise these are not used.
-<li> This will take a while, please be patient.
+<li> If you choose a tar/gzip backup of data files only, you need to have correct paths for <b>xargs</b> and <b>find</b>, otherwise these are not needed.
+<li> This will take a while, please be patient. Hit "Backup" to begin, and when download is complete, hit "Cancel"
 </ol>
 </body>
 </html>
