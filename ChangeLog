@@ -1,3 +1,13 @@
+2001-10-29  Bharat Mediratta  <bharat@menalto.com> (1.2.2-cvs-b6)
+
+	* In NetPBM 9.19, they renamed "ppmtojpeg" to "pnmtojpeg".  Argh!  So,
+	  we need to be able to use whichever binary is handy.  Search for both
+	  of them and then add a special case constant to tell us which binary
+	  we located on the machine (so we know which one to use!).
+
+	  This requires a change in the config version which means that you'll
+	  be forced to re-run the config wizard.
+
 2001-10-26  Bharat Mediratta  <bharat@menalto.com> (1.2.2-cvs-b5)
 
 	* Adjusted capture_hours dropdown to include the 0 hour (12AM). Thanks
