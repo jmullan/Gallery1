@@ -21,15 +21,6 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-?>
-<?php
 
 /*
  * Protect against very old versions of 4.0 (like 4.0RC1) which
@@ -40,7 +31,7 @@ if (!isset($gallery)) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = '1.4.3-cvs-b149';
+$gallery->version = '1.4.3-cvs-b150';
 $gallery->config_version = 80;
 $gallery->album_version = 27;
 $gallery->user_version = 5;
