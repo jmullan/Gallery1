@@ -2633,7 +2633,7 @@ function emailDisclaimer() {
 	global $gallery;
 	$msg=sprintf(_("[Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message."),$gallery->app->photoAlbumURL).
 	     "  \r\n".
-	     sprinf(_("Report abuse to %s."),$gallery->app->adminEmail).
+	     sprintf(_("Report abuse to %s."),$gallery->app->adminEmail).
 	     "]\r\n";
 	$msg2=sprintf("[Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message.  \r\nReport abuse to %s.]\r\n", 
 		$gallery->app->photoAlbumURL, $gallery->app->adminEmail);
