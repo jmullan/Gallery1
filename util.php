@@ -2321,6 +2321,8 @@ function initLanguage() {
 					return $string ;
 				}
 			}
+			$gallery->language = 'en_US';
+			$gallery->charset  = $nls['default']['charset'];
 			return;
 		}
 	}
@@ -3038,7 +3040,6 @@ function doctype() {
 	echo "\n\n";
 }
 
-
 function common_header() {
 
 // Do some meta tags
@@ -3048,7 +3049,6 @@ function common_header() {
 	echo getStyleSheetLink();
 }
 
-	
 function metatags() {
 	global $gallery;
 
