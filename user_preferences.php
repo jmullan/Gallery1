@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require_once('init.php'); ?>
+<? require($GALLERY_BASEDIR . "init.php"); ?>
 <?
 if (!$gallery->user->isLoggedIn()) {
 	exit;	
@@ -99,7 +99,7 @@ and digits.
 <form name=usermodify_form method=POST>
 <p>
 
-<? include("html/userData.inc"); ?>
+<? include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
 
 <input type=submit name="submit" value="Save">

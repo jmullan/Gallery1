@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require_once('init.php'); ?>
+<? require($GALLERY_BASEDIR . "init.php"); ?>
 <?
 // Hack check
 if (!$gallery->user->canDeleteFromAlbum($gallery->album)) {

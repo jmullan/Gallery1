@@ -19,7 +19,7 @@
  */
 ?>
 <?
-require_once('init.php');
+require($GALLERY_BASEDIR . "init.php");
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {

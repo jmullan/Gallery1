@@ -20,11 +20,11 @@
 ?>
 <?
 /* Load bootstrap code */
-require('version.php');
-if (file_exists('config.php')) {
-	require('config.php');
+if (file_exists($GALLERY_BASEDIR . "config.php")) {
+	require($GALLERY_BASEDIR . "config.php");
 }
-require('util.php');
+require($GALLERY_BASEDIR . "version.php");
+require($GALLERY_BASEDIR . "util.php");
 
 /* 
  * Turn off magic quotes runtime as they interfere with saving and
@@ -36,15 +36,15 @@ set_magic_quotes_runtime(0);
 gallerySanityCheck();
 
 /* Load classes and session information */
-require('classes/Album.php');
-require('classes/Image.php');
-require('classes/AlbumItem.php');
-require('classes/AlbumDB.php');
-require('classes/User.php');
-require('classes/EverybodyUser.php');
-require('classes/NobodyUser.php');
-require('classes/UserDB.php');
-require('session.php');
+require($GALLERY_BASEDIR . "classes/Album.php");
+require($GALLERY_BASEDIR . "classes/Image.php");
+require($GALLERY_BASEDIR . "classes/AlbumItem.php");
+require($GALLERY_BASEDIR . "classes/AlbumDB.php");
+require($GALLERY_BASEDIR . "classes/User.php");
+require($GALLERY_BASEDIR . "classes/EverybodyUser.php");
+require($GALLERY_BASEDIR . "classes/NobodyUser.php");
+require($GALLERY_BASEDIR . "classes/UserDB.php");
+require($GALLERY_BASEDIR . "session.php");
 
 /* Load our user database (and user object) */
 $gallery->userDB = new UserDB;

@@ -1,4 +1,4 @@
-<? require("errors/configure_instructions.php") ?>
+<? require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
 <html>
 <head>
   <title>Gallery is misconfigured</title>

@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require_once('init.php'); ?>
+<? require($GALLERY_BASEDIR . "init.php"); ?>
 <?
 if (!strcmp($cmd, "remake-thumbnail")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
@@ -64,7 +64,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	}
 } else if (!strcmp($cmd, "logout")) {
 	$gallery->session->username = "";
-	header("Location: $return");	
+	header("Location: $return");
 } else if (!strcmp($cmd, "hide")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$gallery->album->hidePhoto($index);
@@ -110,7 +110,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		header("Location: albums.php");
 	}
 } else if (!empty($return)) {
-	// No command; Can be used to set a session variable and return..
+	// No command; Can be used to set a session variable
 	header("Location: $return");
 }
 ?>

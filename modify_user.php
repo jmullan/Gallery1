@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require_once('init.php'); ?>
+<? require($GALLERY_BASEDIR . "init.php"); ?>
 <?
 if (!$gallery->user->isAdmin()) {
 	exit;	
@@ -99,7 +99,7 @@ You can change any information about the user using this form.
 
 <p>
 
-<? include("html/userData.inc"); ?>
+<? include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
 
 
