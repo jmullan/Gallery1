@@ -1,3 +1,20 @@
+2002-03-07  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b21
+
+	* Fixed a very minor bug in add_photos that would cause the "number of
+	  boxes" dropdown not to work if file_uploads is disabled.
+
+	* Work around a bug in PHP 4.2.0-dev where session_is_registered()
+	  apparently does not work as advertised.  This fixes a bug where folks
+	  are unable to log on (but only in PHP 4.2.0-dev as far as I can
+	  tell.)
+
+	* Made Album's load method more robust.  Now it will check the object
+	  that it deserialized to make sure that it's an instance of the Album
+	  class.  If it's not, then we'll go immediately to the backup file.
+	  Before we used to only go to the backup file if the album.dat file
+	  was missing or empty.  So now it will work if the file exists, but is
+	  corrupted.
+
 2002-03-04  Chris Smith  <chris@jacko.com> 1.2.6-cvs-b20
 
 	* "Edit Caption", "Edit <Field>" and "Add Comment" popup
