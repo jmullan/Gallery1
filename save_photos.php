@@ -72,7 +72,7 @@ while (sizeof($userfile)) {
 	$tag = strtolower($tag);
 
 	if (!strcmp($tag, "zip")) {
-		if (!$app->feature["zip_support"]) {
+		if (!$app->feature["zip"]) {
 			echo "Skipping $name (ZIP support not enabled)<br>";
 			$msgcount++;
 			continue;
