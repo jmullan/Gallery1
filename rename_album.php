@@ -18,7 +18,13 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require('style.php'); ?>
+
+<html>
+<head>
+  <title>Rename Album</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
 
 <center>
 
@@ -45,10 +51,17 @@ the following characters:  <br><center><b>\ / * ? " ' &amp; &lt; &gt; | </b>or<b
 Those characters will be ignored in your new album name.
 
 <br>
-<form>
+<form name="theform">
 <input type=text name="newName" value=<?=$albumName?>>
 <input type=hidden name="oldName" value=<?=$albumName?>>
 <p>
 <input type=submit value="Rename">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>
 </form>
+
+<script language="javascript1.2">
+<!--   
+// position cursor in top form field
+document.theform.newName.focus();
+//-->
+</script>

@@ -26,13 +26,19 @@ if ($save) {
 	return;
 }
 
-require('style.php');
 ?>
+
+<html>
+<head>
+  <title>Edit <?= $field ?></title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
 
 <center>
 Edit the <?= $field ?> and click <b>Save</b> when you're done.
 
-<form action=edit_field.php method=POST>
+<form name="theform" action=edit_field.php method=POST>
 <input type=hidden name="save" value=1>
 <input type=hidden name="field" value="<?= $field ?>">
 <textarea name="data" rows=5 cols=40>
@@ -42,3 +48,13 @@ Edit the <?= $field ?> and click <b>Save</b> when you're done.
 <input type=submit name="submit" value="Save">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>
 </form>
+
+<script language="javascript1.2">
+<!--   
+// position cursor in top form field
+document.theform.field.focus();
+//-->
+</script>
+
+</body>
+</html>

@@ -20,7 +20,14 @@
 ?>
 <?
 if (!strcmp($cmd, "remake-thumbnail")) {
-	require('style.php');
+?>
+<html>
+<head>
+  <title>Rebuilding Thumbnails</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
+<?
 	if ($albumName && isset($index)) {
 		if (!strcmp($index, "all")) {
 			$np = $album->numPhotos();

@@ -18,7 +18,13 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require('style.php'); ?>
+
+<html>
+<head>
+  <title>Move Album</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
 
 <?
 /* Read the album list */
@@ -36,7 +42,7 @@ if ($albumName && isset($index)) {
 
 <center>
 Select the new location of album <?=$album->fields["title"]?>:
-<form>
+<form name="theform">
 <input type=hidden name="index" value="<?=$index?>">
 <select name="newIndex">
 <?
@@ -66,3 +72,14 @@ if ($album->numPhotos(1)) {
 	error("no album / index specified");
 }
 ?>
+
+<script language="javascript1.2">
+<!--   
+// position cursor in top form field
+document.theform.newIndex.focus();
+//-->
+</script>
+
+</body>
+</html>
+

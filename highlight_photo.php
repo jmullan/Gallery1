@@ -18,7 +18,13 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require('style.php'); ?>
+
+<html>
+<head>
+  <title>Highlight Photo</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
 
 <?
 if ($albumName && isset($index)) {
@@ -32,7 +38,14 @@ if ($albumName && isset($index)) {
 
 <center>
 Do you want this photo to be the one that
-shows up on the album list?
+shows up on the <br>
+gallery page, representing this album?
+<br>
+<br>
+
+<?= $album->getThumbnailTag($index) ?>
+<br>
+<?= $album->getCaption($index) ?>
 <br>
 <form action=highlight_photo.php>
 <input type=hidden name=index value=<?= $index?>>
@@ -40,14 +53,13 @@ shows up on the album list?
 <input type=submit value="No" onclick='parent.close()'>
 </form>
 
-<p>
-<?= $album->getThumbnailTag($index) ?>
-<br>
-<?= $album->getCaption($index) ?>
-
 <?
 	}
 } else {
 	error("no album / index specified");
 }
 ?>
+
+</body>
+</html>
+

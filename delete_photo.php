@@ -25,13 +25,27 @@ if ($confirm && isset($index)) {
 	dismissAndReload();
 	return;
 }
+?>
 
-require('style.php');
+<html>
+<head>
+  <title>Delete Photo</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
+
+
+<?
 if ($album && isset($index)) {
 ?>
 
 <center>
 Do you really want to delete this photo?
+<br>
+<br>
+<?= $album->getThumbnailTag($index) ?>
+<br>
+<?= $album->getCaption($index) ?>
 <br>
 <form action=delete_photo.php>
 <input type=hidden name=index value=<?= $index?>>
@@ -40,13 +54,11 @@ Do you really want to delete this photo?
 </form>
 <br>
 
-<p>
-<?= $album->getThumbnailTag($index) ?>
-<br>
-<?= $album->getCaption($index) ?>
-
 <?
 } else {
 	error("no album / index specified");
 }
 ?>
+
+</body>
+</html>

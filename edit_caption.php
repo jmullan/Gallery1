@@ -26,26 +26,40 @@ if ($save) {
 	return;
 }
 ?>
+<html>
+<head>
+  <title>Edit Caption</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
 
-<? require('style.php'); ?>
-<!-- hi 2 -->
 <center>
 Enter a caption for this picture in the text
 box below.
+<br><br>
+<?= $album->getThumbnailTag($index) ?>
 
-<form action=edit_caption.php method=POST>
+<form name="theform" action=edit_caption.php method=POST>
 <input type=hidden name="save" value=1>
 <input type=hidden name="index" value="<?= $index ?>">
 <textarea name="data" rows=5 cols=40>
 <?= $album->getCaption($index) ?>
 </textarea>
 
-<br>
+<br><br>
 
 <input type=submit name="submit" value="Save">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>
 
-<p>
-<?= $album->getThumbnailTag($index) ?>
 
 </form>
+
+<script language="javascript1.2">
+<!--   
+// position cursor in top form field
+document.theform.data.focus();
+//-->
+</script>
+
+</body>
+</html>

@@ -20,6 +20,7 @@
 ?>
 <?
 if ($save) {
+	$album->fields["title"] = $title;
 	$album->fields["bgcolor"] = $bgcolor;
 	$album->fields["textcolor"] = $textcolor;
 	$album->fields["linkcolor"] = $linkcolor;
@@ -34,16 +35,25 @@ if ($save) {
 	reload();
 }
 
-require('style.php');
 ?>
+<html>
+<head>
+  <title>Album Properties</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
 
 <center>
 
 You can modify the appearance of your photo album here.
 
-<form action=edit_appearance.php method=POST>
+<form name="theform" action=edit_appearance.php method=POST>
 <input type=hidden name="save" value=1>
 <table>
+<tr>
+<td>Album Title</td>
+<td><input type=text name="title" value=<?=$album->fields["title"]?>></td>
+</tr>
 <tr>
 <td>Background Color</td>
 <td><input type=text name="bgcolor" value=<?=$album->fields["bgcolor"]?>></td>
@@ -82,16 +92,27 @@ You can modify the appearance of your photo album here.
 <td><input type=text name="bordercolor" value=<?=$album->fields["bordercolor"]?>></td>
 </tr>
 <tr>
-<td>Show <i>Return to</i> link at the bottom</td>
+<td>Show <i>Return to</i> link</td>
 <td><select name="returnto"><?= selectOptions($album, "returnto", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 </table>
 
-<p>
+<br><br>
 
 <input type=submit name="submit" value="Apply">
 <input type=reset value="Undo">
 <input type=submit name="submit" value="Close" onclick='parent.close()'>
 
 </form>
+
+<script language="javascript1.2">
+<!--   
+// position cursor in top form field
+document.theform.title.focus();
+//-->
+</script>
+
+</body>
+</html>
+

@@ -18,7 +18,13 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require('style.php'); ?>
+
+<html>
+<head>
+  <title>Rotate Photo</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
 
 <?
 if ($albumName && isset($index)) {
@@ -49,3 +55,7 @@ How do you want to rotate this photo?
 	error("no album / index specified");
 }
 ?>
+
+</body>
+</html>
+

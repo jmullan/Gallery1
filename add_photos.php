@@ -19,13 +19,17 @@
  */
 ?>
 <?
-require('style.php');
 
 if (!$boxes) {
 	$boxes = 5;
 }
 	
 ?>
+
+<html>
+<head>
+  <title>Add Photos</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
 
 <script language="Javascript">
 <!--
@@ -35,22 +39,23 @@ if (!$boxes) {
 	}
 // -->
 </script>
+</head>
+<body>
 
-
-<b>Add Photos</b>
+<span class="popuphead">Add Photos</span>
 <br>
-<font size=+0>
+<span class="popup">
 Click the <b>Browse</b> button to locate a photo to upload.
+<span class="admin">
 <? if ($app->feature["zip_support"]) { ?>
 <br>
-Tip:  Upload a ZIP file full of photos and movies!
+&nbsp;&nbsp;Tip:  Upload a ZIP file full of photos and movies!
 <? } ?>
 <br>
-(Supported file types: JPG, 
-GIF, 
-PNG, AVI, MPG)
+&nbsp;&nbsp;(Supported file types: JPG, GIF, PNG, AVI, MPG)
+</span>
 
-<p>
+<br><br>
 <form enctype="multipart/form-data" action="add_photos.php" method=post name="count_form">
 1. Select the number of files you want to upload:
 <select name="boxes" onChange='reloadPage()'>
@@ -72,7 +77,7 @@ PNG, AVI, MPG)
 <? for ($i = 0; $i < $boxes;  $i++) { ?>
 <br> <input name="userfile[]" type="file" size=50>
 <? } ?>
-<p>
+<br><br>
 <center>
 <input type="submit" value="Upload Now">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>
@@ -82,11 +87,13 @@ PNG, AVI, MPG)
 <form enctype="multipart/form-data" action="save_photos.php" method=post name="uploadurl_form">
 Or, upload all the images from this URL:
 <input name="url">
-<p>
+<br><br>
 <center>
 <input type="submit" value="Submit URL">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>
 </center>
 </form>
-</font>
+</span>
 
+</body>
+</html>

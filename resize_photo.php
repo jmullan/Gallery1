@@ -18,7 +18,12 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require('style.php'); ?>
+<html>
+<head>
+  <title>Resize Photo</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
 
 <?
 $all = !strcmp($index, "all");
@@ -67,7 +72,7 @@ What is the target size for <?= $all ? "all the photos in this album" : "this ph
 <input type=submit value="Cancel" onclick='parent.close()'>
 </form>
 
-<p>
+<br><br>
 <?
 if (!$all) {
 	echo $album->getThumbnailTag($index);
@@ -81,7 +86,8 @@ if (!$all) {
 }
 ?>
 
-
+</body>
+</html>
 
 
 

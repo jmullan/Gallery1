@@ -18,7 +18,12 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require('style.php'); ?>
+<html>
+<head>
+  <title>Move Photo</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
 
 <?
 if ($albumName && isset($index)) {
@@ -34,7 +39,7 @@ if ($albumName && isset($index)) {
 <center>
 <font size=+0>
 Select the new location of photo #<?=$index+1?>:
-<form>
+<form name="theform">
 <input type=hidden name="index" value="<?=$index?>">
 <select name="newIndex">
 <?
@@ -62,3 +67,13 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 }
 ?>
 </font>
+
+<script language="javascript1.2">
+<!--   
+// position cursor in top form field
+document.theform.newIndex.focus();
+//-->
+</script>
+</body>
+</html>
+

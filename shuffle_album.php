@@ -18,7 +18,12 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require('style.php'); ?>
+<html>
+<head>
+  <title>Shuffle Album</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
 
 <?
 if ($albumName) {
@@ -50,3 +55,6 @@ Do you really want to shuffle all the photos in this album?  This can't be undon
 	error("no album specified");
 }
 ?>
+
+</body>
+</html>

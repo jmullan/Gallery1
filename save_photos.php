@@ -18,7 +18,12 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require('style.php') ?>
+<html>
+<head>
+  <title>Processing and Saving Photos</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
 
 <center>
 <?
@@ -131,3 +136,6 @@ if (!$msgcount) {
 <?
 }
 ?>
+
+</body>
+</html>

@@ -25,12 +25,20 @@ if ($confirm) {
 	return;
 }
 
-require('style.php');
 
 if ($album) {
 ?>
 
+<html>
+<head>
+  <title>Delete Album</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
+
 <center>
+<span class="popuphead">Delete Album</span>
+<br><br>
 Do you really want to delete this album?
 <br>
 <b><?= $album->fields["title"] ?></b>
@@ -49,3 +57,5 @@ Do you really want to delete this album?
 }
 ?>
 
+</body>
+</html>
