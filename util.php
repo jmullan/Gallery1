@@ -2892,4 +2892,25 @@ function testRequirement($test) {
     return false;
 }
 
+// uses makeGalleryURL
+function gallery_validation_link($file, $args=array()) {
+	$args['PHPSESSID']=session_id();
+	$link='<a href="http://validator.w3.org/check?uri='.
+		urlencode(eregi_replace("&amp;", "&",
+					makeGalleryURL($file, $args))) .
+		'"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
+	return $link;
+
+}
+
+// uses makeAlbumURL
+function album_validation_link($album, $photo='', $args=array()) {
+	$args['PHPSESSID']=session_id();
+	$link='<a href="http://validator.w3.org/check?uri='.
+		urlencode(eregi_replace("&amp;", "&", 
+					makeAlbumURL($album, $photo, $args))).
+		'"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
+	return $link;
+}
+
 ?>
