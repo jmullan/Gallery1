@@ -61,7 +61,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	gallery_syslog("Logout by ". $gallery->session->username ." from ". $HTTP_SERVER_VARS['REMOTE_ADDR']);
 	$gallery->session->username = "";
 	$gallery->session->language = "";
-	if (!ereg("^http", $return)) {
+	if (!ereg("^http|^{$gallery->app->photoAlbumUrl}", $return)) {
 		$return = makeGalleryHeaderUrl($return);
 	}
 	header("Location: $return");
