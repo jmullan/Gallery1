@@ -570,3 +570,60 @@ function getNextPhoto($idx) {
 
 	return $idx;
 }
+
+function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
+	global $user, $album, $albumDB, $index;
+	
+	$mynumalbums = $albumDB->numAlbums($user);
+
+	// create a ROOT option for the user to move the 
+	// album to the main display
+	echo "<option value=0 selected> << Select Album >> </option>";
+	if ($user->canCreateAlbums() && $rootDisplay) {
+		echo "<option value=ROOT>Top Level</option>";
+	}
+	$rootAlbumName = $album->getRootAlbumName();	
+	// display all albums that the user can move album to
+	for ($i=1; $i<=$mynumalbums; $i++) {
+		$myAlbum=$albumDB->getAlbum($user, $i);
+		if ($user->canWriteToAlbum($myAlbum) && 
+			($rootAlbumName != $myAlbum->fields[name] || !$moveRootAlbum) ) {
+			$val = $myAlbum->fields[title];
+			if ($myAlbum != $album) {
+				echo "<option value=$val>-- $val</option>";
+			}
+			printNestedVals(1, $myAlbum->fields[name], $val, $movePhoto);
+		}
+	}
+}
+
+
+function printNestedVals($level, $albumName, $val, $movePhoto) {
+	global $user, $album, $albumDB, $index;
+	
+	$myAlbum = $albumDB->getAlbumbyName($albumName);
+	
+	$numPhotos = $myAlbum->numPhotos(1);
+
+	for ($i=1; $i <= $numPhotos; $i++) {
+		$myName = $myAlbum->isAlbumName($i);
+		if ($myName) {
+			$nestedAlbum = $albumDB->getAlbumbyName($myName);
+			if ($user->canWriteToAlbum($nestedAlbum)) {
+				#$val2 = $val . " -> " . $nestedAlbum->fields[title];
+				$val2 = "";
+				for ($j=0; $j<=$level; $j++) {
+					$val2 = $val2 . "-- ";
+				}
+				$val2 = $val2 . $nestedAlbum->fields[title];
+				if (($nestedAlbum != $album) && 
+				   ($nestedAlbum != $album->getNestedAlbum($index))) {
+					echo "<option value=$myName> $val2</option>";
+					printNestedVals($level + 1, $myName, $val2, $movePhoto);
+				} elseif ($movePhoto) {
+					printNestedVals( $level + 1, $myName, $val2, $movePhoto);
+				}
+			}
+		}
+	}
+}
