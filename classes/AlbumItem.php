@@ -102,7 +102,7 @@ class AlbumItem {
 		$type = $this->image->type;
 
 		/* GD doesn't do rotation!?!? */
-		$cmd = getAnytopnmCmd("$dir/$name.$type", 
+		$cmd = toPnmCmd("$dir/$name.$type", 
 			"| $app->pnmDir/pnmrotate $direction".
 			"| $app->pnmDir/ppmtojpeg > $dir/tmp.jpg");
 
