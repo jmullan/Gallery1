@@ -203,9 +203,8 @@ Move a range of photos to a new album:<br>
 <tr>
 <td align=center>
 <select name="startPhoto">
-<option value=1 selected> 1</option>
 <?
-for ($i = 2; $i <= $numPhotos; $i++) {
+for ($i = 1; $i <= $numPhotos; $i++) {
         $sel = "";
         if ($i == $index) {
                 $sel = "selected";
@@ -217,9 +216,8 @@ for ($i = 2; $i <= $numPhotos; $i++) {
 </td>
 <td align=center>
 <select name="endPhoto">
-<option value=1 selected> 1</option>
 <?
-for ($i = 2; $i <= $numPhotos; $i++) {
+for ($i = 1; $i <= $numPhotos; $i++) {
         $sel = "";
         if ($i == $index) {
                 $sel = "selected";
