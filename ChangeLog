@@ -1,3 +1,10 @@
+2004-04-09  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b25
+
+        * Fix: JavaScript error on edit_watermark.php
+          "data" was not a valid form member.  We are now defaulting to
+          the cancel button for focus to prevent accidental application
+          of watermarks.
+
 2004-04-08  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b24
 
 	* Fix: Prevent two PHP5 warnings (Master bug: 930744)

@@ -86,7 +86,7 @@ include (dirname(__FILE__) .'/layout/watermarkform.inc');
 <script language="javascript1.2">
 <!--   
 // position cursor in top form field
-document.theform.data.focus();
+document.theform.cancel.focus();
 //-->
 </script>
 
