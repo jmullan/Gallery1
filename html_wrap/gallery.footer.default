@@ -17,22 +17,24 @@
 // $Id$
 ?>
 
-      <table width="100%" cellspacing="0" cellpadding="0" class="modfooter">
+      <table width="100%" cellspacing="0" cellpadding="0" class="modfooter" border=1>
         <tr>
           <td valign=top>
             <!-- The Gallery code version number, linked to the Gallery home page -->
             <span class="fineprint">
 	    <?php print poweredBy() ?>
             </span>
-
 <?php 
 global $GALLERY_EMBEDDED_INSIDE;
        	if (! isset($GALLERY_EMBEDDED_INSIDE)) {
 	       	print gallery_validation_link("albums.php");
        	} ?>
-
           </td>
-<?php if ($gallery->user->isAdmin() ) { ?>
+<?php if (!isset($gallery->app->rssEnabled) || $gallery->app->rssEnabled == "yes") { ?>
+          <td style="text-align:right"><a href="<?php echo makeGalleryUrl("rss.php"); ?>" style="background-color:#f60; border:2px outset #ffc8a4; color:white; text-decoration:none; font:bold 10px sans-serif; padding:0px 3px 0px 5px; letter-spacing:1;">RSS</a></td> 
+<?php 
+} // if rssEnabled
+if ($gallery->user->isAdmin() ) { ?>
 
           <!-- donation block -->
 

@@ -895,6 +895,14 @@ $constants = array_merge($constants,
 		"title" => _("RSS Publisher"),
 		"desc" => _("Options for the Gallery RSS Publisher"),
 	),
+	"rssEnabled" => array(
+		"prompt" => _("Enable RSS Generator"),
+		"desc" => _("Enable or Disable the Gallery RSS Generator"),
+		"choices" => array(
+			"yes" => _("Yes"),
+			"no" => _("No")),
+		"value" => "yes",
+	),
 	"rssMode" => array(
 		"prompt" => _("RSS Content"),
 		"desc" => _("Specifies which information is to be included in your RSS feed."),
@@ -918,6 +926,34 @@ $constants = array_merge($constants,
 		"choices" => array(
 			"yes" => _("Display Visible Albums Only"),
 			"no" => _("Display Hidden Albums")),
+		"value" => "yes",
+	),
+	"rssDCDate" => array(
+		"prompt" => _("Use dc:date"),
+		"desc" => _("(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try
+enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this off will
+cause your feed to not validate as RSS 2.0."),
+		"choices" => array(
+			"yes" => _("Yes"),
+			"no" => _("No")),
+		"value" => "no",
+	),
+	"rssBigPhoto" => array(
+		"prompt" => _("Use Big Photo"),
+		"desc" => _("(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn
+this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."),
+		"choices" => array(
+			"yes" => _("Yes"),
+			"no" => _("No")),
+		"value" => "no",
+	),
+	"rssPhotoTag" => array(
+		"prompt" => _("Use Photo Tag"),
+		"desc" => _("(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to
+be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."),
+		"choices" => array(
+			"yes" => _("Yes"),
+			"no" => _("No")),
 		"value" => "yes",
 	),
 	"group_rss_end" => array(

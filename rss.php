@@ -21,38 +21,22 @@
  */
 ?>
 <?php
-/* CONFIGURATION SECTION */
-
-$noPhotoTag = FALSE;
-
-# noDCDate
-#
-# Having both pubDate and dc:date elements for an item may cause it
-# to not validate.  If you absolutely MUST have strictly valid RSS, 
-# set this option to TRUE.  However, doing this may break some older
-# RSS readers that don't fully support RSS 2.0.
-
-$noDCDate = FALSE;
-
-# noBigPhotos
-#
-# The whole channel can have one highlight image, but it can be no
-# more than 144 pixels wide and 400 pixels tall.  Since most galleries
-# have thumbnails 150 pixels wide (for landscape photos), a small
-# amount of clipping may occur on some clients.  So most people won't
-# really even notice, we lie about the sizes if the thumbnail is too
-# big.
-#
-# If some clients complain that the channel thumbnail is garbled
-# in their news reader because of the bogus size, you can set this to
-# false to turn that feature off, but it will cause your RSS feed
-# to not validate.
-
-$noBigPhoto = TRUE;
-
-/* END OF CONFIGURATION SECTION */
-
 require(dirname(__FILE__) . '/init.php');
+
+// Set defaults, if RSS has not been setup via config wizard
+if (!isset($gallery->app->rssEnabled)) {
+	$gallery->app->rssEnabled = "yes";
+	$gallery->app->rssMode = "basic";
+	$gallery->app->rssHighlight = "";
+	$gallery->app->rssVisibleOnly = "yes";
+	$gallery->app->rssDCDate = "no";
+	$gallery->app->rssBigPhoto = "yes";
+	$gallery->app->rssPhotoTag = "yes";
+}
+
+if ($gallery->app->rssEnabled == "no") {
+	header("Location: " . makeAlbumHeaderUrl());
+}
 
 $gallery->session->offlineAlbums["albums.php"] = true;
 
@@ -162,7 +146,7 @@ foreach ($albumDB->albumList as $album) {
 	$unixDate = $albumInfo["!date"];
 	if (IsSet($unixDate)) {
 		$albumInfo["pubDate"] = date("r", $unixDate);
-		if (!$noDCDate) {
+		if ($gallery->app->rssDCDate == "yes") {
 			$albumInfo["dc:date"] = makeDCDate($unixDate);
 		}
 	}
@@ -177,7 +161,7 @@ foreach ($albumDB->albumList as $album) {
 
 	// PHEED AND PHOTO TAGS
 
-	if (!$noPhotoTag) {
+	if ($gallery->app->rssPhotoTag == "yes") {
 		if (!$album->transient->photosloaded) {
 			$album->load($album->fields["name"], TRUE);
 		}
@@ -193,7 +177,7 @@ foreach ($albumDB->albumList as $album) {
 			$width = $highlight->thumbnail->width;
 			$height = $highlight->thumbnail->height;
 
-			if ($noBigPhoto) {
+			if ($gallery->app->rssBigPhoto == "no") {
 				if ($width > 144) {
 					$width = 144;
 				}
