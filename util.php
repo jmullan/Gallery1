@@ -2895,16 +2895,11 @@ function available_skins($description_only=false) {
 					$screenshot="";
 				}
 				if ($screenshot) {
-					$description .=
-						" (" .
-						popup_link(_("screenshot"), 
-								$screenshot, 1, false,
-								500, 800) .
-					       ")";	
+					$name = popup_link($name,
+							   $screenshot, 1, false,
+							   500, 800);
 				}
-				if ($description) {
-				       	$descriptions.="<dt>$name</dt><dd>$description</dd>";
-				}
+			       	$descriptions.="<dt>$name</dt><dd>$description</dd>";
 			}
 		}
 	} else {
