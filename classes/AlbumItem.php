@@ -106,11 +106,11 @@ class AlbumItem {
 
 		$name = $this->image->name;
 		$type = $this->image->type;
-		flip_image("$dir/$name.$type", "$dir/$name.$type", $direction);
+	 	rotate_image("$dir/$name.$type", "$dir/$name.$type", $direction);
 
 		if ($this->isResized()) {
 			list($w, $h) = $this->image->getDimensions();			
-			flip_image("$dir/$name.sized.$type", "$dir/$name.sized.$type", $direction);
+			rotate_image("$dir/$name.sized.$type", "$dir/$name.sized.$type", $direction);
 		}
 
 		/* Reset the thumbnail to the default before regenerating thumb */

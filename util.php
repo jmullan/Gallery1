@@ -204,7 +204,7 @@ function resize_image($src, $dest, $target) {
 	}
 }
 
-function flip_image($src, $dest, $target) {
+function rotate_image($src, $dest, $target) {
 	global $app;				
 	if (!strcmp($src,$dest)) {
 		$useTemp = true;
@@ -214,7 +214,7 @@ function flip_image($src, $dest, $target) {
 		$out = $dest;
 	}
 	$err = exec_wrapper(toPnmCmd($src) .
-		     "| $app->pnmDir/pnmflip -rotate$target".
+		     "| $app->pnmDir/pnmrotate $target".
 		     "| " . fromPnmCmd($out));
 
 	if (file_exists("$out") && filesize("$out") > 0) {
