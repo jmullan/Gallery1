@@ -228,7 +228,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 			return "Username must be at most 15 characters";
 		}
 
-		if (preg_match("/[^A-Za-z0-9]/", $username)) {
+		if (ereg("[^[:alnum:]]", $username)) {
 			return "Username must contain only letters or digits";
 		}
 

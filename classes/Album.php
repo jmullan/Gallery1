@@ -443,7 +443,7 @@ class Album {
 			// check to see if a file by that name already exists
 			if (file_exists("$dir/$name.$tag")) {
 				// append a 3 digit number to the end of the filename if it exists already
-				if (!preg_match("/_\d\d\d$/", $name)) {
+				if (!ereg("_[[:digit:]]{3}$", $name)) {
 					$name = $name . "_001";
 				}
 				// increment the 3 digits until we get a unique filename
