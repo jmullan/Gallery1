@@ -95,7 +95,7 @@ Album Properties
 </tr>
 <tr>
 <td>Album Title</td>
-<td><input type=text name="title" value="<?php echo $gallery->album->fields["title"]?>"></td>
+<td><input type=text name="title" value="<?php echo htmlentities($gallery->album->fields["title"])?>"></td>
 </tr>
 <tr>
 <td>Background Color</td>

@@ -1134,8 +1134,9 @@ function getExif($file) {
         $return = array();
         $path = $gallery->app->use_exif;
         list($return, $status) = exec_internal(fs_import_filename($path, 1) .
-						" " .
-						fs_import_filename($file, 1));
+						" \"" .
+						fs_import_filename($file, 1) .
+                                                "\"");
 
 	$myExif = array();
 	if ($status == 0) {
