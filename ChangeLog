@@ -1,9 +1,36 @@
-2000-07-05  Bharat Mediratta  <bharat@harmony.menalto.com>
+2000-09-17  Bharat Mediratta  <bharat@menalto.com>
+
+	* Added feedback to the user when resizing all thumbnails or all
+	  photos. 
+
+	* Lots of small changes regarding thumbnails not worth mentioning
+	  here. 
+
+	* Fixed a bug where resizing to original size was not working at all.
+
+	* Removed gif_support feature because now NetPBM is mandatory.
+
+	* resize now uses the netpbm library to do resize instead of
+	  GD. This rUleZ. [CHRIS]
+
+	* Made the border size a choice so that off could be an
+	  option. Also made the resize a choice, for the same reason [CHRIS]
+
+	* When loading the old values, it was looking at
+	  app->defaults[xxx] instead of app->default[xxx], so the defaults
+	  was always getting reset to the original settings.  [CHRIS]
+
+	* Fixed several bugs stemmming from the fact that we were not
+	  always correctly treating all thumbnails as JPGs.  This would
+	  mean that we'd sometimes leave cruft files lying around which
+	  would prevent deleting albums.
+
+2000-07-05  Bharat Mediratta  <bharat@menalto.com>
 
 	* Added new setup process using the 'setup' directory.  This
 	set of pages, although not yet very robust, will walk you through
 	the process of configuring Gallery for your local site.
 
-2000-07-04  Bharat Mediratta  <bharat@harmony.menalto.com>
+2000-07-04  Bharat Mediratta  <bharat@menalto.com>
 
 	* Updated README to reflect v1.0 feature list
