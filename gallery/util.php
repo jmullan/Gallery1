@@ -1710,6 +1710,7 @@ function mostRecentComment($album, $i)
 function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5", 
 	$col_1_head=null, $col_2_head=null) 
 {
+	global $GALLERY_BASEDIR;
 	foreach ($array as $value) 
 	{
 		if ((IsSet($max_value) && ($value > $max_value)) ||
@@ -1723,7 +1724,7 @@ function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",
 		// no results!
 		return null;
 	}
-	$string_to_return = "<TABLE $table_values>";
+	$string_to_return = "\n  <table $table_values>";
 	if ($col_1_head || $col_2_head)
 	{
 		$string_to_return.="<tr><td></td><td><span class=\"admin\">$col_1_head</span></td><td><span class=\"admin\">$col_2_head</span></td></tr>";
@@ -1740,14 +1741,14 @@ function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",
 	$counter = 0;
 	foreach ($array as $name => $value) {
 		$bar_width = $value * $pixels_per_value;
-		$string_to_return .= "<tr> <td>" .
-		       	(++$counter) .
-		      	"</td> <td>$name ($value)</td> <td>" .
-			"<IMG SRC=\"images/bar.gif\" BORDER=\"1\" " .
-			"WIDTH=\"$bar_width\" HEIGHT=\"10\" alt=\"BAR\">" .
-		       "</td></tr>";
+		$string_to_return .= "\n\t<tr>"
+			. "\n\t<td>(". ++$counter .")</td>"
+			. "\n\t<td>$name ($value)</td>"
+			. "\n\t<td><img src=\"". $GALLERY_BASEDIR . "images/bar.gif\" bodre=\"1\""
+			. " width=\"$bar_width\" height=\"10\" alt=\"BAR\"></td>"
+			. "\n\t</tr>";
 	}
-	$string_to_return .= "</TABLE>";
+	$string_to_return .= "\n  </table";
 	return($string_to_return);
 }
 
@@ -2557,9 +2558,11 @@ function emulate_gettext() {
 		$lines=file($filename);
 
 		foreach ($lines as $key => $value) {
+			/* We trim the String to get rid of cr/lf */
+			$value=trim($value);
 			if (stristr($value, "msgid") && ! stristr($lines[$key-1],"fuzzy")) {
-				$new_key=substr($value, 7,-2);
-				$translation[$new_key]=substr($lines[$key+1],8,-2);
+				$new_key=substr($value, 7,-1);
+				$translation[$new_key]=substr(trim($lines[$key+1]),8,-1);
 			}
 		}
 		// Substitute _() gettext function

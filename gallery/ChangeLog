@@ -1,3 +1,7 @@
+2003-11-28 Jens Tkotz <jens@peino.de> 1.4.2-phpBB2-cvs-j13
+
+	* Change: Synced against HEAD (contains the bugfix)
+
 2003-11-28 Jens Tkotz <jens@peino.de> 1.4.2-phpBB2-cvs-j12
 
 	* Change: Synced against HEAD
@@ -56,6 +60,19 @@
 	* SNew: Start phpBB2 branch (again)
 
 ****************************************************************************
+
+2003-11-28 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b42
+
+	* Bugfix: poll_results.php contained blank line in header 
+		  which causes warning when embedded.
+
+	* Bugfix: result bar image was not displayed when embedded,
+		  because $GALLERY_BASEDIR was not used.
+
+2003-11-28 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b41
+
+	* Bugfix: trim strings got from language files in emulate_gettext().
+		  This fixes non working multilanguage on nongettext systems.
 
 2003-11-28  Bharat Mediratta  <bharat@menalto.com> 1.4.2-cvs-b40
 
@@ -167,7 +184,6 @@
 	  Note: This also fixes a Bug where fs_win32.php was loaded when in win32.
 		This also fixes a Bug when PHP has no gettext and diagnostics were called.
 
->>>>>>> 1.758
 2003-11-17  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.2-cvs-b22
 
 	* Fix from Bharat to reduce time limit errors in large galleries.
