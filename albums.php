@@ -212,8 +212,8 @@ for ($i = $start; $i <= $end; $i++) {
       if (isset($highlightIndex)) {
 	  list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($highlightIndex, $scaleTo);
       } else {
-	  $iWidth = 0;
-	  $iHeight = 0;
+	  $iWidth = $gallery->app->highlight_size;
+	  $iHeight = 100;
       }
       $gallery->html_wrap['thumbWidth'] = $iWidth;
       $gallery->html_wrap['thumbHeight'] = $iHeight;

@@ -343,6 +343,12 @@ if ($numPhotos) {
 			$gallery->html_wrap['pixelImage'] = $imageDir . "/pixel_trans.gif";
 			$scaleTo = $gallery->album->fields["thumb_size"];
 			list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i, $scaleTo);
+			if ($iWidth == 0) {
+			    $iWidth = $gallery->album->fields["thumb_size"];
+			}
+			if ($iHeight == 0) {
+			    $iHeight = 100;
+			}
 			$gallery->html_wrap['thumbWidth'] = $iWidth;
 			$gallery->html_wrap['thumbHeight'] = $iHeight;
 
