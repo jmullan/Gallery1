@@ -556,7 +556,7 @@ function makeGalleryUrl($albumName="", $photoId="", $extra="") {
 				$url .= "&id=$photoId";
 			}
 			$url .= $inc;
-			$url .= $extra;
+			$url .= "&" . $extra;
 			break;
 
 		default:
