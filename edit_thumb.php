@@ -19,6 +19,15 @@
  */
 ?>
 <?
+// Hack prevention.
+if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
+		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
+		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
+	print "Security violation\n";
+	exit;
+}
+?>
+<?
 require($GALLERY_BASEDIR . "init.php");
 
 // Hack check
