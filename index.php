@@ -73,8 +73,13 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option)) {
 		$GALLERY_EMBEDDED_INSIDE_TYPE = 'phpnuke';
 	}
 
-	if (!$include) {
+	if (empty($include) && empty($HTTP_GET_VARS['include'])) {
 		$include = "albums.php";
+	}
+	elseif (empty($include) && !empty($HTTP_GET_VARS['include'])) {
+		// Kludge for postnuke .75 - they're not extracting all GET
+		// variables any longer, which is good security, but broke us.
+		$include = $HTTP_GET_VARS['include'];
 	}
 
 	/*

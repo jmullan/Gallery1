@@ -878,8 +878,8 @@ if ($numPhotos) {
 				echo '<div class="fineprint" style="margin-top:3px">';
 				echo _("Changed: ") ." ". $myAlbum->getLastModificationDate();
  				echo "\n<br>";
-				$visibleItems=array_sum($myAlbum->numVisibleItems($gallery->user));
-				echo _("Contains: ") ." ". pluralize_n2(ngettext("1 item", "%d items", $visibleItems), $visibleItems) . '. ';
+				$visItems=array_sum($myAlbum->numVisibleItems($gallery->user));
+				echo _("Contains: ") ." ". pluralize_n2(ngettext("1 item", "%d items", $visItems), $visItems) . '. ';
 				// If comments indication for either albums or both
 				switch ($gallery->app->comments_indication) {
 				case "albums":
