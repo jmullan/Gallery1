@@ -223,17 +223,21 @@ $constants = array(
 	"photoAlbumURL" => array(
 		"prompt" => "Gallery URL",
 		"desc" => "The full URL to the Gallery web application.  Eg. " .
-			"<i>http://www.foo.com/gallery</i>",
+			"<i>http://www.foo.com/gallery</i>." ,
 		"value" => "http://" . getenv("SERVER_NAME") . $GALLERY_URL,
 		"no-trailing-slash" => 1,
+		"must-be-url" => 1,
 		"attrs" => array("size" => 50),
 	),
 	"albumDirURL" => array(
 		"prompt" => "Albums URL",
 		"desc" => "The full URL to your album directory (specified above) " .
-			"on your web server.  Eg. <i>http://www.foo.com/albums</i>",
+			"on your web server.  Eg. <i>http://www.foo.com/albums</i>" .
+			"<br><font color=blue><b>Note that the requirements for this " .
+			"value have changed since v1.1</b></font>",
 		"value" => "http://" . getenv("SERVER_NAME") . "/albums",
 		"no-trailing-slash" => 1,
+		"must-be-url" => 1,
 		"attrs" => array("size" => 50),
 	),
 	"mirrorSites" => array(
