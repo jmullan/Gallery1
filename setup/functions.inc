@@ -78,6 +78,8 @@ function getPath() {
 
     /* Add in a few relatively obvious locations */
     $path[] = "/usr/local/gallery/bin";
+    $path[] = "/usr/local/gallery/netpbm";
+    $path[] = "/usr/local/gallery/jhead";
     $path[] = "/usr/local/bin/netpbm";
     $path[] = "/usr/local/bin/jhead";
     $path[] = "/usr/local/netpbm";
