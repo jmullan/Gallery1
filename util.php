@@ -2435,7 +2435,7 @@ function initLanguage() {
 
 	$check=(in_array("gettext", get_loaded_extensions()) && 
 			function_exists('gettext'));
-	if (! $check) {
+	if ($check) {
 		$bindtextdomain=bindtextdomain("gallery", $GALLERY_BASEDIR."locale");
 		textdomain("gallery");
 	}  else {
