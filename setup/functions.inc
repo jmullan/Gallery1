@@ -56,7 +56,7 @@ function make_fields($key, $arr) {
 		$col2 = form_input($key, $arr);
 	}
 	$col3 = $arr["desc"];
-	$col4 = $arr["type"];
+	$col4 = isset($arr["type"]) ?  $arr["type"] : NULL;
 	return array($col1, $col2, $col3,$col4);
 }
 
