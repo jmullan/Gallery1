@@ -125,7 +125,7 @@ $checklist = array(
 		"desc" => _("Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files) and you may not be able to use <b>mod_rewrite</b> (see below)."),
 	     	"func" => "check_htaccess",
 		"fail-htaccess" => _("Apache is not obeying your <b>.htaccess</b> file.  Try entering the following into your web server's <b>httpd.conf</b> file:") ."<br><pre>" .
-			 "&lt;Directory $GALLERY_DIR" .
+			 "&lt;Directory " . GALLERY_BASE .
 			 "&gt;\n\tAllowOverride Options FileInfo\n" .
 			 "&lt;/Directory&gt;",
 		"optional" => 1
@@ -292,7 +292,7 @@ $constants =  array_merge(
 	"movieThumbnail" => array(
 		"prompt" => _("Thumbnail image"),
 		"desc" => sprintf(_('The filesystem path to the thumbnail image to show for movies. E.g. %s'), '<i>/home/foo/thumbnail.jpg</i>'),
-		"value" => $GALLERY_DIR . "/images/movie.thumb.jpg",
+		"value" => GALLERY_BASE . "/images/movie.thumb.jpg",
 		"type" => "text",
 		"attrs" => array("size" => 50)
 	),
