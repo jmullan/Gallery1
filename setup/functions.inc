@@ -1232,13 +1232,15 @@ function check_admins() {
 		$userDB = new Gallery_UserDB();
 
 		$admins=array();
-		foreach ($userDB->getUidList() as $uid) {
-			$tmpUser = $userDB->getUserByUid($uid, true);
+	       	if (function_exists($userDB->getUidList)) {
+		       	foreach ($userDB->getUidList() as $uid) {
+			       	$tmpUser = $userDB->getUserByUid($uid, true);
 
-			if ($tmpUser->isAdmin()) {
-				$admins[]=$tmpUser->getUsername();
-			}
-		}
+				if ($tmpUser->isAdmin()) {
+				       	$admins[]=$tmpUser->getUsername();
+			       	}
+		       	}
+	       	}
 	}
 
 	if (empty($admins)) {
