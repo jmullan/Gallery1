@@ -127,6 +127,7 @@ $index = getNextPhoto(0);
 $photo_count = 0;
 while ($numDisplayed < $numPhotos) { 
     $photo = $gallery->album->getPhoto($index);
+    $numDisplayed++;
 
     // Skip movies and nested albums
     if ($photo->isMovie() || $photo->isAlbumName) {
@@ -135,7 +136,6 @@ while ($numDisplayed < $numPhotos) {
     }
 
     $photo_count++;
-    $numDisplayed++;
 
     $photoURL = $gallery->album->getPhotoPath($index, $slide_full);
 

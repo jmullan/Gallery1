@@ -144,6 +144,7 @@ $index = getNextPhoto(0);
 $photo_count = 0;
 while ($numDisplayed < $numPhotos) { 
     $photo = $gallery->album->getPhoto($index);
+    $numDisplayed++;
 
     // Skip movies and nested albums
     if ($photo->isMovie() || $photo->isAlbumName) {
@@ -152,7 +153,6 @@ while ($numDisplayed < $numPhotos) {
     }
 
     $photo_count++;
-    $numDisplayed++;
 
     $image = $photo->image;
     if ($photo->image->resizedName) {
