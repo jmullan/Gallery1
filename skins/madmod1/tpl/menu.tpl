@@ -8,8 +8,8 @@
    // display all top level albums links 
       for ($i=1; $i<=$mynumalbums; $i++) { 
       $myAlbum = $albumDB->getAlbum($gallery->user, $i); 
-      $albumName = $myAlbum->fields[name]; 
-      $albumTitle = $myAlbum->fields[title]; 
+      $albumName = $myAlbum->fields['name']; 
+      $albumTitle = $myAlbum->fields['title']; 
 ?>
 <tr><td height="31" width="135" valign="middle" align="center" class="offnav2" onmouseover="this.className='onnav2';" onmouseout="this.className='offnav2';"><span class="menu">
 <?php
