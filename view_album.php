@@ -70,7 +70,10 @@ if (!strcmp($album->fields["border"], "off")) {
 }
 
 $imageCellWidth = floor(100 / $cols) . "%";
-$fullWidth = $cols * $album->fields["thumb_size"]; 
+$fullWidth = $cols * $album->fields["thumb_size"];
+
+// Account for cell spacing/padding
+$fullWidth += ($cols * 5); 
 
 $navigator["page"] = $page;
 $navigator["pageVar"] = "page";
