@@ -454,7 +454,7 @@ function _getStyleSheetLink($filename) {
 
         $sheetname = "css/$filename.css";
 
-	if ($gallery->app) {
+	if ($gallery->app && $gallery->app->photoAlbumURL) {
 		$base = $gallery->app->photoAlbumURL;
 	} else {
 		$base = ".";
