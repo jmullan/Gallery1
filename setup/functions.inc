@@ -256,8 +256,11 @@ function check_php()
 	global $MIN_PHP_MAJOR_VERSION;
 
 	$version = phpversion();
+        $version_ml = explode(".", $version);
 	$success = array();
 	$fail = array();
+	$warn = array();
+
 	if (floor($version) < floor($MIN_PHP_MAJOR_VERSION)) {
 		$fail["fail-too-old"] = 1;
 	} else if (!strcmp($version, "4.0.0")) {
@@ -266,30 +269,13 @@ function check_php()
 		$fail["fail-incompatible"] = 1;
 	} else if (!strncmp($version, "4.0.3", 5)) {
 		$fail["fail-incompatible"] = 1;
-	} else {
+        } elseif ($version_ml[0] == 4 && $version_ml[1] < 1) {
+		$warn["warn-too-old-ml"] = 1;
+        } else {
 		$success[] = sprintf(_("PHP v%s is OK"), phpversion());
 	}
 
-	return array($success, $fail);
-}
-
-function check_php4_1()
-{
-	global $MIN_PHP_MAJOR_VERSION;
-
-	$success = array();
-	$fail = array();
-
-        $version = explode(".", phpversion());
-        if ($version[0] < 4) {
-		$fail["fail-too-old"]= 1;
-        } elseif ($version[0] == 4 && $version[1] < 1) {
-		$fail["fail-too-old"] = 1;
-        } else{
-		$success[] = sprintf(_("PHP v%s is OK"), phpversion());
-	}
-
-	return array($success, $fail);
+	return array($success, $fail, $warn);
 }
 function check_mod_rewrite() 
 {

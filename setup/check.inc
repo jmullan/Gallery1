@@ -44,7 +44,7 @@ foreach ($checklist as $check) {
 			<td class="desc">
 <?php
 	$func = $check["func"];
-	list($success, $fail) = $func();
+	list($success, $fail, $warn) = $func();
 	foreach ($success as $key) {
 		echo "\t\t\t\t". '<p class="success">'. _("Success") . '</p>';
 		if (strcmp($key, "")) {
@@ -89,6 +89,13 @@ foreach ($checklist as $check) {
 		else if (is_string($val)) {
 			echo '<p>'. $val . '</p>';
 		}
+	}
+
+	if (isset($warn)) {
+		foreach ($warn as $key => $val) {
+        	        echo "\t\t\t\t". '<p class="warning">'. _("Warning") . '</p>';
+                	echo "\n\t\t\t\t<p>$check[$key]</p>";
+	        }
 	}
 ?>
 

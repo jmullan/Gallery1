@@ -46,18 +46,13 @@ $checklist = array(
 			"<i>$gallery->version</i>"),
 	     	"func" => "check_gallery_version"
 	),
-	"php4" => array(
-		"desc" => _("Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP4.0.0 uses a different file upload protocol, versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can."),
+	"php" => array(
+		"desc" => _("Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP4.0.0 uses a different file upload protocol, versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can. <p>") .
+			_("If you want to run the multi-language version of gallery, you need php 4.1.  Upgrade to at least PHP 4.1 if you can."),
 	     	"func" => "check_php",
 		"fail-too-old" => sprintf(_("You're running version %s.  You need to upgrade to PHP %s."), phpversion(), $MIN_PHP_MAJOR_VERSION),
-		"fail-incompatible" => sprintf(_("You're running version %s which has known bugs that cause Gallery to fail."),  phpversion())
-	),
-	"php4.1" => array(
-		"optional" => 1,
-		"desc" => _("Check to see if you are running PHP 4.1 or greater.  If you want to run the multi-language version of gallery, you need php 4.1.  Upgrade to at least PHP 4.1 if you can."),
-	     	"func" => "check_php4_1",
-		"fail-too-old" => sprintf(_("You're running version %s.  You need to upgrade to at least PHP 4.1.0 if you want to run the multilanguage version."),
-			phpversion())
+		"fail-incompatible" => sprintf(_("You're running version %s which has known bugs that cause Gallery to fail."),  phpversion()),
+		"warn-too-old-ml" => sprintf(_("You're running version %s.  You need to upgrade to at least PHP 4.1.0 if you want to run the multilanguage version.") ,phpversion())
 	),
 	"safe_mode" => array(
 		"desc" => _("Check to see if PHP is running in <b>Safe Mode</b>.  Safe mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when safe mode is enabled because it imposes too many restrictions."),
