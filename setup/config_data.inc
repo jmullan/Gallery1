@@ -835,7 +835,7 @@ $constants = array_merge($constants,
 			),
 	"comments_length" => array(
 			"prompt"	=> _("Maximum length of Comments"),
-			"desc"		=> _("Enter a suitable value for the maximum length of comments to prevent abuse."),
+			"desc"		=> _("Enter a suitable value for the maximum length of comments to prevent abuse. Gallery limits comments to no more than 1000 characters.  This value will be used if less than 1000."),
 			"type" 		=> "text",
 			"must-be-number" => 1,
 			"value"		=> 300

@@ -4,11 +4,11 @@
   <tr>
   <td width="100%">
   <span class="admin">
-  <?php echo _("From:") ?> <?php echo $comment->getName() ?> @ <?php echo removeTags($comment->getIPNumber())?> (<?php echo $comment->getDatePosted() ?>)
+  <?php echo _("From:") ?> <?php echo wordwrap($comment->getName(), 50, " ", 1) ?> @ <?php echo removeTags($comment->getIPNumber())?> (<?php echo $comment->getDatePosted() ?>)
   </span>
 </td>
 </tr><tr>
-<td width="100%" height="20" valign="top" class="albumdesc"><?php echo $comment->getCommentText() ?><td>
+<td width="100%" height="20" valign="top" class="albumdesc"><?php echo wordwrap($comment->getCommentText(), 100, " ", 1) ?><td>
 </tr>
 <?php
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
