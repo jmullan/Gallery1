@@ -61,7 +61,10 @@ Click the <b>Browse</b> button to locate a photo to upload.
 </span>
 
 <br><br>
-<form enctype="multipart/form-data" action="add_photos.php" method=post name="count_form">
+<?= makeFormIntro("add_photos.php",
+			array("name" => "count_form",
+				"enctype" => "multipart/form-data",
+				"method" => "POST")); ?>
 1. Select the number of files you want to upload:
 <select name="boxes" onChange='reloadPage()'>
 <? for ($i = 1; $i <= 10;  $i++) {
@@ -76,7 +79,10 @@ Click the <b>Browse</b> button to locate a photo to upload.
 <br>
 </form>
 
-<form enctype="multipart/form-data" action="save_photos.php" method=post name="upload_form">
+<?= makeFormIntro("save_photos.php",
+			array("name" => "upload_form",
+				"enctype" => "multipart/form-data",
+				"method" => "POST")); ?>
 2. Use the Browse button to find the photos on your computer
 <input type="hidden" name="max_file_size" value="10000000">
 <? for ($i = 0; $i < $boxes;  $i++) { ?>
@@ -91,7 +97,10 @@ Click the <b>Browse</b> button to locate a photo to upload.
 </center>
 </form>
 
-<form enctype="multipart/form-data" action="save_photos.php" method=post name="uploadurl_form">
+<?= makeFormIntro("save_photos.php",
+			array("name" => "uploadurl_form",
+				"enctype" => "multipart/form-data",
+				"method" => "POST")); ?>
 Or, upload any images found at this location.  The location
 can either be a URL or a directory on the server.
 <br>
