@@ -6,10 +6,10 @@
  */
 error_reporting(E_ALL & ~E_NOTICE);
 
-if (function_exists("import_request_variables")) {
-    /* emulate part of register_globals = on */
-    import_request_variables("gpc");
-}
+/* emulate part of register_globals = on */
+extract($HTTP_GET_VARS);
+extract($HTTP_POST_VARS);
+extract($HTTP_COOKIE_VARS);
 
 if (substr(PHP_OS, 0, 3) == 'WIN') {
 	include("../platform/fs_win32.php");
