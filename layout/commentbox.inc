@@ -17,6 +17,6 @@ if ($gallery->user->canWriteToAlbum($gallery->album)) {
 }
 ?>
 <tr>
-<td width=100%><img src="<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" width="1" height="6"></td>
+<td width="100%"><img src="<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" width="1" height="6"></td>
 </tr>
 </table>

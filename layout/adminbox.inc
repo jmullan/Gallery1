@@ -15,7 +15,7 @@ if (!isset($adminbox["commands"])) {
 	$adminbox["commands"] = "";
 }
 $imageDir = $gallery->app->photoAlbumURL."/images";
-$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\" alt=\"pixel_trans\">";
+$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\" alt=\"\">";
 
 ?>
 <table width="<?php echo $navigator["fullWidth"] . $navigator["widthUnits"] ?>" border="0" cellspacing="0" cellpadding="0">

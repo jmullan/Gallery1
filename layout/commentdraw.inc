@@ -8,13 +8,13 @@ if ($commentdraw["bordercolor"]) {
 }
 
 $imageDir = $gallery->app->photoAlbumURL."/images";
-$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">";
+$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\" alt=\"\">";
 
 ?>
   <tr>
-    <td width=15%><?php echo $pixelImage ?></td>
-    <td width=70% bgcolor="<?php echo $borderIn ?>"><?php echo $pixelImage ?></td>
-    <td width=15%><?php echo $pixelImage ?></td>
+    <td width="15%"><?php echo $pixelImage ?></td>
+    <td width="70%" bgcolor="<?php echo $borderIn ?>"><?php echo $pixelImage ?></td>
+    <td width="15%"><?php echo $pixelImage ?></td>
   </tr>
   <tr>
     <td><?php echo $pixelImage ?></td>

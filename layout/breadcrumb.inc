@@ -8,7 +8,7 @@ if ($breadcrumb["bordercolor"]) {
 	$borderIn = "#FFFFFF";
 }
 $imageDir = $gallery->app->photoAlbumURL."/images";
-$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">";
+$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\" alt=\"\">";
 
 ?>
 
@@ -36,14 +36,13 @@ if ($breadcrumb["top"]) {
 $i = 0;
 while (isset($breadcrumb["text"][$i])) {
 	if ($i > 0) {
-		//echo "<img src=\"$imageDir/nav_dot_left.gif\" width=8 height=11>";
-		echo "<img src=\"$imageDir/nav_home.gif\" width=13 height=11>";
+		echo "<img src=\"$imageDir/nav_home.gif\" width=13 height=11 alt=\"UP\">";
 	}
 	echo "&nbsp;".$breadcrumb["text"][$i]."&nbsp;";
 	$i++;
 }
 ?>
-      <img src="<?php echo $imageDir ?>/nav_home.gif" width="13" height="11">&nbsp;
+      <img src="<?php echo $imageDir ?>/nav_home.gif" width="13" height="11" alt="UP">&nbsp;
       </span>
     </td> 
                 

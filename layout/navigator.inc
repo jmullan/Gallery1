@@ -29,7 +29,7 @@ else {
 }
 
 $imageDir = $gallery->app->photoAlbumURL."/images";
-$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\" alt=\"pixel_trans\">";
+$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\" alt=\"\">";
 ?>
 
 <table width="<?php echo $navigator["fullWidth"] . $navigator["widthUnits"] ?>" border="0" cellspacing="0" cellpadding="0">
@@ -80,13 +80,13 @@ if ($begin != $end) {
 	for ($i = $begin; $i <= $end; $i++) {
 		if ($i == $current) {
 			$number = "<b>$i</b>";
-			$leftdot = "<img src=\"$imageDir/nav_dot_left.gif\" width=\"8\" height=\"11\">";
+			$leftdot = "<img src=\"$imageDir/nav_dot_left.gif\" width=\"8\" height=\"11\" alt=\"left\">";
 		} else {
 			$number = "<a href=\"".$url.$navigator['pageVar']."=$i\">$i</a>";
 			if (($i-1) == $navigator["page"]) {
-				$leftdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\">";
+				$leftdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\" alt=\"right\">";
 			} else {
-				$leftdot = "<img src=\"$imageDir/nav_dot.gif\" width=\"8\" height=\"11\">";
+				$leftdot = "<img src=\"$imageDir/nav_dot.gif\" width=\"8\" height=\"11\" alt=\"dot\">";
 			}
 		}
 	
@@ -95,9 +95,9 @@ if ($begin != $end) {
 	}
 	echo "</span>";
 	if ($end == $current) {
-		$rightdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\">";
+		$rightdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\" alt=\"\">";
 	} else {
-		$rightdot = "<img src=\"$imageDir/nav_dot.gif\" width=\"8\" height=\"11\">";
+		$rightdot = "<img src=\"$imageDir/nav_dot.gif\" width=\"8\" height=\"11\" alt=\"right\">";
 	}
 	echo "&nbsp;$rightdot&nbsp;";
 }
@@ -129,7 +129,7 @@ if ($navigator["page"] == $navigator["maxPages"]) {
 <?php
 } else {        
 ?>
-    <td bgcolor="<?php echo $borderIn ?>" width="1" height="1"><img src="<?php echo $imageDir ?>/pixel_trans.gif" width="1" height="1"></td>
+    <td bgcolor="<?php echo $borderIn ?>" width="1" height="1"><img src="<?php echo $imageDir ?>/pixel_trans.gif" width="1" height="1" alt=""></td>
     <td align="center" width="27" height="18"><span class="nav">
       <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $navigator['maxPages'] ?>"><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_last.gif" : "nav_first.gif" ?>" border="0" width="27" height="11" alt="<?php echo _("Last Page") ?>" title="<?php echo _("Last Page") ?>"></a>
       </span></td>
