@@ -28,6 +28,10 @@ if ($id) {
 	$id = $album->getPhotoId($index);
 }
 
+if ($full) {
+	$fullTag = "?full=1";
+}
+
 $numPhotos = $album->numPhotos(editMode());
 $next = $index+1;
 if ($next > $numPhotos) {
@@ -94,7 +98,7 @@ if (!strcmp($album->fields["border"], "off")) {
 if ($first) {
         echo "<< <a href=../view_album.php>back to index</a>";
 } else {
-        echo "<a href=".$album->getPhotoId($prev)."><< previous</a>";
+        echo "<a href=".$album->getPhotoId($prev)."$fullTag><< previous</a>";
 }      
 ?>
 </td>
@@ -122,7 +126,7 @@ if (!$album->isMovie($index)) {
 if ($last) {
         echo "<a href=../view_album.php>back to index</a> >>";
 } else {
-	echo "<a href=".$album->getPhotoId($next).">next >></a>";
+	echo "<a href=".$album->getPhotoId($next)."$fullTag>next >></a>";
 }      
 ?>
 </td>
