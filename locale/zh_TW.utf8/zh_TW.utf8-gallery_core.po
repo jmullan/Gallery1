@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-09-20 01:18+0200\n"
+"POT-Creation-Date: 2004-09-22 02:30+0200\n"
 "PO-Revision-Date: 2003-09-01 13:57+0800\n"
 "Last-Translator: Jian-Zhou Huang <qq AT turtle DOT ee DOT ncku DOT edu DOT tw>\n"
 "Language-Team: Traditional Chinese <qq AT turtle DOT ee DOT ncku DOT edu DOT tw>\n"
@@ -804,7 +804,8 @@ msgid "Do you really want to delete this album?"
 msgstr "您確定要刪除該相簿? "
 
 #: ../delete_album.php:63 ../delete_photo.php:137 ../delete_user.php:80
-#: ../manage_users.php:103
+#: ../manage_users.php:103 ../tools/despam-comments.php:186
+#: ../tools/despam-comments.php:337
 msgid "Delete"
 msgstr "刪除"
 
@@ -2851,85 +2852,211 @@ msgstr "遞減"
 msgid "Sort"
 msgstr "排序"
 
-#: ../tools/find_orphans.php:201
+#: ../tools/find_orphans.php:188 ../tools/find_orphans.php:198
+msgid "Find Orphans"
+msgstr ""
+
+#: ../tools/find_orphans.php:203
 #, fuzzy
-msgid "Orphaned Albums"
+msgid "Orphaned Albums:"
 msgstr "相簿更新"
 
-#: ../tools/find_orphans.php:202
+#: ../tools/find_orphans.php:204
 msgid "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
 msgstr ""
 
-#: ../tools/find_orphans.php:204
-#, fuzzy
-msgid "Orphaned Album"
-msgstr "相簿更新"
-
-#: ../tools/find_orphans.php:204
+#: ../tools/find_orphans.php:208
 #, fuzzy
 msgid "Parent Album"
 msgstr "選擇上層相簿"
 
-#: ../tools/find_orphans.php:208
+#: ../tools/find_orphans.php:210
+#, fuzzy
+msgid "Orphaned Album"
+msgstr "相簿更新"
+
+#: ../tools/find_orphans.php:217
 #, fuzzy
 msgid "Gallery Root"
 msgstr "Gallery"
 
-#: ../tools/find_orphans.php:214
+#: ../tools/find_orphans.php:231
 #, fuzzy
 msgid "Re-Attach Orphaned Albums!"
 msgstr "相簿更新"
 
-#: ../tools/find_orphans.php:220
+#: ../tools/find_orphans.php:238
 #, fuzzy
-msgid "Orphaned Images"
+msgid "Orphaned Files:"
 msgstr "相簿更新"
 
-#: ../tools/find_orphans.php:222
-msgid "Orphaned Images will be deleted from the disk.  Orphaned images should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
+#: ../tools/find_orphans.php:241
+msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
 msgstr ""
 
-#: ../tools/find_orphans.php:224
+# ../add_photos.php:136
+#: ../tools/find_orphans.php:245
 #, fuzzy
-msgid "Orphaned Image"
+msgid "Album directory"
+msgstr "送出 URL 或 目錄"
+
+#: ../tools/find_orphans.php:247
+#, fuzzy
+msgid "Orphaned file"
 msgstr "相簿更新"
 
-#: ../tools/find_orphans.php:224
-msgid "In album directory"
-msgstr ""
+#: ../tools/find_orphans.php:270
+#, fuzzy
+msgid "Delete Orphaned Files!"
+msgstr "相簿更新"
 
-#: ../tools/find_orphans.php:237
-msgid "Delete Orphaned Images!"
-msgstr ""
-
-#: ../tools/find_orphans.php:242
+#: ../tools/find_orphans.php:276
 msgid "No Orphans Found"
 msgstr ""
 
-#: ../tools/find_orphans.php:243
+#: ../tools/find_orphans.php:277
 #, fuzzy
-msgid "There are no orphaned albums in this Gallery."
+msgid "There are no orphaned elements in this Gallery."
 msgstr "%s 呼叫產生不明原因的失敗! "
 
-#: ../tools/find_orphans.php:247
+#: ../tools/find_orphans.php:281
 #, php-format
 msgid "Orphan %s Repaired"
 msgstr ""
 
-#: ../tools/find_orphans.php:247
+#: ../tools/find_orphans.php:281
 #, fuzzy
 msgid "Albums"
 msgstr "相簿"
 
-#: ../tools/find_orphans.php:248
+#: ../tools/find_orphans.php:282
 #, fuzzy
-msgid "Images"
-msgstr "份檔案"
+msgid "Files"
+msgstr "檔案"
 
-#: ../tools/find_orphans.php:253
+#: ../tools/find_orphans.php:287 ../tools/despam-comments.php:55
 #, fuzzy
 msgid "Return to Gallery"
 msgstr "進入 Gallery"
+
+#: ../tools/despam-comments.php:54
+#, fuzzy
+msgid "Find and remove comment spam"
+msgstr "檢視&nbsp;評論"
+
+#: ../tools/despam-comments.php:99
+#, fuzzy
+msgid "Delete Comments"
+msgstr "刪除評論"
+
+#: ../tools/despam-comments.php:101 ../tools/despam-comments.php:240
+#: ../tools/despam-comments.php:251 ../tools/despam-comments.php:323
+#, fuzzy
+msgid "No action taken!"
+msgstr "沒有說明"
+
+#: ../tools/despam-comments.php:125 ../tools/despam-comments.php:129
+#, fuzzy, php-format
+msgid "Deleted %d spam comments"
+msgstr "刪除評論"
+
+#: ../tools/despam-comments.php:175
+#, php-format
+msgid "Scanned %d albums, %d photos, %d comments in %2.2f seconds"
+msgstr ""
+
+#: ../tools/despam-comments.php:181
+#, fuzzy
+msgid "No spam comments"
+msgstr "新增評論"
+
+#: ../tools/despam-comments.php:186 ../tools/despam-comments.php:337
+#, fuzzy
+msgid "Entry"
+msgstr "空的"
+
+#: ../tools/despam-comments.php:190
+#, fuzzy
+msgid "Location"
+msgstr "說明文件"
+
+#: ../tools/despam-comments.php:194
+#, fuzzy
+msgid "Commenter"
+msgstr "建立"
+
+#: ../tools/despam-comments.php:198
+#, fuzzy
+msgid "Comment"
+msgstr "建立"
+
+#: ../tools/despam-comments.php:211
+#, fuzzy
+msgid "Delete Checked Comments"
+msgstr "刪除評論"
+
+#: ../tools/despam-comments.php:238
+msgid "Delete from blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:255 ../tools/despam-comments.php:302
+msgid "Error saving blacklist!"
+msgstr ""
+
+#: ../tools/despam-comments.php:257
+msgid "Removed from blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:305
+msgid "Added to blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:314
+msgid "Duplicates (not added)"
+msgstr ""
+
+#: ../tools/despam-comments.php:330
+#, fuzzy
+msgid "Current blacklist"
+msgstr "目前位置"
+
+#: ../tools/despam-comments.php:332
+msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
+msgstr ""
+
+#: ../tools/despam-comments.php:347 ../tools/despam-comments.php:364
+msgid "Update Blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:354
+msgid "Enter new blacklist entries"
+msgstr ""
+
+#: ../tools/despam-comments.php:355
+msgid "Useful blacklists: <ul> "
+msgstr ""
+
+#: ../tools/despam-comments.php:360
+msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
+msgstr ""
+
+#: ../tools/despam-comments.php:386
+#, fuzzy
+msgid "Options"
+msgstr "說明"
+
+#: ../tools/despam-comments.php:389
+#, fuzzy
+msgid "Find blacklisted comments"
+msgstr "刪除評論"
+
+#: ../tools/despam-comments.php:390
+msgid "View/Edit blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:391
+msgid "Add blacklist entries"
+msgstr ""
 
 #: ../upgrade_album.php:89
 msgid "Progress"
@@ -3757,6 +3884,10 @@ msgstr ""
 #, fuzzy
 msgid "No items to watermark."
 msgstr "目前沒有任何評比. "
+
+#, fuzzy
+#~ msgid "Images"
+#~ msgstr "份檔案"
 
 #~ msgid "Apply to nested Albums"
 #~ msgstr "套用在同一層的相簿中"

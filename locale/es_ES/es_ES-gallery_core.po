@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-09-20 01:18+0200\n"
+"POT-Creation-Date: 2004-09-22 02:30+0200\n"
 "PO-Revision-Date: 2004-08-28 15:19+0100\n"
 "Last-Translator: jact <jachavar AT terra DOT es>\n"
 "Language-Team: spanish <jachavar AT terra DOT es>\n"
@@ -781,7 +781,8 @@ msgid "Do you really want to delete this album?"
 msgstr "¿Realmente quiere borrar este álbum?"
 
 #: ../delete_album.php:63 ../delete_photo.php:137 ../delete_user.php:80
-#: ../manage_users.php:103
+#: ../manage_users.php:103 ../tools/despam-comments.php:186
+#: ../tools/despam-comments.php:337
 msgid "Delete"
 msgstr "Borrar"
 
@@ -2759,80 +2760,208 @@ msgstr "Descendente"
 msgid "Sort"
 msgstr "Ordenar"
 
-#: ../tools/find_orphans.php:201
-msgid "Orphaned Albums"
+#: ../tools/find_orphans.php:188 ../tools/find_orphans.php:198
+#, fuzzy
+msgid "Find Orphans"
+msgstr "encontrar huérfanos"
+
+#: ../tools/find_orphans.php:203
+#, fuzzy
+msgid "Orphaned Albums:"
 msgstr "Álbumes huérfanos"
 
-#: ../tools/find_orphans.php:202
+#: ../tools/find_orphans.php:204
 #, fuzzy
 msgid "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
 msgstr "Los álbumes huérfanos serán adjuntados a sus álbumes padre, si es posible. Si falta algún álbum padre, el álbum huérfano será adjuntado a la raíz de la galería, y desde allí podrá ser movido a una nueva ubicación."
 
-#: ../tools/find_orphans.php:204
-msgid "Orphaned Album"
-msgstr "Álbum huérfano"
-
-#: ../tools/find_orphans.php:204
+#: ../tools/find_orphans.php:208
 msgid "Parent Album"
 msgstr "Álbum padre"
 
-#: ../tools/find_orphans.php:208
+#: ../tools/find_orphans.php:210
+msgid "Orphaned Album"
+msgstr "Álbum huérfano"
+
+#: ../tools/find_orphans.php:217
 msgid "Gallery Root"
 msgstr "Galería raíz"
 
-#: ../tools/find_orphans.php:214
+#: ../tools/find_orphans.php:231
 #, fuzzy
 msgid "Re-Attach Orphaned Albums!"
 msgstr "Álbumes huérfanos"
 
-#: ../tools/find_orphans.php:220
+#: ../tools/find_orphans.php:238
 #, fuzzy
-msgid "Orphaned Images"
+msgid "Orphaned Files:"
 msgstr "Álbumes huérfanos"
 
-#: ../tools/find_orphans.php:222
-msgid "Orphaned Images will be deleted from the disk.  Orphaned images should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
+#: ../tools/find_orphans.php:241
+msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
 msgstr ""
 
-#: ../tools/find_orphans.php:224
+#: ../tools/find_orphans.php:245
 #, fuzzy
-msgid "Orphaned Image"
+msgid "Album directory"
+msgstr "Enviar URL o directorio"
+
+#: ../tools/find_orphans.php:247
+#, fuzzy
+msgid "Orphaned file"
 msgstr "Álbum huérfano"
 
-#: ../tools/find_orphans.php:224
-msgid "In album directory"
-msgstr ""
+#: ../tools/find_orphans.php:270
+#, fuzzy
+msgid "Delete Orphaned Files!"
+msgstr "Álbumes huérfanos"
 
-#: ../tools/find_orphans.php:237
-msgid "Delete Orphaned Images!"
-msgstr ""
-
-#: ../tools/find_orphans.php:242
+#: ../tools/find_orphans.php:276
 msgid "No Orphans Found"
 msgstr ""
 
-#: ../tools/find_orphans.php:243
-msgid "There are no orphaned albums in this Gallery."
+#: ../tools/find_orphans.php:277
+#, fuzzy
+msgid "There are no orphaned elements in this Gallery."
 msgstr "No hay álbums huérfanos en esta Galería."
 
-#: ../tools/find_orphans.php:247
+#: ../tools/find_orphans.php:281
 #, php-format
 msgid "Orphan %s Repaired"
 msgstr ""
 
-#: ../tools/find_orphans.php:247
+#: ../tools/find_orphans.php:281
 #, fuzzy
 msgid "Albums"
 msgstr "Álbum"
 
-#: ../tools/find_orphans.php:248
+#: ../tools/find_orphans.php:282
 #, fuzzy
-msgid "Images"
-msgstr "Ver imágenes"
+msgid "Files"
+msgstr "Archivo"
 
-#: ../tools/find_orphans.php:253
+#: ../tools/find_orphans.php:287 ../tools/despam-comments.php:55
 msgid "Return to Gallery"
 msgstr "Volver a la Galería"
+
+#: ../tools/despam-comments.php:54
+#, fuzzy
+msgid "Find and remove comment spam"
+msgstr "ver comentarios"
+
+#: ../tools/despam-comments.php:99
+#, fuzzy
+msgid "Delete Comments"
+msgstr "borrar comentario"
+
+#: ../tools/despam-comments.php:101 ../tools/despam-comments.php:240
+#: ../tools/despam-comments.php:251 ../tools/despam-comments.php:323
+#, fuzzy
+msgid "No action taken!"
+msgstr "No hay leyenda"
+
+#: ../tools/despam-comments.php:125 ../tools/despam-comments.php:129
+#, fuzzy, php-format
+msgid "Deleted %d spam comments"
+msgstr "borrar comentario"
+
+#: ../tools/despam-comments.php:175
+#, php-format
+msgid "Scanned %d albums, %d photos, %d comments in %2.2f seconds"
+msgstr ""
+
+#: ../tools/despam-comments.php:181
+#, fuzzy
+msgid "No spam comments"
+msgstr "añadir comentario"
+
+#: ../tools/despam-comments.php:186 ../tools/despam-comments.php:337
+#, fuzzy
+msgid "Entry"
+msgstr "Vacío"
+
+#: ../tools/despam-comments.php:190
+#, fuzzy
+msgid "Location"
+msgstr "documentación"
+
+#: ../tools/despam-comments.php:194
+#, fuzzy
+msgid "Commenter"
+msgstr "Comentario:"
+
+#: ../tools/despam-comments.php:198
+#, fuzzy
+msgid "Comment"
+msgstr "Comentario:"
+
+#: ../tools/despam-comments.php:211
+#, fuzzy
+msgid "Delete Checked Comments"
+msgstr "borrar comentario"
+
+#: ../tools/despam-comments.php:238
+msgid "Delete from blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:255 ../tools/despam-comments.php:302
+msgid "Error saving blacklist!"
+msgstr ""
+
+#: ../tools/despam-comments.php:257
+msgid "Removed from blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:305
+msgid "Added to blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:314
+msgid "Duplicates (not added)"
+msgstr ""
+
+#: ../tools/despam-comments.php:330
+#, fuzzy
+msgid "Current blacklist"
+msgstr "situación actual"
+
+#: ../tools/despam-comments.php:332
+msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
+msgstr ""
+
+#: ../tools/despam-comments.php:347 ../tools/despam-comments.php:364
+msgid "Update Blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:354
+msgid "Enter new blacklist entries"
+msgstr ""
+
+#: ../tools/despam-comments.php:355
+msgid "Useful blacklists: <ul> "
+msgstr ""
+
+#: ../tools/despam-comments.php:360
+msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
+msgstr ""
+
+#: ../tools/despam-comments.php:386
+#, fuzzy
+msgid "Options"
+msgstr "Opcional:"
+
+#: ../tools/despam-comments.php:389
+#, fuzzy
+msgid "Find blacklisted comments"
+msgstr "borrar comentario"
+
+#: ../tools/despam-comments.php:390
+msgid "View/Edit blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:391
+msgid "Add blacklist entries"
+msgstr ""
 
 #: ../upgrade_album.php:89
 msgid "Progress"
@@ -3638,6 +3767,10 @@ msgstr "Álbum de marcas de agua."
 #: ../watermark_album.php:104
 msgid "No items to watermark."
 msgstr "No hay elementos para marcar."
+
+#, fuzzy
+#~ msgid "Images"
+#~ msgstr "Ver imágenes"
 
 #~ msgid "Apply to nested Albums"
 #~ msgstr "Aplicar a los álbumes anidados"

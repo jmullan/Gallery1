@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-09-20 01:18+0200\n"
+"POT-Creation-Date: 2004-09-22 02:30+0200\n"
 "PO-Revision-Date: 2004-07-31 22:01+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m AT yahoo DOT co DOT jp>\n"
 "Language-Team: Japanese <ken_w3m AT yahoo DOT co DOT jp>\n"
@@ -775,7 +775,8 @@ msgid "Do you really want to delete this album?"
 msgstr "本当にこのアルバムを削除しますか?"
 
 #: ../delete_album.php:63 ../delete_photo.php:137 ../delete_user.php:80
-#: ../manage_users.php:103
+#: ../manage_users.php:103 ../tools/despam-comments.php:186
+#: ../tools/despam-comments.php:337
 msgid "Delete"
 msgstr "削除"
 
@@ -2747,80 +2748,208 @@ msgstr "降順"
 msgid "Sort"
 msgstr "ソート"
 
-#: ../tools/find_orphans.php:201
-msgid "Orphaned Albums"
+#: ../tools/find_orphans.php:188 ../tools/find_orphans.php:198
+#, fuzzy
+msgid "Find Orphans"
+msgstr "親のないものを検索"
+
+#: ../tools/find_orphans.php:203
+#, fuzzy
+msgid "Orphaned Albums:"
 msgstr "親のないアルバム"
 
-#: ../tools/find_orphans.php:202
+#: ../tools/find_orphans.php:204
 #, fuzzy
 msgid "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
 msgstr "親のないものは、可能であればそれらの親アルバムに再配置されます。親アルバムがない場合は、親のないものはGalleryのルートには位置され、そこから新しい場所に移動ができます。"
 
-#: ../tools/find_orphans.php:204
-msgid "Orphaned Album"
-msgstr "親のないアルバム"
-
-#: ../tools/find_orphans.php:204
+#: ../tools/find_orphans.php:208
 msgid "Parent Album"
 msgstr "親アルバム"
 
-#: ../tools/find_orphans.php:208
+#: ../tools/find_orphans.php:210
+msgid "Orphaned Album"
+msgstr "親のないアルバム"
+
+#: ../tools/find_orphans.php:217
 msgid "Gallery Root"
 msgstr "Gallery ルート"
 
-#: ../tools/find_orphans.php:214
+#: ../tools/find_orphans.php:231
 #, fuzzy
 msgid "Re-Attach Orphaned Albums!"
 msgstr "親のないアルバム"
 
-#: ../tools/find_orphans.php:220
+#: ../tools/find_orphans.php:238
 #, fuzzy
-msgid "Orphaned Images"
+msgid "Orphaned Files:"
 msgstr "親のないアルバム"
 
-#: ../tools/find_orphans.php:222
-msgid "Orphaned Images will be deleted from the disk.  Orphaned images should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
+#: ../tools/find_orphans.php:241
+msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
 msgstr ""
 
-#: ../tools/find_orphans.php:224
+#: ../tools/find_orphans.php:245
 #, fuzzy
-msgid "Orphaned Image"
+msgid "Album directory"
+msgstr "URLやディレクトリを送信する"
+
+#: ../tools/find_orphans.php:247
+#, fuzzy
+msgid "Orphaned file"
 msgstr "親のないアルバム"
 
-#: ../tools/find_orphans.php:224
-msgid "In album directory"
-msgstr ""
+#: ../tools/find_orphans.php:270
+#, fuzzy
+msgid "Delete Orphaned Files!"
+msgstr "親のないアルバム"
 
-#: ../tools/find_orphans.php:237
-msgid "Delete Orphaned Images!"
-msgstr ""
-
-#: ../tools/find_orphans.php:242
+#: ../tools/find_orphans.php:276
 msgid "No Orphans Found"
 msgstr ""
 
-#: ../tools/find_orphans.php:243
-msgid "There are no orphaned albums in this Gallery."
+#: ../tools/find_orphans.php:277
+#, fuzzy
+msgid "There are no orphaned elements in this Gallery."
 msgstr "このGalleryには親のないアルバムはありません。"
 
-#: ../tools/find_orphans.php:247
+#: ../tools/find_orphans.php:281
 #, php-format
 msgid "Orphan %s Repaired"
 msgstr ""
 
-#: ../tools/find_orphans.php:247
+#: ../tools/find_orphans.php:281
 #, fuzzy
 msgid "Albums"
 msgstr "アルバム"
 
-#: ../tools/find_orphans.php:248
+#: ../tools/find_orphans.php:282
 #, fuzzy
-msgid "Images"
-msgstr "画像閲覧"
+msgid "Files"
+msgstr "ファイル"
 
-#: ../tools/find_orphans.php:253
+#: ../tools/find_orphans.php:287 ../tools/despam-comments.php:55
 msgid "Return to Gallery"
 msgstr "Galleryへ戻る"
+
+#: ../tools/despam-comments.php:54
+#, fuzzy
+msgid "Find and remove comment spam"
+msgstr "コメントを見る"
+
+#: ../tools/despam-comments.php:99
+#, fuzzy
+msgid "Delete Comments"
+msgstr "コメント削除"
+
+#: ../tools/despam-comments.php:101 ../tools/despam-comments.php:240
+#: ../tools/despam-comments.php:251 ../tools/despam-comments.php:323
+#, fuzzy
+msgid "No action taken!"
+msgstr "説明なし"
+
+#: ../tools/despam-comments.php:125 ../tools/despam-comments.php:129
+#, fuzzy, php-format
+msgid "Deleted %d spam comments"
+msgstr "コメント削除"
+
+#: ../tools/despam-comments.php:175
+#, php-format
+msgid "Scanned %d albums, %d photos, %d comments in %2.2f seconds"
+msgstr ""
+
+#: ../tools/despam-comments.php:181
+#, fuzzy
+msgid "No spam comments"
+msgstr "コメント追加"
+
+#: ../tools/despam-comments.php:186 ../tools/despam-comments.php:337
+#, fuzzy
+msgid "Entry"
+msgstr "空"
+
+#: ../tools/despam-comments.php:190
+#, fuzzy
+msgid "Location"
+msgstr "ドキュメント"
+
+#: ../tools/despam-comments.php:194
+#, fuzzy
+msgid "Commenter"
+msgstr "コメント者:"
+
+#: ../tools/despam-comments.php:198
+#, fuzzy
+msgid "Comment"
+msgstr "コメント者:"
+
+#: ../tools/despam-comments.php:211
+#, fuzzy
+msgid "Delete Checked Comments"
+msgstr "コメント削除"
+
+#: ../tools/despam-comments.php:238
+msgid "Delete from blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:255 ../tools/despam-comments.php:302
+msgid "Error saving blacklist!"
+msgstr ""
+
+#: ../tools/despam-comments.php:257
+msgid "Removed from blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:305
+msgid "Added to blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:314
+msgid "Duplicates (not added)"
+msgstr ""
+
+#: ../tools/despam-comments.php:330
+#, fuzzy
+msgid "Current blacklist"
+msgstr "現在の場所"
+
+#: ../tools/despam-comments.php:332
+msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
+msgstr ""
+
+#: ../tools/despam-comments.php:347 ../tools/despam-comments.php:364
+msgid "Update Blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:354
+msgid "Enter new blacklist entries"
+msgstr ""
+
+#: ../tools/despam-comments.php:355
+msgid "Useful blacklists: <ul> "
+msgstr ""
+
+#: ../tools/despam-comments.php:360
+msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
+msgstr ""
+
+#: ../tools/despam-comments.php:386
+#, fuzzy
+msgid "Options"
+msgstr "オプション:"
+
+#: ../tools/despam-comments.php:389
+#, fuzzy
+msgid "Find blacklisted comments"
+msgstr "コメント削除"
+
+#: ../tools/despam-comments.php:390
+msgid "View/Edit blacklist"
+msgstr ""
+
+#: ../tools/despam-comments.php:391
+msgid "Add blacklist entries"
+msgstr ""
 
 #: ../upgrade_album.php:89
 msgid "Progress"
@@ -3626,6 +3755,10 @@ msgstr "透かしアルバムにしています。"
 #: ../watermark_album.php:104
 msgid "No items to watermark."
 msgstr "透かしにするアイテムなし"
+
+#, fuzzy
+#~ msgid "Images"
+#~ msgstr "画像閲覧"
 
 #~ msgid "Apply to nested Albums"
 #~ msgstr "ネストアルバムにも適用する"
