@@ -294,7 +294,7 @@ function getDimensions($file, $regs=false) {
 	if (($regs[0] > 1) && ($regs[1] > 1)) {
 		return array($regs[0], $regs[1]);
 	}
-	else if (isDebugging()) {
+	elseif (isDebugging()) {
 		echo "<br>" .sprintf(_("PHP's %s unable to determine dimensions."),
 				"getimagesize()") ."<br>";
 	}
@@ -506,10 +506,10 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 			if ($filesize < $target_fs) {
 				$min_quality=$quality;
 				//$min_filesize=$filesize;
-			} else if ($filesize > $target_fs){
+			} elseif ($filesize > $target_fs){
 				$max_quality=$quality;
 				$max_filesize=$filesize;
-			} else if ($filesize == $target_fs){
+			} elseif ($filesize == $target_fs){
 				$min_quality=$quality;
 				$max_quality=$quality;
 				// $min_filesize=$filesize;
@@ -609,10 +609,10 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
          if (eregi("\.png$",$wmName, $regs)) {
             list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "png");
             $tmpOverlay = 1;
-         } else if (eregi("\.tiff?$",$wmName, $regs)) {
+	 } elseif (eregi("\.tiff?$",$wmName, $regs)) {
             list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "tif");
             $tmpOverlay = 1;
-         } else if (eregi("\.gif$",$wmName, $regs)) {
+	 } elseif (eregi("\.gif$",$wmName, $regs)) {
             list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "gif");
             $tmpOverlay = 1;
          } else {
@@ -697,7 +697,7 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
       { // clip left side
          $wmAlignX = 0;
       }
-      else if ($wmAlignX > ($srcSize[0] - $overlaySize[0]))
+      elseif ($wmAlignX > ($srcSize[0] - $overlaySize[0]))
       { // clip right side
         $wmAlignX = ($srcSize[0] - $overlaySize[0]);
       }
@@ -705,7 +705,7 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
       { // clip top
          $wmAlignY = 0;
       }
-      else if ($wmAlignY > ($srcSize[1] - $overlaySize[1]))
+      elseif ($wmAlignY > ($srcSize[1] - $overlaySize[1]))
       { // clip bottom
         $wmAlignY = ($srcSize[1] - $overlaySize[1]);
       }
@@ -788,17 +788,17 @@ function rotate_image($src, $dest, $target, $type) {
 	if (isset($gallery->app->use_jpegtran) && !empty($gallery->app->use_jpegtran) && ($type === 'jpg' || $type === 'jpeg')) {
 	    	if (!strcmp($target, '-90')) {
 			$args = '-rotate 90';
-		} else if (!strcmp($target, '180')){
+		} elseif (!strcmp($target, '180')){
 			$args = '-rotate 180';
-		} else if (!strcmp($target, '90')) {
+		} elseif (!strcmp($target, '90')) {
 			$args = '-rotate 270';
-		} else if (!strcmp($target, 'fv')) {
+		} elseif (!strcmp($target, 'fv')) {
 			$args = '-flip vertical';
-		} else if (!strcmp($target, 'fh')) {
+		} elseif (!strcmp($target, 'fh')) {
 			$args = '-flip horizontal';
-		} else if (!strcmp($target, 'tr')) {
+		} elseif (!strcmp($target, 'tr')) {
 			$args = '-transpose';
-		} else if (!strcmp($target, 'tv')) {
+		} elseif (!strcmp($target, 'tv')) {
 			$args = '-transverse';
 		} else {
 			$args = '';
@@ -816,17 +816,17 @@ function rotate_image($src, $dest, $target, $type) {
 				/* NetPBM's docs mix up CW and CCW...
 				 * We'll do it right. */
 				$args = '-r270';
-			} else if (!strcmp($target, '180')) {
+			} elseif (!strcmp($target, '180')) {
 				$args = '-r180';
-			} else if (!strcmp($target, '90')) {
+			} elseif (!strcmp($target, '90')) {
 				$args = '-r90';
-			} else if (!strcmp($target, 'fv')) {
+			} elseif (!strcmp($target, 'fv')) {
 				$args = '-tb';
-			} else if (!strcmp($target, 'fh')) {
+			} elseif (!strcmp($target, 'fh')) {
 				$args = '-lr';
-			} else if (!strcmp($target, 'tr')) {
+			} elseif (!strcmp($target, 'tr')) {
 				$args = '-xy';
-			} else if (!strcmp($target, 'tv')) {
+			} elseif (!strcmp($target, 'tv')) {
 				/* Because of NetPBM inconsistencies, the only
 				 * way to do this transformation on *all* 
 				 * versions of NetPBM is to pipe two separate
@@ -856,17 +856,17 @@ function rotate_image($src, $dest, $target, $type) {
 		case "ImageMagick":
 		        if (!strcmp($target, '-90')) {
 			    $im_cmd = '-rotate 90';             
-			} else if (!strcmp($target, '180')) {
+			} elseif (!strcmp($target, '180')) {
 			    $im_cmd = '-rotate 180';
-			} else if (!strcmp($target, '90')) {
+			} elseif (!strcmp($target, '90')) {
 			    $im_cmd = '-rotate -90';
-			} else if (!strcmp($target, 'fv')) {
+			} elseif (!strcmp($target, 'fv')) {
 			    $im_cmd = '-flip';
-			} else if (!strcmp($target, 'fh')) {
+			} elseif (!strcmp($target, 'fh')) {
 			    $im_cmd = '-flop';
-			} else if (!strcmp($target, 'tr')) {
+			} elseif (!strcmp($target, 'tr')) {
 			    $im_cmd = '-affine 0,1,1,0,0,0 -transform';
-			} else if (!strcmp($target, 'tv')) {
+			} elseif (!strcmp($target, 'tv')) {
 			    $im_cmd = '-affine 0,-1,-1,0,0,0 -transform';
 			} else {
 			    $im_cmd = '';
@@ -975,13 +975,13 @@ function toPnmCmd($file) {
 
 	if (eregi("\.png\$", $file)) {
 		$cmd = "pngtopnm";
-	} else if (eregi("\.jpe?g\$", $file)) {
+	} elseif (eregi("\.jpe?g\$", $file)) {
 		if (isDebugging()) {
 			$cmd = "jpegtopnm";
 		} else {
 			$cmd = "jpegtopnm";
 		}
-	} else if (eregi("\.gif\$", $file)) {
+	} elseif (eregi("\.gif\$", $file)) {
 		$cmd = "giftopnm";
 	}
 
@@ -1003,10 +1003,10 @@ function fromPnmCmd($file, $quality=NULL) {
 
 	if (eregi("\.png(\.tmp)?\$", $file)) {
 		$cmd = NetPBM("pnmtopng");
-	} else if (eregi("\.jpe?g(\.tmp)?\$", $file)) {
+	} elseif (eregi("\.jpe?g(\.tmp)?\$", $file)) {
 		$cmd = NetPBM($gallery->app->pnmtojpeg,
 			      "--quality=" . $quality);
-	} else if (eregi("\.gif(\.tmp)?\$", $file)) {
+	} elseif (eregi("\.gif(\.tmp)?\$", $file)) {
 		$cmd = NetPBM("ppmquant", "256") . " | " . NetPBM("ppmtogif");
 	}
 
@@ -1212,10 +1212,10 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 		if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnuke') {
 			$cookie_name = 'user';
 			$cookie_value = $_COOKIE[$cookie_name];
-		} else if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'GeekLog') {
+		} elseif ($GALLERY_EMBEDDED_INSIDE_TYPE == 'GeekLog') {
 			$cookie_name = $_CONF['cookie_session'];
 			$cookie_value = $_COOKIE[$cookie_name];
-		} else if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2') {
+		} elseif ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2') {
 			$cookie_name = $board_config['cookie_name'] . '_sid';
 			$cookie_value = $_COOKIE[$cookie_name];
 		}
@@ -1243,11 +1243,11 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 	<param name="gr_cookie_path" value="<?php echo $cookie_path ?>">
 	<param name="gr_album" value="<?php echo $album ?>">
 <?php
-	foreach($defaults as $key => $value) {
+	foreach ($defaults as $key => $value) {
 		echo "\t<param name=\"GRDefault_". $key ."\" value=\"". $value ."\">\n";
 	}
 
-	foreach($overrides as $key => $value) {
+	foreach ($overrides as $key => $value) {
 		echo "\t<param name=\"GROverride_". $key ."\" value=\"". $value ."\">\n";
 	}
 ?>
@@ -1273,11 +1273,11 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 				gr_cookie_path="<?php echo $cookie_path ?>"
 				gr_album="<?php echo $album ?>"
 <?php
-	foreach($defaults as $key => $value) {
+	foreach ($defaults as $key => $value) {
 		echo "\t\t\t\tGRDefault_". $key ."=\"". $value ."\"\n";
 	}
 
-	foreach($overrides as $key => $value) {
+	foreach ($overrides as $key => $value) {
 		echo "\t\t\t\tGROverride_". $key ."=\"". $value ."\"\n";
 	}
 ?>
@@ -2339,11 +2339,11 @@ define("OS_SUNOS", "SunOS");
 define("OS_OTHER", "other");
 
 function getOS () {
-	if(substr(PHP_OS, 0, 3) == 'WIN') {
+	if (substr(PHP_OS, 0, 3) == 'WIN') {
 		return OS_WINDOWS;
-	} else if ( stristr(PHP_OS, "linux")) {
+	} elseif ( stristr(PHP_OS, "linux")) {
 		return OS_LINUX;
-	} else if ( stristr(PHP_OS, "SunOS")) {
+	} elseif ( stristr(PHP_OS, "SunOS")) {
 		return OS_SUNOS;
 	} else {
 		return OS_OTHER;
@@ -2362,7 +2362,7 @@ function gallery_validate_email($email, $multiples=false)
 {
        	if (eregi('^([a-z0-9_]|\-|\.|\+)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,4}$', $email)) {
 	       	return $email;
-       	} else if (!$multiples) {
+	} elseif (!$multiples) {
 	       	return false;
 	} else {
 		$email = ereg_replace('([[:space:]]+)', '', $email);
@@ -2398,7 +2398,7 @@ function generate_password($len = 10)
 	$size = strlen($alpha) - 1;
 	$used = array();
 
-	while($len--) {
+	while ($len--) {
 		$random  = mt_rand(0, $size);
 		$char    = $alpha[$random];
 
@@ -2424,14 +2424,14 @@ function pretty_password($pass, $print, $pre = '    ')
 		$result = '';
 	}
 
-	while(++$idx < $len) {
+	while (++$idx < $len) {
 		if (ereg('[[:upper:]]', $pass[$idx])) {
 			$result .= $pre . $pass[$idx] .
 				      ' = Uppercase letter ' . $pass[$idx] . "\n";
-		} else if (ereg('[[:lower:]]', $pass[$idx])) {
+		} elseif (ereg('[[:lower:]]', $pass[$idx])) {
 			$result .= $pre . $pass[$idx] .
 				      ' = Lowercase letter ' . $pass[$idx] . "\n";
-		} else if (ereg('[[:digit:]]', $pass[$idx])) {
+		} elseif (ereg('[[:digit:]]', $pass[$idx])) {
 			$result .= $pre . $pass[$idx] .
 				      ' = Numerical number ' . $pass[$idx] . "\n";
 		} else {
@@ -2444,10 +2444,10 @@ function pretty_password($pass, $print, $pre = '    ')
 
 function emailDisclaimer() {
 	global $gallery;
-	$msg=sprintf(_("Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."),$gallery->app->photoAlbumURL).
+	$msg = sprintf(_("Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."),$gallery->app->photoAlbumURL).
 	     "  \r\n".
 	     sprintf(_("Report abuse to %s"),$gallery->app->adminEmail);
-	$msg2=sprintf("Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message.  \r\nReport abuse to %s", 
+	$msg2 = sprintf("Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message.  \r\nReport abuse to %s",
 		$gallery->app->photoAlbumURL, $gallery->app->adminEmail);
 	if ($msg != $msg2) {
 		return "[$msg\r\n$msg2]\r\n\r\n";
@@ -2458,23 +2458,26 @@ function emailDisclaimer() {
 
 
 
-function gallery_mail($to, $subject, $msg, $logmsg, 
-		$hide_recipients = false, $from = NULL) {
+function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $from = NULL) {
 	global $gallery;
+
 	if ($gallery->app->emailOn == "no") {
 		echo "\n<br>". gallery_error(_("Email not sent as it is disabled for this gallery"));
 		return false;
 	}
-       	if (!$to) {
+
+	if (empty($to)) {
 		echo "\n<br>". gallery_error(sprintf(_("Email not sent as no address provided"),
 				       	"<i>" . $to . "</i>"));
 		return false;
 	}
+
        	if (!gallery_validate_email($to, true)) {
 		echo "\n<br>". gallery_error(sprintf(_("Email not sent to %s as it is not a valid address"),
 				       	"<i>" . $to . "</i>"));
 		return false;
 	}
+
 	if ($hide_recipients) {
 		$bcc=$to;
 		$to="";
@@ -2483,7 +2486,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 		$bcc="";
 		$join="";
 	}
-	global $gallery;
+
 	if (!gallery_validate_email($from)) {
 		if (isDebugging() && $from) {
 			echo "\n<br>". gallery_error( sprintf(_("Sender address %s is invalid, using %s."),
@@ -2494,10 +2497,12 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 	} else {
 		$reply_to = $from;
 	}
+
 	if (isset($gallery->app->email_notification) &&
 			in_array("bcc", $gallery->app->email_notification)) {
 		$bcc .= $join . $gallery->app->adminEmail;
 	}
+
 	$additional_headers  = "From: {$gallery->app->galleryTitle} " . _("Administrator") . " <$from>\r\n";
 	$additional_headers .= "Reply-To: <$reply_to>\r\n";
 	$additional_headers .= "X-GalleryRequestIP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
@@ -2507,6 +2512,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 	if ($bcc) {
 		$additional_headers .= "Bcc: " . $bcc. "\r\n";
 	}
+
 	if (get_magic_quotes_gpc()) {
 		$msg = stripslashes($msg);
 	}
@@ -2516,7 +2522,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 
 	// Ensure that there are no bare linefeeds by replacing "\r" or "\n"
 	// (but not the individual components of "\r\n") with "\r\n"
-	$msg = ereg_replace("[^\r]?\n|\r[^\n]?", "\r\n", $msg);
+	$msg = ereg_replace("([^\r])?\n|\r([^\n])?", "\\1\r\n\\2", $msg);
 
 	if ($gallery->app->useOtherSMTP != "yes") {
 		$result = mail($to, $subject, emailDisclaimer() . $msg, $additional_headers);
@@ -2533,8 +2539,8 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 
 		// build the array for the SMTP dialog. Line content is
 		// array((string)command, (string)success code, (string)debug error message)
-		if(!empty($gallery->app->smtpUserName)) { // SMTP authentication methode AUTH LOGIN, use extended HELO "EHLO"
-	            $smtp = array(
+		if (!empty($gallery->app->smtpUserName)) { // SMTP authentication methode AUTH LOGIN, use extended HELO "EHLO"
+		    $smtp = array(
 			// call the server and tell the name of your local host
 			array("EHLO " . $gallery->app->smtpFromHost . $lb, "220,250", "HELO error: "),
 			// request to auth
@@ -2553,7 +2559,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 		// envelop
 		if ($to == "") {
 			$bcc_array = explode(", ",$bcc);
-			foreach($bcc_array as $bccto) {
+			foreach ($bcc_array as $bccto) {
 				if ($bccto != "") {
 					$smtp[] = array("MAIL FROM: " . '<' . $from . '>' . $lb, "250", "MAIL FROM error: ");
 					$smtp[] = array("RCPT TO: " . '<' . $bccto . '>' . $lb, "250", "RCPT TO:" . '<' . $bccto . '>' . " error: ");
@@ -2562,7 +2568,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 					// header
 					$smtp[] = array("Subject: " . $subject . $lb, "", "");
 					$smtp[] = array("To: <$bccto>" . $lb, "", "");
-					foreach($hdr as $h) {
+					foreach ($hdr as $h) {
 						if (!empty($h)) {
 							$smtp[] = array($h . $lb, "", "");
 						}
@@ -2570,7 +2576,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 					// end header, begin the body
 					$smtp[] = array($lb,"","");
 					if ($bdy) {
-						foreach($bdy as $b) {
+						foreach ($bdy as $b) {
 							$smtp[] = array($b . $lb, "", "");
 						}
 					}
@@ -2594,7 +2600,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 			// end header, begin the body
 			$smtp[] = array($lb, "", "");
 			if ($bdy) {
-				foreach($bdy as $b) {
+				foreach ($bdy as $b) {
 					$smtp[] = array($b . $lb, "", "");
 				}
 			}
@@ -2611,13 +2617,13 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 		}
 	        $banner = @fgets($fp, 1024);
 		// perform the SMTP dialog with all lines of the list
-	        foreach($smtp as $req){
+		foreach ($smtp as $req){
 	            // send request
 		    @fputs($fp, $req[0]);
-	            // get available server messages and stop on errors
+		    // get available server messages and stop on errors
 		    if ($req[1]) {
 			while ($result = @fgets($fp, 1024)){
-				if(substr($result,3,1) == " ") {
+				if (substr($result,3,1) == " ") {
 					break;
 				}
 			};
@@ -2706,7 +2712,7 @@ function logMessage ($msg, $logfile) {
 		fwrite($fd, strftime("%Y/%m/%d %H:%M.%S: $msg\n"));
 		fclose($fd);
 	}
-	else if (isDebugging()) {
+	elseif (isDebugging()) {
 		print sprintf(_("Cannot open logfile: %s"), $logfile);
 	}
 }
@@ -2726,7 +2732,7 @@ Gallery @ %s Administrator.");
 		       	"<b><nobr>&lt;" . _("gallery title") . "&gt;</nobr></b>", 
 		       	"<b><nobr>&lt;" . _("gallery URL") . "&gt;</nobr></b>", 
 		       	"<b><nobr>&lt;" . _("gallery title") . "&gt;</nobr></b>");
-	} else if (empty($gallery->app->emailGreeting)) {
+	} elseif (empty($gallery->app->emailGreeting)) {
 		return sprintf($default, 
 			$gallery->app->galleryTitle,
 			$gallery->app->photoAlbumURL,
@@ -2774,7 +2780,7 @@ function available_skins($description_only=false) {
 				$opts[$file]=$name;
 				if (fs_file_exists("$dir/$file/images/screenshot.jpg")) {
 					$screenshot=$base_url . "/skins/$file/images/screenshot.jpg";
-				} else if (fs_file_exists("$dir/$file/images/screenshot.gif")) {
+				} elseif (fs_file_exists("$dir/$file/images/screenshot.gif")) {
 					$screenshot=$base_url . "/skins/$file/images/screenshot.gif";
 				} else {
 					$screenshot="";
@@ -3043,7 +3049,7 @@ function compareVersions($old_str, $new_str) {
 	}
 	$old=explode('.', $old_str);
 	$new=explode('.', $new_str);
-	foreach($old as $old_number) {
+	foreach ($old as $old_number) {
 		$old_number=0+$old_number;
 		$new_number=0+array_shift($new);
 		if ($new_number  == null) {
@@ -3163,11 +3169,11 @@ global $_CONF;				/* Needed for GeekLog */
 function getExtraFieldsValues($index, $extra_fields, $full) {
 	global $gallery;
 	$photo = $gallery->album->getPhoto($index);
-	$automaticFields=automaticFieldsList();
+	$automaticFields = automaticFieldsList();
 
 	$table=array();
 
-	foreach($extra_fields as $key) {
+	foreach ($extra_fields as $key) {
         	if (isset($automaticFields[$key]) && $key != 'EXIF') {
                 	if ($key == 'Upload Date') {
                         	$table[$automaticFields[$key]] = strftime($gallery->app->dateTimeString , $gallery->album->getUploadDate($index));
@@ -3216,7 +3222,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 	}
 
 	
-	if ( $withExif && ($gallery->app->use_exif && (eregi("jpe?g\$", $photo->image->type)))) {
+	if ($withExif && ($gallery->app->use_exif && (eregi("jpe?g\$", $photo->image->type)))) {
 		$myExif = $gallery->album->getExif($index, isset($forceRefresh));
 		if ($myExif) {
 			// following line commented out because we were losing
@@ -3228,7 +3234,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 		}
 	}
 
-	if (! isset($tables)) {
+	if (!isset($tables)) {
 		return;
 	}
 
@@ -3266,7 +3272,7 @@ function emailComments($id, $comment_text, $commenter_name) {
 		$subject=sprintf("New comment for %s", $id);
 		$logmsg=sprintf("New comment for %s.", makeAlbumUrl($gallery->session->albumName, $id));
 		gallery_mail($to, $subject, $text, $logmsg, true);
-	} else if (isDebugging()) {
+	} elseif (isDebugging()) {
 		print _("No email sent as no valid email addresses were found");
 	}
 }
