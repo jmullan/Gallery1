@@ -6,7 +6,7 @@
    Username
   </td>
   <td>
-   <? if ($dontChangeUsername) { ?>
+   <? if ($dontChange["uname"]) { ?>
 	<?= $uname ?>
 	<input type=hidden name="uname" value="<?=$uname?>">
    <? } else { ?>
@@ -84,7 +84,26 @@
    User can create albums
   </td>
   <td> 
-   <?= drawSelect("canCreate", $canCreateChoices, $canCreate, 1); ?>
+   <? if ($dontChange["create-albums"]) { ?>
+	<?= $canCreateChoices[$canCreate] ?> <i>(admins can always create albums)</i>
+   <? } else { ?>
+        <?= drawSelect("canCreate", $canCreateChoices, $canCreate, 1); ?>
+   <? } ?>
+  </td>
+ </tr>
+<? } ?>
+
+<? if ($gallery->user->isAdmin() && isset($isAdmin)) { ?>
+ <tr>
+  <td>
+   User is an admin
+  </td>
+  <td> 
+   <? if ($dontChange["admin"]) { ?>
+	<?= $isAdminChoices[$isAdmin] ?> <i>(you can't un-admin yourself)</i>
+   <? } else { ?>
+        <?= drawSelect("isAdmin", $isAdminChoices, $isAdmin, 1); ?>
+   <? } ?>
   </td>
  </tr>
 <? } ?>
