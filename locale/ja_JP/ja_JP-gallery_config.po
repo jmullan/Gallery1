@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-13 12:23+0200\n"
+"POT-Creation-Date: 2004-05-17 14:13+0200\n"
 "PO-Revision-Date: 2004-04-06 22:10+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m@yahoo.co.jp>\n"
 "Language-Team: Japanese <ken_w3m@yahoo.co.jp>\n"
@@ -351,7 +351,6 @@ msgid "Try again?"
 msgstr "もう一度?"
 
 #: ../setup/check_mail.php:60
-#, php-format
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "これは、このシステムで電子メールが正しく動作するか確認するものです。メールアドレスを以下から送信すると、メールが送信されます。それを受け取ったら、電子メールはシステムは動作しています。"
 
@@ -400,13 +399,6 @@ msgstr "何らかのエラーが発生したら、該当ファイルの実在するバージョンを入手するこ
 msgid "%sClick here%s to see more details"
 msgstr "詳細を見るには、%sここをクリック%sしてください。"
 
-#: ../setup/check_versions.php:70
-#, fuzzy, php-format
-msgid "One file is missing, corrupt or older than expected."
-msgid_plural "%d files are missing, corrupt or older than expected."
-msgstr[0] "%s が欠落しています。不正であるか予期されたものより古いです。"
-msgstr[1] "%s が欠落しています。不正であるか予期されたものより古いです。"
-
 #: ../setup/check_versions.php:72 ../setup/check_versions.php:103
 #, fuzzy
 msgid "All files okay."
@@ -417,24 +409,10 @@ msgstr "テストされた %d ファイルは全て最新です。"
 msgid "There are problems with the following files.  Please correct them before configuring %s."
 msgstr "以下のファイルに問題があります。%s の設定をする前にこれらを正してください。"
 
-#: ../setup/check_versions.php:101
-#, fuzzy, php-format
-msgid "One file is more recent than expected."
-msgid_plural "%d files are more recent than expected."
-msgstr[0] "%s は予期されたものより新しいです。"
-msgstr[1] "%s は予期されたものより新しいです。"
-
 #: ../setup/check_versions.php:111
 #, php-format
 msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
 msgstr "以下のファイルはこのバージョンの %s にとって予期されたものより新しいものです。プレリリースのコードを使っているとしたら、これは問題ありません。"
-
-#: ../setup/check_versions.php:129
-#, fuzzy, php-format
-msgid "One file is up-to-date."
-msgid_plural "%d files are up-to-date."
-msgstr[0] "テストされた %d ファイルは全て最新です。"
-msgstr[1] "テストされた %d ファイルは全て最新です。"
 
 #: ../setup/check_versions.php:131
 #, fuzzy
@@ -1913,13 +1891,6 @@ msgid "Save Config"
 msgstr "設定を保存"
 
 #: ../setup/confirm.inc:461
-#, fuzzy, php-format
-msgid "One error."
-msgid_plural "%d errors."
-msgstr[0] "1個のエラー"
-msgstr[1] "1個のエラー"
-
-#: ../setup/confirm.inc:461
 #, fuzzy
 msgid "No errors."
 msgstr "エラーなし"
@@ -2263,7 +2234,6 @@ msgid "Only the default locale for this machine is available, so date format wil
 msgstr "このマシンに対するデフォルト言語だけが利用可能です。よって、異なる言語に対しても日付フォーマットは同じものです。"
 
 #: ../setup/functions.inc:870
-#, php-format
 msgid "<b>System</b> locale selection required"
 msgstr "<b>システム</b>ロケール選択が必要です"
 
@@ -2281,7 +2251,6 @@ msgid "System locale"
 msgstr "システムロケール"
 
 #: ../setup/functions.inc:943
-#, php-format
 msgid "<b>System</b> locale problems"
 msgstr "<b>システム</b>ロケールの不具合"
 
@@ -2367,7 +2336,7 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%dファイルは予期されたものより新しいです。プレリリース、β版、CVS版、手を加えたコードを使っているなら、問題ありません。"
 
 #: ../setup/functions.inc:1293
-#, fuzzy, php-format
+#, fuzzy
 msgid "All tested files up-to-date."
 msgstr "テストされた %d ファイルは全て最新です。"
 
@@ -2679,6 +2648,30 @@ msgstr "0 個のファイル"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr ""
+
+#, fuzzy
+#~ msgid "One file is missing, corrupt or older than expected."
+#~ msgid_plural "%d files are missing, corrupt or older than expected."
+#~ msgstr[0] "%s が欠落しています。不正であるか予期されたものより古いです。"
+#~ msgstr[1] "%s が欠落しています。不正であるか予期されたものより古いです。"
+
+#, fuzzy
+#~ msgid "One file is more recent than expected."
+#~ msgid_plural "%d files are more recent than expected."
+#~ msgstr[0] "%s は予期されたものより新しいです。"
+#~ msgstr[1] "%s は予期されたものより新しいです。"
+
+#, fuzzy
+#~ msgid "One file is up-to-date."
+#~ msgid_plural "%d files are up-to-date."
+#~ msgstr[0] "テストされた %d ファイルは全て最新です。"
+#~ msgstr[1] "テストされた %d ファイルは全て最新です。"
+
+#, fuzzy
+#~ msgid "One error."
+#~ msgid_plural "%d errors."
+#~ msgstr[0] "1個のエラー"
+#~ msgstr[1] "1個のエラー"
 
 #~ msgid "1 file"
 #~ msgstr "1 個のファイル"

@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-13 12:23+0200\n"
+"POT-Creation-Date: 2004-05-17 14:13+0200\n"
 "PO-Revision-Date: 2003-09-09 13:21+0100\n"
 "Last-Translator: Gunnlaugur Þór Briem <gthb@hi.is>\n"
 "Language-Team:  <>\n"
@@ -351,7 +351,6 @@ msgid "Try again?"
 msgstr "Reyna aftur?"
 
 #: ../setup/check_mail.php:60
-#, php-format
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "Þetta gerir þér kleift að staðfesta að tölvupóstur virki rétt á kerfi þínu.  Gefðu upp tölvupóstfang þitt hér fyrir neðan; tölvupóstur verður sendur á póstfangið. Ef hann berst, þá veistu að tölvupóstur virkar á kerfinu."
 
@@ -401,13 +400,6 @@ msgstr ""
 msgid "%sClick here%s to see more details"
 msgstr "%sSmellið hér%s til að fela lýsingu"
 
-#: ../setup/check_versions.php:70
-#, php-format
-msgid "One file is missing, corrupt or older than expected."
-msgid_plural "%d files are missing, corrupt or older than expected."
-msgstr[0] ""
-msgstr[1] ""
-
 #: ../setup/check_versions.php:72 ../setup/check_versions.php:103
 #, fuzzy
 msgid "All files okay."
@@ -418,24 +410,10 @@ msgstr "Allar %d skrárnar sem ég prófaði reyndust nógu nýjar."
 msgid "There are problems with the following files.  Please correct them before configuring %s."
 msgstr ""
 
-#: ../setup/check_versions.php:101
-#, php-format
-msgid "One file is more recent than expected."
-msgid_plural "%d files are more recent than expected."
-msgstr[0] ""
-msgstr[1] ""
-
 #: ../setup/check_versions.php:111
 #, fuzzy, php-format
 msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
 msgstr "%d skrár eru nýrri en búist var við.  Það er í lagi ef þú ert að nota forútgáfu, beta-útgáfu, CVS-smíði eða breyttan kóða."
-
-#: ../setup/check_versions.php:129
-#, fuzzy, php-format
-msgid "One file is up-to-date."
-msgid_plural "%d files are up-to-date."
-msgstr[0] "Allar %d skrárnar sem ég prófaði reyndust nógu nýjar."
-msgstr[1] "Allar %d skrárnar sem ég prófaði reyndust nógu nýjar."
 
 #: ../setup/check_versions.php:131
 #, fuzzy
@@ -1933,13 +1911,6 @@ msgid "Save Config"
 msgstr "Vista uppsetningu"
 
 #: ../setup/confirm.inc:461
-#, fuzzy, php-format
-msgid "One error."
-msgid_plural "%d errors."
-msgstr[0] "Ein villa"
-msgstr[1] "Ein villa"
-
-#: ../setup/confirm.inc:461
 #, fuzzy
 msgid "No errors."
 msgstr "engar villur"
@@ -2286,7 +2257,6 @@ msgid "Only the default locale for this machine is available, so date format wil
 msgstr "Aðeins sjálfvalda staðfærslan í þessari vél er til boða, svo að dagsetningarsnið mun ekki breytast með mismunandi tungumálum."
 
 #: ../setup/functions.inc:870
-#, php-format
 msgid "<b>System</b> locale selection required"
 msgstr ""
 
@@ -2304,7 +2274,7 @@ msgid "System locale"
 msgstr "Kerfisstaðfærsla"
 
 #: ../setup/functions.inc:943
-#, fuzzy, php-format
+#, fuzzy
 msgid "<b>System</b> locale problems"
 msgstr "Kerfisstaðfærsla"
 
@@ -2390,7 +2360,7 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d skrár eru nýrri en búist var við.  Það er í lagi ef þú ert að nota forútgáfu, beta-útgáfu, CVS-smíði eða breyttan kóða."
 
 #: ../setup/functions.inc:1293
-#, fuzzy, php-format
+#, fuzzy
 msgid "All tested files up-to-date."
 msgstr "Allar %d skrárnar sem ég prófaði reyndust nógu nýjar."
 
@@ -2705,6 +2675,18 @@ msgstr "Rammar"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr ""
+
+#, fuzzy
+#~ msgid "One file is up-to-date."
+#~ msgid_plural "%d files are up-to-date."
+#~ msgstr[0] "Allar %d skrárnar sem ég prófaði reyndust nógu nýjar."
+#~ msgstr[1] "Allar %d skrárnar sem ég prófaði reyndust nógu nýjar."
+
+#, fuzzy
+#~ msgid "One error."
+#~ msgid_plural "%d errors."
+#~ msgstr[0] "Ein villa"
+#~ msgstr[1] "Ein villa"
 
 #, fuzzy
 #~ msgid "%s up-to-date."
