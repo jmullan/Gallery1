@@ -1669,21 +1669,12 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $r
 			// do nothing -- we are moving a root album, and we don't
 			// want to move it into its own album tree
 
-		/*
-		// Commented on 04-22-2004 - This code is not functioning the
-		// way it's intended. $gallery->album is referring to the album
-		// being moved, not the parent album.  getNestedAlbum returns
-		// the number of photos inside the album being moved - 
-		// if the index of the album being moved (inside its parent)
-		// is larger than the number of photos inside the album being
-		// moved, then getAlbumName will return an out of bounds error
-
-		} elseif ( !$readOnly && ($myAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto )  {
+		} elseif (!$readOnly && !$gallery->album->isRoot() && 
+			 ($myAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto )  {
 
 			// do nothing -- we are moving an album, and we don't
 			// want to move it into its own album tree
 
-		*/
 		} else {
 			printNestedVals(1, $myAlbumName, $movePhoto, $readOnly);
 		}
@@ -1716,14 +1707,16 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 					// don't allow user to move to here (value=0), but
 					// notify them that this is their current location
 					echo "<option value=0> $val2 (". _("current location") .")</option>\n";
-				} elseif (!$readOnly && $nestedAlbum == $gallery->album->getNestedAlbum($index)) {
+				} elseif (!$readOnly && !$gallery->album->isRoot() && 
+					 ($nestedAlbum == $gallery->album->getNestedAlbum($index))) {
 					echo "<option value=0> $val2 (". _("self"). ")</option>\n";
 				} else {
 					echo "<option value=\"$myName\"> $val2</option>\n";
 				}
 			}
 
-			if ( !$readOnly && ($nestedAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto ) {
+			if (!$readOnly && !$gallery->album->isRoot() && 
+			   ($nestedAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto ) {
 
 				// do nothing -- don't allow album move into its own tree
 
