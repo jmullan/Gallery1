@@ -250,6 +250,30 @@ $constants = array(
 		"type" => "textarea",
 		"attrs" => array("cols" => 50, "rows" => 5),
 	),
+	"jpegImageQuality" => array(
+		"prompt" => "<b>(Advanced)</b> JPEG Quality",
+		"desc" => "The JPEG file format trades off size versus quality.  " .
+		    "Gallery can control the quality of the JPEGs that it produces " .
+		    "when you resize, rotate or make thumbnails from JPEG images." .
+		    "Higher quality images are larger in size than lower quality images. " .
+		    "However, in many cases there's a point at which raising the " .
+		    "quality increases the size of the files without noticeably " .
+		    "affecting the appearance of the image.  If you notice that your " .
+		    "thumbnails and resized images are larger than the originals and " .
+		    "you don't like this, you can try lowering this value.  <b>Note</b> " .
+		    "that changing this value will only affect images changed in the " .
+		    "<i>future</i>.",
+		"choices" => array(50, 55, 60, 65,
+				   70, 75, 80, 85,
+				   90, 95),
+		"value" => 95,
+	),
+	"debug" => array(
+		"prompt" => "<b>(Advanced)</b> Debug mode",
+		"desc" => "Turn debug mode on so that you can diagnose problems?",
+		"choices" => array("yes", "no"),
+		"value" => "no",
+	),
 	"use_flock" => array(
 		"prompt" => "<b>(Advanced)</b> Use flock()?",
 		"desc" => "Gallery uses a locking system called flock() for added ".
@@ -258,12 +282,6 @@ $constants = array(
 			  "not acquire lock</i> then set this value to <i>no</i>",
 		"choices" => array("yes", "no"),
 		"value" => "yes"),
-	"debug" => array(
-		"prompt" => "<b>(Advanced)</b> Debug mode",
-		"desc" => "Turn debug mode on so that you can diagnose problems?",
-		"choices" => array("yes", "no"),
-		"value" => "no",
-	),
 	"expectedExecStatus" => array(
 		"prompt" => "<b>(Advanced)</b> Status code",
 		"desc" => "The status code Gallery expects to see after a successful " .
