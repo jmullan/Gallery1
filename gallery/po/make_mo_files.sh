@@ -93,6 +93,8 @@ for all_po in $(ls ??_*-*.po) ; do
 				echo $rc_failed
 				exit 1
 			}
+		echo -n "$tab cp $all_po ../locale/$lang/"
+		cp $all_po ../locale/$lang/ && echo $rc_ok || echo $rc_failed
 	else
 		echo $rc_missing
 		echo -n " $tab Creating ../locale/$lang/LC_MESSAGES"
@@ -105,6 +107,8 @@ for all_po in $(ls ??_*-*.po) ; do
 				echo $rc_failed
 				exit 1
 			}
+			echo -n "$tab cp $all_po ../locale/$lang/"
+			cp $all_po ../locale/$lang/ && echo $rc_ok || echo $rc_failed
 		} || {
 			echo $rc_failed
 			echo -n "$tab Making ../locale/$lang/LC_MESSAGES/$filename file"
@@ -114,4 +118,4 @@ for all_po in $(ls ??_*-*.po) ; do
 
 done
 
-/etc/init.d/apache restart
+# /etc/init.d/apache restart

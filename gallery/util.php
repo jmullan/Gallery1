@@ -1945,7 +1945,7 @@ if (in_array("gettext", get_loaded_extensions())) {
         header('Content-Type: text/html; charset=' . $gallery->charset);
 	if (!in_array("gettext", get_loaded_extensions()) 
 		|| ! function_exists(gettext)) {
-		$filename=$GALLERY_BASEDIR ."po/" . $gallery->language . "-gallery.po";
+		$filename=$GALLERY_BASEDIR ."locale/" . $gallery->language . "/" . $gallery->language . "-gallery.po";
 	
 		if (file_exists($filename)) {
 			$lines=file($filename);
