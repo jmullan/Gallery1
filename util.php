@@ -797,9 +797,11 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
       $args .= $overlayFile;
       break;
    }
+    
+   if (isDebugging()) {
+   	print "args = $args<br/>";
+   }
 
-   print "args = $args<br/>";
-   
    // Execute
    switch($gallery->app->graphics)
    {
