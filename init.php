@@ -350,7 +350,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			/* Session info about Mambo are available when we open a Popup from Mambo, 
 			** but content isnt parsed through Mambo
 			*/
-			if (isset($gallery->session->mambo)) {
+			if (!empty($gallery->session->mambo)) {
 				$mosConfig_host		= $gallery->session->mambo->mosConfig_host;
 				$mosConfig_user		= $gallery->session->mambo->mosConfig_user;
 				$mosConfig_password	= $gallery->session->mambo->mosConfig_password;
