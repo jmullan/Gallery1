@@ -214,7 +214,7 @@ class Image {
 		$this->raw_height = $h;
 	}
 
-	function getDimensions($size=0) {
+	function getDimensions($size=0, $full=false) {
 	    if ($size) {
                 if ($this->width > $this->height) {
                     $width = $size;
@@ -223,7 +223,11 @@ class Image {
                     $width = round($size * ($this->width / $this->height));
                     $height = $size;
                 }
-            } else {
+            } else if ($full) {
+		$width = $this->raw_width;
+		$height = $this->raw_height;
+	    }
+	    else {
 		$width = $this->width;
 		$height = $this->height;
             }

@@ -346,12 +346,16 @@ class AlbumItem {
 		}
 	}
 
-	function getDimensions() {
-		if ($this->image) {
-			return $this->image->getDimensions();
-		} else {
-			return array(0, 0);
+	function getDimensions($full=0) {
+		global $gallery;
+		if (!$this->image) {
+			return array(0, 0, 0);
 		}
+		$stat = fs_stat($this->image->getPath($gallery->album->getAlbumDir(), $full));
+		
+		$dims = $this->image->getDimensions(0, $full);
+		$dims[] = $stat[7];
+		return $dims;
 	}
 
 	function isResized() {
