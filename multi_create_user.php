@@ -55,8 +55,17 @@ if (isset($create))
 		       	$errorCount++;
 	       	}
 	}
+
 	if (!$errorCount) {
-		$users=file($membersfile);
+		$users=@file($membersfile);
+		if (sizeof($user == 0)) {
+			$gErrors["membersfile"] =
+			sprintf(_("Upload went fine, but the file is not readable, please make sure %s is accessable for your webserver. (Also check openbasedir restrictions.)"), 
+				dirname($membersfile));
+			$errorCount++;
+		}
+	}
+	if (!$errorCount) {
 		// Simple test to see if it's a windows file
 		if (sizeof($users)==1 and ereg("", $users[0]))
 		{
@@ -161,8 +170,9 @@ echo makeFormIntro("multi_create_user.php", array(
 
 <?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
 
-<input type="submit" name="create" value="<?php echo _("Create") ?>">
-<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
+<br>
+	<input type="submit" name="create" value="<?php echo _("Create") ?>">
+	<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
 </form>
 
 </center>

@@ -468,8 +468,7 @@ if (!isset($gallery->session->offline)) {
     $gallery->session->offline = FALSE;
 }
 
-if ($gallery->userDB->versionOutOfDate()) 
-{
+if ($gallery->userDB->versionOutOfDate()) {
 	include(dirname(__FILE__) . "/upgrade_users.php");
 	exit;
 }
