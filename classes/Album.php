@@ -310,6 +310,15 @@ class Album {
 		}
 	}
 
+	function getIds($show_hidden=0) {
+		foreach ($this->photos as $photo) {
+			if (!$photo->isHidden() || $show_hidden) {
+				$ids[] = $photo->getPhotoId($this->getAlbumDirURL());
+			}
+		}
+		return $ids;
+	}
+
 	function getPhoto($index) {
 		return $this->photos[$index-1];
 	}
@@ -362,7 +371,8 @@ class Album {
 		array_splice($this->photos, $newIndex, 0, $photo);
 	}
 
-	function isMovie($index) {
+	function isMovie($id) {
+		$index = $this->getPhotoIndex($id);
 		$photo = $this->getPhoto($index);
 		return $photo->isMovie();
 	}

@@ -37,8 +37,13 @@ if ($id) {
 	$id = $album->getPhotoId($index);
 }
 $photo = $album->getPhoto($index);
-$photoURL = $album->getAlbumDirURL() . "/" . $photo->image->name . "." . $photo->image->type;
-list($imageWidth, $imageHeight) = $photo->image->getDimensions();
+if ($photo->isMovie()) {
+	$image = $photo->thumbnail;
+} else {
+	$image = $photo->image;
+}
+$photoURL = $album->getAlbumDirURL() . "/" . $image->name . "." . $image->type;
+list($imageWidth, $imageHeight) = $image->getDimensions();
 
 $do_fullOnly = !strcmp($fullOnly,"on") &&
                !strcmp($album->fields["use_fullOnly"],"yes");
@@ -96,8 +101,8 @@ if (!strcmp($album->fields["resize_size"], "off")) {
 	$mainWidth = $album->fields["resize_size"] + ($borderwidth*2);
 }
 
-$navigator["page"] = $index;
-$navigator["maxPages"] = $numPhotos;
+$navigator["id"] = $id;
+$navigator["allIds"] = $album->getIds($user->canWriteToAlbum($album));
 $navigator["fullWidth"] = "100";
 $navigator["widthUnits"] = "%";
 $navigator["url"] = ".";
@@ -234,7 +239,7 @@ includeHtmlWrap("photo.header");
 <td>
 <?
 
-if (!$album->isMovie($index)) {
+if (!$album->isMovie($id)) {
 	if ($user->canWriteToAlbum($album)) {
 		$adminCommands .= '<a href="#" onClick="'.
 			popup("$top/resize_photo.php?index=$index").';return false">[resize photo]</a>';
@@ -318,7 +323,7 @@ echo "<center>";
 
 $photoTag = $album->getPhotoTag($index, $full);
 
-if (!$album->isMovie($index)) {
+if (!$album->isMovie($id)) {
 	if ($album->isResized($index) && !$do_fullOnly) { 
 		if ($full) { 
 			echo "<a href=" . makeGalleryUrl($albumName, $id) . ">";
@@ -366,7 +371,8 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 <!-- caption -->
 <tr>
 <?
-if (!strcmp($album->fields["print_photos"],"none")) {
+if (!strcmp($album->fields["print_photos"],"none") ||
+    $album->isMovie($id)) {
 ?>
 <td colspan=3 align=center>
 <span class="caption"><?= editCaption($album, $index, $edit) ?></span>

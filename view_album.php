@@ -249,7 +249,6 @@ if ($numPhotos) {
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td width=$imageCellWidth align=center valign=middle>");
-
 			echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
 			echo("<tr $bordercolor>"); 
 			echo("<td colspan=3 height=$borderwidth><img src=images/pixel_trans.gif></td>");
@@ -258,12 +257,13 @@ if ($numPhotos) {
 			echo("<img src=images/pixel_trans.gif width=$borderwidth height=1>");
 			echo("</td><td>");
 
-			if ($album->isMovie($i)) {
+			$id = $album->getPhotoId($i);
+			if ($album->isMovie($id)) {
 				echo("<a href=" . $album->getPhotoPath($i) . " target=other>" . 
 					$album->getThumbnailTag($i) .
 					"</a>");
 			} else {
-				echo("<a href=" . makeGalleryUrl($albumName, $album->getPhotoId($i)) . ">" .
+				echo("<a href=" . makeGalleryUrl($albumName, $id) . ">" .
 					$album->getThumbnailTag($i) .
 					"</a>");
 			}
@@ -295,9 +295,10 @@ if ($numPhotos) {
 			echo($album->getCaption($i)."<br>");
 			echo "</span>";
 
+			$id = $album->getPhotoId($i);
 			if (($user->canDeleteFromAlbum($album)) || ($user->canWriteToAlbum($album)) ||
 				($user->canChangeTextOfAlbum($album))) {
-				$label = ($album->isMovie($i)) ? "Movie" : "Photo";
+				$label = ($album->isMovie($id)) ? "Movie" : "Photo";
 				echo("<select style='FONT-SIZE: 10px;' name='s' ".
 					"onChange='imageEditChoice(document.image_form_$i.s)'>");
 				echo("<option value=''><< Edit $label>></option>");
@@ -306,7 +307,7 @@ if ($numPhotos) {
 				echo("<option value='edit_caption.php?index=$i'>Edit Caption</option>");
 			}
 			if ($user->canWriteToAlbum($album)) {
-				if (!$album->isMovie($i)) {
+				if (!$album->isMovie($id)) {
 					echo("<option value='edit_thumb.php?index=$i'>Edit Thumbnail</option>");
 					echo("<option value='rotate_photo.php?index=$i'>Rotate $label</option>");
 					echo("<option value='highlight_photo.php?index=$i'>Highlight $label</option>");

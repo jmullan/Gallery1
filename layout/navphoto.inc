@@ -1,7 +1,14 @@
 <?
 // Calculate the beginning and ending of the navigator range
-$begin = 1;
-$end = $navigator["maxPages"];
+$begin = 0;
+$navpage = sizeof($navigator["allIds"]);
+while ($navpage > 0) {
+	if (!strcmp($navigator["allIds"][$navpage], $navigator["id"])) {
+		break;
+	}
+	$navpage--;
+}
+$navcount = sizeof($navigator["allIds"]);
 
 // If the border color is not passed in, we do a white one
 if ($navigator["bordercolor"]) {
@@ -23,13 +30,13 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
 <?      
 #-- 'first' button cell ---
-if ($navigator["page"] == 1) {
+if ($navpage == 0) {
 ?>
     <td align="center" width="27" height="18">&nbsp;</td> 
     <td width="1" height="1"><?=$pixelImage?></td>
 <?
 } else {
-	$firstPage = $album->getPhotoId(1);
+	$firstPage = $navigator["allIds"][0];
 ?>
     <td align="center" width="27" height="18"> 
       <a href="<?=makeGalleryUrl($albumName, $firstPage)?>"><img src="<?=$imageDir?>/nav_first.gif" border="0" width="27" height="11" alt="First Photo"></a>
@@ -40,9 +47,9 @@ if ($navigator["page"] == 1) {
 ?>
 <?
 #-- 'previous' button cell ---
-$prevPage = $navigator["page"] - 1;
-if ($prevPage >= 1) {
-	$prevPage = $album->getPhotoId($prevPage);
+$prevPage = $navpage - 1;
+if ($prevPage >= 0) {
+	$prevPage = $navigator["allIds"][$prevPage];
 ?>
     <td align="center" width="72" height="18">
       <a href="<?=makeGalleryUrl($albumName, $prevPage)?>"><img src="<?=$imageDir?>/nav_prev.gif" border="0" width="72" height="11" alt="Previous Photo"></a>
@@ -60,16 +67,14 @@ if ($prevPage >= 1) {
 <?
 #-- 'page numbers' cell ---                  
 echo "<span class=\"nav\">";
-$current = $navigator["page"];
-echo "$current (of $end)";
+echo $navpage+1 . " (of $navcount)";
 echo "</span>";
 ?>
     </td>
 <?
 #-- 'next' button cell ---
-$nextPage = $navigator["page"] + 1;
-if ($nextPage <= $navigator["maxPages"]) {
-	$nextPage = $album->getPhotoId($nextPage);
+if ($navpage+1 != $navcount) {
+	$nextPage = $navigator["allIds"][$navpage+1];
 ?>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
     <td align="center" width="72" height="18">
@@ -85,13 +90,13 @@ if ($nextPage <= $navigator["maxPages"]) {
 ?>
 <?
 #-- 'last' button ---
-if ($navigator["page"] == $navigator["maxPages"]) {
+if ($navpage+1 == $navcount) {
 ?>
     <td width="1" height="1"><?=$pixelImage?></td>
     <td align="center" width="27" height="18">&nbsp;</td>
 <?
 } else {        
-	$lastPage = $album->getPhotoId($navigator["maxPages"]);
+	$lastPage = $navigator["allIds"][$navpage+1];
 ?>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
     <td align="center" width="27" height="18">
