@@ -60,9 +60,12 @@ function error_format($message) {
 	return "<span class=error>Error: $message<span>";
 }
 
-function popup($url) {
+function popup($url, $no_expand_url=0) {
+	if (!$no_expand_url) {
+		$url = "'$url'";
+	}
 	$attrs = "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes";
-	return "javascript:nw=window.open('$url','Edit','$attrs');nw.opener=self;return false;";
+	return "javascript:nw=window.open($url,'Edit','$attrs');nw.opener=self;return false;";
 }
 
 function popup_status($url) {
@@ -179,12 +182,70 @@ function my_flush() {
 
 function resize_image($src, $dest, $target) {
 	global $app;				
-
+	if (!strcmp($src,$dest)) {
+		$useTemp = true;
+		$out = "$dest.tmp";
+	}
+	else {
+		$out = $dest;
+	}
 	$err = exec_wrapper(toPnmCmd($src) .
 		     "| $app->pnmDir/pnmscale -xysize $target $target".
-		     "| " . fromPnmCmd($dest));
+		     "| " . fromPnmCmd($out));
 
-	if (file_exists("$dest") && filesize("$dest") > 0) {
+	if (file_exists("$out") && filesize("$out") > 0) {
+		if ($useTemp) {
+			copy($out, $dest);
+			unlink($out);
+		}
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+function flip_image($src, $dest, $target) {
+	global $app;				
+	if (!strcmp($src,$dest)) {
+		$useTemp = true;
+		$out = "$dest.tmp";
+	}
+	else {
+		$out = $dest;
+	}
+	$err = exec_wrapper(toPnmCmd($src) .
+		     "| $app->pnmDir/pnmflip -rotate$target".
+		     "| " . fromPnmCmd($out));
+
+	if (file_exists("$out") && filesize("$out") > 0) {
+		if ($useTemp) {
+			copy($out, $dest);
+			unlink($out);
+		}
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+function cut_image($src, $dest, $x, $y, $width, $height) {
+	global $app;				
+	if (!strcmp($src,$dest)) {
+		$useTemp = true;
+		$out = "$dest.tmp";
+	}
+	else {
+		$out = $dest;
+	}
+	$err = exec_wrapper(toPnmCmd($src) .
+		     "| $app->pnmDir/pnmcut $x $y $width $height".
+		     "| " . fromPnmCmd($out));
+
+	if (file_exists("$out") && filesize("$out") > 0) {
+		if ($useTemp) {
+			copy($out, $dest);
+			unlink($out);
+		}
 		return 1;
 	} else {
 		return 0;
