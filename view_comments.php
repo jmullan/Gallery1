@@ -28,7 +28,7 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 // Hack check
-if (!$gallery->user->isAdmin() && !$gallery->user->isOwnerOfAlbum($gallery->album)
+if (!$gallery->user->canViewComments($gallery->album)
 	&& (! isset($gallery->app->comments_overview_for_all) || $gallery->app->comments_overview_for_all != "yes")) {
 	header("Location: " . makeAlbumHeaderUrl());
 	return;

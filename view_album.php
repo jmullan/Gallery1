@@ -449,14 +449,11 @@ if ($gallery->album->fields["slideshow_type"] != "off" && ($numPhotos != 0 || ($
 }
 
 /* User is allowed to view ALL comments */
-if (isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes"
-	&& $gallery->user->canViewComments($gallery->album)
-	&& ! $gallery->user->isAdmin()
-	&& ! $gallery->user->isOwnerOfAlbum($gallery->album)
-        && ($gallery->app->comments_enabled == 'yes')
-        && ($gallery->album->lastCommentDate("no") != -1)) {
+if ( ($gallery->app->comments_enabled == 'yes' && $gallery->album->lastCommentDate("no") != -1) &&
+	((isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes") ||
+	$gallery->user->canViewComments($gallery->album))) {
                 $userCommands .= "\t". '<a href="'. makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)) . '">' .
-                        '[' . _("view&nbsp;comments") . ']</a>\n';
+                        '[' . _("view&nbsp;comments") . "]</a>\n";
 }
 
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {

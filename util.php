@@ -2052,7 +2052,7 @@ function printChildren($albumName,$depth=0) {
 				if ($depth==0 && !$printedHeader++) {
 					echo "<strong>". _("Sub-albums") .":</strong>\n";
 				}
-				echo "<div class='fineprint' style=\"margin: 0px 0px 0px " . 20 * ($depth + 1) . "px\">";
+				echo "<div class='fineprint' style=\"white-space:nowrap; margin: 0px 0px 0px " . 20 * ($depth + 1) . "px\">";
 				echo "<a href=\"";
 				echo makeAlbumUrl($myName);
 				echo "\">$val2 $val3</a>";
@@ -2811,7 +2811,7 @@ function lastCommentString($lastCommentDate, &$displayCommentLegend) {
 		$ret = "<br>".sprintf(_("Last comment %s."), 
 				strftime($gallery->app->dateString, $lastCommentDate));
 	} else {
-		$ret= "<span class=error>*</span>";
+		$ret= "<span class=\"commentIndication\">*</span>";
 		$displayCommentLegend = 1;
 	}
 	return $ret;

@@ -271,6 +271,13 @@ class Abstract_User {
                         return true;
                 }
 
+		/* Note Jens Tkotz, 23.09.2004
+		** Allow album owner to see comments, as they are a kind of local admin
+		*/
+		if ($this->isOwnerOfAlbum($album)) {
+			return true;
+		}
+
                 if ($album->canViewComments($this->uid)) {
                         return true;
                 }

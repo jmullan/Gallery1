@@ -604,10 +604,8 @@ if (isset($error_text)) {
 }
 
 if ($gallery->user->canViewComments($gallery->album) && $gallery->app->comments_enabled == 'yes') {
-		echo viewComments($index, $gallery->user->canAddComments($gallery->album), $page_url);
+	echo viewComments($index, $gallery->user->canAddComments($gallery->album), $page_url);
 }
-
-
 
 echo "<br>";
 
