@@ -719,8 +719,8 @@ if ($numPhotos) {
 			$gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 			if ($gallery->album->isAlbum($i)) {
 				$scaleTo = 0; //$gallery->album->fields["thumb_size"];
-				$album = $gallery->album->getNestedAlbum($i);
-				list($iWidth, $iHeight) = $album->getHighlightDimensions($scaleTo);
+				$myAlbum = $gallery->album->getNestedAlbum($i);
+				list($iWidth, $iHeight) = $myAlbum->getHighlightDimensions($scaleTo);
 			} else {
 				$scaleTo=0;  // thumbs already the right 
 					    //	size for this album
@@ -745,17 +745,16 @@ if ($numPhotos) {
 					$gallery->html_wrap['imageTag'];
 			       	$gallery->html_wrap['thumbHref'] = 
 					$gallery->html_wrap['imageHref'];
-			       	/*end backwards compatibility*/
+				/*end backwards compatibility*/
 				includeHtmlWrap('inline_moviethumb.frame');
-			} elseif ($gallery->album->isAlbum($i)) {
-				$myAlbum = new Album();
-				$myAlbum->load($gallery->album->getAlbumName($i));
-
+			} elseif (isset($myAlbum)) {
+				// We already loaded this album - don't do it again, for performance reasons.
+				
 				$gallery->html_wrap['imageTag'] = $myAlbum->getHighlightTag($scaleTo,'',_("Highlight for Album:"). " ". gallery_htmlentities(removeTags($myAlbum->fields['title'])));
 				$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->album->getAlbumName($i));
 				$gallery->html_wrap['frame'] = $gallery->album->fields['album_frame'];
 			       	/*begin backwards compatibility */
-			       	$gallery->html_wrap['thumbWidth'] = 
+				$gallery->html_wrap['thumbWidth'] = 
 					$gallery->html_wrap['imageWidth'];
 			       	$gallery->html_wrap['thumbHeight'] = 
 					$gallery->html_wrap['imageHeight'];

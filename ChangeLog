@@ -1,3 +1,9 @@
+2004-06-21  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b202
+
+	* Change: Performance enhancement for getNextPhoto() - we don't need
+	  to load the photos for subalbums when we're checking permissions,
+	  we only need the album itself.  Cuts our getFile() calls in half.
+
 2004-06-20  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b201
 
 	* Fix: Out of Bounds error in postnuke

@@ -1578,7 +1578,7 @@ function getNextPhoto($idx, $album=NULL) {
 
 	// Check rights to album
 	if ($album->isAlbum($idx)) {
-		$myAlbum =& $album->getNestedAlbum($idx);
+		$myAlbum =& $album->getNestedAlbum($idx, false);
 
 		// Owners can always see their own content
 		if ($gallery->user->isOwnerOfAlbum($myAlbum)) {

@@ -183,11 +183,11 @@ class Album {
 		return $mostRecent;
 	}
 
-	function &getNestedAlbum($index) {
+	function &getNestedAlbum($index, $loadphotos=true) {
 		
 		$albumName = $this->getAlbumName($index);
 		$album = new Album();
-		$album->load($albumName);
+		$album->load($albumName, $loadphotos);
 		return $album;	
 	}
 
