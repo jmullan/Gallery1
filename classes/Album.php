@@ -689,8 +689,8 @@ class Album {
 
 				/* Don't use fs_fopen here since we're opening a url */
 				if ($fd = @fopen($serial, "r")) {
-					$serialContents = fgets($fd,5);
-					if (!strcmp($serialContents,$this->tsilb)) {
+					$serialContents = fgets($fd, 6);
+					if (!strcmp($serialContents, $this->tsilb)) {
 						$this->transient->mirrorUrl = $base_url;
 						return $this->transient->mirrorUrl;
 					}
