@@ -98,8 +98,6 @@ function findOrphans() {
 	return $orphaned;
 }
 
-$orphans = findOrphans();
-
 doctype();
 ?>
 <html>
@@ -116,13 +114,16 @@ doctype();
 <p align="center" class="popuphead"><?php echo _("Orphan Elements") ?></p>
 
 <?php
-if (! empty ($orphans)) {
+$orphans = findOrphans();
+
+if (!empty($orphans)) {
 	if (!isset($update)) { ?>
 	<table>
 	<tr><th><?php echo _("Orphaned Album") ?></th><th>&nbsp;</th><th><?php echo _("Parent Album") ?></th></tr>
 <?php
 		foreach ($orphans as $childname => $parentname) {
-			echo "\t<tr><td>" . $childname . "</td><td>=&gt;</td><td>" . ($parentname ? $parentname : _("Gallery Root")) . "</td></tr>\n";
+			echo "\t<tr><td>" . $childname . "</td><td>=&gt;</td><td>" . 
+			     ($parentname ? $parentname : _("Gallery Root")) . "</td></tr>\n";
 		}
 ?>
 	</table>
@@ -133,8 +134,7 @@ if (! empty ($orphans)) {
 <?php 
 } // !isset(update) 
 	else { 
-		attachOrphans();
-		echo "attachOrphans();<br /><br />";
+		attachOrphans($orphans);
 		echo '<a href="' . makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>';
 	}
 } else {
