@@ -17,58 +17,6 @@ if (!function_exists('fs_is_readable')) {
        	}
 }
 
-// No translation yet, as we may not release this in 1.4.1
-function checkVersions() {
-	global $GALLERY_BASEDIR, $gallery;
-	$manifest=$GALLERY_BASEDIR."manifest.inc";
-	$errors=array();
-	if (!fs_file_exists($manifest)) {
-	       	$errors[$manifest]="File missing or unreadable.  Please install then re-run this test.";
-		return $errors;
-	}
-	if (!function_exists('getCVSVersion')) {
-		$errors['util.php']="Please ensure that util.php is the latest version.";
-		return $errors;
-	}
-	include $manifest;
-	foreach ($versions as $file => $version) {
-		$found_version=getCVSVersion($file);
-		if ($found_version === NULL) {
-		       	if (isDebugging()) {
-			       	print sprintf("Cannot read file %s.", $file);
-			       	print "<br>\n";
-			}
-			$errors[$file]="File missing or unreadable.";
-			continue;
-		} else if ($found_version === "") {
-		       	if (isDebugging()) {
-			       	print sprintf("Version information not found in %s.  File must be old version or corrupted.", $file);
-			       	print "<br>\n";
-		       	}
-		       	$errors[$file]="Missing version";
-		       	continue;
-	       	} else if ($found_version < $version) {
-		       	if (isDebugging()) {
-			       	print sprintf("Problem with %s.  Expected version %s (or greater) but found %s.", $file, $version, $found_version);
-			       	print "<br>\n";
-		       	}
-		       	$errors[$file]=sprintf("Expected version %s (or greater) but found %s.", $version, $found_version);
-	       	} else if ($found_version > $version) {
-		       	if (isDebugging()) {
-				print sprintf("%s OK.  Actual version (%s) more recent than expected version (%s)", $file, $found_version, $version);
-			       	print "<br>\n";
-			}
-		} else {
-		       	if (isDebugging()) {
-			       	print sprintf("%s OK", $file);
-			       	print "<br>\n";
-		       	}
-		}
-			
-	}
-	return $errors;
-}
-
 
 // We set this to false to get the config stylesheet
 $GALLERY_OK=false;
@@ -86,23 +34,46 @@ require($GALLERY_BASEDIR . "setup/functions.inc");
 <h1 class="header"><?php echo _("Check Versions") ?></h1>
 
 <?php 
-// $gallery->app->debug = "yes";
+if (empty($show_details)) {
+	$show_details=false;
+}
+if ($show_details) {
+       	print sprintf(_("%sClick here%s to hide the details"),
+		       	'<a href="check_versions.php?show_details=0">','</a>');
+} else {
+       	print sprintf(_("%sClick here%s to see more details"),
+		       	'<a href="check_versions.php?show_details=1">','</a>');
+}
+print "<p>";
 
-$errors=checkVersions();
+$results=checkVersions($show_details);
+$errors=$results[0];
+$warnings=$results[1];
+$oks=$results[2];
 if  ($errors) {
+	print "<p>";
 	print '<span class="errorlong">';
-       	print sprintf("The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version.", Gallery());
+       	print sprintf(_("The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version."), Gallery());
 	print '</span>';
        	print "<br><br>\n";
        	foreach ($errors as $file => $error) {
 	       	print "<div class=\"emphasis\">$file:</div> &nbsp;&nbsp;&nbsp;&nbsp;$error<br>\n";
        	}
-} else {
-	print '<br><br><span class="successlong">';
-       	print "All versions up-to-date<br>";
-	print '</span>';
 }
+if  ($warnings) {
+	print "<p>";
+	print '<span class="warninglong">';
+       	print sprintf(_("The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is expected."), Gallery());
+	print '</span>';
+       	print "<br><br>\n";
+       	foreach ($warnings as $file => $warning) {
+	       	print "<div class=\"emphasis\">$file:</div> &nbsp;&nbsp;&nbsp;&nbsp;$warning<br>\n";
+       	}
+} ?>
+<br><br><span class="successlong">
+<?php print sprintf(_("%d files up-to-date."), count($oks)); ?>
+<br>
+</span>
 
-?>
 </body>
 </html>

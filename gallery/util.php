@@ -3143,4 +3143,92 @@ function getCVSVersion($file) {
 	}
 	return "";
 }
+
+/* Return -1 if old version is greater than new version, 0 if they are the 
+   same and 1 if new version is greater.
+ */
+function compareVersions($old_str, $new_str) {
+	if ($old_str === $new_str) { 
+		return 0;
+	}
+	$old=explode('.', $old_str);
+	$new=explode('.', $new_str);
+	foreach($old as $old_number) {
+		$old_number=0+$old_number;
+		$new_number=0+array_shift($new);
+		if ($new_number  == null) {
+			return -1;
+		}
+		if ($old_number == $new_number) {
+			continue;
+		}
+		if ($old_number > $new_number) {
+			return -1;
+		}
+		// if ($old_number < $new_number) {
+		return 1;
+	}
+	if (count($new) == 0) {
+		return 0;
+	}
+	return 1;
+}
+
+function checkVersions($verbose=false) {
+	global $GALLERY_BASEDIR, $gallery;
+	$manifest=$GALLERY_BASEDIR."manifest.inc";
+	$errors=array();
+	$warnings=array();
+	$oks=array();
+	if (!fs_file_exists($manifest)) {
+	       	$errors["manifest.inc"]=_("File missing or unreadable.  Please install then re-run this test.");
+		return array($errors, $warnings, $oks);
+	}
+	if (!function_exists('getCVSVersion')) {
+		$errors['util.php']=sprintf(_("Please ensure that %s is the latest version."), "util.php");
+		return array($errors, $warnings, $oks);
+	}
+	include $manifest;
+	print sprintf(_("Testing status of %d files."), count($versions));
+	foreach ($versions as $file => $version) {
+		$found_version=getCVSVersion($file);
+		if ($found_version === NULL) {
+		       	if ($verbose) {
+			       	print "<br>\n";
+			       	print sprintf(_("Cannot read file %s."), $file);
+			}
+			$errors[$file]=_("File missing or unreadable.");
+			continue;
+		} else if ($found_version === "") {
+			if ($verbose) {
+			       	print "<br>\n";
+			       	print sprintf(_("Version information not found in %s.  File must be old version or corrupted."), $file);
+		       	}
+		       	$errors[$file]=_("Missing version");
+		       	continue;
+	       	} 
+		$compare=compareVersions($version, $found_version);
+		if ($compare < 0) {
+			if ($verbose) {
+			       	print "<br>\n";
+			       	print sprintf(_("Problem with %s.  Expected version %s (or greater) but found %s."), $file, $version, $found_version);
+		       	}
+		       	$errors[$file]=sprintf(_("Expected version %s (or greater) but found %s."), $version, $found_version);
+	       	} else if ($compare > 0) {
+			if ($verbose) {
+			       	print "<br>\n";
+				print sprintf(_("%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
+			}
+			$warnings[$file]=sprintf(_("%s is a more recent version than expected.  Expected version %s but found %s."), $file, $version, $found_version);
+		} else {
+			if ($verbose) {
+			       	print "<br>\n";
+			       	print sprintf(_("%s OK"), $file);
+		       	}
+			$oks[$file]="OK";
+		}
+			
+	}
+       	return array($errors, $warnings, $oks);
+}
 ?>
