@@ -1,3 +1,9 @@
+2005-03-12  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b2
+
+	* Fix: Attempt to address phpBB unset()ing the op/name/modload vars
+	  before we use them by not setting them until after we include
+	  phpBB's files.
+
 2005-03-12  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b1
 
 	* Fix: Unset array ref in do_command
