@@ -156,12 +156,14 @@ $constants = array(
 	),
 	"photoAlbumURL" => array(
 		"desc" => "The full URL to the Gallery web app",
-		"value" => "http://" . getenv("SERVER_NAME") . $GALLERY_URL
+		"value" => "http://" . getenv("SERVER_NAME") . $GALLERY_URL,
+		"no-trailing-slash" => 1,
 	),
 	"albumDirURL" => array(
 		"desc" => "The relative path to the album directory (specified above) " .
 			"on your web server",
-		"value" => "/albums"
+		"value" => "/albums",
+		"no-trailing-slash" => 1,
 	),
 );
 
