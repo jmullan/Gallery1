@@ -354,7 +354,7 @@ for ($i = $start; $i <= $end; $i++) {
 		}
 
 		if ($gallery->album->versionOutOfDate()) {
-			if ($gallery->user->isAdmin()) { ?>
+			if ($gallery->user->isAdmin()) {
   				echo '<br><span class="error">';
 				echo _("Note:  This album is out of date!") ?> <?php echo popup_link("[" . _("upgrade album") ."]", "upgrade_album.php");
 				echo '</span>';
