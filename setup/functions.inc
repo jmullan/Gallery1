@@ -452,7 +452,8 @@ function check_graphics($location="", $graphtool = "")
 	);
 
 	$optional = array(
-		fs_executable("pnmcomp") => 1,
+		fs_executable("pnmcomp") => 
+			_("Without pnmcomp gallery will not be able to watermark images."),
 	);
 	$missing_optional = 0;
 
@@ -480,7 +481,7 @@ function check_graphics($location="", $graphtool = "")
 		}
 
 		if (!$d && isset($optional[$bin])) {
-			$warn[] = sprintf(_("Missing optional binary %s"), $bin);
+			$warn[] = sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
 			$missing_optional++;
 		} else {
 			if (!$d) {
@@ -539,7 +540,8 @@ function check_graphics_im($location="", $graphtool="")
 	);
 
 	$optional = array(
-		fs_executable("composite") => 1,
+		fs_executable("composite") => 
+			_("Without composite gallery will not be able to watermark images."),
 	);
 	$missing_optional = 0;
 
@@ -552,7 +554,7 @@ function check_graphics_im($location="", $graphtool="")
 
 		if (!$d) {
 			if ($optional[$bin]) {
-				$warn[$bin] = sprintf(_("Missing optional binary %s"), $bin);
+				$warn[$bin] = sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
 				$missing_optional++;
 			} else {
 				$missing[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
