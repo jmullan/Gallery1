@@ -1,15 +1,19 @@
-<title> Gallery Setup: Step 1 </title>
 <center>
-<font size=+2>This is the Gallery system check page. </font>
-<br> This page will validate your installation to make sure
-<br> that you have all the various libraries that you need
-<br> installed on the system and that everything is configured
-<br> reasonably.
+<font size=+2> Gallery Setup: Step 1 </font>
+<br>
+<table width=80%><tr><td align=center>
+<font size=+1>This is the Gallery system check page. </font>
+<br>
+This page will validate your installation to make sure
+that you have all the necessary components and permissions
+on this system and that everything is configured
+reasonably.
+</td></tr></table>
 
 <p> 
 
 <center>
-<table width=75%>
+<table width=100%>
 <input type=hidden name=this_page value="check">
 <input type=hidden name=next_page value="form">
 
@@ -17,9 +21,9 @@
 foreach ($checklist as $check) {
 ?> 
 	<tr>
-	<td width=45% valign=top><?=$check["desc"]?></td>
-	<td width=10%> &nbsp; </td>
-	<td width=45% valign=top>
+	<td valign=top><?=$check["desc"]?></td>
+	<td width=5%> &nbsp; </td>
+	<td valign=top>
 <?
 	$func = $check["func"];
 	if ($func()) {
@@ -28,6 +32,7 @@ foreach ($checklist as $check) {
 		if ($check["optional"]) {
 			echo "<font color=yellow><b>Warning!</b></font>";
 			echo "<br>$check[why]";
+			$warning++;
 		} else {
 			echo "<font color=red><b>Failed!</b></font>";
 			echo "<br>$check[why]";
@@ -38,19 +43,23 @@ foreach ($checklist as $check) {
 	</td>
 	</tr>
 
-	<tr><td> &nbsp; </td></tr>
+	<tr><td colspan=3> <hr width=50%> </td></tr>
 <?
 }
 ?>
 
 </table>
 <p>
-<? if (!$error) { ?>
- Your installation is configured properly!
- <br>
- <input type=submit name="go_next" value="Configure Gallery ->">
-<? } else { ?>
+<? if ($error) { ?>
  There are errors in your configuration that will prevent
 <br> Gallery from functioning properly.  You must fix them 
 <br> before you can continue.  
+<? } else { ?>
+<?	if ($warning) { ?>
+Your installation has warnings, but life is short so let's GO!
+<? 	} else { ?>
+Your installation passed with flying colors!  Go go go!
+<? 	} ?>
+ <p>
+ <input type=submit name="go_next" value="Configure Gallery ->">
 <? } ?>
