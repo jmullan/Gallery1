@@ -21,10 +21,6 @@
  */
 ?>
 <?php
-require_once(dirname(__FILE__) . "/lib/profiler.inc");
-$profiler = new Profiler(true);
-$profiler->startTimer("global");
-
 // Hack prevention.
 $sensitiveList = array("gallery");
 foreach ($sensitiveList as $sensitive) {
