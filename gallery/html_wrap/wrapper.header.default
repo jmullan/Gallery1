@@ -79,10 +79,16 @@ if(isset($GALLERY_EMBEDDED_INSIDE)) {
 		 * and put the style sheet link into the template manually
 		 */
 		
-		global  $phpbb_root_path, $template, $db, $theme, $lang, $board_config, $phpEx, 
-			$userdata, $u_login_logout, $s_privmsg_new, $l_privmsgs_text_unread,
-			$l_privmsgs_text, $page_title, $s_last_visit, $l_online_users, 
-			$nav_links_html;
+		global $phpbb_root_path;
+		global $template;
+		global $db;
+		global $theme, $lang;
+		global $board_config;
+		global $phpEx;
+		global $userdata, $u_login_logout;
+		global $s_privmsg_new, $s_last_visit;
+		global $l_privmsgs_text_unread, $l_privmsgs_text, $l_online_users;
+		global $page_title, $nav_links_html;
 			
 		// Sort out the page title
 		$page_title .= $gallery->app->galleryTitle;

@@ -1054,6 +1054,17 @@ function makeGalleryUrl($target, $args=array()) {
 
 	if( isset($GALLERY_EMBEDDED_INSIDE)) {
                 switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
+	                case 'phpBB2':
+				$cookiename = $board_config['cookie_name'];			
+				if(!isset($HTTP_COOKIE_VARS[$cookiename . '_sid'])) {
+					// no cookie so we need to pass the session ID manually.
+					$args["sid"] = $userdata['session_id'];
+					if(!isset($args["set_albumName"])) {
+						// This var is only passed some of the time and but is required so PUT IT IN when needed.
+						$args["set_albumName"] = $gallery->session->albumName;
+					}
+				}	
+
         	        case 'phpnuke':
                 	case 'postnuke':
 				$args["op"] = "modload";
@@ -1066,16 +1077,6 @@ function makeGalleryUrl($target, $args=array()) {
 				 */
 				$args["include"] = $target;
 				$target = "modules.php";
-	                case 'phpBB2':
-				$cookiename = $board_config['cookie_name'];			
-				if(!isset($HTTP_COOKIE_VARS[$cookiename . '_sid'])) {
-					// no cookie so we need to pass the session ID manually.
-					$args["sid"] = $userdata['session_id'];
-					if(!isset($args["set_albumName"])) {
-						// This var is only passed some of the time and but is required so PUT IT IN when needed.
-						$args["set_albumName"] = $gallery->session->albumName;
-					}
-				}	
 
 			break;
 			
