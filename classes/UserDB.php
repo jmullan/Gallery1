@@ -182,8 +182,8 @@ class UserDB {
 
 	function validNewUsername($username) {
 
-		if (strlen($username) < 3) {
-			return "Username must be at least 3 characters";
+		if (strlen($username) < 2) {
+			return "Username must be at least 2 characters";
 		}
 
 		if (strlen($username) > 15) {
