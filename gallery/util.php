@@ -1832,7 +1832,7 @@ function initLanguage() {
 			// if not and a language is given by NUKE Cookie use it
 			$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
 		}
-		$gallery->language=$nls['aliases'][$gallery->nuke_language];
+		$gallery->language=$nls['alias'][$gallery->nuke_language];
 	} else {
 		//We're not in Nuke
 		switch ($gallery->app->ML_mode) {
@@ -1853,10 +1853,10 @@ function initLanguage() {
 				// Does the user want a new language ?
 				if (!empty($newlang)) {
 					// Use Alias if
-					if ($nls['aliases'][$newlang]) $newlang=$nls['aliases'][$newlang] ;
+					if ($nls['alias'][$newlang]) $newlang=$nls['alias'][$newlang] ;
 					// use Language if its okay
 					// Set Language to the User selected language (if this language is defined
-					if ($nls['languages'][$newlang]) {
+					if ($nls['language'][$newlang]) {
 						$gallery->language=$newlang;
 					}
 				} elseif (isset($gallery->session->language)) {
@@ -1883,8 +1883,8 @@ function initLanguage() {
 
 	// if an alias for a language is given, use it
 	//
-	if (isset($nls['aliases'][$gallery->language])) {
-		$gallery->language = $nls['aliases'][$gallery->language] ;
+	if (isset($nls['alias'][$gallery->language])) {
+		$gallery->language = $nls['alias'][$gallery->language] ;
 	}
 
 	// And now set this language into session
