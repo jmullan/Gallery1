@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
 "POT-Creation-Date: 2003-10-14 18:58+0200\n"
-"PO-Revision-Date: 2003-09-30 00:02 +0100\n"
+"PO-Revision-Date: 2003-10-14 22:52 +0100\n"
 "Last-Translator: jact <jachavar@terra.es>\n"
 "Language-Team: spanish <jachavar@terra.es>\n"
 "MIME-Version: 1.0\n"
@@ -45,9 +45,9 @@ msgid "Gallery: Configuration Mode"
 msgstr "Gallery: Modo Configuración"
 
 #: ../errors/configmode.php:25
-#, fuzzy, php-format
+#, php-format
 msgid "To configure gallery, run the %sConfiguration Wizard%s."
-msgstr "Para configurar Gallery: %sArranque el Asistente de Configuración%s"
+msgstr "Para configurar Gallery, ejecute el %sAsistente de Configuración%s."
 
 #: ../errors/configmode.php:32
 msgid "If you've finished your configuration but you're still seeing this page, that's because for safety's sake we don't let you run Gallery in an insecure mode."
@@ -62,9 +62,9 @@ msgid "Then just reload this page and all should be well."
 msgstr "Entonces recargue esta página y todo debería estar bien."
 
 #: ../errors/configure_help.php:2
-#, fuzzy, php-format
+#, php-format
 msgid "If you experience problems, you can find help on the %s Gallery Help Page%s."
-msgstr "Si tiene problemas, debería buscar ayuda en la %spágina de ayuda de Gallery%s"
+msgstr "Si tiene problemas, debería buscar ayuda en la %spágina de ayuda de Gallery%s."
 
 #: ../errors/configure_instructions.php:10
 #, php-format
@@ -85,14 +85,13 @@ msgid "Gallery needs Reconfiguration"
 msgstr "Gallery necesita reconfiguración"
 
 #: ../errors/reconfigure.php:26
-#, fuzzy
 msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard! Here's how:"
-msgstr "Su configuración de Gallery fue creada usando el asistente de configuración de una versión anterior. Esta configuración es obsoleta. Por favor, ejecute el asistente de configuración de la presente versión."
+msgstr "Su configuración de Gallery fue creada usando el asistente de configuración de una versión anterior. Esta configuración es obsoleta. Por favor, ejecute el asistente de configuración de la presente versión. A continuación se le muestra cómo puede hacerlo:"
 
 #: ../errors/reconfigure.php:34
-#, fuzzy, php-format
+#, php-format
 msgid "Then launch the %sConfiguration Wizard%s."
-msgstr "Ahora lance el %sasistente de configuración%s"
+msgstr "Ahora lance el %sAsistente de Configuración%s."
 
 #: ../errors/unconfigured.php:16
 msgid "Gallery Configuration Error"
@@ -103,20 +102,19 @@ msgid "Gallery has not been configured!"
 msgstr "¡Gallery no ha sido configurado!"
 
 #: ../errors/unconfigured.php:26
-#, fuzzy
 msgid "Gallery must be configured before you can use it. First, you must put Gallery in Configuration Mode. Here's how:"
-msgstr "Gallery debe ser configurado antes de poder usarlo. Para empezar, debe poner el modo de configuración. Aquí está como hacerlo."
+msgstr "Gallery debe ser configurado antes de poder usarlo. Para empezar, debe poner el modo de configuración. Aquí está como hacerlo:"
 
 #: ../errors/unconfigured.php:32
-#, fuzzy, php-format
+#, php-format
 msgid "Then start the %sConfiguration Wizard%s."
-msgstr "Y después ejecutar el %sAsistente de Configuración%s."
+msgstr "Y después ejecute el %sAsistente de Configuración%s."
 
 #: ../setup/check.inc:6 ../setup/confirm.inc:6 ../setup/constants.inc:7
 #: ../setup/defaults.inc:7
-#, fuzzy, php-format
+#, php-format
 msgid "Gallery Configuration Wizard: Step %d"
-msgstr "Gallery: Modo Configuración"
+msgstr "Asistente de Configuración de Gallery: Paso %d"
 
 #: ../setup/check.inc:10
 msgid "This is the Gallery system check page."
@@ -368,42 +366,38 @@ msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list (spe
 msgstr "<b>Nota:</b> Su %s directorio (%s) no está en la lista que indica el parámetro open_basedir (especificado en el archivo php.ini) %s así que no se pueden llevar a cabo todos nuestros chequeos básicos sobre los ficheros para estar seguros de que existen y de que son ejecutables."
 
 #: ../setup/config_data.inc:17
-#, fuzzy, php-format
+#, php-format
 msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
 msgstr "Gallery prefiere la versión 9.9 o posterior de NetPBM. Puede instalar solamente los binarios que Gallery necesita desde la página de %sGallery en Sourceforge%s. O, en cambio, puede compilar e instalar por completo el paquete de NetPBM desde la página de %sNetPBM en Sourceforge%s."
 
 #: ../setup/config_data.inc:23
-#, fuzzy
 msgid "<br><b>Note:</b> You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead."
-msgstr "<b>Nota:</b> Puede instalar los binarios desde el sitio web de Gallery incluso si no tiene acceso como root en su máquina. Si no puede continuar trabajando, inténtelo dejando la ruta a NetPBM en blanco y use ImageMagick en su lugar."
+msgstr "<br><b>Nota:</b> Puede instalar los binarios desde el sitio web de Gallery incluso si no tiene acceso como root en su máquina. Si no puede continuar trabajando, inténtelo dejando la ruta a NetPBM en blanco y use ImageMagick en su lugar."
 
 #: ../setup/config_data.inc:26
-#, fuzzy
 msgid "I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date."
 msgstr "Hemos encontrado parte del paquete NetPBM pero algunos componentes críticos están ausentes (véalo abajo). Quizás su versión de NetPBM esté obsoleta."
 
 #: ../setup/config_data.inc:30
-#, fuzzy, php-format
+#, php-format
 msgid "Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from the %sImageMagick website%s."
-msgstr "Gallery prefiere la versión 5.4.8 de ImageMagick o posteriores. Puede compilar e instalar el paquete completo de ImageMagick desde %s."
+msgstr "Gallery prefiere la versión 5.4.8 de ImageMagick o posteriores. Puede compilar e instalar el paquete completo de ImageMagick desde la %spágina web de ImageMagick%s."
 
 #: ../setup/config_data.inc:33
-#, fuzzy
 msgid "<br><b>Note</b>:  The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead."
-msgstr "<b>Nota:</b> También tienen disponibles los binarios para varios sistemas operativos. Si no puede seguir trabajando, inténtelo dejando la ruta a ImageMagick en blanco y use NetPBM en su lugar."
+msgstr "<br><b>Nota:</b> También tiene disponibles los binarios para varios sistemas operativos. Si no puede seguir trabajando, inténtelo dejando la ruta a ImageMagick en blanco y use NetPBM en su lugar."
 
 #: ../setup/config_data.inc:36
-#, fuzzy, php-format
+#, php-format
 msgid "<b>Note:</b> Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."
-msgstr "<b>Nota:</b> Su servidor web está configurado con la restricción %s. Esto podría hacer díficil la detección y verificación de los binarios para Gallery, incluso si ya usó con éxito el Asistente de Configuración con anteriodad. No se preocupe demasiado si en esta página aparecen advertencias; sus parámetros se grabarán adecuadamente."
+msgstr "<b>Nota:</b> Su instalación de PHP está configurado con la restricción %s. Esto podría hacer díficil la detección y verificación de los binarios para Gallery, incluso si ya usó con éxito el Asistente de Configuración con anteriodad. No se preocupe demasiado si en esta página aparecen advertencias; sus parámetros se grabarán adecuadamente."
 
 #: ../setup/config_data.inc:42
-#, fuzzy, php-format
+#, php-format
 msgid "Check to see how old %s version %s is."
 msgstr "Revise la antigüedad de la versión %s de %s."
 
 #: ../setup/config_data.inc:48
-#, fuzzy
 msgid "Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP 4.0.0 uses a different file upload protocol, and versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can. <p>"
 msgstr "Verifique si está ejecuntando PHP 4. Algunas versiones de PHP tienen fallos que pueden causar que Gallery falle en su funcionamiento. PHP 4.0.0 usa un protocolo diferente para las subidas al servidor. Las versiones 4.0.3 y 4.0.3pl1 tienen un fallo en el código de deserialización que puede causar que Gallery sea incapaz de leer su propia base de datos. Actualice PHP al menos a la versión 4.0.4pl1 si le es posible."
 
@@ -412,127 +406,112 @@ msgid "Gallery can be viewed in multiple languages. To use Gallery in languages 
 msgstr ""
 
 #: ../setup/config_data.inc:51
-#, fuzzy, php-format
+#, php-format
 msgid "You're running PHP version %s.  You need to upgrade to PHP %s."
-msgstr "Está ejecutando la versión %s. Necesita actualizar PHP a la versión %s."
+msgstr "Está ejecutando la versión %s de PHP. Necesita actualizar PHP a la versión %s."
 
 #: ../setup/config_data.inc:52
-#, fuzzy, php-format
+#, php-format
 msgid "You're running PHP version %s which has known bugs that cause Gallery to fail."
-msgstr "Está ejecutando la versión %s, la cual tiene errores conocidos que pueden hacer fallar a Gallery."
+msgstr "Está ejecutando la versión %s de PHP, la cual tiene errores conocidos que pueden hacer fallar a Gallery."
 
 #: ../setup/config_data.inc:53
-#, fuzzy, php-format
+#, php-format
 msgid "You're running version %s.  You need to upgrade to at least PHP 4.1 if you want to use Gallery in languages other than English."
-msgstr "Está ejecuntado la versión %s. Necesita actualizarse al menos a la versión 4.1.0 de PHP si quiere ejecutar la versión multilenguaje."
+msgstr "Está ejecuntado la versión %s. Necesita actualizarse al menos a la versión 4.1.0 de PHP si quiere ejecutar Gallery en otros idiomas distintos del inglés."
 
 #: ../setup/config_data.inc:56
-#, fuzzy
 msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
-msgstr "Verifique que PHP esté ejecutándose en <b>Modo Seguro</b>. El modo seguro es una característica de seguridad de PHP usada normalmente en entornos compartidos. Gallery no puede ejecutarse cuando el modo seguro está activo porque le impone demasiadas restricciones."
+msgstr "Verifique que PHP esté ejecutándose en <b>Modo Seguro</b>. El Modo Seguro es una característica de seguridad de PHP usada normalmente en entornos compartidos. Gallery no puede ejecutarse cuando el modo seguro está activo porque le impone demasiadas restricciones."
 
 #: ../setup/config_data.inc:58
-#, fuzzy, php-format
+#, php-format
 msgid "<b>safe_mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."
 msgstr "La opción <b>Safe Mode</b> está activada en este servidor. Debe desactivarla antes de usar Gallery. Diríjase a la FAQ, los foros y las páginas de ayuda en el %ssitio web de Gallery%s y el %ssitio web de PHP%s para que vea como hacerlo."
 
 #: ../setup/config_data.inc:64
-#, fuzzy, php-format
+#, php-format
 msgid "<b>Note</b>: In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."
 msgstr "<b>Nota:</b> En algunas extrañas circunstancias, Gallery cree que la opción <b>safe mode</b> está activado cuando realmente no lo está. Puede verlo usted mismo si lo mira en la columna <i>Local</i> de la fila safe_mode en la %spágina de información de PHP%s. Si pone 'Off' o '0' o 'undefined' es posible que Gallery cometa un error y puede continuar. Si no es así, debe resolver este problema antes de poder usar el programa."
 
 #: ../setup/config_data.inc:71
-#, fuzzy
 msgid "Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files) and you may not be able to use <b>mod_rewrite</b> (see below)."
-msgstr "Permitir al fichero <b>.htaccess</b> de Gallery establecer la configuración específica para Gallery. Esto está controlado por el propietario del servidor web así que no siempre es posible cambiarlo. La principal desventaja de no hacer este cambio es que no le será posible subir al servidor archivos de más de 2 MB (por ejemplo, archivos ZIP grandes) y que no podrá ser capaz de usar la opción mod_rewrite (vea más abajo)."
+msgstr "Permitir al fichero <b>.htaccess</b> de Gallery establecer la configuración específica para Gallery. Esto está controlado por el propietario del servidor web así que no siempre es posible cambiarlo. La principal desventaja de no hacer este cambio es que no le será posible subir al servidor archivos de más de 2 MB (por ejemplo, archivos ZIP grandes) y que no podrá ser capaz de usar la opción <b>mod_rewrite</b> (vea más abajo)."
 
 #: ../setup/config_data.inc:73
-#, fuzzy
 msgid "Apache is not obeying your <b>.htaccess</b> file.  Try entering the following into your web server's <b>httpd.conf</b> file:"
-msgstr "Apache no está cumpliendo la configuración de su fichero .htaccess. Intente introducir lo siguiente dentro del fichero httpd.conf de su servidor web:"
+msgstr "Apache no está cumpliendo la configuración de su fichero <b>.htaccess</b>. Intente introducir lo siguiente dentro del fichero <b>httpd.conf</b> de su servidor web:"
 
 #: ../setup/config_data.inc:81
-#, fuzzy, php-format
+#, php-format
 msgid "Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behavior if you put ' (single-quote), &quot; (double quote) or &#92; (backslash) characters in titles or captions in Gallery."
 msgstr "Verifique si la opción %smagic_quotes_gpc%s está habilitada en su intérprete de PHP. Si está activada, tal vez aparezcan extraños anuncios sobre el comportamiento del programa si pone alguno de estos símbolos como caracteres en los títulos o las leyendas en la galería: ' (comilla simple), &quot; (comilla doble) o &#92; (contrabarra)."
 
 #: ../setup/config_data.inc:85
-#, fuzzy, php-format
+#, php-format
 msgid "Magic quotes are on.  Your webserver administrator can turn them off by putting %s in your <b>php.ini</b> file."
-msgstr "La opción magic_quotes_gpc está activada. El propietario de su servidor web puede desactivarla poniendo %s en su fichero php.ini"
+msgstr "La opción magic_quotes_gpc está activada. El propietario de su servidor web puede desactivarla poniendo %s en su fichero <b>php.ini</b>."
 
 #: ../setup/config_data.inc:89
-#, fuzzy
 msgid "Check to see if your webserver is compiled with <b>mod_rewrite</b>.  This Apache module allows Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."
 msgstr "Verifique si su servidor web está compilado con el módulo <b>mod_rewrite</b>. Este módulo permite a Gallery usar URLs más cortas que son más fáciles de buscar y de leer cuando usted envíe correo a sus web-challenged relatives. Pero no es una característica esencial."
 
 #: ../setup/config_data.inc:91
-#, fuzzy
 msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: "
-msgstr "Ni el módulo <b>mod_rewrite</b> está instalado ni su fichero <b>.htaccess</b> está activado (vea más arriba). Así las cosas, tendremos que usar URLs más largas en Gallery. Si usted quiere activar el módulo asegúrese de que el fichero <b>.htaccess</b> está bien configurado y entonces, si aun así no funciona, necesitará reconfigurar y resconstruir Apache con este modificador (<b>mod_rewrite</b>)."
+msgstr "Ni el módulo <b>mod_rewrite</b> está instalado ni su fichero <b>.htaccess</b> está activado (vea más arriba). Así las cosas, tendremos que usar URLs más largas en Gallery. Si usted quiere activar el módulo asegúrese de que el fichero <b>.htaccess</b> está bien configurado y entonces, si aun así no funciona, necesitará reconfigurar y resconstruir Apache con este modificador (<b>mod_rewrite</b>):"
 
 #: ../setup/config_data.inc:97
-#, fuzzy
 msgid "Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."
 msgstr "Verifique si NetPBM está instalado para que Gallery pueda manipular imágenes (rotarlas, redimensionarlas, hacer miniaturas, etc). Necesita tener NetPBM <b>o</b> ImageMagick instalado."
 
 #: ../setup/config_data.inc:99
-#, fuzzy
 msgid "I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: "
-msgstr "No se puede encontrar NetPBM. Si está instalado y no está en el path de su usuario del servidor web no se preocupe -- puede especificar la ruta a NetPBM manualmente en la siguiente página. Si por el contrario no está instalado, tiene dos opciones:"
+msgstr "No se puede encontrar NetPBM. Si está instalado y no está en el path de su usuario del servidor web no se preocupe&#8212;puede especificar la ruta a NetPBM manualmente en la siguiente página. Si por el contrario no está instalado, tiene dos opciones:"
 
 #: ../setup/config_data.inc:104
-#, fuzzy
 msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page."
-msgstr "Si NetPBM está instalado y Gallery no puede encontrarlo automáticamente no se preocupe -- eso sólo significa que tendrá que especificar la ruta a NetPBM manualmente en la siguiente página"
+msgstr "Si NetPBM está instalado y Gallery no puede encontrarlo automáticamente no se preocupe&#8212;eso sólo significa que tendrá que especificar la ruta a NetPBM manualmente en la siguiente página"
 
 #: ../setup/config_data.inc:110
-#, fuzzy
 msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."
 msgstr "Verifique si ImageMagick está instalado para que Gallery pueda manipular imágenes (rotarlas, redimensionarlas, hacer miniaturas, etc). Necesita tener ImageMagick <b>o</b> NetPBM instalado."
 
 #: ../setup/config_data.inc:112
-#, fuzzy
 msgid "I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  "
-msgstr "No se puede encontrar ImageMagick. Si está instalado y no está en el path de su usuario del servidor web no se preocupe -- puede especificar la ruta a ImageMagick manualmente en la siguiente página. Si no está instalado, debería instalarlo."
+msgstr "No se puede encontrar ImageMagick. Si está instalado y no está en el path de su usuario del servidor web no se preocupe&#8212;puede especificar la ruta a ImageMagick manualmente en la siguiente página. Si no está instalado, debería instalarlo."
 
 #: ../setup/config_data.inc:118
-#, fuzzy
 msgid "Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
-msgstr "Verifique si jhead está instalado para que Gallery pueda examinar las cabeceras EXIF embebidas en las imágenes creadas con la mayoría de las cámaras digitales."
+msgstr "Verifique si <b>jhead</b> está instalado para que Gallery pueda examinar las cabeceras EXIF embebidas en las imágenes creadas con la mayoría de las cámaras digitales."
 
 #: ../setup/config_data.inc:120
-#, fuzzy, php-format
+#, php-format
 msgid "I can't find <b>jhead</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."
-msgstr "No se puede encontrar jhead. Si está instalado y no está en el path de su usuario del servidor web no se preocupe -- puede especificar la ruta a jhead manualmente en la siguiente página. Si no está instalado, puede instalarlo usted mismo. jhead es un analizador EXIF de dominio público. El código fuente, los binarios para Linux y para Windows puede encontrarlos en %sla página de jhead%s."
+msgstr "No se puede encontrar <b>jhead</b>. Si está instalado y no está en el path de su usuario del servidor web no se preocupe&#8212;puede especificar la ruta a <b>jhead</b> manualmente en la siguiente página. Si no está instalado, puede instalarlo usted mismo. jhead es un analizador EXIF de dominio público. El código fuente, los binarios para Linux y para Windows puede encontrarlos en %sla página web de jhead%s."
 
 #: ../setup/config_data.inc:127
-#, fuzzy
 msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."
-msgstr "Verifique si jpegtran está instalado para que Gallery puede realizar rotaciones sin pérdida (solamente funciona para imágenes JPEG)"
+msgstr "Verifique si <b>jpegtran</b> está instalado para que Gallery puede realizar rotaciones sin pérdida en imágenes JPEG."
 
 #: ../setup/config_data.inc:129
-#, fuzzy, php-format
+#, php-format
 msgid "I can't find <b>jpegtran</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."
-msgstr "No se puede encontrar jpegtran. Si está instalado y no está en el path de su usuario del servidor web no se preocupe -- puede especificar la ruta a jpegtran manualmente en la siguiente página. Si no está instalado, puede instalarlo usted mismo. jpegtran es una herramienta libre distribuida por Independent JPEG Group como parte de libjpeg. El código fuente puede encontrarlo en %sla página de IJG%s. Los binarios puede encontrarlos en %sla página del club JPEG%s o en el paquete libjpeg de las distribuciones de Linux."
+msgstr "No se puede encontrar <b>jpegtran</b>. Si está instalado y no está en el path de su usuario del servidor web no se preocupe&#8212;puede especificar la ruta a jpegtran manualmente en la siguiente página. Si no está instalado, puede instalarlo usted mismo. <b>jpegtran</b> es una herramienta libre distribuida por Independent JPEG Group como parte de <b>libjpeg</b>. El código fuente puede encontrarlo en %sla página web de IJG%s. Los binarios puede encontrarlos en %sla página del club JPEG%s o en el paquete <b>libjpeg</b> de las distribuciones de Linux."
 
 #: ../setup/config_data.inc:136
-#, fuzzy
 msgid "Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."
-msgstr "Verificar si PHP está compilado con gettext para las traducciones rápidas."
+msgstr "Verificar si PHP está compilado con <b>GNU gettext</b> para las traducciones rápidas."
 
 #: ../setup/config_data.inc:138
-#, fuzzy, php-format
+#, php-format
 msgid "Your PHP does not have <b>GNU gettext</b> support installed.  To include it, you'll need to recompile PHP (see the %sPHP docs%s for more information). Multi-language support is still available in Gallery without <b>gettext</b>, but the pages may take slightly longer to load."
-msgstr "Su PHP no tiene soporte para gettext. Para incluir este soporte necesita recompilar PHP. Para más información vea %s. Sin embargo, el soporte multilenguaje todavía está disponible en Gallery sin gettext, pero las páginas se cargarán un poco más despacio."
+msgstr "Su PHP no tiene soporte para <b>GNU gettext</b>. Para incluir este soporte necesita recompilar PHP. Para más información vea la %sdocumentación de PHP%s. Sin embargo, el soporte multilenguaje todavía está disponible en Gallery sin <b>gettext</b>, pero las páginas se cargarán un poco más despacio."
 
 #: ../setup/config_data.inc:143
-#, fuzzy
 msgid "Check to see what languages are available."
 msgstr "Marque los idiomas que quiera que estén disponibles"
 
 #: ../setup/config_data.inc:148
-#, fuzzy
 msgid "Testing to see which locales (if any) are absent."
 msgstr "Comprobando qué idiomas están ausentes"
 
@@ -541,7 +520,6 @@ msgid "Gallery Title"
 msgstr "Título de la galería"
 
 #: ../setup/config_data.inc:164
-#, fuzzy
 msgid "The name of your gallery.  E.g. <i>My Cool Photos</i>"
 msgstr "El nombre de su galería. Por ejemplo, <i>Mis fotografías más descaradas</i>"
 
@@ -558,9 +536,9 @@ msgid "Album directory"
 msgstr "Directorio del álbum"
 
 #: ../setup/config_data.inc:177
-#, fuzzy, php-format
+#, php-format
 msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."
-msgstr "Ruta completa en su disco duro al directorio donde sus fotos serán almacenadas. Este directorio debería estar vacío -- Gallery se encargará de llenarlo. Este directorio necesita tener permiso de escritura para el usuario que esté ejecutando el servidor web (en su caso este usuario es %s)."
+msgstr "Ruta completa en su disco duro al directorio donde sus fotos serán almacenadas. Este directorio debería estar vacío&#8212;Gallery se encargará de llenarlo. Este directorio necesita tener permiso de escritura para el usuario que esté ejecutando el servidor web (en su caso este usuario es %s)."
 
 #: ../setup/config_data.inc:186
 msgid "Temporary directory"
@@ -571,14 +549,14 @@ msgid "REQUIRED"
 msgstr "IMPRESCINDIBLE"
 
 #: ../setup/config_data.inc:188
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."
 msgstr "Ruta a un directorio temporal. Por ejemplo %s o %s. Si usted tiene <b>open_basedir</b> configurado en su sistema, entonces este directorio debería estar en la ruta que marca <b>open_basedir</b>. En ese caso necesita crear el directorio temporal usted mismo y asegurarse que el usuario del servidor web puede escribir en él."
 
 #: ../setup/config_data.inc:198
-#, fuzzy, php-format
+#, php-format
 msgid "The full URL to the Gallery web application.  E.g. %s"
-msgstr "La URL completa a la aplicación web Gallery. Por ejemplo, %s."
+msgstr "La URL completa a la aplicación web Gallery. Por ejemplo, %s"
 
 #: ../setup/config_data.inc:207 ../setup/config_data.inc:606
 #: ../setup/config_data.inc:615
@@ -586,34 +564,33 @@ msgid "Albums"
 msgstr "Álbumes"
 
 #: ../setup/config_data.inc:208
-#, fuzzy, php-format
+#, php-format
 msgid "The full URL to your album directory (specified above) on your web server.  E.g. %s"
-msgstr "La URL completa al directorio para los álbumes (especificado arriba) en su servidor web. Por ejemplo %s."
+msgstr "La URL completa al directorio para los álbumes (especificado arriba) en su servidor web. Por ejemplo %s"
 
 #: ../setup/config_data.inc:217
 msgid "Thumbnail image"
 msgstr "Miniatura de la imagen"
 
 #: ../setup/config_data.inc:218
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the thumbnail image to show for movies. E.g. %s"
-msgstr "La ruta en el sistema de ficheros para las miniaturas para mostrar en las presentaciones. Por ejemplo: %s"
+msgstr "La ruta en el sistema de ficheros para las miniaturas para mostrar en las presentaciones. Por ejemplo %s"
 
 #: ../setup/config_data.inc:224
 msgid "Mirror sites"
 msgstr "Mirror sites"
 
 #: ../setup/config_data.inc:225
-#, fuzzy, php-format
+#, php-format
 msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  E.g. %s"
-msgstr "Una lista de URLs que contienen mirrors de su directorio de álbumes. Especifique una URL por línea con los más confiables en la parte superior. Por ejemplo %s."
+msgstr "Una lista de URLs que contienen mirrors de su directorio de álbumes. Especifique una URL por línea con los más confiables en la parte superior. Por ejemplo %s"
 
 #: ../setup/config_data.inc:236
 msgid "Toolkits / image processing"
 msgstr "Herramientas de procesado de imágenes"
 
 #: ../setup/config_data.inc:239
-#, fuzzy
 msgid "Graphics suite to use"
 msgstr "¿Programa gráfico a usar?"
 
@@ -626,7 +603,7 @@ msgid "Path to NetPBM"
 msgstr "Ruta a NetPBM"
 
 #: ../setup/config_data.inc:247
-#, fuzzy, php-format
+#, php-format
 msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
 msgstr "Ruta al directorio que contiene NetPBM en su sistema. Si descargó NetPBM desde la página de descargas de Gallery no se olvide de hacer estos ficheros ejecutables. Por ejemplo %s, %s o %s"
 
@@ -659,7 +636,6 @@ msgid "Auto-rotate images"
 msgstr "Auto-rotar imágenes"
 
 #: ../setup/config_data.inc:284
-#, fuzzy
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.  Requires Jhead EXIF parser v.1.9 or greater (see below)."
 msgstr "Seleccionando esta opción, Gallery intenta rotar las imágenes automáticamente en la subida al servidor, basándose en la información sobre orientación almacenada en los datos EXIF del JPEG que ponen algunas cámaras digitales. Esto requiere la versión 1.9 del analizador jhead o posterior (vea arriba)."
 
@@ -712,9 +688,8 @@ msgid "JPEG Quality"
 msgstr "Calidad JPEG"
 
 #: ../setup/config_data.inc:291
-#, fuzzy
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
-msgstr "El formato de ficheros JPEG explota el tamaño en contra de la calidad. Gallery puede controlar la calidad de los JPEGs que produce cuando usted autoescala, rota o hace miniaturas de imágenes JPEG. Las imágenes de mayor calidad son mayores en tamaño que las que tienen menor calidad. Sin embargo, en muchos casos un punto a partir del cual alcanzar una determinada calidad incrementa el tamaño de los archivos sin que se note demasiado en la apariencia de la imagen. Si observa que sus miniaturas y las imágenes escaladas son más grandes que las originales y no quiere que esto sea así, puede bajar el valor de la calidad. <b>Nota</b>: el cambio de este valor sólo afectará a las imágenes que cambie en el <i>futuro</i>."
+msgstr "El formato de ficheros JPEG explota el tamaño en contra de la calidad. Gallery puede controlar la calidad de los JPEGs que produce cuando usted autoescala, rota o hace miniaturas de imágenes JPEG. Las imágenes de mayor calidad son mayores en tamaño que las que tienen menor calidad. Sin embargo, en muchos casos un punto a partir del cual alcanzar una determinada calidad incrementa el tamaño de los archivos sin que se note demasiado en la apariencia de la imagen. No es recomendable establecer este valor a &quot;100&quot;. Si observa que sus miniaturas y las imágenes escaladas son más grandes que las originales y no quiere que esto sea así, puede bajar el valor de la calidad. <b>Nota</b>: el cambio de este valor sólo afectará a las imágenes que cambie en el <i>futuro</i>."
 
 #: ../setup/config_data.inc:299
 msgid "Main Gallery page"
@@ -725,27 +700,24 @@ msgid "Show the album tree"
 msgstr "Mostrar el árbol del álbum"
 
 #: ../setup/config_data.inc:303
-#, fuzzy
 msgid "If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page)."
-msgstr "Si activa esta opción, verá una lista completa con todos los subálbumes cuando navegue por el nivel superior de su galería. Esto hará que sea más sencillo navegar a cada subálbum (aunque la apariencia de la página del nivel superior esté más abarrotada). Por defecto tiene el valor <b>no</b>."
+msgstr "Si activa esta opción, verá una lista completa con todos los subálbumes cuando navegue por el nivel superior de su galería. Esto hará que sea más sencillo navegar a cada subálbum (aunque la apariencia de la página del nivel superior esté más abarrotada)."
 
 #: ../setup/config_data.inc:308
 msgid "Highlight size"
 msgstr "Tamaño de la foto destacada"
 
 #: ../setup/config_data.inc:309
-#, fuzzy
 msgid "The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."
-msgstr "El tamaño (en pixels) de las miniaturas mostradas en la página de la galería (imágenes destacadas)"
+msgstr "El tamaño (en pixels) de las miniaturas mostradas en la página de la galería (imágenes destacadas)."
 
 #: ../setup/config_data.inc:315
 msgid "Show Owner"
 msgstr "Mostrar propietario"
 
 #: ../setup/config_data.inc:316
-#, fuzzy
 msgid "Show album owner's name next to each album?"
-msgstr "¿Mostrar el nombre del propietario del álbum en la página del nivel superior de Gallery?"
+msgstr "¿Mostrar el nombre del propietario del álbum al lado de cada uno?"
 
 #: ../setup/config_data.inc:321
 msgid "Albums per page"
@@ -764,9 +736,8 @@ msgid "Display search engine on main Gallery page?"
 msgstr "¿Mostrar el motor de búsqueda en la página principal de Gallery?"
 
 #: ../setup/config_data.inc:334
-#, fuzzy
 msgid "Skin Name"
-msgstr "Nombre completo"
+msgstr "Nombre de la Skin"
 
 #: ../setup/config_data.inc:335
 msgid "Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your gallery.  You can have fun experimenting with the available skins. Choose &quot;default&quot; to use the look from v1.4."
@@ -781,19 +752,17 @@ msgid "Optional tools"
 msgstr "Herramientas opcionales"
 
 #: ../setup/config_data.inc:354
-#, fuzzy
 msgid "The filesystem path to the <b>zipinfo</b> binary.  This is optional so if you don't have it, don't worry about it too much."
-msgstr "La ruta en su sistema de ficheros al programa 'zipinfo'. Esto es opcional así que si no lo tiene no se preocupe demasiado."
+msgstr "La ruta en su sistema de ficheros al programa <b>zipinfo</b>. Esto es opcional así que si no lo tiene no se preocupe demasiado."
 
 #: ../setup/config_data.inc:365
-#, fuzzy
 msgid "The filesystem path to the <b>unzip</b> binary.  This is optional so if you don't have it, don't worry about it too much."
-msgstr "La ruta en su sistema de ficheros al programa 'unzip'. Esto es opcional así que si no lo tiene no se preocupe demasiado."
+msgstr "La ruta en su sistema de ficheros al programa <b>unzip</b>. Esto es opcional así que si no lo tiene no se preocupe demasiado."
 
 #: ../setup/config_data.inc:376
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the <b>jhead</b> EXIF parser.  This is optional so if you don't have it, don't worry about it too much.  E.g. %s or %s"
-msgstr "La ruta en su sistema de ficheros al analizador 'jhead'. Esto es opcional así que si no lo tiene no se preocupe demasiado."
+msgstr "La ruta en su sistema de ficheros al analizador EXIF <b>jhead</b>. Esto es opcional así que si no lo tiene no se preocupe demasiado. Por ejemplo %s o %s"
 
 #: ../setup/config_data.inc:387
 msgid "Cache EXIF data"
@@ -804,9 +773,9 @@ msgid "The EXIF data extracted from JPEG files can be cached after it is read th
 msgstr ""
 
 #: ../setup/config_data.inc:394
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the <b>jpegtran</b> utility.  This is optional so if you don't have it, don't worry about it too much.  E.g. %s or %s"
-msgstr "La ruta en su sistema de ficheros al programa 'jpegtran'. Esto es opcional así que si no lo tiene no se preocupe demasiado. Por ejemplo %s o %s."
+msgstr "La ruta en su sistema de ficheros al programa <b>jpegtran</b>. Esto es opcional así que si no lo tiene no se preocupe demasiado. Por ejemplo %s o %s."
 
 #: ../setup/config_data.inc:407
 msgid "Languages and locales"
@@ -817,7 +786,7 @@ msgid "Default language"
 msgstr "Idioma por defecto"
 
 #: ../setup/config_data.inc:412
-#, fuzzy, php-format
+#, php-format
 msgid "This is the language you will see as %s, and what users will see if no other preference is set."
 msgstr "Esto es lo que verá como %s, y lo que los usuarios verán si no hay otra preferencia establecida."
 
@@ -826,7 +795,6 @@ msgid "Multi language mode"
 msgstr "Modo multilenguaje"
 
 #: ../setup/config_data.inc:420
-#, fuzzy
 msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site."
 msgstr "Gallery tiene 3 modos multilenguaje. Estos afectan al lenguaje que el usuario verá cuando visite las distintas páginas."
 
@@ -847,7 +815,6 @@ msgid "Available languages"
 msgstr "Idiomas disponibles"
 
 #: ../setup/config_data.inc:432
-#, fuzzy
 msgid "These languages will be available as user choices in a pulldown menu or flags, if you have chosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."
 msgstr "Estos lenguajes estarán disponibles como opciones de una lista desplegable o como flags si ha elegido el modo 3 de lenguaje, y estará disponible para los usuarios registrados como su lenguaje por defecto en el modo 2 o el 3."
 
@@ -856,19 +823,17 @@ msgid "Show flags?"
 msgstr "¿Mostrar flags?"
 
 #: ../setup/config_data.inc:439
-#, fuzzy
 msgid "In Mode 3 you can choose to display flags instead of a small pulldown menu for the available languages."
-msgstr "En el modo 3 puede escoger si quiere mostrar una lista desplegable o flags para los lenguajes disponibles. Por defecto tiene el valor <b>no</b> ..."
+msgstr "En el modo 3 puede escoger si quiere mostrar una lista desplegable o flags para los lenguajes disponibles."
 
 #: ../setup/config_data.inc:446
-#, fuzzy
 msgid "Format for date strings."
 msgstr "Formato para usar con las fechas."
 
 #: ../setup/config_data.inc:447 ../setup/config_data.inc:458
-#, fuzzy, php-format
+#, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
-msgstr "Este formato será usado para mostrar %s en %s. Es recomendable usar %s el cual cambiará el formato dependiendo del lenguaje elegido. Sin embargo, si desea cambiar este texto, sea tan amable de mirar %s."
+msgstr "Este formato será usado para mostrar %s en %s. Es recomendable usar %s el cual cambiará el formato dependiendo del lenguaje elegido. Sin embargo, si desea cambiar este texto, sea tan amable de mirar la %sdocumentación de PHP%s."
 
 #: ../setup/config_data.inc:448
 msgid "date without time"
@@ -884,7 +849,6 @@ msgid "For example, %s will display date like this: %s."
 msgstr "Por ejemplo, %s mostrará la fecha de esta manera: %s."
 
 #: ../setup/config_data.inc:457
-#, fuzzy
 msgid "Format for date/time strings."
 msgstr "Formato para las fechas y las horas."
 
@@ -987,7 +951,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:548
 msgid "You can keep a record of every email that is sent by Gallery."
-msgstr ""
+msgstr "Puede guardar un registro de cada correo mandado por Gallery."
 
 #: ../setup/config_data.inc:550
 msgid "Send summary email"
@@ -1087,7 +1051,6 @@ msgid "Both"
 msgstr "Ambos"
 
 #: ../setup/config_data.inc:609
-#, fuzzy
 msgid "Images and albums that have comments will be marked."
 msgstr "Las imágenes y los álbumes que tengan comentarios estarán marcados."
 
@@ -1134,23 +1097,21 @@ msgid "Turn debug mode on so that you can diagnose problems?"
 msgstr "¿Poner el modo debug para que pueda diagnosticar problemas?"
 
 #: ../setup/config_data.inc:657
-#, fuzzy, php-format
+#, php-format
 msgid "Use %s"
 msgstr "¿Usar %s?"
 
-#: ../setup/config_data.inc:658
-#, fuzzy
+#: ../setup/config_data.inc:643
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
-msgstr "Gallery usa un sistema de cerrojo llamado flock() para añadir protección contra los datos corruptos. Este sistema no es soportado por todas las plataformas. Si observa errores como <i>No se pudo adquirir el cerrojo</i> establezca este valor a <b>no</b>."
+msgstr "Gallery usa un sistema de cerrojo llamado flock() para añadir protección contra los datos corruptos. Este sistema no es soportado por todas las plataformas. Si observa errores como <i>No se pudo adquirir el cerrojo</i> establezca este valor a <i>no</i>."
 
 #: ../setup/config_data.inc:662
 msgid "Status code"
 msgstr "Código de estado"
 
-#: ../setup/config_data.inc:663
-#, fuzzy
+#: ../setup/config_data.inc:648
 msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
-msgstr "El código de estado de Gallery se espera después de una llamada satisfactoria al comando exec(). Gallery intentará calcularlo por sí mismo así que probablemente no necesitará cambiar este valor a menos que tenga problemas."
+msgstr "El código de estado de Gallery se espera después de una llamada satisfactoria al comando <i>exec()</i>. Gallery intentará calcularlo por sí mismo así que probablemente no necesitará cambiar este valor a menos que tenga problemas."
 
 #: ../setup/config_data.inc:669
 msgid "Session variable"
@@ -1177,10 +1138,9 @@ msgstr "Color por defecto para los bordes de las imágenes- Puede aprender sobre 
 msgid "Border width"
 msgstr "Anchura del borde"
 
-#: ../setup/config_data.inc:716
-#, fuzzy
+#: ../setup/config_data.inc:701
 msgid "Default width of image borders."
-msgstr "Anchura por defecto de los bordes de las imágenes"
+msgstr "Anchura por defecto de los bordes de las imágenes."
 
 #: ../setup/config_data.inc:718 ../setup/config_data.inc:758
 #: ../setup/config_data.inc:772
@@ -1192,7 +1152,6 @@ msgid "Default Font"
 msgstr "Fuente por defecto"
 
 #: ../setup/config_data.inc:722
-#, fuzzy
 msgid "Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"
 msgstr "Fuente por defecto. Por ejemplo, <i>arial</i> o <i>trebuchet</i>"
 
@@ -1204,22 +1163,19 @@ msgstr "Presentación"
 msgid "Default Columns"
 msgstr "Columnas por defecto"
 
-#: ../setup/config_data.inc:733
-#, fuzzy
+#: ../setup/config_data.inc:718
 msgid "The default number of columns in an album."
-msgstr "Número de columnas por defecto en el álbum"
+msgstr "Número de columnas por defecto en el álbum."
 
 #: ../setup/config_data.inc:738
 msgid "Default Rows"
 msgstr "Columnas por defecto"
 
-#: ../setup/config_data.inc:739
-#, fuzzy
+#: ../setup/config_data.inc:724
 msgid "The default number of rows in an album."
-msgstr "Número de filas por defecto en el álbum"
+msgstr "Número de filas por defecto en el álbum."
 
 #: ../setup/config_data.inc:745
-#, fuzzy
 msgid "Image Processing and Display"
 msgstr "Procesar la imagen y mostrarla"
 
@@ -1236,24 +1192,20 @@ msgid "Resized image size"
 msgstr "Tamaño de la imagen redimensionada"
 
 #: ../setup/config_data.inc:756
-#, fuzzy
 msgid "When large images are added to an album, an intermediary version will automatically be generated at this size."
-msgstr "Cuando imágenes grandes son añadidas a un álbum, se genera automáticamente una versión intermedia con este tamaño"
+msgstr "Cuando imágenes grandes son añadidas a un álbum, se genera automáticamente una versión intermedia con este tamaño."
 
 #: ../setup/config_data.inc:761
-#, fuzzy
 msgid "Resized JPEG/PNG images file size"
-msgstr "Tamaño de los archivos de las imágenes redimensionadas"
+msgstr "Tamaño de los archivos de las imágenes JPEG/PNG redimensionadas"
 
 #: ../setup/config_data.inc:762
-#, fuzzy
 msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
-msgstr "El tamaño por defecto (en KB) para las imágenes JPEG redimensionadas. Incluyendo un valor tal vez ralentice la subida de archivos, pero acelerará el tiempo de carga de las páginas, especialmente a la gente con conexión vía módem. Ponga el valor 0 para no indicar un tamaño."
+msgstr "El tamaño por defecto (en KB) para las imágenes JPEG/PNG redimensionadas. Incluyendo un valor tal vez ralentice la subida de archivos, pero acelerará el tiempo de carga de las páginas, especialmente a la gente con conexión vía módem. Ponga el valor 0 para no indicar un tamaño."
 
-#: ../setup/config_data.inc:769
-#, fuzzy
+#: ../setup/config_data.inc:754
 msgid "Maximum image size"
-msgstr "Tamaño de la imagen redimensionada"
+msgstr "Máximo tamaño de imagen"
 
 #: ../setup/config_data.inc:770
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
@@ -1269,9 +1221,9 @@ msgid "%d (%d MPix)"
 msgstr ""
 
 #: ../setup/config_data.inc:775
-#, fuzzy
+
 msgid "Maximum JPEG/PNG image file size"
-msgstr "Tamaño de los archivos de las imágenes redimensionadas"
+msgstr "Máximo tamaño de las imágenes JPEG/PNG"
 
 #: ../setup/config_data.inc:776
 msgid "You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery."
@@ -1295,16 +1247,14 @@ msgid "Add to beginning"
 msgstr "Añadir al comienzo"
 
 #: ../setup/config_data.inc:789
-#, fuzzy
 msgid "New images added to beginning rather than end of albums."
-msgstr "Nuevas imágenes añadidad al principio y al final de los álbumes"
+msgstr "Nuevas imágenes añadidas al principio y al final de los álbumes."
 
 #: ../setup/config_data.inc:794
 msgid "Fit-to-window"
 msgstr "Ajustar a la ventana"
 
 #: ../setup/config_data.inc:795
-#, fuzzy
 msgid "When viewing photos which don't have an intermediary version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
 msgstr "Cuando esté viendo fotografías que no tienen una versión intermedia, Gallery redimensionará automáticamente la imagen al tamaño de la ventana del navegador (usando JavaScript). Este proceso puede que no funcione en entornos como Nuke."
 
@@ -1321,31 +1271,26 @@ msgid "Options"
 msgstr "Opciones"
 
 #: ../setup/config_data.inc:810
-#, fuzzy
 msgid "Printing Services"
 msgstr "Servicio de Impresión"
 
 #: ../setup/config_data.inc:811
-#, fuzzy
 msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market.  EZ Prints, PhotoAccess and Shutterfly are based in the United States.  All services will give a small donation to the Gallery project for every print you make.  If you choose Shutterfly, Gallery will charge an extra 2 cents (US) for every photo printed (a 4x6 print normally costs 39 cents US) and 1.8 cents of that will get donated back to the Gallery project.  EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation.  Using these services is a great way for you to help support this free software.  "
 msgstr "Permitir a los visitantes imprimir las fotos directamente desde el álbum. Fotokasten es un servicio de impresión alemán indicado para el mercado europeo. PhotoAccess y Shutterfly están basados para el mercado norteamericano. PhotoAccess, Fotokasten y Shutterfly darán una pequeña donación al proyecto Gallery cada vez que imprima con ellos. Si elige Shutterfly, Gallery cargará 2 centavos (US) por cada foto impresa (una de 4x6 cuesta normalmente 49 centavos US) y 1.8 centavos de estos, serán donados al proyecto Gallery. Esta es una buena manera de apoyar económicamente a este programa de software libre."
 
 #: ../setup/config_data.inc:827
-#, fuzzy
 msgid "with donation"
-msgstr "%s sin donación"
+msgstr "con donación"
 
 #: ../setup/config_data.inc:828
-#, fuzzy
 msgid "without donation"
-msgstr "%s sin donación"
+msgstr "sin donación"
 
 #: ../setup/config_data.inc:846
 msgid "Gallery Link"
 msgstr "Enlace a Gallery"
 
 #: ../setup/config_data.inc:847
-#, fuzzy
 msgid "Display the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
 msgstr "¿Mostrar el enlace al nivel superior en el álbum? Si edesactiva esta característica, el usuario no será capaz de navegar fuera del álbum. Esto sólo es útil cuando quiere incrustar un álbum dentro de un sitio web y no quiere permitir a los usuarios ver otros álbumes de la galería."
 
@@ -1365,10 +1310,9 @@ msgstr "¿Mostrar contador de clicks para este álbum?"
 msgid "Custom Fields"
 msgstr "Campos personalizados"
 
-#: ../setup/config_data.inc:864
-#, fuzzy
+#: ../setup/config_data.inc:855
 msgid "Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"
-msgstr "Campos personalizados que están disponibles para describir cada imagen. Deben estar separados por comas. Por ejemplo <i>Descripción, Ubicación, Tipo de película</i>"
+msgstr "Campos personalizados que están disponibles para describir cada imagen. Deben estar separados por comas. Por ejemplo, <i>Descripción, Ubicación, Tipo de película</i>"
 
 #: ../setup/config_data.inc:870
 msgid "Display clickable image dimensions"
@@ -1455,7 +1399,6 @@ msgid "Everybody"
 msgstr "Todo el mundo"
 
 #: ../setup/config_data.inc:918
-#, fuzzy
 msgid "Anyone can vote.  Votes are recorded against session ID."
 msgstr "Nadie puede votar. Los votos son registrados respesto al identificador de sesión."
 
@@ -1464,7 +1407,6 @@ msgid "Logged in"
 msgstr "Identificado"
 
 #: ../setup/config_data.inc:920
-#, fuzzy
 msgid "Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices."
 msgstr "Sólo los usuarios registrados pueden votar. Los votos se registran de acuerdo al identificador de usuario y los votantes pueden volver y cambiar sus elecciones."
 
@@ -1477,7 +1419,6 @@ msgid "Gallery offers two sorts of polls for voting for images.  See above for a
 msgstr "Gallery ofrece dos clases de encuestas para votar por las imágenes. Vea arriba para una explicación detallada."
 
 #: ../setup/config_data.inc:931
-#, fuzzy
 msgid "Users have a set of votes which they can allocate to the images."
 msgstr "Los usuarios tienen un conjunto de votos que pueden asignar a las imágenes."
 
@@ -1490,7 +1431,6 @@ msgid "Number of choices"
 msgstr "Número de opciones"
 
 #: ../setup/config_data.inc:942
-#, fuzzy
 msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu."
 msgstr "Las opciones disponibles para los votantes aparecen como botones de radio o como una lista desplegable."
 
@@ -1593,7 +1533,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:1039
 msgid "Frames"
-msgstr ""
+msgstr "Cuadros"
 
 #: ../setup/config_data.inc:1040
 #, php-format
@@ -1601,9 +1541,8 @@ msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  
 msgstr ""
 
 #: ../setup/config_data.inc:1045
-#, fuzzy
 msgid "Subalbum frames"
-msgstr "Álbumes por página"
+msgstr ""
 
 #: ../setup/config_data.inc:1046
 msgid "This frame will appear around the thumbnail image representing a subalbum."
@@ -1614,14 +1553,12 @@ msgid "Frame around thumbs"
 msgstr ""
 
 #: ../setup/config_data.inc:1053
-#, fuzzy
 msgid "This frame will appear around the thumbnail image representing a photo or movie."
-msgstr "La ruta en el sistema de ficheros para las miniaturas para mostrar en las presentaciones. Por ejemplo: %s"
+msgstr ""
 
 #: ../setup/config_data.inc:1060
-#, fuzzy
 msgid "Frame around images"
-msgstr "%d imágenes encontradas"
+msgstr ""
 
 #: ../setup/config_data.inc:1061
 msgid "This frame will appear around fulled sized and resized photos."
@@ -1683,7 +1620,7 @@ msgid "Directory %s does not exist.  Please create it."
 msgstr "El directorio %s no existe. Créelo, por favor."
 
 #: ../setup/confirm.inc:211
-#, fuzzy, php-format
+#, php-format
 msgid "%s exists but is not a directory.  Please fix this."
 msgstr "%s existe pero no es un directorio. Arréglelo, por favor."
 
@@ -1858,12 +1795,11 @@ msgstr "Esto le permite ver si puede usar las funciones del correo en %s."
 
 #: ../setup/functions.inc:104
 msgid "Please retype your password here"
-msgstr ""
+msgstr "Por favor, repita su contraseña aquí"
 
 #: ../setup/functions.inc:116 ../setup/functions.inc:947
-#, fuzzy
 msgid "Name"
-msgstr "Nombre completo"
+msgstr "Nombre"
 
 #: ../setup/functions.inc:116 ../setup/functions.inc:947
 msgid "Value"
@@ -1874,38 +1810,33 @@ msgid "Missing value"
 msgstr "Valor no encontrado"
 
 #: ../setup/functions.inc:297
-#, fuzzy
 msgid "I can read your <b>.htaccess</b> file."
-msgstr "No se puede leer su fichero .htaccess"
+msgstr "No se puede leer su fichero <b>.htaccess</b>."
 
 #: ../setup/functions.inc:326
-#, fuzzy, php-format
+#, php-format
 msgid "PHP v%s is OK."
-msgstr "PHP v%s es correcto"
+msgstr "La versión %s de PHP es válida."
 
 #: ../setup/functions.inc:339
-#, fuzzy
 msgid "<b>mod_rewrite</b> is enabled."
-msgstr "mod_rewrite está habilitado"
+msgstr "<b>mod_rewrite</b> está habilitado."
 
 #: ../setup/functions.inc:363
 msgid "Can't find <i>jhead</i>"
 msgstr ""
 
 #: ../setup/functions.inc:365
-#, fuzzy
 msgid "<b>jhead</b> binary located."
-msgstr "Localizado el binario de jhead"
+msgstr "Localizado el binario de <b>jhead</b>."
 
 #: ../setup/functions.inc:379
-#, fuzzy
 msgid "NetPBM not being used in this installation."
-msgstr "No se está usando NetPBM en esta instalación"
+msgstr "No se está usando NetPBM en esta instalación."
 
 #: ../setup/functions.inc:384 ../setup/functions.inc:470
-#, fuzzy
 msgid "Cannot verify this path (it's not in your open_basedir list)."
-msgstr "No se puede verificar esta ruta (no está en la lista indicada por open_basedir)"
+msgstr "No se puede verificar esta ruta (no está en la lista indicada por open_basedir)."
 
 #: ../setup/functions.inc:433 ../setup/functions.inc:489
 #, php-format
@@ -1918,28 +1849,26 @@ msgid "%s is not executable!"
 msgstr "¡%s no es un archivo ejecutable!"
 
 #: ../setup/functions.inc:449
-#, fuzzy, php-format
+#, php-format
 msgid "%d of %d NetPBM binaries located."
-msgstr "Todos los binarios de NetPBM (%d) localizados"
+msgstr "%d de %d binarios de NetPBM localizados."
 
 #: ../setup/functions.inc:505
-#, fuzzy, php-format
+#, php-format
 msgid "%d of %d ImageMagick binaries located."
-msgstr "Todos los binarios de ImageMagick (%d) localizados"
+msgstr "%d de %d binarios de ImageMagick localizados."
 
 #: ../setup/functions.inc:528
 msgid "Can't find <i>jpegtran</i>!"
 msgstr ""
 
 #: ../setup/functions.inc:530
-#, fuzzy
 msgid "<b>jpegtran</b> binary located."
-msgstr "binario de jpegtran localizado"
+msgstr "Binario de <b>jpegtran</b> localizado."
 
 #: ../setup/functions.inc:542
-#, fuzzy
 msgid "PHP has <b>GNU gettext</b> support."
-msgstr "gettext instalado"
+msgstr "PHP tiene instalado la extensión para <b>GNU gettext</b>."
 
 #: ../setup/functions.inc:560
 msgid "No languages found."
@@ -1950,9 +1879,9 @@ msgid "It seems you didn't download any additional languages. This is not a prob
 msgstr ""
 
 #: ../setup/functions.inc:565
-#, fuzzy, php-format
+#, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
-msgstr "Sólo %d de %d lenguajes están disponibles. Si quiere los ausentes, descárguese una copia más reciente de %s desde %s."
+msgstr "%d lenguajes están disponibles. Si algún lenguaje que le interese está ausentes, visite la %spágina de descargas de Gallery%s."
 
 #: ../setup/functions.inc:589
 #, php-format
@@ -1974,9 +1903,8 @@ msgid "Please check regularly for updates."
 msgstr "Por favor, chequee regularmente las actualizaciones."
 
 #: ../setup/functions.inc:623
-#, fuzzy
 msgid "All gallery locales are available on this host."
-msgstr "Todos los idiomas están disponibles en esta máquina"
+msgstr "Todos los idiomas están disponibles en esta máquina."
 
 #: ../setup/functions.inc:626
 #, php-format
@@ -1984,19 +1912,19 @@ msgid "There are %d locales that Gallery was unable to locate. You will need to 
 msgstr ""
 
 #: ../setup/functions.inc:632
-#, fuzzy, php-format
+#, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You will need to manually select date formats for these."
-msgstr "Las fechas en estos lenguaje no serán formateadas correctamente porque estos idiomas están ausentes. Pero puede escoger otro lenguaje para estas."
+msgstr "Las fechas en %d lenguajes no serán formateadas correctamente porque estos idiomas están ausentes. Pero puede escoger otro formato manualmente para estas."
 
 #: ../setup/functions.inc:637
-#, fuzzy, php-format
+#, php-format
 msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
-msgstr "Somos incapaces de detectar ningún idioma. Sin embargo, su servidor está configurado con la restricción %s, la cual puede estar interfiriendo nuestro método de detectar idiomas. Desafortunadamente esto significa que los formatos de fecha no cambiarán para los diferentes lenguajes. De todas formas, puede continuar."
+msgstr "Somos incapaces de detectar ningún idioma. Sin embargo, su instalación de PHP está configurada con la restricción %s, la cual puede estar interfiriendo nuestro método de detectar idiomas. Desafortunadamente esto significa que los formatos de fecha no cambiarán para los diferentes lenguajes. De todas formas, puede continuar."
 
 #: ../setup/functions.inc:641
-#, fuzzy, php-format
+#, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
-msgstr "Somos incapaces de detectar ningún lenguaje en el sistema. Las funciones multilenguaje serán deshabilitadas. Por favor, instale los correspondientes idiomas o pregunta a su proveedor como hacerlo. Este problema es conocido en %s sistemas. En este caso eche un vistazo a %Debian locale Howto%s"
+msgstr "Somos incapaces de detectar ningún lenguaje en el sistema. Las funciones multilenguaje serán deshabilitadas. Por favor, instale los correspondientes idiomas o pregunta a su proveedor como hacerlo. Este problema es conocido en %s sistemas. En este caso eche un vistazo a %Debian locale Howto%s."
 
 #: ../setup/functions.inc:643
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
@@ -2028,14 +1956,12 @@ msgid "There are no apparently suitable locales installed on your machine for th
 msgstr "Aparentemente no hay configuraciones regionales idóneas instaladas en su máquina para los siguientes lenguajes. Por favor, escoja la que crea más adecuada."
 
 #: ../setup/functions.inc:914
-#, fuzzy
 msgid "<b>safe_mode</b> is off."
-msgstr "el modo seguro (safe_mode) está desactivado"
+msgstr "El modo seguro (<b>safe_mode</b>) está desactivado."
 
-#: ../setup/functions.inc:927
-#, fuzzy
+#: ../setup/functions.inc:917
 msgid "<b>magic_quotes</b> are off."
-msgstr "el parámetro magic_quotes está desactivado"
+msgstr "El parámetro <b>magic_quotes_gpc</b> está desactivado."
 
 #: ../setup/functions.inc:945
 #, php-format
@@ -2054,7 +1980,7 @@ msgstr "En %s, para el nombre %s (fila %d) el valor %s debería ser un número ent
 
 #: ../setup/functions.inc:1115
 msgid "Your admin passwords do not match!"
-msgstr ""
+msgstr "¡Sus contraseñas de administrador no coinciden!"
 
 #: ../setup/functions.inc:1126
 msgid "OK"
@@ -2089,7 +2015,7 @@ msgstr "Debe incluir %s en su correo de bienvenida"
 #: ../setup/functions.inc:1165
 #, php-format
 msgid "You must include %s or %s in your welcome email"
-msgstr ""
+msgstr "Debe incluir %s o %s en su correo de bienvenida"
 
 #: ../setup/functions.inc:1186
 #, php-format
@@ -2097,7 +2023,7 @@ msgid "this is new in version %s"
 msgstr "esto es nuevo en la versión %s"
 
 #: ../setup/functions.inc:1191
-#, fuzzy, php-format
+#, php-format
 msgid "Return to %s."
 msgstr "Volver a %s."
 
@@ -2105,10 +2031,10 @@ msgstr "Volver a %s."
 msgid "Configuration Wizard"
 msgstr "Asistente de Configuración"
 
-#: ../setup/functions.inc:1239
-#, fuzzy, php-format
+#: ../setup/functions.inc:1229
+#, php-format
 msgid "You must enter a password for the %s account."
-msgstr "Debe introducir la nueva contraseña dos veces."
+msgstr "Debe introducir una contraseña para la cuenta %s."
 
 #: ../setup/functions.inc:1244
 #, php-format
@@ -2121,9 +2047,8 @@ msgid "It seems you've already configured Gallery, because the %s user exists.  
 msgstr ""
 
 #: ../setup/functions.inc:1258
-#, fuzzy
 msgid "Admin password"
-msgstr "Antigua contraseña"
+msgstr "Contraseña del Administrador"
 
 #: ../setup/index.php:25
 msgid "Gallery Configuration"
@@ -2181,12 +2106,12 @@ msgstr "Volver a empezar"
 #: ../setup/write.inc:142
 #, php-format
 msgid "The password for user %s was changed."
-msgstr ""
+msgstr "La contraseña para el usuario %s ha sido cambiada."
 
 #: ../setup/write.inc:146
 #, php-format
 msgid "An account called %s has been created for you with the password you specified."
-msgstr ""
+msgstr "Una cuenta de usuario llamada %s ha sido creada con la contraseña especificada."
 
 #: ../setup/write.inc:160
 msgid "Success!"
@@ -2202,12 +2127,11 @@ msgstr "Nota"
 
 #: ../setup/write.inc:176
 msgid "Don't forget to run this to make your Gallery secure!"
-msgstr ""
+msgstr "¡No olvide ejecutar esto para hacer segura la instalación de Gallery!"
 
 #: ../setup/write.inc:182
-#, fuzzy
 msgid "Gallery won't run if it is not in secure mode."
-msgstr "Gallery no se ejecutará en modo inseguro"
+msgstr "Gallery no se ejecutará en modo inseguro."
 
 #: ../setup/write.inc:183
 msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."

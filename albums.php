@@ -431,6 +431,14 @@ print lastCommentString($lastCommentDate, $displayCommentLegend);
 includeLayout('navigator.inc');
 ?>
 
+<?php
+	$language="fr_FR";
+	$bindtextdomain=bindtextdomain($language. "-gallery_". where_i_am(), $GALLERY_BASEDIR."locale");
+	textdomain($language. "-gallery_". where_i_am());
+	echo "------------------------<br>";
+//
+	echo _("yes");
+?>
 <!-- gallery.footer begin -->
 <?php
 
