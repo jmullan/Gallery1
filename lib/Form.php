@@ -150,4 +150,33 @@ function makeFormIntro($target, $attrList=array()) {
 	return $form;
 }
 
+function formVar($name) {
+	global $HTTP_GET_VARS;
+	global $HTTP_POST_VARS;
+
+	if (!empty($HTTP_GET_VARS[$name])) {
+		if (!strncmp($HTTP_GET_VARS[$name], 'false', 5)) {
+			return false;
+		} else {
+			return($HTTP_GET_VARS[$name]);
+		}
+	}
+
+	if (!empty($HTTP_POST_VARS[$name])) {
+		if (!strncmp($HTTP_POST_VARS[$name], 'false', 5)) {
+			return false;
+		} else {
+			return($HTTP_POST_VARS[$name]);
+		}
+	}
+}
+
+
+function emptyFormVar($name) {
+	global $HTTP_GET_VARS;
+	global $HTTP_POST_VARS;
+
+	return !isset($HTTP_GET_VARS[$name]) && !isset($HTTP_POST_VARS[$name]);
+}
+
 ?>
