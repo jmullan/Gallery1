@@ -42,7 +42,7 @@ function getNLS () {
 	$nls['languages']['is_IS'] = '&Iacute;slenska';
 	$nls['languages']['lt_LT'] = 'Lietuvi&#x0173;';
 	$nls['languages']['nl_NL'] = 'Nederlands';
-	$nls['languages']['no_NO'] = 'Norsk';
+	$nls['languages']['nb_NO'] = 'Norsk bokm&aring;l';
 	$nls['languages']['pl_PL'] = 'Polski';
 	$nls['languages']['ru_RU'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (Windows)';
 	$nls['languages']['ru_RU.koi8r'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (KOI8-R)';
@@ -60,7 +60,7 @@ function getNLS () {
 	$nls['aliases']['it'] = 'it_IT';
 	$nls['aliases']['lt'] = 'lt_LT';
 	$nls['aliases']['nl'] = 'nl_NL';
-	$nls['aliases']['no'] = 'no_NO';
+	$nls['aliases']['no'] = 'nb_NO';
 	$nls['aliases']['pl'] = 'pl_PL';
 	$nls['aliases']['ru'] = 'ru_RU';
 	$nls['aliases']['sv'] = 'sv_SE';
@@ -106,8 +106,8 @@ function getNLS () {
 	$nls['aliases']['nl_BE'] = 		'nl_NL' ;
 	$nls['aliases']['nl_NL.ISO8859-1'] =    'nl_NL' ;
 	
-	$nls['aliases']['norwegian'] = 		'no_NO' ;
-	$nls['aliases']['no_NO.ISO8859-1'] =    'no_NO' ;
+	$nls['aliases']['norwegian'] = 		'nb_NO' ;
+	$nls['aliases']['no_NO.ISO8859-1'] =    'nb_NO' ;
 	
 	$nls['aliases']['polish'] =		'pl_PL' ;
 	$nls['aliases']['pl_PL.ISO8859-2'] =    'pl_PL' ;
