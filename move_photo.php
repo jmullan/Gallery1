@@ -88,6 +88,7 @@ if ($gallery->session->albumName && isset($index)) {
 				$index = $startPhoto; // set the index to the first photo that we are moving.	
 				while ($startPhoto <= $endPhoto) {
 					if (!$gallery->album->isAlbumName($index)) {
+					        set_time_limit($gallery->app->timeLimit);
 						echo "Moving photo #".$startPhoto."<br>";
 						my_flush();
 						$mydir = $gallery->album->getAlbumDir();
