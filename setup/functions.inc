@@ -167,7 +167,7 @@ function form_print_services($key, $arr) {
 	    if (isset($data['radio'])) {
 		if (!isset($value['donation'])) {
 		    $value['donation'] = 'yes';
-		}else print $value['donation'] . "KKK";
+		}
 		$buf .= "\n\t\t\t</td><td valign=\"top\">";
 		foreach ($data['radio'] as $radio => $values) {
 		    $checked = $value['donation'] === $radio
@@ -598,6 +598,7 @@ function check_absent_locales()
 	$fail = array();
 	$success = array();
 	$warn = array();
+	$msg = '';
 
 	$available=$locale_check["available_locales"];
 	$maybe=$locale_check["maybe_locales"];

@@ -455,7 +455,8 @@ if (!$gallery->album->isMovie($id)) {
 		/* display photo printing services */
 		$printServices = $gallery->album->fields['print_photos'];
 		$numServices = count($printServices);
-		if (!isset($printServices['shutterfly']['checked'])) {
+		if (!isset($printServices['shutterfly']['checked'])
+		    && isset($printServices['shutterfly']['donation'])) {
 			$numServices--;
 		}
 		$fullName = array(
@@ -474,6 +475,9 @@ if (!$gallery->album->isMovie($id)) {
 					continue;
 				}
 				switch ($name) {
+				case 'ezprints':
+					$printEZPrintsForm = true;
+					break;
 				case 'photoaccess':
 					$printPhotoAccessForm = true;
 					break;
@@ -489,6 +493,9 @@ if (!$gallery->album->isMovie($id)) {
 		} elseif ($numServices == 1) {
 			$name = key($printServices);
 			switch ($name) {
+			case 'ezprints':
+				$printEZPrintsForm = true;
+				break;
 			case 'photoaccess':
 				$printPhotoAccessForm = true;
 				break;
@@ -506,6 +513,10 @@ if (!$gallery->album->isMovie($id)) {
 		    input = document.admin_form.print_services.value;
 		}
 		switch (input) {
+		case 'ezprints':
+			document.ezPrintsForm.AlbumURL.value=document.location;
+			document.ezPrintsForm.submit();
+			break;
 		case 'fotokasten':
 			nw=window.open('<?php echo "http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth; ?>','Print with Fotokasten','<?php echo "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes"; ?>');
 			nw.opener=self;
@@ -799,6 +810,27 @@ if ($do_exif) {
   <input type="hidden" name="thumbUrl" value="<?php echo $thumbImage ?>">
   <input type="hidden" name="imgWidth" value="<?php echo $imageWidth ?>">
   <input type="hidden" name="imgHeight" value="<?php echo $imageHeight ?>">
+</form>
+<?php } ?> 
+<?php if (isset($printEZPrintsForm)) { ?>
+<form type="response" method="post" name="ezPrintsForm" action="http://gallery.mye-pix.com/ecomm/default.asp">
+  <input type="hidden" name="EntryType" value="SingleImage" />
+  <input type="hidden" name="PartnerID" value="440" />
+  <input type="hidden" name="PartnerPassword" value="Gallery1" />
+  <?php
+     /* Print the caption on back of photo. If no caption,
+      * then print the URL to this page. */
+     $imbkprnt = $gallery->album->getCaption($index);
+     if (empty($imbkprnt)) {
+        $imbkprnt = makeAlbumUrl($gallery->session->albumName, $id);
+     }
+  ?>
+  <input type="hidden" name="Title" value="<?php echo strip_tags($imbkprnt) ?>" />
+  <input type="hidden" name="Thumb" value="<?php echo $thumbImage ?>" />
+  <input type="hidden" name="Photo" value="<?php echo $rawImage ?>" />
+  <input type="hidden" name="AlbumURL" value="this-gets-set-by-javascript-in-onClick" />
+  <input type="hidden" name="ImageX" value="<?php echo $imageWidth ?>" />
+  <input type="hidden" name="ImageY" value="<?php echo $imageHeight ?>" />
 </form>
 <?php } ?> 
 <?php
