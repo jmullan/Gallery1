@@ -41,7 +41,7 @@ if (!isset($gallery)) {
 }
 
 $gallery->version = "1.4-pl1-lang1";
-$gallery->config_version = 49;
+$gallery->config_version ='48.1';
 $gallery->album_version = '15.1';
 $gallery->remote_protocol_version = 1;
 $gallery->user_version = 1;
