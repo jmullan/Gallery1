@@ -43,6 +43,7 @@ if ($save) {
 	$gallery->album->fields["use_fullOnly"] = $use_fullOnly;
 	$gallery->album->fields["print_photos"] = $print_photos;
 	$gallery->album->fields["use_exif"] = $use_exif;
+	$gallery->album->fields["display_clicks"] = $display_clicks;
 	$gallery->album->save();
 
 	reload();
@@ -137,12 +138,17 @@ Album Properties
 <?
 if ($gallery->app->use_exif) {
 ?>
+<tr>
 <td>Display EXIF data?</td>
 <td><select name="use_exif"><?=selectOptions($gallery->album, "use_exif", array("no", "yes")) ?></select></td>
 </tr>
 <?
 } // end if
 ?>
+<tr>
+<td>Display click counter for this album?</td>
+<td><select name="display_clicks"><?=selectOptions($gallery->album, "display_clicks", array("yes", "no")) ?></select></td>
+</tr>
 </table>
 
 <br>

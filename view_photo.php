@@ -39,6 +39,12 @@ if ($id) {
 } else {
 	$id = $gallery->album->getPhotoId($index);
 }
+$albumName = $gallery->session->albumName;
+if (!$viewedItem[$gallery->session->albumName][$id]) {
+	setcookie("viewedItem[$albumName][$id]", "1");
+	$gallery->album->incrementItemClicks($index);
+}
+
 $photo = $gallery->album->getPhoto($index);
 if ($photo->isMovie()) {
 	$image = $photo->thumbnail;

@@ -109,6 +109,17 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	} else {
 		header("Location: albums.php");
 	}
+} else if (!strcmp($cmd, "reset-album-clicks")) {
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		$albumDB = new AlbumDB();
+		$myAlbum=$albumDB->getAlbumByName($albumName);
+		$myAlbum->resetAllClicks();
+		// this is a popup do dismiss and reload!
+		dismissAndReload();
+	} else {
+		header("Location: albums.php");
+	}
+
 } else if (!empty($return)) {
 	// No command; Can be used to set a session variable
 	header("Location: $return");

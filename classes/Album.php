@@ -53,6 +53,9 @@ class Album {
 		$everybody = $gallery->userDB->getEverybody();
 		$this->setPerm("canRead", $everybody->getUid(), 1);
 		$this->fields["parentAlbumName"] = 0;
+		$this->fields["clicks"] = 0;
+		$this->fields["clicks_date"] = time();
+		$this->fields["display_clicks"] = "yes";
 	}
 
 	function isRoot() {
@@ -166,11 +169,13 @@ class Album {
 		return ($photo->isResized());
 	}
 
-	function save() {
+	function save($resetModDate=1) {
 		global $gallery;
 		$dir = $this->getAlbumDir();
 
-		$this->fields["last_mod_time"] = time();
+		if ($resetModDate) {
+			$this->fields["last_mod_time"] = time();
+		}
 
 		if (!file_exists($dir)) {
 			mkdir($dir, 0777);
@@ -459,7 +464,69 @@ class Album {
                 $photo->setIsAlbumName($name);
                 $this->setPhoto($photo, $index);
         }
+	
+	function resetClicks() {
+		$this->fields["clicks"] = 0;
+		$this->fields["clicks_date"] = time();
+		$this->fields["display_clicks"] = "yes"; // we need to turn this sucker on for older albums
+		$resetModDate=0;
+		$this->save($resetModDate);
 
+	}
+	
+	function resetAllClicks() {
+		$this->resetClicks();
+		for ($i=1; $i<=$this->numPhotos(1); $i++) {
+			$this->resetItemClicks($i);
+		}	
+	}
+
+	function getClicks() {
+		// just in case we have no clicks yet...
+		if (!isset($this->fields["clicks"])) {
+			$this->resetClicks();
+		}
+		return $this->fields["clicks"];
+	}
+
+	function getClicksDate() {
+                $time = $this->fields["clicks_date"];
+
+                // albums may not have this field.
+                if (!$time) {
+                        $this->resetClicks();
+			$time = $this->fields["clicks_date"];
+                }
+
+                return date("M d, Y", $time);
+        }
+
+	function incrementClicks() {
+		$this->fields["clicks"]++;
+		$resetModDate=0;
+                $this->save($resetModDate);
+	}
+
+	function getItemClicks($index) {
+		$photo = $this->getPhoto($index);
+		return $photo->getItemClicks();
+	}
+
+	function incrementItemClicks($index) {
+		$photo = $this->getPhoto($index);
+		$photo->incrementItemClicks();
+		$this->setPhoto($photo, $index);
+		$resetModDate=0; //don't reset last_mod_date
+		$this->save($resetModDate);
+	}
+
+	function resetItemClicks($index) {
+		$photo = $this->getPhoto($index);
+		$photo->resetItemClicks();
+		$this->setPhoto($photo,$index);
+		$resetModDate=0;
+		$this->save($resetModDate);
+	}
 
 	function getLastModificationDate() {
 		global $gallery;

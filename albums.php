@@ -208,6 +208,19 @@ for ($i = $start; $i <= $end; $i++) {
   <span class="fineprint">
    Last changed on <?=$gallery->album->getLastModificationDate()?>.  
    This album contains <?=pluralize($gallery->album->numPhotos(0), "item", "no")?>.
+<?
+if (!($gallery->album->fields["display_clicks"] == "no")) {
+?>
+   <br><br>This album has been viewed <?=pluralize($gallery->album->getClicks(), "time", "0")?> since <?=$gallery->album->getClicksDate()?>.
+<?
+}
+if ($gallery->user->canWriteToAlbum($gallery->album)) {
+	$albumName=$gallery->album->fields["name"];
+?>
+<a href="#" onClick="<?=popup("do_command.php?cmd=reset-album-clicks&albumName=$albumName&return=albums.php")?>">[reset counter]</a>
+<?
+}
+?>
   </span>
   </td>
   </tr>

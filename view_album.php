@@ -34,6 +34,12 @@ if (!$gallery->album->isLoaded()) {
 if (!$page) {
 	$page = 1;
 }
+$albumName = $gallery->session->albumName;
+
+if (!$viewedAlbum[$albumName]) {
+	setcookie("viewedAlbum[$albumName]","1");
+	$gallery->album->incrementClicks();
+} 
 
 $albumDB = new albumDB();
 
@@ -351,11 +357,17 @@ if ($numPhotos) {
 				<br>
 				<span class="fineprint">
 				   Changed: <?=$myAlbum->getLastModificationDate()?>.  <br>
-				   Contains: <?=pluralize($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), "item", "no")?>.
+				   Contains: <?=pluralize($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), "item", "no")?>.<br>
+				   <? if (!($gallery->album->fields["display_clicks"] == "no")) { ?>
+				   	Viewed: <?=pluralize($myAlbum->getClicks(), "time", "0")?>.<br>
+				   <? } ?>
 				</span>
 <?
 			} else {
 				echo($gallery->album->getCaption($i)."<br>");
+				if (!($gallery->album->fields["display_clicks"] == "no")) {
+					echo("Viewed: ".pluralize($gallery->album->getItemClicks($i), "time", "0").".<br>");
+				}
 			}
 			echo "</span>";
 
@@ -393,6 +405,10 @@ if ($numPhotos) {
 				}
 				if (!$gallery->album->isMovie($id)) {
 					echo("<option value='highlight_photo.php?index=$i'>Highlight $label</option>");
+				}
+				if ($gallery->album->isAlbumName($i)) {
+					$albumName=$gallery->album->isAlbumName($i);
+					echo("<option value=".doCommand("reset-album-clicks", "albumName=$albumName", "view_album.php").">Reset Counter</option>");
 				}
 				echo("<option value='move_photo.php?index=$i'>Move $label</option>");
 				if ($gallery->album->isHidden($i)) {

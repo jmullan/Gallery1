@@ -27,6 +27,25 @@ class AlbumItem {
 	var $highlight;
 	var $highlightImage;
 	var $isAlbumName;
+	var $clicks;
+
+	function resetItemClicks() {
+		$this->clicks = 0;
+	}
+
+	function getItemClicks() {
+		if (!isset($this->clicks)) {
+			$this->resetItemClicks();
+		}
+		return $this->clicks;
+	}
+
+	function incrementItemClicks() {
+		if (!isset($this->clicks)) {
+			$this->resetItemClicks();
+		}
+		$this->clicks++;
+	}
 
 	function hide() {
 		$this->hidden = 1;
