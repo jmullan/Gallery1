@@ -138,8 +138,10 @@ class AlbumItem {
 		/*
 	 	 * Sanity: make sure we can handle the file first.
 		 */
-		if (!valid_image("$dir/$name.$tag")) {
-			return 0;
+		if (!valid_image("$dir/$name.$tag") &&
+		    !strcmp($tag, "avi") &&
+		    !strcmp($tag, "mpg")) {
+			return "Invalid image: $name.$tag";
 		}
 
 		/*
@@ -156,9 +158,10 @@ class AlbumItem {
 
 		/* Set our image.  It might not load if this is a movie. */
 		list($w, $h) = getDimensions("$dir/$name.$tag");
+		$this->image = new Image;
+		$this->image->setFile($dir, $name, $tag);
+
 		if ($w != 0 && $h != 0) {
-			$this->image = new Image;
-			$this->image->setFile($dir, $name, $tag);
 			$this->image->setDimensions($w, $h);
 		}
 
@@ -185,10 +188,10 @@ class AlbumItem {
 			}
 		}
 
-		return 1;
+		return 0;
 	}
 
-	function getThumbnailTag($dir, $attrs) {
+	function getThumbnailTag($dir, $attrs="") {
 		if ($this->thumbnail) {
 			return $this->thumbnail->getTag($dir, 0, $attrs);
 		} else {
