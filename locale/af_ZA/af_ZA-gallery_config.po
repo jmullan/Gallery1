@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-01-23 05:18+0100\n"
+"POT-Creation-Date: 2004-02-09 16:15+0100\n"
 "PO-Revision-Date: 2003-09-18 00:39+0100\n"
 "Last-Translator: Gerrit Hoekstra <gerrit_hoekstra@hotmail.com>\n"
 "Language-Team: Afrikaans <gerrit_hoekstra@hotmail.com>\n"
@@ -36,7 +36,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../errors/configmode.php:7 ../errors/reconfigure.php:7
-#: ../errors/unconfigured.php:7 ../setup/index.php:83
+#: ../errors/unconfigured.php:7 ../setup/index.php:82
 msgid "Security violation"
 msgstr "Beveiligingsinbreuk"
 
@@ -114,7 +114,7 @@ msgstr "Gallery moet eers gekonfigureer word voordat jy dit kan gebruik. Eers mo
 msgid "Then start the %sConfiguration Wizard%s."
 msgstr "en begin dan die %sKonfigurasie-towenaar%s"
 
-#: ../setup/check.inc:6 ../setup/confirm.inc:6 ../setup/constants.inc:7
+#: ../setup/check.inc:6 ../setup/confirm.inc:6 ../setup/constants.inc:10
 #: ../setup/defaults.inc:7
 #, php-format
 msgid "Gallery Configuration Wizard: Step %d"
@@ -183,7 +183,7 @@ msgstr "Jou installasie het waarskuwings opgelewer, maar hulle is in die algemee
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "Jou installasie het met 'n onderskyding geslaag! Gaan dadelik verder!"
 
-#: ../setup/check.inc:140 ../setup/constants.inc:17 ../setup/constants.inc:123
+#: ../setup/check.inc:140 ../setup/constants.inc:20 ../setup/constants.inc:126
 #: ../setup/defaults.inc:19 ../setup/defaults.inc:98
 msgid "Next Page"
 msgstr "Volgende blad"
@@ -216,7 +216,7 @@ msgid "It seems that you did not configure your GALLERY. Please run and finish t
 msgstr "Dit lyk of jy Gallery nie gekonfigureer het nie. Laat asseblief die Konfigurasie Towenaar weer loop."
 
 #: ../setup/check_imagemagick.php:55 ../setup/check_netpbm.php:54
-#: ../setup/functions.inc:1138
+#: ../setup/functions.inc:1161
 msgid "OK"
 msgstr "OK"
 
@@ -760,7 +760,7 @@ msgstr "Nee"
 
 #: ../setup/config_data.inc:295 ../setup/config_data.inc:391
 #: ../setup/config_data.inc:456 ../setup/config_data.inc:466
-#: ../setup/functions.inc:807 ../setup/functions.inc:880
+#: ../setup/functions.inc:814 ../setup/functions.inc:887
 msgid "Advanced"
 msgstr "Gevorderd"
 
@@ -1584,8 +1584,8 @@ msgstr "Horizontaal"
 msgid "Vertical"
 msgstr "Vertikaal"
 
-#: ../setup/config_data.inc:1014 ../setup/functions.inc:958
-#: ../setup/functions.inc:967 ../setup/functions.inc:972
+#: ../setup/config_data.inc:1014 ../setup/functions.inc:965
+#: ../setup/functions.inc:974 ../setup/functions.inc:979
 msgid "Vote words and values"
 msgstr "Stem woorde en waardes"
 
@@ -1681,7 +1681,7 @@ msgstr "Fout:"
 msgid "You must create empty file %s and chmod it 777 before proceeding.  See %s for more details."
 msgstr "Jy moet die leë lêr %s kreëer en dit dan <i>chmod 777</i> voordat jy verder gaan. Sien %s vir verdere details. "
 
-#: ../setup/confirm.inc:62 ../setup/confirm.inc:137 ../setup/confirm.inc:138
+#: ../setup/confirm.inc:62 ../setup/confirm.inc:156 ../setup/confirm.inc:157
 msgid "missing"
 msgstr "ontbreek"
 
@@ -1689,129 +1689,129 @@ msgstr "ontbreek"
 msgid "it's optional"
 msgstr "dit is optioneel"
 
-#: ../setup/confirm.inc:137 ../setup/confirm.inc:138
+#: ../setup/confirm.inc:156 ../setup/confirm.inc:157
 msgid "optional"
 msgstr "optioneel"
 
-#: ../setup/confirm.inc:157
+#: ../setup/confirm.inc:176
 #, php-format
 msgid "%s: <b>%s</b> must be an absolute URL!"
 msgstr "%s: <b>%s</b> moet 'n absolute URL wees!"
 
-#: ../setup/confirm.inc:169
+#: ../setup/confirm.inc:188
 #, php-format
 msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
 msgstr "%s: <b>%s</b> moet 'n geldige lêr wees (en nie 'n lêrgids nie)!"
 
-#: ../setup/confirm.inc:178
+#: ../setup/confirm.inc:197
 #, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>%s</b> moet 'n positieve getal is"
 
-#: ../setup/confirm.inc:186
+#: ../setup/confirm.inc:205
 #, php-format
 msgid "%s: <b>%s</b> must not be zero"
 msgstr "%s: <b>%s</b> mag nie nul wees nie"
 
-#: ../setup/confirm.inc:196
+#: ../setup/confirm.inc:215
 #, php-format
 msgid "%s: <b>%s</b> must be an executable file!"
 msgstr "%s: <b>%s</b> moet 'n uitvoerbare lêr wees!"
 
-#: ../setup/confirm.inc:205
+#: ../setup/confirm.inc:224
 #, php-format
 msgid "Directory %s does not exist.  Please create it."
 msgstr "lêrgids %s bestaan nie. Kreëer een asseblief."
 
-#: ../setup/confirm.inc:211
+#: ../setup/confirm.inc:230
 #, php-format
 msgid "%s exists but is not a directory.  Please fix this."
 msgstr "%s bestaan al maar maar is nie 'n lêrgids nie. Maak dit asseblief reg."
 
-#: ../setup/confirm.inc:218
+#: ../setup/confirm.inc:237
 #, php-format
 msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
 msgstr ""
 
-#: ../setup/confirm.inc:289
+#: ../setup/confirm.inc:308
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr ""
 
-#: ../setup/confirm.inc:301
+#: ../setup/confirm.inc:320
 #, php-format
 msgid "You must specify a path for %s or %s for Gallery to function!!"
 msgstr "Jy moet 'n pad vir %s of %s invoer sodat <u>Gallery</u> kan werk!"
 
-#: ../setup/confirm.inc:304 ../setup/confirm.inc:307
+#: ../setup/confirm.inc:323 ../setup/confirm.inc:326
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr "%s is nie behoorlik vir die gebruik as 'n grafiese pakket gekonfigureer nie. Maak seker dat jy 'n pad vir die %s programme in Stap 2 aangegee het."
 
-#: ../setup/confirm.inc:312
+#: ../setup/confirm.inc:331
 msgid "Note:"
 msgstr "Nota:"
 
-#: ../setup/confirm.inc:313
+#: ../setup/confirm.inc:332
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr "Jou bediener het die PHP <i>open_basedir</i> beperking aangeskakel, en sommige van jou paaie is nie in die lys van beperkte paaie nie."
 
-#: ../setup/confirm.inc:315
+#: ../setup/confirm.inc:334
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
 msgstr "Dit beteken nie dat hulle nie sal werk nie, maar dit beteken wel dat paaie nie as korrek bevestig kan word nie. As dit nie moontlik is foto's korrek op te laai nie, lees die FAQ en die %sdiagnostiese blad%s om die probleem op te los."
 
-#: ../setup/confirm.inc:388
+#: ../setup/confirm.inc:407
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it."
 msgstr "Konfirmeer dat die instellings wat jy ingevoer het korrek is. As jy hierdie blad verwarrend vind kan jy dit ignoreer."
 
-#: ../setup/confirm.inc:390
+#: ../setup/confirm.inc:409
 msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
 msgstr "Konfirmeer dat die instellings wat jy ingevoer het korrek is. As jy hierdie blad verwarrend vind kan jy dit waarskynlik ignoreer, tensy daar foute in rooi staan, wat jy moet regmaak voordat jy jou instellings stoor."
 
-#: ../setup/confirm.inc:395 ../setup/confirm.inc:410
+#: ../setup/confirm.inc:414 ../setup/confirm.inc:429
 msgid "Edit Config"
 msgstr "Konfigurasie Wysig"
 
-#: ../setup/confirm.inc:397 ../setup/confirm.inc:412
+#: ../setup/confirm.inc:416 ../setup/confirm.inc:431
 msgid "Save Config"
 msgstr "Stoor Konfigurasie"
 
-#: ../setup/confirm.inc:400
+#: ../setup/confirm.inc:419
 #, php-format
 msgid "%s.  Details below."
 msgstr "%s. Details hieronder."
 
-#: ../setup/confirm.inc:400
+#: ../setup/confirm.inc:419
 msgid "One error"
 msgstr "Een fout"
 
-#: ../setup/confirm.inc:400
+#: ../setup/confirm.inc:419
 msgid "errors"
 msgstr "foute"
 
-#: ../setup/confirm.inc:400
+#: ../setup/confirm.inc:419
 msgid "no errors"
 msgstr "geen foute nie"
 
-#: ../setup/confirm.inc:415
+#: ../setup/confirm.inc:434
 msgid "There are errors in your configuration."
 msgstr "Daar is foute in jou Konfigurasie."
 
-#: ../setup/confirm.inc:416
+#: ../setup/confirm.inc:435
 msgid "Please go back and fix them!"
 msgstr "Gaan asseblief terug en maak dit reg!"
 
-#: ../setup/constants.inc:11
+#: ../setup/constants.inc:14
 msgid "In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
 msgstr "In hierdie stap word 'n paar instellings vir <u>Gallery<u> spesiaal aangepas. As dit die eerste keer is dat jy <u>Gallery</u> aanpas, sal jy waarneem dat redelike verstek waardes aan jou voorgestel word. Jy sal tog seker 'n paar klein veranderinkies aanbring. As jy alreeds <u>Gallery</u> vantevore gekonfigureer het, sal jy sien dat hierdie blad jou huidige instellings het, dus sal jy seker nie baie hoef te doen nie."
 
-#: ../setup/constants.inc:16 ../setup/constants.inc:122
+#: ../setup/constants.inc:19 ../setup/constants.inc:125
 #: ../setup/defaults.inc:18 ../setup/defaults.inc:97
 msgid "Previous Page"
 msgstr "Vorige blad"
 
-#: ../setup/constants.inc:18 ../setup/constants.inc:124
+#: ../setup/constants.inc:21 ../setup/constants.inc:127
 #: ../setup/defaults.inc:20 ../setup/defaults.inc:99
 msgid "Use Defaults"
 msgstr "Gebruik verstek waardes"
@@ -1919,317 +1919,317 @@ msgstr "Hiermee kan jy toets of jy die korrekte versie van al jou %s lêërs het
 msgid "Please retype your password here"
 msgstr "Voer jou wagwoord weer hier in"
 
-#: ../setup/functions.inc:123 ../setup/functions.inc:959
+#: ../setup/functions.inc:123 ../setup/functions.inc:966
 msgid "Name"
 msgstr "Volledige naam"
 
-#: ../setup/functions.inc:124 ../setup/functions.inc:959
+#: ../setup/functions.inc:124 ../setup/functions.inc:966
 msgid "Value"
 msgstr "Waarde"
 
-#: ../setup/functions.inc:289
+#: ../setup/functions.inc:296
 msgid "Missing value"
 msgstr "Ontbrekende Waarde"
 
-#: ../setup/functions.inc:311
+#: ../setup/functions.inc:318
 msgid "I can read your <b>.htaccess</b> file."
 msgstr "Jou .htaccess lêr is nie toeganklik nie"
 
-#: ../setup/functions.inc:337
+#: ../setup/functions.inc:344
 #, php-format
 msgid "PHP v%s is OK."
 msgstr "PHP v%s is in orde"
 
-#: ../setup/functions.inc:350
+#: ../setup/functions.inc:357
 msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> is onsper."
 
-#: ../setup/functions.inc:374
+#: ../setup/functions.inc:381
 msgid "Can't find <i>jhead</i>"
 msgstr "Kan nie <b>jhead</b> vind nie"
 
-#: ../setup/functions.inc:376
+#: ../setup/functions.inc:383
 msgid "<b>jhead</b> binary located."
 msgstr "<b>jhead</b> gevind."
 
-#: ../setup/functions.inc:390
+#: ../setup/functions.inc:397
 msgid "NetPBM not being used in this installation."
 msgstr "NetPBM word nie in hierdie installasie gebruik nie"
 
-#: ../setup/functions.inc:395 ../setup/functions.inc:481
+#: ../setup/functions.inc:402 ../setup/functions.inc:488
 msgid "Cannot verify this path (it's not in your open_basedir list)."
 msgstr "Kan nie hierdie pad bevestig nie (dit is nie in jou <i>open_basedir</i> lys nie)."
 
-#: ../setup/functions.inc:444 ../setup/functions.inc:500
+#: ../setup/functions.inc:451 ../setup/functions.inc:507
 #, php-format
 msgid "Can't find %s!"
 msgstr "Kan %s nie vind nie!"
 
-#: ../setup/functions.inc:449 ../setup/functions.inc:505
+#: ../setup/functions.inc:456 ../setup/functions.inc:512
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s is nie uitvoerbaar nie!"
 
-#: ../setup/functions.inc:460
+#: ../setup/functions.inc:467
 #, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr ""
 
-#: ../setup/functions.inc:516
+#: ../setup/functions.inc:523
 #, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr ""
 
-#: ../setup/functions.inc:539
+#: ../setup/functions.inc:546
 msgid "Can't find <i>jpegtran</i>!"
 msgstr "Kan nie <b>jpegtran</b> vind nie."
 
-#: ../setup/functions.inc:541
+#: ../setup/functions.inc:548
 msgid "<b>jpegtran</b> binary located."
 msgstr "<b>jpegtran</b> gevind."
 
-#: ../setup/functions.inc:553
+#: ../setup/functions.inc:560
 msgid "PHP has <b>GNU gettext</b> support."
 msgstr "PHP het <b>GNU gettext</b> ondersteuning."
 
-#: ../setup/functions.inc:555
+#: ../setup/functions.inc:562
 msgid "PHP does not have <b>GNU gettext</b> support."
 msgstr "PHP het nie <b>GNU gettext</b> ondersteuning nie."
 
-#: ../setup/functions.inc:571
+#: ../setup/functions.inc:578
 msgid "No languages found."
 msgstr "Geen tale gevind"
 
-#: ../setup/functions.inc:573
+#: ../setup/functions.inc:580
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
 msgstr "Dit lyk of jy nie enige ander tale afgelaai het nie. Dit is nie 'n probleem nie! <u>Gallery</u> sal net in Afrikaans verskyn. Nota: As dit nie die geval is nie, kyk of al die lêërs in the <i>locale</i> lêrgids leesbaar is vir die webbediener, of tree in verbinding met die <u>Gallery</u> Span."
 
-#: ../setup/functions.inc:577
+#: ../setup/functions.inc:584
 #, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
 msgstr "%d tale is beskikbaar. As 'n taal ontbreek, besoek die %sGallery Aflaai Blad%s."
 
-#: ../setup/functions.inc:601
+#: ../setup/functions.inc:608
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr "Jy kan kyk of daar nuwer versies beskikbaar is deur %s te besoek."
 
-#: ../setup/functions.inc:603
+#: ../setup/functions.inc:610
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr "Hierdie versie van %s is op %s vrygegee."
 
-#: ../setup/functions.inc:605
+#: ../setup/functions.inc:612
 #, php-format
 msgid "This is a development build of %s that was released on %s."
 msgstr "Dit is 'n ontwikkelings bou van %s wat op %s vrygegee is."
 
-#: ../setup/functions.inc:614
+#: ../setup/functions.inc:621
 msgid "Please check regularly for updates."
 msgstr "Kyk gereeld of nuwe opgradeerings beskikbaar is."
 
-#: ../setup/functions.inc:635
+#: ../setup/functions.inc:642
 msgid "All gallery locales are available on this host."
 msgstr "Alle lokaliteitsinstellings van <u>Gallery</u> is op hierdie bediener beskikbaar."
 
-#: ../setup/functions.inc:638
+#: ../setup/functions.inc:645
 #, php-format
 msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
 msgstr "Daar is %d lokaliteitsinstellings wat <i>Gallery</i> nie kon vind nie. Dit mag nodig wees om per hand die datum formate vir hulle te kies."
 
-#: ../setup/functions.inc:644
+#: ../setup/functions.inc:651
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
 msgstr "Datums in %d tale kan dalk nie in die korrekte formaat wees nie, omdat ooreenkomstige lokaliteitsinstellings ontbreek. Dit mag nodig wees om per hand die datum formate vir hulle te kies."
 
-#: ../setup/functions.inc:649
+#: ../setup/functions.inc:656
 #, php-format
 msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
 msgstr "Dit was nie moontlik om enige lokaliteitsinstellings te speur nie, maar jou PHP installasie is gekonfigureer met die %s beperking, dus mag dit dalk met die manier waarop lokaliteitsinstellings gespeur word rondvoeter. Ongelukkig beteken dit dat die datim formaat nie vir verskillende tale sal verander nie. Tog is dit OK om verder te gaan."
 
-#: ../setup/functions.inc:653
+#: ../setup/functions.inc:660
 #, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
 msgstr "Dit was nie moontlik om enige sisteem lokaliteitsininstelling te speur nie. Multi-taal funksies sal gesper word. Installeer asseblief die benodigde lokaliteitsininstelling, of vra jou administrateur om dit te doen. Hierdie probleem is bekend op %s sisteme. In hierdie geval kyk asseblief na hierdie %sDebian locale HowTo%s."
 
-#: ../setup/functions.inc:655
+#: ../setup/functions.inc:662
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "Net die verstek lokaliteitsinstelling van hierdie masjien is beskikbaar, dus sal die datum formaat nie vir ander tale verander nie"
 
-#: ../setup/functions.inc:807
+#: ../setup/functions.inc:814
 #, fuzzy
 msgid "<b>System</b> locale selection required"
 msgstr "Kies 'n lokaliteitsinstelling"
 
-#: ../setup/functions.inc:808
+#: ../setup/functions.inc:815
 #, fuzzy
 msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "Daar is meer as een geskikte lokaliteitsinstelling vir die volgende tale op jou sisteem geïnstalleer. Kies die mees geskikte ene."
 
-#: ../setup/functions.inc:810 ../setup/functions.inc:883
+#: ../setup/functions.inc:817 ../setup/functions.inc:890
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
 msgstr "Dit is nét vir datum en tyd formaat, en jy hoef dit net vir die taal te wysig wat jy hierbo gekies het"
 
-#: ../setup/functions.inc:838 ../setup/functions.inc:845
-#: ../setup/functions.inc:855
+#: ../setup/functions.inc:845 ../setup/functions.inc:852
+#: ../setup/functions.inc:862
 msgid "System locale"
 msgstr "Sisteem lokaliteitsininstelling"
 
-#: ../setup/functions.inc:880
+#: ../setup/functions.inc:887
 #, fuzzy
 msgid "<b>System</b> locale problems"
 msgstr "Probleem met lokaliteitsininstelling"
 
-#: ../setup/functions.inc:881
+#: ../setup/functions.inc:888
 #, fuzzy
 msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "Dit blyk of daar geen geskikte lokaliteitsininstelling op jou systeem vir die volgende tale geïnstalleer is nie. Kies die ene wat jy dink die mees geskik is."
 
-#: ../setup/functions.inc:926
+#: ../setup/functions.inc:933
 msgid "<b>safe_mode</b> is off."
 msgstr "<b>safe mode</b> is af."
 
-#: ../setup/functions.inc:939
+#: ../setup/functions.inc:946
 msgid "<b>magic_quotes</b> are off."
 msgstr "<b>magic_quotes</b> is af."
 
-#: ../setup/functions.inc:957
+#: ../setup/functions.inc:964
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr "In %s, onbrekende %s in ry %d met %s %s."
 
-#: ../setup/functions.inc:966
+#: ../setup/functions.inc:973
 #, php-format
 msgid "In %s, blank in row %d."
 msgstr "In %s, blanko in ry %d."
 
-#: ../setup/functions.inc:971
+#: ../setup/functions.inc:978
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "In %s, vir naam %s (ry %d), moet waarde %s 'n positieve heelgetal wees"
 
-#: ../setup/functions.inc:1127
+#: ../setup/functions.inc:1150
 msgid "Your admin passwords do not match!"
 msgstr "Jou Administrateur wagwoorde kom nie met mekaar ooreen nie!"
 
-#: ../setup/functions.inc:1143
+#: ../setup/functions.inc:1166
 msgid "Valid admin email address given."
 msgstr "Geldige Administrateur e-pos adres ingevoer."
 
-#: ../setup/functions.inc:1150
+#: ../setup/functions.inc:1173
 msgid "You must specify valid admin email addresses"
 msgstr "Jy moet 'n geldige Administrateur e-pos adres invoer"
 
-#: ../setup/functions.inc:1158
+#: ../setup/functions.inc:1181
 #, php-format
 msgid "%s is not a valid email address."
 msgstr "%s is nie 'n geldig e-pos adres nie."
 
-#: ../setup/functions.inc:1167
+#: ../setup/functions.inc:1190
 msgid "Valid sender email address given."
 msgstr "Geldige stuurder e-pos adres ingevoer."
 
-#: ../setup/functions.inc:1169
+#: ../setup/functions.inc:1192
 msgid "You must specify a valid sender email address"
 msgstr "Jy moet 'n geldige stuurder e-pos adres invoer"
 
-#: ../setup/functions.inc:1172
+#: ../setup/functions.inc:1195
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr "Jy moet %s in jou verwelkomings e-pos insluit"
 
-#: ../setup/functions.inc:1177
+#: ../setup/functions.inc:1200
 #, php-format
 msgid "You must include %s or %s in your welcome email"
 msgstr "Jy moet %s of %s in jou verwelkomings e-pos insluit"
 
-#: ../setup/functions.inc:1201
+#: ../setup/functions.inc:1224
 #, php-format
 msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 msgstr ""
 
-#: ../setup/functions.inc:1203
+#: ../setup/functions.inc:1226
 msgid "This should be fixed before proceeding"
 msgstr ""
 
-#: ../setup/functions.inc:1204 ../setup/functions.inc:1208
+#: ../setup/functions.inc:1227 ../setup/functions.inc:1231
 #, fuzzy, php-format
 msgid "Look at %sCheck Versions%s for more details."
 msgstr "%sKliek hier%s om meer besonderhede te sien"
 
-#: ../setup/functions.inc:1207
+#: ../setup/functions.inc:1230
 #, fuzzy, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
 msgstr "Die volgende lêërs is meer op datum as wat vir hierdie versie van %s verwag is. As jy <i>pre-release</i> kode gebruik, is dit te verwagte."
 
-#: ../setup/functions.inc:1212
+#: ../setup/functions.inc:1235
 #, fuzzy, php-format
 msgid "All %d tested files up-to-date."
 msgstr "%d lêërs is op datum."
 
-#: ../setup/functions.inc:1220
+#: ../setup/functions.inc:1243
 #, php-format
 msgid "this is new in version %s"
 msgstr "hierdie is nuut in versie %s"
 
-#: ../setup/functions.inc:1225
+#: ../setup/functions.inc:1248
 #, php-format
 msgid "Return to %s."
 msgstr "Gaan terug na %s."
 
-#: ../setup/functions.inc:1226
+#: ../setup/functions.inc:1249
 msgid "Configuration Wizard"
 msgstr "Konfigurasie-Towenaar"
 
-#: ../setup/functions.inc:1277
+#: ../setup/functions.inc:1300
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr "Jy moet 'n wagwoord vir die %s rekening invoer."
 
-#: ../setup/functions.inc:1282
+#: ../setup/functions.inc:1305
 #, fuzzy, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
 msgstr "Dit lyk asof jy alreeds <u>Gallery</u> gekonfureer het, omdat daar alreeds %d administrateur rekening(s) bestaan"
 
-#: ../setup/functions.inc:1285
+#: ../setup/functions.inc:1308
 #, fuzzy, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr "Dit lyk asof jy alreeds <u>Gallery</u> gekonfureer het, omdat daar alreeds %d administrateur rekening(s) bestaan"
 
-#: ../setup/functions.inc:1287
+#: ../setup/functions.inc:1310
 #, fuzzy, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr "Jy moet 'n wagwoord invoer. Maar as jy did doen, sal <u>Gallery</u> 'n administratuer rekening kreëer met daardie wagwoord."
 
-#: ../setup/functions.inc:1296
+#: ../setup/functions.inc:1319
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr "Dit lyk asof jy alreeds <u>Gallery</u> gekonfureer het, omdat gebruiker %s bestaan. Jy hoef nie 'n wagwoord in te tik nie. Maar as jy dit wel doen, sal <u>Gallery</u> die wagwoord vir gebruiker %s verander."
 
-#: ../setup/functions.inc:1303
+#: ../setup/functions.inc:1326
 msgid "Admin password"
 msgstr "Administrateur wagwoord"
 
-#: ../setup/functions.inc:1316 ../setup/functions.inc:1318
-#: ../setup/functions.inc:1320 ../setup/functions.inc:1328
+#: ../setup/functions.inc:1339 ../setup/functions.inc:1341
+#: ../setup/functions.inc:1343 ../setup/functions.inc:1351
 #, fuzzy
 msgid "Full Name"
 msgstr "Volledige naam"
 
-#: ../setup/functions.inc:1316 ../setup/functions.inc:1318
-#: ../setup/functions.inc:1322 ../setup/functions.inc:1330
+#: ../setup/functions.inc:1339 ../setup/functions.inc:1341
+#: ../setup/functions.inc:1345 ../setup/functions.inc:1353
 msgid "Username"
 msgstr ""
 
-#: ../setup/functions.inc:1324
+#: ../setup/functions.inc:1347
 msgid "Full name that you can click on to send email (mailto:)"
 msgstr ""
 
-#: ../setup/functions.inc:1326
+#: ../setup/functions.inc:1349
 msgid "Username that you can click on to send email (mailto:)"
 msgstr ""
 
-#: ../setup/functions.inc:1328 ../setup/functions.inc:1330
+#: ../setup/functions.inc:1351 ../setup/functions.inc:1353
 #, fuzzy
 msgid "email address"
 msgstr "Jou e-pos adress:"
@@ -2238,7 +2238,7 @@ msgstr "Jou e-pos adress:"
 msgid "Gallery Configuration"
 msgstr "Gallery Konfigurasie"
 
-#: ../setup/index.php:30
+#: ../setup/index.php:29
 msgid "unknown"
 msgstr "onbekend"
 

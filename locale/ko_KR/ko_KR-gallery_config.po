@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-01-23 05:18+0100\n"
+"POT-Creation-Date: 2004-02-09 16:15+0100\n"
 "PO-Revision-Date: 2003-10-12 17:58+0900\n"
 "Last-Translator: The Darkness <xgate32@hotmail.com>\n"
 "Language-Team: Gallery Korean Translation <xgate32@hotmail.com>\n"
@@ -34,7 +34,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../errors/configmode.php:7 ../errors/reconfigure.php:7
-#: ../errors/unconfigured.php:7 ../setup/index.php:83
+#: ../errors/unconfigured.php:7 ../setup/index.php:82
 msgid "Security violation"
 msgstr "보안 위반"
 
@@ -112,7 +112,7 @@ msgstr "갤러리는 사용하시기 전에 반드시 설정하셔야 합니다. 먼저, 갤러리를 설정모
 msgid "Then start the %sConfiguration Wizard%s."
 msgstr "그리고 %s설정 마법사%s를 시작하세요."
 
-#: ../setup/check.inc:6 ../setup/confirm.inc:6 ../setup/constants.inc:7
+#: ../setup/check.inc:6 ../setup/confirm.inc:6 ../setup/constants.inc:10
 #: ../setup/defaults.inc:7
 #, php-format
 msgid "Gallery Configuration Wizard: Step %d"
@@ -181,7 +181,7 @@ msgstr "당신의 설치과정은 경고가 있지만 괜찮습니다. 계속 진행하세요!"
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "모든 테스트가 통과되었습니다! 다음 단계로 가세요!"
 
-#: ../setup/check.inc:140 ../setup/constants.inc:17 ../setup/constants.inc:123
+#: ../setup/check.inc:140 ../setup/constants.inc:20 ../setup/constants.inc:126
 #: ../setup/defaults.inc:19 ../setup/defaults.inc:98
 msgid "Next Page"
 msgstr "다음 페이지"
@@ -214,7 +214,7 @@ msgid "It seems that you did not configure your GALLERY. Please run and finish t
 msgstr "갤러리 설정을 하지 않은 것 같군요. 설정 마법사를 먼저 실행해 주세요."
 
 #: ../setup/check_imagemagick.php:55 ../setup/check_netpbm.php:54
-#: ../setup/functions.inc:1138
+#: ../setup/functions.inc:1161
 msgid "OK"
 msgstr ""
 
@@ -760,7 +760,7 @@ msgstr "아니요"
 
 #: ../setup/config_data.inc:295 ../setup/config_data.inc:391
 #: ../setup/config_data.inc:456 ../setup/config_data.inc:466
-#: ../setup/functions.inc:807 ../setup/functions.inc:880
+#: ../setup/functions.inc:814 ../setup/functions.inc:887
 msgid "Advanced"
 msgstr "자세히"
 
@@ -1592,8 +1592,8 @@ msgstr "수평"
 msgid "Vertical"
 msgstr "수직"
 
-#: ../setup/config_data.inc:1014 ../setup/functions.inc:958
-#: ../setup/functions.inc:967 ../setup/functions.inc:972
+#: ../setup/config_data.inc:1014 ../setup/functions.inc:965
+#: ../setup/functions.inc:974 ../setup/functions.inc:979
 msgid "Vote words and values"
 msgstr "투표 항목이름과 값"
 
@@ -1689,7 +1689,7 @@ msgstr "에러:"
 msgid "You must create empty file %s and chmod it 777 before proceeding.  See %s for more details."
 msgstr "%s를 비어있는 파일로 chmod로 777로 한 뒤 진행해야 합니다. 상세한 것은 %s를 보세요."
 
-#: ../setup/confirm.inc:62 ../setup/confirm.inc:137 ../setup/confirm.inc:138
+#: ../setup/confirm.inc:62 ../setup/confirm.inc:156 ../setup/confirm.inc:157
 msgid "missing"
 msgstr "없음"
 
@@ -1697,129 +1697,129 @@ msgstr "없음"
 msgid "it's optional"
 msgstr "선택사항"
 
-#: ../setup/confirm.inc:137 ../setup/confirm.inc:138
+#: ../setup/confirm.inc:156 ../setup/confirm.inc:157
 msgid "optional"
 msgstr "선택사항"
 
-#: ../setup/confirm.inc:157
+#: ../setup/confirm.inc:176
 #, php-format
 msgid "%s: <b>%s</b> must be an absolute URL!"
 msgstr "%s: <b>%s</b> 절대 URL(절대경로)이어야 합니다!"
 
-#: ../setup/confirm.inc:169
+#: ../setup/confirm.inc:188
 #, php-format
 msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
 msgstr "%s: <b>%s</b> 올바른 파일이어야 합니다(디렉토리가 아니라)!"
 
-#: ../setup/confirm.inc:178
+#: ../setup/confirm.inc:197
 #, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>&quot;%s&quot;</b> 양수이어야 합니다."
 
-#: ../setup/confirm.inc:186
+#: ../setup/confirm.inc:205
 #, php-format
 msgid "%s: <b>%s</b> must not be zero"
 msgstr "%s: <b>%s</b> 0이 아니어야 합니다."
 
-#: ../setup/confirm.inc:196
+#: ../setup/confirm.inc:215
 #, php-format
 msgid "%s: <b>%s</b> must be an executable file!"
 msgstr "%s: <b>%s</b>는 실행가능한 파일이어야 합니다!"
 
-#: ../setup/confirm.inc:205
+#: ../setup/confirm.inc:224
 #, php-format
 msgid "Directory %s does not exist.  Please create it."
 msgstr "%s 디렉토리가 존재하지 않습니다. 생성하세요."
 
-#: ../setup/confirm.inc:211
+#: ../setup/confirm.inc:230
 #, php-format
 msgid "%s exists but is not a directory.  Please fix this."
 msgstr "%s는 존재하지만 디렉토리가 아닙니다.  고치세요."
 
-#: ../setup/confirm.inc:218
+#: ../setup/confirm.inc:237
 #, php-format
 msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
 msgstr "%s: %s가 존재하지만 웹서버 사용자에게 쓰기 권한이 없습니다. 먼저 %s를 시도하시고 실패하면 %s를 시도하세요. 또한 %s 제한이 있다면 tmp 디렉토리가 %s 경로 아래에 있는지 확인하세요."
 
-#: ../setup/confirm.inc:289
+#: ../setup/confirm.inc:308
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "%s를 찾을 수 없습니다.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 
-#: ../setup/confirm.inc:301
+#: ../setup/confirm.inc:320
 #, php-format
 msgid "You must specify a path for %s or %s for Gallery to function!!"
 msgstr "Gallery가 동작하려면 %s이나 %s 중 하나의 경로를 설정해야 합니다!"
 
-#: ../setup/confirm.inc:304 ../setup/confirm.inc:307
+#: ../setup/confirm.inc:323 ../setup/confirm.inc:326
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr "%s가 그래픽 패키지로 사용할 수 있게 적절히 설정되지 않았습니다. 2 단계에서 %s의 경로를 입력했는지 확인하세요."
 
-#: ../setup/confirm.inc:312
+#: ../setup/confirm.inc:331
 msgid "Note:"
 msgstr "주의:"
 
-#: ../setup/confirm.inc:313
+#: ../setup/confirm.inc:332
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr "서버의 PHP에 open_basedir 제한이 세팅되어 있습니다. 지정하신 경로 중에 제한된 경로 목록에 없는 것이 있습니다"
 
-#: ../setup/confirm.inc:315
+#: ../setup/confirm.inc:334
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
 msgstr "이것은 동작을 하지 않는다 것이 아니라 경로가 제대로 되었는지 확인할 수 없다는 의미입니다. 사진을 제대로 업로드할 수 없다면 FAQ를 참조하거나 %s점검 페이지%s에서 문제를 해결하세요."
 
-#: ../setup/confirm.inc:388
+#: ../setup/confirm.inc:407
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it."
 msgstr "입력하신 내용이 맞게 되었는지 확인하세요. 이 페이지가 어려우시면, 간단히 무시하시면 됩니다. "
 
-#: ../setup/confirm.inc:390
+#: ../setup/confirm.inc:409
 msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
 msgstr "입력하신 내용이 맞게 되었는지 확인하세요. 아래에 적색으로 표시된 에러들은 설정을 저장하시기 전에 반드시 수정하셔야 합니다."
 
-#: ../setup/confirm.inc:395 ../setup/confirm.inc:410
+#: ../setup/confirm.inc:414 ../setup/confirm.inc:429
 msgid "Edit Config"
 msgstr "설정 수정"
 
-#: ../setup/confirm.inc:397 ../setup/confirm.inc:412
+#: ../setup/confirm.inc:416 ../setup/confirm.inc:431
 msgid "Save Config"
 msgstr "설정 저장"
 
-#: ../setup/confirm.inc:400
+#: ../setup/confirm.inc:419
 #, php-format
 msgid "%s.  Details below."
 msgstr "%s. 아래는 세부사항."
 
-#: ../setup/confirm.inc:400
+#: ../setup/confirm.inc:419
 msgid "One error"
 msgstr "1개의 에러"
 
-#: ../setup/confirm.inc:400
+#: ../setup/confirm.inc:419
 msgid "errors"
 msgstr "에러"
 
-#: ../setup/confirm.inc:400
+#: ../setup/confirm.inc:419
 msgid "no errors"
 msgstr "에러 없음"
 
-#: ../setup/confirm.inc:415
+#: ../setup/confirm.inc:434
 msgid "There are errors in your configuration."
 msgstr "당신의 설정에 문제가 있습니다."
 
-#: ../setup/confirm.inc:416
+#: ../setup/confirm.inc:435
 msgid "Please go back and fix them!"
 msgstr "뒤로 가서 고치세요!"
 
-#: ../setup/constants.inc:11
+#: ../setup/constants.inc:14
 msgid "In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
 msgstr "이 단계에서 갤러리에 대한 여러가지 세팅을 조절하게 됩니다. 만약 갤러리 설정을 처음 하시는 거라면 적당한 기본값을 제시할 것입니다. 그렇지만 몇가지 사소한 변경이 필요할 수도 있습니다. 이전에 설정을 하신 적이 있다면 현재 설정 정보가 이 페이지에 나타납니다. 따라서 크게 고쳐야 할 것은 없을 것입니다."
 
-#: ../setup/constants.inc:16 ../setup/constants.inc:122
+#: ../setup/constants.inc:19 ../setup/constants.inc:125
 #: ../setup/defaults.inc:18 ../setup/defaults.inc:97
 msgid "Previous Page"
 msgstr "이전 페이지"
 
-#: ../setup/constants.inc:18 ../setup/constants.inc:124
+#: ../setup/constants.inc:21 ../setup/constants.inc:127
 #: ../setup/defaults.inc:20 ../setup/defaults.inc:99
 msgid "Use Defaults"
 msgstr "기본사항 사용"
@@ -1928,319 +1928,319 @@ msgstr ""
 msgid "Please retype your password here"
 msgstr ""
 
-#: ../setup/functions.inc:123 ../setup/functions.inc:959
+#: ../setup/functions.inc:123 ../setup/functions.inc:966
 msgid "Name"
 msgstr "이름"
 
-#: ../setup/functions.inc:124 ../setup/functions.inc:959
+#: ../setup/functions.inc:124 ../setup/functions.inc:966
 msgid "Value"
 msgstr "값"
 
-#: ../setup/functions.inc:289
+#: ../setup/functions.inc:296
 msgid "Missing value"
 msgstr "잘못된 값"
 
-#: ../setup/functions.inc:311
+#: ../setup/functions.inc:318
 msgid "I can read your <b>.htaccess</b> file."
 msgstr "<b>.htaccess</b> 파일을 읽을 수 있습니다."
 
-#: ../setup/functions.inc:337
+#: ../setup/functions.inc:344
 #, php-format
 msgid "PHP v%s is OK."
 msgstr "PHP v%s is OK."
 
-#: ../setup/functions.inc:350
+#: ../setup/functions.inc:357
 msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> 사용가능."
 
-#: ../setup/functions.inc:374
+#: ../setup/functions.inc:381
 msgid "Can't find <i>jhead</i>"
 msgstr ""
 
-#: ../setup/functions.inc:376
+#: ../setup/functions.inc:383
 msgid "<b>jhead</b> binary located."
 msgstr "<b>jhead</b> 바이너리 찾음."
 
-#: ../setup/functions.inc:390
+#: ../setup/functions.inc:397
 msgid "NetPBM not being used in this installation."
 msgstr "NetPBM은 이 설치과정에서 사용되지 않았습니다."
 
-#: ../setup/functions.inc:395 ../setup/functions.inc:481
+#: ../setup/functions.inc:402 ../setup/functions.inc:488
 msgid "Cannot verify this path (it's not in your open_basedir list)."
 msgstr "이 경로를 확인할 수 없습니다 (open_basedir 목록에 없습니다)"
 
-#: ../setup/functions.inc:444 ../setup/functions.inc:500
+#: ../setup/functions.inc:451 ../setup/functions.inc:507
 #, php-format
 msgid "Can't find %s!"
 msgstr "%s를 찾을 수 없습니다!"
 
-#: ../setup/functions.inc:449 ../setup/functions.inc:505
+#: ../setup/functions.inc:456 ../setup/functions.inc:512
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s는 실행가능하지 않습니다!"
 
-#: ../setup/functions.inc:460
+#: ../setup/functions.inc:467
 #, fuzzy, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr "%d개의 모든 NetPBM 바이너리를 찾았습니다"
 
-#: ../setup/functions.inc:516
+#: ../setup/functions.inc:523
 #, fuzzy, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr "%d개의 모든 ImageMagick 바이너리를 찾았습니다"
 
-#: ../setup/functions.inc:539
+#: ../setup/functions.inc:546
 msgid "Can't find <i>jpegtran</i>!"
 msgstr ""
 
-#: ../setup/functions.inc:541
+#: ../setup/functions.inc:548
 msgid "<b>jpegtran</b> binary located."
 msgstr "<b>jpegtran</b>을 찾았습니다."
 
-#: ../setup/functions.inc:553
+#: ../setup/functions.inc:560
 #, fuzzy
 msgid "PHP has <b>GNU gettext</b> support."
 msgstr "gettext설치됨"
 
-#: ../setup/functions.inc:555
+#: ../setup/functions.inc:562
 #, fuzzy
 msgid "PHP does not have <b>GNU gettext</b> support."
 msgstr "gettext설치됨"
 
-#: ../setup/functions.inc:571
+#: ../setup/functions.inc:578
 msgid "No languages found."
 msgstr "언어가 발견되지 않았습니다."
 
-#: ../setup/functions.inc:573
+#: ../setup/functions.inc:580
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
 msgstr ""
 
-#: ../setup/functions.inc:577
+#: ../setup/functions.inc:584
 #, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
 msgstr "%d개의 언어가  가능합니다. 빠진 언어가 있다면 %s갤러리 다운로드 페이지%s를 방문하세요."
 
-#: ../setup/functions.inc:601
+#: ../setup/functions.inc:608
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr "%s을 방문하여 가장 최근 버전을 확인할 수 있습니다."
 
-#: ../setup/functions.inc:603
+#: ../setup/functions.inc:610
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr "이 %s 버전은 %s에 발표되었습니다."
 
-#: ../setup/functions.inc:605
+#: ../setup/functions.inc:612
 #, php-format
 msgid "This is a development build of %s that was released on %s."
 msgstr "이 %s 베타 버전은 %s에 발표되었습니다."
 
-#: ../setup/functions.inc:614
+#: ../setup/functions.inc:621
 msgid "Please check regularly for updates."
 msgstr "주기적으로 업데이트 되는 것을 확인하세요."
 
-#: ../setup/functions.inc:635
+#: ../setup/functions.inc:642
 msgid "All gallery locales are available on this host."
 msgstr "이 호스트에서 모든 갤러리 로케일이 가능합니다"
 
-#: ../setup/functions.inc:638
+#: ../setup/functions.inc:645
 #, php-format
 msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
 msgstr ""
 
-#: ../setup/functions.inc:644
+#: ../setup/functions.inc:651
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
 msgstr ""
 
-#: ../setup/functions.inc:649
+#: ../setup/functions.inc:656
 #, fuzzy, php-format
 msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
 msgstr "어떤 로케일도 발견되지 않았습니다. 현재 서버가 %s 제한이 설정되어 있어 로케일을 찾는데 방해할 수도 있습니다. 다른 언어에 따라 날짜 포맷을 변경할 수는 없지만 설정을 계속하는데는 문제가 없습니다."
 
-#: ../setup/functions.inc:653
+#: ../setup/functions.inc:660
 #, fuzzy, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
 msgstr "어떤 시스템 로케일도 발견되지 않았습니다. 다국어 기능이 지원되지 않습니다. 해당 로케일을 설치하거나 시스템 제공자에게 설치를 요구하세요. 이것은 %s 시스템에서 알려진 문제입니다. 이 경우 %sDebian locale HowTo%s를 참고하세요. "
 
-#: ../setup/functions.inc:655
+#: ../setup/functions.inc:662
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "이 시스템의 기본 로케일만 가능합니다. 따라서, 날짜 포맷이 각 언어에 따라 변경되지 않습니다."
 
-#: ../setup/functions.inc:807
+#: ../setup/functions.inc:814
 #, fuzzy
 msgid "<b>System</b> locale selection required"
 msgstr "로케일 선택을 해야 합니다"
 
-#: ../setup/functions.inc:808
+#: ../setup/functions.inc:815
 #, fuzzy
 msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "다음 언어에 대한 로케일이 하나 이상 존재합니다. 가장 적당하다고 생각되는 것을 골라주세요."
 
-#: ../setup/functions.inc:810 ../setup/functions.inc:883
+#: ../setup/functions.inc:817 ../setup/functions.inc:890
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
 msgstr "이것은 <b>오직</b> 날짜와 시간 형식을 위한 것입니다. 위에서 사용가능한 언어를 수정하시기만 하면 됩니다"
 
-#: ../setup/functions.inc:838 ../setup/functions.inc:845
-#: ../setup/functions.inc:855
+#: ../setup/functions.inc:845 ../setup/functions.inc:852
+#: ../setup/functions.inc:862
 msgid "System locale"
 msgstr "시스템 로케일"
 
-#: ../setup/functions.inc:880
+#: ../setup/functions.inc:887
 #, fuzzy
 msgid "<b>System</b> locale problems"
 msgstr "로케일 문제"
 
-#: ../setup/functions.inc:881
+#: ../setup/functions.inc:888
 #, fuzzy
 msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "다음 언어에 대한 적절한 로케일이 존재하지 않습니다. 가장 적당하다고 생각되는 것을 골라주세요."
 
-#: ../setup/functions.inc:926
+#: ../setup/functions.inc:933
 msgid "<b>safe_mode</b> is off."
 msgstr "<b>safe_mode</b> 끄기"
 
-#: ../setup/functions.inc:939
+#: ../setup/functions.inc:946
 msgid "<b>magic_quotes</b> are off."
 msgstr "<b>magic quotes</b>가 꺼져 있음"
 
-#: ../setup/functions.inc:957
+#: ../setup/functions.inc:964
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr ""
 
-#: ../setup/functions.inc:966
+#: ../setup/functions.inc:973
 #, php-format
 msgid "In %s, blank in row %d."
 msgstr ""
 
-#: ../setup/functions.inc:971
+#: ../setup/functions.inc:978
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "%s에서, 이름 %s를 위한(%d 열) 값 %s는 양수이어야 합니다."
 
-#: ../setup/functions.inc:1127
+#: ../setup/functions.inc:1150
 msgid "Your admin passwords do not match!"
 msgstr ""
 
-#: ../setup/functions.inc:1143
+#: ../setup/functions.inc:1166
 msgid "Valid admin email address given."
 msgstr ""
 
-#: ../setup/functions.inc:1150
+#: ../setup/functions.inc:1173
 msgid "You must specify valid admin email addresses"
 msgstr "올바른 관리자 이메일 주소를 지정하셔야 합니다."
 
-#: ../setup/functions.inc:1158
+#: ../setup/functions.inc:1181
 #, php-format
 msgid "%s is not a valid email address."
 msgstr ""
 
-#: ../setup/functions.inc:1167
+#: ../setup/functions.inc:1190
 msgid "Valid sender email address given."
 msgstr ""
 
-#: ../setup/functions.inc:1169
+#: ../setup/functions.inc:1192
 msgid "You must specify a valid sender email address"
 msgstr "올바른 이메일 주소를 지정하셔야 합니다."
 
-#: ../setup/functions.inc:1172
+#: ../setup/functions.inc:1195
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr "환영 이메일에 %s 를 포함시켜야 합니다."
 
-#: ../setup/functions.inc:1177
+#: ../setup/functions.inc:1200
 #, php-format
 msgid "You must include %s or %s in your welcome email"
 msgstr "환영 이메일에 %s 또는 %s 를 포함시켜야 합니다."
 
-#: ../setup/functions.inc:1201
+#: ../setup/functions.inc:1224
 #, php-format
 msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 msgstr ""
 
-#: ../setup/functions.inc:1203
+#: ../setup/functions.inc:1226
 msgid "This should be fixed before proceeding"
 msgstr ""
 
-#: ../setup/functions.inc:1204 ../setup/functions.inc:1208
+#: ../setup/functions.inc:1227 ../setup/functions.inc:1231
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
 msgstr ""
 
-#: ../setup/functions.inc:1207
+#: ../setup/functions.inc:1230
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
 msgstr ""
 
-#: ../setup/functions.inc:1212
+#: ../setup/functions.inc:1235
 #, php-format
 msgid "All %d tested files up-to-date."
 msgstr ""
 
-#: ../setup/functions.inc:1220
+#: ../setup/functions.inc:1243
 #, php-format
 msgid "this is new in version %s"
 msgstr "이것은 %s 버전의 새 기능입니다."
 
-#: ../setup/functions.inc:1225
+#: ../setup/functions.inc:1248
 #, php-format
 msgid "Return to %s."
 msgstr "%s로 돌아가기."
 
-#: ../setup/functions.inc:1226
+#: ../setup/functions.inc:1249
 msgid "Configuration Wizard"
 msgstr "설정 마법사"
 
-#: ../setup/functions.inc:1277
+#: ../setup/functions.inc:1300
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr "%s 계정을 위한 비밀번호를 입력하셔야 합니다."
 
-#: ../setup/functions.inc:1282
+#: ../setup/functions.inc:1305
 #, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
 msgstr ""
 
-#: ../setup/functions.inc:1285
+#: ../setup/functions.inc:1308
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr ""
 
-#: ../setup/functions.inc:1287
+#: ../setup/functions.inc:1310
 #, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr ""
 
-#: ../setup/functions.inc:1296
+#: ../setup/functions.inc:1319
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr ""
 
-#: ../setup/functions.inc:1303
+#: ../setup/functions.inc:1326
 msgid "Admin password"
 msgstr "최고관리자 비밀번호"
 
-#: ../setup/functions.inc:1316 ../setup/functions.inc:1318
-#: ../setup/functions.inc:1320 ../setup/functions.inc:1328
+#: ../setup/functions.inc:1339 ../setup/functions.inc:1341
+#: ../setup/functions.inc:1343 ../setup/functions.inc:1351
 #, fuzzy
 msgid "Full Name"
 msgstr "이름"
 
-#: ../setup/functions.inc:1316 ../setup/functions.inc:1318
-#: ../setup/functions.inc:1322 ../setup/functions.inc:1330
+#: ../setup/functions.inc:1339 ../setup/functions.inc:1341
+#: ../setup/functions.inc:1345 ../setup/functions.inc:1353
 msgid "Username"
 msgstr ""
 
-#: ../setup/functions.inc:1324
+#: ../setup/functions.inc:1347
 msgid "Full name that you can click on to send email (mailto:)"
 msgstr ""
 
-#: ../setup/functions.inc:1326
+#: ../setup/functions.inc:1349
 msgid "Username that you can click on to send email (mailto:)"
 msgstr ""
 
-#: ../setup/functions.inc:1328 ../setup/functions.inc:1330
+#: ../setup/functions.inc:1351 ../setup/functions.inc:1353
 #, fuzzy
 msgid "email address"
 msgstr "이메일 주소:"
@@ -2249,7 +2249,7 @@ msgstr "이메일 주소:"
 msgid "Gallery Configuration"
 msgstr "갤러리 환경설정"
 
-#: ../setup/index.php:30
+#: ../setup/index.php:29
 msgid "unknown"
 msgstr "모름"
 

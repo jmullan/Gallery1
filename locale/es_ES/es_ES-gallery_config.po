@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-01-23 05:18+0100\n"
+"POT-Creation-Date: 2004-02-09 16:15+0100\n"
 "PO-Revision-Date: 2003-12-17 14:24+0100\n"
 "Last-Translator: jact <jachavar@scati.com>\n"
 "Language-Team: spanish <jachavar@terra.es>\n"
@@ -35,7 +35,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../errors/configmode.php:7 ../errors/reconfigure.php:7
-#: ../errors/unconfigured.php:7 ../setup/index.php:83
+#: ../errors/unconfigured.php:7 ../setup/index.php:82
 msgid "Security violation"
 msgstr "Violación de una directiva de seguridad"
 
@@ -113,7 +113,7 @@ msgstr "Gallery debe ser configurado antes de poder usarlo. Para empezar, debe p
 msgid "Then start the %sConfiguration Wizard%s."
 msgstr "Y después ejecute el %sAsistente de Configuración%s."
 
-#: ../setup/check.inc:6 ../setup/confirm.inc:6 ../setup/constants.inc:7
+#: ../setup/check.inc:6 ../setup/confirm.inc:6 ../setup/constants.inc:10
 #: ../setup/defaults.inc:7
 #, php-format
 msgid "Gallery Configuration Wizard: Step %d"
@@ -182,7 +182,7 @@ msgstr "Su instalación tiene advertencias pero normalmente no tienen mayor impor
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "¡Su instalación está aprobada con honores! ¡Continúe!"
 
-#: ../setup/check.inc:140 ../setup/constants.inc:17 ../setup/constants.inc:123
+#: ../setup/check.inc:140 ../setup/constants.inc:20 ../setup/constants.inc:126
 #: ../setup/defaults.inc:19 ../setup/defaults.inc:98
 msgid "Next Page"
 msgstr "Página Siguiente"
@@ -215,7 +215,7 @@ msgid "It seems that you did not configure your GALLERY. Please run and finish t
 msgstr "Parece ser que no ha configurado Gallery. Por favor, ejecute y finalice el asistente de configuración."
 
 #: ../setup/check_imagemagick.php:55 ../setup/check_netpbm.php:54
-#: ../setup/functions.inc:1138
+#: ../setup/functions.inc:1161
 msgid "OK"
 msgstr "CORRECTO"
 
@@ -755,7 +755,7 @@ msgstr "no"
 
 #: ../setup/config_data.inc:295 ../setup/config_data.inc:391
 #: ../setup/config_data.inc:456 ../setup/config_data.inc:466
-#: ../setup/functions.inc:807 ../setup/functions.inc:880
+#: ../setup/functions.inc:814 ../setup/functions.inc:887
 msgid "Advanced"
 msgstr "Avanzado"
 
@@ -1578,8 +1578,8 @@ msgstr "Horizontal"
 msgid "Vertical"
 msgstr "Vertical"
 
-#: ../setup/config_data.inc:1014 ../setup/functions.inc:958
-#: ../setup/functions.inc:967 ../setup/functions.inc:972
+#: ../setup/config_data.inc:1014 ../setup/functions.inc:965
+#: ../setup/functions.inc:974 ../setup/functions.inc:979
 msgid "Vote words and values"
 msgstr "Votar palabras y valores"
 
@@ -1675,7 +1675,7 @@ msgstr "Error:"
 msgid "You must create empty file %s and chmod it 777 before proceeding.  See %s for more details."
 msgstr "Debe crear un fichero vacío llamado %s y cambiarle los permisos con la máscara 777 antes de continuar. Vea %s para más detalles."
 
-#: ../setup/confirm.inc:62 ../setup/confirm.inc:137 ../setup/confirm.inc:138
+#: ../setup/confirm.inc:62 ../setup/confirm.inc:156 ../setup/confirm.inc:157
 msgid "missing"
 msgstr "falta"
 
@@ -1683,129 +1683,129 @@ msgstr "falta"
 msgid "it's optional"
 msgstr "es opcional"
 
-#: ../setup/confirm.inc:137 ../setup/confirm.inc:138
+#: ../setup/confirm.inc:156 ../setup/confirm.inc:157
 msgid "optional"
 msgstr "opcional"
 
-#: ../setup/confirm.inc:157
+#: ../setup/confirm.inc:176
 #, php-format
 msgid "%s: <b>%s</b> must be an absolute URL!"
 msgstr "¡%s: <b>%s</b> debe ser una URL absoluta!"
 
-#: ../setup/confirm.inc:169
+#: ../setup/confirm.inc:188
 #, php-format
 msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
 msgstr "¡%s: <b>%s</b> debe ser un fichero válido (no un directorio)!"
 
-#: ../setup/confirm.inc:178
+#: ../setup/confirm.inc:197
 #, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>&quot;%s&quot;</b> debe ser un número positivo"
 
-#: ../setup/confirm.inc:186
+#: ../setup/confirm.inc:205
 #, php-format
 msgid "%s: <b>%s</b> must not be zero"
 msgstr "%s: <b>%s</b> no puede ser cero"
 
-#: ../setup/confirm.inc:196
+#: ../setup/confirm.inc:215
 #, php-format
 msgid "%s: <b>%s</b> must be an executable file!"
 msgstr "%s: <b>%s</b> debe ser un fichero ejecutable"
 
-#: ../setup/confirm.inc:205
+#: ../setup/confirm.inc:224
 #, php-format
 msgid "Directory %s does not exist.  Please create it."
 msgstr "El directorio %s no existe. Créelo, por favor."
 
-#: ../setup/confirm.inc:211
+#: ../setup/confirm.inc:230
 #, php-format
 msgid "%s exists but is not a directory.  Please fix this."
 msgstr "%s existe pero no es un directorio. Arréglelo, por favor."
 
-#: ../setup/confirm.inc:218
+#: ../setup/confirm.inc:237
 #, php-format
 msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
 msgstr "%s: %s existe pero no tiene permiso de escritura para el usuario del servidor web. Intente %s, o si no funciona: %s. Asegúrese también de que si tiene una restricción %s entonces este directorio temporal debería estar bajo la ruta %s"
 
-#: ../setup/confirm.inc:289
+#: ../setup/confirm.inc:308
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "No se pudo encontrar %s. Verifique que en el directorio de NetPBM está el conversor PNG->JPEG (o intente usar %s en su lugar). Por favor, revise su configuración para usar ImageMagick)."
 
-#: ../setup/confirm.inc:301
+#: ../setup/confirm.inc:320
 #, php-format
 msgid "You must specify a path for %s or %s for Gallery to function!!"
 msgstr "Debe especificar una ruta para %s o para %s para que Gallery funcione."
 
-#: ../setup/confirm.inc:304 ../setup/confirm.inc:307
+#: ../setup/confirm.inc:323 ../setup/confirm.inc:326
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr "%s no está adecuadamente confugirado para usarse como herramienta gráfica. Asegúrese de la ruta que introdujo para los binarios de %s en el paso 2."
 
-#: ../setup/confirm.inc:312
+#: ../setup/confirm.inc:331
 msgid "Note:"
 msgstr "Nota:"
 
-#: ../setup/confirm.inc:313
+#: ../setup/confirm.inc:332
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr "Su servidor tiene establecida la restricción open_basedir de PHP y algunas de las rutas no están en la lista indicada por open_basedir."
 
-#: ../setup/confirm.inc:315
+#: ../setup/confirm.inc:334
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
 msgstr "Esto no significa que no podamos trabajar, sin embargo significa que puede que no podamos verificar si las rutas a los ficheros son correctas. Si es incapaz de subir fotos al servidor correctamente, diríjase a la FAQ y a los %sdiagnósticos%s para resolver sus problemas."
 
-#: ../setup/confirm.inc:388
+#: ../setup/confirm.inc:407
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it."
 msgstr "Confirme que los parámetros introducidos son correctos. Si encuentra esta página embarullada, puede ignorarla."
 
-#: ../setup/confirm.inc:390
+#: ../setup/confirm.inc:409
 msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
 msgstr "Confirme que los parámetros introducidos son correctos. Hay errores marcados en rojo abajo que necesitan ser arreglados antes de que pueda guardar su configuración."
 
-#: ../setup/confirm.inc:395 ../setup/confirm.inc:410
+#: ../setup/confirm.inc:414 ../setup/confirm.inc:429
 msgid "Edit Config"
 msgstr "Editar configuración"
 
-#: ../setup/confirm.inc:397 ../setup/confirm.inc:412
+#: ../setup/confirm.inc:416 ../setup/confirm.inc:431
 msgid "Save Config"
 msgstr "Guardar Configuración"
 
-#: ../setup/confirm.inc:400
+#: ../setup/confirm.inc:419
 #, php-format
 msgid "%s.  Details below."
 msgstr "%s. Vea los detalles debajo."
 
-#: ../setup/confirm.inc:400
+#: ../setup/confirm.inc:419
 msgid "One error"
 msgstr "Un error"
 
-#: ../setup/confirm.inc:400
+#: ../setup/confirm.inc:419
 msgid "errors"
 msgstr "errores"
 
-#: ../setup/confirm.inc:400
+#: ../setup/confirm.inc:419
 msgid "no errors"
 msgstr "no hay errores"
 
-#: ../setup/confirm.inc:415
+#: ../setup/confirm.inc:434
 msgid "There are errors in your configuration."
 msgstr "Hay errores en su configuración."
 
-#: ../setup/confirm.inc:416
+#: ../setup/confirm.inc:435
 msgid "Please go back and fix them!"
 msgstr "Por favor, vuelva atrás y corríjalos."
 
-#: ../setup/constants.inc:11
+#: ../setup/constants.inc:14
 msgid "In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
 msgstr "En este paso podrá personalizar varias características de Gallery. Si esta es la primera vez que está personalizando Gallery, podrá notar que intentamos poner las opciones por defecto por usted. A pesar de esto, probablemente tenga que hacer algunos cambios menores. Si ya ha configurado Gallery antes, notará que esta página ya contiene la anterior configuración, así que no necesitará retocar muchas cosas."
 
-#: ../setup/constants.inc:16 ../setup/constants.inc:122
+#: ../setup/constants.inc:19 ../setup/constants.inc:125
 #: ../setup/defaults.inc:18 ../setup/defaults.inc:97
 msgid "Previous Page"
 msgstr "Página Anterior"
 
-#: ../setup/constants.inc:18 ../setup/constants.inc:124
+#: ../setup/constants.inc:21 ../setup/constants.inc:127
 #: ../setup/defaults.inc:20 ../setup/defaults.inc:99
 msgid "Use Defaults"
 msgstr "Usar valores por defecto"
@@ -1913,312 +1913,312 @@ msgstr "Esto le permite comprobar si tiene la versión adecuada de todos sus fich
 msgid "Please retype your password here"
 msgstr "Por favor, repita su contraseña aquí"
 
-#: ../setup/functions.inc:123 ../setup/functions.inc:959
+#: ../setup/functions.inc:123 ../setup/functions.inc:966
 msgid "Name"
 msgstr "Nombre"
 
-#: ../setup/functions.inc:124 ../setup/functions.inc:959
+#: ../setup/functions.inc:124 ../setup/functions.inc:966
 msgid "Value"
 msgstr "Valor"
 
-#: ../setup/functions.inc:289
+#: ../setup/functions.inc:296
 msgid "Missing value"
 msgstr "Valor no encontrado"
 
-#: ../setup/functions.inc:311
+#: ../setup/functions.inc:318
 msgid "I can read your <b>.htaccess</b> file."
 msgstr "No se puede leer su fichero <b>.htaccess</b>."
 
-#: ../setup/functions.inc:337
+#: ../setup/functions.inc:344
 #, php-format
 msgid "PHP v%s is OK."
 msgstr "La versión %s de PHP es válida."
 
-#: ../setup/functions.inc:350
+#: ../setup/functions.inc:357
 msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> está habilitado."
 
-#: ../setup/functions.inc:374
+#: ../setup/functions.inc:381
 msgid "Can't find <i>jhead</i>"
 msgstr "No se puede encontrar <i>jhead</i>"
 
-#: ../setup/functions.inc:376
+#: ../setup/functions.inc:383
 msgid "<b>jhead</b> binary located."
 msgstr "Localizado el binario de <b>jhead</b>."
 
-#: ../setup/functions.inc:390
+#: ../setup/functions.inc:397
 msgid "NetPBM not being used in this installation."
 msgstr "No se está usando NetPBM en esta instalación."
 
-#: ../setup/functions.inc:395 ../setup/functions.inc:481
+#: ../setup/functions.inc:402 ../setup/functions.inc:488
 msgid "Cannot verify this path (it's not in your open_basedir list)."
 msgstr "No se puede verificar esta ruta (no está en la lista indicada por open_basedir)."
 
-#: ../setup/functions.inc:444 ../setup/functions.inc:500
+#: ../setup/functions.inc:451 ../setup/functions.inc:507
 #, php-format
 msgid "Can't find %s!"
 msgstr "No se puede encontrar %s!"
 
-#: ../setup/functions.inc:449 ../setup/functions.inc:505
+#: ../setup/functions.inc:456 ../setup/functions.inc:512
 #, php-format
 msgid "%s is not executable!"
 msgstr "¡%s no es un archivo ejecutable!"
 
-#: ../setup/functions.inc:460
+#: ../setup/functions.inc:467
 #, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr "%d de %d binarios de NetPBM localizados."
 
-#: ../setup/functions.inc:516
+#: ../setup/functions.inc:523
 #, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr "%d de %d binarios de ImageMagick localizados."
 
-#: ../setup/functions.inc:539
+#: ../setup/functions.inc:546
 msgid "Can't find <i>jpegtran</i>!"
 msgstr "¡No se puede encontrar <i>jpegtran</i>!"
 
-#: ../setup/functions.inc:541
+#: ../setup/functions.inc:548
 msgid "<b>jpegtran</b> binary located."
 msgstr "Binario de <b>jpegtran</b> localizado."
 
-#: ../setup/functions.inc:553
+#: ../setup/functions.inc:560
 msgid "PHP has <b>GNU gettext</b> support."
 msgstr "PHP tiene instalado la extensión para <b>GNU gettext</b>."
 
-#: ../setup/functions.inc:555
+#: ../setup/functions.inc:562
 msgid "PHP does not have <b>GNU gettext</b> support."
 msgstr "PHP tiene instalado la extensión para <b>GNU gettext</b>."
 
-#: ../setup/functions.inc:571
+#: ../setup/functions.inc:578
 msgid "No languages found."
 msgstr "No se han encontrado lenguajes"
 
-#: ../setup/functions.inc:573
+#: ../setup/functions.inc:580
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
 msgstr "Parece que no pudo descargarse más idiomas. Esto no es un problema. Gallery sólo se mostrará en inglés. Nota: Si esto no es cierto, compruebe que todos los ficheros del directorio locale pueden ser leídos por el servidor web, o contacte con el Equipo de Gallery."
 
-#: ../setup/functions.inc:577
+#: ../setup/functions.inc:584
 #, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
 msgstr "%d lenguajes están disponibles. Si algún lenguaje que le interese está ausente, visite la %spágina de descargas de Gallery%s."
 
-#: ../setup/functions.inc:601
+#: ../setup/functions.inc:608
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr "Puede revisar si existen versiones más recientes visitando %s."
 
-#: ../setup/functions.inc:603
+#: ../setup/functions.inc:610
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr "Esta versión de %s fue liberada en %s."
 
-#: ../setup/functions.inc:605
+#: ../setup/functions.inc:612
 #, php-format
 msgid "This is a development build of %s that was released on %s."
 msgstr "Esta es una versión en desarrollo de %s que fue liberada en %s."
 
-#: ../setup/functions.inc:614
+#: ../setup/functions.inc:621
 msgid "Please check regularly for updates."
 msgstr "Por favor, chequee regularmente las actualizaciones."
 
-#: ../setup/functions.inc:635
+#: ../setup/functions.inc:642
 msgid "All gallery locales are available on this host."
 msgstr "Todos los idiomas están disponibles en esta máquina."
 
-#: ../setup/functions.inc:638
+#: ../setup/functions.inc:645
 #, php-format
 msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
 msgstr "Hay %d idiomas que Gallery no puede localizar. Necesita seleccionar manualmente los formatos de fecha."
 
-#: ../setup/functions.inc:644
+#: ../setup/functions.inc:651
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
 msgstr "Las fechas en %d lenguajes no serán formateadas correctamente porque estos idiomas están ausentes. Pero puede escoger otro formato manualmente para estas."
 
-#: ../setup/functions.inc:649
+#: ../setup/functions.inc:656
 #, php-format
 msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
 msgstr "Somos incapaces de detectar ningún idioma. Sin embargo, su instalación de PHP está configurada con la restricción %s, la cual puede estar interfiriendo nuestro método de detectar idiomas. Desafortunadamente esto significa que los formatos de fecha no cambiarán para los diferentes lenguajes. De todas formas, puede continuar."
 
-#: ../setup/functions.inc:653
+#: ../setup/functions.inc:660
 #, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
 msgstr "Somos incapaces de detectar ningún lenguaje en el sistema. Las funciones multilenguaje serán deshabilitadas. Por favor, instale los correspondientes idiomas o pregunta a su proveedor como hacerlo. Este problema es conocido en %s sistemas. En este caso eche un vistazo a %sDebian locale Howto%s."
 
-#: ../setup/functions.inc:655
+#: ../setup/functions.inc:662
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "Sólo la configuración regional por defecto está disponible en esta máquina, así que el formato de las fechas no cambiará en los diferentes lenguajes."
 
-#: ../setup/functions.inc:807
+#: ../setup/functions.inc:814
 msgid "<b>System</b> locale selection required"
 msgstr "La elección de un <b>idioma</b> es imprescindible"
 
-#: ../setup/functions.inc:808
+#: ../setup/functions.inc:815
 msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "Hay más de una <b>configuración regional</b> idónea instaladas en su máquina para los siguientes lenguajes. Por favor, escoja la que crea más adecuada."
 
-#: ../setup/functions.inc:810 ../setup/functions.inc:883
+#: ../setup/functions.inc:817 ../setup/functions.inc:890
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
 msgstr "Esto es <b>sólamente</b> para los formatos de fechas y horas. Sólo necesita editar los idiomas para activarlo"
 
-#: ../setup/functions.inc:838 ../setup/functions.inc:845
-#: ../setup/functions.inc:855
+#: ../setup/functions.inc:845 ../setup/functions.inc:852
+#: ../setup/functions.inc:862
 msgid "System locale"
 msgstr "Idioma del sistema"
 
-#: ../setup/functions.inc:880
+#: ../setup/functions.inc:887
 msgid "<b>System</b> locale problems"
 msgstr "Problemas con los idiomas del <b>sistema</b>"
 
-#: ../setup/functions.inc:881
+#: ../setup/functions.inc:888
 msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "Aparentemente no hay <b>configuraciones regionales</b> idóneas instaladas en su máquina para los siguientes lenguajes. Por favor, escoja la que crea más adecuada."
 
-#: ../setup/functions.inc:926
+#: ../setup/functions.inc:933
 msgid "<b>safe_mode</b> is off."
 msgstr "El modo seguro (<b>safe_mode</b>) está desactivado."
 
-#: ../setup/functions.inc:939
+#: ../setup/functions.inc:946
 msgid "<b>magic_quotes</b> are off."
 msgstr "El parámetro <b>magic_quotes_gpc</b> está desactivado."
 
-#: ../setup/functions.inc:957
+#: ../setup/functions.inc:964
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr "En %s, desaparecido %s en la fila %d con %s %s."
 
-#: ../setup/functions.inc:966
+#: ../setup/functions.inc:973
 #, php-format
 msgid "In %s, blank in row %d."
 msgstr "En %s, espacio en blanco en la fila %d."
 
-#: ../setup/functions.inc:971
+#: ../setup/functions.inc:978
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "En %s, para el nombre %s (fila %d) el valor %s debería ser un número entero positivo"
 
-#: ../setup/functions.inc:1127
+#: ../setup/functions.inc:1150
 msgid "Your admin passwords do not match!"
 msgstr "¡Sus contraseñas de administrador no coinciden!"
 
-#: ../setup/functions.inc:1143
+#: ../setup/functions.inc:1166
 msgid "Valid admin email address given."
 msgstr "Entregada una dirección de correo válida para el administrador."
 
-#: ../setup/functions.inc:1150
+#: ../setup/functions.inc:1173
 msgid "You must specify valid admin email addresses"
 msgstr "Debe especificar direcciones de correo válidas para el administrador"
 
-#: ../setup/functions.inc:1158
+#: ../setup/functions.inc:1181
 #, php-format
 msgid "%s is not a valid email address."
 msgstr "%s no es una dirección de correo válida."
 
-#: ../setup/functions.inc:1167
+#: ../setup/functions.inc:1190
 msgid "Valid sender email address given."
 msgstr "Entregada una dirección de correo válida para el remitente."
 
-#: ../setup/functions.inc:1169
+#: ../setup/functions.inc:1192
 msgid "You must specify a valid sender email address"
 msgstr "Debe especificar una dirección de correo válida para el remitente"
 
-#: ../setup/functions.inc:1172
+#: ../setup/functions.inc:1195
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr "Debe incluir %s en su correo de bienvenida"
 
-#: ../setup/functions.inc:1177
+#: ../setup/functions.inc:1200
 #, php-format
 msgid "You must include %s or %s in your welcome email"
 msgstr "Debe incluir %s o %s en su correo de bienvenida"
 
-#: ../setup/functions.inc:1201
+#: ../setup/functions.inc:1224
 #, php-format
 msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 msgstr "Los siguientes ficheros están obsoletos, corruptos o ausentes:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 
-#: ../setup/functions.inc:1203
+#: ../setup/functions.inc:1226
 msgid "This should be fixed before proceeding"
 msgstr "Esto debería ser arreglado antes de proceder"
 
-#: ../setup/functions.inc:1204 ../setup/functions.inc:1208
+#: ../setup/functions.inc:1227 ../setup/functions.inc:1231
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
 msgstr "Consulte %sChequear versiones%s para más detalles."
 
-#: ../setup/functions.inc:1207
+#: ../setup/functions.inc:1230
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
 msgstr "%d ficheros son más recientes de lo que se esperaba. Esto es correcto si está utilizando una versión pre-release, beta, de CVS o modificada."
 
-#: ../setup/functions.inc:1212
+#: ../setup/functions.inc:1235
 #, php-format
 msgid "All %d tested files up-to-date."
 msgstr "Todos los ficheros (%d) comprobados están puestos al día."
 
-#: ../setup/functions.inc:1220
+#: ../setup/functions.inc:1243
 #, php-format
 msgid "this is new in version %s"
 msgstr "esto es nuevo en la versión %s"
 
-#: ../setup/functions.inc:1225
+#: ../setup/functions.inc:1248
 #, php-format
 msgid "Return to %s."
 msgstr "Volver a %s."
 
-#: ../setup/functions.inc:1226
+#: ../setup/functions.inc:1249
 msgid "Configuration Wizard"
 msgstr "Asistente de Configuración"
 
-#: ../setup/functions.inc:1277
+#: ../setup/functions.inc:1300
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr "Debe introducir una contraseña para la cuenta %s."
 
-#: ../setup/functions.inc:1282
+#: ../setup/functions.inc:1305
 #, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
 msgstr "Parece que había configurado Gallery porque hay una cuenta de administración, pero no se llama %s."
 
-#: ../setup/functions.inc:1285
+#: ../setup/functions.inc:1308
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr "Parece que había configurado Gallery porque hay %d cuentas de administración, pero no hay ninguna llamada %s."
 
-#: ../setup/functions.inc:1287
+#: ../setup/functions.inc:1310
 #, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr "No tiene que introducir una contraseña. Pero si lo hace, Gallery creará una cuenta de administrador llamada %s con esa contraseña."
 
-#: ../setup/functions.inc:1296
+#: ../setup/functions.inc:1319
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr "Parece que había configurado Gallery porque existe el usuario %s. No tiene que introducir una contraseña. Pero si lo hace, Gallery cambiará la contraseña del usuario %s."
 
-#: ../setup/functions.inc:1303
+#: ../setup/functions.inc:1326
 msgid "Admin password"
 msgstr "Contraseña del Administrador"
 
-#: ../setup/functions.inc:1316 ../setup/functions.inc:1318
-#: ../setup/functions.inc:1320 ../setup/functions.inc:1328
+#: ../setup/functions.inc:1339 ../setup/functions.inc:1341
+#: ../setup/functions.inc:1343 ../setup/functions.inc:1351
 msgid "Full Name"
 msgstr "Nombre completo"
 
-#: ../setup/functions.inc:1316 ../setup/functions.inc:1318
-#: ../setup/functions.inc:1322 ../setup/functions.inc:1330
+#: ../setup/functions.inc:1339 ../setup/functions.inc:1341
+#: ../setup/functions.inc:1345 ../setup/functions.inc:1353
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: ../setup/functions.inc:1324
+#: ../setup/functions.inc:1347
 msgid "Full name that you can click on to send email (mailto:)"
 msgstr "Nombre completo sobre el que puede pulsar para enviar un mensaje de correo (mailto:)"
 
-#: ../setup/functions.inc:1326
+#: ../setup/functions.inc:1349
 msgid "Username that you can click on to send email (mailto:)"
 msgstr "Nombre de usuario sobre el que puede pulsar para enviar un mensaje de correo (mailto:)"
 
-#: ../setup/functions.inc:1328 ../setup/functions.inc:1330
+#: ../setup/functions.inc:1351 ../setup/functions.inc:1353
 msgid "email address"
 msgstr "dirección de correo electrónico"
 
@@ -2226,7 +2226,7 @@ msgstr "dirección de correo electrónico"
 msgid "Gallery Configuration"
 msgstr "Configuración de Gallery"
 
-#: ../setup/index.php:30
+#: ../setup/index.php:29
 msgid "unknown"
 msgstr "desconocido"
 
