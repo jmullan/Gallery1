@@ -17,6 +17,12 @@
         * Added VBS as a valid executable extension in platform/fs_win32.php
           VBScript files are valid executables in Windows. :)
 
+        * Changed the temp dir from using the system %temp% variable in
+          fs_win32, to use the Gallery temp dir instead. You may not have
+          allowed PHP access to %TEMP%. This could cause permissions related
+          problems.
+
+
 2004-02-01  Bharat Mediratta  <bharat@menalto.com> 1.4.3-cvs-b19
 
 	* Fixed a bug in save_photos caused by the new tabbed interface.  We
