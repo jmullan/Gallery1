@@ -2456,7 +2456,6 @@ function emulate_gettext() {
 				$translation[$new_key]=substr($lines[$key+1],8,-2);
 			}
 		}
-		print_r($translation);
 		// Substitute _() gettext function
 		function _($search) {
 			if (! empty($GLOBALS['translation'][$search])) {
