@@ -140,16 +140,9 @@ class Album {
 
 	function resizePhoto($index, $target) {
 		$photo = $this->getPhoto($index);
-		$photo->resize($this->getAlbumDir(), $target);
-		$this->setPhoto($photo, $index);
-	}
-
-	function resizeAllPhotos($target) {
-		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
-			set_time_limit(30);
-			if (!$this->isMovie($i)) {
-				$this->resizePhoto($i, $target);
-			}
+		if (!$photo->isMovie()) {
+			$photo->resize($this->getAlbumDir(), $target);
+			$this->setPhoto($photo, $index);
 		}
 	}
 
