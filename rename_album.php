@@ -57,7 +57,7 @@ $albumDB = new AlbumDB(FALSE);
 if (!empty($newName)) {
 	$newName = str_replace("'", "", $newName);
 	$newName = str_replace("`", "", $newName);
-	$newName = strtr($newName, "\\/*?\"<>|& .+#", "-------------");
+	$newName = strtr($newName, "\\/*?\"<>|& .+#()", "---------------");
 	$newName = ereg_replace("\-+", "-", $newName);
 	$newName = ereg_replace("\-+$", "", $newName);
 	$newName = ereg_replace("^\-", "", $newName);
@@ -109,7 +109,7 @@ if (!empty($newName)) {
 <?php echo _("What do you want to name this album?") ?>
 <br>
 <?php echo _("The name cannot contain any of the following characters") ?>:
-<br><center><b>\ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # </b><?php echo _("or") ?><b> <?php echo _("spaces") ?></b><br></center>
+<br><center><b>\ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # ( )</b><?php echo _("or") ?><b> <?php echo _("spaces") ?></b><br></center>
 <?php echo _("Those characters will be ignored in your new album name.") ?>
 
 <br>
