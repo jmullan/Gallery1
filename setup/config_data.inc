@@ -1006,7 +1006,8 @@ $constants = array_merge($constants,
 		'prompt'		=> _("Available Stats for 'normal' users"),
 		'desc'			=> _("Gallery can give a lot of statistics for admins, however you can enable some of them to normal users.") ."\n<br>".
 					   sprintf(_("For every selected item Gallery will create a link on the mainpage. The stats are based on the defaults defined in %s."), "'<i>includes/stats/stats.inc.php</i>'"),
-		'multiple_choices' 	=> $stats_choices
+		'multiple_choices' 	=> $stats_choices,
+		'optional'	=> 1
 	),
 	'stats_viewsCacheOn'	=> array(
 		'prompt' => _("View cache"),

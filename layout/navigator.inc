@@ -79,7 +79,7 @@ if(!includeTemplate('navigator.tpl')) {
 		$mpContent = "\n\t\t<table border=0 cellpadding=0 cellspacing=0><tr>";
 		for ($i = $begin; $i <= $end; $i++) {
 			if ($i == $current) {
-				$number = "<b>$i</b>";
+				$number = '<span class="nav"><b>'. $i .'</b></span>';
 				$leftdot = '<img src="'. $ndlUrl .'" alt="leftdot">';
 			} else {
 				$number = '<a class="nav" href="'. $url. $navigator['pageVar'] .'='. $i .'">'. $i .'</a>';
