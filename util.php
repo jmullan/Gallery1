@@ -1138,38 +1138,42 @@ function addUrlArg($url, $arg) {
 	}
 }
 
-function getNextPhoto($idx) {
-	global $gallery;
 
-	$numPhotos = $gallery->album->numPhotos(1);	
+function getNextPhoto($idx, $album=NULL) {
+	global $gallery;
+	if (!$album) {
+		$album=$gallery->album;
+	}
+
+	$numPhotos = $album->numPhotos(1);	
 	$idx++;
-	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+	if ($gallery->user->canWriteToAlbum($album)) {
 		// even though a user can write to an album, they may
 		// not have read authority over a specific nested album.
-		if ($idx <= $numPhotos && $gallery->album->isAlbumName($idx)) {
-			$myAlbumName = $gallery->album->isAlbumName($idx);
+		if ($idx <= $numPhotos && $album->isAlbumName($idx)) {
+			$myAlbumName = $album->isAlbumName($idx);
 			$myAlbum = new Album();
 			$myAlbum->load($myAlbumName);
 			if (!$gallery->user->canReadAlbum($myAlbum)) {
-				$idx = getNextPhoto($idx);
+				$idx = getNextPhoto($idx, $album);
 			}
 		}
 		return $idx;
 	}
 
-	while ($idx <= $numPhotos && $gallery->album->isHidden($idx)) {
+	while ($idx <= $numPhotos && $album->isHidden($idx)) {
 		$idx++;
 	}
 
-	if ($idx <= $numPhotos && $gallery->album->isAlbumName($idx)) {
+	if ($idx <= $numPhotos && $album->isAlbumName($idx)) {
 		// do not display a nexted album if the user doesn't
 		// have permission to view it.
-		if ($gallery->album->isAlbumName($idx)) {
-			$myAlbumName = $gallery->album->isAlbumName($idx);
+		if ($album->isAlbumName($idx)) {
+			$myAlbumName = $album->isAlbumName($idx);
 			$myAlbum = new Album();
 			$myAlbum->load($myAlbumName);
 			if (!$gallery->user->canReadAlbum($myAlbum)) {
-				$idx = getNextPhoto($idx);
+				$idx = getNextPhoto($idx, $album);
 			}
 		}
 	}
@@ -1422,7 +1426,7 @@ function emptyFormVar($name) {
 	global $HTTP_GET_VARS;
 	global $HTTP_POST_VARS;
 
-	return empty($HTTP_GET_VARS[$name]) && empty($HTTP_POST_VARS[$name]);
+	return !isset($HTTP_GET_VARS[$name]) && !isset($HTTP_POST_VARS[$name]);
 }
 
 function breakString($buf, $desired_len=40, $space_char=' ', $overflow=5) {

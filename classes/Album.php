@@ -110,6 +110,10 @@ class Album {
                         // Nobody, Everybody, Logged in
 	       // end of VOTING variables
 
+	       $this->fields["slideshow_type"]=$gallery->app->default["slideshow_type"];
+	       $this->fields["slideshow_length"]=$gallery->app->default["slideshow_length"];
+	       $this->fields["slideshow_recursive"]=$gallery->app->default["slideshow_recursive"];
+
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
 	}
@@ -184,7 +188,11 @@ class Album {
 				"poll_hint",
 				"poll_show_results",
 				"poll_num_results",
-				"voter_class");
+				"voter_class",
+				"slideshow_type",
+				"slideshow_length",
+				"slideshow_recursive",
+				);
 		foreach ($check as $field) {
 			if (!isset($this->fields[$field])) {
 				$this->fields[$field] = $gallery->app->default[$field];
@@ -1638,7 +1646,7 @@ class Album {
 		}
 		if ($index > 0 && $this->isHidden($index) &&
 				!$gallery->user->isAdmin() && 
-				!$gallery->user->isOwnerOfAlbum($myAlbum)) {
+				!$gallery->user->isOwnerOfAlbum($gallery->album)) {
 			$index=-1;
 
 		}

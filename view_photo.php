@@ -673,7 +673,7 @@ foreach ($extra_fields as $field)
 	if ($value)
 	{
 		print "<tr><td valign=top align=right><b>$field:<b></td><td>".
-			str_replace("\n", "<p>", $value).
+			str_replace("\n", "<br>", $value).
 			"</td></tr>";
 	}
 }

@@ -1,3 +1,17 @@
+2003-09-07  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b69
+
+	* Reworking of slideshow.php.  Note, no changes to slideshow_low.php.
+		- Slideshow can now be recursive and/or random.
+		- Slideshow can be turned off for an album.
+		- Recursive slideshow available from albums.php.
+		- Function getNextPhoto() modified to take album as parameter.
+		
+	* function emptyFormVar() only returns true if $name is
+	  missing, not present but unset, so you can deliberately
+	  set a field as NULL (eg "....&setAlbumName=&set_....")
+
+	* Replace \n in custom fields with <br> instead of <p>.
+
 2003-09-09  Jens Tkotz <jens@peino.de> 1.4.1-cvs-b68
 
         * Language Update: Icelandic (is_IS), Swedish (sv_SE)
@@ -48,6 +62,8 @@
 
 	* Config.  Wizard changes to support slideshow configuration.  Does not
 	  affect behaviour yet.
+
+	* Config. Wizard new function "newIn" to print "new in 1.4.1" message.
 
 2003-09-05  Jens Tkotz <jens@peino.de> 1.4.1-cvs-b64
 

@@ -137,6 +137,10 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	$adminCommands .= sprintf(_("Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br>";
 }
 
+if ($gallery->app->gallery_slideshow_type != "off") {
+    	 $adminCommands .= '<a href="' . makeGalleryUrl("slideshow.php") .
+	       	'">['._("slideshow") . ']</a>&nbsp;';
+}
 if ($gallery->user->isAdmin()) {
 	$doc = galleryDocs();
 	if ($doc) {
@@ -168,7 +172,6 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
 	        $adminCommands .= popup_link("[" . _("login") . "]", "login.php", 0);
-	        // $adminCommands .= popup_link("[" . _("login") . "]", "login.php", 0, true, 250, 500);
 	}
 }
 

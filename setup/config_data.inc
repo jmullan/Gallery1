@@ -453,7 +453,7 @@ $constants =  array_merge(
 		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
 			_("date without time"), Gallery(), "<b>%x</b>",
 			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '">'._("http://www.php.net/manual/en/function.strftime.php").'</a>') .
-			newIn("1.4.1") .
+			newIn("1.4.1") . "<br>" .
 			sprintf(_("For example, %s will display date like this: %s."), "<b>%b %d, %Y</b>", "<b>" . strftime("%b %d, %Y") . "</b>"), 
 		"value" => "%x",
 		"type" => "text",
@@ -464,7 +464,7 @@ $constants =  array_merge(
 		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
 			_("date with time"), Gallery(), "<b>%c</b>",
 			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '">'._("http://www.php.net/manual/en/function.strftime.php").'</a>') .
-			newIn("1.4.1") .
+			newIn("1.4.1") . "<br>" .
 			sprintf(_("For example, %s will display date and time like this: %s."), "<b>%H:%M, %b %d, %Y</b>", "<b>" . strftime("%H:%M, %b %d, %Y") . "</b>"), 
 		"value" => "%c",
 		"type" => "text",
@@ -477,7 +477,40 @@ $constants =  array_merge(
 // Continue constants ...
 $constants = array_merge($constants,
   array(
-	"separator6" => array (
+       	"separator6" => array (
+		       	"type" => "separator",
+		       	"title" => _("Gallery wide slideshow"),
+			"desc" => newIn("1.4.1") . "  " .
+				_("Adds a slide show link on the main page of the gallery.") .
+				"  " .
+				_("Note for large galleries this may run very slowly and use a lot of system resources.")
+			),
+	"gallery_slideshow_type" => array(
+		       	"prompt" => _("Slideshow preferences"),
+		       	"desc" => "<dl><dt>"._("Off")."</dt><dd>" . 
+		       		_("No slideshow link will appear.") .
+		      		"</dd><dt>"._("Ordered")."</dt><dd>" . 
+		       		_("Images will display in the same order as they appear in the Gallery.") .
+		      		"</dd><dt>"._("Random")."</dt><dd>" . 
+		       		_("Images will appear in a random order.") .
+		      		"</dl>" .
+				newIn("1.4.1"),
+		       	"choices" => array(
+			       	"off" => _("Off"),
+			       	"ordered" => _("Ordered"),
+			       	"random" => _("Random"),
+				),
+		       	"value" => "off",
+			),
+	"gallery_slideshow_length" => array(
+		"prompt" => _("Slideshow length"),
+		"desc" => _("Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images.") .
+			newIn("1.4.1"),
+		"type" => "text",
+		"value" => "20",
+		"attrs" => array("size" => 5)
+	),
+	"separator7" => array (
 		"type" => "separator",
 		"title" => _("Advanced"),
 	),
@@ -516,30 +549,6 @@ $constants = array_merge($constants,
 		"type" => "text",
 		"attrs" => array("size" => 20),
 	),
-       	"separator7" => array (
-		       	"type" => "separator",
-		       	"title" => _("Gallery wide slideshow"),
-			),
-	"gallery_slideshow_type" => array(
-		       	"prompt" => _("Slideshow preferences"),
-		       	"desc" => _("Slideshow on gallery main page") .
-			newIn("1.4.1"),
-		       	"choices" => array(
-			       	"off" => _("Off"),
-			       	"ordered" => _("Ordered"),
-			       	"random" => _("Random"),
-				),
-		       	"value" => "off",
-			),
-	"gallery_slideshow_length" => array(
-		"prompt" => _("slideshowLength "),
-		"desc" => "" .
-			newIn("1.4.1"),
-		"type" => "text",
-		"value" => "20",
-		"attrs" => array("size" => 50)
-	),
-
 
 	/* Keep this one at the end of the list because it's hidden */
 	"userDir" => array(
@@ -722,8 +731,8 @@ $defaults = array(
 	"separator7" => array (
 		"type" => "separator",
 		"title" => _("Polling configuration"),
-		"desc"  => sprintf(_("Polling is a new feature in %s.  It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."),
-				"1.4.1", 
+		"desc"  => newIn("1.4.1") . "  " .
+			sprintf(_("It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."),
 				"1.4.1") .
 			"<p>" .
 			_("In each album, voting can be switched off, restricted to logged in users or open to all visitors.") 
@@ -816,11 +825,18 @@ $defaults = array(
 			"size" => 9),
        	"separator8" => array (
 		       	"type" => "separator",
-		       	"title" => _("Slideshow"),
+		       	"title" => _("Album Slideshow"),
 			),
 	"slideshow_type" => array(
-		       	"prompt" => _("Slideshow preferences"),
-		       	"desc" => _("Slideshow on gallery main page") .
+		       	"prompt" => _("Slideshow Type"),
+		       	"desc" => "<dl><dt>"._("Off")."</dt><dd>" . 
+		       		_("No slideshow link will appear.") .
+		      		"</dd><dt>"._("Ordered")."</dt><dd>" . 
+		       		_("Images will display in the same order as they appear in the Gallery.") .
+		      		"</dd><dt>"._("Random")."</dt><dd>" . 
+		       		_("Images will appear in a random order.") .
+		      		"</dl>" .
+				newIn("1.4.1"),
 			newIn("1.4.1"),
 		       	"choices" => array(
 			       	"off" => _("Off"),
@@ -829,22 +845,23 @@ $defaults = array(
 				),
 		       	"value" => "ordered",
 			),
+	"slideshow_recursive" => array(
+		"prompt" => _("Recursive slideshow"),
+		"desc" => sprintf(_("Set to %s if you want to include images in sub albums as part of the slideshow."), "<b>"._("yes")."</b>") .
+			newIn("1.4.1"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no"
+			),
 	"slideshow_length" => array(
-		"prompt" => _("slideshowLength "),
-		"desc" => _("0 for all") .
+		"prompt" => _("Slideshow length"),
+		"desc" => _("Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images.") .
 			newIn("1.4.1"),
 		"type" => "text",
 		"value" => "0",
 		"optional" => 1,
-		"attrs" => array("size" => 50)
+		"attrs" => array("size" => 5)
 	),
-	"slideshow_recursive" => array(
-		"prompt" => _("slideshow_recursive "),
-		"desc" => _("xx") .
-			newIn("1.4.1"),
-		"choices" => array("yes" => _("yes"), "no" => _("no")),
-		"value" => "no"
-			)
 );
 
 ?>
+

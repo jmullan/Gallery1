@@ -70,6 +70,9 @@ if (isset($save)) {
 	$gallery->album->fields["item_owner_delete"] = $item_owner_delete;
 	$gallery->album->fields["item_owner_display"] = $item_owner_display;
 	$gallery->album->fields["add_to_beginning"] = $add_to_beginning;
+	$gallery->album->fields["slideshow_type"] = $slideshow_type;
+	$gallery->album->fields["slideshow_recursive"] = $slideshow_recursive;
+	$gallery->album->fields["slideshow_length"] = $slideshow_length;
 	$gallery->album->save();
 
 	if ($setNested) {
@@ -180,7 +183,20 @@ if (isset($save)) {
 </tr>
 <tr>
 <td><?php echo _("Which photo printing service<br>do you want to let visitors use?") ?></td>
+<?php _("none"); _("shutterfly without donation"); ?>
 <td><select name="print_photos"><?php echo selectOptions($gallery->album, "print_photos", array("none" => _("none"), "photoaccess" => _("photoaccess"), "fotokasten" => _("fotokasten"), "shutterfly" => _("shutterfly"), "shutterfly without donation")) ?></select></td>
+</tr>
+<tr>
+<td><?php echo _("Slideshow Type") ?></td>
+<td><select name="slideshow_type"><?php echo selectOptions($gallery->album, "slideshow_type", array( "off" => _("Off"), "ordered" => _("Ordered"), "random" => _("Random"))) ?></select></td>
+</tr>
+<tr>
+<td><?php echo _("Slideshow recursive") ?></td>
+<td><select name="slideshow_recursive"><?php echo selectOptions($gallery->album, "slideshow_recursive", array("yes" => _("yes"), "no" => _("no"))) ?></select></td>
+</tr>
+<tr>
+<td><?php echo _("Slideshow Length") ?></td>
+<td><input type=text name="slideshow_length" value="<?php echo $gallery->album->fields["slideshow_length"] ?>"></td>
 </tr>
 <?php
 if ($gallery->app->use_exif) {
