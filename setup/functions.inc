@@ -58,6 +58,8 @@ function make_fields($key, $arr) {
 		$col2 = form_input($key, $arr);
 	} else if (isset($arr["type"]) && $arr["type"] == "nv_pairs") {
 		$col2 = form_nv_pairs($key, $arr);
+	} else if (isset($arr['type']) && $arr['type'] == 'print_services') {
+		$col2 = form_print_services($key, $arr);
 	} else {
 		$col2 ="";
 	}
@@ -144,6 +146,38 @@ function form_multiple_choice($key, $arr) {
 		$buf .= "\n\t<br><input name=\"${key}[]\" value=\"$item\" type=\"checkbox\" $selected>" . $value ;
 	}
 	$buf .="</td></tr></table>";
+	return $buf;
+}
+
+function form_print_services($key, $arr) {
+
+	$buf= "\n\t<table border=\"0\">";
+	foreach ($arr['services'] as $item => $data) {
+	    if (isset($arr['value'][$item])) {
+		if (is_array($arr['value'][$item])) {
+			$value = $arr['value'][$item];
+		} else {
+			$value = array('checked' => true);
+		}
+	    } else {
+		$value = array('checked' => false);
+	    }
+	    $checked = $value['checked'] ? ' checked' : '';
+	    $buf .= "\n\t\t<tr><td valign=\"top\">\n\t\t\t<input name=\"${key}[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a href=\"${data['url']}\">${data['name']}</a>";
+	    if (isset($data['radio'])) {
+		if (!isset($value['donation'])) {
+		    $value['donation'] = 'yes';
+		}else print $value['donation'] . "KKK";
+		$buf .= "\n\t\t\t</td><td valign=\"top\">";
+		foreach ($data['radio'] as $radio => $values) {
+		    $checked = $value['donation'] === $radio
+			? ' checked' : '';
+		    $buf .= "\n\t\t\t<input name=\"${key}[$item][donation]\" value=\"$radio\" type=\"radio\"$checked>" . $values;
+		}
+	    }
+	    $buf .= "\n\t\t</td></tr>";
+	}
+	$buf .="\n\t</table>\n\t";
 	return $buf;
 }
 

@@ -40,9 +40,9 @@ if (!isset($gallery)) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = "1.4.1-cvs-b102";
-$gallery->config_version = 64;
-$gallery->album_version = 19;
+$gallery->version = "1.4.1-cvs-b103";
+$gallery->config_version = 65;
+$gallery->album_version = 20;
 $gallery->user_version = 3;
 $gallery->url = "http://gallery.sourceforge.net";
 

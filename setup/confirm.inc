@@ -345,9 +345,14 @@ foreach ($defaults as $key => $val) {
 				if (is_array ($sub_value)) {
 					foreach ($sub_value as $sub_sub_key
 							=> $sub_sub_value) {
-			$string="\$gallery->app->default[\"$key\"][$sub_key][\"$sub_sub_key\"] = \"$sub_sub_value\";\n";
-			$data .= $string;
-			$view .= row_wrap($string);
+						/* print_photos needs a quoted $sub_key */
+						if ($key === "print_photos") {
+							$string="\$gallery->app->default[\"$key\"][\"$sub_key\"][\"$sub_sub_key\"] = \"$sub_sub_value\";\n";
+						} else {
+							$string="\$gallery->app->default[\"$key\"][$sub_key][\"$sub_sub_key\"] = \"$sub_sub_value\";\n";
+						}
+						$data .= $string;
+						$view .= row_wrap($string);
 					}
 				}
 			}

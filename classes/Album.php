@@ -274,6 +274,25 @@ class Album {
 				$changed = 1;
 			}
 		}
+		if ($this->version < 20) {
+			/* upgrade photo print services to new format */
+			switch ($this->fields['print_photos']) {
+			case 'fotokasten':
+			case 'photoaccess':
+				$this->fields['print_photos'] = array($this->fields['print_photos'] => array('checked' => true));
+				break;
+			case 'shutterfly':
+				$this->fields['print_photos'] = array('shutterfly' => array('checked' => true, 'donation' => 'yes'));
+				break;
+			case 'shutterfly without donation':
+				$this->fields['print_photos'] = array('shutterfly' => array('checked' => true, 'donation' => 'no'));
+				break;
+			default:
+				$this->fields['print_photos'] = array();
+				break;
+			}
+			$changed = true;
+		}
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
 			if ($gallery->app->use_exif) {

@@ -182,9 +182,49 @@ if (isset($save)) {
 <td><select name="use_fullOnly"><?php echo selectOptions($gallery->album, "use_fullOnly", array("yes" => _("yes"), "no" => _("no"))) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Which photo printing service<br>do you want to let visitors use?") ?></td>
-<?php _("none"); _("shutterfly without donation"); ?>
-<td><select name="print_photos"><?php echo selectOptions($gallery->album, "print_photos", array("none" => _("none"), "photoaccess" => _("photoaccess"), "fotokasten" => _("fotokasten"), "shutterfly" => _("shutterfly"), "shutterfly without donation")) ?></select></td>
+<td valign="top"><?php echo _("Which photo printing services<br>do you want to let visitors use?") ?></td>
+<td valign="top">
+<?php
+$services = array(
+	'ezprints'    => array(
+		'name'    => 'EZ Prints',
+		'url'     => 'http://www.ezprints.com/'),
+	'fotokasten'  => array(
+		'name'    => 'Fotokasten',
+		'url'     => 'http://www.fotokasten.de/'),
+	'photoaccess' => array(
+		'name'    => 'PhotoAccess',
+		'url'     => 'http://www.photoaccess.com/'),
+	'shutterfly'  => array(
+		'name'    => 'Shutterfly',
+		'url'     => 'http://www.shutterfly.com/',
+		'radio'   => array(
+			'yes' => _('with donation'),
+			'no'  => _('without donation')
+		)
+	)
+);
+foreach ($services as $item => $data) {
+	if (isset($gallery->album->fields['print_photos'][$item])) {
+		$value = $gallery->album->fields['print_photos'][$item];
+	} else {
+		$value = array('checked' => false);
+	}
+	$checked = $value['checked'] ? ' checked' : '';
+	print "<input name=\"print_photos[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a target=\"_blank\" href=\"${data['url']}\">${data['name']}</a><br />\n";
+	if (isset($data['radio'])) {
+		if (!isset($value['donation'])) {
+			$value['donation'] = 'yes';
+		}
+		foreach ($data['radio'] as $radio => $values) {
+			$checked = $value['donation'] === $radio
+				? ' checked' : '';
+			print "&nbsp;&nbsp;&nbsp;<input name=\"print_photos[$item][donation]\" value=\"$radio\" type=\"radio\"$checked>" . $values . "<br />\n";
+		}
+	}
+}
+?>
+</td>
 </tr>
 <tr>
 <td><?php echo _("Slideshow Type") ?></td>

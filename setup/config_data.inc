@@ -777,15 +777,40 @@ $defaults = array(
 		"title" => _("Options")
         ),
 	"print_photos" => array(
-		"prompt" => _("Printing Service"),
+		"prompt" => _("Printing Services"),
 		"desc" => _("Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market.  PhotoAccess and Shutterfly are based in the United States.  PhotoAccess, Fotokasten and Shutterfly will all give a small donation to the Gallery project for every print you make.  If you choose Shutterfly, Gallery will charge an extra 2 cents (US) for every photo printed (a 4x6 print normally costs 49 cents US) and 1.8 cents of that will get donated back to the Gallery project.  PhotoAccess and Fotokasten do not charge extra for the Gallery donation.  Using these services is a great way for you to help support this free software.  "),
-		"value" => "photoaccess",
-		"choices" => array("none" => _("none"), 
-			"photoaccess" => "photoaccess", 
-			"fotokasten" => "fotokasten",
-			"shutterfly" => "shutterfly", 
-			"shutterfly without donation" => 
-				sprintf(_("%s without donation"),'shutterfly'))
+		'type' => 'print_services',
+		'services' => array(
+			'ezprints'    => array(
+				'name'    => 'EZ Prints',
+				'url'     => 'http://www.ezprints.com/'),
+			'fotokasten'  => array(
+				'name'    => 'Fotokasten',
+				'url'     => 'http://www.fotokasten.de/'),
+			'photoaccess' => array(
+				'name'    => 'PhotoAccess',
+				'url'     => 'http://www.photoaccess.com/'),
+			'shutterfly'  => array(
+				'name'    => 'Shutterfly',
+				'url'     => 'http://www.shutterfly.com/',
+				'radio'   => array(
+					'yes' => _('with donation'),
+					'no'  => _('without donation')
+				)
+			)
+		),
+		'value' => array(
+			'ezprints' => array(
+				'checked' => true),
+			'fotokasten' => array(
+				'checked' => true),
+			'photoaccess' => array(
+				'checked' => true),
+			'shutterfly' => array(
+				'checked' => true,
+				'donation' => 'yes')
+		),
+		'optional' => true
 	),
 	"returnto" => array(
 		"prompt" => _("Gallery Link"),

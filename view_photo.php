@@ -451,20 +451,81 @@ if (!$gallery->album->isMovie($id)) {
 		if (strlen($adminCommands) > 0) {
 			$adminCommands .="<br>";
 		}
-		$printService = $gallery->album->fields["print_photos"];
-		if (!strncmp($printService, "shutterfly", 10)) {
-		    $adminCommands .= "<a href=\"#\" onClick=\"document.sflyc4p.returl.value=document.location; document.sflyc4p.submit();\">[". sprintf(_("print this photo on %s"), "Shutterfly") . "]</a>";
-		    $printShutterflyForm = 1;
-		} else if (!strncmp($printService, "fotokasten", 10)) {
-		    $adminCommands .= popup_link("[". sprintf(_("print this photo on %s"), "Fotokasten") . "]", "'http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth . "'", 1);
-		} else if (!strncmp($printService, 'photoaccess', 11)) {
-		    $adminCommands .= "<a href=\"#\" onClick=\"document.photoAccess.returnUrl.value=document.location; document.photoAccess.submit()\">[". sprintf(_("print this photo on %s"), "PhotoAccess") . "]</a>";
-		    $printPhotoAccessForm = 1;
+		
+		/* display photo printing services */
+		$printServices = $gallery->album->fields['print_photos'];
+		$numServices = count($printServices);
+		if (!isset($printServices['shutterfly']['checked'])) {
+			$numServices--;
+		}
+		$fullName = array(
+			'ezprints'    => 'EZ Prints',
+			'fotokasten'  => 'Fotokasten',
+			'photoaccess' => 'PhotoAccess',
+			'shutterfly'  => 'Shutterfly'
+		);
+		/* display a <select> menu if more than one option */
+		if ($numServices > 1) {
+			$selectCommand = '<select name="print_services" style="font-size: 10px;" onChange="doPrintService()">';
+			$selectCommand .= "<option value=''>&laquo; select service &raquo;</option>";
+			foreach ($printServices as $name => $data) {
+				/* skip if it's not actually selected */
+				if (!isset($data['checked'])) {
+					continue;
+				}
+				switch ($name) {
+				case 'photoaccess':
+					$printPhotoAccessForm = true;
+					break;
+				case 'shutterfly':
+					$printShutterflyForm = true;
+					break;
+				}
+				$selectCommand .= "<option value=\"$name\">${fullName[$name]}</option>";
+			}
+			$selectCommand .= '</select>';
+			$adminCommands .= '[' . sprintf(_('print this photo with %s'), $selectCommand) . ']';
+		/* just print out text if only one option */
+		} elseif ($numServices == 1) {
+			$name = key($printServices);
+			switch ($name) {
+			case 'photoaccess':
+				$printPhotoAccessForm = true;
+				break;
+			case 'shutterfly':
+				$printShutterflyForm = true;
+				break;
+			}
+			$adminCommands .= "<a href=\"javascript:doPrintService('$name')\" onClick=\"doPrintService('$name');\">[" . sprintf(_('print this photo with %s'), $fullName[$name]) . ']</a>';
 		}
 	}
-
-
+?>
+<script language="javascript1.2">
+	 function doPrintService(input) {
+		if (!input) {
+		    input = document.admin_form.print_services.value;
+		}
+		switch (input) {
+		case 'fotokasten':
+			nw=window.open('<?php echo "http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth; ?>','Print with Fotokasten','<?php echo "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes"; ?>');
+			nw.opener=self;
+			return false;
+			break;
+		case 'photoaccess':
+			document.photoAccess.returnUrl.value=document.location;
+			document.photoAccess.submit();
+			break;
+		case 'shutterfly':
+			document.sflyc4p.returl.value=document.location;
+			document.sflyc4p.submit();
+			break;
+		}
+	}
+</script>
+<?php
+	print "<form name=\"admin_form\">\n";
 	if ($adminCommands) {
+	    
 		$adminCommands = "<span class=\"admin\">$adminCommands</span>";
 		$adminbox["commands"] = $adminCommands;
 		$adminbox["text"] = "&nbsp;";
@@ -499,8 +560,8 @@ if ($bordercolor) {
 </td>
 </tr>
 
-
 </table>
+</form>
 <table border=0 width=<?php echo $mainWidth ?> cellpadding=0 cellspacing=0>
 <tr><td colspan=3>
 <?php
@@ -703,7 +764,7 @@ if ($do_exif) {
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value="1">
   <input type=hidden name=protocol value="SFP,100">
-<?php if ($gallery->album->fields["print_photos"] == "shutterfly without donation") { ?>
+<?php if ($gallery->album->fields['print_photos']['shutterfly']['donation'] === 'no') { ?>
   <input type=hidden name=pid value="C4P">
   <input type=hidden name=psid value="AFFL">
 <?php } else { ?>
@@ -769,4 +830,3 @@ includeHtmlWrap("photo.footer");
 </body>
 </html>
 <?php } ?>
-
