@@ -10,7 +10,7 @@ if(isset($GALLERY_EMBEDDED_INSIDE)) {
 	global $PHP_SELF;
 
 	if (($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke' && !defined("LOADED_AS_MODULE")) ||
-		($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnule' && !eregi("modules.php", $PHP_SELF))) {
+		($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnuke' && !eregi("modules.php", $PHP_SELF))) {
 			die ("You can't access this file directly...");
 	}
 
