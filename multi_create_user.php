@@ -60,7 +60,7 @@ if (isset($create))
 
 	if (!$errorCount) {
 		$users=@file($membersfile);
-		if (sizeof($user == 0)) {
+		if (sizeof($users) == 0) {
 			$gErrors["membersfile"] =
 			sprintf(_("Upload went fine, but the file is not readable, please make sure %s is accessable for your webserver. (Also check openbasedir restrictions.)"), 
 				dirname($membersfile));
@@ -69,9 +69,9 @@ if (isset($create))
 	}
 	if (!$errorCount) {
 		// Simple test to see if it's a windows file
-		if (sizeof($users)==1 and ereg("", $users[0]))
+		if (sizeof($users) == 1 and ereg("\r\n", $users[0]))
 		{
-			$users=explode("", $users[0]);
+			$users=explode("\r\n", $users[0]);
 		}
 		unlink($membersfile);
 		$total_added=0;
