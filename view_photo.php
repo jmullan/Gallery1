@@ -102,14 +102,11 @@ if (!strcmp($album->fields["resize_size"], "off")) {
 }
 
 $navigator["page"] = $index;
-$navigator["pageVar"] = "index";
 $navigator["maxPages"] = $numPhotos;
 $navigator["fullWidth"] = "100";
 $navigator["widthUnits"] = "%";
 $navigator["url"] = ".";
-$navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
-$navigator["noIndivPages"] = true; 
 
 #-- breadcrumb text ---
 if (strcmp($album->fields["returnto"], "no")) {
