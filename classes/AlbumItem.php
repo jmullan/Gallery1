@@ -29,7 +29,122 @@ class AlbumItem {
 	var $isAlbumName;
 	var $clicks;
 	var $keywords;
-	var $comments;  // array of comment objects
+	var $comments;  	// array of comment objects
+	var $uploadDate;	// date the item was uploaded
+	var $itemCaptureDate;	// associative array of date the item was captured 
+				// not in EPOCH so we can support dates < 1970
+
+	function setUploadDate($uploadDate="") { //upload date should only be set at file upload time.
+		global $gallery;
+
+		if ($uploadDate) { // set the upload time from the time provided
+			$this->uploadDate = $uploadDate;
+		} else { // if nothing is passed in, get the upload time from the file creation time
+			$dir = $gallery->album->getAlbumDir();
+			$name = $this->image->name;
+			$tag = $this->image->type;
+			$file = "$dir/$name.$tag";
+			$this->uploadDate = filectime($file);
+		}
+	}
+
+	function getUploadDate() {
+		if (!$this->uploadDate) {
+			return 0;
+		} else {
+			return $this->uploadDate;
+		}
+	}
+
+	function setItemCaptureDate($itemCaptureDate="") {
+		global $gallery;
+		/*$itemCaptureDate should be passed in as an associative array with the following elements:
+	 	$itemCaptureDate["hours"]
+		$itemCaptureDate["minutes"]
+		$itemCaptureDate["seconds"]
+		$itemCaptureDate["mon"]
+		$itemCaptureDate["mday"]
+		$itemCaptureDate["year"]
+		*/ 
+		if (!$itemCaptureDate) {	
+			// we want to attempt to set the $itemCaptureDate from the information that
+			// is available to us.  First, look in the exif data if it is a jpeg file.  If that
+			// doesn't help us, then use the file creation date.
+			$dir = $gallery->album->getAlbumDir();
+			$success = 0;
+			if ($gallery->app->use_exif) {
+				$exifData = $this->getExif($dir);
+				if ($exifData["Date/Time"]) {
+					$success = 1;
+					$tempDate = split(" ", $exifData["Date/Time"], 2);
+					$tempDay = split(":" , $tempDate[0], 3);
+					$tempTime = split(":", $tempDate[1], 3);
+					$hours = "$tempTime[0]";
+					$minutes = "$tempTime[1]";
+					$seconds = "$tempTime[2]";
+					$mday = "$tempDay[2]";
+					$mon = "$tempDay[1]";
+					$year = "$tempDay[0]";
+
+					$itemCaptureDate[hours] = $hours;
+					$itemCaptureDate[minutes] = $minutes;
+					$itemCaptureDate[seconds] = $seconds;
+					$itemCaptureDate[mday] = $mday;
+					$itemCaptureDate[mon] = $mon;
+					$itemCaptureDate[year] = $year;
+				}
+			} 
+			if (!$success) { // we were not able to get the capture date from exif... use file creation time
+				$name = $this->image->name;
+				$tag = $this->image->type;
+				$file = "$dir/$name.$tag";
+				$itemCaptureDate = getdate(filectime($file));
+			}
+		}	
+		// make sure everything (other than year) is 2 digits so we can do sorts with 
+		// the resulting concatenated data i.e.:  20010708123412
+		if (strlen($itemCaptureDate["mon"]) == 1) {
+			$itemCaptureDate["mon"] = "0" . $itemCaptureDate["mon"];
+		}
+		if (strlen($itemCaptureDate["mday"]) == 1) {
+			$itemCaptureDate["mday"] = "0" . $itemCaptureDate["mday"];
+		}
+		if (strlen($itemCaptureDate["hours"]) == 1) {
+			$itemCaptureDate["hours"] = "0" . $itemCaptureDate["hours"];
+		}
+		if (strlen($itemCaptureDate["minutes"]) == 1) {
+			$itemCaptureDate["minutes"] = "0" . $itemCaptureDate["minutes"];
+		}
+		if (strlen($itemCaptureDate["seconds"]) == 1) {
+			$itemCaptureDate["seconds"] = "0" . $itemCaptureDate["seconds"];
+		} 
+ 
+		$this->itemCaptureDate = $itemCaptureDate;
+	}
+
+	function getItemCaptureDate() {
+		// need to set this value for old photos that don't yet contain it.
+		if (!$this->itemCaptureDate) {
+			return 0;
+		} else {
+			return $this->itemCaptureDate;
+		}
+	}
+
+	function getExif($dir) {
+		global $gallery;
+
+		$return = array();
+		$path = $gallery->app->use_exif;
+		$file = $dir . "/" . $this->image->name . "." . $this->image->type;
+		exec("$path $file",$return);
+		while (list($key,$value) = each ($return)) {
+       		$explodeReturn = explode(':', $value, 2);
+        	$myExif[trim($explodeReturn[0])] = trim($explodeReturn[1]);
+		}
+
+		return $myExif;
+	}
 
 	function numComments() {
 		return sizeof($this->comments);

@@ -79,54 +79,43 @@ program, I build the functionality using 'jhead'.
 
 */
 
-$mydir = $gallery->album->getAlbumDir();
-$myphoto = $gallery->album->getPhoto($index);
-$myname = $myphoto->image->name;
-$mytype=$myphoto->image->type;
-$myfile="$mydir/$myname.$mytype";
-				   
-/* display exif data with jhead */
-$return = array();
-$path = $gallery->app->use_exif;
-exec_wrapper(fs_convert_filename($path) .
-	     " " .
-	     fs_convert_filename($myfile),
-	     $return);
-							  
-while (list($key,$value) = each ($return)) {
-	$explodeReturn = explode(':', $value, 2);
-	$myExif[$explodeReturn[0]] = $explodeReturn[1];
-}
-if ($myExif) {
-    array_pop($myExif); // get rid of empty element at end
-	array_shift($myExif); // get rid of file name at beginning
-	$sizeOfExif = sizeof($myExif);
-	$sizeOfTable = $sizeOfExif / 2;
-	$i = 1;
-	$column = 1;
-	echo ("<table width=100%>\n");
-	echo ("<tr valign=top>\n");
-	echo ("<td>\n");
-	while (list($key, $value) = each ($myExif)) {
-		echo "<b>$key</b>:  $value<br>\n";
-		if (($i >= $sizeOfTable) && ($column == 1)) {
-			echo ("</td>\n");
-			echo ("<td>\n");
-			$column = 2;
-		}
-    	$i++;
-	}
-	echo ("</td>\n</table><br>");
-	if ($myphoto->getKeyWords()) {
-		echo "<b>KEYWORDS</b>: &nbsp;&nbsp " . $myphoto->getKeyWords();
-	}
-}
+	$myExif = $gallery->album->getExif($index);
 
+	if ($myExif) {
+		array_pop($myExif); // get rid of empty element at end
+		array_shift($myExif); // get rid of file name at beginning
+		$sizeOfExif = sizeof($myExif);
+		$sizeOfTable = $sizeOfExif / 2;
+		$i = 1;
+		$column = 1;
+		echo ("<table width=100%>\n");
+		echo ("<tr valign=top>\n");
+		echo ("<td>\n");
+		while (list($key, $value) = each ($myExif)) {
+			echo "<b>$key</b>:  $value<br>\n";
+			if (($i >= $sizeOfTable) && ($column == 1)) {
+				echo ("</td>\n");
+				echo ("<td>\n");
+				$column = 2;
+			}
+    		$i++;
+		}
+		echo ("</td>\n</table><br>");
+	}
+
+	echo ("File Upload Date: &nbsp;&nbsp " . date("m-d-Y H:i:s" , $gallery->album->getUploadDate($index)) . "<br>");
+	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
+	echo ("Item Capture Date: &nbsp;&nbsp " . $itemCaptureDate[mon] . "-" . $itemCaptureDate[mday] . "-" . $itemCaptureDate[year] . "&nbsp;&nbsp;");
+	echo ($itemCaptureDate[hours] . ":" . $itemCaptureDate[minutes] . ":" . $itemCaptureDate[seconds] . "<br>");
+
+	if ($gallery->album->getKeyWords($index)) {
+		echo "<b>KEYWORDS</b>: &nbsp;&nbsp " . $gallery->album->getKeyWords($index);
+	}
 } else {
 	error("no album / index specified");
 }
 ?>
-
+<br><br>
 <form action=#>
 <input type=submit value="Done" onclick='parent.close()'>
 </form>

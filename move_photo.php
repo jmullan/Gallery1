@@ -101,6 +101,18 @@ if ($gallery->session->albumName && isset($index)) {
 						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, $gallery->album->getCaption($index), $pathToThumb);
 						if (!$err) {
 							$newPhotoIndex = $postAlbum->numPhotos(1);
+
+							// Save additional item settings... currently:
+							//  $clicks $keywords $comments $uploadDate $itemCaptureDate;
+							$newphoto = $postAlbum->getPhoto($newPhotoIndex);
+							$oldphoto = $gallery->album->getPhoto($index);
+							$newphoto->clicks = $oldphoto->clicks;
+							$newphoto->keywords = $oldphoto->keywords;
+							$newphoto->comments = $oldphoto->comments;
+							$newphoto->uploadDate = $oldphoto->uploadDate;
+							$newphoto->itemCaptureDate = $oldphoto->itemCaptureDate;
+							$postAlbum->setPhoto($newphoto,$newPhotoIndex);
+
 							/* resize the photo if needed */
 							if ($postAlbum->fields["resize_size"] > 0 ) {
 								$photo = $postAlbum->getPhoto($newPhotoIndex);
@@ -121,7 +133,6 @@ if ($gallery->session->albumName && isset($index)) {
 							
 							$postAlbum->save();
 							if ($startPhoto == $endPhoto) {
-								print "hasHighlight = " . $gallery->album->hasHighlight() . "<br>";
 								if (!$gallery->album->hasHighlight()) {
 									$resetHighlight = 1;
 									$gallery->album->deletePhoto($index,$resetHighlight);

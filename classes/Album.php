@@ -114,7 +114,7 @@ class Album {
 				"resize_size", 
 				"rows", 
 				"cols",
-		                "fit_to_window", 
+				"fit_to_window", 
 				"use_fullOnly", 
 				"print_photos",
 				"display_clicks",
@@ -134,11 +134,11 @@ class Album {
 			} else {
 				$this->fields["use_exif"] = "no";
 			}
-		}			
+		}                       
 
 		/* 
-		 * Check all items 
-		 */
+		* Check all items 
+		*/
 		$count = $this->numPhotos(1);
 		for ($i = 1; $i <= $count; $i++) {
 			set_time_limit(30);
@@ -162,8 +162,50 @@ class Album {
 		return $changed;
 	}
 
+
+
 	function shufflePhotos() {
 		shuffle($this->photos);
+	}
+
+	function sortPhotos($sort,$order) {
+		
+		// if we are going to use sort, we need to set the historic dates.
+		// the get Date functions set any null dates for us, so that's what
+		// this for loop does for us...
+		for ($i=1; $i<=$this->numPhotos(1); $i++) {
+			$this->getItemCaptureDate($i);
+			$this->getUploadDate($i);
+		}
+		$this->save();
+
+		if (!strcmp($sort,"upload")) {
+			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
+			$func .= "\$timeA = \$objA->getUploadDate(); ";
+			$func .= "\$timeB = \$objB->getUploadDate(); ";
+			$func .= "if (\$timeA == \$timeB) return 0; ";
+
+			if (!$order) {
+				$func .= "if (\$timeA < \$timeB) return -1; else return 1;";
+			} else {
+				$func .= "if (\$timeA > \$timeB) return -1; else return 1;";
+			}
+		} else if (!strcmp($sort,"itemCapture")) {
+			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
+			$func .= "\$arrayTimeA = \$objA->getItemCaptureDate(); ";
+			$func .= "\$arrayTimeB = \$objB->getItemCaptureDate(); ";
+			$func .= "\$timeA = \"\$arrayTimeA[year]\$arrayTimeA[mon]\$arrayTimeA[mday]\$arrayTimeA[hours]\$arrayTimeA[minutes]\$arrayTimeA[seconds]\";";
+			$func .= "\$timeB = \"\$arrayTimeB[year]\$arrayTimeB[mon]\$arrayTimeB[mday]\$arrayTimeB[hours]\$arrayTimeB[minutes]\$arrayTimeB[seconds]\";";
+			$func .= "print \"\$timeA \$timeB<br>\";";
+			$func .= "if (\$timeA == \$timeB) return 0; ";
+			if (!$order) {
+				$func .= "if (\$timeA < \$timeB) return -1; else return 1;";
+			} else {
+				$func .= "if (\$timeA > \$timeB) return -1; else return 1;";
+			}    
+		}
+		
+		usort($this->photos, create_function('$a,$b', $func));
 	}
 
 	function getThumbDimensions($index) {
@@ -511,6 +553,40 @@ class Album {
 		$photo->setCaption($caption);
 		$this->setPhoto($photo, $index);
 	}
+
+	function getUploadDate($index) {
+		$photo = $this->getPhoto($index);
+		$uploadDate = $photo->getUploadDate();
+		if (!$uploadDate) { // populating old photos with data
+			$this->setUploadDate($index);
+			$this->save();
+			$uploadDate = $this->getUploadDate($index);
+		}
+		return $uploadDate;
+	}
+
+	function setUploadDate($index, $uploadDate="") {
+		$photo = $this->getPhoto($index);
+		$photo->setUploadDate($uploadDate);
+		$this->setPhoto($photo, $index);
+	}
+
+	function getItemCaptureDate($index) {
+		$photo = $this->getPhoto($index);
+		$itemCaptureDate =  $photo->getItemCaptureDate();
+		if (!$itemCaptureDate) { // populating old photos with data
+			$this->setItemCaptureDate($index);
+			$this->save();
+			$itemCaptureDate = $this->getItemCaptureDate($index);
+		}
+		return $itemCaptureDate;
+	}
+
+	function setItemCaptureDate($index, $itemCaptureDate="") {
+		$photo = $this->getPhoto($index);
+		$photo->setItemCaptureDate($itemCaptureDate);
+		$this->setPhoto($photo, $index);
+	}
 	
 	function numComments($index) {
 		$photo = $this->getPhoto($index);
@@ -580,11 +656,11 @@ class Album {
 		return $photo->isAlbumName;
 	}
 
-        function setIsAlbumName($index, $name) {
-                $photo = $this->getPhoto($index);
-                $photo->setIsAlbumName($name);
-                $this->setPhoto($photo, $index);
-        }
+	function setIsAlbumName($index, $name) {
+		$photo = $this->getPhoto($index);
+		$photo->setIsAlbumName($name);
+		$this->setPhoto($photo, $index);
+	}
 	
 	function resetClicks() {
 		$this->fields["clicks"] = 0;
@@ -625,8 +701,8 @@ class Album {
 
 	function incrementClicks() {
 		$this->fields["clicks"]++;
-		$resetModDate=0;
-                $this->save($resetModDate);
+		$resetModDate=0; // don't reset last_mod_date
+        $this->save($resetModDate);
 	}
 
 	function getItemClicks($index) {
@@ -646,6 +722,14 @@ class Album {
 		$photo = $this->getPhoto($index);
 		$photo->resetItemClicks();
 		$this->setPhoto($photo,$index);
+	}
+
+	function getExif( $index ) {
+		global $gallery;
+		
+		$dir = $this->getAlbumDir();
+		$photo = $this->getPhoto($index);
+		return $photo->getExif($dir);
 	}
 
 	function getLastModificationDate() {

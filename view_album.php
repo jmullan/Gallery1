@@ -196,9 +196,9 @@ if ($gallery->user->canAddToAlbum($gallery->album)) {
 
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	if ($gallery->album->numPhotos(1)) {
-	        $adminCommands .= '<a href="#" onClick="'.popup("shuffle_album.php?albumName=" .
+	        $adminCommands .= '<a href="#" onClick="'.popup("sort_album.php?albumName=" .
 				$gallery->session->albumName).
-				'">[shuffle]</a>&nbsp;';
+				'">[sort]</a>&nbsp;';
 	        $adminCommands .= '<a href="#" onClick="'.popup("resize_photo.php?albumName=" .
 				$gallery->session->albumName . "&index=all").
 				'">[resize all]</a>&nbsp;';
@@ -372,8 +372,9 @@ if ($numPhotos) {
 					echo("<span class=error>*</span>");
 					$displayCommentLegend = 1;
 				}
+				echo("<br>");
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && ($gallery->album->getItemClicks($i) > 0)) {
-					echo("<br>Viewed: ".pluralize($gallery->album->getItemClicks($i), "time", "0").".<br>");
+					echo("Viewed: ".pluralize($gallery->album->getItemClicks($i), "time", "0").".<br>");
 				}
 			}
 			echo "</span>";
