@@ -26,6 +26,7 @@ $checklist = array(
 			". You need to upgrade to PHP ${MIN_PHP_MAJOR_VERSION}"
 	),
 	"magic_quotes" => array(
+		"optional" => 1,
 		"desc" => "Check to see if <a href=" .
 			"http://www.php.net/manual/en/configuration.php#ini.magic-quotes-gpc " .
 			" target=_top>magic quotes</a> are enabled on your PHP server.  If " .
