@@ -53,7 +53,7 @@ $albumDB = new AlbumDB(FALSE);
 
 if ($gallery->session->albumName && isset($index)) {
 
-	if ($newAlbum) { // moving album to a nested location
+	if (isset($newAlbum)) { // moving album to a nested location
 		if ($gallery->album->fields[name] != $newAlbum) {
 			$gallery->album->fields[parentAlbumName] = $newAlbum;
 			$gallery->album->save();

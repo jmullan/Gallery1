@@ -12,6 +12,12 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
 
 ?>
 
+<?php 
+if (!isset($navigator)) {
+	$navigator["fullWidth"] = 100;
+	$navigator["widthUnits"] = "%";
+}
+?>
 <table width="<?php echo $navigator["fullWidth"] . $navigator["widthUnits"] ?>" border="0" cellspacing="0" cellpadding="0">
 <?php
 if ($breadcrumb["top"]) {
@@ -44,7 +50,7 @@ while (isset($breadcrumb["text"][$i])) {
     <td bgcolor="<?php echo $borderIn ?>" width="1" height="18"><?php echo $pixelImage ?></td>
   </tr>
 <?php
-if (!$breadcrumb["top"] || $breadcrumb["bottom"]) {
+if (!$breadcrumb["top"] || isset($breadcrumb["bottom"])) {
 ?>
   <tr> 
     <td colspan="3" height="1" bgcolor="<?php echo $borderIn ?>"><?php echo $pixelImage ?></td>

@@ -42,7 +42,7 @@ if (strcmp($gallery->album->fields["public_comments"], "yes")) {
 
 $error_text = "";
 
-if (!strcmp($submit, _("Save"))) {
+if (isset($submit) && !strcmp($submit, _("Save"))) {
 	if ($commenter_name && $comment_text) {
 	        $comment_text = removeTags($comment_text);
 	        $commenter_name = removeTags($commenter_name);
@@ -54,6 +54,9 @@ if (!strcmp($submit, _("Save"))) {
 	} else {
 		$error_text = _("Name and comment are both required to save a new comment!");
 	}
+} else {
+	$comment_text='';
+	$commenter_name='';
 }
 ?>
 <html>
@@ -68,7 +71,7 @@ if (!strcmp($submit, _("Save"))) {
 <br><br>
 <?php echo $gallery->album->getThumbnailTag($index) ?>
 <?php
-if ($error_text) {
+if (isset($error_text)) {
 ?>
 <br><br>
 <span class=error><?php echo $error_text ?></span>

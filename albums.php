@@ -46,7 +46,7 @@ $numAlbums = $albumDB->numAlbums($gallery->user);
 $numPhotos = $albumDB->getCachedNumPhotos($gallery->user);
 $numAccess = $albumDB->numAccessibleAlbums($gallery->user);
 
-if (!$gallery->session->albumListPage) {
+if (empty($gallery->session->albumListPage)) {
 	$gallery->session->albumListPage = 1;
 }
 $perPage = $gallery->app->default["albumsPerPage"];

@@ -44,6 +44,14 @@ if (isset($full) && !$gallery->user->canViewFullImages($gallery->album)) {
 				$id));
 	return;
 }
+if (!isset($full)) {
+	$full=NULL;
+}
+
+if (!isset($openAnchor)) {
+	$openAnchor=0;
+}
+
 
 if ($id) {
 	$index = $gallery->album->getPhotoIndex($id);
@@ -77,7 +85,7 @@ if (($gallery->album->isHidden($index))
 
 
 $albumName = $gallery->session->albumName;
-if (!$gallery->session->viewedItem[$gallery->session->albumName][$id] 
+if (!isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) 
 	&& !$gallery->session->offline) {
 	$gallery->session->viewedItem[$albumName][$id] = 1;
 	$gallery->album->incrementItemClicks($index);
@@ -172,7 +180,7 @@ do {
     $pAlbum->load($pAlbumName);
     $breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($pAlbumName) .
       "\">" . $pAlbum->fields['title'] . "</a>";
-  } elseif (!$gallery->session->offline || $gallery->session->offlineAlbums["albums.php"]) {
+  } elseif (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
     //-- we're at the top! ---
     $breadtext[$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>";
@@ -228,7 +236,7 @@ if (!$title) {
   <link rel="up" href="<?php echo makeAlbumUrl($gallery->session->albumName) ?>">
 	  <?php if ($gallery->album->isRoot() &&
 			  (!$gallery->session->offline ||
-			   $gallery->session->offlineAlbums["albums.php"])) { ?>
+			   isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">	 
 	  <?php }?>
   <style type="text/css">
@@ -245,8 +253,8 @@ if ($gallery->album->fields["linkcolor"]) {
 if ($gallery->album->fields["bgcolor"]) {
         echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
 }       
-if ($gallery->album->fields["background"]) {
-        echo "BODY { background-image:url(".$gallery->album->fields[background]."); } ";
+if (isset($gallery->album->fields["background"])) {
+        echo "BODY { background-image:url(".$gallery->album->fields['background']."); } ";
 } 
 if ($gallery->album->fields["textcolor"]) {
         echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
@@ -568,12 +576,12 @@ if (is_int($key))
 {
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
 	print "<tr><td valign=top align=right><b>".$automaticFields[$field].":<b></td><td>".
-		strftime("%c" , mktime ($itemCaptureDate[hours],
-					$itemCaptureDate[minutes],
-					$itemCaptureDate[seconds],
-					$itemCaptureDate[mon],
-					$itemCaptureDate[mday],
-					$itemCaptureDate[year])).  
+		strftime("%c" , mktime ($itemCaptureDate['hours'],
+					$itemCaptureDate['minutes'],
+					$itemCaptureDate['seconds'],
+					$itemCaptureDate['mon'],
+					$itemCaptureDate['mday'],
+					$itemCaptureDate['year'])).  
 		"</td></tr>";
 	unSet($extra_fields[$key]);
 }
@@ -621,7 +629,7 @@ foreach ($extra_fields as $field)
 	}
 }
 if ($do_exif) {
-	$myExif = $gallery->album->getExif($index, $forceRefresh);
+	$myExif = $gallery->album->getExif($index, isset($forceRefresh));
 	foreach ($myExif as $field => $value) {
 		print "<tr><td valign=top align=right><b>$field:<b></td><td>".
 			str_replace("\n", "<p>", $value).

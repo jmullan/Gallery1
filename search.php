@@ -51,6 +51,9 @@ $thumbSize = $gallery->app->default["thumb_size"];
 includeHtmlWrap("search.header");
 ?>
 <?php
+if (!isset($searchstring)) {
+	$searchstring="";
+}
 $searchstring = removeTags($searchstring);
 if ($searchstring) {
 ?>

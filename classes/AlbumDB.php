@@ -211,9 +211,9 @@ class AlbumDB {
 
 		// Locate absolute indices of the target and destination
 		for ($i = 0; $i < sizeof($this->albumList); $i++) {
-			if ($this->albumList[$i]->fields[name] == $album1->fields[name]) {
+			if ($this->albumList[$i]->fields['name'] == $album1->fields['name']) {
 				$absIndex = $i;
-			} else if ($this->albumList[$i]->fields[name] == $album2->fields[name]) {
+			} else if ($this->albumList[$i]->fields['name'] == $album2->fields['name']) {
 				$absNewIndex = $i;
 			}
 		}

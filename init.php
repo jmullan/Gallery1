@@ -235,7 +235,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE) &&
 	$gallery->userDB = new Gallery_UserDB;
 
 	/* Load their user object with their username as the key */
-	if ($gallery->session->username) {
+	if (isset($gallery->session->username)) {
 		$gallery->user = 
 			$gallery->userDB->getUserByUsername($gallery->session->username);
 	}
@@ -258,7 +258,7 @@ if ($gallery->userDB->versionOutOfDate())
 }
 
 /* Load the correct album object */
-if ($gallery->session->albumName) {
+if (!empty($gallery->session->albumName)) {
 	$gallery->album = new Album;
 	$ret = $gallery->album->load($gallery->session->albumName);
 	if (!$ret) {

@@ -106,7 +106,13 @@ function error_format($message) {
 function build_popup_url($url, $url_is_complete=0) {
 
 	/* Separate the target from the arguments */
-	list($target, $arglist) = explode('?', $url);
+	$result = explode('?', $url);
+	$target = $result[0];
+	if (isset($result[1])) {
+		$arglist = $result[1];
+	} else {
+		$arglist = "";
+	}
 
 	/* Parse the query string arguments */
 	parse_str($arglist, $args);
@@ -794,6 +800,7 @@ function errorRow($key) {
 }
 
 function drawSelect($name, $array, $selected, $size, $attrList=array()) {
+	$attrs = "";
 	if (!empty($attrList)) {
 	    	foreach ($attrList as $key => $value) {
 			if ($value == NULL) {
@@ -879,7 +886,13 @@ function correctPseudoUsers(&$array, $ownerUid) {
  */
 function makeFormIntro($target, $attrList=array()) {
 	$url = makeGalleryUrl($target);
-	list($target, $tmp) = split("\?", $url);
+	$result = split("\?", $url);
+	$target = $result[0];
+	if (sizeof($result) > 1) {
+		$tmp = $result[1];
+	} else {
+		$tmp = "";
+	}
 
 	$attrs = '';
 	foreach ($attrList as $key => $value) {
@@ -890,6 +903,9 @@ function makeFormIntro($target, $attrList=array()) {
 
 	$args = split("&", $tmp);
 	foreach ($args as $arg) {
+		if (strlen($arg) == 0) {
+			continue;
+		}
 		list($key, $val) = split("=", $arg);
 		$form .= "<input type=hidden name=\"$key\" value=\"$val\">\n";
 	}
@@ -1272,7 +1288,7 @@ function getExif($file) {
 	        while (list($key,$value) = each ($return)) {
 		    if (trim($value)) {
 			$explodeReturn = explode(':', $value, 2);
-			if ($myExif[trim($explodeReturn[0])]) { 
+			if (isset($myExif[trim($explodeReturn[0])])) { 
 			    $myExif[trim($explodeReturn[0])] .= "<br>" . 
 				    trim($explodeReturn[1]);
 			} else {
@@ -1795,15 +1811,20 @@ function initLanguage() {
 	global $locale ;
 
 	// Detect Browser Language
-	$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
-	$lang_pieces=explode ("-",$lang[0]);
+	if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
+		$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
+		$lang_pieces=explode ("-",$lang[0]);
 
-	if (strlen($lang[0]) ==2) {
-		$gallery->browser_language=$lang[0] ."_".strtoupper($lang[0]);
+		if (strlen($lang[0]) ==2) {
+			$gallery->browser_language=$lang[0] ."_".strtoupper($lang[0]);
+		} else {
+			$gallery->browser_language=
+				strtolower($lang_pieces[0]).
+				"_".strtoupper($lang_pieces[1]) ;
+		}
 	} else {
-		$gallery->browser_language=
-			strtolower($lang_pieces[0]).
-			"_".strtoupper($lang_pieces[1]) ;
+		// wget doesn't have a browser language
+		$gallery->browser_language='en_US';
 	}
 
 	// If we have no Mode, use Browserlanguage

@@ -75,10 +75,10 @@ if (!strcmp($borderwidth, "off")) {
 $bgcolor = $gallery->album->fields['bgcolor'];
 $title = $gallery->album->fields["title"];
 
-define(PHOTO_URL,         1 << 0);
-define(PHOTO_CAPTION,     1 << 1);
-define(PHOTO_URL_AS_HREF, 1 << 2);
-define(PHOTO_ALL    ,     (1<<16)-1);      // all bits set
+define('PHOTO_URL',         1 << 0);
+define('PHOTO_CAPTION',     1 << 1);
+define('PHOTO_URL_AS_HREF', 1 << 2);
+define('PHOTO_ALL',     (1<<16)-1);      // all bits set
 
 function printSlideshowPhotos($slide_full, $what = PHOTO_ALL) {
     global $gallery;
@@ -134,7 +134,6 @@ function printSlideshowPhotos($slide_full, $what = PHOTO_ALL) {
 
 	// Go to the next photo
 	$index = getNextPhoto($index);
-	$photosLeft--;
     }
 
     return $photo_count;
@@ -160,8 +159,8 @@ if ($gallery->album->fields["linkcolor"]) {
 if ($gallery->album->fields["bgcolor"]) {
         echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
 }
-if ($gallery->album->fields["background"]) {
-        echo "BODY { background-image:url(".$gallery->album->fields[background]."); } ";
+if (isset($gallery->album->fields["background"])) {
+        echo "BODY { background-image:url(".$gallery->album->fields['background']."); } ";
 }
 if ($gallery->album->fields["textcolor"]) {
         echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
@@ -472,7 +471,7 @@ do {
     $pAlbum->load($pAlbumName);
     $breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($pAlbumName) .
       "\">" . $pAlbum->fields['title'] . "</a>";
-  } elseif (!$gallery->session->offline || $gallery->session->offlineAlbums["albums.php"]) {
+  } elseif (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
     //-- we're at the top! ---
     $breadtext[$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>";

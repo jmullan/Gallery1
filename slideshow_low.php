@@ -57,19 +57,19 @@ $defaultPause = 3;
 $defaultFull = 0;
 $defaultDir = 1;
 
-if (!$slide_index) {
+if (!isset($slide_index)) {
     $slide_index = 1;
 }
-if (!$slide_pause) {
+if (!isset($slide_pause)) {
     $slide_pause = $defaultPause;
 }
-if (!$slide_loop) {
+if (!isset($slide_loop)) {
     $slide_loop = $defaultLoop;
 }
-if (!$slide_full) {
+if (!isset($slide_full)) {
     $slide_full = $defaultFull;
 }
-if (!$slide_dir) {
+if (!isset($slide_dir)) {
     $slide_dir = $defaultDir;
 }
 
@@ -79,13 +79,14 @@ if ($slide_full && !$gallery->user->canViewFullImages($gallery->album)) {
 
 function makeSlideLowUrl($index, $loop, $pause, $full, $dir) {
 
-    return makeGalleryUrl('slideshow_low.php',
-	array('set_albumName' => $gallery->session->albumName,
-	      'slide_index' => $index,
-	      'slide_loop' => $loop,
-	      'slide_pause' => $pause,
-	      'slide_full' => $full,
-	      'slide_dir' => $dir));
+	global $gallery;
+	return makeGalleryUrl('slideshow_low.php',
+			array('set_albumName' => $gallery->session->albumName,
+				'slide_index' => $index,
+				'slide_loop' => $loop,
+				'slide_pause' => $pause,
+				'slide_full' => $full,
+				'slide_dir' => $dir));
 }
 
 $borderColor = $gallery->album->fields["bordercolor"];
@@ -96,10 +97,10 @@ if (!strcmp($borderwidth, "off")) {
 $bgcolor = $gallery->album->fields['bgcolor'];
 $title = $gallery->album->fields["title"];
 
-define(PHOTO_URL,         1 << 0);
-define(PHOTO_CAPTION,     1 << 1);
-define(PHOTO_URL_AS_HREF, 1 << 2);
-define(PHOTO_ALL    ,     (1<<16)-1);      // all bits set
+define('PHOTO_URL',         1 << 0);
+define('PHOTO_CAPTION',     1 << 1);
+define('PHOTO_URL_AS_HREF', 1 << 2);
+define('PHOTO_ALL',     (1<<16)-1);      // all bits set
 
 function printSlideshowPhotos($slide_full, $what = PHOTO_ALL) {
     global $gallery;
@@ -154,7 +155,6 @@ function printSlideshowPhotos($slide_full, $what = PHOTO_ALL) {
 
 	// Go to the next photo
 	$index = getNextPhoto($index);
-	$photosLeft--;
     }
 
     return $photo_count;

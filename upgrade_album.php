@@ -28,6 +28,9 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print _("Security violation") ."\n";
 	exit;
 }
+if (!isset($GALLERY_BASEDIR)) {
+	$GALLERY_BASEDIR = "./";
+}
 ?>
 <?php
 /*
@@ -39,6 +42,9 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
  * Since init.php will also include this file under some circumstances, 
  * we want to keep track to see  if we're in an include loop.  If so, return.
  */
+if (!isset($UPGRADE_LOOP)) {
+	$UPGRADE_LOOP=0;
+}
 $UPGRADE_LOOP++;
 if ($UPGRADE_LOOP == 2) {
 	return;
@@ -144,12 +150,12 @@ function find_albums(&$results, $album="") {
 <p>
 
 <?php
-if ($upgrade_albumname) {
+if (isset($upgrade_albumname)) {
 	$album = new Album();
 	$album->load($upgrade_albumname);
 }
 
-if ($album && $album->versionOutOfDate()) {
+if (isset($album) && $album->versionOutOfDate()) {
 	process(array($album));
 	reload_button();
 	end_file();
@@ -159,7 +165,7 @@ if ($album && $album->versionOutOfDate()) {
 $ood = array();
 find_albums($ood);
 
-if ($upgradeall && sizeof($ood)) {
+if (isset($upgradeall) && sizeof($ood)) {
 	process($ood);
 	reload_button();
 	end_file();
