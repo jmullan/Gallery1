@@ -1058,7 +1058,7 @@ $defaults = array(
 		"prompt" => _("Default Rows"),
 		"desc" => _("The default number of rows in an album."),
 		"value" => 3,
-		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9),
+		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
 	),
 	"group2_end" => array (
                	"type" => 'group_end',
