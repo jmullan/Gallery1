@@ -270,11 +270,12 @@ if ($numPhotos) {
 			continue;
 		}
 		$value=$gallery->album->getExtraField($i, $field);
-		print "<br><span class=\"admin\">$field:</span><br>";
         	if ($field == "Title") {
+			print "<br><span class=\"admin\">Title:</span><br>";
                 	print "<input type=text name=\"extra_fields[$i][$field]\" value=\"$value\" size=\"40\">";
         	}
 		else {
+			print "<br><span class=\"admin\">$field:</span><br>";
 			print "<textarea name=\"extra_fields[$i][$field]\" rows=2 cols=60>$value</textarea>";
 		}
 	}

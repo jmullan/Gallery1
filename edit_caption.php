@@ -90,13 +90,14 @@ foreach ($gallery->album->getExtraFields() as $field)
 		continue;
 	}
         $value=$gallery->album->getExtraField($index, $field);
-	print "<tr><td valign=top><b>$field:<b></td><td>";
 	if ($field == "Title")
 	{
+		print "<tr><td valign=top><b>Title:<b></td><td>";
 		print "<input type=text name=\"extra_fields[$field]\" value=\"$value\" size=\"40\">";
 	}
 	else
 	{
+		print "<tr><td valign=top><b>$field:<b></td><td>";
 		print "<textarea name=\"extra_fields[$field]\" rows=4 cols=40>";
 		print "$value</textarea>";
 	}
