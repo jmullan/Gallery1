@@ -307,7 +307,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan=2>
+     <td colspan="2" class="popup">
       <?php echo _("Users who can add comments.") ?>
      </td>
     </tr>
@@ -322,7 +322,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan=2>
+     <td colspan="2" class="popup">
       <?php echo _("Users who can view comments.") ?>
      </td>
     </tr>
