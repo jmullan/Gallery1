@@ -58,6 +58,8 @@ function make_fields($key, $arr) {
 		$col2 = form_textarea($key, $arr);
 	} else if (isset($arr["type"]) && $arr["type"] == "text") {
 		$col2 = form_input($key, $arr);
+	} else if (isset($arr["type"]) && $arr["type"] == "hidden") {
+		$col2 = form_input($key, $arr);
 	} else {
 		$col2 ="";
 	}
