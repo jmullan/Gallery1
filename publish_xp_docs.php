@@ -31,38 +31,39 @@ doctype();
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<center>
-<span class="popuphead">
+
+<p class="popuphead" align="center">
 <?php echo _("Using the Windows XP <i>Publish To the Web</i> feature") ?>
-</span>
-</center>
+</p>
+
 <span class="popup">
-<?php echo sprintf(_("Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.  %s <b>has experimental</b> support for this feature."), Gallery()) ?>
-<?php echo _("It's relatively easy to configure.") ?>  
+<?php 
+	echo sprintf(_("Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.  %s <b>has experimental</b> support for this feature."), Gallery());
+	echo _("It's relatively easy to configure.");
+?>  
 
-<br>
-<br>
+<br><br>
 
-<br>
 <b><?php echo _("Step 1") ?></b>
 <br>
-<?php echo sprintf(_("Download the %sXP Configuration File%s"), 
-		'<a href="'.makeGalleryUrl('publish_xp.php').'">', '</a>'); ?>
-<?php echo sprintf(_("Save this file on your PC and rename it %s."), '"install_registry.reg"') ?>  
-<?php echo _("If it asks you for confirmation about changing the file type, answer &quot;yes&quot;.") ?>
-<?php echo _("Right click on this file and you should see a menu appear.") ?> 
-<?php echo _("Select the <b>Merge</b> option (this should be at the top of the menu).") ?>
-<?php echo _("It will ask you if you want to import these values into your registry.") ?>
-<?php echo _("Click &quot;ok&quot;.") ?>
-<?php echo _("It will tell you that the files were imported successfully.") ?>
-<?php echo _("Click &quot;ok&quot; again.") ?>
-<br>
-<br>
+<?php 
+	echo sprintf(_("Download the %sXP Configuration File%s"), 
+		'<a href="'.makeGalleryUrl('publish_xp.php').'">', '</a>');
+	echo sprintf(_("Save this file on your PC and rename it %s."), '"install_registry.reg"');
+	echo _("If it asks you for confirmation about changing the file type, answer &quot;yes&quot;.");
+	echo _("Right click on this file and you should see a menu appear.");
+	echo _("Select the <b>Merge</b> option (this should be at the top of the menu).");
+	echo _("It will ask you if you want to import these values into your registry.");
+	echo _("Click &quot;ok&quot;.");
+	echo _("It will tell you that the files were imported successfully.");
+	echo _("Click &quot;ok&quot; again.");
+?>
+<br><br>
 
 <b><?php echo _("Step 2") ?></b>
 <br>
-<?php 	echo _("Open your Windows explorer and browse to a folder containing a JPG image.") ."  ";
-	echo _("Select the image and there should be a link on the left that says &quot;Publish this file to the web...&quot; ") ;
+<?php 	echo _("Open your Windows explorer and browse to a folder containing supported images.") ."  ";
+	echo _("Select the image(s) or a folder and there should be a link on the left that says &quot;Publish this file to the web...&quot; ") ;
 	echo _("Click this link and then follow the instructions to log into your Gallery, select an album and publish the image.") ?>
 <br>
 <br>

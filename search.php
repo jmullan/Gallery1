@@ -41,10 +41,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<?php } ?>
-
-<!-- search.header begin -->
-<?php 
+<?php }
 
 includeHtmlWrap("search.header");
 
