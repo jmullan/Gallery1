@@ -274,7 +274,7 @@ if (!$gallery->album->isMovie($id)) {
 	if (!strcmp($gallery->album->fields["use_exif"],"yes") && (!strcmp($photo->image->type,"jpg")) &&
 	    ($gallery->app->use_exif)) {
 		$adminCommands .= "<a href=\"#\" onClick=\"".
-						popup($gallery->app->photoAlbumURL."/view_photo_properties.php?index=$index").
+						popup("view_photo_properties.php?index=$index").
 						"\">[photo properties]</a>&nbsp;&nbsp;";
 	}
 
