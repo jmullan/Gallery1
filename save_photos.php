@@ -239,9 +239,9 @@ function process($file, $tag, $name, $setCaption="") {
 		}
 		/* Figure out what files we can handle */
 		list($files, $status) = exec_internal(
-			fs_import_filename($gallery->app->zipinfo) . 
+			fs_import_filename($gallery->app->zipinfo, 1) . 
 			" -1 " .
-			fs_import_filename($file));
+			fs_import_filename($file, 1));
 		sort($files);
 		foreach ($files as $pic_path) {
 			$pic = basename($pic_path);
@@ -251,13 +251,13 @@ function process($file, $tag, $name, $setCaption="") {
 			if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
 				$cmd_pic_path = str_replace("[", "\[", $pic_path); 
 				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path); 
-				exec_wrapper(fs_import_filename($gallery->app->unzip) . 
+				exec_wrapper(fs_import_filename($gallery->app->unzip, 1) . 
 					     " -j -o " .
-					     fs_import_filename($file) .
+					     fs_import_filename($file, 1) .
 					     " '" .
-					     fs_import_filename($cmd_pic_path) .
+					     fs_import_filename($cmd_pic_path, 1) .
 					     "' -d " .
-					     fs_import_filename($gallery->app->tmpDir));
+					     fs_import_filename($gallery->app->tmpDir, 1));
 				process($gallery->app->tmpDir . "/$pic", $tag, $pic, $setCaption);
 				fs_unlink($gallery->app->tmpDir . "/$pic");
 			}
