@@ -142,14 +142,19 @@ $breadcrumb["bordercolor"] = $bordercolor;
   if (!isset($last)) { ?>
       <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $nextPage)) ?>" />
       <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $maxPages)) ?>" />
-  <?php } ?>
-  <link rel="up" href="<?php
-      if ($gallery->album->isRoot()) {
-         echo makeAlbumUrl();
-      } else {
-         echo makeAlbumUrl($gallery->album->fields['parentAlbumName']);
-      }?>" />
+  <?php } if ($gallery->album->isRoot() && 
+  	(!$gallery->session->offline || 
+	 $gallery->session->offlineAlbums["albums.php"])) { ?>
+  <link rel="up" href="<?php echo makeAlbumUrl();?>" />
+      <?
+      } else if (!$gallery->session->offline || 
+	 $gallery->session->offlineAlbums[$pAlbum->fields['parentAlbumName']]) {?>
+  <link rel="up" href="<?php echo makeAlbumUrl($gallery->album->fields['parentAlbumName']); ?>" />
+  <?php } 
+  	if (!$gallery->session->offline || 
+	 $gallery->session->offlineAlbums["albums.php"]) { ?>
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" />
+  <?php } ?>
   <style type="text/css">
 <?php
 // the link colors have to be done here to override the style sheet 
@@ -270,6 +275,9 @@ if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
 				"perPage" => $perPage)) .
 			'>[captions]</a>&nbsp;';
 	}
+	$adminCommands .= popup_link("[edit summary]", 
+		"edit_field.php?set_albumName=" .
+		$gallery->session->albumName."&field=summary");
 }
 
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
@@ -334,6 +342,12 @@ $borderwidth = $gallery->album->fields["border"];
 if (!strcmp($borderwidth, "off")) {
 	$bordercolor = $gallery->album->fields["bgcolor"];
 	$borderwidth = 1;
+}
+?>
+<?php
+if ($page == 1)
+{
+        print "<center>".$gallery->album->fields["summary"]."</center>";
 }
 ?>
 

@@ -39,6 +39,7 @@ class Album {
 
 		$this->fields["title"] = "Untitled";
 		$this->fields["description"] = "No description";
+		$this->fields["summary"]="";
 		$this->fields["nextname"] = "aaa";
 		$this->fields["bgcolor"] = "";
 		$this->fields["textcolor"] = "";
