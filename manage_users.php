@@ -62,15 +62,14 @@ doctype();
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<center>
-<p class="popuphead"><?php echo _("Manage Users") ?></p>
+<div class="popup">
+<div class="popuphead"><?php echo _("Manage Users") ?></div>
+<div class="popupcontent" align="center">
 <?php 
 	if (isset($error)) {
 		echo gallery_error($error);
 	}
 ?>
-<div class="popup">	
 <?php echo makeFormIntro("manage_users.php", array(
 			"name" => "manageusers_form", 
 			"method" => "POST"));
@@ -108,7 +107,8 @@ if (!$displayUsers) {
 </form>
 
 </div>
-</center>
 <?php print gallery_validation_link("manage_users.php"); ?>
+</div>
+</div>
 </body>
 </html>

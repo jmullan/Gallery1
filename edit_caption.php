@@ -72,9 +72,9 @@ if (isset($save)) {
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<div align="center">
-	<p class="popuphead"><?php echo _("Edit Caption"); ?></p>
+<div class="popup">
+<div class="popuphead"><?php echo _("Edit Caption"); ?></div>
+<div class="popupcontent" align="center">
 	<?php echo $gallery->album->getThumbnailTag($index) ?>
 
 <?php echo makeFormIntro("edit_caption.php", 
@@ -138,15 +138,15 @@ $year = $itemCaptureDate["year"];
 <br>
 <table border="0">
   <tr>
-	<td colspan="6" align="center" class="popup"><?php echo _("Photo Capture Date") ?></td>
+	<td colspan="6" align="center" class="popuptd"><?php echo _("Photo Capture Date") ?></td>
   </tr>
   <tr>
-    <td class="popup"><?php echo _("Month") ?></td>
-    <td class="popup"><?php echo _("Day") ?></td>
-    <td class="popup"><?php echo _("Year") ?></td>
-    <td class="popup"><?php echo _("Hours") ?></td>
-    <td class="popup"><?php echo _("Minutes") ?></td>
-    <td class="popup"><?php echo _("Seconds") ?></td>
+    <td class="popuptd"><?php echo _("Month") ?></td>
+    <td class="popuptd"><?php echo _("Day") ?></td>
+    <td class="popuptd"><?php echo _("Year") ?></td>
+    <td class="popuptd"><?php echo _("Hours") ?></td>
+    <td class="popuptd"><?php echo _("Minutes") ?></td>
+    <td class="popuptd"><?php echo _("Seconds") ?></td>
   </tr>
   <tr>
 <?php
@@ -184,7 +184,6 @@ echo "</td>";
 </p>
 
 </form>
-</div>
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--   
@@ -194,5 +193,7 @@ document.theform.data.focus();
 </script>
 
 <?php print gallery_validation_link("edit_caption.php", true, array('index' => $index)); ?>
+</div>
+</div>
 </body>
 </html>

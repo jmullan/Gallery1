@@ -39,11 +39,9 @@ doctype();
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<center>
-<span class="popuphead"><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></span>
-<br>
-<br>
+<div class="popup">
+<div class="popuphead"><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></div>
+<div class="popupcontent">
 <?php
 
 if (!empty($username) && !empty($gallerypassword)) {
@@ -72,7 +70,7 @@ if (!empty($username) && !empty($gallerypassword)) {
 	$error=_("Please enter username and password.");
 }
 ?>
-<div class="popup">
+<div class="popuptd">
 <?php echo makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
 <?php echo _("Logging in gives you greater permission to view, create, modify and delete albums.") ?>
 <p>
@@ -84,11 +82,11 @@ if (!empty($username) && !empty($gallerypassword)) {
 <?php } ?>
 
 <tr>
-	<td class="popup"><?php echo _("Username") ?></td>
+	<td class="popuptd"><?php echo _("Username") ?></td>
 	<td><input type="text" name="username" value="<?php echo $username ?>"></td>
 </tr>
 <tr>
-	<td class="popup"><?php echo _("Password") ?></td>
+	<td class="popuptd"><?php echo _("Password") ?></td>
 	<td><input type="password" name="gallerypassword"></td>
 </tr>
 </table>
@@ -98,16 +96,18 @@ if (!empty($username) && !empty($gallerypassword)) {
 	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </p>
 </form>
-<hr>
-
+</div>
+</div>
+</div>
 <?php 
 if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
-
-echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST")); ?>
-<span class="popuphead"><?php echo _("Forgotten your password?") ?></span>
-<br>
-<br>
+?>
+<div class="popup">
+<div class="popuphead"><?php echo _("Forgotten your password?") ?></div>
+<div class="popupcontent">
 <?php
+	echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST"));
+
 if (!empty($forgot)) {
        	$tmpUser = $gallery->userDB->getUserByUsername($username);
        	if ($tmpUser) {
@@ -145,7 +145,7 @@ if (!empty($forgot)) {
 <p>
 <table>
 <tr>
-	<td class="popup"><?php echo _("Username") ?></td>
+	<td class="popuptd"><?php echo _("Username") ?></td>
 	<td><input type="text" name="username" value="<?php echo $username ?>"></td>
 </tr>
 </table>
@@ -154,6 +154,8 @@ if (!empty($forgot)) {
 <p>
 <input type="submit" name="forgot" value="<?php echo _("Send me my password") ?>">
 </form>
+</div>
+</div>
 <?php } /* End if-email-on */ ?>
 
 <script language="javascript1.2" type="text/JavaScript">
@@ -164,7 +166,8 @@ document.login_form.username.focus();
 </script>
 
 </div>
-</center>
+
 <?php print gallery_validation_link("login.php"); ?>
+</div>
 </body>
 </html>

@@ -81,24 +81,22 @@ if (isset($action) && $action == 'delete' && isset($id)) {
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<div align="center">
+<div class="popup">
 <?php
 if ($gallery->album && isset($id)) {
-	echo makeFormIntro("delete_photo.php", array('name' => 'deletephoto_form', 
-			'onsubmit' => "deletephoto_form.confirm.disabled = true;"));
 	if (isset($albumDelete)) {
 ?>
-
-<p class="popuphead"><?php echo _("Delete Album") ?></p>
-
-<p class="popup">
-	<?php echo _("Do you really want to delete this Album?") ?>
-</p>
+<div class="popuphead"><?php echo _("Delete Album") ?></div>
+<div class="popupcontent" align="center">
+<?php 
+        echo makeFormIntro("delete_photo.php", array('name' => 'deletephoto_form',
+              'onsubmit' => "deletephoto_form.confirm.disabled = true;"));
+	echo _("Do you really want to delete this Album?") 
+?>
 
 <?php
-$myAlbum = new Album();
-$myAlbum->load($id);
+	$myAlbum = new Album();
+	$myAlbum->load($id);
 ?>
 <p>
 <?php echo $myAlbum->getHighlightTag() ?>
@@ -116,9 +114,13 @@ $myAlbum->load($id);
 <?php
 	} else {
 ?>
-<p class="popuphead"><?php echo _("Delete Photo") ?></p>
-
-<?php echo _("Do you really want to delete this photo?") ?>
+<div class="popuphead"><?php echo _("Delete Photo") ?></div>
+<div class="popupcontent" align="center">
+<?php 
+	echo _("Do you really want to delete this photo?") ;
+        echo makeFormIntro("delete_photo.php", array('name' => 'deletephoto_form',
+              'onsubmit' => "deletephoto_form.confirm.disabled = true;"));
+?>
 
 <p><?php echo $gallery->album->getThumbnailTag($index) ?></p>
 
@@ -141,8 +143,8 @@ $myAlbum->load($id);
 	echo gallery_error(_("no album / index specified"));
 }
 ?>
-</div>
-
 <?php print gallery_validation_link("delete_photo.php", false, array('id' => $id, 'index' => $index)); ?>
+</div>
+</div>
 </body>
 </html>

@@ -41,11 +41,9 @@ doctype();
   <META HTTP-EQUIV="expires" CONTENT="0"> 
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<center>
-<p class="popuphead"><?php echo _("Rotate/Flip Photo") ?></p>
-
-<span class="popup">
+<div class="popup">
+<div class="popuphead"><?php echo _("Rotate/Flip Photo") ?></div>
+<div class="popupcontent" align="center">
 <?php
 if ($gallery->session->albumName && isset($index)) {
 	if (isset($rotate) && !empty($rotate)) {
@@ -95,8 +93,8 @@ if ($gallery->session->albumName && isset($index)) {
 }
 ?>
 
-</span>
-</center>
 <?php print gallery_validation_link("rotate_photo.php"); ?>
+</div>
+</div>
 </body>
 </html>

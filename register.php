@@ -33,17 +33,16 @@ doctype();
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<center>
-<span class="popuphead"><?php echo sprintf(_("Create User for %s."), $gallery->app->galleryTitle) ?></span>
-<br>
-<br>
+<div class="popup">
+<div class="popuphead"><?php echo sprintf(_("Create User for %s."), $gallery->app->galleryTitle) ?></div>
+<div class="popupcontent">
 <?php if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 	<p>
 	<?php echo _("This Gallery does not support self-registration by visitors.") ?>
 	<br><br>
 	<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
-	</center>
+	</div>
+	</div>
 	</body>
 	</html>
 <?php
@@ -144,7 +143,8 @@ include(dirname(__FILE__) . '/html/userData.inc');
 document.usercreate_form.uname.focus();
 //--> 
 </script>
-</center>
 <?php print gallery_validation_link("register.php"); ?>
+</div>
+</div>
 </body>
 </html>

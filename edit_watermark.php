@@ -70,9 +70,9 @@ doctype();
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<div align="center">
-<p class="popuphead"><?php echo _("Edit Watermark") ?></p>
+<div class="popup">
+<div class="popuphead"><?php echo _("Edit Watermark") ?></div>
+<div class="popupcontent" align="center">
 <p>
 <?php
 if (isset($preview)) {
@@ -112,7 +112,8 @@ includeLayout ('watermarkform.inc');
 document.theform.cancel.focus();
 //-->
 </script>
-
 <?php print gallery_validation_link("edit_watermark.php"); ?>
+</div>
+</div>
 </body>
 </html>

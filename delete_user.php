@@ -44,11 +44,9 @@ doctype();
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<center>
-<p class="popuphead"><?php echo _("Delete User") ?></p>
-
 <div class="popup">
+<div class="popuphead"><?php echo _("Delete User") ?></div>
+<div class="popupcontent" align="center">
 <?php echo makeFormIntro("delete_user.php", array('name' => 'deleteuser_form', 
 						'onsubmit' => 'deleteuser_form.delete.disabled = true;')); ?>
 <input type="hidden" name="uname" value="<?php echo $uname ?>">
@@ -76,7 +74,8 @@ if (!strcmp($gallery->user->getUsername(), $uname)) {
 </form> 
 
 </div>
-</center>
 <?php print gallery_validation_link("delete_user.php"); ?>
+</div>
+</div>
 </body>
 </html>

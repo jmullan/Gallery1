@@ -75,9 +75,9 @@ doctype();
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<div align="center">
-<p class="popuphead"><?php echo _("Add Comment") ?></p>
+<div class="popup" align="center">
+<div class="popuphead"><?php echo _("Add Comment") ?></div>
+<div class="popupcontent">
 <p><?php echo _("Enter your comment for this picture in the text box below.") ?></p>
 
 <?php 
@@ -99,6 +99,7 @@ drawCommentAddForm($commenter_name, 35);
 <br><input type="button" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 
 </form>
+</div>
 </div>
 
 <script language="javascript1.2" type="text/JavaScript">

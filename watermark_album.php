@@ -40,13 +40,29 @@ if (isset($save) || isset($preview)) {
 	if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12)) {
 		if (isset($wmName) && !empty($wmName)) {
 			if (isset($save)) {
-				print "<html><body>\n";
-	        	        echo "<center> ". _("Watermarking album.")."<br>(". _("this may take a while"). ")</center>\n";
+?>
+<html>
+<head>
+  <title><?php echo _("Watermarking album.") ?></title>
+  <?php common_header(); ?>
+</head>
+<body dir="<?php echo $gallery->direction ?>">
+<div class="popup">
+<div class="popuphead"><?php echo _("Watermarking album."); ?></div>
+<div class="popupcontent" align="center">
+(<?php echo _("this may take a while"); ?> )
+<?
         	        	my_flush();
                			set_time_limit($gallery->app->timeLimit);
 	                	$gallery->album->watermarkAlbum($wmName, "",
 					$wmAlign, $wmAlignX, $wmAlignY, $recursive);
         	        	$gallery->album->save();
+?>
+</div>
+</div>
+</body>
+</html>
+<?
                 		dismissAndReload();
 	                	return;
 			} else {
@@ -78,10 +94,9 @@ doctype();
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<div align="center">
-<p align="center" class="popuphead"><?php echo _("Watermark Album") ?></p>
-
+<div class="popup">
+<div class="popuphead"><?php echo _("Watermark Album") ?></div>
+<div class="popupcontent" align="center">
 <?php
 if (!$gallery->album->numPhotos(1)) {
 	echo "\n<p>". gallery_error(_("No items to watermark.")) . "</p>";
@@ -118,7 +133,6 @@ if (!$gallery->album->numPhotos(1)) {
 	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </p>
 </form>
-</div>
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--   
@@ -128,5 +142,7 @@ document.theform.data.focus();
 </script>
 <?php } // end if numPhotos() ?>
 <?php print gallery_validation_link("watermark_album.php"); ?>
+</div>
+</div>
 </body>
 </html>

@@ -51,10 +51,9 @@ if (isset($confirm) && $confirm) {
   <?php common_header(); ?>
 </head>
 <body>
-
-<center>
-<p class="popuphead"><?php echo _("Reset Voting") ?></p>
-
+<div class="popup">
+<div class="popuphead"><?php echo _("Reset Voting") ?></div>
+<div class="popupcontent">
 <p>
 <?php echo sprintf(_("Do you really want to remove all votes in %s?"), "<b>{$gallery->album->fields['title']}</b>") ?>
 </p>
@@ -63,9 +62,8 @@ if (isset($confirm) && $confirm) {
 <input type=submit name=confirm value="<?php echo _("Remove Votes") ?>">
 <input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
-<br>
-</center>
-
 <?php print gallery_validation_link("reset_votes.php"); ?>
+</div>
+</div>
 </body>
 </html>

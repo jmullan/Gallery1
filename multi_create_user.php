@@ -43,7 +43,9 @@ if (isset($create))
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
+<div class="popup">
+<div class="popuphead"><?php echo _("Create Multiple Users") ?></div>
+<div class="popupcontent">
 <?php
 	if (empty($membersfile_name)) {
 		$gErrors["membersfile"] = _("No file selected.");
@@ -140,12 +142,9 @@ if (isset($create))
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-
-<center>
-<span class="popuphead"><?php echo _("Create Users") ?></span>
-<br>
-<br>
+<div class="popup">
+<div class="popuphead"><?php echo _("Create Users") ?></div>
+<div class="popupcontent">
 <?php echo _("Create multiple new users from a file.") ?>
 <p>
 <?php
@@ -189,6 +188,7 @@ echo _("The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substitu
 <p>
 
 </ul>
-
+</div>
+</div>
 </body>
 </html>

@@ -71,10 +71,10 @@ doctype();
   <title><?php echo _("Poll Properties") ?></title>
   <?php common_header(); ?>
 </head>
-<body>
-
-<center>
-<p class="popuphead"><?php echo _("Poll Properties"); ?></p>
+<body dir="<?php echo $gallery->direction ?>">
+<div class="popup">
+<div class="popuphead"><?php echo _("Poll Properties"); ?></div>
+<div class="popupcontent">
 <?php
 if (! empty($error)) {
 	echo "<\p>". gallery_error($error) . "</p>";
@@ -142,8 +142,9 @@ for ($i=0; $i<$gallery->album->getPollScale() ; $i++) {
 <input type="submit" value="<?php echo _("Close") ?>" onclick='parent.close()'>
 
 </form>
-</center>
 <?php print gallery_validation_link("poll_properties.php"); ?>
+</div>
+</div>
 </body>
 </html>
 

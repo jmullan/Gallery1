@@ -75,6 +75,8 @@ function reload_button() {
 }
 
 function end_file() {
+	print "</div>";
+	print "</div>";
 	print "</body>";
 	print "</html>";
 }
@@ -119,8 +121,9 @@ doctype();
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<p align="center" class="popuphead"><?php echo _("Upgrade Albums") ?></p>
+<div class="popup">
+<div class="popuphead"><?php echo _("Upgrade Albums") ?></div>
+<div class="popupcontent">
 <p>
 <?php 
 	echo _("The following albums in your gallery were created with an older version of the software and are out of date.");

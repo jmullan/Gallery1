@@ -167,10 +167,9 @@ correctPseudoUsers($uAdd, $ownerUid);
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<center>
-<p class="popuphead"><?php echo _("Album Permissions") ?></p>
-<div class="popup">
+<div class="popup" align="center">
+<div class="popuphead"><?php echo _("Album Permissions") ?></div>
+<div class="popupcontent">
 <?php echo sprintf(_("Changing permissions for %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
 
 echo makeFormIntro("album_permissions.php", 
@@ -191,7 +190,7 @@ echo makeFormIntro("album_permissions.php",
   <td valign=top>
    <table border="0" cellspacing="3" cellpadding="0">
     <tr>
-     <td colspan="2" class="popup">
+     <td colspan="2" class="popuptd">
       <?php echo _("Users who can see the album") ?>
      </td>
     </tr>
@@ -206,7 +205,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2" class="popup">
+     <td colspan="2" class="popuptd">
       <?php echo _("Users who can change album text.") ?>
      </td>
     </tr>
@@ -221,7 +220,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2" class="popup">
+     <td colspan="2" class="popuptd">
       <?php echo _("Users who can add photos.") ?>
      </td>
     </tr>
@@ -236,7 +235,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2" class="popup">
+     <td colspan="2" class="popuptd">
 	<?php echo _("Users who can modify photos.") ?>
      </td>
     </tr>
@@ -251,7 +250,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2" class="popup">
+     <td colspan="2" class="popuptd">
 	<?php echo _("Users who can delete photos.") ?>
      </td>
     </tr>
@@ -266,7 +265,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2" class="popup">
+     <td colspan="2" class="popuptd">
 	<?php echo _("Users who can create sub albums.") ?>
      </td>
     </tr>
@@ -281,7 +280,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2" class="popup">
+     <td colspan="2" class="popuptd">
       <?php echo _("Users who can view full (original) images.") ?>
      </td>
     </tr>
@@ -297,7 +296,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2" class="popup">
+     <td colspan="2" class="popuptd">
       <?php echo _("Users who can add comments.") ?>
      </td>
     </tr>
@@ -312,7 +311,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2" class="popup">
+     <td colspan="2" class="popuptd">
       <?php echo _("Users who can view comments.") ?>
      </td>
     </tr>
@@ -336,7 +335,7 @@ echo makeFormIntro("album_permissions.php",
 </form>
 
 </div>
-</center>
+</div>
 <?php print gallery_validation_link("album_permissions.php"); ?>
 </body>
 </html>

@@ -37,10 +37,9 @@ doctype();
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
-<center>
-<span class="popuphead"><?php echo _("File upload in progress!") ?></span>
-<p>
-<span class="popup">
+<div class="popup">
+<div class="popuphead"><?php echo _("File upload in progress!") ?></div>
+<div class="popupcontent" align="center">
 <?php echo _("This page will go away automatically when the upload is complete.  Please be patient!") ?>
 <p>
 <table border=0 cellpadding=0 cellspacing=0>
@@ -51,8 +50,7 @@ doctype();
  </tr>
 </table>
 
-</center>
-
-</span>
+</div>
+</div>
 </body>
 </html>

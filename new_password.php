@@ -91,11 +91,9 @@ doctype();
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
-<center>
-<span class="popuphead"><?php echo _("Make New Password") ?></span>
-<br>
-<br>
+<div class="popup">
+<div class="popuphead"><?php echo _("Make New Password") ?></div>
+<div class="popupcontent">
 <?php 
 if ($error_string) {
        	echo gallery_error($error_string);
@@ -132,6 +130,7 @@ $defaultLanguage = $tmpUser->getDefaultLanguage();
 document.usermodify_form.new_password1.focus();
 //--> 
 </script>
-
+</div>
+</div>
 </body>
 </html>

@@ -21,19 +21,19 @@
  */
 ?>
 <?php
-
 require(dirname(__FILE__) . '/init.php');
-
 if (!strcmp($cmd, "remake-thumbnail")) {
-	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+        if ($gallery->user->canWriteToAlbum($gallery->album)) {
 ?>
 <html>
 <head>
-  <title><?php echo _("Rebuilding Thumbnails") ?></title>
+  <title><?php echo _("Performing Operation..") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<span class="popup">
+<div class="popup">
+<div class="popuphead"><?php echo _("Performing Operation..") ?></div>
+<div class="popupcontent">
 <?php
 		if ($gallery->session->albumName && isset($index)) {
 			if (!strcmp($index, "all")) {
@@ -156,11 +156,12 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 }
 ?>
 
-<center>
+<div align="center">
 <form>
 <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
 </form>
-
-</span>
+</div>
+</div>
+</div>
 </body>
 </html>
