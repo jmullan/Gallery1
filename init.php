@@ -21,12 +21,12 @@
 <?
 /* Load bootstrap code */
 if (substr(PHP_OS, 0, 3) == 'WIN') {
-	require($GALLERY_BASEDIR . "platform/fs_win32.php");
+	include($GALLERY_BASEDIR . "platform/fs_win32.php");
 } else {
-	require($GALLERY_BASEDIR . "platform/fs_unix.php");
+	include($GALLERY_BASEDIR . "platform/fs_unix.php");
 }
 if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
-	require($GALLERY_BASEDIR . "config.php");
+	include($GALLERY_BASEDIR . "config.php");
 }
 require($GALLERY_BASEDIR . "version.php");
 require($GALLERY_BASEDIR . "util.php");
@@ -68,10 +68,10 @@ require($GALLERY_BASEDIR . "classes/Comment.php");
 require($GALLERY_BASEDIR . "session.php");
 
 if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
-	require($GALLERY_BASEDIR . "classes/Database.php");
-	require($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
-	require($GALLERY_BASEDIR . "classes/nuke5/UserDB.php");
-	require($GALLERY_BASEDIR . "classes/nuke5/User.php");
+	include($GALLERY_BASEDIR . "classes/Database.php");
+	include($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
+	include($GALLERY_BASEDIR . "classes/nuke5/UserDB.php");
+	include($GALLERY_BASEDIR . "classes/nuke5/User.php");
 
 	$gallery->database{"nuke"} = new MySQL_Database(
 			$GLOBALS['dbhost'],
@@ -87,7 +87,7 @@ if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
 	} 
 
 	if (is_admin($GLOBALS['admin'])) {
-		require($GALLERY_BASEDIR . "classes/nuke5/AdminUser.php");
+		include($GALLERY_BASEDIR . "classes/nuke5/AdminUser.php");
 
 		$gallery->user = new Nuke5_AdminUser($GLOBALS['admin']);
 		$gallery->session->username = $gallery->user->getUsername();
@@ -98,8 +98,8 @@ if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
 			$gallery->userDB->getUserByUsername($gallery->session->username);
 	}
 } else {
-	require($GALLERY_BASEDIR . "classes/gallery/UserDB.php");
-	require($GALLERY_BASEDIR . "classes/gallery/User.php");
+	include($GALLERY_BASEDIR . "classes/gallery/UserDB.php");
+	include($GALLERY_BASEDIR . "classes/gallery/User.php");
 
 	/* Load our user database (and user object) */
 	$gallery->userDB = new Gallery_UserDB;
