@@ -172,7 +172,7 @@ class Album {
 		return $mostRecent;
 	}
 
-	function getNestedAlbum($index) {
+	function &getNestedAlbum($index) {
 		
 		$albumName = $this->getAlbumName($index);
 		$album = new Album();
