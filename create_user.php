@@ -43,7 +43,7 @@ if ($submit) {
 		}
 
 		if (!$errorCount) {
-			$tmpUser = new User();
+			$tmpUser = new Gallery_User();
 			$tmpUser->setUsername($uname);
 			$tmpUser->setPassword($new_password1);
 			$tmpUser->setFullname($fullname);
