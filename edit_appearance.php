@@ -42,6 +42,7 @@ if ($save) {
 	$album->fields["fit_to_window"] = $fit_to_window;
 	$album->fields["use_fullOnly"] = $use_fullOnly;
 	$album->fields["print_photos"] = $print_photos;
+	$album->fields["use_exif"] = $use_exif;
 	$album->save();
 
 	reload();
@@ -133,6 +134,15 @@ Album Properties
 <td>Which photo printing service<br>do you want to let visitors use?</td>
 <td><select name="print_photos"><?= selectOptions($album, "print_photos", array("none", "shutterfly")) ?></select></td>
 </tr>
+<?
+if ($app->use_exif) {
+?>
+<td>Display EXIF data?</td>
+<td><select name="use_exif"><?=selectOptions($album, "use_exif", array("no", "yes")) ?></select></td>
+</tr>
+<?
+} // end if
+?>
 </table>
 
 <br>
