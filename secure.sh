@@ -25,11 +25,12 @@ else
 	# We are in a "normal installation"
 	GALLERY_ROOT="."
 	GALLERY_SETUPDIR="./setup"
+	GALLERY_CONFDIR="."
 fi	
 
 
 # Set Permissions
-for file in $GALLERY_CONFDIR/config.php $GALLERY_CONFDIR/htaccess ; do
+for file in $GALLERY_CONFDIR/config.php $GALLERY_CONFDIR/.htaccess ; do
 	if [ -s $file ] ; then
 		if [ -d $GALLERY_DEB_ROOT ] && [ -d $GALLERY_DEB_CONFDIR ] ; then
         		chown root:root $file

@@ -30,7 +30,7 @@ fi
 	
 
 # Set Permissions
-for file in $GALLERY_CONFDIR/config.php $GALLERY_CONFDIR/htaccess ; do
+for file in $GALLERY_CONFDIR/config.php $GALLERY_CONFDIR/.htaccess ; do
 	if [ ! -f $file ]; then
         	touch $file
 	fi
@@ -39,7 +39,7 @@ for file in $GALLERY_CONFDIR/config.php $GALLERY_CONFDIR/htaccess ; do
 		chown www-data:root $file
 	fi
 	
-	chmod 755 $file
+	chmod 666 $file
 done
 
 chmod 755 $GALLERY_ROOT/setup
