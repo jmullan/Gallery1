@@ -86,9 +86,20 @@ program, I build the functionality using 'jhead'.
 
 -John Kirkland
 
-*/
+PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
+	but we have not yet worked out the code that will detect if
+	we're using the fixed version and use it instead of the
+	jhead binary -- BM 2/23/2002
 
-	$myExif = $gallery->album->getExif($index);
+*/
+	$forceRefresh = 0;
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		if ($reloadExifFromFile) {
+			$forceRefresh = 1;
+		}
+	}
+
+	$myExif = $gallery->album->getExif($index, $forceRefresh);
 
 	if ($myExif) {
 		array_pop($myExif); // get rid of empty element at end
@@ -119,6 +130,20 @@ program, I build the functionality using 'jhead'.
 
 	if ($gallery->album->getKeyWords($index)) {
 		echo "<b>KEYWORDS</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
+	}
+
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		echo "<br>";
+		echo "<a href=" .
+			makeGalleryUrl("view_photo_properties.php",
+					array("reloadExifFromFile" => 1,
+						"set_albumName" => $gallery->session->albumName,
+						"index" => $index)) .
+			">[Reload EXIF Data From File]</a>";
+		echo "<br>";
+		echo "<span class=fineprint>";
+		echo "(if the data is current, this will not appear to do anything)";
+		echo "</span>";
 	}
 } else {
 	error("no album / index specified");
