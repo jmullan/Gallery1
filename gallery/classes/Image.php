@@ -164,7 +164,7 @@ class Image {
 			$size_val = "width=\"$this->width\" height=\"$this->height\"";
 		}
 
-		if ($this->resizedName) {
+		if ($this->resizedName && $size == 0) {
 			if ($full) {
 				return "<img src=\"$dir/$this->name.$this->type\" " .
 					"width=\"$this->raw_width\" height=\"$this->raw_height\" $attrs alt=\"$alttext\" title=\"$alttext\" />";

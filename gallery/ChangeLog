@@ -1,32 +1,41 @@
-2003-11-11 Jens Tkotz <jens@peino.de> 1.4.1-RC2-b6
+2003-11-11  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-RC3-b7
+
+	* Fixed Image::getTag() to properly set image dimensions to $size if
+	  specified. Previously, the setting was being improperly ignored in
+	  some cases.
+
+	* Fixed Config. Wizard's check_jpegtran() which was failing in
+	  some cases when it shouldn't have been. (Bug #818041)
+	
+2003-11-11 Jens Tkotz <jens@peino.de> 1.4.1-RC3-b6
 
 	* Language: Update German (de_DE), Brazilian Portuguese (pt_BR)
 	  and swedish (sv_SE) (yeah, 2nd 100%)
 
-2003-11-11  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-RC2-b6
+2003-11-11  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-RC3-b5
 
 	* Added code so inline_gallerythumb.frames on existing sites still
 	  works.
 
-2003-11-11  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-RC2-b4
+2003-11-11  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-RC3-b4
 
 	* Fixed bug that you get error when deleting last image if there is 
 	  a subalbum.
 
-2003-11-11 Jens Tkotz <jens@peino.de> 1.4.1-RC2-b3
+2003-11-11 Jens Tkotz <jens@peino.de> 1.4.1-RC3-b3
 
 	* Bugfix: When in Language Mode 0 (No ML at all) then check for
 	  PHP has gettext or not is skipped. So _() was undefined.
 	  Fixed now.
 
-2003-11-11  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-RC2-b2
+2003-11-11  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-RC3-b2
 	
 	* Moved gallery/setup/manifest.inc to gallery/manifest.inc as 
 	  it's purpose is to test that all the files in subdirectories 
 	  have been updated, and so we need to make sure it has been 
 	  updated.
 
-2003-11-10  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-RC2-b1
+2003-11-10  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-RC3-b1
 
 	* Fix to gettext (missing _() ) problem.
 
