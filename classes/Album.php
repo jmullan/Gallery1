@@ -92,8 +92,8 @@ class Album {
                // VOTING Variables
                $this->fields["poll_type"]=$gallery->app->default["poll_type"]; // none, rank or critique
                $this->fields["poll_scale"]=$gallery->app->default["poll_scale"]; // num of choices to offer voter
-               $this->fields["votes"]=array(); // holds all the votes by UID
-               $this->fields["poll_nv_pairs"]= array() ; //$gallery->app->default["poll_nv_pairs"];
+               $this->fields["votes"]=array(); // holds all the votes by UID or session ID
+               $this->fields["poll_nv_pairs"]= $gallery->app->default["poll_nv_pairs"];
                        // allows admin to explicitly set display value and
                        // points for all voting options.  EG "Excellent" -> 4
                        // points; "Good" -> 3 points etc etc
@@ -106,7 +106,7 @@ class Album {
                        // be part of permissions
                $this->fields["poll_num_results"]=$gallery->app->default["poll_num_results"]; 
 	       		// number of lines of graph to show on the album page
-	       $this->fields["voter_class"]="Nobody"; //$gallery->app->default["vote_class"];
+	       $this->fields["voter_class"]=$gallery->app->default["vote_class"];
                         // Nobody, Everybody, Logged in
 	       // end of VOTING variables
 

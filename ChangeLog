@@ -1,3 +1,16 @@
+2003-09-03  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b53
+
+	* This checkin is a fix to the partially broken -b49, by handling 
+	  multi-dimensional arrays in defaults correctly.
+
+	* Undo changes in b50.
+
+	* Added nice functions array_stripslashes() and array_str_replace
+	  that will clean up strings in any array.
+
+	* Hidden text was written in both index.php and the include
+	  files.  It is now only written in index.php
+
 2003-09-03  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b52
 
 	* Fixed Config. Wizard so you get stylesheets without config.php 
@@ -5,7 +18,8 @@
 
 2003-09-02  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b51
 
-	* bandaid repair to stop broken gallery!  Will fix and edit this later
+	* Temporary fix while investigating why -b49 did not work with 
+	  magic quotes
 
 2003-09-02  Jens Tkotz <jens@peino.de> 1.4.1-cvs-b50
 

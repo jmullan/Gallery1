@@ -64,21 +64,14 @@ foreach ($defaults as $key => $val) {
 		$val["value"] = $$key;
 		
 		if (get_magic_quotes_gpc()) {
-			if (is_array($val["value"])) {
-				if (function_exists('array_map')) {
-					$val["value"] = array_map(stripslashes, 
-							$val["value"]);
-				}
-			} else {
-				$val["value"] = stripslashes($val["value"]);
-			}
+			$val["value"] = array_stripslashes($val["value"]);
 		}
 
-	}
 
+	}
 	// Protect quote characters to avoid screwing up HTML forms
-	$val["value"] = str_replace('"', "&quot;", $val["value"]);
-	
+	$val["value"] = array_str_replace('"', "&quot;", $val["value"]);
+
 	if (isset($val["type"]) && !strcmp($val["type"], "hidden")) {
 		list($f1, $f2) = make_fields($key, $val);
 		echo $f2;

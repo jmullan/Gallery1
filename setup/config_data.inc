@@ -695,7 +695,7 @@ $defaults = array(
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
-	"separator8" => array (
+	"separator7" => array (
 		"type" => "separator",
 		"title" => _("Polling configuration")
 	),

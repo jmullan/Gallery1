@@ -88,7 +88,7 @@ function embed_hidden($key) {
 
 	$buf = "";
 	$real = $$key;
-	if (ereg("^(..*)\[.*\]$", $key, $matches)) {
+	if (ereg("^(..*)\[.*\]$", $real, $matches)) {
 		$line='global $'.$matches[1].'; $real = $'.$key . ';';
 		eval($line);
 	}
@@ -96,7 +96,7 @@ function embed_hidden($key) {
 		foreach ($real as $real_key => $value) {
 			if (is_array($value)) {
 				foreach($value as $sub_key => $sub_value) {
-					$buf .= "<input type=hidden name=${key}[$real_key][$sub_key]=\"";
+					$buf .= "<input type=hidden name=${key}[$real_key][$sub_key] value=\"";
 					$buf .= urlencode($sub_value);
 					$buf .= "\">\n";
 				}

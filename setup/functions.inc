@@ -935,4 +935,31 @@ function make_separator($key, $arr)  {
 		$buf .= "\n<tr><td>&nbsp;</td></tr>";
 		return $buf;
 }
+
+function array_stripslashes($subject) {
+	if (is_string($subject)) {
+		return stripslashes($subject);
+	}
+	if (!is_array($subject)) {
+		return ($subject);
+	}
+	$ret=array();
+	foreach ($subject as $key => $value) {
+		$ret[$key]=array_stripslashes($value);
+	}
+	return $ret;
+}
+function array_str_replace($search, $replace, $subject) {
+	if (is_string($subject)) {
+		return str_replace($search, $replace, $subject);
+	}
+	if (!is_array($subject)) {
+		return ($subject);
+	}
+	$ret=array();
+	foreach ($subject as $key => $value) {
+		$ret[$key]=array_str_replace($search, $replace, $value);
+	}
+	return $ret;
+}
 ?>

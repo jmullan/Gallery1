@@ -103,25 +103,10 @@ foreach ($constants as $key => $val) {
 		$real = $$key;
 	}
         if (get_magic_quotes_gpc()) {
-		if (is_array($real)) {
-			if (function_exists('array_map')) {
-				$real = array_map('stripslashes', $real);
-			}
-		} else {
-			$real = stripslashes($real);
-		}
+		$real = array_stripslashes($real);
 	}
 
-	// Protect quote characters to avoid screwing up HTML forms
-	$real = str_replace('"', '&quot;', $real);
-
-	if (is_array($real)) {
-		foreach ($real as $value) {
-			echo "<input type=hidden name=${key}[] value=\"{$value}\">";
-		}
-	} else {
-		echo "<input type=hidden name=$key value=\"{$real}\">";
-	}
+	$real = array_str_replace('"', '&quot;', $real);
 
 	if (isset($constants[$key]["eval"])) {
 		$tmp = $constants[$key]["eval"];
@@ -336,16 +321,10 @@ foreach ($defaults as $key => $val) {
 		$error = 1;
 	} else {
 	        if (get_magic_quotes_gpc()) {
-			if (is_array($$key)) {
-				if (function_exists('array_map')) {
-					$$key = array_map(stripslashes, $$key);
-				}
-			} else {
-				$$key = stripslashes($$key);
-			}
+			$$key = array_stripslashes($$key);
 		}
 		// Protect quote characters to avoid screwing up HTML forms
-		$$key = str_replace('"', '&quot;', $$key);
+		$$key = array_str_replace('"', '&quot;', $$key);
 		
 		if (is_array($$key)) {
 			foreach ($$key as $sub_key => $sub_value) {
@@ -377,7 +356,6 @@ foreach ($defaults as $key => $val) {
 			}
 		}
 	}
-	echo "<input type=hidden name=$key value=\"{$$key}\">";
 
 }
 $data .= "?" . ">\n";
