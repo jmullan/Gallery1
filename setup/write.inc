@@ -138,9 +138,9 @@ include_once("../classes/gallery/UserDB.php");
 $userDB = new Gallery_UserDB();
 $admin = $userDB->getOrCreateUser("admin");
 
-if (strlen($editPassword[0]) > 0) {
+if (strlen($editPassword[2]) > 0) {
 	$message=sprintf(_("The password for user %s was changed."), '<b>admin</b>');
-	$admin->setPassword($editPassword);
+	$admin->setPassword($editPassword[2]);
 	
 	if (! $admin->isAdmin()) {
 		$message=sprintf(_("An account called %s has been created for you with the password you specified."),"<b>admin</b>");

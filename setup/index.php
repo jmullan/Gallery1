@@ -58,6 +58,15 @@ if (!isset($setup_page)) {
 	$setup_page = "check";
 }
 
+/* Cache passwords in order to prevent them from being erased.
+ * Otherwise, we'll lose the passwords if someone revisits Step 2
+ * and forgets to re-enter them. */
+
+if (isset($editPassword) && (!empty($editPassword[0]) || !empty($editPassword[1]))) {
+	$editPassword[2] = $editPassword[0];
+	$editPassword[3] = $editPassword[1];
+}
+
 /* Array-ize the preserve list */
 if (isset($preserve)) {
 	$tmp = explode(" ", urldecode($preserve));

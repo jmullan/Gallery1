@@ -98,10 +98,12 @@ function form_password($key, $arr) {
 	} else {
 		$attrs = '';
 	}
-	return "<input type=\"password\" name=${key}[0] value=\"\" $attrs> "
+	return "<input type=\"password\" name=${key}[0] value=\"{$arr['value'][0]}\" $attrs> "
 		. '<br>'
-		. "<input type=\"password\" name=${key}[1] value=\"\" $attrs> "
-		. _('Please retype your password here');
+		. "<input type=\"password\" name=${key}[1] value=\"{$arr['value'][1]}\" $attrs> "
+		. _('Please retype your password here')
+		. "\n<input type=\"hidden\" name=${key}[2] value=\"{$arr['value'][2]}\">"
+		. "\n<input type=\"hidden\" name=${key}[3] value=\"{$arr['value'][3]}\">";
 }
 
 function form_nv_pairs($key, $arr) {
@@ -1086,7 +1088,7 @@ function array_str_replace($search, $replace, $subject) {
 function verify_password($passwords) {
 	$success = array();
 	$fail = array();
-	if ($passwords[0] === $passwords[1]) {
+	if ($passwords[2] === $passwords[3]) {
 		$success[] = true;
 	} else {
 		$fail[] = _('Your admin passwords do not match!');
