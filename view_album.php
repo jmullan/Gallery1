@@ -684,28 +684,28 @@ switch ($frame) {
 // special cases
 case "none":
   $divCellWidth = ($divImage + 3);
-  $divCellHeight = ($divImage + 3);
+  $divCellAdd = 3;
   break;
 case "dots":
   $divCellWidth = ($divImage + 7);
-  $divCellHeight = ($divImage + 7);
+  $divCellAdd = 7;
   break;
 case "solid":
   $divCellWidth = ($divImage + $borderWidth +3);
-  $divCellHeight = ($divImage + $borderWidth +3);
+  $divCellAdd = 3;
   break;
 default: // use frames directory
 
   require(dirname(__FILE__) . "/html_wrap/frames/$frameThumb/frame.def");
 
   $divCellWidth = $widthTL + $divImage + $widthTR;
-  $divCellHeight = $heightTT + $divImage + $heightBB;
+  $divCellAdd = $heightTT + $heightBB;
   break;
   } // end of switch 
 
 /* End DivCell cases */
 ?>
-<table border="0" cellspacing="7" cellpadding="0" width="100%" class="vatable" align="center">
+<table border="0" cellspacing="5" cellpadding="0" width="100%" class="vatable" align="center">
 <?php
 $numPhotos = $gallery->album->numPhotos(1);
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
@@ -744,7 +744,6 @@ if ($numPhotos) {
 		}
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td align=\"center\" valign=\"top\" class=\"vathumbs\">\n");
- 			echo("<div style=\"width: {$divCellWidth}px; height: {$divCellHeight}px;\" align=\"center\" class=\"vafloat2\">\n");
 
 			//-- put some parameters for the wrap files in the global object ---
 			$gallery->html_wrap['borderColor'] = $bordercolor;
@@ -766,6 +765,12 @@ if ($numPhotos) {
 			if ($iHeight == 0) {
 			    $iHeight = 100;
 			}
+			
+			// This is needed to keep smaller images centered
+			$padding=round(($divImage-$iHeight)/2,0);
+			$divCellHeight=$divImage-$padding*2+$divCellAdd;
+
+			echo "<div style=\"padding-top: {$padding}px; padding-bottom:{$padding}px; width: {$divCellWidth}px; height: {$divCellHeight}px;\" align=\"center\" class=\"vafloat2\">\n";
 			$gallery->html_wrap['imageWidth'] = $iWidth;
 			$gallery->html_wrap['imageHeight'] = $iHeight;
 
