@@ -151,7 +151,7 @@ Album Properties
 </tr>
 <tr>
 <td>Which photo printing service<br>do you want to let visitors use?</td>
-<td><select name="print_photos"><?php echo selectOptions($gallery->album, "print_photos", array("none", "shutterfly")) ?></select></td>
+<td><select name="print_photos"><?php echo selectOptions($gallery->album, "print_photos", array("none", "shutterfly", "shutterfly without donation")) ?></select></td>
 </tr>
 <?php
 if ($gallery->app->use_exif) {

@@ -481,9 +481,13 @@ $defaults = array(
 	),
 	"print_photos" => array(
 		"prompt" => "Printing Service",
-		"desc" => "Allow visitors to print photos directly from the album.",
+		"desc" => "Allow visitors to print photos directly from the album.  If you choose " .
+			  "shutterfly, Gallery will charge an extra 2 cents (US) for every " .
+			  "photo printed (a 4x6 print normally costs 49 cents US), and 1.8 cents of " .
+			  "that will get donated back to the Gallery project.  This is one great way " .
+			  "for you to help support this free software. ",
 		"value" => "shutterfly",
-		"choices" => array("none", "shutterfly")
+		"choices" => array("none", "shutterfly", "shutterfly without donation")
 	),
 	"returnto" => array(
 		"prompt" => "Gallery Link",

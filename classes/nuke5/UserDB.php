@@ -25,6 +25,7 @@ class Nuke5_UserDB extends Abstract_UserDB {
 	function Nuke5_UserDB() {
 		global $gallery;
 		$this->db = $gallery->database{"nuke"};
+		$this->prefix = $gallery->database{"user_prefix"};		
 		$this->nobody = new NobodyUser();
 		$this->everybody = new EverybodyUser();
 		$this->loggedIn = new LoggedInUser();
