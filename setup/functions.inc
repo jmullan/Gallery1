@@ -98,6 +98,10 @@ function form_password($key, $arr) {
 	} else {
 		$attrs = '';
 	}
+
+	if (empty($arr['value'])) {
+	    $arr['value'] = array('', '', '', '');
+	}
 	return "<input type=\"password\" name=${key}[0] value=\"{$arr['value'][0]}\" $attrs> "
 		. '<br>'
 		. "<input type=\"password\" name=${key}[1] value=\"{$arr['value'][1]}\" $attrs> "
