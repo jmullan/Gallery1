@@ -39,6 +39,8 @@ if ($gallery->session->albumListPage > $maxPages) {
 	$gallery->session->albumListPage = $maxPages;
 }
 
+$borderColor = $gallery->app->default["bordercolor"];
+
 $navigator["page"] = $gallery->session->albumListPage;
 $navigator["pageVar"] = "set_albumListPage";
 $navigator["url"] = makeGalleryUrl("");
@@ -46,7 +48,7 @@ $navigator["maxPages"] = $maxPages;
 $navigator["spread"] = 6;
 $navigator["fullWidth"] = 100;
 $navigator["widthUnits"] = "%";
-$navigator["bordercolor"] = "#DDDDDD";
+$navigator["bordercolor"] = $borderColor;
 
 ?>
 
@@ -64,7 +66,21 @@ $navigator["bordercolor"] = "#DDDDDD";
 includeHtmlWrap("gallery.header");
 ?>
 <!-- gallery.header end -->
-
+<?
+if (!strcmp($gallery->app->default["showSearchEngine"], "yes")) {
+?>
+<table width=100% border=0 cellspacing=0>
+<tr><?= makeSearchFormIntro(); ?>
+<td valign="middle" align="right">
+<span class="admin"> Search: </span>
+<input style="font-size=10px;" type="text" name="searchstring" value="" size="25">
+</td>
+</form>
+</tr>
+<tr><td height=2><img src=<?= $GALLERY_BASEDIR ?>images/pixel_trans.gif></td></tr></table>
+<?
+}
+?>
 <!-- admin section begin -->
 <? 
 $adminText = "<span class=\"admin\">";
@@ -99,7 +115,7 @@ $adminCommands .= '<a href="#" onClick="'.popup_help("commands", "gallery").'"><
 $adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands;
-$adminbox["bordercolor"] = "#DDDDDD";
+$adminbox["bordercolor"] = $borderColor;
 $adminbox["top"] = true;
 include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 ?>
@@ -108,6 +124,7 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 <?
 include($GALLERY_BASEDIR . "layout/navigator.inc");
 ?>
+
 
 <!-- album table begin -->
 <table width=100% border=0 cellspacing=7>
