@@ -278,6 +278,19 @@ if ($numPhotos) {
 		echo("<tr>");
 		$i = $rowStart;
 		$j = 1;
+		// need to skip displaying nested albums if we do not have permission
+		// to view them!
+		if ($gallery->album->isAlbumName($i)) {
+			$myAlbumName = $gallery->album->isAlbumName($i);
+			$myAlbum = $albumDB->getAlbumbyName($myAlbumName);
+			if (!$gallery->user->canReadAlbum($myAlbum)) {
+				$rowStart++;
+				continue;	
+			}
+				
+		}
+
+
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td>");
 			includeHtmlWrap("inline_albumthumb.header");
@@ -301,14 +314,14 @@ if ($numPhotos) {
 			echo("<img src=${GALLERY_BASEDIR}images/pixel_trans.gif width=$borderwidth height=1>");
 			echo("</td><td>");
 
-		$id = $gallery->album->getPhotoId($i);
-		if ($gallery->album->isMovie($id)) {
+			$id = $gallery->album->getPhotoId($i);
+			if ($gallery->album->isMovie($id)) {
 				echo("<a href=" . $gallery->album->getPhotoPath($i) . " target=other>" . 
 					$gallery->album->getThumbnailTag($i) .
 					"</a>");
 			} elseif ($gallery->album->isAlbumName($i)) {
-				$myAlbumName = $gallery->album->isAlbumName($i);
-				$myAlbum = $albumDB->getAlbumbyName($myAlbumName);
+				//$myAlbumName = $gallery->album->isAlbumName($i);
+				//$myAlbum = $albumDB->getAlbumbyName($myAlbumName);
 				if ($myAlbum->numPhotos(1)) {
 					$myHighlightTag = $myAlbum->getThumbnailTag($myAlbum->getHighlight());
 				} else {
