@@ -125,6 +125,12 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 
 			$gallery->album->save();
 		} else {
+		        /*
+			 * Get a new albumDB because our old copy is not up to
+		         * date after we created a new album
+			 */
+		        $albumDB = new AlbumDB(FALSE);
+			
 			/* move the album to the top if not a nested album*/
                 	$numAlbums = $albumDB->numAlbums($gallery->user);
                 	$albumDB->moveAlbum($gallery->user, $numAlbums, 1);

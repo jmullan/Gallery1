@@ -521,6 +521,13 @@ if ($numPhotos) {
 						   array("id" => $id));
 				}
 			}
+			if($gallery->album->isAlbumName($i)) { 
+			    if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum)) {
+				showChoice("Permissions",
+					   "album_permissions.php",
+					   array("set_albumName" => $myAlbum->fields["name"]));
+			    }
+			}
 			if ($showAdminForm) {
 				echo('</select></form>');
 			}

@@ -466,7 +466,7 @@ class Album {
 		}
 
 		if ($this->transient->photosloaded) {
-			$this->fields["cached_photo_count"] = $this->numPhotos();
+			$this->fields["cached_photo_count"] = $this->numPhotos(1);
 		}
 
 		$transient_photos = $this->photos;
