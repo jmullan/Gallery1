@@ -37,9 +37,13 @@ require($GALLERY_BASEDIR . "util.php");
 if ($HTTP_SERVER_VARS["HTTPS"]) {
 	$gallery->app->photoAlbumURL = 
 		eregi_replace("^http:", "https:", $gallery->app->photoAlbumURL);
+	$gallery->app->albumDirURL = 
+		eregi_replace("^http:", "https:", $gallery->app->albumDirURL);
 } else {
 	$gallery->app->photoAlbumURL = 
 		eregi_replace("^https:", "http:", $gallery->app->photoAlbumURL);
+	$gallery->app->albumDirURL = 
+		eregi_replace("^https:", "http:", $gallery->app->albumDirURL);
 }
 
 /* 
