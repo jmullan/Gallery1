@@ -242,7 +242,7 @@ foreach ($constants as $key => $val) {
  *
  * Don't bother if we are configuring for ImageMagick.
  */
-if (empty($graphtest['pnmDir'])) {
+if (!strcmp($graphtool, "NetPBM") && empty($graphtest['pnmDir'])) {
 	/* 
 	 * If the graph path is not in the open_basedir list, then we can't tell.
          * Assume whatever they entered is correct and hope for the best
