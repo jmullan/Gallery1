@@ -78,7 +78,14 @@ to the setup URL.
 
 <p>
 <center>
+<font size=+2>
 <a href=../albums.php>Enter the Gallery</a>
+</font>
+
+<br><br><br><br>
+
+<img src="http://www.menalto.com/projects/gallery/images/gallery-tag.png">
+</center>
 
 </td></tr></table>
 
