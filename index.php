@@ -58,7 +58,6 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option) || iss
 	if (isset($option)) {
 		$GALLERY_MODULENAME = $option;
 		$mamboDir = getcwd();
-		define ('GALLERY_URL',$MOS_GALLERY_PARAMS['path']);
 		$GALLERY_EMBEDDED_INSIDE = 'mambo';
 		$GALLERY_EMBEDDED_INSIDE_TYPE = 'mambo';
 	}

@@ -385,14 +385,15 @@ if (!$gallery->album->isMovie($id)) {
 		
 		/* display photo printing services */
 		$printServices = $gallery->album->fields['print_photos'];
+		ksort($printServices);
 		$numServices = count($printServices);
 		$fullName = array(
-			'ezprints'    => 'EZ Prints',
-			'fotokasten'  => 'Fotokasten',
-			'photoaccess' => 'PhotoAccess',
-			'shutterfly'  => 'Shutterfly',
-			'fotoserve'   => 'Fotoserve',
-			'mpush'       => 'mPUSH'
+			'ezprints'    => 'EZ Prints - Photo Printing',
+			'fotokasten'  => 'Fotokasten - Photo Printing',
+			'fotoserve'   => 'Fotoserve - Photo Printing',
+			'mpush'       => 'mPUSH - Send to Mobile',
+			'photoaccess' => 'PhotoAccess - Photo Printing',
+			'shutterfly'  => 'Shutterfly - Photo Printing',
 		);
 		/* display a <select> menu if more than one option */
 		if ($numServices > 1) {
@@ -422,7 +423,7 @@ if (!$gallery->album->isMovie($id)) {
 				$selectCommand .= "<option value=\"$name\">${fullName[$name]}</option>";
 			}
 			$selectCommand .= '</select>';
-			$adminCommands .= '[' . sprintf(_('print this photo with %s'), $selectCommand) . ']';
+			$adminCommands .= '[' . sprintf(_('process this photo with %s'), $selectCommand) . ']';
 		/* just print out text if only one option */
 		} elseif ($numServices == 1 && isset($printServices[@key($printServices)]['checked'])) {
 			$name = @key($printServices);
@@ -443,7 +444,8 @@ if (!$gallery->album->isMovie($id)) {
 				break;
 			}
 			if (!empty($name)) {
-				$adminCommands .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" . sprintf(_('print this photo with %s'), $fullName[$name]) . ']</a>';
+				$adminCommands .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" .
+						    sprintf(_('process this photo with %s'), $fullName[$name]) . ']</a>';
 			}
 		}
 ?>
@@ -486,11 +488,11 @@ if (!$gallery->album->isMovie($id)) {
 $userCommands = "";
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 	if ($gallery->user->isLoggedIn()) {
-		$userCommands .= "&nbsp;&nbsp;&nbsp;<a class=\"admin\" href=\"" .
+		$userCommands .= "\t<a class=\"admin\" href=\"" .
 				doCommand("logout", array(), "view_album.php", array("page" => $page)) .
 					"\">[" . _("logout") . "]</a>\n";
 	} else {
-		$userCommands .= "&nbsp;&nbsp;&nbsp;" . popup_link("[". _("login") ."]", "login.php", false, true, 500, 500, 'admin') . "\n";
+		$userCommands .= "\t" . popup_link("[". _("login") ."]", "login.php", false, true, 500, 500, 'admin') . "\n";
         }
 }
 includeLayout('navtablebegin.inc');

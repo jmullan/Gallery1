@@ -436,7 +436,7 @@ if ($gallery->album->fields["slideshow_type"] != "off" && ($numPhotos != 0 || ($
        	$userCommands .= "<a class=\"admin\" href=\"" . 
 	       	makeGalleryUrl("slideshow.php",
 			       	array("set_albumName" => $albumName)) .
-	      	'">['. _("slideshow") ."]</a>&nbsp;";
+	      	'">['. _("slideshow") ."]</a>";
 }
 
 /* User is allowed to view ALL comments */
@@ -449,11 +449,11 @@ if ( ($gallery->app->comments_enabled == 'yes' && $gallery->album->lastCommentDa
 
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 	if ($gallery->user->isLoggedIn()) {
-	        $userCommands .= "\t&nbsp;&nbsp;&nbsp;<a class=\"admin\" href=\"" .
+	        $userCommands .= "\t<a class=\"admin\" href=\"" .
 					doCommand("logout", array(), "view_album.php", array("page" => $page)) .
 				  "\">[" . _("logout") . "]</a>\n";
 	} else {
-		$userCommands .= "\t&nbsp;&nbsp;&nbsp;" . popup_link("[". _("login") ."]", "login.php", false, true, 500, 500, 'admin') . "\n";
+		$userCommands .= "\t" . popup_link("[". _("login") ."]", "login.php", false, true, 500, 500, 'admin') . "\n";
 	} 
 }
 
