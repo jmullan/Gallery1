@@ -319,7 +319,7 @@ class AlbumDB {
 		return array($numPhotos, $numAlbums, $numTopAlbums);
 	}
 
-	function getAlbumsByRoot($rootAlbumName, $user) {
+	function getAlbumsByRoot($rootAlbumName, $user=null) {
 		$namedAlbum = $this->getAlbumByName($rootAlbumName);
 		if ($namedAlbum) {
 			$arr = $namedAlbum->getSubAlbums();
