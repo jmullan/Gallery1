@@ -333,7 +333,7 @@ if (!$gallery->album->isMovie($id)) {
 			array("id" => $id));
 
 		$adminCommands .= '&nbsp;' . _('View Images') .':&nbsp;[&nbsp;';
-		if (isset($gallery->session->fullOnly) && 
+		if (!isset($gallery->session->fullOnly) ||
 				strcmp($gallery->session->fullOnly,"on"))
 		{
 			$adminCommands .= _('normal') . "&nbsp;|&nbsp;<a class=\"admin\" href=\"$link\">" . _('full') .'</a>&nbsp;]';
