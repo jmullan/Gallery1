@@ -1,3 +1,16 @@
+2003-08-21 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b12
+
+	* !!! Changed Value from $GALLERY_EMBEDDED_INSIDE !!!
+	Now its not only 'nuke' its 'postnuke' or 'phpnuke'
+	We dont have to do extra checks later
+
+	* Fixed Bug in html_wrap/wrapper.header.default which maked it not possible 
+	  to have gallery as startpage in postnuke.
+	  To fix this i added a test for Nuketype (see above)
+
+	* Note: the change of $GALLERY_EMBEDDED_INSIDE may cause problems with customized sites/blocks
+		which do a test if $GALLERY_EMBEDDED_INSIDE=='nuke'
+
 2003-08-21 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b11
 	
 	* Changed back to error_reporting(E_ALL & ~E_NOTICE); 
