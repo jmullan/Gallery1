@@ -24,6 +24,7 @@ session_register_and_set("rows");
 session_register_and_set("page");
 session_register_and_set("edit");
 session_register_and_set("albumName");
+session_register_and_set("albumListPage");
 
 function session_register_and_set($name) {
 	session_register($name);
