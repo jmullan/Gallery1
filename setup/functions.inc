@@ -116,7 +116,7 @@ function check_mod_rewrite()
 	$success = array();
 	$fail = array();
 	if ($GALLERY_REWRITE) {
-		$success[] = "";
+		$success[] = "mod_rewrite is enabled";
 	} else {
 		$fail["fail-mod-rewrite"]++;
 	}
@@ -158,7 +158,7 @@ function check_graphics()
 	} else if (count($missing)) {
 		$fail["fail-netpbm-partial"] = array_values($missing);
 	} else {
-		$success[] = "";
+		$success[] = "All " . count($netpbm) . " NetPBM binaries located";
 	}
 
 	return array($success, $fail);
@@ -169,7 +169,7 @@ function check_magic_quotes()
 	$fail = array();
 	$success = array();
 	if (!get_magic_quotes_gpc()) {
-		$success[] = "";
+		$success[] = "magic quotes are off";
 	} else {
 		$fail[] = "fail-magic-quotes";
 	}
