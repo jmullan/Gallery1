@@ -5,4 +5,4 @@
 
 echo '# $Id$' > gallery.pot
 
-xgettext --files-from=filelist -o - -LPHP --keyword=_ --no-wrap >> gallery.pot
+xgettext --files-from=filelist -LPHP --keyword=_ --no-wrap -o - >> gallery.pot

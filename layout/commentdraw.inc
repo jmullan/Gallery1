@@ -21,7 +21,7 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
     <td>
       <span class=caption>
       <br>
-<?php echo _("From") ?>: &nbsp; <b><?php echo $commentdraw["name"] ?></b> &nbsp;
+<?php echo _("From:") ?> <b><?php echo $commentdraw["name"] ?></b> &nbsp;
 <?php
   if ($gallery->user->isAdmin()) {
       echo "@ &nbsp;";

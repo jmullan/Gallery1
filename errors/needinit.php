@@ -21,7 +21,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <p>
 <center>
 <table width=80%><tr><td>
-<?php echo _("Gallery is not configured correctly.  There could be a variety of reasons for this.  The easiest way to fix this problem is to re-run the configuration wizard.  First, put Gallery in configuration mode:") ?>
+<?php 	echo _("Gallery is not configured correctly.  There could be a variety of reasons for this.  The easiest way to fix this problem is to re-run the configuration wizard.") ."  ";
+	echo _("First, put Gallery in configuration mode:") ?>
 <p>
 <?php echo configure("configure"); ?>
 <p>

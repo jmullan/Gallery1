@@ -70,7 +70,9 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 
 <b><?php echo _("Step 2") ?></b>
 <br>
-<?php echo _("Open your Windows explorer and browse to a folder containing a JPG image.  Select the image and there should be a link on the left that says &quot;Publish this file to the web...&quot; Click this link and then follow the instructions to log into your Gallery, select an album and publish the image.") ?>
+<?php 	echo _("Open your Windows explorer and browse to a folder containing a JPG image.") ."  ";
+	echo _("Select the image and there should be a link on the left that says &quot;Publish this file to the web...&quot; ") ;
+	echo _("Click this link and then follow the instructions to log into your Gallery, select an album and publish the image.") ?>
 <br>
 <br>
 

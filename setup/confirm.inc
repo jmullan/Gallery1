@@ -134,7 +134,7 @@ foreach ($constants as $key => $val) {
 
 		if ($constants[$key]["must-be-url"]) {
 			if (!ereg("^http", $real)) {
-				$view .= row_wrap(error_format(sprintf(_("%s: <b>%s </b> must be an absolute URL!"), $key, $real)));
+				$view .= row_wrap(error_format(sprintf(_("%s: <b>%s</b> must be an absolute URL!"), $key, $real)));
 				$error = 1;
 				continue;
 			}
@@ -155,7 +155,7 @@ foreach ($constants as $key => $val) {
 
 		if ($constants[$key]["must-be-number"]) {
 			if (ereg("[^0-9]",$real)) {
-				$view .= row_wrap(error_format(sprintf(_("%s: <b>\"%s\"</b> must be a number"), $key, $real)));
+				$view .= row_wrap(error_format(sprintf(_("%s: <b>\"%s\"</b> must be a positive number"), $key, $real)));
 				$error = 1;
 				continue;
 			}
@@ -188,7 +188,7 @@ foreach ($constants as $key => $val) {
 			}
 
 			if (!is_dir($dir)) {
-				$view .= row_wrap(error_format("<b>$dir</b> " . _("exists but is not a directory.  Please fix this.")));
+				$view .= row_wrap(error_format(sprintf(_("%s exists but is not a directory.  Please fix this."), "<b>$dir</b>")));
 				$error = 1;
 				continue;
 			}
@@ -277,15 +277,15 @@ if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
     $view .= row_wrap(error_format(_("You must specify one of <i>pnmDir</i> or <i>ImPath</i> for Gallery to function!!")));
     $error = 1;
 } else if (!strcmp($graphtool, "ImageMagick") && !empty($graphtest['ImPath'])) {
-    $view .= row_wrap(error_format(_("ImageMagick is not properly configured for use as a graphics package.  Make sure you entered a path to the ImageMagick binaries in step 2.")));
+    $view .= row_wrap(error_format(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),"ImageMagick","ImageMagick")));
     $error = 1;
 } else if (!strcmp($graphtool, "NetPBM") && !empty($graphtest['pnmDir'])) {
-    $view .= row_wrap(error_format(_("NetPBM is not properly configured for use as a graphics package.  Make sure you entered a path to the NetPBM binaries in step 2.")));
+    $view .= row_wrap(error_format(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),"NetPBM","NetPBM"))); 
     $error = 1;
 }
 
 if ($warn_about_open_basedir) {
-	$view .= row_wrap("<hr><b>". _("Note") .":</b> ". 
+	$view .= row_wrap("<hr><b>". _("Note:") ."</b> ". 
 			_("Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths") .
 			" (" . ini_get('open_basedir') . ")  " .
 			sprintf(_("This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."),

@@ -121,9 +121,9 @@ $checklist = array(
 	),	
 	"gettext" => array (
 		"optional" => 1,
-		"desc" => _("Check to see if Apache is compiled with gettext for fast translations."),
+		"desc" => _("Check to see if PHP is compiled with gettext for fast translations."),
 		"func" => "check_gettext",
-		"fail-gettext" => sprintf(_("gettext in not installed.  To include gettext support, you need to recompile apache.  For more information see %s.  However, multilanguage support is still available in Gallery without gettext, but the pages may take slightly longer to load."),
+		"fail-gettext" => sprintf(_("Your PHP does not have gettext support.  To include gettext support, you need to recompile PHP.  For more information see %s.  However, multilanguage support is still available in Gallery without gettext, but the pages may take slightly longer to load."),
 			'<a href="http://www.php.net/manual/en/ref.gettext.php">http://www.php.net/manual/en/ref.gettext.php</a>'),
 			),
 	"gallery-locale" => array (

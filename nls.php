@@ -30,26 +30,24 @@
  */
 
 function getNLS () {
-	$nls['languages']['da_DK'] = 'Dansk';
+
+// If you add a new language please order in alphatical by its name
 	$nls['languages']['de_DE'] = 'Deutsch';
 	$nls['languages']['en_GB'] = 'English (UK)';
 	$nls['languages']['en_US'] = 'English (US)';
 	$nls['languages']['es_ES'] = 'Espa&ntilde;ol';
-	$nls['languages']['fr_FR'] = 'Fran&ccedil;ais';
-	$nls['languages']['fr_CA'] = 'Canadien Fran&ccedil;ais';
+	$nls['languages']['fr_CA'] = 'Fran&ccedil;ais';
 	$nls['languages']['it_IT'] = 'Italiano';
 	$nls['languages']['he_IL'] = 'Hebrew';
 	$nls['languages']['is_IS'] = '&Iacute;slenska';
 	$nls['languages']['lt_LT'] = 'Lietuvi&#x0173;';
 	$nls['languages']['nl_NL'] = 'Nederlands';
-	$nls['languages']['nl_BE'] = 'Dutch';
 	$nls['languages']['no_NO'] = 'Norsk';
 	$nls['languages']['pl_PL'] = 'Polski';
 	$nls['languages']['ru_RU'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (Windows)';
 	$nls['languages']['ru_RU.koi8r'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (KOI8-R)';
 	$nls['languages']['sv_SE'] = 'Svenska';
-	
-	
+
 	/**
 	 ** Aliases for languages with different browser and gettext codes
 	 **/
@@ -57,7 +55,7 @@ function getNLS () {
 	$nls['aliases']['de'] = 'de_DE';
 	$nls['aliases']['en'] = 'en_US';
 	$nls['aliases']['es'] = 'es_ES';
-	$nls['aliases']['fr'] = 'fr_FR';
+	$nls['aliases']['fr'] = 'fr_CA';
 	$nls['aliases']['is'] = 'is_IS';
 	$nls['aliases']['it'] = 'it_IT';
 	$nls['aliases']['lt'] = 'lt_LT';
@@ -88,6 +86,7 @@ function getNLS () {
 	$nls['aliases']['fr_LU'] = 		'fr_CA' ;
 	$nls['aliases']['fr_CH'] = 		'fr_CA' ;
 	$nls['aliases']['french'] =		'fr_CA' ;
+	$nls['aliases']['fr_FR.ISO8859-1'] =    'fr_CA' ;
 	$nls['aliases']['fr_CA.ISO8859-1'] =    'fr_CA' ;
 	
 	$nls['aliases']['icelandic']=		'is_IS' ;
@@ -104,7 +103,7 @@ function getNLS () {
 	$nls['aliases']['lt_LT.ISO8859-4'] =    'lt_LT' ;
 	$nls['aliases']['lt_LT.ISO8859-13'] =   'lt_LT' ;
 	
-	$nls['aliases']['nl_BE.ISO8859-1'] =    'nl_BE' ;
+	$nls['aliases']['nl_BE'] = 		'nl_NL' ;
 	$nls['aliases']['nl_NL.ISO8859-1'] =    'nl_NL' ;
 	
 	$nls['aliases']['norwegian'] = 		'no_NO' ;

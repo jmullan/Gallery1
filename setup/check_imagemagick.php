@@ -69,7 +69,7 @@ $debugfile = tempnam($gallery->app->tmpDir, "gallerydbg");
 <?php
 if (!inOpenBasedir($gallery->app->imDir)) {
 ?>
-<?php echo sprintf(_("<b>Note</b>:  Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."),
+<?php echo sprintf(_("<b>Note:</b>  Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."),
 		$app_name,
 		$gallery->app->imDir,
 		'<ul>'.  join('<br>', explode(':', ini_get('open_basedir'))) .
@@ -181,12 +181,14 @@ function inOpenBasedir($dir) {
 <p>
 
 <?php 
-echo sprintf(_("If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled.  You should talk to your system administrator about this, or see the %sGallery Help Page%s."),
+echo sprintf(_("If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."),
 		"<b>$debugfile</b>",
-		'<i>open_basedir</i>',
-		'<a href="http://www.php.net/manual/en/configuration.php#ini.open-basedir"> open_basedir</a>',
-		'<a href=http://gallery.sourceforge.net/help.php>',
-		'</a>');
+		'<i>open_basedir</i>');
+
+echo "  ";
+echo sprintf(_("You should talk to your system administrator about this, or see the %sGallery Help Page%s."),
+                '<a href=http://gallery.sourceforge.net/help.php>',
+                '</a>');
 ?>
 <p>
 

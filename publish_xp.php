@@ -202,7 +202,7 @@ if (!strcmp($cmd, "select-album")) {
 
 	// Do we have a logged in user?
 	if (!$gallery->user->isLoggedIn()) {
-		echo "Not Logged In!";
+		echo _("Not Logged In!");
 		exit;
 	}
 
@@ -212,7 +212,7 @@ if (!strcmp($cmd, "select-album")) {
 
 	} elseif (!$gallery->user->canAddToAlbum($gallery->album) && $set_albumName) {
 
-	    $error = sprintf(_("User cannot add photos in %s."), 
+	    $error = sprintf(_("This user cannot add photos in %s."), 
 			    $gallery->album->fields[title]) . "<br>\n";
 
 	}

@@ -82,7 +82,7 @@ $admin->save();
 
 ?>
 
-<title> Success! </title>
+<title><?php echo _("Success!") ?></title>
 <center>
 <table width=600><tr><td>
 <center>

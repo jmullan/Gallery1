@@ -536,7 +536,11 @@ function gallery_languages() {
 			closedir($dh);
 		}
 	}
-	return $locales;
+	$returnlocales=array();
+	foreach ($nls['languages'] as $key => $value) {
+		if($locales[$key]) $returnlocales[$key]=$locales[$key];
+	}
+	return $returnlocales;
 }
 
 function test_locale($locale) {

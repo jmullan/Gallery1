@@ -5,6 +5,8 @@ This readme gives you a very short view how to make your own translation
 - if necessary, create a new gallery.pot file
   'sh create_po_template.sh'
   This requires xgetText version 0.12.1 or later
+  this works only on *nix System with bash.
+  Normally this is not needed, because the .pot that comes with the newest gallery should be actual
 
 - copy gallery.pot (po template) to your own .po File
 
@@ -14,8 +16,22 @@ This readme gives you a very short view how to make your own translation
   		de, Deutschland -> de_DE-gallery.po
 
 - Don't forget to change the header Information correctly (charset etc ..)
+  Note : A good Tool to Edit .po files is poEdit works on Windows Systems, too.
+  Available from http://poedit.sourceforge.net/
+
+- Note :
+  if you see something like : msgid "Upgrading item %d of %d . . . "
+  or msgid "%s (%s), %s on %s"
+  then leave the %d or %s in your translation. They are place holder for things like "time" or "times" or numbers.
+  if you see something like \" leave it, too. its a quoted "
+  
 
 - If all translations a done run make_mo_files.sh
   'sh make_mo_files.sh'
+  this works only on *nix System with bash
+  if you dont have shell access : 
+    copy your .po file into the po filder. 
+    use poEdit and create a gallery.mo file from your .po file
+    copy this gallery.mo intolocale/<language_COUNTRY>/LC_MESSAGES/
 
-- Add your new language to getNLS in util.php (this should change!)
+- Add your new language to getNLS in nls.php

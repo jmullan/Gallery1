@@ -29,7 +29,9 @@ require($GALLERY_BASEDIR . "errors/configure_instructions.php");
 </center>
 <br>
 
-<?php echo _("If you've finished your configuration but you're still seeing this page, that's because for safety's sake we don't let you run Gallery in an insecure mode.  You need to switch to secure mode before you can use it.  Here's how:") ?>
+<?php echo _("If you've finished your configuration but you're still seeing this page, that's because for safety's sake we don't let you run Gallery in an insecure mode.") ;
+	echo _("You need to switch to secure mode before you can use it.  Here's how:")
+?>
 
 <p><center>
 <?php echo configure("secure"); ?>
