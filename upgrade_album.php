@@ -40,9 +40,16 @@ if (!$gallery->version) { require($GALLERY_BASEDIR . "init.php"); }
  * If we're not the admin, we can only upgrade the album that we're
  * looking at.
  */
-if (!$gallery->user->isAdmin()) {
+if ($gallery->session->albumName) {
 	$upgrade_albumname = $gallery->session->albumName;
 }
+
+// Hack check
+if (!$gallery->user->isAdmin() && !$upgrade_albumname) {
+	exit;
+}
+
+$albumDB = new AlbumDB();
 
 function close_button() {
 	print "<center>";
@@ -78,7 +85,31 @@ function process($arr) {
 	}
 	print "</ul>";
 }
-$albumDB = new AlbumDB();
+
+function find_albums(&$results, $album="") {
+	global $gallery;
+	global $albumDB;
+
+	if ($album) {
+		if ($album->versionOutOfDate()) {
+			$results[] = $album;
+		}
+
+		$count = $album->numPhotos(1);
+		for ($j = 1; $j <= $count; $j++) {
+			$name = $album->isAlbumName($j);
+			if ($name) {
+				find_albums($results, $albumDB->getAlbumByName($name));
+			}
+		}
+	} else {
+		$numAlbums = $albumDB->numAlbums($gallery->user);
+		for ($i = 1; $i <= $numAlbums; $i++) {
+			$album = $albumDB->getAlbum($gallery->user, $i);
+			find_albums($results, $album);
+		}
+	} 
+}
 ?>
 
 <html>
@@ -116,13 +147,8 @@ if ($album && $album->versionOutOfDate()) {
 	exit;
 }
 
-$numAlbums = $albumDB->numAlbums($gallery->user);
-for ($i = 1; $i <= $numAlbums; $i++) {
-	$album = $albumDB->getAlbum($gallery->user, $i);
-	if ($album->versionOutOfDate()) {
-		$ood[] = $album;
-	}
-}
+$ood = array();
+find_albums($ood);
 
 if ($upgradeall && sizeof($ood)) {
 	process($ood);
