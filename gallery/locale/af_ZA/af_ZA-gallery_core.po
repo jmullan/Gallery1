@@ -3,7 +3,7 @@
 # Version: 1.5-RC2
 #
 # Gallery - a web based photo album viewer and editor
-# Copyright (C) 2000-2004 Bharat Mediratta
+# Copyright (C) 2000-2005 Bharat Mediratta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-02-21 16:00+0100\n"
+"POT-Creation-Date: 2005-03-02 12:01+0100\n"
 "PO-Revision-Date: 2004-04-26 00:39+0100\n"
 "Last-Translator: Gerrit Hoekstra <gerrit AT hoekstra DOT co DOT uk>\n"
 "Language-Team: Afrikaans <gerrit AT hoekstra DOT co DOT uk>\n"
@@ -163,10 +163,10 @@ msgstr "Gebruikerbestuur"
 msgid "Admin options"
 msgstr "administrasie opsies"
 
-#: ../admin-page.php:88 ../stats.php:635 ../tools/find_orphans.php:213
-#: ../tools/despam-comments.php:58
+#: ../admin-page.php:88 ../stats.php:634 ../tools/find_orphans.php:214
+#: ../tools/despam-comments.php:59
 #, fuzzy
-msgid "Return to Gallery"
+msgid "return to gallery"
 msgstr "Tree <u>Gallery</u> binne"
 
 #: ../album_permissions.php:183 ../album_permissions.php:187
@@ -455,7 +455,7 @@ msgstr "nog nie besigtig nie"
 msgid "reset counter"
 msgstr "herstel tref-teller"
 
-#: ../albums.php:453 ../view_album.php:1071
+#: ../albums.php:453 ../view_album.php:1073
 msgid "Comments available for this item."
 msgstr "Iemand het kommentaar op hierdie item gelever."
 
@@ -582,11 +582,11 @@ msgstr "Besig met die opgradeer van item %d uit 'n totaal van %d..."
 msgid "msg should be an array!"
 msgstr "Die boodskap moet 'n reeks wees!"
 
-#: ../classes/Album.php:921 ../util.php:3481
+#: ../classes/Album.php:921 ../util.php:3505
 msgid "No email sent as no valid email addresses were found"
 msgstr "e-pos nie gestuur nie, omdat geldige e-pos adresse nie gevind is nie"
 
-#: ../classes/Album.php:988 ../classes/Album.php:1677
+#: ../classes/Album.php:988 ../classes/Album.php:1696
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
@@ -596,54 +596,66 @@ msgstr ""
 msgid "Processing element %d..."
 msgstr "Verwerk beeld %d..."
 
-#: ../classes/Album.php:1041
+#: ../classes/Album.php:1007
+msgid "Doing the naming"
+msgstr ""
+
+#: ../classes/Album.php:1042
+msgid "Image Preprocessing"
+msgstr ""
+
+#: ../classes/Album.php:1048
 msgid "Resizing/compressing original image"
 msgstr "Vergroot/verklein/kompakteer oorspronklike foto"
 
-#: ../classes/Album.php:1045
+#: ../classes/Album.php:1052
 msgid "Cannot resize/compress this filetype"
 msgstr "Kan nie hierdie l&ecirc;ertipe vergroot/kompakteer nie"
 
-#: ../classes/Album.php:1093
+#: ../classes/Album.php:1056
+msgid "Adding Photo to the photo list"
+msgstr ""
+
+#: ../classes/Album.php:1110
 #, php-format
 msgid "Resizing %s"
 msgstr "Vergrooting/verkleining van %s"
 
-#: ../classes/Album.php:1156
+#: ../classes/Album.php:1175
 msgid "Photo auto-rotated/transformed"
 msgstr "Foto is geroteer/tranformeer"
 
-#: ../classes/Album.php:1164
+#: ../classes/Album.php:1183
 #, fuzzy
 msgid "Watermarking Image"
 msgstr "Watermerk album."
 
-#: ../classes/Album.php:1321 ../classes/Album.php:1331
-#: ../classes/AlbumItem.php:669
+#: ../classes/Album.php:1340 ../classes/Album.php:1350
+#: ../classes/AlbumItem.php:671
 msgid "No highlight"
 msgstr "Geen voorbeeldfoto nie"
 
-#: ../classes/Album.php:1485
+#: ../classes/Album.php:1504
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr ""
 
-#: ../classes/Album.php:1691 ../do_command.php:82
+#: ../classes/Album.php:1710 ../do_command.php:82
 #, php-format
 msgid "Processing image %d..."
 msgstr "Verwerk beeld %d..."
 
-#: ../classes/Album.php:1829
+#: ../classes/Album.php:1848
 #, php-format
 msgid "Error %s getting EXIF data"
 msgstr ""
 
-#: ../classes/Album.php:2350
+#: ../classes/Album.php:2369
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2503
+#: ../classes/Album.php:2522
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "E-pos probleem: slaan %s oor (UID %s) omdat die e-pos adres %s ongeldig is."
@@ -652,16 +664,21 @@ msgstr "E-pos probleem: slaan %s oor (UID %s) omdat die e-pos adres %s ongeldig 
 msgid "Invalid image"
 msgstr "Foutiewe fotoformaat"
 
-#: ../classes/AlbumItem.php:626
+#: ../classes/AlbumItem.php:585
+#, fuzzy
+msgid "Generating thumbnail."
+msgstr "Besig met kreasie van duimnaelskets"
+
+#: ../classes/AlbumItem.php:628
 msgid "Unable to make thumbnail"
 msgstr "Kan nie 'n duimnaelskets maak nie"
 
-#: ../classes/AlbumItem.php:637
+#: ../classes/AlbumItem.php:639
 #, fuzzy
 msgid "No preview"
 msgstr "Vorige blad"
 
-#: ../classes/AlbumItem.php:656
+#: ../classes/AlbumItem.php:658
 msgid "No thumbnail"
 msgstr "Geen duimnaelskets nie"
 
@@ -764,7 +781,7 @@ msgstr "Slaan Album #%d oor"
 
 #: ../copy_photo.php:119 ../create_user.php:104 ../do_command.php:226
 #: ../login.php:129 ../multi_create_user.php:127 ../register.php:47
-#: ../register.php:122 ../save_photos.php:366
+#: ../register.php:122 ../save_photos.php:369
 msgid "Dismiss"
 msgstr "Sluit"
 
@@ -884,7 +901,7 @@ msgstr "Is jy seker dat jy hierdie album wil skrap?"
 
 #: ../delete_album.php:65 ../delete_photo.php:139 ../delete_user.php:80
 #: ../layout/commentbox.inc:17 ../manage_users.php:103
-#: ../tools/despam-comments.php:206 ../tools/despam-comments.php:342
+#: ../tools/despam-comments.php:207 ../tools/despam-comments.php:343
 msgid "Delete"
 msgstr "Skrap"
 
@@ -1696,7 +1713,7 @@ msgstr "Ingelog"
 msgid "From:"
 msgstr "Van:"
 
-#: ../layout/commentboxbottom.inc:11 ../stats.php:1318 ../util.php:187
+#: ../layout/commentboxbottom.inc:11 ../stats.php:1317 ../util.php:187
 msgid "add comment"
 msgstr "kommentaar byvoeg"
 
@@ -1765,7 +1782,7 @@ msgstr "%d van %d"
 msgid "Watermark"
 msgstr "Watrermerk"
 
-#: ../layout/watermarkform.inc:80 ../util.php:3022 ../util.php:3027
+#: ../layout/watermarkform.inc:80 ../util.php:3046 ../util.php:3051
 msgid "None"
 msgstr "Geen"
 
@@ -1891,7 +1908,7 @@ msgid "description"
 msgstr "beskrywing"
 
 #: ../lib/voting.php:215 ../view_album.php:586 ../view_album.php:615
-#: ../view_album.php:1077
+#: ../view_album.php:1079
 msgid "Vote"
 msgstr "Stem"
 
@@ -2744,35 +2761,40 @@ msgstr "Besig om URL's te haal..."
 msgid "Processing %s as a local directory."
 msgstr "Besig met verwerking van %s as 'n lokale l&ecirc;ergids."
 
-#: ../save_photos.php:148
+#: ../save_photos.php:118
+#, php-format
+msgid "Unable to find %s locally - trying %s."
+msgstr ""
+
+#: ../save_photos.php:151
 #, php-format
 msgid "Could not open url: %s"
 msgstr "Kon nie toegang tot URL %s kry nie."
 
-#: ../save_photos.php:176
+#: ../save_photos.php:179
 #, php-format
 msgid "Parsing %s for images..."
 msgstr "Besig met die pars van %s vir foto's..."
 
-#: ../save_photos.php:242
+#: ../save_photos.php:245
 #, php-format
 msgid "Found %d images"
 msgstr "%d l&ecirc;&euml;rs gevind"
 
-#: ../save_photos.php:249
+#: ../save_photos.php:252
 msgid "Processing status..."
 msgstr "Verwerkings status..."
 
-#: ../save_photos.php:362
+#: ../save_photos.php:365
 msgid "No images uploaded!"
 msgstr "Geen l&ecirc;&euml;rs opgelaai nie!"
 
-#: ../save_photos.php:412
+#: ../save_photos.php:415
 #, php-format
 msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
 msgstr "%d meta l&ecirc;er(s) gevind. Hierdie l&ecirc;&euml;rs het informasie omtrent die foto's, soos byvoorbeeld die titels en beskrywings."
 
-#: ../save_photos.php:444
+#: ../save_photos.php:447
 msgid "Add Files"
 msgstr "L&ecirc;&euml;rs byvoeg"
 
@@ -2937,258 +2959,263 @@ msgstr "Aflopend"
 msgid "Sort"
 msgstr "Sorteer"
 
-#: ../stats.php:227
+#: ../stats.php:226
 #, php-format
 msgid "Number Albums = %s"
 msgstr ""
 
-#: ../stats.php:239
+#: ../stats.php:238
 #, php-format
 msgid "Cache filename = %s ; enabled = %s ; expires = %s"
 msgstr ""
 
-#: ../stats.php:252
+#: ../stats.php:251
 #, php-format
 msgid "Time now = %s ; Cache time = %s"
 msgstr ""
 
-#: ../stats.php:269
+#: ../stats.php:268
 msgid "Using cache"
 msgstr ""
 
-#: ../stats.php:272
+#: ../stats.php:271
 msgid "Not using cache"
 msgstr ""
 
-#: ../stats.php:275
+#: ../stats.php:274
 msgid "Cache to be rebuilt"
 msgstr ""
 
-#: ../stats.php:298
+#: ../stats.php:297
 msgid "Version out of date."
 msgstr ""
 
-#: ../stats.php:332
+#: ../stats.php:331
 #, fuzzy, php-format
 msgid "Checking album: %s"
 msgstr "Slaan Album #%d oor"
 
-#: ../stats.php:343
+#: ../stats.php:342
 #, php-format
 msgid "Reading info for photo index = %d , id = %d"
 msgstr ""
 
-#: ../stats.php:359
+#: ../stats.php:358
 msgid "Getting SVotes"
 msgstr ""
 
-#: ../stats.php:367
+#: ../stats.php:366
 msgid "Getting Item Clicks"
 msgstr ""
 
-#: ../stats.php:372
+#: ../stats.php:371
 #, fuzzy
 msgid "Getting Item Capture Date"
 msgstr "Foto Datum"
 
-#: ../stats.php:390
+#: ../stats.php:389
 #, fuzzy
 msgid "Getting Number of Comments"
 msgstr "Op die aantal kommentare"
 
-#: ../stats.php:394
+#: ../stats.php:393
 #, fuzzy
 msgid "Getting Comments"
 msgstr "Ooreenkomstige kommentaar"
 
-#: ../stats.php:405
+#: ../stats.php:404
 msgid "Getting Ratings"
 msgstr ""
 
-#: ../stats.php:440
+#: ../stats.php:439
 #, php-format
 msgid "Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"
 msgstr ""
 
-#: ../stats.php:515
+#: ../stats.php:514
 #, php-format
 msgid "Total: %s ; Start: %s ; Last Page: %s"
 msgstr ""
 
-#: ../stats.php:529
+#: ../stats.php:528
 msgid " - Images with the most votes"
 msgstr ""
 
-#: ../stats.php:532
+#: ../stats.php:531
 msgid " - Images with the least votes"
 msgstr ""
 
-#: ../stats.php:538
+#: ../stats.php:537
 msgid " - Top rated images"
 msgstr ""
 
-#: ../stats.php:541
+#: ../stats.php:540
 msgid " - Bottom rated images"
 msgstr ""
 
-#: ../stats.php:547
+#: ../stats.php:546
 msgid " - Latest added images"
 msgstr ""
 
-#: ../stats.php:550
+#: ../stats.php:549
 msgid " - Oldest images first"
 msgstr ""
 
-#: ../stats.php:556
+#: ../stats.php:555
 #, fuzzy
 msgid " - Latest Capture Date"
 msgstr "Foto Datum"
 
-#: ../stats.php:559
+#: ../stats.php:558
 #, fuzzy
 msgid " - Oldest Capture Date"
 msgstr "Foto Datum"
 
-#: ../stats.php:565
+#: ../stats.php:564
 #, fuzzy
 msgid " - Latest Comments"
 msgstr "Laaste kommentaar %s."
 
-#: ../stats.php:568
+#: ../stats.php:567
 #, fuzzy
 msgid " - Oldest Comments"
 msgstr "kommentaar skrap"
 
-#: ../stats.php:573
+#: ../stats.php:572
 #, fuzzy
 msgid " - Random Images"
 msgstr "%s willekeurige beelde van %s"
 
-#: ../stats.php:579
+#: ../stats.php:578
 msgid " - Images with the most views"
 msgstr ""
 
-#: ../stats.php:582
+#: ../stats.php:581
 msgid " - Images with the least views"
 msgstr ""
 
-#: ../stats.php:614
+#: ../stats.php:613
 #, fuzzy, php-format
 msgid "%d images with comments in album: %s"
 msgstr "%d willekeurige beelde van album :: %s"
 
-#: ../stats.php:616
+#: ../stats.php:615
 #, fuzzy, php-format
 msgid "%d images in album: %s"
 msgstr "%d willekeurige beelde van album :: %s"
 
-#: ../stats.php:619
+#: ../stats.php:618
 #, php-format
 msgid "Given albumname: '%s' is invalid !"
 msgstr ""
 
-#: ../stats.php:624
+#: ../stats.php:623
 #, fuzzy, php-format
 msgid "%d images with comments in this Gallery"
 msgstr "Onbekende fout in die %s roetiene."
 
-#: ../stats.php:627
+#: ../stats.php:626
 #, fuzzy, php-format
 msgid "%d images this Gallery"
 msgstr "Tree <u>Gallery</u> binne"
 
-#: ../stats.php:633
+#: ../stats.php:632
 msgid "Back to stats-wizard"
 msgstr ""
 
-#: ../stats.php:669
+#: ../stats.php:668
 #, php-format
 msgid "Data load time %d seconds"
 msgstr ""
 
-#: ../stats.php:802
+#: ../stats.php:801
 #, fuzzy
 msgid "Highlight for Album: "
 msgstr "Kies 'n voorbeeldfoto vir jou album:"
 
-#: ../stats.php:983
+#: ../stats.php:982
 #, php-format
 msgid "Finished in %d seconds"
 msgstr ""
 
-#: ../stats.php:989
+#: ../stats.php:988
 #, fuzzy
 msgid "Update"
 msgstr "Oplaai Datum"
 
-#: ../stats.php:990
+#: ../stats.php:989
 msgid "Cache update required. "
 msgstr ""
 
-#: ../stats.php:994
+#: ../stats.php:993
 #, fuzzy, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
 msgstr "Party albums is nie deursoek nie, omdat hulle eers na die mees onlangse versie van %s opgegradeer moet word"
 
-#: ../stats.php:997
+#: ../stats.php:996
 #, fuzzy
 msgid "upgrade all albums"
 msgstr "alle albums opgradeer"
 
-#: ../stats.php:1043
+#: ../stats.php:1042
 #, fuzzy, php-format
 msgid "Recursing album: %s"
 msgstr "Vergrooting/verkleining van %s"
 
-#: ../stats.php:1083
+#: ../stats.php:1082
 msgid "Read cache num photos lock failed."
 msgstr ""
 
-#: ../stats.php:1109
+#: ../stats.php:1108
 #, php-format
 msgid "Album name : %s ; index: %s"
 msgstr ""
 
-#: ../stats.php:1121 ../stats.php:1162
+#: ../stats.php:1120 ../stats.php:1161
 msgid "Read cache lock failed."
 msgstr ""
 
-#: ../stats.php:1331
+#: ../stats.php:1330
 #, fuzzy
 msgid "add vote"
 msgstr "1 stem"
 
-#: ../stats.php:1435
+#: ../stats.php:1434
 #, fuzzy
 msgid "From album"
 msgstr "Uit Album"
 
-#: ../stats.php:1492
+#: ../stats.php:1438
+#, fuzzy
+msgid "Owned by:"
+msgstr "Eienaar:"
+
+#: ../stats.php:1491
 #, fuzzy
 msgid "Capture Date:"
 msgstr "Foto Datum"
 
-#: ../stats.php:1503
+#: ../stats.php:1502
 #, fuzzy
 msgid "Upload Date:"
 msgstr "Oplaai Datum"
 
-#: ../stats.php:1514
+#: ../stats.php:1513
 #, fuzzy
 msgid "Views:"
 msgstr "Bekyk:"
 
-#: ../stats.php:1523
+#: ../stats.php:1522
 #, fuzzy
 msgid "Votes:"
 msgstr "Opmerkings:"
 
-#: ../stats.php:1532
+#: ../stats.php:1531
 #, fuzzy
 msgid "not rated"
 msgstr "Roteer"
 
-#: ../stats.php:1547 ../stats.php:1558
+#: ../stats.php:1546 ../stats.php:1557
 #, fuzzy
 msgid "Rating:"
 msgstr "Re&euml;n"
@@ -3197,92 +3224,97 @@ msgstr "Re&euml;n"
 msgid "Find Orphans"
 msgstr ""
 
-#: ../tools/find_orphans.php:222
+#: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#, fuzzy
+msgid "return to admin page"
+msgstr "terug na album"
+
+#: ../tools/find_orphans.php:224
 #, fuzzy
 msgid "Orphaned Albums:"
 msgstr "Albums opgradeer"
 
-#: ../tools/find_orphans.php:223
+#: ../tools/find_orphans.php:225
 msgid "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
 msgstr ""
 
-#: ../tools/find_orphans.php:227
+#: ../tools/find_orphans.php:229
 #, fuzzy
 msgid "Parent Album"
 msgstr "Kies ho&euml;re-vlak album"
 
-#: ../tools/find_orphans.php:229
+#: ../tools/find_orphans.php:231
 #, fuzzy
 msgid "Orphaned Album"
 msgstr "Albums opgradeer"
 
-#: ../tools/find_orphans.php:236
+#: ../tools/find_orphans.php:238
 #, fuzzy
 msgid "Gallery Root"
 msgstr "Galery"
 
-#: ../tools/find_orphans.php:250
+#: ../tools/find_orphans.php:252
 #, fuzzy
 msgid "Re-Attach Orphaned Albums!"
 msgstr "Albums opgradeer"
 
-#: ../tools/find_orphans.php:257
+#: ../tools/find_orphans.php:259
 #, fuzzy
 msgid "Orphaned Files:"
 msgstr "Albums opgradeer"
 
-#: ../tools/find_orphans.php:259
+#: ../tools/find_orphans.php:260
 msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
 msgstr ""
 
-#: ../tools/find_orphans.php:263
+#: ../tools/find_orphans.php:264
 #, fuzzy
 msgid "Album directory"
 msgstr "Gee URL of gids aan"
 
-#: ../tools/find_orphans.php:265
+#: ../tools/find_orphans.php:266
 #, fuzzy
 msgid "Orphaned file"
 msgstr "Albums opgradeer"
 
-#: ../tools/find_orphans.php:288
+#: ../tools/find_orphans.php:289
 #, fuzzy
 msgid "Delete Orphaned Files!"
 msgstr "Albums opgradeer"
 
-#: ../tools/find_orphans.php:294
+#: ../tools/find_orphans.php:295
 msgid "No Orphans Found"
 msgstr ""
 
-#: ../tools/find_orphans.php:295
+#: ../tools/find_orphans.php:296
 #, fuzzy
 msgid "There are no orphaned elements in this Gallery."
 msgstr "Onbekende fout in die %s roetiene."
 
-#: ../tools/find_orphans.php:299
+#: ../tools/find_orphans.php:300
 #, php-format
 msgid "Orphan %s Repaired"
 msgstr ""
 
-#: ../tools/find_orphans.php:299
+#: ../tools/find_orphans.php:300
 #, fuzzy
 msgid "Albums"
 msgstr "Album"
 
-#: ../tools/find_orphans.php:299
+#: ../tools/find_orphans.php:300
 #, fuzzy
 msgid "Files"
 msgstr "L&ecirc;er"
 
-#: ../tools/find_orphans.php:306
+#: ../tools/find_orphans.php:307
 msgid "The Webserver has not enough permission to delete the following files:"
 msgstr ""
 
-#: ../tools/find_orphans.php:312
+#: ../tools/find_orphans.php:313
 msgid "Please check the permission of these files and the folder above. chmod them, or ask your admin to do this."
 msgstr ""
 
-#: ../tools/find_orphans.php:313
+#: ../tools/find_orphans.php:314
 msgid "Reload"
 msgstr ""
 
@@ -3291,139 +3323,139 @@ msgstr ""
 msgid "Find and remove comment spam"
 msgstr "besigtig kommentaar"
 
-#: ../tools/despam-comments.php:118
+#: ../tools/despam-comments.php:119
 #, fuzzy
 msgid "Delete Comments"
 msgstr "kommentaar skrap"
 
-#: ../tools/despam-comments.php:120 ../tools/despam-comments.php:249
-#: ../tools/despam-comments.php:260 ../tools/despam-comments.php:329
+#: ../tools/despam-comments.php:121 ../tools/despam-comments.php:250
+#: ../tools/despam-comments.php:261 ../tools/despam-comments.php:330
 #, fuzzy
 msgid "No action taken!"
 msgstr "Geen Onderskrif"
 
-#: ../tools/despam-comments.php:144
+#: ../tools/despam-comments.php:145
 #, fuzzy, php-format
 msgid "Deleted %d spam comments"
 msgstr "kommentaar skrap"
 
-#: ../tools/despam-comments.php:148
+#: ../tools/despam-comments.php:149
 #, fuzzy, php-format
 msgid "Deleted %d spam comment."
 msgid_plural "Deleted %d spam comments."
 msgstr[0] "kommentaar skrap"
 msgstr[1] "kommentaar skrap"
 
-#: ../tools/despam-comments.php:149
+#: ../tools/despam-comments.php:150
 #, fuzzy
 msgid "No comment deleted."
 msgstr "Geen l&ecirc;er gekies nie"
 
-#: ../tools/despam-comments.php:195
+#: ../tools/despam-comments.php:196
 #, php-format
 msgid "Scanned %d albums, %d photos, %d comments in %2.2f seconds"
 msgstr ""
 
-#: ../tools/despam-comments.php:201
+#: ../tools/despam-comments.php:202
 #, fuzzy
 msgid "No spam comments."
 msgstr "kommentaar byvoeg"
 
-#: ../tools/despam-comments.php:206
+#: ../tools/despam-comments.php:207
 #, fuzzy
 msgid "Entry"
 msgstr "Leeg"
 
-#: ../tools/despam-comments.php:210
+#: ../tools/despam-comments.php:211
 #, fuzzy
 msgid "Location"
 msgstr "dokumentasie"
 
-#: ../tools/despam-comments.php:214
+#: ../tools/despam-comments.php:215
 #, fuzzy
 msgid "Commenter"
 msgstr "Middel"
 
-#: ../tools/despam-comments.php:218
+#: ../tools/despam-comments.php:219
 #, fuzzy
 msgid "Comment"
 msgstr "Middel"
 
-#: ../tools/despam-comments.php:232
+#: ../tools/despam-comments.php:233
 #, fuzzy
 msgid "Delete Checked Comments"
 msgstr "kommentaar skrap"
 
-#: ../tools/despam-comments.php:247
+#: ../tools/despam-comments.php:248
 #, fuzzy
 msgid "Delete from blacklist"
 msgstr "Huidige vindplek"
 
-#: ../tools/despam-comments.php:264 ../tools/despam-comments.php:308
+#: ../tools/despam-comments.php:265 ../tools/despam-comments.php:309
 #, fuzzy
 msgid "Error saving blacklist!"
 msgstr "Huidige vindplek"
 
-#: ../tools/despam-comments.php:267
+#: ../tools/despam-comments.php:268
 #, fuzzy, php-format
 msgid "Deleted %d entry from blacklist."
 msgid_plural "Deleted %d entries from blacklist"
 msgstr[0] "Huidige vindplek"
 msgstr[1] "Huidige vindplek"
 
-#: ../tools/despam-comments.php:311
+#: ../tools/despam-comments.php:312
 #, fuzzy
 msgid "Added to blacklist:"
 msgstr "Huidige vindplek"
 
-#: ../tools/despam-comments.php:320
+#: ../tools/despam-comments.php:321
 msgid "Following duplicates were not added:"
 msgstr ""
 
-#: ../tools/despam-comments.php:336
+#: ../tools/despam-comments.php:337
 #, fuzzy
 msgid "Current blacklist"
 msgstr "Huidige vindplek"
 
-#: ../tools/despam-comments.php:338
+#: ../tools/despam-comments.php:339
 msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
 msgstr ""
 
-#: ../tools/despam-comments.php:353 ../tools/despam-comments.php:370
+#: ../tools/despam-comments.php:354 ../tools/despam-comments.php:371
 #, fuzzy
 msgid "Update Blacklist"
 msgstr "Huidige vindplek"
 
-#: ../tools/despam-comments.php:360
+#: ../tools/despam-comments.php:361
 #, fuzzy
 msgid "Enter new blacklist entries"
 msgstr "kommentaar skrap"
 
-#: ../tools/despam-comments.php:361
+#: ../tools/despam-comments.php:362
 #, fuzzy
 msgid "Useful blacklists: "
 msgstr "Huidige vindplek"
 
-#: ../tools/despam-comments.php:366
+#: ../tools/despam-comments.php:367
 msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
 msgstr ""
 
-#: ../tools/despam-comments.php:376
+#: ../tools/despam-comments.php:377
 #, fuzzy
 msgid "Find blacklisted comments"
 msgstr "kommentaar skrap"
 
-#: ../tools/despam-comments.php:377
+#: ../tools/despam-comments.php:378
 #, fuzzy
 msgid "View/Edit blacklist"
 msgstr "Huidige vindplek"
 
-#: ../tools/despam-comments.php:378
+#: ../tools/despam-comments.php:379
 #, fuzzy
 msgid "Add blacklist entries"
 msgstr "kommentaar skrap"
 
-#: ../tools/despam-comments.php:381
+#: ../tools/despam-comments.php:382
 #, fuzzy
 msgid "Options"
 msgstr "Optioneel:"
@@ -3597,226 +3629,241 @@ msgstr "Fout boodskappe:"
 msgid "Status: %s (expected %s)"
 msgstr "Status: %s (verwag: %s)"
 
-#: ../util.php:354
+#: ../util.php:353
 #, php-format
-msgid "The file %s does not exist ?!"
+msgid "Getting Dimension of file: %s"
+msgstr ""
+
+#: ../util.php:358
+#, fuzzy
+msgid "The file does not exist ?!"
 msgstr "L&ecirc;er %s bestaan nie ?!"
 
-#: ../util.php:366
+#: ../util.php:370
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP's %s kon die grootte nie bepaal nie."
 
-#: ../util.php:386 ../util.php:700 ../util.php:953 ../util.php:999
-#: ../util.php:2481
+#: ../util.php:386 ../util.php:707 ../util.php:960 ../util.php:1006
+#: ../util.php:2505
 msgid "You have no graphics package configured for use!"
 msgstr "Jy het geen grafiese pakket gekonfigureer nie!"
 
-#: ../util.php:473 ../util.php:492
+#: ../util.php:411
+#, fuzzy
+msgid "Unable to determine image dimensions!"
+msgstr "PHP's %s kon die grootte nie bepaal nie."
+
+#: ../util.php:477 ../util.php:496
 msgid "Not closing this window because debug mode is on"
 msgstr "Hierdie venster bly oop omdat die ontfout-modus aktief is."
 
-#: ../util.php:538
+#: ../util.php:513
+#, fuzzy, php-format
+msgid "Resizing Image: %s"
+msgstr "Vergrooting/verkleining van %s"
+
+#: ../util.php:545
 msgid "No resizing required"
 msgstr "Geen vergrooting of verkleining nodig nie"
 
-#: ../util.php:568
+#: ../util.php:575
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "doel l&ecirc;er grootte %d kilogrepe"
 
-#: ../util.php:574 ../util.php:604
+#: ../util.php:581 ../util.php:611
 #, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> l&ecirc;er grootte %d kilogrepe"
 
-#: ../util.php:575
+#: ../util.php:582
 #, php-format
 msgid "trying quality %d%%"
 msgstr "probeer kwaliteit %d%%"
 
-#: ../util.php:605
+#: ../util.php:612
 msgid "Done."
 msgstr "Klaar."
 
-#: ../util.php:704
+#: ../util.php:711
 msgid "No watermark name specified!"
 msgstr "Watermerk nie anngegee nie!"
 
-#: ../util.php:1018
+#: ../util.php:1025
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "Roetiene %s het misluk in %s vir l&ecirc;er %s."
 
-#: ../util.php:1024
+#: ../util.php:1031
 #, php-format
 msgid "File %s type %d."
 msgstr "l&ecirc;er %s tyd %d."
 
-#: ../util.php:1067 ../util.php:1090
+#: ../util.php:1074 ../util.php:1097
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Onbekende l&ecirc;erformaat: %s"
 
-#: ../util.php:1485
+#: ../util.php:1503
 #, php-format
 msgid "Can't write to %s."
 msgstr "Kan nie na %s skryf nie."
 
-#: ../util.php:1492
+#: ../util.php:1510
 #, php-format
 msgid "Can't read %s."
 msgstr "Kan %s nie lees nie."
 
-#: ../util.php:1596
+#: ../util.php:1614
 msgid "Select Album"
 msgstr "Kies Album"
 
-#: ../util.php:1602
+#: ../util.php:1620
 msgid "Top Level"
 msgstr "Hoogste Vlak"
 
-#: ../util.php:1623 ../util.php:1674
+#: ../util.php:1641 ../util.php:1692
 msgid "current location"
 msgstr "Huidige vindplek"
 
-#: ../util.php:1677
+#: ../util.php:1695
 msgid "self"
 msgstr "self"
 
-#: ../util.php:1800
+#: ../util.php:1830
 #, fuzzy, php-format
 msgid "Item Capture Date : %s"
 msgstr "Foto Datum"
 
-#: ../util.php:1845
+#: ../util.php:1875
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Kon nie toegang tot slot l&ecirc;er kry nie (%s)!"
 
-#: ../util.php:1850
+#: ../util.php:1880
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Kon 'n slot nie kry nie (%s)"
 
-#: ../util.php:1939
+#: ../util.php:1969
 #, fuzzy, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "1 trefslag"
 msgstr[1] "1 trefslag"
 
-#: ../util.php:1944
+#: ../util.php:1974
 msgid "Sub-albums"
 msgstr "Sub-Albums"
 
-#: ../util.php:2110
+#: ../util.php:2140
 #, fuzzy, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Slaan %s oor (ZIP ondersteuning is gesper)"
 
-#: ../util.php:2223
+#: ../util.php:2253
 #, php-format
 msgid "Adding %s"
 msgstr "Besig met byvoeg van %s"
 
-#: ../util.php:2257
+#: ../util.php:2287
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Hulp nodig? Lees die %s%s FAQ%s"
 
-#: ../util.php:2263
+#: ../util.php:2293
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Slaan %s oor, as gevolg van onbekende %s formaat"
 
-#: ../util.php:2449
+#: ../util.php:2473
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Dit is nie moontlik om EXIF data te stoor nie (jhead is nie geinstalleer nie)."
 
-#: ../util.php:2498
+#: ../util.php:2522
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Gegenereer deur %s v%s"
 
-#: ../util.php:2500
+#: ../util.php:2524
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Aangedryf deur %s V%s"
 
-#: ../util.php:2550
+#: ../util.php:2574
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Slaan ongeldige e-pos adres %s oor"
 
-#: ../util.php:2615
+#: ../util.php:2639
 #, fuzzy, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Nota: Hierdie is 'n outomaties-genereerde e-pos boodskap van die webwerf %s. As jy dit as gevolg van 'n fout ontvang het, ignoreer hierdie boodskap asseblief."
 
-#: ../util.php:2617
+#: ../util.php:2641
 #, fuzzy, php-format
 msgid "Report abuse to %s"
 msgstr "Raporteer misbuik aan %s"
 
-#: ../util.php:2633
+#: ../util.php:2657
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "E-pos is nie gestuur nie, omdat dit in hierdie galery versper is"
 
-#: ../util.php:2638
+#: ../util.php:2662
 #, php-format
 msgid "Email not sent as no address provided"
 msgstr "E-pos is nie gestuur nie, omdat 'n adres nie verskaf is nie"
 
-#: ../util.php:2644
+#: ../util.php:2668
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "E-pos is nie aan %s gestuur nie, omdat dit 'n ongeldig adres is"
 
-#: ../util.php:2660
+#: ../util.php:2684
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Stuurder adres %s is ongeldig, gebruik maar %s."
 
-#: ../util.php:2674
+#: ../util.php:2698
 msgid "Administrator"
 msgstr ""
 
-#: ../util.php:2706 ../util.php:2711
+#: ../util.php:2730 ../util.php:2735
 msgid "not shown"
 msgstr "nie gewys nie"
 
-#: ../util.php:2715
+#: ../util.php:2739
 msgid "Message"
 msgstr "Boodskap"
 
-#: ../util.php:2719
+#: ../util.php:2743
 msgid "Email sent"
 msgstr "E-pos is gestuur"
 
-#: ../util.php:2721
+#: ../util.php:2745
 msgid "Email not sent"
 msgstr "E-pos is nie gestuur nie"
 
-#: ../util.php:2854
+#: ../util.php:2878
 #, php-format
 msgid "Last comment %s."
 msgstr "Laaste kommentaar %s."
 
-#: ../util.php:2866
+#: ../util.php:2890
 msgid "FAILED"
 msgstr "MISLUK"
 
-#: ../util.php:2875
+#: ../util.php:2899
 msgid "Email activity"
 msgstr "E-pos aktiviteit"
 
-#: ../util.php:2900
+#: ../util.php:2924
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kan nie logl&ecirc;er %s oopmaak nie"
 
-#: ../util.php:2907
+#: ../util.php:2931
 #, fuzzy, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3835,72 +3882,72 @@ msgstr ""
 "\n"
 "Galery @ %s Administrateur."
 
-#: ../util.php:2916 ../util.php:2918
+#: ../util.php:2940 ../util.php:2942
 msgid "gallery title"
 msgstr "galery titel"
 
-#: ../util.php:2917
+#: ../util.php:2941
 msgid "gallery URL"
 msgstr "galery URL"
 
-#: ../util.php:2947
+#: ../util.php:2971
 msgid "No Skin"
 msgstr ""
 
-#: ../util.php:2948
+#: ../util.php:2972
 #, fuzzy, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>Niks</dt><dd>Die oorspronklike <i>Kyk-en-Voel</i>.</dd>"
 
-#: ../util.php:2993 ../util.php:2997
+#: ../util.php:3017 ../util.php:3021
 msgid "unknown"
 msgstr ""
 
-#: ../util.php:3001
+#: ../util.php:3025
 #, fuzzy
 msgid "Version"
 msgstr "Toegangsregte"
 
-#: ../util.php:3003
+#: ../util.php:3027
 #, fuzzy
 msgid "Last Update"
 msgstr "Laaste blad"
 
-#: ../util.php:3023 ../util.php:3028
+#: ../util.php:3047 ../util.php:3052
 msgid "Dots"
 msgstr "Stippels"
 
-#: ../util.php:3024 ../util.php:3029
+#: ../util.php:3048 ../util.php:3053
 msgid "Solid"
 msgstr "Solied"
 
-#: ../util.php:3027
+#: ../util.php:3051
 msgid "No frames"
 msgstr "Geen rame"
 
-#: ../util.php:3028
+#: ../util.php:3052
 msgid "Just a simple dashed border around the thumb."
 msgstr "Net 'n eenvoudige gestippelde buitelyn om die duimnaelskets."
 
-#: ../util.php:3029
+#: ../util.php:3053
 msgid "Just a simple solid border around the thumb."
 msgstr "Net 'n eenvoudige soliede builtelyn om die duimnaelskets"
 
-#: ../util.php:3050
+#: ../util.php:3074
 #, php-format
 msgid "Skipping %s."
 msgstr "Slaan %s oor."
 
-#: ../util.php:3056
+#: ../util.php:3080
 #, php-format
 msgid "Can't open %s"
 msgstr "Kan nie %s oopmaak nie"
 
-#: ../util.php:3176 ../util.php:3195
+#: ../util.php:3200 ../util.php:3219
 msgid "Not valid yet"
 msgstr "Nog nie geldig nie"
 
-#: ../util.php:3438
+#: ../util.php:3462
 #, fuzzy
 msgid "EXIF Data"
 msgstr "Additionele EXIF data"
@@ -4155,23 +4202,23 @@ msgstr "Watermerk Album"
 msgid "View Comments"
 msgstr "besigtig kommentaar"
 
-#: ../view_album.php:1057
+#: ../view_album.php:1058
 msgid "Hey! Add some photos."
 msgstr "Haai! Plaas 'n paar kiekies in hierdie album!"
 
-#: ../view_album.php:1059
+#: ../view_album.php:1060
 msgid "This album is empty."
 msgstr "Hierdie album is leeg."
 
-#: ../view_album.php:1102
+#: ../view_album.php:1104
 msgid "Email me when one of the following actions are done to this album:"
 msgstr ""
 
-#: ../view_album.php:1107
+#: ../view_album.php:1109
 msgid "Comments are added"
 msgstr "Kommentaar gelewer is"
 
-#: ../view_album.php:1110
+#: ../view_album.php:1112
 msgid "Other changes are made"
 msgstr "Ander wysigings aangebring is"
 

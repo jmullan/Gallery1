@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2004 Bharat Mediratta
+ * Copyright (C) 2000-2005 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -492,7 +492,7 @@ class AlbumItem {
         function watermark($dir, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview=0, $previewSize=0, $wmSelect=0) {
                 global $gallery;
                 $type = $this->image->type;
-		if (isMovie($type))
+		if (isMovie($type) || $this->isAlbum())
 		{
 			// currently there is no watermarking support for movies
 			return (0);
