@@ -38,7 +38,9 @@ if ($save) {
 		$gallery->album->setItemCaptureDate($index, $dateArray );
 		$gallery->album->save();
 		dismissAndReload();
-		return;
+		if (!isDebugging()) {
+			return;
+		}
 	} else {
 		$err = "Year must be between 1000 and 3000";
 	}
@@ -72,7 +74,7 @@ Enter "keywords" for this photo in the text box below.
 <?= $gallery->album->getKeywords($index) ?>
 </textarea>
 
-<br><br>
+<br>
 
 <?
 // get the itemCaptureDate
@@ -87,9 +89,9 @@ $mday = $itemCaptureDate["mday"];
 $year = $itemCaptureDate["year"];
 // start capture date table
 ?>
-<table>
+<table border=0>
   <tr>
-    <td colspan="5" align="center">Photo Capture Date</td>
+    <td colspan="6" align="center">Photo Capture Date</td>
   </tr>
   <tr>
     <td>Month</td>
@@ -102,57 +104,29 @@ $year = $itemCaptureDate["year"];
   <tr>
 <?
 // start making drop downs
-echo "<td><select name=\"capture_mon\">";
-for ($i = 1; $i <= 12; $i++) {
-	if ($i == $mon) {
-		$sel = "selected";
-	} else {
-		$sel = "";
-	}
-	echo "<option value=\"$i\" $sel>$i</option>"; 
-}
-echo "</select></td>\n";
-echo "<td><select name=\"capture_mday\">";
-for ($i = 1; $i <= 31; $i++) {
-	if ($i == $mday) {
-		$sel = "selected";
-	} else {
-		$sel = "";
-	}
-	echo "<option value = \"$i\" $sel>$i</option>";
-}
-echo "</select></td>\n";
-echo "<td><INPUT TYPE=TEXT NAME=\"capture_year\" VALUE=$year SIZE=4></td>";
-echo "<td><select name=\"capture_hours\">";
-for ($i = 1; $i <= 23; $i++) {
-	if ($i == $hours) {
-		$sel = "selected";
-	} else {
-		$sel = "";
-	}
-	echo "<option value = \"$i\" $sel>$i</option>";
-}
-echo "</select></td>\n";
-echo "<td><select name=\"capture_minutes\">";
-for ($i = 0; $i <= 59; $i++) {
-        if ($i == $minutes) {
-                $sel = "selected";
-        } else {
-                $sel = "";
-        }
-        echo "<option value = \"$i\" $sel>$i</option>";
-}
-echo "</select></td>\n";
-echo "<td><select name=\"capture_seconds\">";
-for ($i = 0; $i <=59; $i++) {
-	if ($i == $seconds) {
-		$sel = "selected";
-	} else {
-		$sel = "";
-	}
-	echo "<option value = \"$i\" $sel>$i</option>";
-}
-echo "</select></td>\n";
+echo "<td>";
+echo drawSelect("capture_mon", padded_range_array(1, 12), $mon, 1);
+echo "</td>";
+
+echo "<td>";
+echo drawSelect("capture_mday", padded_range_array(1, 31), $mday, 1);
+echo "</td>";
+
+echo "<td>";
+echo "<input type=text name=\"capture_year\" value=$year size=4>";
+echo "</td>";
+
+echo "<td>";
+echo drawSelect("capture_hours", padded_range_array(1, 23), $hours, 1);
+echo "</td>";
+
+echo "<td>";
+echo drawSelect("capture_minutes", padded_range_array(0, 59), $minutes, 1);
+echo "</td>";
+
+echo "<td>";
+echo drawSelect("capture_seconds", padded_range_array(0, 59), $seconds, 1);
+echo "</td>";
 ?>
   </tr>
 </table>
