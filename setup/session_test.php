@@ -1,11 +1,21 @@
 <?
+// Pull the $destroy variable into the global namespace
+extract($HTTP_GET_VARS);
+
 session_start();
-if ($HTTP_GET_VARS['destroy']) {
+
+// Pull the $count variable in also
+foreach($HTTP_SESSION_VARS as $key => $value) {
+    eval("\$$key =& \$HTTP_SESSION_VARS[\"$key\"];");
+}
+session_register("count");
+
+if ($destroy) {
     session_destroy();
     header("Location: session_test.php");
     exit;
 }
-$HTTP_SESSION_VARS['count']++;
+$count++;
 ?>
 
   <html>
@@ -43,11 +53,13 @@ $HTTP_SESSION_VARS['count']++;
 	    Page views in this session
 	  </td>
 	  <td>
-	    <?=$HTTP_SESSION_VARS['count']?>
+	    <?=$count?>
 	  </td>
 	</tr>
       </table>
 
       <a href="session_test.php?destroy=1">Start over</a>
+      <p>
+      Return to the <a href="diagnostics.php">Diagnostics Page</a>
     </body>
   </html>
