@@ -135,7 +135,7 @@ if ($gallery->session->albumName && isset($index)) {
 								$gallery->album->getItemOwner($index),
 								$votes);
 						if (!$err) {
-							$newPhotoIndex = $postAlbum->numPhotos(1);
+							$newPhotoIndex = $postAlbum->getAddToBeginning() ? 1 : $postAlbum->numPhotos(1);
 
 							// Save additional item settings... currently:
 							//  $clicks $keywords $comments $uploadDate $itemCaptureDate;
