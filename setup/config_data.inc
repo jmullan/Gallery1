@@ -256,7 +256,20 @@ $constants = array(
 			"of all sub-albums when you're browsing the top level of " .
 			"your Gallery.  This will make navigating to a specific " .
 			"sub album much easier (although it can severely clutter " .
-			"the appearance of the top Gallery page).  Off by default. ",
+			"the appearance of the top Gallery page).  Set to <b>no</b> " .
+			"by default. ",
+		"choices" => array("yes", "no"),
+		"value" => "no"
+	),
+	"cacheExif" => array(
+		"prompt" => "<b>(Advanced)</b> Cache EXIF data",
+		"desc" => "The EXIF data extracted from JPEG files can be cached " .
+			"after it is read the first time.  The tradeoff is that if " .
+			"you cache this data it's possible for your album data files " .
+			"to get quite large which may slow down viewing your albums. " .
+			"But, if you don't cache this data then it needs to be " .
+			"retrieved every time any user looks at the properties of a " .
+			"photo which can also be slow.  Set to <b>no</b> by default.",
 		"choices" => array("yes", "no"),
 		"value" => "no"
 	),
