@@ -216,7 +216,7 @@ $constants =  array_merge(
 		"type"		=> "group_start",
 		"name"		=> "group_mandatory",
 		"default"	=> "inline",
-		"title" => _("Main settings")
+		"title" => _("General settings")
 	),
 	"galleryTitle" => array(
 		"prompt" => _("Gallery Title"),

@@ -271,20 +271,6 @@ function getDimensions($file, $regs=false) {
 	return array(0, 0);
 }
 
-/*
-   $opts is now a name/value array, where $key is the value returned, and $name 
-   is the value displayed (and translated).
- */
-function selectOptions($album, $field, $opts) {
-	foreach ($opts as $key => $value) {
-		$sel = "";
-		if (!strcmp($key, $album->fields[$field])) {
-			$sel = "selected";
-		}
-		echo "\n<option value=\"$key\" $sel>" . _($value) ."</option>";
-	}
-}
-
 function acceptableFormat($tag) {
 	return (isImage($tag) || isMovie($tag));
 }

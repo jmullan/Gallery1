@@ -61,4 +61,21 @@ $buf='
 
 return $buf;
 }
+
+/*
+** $opts is now a name/value array, where $key is the value returned, and $name
+** is the value displayed (and translated).
+*/
+
+function selectOptions($album, $field, $opts) {
+	foreach ($opts as $key => $value) {
+		$sel = "";
+		if (!strcmp($key, $album->fields[$field])) {
+			$sel = "selected";
+		}
+		echo "\n\t<option value=\"$key\" $sel>$value</option>";
+	}
+	echo "\n";
+}
+
 ?>
