@@ -37,7 +37,7 @@ function pluralize_n($amt, $one, $more, $none) {
         }
 }
 
-function get_BrowserLanguage() {
+function getBrowserLanguage() {
        // Detect Browser Language
 
        if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
@@ -73,6 +73,68 @@ function setLangDefaults($nls) {
 	$gallery->align		= $nls['default']['alignment'];
 }
 
+function getEnvLang() {
+
+	global $GALLERY_EMBEDDED_INSIDE_TYPE;
+
+	global $HTTP_SESSION_VARS;		/* Needed for PostNuke 	*/
+	global $HTTP_COOKIE_VARS;		/* Needed for phpNuke 	*/
+	global $board_config;			/* Needed for phpBB2 	*/
+	global $_CONF;				/* Needed for GeekLog	*/
+
+	switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
+		case 'postnuke':
+			if (isset($HTTP_SESSION_VARS['PNSVlang'])) {
+				return $HTTP_SESSION_VARS['PNSVlang'];
+			}
+
+		break;
+
+		case 'phpnuke':
+		case 'nsnnuke':
+			if (isset($HTTP_COOKIE_VARS['lang'])) {
+				return $HTTP_COOKIE_VARS['lang'];
+			}
+
+		break;
+
+		case 'phpBB2':
+			if (isset($board_config['default_lang'])) {
+				return $board_config['default_lang'];
+			}				
+		break;
+
+		case 'GeekLog':
+			if (isset($_CONF['locale'])) {
+				return $_CONF['locale'];
+			}				
+		break;
+
+		default:
+			echo "false";
+			return FALSE;
+		break;
+	}
+}
+
+
+/*
+** In some Environments we dont want to allow the user
+** to change the language.
+** In this case we override Mode 3 with Mode 1 and
+** Gallery runs in the language the Environment use.
+*/
+function forceStaticLang() {
+	global $GALLERY_EMBEDDED_INSIDE_TYPE;
+	global $gallery;
+
+	$useStatic=array('phpBB2', 'GeekLog');
+
+	if (in_array($GALLERY_EMBEDDED_INSIDE_TYPE, $useStatic)) {
+		$gallery->app->ML_mode=1;
+	}
+}	
+
 function initLanguage() {
 
 	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
@@ -103,82 +165,32 @@ function initLanguage() {
 		}
 	}
 
-	$gallery->browser_language=get_BrowserLanguage();
-
 	// Does the user wants a new lanuage ?
 	if (isset($HTTP_GET_VARS['newlang'])) {
 		$newlang=$HTTP_GET_VARS['newlang'];
 	}
 
 	/**
-	 ** We have now several Ways. Embedded (PostNuke, phpNuke, phpBB2) or not embedded
-	 ** Now we (try) to do the language settings
-	 ** 
 	 ** Note: ML_mode is only used when not embedded
 	 **/
 
 	if (isset($GALLERY_EMBEDDED_INSIDE_TYPE)) {
-		/* Gallery is embedded */
+		/* Gallery is embedded
 
-		/* Gallery can set nukes language, for phpBB2 this is not possible.
-		** So gallery will always use phpBB2's language.
+		/* Gallery can set nukes language, for phpBB2, GeekLog etc. this is not possible.
+		** So gallery will always use their language.
 		*/
+		forceStaticLang();
 
 		if (!empty($newlang)) {
-			// if there was a new language given, use it for nuke
-			$gallery->nuke_language=$newlang;
+			// if there was a new language given.
+			$gallery->language=$newlang;
 		} else {
 			/* No new language.
 			** Lets see in which Environment were are and look for a language.
-			*/
-			
-			switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
-			case 'postnuke':
-				if (isset($HTTP_SESSION_VARS['PNSVlang'])) {
-					$gallery->nuke_language=$HTTP_SESSION_VARS['PNSVlang'];
-				}
-
-			case 'phpnuke':
-			case 'nsnnuke':
-				if (isset($HTTP_COOKIE_VARS['lang'])) {
-					$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
-				}
-
-				/* This is executed for both nukes */
-				if (isset ($gallery->session->language) && ! isset($gallery->nuke_language)) {
-					$gallery->language = $gallery->session->language;
-				} else if (isset ($nls['alias'][$gallery->nuke_language])) {
-					$gallery->language=$nls['alias'][$gallery->nuke_language];
-				}
-			break;
-			case 'phpBB2':
-				/* Gallery will always use phpBB2's language, so we override the mode to 1.
-				** No pulldown or flags appear.
-				*/
-				$gallery->app->ML_mode=1;
-
-				global $board_config;
-				if (isset($board_config['default_lang'])) {
-					if (isset ($nls['alias'][$board_config['default_lang']])) {
-						$gallery->language = $nls['alias'][$board_config['default_lang']];
-					}
-				}				
-			break;
-
-			case 'GeekLog':
-				/* Gallery will always use GeekLog's language, so we override the mode to 1.
-				** No pulldown or flags appear.
-				*/
-				$gallery->app->ML_mode=1;
-		
-				global $_CONF;
-				if (isset($_CONF['locale'])) {
-						$gallery->language = $_CONF['locale'];
-				}				
-			break;
-
-
-			}
+			** Lets try to determ the used language
+			*/ 
+			$gallery->language = getEnvLang();
 		}
 	} else {
 		// We're not in Nuke
@@ -201,6 +213,7 @@ function initLanguage() {
 				if (!empty($newlang)) {
 					// Use Alias if
 					if (isset($nls['alias'][$newlang])) $newlang=$nls['alias'][$newlang] ;
+
 					// Set Language to the User selected language (if this language is defined)
 					if (isset($nls['language'][$newlang])) {
 						$gallery->language=$newlang;
@@ -213,6 +226,9 @@ function initLanguage() {
 			default:
 				// Use Browser Language or Userlanguage 
 				// when mode 2 or any other (wrong) mode
+
+				$gallery->browser_language=getBrowserLanguage();
+
 				if (!empty($gallery->user) && 
 						$gallery->user->getDefaultLanguage() != "") {
 					$gallery->language = $gallery->user->getDefaultLanguage();
@@ -223,13 +239,20 @@ function initLanguage() {
 		}
 	}
 
+	// if an alias for a language is given, use it
+	//
+	if (isset($nls['alias'][$gallery->language])) {
+		$gallery->language = $nls['alias'][$gallery->language] ;
+	}
+
 	/**
 	 **  Fall back to Default Language if :
 	 **	- we cant detect Language
 	 **	- Nuke/phpBB2 sent an unsupported
 	 **	- User sent an undefined
 	 **/
-	if (empty($gallery->language)) {
+
+	if (! isset($nls['language'][$gallery->language])) {
 		if (isset($gallery->app->default_language)) {
 			$gallery->language = $gallery->app->default_language;
 		} elseif(isset($gallery->browser_language)) {
@@ -238,12 +261,6 @@ function initLanguage() {
 			// when we REALLY REALLY cant detect a language
 			$gallery->language="en_US";
 		}
-	}
-
-	// if an alias for a language is given, use it
-	//
-	if (isset($nls['alias'][$gallery->language])) {
-		$gallery->language = $nls['alias'][$gallery->language] ;
 	}
 
 	// And now set this language into session

@@ -1,4 +1,4 @@
-7<?php
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2004 Bharat Mediratta
@@ -40,7 +40,7 @@ if (!isset($gallery)) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = '1.4.3-cvs-b82';
+$gallery->version = '1.4.3-cvs-b83';
 $gallery->config_version = 79;
 $gallery->album_version = 27;
 $gallery->user_version = 5;
