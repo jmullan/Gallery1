@@ -1,4 +1,28 @@
-2003-08-13  Joan McGalliard <gallery@joanhenge.plus.com> 1.4-cvs-b129
+2003-08-16  Joan McGalliard <gallery@joanhenge.plus.com> 1.4-cvs-b130 
+
+	* Adding new sub albums now obeys the "add to beginning" flag.
+
+	* Field last_quality (the quality% that was used resizing the last 
+	  image) added to albums, to use as a best guess for resizing the
+	  next image to a particular filesize.
+
+	* Only use parse_url in save_photos if it's not a file (pathnames 
+	  with "#" in them failed).
+
+	* "Powered by" messages user poweredBy() for translation.
+
+	* Resize functions now called if h&w ok, but there is a target 
+	  filesize.
+
+	* resize_image function modified to make it behave more correctly 
+	  and to use the last_quality field.  Better heuristic still needs 
+	  to be added. max_filesize and min_filesize variables added to 
+	  aid heuristic.
+
+	* Bugfix: $nls['alias'] replaced with $nls['aliases'].  Found 
+	  accidently, not sure what the implications are.
+	
+2003-08-15  Joan McGalliard <gallery@joanhenge.plus.com> 1.4-cvs-b129
 
 	* Slight correction to fix in b127.
 

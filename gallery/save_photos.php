@@ -100,19 +100,24 @@ if ($urls) {
 		/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
 		$url = eregi_replace("^[[:space:]]+", "", $url);
 
+		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $url);
+		$tag = strtolower($tag);
+
 		/* If the URI doesn't start with a scheme, prepend 'http://' */
 		if (!fs_is_file($url)) {
 			if (!ereg("^(http|ftp)", $url)) {
 				$url = "http://$url";
 			}
-		}
 
-		/* Parse URL for name and file type */
-		$url_stuff = parse_url($url);
-		$name = basename($url_stuff["path"]);
-		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $url);
-		$tag = strtolower($tag);
-	
+			/* Parse URL for name and file type */
+			$url_stuff = parse_url($url);
+			$name = basename($url_stuff["path"]);
+
+		} else {
+			$name = basename($url);
+//			$name = eregi_replace(".$tag\$", "", $name);
+
+		}
 		/* Dont output warning messages if we cant open url */
 	
 		/*

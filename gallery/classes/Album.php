@@ -86,6 +86,7 @@ class Album {
 		$this->fields["item_owner_modify"] = $gallery->app->default["item_owner_modify"];
 		$this->fields["item_owner_delete"] = $gallery->app->default["item_owner_delete"];
 		$this->fields["add_to_beginning"] = $gallery->app->default["add_to_beginning"];
+		$this->fields["last_quality"] = $gallery->app->jpegImageQuality;
 
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
@@ -140,6 +141,7 @@ class Album {
 		my_flush();
 
 		$changed = 0;
+		$this->fields["last_quality"] = $gallery->app->jpegImageQuality;
 		$check = array("thumb_size", 
 				"resize_size", 
 				"resize_file_size", 
@@ -680,6 +682,9 @@ class Album {
 		$item = new AlbumItem();
 		$item->isAlbumName = $albumName;
 		$this->photos[] = $item;
+		if ($this->getAddToBeginning() ) {
+			$this->movePhoto($this->numPhotos(1), 0);
+		}
 	}
 
 	function hidePhoto($index) {
