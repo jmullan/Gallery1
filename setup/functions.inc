@@ -854,7 +854,7 @@ function check_poll_nv_pairs($var) {
 					$rownum-1); 
 				break;
 			} else if (!ereg("^[1-9][0-9]*$", $element["value"])) {
-				$fail[]=sprintf(_("In %s, %s (row %d) %s should be a positive whole number"), 
+				$fail[]=sprintf(_("In %s, for name %s (row %d) value %s should be a positive whole number"), 
 					_("Vote words and values"), 
 					$element["name"], 
 					$rownum, $element["value"]);
