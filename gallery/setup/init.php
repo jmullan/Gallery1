@@ -3,8 +3,8 @@
  * Init prepend file for setup directory.
  */
 
-$GALLERY_DIR = dirname(dirname(getenv("SCRIPT_FILENAME")));
-$GALLERY_URL = dirname(dirname(getenv("SCRIPT_NAME")));
+$GALLERY_DIR = dirname(dirname($HTTP_SERVER_VARS["PATH_TRANSLATED"]));
+$GALLERY_URL = dirname(dirname($HTTP_SERVER_VARS["PHP_SELF"]));
 
 // Make sure GALLERY_URL doesn't end in a slash
 $GALLERY_URL = preg_replace("/\/$/", "", $GALLERY_URL);
