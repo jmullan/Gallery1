@@ -1132,7 +1132,8 @@ function gallerySanityCheck() {
 		 *       the directory anyway.
 		 */
 		$perms = sprintf("%o", fileperms($GALLERY_BASEDIR . "setup"));
-		if (strstr($perms, "755")) {
+		if (strstr($perms, "755") ||
+			( getOS()== OS_WINDOWS && ! fs_file_exists($GALLERY_BASEDIR. "setup/SECURE"))) {
 			$GALLERY_OK=false;
 			return "configmode.php";
 		}
@@ -2472,8 +2473,9 @@ function emulate_gettext() {
 	global $translation;
 	global $GALLERY_BASEDIR, $gallery;
 
-	if (in_array($gallery->language,gallery_languages())) {
-		$filename=$GALLERY_BASEDIR ."locale/". $gallery->language ."/". $gallery->language ."-gallery_". where_i_am();
+	if (in_array($gallery->language,array_keys(gallery_languages())) &&
+		$gallery->language != 'en_US') {
+		$filename=$GALLERY_BASEDIR ."locale/". $gallery->language ."/". $gallery->language ."-gallery_". where_i_am()  .".po";
 		$lines=file($filename);
 
 		foreach ($lines as $key => $value) {
@@ -2492,7 +2494,7 @@ function emulate_gettext() {
 			}
 		}
 	}
-	// There is no translation file, so just return what we got
+	// There is no translation file or we are using original (en_US), so just return what we got
 	else {
 		function _($search) {
 			return $search;
@@ -2827,6 +2829,7 @@ function available_skins() {
 
 function available_frames($description_only=false) {
 	global $GALLERY_BASEDIR;
+
 	$opts=array(
 			'none' => _("None"), 
 			'dots' => _("Dots"), 
@@ -2946,7 +2949,7 @@ function gallery_languages() {
 
 	global $GALLERY_BASEDIR;
 	$modules=array('config','core');
-	$handle=opendir($GALLERY_BASEDIR. "locale");
+	$handle=fs_opendir($GALLERY_BASEDIR. "locale");
 	$available=array('en_US' => 'English (US)');
 	$nls=getNLS();
 	
