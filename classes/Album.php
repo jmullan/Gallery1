@@ -208,6 +208,7 @@ class Album {
 	** Array is reverted, so the first Element is the topalbum.
 	** If you set $addChild true, then the child album itself is added as last Element.
 	** Based on code by: Dariush Molavi
+	** Note: the 30 is a limit to prevent unlimited recursing.
 	*/
 	function getParentAlbums($addChild=false) {
 		global $gallery;
@@ -220,8 +221,7 @@ class Album {
 			$parentNameArray[$this->fields['name']] = $this->fields['title'];
 		}
 
-		while (($parentAlbum = $parentAlbum->getParentAlbum(FALSE)) && 
-				$depth < $gallery->app->maximumAlbumDepth) {
+		while (($parentAlbum = $parentAlbum->getParentAlbum(FALSE)) && $depth < 30) {
 			$parentNameArray = array($parentAlbum->fields['name'] => $parentAlbum->fields['title']) + $parentNameArray;
 			$depth++;
 		}

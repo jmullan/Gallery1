@@ -469,11 +469,18 @@ $constants =  array_merge(
 		'default' => "none",
 		'title' => _("Main Gallery page"),
 	),
-	'showAlbumTree' => array(
-		'prompt' => _("Show the album tree"),
-		'desc' => _("If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page)."),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")), 
-		'value' => "no"
+	'albumTreeDepth' => array(
+		'prompt' => _("Show the album tree ?"),
+		'desc' => _("If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."),
+		'choices' => array(0 => _("No tree"), 
+				1 => sprintf (_("%d sublevel"),1),
+				2 => sprintf (_("%d sublevel"),2),
+				3 => sprintf (_("%d sublevel"),3),
+				4 => sprintf (_("%d sublevel"),4),
+				5 => sprintf (_("%d sublevel"),5),
+				10 => sprintf (_("%d sublevel"),10),
+				1000 => _("Complete Tree")),
+		'value' => 1000,
 	),
 	'highlight_size' => array(
 		'prompt' => _("Highlight size"),
@@ -489,6 +496,7 @@ $constants =  array_merge(
 		'value' => "no"
 	),
 	'albumsPerPage' => array(
+
 		'prompt' => _("Albums per page"),
 		'desc' => _("How many albums should be displayed per Gallery page?"),
 		'value' => "5",
@@ -1215,13 +1223,7 @@ $constants = array_merge($constants,
 		'persistent' => 1,
 		'filename' => 1
 		),
-	'maximumAlbumDepth' => array(
-		'desc' => "Stops the breadcrumb code infinitely recursing.",
-		'prompt' => "Maximum album depth",
-		'type' => "hidden",
-		'persistent' => 1,
-		'value' => 50
-		),
+
 	)
 );
 

@@ -1858,7 +1858,7 @@ function printChildren($albumName,$depth=0) {
 	$myAlbum->load($albumName);
 	$numPhotos = $myAlbum->numPhotos(1);
 
-	if ($depth > $gallery->app->maximumAlbumDepth) {
+	if ($depth >= $gallery->app->albumTreeDepth) {
 		return;
 	}
 
