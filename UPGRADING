@@ -3,6 +3,7 @@ CONTENTS
  2. How to upgrade a modified Gallery
  3. Notes on upgrading from pre-v1.1 to v1.1
  4. Notes on upgrading from v1.1 to v1.2
+ 5. Notes on upgrading to v1.2.2
 
 1. HOW TO UPGRADE GALLERY
 
@@ -120,3 +121,25 @@ Remember that the default html_wrap and css files can change across
 versions (for example, we introduced a new <table> tag into
 photo.header.default) so you'll want to to audit your html_wrap files
 after the upgrade is complete.
+
+5. NOTES ON UPGRADING TO V1.2.2
+
+We made a change in the Nuke support in v1.2.2.  In the past, if you
+wanted to rename your Gallery module under Nuke, you had to modify the
+$GALLERY_MODULENAME variable in gallery/index.php.  In v1.2.2, we
+detect the name of the module and use it automatically.  So, when you
+upgrade you won't need to modify index.php any more.
+
+Also, when you upgrade to v1.2.2 you'll have to re-run the config
+wizard and then upgrade all of your albums.  The first time an album
+is viewed, it'll be automatically upgraded.  However, it can be
+tedious to have to click to every single album as part of the upgrade
+process.  However, it's possible to upgrade all your albums at once!
+Log on as the admin user and then on the main page you'll see a link
+(in red) next to every album that requires an upgrade.  Click this
+link and it will take you to the "upgrade_album.php" page which will
+allow you to upgrade any individual album, or all albums at once.  If
+you can't find the link, you can browse to this page directly by
+entering it into your browser manually.
+
+
