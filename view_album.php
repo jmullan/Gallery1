@@ -120,41 +120,18 @@ $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
 
 $fullWidth = $navigator["fullWidth"] . $navigator["widthUnits"];
-$breadCount = 0;
-$breadtext = array();
-$pAlbum = $gallery->album;
-$depth=0;
-$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
-do {
-  if (!strcmp($pAlbum->fields["returnto"], "no")) {
-    break;
-  }
-  $depth++;
-  $pAlbumName = $pAlbum->fields['parentAlbumName'];
-  if ($pAlbumName && (!$gallery->session->offline 
-     || isset($gallery->session->offlineAlbums[$pAlbumName]))) {
-	$pAlbum = new Album();
-	$pAlbum->load($pAlbumName);
-	$breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($pAlbumName) . 
-	"\">" . $pAlbum->fields['title'] . "&nbsp;" . $upArrowURL . "</a>";
-  } elseif (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
-	//-- we're at the top! --- 
-	$breadtext[$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . 
-	"\">" . $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
-	$pAlbumName = '';
-  } 
-  elseif ($gallery->session->offline) {	// test is redundant.  offline must be 
-  					// true if you reach this line.
-	break; 
-  }
+$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" ' .
+		'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
 
-  $breadCount++;
-} while ($pAlbumName && $depth < $gallery->app->maximumAlbumDepth);
-
-//-- we built the array backwards, so reverse it now ---
-for ($i = count($breadtext) - 1; $i >= 0; $i--) {
-	$breadcrumb["text"][] = $breadtext[$i];
+if ($gallery->album->fields['returnto'] != 'no') {
+	$breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" . 
+		$gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
+	foreach ($gallery->album->getParentAlbums(true) as $name => $title) {
+		$breadcrumb["text"][] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($name) . "\">" . 
+			$title. "&nbsp;" . $upArrowURL . "</a>";
+	}
 }
+
 $breadcrumb["bordercolor"] = $bordercolor;
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
@@ -307,12 +284,12 @@ $adminOptions = array(
 									array('set_albumName' => $gallery->session->albumName, 
 										'type' => 'popup'))),
 		      'rename_album'    => array('name' => _('rename album'),
-						 'requirements' => array('isAlbumOwner'),
+						 'requirements' => array('isAdminOrAlbumOwner'),
 						 'action' => 'popup',
 						 'value' => makeGalleryUrl('rename_album.php',
 								array('set_albumName' => $gallery->session->albumName,
 									'type' => 'popup',
-									'index' => $i, 'useLoad' => 1))),
+									'useLoad' => 1))),
 		      'nested_album'    => array('name' => _('new nested album'),
 						 'requirements' => array('canCreateSubAlbum',
 									 'notOffline'),
@@ -509,7 +486,7 @@ includeLayout('adminbox.inc');
 <?php
 $breadcrumb["top"] = true;
 $breadcrumb['bottom'] = false;
-if ($breadCount) {
+if (!empty($breadcrumb["text"])) {
 	includeLayout('navtablemiddle.inc');
 	includeLayout('breadcrumb.inc');
 }
@@ -1166,7 +1143,7 @@ if (canVote()) { ?>
 <?php 
 includeLayout('navtablebegin.inc');
 includeLayout('navigator.inc');
-if ($breadCount) {
+if (!empty($breadcrumb["text"])) {
 	$breadcrumb["top"] = false;
 	includeLayout('navtablemiddle.inc');
 	includeLayout('breadcrumb.inc');

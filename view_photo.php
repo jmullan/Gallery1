@@ -153,38 +153,16 @@ $navigator["bordercolor"] = $bordercolor;
 
 #-- breadcrumb text ---
 $upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
-$breadCount = 0;
-$breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($gallery->session->albumName) .
-      "\">" . $gallery->album->fields['title'] . "&nbsp;" . $upArrowURL . "</a>";
-$breadCount++;
-$pAlbum = $gallery->album;
-$depth = 0;
-do {
-  if (!strcmp($pAlbum->fields["returnto"], "no")) {
-    break;
-  }
-  $depth++;
-  $pAlbumName = $pAlbum->fields['parentAlbumName'];
-  if ($pAlbumName && (!$gallery->session->offline
-          || $gallery->session->offlineAlbums[$pAlbumName])) {
 
-    $pAlbum = new Album();
-    $pAlbum->load($pAlbumName);
-    $breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($pAlbumName) .
-      "\">" . $pAlbum->fields['title'] . "&nbsp;" . $upArrowURL . "</a>";
-  } elseif (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
-    //-- we're at the top! ---
-    $breadtext[$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") .
-      "\">" . $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
-    $pAlbumName = '';
-  }
-  $breadCount++;
-} while ($pAlbumName && $depth < $gallery->app->maximumAlbumDepth);
-
-//-- we built the array backwards, so reverse it now ---
-for ($i = count($breadtext) - 1; $i >= 0; $i--) {
-    $breadcrumb["text"][] = $breadtext[$i];
+if ($gallery->album->fields['returnto'] != 'no') {
+	$breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" .
+		$gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
+	foreach ($gallery->album->getParentAlbums(true) as $name => $title) {
+		$breadcrumb["text"][] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($name) . "\">" .
+			$title. "&nbsp;" . $upArrowURL . "</a>";
+        }
 }
+
 $extra_fields=$gallery->album->getExtraFields(false);
 $title=NULL;
 if (in_array("Title", $extra_fields)) {

@@ -3485,7 +3485,8 @@ function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 	return array ($divCellWidth, $divCellHeight, $padding);
 }
 
-/* counts all Elements of an Array, but not the array(s) itself
+/* 
+** Counts all Elements of an Array, but not the array(s) itself
 ** Code by A. Lindeman
 */
 function recursiveCount (&$arr) {
@@ -3502,6 +3503,30 @@ return $count;
 
 }
 
+/*
+ * Returns an array of the parent album names for a given child
+ * album.
+ * Array is reverted, so the first Element is the topalbum.
+ * If you set $addChild true, then the child album itself is added as last Element.
+ * Based on code by: Dariush Molavi
+ */
+
+function getParentAlbums($childAlbum, $addChild=false) {
+	$pAlbum = $childAlbum;
+	$parentNameArray = array();
+
+	if ($addChild == true) {
+		$parentNameArray[$pAlbum->fields['name']] = $pAlbum->fields['title'];
+	}
+
+	while ($pAlbum = $pAlbum->getParentAlbum(FALSE)) {
+		$parentNameArray[$pAlbum->fields['name']] = $pAlbum->fields['title'];
+	}
+
+	$parentNameArray = array_reverse($parentNameArray);
+
+	return $parentNameArray;
+}
 
 require_once(dirname(__FILE__) . '/lib/lang.php');
 require_once(dirname(__FILE__) . '/lib/Form.php');

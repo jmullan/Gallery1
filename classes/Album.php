@@ -202,6 +202,35 @@ class Album {
 		return null;
 	}
 
+	/*
+	** Returns an array of the parent album names for a given album.
+	** Key is albumname, value is albumtitle
+	** Array is reverted, so the first Element is the topalbum.
+	** If you set $addChild true, then the child album itself is added as last Element.
+	** Based on code by: Dariush Molavi
+	*/
+	function getParentAlbums($addChild=false) {
+		global $gallery;
+
+		$parentAlbum = $this;
+		$parentNameArray = array();
+		$depth=0;
+
+		if ($addChild == true) {
+			$parentNameArray[$this->fields['name']] = $this->fields['title'];
+		}
+
+		while (($parentAlbum = $parentAlbum->getParentAlbum(FALSE)) && 
+				$depth < $gallery->app->maximumAlbumDepth) {
+			$parentNameArray[$parentAlbum->fields['name']] = $parentAlbum->fields['title'];
+			$depth++;
+		}
+
+		$parentNameArray = array_reverse($parentNameArray);
+
+		return $parentNameArray;
+	}
+
 	function getRootAlbumName() {
 
 		$parentAlbum =& $this->getParentAlbum(FALSE);
