@@ -1,7 +1,6 @@
 # $Id$
 
 BRANCH = BRANCH_1_4
-
 TARDIR = tardir
 
 CVS = cvs -z3 -d ${CVSROOT}
@@ -20,11 +19,11 @@ package:
 	(cd ${TARDIR} && ${CVS} export -r ${BRANCH} gallery) && \
 	mv ${TARDIR}/docs/dist/g1package ${TARDIR}/gallery/docs && \
 	(cd ${TARDIR} && tar czf ../`${TARBALL}` gallery) && \
-	(cd ${TARDIR} && zip ../`${ZIPBALL}` gallery) && \
+	(cd ${TARDIR} && zip -r ../`${ZIPBALL}` gallery) && \
 	/bin/rm -rf ${TARDIR}
 
 export:
-	(cd ${TARDIR} && echo ncftpput -u anonymous -p gallery@ upload.sourceforge.net /incoming ${TARBALL} ${ZIPBALL})
+	ncftpput -u anonymous -p gallery@ upload.sourceforge.net /incoming `${TARBALL}` `${ZIPBALL}`
 
 clean:
-	rm -fr ${TARDIR} ${TARBALL} ${ZIPBALL}
+	rm -fr ${TARDIR} `${TARBALL}` `${ZIPBALL}`
