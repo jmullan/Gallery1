@@ -15,13 +15,13 @@ reasonably.
 <center>
 <table width=800>
 <input type=hidden name=this_page value="check">
-<input type=hidden name=next_page value="form">
+<input type=hidden name=next_page value="constants">
 
 <?
 foreach ($checklist as $check) {
 ?> 
 	<tr>
-	<td width=60% valign=top><?=$check["desc"]?></td>
+	<td width=50% valign=top><?=$check["desc"]?></td>
 	<td width=5%> &nbsp; </td>
 	<td valign=top>
 <?
