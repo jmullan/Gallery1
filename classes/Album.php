@@ -341,6 +341,11 @@ class Album {
 	function rotatePhoto($index, $direction) {
 		$photo = $this->getPhoto($index);
 		$photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"]);
+
+		/* Are we rotating the highlight?  If so, rebuild the highlight. */
+		if ($photo->isHighlight()) {
+			$photo->setHighlight($this->getAlbumDir(), 1);
+		}
 		$this->setPhoto($photo, $index);
 	}
 
