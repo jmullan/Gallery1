@@ -120,12 +120,18 @@ $action = getRequestVar('action');
 if (empty($action)) {
     findInvalidAlbums();
 } else {
+   if (!$GALLERY_EMBEDDED_INSIDE) {
+        doctype();
 ?>
+<html>
 <head>
   <title><?php echo ($action == 'unlinkInvalidAlbum') ? _("Delete Album") : _("Delete Photo") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
+<?php
+    }
+?>
 <div class="popuphead"><?php echo ($action == 'unlinkInvalidAlbum') ? _("Delete Album") : _("Delete Photo") ?></div>
 <div class="popup" align="center">
 <?php
@@ -176,7 +182,6 @@ $invalidAlbum));
     exit;
 }
 
-global $GALLERY_EMBEDDED_INSIDE;
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>

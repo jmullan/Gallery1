@@ -145,6 +145,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option) || iss
 		       "stats.php",
 		       "tools/find_orphans.php",
 		       "tools/despam-comments.php",
+		       "tools/validate_albums.php",
 		       "upgrade_album.php",
 		       "upgrade_users.php",
 		       "user_preferences.php",

@@ -36,9 +36,9 @@ if (!$gallery->user->isAdmin()) {
 	exit;
 }
 
-doctype();
+if (!$GALLERY_EMBEDDED_INSIDE) {
+    doctype();
 ?>
-
 <html>
 <head>
 <title><?php echo $gallery->app->galleryTitle ?></title>
@@ -49,6 +49,7 @@ doctype();
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php  
+}
         includeHtmlWrap("gallery.header");
 
 ?>
@@ -56,7 +57,7 @@ doctype();
 <?php
 
 $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
-$adminCommands = '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+$adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
 
 $adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
