@@ -260,9 +260,9 @@ class Album {
 			$func .= "} ";
 			//$func .= "print \$filenameA \$filenameB; ";
 			if (!$order) {
-				$func .= "return (strcmp(\$filenameA, \$filenameB)); ";
+				$func .= "return (strnatcmp(\$filenameA, \$filenameB)); ";
 			} else {
-				$func .= "return (strcmp(\$filenameB, \$filenameA)); ";
+				$func .= "return (strnatcmp(\$filenameB, \$filenameA)); ";
 			}
 		} else if (!strcmp($sort, "click")) {
 			// sort album by number of clicks
@@ -282,9 +282,9 @@ class Album {
 			$func .= "\$captionA = \$objA->getCaption(); ";	
 			$func .= "\$captionB = \$objB->getCaption(); ";
 			if (!$order) {
-				$func .= "return (strcmp(\$captionA, \$captionB)); ";
+				$func .= "return (strnatcmp(\$captionA, \$captionB)); ";
 			} else {
-				$func .= "return (strcmp(\$captionB, \$captionA)); ";
+				$func .= "return (strnatcmp(\$captionB, \$captionA)); ";
 			}
 		}  else if (!strcmp($sort, "comment")) {
 			// sort by number of comments

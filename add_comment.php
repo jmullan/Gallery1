@@ -41,6 +41,7 @@ if (!strcmp($submit, "Save")) {
 	if ($commenter_name && $comment_text) {
 	        $comment_text = removeTags($comment_text);
 	        $commenter_name = removeTags($commenter_name);
+		$IPNumber = $HTTP_SERVER_VARS['REMOTE_ADDR'];
 		$gallery->album->addComment($index, stripslashes($comment_text), $IPNumber, $commenter_name);
 		$gallery->album->save();
 		dismissAndReload();
@@ -74,7 +75,6 @@ if ($error_text) {
 
 <?php echo makeFormIntro("add_comment.php", array("name" => "theform", "method" => "POST")); ?>
 <input type=hidden name="index" value="<?php echo $index ?>">
-<input type=hidden name="IPNumber" value="<?php echo $HTTP_SERVER_VARS['REMOTE_ADDR'] ?>">
 <table border=0 cellpadding=5>
 <tr>
   <td>Name or email:</td>

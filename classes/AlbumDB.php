@@ -166,6 +166,7 @@ class AlbumDB {
 
 	function getAlbumbyName($name) {
 		global $gallery;
+		/* Look for an exact match */
 		foreach ($this->albumList as $album) {
 			if ($album->fields["name"] == $name) {
 				if (!$album->transient->photosloaded) {
@@ -174,6 +175,17 @@ class AlbumDB {
 				return $album;
 			}
 		}
+
+		/* Look for a match that is case insensitive */
+		foreach ($this->albumList as $album) {
+			if (strcasecmp($album->fields["name"], $name)) {
+				if (!$album->transient->photosloaded) {
+					$album->loadPhotos($gallery->app->albumDir . "/$name");
+				}
+				return $album;
+			}
+		}
+		
 		return 0;
 	}
 
