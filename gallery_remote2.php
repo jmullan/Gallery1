@@ -55,7 +55,7 @@ header("Content-type: text/plain");
  * Gallery remote protocol version 2.10
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 10;
+$GR_VER['MIN'] = 11;
 
 
 /*
