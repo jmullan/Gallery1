@@ -267,6 +267,13 @@ for ($i = $start; $i <= $end; $i++) {
 	  $iWidth = $gallery->app->highlight_size;
 	  $iHeight = 100;
       }
+      /*begin backwards compatibility */
+      $gallery->html_wrap['thumbWidth'] = $iWidth;
+      $gallery->html_wrap['thumbHeight'] = $iHeight;
+      $gallery->html_wrap['thumbTag'] = $gallery->album->getHighlightTag($scaleTo,'', _("Highlight for Album: "). $gallery->album->fields["title"]);
+      $gallery->html_wrap['thumbHref'] = $albumURL;
+      /*end backwards compatibility*/
+      
       $gallery->html_wrap['imageWidth'] = $iWidth;
       $gallery->html_wrap['imageHeight'] = $iHeight;
       $gallery->html_wrap['imageTag'] = $gallery->album->getHighlightTag($scaleTo,'', _("Highlight for Album: "). $gallery->album->fields["title"]);
