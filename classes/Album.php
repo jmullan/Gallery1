@@ -159,7 +159,7 @@ class Album {
 			$changed = 1;
 		    }
 		}
-		if ($this->version < 8) {
+		if ($this->version < 9) {
 		    if (empty($this->fields['summary'])) {
 		    		$this->fields['summary']='';
 			$changed = 1;
@@ -585,7 +585,7 @@ class Album {
 		}
 	}
 
-	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array('','') ) {
+	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array() ) {
 		global $gallery;
 
 		$this->updateSerial = 1;

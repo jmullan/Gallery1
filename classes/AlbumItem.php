@@ -135,7 +135,7 @@ class AlbumItem {
 		if (!isset($this->version)) {
 			$this->version=0;
 		}
-		if ($this->version < 7) {
+		if ($this->version < 9) {
 			if (!isset($this->extraFields) or !is_array($this->extraFields)) {
 				$this->extraFields=array();
 			}
