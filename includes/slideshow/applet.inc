@@ -61,12 +61,7 @@ function slideshow_controlPanel() {
 
 <?php
 function slideshow_image() {
-	global $photo_count;
-	global $gallery;
-	global $albumName;
-	global $recursive;
-	global $random;
-	global $number;
+	global $photo_count, $gallery, $album, $albumName, $recursive, $random, $number;
 ?>
 <div align="center">
 
