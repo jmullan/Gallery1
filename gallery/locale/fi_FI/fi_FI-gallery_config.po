@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1_RC4
+# Version: 1_4_1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-21 00:10+0100\n"
-"PO-Revision-Date: 2003-11-06 15:05+0200\n"
+"POT-Creation-Date: 2003-11-27 14:07+0100\n"
+"PO-Revision-Date: 2003-11-24 15:00+0200\n"
 "Last-Translator: Jussi Karppanen <bitti@bitti.eu.org>\n"
 "Language-Team: Finnish <bitti@bitti.eu.org>\n"
 "MIME-Version: 1.0\n"
@@ -319,8 +319,8 @@ msgstr "Ok!  Versio: %s"
 msgid "Check Mail"
 msgstr "Tarkista s‰hkˆposti"
 
-#: ../setup/check_mail.php:26 ../setup/diagnostics.php:24
-#: ../setup/session_test.php:45
+#: ../setup/check_mail.php:26 ../setup/check_versions.php:10
+#: ../setup/diagnostics.php:24 ../setup/session_test.php:45
 msgid "You cannot access this file while gallery is in secure mode."
 msgstr "T‰h‰n hakemistoon ei p‰‰se kun galleria on turvallisuusmoodissa."
 
@@ -380,7 +380,7 @@ msgstr "L‰het‰ s‰hkˆposti"
 msgid "Gallery NetPBM Check"
 msgstr "Gallerian NetPBM -tarkistus"
 
-#: ../setup/check_netpbm.php:131
+#: ../setup/check_netpbm.php:131 ../setup/check_versions.php:41
 #, php-format
 msgid "%sClick here%s to hide the details"
 msgstr "%sKlikkaa t&auml;ss&auml;%s piilottaaksesi yksityiskohdat"
@@ -389,6 +389,31 @@ msgstr "%sKlikkaa t&auml;ss&auml;%s piilottaaksesi yksityiskohdat"
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "Jos n&auml;et virheilmoituksia, sinun tulee %sklikata t&auml;ss&auml;%s n&auml;hd&auml;ksesi lis&auml;tiedot virheist&auml;"
+
+#: ../setup/check_versions.php:29 ../setup/check_versions.php:34
+#, fuzzy
+msgid "Check Versions"
+msgstr "Tarkasta sessiot"
+
+#: ../setup/check_versions.php:44
+#, fuzzy, php-format
+msgid "%sClick here%s to see more details"
+msgstr "%sKlikkaa t&auml;ss&auml;%s piilottaaksesi yksityiskohdat"
+
+#: ../setup/check_versions.php:53
+#, php-format
+msgid "The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version."
+msgstr ""
+
+#: ../setup/check_versions.php:63
+#, php-format
+msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
+msgstr ""
+
+#: ../setup/check_versions.php:71
+#, php-format
+msgid "%d files up-to-date."
+msgstr ""
 
 #: ../setup/config_data.inc:17
 #, php-format
@@ -533,7 +558,7 @@ msgstr "Testataan mitk&auml; localet eiv&auml;t ole k&auml;ytett&auml;viss&auml;
 
 #: ../setup/config_data.inc:152
 msgid "Checking to see if you have the latest versions of all gallery files."
-msgstr ""
+msgstr "Tarkistetaan, ett‰ sinulla on uusin versio Galleriasta."
 
 #: ../setup/config_data.inc:168
 msgid "Gallery Title"
@@ -760,9 +785,8 @@ msgid "Skin Name"
 msgstr "Ulkoasun nimi"
 
 #: ../setup/config_data.inc:340
-#, fuzzy
 msgid "Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4."
-msgstr "Valitse Galleriassa k‰ytett‰v‰ ulkoasu. Voit valita laajasta joukosta &quot;ulkoasuja&quot; jotka vaikuttavat jokaisen sivun ulkoasuun galleriassasi.  Voit pit‰‰ hauskaa kokeilemalla erilaisia ulkoasuja.  Valitse &quot;default&quot; k‰ytt‰‰ksesi version 1.4 ulkoasua."
+msgstr "Valitse Galleriassa k‰ytett‰v‰ ulkoasu. Voit valita laajasta joukosta &quot;ulkoasuja&quot; jotka vaikuttavat jokaisen sivun ulkoasuun galleriassasi.  Voit pit‰‰ hauskaa kokeilemalla erilaisia ulkoasuja.  Valitse &quot;None&quot; k‰ytt‰‰ksesi version 1.4 ulkoasua."
 
 #: ../setup/config_data.inc:346
 msgid "On the main page, the image representing each album has a frame arount it.  The following styles are available:"
@@ -1407,7 +1431,7 @@ msgstr "Arvostelu"
 
 #: ../setup/config_data.inc:948
 msgid "<b>ATTENTION Upgrade users</b>: ONLY change these settings from the default if you want voting on in all your existing albums.  It is recommended that you leave these values as they are and turn voting on in individual albums as required."
-msgstr ""
+msgstr "<b>HUOMIO P‰ivitt‰v‰t k‰ytt‰j‰t</b>: Vaihda n‰it‰ asetuksia VAIN jos haluat, ett‰ ‰‰nestys on saatavilla kaikissa albumeissasi.  On suositeltavaa, ett‰ et muuta n‰it‰ arvoja, vaan vaihdat ‰‰nestyksen p‰‰lle albumikohtaisesti."
 
 #: ../setup/config_data.inc:950
 msgid "Voter class"
@@ -1749,7 +1773,7 @@ msgstr "T‰‰ll‰ voit m&auml;&auml;ritt&auml;&auml; omat asetuksesi niiden oletusa
 
 #: ../setup/defaults.inc:12
 msgid "Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully."
-msgstr ""
+msgstr "Huomio k‰ytt‰jille jotka p‰ivitt‰v‰t edellisest‰ versiosta: uudet asetukset vaikuttavat kaikkii albumeihin. Jos haluat muuttaa arvoja, joudut muuttamaan niit‰ k‰sin albumikohtaisesti. Valitse n‰m‰ arvot huolella."
 
 #: ../setup/diagnostics.php:20
 msgid "Gallery Diagnostics"
@@ -1951,7 +1975,7 @@ msgid "There are %d locales that Gallery was unable to locate. You may need to s
 msgstr "Galleria ei lˆyt‰nyt %d lokaalia. Sinun t‰ytyy valita k‰sin p‰iv‰m‰‰r‰formaatit. "
 
 #: ../setup/functions.inc:637
-#, fuzzy, php-format
+#, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
 msgstr "P‰iv‰m‰‰r‰t %d kieless‰ eiv‰t ole ehk‰ oikein formatoituja, koska vastaavat lokaalit puuttuvat. Sinun t‰ytyy ehk‰ valita k‰sin p‰iv‰m‰‰r‰formaatit n‰ille kielille."
 
@@ -2055,26 +2079,26 @@ msgstr "Sinun t‰ytyy sis‰lt‰‰ %s tai %s tervetuloviestiss‰si"
 #: ../setup/functions.inc:1194
 #, php-format
 msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
-msgstr ""
+msgstr "Seuraavat tiedostot ovat vanhoja, korruptununeita, tai ne puuttuvat:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 
 #: ../setup/functions.inc:1196
 msgid "This should be fixed before proceeding"
-msgstr ""
+msgstr "Korjaa t‰m‰ ennenkuin jatkat"
 
 #: ../setup/functions.inc:1197 ../setup/functions.inc:1201
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
-msgstr ""
+msgstr "Katso %sCheck Versions% jos haluat lis‰tietoja."
 
 #: ../setup/functions.inc:1200
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-msgstr ""
+msgstr "%d tiedostoa ovat tuoreempia kuin mit‰ odotettiin.  T‰m‰ on ok jos k‰yt‰t esijulkaisua, beta-versiota, CVS-versiota tai muokattua koodia."
 
 #: ../setup/functions.inc:1205
 #, php-format
 msgid "All %d tested files up-to-date."
-msgstr ""
+msgstr "Kaikki testatut tiedostot ovat ajantasalla."
 
 #: ../setup/functions.inc:1213
 #, php-format
@@ -2226,3 +2250,7 @@ msgstr "Sinulta puuttuu joko %s tai %s."
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "Tarkastele asetuksia"
+
+#, fuzzy
+#~ msgid "Albums URL"
+#~ msgstr "Albumit"

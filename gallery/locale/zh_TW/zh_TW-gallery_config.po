@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1_RC4
+# Version: 1_4_1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-21 00:10+0100\n"
+"POT-Creation-Date: 2003-11-27 14:07+0100\n"
 "PO-Revision-Date: 2003-09-01 13:57+0800\n"
 "Last-Translator: Foxfair Hu <foxfair@cc.nsysu.edu.tw>\n"
 "Language-Team: Traditional Chinese <gallery-translations@lists.sourceforge.net>\n"
@@ -323,8 +323,8 @@ msgstr "Ok!  版本：%s"
 msgid "Check Mail"
 msgstr "檢查信件"
 
-#: ../setup/check_mail.php:26 ../setup/diagnostics.php:24
-#: ../setup/session_test.php:45
+#: ../setup/check_mail.php:26 ../setup/check_versions.php:10
+#: ../setup/diagnostics.php:24 ../setup/session_test.php:45
 msgid "You cannot access this file while gallery is in secure mode."
 msgstr ""
 
@@ -385,7 +385,7 @@ msgstr "傳送電子信件"
 msgid "Gallery NetPBM Check"
 msgstr "Gallery 標題"
 
-#: ../setup/check_netpbm.php:131
+#: ../setup/check_netpbm.php:131 ../setup/check_versions.php:41
 #, php-format
 msgid "%sClick here%s to hide the details"
 msgstr "%s點選這裡%s 隱藏進階資訊"
@@ -394,6 +394,31 @@ msgstr "%s點選這裡%s 隱藏進階資訊"
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "如果您看到錯誤產生, 請 %s點這裡%s 得到更多資訊"
+
+#: ../setup/check_versions.php:29 ../setup/check_versions.php:34
+#, fuzzy
+msgid "Check Versions"
+msgstr "檢查 Sessions"
+
+#: ../setup/check_versions.php:44
+#, fuzzy, php-format
+msgid "%sClick here%s to see more details"
+msgstr "%s點選這裡%s 隱藏進階資訊"
+
+#: ../setup/check_versions.php:53
+#, php-format
+msgid "The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version."
+msgstr ""
+
+#: ../setup/check_versions.php:63
+#, php-format
+msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
+msgstr ""
+
+#: ../setup/check_versions.php:71
+#, php-format
+msgid "%d files up-to-date."
+msgstr ""
 
 #: ../setup/config_data.inc:17
 #, fuzzy, php-format
@@ -2311,3 +2336,7 @@ msgstr "您不是沒有 %s 就是沒有 %s. "
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "重新瀏覽設定"
+
+#, fuzzy
+#~ msgid "Albums URL"
+#~ msgstr "相簿"

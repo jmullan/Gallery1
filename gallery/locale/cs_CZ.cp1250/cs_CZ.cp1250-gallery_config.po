@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1_RC4
+# Version: 1_4_1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-21 00:10+0100\n"
-"PO-Revision-Date: 2003-11-12 15:37+0100\n"
+"POT-Creation-Date: 2003-11-27 17:00+0100\n"
+"PO-Revision-Date: 2003-11-25 13:13+0100\n"
 "Last-Translator: Coyot <coyot@i.love.pinknet.cz>\n"
 "Language-Team: CZ_Czech <coyot@i.love.pinknet.cz>\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "Pokud se vyskytnou potíe, hledejte pomoc na %s Gallery Help Page%s."
 #: ../errors/configure_instructions.php:10
 #, php-format
 msgid "%s with shell access"
-msgstr "%s s pøístupem do shellu."
+msgstr "%s s pøístupem do shellu"
 
 #: ../errors/configure_instructions.php:11
 msgid "/path/to/your/gallery"
@@ -260,9 +260,9 @@ msgid "If that is not right (or if it is blank), re-run the configuration wizard
 msgstr "Pokud to tak není (nebo je pole prázdné), spouste znovu prùvodce konfigurací a zadejte umístìní %s."
 
 #: ../setup/check_imagemagick.php:111 ../setup/check_netpbm.php:111
-#, fuzzy, php-format
+#, php-format
 msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
-msgstr "<b>Poznámka:</b> Adresáø %s není ve vašem seznamu open_basedir %s"
+msgstr "<b>Poznámka:</b> Adresáø %s (%s) není ve vašem seznamu open_basedir %s"
 
 #: ../setup/check_imagemagick.php:115 ../setup/check_netpbm.php:115
 msgid "The open_basedir list is specified in php.ini."
@@ -319,8 +319,8 @@ msgstr "Ok!  Verze: %s"
 msgid "Check Mail"
 msgstr "Kontroluji poštu"
 
-#: ../setup/check_mail.php:26 ../setup/diagnostics.php:24
-#: ../setup/session_test.php:45
+#: ../setup/check_mail.php:26 ../setup/check_versions.php:10
+#: ../setup/diagnostics.php:24 ../setup/session_test.php:45
 msgid "You cannot access this file while gallery is in secure mode."
 msgstr "K tomuto souboru nemáte pøístup, kdy je Gallery v bezpeèném reimu."
 
@@ -380,7 +380,7 @@ msgstr "Odeslat email"
 msgid "Gallery NetPBM Check"
 msgstr "Kontrola NetPBM"
 
-#: ../setup/check_netpbm.php:131
+#: ../setup/check_netpbm.php:131 ../setup/check_versions.php:41
 #, php-format
 msgid "%sClick here%s to hide the details"
 msgstr "%sKlepnìte sem%s, pokud chcete skrıt detaily"
@@ -389,6 +389,31 @@ msgstr "%sKlepnìte sem%s, pokud chcete skrıt detaily"
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "Pokud dojde k chybám,  %sklepnìte sem%s pro zobrazení detailù"
+
+#: ../setup/check_versions.php:29 ../setup/check_versions.php:34
+#, fuzzy
+msgid "Check Versions"
+msgstr "Kontrola session"
+
+#: ../setup/check_versions.php:44
+#, fuzzy, php-format
+msgid "%sClick here%s to see more details"
+msgstr "%sKlepnìte sem%s, pokud chcete skrıt detaily"
+
+#: ../setup/check_versions.php:53
+#, php-format
+msgid "The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version."
+msgstr ""
+
+#: ../setup/check_versions.php:63
+#, php-format
+msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
+msgstr ""
+
+#: ../setup/check_versions.php:71
+#, php-format
+msgid "%d files up-to-date."
+msgstr ""
 
 #: ../setup/config_data.inc:17
 #, php-format
@@ -533,7 +558,7 @@ msgstr "Zjišuji, které locales nejsou k dispozici."
 
 #: ../setup/config_data.inc:152
 msgid "Checking to see if you have the latest versions of all gallery files."
-msgstr ""
+msgstr "Kontroluji, zda jsou všechny soubory gallery aktualizovány na poslední verzi."
 
 #: ../setup/config_data.inc:168
 msgid "Gallery Title"
@@ -1224,19 +1249,16 @@ msgid "When large images are added to an album, an intermediate version will aut
 msgstr "Kdy do alba pøidáte fotku ve velkém rozlišení, bude automaticky vytvoøena menší kopie pro prohlíení pøes web."
 
 #: ../setup/config_data.inc:796
-#, fuzzy
 msgid "Resized JPEG/PNG images file size"
-msgstr "Standardní velikost zmenšenıch fotek - velikost souboru"
+msgstr "Standardní velikost zmenšenıch fotek - velikost souboru JPEG/PNG"
 
 #: ../setup/config_data.inc:797
-#, fuzzy
 msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
-msgstr "Standardní velikost zmenšenıch fotek v kilobytech. Pokud zadáte 0, fotky budou zmenšovány podle kritéria Standardní velikost zmenšenıch fotek v bodech. Pokud zadáte jinou hodnotu, bude mít tato hodnota pøednost. Menší soubory ocení zejména uivatelé, kteøí pøistupují k internetu pøes vytáèené pøipojení."
+msgstr "Standardní velikost zmenšenıch fotek v kilobytech (JPEG/PNG). Pokud zadáte 0, fotky budou zmenšovány podle kritéria Standardní velikost zmenšenıch fotek v bodech. Pokud zadáte jinou hodnotu, bude mít tato hodnota pøednost. Menší soubory ocení zejména uivatelé, kteøí pøistupují k internetu pøes vytáèené pøipojení."
 
 #: ../setup/config_data.inc:804
-#, fuzzy
 msgid "Maximum image size"
-msgstr "Standardní velikost zmenšenıch fotek v bodech"
+msgstr "Maximální velikost zmenšenıch fotek v bodech"
 
 #: ../setup/config_data.inc:805
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
@@ -1409,7 +1431,7 @@ msgstr "Kritika"
 
 #: ../setup/config_data.inc:948
 msgid "<b>ATTENTION Upgrade users</b>: ONLY change these settings from the default if you want voting on in all your existing albums.  It is recommended that you leave these values as they are and turn voting on in individual albums as required."
-msgstr ""
+msgstr "<b>Pozor pøi aktualizaci</b>: Tato nastavení zmìòte POUZE v pøípadì, e chcete pro všechna vaše alba zapnout hlasování. Doporuèujeme ponechat vıchozí nastavení a zapnout hlasování pro jednotlivá alba podle potøeby."
 
 #: ../setup/config_data.inc:950
 msgid "Voter class"
@@ -1751,7 +1773,7 @@ msgstr "Zde mùete zmìnit standardní nastavení pro nová alba. Nejsou to <b>pevná
 
 #: ../setup/defaults.inc:12
 msgid "Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully."
-msgstr ""
+msgstr "Poznámka pro uivatele, kteøí aktualizují starší verzi: Nastavení funkcí, které ve vaší verzi ještì nebyly, budou pouita pro všechna vaše alba. Pokud je pozdìji budete chtít zmìnit, budete to muset udìlat ruènì pro kadé album zvláš. Proto volte vıchozí nastavení kadé takové funkce s rozmyslem."
 
 #: ../setup/diagnostics.php:20
 msgid "Gallery Diagnostics"
@@ -1886,14 +1908,14 @@ msgid "%s is not executable!"
 msgstr "%s není spustitelné!"
 
 #: ../setup/functions.inc:453
-#, fuzzy, php-format
+#, php-format
 msgid "%d of %d NetPBM binaries located."
-msgstr "Všech %d binárek NetPBM nalezeno."
+msgstr "%d z %d binárek NetPBM nalezeno."
 
 #: ../setup/functions.inc:509
-#, fuzzy, php-format
+#, php-format
 msgid "%d of %d ImageMagick binaries located."
-msgstr "Všech %d binárek ImageMagick nalezeno."
+msgstr "%d z %d binárek ImageMagick nalezeno."
 
 #: ../setup/functions.inc:532
 msgid "Can't find <i>jpegtran</i>!"
@@ -1917,7 +1939,7 @@ msgstr "Nenalezen ádnı jazyk."
 
 #: ../setup/functions.inc:566
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr ""
+msgstr "Jokes not translated :-)"
 
 #: ../setup/functions.inc:570
 #, php-format
@@ -2057,26 +2079,26 @@ msgstr "V uvítací zprávì musí bıt zahrnuto %s nebo %s"
 #: ../setup/functions.inc:1194
 #, php-format
 msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
-msgstr ""
+msgstr "Následující soubory buï chybí, nebo jsou poškozené èi zastaralé:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 
 #: ../setup/functions.inc:1196
 msgid "This should be fixed before proceeding"
-msgstr ""
+msgstr "Tento problém by mìl bıt vyøešen, ne budete pokraèovat."
 
 #: ../setup/functions.inc:1197 ../setup/functions.inc:1201
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
-msgstr ""
+msgstr "Podívejte se na  %sKontrolu verzí%s, tam se dozvíte více."
 
 #: ../setup/functions.inc:1200
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-msgstr ""
+msgstr "%d souborù je novìjších, ne gallery oèekává. To je v poøádku, pokud pouíváte beta verzi, CVS nebo pozmìnìnı kód."
 
 #: ../setup/functions.inc:1205
 #, php-format
 msgid "All %d tested files up-to-date."
-msgstr ""
+msgstr "Všech %d souborù je aktuálních."
 
 #: ../setup/functions.inc:1213
 #, php-format
@@ -2228,3 +2250,7 @@ msgstr "Chybí vám buï %s  nebo %s."
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "Zobraz nastavení"
+
+#, fuzzy
+#~ msgid "Albums URL"
+#~ msgstr "Alba"

@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1_RC4
+# Version: 1_4_1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-21 02:31+0100\n"
+"POT-Creation-Date: 2003-11-27 14:07+0100\n"
 "PO-Revision-Date: 2003-11-21 03:43+0100\n"
 "Last-Translator: François Simond <curio@gplservice.fr>\n"
 "Language-Team: rançois Simond <curio@gplservice.fr>\n"
@@ -321,8 +321,8 @@ msgstr "Ok! Version: %s"
 msgid "Check Mail"
 msgstr "Vérifier le Mail"
 
-#: ../setup/check_mail.php:26 ../setup/diagnostics.php:24
-#: ../setup/session_test.php:45
+#: ../setup/check_mail.php:26 ../setup/check_versions.php:10
+#: ../setup/diagnostics.php:24 ../setup/session_test.php:45
 msgid "You cannot access this file while gallery is in secure mode."
 msgstr "Vous ne pouvez pas accéder à ce fichier tant que Gallery est en mode sécurisé"
 
@@ -382,7 +382,7 @@ msgstr "Envoyer un Email"
 msgid "Gallery NetPBM Check"
 msgstr "Vérification de NetPBM de Gallery"
 
-#: ../setup/check_netpbm.php:131
+#: ../setup/check_netpbm.php:131 ../setup/check_versions.php:41
 #, php-format
 msgid "%sClick here%s to hide the details"
 msgstr "%sClicquez ici%s pour cacher les détrails"
@@ -391,6 +391,31 @@ msgstr "%sClicquez ici%s pour cacher les détrails"
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "Si vous voyez des erreurs, vous pouvez %scliquer ici%s afin d'afficher plus de détails"
+
+#: ../setup/check_versions.php:29 ../setup/check_versions.php:34
+#, fuzzy
+msgid "Check Versions"
+msgstr "Vérifier les Sessions."
+
+#: ../setup/check_versions.php:44
+#, fuzzy, php-format
+msgid "%sClick here%s to see more details"
+msgstr "%sClicquez ici%s pour cacher les détrails"
+
+#: ../setup/check_versions.php:53
+#, php-format
+msgid "The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version."
+msgstr ""
+
+#: ../setup/check_versions.php:63
+#, fuzzy, php-format
+msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
+msgstr "%d fichiers sont plus récents qu'attentu. Ceci est OK si vous utilisez une pre-release, une beta, CVS ou du code modifié."
+
+#: ../setup/check_versions.php:71
+#, fuzzy, php-format
+msgid "%d files up-to-date."
+msgstr "Tous les %d fichiers sont à jour."
 
 #: ../setup/config_data.inc:17
 #, php-format
@@ -2228,3 +2253,6 @@ msgstr "Il vous manque %s ou bien %s."
 msgid "Review Settings"
 msgstr "Revie des Paramètres"
 
+#, fuzzy
+#~ msgid "Albums URL"
+#~ msgstr "Albums"

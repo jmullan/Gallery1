@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1_RC4
+# Version: 1_4_1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-21 00:10+0100\n"
+"POT-Creation-Date: 2003-11-27 17:00+0100\n"
 "PO-Revision-Date: 2003-08-21 07:04+0200\n"
 "Last-Translator: Niels Elgaard Larsen <elgaard@agol.dk>\n"
 "Language-Team: Niels Elgaard Larsen <elgaard@agol.dk>\n"
@@ -38,7 +38,6 @@ msgstr ""
 msgid "Security violation"
 msgstr "Sikkerhedssvigt"
 
-#
 #: ../errors/configmode.php:16
 msgid "Gallery in Configuration Mode"
 msgstr "Gallery i konfigurationstilstand"
@@ -61,7 +60,6 @@ msgstr "Hvis du er færdig med din konfigurering men stadig ser denne side, er de
 msgid "You need to switch to secure mode before you can use it.  Here's how:"
 msgstr "Du skal skifte til sikker tilstand før du kan bruge det.  Sådan gør du:"
 
-#
 #: ../errors/configmode.php:40
 msgid "Then just reload this page and all should be well."
 msgstr "Bare genindlæs denne side og alting skulle være i orden."
@@ -99,12 +97,10 @@ msgstr "Din konfigurering af Gallery blev lavet med en konfigurationshjælper fra
 msgid "Then launch the %sConfiguration Wizard%s."
 msgstr "Kør så %skonfigurationshjælperen%s"
 
-#
 #: ../errors/unconfigured.php:16
 msgid "Gallery Configuration Error"
 msgstr "Konfigurationsfejl i Gallery"
 
-#
 #: ../errors/unconfigured.php:22
 msgid "Gallery has not been configured!"
 msgstr "Gallery er ikke konfigureret!"
@@ -126,22 +122,18 @@ msgstr "Start så %skonfigurationshjælperen%s."
 msgid "Gallery Configuration Wizard: Step %d"
 msgstr "Gallery: Konfigurationstilstand"
 
-#
 #: ../setup/check.inc:10
 msgid "This is the Gallery system check page."
 msgstr "Dette er Gallery's systemundersøgelsesside."
 
-#
 #: ../setup/check.inc:11
 msgid "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably."
 msgstr "Denne side vil undersøge  installation for at sikre at du har alle nødvendige komponenter og tilladelser på systemet og at alt er konfigureret korrekt."
 
-#
 #: ../setup/check.inc:15 ../setup/diagnostics.php:15
 msgid "Gallery Diagnostics Page"
 msgstr "Gallery fejlfindingsside"
 
-#
 #: ../setup/check.inc:16
 #, fuzzy
 msgid "Gallery Help Page"
@@ -157,12 +149,10 @@ msgstr "Problemer?  Prøv %sGallery's fejlfindingsside%s og %sGallery's hjælpesid
 msgid "Having problems?  Try the %s and %s."
 msgstr "Problemer?  Prøv %s og %s."
 
-#
 #: ../setup/check.inc:49
 msgid "Success"
 msgstr "Succes"
 
-#
 #: ../setup/check.inc:61
 msgid "Serious Warning"
 msgstr "Alvorlig advarsel"
@@ -173,33 +163,26 @@ msgstr "Alvorlig advarsel"
 msgid "Warning"
 msgstr "Advarsel"
 
-#
 #: ../setup/check.inc:73
-#, fuzzy
 msgid "Failed!"
-msgstr "Fejlet!"
+msgstr "Gav en fejl!"
 
-#
 #: ../setup/check.inc:131
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr "Det er fejl i din konfiguration som forhindrer Gallery i at fungere korrekt."
 
-#
 #: ../setup/check.inc:133
 msgid "You must fix them before you can continue."
 msgstr "Du skal rette dem før du kan fortsætte."
 
-#
 #: ../setup/check.inc:138
-#, fuzzy
 msgid "Your installation has <b>serious warnings</b>!<br>Continue at your own risk..."
-msgstr "Din installation giver <b>alvorlige advarsler</b>!  Fortsæt for egen risiko..."
+msgstr "Din installation giver <b>alvorlige advarsler</b>!<br>  Fortsæt for egen risiko..."
 
 #: ../setup/check.inc:141
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr "Din installation giver advarsler, men dette er normalt OK.  Fortsæt!"
 
-#
 #: ../setup/check.inc:145
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "Din installation bestod med kryds og slange!  Gå gå gå!"
@@ -354,8 +337,8 @@ msgstr "Ok!  Version: %s"
 msgid "Check Mail"
 msgstr "Afkryds alle"
 
-#: ../setup/check_mail.php:26 ../setup/diagnostics.php:24
-#: ../setup/session_test.php:45
+#: ../setup/check_mail.php:26 ../setup/check_versions.php:10
+#: ../setup/diagnostics.php:24 ../setup/session_test.php:45
 msgid "You cannot access this file while gallery is in secure mode."
 msgstr ""
 
@@ -424,7 +407,7 @@ msgstr "Afkryds alle"
 msgid "Gallery NetPBM Check"
 msgstr "Galleriets titel"
 
-#: ../setup/check_netpbm.php:131
+#: ../setup/check_netpbm.php:131 ../setup/check_versions.php:41
 #, php-format
 msgid "%sClick here%s to hide the details"
 msgstr "%sTryk her%s for at skjule detaljerne"
@@ -433,6 +416,32 @@ msgstr "%sTryk her%s for at skjule detaljerne"
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "Hvis du ser fejl, %stryk her%s for at se flere detaljer"
+
+#
+#: ../setup/check_versions.php:29 ../setup/check_versions.php:34
+#, fuzzy
+msgid "Check Versions"
+msgstr "Check Sessions"
+
+#: ../setup/check_versions.php:44
+#, fuzzy, php-format
+msgid "%sClick here%s to see more details"
+msgstr "%sTryk her%s for at skjule detaljerne"
+
+#: ../setup/check_versions.php:53
+#, php-format
+msgid "The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version."
+msgstr ""
+
+#: ../setup/check_versions.php:63
+#, php-format
+msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
+msgstr ""
+
+#: ../setup/check_versions.php:71
+#, php-format
+msgid "%d files up-to-date."
+msgstr ""
 
 #: ../setup/config_data.inc:17
 #, fuzzy, php-format
@@ -445,9 +454,8 @@ msgid "<br><b>Note:</b> You can install the binaries from the Gallery site even 
 msgstr "<b>Obs:</b> Du kan installere filene fra Gallery's sider selv om du ikke har root-adgang på din maskine!  Hvis du kan få det til at virke, så prøv at lade stien til NetPBM være tom og brug ImageMagick i stedet."
 
 #: ../setup/config_data.inc:26
-#, fuzzy
 msgid "I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date."
-msgstr "Jeg har fundet dele af NetPBM, men der mangler nogle kritiske komponenter (se nedenfor).  Måske er din version af NetPBM forældet?"
+msgstr "Jeg har fundet dele af NetPBM, men der mangler nogle kritiske komponenter (se nedenfor).  Måske er din version af NetPBM forældet."
 
 #: ../setup/config_data.inc:30
 #, fuzzy, php-format
@@ -475,9 +483,9 @@ msgid "Check to see if you are running PHP 4.  Note that some versions of PHP ha
 msgstr "Undersøg om du kører PHP 4.  Bemærk at enkelte versioner av PHP har fejl som kan betyde at Gallery ikke kører korrekt.  PHP4.0.0 bruger en anden filoverførselsprotokoll, version 4.0.3 og 4.0.3pl1 har en fejl i koden som gør at Gallery ikke er i stand til at læse sin egen database.  Opgrader til mindst PHP 4.0.4pl1 hvis du kan."
 
 #: ../setup/config_data.inc:50
-#, fuzzy, php-format
+#, php-format
 msgid "You're running PHP version %s.  You need to upgrade to PHP %s."
-msgstr "Du kører version %s.  Du må opgradere til PHP %s."
+msgstr "Du kører PHP version %s.  Du må opgradere til PHP %s."
 
 #: ../setup/config_data.inc:51
 #, fuzzy, php-format
@@ -686,9 +694,8 @@ msgstr ""
 
 #
 #: ../setup/config_data.inc:244
-#, fuzzy
 msgid "Graphics suite to use"
-msgstr "Hvilken Grafikpakke du vil bruge?"
+msgstr "Hvilken Grafikpakke du vil bruge"
 
 #: ../setup/config_data.inc:245
 msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
@@ -2548,3 +2555,8 @@ msgstr "Du mangler enten %s eller %s"
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "Gennemse indstillinger"
+
+#
+#, fuzzy
+#~ msgid "Albums URL"
+#~ msgstr "Album"

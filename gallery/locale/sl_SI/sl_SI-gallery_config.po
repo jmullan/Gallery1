@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1_RC4
+# Version: 1_4_1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-21 00:10+0100\n"
+"POT-Creation-Date: 2003-11-27 14:07+0100\n"
 "PO-Revision-Date: 2003-10-02 08:02+0100\n"
 "Last-Translator: Marjan <marjan@slo-foto.com>\n"
 "Language-Team: Slovanian <marjan@slo-foto.com>\n"
@@ -322,8 +322,8 @@ msgstr "Ok!  Verzija: %s"
 msgid "Check Mail"
 msgstr "Preveri email"
 
-#: ../setup/check_mail.php:26 ../setup/diagnostics.php:24
-#: ../setup/session_test.php:45
+#: ../setup/check_mail.php:26 ../setup/check_versions.php:10
+#: ../setup/diagnostics.php:24 ../setup/session_test.php:45
 msgid "You cannot access this file while gallery is in secure mode."
 msgstr ""
 
@@ -385,7 +385,7 @@ msgstr "Po¹lji email"
 msgid "Gallery NetPBM Check"
 msgstr "Naslov galerije"
 
-#: ../setup/check_netpbm.php:131
+#: ../setup/check_netpbm.php:131 ../setup/check_versions.php:41
 #, php-format
 msgid "%sClick here%s to hide the details"
 msgstr ""
@@ -393,6 +393,31 @@ msgstr ""
 #: ../setup/check_netpbm.php:134
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
+msgstr ""
+
+#: ../setup/check_versions.php:29 ../setup/check_versions.php:34
+#, fuzzy
+msgid "Check Versions"
+msgstr "Preverjam %s"
+
+#: ../setup/check_versions.php:44
+#, php-format
+msgid "%sClick here%s to see more details"
+msgstr ""
+
+#: ../setup/check_versions.php:53
+#, php-format
+msgid "The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version."
+msgstr ""
+
+#: ../setup/check_versions.php:63
+#, php-format
+msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
+msgstr ""
+
+#: ../setup/check_versions.php:71
+#, php-format
+msgid "%d files up-to-date."
 msgstr ""
 
 #: ../setup/config_data.inc:17
@@ -2246,3 +2271,7 @@ msgstr ""
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "Nastavitve nazaj"
+
+#, fuzzy
+#~ msgid "Albums URL"
+#~ msgstr "Albumi"

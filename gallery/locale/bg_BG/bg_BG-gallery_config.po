@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1_RC4
+# Version: 1_4_1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-21 12:17+0100\n"
-"PO-Revision-Date: 2003-11-20 11:00-0500\n"
+"POT-Creation-Date: 2003-11-27 14:07+0100\n"
+"PO-Revision-Date: 2003-11-21 13:46-0500\n"
 "Last-Translator: Bisser Dobrev <bdobrev@comcast.net>\n"
 "Language-Team: Bisser Dobrev <bdobrev@comcast.net>\n"
 "MIME-Version: 1.0\n"
@@ -155,7 +155,7 @@ msgstr "Сериозно Предупреждение"
 #: ../setup/check.inc:64 ../setup/check.inc:99 ../setup/config_data.inc:805
 #: ../setup/config_data.inc:811
 msgid "Warning"
-msgstr "Предупреждение"
+msgstr "Внимание"
 
 #: ../setup/check.inc:73
 msgid "Failed!"
@@ -318,10 +318,10 @@ msgstr "ОК! Версия: %s"
 msgid "Check Mail"
 msgstr "Проверка на Пощата"
 
-#: ../setup/check_mail.php:26 ../setup/diagnostics.php:24
-#: ../setup/session_test.php:45
+#: ../setup/check_mail.php:26 ../setup/check_versions.php:10
+#: ../setup/diagnostics.php:24 ../setup/session_test.php:45
 msgid "You cannot access this file while gallery is in secure mode."
-msgstr ""
+msgstr "Нямате достъп до този файл докато Галерията е в 'защитен режим'."
 
 #: ../setup/check_mail.php:38
 #, php-format
@@ -348,7 +348,7 @@ msgstr "УСПЕШНО!"
 #: ../setup/check_mail.php:46
 #, php-format
 msgid "Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
-msgstr ""
+msgstr "Изпратен е пробен e-mail до <b>%s</b>, който би трябвало да пристигне до няколко минути. Ако не го получите, моля проверете дали e-mail адреса който сте използвали е правилен. Ако всичко е правилно, но пак не получавате e-mail-а, тогава най-вероятно e-mail системата на този сервер е изключена и %s e-mail функциите няма да могат да бъдат използвани докато това не се оправи."
 
 #: ../setup/check_mail.php:48
 msgid "You must use a valid email address"
@@ -356,11 +356,11 @@ msgstr "Трябва да използвате валиден E-mail адрес"
 
 #: ../setup/check_mail.php:49
 msgid "Try again?"
-msgstr ""
+msgstr "Отново?"
 
 #: ../setup/check_mail.php:55
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
-msgstr ""
+msgstr "Това ще ви помогне да потвърдите, че e-mail системата ви работи правилно. Въведете e-mail адреса си по-долу за да ви бъде изпратено пробно съобщение. Ако го получите, значи e-mail-а на системата ви работи нормално."
 
 #: ../setup/check_mail.php:58 ../setup/check_mail.php:62
 #, php-format
@@ -379,7 +379,7 @@ msgstr "Изпратете E-mail"
 msgid "Gallery NetPBM Check"
 msgstr "Проверка за 'NetPBM'"
 
-#: ../setup/check_netpbm.php:131
+#: ../setup/check_netpbm.php:131 ../setup/check_versions.php:41
 #, php-format
 msgid "%sClick here%s to hide the details"
 msgstr "%sНатиснете Тук%, за да скриете подробностите"
@@ -388,6 +388,30 @@ msgstr "%sНатиснете Тук%, за да скриете подробностите"
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "Ако видите грешки, %sнатиснете тук% за да видите повече подробности"
+
+#: ../setup/check_versions.php:29 ../setup/check_versions.php:34
+msgid "Check Versions"
+msgstr "Проверете Версиите"
+
+#: ../setup/check_versions.php:44
+#, fuzzy, php-format
+msgid "%sClick here%s to see more details"
+msgstr "%sНатиснете Тук% за да видите повече подробности"
+
+#: ../setup/check_versions.php:53
+#, php-format
+msgid "The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version."
+msgstr "Следните файлове липсват или не са правилната версия отговаряща за тази версия на %s. Моля сменете ги с правилната версия."
+
+#: ../setup/check_versions.php:63
+#, php-format
+msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
+msgstr "Следните файлове са по-нова версия от очакваната отговаряща за тази версия на %s. Това е нормално, ако използвате 'pre-release' версия на програмата."
+
+#: ../setup/check_versions.php:71
+#, php-format
+msgid "%d files up-to-date."
+msgstr "%d файла са последна версия."
 
 #: ../setup/config_data.inc:17
 #, php-format
@@ -611,7 +635,7 @@ msgstr "Под-програми за обработка на изображения"
 
 #: ../setup/config_data.inc:244
 msgid "Graphics suite to use"
-msgstr "Кой графичен пакет да бъде използван?"
+msgstr "Кой графичен пакет да бъде използван"
 
 #: ../setup/config_data.inc:245
 msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
@@ -700,7 +724,7 @@ msgstr "не"
 #: ../setup/config_data.inc:452 ../setup/config_data.inc:463
 #: ../setup/functions.inc:800 ../setup/functions.inc:873
 msgid "Advanced"
-msgstr ""
+msgstr "Advanced"
 
 #: ../setup/config_data.inc:295
 msgid "JPEG Quality"
@@ -920,11 +944,11 @@ msgstr "Направете тази стойност да бъде валиден и работещ E-mail адрес. Съобщени
 
 #: ../setup/config_data.inc:514
 msgid "Email subject prefix"
-msgstr ""
+msgstr "Начало на 'e-mail subject'"
 
 #: ../setup/config_data.inc:515
 msgid "All gallery emails will have this as the first part of their subject."
-msgstr ""
+msgstr "Всички e-mail-и изпратени от Галерията ще имат този текст като начало на 'E-mail Subject'."
 
 #: ../setup/config_data.inc:524
 msgid "Welcome email message text"
@@ -937,12 +961,12 @@ msgstr "Този e-mail ще бъде изпратен когато са създадени нови потребители. "
 #: ../setup/config_data.inc:526
 #, php-format
 msgid "%s, %s and %s will be replaced by the fullname, user name and password of the newly created user."
-msgstr ""
+msgstr "%s, %s и %s ще бъдат заменени от пълното име, потребителското име и паролата на новосъздадения потребител."
 
 #: ../setup/config_data.inc:530
 #, php-format
 msgid "%s will be replaced by a link the new user can click on to create a new password"
-msgstr ""
+msgstr "%s ще бъде заменено от 'web-адрес' (link), който ще даде възможност на потребителя да си създаде нова парола. "
 
 #: ../setup/config_data.inc:532
 msgid "Leave this field blank to get the default message that can be translated into other languages.  The default message is:"
@@ -962,7 +986,7 @@ msgstr "Саморегистриралите се потребители могат да<br>създават албуми."
 
 #: ../setup/config_data.inc:551
 msgid "Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled."
-msgstr ""
+msgstr "Ако включите това, ще позволите на саморегистриралите се потребители да могат да създават нови албуми, от момента в който са се регистрирали. Ако това е изключено, ще трябва по отделно да давата права на всеки който искате да може да създава или променя съдържанието на Галерията. Тази настройка не важи ако саморегистрирането е изключено. "
 
 #: ../setup/config_data.inc:556
 msgid "Enable bulk account creation"
@@ -1079,7 +1103,7 @@ msgstr "И двете"
 
 #: ../setup/config_data.inc:625
 msgid "Images and albums that have comments will be marked."
-msgstr ""
+msgstr "Ще бъдат маркирани изображенията и албумите, които имат коментари."
 
 #: ../setup/config_data.inc:637
 msgid "Display date of last comment?"
@@ -1088,16 +1112,16 @@ msgstr "Искате ли да се вижда датата на последния коментар?"
 #: ../setup/config_data.inc:638
 #, php-format
 msgid "If an item has comments, display date of last comment, rather than a %s."
-msgstr ""
+msgstr "Ако елемента има коментари, ще бъде показана датата на последниа коментар, а не %s."
 
 #: ../setup/config_data.inc:644
 msgid "Anonymous comments from known users?"
-msgstr ""
+msgstr "Анонимни коментари от регистрирани потребители?"
 
 #: ../setup/config_data.inc:645
 #, php-format
 msgid "When logged in, comments will automatically use fullname and username, unless this is set to %s."
-msgstr ""
+msgstr "Когато регистрираните потребители са в системата, коментарите направени от тях автоматично ще използват пълното им име и потребителското им име, ако това не е нагласено на %s."
 
 #: ../setup/config_data.inc:653
 msgid "Technical"
@@ -1204,7 +1228,7 @@ msgstr "Презададен брой на редовете в албума."
 
 #: ../setup/config_data.inc:780
 msgid "Image Processing and Display"
-msgstr ""
+msgstr "Обработка и показване на изображенията"
 
 #: ../setup/config_data.inc:783
 msgid "Thumbnail size"
@@ -1236,16 +1260,16 @@ msgstr "Максимален размер на изображението"
 
 #: ../setup/config_data.inc:805
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
-msgstr ""
+msgstr "Можете по-избор да ограничите размерите на изображения трансферирани в Галерията."
 
 #: ../setup/config_data.inc:805
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
-msgstr ""
+msgstr "Ако позволите това, няма да имате <b>оригинални изображения с пълен размер</b> в Галерията си, но за сметка на това ще е полезно ако имате ограничено дисково пространсвто. Галерията ще опита да запази JPEG коментарите и EXIF данните за намалените изображения, но за това ще са необходими <b>ImageMagick</b> или <b>jhead</b> пограмите (вижте Стъпка 2)"
 
 #: ../setup/config_data.inc:807
 #, php-format
 msgid "%d (%d MPix)"
-msgstr ""
+msgstr "%d (%d MPix)"
 
 #: ../setup/config_data.inc:810
 msgid "Maximum JPEG/PNG image file size"
@@ -1253,7 +1277,7 @@ msgstr "Максимален размер na файла за JPEG/PNG изображенията"
 
 #: ../setup/config_data.inc:811
 msgid "You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery."
-msgstr ""
+msgstr "Можете по избор да ограничите големината на JPEG/PNG файловете си, при трансферирането към Галерията."
 
 #: ../setup/config_data.inc:811
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
@@ -1377,21 +1401,21 @@ msgstr "Искате ли заедно с надписите на снимките да се показва и името на собсве
 
 #: ../setup/config_data.inc:934
 msgid "Polling configuration"
-msgstr ""
+msgstr "Настройки за гласуването"
 
 #: ../setup/config_data.inc:936
 #, php-format
 msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."
-msgstr ""
+msgstr "Това позволява на посетителите да гласуват или да оценяват съдържанието на даден албум. Когато презададете настройките тук, те ще повлиаят на новите албуми и на всички съществуващи албуми, когато първо обновите до версия %s."
 
 #: ../setup/config_data.inc:939
 msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
-msgstr ""
+msgstr "Във всеки албум, гласуването може да бъде изключено, ограничено само за регистрирани потребители, или да е отворено за всички посетители."
 
 #: ../setup/config_data.inc:941
 #, php-format
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
-msgstr ""
+msgstr "Има два вида гласуване: %s, което позволява на гласуващите да изберат най-любимите си изображения като първо, второ, трето ...и %s, което позволява на гласуващите да оценяват всички изображения без ограничения. %s е като ревю на филм, кадето всички изображения могат (например) да получат 5 точки, докато %s е по-полезно при състезаниа по точки. "
 
 #: ../setup/config_data.inc:942 ../setup/config_data.inc:945
 #: ../setup/config_data.inc:967 ../setup/config_data.inc:973
@@ -1445,15 +1469,15 @@ msgstr "Тип на гласуването"
 
 #: ../setup/config_data.inc:966
 msgid "Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation."
-msgstr ""
+msgstr "Галерията предлага два типа гласуване за изображенията. Вижте по-горе за по-подробно обяснение."
 
 #: ../setup/config_data.inc:968
 msgid "Users have a set of votes which they can allocate to the images."
-msgstr ""
+msgstr "Потребителите имат група точки за гласуване, които могат да бъдат разпределени между изображенията."
 
 #: ../setup/config_data.inc:970
 msgid "Enables users to give all images points without restriction."
-msgstr ""
+msgstr "Позволява на потребителите да дават точки за оценка на всяко изображение без ограничения. "
 
 #: ../setup/config_data.inc:978
 msgid "Number of choices"
@@ -1461,15 +1485,15 @@ msgstr "Брой на изборите"
 
 #: ../setup/config_data.inc:979
 msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu."
-msgstr ""
+msgstr "Брой на точките за гласуване, които ще са на разположение на гласуващите, във формата на 'радио бутони' или меню."
 
 #: ../setup/config_data.inc:985
 msgid "Vote hint"
-msgstr ""
+msgstr "Съвет за гласуване"
 
 #: ../setup/config_data.inc:986
 msgid "This is displayed above the voting options under each image."
-msgstr ""
+msgstr "Това е показано над позициите за гласуване за всяко изображение."
 
 #: ../setup/config_data.inc:989
 msgid "Vote for this image"
@@ -1482,7 +1506,7 @@ msgstr "Резултати от гласуването за прегледа"
 #: ../setup/config_data.inc:995
 #, php-format
 msgid "Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."
-msgstr ""
+msgstr "Да бъдат ли показани резултат и диаграма на страницата на албума с най-високия брой гласове, и да е показан 'link' към пълните резултати. Ако изберете %s, резултатите от гласуването ще са само на разположение на администраторите и на собствениците на албуми."
 
 #: ../setup/config_data.inc:1002
 msgid "Number of results displayed"
@@ -1491,32 +1515,32 @@ msgstr "Количество на показани резултати"
 #: ../setup/config_data.inc:1003
 #, php-format
 msgid "If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"
-msgstr ""
+msgstr "Ако %s е %s, ще бъде показана диаграма съдържаща толкова най-високи резултати. (Пълните резултати ще са на разположение на допълнителната страница.)"
 
 #: ../setup/config_data.inc:1011
 msgid "Orientation of vote choices?"
-msgstr ""
+msgstr "Разположение на точките за гласуване?"
 
 #: ../setup/config_data.inc:1012
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
-msgstr ""
+msgstr "Позициите за гласуване могат да бъдат показани една до друга (хоризонтално) или една под друга (вертикално). Няма ефект върху 'Гласуването по критичност', което всъшност представлява меню."
 
 #: ../setup/config_data.inc:1016
 msgid "Horizontal"
-msgstr ""
+msgstr "Хоризонтално"
 
 #: ../setup/config_data.inc:1017
 msgid "Vertical"
-msgstr ""
+msgstr "Вертикално"
 
 #: ../setup/config_data.inc:1019 ../setup/functions.inc:951
 #: ../setup/functions.inc:960 ../setup/functions.inc:965
 msgid "Vote words and values"
-msgstr ""
+msgstr "Думи и стойности на гласуването"
 
 #: ../setup/config_data.inc:1020
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
-msgstr ""
+msgstr "Това позволява да изберете самия текст който ще се показва за всяка позиция на гласуване, плюс броя на точките които тази позиция струва."
 
 #: ../setup/config_data.inc:1022
 msgid "Excellent"
@@ -1767,7 +1791,7 @@ msgstr "Можете да използвате тези програми за да разберете повече за вашата конф
 
 #: ../setup/diagnostics.php:39
 msgid "Tool"
-msgstr ""
+msgstr "Инструмент"
 
 # The translation for this does not work in few places. Still appears in english.
 #: ../setup/diagnostics.php:40
@@ -1825,7 +1849,7 @@ msgstr "Тази страница ще изпрати пробен е-mail."
 #: ../setup/diagnostics.php:88
 #, php-format
 msgid "This allows you to see if you can use the email functions in %s."
-msgstr ""
+msgstr "Това позволява да разберете дали можете да използвате e-mail функциите в %s."
 
 #: ../setup/functions.inc:108
 msgid "Please retype your password here"
@@ -1859,7 +1883,7 @@ msgstr "<b>'mod_rewrite'</b> е позволен."
 
 #: ../setup/functions.inc:367
 msgid "Can't find <i>jhead</i>"
-msgstr ""
+msgstr "Не е намерен <i>jhead</i>!"
 
 #: ../setup/functions.inc:369
 msgid "<b>jhead</b> binary located."
@@ -1895,7 +1919,7 @@ msgstr "Всички %d от общо %d файла на 'ImageMagick' са намерени"
 
 #: ../setup/functions.inc:532
 msgid "Can't find <i>jpegtran</i>!"
-msgstr ""
+msgstr "Не е намерен <i>jpegtran</i>!"
 
 #: ../setup/functions.inc:534
 msgid "<b>jpegtran</b> binary located."
@@ -1915,7 +1939,7 @@ msgstr "Няма намерени езици."
 
 #: ../setup/functions.inc:566
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr ""
+msgstr "По всичко личи, че не сте свалили никакви допълнителни езици. Това не е проблем! Галерията ще работи само на англииски. Забележка: Ако това не е вярно, проверете дали всички файлове от директорията 'locale' са разрешени за достъп от web-сървъра, или се свържете с екипа на Галерията."
 
 #: ../setup/functions.inc:570
 #, php-format
@@ -2005,25 +2029,25 @@ msgstr "<b>'magic quotes'</b> са изключени."
 #: ../setup/functions.inc:950
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
-msgstr ""
+msgstr "В %s липсва %s на ред %d с %s %s."
 
 #: ../setup/functions.inc:959
 #, php-format
 msgid "In %s, blank in row %d."
-msgstr ""
+msgstr "В %s е празно на ред %d."
 
 #: ../setup/functions.inc:964
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
-msgstr ""
+msgstr "В %s, за името %s (ред %d) стойността %s трябва да е положително цяло число."
 
 #: ../setup/functions.inc:1120
 msgid "Your admin passwords do not match!"
-msgstr ""
+msgstr "Администраторските ви пароли не съвпадат!"
 
 #: ../setup/functions.inc:1136
 msgid "Valid admin email address given."
-msgstr ""
+msgstr "Дадения e-mail адрес е валиден."
 
 #: ../setup/functions.inc:1143
 msgid "You must specify valid admin email addresses"
@@ -2032,11 +2056,11 @@ msgstr "Трябва да въведете валиден e-mail адрес на администратора"
 #: ../setup/functions.inc:1151
 #, php-format
 msgid "%s is not a valid email address."
-msgstr ""
+msgstr "%s не е валиден e-mail адрес."
 
 #: ../setup/functions.inc:1160
 msgid "Valid sender email address given."
-msgstr ""
+msgstr "Дадения e-mail адрес на подателя е валиден."
 
 #: ../setup/functions.inc:1162
 msgid "You must specify a valid sender email address"
@@ -2045,12 +2069,12 @@ msgstr "Трябва да въведете валиден e-mail адрес на подател"
 #: ../setup/functions.inc:1165
 #, php-format
 msgid "You must include %s in your welcome email"
-msgstr ""
+msgstr "Трябва да включите %s във вашия e-mail за Добре Дошли."
 
 #: ../setup/functions.inc:1170
 #, php-format
 msgid "You must include %s or %s in your welcome email"
-msgstr ""
+msgstr "Трябва да включите %s или %s във вашия e-mail за Добре Дошли."
 
 #: ../setup/functions.inc:1194
 #, php-format
@@ -2116,7 +2140,7 @@ msgstr "Конфигурация на Галерията"
 
 #: ../setup/index.php:41
 msgid "unknown"
-msgstr ""
+msgstr "неясно"
 
 #: ../setup/session_test.php:36
 msgid "Gallery Session Test"
@@ -2227,3 +2251,7 @@ msgstr "Липсва ви или %s или %s."
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "Преглеждане на Настройките"
+
+#, fuzzy
+#~ msgid "Albums URL"
+#~ msgstr "Албумa"

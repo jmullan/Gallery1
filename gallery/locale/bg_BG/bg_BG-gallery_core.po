@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1_RC4
+# Version: 1_4_1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-21 12:17+0100\n"
-"PO-Revision-Date: 2003-11-20 11:03-0500\n"
+"POT-Creation-Date: 2003-11-27 17:00+0100\n"
+"PO-Revision-Date: 2003-11-21 14:42-0500\n"
 "Last-Translator: Bisser Dobrev <bdobrev@comcast.net>\n"
 "Language-Team: Bisser Dobrev <bdobrev@comcast.net>\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr ""
 #: ../progress_uploading.php:28 ../publish_xp.php:28 ../publish_xp_docs.php:28
 #: ../register.php:30 ../rename_album.php:28 ../reset_votes.php:30
 #: ../resize_photo.php:28 ../rotate_photo.php:28 ../save_photos.php:28
-#: ../search.php:28 ../slideshow.php:27 ../slideshow_low.php:44
+#: ../search.php:28 ../slideshow.php:28 ../slideshow_low.php:44
 #: ../sort_album.php:28 ../upgrade_album.php:28 ../upgrade_users.php:28
 #: ../user_preferences.php:28 ../util.php:28 ../view_album.php:28
 #: ../view_comments.php:31 ../view_photo.php:28
@@ -59,7 +59,7 @@ msgstr "Нарушение на защитата"
 
 #: ../add_comment.php:63 ../classes/Album.php:745
 msgid "No email sent as no valid email addresses were found"
-msgstr "Не е изпратен 'Email\", тъй като не са намерени валидни 'Email' - адреси"
+msgstr "Не е изпратен E-mail, тъй като не са намерени валидни E-mail адреси"
 
 #: ../add_comment.php:80
 msgid "Name and comment are both required to save a new comment!"
@@ -551,15 +551,15 @@ msgstr "Обновяване на елемент %d от общо %d . . ."
 
 #: ../classes/Album.php:725
 msgid "msg should be an array!"
-msgstr ""
+msgstr "Съобщението трябва да е в низ!"
 
 #: ../classes/Album.php:836
 msgid "Resizing/compressing original image"
-msgstr ""
+msgstr "Променяне на размера/Компресиране на оригиналното изображение"
 
 #: ../classes/Album.php:840
 msgid "Cannot resize/compress this filetype"
-msgstr ""
+msgstr "Не може да се промени размера на/компресира този тип файл"
 
 #: ../classes/Album.php:888
 #, php-format
@@ -583,7 +583,7 @@ msgstr "#%d"
 #: ../classes/Album.php:1966
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
-msgstr ""
+msgstr "Проблем с E-mail-a: пропуска се %s (UID %s) защото e-mail адреса %s не е валиден."
 
 #: ../classes/AlbumItem.php:429
 msgid "Invalid image"
@@ -650,7 +650,7 @@ msgstr "Проверка на потребител %d от общо %d . . . ."
 
 #: ../classes/gallery/UserDB.php:331
 msgid "skipped"
-msgstr ""
+msgstr "пропуснат"
 
 #: ../classes/gallery/UserDB.php:377
 #, php-format
@@ -924,7 +924,7 @@ msgstr "Размер на миниатюрното изображение"
 
 #: ../edit_appearance.php:157
 msgid "Maximum dimensions of intermediate sized images"
-msgstr ""
+msgstr "Максималните размери на изображенията с променен размер"
 
 #: ../edit_appearance.php:161
 msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
@@ -932,7 +932,7 @@ msgstr "Максималната големина на файла на JPEG/PNG изображенията с междинен разм
 
 #: ../edit_appearance.php:165
 msgid "Maximum dimensions of full sized images"
-msgstr ""
+msgstr "Максимални размери на изображенията с пълен размер"
 
 #: ../edit_appearance.php:166
 #, php-format
@@ -1009,7 +1009,7 @@ msgstr "Рамка За Албума"
 
 #: ../edit_appearance.php:267
 msgid "Thumb Frame"
-msgstr ""
+msgstr "Рамка за миниатюрните изображения"
 
 #: ../edit_appearance.php:271
 msgid "Image Frame"
@@ -1041,7 +1041,7 @@ msgstr "Новите елементи да се добавят в началото на албума"
 
 #: ../edit_appearance.php:305
 msgid "Display clickable image dimensions"
-msgstr ""
+msgstr "Дали да са показани размери на изображението във формата на link"
 
 #: ../edit_appearance.php:311
 msgid "Apply values to nested Albums (except Album Title and Summary)."
@@ -1138,7 +1138,7 @@ msgstr "Променете във Под-албумите"
 
 #: ../html/userData.inc:15
 msgid "Member file"
-msgstr ""
+msgstr "Потребителски файл"
 
 #: ../html/userData.inc:22 ../login.php:97 ../login.php:182
 msgid "Username"
@@ -1162,7 +1162,7 @@ msgstr "Име"
 
 #: ../html/userData.inc:100
 msgid "Email Address"
-msgstr "'E-mail' Адрес"
+msgstr "E-mail Адрес"
 
 #: ../html/userData.inc:116
 msgid "Gallery language"
@@ -1194,7 +1194,7 @@ msgstr "Направете дарение за Галерията!!"
 
 #: ../layout/breadcrumb.inc:31 ../layout/breadcrumb.inc:37
 msgid "navigate UP"
-msgstr ""
+msgstr "движение Нагоре"
 
 #: ../layout/commentbox.inc:7 ../layout/commentdraw.inc:20
 msgid "From:"
@@ -1208,7 +1208,7 @@ msgstr "изтриите коментар"
 msgid "add comment"
 msgstr "добавете коментар"
 
-#: ../layout/commentboxtop.inc:17 ../slideshow.php:595 ../slideshow.php:609
+#: ../layout/commentboxtop.inc:17 ../slideshow.php:596 ../slideshow.php:610
 #: ../slideshow_low.php:358 ../slideshow_low.php:370 ../upgrade_album.php:97
 #: ../view_album.php:145 ../view_album.php:898 ../view_comments.php:74
 #: ../view_photo.php:182 ../view_photo.php:198
@@ -1297,7 +1297,7 @@ msgstr "Забравили сте си паролата?"
 #: ../login.php:150
 #, php-format
 msgid "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."
-msgstr ""
+msgstr "Последното запитване за парола беше преди по-малко от %d minuti. Моля проверете за предишен e-mail, или изчакайте преди да опитате отново. "
 
 #: ../login.php:154
 msgid "New password request"
@@ -1306,7 +1306,7 @@ msgstr "Запитване за нова парола"
 #: ../login.php:155
 #, php-format
 msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "
-msgstr ""
+msgstr "Някой е поискал нова парола за потребителя %s от Галерията %s на %s. Можете да създадете парола като посетите web-адреса по-долу. Ако не сте искали парола, моля игнрорирайте този e-mail."
 
 #: ../login.php:156
 #, php-format
@@ -1321,17 +1321,17 @@ msgstr "Поискване на нова парола %s"
 #: ../login.php:161
 #, php-format
 msgid "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."
-msgstr ""
+msgstr "Изпратен е E-mail до адреса записан за %s. Следвайте инструкциите, за да смените паролата си. Ако не получите този e-mail, моля свържете се с Администратора на Галерията."
 
 #: ../login.php:166
 #, php-format
-msgid "Email could not be sent.  Please contact %s adminstrators for a new password"
-msgstr ""
+msgid "Email could not be sent.  Please contact %s administrators for a new password"
+msgstr "Не е изпратен e-mail. Моля свържете се с администраторите на %s за нова парола."
 
 #: ../login.php:170
 #, php-format
-msgid "There is no valid email for this account.  Please contact %s adminstrators for a new password"
-msgstr ""
+msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
+msgstr "Няма валиден e-mail адрес за това потребителско име. Моля свържете се с администраторите на %s за нова парола."
 
 #: ../login.php:173 ../new_password.php:42 ../new_password.php:46
 msgid "Not a valid username"
@@ -1363,7 +1363,7 @@ msgstr "Няма потребители! Създайте един."
 
 #: ../manage_users.php:111
 msgid "Bulk Create"
-msgstr ""
+msgstr "Създаване на количество потребители."
 
 #: ../manage_users.php:114
 msgid "Modify"
@@ -1444,15 +1444,15 @@ msgstr "За да преместите само една снимка, направете Първата и Последната да са 
 
 #: ../move_photo.php:304
 msgid "Note: items that have votes will lose these votes when moved to another album"
-msgstr ""
+msgstr "Забележла: елементи които имат гласове, ще загубят гласовете си след като бъдат преместени в друг албум"
 
 #: ../move_photo.php:306
 #, php-format
 msgid "Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."
-msgstr ""
+msgstr "Забележла: елементи които имат гласове, ще загубят гласовете си, ако бъдат преместени в друг албум без съвместим вид гласуване. Съвместимите албуми са маркирани с &quot;%s&quot;."
 
 #: ../multi_create_user.php:50 ../multi_create_user.php:137
-msgid "Create Mulitple Users"
+msgid "Create Multiple Users"
 msgstr "Създайте повече от един Потребител"
 
 #: ../multi_create_user.php:57
@@ -1472,7 +1472,7 @@ msgstr "добавяне на %s"
 #: ../multi_create_user.php:92
 #, php-format
 msgid "Send email to %s"
-msgstr "Изпратете 'Email' do %s"
+msgstr "Изпратете E-mail do %s"
 
 #: ../multi_create_user.php:108
 #, php-format
@@ -1510,19 +1510,19 @@ msgstr "Бележки:"
 
 #: ../multi_create_user.php:177
 msgid "The members file should be one user per line, and the fields should be space separated.  Each line is of the form:<br> <i>username emailaddress fullname</i>.<br>  Only username is required. Everything after the email address is the full name, so there can be spaces in it.<p>"
-msgstr ""
+msgstr "Файла с потребители трябва да е един потребител на ред, и полетата трябва да са разделени със интервал. Всеки ред трябва да е във формата на: <br> <i>потребителско_име email_адрес пълно_име</i>.<br> Само 'потребителско_име' е задължително. Всичко след e-mail адреса е пълното име, така че може да има и интервали в него. <p>"
 
 #: ../multi_create_user.php:182
 msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked)."
-msgstr ""
+msgstr "Променливите !!USERNAME!!, !!FULLNAME!! и !!PASSWORD!! ще бъдат заменени в e-mail-а със стойностите от файла с потребителите. До всеки потребител с валиден e-mail адрес ще бъде изпратено отделно съобщение (ако е маркирано &quot;изпратете e-mail&quot;)"
 
 #: ../new_password.php:39
 msgid "missing hash parameter"
-msgstr ""
+msgstr "липсващ параметър"
 
 #: ../new_password.php:49
 msgid "The recovery password is not the expected value, please try again"
-msgstr ""
+msgstr "Паролата за възстановяване не е очакваната стойност, моля опитайте отново"
 
 #: ../new_password.php:56
 msgid "You must provide your new password."
@@ -1555,7 +1555,7 @@ msgstr "Собственик"
 #: ../poll_properties.php:60
 #, php-format
 msgid "Warning: you have changed voters from %s to %s.  It is advisable to reset the poll to remove all previous votes."
-msgstr ""
+msgstr "Внимание: вие променихте гласуващите от %s на %s. Желателно е да анулирате гласуването за да премахнете вички предишни резултати."
 
 #: ../poll_properties.php:61 ../poll_properties.php:108
 msgid "Everybody"
@@ -1579,7 +1579,7 @@ msgstr "Ранк"
 
 #: ../poll_properties.php:92
 msgid "Critique"
-msgstr ""
+msgstr "С Критичност"
 
 #: ../poll_properties.php:95
 msgid "Number of voting options"
@@ -1591,7 +1591,7 @@ msgstr "Да покажем ли резултатите от гласуването на всички посетители?"
 
 #: ../poll_properties.php:103
 msgid "Number of lines of results graph to display on the album page"
-msgstr ""
+msgstr "Брой на редовете с резултати (във формата на диаграма) който да е показан на страницата на албума"
 
 #: ../poll_properties.php:107
 msgid "Who can vote"
@@ -1599,7 +1599,7 @@ msgstr "Кой може да гласува"
 
 #: ../poll_properties.php:111
 msgid "Orientation of vote choices"
-msgstr ""
+msgstr "Разположение на изборите за гласуване"
 
 #: ../poll_properties.php:112 ../rotate_photo.php:88
 msgid "Horizontal"
@@ -1846,7 +1846,7 @@ msgstr "Трябва да въведете валиден e-mail адрес."
 #: ../register.php:113
 #, php-format
 msgid "%s has registered.  Email has been sent to %s."
-msgstr "%s е регистриран. Изпратен е 'Email' до %s."
+msgstr "%s е регистриран. Изпратен е E-mail до %s."
 
 #: ../register.php:121
 msgid "Gallery Self Registration"
@@ -1855,19 +1855,19 @@ msgstr "Саморегистрация в Галерията"
 #: ../register.php:123
 #, php-format
 msgid "An email has been sent to %s."
-msgstr "Изпратихме 'Email' до %s."
+msgstr "Изпратихме E-mail до %s."
 
 #: ../register.php:125
 msgid "Your account information is contained within the email."
-msgstr "В този 'Email' е информацията за вашето потребителско име. "
+msgstr "В този E-mail е информацията за вашето потребителско име. "
 
 #: ../register.php:127
-msgid "Email could not be sent.  Please contact gallery adminstrator to register on this site"
-msgstr "Не успяхме да изпратим 'Email'. Моля свържете се с администратора за да се регистрирате в тази галерия."
+msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
+msgstr "Не успяхме да изпратим E-mail. Моля свържете се с администратора за да се регистрирате в тази Галерия."
 
 #: ../register.php:147
 msgid "Your account information will be sent to the email address you provide."
-msgstr "Информацията за потребителско ви име ще бъде изпратена на посочения от вас 'Email' адрес."
+msgstr "Информацията за потребителско ви име ще бъде изпратена на посочения от вас E-mail адрес."
 
 #: ../rename_album.php:45 ../view_album.php:944
 msgid "Rename Album"
@@ -2059,8 +2059,8 @@ msgstr "Добавете файлове"
 msgid "Search Again"
 msgstr "Потърсете Отново"
 
-#: ../search.php:77 ../search.php:280 ../slideshow.php:613
-#: ../slideshow.php:629 ../slideshow_low.php:374 ../view_album.php:149
+#: ../search.php:77 ../search.php:280 ../slideshow.php:614
+#: ../slideshow.php:630 ../slideshow_low.php:374 ../view_album.php:149
 #: ../view_photo.php:202
 msgid "Gallery"
 msgstr "Галерия"
@@ -2112,117 +2112,117 @@ msgstr "Претърсете Галерията за имена на<br> Албуми и снимки, описания и<br> ком
 msgid "Go"
 msgstr "Старт"
 
-#: ../slideshow.php:224
+#: ../slideshow.php:225
 #, php-format
 msgid "%s Random Images from %s"
 msgstr "%s Случайни Изображения от %s"
 
-#: ../slideshow.php:228
+#: ../slideshow.php:229
 #, php-format
 msgid "Slide Show for Gallery :: %s"
 msgstr "Преглед за Галерия :: %s"
 
-#: ../slideshow.php:233
+#: ../slideshow.php:234
 #, php-format
 msgid "%d Random Images from album :: %s"
 msgstr "%d Произволни Изображения от албума ::%s"
 
-#: ../slideshow.php:237
+#: ../slideshow.php:238
 #, php-format
 msgid "Slide Show for album :: %s"
 msgstr "Преглед за албума :: %s"
 
-#: ../slideshow.php:412 ../slideshow_low.php:403
+#: ../slideshow.php:413 ../slideshow_low.php:403
 msgid "play"
 msgstr "старт"
 
-#: ../slideshow.php:415 ../slideshow_low.php:219
+#: ../slideshow.php:416 ../slideshow_low.php:219
 msgid "The slide show is stopped, Click [play] to resume."
 msgstr "Прегледа е спрян, Натиснете [старт] за да го пуснете."
 
-#: ../slideshow.php:421 ../slideshow.php:668 ../slideshow_low.php:402
+#: ../slideshow.php:422 ../slideshow.php:669 ../slideshow_low.php:402
 msgid "stop"
 msgstr "стоп"
 
-#: ../slideshow.php:424 ../slideshow.php:483 ../slideshow_low.php:225
+#: ../slideshow.php:425 ../slideshow.php:484 ../slideshow_low.php:225
 msgid "Slide show is running..."
 msgstr "Прегледа работи в момента ..."
 
-#: ../slideshow.php:429 ../slideshow_low.php:409
+#: ../slideshow.php:430 ../slideshow_low.php:409
 msgid "normal size"
 msgstr "нормален размер"
 
-#: ../slideshow.php:431
+#: ../slideshow.php:432
 msgid "The slide is showing full sized images, Click [normal size] to view resized images."
 msgstr "В момента са показани изображения в пълния им размер, Натиснете [нормаленразмер] за да видите изображениата в нормалния им (намален или увличен) размер. "
 
-#: ../slideshow.php:435 ../slideshow.php:672 ../slideshow_low.php:412
+#: ../slideshow.php:436 ../slideshow.php:673 ../slideshow_low.php:412
 msgid "full size"
 msgstr "пълен размер"
 
-#: ../slideshow.php:438
+#: ../slideshow.php:439
 msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
 msgstr "В момента са показани изображения с нормален размер, Натиснете [пълен размер] за да видите изображениата в пълния им размер. "
 
-#: ../slideshow.php:444 ../slideshow_low.php:422
+#: ../slideshow.php:445 ../slideshow_low.php:422
 msgid "forward direction"
 msgstr "напред"
 
-#: ../slideshow.php:447 ../slideshow.php:669 ../slideshow_low.php:419
+#: ../slideshow.php:448 ../slideshow.php:670 ../slideshow_low.php:419
 msgid "reverse direction"
 msgstr "назад"
 
-#: ../slideshow.php:477 ../slideshow_low.php:257
+#: ../slideshow.php:478 ../slideshow_low.php:257
 msgid "Picture is loading..."
 msgstr "Картината се зарежда ..."
 
-#: ../slideshow.php:477 ../slideshow.php:575 ../slideshow_low.php:257
+#: ../slideshow.php:478 ../slideshow.php:576 ../slideshow_low.php:257
 #: ../slideshow_low.php:476
 msgid "of"
 msgstr "от"
 
-#: ../slideshow.php:478 ../slideshow_low.php:258 ../upgrade_users.php:58
+#: ../slideshow.php:479 ../slideshow_low.php:258 ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "Моля Изчакайте ..."
 
-#: ../slideshow.php:648
+#: ../slideshow.php:649
 msgid "not working for you? try the low-tech"
 msgstr "не работи ли? опитайте опростения вариант"
 
-#: ../slideshow.php:651 ../slideshow_low.php:391
+#: ../slideshow.php:652 ../slideshow_low.php:391
 msgid "Slide Show"
 msgstr "Преглед"
 
-#: ../slideshow.php:677 ../slideshow_low.php:426
+#: ../slideshow.php:678 ../slideshow_low.php:426
 msgid "Delay:"
 msgstr "Забавяне:"
 
-#: ../slideshow.php:679 ../slideshow_low.php:428
+#: ../slideshow.php:680 ../slideshow_low.php:428
 msgid "second"
 msgstr "секунда"
 
-#: ../slideshow.php:680 ../slideshow.php:681 ../slideshow.php:682
-#: ../slideshow.php:683 ../slideshow.php:684 ../slideshow.php:685
-#: ../slideshow.php:686 ../slideshow.php:687 ../slideshow.php:688
+#: ../slideshow.php:681 ../slideshow.php:682 ../slideshow.php:683
+#: ../slideshow.php:684 ../slideshow.php:685 ../slideshow.php:686
+#: ../slideshow.php:687 ../slideshow.php:688 ../slideshow.php:689
 #: ../slideshow_low.php:429 ../slideshow_low.php:430 ../slideshow_low.php:431
 #: ../slideshow_low.php:432 ../slideshow_low.php:433 ../slideshow_low.php:434
 #: ../slideshow_low.php:435 ../slideshow_low.php:436 ../slideshow_low.php:437
 msgid "seconds"
 msgstr "секунди"
 
-#: ../slideshow.php:696
+#: ../slideshow.php:697
 msgid "Transition:"
 msgstr "Преход:"
 
-#: ../slideshow.php:707 ../slideshow_low.php:443
+#: ../slideshow.php:708 ../slideshow_low.php:443
 msgid "Loop"
 msgstr "Повтаряне"
 
-#: ../slideshow.php:762 ../slideshow_low.php:490
+#: ../slideshow.php:763 ../slideshow_low.php:490
 msgid "This album has no photos to show in a slide show."
 msgstr "Този албум няма снимки, които да се покажат в прегледа."
 
-#: ../slideshow.php:766 ../slideshow_low.php:494
+#: ../slideshow.php:767 ../slideshow_low.php:494
 msgid "back to album"
 msgstr "назад към албума"
 
@@ -2509,7 +2509,7 @@ msgstr "сегашно местонахдение"
 
 #: ../util.php:1390
 msgid "self"
-msgstr ""
+msgstr "сам по себе си"
 
 #: ../util.php:1557
 #, php-format
@@ -2653,7 +2653,7 @@ msgstr "Това е %s v%s"
 #: ../util.php:2653
 #, php-format
 msgid "Skipping invalid email address %s"
-msgstr "Пропускане на невалидния 'Email' адрес %s"
+msgstr "Пропускане на невалидния E-mail адрес %s"
 
 #: ../util.php:2719
 #, php-format
@@ -2693,11 +2693,11 @@ msgstr "Съобщение"
 
 #: ../util.php:2798
 msgid "Email sent"
-msgstr "'E-mail'-а е изпратен"
+msgstr "E-mail-а е изпратен"
 
 #: ../util.php:2800
 msgid "Email not sent"
-msgstr "'E-mail'-а не е изпратен"
+msgstr "E-mail-а не е изпратен"
 
 #: ../util.php:2814
 #, php-format
@@ -2710,7 +2710,7 @@ msgstr "ПРОВАЛ"
 
 #: ../util.php:2834
 msgid "Email activity"
-msgstr ""
+msgstr "Дейност на E-mail системата"
 
 #: ../util.php:2852
 #, php-format
@@ -3075,7 +3075,7 @@ msgstr "Този албум е празен."
 
 #: ../view_album.php:1089 ../view_photo.php:865
 msgid "Email me when:"
-msgstr "Пратете ми 'E-mail' когато:"
+msgstr "Изпратете ми E-mail когато:"
 
 #: ../view_album.php:1090 ../view_photo.php:866
 msgid "Comments are added"
