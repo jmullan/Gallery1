@@ -302,7 +302,10 @@ function resize_image($src, $dest, $target) {
 }
 
 function rotate_image($src, $dest, $target) {
-	global $gallery;				
+	global $gallery;
+
+	print "<b>SRC=$src<br>DEST=$dest<br>TARGET=$target<br></b>";
+	
 	if (!strcmp($src,$dest)) {
 		$useTemp = true;
 		$out = "$dest.tmp";
@@ -323,6 +326,12 @@ function rotate_image($src, $dest, $target) {
 		     " | " .
 		     NetPBM("pnmflip", $args) .
 		     " | " . fromPnmCmd($out));
+
+	// copy exif headers from original image to rotated image
+	if (isset($gallery->app->use_exif)) {
+		$path = $gallery->app->use_exif;
+		exec_internal(fs_import_filename($path, 1) . " -te $src $out");
+	}
 
 	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
 		if ($useTemp) {
