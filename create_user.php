@@ -31,7 +31,7 @@ if (!$gallery->user->isAdmin()) {
 ?>
 <?php
 $errorCount=0;
-if (!empty($create_user)) {
+if (!empty($action) && $action == 'create') {
 	$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 	if ($gErrors["uname"]) {
 		$errorCount++;
@@ -98,7 +98,7 @@ if (!empty($create_user)) {
 		<?php
 		exit;
        	}
-} else if (isset($cancel) || isset($dismiss)) {
+} else if (!empty($action) || isset($dismiss)) {
 	header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
 }
 doctype();
@@ -143,9 +143,9 @@ $allowChange["member_file"] = false;
 
 <br>
 
-<input type="hidden" name="create_user" value="1">
-<input type="submit" name="create" value="<?php echo _("Create") ?>">
-<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
+<input type="hidden" name="action" value="">
+<input type="submit" name="create" value="<?php echo _("Create") ?>" onclick="usercreate_form.action.value='create'">
+<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick="usercreate_form.action.value='cancel'">
 </form>
 </div>
 </center>

@@ -29,10 +29,10 @@ if (!$gallery->user->isAdmin()) {
 	exit;	
 }
 
-if (isset($delete)) {
+if (isset($action) && $action == 'delete') {
 	$gallery->userDB->deleteUserByUsername($uname);
 }
-if (isset($delete) || isset($cancel)) {
+if (!empty($action)) {
 	header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
 }
 
@@ -66,12 +66,13 @@ if (!strcmp($gallery->user->getUsername(), $uname)) {
 ?>
 <p><b><?php echo  _("Do you really want to delete user"). ": ". $uname ?><b></p>
 
-<input type="submit" name="delete" value="<?php echo _("Delete") ?>">
+<input type="hidden" name="action" value="">
+<input type="submit" name="delete" value="<?php echo _("Delete") ?>" onclick="deleteuser_form.action.value='delete'">
 <?php
 }
 ?>
 
-<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
+<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick="deleteuser_form.action.value='cancel'">
 </form> 
 
 </div>
