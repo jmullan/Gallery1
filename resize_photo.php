@@ -47,7 +47,7 @@ $all = !strcmp($index, "all");
 if ($gallery->session->albumName && isset($index)) {
 	if ($resize) {
 		if (!strcmp($index, "all")) {
-			$np = $gallery->album->numPhotos();
+			$np = $gallery->album->numPhotos(1);
 			echo("<br> Resizing $np photos...");
 			my_flush();
 			for ($i = 1; $i <= $np; $i++) {
