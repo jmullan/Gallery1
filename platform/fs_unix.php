@@ -95,7 +95,22 @@ function fs_executable($filename) {
 
 function fs_mkdir($filename, $perms) {
 	$umask = umask(0);
-	$results = mkdir(fs_import_filename($filename, 0), $perms);
+
+	/*
+	 * PHP 4.2.0 on Unix (specifically FreeBSD) has a bug where mkdir
+	 * causes a seg fault if you specify modes.
+	 *
+	 * See: http://bugs.php.net/bug.php?id=16905
+	 *
+	 * We can't reliably determine the OS, so let's just turn off the
+	 * permissions for any Unix implementation.
+	 */
+	if (!strcmp(phpversion(), "4.2.0")) {
+	    $results = mkdir(fs_import_filename($filename, 0));
+	} else {
+	    $results = mkdir(fs_import_filename($filename, 0), $perms);
+	}
+	
 	umask($umask);
 	return $results;
 }
