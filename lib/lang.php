@@ -174,12 +174,22 @@ function initLanguage($noHeader=false) {
 	if (isset($gallery->app->ML_mode)) {
 		// Mode 0 means no Multilanguage at all.
 		if($gallery->app->ML_mode == 0) {
-			// Maybe PHP has no gettext, then we have to substitute _()
+			// Maybe PHP has no (n)gettext, then we have to substitute _() and ngettext
 			if (! gettext_installed()) {
 				function _($string) {
 					return $string ;
 				}
 			}
+			if (! ngettext_installed()) {
+				function ngettext($singular, $quasi_plural,$num=0) {
+                        		if ($num == 1) {
+                                		return $singular;
+		                        } else {
+        		                        return $quasi_plural;
+                		        }
+				}
+			}
+
 			/* Skip rest*/
 			return;
 		}
@@ -200,8 +210,8 @@ function initLanguage($noHeader=false) {
 	if (isset($GALLERY_EMBEDDED_INSIDE_TYPE)) {
 		/* Gallery is embedded
 
-		/* Gallery can set nukes language, for phpBB2, GeekLog etc. this is not possible.
-		** So gallery will always use their language.
+		/* Gallery can set nukes language.
+		** For phpBB2 and GeekLog this is not possible, Gallery will always use their language.
 		*/
 		forceStaticLang();
 

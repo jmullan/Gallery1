@@ -222,7 +222,7 @@ $features = array(
 
 $constants =  array_merge(
   array(
-	"group0"	=> array (
+	"group_mandatory" => array (
 		"type"		=> "group_start",
 		"name"		=> "group_mandatory",
 		"default"	=> "inline",
@@ -242,7 +242,16 @@ $constants =  array_merge(
 		"choices" => available_skins(),
 		"value" => "none"
 	),
-	"group0_end"	=> array (
+	"uploadMode" => array(
+		"prompt" => _("Default upload method"),
+		"desc" => _("Which method of uploading photos should be defaulted to for users who don't specify?"),
+		"choices" => array("form" => _("Form-based Upload"), 
+					"applet_mini" => _("Mini-Applet"), 
+					"applet" => _("Full-Applet"),
+					"url" => _("URL")),
+		"value" => "form",
+	),
+	"group_mandatory_end" => array (
 		"type"		=> "group_end",
 	),
 	"group1"	=> array (
@@ -474,12 +483,7 @@ $constants =  array_merge(
 		"choices" => available_frames(),
 		"value" => "simple_book"
 	),
-	"uploadMode" => array(
-		"prompt" => _("Default upload method"),
-		"desc" => _("Which method of uploading photos should be defaulted to for users who don't specify?"),
-		"choices" => array("form" => _("Form-based Upload"), "applet_mini" => _("Mini-Applet"), "applet" => _("Full-Applet")),
-		"value" => "form",
-	),
+
 	"group3_end"	=> array (
 		"type"		=> "group_end",
 	),
@@ -491,7 +495,8 @@ $constants =  array_merge(
 	),
 	"zipinfo" => array(
 		"prompt" => "Zipinfo",
-		"desc" => _("The filesystem path to the <b>zipinfo</b> binary.  This is optional so if you don't have it, don't worry about it too much."),
+		"desc" => sprintf(_("The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
+			'zipinfo', '<i>/usr/local/bin/zipinfo</i>', '<i>c:\\bin\\zipinfo.exe</i>'),
 		"value" => locateFile("zipinfo"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
@@ -502,7 +507,8 @@ $constants =  array_merge(
 	),
 	"unzip" => array(
 		"prompt" => "Unzip",
-		"desc" => _("The filesystem path to the <b>unzip</b> binary.  This is optional so if you don't have it, don't worry about it too much."),
+		"desc" => sprintf(_("The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
+		'unzip', '<i>/usr/local/bin/unzip</i>', '<i>c:\\bin\\unzip.exe</i>'),
 		"value" => locateFile("unzip"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
@@ -513,8 +519,8 @@ $constants =  array_merge(
 	),
 	"use_exif" => array(
 		"prompt" => "Jhead EXIF Parser",
-		"desc" => sprintf(_("The filesystem path to the <b>jhead</b> EXIF parser.  This is optional so if you don't have it, don't worry about it too much.  E.g. %s or %s"),
-		'<i>/usr/local/bin/jhead</i>', '<i>c:\\bin\\jhead.exe</i>'),
+		"desc" => sprintf(_("The filesystem path to the <b>jhead</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
+			'<i>/usr/local/bin/jhead</i>', '<i>c:\\bin\\jhead.exe</i>'),
 		"value" => locateFile("jhead"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
@@ -531,9 +537,8 @@ $constants =  array_merge(
 	),
 	"use_jpegtran" => array (
 		"prompt" => "Jpegtran",
-		"desc" => sprintf(_("The filesystem path to the <b>jpegtran</b> utility.  This is optional so if you don't have it, don't worry about it too much.  E.g. %s or %s"), 
-			'<i>/usr/local/bin/jpegtran</i>', 
-			'<i>c:\\bin\\jpegtran.exe</i>'),
+		"desc" => sprintf(_("The filesystem path to the <b>jpegtran</b> utility.  E.g. %s or %s.  This is optional so if you don't have it, don't worry about it too much."), 
+			'<i>/usr/local/bin/jpegtran</i>', '<i>c:\\bin\\jpegtran.exe</i>'),
 		"value" => locateFile("jpegtran"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,

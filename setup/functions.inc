@@ -1558,7 +1558,7 @@ function makeSectionTabs($array) {
                 }
         }
 
-	echo "\n\t section_tabs = new configSection('$initialtab')";
+	echo "\n\tsection_tabs = new configSection('$initialtab')";
 	insertSectionToggle();
 
 	echo "\n</script>\n";
