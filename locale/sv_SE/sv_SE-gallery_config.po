@@ -26,9 +26,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.4.1\n"
+"Project-Id-Version: Gallery 1.4.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-27 21:33+0100\n"
+"POT-Creation-Date: 2003-11-28 15:51+0100\n"
 "PO-Revision-Date: 2003-11-14 15:56+0100\n"
 "Last-Translator: Peter Liversten <skansberget@telia.com>\n"
 "Language-Team: Swedish <crille@swipnet.se>\n"
@@ -362,9 +362,9 @@ msgid "This enables you to confirm that email is working correctly on your syste
 msgstr "Detta möjliggör för dig att konfirmera att e-posten fungerar ordentligt på ditt system.  Skriv in din e-postadress nedan och en e-post kommer att skickas till dig.  Om du får den så vet du att e-posten fungerar på ditt system. "
 
 #: ../setup/check_mail.php:44 ../setup/check_mail.php:49
-#, fuzzy, php-format
+#, php-format
 msgid "%s not set."
-msgstr "Felmeddelande! %s inte inställd."
+msgstr "%s inte inställd."
 
 #: ../setup/check_mail.php:69
 msgid "Your email address:"
@@ -1915,19 +1915,18 @@ msgid "This allows you to see if you can use the email functions in %s."
 msgstr "Detta tillåter dig att se om du kan använda e-post funktioner i %s."
 
 #: ../setup/diagnostics.php:83
-#, fuzzy
 msgid "Check versions"
-msgstr "Kontrollera sessioner"
+msgstr "Kontrollera versioner"
 
 #: ../setup/diagnostics.php:86
 #, php-format
 msgid "This page is for %s upgrades that have problems."
-msgstr ""
+msgstr "Denna sida är till för %s uppgraderingar som har problem."
 
 #: ../setup/diagnostics.php:87
-#, fuzzy, php-format
+#, php-format
 msgid "This allows you to check you have the correct version of all your %s files."
-msgstr "Detta tillåter dig att se om du kan använda e-post funktioner i %s."
+msgstr "Detta tillåter dig att kontrollera om du har den rätta versionen av alla dina %s-filer."
 
 #: ../setup/functions.inc:110
 msgid "Please retype your password here"
@@ -2014,7 +2013,6 @@ msgstr "PHP har inte <b>GNU gettext</b> stöd."
 msgid "No languages found."
 msgstr "Inga språk hittade."
 
-# Denna är luddig, men kan ej se översättningen i Gallery fall jag sätter den luddig, så jag lägger till en kommentar istället för att hitta den.  /P.
 #: ../setup/functions.inc:574
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
 msgstr "Det verkar som att du inte har hämtat några ytterligare språk.  Detta är inget problem!  Gallery kommer att visas bara på engelska.  Notera: Om detta inte stämmer, kolla att alla filer i nationella inställningskatalogen är läsbara av webbservern, eller kontakta Gallery Teamet. "
@@ -2055,7 +2053,7 @@ msgstr "Det finns %d nationella inställningar som Gallery inte kunde lokalisera.
 #: ../setup/functions.inc:645
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
-msgstr "Datum i %d språk kan eventuellt inte formateras ordentligt eftersom de motsvarande nationella inställningarna saknas:  Du behöver manuellt välja datumformat för dessa."
+msgstr "Datum i %d språk kan eventuellt inte formateras ordentligt eftersom de motsvarande nationella inställningarna saknas:  Du behöver manuellt välja datumformaten för dessa."
 
 #: ../setup/functions.inc:650
 #, php-format
@@ -2203,19 +2201,19 @@ msgid "You must enter a password for the %s account."
 msgstr "Du måste skriva in ett lösenord för %s kontot."
 
 #: ../setup/functions.inc:1288
-#, fuzzy, php-format
+#, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
-msgstr "Det ser ut som om du redan har konfigurerat gallery eftersom %s användaren redan finns.  Du behöver inte skriva in ett lösenord.  Om du gör det så kommer Gallery att ändra lösenordet för användaren som kallas %s."
+msgstr "Det ser ut som om du redan har konfigurerat gallery eftersom det finns ett administratörskonto men det heter inte %s."
 
 #: ../setup/functions.inc:1291
-#, fuzzy, php-format
+#, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-msgstr "Det ser ut som om du redan har konfigurerat gallery eftersom %s användaren redan finns.  Du behöver inte skriva in ett lösenord.  Om du gör det så kommer Gallery att ändra lösenordet för användaren som kallas %s."
+msgstr "Det ser ut som om du redan har konfigurerat gallery eftersom det finns %d administratörskonton men ingen användare som heter %s."
 
 #: ../setup/functions.inc:1293
-#, fuzzy, php-format
+#, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "Det ser ut som om du redan har konfigurerat gallery eftersom det redan finns %d administratörskonton.  Men inte någon användare kallad %s.  Du behöver inte skriva in något lösenord, men om du gör det så kommer Gallery att skapa en användare som kallas %s med det lösenordet."
+msgstr "Du behöver inte skriva in något lösenord. Om du ändå gör det så kommer Gallery att skapa ett administratöstkonto som heter %s med det lösenordet."
 
 #: ../setup/functions.inc:1302
 #, php-format
@@ -2344,6 +2342,3 @@ msgstr "Du saknar antingen %s eller %s."
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "Granska inställningar"
-
-#~ msgid "You cannot access this file while gallery is in secure mode."
-#~ msgstr "Du kan inte komma åt denna fil medans Gallery är i säkert läge."

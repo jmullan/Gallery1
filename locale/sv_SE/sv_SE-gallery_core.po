@@ -26,9 +26,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.4.1\n"
+"Project-Id-Version: Gallery 1.4.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-27 21:33+0100\n"
+"POT-Creation-Date: 2003-11-28 15:51+0100\n"
 "PO-Revision-Date: 2003-11-14 15:24+0100\n"
 "Last-Translator: Peter Liversten <skansberget@telia.com>\n"
 "Language-Team: Swedish <crille@swipnet.se>\n"
@@ -581,12 +581,12 @@ msgstr "Foto automatiskt roterat/omvandlat"
 msgid "No highlight"
 msgstr "Ingen förgrundsbild"
 
-#: ../classes/Album.php:1828
+#: ../classes/Album.php:1848
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:1966
+#: ../classes/Album.php:1986
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "E-post problem: utesluter %s (UID %s) eftersom e-postadress %s inte är giltig."
@@ -607,7 +607,7 @@ msgstr "Ingen miniatyrbild"
 msgid "Anonymous User"
 msgstr "Anonym användare"
 
-#: ../classes/NobodyUser.php:27 ../poll_properties.php:108
+#: ../classes/NobodyUser.php:27 ../poll_properties.php:111
 msgid "Nobody"
 msgstr "Ingen"
 
@@ -774,7 +774,7 @@ msgstr "E-post skickat till %s."
 #: ../edit_appearance.php:290 ../edit_appearance.php:294
 #: ../edit_appearance.php:298 ../edit_appearance.php:302
 #: ../edit_appearance.php:306 ../modify_user.php:123 ../modify_user.php:126
-#: ../multi_create_user.php:164 ../poll_properties.php:100 ../register.php:73
+#: ../multi_create_user.php:164 ../poll_properties.php:103 ../register.php:73
 #: ../register.php:74
 msgid "yes"
 msgstr "Ja"
@@ -786,7 +786,7 @@ msgstr "Ja"
 #: ../edit_appearance.php:290 ../edit_appearance.php:294
 #: ../edit_appearance.php:298 ../edit_appearance.php:302
 #: ../edit_appearance.php:306 ../modify_user.php:123 ../modify_user.php:126
-#: ../multi_create_user.php:164 ../poll_properties.php:100 ../register.php:73
+#: ../multi_create_user.php:164 ../poll_properties.php:103 ../register.php:73
 msgid "no"
 msgstr "Nej"
 
@@ -1055,17 +1055,17 @@ msgid "Apply values to nested Albums (except Album Title and Summary)."
 msgstr "Verkställ värden på underliggande album (förutom albumtitel och summering)."
 
 #: ../edit_appearance.php:314 ../extra_fields.php:176
-#: ../poll_properties.php:142
+#: ../poll_properties.php:147
 msgid "Apply"
 msgstr "Verkställ"
 
 #: ../edit_appearance.php:315 ../extra_fields.php:177
-#: ../poll_properties.php:143
+#: ../poll_properties.php:148
 msgid "Undo"
 msgstr "Ångra"
 
 #: ../edit_appearance.php:316 ../extra_fields.php:178
-#: ../poll_properties.php:144 ../rotate_photo.php:93
+#: ../poll_properties.php:149 ../rotate_photo.php:93
 msgid "Close"
 msgstr "Stäng"
 
@@ -1332,12 +1332,12 @@ msgid "An email has been sent to the address stored for %s.  Follow the instruct
 msgstr "En e-post har skickats till adressen som sparats för %s.  Följ instruktionerna för att ändra ditt lösenord.  Om du inte mottagit denna e-post, vänligen kontakta en Gallery administratör. "
 
 #: ../login.php:166
-#, fuzzy, php-format
+#, php-format
 msgid "Email could not be sent.  Please contact %s administrators for a new password"
 msgstr "E-post kunde inte skickas.  Vänligen kontakta %s administratörer för ett nytt lösenord"
 
 #: ../login.php:170
-#, fuzzy, php-format
+#, php-format
 msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
 msgstr "Det finns inte någon giltig e-post för detta konto.  Vänligen kontakta %s administratörer för ett nytt lösenord"
 
@@ -1461,7 +1461,6 @@ msgstr "Observera: Objekt som har röster kommer att förlora dessa när de flyttas
 
 # Eller  "Skapa många användare" vad passar bäst?   fler alt. flera.    /P.
 #: ../multi_create_user.php:50 ../multi_create_user.php:137
-#, fuzzy
 msgid "Create Multiple Users"
 msgstr "Skapa flera användare"
 
@@ -1568,65 +1567,70 @@ msgstr "Ägare"
 msgid "Warning: you have changed voters from %s to %s.  It is advisable to reset the poll to remove all previous votes."
 msgstr "Varning: Du har ändrat röstare från %s till %s.  Det är klokt att återställa omröstningen för att ta bort alla föregående röster."
 
-#: ../poll_properties.php:61 ../poll_properties.php:108
+#: ../poll_properties.php:61 ../poll_properties.php:111
 msgid "Everybody"
 msgstr "Alla"
 
-#: ../poll_properties.php:62 ../poll_properties.php:108
+#: ../poll_properties.php:62 ../poll_properties.php:111
 msgid "Logged in"
 msgstr "Inloggad"
 
-#: ../poll_properties.php:77 ../poll_properties.php:83
+#: ../poll_properties.php:80 ../poll_properties.php:86
 msgid "Poll Properties"
 msgstr "Omröstningsegenskaper"
 
-#: ../poll_properties.php:91
+#: ../poll_properties.php:94
 msgid "Type of poll for this album"
 msgstr "Typ av omröstning för detta album"
 
-#: ../poll_properties.php:92
+#: ../poll_properties.php:95
 msgid "Rank"
 msgstr "Rangordning"
 
-#: ../poll_properties.php:92
+#: ../poll_properties.php:95
 msgid "Critique"
 msgstr "Bedömning"
 
-#: ../poll_properties.php:95
+#: ../poll_properties.php:98
 msgid "Number of voting options"
 msgstr "Antal röstningsalternativ"
 
-#: ../poll_properties.php:99
+#: ../poll_properties.php:102
 msgid "Show results of voting to all visitors?"
 msgstr "Visa resultat av omröstning för alla besökare?"
 
-#: ../poll_properties.php:103
+#: ../poll_properties.php:106
 msgid "Number of lines of results graph to display on the album page"
 msgstr "Antal rader av resultatgraf som visas på albumsidan"
 
-#: ../poll_properties.php:107
+#: ../poll_properties.php:110
 msgid "Who can vote"
 msgstr "Vem kan rösta"
 
-#: ../poll_properties.php:111
+#: ../poll_properties.php:114
 msgid "Orientation of vote choices"
 msgstr "Orientering av röstningsalternativ"
 
-#: ../poll_properties.php:112 ../rotate_photo.php:88
+#: ../poll_properties.php:115 ../rotate_photo.php:88
 msgid "Horizontal"
 msgstr "Horisontellt"
 
-#: ../poll_properties.php:112 ../rotate_photo.php:91
+#: ../poll_properties.php:115 ../rotate_photo.php:91
 msgid "Vertical"
 msgstr "Vertikalt"
 
-#: ../poll_properties.php:115
+#: ../poll_properties.php:118
 msgid "Vote hint"
 msgstr "Röstningspåminnelse:"
 
-#: ../poll_properties.php:121
+#: ../poll_properties.php:124
 msgid "Displayed Value"
 msgstr "Visat värde"
+
+#: ../poll_properties.php:143
+#, fuzzy
+msgid "Apply values to nested Albums."
+msgstr "Verkställ på underliggande album"
 
 #: ../poll_results.php:74
 msgid "Poll Results"
@@ -1877,7 +1881,6 @@ msgid "Your account information is contained within the email."
 msgstr "Din kontoinformation finns inuti e-posten."
 
 #: ../register.php:127
-#, fuzzy
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
 msgstr "E-post kunde inte skickas.  Vänligen kontakta Gallery administratörerna för att registrera dig på denna sida."
 
@@ -2442,7 +2445,7 @@ msgstr "Status: %s (förväntat %s)"
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP's %s kan inte fastställa storlek."
 
-#: ../util.php:246 ../util.php:586 ../util.php:632 ../util.php:2600
+#: ../util.php:246 ../util.php:586 ../util.php:632 ../util.php:2602
 msgid "You have no graphics package configured for use!"
 msgstr "Du har inga grafikpaket konfigurerade för att användas!"
 
@@ -2653,92 +2656,92 @@ msgstr "Behöver du hjälp?  Titta i  %s%s Frågor och Svar%s"
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Utesluter %s (kan inte hantera %s format)"
 
-#: ../util.php:2558
+#: ../util.php:2560
 msgid "documentation"
 msgstr "Gallery's Dokumentation"
 
-#: ../util.php:2583
+#: ../util.php:2585
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Kunde inte bevara EXIF-information (jhead är inte installerat)"
 
-#: ../util.php:2610
+#: ../util.php:2612
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Utvecklat av %s v%s"
 
-#: ../util.php:2612
+#: ../util.php:2614
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Med stöd av %s v%s"
 
-#: ../util.php:2656
+#: ../util.php:2658
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Utesluter ogiltig e-postadress %s"
 
-#: ../util.php:2722
-#, fuzzy, php-format
+#: ../util.php:2724
+#, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Observera: Detta är ett automatiskt skapat e-postmeddelande som skickats från webbsidan %s.  Om du mottagit detta av misstag, vänligen ignorera detta meddelande."
 
-#: ../util.php:2724
-#, fuzzy, php-format
+#: ../util.php:2726
+#, php-format
 msgid "Report abuse to %s"
 msgstr "Rapportera missbruk (abuse) till %s."
 
-#: ../util.php:2740
+#: ../util.php:2742
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "E-post skickades inte eftersom det är inte aktiverat för detta Gallery"
 
-#: ../util.php:2744
+#: ../util.php:2746
 msgid "Email not sent as no address provided"
 msgstr "E-post skickades inte eftersom ingen adress tillhandahölls"
 
-#: ../util.php:2749
+#: ../util.php:2751
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "E-post skickades inte till %s eftersom det inte är en giltig adress"
 
-#: ../util.php:2764
+#: ../util.php:2766
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Avsändarens adress %s är ogiltig, användandes %s."
 
-#: ../util.php:2788 ../util.php:2793
+#: ../util.php:2790 ../util.php:2795
 msgid "not shown"
 msgstr "visas inte"
 
-#: ../util.php:2797
+#: ../util.php:2799
 msgid "Message"
 msgstr "Meddelande"
 
-#: ../util.php:2801
+#: ../util.php:2803
 msgid "Email sent"
 msgstr "E-post skickad"
 
-#: ../util.php:2803
+#: ../util.php:2805
 msgid "Email not sent"
 msgstr "E-post inte skickad"
 
-#: ../util.php:2817
+#: ../util.php:2819
 #, php-format
 msgid "Last comment %s."
 msgstr "Senaste kommentar %s."
 
-#: ../util.php:2828
+#: ../util.php:2830
 msgid "FAILED"
 msgstr "MISSLYCKADES"
 
-#: ../util.php:2837
+#: ../util.php:2839
 msgid "Email activity"
 msgstr "E-post aktivering"
 
-#: ../util.php:2855
+#: ../util.php:2857
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kan inte öppna loggfil: %s"
 
-#: ../util.php:2862
+#: ../util.php:2864
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -2758,115 +2761,115 @@ msgstr ""
 "\n"
 "Gallery @ %s Administratör."
 
-#: ../util.php:2871 ../util.php:2873
+#: ../util.php:2873 ../util.php:2875
 msgid "gallery title"
 msgstr "Gallery titel"
 
-#: ../util.php:2872
+#: ../util.php:2874
 msgid "gallery URL"
 msgstr "Gallery URL"
 
-#: ../util.php:2900
+#: ../util.php:2902
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>Ingen</dt><dd>Original utseende..</dd>"
 
-#: ../util.php:2945 ../util.php:2950
+#: ../util.php:2947 ../util.php:2952
 msgid "None"
 msgstr "Ingen"
 
-#: ../util.php:2946 ../util.php:2951
+#: ../util.php:2948 ../util.php:2953
 msgid "Dots"
 msgstr "Punkter"
 
-#: ../util.php:2947 ../util.php:2952
+#: ../util.php:2949 ../util.php:2954
 msgid "Solid"
 msgstr "Enfärgad"
 
-#: ../util.php:2950
+#: ../util.php:2952
 msgid "No frames"
 msgstr "Inga ramar"
 
-#: ../util.php:2951
+#: ../util.php:2953
 msgid "Just a simple dashed border around the thumb."
 msgstr "Endast en enkel streckad kant runt miniatyrbilden."
 
-#: ../util.php:2952
+#: ../util.php:2954
 msgid "Just a simple solid border around the thumb."
 msgstr "Endast en enkel enfärgad kant runt miniatyrbilden."
 
-#: ../util.php:2973
+#: ../util.php:2975
 #, php-format
 msgid "Skipping %s."
 msgstr "Utesluter %s."
 
-#: ../util.php:2979
+#: ../util.php:2981
 #, php-format
 msgid "Can't open %s"
 msgstr "Kan inte öppna %s"
 
-#: ../util.php:3071 ../util.php:3090
+#: ../util.php:3073 ../util.php:3092
 #, fuzzy
 msgid "Not valid yet"
 msgstr "Inte giltigt användarnamn"
 
-#: ../util.php:3226
+#: ../util.php:3228
 msgid "File missing or unreadable.  Please install then re-run this test."
 msgstr ""
 
-#: ../util.php:3230
+#: ../util.php:3232
 #, php-format
 msgid "Please ensure that %s is the latest version."
 msgstr ""
 
-#: ../util.php:3235
+#: ../util.php:3237
 #, php-format
 msgid "Testing status of %d files."
 msgstr ""
 
-#: ../util.php:3242
+#: ../util.php:3244
 #, fuzzy, php-format
 msgid "Cannot read file %s."
 msgstr "Kan inte läsa från %s."
 
-#: ../util.php:3244
+#: ../util.php:3246
 msgid "File missing or unreadable."
 msgstr ""
 
-#: ../util.php:3249
+#: ../util.php:3251
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
 msgstr ""
 
-#: ../util.php:3251
+#: ../util.php:3253
 msgid "Missing version"
-msgstr ""
-
-#: ../util.php:3258
-#, php-format
-msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr ""
 
 #: ../util.php:3260
 #, php-format
-msgid "Expected version %s (or greater) but found %s."
+msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr ""
 
-#: ../util.php:3264
+#: ../util.php:3262
 #, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgid "Expected version %s (or greater) but found %s."
 msgstr ""
 
 #: ../util.php:3266
 #, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgstr ""
+
+#: ../util.php:3268
+#, php-format
 msgid "Expected version %s but found %s."
 msgstr ""
 
-#: ../util.php:3270
+#: ../util.php:3272
 #, php-format
 msgid "%s OK"
 msgstr ""
 
-#: ../util.php:3272
+#: ../util.php:3274
 #, php-format
 msgid "Found expected version %s."
 msgstr ""

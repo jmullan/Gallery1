@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-27 21:43+0100\n"
+"POT-Creation-Date: 2003-11-28 15:51+0100\n"
 "PO-Revision-Date: 2003-11-13 12:30+0300\n"
 "Last-Translator: A.L.T <leanh@airland.kiev.ua>\n"
 "Language-Team: AIRLAND <admin@airland.kiev.ua>\n"
@@ -572,12 +572,12 @@ msgstr "Ảnh tự xoay/chuyển đổi"
 msgid "No highlight"
 msgstr "Không có đánh dấu"
 
-#: ../classes/Album.php:1828
+#: ../classes/Album.php:1848
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:1966
+#: ../classes/Album.php:1986
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Vấn đề về Email: bỏ qua %s (UID %s) bởi vì địa chỉ email %s là không hợp lệ."
@@ -598,7 +598,7 @@ msgstr "Không thumbnail"
 msgid "Anonymous User"
 msgstr "Khách viếng thăm"
 
-#: ../classes/NobodyUser.php:27 ../poll_properties.php:108
+#: ../classes/NobodyUser.php:27 ../poll_properties.php:111
 msgid "Nobody"
 msgstr "Không ai cả"
 
@@ -764,7 +764,7 @@ msgstr "Email được gửi tới %s."
 #: ../edit_appearance.php:290 ../edit_appearance.php:294
 #: ../edit_appearance.php:298 ../edit_appearance.php:302
 #: ../edit_appearance.php:306 ../modify_user.php:123 ../modify_user.php:126
-#: ../multi_create_user.php:164 ../poll_properties.php:100 ../register.php:73
+#: ../multi_create_user.php:164 ../poll_properties.php:103 ../register.php:73
 #: ../register.php:74
 msgid "yes"
 msgstr "đồng ý"
@@ -776,7 +776,7 @@ msgstr "đồng ý"
 #: ../edit_appearance.php:290 ../edit_appearance.php:294
 #: ../edit_appearance.php:298 ../edit_appearance.php:302
 #: ../edit_appearance.php:306 ../modify_user.php:123 ../modify_user.php:126
-#: ../multi_create_user.php:164 ../poll_properties.php:100 ../register.php:73
+#: ../multi_create_user.php:164 ../poll_properties.php:103 ../register.php:73
 msgid "no"
 msgstr "không"
 
@@ -1045,17 +1045,17 @@ msgid "Apply values to nested Albums (except Album Title and Summary)."
 msgstr "Thực thi cho cả album trong (ngoại trừ tựa đề album và tóm lược)."
 
 #: ../edit_appearance.php:314 ../extra_fields.php:176
-#: ../poll_properties.php:142
+#: ../poll_properties.php:147
 msgid "Apply"
 msgstr "Thực&nbsp;thi"
 
 #: ../edit_appearance.php:315 ../extra_fields.php:177
-#: ../poll_properties.php:143
+#: ../poll_properties.php:148
 msgid "Undo"
 msgstr "Làm&nbsp;lại"
 
 #: ../edit_appearance.php:316 ../extra_fields.php:178
-#: ../poll_properties.php:144 ../rotate_photo.php:93
+#: ../poll_properties.php:149 ../rotate_photo.php:93
 msgid "Close"
 msgstr "Đóng"
 
@@ -1555,65 +1555,70 @@ msgstr "Người sở hữu"
 msgid "Warning: you have changed voters from %s to %s.  It is advisable to reset the poll to remove all previous votes."
 msgstr "Chú ý: Bạn đã đổi người bình chọn từ %s tới %s.  Nên hãy làm lại bình chọn để xóa đi hết những bình chọn cũ."
 
-#: ../poll_properties.php:61 ../poll_properties.php:108
+#: ../poll_properties.php:61 ../poll_properties.php:111
 msgid "Everybody"
 msgstr "Mọi người"
 
-#: ../poll_properties.php:62 ../poll_properties.php:108
+#: ../poll_properties.php:62 ../poll_properties.php:111
 msgid "Logged in"
 msgstr "Đã đăng nhập"
 
-#: ../poll_properties.php:77 ../poll_properties.php:83
+#: ../poll_properties.php:80 ../poll_properties.php:86
 msgid "Poll Properties"
 msgstr "Cấu hình bình chọn"
 
-#: ../poll_properties.php:91
+#: ../poll_properties.php:94
 msgid "Type of poll for this album"
 msgstr "Kiểu bình chọn cho album này"
 
-#: ../poll_properties.php:92
+#: ../poll_properties.php:95
 msgid "Rank"
 msgstr "Nút chọn"
 
-#: ../poll_properties.php:92
+#: ../poll_properties.php:95
 msgid "Critique"
 msgstr "Hộp chọn"
 
-#: ../poll_properties.php:95
+#: ../poll_properties.php:98
 msgid "Number of voting options"
 msgstr "Số lượng lựa chọn cho bình chọn"
 
-#: ../poll_properties.php:99
+#: ../poll_properties.php:102
 msgid "Show results of voting to all visitors?"
 msgstr "Hiển thị kết quả bình chọn cho mọi khách viếng thăm?"
 
-#: ../poll_properties.php:103
+#: ../poll_properties.php:106
 msgid "Number of lines of results graph to display on the album page"
 msgstr "Số lượng hình biểu thị kết quả hiện trên trang album"
 
-#: ../poll_properties.php:107
+#: ../poll_properties.php:110
 msgid "Who can vote"
 msgstr "Ai có thể bình chọn"
 
-#: ../poll_properties.php:111
+#: ../poll_properties.php:114
 msgid "Orientation of vote choices"
 msgstr "Hướng sắp đặt của bình chọn"
 
-#: ../poll_properties.php:112 ../rotate_photo.php:88
+#: ../poll_properties.php:115 ../rotate_photo.php:88
 msgid "Horizontal"
 msgstr "Ngang"
 
-#: ../poll_properties.php:112 ../rotate_photo.php:91
+#: ../poll_properties.php:115 ../rotate_photo.php:91
 msgid "Vertical"
 msgstr "Dọc"
 
-#: ../poll_properties.php:115
+#: ../poll_properties.php:118
 msgid "Vote hint"
 msgstr "Gợi ý bình chọn"
 
-#: ../poll_properties.php:121
+#: ../poll_properties.php:124
 msgid "Displayed Value"
 msgstr "Giá trị hiển thị"
+
+#: ../poll_properties.php:143
+#, fuzzy
+msgid "Apply values to nested Albums."
+msgstr "Thực thi cả những album bên trong"
 
 #: ../poll_results.php:74
 msgid "Poll Results"
@@ -2421,7 +2426,7 @@ msgstr "Trạng thái: %s (cần %s)"
 msgid "PHP's %s unable to determine dimensions."
 msgstr "Chức năng PHP's %s không thể xác định kích thước."
 
-#: ../util.php:246 ../util.php:586 ../util.php:632 ../util.php:2600
+#: ../util.php:246 ../util.php:586 ../util.php:632 ../util.php:2602
 msgid "You have no graphics package configured for use!"
 msgstr "Bạn không có gói graphic đã cấu hình nào để sử dụng!"
 
@@ -2631,92 +2636,92 @@ msgstr "Cần trợ giúp? Hãy xem %s%s Hỏi đáp%s"
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Bỏ qua %s (không thể giữ định dạng %s)"
 
-#: ../util.php:2558
+#: ../util.php:2560
 msgid "documentation"
 msgstr "tài liệu"
 
-#: ../util.php:2583
+#: ../util.php:2585
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Không thể nhận dữ liệu EXIF (jhead không được cài đặt)"
 
-#: ../util.php:2610
+#: ../util.php:2612
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Được tạo bằng %s v%s"
 
-#: ../util.php:2612
+#: ../util.php:2614
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2656
+#: ../util.php:2658
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Bỏ qua địa chỉ email không hợp lệ %s"
 
-#: ../util.php:2722
+#: ../util.php:2724
 #, fuzzy, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Chú ý: Đây là email tin được tự động tạo ra gửi đến từ website %s. Nếu khi bạn nhận và có lỗi, hãy bỏ qua nó."
 
-#: ../util.php:2724
+#: ../util.php:2726
 #, fuzzy, php-format
 msgid "Report abuse to %s"
 msgstr "Báo cáo tới %s."
 
-#: ../util.php:2740
+#: ../util.php:2742
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Email không được gửi vì chức năng gửi không hiệu lực cho thư viện ảnh"
 
-#: ../util.php:2744
+#: ../util.php:2746
 msgid "Email not sent as no address provided"
 msgstr "Email không được gửi vì không cung cấp địa chỉ"
 
-#: ../util.php:2749
+#: ../util.php:2751
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Email không được gửi tới %s vì đó là địa chỉ không hợp lệ"
 
-#: ../util.php:2764
+#: ../util.php:2766
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Địa chỉ người gửi %s không hợp lệ, sử dụng %s."
 
-#: ../util.php:2788 ../util.php:2793
+#: ../util.php:2790 ../util.php:2795
 msgid "not shown"
 msgstr "không hiển thị"
 
-#: ../util.php:2797
+#: ../util.php:2799
 msgid "Message"
 msgstr "Thông điệp"
 
-#: ../util.php:2801
+#: ../util.php:2803
 msgid "Email sent"
 msgstr "Email đã được gửi"
 
-#: ../util.php:2803
+#: ../util.php:2805
 msgid "Email not sent"
 msgstr "Email không được gửi"
 
-#: ../util.php:2817
+#: ../util.php:2819
 #, php-format
 msgid "Last comment %s."
 msgstr "Lời bình cuối %s."
 
-#: ../util.php:2828
+#: ../util.php:2830
 msgid "FAILED"
 msgstr "LỖI"
 
-#: ../util.php:2837
+#: ../util.php:2839
 msgid "Email activity"
 msgstr "Kích hoạt Email"
 
-#: ../util.php:2855
+#: ../util.php:2857
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Không thể mở logfile: %s"
 
-#: ../util.php:2862
+#: ../util.php:2864
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -2735,115 +2740,115 @@ msgstr ""
 "\n"
 "Thư viện ảnh @ %s Administrator."
 
-#: ../util.php:2871 ../util.php:2873
+#: ../util.php:2873 ../util.php:2875
 msgid "gallery title"
 msgstr "tiêu đề thư viện ảnh"
 
-#: ../util.php:2872
+#: ../util.php:2874
 msgid "gallery URL"
 msgstr "URL thư viện ảnh"
 
-#: ../util.php:2900
+#: ../util.php:2902
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>Không</dt><dd>Kiểu dáng nguyên gốc.</dd>"
 
-#: ../util.php:2945 ../util.php:2950
+#: ../util.php:2947 ../util.php:2952
 msgid "None"
 msgstr "Không"
 
-#: ../util.php:2946 ../util.php:2951
+#: ../util.php:2948 ../util.php:2953
 msgid "Dots"
 msgstr "Gạch"
 
-#: ../util.php:2947 ../util.php:2952
+#: ../util.php:2949 ../util.php:2954
 msgid "Solid"
 msgstr "Khối"
 
-#: ../util.php:2950
+#: ../util.php:2952
 msgid "No frames"
 msgstr "Không khung"
 
-#: ../util.php:2951
+#: ../util.php:2953
 msgid "Just a simple dashed border around the thumb."
 msgstr "Đây chỉ là một viền mảnh xung quanh thumb."
 
-#: ../util.php:2952
+#: ../util.php:2954
 msgid "Just a simple solid border around the thumb."
 msgstr "Đây chỉ là một viền đậm xung quanh thumb."
 
-#: ../util.php:2973
+#: ../util.php:2975
 #, php-format
 msgid "Skipping %s."
 msgstr "Bỏ qua %s."
 
-#: ../util.php:2979
+#: ../util.php:2981
 #, php-format
 msgid "Can't open %s"
 msgstr "Không thể mở %s"
 
-#: ../util.php:3071 ../util.php:3090
+#: ../util.php:3073 ../util.php:3092
 #, fuzzy
 msgid "Not valid yet"
 msgstr "Tên truy cập không hợp lệ"
 
-#: ../util.php:3226
+#: ../util.php:3228
 msgid "File missing or unreadable.  Please install then re-run this test."
 msgstr ""
 
-#: ../util.php:3230
+#: ../util.php:3232
 #, php-format
 msgid "Please ensure that %s is the latest version."
 msgstr ""
 
-#: ../util.php:3235
+#: ../util.php:3237
 #, php-format
 msgid "Testing status of %d files."
 msgstr ""
 
-#: ../util.php:3242
+#: ../util.php:3244
 #, fuzzy, php-format
 msgid "Cannot read file %s."
 msgstr "Không thể đọc %s."
 
-#: ../util.php:3244
+#: ../util.php:3246
 msgid "File missing or unreadable."
 msgstr ""
 
-#: ../util.php:3249
+#: ../util.php:3251
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
 msgstr ""
 
-#: ../util.php:3251
+#: ../util.php:3253
 msgid "Missing version"
-msgstr ""
-
-#: ../util.php:3258
-#, php-format
-msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr ""
 
 #: ../util.php:3260
 #, php-format
-msgid "Expected version %s (or greater) but found %s."
+msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr ""
 
-#: ../util.php:3264
+#: ../util.php:3262
 #, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgid "Expected version %s (or greater) but found %s."
 msgstr ""
 
 #: ../util.php:3266
 #, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgstr ""
+
+#: ../util.php:3268
+#, php-format
 msgid "Expected version %s but found %s."
 msgstr ""
 
-#: ../util.php:3270
+#: ../util.php:3272
 #, php-format
 msgid "%s OK"
 msgstr ""
 
-#: ../util.php:3272
+#: ../util.php:3274
 #, php-format
 msgid "Found expected version %s."
 msgstr ""

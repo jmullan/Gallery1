@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-27 21:43+0100\n"
+"POT-Creation-Date: 2003-11-28 15:51+0100\n"
 "PO-Revision-Date: 2003-08-27 18:13+0800\n"
 "Last-Translator: Merlin Ma <merlin@turbolinux.com.cn>\n"
 "Language-Team: Simplified Chinese <naoki@cmfans.cn>\n"
@@ -591,12 +591,12 @@ msgstr "照片自动旋转 %s&deg;"
 msgid "No highlight"
 msgstr "没有封面"
 
-#: ../classes/Album.php:1828
+#: ../classes/Album.php:1848
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/Album.php:1966
+#: ../classes/Album.php:1986
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr ""
@@ -617,7 +617,7 @@ msgstr "没有缩略图"
 msgid "Anonymous User"
 msgstr "匿名用户"
 
-#: ../classes/NobodyUser.php:27 ../poll_properties.php:108
+#: ../classes/NobodyUser.php:27 ../poll_properties.php:111
 msgid "Nobody"
 msgstr "Nobody"
 
@@ -788,7 +788,7 @@ msgstr ""
 #: ../edit_appearance.php:290 ../edit_appearance.php:294
 #: ../edit_appearance.php:298 ../edit_appearance.php:302
 #: ../edit_appearance.php:306 ../modify_user.php:123 ../modify_user.php:126
-#: ../multi_create_user.php:164 ../poll_properties.php:100 ../register.php:73
+#: ../multi_create_user.php:164 ../poll_properties.php:103 ../register.php:73
 #: ../register.php:74
 msgid "yes"
 msgstr "是"
@@ -800,7 +800,7 @@ msgstr "是"
 #: ../edit_appearance.php:290 ../edit_appearance.php:294
 #: ../edit_appearance.php:298 ../edit_appearance.php:302
 #: ../edit_appearance.php:306 ../modify_user.php:123 ../modify_user.php:126
-#: ../multi_create_user.php:164 ../poll_properties.php:100 ../register.php:73
+#: ../multi_create_user.php:164 ../poll_properties.php:103 ../register.php:73
 msgid "no"
 msgstr "否"
 
@@ -1082,17 +1082,17 @@ msgid "Apply values to nested Albums (except Album Title and Summary)."
 msgstr "套用到同一层的相册中 (除了标题跟摘要). "
 
 #: ../edit_appearance.php:314 ../extra_fields.php:176
-#: ../poll_properties.php:142
+#: ../poll_properties.php:147
 msgid "Apply"
 msgstr "套用"
 
 #: ../edit_appearance.php:315 ../extra_fields.php:177
-#: ../poll_properties.php:143
+#: ../poll_properties.php:148
 msgid "Undo"
 msgstr "重来"
 
 #: ../edit_appearance.php:316 ../extra_fields.php:178
-#: ../poll_properties.php:144 ../rotate_photo.php:93
+#: ../poll_properties.php:149 ../rotate_photo.php:93
 msgid "Close"
 msgstr "关闭"
 
@@ -1608,70 +1608,75 @@ msgstr "所有者"
 msgid "Warning: you have changed voters from %s to %s.  It is advisable to reset the poll to remove all previous votes."
 msgstr ""
 
-#: ../poll_properties.php:61 ../poll_properties.php:108
+#: ../poll_properties.php:61 ../poll_properties.php:111
 msgid "Everybody"
 msgstr ""
 
-#: ../poll_properties.php:62 ../poll_properties.php:108
+#: ../poll_properties.php:62 ../poll_properties.php:111
 #, fuzzy
 msgid "Logged in"
 msgstr "登录"
 
-#: ../poll_properties.php:77 ../poll_properties.php:83
+#: ../poll_properties.php:80 ../poll_properties.php:86
 #, fuzzy
 msgid "Poll Properties"
 msgstr "文件属性"
 
-#: ../poll_properties.php:91
+#: ../poll_properties.php:94
 #, fuzzy
 msgid "Type of poll for this album"
 msgstr "1 份文件在此相册中"
 
-#: ../poll_properties.php:92
+#: ../poll_properties.php:95
 msgid "Rank"
 msgstr ""
 
-#: ../poll_properties.php:92
+#: ../poll_properties.php:95
 msgid "Critique"
 msgstr ""
 
-#: ../poll_properties.php:95
+#: ../poll_properties.php:98
 #, fuzzy
 msgid "Number of voting options"
 msgstr "根据评论数量"
 
-#: ../poll_properties.php:99
+#: ../poll_properties.php:102
 msgid "Show results of voting to all visitors?"
 msgstr ""
 
-#: ../poll_properties.php:103
+#: ../poll_properties.php:106
 msgid "Number of lines of results graph to display on the album page"
 msgstr ""
 
-#: ../poll_properties.php:107
+#: ../poll_properties.php:110
 #, fuzzy
 msgid "Who can vote"
 msgstr "没有东东"
 
-#: ../poll_properties.php:111
+#: ../poll_properties.php:114
 msgid "Orientation of vote choices"
 msgstr ""
 
-#: ../poll_properties.php:112 ../rotate_photo.php:88
+#: ../poll_properties.php:115 ../rotate_photo.php:88
 msgid "Horizontal"
 msgstr "水平"
 
-#: ../poll_properties.php:112 ../rotate_photo.php:91
+#: ../poll_properties.php:115 ../rotate_photo.php:91
 msgid "Vertical"
 msgstr "垂直"
 
-#: ../poll_properties.php:115
+#: ../poll_properties.php:118
 msgid "Vote hint"
 msgstr ""
 
-#: ../poll_properties.php:121
+#: ../poll_properties.php:124
 msgid "Displayed Value"
 msgstr ""
+
+#: ../poll_properties.php:143
+#, fuzzy
+msgid "Apply values to nested Albums."
+msgstr "套用在同一层的相册中"
 
 #: ../poll_results.php:74
 #, fuzzy
@@ -2490,7 +2495,7 @@ msgstr "Status: %s (希望收到 %s)"
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP 的 %s 无法决定 dimensions. "
 
-#: ../util.php:246 ../util.php:586 ../util.php:632 ../util.php:2600
+#: ../util.php:246 ../util.php:586 ../util.php:632 ../util.php:2602
 msgid "You have no graphics package configured for use!"
 msgstr "您没有设定图形套件! "
 
@@ -2710,94 +2715,94 @@ msgstr "需要帮忙吗? 请看 %s%s FAQ%s"
 msgid "Skipping %s (can't handle %s format)"
 msgstr "跳过 %s (无法处理 %s 格式)"
 
-#: ../util.php:2558
+#: ../util.php:2560
 msgid "documentation"
 msgstr "说明文件"
 
-#: ../util.php:2583
+#: ../util.php:2585
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr ""
 
-#: ../util.php:2610
+#: ../util.php:2612
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generated by %s v%s"
 
-#: ../util.php:2612
+#: ../util.php:2614
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2656
+#: ../util.php:2658
 #, fuzzy, php-format
 msgid "Skipping invalid email address %s"
 msgstr "您一定要输入用户名"
 
-#: ../util.php:2722
+#: ../util.php:2724
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr ""
 
-#: ../util.php:2724
+#: ../util.php:2726
 #, php-format
 msgid "Report abuse to %s"
 msgstr ""
 
-#: ../util.php:2740
+#: ../util.php:2742
 msgid "Email not sent as it is disabled for this gallery"
 msgstr ""
 
-#: ../util.php:2744
+#: ../util.php:2746
 msgid "Email not sent as no address provided"
 msgstr ""
 
-#: ../util.php:2749
+#: ../util.php:2751
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr ""
 
-#: ../util.php:2764
+#: ../util.php:2766
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr ""
 
-#: ../util.php:2788 ../util.php:2793
+#: ../util.php:2790 ../util.php:2795
 msgid "not shown"
 msgstr ""
 
-#: ../util.php:2797
+#: ../util.php:2799
 msgid "Message"
 msgstr ""
 
-#: ../util.php:2801
+#: ../util.php:2803
 #, fuzzy
 msgid "Email sent"
 msgstr "电子信箱"
 
-#: ../util.php:2803
+#: ../util.php:2805
 #, fuzzy
 msgid "Email not sent"
 msgstr "电子信箱"
 
-#: ../util.php:2817
+#: ../util.php:2819
 #, fuzzy, php-format
 msgid "Last comment %s."
 msgstr "上次更新：%s. "
 
-#: ../util.php:2828
+#: ../util.php:2830
 msgid "FAILED"
 msgstr ""
 
-#: ../util.php:2837
+#: ../util.php:2839
 msgid "Email activity"
 msgstr ""
 
-#: ../util.php:2855
+#: ../util.php:2857
 #, fuzzy, php-format
 msgid "Cannot open logfile: %s"
 msgstr "无法开启 lock file (%s)! "
 
-#: ../util.php:2862
+#: ../util.php:2864
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -2809,120 +2814,120 @@ msgid ""
 "Gallery @ %s Administrator."
 msgstr ""
 
-#: ../util.php:2871 ../util.php:2873
+#: ../util.php:2873 ../util.php:2875
 #, fuzzy
 msgid "gallery title"
 msgstr "Gallery 标题"
 
-#: ../util.php:2872
+#: ../util.php:2874
 #, fuzzy
 msgid "gallery URL"
 msgstr "Gallery 连结"
 
-#: ../util.php:2900
+#: ../util.php:2902
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr ""
 
-#: ../util.php:2945 ../util.php:2950
+#: ../util.php:2947 ../util.php:2952
 #, fuzzy
 msgid "None"
 msgstr "完成"
 
-#: ../util.php:2946 ../util.php:2951
+#: ../util.php:2948 ../util.php:2953
 #, fuzzy
 msgid "Dots"
 msgstr "注意"
 
-#: ../util.php:2947 ../util.php:2952
+#: ../util.php:2949 ../util.php:2954
 msgid "Solid"
 msgstr ""
 
-#: ../util.php:2950
+#: ../util.php:2952
 #, fuzzy
 msgid "No frames"
 msgstr "尚无相册"
 
-#: ../util.php:2951
+#: ../util.php:2953
 msgid "Just a simple dashed border around the thumb."
 msgstr ""
 
-#: ../util.php:2952
+#: ../util.php:2954
 msgid "Just a simple solid border around the thumb."
 msgstr ""
 
-#: ../util.php:2973
+#: ../util.php:2975
 #, fuzzy, php-format
 msgid "Skipping %s."
 msgstr "跳过相册 %d..."
 
-#: ../util.php:2979
+#: ../util.php:2981
 #, fuzzy, php-format
 msgid "Can't open %s"
 msgstr "无法读取 %s. "
 
-#: ../util.php:3071 ../util.php:3090
+#: ../util.php:3073 ../util.php:3092
 #, fuzzy
 msgid "Not valid yet"
 msgstr "不合法的用户"
 
-#: ../util.php:3226
+#: ../util.php:3228
 msgid "File missing or unreadable.  Please install then re-run this test."
 msgstr ""
 
-#: ../util.php:3230
+#: ../util.php:3232
 #, php-format
 msgid "Please ensure that %s is the latest version."
 msgstr ""
 
-#: ../util.php:3235
+#: ../util.php:3237
 #, php-format
 msgid "Testing status of %d files."
 msgstr ""
 
-#: ../util.php:3242
+#: ../util.php:3244
 #, fuzzy, php-format
 msgid "Cannot read file %s."
 msgstr "无法读取 %s. "
 
-#: ../util.php:3244
+#: ../util.php:3246
 msgid "File missing or unreadable."
 msgstr ""
 
-#: ../util.php:3249
+#: ../util.php:3251
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
 msgstr ""
 
-#: ../util.php:3251
+#: ../util.php:3253
 msgid "Missing version"
-msgstr ""
-
-#: ../util.php:3258
-#, php-format
-msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr ""
 
 #: ../util.php:3260
 #, php-format
-msgid "Expected version %s (or greater) but found %s."
+msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr ""
 
-#: ../util.php:3264
+#: ../util.php:3262
 #, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgid "Expected version %s (or greater) but found %s."
 msgstr ""
 
 #: ../util.php:3266
 #, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgstr ""
+
+#: ../util.php:3268
+#, php-format
 msgid "Expected version %s but found %s."
 msgstr ""
 
-#: ../util.php:3270
+#: ../util.php:3272
 #, php-format
 msgid "%s OK"
 msgstr ""
 
-#: ../util.php:3272
+#: ../util.php:3274
 #, php-format
 msgid "Found expected version %s."
 msgstr ""
