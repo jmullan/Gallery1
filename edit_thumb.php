@@ -48,27 +48,29 @@ if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isIt
   <?php echo getStyleSheetLink() ?>
 </head>
 
-<?php 
-if ($action == "doit") {
+<?php
+if (isset($action)) {
+	if ($action == "doit") {
+		
+		#-- rebuild the thumbnail, cropped) ---
+		echo(_("Remaking the Thumbnail..."));
+		my_flush();
+		if ($gallery->session->albumName && isset($index)) { 
+			$photo = $gallery->album->getPhoto($index);
+			$photo->image->setThumbRectangle($crop_x, $crop_y, $crop_w, $crop_h);
+			$photo->makeThumbnail($gallery->album->getAlbumDir(), $gallery->album->fields["thumb_size"]);
+			$gallery->album->setPhoto($photo, $index);
+			$gallery->album->save(array(i18n("Thumbnail modified for %s"), 
+						makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index))));
+		}	
+		
+		#-- close and reload parent ---
+		dismissAndReload();
 	
-	#-- rebuild the thumbnail, cropped) ---
-	echo(_("Remaking the Thumbnail..."));
-	my_flush();
-	if ($gallery->session->albumName && isset($index)) { 
-		$photo = $gallery->album->getPhoto($index);
-		$photo->image->setThumbRectangle($crop_x, $crop_y, $crop_w, $crop_h);
-		$photo->makeThumbnail($gallery->album->getAlbumDir(), $gallery->album->fields["thumb_size"]);
-		$gallery->album->setPhoto($photo, $index);
-		$gallery->album->save(array(i18n("Thumbnail modified for %s"), 
-					makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index))));
-	}	
-	
-	#-- close and reload parent ---
-	dismissAndReload();
-
-} else if ($action == "cancel") {
-	#-- just close ---
-	dismiss();
+	} else if ($action == "cancel") {
+		#-- just close ---
+		dismiss();
+	}
 } else {
 	#-- show the applet ---
 ?>
