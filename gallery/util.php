@@ -458,7 +458,7 @@ function rotate_image($src, $dest, $target, $type) {
 	}
 
 	$outFile = fs_import_filename($out, 1);
-	$srcFile = fs_import_filename($out, 1);
+	$srcFile = fs_import_filename($src, 1);
 
 	$type = strtolower($type);
 	if (isset ($gallery->app->use_jpegtran) && ($type === "jpg" || $type === "jpeg")) {
