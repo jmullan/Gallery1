@@ -34,7 +34,7 @@ case "none":
   break;
 case "dots":
 ?>
-  <table style="border-width:1px; border-style:dashed; border-color:$borderColor">
+  <table style="border-width:1px; border-style:dashed; border-color:<?php echo $borderColor ?>">
     <tr>
       <td>
         <?php echo $href_tag ?>
