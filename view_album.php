@@ -498,10 +498,11 @@ if ($numPhotos) {
 				if($gallery->album->isAlbumName($i)) { 
 					if($gallery->user->canDeleteAlbum($myAlbum)) {
 						showChoice("Delete $label", "delete_photo.php",
-							array("index" => $i, "albumDelete" => 1));
+							array("id" => $id, "albumDelete" => 1));
 					}
 				} else {
-					showChoice("Delete $label", "delete_photo.php", array("index" => $i));
+					showChoice("Delete $label", "delete_photo.php",
+						   array("id" => $id));
 				}
 			}
 			if ($showAdminForm) {

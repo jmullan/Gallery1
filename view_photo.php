@@ -295,7 +295,7 @@ if (!$gallery->album->isMovie($id)) {
 
 	if ($gallery->user->canDeleteFromAlbum($gallery->album)) {
 		$adminCommands .= '<a href="#" onClick="'.
-			popup("delete_photo.php?index=$index").';return false"><nobr>[delete photo]</nobr></a>';
+			popup("delete_photo.php?id=$id").';return false"><nobr>[delete photo]</nobr></a>';
 	}
 
 	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes")) {

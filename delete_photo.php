@@ -33,8 +33,12 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 if (!$gallery->user->canDeleteFromAlbum($gallery->album)) {
 	exit;
 }
-	
-if ($confirm && isset($index)) {
+
+if (isset($id)) {
+        $index = $gallery->album->getPhotoIndex($id);
+}
+
+if ($confirm && isset($id)) {
 	if ($albumDelete) {
 		$myAlbum = $gallery->album->getNestedAlbum($index);
 		$myAlbum->delete();
@@ -55,7 +59,7 @@ if ($confirm && isset($index)) {
 
 
 <?
-if ($gallery->album && isset($index)) {
+if ($gallery->album && isset($id)) {
 	if (isset($albumDelete)) {
 ?>
 
@@ -80,7 +84,7 @@ $myAlbum = $gallery->album->getNestedAlbum($index);
 <?= $myAlbum->fields[description] ?>
 <br>
 <?= makeFormIntro("delete_photo.php"); ?>
-<input type=hidden name=index value=<?= $index?>>
+<input type=hidden name=id value=<?= $id?>>
 <input type=hidden name=albumDelete value=<?= $albumDelete?>>
 <input type=submit name=confirm value="Delete">
 <input type=submit value="Cancel" onclick='parent.close()'>
@@ -100,7 +104,7 @@ Do you really want to delete this photo?
 <?= $gallery->album->getCaption($index) ?>
 <br>
 <?= makeFormIntro("delete_photo.php"); ?>
-<input type=hidden name=index value=<?= $index?>>
+<input type=hidden name=id value=<?= $id?>>
 <input type=submit name=confirm value="Delete">
 <input type=submit value="Cancel" onclick='parent.close()'>
 </form>
