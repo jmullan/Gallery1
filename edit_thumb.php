@@ -91,7 +91,14 @@ if ($action == "doit") {
 	
 		$bgcolor = "#FFFFFF";
 
-		$this_page = "edit_thumb.php"; # hmm... 
+		/* Build up the submit URL */
+		if (stristr($HTTP_SERVER_VARS['HTTPS'], "on")) {
+		    $submit = "https://";
+		} else {
+		    $submit = "http://";
+		}
+		$submit .= $HTTP_SERVER_VARS['HTTP_HOST'];
+		$submit .= $HTTP_SERVER_VARS['REQUEST_URI'];
 ?>
 
 <span class="popup">
@@ -108,6 +115,7 @@ Choose which part of the image will compose your thumbnail:
   <PARAM NAME=crop_y   VALUE="<?= $t_y ?>">
   <PARAM NAME=crop_w   VALUE="<?= $t_w ?>">
   <PARAM NAME=crop_h   VALUE="<?= $t_h ?>">
+  <PARAM NAME=submit   VALUE="<?= $submit ?>">
   <PARAM NAME=crop_to_size  VALUE="<?= $gallery->album->fields["thumb_size"] ?>">
 </APPLET>
 
