@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-02-11 13:51+0100\n"
+"POT-Creation-Date: 2004-02-24 12:49+0100\n"
 "PO-Revision-Date: 2003-08-19 01:34+0100\n"
 "Last-Translator: Sverre M. Vikan <zygnus@powertech.no>\n"
 "Language-Team: Sverre M. Vikan <zygnus@powertech.no>\n"
@@ -60,7 +60,7 @@ msgid "Security violation"
 msgstr "Sikkerhetsbrudd"
 
 #
-#: ../add_comment.php:63 ../classes/Album.php:746
+#: ../add_comment.php:63 ../classes/Album.php:768
 #, fuzzy
 msgid "No email sent as no valid email addresses were found"
 msgstr "Du må spesifisere et brukernavn"
@@ -215,7 +215,7 @@ msgid "Done"
 msgstr "Utført"
 
 #
-#: ../albums.php:118 ../search.php:43
+#: ../albums.php:118 ../search.php:47
 msgid "Search"
 msgstr "Søk"
 
@@ -243,7 +243,7 @@ msgid "albums"
 msgstr "album"
 
 #
-#: ../albums.php:131 ../view_album.php:275
+#: ../albums.php:131 ../view_album.php:276
 msgid "No albums"
 msgstr "Ingen album"
 
@@ -254,13 +254,13 @@ msgid "%d total"
 msgstr "%d totalt"
 
 #
-#: ../albums.php:133 ../view_album.php:276
+#: ../albums.php:133 ../view_album.php:277
 #, fuzzy
 msgid "1 image"
 msgstr "bilde"
 
 #
-#: ../albums.php:133 ../view_album.php:276
+#: ../albums.php:133 ../view_album.php:277
 msgid "images"
 msgstr "bilder"
 
@@ -270,13 +270,13 @@ msgid "no image"
 msgstr "intet bilde"
 
 #
-#: ../albums.php:134 ../captionator.php:179 ../view_album.php:277
+#: ../albums.php:134 ../captionator.php:179 ../view_album.php:278
 #, fuzzy
 msgid "1 page"
 msgstr "side"
 
 #
-#: ../albums.php:134 ../captionator.php:179 ../view_album.php:277
+#: ../albums.php:134 ../captionator.php:179 ../view_album.php:278
 msgid "pages"
 msgstr "sider"
 
@@ -312,7 +312,7 @@ msgid "Welcome, %s"
 msgstr "Velkommen, %s"
 
 #
-#: ../albums.php:162 ../view_album.php:454
+#: ../albums.php:162 ../view_album.php:455
 msgid "slideshow"
 msgstr "fremvisning"
 
@@ -333,12 +333,12 @@ msgid "preferences"
 msgstr "instillinger"
 
 #
-#: ../albums.php:192 ../view_album.php:460
+#: ../albums.php:192 ../view_album.php:461
 msgid "logout"
 msgstr "logg ut"
 
 #
-#: ../albums.php:196 ../view_album.php:462
+#: ../albums.php:196 ../view_album.php:463
 msgid "login"
 msgstr "logg inn"
 
@@ -391,17 +391,17 @@ msgid "reorder album"
 msgstr "omdøp album"
 
 #
-#: ../albums.php:348 ../view_album.php:313
+#: ../albums.php:348 ../view_album.php:314
 msgid "rename album"
 msgstr "omdøp album"
 
 #
-#: ../albums.php:354 ../view_album.php:331
+#: ../albums.php:354 ../view_album.php:332
 msgid "edit captions"
 msgstr "rediger bildetekst"
 
 #
-#: ../albums.php:360 ../view_album.php:363
+#: ../albums.php:360 ../view_album.php:364
 msgid "permissions"
 msgstr "rettigheter"
 
@@ -595,52 +595,58 @@ msgid "Upgrading album properties..."
 msgstr "Oppgraderer albumegenskaper..."
 
 #
-#: ../classes/Album.php:361 ../classes/Album.php:378
+#: ../classes/Album.php:358
+#, fuzzy, php-format
+msgid "Renaming album from %s to %s..."
+msgstr "omdøp album"
+
+#
+#: ../classes/Album.php:383 ../classes/Album.php:400
 msgid "done"
 msgstr "utført"
 
 #
-#: ../classes/Album.php:369
+#: ../classes/Album.php:391
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "Oppgraderer %d av %d . . ."
 
-#: ../classes/Album.php:725
+#: ../classes/Album.php:747
 msgid "msg should be an array!"
 msgstr ""
 
-#: ../classes/Album.php:837
+#: ../classes/Album.php:859
 msgid "Resizing/compressing original image"
 msgstr ""
 
-#: ../classes/Album.php:841
+#: ../classes/Album.php:863
 msgid "Cannot resize/compress this filetype"
 msgstr ""
 
 #
-#: ../classes/Album.php:889
+#: ../classes/Album.php:911
 #, php-format
 msgid "Resizing %s"
 msgstr "Endrer størrelse på %s"
 
 #
-#: ../classes/Album.php:929
+#: ../classes/Album.php:951
 #, fuzzy
 msgid "Photo auto-rotated/transformed"
 msgstr "Bilde auto-rotért %s&deg;"
 
 #
-#: ../classes/Album.php:1035 ../classes/Album.php:1044
+#: ../classes/Album.php:1057 ../classes/Album.php:1066
 #: ../classes/AlbumItem.php:515
 msgid "No highlight"
 msgstr "Intet forsidebilde"
 
-#: ../classes/Album.php:1871
+#: ../classes/Album.php:1893
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/Album.php:2009
+#: ../classes/Album.php:2031
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr ""
@@ -1464,227 +1470,227 @@ msgid "Submit URL or directory"
 msgstr "Sett inn URL eller katalog"
 
 #
-#: ../includes/slideshow/applet.inc:29 ../includes/slideshow/high.inc:96
+#: ../includes/slideshow/applet.inc:29 ../includes/slideshow/high.inc:74
 #, fuzzy, php-format
 msgid "Slide Show for Gallery :: %s"
 msgstr "Fremvisning av album"
 
 #
-#: ../includes/slideshow/applet.inc:32 ../includes/slideshow/high.inc:105
+#: ../includes/slideshow/applet.inc:32 ../includes/slideshow/high.inc:83
 #, fuzzy, php-format
 msgid "Slide Show for album :: %s"
 msgstr "Fremvisning av album"
 
-#: ../includes/slideshow/applet.inc:67
-msgid "If you don't have the Java Plugin 1.3 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions."
+#: ../includes/slideshow/applet.inc:50
+msgid "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions."
 msgstr ""
 
-#: ../includes/slideshow/applet.inc:84
+#: ../includes/slideshow/applet.inc:82
 msgid "Your browser doesn't support applets; you should use one of the other slideshow methods."
 msgstr ""
 
-#: ../includes/slideshow/high.inc:92
+#: ../includes/slideshow/high.inc:70
 #, php-format
 msgid "%s Random Images from %s"
 msgstr ""
 
-#: ../includes/slideshow/high.inc:101
+#: ../includes/slideshow/high.inc:79
 #, php-format
 msgid "%d Random Images from album :: %s"
 msgstr ""
 
-#: ../includes/slideshow/high.inc:254
+#: ../includes/slideshow/high.inc:232
 msgid "Blend"
 msgstr ""
 
-#: ../includes/slideshow/high.inc:256
+#: ../includes/slideshow/high.inc:234
 msgid "Blinds"
 msgstr ""
 
-#: ../includes/slideshow/high.inc:258
+#: ../includes/slideshow/high.inc:236
 msgid "Checkerboard"
 msgstr ""
 
-#: ../includes/slideshow/high.inc:260
+#: ../includes/slideshow/high.inc:238
 msgid "Diagonal"
 msgstr ""
 
 #
-#: ../includes/slideshow/high.inc:262
+#: ../includes/slideshow/high.inc:240
 #, fuzzy
 msgid "Doors"
 msgstr "Obs"
 
-#: ../includes/slideshow/high.inc:264
+#: ../includes/slideshow/high.inc:242
 msgid "Gradient"
 msgstr ""
 
-#: ../includes/slideshow/high.inc:266
+#: ../includes/slideshow/high.inc:244
 msgid "Iris"
 msgstr ""
 
-#: ../includes/slideshow/high.inc:268
+#: ../includes/slideshow/high.inc:246
 msgid "Pinwheel"
 msgstr ""
 
-#: ../includes/slideshow/high.inc:270
+#: ../includes/slideshow/high.inc:248
 msgid "Pixelate"
 msgstr ""
 
-#: ../includes/slideshow/high.inc:272
+#: ../includes/slideshow/high.inc:250
 msgid "Radial"
 msgstr ""
 
 #
-#: ../includes/slideshow/high.inc:274
+#: ../includes/slideshow/high.inc:252
 #, fuzzy
 msgid "Rain"
 msgstr "Tilfeldig"
 
 #
-#: ../includes/slideshow/high.inc:276
+#: ../includes/slideshow/high.inc:254
 #, fuzzy
 msgid "Slide"
 msgstr "fremvisning"
 
 #
-#: ../includes/slideshow/high.inc:278
+#: ../includes/slideshow/high.inc:256
 #, fuzzy
 msgid "Snow"
 msgstr "Vis"
 
-#: ../includes/slideshow/high.inc:280
+#: ../includes/slideshow/high.inc:258
 msgid "Spiral"
 msgstr ""
 
 #
-#: ../includes/slideshow/high.inc:282
+#: ../includes/slideshow/high.inc:260
 #, fuzzy
 msgid "Stretch"
 msgstr "Søk"
 
-#: ../includes/slideshow/high.inc:285
+#: ../includes/slideshow/high.inc:263
 msgid "RANDOM!"
 msgstr ""
 
 #
-#: ../includes/slideshow/high.inc:338 ../includes/slideshow/low.inc:321
+#: ../includes/slideshow/high.inc:316 ../includes/slideshow/low.inc:315
 msgid "play"
 msgstr "avspill"
 
 #
-#: ../includes/slideshow/high.inc:341 ../includes/slideshow/low.inc:170
+#: ../includes/slideshow/high.inc:319 ../includes/slideshow/low.inc:164
 msgid "The slide show is stopped, Click [play] to resume."
 msgstr "Fremvisningen er stoppet, Klikk på [avspill] for å fortsette."
 
 #
-#: ../includes/slideshow/high.inc:347 ../includes/slideshow/high.inc:528
-#: ../includes/slideshow/low.inc:320
+#: ../includes/slideshow/high.inc:325 ../includes/slideshow/high.inc:506
+#: ../includes/slideshow/low.inc:314
 msgid "stop"
 msgstr "stopp"
 
 #
-#: ../includes/slideshow/high.inc:350 ../includes/slideshow/high.inc:409
-#: ../includes/slideshow/low.inc:176
+#: ../includes/slideshow/high.inc:328 ../includes/slideshow/high.inc:387
+#: ../includes/slideshow/low.inc:170
 msgid "Slide show is running..."
 msgstr "Fremvisning i gang..."
 
 #
-#: ../includes/slideshow/high.inc:355 ../includes/slideshow/low.inc:336
+#: ../includes/slideshow/high.inc:333 ../includes/slideshow/low.inc:330
 msgid "normal size"
 msgstr "normal størrelse"
 
 #
-#: ../includes/slideshow/high.inc:357
+#: ../includes/slideshow/high.inc:335
 #, fuzzy
 msgid "The slide is showing full sized images, Click [normal size] to view resized images."
 msgstr "Fremvisningen er stoppet, Klikk på [avspill] for å fortsette."
 
 #
-#: ../includes/slideshow/high.inc:361 ../includes/slideshow/high.inc:532
-#: ../includes/slideshow/low.inc:339
+#: ../includes/slideshow/high.inc:339 ../includes/slideshow/high.inc:510
+#: ../includes/slideshow/low.inc:333
 msgid "full size"
 msgstr "full størrelse"
 
 #
-#: ../includes/slideshow/high.inc:364
+#: ../includes/slideshow/high.inc:342
 #, fuzzy
 msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
 msgstr "Fremvisningen er stoppet, Klikk på [avspill] for å fortsette."
 
 #
-#: ../includes/slideshow/high.inc:370 ../includes/slideshow/low.inc:328
+#: ../includes/slideshow/high.inc:348 ../includes/slideshow/low.inc:322
 msgid "forward direction"
 msgstr "fremover"
 
 #
-#: ../includes/slideshow/high.inc:373 ../includes/slideshow/high.inc:529
-#: ../includes/slideshow/low.inc:325
+#: ../includes/slideshow/high.inc:351 ../includes/slideshow/high.inc:507
+#: ../includes/slideshow/low.inc:319
 msgid "reverse direction"
 msgstr "motsatt retning"
 
 #
-#: ../includes/slideshow/high.inc:403 ../includes/slideshow/low.inc:208
+#: ../includes/slideshow/high.inc:381 ../includes/slideshow/low.inc:202
 msgid "Picture is loading..."
 msgstr "Laster bilde..."
 
 #
-#: ../includes/slideshow/high.inc:403 ../includes/slideshow/high.inc:501
-#: ../includes/slideshow/low.inc:208 ../includes/slideshow/low.inc:410
+#: ../includes/slideshow/high.inc:381 ../includes/slideshow/high.inc:479
+#: ../includes/slideshow/low.inc:202 ../includes/slideshow/low.inc:404
 msgid "of"
 msgstr "av"
 
 #
-#: ../includes/slideshow/high.inc:404 ../includes/slideshow/low.inc:209
+#: ../includes/slideshow/high.inc:382 ../includes/slideshow/low.inc:203
 #: ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "Vennligst vent..."
 
 #
-#: ../includes/slideshow/high.inc:538 ../includes/slideshow/low.inc:344
+#: ../includes/slideshow/high.inc:516 ../includes/slideshow/low.inc:338
 msgid "Delay:"
 msgstr "Pause:"
 
 #
-#: ../includes/slideshow/high.inc:540 ../includes/slideshow/low.inc:346
+#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:340
 msgid "second"
 msgstr "sekund"
 
 #
-#: ../includes/slideshow/high.inc:541 ../includes/slideshow/high.inc:542
-#: ../includes/slideshow/high.inc:543 ../includes/slideshow/high.inc:544
-#: ../includes/slideshow/high.inc:545 ../includes/slideshow/high.inc:546
-#: ../includes/slideshow/high.inc:547 ../includes/slideshow/high.inc:548
-#: ../includes/slideshow/high.inc:549 ../includes/slideshow/low.inc:347
+#: ../includes/slideshow/high.inc:519 ../includes/slideshow/high.inc:520
+#: ../includes/slideshow/high.inc:521 ../includes/slideshow/high.inc:522
+#: ../includes/slideshow/high.inc:523 ../includes/slideshow/high.inc:524
+#: ../includes/slideshow/high.inc:525 ../includes/slideshow/high.inc:526
+#: ../includes/slideshow/high.inc:527 ../includes/slideshow/low.inc:341
+#: ../includes/slideshow/low.inc:342 ../includes/slideshow/low.inc:343
+#: ../includes/slideshow/low.inc:344 ../includes/slideshow/low.inc:345
+#: ../includes/slideshow/low.inc:346 ../includes/slideshow/low.inc:347
 #: ../includes/slideshow/low.inc:348 ../includes/slideshow/low.inc:349
-#: ../includes/slideshow/low.inc:350 ../includes/slideshow/low.inc:351
-#: ../includes/slideshow/low.inc:352 ../includes/slideshow/low.inc:353
-#: ../includes/slideshow/low.inc:354 ../includes/slideshow/low.inc:355
 msgid "seconds"
 msgstr "sekunder"
 
 #
-#: ../includes/slideshow/high.inc:558
+#: ../includes/slideshow/high.inc:536
 msgid "Transition:"
 msgstr "Overgang:"
 
 #
-#: ../includes/slideshow/high.inc:572 ../includes/slideshow/low.inc:361
+#: ../includes/slideshow/high.inc:550 ../includes/slideshow/low.inc:355
 msgid "Loop"
 msgstr "Sløyfe"
 
 #
-#: ../includes/slideshow/high.inc:639 ../includes/slideshow/low.inc:424
+#: ../includes/slideshow/high.inc:617 ../includes/slideshow/low.inc:418
 msgid "This album has no photos to show in a slide show."
 msgstr "Dette albumet har ingen bilder å vise som fremvisning."
 
 #
-#: ../includes/slideshow/high.inc:643 ../includes/slideshow/low.inc:428
+#: ../includes/slideshow/high.inc:621 ../includes/slideshow/low.inc:422
 msgid "back to album"
 msgstr "tilbake til album"
 
 #
-#: ../includes/slideshow/low.inc:78
+#: ../includes/slideshow/low.inc:72
 msgid "Slide Show for album"
 msgstr "Fremvisning av album"
 
@@ -1777,7 +1783,7 @@ msgid "add comment"
 msgstr "legg til kommentar"
 
 #
-#: ../layout/commentboxtop.inc:17 ../slideshow.php:183 ../slideshow.php:197
+#: ../layout/commentboxtop.inc:17 ../slideshow.php:196 ../slideshow.php:210
 #: ../upgrade_album.php:97 ../view_album.php:145 ../view_album.php:889
 #: ../view_comments.php:74 ../view_photo.php:181 ../view_photo.php:197
 msgid "Album"
@@ -2027,6 +2033,12 @@ msgstr "Flytt til album!"
 
 #
 #: ../move_photo.php:47 ../move_photo.php:51
+#, fuzzy
+msgid "Reorder Photo"
+msgstr "Kantlinjer"
+
+#
+#: ../move_photo.php:47 ../move_photo.php:51
 msgid "Move Photo"
 msgstr "Flytt bilde"
 
@@ -2047,7 +2059,8 @@ msgstr "Flytt dette albumet innen albumet:"
 
 #
 #: ../move_photo.php:209
-msgid "Move this photo within the album:"
+#, fuzzy
+msgid "Reorder this photo within the album:"
 msgstr "Flytt dette bildet innen albumet:"
 
 #
@@ -2060,6 +2073,12 @@ msgstr "Gjeldene plassering er %s"
 #: ../move_photo.php:215
 msgid "Select the new location:"
 msgstr "Velg ny plassering:"
+
+#
+#: ../move_photo.php:230
+#, fuzzy
+msgid "Reorder it!"
+msgstr "Kantlinjer"
 
 #
 #: ../move_photo.php:238
@@ -2319,14 +2338,14 @@ msgid "Results Breakdown"
 msgstr ""
 
 #
-#: ../poll_results.php:158 ../util.php:2055 ../view_album.php:547
+#: ../poll_results.php:158 ../util.php:2056 ../view_album.php:547
 #: ../view_album.php:841
 #, fuzzy, php-format
 msgid "Album: %s"
 msgstr "Album"
 
 #
-#: ../poll_results.php:173 ../util.php:2122
+#: ../poll_results.php:173 ../util.php:2123
 #, fuzzy
 msgid "No votes so far."
 msgstr "Obs"
@@ -2822,88 +2841,88 @@ msgid "Add Files"
 msgstr "Legg til filer"
 
 #
-#: ../search.php:64
+#: ../search.php:68
 msgid "Search Again"
 msgstr "Søk på nytt"
 
 #
-#: ../search.php:77 ../search.php:284 ../slideshow.php:201
-#: ../slideshow.php:217 ../view_album.php:149 ../view_photo.php:201
+#: ../search.php:81 ../search.php:289 ../slideshow.php:214
+#: ../slideshow.php:229 ../view_album.php:149 ../view_photo.php:201
 msgid "Gallery"
 msgstr "Gallery"
 
 #
-#: ../search.php:101
+#: ../search.php:105
 #, php-format
 msgid "Albums containing %s"
 msgstr "Album som inneholder %s"
 
 #
-#: ../search.php:153
+#: ../search.php:156
 msgid "No Album Matches"
 msgstr "Ingen passende album"
 
 #
-#: ../search.php:160
+#: ../search.php:163
 #, php-format
 msgid "Photos containing %s"
 msgstr "Bilder som inneholder %s"
 
 #
-#: ../search.php:191
+#: ../search.php:195
 msgid "Matching Comments"
 msgstr "Passende kommentarer"
 
 #
-#: ../search.php:225
+#: ../search.php:230
 msgid "From Album"
 msgstr "Fra album"
 
 #
-#: ../search.php:229 ../view_photo_properties.php:159
+#: ../search.php:234 ../view_photo_properties.php:159
 msgid "KEYWORDS"
 msgstr "SØKEORD"
 
 #
-#: ../search.php:242
+#: ../search.php:247
 msgid "No Photo Matches"
 msgstr "Ingen passende bilder"
 
-#: ../search.php:247
+#: ../search.php:252
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
 msgstr ""
 
 #
-#: ../search.php:250
+#: ../search.php:255
 #, fuzzy
 msgid "upgrade all albums"
 msgstr "oppgrader album"
 
 #
-#: ../search.php:271
+#: ../search.php:276
 msgid "Search the Gallery's Album and Photo<br> titles, descriptions and comments"
 msgstr "Søk i Gallery's album og bilde<br> titler, beskrivelser og kommentarer"
 
 #
-#: ../search.php:276
+#: ../search.php:281
 msgid "Go"
 msgstr "Kjør"
 
-#: ../slideshow.php:94
+#: ../slideshow.php:109
 msgid "Fullscreen applet"
 msgstr ""
 
-#: ../slideshow.php:97
+#: ../slideshow.php:112
 msgid "Modern browsers"
 msgstr ""
 
-#: ../slideshow.php:100
+#: ../slideshow.php:115
 msgid "Compatible but limited"
 msgstr ""
 
 #
-#: ../slideshow.php:240
+#: ../slideshow.php:253
 msgid "Slide Show"
 msgstr "Bildefremvisning"
 
@@ -3135,7 +3154,7 @@ msgstr "Filen %s eksisterer ikke."
 msgid "PHP's %s unable to determine dimensions."
 msgstr ""
 
-#: ../util.php:253 ../util.php:593 ../util.php:639 ../util.php:2444
+#: ../util.php:253 ../util.php:593 ../util.php:639 ../util.php:2445
 msgid "You have no graphics package configured for use!"
 msgstr ""
 
@@ -3205,283 +3224,283 @@ msgid "Unknown file type: %s"
 msgstr ""
 
 #
-#: ../util.php:1289
+#: ../util.php:1290
 #, fuzzy, php-format
 msgid "Can't write to %s."
 msgstr "Kan ikke lese %s."
 
 #
-#: ../util.php:1296
+#: ../util.php:1297
 #, php-format
 msgid "Can't read %s."
 msgstr "Kan ikke lese %s."
 
 #
-#: ../util.php:1397
+#: ../util.php:1398
 msgid "Select Album"
 msgstr "Velg album"
 
 #
-#: ../util.php:1403
+#: ../util.php:1404
 msgid "Top Level"
 msgstr "Øverste nivå"
 
 #
-#: ../util.php:1424 ../util.php:1474
+#: ../util.php:1425 ../util.php:1475
 msgid "current location"
 msgstr "gjeldende plassering"
 
-#: ../util.php:1476
+#: ../util.php:1477
 msgid "self"
 msgstr ""
 
 #
-#: ../util.php:1643
+#: ../util.php:1644
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Kunne ikke åpne låsfil (%s)!"
 
 #
-#: ../util.php:1648
+#: ../util.php:1649
 #, fuzzy, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Kunne ikke åpne låsfil (%s)!"
 
 #
-#: ../util.php:1732
+#: ../util.php:1733
 #, fuzzy
 msgid "1 hit"
 msgstr "treff"
 
 #
-#: ../util.php:1732
+#: ../util.php:1733
 msgid "hits"
 msgstr "treff"
 
 #
-#: ../util.php:1732
+#: ../util.php:1733
 msgid "0 hits"
 msgstr "0 treff"
 
 #
-#: ../util.php:1737
+#: ../util.php:1738
 msgid "Sub-albums"
 msgstr "Under-album"
 
 #
-#: ../util.php:1987 ../view_album.php:605 ../view_album.php:635
+#: ../util.php:1988 ../view_album.php:605 ../view_album.php:635
 #: ../view_album.php:1059
 #, fuzzy
 msgid "Vote"
 msgstr "Obs"
 
-#: ../util.php:2030
+#: ../util.php:2031
 msgid "Total points in brackets"
 msgstr ""
 
-#: ../util.php:2035
+#: ../util.php:2036
 msgid "Average points in brackets"
 msgstr ""
 
 #
-#: ../util.php:2083 ../util.php:2098
+#: ../util.php:2084 ../util.php:2099
 #, fuzzy
 msgid "1 voter"
 msgstr "Obs"
 
 #
-#: ../util.php:2084 ../util.php:2098
+#: ../util.php:2085 ../util.php:2099
 #, fuzzy
 msgid "voters"
 msgstr "Kantlinjer"
 
 #
-#: ../util.php:2085 ../util.php:2099
+#: ../util.php:2086 ../util.php:2100
 #, fuzzy
 msgid "0 voters"
 msgstr "0 objekter"
 
-#: ../util.php:2096
+#: ../util.php:2097
 #, php-format
 msgid "Results from %s."
 msgstr ""
 
-#: ../util.php:2109
+#: ../util.php:2110
 #, fuzzy, php-format
 msgid "%s: %s points; "
 msgstr "%s, %s"
 
-#: ../util.php:2115
+#: ../util.php:2116
 #, php-format
 msgid "Key - %s"
 msgstr ""
 
 #
-#: ../util.php:2146
+#: ../util.php:2147
 #, fuzzy
 msgid "Poll results:"
 msgstr "egenskaper for bilde"
 
 #
-#: ../util.php:2149
+#: ../util.php:2150
 #, fuzzy
 msgid "No votes"
 msgstr "Obs"
 
-#: ../util.php:2153
+#: ../util.php:2154
 #, php-format
 msgid "Number %d overall."
 msgstr ""
 
-#: ../util.php:2158
+#: ../util.php:2159
 #, fuzzy, php-format
 msgid "%s: %s"
 msgstr "%s, %s"
 
 #
-#: ../util.php:2159 ../view_album.php:610
+#: ../util.php:2160 ../view_album.php:610
 #, fuzzy
 msgid "1 vote"
 msgstr "Obs"
 
 #
-#: ../util.php:2159 ../view_album.php:610
+#: ../util.php:2160 ../view_album.php:610
 #, fuzzy
 msgid "votes"
 msgstr "Obs"
 
 #
-#: ../util.php:2159
+#: ../util.php:2160
 #, fuzzy
 msgid "0 votes"
 msgstr "0 ganger"
 
 #
-#: ../util.php:2170
+#: ../util.php:2171
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Hopper over %s (ZIP-støtte ikke aktivert)"
 
 #
-#: ../util.php:2244
+#: ../util.php:2245
 #, php-format
 msgid "Adding %s"
 msgstr "Legger til %s"
 
 #
-#: ../util.php:2255
+#: ../util.php:2256
 #, php-format
 msgid "Error: %s!"
 msgstr "Feil: %s!"
 
 #
-#: ../util.php:2257
+#: ../util.php:2258
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Behøver du hjelp?  Se i  %s%s FAQ%s"
 
-#: ../util.php:2263
+#: ../util.php:2264
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr ""
 
 #
-#: ../util.php:2402
+#: ../util.php:2403
 #, fuzzy
 msgid "documentation"
 msgstr "gjeldende plassering"
 
-#: ../util.php:2427
+#: ../util.php:2428
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr ""
 
-#: ../util.php:2454
+#: ../util.php:2455
 #, php-format
 msgid "Generated by %s v%s"
 msgstr ""
 
-#: ../util.php:2456
+#: ../util.php:2457
 #, php-format
 msgid "Powered by %s v%s"
 msgstr ""
 
 #
-#: ../util.php:2500
+#: ../util.php:2507
 #, fuzzy, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Du må spesifisere et brukernavn"
 
-#: ../util.php:2566
+#: ../util.php:2573
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr ""
 
-#: ../util.php:2568
+#: ../util.php:2575
 #, php-format
 msgid "Report abuse to %s"
 msgstr ""
 
-#: ../util.php:2584
+#: ../util.php:2591
 msgid "Email not sent as it is disabled for this gallery"
 msgstr ""
 
 #
-#: ../util.php:2588
+#: ../util.php:2595
 #, fuzzy
 msgid "Email not sent as no address provided"
 msgstr "Du må spesifisere et brukernavn"
 
-#: ../util.php:2593
+#: ../util.php:2600
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr ""
 
-#: ../util.php:2608
+#: ../util.php:2615
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr ""
 
-#: ../util.php:2632 ../util.php:2637
+#: ../util.php:2639 ../util.php:2644
 msgid "not shown"
 msgstr ""
 
-#: ../util.php:2641
+#: ../util.php:2648
 msgid "Message"
 msgstr ""
 
 #
-#: ../util.php:2645
+#: ../util.php:2652
 #, fuzzy
 msgid "Email sent"
 msgstr "E-post-adresse"
 
 #
-#: ../util.php:2647
+#: ../util.php:2654
 #, fuzzy
 msgid "Email not sent"
 msgstr "E-post-adresse"
 
 #
-#: ../util.php:2661
+#: ../util.php:2668
 #, fuzzy, php-format
 msgid "Last comment %s."
 msgstr "Sist endret %s."
 
-#: ../util.php:2672
+#: ../util.php:2679
 msgid "FAILED"
 msgstr ""
 
-#: ../util.php:2681
+#: ../util.php:2688
 msgid "Email activity"
 msgstr ""
 
 #
-#: ../util.php:2699
+#: ../util.php:2706
 #, fuzzy, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kunne ikke åpne låsfil (%s)!"
 
-#: ../util.php:2706
+#: ../util.php:2713
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3494,254 +3513,191 @@ msgid ""
 msgstr ""
 
 #
-#: ../util.php:2715 ../util.php:2717
+#: ../util.php:2722 ../util.php:2724
 #, fuzzy
 msgid "gallery title"
 msgstr "Galleriets tittel"
 
 #
-#: ../util.php:2716
+#: ../util.php:2723
 #, fuzzy
 msgid "gallery URL"
 msgstr "Gallery link"
 
-#: ../util.php:2735
+#: ../util.php:2742
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr ""
 
 #
-#: ../util.php:2780 ../util.php:2785
+#: ../util.php:2788 ../util.php:2793
 #, fuzzy
 msgid "None"
 msgstr "Utført"
 
 #
-#: ../util.php:2781 ../util.php:2786
+#: ../util.php:2789 ../util.php:2794
 #, fuzzy
 msgid "Dots"
 msgstr "Obs"
 
-#: ../util.php:2782 ../util.php:2787
+#: ../util.php:2790 ../util.php:2795
 msgid "Solid"
 msgstr ""
 
 #
-#: ../util.php:2785
+#: ../util.php:2793
 #, fuzzy
 msgid "No frames"
 msgstr "Ingen album"
 
-#: ../util.php:2786
+#: ../util.php:2794
 msgid "Just a simple dashed border around the thumb."
 msgstr ""
 
-#: ../util.php:2787
+#: ../util.php:2795
 msgid "Just a simple solid border around the thumb."
 msgstr ""
 
 #
-#: ../util.php:2808
+#: ../util.php:2816
 #, fuzzy, php-format
 msgid "Skipping %s."
 msgstr "Hopper over album %d"
 
 #
-#: ../util.php:2814
+#: ../util.php:2822
 #, fuzzy, php-format
 msgid "Can't open %s"
 msgstr "Kan ikke lese %s."
 
 #
-#: ../util.php:2904 ../util.php:2923
+#: ../util.php:2910 ../util.php:2929
 #, fuzzy
 msgid "Not valid yet"
 msgstr "Ugyldig bruker"
 
-#: ../util.php:3012
-msgid "File missing or unreadable.  Please install then re-run this test."
-msgstr ""
-
-#: ../util.php:3016
-#, php-format
-msgid "Please ensure that %s is the latest version."
-msgstr ""
-
-#: ../util.php:3021
-#, php-format
-msgid "Testing status of %d files."
-msgstr ""
-
 #
-#: ../util.php:3028
-#, fuzzy, php-format
-msgid "Cannot read file %s."
-msgstr "Kan ikke lese %s."
-
-#: ../util.php:3030
-msgid "File missing or unreadable."
-msgstr ""
-
-#: ../util.php:3035
-#, php-format
-msgid "Version information not found in %s.  File must be old version or corrupted."
-msgstr ""
-
-#: ../util.php:3037
-msgid "Missing version"
-msgstr ""
-
-#: ../util.php:3044
-#, php-format
-msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-msgstr ""
-
-#: ../util.php:3046
-#, php-format
-msgid "Expected version %s (or greater) but found %s."
-msgstr ""
-
-#: ../util.php:3050
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-msgstr ""
-
-#: ../util.php:3052
-#, php-format
-msgid "Expected version %s but found %s."
-msgstr ""
-
-#: ../util.php:3056
-#, php-format
-msgid "%s OK"
-msgstr ""
-
-#: ../util.php:3058
-#, php-format
-msgid "Found expected version %s."
-msgstr ""
-
-#
-#: ../view_album.php:275
+#: ../view_album.php:276
 #, fuzzy
 msgid "1 sub-album"
 msgstr "under-album"
 
 #
-#: ../view_album.php:275
+#: ../view_album.php:276
 msgid "sub-albums"
 msgstr "under-album"
 
 #
-#: ../view_album.php:276
+#: ../view_album.php:277
 msgid "no images"
 msgstr "ingen bilder"
 
 #
-#: ../view_album.php:277
+#: ../view_album.php:278
 msgid "0 pages"
 msgstr "0 sider"
 
 #
-#: ../view_album.php:280
+#: ../view_album.php:281
 #, php-format
 msgid "%s and %s in this album on %s"
 msgstr "%s og %s i dette albumet på %s"
 
 #
-#: ../view_album.php:283
+#: ../view_album.php:284
 #, php-format
 msgid "%s and %s in this album"
 msgstr "%s og %s i dette albumet"
 
 #
-#: ../view_album.php:286
+#: ../view_album.php:287
 #, php-format
 msgid "%s in this album on %s"
 msgstr "%s i dette albumet på %s"
 
 #
-#: ../view_album.php:289
+#: ../view_album.php:290
 #, php-format
 msgid "%s in this album"
 msgstr "%s i dette albumet"
 
 #
-#: ../view_album.php:296
+#: ../view_album.php:297
 #, php-format
 msgid "%s are hidden"
 msgstr "%s er skjult"
 
 #
-#: ../view_album.php:298
+#: ../view_album.php:299
 #, php-format
 msgid "%s is hidden"
 msgstr "%s er skjult"
 
 #
-#: ../view_album.php:308
+#: ../view_album.php:309
 msgid "add photos"
 msgstr "legg til bilder"
 
 #
-#: ../view_album.php:319
+#: ../view_album.php:320
 #, fuzzy
 msgid "new nested album"
 msgstr "nytt album"
 
 #
-#: ../view_album.php:325
+#: ../view_album.php:326
 #, fuzzy
 msgid "custom fields"
 msgstr "Konfigurer egendefinerte felt"
 
 #
-#: ../view_album.php:338
+#: ../view_album.php:339
 #, fuzzy
 msgid "sort items"
 msgstr "ingen objekter"
 
 #
-#: ../view_album.php:344
+#: ../view_album.php:345
 msgid "resize all"
 msgstr "endre størrelse på alle"
 
 #
-#: ../view_album.php:351
+#: ../view_album.php:352
 #, fuzzy
 msgid "rebuild thumbs"
 msgstr "Lager ikoner på nytt"
 
 #
-#: ../view_album.php:358
+#: ../view_album.php:359
 msgid "properties"
 msgstr "egenskaper"
 
 #
-#: ../view_album.php:368
+#: ../view_album.php:369
 #, fuzzy
 msgid "poll properties"
 msgstr "egenskaper for bilde"
 
 #
-#: ../view_album.php:373
+#: ../view_album.php:374
 #, fuzzy
 msgid "poll results"
 msgstr "egenskaper for bilde"
 
 #
-#: ../view_album.php:378
+#: ../view_album.php:379
 #, fuzzy
 msgid "poll reset"
 msgstr "egenskaper for bilde"
 
 #
-#: ../view_album.php:383
+#: ../view_album.php:384
 #, fuzzy
 msgid "view comments"
 msgstr "vis&nbsp;kommentarer"
 
 #
-#: ../view_album.php:444
+#: ../view_album.php:445
 #, fuzzy
 msgid "admin options"
 msgstr "rediger bildetekst"
@@ -3917,16 +3873,16 @@ msgid "This album is empty."
 msgstr "Dette albumet er tomt."
 
 #
-#: ../view_album.php:1085 ../view_photo.php:772
+#: ../view_album.php:1085 ../view_photo.php:765
 #, fuzzy
 msgid "Email me when:"
 msgstr "E-post-adresse"
 
-#: ../view_album.php:1086 ../view_photo.php:773
+#: ../view_album.php:1086 ../view_photo.php:766
 msgid "Comments are added"
 msgstr ""
 
-#: ../view_album.php:1089 ../view_photo.php:777
+#: ../view_album.php:1089 ../view_photo.php:770
 msgid "Other changes are made"
 msgstr ""
 
@@ -3947,37 +3903,37 @@ msgid "Sorry.  This album does not allow comments."
 msgstr "Beklager.  Dette albumet tillater ikke anonyme kommentarer."
 
 #
-#: ../view_photo.php:309
+#: ../view_photo.php:310
 msgid "resize photo"
 msgstr "endre størrelse på bildet"
 
 #
-#: ../view_photo.php:319
+#: ../view_photo.php:320
 msgid "delete photo"
 msgstr "slett bilde"
 
 #
-#: ../view_photo.php:342
+#: ../view_photo.php:335
 msgid "View Images"
 msgstr "Vis bilder"
 
 #
-#: ../view_photo.php:346 ../view_photo.php:348
+#: ../view_photo.php:339 ../view_photo.php:341
 msgid "normal"
 msgstr "normal"
 
 #
-#: ../view_photo.php:346 ../view_photo.php:348
+#: ../view_photo.php:339 ../view_photo.php:341
 msgid "full"
 msgstr "full"
 
 #
-#: ../view_photo.php:359
+#: ../view_photo.php:352
 msgid "photo properties"
 msgstr "egenskaper for bilde"
 
 #
-#: ../view_photo.php:427 ../view_photo.php:442
+#: ../view_photo.php:420 ../view_photo.php:435
 #, fuzzy, php-format
 msgid "print this photo with %s"
 msgstr "skriv ut dette bildet på %s"
@@ -4006,6 +3962,16 @@ msgstr "Last inn EXIF-data fra fil på nytt"
 #: ../view_photo_properties.php:173
 msgid "(if the data is current, this will not appear to do anything)"
 msgstr "(dersom data er oppdatert, vil dette ikke se ut til å gjøre noe)"
+
+#
+#, fuzzy
+#~ msgid " to "
+#~ msgstr "eller"
+
+#
+#, fuzzy
+#~ msgid "Cannot read file %s."
+#~ msgstr "Kan ikke lese %s."
 
 #
 #~ msgid "not working for you? try the low-tech"

@@ -28,12 +28,16 @@
 <div class="header"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),4); ?></div>
 
 <?php
-require(dirname(dirname(__FILE__)) . '/Version.php');
+/*
+** We assume setup/init.php was loaded !
+*/
+
+require(GALLERY_BASE. '/Version.php');
 $error = 0;
 $view = "";
 $outfile_list=array("config.php", ".htaccess");
 foreach ($outfile_list as $outfile) {
-	if ($fd = @fs_fopen(dirname(dirname(__FILE__)) ."/$outfile", "a")) {
+	if ($fd = @fs_fopen(GALLERY_CONFDIR ."/$outfile", "a")) {
 		fclose($fd);
 	} else {
 		$error++;

@@ -52,12 +52,20 @@ extract($HTTP_POST_VARS);
 extract($HTTP_COOKIE_VARS);
 
 /* load necessary functions */
+if (stristr (__FILE__, '/var/lib/gallery/setup')) {
+        /* Gallery runs on a Debian System */
+	require ('/usr/share/gallery/util.php');
+} else {
 	require (dirname(dirname(__FILE__)) . '/util.php');
+}
+
+/* define the constants */
+	get_GalleryPathes();
 
 if (getOS() == OS_WINDOWS) {
-	require(dirname(dirname(__FILE__)) . '/platform/fs_win32.php');
+	require(GALLERY_BASE . '/platform/fs_win32.php');
 } else {
-	require(dirname(dirname(__FILE__)) . '/platform/fs_unix.php');
+	require(GALLERY_BASE . '/platform/fs_unix.php');
 }
 
 /* Set Language etc. */
@@ -80,17 +88,6 @@ set_magic_quotes_runtime(0);
 /*
  * Init prepend file for setup directory.
  */
-$GALLERY_DIR = dirname(dirname(realpath(__FILE__)));
-if (!strcmp($GALLERY_DIR, ".") || !strcmp($GALLERY_DIR, "/")) {
-    $tmp = $HTTP_SERVER_VARS["PATH_TRANSLATED"];
-    if (!$tmp) {
-	$tmp = $HTTP_ENV_VARS["PATH_TRANSLATED"];
-    }
-    if (!$tmp) {
-	$tmp = getenv("SCRIPT_FILENAME");
-    }
-    $GALLERY_DIR = dirname(dirname($tmp));
-}
 
 $tmp = $HTTP_SERVER_VARS["PHP_SELF"];
 if (!$tmp) {

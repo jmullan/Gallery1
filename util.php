@@ -28,7 +28,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print _("Security violation") ."\n";
 	exit;
 }
-require($GALLERY_BASEDIR."nls.php");
+require(dirname(__FILE__) . '/nls.php');
 
 function editField($album, $field, $link=null) {
 	global $gallery;
@@ -849,11 +849,10 @@ function getStyleSheetLink() {
 
 function _getStyleSheetLink($filename, $skinname='') {
 	global $gallery;
-	global $GALLERY_BASEDIR;
 	global $HTTP_SERVER_VARS;
+	global $GALLERY_EMBEDDED_INSIDE;
 
-        $sheetdomainname = "css/$HTTP_SERVER_VARS[HTTP_HOST]/$filename.css";
-	$sheetdomainpath = "${GALLERY_BASEDIR}$sheetdomainname";
+	if (! defined("GALLERY_URL")) define ("GALLERY_URL","");
 
 	if (!$skinname) {
 		if (isset($gallery->app) && isset($gallery->app->skinname)) {
@@ -864,30 +863,27 @@ function _getStyleSheetLink($filename, $skinname='') {
 	}
 
         $sheetname = "skins/$skinname/css/$filename.css";
-	$sheetpath = "${GALLERY_BASEDIR}$sheetname";
+	$sheetpath = dirname(__FILE__) . "/$sheetname";
+
 	$sheetdefaultname = "css/$filename.css";
-	$sheetdefaultpath = "${GALLERY_BASEDIR}$sheetname";
+	$sheetdefaultpath = $sheetname;
 
 	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
 		$base = $gallery->app->photoAlbumURL;
 	} elseif (stristr($HTTP_SERVER_VARS['REQUEST_URI'],"setup")) {
 		$base = "..";
 	} else {
-		$base = $GALLERY_BASEDIR;
+		$base = GALLERY_URL;
 	}
 
-	if (fs_file_exists($sheetdomainpath) && !broken_link($sheetdomainpath)) {
-		$url = "$base/$sheetdomainname";
-	} else {
-	    if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
+	if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
 		$url = "$base/$sheetname";
-	    } elseif (fs_file_exists($sheetdefaultpath) && !broken_link($sheetdefaultpath)) {
+	} elseif (fs_file_exists($sheetdefaultpath) && !broken_link($sheetdefaultpath)) {
 		$url = "$base/$sheetdefaultpath";
-	    } elseif (fs_file_exists($sheetdefaultname) && !broken_link($sheetdefaultname)) {
+	} elseif (fs_file_exists($sheetdefaultname) && !broken_link($sheetdefaultname)) {
 		$url = "$base/$sheetdefaultname";
-	    } else {
+	} else {
 		$url = "$base/${sheetdefaultname}.default";
-	    }
 	}
 
 	return '  <link rel="stylesheet" type="text/css" href="' .$url . '">';
@@ -1207,22 +1203,21 @@ function makeAlbumUrl($albumName="", $photoId="", $args=array()) {
 
 function gallerySanityCheck() {
 	global $gallery;
-	global $GALLERY_BASEDIR;
 	global $GALLERY_OK;
        	if (!empty($gallery->backup_mode)) {
 	       	return NULL;
        	}
 
-	if (!fs_file_exists($GALLERY_BASEDIR . "config.php") ||
-                broken_link($GALLERY_BASEDIR . "config.php") ||
+	get_GalleryPathes();
+
+	if (!fs_file_exists(GALLERY_CONFDIR . "/config.php") ||
+                broken_link(GALLERY_CONFDIR . "config.php") ||
                 !$gallery->app) {
 		$GALLERY_OK=false;
 		return "unconfigured.php";
 	}
-	
-	if (fs_file_exists($GALLERY_BASEDIR . "setup") && 
-                !broken_link($GALLERY_BASEDIR . "setup") &&
-		is_readable($GALLERY_BASEDIR . "setup")) {
+	if (fs_is_dir(GALLERY_SETUPDIR) && 
+		is_readable(GALLERY_SETUPDIR)) {
 		/* 
 		 * on some systems, PHP's is_readable returns false
 		 * positives.  Make extra sure.
@@ -1231,14 +1226,16 @@ function gallerySanityCheck() {
 		 *       have 755 perms which is fine, since on win32
 		 *       we don't actually change the permissions of
 		 *       the directory anyway.
-		 */
-		$perms = sprintf("%o", fileperms($GALLERY_BASEDIR . "setup"));
+		*/
+		$perms = sprintf("%o", fileperms(GALLERY_SETUPDIR));
+
 		if (strstr($perms, "755") ||
-			( getOS()== OS_WINDOWS && ! fs_file_exists($GALLERY_BASEDIR. "setup/SECURE"))) {
+			( getOS()== OS_WINDOWS && ! fs_file_exists(GALLERY_SETUPDIR ."/SECURE"))) {
 			$GALLERY_OK=false;
 			return "configmode.php";
 		}
 	}
+
 	if ($gallery->app->config_version != $gallery->config_version) {
 		$GALLERY_OK=false;
 		return "reconfigure.php";
@@ -3046,6 +3043,26 @@ function key_strip_slashes (&$arr) {
     }
 }
 
-require ($GALLERY_BASEDIR . "lib/lang.php");
-require ($GALLERY_BASEDIR . "lib/Form.php");
+/*
+** Define Constants for Gallery pathes.
+*/ 
+
+function get_GalleryPathes() {
+
+if (defined('GALLERY_BASE')) return;
+
+if ( __FILE__ == '/usr/share/gallery/util.php') {
+	/* Gallery runs on a Debian System */
+	define ("GALLERY_CONFDIR", "/etc/gallery");
+	define ("GALLERY_SETUPDIR", "/var/lib/gallery/setup");
+} else {
+	define ("GALLERY_CONFDIR", dirname(__FILE__));
+	define ("GALLERY_SETUPDIR", dirname(__FILE__) . "/setup");
+}	
+
+define ("GALLERY_BASE", dirname(__FILE__));
+}
+
+require (dirname(__FILE__) . '/lib/lang.php');
+require (dirname(__FILE__) . '/lib/Form.php');
 ?>

@@ -1,3 +1,17 @@
+2004-02-24 Jens Tkotz <jens@peino.de> 1.4.3-cvs-b53
+
+	* Bugfix: Added missing echo for GeekLog Header.
+
+	* Bugfix: Configwizard now runs fine when embedded and Gallery has debian structure.
+	  - Introduced function get_GalleryPathes wich defines 3 constants:
+	  --- GALLERY_CONFDIR
+	  --- GALLERY_SETUPDIR
+	  --- GALLERY_BASE
+	
+	  - A little rewrite of getStyleSheets were necessary.
+
+	* Change: Again a little change in bash Scripts.
+
 2004-02-24  Bharat Mediratta  <bharat@menalto.com> 1.4.3-cvs-b52
 
 	* Further fix for bug #881690.  We weren't detecting the album name

@@ -55,10 +55,12 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option)) {
 	if (isset($name)) {
 		$GALLERY_MODULENAME = $name;
 		$GALLERY_BASEDIR = "modules/$GALLERY_MODULENAME/";
+		define ('GALLERY_URL',"modules/$GALLERY_MODULENAME/");
 	} elseif (isset($option)) {
 		$GALLERY_MODULENAME = $option;
 		$mamboDir = getcwd();
 		$GALLERY_BASEDIR = $MOS_GALLERY_PARAMS['path'];
+		define ('GALLERY_URL',$MOS_GALLERY_PARAMS['path']);
 	}
 
 	if (isset($option)) {
@@ -140,8 +142,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option)) {
 		       "view_album.php",
 		       "view_comments.php",
 		       "view_photo.php",
-		       "view_photo_properties.php"
-
+		       "view_photo_properties.php",
 		       );
 	
 	if (!in_array($include, $safe_to_include)) {

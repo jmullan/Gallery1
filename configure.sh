@@ -21,6 +21,7 @@ if [ -d $GALLERY_DEB_ROOT ] && [ -d $GALLERY_DEB_CONFDIR ] ; then
 
 	GALLERY_ROOT=$GALLERY_DEB_ROOT
 	GALLERY_CONFDIR=$GALLERY_DEB_CONFDIR
+	GALLERY_SETUPDIR=$GALLERY_DEB_SETUPDIR
 else
 	# We are in a "normal installation"
 	GALLERY_ROOT="."
@@ -39,10 +40,10 @@ for file in $GALLERY_CONFDIR/config.php $GALLERY_CONFDIR/.htaccess ; do
 		chown www-data:root $file
 	fi
 	
-	chmod 666 $file
+	chmod 777 $file
 done
 
-chmod 755 $GALLERY_ROOT/setup
+chmod 755 $GALLERY_SETUPDIR
 
 
 echo ""

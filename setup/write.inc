@@ -25,18 +25,22 @@
 
 <?php
 
-require_once(dirname(dirname(__FILE__)) . '/classes/User.php');
-require_once(dirname(dirname(__FILE__)) . '/classes/gallery/User.php');
-require_once(dirname(dirname(__FILE__)) . '/classes/NobodyUser.php');
-require_once(dirname(dirname(__FILE__)) . '/classes/LoggedInUser.php');
-require_once(dirname(dirname(__FILE__)) . '/classes/EverybodyUser.php');
+/*
+** We assume setup/init.php was loaded !
+*/
 
-require(dirname(dirname(__FILE__)) . '/errors/configure_instructions.php');
+require_once(GALLERY_BASE . '/classes/User.php');
+require_once(GALLERY_BASE . '/classes/gallery/User.php');
+require_once(GALLERY_BASE . '/classes/NobodyUser.php');
+require_once(GALLERY_BASE . '/classes/LoggedInUser.php');
+require_once(GALLERY_BASE . '/classes/EverybodyUser.php');
+
+require(GALLERY_BASE . '/errors/configure_instructions.php');
 
 $start_string = "# BEGIN Gallery section";
 $end_string = "# END Gallery section.  Add User changes below this line";
 
-$outfile = "$GALLERY_DIR/config.php";
+$outfile = GALLERY_CONFDIR . '/config.php';
 @copy("gpl.txt", $outfile);
 
 if ($fd = @fs_fopen($outfile, "a")) {
@@ -53,7 +57,7 @@ if ($fd = @fs_fopen($outfile, "a")) {
 /*
  * Read the .htaccess file
  */
-$htaccess = file("$GALLERY_DIR/.htaccess");
+$htaccess = file(GALLERY_CONFDIR . '/.htaccess');
 $htaccess_save = array();
 $old_htaccess = true;
 $skipping = false;
@@ -72,10 +76,12 @@ foreach ($htaccess as $line) {
 if ($old_htaccess) {
 	$htaccess_save=array();
 }
+
 /*
  * Begin the .htaccess file
  */
-$outfile = "$GALLERY_DIR/.htaccess";
+$outfile = GALLERY_CONFDIR . '/.htaccess';
+
 if ($fd = @fs_fopen($outfile, "w")) {
        	fwrite($fd, "$start_string\n");
        	fwrite($fd, "# (Automatically generated.  Do not edit this section)\n");
@@ -134,7 +140,7 @@ if ($GALLERY_REWRITE_OK) {
 /*
  * End the .htaccess file gallery section
  */
-$outfile = "$GALLERY_DIR/.htaccess";
+
 if ($fd = @fs_fopen($outfile, "a")) {
        	fwrite($fd, "$end_string\n");
        	fclose($fd);
@@ -146,7 +152,7 @@ if ($fd = @fs_fopen($outfile, "a")) {
 /*
  * Write the preserved data back to the .htaccess file 
  */
-$outfile = "$GALLERY_DIR/.htaccess";
+
 if ($fd = @fs_fopen($outfile, "a")) {
        	foreach ($htaccess_save as $line) {
 	       	fwrite($fd, $line);
@@ -160,9 +166,9 @@ if ($fd = @fs_fopen($outfile, "a")) {
  * Don't require UserDB before we've written and included config.php or it will
  * have a cow when it tries to verify that the $gallery->app->userDir exists.
  */
-include(dirname(dirname(__FILE__)) . '/config.php');
-include_once(dirname(dirname(__FILE__)) . '/classes/UserDB.php');
-include_once(dirname(dirname(__FILE__)) . '/classes/gallery/UserDB.php');
+include(GALLERY_BASE . '/config.php');
+include_once(GALLERY_BASE . '/classes/UserDB.php');
+include_once(GALLERY_BASE . '/classes/gallery/UserDB.php');
 
 $userDB = new Gallery_UserDB();
 $admin = $userDB->getOrCreateUser("admin");

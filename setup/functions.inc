@@ -1289,13 +1289,13 @@ function check_admins() {
 	$admins=array();
 	
 	if (isset($gallery->app->userDir) && fs_is_dir($gallery->app->userDir)) {
-		require(dirname(dirname(__FILE__)) . '/classes/User.php');
-		require(dirname(dirname(__FILE__)) . '/classes/EverybodyUser.php');
-		require(dirname(dirname(__FILE__)) . '/classes/NobodyUser.php');
-		require(dirname(dirname(__FILE__)) . '/classes/LoggedInUser.php');
-		require(dirname(dirname(__FILE__)) . '/classes/UserDB.php');
-		require(dirname(dirname(__FILE__)) . '/classes/gallery/UserDB.php');
-        	require(dirname(dirname(__FILE__)) . '/classes/gallery/User.php');
+		require(GALLERY_BASE . '/classes/User.php');
+		require(GALLERY_BASE . '/classes/EverybodyUser.php');
+		require(GALLERY_BASE . '/classes/NobodyUser.php');
+		require(GALLERY_BASE . '/classes/LoggedInUser.php');
+		require(GALLERY_BASE . '/classes/UserDB.php');
+		require(GALLERY_BASE . '/classes/gallery/UserDB.php');
+        	require(GALLERY_BASE . '/classes/gallery/User.php');
 
 	
 		$userDB = new Gallery_UserDB();
@@ -1388,8 +1388,9 @@ return array($success, $fail, $warn);
 
 function checkVersions($verbose=false) {
 	global $gallery;
+	/* we assume setup/init.php was loaded ! */
 
-	$manifest=dirname(dirname(__FILE__)) . '/manifest.inc';
+	$manifest=GALLERY_BASE . '/manifest.inc';
 	$success=array();
 	$fail=array();
 	$warn=array();

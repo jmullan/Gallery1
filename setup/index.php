@@ -23,9 +23,15 @@
 <?php /* $Id$ */ ?>
 <?php 
 
-	@include(dirname(dirname(__FILE__)) . '/config.php');
-	require (dirname(dirname(__FILE__)) . '/Version.php');
+	/* 
+	** Its important to have this as first position.
+	** Otherwise constants are defined.
+	*/
 	require (dirname(__FILE__) . '/init.php');
+	
+	include (GALLERY_BASE . '/config.php');
+	require (GALLERY_BASE . '/Version.php');
+
 	require (dirname(__FILE__) . '/functions.inc');
 	require (dirname(__FILE__) . '/config_data.inc');
 ?>

@@ -221,6 +221,7 @@ function parsePoFiles($poFiles) {
     /* Overall total message count */
     $overallTotal = array_sum(array_values($maxMessageCount));
 
+    $total_percentDone=array();
     foreach (array_keys($poData) as $locale) {
 		$pluginTotal = 0;
 	

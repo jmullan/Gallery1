@@ -1,16 +1,10 @@
 <?php
 // $Id$
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-                    !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-                    !empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-            print _("Security violation") ."\n";
-	            exit;
-		    }
 ?>
 <?php 
 
-	require($GALLERY_BASEDIR . "errors/configure_instructions.php") ;
+	require(dirname(__FILE__) . "/configure_instructions.php") ;
+	if (! defined("GALLERY_URL")) define ("GALLERY_URL","");
 ?>
 <html>
 <head>
@@ -27,13 +21,15 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 </p>
 
 <p>
-<?php configure("configure"); ?>
+	<?php configure("configure"); ?>
 </p>
 
 <p>
-<?php echo sprintf(_("Then launch the %sConfiguration Wizard%s."),
-		'<a href="'. $GALLERY_BASEDIR . 'setup/index.php">', '</a>') . ' ' ?>
-  <?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
+<?php 
+	echo sprintf(_("Then launch the %sConfiguration Wizard%s."),
+		'<a href="'. $GALLERY_BASEDIR . 'setup/index.php">', '</a>') . ' ';
+	
+	include(dirname(__FILE__) . "/configure_help.php"); ?>
 </p>
 </center>
 </body>

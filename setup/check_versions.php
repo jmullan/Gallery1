@@ -63,6 +63,7 @@ if ($show_details) {
 <?php
 
 list($oks, $errors, $warnings)=checkVersions(false);
+
 if  ($errors) { ?>
 <table class="inner" width="100%">
 <tr>
@@ -82,15 +83,18 @@ if  ($errors) { ?>
 			echo "\n</tr>";
 	       	}
 	}
-}
 ?>
 
 </table>
+<?php
+}
+
+if ($warnings) {
+?>
 
 <table class="inner" width="100%">
 <tr>
-<?php
-if ($warnings) { ?>
+
 	<td class="warninglong" colspan="2"><?php print sprintf(_("%s more recent than expected."), 
 							pluralize_n(count($warnings), _("1 file"), _("files"), _("No files"))); ?></td>
 </tr>
@@ -108,10 +112,10 @@ if ($warnings) { ?>
 			echo "\n</tr>";
 		}
 	}
-}
 ?>
 
 </table>
+<?php } ?>
 
 <table class="inner" width="100%">
 <tr>

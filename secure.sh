@@ -21,6 +21,7 @@ if [ -d $GALLERY_DEB_ROOT ] && [ -d $GALLERY_DEB_CONFDIR ] ; then
 
 	GALLERY_ROOT=$GALLERY_DEB_ROOT
 	GALLERY_CONFDIR=$GALLERY_DEB_CONFDIR
+	GALLERY_SETUPDIR=$GALLERY_DEB_SETUPDIR
 else
 	# We are in a "normal installation"
 	GALLERY_ROOT="."
@@ -43,7 +44,7 @@ for file in $GALLERY_CONFDIR/config.php $GALLERY_CONFDIR/.htaccess ; do
 	fi
 done
 
-chmod 0 $GALLERY_ROOT/setup
+chmod 0 $GALLERY_SETUPDIR
 
 echo ""
 echo "Your Gallery is now secure and cannot be configured.  If"

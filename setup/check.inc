@@ -34,7 +34,8 @@
 ?>
 <p>
 <?php 
-	$diagnostics_page='<a href="diagnostics.php">' . _("Gallery Diagnostics Page").'</a>';
+	$diagUrl=makeGalleryUrl('setup/diagnostics.php');
+        $diagnostics_page='<a href="'. $diagUrl .'">' . _("Gallery Diagnostics Page").'</a>';
 	$help_page='<a href="http://gallery.sourceforge.net/help.php">'. _("Gallery Help Page"). '</a>';
 	$docs_page = galleryDocs();
 
