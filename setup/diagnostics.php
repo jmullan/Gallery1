@@ -51,6 +51,19 @@
 
 	  <tr>
 	    <td width=140 align=center valign=top>
+	      <a href=check_imagemagick.php>Check ImageMagick</a>
+	    </td>
+	    <td>
+	      This page provides information about your ImageMagick
+	      binaries.  You can only use this page after you have
+	      successfully complete the configuration wizard (as it
+	      expects that you've already located and configured
+	      Gallery with the right path to ImageMagick).
+	    </td>
+	  </tr>
+
+	  <tr>
+	    <td width=140 align=center valign=top>
 	      <a href=session_test.php>Check Sessions</a>
 	    </td>
 	    <td>

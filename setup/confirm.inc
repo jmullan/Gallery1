@@ -67,6 +67,11 @@ $data .= "\n";
 $view .= row_wrap("&nbsp;");
 $data .= "/* Constants */\n";
 $view .= row_wrap("/* Constants */\n");
+
+$graphtool = "";
+$graphpath = "";
+$graphtest = array();
+
 foreach ($constants as $key => $val) {
 	echo "<input type=hidden name=$key value=\"{$$key}\">";
 
@@ -75,7 +80,17 @@ foreach ($constants as $key => $val) {
 		eval("\$$key = $tmp;");
 	}
 
+	if (!strcmp($key, "graphics")) {
+		$graphtool = $$key;
+	}
+	
 	if (!strcmp($$key, "")) {
+		if (!strcmp($key, "pnmDir")) {
+		        $graphtest['pnmDir'] = 1;
+		}
+		else if (!strcmp($key, "ImPath")) {
+		        $graphtest['ImPath'] = 1;
+		}
 		if ($constants[$key]["optional"]) {
 			$data .= "// optional <i>$key</i> missing\n";
 			$view .= row_wrap("// optional <i>$key</i> missing");
@@ -90,6 +105,8 @@ foreach ($constants as $key => $val) {
 
 		if ($constants[$key]["no-trailing-slash"]) {
 			$$key = ereg_replace("\/$", "", $$key);
+			/* Catch windows paths too. */
+			$$key = ereg_replace("\\$", "", $$key);
 		}
 
 		if ($constants[$key]["must-be-url"]) {
@@ -178,9 +195,14 @@ foreach ($constants as $key => $val) {
 			$view .= row_wrap(one_constant($key, $$key));
 		}
 
-		if ($constants[$key]["verify_func"]) {
-			$func = $constants[$key]["verify_func"];
-			list($success, $fail) = $func($$key);
+		if ($constants[$key]["verify-func"]) {
+			$func = $constants[$key]["verify-func"];
+			if ($constants[$key]["verify-func-takes-graphics-type"]) {
+			    list($success, $fail) = $func($$key, $graphtool);
+			} else {
+			    list($success, $fail) = $func($$key);
+			}
+			
 			foreach ($fail as $fkey => $fval) {
 				$view .= row_wrap(error_format($constants[$key][$fkey]));
 				if (is_array($fval)) {
@@ -192,6 +214,10 @@ foreach ($constants as $key => $val) {
 				}
 				$error = 1;
 			}
+			/* Needed for the pnmtojpeg<->ppmtojpeg silliness */
+			if (!strcmp($key, "pnmDir")) {
+				$graphpath  = $$key;
+			}
 		}
 	}
 }
@@ -201,13 +227,42 @@ foreach ($constants as $key => $val) {
  * Add a special case constant to tell us which binary we located on
  * the machine (so we know which one to use!).  It sucks that we
  * have to do this!
+ *
+ * Don't bother if we are configuring for ImageMagick.
  */
-if (fs_file_exists($constants["pnmDir"]["value"] . "/pnmtojpeg")) {
-	$data .= one_constant("pnmtojpeg", "pnmtojpeg");
-	$view .= row_wrap(one_constant("pnmtojpeg", "pnmtojpeg"));
-} else {
-	$data .= one_constant("pnmtojpeg", "ppmtojpeg");
-	$view .= row_wrap(one_constant("pnmtojpeg", "ppmtojpeg"));
+if (empty($graphtest['pnmDir'])) {
+	if (fs_file_exists(fs_executable($graphpath . "/pnmtojpeg"))) {
+		$data .= one_constant("pnmtojpeg", "pnmtojpeg");
+		$view .= row_wrap(one_constant("pnmtojpeg", "pnmtojpeg"));
+	} else if (fs_file_exists(fs_executable($graphpath . "/ppmtojpeg"))) {
+		$data .= one_constant("pnmtojpeg", "ppmtojpeg");
+		$view .= row_wrap(one_constant("pnmtojpeg", "ppmtojpeg"));
+	} else {
+		$error = 1;
+		$view .= row_wrap(error_format(
+			"Could not find <i>pnmtojpeg</i> or <i>ppmtojpeg</i>. ".
+			"Please check your configuration (or use ImageMagick)."));
+	}
+}
+
+/* 
+ * Make sure they picked a graphics package to use, and that the package they
+ * chose is configured properly.
+ */
+if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
+    $view .= row_wrap(error_format("You must specify one of <i>pnmDir</i> or ".
+				   "<i>ImPath</i> for Gallery to function!!"));
+    $error = 1;
+} else if (!strcmp($graphtool, "ImageMagick") && !empty($graphtest['ImPath'])) {
+    $view .= row_wrap(error_format("ImageMagick is not properly configured for use ".
+				   "as a graphics package.  Make sure you entered ".
+				   "a path to the ImageMagick binaries in step 2."));
+    $error = 1;
+} else if (!strcmp($graphtool, "NetPBM") && !empty($graphtest['pnmDir'])) {
+    $view .= row_wrap(error_format("NetPBM is not properly configured for use ".
+				   "as a graphics package.  Make sure you entered ".
+				   "a path to the NetPBM binaries in step 2."));
+    $error = 1;
 }
 
 $data .= "\n";

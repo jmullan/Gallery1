@@ -292,6 +292,48 @@ function check_graphics($location="")
 	return array($success, $fail);
 }
 
+function check_graphics_im($location="")
+{
+	global $gallery;
+
+	$fail = array();
+	$success = array();
+
+	$dirs = array();
+	$missing = array();
+	$imagick = array(
+		fs_executable("identify"), 
+		fs_executable("convert"),
+		fs_executable("composite")
+	);
+
+	foreach ($imagick as $bin) {
+		if ($location) {
+			$d = locateDir($bin, $location, 1);
+		} else {
+			$d = locateDir($bin, $gallery->app ? $gallery->app->ImPath : "");
+		}
+
+		if (!$d) {
+			$missing[$bin] = "Can't find <i>$bin</i>!";
+		}
+
+		if (!is_executable("$d/$bin")) {
+			$missing[$bin] = "<i>$bin</i> is not executable!";
+		}
+	}
+	
+	if (count($missing) == count($imagick)) {
+		$fail["fail-imagemagick"]++;
+	} else if (count($missing)) {
+		$fail["fail-imagemagick"] = array_values($missing);
+	} else {
+		$success[] = "All " . count($imagick) . " ImageMagick binaries located";
+	}
+
+	return array($success, $fail);
+}
+
 function check_safe_mode()
 {
 	$fail = array();

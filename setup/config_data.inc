@@ -7,14 +7,22 @@ $common_messages["getting-netpbm"] =
 			"or, you can compile and install the entire NetPBM package from " .
 			"<a href=http://sourceforge.net/projects/netpbm>NetPBM on SourceForge</a>. " .
 			"<b>Note:</b> You can install the binaries from the Gallery site even ".
-			"if you don't have root access on your box!";
+			"if you don't have root access on your box!  If you can't get it working, " .
+                        "try leaving the NetPBM path blank and using ImageMagick intead.";
 			
 $common_messages["fail-netpbm-partial"] =
 			"I've found part of NetPBM, but some critical components " .
 			"are missing (see below).  Perhaps your version of NetPBM is out of date?  " .
 			$common_messages["getting-netpbm"];
 
-
+$common_messages["getting-imagemagick"] =
+			"Gallery prefers ImageMagick version 5.4.8 and up.  " .
+			"You can compile and install the entire ImageMagick package from " .
+			"<a href=http://www.imagemagick.org>www.ImageMagick.org</a>. " .
+			"Note:  They also have binaries available for assorted operating systems. " .
+                        "If you can't get it working, try leaving the ImageMagick path blank " .
+                        "and using NetPBM instead.";
+			
 $checklist = array(
 	"php4" => array(
 		"desc" => "Check to see if you are running PHP 4.  Note that some versions of PHP ".
@@ -35,8 +43,8 @@ $checklist = array(
 			  "restrictions.",
 		"func" => "check_safe_mode",
 		"fail-safe-mode" => "<b>Safe Mode</b> is enabled on this server.  You must ".
-			  "disable it before you can use Gallery.  Refer to the FAQ and the ".
-			  "mailing lists on the <a href='http://gallery.sourceforge.net'>".
+			  "disable it before you can use Gallery.  Refer to the FAQ, the ".
+			  "forums, and the help page on the <a href='http://gallery.sourceforge.net'>".
 			  "Gallery website</a>, and the ".
 			  "<a href='http://www.php.net/manual/en/features.safe-mode.php'>".
 			  "PHP website</a> for assistance." .
@@ -100,16 +108,17 @@ $checklist = array(
 			"<b>--enable-module=rewrite</b>",
 		"optional" => 1,
 	),
-	"Graphics" => array(
+	"NetPBM" => array(
 		"optional" => 1,
 		"desc" => "Check to see if NetPBM is installed so that " .
 			"Gallery can manipulate images (rotate, resize, make " .
-			"thumbnails, etc).",
+			"thumbnails, etc).  You need to have NetPBM <b>or</b> " .
+			"ImageMagick installed.",
 		"func" => "check_graphics",
 		"fail-netpbm" => "I can't find NetPBM.  If it's installed and not in " .
 			"the path of the webserver user that's OK -- you can specify the " .
 			"path to NetPBM by hand on the following page.  If it's not " .
-			"installed, you have two choices.  " .
+			"installed, you have two choices:  " .
 			$common_messages["getting-netpbm"],
 
 		"fail-netpbm-partial" => 
@@ -117,6 +126,19 @@ $checklist = array(
 			"<p><b> If NetPBM is installed and Gallery isn't finding it automatically " .
 			"that's OK -- that just means you'll have to specify the path to NetPBM " .
 			"by hand on the following page </b>",
+	),
+	"ImageMagick" => array(
+		"optional" => 1,
+		"desc" => "Check to see if ImageMagick is installed so that " .
+			"Gallery can manipulate images (rotate, resize, make " .
+			"thumbnails, etc).  You need to have ImageMagick <b>or</b> " .
+			"NetPBM installed.",
+		"func" => "check_graphics_im",
+		"fail-imagemagick" => "I can't find ImageMagick.  If it's installed and not in " .
+			"the path of the webserver user that's OK -- you can specify the " .
+			"path to ImageMagick by hand on the following page.  If it's not " .
+			"installed, you must install it.  " .
+			$common_messages["getting-imagemagick"],
 	),
 	"exif" => array(
 		"optional" => 1,
@@ -158,18 +180,39 @@ $constants = array(
 		"attrs" => array("size" => 50),
 	),
 	"pnmDir" => array(
+		"optional" => 1,
 		"prompt" => "Path to NetPBM",
 		"desc" => "The path to the directory containing NetPBM on your system.  If you " .
 			"downloaded NetPBM from the Gallery download page, don't forget to make " .
 			"the files executable.  Eg. <i>/usr/local/netpbm</i> or <i>/usr/local/bin</i> " .
 			"or <i>c:\\apps\\netpbm</i>",
 		"value" => locateDir("jpegtopnm", $gallery->app ? $gallery->app->pnmDir : ""),
-		"verify_func" => "check_graphics",
+		"verify-func" => "check_graphics",
 		"fail-netpbm" => "I can't find NetPBM at the location you provided.  " .
 			$common_messages["getting-netpbm"],
 		"fail-netpbm-partial" => $common_messages["fail-netpbm-partial"],
 		"filename" => 1,
 		"attrs" => array("size" => 50),
+		"no-trailing-slash" => 1,
+	),
+	"ImPath" => array(
+		"optional" => 1,
+		"prompt" => "Path to ImageMagick",
+		"desc" => "The path to the directory containing ImageMagick on your system.",
+		"verify-func" => "check_graphics_im",
+		"value" => locateDir("convert", $gallery->app ? $gallery->app->ImPath :
+ ""),
+		"fail-imagemagick" => "I can't find ImageMagick at the location you provided.  " .
+			$common_messages["getting-imagemagick"],
+		"filename" => 1,
+		"attrs" => array("size" => 50),
+		"no-trailing-slash" => 1,
+	),
+	"graphics" => array(
+		"prompt" => "Graphics suite to use?",
+		"desc" => "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error.",
+		"choices" => array("NetPBM", "ImageMagick"),
+		"value" => "NetPBM",
 	),
 	"highlight_size" => array(
 		"prompt" => "Highlight size",
@@ -315,7 +358,7 @@ $constants = array(
 		    "<i>future</i>.",
 		"choices" => array(50, 55, 60, 65,
 				   70, 75, 80, 85,
-				   90, 95),
+				   90, 95, 100),
 		"value" => 95,
 	),
         "timeLimit" => array(

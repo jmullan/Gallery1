@@ -100,14 +100,13 @@ function checkNetPbm($cmd) {
 	global $show_details;
 	global $debugfile;
 
-	$cmd = fs_import_filename($gallery->app->pnmDir . "/$cmd");
-        $cmd = fs_executable($cmd);
-	print "Checking $cmd\n";
+	$cmd = fs_executable($gallery->app->pnmDir . "/$cmd");
+	print "Checking ". fs_import_filename($cmd) ."\n";
 
 	$ok = 1;
 
 	if ($ok) {
-		if (!fs_file_exists("$cmd")) {
+		if (!fs_file_exists($cmd)) {
 			$error = "File $cmd does not exist.";
 			$ok = 0;
 		}
@@ -177,8 +176,7 @@ issue on your system.  If it mentions <i>open_basedir</i> then it's
 because your system is configured with <a
 href="http://www.php.net/manual/en/configuration.php#ini.open-basedir">
 open_basedir</a> enabled.  You should talk to your system
-administrator about this, or ask for help on the <a
-href=http://gallery.sourceforge.net/lists.php>mailing list</a>
+administrator about this, or see the <a href=http://gallery.sourceforge.net/help.php>Gallery Help Page</a>
 
 <p>
 

@@ -171,18 +171,52 @@ function exec_internal($cmd) {
 function getDimensions($file) {
 	global $gallery;				
 
-	list($lines, $status) = 
-		exec_internal(toPnmCmd($file) . 
-			" | " .
-			NetPBM("pnmfile", "--allimages")); 
+	$regs = getimagesize($file);
+	if (($regs[0] > 1) && ($regs[1] > 1))
+		return array($regs[0], $regs[1]);
+	else if (isDebugging())
+		echo "<br>PHP's getimagesize() unable to determine dimensions.<br>";
+		
+
+	/* Just in case php can't determine dimensions. */
+	switch($gallery->app->graphics)
+	{
+	case "NetPBM":
+		list($lines, $status) =
+			exec_internal(toPnmCmd($file) .
+				" | " .
+				NetPBM("pnmfile", "--allimages"));
+		break;
+	case "ImageMagick":
+		/* This fails under windows, IM isn't returning parsable status output. */
+		list($lines, $status) = 
+			exec_internal(ImCmd("identify", fs_import_filename($file)));
+		break;
+	default:
+		if (isDebugging())
+			echo "<br>You have no graphics package configured for use!<br>";
+		return array(0, 0);
+		break;
+	}
 
 	if ($status == $gallery->app->expectedExecStatus) {
 		foreach ($lines as $line) {
-			if (ereg("([0-9]+) by ([0-9]+)", $line, $regs)) {
-				return array($regs[1], $regs[2]);
+			switch($gallery->app->graphics)
+			{
+			case "NetPBM":
+				if (ereg("([0-9]+) by ([0-9]+)", $line, $regs))
+					return array($regs[1], $regs[2]);
+				break;
+			case "ImageMagick":
+				if (ereg("([0-9]+)x([0-9]+)", $line, $regs))
+					return array($regs[1], $regs[2]);
+				break;
 			}
 		}
 	}
+
+	if (isDebugging())
+		echo "<br>Unable to determine image dimensions!<br>";
 
 	return array(0, 0);
 }
@@ -283,11 +317,40 @@ function resize_image($src, $dest, $target) {
 	else {
 		$out = $dest;
 	}
-	$err = exec_wrapper(toPnmCmd($src) .
-		     " | " . 
-		     NetPBM("pnmscale", 
-				" -xysize $target $target") .
-		     " | " . fromPnmCmd($out));
+
+	/* Check for images smaller then target size, don't blow them up. */
+    $regs = getDimensions($src);
+	if ($regs[0] <= $target && $regs[1] <= $target) {
+		if ($useTemp == false) {
+			fs_copy($src, $dest);
+		}
+		return 1;
+    }
+
+	switch($gallery->app->graphics)
+	{
+	case "NetPBM":
+		$err = exec_wrapper(toPnmCmd($src) .
+				" | " . 
+				NetPBM("pnmscale",
+					" -xysize $target $target") .
+				" | " . fromPnmCmd($out));
+		break;
+	case "ImageMagick":
+		$src = fs_import_filename($src);
+		$out = fs_import_filename($out);
+		$err = exec_wrapper(ImCmd("convert", "-quality ".
+			$gallery->app->jpegImageQuality . 
+			" -size ". $target ."x". $target ." $src".
+			" -geometry ". $target ."x" . $target .
+			" +profile \"*\" $out"));
+		break;
+	default:
+		if (isDebugging())
+			echo "<br>You have no graphics package configured for use!<br>";
+		return 0;
+		break;
+	}
 
 	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
 		if ($useTemp) {
@@ -311,23 +374,38 @@ function rotate_image($src, $dest, $target) {
 		$out = $dest;
 	}
 
-	if (!strcmp($target, "90")) {
-		$args = "-r90";
-	} else if (!strcmp($target, "-90")) {
-		$args = "-r270";
-	} else {
-		$args = "-r180";
-	}
+	switch($gallery->app->graphics)
+	{
+	case "NetPBM":
+		if (!strcmp($target, "90")) {
+			$args = "-r90";
+		} else if (!strcmp($target, "-90")) {
+			$args = "-r270";
+		} else {
+			$args = "-r180";
+		}
 
-	$err = exec_wrapper(toPnmCmd($src) .
-		     " | " .
-		     NetPBM("pnmflip", $args) .
-		     " | " . fromPnmCmd($out));
+		$err = exec_wrapper(toPnmCmd($src) .
+				" | " .
+				NetPBM("pnmflip", $args) .
+				" | " . fromPnmCmd($out));
 
-	// copy exif headers from original image to rotated image
-	if (isset($gallery->app->use_exif)) {
-		$path = $gallery->app->use_exif;
-		exec_internal(fs_import_filename($path, 1) . " -te $src $out");
+		// copy exif headers from original image to rotated image
+		if (isset($gallery->app->use_exif)) {
+			$path = $gallery->app->use_exif;
+			exec_internal(fs_import_filename($path, 1) . " -te $src $out");
+		}
+		break;
+	case "ImageMagick":
+		$src = fs_import_filename($src);
+		$out = fs_import_filename($out);
+		$err = exec_wrapper(ImCmd("convert", "-rotate $target $src $out"));
+		break;
+	default:
+		if (isDebugging())
+			echo "<br>You have no graphics package configured for use!<br>";
+		return 0;
+		break;
 	}
 
 	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
@@ -350,12 +428,30 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 	else {
 		$out = $dest;
 	}
-	$err = exec_wrapper(toPnmCmd($src) .
-			" | " .
-			NetPBM("pnmcut") .
-			" $x $y $width $height" .
-			" | " . 
-			fromPnmCmd($out));
+
+	switch($gallery->app->graphics)
+	{
+	case "NetPBM":
+		$err = exec_wrapper(toPnmCmd($src) .
+				" | " .
+				NetPBM("pnmcut") .
+				" $x $y $width $height" .
+				" | " .
+				fromPnmCmd($out));
+		break;
+	case "ImageMagick":
+		$src = fs_import_filename($src);
+		$out = fs_import_filename($out);
+		$err = exec_wrapper(ImCmd("convert", "-crop " .
+				$width ."x". $height ."+". $x ."+". $y .
+				" $src $out"));
+		break;
+	default:
+		if (isDebugging())
+			echo "<br>You have no graphics package configured for use!<br>";
+		return 0;
+		break;
+	}
 
 	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
 		if ($useTemp) {
@@ -369,18 +465,24 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 }
 
 function valid_image($file) {
-	global $gallery;
-	
-	list($results, $status) = 
-		exec_internal(toPnmCmd($file) . 
-			" | " .
-			NetPBM("pnmfile", "--allimages"));
+    if (($type = getimagesize($file)) == FALSE)
+        return 0;
 
-	if ($status == $gallery->app->expectedExecStatus) {
-		return 1;
-	} else {
-		return 0;
-	}
+    switch($type[2])
+    {
+    case 1: // GIF
+    case 2: // JPEG
+    case 3: // PNG
+        return 1;
+        break;
+    default:
+        return 0;
+        break;
+    }
+
+	if (isDebugging())
+		echo "<br>There was an unknown failure in the valid_image() call!<br>";
+    return 0;
 }
 
 function toPnmCmd($file) {
@@ -435,6 +537,14 @@ function netPbm($cmd, $args="") {
 	if (!isDebugging()) {
 		$cmd  .= " --quiet";
 	}
+	$cmd .= " $args";
+	return $cmd;
+}
+
+function ImCmd($cmd, $args = "") {
+	global $gallery;
+
+	$cmd = fs_import_filename($gallery->app->ImPath . "/$cmd");
 	$cmd .= " $args";
 	return $cmd;
 }
