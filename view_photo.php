@@ -68,7 +68,7 @@ if ($prev <= 0) {
         $first = 1;
 }
 
-if ($index > $numPhotos) {
+if ($index > $album->numPhotos(1)) {
 	$index = $numPhotos;
 }
 

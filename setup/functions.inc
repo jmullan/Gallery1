@@ -31,14 +31,14 @@ function row_choice($key, $arr) {
 
 function locateDir($filename, $extraDir="") {
 
+	if (file_exists("$extraDir/$filename")) {
+		return $extraDir;
+	}
+
 	foreach (explode(":", getenv("PATH")) as $path) {
 		if (file_exists("$path/$filename")) {
 			return $path;
 		}
-	}
-
-	if (file_exists("$extraDir/$filename")) {
-		return $extraDir;
 	}
 }
 
