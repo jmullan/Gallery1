@@ -62,7 +62,15 @@ foreach (array_keys($preserve) as $key) {
 
 <form method=POST>
 
-<? include("$setup_page.inc"); ?>
+<?
+$legit = array("check", "constants", "defaults", "confirm", "write");
+if (in_array($setup_page, $legit)) {
+  include("$setup_page.inc");
+} else {
+  print "Security violation.\n";
+  exit;
+}
+?>
 
 <?
 function embed_hidden($key) {
