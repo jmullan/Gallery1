@@ -31,7 +31,25 @@ if ($prev <= 0) $prev = $numPhotos - 1;
  */
 $perPage = $rows * $cols;
 $page = ceil(($index + 1) / ($rows * $cols));
+
+if ($album->fields["background"]) {
+        $bodyAttrs .= "background={$album->fields[background]}";
+} elseif ($album->fields["bgcolor"]) {
+        $bodyAttrs .= "bgcolor={$album->fields[bgcolor]}";
+}
+
+if ($album->fields["textcolor"]) {
+        $bodyAttrs .= " text={$album->fields[textcolor]}";
+}
+if ($album->fields["linkcolor"]) {
+        $bodyAttrs .= " link={$album->fields[linkcolor]}";
+}
+
 ?>
+
+<body <?=$bodyAttrs?>>
+
+
 
 <center>
 <table border=0 width=1%>
