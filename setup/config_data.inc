@@ -39,7 +39,18 @@ $checklist = array(
 			  "mailing lists on the <a href='http://gallery.sourceforge.net'>".
 			  "Gallery website</a>, and the ".
 			  "<a href='http://www.php.net/manual/en/features.safe-mode.php'>".
-			  "PHP website</a> for assistance.",
+			  "PHP website</a> for assistance." .
+			  "<br>" .
+			  "<br>" .
+			  "<b>Note</b> That under some rare circumstances, Gallery thinks " .
+			  "that <b>safe mode</b> is on, when it's really off.  You can " .
+			  "see for yourself by looking in the <i>Local</i> column of " .
+			  "the safe_mode row in the <a href=phpinfo.php>PHP Info</a> page. " .
+			  "If it says 'Off' or '0' or 'undefined' then it's possible that " .
+			  "Gallery made a mistake and you can continue.  If not, then " .
+			  "you must resolve this problem before you can use Gallery.",
+		"optional" => 1,
+		"serious" => 1,
 	),
 	"htaccess" => array(
 		"desc" => "Allow the Gallery <b>.htaccess</b> file to set " .

@@ -38,7 +38,15 @@ foreach ($checklist as $check) {
 
 	foreach ($fail as $key => $val) {
 		if ($check["optional"]) {
-			echo "<font color=yellow><b>Warning!</b></font>";
+			if ($check["serious"]) {
+				$serious_warning++;
+				$text = "Serious Warning";
+				$color = "red";
+			} else {
+				$text = "Warning";
+				$color = "yellow";
+			}
+			echo "<font color=$color><b>$text!</b></font>";
 			echo "<br>$check[$key]<p>";
 			$warning++;
 		} else {
@@ -71,7 +79,11 @@ foreach ($checklist as $check) {
 <br> before you can continue.  
 <? } else { ?>
 <?	if ($warning) { ?>
+<?		if ($serious_warning) { ?>
+Your installation has <b>serious warnings</b>!  Continue at your own risk...
+<? 		} else { ?>
 Your installation has warnings, but life is short so let's GO!
+<? 		} ?>
 <? 	} else { ?>
 Your installation passed with flying colors!  Go go go!
 <? 	} ?>
