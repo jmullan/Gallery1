@@ -95,7 +95,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 		       "view_album.php",
 		       "view_comments.php",
 		       "view_photo.php",
-		       "view_photo_properties.php",
+		       "view_photo_properties.php"
 		       );
 	
 	if (!in_array($include, $safe_to_include)) {
