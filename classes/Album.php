@@ -1621,6 +1621,38 @@ class Album {
 		}
 	}
 
+	function makeThumbnailRecursive($index)
+		{
+		for ($i=1; $i <= $this->numPhotos(1); $i++)
+			{
+			if ($this->isAlbum($i))
+				{
+				$nestedAlbum = new Album();
+				$index="all";
+				$nestedAlbum->load($this->getAlbumName($i));
+				
+				$np = $nestedAlbum->numPhotos(1);
+				echo "<br>". sprintf(_("Entering album %s, processing %d photos"), $this->getAlbumName($i), $np);
+				$nestedAlbum->makeThumbnailRecursive($index);
+				$nestedAlbum->save();
+					
+				$album = $this->getNestedAlbum($i);
+				$l = $album->getHighlight();
+				if (isset($l))
+					{
+					$album->setHighlight($l);
+					$album->save();
+					}
+				}
+			else
+				{
+				echo("<br> ". sprintf(_("Processing image %d..."), $i));
+				my_flush();
+				$this->makeThumbnail($i);
+				}
+			}
+		}
+
 	function movePhoto($index, $newIndex) {
 		/* Pull photo out */
 		$photo = array_splice($this->photos, $index-1, 1);

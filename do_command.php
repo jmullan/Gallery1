@@ -23,147 +23,189 @@
 <?php
 require_once(dirname(__FILE__) . '/init.php');
 
-list($index, $cmd, $return, $parentName) = getRequestVar(array('index', 'cmd', 'return', 'parentName'));
+list($index, $cmd, $return, $parentName, $rebuild_type) = getRequestVar(array('index', 'cmd', 'return', 'parentName', 'rebuild_type'));
 
-if (!strcmp($cmd, "remake-thumbnail")) {
-        if ($gallery->user->canWriteToAlbum($gallery->album)) {
+
+if (empty($rebuild_type)) {
+	$title = _("Rebuilding Thumbnails");
+} else {
+	$title = _("Performing Operation..");
+}
+
+switch ($cmd) {
+	case 'remake-thumbnail':
+		if ($gallery->user->canWriteToAlbum($gallery->album)) {
+			printPopupStart($title);
+
+			if (empty($rebuild_type)) {
+				echo _("Do you want to rebuild your thumbnails recursive ?");
+				echo makeFormIntro('do_command.php', 
+					array('method' => 'post'),
+					array('type' => 'popup', 'index' => $index, 'cmd' => $cmd, 
+						'return' => $return, 'parentName' => $parentName));
 ?>
-<html>
-<head>
-  <title><?php echo _("Performing Operation..") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Performing Operation..") ?></div>
-<div class="popup" align="center">
+		<br>
+		<input type="radio" name="rebuild_type" value="recursive"><?php echo _("yes"); ?>
+		<input type="radio" name="rebuild_type" value="single" checked><?php echo _("no"); ?>
+		<br><br>
+		<input type="submit" value="<?php echo _("Start") ?>"><br><br>
+	</form>
 <?php
-		if ($gallery->session->albumName && isset($index)) {
-			if (!strcmp($index, "all")) {
-				$np = $gallery->album->numPhotos(1);
-				echo ("<br> " . sprintf(_("Rebuilding %d thumbnails..."), $np));
-				my_flush();
-				for ($i = 1; $i <= $np; $i++) {
-					echo("<br> ". sprintf(_("Processing image %d..."), $i));
-					my_flush();
-					set_time_limit($gallery->app->timeLimit);
-					$gallery->album->makeThumbnail($i);
-				}
-			} else {
-				echo ("<br> " . _("Rebuilding 1 thumbnail..."));
-				my_flush();
-				set_time_limit($gallery->app->timeLimit);
-				$gallery->album->makeThumbnail($index);
 			}
-			$gallery->album->save();
-			//-- this is expected to be loaded in a popup, so dismiss ---
-			dismissAndReload();
+			else {
+				if (!strcmp($rebuild_type, "single")) {
+					if ($gallery->session->albumName && isset($index)) {
+						if (!strcmp($index, "all")) {
+							$np = $gallery->album->numPhotos(1);
+							echo ("<br> " . sprintf(_("Rebuilding %d thumbnails..."), $np));
+							my_flush();
+							for ($i = 1; $i <= $np; $i++) {
+								echo("<br> ". sprintf(_("Processing image %d..."), $i));
+								my_flush();
+								set_time_limit($gallery->app->timeLimit);
+								$gallery->album->makeThumbnail($i);
+							}
+						} else {
+							echo ("<br> " . _("Rebuilding 1 thumbnail..."));
+							my_flush();
+							set_time_limit($gallery->app->timeLimit);
+							$gallery->album->makeThumbnail($index);
+						}
+						$gallery->album->save();
+						//-- this is expected to be loaded in a popup, so dismiss ---
+						dismissAndReload();
+					}
+				} else if (!strcmp($rebuild_type, "recursive")) {
+					if ($gallery->session->albumName && isset($index)) {
+						$gallery->album->makeThumbnailRecursive($index);
+						$gallery->album->save();
+						dismissAndReload();
+					}
+				}
+			}
 		}
-	}
-} else if (!strcmp($cmd, "logout")) {
-	gallery_syslog("Logout by ". $gallery->session->username ." from ". $HTTP_SERVER_VARS['REMOTE_ADDR']);
-	$gallery->session->username = "";
-	$gallery->session->language = "";
-	if (!ereg("^http|^{$gallery->app->photoAlbumURL}", $return)) {
-		$return = makeGalleryHeaderUrl($return);
-	}
-	header("Location: $return");
-} else if (!strcmp($cmd, "hide")) {
-	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		$gallery->album->hidePhoto($index);
-		$gallery->album->save();
-	} else {
-		if ($gallery->album->isAlbum($index)) {
-			$myAlbumName = $gallery->album->getAlbumName($index);
-			$myAlbum = new Album;
-			$myAlbum->load($myAlbumName);
+	break;
+	
+	case 'logout':
+		gallery_syslog("Logout by ". $gallery->session->username ." from ". $HTTP_SERVER_VARS['REMOTE_ADDR']);
+		$gallery->session->username = "";
+		$gallery->session->language = "";
+		if (!ereg("^http|^{$gallery->app->photoAlbumURL}", $return)) {
+			$return = makeGalleryHeaderUrl($return);
 		}
-
-		if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) || 
-		    $gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
+		header("Location: $return");
+	break;
+	
+	case 'hide':
+		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->hidePhoto($index);
 			$gallery->album->save();
+		} else {
+			if ($gallery->album->isAlbum($index)) {
+				$myAlbumName = $gallery->album->getAlbumName($index);
+				$myAlbum = new Album;
+				$myAlbum->load($myAlbumName);
+			}
+
+			if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) || 
+	   		$gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
+				$gallery->album->hidePhoto($index);
+				$gallery->album->save();
+			}
 		}
-	}
-	//-- this is expected to be loaded in a popup, so dismiss ---
-	dismissAndReload();
-} else if (!strcmp($cmd, "show")) {
-	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		$gallery->album->unhidePhoto($index);
-		$gallery->album->save();
-	} else {
-                if ($gallery->album->isAlbum($index)) {
-                	$myAlbumName = $gallery->album->getAlbumName($index);
-                        $myAlbum = new Album;
-                        $myAlbum->load($myAlbumName);
-                }       
-                        
-                if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
-		    $gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
+		//-- this is expected to be loaded in a popup, so dismiss ---
+		dismissAndReload();
+	break;
+		
+	case 'show':
+		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->unhidePhoto($index);
 			$gallery->album->save();
+		} else {
+			if ($gallery->album->isAlbum($index)) {
+				$myAlbumName = $gallery->album->getAlbumName($index);
+				$myAlbum = new Album;
+				$myAlbum->load($myAlbumName);
+			}       
+			
+			if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
+		    		$gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
+					$gallery->album->unhidePhoto($index);
+					$gallery->album->save();
+			}
 		}
-	}
-	//-- this is expected to be loaded in a popup, so dismiss ---
-	dismissAndReload();
-} else if (!strcmp($cmd, "highlight")) {
-	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		$gallery->album->setHighlight($index);
-		$gallery->album->save(array(i18n("Changed Highlight")));
-	}
-	//-- this is expected to be loaded in a popup, so dismiss ---
-	dismissAndReload();
-} else if (!strcmp($cmd, "new-album")) {
-	if ($gallery->user->canCreateAlbums() ||
-	    $gallery->user->canCreateSubAlbum($gallery->album)) {
-		if (!isset($parentName)) {
-			$parentName=null;
-		}
-		createNewAlbum($parentName);
-
-		header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
-	} else {
-	        header("Location: " . makeAlbumHeaderUrl());
-	}
-} else if (!strcmp($cmd, "reset-album-clicks")) {
-	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		$gallery->album->resetAllClicks();
-		// this is a popup do dismiss and reload!
+		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
-	} else {
+	break;
+		
+	case 'highlight':
+		if ($gallery->user->canWriteToAlbum($gallery->album)) {
+			$gallery->album->setHighlight($index);
+			$gallery->album->save(array(i18n("Changed Highlight")));
+		}
+		//-- this is expected to be loaded in a popup, so dismiss ---
+		dismissAndReload();
+	break;
+		
+	case 'new-album':
+		if ($gallery->user->canCreateAlbums() ||
+	    	$gallery->user->canCreateSubAlbum($gallery->album)) {
+			if (!isset($parentName)) {
+				$parentName=null;
+			}
+			createNewAlbum($parentName);
+		header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
+		} else {
 	        header("Location: " . makeAlbumHeaderUrl());
-	}
-
-} else if (!strcmp($cmd, "delete-comment")) {
-	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		$comment_index = getRequestVar('comment_index');
-		$comment=$gallery->album->getComment($index, $comment_index); 
-		$gallery->album->deleteComment($index, $comment_index);
-		$gallery->album->save(array(i18n("Comment \"%s\" by %s deleted from %s"),
+		}
+	break;
+		
+	case 'reset-album-clicks':
+		if ($gallery->user->canWriteToAlbum($gallery->album)) {
+			$gallery->album->resetAllClicks();
+			// this is a popup do dismiss and reload!
+			dismissAndReload();
+		} else {
+       			header("Location: " . makeAlbumHeaderUrl());
+		}
+	break;
+		
+	case 'delete-comment':
+		if ($gallery->user->canWriteToAlbum($gallery->album)) {
+			$comment_index = getRequestVar('comment_index');
+			$comment=$gallery->album->getComment($index, $comment_index); 
+			$gallery->album->deleteComment($index, $comment_index);
+			$gallery->album->save(array(i18n("Comment \"%s\" by %s deleted from %s"),
 					$comment->getCommentText(),
 				       	$comment->getName(),
 				       	makeAlbumURL($gallery->album->fields["name"], 
 						$gallery->album->getPhotoId($index))));
+			if (!empty($return)) {
+				dismissAndLoad($return);
+			}
+			else {
+				dismissAndReload();
+			}
+		} else {
+	    	    header("Location: " . makeAlbumHeaderUrl());
+		}
+	break;
+	
+	default:
 		if (!empty($return)) {
-			dismissAndLoad($return);
+			// No command; Can be used to set a session variable
+			header("Location: $return");
 		}
-		else {
-			dismissAndReload();
-		}
-	} else {
-	        header("Location: " . makeAlbumHeaderUrl());
-	}
-
-} else if (!empty($return)) {
-	// No command; Can be used to set a session variable
-	header("Location: $return");
+	break;
 }
+
 ?>
 
-<div align="center">
-<form>
-<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
-</form>
-</div>
+	<div align="center">
+	<form>
+		<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
+	</form>
+	</div>
 </div>
 </body>
 </html>
