@@ -178,6 +178,7 @@ class AlbumDB {
 		global $gallery;
 		/* Look for an exact match */
 		foreach ($this->albumList as $album) {
+		        set_time_limit($gallery->app->timeLimit);
 			if ($album->fields["name"] == $name) {
 				if (!$album->transient->photosloaded && $load) {
 					$album->loadPhotos($gallery->app->albumDir . "/$name");
@@ -188,6 +189,7 @@ class AlbumDB {
 
 		/* Look for a match that is case insensitive */
 		foreach ($this->albumList as $album) {
+		        set_time_limit($gallery->app->timeLimit);
 			if (!strcasecmp($album->fields["name"], $name)) {
 				if (!$album->transient->photosloaded && $load) {
 					$album->loadPhotos($gallery->app->albumDir . "/$name");

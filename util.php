@@ -1636,6 +1636,7 @@ function printChildren($albumName,$depth=0) {
 	$myAlbum->load($albumName);
 	$numPhotos = $myAlbum->numPhotos(1);
 	for ($i=1; $i <= $numPhotos; $i++) {
+		set_time_limit($gallery->app->timeLimit);
 		$myName = $myAlbum->isAlbumName($i);
 		if ($myName && !$myAlbum->isHidden($i)) {
 		        $nestedAlbum = new Album();
