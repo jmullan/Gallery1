@@ -937,8 +937,10 @@ $defaults = array(
 				"<b>"._("Critique")."</b>",
 				_("Critique"),
 				_("Rank")) 
-	),
-	"voter_class" => array(
+	. 
+	"<br><br>" .
+	_("<b>ATTENTION Upgrade users</b>: ONLY change these settings from the default if you want voting on in all your existing albums.  It is recommended that you leave these values as they are and turn voting on in individual albums as required.")),
+       	"voter_class" => array(
 		"prompt" => _("Voter class"),
 		"desc" => _("Voting is available to:") . 
 		"<dl><dt>"._("Nobody")."</dt><dd>" . 
