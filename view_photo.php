@@ -351,7 +351,7 @@ if (!$gallery->album->isMovie($id)) {
 		    $printShutterflyForm = 1;
 		} else if (!strncmp($printService, "fotokasten", 10)) {
 		    $adminCommands .= "<a href=# onClick=\"" .
-			popup("'http://1012.partner.fotokasten.de/affiliateapi/standard.php?add=". 
+			popup("'http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=". 
 			      $rawImage ."&thumbnail=" . $thumbImage . "&height=" . 
 			      $imageHeight ."&width=" . $imageWidth . "'", 1) .
 			"\">[print this photo on Fotokasten]</a>";
