@@ -564,7 +564,7 @@ includeHtmlWrap("inline_photo.frame");
 ?>
 
 <!-- caption -->
-<p align="center" class="modcaption" width="<?php echo $mainWidth ?>">
+<p align="center" class="modcaption">
 	<?php echo editCaption($gallery->album, $index) ?>
 </p>
 
