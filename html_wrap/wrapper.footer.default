@@ -5,6 +5,14 @@
 global $GALLERY_EMBEDDED_INSIDE;
 switch($GALLERY_EMBEDDED_INSIDE) {
 	case "nuke":
+
+		/*
+		 * Specify that we want to see the right side blocks
+		 * also.  To hide them, set $index to 0
+		 */
+		global $index;
+		$index = 1;
+
 		CloseTable();
 		include('footer.php');
 		break;
