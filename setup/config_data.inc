@@ -27,18 +27,6 @@ $checklist = array(
 			"<b>--enable-module=rewrite</b> </ul> flag and then " .
 			"reinstall it."
 	), 
-	"GD" => array(
-		"desc" => "Check to see if PHP was compiled with " .
-			"the GD libraries so that Gallery can read " .
-			"and write images.",
-	     	"func" => "check_gd",
-		"why" => "You need to reconfigure PHP with the <ul>" .
-			"<b>--with-gd=<i>dir</i></b> </ul> flag and then " .
-			"reinstall it.  Note that you have to specify the right " .
-			"<i>directory</i> above.  You can get GD from: " .
-			" <a href=ftp://ftp.boutell.com/pub/boutell/gd/> " .
-			"ftp://ftp.boutell.com/pub/boutell/gd/</a>"
-	), 
 	"NetPBM" => array(
 		"desc" => "Check to see if NetPBM is installed so that " .
 			"Gallery can manipulate images (rotate, resize, make " .
@@ -50,19 +38,6 @@ $checklist = array(
 			"you'll need to install it.  You can get it from " .
 			"<a href=http://sourceforge.net/projects/netpbm>SourceForge</a>"
 	),
-
-	"jpeg" => array(
-		"desc" => "Check to see if PHP was compiled with " .
-			"the JPEG libraries so that Gallery can load and " .
-			"save JPEG files.",
-	     	"func" => "check_jpeg",
-		"why" => "You need to reconfigure PHP with the <ul>" .
-			"<b>--with-jpeg-directory=<i>dir</i></b> </ul> flag and then " .
-			"reinstall it.  Note that you have to specify the right " .
-			"<i>directory</i> above.  You can get libjpeg from: " .
-			" <a href=ftp://ftp.uu.net/graphics/jpeg/> " .
-			"ftp://ftp.uu.net/graphics/jpeg/</a>"
-	)
 );
 
 $features = array(
