@@ -108,7 +108,7 @@ function saveSettings( $option, $act ) {
 		die;
 	}
 	if (!ereg('[/\\]$', $path)) {
-		$path .= DIRECTORY_SEPARATOR;
+		$path .= addslashes(DIRECTORY_SEPARATOR);
 	}
 	$params['path'] = $path;
 	
@@ -122,6 +122,6 @@ function saveSettings( $option, $act ) {
 			die;
 		}
 	}
-	mosRedirect( "index2.php?mosmsg=The%20Gallery%20component%20settings%20have%20were%20saved%20successfully." );
+	mosRedirect( "index2.php?mosmsg=The%20Gallery%20component%20settings%20have%20been%20saved%20successfully." );
 }
 ?>
