@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
  */
 
 /*
@@ -28,13 +30,20 @@
  * contains.  For all subsequent attempts we use that cache file.  This means
  * that if you change your albums around it may take a day before this block
  * starts (or stops) displaying them.
+ *
+ * If your Gallery is embedded and you call it via an URL, 
+ * make sure you are giving the needed paramters.
+ *
+ * *Nuke:
+ * http://<URL to your Nuke>/modules.php?op=modload&name=gallery&file=index&include=block-random.php
+ *
+ * Mambo:
+ * http://<URL to Mambo>/index.php?option=com_gallery&Itemid=XXX
+
+ 
  */
 
 require(dirname(__FILE__) . "/init.php");
-
-if (!empty($profile)) {
-	$timer = time();
-}
 
 /* Initializing the seed */
 srand ((double) microtime() * 1000000);
@@ -61,11 +70,11 @@ if ($rebuild) {
 
 $album = chooseAlbum();
 
-if ($album) {
+if (!empty($album)) {
 	$index = choosePhoto($album);
 }
 
-if (isset($index)) {
+if (!empty($index)) {
 	$id = $album->getPhotoId($index);
 	echo ""
 		. "<center><a href=" . makeAlbumUrl($album->fields["name"], $id) . ">"
@@ -82,12 +91,7 @@ if (isset($index)) {
 		.$album->fields["title"]
 		."</a></center>";
 } else {
-	print "No photo chosen.";
-}
-
-if (!empty($profile)) {
-	$elapsed = time() - $timer;
-	print "<br>Elapsed: $elapsed secs";
+	print "<center>No photo chosen.</center>";
 }
 
 /*
@@ -115,17 +119,19 @@ function choosePhoto($album) {
 	if ($count == 0) {
 		// Shouldn't happen
 		return null;
-	} else if ($count == 1) {
+	} elseif ($count == 1) {
 		$choose = 1;
+		if ($album->isAlbum($choose)) {
+			return null;
+		}
 	} else {
 		$choose = rand(1, $count);
 		$wrap = 0;
-		if ($album->isHiddenRecurse($choose)) {
+		while ($album->isHiddenRecurse($choose) || $album->isAlbum($choose)) {
 			$choose++;
 			if ($choose > $album->numPhotos(1)) {
 				$choose = 1;
 				$wrap++;
-
 				if ($wrap == 2) {
 					return null;
 				}
