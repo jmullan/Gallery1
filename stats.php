@@ -47,11 +47,10 @@
 */
 
 
-if (!isset($gallery->version)) {
-	require_once(dirname(__FILE__) . '/init.php');
-}
+require_once(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
-$statsVersion = "2.03j-2";
+$statsVersion = "2.03j-3";
 $debug = 0;
 //$album="album01";
 
@@ -65,7 +64,6 @@ list ($page, $set_albumListPage) =
 
 if (empty($type)) {
 	/* We assume was called direct. So we call show defaults */
-	require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 	header("Location: ". unhtmlentities(defaultStatsUrl('views')));
 }
 
@@ -637,7 +635,12 @@ if ($gallery->user->isAdmin()) {
 }
 $adminbox["commands"] .= '[<a href="'. makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>]';
 
-$adminText['text'] = $adminText;
+
+if (!empty($gallery->app->stats_foruser)) {
+	$adminText .= "\n<br>&nbsp;". generateStatsLinks();
+}
+
+$adminbox['text'] = $adminText;
 $adminbox["bordercolor"] = $borderColor;
 
 $navigator["page"] = $page;
@@ -1605,7 +1608,7 @@ $statsAlbum->canViewComments($gallery->user->getUid()) ) {
 		echo "<br clear=all>";
 	}
 	$gallery->album = $statsAlbum;
-	viewComments($photoIndex, $gallery->user->canAddComments($statsAlbum), "DISCO1", $newestCommentsFirst, 'popup');
+	viewComments($photoIndex, $gallery->user->canAddComments($statsAlbum), "DISCO1", $newestCommentsFirst, 'popup', $statsAlbum->fields['name']);
 }
 
 if ( $addLinksPos == 'belowcomments' ) {

@@ -23,8 +23,15 @@
 <?php
 require_once(dirname(__FILE__) . '/init.php');
 
-list($index, $cmd, $return, $parentName, $rebuild_type) = getRequestVar(array('index', 'cmd', 'return', 'parentName', 'rebuild_type'));
+list($index, $cmd, $return, $parentName, $rebuild_type, $albumName) = 
+  getRequestVar(array('index', 'cmd', 'return', 'parentName', 'rebuild_type', 'albumName'));
 
+
+/* This is used for deleting comments from stats.php */
+if(!empty($albumName)) {
+	$gallery->album = new Album();
+	$gallery->album->load($albumName);
+}
 
 if (empty($rebuild_type)) {
 	$title = _("Rebuilding Thumbnails");

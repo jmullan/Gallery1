@@ -129,7 +129,7 @@ function editCaption($album, $index) {
 	return $buf;
 }
 
-function viewComments($index, $addComments, $page_url, $newestFirst = false, $addType = '') {
+function viewComments($index, $addComments, $page_url, $newestFirst = false, $addType = '', $album=false) {
         global $gallery;
 	global $commentdraw;
 	global $i;
@@ -150,6 +150,7 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 			$commentdraw["name"] = $comment->getName();
 			$commentdraw["UID"] = $comment->getUID();
 			$commentdraw["index"] = $index;
+			$commentdraw["albumName"] = $album;
 			includeLayout('commentdraw.inc');
 		}
 	} else {
@@ -162,6 +163,7 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 			$commentdraw["name"] = $comment->getName();
 			$commentdraw["UID"] = $comment->getUID();
 			$commentdraw["index"] = $index;
+			$commentdraw["albumName"] = $album;
 			includeLayout('commentdraw.inc');
 		}
 	}

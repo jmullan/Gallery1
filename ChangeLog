@@ -1,3 +1,16 @@
+2004-12-15  Jens A. Tkotz <jens@peino.de>  1.5-cvs-b313
+
+	* Fix: Delete comments through stats.php didnt work,
+	       because comments of different albums are showed and so $gallery->album is not set.
+	  - Added Parameter $albumName to viewComments()
+	  - Use of viewComments with this parameter in stats.php
+	  - This is caught by do_command.php due to layout/commentdraw.inc
+	    and $gallery->album is generated.
+
+	* Fix: admintext was not displayed in stats.php
+
+	* New: Public links are now also displayed in stats.php. (RFE by Floridave)
+
 2004-12-15  Jens A. Tkotz <jens@peino.de>  1.5-cvs-b312
 
 	* Fix: view_photo.php produced an error when no printservices is used.

@@ -34,8 +34,11 @@ if ($gallery->user->isAdmin()) {
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	echo "\n<tr>";
 	echo "\n\t". '<td colspan="3" align="center" class="commentboxfooter">';
-        $url = doCommand("delete-comment", array("index" => $commentdraw['index'], "comment_index" => $i), '',
-			array("set_albumName" => $gallery->session->albumName, "id" => $id));
+        $url = doCommand('delete-comment', 
+				array('index'=> $commentdraw['index'], 
+					'comment_index' => $i,
+					'albumName' => $commentdraw['albumName'])
+			);
 	echo '<a href="#" onclick="javascript:' . popup($url,1) . '">['. _("delete comment") . ']</a>';
 	echo "\n\t</td>";
 	echo "\n</tr>";
