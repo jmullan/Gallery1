@@ -1,3 +1,18 @@
+2002-03-18  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b30
+
+	* Fixed a bug in printChildren() where we were not generating URLs
+	  correctly causing the links not to work in all circumstances.
+
+	* Fixed a bug in save_photos that would cause URL uploads to fail when
+	  file_upload is disabled (thanks Sebastian Bergmann)
+
+	* Fixed a bug in Album which would cause it to think that the mirror
+	  was up to date in the case that the ISP has a bogus bumper page up to
+	  handle 404 errors.
+
+	* Added a donation plea to the bottom of the album and gallery pages,
+	  only visible to the gallery admin.
+
 2002-03-12  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b29
 
 	* Fixed a typo in postnuke/UserDB that was causing errors with the new LoggedIn
