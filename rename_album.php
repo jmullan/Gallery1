@@ -51,9 +51,11 @@ $albumDB = new AlbumDB();
 if ($newName) {
 	$newName = str_replace("'", "", $newName);
 	$newName = str_replace("`", "", $newName);
-	$newName = strtr($newName, "\\/*?\"<>|& ", "----------");
+	$newName = strtr($newName, "\\/*?\"<>|& .+#", "-------------");
 	$newName = ereg_replace("\-+", "-", $newName);
 	$newName = ereg_replace("\-+$", "", $newName);
+	$newName = ereg_replace("^\-", "", $newName);
+	$newName = ereg_replace("\-$", "", $newName);
 	if ($albumDB->renameAlbum($oldName, $newName)) {
 		$albumDB->save();
 		// need to account for nested albums by updating
@@ -96,7 +98,7 @@ if ($newName) {
 What do you want to name this album?
 <br>
 The name cannot contain any of
-the following characters:  <br><center><b>\ / * ? " ' &amp; &lt; &gt; | </b>or<b> spaces</b><br></center>
+the following characters:  <br><center><b>\ / * ? " ' &amp; &lt; &gt; | . + # </b>or<b> spaces</b><br></center>
 Those characters will be ignored in your new album name.
 
 <br>
