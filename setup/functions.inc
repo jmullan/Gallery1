@@ -739,7 +739,7 @@ function check_locale() {
 
 		exec("locale -a",$results,$status);
 
-		if(count($results) >3) {
+		if(count($results) >2) {
 			$system_locales=$results;
 		} elseif (@is_readable("/etc/locale.gen")) {
 			exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1', $system_locales);
@@ -824,7 +824,7 @@ function check_locale() {
 	}
 
 	/* DAMN, there are no suitable locales, we use Linux and our PHP uses gettext*/
-        if( sizeof($available_locales) == 0 && getOS() == OS_LINUX && gettext_installed()) {
+        if( sizeof($available_locales) == 0 && sizeof($maybe_locales) == 0 && getOS() == OS_LINUX && gettext_installed()) {
                 return NULL;
         }
 
@@ -859,6 +859,7 @@ function config_maybe_locales() {
 			$unavailable[]=$key;
 			continue;
 		}
+/*
 		if (sizeof($aliases) == 1) {
 			$results["locale_alias['$key']"] = array (
 				"type" => "hidden", 
@@ -868,6 +869,7 @@ function config_maybe_locales() {
 				);
 			continue;
 		}
+*/
 		$nr++;
 		if (!$block_start_done) {
 			$block_start_done=true;
@@ -880,9 +882,15 @@ function config_maybe_locales() {
 					);
 		}
 		$index = $nls['language'][$key] ;
+
 		$choices=array();
+
 		foreach ($aliases as $value) { 
 			$choices[$value]=$value;
+		}
+		if (getOS() != OS_WINDOWS) {
+			$choices[""] = _("System locale");
+			next($choices);
 		}
 		$results["locale_alias['$key']"] = array (
 			"prompt" => $nr .".) ". $nls['language'][$key],
@@ -891,27 +899,28 @@ function config_maybe_locales() {
 			"key" => $key,
 			"type" => "block_element",
 			"choices" => $choices,
-			"value" => current($choices),
+			"value" => (getOS() != OS_WINDOWS) ? key($choices) : "",
+			"allow_empty" => true,
 			"remove_empty" => true
 			);
 
 			
         }
+
 	if ($block_start_done) {
 		$results[] = array ("type" => "block_end");
 	}
 	$block_start_done=false;
 
 	$choices=array();
+	if (getOS() != OS_WINDOWS) $choices=array("" => _("System locale"));
 	if (sizeof($available) > 0) {
-		if (getOS() == OS_OTHER) $choices=array("" => _("System locale"));
 		foreach ($available as $choice => $value) { 
 			$choices[$choice]=$nls['language'][$value];
 		}
 
 		$avail_keys=array_keys($available);
 	} elseif (sizeof($maybe) > 0) {
-		if (getOS() == OS_OTHER) $choices=array("" => _("System locale"));
 		foreach ($maybe as $key => $aliases) {
 			foreach ($aliases as $choice) {
 				$choices[$choice]=$choice;
@@ -921,7 +930,6 @@ function config_maybe_locales() {
 		$avail_keys=array_keys($choices);
 	} else {
 		if (getOS() == OS_OTHER) {
-			$choices=array("" => _("System locale"));
 			$array_keys=$choices;
 		} else {
 			$skip=true;
@@ -937,7 +945,8 @@ function config_maybe_locales() {
 				"value" => $avail_keys[0],
 				"desc" => "locale_alias[$key]",
 				"prompt" => "locale_alias[$key]",
-				"allow_empty" => (getOS() == OS_OTHER) ? true : false
+				"allow_empty" => true,
+				"remove_empty" => true
 				);
 			continue;
 		}
@@ -960,14 +969,14 @@ function config_maybe_locales() {
 			"type" => "block_element",
 			"choices" => $choices,
 			"value" => "",
-			"allow_empty" => (getOS() == OS_OTHER) ? true : false
+			"allow_empty" => true,
+			"remove_empty" => true
 			);
         }
 	if ($block_start_done) {
 		$results[] = array ("type" => "block_end");
 	}
 	}
-
 	return $results;
 }
 
