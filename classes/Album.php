@@ -1471,6 +1471,7 @@ class Album {
 			}
 		}
 	}
+
 	function setNestedExtraFields() {
 		for ($i=1; $i <= $this->numPhotos(1); $i++) {
 			if ($this->isAlbumName($i)) {
@@ -1482,6 +1483,25 @@ class Album {
 			}
 		}
 	}
+	function setNestedPollProperties() {
+		for ($i=1; $i <= $this->numPhotos(1); $i++) {
+			if ($this->isAlbumName($i)) {
+				$nestedAlbum = new Album();
+			       	$nestedAlbum->load($this->isAlbumName($i));
+			       	$nestedAlbum->fields["poll_type"]=$this->fields["poll_type"];
+			       	$nestedAlbum->fields["poll_scale"]=$this->fields["poll_scale"];
+			       	$nestedAlbum->fields["poll_nv_pairs"]=$this->fields["poll_nv_pairs"];
+			       	$nestedAlbum->fields["poll_hint"]=$this->fields["poll_hint"];
+			       	$nestedAlbum->fields["poll_show_results"]=$this->fields["poll_show_results"];
+			       	$nestedAlbum->fields["poll_num_results"]=$this->fields["poll_num_results"];
+			       	$nestedAlbum->fields["voter_class"]=$this->fields["voter_class"];
+
+				$nestedAlbum->save();
+				$nestedAlbum->setNestedPollProperties();
+			}
+		}
+	}
+
 
 	function getPerm($permName, $uid) {
 		if (isset($this->fields["perms"][$permName])) {
