@@ -88,7 +88,7 @@ if ($save) {
   <title><?php echo _("Configure Custom Fields") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir="<?php echo $gallery->direction ?>">
 
 <center>
 <?php echo _("Configure Custom Fields") ?>
@@ -163,9 +163,9 @@ function num_special_fields($extra_fields)
 </table>
 <input type=checkbox name=setNested value="1"><?php echo _("Apply to nested Albums") ?>.
 <p>
-<input type=submit name="submit" value="<?php echo _("Apply") ?>">
+<input type="submit" name="apply" value="<?php echo _("Apply") ?>">
 <input type=reset value="<?php echo _("Undo") ?>">
-<input type=submit name="submit" value="<?php echo _("Close") ?>" onclick='parent.close()'>
+<input type="button" name="close" value="<?php echo _("Close") ?>" onclick="parent.close()">
 
 </form>
 </body>

@@ -72,12 +72,8 @@ class Gallery_User extends Abstract_User {
 			$this->version == "0";
 		}
 		if (!strcmp($this->version, $gallery->user_version)) {
-			processingMsg (sprintf(_("%s is up to date."),
-						$this->username));
 			return true;
 		}
-
-		print (sprintf(_("Upgrading user %s..."), $this->username));
 
 		if ($this->version < 1) 
 		{
@@ -85,9 +81,7 @@ class Gallery_User extends Abstract_User {
 		}
 		$this->version = $gallery->user_version;
 		if ($this->save()) {
-			print (_("done"));
-			processingMsg ("");
-			$success=true;
+			$success = true;
 		} else {
 			$success = false;
 		}

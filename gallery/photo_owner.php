@@ -44,7 +44,7 @@ if (!$gallery->user->isAdmin() &&
 ?>
 <?php
 
-if (!strcmp($submit, _("Save")) && $owner) {
+if (isset($save) && $owner) {
 	$gallery->album->setItemOwnerById($id, $owner);
 	$gallery->album->save();
 	dismissAndReload();
@@ -101,8 +101,8 @@ asort($uAll);
 <?php } ?><p>
 
 <input type=hidden name="id" value="<?php echo $id ?>">
-<input type=submit name="submit" value="<?php echo _("Save") ?>">
-<input type=submit name="submit" value="<?php echo _("Done") ?>" onclick='parent.close()'>
+<input type="submit" name="save" value="<?php echo _("Save") ?>">
+<input type="button" name="done" value="<?php echo _("Done") ?>" onclick="parent.close()">
 </form>
 
 </body>

@@ -89,8 +89,8 @@ for ($i = 1; $i <= $numAlbums; $i++) {
 }
 ?>
 </select>
-<input type=submit value=<?php echo '"' . _("Move it!") . '"' ?>>
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="move" value="<?php echo _("Move it!") ?>">
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
 </form>
 
 <p>
@@ -115,8 +115,8 @@ printAlbumOptionList(0,1)
 </select>
 <br>
 <br>
-<input type=submit value=<?php echo '"' . _("Move to Album!") .'"' ?>>
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="move" value="<?php echo _("Move to Album!") ?>">
+<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
 </form>
 <?php
 	}

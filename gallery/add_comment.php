@@ -42,7 +42,7 @@ if (strcmp($gallery->album->fields["public_comments"], "yes")) {
 
 $error_text = "";
 
-if (!strcmp($submit, _("Save"))) {
+if (isset($save)) {
 	if ($commenter_name && $comment_text) {
 	        $comment_text = removeTags($comment_text);
 	        $commenter_name = removeTags($commenter_name);
@@ -89,7 +89,7 @@ if ($error_text) {
 </tr>
 </table>
 <br>
-<input type=submit name="submit" value="<?php echo _("Save") ?>">
+<input type="submit" name="save" value="<?php echo _("Save") ?>">
 <input type=button value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 
 </form>

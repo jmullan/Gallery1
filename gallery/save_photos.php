@@ -55,7 +55,8 @@ if ($userfile_name) {
   <?php echo getStyleSheetLink() ?>
 
 </head>
-<body onLoad='opener.hideProgressAndReload();'>
+<body dir="<?php echo $gallery->direction ?>" onLoad='opener.hideProgressAndRe\
+load();'>
 
 <?php
 if ($urls) {
@@ -269,7 +270,7 @@ if (!$msgcount) {
 ?>
 <center>
 <form>
-<input type=submit value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
+<input type="button" name="dismiss" value="<?php echo _("Dismiss") ?>" onclick="parent.close()">
 </form>
 <?php
 /* Prompt for additional files if we found links in the HTML slurpage */

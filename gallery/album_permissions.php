@@ -97,7 +97,7 @@ if (isset($allUid) && strchr($submit_viewFullImages, ">")) {
 	$changed++;
 }
 
-if (!strcmp($submit, _("Save")) && $ownerUid) {
+if (isset($save) && $ownerUid) {
 	$gallery->album->setOwner($ownerUid);
 	$changed++;
 }
@@ -285,8 +285,8 @@ echo makeFormIntro("album_permissions.php",
  </tr>
 </table>
 
-<input type=submit name="submit" value="<?php echo _("Save") ?>">
-<input type=submit name="submit" value="<?php echo _("Done") ?>" onclick='parent.close()'>
+<input type="submit" name="save" value="<?php echo _("Save") ?>">
+<input type="button" name="done" value="<?php echo _("Done") ?>" onclick="parent.close()">
 </form>
 
 </body>

@@ -42,7 +42,7 @@ if (!$gallery->user->isAdmin()) {
 }
 set_time_limit(0);
 $showForce = false;
-if (!empty($submit) || !empty($force))
+if (!empty($backup) || !empty($force))
 {
 	$error_text='';
 	switch ($backup_method) {
@@ -89,7 +89,7 @@ if (!empty($submit) || !empty($force))
   <title>Backup Albums</title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir="<?php echo $gallery->direction; ?>">
 
 <span class="popuphead">Backup album data</span>
 <p>
@@ -128,7 +128,7 @@ Choose archiving option and which files you wish to archive.
 </table>
 </table>
 <p>
-<input type=submit name="submit" value=<?php echo  _("Backup") ?>>
+<input type="submit" name="backup" value=<?php echo  _("Backup") ?>>
 <?php if ($showForce) { ?>
 <input type=submit name="force" value=<?php echo  _("Force Backup") ?>>
 <?php } ?>

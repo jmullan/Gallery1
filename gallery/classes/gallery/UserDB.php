@@ -296,7 +296,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 			$this->version == "0";
 		}
 		if (!strcmp($this->version, $gallery->user_version)) {
-			return 0;
+			return true;
 		}
 
 		$success = true;

@@ -38,7 +38,7 @@ if (!$gallery->user->isLoggedIn()) {
 	exit;	
 }
 
-if (!strcmp($submit, _("Save"))) {
+if (isset($save)) {
 	if (strcmp($gallery->user->getUsername(), $uname)) {
 		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 		if ($gErrors["uname"]) {
@@ -121,8 +121,8 @@ $defaultLanguage = $gallery->user->getDefaultLanguage();
 <?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
 
-<input type=submit name="submit" value="<?php echo _("Save") ?>">
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="save" value="<?php echo _("Save") ?>">
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()'>
 </form>
 
 <script language="javascript1.2">

@@ -63,7 +63,7 @@ if ($searchstring) {
 </td>
 </form>   
 </tr>
-<tr><td height=2><img src=<?php echo $GALLERY_BASEDIR ?>images/pixel_trans.gif></td></tr>
+<tr><td height=2><img src="<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif"></td></tr>
 </table> 
 <?php
 }
@@ -255,7 +255,7 @@ else {
 	<tr><?php echo makeFormIntro("search.php"); ?>
 	<td valign="middle" align="left">
 	<input type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
-	<input type="submit" value="<?php echo _("Go") ?>!">
+	<input type="submit" name="go" value="<?php echo _("Go") ?>!">
 	</td>
 	</form>  
 	</tr>

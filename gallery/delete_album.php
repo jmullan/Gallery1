@@ -39,7 +39,7 @@ if (!$gallery->user->canDeleteAlbum($gallery->album)) {
 	exit;
 }
 
-if ($confirm) {
+if ($delete) {
 	$gallery->album->delete();
 	dismissAndReload();
 	return;
@@ -63,8 +63,8 @@ if ($gallery->album) {
 <b><?php echo $gallery->album->fields["title"] ?></b>
 <p>
 <?php echo makeFormIntro("delete_album.php"); ?>
-<input type=submit name=confirm value="<?php echo _("Delete") ?>">
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="delete" value="<?php echo _("Delete") ?>">
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
 </form>
 <p>
 <?php

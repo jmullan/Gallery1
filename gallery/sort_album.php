@@ -113,7 +113,7 @@ if ($gallery->album->getHighlight()) {
 </table>
 <br>
 <input type=submit name=confirm value="<?php echo _("Sort") ?>">
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
 </form>
 <?php
 	}

@@ -69,7 +69,7 @@ if ($gallery->session->albumName && isset($index)) {
 <?php echo makeFormIntro("highlight_photo.php"); ?>
 <input type=hidden name=index value=<?php echo $index ?>>
 <input type=submit name=confirm value="<?php echo _("Yes") ?>">
-<input type=submit value="<?php echo _("No") ?>" onclick='parent.close()'>
+<input type="button" name="no" value="<?php echo _("No") ?>" onclick="parent.close()">
 </form>
 
 <?php

@@ -38,15 +38,16 @@ if (!$gallery->user->isAdmin()) {
 	exit;	
 }
 
-if ($action) {
-	if (!strcmp($action, "Create")) {
-		header("Location: create_user.php?uname=$uname");
-	} else if (!strcmp($action, "Modify") && $uname) {
-		header("Location: modify_user.php?uname=$uname");
-	} else if (!strcmp($action, "Delete") && $uname) {
-		header("Location: delete_user.php?uname=$uname");
-	}
+if (isset($create)) {
+    header("Location: create_user.php?uname=$uname");
 }
+if ((isset($modify) || isset($delete)) && ! isset($uname)) {
+    $error=_("Please select a user");
+} elseif (isset($modify)) {
+    header("Location: modify_user.php?uname=$uname");
+} elseif (isset($delete)) {
+    header("Location: delete_user.php?uname=$uname");
+}	
 
 $displayUsers = array();
 foreach ($gallery->userDB->getUidList() as $uid) {
@@ -81,7 +82,7 @@ if (!$displayUsers) {
 } else {
 ?>
 
-<select name=uname size=15 onDblClick='my_submit("Modify")'>
+<select name="uname" size="15">
 
 <?php
 	foreach ($displayUsers as $name) {
@@ -93,26 +94,13 @@ if (!$displayUsers) {
 </select>
 
 <p>
-<input type=button value="<?php echo _("Create") ?>" onClick='my_submit("Create")'> 
+<input type="submit" name="create" value="<?php echo _("Create") ?>"> 
 <?php if (count($displayUsers)) { ?>
-<input type=button value="<?php echo _("Modify") ?>" onClick='my_submit("Modify")'>
-<input type=button value="<?php echo _("Delete") ?>" onClick='my_submit("Delete")'>
+<input type="submit" name="modify" value="<?php echo _("Modify") ?>">
+<input type="submit" name="delete" value="<?php echo _("Delete") ?>">
 <?php } ?>
 <input type=button value="<?php echo _("Done") ?>" onclick='parent.close()'>
-<input type=hidden name=action value="">
 </form>
-
-<script language="javascript1.2">
-<!--
-// position cursor in top form field
-// document.manageusers_form.uname.focus();
-
-function my_submit(action) {
-	document.manageusers_form.action.value = action;
-	document.manageusers_form.submit();
-}
-//--> 
-</script>
 
 </body>
 </html>

@@ -1,30 +1,40 @@
+2003-08-26  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4-RC2-cvs-b8
+
+	* Fixed incorrect image URL in search.php.
+
+	* User upgrade code no longer prints progress of individual users with
+	  usernames, which was a small security risk.
+
+	* Rewrote all checks against button values, which previously failed
+	  when values contained special non-HTML entities.
+	  (Merged from 1.4.1-cvs-b31,-b32,-b33)
+	
 2003-08-26  Bharat Mediratta  <bharat@menalto.com> 1.4-RC2-cvs-b7
 
-	* Fixed typos caused by the last round of merges and
-	  changed the version numbers in the ChangeLog to have "-cvs-"
-	  in them.
+	* Fixed typos caused by the last round of merges and changed the
+	  version numbers in the ChangeLog to have "-cvs-" in them.
 
 2003-08-26 Jens Tkotz  <jens@peino.de> 1.4-RC2-cvs-b6
 
-	* nearly a complete rewrite of locale tests in setup/functions.inc
+	* Nearly a complete rewrite of locale tests in setup/functions.inc.
           This fixes 2 bugs:
-          1.) when gallery runs in this environment:
+          1.) When Gallery runs in this environment:
               Linux / PHP with gettext / NO system locales.
-              In this case gallery doesnt have ML capabilities, but in older version this wasnt fetched.
+              In this case Gallery doesn't have ML capabilities, but in older
+	      versions this wasn't fetched.
+	  2.) When Gallery runs in Windows there were unnecessary (confusing)
+	      warnings.
 
-          2.) when gallery runs in windows there were unneccessay (confusing) warnings.
-
-        * Added new languages: Simplified Chinese (zh_CN) ; Finnish (fi_FI).
+        * Added new languages: Simplified Chinese (zh_CN), Finnish (fi_FI)
 
         * Synced all languages.
 
-        * Language Updates: Italian (it_IT), German (de_DE).
-
+        * Language Updates: Italian (it_IT), German (de_DE)
 
 2003-08-24 Jens Tkotz  <jens@peino.de> 1.4-RC2-cvs-b5
 
-	* Bugfix of resize photo
-	  Button "Original Size" (in english) doesnt work in languages where is not "orig" in the button.
+	* Bugfix of resize_photo.php: Button "Original Size" (in English)
+	  doesn't work in languages where the button doesn't say "Orig".
 
 2003-08-24 Jens Tkotz  <jens@peino.de> 1.4-RC2-cvs-b4
 
@@ -32,7 +42,7 @@
 
 2003-08-23 Jens Tkotz  <jens@peino.de> 1.4-RC2-cvs-b3
 
-	* Language Update: Slovanian (sl_SI)
+	* Language Update: Slovenian (sl_SI)
 
 2003-08-22 Jens Tkotz  <jens@peino.de> 1.4-RC2-cvs-b2
 
@@ -40,7 +50,7 @@
 
 2003-08-22 Jens Tkotz  <jens@peino.de> 1.4-RC2-cvs-b1
 
-	* Language Update Spanish (es_ES); German (de_DE)
+	* Language Update: Spanish (es_ES), German (de_DE)
 
 2003-08-21  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4-RC1
 

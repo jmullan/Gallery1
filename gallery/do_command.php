@@ -132,7 +132,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 
 <center>
 <form>
-<input type=submit value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
+<input type="button" value="<?php echo _("Dismiss") ?>" onclick="parent.close()">
 </form>
 </body>
 </html>

@@ -51,7 +51,7 @@ $uname = removeTags($uname);
 <br>
 <br>
 <?php
-if ($submit) {
+if ($login) {
 	if ($uname && $gallerypassword) {
 		$tmpUser = $gallery->userDB->getUserByUsername($uname);
 		if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword)) {
@@ -124,8 +124,8 @@ if ($submit) {
 
 </table>
 <p>
-<input type=submit name="submit" value=<?php echo '"' . _("Login") . '"' ?>>
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="login" value="<?php echo _("Login") ?>">
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
 </form>
 
 <script language="javascript1.2">
