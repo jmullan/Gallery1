@@ -475,8 +475,11 @@ class AlbumItem {
 			return (0);
 		}
                 $name = $this->image->name;
-		foreach (glob($dir . "/$name.preview*.$type") as $oldpreview) {
-			unlink($oldpreview);
+		$oldpreviews = glob($dir . "/$name.preview*.$type");
+		if (!empty($oldpreviews) && is_array($oldpreviews)) {
+			foreach ($oldpreviews as $oldpreview) {
+				unlink($oldpreview);
+			}
 		}
 		if ($preview) {
 			$previewtag = "preview" . time();

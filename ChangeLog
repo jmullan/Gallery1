@@ -1,4 +1,13 @@
-2004-08-05  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b93
+2004-08-06  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b95
+
+        * Fix: Prevent foreach() error from being displayed when previewing
+          watermark previews.
+
+        * Fix: Logging into Gallery as a non-admin and then trying to reset
+          the admin password failed.  The logged in user was used and the
+          resetadmin file was ignored
+
+2004-08-05  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b94
 
 	* Change: Only call srand() once, instead of once at each rand()
 	  location.

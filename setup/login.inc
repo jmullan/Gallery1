@@ -24,7 +24,8 @@
 if (isset($gallery->session->username) && !empty($gallery->session->username)) {
 	$tmpUser = $gallery->userDB->getUserByUsername($gallery->session->username);
 }
-elseif (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
+
+if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
 	if (!isset($gallery->session->resetAdminGuid)) {
 		$gallery->session->resetAdminGuid = md5(uniqid(mt_rand(), true));
 	}
