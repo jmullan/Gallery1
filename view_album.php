@@ -97,6 +97,7 @@ if ($album->fields["background"]) {
 if ($album->fields["textcolor"]) {
 	echo "BODY, TD {color:".$album->fields[textcolor]."; }";
 	echo ".head {color:".$album->fields[textcolor]."; }";
+	echo ".headbox {background-color:".$album->fields[bgcolor]."; }";
 }
 ?>
   </style>
