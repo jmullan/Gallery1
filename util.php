@@ -114,8 +114,8 @@ function popup($url, $url_is_complete=0) {
 
 	if (!$url_is_complete) {
 		$url = makeGalleryUrl($target, $args);
-		$url = "'$url'";
-	} 
+	}
+	$url = "'$url'";
 
 	return popup_js($url, "Edit", 
 		"height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
