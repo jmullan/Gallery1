@@ -266,7 +266,7 @@ function acceptableMovieList() {
 }
 
 function acceptableImageList() {
-    return array('jpg', 'gif', 'png');
+    return array('jpg', 'jpeg', 'gif', 'png');
 }
 
 function acceptableFormatList() {
@@ -364,7 +364,7 @@ function resize_image($src, $dest, $target) {
 			$gallery->app->jpegImageQuality . 
 			" -size ". $target ."x". $target ." $src".
 			" -geometry ". $target ."x" . $target .
-			" +profile '*' $out"));
+			" +profile '\*' $out"));
 		break;
 	default:
 		if (isDebugging())

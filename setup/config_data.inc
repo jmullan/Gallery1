@@ -360,9 +360,9 @@ $constants = array(
 		"desc" => "Selecting this option has Gallery automatically attempt " .
 			"to rotate images on upload, based on the orientation information " .
 			"that is stored in JPEG EXIF data by some newer digital cameras. " .
-			"Requires Jhead EXIF parser (see above).",
+			"Requires Jhead EXIF parser v.1.9 or greater (see above).",
                 "choices" => array("yes", "no"),
-                "value" => "no"
+                "value" => "yes"
         ),
 	"cacheExif" => array(
 		"prompt" => "<b>(Advanced)</b> Cache EXIF data",

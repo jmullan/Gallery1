@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2002 Bharat Mediratta
+ * Copyright (C) 2000-2003 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,10 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php if (!isset($GALLERY_BASEDIR)) {
+    $GALLERY_BASEDIR = '';
+}
+require($GALLERY_BASEDIR . "init.php"); ?>
 <?php
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {

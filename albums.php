@@ -331,7 +331,7 @@ $albumName=$gallery->album->fields["name"];
 if ($gallery->user->canWriteToAlbum($gallery->album) &&
    (!($gallery->album->fields["display_clicks"] == "no"))) {
 ?>
-<?php echo popup_link("[reset counter]", "'" . doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php") . "'" , 1)?>"
+<?php echo popup_link("[reset counter]", "'" . doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php") . "'" , 1)?>
 
 <?php
 }
