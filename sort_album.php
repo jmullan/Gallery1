@@ -74,6 +74,9 @@ if ($gallery->album->getHighlight()) {
     <td><input type="radio" name="sort" value="itemCapture">&nbsp;By Picture-Taken Date</td>
   </tr>
   <tr>
+    <td><input type="radio" name="sort" value="filename">&nbsp;By Filename</td>
+  </tr>
+  <tr>
     <td><input type="radio" name="sort" value="random">&nbsp;Randomly</td>
   </tr>
   <tr>

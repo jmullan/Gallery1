@@ -203,6 +203,24 @@ class Album {
 			} else {
 				$func .= "if (\$timeA > \$timeB) return -1; else return 1;";
 			}    
+		} else if (!strcmp($sort, "filename")) {
+			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
+			$func .= "if (\$objA->isAlbumName) { ";
+			$func .= "	\$filenameA = \$objA->isAlbumName; ";
+			$func .= "} else { ";
+			$func .= "	\$filenameA = \$objA->image->name; ";
+			$func .= "} ";
+			$func .= "if (\$objB->isAlbumName) { ";
+			$func .= "	\$filenameB = \$objB->isAlbumName; ";
+			$func .= "} else { ";
+			$func .= "	\$filenameB = \$objB->image->name; ";
+			$func .= "} ";
+			//$func .= "print \$filenameA \$filenameB; ";
+			if (!$order) {
+				$func .= "return (strcmp(\$filenameA, \$filenameB)); ";
+			} else {
+				$func .= "return (strcmp(\$filenameB, \$filenameA)); ";
+			}
 		}
 		
 		usort($this->photos, create_function('$a,$b', $func));
