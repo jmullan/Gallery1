@@ -30,7 +30,7 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
 
-$cookieName = $gallery->app->sessionVar."add_photos_mode";
+$cookieName = $gallery->app->sessionVar . "_add_photos_mode";
 $modeCookie = isset($HTTP_COOKIE_VARS[$cookieName]) ? $HTTP_COOKIE_VARS[$cookieName] : null;
 if (isset($mode)) {
 	if ($modeCookie != $mode) {

@@ -1,3 +1,13 @@
+2004-06-15  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b195
+
+	* Fix: Change the global "$sessionVar" to something which won't confuse
+	  the config wizard and create a $gallery->app->sessionVar string
+	  which gets longer on each re-configuration.
+
+	* Change: Correct the session cookie names in add_photos and slideshow so that
+	  they have the underscore before their name.  "gallery_sessionaddphotos_mode"
+	  was kind of unappealing to look at.
+
 2004-06-15 Jens Tkotz <jens@peino.de>  1.4.4-cvs-b194
 
 	* New: Added outOfDateAlbums to AlbumDB. 

@@ -65,15 +65,15 @@ if (!$gallery->register_globals) {
  */
 
 if(! isset($gallery->app->sessionVar)) {
-	$sessionVar = "gallery_session_".md5(getcwd()); 
+	$gSessionVar = "gallery_session_".md5(getcwd()); 
 } else {
-	$sessionVar = $gallery->app->sessionVar . "_" . md5($gallery->app->userDir);
+	$gSessionVar = $gallery->app->sessionVar . "_" . md5($gallery->app->userDir);
 }
-session_register($sessionVar);
+session_register($gSessionVar);
 
-if (isset($$sessionVar)) {
+if (isset($$gSessionVar)) {
 	/* Get a simple reference to the session container (for convenience) */
-	$gallery->session =& $$sessionVar;
+	$gallery->session =& $$gSessionVar;
 
 	/* Make sure our session is current.  If not, nuke it and restart. */
 	/* Disabled this code -- it has too many repercussions */
@@ -86,17 +86,17 @@ if (isset($$sessionVar)) {
 	}
 } else {
 	/* Register the session variable */
-	session_register($sessionVar);
+	session_register($gSessionVar);
 
 	/* Create a new session container */
 	if (isset($useStdClass)) {
-		$$sessionVar = new stdClass();
+		$$gSessionVar = new stdClass();
 	} else {
-		$$sessionVar = new GallerySession();
+		$$gSessionVar = new GallerySession();
 	}
 
 	/* Get a simple reference to the session container (for convenience) */
-	$gallery->session =& $$sessionVar;
+	$gallery->session =& $$gSessionVar;
 
 	/* Tag this session with the gallery version */
 	$gallery->session->version = $gallery->version;
