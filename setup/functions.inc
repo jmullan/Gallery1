@@ -652,7 +652,7 @@ function check_locale() {
 	$nls=getNLS();
 	$gallery_languages=array_keys(gallery_languages());
 	$system_locales=array();
-
+	
 	$available_locales=array();
 	$maybe_locales=array();
 	$unavailable_locales=array();
@@ -661,29 +661,30 @@ function check_locale() {
 	if (getOS() != OS_WINDOWS) { 
 		# Unix / Linux
 		# Check which locales are installed
-		$tmp=explode("\n", shell_exec("locale -a"));
+
+		// PHP on NetBSD seems to crash when explode on empty string
+		$se_locale=shell_exec("locale -a");
+		if ($se_locale != NULL) {
+			$tmp=explode("\n", $se_locale);
+		}
 		if(count($tmp) >3) {
 			$system_locales=$tmp;
 		} elseif (@is_readable("/etc/locale.gen")) {
 			$system_locales=explode("\n",shell_exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1'));
 		} elseif (@is_readable("/usr/share/locale/")) {
-			$system_locales=array_merge($system_locales, explode("\n",shell_exec('ls /usr/share/locale/')));
+			$system_locales=explode("\n",shell_exec("ls /usr/share/locale"));
 		}
 	}
 
-
-	/* DAMN, there are none we use Linux and our PHP uses gettext*/
-	if(     (sizeof($system_locales) == 0 ) &&
-		(getOS() == OS_LINUX ) &&
-		(in_array("gettext", get_loaded_extensions() ) && function_exists('gettext') )
-	) {
+	/* DAMN, there are none we use Linux and our PHP uses gettext*/ if(
+	sizeof($system_locales) == 0 && getOS() == OS_LINUX &&
+	gettext_installed()) {
 		return NULL;
 	}
 
 	/* There were at least one system locale
 	** Now lets test if our languages are supported by the system
 	*/
-	
 	foreach ($gallery_languages as $locale) {
 		$aliases=array();
 		
@@ -700,24 +701,31 @@ function check_locale() {
 			$keylist = array_keys($nls['alias'],$locale);
 			$aliases = $keylist;
 			if (getOS() != OS_WINDOWS) {
+				$sub='^(' . substr($locale,0,2) . '|' . implode('|', $keylist) . ')';
                                 foreach ($system_locales as $key => $value) {
-                                        if (ereg('^(' . substr($locale,0,2) . '|' . implode('|', $keylist) . ')', $value)) {
-                                                $aliases[$key] = $value;
+                                        if (ereg($sub, $value)) {
+                                                $aliases[] = $value;
                                         }
                                 }
 			}
 		} else {
                         foreach ($system_locales as $key => $value) {
                                 if (ereg('^' . substr($locale,0,2), $value)) {
-                                        $aliases[$key] = $value;
+                                        $aliases[] = $value;
                                 }
                         }
 		}
 
+		$aliases=array_unique($aliases);
+		$noway=Array ('zh_TW.eucTW'); 
 		if ($aliases) {
 			foreach ($aliases as $test) {
-				if (setlocale(LC_ALL,$test)) {
-					$maybe_locales[$locale][]=$test;
+				// We do this because all locales in $noway seem to crash at least NetBSD
+				// Maybe changed in future
+				if (!in_array($test,$noway)) {
+					if (setlocale(LC_ALL,$test)) {
+						$maybe_locales[$locale][]=$test;
+					}
 				}
 			}
 			if (! isset($maybe_locales[$locale])) {
@@ -805,11 +813,12 @@ function config_maybe_locales() {
 
 	$choices=array();
 	if (sizeof($available) > 0) {
-	foreach ($available as $choice => $value) { 
-		$choices[$choice]=$nls['language'][$value];
-	}
+		if (getOS() == OS_OTHER) $choices=array("" => _("System locale"));
+		foreach ($available as $choice => $value) { 
+			$choices[$choice]=$nls['language'][$value];
+		}
 
-	$avail_keys=array_keys($available);
+		$avail_keys=array_keys($available);
 	} elseif (sizeof($maybe) > 0) {
 		if (getOS() != OS_LINUX) $choices=array("" => _("System locale"));
 		foreach ($maybe as $key => $aliases) {
@@ -829,14 +838,15 @@ function config_maybe_locales() {
 	}
 	
 	if (! isset ($skip)) {
+	$avail_keys=array_keys($choices);
         foreach ($unavailable as $key) {
-				if (sizeof($choices) == 1) {
+		if (sizeof($choices) == 1) {
 			$results["locale_alias['$key']"] = array (
 				"type" => "hidden", 
-					"value" => $avail_keys[0],
+				"value" => $avail_keys[0],
 				"desc" => "locale_alias[$key]",
 				"prompt" => "locale_alias[$key]"
-					);
+				);
 			continue;
 		}
 
