@@ -29,10 +29,30 @@ class Image {
 	var $thumb_y;
 	var $thumb_width;
 	var $thumb_height;
+	var $raw_width;
+	var $raw_height;
 
 	function setFile($dir, $name, $type) {
 		$this->name = $name;
 		$this->type = $type;
+
+		list($w, $h) = getDimensions("$dir/$this->name.$this->type");
+		$this->raw_width = $w;
+		$this->raw_height = $h;
+	}
+
+	function integrityCheck($dir) {
+		$changed = 0;
+		$filename = "$dir/$this->name.$this->type";
+		if (!isMovie($this->type)) {
+			if (!$this->raw_width) {
+				list($w, $h) = getDimensions($filename);
+				$this->raw_width = $w;
+				$this->raw_height = $h;
+				$changed = 1;
+			}
+		}
+		return $changed;
 	}
 
 	function resize($dir, $target, $pathToResized="") {
@@ -158,11 +178,8 @@ class Image {
 		             $this->thumb_width, $this->thumb_height);
 	}
 
-	#-- XXX since raw dims are not stored, we fetch them each time ---
-	#--     Yukkie!
 	function getRawDimensions($dir) {
-		list($w, $h) = getDimensions("$dir/$this->name.$this->type");
-		return array($w, $h);
+		return array($this->raw_width, $this->raw_height);
 	}
 }	
 
