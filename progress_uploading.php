@@ -49,71 +49,12 @@ This page will go away automatically when the upload is complete.  Please be pat
 <table border=0 cellpadding=0 cellspacing=0>
  <tr>
   <td> <img src=<?=image("computer.gif")?> width=31 height=32> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
-  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("uploading.gif")?> width=160 height=11> </td>
   <td> <img src=<?=image("computer.gif")?> width=31 height=32> </td>
  </tr>
 </table>
 
 </center>
 
-<script language="javascript1.2">
-// <!--
-var start_pad = 2;
-var end_pad = 2;
-var sel = 0;
-var mod = 3;
-var timer;
-
-var image_on = new Image();
-    image_on.src = '<?=image("nav_dot_left.gif")?>';
-var image_off = new Image();
-    image_off.src = '<?=image("pixel_trans.gif")?>';
-
-function animate() {
-
-	for (var i = start_pad; i < document.images.length - end_pad; i++) {
-		if (i % mod == sel) {
-			document.images[i].src = image_on.src;
-		} else {
-			document.images[i].src = image_off.src;
-		}
-	}
-
-	sel++;
-	if (sel == mod) {
-		sel = 0;
-	}
-
-	start_animation();
-}
-
-function start_animation() {
-	timer=window.setTimeout("animate();",250);
-}
-
-function stop_animation() {
-	window.clearTimeout(timer);
-}
-
-// -->
 </script>
 </body>
