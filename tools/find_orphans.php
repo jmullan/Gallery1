@@ -97,6 +97,10 @@ function findOrphans() {
 	asort($orphaned);
 	return $orphaned;
 }
+
+$orphans = findOrphans();
+
+doctype();
 ?>
 <html>
 <head>
@@ -109,28 +113,36 @@ function findOrphans() {
 <?php  
         includeHtmlWrap("gallery.header");
 ?>
-<?php if (!isset($update)) { ?>
-	<table>
-	<tr><th>Orphaned Album</th><th>&nbsp;</th><th>Parent Album</th></tr>
-<?php
-	$orphans = findOrphans();
+<p align="center" class="popuphead"><?php echo _("Orphan Elements") ?></p>
 
-	foreach ($orphans as $childname => $parentname) {
-		echo "\t<tr><td>" . $childname . "</td><td>=&gt;</td><td>" . ($parentname ? $parentname : "Gallery Root") . "</td></tr>\n";
-	}
+<?php
+if (! empty ($orphans)) {
+	if (!isset($update)) { ?>
+	<table>
+	<tr><th><?php echo _("Orphaned Album") ?></th><th>&nbsp;</th><th><?php echo _("Parent Album") ?></th></tr>
+<?php
+		foreach ($orphans as $childname => $parentname) {
+			echo "\t<tr><td>" . $childname . "</td><td>=&gt;</td><td>" . ($parentname ? $parentname : _("Gallery Root")) . "</td></tr>\n";
+		}
 ?>
 	</table>
 <?php echo makeFormIntro("tools/find_orphans.php", array("method" => "GET")); ?>
 	<input type="hidden" name="update" value="1">
-	<input type="submit" value="Correct Them!">
+	<input type="submit" value="<?php echo _("Correct Them!") ?>">
 	</form>	
 <?php 
 } // !isset(update) 
-else { 
-	attachOrphans();
-	echo "attachOrphans();<br /><br />";
-	echo "<a href='" . makeAlbumUrl() . "'>Return to Gallery</a>";
+	else { 
+		attachOrphans();
+		echo "attachOrphans();<br /><br />";
+		echo '<a href="' . makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>';
+	}
+} else {
+	// No Orphans
+	echo "\n<p align=\"center\">". _("There are no orphan Elements.") . "</p>";
 }
 ?>
 <hr>
 <?php includeHtmlWrap("gallery.footer"); ?>
+</body>
+</html>
