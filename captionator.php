@@ -237,9 +237,19 @@ if ($numPhotos) {
 	<td bgcolor="<?php echo $bordercolor ?>" height="1"><?php echo $pixelImage ?></td>
 </tr>
 <tr>
-	<td width="<?php echo $thumbSize ?>" align="center" valign="top"><br>
-		<?php echo $gallery->album->getThumbnailTag($i, $thumbSize); ?>
-	
+	<td width="<?php echo $thumbSize ?>" align="center" valign="top" class="modcaption"><br>
+<?php
+		$photo = $gallery->album->getPhoto($i);
+		list($width, $height) = $photo->getDimensions();
+		if (!($photo->isMovie())) {
+			echo popup_link($gallery->album->getThumbnailTag($i, $thumbSize).
+						"<br />"._("(click to enlarge)"),
+					$gallery->album->getPhotoPath($i),1,false,
+					$height+20,$width+20);
+		} else {
+			echo $gallery->album->getThumbnailTag($i,$thumbSize);
+		}
+?>	
 	</td>
 	<td height="1"><?php echo $pixelImage ?></td>
 	<td valign="top"><?php
