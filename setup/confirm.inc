@@ -458,7 +458,7 @@ if (!$error) {
 		echo '<input type="submit" name="go_next" disabled="disabled" value="' . _("Save Config") .' ->">';
 	} else {
 		echo '<br><div class="error" id="top">';
-		echo echo pluralize_n2(ngettext("One error.", "%d errors.", $error), $error, _("No errors."));
+		echo pluralize_n2(ngettext("One error.", "%d errors.", $error), $error, _("No errors."));
 		echo _("See Details below.");
 		echo '</div>';
 	}
