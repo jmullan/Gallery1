@@ -2301,11 +2301,15 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 			break;
 		case "ImageMagick":
 			/* Preserve comment, EXIF data if a JPEG if $keepProfiles is set. */
-			exec_wrapper(ImCmd('convert', "-quality $quality "
+			exec_wrapper(ImCmd('convert',
+					  "-quality $quality "
 					. ($target ? "-size ${target}x${target} " : '')
-					. ($keepProfiles ? ' ' : ' +profile \'*\' ')					
+					. ($keepProfiles ? ' ' : ' +profile \'*\' ')
+					. ' -coalesce ' /* Better support for animated GIFs */
 					. $srcFile
 					. ($target ? " -geometry ${target}x${target} " : ' ')
+					/* '-deconstruct' turns animated images back into the separate pieces which were merged using
+					'-coalesce', but causes problems with some images, so we don't want to use it. */
 					. $outFile));
 			break;
 		default:
