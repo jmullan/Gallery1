@@ -234,8 +234,8 @@ function getCommentKey(&$comment) {
 function isBlacklistedComment(&$comment) {
     $blacklist = loadBlacklist();
     foreach ($blacklist['entries'] as $key => $entry) {
-	if (ereg("$entry", $comment->getCommentText()) ||
-	    ereg("$entry", $comment->getName())) {
+	if (ereg($entry, $comment->getCommentText()) ||
+	    ereg($entry, $comment->getName())) {
 	    return true;
 	}
     }
