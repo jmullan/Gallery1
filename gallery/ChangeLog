@@ -1,3 +1,27 @@
+2001-05-23  Bharat Mediratta  <bharat@menalto.com>
+
+	* Bumped the version to 1.03-cvs
+
+	* Fixed a minor bug in the wizard.  In the past, if you had a
+	  required binary (such as a NetPBM binary) in your path and you
+	  also specified a directory location in the wizard, it used to
+	  take the location from the path instead of the one you
+	  specified.  This made it difficult for you to install a new
+	  version of NetPBM and tell Gallery where it was located.  Now it
+	  uses the path you specify.
+
+	* Bugfix: if you're viewing an album that has N hidden photos as an
+	  unprivileged user (ie, you can't see the hidden photos) then the
+	  last N photos will not display correctly if you page through
+	  them one at a time in full/resized mode (ie, using
+	  view_photo.php).  
+
+2001-05-20  Bharat Mediratta  <bharat@menalto.com>
+
+	* Fixed bug where clicking the last-photo button takes you to
+	  the next photo (not the last one).  Thanks to Ken Frank
+	  for submitting the bug with the patch.
+
 2001-05-12  Bharat Mediratta  <bharat@menalto.com>
 
 	* 1.02 released
