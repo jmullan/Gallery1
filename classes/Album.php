@@ -767,7 +767,6 @@ class Album {
 		$photo->setKeywords($keywords);
         }
 
-
 	function rotatePhoto($index, $direction) {
 		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);
@@ -780,6 +779,7 @@ class Album {
 	}
 
 	function makeThumbnail($index) {
+		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);
 		$photo->makeThumbnail($this->getAlbumDir(), $this->fields["thumb_size"]);
 	}
