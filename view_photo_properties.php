@@ -102,7 +102,10 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 	$myExif = $gallery->album->getExif($index, $forceRefresh);
 
 	if ($myExif) {
-		array_pop($myExif); // get rid of empty element at end
+		// following line commented out because we were losing
+		// comments from the Exif array.  This is probably due
+		// to differences in versions of jhead.
+		// array_pop($myExif); // get rid of empty element at end
 		array_shift($myExif); // get rid of file name at beginning
 		$sizeOfExif = sizeof($myExif);
 		$sizeOfTable = $sizeOfExif / 2;

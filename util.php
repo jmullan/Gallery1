@@ -924,7 +924,13 @@ function getExif($file) {
 	if ($status == 0) {
 	        while (list($key,$value) = each ($return)) {
 	            $explodeReturn = explode(':', $value, 2);
-	            $myExif[trim($explodeReturn[0])] = trim($explodeReturn[1]);
+		    if ($myExif[trim($explodeReturn[0])]) { 
+		    	$myExif[trim($explodeReturn[0])] .= "<br>" . 
+		    		trim($explodeReturn[1]);
+		    } else {
+		    	$myExif[trim($explodeReturn[0])] = 
+		    		trim($explodeReturn[1]);
+		    }
 	        }
 	}
 
