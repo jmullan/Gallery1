@@ -365,10 +365,7 @@ var slideShowLow = "<?php echo "view_album.php?set_albumName=".$gallery->session
 
 // Browser capabilities detection ---
 // - assume only IE4+ and NAV6+ can do image resizing, others redirect to low 
-if (is_ie4up || is_opera5up || is_nav6up) {
-    //-- it's all good ---
-} else {
-    //-- any other browser we go low-tech ---
+if ( (is_ie && !is_ie4up) || (is_opera && !is_opera5up) || (is_nav && !is_nav6up)) {
     document.location = slideShowLow;
 }
 

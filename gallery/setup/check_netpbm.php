@@ -2,13 +2,8 @@
 <?php 
 
 	$GALLERY_BASEDIR="../";
-	require($GALLERY_BASEDIR . 'util.php');
 	require($GALLERY_BASEDIR . 'setup/init.php');
 	require($GALLERY_BASEDIR . 'setup/functions.inc');
-	initLanguage();
-
-	// We set this to false to get the config stylesheet
-	$GALLERY_OK=false;
 ?>
 <html>
 <head>
@@ -159,17 +154,22 @@ $binaries = array("giftopnm",
 
 foreach ($binaries as $bin) {
 	$result=checkNetPbm($bin);
+	if (isset($result['details'])) {
+		$width_1col="30%";
+	} else {
+		$width_1col="100%";
+	}
 	echo "\n\t\t<tr>";
-	echo "\n\t\t\t". '<td class="desc" width="100%">' . _("Checking:"). ' <b>' . $result[0] . '</b></td>';
+	echo "\n\t\t\t". '<td class="desc" width="'. $width_1col .'">' . _("Checking:"). ' <b>' . $result[0] . '</b></td>';
 	if (isset($result['error'])) {
 		echo "\n\t\t\t". '<td style="white-space:nowrap;" class="errorpct">'. $result['error'] . '</td>';
 	} else {
 		echo "\n\t\t\t". '<td style="white-space:nowrap;" class="successpct">'. $result['ok'] . '</td>';
 	}
 	if (isset($result['details'])) {
-		echo "\n\t\t\t" . '<td class="desc">';
+		echo "\n\t\t\t" . '<td width="100%" class="desc">';
 		foreach ($result['details'] as $detail) {
-			echo "\n\t\t\t" . $detail . "<br>";
+			echo "\n\t\t\t<br>" . $detail;
 		}
 	}
 	echo "\n\t\t\t</td>";

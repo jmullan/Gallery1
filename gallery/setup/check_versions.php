@@ -1,78 +1,7 @@
 <?php /* $Id$ */ ?>
 <?php 
-$GALLERY_BASEDIR="../";
-require($GALLERY_BASEDIR . "util.php");
-require($GALLERY_BASEDIR . "setup/init.php");
-
-initLanguage();
-if (getOS() == OS_WINDOWS) {
-       	if (fs_file_exists("SECURE")) {
-	       	print _("You cannot access this file while gallery is in secure mode.");
-	       	exit;
-       	}
-}
-if (!function_exists('fs_is_readable')) {
-       	function fs_is_readable($filename) {
-	       	return @is_readable($filename);
-       	}
-}
-
-// No translation yet, as we may not release this in 1.4.1
-function checkVersions() {
-	global $GALLERY_BASEDIR, $gallery, $show_details;
-	$manifest=$GALLERY_BASEDIR."manifest.inc";
-	$errors=array();
-	$warnings=array();
-	$oks=array();
-	if (!fs_file_exists($manifest)) {
-	       	$errors["manifest.inc"]=_("File missing or unreadable.  Please install then re-run this test.");
-		return array($errors, $warnings, $oks);
-	}
-	if (!function_exists('getCVSVersion')) {
-		$errors['util.php']=sprintf(_("Please ensure that %s is the latest version."), "util.php");
-		return array($errors, $warnings, $oks);
-	}
-	include $manifest;
-	print sprintf(_("Testing status of %d files."), count($versions));
-	foreach ($versions as $file => $version) {
-		$found_version=getCVSVersion($file);
-		if ($found_version === NULL) {
-		       	if (!empty($show_details)) {
-			       	print "<br>\n";
-			       	print sprintf(_("Cannot read file %s."), $file);
-			}
-			$errors[$file]=_("File missing or unreadable.");
-			continue;
-		} else if ($found_version === "") {
-		       	if (!empty($show_details)) {
-			       	print "<br>\n";
-			       	print sprintf(_("Version information not found in %s.  File must be old version or corrupted."), $file);
-		       	}
-		       	$errors[$file]=_("Missing version");
-		       	continue;
-	       	} else if ($found_version < $version) {
-		       	if (!empty($show_details)) {
-			       	print "<br>\n";
-			       	print sprintf(_("Problem with %s.  Expected version %s (or greater) but found %s."), $file, $version, $found_version);
-		       	}
-		       	$errors[$file]=sprintf(_("Expected version %s (or greater) but found %s."), $version, $found_version);
-	       	} else if ($found_version > $version) {
-		       	if (!empty($show_details)) {
-			       	print "<br>\n";
-				print sprintf(_("%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
-			}
-			$warnings[$file]=sprintf(_("%s is a more recent version than expected.  Expected version %s but found %s."), $file, $version, $found_version);
-		} else {
-		       	if (!empty($show_details)) {
-			       	print "<br>\n";
-			       	print sprintf(_("%s OK"), $file);
-		       	}
-			$oks[$file]="OK";
-		}
-			
-	}
-       	return array($errors, $warnings, $oks);
-}
+	$GALLERY_BASEDIR="../";
+	require($GALLERY_BASEDIR . "setup/init.php");
 
 
 // We set this to false to get the config stylesheet
@@ -91,19 +20,19 @@ require($GALLERY_BASEDIR . "setup/functions.inc");
 <h1 class="header"><?php echo _("Check Versions") ?></h1>
 
 <?php 
-if (!empty($show_details)) {
+if (empty($show_details)) {
+       	$show_details=false;
+}
+if ($show_details) {
        	print sprintf(_("%sClick here%s to hide the details"),
 		       	'<a href="check_versions.php?show_details=0">','</a>');
 } else {
        	print sprintf(_("%sClick here%s to see more details"),
 		       	'<a href="check_versions.php?show_details=1">','</a>');
-}
-print "<p>";
+}             
+print "<p>";          
 
-$results=checkVersions();
-$errors=$results[0];
-$warnings=$results[1];
-$oks=$results[2];
+list($oks, $errors, $warnings)=checkVersions($show_details);
 if  ($errors) {
 	print "<p>";
 	print '<span class="errorlong">';
@@ -117,7 +46,7 @@ if  ($errors) {
 if  ($warnings) {
 	print "<p>";
 	print '<span class="warninglong">';
-       	print sprintf(_("The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is expected."), Gallery());
+       	print sprintf(_("The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."), Gallery());
 	print '</span>';
        	print "<br><br>\n";
        	foreach ($warnings as $file => $warning) {
@@ -128,6 +57,5 @@ if  ($warnings) {
 <?php print sprintf(_("%d files up-to-date."), count($oks)); ?>
 <br>
 </span>
-
 </body>
 </html>
