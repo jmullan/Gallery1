@@ -118,67 +118,96 @@ $checklist = array(
 $features = array(
 	"zip" => array("zipinfo", "unzip"),
 	"rewrite" => array("GALLERY_REWRITE_OK"),
+	"mirror" => array("mirrorSites"),
 );
 
 $constants = array(
 	"galleryTitle" => array(
-		"desc" => "The Gallery Title",
-		"value" => "Gallery"
+		"prompt" => "Gallery Title",
+		"desc" => "The name of your gallery.  Eg. <i>My Cool Photos</i>",
+		"value" => "Gallery",
+		"attrs" => array("size" => 50),
 	),
 	"editPassword" => array(
-		"desc" => "The password for the <i>admin</i> account",
+		"prompt" => "Admin password",
+		"desc" => "The password for the <i>admin</i> account.  Unfortunately, you're " .
+			"required to re-enter this every time you reconfigure Gallery. " .
+			"We'll fix this in a future release!",
 		"type" => "text",
 		"dont-write" => 1,
+		"attrs" => array("size" => 50),
 	),
 	"tmpDir" => array(
-		"desc" => "The filesystem path of a temp directory",
+		"prompt" => "Temporary directory",
+		"desc" => "The filesystem path to a temp directory.  Eg. <i>/tmp</i> or " .
+			"<i>c:\windows\temp</i>",
 		"value" => getenv("TMP"),
 		"filename" => 1,
 		"require-write-dir" => 1,
+		"attrs" => array("size" => 50),
 	),
 	"pnmDir" => array(
-		"desc" => "The filesystem path to your NetPBM binaries.",
+		"prompt" => "Path to NetPBM",
+		"desc" => "The path to NetPBM on your system.  If you downloaded NetPBM " .
+			"from the Gallery download page, don't forget to make the files " .
+			"executable.",
 		"value" => locateDir("jpegtopnm", $gallery->app ? $gallery->app->pnmDir : ""),
 		"verify_func" => "check_graphics",
 		"fail-netpbm" => "I can't find NetPBM at the location you provided.  " .
 			$common_messages["getting-netpbm"],
 		"fail-netpbm-partial" => $common_messages["fail-netpbm-partial"],
 		"filename" => 1,
+		"attrs" => array("size" => 50),
 	),
 	"highlight_size" => array(
+		"prompt" => "Highlight size",
 		"desc" => "The target size (in pixels) of thumbnails " .
 			  "shown in the gallery page (highlight images)",
- 		"value" => 200
+ 		"value" => 200,
+		"attrs" => array("size" => 5),
 	),
 	"zipinfo" => array(
-		"desc" => "The filesystem path to the 'zipinfo' binary",
+		"prompt" => "Zipinfo",
+		"desc" => "The filesystem path to the 'zipinfo' binary.  This is optional " .	
+			"so if you don't have it, don't worry about it too much",
 		"value" => locateFile("zipinfo"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
 		"optional" => 1,
 		"filename" => 1,
+		"attrs" => array("size" => 50),
 	),
 	"unzip" => array(
-		"desc" => "The filesystem path to the 'unzip' binary",
+		"prompt" => "Unzip",
+		"desc" => "The filesystem path to the 'unzip' binary.  This is optional " .	
+			"so if you don't have it, don't worry about it too much",
 		"value" => locateFile("unzip"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
 		"optional" => 1,
 		"filename" => 1,
+		"attrs" => array("size" => 50),
 	),
 	"use_exif" => array(
-		desc => "The filesystem path to the 'jhead' exif parser (optional)",
+		"prompt" => "EXIF",
+		"desc" => "The filesystem path to the 'jhead' exif parser.  This is optional " .	
+			"so if you don't have it, don't worry about it too much",
 		"value" => locateFile("jhead"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
 		"optional" => 1,
 		"filename" => 1,
+		"attrs" => array("size" => 50),
 	),
 	"movieThumbnail" => array(
-		"desc" => "The filesystem path to the thumbnail image to show for movies",
-		"value" => $GALLERY_DIR . "/images/movie.thumb.jpg"
+		"prompt" => "Thumbnail image",
+		"desc" => "The filesystem path to the thumbnail image to show for movies.  Eg. " .
+			"/home/foo/thumbnail.jpg",
+		"value" => $GALLERY_DIR . "/images/movie.thumb.jpg",
+		"attrs" => array("size" => 50),
 	),
 	"albumDir" => array(
+		"prompt" => "Album directory",
 		"desc" => "The full path on physical disk to the directory " .
 			"where your photos will be stored.  This directory " .
 			"should start off empty -- Gallery will fill it. " .
@@ -189,7 +218,60 @@ $constants = array(
 		"value" => getenv("DOCUMENT_ROOT") . "/albums",
 		"require-write-dir" => 1,
 		"filename" => 1,
+		"attrs" => array("size" => 50),
 	),
+	"photoAlbumURL" => array(
+		"prompt" => "Gallery URL",
+		"desc" => "The full URL to the Gallery web application.  Eg. " .
+			"<i>http://www.foo.com/gallery</i>",
+		"value" => "http://" . getenv("SERVER_NAME") . $GALLERY_URL,
+		"no-trailing-slash" => 1,
+		"attrs" => array("size" => 50),
+	),
+	"albumDirURL" => array(
+		"prompt" => "Albums URL",
+		"desc" => "The full URL to your album directory (specified above) " .
+			"on your web server.  Eg. <i>http://www.foo.com/albums</i>",
+		"value" => "http://" . getenv("SERVER_NAME") . "/albums",
+		"no-trailing-slash" => 1,
+		"attrs" => array("size" => 50),
+	),
+	"mirrorSites" => array(
+		"prompt" => "Mirror sites",
+		"desc" => "A list of URLs that contain mirrors of your " .
+			"albums directory.  Specify one URL line with the ones " .
+			"that are more reliable towards the top.  Eg. <center><i>" .
+			"http://www.fast.server/albums<br>http://www.other.server/albums</i>" .
+			"</center>",
+		"optional" => 1,
+		"type" => "textarea",
+		"attrs" => array("cols" => 50, "rows" => 5),
+	),
+	"debug" => array(
+		"prompt" => "<b>(Advanced)</b> Debug mode",
+		"desc" => "Turn debug mode on so that you can diagnose problems?",
+		"choices" => array("yes", "no"),
+		"value" => "no",
+	),
+	"expectedExecStatus" => array(
+		"prompt" => "<b>(Advanced)</b> Status code",
+		"desc" => "The status code Gallery expects to see after a successful " .
+			"exec() call.  It'll try to figure this out on its own so you " .
+			"probably won't need to change this value unless you have problems.",
+		"value" => detect_exec_status(),
+		"attrs" => array("size" => 5),
+	),
+	"sessionVar" => array(
+		"prompt" => "<b>(Advanced)</b> Session variable",
+		"desc" => "This is the session variable used to " .
+			"contain all Gallery session information. " .
+			"Change this if there is a conflict between " .
+			"Gallery and another PHP app on your website.",
+		"value" => "gallery_session",
+		"attrs" => array("size" => 20),
+	),
+
+	/* Keep this one at the end of the list because it's hidden */
 	"userDir" => array(
 		"desc" => "Filesystem location of user information",
 		"type" => "hidden",
@@ -197,117 +279,123 @@ $constants = array(
 		"eval" => '"$albumDir/.users"',
 		"filename" => 1,
 	),
-	"photoAlbumURL" => array(
-		"desc" => "The full URL to the Gallery web app",
-		"value" => "http://" . getenv("SERVER_NAME") . $GALLERY_URL,
-		"no-trailing-slash" => 1,
-	),
-	"albumDirURL" => array(
-		"desc" => "The relative path to the album directory (specified above) " .
-			"on your web server",
-		"value" => "/albums",
-		"no-trailing-slash" => 1,
-	),
-	"debug" => array(
-		desc => "Turn debug mode on so that you can diagnose problems?",
-		choices => array("yes", "no"),
-		value => "no",
-	),
-	"expectedExecStatus" => array(
-		desc => "(Advanced) Status code returned by a successful exec() call." .
-			"  You probably won't need to change this value",
-		value => detect_exec_status()
-	),
-	"sessionVar" => array(
-		desc => "(Advanced) The session variable used to " .
-			"contain all Gallery session information. " .
-			"Change this if there is a conflict between " .
-			"Gallery and another PHP app on your website.",
-		value => "gallery_session",
-	),
 );
 
 $defaults = array(
 	"bordercolor" => array(
- 		"desc" => "Color of image borders",
- 		"value" => "black"
+		"prompt" => "Border color",
+ 		"desc" => "Default color of image borders",
+ 		"value" => "black",
+		"attrs" => array("size" => 10),
 	),
 	"border" => array(
-		"desc" => "Size of image borders",
+		"prompt" => "Border width",
+		"desc" => "Default width of image borders",
 		"value" => 1,
 		"choices" => array("off", 1, 2, 3)
 	),
 	"font" => array(
-		"desc" => "Font face",
-		"value" => "arial"
+		"prompt" => "Default Font",
+		"desc" => "Default font face.  Eg. <i>arial</i> or <i>trebuchet</i>",
+		"value" => "arial",
+		"attrs" => array("size" => 10),
 	),
 	"cols" => array(
-		"desc" => "Number of columns",
-		"value" => 3
+		"prompt" => "Default Columns",
+		"desc" => "The default number of columns in an album",
+		"value" => 3,
+		"attrs" => array("size" => 10),
 	),
 	"rows" => array(
-		"desc" => "Number of rows",
-		"value" => 3
+		"prompt" => "Default Rows",
+		"desc" => "The default number of rows in an album",
+		"value" => 3,
+		"attrs" => array("size" => 10),
 	),
 	"thumb_size" => array(
-		"desc" => "The target size (in pixels) of thumbnails " .
-			"shown in the albums",
-		"value" => 150 
+		"prompt" => "Thumbnail size",
+		"desc" => "The default target size (in pixels) of album thumbnails.",
+		"value" => 150,
+		"attrs" => array("size" => 10),
 	),
 	"resize_size" => array(
-		"desc" => "The size images will be resized to this size ".
-			"upon upload. ",
+		"prompt" => "Resized image size",
+		"desc" => "When large images are added to an album, an intermediary version " .
+			"will automatically be generated at this size",
 		"value" => 600,
 		"choices" => array("off", 400, 500, 600, 700, 800)
 	),
 	"fit_to_window" => array(
-		"desc" => "Auto fit-to-window for images without a resized copy",
+		"prompt" => "Fit-to-window",
+		"desc" => "When viewing photos which don't have an intermediary version, " .
+			"Gallery can automatically resize the image to fit the viewer's " .
+			"browser window (using JavaScript).  This may not work in embedded " .
+			"environments such as Nuke",
 		"value" => "no",
 		"choices" => array("yes", "no")
 	),
 	"use_fullOnly" => array(
-		"desc" => "Offer visitors ability to specify preference for full-size or resized images",
+		"prompt" => "Visitor size prefs",
+		"desc" => "Offer visitors the choice of always viewing the full sized version" .
+			"of an image instead of the intermediary size.  This setting only " .
+			"lasts for the visitor's session",
 		"value" => "no",
 		"choices" => array("yes", "no")
 	),
 	"print_photos" => array(
-		"desc" => "Which photo printing service do you want to let visitors use?",
+		"prompt" => "Printing Service",
+		"desc" => "Allow visitors to print photos directly from the album.",
 		"value" => "shutterfly",
 		"choices" => array("none", "shutterfly")
 	),
 	"returnto" => array(
-		"desc" => "Display the 'Return to Album List' link",
+		"prompt" => "Gallery Link",
+		"desc" => "Display the top level Gallery link within the album?  If you " .
+			"turn this feature off, the user will not be able to navigate out " .
+			"of the album.  This is only useful when you want to embed an " .
+			"album within a website and not allow users to (easily) view the " .
+			"other albums in the gallery",
 		"value" => "yes",
 		"choices" => array("yes", "no")
 	),
 	"showOwners" => array(
-		desc => "Show album owner's name on the gallery page",
-		choices => array("yes", "no"),
-		value => "no",
+		"prompt" => "Show Owner",
+		"desc" => "Show album owner's name on the top level Gallery page?",
+		"choices" => array("yes", "no"),
+		"value" => "no",
 	),
 	"albumsPerPage" => array(
-		desc => "How many albums should be displayed per Gallery page?",
-		value => "5",
+		"prompt" => "Albums per page",
+		"desc" => "How many albums should be displayed per Gallery page?",
+		"value" => "5",
+		"attrs" => array("size" => 10),
 	),
 	"showSearchEngine" => array(
-		desc => "Display search engine on main Gallery page?",
-		choices => array("yes", "no"),
-		value => "yes",
+		"prompt" => "Search Engine",
+		"desc" => "Display search engine on main Gallery page?",
+		"choices" => array("yes", "no"),
+		"value" => "yes",
 	),
 	"useOriginalFileNames" => array(
-                desc => "Use original files names for gallery storage?",
-                choices => array("yes", "no"),
-                value => "no",
+		"prompt" => "Preserve Names",
+                "desc" => "When uploading images to Gallery, should we preserve the original " .
+			"names?  If you select <i>no</i>, Gallery will assign a new name for " .
+			"each photo or movie that gets uploaded.",
+                "choices" => array("yes", "no"),
+                "value" => "no",
 	),
 	"display_clicks" => array(
-		desc => "Display click counts within Albums?",
-		choices => array("yes", "no"),
-		value => "yes",
+		"prompt" => "Click counts",
+		"desc" => "Display click counts within Albums?",
+		"choices" => array("yes", "no"),
+		"value" => "yes",
 	),
 	"public_comments" => array(
-		desc => "Allow public photo commenting?",
-		choices => array("yes", "no"),
-		value => "yes",
+		"prompt" => "Comments",
+		"desc" => "Allow the public to add comments to your photos?",
+		"choices" => array("yes", "no"),
+		"value" => "yes",
 	)
 );
+
 ?>
