@@ -108,6 +108,7 @@ class Album {
 	}
 
 	function save() {
+		global $app;
 		$dir = $this->getAlbumDir();
 
 		if (!file_exists($dir)) {
@@ -117,7 +118,7 @@ class Album {
 		if ($fd = fopen("$dir/album.dat.new", "w")) {
 			fwrite($fd, serialize($this));
 			fclose($fd);
-			system("mv $dir/album.dat.new $dir/album.dat");
+			system("$app->mv $dir/album.dat.new $dir/album.dat");
 		}
 	}
 

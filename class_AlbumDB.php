@@ -114,7 +114,7 @@ class AlbumDB {
 		if ($fd = fopen("$dir/albumdb.dat.new", "w")) {
 			fwrite($fd, serialize($this->albumOrder));
 			fclose($fd);
-			system("mv $dir/albumdb.dat.new $dir/albumdb.dat");
+			system("$app->mv $dir/albumdb.dat.new $dir/albumdb.dat");
 		}
 	}
 }
