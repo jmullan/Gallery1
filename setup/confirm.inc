@@ -77,8 +77,8 @@ foreach ($constants as $key => $val) {
 		continue;
 	}
 	if (ereg("^(..*)\[(.*)\]$", $key, $matches)) {
-                $real = $$matches[1];
-                $real = $real[$matches[2]];
+		$line='$real = $'. $matches[1] . '["' . $matches[2] . '"];';
+		eval($line);
 	} else {
 		$real = $$key;
 	}

@@ -41,20 +41,18 @@ foreach ($constants as $key => $val) {
 		$val["value"] = $gallery->app->$key;
 	}
 	else {
-        	if (isset ($gallery->app->$key) && isset (${$gallery->app->$key})) {
-                	$$defn = ${$gallery->app->$key};
-                        $$val['value'] = ${$gallery->app->$key};
-                }
+		@eval ("\$defn=\$gallery->app->$key;");
+		if ($defn) {
+			eval ('$val["value"] = $gallery->app->'.$key.';');
+		}
 	}
 	$onThisPage[$key] = 1;
 	$preserve[$key] = 1;
 
 	if (!isset($go_defaults)) {
 		if (ereg("^(..*)\[.*\]$", $key, $matches)) {
-                        if (isset ($$key)) {
-                        	$$val['value'] = $$key;
-                        }
-
+			$line='if (isset($'.$key.')) $val["value"] = $'.$key . ';';
+			eval($line);
 			unset($preserve[$key]);
 			$preserve[$matches[1]] = 1;
 			unset($onThisPage[$key]);
