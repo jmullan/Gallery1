@@ -361,6 +361,12 @@ function gr_new_album( &$gallery, &$response, &$newAlbumName, &$newAlbumTitle, &
 
 	global $GR_STAT;
 
+	if(get_magic_quotes_gpc()) {
+		$newAlbumName = stripslashes($newAlbumName);
+		$newAlbumTitle = stripslashes($newAlbumTitle);
+		$newAlbumDesc = stripslashes($newAlbumDesc);
+	}
+
 	if(isset($gallery->album) && isset($gallery->album->fields["name"])) {
 		$canAddAlbum = $gallery->user->canCreateSubAlbum($gallery->album);
 	} else {
@@ -810,6 +816,9 @@ function processFile($file, $tag, $name, $setCaption="") {
     } else {
         // remove %20 and the like from name
         $name = urldecode($name);
+	if (get_magic_quotes_gpc()) {
+		$name = stripslashes($name);
+	}
         // parse out original filename without extension
         $originalFilename = eregi_replace(".$tag$", "", $name);
         // replace multiple non-word characters with a single "_"
@@ -850,6 +859,9 @@ function processFile($file, $tag, $name, $setCaption="") {
 		    }
 
             if ($setCaption) {
+		if (get_magic_quotes_gpc()) {
+			$setCaption = stripslashes($setCaption);
+		}
                 $caption = $setCaption;
             } else {
                 $caption = "";
@@ -866,6 +878,9 @@ function processFile($file, $tag, $name, $setCaption="") {
 				$value = $HTTP_POST_VARS[("extrafield.".$field)];
 				//echo "Got extra field $field = $value\n";
 				if ($value) {
+					if (get_magic_quotes_gpc()) {
+						$value = stripslashes($value);
+					}
 					//echo "Setting field $field\n";
 					$myExtraFields[$field] = $value;
 				}
@@ -874,6 +889,9 @@ function processFile($file, $tag, $name, $setCaption="") {
 				$value = $HTTP_POST_VARS[("extrafield_".$field)];
 				//echo "Got extra field $field = $value\n";
 				if ($value) {
+					if (get_magic_quotes_gpc()) {
+						$value = stripslashes($value);
+					}
 					//echo "Setting field $field\n";
 					$myExtraFields[$field] = $value;
 				}
