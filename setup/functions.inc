@@ -8,21 +8,20 @@ function evenOdd_row($fields, $evenOdd) {
 	if ($fields[3] == "block_element") {
 		$buf .= "\n<tr><td class=\"shortdesc\">$f0</td><td class=\"shortdesc\">".$fields[1]."</td></tr>";
 	} else if ($fields[3] == "block_start") {
-		$buf .= "\n<tr><td class=\"shortdesc\" colspan=\"2\" valign=\"top\" align=\"left\">";
-		$buf .= "\n<!-- Block Start --><table><tr>";
-		$buf .= "\n\t<td class=\"content\" align=\"left\" valign=\"top\">$f0<p>";
+		$buf .= "\n<tr><td class=\"shortdesc\" colspan=\"2\" valign=\"top\">";
+		$buf .= "\n<table><tr>";
+		$buf .= "\n\t<td class=\"content\" valign=\"top\">$f0<p>";
 		$buf .= "\n\t".$fields[2]."</td>";
 		$buf .= "\n</tr></table >";
 	} else if ($fields[3] == "block_end") {
-		$buf .= "<!-- Block Ende -->";
 		$buf .= "\n</td></tr>";
 	} else {
 		$buf .= "\n<tr>";
-		$buf .= "\n\t<td class=\"shortdesc\" valign=\"top\" align=\"left\">$f0</td>";
+		$buf .= "\n\t<td class=\"shortdesc\" valign=\"top\">$f0</td>";
 		$buf .= "\n\t<td class=\"shortdesc\" width=\"90%\" valign=\"top\">$fields[1]</td>";
 		$buf .= "\n</tr>";
 		$buf .= "\n<tr>";
-		$buf .= "\n\t<td class=\"desc\" colspan=\"2\" valign=\"top\" align=\"left\">$fields[2]</td>";
+		$buf .= "\n\t<td class=\"desc\" colspan=\"2\" valign=\"top\">$fields[2]</td>";
 		$buf .= "\n</tr>\n";
 	}
 

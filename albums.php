@@ -69,6 +69,16 @@ $navigator["widthUnits"] = "%";
 $navigator["bordercolor"] = $borderColor;
 
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page 
+
+$nls=getNLS();
+if ($nls['direction'][$gallery->language] == 'ltr') {
+	$left="left";
+	$right="right";
+}
+else {
+	$left="right";
+	$right="left";
+}
 ?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <?php doctype() ?>
@@ -279,19 +289,19 @@ for ($i = $start; $i <= $end; $i++) {
   </td>
   <!-- End Image Cell -->
   <!-- Begin Text Cell -->
-  <td align="<?php echo $gallery->align ?>" valign="top" class="albumdesc">
+  <td align="<?php echo $left ?>" valign="top" class="albumdesc">
     <table cellpadding="0" cellspacing="0" width="100%" border="0" align="center" class="mod_title">
       <tr valign="middle">
-        <td class="leftspacer">
+        <td class="leftspacer"></td>
         <td>
           <table cellspacing="0" cellpadding="0" border="0" class="mod_title_bg">
             <tr>
-              <td class="mod_title_left" align="right"></td>
-              <td nowrap class="title" align="left">
+              <td class="mod_title_left" align="<?php echo $right ?>"></td>
+              <td nowrap class="title" align="<?php echo $left ?>">
                 <?php _("title") ?>
                 <?php echo editField($gallery->album, "title", $albumURL) ?>
               </td>
-              <td class="mod_title_right" align="left"></td>
+              <td class="mod_title_right" align="<?php echo $left ?>"></td>
             </tr>
           </table>
         </td>
