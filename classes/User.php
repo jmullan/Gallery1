@@ -19,7 +19,7 @@
  */
 ?>
 <?
-class User {
+class Abstract_User {
 	var $username;
 	var $fullname;
 	var $password;
@@ -185,33 +185,6 @@ class User {
 
 	function isLoggedIn() {
 		return true;
-	}
-
-	function load($uid) {
-		global $gallery;
-
-		$dir = $gallery->app->userDir;
-		
-		$tmp = getFile("$dir/$uid");
-		if ($tmp) {
-			$this = unserialize($tmp);
-		}
-	}
-
-	function save() {
-		global $gallery;
-		$success = 0;
-
-		$dir = $gallery->app->userDir;
-		$tmpfile = tempnam($dir, $this->uid);
-
-		if ($fd = fs_fopen($tmpfile, "w")) {
-			fwrite($fd, serialize($this));
-			fclose($fd);
-			$success = fs_rename($tmpfile, "$dir/$this->uid");
-		}
-
-		return $success;
 	}
 }
 
