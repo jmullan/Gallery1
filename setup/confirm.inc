@@ -175,6 +175,7 @@ foreach ($constants as $key => $val) {
 		}
 
 		if (isset($constants[$key]["no-trailing-slash"])) {
+			$real = trim($real);
 			$lastChar = $real[strlen($real)-1];
 			if ($lastChar == '/' || $lastChar == '\\') {
 				$real = substr($real, 0, -1);

@@ -138,17 +138,21 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
 	set_time_limit($gallery->app->timeLimit);
         $id = $gallery->album->getPhotoId($i);
         $index = $gallery->album->getPhotoIndex($id);
-        if($gallery->album->isAlbum($i))
-        {
-            $embeddedAlbum = 1;
-            $myAlbumName = $gallery->album->getAlbumName($i);
-            $myAlbum = new Album();
-            $myAlbum->load($myAlbumName);
-            $myHighlightTag = $myAlbum->getHighlightTag();
-	    includeLayout('commentboxtop.inc');
-	    includeLayout('commentboxbottom.inc');
-        }
-        else
+        if ($gallery->album->isAlbum($i)) {
+		$myAlbumName = $gallery->album->getAlbumName($i);
+		$myAlbum = new Album();
+		$myAlbum->load($myAlbumName);
+		if ((!$gallery->album->isHidden($i) || $gallery->user->isAdmin() || 
+			$gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->user->isOwnerOfAlbum($myAlbum)))
+		{
+			$embeddedAlbum = 1;
+			$myHighlightTag = $myAlbum->getHighlightTag();
+			includeLayout('commentboxtop.inc');
+			includeLayout('commentboxbottom.inc');
+	        }
+	}
+        elseif (!$gallery->album->isHidden($i) || $gallery->user->isAdmin() ||  
+		$gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->album->isItemOwner($i))
         {
             $comments = $gallery->album->numComments($i);
             if($comments > 0)

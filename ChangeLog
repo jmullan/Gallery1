@@ -1,3 +1,12 @@
+2004-07-26  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b67
+
+        * Fix: Trim trailing spaces from setup vars where no-trailing-slash is
+          set.  This prevents the "/usr/bin /pnmtojpeg" issue
+
+        * Fix: The addition of the 'view comments' for everyone was exposing
+          hidden photos since view_comments.php had been written with only
+          the owner/admin in mind.
+
 2004-07-25  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b66
 
 	* Change: Remove bastard newlines from delete_user and delete_album that were causing
