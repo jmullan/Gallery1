@@ -91,8 +91,8 @@ if ($searchstring) {
 	$origstr = $searchstring;
 	$searchstring = escapeEregChars($searchstring);
 	$searchstring = str_replace ("\\*", ".*", $searchstring);
-	$searchExpr = "{(<a (?:[^>]+){$searchstring}(?:[^>]+)>)(.*(?=</a>))(</a>)|((?:<a [^>]+>))(.*)((?:{$searchstring}))(.*)(?=</a>)(</a>)|({$searchstring})}Usi";
-	$searchRepl = '\1\4\5<b>\2\6\9</b>\7\3\8';
+	$searchExpr = "{(<a [^<>]*{$searchstring}[^<>]*>)(.*(?=</a>))(</a>)|({$searchstring})}Usi";
+	$searchRepl = '\1<b>\2\4</b>\3';
 
 	$uid = $gallery->user->getUid();
 	for ($i = 0; $i<$numAlbums; $i++) {
