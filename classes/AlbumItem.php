@@ -211,14 +211,14 @@ class AlbumItem {
 			if (($this->image->thumb_width > 0) || ($nestedHighlight->image->thumb_width > 0)) {
 				// Crop it first
 				if ($this->isAlbumName) {
-					$ret = cut_image("$dir/$name.$tag",
+					$ret = cut_image("$dir/$src_name.$tag",
                                                  	"$setDir/$dst_name.tmp.$tag",
                                                  	$nestedHighlight->image->thumb_x,
                                                  	$nestedHighlight->image->thumb_y,
                                                  	$nestedHighlight->image->thumb_width,
                                                  	$nestedHighlight->image->thumb_height);
 				} else {
-					$ret = cut_image("$dir/$name.$tag", 
+					$ret = cut_image("$dir/$src_name.$tag", 
 						 	"$setDir/$dst_name.tmp.$tag", 
 						 	$this->image->thumb_x, 
 						 	$this->image->thumb_y,
@@ -232,7 +232,7 @@ class AlbumItem {
 							    "$setDir/$dst_name.highlight.$tag",
 							    $gallery->app->highlight_size);
 				}
-				fs_unlink("$setDir/$name.tmp.$tag");
+				fs_unlink("$setDir/$dst_name.tmp.$tag");
 			} else {
 				$ret = resize_image("$dir/$src_name.$tag", 
 						    "$setDir/$dst_name.highlight.$tag",
