@@ -1,3 +1,24 @@
+2003-09-29  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b112
+
+	* Added support to resize original images on upload (either by
+	  dimension or filesize). JPEG comments and EXIF data are preserved
+	  when using ImageMagick. The EXIF data only will be preserved if using
+	  NetPBM when jhead is also installed. (Task #80080)
+	
+	* Implemented Vallimar's "move/reorder" patch which splits the
+	  move_photo.php and move_album.php code between intra- and inter-album
+	  operations. This enhances performance dramatically in large
+	  galleries. (Patch #757390)
+
+	* Added patch from Vallimar to display clickable image dimensions below
+	  thumbnails. This is an optional setting, configurable on a per-album
+	  basis. (Patch #770376)
+
+	* Strip EXIF data from JPEGs when compressing in ImageMagick. We did
+	  this before, when we had '+profile "*"', but are now stripping one at
+	  a time, since some installations cannot handle the +profile switch
+	  very well. (Bug #806349)
+	
 2003-09-29 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b111
 	
 	* Fixed bug in recursive slideshow so link now works without

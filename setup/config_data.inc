@@ -224,7 +224,7 @@ $constants =  array_merge(
 	),
 	"mirrorSites" => array(
 		"prompt" => _("Mirror sites"),
-		"desc" => sprintf(_("A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  Eg.%s."),
+		"desc" => sprintf(_("A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  E.g. %s"),
 		'<center><i>' .
 			'http://www.fast.server/albums<br>http://www.other.server/albums</i>' .
 			'</center>'),
@@ -730,12 +730,25 @@ $defaults = array(
 		"choices" => array("off" => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024)
 	),
 	"resize_file_size" => array(
-		"prompt" => _("Resized images file size"),
-		"desc" => _("The default target size (in kilobyte) of resized JPEG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."),
+		"prompt" => _("Resized JPEG/PNG images file size"),
+		"desc" => _("The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."),
 			  
 		"value" => 0,
 		"optional" => 1,
 		"type" => "text"
+	),
+	'max_size' => array(
+		'prompt' => _('Maximum image size'),
+		'desc' => _("You can optionally limit the dimensions your images on upload to Gallery. <span style=\"color: red;\"><b>Warning:</b></span> enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2).") . newIn("1.4.1"),
+		'value' => 'off',
+		'choices' => array('off' => _('off'), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3))
+	),
+	'max_file_size' => array(
+		'prompt' => _('Maximum JPEG/PNG image file size'),
+		'desc' => _("You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery. <span style=\"color: red;\"><b>Warning:</b></span> enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize.") . newIn("1.4.1"),
+		'value' => 0,
+		'optional' => 1,
+		'type' => 'text'
 	),
 	"useOriginalFileNames" => array(
 		"prompt" => _("Preserve Names"),
@@ -830,6 +843,12 @@ $defaults = array(
 		"attrs" => array("size" => 80),
 		"type" => "text",
 		"value" => "Description"
+	),
+	"showDimensions" => array(
+		"prompt" => _("Display clickable image dimensions"),
+		"desc" => _("Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image.") . newIn("1.4.1"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no"
 	),
 	"separator6" => array (
                	"type" => "separator",

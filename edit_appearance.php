@@ -57,6 +57,8 @@ if (isset($save)) {
 	$gallery->album->fields["thumb_size"] = $thumb_size;
 	$gallery->album->fields["resize_size"] = $resize_size;
 	$gallery->album->fields["resize_file_size"] = $resize_file_size;
+	$gallery->album->fields['max_size'] = $max_size;
+	$gallery->album->fields['max_file_size'] = $max_file_size;
 	$gallery->album->fields["returnto"] = $returnto;
 	$gallery->album->fields["rows"] = $rows;
 	$gallery->album->fields["cols"] = $cols;
@@ -76,6 +78,7 @@ if (isset($save)) {
 	$gallery->album->fields["album_frame"] = $album_frame;
 	$gallery->album->fields["thumb_frame"] = $thumb_frame;
 	$gallery->album->fields["image_frame"] = $image_frame;
+	$gallery->album->fields["showDimensions"] = $showDimensions;
 	$gallery->album->save();
 
 	if (isset($setNested)) {
@@ -149,12 +152,20 @@ if (isset($save)) {
 <td><input type=text name="thumb_size" value="<?php echo $gallery->album->fields["thumb_size"] ?>"></td>
 </tr>
 <tr>
-<td><?php echo _("Auto-Resize") ?></td>
+<td><?php echo _("Auto-Resize 'sized' image dimensions") ?></td>
 <td><select name="resize_size"><?php echo selectOptions($gallery->album, "resize_size", array("off" => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024)) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Auto-Resize file size kilobytes (0 or blank for no size restriction)") ?></td>
+<td><?php echo _("Auto-Resize JPEG/PNG 'sized' file size kilobytes (0 or blank for no size restriction)") ?></td>
 <td><input type=text name="resize_file_size" value="<?php echo $gallery->album->fields["resize_file_size"] ?>"></td>
+</tr>
+<tr>
+<td><?php echo _('Max Image Size') ?></td>
+<td><select name="max_size"><?php echo selectOptions($gallery->album, 'max_size', array('off' => _('off'), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3))) ?></select></td>
+</tr>
+<tr>
+<td><?php echo _('Max JPEG/PNG file size kilobytes (0 or blank for no size restriction)') ?></td>
+<td><input type=text name="max_file_size" value="<?php echo $gallery->album->fields['max_file_size'] ?>"></td>
 </tr>
 <tr>
 <td><?php echo _("Show <i>Return to</i> link") ?></td>
@@ -286,6 +297,10 @@ if ($gallery->app->use_exif) {
 <tr>
 <td><?php echo _("Allow public commenting for photos in this album?") ?></td>
 <td><select name="public_comments"><?php echo selectOptions($gallery->album, "public_comments", array("no" => _("no"), "yes" => _("yes"))) ?></select></td>
+</tr>
+<tr>
+<td><?php echo _("Display clickable image dimensions") ?></td>
+<td><select name="showDimensions"><?php echo selectOptions($gallery->album, "showDimensions", array("yes" => _("yes"), "no" => _("no"))) ?></select></td>
 </tr>
 </table>
 

@@ -373,7 +373,7 @@ function my_flush() {
 	print str_repeat(" ", 4096);	// force a flush
 }
 
-function resize_image($src, $dest, $target, $target_fs=0) {
+function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 	global $gallery;				
 
 	if (!strcmp($src,$dest)) {
@@ -386,13 +386,16 @@ function resize_image($src, $dest, $target, $target_fs=0) {
 	}
 
 	$regs = getimagesize($src);
-	if ($regs[2] !== 2 && $regs[2] !== 3)
+	if ($regs[2] !== 2 && $regs[2] !== 3) {
 		$target_fs = 0; // can't compress other images
-
+	}
+	if ($target === 'off') {
+	    $target = 0;
+	}
 	/* Check for images smaller then target size, don't blow them up. */
 	$regs = getDimensions($src, $regs);
-	if ($regs[0] <= $target && $regs[1] <= $target && 
-			($target_fs == 0 || fs_filesize($src)/1000 < $target_fs)) {
+	if ((empty($target) || ($regs[0] <= $target && $regs[1] <= $target))
+			&& (empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs)) {
 		if ($useTemp == false) {
 			fs_copy($src, $dest);
 		}
@@ -402,9 +405,9 @@ function resize_image($src, $dest, $target, $target_fs=0) {
 	$target=min($target, max($regs[0],$regs[1]));
 
 	if ($target_fs == 0) {
-		compress_image($src, $out, $target, $gallery->app->jpegImageQuality);
+		compress_image($src, $out, $target, $gallery->app->jpegImageQuality, $keepProfiles);
 	} else {
-		$filesize = fs_filesize($src)/1000;
+		$filesize = (int) fs_filesize($src) >> 10;
 		$max_quality=$gallery->app->jpegImageQuality;
 		$min_quality=5;
 		$max_filesize=$filesize;
@@ -416,13 +419,13 @@ function resize_image($src, $dest, $target, $target_fs=0) {
 					$target_fs)."\n");
 
 		do {
-			compress_image($src, $out, $target, $quality);
+			compress_image($src, $out, $target, $quality, $keepProfiles);
 			$prev_quality=$quality;
 			printf(_("- file size %d kbytes"), round($filesize));
 			processingMsg(sprintf(_("trying quality %d%%"), 
 						$quality));
 			clearstatcache();
-			$filesize= fs_filesize($out)/1000;
+			$filesize= (int) fs_filesize($out) >> 10;
 			if ($filesize < $target_fs) {
 				$min_quality=$quality;
 				$min_filesize=$filesize;
@@ -2167,6 +2170,7 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 		$gallery->album->fields["item_owner_modify"]  = $parentAlbum->fields["item_owner_modify"];
 		$gallery->album->fields["item_owner_delete"]  = $parentAlbum->fields["item_owner_delete"];
 		$gallery->album->fields["add_to_beginning"]   = $parentAlbum->fields["add_to_beginning"];
+		$gallery->album->fields["showDimensions"]     = $parentAlbum->fields["showDimensions"];
 
                 $returnVal = $gallery->album->save();
         } else {
@@ -2511,26 +2515,40 @@ function galleryDocs() {
 	return NULL;
 }
 
-function compress_image($src, $out, $target, $quality) {
+function compress_image($src, $out, $target=0, $quality, $keepProfiles=0) {
 	global $gallery;
-	switch($gallery->app->graphics)
-	{
+
+	if ($target === 'off') {
+	    $target = '';
+	}
+	switch($gallery->app->graphics) {
 		case "NetPBM":
 			$err = exec_wrapper(toPnmCmd($src) .
-					(($target > 0) ?  (" | " . NetPBM("pnmscale",
-						" -xysize $target $target") ) :
-					"")  .
-					" | " . fromPnmCmd($out, $quality));
+					(($target > 0) ?  (' | ' . NetPBM('pnmscale',
+					" -xysize $target $target") ) : '')
+					. ' | ' . fromPnmCmd($out, $quality));
+			/* Copy over EXIF data if a JPEG if $keepProfiles is set.
+			 * Unfortunately, we can't also keep comments. */
+			if ($keepProfiles && eregi('\.jpe?g$', $src)) {
+				if (isset($gallery->app->use_exif)) {
+					exec_wrapper(fs_import_filename($gallery->app->use_exif, 1) . ' -te '
+						. fs_import_filename($src, 1) . ' '
+						. fs_import_filename($out, 1));
+				} else {
+					processingMsg(_('Unable to preserve EXIF data (jhead not installed)') . "\n");
+				}
+			}
 			break;
 		case "ImageMagick":
 			$src = fs_import_filename($src);
 			$out = fs_import_filename($out);
-			$err = exec_wrapper(ImCmd("convert", "-quality ".
-					$quality . 
-					" -size ". $target ."x". $target .
-					" $src".
-					" -geometry ". $target ."x" . $target .
-					" +profile icm +profile iptc $out"));
+			/* Preserve comment, EXIF data if a JPEG if $keepProfiles is set. */
+			$err = exec_wrapper(ImCmd('convert', "-quality $quality "
+					. ($target ? "-size ${target}x${target} " : '')
+					. $src
+					. ($target ? " -geometry ${target}x${target}" : '')
+					. ($keepProfiles ? ' ' : ' +profile icm +profile iptc +profile app1 ')
+					. $out));
 			break;
 		default:
 			if (isDebugging())

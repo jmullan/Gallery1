@@ -76,6 +76,12 @@ if ($gallery->session->albumName && isset($index)) {
 <center>
 <?php echo _("Select the new location of album") ?> <?php echo $gallery->album->fields["title"] ?>:
 
+<?php
+    echo '<br><br>'.
+         $gallery->album->getThumbnailTag($gallery->album->getHighlight()) .
+         '<br><br>';
+?>
+<?php if ($reorder) { // Reorder, intra-album move ?>
 <?php echo makeFormIntro("move_album.php", array("name" => "theform")); ?>
 <input type="hidden" name="index" value="<?php echo $index ?>">
 <select name="newIndex">
@@ -95,15 +101,9 @@ for ($i = 1; $i <= $numAlbums; $i++) {
 
 <p>
 <?php
-if ($gallery->album->numPhotos(1)) {
-	echo $gallery->album->getThumbnailTag($gallery->album->getHighlight());
 }
+if (!$reorder) { // Reorder, trans-album move
 ?>
-<p>
-<br>
-<b><?php echo _("OR") ?></b>
-<br>
-<br>
 <?php echo _("Nest within another Album:") ?>
 <p>
 <?php echo makeFormIntro("move_album.php", array("name" => "move_to_album_form")); ?>
@@ -119,6 +119,7 @@ printAlbumOptionList(0,1)
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <?php
+} // End Reorder
 	}
 } else {
 	gallery_error(_("no album / index specified"));

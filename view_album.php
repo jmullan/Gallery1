@@ -720,6 +720,37 @@ if ($numPhotos) {
 				$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->session->albumName, $id);
 				$gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
 				includeHtmlWrap('inline_photothumb.frame');
+
+				if (!strcmp($gallery->album->fields['showDimensions'], 'yes')) {
+					$photo    = $gallery->album->getPhoto($i);
+					$image    = $photo->image;
+					$viewFull = $gallery->user->canViewFullImages($gallery->album);
+					$fullOnly = (isset($gallery->session->fullOnly) &&
+						!strcmp($gallery->session->fullOnly, 'on') &&
+						!strcmp($gallery->album->fields['use_fullOnly'], 'yes'));
+					list($wr, $hr) = $image->getDimensions();
+					list($wf, $hf) = $image->getRawDimensions();
+					/* display file sizes if dimensions are identical */
+					if ($wr == $wf && $hr == $hf && $viewFull && $photo->isResized()) {
+					    $fsr = ' ' . sprintf(_('%dkB'), (int) $photo->getFileSize(0) >> 10);
+					    $fsf = ' ' . sprintf(_('%dkB'), (int) $photo->getFileSize(1) >> 10);
+					} else {
+					    $fsr = '';
+					    $fsf = '';
+					}
+					echo "<br />\n";
+					if (($photo->isResized() && !$fullOnly) || !$viewFull) {
+						echo '<a href='.
+							makeAlbumUrl($gallery->session->albumName, $id) .
+								">[${wr}x{$hr}${fsr}]</a>&nbsp;";
+					}
+					if ($viewFull) {
+						echo '<a href='.
+							makeAlbumUrl($gallery->session->albumName,
+							$id, array('full' => 1)) .
+							">[${wf}x${hf}${fsf}]</a>";
+					}
+				}
 			}
 
 			echo("</td>");
@@ -883,7 +914,8 @@ if ($numPhotos) {
 						      "set_albumName" => $myAlbumName,
 							"return" => urlencode(makeGalleryUrl("view_album.php"))));
 				}
-				showChoice(_("Move ") . $label, "move_photo.php", array("index" => $i));
+				showChoice(_("Move ") . $label, "move_photo.php", array("index" => $i, 'reorder' => 0));
+				showChoice(_("Reorder ") . $label, "move_photo.php", array("index" => $i, 'reorder' => 1));
 				if (!$gallery->album->isAlbumName($i)) {
 					showChoice(_("Copy ") . $label, "copy_photo.php", array("index" => $i));
 				}

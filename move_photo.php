@@ -188,6 +188,8 @@ if ($gallery->session->albumName && isset($index)) {
 
 <center>
 <?php
+echo '<br>'. $gallery->album->getThumbnailTag($index) .'<br><br>';
+if ($reorder ) { // Reorder, intra-album move
 if ($gallery->album->isAlbumName($index)) {
 ?>
 <?php echo _("Move this album within the album:") ?><br>
@@ -196,7 +198,6 @@ if ($gallery->album->isAlbumName($index)) {
 <?php } ?>
 <i>(<?php echo sprintf(_("Current Location is %s"), $index) ?>)</i>
 <p>
-<?php echo $gallery->album->getThumbnailTag($index) ?>
 <p>
 <?php echo makeFormIntro("move_photo.php", array("name" => "theform")); ?>
 <?php echo _("Select the new location:") ?> 
@@ -217,18 +218,12 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <input type="submit" value=<?php echo '"' . _("Move it!") . '"' ?>>
 <input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
-<p>
-<hr size="1">
-<b><?php echo _("OR") ?></b>
-<hr size="1">
-
-
-
 
 <?php
+} else if (!$reorder) { // Don't reorder, trans-album move
 if ($gallery->album->isAlbumName($index)) {
 ?>
-<?php echo _("Move the album to a new album:") ?><br>
+<?php echo _("Move the album to a new album:") ?>
 <?php echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
 <input type=hidden name="index" value="<?php echo $index ?>">
 <select name="newAlbum">
@@ -306,11 +301,12 @@ if (!$uptodate) {
 	'<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>.<p>';
 }
 ?>
-<br>
+<br><br>
 <input type="submit" value="<?php echo _("Move to Album!") ?>">
 <input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <?php
+} // end reorder    
 }
 } else {
 	gallery_error(_("no album / index specified"));

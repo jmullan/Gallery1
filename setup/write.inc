@@ -71,8 +71,10 @@ if (isset($GALLERY_PHP_VALUE_OK)) {
 	$htaccess = file("php_value.template");
 	if ($fd = @fs_fopen($outfile, "a")) {
 		foreach ($htaccess as $line) {
-			eval("\$line = \"$line\";");
-			fwrite($fd, $line);
+			if (!ereg('^#', $line)) {
+				eval("\$line = \"$line\";");
+				fwrite($fd, $line);
+			}
 		}
 		fclose($fd);
 	} else {
@@ -88,8 +90,10 @@ if ($GALLERY_REWRITE_OK) {
 	$htaccess = file("mod_rewrite.template");
 	if ($fd = @fs_fopen($outfile, "a")) {
 		foreach ($htaccess as $line) {
-			eval("\$line = \"$line\";");
-			fwrite($fd, $line);
+			if (!ereg('^#', $line)) {
+				eval("\$line = \"$line\";");
+				fwrite($fd, $line);
+			}
 		}
 		fclose($fd);
 	} else {

@@ -431,7 +431,7 @@ if (!$gallery->album->isMovie($id)) {
 		$adminCommands .= popup_link("[" . _("photo properties") ."]", "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false);
 	}
 
-	if (sizeof($gallery->album->fields["print_photos"] == 0) &&
+	if (isset($gallery->album->fields["print_photos"]) &&
 		!$gallery->session->offline &&
 		!$gallery->album->isMovie($id)){
 
@@ -703,7 +703,7 @@ if (is_int($key))
 
 	$dimensions=$photo->getDimensions($full);
 	print "<tr><td valign=top align=right><b>".$automaticFields[$field].":<b></td><td>".
-	$dimensions[0]." x ".$dimensions[1]." (".round($photo->getFileSize($full)/1000)."k)</td></tr>";
+	$dimensions[0]." x ".$dimensions[1]." (". (int) $photo->getFileSize($full) >> 10 ."k)</td></tr>";
 	unSet($extra_fields[$key]);
 }
 

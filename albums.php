@@ -314,7 +314,9 @@ for ($i = $start; $i <= $end; $i++) {
   <?php if ($gallery->user->canWriteToAlbum($gallery->album)) { ?>
    <span class="admin">
     <?php echo popup_link("[". _("move album") ."]", 
-    	"move_album.php?set_albumName={$tmpAlbumName}&index=$i"); ?>
+    	"move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=0"); ?>
+    <?php echo popup_link("[". _("reorder album") ."]", 
+    	"move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=1"); ?>
     <?php echo popup_link("[" . _("rename album") ."]", "rename_album.php?set_albumName={$tmpAlbumName}&index=$i"); ?>
    </span>
   <?php } ?>

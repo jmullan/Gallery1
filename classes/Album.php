@@ -53,6 +53,8 @@ class Album {
 		$this->fields["thumb_size"] = $gallery->app->default["thumb_size"];
 		$this->fields["resize_size"] = $gallery->app->default["resize_size"];
 		$this->fields["resize_file_size"] = $gallery->app->default["resize_file_size"];
+		$this->fields['max_size'] = $gallery->app->default['max_size'];
+		$this->fields['max_file_size'] = $gallery->app->default['max_file_size'];
 		$this->fields["rows"] = $gallery->app->default["rows"];
 		$this->fields["cols"] = $gallery->app->default["cols"];
 		$this->fields["fit_to_window"] = $gallery->app->default["fit_to_window"];
@@ -122,6 +124,7 @@ class Album {
 	       $this->fields["album_frame"]=$gallery->app->default["album_frame"];
 	       $this->fields["thumb_frame"]=$gallery->app->default["thumb_frame"];
 	       $this->fields["image_frame"]=$gallery->app->default["image_frame"];
+		$this->fields["showDimensions"] = $gallery->app->default["showDimensions"];
 
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
@@ -212,7 +215,9 @@ class Album {
 		$this->fields["last_quality"] = $gallery->app->jpegImageQuality;
 		$check = array("thumb_size", 
 				"resize_size", 
-				"resize_file_size", 
+				"resize_file_size",
+			        'max_size',
+			        'max_file_size',
 				"rows", 
 				"cols",
 				"fit_to_window", 
@@ -237,6 +242,7 @@ class Album {
 				"album_frame",
 				"thumb_frame",
 				"image_frame",
+				"showDimensions",
 				);
 		foreach ($check as $field) {
 			if (!isset($this->fields[$field])) {
@@ -753,17 +759,26 @@ class Album {
 			}
 		}
 		/* Get the file */
-		fs_copy($file, "$dir/$name.$tag");
+		$newFile = "$dir/$name.$tag";
+		fs_copy($file, $newFile);
 
 		/* Do any preprocessing necessary on the image file */
 		preprocessImage($dir, "$name.$tag");
-		
+
+		/* Resize original image if necessary */
+		processingMsg(_('Resizing/compressing original image') . "\n");
+		if (isImage($tag)) {
+		    resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true);
+		} else {
+		    processingMsg(_('Cannot resize/compress this filetype') . "\n");
+		}
+
 		/* Add the photo to the photo list */
 		$item = new AlbumItem();
 		$err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $pathToThumb);
 		if ($err) {
-			if (fs_file_exists("$dir/$name.$tag")) {
-				fs_unlink("$dir/$name.$tag");
+			if (fs_file_exists($newFile)) {
+				fs_unlink($newFile);
 			}
 			return $err;
 		} else {
@@ -1367,6 +1382,7 @@ class Album {
 				$nestedAlbum->fields["item_owner_modify"] = $this->fields["item_owner_modify"];
 				$nestedAlbum->fields["item_owner_delete"] = $this->fields["item_owner_delete"];
 				$nestedAlbum->fields["add_to_beginning"] = $this->fields["add_to_beginning"];
+				$nestedAlbum->fields["showDimensions"] = $this->fields["showDimensions"];
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedProperties();
 			}
