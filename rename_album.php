@@ -89,10 +89,12 @@ if ($newName) {
 				$childAlbum->save();
 			}
 		}
-		if ($useLoad == 1)
+		if ($useLoad == 1) {
 			dismissAndLoad($newName);
-		else
-		dismissAndReload();
+		}
+		else {
+			dismissAndReload();
+		}
 		return;
 	} else {
 		gallery_error(_("There is already an album with that name!"));

@@ -1,3 +1,27 @@
+2003-08-11  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b114
+
+	* This change is Vallimar's tidy up patch, with some modifcations.  
+	  Details of changes are:
+
+	* Tidy of if/else call in rename_album.php
+
+	* Reduce number of calls to getimagesize() by one.
+
+	* Removed literal "getimagesize()" from translation string.
+
+	* Resize restriction to file size now applies to PNG images as well.
+
+	* Extra parameter to rotate image.
+
+	* item_owner variables and add_to_beginning now set for newly created 
+	  sub-albums.
+
+	* Full image viewing now restricted to people who have permission to 
+	  see them.
+
+	* Note, we should store file type as returned by getimagesize() in 
+	  AlbumItem class.
+
 2003-08-11 Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b113
 	
 	* re enabled Language Initialization when Gallery is embedded.

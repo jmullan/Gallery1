@@ -373,7 +373,7 @@ class AlbumItem {
 
 		$name = $this->image->name;
 		$type = $this->image->type;
-		$retval = rotate_image("$dir/$name.$type", "$dir/$name.$type", $direction);
+		$retval = rotate_image("$dir/$name.$type", "$dir/$name.$type", $direction, $type);
 		if (!$retval) {
 			return $retval;
 		}
@@ -381,7 +381,7 @@ class AlbumItem {
 		$this->image->setRawDimensions($w, $h);	
 
 		if ($this->isResized()) {
-			rotate_image("$dir/$name.sized.$type", "$dir/$name.sized.$type", $direction);
+			rotate_image("$dir/$name.sized.$type", "$dir/$name.sized.$type", $direction, $type);
 			list($w, $h) = getDimensions("$dir/$name.sized.$type");
 			$this->image->setDimensions($w, $h);	
 		}

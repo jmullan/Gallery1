@@ -39,11 +39,10 @@ if (!$gallery->user->canReadAlbum($gallery->album)) {
         header("Location: " . makeAlbumUrl());
 	return;
 }
-
 if (isset($full) && !$gallery->user->canViewFullImages($gallery->album)) {
-    header("Location: " . makeAlbumUrl($gallery->session->albumName,
-				       $id));
-    return;
+	header("Location: " . makeAlbumUrl($gallery->session->albumName,
+				$id));
+	return;
 }
 
 if ($id) {
@@ -97,14 +96,10 @@ $do_fullOnly = isset($gallery->session->fullOnly) &&
 		!strcmp($gallery->session->fullOnly,"on") &&
                !strcmp($gallery->album->fields["use_fullOnly"],"yes");
 if ($do_fullOnly) {
-	$full = 1;
+	$full = $gallery->user->canViewFullImages($gallery->album);
 }
     
 $fitToWindow = !strcmp($gallery->album->fields["fit_to_window"], "yes") && !$gallery->album->isResized($index) && !$full;
-
-if ($full) {
-	$fullTag = "?full=1";
-}
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 $next = $index+1;
@@ -371,7 +366,8 @@ if (!$gallery->album->isMovie($id)) {
 			"delete_photo.php?id=$id&id2=$nextId");
 	}
 
-	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes")) {
+	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes") &&
+			$gallery->user->canViewFullImages($gallery->album)) {
 		if (!$gallery->session->offline) {
 			$link = doCommand("", 
 				array("set_fullOnly" => 
@@ -400,8 +396,8 @@ if (!$gallery->album->isMovie($id)) {
 	
 	$field="EXIF";
 	$key=array_search($field, $extra_fields);
-	if (!is_int($key) && 
-	    !strcmp($gallery->album->fields["use_exif"],"yes") && 
+	if (!is_int($key) &&
+	    !strcmp($gallery->album->fields["use_exif"],"yes") &&
 	    (eregi("jpe?g\$", $photo->image->type)) &&
 	    ($gallery->app->use_exif)) {
 		$albumName = $gallery->session->albumName;

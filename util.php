@@ -195,14 +195,16 @@ function exec_internal($cmd) {
 	return array($results, $status);
 }
 
-function getDimensions($file) {
+function getDimensions($file, $regs=false) {
 	global $gallery;				
 
-	$regs = getimagesize($file);
+	if ($regs === false)
+		$regs = getimagesize($file);
 	if (($regs[0] > 1) && ($regs[1] > 1))
 		return array($regs[0], $regs[1]);
 	else if (isDebugging())
-		echo "<br>" ._("PHP's getimagesize() unable to determine dimensions.") ."<br>";
+		echo "<br>" .sprintf(_("PHP's %s unable to determine dimensions."),
+				"getimagesize()") ."<br>";
 		
 
 	/* Just in case php can't determine dimensions. */
@@ -295,17 +297,6 @@ function isImage($tag) {
     return in_array($tag, acceptableImageList());
 }
 
-function isJPG($file) {
-    if (($type = getimagesize($file)) == FALSE)
-        return false;
-
-    if ($type[2] == 2) {
-	    return true;
-    } else {
-	    return false;
-    }
-}
-
 function isMovie($tag) {
     return in_array($tag, acceptableMovieList());
 }
@@ -368,9 +359,7 @@ function my_flush() {
 
 function resize_image($src, $dest, $target, $target_fs=0) {
 	global $gallery;				
-	if (!isJPG($src)) {
-		$target_fs =0; // can't compress other images
-	}
+
 	if (!strcmp($src,$dest)) {
 		$useTemp = true;
 		$out = "$dest.tmp";
@@ -378,8 +367,13 @@ function resize_image($src, $dest, $target, $target_fs=0) {
 	else {
 		$out = $dest;
 	}
+
+	$regs = getimagesize($src);
+	if ($regs[2] !== 2 && $regs[2] !== 3)
+		$target_fs = 0; // can't compress other images
+
 	/* Check for images smaller then target size, don't blow them up. */
-	$regs = getDimensions($src);
+	$regs = getDimensions($src, $regs);
 	if ($regs[0] <= $target && $regs[1] <= $target && 
 			($target_fs == 0 || fs_filesize($src)/1000 < $target_fs)) {
 		if ($useTemp == false) {
@@ -430,7 +424,7 @@ function resize_image($src, $dest, $target, $target_fs=0) {
 	}
 }
 
-function rotate_image($src, $dest, $target) {
+function rotate_image($src, $dest, $target, $type) {
 	global $gallery;
 
 	if (!strcmp($src,$dest)) {
@@ -441,10 +435,8 @@ function rotate_image($src, $dest, $target) {
 		$out = $dest;
 	}
 
-        $pathinfo = pathinfo($src);
-        $pathinfo['extension'] = strtolower($pathinfo['extension']);
-
-	if (isset ($gallery->app->use_jpegtran) && ($pathinfo['extension'] == "jpg" || $pathinfo['extension'] == "jpeg")) {
+	$type = strtolower($type);
+	if (isset ($gallery->app->use_jpegtran) && ($type === "jpg" || $type === "jpeg")) {
 		if (!strcmp($target, "90")) {
 			$args = "-rotate 270";
 		} else if (!strcmp($target, "-90")) {
@@ -1730,6 +1722,10 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
                 $gallery->album->fields["display_clicks"]  = $parentAlbum->fields["display_clicks"];
                 $gallery->album->fields["public_comments"] = $parentAlbum->fields["public_comments"];
 		$gallery->album->fields["extra_fields"]    = $parentAlbum->fields["extra_fields"];
+		$gallery->album->fields["item_owner_display"] = $parentAlbum->fields["item_owner_display"];
+		$gallery->album->fields["item_owner_modify"]  = $parentAlbum->fields["item_owner_modify"];
+		$gallery->album->fields["item_owner_delete"]  = $parentAlbum->fields["item_owner_delete"];
+		$gallery->album->fields["add_to_beginning"]   = $parentAlbum->fields["add_to_beginning"];
 
                 $returnVal = $gallery->album->save();
         } else {
