@@ -1,4 +1,10 @@
 <?
+/* 
+ * Turn off magic quotes runtime as they interfere with saving and
+ * restoring data from our file-based database files
+ */
+set_magic_quotes_runtime(0);
+
 /*
  * Init prepend file for setup directory.
  */
