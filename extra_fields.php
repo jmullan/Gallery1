@@ -26,6 +26,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($apply, $extra_fields) = getRequestVar(array('apply', 'extra_fields'));
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");

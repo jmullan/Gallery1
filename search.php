@@ -24,6 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+$searchstring = removeTags(getRequestVar('searchstring'));
+
 $borderColor = $gallery->app->default["bordercolor"];
 $thumbSize = $gallery->app->default["thumb_size"];
 
@@ -45,7 +47,6 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 includeHtmlWrap("search.header");
 
-$searchstring = removeTags(getRequestVar('searchstring'));
 if (!isset($searchstring)) {
 	$searchstring="";
 }

@@ -85,6 +85,7 @@ switch($g1_mode) {
 	break;
     
 	default:
+	break;
 }
 ?>
 <hr>
@@ -96,11 +97,11 @@ switch($g1_mode) {
 /* Everything below is a utility function */
 function deleteComments() {
     printf("<h2>%s</h2>", _("Delete Comments"));
-    if (empty($_REQUEST['delete'])) {
+    if (!getRequestVar('delete')) {
 	printf("<h3>%s</h3>", _("No action taken!"));
     } else {
 	$removedTotal = 0;
-	foreach ($_REQUEST['delete'] as $key) {
+	foreach (getRequestVar('delete') as $key) {
 	    list ($albumName, $imageId, $key) = explode('|', $key);
 	    $albumQueue[$albumName][$imageId][$key] = 1;
 	}
@@ -235,7 +236,7 @@ function isBlacklistedComment(&$comment) {
 function editBlacklist() {
     $blacklist = loadBlacklist();
     printf("<h2>%s</h2>", _("Delete from blacklist"));
-    if (empty($_REQUEST['delete'])) {
+    if (!getRequest('delete')) {
 	printf("<h3>%s</h3>", _("No action taken!"));
     } else {
 	$removed = array();

@@ -22,6 +22,9 @@
 ?>
 <?php
 require(dirname(__FILE__) . '/init.php');
+
+list($index, $cmd) = getRequestVar(array('index', 'cmd'));
+
 if (!strcmp($cmd, "remake-thumbnail")) {
         if ($gallery->user->canWriteToAlbum($gallery->album)) {
 ?>
@@ -132,6 +135,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 
 } else if (!strcmp($cmd, "delete-comment")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		$comment_index = getRequestVar('comment_index');
 		$comment=$gallery->album->getComment($index, $comment_index); 
 		$gallery->album->deleteComment($index, $comment_index);
 		$gallery->album->save(array(i18n("Comment \"%s\" by %s deleted from %s"),

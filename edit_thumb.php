@@ -24,6 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($action, $index, $crop_x, $crop_y, $crop_w, $crop_h) = getRequestVar(array('action', 'index', 'crop_x', 'crop_y', 'crop_w', 'crop_h'));
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
 	echo _("You are not allowed to perform this action!");

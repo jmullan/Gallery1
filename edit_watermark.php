@@ -29,6 +29,9 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	exit;
 }
 
+list($index, $save, $preview, $previewFull) = getRequestVar(array('index', 'save', 'preview', 'previewFull'));
+list($wmName, $wmAlign, $wmAlignX, $wmAlignY) = getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY'));
+
 $err = "";	
 if (isset($save) || isset($preview)) {
         if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12))

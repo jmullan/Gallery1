@@ -23,6 +23,8 @@
 <?php
 	require(dirname(__FILE__)  . '/init.php');
 
+list($mode) = getRequestVar(array('mode'));
+
 $cookieName = $gallery->app->sessionVar . "_slideshow_mode";
 $modeCookie = isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
 if (isset($mode)) {

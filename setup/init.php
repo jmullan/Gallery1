@@ -34,47 +34,6 @@ if (isset($gallery->app->devMode) && $gallery->app->devMode == "yes") {
 	error_reporting(E_ALL & ~E_NOTICE);
 }
 
-/*
- * Figure out if register_globals is on or off and save that info
- * for later
- */
-$register_globals = ini_get("register_globals");
-if (empty($register_globals) ||
-	!strcasecmp($register_globals, "off") ||
-	!strcasecmp($register_globals, "false")) {
-    $gallery->register_globals = 0;
-} else {
-    $gallery->register_globals = 1;
-}
-
-/*
- * If register_globals is off, then extract all superglobals into the global namespace.
- */
-if (!$gallery->register_globals) {
-
-    /*
-     * Prevent hackers from overwriting one HTTP_ global using another one.  For example,
-     * appending "?HTTP_POST_VARS[gallery]=xxx" to the url would cause extract
-     * to overwrite HTTP_POST_VARS when it extracts HTTP_GET_VARS
-     */
-    $scrubList = array("_GET", "_POST", "_COOKIE", "_FILES", "_REQUEST");
-
-    foreach ($scrubList as $outer) {
-	foreach ($scrubList as $inner) {
-	    unset(${$outer}[$inner]);
-	}
-    }
-    
-	extract($_REQUEST);
-
-	foreach($_FILES as $key => $value) {
-	    ${$key."_name"} = $value["name"];
-	    ${$key."_size"} = $value["size"];
-	    ${$key."_type"} = $value["type"];
-	    ${$key} = $value["tmp_name"];
-	}
-}
-
 /* load necessary functions */
 if (stristr (__FILE__, '/var/lib/gallery/setup')) {
 	/* Gallery runs on a Debian System */

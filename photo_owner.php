@@ -26,14 +26,14 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($save, $owner, $id) = getRequestVar(array('save', 'owner', 'id'));
+
 // Hack check
 if (!$gallery->user->isAdmin() && 
     !$gallery->user->isOwnerOfAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");
 	exit;
 }
-
-list($save, $owner, $id) = getRequestVar(array('save', 'owner', 'id'));
 
 doctype();
 echo "\n<html>";

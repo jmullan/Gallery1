@@ -49,16 +49,18 @@ if (!isset($useLoad)) {
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
 
+list($oldName, $newName) = getRequestVar(array('oldName', 'newName'));
+
 if (!empty($newName)) {
 	$dismiss = 0;
 	$newName = str_replace("'", "", $newName);
 	$newName = str_replace("`", "", $newName);
-	$newName = strtr($newName, "%\\/*?\"<>|& .+#()", "---------------");
+	$newName = strtr($newName, "%\\/*?\"<>|& .+#(){}~", "-------------------");
 	$newName = ereg_replace("\-+", "-", $newName);
 	$newName = ereg_replace("\-+$", "", $newName);
 	$newName = ereg_replace("^\-", "", $newName);
 	$newName = ereg_replace("\-$", "", $newName);
-	if ($oldName == $newName) {
+	if ($oldName == $newName || empty($newName)) {
 		$dismiss = 1;
 	} elseif ($albumDB->renameAlbum($oldName, $newName)) {
 		$albumDB->save();

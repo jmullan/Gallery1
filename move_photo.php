@@ -24,6 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list ($reorder, $index, $newAlbum, $newIndex, $startPhoto, $endPhoto) = getRequestVar(array('reorder', 'index', 'newAlbum', 'newIndex', 'startPhoto', 'endPhoto'));
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");
@@ -32,14 +34,10 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 $albumDB = new AlbumDB(FALSE); // read album database
 
-if (!isset($reorder)) {
-	$reorder = 0;
-}
-
 if ($gallery->album->isAlbum($index)) {
-	$title=$reorder ? _("Reorder Album") : _("Move Album");
+	$title = !empty($reorder) ? _("Reorder Album") : _("Move Album");
 } else {
-	$title=$reorder ? _("Reorder Photo") : _("Move Photo");
+	$title = !empty($reorder) ? _("Reorder Photo") : _("Move Photo");
 }
 
 doctype();

@@ -24,11 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
-// Get Vars
 $username = removeTags(getRequestVar('username'));
-$gallerypassword = getRequestVar('gallerypassword');
-$forgot = getRequestVar('forgot');
-$submitted = getRequestVar('login');
+list($gallerypassword, $forgot, $login) = getRequestVar(array('gallerypassword', 'forgot', 'login'));
 
 doctype();
 ?>

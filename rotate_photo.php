@@ -24,6 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($index, $rotate) = getRequestVar(array('index', 'rotate'));
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
 	echo _("You are not allowed to perform this action!");

@@ -83,6 +83,7 @@ function fs_rename($oldname, $newname) {
 	$newname = str_replace(".dat.bak", ".bak", $newname);
 
 	debug("Rename $oldname -> $newname");
+	clearstatcache();
 	if (file_exists("$newname.bak")) {
 		unlink("$newname.bak");
 	}

@@ -24,6 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($index, $manual, $resize, $resize_full_size) = getRequestVar(array('index', 'manual', 'resize', 'resize_full_size'));
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");
@@ -113,7 +115,7 @@ if ($gallery->session->albumName && isset($index)) {
 
 <p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
-	<input type="submit" name="resize" value="<?php echo _("Get rid of resized") ?>">
+	<input type="submit" name="resizebutton" value="<?php echo _("Get rid of resized") ?>">
 	<?php echo _("(Use only the original picture)"); ?>
 
 </p>

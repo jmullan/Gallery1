@@ -24,13 +24,13 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($save, $old_password, $new_password1, $new_password2) = getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
+list($uname, $email, $fullname, $defaultLanguage) = getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
+
 if (!$gallery->user->isLoggedIn()) {
 	echo _("You are not allowed to perform this action!");
 	exit;	
 }
-
-list($save, $old_password, $new_password1, $new_password2) = getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
-list($uname, $email, $fullname, $defaultLanguage) = getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
 
 $errorCount=0;
 if (isset($save)) {

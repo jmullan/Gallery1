@@ -24,6 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($full, $id, $index, $votes) = getRequestVar(array('full', 'id', 'index', 'votes'));
+
 // Hack check
 if (empty($gallery->album) || !$gallery->user->canReadAlbum($gallery->album)) {
         header("Location: " . makeAlbumHeaderUrl());

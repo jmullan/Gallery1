@@ -158,7 +158,7 @@ function formVar($name) {
 	if (!strncmp($_REQUEST[$name], 'false', 5)) {
 		return false;
 	} else {
-		return ($_REQUEST[$name]);
+		return getRequestVar($name); 
 	}
 }
 

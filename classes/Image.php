@@ -137,6 +137,7 @@ class Image {
 	}
 
 	function delete($dir) {
+		clearstatcache();
 		if (fs_file_exists("$dir/$this->resizedName.$this->type")) {
 			fs_unlink("$dir/$this->resizedName.$this->type");
 		}

@@ -51,60 +51,34 @@ if (session_id()) {
 /* Start a new session, or resume our current one */
 @session_start();
 
-/* emulate register_globals for sessions */
-if (!$gallery->register_globals) {
-	if (is_array($_SESSION) && !empty($_SESSION)) {
-		foreach($_SESSION as $key => $value) {
-			$$key =& $_SESSION[$key];
-		}
-	}
-	elseif (is_array($_SESSION) && !empty($_SESSION)) {
-		foreach($_SESSION as $key => $value) {
-			$$key =& $_SESSION[$key];
-		}
-	}		
-}
-
 /*
  * Are we resuming an existing session?  Determine this by checking
  * to see if the session container variable is already set.  If not, then
  * create the appropriate container for it.
  */
 
-if(! isset($gallery->app->sessionVar)) {
+if (empty($gallery->app->sessionVar)) {
 	$gSessionVar = "gallery_session_".md5(getcwd()); 
 } else {
 	$gSessionVar = $gallery->app->sessionVar . "_" . md5($gallery->app->userDir);
 }
-session_register($gSessionVar);
-
 
 if (isset($_SESSION[$gSessionVar])) {
 	/* Get a simple reference to the session container (for convenience) */
 	$gallery->session =& $_SESSION[$gSessionVar];
-
-	/* Make sure our session is current.  If not, nuke it and restart. */
-	/* Disabled this code -- it has too many repercussions */
-	if (false) {
-	    if (strcmp($gallery->session->version, $gallery->version)) {
-		session_destroy();
-		header("Location: " . makeGalleryHeaderUrl("index.php"));
-		exit;
-	    }
-	}
 } else {
 	/* Register the session variable */
 	session_register($gSessionVar);
 
 	/* Create a new session container */
 	if (isset($useStdClass)) {
-		$$gSessionVar = new stdClass();
+		$_SESSION[$gSessionVar] = new stdClass();
 	} else {
-		$$gSessionVar = new GallerySession();
+		$_SESSION[$gSessionVar] = new GallerySession();
 	}
 
 	/* Get a simple reference to the session container (for convenience) */
-	$gallery->session =& $$gSessionVar;
+	$gallery->session =& $_SESSION[$gSessionVar];
 
 	/* Tag this session with the gallery version */
 	$gallery->session->version = $gallery->version;

@@ -24,14 +24,12 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($reorder, $index, $newAlbum, $newIndex) = getRequestVars(array('reorder', 'index', 'newAlbum', 'newIndex'));
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");
 	exit;
-}
-
-if (!isset($reorder)) {
-	$reorder = 0;
 }
 
 doctype();
@@ -94,7 +92,7 @@ if ($gallery->session->albumName && isset($index)) {
    
 echo '<p>' .  $gallery->album->getHighlightTag() . '</p>';
 
-if ($reorder) { // Reorder, intra-album move
+if (!empty($reorder)) { // Reorder, intra-album move
 	echo makeFormIntro("move_album.php", array("name" => "theform")); 
 ?>
 <input type="hidden" name="index" value="<?php echo $index ?>">
@@ -116,7 +114,7 @@ for ($i = 1; $i <= $numAlbums; $i++) {
 <p>
 <?php
 }
-if (!$reorder) { // Reorder, trans-album move
+if (empty($reorder)) { // Reorder, trans-album move
 	echo _("Nest within another Album:") 
 ?>
 

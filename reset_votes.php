@@ -26,6 +26,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($index, $confirm) = getRequestVar(array('index', 'confirm'));
+
 if (isset($id)) {
         $index = $gallery->album->getPhotoIndex($id);
 }
@@ -38,7 +40,7 @@ if (!$gallery->user->canDeleteFromAlbum($gallery->album) && !$gallery->album->is
 
 doctype();
 echo "\n<html>";
-if (isset($confirm) && $confirm) {
+if (!empty($confirm)) {
 	$gallery->album->fields["votes"]=array();
 	$gallery->album->save(array(i18n("All votes removed")));
 	dismissAndReload();

@@ -42,6 +42,8 @@ if (!isset($gallery->version)) {
 	require(dirname(__FILE__) . '/init.php'); 
 }
 
+list($upgrade_albumname, $upgradeall) = getRequestVar(array('upgrade_albumname', 'upgradeall'));
+
 /*
  * If we're not the admin, we can only upgrade the album that we're
  * looking at.

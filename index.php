@@ -26,11 +26,6 @@
 global $GALLERY_EMBEDDED_INSIDE;
 global $GALLERY_EMBEDDED_INSIDE_TYPE;
 global $GALLERY_MODULENAME;
-global $op;
-global $mop;
-global $include;
-global $name;
-global $option;
 global $MOS_GALLERY_PARAMS;
 
 // Mambo calls index.php directly for popups - we need to make

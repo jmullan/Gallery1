@@ -31,6 +31,7 @@ if (!$gallery->user->canAddComments($gallery->album)) {
         exit;
 }
 
+list($save, $commenter_name, $comment_text) = getRequestVar(array('save', 'commenter_name', 'comment_text'));
 $error_text = "";
 if ($gallery->user->isLoggedIn() ) {
 	if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
