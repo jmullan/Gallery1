@@ -28,13 +28,13 @@ include($GALLERY_BASEDIR . "platform/fs_unix.php");
 if (php_sapi_name() != "cli") {
 	print _("This page is for development use only.");
 	print "<br>";
-	exit -1;
+	exit;
 }
 
 if (!fs_is_readable("setup")) {
        	print "Cannot build manifest unless in config mode";
 	print "\n";
-	exit -1;
+	exit (2);
 }
 $files=array(	"AUTHORS",
 	       	"LICENSE.txt",
