@@ -362,7 +362,6 @@ function check_graphics_im($location="")
 
 function default_graphics()
 {
-	list ($netPBM,) = check_graphics();
 	list ($imageMagick,) = check_graphics_im();
         
 	if (count ($imageMagick)) {
