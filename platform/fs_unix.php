@@ -63,6 +63,10 @@ function fs_unlink($filename) {
 	return unlink($filename);
 }
 
+function fs_is_executable($filename) {
+	return is_executable($filename);
+}
+
 function fs_import_filename($filename) {
 	return $filename;
 }

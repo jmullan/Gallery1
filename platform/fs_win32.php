@@ -135,6 +135,10 @@ function fs_tempdir() {
 	return export_filename(getenv("TEMP"));
 }
 
+function fs_is_executable($filename) {
+	return eregi(".(exe|com)$", $filename);
+}
+
 function debug($msg) {
 	if (0) {
 		print "<br>$msg<br>";
