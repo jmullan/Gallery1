@@ -30,7 +30,7 @@ if (!empty($register_globals) && !eregi("no|off|false", $register_globals)) {
 	}
 }
 
-$sensitiveList = array("gallery", "GALLERY_EMBEDDED_INSIDE", "GALLERY_EMBEDDED_INSIDE_TYPE");
+$sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'GLOBALS');
 foreach ($sensitiveList as $sensitive) {
 	if (!empty($_REQUEST[$sensitive])) {
 		print _("Security violation") ."\n";
