@@ -912,6 +912,9 @@ if ($numPhotos) {
 			    !$gallery->user->canWriteToAlbum($gallery->album)) {
 				showChoice("Edit Thumbnail", "edit_thumb.php", array("index" => $i));
 				showChoice("Rotate/Flip $label", "rotate_photo.php", array("index" => $i));
+				if (strlen($gallery->app->watermarkDir)) {
+					showChoice(_("Edit Watermark"), "edit_watermark.php", array("index" => $i));
+				}
 			}
 			if ($gallery->album->getItemOwnerDelete() && 
 			    $gallery->album->isItemOwner($gallery->user->getUid(), $i) && 
@@ -947,6 +950,9 @@ if ($numPhotos) {
 				if (!$gallery->album->isMovie($id) && !$gallery->album->getAlbumName($i)) {
 					showChoice(_("Edit Thumbnail"), "edit_thumb.php", array("index" => $i));
 					showChoice(_("Rotate/Flip") ." $label", "rotate_photo.php", array("index" => $i));
+					if (strlen($gallery->app->watermarkDir)) {
+						showChoice(_("Edit Watermark"), "edit_watermark.php", array("index" => $i));
+					}
 				}
 				if (!$gallery->album->isMovie($id)) {
 					 /* Show Highlight Album/Photo only when this i a photo, or Album has a highlight */

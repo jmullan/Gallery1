@@ -478,6 +478,210 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 	}
 }
 
+function netpbm_decompose_image($input, $format)
+/*
+In order for pnmcomp to support watermarking from formats other than pnm, the watermark
+first needs to be converted to .pnm. Second the alpha channel needs to be decomposed as a
+second image
+
+Returns a list of 2 temporary files (overlay, and alphamask), these files should be deleted (unlinked)
+  by the calling function
+*/
+{
+   $overlay = tempnam($gallery->app->tmpDir, "netpbm_");
+   $alpha = tempnam($gallery->app->tmpDir, "netpbm_");
+   switch ($format) {
+   case "png":
+      $getOverlay = netPbm("pngtopnm", "$input > $overlay");
+      $getAlpha   = netPbm("pngtopnm", "-alpha $input > $alpha");
+      break;
+   case "gif":
+      $getOverlay = netPbm("giftopnm", "--alphaout=$alpha $input > $overlay");
+      break;
+   case "tif":
+      $getOverlay = netPbm("tifftopnm", "-alphaout=$alpha $input > $overlay");
+      break;
+   }
+   list($results, $status) = exec_internal($getOverlay);
+   if (isset($getAlpha)) {
+      list($results, $status) = exec_internal($getAlpha);
+   }
+   return array($overlay, $alpha);
+}
+
+function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY) {
+   global $gallery;
+   if (!strcmp($src,$dest)) {
+      $useTemp = true;
+      $out = "$dest.tmp";
+   } else {
+      $out = $dest;
+   }
+   if (isDebugging())
+   {
+      print "<table border=\"1\">";
+      print "<tr><td>src</td><td>$src</td></tr>";
+      print "<tr><td>dest</td><td>$dest</td></tr>";
+      print "<tr><td>wmName</td><td>$wmName</td></tr>";
+      print "<tr><td>wmAlign</td><td>$wmAlign</td></tr>";
+      print "<tr><td>wmAlignX</td><td>$wmAlignX</td></tr>";
+      print "<tr><td>wmAlignY</td><td>$wmAlignY</td></tr>";
+      print "</table>";
+   }
+
+   $srcSize = getDimensions($src);
+   $overlaySize = getDimensions($wmName);
+   if (strlen($wmName))
+   {
+      switch($gallery->app->graphics)
+      {
+      case "ImageMagick":
+         $overlayFile = $wmName;
+         break;
+      case "NetPBM":
+         if (eregi("\.png$",$wmName, $regs)) {
+            list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "png");
+            $tmpOverlay = 1;
+         } else if (eregi("\.tiff?$",$wmName, $regs)) {
+            list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "tif");
+            $tmpOverlay = 1;
+         } else if (eregi("\.gif$",$wmName, $regs)) {
+            list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "gif");
+            $tmpOverlay = 1;
+         } else {
+            $alphaFile = $wmName;
+            if (strlen($wmAlphaName)) {
+                $overlayFile = $wmAlphaName;
+            }
+         }
+         break;
+      default:
+         if (isDebugging())
+            echo "<br> ". _("You have no graphics package configured for use!") ."<br>";
+         return 0;
+      }
+   } else {
+      echo "<br> ". _("Error: No watermark name specified!") ."<br>";
+      return 0;
+   }
+
+   // Set or Clip $wmAlignX and $wmAlignY
+   switch ($wmAlign)
+   {
+   case 1: // Top - Left
+      $wmAlignX = 0;
+      $wmAlignY = 0;
+      break;
+   case 2: // Top
+      $wmAlignX = ($srcSize[0] - $overlaySize[0]) / 2;
+      $wmAlignY = 0;
+      break;
+   case 3: // Top - Right
+      $wmAlignX = ($srcSize[0] - $overlaySize[0]);
+      $wmAlignY = 0;
+      break;
+   case 4: // Left
+      $wmAlignX = 0;
+      $wmAlignY = ($srcSize[1] - $overlaySize[1]) / 2;
+      break;
+   case 5: // Center
+      $wmAlignX = ($srcSize[0] - $overlaySize[0]) / 2;
+      $wmAlignY = ($srcSize[1] - $overlaySize[1]) / 2;
+      break;
+   case 6: // Right
+      $wmAlignX = ($srcSize[0] - $overlaySize[0]);
+      $wmAlignY = ($srcSize[1] - $overlaySize[1]) / 2;
+      break;
+   case 7: // Bottom - Left
+      $wmAlignX = 0;
+      $wmAlignY = ($srcSize[1] - $overlaySize[1]);
+      break;
+   case 8: // Bottom
+      $wmAlignX = ($srcSize[0] - $overlaySize[0]) / 2;
+      $wmAlignY = ($srcSize[1] - $overlaySize[1]);
+      break;
+   case 9: // Bottom Right
+      $wmAlignX = ($srcSize[0] - $overlaySize[0]);
+      $wmAlignY = ($srcSize[1] - $overlaySize[1]);
+      break;
+   case 10: // Other
+      if ($wmAlignX < 1)
+      { // clip left side
+         $wmAlignX = 0;
+      }
+      else if ($wmAlignX > ($srcSize[0] - $overlaySize[0]))
+      { // clip right side
+        $wmAlignX = ($srcSize[0] - $overlaySize[0]);
+      }
+      if ($wmAlignY < 1)
+      { // clip top
+         $wmAlignY = 0;
+      }
+      else if ($wmAlignY > ($srcSize[1] - $overlaySize[1]))
+      { // clip bottom
+        $wmAlignX = ($srcSize[1] - $overlaySize[1]);
+      }
+      break;
+   } // end switch ($wmAlign)
+
+   // Build command lines arguements
+   switch($gallery->app->graphics)
+   {
+   case "ImageMagick":
+      //$args = "-geometry +".$wmAlignX."+"."$wmAlignY -stegano 1 $overlayFile $src $out";
+      $args = "-geometry +".$wmAlignX."+"."$wmAlignY $overlayFile $src $out";
+      break;
+   case "NetPBM":
+      $args  = "-yoff=$wmAlignY ";
+      $args .= "-xoff=$wmAlignX ";
+      if ($alphaFile)
+      {
+         $args .= "-alpha=$alphaFile ";
+      }
+      $args .= $overlayFile;
+      break;
+   }
+
+   print "args = $args<br/>";
+   
+   // Execute
+   switch($gallery->app->graphics)
+   {
+   case "ImageMagick":
+      $err = exec_wrapper(ImCmd("composite", $args));
+      break;
+   case "NetPBM":
+      $err = exec_wrapper(toPnmCmd($src) .
+                          " | " .
+                          NetPBM("pnmcomp", $args) .
+                          " | " . fromPnmCmd($out));
+      break;
+   }
+
+   // copy exif headers from original image to rotated image
+   if (isset($gallery->app->use_exif)) {
+      $path = $gallery->app->use_exif;
+      exec_internal(fs_import_filename($path, 1) . " -te $src $out");
+   }
+   
+   // Test to see if it worked, and copy Temp file if needed
+   if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
+      if ($useTemp) {
+         fs_copy($out, $dest);
+         fs_unlink($out);
+      }
+      if ($tmpOverlay) {
+         fs_unlink($overlayFile);
+         if ($alphaFile) {
+            fs_unlink($alphaFile);
+         }
+      }
+      return 1;
+   } else {
+      return 0;
+   }
+} // end watermark_image()
+
 function rotate_image($src, $dest, $target, $type) {
 	global $gallery;
 
