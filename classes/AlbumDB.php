@@ -164,12 +164,12 @@ class AlbumDB {
 		return $list[$index-1];
 	}
 
-	function getAlbumbyName($name) {
+	function getAlbumbyName($name, $load=TRUE) {
 		global $gallery;
 		/* Look for an exact match */
 		foreach ($this->albumList as $album) {
 			if ($album->fields["name"] == $name) {
-				if (!$album->transient->photosloaded) {
+				if (!$album->transient->photosloaded && $load) {
 					$album->loadPhotos($gallery->app->albumDir . "/$name");
 				}
 				return $album;
@@ -179,7 +179,7 @@ class AlbumDB {
 		/* Look for a match that is case insensitive */
 		foreach ($this->albumList as $album) {
 			if (!strcasecmp($album->fields["name"], $name)) {
-				if (!$album->transient->photosloaded) {
+				if (!$album->transient->photosloaded && $load) {
 					$album->loadPhotos($gallery->app->albumDir . "/$name");
 				}
 				return $album;

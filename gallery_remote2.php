@@ -47,10 +47,10 @@ header("Content-type: text/plain");
 
 
 /*
- * Gallery remote protocol version 2.1
+ * Gallery remote protocol version 2.2
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 1;
+$GR_VER['MIN'] = 2;
 
 
 /*
@@ -141,6 +141,10 @@ if (!strcmp($cmd, "login")) {
 
 		if ($gallery->user->isLoggedIn()) {
 			// we're embedded and the user is authenticated
+
+			$response->setProperty( "debug_user", $gallery->user->getUsername());
+			$response->setProperty( "debug_user_type", get_class($gallery->user));
+
 			$response->setProperty( "server_version", $GR_VER['MAJ'].".".$GR_VER['MIN'] );
 			$response->setProperty( "status", $GR_STAT['SUCCESS'] );
 			$response->setProperty( "status_text", "Login successful." );
@@ -180,10 +184,18 @@ if (!strcmp($cmd, "login")) {
 	//-- fetch-albums --
 
 	$albumDB = new AlbumDB(FALSE);
+
+		//$list = array();
+		foreach ($albumDB->albumList as $album) {
+			echo $album->fields[name];
+		}
+
+		//return $list;
+
     $mynumalbums = $albumDB->numAlbums($gallery->user);
-	
+
 	$album_index = 0;
-	
+
     // display all albums that the user can move album to
     for ($i=1; $i<=$mynumalbums; $i++) {
         $myAlbum=$albumDB->getAlbum($gallery->user, $i);
@@ -193,10 +205,32 @@ if (!strcmp($cmd, "login")) {
 		    appendNestedAlbums( $myAlbum, $album_index, $response );
     	}
     }
-    
+
     // add album count
 	$response->setProperty( "album_count", $album_index );
-	
+
+	// add status and repond
+	$response->setProperty( "status", $GR_STAT['SUCCESS'] );
+	$response->setProperty( "status_text", "Fetch albums successful." );
+
+} else if (!strcmp($cmd, "fetch-albums-prune")) {
+	//---------------------------------------------------------
+	//-- fetch-albums-prune --
+
+	$albumDB = new AlbumDB(FALSE);
+	$album_count = 0;
+
+	mark_and_sweep($albumDB);
+
+	foreach ($albumDB->albumList as $album) {
+		if ($myMark[$album->fields["name"]]) {
+			add_album( $album, $album_count, $album->fields[parentAlbumName], $response );
+		}
+	}
+
+    // add album count
+	$response->setProperty( "album_count", $album_count );
+
 	// add status and repond
 	$response->setProperty( "status", $GR_STAT['SUCCESS'] );
 	$response->setProperty( "status_text", "Fetch albums successful." );
@@ -458,6 +492,36 @@ function processFile($file, $tag, $name, $setCaption="") {
     }
     
     return $error;
+}
+
+function mark_and_sweep(&$albumDB) {
+	global $gallery, $myMark;
+
+	foreach ($albumDB->albumList as $myAlbum) {
+		echo "mark_and_sweep: ".$myAlbum->fields["name"]."\n";
+		if ($gallery->user->canAddToAlbum($myAlbum)) {
+			sweep($albumDB, $myAlbum);
+			echo "mark_and_sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
+		}
+	}
+}
+
+function sweep(&$albumDB, &$myAlbum) {
+global $myMark;
+	echo "sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
+	if (! $myMark[$myAlbum->fields["name"]]) {
+		echo "sweep: ".$myAlbum->fields["name"]." is not marked: marking\n";
+		$myMark[$myAlbum->fields["name"]] = TRUE;
+		echo "sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
+
+		$parentName = $myAlbum->fields["parentAlbumName"];
+		if ($parentName) {
+			echo "sweep: got parent ".$parentName."\n";
+			$parentAlbum = $albumDB->getAlbumByName($parentName, FALSE);
+
+			sweep($albumDB, $parentAlbum);
+		}
+	}
 }
 
 ?>
