@@ -52,7 +52,7 @@ Edit the <?= $field ?> and click <b>Save</b> when you're done.
 <script language="javascript1.2">
 <!--   
 // position cursor in top form field
-document.theform.field.focus();
+document.theform.data.focus();
 //-->
 </script>
 
