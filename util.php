@@ -132,11 +132,14 @@ function popup_status($url) {
 
 function exec_internal($cmd) {
 	global $gallery;
+
+	$debugfile = "";
 	if (isDebugging()) {
 		print "<p><b>Executing:<ul>$cmd</ul></b>";
+		$debugfile = tempnam($gallery->app->tmpDir, "dbg");
 	}
 
-	fs_exec($cmd, $results, $status);
+	fs_exec($cmd, $results, $status, $debugfile);
 
 	if (isDebugging()) {
 		print "<br> Results: <pre>";
@@ -146,6 +149,19 @@ function exec_internal($cmd) {
 			print "<b>none</b>";
 		}
 		print "</pre>";
+
+		if (file_exists($debugfile)) {
+			print "<br> Error messages: <pre>";
+			if ($fd = fs_fopen($debugfile, "r")) {
+				while (!feof($fd)) {
+					$buf = fgets($fd, 4096);
+					print $buf;
+				}
+				fclose($fd);
+			}
+			unlink($debugfile);
+			print "</pre>";
+		}
 		print "<br> Status: $status (expected " . $gallery->app->expectedExecStatus . ")";
 	}
 
