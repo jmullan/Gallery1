@@ -249,7 +249,7 @@ class Album {
 				"background",
 				);
 		foreach ($check as $field) {
-			if (!isset($this->fields[$field])) {
+			if (!isset($this->fields[$field]) && isset($gallery->app->default[$field])) {
 				$this->fields[$field] = $gallery->app->default[$field];
 				$changed = 1;
 			}

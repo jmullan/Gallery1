@@ -1,3 +1,10 @@
+2003-10-15  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b160
+
+	* Fixed massive brokenness in the ":" to "_" migration in UIDs. None of
+	  the permissions UIDs had been updated, and the change neglected to
+	  account for Windows platforms, where the ":" was in fact a ";"
+	  semicolon.
+
 2003-10-16 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b159
 
 	* Language: Update Spanish (es_ES), German (de_DE)

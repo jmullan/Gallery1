@@ -95,11 +95,11 @@ class Gallery_User extends Abstract_User {
 			$this->lastActionDate=time(0);
 			$this->origEmail=$this->email;
 		}
-		if ($this->version < 4) 
+		if ($this->version < 5) 
 		{
 			$dir = $gallery->app->userDir;
 			$olduid = $this->uid;
-			$uid = ereg_replace(':', '_', $olduid);
+			$uid = strtr($olduid, ':;', '__');
 			$this->uid = $uid;
 			$file1 = sprintf('%s/%s', $dir, $olduid);
 			$file2 = sprintf('%s/%s', $dir, $uid);

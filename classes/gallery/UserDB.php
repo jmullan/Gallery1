@@ -120,6 +120,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 			$uid = $this->userMap[$username];
 
 		}
+		$uid = $this->convertUidToNewFormat($uid);
 		$user = $this->getUserByUid($uid);
 		if (!$user || strcmp($user->getUsername(), $username)) {
 			// We either got no uid for this name, or we got a uid
@@ -133,7 +134,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		
 	}
 
-	function getUserByUid($uid) {
+	function getUserByUid($uid, $tryOldFormat=false) {
 		global $gallery;
 		$userDir = $gallery->app->userDir;
 
@@ -145,13 +146,18 @@ class Gallery_UserDB extends Abstract_UserDB {
 			return $this->loggedIn;
 		}
 
-		if (fs_file_exists("$userDir/$uid")) {
-			$user = new Gallery_User();
+		$user = new Gallery_User();
+		$uidNew = $this->convertUidToNewFormat($uid);
+
+		if (fs_file_exists("$userDir/$uidNew")) {
+			$user->load($uidNew);
+		} else if ($tryOldFormat && fs_file_exists("$userDir/$uid")) {
 			$user->load($uid);
-			return $user;
+		} else {
+			$user = $this->nobody;
 		}
 
-		return $this->nobody;
+		return $user;
 	}
 
 	function getOrCreateUser($username) {
@@ -197,6 +203,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		global $gallery;
 		$userDir = $gallery->app->userDir;
 
+		$this->userMap = array();
 		foreach ($this->getUidList() as $uid) {
 			$tmpUser = $this->getUserByUid($uid);
 			$username = $tmpUser->getUsername();
@@ -302,7 +309,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		global $gallery;
 
 		if (!isset($this->version)) {
-			$this->version == "0";
+			$this->version = "0";
 		}
 		if (!strcmp($this->version, $gallery->user_version)) {
 			return true;
@@ -317,7 +324,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$total=sizeof($this->getUidList());
 		foreach ($this->getUidList() as $uid) {
 			processingMsg (sprintf(_("Checking user %d of %d . . . . "), $count++, $total));
-			$user=$this->getUserByUid($uid);
+			$user=$this->getUserByUid($uid, true);
 			if ($user->username == $nobody ||
 			    $user->username == $everybody ||
 			    $user->username == $loggedin) {
@@ -330,6 +337,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		}
 		$this->version=$gallery->user_version;
 		if ($success) {
+			$this->rebuildUserMap();
 			if (!$this->save()) {
 				$success = false;
 			}
@@ -375,6 +383,14 @@ class Gallery_UserDB extends Abstract_UserDB {
 		       	return false;
 	       	}
        	}
+
+	/*
+	 * Since user_version == 4, we've replaced ':' and ';' with '_'
+	 * in the user IDs, so convert any old values
+	 */
+	function convertUidToNewFormat($uid) {
+		return strtr($uid, ':;', '__');
+	}
 }
 
 ?>

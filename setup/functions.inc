@@ -1230,7 +1230,7 @@ function check_admins() {
 
 		$admins=array();
 		foreach ($userDB->getUidList() as $uid) {
-			$tmpUser = $userDB->getUserByUid($uid);
+			$tmpUser = $userDB->getUserByUid($uid, true);
 
 			if ($tmpUser->isAdmin()) {
 				$admins[]=$tmpUser->getUsername();
