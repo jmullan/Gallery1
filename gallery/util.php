@@ -120,11 +120,11 @@ function build_popup_url($url, $url_is_complete=0) {
 	return $url;
 }
 
-function popup($title,$url,$url_is_complete=0,$height=500,$width=500)
-{
+function popup($url, $url_is_complete=0) {
+
         $url = build_popup_url($url, $url_is_complete);
 	return popup_js($url, "Edit", 
-		"height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
+		"height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
 }
 
 function popup_js($url, $window, $attrs) {
@@ -136,8 +136,7 @@ function popup_status($url) {
 	return "open('" . makeGalleryUrl($url) . "','Status','$attrs');";
 }
 
-function popup_link($title,$url,$url_is_complete=0,$online_only=TRUE,$height=500,$width=500)
-{
+function popup_link($title, $url, $url_is_complete=0, $online_only=true) {
     static $popup_counter = 0;
     global $gallery;
 
@@ -152,7 +151,7 @@ function popup_link($title,$url,$url_is_complete=0,$online_only=TRUE,$height=500
     
     $a1 = "<a id=\"$link_name\" target=\"Edit\" href=$url onClick=\"".
 	popup_js("document.getElementById('$link_name').href", "Edit",
-		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
+		 "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
 	"\">";
     
     return "$a1<nobr>$title</nobr></a> ";
@@ -179,7 +178,7 @@ function exec_internal($cmd) {
 		print "</pre>";
 
 		if (file_exists($debugfile)) {
-			print "<br> ". _("Error messages") ." : <pre>";
+			print "<br> ". _("Error messages") .": <pre>";
 			if ($fd = fs_fopen($debugfile, "r")) {
 				while (!feof($fd)) {
 					$buf = fgets($fd, 4096);
@@ -286,12 +285,10 @@ function acceptableFormatList() {
  */
 
 function automaticFieldsList() {
-	return array(
-		"Upload Date" => _("Upload Date"),
+	return array("Upload Date" => _("Upload Date"),
 		"Capture Date" => _("Capture Date"),
 		"Dimensions" => _("Image Size"),
-		"EXIF" => _("Additional EXIF Data")
-	);
+		"EXIF" => _("Additional EXIF Data"));
 }
 
 function isImage($tag) {
@@ -338,10 +335,6 @@ function reload() {
 	echo '<script language="javascript1.2">';
 	echo 'opener.location.reload()';
 	echo '</script>';
-}
-
-function reload_popup() {
-//	echo "<BODY onLoad='self.reload();'>";
 }
 
 function dismissAndLoad($url) {
@@ -499,7 +492,7 @@ function rotate_image($src, $dest, $target) {
 			break;
 		default:
 			if (isDebugging())
-				echo "<br>". _("You have no graphics package configured for use") ." !<br>";
+				echo "<br>". _("You have no graphics package configured for use!") ."<br>";
 			return 0;
 			break;
 		}	
@@ -545,7 +538,7 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 		break;
 	default:
 		if (isDebugging())
-			echo "<br>" . ("You have no graphics package configured for use!") ."<br>";
+			echo "<br>" . _("You have no graphics package configured for use!") ."<br>";
 		return 0;
 		break;
 	}
@@ -578,7 +571,7 @@ function valid_image($file) {
     }
 
 	if (isDebugging())
-		echo "<br>". _("There was an unknown failure in the valid_image() call!") ." <br>";
+		echo "<br>". _("There was an unknown failure in the valid_image() call!") ."<br>";
     return 0;
 }
 
@@ -1469,7 +1462,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 
 	if (!strcmp($tag, "zip")) {
 		if (!$gallery->app->feature["zip"]) {
-			processingMsg(_("Skipping") . " : " . $name . _("(ZIP support not enabled)"));
+			processingMsg(_("Skipping") . " " . $name . _("(ZIP support not enabled)"));
 			continue;
 		}
 		/* Figure out what files we can handle */
@@ -1543,7 +1536,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				$temp_files[$newFile]++;
 			}
 		    
-			processingMsg("- ". _("Adding") ." : " .$name);
+			processingMsg("- ". _("Adding") ." " .$name);
 			if ($setCaption and $caption == "") {
 				$caption = $originalFilename;
 			}
@@ -1560,7 +1553,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 					list($w, $h) = $photo->image->getRawDimensions();
 					if ($w > $gallery->album->fields["resize_size"] ||
 					    $h > $gallery->album->fields["resize_size"]) {
-						processingMsg("- " . _("Resizing") ." : ". $name);
+						processingMsg("- " . _("Resizing") ." ". $name);
 						$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
 					}
 				}
@@ -1601,7 +1594,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				    "<a href=http://gallery.sourceforge.net/faq.php target=_new>Gallery FAQ</a></b>");
 			}
 		} else {
-			processingMsg(_("Skipping") . " : " . $name . " (". _("can't handle") ." '$tag' ". _("format") .")");
+			processingMsg(_("Skipping") . " " . $name . " (". _("can't handle") ." '$tag' ". _("format") .")");
 		}
 	}
 }
