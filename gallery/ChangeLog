@@ -1,3 +1,15 @@
+2001-03-25  Bharat Mediratta  <bharat@menalto.com>
+
+	* Cleaned up the instructions you receive when gallery is un- or
+	  mis-configured.
+
+	* Fixed a bug where we were relying on the SCRIPT_FILENAME and
+	  SCRIPT_NAME ennvironment variables to determine our filesystem
+	  path.  On servers which use PHP in a cgi-bin context, these
+	  point to the PHP binary, instead of to the PHP files we're
+	  evaluating.  Instead we use the HTTP_SERVER_VARS (PATH_TRANSLATED,
+	  and PHP_SELF).
+
 2001-03-24  Bharat Mediratta  <bharat@menalto.com>
 
 	* Released version 1.0b9
