@@ -1345,7 +1345,7 @@ function gallerySanityCheck() {
 	       	return NULL;
        	}
 
-	get_GalleryPathes();
+	getGalleryPaths();
 
 	if (!fs_file_exists(GALLERY_CONFDIR . "/config.php") ||
                 broken_link(GALLERY_CONFDIR . "config.php") ||
@@ -3273,7 +3273,7 @@ function key_strip_slashes (&$arr) {
 ** Define Constants for Gallery pathes.
 */ 
 
-function get_GalleryPathes() {
+function getGalleryPaths() {
 
 if (defined('GALLERY_BASE')) return;
 
