@@ -127,7 +127,7 @@ if (isset($login)) {
 
 </table>
 <p>
-<input type="submit" name="login" value="<?php _("Login") ?>">
+<input type="submit" name="login" value="<?php echo _("Login") ?>">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
