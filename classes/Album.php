@@ -1303,7 +1303,7 @@ class Album {
 		$this->fields["clicks"] = 0;
 		$this->fields["clicks_date"] = time();
 		$resetModDate=0;
-		$this->save($resetModDate);
+		$this->save(array(), $resetModDate);
 
 	}
 	
@@ -1313,7 +1313,7 @@ class Album {
 			$this->resetItemClicks($i);
 		}	
 		$resetModDate=0;
-		$this->save($resetModDate);
+		$this->save(array(), $resetModDate);
 	}
 
 	function getClicks() {
@@ -1345,7 +1345,7 @@ class Album {
 
 		$this->fields["clicks"]++;
 		$resetModDate=0; // don't reset last_mod_date
-	        $this->save($resetModDate);
+	        $this->save(array(), $resetModDate);
 	}
 
 	function getItemClicks($index) {
@@ -1362,7 +1362,7 @@ class Album {
 		$photo->incrementItemClicks();
 
 		$resetModDate=0; //don't reset last_mod_date
-		$this->save($resetModDate);
+		$this->save(array(), $resetModDate);
 	}
 
 	function resetItemClicks($index) {
@@ -1390,7 +1390,7 @@ class Album {
 
 		if ($needToSave) {
 		    $resetModDate=0; //don't reset last_mod_date
-		    $this->save($resetModDate);
+		    $this->save(array(), $resetModDate);
 		}
 		
 		return $exif;
