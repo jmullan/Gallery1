@@ -3,7 +3,19 @@
 if (file_exists("../config.php")) {
 	include("../config.php");
 }
-$webserver_user = posix_getpwuid(posix_getuid());
+if (function_exists("posix_getpwuid")) {
+	$rec = posix_getpwuid(posix_getuid());
+	$webserver_user = $rec["name"];
+} else {
+	$whoami = locateFile("whoami");
+	if ($whoami) {
+		exec($whoami, $results);
+		$webserver_user = $results[0];
+	} else {
+		$webserver_user = "unknown";
+	}
+}
+
 require("functions.inc");
 require("config_data.inc");
 
