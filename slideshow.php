@@ -46,13 +46,13 @@ if (isset($mode)) {
 	}
 }
 ?>
+
 <?php
 // Hack check
-
-if ($gallery->session->albumName == "" &&
-	       $gallery->app->gallery_slideshow_type == "off") {
-        header("Location: albums.php");
-        return;
+if (empty($gallery->session->albumName) &&
+	   $gallery->app->gallery_slideshow_type == "off") {
+	header("Location: albums.php");
+	return;
 }
 
 $albumName = $gallery->session->albumName;
@@ -63,15 +63,15 @@ if (!empty($albumName)) {
 		return;
 	}
 
-	$album = new Album();
-	$album->load($albumName);
-	if ($album->fields["slideshow_type"] == "off") {
-        	header("Location: " . makeAlbumUrl($gallery->session->albumName));
-	        return;
-	} 
+	$album = $gallery->album;
 
-	if (!$gallery->album->isLoaded()) {
+	if (!$album->isLoaded()) {
 		header("Location: " . makeAlbumUrl());
+		return;
+	}
+
+	if ($album->fields["slideshow_type"] == "off") {
+		header("Location: " . makeAlbumUrl($gallery->session->albumName));
 		return;
 	}
 }
