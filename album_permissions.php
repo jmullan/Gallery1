@@ -91,11 +91,6 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 	$tmpUser = $gallery->userDB->getUserByUid($uid);
 	$uname = $tmpUser->getUsername();
 
-	// Skip the admin user
-	if ($tmpUser->isAdmin()) {
-		continue;
-	}
-	
 	$uAll[$uid] = $uname;
 
 	if ($gallery->album->isOwner($uid)) {
