@@ -222,10 +222,11 @@ class Album {
 		}
 
 		while (($parentAlbum = $parentAlbum->getParentAlbum(FALSE)) && $depth < 30) {
-			$parentNameArray = array($parentAlbum->fields['name'] => $parentAlbum->fields['title']) + $parentNameArray;
+			$parentNameArray[$parentAlbum->fields['name']] = $parentAlbum->fields['title'];
 			$depth++;
 		}
 
+		$parentNameArray = array_reverse($parentNameArray, true);
 		return $parentNameArray;
 	}
 

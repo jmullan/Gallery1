@@ -2482,7 +2482,7 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 			// parameters again.
 			switch ($ImVersion) {
 			    case '5':
-				$keepProfiles = ($keepProfiles) ? ' +profile \'*\' ' : '';
+				$keepProfiles = ($keepProfiles) ? '' : ' +profile \'*\' ';
 				break;
 			    case '6':
 				$keepProfiles = ($keepProfiles) ? '' : ' -strip ';
