@@ -44,11 +44,12 @@
 	$nls['alias']['ja'] = 			'ja_JP';
 
 /**
- ** Alias for languages which we substitte or send by NUKE
+ ** Alias for languages which we substitte or send by NUKE or GeekLog
  **/
 
 	$nls['alias']['ja_JP.EUC-JP'] =		'ja_JP' ;	
  	$nls['alias']['ja_JP.EUC'] =		'ja_JP' ;
+ 	$nls['alias']['japanese'] =		'ja_JP' ;
 	
 /**
  ** Charset

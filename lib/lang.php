@@ -106,7 +106,9 @@ function getEnvLang() {
 		break;
 
 		case 'GeekLog':
-			if (isset($_CONF['locale'])) {
+			if (isset($_CONF['language'])) {
+				return $_CONF['language'];
+			} else if (isset($_CONF['locale'])) {
 				return $_CONF['locale'];
 			}				
 		break;

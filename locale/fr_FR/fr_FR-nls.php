@@ -44,7 +44,7 @@
 	$nls['alias']['fr'] = 'fr_FR';
 
 /**
- ** Aliases for languages which we substitte or send by NUKE
+ ** Aliases for languages which we substitte or send by NUKE or GeekLog
  **/
 
 	$nls['alias']['french'] =		'fr_FR' ;
@@ -54,6 +54,8 @@
 	$nls['alias']['fr_LU'] = 		'fr_FR' ;
 	$nls['alias']['fr_CH'] = 		'fr_FR' ;
 	$nls['alias']['fr_FR.ISO8859-1'] =	'fr_FR' ;
+	$nls['alias']['french_france'] =	'fr_FR' ;
+
 
 /**
  ** phpNuke

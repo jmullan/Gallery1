@@ -38,12 +38,12 @@
 	$nls['language']['pt_BR'] = 'Portugu&#234;s Brasileiro';
 
 /**
- ** Alias for languages which we substitte or send by NUKE
+ ** Alias for languages which we substitte or send by NUKE or GeekLog
  **/
 
 	$nls['alias']['brazilian'] =            'pt_BR' ;
 	$nls['alias']['pt_BR.ISO8859-1'] =      'pt_BR' ;
-	$nls['alias']['pt_BR.ISO8859-15'] =	'pt_BR' ;
+	$nls['alias']['portuguese_brazil'] =	'pt_BR' ;
 
 /**
  ** phpNuke

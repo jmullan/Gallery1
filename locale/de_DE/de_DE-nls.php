@@ -44,7 +44,7 @@
 	$nls['alias']['de'] = 			'de_DE';
 
 /**
- ** Aliases for languages which we substitte or send by NUKE
+ ** Aliases for languages which we substitte or send by NUKE or GeekLog
  **/
 
 	$nls['alias']['german'] =		'de_DE' ;
@@ -54,6 +54,7 @@
 	$nls['alias']['de_CH'] = 		'de_DE' ;
 	$nls['alias']['de_AT'] = 		'de_DE' ;
 	$nls['alias']['de_DE.ISO8859-1'] =	'de_DE' ;
+	$nls['alias']['german_formal'] =	'de_DE' ;
 	
 /**
  ** phpNuke

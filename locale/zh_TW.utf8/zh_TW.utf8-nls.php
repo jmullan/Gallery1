@@ -38,9 +38,10 @@
 	$nls['language']['zh_TW.utf8'] = '&#32321;&#39636;&#20013;&#25991; (UTF-8)'; // Traditional Chinese (UTF-8)
 
 /**
- ** Alias for languages which we substitte or send by NUKE
+ ** Alias for languages which we substitte or send by NUKE or GeekLog
  **/
-	//$nls['alias']['chinese'] = 		'zh_TW.utf8' ;
+	//$nls['alias']['chinese'] = 			'zh_TW.utf8' ;
+	$nls['alias']['chinese_traditional_utf-8'] = 	'zh_TW.utf8' ;
 
 /**
  ** Charset

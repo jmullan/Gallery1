@@ -38,9 +38,10 @@
 	$nls['language']['bg_BG'] = 		'&#x0411;&#x044a;&#x043b;&#x0433;&#x0430;&#x0440;&#x0441;&#x043a;&#x0438;';
 
 /**
- ** Aliases for languages which we substitte or send by NUKE
+ ** Aliases for languages which we substitte or send by NUKE or GeekLog
  **/
-	$nls['alias']['bg_BG.CP1251'] =         'bg_BG' ;
+	$nls['alias']['bg_BG.CP1251'] =		'bg_BG' ;
+	$nls['alias']['bulgarian'] =		'bg_BG' ;
 
 /**
  ** Charset

@@ -38,11 +38,12 @@
 	$nls['language']['he_IL'] = 		'&#1506;&#1489;&#1512;&#1497;&#1514;';
 
 /**
- ** Alias for languages which we substitte or send by NUKE
+ ** Alias for languages which we substitte or send by NUKE or GeekLog
  **/
 
 	$nls['alias']['he_HE'] = 		'he_IL' ;
 	$nls['alias']['he_IL.ISO8859-8'] =	'he_IL' ;
+	$nls['alias']['hebrew'] = 		'he_IL' ;
 
 /**
  ** Charset

@@ -38,11 +38,12 @@
 	$nls['language']['zh_CN'] = 	'&#31616;&#20307;&#20013;&#25991;';	// Simplified Chinese
 
 /**
- ** Alias for languages which we substitte or send by NUKE
+ ** Alias for languages which we substitte or send by NUKE or GeekLog
  **/
 
-	//$nls['alias']['chinese'] =	'zh_CN' ;
-	$nls['alias']['zh_CN.EUC'] =	'zh_CN' ;
+	//$nls['alias']['chinese'] =		'zh_CN' ;
+	$nls['alias']['zh_CN.EUC'] =		'zh_CN' ;
+	$nls['alias']['chinese_gb2312'] =	'zh_CN' ;
 
 /**
  ** Charset
