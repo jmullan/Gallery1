@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-01-11 15:46+0100\n"
-"PO-Revision-Date: 2004-09-02 11:56+0200\n"
+"POT-Creation-Date: 2005-01-12 11:29+0100\n"
+"PO-Revision-Date: 2004-10-12 11:56+0200\n"
 "Last-Translator: Ermanno Baschiera <ermannob AT inwind DOT it>\n"
 "Language-Team: italiano <Italian <gallery-devel@lists.sourceforge.net>>\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgstr "Pagina Diagnostica di Gallery"
 
 #: ../setup/check.inc:38
 msgid "Gallery Help Page"
-msgstr "Pagina di Aiuto di Galleriy"
+msgstr "Pagina di Aiuto di Gallery"
 
 #: ../setup/check.inc:42
 #, php-format
@@ -284,7 +284,7 @@ msgstr "Il file %s non esiste."
 #: ../setup/check_imagemagick.php:229 ../setup/check_netpbm.php:262
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
-msgstr "Stato atteso: %s, in effetti lo stato risultante &egrave; %s."
+msgstr "Stato atteso: %s, in realt&agrave; lo stato risultante &egrave; %s."
 
 #: ../setup/check_imagemagick.php:242 ../setup/check_netpbm.php:276
 msgid "can't detect version on Windows"
@@ -332,7 +332,7 @@ msgstr "Devi speficare un indirizzo email valido"
 
 #: ../setup/check_mail.php:55
 msgid "Try again?"
-msgstr "Tentare ancora?"
+msgstr "Vuoi riprovare?"
 
 #: ../setup/check_mail.php:61
 #, php-format
@@ -473,9 +473,8 @@ msgid "Check to see if you are running PHP 4.1.0 or greater."
 msgstr "Controlla se stai eseguendo PHP 4.1.0 o una versione maggiore."
 
 #: ../setup/config_data.inc:100
-#, fuzzy
 msgid "Since Gallery 1.4.5 Gallery needs at least PHP 4.1.0, this is due to that some versions of PHP have bugs that cause Gallery to fail and that older Version does not have required functionality."
-msgstr "A partire da Gallery 1.5 in poi, c'&egrave; bisogno almeno di PHP 4.1.0, questo perch&eacute; alcune versioni di PHP presentano bug che impediscono a Gallery di funzionare e inoltre le vecchie versioni non hanno funzioni necessarie."
+msgstr "A partire da Gallery 1.4.5 in poi, c'&egrave; bisogno almeno di PHP 4.1.0, questo perch&eacute; alcune versioni di PHP presentano bug che impediscono a Gallery di funzionare e inoltre le vecchie versioni non hanno tutte le funzioni necessarie."
 
 #: ../setup/config_data.inc:102
 #, php-format
@@ -497,11 +496,11 @@ msgstr "Sembra che il tuo PHP abbia problemi con __FILE__, aggiornalo a una vers
 
 #: ../setup/config_data.inc:113
 msgid "Gallery highly recommends that the PHP option 'register_globals' be turned off, for security purposes.  Some software, notably the 'Geeklog' CMS, requires that 'register_globals' be enabled."
-msgstr ""
+msgstr "Gallery raccomanda che l'opzione del PHP 'register_globals' sia disattivata, per ragioni di sicurezza. Alcuni software, tra cui il CMS 'Geeklog', necessitano che 'register_globals' sia attiva."
 
 #: ../setup/config_data.inc:115
 msgid "The PHP option 'register_globals' is enabled on your server. Gallery highly recommends that you disable 'register_globals' unless it is required by software on your site.  Gallery does not officially support 'register_globals' being enabled, and will attempt to disable it internally."
-msgstr ""
+msgstr "L'opzione del PHP 'register_globals' &egrave; attiva sul tuo server. Gallery ti raccomanda di disattivare 'register_globals' a meno che non sia necessaria a qualche software sul tuo sito. Gallery ufficialmente non supporta 'register_globals' attiva, e tenter&agrave; di disattivarla internamente."
 
 #: ../setup/config_data.inc:120
 msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
@@ -519,7 +518,7 @@ msgstr "<b>Nota</b>: In alcune rare circonstanze, Gallery pensa che sia attiva l
 
 #: ../setup/config_data.inc:135
 msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
-msgstr "La funzione <b>exec()</b> &egrave; quella che Gallery usa per lanciare programmi come NetPBM, ImageMagick e jhead. Se <b>exec()</b> &grave; disabilitata nel tuo server, allora Gallery non sar&agrave; in grado di operare."
+msgstr "La funzione <b>exec()</b> &egrave; quella che Gallery usa per lanciare programmi come NetPBM, ImageMagick e jhead. Se <b>exec()</b> &egrave; disabilitata nel tuo server, allora Gallery non sar&agrave; in grado di operare."
 
 #: ../setup/config_data.inc:137
 msgid "The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."
@@ -569,7 +568,7 @@ msgstr "Se NetPBM &egrave; installato e Gallery non lo trova automaticamente non
 
 #: ../setup/config_data.inc:181
 msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."
-msgstr "Verifica se ImageMagick &egrave; installato cos&igrave; che Gallery possa manipolare le immagini (ruotare, ridimensionare, creare anteprime, ecc). &Egrave; necessario installare solamente ImageMagick <b>oppure</b> NetPBM."
+msgstr "Verifica se ImageMagick &egrave; installato cosicch&eacute; Gallery possa manipolare le immagini (ruotare, ridimensionare, creare anteprime, ecc). &Egrave; necessario installare solamente ImageMagick <b>oppure</b> NetPBM."
 
 #: ../setup/config_data.inc:183
 msgid "I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  "
@@ -773,7 +772,7 @@ msgstr "Il percorso della directory contenente NetPBM nel tuo sistema. Se hai sc
 #: ../setup/config_data.inc:383 ../setup/config_data.inc:406
 #, php-format
 msgid "This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."
-msgstr "Questo percorso &egrave; necessario solo se prima hai selezionato %s. Altrimenti puoi lasciarlo cos&igrave; com' &egrave;, opure vuoto."
+msgstr "Questo percorso &egrave; necessario solo se prima hai selezionato %s. Altrimenti puoi lasciarlo cos&igrave; com'&egrave;, oppure vuoto."
 
 #: ../setup/config_data.inc:386
 msgid "I can't find NetPBM at the location you provided."
@@ -809,7 +808,7 @@ msgstr "Selezionando questa opzione Gallery prover&agrave; a ruotare automaticam
 
 #: ../setup/config_data.inc:421
 msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
-msgstr "Necessita del parser EXIF Jhead v1.9 o successivo (Vedi strumenti opzionali)."
+msgstr "Necessita del parser EXIF Jhead v1.9 o successivo (Vedi Strumenti opzionali)."
 
 #: ../setup/config_data.inc:422 ../setup/config_data.inc:484
 #: ../setup/config_data.inc:498 ../setup/config_data.inc:504
@@ -868,7 +867,7 @@ msgstr "Qualit&agrave; JPEG"
 
 #: ../setup/config_data.inc:428
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
-msgstr "Il formato JPEG diminuisce la dimensione del file a scapito della qualit&agrave;. Gallery pu&ograve; controllare la qualit&agrave; del JPEG prodotto quando ridimensioni, ruoti o prepari delle anteprime dalle immagini JPEG. Immagini di maggior qualit&agrave; hanno delle dimensioni maggiori rispetto a quelle di una qualit&agrave; pi&ugrave; bassa. Tuttavia, in molti casi c'&egrave; un punto nel quale l'incremento della qualit&agrave; incrementa la dimensione del file senza un apprezzabile miglioramento visivo. Se noti che le anteprime e le immagini ridimensionate sono pi&ugrave; pesanti degli originali e non vuoi che questo accada, prova allora ad abbassare questo valore. <b>Nota</b> che la modifica di questo valore avr&agrave; effetto solo sulle immagini cambiate in <i>futuro</i>."
+msgstr "Il formato JPEG diminuisce la dimensione del file a scapito della qualit&agrave;. Gallery pu&ograve; controllare la qualit&agrave; del JPEG prodotto quando ridimensioni, ruoti o prepari delle anteprime dalle immagini JPEG. Immagini di maggior qualit&agrave; hanno delle dimensioni maggiori rispetto a quelle di qualit&agrave; pi&ugrave; bassa. Tuttavia, in molti casi c'&egrave; un punto nel quale l'incremento della qualit&agrave; incrementa la dimensione del file senza un apprezzabile miglioramento visivo. Se noti che le anteprime e le immagini ridimensionate sono pi&ugrave; pesanti degli originali e non vuoi che questo accada, prova allora ad abbassare questo valore. <b>Nota</b> che la modifica di questo valore avr&agrave; effetto solo sulle immagini modificate in <i>futuro</i>."
 
 #: ../setup/config_data.inc:441
 msgid "Embedded Gallery"
@@ -891,9 +890,8 @@ msgid "Main Gallery page"
 msgstr "Pagina Principale di Gallery"
 
 #: ../setup/config_data.inc:462
-#, fuzzy
 msgid "Show the album tree ?"
-msgstr "Mostra l'albero degli album"
+msgstr "Mostra l'albero degli album?"
 
 #: ../setup/config_data.inc:463
 #, fuzzy
@@ -927,7 +925,7 @@ msgstr "Dimensione copertina "
 
 #: ../setup/config_data.inc:476
 msgid "The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."
-msgstr "La dimensione voluta (in pixel) delle anteprime mostrate nella galleria (immagini evidenziate)."
+msgstr "La dimensione voluta (in pixel) delle anteprime mostrate nella galleria (immagini copertina)."
 
 #: ../setup/config_data.inc:482
 msgid "Show Owner"
@@ -943,7 +941,7 @@ msgstr "Album per pagina"
 
 #: ../setup/config_data.inc:490
 msgid "How many albums should be displayed per Gallery page?"
-msgstr "Quanti album devono essere mostrati su ogni pagina di Gallery?"
+msgstr "Quanti album devono essere mostrati in ogni pagina di Gallery?"
 
 #: ../setup/config_data.inc:496
 msgid "Search Engine"
@@ -955,11 +953,11 @@ msgstr "Mostrare il motore di ricerca nella pagina principale di Gallery?"
 
 #: ../setup/config_data.inc:502
 msgid "Accurate Photo Count"
-msgstr ""
+msgstr "Conteggio Foto Accurato"
 
 #: ../setup/config_data.inc:503
 msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
-msgstr ""
+msgstr "Visualizza il numero di album e foto nella homepage di Gallery utilizzando un sistema di conteggio accurato, ma incredibilmente lento. Questo &egrave; stato aggiunto in seguito alle richieste di numerosi utenti, tuttavia non si raccomanda per gallerie che hanno grandi quantit&agrave; di album e foto. Alcuni esempi hanno dimostrato che il caricamento della pagina index impiega fino a 30 secondi con questa opzione attiva."
 
 #: ../setup/config_data.inc:508
 msgid "Frame around albums"
@@ -980,9 +978,9 @@ msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is opti
 msgstr "Il percorso al file binario <b>%s</b>.  Ad esempio %s oppure %s. Questo &egrave; opzionale, quindi se non ce l'hai non preoccupartene."
 
 #: ../setup/config_data.inc:562 ../setup/config_data.inc:574
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
-msgstr "Il percorso al parser EXIF <b>jhead</b> .  Ad esempio %s oppure %s. Questo &egrave; opzionale, quindi se non ce l'hai non preoccupartene."
+msgstr "Il percorso al parser EXIF <b>%s</b> .  Ad esempio %s oppure %s. Questo &egrave; opzionale, quindi se non ce l'hai non preoccupartene."
 
 #: ../setup/config_data.inc:586
 #, php-format
@@ -1183,7 +1181,7 @@ msgstr "Questa opzione ti permette di creare tanti account in una volta usando u
 
 #: ../setup/config_data.inc:762
 msgid "This is allows the &quot;admin&quot; account to get email whenever a comment is added to any album"
-msgstr "Questo permette che l'account &quot; admin&quot; riceva un'email ogni qualvolta venga inserito un commento in un album"
+msgstr "Questo permette che l'account &quot;admin&quot; riceva un'email ogni qualvolta venga inserito un commento in un album"
 
 #: ../setup/config_data.inc:763
 msgid "Admin comment email"
@@ -1191,7 +1189,7 @@ msgstr "Admin comment email"
 
 #: ../setup/config_data.inc:768
 msgid "This is allows the &quot;admin&quot; account to get email whenever a change is made to any album"
-msgstr "Questo permette che l'account &quot; admin&quot; riceva un'email ogni qualvolta venga effettuato un cambiamento in un album"
+msgstr "Questo permette che l'account &quot;admin&quot; riceva un'email ogni qualvolta venga effettuato un cambiamento in un album"
 
 #: ../setup/config_data.inc:769
 msgid "Admin Other Changes email"
@@ -1647,11 +1645,11 @@ msgstr "30 Minuti"
 
 #: ../setup/config_data.inc:1125
 msgid "Random Block Retrieval Attempts"
-msgstr ""
+msgstr "Tentativi di Recupero Blocco Casuale"
 
 #: ../setup/config_data.inc:1126
 msgid "This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."
-msgstr ""
+msgstr "Questa variabile controlla il numero di volte che il blocco casuale tenter&agrave; di ottenere un'immagine da Gallery. Maggiore il valore, minore il numero di volte in cui sar&agrave; ritornato un 'Nessuna Foto Selezionata', ma incrementer&agrave; il tempo di caricamento del Blocco Casuale."
 
 #: ../setup/config_data.inc:1133
 msgid "Cache EXIF data"
@@ -2271,14 +2269,14 @@ msgid "documentation"
 msgstr "documentazione"
 
 #: ../setup/confirm.inc:44
-#, fuzzy, php-format
+#, php-format
 msgid "You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."
 msgstr "Devi creare un file vuoto chiamato %s e applicargli il comando chmod 777 prima di procedere.  Vedi %s per maggior dettagli."
 
 #: ../setup/confirm.inc:52
-#, fuzzy, php-format
+#, php-format
 msgid "File %s is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."
-msgstr "Devi creare un file vuoto chiamato %s e applicargli il comando chmod 777 prima di procedere.  Vedi %s per maggior dettagli."
+msgstr "Il file %s &egrave; opzionale, tuttavia alcune funzioni di %s saranno disabilitate se non crei un file vuoto chiamato %s e non gli fai il chmod 777 prima di procedere. Vedi la %s per ulteriori dettagli."
 
 #: ../setup/confirm.inc:56
 #, php-format
@@ -2719,7 +2717,7 @@ msgstr "Questa &egrave; una build di sviluppo di %s rilasciata il %s."
 
 #: ../setup/functions.inc:685
 msgid "Please check regularly for updates."
-msgstr "Per favore verifica regolarmente la presenza di aggiornamenti."
+msgstr "Verifica regolarmente la presenza di aggiornamenti."
 
 #: ../setup/functions.inc:704
 msgid "All gallery locales are available on this host."
@@ -2855,7 +2853,7 @@ msgstr "Guarda %sControllo Versioni%s per ulteriori dettagli."
 #: ../setup/functions.inc:1321
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-msgstr "%d file sono pi&ugrave; recenti del previsto. E' tutto ok se stai usando codice di pre-release, beta, CVS o modificato."
+msgstr "%d file sono pi&ugrave; recenti del previsto. &Egrave; tutto ok se stai usando codice di pre-release, beta, CVS o modificato."
 
 #: ../setup/functions.inc:1326
 #, php-format
@@ -3222,24 +3220,3 @@ msgstr "Cornice in Legno"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr "Una cornice ricoperta di legno"
-
-#, fuzzy
-#~ msgid "Version of ImageMagick being used"
-#~ msgstr "%d binari su %d di ImageMagick individuati."
-
-#, fuzzy
-#~ msgid "Enable caching for comments"
-#~ msgstr "Abilita i commenti"
-
-#, fuzzy
-#~ msgid "Enable caching for ratings"
-#~ msgstr "Abilita i commenti"
-
-#~ msgid "The full URL to the Gallery web application.  E.g. %s"
-#~ msgstr "L'URL completo dell'applicazione web Gallery. Es. %s"
-
-#~ msgid "The full URL to your album directory (specified above) on your web server.  E.g. %s"
-#~ msgstr "L'URL completo della directory del tuo album (specificato sopra) sul tuo web server. Es. %s"
-
-#~ msgid "The PHP option 'register_globals' is enabled on your server. Gallery is not compatible with this option."
-#~ msgstr "L'opzione PHP 'register_globals' &egrave; attiva nel tuo server. Gallery non &egrave; compatibile con questa opzione."
