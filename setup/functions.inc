@@ -209,7 +209,7 @@ function check_htaccess()
 	if ($GALLERY_PHP_VALUE_OK) {
 		$success[] = _("I can read your .htaccess file");
 	} else {
-		$fail["fail-htaccess"]++;
+		$fail["fail-htaccess"] = 1;
 	}
 
 	return array($success, $fail);
@@ -223,13 +223,13 @@ function check_php()
 	$success = array();
 	$fail = array();
 	if (floor($version) < floor($MIN_PHP_MAJOR_VERSION)) {
-		$fail["fail-too-old"]++;
+		$fail["fail-too-old"] = 1;
 	} else if (!strcmp($version, "4.0.0")) {
-		$fail["fail-incompatible"]++;
+		$fail["fail-incompatible"] = 1;
 	} else if (!strcmp($version, "4.0RC1")) {
-		$fail["fail-incompatible"]++;
+		$fail["fail-incompatible"] = 1;
 	} else if (!strncmp($version, "4.0.3", 5)) {
-		$fail["fail-incompatible"]++;
+		$fail["fail-incompatible"] = 1;
 	} else {
 		$success[] = sprintf(_("PHP v%s is OK"), phpversion());
 	}
@@ -247,9 +247,9 @@ function check_php4_1()
         $version = explode(".", phpversion());
         // $version = explode(".", "4.0.4");
         if ($version[0] < 4) {
-		$fail["fail-too-old"]++;
+		$fail["fail-too-old"]= 1;
         } elseif ($version[1] <1) {
-		$fail["fail-too-old"]++;
+		$fail["fail-too-old"] = 1;
         } else{
 		$success[] = sprintf(_("PHP v%s is OK"), phpversion());
 	}
@@ -265,7 +265,7 @@ function check_mod_rewrite()
 	if ($GALLERY_REWRITE_OK) {
 		$success[] = _("mod_rewrite is enabled");
 	} else {
-		$fail["fail-mod-rewrite"]++;
+		$fail["fail-mod-rewrite"] = 1;
 	}
 
 	return array($success, $fail);
@@ -367,7 +367,7 @@ function check_graphics($location="", $graphtool = "")
 	}
 	
 	if (count($missing) == count($netpbm)) {
-		$fail["fail-netpbm"]++;
+		$fail["fail-netpbm"] = 1;
 	} else if (count($missing)) {
 		$fail["fail-netpbm-partial"] = array_values($missing);
 	} else {
@@ -422,7 +422,7 @@ function check_graphics_im($location="", $graphtool="")
 	}
 	
 	if (count($missing) == count($imagick)) {
-		$fail["fail-imagemagick"]++;
+		$fail["fail-imagemagick"] = 1;
 	} else if (count($missing)) {
 		$fail["fail-imagemagick"] = array_values($missing);
 	} else {
@@ -463,7 +463,7 @@ function check_gettext()
 	if (in_array ("gettext", get_loaded_extensions()) && function_exists('gettext')) {
 		$success[] = _("gettext installed");
 	} else {
-		$fail["fail-gettext"]++;
+		$fail["fail-gettext"] = 1;
 	}
 	return array($success, $fail);
 }
@@ -734,7 +734,7 @@ function config_maybe_locales() {
 			$results[] = array (
 					"type" => "block_start", 
 					"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Locale problems")),
-					"desc" => _("There are no apparently suitable locales installed on your machine for the following languages.  Please chose the one you think is most suitable."));
+					"desc" => _("There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."));
 		}
 		$index = $nls['languages'][$key] ;
 		$results["locale_alias['$key']"] = array (
@@ -778,7 +778,7 @@ function check_safe_mode()
 	    !strcasecmp($safe_mode, "false")) {
 		$success[] = _("safe mode is off");
 	} else {
-		$fail["fail-safe-mode"]++;
+		$fail["fail-safe-mode"] = 1;
 	}
 	return array($success, $fail);
 }
@@ -790,7 +790,7 @@ function check_magic_quotes()
 	if (!get_magic_quotes_gpc()) {
 		$success[] = _("magic quotes are off");
 	} else {
-		$fail["fail-magic-quotes"]++;
+		$fail["fail-magic-quotes"] = 1;
 	}
 
 	return array($success, $fail);

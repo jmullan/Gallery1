@@ -125,6 +125,7 @@ function getNLS () {
 
 	$nls['aliases']['portuguese'] =		'pt_PT' ;
 	$nls['aliases']['pt_PT.ISO8859-2'] =    'pt_PT' ;
+	$nls['aliases']['pt_PT.ISO8859-1'] =    'pt_PT' ;
 	
 	$nls['aliases']['russian'] =		'ru_RU';
 	//$nls['aliases']['russian'] =		'ru_RU.koi8r';
@@ -136,6 +137,8 @@ function getNLS () {
 	$nls['aliases']['sv_SE.ISO8859-1'] =    'sv_SE' ;
 	
 	$nls['aliases']['spanish'] = 		'es_ES' ;
+
+	$nls['aliases']['zh_TW.Big5']      =    'zh_TW' ;
 	
 /**
  ** Charsets

@@ -1768,13 +1768,15 @@ $nls = getNLS();
  ** We have 2 Ways. Nuke or not Nuke
  ** If we are in Nuke this override the Mode
  **/
-	$newlang=$HTTP_GET_VARS['newlang'];
+	if (isset($HTTP_GET_VARS['newlang'])) {
+		$newlang=$HTTP_GET_VARS['newlang'];
+	}
 
 // Check if we are in Nuke or in which Mode and set language
 
 	if (isset($GALLERY_EMBEDDED_INSIDE)) {
 		//We're in NUKE";
-		if ($newlang) {
+		if (!empty($newlang)) {
 			// if there was a new language given, use it
 			$gallery->nuke_language=$newlang;	
 		} elseif (isset($HTTP_COOKIE_VARS['lang'])) {
@@ -1795,7 +1797,7 @@ $nls = getNLS();
 	        	break;
 		    case 3:
 			// Does the user want a new language ?
-			if ($newlang) {
+			if (!empty($newlang)) {
 				// Use Alias if
 				if ($nls['alias'][$newlang]) $newlang=$nls['alias'][$newlang] ;
 				// use Language if its okay
