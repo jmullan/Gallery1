@@ -1,0 +1,16 @@
+<?
+// This is the default search header (for the search results
+// page: albums.php). It's companion is search.footer.default. 
+//
+// To override this header, create a file called search.header
+// in this directory. 
+//
+// NOTE: This header gets inserted below the <body> tag.
+// 
+
+global $searchstring;
+?>
+
+<span class="head">
+Search Results for "<?= $searchstring ?>"
+</span>

@@ -280,6 +280,11 @@ $defaults = array(
 	"albumsPerPage" => array(
 		desc => "How many albums should be displayed per Gallery page?",
 		value => "5",
+	),
+	"showSearchEngine" => array(
+		desc => "Display search engine on main Gallery page?",
+		choices => array("yes", "no"),
+		value => "yes",
 	)
 );
 ?>

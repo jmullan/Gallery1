@@ -43,7 +43,7 @@ while ($breadcrumb["text"][$i]) {
     <td bgcolor="<?=$borderIn?>" width="1" height="18"><?=$pixelImage?></td>
   </tr>
 <?
-if (!$breadcrumb["top"]) {
+if (!$breadcrumb["top"] || $breadcrumb["bottom"]) {
 ?>
   <tr> 
     <td colspan="3" height="1" bgcolor="<?=$borderIn?>"><?=$pixelImage?></td>

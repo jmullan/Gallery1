@@ -17,7 +17,31 @@
 includeHtmlWrap("wrapper.header");
 ?>
 
-<span class="head">
-<?= $app->galleryTitle ?>
-</span>
+<table width=100% border=0>
+  <tr>
+    <td>
+      <span class="head">
+        <?= $gallery->app->galleryTitle ?>
+      </span>
+    </td>
+<?
+if (!strcmp($gallery->app->default["showSearchEngine"], "yes")) {
 
+
+//$gallery->app->default["showSearchEngine"] = "yes";
+
+?>
+    <form action=search.php>
+    <td valign="middle" align="right">
+       <span class="title">
+          Search:
+       </span>
+        <input type="text" name="searchstring" value="" size="25">
+    </td>
+    </form>
+<?
+}
+?>
+  </tr>
+</table>
+<br>
