@@ -32,18 +32,20 @@
 */
 
 require(GALLERY_BASE. '/Version.php');
+$docs=galleryDocs() ? galleryDocs() : _("documentation");
 $error = 0;
 $view = "";
 $outfile_list=array("config.php", ".htaccess");
 foreach ($outfile_list as $outfile) {
-	if ($fd = @fs_fopen(GALLERY_CONFDIR ."/$outfile", "a")) {
+	if (!fs_file_exists(GALLERY_CONFDIR . "/$outfile")) {
+		$error++;
+		$view .= "<p>" . gallery_error(sprintf(_("You must create an empty file named %s and chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
+	}
+	elseif ($fd = @fs_fopen(GALLERY_CONFDIR ."/$outfile", "a")) {
 		fclose($fd);
 	} else {
 		$error++;
-		$docs=galleryDocs() ? galleryDocs() : _("documentation");
-		$view .= '<p>'. gallery_error(sprintf(_("You must create empty file %s and chmod it 777 before proceeding.  See %s for more details."), 
-					"<i><b>".$outfile."</b></i>", $docs)) . 
-			"</p>\n";
+		$view .= gallery_error(sprintf(_("File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
 	}
 }
 

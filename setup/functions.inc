@@ -1558,6 +1558,11 @@ function configLogin($target) {
 		$resetFile = getFile(GALLERY_SETUPDIR . "/resetadmin");
 		$resetFile = trim($resetFile);
 	}
+	else {
+		// If the file is not present (perhaps removed after visiting the config page)
+		// unset the Guid so we don't keep asking for something that's not there.
+		$gallery->session->resetAdminGuid = null;
+	}
 	
 	// The gallery has never been configured, or the admin password has been lost and needs to be reset - ignore login requirement
 	// If the user has already logged in, and is viewing one of the setup pages, they will be logged in automatically by the form

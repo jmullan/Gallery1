@@ -33,8 +33,6 @@ require_once(GALLERY_BASE . '/classes/NobodyUser.php');
 require_once(GALLERY_BASE . '/classes/LoggedInUser.php');
 require_once(GALLERY_BASE . '/classes/EverybodyUser.php');
 
-require(GALLERY_BASE . '/errors/configure_instructions.php');
-
 $start_string = "# BEGIN Gallery section";
 $end_string = "# END Gallery section.  Add User changes below this line";
 
