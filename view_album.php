@@ -80,17 +80,17 @@ $navigator["page"] = $page;
 $navigator["pageVar"] = "page";
 $navigator["maxPages"] = $maxPages;
 $navigator["fullWidth"] = $fullWidth;
-$navigator["url"] = makeGalleryUrl($gallery->session->albumName);
+$navigator["url"] = makeAlbumUrl($gallery->session->albumName);
 $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
 
 if ($gallery->album->fields[parentAlbumName]) {
 	$top = $gallery->app->photoAlbumURL;
 	$myAlbum=$albumDB->getAlbumbyName($gallery->album->fields[parentAlbumName]);
-	$breadtext[0] = "Gallery: <a href=". makeGalleryUrl() . ">".$gallery->app->galleryTitle."</a>";
-	$breadtext[1] = "Album: <a href=". makeGalleryUrl($gallery->album->fields[parentAlbumName]).">".$myAlbum->fields["title"]."</a>";
+	$breadtext[0] = "Gallery: <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
+	$breadtext[1] = "Album: <a href=". makeAlbumUrl($gallery->album->fields[parentAlbumName]).">".$myAlbum->fields["title"]."</a>";
 } else {
-	$breadtext[0] = "Gallery: <a href=". makeGalleryUrl() .">".$gallery->app->galleryTitle."</a>";
+	$breadtext[0] = "Gallery: <a href=". makeGalleryUrl("albums.php") .">".$gallery->app->galleryTitle."</a>";
 }
 
 $breadcrumb["text"] = $breadtext;
@@ -154,13 +154,17 @@ if ($gallery->album->fields["textcolor"]) {
 	  var sel_value = selected_select.options[sel_index].value;
 	  selected_select.options[0].selected = true;
 	  selected_select.blur();
-	  <?= popup("'$GALLERY_BASEDIR' + " . sel_value, 1) ?>
+	  <?= popup(sel_value, 1) ?>
   } 
   // --> 
   </script>
 
 <? 
 includeHtmlWrap("album.header");
+
+function showChoice($label, $target, $args) {
+	echo "<option value='" . makeGalleryUrl($target, $args) . "'>$label</option>";
+}
 
 $adminText = "<span class=\"admin\">";
 if ($numPhotos == 1) {  
@@ -191,7 +195,7 @@ if ($gallery->user->canAddToAlbum($gallery->album)) {
 }
 if ($gallery->user->canCreateAlbums()) {
 	$adminCommands .= '<a href="' . doCommand("new-album", 
-						 "&parentName=" . $gallery->session->albumName,
+						array("parentName" => $gallery->session->albumName),
 						 "view_album.php") .
 						 '">[new nested album]</a>&nbsp;<br>';
 }
@@ -222,7 +226,7 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
 
 if ($gallery->user->isLoggedIn()) {
         $adminCommands .= "<a href=" .
-				doCommand("logout", "", "view_album.php", "page=$page") .
+				doCommand("logout", array(), "view_album.php", array("page" => $page)) .
 			  ">[logout]</a>";
 } else {
 	$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[login]</a>';
@@ -315,10 +319,10 @@ if ($numPhotos) {
 				} else {
 					$myHighlightTag = "<span class=title>Empty!</span>";
 				}
-				echo("<a href=" . makeGalleryUrl($myAlbumName) . ">" . 
+				echo("<a href=" . makeAlbumUrl($myAlbumName) . ">" . 
 					$myHighlightTag . "</a>");
 			} else {
-				echo("<a href=" . makeGalleryUrl($gallery->session->albumName, $id) . ">" .
+				echo("<a href=" . makeAlbumUrl($gallery->session->albumName, $id) . ">" .
 					$gallery->album->getThumbnailTag($i) .
 					"</a>");
 			}
@@ -345,7 +349,10 @@ if ($numPhotos) {
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td width=$imageCellWidth valign=bottom align=center>");
-			echo("<form name='image_form_$i'>"); // put form outside caption to compress lines
+
+			// put form outside caption to compress lines
+			echo makeFormIntro("view_album.php", array("name" => "image_form_$i")); 
+
 			echo "<center><span class=\"caption\">";
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isHidden($i)) {
@@ -402,42 +409,56 @@ if ($numPhotos) {
 			if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
 				if ($gallery->album->isAlbumName($i)) {
 					if ($gallery->user->canChangeTextOfAlbum($myAlbum)) {	
-						echo("<option value='edit_field.php?set_albumName={$myAlbum->fields[name]}&field=title'>Edit Title</option>");
-						echo("<option value='edit_field.php?set_albumName={$myAlbum->fields[name]}&field=description'>Edit Description</option>");
+						showChoice("Edit Title", 
+							"edit_field.php", 
+							array("set_albumName" => $myAlbum->fields[name],
+								"field" => "title")) . 
+						showChoice("Edit Description",
+							"edit_field.php",
+							array("set_albumName" => $myAlbum->fields[name],
+								"field" => "description"));
 					}
 					if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum)) {
-						echo("<option value='rename_album.php?set_albumName={$myAlbum->fields[name]}&index=$i'>Rename Album</option>");
+						showChoice("Rename Album",
+							"rename_album.php",
+							array("set_albumName" => $myAlbum->fields[name],
+								"index" => $i));
 					}
 				} else {
-					echo("<option value='edit_caption.php?index=$i'>Edit Caption</option>");
+					showChoice("Edit Caption", "edit_caption.php", array("index" => $i));
 				}
 			}
 			if ($gallery->user->canWriteToAlbum($gallery->album)) {
 				if (!$gallery->album->isMovie($id) && !$gallery->album->isAlbumName($i)) {
-					echo("<option value='edit_thumb.php?index=$i'>Edit Thumbnail</option>");
-					echo("<option value='rotate_photo.php?index=$i'>Rotate $label</option>");
+					showChoice("Edit Thumbnail", "edit_thumb.php", array("index" => $i));
+					showChoice("Rotate $label", "rotate_photo.php", array("index" => $i));
 				}
 				if (!$gallery->album->isMovie($id)) {
-					echo("<option value='highlight_photo.php?index=$i'>Highlight $label</option>");
+					showChoice("Highlight $label", "highlight_photo.php", array("index" => $i));
 				}
 				if ($gallery->album->isAlbumName($i)) {
 					$albumName=$gallery->album->isAlbumName($i);
-					echo("<option value=".doCommand("reset-album-clicks", "albumName=$albumName", "view_album.php").">Reset Counter</option>");
+					showChoice("Reset Counter", "do_command.php",
+						array("albumName" => $albumName,
+							"cmd" => "reset-album-clicks",
+							"return" => urlencode(makeGalleryUrl("view_album.php"))));
+					showChoice("Highlight $label", "highlight_photo.php", array("index" => $i));
 				}
-				echo("<option value='move_photo.php?index=$i'>Move $label</option>");
+				showChoice("Move $label", "move_photo.php", array("index" => $i));
 				if ($gallery->album->isHidden($i)) {
-					echo("<option value='do_command.php?cmd=show&index=$i'>Show $label</option>");
+					showChoice("Show $label", "do_command.php", array("cmd" => "show", "index" => $i));
 				} else {
-					echo("<option value='do_command.php?cmd=hide&index=$i'>Hide $label</option>");
+					showChoice("Show $label", "do_command.php", array("cmd" => "hide", "index" => $i));
 				}
 			}
 			if ($gallery->user->canDeleteFromAlbum($gallery->album)) {
 				if($gallery->album->isAlbumName($i)) { 
 					if($gallery->user->canDeleteAlbum($myAlbum)) {
-						echo("<option value='delete_photo.php?index=$i&albumDelete=1'>Delete $label</option>");	
+						showChoice("Delete $label", "delete_photo.php",
+							array("index" => $i, "albumDelete" => 1));
 					}
 				} else {
-					echo("<option value='delete_photo.php?index=$i'>Delete $label</option>");
+					showChoice("Delete $label", "delete_photo.php", array("index" => $i));
 				}
 			}
 			if (($gallery->user->canDeleteFromAlbum($gallery->album)) || 
