@@ -107,21 +107,20 @@ if ($gallery->album->fields["textcolor"]) {
 // User wants to delete comments
 list($index, $comment_index) = getRequestVar(array('index', 'comment_index'));
 if (!empty($comment_index)) {
-	$diff=0;
-	foreach($comment_index as $com_index => $trash) {
-		echo "\n<br>". sprintf(_("Deleting comment %d of picture %d"), $com_index, $index);
-		$comment=$gallery->album->getComment($index, $com_index-$diff);
+	// First we reverse the index array, as we want to delete backwards
+	foreach(array_reverse($comment_index, true) as $com_index => $trash) {
+		if (isDebugging()) {
+			echo "\n<br>". sprintf(_("Deleting comment %d of picture with index: %d"), $com_index, $index);
+		}
+		$gallery->album->deleteComment($index, $com_index);
+		$comment=$gallery->album->getComment($index, $com_index);
 		$gallery->album->save(array(i18n("Comment \"%s\" by %s deleted from %s"),
 			$comment->getCommentText(),
 			$comment->getName(),
 			makeAlbumURL($gallery->album->fields["name"],
 			$gallery->album->getPhotoId($index))));
-		$gallery->album->deleteComment($index, $com_index-$diff);
-		$gallery->album->save();
-		$diff++;
-		
 	}
-	$_POST="";
+	$gallery->album->save();
 }
 
 includeHtmlWrap("album.header");
