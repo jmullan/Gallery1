@@ -83,6 +83,14 @@ class AlbumItem {
 		}
 	}
 
+	function getDimensions() {
+		if ($this->image) {
+			return $this->image->getDimensions();
+		} else {
+			return array(0, 0);
+		}
+	}
+
 	function makeThumbnail($dir, $size) {
 		$name = $this->image->name;
 		$type = $this->image->type;
