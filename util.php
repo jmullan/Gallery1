@@ -2571,9 +2571,9 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 			/* Preserve comment, EXIF data if a JPEG if $keepProfiles is set. */
 			$err = exec_wrapper(ImCmd('convert', "-quality $quality "
 					. ($target ? "-size ${target}x${target} " : '')
+					. ($keepProfiles ? ' ' : ' +profile \'*\' ')					
 					. $src
 					. ($target ? " -geometry ${target}x${target}" : '')
-					. ($keepProfiles ? ' ' : ' +profile \'*\' ')
 					. $out));
 			break;
 		default:
