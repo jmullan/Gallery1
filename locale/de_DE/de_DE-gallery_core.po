@@ -24,9 +24,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.4.4\n"
+"Project-Id-Version: Gallery 1.4.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-09-02 00:05+0200\n"
+"POT-Creation-Date: 2004-09-02 22:29+0200\n"
 "PO-Revision-Date: 2004-09-01 16:00+0100\n"
 "Last-Translator: Jens Tkotz <jens AT f2h9 DOT de>\n"
 "Language-Team: German <jens@f2h9.de\n"
@@ -45,7 +45,6 @@ msgstr ""
 #: ../rename_album.php:29 ../reset_votes.php:35 ../resize_photo.php:29
 #: ../rotate_photo.php:29 ../save_photos.php:29 ../upgrade_album.php:55
 #: ../user_preferences.php:28 ../watermark_album.php:29
-#, fuzzy
 msgid "You are not allowed to perform this action!"
 msgstr "Es ist Ihnen nicht gestattet, diese Aktion durchzuf&uuml;hren !"
 
@@ -173,7 +172,7 @@ msgstr "Fertig"
 #: ../albums.php:114
 #, php-format
 msgid "%s RSS"
-msgstr ""
+msgstr "%s RSS"
 
 #: ../albums.php:134 ../html_wrap/search.header.default:29 ../search.php:40
 msgid "Search"
@@ -266,9 +265,8 @@ msgid "find orphans"
 msgstr "Verwaiste Alben"
 
 #: ../albums.php:188
-#, fuzzy
 msgid "find comment spam"
-msgstr "Kommentare betrachten"
+msgstr "Kommentarespam finden"
 
 #: ../albums.php:192
 msgid "new album"
@@ -433,7 +431,7 @@ msgstr "Ende"
 
 #: ../captionator.php:246
 msgid "(click to enlarge)"
-msgstr ""
+msgstr "(Für Vergrößerung anklicken)"
 
 #: ../captionator.php:263
 msgid "Album Caption"
@@ -579,11 +577,11 @@ msgstr "%s existiert, ist aber kein Ordner !"
 #: ../classes/gallery/UserDB.php:61
 #, php-format
 msgid "The folder folder which contain your userinformation (%s) is not writable."
-msgstr ""
+msgstr "Der Ordner in dem sich die Benutzerdaten befinden (%s) ist nicht beschreibbar."
 
 #: ../classes/gallery/UserDB.php:82
 msgid "Your Userfile is not writeable"
-msgstr ""
+msgstr "Die Datei für die Benutzerdaten ist nicht beschreibbar"
 
 #: ../classes/gallery/UserDB.php:280
 #, php-format
@@ -804,33 +802,30 @@ msgid "Users can have special permissions in each album."
 msgstr "Die Benutzer k&ouml;nnen separate Berechtigungen f&uuml;r jedes Album haben."
 
 #: ../delete_user.php:69
-#, fuzzy
 msgid "If you delete this user, any such permissions go away."
 msgid_plural "if you delete these users, any permissions will go away"
-msgstr[0] "Wenn Sie den Benutzer l&ouml;chen, gehen dessen Berechtigungen verloren."
-msgstr[1] "Wenn Sie den Benutzer l&ouml;chen, gehen dessen Berechtigungen verloren."
+msgstr[0] "Wenn Sie den Benutzer l&ouml;schen, gehen dessen Berechtigungen verloren."
+msgstr[1] "Wenn Sie diese Benutzer l&ouml;schen, gehen deren Berechtigungen verloren."
 
 #: ../delete_user.php:70
 msgid "Users cannot be recreated."
 msgstr "Benutzer k&ouml;nnen nicht wieder hergestellt werden."
 
 #: ../delete_user.php:71
-#, fuzzy
 msgid "Even if this user is recreated, those permissions are gone."
 msgid_plural "Even if you recreate one of those users, the permissions are gone."
 msgstr[0] "Selbst wenn Sie den Benutzer neu anlegen, sind dessen Berechtigungen verloren."
-msgstr[1] "Selbst wenn Sie den Benutzer neu anlegen, sind dessen Berechtigungen verloren."
+msgstr[1] "Selbst wenn Sie die Benutzer neu anlegen, sind deren Berechtigungen verloren."
 
 #: ../delete_user.php:73
-#, fuzzy
 msgid "Do you really want to delete user"
 msgid_plural "Do you really want to delete these users"
-msgstr[0] "M&ouml;chten Sie diesen Benutzer wirklich l&ouml;schen : "
-msgstr[1] "M&ouml;chten Sie diesen Benutzer wirklich l&ouml;schen : "
+msgstr[0] "M&ouml;chten Sie wirklich diesen Benutzer l&ouml;schen : "
+msgstr[1] "M&ouml;chten Sie wirklich diese Benutzer l&ouml;schen : "
 
 #: ../do_command.php:30 ../do_command.php:34
 msgid "Performing Operation.."
-msgstr ""
+msgstr "Es wird folgende Aktion ausgeführt:"
 
 #: ../do_command.php:40
 #, php-format
@@ -1223,7 +1218,7 @@ msgstr "3. Klicken Sie den <b>Durchsuchen</b>-Button, um die Metadateien auf Ihr
 
 #: ../includes/add_photos/add_form.inc:109
 msgid "If no caption is set, what would you like the captions to default to?"
-msgstr ""
+msgstr "Falls keine Überschrift angegeben ist, worauf möchten Sie diese setzen ?"
 
 #: ../includes/add_photos/add_form.inc:122
 #: ../includes/add_photos/add_form_one.inc:71
@@ -1272,7 +1267,7 @@ msgstr "Laden Sie die Dateien per FTP in einen Ordner auf Ihren Server. Danach g
 
 #: ../includes/add_photos/add_url.inc:44
 msgid "What would you like the captions to default to?"
-msgstr ""
+msgstr "Wie soll die Überschrift standardmässig sein?"
 
 #: ../includes/add_photos/add_url.inc:59
 msgid "Submit URL or directory"
@@ -1742,7 +1737,6 @@ msgid "Description"
 msgstr "Beschreibung"
 
 #: ../lib/lang.php:648
-#, fuzzy
 msgid "description"
 msgstr "Beschreibung"
 
@@ -1825,16 +1819,15 @@ msgstr "Anmelden :: %s"
 
 #: ../login.php:60
 msgid "SUCCEEDED"
-msgstr ""
+msgstr "Erfolgreich angemeldet"
 
 #: ../login.php:64
 msgid "Invalid username or password"
 msgstr "Falscher Benutzer oder falsches Passwort"
 
 #: ../login.php:69
-#, fuzzy
 msgid "Please enter username and password."
-msgstr "Bitte geben Sie Benutzernamen und Passwort ein"
+msgstr "Bitte geben Sie Benutzernamen und Passwort ein."
 
 #: ../login.php:73
 msgid "Logging in gives you greater permission to view, create, modify and delete albums."
@@ -1917,7 +1910,7 @@ msgstr "Es existieren keine Benutzer. Erstellen Sie einen."
 
 #: ../manage_users.php:90
 msgid "To select multiple users (only recognized for deletion), hold down the Control (PC) or Command (Mac) key while clicking."
-msgstr ""
+msgstr "Um mehree Benutzer zu markieren, halten Sie die STRG (PC), bzw. Command Taste während der Auswahl gedrückt. (Hat nur eine Auswirkung beim Löschen von Benutzern)"
 
 #: ../manage_users.php:96
 msgid "Bulk Create"
@@ -2047,7 +2040,7 @@ msgstr "Upload fehlgeschlagen: %s."
 #: ../multi_create_user.php:64
 #, php-format
 msgid "Upload went fine, but the file is not readable, please make sure %s is accessable for your webserver. (Also check openbasedir restrictions.)"
-msgstr ""
+msgstr "Der Upload hat funktioniert, jedoch ist die Datei für Gallery nicht erreichbar. Bitte prüfen Sie, ob %s für den Webserver erreichar ist. (Prüfen Sie auch openbasedir Restriktionen)"
 
 #: ../multi_create_user.php:87
 #, php-format
@@ -2864,9 +2857,8 @@ msgid "Users upgraded successfully."
 msgstr "Die Benutzer wurden erfolgreich aktualisiert."
 
 #: ../user_preferences.php:44
-#, fuzzy
 msgid "You are not allowed to change your username."
-msgstr "Es ist Ihnen nicht gestattet, diese Aktion durchzuf&uuml;hren."
+msgstr "Es ist Ihnen nicht gestattet, Ihren Benutzernamen zu ändern."
 
 #: ../user_preferences.php:50
 msgid "Incorrect password"
@@ -3199,26 +3191,24 @@ msgstr "Gallery URL"
 
 #: ../util.php:2861
 msgid "No Skin"
-msgstr ""
+msgstr "Kein Skin"
 
 #: ../util.php:2862
-#, fuzzy, php-format
+#, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
-msgstr "<dt>None</dt><dd>Original Look and feel.</dd>"
+msgstr "<dt>%s</dt><dd>Original Look and feel.</dd>"
 
 #: ../util.php:2895 ../util.php:2898
 msgid "unknown"
-msgstr ""
+msgstr "unbekannt"
 
 #: ../util.php:2901
-#, fuzzy
 msgid "Version"
-msgstr "Berechtigungen"
+msgstr "Version"
 
 #: ../util.php:2903
-#, fuzzy
 msgid "Last Update"
-msgstr "Letzte Seite"
+msgstr "Letzte Aktualisierung"
 
 #: ../util.php:2923 ../util.php:2928
 msgid "Dots"
@@ -3407,9 +3397,8 @@ msgid "%dkB"
 msgstr "%d Kb"
 
 #: ../view_album.php:873
-#, fuzzy
 msgid "highlight"
-msgstr "Kein Titelbild"
+msgstr "Titelbild"
 
 #: ../view_album.php:879
 msgid "No description"
@@ -3594,33 +3583,3 @@ msgstr "Lege Wasserzeichen auf alle Bilder des Albums."
 #: ../watermark_album.php:101
 msgid "No items to watermark."
 msgstr "Keine Elemente f&uuml;r Wasserzeichen vorhanden."
-
-#~ msgid "You are no allowed to perform this action !"
-#~ msgstr "Es ist Ihnen nicht gestattet, diese Aktion durchzuf&uuml;hren !"
-
-#~ msgid "Do you really want to delete this Album?"
-#~ msgstr "M&ouml;chten Sie dieses Album wirklich l&ouml;schen?"
-
-#~ msgid "Rebuilding Thumbnails"
-#~ msgstr "Thumbnails erneueren"
-
-#~ msgid "Leave blank if no caption is specified."
-#~ msgstr "Lassen Sie dieses Feld leer, falls Sie keine &Uuml;berschrift m&ouml;chten."
-
-#~ msgid "Use file creation date stamp as caption if no caption is specified."
-#~ msgstr "Benutze den Erzeugungsdatum der Datei als &Uuml;berschrift, wenn keine andere angegeben wurde."
-
-#~ msgid "Set photo captions with original filenames."
-#~ msgstr "Den Dateinamen als Bildtitel nutzen."
-
-#~ msgid "Set photo captions with file creation times."
-#~ msgstr "Erzeugungsdatum der Datei als Bildtitel nutzen."
-
-#~ msgid "You must specify a username"
-#~ msgstr "Sie m&uuml;ssen einen Benutzernamen angeben"
-
-#~ msgid "You must specify a password"
-#~ msgstr "Sie m&uuml;ssen ein Passwort angeben."
-
-#~ msgid "There was an unknown failure in the %s call!"
-#~ msgstr "Es trat ein unbekannter Fehler beim Funktionsaufruf von %s auf"
