@@ -467,9 +467,15 @@ if (!$gallery->album->isMovie($id)) {
 	$name = @key($printServices);
 
 	enablePrintForm($name);
-	if (!empty($name)) {
-	    $adminText .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" .
-			    sprintf(_('process this photo with %s'), $fullName[$name]) . ']</a>';
+	foreach ($fullNames as $serviceGroupName => $serviceGroup) {
+	    foreach ($serviceGroup as $name => $fullName) {
+	        if (!isset($printServices[$name]['checked'])) {
+		    continue;
+	        } else {
+		    $adminText .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" .
+				    sprintf(_('process this photo with %s'), $fullName) . ']</a>';
+		}
+	    }
 	}
 		
     }
