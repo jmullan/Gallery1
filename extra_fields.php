@@ -92,7 +92,7 @@ if (!empty($save)) {
 <body dir="<?php echo $gallery->direction ?>">
 
 <center>
-<?php echo _("Configure Custom Fields") ?>
+<p class="popuphead"><?php echo _("Configure Custom Fields") ?></p>
 
 <p>
 <?php echo makeFormIntro("extra_fields.php", array(

@@ -83,10 +83,12 @@ if (!empty($apply)) {
 <body>
 
 <center>
-<?php echo _("Poll Properties"); ?>
-
-<span class="error"><?php echo $error; ?></span>
-<?php echo makeFormIntro("poll_properties.php", 
+<p class="popuphead"><?php echo _("Poll Properties"); ?></p>
+<?php
+if (! empty($error)) {
+	echo gallery_error($error);
+}
+	echo makeFormIntro("poll_properties.php", 
 			array("name" => "theform", 
 				"method" => "POST")); ?>
 <table>

@@ -83,15 +83,16 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <center>
-<font size="+1"><?php echo _("Resizing photos") ?></font>
-<br>
-<?php echo _("This will resize your photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size. ") ?>
+<p class="popuphead"><?php echo _("Resizing photos") ?></p>
 
-<?php echo $all ? _("What is the target size for all the photos in this album?") : _("What is the target size for this photo?") ?>
-<p>
-<?php echo makeFormIntro("resize_photo.php"); ?>
-<p>
-<?php print _("Target filesize") ?> 
+<?php 
+	echo _("This will resize your photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size.");
+	echo $all ? _("What is the target size for all the photos in this album?") : _("What is the target size for this photo?");
+	echo '<p>';
+	echo makeFormIntro("resize_photo.php");
+	echo '<p>';
+	print _("Target filesize");
+?> 
 <input type="text" size="4" name="resize_file_size" value="<?php print $gallery->album->fields["resize_file_size"] ?>" >  kbytes
 <p>
 <?php print _("Maximum side length in pixels") ?> 

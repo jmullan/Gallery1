@@ -65,6 +65,7 @@ if ($gallery->session->albumName) {
 ?>
 
 <center>
+<p class="popuphead"><?php echo _("Sort Album"); ?></p>
 <span class="popup">
 <?php echo _("Select your sorting criteria for this album below") ?>
 <br>
