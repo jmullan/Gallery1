@@ -204,8 +204,8 @@ if (empty($action)) {
 		<tr><th><?php echo _("Orphaned Album") ?></th><th>&nbsp;</th><th><?php echo _("Parent Album") ?></th></tr>
 <?php
 		foreach ($orphanAlbums as $childname => $parentname) {
-			echo "\t<tr><td>" . $childname . "</td><td>=&gt;</td><td>" . 
-			     ($parentname ? $parentname : _("Gallery Root")) . "</td></tr>\n";
+			echo "\t<tr><td>" . "<a href='" . makeAlbumUrl($childname) . "'>" . $childname . "</a>" . "</td><td>=&gt;</td><td>" . 
+			     ($parentname ? "<a href='" . makeAlbumUrl($albumName) . "'>" . $albumName . "</a>" : _("Gallery Root")) . "</td></tr>\n";
 		}
 ?>
 		</table>
@@ -226,7 +226,7 @@ if (empty($action)) {
 		foreach ($orphanImages as $albumName => $imageVal) {
 			foreach (array_keys($imageVal) as $fileName) {
 ?>
-			<tr><td><?php echo $fileName; ?></td><td>=&gt;</td><td><?php echo $albumName; ?></td></tr>
+			<tr><td><?php echo "<a href='" . $gallery->app->albumDirURL . "/" . $albumName . "/" . $fileName . "'>" . $fileName . "</a>"; ?></td><td>=&gt;</td><td><?php echo "<a href='" . makeAlbumUrl($albumName) . "'>" . $albumName . "</a>"; ?></td></tr>
 <?php
 			}       
 		}       
