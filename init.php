@@ -135,9 +135,8 @@ require($GALLERY_BASEDIR . "classes/Comment.php");
 if (!isset($GALLERY_NO_SESSIONS)) {
     require($GALLERY_BASEDIR . "session.php");
 }
-if (!isset($GALLERY_EMBEDDED_INSIDE)) { 
-	initLanguage();
-}
+
+initLanguage();
 
 /* Make sure that Gallery is set up properly */
 gallerySanityCheck();
