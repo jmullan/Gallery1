@@ -40,9 +40,8 @@ class Abstract_User {
 		return 0;
 	}
 	function versionOutOfDate() {
-		return false();
+		return false;
 	}
-
 
 	function setPassword($password) {
 		$this->password = md5($password);
