@@ -49,20 +49,25 @@ function editField($album, $field, $link=null) {
 function editCaption($album, $index) {
 	global $gallery;
 
+	$abuf='';
 	$buf = nl2br($album->getCaption($index));
-	if (empty($buf)) {
-		$buf = "<i>&lt;". _("No Caption") ."&gt;</i>";
-	}
-	$buf .= $album->getCaptionName($index);
+
 	if (($gallery->user->canChangeTextOfAlbum($album) ||
                ($gallery->album->getItemOwnerModify() && 
 	         $gallery->album->isItemOwner($gallery->user->getUid(), $index))) 
 		&& !$gallery->session->offline) {
+
+		if (empty($buf)) {
+			$buf = "<i>&lt;". _("No Caption") ."&gt;</i>";
+		}
 		$url = "edit_caption.php?set_albumName={$album->fields['name']}&index=$index";
-		$buf .= "<span class=\"editlink\">";
-		$buf .= popup_link("[". _("edit") ."]", $url);
-		$buf .= "</span>";
+		$abuf = "<span class=\"editlink\">";
+		$abuf .= popup_link("[". _("edit") ."]", $url);
+		$abuf .= "</span>";
 	}
+	$buf .= $album->getCaptionName($index);
+	$buf .= $abuf;
+
 	return $buf;
 }
 
