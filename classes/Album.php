@@ -475,9 +475,9 @@ class Album {
 		}
 	}
 
-	function getPhotoPath($index) {
+	function getPhotoPath($index, $full=0) {
 		$photo = $this->getPhoto($index);
-		return $photo->getPhotoPath($this->getAlbumDirURL());
+		return $photo->getPhotoPath($this->getAlbumDirURL(), $full);
 	}
 
 	function getPhotoId($index) {

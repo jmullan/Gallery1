@@ -440,9 +440,9 @@ class AlbumItem {
 		}
 	}
 
-	function getPhotoPath($dir) {
+	function getPhotoPath($dir, $full=0) {
 		if ($this->image) {
-			return $this->image->getPath($dir);
+			return $this->image->getPath($dir, $full);
 		} else {
 			return "about:blank";
 		}
