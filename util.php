@@ -2987,7 +2987,7 @@ function gallery_languages() {
 	$available=array('en_US' => 'English (US)');
 	
 	while ($dirname = readdir($handle)) {
-		if (preg_match("/^([a-z]{2}_[A-Z]{2})/", $dirname)) {
+		if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
 			$locale=$dirname;
 			$fc=0;
 			foreach ($modules as $module) {
@@ -3018,7 +3018,7 @@ function getNLS() {
 	$available=array('en_US' => 'English (US)');
 	
 	while ($dirname = readdir($handle)) {
-		if (preg_match("/^([a-z]{2}_[A-Z]{2})/", $dirname)) {
+		if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
 			$locale=$dirname;
 			$fc=0;
 			foreach ($modules as $module) {
