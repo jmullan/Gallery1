@@ -579,7 +579,7 @@ class AlbumItem {
 		$this->isAlbumName = $name;
 	}
 
-	function getIsAlbumName() {
+	function getAlbumName() {
 		return $this->isAlbumName;
 	}
 

@@ -151,7 +151,7 @@ includeLayout('navigator.inc');
 						continue;
 					}
 					$result=true;
-					$albumName=$gallery->album->isAlbumName($index);
+					$albumName=$gallery->album->getAlbumName($index);
 					if ($albumName) {
 						$album=$gallery->album->getSubAlbum($index);
 						print sprintf(_("Album: %s"),$album->fields['title'])."<Br>";

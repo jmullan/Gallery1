@@ -75,7 +75,7 @@ if (!empty($newName)) {
 			}
 			$parentAlbum = $albumDB->getAlbumbyName($parentName);
 			for ($i=1; $i <= $parentAlbum->numPhotos(1); $i++) {
-				if ($parentAlbum->isAlbumName($i) == $oldName) {
+				if ($parentAlbum->getAlbumName($i) == $oldName) {
 					$parentAlbum->setIsAlbumName($i,$newName);
 					$parentAlbum->save();
 					break;
@@ -84,7 +84,7 @@ if (!empty($newName)) {
 		}
 		// then we need to update the parentAlbumName field in the children
 		for ($i=1; $i <= $gallery->album->numPhotos(1); $i++) {
-			if ($gallery->album->isAlbumName($i)) {
+			if ($gallery->album->getAlbumName($i)) {
 				$childAlbum = $gallery->album->getNestedAlbum($i);
 				$childAlbum->fields[parentAlbumName] = $newName;
 				$childAlbum->save();

@@ -1337,7 +1337,7 @@ function getNextPhoto($idx, $album=NULL) {
 		return $idx;
 	}
 
-	$myAlbumName = $album->isAlbumName($idx);
+	$myAlbumName = $album->getAlbumName($idx);
 	if ($myAlbumName) {
 		$myAlbum = new Album();
 		$myAlbum->load($myAlbumName);
@@ -1364,7 +1364,7 @@ function getNextPhoto($idx, $album=NULL) {
 		$idx++;
 	}
 
-	if ($idx <= $numPhotos && $album->isAlbumName($idx)) {
+	if ($idx <= $numPhotos && $album->getAlbumName($idx)) {
 		// do not display a nexted album if the user doesn't
 		// have permission to view it.
 		if (isset($myAlbum)) {
@@ -1475,7 +1475,7 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 	$numPhotos = $myAlbum->numPhotos(1);
 
 	for ($i=1; $i <= $numPhotos; $i++) {
-		$myName = $myAlbum->isAlbumName($i);
+		$myName = $myAlbum->getAlbumName($i);
 		if ($myName) {
 			$nestedAlbum = new Album();
 			$nestedAlbum->load($myName);
@@ -1738,7 +1738,7 @@ function printChildren($albumName,$depth=0) {
 	$numPhotos = $myAlbum->numPhotos(1);
 	for ($i=1; $i <= $numPhotos; $i++) {
 		set_time_limit($gallery->app->timeLimit);
-		$myName = $myAlbum->isAlbumName($i);
+		$myName = $myAlbum->getAlbumName($i);
 		if ($myName && !$myAlbum->isHidden($i)) {
 		        $nestedAlbum = new Album();
 			$nestedAlbum->load($myName);
@@ -2065,7 +2065,7 @@ function showResultsGraph($num_rows)
 			// image has been deleted!
 			continue;
 		} 
-		$isAlbumName=$gallery->album->isAlbumName($index);
+		$isAlbumName=$gallery->album->getAlbumName($index);
 		if ($isAlbumName) {
 			$url=makeAlbumUrl($isAlbumName);
 			$album=$gallery->album->getSubAlbum($index);

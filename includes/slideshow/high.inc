@@ -131,7 +131,7 @@ function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album = null, $r
         } 
         if ($photo->isAlbumName) {
             if ($recursive) {
-                $subAlbumName = $album->isAlbumName($index);
+                $subAlbumName = $album->getAlbumName($index);
                 $subAlbum = new Album();
                 $subAlbum->load($subAlbumName);
                 if ($gallery->user->canReadAlbum($subAlbum)) {

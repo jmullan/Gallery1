@@ -77,7 +77,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		$gallery->album->hidePhoto($index);
 		$gallery->album->save();
 	} else {
-		$myAlbumName = $gallery->album->isAlbumName($index);
+		$myAlbumName = $gallery->album->getAlbumName($index);
 		if ($myAlbumName) {
 			$myAlbum = new Album;
 			$myAlbum->load($myAlbumName);
@@ -96,7 +96,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		$gallery->album->unhidePhoto($index);
 		$gallery->album->save();
 	} else {
-                $myAlbumName = $gallery->album->isAlbumName($index);
+                $myAlbumName = $gallery->album->getAlbumName($index);
                 if ($myAlbumName) {
                         $myAlbum = new Album;
                         $myAlbum->load($myAlbumName);

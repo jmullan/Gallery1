@@ -79,7 +79,7 @@ if ($gallery->session->albumName && isset($index)) {
 		       	} else {
 			       	$votes=NULL;
 		       	}
-			if ($gallery->album->isAlbumName($index)) { // moving "album" to another location
+			if ($gallery->album->getAlbumName($index)) { // moving "album" to another location
 				if ($newAlbum == "ROOT") { // moving "album" to ROOT location
 					$myAlbum = $gallery->album->getNestedAlbum($index);
 					$myAlbum->fields['parentAlbumName'] = 0;
@@ -89,7 +89,7 @@ if ($gallery->session->albumName && isset($index)) {
 				} else { // moving "album" to another album
 					$myAlbum = $gallery->album->getNestedAlbum($index);
 					if ($postAlbum != $myAlbum) { // we don't ever want to point an album back at itself!!!
-						$postAlbum->addNestedAlbum($gallery->album->isAlbumName($index)); // copy "album" to new album
+						$postAlbum->addNestedAlbum($gallery->album->getAlbumName($index)); // copy "album" to new album
 						if ($votes) {
 							$postAlbum->fields["votes"]["album.".$myAlbum->fields["name"]]=$votes;
 						}
@@ -112,7 +112,7 @@ if ($gallery->session->albumName && isset($index)) {
 				$index = $startPhoto; // set the index to the first photo that we are moving.	
 
 				while ($startPhoto <= $endPhoto) {
-					if (!$gallery->album->isAlbumName($index)) {
+					if (!$gallery->album->getAlbumName($index)) {
 					        set_time_limit($gallery->app->timeLimit);
 						echo _("Moving photo #").$startPhoto."<br>";
 						my_flush();
@@ -209,7 +209,7 @@ if ($gallery->session->albumName && isset($index)) {
 <?php
 echo '<br>'. $gallery->album->getThumbnailTag($index) .'<br><br>';
 if ($reorder ) { // Reorder, intra-album move
-if ($gallery->album->isAlbumName($index)) {
+if ($gallery->album->getAlbumName($index)) {
 ?>
 <?php echo _("Reorder this album within the album:") ?><br>
 <?php } else { ?>
@@ -240,7 +240,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 
 <?php
 } else if (!$reorder) { // Don't reorder, trans-album move
-if ($gallery->album->isAlbumName($index)) {
+if ($gallery->album->getAlbumName($index)) {
 ?>
 <?php echo _("Move the album to a new album:") ?>
 <?php echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
@@ -347,4 +347,3 @@ document.move_to_album_form.newAlbum.focus();
 </span>
 </body>
 </html>
-

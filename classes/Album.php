@@ -174,7 +174,7 @@ class Album {
 
 	function getNestedAlbum($index) {
 		
-		$albumName = $this->isAlbumName($index);
+		$albumName = $this->getAlbumName($index);
 		$album = new Album();
 		$album->load($albumName);
 		return $album;	
@@ -1003,7 +1003,7 @@ class Album {
 	function addNestedAlbum($albumName) {
 		$this->updateSerial = 1;
 		$item = new AlbumItem();
-		$item->isAlbumName = $albumName;
+		$item->setIsAlbumName($albumName);
 		$this->photos[] = $item;
 		if ($this->getAddToBeginning() ) {
 			$this->movePhoto($this->numPhotos(1), 0);
@@ -1215,7 +1215,7 @@ class Album {
 
 	function getIds($show_hidden=0) {
 		foreach ($this->photos as $photo) {
-			if ((!$photo->isHidden() || $show_hidden) && !$photo->getIsAlbumName()) {
+			if ((!$photo->isHidden() || $show_hidden) && !$photo->getAlbumName()) {
 				$ids[] = $photo->getPhotoId($this->getAlbumDir());
 			}
 		}
@@ -1242,7 +1242,7 @@ class Album {
 
 	function getAlbumIndex($albumName) {
 		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
-			if ($albumName === $this->isAlbumName($i)) {
+			if ($albumName === $this->getAlbumName($i)) {
 				return $i;
 			}
 		}
@@ -1395,9 +1395,15 @@ class Album {
 		}
 		return ($uid == $this->getItemOwner($index));
 	}
-	function isAlbumName($index) {
+	
+	function isAlbum($index) {
 		$photo = $this->getPhoto($index);
-		return $photo->isAlbumName;
+		return ($photo->getAlbumName() !== NULL) ? true : false;
+	}
+	
+	function getAlbumName($index) {
+		$photo = $this->getPhoto($index);
+		return $photo->getAlbumName();
 	}
 
 	function setIsAlbumName($index, $name) {
@@ -1519,9 +1525,9 @@ class Album {
 
 	function setNestedProperties() {
 		for ($i=1; $i <= $this->numPhotos(1); $i++) {
-			if ($this->isAlbumName($i)) {
+			if ($this->getAlbumName($i)) {
 				$nestedAlbum = new Album();
-				$nestedAlbum->load($this->isAlbumName($i));
+				$nestedAlbum->load($this->getAlbumName($i));
 				$nestedAlbum->fields["bgcolor"] = $this->fields["bgcolor"];
 				$nestedAlbum->fields["textcolor"] = $this->fields["textcolor"];
 				$nestedAlbum->fields["linkcolor"] = $this->fields["linkcolor"];
@@ -1563,9 +1569,9 @@ class Album {
 
 	function setNestedExtraFields() {
 		for ($i=1; $i <= $this->numPhotos(1); $i++) {
-			if ($this->isAlbumName($i)) {
+			if ($this->getAlbumName($i)) {
 				$nestedAlbum = new Album();
-				$nestedAlbum->load($this->isAlbumName($i));
+				$nestedAlbum->load($this->getAlbumName($i));
 				$nestedAlbum->fields["extra_fields"] = $this->fields["extra_fields"];
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedExtraFields();
@@ -1574,9 +1580,9 @@ class Album {
 	}
 	function setNestedPollProperties() {
 		for ($i=1; $i <= $this->numPhotos(1); $i++) {
-			if ($this->isAlbumName($i)) {
+			if ($this->getAlbumName($i)) {
 				$nestedAlbum = new Album();
-			       	$nestedAlbum->load($this->isAlbumName($i));
+			       	$nestedAlbum->load($this->getAlbumName($i));
 			       	$nestedAlbum->fields["poll_type"]=$this->fields["poll_type"];
 			       	$nestedAlbum->fields["poll_scale"]=$this->fields["poll_scale"];
 			       	$nestedAlbum->fields["poll_nv_pairs"]=$this->fields["poll_nv_pairs"];
@@ -2031,7 +2037,7 @@ class Album {
 																			 
 	}
 	function getVotingIdByIndex($index) {
-		$albumName = $this->isAlbumName($index);
+		$albumName = $this->getAlbumName($index);
 		if ($albumName) {
 			$vote_id = "album.$albumName";
 		} else {
@@ -2042,7 +2048,7 @@ class Album {
 
 	function getSubAlbum($index) {
 		$myAlbum = new Album();
-		$myAlbum->load($this->isAlbumName($index));
+		$myAlbum->load($this->getAlbumName($index));
 		return $myAlbum;
 	}
 

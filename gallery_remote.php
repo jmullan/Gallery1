@@ -99,7 +99,7 @@ function appendNestedAlbums($level, $albumName, $albumString) {
     $numPhotos = $myAlbum->numPhotos(1);
 
     for ($i=1; $i <= $numPhotos; $i++) {
-        $myName = $myAlbum->isAlbumName($i);
+        $myName = $myAlbum->getAlbumName($i);
         if ($myName) {
             $nestedAlbum = new Album();
             $nestedAlbum->load($myName);

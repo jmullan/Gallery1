@@ -63,8 +63,8 @@ if (isset($save) || isset($next) || isset($prev)) {
    
     $count = 0;
     while ($count < $perPage && $i <= $numPhotos) {
-      if ($gallery->album->isAlbumName($i)) {
-        $myAlbumName = $gallery->album->isAlbumName($i);
+      if ($gallery->album->getAlbumName($i)) {
+        $myAlbumName = $gallery->album->getAlbumName($i);
         $myAlbum = new Album();
         $myAlbum->load($myAlbumName);
         $myAlbum->fields['description'] = stripslashes(${"new_captions_" . $i});
@@ -253,8 +253,8 @@ if ($numPhotos) {
 
       <td valign=top>
 <?php
-    if ($gallery->album->isAlbumName($i)) {
-        $myAlbumName = $gallery->album->isAlbumName($i);
+    if ($gallery->album->getAlbumName($i)) {
+        $myAlbumName = $gallery->album->getAlbumName($i);
         $myAlbum = new Album();
         $myAlbum->load($myAlbumName);
         $oldCaption = $myAlbum->fields['description'];
