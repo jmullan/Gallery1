@@ -35,10 +35,6 @@ if (empty($index)) {
 }
 $highlightIndex = $gallery->album->getHighlight();
 
-if (!isset($recursive)) {
-	$recursive = 1;
-}
-
 $err = "";	
 if (isset($save) || isset($preview)) {
 	if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12)) {
@@ -68,6 +64,11 @@ if (isset($save) || isset($preview)) {
 	} else {
 		$err = _("Please select an alignment.");
 	}
+} else {
+	if (!isset($recursive)) {
+	        $recursive = 1;
+	}
+
 }
 doctype();
 ?>
@@ -100,8 +101,11 @@ if (!$gallery->album->numPhotos(1)) {
    echo makeFormIntro("watermark_album.php",
                       array("name" => "theform",
                             "method" => "POST"));
-   $askRecursive = 1;
-   include (dirname(__FILE__). '/layout/watermarkform.inc') ;
+   global $watermarkForm;
+   $watermarkForm["askRecursive"] = 1;
+   $watermarkForm["askPreview"] = 1;
+   $watermarkForm["allowNone"] = 0;
+   includeLayout ('watermarkform.inc');
 ?>
 
 <p>

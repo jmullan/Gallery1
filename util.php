@@ -2003,10 +2003,9 @@ function ordinal($num=1)
 	return "$val" . $ords[$num];
 }
 
-function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fields=array()) {
+function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fields=array(), $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0) {
 	global $gallery;
 	global $temp_files;
-
 	if (!strcmp($tag, "zip")) {
 		if (!$gallery->app->feature["zip"]) {
 			processingMsg(sprintf(_("Skipping %s (ZIP support not enabled)"), $name));
@@ -2109,7 +2108,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 					      already quoted.
 					     */
 
-				processNewImage($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption, $extra_fields);
+				processNewImage($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY);
 				fs_unlink($gallery->app->tmpDir . "/$pic");
 			}
 		}
@@ -2169,7 +2168,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 			if (!$extra_fields) {
 			    $extra_fields=array();
 			}
-			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $extra_fields, $gallery->user->uid);
+			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $extra_fields, $gallery->user->uid, NULL, $wmName, $wmAlign, $wmAlignX, $wmAlignY);
 			if ($err) {
 				processingMsg(gallery_error($err));
 				processingMsg("<b>". sprintf(_("Need help?  Look in the  %s%s FAQ%s"),

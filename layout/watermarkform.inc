@@ -21,7 +21,11 @@
  */
 ?>
 <?php
-  global $askRecursive;
+  global $watermarkForm;
+  global $wmAlign;
+  global $wmAlignX;
+  global $wmAlignY;
+  global $previewFull;
 
   $err = "";	
   if (!isset($wmAlignX) || ($wmAlignX <= 0))
@@ -68,6 +72,9 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 				// Start select form element on first matching file
 				print "<b>" . _("Watermark") . ":</b>&nbsp;";
 				print "<select name=\"wmName\">\n";
+				if ($watermarkForm["allowNone"]) {
+					print '<option label="' . _("None") . '" value=""></option>' . "\n";
+				}
 			}
 			print "\t<option ";
 			if ($wmName == $wmFile) {
@@ -129,7 +136,7 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 </tr>
 </table>
 <br>
-<?php if ($gallery->user->canViewFullImages($gallery->album)) { ?>
+<?php if ($watermarkForm["askPreview"] && $gallery->user->canViewFullImages($gallery->album)) { ?>
 <b><?php echo _("Preview Size") ?>:</b><br>
 <table border="0">
 <tr><td><input type="radio" name="previewFull" value="0"<?php if ($previewFull==0) echo " checked"; ?>>
@@ -139,8 +146,9 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 </table>
 <?php } // end if canViewFullImages ?>
 <br>
-<?php if ($askRecursive) {
+<?php if ($watermarkForm["askRecursive"]) {
   print '<input type="checkbox" name="recursive"';
+  global $recursive;
   if (isset($recursive)) echo " checked";
   print ">" . _("Watermark subalbums") . "</input><br><br>";
 } ?>

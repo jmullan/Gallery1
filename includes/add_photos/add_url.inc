@@ -46,7 +46,15 @@
 <br>
 <input type="radio" name="setCaption" value="2"><?php echo _("Set photo captions with file creation times.") ?>
 </p>
-
+<?php
+if (isset($gallery->app->watermarkDir)) {
+   global $watermarkForm;
+   $watermarkForm["askRecursive"] = 0;
+   $watermarkForm["askPreview"] = 0;
+   $watermarkForm["allowNone"] = 1;
+   includeLayout('watermarkform.inc');
+}
+?>
 <p align="center">
 <input type="button" value="<?php echo _("Submit URL or directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()'>
 <input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>

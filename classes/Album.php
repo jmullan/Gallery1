@@ -893,7 +893,7 @@ class Album {
 		}
 	}
 
-	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL) {
+	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL, $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0) {
 	       	global $gallery;
 
 		$this->updateSerial = 1;
@@ -1034,6 +1034,11 @@ class Album {
 	       	if ($this->getAddToBeginning() ) {
 		       	$this->movePhoto($this->numPhotos(1), 0);
 	       	}
+		if (isImage($tag) && strlen($wmName)) {
+			processingMsg("- ". _("Watermarking Image"));
+			$photo->watermark($this->getAlbumDir(),
+				$wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, 0, 0); 
+		}
 
 		return 0;
 	}
@@ -1469,7 +1474,7 @@ class Album {
 	       	$count = $this->numPhotos(1);
 		for ($index = 1; $index <= $count; $index++) {
 			$photo = &$this->getPhoto($index);
-			if ($photo->isAlbum()) {
+			if ($photo->isAlbum() && $recursive) {
 				if ($recursive) {
 					$subAlbumName = $this->getAlbumName($index);
 					$subAlbum = new Album();

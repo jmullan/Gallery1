@@ -39,6 +39,8 @@ if (isset($userfile_name)) {
 	}
 }
 
+if (!isset($wmName)) $wmName = "";
+
 doctype();
 ?>
 <html>
@@ -329,7 +331,7 @@ while (isset($userfile) && sizeof($userfile)) {
                         }
                 }
 		// Add new image
-		processNewImage($file, $tag, $name, $caption, $setCaption, $extra_fields);
+		processNewImage($file, $tag, $name, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY);
 		$image_count++;
 	}
 }
@@ -425,6 +427,10 @@ if (count($image_tags)) {
 <?php } /* end if (count($info_tags)) */ ?>
 <p>
 <input type="hidden" name="setCaption" value="<?php echo $setCaption ?>">
+<input type="hidden" name="wmName" value="<?php echo $wmName ?>">
+<input type="hidden" name="wmAlign" value="<?php echo $wmAlign ?>">
+<input type="hidden" name="wmAlignX" value="<?php echo $wmAlignX ?>">
+<input type="hidden" name="wmAlignY" value="<?php echo $wmAlignY ?>">
 <input type="button" value="<?php echo _("Add Files") ?>" onClick="parent.opener.showProgress(); document.uploadurl_form.submit()">
 </p>
 

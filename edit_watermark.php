@@ -91,8 +91,11 @@ if (!empty($err)) {
 echo makeFormIntro("edit_watermark.php", 
 			array("name" => "theform", 
 				"method" => "POST"));
-
-include (dirname(__FILE__) .'/layout/watermarkform.inc');
+global $watermarkForm;
+$watermarkForm["askRecursive"] = 0;
+$watermarkForm["askPreview"] = 1;
+$watermarkForm["allowNone"] = 0;
+includeLayout ('watermarkform.inc');
 ?>
 <p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
