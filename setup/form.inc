@@ -1,9 +1,13 @@
-<title> Gallery Setup: Step 2 </title>
 <center>
-<font size=+2>This is the Gallery setup page. </font>
-<br>
-You can use this page to customize the default values for
-<br> your installation of the Gallery web application.
+<font size=+2> Gallery Setup: Step 2 </font>
+<table width=80%><tr><td>
+This is the setup step.  Customize the default values for 
+your Gallery here.  We've tried to pick reasonable defaults
+for you but you'll have to make at least some minor changes.
+If you've already configuired Gallery once, then you'll notice
+that this has your current config information already in it.
+</td></tr></table>
+<p>
 
 <table>
 <input type=hidden name=this_page value="form">
