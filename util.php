@@ -131,7 +131,7 @@ function acceptableFormat($tag) {
 }
 
 function acceptableFormatRegexp() {
-	return "(" . array_join("|", formatList()) . ")";
+	return "(" . join("|", acceptableFormatList()) . ")";
 }
 
 function acceptableFormatList() {
