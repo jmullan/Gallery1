@@ -379,7 +379,8 @@ $adminOptions = array(
 									   array('set_albumName' => $gallery->session->albumName))),
 		      'view_comments'   => array('name' => _('view comments'),
 						 'requirements' => array('isAdminOrAlbumOwner',
-									 'allowComments'),
+									 'allowComments',
+									 'comments_enabled'),
 						 'action' => 'url',
 						 'value' => makeGalleryUrl('view_comments.php',
 									   array('set_albumName' => $gallery->session->albumName)))
@@ -866,7 +867,8 @@ if ($numPhotos) {
 				echo(nl2br($gallery->album->getCaption($i)));
 				echo($gallery->album->getCaptionName($i));
 				// indicate with * if we have a comment for a given photo
-				if ($gallery->user->canViewComments($gallery->album)) {
+				if ($gallery->user->canViewComments($gallery->album) 
+					&& $gallery->app->comments_enabled == 'yes') {
 					$lastCommentDate = $gallery->album->itemLastCommentDate($i);
 					print lastCommentString($lastCommentDate, $displayCommentLegend);
 				}

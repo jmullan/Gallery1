@@ -27,7 +27,8 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
 	echo "\n\t". popup_link("[" . _("permissions") ."]", "album_permissions.php?set_albumName={$tmpAlbumName}");
 
 	/* User is allowed to view ALL comments */
-	if ($gallery->user->canViewComments($gallery->album)) {
+	if ($gallery->user->canViewComments($gallery->album)
+		&& $gallery->app->comments_enabled == 'yes') {
 	    	echo "\n\t". '<a href="'. makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName)) . '">' .
 			'[' . _("view&nbsp;comments") . ']</a>';
 	}

@@ -555,45 +555,57 @@ $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 includeHtmlWrap("inline_photo.frame");
 ?>
 <br><br>
+
+<?php
+/*
+** Block for Caption, extra fields, comments and votes.
+*/
+?>
 <table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
 <!-- caption -->
 <tr>
-<td colspan=3 align="center" class="modcaption">
-<?php echo editCaption($gallery->album, $index) ?>
-<?php
-if ( canVote() )
-{
-       echo makeFormIntro("view_photo.php", array("name" => "vote_form",
+	<td colspan="3" align="center" class="modcaption">
+	<?php echo editCaption($gallery->album, $index) ?>
+	<br><br>
+	</td>
+</tr>
+	<?php
+if ( canVote()) {
+	echo "\n<!-- Voting pulldown -->";
+	echo "\n<tr>";
+	echo "\n\t". '<td colspan="3" align="center">';
+	echo makeFormIntro("view_photo.php", array("name" => "vote_form",
                                        "method" => "POST"));
-   ?>
-   <script language="javascript1.2" type="text/JavaScript">
- function chooseOnlyOne(i, form_pos, scale)
- {     
-   for(var j=0;j<scale;j++)
-     { 
-         if(j != i)
-           {
-               eval("document.vote_form['votes["+j+"]'].checked=false");
-           }
-    }                                 
-    document.vote_form.submit("Vote");
- }
-   </script>
+?>
+	<script language="javascript1.2" type="text/JavaScript">
+	function chooseOnlyOne(i, form_pos, scale) {     
+		for(var j=0;j<scale;j++) { 
+			if(j != i) {
+				eval("document.vote_form['votes["+j+"]'].checked=false");
+			}
+		}                                 
+		document.vote_form.submit("Vote");
+	}
+	</script>
        <?php
-       print "<input type=hidden name=id value=$id>";
-       addPolling("item.$id");
+       print '<input type="hidden" name="id" value="'. $id .'">' . addPolling("item.$id");
        print '</form>';
+	echo "\n\t</td>";
+	echo "\n</tr>";
 }
+
 if ($gallery->album->getPollShowResults())
 {
-       print "<p>\n";
-       print showResults("item.$id");
-       print "<p>\n";
+	echo "\n<!-- Voting Results -->";
+	echo "\n<tr>";
+	echo "\n\t". '<td colspan="3" align="center">';
+	echo showResults("item.$id");
+	echo "\n\t</td>";
+	echo "\n</tr>";
 }
-?>
-
-<br>
-<?php
+echo "\n<!-- Custom Fields -->";
+echo "\n<tr>";
+echo "\n\t". '<td colspan="3" align="center">';
 
 $automaticFields=automaticFieldsList();
 $field="Upload Date";
@@ -681,10 +693,13 @@ if ($table) {
 ?>
 </td>
 </tr>
-<?php if ($gallery->user->canViewComments($gallery->album)) {
-echo viewComments($index, $gallery->user->canAddComments($gallery->album)) ?>
-<tr><td>
-<?php } ?>
+<!-- Comments -->
+<?php 
+	if ($gallery->user->canViewComments($gallery->album)
+		 && $gallery->app->comments_enabled == 'yes') {
+			echo viewComments($index, $gallery->user->canAddComments($gallery->album));
+	}
+?>
 <?php if (isset($printShutterflyForm)) { ?>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value="1">

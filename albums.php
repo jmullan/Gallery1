@@ -382,8 +382,10 @@ if ($gallery->user->canWriteToAlbum($gallery->album) &&
 
 <?php
 }
-$lastCommentDate = $gallery->album->lastCommentDate();
-print lastCommentString($lastCommentDate, $displayCommentLegend);
+if($gallery->app->comments_enabled == 'yes') {
+	$lastCommentDate = $gallery->album->lastCommentDate();
+	print lastCommentString($lastCommentDate, $displayCommentLegend);
+}
 ?>
 
   </span>

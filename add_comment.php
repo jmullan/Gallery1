@@ -100,27 +100,28 @@ if (isset($save)) {
 <body dir="<?php echo $gallery->direction ?>">
 
 <center>
-<p class="popuphead">
+<p class="popuphead"><?php echo _("Add Comment") ?></p>
+<p>
 <?php echo _("Enter your comment for this picture in the text box below.") ?>
 </p>
 </span>
-<?php echo $gallery->album->getThumbnailTagById($id) ?>
-<?php
-if (isset($error_text)) {
+<?php 
+	echo $gallery->album->getThumbnailTagById($id);
+
+if (!empty($error_text)) {
 ?>
 <br><br>
 <span class="error"><?php echo $error_text ?></span>
 <br><br>
 <?php
 }
-?>
 
-<?php echo makeFormIntro("add_comment.php", array(
+echo makeFormIntro("add_comment.php", array(
 	"name" => "theform", 
 	"method" => "POST")); 
 ?>
 <input type="hidden" name="id" value="<?php echo $id ?>">
-<table border=0 cellpadding=5>
+<table border="0" cellpadding="5">
 <tr>
    <td class="popup"><?php echo _("Name or email:") ?></td>
    <td>
@@ -143,7 +144,7 @@ if (!$gallery->user->isLoggedIn() ) {
   </td>
 </tr>
 <tr>
-  <td colspan=2><textarea name="comment_text" rows="5" cols="40"><?php echo $comment_text ?></textarea></td>
+  <td colspan="2"><textarea name="comment_text" rows="5" cols="40"><?php echo $comment_text ?></textarea></td>
 </tr>
 </table>
 <br>

@@ -97,9 +97,10 @@ function viewComments($index, $addComments) {
        	{
 		$id = $gallery->album->getPhotoId($index);
 	       	$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
-	       	$buf = "<tr><td></td><td align=\"center\"><span class=editlink>";
-	       	$buf .= popup_link('[' . _("add comment") . ']', $url, 0);
-	       	$buf .= "<br><br></span></td><td></td></tr>";
+	       	$buf  = "\n<tr>".
+			"\n". '<td colspan="3" align="center"><span class="editlink">' .
+			popup_link('[' . _("add comment") . ']', $url, 0) .
+			"</span><br><br></td>\n</tr>";
 	       	echo $buf;
        	}
 }
@@ -2363,7 +2364,7 @@ function showResults($id)
 		}
 	    }
 	}
-	$buf .= "<span class=\"admin\">"._("Poll results:")."</span> ";
+	$buf .= "<span class=\"admin\">"._("Poll results:")."</span><br>";
 	if (sizeof($vote_tally) === 0)
 	{
 		$buf .= _("No votes")."<br>";
@@ -3134,6 +3135,9 @@ function testRequirement($test) {
     switch ($test) {
     case 'isAdminOrAlbumOwner':
 	return $gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album);
+	break;
+    case 'comments_enabled':
+	return $gallery->app->comments_enabled == 'yes';
 	break;
     case 'allowComments':
 	return $gallery->album->fields["perms"]['canAddComments'];
