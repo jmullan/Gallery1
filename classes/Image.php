@@ -31,6 +31,14 @@ class Image {
 	var $thumb_height;
 	var $raw_width;
 	var $raw_height;
+	var $version;
+
+	function Image() {
+		global $gallery;
+
+		// Seed new images with the appropriate version.
+		$this->version = $gallery->album_version;
+	}
 
 	function setFile($dir, $name, $type) {
 		$this->name = $name;
@@ -44,7 +52,27 @@ class Image {
 	}
 
 	function integrityCheck($dir) {
+		global $gallery;
+
+		if (!strcmp($this->version, $gallery->album_version)) {
+			return 0;
+		}
+
 		$changed = 0;
+
+		/*
+		 * Fix a specific bug where the width/height are reversed
+		 * for sized images 
+		 */
+		if ($this->version < 3) {
+			if ($this->resizedName) {
+				list($w, $h) = getDimensions("$dir/$this->resizedName.$this->type");
+				$this->width = $w;
+				$this->height = $h;
+				$changed = 1;
+			}
+		}
+
 		$filename = "$dir/$this->name.$this->type";
 		if (!isMovie($this->type)) {
 			if (!$this->raw_width) {
@@ -54,6 +82,12 @@ class Image {
 				$changed = 1;
 			}
 		}
+
+		if (strcmp($this->version, $gallery->album_version)) {
+			$this->version = $gallery->album_version;
+			$changed = 1;
+		}
+
 		return $changed;
 	}
 
@@ -86,8 +120,8 @@ class Image {
 			if ($ret) {
 				$this->resizedName = "$name.sized";
 				list($w, $h) = getDimensions("$dir/$name.sized.$this->type");
-				$this->height = $w;
-				$this->width = $h;
+				$this->width = $w;
+				$this->height = $h;
 			}
 		}	
 	}
@@ -108,7 +142,7 @@ class Image {
 		$name = $this->getName($dir);
 		
 		$attrs .= " border=0";
-	    if ($size) {
+		if ($size) {
 			if ($this->width > $this->height) {
 				$width = $size;
 				$height = $size * ($this->height / $this->width);
@@ -125,9 +159,12 @@ class Image {
 
 		if ($this->resizedName) {
 			if ($full) {
-				return "<img src=$dir/$this->name.$this->type $attrs>";
+				return "<img src=$dir/$this->name.$this->type " .
+					"width=$this->raw_width height=$this->raw_height $attrs>";
 			} else {
-				return "<img src=$dir/$this->resizedName.$this->type $attrs>";
+				return "<img src=$dir/$this->resizedName.$this->type " .
+					"width=$this->width height=$this->height " .
+					"$attrs>";
 			}
 		} else {
 			return "<img src=$dir/$this->name.$this->type $size_val $attrs>";
