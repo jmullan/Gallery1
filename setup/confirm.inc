@@ -110,6 +110,24 @@ foreach ($constants as $key => $val) {
 			}
 		}
 
+		if ($constants[$key]["must-be-number"]) {
+			if (ereg("[^0-9]",$$key)) {
+				$view .= row_wrap(error_format("$key: <b>\"" . $$key .
+					"\"</b> must be a number"));
+				$error = 1;
+				continue;
+			}
+		}
+
+		if ($constants[$key]["must-not-be-zero"]) {
+			if ($$key == 0) {
+				$view .= row_wrap(error_format("$key: <b>" . $$key .
+					"</b> must not be zero"));
+				$error = 1;
+				continue;
+			}
+		}
+
 		if ($constants[$key]["must-be-executable"]) {
 			if (!is_executable($$key)) {
 				$view .= row_wrap(error_format("$key: <b>" . $$key . 
