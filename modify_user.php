@@ -37,12 +37,13 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 if (!$gallery->user->isAdmin()) {
 	exit;	
 }
-
+$errorCount=0;
 if (isset($save)) {
 	if (strcmp($old_uname, $uname)) {
 		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 		if ($gErrors["uname"]) {
 			$errorCount++;
+			$uname=$old_uname;
 		}
 	}
 
@@ -95,16 +96,29 @@ if (!$tmpUser) {
 }
 
 if ($tmpUser->isAdmin()) {
-	$dontChange["create-albums"] = 1;
+	$allowChange["create_albums"] = false;
+} else {
+	$allowChange["create_albums"] = true;
 }
 
 if (!strcmp($tmpUser->getUsername(), $gallery->user->getUsername())) {
-	$dontChange["admin"] = 1;
+	$allowChange["admin"] = true;
 }
 
 $fullname = $tmpUser->getFullname();
 $email = $tmpUser->getEmail();
 $defaultLanguage = $tmpUser->getDefaultLanguage();
+
+$allowChange["uname"] = true;
+$allowChange["email"] = true;
+$allowChange["password"] = true;
+$allowChange["fullname"] = true;
+$allowChange["admin"] = true;
+$allowChange["default_language"] = true;
+$allowChange["send_email"] = false;
+$allowChange["old_password"] = false;
+$allowChange["old_password"] = false;
+$allowChange["member_file"] = false;
 
 $canCreateChoices = array(1 => _("yes"), 0 => _("no"));
 $canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;

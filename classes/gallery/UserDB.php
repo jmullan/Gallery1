@@ -247,15 +247,19 @@ class Gallery_UserDB extends Abstract_UserDB {
 	function validNewUsername($username) {
 
 		if (strlen($username) < 2) {
-			return _("Username must be at least 2 characters") ;
+			return sprintf(_("Illegal username %s: must at least 2 characters"),
+					"<i>" . $username . "</i>");
 		}
 
 		if (strlen($username) > 15) {
-			return _("Username must be at most 15 characters") ;
+			return sprintf(_("Illegal username %s: must at most 15 characters"),
+					"<i>" . $username . "</i>");
 		}
 
 		if (ereg("[^[:alnum:]]", $username)) {
-			return _("Username must contain only letters or digits") ;
+
+			return sprintf(_("Illegal username %s: must contain only letters or digits"),
+					"<i>" . $username . "</i>");
 		}
 
 		if (!strcmp($username, $this->nobody->getUsername()) ||
@@ -324,6 +328,42 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		return $success;
 	}
+
+	function CreateUser($uname, $email, $new_password, 
+			$fullname, $canCreate, $language) {
+		global $gErrors;
+	       	$errorCount=0;
+	       	$gErrors=array();
+	       	$gErrors["uname"] = $this->validNewUserName($uname);
+	       	if ($gErrors["uname"]) {
+		       	$errorCount++;
+	       	} else {
+		       	$gErrors["new_password"] = $this->validPassword($new_password);
+		       	if ($gErrors["new_password"]) {
+			       	$errorCount++;
+		       	}
+	       	}
+
+		if (!$errorCount) {
+		       	$tmpUser = new Gallery_User();
+		       	$tmpUser->setUsername($uname);
+		       	$tmpUser->setPassword($new_password);
+		       	$tmpUser->setFullname($fullname);
+		       	$tmpUser->setCanCreateAlbums($canCreate);
+		       	$tmpUser->setEmail($email);
+		       	$tmpUser->setDefaultLanguage($language);
+		       	$tmpUser->save();
+		       	return true;
+	       	} else { 
+			processingMsg( "<b>" . sprintf(_("Problem adding %s:"), $uname)."</b>");
+		       	foreach ($gErrors as $key_var => $value_var)
+		       	{
+			       	print "<br>";
+			       	errorRow($key_var);
+		       	}
+		       	return false;
+	       	}
+       	}
 }
 
 ?>

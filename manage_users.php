@@ -39,7 +39,10 @@ if (!$gallery->user->isAdmin()) {
 }
 
 if (isset($create)) {
-	header("Location: create_user.php?uname=$uname");
+	header("Location: create_user.php");
+}
+if (isset($bulk_create)) {
+	header("Location: multi_create_user.php");
 }
 
 if ( (isset($modify) || isset($delete)) && ! isset($uname)) {
@@ -104,6 +107,9 @@ if (!$displayUsers) {
 
 <p>
 <input type="submit" name="create" value="<?php echo _("Create") ?>"> 
+<?php if ($gallery->app->multiple_create == "yes") { ?>
+	<input type="submit" name="bulk_create" value="<?php echo _("Bulk Create") ?>"> 
+<?php } ?>
 <?php if (count($displayUsers)) { ?>
 <input type="submit" name="modify" value="<?php echo _("Modify") ?>">
 <input type="submit" name="delete" value="<?php echo _("Delete") ?>">

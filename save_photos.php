@@ -39,7 +39,7 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
 
-if ($userfile_name) {
+if (isset($userfile_name)) {
 	$file_count = 0;
 	foreach ($userfile_name as $file) {
 		if ($file) {
@@ -58,7 +58,8 @@ if ($userfile_name) {
 <body dir="<?php echo $gallery->direction ?>" onLoad='opener.hideProgressAndReload();'>
 
 <?php
-if ($urls) {
+$image_tags = array();
+if (!empty($urls)) {
 ?>
 <span class="title"><?php echo _("Fetching Urls...") ?></span>
 <br>
@@ -111,6 +112,9 @@ if ($urls) {
 
 			/* Parse URL for name and file type */
 			$url_stuff = parse_url($url);
+			if (!isset($url_stuff["path"])) { 
+				$url_stuff["path"]="";
+			}
 			$name = basename($url_stuff["path"]);
 
 		} else {
@@ -153,7 +157,7 @@ if ($urls) {
 		}
 
 		/* Make sure we delete this file when we're through... */
-		$temp_files[$file]++;
+		$temp_files[$file]=1;
 	
 		/* If this is an image or movie - add it to the processor array */
 		if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
@@ -171,7 +175,7 @@ if ($urls) {
 			/* We'll need to add some stuff to relative links */
 			$base_url = $url_stuff["scheme"] . '://' . $url_stuff["host"];
 			$base_dir = '';
-			if ($url_stuff["port"]) {
+			if (isset($url_stuff["port"])) {
 			  $base_url .= ':' . $url_stuff["port"];
 			}
 	
@@ -192,7 +196,7 @@ if ($urls) {
 					    $contents, 
 					    $results)) {
 				set_time_limit($gallery->app->timeLimit);
-				$things[$results[2]]++;
+				$things[$results[2]]=1;
 				$contents = str_replace($results[0], "", $contents);
 			}
 
@@ -234,12 +238,15 @@ if ($urls) {
 <br>
 
 <?php
-while (sizeof($userfile)) {
+while (isset($userfile) && sizeof($userfile)) {
 	$name = array_shift($userfile_name);
 	$file = array_shift($userfile);
 	if (!empty($usercaption) && is_array($usercaption)) {
 	    $caption = removeTags(array_shift($usercaption));
 	}
+	if (!isset($caption)) {
+	       	$caption="";
+       	}
 	if (get_magic_quotes_gpc()) {
 		$caption=stripslashes($caption);    
 	}

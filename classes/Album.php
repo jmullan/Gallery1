@@ -140,7 +140,7 @@ class Album {
 	}
 	function lastCommentDate() {
 		global $gallery;
-		if ($gallery->album->fields["public_comments"] == "no") {
+		if ($this->fields["public_comments"] == "no") {
 			return -1;
 		}
 		if ($gallery->app->comments_indication != "albums" && 
@@ -590,7 +590,7 @@ class Album {
 			fs_mkdir($dir, 0775);
 		}
 
-		if ($this->updateSerial) {
+		if (isset($this->updateSerial)) {
 			/* Remove the old serial file, if it exists */
 			$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
 			if (fs_file_exists($serial)) {
@@ -630,7 +630,7 @@ class Album {
 		    $this->photos = $transient_photos;
 
 		    /* Create the new album serial file */
-		    if ($this->updateSerial) {
+		    if (isset($this->updateSerial)) {
 			$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
 			if ($fd = fs_fopen($serial, "w")) {
 			    /* This space intentionally left blank */
@@ -701,7 +701,7 @@ class Album {
 	}
 
 	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL) {
-		global $gallery;
+	       	global $gallery;
 
 		$this->updateSerial = 1;
 
@@ -767,6 +767,65 @@ class Album {
 		if ($votes) {
 			$this->fields["votes"]["item.$name"]=$votes;
 		}
+
+	       	/* resize the photo if needed */
+	       	if (($this->fields["resize_size"] > 0 ||
+				       	$this->fields["resize_file_size"] > 0 ) 
+				&& isImage($tag)) {
+		       	$index = $this->numPhotos(1);
+		       	$photo = $this->getPhoto($index);
+		       	list($w, $h) = $photo->image->getRawDimensions();
+		       	if ($w > $this->fields["resize_size"] ||
+				       	$h > $this->fields["resize_size"] ||
+				       	$this->fields["resize_file_size"] > 0) {
+			       	processingMsg("- " . sprintf(_("Resizing %s"), $name));
+			       	$this->resizePhoto($index, 
+						$this->fields["resize_size"],
+					       	$this->fields["resize_file_size"]);
+		       	}
+	       	}
+
+		/* auto-rotate the photo if needed */
+	       	if (!strcmp($gallery->app->autorotate, 'yes') && $gallery->app->use_exif) {
+		       	$index = $this->numPhotos(1);
+		       	$exifData = $this->getExif($index);
+		       	if ($orientation = trim($exifData['Orientation'])) {
+			       	$photo = $this->getPhoto($index);
+			       	switch ($orientation) {
+				       	case "rotate 90":
+					       	$rotate = -90;
+				       	break;
+				       	case "rotate 180":
+					       	$rotate = 180;
+				       	break;
+				       	case "rotate 270":
+					       	$rotate = 90;
+				       	break;
+				       	case "flip horizontal":
+					       	$rotate = 'fh';
+				       	break;
+				       	case "flip vertical":
+					       	$rotate = 'fv';
+				       	break;
+				       	case 'transpose':
+				       	$rotate = 'tr';
+				       	break;
+				       	case 'transverse':
+				       	$rotate = 'tv';
+				       	break;
+				       	default:
+				       	$rotate = 0;
+			       	}
+			       	if ($rotate) {
+				       	$this->rotatePhoto($index, $rotate);
+				       	processingMsg("- ". _("Photo auto-rotated/transformed"));
+			       	}
+		       	}
+	       	}
+	       	/*move to the beginning if needed */
+	       	if ($this->getAddToBeginning() ) {
+		       	$this->movePhoto($this->numPhotos(1), 0);
+	       	}
 
 		return 0;
 	}
@@ -1604,22 +1663,22 @@ class Album {
 	function getVoteNVPairs()
 	{
 		global $gallery;
-		$nv_pairs=$gallery->album->fields["poll_nv_pairs"];
+		$nv_pairs=$this->fields["poll_nv_pairs"];
 		if ($nv_pairs == null)
 		{
 			$nv_pairs == array();
-			if ($gallery->album->getPollScale() == 1)
+			if ($this->getPollScale() == 1)
 			{
 				$nv_pairs[0]["name"]="";
 				$nv_pairs[0]["value"]="1";
 			}
 		}
-		for ($i = sizeof($nv_pairs); $i<$gallery->album->getPollScale() ; $i++)
+		for ($i = sizeof($nv_pairs); $i<$this->getPollScale() ; $i++)
 		{
-			if ($gallery->album->getPollType() == "rank")
+			if ($this->getPollType() == "rank")
 			{
 				$nv_pairs[$i]["name"]=sprintf(_("#%d"),($i));
-				$nv_pairs[$i]["value"]=$gallery->album->getPollScale()-$i+1;
+				$nv_pairs[$i]["value"]=$this->getPollScale()-$i+1;
 			}
 			else
 			{
@@ -1632,12 +1691,12 @@ class Album {
 	function getPollHint()
 	{
 		global $gallery;
-		$hint=$gallery->album->fields["poll_hint"];
+		$hint=$this->fields["poll_hint"];
 		if (is_string($hint))
 			return $hint;
-		if ($gallery->album->getPollScale() == 1 && $gallery->album->getPollType() != "rank")
+		if ($this->getPollScale() == 1 && $this->getPollType() != "rank")
 			return "I like this";
-		else if ($gallery->album->getPollType() == "rank")
+		else if ($this->getPollType() == "rank")
 			return "Vote for this";
 		else
 			return "Do you like this? (1=love it)";
@@ -1685,7 +1744,7 @@ class Album {
 		}
 		if ($index > 0 && $this->isHidden($index) &&
 				!$gallery->user->isAdmin() && 
-				!$gallery->user->isOwnerOfAlbum($gallery->album)) {
+				!$gallery->user->isOwnerOfAlbum($this)) {
 			$index=-1;
 
 		}

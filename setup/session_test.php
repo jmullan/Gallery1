@@ -72,7 +72,6 @@ $count++;
 
       <a href="session_test.php?destroy=1"><?php echo _("Start over") ?></a>
       <p>
-      <?php echo sprintf(_("Return to the %sDiagnostics Page%s"), 
-		      '<a href="diagnostics.php">', '</a>') ?>
+      <?php echo returnToConfig(); ?>
     </body>
   </html>

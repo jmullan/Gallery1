@@ -25,6 +25,7 @@ class Gallery_User extends Abstract_User {
 
 	var $defaultLanguage;
 	var $version;
+	var $recoverpasshash;
 
 	function Gallery_User() {
 		global $gallery;
@@ -79,6 +80,10 @@ class Gallery_User extends Abstract_User {
 		{
 			$this->setDefaultLanguage("");
 		}
+		if ($this->version < 2) 
+		{
+			$this->setRecoverPasswordHash("");
+		}
 		$this->version = $gallery->user_version;
 		if ($this->save()) {
 			$success=true;
@@ -95,6 +100,15 @@ class Gallery_User extends Abstract_User {
 	function getDefaultLanguage() {
 		return $this->defaultLanguage;
 	}
+
+	function setRecoverPasswordHash($hash) {
+		$this->recoverpasshash = $hash;
+	}
+
+	function getRecoverPasswordHash() {
+		return $this->recoverpasshash;
+	}
+
 }
 
 ?>

@@ -40,7 +40,7 @@ foreach ($sensitiveList as $sensitive) {
  * error reporting is turned all the way up.  We'll fix this in v2.0
  */
 error_reporting(E_ALL & ~E_NOTICE);
-//error_reporting(E_ALL);
+// error_reporting(E_ALL);
 
 /*
  * Figure out if register_globals is on or off and save that info

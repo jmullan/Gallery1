@@ -50,7 +50,7 @@ while (isset($breadcrumb["text"][$i])) {
     <td bgcolor="<?php echo $borderIn ?>" width="1" height="18"><?php echo $pixelImage ?></td>
   </tr>
 <?php
-if (!$breadcrumb["top"] || isset($breadcrumb["bottom"])) {
+if (!$breadcrumb["top"] || !empty($breadcrumb["bottom"])) {
 ?>
   <tr> 
     <td colspan="3" height="1" bgcolor="<?php echo $borderIn ?>"><?php echo $pixelImage ?></td>

@@ -174,6 +174,10 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
 	        $adminCommands .= popup_link("[" . _("login") . "]", "login.php", 0);
+            if (!strcmp($gallery->app->selfReg, 'yes')) {
+                $adminCommands .= '&nbsp;';
+                $adminCommands .= popup_link('[' . _("register") . ']', 'register.php', 0);
+            }
 	}
 }
 
@@ -272,9 +276,8 @@ for ($i = $start; $i <= $end; $i++) {
   <!-- Begin Text Cell -->
   <td align="<?php echo $gallery->alignment ?>" valign="top">
   <span class="title">
-  <a href="<?php echo $albumURL ?>">
   <?php _("title") ?>
-  <?php echo editField($gallery->album, "title") ?></a>
+  <?php echo editField($gallery->album, "title", $albumURL) ?>
   </span>
   <br>
   <span class="desc">
@@ -373,7 +376,7 @@ $albumName=$gallery->album->fields["name"];
 if ($gallery->user->canWriteToAlbum($gallery->album) &&
    (!($gallery->album->fields["display_clicks"] == "no"))) {
 ?>
-<?php echo popup_link("[" . _("reset counter") ."]", "'" . doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php") . "'" , 1) ?>
+<?php echo " ".popup_link("[" . _("reset counter") ."]", "'" . doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php") . "'" , 1) ?>
 
 <?php
 }

@@ -6,6 +6,8 @@ require("../classes/NobodyUser.php");
 require("../classes/LoggedInUser.php");
 require("../classes/EverybodyUser.php");
 require("../errors/configure_instructions.php");
+$start_string = "# BEGIN Gallery section";
+$end_string = "# END Gallery section.  Add User changes below this line";
 
 $outfile = "$GALLERY_DIR/config.php";
 @copy("gpl.txt", $outfile);
@@ -20,12 +22,42 @@ if ($fd = @fs_fopen($outfile, "a")) {
 	return;
 }
 
+
 /*
- * Empty out the .htaccess file
+ * Read the .htaccess file
+ */
+$htaccess = file("$GALLERY_DIR/.htaccess");
+$htaccess_save = array();
+$old_htaccess = true;
+$skipping = false;
+foreach ($htaccess as $line) {
+	if ($skipping && trim($line) == $end_string) {
+		$skipping = false;
+	} else if ($skipping) {
+		continue;
+	} else if (trim($line) == $start_string) {
+		$skipping = true;
+		$old_htaccess = false;
+	} else {
+		$htaccess_save[]=$line;
+	}
+}
+if ($old_htaccess) {
+	$htaccess_save=array();
+}
+/*
+ * Begin the .htaccess file
  */
 $outfile = "$GALLERY_DIR/.htaccess";
 if ($fd = @fs_fopen($outfile, "w")) {
-	fclose($fd);
+       	fwrite($fd, "$start_string\n");
+       	fwrite($fd, "# (Automatically generated.  Do no edit this section)\n");
+       	fwrite($fd, "# Note: still under development, so format may change.\n");
+       	fwrite($fd, "# If you edit this file, make a backup before runnng the Config. Wizard.\n\n");
+       	fclose($fd);
+} else {
+       	fail($outfile);	
+	return;
 }
 
 /*
@@ -64,23 +96,30 @@ if ($GALLERY_REWRITE_OK) {
 }
 
 /*
- * Write the user's htaccess.inc file, if present.
+ * End the .htaccess file gallery section
  */
-$include_file = "../htaccess.inc";
-if (fs_file_exists($include_file)) {
-	$htaccess = file($include_file);
-	if ($fd = @fs_fopen($outfile, "a")) {
-		foreach ($htaccess as $line) {
-			eval("\$line = \"$line\";");
-			fwrite($fd, $line);
-		}
-		fclose($fd);
-	} else {
-		fail($outfile);	
-		return;
-	}
+$outfile = "$GALLERY_DIR/.htaccess";
+if ($fd = @fs_fopen($outfile, "a")) {
+       	fwrite($fd, "$end_string\n");
+       	fclose($fd);
+} else {
+       	fail($outfile);	
+	return;
 }
 
+/*
+ * Write the preserved data back to the .htaccess file 
+ */
+$outfile = "$GALLERY_DIR/.htaccess";
+if ($fd = @fs_fopen($outfile, "a")) {
+       	foreach ($htaccess_save as $line) {
+	       	fwrite($fd, $line);
+       	}
+       	fclose($fd);
+} else {
+       	fail($outfile);	
+	return;
+}
 /*
  * Don't require UserDB before we've written and included config.php or it will
  * have a cow when it tries to verify that the $gallery->app->userDir exists.

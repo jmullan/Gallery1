@@ -76,9 +76,9 @@ if (!function_exists('array_search')) {
 }
 
 
-if ($votes)
+if (!empty($votes))
 {
-       if (!$votes[$id] && $gallery->album->getPollScale() == 1 && $gallery->album->getPollType() == "critique")
+       if (!isset($votes[$id]) && $gallery->album->getPollScale() == 1 && $gallery->album->getPollType() == "critique")
        {
                $votes[$id]=null;
        }
@@ -427,7 +427,7 @@ if (!$gallery->album->isMovie($id)) {
 	if (!is_int($key) &&
 	    !strcmp($gallery->album->fields["use_exif"],"yes") &&
 	    (eregi("jpe?g\$", $photo->image->type)) &&
-	    ($gallery->app->use_exif)) {
+	    isset($gallery->app->use_exif)) {
 		$albumName = $gallery->session->albumName;
 		$adminCommands .= popup_link("[" . _("photo properties") ."]", "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false);
 	}

@@ -30,6 +30,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 ?>
 <?php
+ini_set('session.bug_compat_warn', 'off');
 /*
  * PHP 4.0.1pl2 introduces a bug where you can't unserialize a 
  * stdClass instance correctly.  So create a dummy class to hold all

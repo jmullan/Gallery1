@@ -38,6 +38,7 @@ if (!$gallery->user->isLoggedIn()) {
 	exit;	
 }
 
+$errorCount=0;
 if ( isset($save)) {
 	if (strcmp($gallery->user->getUsername(), $uname)) {
 		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
@@ -46,13 +47,13 @@ if ( isset($save)) {
 		}
 	}
 
-	if ($old_password && !$gallery->user->isCorrectPassword($old_password)) {
+	if (isset($old_password) && !$gallery->user->isCorrectPassword($old_password)) {
 		$gErrors["old_password"] = _("Incorrect password") ;
 		$errorCount++;
 	}
 
-	if ($new_password1 || $new_password2) {
-		if (!$old_password) {
+	if (isset($new_password1) || isset($new_password2)) {
+		if (empty($old_password)) {
 			$gErrors["old_password"] = _("You must provide your old password to change it.");
 			$errorCount++;
 		}
@@ -88,11 +89,19 @@ if ( isset($save)) {
 	}
 }
 
-$askForOldPassword = 1;
 $uname = $gallery->user->getUsername();
 $fullname = $gallery->user->getFullname();
 $email = $gallery->user->getEmail();
 $defaultLanguage = $gallery->user->getDefaultLanguage();
+
+$allowChange["uname"] = true;
+$allowChange["email"] = true;
+$allowChange["fullname"] = true;
+$allowChange["password"] = true;
+$allowChange["old_password"] = true;
+$allowChange["default_language"] = true;
+$allowChange["send_email"] = false;
+$allowChange["member_file"] = false;
 
 ?>
 <html>

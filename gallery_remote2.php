@@ -588,18 +588,7 @@ function processFile($file, $tag, $name, $setCaption="") {
 			//echo "Extra fields ". implode("/", array_keys($myExtraFields)) ." -- ". implode("/", array_values($myExtraFields)) ."\n";
 
 	        $err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $myExtraFields, $gallery->user->getUid());
-	        if (!$err) {
-	            /* resize the photo if needed */
-	            if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
-	                $index = $gallery->album->numPhotos(1);
-	                $photo = $gallery->album->getPhoto($index);
-	                list($w, $h) = $photo->image->getRawDimensions();
-	                if ($w > $gallery->album->fields["resize_size"] ||
-	                    $h > $gallery->album->fields["resize_size"]) {
-	                    $gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
-	                }
-	            }
-	        } else {
+	        if ($err)  {
 	        	$error = "$err";
 	        }
 	    } else {

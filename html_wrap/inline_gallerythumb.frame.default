@@ -13,31 +13,41 @@ $tag = $gallery->html_wrap['thumbTag'];
 $href = $gallery->html_wrap['thumbHref'];
 $base = $gallery->app->photoAlbumURL . '/images';
 
-$imageTR = "$base/albumthumb_TR.gif";
-$imageRR = "$base/albumthumb_RR.gif";
-$imageBL = "$base/albumthumb_BL.gif";
-$imageBB = "$base/albumthumb_BB.gif";
-$imageBR = "$base/albumthumb_BR.gif";
+$imageTT = "$base/TT1.gif";
+$imageLL = "$base/LL1.gif";
+$imageTR = "$base/TR1.gif";
+$imageRR = "$base/RR1.gif";
+$imageBL = "$base/BL1.gif";
+$imageTL = "$base/TL1.gif";
+$imageBB = "$base/BB1.gif";
+$imageBR = "$base/BR1.gif";
 ?>
 <table width="1" border="0" cellspacing="0" cellpadding="0">
-<tr>
-	<td bgcolor="<?php echo $borderColor ?>" rowspan="2" colspan="2" width="1" height="1">
-		<table cellspacing="0" cellpadding="<?php echo $borderWidth ?>">
-			<tr><td width="<?php echo $thumbWidth ?>" height="<?php echo $thumbHeight ?>"><a href="<?php echo $href ?>"><?php echo $tag ?></a></td></tr>
-		</table>
-	</td>
-	<td width="5" height="<?php echo $borderWidth ?>" valign="bottom"><img src="<?php echo $imageTR ?>" width="5" height="1" alt="TR"></td>
-</tr>
 
-<tr>
-	<td width="5" height="<?php echo $thumbHeight ?>" style="background-image:url(<?php echo $imageRR ?>); margin:0px;">
-		<img src="<?php echo $pixelImage ?>" width="1" height="1" alt="RR">
-	</td>
-</tr>
+<TR>
+    <td width="10" height="10"><img src="<?php echo $imageTL ?>" 
+width="10" height="10"></td>
+    <td background="<?php echo $imageTT ?>" width="<?php echo $thumbWidth 
+?>"><img src="<?php echo $pixelImage ?>" width="1" height="1"></td>
+    <td><img src="<?php echo $imageTR ?>" width="18" height="10"></td>
+  </tr>
+  <TR>
+  <td width="10" height="<?php echo $thumbHeight ?>" background="<?php 
+echo $imageLL ?>"><img src="<?php echo $pixelImage ?>" width="1" 
+height="1"></td>
+        <td width="<?php echo $thumbWidth ?>" height="<?php echo 
+$thumbHeight ?>"><a href="<?php echo $href ?>"><?php echo $tag ?></a></td>
 
-<tr>
-	<td width="5" height="3"><img src="<?php echo $imageBL ?>" width="5" height="3" alt="BL"></td>
-	<td style="background-image:url(<?php echo $imageBB ?>); margin:0px;" width="<?php echo $thumbWidth ?>"><img src="<?php echo $pixelImage ?>" width="1" height="1" alt="BB"></td>
-	<td><img src="<?php echo $imageBR ?>" width="5" height="3" alt="BR"></td>
-</tr>
+ <td width="5" height="<?php echo $thumbHeight ?>" background="<?php echo 
+$imageRR ?>"><img src="<?php echo $pixelImage ?>" width="1" 
+height="1"></td>
+  </tr>
+
+  <tr>
+    <td width="5" height="3"><img src="<?php echo $imageBL ?>" width="10" 
+height="39"></td>
+    <td background="<?php echo $imageBB ?>" width="<?php echo $thumbWidth 
+?>"><img src="<?php echo $pixelImage ?>" width="1" height="1"></td>
+    <td><img src="<?php echo $imageBR ?>" width="19" height="39"></td>
+  </tr>
 </table>

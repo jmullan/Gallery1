@@ -306,11 +306,11 @@ $constants =  array_merge(
 	),
 	"separator3" => array (
 		"type" => "separator",
-		"title" => _("Gallery top page"),
+		"title" => _("Main Gallery page"),
 	),
 	"showAlbumTree" => array(
 		"prompt" => _("Show the album tree"),
-		"desc" => _("If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page).  Set to <b>no</b> by default."),
+		"desc" => _("If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page)."),
 		"choices" => array("yes" => _("yes"), "no" => _("no")), 
 		"value" => "no"
 	),
@@ -381,7 +381,7 @@ $constants =  array_merge(
 	),
 	"cacheExif" => array(
 		"prompt" => "<b>(" . _("Advanced") . ")</b><br> ". _("Cache EXIF data"),
-		"desc" => _("The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow.  Set to <b>no</b> by default."),
+		"desc" => _("The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 	),
@@ -403,12 +403,12 @@ $constants =  array_merge(
 		"title" => _("Languages and locales"),
 	),
 	"default_language" => array(
-		"prompt" => _("Which language do you want as your default language"), 
+		"prompt" => _("Default language"), 
 		"optional" => 1, 
-		"desc" => sprintf(_("This is what you will see as %s, and what users will see if no other preference is set."), 'admin'),
+		"desc" => sprintf(_("This is the language you will see as %s, and what users will see if no other preference is set."), 'admin'),
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"choices" => gallery_languages(),
-		"value" => $gallery->language,
+		"value" => !empty($gallery->language) ? $gallery->language : "en_US",
 		"enabled" => $elawisyl
 	),
 	"ML_mode" => array(
@@ -422,7 +422,7 @@ $constants =  array_merge(
 		"value" => ( (sizeof(gallery_languages()) > 1) && ($elawisyl == 'yes') ) ? 3 : 0,
 	),
 	"available_lang" => array(
-		"prompt" => _("Available languages in mode 3 and user preferences"), 
+		"prompt" => _("Available languages"), 
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
 		"desc" => _("These languages will be available as user choices in a pulldown menu or flags, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3."), 
@@ -432,14 +432,14 @@ $constants =  array_merge(
 	),
 	"show_flags" => array(
 		"prompt" => _("Show flags?"),
-		"desc" => _("In Mode 3 you can choose if you want to display a small pulldown menu or flags for the available languages. Set to <b>no</b> per default as its only an eye catcher.") .
+		"desc" => _("In Mode 3 you can choose to display flags instead of a small pulldown menua small pulldown menu for the available languages.") .
 			newIn("1.4.1"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 		"enabled" => $elawisyl
 	),
 	"dateString" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("Format to use for date strings."),
+		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("Format for date strings."),
 		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
 			_("date without time"), Gallery(), "<b>%x</b>",
 			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '">'._("http://www.php.net/manual/en/function.strftime.php").'</a>') .
@@ -450,7 +450,7 @@ $constants =  array_merge(
 		"attrs" => array("size" => 20)
 	),
 	"dateTimeString" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("Format to use for date/time strings."),
+		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("Format for date/time strings."),
 		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
 			_("date with time"), Gallery(), "<b>%c</b>",
 			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '">'._("http://www.php.net/manual/en/function.strftime.php").'</a>') .
@@ -467,6 +467,86 @@ $constants =  array_merge(
 // Continue constants ...
 $constants = array_merge($constants,
   array(
+	"separator_email" => array (
+		"type" => "separator",
+	       	"title" => _("Email and Registration"),
+	       	"desc" => sprintf(_("If you are having problems with email, please run the %s diagnostic."),
+		       	'<a href="check_mail.php">' . _("Check Email") . '</a>').
+	     	 	newIn("1.4.1")
+	),
+	"emailOn" => array(
+		"prompt" => _("Enable email"),
+		"verify-func" => "verify_email",
+	       	"desc" => sprintf(_("Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."),
+			"<i>" . _("no") . "</i>" ) .  newIn("1.4.1"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no"
+	),
+	"adminEmail" => array(
+		"prompt" => _("Admin email address"),
+		"desc" => _("Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know who to reach in case of problems. You may specify more than one address by seperating them with commas.") .
+		newIn("1.4.1") . "<br>",
+		"type" => "text",
+		"value" => "",
+		"attrs" => array("size" => 50),
+		"optional" => 1
+	),
+	"senderEmail" => array(
+		"prompt" => _("Sender email address"),
+		"desc" => _("Set this value to a valid working email address.  Emails that are automatically sent by gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients.") .
+		newIn("1.4.1") . "<br>",
+		"type" => "text",
+		"value" => "",
+		"attrs" => array("size" => 50),
+		"optional" => 1
+	),
+	"emailGreeting" => array(
+		"prompt" => _("Welcome email message text"),
+	       	"desc" => _("This email will be sent when new accounts are created.") . "<p>" .
+	       		sprintf(_("%s, %s and %s will be replaced by the fullname, user name and password of the newly created user."),
+				"<i>!!FULLNAME!!</i>",
+				"<i>!!USERNAME!!</i>",
+				"<i>!!PASSWORD!!</i>") . "<p>" .
+			_("Leave this field blank to get the default message that can be translated into other languages.  The default message is:") . 
+			'<table><tr><td width="20%"></td><td width="60%"><tt>' .
+			str_replace("\n", "<br>", welcome_email(true)) . 
+			'</tt></td><td width="20%"></td></tr></table>' .
+			newIn("1.4.1"),
+		"optional" => 1,
+		"type" => "textarea",
+		"value" => "",
+
+		"attrs" => array("cols" => 50, "rows" => 11)),
+	"selfReg" => array(
+		"prompt" => _("Allow visitors to self register."),
+		"desc" => _("Enabling this will allow visitors to your site to create their own login accounts.") .
+		newIn("1.4.1") . "<br>",
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no"
+	),
+	"selfRegCreate" => array(
+		"prompt" => _("Self registered users can create albums."),
+		"desc" => _("Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before then can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled.") .
+		newIn("1.4.1") . "<br>",
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no"),
+	"multiple_create" => array(
+		"prompt" => _("Enable bulk account creation"),
+		"desc" => _("This option allows your to create many new user accounts at one time by creating a file of new users.") .
+		newIn("1.4.1") . "<br>",
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no"
+	),
+	"email_notification" => array(
+		"prompt" => _("Admin notification of email activity"),
+		"desc" => _("You can keep a record of every email that is sent by gallery.") .
+		newIn("1.4.1") . "<br>",
+		"multiple_choices" => array("email" => _("Send summary email"), 
+			"logfile" => _("Log to a file"),
+			"bcc" => _("Send duplicate email")),
+		"optional" => 1,
+		"value" => array()
+	),
        	"separator6" => array (
 		       	"type" => "separator",
 		       	"title" => _("Gallery wide slideshow"),
@@ -532,7 +612,8 @@ $constants = array_merge($constants,
 			),
 	"separator7" => array (
 		"type" => "separator",
-		"title" => _("Advanced"),
+		"title" => _("Technical"),
+		"desc" => _("You usually don't need to change anything in this section.")
 	),
 
         "timeLimit" => array(
@@ -569,7 +650,6 @@ $constants = array_merge($constants,
 		"type" => "text",
 		"attrs" => array("size" => 20),
 	),
-
 	/* Keep this one at the end of the list because it's hidden */
 	"userDir" => array(
 		"desc" => "Filesystem location of user information",
@@ -812,7 +892,7 @@ $defaults = array(
 			), 
 	"poll_num_results" => array(
 		"prompt" => _("Number of results displayed"),
-		"desc" => sprintf(_("If %s is %s, display this many top images on the thumbnail page.  (Full results will be available on a linked page.)"),
+		"desc" => sprintf(_("If %s is %s, display a graph showing the this many top results.  (Full results will be available on a linked page.)"),
 			'"'. _("Show vote results").'"' ,
 			'"'. _("yes").'"') .
 			newIn("1.4.1"),

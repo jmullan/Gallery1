@@ -30,16 +30,22 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 require($GALLERY_BASEDIR."nls.php");
 
-function editField($album, $field) {
+function editField($album, $field, $link=null) {
 	global $gallery;
-
-	$buf = $album->fields[$field];
+	$buf = "";
+	if ($link) {
+		$buf .= "<a href=\"$link\">";
+	}
+	$buf .= $album->fields[$field];
+	if ($link) {
+		$buf .= "</a>";
+	}
 	if ($gallery->user->canChangeTextOfAlbum($album)) {
 		if (!strcmp($buf, "")) {
 			$buf = "<i>&lt;". _("Empty") . "&gt;</i>";
 		}
 		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field";
-		$buf .= "<span class=editlink>";
+		$buf .= " <span class=editlink>";
 		$buf .= popup_link( "[". sprintf(_("edit %s"), _($field)) . "]", $url) ;
 		$buf .= "</span>";
 	}
@@ -376,6 +382,7 @@ function resize_image($src, $dest, $target, $target_fs=0) {
 	}
 	else {
 		$out = $dest;
+		$useTemp = false;
 	}
 
 	$regs = getimagesize($src);
@@ -671,7 +678,7 @@ function toPnmCmd($file) {
 	}
 
 	if ($cmd) {
-		return NetPBM($cmd, $args) .
+		return NetPBM($cmd) .
 		 	" " .
 			fs_import_filename($file);
 	} else {
@@ -825,9 +832,13 @@ function pluralize_n($amt, $one, $more, $none) {
 }
 
 function errorRow($key) {
-	global $gErrors;
+	global $gErrors, $GALLERY_BASEDIR;
 
-	$error = $gErrors[$key];
+	if (isset($gErrors[$key])) {
+		$error = $gErrors[$key];
+	} else {
+		$error = NULL;
+	}
 	if ($error) {	
 		include($GALLERY_BASEDIR . "html/errorRow.inc");
 	}
@@ -1245,7 +1256,7 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $r
 			if (!$readOnly && ($myAlbum == $gallery->album)) {
 				// Don't allow the user to move to the current location with
 				// value=0, but notify them that this is the current location
-				echo "<option value=0>-- $myAlbumTitle (". _("current location"). ")</option>\n";
+				echo "<option value=\"$myAlbumName\">-- $myAlbumTitle (". _("current location"). ")</option>\n";
 			} else {
 				if (sizeof($gallery->album->fields["votes"]) && $gallery->album->pollsCompatible($myAlbum)) {
 					$myAlbumTitle .= " *";
@@ -1349,7 +1360,7 @@ function getItemCaptureDate($file) {
 	if ($gallery->app->use_exif) {
 		$return = getExif($file);
 		$exifData = $return[1];
-		if ($exifData["Date/Time"]) {
+		if (isset($exifData["Date/Time"])) {
 			$success = 1;
 			$tempDate = split(" ", $exifData["Date/Time"], 2);
 			$tempDay = split(":" , $tempDate[0], 3);
@@ -1678,16 +1689,17 @@ function saveResults($votes)
 		krsort($votes, SORT_NUMERIC);
 		foreach ($votes as $vote_value => $vote_key)
 		{
-			if ($gallery->album->fields["votes"]
-				[$vote_key]
-				[getVotingID()]===intval($vote_value))
+		       	if (isset($gallery->album->fields["votes"] [$vote_key] [getVotingID()]) &&
+				  $gallery->album->fields["votes"] [$vote_key] [getVotingID()] ===intval($vote_value))
 			{
 				//vote hasn't changed, so skip to next one
 				continue;
 			}
 			foreach ($gallery->album->fields["votes"] as $previous_key => $previous_vote)
 			{
-				if ($previous_vote[getVotingID()] === intval($vote_value))
+				if (isset($previous_vote[getVotingID()]) &&
+						$previous_vote[getVotingID()] 
+							=== intval($vote_value))
 				{
 					unset($gallery->album->fields["votes"]
 						[$previous_key]
@@ -1740,8 +1752,10 @@ function addPolling ($id, $form_pos=-1, $immediate=true)
 	{
 		return;
 	}
-	$current_vote=$gallery->album->fields["votes"][$id][getVotingID()];
-	if ($current_vote === NULL) { 
+	if (isset($gallery->album->fields["votes"][$id][getVotingID()])) {
+	       	$current_vote =
+			$gallery->album->fields["votes"][$id][getVotingID()];
+	} else {
 		$current_vote = -1;
 	}
 	$nv_pairs=$gallery->album->getVoteNVPairs();
@@ -1800,7 +1814,7 @@ function addPolling ($id, $form_pos=-1, $immediate=true)
 	{
 		if ($immediate)
 		{
-			print "\n<br><select name=\"votes[$id]\" ";
+			print "\n<br><select style='FONT-SIZE: 10px;' name=\"votes[$id]\" ";
 			print "onChange='this.form.submit();'>";
 		}
 		else
@@ -1809,7 +1823,7 @@ function addPolling ($id, $form_pos=-1, $immediate=true)
 		}
 		if ($current_vote == -1)
 		{
-			print "<option value=NULL><< ". _("VOTE") ." >></option>\n";
+			print "<option value=NULL><< ". _("Vote") . " >></option>\n";
 		}
 		for ($i = 0; $i < $gallery->album->getPollScale() ; $i++)
 		{
@@ -1850,10 +1864,12 @@ function showResultsGraph($num_rows)
 		if ($gallery->album->getPollType() == "rank" || $gallery->album->getPollScale() == 1)
 		{
 	    		$results[$element]=$accum_votes;
+			$summary="("._("Total points in brackets") . ")";
 		}
 	    	else
 		{
 			$results[$element]=number_format(((double)$accum_votes)/$count, 2);
+			$summary="("._("Average points in brackets") . ")";
 		}
 	    }
 	}
@@ -1881,6 +1897,9 @@ function showResultsGraph($num_rows)
 			$id = $gallery->album->getPhotoId($index);
 			$url=makeAlbumUrl($gallery->session->albumName, $id);
 			$desc=$gallery->album->getCaption($index);
+			if (trim($desc)== "") {
+				$desc=$id;
+			}	
 		}
 		$current_rank = $gallery->album->getRank($index);
 		$rank++;
@@ -1928,7 +1947,7 @@ function showResultsGraph($num_rows)
                         if (strlen($key_string) > 0)
                         {       
                                 $buf .= "<br>". sprintf(_("Key - %s"), 
-						$key_string)."<br>";
+						$key_string)." $summary<br>";
                         }
                 }
                 $buf .= $graph;
@@ -2053,7 +2072,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				}
 				
 				/* Make sure we remove this file when we're done */
-				$temp_files[$newFile]++;
+				$temp_files[$newFile]=1;
 			}
 		    
 			processingMsg("- ". sprintf(_("Adding %s"),$name));
@@ -2065,67 +2084,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 			    $extra_fields=array();
 			}
 			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $extra_fields, $gallery->user->uid);
-			if (!$err) {
-				/* resize the photo if needed */
-				if (($gallery->album->fields["resize_size"] > 0 ||
-				     $gallery->album->fields["resize_file_size"] > 0 ) 
-							&& isImage($tag)) {
-					$index = $gallery->album->numPhotos(1);
-					$photo = $gallery->album->getPhoto($index);
-					list($w, $h) = $photo->image->getRawDimensions();
-					if ($w > $gallery->album->fields["resize_size"] ||
-					    $h > $gallery->album->fields["resize_size"] ||
-					    $gallery->album->fields["resize_file_size"] > 0) {
-						processingMsg("- " . sprintf(_("Resizing %s"), $name));
-						$gallery->album->resizePhoto($index, 
-							$gallery->album->fields["resize_size"],
-							$gallery->album->fields["resize_file_size"]);
-					}
-				}
-				
-				/* auto-rotate the photo if needed */
-				if (!strcmp($gallery->app->autorotate, 'yes') && $gallery->app->use_exif) {
-					$index = $gallery->album->numPhotos(1);
-					$exifData = $gallery->album->getExif($index);
-					if ($orientation = trim($exifData['Orientation'])) {
-						$photo = $gallery->album->getPhoto($index);
-						switch ($orientation) {
-						case "rotate 90":
-							$rotate = -90;
-							break;
-						case "rotate 180":
-							$rotate = 180;
-							break;
-						case "rotate 270":
-							$rotate = 90;
-							break;
-						case "flip horizontal":
-							$rotate = 'fh';
-							break;
-						case "flip vertical":
-							$rotate = 'fv';
-							break;
-						case 'transpose':
-							$rotate = 'tr';
-							break;
-						case 'transverse':
-							$rotate = 'tv';
-							break;
-						default:
-							$rotate = 0;
-						}
-						if ($rotate) {
-							$gallery->album->rotatePhoto($index, $rotate);
-							processingMsg("- ". _('Photo auto-rotated/transformed'));
-						}
-					}
-				}
-				/*move to the beginning if needed */
-				if ($gallery->album->getAddToBeginning() ) {
-					$gallery->album->movePhoto($gallery->album->numPhotos(1), 0);
-				}
-
-			} else {
+			if ($err) {
 				processingMsg("<font color=red>" . 
 						sprintf(_("Error: %s!"), $err) .
 						"</font>");
@@ -2418,7 +2377,9 @@ function initLanguage() {
 
 	// When all is done do the settings
 	//
-	putenv("LANG=". $gallery->language);
+	if (getOS() != OS_SUNOS) {
+		putenv("LANG=". $gallery->language);
+	}
 	putenv("LANGUAGE=". $gallery->language);
 
 	// Set Locale
@@ -2589,17 +2550,146 @@ function poweredBy () {
 
 define("OS_WINDOWS", "win");
 define("OS_LINUX", "linux");
+define("OS_SUNOS", "SunOS");
 define("OS_OTHER", "other");
 
 function getOS () {
 	if(substr(PHP_OS, 0, 3) == 'WIN') {
 		return OS_WINDOWS;
-	}
-	else if ( stristr(PHP_OS, "linux")) {
+	} else if ( stristr(PHP_OS, "linux")) {
 		return OS_LINUX;
+	} else if ( stristr(PHP_OS, "SunOS")) {
+		return OS_SUNOS;
 	} else {
 		return OS_OTHER;
 	}
+}
+
+function validate_email($email)
+{
+       	if (eregi('^([a-z0-9_]|\-|\.)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,4}$', $email)) {
+	       	return true;
+       	} else {
+	       	return false;
+       	}
+}
+
+function generate_password($len = 10)
+{
+	$result = '';
+	$alpha  = 'abcdefghijklmnopqrstuvwxyz' .
+			  '0123456789' .
+			  'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+	srand((double)microtime() * 1000000);
+	$size = strlen($alpha) - 1;
+	$used = array();
+
+	while($len--) {
+		$random  = rand(0, $size);
+		$char    = $alpha[$random];
+
+		// No duplicate characters.
+		if (in_array($char, $used, true)) {
+			$len++;
+			continue;
+		}
+		$used[]  = $char;
+		$result .= $char;
+	}
+	return $result;
+}
+
+function pretty_password($pass, $print, $pre = '    ', $post = '')
+{
+	$idx = -1;
+	$len = strlen($pass);
+
+	if ($print === true) {
+		$result = "Your password is:  $pass\n\n";
+	} else {
+		$result = '';
+	}
+
+	while(++$idx < $len) {
+		if (ereg('[[:upper:]]', $pass[$idx])) {
+			$result .= $pre . $pass[$idx] .
+				      ' = Uppercase letter ' . $pass[$idx] . "\n";
+		} else if (ereg('[[:lower:]]', $pass[$idx])) {
+			$result .= $pre . $pass[$idx] .
+				      ' = Lowercase letter ' . $pass[$idx] . "\n";
+		} else if (ereg('[[:digit:]]', $pass[$idx])) {
+			$result .= $pre . $pass[$idx] .
+				      ' = Numerical number ' . $pass[$idx] . "\n";
+		} else {
+			$result .= $pre . $pass[$idx] .
+				      ' = ASCII Character  ' . $pass[$idx] . "\n";
+		}
+	}
+	return "$result\n";
+}
+
+function emailDisclaimer() {
+	global $gallery;
+	$msg=sprintf(_("[Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message.  \r\nReport abuse to %s.]\r\n"), 
+		$gallery->app->photoAlbumURL, $gallery->app->adminEmail);
+	$msg2=sprintf("[Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message.  \r\nReport abuse to %s.]\r\n", 
+		$gallery->app->photoAlbumURL, $gallery->app->adminEmail);
+	if ($msg != $msg2) {
+		return "$msg$msg2\r\n";
+	} else {
+		return "$msg\r\n";
+	}
+}
+
+
+
+function gallery_mail($to, $subject, $msg, $logmsg, $from = NULL) {
+	if ($gallery->app->emailOn == "no") {
+	       	gallery_error(_("Email not sent as it is disabled for this gallery"));
+		return false;
+	}
+       	if (!$to) {
+	       	gallery_error(sprintf(_("Email not sent as no address provided"),
+				       	"<i>" . $to . "</i>"));
+		return false;
+	}
+       	if (!validate_email($to)) {
+	       	gallery_error(sprintf(_("Email not sent to %s as it is not a valid address"),
+				       	"<i>" . $to . "</i>"));
+		return false;
+	}
+	global $gallery, $HTTP_SERVER_VARS;
+	if (!validate_email($from)) {
+		$from = $gallery->app->senderEmail;
+		$reply_to = $gallery->app->adminEmail;
+	} else {
+		$reply_to = $from;
+	}
+	$additional_headers = "From: $from\r\nReply-To: $reply_to\r\n";
+	$additional_headers .= "X-GalleryRequestIP: " . $HTTP_SERVER_VARS['REMOTE_ADDR'] . "\r\n";
+	if (in_array("bcc", $gallery->app->email_notification)) {
+		$additional_headers .= "Bcc: " . $gallery->app->adminEmail . "\r\n";
+	}
+	$result=mail($to, $subject, emailDisclaimer().$msg, $additional_headers);
+	if (isDebugging() && $result) {
+		print "<table>";
+		print "<tr><td colspan=\"2\">" . _("Email sent") . "</td></tr>";
+		print "<tr><td>To:</td><td> $to</td></tr>";
+		print "<tr><td>Subject:</td><td> $subject</td></tr>";
+		print "<tr><td>";
+		print str_replace(":", ":</td><td>", 
+				str_replace("\n", "</td></tr><tr><td>",
+					$additional_headers));
+		print "</td></tr>";
+		print "<br>";
+		print "</td></tr></table>";
+		print "<p>";
+	} else if (isDebugging() && !$result) {
+		print "Error.  Email not sent<br>";
+	}
+	emailLogMessage($logmsg, $result);
+	return $result;
 }
 
 /* Formats a nice string to print below an item with comments */
@@ -2616,5 +2706,69 @@ function lastCommentString($lastCommentDate, &$displayCommentLegend) {
 		$displayCommentLegend = 1;
 	}
 	return $ret;
+}
+function emailLogMessage($logmsg, $result) {
+	global $gallery;
+	if (!$result) {
+		$logmsg = _("FAILED")."/FAILED: $logmsg";
+	}
+	if (in_array("logfile", $gallery->app->email_notification)) {
+		$logfile=$gallery->app->albumDir."/email.log";
+		logMessage($logmsg, $logfile);
+	}
+	if (in_array("email", $gallery->app->email_notification)) {
+		$subject = _("Email activity");
+		if ($subject != "Email activity") {
+			$subject .= "/Email activity";
+		}
+		$subject .= ": ".  $gallery->app->galleryTitle;
+		mail($gallery->app->adminEmail, 
+			$subject,
+			emailDisclaimer().$logmsg,
+			"From: " . $gallery->app->senderEmail);
+	}
+}
+function logMessage ($msg, $logfile) {
+	
+	if ($fd = fs_fopen($logfile, "a")) {
+		fwrite($fd, strftime("%Y/%m/%d %H:%M.%S: $msg\n"));
+		fclose($fd);
+	}
+	else if (isDebugging()) {
+		print sprintf(_("Cannot open logfile: %s"), $logfile);
+	}
+}
+
+function welcome_email($show_default=false) {
+	global $gallery;
+
+	$default=_("Hi !!FULLNAME!!,  
+
+Congratulations.  You have just been subscribed to %s at %s.  Please visit the gallery soon, and login using:
+
+Username is !!USERNAME!!
+Password is !!PASSWORD!!
+
+Gallery @ %s Administrator.");
+	if ($show_default) {
+		return sprintf($default, 
+		       	"<b><nobr>&lt;" . _("gallery title") . "&gt;</nobr></b>", 
+		       	"<b><nobr>&lt;" . _("gallery URL") . "&gt;</nobr></b>", 
+		       	"<b><nobr>&lt;" . _("gallery title") . "&gt;</nobr></b>");
+	} else if (empty($gallery->app->emailGreeting)) {
+		return sprintf($default, 
+			$gallery->app->galleryTitle,
+			$gallery->app->photoAlbumURL,
+			$gallery->app->galleryTitle);
+	} else {
+		return $gallery->app->emailGreeting;
+	}
+
+}
+function newPasswordHash($user) {
+       	$rec_pass_hash = md5($user->password.$user->uid.localtime());
+       	$user->setRecoverPasswordHash($rec_pass_hash);
+       	$user->save();
+       	return makeGalleryUrl('new_password.php', array('lost_pass_hash' => $rec_pass_hash, 'uname' => $user->getUsername()));
 }
 ?>

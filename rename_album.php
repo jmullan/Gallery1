@@ -53,7 +53,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
 
-if ($newName) {
+if (!empty($newName)) {
 	$newName = str_replace("'", "", $newName);
 	$newName = str_replace("`", "", $newName);
 	$newName = strtr($newName, "\\/*?\"<>|& .+#", "-------------");

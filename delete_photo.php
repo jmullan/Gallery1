@@ -46,7 +46,7 @@ if (!$gallery->user->canDeleteFromAlbum($gallery->album)
 	exit;
 }
 
-if ($confirm && isset($id)) {
+if (isset($confirm) && isset($id)) {
 	if ($albumDelete) {
 		/* Track down the corresponding photo index and remove it */
 		$index = 0;
@@ -99,11 +99,11 @@ $myAlbum->load($id);
 <br>
 <br>
 <b>
-<?php echo $myAlbum->fields[title] ?>
+<?php echo $myAlbum->fields['title'] ?>
 </b>
 <br>
 <br>
-<?php echo $myAlbum->fields[description] ?>
+<?php echo $myAlbum->fields['description'] ?>
 <br>
 <?php echo makeFormIntro("delete_photo.php"); ?>
 <input type="hidden" name="id" value="<?php echo $id ?>">

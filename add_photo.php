@@ -55,7 +55,7 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php
-if ($userfile_name && fs_file_exists($userfile_name)) { ?>
+if (isset($userfile_name) && fs_file_exists($userfile)) { ?>
 <script language="Javascript">
 	opener.showProgress();
 </script>
@@ -97,12 +97,16 @@ else
 
 <p class="popuphead"><?php echo _("Add Photo") ?></p>
 <?php
-if ($userfile_name && ! fs_file_exists($userfile_name)) {
-	echo "<p>" . gallery_error(sprintf(_("The file &quot;%s&quot; does not exist"),$userfile_name)) . "</p>";
+if (isset($userfile_name) && ! fs_file_exists($userfile)) {
+	echo "<p>" . gallery_error(sprintf(_("The file %s does not exist"),
+				"&quot;" . $userfile . "&quot;")) . "</p>";
 }
+// Note: file button is not labelled "Browse" in all browsers.  Eg Safari "Choose File"
+
 ?>
 <span class="popup">
 <?php echo _("Click the <b>Browse</b> button to locate a photo to upload.") ?>
+</span>
 <span class="admin">
 <br>
 &nbsp;&nbsp;(<?php echo _("Supported file types") ?>: <?php echo join(", ", acceptableFormatList()) ?>)

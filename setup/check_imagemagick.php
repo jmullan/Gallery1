@@ -21,9 +21,10 @@ echo sprintf(_("You should run this script <b>after</b> you have run the config 
 
 <?php
 require('./init.php'); 
+require("functions.inc"); 
 if (! file_exists("../config.php")) {
 	echo "<p style=\"color:red\">". _("It seems that you did not configure your GALLERY. Please run and finish the configuration wizard.") . "</p>";
-	echo sprintf(_("Return to the %sconfig wizard%s."), '<a href="../index.php">', '</a>');
+	echo returnToConfig();
 	echo "</body></html>";
 	exit;
 }
@@ -176,16 +177,6 @@ function checkImageMagick($cmd) {
         }
 	print "\n\n";
 }
-    
-function inOpenBasedir($dir) {
-    $openBasedir = ini_get('open_basedir');
-    if (empty($openBasedir)) {
-	return true;
-    }
-
-    return in_array($dir, explode(':', $openBasedir));
-}
-    
 ?>
 </pre>
 
@@ -209,9 +200,7 @@ echo sprintf(_("You should talk to your system administrator about this, or see 
 ?>
 </ol>
 
-<?php echo sprintf(_("Return to the %sconfig wizard%s."),
-		'<a href="index.php">', '</a>');
-?>
+<?php echo returnToConfig(); ?>
 
 </body>
 </html>

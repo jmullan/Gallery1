@@ -63,9 +63,10 @@ if (isset($preserve)) {
 	$preserve=array();
 }
 foreach (array_keys($preserve) as $key) {
-	if (isset($$key) && !is_array($$key)) {
-		$$key = urldecode($$key);
+	if (!isset($$key)) {
+		continue;
 	}
+	$$key = array_urldecode($$key);
 }
 
 ?>

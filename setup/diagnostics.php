@@ -4,6 +4,7 @@
 $GALLERY_BASEDIR="../";
 @include($GALLERY_BASEDIR . "config.php"); 
 require($GALLERY_BASEDIR . "util.php");
+require($GALLERY_BASEDIR . "setup/functions.inc");
 initLanguage();
 ?>
 <html>
@@ -67,13 +68,21 @@ initLanguage();
 	    </td>
 	  </tr>
 
+	  <tr>
+	    <td width="140" align=center valign="top">
+	      <a href="check_mail.php"><?php echo _("Check Email") ?></a>
+	    </td>
+	    <td>
+		<?php echo _("This page will simply send a test email.") ?>
+		<?php echo sprintf(_("This allows you to see if you can use the email functions in %s."), Gallery()) ?>
+	    </td>
+	  </tr>
 	</table>
 
 	<p> </p>
 
 	<center>
-	  <?php echo sprintf(_("Return to the %sconfig wizard%s."),
-			  '<a href="index.php">', '</a>') ?>
+	  <?php echo returnToConfig(); ?>
 	</center>
 
     </body>

@@ -125,6 +125,7 @@ function getNLS () {
 
 	$nls['alias']['en_EN'] = 		'en_GB' ;
 	$nls['alias']['en_GB.ISO8859-1'] =	'en_GB' ;
+	$nls['alias']['en_AU'] =		'en_GB' ;
 
 	$nls['alias']['english'] = 		'en_US' ;
 	$nls['alias']['eng'] =			'en_US' ;

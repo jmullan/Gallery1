@@ -75,7 +75,7 @@ if (isset($save)) {
 	$gallery->album->fields["slideshow_length"] = $slideshow_length;
 	$gallery->album->save();
 
-	if ($setNested) {
+	if (isset($setNested)) {
 	
 		$gallery->album->setNestedProperties();
 

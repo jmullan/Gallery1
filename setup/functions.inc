@@ -138,7 +138,7 @@ function form_multiple_choice($key, $arr) {
 		}
 		$count++;
 		$selected = "";
-		if (in_array($item, $arr["value"])) {
+		if ($arr["value"] && in_array($item, $arr["value"])) {
 			$selected = "CHECKED";
 		}
 		$buf .= "\n\t<br><input name=\"${key}[]\" value=\"$item\" type=\"checkbox\" $selected>" . $value ;
@@ -242,13 +242,14 @@ function check_htaccess()
 	 */
 	$success = array();
 	$fail = array();
+	$warn = array();
 	if ($GALLERY_PHP_VALUE_OK) {
 		$success[] = _("I can read your .htaccess file");
 	} else {
 		$fail["fail-htaccess"] = 1;
 	}
 
-	return array($success, $fail);
+	return array($success, $fail, $warn);
 }
 
 function check_php()
@@ -283,13 +284,14 @@ function check_mod_rewrite()
 
 	$success = array();
 	$fail = array();
+	$warn = array();
 	if ($GALLERY_REWRITE_OK) {
 		$success[] = _("mod_rewrite is enabled");
 	} else {
 		$fail["fail-mod-rewrite"] = 1;
 	}
 
-	return array($success, $fail);
+	return array($success, $fail, $warn);
 }
 
 function check_exif($location="")
@@ -298,6 +300,7 @@ function check_exif($location="")
 
 	$fail = array();
 	$success = array();
+	$warn = array();
 
 	$bin = fs_executable("jhead");
 
@@ -312,7 +315,7 @@ function check_exif($location="")
 		$success[] = _("jhead binary located");
 	}
 
-	return array($success, $fail);
+	return array($success, $fail, $warn);
 }
 
 function check_graphics($location="", $graphtool = "")
@@ -321,6 +324,7 @@ function check_graphics($location="", $graphtool = "")
 
 	$fail = array();
 	$success = array();
+	$warn = array();
 	if (!strcmp($graphtool, "ImageMagick")) {
 		$success[] = _("NetPBM not being used in this installation");
 	    	return array($success, $fail);
@@ -396,7 +400,7 @@ function check_graphics($location="", $graphtool = "")
 				count($netpbm) );
 	}
 
-	return array($success, $fail);
+	return array($success, $fail, $warn);
 }
 
 function check_graphics_im($location="", $graphtool="")
@@ -405,6 +409,7 @@ function check_graphics_im($location="", $graphtool="")
 
 	$fail = array();
 	$success = array();
+	$warn = array();
 
 	if (!strcmp($graphtool, "NetPBM")) {
 		$success[] = "ImageMagick not being used in this installation";
@@ -451,7 +456,7 @@ function check_graphics_im($location="", $graphtool="")
 				count($imagick));
 	}
 
-	return array($success, $fail);
+	return array($success, $fail, $warn);
 }
 
 function check_jpegtran($location="")
@@ -460,6 +465,7 @@ function check_jpegtran($location="")
 
 	$fail = array();
 	$success = array();
+	$warn = array();
 
 	$bin = fs_executable("jpegtran");
 
@@ -474,19 +480,20 @@ function check_jpegtran($location="")
 		$success[] = _("jpegtran binary located");
 	}
 
-	return array($success, $fail);
+	return array($success, $fail, $warn);
 }
 
 function check_gettext()
 {
 	$fail = array();
 	$success = array();
+	$warn = array();
 	if (in_array ("gettext", get_loaded_extensions()) && function_exists('gettext')) {
 		$success[] = _("gettext installed");
 	} else {
 		$fail["fail-gettext"] = 1;
 	}
-	return array($success, $fail);
+	return array($success, $fail, $warn);
 }
 
 function check_gallery_languages()
@@ -495,6 +502,7 @@ function check_gallery_languages()
 	global $gallery;
 	$fail = array();
 	$success = array();
+	$warn = array();
 	$nls = getNLS();
 
 	$languages=gallery_languages();
@@ -510,7 +518,7 @@ function check_gallery_languages()
 	} else {
 		$success[] = sprintf(_("All %d languages found"), sizeof($languages));
 	}
-	return array($success, $fail);
+	return array($success, $fail, $warn);
 }
 
 function check_gallery_version()
@@ -519,6 +527,7 @@ function check_gallery_version()
 	global $gallery;
 	$fail = array();
 	$success = array();
+	$warn = array();
 
 	/* how many days old is the gallery version? */
 	$age = (time() - $gallery->last_change)/86400;
@@ -545,7 +554,7 @@ function check_gallery_version()
 	} else {
 		$success["ok"] = "$this_version  $visit";
 	}
-	return array($success, $fail);
+	return array($success, $fail, $warn);
 }
 
 function check_absent_locales()
@@ -554,6 +563,7 @@ function check_absent_locales()
 	global $locale_check;
 	$fail = array();
 	$success = array();
+	$warn = array();
 
 	$locales=$locale_check;
 
@@ -580,7 +590,7 @@ function check_absent_locales()
 		}
 		$fail[] = $msg;
 	}
-	return array($success, $fail);
+	return array($success, $fail, $warn);
 }
 
 //returns all languages in this gallery installation
@@ -806,6 +816,7 @@ function check_safe_mode()
 {
 	$fail = array();
 	$success = array();
+	$warn = array();
 	$safe_mode = ini_get("safe_mode");
 	if (empty($safe_mode) ||
 	    !strcasecmp($safe_mode, "off") ||
@@ -815,20 +826,21 @@ function check_safe_mode()
 	} else {
 		$fail["fail-safe-mode"] = 1;
 	}
-	return array($success, $fail);
+	return array($success, $fail,$warn);
 }
 
 function check_magic_quotes()
 {
 	$fail = array();
 	$success = array();
+	$warn = array();
 	if (!get_magic_quotes_gpc()) {
 		$success[] = _("magic quotes are off");
 	} else {
 		$fail["fail-magic-quotes"] = 1;
 	}
 
-	return array($success, $fail);
+	return array($success, $fail, $warn);
 }
 
 function check_poll_nv_pairs($var) {
@@ -977,6 +989,20 @@ function array_stripslashes($subject) {
 	}
 	return $ret;
 }
+
+function array_urldecode($subject) {
+	if (is_string($subject)) {
+		return urldecode($subject);
+	}
+	if (!is_array($subject)) {
+		return ($subject);
+	}
+	$ret=array();
+	foreach ($subject as $key => $value) {
+		$ret[$key]=array_urldecode($value);
+	}
+	return $ret;
+}
 function array_str_replace($search, $replace, $subject) {
 	if (is_string($subject)) {
 		return str_replace($search, $replace, $subject);
@@ -991,10 +1017,88 @@ function array_str_replace($search, $replace, $subject) {
 	return $ret;
 }
 
+function verify_email($emailMaster)
+{
+	global $adminEmail, $senderEmail, $emailGreeting;
+	$fail = array();
+	$success = array();
+       	if ($emailMaster == "no") {
+	       	$success[] = _("OK");
+	       	return array($success, $fail);
+	}
+
+	if (validate_email($adminEmail)) {
+		$success[] = _("Valid admin email address given.");
+	} else {
+		$adminEmail = ereg_replace('([[:space:]]+)', '', $adminEmail);
+		$emails = array_filter1(explode(',', $adminEmail));
+		$size  = sizeof($emails);
+
+		if ($size < 1) {
+			$fail[]= _("You must specify valid admin email addresses");
+		} else {
+			$adminEmail="";
+			$join="";
+		       	foreach ($emails as $email) {
+			       	$adminEmail .= "$join$email";
+			       	$join=",";
+			       	if (!validate_email($email)) {
+				       	$fail[] = sprintf(_("%s is not a valid email address."), 
+							$email);
+			       	} else {
+				       	$success[] = "Valid admin email given.";
+			       	}
+		       	}
+	       	}
+	}
+       	if (validate_email($senderEmail)) {
+	       	$success[] = _("Valid sender email address given.");
+       	} else {
+	       	$fail[]= _("You must specify a valid sender email address");
+       	}
+       	if (!empty($emailGreeting) && !strstr($emailGreeting, "!!USERNAME!!")) {
+	       	$fail[]= sprintf(_("You must include %s in your welcome email"), "<b>!!USERNAME!!</b>");
+       	}
+       	if (!empty($emailGreeting) && !strstr($emailGreeting, "!!PASSWORD!!")) {
+	       	$fail[]= sprintf(_("You must include %s in your welcome email"), "<b>!!PASSWORD!!</b>");
+       	}
+       	return array($success, $fail);
+}
+
+function check_ecards($num)
+{
+    if ($num < 15 || $num > 365) {
+		$fail = array();
+		$fail["fail-ecardPrune"]++;
+	} else {
+		$success = array();
+		$success[] = "Valid value specified.";
+    }
+	return array($success, $fail);
+}
+
 function newIn($version) {
 	$buf = "\n\t<br><font color=blue><b>(";
 	$buf .= sprintf(_("this is new in version %s"), $version);
 	$buf .= ")</b></font>";
 	return $buf;
+}
+function returnToConfig() {
+	$buf = sprintf(_("Return to %s."), '<a href="index.php">' .
+			_("Configuration Wizard") . '</a>');
+	return $buf;
+}
+if (!function_exists('array_filter1')) {
+       	function array_filter1($input, $function=NULL) {
+		$output=array();
+	       	foreach ($input as $name => $value) {
+		       	if ($function && $function($value)) {
+			       	$output[$name]=$value;
+		       	} else if ($value) {
+			       	$output[$name]=$value;
+		       	}
+		}
+	       	return $output;
+       	}
 }
 ?>

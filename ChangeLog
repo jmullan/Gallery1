@@ -1,3 +1,63 @@
+2003-09-day Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b87
+
+	* Vallimar's self registration patch, somewhat modified.
+	  If this option is enabled, users can create an account 
+	  for themselves Email will be sent to them with the 
+	  password.
+
+	* BorgKing's lost password patch, somewhat modified.  This
+	  adds an option to login page to recover password.  Users
+	  are emailed a link, that takes them to a page where they
+	  can set a new password.
+
+	* Added setup/check_mail.php to support above functionality.
+
+	* Re-jigged slideshow_low.php so it would actually be low
+	  tech. In 1.3.4-cvs-b6 the function getElementById() was
+	  added to the javascript, which is not available in Netscape
+	  4.7, probably the most common old browser.  Reverted back
+	  to pre 1.3.4-cvs-b6 version, the added back all the changes
+	  made post 1.3.4-cvs-b6.
+
+	* Only show slideshow link if slideshow is available.
+
+	* Moved resize, autorotate and move-to-beginning into
+	  addPhoto(), so code is not duplicated in 5 places. This
+	  also fixed the unnecessary resize on move bug [803122].
+
+	* Added Australian as an alias of en_GB as time/date/spelling
+	  are nearly identical.
+
+	* Add space in "Field[edit field]" and modified editField()
+	  so we no longer have a <a href=..> inside a <a href= ..>
+	  in albums.php
+
+	* Added copy_photo.php.  Very similar to move_photo.php, but does not 
+	  delete image from original albums.
+
+	* Optionally send email to new user when creating users.
+
+	* Optionally add many users in bulk.
+
+	* Can have polling and edit options at the same time in view_album.php.
+
+	* In vote results graph, use $id for name if no caption.
+
+	* Improved messages on vote results page.
+
+	* Number of warnings reduced.
+
+	* Changed user pref variable $dontChange[] to $allowChange[] (Vallimar).
+
+	* Removed session compatibility warning.
+
+	* New album thumnail frames, thanks to Demonhood (somewhat modified).
+
+	* Print number of errors on the confirmation page of Config. Wizard.
+
+	* Fixed locale problem in SunOS, which caused apache to
+	  crash.  It can't find the locales, but doesn't crash.
+
 2003-09-23  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b86
 
 	* Fixed issue from -b81 so that empty locale aliases do not appear in
