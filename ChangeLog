@@ -1,3 +1,17 @@
+2001-07-18  Bharat Mediratta  <bharat@menalto.com>
+
+	* Alpha quality Win32 support is in.  I've tested the core
+	  functionality but not things like zip and jhead support.  Edit
+	  thumbnails appears not to be working.
+
+	* Fixed the "1 byte sample bug".  This turned out to be quite
+	  complicated and in order to maintain efficiency I had to update
+	  the album integrity check code.  The upshot of this is that the
+	  config wizard's public comment and click count variables HAVE
+	  BEEN RESET.  If you have a copy of Gallery v1.2-cvs from prior
+	  to this date you should audit these values in the config wizard
+	  before viewing albums.
+
 2001-07-13  John Kirkland  <jpk@bl.org>
 	* Fixed SF bug#441249.  If a user was using the new "keep 
 	  original filenames" feature and they uploaded a file with
