@@ -167,7 +167,7 @@ function num_special_fields($extra_fields) {
 ?>
 </table>
 <p>
-	<input type="checkbox" name="setNested" value="1"><?php echo _("Apply to nested Albums") ?>.
+	<input type="checkbox" name="setNested" value="1"><?php echo _("Apply values to nested albums.") ?>.
 </p>
 <p>
 	<input type="submit" name="apply" value="<?php echo _("Apply") ?>">

@@ -266,8 +266,8 @@ if ($gallery->album->isAlbum($index)) {
 <?php
 } else {  
 	echo _("Move a range of photos to a new album:") ?><br>
-<i>(<?php echo _("To move just one photo, make First and Last the same") ?>)</i><br>
-<i>(<?php echo _("Nested albums in this range will be ignored") ?>)</i>
+<i>(<?php echo _("To move just one photo, make First and Last the same.") ?>)</i><br>
+<i>(<?php echo _("Nested albums in this range will be ignored.") ?>)</i>
 <?php echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
 <input type=hidden name="index" value="<?php echo $index ?>">
 

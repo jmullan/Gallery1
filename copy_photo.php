@@ -129,8 +129,8 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 <p>
 <?php echo _("Copy a range of photos to a new album:") ?><br>
-<i>(<?php echo _("To copy just one photo, make First and Last the same") ?>)</i><br>
-<i>(<?php echo _("Nested albums in this range will be ignored") ?>)</i>
+<i>(<?php echo _("To copy just one photo, make First and Last the same.") ?>)</i><br>
+<i>(<?php echo _("Nested albums in this range will be ignored.") ?>)</i>
 <?php echo makeFormIntro("copy_photo.php", array("name" => "copy_to_album_form")); ?>
 <input type=hidden name="index" value="<?php echo $index ?>">
 
