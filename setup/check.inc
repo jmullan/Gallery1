@@ -4,17 +4,15 @@
 <br>
 <table width=80%><tr><td>
 
-<?php echo _("This is the Gallery system check page.") . "  " ?>
+<?php echo _("This is the Gallery system check page.") . "  "; ?>
 <?php echo _("This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably.") ?>
 
 <p>
 
 <center>
 <?php 
-$diagnostics_page='<a href="diagnostics.php">' . 
-	_("Gallery Diagnostics Page").'</a>';
-$help_page='<a href="http://gallery.sourceforge.net/help.php">'.
-_("Gallery Help Page"). '</a>';
+$diagnostics_page='<a href="diagnostics.php">' . _("Gallery Diagnostics Page").'</a>';
+$help_page='<a href="http://gallery.sourceforge.net/help.php">'. _("Gallery Help Page"). '</a>';
 $docs_page = galleryDocs();
 if ($docs_page) {
 	echo sprintf(_("Having problems?  Try the %s, %s and %s."),
@@ -38,6 +36,7 @@ if ($docs_page) {
 <?php
 $warning =0;
 foreach ($checklist as $check) {
+	if( isset($check["enabled"]) && $check["enabled"] == "no") continue;
 ?> 
 	<tr>
 	<td width=50% valign=top><?php echo $check["desc"] ?></td>
@@ -52,27 +51,27 @@ foreach ($checklist as $check) {
 		} else {
 			$msg = _("Success");
 		}
-		echo "<font color=green><b>$msg</b></font><br>";
+		echo "<span class=\"success\">$msg</span><br>";
 	}
 
 	$openBasedir = ini_get('open_basedir');
 	foreach ($fail as $key => $val) {
 		if ($check["optional"]) {
-			if (isset($check["serious"])) {
+			if (isset($check["serious"]) && $check["serious"] == 1) {
 				$serious_warning++;
 				$text = _("Serious Warning");
-				$color = "red";
+				$class="error";
 			} else {
 				$text = _("Warning");
-				$color = "yellow";
+				$class= "warning";
 			}
-			echo "<font color=$color><b>$text!</b>  </font>";
+			echo "<span class=\"$class\">$text!</span>";
 			if (isset($check) && isset($check[$key])) {
 				echo "<br>$check[$key]<p>";
 			}
 			$warning++;
 		} else {
-			echo "<font color=red><b>". _("Failed!") ."</b></font>";
+			echo "<span class=\"failed\">" . _("Failed!") ."</span>";
 			echo "<br>$check[$key]<p>";
 			$error = 1;
 		}
@@ -84,7 +83,7 @@ foreach ($checklist as $check) {
 		if (is_array($val)) {
 			foreach ($val as $msg) {
 				if ($val) {
-					echo "<font color=red>$msg</font><br>";
+					echo "<span class=\"error\">$msg</span><br>";
 				}
 			}
 		}
@@ -96,7 +95,7 @@ foreach ($checklist as $check) {
 	</td>
 	</tr>
 
-	<tr><td colspan=3> <hr width=50%> </td></tr>
+	<tr><td colspan="3"> <hr width="50%"> </td></tr>
 <?php
 }
 ?>

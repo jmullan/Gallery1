@@ -1,6 +1,14 @@
 <?php /* $Id$ */ ?>
 <?php
 
+$locale_check=check_locale();
+/* $elawisyl <=> Enable LAnguages WIthout SYstem Locales
+** is set to "no" when we have no system locales and are in linux
+** "no" disables all language settings 
+*/
+
+if ( ($locale_check == NULL) && (stristr(PHP_OS,"linux")) ) $elawisyl = "no";
+
 $common_messages["getting-netpbm"] = 
 			sprintf(_("Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from %sGallery on SourceForge%s.  Or, you can compile and install the entire NetPBM package from %sNetPBM on SourceForge%s."), 
 				 "<a href=\"http://sourceforge.net/projects/gallery\">",
@@ -142,7 +150,9 @@ $checklist = array(
 	"missing-locales" => array (
 		"optional" => 1,
 		"desc" => _("Testing to see if which locales are absent"),
-		"func" => "check_absent_locales"
+		"func" => "check_absent_locales",
+		"serious" => ( $elawisyl == "no" ) ? 1 : 0 ,
+		"enabled" => (stristr(PHP_OS,"win")) ? "no" : "yes" 
 	)
 );
 
@@ -169,6 +179,70 @@ $constants =  array_merge(
 		"dont-write" => 1,
 		"value" => "",
 		"attrs" => array("size" => 50)
+	),
+
+	"separator3" => array (
+		"type" => "separator",
+		"title" => _("Locations and URLs")
+	),
+	"albumDir" => array(
+		"prompt" => _("Album directory"),
+		"desc" => sprintf(_("The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty -- Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s.)"),
+			"<b>". $webserver_user . "</b>"),
+		"value" => getenv("DOCUMENT_ROOT") . "/albums",
+		"require-write-dir" => 1,
+		"filename" => 1,
+		"type" => "text",
+		"attrs" => array("size" => 50)
+	),
+	"tmpDir" => array(
+		"prompt" => _("Temporary directory"),
+		"desc" => '(<font color=red>' . _('REQUIRED') . '</font>) '.
+			  sprintf(_("The filesystem path to a temporary directory.  Eg. %s or %s.  Note that if you have open_basedir configured on your system, then this temporary directory must be inside the open_basedir path!  In that case you may need to create the tmp directory yourself and make sure that it's writable by the webserver process."),
+		'<i>/tmp</i>','<i>c:\\windows\\temp</i>'),
+		"value" => getenv("TMP"),
+		"filename" => 1,
+		"require-write-dir" => 1,
+		"type" => "text",
+		"attrs" => array("size" => 50)
+	),
+	"photoAlbumURL" => array(
+		"prompt" => "Gallery URL",
+		"desc" => sprintf(_("The full URL to the Gallery web application.  Eg. %s."),
+			'<i>http://www.foo.com/gallery</i>'),
+		"value" => "http://" . getenv("SERVER_NAME") . $GALLERY_URL,
+		"no-trailing-slash" => 1,
+		"must-be-url" => 1,
+		"type" => "text",
+		"attrs" => array("size" => 50)
+	),
+	"albumDirURL" => array(
+		"prompt" => _("Albums") ." URL",
+		"desc" => sprintf(_("The full URL to your album directory (specified above) on your web server.  Eg. %s."), 
+			'<i>http://www.foo.com/albums</i>'),
+		"value" => "http://" . getenv("SERVER_NAME") . "/albums",
+		"no-trailing-slash" => 1,
+		"must-be-url" => 1,
+		"type" => "text",
+		"attrs" => array("size" => 50)
+	),
+	"movieThumbnail" => array(
+		"prompt" => _("Thumbnail image"),
+		"desc" => sprintf(_("The filesystem path to the thumbnail image to show for movies.  Eg. %s"), "/home/foo/thumbnail.jpg"),
+		"value" => $GALLERY_DIR . "/images/movie.thumb.jpg",
+		"type" => "text",
+		"attrs" => array("size" => 50)
+	),
+	"mirrorSites" => array(
+		"prompt" => _("Mirror sites"),
+		"desc" => sprintf(_("A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  Eg.%s."),
+		'<center><i>' .
+			'http://www.fast.server/albums<br>http://www.other.server/albums</i>' .
+			'</center>'),
+		"optional" => 1,
+		"type" => "textarea",
+		"value" => NULL,
+		"attrs" => array("cols" => 50, "rows" => 5)
 	),
 	"separator_1" => array (
 		"type" => "separator",
@@ -234,6 +308,8 @@ $constants =  array_merge(
 		"value" => 95
 	),
 
+
+
 	"separator2" => array (
 		"type" => "separator",
 		"title" => _("Optional tools")
@@ -282,7 +358,8 @@ $constants =  array_merge(
 		"prompt" => "Jpegtran",
 		"desc" => sprintf(_("The filesystem path to the 'jpegtran' utility.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."), 
 			'<i>/usr/local/bin/jpegtran</i>', 
-			'<i>c:\\bin\\jpegtran.exe</i>'),
+			'<i>c:\\bin\\jpegtran.exe</i>') .
+			"<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
 		"value" => locateFile("jpegtran"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
@@ -291,69 +368,7 @@ $constants =  array_merge(
 		"type" => "text",
 		"attrs" => array ("size" => 50)
 	),		
-	"separator3" => array (
-		"type" => "separator",
-		"title" => _("Locations and URLs")
-	),
-	"movieThumbnail" => array(
-		"prompt" => _("Thumbnail image"),
-		"desc" => sprintf(_("The filesystem path to the thumbnail image to show for movies.  Eg. %s"), "/home/foo/thumbnail.jpg"),
-		"value" => $GALLERY_DIR . "/images/movie.thumb.jpg",
-		"type" => "text",
-		"attrs" => array("size" => 50)
-	),
-	"albumDir" => array(
-		"prompt" => _("Album directory"),
-		"desc" => sprintf(_("The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty -- Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s.)"),
-			"<b>". $webserver_user . "</b>"),
-		"value" => getenv("DOCUMENT_ROOT") . "/albums",
-		"require-write-dir" => 1,
-		"filename" => 1,
-		"type" => "text",
-		"attrs" => array("size" => 50)
-	),
-	"tmpDir" => array(
-		"prompt" => _("Temporary directory"),
-		"desc" => '(<font color=red>' . _('REQUIRED') . '</font>) '.
-			  sprintf(_("The filesystem path to a temporary directory.  Eg. %s or %s.  Note that if you have open_basedir configured on your system, then this temporary directory must be inside the open_basedir path!  In that case you may need to create the tmp directory yourself and make sure that it's writable by the webserver process."),
-		'<i>/tmp</i>','<i>c:\\windows\\temp</i>'),
-		"value" => getenv("TMP"),
-		"filename" => 1,
-		"require-write-dir" => 1,
-		"type" => "text",
-		"attrs" => array("size" => 50)
-	),
-	"photoAlbumURL" => array(
-		"prompt" => "Gallery URL",
-		"desc" => sprintf(_("The full URL to the Gallery web application.  Eg. %s."),
-			'<i>http://www.foo.com/gallery</i>'),
-		"value" => "http://" . getenv("SERVER_NAME") . $GALLERY_URL,
-		"no-trailing-slash" => 1,
-		"must-be-url" => 1,
-		"type" => "text",
-		"attrs" => array("size" => 50)
-	),
-	"albumDirURL" => array(
-		"prompt" => _("Albums") ." URL",
-		"desc" => sprintf(_("The full URL to your album directory (specified above) on your web server.  Eg. %s."), 
-			'<i>http://www.foo.com/albums</i>'),
-		"value" => "http://" . getenv("SERVER_NAME") . "/albums",
-		"no-trailing-slash" => 1,
-		"must-be-url" => 1,
-		"type" => "text",
-		"attrs" => array("size" => 50)
-	),
-	"mirrorSites" => array(
-		"prompt" => _("Mirror sites"),
-		"desc" => sprintf(_("A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  Eg.%s."),
-		'<center><i>' .
-			'http://www.fast.server/albums<br>http://www.other.server/albums</i>' .
-			'</center>'),
-		"optional" => 1,
-		"type" => "textarea",
-		"value" => NULL,
-		"attrs" => array("cols" => 50, "rows" => 5)
-	),
+
 	"separator4" => array (
 		"type" => "separator",
 		"title" => _("Appearance")
@@ -382,7 +397,8 @@ $constants =  array_merge(
 		"desc" => sprintf(_("This is what you will see as %s, and what users will see if no other preference is set."), 'admin'),
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"choices" => gallery_languages(),
-		"value" => $gallery->language
+		"value" => $gallery->language,
+		"enabled" => $elawisyl
 	),
 	"ML_mode" => array(
 		"prompt" => _("Multi language mode"), 
@@ -392,17 +408,19 @@ $constants =  array_merge(
 		"choices" => array(
 				1 => "1: " . _("Gallery is only displayed in one language"), 
 				2 => "2: " . _("Gallery is displayed in the language the browser sends"), 
-				3 => "3: " . _("The User can choose the language via select box or flags.")),
-		"value" => (sizeof(gallery_languages()) > 1) ? 3 : 1
+				3 => "3: " . _("The User can choose the language via pulldown menu or flags.")),
+		"value" => (sizeof(gallery_languages()) > 1) ? 3 : 1,
+		"enabled" => $elawisyl
 	),
 	"available_lang" => array(
 		"prompt" => _("Available languages in mode 3 and user preferences"), 
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
-		"desc" => _("These languages will be available as user choices in a drop down menu or flags, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3.") .
+		"desc" => _("These languages will be available as user choices in a pulldown menu or flags, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3.") .
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
 		"multiple_choices" => gallery_languages(),
-		"value" => array_keys(gallery_languages())
+		"value" => array_keys(gallery_languages()),
+		"enabled" => $elawisyl
 	),
 	"show_flags" => array(
 		"prompt" => _("Show flags?"),

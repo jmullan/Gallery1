@@ -1,3 +1,21 @@
+2003-08-26 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b29
+
+	* nearly a complete rewrite of locale tests in setup/functions.inc
+          This fixes 2 bugs:
+          1.) when gallery runs in this environment:
+              Linux / PHP with gettext / NO system locales.
+              In this case gallery doesnt have ML capabilities, but in older version this wasnt fetched.
+
+          2.) when gallery runs in windows there were unneccessay (confusing) warnings.
+
+	* Added new languages: Simplified Chinese (zh_CN) ; Finnish (fi_FI).
+
+	* Synced all languages.
+
+	* Language Updates: Italian (it_IT), German (de_DE).
+
+	* Undo pretty printing in html_wrap, because IE doesnt like tabs.
+
 2003-08-25 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b28
 
 	* Startpage is now valid html
@@ -14,7 +32,6 @@
 
 	* Fixed Bug in resize_photo.php which caused resize to original (get rid of resized) not to work 
 
-	* Added new language: Simplified Chinese (zh_CN)
 
 2003-08-24 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b27
 

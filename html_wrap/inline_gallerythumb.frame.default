@@ -24,15 +24,11 @@ $imageBR = "$base/albumthumb_BR.gif";
 	<td bgcolor="<?php echo $borderColor ?>" rowspan="2" colspan="2" width="1" height="1">
 		<table cellspacing="0" cellpadding="<?php echo $borderWidth ?>">
 		<tr>
-			<td width="<?php echo $thumbWidth ?>" height="<?php echo $thumbHeight ?>">
-				<a href="<?php echo $href ?>"><?php echo $tag ?></a>
-			</td>
+			<td width="<?php echo $thumbWidth ?>" height="<?php echo $thumbHeight ?>"><a href="<?php echo $href ?>"><?php echo $tag ?></a></td>
 		</tr>
 		</table>
 	</td>
-	<td width="5" height="<?php echo $borderWidth ?>" valign="bottom">
-		<img src="<?php echo $imageTR ?>" width="5" height="1" alt="TR">
-	</td>
+	<td width="5" height="<?php echo $borderWidth ?>" valign="bottom"><img src="<?php echo $imageTR ?>" width="5" height="1" alt="TR"></td>
 </tr>
 
 <tr>
@@ -42,14 +38,8 @@ $imageBR = "$base/albumthumb_BR.gif";
 </tr>
 
 <tr>
-	<td width="5" height="3">
-		<img src="<?php echo $imageBL ?>" width="5" height="3" alt="BL">
-	</td>
-	<td  style="background-image:url(<?php echo $imageBB ?>); margin:0px;" width="<?php echo $thumbWidth ?>">
-		<img src="<?php echo $pixelImage ?>" width="1" height="1" alt="BB">
-	</td>
-	<td>
-		<img src="<?php echo $imageBR ?>" width="5" height="3" alt="BR">
-	</td>
+	<td width="5" height="3"><img src="<?php echo $imageBL ?>" width="5" height="3" alt="BL"></td>
+	<td style="background-image:url(<?php echo $imageBB ?>); margin:0px;" width="<?php echo $thumbWidth ?>"><img src="<?php echo $pixelImage ?>" width="1" height="1" alt="BB"></td>
+	<td><img src="<?php echo $imageBR ?>" width="5" height="3" alt="BR"></td>
 </tr>
 </table>

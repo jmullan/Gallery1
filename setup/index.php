@@ -18,12 +18,16 @@ initLanguage();
 ?>
 <html>
 <head>
-  <title><?php echo _("Gallery Configuration") ?></title>
-  <style type="text/css">
-   body { background-color: #CCCCCC; }
-   .error { color: #FF0000; }
-   .separator { background-color:#FFA888; text-align:center; }
-  </style>
+<title><?php echo _("Gallery Configuration") ?></title>
+<style type="text/css">
+	body		{ background-color: #BDCCF1; color:#000000}
+	.content	{ background-color: #9999FF; }
+	.error		{ color: red; }
+	.success	{ font-weight:bold; color:green   ; }
+	.warning	{ font-weight:bold; color:#FFFF33; }
+	.failed		{ font-weight:bold; color;#FF0000; }
+	.separator 	{ background-color: #000099; color:#FFFFFF; text-align:center; }
+</style>
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
