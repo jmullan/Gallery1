@@ -92,6 +92,9 @@ var timeout_value;
 var images = new Array;
 var photo_urls = new Array;
 var photo_captions = new Array;
+var transitionNames = new Array;
+var transitions = new Array;
+var current_transition = 1;
 <?php
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
@@ -143,6 +146,49 @@ while ($index <= $numPhotos) {
     // Go to the next photo
     $index = getNextPhoto($index);
 }
+
+$transitionNames[] = '!! Random !!';
+$transitions[] = 'special case';
+$transitionNames[] = 'Blend';
+$transitions[] = 'progid:DXImageTransform.Microsoft.Fade(duration=1)';
+$transitionNames[] = 'Blinds';
+$transitions[] = 'progid:DXImageTransform.Microsoft.Blinds(Duration=1,bands=20)';
+$transitionNames[] = 'Checkerboard';
+$transitions[] = 'progid:DXImageTransform.Microsoft.Checkerboard(Duration=1,squaresX=20,squaresY=20)';
+$transitionNames[] = 'Crazy Bars';
+$transitions[] = 'progid:DXImageTransform.Microsoft.RandomBars(Duration=1,orientation=vertical)';
+$transitionNames[] = 'Crazy Pixels';
+$transitions[] = 'progid:DXImageTransform.Microsoft.RandomDissolve(Duration=1,orientation=vertical)';
+$transitionNames[] = 'Diagonal';
+$transitions[] = 'progid:DXImageTransform.Microsoft.Strips(Duration=1,motion=rightdown)';
+$transitionNames[] = 'Doors';
+$transitions[] = 'progid:DXImageTransform.Microsoft.Barn(Duration=1,orientation=vertical)';
+$transitionNames[] = 'Gradient';
+$transitions[] = 'progid:DXImageTransform.Microsoft.GradientWipe(duration=1)';
+$transitionNames[] = 'Iris';
+$transitions[] = 'progid:DXImageTransform.Microsoft.Iris(Duration=1,motion=out)';
+$transitionNames[] = 'Pinwheel';
+$transitions[] = 'progid:DXImageTransform.Microsoft.Wheel(Duration=1,spokes=12)';
+$transitionNames[] = 'Pixelate';
+$transitions[] = 'progid:DXImageTransform.Microsoft.Pixelate(maxSquare=10,duration=1)';
+$transitionNames[] = 'Radial';
+$transitions[] = 'progid:DXImageTransform.Microsoft.RadialWipe(Duration=1,wipeStyle=clock)';
+$transitionNames[] = 'Slide';
+$transitions[] = 'progid:DXImageTransform.Microsoft.Slide(Duration=1,slideStyle=push)';
+$transitionNames[] = 'Spiral';
+$transitions[] = 'progid:DXImageTransform.Microsoft.Spiral(Duration=1,gridSizeX=40,gridSizeY=40)';
+$transitionNames[] = 'Stretch';
+$transitions[] = 'progid:DXImageTransform.Microsoft.Stretch(Duration=1,stretchStyle=push)';
+
+$transitionCount = sizeof($transitions) - 1;
+
+
+$trans_i = 0;
+foreach ($transitions as $definition) {
+    print "transitions[$trans_i] = \"$definition\";\n";
+    $trans_i++;
+} 
+print "var transition_count = $transitionCount;\n";
 ?>
 var photo_count = <?=$photo_count?>; 
 
@@ -163,8 +209,8 @@ var browserCanBlend = (is_ie5_5up);
 
 function stop() {
     onoff = 0;
-	status = "The slide show is stopped, Click Fwd or Rev to resume.";
-	clearTimeout(timer);
+    status = "The slide show is stopped, Click Fwd or Rev to resume.";
+    clearTimeout(timer);
 }
 
 function change_direction(newDir) {
@@ -179,13 +225,19 @@ function skip_to() {
     go_to_next_photo();
 }
 
+function change_transition() {
+    current_transition = document.TopForm.transitionType.selectedIndex;
+}
+
 function preload_complete() {
 }
 
 function reset_timer() {
     clearTimeout(timer);
-    timeout_value = document.TopForm.time.options[document.TopForm.time.selectedIndex].value * 1000;
-    timer = setTimeout('go_to_next_photo()', timeout_value);
+    if (onoff) {
+	timeout_value = document.TopForm.time.options[document.TopForm.time.selectedIndex].value * 1000;
+	timer = setTimeout('go_to_next_photo()', timeout_value);
+    }
 }
 
 function wait_for_current_photo() {
@@ -204,9 +256,7 @@ function wait_for_current_photo() {
 	return 0;
     } else {
 	preload_next_photo();
-	if (onoff) {
-	    reset_timer();
-	}
+	reset_timer();
     }
 }
 
@@ -230,9 +280,11 @@ function preload_next_photo() {
     next_location = (parseInt(current_location) + parseInt(direction));
     if (next_location > photo_count) {
 	next_location = 1;
+	stop();
     }
     if (next_location == 0) {
 	next_location = photo_count;
+	stop();
     }
     
     /* Preload the next photo */
@@ -256,15 +308,20 @@ function show_current_photo() {
 
     /* transistion effects */
     if (browserCanBlend){
-	document.images.slide.style.filter="blendTrans(duration=2)"
-	document.images.slide.style.filter="blendTrans(duration=crossFadeDuration)"
-	document.images.slide.filters.blendTrans.Apply()      
+	var do_transition;
+	if (current_transition == 0) {
+	    do_transition = Math.floor(Math.random() * transition_count) + 1;
+	} else {
+	    do_transition = current_transition;
+	}
+	document.images.slide.style.filter=transitions[do_transition];
+	document.images.slide.filters[0].Apply();
     }
     document.slide.src = images[current_location].src;
     setCaption(photo_captions[current_location]);
 
     if (browserCanBlend) {
-	document.images.slide.filters.blendTrans.Play();
+	document.images.slide.filters[0].Play();
     }
 
     return 1;
@@ -351,7 +408,7 @@ drawSelect("time", array(1 => "1 second pause",
 			 30 => "30 second pause",
 			 45 => "45 second pause",
 			 60 => "60 second pause"),
-	   3, // default value
+	   2, // default value
 	   1, // select size
 	   array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
 ?>
@@ -366,7 +423,21 @@ drawSelect("time", array(1 => "1 second pause",
 			1, // default value 
 			1, // select size
 			array("onchange" => "skip_to()", 'style' => 'font-size=10px;'));
-?> (of <?= $numVisible ?>)
+?> (of <?= $numVisible ?>).
+
+    <script language="Javascript">
+    /* show the blend select if appropriate */
+    if (browserCanBlend) {
+	document.write('&nbsp;&nbsp;Transition <? 
+	    print ereg_replace("\n", ' ', drawSelect("transitionType",
+		$transitionNames,
+		1,
+		1,
+		array('onchange' => 'change_transition()', 'style' => 'font-size=10px;')));
+	?>');
+    }
+    
+    </script>
      </span>
     </td>
     <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>

@@ -176,8 +176,10 @@ function preload_complete() {
 
 function reset_timer() {
     clearTimeout(timer);
-    timeout_value = document.TopForm.time.options[document.TopForm.time.selectedIndex].value * 1000;
-    timer = setTimeout('go_to_next_page()', timeout_value);
+    if (onoff) {
+	timeout_value = document.TopForm.time.options[document.TopForm.time.selectedIndex].value * 1000;
+	timer = setTimeout('go_to_next_page()', timeout_value);
+    }
 }
 
 function wait_for_current_photo() {
@@ -233,9 +235,11 @@ function preload_next_photo() {
     next_location = (parseInt(current_location) + parseInt(direction));
     if (next_location > photo_count) {
 	next_location = 1;
+	stop();
     }
     if (next_location == 0) {
 	next_location = photo_count;
+	stop();
     }
     
     /* Preload the next photo */
