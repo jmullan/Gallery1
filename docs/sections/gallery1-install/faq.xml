@@ -1236,9 +1236,42 @@ if (!function_exists('array_search')) {
       </para>
      </answer>
     </qandaentry>
-
-
     
+    <qandaentry id="gallery1-install.faq.c.31">
+     <question>
+      <para>
+       How do I put my Gallery into debug mode?
+      </para>
+     </question>
+     <answer>
+      <para>
+       There are two ways, each pretty much equal in simplicity.
+       <itemizedlist>
+        <listitem>
+         <para>
+          Put your Gallery into <ulink url="gallery1-install.config-wizard">
+          configuration mode</ulink>.  On Step 2, there will be an option to
+          turn on debug mode.  Make sure this is "on" and complete the wizard.
+         </para>
+        </listitem>
+        <listitem>
+         <para>
+          Edit &config.php; manually (use the first option if you are not 
+          comfortable modifying PHP files yourself).  Change this line
+          <screen>
+           $gallery-&gt;app-&gt;debug = "no";
+          </screen>
+          to
+          <screen>
+           $gallery-&gt;app-&gt;debug = "yes";
+          </screen>
+         </para>
+        </listitem>
+       </itemizedlist>
+      </para>
+     </answer>
+    </qandaentry>
+
    </qandadiv>
   
   </qandaset>
