@@ -26,6 +26,11 @@ if (!$user->canDeleteFromAlbum($album)) {
 }
 	
 if ($confirm && isset($index)) {
+	if ($albumDelete) {
+		print "entering sub";
+		$myAlbum = $album->getNestedAlbum($index);
+		$myAlbum->delete();
+	}
 	$album->deletePhoto($index);
 	$album->save();
 	dismissAndReload();
@@ -43,6 +48,39 @@ if ($confirm && isset($index)) {
 
 <?
 if ($album && isset($index)) {
+	if (isset($albumDelete)) {
+?>
+
+<center>
+<span class="popuphead">Delete Album</span>
+<br>
+<br>
+Do you really want to delete this Album?
+<br>
+<br>
+<?
+$myAlbum = $album->getNestedAlbum($index);
+?>
+<?= $myAlbum->getHighlightTag() ?>
+<br>
+<br>
+<b>
+<?= $myAlbum->fields[title] ?>
+</b>
+<br>
+<br>
+<?= $myAlbum->fields[description] ?>
+<br>
+<form action=delete_photo.php>
+<input type=hidden name=index value=<?= $index?>>
+<input type=hidden name=albumDelete value=<?= $albumDelete?>>
+<input type=submit name=confirm value="Delete">
+<input type=submit value="Cancel" onclick='parent.close()'>
+</form>
+<br>
+
+<?
+	} else {
 ?>
 
 <center>
@@ -61,6 +99,7 @@ Do you really want to delete this photo?
 <br>
 
 <?
+	}
 } else {
 	error("no album / index specified");
 }
