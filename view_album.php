@@ -141,7 +141,7 @@ if ($numPhotos) {
 	
 		/* Now do the caption row */
 		echo("<tr>");
-		$i = $start + $rowCount * $rows;
+		$i = $start + $rowCount * $cols;
 		$j = 0;
 		while ($j < $cols && $i < $numPhotos) {
 			if (!editMode() && $album->isHidden($i)) {
@@ -153,14 +153,12 @@ if ($numPhotos) {
 
 			echo("<td width=$width valign=top align=center>");
 			echo "<center><font face={$album->fields[font]}>";
-			echo("<a href=view_photo.php?index=$i>" . 
-				editCaption($album, $i, $edit) .
-			      "</a>");
+			echo(editCaption($album, $i, $edit));
 			if (isCorrectPassword($edit)) {
-				echo("<hr><font size=2>");
+				echo("<font size=2>");
 				echo("<a href=");
 				echo(popup("delete_photo.php?index=$i"));
-				echo(">[delete]</a>");
+				echo("><br>[delete]</a>");
 				if (!$album->isMovie($i)) {
 					echo(" <a href=");
 					echo(popup("rotate_photo.php?index=$i"));
@@ -186,6 +184,8 @@ if ($numPhotos) {
 					echo("<a href=do_command?cmd=hide&index=$i&return=view_album.php>[hide]</a>");
 				}
 			}
+			echo("<hr size=1>");
+			echo("<hr size=1>");
 			echo("</td>");
 			$j++; $i++;
 		}
@@ -216,18 +216,6 @@ if ($numPhotos) {
 <? } ?> 
 
 <? if (isCorrectPassword($edit)) { ?> 
-<tr><td colspan=<?=$cols?>>
-<table width=100% bordercolor=black cellpadding=0 cellspacing=0 border=1><tr><td>
-<table width=100% bgcolor=#9999CC>
-<tr>
-<td width=25% align=center> <a href=<?= popup("add_photos.php?albumName=$albumName") ?>> Add Photos </a> </td>
-<td width=25% align=center> <a href=<?= popup("shuffle_album.php?albumName=$albumName") ?>> Shuffle Photos </a> </td>
-<td width=25% align=center> <a href=<?= popup("resize_photo.php?albumName=$albumName&index=all") ?>> Resize All </a> </td>
-<td width=25% align=center> <a href=<?= popup("edit_appearance.php?albumName=$albumName") ?>> Edit Appearance </a> </td>
-</tr>
-</table>
-</td></tr></table>
-</td></tr>
 <? } ?>
 
 </table>
@@ -235,15 +223,22 @@ if ($numPhotos) {
 <p>
 <font face=<?= $album->fields["font"]?> size=+2>
 <? if (strcmp($album->fields["returnto"], "no")) { ?>
-<a href=albums.php> Return to the Album List </a>
+<a href=albums.php> Return to The Gallery </a>
 <? } ?>
+</center>
 <br>
+<hr size=1>
+<font size=+0 face=arial>
+Admin:
 <? if (isCorrectPassword($edit)) { ?>
-<a href=do_command?cmd=leave-edit&return=view_album.php>Leave edit mode</a>
+<a href=<?= popup("add_photos.php?albumName=$albumName") ?>>[Add Photos] </a>
+<a href=<?= popup("shuffle_album.php?albumName=$albumName") ?>>[Shuffle Photos] </a>
+<a href=<?= popup("resize_photo.php?albumName=$albumName&index=all") ?>>[Resize All] </a>
+<a href=<?= popup("edit_appearance.php?albumName=$albumName") ?>>[Edit Appearance] </a>
+<a href=do_command?cmd=leave-edit&return=view_album.php>[Leave edit mode]</a>
 </font>
 <? }  else { ?>
-<font size=+2 face=arial>
-<a href=<?= popup("edit_mode.php")?>>Enter edit mode</a>
+<a href=<?= popup("edit_mode.php")?>>[Enter edit mode]</a>
 <? } ?>
+</font>
 
-</center>
