@@ -38,6 +38,9 @@
 	<title><?php echo _("Gallery Configuration") ?></title>
 	<?php echo getStyleSheetLink() ?>
 
+	<!--
+		This Javascript and the Tabs are inspired by the Horde Forms code
+	-->
 	<script language="JavaScript" type="text/javascript">
 	<!--
 	function configSection(inittab) {
