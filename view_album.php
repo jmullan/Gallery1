@@ -219,13 +219,16 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
 }
 
 
-if ($gallery->user->isLoggedIn()) {
-        $adminCommands .= "<a href=" .
-				doCommand("logout", array(), "view_album.php", array("page" => $page)) .
-			  ">[logout]</a>";
-} else {
-	$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[login]</a>';
-} 
+
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	if ($gallery->user->isLoggedIn()) {
+	        $adminCommands .= "<a href=" .
+					doCommand("logout", array(), "view_album.php", array("page" => $page)) .
+				  ">[logout]</a>";
+	} else {
+		$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[login]</a>';
+	} 
+}
 $adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands;
@@ -444,7 +447,7 @@ if ($numPhotos) {
 				if ($gallery->album->isHidden($i)) {
 					showChoice("Show $label", "do_command.php", array("cmd" => "show", "index" => $i));
 				} else {
-					showChoice("Show $label", "do_command.php", array("cmd" => "hide", "index" => $i));
+					showChoice("Hide $label", "do_command.php", array("cmd" => "hide", "index" => $i));
 				}
 			}
 			if ($gallery->user->canDeleteFromAlbum($gallery->album)) {
