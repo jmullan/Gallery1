@@ -1126,7 +1126,7 @@ function _getStyleSheetLink($filename, $skinname='') {
 	if (! defined("GALLERY_URL")) define ("GALLERY_URL","");
 
 	if (!$skinname) {
-		if (isset($gallery->app) && isset($gallery->app->skinname)) {
+		if (isset($gallery->app) && isset($gallery->app->skinname) && !$GALLERY_EMBEDDED_INSIDE) {
 			$skinname = $gallery->app->skinname;
 		} else {
 			$skinname = 'none';
