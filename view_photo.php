@@ -200,6 +200,7 @@ do {
     //-- we're at the top! ---
     $breadtext[$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>";
+    $pAlbumName = '';
   }
   $breadCount++;
 } while ($pAlbumName && $depth < $gallery->app->maximumAlbumDepth);
@@ -321,23 +322,15 @@ if (!$gallery->album->isMovie($id)) {
 	}
 
 	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes") &&
+			!$gallery->session->offline  &&
 			$gallery->user->canViewFullImages($gallery->album)) {
-		if (!$gallery->session->offline) {
-			$link = doCommand("", 
-				array("set_fullOnly" => 
-					(isset($gallery->session->fullOnly) &&
-					 strcmp($gallery->session->fullOnly,"on") 
-					? "on" : "off")),
-				"view_photo.php", 
-				array("id" => $id));
-              	}
-              	else {
-                      $link = makeAlbumUrl($gallery->session->albumName, $id,
-                              array("set_fullOnly" => 
-                                      (strcmp($gallery->session->fullOnly,
-                                              "on") ?
-                                      "on" : "off"))); 
-              	}
+		$link = doCommand("", 
+			array("set_fullOnly" => 
+				(isset($gallery->session->fullOnly) &&
+				 strcmp($gallery->session->fullOnly,"on") 
+				? "on" : "off")),
+			"view_photo.php", 
+			array("id" => $id));
 
 		$adminCommands .= '&nbsp;' . _('View Images') .':&nbsp;[&nbsp;';
 		if (isset($gallery->session->fullOnly) && 

@@ -86,6 +86,11 @@ class AlbumDB {
 		global $gallery;
 
 		$dir = $gallery->app->albumDir;
+		$galdir = dirname(dirname(__FILE__));
+
+		if (fs_is_file("$galdir/$newName") || fs_is_dir("$galdir/$newName")) {
+			return 0;
+		}
 
 		if (fs_is_dir("$dir/$newName")) {
 			return 0;
@@ -98,6 +103,11 @@ class AlbumDB {
 			}
 		}
 
+		$album = new Album;
+		$album->load($newName);
+		$album->fields['name'] = $newName;
+		$album->save();
+		
 		for ($i = 0; $i < sizeof($this->albumOrder); $i++) {
 			if (!strcmp($this->albumOrder[$i], $oldName)) {
 				$this->albumOrder[$i] = $newName;

@@ -1,3 +1,29 @@
+2004-02-23  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.3-cvs-b50
+
+	* Fixed Bug #881690: mod_rewrite couldn't transcribe URLs for albums
+	  with a '.' in the name. Prevent creation/rename with '.'  had been
+	  done already, but this fix bumps the album version, and has the
+	  integrityCheck() convert any existing albums with the '.' (fix by
+	  cryptographite)
+
+	* Fixed Bug #868522: breadcrumb wasn't rendering properly for nested
+	  albums in Offline Mode. Also removed "View full size on/off" buttons
+	  from offline mode, since they don't work. (fix by mindless)
+
+	* Fixed Bug #862137: album rename neglected to save new name in the
+	  .dat file. (fix by jmullan)
+
+	* "Reorder photo" now says "reorder" rather than "move", which we
+	  reserve for "move photo". Also fixed Bug #842845, which was a
+	  JavaScript bug in move_photo.php. (fix by cryptographite)
+
+	* Fixed Bug #836896: Changed 'uname' to 'username' in login.php to
+	  work around form autofill issues in some browsers.
+
+	* Fixed Bug #806972: We now block new creation of albums whose names
+	  match files/directories in the gallery directory. This was causing
+	  problems with mod_rewrite enabled. (fix by cryptographite)
+	
 2004-02-22  Don Willingham <donwillingham@users.sourceforge.net> 1.4.3-cvs-b49
 
 	* Bugfix: Users without view comments could still search and find based

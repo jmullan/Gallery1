@@ -358,6 +358,13 @@ class Album {
 			$changed = 1;
 		}
 
+		if (strpos($this->fields['name'], '.') !== false) {
+			$albumDB->renameAlbum($this->fields['name'], strtr($this->fields['name'], '.', '-')); 
+			print _('Renaming album from ') . $this->fields['name'] . _(' to ') . 
+				strtr($this->fields['name'], '.', '-');
+			$changed = 1;
+		}
+
 		print _("done").".<br>";
 
 		/* 

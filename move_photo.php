@@ -44,11 +44,11 @@ $albumDB = new AlbumDB(FALSE); // read album database
 ?>
 <html>
 <head>
-  <title><?php echo _("Move Photo") ?></title>
+  <title><?php echo $reorder ? _('Reorder Photo') : _('Move Photo') ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<p class="popuphead" align="center"><?php echo _("Move Photo") ?></p>
+<p class="popuphead" align="center"><?php echo $reorder ? _('Reorder Photo') : _('Move Photo') ?></p>
 <span class="popup">
 <?php
 if ($gallery->session->albumName && isset($index)) {
@@ -206,7 +206,7 @@ if ($gallery->album->isAlbumName($index)) {
 ?>
 <?php echo _("Move this album within the album:") ?><br>
 <?php } else { ?>
-<?php echo _("Move this photo within the album:") ?><br>
+<?php echo _("Reorder this photo within the album:") ?><br>
 <?php } ?>
 <i>(<?php echo sprintf(_("Current Location is %s"), $index) ?>)</i>
 <p>
@@ -227,7 +227,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 ?>
 </select>
 <p>
-<input type="submit" value=<?php echo '"' . _("Move it!") . '"' ?>>
+<input type="submit" value=<?php echo '"' . $reorder ? _('Reorder it!') : _('Move it!') . '"' ?>>
 <input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
@@ -329,7 +329,11 @@ if (!$uptodate) {
 <script language="javascript1.2" type="text/JavaScript">
 <!--   
 // position cursor in top form field
+<?php if ($reorder) { ?>
 document.theform.newIndex.focus();
+<?php } else { ?>
+document.move_to_album_form.newAlbum.focus();
+<?php } ?>
 //-->
 </script>
 

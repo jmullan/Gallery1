@@ -36,10 +36,10 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 
 <?php
 // Security check.
-if (!isset($uname)) {
-	$uname="";
+if (!isset($username)) {
+	$username="";
 }
-$uname = removeTags($uname);
+$username = removeTags($username);
 doctype();
 ?>
 
@@ -56,13 +56,13 @@ doctype();
 <br>
 <?php
 
-if (isset($uname) && isset($gallerypassword)) {
-       	$tmpUser = $gallery->userDB->getUserByUsername($uname);
+if (isset($username) && isset($gallerypassword)) {
+       	$tmpUser = $gallery->userDB->getUserByUsername($username);
        	if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword)) {
 
 		$tmpUser->log("login");
 		$tmpUser->save();
-	       	$gallery->session->username = $uname;
+	       	$gallery->session->username = $username;
 	       	if ($tmpUser->getDefaultLanguage() != "") {
 		       	$gallery->session->language = 
 				$tmpUser->getDefaultLanguage();
@@ -97,11 +97,11 @@ if (isset($uname) && isset($gallerypassword)) {
    <?php echo _("Username") ?>
   </td>
   <td>
-   <input type=text name="uname" value="<?php echo $uname ?>">
+   <input type=text name="username" value="<?php echo $username ?>">
   </td>
  </tr>
 
-<?php if (isset($error) && !isset($uname)) { ?>
+<?php if (isset($error) && !isset($username)) { ?>
  <tr>
   <td colspan=2 align=center>
    <?php echo gallery_error(_("You must specify a username")); ?>
@@ -142,7 +142,7 @@ echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST
 <br>
 <?php
 if (isset($forgot)) {
-       	$tmpUser = $gallery->userDB->getUserByUsername($uname);
+       	$tmpUser = $gallery->userDB->getUserByUsername($username);
        	if ($tmpUser) {
 		$wait_time=15;
 		if ($tmpUser->lastAction ==  "new_password_request" && 
@@ -152,13 +152,13 @@ if (isset($forgot)) {
 		} else if (gallery_validate_email($tmpUser->getEmail())) {
 		       	if (gallery_mail( $tmpUser->email,
 				_("New password request"),
-			       	sprintf(_("Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $uname, $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
+			       	sprintf(_("Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $username, $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
 			      	sprintf(_("Click to reset your password: %s"),
 				       	$tmpUser->genRecoverPasswordHash()) . "\n",
-				sprintf(_("New password request %s"), $uname))) {
+				sprintf(_("New password request %s"), $username))) {
 			       	$tmpUser->log("new_password_request");
 			       	$tmpUser->save();
-			       	echo sprintf(_("An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."),$uname)  ?> 
+			       	echo sprintf(_("An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."),$username)  ?> 
 					<br><br>
 			       	<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
 				<?php
@@ -182,7 +182,7 @@ if (isset($forgot)) {
    <?php echo _("Username") ?>
   </td>
   <td>
-   <input type="text" name="uname" value="<?php echo $uname ?>">
+   <input type="text" name="username" value="<?php echo $username ?>">
   </td>
  </tr>
  </table>
@@ -193,7 +193,7 @@ if (isset($forgot)) {
 <script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
-document.login_form.uname.focus();
+document.login_form.username.focus();
 //--> 
 </script>
 

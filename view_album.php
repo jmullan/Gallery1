@@ -147,7 +147,8 @@ do {
   } elseif (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
 	//-- we're at the top! --- 
 	$breadtext[$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . 
-	"\">" . $gallery->app->galleryTitle . "</a>"; 
+	"\">" . $gallery->app->galleryTitle . "</a>";
+	$pAlbumName = '';
   } 
   elseif ($gallery->session->offline) {	// test is redundant.  offline must be 
   					// true if you reach this line.
@@ -480,8 +481,7 @@ includeLayout('adminbox.inc');
 <?php
 $breadcrumb["top"] = true;
 $breadcrumb['bottom'] = false;
-if (strcmp($gallery->album->fields["returnto"], "no") 
-   || ($gallery->album->fields["parentAlbumName"])) {
+if ($breadCount) {
 	includeLayout('navtablemiddle.inc');
 	includeLayout('breadcrumb.inc');
 }
