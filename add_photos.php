@@ -65,6 +65,7 @@ PNG, AVI, MPG)</font>
 <font size=2>
 Warning! you'll lose what you've already entered
 </font>
+</table>
 </td></tr>
 </table>
 <? } ?>
