@@ -25,6 +25,14 @@ class Album {
 	var $dir;
 	var $version;
 
+	/* 
+	 * This variable contains data that is useful for the lifetime
+	 * of the album object but which should not be saved in the
+	 * database.  Data like the mirrorUrl which we want to validate
+	 * the first time we touch an album.
+	 */
+	var $transient;
+
 	function Album() {
 		global $gallery;
 
@@ -142,7 +150,6 @@ class Album {
 		/* Special case for serial number */
 		if (!$this->fields["serial_number"]) {
 			$this->fields["serial_number"] = 0;
-			$this->updateSerial = 1;
 			$changed = 1;
 		}
 
@@ -171,6 +178,9 @@ class Album {
 			$changed = 1;
 		}
 
+		if ($changed) {
+			$this->updateSerial = 1;
+		}
 		return $changed;
 	}
 
@@ -363,12 +373,19 @@ class Album {
 			}
 			$this->fields["serial_number"]++;
 		}
+
+		/* Don't save transient data */
+		$transient_save = $this->transient;
+		unset($this->transient);
 	
 		if ($fd = fs_fopen("$dir/album.dat.new", "w")) {
 			fwrite($fd, serialize($this));
 			fclose($fd);
 			fs_rename("$dir/album.dat.new", "$dir/album.dat");
 		}
+
+		/* Restore transient data after saving */
+		$this->transient = $transient_save;
 
 		/* Create the new serial file */
 		if ($this->updateSerial) {
@@ -589,7 +606,27 @@ class Album {
 	function getAlbumDirURL() {
 		global $gallery;
 
-		return $gallery->app->albumDirURL . "/{$this->fields[name]}";
+		if ($this->transient->mirrorUrl) {
+			return $this->transient->mirrorUrl;
+		}
+
+		if ($gallery->app->feature["mirror"]) {
+			foreach(split("[[:space:]]+", $gallery->app->mirrorSites) as $base_url) {
+				$base_url .= "/{$this->fields[name]}";
+				$serial = $base_url . "/serial.{$this->fields[serial_number]}.dat";
+				if ($fd = @fopen($serial, "r")) {
+					$this->transient->mirrorUrl = $base_url;
+					return $this->transient->mirrorUrl;
+				} 
+			}
+
+			/* All mirrors are out of date */
+			$this->transient->mirrorUrl = 
+				$gallery->app->albumDirURL . "/{$this->fields[name]}";
+			return $this->transient->mirrorUrl;
+		} else {
+			return $gallery->app->albumDirURL . "/{$this->fields[name]}";
+		}
 	}
 
 	function numHidden() {
