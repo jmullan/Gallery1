@@ -140,6 +140,7 @@ class AlbumItem {
 
 	function makeThumbnail($dir, $thumb_size)
 	{
+		global $app;
 		$name = $this->image->name;
 		$tag = $this->image->type;
 
