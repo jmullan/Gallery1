@@ -61,6 +61,21 @@ wizard and enter a location for NetPBM.
 $debugfile = tempnam($gallery->app->tmpDir, "gallerydbg");
 ?>
 
+<?php
+if (!inOpenBasedir($gallery->app->pnmDir)) {
+?>
+<b>Note</b>:  Your NetPBM directory (<?php echo $gallery->app->pnmDir ?>)
+ is not in your open_basedir list (specified in php.ini): <ul>
+ <?php echo join('<br>', explode(':', ini_get('open_basedir'))) ?>
+ </ul>
+ So we can't perform all of our basic checks on the files to make sure
+that they exist and they're executable.
+<br><br>
+
+<?php
+}
+?>
+
 <li>We are going to test each NetPBM binary individually.  
 
 <?php
@@ -100,15 +115,19 @@ function checkNetPbm($cmd) {
 	global $show_details;
 	global $debugfile;
 
+	$gallery->app->pnmDir .= 'x';
+
 	$cmd = fs_executable($gallery->app->pnmDir . "/$cmd");
 	print "Checking ". fs_import_filename($cmd) ."\n";
 
 	$ok = 1;
 
 	if ($ok) {
-		if (!fs_file_exists($cmd)) {
-			$error = "File $cmd does not exist.";
-			$ok = 0;
+		if (inOpenBasedir($gallery->app->pnmDir)) {
+			if (!fs_file_exists($cmd)) {
+				$error = "File $cmd does not exist.";
+				$ok = 0;
+			}
 		}
 	}
 
@@ -163,6 +182,15 @@ function checkNetPbm($cmd) {
 		print "<font color=red>Error! ($error) </font>";
 	}
 	print "\n\n";
+}
+
+function inOpenBasedir($dir) {
+    $openBasedir = ini_get('open_basedir');
+    if (empty($openBasedir)) {
+	return true;
+    }
+
+    return in_array($dir, explode(':', $openBasedir));
 }
     
 ?>

@@ -228,6 +228,11 @@ function check_graphics($location="")
 	$fail = array();
 	$success = array();
 
+	if (!empty($location) && !inOpenBasedir($location)) {
+	    $success[] = "Cannot verify this path (it's not in your open_basedir list)";
+	    return array($success, $fail);
+	}
+
 	$dirs = array();
 	$missing = array();
 	$netpbm = array(
@@ -276,7 +281,7 @@ function check_graphics($location="")
 			$missing[$bin] = "Can't find <i>$bin</i>!";
 		}
 
-		if (!is_executable("$d/$bin")) {
+		if (!@is_executable("$d/$bin")) {
 			$missing[$bin] = "<i>$bin</i> is not executable!";
 		}
 	}
@@ -299,6 +304,11 @@ function check_graphics_im($location="")
 	$fail = array();
 	$success = array();
 
+	if (!empty($location) && !inOpenBasedir($location)) {
+	    $success[] = "Cannot verify this path (it's not in your open_basedir list)";
+	    return array($success, $fail);
+	}
+
 	$dirs = array();
 	$missing = array();
 	$imagick = array(
@@ -318,7 +328,7 @@ function check_graphics_im($location="")
 			$missing[$bin] = "Can't find <i>$bin</i>!";
 		}
 
-		if (!is_executable("$d/$bin")) {
+		if (!@is_executable("$d/$bin")) {
 			$missing[$bin] = "<i>$bin</i> is not executable!";
 		}
 	}
@@ -426,6 +436,15 @@ function test_write_to_dir($dir) {
 	}
 
 	return 0;
+}
+
+function inOpenBasedir($dir) {
+    $openBasedir = ini_get('open_basedir');
+    if (empty($openBasedir)) {
+	return true;
+    }
+
+    return in_array($dir, explode(':', $openBasedir));
 }
 ?>
 

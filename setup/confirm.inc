@@ -119,11 +119,16 @@ foreach ($constants as $key => $val) {
 		}
 
 		if ($constants[$key]["must-be-file"]) {
-			if (!is_file($$key)) {
-				$view .= row_wrap(error_format("$key: <b>" . $$key . 
-					"</b> must be a valid file (not a directory)!"));
-				$error = 1;
-				continue;
+			$dir = dirname($$key);
+			if (!inOpenBasedir($dir)) {
+				$warn_about_open_basedir = 1;
+			} else {
+				if (!@is_file($$key)) {
+					$view .= row_wrap(error_format("$key: <b>" . $$key . 
+						"</b> must be a valid file (not a directory)!"));
+					$error = 1;
+					continue;
+				}
 			}
 		}
 
@@ -146,7 +151,9 @@ foreach ($constants as $key => $val) {
 		}
 
 		if ($constants[$key]["must-be-executable"]) {
-			if (!is_executable($$key)) {
+			if (!inOpenBasedir($dir)) {
+				$warn_about_open_basedir = 1;
+			} else if (!is_executable($$key)) {
 				$view .= row_wrap(error_format("$key: <b>" . $$key . 
 					"</b> must be an executable file!"));
 				$error = 1;
@@ -231,17 +238,24 @@ foreach ($constants as $key => $val) {
  * Don't bother if we are configuring for ImageMagick.
  */
 if (empty($graphtest['pnmDir'])) {
-	if (fs_file_exists(fs_executable($graphpath . "/pnmtojpeg"))) {
+	if (!inOpenBasedir($graphpath)) {
+		/* Can't tell -- assume they're using pnmtojpeg and hope for the best */
 		$data .= one_constant("pnmtojpeg", "pnmtojpeg");
 		$view .= row_wrap(one_constant("pnmtojpeg", "pnmtojpeg"));
-	} else if (fs_file_exists(fs_executable($graphpath . "/ppmtojpeg"))) {
-		$data .= one_constant("pnmtojpeg", "ppmtojpeg");
-		$view .= row_wrap(one_constant("pnmtojpeg", "ppmtojpeg"));
+		$warn_about_open_basedir = 1;
 	} else {
-		$error = 1;
-		$view .= row_wrap(error_format(
-			"Could not find <i>pnmtojpeg</i> or <i>ppmtojpeg</i>. ".
-			"Please check your configuration (or use ImageMagick)."));
+		if (fs_file_exists(fs_executable($graphpath . "/pnmtojpeg"))) {
+			$data .= one_constant("pnmtojpeg", "pnmtojpeg");
+			$view .= row_wrap(one_constant("pnmtojpeg", "pnmtojpeg"));
+		} else if (fs_file_exists(fs_executable($graphpath . "/ppmtojpeg"))) {
+			$data .= one_constant("pnmtojpeg", "ppmtojpeg");
+			$view .= row_wrap(one_constant("pnmtojpeg", "ppmtojpeg"));
+		} else {
+			$error = 1;
+			$view .= row_wrap(error_format(
+				"Could not find <i>pnmtojpeg</i> or <i>ppmtojpeg</i>. ".
+				"Please check your configuration (or use ImageMagick)."));
+		}
 	}
 }
 
@@ -263,6 +277,17 @@ if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
 				   "as a graphics package.  Make sure you entered ".
 				   "a path to the NetPBM binaries in step 2."));
     $error = 1;
+}
+
+if ($warn_about_open_basedir) {
+	$view .= row_wrap("<hr><b>Note:</b> Your server has the PHP open_basedir restriction " .
+			  "set, and certain of your paths are not in the list of restricted paths " .
+			  "(" .ini_get('open_basedir') . ")  This doesn't mean that they won't ".
+			  "work, however it does mean that we can't verify that the paths are " .
+			  "correct.  If you are unable to upload photos correctly, please refer " .
+			  "to the FAQ and to the <a href=diagnostics.php>diagnostics</a> to " .
+			  "resolve your problems." .
+			  "<hr>");
 }
 
 $data .= "\n";

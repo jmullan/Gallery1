@@ -61,6 +61,21 @@ wizard and enter a location for ImageMagick.
 $debugfile = tempnam($gallery->app->tmpDir, "gallerydbg");
 ?>
 
+<?php
+if (!inOpenBasedir($gallery->app->imDir)) {
+?>
+<b>Note</b>:  Your ImageMagick directory (<?php echo $gallery->app->imDir ?>)
+ is not in your open_basedir list (specified in php.ini): <ul>
+ <?php echo join('<br>', explode(':', ini_get('open_basedir'))) ?>
+ </ul>
+ So we can't perform all of our basic checks on the files to make sure
+that they exist and they're executable.
+<br><br>
+
+<?php
+}
+?>
+
 <li>We are going to test each ImageMagick binary individually.  
 
 <?php
@@ -100,9 +115,11 @@ function checkImageMagick($cmd) {
 	$ok = 1;
 
 	if ($ok) {
-		if (!fs_file_exists($cmd)) {
-			$error = "File $cmd does not exist.";
-			$ok = 0;
+		if (inOpenBasedir($gallery->app->pnmDir)) {
+			if (!fs_file_exists($cmd)) {
+				$error = "File $cmd does not exist.";
+				$ok = 0;
+			}
 		}
 	}
 
@@ -141,6 +158,15 @@ function checkImageMagick($cmd) {
 		print "<font color=red>Error! ($error) </font>";
 	}
 	print "\n\n";
+}
+    
+function inOpenBasedir($dir) {
+    $openBasedir = ini_get('open_basedir');
+    if (empty($openBasedir)) {
+	return true;
+    }
+
+    return in_array($dir, explode(':', $openBasedir));
 }
     
 ?>
