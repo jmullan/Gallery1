@@ -671,6 +671,7 @@ if ($page == 1)
 <!-- image grid table -->
 <table border="0" cellspacing="0" cellpadding="0" class="vatable" align="center">
 <?php
+$divCell = $gallery->album->fields["thumb_size"];
 $numPhotos = $gallery->album->numPhotos(1);
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
 if ($numPhotos) {
@@ -715,7 +716,7 @@ if ($numPhotos) {
 		}
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td align=\"center\" valign=\"top\" class=\"vathumbs\">\n");
-			echo("<div  align=\"center\" class=\"vafloat2\">\n");
+			echo("<div  style=\"width: $divCell; height: $divCell;\" align=\"center\" class=\"vafloat2\">\n");
 
 			//-- put some parameters for the wrap files in the global object ---
 			$gallery->html_wrap['borderColor'] = $bordercolor;
@@ -787,7 +788,7 @@ if ($numPhotos) {
 
 		echo "\n";
 		echo("</div>\n");
-		echo("<div class=\"vafloat\">\n");
+		echo("<div align=\"center\" style=\"width: $divCell;\" class=\"vafloat\">\n");
 		/* Do the clickable-dimensions row */
 		if (!strcmp($gallery->album->fields['showDimensions'], 'yes')) {
 				$photo    = $gallery->album->getPhoto($i);
