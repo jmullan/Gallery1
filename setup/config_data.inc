@@ -1103,7 +1103,7 @@ $constants = array_merge($constants,
 	),
 	'debug' => array(
 		'prompt' => _("Debug mode"),
-		'desc' => _("Turn debug mode on so that you can diagnose problems?") .'<br><span class="emphasis">'. _("Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system then you want!") . '</span>',
+		'desc' => _("Turn debug mode on so that you can diagnose problems?") .'<br><span class="emphasis">'. _("Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!") . '</span>',
 		'choices' => array('yes' => _("yes"), 'no' => _("no")),
 		'value' => "no",
 	),
