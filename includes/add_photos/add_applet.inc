@@ -35,8 +35,7 @@
                         $gallery->app->photoAlbumURL . "/java/GalleryRemoteAppletMini.jar," .
                         $gallery->app->photoAlbumURL . "/java/GalleryRemoteHTTPClient.jar," .
                         $gallery->app->photoAlbumURL . "/java/applet_img.jar," .
-                        $gallery->app->photoAlbumURL . "/java/metadata-extractor-2.1.jar," .
-                        $gallery->app->photoAlbumURL . "/java/JSX1.0.7.4.jar",
+                        $gallery->app->photoAlbumURL . "/java/metadata-extractor-2.1.jar",
 		$gallery->album->fields["name"],
 		array(),
 		array("toSysOut" => "true"),
