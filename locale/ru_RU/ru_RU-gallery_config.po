@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 15:00+0200\n"
-"PO-Revision-Date: 2004-04-23 01:35+0600\n"
+"POT-Creation-Date: 2004-05-17 16:13+0200\n"
+"PO-Revision-Date: 2004-05-11 01:35+0600\n"
 "Last-Translator: Yuri Gural <yurigural@inbox.ru>\n"
 "Language-Team: Yuri Gural <yurigural@inbox.ru>\n"
 "MIME-Version: 1.0\n"
@@ -296,7 +296,7 @@ msgstr "Результат, мы не можем выполнить все наши основные проверки в файлах, чт
 #: ../setup/check_imagemagick.php:142 ../setup/check_netpbm.php:143
 #, php-format
 msgid "We are going to test each %s binary individually."
-msgstr "Мы собираемся протестировать каждый бинарный файл %s индивидуально."
+msgstr "Мы собираемся протестировать каждый исполняемый файл %s индивидуально."
 
 #
 #: ../setup/check_imagemagick.php:157 ../setup/check_netpbm.php:183
@@ -486,7 +486,7 @@ msgstr "неизвестный"
 #: ../setup/config_data.inc:62
 #, php-format
 msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
-msgstr "Галерея предпочитает NetPBM версии 9.9 и выше. Вы можете установить уже готовый двоичный код достаточный для галереи со %sстраницы загрузки галереи%s, либо самим откомпилировать и установить целый пакет NetPBM с %sсайта NetPBM%s."
+msgstr "Галерея предпочитает NetPBM версии 9.9 и выше. Вы можете установить уже готовые испоняемые файлы достаточные для галереи со %sстраницы загрузки галереи%s, либо самим откомпилировать и установить целый пакет NetPBM с %sсайта NetPBM%s."
 
 #
 #: ../setup/config_data.inc:67 ../setup/config_data.inc:77
@@ -496,7 +496,7 @@ msgstr "Примечание:"
 
 #: ../setup/config_data.inc:68
 msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead."
-msgstr "Вы можете установить двоичный код с сайта галереи даже если у вас нет root доступа. Если вы не можете заставить его работать, оставьте путь к NetPBM не заполненным и используйте ImageMagick вместо него."
+msgstr "Вы можете установить исполняемые файлы с сайта галереи даже если у вас нет root доступа. Если вы не можете заставить его работать, оставьте путь к NetPBM не заполненным и используйте ImageMagick вместо него."
 
 #: ../setup/config_data.inc:71
 msgid "I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date."
@@ -509,12 +509,12 @@ msgstr "Галерея предпочитает ImageMagick версии 5.4.8 и выше. Вы можете откомпил
 
 #: ../setup/config_data.inc:78
 msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead."
-msgstr "На сайте также доступны двоичные коды для различных операционных систем. Если вы не можете заставить его работать, оставьте путь к ImageMagick не заполненным и используйте NetPBM вместо него."
+msgstr "На сайте также доступны исполняемые файлы для различных операционных систем. Если вы не можете заставить его работать, оставьте путь к ImageMagick не заполненным и используйте NetPBM вместо него."
 
 #: ../setup/config_data.inc:81
 #, php-format
 msgid "<b>Note:</b> Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."
-msgstr "<b>Примечание:</b> Ваша установка PHP сконфигурирована с %s ограничением. Это может затруднить обнаружение и проверку ваших бинарных файлов для галереи, даже если вы уже успешно использовали мастер конфигурации раньше. Не беспокойтесь если увидите это предупрежедение, ваши параметры сохранены правильно."
+msgstr "<b>Примечание:</b> Ваша установка PHP сконфигурирована с %s ограничением. Это может затруднить обнаружение и проверку ваших исполняемых файлов для галереи, даже если вы уже успешно использовали мастер конфигурации раньше. Не беспокойтесь если увидите это предупрежедение, ваши параметры сохранены правильно."
 
 #: ../setup/config_data.inc:87
 #, php-format
@@ -541,7 +541,7 @@ msgstr "Мы используем встроенные переменные с которыми старые версии PHP имеют п
 
 #: ../setup/config_data.inc:107
 msgid "It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"
-msgstr ""
+msgstr "Видимо у вашего PHP имеется проблема с __FILE__, пожалуйста обновите до последней версии"
 
 #: ../setup/config_data.inc:111
 msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
@@ -610,7 +610,7 @@ msgstr "Проверьте установлен ли <b>jhead</b> позволяющий галереи изучить вставле
 #: ../setup/config_data.inc:175
 #, php-format
 msgid "I can't find <b>jhead</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."
-msgstr "Я не могу найти <b>jhead</b>. Если он был установлен, но не в пользовательском каталоге вебсервера&#8212;на следующей странице вы можете указать путь вручную. Если он не установлен, вы можете это сделать сами. Jhead - общедоступный EXIF анализатор. Исходные коды, бинарные файлы для linux и windows можно найти на %sдомашней странице jhead%s."
+msgstr "Я не могу найти <b>jhead</b>. Если он был установлен, но не в пользовательском каталоге вебсервера&#8212;на следующей странице вы можете указать путь вручную. Если он не установлен, вы можете это сделать сами. Jhead - общедоступный EXIF анализатор. Исходные коды, исполняемые файлы для linux и windows можно найти на %sдомашней странице jhead%s."
 
 #: ../setup/config_data.inc:182
 msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."
@@ -1273,9 +1273,8 @@ msgstr "Этот параметр позволит посетителям повторять показ слайдов до тех пор, п
 
 #
 #: ../setup/config_data.inc:757
-#, fuzzy
 msgid "Slideshow Mode"
-msgstr "Тип показа слайдов"
+msgstr "Режим показа слайдов"
 
 #: ../setup/config_data.inc:758
 msgid "This allows you to set the default mode for the slideshow.  &quot;Java Applet&quot; requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. &quot;JavaScript&quot; is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."
@@ -1283,11 +1282,11 @@ msgstr ""
 
 #: ../setup/config_data.inc:759
 msgid "Java Applet"
-msgstr ""
+msgstr "Java Applet"
 
 #: ../setup/config_data.inc:759
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
 #
 #: ../setup/config_data.inc:769
@@ -1366,27 +1365,27 @@ msgstr "Имя автора комментария, если он зарегистрированный пользователь, может о
 
 #: ../setup/config_data.inc:820
 msgid "Add Comments inside the photo page"
-msgstr ""
+msgstr "Добавлять комментарии на странице фотографии"
 
 #: ../setup/config_data.inc:821
 msgid "Do you want to have the possibility to add comments inside the view photo page, or do you prefer a link to a popup"
-msgstr ""
+msgstr "Вы хотите добавлять комментарии внутри страницы просмотра фотографии или предпочитаете ссылку на всплывающее окно"
 
 #: ../setup/config_data.inc:822
 msgid "Popup"
-msgstr ""
+msgstr "Всплывающем окне"
 
 #: ../setup/config_data.inc:822
 msgid "Inside"
-msgstr ""
+msgstr "Внутри"
 
 #: ../setup/config_data.inc:826
 msgid "Maximum length of Comments"
-msgstr ""
+msgstr "Максимальная длина комментариев"
 
 #: ../setup/config_data.inc:827
 msgid "Enter a suitable value for the maximum length of comments to prevent abuse."
-msgstr ""
+msgstr "Введите допустимое значение для максимальной длины комментариев, чтобы предохранить от злоупотреблений."
 
 #: ../setup/config_data.inc:839
 msgid "Technical"
@@ -2018,7 +2017,7 @@ msgstr "Вы должны указать путь для %s или %s для функционирования галереи!!"
 #: ../setup/confirm.inc:363 ../setup/confirm.inc:366
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
-msgstr ""
+msgstr "%s не правильно настроен для использования как графический пакет. Убедитесь, что вы ввели путь к исполняемым файлам %s на шаге 2."
 
 #: ../setup/confirm.inc:372
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
@@ -2055,9 +2054,8 @@ msgstr[0] "Одна ошибка"
 msgstr[1] "Одна ошибка"
 
 #: ../setup/confirm.inc:461
-#, fuzzy
 msgid "No errors."
-msgstr "нет ошибок"
+msgstr "нет ошибок."
 
 #: ../setup/confirm.inc:462
 #, fuzzy
@@ -2079,7 +2077,7 @@ msgstr "На этом шаге вы переделываете различные установки галереи. Если вы вперв
 
 #: ../setup/constants.inc:37 ../setup/defaults.inc:37
 msgid "Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step."
-msgstr "Для заполнения значений, которые вам необходимы, переключайтесь между соответствующими закладками. Некторые, но не все значения обязательные к заполнению. Если вы завершили заполнение нужных значений на этом щаге, то переходите на следующий."
+msgstr "Для заполнения значений, которые вам необходимы, переключайтесь между соответствующими закладками. Некторые, но не все значения обязательные к заполнению. Если вы завершили заполнение нужных значений на этом шаге, то переходите к следующему."
 
 #: ../setup/constants.inc:42 ../setup/constants.inc:156
 #: ../setup/defaults.inc:44 ../setup/defaults.inc:131
@@ -2211,46 +2209,43 @@ msgstr "Конфигурация галереи"
 
 #
 #: ../setup/frame_test.php:59
-#, fuzzy
 msgid "None"
-msgstr "Примечание"
+msgstr "Ничто"
 
 #: ../setup/frame_test.php:60
-#, fuzzy
 msgid "No frames"
-msgstr "Нет файлов"
+msgstr "Нет рамок"
 
 #
 #: ../setup/frame_test.php:61
-#, fuzzy
 msgid "Dots"
-msgstr "Фотографии"
+msgstr "Многоточие"
 
 #: ../setup/frame_test.php:62
 msgid "Just a simple dashed border around the thumb."
-msgstr ""
+msgstr "Простой штрих-пунктирный бордюр вокруг макета"
 
 #: ../setup/frame_test.php:63
 msgid "Solid"
-msgstr ""
+msgstr "Сплошной"
 
 #: ../setup/frame_test.php:64
 msgid "Just a simple solid border around the thumb."
-msgstr ""
+msgstr "Простой сплошной бордюр вокруг макета"
 
 #: ../setup/frame_test.php:87
 #, php-format
 msgid "Skipping %s."
-msgstr ""
+msgstr "Пропущен %s."
 
 #: ../setup/frame_test.php:93
-#, fuzzy, php-format
+#, php-format
 msgid "Can't open %s"
-msgstr "Не могу найти %s!"
+msgstr "Не могу открыть %s"
 
 #: ../setup/frame_test.php:171
 msgid "Close Window"
-msgstr ""
+msgstr "Закрыть окно"
 
 #: ../setup/functions.inc:135
 msgid "Please retype your password here"
@@ -2289,7 +2284,7 @@ msgstr "Не найден <i>jhead</i>"
 
 #: ../setup/functions.inc:409
 msgid "<b>jhead</b> binary located."
-msgstr "бинарный файл <b>jhead</b> установлен."
+msgstr "исполняемый файл <b>jhead</b> установлен."
 
 #: ../setup/functions.inc:423
 msgid "NetPBM not being used in this installation."
@@ -2297,16 +2292,16 @@ msgstr "NetPBM не используется в этой установке."
 
 #: ../setup/functions.inc:428 ../setup/functions.inc:530
 msgid "Cannot verify this path (it's not in your open_basedir list)."
-msgstr ""
+msgstr "Не могу проверить этот путь (нет в вашем списке open_basedir)."
 
 #: ../setup/functions.inc:456
 msgid "Without pnmcomp gallery will not be able to watermark images, except you use ImageMagick and have the composite binary installed."
-msgstr ""
+msgstr "Без pnmcomp галерея не сможет создавать изображения водяных знаков, если только вы не используете ImageMagick и установили комплексный исполняемый файл."
 
 #: ../setup/functions.inc:484 ../setup/functions.inc:557
 #, php-format
 msgid "Missing optional binary %s. %s"
-msgstr "Отсутствует необязательный бинарный файл %s. %s"
+msgstr "Отсутствует необязательный исполняемый файл %s. %s"
 
 #: ../setup/functions.inc:488 ../setup/functions.inc:560
 #, php-format
@@ -2321,7 +2316,7 @@ msgstr "%s не исполняемый!"
 #: ../setup/functions.inc:502 ../setup/functions.inc:509
 #, php-format
 msgid "%d of %d NetPBM binaries located."
-msgstr "%d из %d двоичных файлов NetPBM установлено."
+msgstr "%d из %d исполняемых файлов NetPBM установлено."
 
 #: ../setup/functions.inc:544
 msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
@@ -2330,7 +2325,7 @@ msgstr ""
 #: ../setup/functions.inc:573 ../setup/functions.inc:580
 #, php-format
 msgid "%d of %d ImageMagick binaries located."
-msgstr "%d из %d двоичных файлов ImageMagick установлено."
+msgstr "%d из %d исполняемых файлов ImageMagick установлено."
 
 #: ../setup/functions.inc:603
 msgid "Can't find <i>jpegtran</i>!"
@@ -2338,7 +2333,7 @@ msgstr "Не найден <i>jpegtran</i>!"
 
 #: ../setup/functions.inc:605
 msgid "<b>jpegtran</b> binary located."
-msgstr "двоичный файл <b>jpegtran</b> установлен."
+msgstr "исполняемый файл <b>jpegtran</b> установлен."
 
 #: ../setup/functions.inc:617
 msgid "PHP has <b>GNU gettext</b> support."
@@ -2354,7 +2349,7 @@ msgstr "Не найдено языков."
 
 #: ../setup/functions.inc:636
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr ""
+msgstr "Видимо вы не загрузили дополнительные языки. Это не проблема! Галерея будет отображаться на английском языке. Примечание: Если это не так, проверьте, все ли файлы в каталоге locale доступны для веб сервера или обратитесь к группе разработчиков Gallery."
 
 #: ../setup/functions.inc:640
 #, php-format
@@ -2446,7 +2441,7 @@ msgstr "<b>magic_quotes</b> отключен."
 #: ../setup/functions.inc:1020
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
-msgstr ""
+msgstr "В %s, пропущено %s в строке %d с %s %s."
 
 #: ../setup/functions.inc:1029
 #, php-format
@@ -2456,7 +2451,7 @@ msgstr "В %s, пусто в строке %d"
 #: ../setup/functions.inc:1034
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
-msgstr ""
+msgstr "В %s, для имени %s (строка %d) значение %s должно быть положительным целым числом"
 
 #: ../setup/functions.inc:1207
 msgid "Your admin passwords do not match!"
@@ -2501,7 +2496,7 @@ msgstr "Вы должны включить %s или %s в вашем приветственном e-mail"
 #: ../setup/functions.inc:1281
 #, php-format
 msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
-msgstr ""
+msgstr "Следующие файлы устарели, испорчены или отсутствуют:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 
 #: ../setup/functions.inc:1283
 msgid "This should be fixed before proceeding"
@@ -2518,9 +2513,9 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d файлов новее чем ожидалось. Это нормально, если вы используете pre-release, beta, CVS или измененный код."
 
 #: ../setup/functions.inc:1293
-#, fuzzy, php-format
+#, php-format
 msgid "All tested files up-to-date."
-msgstr "%s соответсвует версии."
+msgstr "Все протестированные файлы последней версии."
 
 #: ../setup/functions.inc:1295
 #, php-format
@@ -2550,12 +2545,12 @@ msgstr "Вы должны указать пароль для учетной записи %s."
 #: ../setup/functions.inc:1364
 #, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
-msgstr ""
+msgstr "Видимо вы уже настраивали галерею, потому что уже есть одна учетная запись администратора, но не с именем %s."
 
 #: ../setup/functions.inc:1367
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-msgstr ""
+msgstr "Видимо вы уже настраивали галерею, потому что уже есть %d учетные записи администратора, но нет ниодного с именем %s."
 
 #: ../setup/functions.inc:1369
 #, php-format
@@ -2785,80 +2780,57 @@ msgstr "Просмотреть настройки"
 
 #: ../html_wrap/frames/notebook/frame.def:5
 msgid "Spiral Notebook"
-msgstr ""
+msgstr "Записная книжка со спиралью"
 
 #: ../html_wrap/frames/notebook/frame.def:6
 msgid "A white shadowed frame with spiral notebook binding on the left side"
-msgstr ""
+msgstr "Белая затененная рамка с записной книжкой соединенной спиралью слевой стороны"
 
 #: ../html_wrap/frames/shadows/frame.def:3
 msgid "Shadows"
-msgstr ""
+msgstr "Тени"
 
 #: ../html_wrap/frames/shadows/frame.def:4
 msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
-msgstr ""
+msgstr "Тени с PNG прозрачностью, падающие справо-вниз. Установленная прозрачность должна работать с большинством фонов, кроме черного."
 
 #: ../html_wrap/frames/polaroid/frame.def:3
 msgid "Polaroid"
-msgstr ""
+msgstr "Полароид"
 
 #: ../html_wrap/frames/polaroid/frame.def:4
 msgid "A photo with a large white frame, extra wide at the bottom edge"
-msgstr ""
+msgstr "Фотография с большой белой рамкой и дополнительным широким краем внизу"
 
 #: ../html_wrap/frames/polaroids/frame.def:3
 msgid "Polaroids"
-msgstr ""
+msgstr "Полароиды"
 
 #: ../html_wrap/frames/polaroids/frame.def:4
 msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
-msgstr ""
+msgstr "Стопка фотографий с большой белой рамкой и дополнительным широким краем внизу"
 
 #: ../html_wrap/frames/golden/frame.def:4
-#, fuzzy
 msgid "Gold Frame"
-msgstr "Нет файлов"
+msgstr "Золотая рамка"
 
 #: ../html_wrap/frames/golden/frame.def:5
 msgid "A fancy golden frame"
-msgstr ""
+msgstr "Причудливая золотая рамка"
 
 #: ../html_wrap/frames/simple_book/frame.def:3
 msgid "Original Style"
-msgstr ""
+msgstr "Оригинальный стиль"
 
 #: ../html_wrap/frames/simple_book/frame.def:4
 #, php-format
 msgid "The original %s album frame style."
-msgstr ""
+msgstr "Оригинальный стиль рамки альбома %s"
 
 #: ../html_wrap/frames/wooden/frame.def:4
-#, fuzzy
 msgid "Wood Frame"
-msgstr "Нет файлов"
+msgstr "Деревянная рамка"
 
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
-msgstr ""
-
-#~ msgid "1 file"
-#~ msgstr "1 файл"
-
-#~ msgid "files"
-#~ msgstr "файлов"
-
-#~ msgid "No files"
-#~ msgstr "Нет файлов"
-
-#~ msgid "%s up-to-date."
-#~ msgstr "%s соответсвует версии."
-
-#
-#~ msgid "errors"
-#~ msgstr "ошибки"
-
-#
-#, fuzzy
-#~ msgid "Gallery Configuration :: Frames"
-#~ msgstr "Конфигурация галереи"
+msgstr "Текстурная дереянная рамка"
