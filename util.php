@@ -997,7 +997,18 @@ function padded_range_array($start, $end) {
 }
 
 function safe_serialize($obj, $file) {
-	
+
+	/* Acquire an advisory lock */
+	$lockfd = fs_fopen("$file.lock", "a+");
+	if (!$lockfd) {
+		error("Could not open lock file ($file.lock)!");
+		return 0;
+	}
+	if (!flock($lockfd, LOCK_EX)) {
+		error("Could not acquire lock ($file.lock)!");
+		return 0;
+	}
+
 	/*
 	 * Don't use tempnam because it may create a file on a different
 	 * partition which would cause rename() to fail.  Instead, create our own 
@@ -1013,21 +1024,33 @@ function safe_serialize($obj, $file) {
 		fwrite($fd, serialize($obj));
 		fclose($fd);
 
-		/* 
-		 * Make the current copy the backup, and then 
-		 * write the new current copy.  There's a race condition here;
-		 * two processes may try to do the initial rename() at the same
-		 * time.  In that case the initial rename will fail, but we'll
-		 * ignore that.  The second rename() will always go through (and
-		 * the second process's changes will probably overwrite the first
-		 * process's changes).
-		 */
-		if (fs_file_exists($file)) {
-			fs_rename($file, "$file.bak");
+		if (fs_filesize($tmpfile) == 0) {
+			/* Something went wrong! */
+			$success = 0;
+		} else {
+			/* 
+			 * Make the current copy the backup, and then 
+			 * write the new current copy.  There's a
+			 * potential race condition here if the
+			 * advisory lock (above) fails; two processes
+			 * may try to do the initial rename() at the
+			 * same time.  In that case the initial rename
+			 * will fail, but we'll ignore that.  The
+			 * second rename() will always go through (and
+			 * the second process's changes will probably
+			 * overwrite the first process's changes).
+			 */
+			if (fs_file_exists($file)) {
+				fs_rename($file, "$file.bak");
+			}
+			fs_rename($tmpfile, $file);
+			$success = 1;
 		}
-		fs_rename($tmpfile, $file);
+	} else {
+		$success = 0;
 	}
 
+	flock($lockfd, LOCK_UN);
 	return $success;
 }
 
