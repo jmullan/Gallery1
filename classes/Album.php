@@ -208,7 +208,7 @@ class Album {
 		$this->photos[] = $item;
 
 		/* If this is the only photo, make it the highlight */
-		if ($this->numPhotos(1) == 1 && !$this->isMovie(1)) {
+		if ($this->numPhotos(1) == 1 && !$item->isMovie()) {
 			$this->setHighlight(1);
 		}
 
