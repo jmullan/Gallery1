@@ -175,7 +175,7 @@ if (isset($go)) {
 		print _("search albums here") . "<p>";
 	    }
 	    echo "<tr><td valign=top><span class=desc>".
-		    pluralize_n($albumMatch, _("Album Match"), _("Album Matches"), _("No Album Matches")).".</span></td></tr>";
+		    pluralize_n($albumMatch, _("1 Album Match"), _("Album Matches"), _("No Album Matches")).".</span></td></tr>";
 	    echo "</table><br>";
     }
     if ($searchstring || $item_owners) {
@@ -239,7 +239,7 @@ if (isset($go)) {
 		print _("search photos here") . "<p>";
 	}
 	    echo "<tr><td valign=top><span class=desc>".pluralize_n($photoMatch,
-			    _("Photo Match"), _("Photo Matches"), 
+			    _("1 Photo Match"), _("Photo Matches"), 
 			    _("No Photo Matches")).".
 		    </span></td></tr>";
 	    echo "</table><br>";
@@ -315,7 +315,7 @@ if (isset($go)) {
 	else {
 		print _("search comments here") . "<p>";
 	}
-	    echo "<tr><td valign=top><span class=desc>".pluralize_n($commentMatch, _("Comment Match"), _("Comment Matches"), _("No Comment Matches")) .
+	    echo "<tr><td valign=top><span class=desc>".pluralize_n($commentMatch, _("1 Comment Match"), _("Comment Matches"), _("No Comment Matches")) .
 		    "</span></td></tr>";
 	    echo "</table><br>";
 	}

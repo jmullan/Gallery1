@@ -282,9 +282,9 @@ for ($i = 1, $numAlbums = 0; $i <= $numPhotos; ++$i) {
 }
 
 $adminText = "<span class=\"admin\">";
-$albums_str= pluralize_n($numAlbums, _("sub-album"), _("sub-albums"), _("No albums"));
-$imags_str= pluralize_n($numPhotos - $numAlbums, _("image"), _("images") , _("no images"));
-$pages_str=pluralize_n($maxPages, _("page") , _("pages") , _("0 pages"));
+$albums_str= pluralize_n($numAlbums, _("1 sub-album"), _("sub-albums"), _("No albums"));
+$imags_str= pluralize_n($numPhotos - $numAlbums, _("1 image"), _("images") , _("no images"));
+$pages_str=pluralize_n($maxPages, _("1 page") , _("pages") , _("0 pages"));
 
 if ($numAlbums && $maxPages > 1) {
 	$adminText .= sprintf(_("%s and %s in this album on %s"),
@@ -552,7 +552,7 @@ if ($showPolling)
  		{
  		    print "  ".sprintf(_("You have a total of %s and can change them if you wish."),
 				    pluralize_n($gallery->album->getPollScale(),
-					    _("vote"), _("votes"), 
+					    _("1 vote"), _("votes"), 
 					    _("no votes"))) .
 				    '</span><p>';
  		}
@@ -729,13 +729,13 @@ if ($numPhotos) {
 				<br>
 				<span class="fineprint">
 				   <?php echo _("Changed: ") ?><?php echo $myAlbum->getLastModificationDate() ?>.  <br>
-				   <?php echo _("Contains: ") ?><?php echo pluralize_n($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), _("item"), _("items"), _("0 items")) ?>.
+				   <?php echo _("Contains: ") ?><?php echo pluralize_n($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), _("1 item"), _("items"), _("0 items")) ?>.
 				   <?php if (!strcmp($gallery->album->fields["public_comments"], "yes")) {
 					   $lastCommentDate = $myAlbum->lastCommentDate();
 					   print lastCommentString($lastCommentDate, $displayCommentLegend);
 				   } ?><br>
 				   <?php if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) { ?>
-				   	<?php echo _("Viewed:") ?> <?php echo pluralize_n($myAlbum->getClicks(), _("time") , _("times"), _("0 times")) ?>.<br>
+				   	<?php echo _("Viewed:") ?> <?php echo pluralize_n($myAlbum->getClicks(), _("1 time") , _("times"), _("0 times")) ?>.<br>
 				   <?php } ?>
 				</span>
 <?php
@@ -754,7 +754,7 @@ if ($numPhotos) {
 				}
 				echo("<br>");
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
-					echo _("Viewed:") ." ".pluralize_n($gallery->album->getItemClicks($i), _("time"), _("times") ,_("0 times")).".<br>";
+					echo _("Viewed:") ." ".pluralize_n($gallery->album->getItemClicks($i), _("1 time"), _("times") ,_("0 times")).".<br>";
 				}
 				if ($showPolling) {
 					addPolling("item.$id", $form_pos, false);

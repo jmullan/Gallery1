@@ -112,10 +112,10 @@ if (!$gallery->session->offline && !strcmp($gallery->app->showSearchEngine, "yes
 <!-- admin section begin -->
 <?php 
 $adminText = "<span class=\"admin\">";
-$toplevel_str= pluralize_n($numAlbums, ($numAccess != $numAlbums) ? _("top-level album") : _("album"), ($numAccess != $numAlbums) ? _("top-level albums") : _("albums"), _("No albums"));
+$toplevel_str= pluralize_n($numAlbums, ($numAccess != $numAlbums) ? _("1 top-level album") : _("1 album"), ($numAccess != $numAlbums) ? _("top-level albums") : _("albums"), _("No albums"));
 $total_str= sprintf(_("%d total"), $numAccess); 
-$image_str= pluralize_n($numPhotos, _("image"), _("images"), _("no image"));
-$page_str= pluralize_n($maxPages, _("page"), _("pages"), _("no pages"));
+$image_str= pluralize_n($numPhotos, _("1 image"), _("images"), _("no image"));
+$page_str= pluralize_n($maxPages, _("1 page"), _("pages"), _("no pages"));
 
 if (($numAccess != $numAlbums) && $maxPages > 1) {
 	$adminText .= sprintf(_("%s (%s), %s on %s"), $toplevel_str, $total_str, $image_str, $page_str);
@@ -361,12 +361,12 @@ for ($i = $start; $i <= $end; $i++) {
   <br>
   <span class="fineprint">
    <?php echo sprintf(_("Last changed on %s."), $gallery->album->getLastModificationDate() )?>  
-   <?php echo sprintf(_("This album contains %s." ), pluralize_n($gallery->album->numPhotos(0), _("item"), _("items"), _("no items")));
+   <?php echo sprintf(_("This album contains %s." ), pluralize_n($gallery->album->numPhotos(0), _("1 item"), _("items"), _("no items")));
 if (!($gallery->album->fields["display_clicks"] == "no") && 
 	!$gallery->session->offline) {
 ?>
    <br><br><?php echo sprintf(_("This album has been viewed %s since %s."),
-		   pluralize_n($gallery->album->getClicks(), _("time"), _("times") , _("0 times")),
+		   pluralize_n($gallery->album->getClicks(), _("1 time"), _("times") , _("0 times")),
 		   $gallery->album->getClicksDate() );
 }
 $albumName=$gallery->album->fields["name"];

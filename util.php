@@ -815,7 +815,7 @@ function pluralize_n($amt, $one, $more, $none) {
                         return $none;
                         break;
                 case 1 :
-                        return "$amt $one";
+			return $one;
                         break;
 
                 default :
@@ -1552,7 +1552,7 @@ function printChildren($albumName,$depth=0) {
 				$val2 = $nestedAlbum->fields['title'];
 				if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
 					&& !$gallery->session->offline) {
-				    $val3 = "(" . pluralize_n($nestedAlbum->getClicks(), _("hit"), _("hits"), _("0 hits")) . ")";
+				    $val3 = "(" . pluralize_n($nestedAlbum->getClicks(), _("1 hit"), _("hits"), _("0 hits")) . ")";
 				} else {
 				    $val3 = "";
 				}
@@ -1910,7 +1910,7 @@ function showResultsGraph($num_rows)
                 $buf .= "<span class=\"title\">".
 			sprintf(_("Results from %s."),
 					pluralize_n(sizeof($voters), 
-						_("voter"), _("voters"), 
+						_("1 voter"), _("voters"), 
 						_("0 voters"))).
                         "</span>";
                 if ($gallery->album->getPollType() == "critique")
@@ -1971,7 +1971,7 @@ function showResults($id)
 	foreach ($vote_tally as $key => $value)
 	{
 		$buf .= sprintf(_("%s: %s"), $nv_pairs[$key]["name"],
-			pluralize_n($value, _("vote"), _("votes"), _("0 votes"))). "<br>";
+			pluralize_n($value, _("1 vote"), _("votes"), _("0 votes"))). "<br>";
 	}
 	return $buf;
 }

@@ -24,7 +24,7 @@
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist and it was 
- * maintained by Jan Schneider (mail@janschneider.de)
+ * maintained by Jan Schneider (jan@horde.org)
  * The modifications to fit it for Gallery were made by Jens Tkotz 
  * (jens@peino.de)
  *
@@ -55,6 +55,7 @@ function getNLS () {
 	$nls['language']['he_IL'] = 'Hebrew';
 	$nls['language']['is_IS'] = '&#205;slenska';
 	$nls['language']['ja_JP'] = '&#x65e5;&#x672c;&#x8a9e; (EUC-JP)';
+	$nls['language']['ko_KR'] = '&#xd55c;&#xad6d;&#xc5b4;';
 	$nls['language']['lt_LT'] = 'Lietuvi&#x0173;';
 	$nls['language']['nl_NL'] = 'Nederlands';
 	$nls['language']['no_NO'] = 'Norsk bokm&#229;l';
@@ -83,6 +84,7 @@ function getNLS () {
 	$nls['alias']['is'] = 'is_IS';
 	$nls['alias']['it'] = 'it_IT';
 	$nls['alias']['ja'] = 'ja_JP';
+	$nls['alias']['ko'] = 'ko_KR';
 	$nls['alias']['lt'] = 'lt_LT';
 	$nls['alias']['nl'] = 'nl_NL';
 	$nls['alias']['no'] = 'no_NO';
@@ -151,6 +153,8 @@ function getNLS () {
 	$nls['alias']['ja_JP.EUC-JP'] =		'ja_JP' ;	
  	$nls['alias']['ja_JP.EUC'] =		'ja_JP' ;
 	
+	$nls['alias']['ko_KR.EUC-KR'] =         'ko_KR' ;
+
 	$nls['alias']['lt_LT.ISO8859-4'] =	'lt_LT' ;
 	$nls['alias']['lt_LT.ISO8859-13'] =	'lt_LT' ;
 	
@@ -213,6 +217,7 @@ function getNLS () {
 	$nls['charset']['cs_CZ'] =              'ISO-8859-2';
 	$nls['charset']['he_IL'] = 		'windows-1255';
 	$nls['charset']['ja_JP'] = 		'EUC-JP';
+	$nls['charset']['ko_KR'] =              'EUC-KR';
 	$nls['charset']['lt_LT'] = 		'windows-1257';
 	$nls['charset']['pl_PL'] = 		'ISO-8859-2';
 	$nls['charset']['ru_RU'] = 		'windows-1251';
@@ -233,6 +238,7 @@ function getNLS () {
 
 	$nls['multibyte']['BIG5'] = 	true;
 	$nls['multibyte']['EUC-JP'] =   true;
+	$nls['multibyte']['EUC-KR'] =   true;
 	$nls['multibyte']['GB2312'] =   true;
 	$nls['multibyte']['UTF-8'] = 	true;	
 

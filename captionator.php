@@ -178,7 +178,7 @@ if ($numPhotos == 1) {
 } else {
         $adminText .= "$numPhotos ". _("items in this album") ;
     if ($maxPages > 1) {
-        $adminText .= " " . _("on") . " " . pluralize_n($maxPages, _("page") ,_("pages"), _("no pages"));
+        $adminText .= " " . _("on") . " " . pluralize_n($maxPages, _("1 page") ,_("pages"), _("no pages"));
     }
 }
 
