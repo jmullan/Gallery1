@@ -618,7 +618,7 @@ foreach ($extra_fields as $field)
 <?php } ?>
 <?php if (isset($printPhotoAccessForm)) { ?>
   <form method="post" name="photoAccess" action="http://www.photoaccess.com/buy/anonCart.jsp">
-  <input type="hidden" name="cb" value="PA">
+  <input type="hidden" name="cb" value="GP">
   <input type="hidden" name="redir" value="true">
   <input type="hidden" name="returnUrl" value="this-gets-set-by-javascript-in-onClick">
   <input type="hidden" name="imageId" value="<?php echo $photo->image->name . '.' . $photo->image->type; ?>">
