@@ -418,10 +418,8 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 if (!strcmp($gallery->album->fields["print_photos"],"none") ||
     $gallery->album->isMovie($id)) {
 } else {
-$hostname = $GLOBALS["SERVER_NAME"];
-$protocol = "http";
 $photo = $gallery->album->getPhoto($GLOBALS["index"]);
-$photoPath = $protocol . "://" . $hostname . $gallery->album->getAlbumDirURL("full");
+$photoPath = $gallery->album->getAlbumDirURL("full");
 $rawImage = $photoPath . "/" . $photo->image->name . "." . $photo->image->type;
 
 $thumbImage= $photoPath . "/";
