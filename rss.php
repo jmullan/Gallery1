@@ -123,11 +123,11 @@ if (method_exists($albumDB, "getCachedNumPhotos")) {
 
 foreach ($albumDB->albumList as $album) {
 	if (isset($gallery->app->rssVisibleOnly)) {
-		if($album->isHiddenRecurse()) {
+		if ($album->isHiddenRecurse()) {
 			continue;
 		}
 	} else {
-		if(!$gallery->user->canReadAlbum($album)) {
+		if (!$gallery->user->canReadAlbum($album)) {
 			continue;
 		}
 	}
@@ -144,7 +144,7 @@ foreach ($albumDB->albumList as $album) {
 	// DATE TAGS
 
 	$unixDate = $albumInfo["!date"];
-	if (IsSet($unixDate)) {
+	if (isset($unixDate)) {
 		$albumInfo["pubDate"] = date("r", $unixDate);
 		if ($gallery->app->rssDCDate == "yes") {
 			$albumInfo["dc:date"] = makeDCDate($unixDate);
@@ -168,14 +168,12 @@ foreach ($albumDB->albumList as $album) {
 
 		list($subalbum, $highlight) = $album->getHighlightedItem();
 
-		if($highlight) {
+		if ($highlight) {
 			# makeAlbumURL is for the pretty page, getAlbumDirURL is for the image itself
-			if ($album->fields['name'] != $subalbum->fields['name']) {
-				$base = $subalbum->getAlbumDirURL("highlight");
-			}
-			else {
-				$base = $album->getAlbumDirURL("highlight");
-			}
+
+			// $subalbum is either the current album, or the album which contains the
+			// highlight, so it's always correct.
+			$base = $subalbum->getAlbumDirURL("highlight");
 			$albumInfo["photo:imgsrc"] = $highlight->thumbnail->getPath($base);
 			$albumInfo["photo:thumbnail"] = $highlight->getPhotoPath($base);
 			
@@ -262,10 +260,10 @@ if (function_exists('pluralize_n2')) {
 
 $description = sprintf(_("%s in %s"), $image_str, $total_str);
 
-@header("Content-Type: application/xml");
+header("Content-Type: application/xml");
 
 $xml_header = 'xml version="1.0"';
-if($gallery->locale == 0) {
+if ($gallery->locale == 0) {
 	$gallery->locale = 'ISO-8859-1';
 }
 
@@ -306,11 +304,11 @@ foreach($albumList as $album) {
 	foreach($album as $tag => $info) {
 		# meta fields that should not be printed in the feed
 		# start with bang.
-		if(ereg("^!", $tag)) {
+		if (ereg("^!", $tag)) {
 			continue;
 		}
 		
-		if(is_array($info)) {
+		if (is_array($info)) {
 			echo "\t\t\t<$tag";
 			foreach($info[1] as $attr => $value) {
 				echo ' ' . $attr . '="' . $value . '"';
