@@ -956,7 +956,7 @@ $constants = array_merge($constants,
 		'attrs' => array('size' => 50)
 	),
 	'watermarkSizes' => array(
-		'prompt' => _("Which Imagetyp is watermarked"),
+		'prompt' => _("Which Imagetype is watermarked"),
 		'desc' => _("Here you can choose which of the images should be watermarked per default."),
 		'value' => 0,
 		'enabled' => $enablewatermark,
