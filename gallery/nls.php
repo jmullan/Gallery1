@@ -40,8 +40,8 @@
  * If you add a new language please use alphatical order by name.
  */
 function getNLS () {
-	$nls['language']['zh_CN'] = 'Chinese (Simplified) (&#x7b80;&#x4f53;&#x4e2d;&#x6587;)';
-	$nls['language']['zh_TW'] = 'Chinese (Traditional) (&#x6b63;&#x9ad4;&#x4e2d;&#x6587;)';
+	$nls['language']['zh_CN'] = 'Simplified Chinese (&#31616;&#20307;&#20013;&#25991;)';
+	$nls['language']['zh_TW'] = 'Traditional Chinese (&#32321;&#39636;&#20013;&#25991;)';
 	$nls['language']['de_DE'] = 'Deutsch';
 	$nls['language']['en_GB'] = 'English (UK)';
 	$nls['language']['en_US'] = 'English (US)';
@@ -59,7 +59,7 @@ function getNLS () {
 	$nls['language']['ru_RU'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)';
 	$nls['language']['ru_RU.koi8r'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (KOI8-R)';
 	$nls['language']['sl_SI'] = 'Sloven&#x0161;&#x010d;ina';
-	$nls['language']['fi_FI'] = 'Suomea';
+	$nls['language']['fi_FI'] = 'Suomi';
 	$nls['language']['sv_SE'] = 'Svenska';
 	$nls['language']['tr_TR'] = 'T&#252;rk&#231;e';
 
@@ -96,7 +96,7 @@ function getNLS () {
 	$nls['alias']['de_AT'] = 		'de_DE' ;
 	$nls['alias']['german'] =		'de_DE' ;
 	$nls['alias']['de_DE.ISO8859-1'] =	'de_DE' ;
-	
+
 	$nls['alias']['spanish'] =		'es_ES' ;
 	$nls['alias']['es_ES.ISO8859-1'] =	'es_ES' ;
 
