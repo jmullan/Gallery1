@@ -57,6 +57,18 @@ if ($id) {
 	$id = $gallery->album->getPhotoId($index);
 }
 
+if (!function_exists('array_search')) {
+        function array_search($needle, $haystack) {
+                for ($x=0; $x < sizeof($haystack); $x++) {
+                        if ($haystack[$x] == $needle) {
+                                return $x;
+                        }
+                }
+                return NULL;
+        }
+}
+
+
 // is photo hidden?  should user see it anyway?
 if (($gallery->album->isHidden($index))
     && (!$gallery->user->canWriteToAlbum($gallery->album))){
