@@ -31,6 +31,13 @@ if (!$album->isLoaded()) {
 	return;
 }
 
+// If we haven't specified a page explicitly, redirect to page 1.
+// This way the browser always knows what page its on and the back
+// button will work properly.
+if (!$set_page) {
+	header("Location: view_album.php?set_page=1");
+}
+
 $rows = $album->fields["rows"];
 $cols = $album->fields["cols"];
 $numPhotos = $album->numPhotos($user->canWriteToAlbum($album));
@@ -171,7 +178,7 @@ if ($user->canWriteToAlbum($album)) {
 
 
 if ($user->isLoggedIn()) {
-        $adminCommands .= "<a href=do_command.php?cmd=logout&return=view_album.php>[Logout]</a>";
+        $adminCommands .= "<a href=do_command.php?cmd=logout&return=view_album.php?set_page=$page>[Logout]</a>";
 } else {
 	$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[Login]</a>';
 } 
@@ -311,9 +318,9 @@ if ($numPhotos) {
 					echo('"><img src="images/admin_highlight.gif" width=11 height=11 border=0 alt="Highlight Photo"></a>');
 				}
 				if ($album->isHidden($i)) {
-					echo("<a href=do_command.php?cmd=show&index=$i&return=view_album.php><img src=\"images/admin_unhide.gif\" width=11 height=11 border=0 alt=\"Show Photo\"></a>");
+					echo("<a href=do_command.php?cmd=show&index=$i&return=view_album.php?set_page=$page><img src=\"images/admin_unhide.gif\" width=11 height=11 border=0 alt=\"Show Photo\"></a>");
 				} else {
-					echo("<a href=do_command.php?cmd=hide&index=$i&return=view_album.php><img src=\"images/admin_hide.gif\" width=11 height=11 border=0 alt=\"Hide Photo\"></a>");
+					echo("<a href=do_command.php?cmd=hide&index=$i&return=view_album.php?set_page=$page><img src=\"images/admin_hide.gif\" width=11 height=11 border=0 alt=\"Hide Photo\"></a>");
 				}
 			}
 			echo("</td>");

@@ -209,10 +209,6 @@ $defaults = array(
 		"value" => "no",
 		"choices" => array("yes", "no")
 	),
-	"page" => array(
-		"desc" => "Starting page",
-		"value" => 1
-	),
 	"returnto" => array(
 		"desc" => "Display the 'Return to Album List' link",
 		"value" => "yes",

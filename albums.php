@@ -79,7 +79,7 @@ if ($user->isLoggedIn()) {
 }
 
 if ($user->canCreateAlbums()) { 
-	$adminCommands .= "<a href=do_command.php?cmd=new-album&return=view_album.php>[New Album]</a>&nbsp;";
+	$adminCommands .= "<a href=do_command.php?cmd=new-album&return=view_album.php?set_page=1>[New Album]</a>&nbsp;";
 }
 
 if ($user->isAdmin()) {
