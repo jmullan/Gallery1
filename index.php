@@ -155,7 +155,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option)) {
 			    'Gallery', $include);
 	    exit;
 	}
-	include($GALLERY_BASEDIR . $include);
+	include(dirname(__FILE__) . "/$include");
 } else {
 	include("albums.php");
 }

@@ -30,11 +30,11 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print _("Security violation") ."\n";
 	exit;
 }
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
+
+if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = './';
 }
-require($GALLERY_BASEDIR . 'init.php'); 
+require(dirname(__FILE__) . '/init.php'); 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -138,7 +138,7 @@ echo makeFormIntro('register.php', array(
 			'name' => 'usercreate_form',
 			'method' => 'POST'));
 
-include($GALLERY_BASEDIR . 'html/userData.inc');
+include(dirname(__FILE__) . '/html/userData.inc');
 ?>
 <p>
 <?php echo _("Your account information will be sent to the email address you provide.") ?>

@@ -65,18 +65,20 @@ class Geeklog_UserDB extends Abstract_UserDB {
  }
 
  function getUserByUsername($username, $level=0) {
-   if (!strcmp($username, $this->nobody->getUsername())) {
-     return $this->nobody;
-   } else if (!strcmp($username, $this->everybody->getUsername())) {
-     return $this->everybody;
-   } else if (!strcmp($uid, $this->loggedIn->getUid())) {
-     return $this->loggedIn;
-   }
+	global $uid;
+	if (!strcmp($username, $this->nobody->getUsername())) {
+		return $this->nobody;
+	} else if (!strcmp($username, $this->everybody->getUsername())) {
+		return $this->everybody;
+	} else if (!strcmp($uid, $this->loggedIn->getUid())) {
+		return $this->loggedIn;
+	}
 
-   $user = new Geeklog_User();
-   $user->loadByUsername($username);
-   return $user;
- }
+	$user = new Geeklog_User();
+	$user->loadByUsername($username);
+
+return $user;
+}
 
  function getUserByUid($uid) {
    global $gallery;

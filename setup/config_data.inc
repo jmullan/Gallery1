@@ -40,8 +40,8 @@ $common_messages["getting-netpbm"] =
 				 "</a>",
 				 "<a href=\"http://sourceforge.net/projects/netpbm\">",
 				 "</a>")  .
-			"<br>" .
-			_("<br><b>Note:</b> You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead.");
+				'<br><span class="emphasis">' . _("Note:"). '</span> ' .
+			_("You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead.");
 			
 $common_messages["fail-netpbm-partial"] =
 			_("I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date.") . "  " .
@@ -50,8 +50,8 @@ $common_messages["fail-netpbm-partial"] =
 $common_messages["getting-imagemagick"] =
 			sprintf(_("Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from the %sImageMagick website%s." ), 
 				'<a href="http://www.imagemagick.org">', '</a>') .
-			"<br>" .
-			_("<br><b>Note</b>:  The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
+			'<br><span class="emphasis">' . _("Note:"). '</span> ' .
+			_("The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
 
 $common_messages["open-basedir-active"] = 
 	sprintf(_("<b>Note:</b> Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."),
@@ -177,7 +177,8 @@ $checklist = array(
 	"missing-locales" => array (
 		"optional" => 1,
 		"enabled" => (sizeof(gallery_languages()) > 1) ? "yes" :"no",
-		"desc" => _("Testing to see which <b>system</b> locales (if any) are absent."),
+		"desc" => _("Testing to see which <b>system</b> locales (if any) are absent.  ") . "<br>".
+				_("These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext suport. They are also needed to show date and time in the according format to the language."),
 		"func" => "check_absent_locales",
 		"serious" => ( $elawisyl == "no" ) ? 1 : 0 ,
 	),
@@ -212,7 +213,8 @@ $constants =  array_merge(
 	),
 	"albumDir" => array(
 		"prompt" => _("Album directory"),
-		"desc" => sprintf(_("The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."),
+		"desc" => '(<span class="attention">' . _('REQUIRED') . '</span>) ' .
+			sprintf(_("The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."),
 			"<b>". $webserver_user . "</b>"),
 		"value" => getenv("DOCUMENT_ROOT") . "/albums",
 		"require-write-dir" => 1,
@@ -222,7 +224,7 @@ $constants =  array_merge(
 	),
 	"tmpDir" => array(
 		"prompt" => _("Temporary directory"),
-		"desc" => '(<font color=red>' . _('REQUIRED') . '</font>) '.
+		"desc" => '(<span class="attention">' . _('REQUIRED') . '</span>) ' .
 			  sprintf(_("The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."),
 		'<i>/tmp</i>','<i>c:\\windows\\temp</i>'),
 		"value" => getenv("TMP"),
@@ -233,8 +235,9 @@ $constants =  array_merge(
 	),
 	"photoAlbumURL" => array(
 		"prompt" => "Gallery URL",
-		"desc" => sprintf(_("The full URL to the Gallery web application.  E.g. %s"),
-			'<i>http://www.foo.com/gallery</i>'),
+		"desc" => '(<span class="attention">' . _('REQUIRED') . '</span>) ' .
+				sprintf(_("The full URL to the Gallery web application.  E.g. %s"),
+				'<i>http://www.foo.com/gallery</i>'),
 		"value" => "http://" . getenv("SERVER_NAME") . $GALLERY_URL,
 		"no-trailing-slash" => 1,
 		"must-be-url" => 1,
@@ -243,7 +246,8 @@ $constants =  array_merge(
 	),
 	"albumDirURL" => array(
 		"prompt" => _("Albums URL"),
-		"desc" => sprintf(_("The full URL to your album directory (specified above) on your web server.  E.g. %s"), 
+		"desc" => '(<span class="attention">' . _('REQUIRED') . '</span>) ' .
+			sprintf(_("The full URL to your album directory (specified above) on your web server.  E.g. %s"), 
 			'<i>http://www.foo.com/albums</i>'),
 		"value" => "http://" . getenv("SERVER_NAME") . "/albums",
 		"no-trailing-slash" => 1,
@@ -344,7 +348,8 @@ $constants =  array_merge(
 	),
 	"autorotate" => array(
                 "prompt" => _("Auto-rotate images"),
-		"desc" => _("Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.  Requires Jhead EXIF parser v.1.9 or greater (see below)."),
+		"desc" => _("Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.") . '<br>' .
+				'<span class="attention">' . _("Requires Jhead EXIF parser v.1.9 or greater (see below).") . '</span>',
                 "choices" => array("yes" => _("yes"), "no" => _("no")),
                 "value" => "yes"
         ),
@@ -546,8 +551,10 @@ $constants = array_merge($constants,
 	"emailOn" => array(
 		"prompt" => _("Enable email"),
 		"verify-func" => "verify_email",
-	       	"desc" => sprintf(_("Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply. (Required for Self Registration)"),
-			"<i>" . _("no") . "</i>" ),
+	       	"desc" => sprintf(_("Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."), '<i>' . _("no") . '</i>' ) .  '<br>' .
+					'<span class="emphasis">' . _("Note:") . '</span> ' .
+					_("If you enable this settings you give your users the opportunity to let Gallery sent them their lost password via email.") . '<br>'. 
+					'<span class="attention">' . _("You need to enable this setting if you want to enable Self Registration.") . '</span>',
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 	),
@@ -598,8 +605,8 @@ $constants = array_merge($constants,
 		"attrs" => array("cols" => 50, "rows" => 11)),
 	"selfReg" => array(
 		"prompt" => _("Allow visitors to self register."),
-		"desc" => _("Enabling this will allow visitors to your site to create their own login accounts. This option requires the Email feature to be enabled.") .
-		"<br>",
+		"desc" => _("Enabling this will allow visitors to your site to create their own login accounts.") . '<br>' .
+			 	'<span class="attention">' . _("This option requires the Email feature to be enabled.") . '</span>',
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 		"requires-features" => array("emailOn" => _("Email"))
@@ -940,7 +947,7 @@ $defaults = array(
 	),
 	"returnto" => array(
 		"prompt" => _("Gallery Link"),
-		"desc" => _("Display the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."),
+		"desc" => _("Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."),
 		"value" => "yes",
 		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),

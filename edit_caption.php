@@ -28,12 +28,13 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print _("Security violation") ."\n";
 	exit;
 }
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
+
+if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = './';
 }
-require($GALLERY_BASEDIR . 'init.php'); ?>
-<?php
+
+require(dirname(__FILE__) . '/init.php');
+
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album) && !($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
 	exit;

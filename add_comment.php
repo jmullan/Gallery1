@@ -28,12 +28,13 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print _("Security violation") . "\n";
 	exit;
 }
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
+
+if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = './';
 }
-require($GALLERY_BASEDIR . 'init.php'); ?>
-<?php
+
+require(dirname(__FILE__) . '/init.php');
+
 // Hack check
 
 if (!$gallery->user->canAddComments($gallery->album)) {
@@ -124,14 +125,18 @@ if (isset($error_text)) {
    <td class="popup"><?php echo _("Name or email:") ?></td>
    <td>
 <?php
+if (! isset($commenter_name)) {
+	$commenter_name='';
+}
+
 if (!$gallery->user->isLoggedIn() ) {
-    echo "<input name=\"commenter_name\" value=\"".$commenter_name."\" size=\"30\">";
+	echo "<input name=\"commenter_name\" value=\"". $commenter_name ."\" size=\"30\">";
 } else {
-       	if ($gallery->app->comments_anonymous == 'yes') {
-	       	echo '<input name="commenter_name" value="'.$commenter_name.'" size="30">';
+	if ($gallery->app->comments_anonymous == 'yes') {
+		echo '<input name="commenter_name" value="'.$commenter_name.'" size="30">';
 	} else {
 		echo $commenter_name;
-	       	echo '<input type="hidden" name="commenter_name" value="" size="30">';
+		echo '<input type="hidden" name="commenter_name" value="" size="30">';
 	}
 }
 ?>

@@ -31,12 +31,13 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print _("Security violation") ."\n";
 	exit;
 }
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
+
+if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = './';
 }
-require($GALLERY_BASEDIR . 'init.php'); ?>
-<?php
+
+require(dirname(__FILE__) . '/init.php');
+
 if (!$gallery->user->isAdmin() || $gallery->app->multiple_create != "yes") {
 	exit;	
 }
@@ -165,7 +166,9 @@ echo makeFormIntro("multi_create_user.php", array(
 	$canCreate = 0;
 ?>
 	<input type="hidden" name="MAX_FILE_SIZE" value="10000000">
-<?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
+
+<?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
+
 <input type="submit" name="create" value="<?php echo _("Create") ?>">
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
 </form>

@@ -31,7 +31,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = '';
 }
-require($GALLERY_BASEDIR . 'init.php');
+
+require(dirname(__FILE__) . '/init.php');
 
 $borderColor = $gallery->app->default["bordercolor"];
 $thumbSize = $gallery->app->default["thumb_size"];

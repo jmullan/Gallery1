@@ -32,7 +32,7 @@ if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = '';
 }
 
-require($GALLERY_BASEDIR . 'init.php');
+require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
@@ -167,7 +167,7 @@ foreach ($modes as $m => $mt) {
 </ul>
 
 <?php
-include ($GALLERY_BASEDIR . "includes/add_photos/add_$mode.inc");
+include (dirname(__FILE__) . "/includes/add_photos/add_$mode.inc");
 ?>
 
 </div>

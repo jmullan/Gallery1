@@ -28,13 +28,13 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print _("Security violation") ."\n";
 	exit;
 }
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
+
+if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = './';
 }
-require($GALLERY_BASEDIR . 'init.php'); ?>
 
-<?php
+require(dirname(__FILE__) . '/init.php');
+
 // Security check.
 if (!isset($username)) {
 	$username="";
@@ -133,9 +133,9 @@ if (isset($username) && isset($gallerypassword)) {
 </form>
 <br><hr>
 
-
-
 <?php 
+if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
+
 echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST")); ?>
 <span class="popuphead"><?php echo _("Forgotten your password?") ?></span>
 <br>
@@ -199,6 +199,9 @@ document.login_form.username.focus();
 
 </div>
 </center>
-<?php print gallery_validation_link("login.php"); ?>
+<?php 
+}
+	print gallery_validation_link("login.php"); 
+?>
 </body>
 </html>

@@ -28,12 +28,13 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print _("Security violation") ."\n";
 	exit;
 }
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
+
+if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = './';
 }
-require($GALLERY_BASEDIR . 'init.php'); ?>
-<?php
+
+require(dirname(__FILE__) . '/init.php');
+
 if (!$gallery->user->isAdmin()) {
 	exit;	
 }
@@ -150,7 +151,7 @@ $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
 
 <p>
 
-<?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
+<?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
 <p>
 
 

@@ -28,12 +28,13 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print _("Security violation") ."\n";
 	exit;
 }
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
+
+if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = './';
 }
-require($GALLERY_BASEDIR . 'init.php'); ?>
-<?php
+
+require(dirname(__FILE__) . '/init.php');
+
 $error_string="";
 if (!isset($hash)) {
        	$error_string .=error_format (_("missing hash parameter")) . "<br>";
@@ -128,7 +129,7 @@ $defaultLanguage = $tmpUser->getDefaultLanguage();
 ?>
 <p>
 
-<?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
+<?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
 <p>
 <input type=hidden name="hash" value="<?php echo $hash ?>">
 <input type="submit" name="save" value="<?php echo _("Save") ?>">

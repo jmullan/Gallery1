@@ -32,8 +32,8 @@ if (!isset($GALLERY_BASEDIR)) {
 	$GALLERY_BASEDIR = './';
 }
 
-require($GALLERY_BASEDIR . "init.php");
-require($GALLERY_BASEDIR . "classes/remote/GalleryRemoteProperties.php");
+require(dirname(__FILE__) . '/init.php');
+require(dirname(__FILE__) . '/classes/remote/GalleryRemoteProperties.php');
 
 //---------------------------------------------------------
 //-- check that we are not being called from the browser --

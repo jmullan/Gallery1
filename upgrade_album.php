@@ -50,7 +50,7 @@ if ($UPGRADE_LOOP == 2) {
 	return;
 }
 
-if (!isset($gallery->version)) { require($GALLERY_BASEDIR . "init.php"); }
+if (!isset($gallery->version)) { require(dirname(__FILE__) . '/init.php'); }
 ?>
 <?php
 /*

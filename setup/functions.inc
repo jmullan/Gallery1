@@ -27,7 +27,7 @@ function evenOdd_row($fields, $evenOdd) {
 
 	$f0 = str_replace(" ", "&nbsp;", $fields[0]);
 	if ($fields[3] == "block_element") {
-		$buf .= "\n<tr><td class=\"shortdesc\">$f0</td><td class=\"shortdesc\">".$fields[1]."</td></tr>";
+		$buf .= "\n<tr><td class=\"shortdesc\" width=\"30%\">$f0</td><td class=\"shortdesc\">".$fields[1]."</td></tr>";
 	} else if ($fields[3] == "block_start") {
 		$buf .= "\n<tr><td class=\"shortdesc\" colspan=\"2\" valign=\"top\">";
 		$buf .= "\n<table><tr>";

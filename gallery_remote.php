@@ -29,7 +29,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 
-require($GALLERY_BASEDIR . "init.php");
+require(dirname(__FILE__) . '/init.php');
 
 //---------------------------------------------------------
 //-- check that we are not being called from the browser --
