@@ -157,7 +157,7 @@ $checklist = array(
 			_("If it's not installed, you can install it yourself.") . "  " .
 			_("jpegtran is a freely distributable tool distributed by the Independent JPEG Group as part of libjpeg.") . "  " .
 			_("Source may be found at") .
-			" <a href=http://www.ijg.org/>". _("the IJG homepage.") . "  " .
+			" <a href=http://www.ijg.org/>". _("the IJG homepage.") . "</a>  " .
 			_("Binaries may be found at") . " <a href=http://jpegclub.org/>" . _("the JPEG club website") ."</a> " .
 			_("or in the libjpeg package of Linux distributions."),
 		"open-basedir-note" => $common_messages["open-basedir-active"],
