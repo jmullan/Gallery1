@@ -326,9 +326,9 @@ if ($numPhotos) {
 				} else {
 					echo("<option value='do_command.php?cmd=hide&index=$i'>Hide $label</option>");
 				}
+			}
 			if ($user->canDeleteFromAlbum($album)) {
 				echo("<option value='delete_photo.php?index=$i'>Delete $label</option>");
-			}
 			}
 			if (($user->canDeleteFromAlbum($album)) || ($user->canWriteToAlbum($album)) ||
 							($user->canChangeTextOfAlbum($album))) {
