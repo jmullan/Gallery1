@@ -115,13 +115,13 @@ include("layout/navigator.inc");
 <?
 $start = ($albumListPage - 1) * $perPage + 1;
 $end = min($start + $perPage - 1, $numAlbums);
-
 for ($i = $start; $i <= $end; $i++) {
         $album = $albumDB->getAlbum($user, $i);
-	$owner = $album->getOwner();
-        $tmpAlbumName = $album->fields["name"];
-        $albumURL = makeGalleryUrl($tmpAlbumName);
-
+	$isRoot = $album->isRoot(); // Only display album if it is a root album
+	if($isRoot) {
+		$owner = $album->getOwner();
+        	$tmpAlbumName = $album->fields["name"];
+        	$albumURL = makeGalleryUrl($tmpAlbumName);
 ?>     
 
   <!-- Begin Album Column Block -->
@@ -197,6 +197,7 @@ for ($i = $start; $i <= $end; $i++) {
   <!-- End Album Column Block -->
 
 <?
+} // if isRoot() close
 } // for() loop      
 ?>
 </table>
