@@ -59,7 +59,7 @@ default: // use frames directory
   $base = $gallery->app->photoAlbumURL . "/html_wrap/frames/$frame";
   include (dirname(__FILE__) . "/frames/$frame/frame.def");
   $hLL = $hRR = 1;
-  if (preg_match('/safari|opera/i', $HTTP_SERVER_VARS['HTTP_USER_AGENT'])) {
+  if (preg_match('/safari|opera/i', $HTTP_SERVER_VARS['HTTP_USER_AGENT']) || $gallery->session->offline) {
     //Safari/Opera ignore height="100%" for table
     $hLL = $imageHeight - $heightLLT - $heightLLB;
     $hRR = $imageHeight - $heightRRT - $heightRRB;
