@@ -226,12 +226,12 @@ includeHtmlWrap("photo.header");
 if (!$album->isMovie($index)) {
 	if ($user->canWriteToAlbum($album)) {
 		$adminCommands .= '<a href="#" onClick="'.
-			popup("$top/resize_photo.php?index=$index");return false'">[resize photo]</a>';
+			popup("$top/resize_photo.php?index=$index").';return false">[resize photo]</a>';
 	}
 
 	if ($user->canDeleteFromAlbum($album)) {
 		$adminCommands .= '<a href="#" onClick="'.
-			popup("$top/delete_photo.php?index=$index");return false'">[delete photo]</a>';
+			popup("$top/delete_photo.php?index=$index").';return false">[delete photo]</a>';
 	}
 
 	if (!strcmp($album->fields["use_fullOnly"], "yes")) {
