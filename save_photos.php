@@ -100,8 +100,8 @@ function process($file, $tag, $name) {
 		echo "<br> - Adding $name";
 		my_flush();
 
-		$result = $album->addPhoto($file, $tag);
-		if ($result) {
+		$err = $album->addPhoto($file, $tag);
+		if (!$err) {
 			/* resize the photo if needed */
 			if ($album->fields["resize_size"] > 0) {
 				echo "<br> - Resizing $name"; 
@@ -110,7 +110,7 @@ function process($file, $tag, $name) {
 				$album->resizePhoto($index, $album->fields["resize_size"]);
 			}
 		} else {
-			print "<font color=red>Error!</font>";
+			print "<font color=red>Error: $err!</font>";
 		}
 	} else {
 		echo "Skipping $name (can't handle '$tag' format)<br>";
