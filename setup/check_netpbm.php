@@ -1,9 +1,9 @@
 <h1> Check NetPBM </h1>
 
 This script is designed to examine your NetPBM installation to see if
-it's ok to be used by Gallery.  It really should be integrated into
+it is ok to be used by Gallery.  It really should be integrated into
 the config wizard, but one thing at a time.  You should run this
-script <b>after</b> you've run the config wizard, if you've had
+script <b>after</b> you have run the config wizard, if you have had
 problems with your NetPBM installation that the wizard did not detect.
 
 <p>
@@ -19,7 +19,7 @@ require("../config.php");
 
 <p>
 
-<li> Let's see if we can figure out what operating system you're
+<li> Let us see if we can figure out what operating system you are
 using.
 
 <p>
@@ -40,7 +40,7 @@ Make sure that the values above make sense to you.
 
 Look for keywords like "Linux", "Windows", "FreeBSD", etc. in the
 output above.  If both the attempts above failed, you should ask your
-ISP what operating system you're using.  You can check via
+ISP what operating system you are using.  You can check via
 <a href="http://www.netcraft.com/whats?host=<?php echo $HTTP_SERVER_VARS['HTTP_HOST']?>">Netcraft</a>,
 they can often tell you.  
 <p>
@@ -52,16 +52,16 @@ they can often tell you.
 </ul>
 <p>
 
-If that's not right (or if it's blank), re-run the configuration
+If that is not right (or if it is blank), re-run the configuration
 wizard and enter a location for NetPBM.
 
 <p>
 
 <?
-$debugfile = tempnam("", "gallerydbg");
+$debugfile = tempnam($gallery->app->tmpDir, "gallerydbg");
 ?>
 
-<li>We're going to test each NetPBM binary individually.  
+<li>We are going to test each NetPBM binary individually.  
 
 <?
 if ($show_details) {
@@ -91,12 +91,17 @@ foreach ($binaries as $bin) {
 	checkNetPbm($bin);
 }
 
+if (fs_file_exists($debugfile)) {
+    fs_unlink($debugfile);
+}
+
 function checkNetPbm($cmd) {
 	global $gallery;
 	global $show_details;
 	global $debugfile;
 
 	$cmd = fs_import_filename($gallery->app->pnmDir . "/$cmd");
+        $cmd = fs_executable($cmd);
 	print "Checking $cmd\n";
 
 	$ok = 1;
@@ -109,6 +114,7 @@ function checkNetPbm($cmd) {
 	}
 
 	$cmd .= " --version";
+	
 	fs_exec($cmd, $results, $status, $debugfile);
 
 	if ($ok) {
@@ -120,36 +126,43 @@ function checkNetPbm($cmd) {
 		}
 	}
 
+	/*
+	 * Windows does not appear to allow us to redirect STDERR output, which
+	 * means that we can't detect the version number.
+	 */
 	if ($ok) {
+	    if (substr(PHP_OS, 0, 3) == 'WIN') {
+		$version = "<i>can't detect version on Windows</i>";
+	    } else {
 		if ($fd = fopen($debugfile, "r")) {
-			$linecount = 0;
-			$version = null;
-			while (!feof($fd)) {
-				$linecount++;
-				$buf = fgets($fd, 4096);
-				if ($linecount == 1) {
-					if (eregi("using libpbm from netpbm version: netpbm (.*)[\n\r]$", 
-						$buf, $regs)) {
-						$version = $regs[1];
-					} else {
-						$error = $buf;
-						$ok = 0;
-					}
-				}
-				if ($show_details) {
-					print $buf;
-				}
+		    $linecount = 0;
+		    $version = null;
+		    while (!feof($fd)) {
+			$linecount++;
+			$buf = fgets($fd, 4096);
+			if ($linecount == 1) {
+			    if (eregi("using libpbm from netpbm version: netpbm (.*)[\n\r]$", 
+				      $buf, $regs)) {
+				$version = $regs[1];
+			    } else {
+				$error = $buf;
+				$ok = 0;
+			    }
 			}
-			fclose($fd);
+			if ($show_details) {
+			    print $buf;
+			}
+		    }
+		    fclose($fd);
 		}
+	    }
 	}
 
 	if ($ok) {
-		print "<font color=green>Ok!  Version $version</font>";
+		print "<font color=green>Ok!  Version: $version</font>";
 	} else {
 		print "<font color=red>Error! ($error) </font>";
 	}
-	unlink($debugfile);
 	print "\n\n";
 }
     
