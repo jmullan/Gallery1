@@ -124,7 +124,7 @@ if ($numPhotos) {
 			}
 
 			echo("<!-- $i / $j / $numPhotos -->");
-			echo("<td width=$width valign=top align=center>");
+			echo("<td width=$width align=center valign=middle>");
 			if ($album->isMovie($i)) {
 				echo("<a href=" . $album->getPhotoPath($i) . " target=other>" . 
 					$album->getThumbnailTag($i) .
