@@ -709,7 +709,7 @@ $constants = array_merge($constants,
 		),
 	"slideshowMode" => array(
 		"prompt" => _("Slideshow Mode"),
-		"desc" => _("This allows you to set the default mode for the slideshow.  \"Java Applet\" requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. \"JavaScript\" is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."),
+		"desc" => _("This allows you to set the default mode for the slideshow.  &quot;Java Applet&quot; requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. &quot;JavaScript&quot; is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."),
 		"choices" => array("applet" => _("Java Applet"), "high" => _("JavaScript")),
 		"value" => "high"
 	),
@@ -824,7 +824,7 @@ $constants = array_merge($constants,
 		"value" => "no"
 		),
 	"adminCommentsEmail" => array(
-		"desc" => "This is allows the \"admin\" account to get email whenever a comment is added to any album",
+		"desc" => "This is allows the &quot;admin&quot; account to get email whenever a comment is added to any album",
 		"prompt" => "Admin comment email",
 		"type" => "hidden",
 		"persistent" => 1,
