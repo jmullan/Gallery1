@@ -1833,7 +1833,7 @@ function initLanguage() {
 			$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
 		}
                 
-		if (isset ($gallery->session->language) && empty ($newlang)) {
+		if (isset ($gallery->session->language) && !isset($gallery->nuke_language)) {
 			$gallery->language = $gallery->session->language;
 		} else {
 			$gallery->language=$nls['alias'][$gallery->nuke_language];
@@ -1878,11 +1878,14 @@ function initLanguage() {
 	 **	- Nuke sent an unsupported
 	 **	- User sent an undefined
 	 **/
-	if (! isset($gallery->language)) {
+	if (empty($gallery->language)) {
 		if (isset($gallery->app->default_language)) {
 			$gallery->language = $gallery->app->default_language;
-		} else {
+		} elseif(isset($gallery->browser_language)) {
 			$gallery->language = $gallery->browser_language;
+		} else {
+			// when we REALLY REALLY cant detect a language
+			$gallery->language="en_US";
 		}
 	}
 
