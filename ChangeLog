@@ -1,3 +1,19 @@
+2001-11-12  mceachen  <mceachen@mrm>
+
+	* /cvsroot/gallery/gallery/save_photos.php, /cvsroot/gallery/gallery/version.php:
+	Added check all/check none/inverse functionality to save_photos
+
+2001-11-12  jackodog  <jackodog@mrm>
+
+	* /cvsroot/gallery/gallery/ChangeLog, /cvsroot/gallery/gallery/version.php:
+	bumped version for Gallery Remote album fetch fix
+
+	* /cvsroot/gallery/gallery/gallery_remote.php:
+	If the user did not have write permission on a top level album, the album fetch refused to delve within to find nested albums the user might be able to write to
+
+	* /cvsroot/gallery/gallery/ChangeLog, /cvsroot/gallery/gallery/add_photos.php, /cvsroot/gallery/gallery/gallery_remote.php, /cvsroot/gallery/gallery/version.php:
+	Added Gallery Remote communication script. Added link in add_photos.php to direct the user to the Gallery Remote download page.
+
 2001-11-12  Chris Smith <chris@jacko.com> (1.2.3-cvs-b5)
 
 	* Fixed a bug in Gallery Remote album fetch routine where if
