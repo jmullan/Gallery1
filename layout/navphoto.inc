@@ -96,7 +96,7 @@ if ($prevPage >= 0) {
 <?php
 #-- 'page numbers' cell ---                  
 echo "<span class=\"nav\">";
-echo sprintf(_("%i of %i"), $navpage+1, $navcount);
+echo sprintf(_("%d of %d"), $navpage+1, $navcount);
 echo "</span>";
 ?>
     </td>

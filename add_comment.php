@@ -52,7 +52,7 @@ if (!strcmp($submit, _("Save"))) {
 		dismissAndReload();
 		return;
 	} else {
-		$error_text = _("Name and Comment are both required to save a new comment!");
+		$error_text = _("Name and comment are both required to save a new comment!");
 	}
 }
 ?>
