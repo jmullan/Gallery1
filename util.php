@@ -468,17 +468,23 @@ function rotate_image($src, $dest, $target, $type) {
 	}
 
 	$type = strtolower($type);
-	if (isset ($gallery->app->use_jpegtran) && ($type === "jpg" || $type === "jpeg")) {
-		if (!strcmp($target, "90")) {
-			$args = "-rotate 270";
-		} else if (!strcmp($target, "-90")) {
-			$args = "-rotate 90";
-		} else if (!strcmp($target, "fv")) {
-			$args = "-flip vertical";
-		} else if (!strcmp($target, "fh")) {
-			$args = "-flip horizontal";
+	if (isset($gallery->app->use_jpegtran) && !empty($gallery->app->use_jpegtran) && ($type === 'jpg' || $type === 'jpeg')) {
+	    	if (!strcmp($target, '-90')) {
+			$args = '-rotate 90';
+		} else if (!strcmp($target, '180')){
+			$args = '-rotate 180';
+		} else if (!strcmp($target, '90')) {
+			$args = '-rotate 270';
+		} else if (!strcmp($target, 'fv')) {
+			$args = '-flip vertical';
+		} else if (!strcmp($target, 'fh')) {
+			$args = '-flip horizontal';
+		} else if (!strcmp($target, 'tr')) {
+			$args = '-transpose';
+		} else if (!strcmp($target, 'tv')) {
+			$args = '-transverse';
 		} else {
-			$args = "-rotate 180";
+			$args = '';
 		}
 
 		$path = $gallery->app->use_jpegtran;
@@ -488,22 +494,41 @@ function rotate_image($src, $dest, $target, $type) {
 		switch($gallery->app->graphics)
 		{
 		case "NetPBM":
-			if (!strcmp($target, "90")) {
-				$args = "-r90";
-			} else if (!strcmp($target, "-90")) {
-				$args = "-r270";
-			} else if (!strcmp($target, "fv")) {
-				$args = "-tb";
-			} else if (!strcmp($target, "fh")){
-				$args = "-lr";
+			$args2 = '';
+			if (!strcmp($target, '-90')) {
+				/* NetPBM's docs mix up CW and CCW...
+				 * We'll do it right. */
+				$args = '-r270';
+			} else if (!strcmp($target, '180')) {
+				$args = '-r180';
+			} else if (!strcmp($target, '90')) {
+				$args = '-r90';
+			} else if (!strcmp($target, 'fv')) {
+				$args = '-tb';
+			} else if (!strcmp($target, 'fh')) {
+				$args = '-lr';
+			} else if (!strcmp($target, 'tr')) {
+				$args = '-xy';
+			} else if (!strcmp($target, 'tv')) {
+				/* Because of NetPBM inconsistencies, the only
+				 * way to do this transformation on *all* 
+				 * versions of NetPBM is to pipe two separate
+				 * operations in sequence. Versions >= 10.13
+				 * have the new -xform flag, and versions <=
+				 * 10.6 could take the '-xy -r180' commands in
+				 * sequence, but versions 10.7--> 10.12 can't
+				 * do *either*, so we're left with this little
+				 * workaround. -Beckett 9/9/2003 */
+			    $args = '-xy';
+			    $args2 = ' | ' . NetPBM('pnmflip', '-r180');
 			} else {
-				$args = "-r180";
+				$args = '';
 			}		
 
-			$err = exec_wrapper(toPnmCmd($src) .
-					" | " .
-					NetPBM("pnmflip", $args) .
-					" | " . fromPnmCmd($out));	
+			$err = exec_wrapper(toPnmCmd($src) . ' | ' .
+					    NetPBM('pnmflip', $args) .
+					    $args2 .
+					    ' | ' . fromPnmCmd($out));	
 
 			// copy exif headers from original image to rotated image	
 			if (isset($gallery->app->use_exif)) {
@@ -512,27 +537,28 @@ function rotate_image($src, $dest, $target, $type) {
 			}
 			break;
 		case "ImageMagick":
-		        if (!strcmp($target, "90")) {
-			    $target = "-90";
-			    $im_cmd = "-rotate";             
-			} else if (!strcmp($target, "-90")) {
-			    $target = "90";
-			    $im_cmd = "-rotate";
-			} else if (!strcmp($target, "180")) {
-			    $target = "180";
-			    $im_cmd = "-rotate";
-			} else if (!strcmp($target, "fv")) {
-			    $target = "";
-			    $im_cmd = "-flip";
-			} else if (!strcmp($target, "fh")) {
-			    $target = "";
-			    $im_cmd = "-flop";
+		        if (!strcmp($target, '-90')) {
+			    $im_cmd = '-rotate 90';             
+			} else if (!strcmp($target, '180')) {
+			    $im_cmd = '-rotate 180';
+			} else if (!strcmp($target, '90')) {
+			    $im_cmd = '-rotate -90';
+			} else if (!strcmp($target, 'fv')) {
+			    $im_cmd = '-flip';
+			} else if (!strcmp($target, 'fh')) {
+			    $im_cmd = '-flop';
+			} else if (!strcmp($target, 'tr')) {
+			    $im_cmd = '-affine 0,1,1,0,0,0 -transform';
+			} else if (!strcmp($target, 'tv')) {
+			    $im_cmd = '-affine 0,-1,-1,0,0,0 -transform';
+			} else {
+			    $im_cmd = '';
 			}
 			
 		  	
 			$src = fs_import_filename($src);
 			$out = fs_import_filename($out);
-			$err = exec_wrapper(ImCmd("convert", "$im_cmd $target $src $out"));
+			$err = exec_wrapper(ImCmd('convert', "$im_cmd $src $out"));
 			break;
 		default:
 			if (isDebugging())
@@ -2061,12 +2087,24 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 						case "rotate 270":
 							$rotate = 90;
 							break;
+						case "flip horizontal":
+							$rotate = 'fh';
+							break;
+						case "flip vertical":
+							$rotate = 'fv';
+							break;
+						case 'transpose':
+							$rotate = 'tr';
+							break;
+						case 'transverse':
+							$rotate = 'tv';
+							break;
 						default:
 							$rotate = 0;
 						}
 						if ($rotate) {
 							$gallery->album->rotatePhoto($index, $rotate);
-							processingMsg("- ". sprintf(_("Photo auto-rotated %s&deg;"), $rotate));
+							processingMsg("- ". _('Photo auto-rotated/transformed'));
 						}
 					}
 				}

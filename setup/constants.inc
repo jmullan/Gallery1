@@ -25,7 +25,7 @@
 <?php
 $i = 0;
 foreach ($constants as $key => $val) {
-	if( isset($val["enabbled"]) && $val["enabled"] == "no") continue;
+	if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
 	
 	if( isset($val["type"]) && ($val["type"] === "separator")) {
 		echo make_separator($key, $val);
