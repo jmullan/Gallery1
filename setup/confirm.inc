@@ -62,6 +62,17 @@ foreach ($features as $feature => $dependents) {
 		$view .= row_wrap(no_feature($feature, $cause));
 	}
 }
+$GALLERY_BASEDIR="..";
+$outfile_list=array("config.php", ".htaccess");
+foreach ($outfile_list as $outfile) {
+	if ($fd = @fs_fopen("$GALLERY_BASEDIR/$outfile", "a")) {
+		fclose($fd);
+	} else {
+		print "<font color=red><b>" . 
+			_("Warning:"). "</b>  " . sprintf(_("You must create empty file %s and chmod it 777 before proceeding.  See README for more details."), "<i><b>".$outfile."</b></i>"). "<p>";
+	}
+}
+
 
 $data .= "\n";
 $view .= row_wrap("&nbsp;");

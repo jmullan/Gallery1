@@ -120,7 +120,15 @@ $admin->save();
 function fail($file) {
 ?>
 	<title><?php echo _("Failure") ?>! </title>
-	<font size=+2><?php echo sprintf(_("Unable to write to %s."), $file )?> </font>
+	<font size=+2><?php printf(_("Unable to write to %s."), $file )?> </font>
+	<p>
+<font color=red>
+	<?php printf (_("You are missing either %s or %s."), "<i>config.php</i>", "<i>.htaccess</i>") ?>
+	</font>
+	<p>
+	<input type=hidden name=back_page value="confirm">
+	<input type=submit name="go_back" value="<- <?php echo _("Review Settings") ?>">
+
 <?php
 	return;
 }
