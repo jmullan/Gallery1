@@ -484,7 +484,8 @@ if ($numPhotos) {
 				(($gallery->user->canDeleteFromAlbum($gallery->album)) ||
                                     ($gallery->user->canWriteToAlbum($gallery->album)) ||
                                     ($gallery->user->canChangeTextOfAlbum($gallery->album)) ||
-				    ($gallery->album->getItemOwnerModify() && 
+				    (($gallery->album->getItemOwnerModify() || 
+				    $gallery->album->getItemOwnerDelete()) && 
 				     $gallery->album->isItemOwner($gallery->user->getUid(), $i)))) {
 				$showAdminForm = 1;
 			} else { 
@@ -546,8 +547,12 @@ if ($numPhotos) {
 					"onChange='imageEditChoice(document.image_form_$i.s)'>");
 				echo("<option value=''><< Edit $label>></option>");
 			}
-			if ($gallery->album->getItemOwnerModify() && $gallery->album->isItemOwner($gallery->user->getUid(), $i) && !$gallery->album->isAlbumName($i)) { 
+			if ($gallery->album->getItemOwnerModify() && $gallery->album->isItemOwner($gallery->user->getUid(), $i) && !$gallery->album->isAlbumName($i)) {
 				showChoice("Edit Text", "edit_caption.php", array("index" => $i));
+				showChoice("Edit Thumbnail", "edit_thumb.php", array("index" => $i));
+				showChoice("Rotate/Flip $label", "rotate_photo.php", array("index" => $i));
+			}
+			if ($gallery->album->getItemOwnerDelete() && $gallery->album->isItemOwner($gallery->user->getUid(), $i) && !$gallery->album->isAlbumName($i)) {
 				showChoice("Delete $label", "delete_photo.php", array("id" => $id));
 			}
 			if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {

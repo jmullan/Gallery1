@@ -61,7 +61,8 @@ if ($save) {
 	$gallery->album->fields["display_clicks"] = $display_clicks;
 	$gallery->album->fields["public_comments"] = $public_comments;
 	$gallery->album->fields["item_owner_modify"] = $item_owner_modify;
-	$gallery->album->fields["show_item_owner"] = $show_item_owner;
+	$gallery->album->fields["item_owner_delete"] = $item_owner_delete;
+	$gallery->album->fields["item_owner_display"] = $item_owner_display;
 	$gallery->album->save();
 
 	if ($setNested) {
@@ -185,11 +186,15 @@ if ($gallery->app->use_exif) {
 </tr>
 <tr>
 <td>Display owners name with caption
-<td><select name="show_item_owner"><?=selectOptions($gallery->album, "show_item_owner", array("yes", "no")) ?></select></td>
+<td><select name="item_owner_display"><?=selectOptions($gallery->album, "item_owner_display", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td>Allow item owners to modify/delete their images</td>
+<td>Allow item owners to modify their images</td>
 <td><select name="item_owner_modify"><?=selectOptions($gallery->album, "item_owner_modify", array("yes", "no")) ?></select></td>
+</tr>
+<tr>
+<td>Allow item owners to delete their images</td>
+<td><select name="item_owner_delete"><?=selectOptions($gallery->album, "item_owner_delete", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Allow public commenting for photos in this album?</td>

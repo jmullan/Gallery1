@@ -81,8 +81,9 @@ class Album {
 		$this->fields["photos_separate"] = FALSE;
 		$this->transient->photosloaded = TRUE; 
 		
-		$this->fields["show_item_owner"]="yes"; 
-		$this->fields["item_owner_modify"]="yes";
+		$this->fields["item_owner_display"] = $gallery->app->default["item_owner_display"];
+		$this->fields["item_owner_modify"] = $gallery->app->default["item_owner_modify"];
+		$this->fields["item_owner_delete"] = $gallery->app->default["item_owner_delete"];
 
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
@@ -145,7 +146,10 @@ class Album {
 				"use_fullOnly", 
 				"print_photos",
 				"display_clicks",
-				"public_comments");
+				"public_comments", 
+				"item_owner_display",
+				"item_owner_modify",
+				"item_owner_delete");
 		foreach ($check as $field) {
 			if (!$this->fields[$field]) {
 				$this->fields[$field] = $gallery->app->default[$field];
@@ -1151,6 +1155,9 @@ class Album {
 				$nestedAlbum->fields["use_exif"] = $this->fields["use_exif"];
 				$nestedAlbum->fields["display_clicks"] = $this->fields["display_clicks"];
 				$nestedAlbum->fields["public_comments"] = $this->fields["public_comments"];
+				$nestedAlbum->fields["item_owner_display"] = $this->fields["item_owner_display"];
+				$nestedAlbum->fields["item_owner_modify"] = $this->fields["item_owner_modify"];
+				$nestedAlbum->fields["item_owner_delete"] = $this->fields["item_owner_delete"];
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedProperties();
 			}
@@ -1358,9 +1365,9 @@ class Album {
 		$index=$this->getPhotoIndex($id);
 		$this->setItemOwner($index, $owner);
 	}
-	function getShowItemOwner() {
-		if (isset($this->fields["show_item_owner"])) {
-			if (strcmp($this->fields["show_item_owner"], "yes"))
+	function getItemOwnerDisplay() {
+		if (isset($this->fields["item_owner_display"])) {
+			if (strcmp($this->fields["item_owner_display"], "yes"))
 			{
 				return false;
 			}
@@ -1376,9 +1383,18 @@ class Album {
 		}
 		return true;
 	}
+	function getItemOwnerDelete() {
+		if (isset($this->fields["item_owner_delete"])) {
+			if (strcmp($this->fields["item_owner_delete"], "yes"))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 	function getCaptionName($index) {
                 global $gallery;
-		if (!$this->getShowItemOwner()) {
+		if (!$this->getItemOwnerDisplay()) {
 			return "";
 		}
 		$nobody = $gallery->userDB->getNobody();

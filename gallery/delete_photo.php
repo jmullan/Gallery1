@@ -41,7 +41,7 @@ if (isset($id)) {
 
 // Hack check
 if (!$gallery->user->canDeleteFromAlbum($gallery->album) 
-	&& (!$gallery->album->getItemOwnerModify()
+	&& (!$gallery->album->getItemOwnerDelete()
 	|| !$gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
 	exit;
 }

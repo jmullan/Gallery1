@@ -223,8 +223,7 @@ $constants = array(
 			  "depending on the version of NetPBM that you have installed.  " .
 			  "Check your NetPBM directory to see which one you have installed and " .
 			  "specify it here.  If you aren't sure, just take a guess and we'll " .
-			  "try to verify it for you.  " .
-			  "<br><font color=blue><b>(this is new in version 1.3.4)</b></font>",
+			  "try to verify it for you.  " ,
 
 		"choices" => array("pnmtojpeg", "ppmtojpeg"),
 		"value" => "pnmtojpeg",
@@ -578,10 +577,30 @@ $defaults = array(
 		"optional" => 1,
 		"desc" => "Custom fields that are available to describe each image.  ".
 			  "They should be separated by commas ".
-			  "Eg. <i>Description, Location, Film Type<i>".
-			  "<br><font color=blue><b>(this is new in version 1.3.4)</b></font>",
+			  "Eg. <i>Description, Location, Film Type<i>",
 		"attrs" => array("size" => 80),
 		"value" => "Description"
+	),
+	"item_owner_modify" => array(
+		"prompt" => "Photo owner modification",
+		"desc" => "Allow photo owners to edit and rotate/flip their own photos?".
+			  "<br><font color=blue><b>(this is new in version 1.3.5)</b></font>",
+		"choices" => array("yes", "no"),
+		"value" => "yes",
+	),
+	"item_owner_delete" => array(
+		"prompt" => "Photo owner deletion",
+		"desc" => "Allow photo owners to delete their own photos?".
+			  "<br><font color=blue><b>(this is new in version 1.3.5)</b></font>",
+		"choices" => array("yes", "no"),
+		"value" => "yes",
+	),
+	"item_owner_display" => array(
+		"prompt" => "Photo owner display",
+		"desc" => "Display  the name of photo owners with the caption?".
+			  "<br><font color=blue><b>(this is new in version 1.3.5)</b></font>",
+		"choices" => array("yes", "no"),
+		"value" => "no",
 	)
 );
 
