@@ -330,3 +330,28 @@ function makeGalleryUrl($albumName, $photoId="", $extra="") {
 
 	return $url;
 }
+
+function galleryInit() {
+	global $GALLERY_INIT;
+	$GALLERY_INIT = 1;
+}
+
+function gallerySanityCheck() {
+	global $GALLERY_INIT, $app, $gallery;
+
+	if (file_exists("setup") && is_readable("setup")) {
+		include("errors/configmode.php");
+		exit;
+	}
+
+	if ($app->config_version != $gallery->config_version) {
+		include("errors/reconfigure.php");
+		exit;
+	}
+
+	if ($GALLERY_INIT != 1) {
+		include("errors/needinit.php");
+		exit;
+	}
+}
+
