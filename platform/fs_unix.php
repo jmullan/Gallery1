@@ -25,7 +25,10 @@ function fs_copy($source, $dest) {
 	umask($umask);
 }
 
-function fs_exec($cmd, &$results, &$status) {
+function fs_exec($cmd, &$results, &$status, $debugfile="") {
+	if (!empty($debugfile)) {
+		$cmd = "($cmd) 2>$debugfile";
+	} 
 	return exec($cmd, $results, $status);
 }
 
