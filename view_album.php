@@ -799,7 +799,9 @@ if ($numPhotos) {
 							"return" => urlencode(makeGalleryUrl("view_album.php"))));
 				}
 				showChoice(_("Move ") . $label, "move_photo.php", array("index" => $i));
-				showChoice(_("Copy ") . $label, "copy_photo.php", array("index" => $i));
+				if (!$gallery->album->isAlbumName($i)) {
+					showChoice(_("Copy ") . $label, "copy_photo.php", array("index" => $i));
+				}
 				if ($gallery->album->isHidden($i)) {
  					showChoice(_("Show") . " $label", "do_command.php", array("cmd" => "show", "index" => $i));
 			             } else {
@@ -824,8 +826,7 @@ if ($numPhotos) {
 					   array("set_albumName" => $myAlbum->fields["name"]));
 			    }
 			}
-                       if ($gallery->user->isAdmin())
-                       {
+                       if ($gallery->user->isAdmin() && !$gallery->album->isAlbumName($i)) {
                                showChoice(_("Change Owner"), "photo_owner.php", array("id" => $id));
                        }
 		       if (canVote()) {

@@ -87,7 +87,7 @@ if (isset($create))
 			processingMsg("- adding $uname");
 			$password=generate_password(10);
 			if ($gallery->userDB->CreateUser($uname, $email, $password, $fullname,
-				$canCreate, $defaultLanguage)) {
+				$canCreate, $defaultLanguage, "bulk_register")) {
 				$total_added++;
 				if ($send_email=="on") {
 				       	processingMsg("- emailing $email");

@@ -73,7 +73,9 @@ if (isset($create)) {
 		$tmpUser->setFullname($fullname);
 		$tmpUser->setCanCreateAlbums($canCreate);
 		$tmpUser->setEmail($email);
+		$tmpUser->origEmail=$email;
 		$tmpUser->setDefaultLanguage($defaultLanguage);
+		$tmpUser->log("register");
 		$tmpUser->save();
 		print sprintf(_("User %s created"), $uname) . "<br><br>";
 		if (isset($send_email)) {

@@ -132,7 +132,12 @@ $userDB = new Gallery_UserDB();
 $admin = $userDB->getOrCreateUser("admin");
 $admin->setPassword($editPassword);
 $admin->setIsAdmin(true);
-$admin->setFullName("Administrator");
+if (!$admin->getFullName()) {
+	$admin->setFullName("Administrator");
+}
+if (!$admin->getEmail() && isset($adminEmail)) {
+       	$admin->setEmail($adminEmail);
+}
 $admin->setCanCreateAlbums(true);
 $admin->save();
 

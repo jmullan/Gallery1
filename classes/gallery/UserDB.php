@@ -330,7 +330,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 	}
 
 	function CreateUser($uname, $email, $new_password, 
-			$fullname, $canCreate, $language) {
+			$fullname, $canCreate, $language, $log) {
 		global $gErrors;
 	       	$errorCount=0;
 	       	$gErrors=array();
@@ -352,6 +352,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 		       	$tmpUser->setCanCreateAlbums($canCreate);
 		       	$tmpUser->setEmail($email);
 		       	$tmpUser->setDefaultLanguage($language);
+			$tmpUser->origEmail=$email;
+		       	$tmpUser->log($log);
 		       	$tmpUser->save();
 		       	return true;
 	       	} else { 

@@ -1,3 +1,32 @@
+2003-09-24 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b91
+
+	* Added $lastAction, $lastActionDate, $origEmail and log() to class 
+	  Gallery_User as the start of proper logging of user actions.
+
+	* Now you can only recover your password every 15 minutes, to 
+	  prevent accidental or deliberate blocking of passwords.
+
+	* Use admin email from email config as admin email in UserDB.  
+	  From Vallimar.
+
+	* As the album frames are bigger, made them clickable.
+
+	* Encrypt the key sent out for new password, so that people
+	  can't access it by looking in the .users directory.
+
+	* Fixed bug where you couldn't change prefs without adding
+	  all three passwords.
+
+	* Change to view_photo.php, so if we are looking at a
+	  photo,and then go up to the parent album, we good to the
+	  page that photo is on.  Thanks Vallimar!
+
+	* Also from Vallimar, tweak in view_photos.php to not
+	  generate javascript at all if we can't see full sized
+	  images.
+
+	* One more from Vallimar. Copy only available on images.
+
 2003-09-23 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b90
 
 	* Fixed bug: now prints errors for forgotten passwords in the correct

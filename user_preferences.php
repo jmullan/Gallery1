@@ -47,12 +47,12 @@ if ( isset($save)) {
 		}
 	}
 
-	if (isset($old_password) && !$gallery->user->isCorrectPassword($old_password)) {
+	if (!empty($old_password) && !$gallery->user->isCorrectPassword($old_password)) {
 		$gErrors["old_password"] = _("Incorrect password") ;
 		$errorCount++;
 	}
 
-	if (isset($new_password1) || isset($new_password2)) {
+	if (!empty($new_password1) || !empty($new_password2)) {
 		if (empty($old_password)) {
 			$gErrors["old_password"] = _("You must provide your old password to change it.");
 			$errorCount++;

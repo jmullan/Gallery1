@@ -22,6 +22,7 @@ $imageTL = "$base/TL1.gif";
 $imageBB = "$base/BB1.gif";
 $imageBR = "$base/BR1.gif";
 ?>
+	<a href="<?php echo $href ?>">
 <table width="1" border="0" cellspacing="0" cellpadding="0">
 
 <TR>
@@ -31,7 +32,9 @@ $imageBR = "$base/BR1.gif";
   </tr>
   <TR>
   <td width="10" height="<?php echo $thumbHeight ?>" background="<?php echo $imageLL ?>"><img src="<?php echo $pixelImage ?>" width="1" height="1"></td>
-        <td width="<?php echo $thumbWidth ?>" height="<?php echo $thumbHeight ?>"><a href="<?php echo $href ?>"><?php echo $tag ?></a></td>
+        <td width="<?php echo $thumbWidth ?>" height="<?php echo $thumbHeight ?>">
+	<?php echo $tag ?>
+	</td>
 
  <td width="5" height="<?php echo $thumbHeight ?>" background="<?php echo $imageRR ?>"><img src="<?php echo $pixelImage ?>" width="1" height="1"></td>
   </tr>
@@ -42,3 +45,4 @@ $imageBR = "$base/BR1.gif";
     <td><img src="<?php echo $imageBR ?>" width="19" height="39"></td>
   </tr>
 </table>
+	</a>

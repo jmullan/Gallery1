@@ -58,6 +58,9 @@ $uname = removeTags($uname);
 if (isset($uname) && isset($gallerypassword)) {
        	$tmpUser = $gallery->userDB->getUserByUsername($uname);
        	if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword)) {
+
+		$tmpUser->log("login");
+		$tmpUser->save();
 	       	$gallery->session->username = $uname;
 	       	if ($tmpUser->getDefaultLanguage() != "") {
 		       	$gallery->session->language = 
@@ -130,7 +133,9 @@ if (isset($uname) && isset($gallerypassword)) {
 <br><hr>
 
 
-<?php echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST")); ?>
+
+<?php 
+echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST")); ?>
 <span class="popuphead"><?php echo _("Forgotten your password?") ?></span>
 <br>
 <br>
@@ -138,16 +143,21 @@ if (isset($uname) && isset($gallerypassword)) {
 if (isset($forgot)) {
        	$tmpUser = $gallery->userDB->getUserByUsername($uname);
        	if ($tmpUser) {
-
-
-	       	if (validate_email($tmpUser->getEmail())) {
+		$wait_time=15;
+		if ($tmpUser->lastAction ==  "new_password_request" && 
+			time() - $tmpUser->lastActionDate < $wait_time * 60) {
+		       	echo gallery_error(sprintf(_("The last request for a password was left than %d minutes ago.  Please check for previous email, or wait before trying again."), $wait_time));
+			
+		} else if (validate_email($tmpUser->getEmail())) {
 		       	if (gallery_mail( $tmpUser->email,
 				_("New password request"),
 			       	sprintf(_("You requested a new password from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
 			      	sprintf(_("Click to reset your password: %s"),
-				       	newPasswordHash($tmpUser)) . "\n",
+				       	$tmpUser->genRecoverPasswordHash()) . "\n",
 				sprintf(_("New password request %s"), $uname))) {
-			       	echo sprintf(_("An email has been sent to %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."),$tmpUser->email)  ?> 
+			       	$tmpUser->log("new_password_request");
+			       	$tmpUser->save();
+			       	echo sprintf(_("An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."),$tmpUser->getUsername())  ?> 
 					<br><br>
 			       	<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
 				<?php

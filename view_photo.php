@@ -148,6 +148,8 @@ $cols = $gallery->album->fields["cols"];
 $perPage = $rows * $cols;
 $page = ceil($index / ($rows * $cols));
 
+$gallery->session->albumPage[$gallery->album->fields['name']] = $page;
+
 /*
  * Relative URLs are tricky if we don't know if we're rewriting
  * URLs or not.  If we're rewriting, then the browser will think
@@ -156,8 +158,7 @@ $page = ceil($index / ($rows * $cols));
  */
 $top = $gallery->app->photoAlbumURL;
 
-$bordercolor = $gallery->album
-->fields["bordercolor"];
+$bordercolor = $gallery->album->fields["bordercolor"];
 $borderwidth = $gallery->album->fields["border"];
 if (!strcmp($borderwidth, "off")) {
 	$borderwidth = 1;
@@ -277,13 +278,12 @@ if ($gallery->album->fields["textcolor"]) {
 }       
 ?> 
   </style> 
-  <script language="javascript1.2">
-  // <!--
 
 <?php
-
 if ($fitToWindow) { 
 ?>
+  <script language="javascript1.2">
+  // <!--
 
   function fitToWindow(do_resize) {
 	var changed = 0;
@@ -350,13 +350,12 @@ if ($fitToWindow) {
 	}
   }
 
+  // -->
+  </script>
 <?php 
 } // if ($fitToWindow)
 
 ?>
-
-  // -->
-  </script>
 </head>
 
 <?php if ($fitToWindow) { ?>

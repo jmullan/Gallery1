@@ -116,6 +116,8 @@ if (isset($create)) {
 			$tmpUser->setFullname($fullname);
 			$tmpUser->setCanCreateAlbums($canCreate);
 			$tmpUser->setEmail($email);
+			$tmpUser->origEmail=$email;
+			$tmpUser->log("self_register");
 			$tmpUser->save();
 			echo "<p>".sprintf(_("An email has been sent to %s."), $email);
 			echo '<br>';

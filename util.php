@@ -2770,10 +2770,4 @@ Gallery @ %s Administrator.");
 	}
 
 }
-function newPasswordHash($user) {
-       	$rec_pass_hash = md5($user->password.$user->uid.localtime());
-       	$user->setRecoverPasswordHash($rec_pass_hash);
-       	$user->save();
-       	return makeGalleryUrl('new_password.php', array('lost_pass_hash' => $rec_pass_hash, 'uname' => $user->getUsername()));
-}
 ?>

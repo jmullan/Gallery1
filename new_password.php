@@ -35,7 +35,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
 $error_string="";
-if (!isset($lost_pass_hash)) {
+if (!isset($hash)) {
        	$error_string .=error_format (_("missing hash parameter")) . "<br>";
 }
 if (empty($uname) ) {
@@ -45,10 +45,8 @@ if (empty($uname) ) {
        	if (!$tmpUser) {
 	       	$error_string .=error_format (_("Not a valid username")) . "<br>";
        	}
-       	if (!$tmpUser->getRecoverPasswordHash()) {
-	       	$error_string .=error_format (_("there is no password to recover")) . "<br>";
-       	} else if ($tmpUser->getRecoverPasswordHash() != $lost_pass_hash) {
-	       	$error_string .=error_format (_("The recovery hash password is not the same, please try again")) . "<br>";
+       	if (!$tmpUser->checkRecoverPasswordHash($hash)) {
+	       	$error_string .=_("The recovery password is not the expected value, please try again") . "<br>";
 	}
 }
 
@@ -77,7 +75,8 @@ if ( isset($save)) {
 	      	if ($new_password1) {
 		       	$tmpUser->setPassword($new_password1);
 	       	}
-	       	$tmpUser->setRecoverPasswordHash(null);
+	       	$tmpUser->genRecoverPasswordHash(true);
+		$tmpUser->log("new_password_set");
 	       	$tmpUser->save();
 
 		// Switch over to the new username in the session
@@ -131,7 +130,7 @@ $defaultLanguage = $tmpUser->getDefaultLanguage();
 
 <?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
-<input type=hidden name="lost_pass_hash" value="<?php echo $lost_pass_hash ?>">
+<input type=hidden name="hash" value="<?php echo $hash ?>">
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
 </form>
