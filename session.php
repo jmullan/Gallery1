@@ -19,8 +19,6 @@
  */
 ?>
 <?
-session_register_and_set("cols");
-session_register_and_set("rows");
 session_register_and_set("page");
 session_register_and_set("albumName");
 session_register_and_set("albumListPage");
