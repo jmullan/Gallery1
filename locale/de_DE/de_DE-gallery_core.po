@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-10-27 12:11+0100\n"
+"POT-Creation-Date: 2003-10-29 02:26+0100\n"
 "PO-Revision-Date: 2003-07-03 16:00+0100\n"
 "Last-Translator: Jens Tkotz <jens@f2h9.de>\n"
 "Language-Team: German <jens@f2h9.de\n"
@@ -380,7 +380,7 @@ msgstr "&Auml;ndere Albumordnung"
 
 #: ../albums.php:341 ../view_album.php:318
 msgid "rename album"
-msgstr "Benenne Album um"
+msgstr "Album umbenennen"
 
 #: ../albums.php:348 ../view_album.php:336
 msgid "edit captions"
@@ -392,7 +392,7 @@ msgstr "Berechtigungen"
 
 #: ../albums.php:356
 msgid "view&nbsp;comments"
-msgstr "Betrachte Kommentare"
+msgstr "Kommentare betrachten"
 
 #: ../albums.php:360
 msgid "url:"
@@ -1612,11 +1612,15 @@ msgstr "R&uuml;ckkehr zu %s"
 msgid "Results Breakdown"
 msgstr "Zusammenfassung der Ergebnisse"
 
-#: ../poll_results.php:160 ../util.php:1962 ../view_album.php:552
+#: ../poll_results.php:162 ../util.php:1957 ../view_album.php:552
 #: ../view_album.php:822
 #, php-format
 msgid "Album: %s"
 msgstr "Alben: %s"
+
+#: ../poll_results.php:177 ../util.php:2020
+msgid "No votes so far."
+msgstr "Keine Stimmen bisher."
 
 #: ../progress_uploading.php:44
 msgid "Uploading Photos"
@@ -1849,15 +1853,15 @@ msgstr "Ihre Zugangsdaten werden in der Mail enhalten sein. Diese Mail wird an d
 
 #: ../rename_album.php:45 ../view_album.php:916
 msgid "Rename Album"
-msgstr "&Auml;ndere Albumnamen"
+msgstr "Albumnamen &auml;ndern"
 
 #: ../rename_album.php:100
 msgid "There is already an album with that name!"
-msgstr "Es existiert bereits ein Album mit diesem Namen !"
+msgstr "Es existiert bereits ein Album mit diesem Namen!"
 
 #: ../rename_album.php:108
 msgid "What do you want to name this album?"
-msgstr "Wie m&ouml;chten Sie dieses Album nennen ?"
+msgstr "Wie m&ouml;chten Sie dieses Album nennen?"
 
 #: ../rename_album.php:110
 msgid "The name cannot contain any of the following characters"
@@ -1882,7 +1886,7 @@ msgstr "Abstimmung zur&uuml;cksetzen"
 #: ../reset_votes.php:64
 #, php-format
 msgid "Do you really want to remove all votes in %s?"
-msgstr "M&ouml;chten Sie wirklich alle Stimme in %s entfernen?"
+msgstr "M&ouml;chten Sie wirklich alle Wertungen aus %s entfernen?"
 
 #: ../reset_votes.php:68
 msgid "Remove Votes"
@@ -1907,7 +1911,7 @@ msgstr "Ver&auml;ndere Gr&ouml;sse von einem Photo"
 
 #: ../resize_photo.php:82
 msgid "Resizing photos"
-msgstr "Ver&auml;nderePhotogr&szlig;en"
+msgstr "Ver&auml;ndere Photogr&szlig;en"
 
 #: ../resize_photo.php:84
 msgid "This will resize your photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size. "
@@ -2400,7 +2404,7 @@ msgstr "Status: %s (erwartet: %s)"
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP's %s war es nicht m&ouml;glich die Dimensionen zu erkennen."
 
-#: ../util.php:245 ../util.php:586 ../util.php:632 ../util.php:2581
+#: ../util.php:245 ../util.php:586 ../util.php:632 ../util.php:2576
 msgid "You have no graphics package configured for use!"
 msgstr "Sie haben kein Bearbeitungsprogramm f&uuml; Graphiken angegeben"
 
@@ -2511,191 +2515,187 @@ msgstr "kein mal gesehen"
 msgid "Sub-albums"
 msgstr "Unteralben"
 
-#: ../util.php:1895 ../view_album.php:610 ../view_album.php:640
+#: ../util.php:1890 ../view_album.php:610 ../view_album.php:640
 #: ../view_album.php:1035
 msgid "Vote"
 msgstr "Vote !"
 
-#: ../util.php:1936
+#: ../util.php:1931
 msgid "Total points in brackets"
 msgstr "Gesamtpunkte in Klammern"
 
-#: ../util.php:1941
+#: ../util.php:1936
 msgid "Average points in brackets"
 msgstr "Durchschnittliche Punkte in Klammern"
 
-#: ../util.php:1999
+#: ../util.php:1994
 #, php-format
 msgid "Results from %s."
 msgstr "Ergebnis von %s."
 
-#: ../util.php:2001
+#: ../util.php:1996
 msgid "1 voter"
 msgstr "1 Stimme"
 
-#: ../util.php:2001
+#: ../util.php:1996
 msgid "voters"
 msgstr "Abstimmer"
 
-#: ../util.php:2002
+#: ../util.php:1997
 msgid "0 voters"
 msgstr "0 Abstimmer"
 
-#: ../util.php:2012
+#: ../util.php:2007
 #, php-format
 msgid "%s: %s points; "
 msgstr "%s: %s Punkte; "
 
-#: ../util.php:2018
+#: ../util.php:2013
 #, php-format
 msgid "Key - %s"
 msgstr "Schl&uuml;ssel - %s"
 
-#: ../util.php:2025
-msgid "No votes so far."
-msgstr "Keine Stimmen bisher."
-
-#: ../util.php:2049
+#: ../util.php:2044
 msgid "Poll results:"
 msgstr "Abstimmungsergebnis:"
 
-#: ../util.php:2052
+#: ../util.php:2047
 msgid "No votes"
 msgstr "Keine Stimmen"
 
-#: ../util.php:2056
+#: ../util.php:2051
 #, php-format
 msgid "Number %d overall."
 msgstr "%d insgesamt."
 
-#: ../util.php:2061
+#: ../util.php:2056
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: ../util.php:2062 ../view_album.php:615
+#: ../util.php:2057 ../view_album.php:615
 msgid "1 vote"
 msgstr "1 Stimme"
 
-#: ../util.php:2062 ../view_album.php:615
+#: ../util.php:2057 ../view_album.php:615
 msgid "votes"
 msgstr "Stimmen"
 
-#: ../util.php:2062
+#: ../util.php:2057
 msgid "0 votes"
 msgstr "0 Stimmen"
 
-#: ../util.php:2073
+#: ../util.php:2068
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "%s wird &uuml;bersprungen (ZIP-Unterst&uuml;tzung nicht aktiviert)"
 
-#: ../util.php:2147
+#: ../util.php:2142
 #, php-format
 msgid "Adding %s"
 msgstr "F&uuml;ge hinzu: %s"
 
-#: ../util.php:2158
+#: ../util.php:2153
 #, php-format
 msgid "Error: %s!"
 msgstr "Fehler: %s !"
 
-#: ../util.php:2160
+#: ../util.php:2155
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Brauchen Sie Hilfe? Schauen Sie in die %s%s F.A.Q.%s"
 
-#: ../util.php:2166
+#: ../util.php:2161
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "&Uuml;berspringe%s (Kann %s Format nicht verarbeiten)"
 
-#: ../util.php:2539
+#: ../util.php:2534
 msgid "documentation"
 msgstr "Dokumentation"
 
-#: ../util.php:2564
+#: ../util.php:2559
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Die EXIF Daten konnten nicht gespeichert werden (jhead nicht installiert)"
 
-#: ../util.php:2591
+#: ../util.php:2586
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generiert von %s v%s"
 
-#: ../util.php:2593
+#: ../util.php:2588
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2637
+#: ../util.php:2632
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Die ung&uuml;ltige Emailadresse %s wird &uuml;bersprungen"
 
-#: ../util.php:2703
+#: ../util.php:2698
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message."
 msgstr "Hinweis:  Dies ist eine automatisch generierete Email der Webseite %s.  Falls Sie sie nicht angefordert haben, bitte ignorieren Sie sie."
 
-#: ../util.php:2705
+#: ../util.php:2700
 #, php-format
 msgid "Report abuse to %s."
 msgstr "Bitte melden Sie Missbrauch an %s."
 
-#: ../util.php:2721
+#: ../util.php:2716
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Es wurde keine Email gesendet, da dieses Feature ausgeschaltet wurde."
 
-#: ../util.php:2725
+#: ../util.php:2720
 msgid "Email not sent as no address provided"
 msgstr "Es wurde keine Email gesendet, da keine Emaildresse angegeben wurde."
 
-#: ../util.php:2730
+#: ../util.php:2725
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Es wurde keine Email an %s gesendet, da die Adresse ung&uuml;ltig ist."
 
-#: ../util.php:2745
+#: ../util.php:2740
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Die Absenderaddress %s ist ung&uuml;ltig, es wird %s benutzt."
 
-#: ../util.php:2769 ../util.php:2774
+#: ../util.php:2764 ../util.php:2769
 msgid "not shown"
 msgstr "wird nicht angezeigt"
 
-#: ../util.php:2778
+#: ../util.php:2773
 msgid "Message"
 msgstr "Meldung"
 
-#: ../util.php:2782
+#: ../util.php:2777
 msgid "Email sent"
 msgstr "Email wurde gesendet"
 
-#: ../util.php:2784
+#: ../util.php:2779
 msgid "Email not sent"
 msgstr "Email wurde nicht gesendet"
 
-#: ../util.php:2798
+#: ../util.php:2793
 #, php-format
 msgid "Last comment %s."
 msgstr "Letztes Kommentar am %s."
 
-#: ../util.php:2809
+#: ../util.php:2804
 msgid "FAILED"
 msgstr "FEHLGESCHLAGEN"
 
-#: ../util.php:2818
+#: ../util.php:2813
 msgid "Email activity"
 msgstr "Email Aktivit&auml;t"
 
-#: ../util.php:2836
+#: ../util.php:2831
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Konnte die Logdatei: %s nicht &ouml;ffnen"
 
-#: ../util.php:2843
+#: ../util.php:2838
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -2708,54 +2708,54 @@ msgid ""
 msgstr ""
 "Hi !!FULLNAME!!, \n"
 "\n"
-"Gl&uuml;ckwunsch.  Sie haben sich bei %s als %s angemeldet.  Ihre Zugangsdaten sind:\n"
+"Glückwunsch.  Sie haben sich bei %s als %s angemeldet.  Ihre Zugangsdaten sind:\n"
 "Benutzername is !!USERNAME!!\n"
 "Password is !!PASSWORD!!\n"
 "\n"
-"Gallery @ %s Administratir."
+"Gallery @ %s Administrator."
 
-#: ../util.php:2852 ../util.php:2854
+#: ../util.php:2847 ../util.php:2849
 msgid "gallery title"
 msgstr "Galerietitel"
 
-#: ../util.php:2853
+#: ../util.php:2848
 msgid "gallery URL"
 msgstr "Gallery URL"
 
-#: ../util.php:2906
+#: ../util.php:2901
 msgid "screenshot"
 msgstr "Screenshot"
 
-#: ../util.php:2916 ../util.php:2963
+#: ../util.php:2911 ../util.php:2958
 #, php-format
 msgid "Can't open %s"
 msgstr "Fehler beim &Ouml;ffnen von %s"
 
-#: ../util.php:2929 ../util.php:2934
+#: ../util.php:2924 ../util.php:2929
 msgid "None"
 msgstr "Keinen"
 
-#: ../util.php:2930 ../util.php:2935
+#: ../util.php:2925 ../util.php:2930
 msgid "Dots"
 msgstr "Gestrichelte Linie"
 
-#: ../util.php:2931 ../util.php:2936
+#: ../util.php:2926 ../util.php:2931
 msgid "Solid"
 msgstr "Durchgezogene Linie"
 
-#: ../util.php:2934
+#: ../util.php:2929
 msgid "No frames"
 msgstr "Keinen Rahmen"
 
-#: ../util.php:2935
+#: ../util.php:2930
 msgid "Just a simple dashed border around the thumb."
 msgstr "Zeichnet eine einfache gestrichelten Linie um das Thumbnail."
 
-#: ../util.php:2936
+#: ../util.php:2931
 msgid "Just a simple solid border around the thumb."
 msgstr "Zeichnet eine einfache durchgezogene Linie um das Thumbnail."
 
-#: ../util.php:2957
+#: ../util.php:2952
 #, php-format
 msgid "Skipping %s."
 msgstr "&Uuml;berspringe %s."
@@ -2866,7 +2866,7 @@ msgstr "Es wurden bisher keine Stimmen abgegeben."
 msgid "Your current choices are"
 msgstr "Ihre M&ouml;glichkeiten sind"
 
-#: ../view_album.php:580
+#: ../view_album.php:579
 msgid "See full poll results"
 msgstr "Zeige vollst&auml;ndiges Abstimmungsergebnis"
 
@@ -2996,7 +2996,7 @@ msgstr "Dieses Album ist leer."
 
 #: ../view_album.php:1061 ../view_photo.php:863
 msgid "Email me when:"
-msgstr "Ich m&ouml;chte per Email benachrichtigt werdenm wenn:"
+msgstr "Ich m&ouml;chte per Email benachrichtigt werden, wenn:"
 
 #: ../view_album.php:1062 ../view_photo.php:864
 msgid "Comments are added"

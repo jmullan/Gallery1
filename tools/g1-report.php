@@ -222,46 +222,36 @@ function parsePoFiles($poFiles) {
     $overallTotal = array_sum(array_values($maxMessageCount));
 
     foreach (array_keys($poData) as $locale) {
-	$pluginTotal = 0;
+		$pluginTotal = 0;
 	
-	/* Fill in any missing locales */
-	foreach (array_keys($seenPlugins) as $plugin) {
-	    if (!isset($poData[$locale]['plugins'][$plugin])) {
-		$poData[$locale]['plugins'][$plugin]['missing'] = 1;
-		$poData[$locale]['plugins'][$plugin]['percentDone'] = 0;
-	    } else {
-		/*
-		 * debug
-		printf("[$locale, $plugin] [%d, %d]<br>",
-		       $poData[$locale]['plugins'][$plugin]['translated'],
-		       $poData[$locale]['plugins'][$plugin]['fuzzy']);
+		/* Fill in any missing locales */
+		foreach (array_keys($seenPlugins) as $plugin) {
+			if (!isset($poData[$locale]['plugins'][$plugin])) {
+				$poData[$locale]['plugins'][$plugin]['missing'] = 1;
+				$poData[$locale]['plugins'][$plugin]['percentDone'] = 0;
+			} else {
+				/*
+				 * debug
+				printf("[$locale, $plugin] [%d, %d]<br>",
+				$poData[$locale]['plugins'][$plugin]['translated'],
+				$poData[$locale]['plugins'][$plugin]['fuzzy']);
+				*/
+				$pluginTotal += $poData[$locale]['plugins'][$plugin]['translated'] - $poData[$locale]['plugins'][$plugin]['fuzzy'];
+				$total_percentDone[$plugin] += $poData[$locale]['plugins'][$plugin]['percentDone'];
+			}
+		}
+		uasort($poData[$locale]['plugins'], 'sortByPercentDone');
 
-		// This calculates exactly per lines
-		$pluginTotal +=
-		    $poData[$locale]['plugins'][$plugin]['translated'] -
-		    $poData[$locale]['plugins'][$plugin]['fuzzy'];
-		*/
+		/* Figure out total percentage */
+		$poData[$locale]['percentDone'] = round($pluginTotal / $overallTotal * 100,2);
+		
+		$total_percentDone['all'] += $poData[$locale]['percentDone'];
 
-		// This sums the percentages
-		$poData[$locale]['percentDone']+= $poData[$locale]['plugins'][$plugin]['percentDone'];
-		$total_percentDone[$plugin] += $poData[$locale]['plugins'][$plugin]['percentDone'];
-	    }
-	}
-	uasort($poData[$locale]['plugins'], 'sortByPercentDone');
-
-	/* Figure out total percentage */
-	// This is for exact lines
-	//$poData[$locale]['percentDone'] = round($pluginTotal / $overallTotal * 100,2);
-
-	// this is for percentages
-	$poData[$locale]['percentDone'] = round($poData[$locale]['percentDone']/sizeof($poData[$locale]['plugins']),2);
-	$total_percentDone['all'] += $poData[$locale]['percentDone'];
-
-	/* Set Language Name */
-	$poData[$locale]['langname'] = $nls['language'][$locale];
+		/* Set Language Name */
+		$poData[$locale]['langname'] = $nls['language'][$locale];
     }
 
-	/* Sort locales by overall total */
+    	/* Sort locales by overall total */
 	uasort($poData, 'sortByPercentDone');
 
 	/* Sort totals by total :) */
@@ -276,6 +266,7 @@ function sortByPercentDone($a, $b) {
     }
     return ($a['percentDone'] < $b['percentDone']) ? 1 : -1;
 }
+
 
 function percentColor($percent) {
     $border=50;
