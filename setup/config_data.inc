@@ -594,7 +594,7 @@ $constants = array_merge($constants,
 		      		"</dd><dt>"._("Albums")."</dt><dd>" . 
 		       		_("Albums and sub-albums that have comments will be marked.") .
 		      		"</dd><dt>"._("Both")."</dt><dd>" . 
-		       		_("Images and albumss that have comments will be marked.") .
+		       		_("Images and albums that have comments will be marked.") .
 		      		"</dl>" .
 				newIn("1.4.1"),
 		       	"choices" => array(

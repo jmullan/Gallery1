@@ -921,7 +921,7 @@ if ($numPhotos) {
 					showChoice(_("Rotate/Flip") ." $label", "rotate_photo.php", array("index" => $i));
 				}
 				if (!$gallery->album->isMovie($id)) {
-					showChoice(_("Highlight") . " $label", "highlight_photo.php", array("index" => $i));
+					showChoice(_('Highlight') . " $label", 'do_command.php', array('cmd' => 'highlight', 'index' => $i));
 				}
 				if ($gallery->album->isAlbumName($i)) {
 				        $myAlbumName = $gallery->album->isAlbumName($i);
