@@ -68,14 +68,14 @@ if (!$gallery->user) {
 }
 
 /* Load the correct album object */
-$gallery->album = new Album;
 if ($gallery->session->albumName) {
+	$gallery->album = new Album;
 	$ret = $gallery->album->load($gallery->session->albumName);
 	if (!$ret) {
 		$gallery->session->albumName = "";
 	} else {
 		if ($gallery->album->versionOutOfDate()) {
-			require($GALLERY_BASEDIR . "upgrade_album.php");
+			include($GALLERY_BASEDIR . "upgrade_album.php");
 			exit;
 		}
 	}
