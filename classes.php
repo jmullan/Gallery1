@@ -328,7 +328,7 @@ class Image {
 
 		$name = $this->getName($dir);
 		
-		if (strcmp($app->imageborders, "no")) {
+		if (!strcmp($app->default["imageborders"], "no")) {
 			$attrs .= " border=0";
 		}
 		
