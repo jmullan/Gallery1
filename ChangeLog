@@ -3,6 +3,16 @@
 	* Added patch by Anthony Moulen to support multi-line exif
 	  comments.
 
+2002-03-27  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b34
+
+	* Fixed bug where we were deleting photos by index instead of id which
+	  could cause problems when you have two simultaneous sessions open.
+	  Thanks to Adam Lazur <zal@debian.org> and Jan Martin Mathiassen
+	  <reaper@mindriot.as>
+
+	* Fixed bug where admins were unable to search albums if they didn't
+	  explicitly have read permissions (thanks Eelco Brolman)
+
 2002-03-24  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b33
 
 	* Added check_netpbm diagnostic script to the setup code
