@@ -10,6 +10,7 @@ while ($file = readdir($handle)) {
         if (ereg("^([a-z]{2}_[A-Z]{2})(\.[a-zA-Z0-9]+)?(\-gallery.po)$", $file, $matches)) {
 		$locale=$matches[1] . $matches[2];
 		if ($locale == "en_GB") continue; 
+		$i++;
 
 		$lines=file("../po/$file");
 		$fuzzy=0;
@@ -68,14 +69,23 @@ uasort ($report, 'my_usort_function');
 </tr>
 
 <?php
+$i=0;
 foreach ($report as $key => $value) {
+$i++;
+if ($i%2==0) {
+	$color="#ffffff";
+	$nr=1;
+} else {
+	$color="#CECECE";
+	$nr=2;
+}
 		echo "\n<tr>";
-		echo "\n\t<td>". $nls['languages'][$key] . "</td>";
-		echo "\n\t<td>". $key ."</td>";
+		echo "\n\t<td style=\"background-color:$color\">". $nls['languages'][$key] . "</td>";
+		echo "\n\t<td style=\"background-color:$color\">". $key ."</td>";
 		echo "\n\t<td style=\"background-color:#". $value[0] . "\">". $value[1] ."% done</td>";
-		echo "\n\t<td class=\"translated\">". $value[2] ."</td>";
-		echo "\n\t<td class=\"fuzzy\">". $value [3] . "</td>";
-		echo "\n\t<td class=\"untranslated\">". $value[4] ."</td>";
+		echo "\n\t<td class=\"translated$nr\">". $value[2] ."</td>";
+		echo "\n\t<td class=\"fuzzy$nr\">". $value [3] . "</td>";
+		echo "\n\t<td class=\"untranslated$nr\">". $value[4] ."</td>";
 		echo "\t</tr>";
 }
 ?>
