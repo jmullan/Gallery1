@@ -888,6 +888,44 @@ $constants = array_merge($constants,
 	"group_technical_end"	=> array (
 		"type"          => "group_end",
         ),
+	"group_rss" => array(
+		"type" => 'group_start',
+		"name" => 'group_rss',
+		"default" => 'none',
+		"title" => _("RSS Publisher"),
+		"desc" => _("Options for the Gallery RSS Publisher"),
+	),
+	"rssMode" => array(
+		"prompt" => _("RSS Content"),
+		"desc" => _("Specifies which information is to be included in your RSS feed."),
+		"choices" => array(
+			"basic" => _("Basic information only"),
+			"highlight" => _("Album highlight"),
+			"thumbs" => _("All image thumbnails"),
+			"captions" => _("All image thumbnails and captions")),
+		"value" => "basic",
+	),
+	"rssHighlight" => array(
+		"prompt" => _("RSS Highlight"),
+		"desc" => _("Specify which album will be displayed as the icon for all feed entries: An empty field means that
+there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that
+album's highlight image/"),
+		"type" => "text",
+		"attrs" => array("size" => 30),
+		"optional" => 1,
+	),
+	"rssVisibleOnly" => array(
+		"prompt" => _("Visible Albums Only"),
+		"desc" => _("Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you
+are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."),
+		"choices" => array(
+			"yes" => _("Display Visible Albums Only"),
+			"no" => _("Display Hidden Albums")),
+		"value" => "yes",
+	),
+	"group_rss_end" => array(
+		"type" => "group_end"
+	),
 	/* Keep these two at the end of the list because they're hidden */
 	"userDir" => array(
 		"desc" => "Filesystem location of user information",
@@ -1324,7 +1362,7 @@ $defaults = array(
 	),
 	"group_frames_end" => array (
 		"type" => 'group_end',
-	)
+	),
 );
 
 ?>

@@ -23,60 +23,6 @@
 <?php
 /* CONFIGURATION SECTION */
 
-# mode
-#
-# In-set HTML photo modes.  If you turn this on, <img> tags will be
-# placed in each item's description.  Options for this are:
-#
-# basic - no images at all
-# highlight - only the highlighted image
-# thumbs - all thumbnails
-# thumbs-with-captions - all thumbnails AND captions for each
-# mdm - the mystery option!
-# 
-# Note that this setting has no effect on the photo and pb elements,
-# discussed above.  Also note that 'thumbs' and 'thumbs-with-captions'
-# have been known to crash NetNewsWire.
-
-$mode = "highlight";
-
-# highlightAlbum
-# 
-# Which album's highlight picture should be the highlight for the
-# whole RSS feed?  If set to '*' it will select the highlight image
-# of the most-recently-created album.
-# 
-# If set to "", it will turn off the channel highlight feature.
-# (See noBigPhoto below for more info).
-
-$highlightAlbum = "";
-
-# onlyFindable
-#
-# Suppose you have an album with 5 sub-albums, and you don't want 
-# anyone to look at any of them, so you mark the big album as
-# hidden.  Technically, users can still look at the sub-albums, but
-# they can't actually _find_ them.
-#
-# Given that definition of findable, turn this off if you want
-# only finadable albums to be visible.
-
-$onlyFindable = TRUE;
-
-# noPhotoTag
-#
-# There are two RSS extensions that allow for images representing
-# items to be linked from feeds.  They are:
-# 
-# From Pheed Spec (see http://www.pheed.com/pheed/):
-# photo:imgsrc and photo:thumbnail
-# 
-# From PhotoBlog Spec (see http://snaplog.com/backend/PhotoBlog.html):
-# pb:thumb
-# 
-# These elements shouldn't be damaging at all, even to clients
-# unaware of their meaning, but if you want to turn them off, you can.
-
 $noPhotoTag = FALSE;
 
 # noDCDate
@@ -192,7 +138,7 @@ if (method_exists($albumDB, "getCachedNumPhotos")) {
 }
 
 foreach ($albumDB->albumList as $album) {
-	if ($onlyFindable) {
+	if ($gallery->app->rssVisibleOnly) {
 		if($album->isHiddenRecurse()) {
 			continue;
 		}
@@ -216,7 +162,7 @@ foreach ($albumDB->albumList as $album) {
 	$unixDate = $albumInfo["!date"];
 	if (IsSet($unixDate)) {
 		$albumInfo["pubDate"] = date("r", $unixDate);
-		if (! $noDCDate) {
+		if (!$noDCDate) {
 			$albumInfo["dc:date"] = makeDCDate($unixDate);
 		}
 	}
@@ -232,7 +178,7 @@ foreach ($albumDB->albumList as $album) {
 	# PHEED AND PHOTO TAGS
 
 	if (!$noPhotoTag) {
-		if (! $album->transient->photosloaded) {
+		if (!$album->transient->photosloaded) {
 			$album->load($album->fields["name"], TRUE);
 		}
 
@@ -264,21 +210,21 @@ foreach ($albumDB->albumList as $album) {
 
 	# INSET HTML IMAGES
 
-	if ($mode == "thumbs" || $mode == "mdm") {
-		if (! $album->transient->photosloaded) {
+	if ($gallery->app->rssMode == "thumbs") {
+		if (!$album->transient->photosloaded) {
 			$album->load($album->fields["name"], TRUE);
 		}
 		
 		$albumInfo["description"]  = removeUnprintable($album->fields["description"]) . '<p />';
 		$albumInfo["description"] .= getThumbs($album);
-	} elseif ($mode == "thumbs-with-captions") {
-		if (! $album->transient->photosloaded) {
+	} elseif ($gallery->app->rssMode == "thumbs-with-captions") {
+		if (!$album->transient->photosloaded) {
 			$album->load($album->fields["name"], TRUE);
 		}
 
 		$albumInfo["description"]  = removeUnprintable($album->fields["description"]) . '<p />';
 		$albumInfo["description"] .= getThumbsAndCaptions($album);
-	} elseif ($mode == "highlight" && isset($highlight)) {
+	} elseif ($gallery->app->rssMode == "highlight" && isset($highlight)) {
 		$url = makeAlbumUrl($album->fields["name"]);
 		$imgtag = $highlight->thumbnail->getTag($base, 0, 0, 'border=0');
 		$albumInfo["description"]  = "<a href=\"$url\">$imgtag</a> ";
@@ -295,9 +241,9 @@ foreach ($albumDB->albumList as $album) {
 usort($albumList, "albumSort");
 
 unset($ha); $channel_image = $channel_width = $channel_height = "";
-if (isset($highlightAlbum) && $highlightAlbum != "*") {
+if (isset($gallery->app->rssHighlight) && $gallery->app->rssHighlight != "*") {
 	foreach($albumList as $album) {
-		if ($album["!name"] == $highlightAlbum && isset($album["pb:thumb"])) {
+		if ($album["!name"] == $gallery->app->rssHighlight && isset($album["pb:thumb"])) {
 			$ha = $album;
 			break;
 		}
