@@ -91,7 +91,7 @@ function slideshow_body() {
 			$slide_dir, $borderColor, $borderwidth, $loop,
 			$bgcolor, $title, $gallery, $numPhotos, $numDisplayed,
 			$index, $photo_count, $photo, $image, $thumbImage,
-			$photoURL, $caption, $imageDir, $pixelImage;
+			$photoURL, $caption, $imageDir, $pixelImage, $number;
 ?>
 <script language="JavaScript">
 var timer; 
@@ -114,7 +114,7 @@ $numDisplayed = 0;
 // Find the correct starting point, accounting for hidden photos
 $index = getNextPhoto(0);
 $photo_count = 0;
-while ($numDisplayed < $numPhotos) { 
+while ($numDisplayed < $numPhotos && $numDisplayed < $number) { 
     if ($index > $numPhotos) {
 	/*
 	 * We went past the end -- this can happen if the last element is an
@@ -168,7 +168,7 @@ function stop() {
 function play() {
     onoff = 1;
     status = "<?php echo unhtmlentities(_("Slide show is running...")) ?>";
-    go_to_next_photo();
+    wait_for_current_photo();
 }
 
 function toggleLoop() {
@@ -177,9 +177,6 @@ function toggleLoop() {
     } else {
         loop = 1;
     }
-}
-
-function preload_complete() {
 }
 
 function reset_timer() {
@@ -222,21 +219,6 @@ function go_to_next_page() {
     return 0;
 }
 
-function go_to_next_photo() {
-    /* Go to the next location */
-    current_location = next_location;
-
-    /* Show the current photo */
-    if (!show_current_photo()) {
-	wait_for_current_photo();
-	return 0;
-    }
-
-    preload_next_photo();
-    reset_timer();
-
-}
-
 function preload_next_photo() {
     
     /* Calculate the new next location */
@@ -253,7 +235,6 @@ function preload_next_photo() {
 	    stop();
 	}
     }
-    
     
     /* Preload the next photo */
     preload_photo(next_location);
@@ -280,7 +261,6 @@ function preload_photo(index) {
 	/* not all the pics are loaded.  Is the next one loaded? */
 	if (!images[index]) {
 	    images[index] = new Image;
-	    images[index].onLoad = preload_complete();
 	    images[index].src = photo_urls[index];
 	    pics_loaded++;
 	}
@@ -402,9 +382,6 @@ if ($photo_count > 0) {
 <script language="Javascript">
 /* show the caption either in a nice div or an ugly form textarea */
 document.write("<div class='modcaption'>" + "[" + current_location + " <?php echo _("of") ?> " + photo_count + "] " + photo_captions[<?php echo $slide_index ?>] + "</div>");
-
-/* Load the first picture */
-preload_photo(<?php echo $slide_index ?>);
 
 /* Start the show. */
 play();
