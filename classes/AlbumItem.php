@@ -313,8 +313,17 @@ class AlbumItem {
 					$nestedAlbum = new Album();
 					$nestedAlbum->load($name);
 					list ($srcalbum, $srcitem) = $nestedAlbum->getHighlightedItem();
-					$srcdir = $srcalbum->getAlbumDir();
-					$tag = $srcitem->image->type;
+					if ($srcalbum !== null && $srcitem !== null) {
+						$srcdir = $srcalbum->getAlbumDir();
+						$tag = $srcitem->image->type;
+					}
+					else {
+						if (is_object($this->highlightImage)) {
+							$this->highlightImage->simpleDelete($dir);
+							$this->highlightImage = null;
+						}
+						return;
+					}
 				}
 			}
 			$size = $album->getHighlightSize();
