@@ -34,7 +34,6 @@ session_start();
  * to see if a pre-existing session variable is already associated
  * (before we register it, below).  
  */
-
 if (session_is_registered($gallery->app->sessionVar)) {
 	/* Get a simple reference to the session container (for convenience) */
 	$gallery->session =& ${$gallery->app->sessionVar};
@@ -42,7 +41,7 @@ if (session_is_registered($gallery->app->sessionVar)) {
 	/* Make sure our session is current.  If not, nuke it and restart. */
 	if (strcmp($gallery->session->version, $gallery->version)) {
 		session_destroy();
-		header("Location: " . $gallery->app->photoAlbumURL);
+		header("Location: index.php");
 		exit;
 	}	
 } else {
