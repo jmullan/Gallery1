@@ -262,6 +262,7 @@ function showChoice($label, $target, $args, $class="") {
     if (empty($args['set_albumName'])) {
 	$args['set_albumName'] = $gallery->session->albumName;
     }
+    $args['type'] = 'popup';
     echo "\t<option class=\"$class\" value='" . makeGalleryUrl($target, $args) . "'>$label</option>\n";
 }
 
