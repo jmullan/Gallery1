@@ -2669,7 +2669,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 		}
      
 	        // build the array for the SMTP dialog. Line content is array(command, success code, additonal error message)
-	        if($gallery->app->smtpUserName != ""){// SMTP authentication methode AUTH LOGIN, use extended HELO "EHLO"
+	        if(!empty($gallery->app->smtpUserName)){// SMTP authentication methode AUTH LOGIN, use extended HELO "EHLO"
 	            $smtp = array(
 	                // call the server and tell the name of your local host
 	                array("EHLO ".$gallery->app->smtpFromHost.$lb,"220,250","HELO error: "),

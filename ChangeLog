@@ -1,3 +1,17 @@
+2004-09-10  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b186
+
+	* Fix: Badly renamed button in resize_photo
+
+	* Change:  Make register_globals a "Serious Warning!"/"Continue at own risk..." in
+	  the config wizard.
+
+	* Change:  Internally "disable" register_globals in init.php by calling unset() on
+	  each $$key from $_REQUEST.  The idea is that this will be a workaround for
+	  Geeklog embedding, but it will still give us the extra security we need.
+
+	* Fix: Correct the 'Warning' code in check.inc to behave like the failure code,
+	  and remove the 'nocolor' flag, which was unnecessary.
+
 2004-09-11  Jens A. Tkotz <jens@peino.de>  1.4.5-cvs-b185
 
 	* New: Added images/favicon.ico as favicon. Inserted via common_header()

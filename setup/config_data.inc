@@ -94,19 +94,20 @@ $checklist = array(
 	     	"func" => "check_php",
 		"fail-too-old" => sprintf(_("You're running PHP version %s.  You need to upgrade to PHP %s."), phpversion(), $MIN_PHP_MAJOR_VERSION),
 		"fail-incompatible" => sprintf(_("You're running PHP version %s which has known bugs that cause Gallery to fail."),  phpversion()),
+		"serious" => 1,
 	),
 	"buggy_php" => array(
 		"desc" => _("We are using predefined variables which some older version of PHP have problems with."),
-	     	"func" => "check_filedirective",
+		"func" => "check_filedirective",
 		"buggy__FILE__" => _("It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"),
 		"serious" => 1
 	),
 	"register_globals" => array(
-		"desc" => _("Gallery requires that the PHP option 'register_globals' be turned off, for security purposes."),
+		"desc" => _("Gallery highly recommends that the PHP option 'register_globals' be turned off, for security purposes.  Some software, notably the 'Geeklog' CMS, requires that 'register_globals' be enabled."),
 		"func" => "check_register_globals",
-		"fail-register_globals" => _("The PHP option 'register_globals' is enabled on your server. Gallery is not
-compatible with this option."),
+		"warn-register_globals" => _("The PHP option 'register_globals' is enabled on your server. Gallery highly recommends that you disable 'register_globals' unless it is required by software on your site.  Gallery does not officially support 'register_globals' being enabled, and will attempt to disable it internally."),
 		"serious" => 1,
+		"optional" => 1,
 	),
 	"safe_mode" => array(
 		"desc" => _("Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."),

@@ -22,12 +22,17 @@
 ?>
 <?php
 // Hack prevention.
+
+$register_globals = @ini_get('register_globals');
+if (!empty($register_globals) && !eregi("no|off|false", $register_globals)) {
+	foreach (array_keys($_REQUEST) as $key) {
+		unset($$key);
+	}
+}
+
 $sensitiveList = array("gallery", "GALLERY_EMBEDDED_INSIDE", "GALLERY_EMBEDDED_INSIDE_TYPE");
 foreach ($sensitiveList as $sensitive) {
-	if (!empty($_GET[$sensitive]) ||
-			!empty($_POST[$sensitive]) ||
-			!empty($_COOKIE[$sensitive]) ||
-			!empty($_POST[$sensitive])) {
+	if (!empty($_REQUEST[$sensitive]) {
 		print _("Security violation") ."\n";
 		exit;
 	}

@@ -37,7 +37,8 @@ $mop = isset($_REQUEST['mop']) ? $_REQUEST['mop'] : null;
 $name = isset($_REQUEST['name']) ? $_REQUEST['name'] : null;
 $include = isset($_REQUEST['include']) ? $_REQUEST['include'] : null;
 
-/* Detect PHP-Nuke, Postnuke, phpBB2 or Mambo and react accordingly.
+/*
+ * Detect PHP-Nuke, Postnuke, phpBB2 or Mambo and react accordingly.
  * Gallery can run embedded in GeekLog too, but to catch this we need
  * config.php * Therefore we have to detect GeeLog in init.php.
  */

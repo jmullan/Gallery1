@@ -647,7 +647,6 @@ function check_gallery_languages()
 		$fail["fail-gallery-languages"] = _("No languages found."); // should never occur!
 	} else if (sizeof($languages) == 1 ) {
 		$warn['only_english'] = _("It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team.");
-		$warn['nocolor'] = true;
 	}
 	else {
 	$success[] = sprintf(_("%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
@@ -729,9 +728,6 @@ function check_absent_locales()
 				$warn[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
 			}
 		}
-	}
-	if (sizeof($warn)) {
-		$warn['nocolor'] = true;
 	}
 	return array($success, $fail, $warn);
 }
@@ -1077,8 +1073,8 @@ function check_register_globals() {
 
 	$globals_enabled = ini_get('register_globals');
 
-	if (!empty($globals_enabled) && !eregi('no|off', $globals_enabled)) {
-		$fail['fail-register_globals'] = 1;
+	if (!empty($globals_enabled) && !eregi('no|off|false', $globals_enabled)) {
+		$fail['warn-register_globals'] = 1;
 	}
 	else {
 		$success[] = _("<b>register_globals</b> is off.");
@@ -1334,7 +1330,6 @@ function check_gallery_versions()  {
 		$warn[]=sprintf(_("%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."), count($warnings)) .
 		      	"<br>" . sprintf(_("Look at %sCheck Versions%s for more details."), 
 					"<a href=check_versions.php>", "</a>");
-		$warn['nocolor'] = true;
 	} else {
 		if (count($oks) == 0) {
 			$success[] = sprintf(_("All tested files up-to-date."));
