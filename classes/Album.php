@@ -848,13 +848,16 @@ class Album {
 		if (!strcmp($gallery->app->default["useOriginalFileNames"], "yes")) {
 			$name = $originalFilename;
 			// check to see if a file by that name already exists
-			if (file_exists("$dir/$name.$tag")) {
+			// or thumbnail conflict between movie and jpeg
+			if (file_exists("$dir/$name.$tag") ||
+			    ((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
 				// append a 3 digit number to the end of the filename if it exists already
 				if (!ereg("_[[:digit:]]{3}$", $name)) {
 					$name = $name . "_001";
 				}
 				// increment the 3 digits until we get a unique filename
-				while (file_exists("$dir/$name.$tag")) {
+				while (file_exists("$dir/$name.$tag") ||
+				       ((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
 					$name++;
 				}
 			}
@@ -862,7 +865,8 @@ class Album {
 			$name = $this->newPhotoName();
 			// do filename checking here, too... users could introduce a duplicate 3 letter
 			// name if they switch original file names on and off.
-			while (file_exists("$dir/$name.$tag")) {
+			while (file_exists("$dir/$name.$tag") ||
+			       ((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
 				$name = $this->newPhotoName();
 			}
 		}
