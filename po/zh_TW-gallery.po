@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-28 16:28+0200\n"
-"PO-Revision-Date: \n"
+"POT-Creation-Date: 2003-08-28 18:24+0200\n"
+"PO-Revision-Date: 2003-08-29 13:15+200\n"
 "Last-Translator: Jian-Zhou Huang <qq@turtle.ee.ncku.edu.tw>\n"
 "Language-Team: Traditional Chinese <qq@turtle.ee.ncku.edu.tw>\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +106,7 @@ msgstr "增加多張相片"
 
 #: ../add_photos.php:71
 msgid "Tip:  Upload a ZIP file full of photos and movies!"
-msgstr "小技巧：您可以把要上傳的檔案壓縮起來以方便處理 :-)"
+msgstr "小技巧: 您可以將許多檔案壓縮後上傳喔! "
 
 #: ../add_photos.php:81
 msgid "1. Select the number of files you want to upload:"
@@ -308,9 +308,8 @@ msgid "These are not valid albums.  Please move them out of the albums directory
 msgstr "這些都不是正確的相簿, 請儘速移除. "
 
 #: ../albums.php:261
-#, fuzzy
 msgid "Highlight for Album: "
-msgstr "Highlight 相片"
+msgstr "Highlight 相簿: "
 
 # Neccessary infact of hardcoded function editField() in util.php
 #: ../albums.php:271 ../view_album.php:582
@@ -345,6 +344,10 @@ msgstr "權限設定"
 #: ../albums.php:320
 msgid "view&nbsp;comments"
 msgstr "檢視評論"
+
+#: ../albums.php:324
+msgid "url:"
+msgstr ""
 
 #: ../albums.php:336
 msgid "Hey!"
@@ -660,7 +663,7 @@ msgstr "即使使用者重新建立了, 權限還是無法恢復. "
 
 #: ../delete_user.php:74
 msgid "Do you really want to delete user"
-msgstr "您確定要刪除這個使用者嗎? "
+msgstr "您確定要刪除使用者 "
 
 #: ../do_command.php:42
 msgid "Rebuilding Thumbnails"
@@ -884,20 +887,20 @@ msgstr "Galley 設定模式"
 msgid "Gallery: Configuration Mode"
 msgstr "Gallery: 設定模式"
 
-#: ../errors/configmode.php:26
+#: ../errors/configmode.php:25
 #, php-format
 msgid "To configure gallery, %sStart the configuration wizard%s"
 msgstr "要設定 gallery, 請開始%s設定精靈%s"
 
-#: ../errors/configmode.php:32
+#: ../errors/configmode.php:31
 msgid "If you've finished your configuration but you're still seeing this page, that's because for safety's sake we don't let you run Gallery in an insecure mode."
 msgstr "如果您已經完成設定, 卻還是看到這一個網頁, 是因為您的 gallery 在 insecure 模式"
 
-#: ../errors/configmode.php:33
+#: ../errors/configmode.php:32
 msgid "You need to switch to secure mode before you can use it.  Here's how:"
 msgstr "在您使用之前需要切換到 secure 模式, 以下為方法："
 
-#: ../errors/configmode.php:39
+#: ../errors/configmode.php:38
 msgid "Then just reload this page and all should be well."
 msgstr "然後重新載入這個網頁就可以了. "
 
@@ -928,15 +931,15 @@ msgstr "Gallery 沒有正確設定"
 msgid "Uh oh!"
 msgstr "噢歐! "
 
-#: ../errors/needinit.php:24
+#: ../errors/needinit.php:23
 msgid "Gallery is not configured correctly.  There could be a variety of reasons for this.  The easiest way to fix this problem is to re-run the configuration wizard."
 msgstr "Gallery 沒有正確的設定好, 產生的原因有很多, 最簡單的方式就是重新執行設定精靈. "
 
-#: ../errors/needinit.php:25
+#: ../errors/needinit.php:24
 msgid "First, put Gallery in configuration mode:"
 msgstr "首先, 讓 Gallery 進入設定模式："
 
-#: ../errors/needinit.php:29 ../errors/reconfigure.php:31
+#: ../errors/needinit.php:28 ../errors/reconfigure.php:30
 #, php-format
 msgid "Then launch the %sconfiguration wizard%s"
 msgstr "然後執行 %s設定精靈%s"
@@ -945,11 +948,11 @@ msgstr "然後執行 %s設定精靈%s"
 msgid "Gallery needs Reconfiguration"
 msgstr "Gallery 需要重新設定"
 
-#: ../errors/reconfigure.php:26
+#: ../errors/reconfigure.php:25
 msgid "Your Gallery configuration was created using the config wizard from an older version of Gallery.  It is out of date.  Please re-run the configuration wizard!"
 msgstr "您的設定檔是由舊的 gallery 設定精靈所建立. 這已經過期了, 請重新執行設定精靈! "
 
-#: ../errors/reconfigure.php:27
+#: ../errors/reconfigure.php:26
 msgid "In a shell do this"
 msgstr "在 shell 下這這樣做"
 
@@ -1142,7 +1145,7 @@ msgstr "登入"
 
 #: ../manage_users.php:46
 msgid "Please select a user"
-msgstr ""
+msgstr "請選使用者"
 
 #: ../manage_users.php:66 ../manage_users.php:72
 msgid "Manage Users"
@@ -1547,20 +1550,19 @@ msgstr "最長邊長度 (單位：像素)"
 
 #: ../resize_photo.php:96
 msgid "Get rid of resized"
-msgstr ""
+msgstr "Get rid of resized"
 
 #: ../resize_photo.php:97
 msgid "(Use only the original picture)"
-msgstr ""
+msgstr "(只使用原始的圖片)"
 
 #: ../resize_photo.php:114
 msgid "(manual value)"
-msgstr ""
+msgstr "(自訂值)"
 
 #: ../resize_photo.php:119
-#, fuzzy
 msgid "Change Size"
-msgstr "檔案大小"
+msgstr "更改大小"
 
 #: ../rotate_photo.php:45
 msgid "Rotate/Flip Photo"
@@ -2103,7 +2105,7 @@ msgstr "%s 帳號的密碼. 不幸的是當您每次重新設定 Gallery 時都要重新輸入一遍, 我們
 
 #: ../setup/config_data.inc:189
 msgid "Locations and URLs"
-msgstr ""
+msgstr "位置與 URL"
 
 #: ../setup/config_data.inc:192
 msgid "Album directory"
@@ -2157,7 +2159,7 @@ msgstr "包含您的相簿目錄的鏡射網站列表, 在每一行中輸入一個 URL, 通常越上面的越穩
 
 #: ../setup/config_data.inc:252
 msgid "Toolkits / image processing"
-msgstr ""
+msgstr "工具 / 影像處理"
 
 #: ../setup/config_data.inc:255
 msgid "Graphics suite to use?"
@@ -2224,9 +2226,8 @@ msgid "The JPEG file format trades off size versus quality.  Gallery can control
 msgstr "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
 
 #: ../setup/config_data.inc:318
-#, fuzzy
 msgid "Optional tools"
-msgstr "說明"
+msgstr "選擇性工具"
 
 #: ../setup/config_data.inc:322
 msgid "The filesystem path to the 'zipinfo' binary.  This is optional so if you don't have it, don't worry about it too much."
@@ -2256,7 +2257,7 @@ msgstr "'jhead' 執行檔所在的路徑, 這是非必要選項, 所以即使您沒有也沒關係. 比如 %
 
 #: ../setup/config_data.inc:377
 msgid "Appearance"
-msgstr ""
+msgstr "外觀"
 
 #: ../setup/config_data.inc:380
 msgid "Show the album tree"
@@ -2276,7 +2277,7 @@ msgstr "在 Gallery 網頁中影像縮圖的大小 (單位：像素)"
 
 #: ../setup/config_data.inc:395
 msgid "Languages and locales"
-msgstr ""
+msgstr "語言與地區"
 
 #: ../setup/config_data.inc:398
 msgid "Which language do you want as your default language"
@@ -2304,58 +2305,55 @@ msgid "Gallery is displayed in the language the browser sends"
 msgstr "Gallery 顯示瀏覽器送出的語言"
 
 #: ../setup/config_data.inc:414
-#, fuzzy
 msgid "The User can choose the language via pulldown menu or flags."
-msgstr "使用者可以由 select Box 中選擇自己想用的語言"
+msgstr "使用者可以由下拉式選單以及國旗選擇自己想用的語言."
 
 #: ../setup/config_data.inc:419
 msgid "Available languages in mode 3 and user preferences"
 msgstr "第三種模式可以使用的語言"
 
 #: ../setup/config_data.inc:422
-#, fuzzy
 msgid "These languages will be available as user choices in a pulldown menu or flags, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3."
-msgstr "如果您選擇第三種模式, 使用者拉下選單時會出現上面的語言. "
+msgstr "如果您選擇第三種模式, 在下拉式選單以及國旗中可使用的語言, 同時也是在模式二與三中, 以註冊的使用者可以選擇的語言. "
 
 #: ../setup/config_data.inc:429
 msgid "Show flags?"
-msgstr ""
+msgstr "顯示國旗?"
 
 #: ../setup/config_data.inc:430
 msgid "In Mode 3 you can choose if you want to display a small pulldown menu or flags for the available languages. Set to <b>no</b> per default as its only an eye catcher."
-msgstr ""
+msgstr "您可以選擇在第三種模式中使用下拉式選單或者是國旗設定語言."
 
 #: ../setup/config_data.inc:436
 msgid "Format to use for date strings."
-msgstr ""
+msgstr "日期的使用格式."
 
 #: ../setup/config_data.inc:437 ../setup/config_data.inc:448
 #, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."
-msgstr ""
+msgstr "這個字串格式將用來顯示 %s 為 %s. 建議使用 %s, 這樣子格式將會自動隨著所選語言而改變.  如果您想要更改這些字串, 請看 %s."
 
 #: ../setup/config_data.inc:438
-#, fuzzy
 msgid "date without time"
-msgstr "%s 沒有贊助"
+msgstr "只顯示日期"
 
 #: ../setup/config_data.inc:441
 #, php-format
 msgid "For example, %s will display date like this: %s."
-msgstr ""
+msgstr "舉例來說, %s 會這樣顯示日期: %s."
 
 #: ../setup/config_data.inc:447
 msgid "Format to use for date/time strings."
-msgstr ""
+msgstr "日期/時間 字串的使用格式"
 
 #: ../setup/config_data.inc:449
 msgid "date with time"
-msgstr ""
+msgstr "顯示日期與時間"
 
 #: ../setup/config_data.inc:452
 #, php-format
 msgid "For example, %s will display date and time like this: %s."
-msgstr ""
+msgstr "舉例來說, %s 會這樣顯示日期與時間: %s."
 
 #: ../setup/config_data.inc:469
 msgid "Time Limit"
@@ -2367,11 +2365,11 @@ msgstr "每一個動作所能使用的最多時間 (秒). 如果您有 <b>Maximum execution time ex
 
 #: ../setup/config_data.inc:478
 msgid "Debug mode"
-msgstr ""
+msgstr "除錯模式"
 
 #: ../setup/config_data.inc:479
 msgid "Turn debug mode on so that you can diagnose problems?"
-msgstr "打開 Debug 模式如果您想要檢測問題"
+msgstr "打開除錯模式讓您可以檢測問題? "
 
 #: ../setup/config_data.inc:484
 #, php-format
@@ -2911,7 +2909,7 @@ msgstr "我們無法偵測到任何的 locales, 況且您的伺服器有 %s 的限制有可能導致這個情
 #: ../setup/functions.inc:543
 #, php-format
 msgid "We were unable to detect any system locales. Multilanguage functions will be disabled. Please install the corresponding locales or ask your Provider to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s"
-msgstr ""
+msgstr "無法偵測到任何系統的地區設定. 多國語系的功能將停用. 請安裝相關的地區設定或者詢問您的網站提供者. 在 %s 系統上是已知的問題, 如果您使用該系統, 請看一下 %sDebian locale HowTo%s"
 
 #: ../setup/functions.inc:545
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
@@ -3244,36 +3242,32 @@ msgid "upgrade"
 msgstr "更新"
 
 #: ../upgrade_users.php:41 ../upgrade_users.php:47
-#, fuzzy
 msgid "Upgrading Users"
-msgstr "管理使用者"
+msgstr "更新使用者資料"
 
 #: ../upgrade_users.php:50
-#, fuzzy
 msgid "The user database in your Gallery was created with an older version of the software and is out of date."
-msgstr "您所在的相簿為較舊版本的 Gallery 所使用, 但您目前所使用的 Gallery 為新版. "
+msgstr "您的 Gallery 使用者資料庫是由舊版的軟體所建立. "
 
 #: ../upgrade_users.php:52
-#, fuzzy
 msgid "We will upgrade it.  This may take some time."
-msgstr "我們將為您進行資料的轉換, 對於較大的資料會花久一點的時間, "
+msgstr "我們將為您進行資料的升級, 這會花上一點時間. "
 
 #: ../upgrade_users.php:53
-#, fuzzy
 msgid "Your data will not be harmed in any way by this process."
 msgstr "在這過程之中您的資料將不會損壞. "
 
 #: ../upgrade_users.php:62
 msgid "There was a problem upgrading users.  Please check messages above, and try again"
-msgstr ""
+msgstr "升級使用者資料發生問題. 請檢查上面的訊息, 然後重試一次"
 
 #: ../upgrade_users.php:63
 msgid "Retry"
-msgstr ""
+msgstr "重試"
 
 #: ../upgrade_users.php:67
 msgid "Users upgraded successfully."
-msgstr ""
+msgstr "成功更新使用者資料. "
 
 #: ../user_preferences.php:50
 msgid "Incorrect password"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-28 16:28+0200\n"
+"POT-Creation-Date: 2003-08-28 18:24+0200\n"
 "PO-Revision-Date: 2003-07-03 16:00+0100\n"
 "Last-Translator: Jens Tkotz <jens@f2h9.de>\n"
 "Language-Team: German <jens@f2h9.de\n"
@@ -45,7 +45,7 @@ msgstr "Kommentar hinzuf&uuml;gen"
 
 #: ../add_comment.php:70
 msgid "Enter your comment for this picture in the text box below."
-msgstr "Geben Sie ein Kommentar zu diesem Bild in das Eingabefeld ein"
+msgstr "Geben Sie einen Kommentar zu diesem Bild in das Eingabefeld ein"
 
 #: ../add_comment.php:90
 msgid "Name or email:"
@@ -341,6 +341,10 @@ msgstr "Berechtigungen"
 #: ../albums.php:320
 msgid "view&nbsp;comments"
 msgstr "Betrachte Kommentare"
+
+#: ../albums.php:324
+msgid "url:"
+msgstr "URL:"
 
 #: ../albums.php:336
 msgid "Hey!"
@@ -879,20 +883,20 @@ msgstr "Gallery befindet sich im Konfigurationsmodus"
 msgid "Gallery: Configuration Mode"
 msgstr "Gallery : Konfigurationsmodus"
 
-#: ../errors/configmode.php:26
+#: ../errors/configmode.php:25
 #, php-format
 msgid "To configure gallery, %sStart the configuration wizard%s"
 msgstr "Um die Gallery zu konfigurieren, %sstarten Sie den Konfigurationsassistenten%s"
 
-#: ../errors/configmode.php:32
+#: ../errors/configmode.php:31
 msgid "If you've finished your configuration but you're still seeing this page, that's because for safety's sake we don't let you run Gallery in an insecure mode."
 msgstr "Wenn Sie die Konfiguration beendet haben und diese Seite dennoch erscheint, dann geschieht dies aus Sicherheitsgr&uuml;nden. Die Gallery wird nicht im ungesicherten Zustand laufen."
 
-#: ../errors/configmode.php:33
+#: ../errors/configmode.php:32
 msgid "You need to switch to secure mode before you can use it.  Here's how:"
 msgstr "Sie m&uuml;ssen die Gallery in den gesicherten Zustand bringen,bevor Sie sie nutzen k&ouml;nnen. Dies geschieht so:"
 
-#: ../errors/configmode.php:39
+#: ../errors/configmode.php:38
 msgid "Then just reload this page and all should be well."
 msgstr "Anschliessend laden Sie diese Seite erneut und es sollte funktionieren."
 
@@ -923,15 +927,15 @@ msgstr "Gallery wurde falsch konfiguriert"
 msgid "Uh oh!"
 msgstr "Da ging was schief !"
 
-#: ../errors/needinit.php:24
+#: ../errors/needinit.php:23
 msgid "Gallery is not configured correctly.  There could be a variety of reasons for this.  The easiest way to fix this problem is to re-run the configuration wizard."
 msgstr "Ihre Gallery ist nicht korrekt oder nur unvollst%auml;ndig konfiguriert. Der einfachste Weg, um dieses Problem zu l&ouml;sen, ist, den Konfigurationsassistenten erneut zu starten."
 
-#: ../errors/needinit.php:25
+#: ../errors/needinit.php:24
 msgid "First, put Gallery in configuration mode:"
 msgstr "Zuerst bringen Sie die Gallery in den Konfigurationsmodus:"
 
-#: ../errors/needinit.php:29 ../errors/reconfigure.php:31
+#: ../errors/needinit.php:28 ../errors/reconfigure.php:30
 #, php-format
 msgid "Then launch the %sconfiguration wizard%s"
 msgstr "Danach starten Sie den %sKonfigurationsassistenten%s"
@@ -940,11 +944,11 @@ msgstr "Danach starten Sie den %sKonfigurationsassistenten%s"
 msgid "Gallery needs Reconfiguration"
 msgstr "Die Gallery muss erneut konfiguriert werden"
 
-#: ../errors/reconfigure.php:26
+#: ../errors/reconfigure.php:25
 msgid "Your Gallery configuration was created using the config wizard from an older version of Gallery.  It is out of date.  Please re-run the configuration wizard!"
 msgstr "Ihre Gallery-Konfiguration wurde mit einer &auml;lteren Gallery-Version erzeugt. Sie ist dadurch veraltet. Bitte f&uuml;hren Sie den Konfigurationsassistenten erneut aus!"
 
-#: ../errors/reconfigure.php:27
+#: ../errors/reconfigure.php:26
 msgid "In a shell do this"
 msgstr "In der Shell f&uuml;hren Sie aus :"
 
@@ -958,7 +962,7 @@ msgstr "Die Gallery wurde nicht konfiguriert !"
 
 #: ../errors/unconfigured.php:28
 msgid "Gallery must be configured before you can use it.  First, you must put it into configuration mode.  Here's how."
-msgstr "Ohne Konfiguration wird die Gallery nicht laufen.  Zuerst bringen Sie die Gallery in den Konfigurationsmodus bringen. Dies geschiet so:"
+msgstr "Ohne Konfiguration wird die Gallery nicht laufen.  Zuerst m&uuml;ssen Sie die Gallery in den Konfigurationsmodus bringen. Dies geschiet so:"
 
 #: ../errors/unconfigured.php:31
 #, php-format
@@ -1039,7 +1043,7 @@ msgstr "Benutzer ist ein Administrator"
 
 #: ../html/userData.inc:133
 msgid "you can't un-admin yourself"
-msgstr "Sie k&ouml;nnen Sich nicht selbst den Admin-Status nehmen."
+msgstr "Sie k&ouml;nnen sich nicht selbst den Admin-Status nehmen."
 
 #: ../layout/commentbox.inc:6 ../layout/commentdraw.inc:24
 msgid "From:"
@@ -1275,7 +1279,7 @@ msgstr "WARNUNG: Einige Ihrer Alben ben&ouml;tigen eine Aktualisierung auf die a
 
 #: ../move_photo.php:306
 msgid "Upgrade now"
-msgstr "Upgrade Sie jetzt"
+msgstr "Aktualisieren Sie jetzt"
 
 #: ../photo_owner.php:80 ../photo_owner.php:86 ../view_album.php:646
 msgid "Change Owner"
@@ -1501,7 +1505,7 @@ msgstr "Diese Zeichen werden ignoriert."
 
 #: ../resize_photo.php:46
 msgid "Resize Photo"
-msgstr "Ver&auml;ndere Photo Gr&ouml;sse"
+msgstr "Ver&auml;ndere Photogr&szlig;e"
 
 #: ../resize_photo.php:60
 #, php-format
@@ -1518,7 +1522,7 @@ msgstr "Ver&auml;ndere Gr&ouml;sse von einem Photo"
 
 #: ../resize_photo.php:81
 msgid "Resizing photos"
-msgstr "Ver&auml;ndere Photogr&ouml;ssen"
+msgstr "Ver&auml;nderePhotogr&szlig;en"
 
 #: ../resize_photo.php:83
 msgid "This will resize your photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size. "
@@ -1691,7 +1695,7 @@ msgstr "Keine &uuml;bereinstimmenden Photos"
 #: ../search.php:232
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
-msgstr "WARNUNG: Einige Ihrer Alben wurden nicht durchsucht, da sie zuerst ein upgrade auf die aktuelle Version der %s ben&ouml;tigen."
+msgstr "WARNUNG: Einige Ihrer Alben wurden nicht durchsucht, da sie zuerst eine Aktualisierung auf die aktuelle Version der %s ben&ouml;tigen."
 
 #: ../search.php:235
 msgid "upgrade all albums"
