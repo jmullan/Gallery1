@@ -224,6 +224,39 @@ class Album {
 			} else {
 				$func .= "return (strcmp(\$filenameB, \$filenameA)); ";
 			}
+		} else if (!strcmp($sort, "click")) {
+			// sort album by number of clicks
+			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
+			$func .= "\$aClick = \$objA->getItemClicks(); ";
+			$func .= "\$bClick = \$objB->getItemClicks(); ";
+			$func .= "if (\$aClick == \$bClick) return 0; ";
+			if (!$order) {
+				$func .= "if (\$aClick < \$bClick) return -1; else return 1;";
+			} else {
+				$func .= "if (\$aClick > \$bClick) return -1; else return 1;";
+			}
+		
+		} else if (!strcmp($sort, "caption")) {
+			// sort album alphabetically by caption
+			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
+			$func .= "\$captionA = \$objA->getCaption(); ";	
+			$func .= "\$captionB = \$objB->getCaption(); ";
+			if (!$order) {
+				$func .= "return (strcmp(\$captionA, \$captionB)); ";
+			} else {
+				$func .= "return (strcmp(\$captionB, \$captionA)); ";
+			}
+		}  else if (!strcmp($sort, "comment")) {
+			// sort by number of comments
+			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
+			$func .= "\$numCommentsA = \$objA->numComments(); ";
+			$func .= "\$numCommentsB = \$objB->numComments(); ";
+			$func .= "if (\$numCommentsA == \$numCommentsB) return 0; ";
+			if (!$order) {
+				$func .= "if (\$numCommentsA < \$numCommentsB) return -1; else return 1;";
+			} else {
+				$func .= "if (\$numCommentsA > \$numCommentsB) return -1; else return 1;";
+			}
 		}
 		
 		usort($this->photos, create_function('$a,$b', $func));
