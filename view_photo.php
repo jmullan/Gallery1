@@ -61,6 +61,14 @@ if ($index > $numPhotos) {
 $perPage = $rows * $cols;
 $page = ceil($index / ($rows * $cols));
 
+/*
+ * Relative URLs are tricky if we don't know if we're rewriting
+ * URLs or not.  If we're rewriting, then the browser will think
+ * we're down 1 dir farther than we really are.  Use absolute 
+ * urls wherever possible.
+ */
+$top = $app->photoAlbumURL;
+
 #-- if borders are off, just make them the bgcolor ----
 if (!strcmp($album->fields["border"], "off")) {
         $bordercolor = $album->fields["bgcolor"];
@@ -84,21 +92,16 @@ $navigator["maxPages"] = $numPhotos;
 $navigator["fullWidth"] = "100";
 $navigator["widthUnits"] = "%";
 $navigator["url"] = ".";
-#if ($full) {
-#	$navigator["url"] .= "?full=0";
-#} else {
-#	$navigator["url"] .= "?full=1";
-#}
 $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
 $navigator["noIndivPages"] = true; 
 
 #-- breadcrumb text ---
 if (strcmp($album->fields["returnto"], "no")) {
-	$breadtext[0] = "Gallery: <a href=../albums.php>".$app->galleryTitle."</a>";
-	$breadtext[1] = "Album: <a href=../view_album.php>".$album->fields["title"]."</a>";
+	$breadtext[0] = "Gallery: <a href=$top/albums.php>".$app->galleryTitle."</a>";
+	$breadtext[1] = "Album: <a href=$top/view_album.php>".$album->fields["title"]."</a>";
 } else {
-	$breadtext[0] = "Album: <a href=../view_album.php>".$album->fields["title"]."</a>";
+	$breadtext[0] = "Album: <a href=$top/view_album.php>".$album->fields["title"]."</a>";
 }
 ?>
 
@@ -144,11 +147,11 @@ includeHtmlWrap("photo.header");
 <?
 if (!$album->isMovie($index)) {
 	if ($user->canWriteToAlbum($album)) {
-		$adminCommands .= "<a href=".popup("../resize_photo.php?index=$index").">[resize photo]</a>";
+		$adminCommands .= "<a href=".popup("$top/resize_photo.php?index=$index").">[resize photo]</a>";
 	}
 
 	if ($user->canDeleteFromAlbum($album)) {
-		$adminCommands .= "<a href=".popup("../delete_photo.php?index=$index").">[delete photo]</a>";
+		$adminCommands .= "<a href=".popup("$top/delete_photo.php?index=$index").">[delete photo]</a>";
 	}
 
 	$adminbox["text"] = "&nbsp;";
@@ -191,14 +194,14 @@ include("layout/navphoto.inc");
 
                         echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
                         echo("<tr bgcolor=$bordercolor>");
-                        echo("<td height=$borderwidth width=$borderwidth><img src=../images/pixel_trans.gif></td>");
-                        echo("<td height=$borderwidth><img src=../images/pixel_trans.gif></td>");
-                        echo("<td height=$borderwidth width=$borderwidth><img src=../images/pixel_trans.gif></td>");
+                        echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+                        echo("<td height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+                        echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
                         echo("</tr>");
                         echo("<tr>");
 			echo("<td bgcolor=$bordercolor width=$borderwidth>");
 			for ($k=0; $k<$borderwidth; $k++) {
-				echo("<img src=../images/pixel_trans.gif>");
+				echo("<img src=$top/images/pixel_trans.gif>");
 			}
                         echo("</td>");
                         echo("<td>");
@@ -206,12 +209,15 @@ include("layout/navphoto.inc");
 if (!$album->isMovie($index)) {
 	if ($album->isResized($index)) { 
 		if ($full) { 
-			echo "<a href=$id?full=0>";
+			echo "<a href=" . makeGalleryUrl($albumName, $id, "full=0") . ">";
 	 	} else {
-			echo "<a href=$id?full=1>";
+			echo "<a href=" . makeGalleryUrl($albumName, $id, "full=1") . ">";
 		}
 		$openAnchor = 1;
 	}
+} else {
+	echo "<a href=" . $album->getPhotoPath($index) . " target=other>";
+	$openAnchor = 1;
 }
 ?>
 <?=$album->getPhotoTag($index, $full)?>
@@ -224,14 +230,14 @@ if ($openAnchor) {
 			echo("</td>");
 			echo("<td bgcolor=$bordercolor width=$borderwidth>");
 			for ($k=0; $k<$borderwidth; $k++) {
-				echo("<img src=../images/pixel_trans.gif>");
+				echo("<img src=$top/images/pixel_trans.gif>");
 			}
                         echo("</td>");
 			echo("</tr>");
                         echo("<tr bgcolor=$bordercolor>");
-                        echo("<td height=$borderwidth width=$borderwidth><img src=../images/pixel_trans.gif></td>");
-                        echo("<td height=$borderwidth><img src=../images/pixel_trans.gif></td>");
-                        echo("<td height=$borderwidth width=$borderwidth><img src=../images/pixel_trans.gif></td>");
+                        echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+                        echo("<td height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+                        echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
                         echo("</tr>");
                         echo("</table>");
 
