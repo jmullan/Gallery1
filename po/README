@@ -1,38 +1,79 @@
 $Id$
 
-This readme gives you a very short view how to make your own translation
 
-- if necessary, create a new gallery.pot file
-  'sh create_po_template.sh'
-  This requires xgetText version 0.12.1 or later
-  this works only on *nix System with bash.
-  Normally this is not needed, because the .pot that comes with the newest gallery should be actual
+Here's how to create a new GALLERY translation (1.4.1 or newer)
 
-- copy gallery.pot (po template) to your own .po File
+1.) Choose which version of GALLERY you want to translate. (We suggest you choose the newest)
 
-- Your .po Translation-File has to be named language_COUNTRY-gallery.po
+2.) Download or make fresh gallery-XXX.pot (po template) files according to your choosen version by
 
-  For example : english, Great Britain -> en_GB-gallery.po (or en_US-gallery.po for USA)
-  		de, Deutschland -> de_DE-gallery.po
+        * getting a full copy of the GALLERY source code from CVS or
+        * just get the gallery-XXX.pot file from the po folder via WebCVS
 
-- Don't forget to change the header Information correctly (charset etc ..)
-  Note : A good Tool to Edit .po files is poEdit works on Windows Systems, too.
-  Available from http://poedit.sourceforge.net/
+    XXX is the component name.
 
-- Note :
-  if you see something like : msgid "Upgrading item %d of %d . . . "
-  or msgid "%s (%s), %s on %s"
-  then leave the %d or %s in your translation. They are place holder for things like "time" or "times" or numbers.
-  if you see something like \" leave it, too. its a quoted "
-  the %s are important ! check that you have the same count of % in msgid and msgstr
-  
+    Note: If you are using Linux/Unix and have the full source code you can create a new gallery-XXX.pot file from the source code itself.
+    Type: 
 
-- If all translations a done run make_mo_files.sh
-  'sh make_mo_files.sh'
-  this works only on *nix System with bash
-  if you dont have shell access : 
-    copy your .po file into the po filder. 
-    use poEdit and create a gallery.mo file from your .po file
-    copy this gallery.mo intolocale/<language_COUNTRY>/LC_MESSAGES/
+        sh create_po_template.sh
 
-- Add your new language to getNLS in nls.php
+    This requires xgettext version 0.12.1 or later. Normally you will not need to this, because the .pot that comes with the newest gallery should be up-to-date. Please consult with the translation team leaders before creating your own gallery.pot. 
+
+3.) copy gallery-XXX.pot (po template) to your own .po file.
+    Your .po Translation-File has to be named <language>_<COUNTRY>-gallery_<component>.po
+
+    For example: 
+
+       english, Great Britain -> en_GB-gallery_core.po
+
+    or 
+
+       deutsch, Deutschland -> de_DE-gallery_config.po
+
+4.) Edit header Information correctly (charset etc ..)
+
+    Note: A good tool to edit .po files is poEdit 
+	  poEdit works on Windows Systems, too. It is available from http://poedit.sourceforge.net/
+
+5.) Do your translation
+
+    If you see something like: 
+
+        msgid "Upgrading item %d of %d . . . "
+
+    or 
+
+        msgid "%s (%s), %s on %s"
+
+    then leave the %d or %s in your translation. They are place holders for things like "time" or "times" or numbers. 
+
+    If you have problems with the order, because in your language its different then in english. You can use the $ to change order 
+
+    eg:
+
+        msgid "Upgrading item %d of %d" 
+        msgstr "... %2$d ... %1$d ..." 
+
+6.) If all translations are done
+
+        * With Shell Access run make_mo_files.sh
+
+        sh make_mo_files.sh -po <language>_<COUNTRY>
+
+    this works only on *nix System with bash 
+
+        * Without Shellaccess:
+              o use poEdit and create a <language>_<COUNTRY>-gallery_<component>.mo file from your .po file
+              o create a locale/<language>_<COUNTRY> folder
+              o copy <language>_<COUNTRY>-gallery_<component>.po file into locale/<language>_<COUNTRY>
+              o copy <language>_<COUNTRY>-gallery_<component>.mo into locale/<language_COUNTRY>/LC_MESSAGES/
+
+7.) Copy the nls.php file into locale/<language>_<COUNTRY> and edit it to your needs
+
+8.) Test your gallery if the newlanguage works fine.
+
+9.) Send your <language_COUNTRY>-gallery_XXX.po (ONLY THES FILES) to the GALLERY Language tracker
+    If you dont have a sourceforge account, or have no clue about this tracker then send your .po files to me. <jens@peino.de>
+
+
+Note: Please tell us for which Version your translation is! 
