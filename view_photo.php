@@ -282,7 +282,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?> 
   </style> 
   </head>
-  <body dir="<?php echo $gallery->direction ?>">
+  <body dir="<?php echo $gallery->direction ?>" onresize="calculateNewSize()">
 <?php
 } // End if ! embedded
 
@@ -787,8 +787,6 @@ if ($fitToWindow) {
 <script type="text/javascript">
 <!--
 	calculateNewSize();
-	document.photo_j.height=imageheight;
-	document.photo_j.width=imagewidth;
 //-->
 </script>
 <?php

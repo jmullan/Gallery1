@@ -5,16 +5,16 @@
 ** These values define the margin between your image and the navigation and or a left block.
 ** Change to your suites.
 */
-	var marginLeft=100;
-	var marginTop=275;
+	var marginLeft = 100;
+	var marginTop  = 275;
 
 /* 
 ** Dont touch
 ** Here are the dimensions of the original image
 */
-	var imagewidth=<?php echo $imageWidth; ?>;
-	var imageheight=<?php echo $imageHeight; ?>;
-	var imageratio = imagewidth/imageheight;
+	var imagewidth  = <?php echo $imageWidth; ?>;
+	var imageheight = <?php echo $imageHeight; ?>;
+	var imageratio  = imagewidth/imageheight;
 
 /* 
 ** Get the window width. NS and IE use different methods 
@@ -54,20 +54,26 @@ function windowHeight()
 ** We load this in the header, so the page is not fully rendered.
 ** save the windowdimensions.
 */
+function calculateNewSize(){
+
 	width = windowWidth();
 	height= windowHeight();
 
-function calculateNewSize(){
+	newwidth = imagewidth;
+	newheight = imageheight;
 
-	if ( imagewidth > width-marginLeft) {
-		imagewidth=width-marginLeft;
-		imageheight=imagewidth/imageratio;
+	if ( imagewidth > (width - marginLeft)) {
+		newwidth = width - marginLeft;
+		newheight = newwidth / imageratio;
 	}
+	if (imageheight > (height - marginTop)) {
+		newheight = height - marginTop;
+		newwidth = newheight * imageratio;
+	}
+	
+	document.photo_j.height = newheight;
+	document.photo_j.width = newwidth;
 
-	if (imageheight > height-marginTop) {
-		imageheight = height-marginTop;
-		imagewidth = imageheight*imageratio;
-	}
 }
 //-->
 </script>
