@@ -21,12 +21,14 @@
 <?
 
 function editField($album, $field, $edit) {
+	global $app;
+
 	$buf = $album->fields[$field];
 	if (!strcmp($buf, "")) {
 		$buf = "<i>&lt;Empty&gt;</i>";
 	}
 	if (isCorrectPassword($edit)) {
-		$url = "edit_field.php?set_albumName={$album->fields[name]}&field=$field";
+		$url = "$app->photoAlbumURL/edit_field.php?set_albumName={$album->fields[name]}&field=$field";
 		$buf .= "<font size=1>";
 		$buf .= "<a href=" . popup($url) . ">[edit $field]</a>";
 		$buf .= "</font>";
@@ -35,12 +37,14 @@ function editField($album, $field, $edit) {
 }
 
 function editCaption($album, $index, $edit) {
+	global $app;
+
 	$buf = $album->getCaption($index);
 	if (isCorrectPassword($edit)) {
 		if (!strcmp($buf, "")) {
 			$buf = "<i>&lt;No Caption&gt;</i>";
 		}
-		$url = "edit_caption.php?set_albumName={$album->fields[name]}&index=$index";
+		$url = "$app->photoAlbumURL/edit_caption.php?set_albumName={$album->fields[name]}&index=$index";
 		$buf .= "<font size=1>";
 		$buf .= "<a href=" . popup($url) . ">[edit]</a>";
 		$buf .= "</font>";
