@@ -37,9 +37,22 @@ if ($navpage == 0) {
 <?
 } else {
 	$firstPage = $navigator["allIds"][0];
+	$firstAlbumName = "";
+	if ($album->isAlbumName(1)) { // first image is an album
+		$firstAlbumName = $album->isAlbumName(1);
+	}
 ?>
     <td align="center" width="27" height="18"> 
+<?
+	if ($firstAlbumName) {
+?>
+      <a href="<?=makeGalleryUrl($firstAlbumName)?>"><img src="<?=$imageDir?>/nav_first.gif" border="0" width="27" height="11" alt="First Photo"></a>
+<?	} else {
+?>
       <a href="<?=makeGalleryUrl($albumName, $firstPage)?>"><img src="<?=$imageDir?>/nav_first.gif" border="0" width="27" height="11" alt="First Photo"></a>
+<?
+	}
+?>
       </td>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
 <?
@@ -50,9 +63,24 @@ if ($navpage == 0) {
 $prevPage = $navpage - 1;
 if ($prevPage >= 0) {
 	$prevPage = $navigator["allIds"][$prevPage];
+	$prevAlbumName = "";
+	if ($album->isAlbumName($navpage)) { // previous page is album
+		$prevAlbumName = $album->isAlbumName($navpage);
+	}
 ?>
     <td align="center" width="72" height="18">
+<?
+        if ($prevAlbumName) {
+?>
+      <a href="<?=makeGalleryUrl($prevAlbumName)?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo">
+</a>
+<?
+        } else {
+?>
       <a href="<?=makeGalleryUrl($albumName, $prevPage)?>"><img src="<?=$imageDir?>/nav_prev.gif" border="0" width="72" height="11" alt="Previous Photo"></a>
+<?
+}
+?>
       </td>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
 <?
@@ -75,10 +103,25 @@ echo "</span>";
 #-- 'next' button cell ---
 if ($navpage+1 != $navcount) {
 	$nextPage = $navigator["allIds"][$navpage+1];
+	$nextAlbumName = "";
+	if ($album->isAlbumName($navpage+2)) { //our next page is an album
+		$nextAlbumName = $album->isAlbumName($navpage+2);
+	} 
 ?>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
     <td align="center" width="72" height="18">
-      <a href="<?=makeGalleryUrl($albumName, $nextPage)?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo"></a>
+<? 
+	if ($nextAlbumName) {
+?>
+      <a href="<?=makeGalleryUrl($nextAlbumName)?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo"></a>
+<?
+	} else {
+?>
+      <a href="<?=makeGalleryUrl($albumName, $nextPage)?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo">
+</a>
+<?
+}
+?>
       </td>
 <?
 } else {   
@@ -96,11 +139,24 @@ if ($navpage+1 == $navcount) {
     <td align="center" width="27" height="18">&nbsp;</td>
 <?
 } else {        
-	$lastPage = $navigator["allIds"][$navcount-1];
+	$lastPage = $navigator["allIds"][$navpage+1];
+	$lastAlbumName = "";
+	if ($album->isAlbumName($navcount)) { // out last page is an album
+		$lastAlbumName = $album->isAlbumName($navcount);
+	}
 ?>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
     <td align="center" width="27" height="18">
+<?
+	if ($lastAlbumName) {
+?>
+      <a href="<?=makeGalleryUrl($lastAlbumName)?>"><img src="<?=$imageDir?>/nav_last.gif" border="0" width="27" height="11" alt="Last Photo"></a>
+<? 	} else {
+?>
       <a href="<?=makeGalleryUrl($albumName, $lastPage)?>"><img src="<?=$imageDir?>/nav_last.gif" border="0" width="27" height="11" alt="Last Photo"></a>
+<?
+}
+?>
     </td>
 <?
 } 
