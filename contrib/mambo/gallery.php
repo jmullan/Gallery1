@@ -36,8 +36,17 @@ foreach ($param as $curr) {
 	$MOS_GALLERY_PARAMS[$curr[0]] = $curr[1];
 }
 
+if (!realpath($MOS_GALLERY_PARAMS['path'])) {
+	echo _("Security Violation");
+	exit;
+} else {
+	if (! defined("MOS_GALLERY_PARAMS_PATH")) {
+		define ("MOS_GALLERY_PARAMS_PATH",$MOS_GALLERY_PARAMS['path']);
+	}
+}
+
 print '<table width="100%" cellpadding="4" cellspacing="0" border="0" align="center" class="contentpane">' . "\n<tr><td>\n";
-include($MOS_GALLERY_PARAMS['path'] . 'index.php');
+include(MOS_GALLERY_PARAMS_PATH . 'index.php');
 print "</td></tr>\n</table>\n";
 
 ?>

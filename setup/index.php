@@ -88,10 +88,10 @@ foreach (array_keys($preserve) as $key) {
 <?php
 $legit = array("check", "constants", "defaults", "confirm", "write");
 if (in_array($setup_page, $legit)) {
-  include("$setup_page.inc");
+	include(dirname(__FILE__) ."/$setup_page.inc");
 } else {
-  print _("Security violation") .".\n";
-  exit;
+	print _("Security violation") .".\n";
+exit;
 }
 ?>
 

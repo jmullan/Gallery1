@@ -1401,7 +1401,7 @@ function checkVersions($verbose=false) {
 		$fail['util.php']=sprintf(_("Please ensure that %s is the latest version."), "util.php");
 		return array($success, $fail, $warn);
 	}
-	include $manifest;
+	include (GALLERY_BASE . '/manifest.inc');
        	if ($verbose) {
 	       	print sprintf(_("Testing status of %d files."), count($versions));
 	}

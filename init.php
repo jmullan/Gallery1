@@ -121,9 +121,13 @@ if (isset($gallery->app->embedded_inside_type) && $gallery->app->embedded_inside
 	if (!realpath($gallery->app->geeklog_dir)) {
 		print _("Security violation") ."\n";
 		exit;
+	} else {
+		if (! defined ("GEEKLOG_DIR")) {
+			define ("GEEKLOG_DIR",$gallery->app->geeklog_dir);
+		}
 	}
 
-	require_once($gallery->app->geeklog_dir . '/lib-common.php');
+	require_once(GEEKLOG_DIR . '/lib-common.php');
 }
 
 if (isset($gallery->app->devMode) && 
