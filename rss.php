@@ -259,7 +259,7 @@ echo '<' . '?xml version="1.0" encoding="' . $gallery->locale . '"?' . '>';
 
 ?>
 
-<rss version="2.0" xmlns="http://blogs.law.harvard.edu/tech/rss" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:photo="http://www.pheed.com/pheed/" xmlns:pb="http://snaplog.com/backend/PhotoBlog.html">
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:photo="http://www.pheed.com/pheed/" xmlns:pb="http://snaplog.com/backend/PhotoBlog.html">
 	<channel>
 		<title><?php echo htmlspecialchars($gallery->app->galleryTitle) ?></title>
 		<link><?php echo $gallery->app->photoAlbumURL ?></link>

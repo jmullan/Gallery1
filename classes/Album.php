@@ -1855,7 +1855,10 @@ class Album {
 	}
 
 	function canReadRecurse($uid) {
-		$albumDB = new AlbumDB();
+		global $albumDB;
+		if (empty($albumDB)) {
+			$albumDB = new AlbumDB();
+		}
 
 		if ($this->isOwner($uid)) {
 			return true;
