@@ -54,18 +54,19 @@ if (!isset($searchstring)) {
 if ($searchstring) {
 	echo makeFormIntro("search.php");
 ?>
-<table width="100%" border="0" cellspacing="0">
-<tr>
-	<td valign="middle" align="right"><span class="admin"><?php echo _("Search Again") ?>: </span>
-		<input style="font-size:10px;" type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
-	</td>
-</tr>
-</table>
-</form>    
+	<table width="100%" border="0" cellspacing="0">
+	<tr>
+		<td valign="middle" align="right"><span class="admin"><?php echo _("Search Again") ?>: </span>
+			<input style="font-size:10px;" type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
+		</td>
+	</tr>
+	</table>
+	</form>    
 <?php
 }
 ?>
 <!-- search.header ends -->
+
 <!-- Top Nav -->
 <?php
 
@@ -79,182 +80,177 @@ includeLayout('breadcrumb.inc');
 <!-- end Top Nav -->
 <?php
 
-$navigator["fullWidth"] = 100;
-$navigator["widthUnits"] = "%";
-
 $albumDB = new AlbumDB();
 $list = $albumDB->albumList;
 $numAlbums = count($list);
 $photoMatch = 0;
 $albumMatch = 0;
 $skip = array();
+$text = array();
 if ($searchstring) {
 	$origstr = $searchstring;
 	$searchstring = escapeEregChars ($searchstring);
 	$searchstring = str_replace ("\\*", ".*", $searchstring);
 
-	$adminbox["text"] = '<span class="admin">'. sprintf(_("Albums containing %s"), "\"$origstr\"") . '</span>';
-	$adminbox["bordercolor"] = $borderColor; 
-	$adminbox["top"] = false;
-	includeLayout('adminbox.inc');
-	echo '<br>';
-	echo '<table width="'. $navigator['fullWidth'] . $navigator['widthUnits'] .'" border="0" cellspacing="0" cellpadding="0">';
+	$uid = $gallery->user->getUid();
 	for ($i = 0; $i<$numAlbums; $i++) {
-		// initialize values
-		$searchdraw["bordercolor"]="";
-	       	$searchdraw["photoURL"]="";
-	       	$searchdraw["photolink"]="";
-	       	$searchdraw["Text1"]="";
-	       	$searchdraw["Text2"]="";
-	       	$searchdraw["Text3"]="";
-	       	$searchdraw["Text4"]="";
-	       	$searchdraw["Text5"]="";
-
 		$searchAlbum = $list[$i];
+
+		if (!$gallery->user->isAdmin() && $searchAlbum->isHiddenRecurse()) {
+			// One of the parents of this album is hidden - do not show it to users
+			continue;
+		}
+		
+		if (!$gallery->user->isAdmin() && !$searchAlbum->canReadRecurse($uid)) {
+			// User is not allowed to search through see album
+			continue;
+		}
 		if ($searchAlbum->versionOutOfDate()) {
 			$skip[] = $searchAlbum;
 			continue;
 		}
+
+		// initialize values
+		unset($text);
+
 		$searchTitle = $searchAlbum->fields['title'];
 		$searchDescription = $searchAlbum->fields['description'];
 		$searchSummary = $searchAlbum->fields['summary'];
+
        		$matchTitle = eregi("$searchstring", $searchTitle);
 		$matchDescription = eregi("$searchstring", $searchDescription);
 		$matchSummary = eregi("$searchstring", $searchSummary);
+
        		if ($matchTitle || $matchDescription || $matchSummary) {
-			$uid = $gallery->user->getUid();
-			if ($searchAlbum->canReadRecurse($uid) || $gallery->user->isAdmin()) {
-				if (!$gallery->user->isAdmin() && $searchAlbum->isHiddenRecurse()) {
-					// One of the parents of this album is hidden - do not show it to users
-					continue;
-				}
-           		$albumMatch = 1;
 			$searchTitle = eregi_replace("($searchstring)", "<b>\\1</b>", $searchTitle); // cause search word to be bolded
 			$searchDescription = eregi_replace("($searchstring)", "<b>\\1</b>", $searchDescription); // cause search word to be bolded
 			$searchSummary = eregi_replace("($searchstring)", "<b>\\1</b>", $searchSummary); // cause search word to be bolded
 			$photoURL = makeAlbumUrl($searchAlbum->fields['name']);
-			$searchdraw["bordercolor"] = $borderColor;
-			$searchdraw["top"] = true;
-			$searchdraw["photolink"] = $searchAlbum->getHighlightTag($thumbSize);
-			$searchdraw["photoURL"] = $photoURL;
-			$searchdraw["Text1"] = '<table cellpadding="0" cellspacing="0" width="100%" border="0" align="center" class="mod_title"><tr valign="middle"><td class="leftspacer"></td><td><table cellspacing="0" cellpadding="0" border="0" class="mod_title_bg"><tr><td class="mod_title_left"></td><td nowrap class="title"><a href="'. $photoURL .'">'. $searchTitle .'</a></td><td class="mod_title_right"></td></tr></table></td></tr></table>';
-			$searchdraw["Text2"] = '<span class="desc">'. $searchDescription . '</span>';
-			if ($matchSummary)  { // only print summary if it matches
-				$searchdraw["Text3"] = '<span class="desc">'. $searchSummary .'</span>';
-			}
-			includeLayout('searchdraw.inc');
-			}
-		}
-	
-	}
-	if (!$albumMatch) {
-		echo "<tr><td valign=top><span class=desc>". _("No Album Matches") .".</span></td></tr>";
-	}
-	echo "</table><br>";
 
-	$breadtext[0] = "";
-	$breadcrumb["text"] = $breadtext;
-	includeLayout('breadcrumb.inc');
-	$adminbox["text"] = '<span class="admin">'. sprintf(_("Photos containing %s"), "\"$origstr\"") .'</span>';
-   	$adminbox["bordercolor"] = $borderColor; 
-	$adminbox["top"] = false;
-	includeLayout('adminbox.inc');
-	echo '<br>';
-	echo '<table width="'. $navigator['fullWidth'] . $navigator['widthUnits'] .'" border="0" cellspacing="0" cellpadding="0">';
+			$text[] = '<div class="desc"><a href="'. $photoURL .'">'. $searchTitle .'</a></div>';
 	
-	for ($i = 0; $i<$numAlbums; $i++) {
-		$searchAlbum = $list[$i]; 
-		if ($searchAlbum->versionOutOfDate()) {
-			continue;
+			if(!empty($searchDescription)) {
+				$text[] = '<div class="desc">'. $searchDescription . '</div>';
+			}
+			if ($matchSummary)  { // only print summary if it matches
+				$text[] = '<div class="desc">'. $searchSummary .'</div>';
+			}
+	
+			$searchResult['albums'][]=array(
+				"photolink" 	=> $searchAlbum->getHighlightTag($thumbSize),
+				"photoURL"	=> $photoURL,
+				"Text"		=> $text
+			);
 		}
-		$uid = $gallery->user->getUid();
-		if ($searchAlbum->canReadRecurse($uid) || $gallery->user->isAdmin()) {
-			$numPhotos = $searchAlbum->numPhotos(1);
-			for ($j = 1; $j <= $numPhotos; $j++) {
-				if ($searchAlbum->isHidden($j)) {
-					continue;
-				}
-				$searchCaption = _("Caption:") . $searchAlbum->getCaption($j);
-				$searchCaption .= $searchAlbum->getCaptionName($j);
-				$searchKeywords = $searchAlbum->getKeywords($j);
-				$commentMatch = 0;
-				$commentText = "";
-				if ($searchAlbum->canViewComments($uid) ||  $gallery->user->isAdmin()) {
-					for ($k = 1; $k <= $searchAlbum->numComments($j); $k++) {
-						// check to see if there are any comment matches
-						$comment = $searchAlbum->getComment($j, $k);
-						$searchComment = $comment->getName();
-						if ($gallery->user->isAdmin()) {
-							$searchComment .= " @ ".$comment->getIPNumber();
-						}
-						$searchComment .= ": ".$comment->getCommentText();
-						if (eregi($searchstring, $searchComment)) {
-							if (!$commentMatch) {
-								$commentText = _("Matching Comments").":<br>";
-								$commentMatch = 1;
-							} 
-							$searchComment = eregi_replace("($searchstring)", "<b>\\1</b>", $searchComment);
-							$commentText .= $searchComment . "<br><br>";
-						}
+
+		/* now search for photos .. */
+
+		$numPhotos = $searchAlbum->numPhotos(1);
+		for ($j = 1; $j <= $numPhotos; $j++) {
+			if ($searchAlbum->isHidden($j)) {
+				continue;
+			}
+
+			$searchCaption = _("Caption:") . $searchAlbum->getCaption($j);
+			$searchCaption .= $searchAlbum->getCaptionName($j);
+			$searchKeywords = $searchAlbum->getKeywords($j);
+
+			$commentMatch = 0;
+			$commentText = "";
+			if ($searchAlbum->canViewComments($uid) ||  $gallery->user->isAdmin()) {
+				for ($k = 1; $k <= $searchAlbum->numComments($j); $k++) {
+					// check to see if there are any comment matches
+					$comment = $searchAlbum->getComment($j, $k);
+					$searchComment = $comment->getName();
+					if ($gallery->user->isAdmin()) {
+						$searchComment .= " @ ".$comment->getIPNumber();
 					}
-				}
-				$extraFieldsText = "";
-				$extraFieldsMatch = 0;
-				foreach ($searchAlbum->getExtraFields() as $field)
-				{
-					$fieldValue=$searchAlbum->getExtraField($j, $field);
-					if (eregi($searchstring, $fieldValue)) {
-						$fieldValue = eregi_replace("($searchstring)", "<b>\\1</b>", $fieldValue);
-						$extraFieldsText .= "<b>$field:</b> $fieldValue<br><br>";
-						$extraFieldsMatch = 1;
-					}
-				}
-				$captionMatch = eregi($searchstring, $searchCaption);
-				$keywordMatch = eregi($searchstring, $searchKeywords);
-				if ($captionMatch || $keywordMatch || $commentMatch || $extraFieldsMatch) {
-					if (!$searchAlbum->isHidden($j) || 
-				    	$searchAlbum->isOwner($uid) || 
-			    	    	$gallery->user->isAdmin()) {
-						if ($searchAlbum->isHiddenRecurse()) {
-							// One of the parents of this item is hidden do not show it to users
-							continue;
-						}
-						$photoMatch = 1;
-						$id = $searchAlbum->getPhotoId($j);
-						// cause search word to be bolded
-						$searchCaption = eregi_replace("($searchstring)", "<b>\\1</b>", $searchCaption);
-						$searchKeywords = eregi_replace("($searchstring)", "<b>\\1</b>", $searchKeywords);
-						$searchdraw["bordercolor"] = $borderColor;
-						$searchdraw["top"] = true;
-						$searchdraw["photolink"] = $searchAlbum->getThumbnailTag($j, $thumbSize);
-						$searchdraw["photoURL"] = makeAlbumUrl($searchAlbum->fields['name'], $id);
-						$searchdraw["Text1"] = '<div class="desc">'. _("From Album") .":&nbsp;&nbsp;<a href=\"" .
-                                			makeAlbumUrl($searchAlbum->fields['name']) . "\">" .
-                                			$searchAlbum->fields['title'] . "</a></div>";
-						$searchdraw["Text2"] = '<span class="desc">'. $searchCaption .'</span>';
-						if ($keywordMatch) { // only display Keywords if there was a keyword match
-							$searchdraw["Text3"] = "<span class=fineprint>". _("KEYWORDS") .":&nbsp;&nbsp; $searchKeywords</span><br>";
-						} else {
-							$searchdraw["Text3"] = "";
-						}
-						$searchdraw["Text5"] = $commentText;
-						$searchdraw["Text4"] = $extraFieldsText;
-						includeLayout('searchdraw.inc');
+					$searchComment .= ": ".$comment->getCommentText();
+					if (eregi($searchstring, $searchComment)) {
+						if (!$commentMatch) {
+							$commentText = _("Matching Comments").":<br>";
+							$commentMatch = 1;
+						} 
+						$searchComment = eregi_replace("($searchstring)", "<b>\\1</b>", $searchComment);
+						$commentText .= "\n". $searchComment . "<br><br>";
 					}
 				}
 			}
+
+			$extraFieldsText = "";
+			$extraFieldsMatch = 0;
+			foreach ($searchAlbum->getExtraFields() as $field) {
+				$fieldValue=$searchAlbum->getExtraField($j, $field);
+				if (eregi($searchstring, $fieldValue)) {
+					$fieldValue = eregi_replace("($searchstring)", "<b>\\1</b>", $fieldValue);
+					$extraFieldsText .= "<b>$field:</b> $fieldValue<br><br>";
+					$extraFieldsMatch = 1;
+				}
+			}
+
+			$captionMatch = eregi($searchstring, $searchCaption);
+			$keywordMatch = eregi($searchstring, $searchKeywords);
+
+			unset($text);
+
+			if ($captionMatch || $keywordMatch || $commentMatch || $extraFieldsMatch) {
+				$id = $searchAlbum->getPhotoId($j);
+				// cause search word to be bolded
+				$searchCaption = eregi_replace("($searchstring)", "<b>\\1</b>", $searchCaption);
+				$searchKeywords = eregi_replace("($searchstring)", "<b>\\1</b>", $searchKeywords);
+
+				$text[] = '<div class="desc">'. _("From Album") .":&nbsp;&nbsp;<a href=\"" .
+		                              	makeAlbumUrl($searchAlbum->fields['name']) . "\">" .
+                              			$searchAlbum->fields['title'] . "</a></div>";
+				$text[] = '<div class="desc">'. $searchCaption .'</div>';
+				if ($keywordMatch) { // only display Keywords if there was a keyword match
+					$text[] = "<div class=fineprint>". _("KEYWORDS") .":&nbsp;&nbsp; $searchKeywords</div><br>";
+				}
+				$text[] = $commentText;
+				$text[] = $extraFieldsText;
+
+				$searchResult['images'][]=array(
+					'photolink'	=> $searchAlbum->getThumbnailTag($j, $thumbSize),
+					'photoUrl'	=> makeAlbumUrl($searchAlbum->fields['name'], $id),
+					'Text'		=> $text
+				);
+			}
 		}
 	}
-	if (!$photoMatch) {
-		echo "<tr><td valign=top><span class=desc>" . _("No Photo Matches") .".</span></td></tr>";
+
+
+	/* Now we show what we found ;) */
+	$resultTexts=array(
+			'albums' => array(
+				'found' => sprintf(_("Albums containing %s"), "\"$origstr\""),
+				'none'	=> _("No Album Matches")
+				),
+			'images' => array(
+				'found'	=> sprintf(_("Photos containing %s in caption or comment"), "\"$origstr\""),
+				'none'	=> _("No Photo Matches")
+			));
+
+
+	foreach ($resultTexts as $key => $text) {
+		if (!empty($searchResult[$key])) {
+			echo '<div class="vasummary">' .$text['found'] . '</div>';
+			echo '<table width="'. $navigator['fullWidth'] . $navigator['widthUnits'] .'" border="0" cellspacing="0" cellpadding="0">';
+				foreach ($searchResult[$key] as $searchdraw) {
+					$searchdraw["bordercolor"] = $borderColor;
+					$searchdraw["top"] = true;
+					includeLayout('searchdraw.inc');
+				}
+			echo '</table>';
+		} else {
+			echo '<div class="desc">'. $text['none'] . '</div>';
+		}
 	}
-	echo "</table>";
-	
+
 	if (sizeof($skip) > 0) {
-		echo gallery_error(sprintf(_("Some albums not searched as they require upgrading to the latest version of %s first"),Gallery()));
+		echo gallery_error(sprintf(_("Some albums not searched as they require upgrading to the latest version of %s first."),Gallery()));
 		if ($gallery->user->isAdmin()) {
-			print ":<br>";
-			echo popup_link(_("upgrade all albums"), "upgrade_album.php");
+			print "<br>";
+			echo popup_link(_("Upgrade all albums."), "upgrade_album.php");
 			print "<br>(";
 			$join_text='';
 			foreach($skip as $album) {
@@ -266,14 +262,12 @@ if ($searchstring) {
 			}
 			print ")";
 		}
-		else {
-			print ".";
-		}
 		echo "<p>";
 	}
 
 }
 else {
+/* No searchstring was given */
 ?>
 <br><?php echo _("Search the Gallery's Album and Photo<br> titles, descriptions and comments") ?>:<br>
 <?php echo makeFormIntro("search.php"); ?>
@@ -288,6 +282,8 @@ else {
 </form>
 <?php
 }
+
+/* Bottom of the page */
 echo "<br>";
 $breadtext[0] = _("Gallery") .": <a class=\"bread\" href=\"". makeGalleryUrl("albums.php") . "\">".$gallery->app->galleryTitle."</a>";
 $breadcrumb["text"] = $breadtext;

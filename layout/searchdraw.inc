@@ -12,24 +12,24 @@ if ($searchdraw["bordercolor"]) {
 $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"0\" height=\"0\" alt=\"\">";
 
 ?>
-  <tr>
-    <td width=100><?php echo $pixelImage ?></td>
-    <td width=10><?php echo $pixelImage ?></td>
-    <td><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td width=100>
-      <a href="<?php echo $searchdraw["photoURL"] ?>"><?php echo $searchdraw["photolink"] ?></a>
-    </td>
-    <td width=10><?php echo $pixelImage ?></td>
-    <td valign=top class="albumdesc">
-      <?php echo $searchdraw["Text1"] ?><br>
-      <?php echo $searchdraw["Text2"] ?><br><br>
-      <?php echo $searchdraw["Text3"] ?><br>
-      <?php echo $searchdraw["Text4"] ?><br>
-      <?php echo $searchdraw["Text5"] ?>
-    </td>
-  </tr>
-  <tr>
-    <td colspan=3 height=5></td>
-  </tr>
+
+	<tr><td colspan="3"><hr width="100%"></td></tr>
+	<tr>
+		<td width="100">
+		<a href="<?php echo $searchdraw["photoURL"] ?>"><?php echo $searchdraw["photolink"] ?></a>
+		</td>
+		<td width="10"><?php echo $pixelImage ?></td>
+		<?php
+		if (!empty($searchdraw['Text'])) {
+			echo "\n<td valign=\"top\" class=\"albumdesc\">";
+			foreach ($searchdraw['Text'] as $text) {
+				echo $text;
+			}
+			echo "\n</td>";
+		}
+		else {
+			echo "\n<td>&nspp;</td>";
+		}
+		?>
+	</tr>
+	<tr><td colspan="3">&nbsp;</td></tr>

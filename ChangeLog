@@ -1,3 +1,19 @@
+2004-10-19  Jens A. Tkotz <jens@peino.de>  1.4.5-cvs-b241
+
+	* Fix: Breadcrumb in search had no Border.
+
+	* Change: Rewrite of search.php
+	  - We looped twice through complete albumDB. Now only onces.
+	  - All search results are now in an array, therefore we can separate
+	    code from html output.
+	  - Little Layout change.
+
+	* Change: Adjust layout/searchdraw.inc to rewritten search.php
+
+	* Change: intented search header
+
+	* Fix: Added cpgnuke to header and footer wrapper
+
 2004-10-18  Jens A. Tkotz <jens@peino.de>  1.4.5-cvs-b240
 
 	* Change: Reverted Change in ml_pulldown. a combo or flag for 1 language makes no sense.
