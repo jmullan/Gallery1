@@ -213,10 +213,12 @@ for ($i = $start; $i <= $end; $i++) {
         </span>
    <? } ?>
    <? if ($gallery->album->versionOutOfDate()) { ?>
+    <? if ($gallery->user->isAdmin()) { ?>
   <br>
   <span class="error">
    Note:  This album is out of date! <a href="#" onClick="<?= popup("upgrade_album.php")?>">[upgrade album]</a>
   </span>
+    <? } ?>
    <? } ?>
   <? } ?>
 
