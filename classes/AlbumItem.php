@@ -181,18 +181,29 @@ class AlbumItem {
 		 * if it is now the highlight make sure it has a highlight
                  * thumb otherwise get rid of it's thumb (ouch!).
 		 */
-		$name = $this->image->name;
+		$src_name = $this->image->name;
 		$tag = $this->image->type;
+
+		if ($this->isAlbumName) {
+			$dst_name = ".album";
+		} else {
+			$dst_name = $this->image->name;
+		}
 		$setDir = $dir;
 
 		if ($this->highlight) {
 			if ($this->isAlbumName) {
-				$nestedAlbum = new Album();
-				$nestedAlbum->load($this->isAlbumName);
-				$dir = $nestedAlbum->getAlbumDir();
-				$nestedHighlightIndex = $nestedAlbum->getHighlight();
-				$nestedHighlight = $nestedAlbum->getPhoto($nestedHighlightIndex);
-				$name = $nestedHighlight->image->name;
+				$nestedName = $this->isAlbumName;
+				do {
+					$nestedAlbum = new Album();
+					$nestedAlbum->load($nestedName);
+					$dir = $nestedAlbum->getAlbumDir();
+					$nestedHighlightIndex = $nestedAlbum->getHighlight();
+					$nestedHighlight = $nestedAlbum->getPhoto($nestedHighlightIndex);
+					$nestedName = $nestedHighlight->isAlbumName;
+				} while ($nestedName);
+
+				$src_name = $nestedHighlight->image->name;
 				$tag  = $nestedHighlight->image->type;
 			}
 
@@ -201,14 +212,14 @@ class AlbumItem {
 				// Crop it first
 				if ($this->isAlbumName) {
 					$ret = cut_image("$dir/$name.$tag",
-                                                 	"$setDir/$name.tmp.$tag",
+                                                 	"$setDir/$dst_name.tmp.$tag",
                                                  	$nestedHighlight->image->thumb_x,
                                                  	$nestedHighlight->image->thumb_y,
                                                  	$nestedHighlight->image->thumb_width,
                                                  	$nestedHighlight->image->thumb_height);
 				} else {
 					$ret = cut_image("$dir/$name.$tag", 
-						 	"$setDir/$name.tmp.$tag", 
+						 	"$setDir/$dst_name.tmp.$tag", 
 						 	$this->image->thumb_x, 
 						 	$this->image->thumb_y,
 						 	$this->image->thumb_width, 
@@ -217,29 +228,28 @@ class AlbumItem {
 
 				// Then resize it down
 				if ($ret) {
-					$ret = resize_image("$setDir/$name.tmp.$tag", 
-							    "$setDir/$name.highlight.$tag",
+					$ret = resize_image("$setDir/$dst_name.tmp.$tag", 
+							    "$setDir/$dst_name.highlight.$tag",
 							    $gallery->app->highlight_size);
 				}
 				fs_unlink("$setDir/$name.tmp.$tag");
 			} else {
-				$ret = resize_image("$dir/$name.$tag", 
-						    "$setDir/$name.highlight.$tag",
+				$ret = resize_image("$dir/$src_name.$tag", 
+						    "$setDir/$dst_name.highlight.$tag",
 						    $gallery->app->highlight_size);
 			}
 
 			if ($ret) {
-				list($w, $h) = getDimensions("$setDir/$name.highlight.$tag");
+				list($w, $h) = getDimensions("$setDir/$dst_name.highlight.$tag");
 
 				$high = new Image;
-				$high->setFile($setDir, "$name.highlight", "$tag");
+				$high->setFile($setDir, "$dst_name.highlight", "$tag");
 				$high->setDimensions($w, $h);
 				$this->highlightImage = $high;
 			}
-		}
-		else {
-			if (fs_file_exists("$dir/$name.highlight.$tag")) {
-				fs_unlink("$dir/$name.highlight.$tag");
+		} else {
+			if (fs_file_exists("$dir/$src_name.highlight.$tag")) {
+				fs_unlink("$dir/$src_name.highlight.$tag");
 			}
 		}	
 	}
