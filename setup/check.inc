@@ -8,6 +8,12 @@ installation to make sure that you have all the necessary components
 and permissions on this system and that everything is configured
 reasonably.
 
+<p>
+
+<center>
+Having problems?  Try the <a href=diagnostics.php>Gallery Diagnostics Page</a> and the <a href="http://gallery.sourceforge.net/help.php">Gallery Help Page</a>
+</center>
+
 </td></tr></table>
 
 <p> 
