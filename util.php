@@ -2493,10 +2493,10 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 	}
 	if (isset($gallery->app->email_notification) &&
 			in_array("bcc", $gallery->app->email_notification)) {
-		$bcc .= $join.$gallery->app->adminEmail;
+		$bcc .= $join . $gallery->app->adminEmail;
 	}
-	$additional_headers  = "From: $from\r\n";
-	$additional_headers .= "Reply-To: $reply_to\r\n";
+	$additional_headers  = "From: {$gallery->app->galleryTitle} " . _("Administrator") . " <$from>\r\n";
+	$additional_headers .= "Reply-To: <$reply_to>\r\n";
 	$additional_headers .= "X-GalleryRequestIP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
 	$additional_headers .= "MIME-Version: 1.0\r\n";
 	$additional_headers .= "Content-type: text/plain; charset=\"". $gallery->charset ."\"\r\n";
@@ -2511,22 +2511,28 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 	$msg = unhtmlentities($msg);
 	$subject = unhtmlentities($gallery->app->emailSubjPrefix . " " . $subject);
 
+	// Ensure that there are no bare linefeeds by replacing "\r" or "\n"
+	// (but not the individual components of "\r\n") with "\r\n"
+	$msg = ereg_replace("[^\r]?\n|\r[^\n]?", "\r\n", $msg);
+
 	if ($gallery->app->useOtherSMTP != "yes") {
 		$result = mail($to, $subject, emailDisclaimer() . $msg, $additional_headers);
 	} else {
-		$lb = "\r\n";                                     //linebreak
-		$msg_lb = "\r\n";                                 //body linebreak
-		$hdr = explode($lb, $additional_headers);        //header
+		$lb = "\r\n";                                   // linebreak
+		$hdr = explode($lb, $additional_headers);       // header fields
 		$result = 0;
-     
-		if (emailDisclaimer() . $msg) {
-			$bdy = ereg_replace("^\.", "..", explode($msg_lb, emailDisclaimer() . $msg));
+
+		$bdy = emailDisclaimer() . $msg;
+		if (!empty($bdy)) {
+			$bdy = ereg_replace("^\.", "..", $bdy);
+			$bdy = explode($lb, $bdy);
 		}
-     
-	        // build the array for the SMTP dialog. Line content is array(command, success code, additonal error message)
+
+		// build the array for the SMTP dialog. Line content is
+		// array((string)command, (string)success code, (string)debug error message)
 		if(!empty($gallery->app->smtpUserName)) { // SMTP authentication methode AUTH LOGIN, use extended HELO "EHLO"
 	            $smtp = array(
-	                // call the server and tell the name of your local host
+			// call the server and tell the name of your local host
 			array("EHLO " . $gallery->app->smtpFromHost . $lb, "220,250", "HELO error: "),
 			// request to auth
 			array("AUTH LOGIN" . $lb, "334", "AUTH error:"),
@@ -2535,7 +2541,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 			// password
 			array(base64_encode($gallery->app->smtpPassword) . $lb, "235", "AUTHENTICATION error : "));
 		}
-		else {// no authentication, use standard HELO
+		else { // no authentication, use standard HELO
 		    $smtp = array(
 			// call the server and tell the name of your local host
 			array("HELO " . $gallery->app->smtpFromHost . $lb, "220,250", "HELO error: "));
@@ -2546,61 +2552,65 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 			$bcc_array = explode(", ",$bcc);
 			foreach($bcc_array as $bccto) {
 				if ($bccto != "") {
-				        $smtp[] = array("MAIL FROM: ".$from.$lb,"250","MAIL FROM error: ");
-					$smtp[] = array("RCPT TO: ".$bccto.$lb,"250","RCPT TO:".$bccto." error: ");
-					// begin data       
+					$smtp[] = array("MAIL FROM: " . '<' . $from . '>' . $lb, "250", "MAIL FROM error: ");
+					$smtp[] = array("RCPT TO: " . '<' . $bccto . '>' . $lb, "250", "RCPT TO:" . '<' . $bccto . '>' . " error: ");
+					// begin data
 					$smtp[] = array("DATA" . $lb, "354", "DATA error: ");
 					// header
 					$smtp[] = array("Subject: " . $subject . $lb, "", "");
-					$smtp[] = array("To:" . $bccto . $lb, "", "");
+					$smtp[] = array("To: <$bccto>" . $lb, "", "");
 					foreach($hdr as $h) {
-						$smtp[] = array($h . $lb, "", "");
+						if (!empty($h)) {
+							$smtp[] = array($h . $lb, "", "");
+						}
 					}
 					// end header, begin the body
-				        $smtp[] = array($lb,"","");
+					$smtp[] = array($lb,"","");
 					if ($bdy) {
 						foreach($bdy as $b) {
-							$smtp[] = array($b . emailDisclaimer() . $msg_lb, "", "");
+							$smtp[] = array($b . $lb, "", "");
 						}
 					}
 					// end of messageO5B
-					$smtp[] = array("." . $lb, "250", "DATA(end)error: ");
+					$smtp[] = array($lb . "." . $lb, "250", "DATA(end) error: ");
 				}
 			}
 		} else {
-			$smtp[] = array("MAIL FROM: " . $from . $lb, "250", "MAIL FROM error: ");
-			$smtp[] = array("RCPT TO: " . $to . $lb, "250", "RCPT TO:" . $to . " error: ");
+			$smtp[] = array("MAIL FROM: " . '<' . $from . '>' . $lb, "250", "MAIL FROM error: ");
+			$smtp[] = array("RCPT TO: " . '<' . $to . '>' . $lb, "250", "RCPT TO:" . $to . " error: ");
 			// begin data
 			$smtp[] = array("DATA" . $lb, "354", "DATA error: ");
 			// header
 			$smtp[] = array("Subject: " . $subject . $lb, "", "");
-			$smtp[] = array("To:" . $to . $lb, "", "");
+			$smtp[] = array("To: <$to>" . $lb, "", "");
 			foreach ($hdr as $h) {
-				$smtp[] = array($h . $lb, "", "");
+				if (!empty($h)) {
+					$smtp[] = array($h . $lb, "", "");
+				}
 			}
 			// end header, begin the body
 			$smtp[] = array($lb, "", "");
 			if ($bdy) {
 				foreach($bdy as $b) {
-					$smtp[] = array($b . emailDisclaimer() . $msg_lb, "", "");
+					$smtp[] = array($b . $lb, "", "");
 				}
 			}
 			// end of message
-			$smtp[] = array("." . $lb, "250", "DATA(end)error: ");
+			$smtp[] = array($lb . "." . $lb, "250", "DATA(end)error: ");
 		}
 		$smtp[] = array("QUIT" . $lb, "221", "QUIT error: ");
 
-	        // open socket
-	        $fp = @fsockopen($gallery->app->smtpHost, $gallery->app->smtpPort);
-	        if (!$fp){
+		// open socket
+		$fp = @fsockopen($gallery->app->smtpHost, $gallery->app->smtpPort);
+		if (!$fp){
 			 echo "<b>Error:</b> Cannot connect to " . $gallery->app->smtpHost . "<br>";
 			 $result = 1;
 		}
 	        $banner = @fgets($fp, 1024);
-	        // perform the SMTP dialog with all lines of the list
+		// perform the SMTP dialog with all lines of the list
 	        foreach($smtp as $req){
 	            // send request
-	            @fputs($fp, $req[0]);
+		    @fputs($fp, $req[0]);
 	            // get available server messages and stop on errors
 		    if ($req[1]) {
 			while ($result = @fgets($fp, 1024)){
@@ -2609,7 +2619,9 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 				}
 			};
 			if (!strstr($req[1], substr($result, 0, 3))) {
-				echo "$req[2] . $result<br>";
+				if (isDebugging()) {
+					echo "$req[2] . $result<br>";
+                                }
 				$result = 1;
 			}
 	            }
