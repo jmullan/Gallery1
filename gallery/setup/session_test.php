@@ -29,17 +29,14 @@ $count++;
     <body dir=<?php echo $gallery->direction ?>>
       <H1><?php echo _("Session Test") ?></H1>
 
-	<?php echo _("If sessions are configured properly in your PHP installation, then you should see a session id below.") ?>
-	<br>
-	<?php echo _("The \"page views\" number should increase every time you reload the page.") ?>
- 	<br>
-	<?php echo _("Clicking\"start over\" should reset the page view number back to 1.") ?>
+	<?php echo _("If sessions are configured properly in your PHP installation, then you should see a session id below.") ?>  
+	<?php echo _("The \"page views\" number should increase every time you reload the page.") ?>  
+	<?php echo _("Clicking \"start over\" should reset the page view number back to 1.") ?>
 
       <p>
 
-	<?php echo _("If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation.") ?>
-	<br>
-	<?php echo _(" Gallery will not work properly until PHP's session management is configured properly.") ?>
+	<?php echo _("If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation.") ?>  
+	<?php echo _(" Gallery will not work properly until PHP's session management is configured properly.") ?>  
 
       <p>
 
