@@ -97,8 +97,16 @@ if ($action == "doit") {
 		} else {
 		    $submit = "http://";
 		}
-		$submit .= $HTTP_SERVER_VARS['HTTP_HOST'];
-		$submit .= $HTTP_SERVER_VARS['REQUEST_URI'];
+
+		if (empty($HTTP_SERVER_VARS['REQUEST_URI'])) {
+		    $submit .= $HTTP_SERVER_VARS['HTTP_HOST'];
+		    $submit .= $HTTP_SERVER_VARS['PATH_INFO'];
+		    $submit .= '?';
+		    $submit .= $HTTP_SERVER_VARS['QUERY_STRING'];
+		} else {
+		    $submit .= $HTTP_SERVER_VARS['HTTP_HOST'];
+		    $submit .= $HTTP_SERVER_VARS['REQUEST_URI'];
+		}
 ?>
 
 <span class="popup">
