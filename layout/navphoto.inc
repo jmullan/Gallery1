@@ -26,7 +26,7 @@ if (isset($navigator["fullWidth"]) && isset($navigator["widthUnits"])) {
 
 ?>
 
-<table<?php echo $width ?>"border="0" cellspacing="0" cellpadding="0" class="modnavbox">
+<table<?php echo $width ?>border="0" cellspacing="0" cellpadding="0" class="modnavbox">
   <tr> 
 
 <?php      
