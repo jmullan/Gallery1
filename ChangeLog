@@ -1,5 +1,10 @@
 2001-06-28  Bharat Mediratta  <bharat@menalto.com>
 
+	* Added a major hack to get the Gallery style sheet into Nuke.  Nuke 
+	  owns the header and doesn't allow anything else to dink with it. 
+	  We open Nuke's header.php file and rewrite its code to slip our 
+	  style sheet in at the end. 
+
 	* Checked in fix for bug #437039.  We were using an absolute popup
 	  url for photo properties, instead of a relative one.
 
