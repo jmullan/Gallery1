@@ -21,27 +21,14 @@
  */
 ?>
 <?php
-// Hack prevention.
 
-$register_globals = @ini_get('register_globals');
-if (!empty($register_globals) && !eregi("no|off|false", $register_globals)) {
-	foreach (array_keys($_REQUEST) as $key) {
-		unset($$key);
-	}
-}
-
+// Hack Prevention
 $sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'GLOBALS');
 foreach ($sensitiveList as $sensitive) {
 	if (!empty($_REQUEST[$sensitive])) {
 		print _("Security violation") ."\n";
 		exit;
 	}
-}
-
-// Optional developer hook - location to add useful
-// functions such as code profiling modules
-if (file_exists(dirname(__FILE__) . "/lib/devel.php")) {
-	require_once(dirname(__FILE__) . "/lib/devel.php");
 }
 
 /*
@@ -79,6 +66,30 @@ if (fs_file_exists(dirname(__FILE__) . "/config.php")) {
 	 * take a long time) we reset the counter to 0 so that a longer execution can occur.
 	 */
 	set_time_limit($gallery->app->timeLimit);
+}
+
+/*
+ *  We TRY to make sure that register_globals is disabled.  If the user has not disabled
+ *  register_globals in their php.ini, we try to emulate its functionality by unsetting all
+ *  variables from $_REQUEST.  Some *Nuke systems apparently do not function well with this 
+ *  emulation, so we have given users a method to opt-out.  
+ * 
+ *  WE DO NOT OFFICIALLY SUPPORT THE USE OF skipRegisterGlobals BECAUSE IT COULD POTENTIALLY
+ *  OPEN Gallery TO SECURITY RISKS!  This is for advanced users only.
+ */
+if (empty($gallery->app->skipRegisterGlobals) || $gallery->app->skipRegisterGlobals != "yes") {
+	$register_globals = @ini_get('register_globals');
+	if (!empty($register_globals) && !eregi("no|off|false", $register_globals)) {
+		foreach (array_keys($_REQUEST) as $key) {
+			unset($$key);
+		}
+	}
+}
+
+// Optional developer hook - location to add useful
+// functions such as code profiling modules
+if (file_exists(dirname(__FILE__) . "/lib/devel.php")) {
+	require_once(dirname(__FILE__) . "/lib/devel.php");
 }
 
 /* 
