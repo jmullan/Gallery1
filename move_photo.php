@@ -64,6 +64,10 @@ if ($gallery->session->albumName && isset($index)) {
 	// way to make sure all thumbnails and resized images are the correct size.
 
         if (isset($newAlbum)) {	// we are moving from one album to another
+		if ($gallery->session->albumName == $newAlbum) {
+			gallery_error(_("You can't move photos into the album they already exist in."));
+			exit;
+		}
             	$postAlbum = $albumDB->getAlbumbyName($newAlbum);
 		if (!$gallery->user->canWriteToAlbum($postAlbum)) {
 			printf(_("You do not have the required permissions to write to %s!"), $newAlbum);
