@@ -156,10 +156,10 @@ class Album {
 		
 		/* Add the photo to the photo list */
 		$item = new AlbumItem();
-		$result = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"]);
-		if ($result == 0) {
+		$err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"]);
+		if ($err) {
 			unlink("$dir/$name.$tag");
-			return 0;
+			return $err;
 		}
 		$this->photos[] = $item;
 
@@ -168,7 +168,7 @@ class Album {
 			$this->setHighlight(1);
 		}
 
-		return 1;
+		return 0;
 	}
 
 	function hidePhoto($index) {
