@@ -50,15 +50,17 @@ if (empty($register_globals) ||
 }
 
 if (!$gallery->register_globals) {
-    import_request_variables("gpc");
-    foreach($HTTP_POST_FILES as $key => $value) {
-	${$key."_name"} = $value["name"];
-	${$key."_size"} = $value["size"];
-	${$key."_type"} = $value["type"];
-	${$key} = $value["tmp_name"];
+    if (function_exists("import_request_variables")) {
+	import_request_variables("gpc");
+	foreach($HTTP_POST_FILES as $key => $value) {
+	    ${$key."_name"} = $value["name"];
+	    ${$key."_size"} = $value["size"];
+	    ${$key."_type"} = $value["type"];
+	    ${$key} = $value["tmp_name"];
+	}
+	extract($HTTP_SERVER_VARS);
+	extract($HTTP_ENV_VARS);
     }
-    extract($HTTP_SERVER_VARS);
-    extract($HTTP_ENV_VARS);
 }
 
 /* Load bootstrap code */
