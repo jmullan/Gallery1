@@ -1737,39 +1737,31 @@ function saveResults($votes)
 	{
 		foreach ($votes as $vote_key => $vote_value)
 		{
-			if (($vote_value === null || $vote_value == "NULL")
-					&& isset($gallery->album->fields["votes"] 
-					   [$vote_key][getVotingID()]) )
-			{
-				unset($gallery->album->fields["votes"]
-					[$vote_key]
-					[getVotingID()]);
-			}
-			else
-			{
+			if ($vote_value === null || $vote_value == "NULL")  {
+			       	if (isset($gallery->album->fields["votes"] 
+					   [$vote_key][getVotingID()])) {
+				       	unset($gallery->album->fields["votes"]
+						       	[$vote_key]
+						       	[getVotingID()]);
+			       	}
+		       	} else {
 				$gallery->album->fields["votes"]
 					[$vote_key]
 					[getVotingID()]=intval($vote_value);
 			}
 		}
-	}
-	else
-	{
-		krsort($votes, SORT_NUMERIC);
-		foreach ($votes as $vote_value => $vote_key)
-		{
+       	} else {
+	       	krsort($votes, SORT_NUMERIC);
+		foreach ($votes as $vote_value => $vote_key) {
 		       	if (isset($gallery->album->fields["votes"] [$vote_key] [getVotingID()]) &&
-				  $gallery->album->fields["votes"] [$vote_key] [getVotingID()] ===intval($vote_value))
-			{
+				  $gallery->album->fields["votes"] [$vote_key] [getVotingID()] ===intval($vote_value)) {
 				//vote hasn't changed, so skip to next one
 				continue;
 			}
-			foreach ($gallery->album->fields["votes"] as $previous_key => $previous_vote)
-			{
+			foreach ($gallery->album->fields["votes"] as $previous_key => $previous_vote) {
 				if (isset($previous_vote[getVotingID()]) &&
 						$previous_vote[getVotingID()] 
-							=== intval($vote_value))
-				{
+							=== intval($vote_value)) {
 					unset($gallery->album->fields["votes"]
 						[$previous_key]
 						[getVotingID()]);
@@ -1778,7 +1770,6 @@ function saveResults($votes)
 			$gallery->album->fields["votes"][$vote_key][getVotingID()]
 				=intval($vote_value);
 		}
-		
 	}
 	$gallery->album->save(array(i18n("New vote recorded")));
 }
