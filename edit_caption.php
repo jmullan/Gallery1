@@ -41,7 +41,10 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album) && !($gallery->album-
 }
 $err = "";	
 if (isset($save)) {
-	if (($capture_year < 3000) && ($capture_year > 1000)) { // only allow photo capture dates from 1000 to 3000.
+	// Only allow dates which mktime() will operate on.  
+	// 1970-2037 (Windows and some UNIXes) -- 1970-2069 (Some UNIXes)
+	// Two digit values between 0-69 mapping to 2000-2069 and 70-99 to 1970-1999 
+	if ((($capture_year < 2070) && ($capture_year > 1969)) || ($capture_year < 100)) { 
 		$gallery->album->setCaption($index, stripslashes($data));
 		$gallery->album->setKeywords($index, stripslashes($keywords));
 		$dateArray["year"] = $capture_year;	
