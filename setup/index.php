@@ -30,6 +30,19 @@
 	
 	require (dirname(__FILE__) . '/functions.inc');
 	require (dirname(__FILE__) . '/config_data.inc');
+	
+	//  Require a user to be logged in before allowing them to configure the server.
+	//  If Gallery has not been configured before, allow to continue without logging in
+	if (!isset($gallery->app->userDir)) {
+		$ignorelogin = 1;
+	}
+	else {
+		// Load userDB for password validation, if this is a re-configuration
+		if (isset($gallery->app->userDir)) {
+			$gallery->userDB = new Gallery_UserDB;
+		}
+		$ignorelogin = 0;
+	}
 
 ?>
 <?php doctype(); ?>
@@ -107,11 +120,7 @@ if (isset ($go_defaults)) {
 	$setup_page = $next_page;
 } else if (isset ($go_back)) {
 	$setup_page = $back_page;
-}
-
-if (!isset($setup_page)) {
-	$setup_page = "check";
-}
+}	
 
 /* Cache passwords in order to prevent them from being erased.
  * Otherwise, we'll lose the passwords if someone revisits Step 2
@@ -144,12 +153,21 @@ foreach (array_keys($preserve) as $key) {
 <form method="post" action="index.php" name="config">
 
 <?php
+
+if (isset($gallery->app->userDir)) {
+	include(dirname(__FILE__) . "/login.inc");
+}
+
+if (!isset($setup_page) && (!$ignorelogin || (!isset($tmpUser) || !$tmpUser->isAdmin()))) {
+	$setup_page = "check";
+}
+
 $legit = array("check", "constants", "defaults", "confirm", "write");
 if (in_array($setup_page, $legit)) {
 	include(dirname(__FILE__) ."/$setup_page.inc");
 } else {
 	print _("Security violation") .".\n";
-exit;
+	exit;
 }
 ?>
 
