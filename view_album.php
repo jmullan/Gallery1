@@ -31,13 +31,10 @@ if (!$album->isLoaded()) {
 	return;
 }
 
-// If we haven't specified a page explicitly, redirect to page 1.
-// This way the browser always knows what page its on and the back
-// button will work properly.
 if (!$page) {
-	header("Location: view_album.php?page=1");
-	return;
+	$page = 1;
 }
+
 
 $rows = $album->fields["rows"];
 $cols = $album->fields["cols"];
@@ -76,7 +73,11 @@ $navigator["page"] = $page;
 $navigator["pageVar"] = "page";
 $navigator["maxPages"] = $maxPages;
 $navigator["fullWidth"] = $fullWidth;
-$navigator["url"] = "view_album.php";
+if ($app->feature["rewrite"]) {
+	$navigator["url"] = $albumName;
+} else {
+	$navigator["url"] = "view_album.php";
+}
 $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
 
@@ -213,7 +214,7 @@ if ($bordercolor) {
 
 <!-- image grid table -->
 <br>
-<table width=400 border=0>
+<table width=<?=$fullWidth?> border=0>
 <?
 $numPhotos = $album->numPhotos(1);
 if ($numPhotos) {
