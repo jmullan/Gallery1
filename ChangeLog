@@ -1,3 +1,9 @@
+2004-10-17  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b235
+
+	* Fix: initLanguage does need to be called early, so I've added
+	  some extra logic to prevent the functions from being initialized
+	  multiple times, so that we can call it later to pick up user prefs
+
 2004-10-17  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b234
 
 	* Fix: Comparison typo

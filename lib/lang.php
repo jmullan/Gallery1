@@ -162,6 +162,7 @@ function forceStaticLang() {
 }	
 
 function initLanguage($sendHeader=true) {
+	static $languages_initialized = false;
 
 	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
@@ -176,29 +177,28 @@ function initLanguage($sendHeader=true) {
 	// before we do any tests or settings test if we are in mode 0
 	// If so, we skip language settings at all
 
-	if (isset($gallery->app->ML_mode)) {
-		// Mode 0 means no Multilanguage at all.
-		if($gallery->app->ML_mode == 0) {
-			// Maybe PHP has no (n)gettext, then we have to substitute _() and ngettext
-			if (! gettext_installed()) {
-				function _($string) {
-					return $string ;
-				}
+	// Mode 0 means no Multilanguage at all.
+	if (empty($gallery->app->ML_mode) && !$languages_initialized) {
+		// Maybe PHP has no (n)gettext, then we have to substitute _() and ngettext
+		if (!gettext_installed()) {
+			function _($string) {
+				return $string ;
 			}
-			if (! ngettext_installed()) {
-				function ngettext($singular, $quasi_plural,$num=0) {
-                        		if ($num == 1) {
-                                		return $singular;
-		                        } else {
-        		                        return $quasi_plural;
-                		        }
-				}
-			}
-
-			/* Skip rest*/
-			return;
 		}
+		if (!ngettext_installed()) {
+			function ngettext($singular, $quasi_plural,$num=0) {
+                       		if ($num == 1) {
+                               		return $singular;
+	                        } else {
+       		                        return $quasi_plural;
+               		        }
+			}
+		}
+
+		/* Skip rest*/
+		return;
 	}
+
 
 	/* 
 	** Does the user wants a new lanuage ?
@@ -359,14 +359,16 @@ function initLanguage($sendHeader=true) {
 		$bindtextdomain=bindtextdomain($gallery->language. "-gallery_". where_i_am(), dirname(dirname(__FILE__)) . '/locale');
 		textdomain($gallery->language. "-gallery_". where_i_am());
 
-	}  else {
+	} elseif (!$languages_initialized) {
 		emulate_gettext();
 	}
 
 	// We test this separate because ngettext() is only available in PHP >=4.2.0 but _() in all PHP4
-	if (! ngettext_installed()) {
+	if (!ngettext_installed() && !$languages_initialized) {
 		emulate_ngettext();
 	}
+
+	$languages_initialized = true;
 }
 
 

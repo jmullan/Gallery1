@@ -170,9 +170,12 @@ if (!isset($GALLERY_NO_SESSIONS)) {
 
 $gallerySanity = gallerySanityCheck();
 
+// Languages need to be initialized early or installations without gettext will break.
+// initLanguage is called again later in init.php to pick up user settings.
+initLanguage();
+
 /* Make sure that Gallery is set up properly */
 if ($gallerySanity != NULL) {
-	initLanguage();
 	include_once(dirname(__FILE__) . "/errors/$gallerySanity");
 	exit;
 }
