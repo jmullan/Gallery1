@@ -135,11 +135,6 @@ if ($gallery->user->isAdmin()) {
 	}
 }
 
-if ($gallery->user->isAdmin()) {
-	$adminCommands .= popup_link("[backup albums]", 
-			"backup_albums.php");
-}
-
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	if ($gallery->userDB->canModifyUser()) {
 		$adminCommands .= popup_link("[preferences]", 
