@@ -6,6 +6,7 @@ require("../classes/EverybodyUser.php");
 
 $outfile = "$GALLERY_DIR/config.php";
 copy("gpl.txt", $outfile);
+
 if ($fd = @fopen($outfile, "a")) {
 	$data = urldecode($data);
 
@@ -20,7 +21,7 @@ if ($fd = @fopen($outfile, "a")) {
  * Empty out the .htaccess file
  */
 $outfile = "$GALLERY_DIR/.htaccess";
-if ($fd = @fopen($outfile, "w")) {
+if ($fd = @fs_fopen($outfile, "w")) {
 	fclose($fd);
 }
 
@@ -30,7 +31,7 @@ if ($fd = @fopen($outfile, "w")) {
  */
 if ($GALLERY_PHP_VALUE_OK) {
 	$htaccess = file("php_value.template");
-	if ($fd = @fopen($outfile, "a")) {
+	if ($fd = @fs_fopen($outfile, "a")) {
 		foreach ($htaccess as $line) {
 			eval("\$line = \"$line\";");
 			fwrite($fd, $line);
@@ -47,7 +48,7 @@ if ($GALLERY_PHP_VALUE_OK) {
  */
 if ($GALLERY_REWRITE_OK) {
 	$htaccess = file("mod_rewrite.template");
-	if ($fd = @fopen($outfile, "a")) {
+	if ($fd = @fs_fopen($outfile, "a")) {
 		foreach ($htaccess as $line) {
 			eval("\$line = \"$line\";");
 			fwrite($fd, $line);
