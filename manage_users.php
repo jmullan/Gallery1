@@ -53,6 +53,7 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 
 	array_push($displayUsers, $tmpUser->getUsername());
 }
+sort($displayUsers); 
 doctype();
 ?>
 <html>
