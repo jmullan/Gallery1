@@ -13,7 +13,7 @@ $borderWidth = $gallery->html_wrap['borderWidth'];
 $borderColor = $gallery->html_wrap['borderColor'];
 $pixelImage = isset($gallery->html_wrap['pixelImage']) ?
     $gallery->html_wrap['pixelImage'] :
-    "$GALLERY_BASEDIR/images/pixel_trans.gif";
+    "${GALLERY_BASEDIR}images/pixel_trans.gif";
 $imageWidth = $gallery->html_wrap['imageWidth'];
 $imageHeight = $gallery->html_wrap['imageHeight'];
 $href = $gallery->html_wrap['imageHref'];
@@ -63,7 +63,7 @@ case "solid":
 default: // use frames directory
 
   $base = $gallery->app->photoAlbumURL . "/html_wrap/frames/$frame";
-  include "$GALLERY_BASEDIR/html_wrap/frames/$frame/frame.def";
+  include "${GALLERY_BASEDIR}html_wrap/frames/$frame/frame.def";
   ?>
 
   <table width="1" border="0" cellspacing="0" cellpadding="0">
