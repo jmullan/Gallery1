@@ -200,13 +200,13 @@ if ($numPhotos) {
 
 	$rowCount = 0;
 	while ($rowCount < $rows) {
-		/* Do the inline_photo header row */
+		/* Do the inline_albumthumb header row */
 		echo("<tr>");
 		$i = $start + $rowCount * $cols;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td>");
-			includeHtmlWrap("inline_photo.header");
+			includeHtmlWrap("inline_albumthumb.header");
 			echo("</td>");
 			$j++; $i++;
 		}
@@ -319,13 +319,13 @@ if ($numPhotos) {
 		}
 		echo "</tr>";
 
-		/* Now do the inline_photo footer row */
+		/* Now do the inline_albumthumb footer row */
 		echo("<tr>");
 		$i = $start + $rowCount * $cols;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td>");
-			includeHtmlWrap("inline_photo.footer");
+			includeHtmlWrap("inline_albumthumb.footer");
 			echo("</td>");
 			$j++; $i++;
 		}
