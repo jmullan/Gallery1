@@ -9,6 +9,11 @@ php_value auto_prepend_file	./php_value_ok.php
 php_value magic_quotes_gpc off
 </IfModule>
 
+<IfModule mod_php5.c>
+php_value auto_prepend_file	./php_value_ok.php
+php_value magic_quotes_gpc off
+</IfModule>
+
 Options +FollowSymLinks
 <IfModule mod_rewrite.c>
 RewriteEngine On
