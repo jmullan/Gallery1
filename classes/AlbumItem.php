@@ -417,6 +417,8 @@ class AlbumItem {
 			rotate_image("$dir/$name.sized.$type", "$dir/$name.sized.$type", $direction, $type);
 			list($w, $h) = getDimensions("$dir/$name.sized.$type");
 			$this->image->setDimensions($w, $h);	
+		} else {
+			$this->image->setDimensions($w, $h);	
 		}
 
 		/* Reset the thumbnail to the default before regenerating thumb */
