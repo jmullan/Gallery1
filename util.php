@@ -1170,8 +1170,7 @@ function errorRow($key) {
 }
 
 function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $configFile, $errorMsg) {
-	global $gallery, $GALLERY_EMBEDDED_INSIDE;
-	$cookieInfo = session_get_cookie_params();
+	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
 	if (file_exists($configFile)) {
 		include($configFile);
@@ -1181,6 +1180,21 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 		}
 		if (isset($configOverrides)) {
 			$overrides = array_merge($overrides, $configOverrides);
+		}
+	}
+
+	$cookieInfo = session_get_cookie_params();
+
+	$cookie_name = session_name();
+	$cookie_value = session_id();
+	$cookie_domain = $cookieInfo['domain'];
+	$cookie_path = $cookieInfo['path'];
+
+	// handle CMS-specific overrides
+	if (isset($GALLERY_EMBEDDED_INSIDE)) {
+		if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnuke') {
+			$cookie_name = 'user';
+			$cookie_value = $_COOKIE[$cookie_name];
 		}
 	}
 
@@ -1197,13 +1211,13 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 	<param name="progressbar" value="true">
 	<param name="boxmessage" value="Downloading the Gallery Remote Applet">
 	<param name="gr_url" value="<?php echo $gallery->app->photoAlbumURL ?>">
-<?php if( isset($GALLERY_EMBEDDED_INSIDE)) { ?>
+<?php if (isset($GALLERY_EMBEDDED_INSIDE)) { ?>
 	<param name="gr_url_full" value="<?php echo makeGalleryUrl('gallery_remote2.php') ?>">
 <?php } ?>
-	<param name="gr_cookie_name" value="<?php echo session_name() ?>">
-	<param name="gr_cookie_value" value="<?php echo session_id() ?>">
-	<param name="gr_cookie_domain" value="<?php echo $cookieInfo['domain'] ?>">
-	<param name="gr_cookie_path" value="<?php echo $cookieInfo['path'] ?>">
+	<param name="gr_cookie_name" value="<?php echo $cookie_name ?>">
+	<param name="gr_cookie_value" value="<?php echo $cookie_value ?>">
+	<param name="gr_cookie_domain" value="<?php echo $cookie_domain ?>">
+	<param name="gr_cookie_path" value="<?php echo $cookie_path ?>">
 	<param name="gr_album" value="<?php echo $album ?>">
 <?php
 	foreach($defaults as $key => $value) {
@@ -1227,13 +1241,13 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 				boxmessage="Downloading the Gallery Remote Applet"
 				pluginspage="http://java.sun.com/j2se/1.4.2/download.html"
 				gr_url="<?php echo $gallery->app->photoAlbumURL ?>"
-<?php if( isset($GALLERY_EMBEDDED_INSIDE)) { ?>
+<?php if (isset($GALLERY_EMBEDDED_INSIDE)) { ?>
 				gr_url_full="<?php echo makeGalleryUrl('gallery_remote2.php') ?>"
 <?php } ?>
-				gr_cookie_name="<?php echo session_name() ?>"
-				gr_cookie_value="<?php echo session_id() ?>"
-				gr_cookie_domain"<?php echo $cookieInfo['domain'] ?>"
-				gr_cookie_path="<?php echo $cookieInfo['path'] ?>"
+				gr_cookie_name="<?php echo $cookie_name ?>"
+				gr_cookie_value="<?php echo $cookie_value ?>"
+				gr_cookie_domain="<?php echo $cookie_domain ?>"
+				gr_cookie_path="<?php echo $cookie_path ?>"
 				gr_album="<?php echo $album ?>"
 <?php
 	foreach($defaults as $key => $value) {
