@@ -206,7 +206,9 @@ class AlbumItem {
 	function setOwner($owner) {
 		$this->owner = $owner;
 	}
+	
 	function getOwner() {
+		global $gallery;
 		if (!isset($this->owner)) {
 			$nobody = $gallery->userDB->getNobody(); 
 			$nobodyUid = $nobody->getUid();
@@ -214,6 +216,7 @@ class AlbumItem {
 		}
 		return $this->owner;
 	}
+	
 	function resetItemClicks() {
 		$this->clicks = 0;
 	}
