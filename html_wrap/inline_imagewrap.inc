@@ -79,7 +79,7 @@ default: // use frames directory
   <table width="1" border="0" cellspacing="0" cellpadding="0">
   <tr>
 	<!-- TL -->
-	<td width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>"><img src="<?php echo "$base/$imageTL" ?>" border="0" width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>" alt=""i></td>
+	<td width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>"><img src="<?php echo "$base/$imageTL" ?>" border="0" width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>" alt=""></td>
 	<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
 	    <tr>
 		<?php if ($widthTTL > 0) { ?>
