@@ -316,8 +316,8 @@ if (sizeof($gallery->album->fields["votes"])> 0) {
 }
 
 if (!$uptodate) {
-	echo '<span class="error">". sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>';
-	echo '<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>';
+	echo '<span class="error">' . sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>';
+	echo '<a href="' . makeGalleryUrl("upgrade_album.php") . '"><br>' . _("Upgrade now") . '</a>';
 }
 ?>
 <p>
