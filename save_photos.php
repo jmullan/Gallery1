@@ -108,7 +108,7 @@ if ($urls) {
 			msg("Could not open url: '$url'");
 			continue;
 		} else {
-			msg("$url");
+			msg(urldecode($url));
 		}
 	
 		/* copy file locally */
@@ -232,6 +232,8 @@ while (sizeof($userfile)) {
 function process($file, $tag, $name, $setCaption="") {
 	global $gallery;
 
+	// remove %20 and the like from name
+	$name = urldecode($name);
 	// parse out original filename without extension
 	$originalFilenameArray = preg_split ( "/.$tag\$/i" , $name);
 	// replace multiple non-word characters with a single "_"
@@ -240,8 +242,11 @@ function process($file, $tag, $name, $setCaption="") {
 	if (acceptableFormat($tag)) {
 		msg("- Adding $name");
 		if ($setCaption) {
-			$caption = $name;
+			$caption = $originalFilenameArray[0];
+		} else {
+			$caption = "";
 		}	
+
 		$err = $gallery->album->addPhoto($file, $tag, $originalFilename, $caption);
 		if (!$err) {
 			/* resize the photo if needed */
