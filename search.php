@@ -28,16 +28,20 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print _("Security violation") ."\n";
 	exit;
 }
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
+if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = '';
 }
-require($GALLERY_BASEDIR . 'init.php'); ?>
-<?php
+require($GALLERY_BASEDIR . 'init.php');
+
 $borderColor = $gallery->app->default["bordercolor"];
 $thumbSize = $gallery->app->default["thumb_size"];
-?>
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+
+if ($gallery->app->showSearchEngine == 'no' && !$gallery->user->isAdmin()) {
+	header('Location: ' . makeAlbumURL());
+	return;
+}
+
+if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html>
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo _("Search") ?></title>

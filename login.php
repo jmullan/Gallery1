@@ -178,7 +178,7 @@ if (isset($forgot)) {
 <p>
 <table>
  <tr>
-  <td>
+  <td class="popup">
    <?php echo _("Username") ?>
   </td>
   <td>
