@@ -22,16 +22,13 @@ switch($GALLERY_EMBEDDED_INSIDE) {
 			if ($fd = fopen("header.php", "r")) {
 				while (!feof($fd)) {
 					$line = fgets($fd, 1024);
-					if (strstr($line, "/head")) {
-						$GALLERY_EMBEDDED_HEADER .= 
-							'echo "<link rel=\"stylesheet\" ' . 
-							'type=\"text/css\" href=\"' . 
-							getGalleryStyleSheetName() . 
-							'\">\n";' . "\n";
-					}
-	
 					if (strncmp($line, '<?php', 5) && strncmp($line, '?>', 2)) {
 						$GALLERY_EMBEDDED_HEADER .= $line;
+					}
+					if (strstr($line, "<head")) {
+						$links = getStyleSheetLink();
+						$links = str_replace('"', '\"', $links);
+						$GALLERY_EMBEDDED_HEADER .= 'echo "' . $links . '\n";' . "\n";
 					}
 				}
 			}
