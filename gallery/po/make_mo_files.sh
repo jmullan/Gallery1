@@ -1,4 +1,5 @@
 #!/bin/bash
+# $Id$
 
 #    \033          ascii ESCape
 #    \033[<NUM>G   move to column <NUM> (linux console, xterm, not vt100)

@@ -1,4 +1,5 @@
 @echo off
+rem $Id$
 echo IF THIS FILE EXISTS, YOU CAN'T CONFIGURE GALLERY > setup\SECURE
 
 echo : 

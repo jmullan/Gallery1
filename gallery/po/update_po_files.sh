@@ -1,4 +1,5 @@
 #!/bin/bash
+# $Id$
 
 esc=`echo -en "\033"`
 tab="${esc}[5G"
