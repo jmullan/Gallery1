@@ -55,7 +55,7 @@ header("Content-type: text/plain");
  * Gallery remote protocol version 2.7
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 7;
+$GR_VER['MIN'] = 8;
 
 
 /*
@@ -82,7 +82,7 @@ $GR_STAT['NO_WRITE_PERMISSION']	= 404;
 $GR_STAT['NO_CREATE_ALBUM_PERMISSION']	= 501;
 $GR_STAT['CREATE_ALBUM_FAILED']			= 502;
 $GR_STAT['MOVE_ALBUM_FAILED']	= 503;
-
+$GR_STAT['ROTATE_IMAGE_FAILED'] = 504;
 /*
  * Check protocol version
  */
@@ -445,6 +445,51 @@ if (!strcmp($cmd, "login")) {
 			$response->setProperty( 'status_text', 'Album and destination album cannot be the same.' );
 		}
 	}
+/*
+} else if (!strcmp($cmd, 'move-image')) {
+
+} else if (!strcmp($cmd, 'reorder')) {
+	if(!isset($gallery->album)) { //if reordering root album
+		if($gallery->user->canCreateAlbums() or $gallery->user->isAdmin()) {
+			$albumDB = new AlbumDB(FALSE);
+			$albumDB->moveAlbum($gallery->user, $index, $newIndex);
+			$albumDB->save();
+			$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+			$response->setProperty( 'status_text', 'Change index successful.' );
+		} else {
+			$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
+			$response->setProperty( 'status_text', 'No write permission.' );
+		}
+	} else {
+		if($gallery->user->canWriteToAlbum($gallery->album)) {
+			$gallery->album->movePhoto($index,$newIndex-1);
+			$gallery->album->save();
+			$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+			$response->setProperty( 'status_text', 'Change index successful.' );
+		} else {
+			$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
+			$response->setProperty( 'status_text', 'No write permission.' );
+		}
+	}
+} else if (!strcmp($cmd, 'rotate-image')) {
+	//verify index is a picture
+	if(is_object($gallery->album->photos[$index-1]->image)) {
+		if($gallery->user->canWriteToAlbum($gallery->album)) {
+			if(isset($index) && $gallery->session->albumName) {
+				set_time_limit($gallery->app->timeLimit);
+				$gallery->album->rotatePhoto($index,$rotate);
+				$gallery->album->save();
+				$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+				$response->setProperty( 'status_text', 'Image successfully rotated.' );
+			}
+		} else {
+			$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
+			$response->setProperty( 'status_text', 'No write permission.' );
+		}
+	} else {
+		$response->setProperty( 'status', $GR_STAT['ROTATE_IMAGE_FAILED'] );
+		$response->setProperty( 'status_text', 'Specified index is not an image.' );
+	}*/
 } else {
 	// if the command hasn't been handled yet, we don't recognize it
 	$response->setProperty( "status", $GR_STAT['UNKNOWN_COMMAND'] );
@@ -503,7 +548,7 @@ function add_album( &$myAlbum, &$album_index, $parent_index, &$response ){
 	
 	// increment index
 	$album_index++;
-	
+
 	// fetch name & title
 	$albumName = $myAlbum->fields[name];
 	$albumTitle = $myAlbum->fields[title];
@@ -511,7 +556,9 @@ function add_album( &$myAlbum, &$album_index, $parent_index, &$response ){
 	// write name, title and parent
 	$response->setProperty( "album.name.$album_index", $albumName );
 	$response->setProperty( "album.title.$album_index", $albumTitle );
+	$response->setProperty( "album.summary.$album_index", $myAlbum->fields['summary'] );
 	$response->setProperty( "album.parent.$album_index", $parent_index );
+	$response->setProperty( "album.resize_size.$album_index", $myAlbum->fields['resize_size'] );
 	
 	// write permissions
 	$can_add = $gallery->user->canAddToAlbum($myAlbum) ? "true" : "false";
