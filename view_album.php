@@ -176,7 +176,7 @@ $adminText .="</span>";
 $adminCommands = "<span class =\"admin\">";
 if ($user->canAddToAlbum($album)) {
 	$adminCommands .= '<a href="#" onClick="'.popup("add_photos.php?albumName=$albumName").'">[Add Photos]</a>&nbsp;';
-	$adminCommands .= '<a href=do_command.php?cmd=new-album&parentName=' . $albumName . '&return=view_album.php?page=1>[New Nested Album]</a>&nbsp;';
+	$adminCommands .= '<a href=do_command.php?cmd=new-album&parentName=' . $albumName . '&return=view_album.php?page=1>[New Nested Album]</a>&nbsp;&nbsp;<br>';
 }
 
 if ($user->canWriteToAlbum($album)) {
