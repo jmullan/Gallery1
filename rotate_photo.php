@@ -54,9 +54,11 @@ if ($albumName && isset($index)) {
 <center>
 How do you want to rotate this photo?
 <br>
-<a href=rotate_photo.php?rotate=90&albumName=<?= $album->fields["name"] ?>&index=<?= $index ?>>Counter-Clockwise</a>
+<a href=rotate_photo.php?rotate=90&albumName=<?= $album->fields["name"] ?>&index=<?= $index ?>>Counter-Clockwise 90&ordm;</a>
 /
-<a href=rotate_photo.php?rotate=-90&albumName=<?= $album->fields["name"] ?>&index=<?= $index ?>>Clockwise</a>
+<a href=rotate_photo.php?rotate=270&albumName=<?= $album->fields["name"] ?>&index=<?= $index ?>>Clockwise 90&ordm;</a>
+/
+<a href=rotate_photo.php?rotate=180&albumName=<?= $album->fields["name"] ?>&index=<?= $index ?>>180&ordm;</a>
 /
 <a href="javascript:void(parent.close())">Cancel</a>
 <br>
