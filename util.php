@@ -759,7 +759,7 @@ function getNextPhoto($idx) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		// even though a user can write to an album, they may
 		// not have read authority over a specific nested album.
-		if ($gallery->album->isAlbumName($idx)) {
+		if ($idx <= $numPhotos && $gallery->album->isAlbumName($idx)) {
 			$myAlbumName = $gallery->album->isAlbumName($idx);
 			$myAlbum = new Album();
 			$myAlbum->load($myAlbumName);
