@@ -121,9 +121,9 @@ $navigator["bordercolor"] = $bordercolor;
 #-- breadcrumb text ---
 if (strcmp($gallery->album->fields["returnto"], "no")) {
 	$breadtext[0] = "Gallery: <a href=" . makeGalleryUrl() . ">".$gallery->app->galleryTitle."</a>";
-	$breadtext[1] = "Album: <a href=" . makeGalleryUrl($gallery->session->albumName) . "&page=$page>".$gallery->album->fields["title"]."</a>";
+	$breadtext[1] = "Album: <a href=" . makeGalleryUrl($gallery->session->albumName, "", "page=$page") . ">".$gallery->album->fields["title"]."</a>";
 } else {
-	$breadtext[0] = "Album: <a href=" . makeGalleryUrl($gallery->session->albumName) . "&page=$page>".$gallery->album->fields["title"]."</a>";
+	$breadtext[0] = "Album: <a href=" . makeGalleryUrl($gallery->session->albumName, "", "page=$page") . ">".$gallery->album->fields["title"]."</a>";
 }
 ?>
 
@@ -205,7 +205,7 @@ if ($fitToWindow) {
 		img.width = imageWidth;
 	} else {
 		if (changed) {
-			document.write('<a href="<?=makeGalleryUrl($gallery->session->albumName, $id, "&full=1")?>">');
+			document.write('<a href="<?=makeGalleryUrl($gallery->session->albumName, $id, "full=1")?>">');
 		}
 		document.write('<img name=photo src="<?=$photoURL?>" border=0 width=' +
 		                 imageWidth + ' height=' + imageHeight + '>');
@@ -358,7 +358,7 @@ if (!$gallery->album->isMovie($id)) {
 		if ($full) { 
 			echo "<a href=" . makeGalleryUrl($gallery->session->albumName, $id) . ">";
 	 	} else {
-			echo "<a href=" . makeGalleryUrl($gallery->session->albumName, $id, "&full=1") . ">";
+			echo "<a href=" . makeGalleryUrl($gallery->session->albumName, $id, "full=1") . ">";
 		}
 		$openAnchor = 1;
 	}
