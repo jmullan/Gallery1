@@ -72,6 +72,10 @@ foreach ($constants as $key => $val) {
 			$error = 1;
 		}
 	} else {
+		if ($constants[$key]["no-trailing-slash"]) {
+			$$key = preg_replace("/\/$/", "", $$key);
+		}
+
 		if ($constants[$key]["require-write-dir"]) {
 			$dir = $$key;
 			if (!file_exists($dir)) {
