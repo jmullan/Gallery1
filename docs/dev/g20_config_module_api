@@ -1,0 +1,107 @@
+
+Each user-mutable property may assert 0 or more of the following
+validations:
+
+* mustBeBoolean
+* mustBeInteger
+* mustBeFile
+* mustBeDir
+* mustBeExecutible
+* mustBeWriteable
+* mustBeUrl
+* mustBeColor
+* mustBeFont
+
+These assertions are expected to return 0/null if all is well, or an
+error code (see the Localization spec) that can be horked up
+sensically to the user. 
+
+Note that this is not a complete list of the assertions - additional
+assertions can be provided by a plugin module whose 
+include_once() calls in the plugin's pluginname_defaults.inc file.
+
+
+### Security note ###
+
+I was realizing that having these "autorunnable" "warm pluggable"
+thingimabobbers sitting in the gallery tree could certainly pose a
+security risk -- we'll need to ensure .. path traversal hacks don't
+allow users to install shtuff in the config directories or gallery's
+root dir proper.
+
+### End gratuitous security note ###
+
+
+
+Each property can be mucked with one of the following edit widgets (of which it will request):
+
+* choice (>1 item array required) (good enough for booleans?)
+* field (with default)
+* passwd
+* textarea
+
+
+
+
+Class ConfigModule
+-----------------
+
+/**
+ * Returns all configurable properties for this module.
+ **/
+ConfigModuleProperty[] getProperties();
+String getDisplayName();
+String getDescription();
+
+
+
+Class ConfigModuleProperty
+--------------------------
+
+
+/**
+ * Burp the html to configure this property. The start form element is
+ * assumed. Note that the default value will have been pulled in from
+ * some source (either a global default, or from previous settings in
+ * a user's previous config. Note that there will be a number of
+ * concrete implementations of ConfigModuleProperty - a ColorProperty,
+ * ChoicePropery, TextProperty, FileProperty,
+ **/
+displayEditWidget();
+
+
+
+
+// ehhh. hmmm. Restart. Lets define the contents of the module config
+// files, then determine what they need.
+
+
+/*
+  Module config file
+  ------------------
+  
+  A "module" is a wholly-atomic pieces-part that is configured on a
+  single page and single form posting, and unit testable as a
+  whole. They ARE ordered, and are processed in alphanumeric order.
+
+  Module config files must end in "cfg.php" to be picked up by the
+  config harness. The suggested naming convention is
+  "<order-prefix>_<module-name>_cfg.php". "00_server_cfg.php" would be
+  processed before "10_imagelib_cfg.php".
+  
+  As the config file is include()d, it may define extra functionality
+  that it requires (above and beyond the generic config harness)
+
+  Note that the modules that fail fatally - or require the user to
+  install something - should be done before any optional modules.
+  
+  All progress through the config should be saved as new defaults
+  (that are user-whackable) - so stopping halfway through is not a
+  painful act - the previous setup effort is persisted (but not
+  committed to the runtime gallery config)
+
+  The contents of the module will be interpretted by the generic
+  config harness.
+
+  Sample contents of setup/:
+  20_helperapps_cfg.php, 30_paths_cfg.php, 40_admin_cfg.php, 50_display_cfg.php
