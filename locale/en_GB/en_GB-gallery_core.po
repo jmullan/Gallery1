@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-02 12:01+0100\n"
+"POT-Creation-Date: 2005-03-10 14:35+0100\n"
 "PO-Revision-Date: 2003-07-16 14:18+0100\n"
 "Last-Translator: Joan McGalliard <jefmcg AT users DOT sourceforge DOT net>\n"
 "Language-Team: UK_English <jefmcg AT users DOT sourceforge DOT net>\n"
@@ -82,8 +82,9 @@ msgid "Cancel"
 msgstr ""
 
 #: ../add_photos.php:52 ../add_photos.php:64
+#, fuzzy
 msgid "Add Photos"
-msgstr ""
+msgstr "Border colour"
 
 #: ../add_photos.php:70
 msgid "Applet"
@@ -141,20 +142,30 @@ msgstr ""
 msgid "Find and remove comments that contains spam."
 msgstr ""
 
-#: ../admin-page.php:56
+#: ../admin-page.php:50
+#, fuzzy
+msgid "validate albums"
+msgstr "Border colour"
+
+#: ../admin-page.php:52
+msgid "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"
+msgstr ""
+
+#: ../admin-page.php:59
 msgid "manage users"
 msgstr ""
 
-#: ../admin-page.php:58
+#: ../admin-page.php:61
 msgid "Manage your users."
 msgstr ""
 
-#: ../admin-page.php:87
+#: ../admin-page.php:90
 msgid "Admin options"
 msgstr ""
 
-#: ../admin-page.php:88 ../stats.php:634 ../tools/find_orphans.php:214
-#: ../tools/despam-comments.php:59
+#: ../admin-page.php:91 ../stats.php:634 ../stats-wizard.php:101
+#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:59
+#: ../tools/validate_albums.php:199
 msgid "return to gallery"
 msgstr ""
 
@@ -309,8 +320,9 @@ msgid "slideshow"
 msgstr ""
 
 #: ../albums.php:196
+#, fuzzy
 msgid "new album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../albums.php:202
 msgid "preferences"
@@ -426,11 +438,11 @@ msgid "This album has been viewed %s since %s."
 msgstr ""
 
 #: ../albums.php:413 ../view_album.php:851 ../view_album.php:875
-#, php-format
+#, fuzzy, php-format
 msgid "1 time"
 msgid_plural "%d times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Border colour"
+msgstr[1] "Border colour"
 
 #: ../albums.php:413
 msgid "0 times"
@@ -461,12 +473,14 @@ msgid "Multiple Caption Editor."
 msgstr ""
 
 #: ../captionator.php:180
+#, fuzzy
 msgid "1 photo in this album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../captionator.php:182
+#, fuzzy
 msgid "items in this album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../captionator.php:184
 msgid "on"
@@ -608,8 +622,9 @@ msgid "Photo auto-rotated/transformed"
 msgstr ""
 
 #: ../classes/Album.php:1183
+#, fuzzy
 msgid "Watermarking Image"
-msgstr ""
+msgstr "Border colour"
 
 #: ../classes/Album.php:1340 ../classes/Album.php:1350
 #: ../classes/AlbumItem.php:671
@@ -731,8 +746,9 @@ msgid "Problem adding %s:"
 msgstr ""
 
 #: ../copy_photo.php:41 ../copy_photo.php:45
+#, fuzzy
 msgid "Copy Photo"
-msgstr ""
+msgstr "Border colour"
 
 #: ../copy_photo.php:54
 #, php-format
@@ -785,8 +801,9 @@ msgid "Last"
 msgstr ""
 
 #: ../copy_photo.php:149 ../move_photo.php:279
+#, fuzzy
 msgid "New Album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../copy_photo.php:191 ../move_photo.php:329
 #, php-format
@@ -868,9 +885,11 @@ msgid "Create"
 msgstr ""
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:81
-#: ../delete_photo.php:89
+#: ../delete_photo.php:89 ../tools/validate_albums.php:125
+#: ../tools/validate_albums.php:129
+#, fuzzy
 msgid "Delete Album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../delete_album.php:55 ../delete_photo.php:95
 msgid "Do you really want to delete this album?"
@@ -883,12 +902,15 @@ msgid "Delete"
 msgstr ""
 
 #: ../delete_album.php:74 ../sort_album.php:119
+#, fuzzy
 msgid "no album specified"
-msgstr ""
+msgstr "Border colour"
 
 #: ../delete_photo.php:81 ../delete_photo.php:118
+#: ../tools/validate_albums.php:125 ../tools/validate_albums.php:129
+#, fuzzy
 msgid "Delete Photo"
-msgstr ""
+msgstr "Text Colour"
 
 #: ../delete_photo.php:121
 msgid "Do you really want to delete this photo?"
@@ -1037,8 +1059,9 @@ msgid "Rows"
 msgstr ""
 
 #: ../edit_appearance.php:186
+#, fuzzy
 msgid "Columns"
-msgstr ""
+msgstr "Border colour"
 
 #: ../edit_appearance.php:193
 msgid "Auto fit-to-window for<br>images without a resized copy"
@@ -1121,8 +1144,9 @@ msgid "Display clickable image dimensions"
 msgstr ""
 
 #: ../edit_appearance.php:348
+#, fuzzy
 msgid "Apply values to nested albums (except album title and summary)."
-msgstr ""
+msgstr "Border colour"
 
 #: ../edit_appearance.php:351 ../extra_fields.php:176
 #: ../poll_properties.php:140
@@ -1559,11 +1583,152 @@ msgid "This album has no photos to show in a slide show."
 msgstr ""
 
 #: ../includes/slideshow/high.inc:583 ../includes/slideshow/low.inc:383
+#, fuzzy
 msgid "back to album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../includes/slideshow/low.inc:74
 msgid "Slide Show for album"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:48
+msgid "Sort by most viewed image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:49
+msgid "most viewed"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:53
+msgid "Sort by the latest added image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:54
+msgid "latest added"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:58
+msgid "Sort by image capture date"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:59
+msgid "latest shots"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:63
+msgid "Show images with comments - latest are shown first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:64
+msgid "latest comments"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:68
+msgid "Show images with the highest ratings first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:69
+msgid "highest ratings"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:73
+msgid "Show random images"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:74
+msgid "random images"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:81
+msgid "Show caption"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:84
+msgid "Show album link"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:87
+msgid "Show description"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:90
+msgid "Show comments"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:93
+msgid "Show capture date"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:96
+msgid "Show upload date"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:99
+msgid "Show number of views"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:102
+msgid "Show the add comment link"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:109
+msgid "Show the add vote link"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:112
+msgid "Show the album owners"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:115
+msgid "Show timing basic information"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:121
+msgid "Reverses sort order - see above"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:124
+msgid "Thumb size in pixels"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:127
+msgid "Controls the number of photos displayed on one page"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:130
+msgid "Controls the maximum number of photos listed, -1 for all"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:141
+msgid "Above the comments"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:142
+msgid "In the caption line"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:143
+msgid "Above the stats"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:144
+msgid "Below the comments"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:145
+msgid "Position of the add vote and add comment links"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:150
+msgid "Filter by year"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:153
+msgid "Filter by month"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:156
+msgid "Filter by day"
 msgstr ""
 
 #: ../html/userData.inc:18
@@ -1629,12 +1794,14 @@ msgid "Security violation"
 msgstr ""
 
 #: ../layout/adminAlbumCommands.inc:6
+#, fuzzy
 msgid "delete album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../layout/adminAlbumCommands.inc:11
+#, fuzzy
 msgid "move album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../layout/adminAlbumCommands.inc:12
 #, fuzzy
@@ -1642,8 +1809,9 @@ msgid "reorder album"
 msgstr "Border colour"
 
 #: ../layout/adminAlbumCommands.inc:13 ../view_album.php:274
+#, fuzzy
 msgid "rename album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../layout/adminAlbumCommands.inc:20 ../view_album.php:294
 msgid "edit captions"
@@ -1662,8 +1830,9 @@ msgid "view&nbsp;comments"
 msgstr ""
 
 #: ../layout/adminAlbumCommands.inc:40
+#, fuzzy
 msgid "watermark&nbsp;album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../layout/breadcrumb.inc:39
 msgid "Logged in as:"
@@ -1674,8 +1843,9 @@ msgid "From:"
 msgstr ""
 
 #: ../layout/commentboxbottom.inc:11 ../stats.php:1317 ../util.php:187
+#, fuzzy
 msgid "add comment"
-msgstr ""
+msgstr "Border colour"
 
 #: ../layout/commentboxbottom.inc:14
 msgid "Delete marked comments"
@@ -1684,8 +1854,9 @@ msgstr ""
 #: ../layout/commentboxtop.inc:18 ../slideshow.php:193 ../upgrade_album.php:84
 #: ../upgrade_album.php:96 ../view_album.php:114 ../view_album.php:893
 #: ../view_comments.php:62 ../view_photo.php:172
+#, fuzzy
 msgid "Album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../layout/commentboxtop.inc:25
 msgid "view comments for this nested album"
@@ -1708,16 +1879,18 @@ msgid "Previous Page"
 msgstr ""
 
 #: ../layout/navigator.inc:35
+#, fuzzy
 msgid "Next Page"
-msgstr ""
+msgstr "Text Colour"
 
 #: ../layout/navigator.inc:36
 msgid "Last Page"
 msgstr ""
 
 #: ../layout/navphoto.inc:22
+#, fuzzy
 msgid "First Photo"
-msgstr ""
+msgstr "Text Colour"
 
 #: ../layout/navphoto.inc:23
 msgid "Previous Photo"
@@ -1729,8 +1902,9 @@ msgid "Next Photo"
 msgstr "Text Colour"
 
 #: ../layout/navphoto.inc:25
+#, fuzzy
 msgid "Last Photo"
-msgstr ""
+msgstr "Text Colour"
 
 #: ../layout/navphoto.inc:62
 #, php-format
@@ -1738,8 +1912,9 @@ msgid "%d of %d"
 msgstr ""
 
 #: ../layout/watermarkform.inc:77
+#, fuzzy
 msgid "Watermark"
-msgstr ""
+msgstr "Border colour"
 
 #: ../layout/watermarkform.inc:80 ../util.php:3046 ../util.php:3051
 msgid "None"
@@ -1808,8 +1983,9 @@ msgid "Full"
 msgstr ""
 
 #: ../layout/watermarkform.inc:157
+#, fuzzy
 msgid "Watermark subalbums"
-msgstr ""
+msgstr "Border colour"
 
 #: ../layout/watermarkform.inc:159
 #, fuzzy
@@ -1862,8 +2038,9 @@ msgstr ""
 
 #: ../lib/voting.php:215 ../view_album.php:586 ../view_album.php:615
 #: ../view_album.php:1079
+#, fuzzy
 msgid "Vote"
-msgstr ""
+msgstr "Border colour"
 
 #: ../lib/voting.php:253
 msgid "Total points in brackets"
@@ -1875,9 +2052,9 @@ msgstr ""
 
 #: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:532
 #: ../view_album.php:823
-#, php-format
+#, fuzzy, php-format
 msgid "Album: %s"
-msgstr ""
+msgstr "Border colour"
 
 #: ../lib/voting.php:303
 #, fuzzy, php-format
@@ -1912,8 +2089,9 @@ msgid "Poll results:"
 msgstr ""
 
 #: ../lib/voting.php:359
+#, fuzzy
 msgid "No votes"
-msgstr ""
+msgstr "Border colour"
 
 #: ../lib/voting.php:363
 #, php-format
@@ -1926,11 +2104,11 @@ msgid "%s: %s"
 msgstr ""
 
 #: ../lib/voting.php:368
-#, php-format
+#, fuzzy, php-format
 msgid "one vote"
 msgid_plural "%d votes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Border colour"
+msgstr[1] "Border colour"
 
 #: ../login.php:51
 msgid "SUCCEEDED"
@@ -2053,24 +2231,27 @@ msgid "You can change any information about the user using this form."
 msgstr ""
 
 #: ../move_album.php:39 ../move_album.php:43 ../move_photo.php:38
+#, fuzzy
 msgid "Move Album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../move_album.php:89
 msgid "Select the new location of album"
 msgstr ""
 
 #: ../move_album.php:112 ../move_photo.php:248
+#, fuzzy
 msgid "Move it!"
-msgstr ""
+msgstr "Border colour"
 
 #: ../move_album.php:120
 msgid "Nest within another Album:"
 msgstr ""
 
 #: ../move_album.php:134 ../move_photo.php:334
+#, fuzzy
 msgid "Move to Album!"
-msgstr ""
+msgstr "Border colour"
 
 #: ../move_photo.php:38
 #, fuzzy
@@ -2083,8 +2264,9 @@ msgid "Reorder Photo"
 msgstr "Border colour"
 
 #: ../move_photo.php:40
+#, fuzzy
 msgid "Move Photo"
-msgstr ""
+msgstr "Text Colour"
 
 #: ../move_photo.php:64
 msgid "You can't move photos into the album they already exist in."
@@ -2186,11 +2368,11 @@ msgid "%s added, %s skipped"
 msgstr ""
 
 #: ../multi_create_user.php:123 ../multi_create_user.php:124
-#, php-format
+#, fuzzy, php-format
 msgid "1 user"
 msgid_plural "%d users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Border colour"
+msgstr[1] "Border colour"
 
 #: ../multi_create_user.php:144
 msgid "Create Users"
@@ -2290,8 +2472,9 @@ msgid "Number of lines of results graph to display on the album page"
 msgstr ""
 
 #: ../poll_properties.php:103
+#, fuzzy
 msgid "Who can vote"
-msgstr ""
+msgstr "Border colour"
 
 #: ../poll_properties.php:107
 msgid "Orientation of vote choices"
@@ -2376,8 +2559,9 @@ msgid "Use filenames as captions"
 msgstr ""
 
 #: ../publish_xp.php:157 ../publish_xp.php:271
+#, fuzzy
 msgid "Create New Album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../publish_xp.php:202 ../publish_xp.php:235
 msgid "Not Logged In!"
@@ -2406,16 +2590,18 @@ msgid "User cannot create nested album in %s."
 msgstr ""
 
 #: ../publish_xp.php:251
+#, fuzzy
 msgid "No Parent Album Specified!"
-msgstr ""
+msgstr "Border colour"
 
 #: ../publish_xp.php:275
 msgid "Enter New Album Title"
 msgstr ""
 
 #: ../publish_xp.php:278
+#, fuzzy
 msgid "Select Parent Album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../publish_xp.php:285
 msgid "NEW TOP LEVEL ALBUM"
@@ -2513,8 +2699,9 @@ msgid "Click this link and then follow the instructions to log into your Gallery
 msgstr ""
 
 #: ../publish_xp_docs.php:68
+#, fuzzy
 msgid "Return to Add Photos"
-msgstr ""
+msgstr "Border colour"
 
 #: ../register.php:37 ../register.php:41
 #, php-format
@@ -2560,8 +2747,9 @@ msgid "Your account information will be sent to the email address you provide."
 msgstr ""
 
 #: ../rename_album.php:39 ../rename_album.php:43 ../view_album.php:942
+#, fuzzy
 msgid "Rename Album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../rename_album.php:95
 msgid "There is already an album with that name!"
@@ -2605,8 +2793,9 @@ msgid "Remove Votes"
 msgstr ""
 
 #: ../resize_photo.php:39
+#, fuzzy
 msgid "Resize Photo"
-msgstr ""
+msgstr "Border colour"
 
 #: ../resize_photo.php:46
 msgid "Resizing photos"
@@ -2658,8 +2847,9 @@ msgid "Change Size"
 msgstr ""
 
 #: ../rotate_photo.php:40 ../rotate_photo.php:46
+#, fuzzy
 msgid "Rotate/Flip Photo"
-msgstr ""
+msgstr "Border colour"
 
 #: ../rotate_photo.php:51
 msgid "Rotating/Flipping photo."
@@ -2762,8 +2952,9 @@ msgid "Matching Comments"
 msgstr ""
 
 #: ../search.php:214
+#, fuzzy
 msgid "From Album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../search.php:221 ../view_photo_properties.php:111
 msgid "KEYWORDS"
@@ -2851,8 +3042,9 @@ msgid "Slide Show"
 msgstr ""
 
 #: ../sort_album.php:38 ../sort_album.php:59
+#, fuzzy
 msgid "Sort Album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../sort_album.php:62
 msgid "Select your sorting criteria for this album below"
@@ -3146,11 +3338,40 @@ msgstr ""
 msgid "Rating:"
 msgstr ""
 
+#: ../stats-wizard.php:98
+msgid "Wizard"
+msgstr ""
+
+#: ../stats-wizard.php:110
+msgid "Type"
+msgstr ""
+
+#: ../stats-wizard.php:114 ../tools/despam-comments.php:382
+msgid "Options"
+msgstr ""
+
+#: ../stats-wizard.php:119
+msgid "Layout"
+msgstr ""
+
+#: ../stats-wizard.php:123
+msgid "Filter by Capture Date"
+msgstr ""
+
+#: ../stats-wizard.php:128
+msgid "Show statistics"
+msgstr ""
+
+#: ../stats-wizard.php:131
+msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
+msgstr ""
+
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
 msgstr ""
 
 #: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#: ../tools/validate_albums.php:198
 msgid "return to admin page"
 msgstr ""
 
@@ -3169,16 +3390,18 @@ msgid "Parent Album"
 msgstr "Border colour"
 
 #: ../tools/find_orphans.php:231
+#, fuzzy
 msgid "Orphaned Album"
-msgstr ""
+msgstr "Background Colour"
 
 #: ../tools/find_orphans.php:238
 msgid "Gallery Root"
 msgstr ""
 
 #: ../tools/find_orphans.php:252
+#, fuzzy
 msgid "Re-Attach Orphaned Albums!"
-msgstr ""
+msgstr "Background Colour"
 
 #: ../tools/find_orphans.php:259
 #, fuzzy
@@ -3199,8 +3422,9 @@ msgid "Orphaned file"
 msgstr "Background Colour"
 
 #: ../tools/find_orphans.php:289
+#, fuzzy
 msgid "Delete Orphaned Files!"
-msgstr ""
+msgstr "Background Colour"
 
 #: ../tools/find_orphans.php:295
 msgid "No Orphans Found"
@@ -3353,8 +3577,68 @@ msgstr ""
 msgid "Add blacklist entries"
 msgstr ""
 
-#: ../tools/despam-comments.php:382
-msgid "Options"
+#: ../tools/validate_albums.php:162
+msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
+msgstr ""
+
+#: ../tools/validate_albums.php:185 ../tools/validate_albums.php:195
+#, fuzzy
+msgid "Validate Albums"
+msgstr "Border colour"
+
+#: ../tools/validate_albums.php:209
+msgid "Missing Files:"
+msgstr ""
+
+#: ../tools/validate_albums.php:210
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+msgstr ""
+
+#: ../tools/validate_albums.php:214
+msgid "Missing File"
+msgstr ""
+
+#: ../tools/validate_albums.php:216 ../tools/validate_albums.php:258
+msgid "Action"
+msgstr ""
+
+#: ../tools/validate_albums.php:225 ../view_photo.php:331
+#, fuzzy
+msgid "delete photo"
+msgstr "Text Colour"
+
+#: ../tools/validate_albums.php:241
+msgid "No Missing Files"
+msgstr ""
+
+#: ../tools/validate_albums.php:242
+msgid "There are no missing files in this Gallery."
+msgstr ""
+
+#: ../tools/validate_albums.php:251
+#, fuzzy
+msgid "Invalid Albums:"
+msgstr "Border colour"
+
+#: ../tools/validate_albums.php:252
+msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
+msgstr ""
+
+#: ../tools/validate_albums.php:256
+#, fuzzy
+msgid "Invalid Album"
+msgstr "Border colour"
+
+#: ../tools/validate_albums.php:265
+msgid "delete directory"
+msgstr ""
+
+#: ../tools/validate_albums.php:281
+msgid "No Invalid Albums Found"
+msgstr ""
+
+#: ../tools/validate_albums.php:282
+msgid "There are no invalid albums present in this Gallery."
 msgstr ""
 
 #: ../upgrade_album.php:81
@@ -3362,8 +3646,9 @@ msgid "Progress"
 msgstr ""
 
 #: ../upgrade_album.php:113 ../upgrade_album.php:117
+#, fuzzy
 msgid "Upgrade Albums"
-msgstr ""
+msgstr "Border colour"
 
 #: ../upgrade_album.php:121
 msgid "The following albums in your gallery were created with an older version of the software and are out of date."
@@ -3395,8 +3680,9 @@ msgid "The following albums need to be upgraded.  You can process them individua
 msgstr ""
 
 #: ../upgrade_album.php:160
+#, fuzzy
 msgid "upgrade them all at once"
-msgstr ""
+msgstr "Border colour"
 
 #: ../upgrade_album.php:170
 msgid "upgrade"
@@ -3605,8 +3891,9 @@ msgid "Can't read %s."
 msgstr ""
 
 #: ../util.php:1614
+#, fuzzy
 msgid "Select Album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../util.php:1620
 msgid "Top Level"
@@ -3643,8 +3930,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../util.php:1974
+#, fuzzy
 msgid "Sub-albums"
-msgstr ""
+msgstr "Border colour"
 
 #: ../util.php:2140
 #, php-format
@@ -3839,8 +4127,9 @@ msgstr[0] "Border colour"
 msgstr[1] "Border colour"
 
 #: ../view_album.php:236
+#, fuzzy
 msgid "No albums"
-msgstr ""
+msgstr "Border colour"
 
 #: ../view_album.php:238
 msgid "0 pages"
@@ -3852,19 +4141,19 @@ msgid "%s and %s in this album on %s"
 msgstr ""
 
 #: ../view_album.php:244
-#, php-format
+#, fuzzy, php-format
 msgid "%s and %s in this album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../view_album.php:247
-#, php-format
+#, fuzzy, php-format
 msgid "%s in this album on %s"
-msgstr ""
+msgstr "Border colour"
 
 #: ../view_album.php:250
-#, php-format
+#, fuzzy, php-format
 msgid "%s in this album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../view_album.php:257
 #, php-format
@@ -3877,12 +4166,14 @@ msgid "%s is hidden"
 msgstr ""
 
 #: ../view_album.php:268
+#, fuzzy
 msgid "add photos"
-msgstr ""
+msgstr "Border colour"
 
 #: ../view_album.php:281
+#, fuzzy
 msgid "new nested album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../view_album.php:287
 msgid "custom fields"
@@ -3993,11 +4284,11 @@ msgid "Contains: "
 msgstr ""
 
 #: ../view_album.php:835
-#, php-format
+#, fuzzy, php-format
 msgid "1 item"
 msgid_plural "%d items"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Border colour"
+msgstr[1] "Border colour"
 
 #: ../view_album.php:851 ../view_album.php:875
 msgid "Viewed:"
@@ -4008,8 +4299,9 @@ msgid "Movie"
 msgstr ""
 
 #: ../view_album.php:895
+#, fuzzy
 msgid "Photo"
-msgstr ""
+msgstr "Text Colour"
 
 #: ../view_album.php:917 ../view_album.php:953
 msgid "Edit Thumbnail"
@@ -4072,8 +4364,9 @@ msgid "Permissions"
 msgstr ""
 
 #: ../view_album.php:1006 ../watermark_album.php:95 ../watermark_album.php:99
+#, fuzzy
 msgid "Watermark Album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../view_album.php:1011
 msgid "View Comments"
@@ -4105,12 +4398,14 @@ msgid "Deleting comment %d from item with index: %d"
 msgstr ""
 
 #: ../view_comments.php:132
+#, fuzzy
 msgid "Comments for this Album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../view_comments.php:133
+#, fuzzy
 msgid "return to album"
-msgstr ""
+msgstr "Border colour"
 
 #: ../view_comments.php:146
 msgid "Sorry.  This album does not allow comments."
@@ -4118,10 +4413,6 @@ msgstr ""
 
 #: ../view_photo.php:306
 msgid "resize photo"
-msgstr ""
-
-#: ../view_photo.php:331
-msgid "delete photo"
 msgstr ""
 
 #: ../view_photo.php:342
@@ -4170,8 +4461,9 @@ msgid "(if the data is current, this will not appear to do anything)"
 msgstr ""
 
 #: ../watermark_album.php:49 ../watermark_album.php:53
+#, fuzzy
 msgid "Watermarking album."
-msgstr ""
+msgstr "Border colour"
 
 #: ../watermark_album.php:103
 msgid "No items to watermark."

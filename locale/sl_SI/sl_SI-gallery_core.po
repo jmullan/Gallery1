@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-07 11:02+0100\n"
+"POT-Creation-Date: 2005-03-10 14:35+0100\n"
 "PO-Revision-Date: 2005-03-05 19:30+0100\n"
 "Last-Translator: Marjan Laznik <marjan@slo-foto.com>\n"
 "Language-Team: Slovenian <marjan AT slo-foto DOT com>\n"
@@ -152,25 +152,24 @@ msgid "validate albums"
 msgstr "bri¹i album"
 
 #: ../admin-page.php:52
-msgid ""
-"Identify invalid albums, missing files, and other errors that may prevent you\n"
-"from migrating to Gallery 2"
+msgid "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"
 msgstr ""
 
-#: ../admin-page.php:60
+#: ../admin-page.php:59
 msgid "manage users"
 msgstr "upravljanje uporabnikov"
 
-#: ../admin-page.php:62
+#: ../admin-page.php:61
 msgid "Manage your users."
 msgstr "Upravljanje uporabnikov."
 
-#: ../admin-page.php:91
+#: ../admin-page.php:90
 msgid "Admin options"
 msgstr "Mo¾nosti urednika"
 
-#: ../admin-page.php:92 ../stats.php:634 ../tools/find_orphans.php:214
-#: ../tools/despam-comments.php:59
+#: ../admin-page.php:91 ../stats.php:634 ../stats-wizard.php:101
+#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:59
+#: ../tools/validate_albums.php:199
 msgid "return to gallery"
 msgstr "Vrnitev v galerijo"
 
@@ -903,7 +902,8 @@ msgid "Create"
 msgstr "Dodaj"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:81
-#: ../delete_photo.php:89
+#: ../delete_photo.php:89 ../tools/validate_albums.php:125
+#: ../tools/validate_albums.php:129
 msgid "Delete Album"
 msgstr "Bri¹i album"
 
@@ -922,6 +922,7 @@ msgid "no album specified"
 msgstr "noben album oznaèen"
 
 #: ../delete_photo.php:81 ../delete_photo.php:118
+#: ../tools/validate_albums.php:125 ../tools/validate_albums.php:129
 msgid "Delete Photo"
 msgstr "Bri¹i fotografijo"
 
@@ -959,8 +960,6 @@ msgid "Even if this user is recreated, those permissions are gone."
 msgid_plural "Even if you recreate one of those users, the permissions are gone."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: ../delete_user.php:74
 #, fuzzy
@@ -1327,8 +1326,9 @@ msgid "Your browser doesn't support applets; you should use one of the other upl
 msgstr ""
 
 #: ../includes/add_photos/add_applet_mini.inc:24
+#, fuzzy
 msgid "Use the Gallery Remote Mini Applet to upload pictures. It will take a short while to download."
-msgstr ""
+msgstr "Uporabi (nalo¾i) vmesnik za nalaganje fotografij. "
 
 #: ../includes/add_photos/add_form.inc:35
 msgid "Click the <b>Browse</b> button to locate a photo to upload."
@@ -1435,8 +1435,9 @@ msgid "Slide Show for album :: %s"
 msgstr "Projekcija za album :: %s"
 
 #: ../includes/slideshow/applet.inc:47
+#, fuzzy
 msgid "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions."
-msgstr ""
+msgstr "V kolikor nimate nalo¾en Java Plugin 1.4 ali vi¹ji, lahko uporabite ostale naèine/metode."
 
 #: ../includes/slideshow/applet.inc:80
 msgid "Your browser doesn't support applets; you should use one of the other slideshow methods."
@@ -1606,6 +1607,173 @@ msgstr "nazaj v album"
 #: ../includes/slideshow/low.inc:74
 msgid "Slide Show for album"
 msgstr "Projekcija za album"
+
+#: ../includes/stats/stats.inc.php:48
+#, fuzzy
+msgid "Sort by most viewed image first"
+msgstr " - Najprej starej¹e fotografije"
+
+#: ../includes/stats/stats.inc.php:49
+msgid "most viewed"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:53
+#, fuzzy
+msgid "Sort by the latest added image first"
+msgstr " - Zadnje dodane slike"
+
+#: ../includes/stats/stats.inc.php:54
+#, fuzzy
+msgid "latest added"
+msgstr " - Zadnje dodane slike"
+
+#: ../includes/stats/stats.inc.php:58
+#, fuzzy
+msgid "Sort by image capture date"
+msgstr " - Najnovej¹i datum/èas posnetka"
+
+#: ../includes/stats/stats.inc.php:59
+#, fuzzy
+msgid "latest shots"
+msgstr "Zadnja fotka"
+
+#: ../includes/stats/stats.inc.php:63
+#, fuzzy
+msgid "Show images with comments - latest are shown first"
+msgstr "%d fotografij s komentarjem v tej galeriji"
+
+#: ../includes/stats/stats.inc.php:64
+#, fuzzy
+msgid "latest comments"
+msgstr " - Najnovej¹ih komentarjev"
+
+#: ../includes/stats/stats.inc.php:68
+#, fuzzy
+msgid "Show images with the highest ratings first"
+msgstr " - Slike z najmanj glasovi"
+
+#: ../includes/stats/stats.inc.php:69
+msgid "highest ratings"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:73
+#, fuzzy
+msgid "Show random images"
+msgstr " - Nakljuènih fotografij"
+
+#: ../includes/stats/stats.inc.php:74
+#, fuzzy
+msgid "random images"
+msgstr "%d slika"
+
+#: ../includes/stats/stats.inc.php:81
+#, fuzzy
+msgid "Show caption"
+msgstr "Ni naslova"
+
+#: ../includes/stats/stats.inc.php:84
+#, fuzzy
+msgid "Show album link"
+msgstr "%s v tem albumu na %s"
+
+#: ../includes/stats/stats.inc.php:87
+#, fuzzy
+msgid "Show description"
+msgstr "Brez opisa"
+
+#: ../includes/stats/stats.inc.php:90
+#, fuzzy
+msgid "Show comments"
+msgstr "poglej komentarje"
+
+#: ../includes/stats/stats.inc.php:93
+#, fuzzy
+msgid "Show capture date"
+msgstr "Èas fotografiranja"
+
+#: ../includes/stats/stats.inc.php:96
+#, fuzzy
+msgid "Show upload date"
+msgstr "Po datumu nalaganja"
+
+#: ../includes/stats/stats.inc.php:99
+#, fuzzy
+msgid "Show number of views"
+msgstr "Po ¹tevilu klikov"
+
+#: ../includes/stats/stats.inc.php:102
+#, fuzzy
+msgid "Show the add comment link"
+msgstr "dodaj komentar"
+
+#: ../includes/stats/stats.inc.php:109
+#, fuzzy
+msgid "Show the add vote link"
+msgstr "dodaj komentar"
+
+#: ../includes/stats/stats.inc.php:112
+#, fuzzy
+msgid "Show the album owners"
+msgstr "%s v tem albumu na %s"
+
+#: ../includes/stats/stats.inc.php:115
+msgid "Show timing basic information"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:121
+msgid "Reverses sort order - see above"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:124
+#, fuzzy
+msgid "Thumb size in pixels"
+msgstr "Maksimalna dol¾ina stranice v pikslih"
+
+#: ../includes/stats/stats.inc.php:127
+msgid "Controls the number of photos displayed on one page"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:130
+msgid "Controls the maximum number of photos listed, -1 for all"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:141
+#, fuzzy
+msgid "Above the comments"
+msgstr "poglej komentarje"
+
+#: ../includes/stats/stats.inc.php:142
+msgid "In the caption line"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:143
+#, fuzzy
+msgid "Above the stats"
+msgstr "poglej komentarje"
+
+#: ../includes/stats/stats.inc.php:144
+#, fuzzy
+msgid "Below the comments"
+msgstr "bri¹i komentar"
+
+#: ../includes/stats/stats.inc.php:145
+#, fuzzy
+msgid "Position of the add vote and add comment links"
+msgstr "dodaj komentar"
+
+#: ../includes/stats/stats.inc.php:150
+#, fuzzy
+msgid "Filter by year"
+msgstr "Datum/èas posnetka"
+
+#: ../includes/stats/stats.inc.php:153
+msgid "Filter by month"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:156
+#, fuzzy
+msgid "Filter by day"
+msgstr "Datum/èas posnetka"
 
 #: ../html/userData.inc:18
 msgid "Member file"
@@ -1932,8 +2100,6 @@ msgid "Result from one voter"
 msgid_plural "Result of %d voters"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: ../lib/voting.php:324
 #, fuzzy, php-format
@@ -2184,9 +2350,9 @@ msgid "Note: items that have votes will lose these votes when moved to another a
 msgstr "Pomni: rezultati glasovanja za ta predmet bodo izgubljeni, èe ta predmet premakne¹ v drug album"
 
 #: ../move_photo.php:324
-#, php-format
+#, fuzzy, php-format
 msgid "Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."
-msgstr ""
+msgstr "Pomni: rezultati glasovanja za ta predmet bodo izgubljeni, èe ta predmet premakne¹ v drug album"
 
 #: ../multi_create_user.php:42 ../multi_create_user.php:46
 #: ../multi_create_user.php:140
@@ -2452,16 +2618,18 @@ msgid "User cannot create nested album in %s."
 msgstr "Uporabnik ne more kreirati novega albuma v %s."
 
 #: ../publish_xp.php:251
+#, fuzzy
 msgid "No Parent Album Specified!"
-msgstr ""
+msgstr "Noben album ni izbran!"
 
 #: ../publish_xp.php:275
 msgid "Enter New Album Title"
 msgstr "Vpi¹i naslov novega albuma"
 
 #: ../publish_xp.php:278
+#, fuzzy
 msgid "Select Parent Album"
-msgstr ""
+msgstr "Izberi album"
 
 #: ../publish_xp.php:285
 msgid "NEW TOP LEVEL ALBUM"
@@ -2598,8 +2766,9 @@ msgid "Your account information is contained within the email."
 msgstr "Va¹ uporabni¹ki raèun ne vsebuje podatkov o e-po¹tnem naslovu."
 
 #: ../register.php:118
+#, fuzzy
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
-msgstr ""
+msgstr "E-po¹ta ni poslana. Prosite administratorje %s za novo geslo"
 
 #: ../register.php:138
 msgid "Your account information will be sent to the email address you provide."
@@ -2626,8 +2795,9 @@ msgid "or"
 msgstr "ali"
 
 #: ../rename_album.php:118
+#, fuzzy
 msgid "spaces"
-msgstr ""
+msgstr "%d  strani"
 
 #: ../rename_album.php:119
 msgid "Those characters will be ignored in your new album name."
@@ -2988,12 +3158,14 @@ msgid "Reading info for photo index = %d , id = %d"
 msgstr ""
 
 #: ../stats.php:358
+#, fuzzy
 msgid "Getting SVotes"
-msgstr ""
+msgstr "Pridobljeni komentarji"
 
 #: ../stats.php:366
+#, fuzzy
 msgid "Getting Item Clicks"
-msgstr ""
+msgstr "Pridobljen datum/èas posnetka"
 
 #: ../stats.php:371
 msgid "Getting Item Capture Date"
@@ -3008,8 +3180,9 @@ msgid "Getting Comments"
 msgstr "Pridobljeni komentarji"
 
 #: ../stats.php:404
+#, fuzzy
 msgid "Getting Ratings"
-msgstr ""
+msgstr "Pridobljeni komentarji"
 
 #: ../stats.php:439
 #, php-format
@@ -3034,8 +3207,9 @@ msgid " - Top rated images"
 msgstr " - Najbolj¹e ocenjene slike"
 
 #: ../stats.php:540
+#, fuzzy
 msgid " - Bottom rated images"
-msgstr ""
+msgstr " - Najbolj¹e ocenjene slike"
 
 #: ../stats.php:546
 msgid " - Latest added images"
@@ -3188,11 +3362,43 @@ msgstr "ni ocenjeno"
 msgid "Rating:"
 msgstr "Ocenitev:"
 
+#: ../stats-wizard.php:98
+msgid "Wizard"
+msgstr ""
+
+#: ../stats-wizard.php:110
+msgid "Type"
+msgstr ""
+
+#: ../stats-wizard.php:114 ../tools/despam-comments.php:382
+msgid "Options"
+msgstr "Opcije"
+
+#: ../stats-wizard.php:119
+#, fuzzy
+msgid "Layout"
+msgstr "Zadnja"
+
+#: ../stats-wizard.php:123
+#, fuzzy
+msgid "Filter by Capture Date"
+msgstr "Datum/èas posnetka"
+
+#: ../stats-wizard.php:128
+#, fuzzy
+msgid "Show statistics"
+msgstr "statistika"
+
+#: ../stats-wizard.php:131
+msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
+msgstr ""
+
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
 msgstr "Poi¹èi po¹kodovane"
 
 #: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#: ../tools/validate_albums.php:198
 #, fuzzy
 msgid "return to admin page"
 msgstr "nazaj v album"
@@ -3397,9 +3603,72 @@ msgstr "Poglej/Uredi listo nedovoljenih"
 msgid "Add blacklist entries"
 msgstr "Vpis novih nedovoljenih"
 
-#: ../tools/despam-comments.php:382
-msgid "Options"
-msgstr "Opcije"
+#: ../tools/validate_albums.php:162
+msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
+msgstr ""
+
+#: ../tools/validate_albums.php:185 ../tools/validate_albums.php:195
+#, fuzzy
+msgid "Validate Albums"
+msgstr "bri¹i album"
+
+#: ../tools/validate_albums.php:209
+msgid "Missing Files:"
+msgstr ""
+
+#: ../tools/validate_albums.php:210
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+msgstr ""
+
+#: ../tools/validate_albums.php:214
+msgid "Missing File"
+msgstr ""
+
+#: ../tools/validate_albums.php:216 ../tools/validate_albums.php:258
+#, fuzzy
+msgid "Action"
+msgstr "Lokacija"
+
+#: ../tools/validate_albums.php:225 ../view_photo.php:331
+msgid "delete photo"
+msgstr "bri¹i fotko"
+
+#: ../tools/validate_albums.php:241
+msgid "No Missing Files"
+msgstr ""
+
+#: ../tools/validate_albums.php:242
+#, fuzzy
+msgid "There are no missing files in this Gallery."
+msgstr "V tej galeriji ni po¹kodovanih elementov."
+
+#: ../tools/validate_albums.php:251
+#, fuzzy
+msgid "Invalid Albums:"
+msgstr "Napaèen uporabnik"
+
+#: ../tools/validate_albums.php:252
+msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
+msgstr ""
+
+#: ../tools/validate_albums.php:256
+#, fuzzy
+msgid "Invalid Album"
+msgstr "Napaèen uporabnik"
+
+#: ../tools/validate_albums.php:265
+#, fuzzy
+msgid "delete directory"
+msgstr "Album mapa"
+
+#: ../tools/validate_albums.php:281
+msgid "No Invalid Albums Found"
+msgstr ""
+
+#: ../tools/validate_albums.php:282
+#, fuzzy
+msgid "There are no invalid albums present in this Gallery."
+msgstr "V tej galeriji ni po¹kodovanih elementov."
 
 #: ../upgrade_album.php:81
 msgid "Progress"
@@ -4185,10 +4454,6 @@ msgstr "®al komentarji v tem albumu niso dovoljeni."
 #: ../view_photo.php:306
 msgid "resize photo"
 msgstr "pomanj¹aj fotko"
-
-#: ../view_photo.php:331
-msgid "delete photo"
-msgstr "bri¹i fotko"
 
 #: ../view_photo.php:342
 msgid "View Images"

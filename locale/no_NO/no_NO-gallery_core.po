@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-02 12:01+0100\n"
+"POT-Creation-Date: 2005-03-10 14:35+0100\n"
 "PO-Revision-Date: 2005-02-17 12:51+0100\n"
 "Last-Translator: Håvard Mork Mork <havarmor AT stud.ntnu DOT no>\n"
 "Language-Team: Sverre M. Vikan <sverre AT urven DOT net>\n"
@@ -145,20 +145,30 @@ msgstr "plagekommentarer"
 msgid "Find and remove comments that contains spam."
 msgstr "Finner og fjerner kommentarer som er gjentatt mange ganger."
 
-#: ../admin-page.php:56
+#: ../admin-page.php:50
+#, fuzzy
+msgid "validate albums"
+msgstr "slett album"
+
+#: ../admin-page.php:52
+msgid "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"
+msgstr ""
+
+#: ../admin-page.php:59
 msgid "manage users"
 msgstr "behandle brukere"
 
-#: ../admin-page.php:58
+#: ../admin-page.php:61
 msgid "Manage your users."
 msgstr "Behandle brukere."
 
-#: ../admin-page.php:87
+#: ../admin-page.php:90
 msgid "Admin options"
 msgstr "adminegenskaper"
 
-#: ../admin-page.php:88 ../stats.php:634 ../tools/find_orphans.php:214
-#: ../tools/despam-comments.php:59
+#: ../admin-page.php:91 ../stats.php:634 ../stats-wizard.php:101
+#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:59
+#: ../tools/validate_albums.php:199
 #, fuzzy
 msgid "return to gallery"
 msgstr "G&aring; tilbake til galleriet"
@@ -871,7 +881,8 @@ msgid "Create"
 msgstr "Opprett"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:81
-#: ../delete_photo.php:89
+#: ../delete_photo.php:89 ../tools/validate_albums.php:125
+#: ../tools/validate_albums.php:129
 msgid "Delete Album"
 msgstr "Slett album"
 
@@ -890,6 +901,7 @@ msgid "no album specified"
 msgstr "ingen album angitt"
 
 #: ../delete_photo.php:81 ../delete_photo.php:118
+#: ../tools/validate_albums.php:125 ../tools/validate_albums.php:129
 msgid "Delete Photo"
 msgstr "Slett bilde"
 
@@ -1574,6 +1586,174 @@ msgstr "tilbake til album"
 #: ../includes/slideshow/low.inc:74
 msgid "Slide Show for album"
 msgstr "Fremvisning av album"
+
+#: ../includes/stats/stats.inc.php:48
+#, fuzzy
+msgid "Sort by most viewed image first"
+msgstr " - Eldste bilder først"
+
+#: ../includes/stats/stats.inc.php:49
+msgid "most viewed"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:53
+#, fuzzy
+msgid "Sort by the latest added image first"
+msgstr " - Nyeste bilder"
+
+#: ../includes/stats/stats.inc.php:54
+#, fuzzy
+msgid "latest added"
+msgstr " - Nyeste bilder"
+
+#: ../includes/stats/stats.inc.php:58
+#, fuzzy
+msgid "Sort by image capture date"
+msgstr " - Nyeste fotodato"
+
+#: ../includes/stats/stats.inc.php:59
+#, fuzzy
+msgid "latest shots"
+msgstr "Siste bilde"
+
+#: ../includes/stats/stats.inc.php:63
+#, fuzzy
+msgid "Show images with comments - latest are shown first"
+msgstr "%d bilder med kommentarer i dette galleriet"
+
+#: ../includes/stats/stats.inc.php:64
+#, fuzzy
+msgid "latest comments"
+msgstr " - Siste kommentarer"
+
+#: ../includes/stats/stats.inc.php:68
+#, fuzzy
+msgid "Show images with the highest ratings first"
+msgstr " - Bilder med færrest stemmer"
+
+#: ../includes/stats/stats.inc.php:69
+#, fuzzy
+msgid "highest ratings"
+msgstr "Henter stemmer"
+
+#: ../includes/stats/stats.inc.php:73
+#, fuzzy
+msgid "Show random images"
+msgstr " - Tilfeldige bilder"
+
+#: ../includes/stats/stats.inc.php:74
+#, fuzzy
+msgid "random images"
+msgstr "ingen bilder"
+
+#: ../includes/stats/stats.inc.php:81
+#, fuzzy
+msgid "Show caption"
+msgstr "Ingen tittel"
+
+#: ../includes/stats/stats.inc.php:84
+#, fuzzy
+msgid "Show album link"
+msgstr "%s i dette albumet p&aring; %s"
+
+#: ../includes/stats/stats.inc.php:87
+#, fuzzy
+msgid "Show description"
+msgstr "Ingen beskrivelse"
+
+#: ../includes/stats/stats.inc.php:90
+#, fuzzy
+msgid "Show comments"
+msgstr "vis kommentarer"
+
+#: ../includes/stats/stats.inc.php:93
+#, fuzzy
+msgid "Show capture date"
+msgstr "Dato fotografert"
+
+#: ../includes/stats/stats.inc.php:96
+#, fuzzy
+msgid "Show upload date"
+msgstr "Etter dato opplastet"
+
+#: ../includes/stats/stats.inc.php:99
+#, fuzzy
+msgid "Show number of views"
+msgstr "Etter antall treff"
+
+#: ../includes/stats/stats.inc.php:102
+#, fuzzy
+msgid "Show the add comment link"
+msgstr "legg til kommentar"
+
+#: ../includes/stats/stats.inc.php:109
+#, fuzzy
+msgid "Show the add vote link"
+msgstr "legg til kommentar"
+
+#: ../includes/stats/stats.inc.php:112
+#, fuzzy
+msgid "Show the album owners"
+msgstr "%s i dette albumet p&aring; %s"
+
+#: ../includes/stats/stats.inc.php:115
+msgid "Show timing basic information"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:121
+msgid "Reverses sort order - see above"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:124
+#, fuzzy
+msgid "Thumb size in pixels"
+msgstr "Maksimum sidebredde i bildepunkter"
+
+#: ../includes/stats/stats.inc.php:127
+msgid "Controls the number of photos displayed on one page"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:130
+msgid "Controls the maximum number of photos listed, -1 for all"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:141
+#, fuzzy
+msgid "Above the comments"
+msgstr "vis kommentarer"
+
+#: ../includes/stats/stats.inc.php:142
+msgid "In the caption line"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:143
+#, fuzzy
+msgid "Above the stats"
+msgstr "vis kommentarer"
+
+#: ../includes/stats/stats.inc.php:144
+#, fuzzy
+msgid "Below the comments"
+msgstr "slett kommentar"
+
+#: ../includes/stats/stats.inc.php:145
+#, fuzzy
+msgid "Position of the add vote and add comment links"
+msgstr "legg til kommentar"
+
+#: ../includes/stats/stats.inc.php:150
+#, fuzzy
+msgid "Filter by year"
+msgstr "Dato fotografert"
+
+#: ../includes/stats/stats.inc.php:153
+msgid "Filter by month"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:156
+#, fuzzy
+msgid "Filter by day"
+msgstr "Dato fotografert"
 
 #: ../html/userData.inc:18
 msgid "Member file"
@@ -3148,11 +3328,43 @@ msgstr "ikke rangert"
 msgid "Rating:"
 msgstr "Regn"
 
+#: ../stats-wizard.php:98
+msgid "Wizard"
+msgstr ""
+
+#: ../stats-wizard.php:110
+msgid "Type"
+msgstr ""
+
+#: ../stats-wizard.php:114 ../tools/despam-comments.php:382
+msgid "Options"
+msgstr "Innstillinger"
+
+#: ../stats-wizard.php:119
+#, fuzzy
+msgid "Layout"
+msgstr "Siste"
+
+#: ../stats-wizard.php:123
+#, fuzzy
+msgid "Filter by Capture Date"
+msgstr "Dato fotografert"
+
+#: ../stats-wizard.php:128
+#, fuzzy
+msgid "Show statistics"
+msgstr "statistikk"
+
+#: ../stats-wizard.php:131
+msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
+msgstr ""
+
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
 msgstr "finn foreldrel&oslash;se"
 
 #: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#: ../tools/validate_albums.php:198
 #, fuzzy
 msgid "return to admin page"
 msgstr "returner til album"
@@ -3351,9 +3563,72 @@ msgstr "Vis/rediger svarteliste"
 msgid "Add blacklist entries"
 msgstr "Legg til i svarteliste"
 
-#: ../tools/despam-comments.php:382
-msgid "Options"
-msgstr "Innstillinger"
+#: ../tools/validate_albums.php:162
+msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
+msgstr ""
+
+#: ../tools/validate_albums.php:185 ../tools/validate_albums.php:195
+#, fuzzy
+msgid "Validate Albums"
+msgstr "slett album"
+
+#: ../tools/validate_albums.php:209
+msgid "Missing Files:"
+msgstr ""
+
+#: ../tools/validate_albums.php:210
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+msgstr ""
+
+#: ../tools/validate_albums.php:214
+msgid "Missing File"
+msgstr ""
+
+#: ../tools/validate_albums.php:216 ../tools/validate_albums.php:258
+#, fuzzy
+msgid "Action"
+msgstr "Plassering"
+
+#: ../tools/validate_albums.php:225 ../view_photo.php:331
+msgid "delete photo"
+msgstr "slett bilde"
+
+#: ../tools/validate_albums.php:241
+msgid "No Missing Files"
+msgstr ""
+
+#: ../tools/validate_albums.php:242
+#, fuzzy
+msgid "There are no missing files in this Gallery."
+msgstr "Det var ingen foreldrel&oslash;se bilder i dette galleriet."
+
+#: ../tools/validate_albums.php:251
+#, fuzzy
+msgid "Invalid Albums:"
+msgstr "Ugyldig bruker"
+
+#: ../tools/validate_albums.php:252
+msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
+msgstr ""
+
+#: ../tools/validate_albums.php:256
+#, fuzzy
+msgid "Invalid Album"
+msgstr "Ugyldig bruker"
+
+#: ../tools/validate_albums.php:265
+#, fuzzy
+msgid "delete directory"
+msgstr "Albumkatalog"
+
+#: ../tools/validate_albums.php:281
+msgid "No Invalid Albums Found"
+msgstr ""
+
+#: ../tools/validate_albums.php:282
+#, fuzzy
+msgid "There are no invalid albums present in this Gallery."
+msgstr "Det var ingen foreldrel&oslash;se bilder i dette galleriet."
 
 #: ../upgrade_album.php:81
 msgid "Progress"
@@ -4126,10 +4401,6 @@ msgstr "Beklager.  Dette albumet tillater ikke kommentarer."
 msgid "resize photo"
 msgstr "endre bildest&oslash;rrelse"
 
-#: ../view_photo.php:331
-msgid "delete photo"
-msgstr "slett bilde"
-
 #: ../view_photo.php:342
 msgid "View Images"
 msgstr "Vis bilder"
@@ -4152,8 +4423,9 @@ msgid "Send photo to..."
 msgstr "Endrer st&oslash;rrelse p&aring; 1 bilde ..."
 
 #: ../view_photo.php:444
+#, fuzzy
 msgid "Print photo with..."
-msgstr ""
+msgstr "Endrer st&oslash;rrelse p&aring; 1 bilde ..."
 
 #: ../view_photo.php:476
 #, fuzzy, php-format

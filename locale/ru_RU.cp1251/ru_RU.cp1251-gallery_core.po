@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-02 12:01+0100\n"
+"POT-Creation-Date: 2005-03-10 14:35+0100\n"
 "PO-Revision-Date: 2004-08-04 23:48+0600\n"
 "Last-Translator: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "Language-Team: Yuri Gural <yurigural AT inbox DOT ru>\n"
@@ -155,24 +155,35 @@ msgid "Find and remove comments that contains spam."
 msgstr "просмотреть комментарии"
 
 #
-#: ../admin-page.php:56
+#: ../admin-page.php:50
+#, fuzzy
+msgid "validate albums"
+msgstr "удалить альбом"
+
+#: ../admin-page.php:52
+msgid "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"
+msgstr ""
+
+#
+#: ../admin-page.php:59
 msgid "manage users"
 msgstr "управление пользователями"
 
 #
-#: ../admin-page.php:58
+#: ../admin-page.php:61
 #, fuzzy
 msgid "Manage your users."
 msgstr "Управление пользователями"
 
 #
-#: ../admin-page.php:87
+#: ../admin-page.php:90
 #, fuzzy
 msgid "Admin options"
 msgstr "администрирование"
 
-#: ../admin-page.php:88 ../stats.php:634 ../tools/find_orphans.php:214
-#: ../tools/despam-comments.php:59
+#: ../admin-page.php:91 ../stats.php:634 ../stats-wizard.php:101
+#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:59
+#: ../tools/validate_albums.php:199
 #, fuzzy
 msgid "return to gallery"
 msgstr "Вернуться в галерею"
@@ -1009,7 +1020,8 @@ msgstr "Создать"
 
 #
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:81
-#: ../delete_photo.php:89
+#: ../delete_photo.php:89 ../tools/validate_albums.php:125
+#: ../tools/validate_albums.php:129
 msgid "Delete Album"
 msgstr "Удаление альбома"
 
@@ -1032,6 +1044,7 @@ msgstr "не указан альбом"
 
 #
 #: ../delete_photo.php:81 ../delete_photo.php:118
+#: ../tools/validate_albums.php:125 ../tools/validate_albums.php:129
 msgid "Delete Photo"
 msgstr "Удаление фотографии"
 
@@ -1840,6 +1853,190 @@ msgstr "назад в альбом"
 msgid "Slide Show for album"
 msgstr "Показ слайдов для альбома"
 
+#: ../includes/stats/stats.inc.php:48
+msgid "Sort by most viewed image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:49
+msgid "most viewed"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:53
+msgid "Sort by the latest added image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:54
+msgid "latest added"
+msgstr ""
+
+#
+#: ../includes/stats/stats.inc.php:58
+#, fuzzy
+msgid "Sort by image capture date"
+msgstr "Дата фотографии"
+
+#
+#: ../includes/stats/stats.inc.php:59
+#, fuzzy
+msgid "latest shots"
+msgstr "Последняя фотография"
+
+#: ../includes/stats/stats.inc.php:63
+#, fuzzy
+msgid "Show images with comments - latest are shown first"
+msgstr "Нет осиротевших альбомов в галереи."
+
+#
+#: ../includes/stats/stats.inc.php:64
+#, fuzzy
+msgid "latest comments"
+msgstr "Последний комментарий %s."
+
+#: ../includes/stats/stats.inc.php:68
+#, fuzzy
+msgid "Show images with the highest ratings first"
+msgstr "Нет осиротевших альбомов в галереи."
+
+#: ../includes/stats/stats.inc.php:69
+msgid "highest ratings"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:73
+#, fuzzy
+msgid "Show random images"
+msgstr "%s случайных изображений из %s"
+
+#
+#: ../includes/stats/stats.inc.php:74
+#, fuzzy
+msgid "random images"
+msgstr "нет фотографий"
+
+#
+#: ../includes/stats/stats.inc.php:81
+#, fuzzy
+msgid "Show caption"
+msgstr "Нет заголовка"
+
+#
+#: ../includes/stats/stats.inc.php:84
+#, fuzzy
+msgid "Show album link"
+msgstr "%s в альбоме на %s"
+
+#
+#: ../includes/stats/stats.inc.php:87
+#, fuzzy
+msgid "Show description"
+msgstr "Нет описания"
+
+#
+#: ../includes/stats/stats.inc.php:90
+#, fuzzy
+msgid "Show comments"
+msgstr "просмотреть комментарии"
+
+#
+#: ../includes/stats/stats.inc.php:93
+#, fuzzy
+msgid "Show capture date"
+msgstr "Дата фотографии"
+
+#
+#: ../includes/stats/stats.inc.php:96
+#, fuzzy
+msgid "Show upload date"
+msgstr "по дате загрузки"
+
+#
+#: ../includes/stats/stats.inc.php:99
+#, fuzzy
+msgid "Show number of views"
+msgstr "по количеству кликов"
+
+#
+#: ../includes/stats/stats.inc.php:102
+#, fuzzy
+msgid "Show the add comment link"
+msgstr "добавить комментарий"
+
+#
+#: ../includes/stats/stats.inc.php:109
+#, fuzzy
+msgid "Show the add vote link"
+msgstr "добавить комментарий"
+
+#
+#: ../includes/stats/stats.inc.php:112
+#, fuzzy
+msgid "Show the album owners"
+msgstr "%s в альбоме на %s"
+
+#: ../includes/stats/stats.inc.php:115
+msgid "Show timing basic information"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:121
+msgid "Reverses sort order - see above"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:124
+#, fuzzy
+msgid "Thumb size in pixels"
+msgstr "Длина наибольшей стороны в пикселях"
+
+#: ../includes/stats/stats.inc.php:127
+msgid "Controls the number of photos displayed on one page"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:130
+msgid "Controls the maximum number of photos listed, -1 for all"
+msgstr ""
+
+#
+#: ../includes/stats/stats.inc.php:141
+#, fuzzy
+msgid "Above the comments"
+msgstr "просмотреть комментарии"
+
+#: ../includes/stats/stats.inc.php:142
+msgid "In the caption line"
+msgstr ""
+
+#
+#: ../includes/stats/stats.inc.php:143
+#, fuzzy
+msgid "Above the stats"
+msgstr "просмотреть комментарии"
+
+#
+#: ../includes/stats/stats.inc.php:144
+#, fuzzy
+msgid "Below the comments"
+msgstr "удалить комментарий"
+
+#
+#: ../includes/stats/stats.inc.php:145
+#, fuzzy
+msgid "Position of the add vote and add comment links"
+msgstr "добавить комментарий"
+
+#
+#: ../includes/stats/stats.inc.php:150
+#, fuzzy
+msgid "Filter by year"
+msgstr "Дата фотографии"
+
+#: ../includes/stats/stats.inc.php:153
+msgid "Filter by month"
+msgstr ""
+
+#
+#: ../includes/stats/stats.inc.php:156
+#, fuzzy
+msgid "Filter by day"
+msgstr "Дата фотографии"
+
 #: ../html/userData.inc:18
 msgid "Member file"
 msgstr "Файл участников"
@@ -2108,8 +2305,9 @@ msgid "Lower&nbsp;Right"
 msgstr "Вправо&nbsp;вниз"
 
 #: ../layout/watermarkform.inc:144
+#, fuzzy
 msgid "Preview Size"
-msgstr ""
+msgstr "Просмотр"
 
 #: ../layout/watermarkform.inc:147
 msgid "Resized"
@@ -2140,9 +2338,11 @@ msgstr "добавить фото"
 msgid "Only sized photos"
 msgstr "изменить размер фото"
 
+#
 #: ../layout/watermarkform.inc:162
+#, fuzzy
 msgid "Only full photos"
-msgstr ""
+msgstr "изменить размер фото"
 
 #
 #: ../lib/Form.php:56
@@ -3439,13 +3639,17 @@ msgstr "Пропущен альбом #%d"
 msgid "Reading info for photo index = %d , id = %d"
 msgstr ""
 
+#
 #: ../stats.php:358
+#, fuzzy
 msgid "Getting SVotes"
-msgstr ""
+msgstr "В комментариях есть совпадение"
 
+#
 #: ../stats.php:366
+#, fuzzy
 msgid "Getting Item Clicks"
-msgstr ""
+msgstr "Дата фотографии"
 
 #
 #: ../stats.php:371
@@ -3465,9 +3669,11 @@ msgstr "по количеству комментариев"
 msgid "Getting Comments"
 msgstr "В комментариях есть совпадение"
 
+#
 #: ../stats.php:404
+#, fuzzy
 msgid "Getting Ratings"
-msgstr ""
+msgstr "В комментариях есть совпадение"
 
 #: ../stats.php:439
 #, php-format
@@ -3488,20 +3694,26 @@ msgid " - Images with the least votes"
 msgstr ""
 
 #: ../stats.php:537
+#, fuzzy
 msgid " - Top rated images"
-msgstr ""
+msgstr "%s случайных изображений из %s"
 
 #: ../stats.php:540
+#, fuzzy
 msgid " - Bottom rated images"
-msgstr ""
+msgstr "%s случайных изображений из %s"
 
+#
 #: ../stats.php:546
+#, fuzzy
 msgid " - Latest added images"
-msgstr ""
+msgstr "Дата фотографии"
 
+#
 #: ../stats.php:549
+#, fuzzy
 msgid " - Oldest images first"
-msgstr ""
+msgstr "удалить комментарий"
 
 #
 #: ../stats.php:555
@@ -3676,12 +3888,47 @@ msgstr "Поворот"
 msgid "Rating:"
 msgstr "Дождь"
 
+#: ../stats-wizard.php:98
+msgid "Wizard"
+msgstr ""
+
+#: ../stats-wizard.php:110
+msgid "Type"
+msgstr ""
+
+#
+#: ../stats-wizard.php:114 ../tools/despam-comments.php:382
+#, fuzzy
+msgid "Options"
+msgstr "Дополнительно:"
+
+#
+#: ../stats-wizard.php:119
+#, fuzzy
+msgid "Layout"
+msgstr "Последнее"
+
+#
+#: ../stats-wizard.php:123
+#, fuzzy
+msgid "Filter by Capture Date"
+msgstr "Дата фотографии"
+
+#: ../stats-wizard.php:128
+msgid "Show statistics"
+msgstr ""
+
+#: ../stats-wizard.php:131
+msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
+msgstr ""
+
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
 msgstr ""
 
 #
 #: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#: ../tools/validate_albums.php:198
 #, fuzzy
 msgid "return to admin page"
 msgstr "вернуться в альбом"
@@ -3858,13 +4105,17 @@ msgstr "Автор:"
 msgid "Delete Checked Comments"
 msgstr "удалить комментарий"
 
+#
 #: ../tools/despam-comments.php:248
+#, fuzzy
 msgid "Delete from blacklist"
-msgstr ""
+msgstr "текущее расположение"
 
+#
 #: ../tools/despam-comments.php:265 ../tools/despam-comments.php:309
+#, fuzzy
 msgid "Error saving blacklist!"
-msgstr ""
+msgstr "текущее расположение"
 
 #: ../tools/despam-comments.php:268
 #, php-format
@@ -3893,13 +4144,17 @@ msgstr "текущее расположение"
 msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
 msgstr ""
 
+#
 #: ../tools/despam-comments.php:354 ../tools/despam-comments.php:371
+#, fuzzy
 msgid "Update Blacklist"
-msgstr ""
+msgstr "текущее расположение"
 
+#
 #: ../tools/despam-comments.php:361
+#, fuzzy
 msgid "Enter new blacklist entries"
-msgstr ""
+msgstr "удалить комментарий"
 
 #
 #: ../tools/despam-comments.php:362
@@ -3917,19 +4172,90 @@ msgstr ""
 msgid "Find blacklisted comments"
 msgstr "удалить комментарий"
 
+#
 #: ../tools/despam-comments.php:378
+#, fuzzy
 msgid "View/Edit blacklist"
-msgstr ""
+msgstr "текущее расположение"
 
+#
 #: ../tools/despam-comments.php:379
+#, fuzzy
 msgid "Add blacklist entries"
+msgstr "удалить комментарий"
+
+#: ../tools/validate_albums.php:162
+msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
 msgstr ""
 
 #
-#: ../tools/despam-comments.php:382
+#: ../tools/validate_albums.php:185 ../tools/validate_albums.php:195
 #, fuzzy
-msgid "Options"
-msgstr "Дополнительно:"
+msgid "Validate Albums"
+msgstr "удалить альбом"
+
+#: ../tools/validate_albums.php:209
+msgid "Missing Files:"
+msgstr ""
+
+#: ../tools/validate_albums.php:210
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+msgstr ""
+
+#: ../tools/validate_albums.php:214
+msgid "Missing File"
+msgstr ""
+
+#
+#: ../tools/validate_albums.php:216 ../tools/validate_albums.php:258
+#, fuzzy
+msgid "Action"
+msgstr "документация"
+
+#
+#: ../tools/validate_albums.php:225 ../view_photo.php:331
+msgid "delete photo"
+msgstr "удалить фото"
+
+#: ../tools/validate_albums.php:241
+msgid "No Missing Files"
+msgstr ""
+
+#: ../tools/validate_albums.php:242
+#, fuzzy
+msgid "There are no missing files in this Gallery."
+msgstr "Нет осиротевших альбомов в галереи."
+
+#
+#: ../tools/validate_albums.php:251
+#, fuzzy
+msgid "Invalid Albums:"
+msgstr "Недействительный пользователь"
+
+#: ../tools/validate_albums.php:252
+msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
+msgstr ""
+
+#
+#: ../tools/validate_albums.php:256
+#, fuzzy
+msgid "Invalid Album"
+msgstr "Недействительный пользователь"
+
+#
+#: ../tools/validate_albums.php:265
+#, fuzzy
+msgid "delete directory"
+msgstr "Подтвердить URL или каталог"
+
+#: ../tools/validate_albums.php:281
+msgid "No Invalid Albums Found"
+msgstr ""
+
+#: ../tools/validate_albums.php:282
+#, fuzzy
+msgid "There are no invalid albums present in this Gallery."
+msgstr "Нет осиротевших альбомов в галереи."
 
 #
 #: ../upgrade_album.php:81
@@ -4405,9 +4731,11 @@ msgstr "название галереи"
 msgid "gallery URL"
 msgstr "URL галереи"
 
+#
 #: ../util.php:2971
+#, fuzzy
 msgid "No Skin"
-msgstr ""
+msgstr "Вход"
 
 #: ../util.php:2972
 #, fuzzy, php-format
@@ -4805,11 +5133,6 @@ msgid "resize photo"
 msgstr "изменить размер фото"
 
 #
-#: ../view_photo.php:331
-msgid "delete photo"
-msgstr "удалить фото"
-
-#
 #: ../view_photo.php:342
 msgid "View Images"
 msgstr "Вид фотографий"
@@ -4835,8 +5158,9 @@ msgid "Send photo to..."
 msgstr "Изменение размера %d фотографий..."
 
 #: ../view_photo.php:444
+#, fuzzy
 msgid "Print photo with..."
-msgstr ""
+msgstr "Изменение размера %d фотографий..."
 
 #
 #: ../view_photo.php:476

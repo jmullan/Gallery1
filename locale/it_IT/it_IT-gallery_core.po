@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-02 12:01+0100\n"
+"POT-Creation-Date: 2005-03-10 14:35+0100\n"
 "PO-Revision-Date: 2005-02-22 17:52+0100\n"
 "Last-Translator: Ermanno Baschiera <ermannob AT inwind DOT it>\n"
 "Language-Team: italiano <Italian <gallery-devel@lists.sourceforge.net>>\n"
@@ -146,20 +146,30 @@ msgstr "trova commenti spam"
 msgid "Find and remove comments that contains spam."
 msgstr "Trova e rimuovi commenti che contengono spam."
 
-#: ../admin-page.php:56
+#: ../admin-page.php:50
+#, fuzzy
+msgid "validate albums"
+msgstr "elimina album"
+
+#: ../admin-page.php:52
+msgid "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"
+msgstr ""
+
+#: ../admin-page.php:59
 msgid "manage users"
 msgstr "gestione utenti"
 
-#: ../admin-page.php:58
+#: ../admin-page.php:61
 msgid "Manage your users."
 msgstr "Gestisci gli utenti registrati."
 
-#: ../admin-page.php:87
+#: ../admin-page.php:90
 msgid "Admin options"
 msgstr "Opzioni amministrazione"
 
-#: ../admin-page.php:88 ../stats.php:634 ../tools/find_orphans.php:214
-#: ../tools/despam-comments.php:59
+#: ../admin-page.php:91 ../stats.php:634 ../stats-wizard.php:101
+#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:59
+#: ../tools/validate_albums.php:199
 #, fuzzy
 msgid "return to gallery"
 msgstr "Torna alla Galleria"
@@ -872,7 +882,8 @@ msgid "Create"
 msgstr "Crea"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:81
-#: ../delete_photo.php:89
+#: ../delete_photo.php:89 ../tools/validate_albums.php:125
+#: ../tools/validate_albums.php:129
 msgid "Delete Album"
 msgstr "Elimina Album"
 
@@ -891,6 +902,7 @@ msgid "no album specified"
 msgstr "nessun album selezionato"
 
 #: ../delete_photo.php:81 ../delete_photo.php:118
+#: ../tools/validate_albums.php:125 ../tools/validate_albums.php:129
 msgid "Delete Photo"
 msgstr "Elimina Foto"
 
@@ -1566,6 +1578,174 @@ msgstr "ritorna all'album"
 #: ../includes/slideshow/low.inc:74
 msgid "Slide Show for album"
 msgstr "Presentazione dell'album"
+
+#: ../includes/stats/stats.inc.php:48
+#, fuzzy
+msgid "Sort by most viewed image first"
+msgstr "- Prima le immagini pi&ugrave; vecchie"
+
+#: ../includes/stats/stats.inc.php:49
+msgid "most viewed"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:53
+#, fuzzy
+msgid "Sort by the latest added image first"
+msgstr "- Ultime immagini aggiunte"
+
+#: ../includes/stats/stats.inc.php:54
+#, fuzzy
+msgid "latest added"
+msgstr "- Ultime immagini aggiunte"
+
+#: ../includes/stats/stats.inc.php:58
+#, fuzzy
+msgid "Sort by image capture date"
+msgstr "- Data dello Scatto pi&ugrave; Recente"
+
+#: ../includes/stats/stats.inc.php:59
+#, fuzzy
+msgid "latest shots"
+msgstr "Ultima Foto"
+
+#: ../includes/stats/stats.inc.php:63
+#, fuzzy
+msgid "Show images with comments - latest are shown first"
+msgstr "%d immagini con commenti in questa Gallery"
+
+#: ../includes/stats/stats.inc.php:64
+#, fuzzy
+msgid "latest comments"
+msgstr "- Ultimi commenti"
+
+#: ../includes/stats/stats.inc.php:68
+#, fuzzy
+msgid "Show images with the highest ratings first"
+msgstr "- Immagini con minor numero di voti"
+
+#: ../includes/stats/stats.inc.php:69
+#, fuzzy
+msgid "highest ratings"
+msgstr "Richiesta Valutazioni"
+
+#: ../includes/stats/stats.inc.php:73
+#, fuzzy
+msgid "Show random images"
+msgstr "- Immagini Casuali"
+
+#: ../includes/stats/stats.inc.php:74
+#, fuzzy
+msgid "random images"
+msgstr "nessuna immagine"
+
+#: ../includes/stats/stats.inc.php:81
+#, fuzzy
+msgid "Show caption"
+msgstr "Nessuna Didascalia"
+
+#: ../includes/stats/stats.inc.php:84
+#, fuzzy
+msgid "Show album link"
+msgstr "%s in questo album su %s"
+
+#: ../includes/stats/stats.inc.php:87
+#, fuzzy
+msgid "Show description"
+msgstr "Nessuna descrizione"
+
+#: ../includes/stats/stats.inc.php:90
+#, fuzzy
+msgid "Show comments"
+msgstr "visualizza commenti"
+
+#: ../includes/stats/stats.inc.php:93
+#, fuzzy
+msgid "Show capture date"
+msgstr "Data Scatto"
+
+#: ../includes/stats/stats.inc.php:96
+#, fuzzy
+msgid "Show upload date"
+msgstr "Per Data Caricamento"
+
+#: ../includes/stats/stats.inc.php:99
+#, fuzzy
+msgid "Show number of views"
+msgstr "Per Numero di Click"
+
+#: ../includes/stats/stats.inc.php:102
+#, fuzzy
+msgid "Show the add comment link"
+msgstr "aggiungi commento"
+
+#: ../includes/stats/stats.inc.php:109
+#, fuzzy
+msgid "Show the add vote link"
+msgstr "aggiungi commento"
+
+#: ../includes/stats/stats.inc.php:112
+#, fuzzy
+msgid "Show the album owners"
+msgstr "%s in questo album su %s"
+
+#: ../includes/stats/stats.inc.php:115
+msgid "Show timing basic information"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:121
+msgid "Reverses sort order - see above"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:124
+#, fuzzy
+msgid "Thumb size in pixels"
+msgstr "Lunghezza massima di un lato in pixels"
+
+#: ../includes/stats/stats.inc.php:127
+msgid "Controls the number of photos displayed on one page"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:130
+msgid "Controls the maximum number of photos listed, -1 for all"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:141
+#, fuzzy
+msgid "Above the comments"
+msgstr "visualizza commenti"
+
+#: ../includes/stats/stats.inc.php:142
+msgid "In the caption line"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:143
+#, fuzzy
+msgid "Above the stats"
+msgstr "visualizza commenti"
+
+#: ../includes/stats/stats.inc.php:144
+#, fuzzy
+msgid "Below the comments"
+msgstr "elimina commento"
+
+#: ../includes/stats/stats.inc.php:145
+#, fuzzy
+msgid "Position of the add vote and add comment links"
+msgstr "aggiungi commento"
+
+#: ../includes/stats/stats.inc.php:150
+#, fuzzy
+msgid "Filter by year"
+msgstr "Data dello Scatto"
+
+#: ../includes/stats/stats.inc.php:153
+msgid "Filter by month"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:156
+#, fuzzy
+msgid "Filter by day"
+msgstr "Data dello Scatto"
 
 #: ../html/userData.inc:18
 msgid "Member file"
@@ -3137,11 +3317,43 @@ msgstr "non valutato"
 msgid "Rating:"
 msgstr "Valutazione:"
 
+#: ../stats-wizard.php:98
+msgid "Wizard"
+msgstr ""
+
+#: ../stats-wizard.php:110
+msgid "Type"
+msgstr ""
+
+#: ../stats-wizard.php:114 ../tools/despam-comments.php:382
+msgid "Options"
+msgstr "Opzioni"
+
+#: ../stats-wizard.php:119
+#, fuzzy
+msgid "Layout"
+msgstr "Ultima"
+
+#: ../stats-wizard.php:123
+#, fuzzy
+msgid "Filter by Capture Date"
+msgstr "Data dello Scatto"
+
+#: ../stats-wizard.php:128
+#, fuzzy
+msgid "Show statistics"
+msgstr "statistiche"
+
+#: ../stats-wizard.php:131
+msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
+msgstr ""
+
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
 msgstr "Trova Orfani"
 
 #: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#: ../tools/validate_albums.php:198
 #, fuzzy
 msgid "return to admin page"
 msgstr "ritorna all'album"
@@ -3342,9 +3554,72 @@ msgstr "Visualizza/Modifica lista nera"
 msgid "Add blacklist entries"
 msgstr "Aggiungi elementi alla lista nera"
 
-#: ../tools/despam-comments.php:382
-msgid "Options"
-msgstr "Opzioni"
+#: ../tools/validate_albums.php:162
+msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
+msgstr ""
+
+#: ../tools/validate_albums.php:185 ../tools/validate_albums.php:195
+#, fuzzy
+msgid "Validate Albums"
+msgstr "elimina album"
+
+#: ../tools/validate_albums.php:209
+msgid "Missing Files:"
+msgstr ""
+
+#: ../tools/validate_albums.php:210
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+msgstr ""
+
+#: ../tools/validate_albums.php:214
+msgid "Missing File"
+msgstr ""
+
+#: ../tools/validate_albums.php:216 ../tools/validate_albums.php:258
+#, fuzzy
+msgid "Action"
+msgstr "Locazione"
+
+#: ../tools/validate_albums.php:225 ../view_photo.php:331
+msgid "delete photo"
+msgstr "elimina foto"
+
+#: ../tools/validate_albums.php:241
+msgid "No Missing Files"
+msgstr ""
+
+#: ../tools/validate_albums.php:242
+#, fuzzy
+msgid "There are no missing files in this Gallery."
+msgstr "Non ci sono elementi orfani in Gallery."
+
+#: ../tools/validate_albums.php:251
+#, fuzzy
+msgid "Invalid Albums:"
+msgstr "Utente non valido"
+
+#: ../tools/validate_albums.php:252
+msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
+msgstr ""
+
+#: ../tools/validate_albums.php:256
+#, fuzzy
+msgid "Invalid Album"
+msgstr "Utente non valido"
+
+#: ../tools/validate_albums.php:265
+#, fuzzy
+msgid "delete directory"
+msgstr "Directory Album"
+
+#: ../tools/validate_albums.php:281
+msgid "No Invalid Albums Found"
+msgstr ""
+
+#: ../tools/validate_albums.php:282
+#, fuzzy
+msgid "There are no invalid albums present in this Gallery."
+msgstr "Non ci sono elementi orfani in Gallery."
 
 #: ../upgrade_album.php:81
 msgid "Progress"
@@ -4115,10 +4390,6 @@ msgstr "Spiacente. Questo album non consente commenti."
 #: ../view_photo.php:306
 msgid "resize photo"
 msgstr "ridimensiona foto"
-
-#: ../view_photo.php:331
-msgid "delete photo"
-msgstr "elimina foto"
 
 #: ../view_photo.php:342
 msgid "View Images"

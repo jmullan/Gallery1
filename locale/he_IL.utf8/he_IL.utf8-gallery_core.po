@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-02 12:01+0100\n"
+"POT-Creation-Date: 2005-03-10 14:35+0100\n"
 "PO-Revision-Date: 2004-03-09 21:27+0200\n"
 "Last-Translator: Shai <gallery AT shaibn DOT com>\n"
 "Language-Team: HEBREW <imac2 AT walla DOT co DOT il>\n"
@@ -48,8 +48,9 @@ msgstr ""
 #: ../resize_photo.php:31 ../rotate_photo.php:31 ../save_photos.php:33
 #: ../upgrade_album.php:57 ../user_preferences.php:31
 #: ../watermark_album.php:32
+#, fuzzy
 msgid "You are not allowed to perform this action!"
-msgstr ""
+msgstr "ניתן לשנות את פרופיל המשתמש שלך כאן."
 
 #: ../add_comment.php:58 ../view_photo.php:194
 msgid "Name and comment are both required to save a new comment!"
@@ -95,8 +96,9 @@ msgid "Applet"
 msgstr "החל"
 
 #: ../add_photos.php:73
+#, fuzzy
 msgid "Applet (big)"
-msgstr ""
+msgstr "החל"
 
 #: ../add_photos.php:78
 #, fuzzy
@@ -151,22 +153,32 @@ msgstr "ראה הערות"
 msgid "Find and remove comments that contains spam."
 msgstr "ראה הערות"
 
-#: ../admin-page.php:56
+#: ../admin-page.php:50
+#, fuzzy
+msgid "validate albums"
+msgstr "מחק אלבום"
+
+#: ../admin-page.php:52
+msgid "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"
+msgstr ""
+
+#: ../admin-page.php:59
 msgid "manage users"
 msgstr "ניהול משתמשים"
 
-#: ../admin-page.php:58
+#: ../admin-page.php:61
 #, fuzzy
 msgid "Manage your users."
 msgstr "נהל משתמשים"
 
-#: ../admin-page.php:87
+#: ../admin-page.php:90
 #, fuzzy
 msgid "Admin options"
 msgstr "כלים למנהל"
 
-#: ../admin-page.php:88 ../stats.php:634 ../tools/find_orphans.php:214
-#: ../tools/despam-comments.php:59
+#: ../admin-page.php:91 ../stats.php:634 ../stats-wizard.php:101
+#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:59
+#: ../tools/validate_albums.php:199
 #, fuzzy
 msgid "return to gallery"
 msgstr "הכנס לגלריה"
@@ -678,8 +690,9 @@ msgid "Unable to make thumbnail"
 msgstr "לא מצליח ליצור שקופית"
 
 #: ../classes/AlbumItem.php:639
+#, fuzzy
 msgid "No preview"
-msgstr ""
+msgstr "עמוד קודם"
 
 #: ../classes/AlbumItem.php:658
 msgid "No thumbnail"
@@ -894,7 +907,8 @@ msgid "Create"
 msgstr "צור"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:81
-#: ../delete_photo.php:89
+#: ../delete_photo.php:89 ../tools/validate_albums.php:125
+#: ../tools/validate_albums.php:129
 msgid "Delete Album"
 msgstr "מחק אלבום"
 
@@ -913,6 +927,7 @@ msgid "no album specified"
 msgstr "לא נבחר אלבום"
 
 #: ../delete_photo.php:81 ../delete_photo.php:118
+#: ../tools/validate_albums.php:125 ../tools/validate_albums.php:129
 msgid "Delete Photo"
 msgstr "מחק תמונה"
 
@@ -1243,8 +1258,9 @@ msgid "Choose which part of the image will compose your thumbnail:"
 msgstr "בחר את החלק של התמונה שיופיע בשקופית:"
 
 #: ../edit_watermark.php:43
+#, fuzzy
 msgid "Watermarking photo."
-msgstr ""
+msgstr "מאלבום"
 
 #: ../edit_watermark.php:43 ../watermark_album.php:55
 #, fuzzy
@@ -1263,8 +1279,9 @@ msgstr "אנא בחר משתמש"
 
 #: ../edit_watermark.php:75 ../edit_watermark.php:79 ../view_album.php:920
 #: ../view_album.php:956
+#, fuzzy
 msgid "Edit Watermark"
-msgstr ""
+msgstr "מאלבום"
 
 #: ../edit_watermark.php:108 ../watermark_album.php:132
 #, fuzzy
@@ -1298,8 +1315,9 @@ msgid "Apply values to nested albums."
 msgstr "החל על תתי-אלבומים"
 
 #: ../includes/add_photos/add_admin.inc:26
+#, fuzzy
 msgid "Admin help"
-msgstr ""
+msgstr "כלים למנהל"
 
 #: ../includes/add_photos/add_admin.inc:30
 msgid "To install or upgrade the Gallery Remote Applets, please refer to "
@@ -1436,14 +1454,14 @@ msgid "Submit URL or directory"
 msgstr "הכנס כתובת או ספריה"
 
 #: ../includes/slideshow/applet.inc:28 ../includes/slideshow/high.inc:71
-#, php-format
+#, fuzzy, php-format
 msgid "Slide Show for Gallery :: %s"
-msgstr ""
+msgstr "מצגת שקופיות לאלבומים"
 
 #: ../includes/slideshow/applet.inc:31 ../includes/slideshow/high.inc:80
-#, php-format
+#, fuzzy, php-format
 msgid "Slide Show for album :: %s"
-msgstr ""
+msgstr "מצגת שקופיות לאלבומים"
 
 #: ../includes/slideshow/applet.inc:47
 msgid "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions."
@@ -1454,14 +1472,14 @@ msgid "Your browser doesn't support applets; you should use one of the other sli
 msgstr ""
 
 #: ../includes/slideshow/high.inc:67
-#, php-format
+#, fuzzy, php-format
 msgid "%s Random Images from %s"
-msgstr ""
+msgstr "אין תמונות"
 
 #: ../includes/slideshow/high.inc:76
-#, php-format
+#, fuzzy, php-format
 msgid "%d Random Images from album :: %s"
-msgstr ""
+msgstr "%s באלבום זה ב-%s"
 
 #: ../includes/slideshow/high.inc:229
 msgid "Blend"
@@ -1501,8 +1519,9 @@ msgid "Pixelate"
 msgstr ""
 
 #: ../includes/slideshow/high.inc:247
+#, fuzzy
 msgid "Radial"
-msgstr ""
+msgstr "אקראי"
 
 #: ../includes/slideshow/high.inc:249
 #, fuzzy
@@ -1548,8 +1567,9 @@ msgid "The slide is showing full sized images, Click [normal size] to view resiz
 msgstr "המצגת נעצרה, לחץ [הרץ] כדי להתחיל אותה שוב"
 
 #: ../includes/slideshow/high.inc:338
+#, fuzzy
 msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
-msgstr ""
+msgstr "המצגת נעצרה, לחץ [הרץ] כדי להתחיל אותה שוב"
 
 #: ../includes/slideshow/high.inc:376 ../includes/slideshow/low.inc:207
 msgid "Picture is loading..."
@@ -1634,6 +1654,170 @@ msgstr "בחזרה לאלבום"
 #, fuzzy
 msgid "Slide Show for album"
 msgstr "מצגת שקופיות לאלבומים"
+
+#: ../includes/stats/stats.inc.php:48
+msgid "Sort by most viewed image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:49
+msgid "most viewed"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:53
+msgid "Sort by the latest added image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:54
+msgid "latest added"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:58
+#, fuzzy
+msgid "Sort by image capture date"
+msgstr "תאריך הצילום"
+
+#: ../includes/stats/stats.inc.php:59
+#, fuzzy
+msgid "latest shots"
+msgstr "התמונה האחרונה"
+
+#: ../includes/stats/stats.inc.php:63
+#, fuzzy
+msgid "Show images with comments - latest are shown first"
+msgstr "קיים אלבום בשם זה!"
+
+#: ../includes/stats/stats.inc.php:64
+#, fuzzy
+msgid "latest comments"
+msgstr "מחק הערה"
+
+#: ../includes/stats/stats.inc.php:68
+#, fuzzy
+msgid "Show images with the highest ratings first"
+msgstr "קיים אלבום בשם זה!"
+
+#: ../includes/stats/stats.inc.php:69
+msgid "highest ratings"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:73
+#, fuzzy
+msgid "Show random images"
+msgstr "אין תמונות"
+
+#: ../includes/stats/stats.inc.php:74
+#, fuzzy
+msgid "random images"
+msgstr "אין תמונות"
+
+#: ../includes/stats/stats.inc.php:81
+#, fuzzy
+msgid "Show caption"
+msgstr "ללא כותרת"
+
+#: ../includes/stats/stats.inc.php:84
+#, fuzzy
+msgid "Show album link"
+msgstr "%s באלבום זה ב-%s"
+
+#: ../includes/stats/stats.inc.php:87
+#, fuzzy
+msgid "Show description"
+msgstr "ללא תיאור"
+
+#: ../includes/stats/stats.inc.php:90
+#, fuzzy
+msgid "Show comments"
+msgstr "ראה הערות"
+
+#: ../includes/stats/stats.inc.php:93
+#, fuzzy
+msgid "Show capture date"
+msgstr "תאריך הצילום"
+
+#: ../includes/stats/stats.inc.php:96
+#, fuzzy
+msgid "Show upload date"
+msgstr "על פי תאריך העלאה"
+
+#: ../includes/stats/stats.inc.php:99
+#, fuzzy
+msgid "Show number of views"
+msgstr "על פי מספר לחיצות"
+
+#: ../includes/stats/stats.inc.php:102
+#, fuzzy
+msgid "Show the add comment link"
+msgstr "הוסף הערה"
+
+#: ../includes/stats/stats.inc.php:109
+#, fuzzy
+msgid "Show the add vote link"
+msgstr "הוסף הערה"
+
+#: ../includes/stats/stats.inc.php:112
+#, fuzzy
+msgid "Show the album owners"
+msgstr "%s באלבום זה ב-%s"
+
+#: ../includes/stats/stats.inc.php:115
+msgid "Show timing basic information"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:121
+msgid "Reverses sort order - see above"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:124
+#, fuzzy
+msgid "Thumb size in pixels"
+msgstr "אורך צלע מקסימלי בפיקסלים"
+
+#: ../includes/stats/stats.inc.php:127
+msgid "Controls the number of photos displayed on one page"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:130
+msgid "Controls the maximum number of photos listed, -1 for all"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:141
+#, fuzzy
+msgid "Above the comments"
+msgstr "ראה הערות"
+
+#: ../includes/stats/stats.inc.php:142
+msgid "In the caption line"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:143
+#, fuzzy
+msgid "Above the stats"
+msgstr "ראה הערות"
+
+#: ../includes/stats/stats.inc.php:144
+#, fuzzy
+msgid "Below the comments"
+msgstr "מחק הערה"
+
+#: ../includes/stats/stats.inc.php:145
+#, fuzzy
+msgid "Position of the add vote and add comment links"
+msgstr "הוסף הערה"
+
+#: ../includes/stats/stats.inc.php:150
+#, fuzzy
+msgid "Filter by year"
+msgstr "תאריך הצילום"
+
+#: ../includes/stats/stats.inc.php:153
+msgid "Filter by month"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:156
+#, fuzzy
+msgid "Filter by day"
+msgstr "תאריך הצילום"
 
 #: ../html/userData.inc:18
 msgid "Member file"
@@ -1731,8 +1915,9 @@ msgid "view&nbsp;comments"
 msgstr "ראה&nbsp;הערות"
 
 #: ../layout/adminAlbumCommands.inc:40
+#, fuzzy
 msgid "watermark&nbsp;album"
-msgstr ""
+msgstr "מאלבום"
 
 #: ../layout/breadcrumb.inc:39
 #, fuzzy
@@ -1809,8 +1994,9 @@ msgid "%d of %d"
 msgstr "%d מתוך %d"
 
 #: ../layout/watermarkform.inc:77
+#, fuzzy
 msgid "Watermark"
-msgstr ""
+msgstr "מאלבום"
 
 #: ../layout/watermarkform.inc:80 ../util.php:3046 ../util.php:3051
 msgid "None"
@@ -1868,8 +2054,9 @@ msgid "Lower&nbsp;Right"
 msgstr ""
 
 #: ../layout/watermarkform.inc:144
+#, fuzzy
 msgid "Preview Size"
-msgstr ""
+msgstr "עמוד קודם"
 
 #: ../layout/watermarkform.inc:147
 #, fuzzy
@@ -1902,8 +2089,9 @@ msgid "Only sized photos"
 msgstr "שנה גודל תמונה"
 
 #: ../layout/watermarkform.inc:162
+#, fuzzy
 msgid "Only full photos"
-msgstr ""
+msgstr "שנה גודל תמונה"
 
 #: ../lib/Form.php:56
 msgid "Check All"
@@ -1981,8 +2169,9 @@ msgid "Key - %s"
 msgstr ""
 
 #: ../lib/voting.php:335 ../poll_results.php:163
+#, fuzzy
 msgid "No votes so far."
-msgstr ""
+msgstr "אין הצבעות"
 
 #: ../lib/voting.php:356
 msgid "Poll results:"
@@ -2059,14 +2248,14 @@ msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You
 msgstr ""
 
 #: ../login.php:122
-#, php-format
+#, fuzzy, php-format
 msgid "Click to reset your password: %s"
-msgstr ""
+msgstr "שכחת את סיסמתך?"
 
 #: ../login.php:124
-#, php-format
+#, fuzzy, php-format
 msgid "New password request %s"
-msgstr ""
+msgstr "סיסמה חדשה"
 
 #: ../login.php:127
 #, php-format
@@ -2243,9 +2432,9 @@ msgid "No file selected."
 msgstr "לא נבחר קובץ"
 
 #: ../multi_create_user.php:55
-#, php-format
+#, fuzzy, php-format
 msgid "Upload failed: %s."
-msgstr ""
+msgstr "תאריך העלאה"
 
 #: ../multi_create_user.php:64
 #, php-format
@@ -2368,8 +2557,9 @@ msgid "Type of poll for this album"
 msgstr "תמונה 1 באלבום זה"
 
 #: ../poll_properties.php:88
+#, fuzzy
 msgid "Rank"
-msgstr ""
+msgstr "אקראי"
 
 #: ../poll_properties.php:88
 msgid "Critique"
@@ -2406,8 +2596,9 @@ msgid "Vertical"
 msgstr "אנכי"
 
 #: ../poll_properties.php:111
+#, fuzzy
 msgid "Vote hint"
-msgstr ""
+msgstr "הצבעה"
 
 #: ../poll_properties.php:120
 msgid "Displayed Value"
@@ -2429,9 +2620,9 @@ msgid "Poll Results"
 msgstr "תוצאות:"
 
 #: ../poll_results.php:95
-#, php-format
+#, fuzzy, php-format
 msgid "Return to  %s"
-msgstr ""
+msgstr "חזור לאלבום"
 
 #: ../poll_results.php:121
 msgid "Results Breakdown"
@@ -2504,9 +2695,9 @@ msgid "User cannot create ROOT level album."
 msgstr "המשתמש אינו רשאי ליצור אלבומים ברמה עליונה."
 
 #: ../publish_xp.php:248
-#, php-format
+#, fuzzy, php-format
 msgid "User cannot create nested album in %s."
-msgstr ""
+msgstr "המשתמש אינו רשאי ליצור אלבומים ברמה עליונה."
 
 #: ../publish_xp.php:251
 msgid "No Parent Album Specified!"
@@ -2618,13 +2809,14 @@ msgid "Click this link and then follow the instructions to log into your Gallery
 msgstr "הקלק על קישור זה, הזדהה בפני מערכת gallery, בחר אלבום ופרסם את התמונות"
 
 #: ../publish_xp_docs.php:68
+#, fuzzy
 msgid "Return to Add Photos"
-msgstr ""
+msgstr "הוסף תמונות"
 
 #: ../register.php:37 ../register.php:41
-#, php-format
+#, fuzzy, php-format
 msgid "Create User for %s."
-msgstr ""
+msgstr "צור משתמש"
 
 #: ../register.php:45
 msgid "This Gallery does not support self-registration by visitors."
@@ -2641,9 +2833,9 @@ msgid "You must specify a valid email address."
 msgstr "עליך להכניס שם משתמש"
 
 #: ../register.php:104
-#, php-format
+#, fuzzy, php-format
 msgid "%s has registered.  Email has been sent to %s."
-msgstr ""
+msgstr "%s נרשם ע\"י %s. מייל נשלח אל %s."
 
 #: ../register.php:112
 #, fuzzy
@@ -2651,9 +2843,9 @@ msgid "Gallery Self Registration"
 msgstr "הגדרות Gallery"
 
 #: ../register.php:114
-#, php-format
+#, fuzzy, php-format
 msgid "An email has been sent to %s."
-msgstr ""
+msgstr "אימייל נשלח אל %s."
 
 #: ../register.php:116
 msgid "Your account information is contained within the email."
@@ -2705,9 +2897,9 @@ msgid "Reset Voting"
 msgstr "אפס מונה"
 
 #: ../reset_votes.php:59
-#, php-format
+#, fuzzy, php-format
 msgid "Do you really want to remove all votes in %s?"
-msgstr ""
+msgstr "האם אתה בטוח כי ברצונך למחוק את המשתמש"
 
 #: ../reset_votes.php:63
 #, fuzzy
@@ -3060,12 +3252,14 @@ msgid "Reading info for photo index = %d , id = %d"
 msgstr ""
 
 #: ../stats.php:358
+#, fuzzy
 msgid "Getting SVotes"
-msgstr ""
+msgstr "הערות תואמות"
 
 #: ../stats.php:366
+#, fuzzy
 msgid "Getting Item Clicks"
-msgstr ""
+msgstr "תאריך צילום התמונה"
 
 #: ../stats.php:371
 #, fuzzy
@@ -3083,8 +3277,9 @@ msgid "Getting Comments"
 msgstr "הערות תואמות"
 
 #: ../stats.php:404
+#, fuzzy
 msgid "Getting Ratings"
-msgstr ""
+msgstr "הערות תואמות"
 
 #: ../stats.php:439
 #, php-format
@@ -3105,20 +3300,24 @@ msgid " - Images with the least votes"
 msgstr ""
 
 #: ../stats.php:537
+#, fuzzy
 msgid " - Top rated images"
-msgstr ""
+msgstr "אין תמונות"
 
 #: ../stats.php:540
+#, fuzzy
 msgid " - Bottom rated images"
-msgstr ""
+msgstr "אין תמונות"
 
 #: ../stats.php:546
+#, fuzzy
 msgid " - Latest added images"
-msgstr ""
+msgstr "תאריך הצילום"
 
 #: ../stats.php:549
+#, fuzzy
 msgid " - Oldest images first"
-msgstr ""
+msgstr "מחק הערה"
 
 #: ../stats.php:555
 #, fuzzy
@@ -3154,9 +3353,9 @@ msgid " - Images with the least views"
 msgstr ""
 
 #: ../stats.php:613
-#, php-format
+#, fuzzy, php-format
 msgid "%d images with comments in album: %s"
-msgstr ""
+msgstr "קיים אלבום בשם זה!"
 
 #: ../stats.php:615
 #, fuzzy, php-format
@@ -3279,11 +3478,43 @@ msgstr "סובב "
 msgid "Rating:"
 msgstr "אקראי"
 
+#: ../stats-wizard.php:98
+msgid "Wizard"
+msgstr ""
+
+#: ../stats-wizard.php:110
+msgid "Type"
+msgstr ""
+
+#: ../stats-wizard.php:114 ../tools/despam-comments.php:382
+#, fuzzy
+msgid "Options"
+msgstr "כותרת"
+
+#: ../stats-wizard.php:119
+#, fuzzy
+msgid "Layout"
+msgstr "אחרון"
+
+#: ../stats-wizard.php:123
+#, fuzzy
+msgid "Filter by Capture Date"
+msgstr "תאריך הצילום"
+
+#: ../stats-wizard.php:128
+msgid "Show statistics"
+msgstr ""
+
+#: ../stats-wizard.php:131
+msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
+msgstr ""
+
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
 msgstr ""
 
 #: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#: ../tools/validate_albums.php:198
 #, fuzzy
 msgid "return to admin page"
 msgstr "חזור לאלבום"
@@ -3446,12 +3677,14 @@ msgid "Delete Checked Comments"
 msgstr "מחק הערה"
 
 #: ../tools/despam-comments.php:248
+#, fuzzy
 msgid "Delete from blacklist"
-msgstr ""
+msgstr "מיקום נוכחי "
 
 #: ../tools/despam-comments.php:265 ../tools/despam-comments.php:309
+#, fuzzy
 msgid "Error saving blacklist!"
-msgstr ""
+msgstr "מיקום נוכחי "
 
 #: ../tools/despam-comments.php:268
 #, php-format
@@ -3479,12 +3712,14 @@ msgid "Your blacklist is empty.  You must add new entries to your blacklist for 
 msgstr ""
 
 #: ../tools/despam-comments.php:354 ../tools/despam-comments.php:371
+#, fuzzy
 msgid "Update Blacklist"
-msgstr ""
+msgstr "מיקום נוכחי "
 
 #: ../tools/despam-comments.php:361
+#, fuzzy
 msgid "Enter new blacklist entries"
-msgstr ""
+msgstr "מחק הערה"
 
 #: ../tools/despam-comments.php:362
 #, fuzzy
@@ -3501,17 +3736,81 @@ msgid "Find blacklisted comments"
 msgstr "מחק הערה"
 
 #: ../tools/despam-comments.php:378
+#, fuzzy
 msgid "View/Edit blacklist"
-msgstr ""
+msgstr "מיקום נוכחי "
 
 #: ../tools/despam-comments.php:379
+#, fuzzy
 msgid "Add blacklist entries"
+msgstr "מחק הערה"
+
+#: ../tools/validate_albums.php:162
+msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
 msgstr ""
 
-#: ../tools/despam-comments.php:382
+#: ../tools/validate_albums.php:185 ../tools/validate_albums.php:195
 #, fuzzy
-msgid "Options"
-msgstr "כותרת"
+msgid "Validate Albums"
+msgstr "מחק אלבום"
+
+#: ../tools/validate_albums.php:209
+msgid "Missing Files:"
+msgstr ""
+
+#: ../tools/validate_albums.php:210
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+msgstr ""
+
+#: ../tools/validate_albums.php:214
+msgid "Missing File"
+msgstr ""
+
+#: ../tools/validate_albums.php:216 ../tools/validate_albums.php:258
+#, fuzzy
+msgid "Action"
+msgstr "תיעוד"
+
+#: ../tools/validate_albums.php:225 ../view_photo.php:331
+msgid "delete photo"
+msgstr "מחק תמונה"
+
+#: ../tools/validate_albums.php:241
+msgid "No Missing Files"
+msgstr ""
+
+#: ../tools/validate_albums.php:242
+#, fuzzy
+msgid "There are no missing files in this Gallery."
+msgstr "קיים אלבום בשם זה!"
+
+#: ../tools/validate_albums.php:251
+#, fuzzy
+msgid "Invalid Albums:"
+msgstr "משתמש לא תקף"
+
+#: ../tools/validate_albums.php:252
+msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
+msgstr ""
+
+#: ../tools/validate_albums.php:256
+#, fuzzy
+msgid "Invalid Album"
+msgstr "משתמש לא תקף"
+
+#: ../tools/validate_albums.php:265
+#, fuzzy
+msgid "delete directory"
+msgstr "הכנס כתובת או ספריה"
+
+#: ../tools/validate_albums.php:281
+msgid "No Invalid Albums Found"
+msgstr ""
+
+#: ../tools/validate_albums.php:282
+#, fuzzy
+msgid "There are no invalid albums present in this Gallery."
+msgstr "קיים אלבום בשם זה!"
 
 #: ../upgrade_album.php:81
 msgid "Progress"
@@ -3587,8 +3886,9 @@ msgid "There was a problem upgrading users.  Please check messages above, and tr
 msgstr ""
 
 #: ../upgrade_users.php:56
+#, fuzzy
 msgid "Retry"
-msgstr ""
+msgstr "ריק"
 
 #: ../upgrade_users.php:60
 msgid "Users upgraded successfully."
@@ -3865,14 +4165,14 @@ msgid "Email not sent as it is disabled for this gallery"
 msgstr "אימייל לא נשלח בפני שהאופציה חסומה לגלרייה זו"
 
 #: ../util.php:2662
-#, php-format
+#, fuzzy, php-format
 msgid "Email not sent as no address provided"
-msgstr ""
+msgstr "עליך להכניס שם משתמש"
 
 #: ../util.php:2668
-#, php-format
+#, fuzzy, php-format
 msgid "Email not sent to %s as it is not a valid address"
-msgstr ""
+msgstr "אימייל לא נשלח בפני שהאופציה חסומה לגלרייה זו"
 
 #: ../util.php:2684
 #, php-format
@@ -3888,8 +4188,9 @@ msgid "not shown"
 msgstr ""
 
 #: ../util.php:2739
+#, fuzzy
 msgid "Message"
-msgstr ""
+msgstr "הודעות שגיאה:"
 
 #: ../util.php:2743
 msgid "Email sent"
@@ -3900,9 +4201,9 @@ msgid "Email not sent"
 msgstr "אימייל לא נשלח"
 
 #: ../util.php:2878
-#, php-format
+#, fuzzy, php-format
 msgid "Last comment %s."
-msgstr ""
+msgstr "מחק הערה"
 
 #: ../util.php:2890
 msgid "FAILED"
@@ -3938,8 +4239,9 @@ msgid "gallery URL"
 msgstr "קישור לגלרייה"
 
 #: ../util.php:2971
+#, fuzzy
 msgid "No Skin"
-msgstr ""
+msgstr "התחבר למערכת"
 
 #: ../util.php:2972
 #, php-format
@@ -3961,12 +4263,14 @@ msgid "Last Update"
 msgstr "עמוד אחרון"
 
 #: ../util.php:3047 ../util.php:3052
+#, fuzzy
 msgid "Dots"
-msgstr ""
+msgstr "הצבעות"
 
 #: ../util.php:3048 ../util.php:3053
+#, fuzzy
 msgid "Solid"
-msgstr ""
+msgstr "הסתר "
 
 #: ../util.php:3051
 msgid "No frames"
@@ -4125,9 +4429,9 @@ msgid "You MUST click on %s for your vote to be recorded."
 msgstr ""
 
 #: ../view_album.php:590
-#, php-format
+#, fuzzy, php-format
 msgid "You have a total of %s and can change them if you wish."
-msgstr ""
+msgstr "תוכל לשנות את בחירתך אם תרצה."
 
 #: ../view_album.php:591
 #, fuzzy, php-format
@@ -4292,10 +4596,6 @@ msgstr "סליחה, אך אלבום זה אינו מאפשר הערות."
 msgid "resize photo"
 msgstr "שנה גודל תמונה"
 
-#: ../view_photo.php:331
-msgid "delete photo"
-msgstr "מחק תמונה"
-
 #: ../view_photo.php:342
 msgid "View Images"
 msgstr "צפה בתמונות"
@@ -4318,8 +4618,9 @@ msgid "Send photo to..."
 msgstr "משנה גודל של %d תמונות..."
 
 #: ../view_photo.php:444
+#, fuzzy
 msgid "Print photo with..."
-msgstr ""
+msgstr "משנה גודל של %d תמונות..."
 
 #: ../view_photo.php:476
 #, fuzzy, php-format
@@ -4343,8 +4644,9 @@ msgid "(if the data is current, this will not appear to do anything)"
 msgstr "(אם המידע עדכני, זה לא יעשה שום שינוי)"
 
 #: ../watermark_album.php:49 ../watermark_album.php:53
+#, fuzzy
 msgid "Watermarking album."
-msgstr ""
+msgstr "מאלבום"
 
 #: ../watermark_album.php:103
 #, fuzzy
@@ -4437,9 +4739,6 @@ msgstr "אנא בחר משתמש"
 
 #~ msgid "0 voters"
 #~ msgstr "אין מצביעים"
-
-#~ msgid "votes"
-#~ msgstr "הצבעות"
 
 #~ msgid "0 votes"
 #~ msgstr "אין הצבעות"

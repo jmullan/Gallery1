@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-02 12:01+0100\n"
+"POT-Creation-Date: 2005-03-10 14:35+0100\n"
 "PO-Revision-Date: 2004-08-26 23:50+1000\n"
 "Last-Translator: Peter Vlaciky <doktor AT internode DOT net DOT au>\n"
 "Language-Team: SK <doktor AT internode DOT net DOT au>\n"
@@ -145,23 +145,33 @@ msgstr "prehliadnu» si poznámky"
 msgid "Find and remove comments that contains spam."
 msgstr "prehliadnu» si poznámky"
 
-#: ../admin-page.php:56
+#: ../admin-page.php:50
+#, fuzzy
+msgid "validate albums"
+msgstr "zmaza» album"
+
+#: ../admin-page.php:52
+msgid "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"
+msgstr ""
+
+#: ../admin-page.php:59
 msgid "manage users"
 msgstr "Spravova» u¾ívateµov"
 
 # manage users
-#: ../admin-page.php:58
+#: ../admin-page.php:61
 #, fuzzy
 msgid "Manage your users."
 msgstr "Spravova» U¾ívateµov"
 
-#: ../admin-page.php:87
+#: ../admin-page.php:90
 #, fuzzy
 msgid "Admin options"
 msgstr "administrátorské mo¾nosti"
 
-#: ../admin-page.php:88 ../stats.php:634 ../tools/find_orphans.php:214
-#: ../tools/despam-comments.php:59
+#: ../admin-page.php:91 ../stats.php:634 ../stats-wizard.php:101
+#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:59
+#: ../tools/validate_albums.php:199
 #, fuzzy
 msgid "return to gallery"
 msgstr "Návrat do Gallery"
@@ -894,7 +904,8 @@ msgid "Create"
 msgstr "Vytvori»"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:81
-#: ../delete_photo.php:89
+#: ../delete_photo.php:89 ../tools/validate_albums.php:125
+#: ../tools/validate_albums.php:129
 msgid "Delete Album"
 msgstr "Zmaza» Album"
 
@@ -913,6 +924,7 @@ msgid "no album specified"
 msgstr "¾iadny album nebol zvolený"
 
 #: ../delete_photo.php:81 ../delete_photo.php:118
+#: ../tools/validate_albums.php:125 ../tools/validate_albums.php:129
 msgid "Delete Photo"
 msgstr "Zmaza» Foto"
 
@@ -1640,6 +1652,173 @@ msgstr "naspä» do albumu"
 msgid "Slide Show for album"
 msgstr "Predvádzanie albumu"
 
+#: ../includes/stats/stats.inc.php:48
+msgid "Sort by most viewed image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:49
+msgid "most viewed"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:53
+msgid "Sort by the latest added image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:54
+msgid "latest added"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:58
+#, fuzzy
+msgid "Sort by image capture date"
+msgstr "Dátum záznamu"
+
+#: ../includes/stats/stats.inc.php:59
+#, fuzzy
+msgid "latest shots"
+msgstr "Posledné Foto"
+
+#: ../includes/stats/stats.inc.php:63
+#, fuzzy
+msgid "Show images with comments - latest are shown first"
+msgstr "V tejto Gallery niesú ¾iadne osirotené albumy."
+
+#: ../includes/stats/stats.inc.php:64
+#, fuzzy
+msgid "latest comments"
+msgstr "Posledný komentár %s."
+
+#: ../includes/stats/stats.inc.php:68
+#, fuzzy
+msgid "Show images with the highest ratings first"
+msgstr "V tejto Gallery niesú ¾iadne osirotené albumy."
+
+#: ../includes/stats/stats.inc.php:69
+msgid "highest ratings"
+msgstr ""
+
+# random
+#: ../includes/stats/stats.inc.php:73
+#, fuzzy
+msgid "Show random images"
+msgstr "%s Náhodné Obrázky z %s"
+
+#: ../includes/stats/stats.inc.php:74
+#, fuzzy
+msgid "random images"
+msgstr "¾iadne obrázky"
+
+#: ../includes/stats/stats.inc.php:81
+#, fuzzy
+msgid "Show caption"
+msgstr "®iadna Hlavièka"
+
+#: ../includes/stats/stats.inc.php:84
+#, fuzzy
+msgid "Show album link"
+msgstr "%s v tomto albume %s"
+
+#: ../includes/stats/stats.inc.php:87
+#, fuzzy
+msgid "Show description"
+msgstr "®iadny popis"
+
+#: ../includes/stats/stats.inc.php:90
+#, fuzzy
+msgid "Show comments"
+msgstr "prehliadnu» si poznámky"
+
+# capture?
+#: ../includes/stats/stats.inc.php:93
+#, fuzzy
+msgid "Show capture date"
+msgstr "Dátum Zachytenia Fotky"
+
+# upload
+#: ../includes/stats/stats.inc.php:96
+#, fuzzy
+msgid "Show upload date"
+msgstr "Podµa Dátumu Odsunutia"
+
+#: ../includes/stats/stats.inc.php:99
+#, fuzzy
+msgid "Show number of views"
+msgstr "Podµa poètu Kliknutí"
+
+#: ../includes/stats/stats.inc.php:102
+#, fuzzy
+msgid "Show the add comment link"
+msgstr "prida» poznámku"
+
+#: ../includes/stats/stats.inc.php:109
+#, fuzzy
+msgid "Show the add vote link"
+msgstr "prida» poznámku"
+
+#: ../includes/stats/stats.inc.php:112
+#, fuzzy
+msgid "Show the album owners"
+msgstr "%s v tomto albume %s"
+
+#: ../includes/stats/stats.inc.php:115
+msgid "Show timing basic information"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:121
+msgid "Reverses sort order - see above"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:124
+#, fuzzy
+msgid "Thumb size in pixels"
+msgstr "Maximálna då¾ka strany v pixelových bodoch"
+
+#: ../includes/stats/stats.inc.php:127
+msgid "Controls the number of photos displayed on one page"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:130
+msgid "Controls the maximum number of photos listed, -1 for all"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:141
+#, fuzzy
+msgid "Above the comments"
+msgstr "prehliadnu» si poznámky"
+
+#: ../includes/stats/stats.inc.php:142
+msgid "In the caption line"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:143
+#, fuzzy
+msgid "Above the stats"
+msgstr "prehliadnu» si poznámky"
+
+#: ../includes/stats/stats.inc.php:144
+#, fuzzy
+msgid "Below the comments"
+msgstr "zmaza» poznámku"
+
+#: ../includes/stats/stats.inc.php:145
+#, fuzzy
+msgid "Position of the add vote and add comment links"
+msgstr "prida» poznámku"
+
+#: ../includes/stats/stats.inc.php:150
+#, fuzzy
+msgid "Filter by year"
+msgstr "Dátum záznamu"
+
+#: ../includes/stats/stats.inc.php:153
+msgid "Filter by month"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:156
+#, fuzzy
+msgid "Filter by day"
+msgstr "Dátum záznamu"
+
 #: ../html/userData.inc:18
 msgid "Member file"
 msgstr "Èlenský súbor"
@@ -1905,9 +2084,11 @@ msgstr "prida» fotky"
 msgid "Only sized photos"
 msgstr "zmeni» veµkos» fotky"
 
+# resize
 #: ../layout/watermarkform.inc:162
+#, fuzzy
 msgid "Only full photos"
-msgstr ""
+msgstr "zmeni» veµkos» fotky"
 
 #: ../lib/Form.php:56
 msgid "Check All"
@@ -2276,11 +2457,12 @@ msgid "%s added, %s skipped"
 msgstr "%s pridaných, %s vynechaných"
 
 #: ../multi_create_user.php:123 ../multi_create_user.php:124
-#, php-format
+#, fuzzy, php-format
 msgid "1 user"
 msgid_plural "%d users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "®iadne hlasy"
+msgstr[1] "®iadne hlasy"
+msgstr[2] "®iadne hlasy"
 
 #: ../multi_create_user.php:144
 msgid "Create Users"
@@ -3053,13 +3235,16 @@ msgstr "Vynechávam Album #%d"
 msgid "Reading info for photo index = %d , id = %d"
 msgstr ""
 
+# matching
 #: ../stats.php:358
+#, fuzzy
 msgid "Getting SVotes"
-msgstr ""
+msgstr "Zodpovedajúce Poznámky"
 
 #: ../stats.php:366
+#, fuzzy
 msgid "Getting Item Clicks"
-msgstr ""
+msgstr "Dátum záznamu"
 
 #: ../stats.php:371
 #, fuzzy
@@ -3077,9 +3262,11 @@ msgstr "Podµa poètu komentárov"
 msgid "Getting Comments"
 msgstr "Zodpovedajúce Poznámky"
 
+# matching
 #: ../stats.php:404
+#, fuzzy
 msgid "Getting Ratings"
-msgstr ""
+msgstr "Zodpovedajúce Poznámky"
 
 #: ../stats.php:439
 #, php-format
@@ -3099,21 +3286,27 @@ msgstr ""
 msgid " - Images with the least votes"
 msgstr ""
 
+# random
 #: ../stats.php:537
+#, fuzzy
 msgid " - Top rated images"
-msgstr ""
+msgstr "%s Náhodné Obrázky z %s"
 
+# random
 #: ../stats.php:540
+#, fuzzy
 msgid " - Bottom rated images"
-msgstr ""
+msgstr "%s Náhodné Obrázky z %s"
 
 #: ../stats.php:546
+#, fuzzy
 msgid " - Latest added images"
-msgstr ""
+msgstr "Dátum záznamu"
 
 #: ../stats.php:549
+#, fuzzy
 msgid " - Oldest images first"
-msgstr ""
+msgstr "zmaza» poznámku"
 
 #: ../stats.php:555
 #, fuzzy
@@ -3279,12 +3472,44 @@ msgstr "Otoèi»"
 msgid "Rating:"
 msgstr "Rain"
 
+#: ../stats-wizard.php:98
+msgid "Wizard"
+msgstr ""
+
+#: ../stats-wizard.php:110
+msgid "Type"
+msgstr ""
+
+#: ../stats-wizard.php:114 ../tools/despam-comments.php:382
+#, fuzzy
+msgid "Options"
+msgstr "Voliteµné:"
+
+#: ../stats-wizard.php:119
+#, fuzzy
+msgid "Layout"
+msgstr "Posledný"
+
+#: ../stats-wizard.php:123
+#, fuzzy
+msgid "Filter by Capture Date"
+msgstr "Dátum záznamu"
+
+#: ../stats-wizard.php:128
+msgid "Show statistics"
+msgstr ""
+
+#: ../stats-wizard.php:131
+msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
+msgstr ""
+
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 #, fuzzy
 msgid "Find Orphans"
 msgstr "nájs» siroty"
 
 #: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#: ../tools/validate_albums.php:198
 #, fuzzy
 msgid "return to admin page"
 msgstr "návrat do albumu"
@@ -3446,12 +3671,14 @@ msgid "Delete Checked Comments"
 msgstr "zmaza» poznámku"
 
 #: ../tools/despam-comments.php:248
+#, fuzzy
 msgid "Delete from blacklist"
-msgstr ""
+msgstr "súèasné miesto"
 
 #: ../tools/despam-comments.php:265 ../tools/despam-comments.php:309
+#, fuzzy
 msgid "Error saving blacklist!"
-msgstr ""
+msgstr "súèasné miesto"
 
 #: ../tools/despam-comments.php:268
 #, php-format
@@ -3479,12 +3706,14 @@ msgid "Your blacklist is empty.  You must add new entries to your blacklist for 
 msgstr ""
 
 #: ../tools/despam-comments.php:354 ../tools/despam-comments.php:371
+#, fuzzy
 msgid "Update Blacklist"
-msgstr ""
+msgstr "súèasné miesto"
 
 #: ../tools/despam-comments.php:361
+#, fuzzy
 msgid "Enter new blacklist entries"
-msgstr ""
+msgstr "zmaza» poznámku"
 
 #: ../tools/despam-comments.php:362
 #, fuzzy
@@ -3501,17 +3730,81 @@ msgid "Find blacklisted comments"
 msgstr "zmaza» poznámku"
 
 #: ../tools/despam-comments.php:378
+#, fuzzy
 msgid "View/Edit blacklist"
-msgstr ""
+msgstr "súèasné miesto"
 
 #: ../tools/despam-comments.php:379
+#, fuzzy
 msgid "Add blacklist entries"
+msgstr "zmaza» poznámku"
+
+#: ../tools/validate_albums.php:162
+msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
 msgstr ""
 
-#: ../tools/despam-comments.php:382
+#: ../tools/validate_albums.php:185 ../tools/validate_albums.php:195
 #, fuzzy
-msgid "Options"
-msgstr "Voliteµné:"
+msgid "Validate Albums"
+msgstr "zmaza» album"
+
+#: ../tools/validate_albums.php:209
+msgid "Missing Files:"
+msgstr ""
+
+#: ../tools/validate_albums.php:210
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+msgstr ""
+
+#: ../tools/validate_albums.php:214
+msgid "Missing File"
+msgstr ""
+
+#: ../tools/validate_albums.php:216 ../tools/validate_albums.php:258
+#, fuzzy
+msgid "Action"
+msgstr "dokumentácia"
+
+#: ../tools/validate_albums.php:225 ../view_photo.php:331
+msgid "delete photo"
+msgstr "zmaza» fotku"
+
+#: ../tools/validate_albums.php:241
+msgid "No Missing Files"
+msgstr ""
+
+#: ../tools/validate_albums.php:242
+#, fuzzy
+msgid "There are no missing files in this Gallery."
+msgstr "V tejto Gallery niesú ¾iadne osirotené albumy."
+
+#: ../tools/validate_albums.php:251
+#, fuzzy
+msgid "Invalid Albums:"
+msgstr "Nesprávny u¾ívateµ"
+
+#: ../tools/validate_albums.php:252
+msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
+msgstr ""
+
+#: ../tools/validate_albums.php:256
+#, fuzzy
+msgid "Invalid Album"
+msgstr "Nesprávny u¾ívateµ"
+
+#: ../tools/validate_albums.php:265
+#, fuzzy
+msgid "delete directory"
+msgstr "Poda» URL alebo adresár"
+
+#: ../tools/validate_albums.php:281
+msgid "No Invalid Albums Found"
+msgstr ""
+
+#: ../tools/validate_albums.php:282
+#, fuzzy
+msgid "There are no invalid albums present in this Gallery."
+msgstr "V tejto Gallery niesú ¾iadne osirotené albumy."
 
 #: ../upgrade_album.php:81
 msgid "Progress"
@@ -3797,11 +4090,12 @@ msgid "Could not acquire lock (%s)!"
 msgstr "Nebolo mo¾né získa» lock file (%s)!"
 
 #: ../util.php:1969
-#, php-format
+#, fuzzy, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "polo¾ky"
+msgstr[1] "polo¾ky"
+msgstr[2] "polo¾ky"
 
 #: ../util.php:1974
 msgid "Sub-albums"
@@ -3942,8 +4236,9 @@ msgid "gallery URL"
 msgstr "gallery URL"
 
 #: ../util.php:2971
+#, fuzzy
 msgid "No Skin"
-msgstr ""
+msgstr "Prihlásenie"
 
 #: ../util.php:2972
 #, fuzzy, php-format
@@ -4302,10 +4597,6 @@ msgstr "¥utujem. Tento album neumo¾nuje pridávanie poznámok."
 msgid "resize photo"
 msgstr "zmeni» veµkos» fotky"
 
-#: ../view_photo.php:331
-msgid "delete photo"
-msgstr "zmaza» fotku"
-
 # view
 #: ../view_photo.php:342
 msgid "View Images"
@@ -4329,8 +4620,9 @@ msgid "Send photo to..."
 msgstr "Mením veµkos» %d fotiek..."
 
 #: ../view_photo.php:444
+#, fuzzy
 msgid "Print photo with..."
-msgstr ""
+msgstr "Mením veµkos» %d fotiek..."
 
 #: ../view_photo.php:476
 #, fuzzy, php-format

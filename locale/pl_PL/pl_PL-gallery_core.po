@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-02 12:01+0100\n"
+"POT-Creation-Date: 2005-03-10 14:35+0100\n"
 "PO-Revision-Date: 2004-04-21 20:45+0100\n"
 "Last-Translator: Krzysztof Jankowski [kaYtek] <kaytek AT daw DOT pl>\n"
 "Language-Team: nocnyMark <kaytek AT daw DOT pl>\n"
@@ -148,22 +148,32 @@ msgstr "przegl±daj komentarze"
 msgid "Find and remove comments that contains spam."
 msgstr "przegl±daj komentarze"
 
-#: ../admin-page.php:56
+#: ../admin-page.php:50
+#, fuzzy
+msgid "validate albums"
+msgstr "skasuj album"
+
+#: ../admin-page.php:52
+msgid "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"
+msgstr ""
+
+#: ../admin-page.php:59
 msgid "manage users"
 msgstr "u¿ytkownicy"
 
-#: ../admin-page.php:58
+#: ../admin-page.php:61
 #, fuzzy
 msgid "Manage your users."
 msgstr "Zarz±dzaj u¿ytkownikami"
 
-#: ../admin-page.php:87
+#: ../admin-page.php:90
 #, fuzzy
 msgid "Admin options"
 msgstr "opcje admina"
 
-#: ../admin-page.php:88 ../stats.php:634 ../tools/find_orphans.php:214
-#: ../tools/despam-comments.php:59
+#: ../admin-page.php:91 ../stats.php:634 ../stats-wizard.php:101
+#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:59
+#: ../tools/validate_albums.php:199
 #, fuzzy
 msgid "return to gallery"
 msgstr "Wej¶cie do Twojej Galerii"
@@ -680,8 +690,9 @@ msgid "Unable to make thumbnail"
 msgstr "Zrobienie miniaturki niemo¿liwe"
 
 #: ../classes/AlbumItem.php:639
+#, fuzzy
 msgid "No preview"
-msgstr ""
+msgstr "Poprzednia strona"
 
 #: ../classes/AlbumItem.php:658
 msgid "No thumbnail"
@@ -896,7 +907,8 @@ msgid "Create"
 msgstr "Utwórz"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:81
-#: ../delete_photo.php:89
+#: ../delete_photo.php:89 ../tools/validate_albums.php:125
+#: ../tools/validate_albums.php:129
 msgid "Delete Album"
 msgstr "Kasuj album"
 
@@ -915,6 +927,7 @@ msgid "no album specified"
 msgstr "nie wybrano albumu"
 
 #: ../delete_photo.php:81 ../delete_photo.php:118
+#: ../tools/validate_albums.php:125 ../tools/validate_albums.php:129
 msgid "Delete Photo"
 msgstr "Kasuj obrazek"
 
@@ -1613,6 +1626,170 @@ msgstr "powrót do albumu"
 msgid "Slide Show for album"
 msgstr "Slide Show dla tego albumu"
 
+#: ../includes/stats/stats.inc.php:48
+msgid "Sort by most viewed image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:49
+msgid "most viewed"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:53
+msgid "Sort by the latest added image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:54
+msgid "latest added"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:58
+#, fuzzy
+msgid "Sort by image capture date"
+msgstr "Data zrobienia"
+
+#: ../includes/stats/stats.inc.php:59
+#, fuzzy
+msgid "latest shots"
+msgstr "Ostatni obrazek"
+
+#: ../includes/stats/stats.inc.php:63
+#, fuzzy
+msgid "Show images with comments - latest are shown first"
+msgstr "Nieokre¶lony b³±d w wywo³aniu %s!"
+
+#: ../includes/stats/stats.inc.php:64
+#, fuzzy
+msgid "latest comments"
+msgstr "Ostatni komentarz %s."
+
+#: ../includes/stats/stats.inc.php:68
+#, fuzzy
+msgid "Show images with the highest ratings first"
+msgstr "Nieokre¶lony b³±d w wywo³aniu %s!"
+
+#: ../includes/stats/stats.inc.php:69
+msgid "highest ratings"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:73
+#, fuzzy
+msgid "Show random images"
+msgstr "%s Losowe obrazy z %s"
+
+#: ../includes/stats/stats.inc.php:74
+#, fuzzy
+msgid "random images"
+msgstr "¿adnych obrazków"
+
+#: ../includes/stats/stats.inc.php:81
+#, fuzzy
+msgid "Show caption"
+msgstr "Brak Podpisu"
+
+#: ../includes/stats/stats.inc.php:84
+#, fuzzy
+msgid "Show album link"
+msgstr "%s w tym albumie na %s"
+
+#: ../includes/stats/stats.inc.php:87
+#, fuzzy
+msgid "Show description"
+msgstr "Brak opisu"
+
+#: ../includes/stats/stats.inc.php:90
+#, fuzzy
+msgid "Show comments"
+msgstr "przegl±daj komentarze"
+
+#: ../includes/stats/stats.inc.php:93
+#, fuzzy
+msgid "Show capture date"
+msgstr "Data dodania obrazka"
+
+#: ../includes/stats/stats.inc.php:96
+#, fuzzy
+msgid "Show upload date"
+msgstr "Wg daty wgrania"
+
+#: ../includes/stats/stats.inc.php:99
+#, fuzzy
+msgid "Show number of views"
+msgstr "Wg liczby klikniêæ"
+
+#: ../includes/stats/stats.inc.php:102
+#, fuzzy
+msgid "Show the add comment link"
+msgstr "dodaj komentarz"
+
+#: ../includes/stats/stats.inc.php:109
+#, fuzzy
+msgid "Show the add vote link"
+msgstr "dodaj komentarz"
+
+#: ../includes/stats/stats.inc.php:112
+#, fuzzy
+msgid "Show the album owners"
+msgstr "%s w tym albumie na %s"
+
+#: ../includes/stats/stats.inc.php:115
+msgid "Show timing basic information"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:121
+msgid "Reverses sort order - see above"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:124
+#, fuzzy
+msgid "Thumb size in pixels"
+msgstr "Maksymalna d³ugo¶æ boku w pixelach"
+
+#: ../includes/stats/stats.inc.php:127
+msgid "Controls the number of photos displayed on one page"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:130
+msgid "Controls the maximum number of photos listed, -1 for all"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:141
+#, fuzzy
+msgid "Above the comments"
+msgstr "przegl±daj komentarze"
+
+#: ../includes/stats/stats.inc.php:142
+msgid "In the caption line"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:143
+#, fuzzy
+msgid "Above the stats"
+msgstr "przegl±daj komentarze"
+
+#: ../includes/stats/stats.inc.php:144
+#, fuzzy
+msgid "Below the comments"
+msgstr "skasuj komentarz"
+
+#: ../includes/stats/stats.inc.php:145
+#, fuzzy
+msgid "Position of the add vote and add comment links"
+msgstr "dodaj komentarz"
+
+#: ../includes/stats/stats.inc.php:150
+#, fuzzy
+msgid "Filter by year"
+msgstr "Data zrobienia"
+
+#: ../includes/stats/stats.inc.php:153
+msgid "Filter by month"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:156
+#, fuzzy
+msgid "Filter by day"
+msgstr "Data zrobienia"
+
 #: ../html/userData.inc:18
 msgid "Member file"
 msgstr "Plik cz³onków"
@@ -1844,8 +2021,9 @@ msgid "Lower&nbsp;Right"
 msgstr "Prawy dolny"
 
 #: ../layout/watermarkform.inc:144
+#, fuzzy
 msgid "Preview Size"
-msgstr ""
+msgstr "Poprzednia strona"
 
 #: ../layout/watermarkform.inc:147
 #, fuzzy
@@ -1878,8 +2056,9 @@ msgid "Only sized photos"
 msgstr "skaluj zdjêcie"
 
 #: ../layout/watermarkform.inc:162
+#, fuzzy
 msgid "Only full photos"
-msgstr ""
+msgstr "skaluj zdjêcie"
 
 #: ../lib/Form.php:56
 msgid "Check All"
@@ -3010,12 +3189,14 @@ msgid "Reading info for photo index = %d , id = %d"
 msgstr ""
 
 #: ../stats.php:358
+#, fuzzy
 msgid "Getting SVotes"
-msgstr ""
+msgstr "Pasuj±cych komentarzy"
 
 #: ../stats.php:366
+#, fuzzy
 msgid "Getting Item Clicks"
-msgstr ""
+msgstr "Data zrzutu pozycji"
 
 #: ../stats.php:371
 #, fuzzy
@@ -3033,8 +3214,9 @@ msgid "Getting Comments"
 msgstr "Pasuj±cych komentarzy"
 
 #: ../stats.php:404
+#, fuzzy
 msgid "Getting Ratings"
-msgstr ""
+msgstr "Pasuj±cych komentarzy"
 
 #: ../stats.php:439
 #, php-format
@@ -3055,20 +3237,24 @@ msgid " - Images with the least votes"
 msgstr ""
 
 #: ../stats.php:537
+#, fuzzy
 msgid " - Top rated images"
-msgstr ""
+msgstr "%s Losowe obrazy z %s"
 
 #: ../stats.php:540
+#, fuzzy
 msgid " - Bottom rated images"
-msgstr ""
+msgstr "%s Losowe obrazy z %s"
 
 #: ../stats.php:546
+#, fuzzy
 msgid " - Latest added images"
-msgstr ""
+msgstr "Data zrobienia"
 
 #: ../stats.php:549
+#, fuzzy
 msgid " - Oldest images first"
-msgstr ""
+msgstr "skasuj komentarz"
 
 #: ../stats.php:555
 #, fuzzy
@@ -3229,11 +3415,43 @@ msgstr "Obróæ "
 msgid "Rating:"
 msgstr "Deszcz"
 
+#: ../stats-wizard.php:98
+msgid "Wizard"
+msgstr ""
+
+#: ../stats-wizard.php:110
+msgid "Type"
+msgstr ""
+
+#: ../stats-wizard.php:114 ../tools/despam-comments.php:382
+#, fuzzy
+msgid "Options"
+msgstr "Alternatywny:"
+
+#: ../stats-wizard.php:119
+#, fuzzy
+msgid "Layout"
+msgstr "Ostatni"
+
+#: ../stats-wizard.php:123
+#, fuzzy
+msgid "Filter by Capture Date"
+msgstr "Data zrobienia"
+
+#: ../stats-wizard.php:128
+msgid "Show statistics"
+msgstr ""
+
+#: ../stats-wizard.php:131
+msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
+msgstr ""
+
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
 msgstr ""
 
 #: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#: ../tools/validate_albums.php:198
 #, fuzzy
 msgid "return to admin page"
 msgstr "wróæ do albumu"
@@ -3397,12 +3615,14 @@ msgid "Delete Checked Comments"
 msgstr "skasuj komentarz"
 
 #: ../tools/despam-comments.php:248
+#, fuzzy
 msgid "Delete from blacklist"
-msgstr ""
+msgstr "aktualna lokacja"
 
 #: ../tools/despam-comments.php:265 ../tools/despam-comments.php:309
+#, fuzzy
 msgid "Error saving blacklist!"
-msgstr ""
+msgstr "aktualna lokacja"
 
 #: ../tools/despam-comments.php:268
 #, php-format
@@ -3430,12 +3650,14 @@ msgid "Your blacklist is empty.  You must add new entries to your blacklist for 
 msgstr ""
 
 #: ../tools/despam-comments.php:354 ../tools/despam-comments.php:371
+#, fuzzy
 msgid "Update Blacklist"
-msgstr ""
+msgstr "aktualna lokacja"
 
 #: ../tools/despam-comments.php:361
+#, fuzzy
 msgid "Enter new blacklist entries"
-msgstr ""
+msgstr "skasuj komentarz"
 
 #: ../tools/despam-comments.php:362
 #, fuzzy
@@ -3452,17 +3674,81 @@ msgid "Find blacklisted comments"
 msgstr "skasuj komentarz"
 
 #: ../tools/despam-comments.php:378
+#, fuzzy
 msgid "View/Edit blacklist"
-msgstr ""
+msgstr "aktualna lokacja"
 
 #: ../tools/despam-comments.php:379
+#, fuzzy
 msgid "Add blacklist entries"
+msgstr "skasuj komentarz"
+
+#: ../tools/validate_albums.php:162
+msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
 msgstr ""
 
-#: ../tools/despam-comments.php:382
+#: ../tools/validate_albums.php:185 ../tools/validate_albums.php:195
 #, fuzzy
-msgid "Options"
-msgstr "Alternatywny:"
+msgid "Validate Albums"
+msgstr "skasuj album"
+
+#: ../tools/validate_albums.php:209
+msgid "Missing Files:"
+msgstr ""
+
+#: ../tools/validate_albums.php:210
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+msgstr ""
+
+#: ../tools/validate_albums.php:214
+msgid "Missing File"
+msgstr ""
+
+#: ../tools/validate_albums.php:216 ../tools/validate_albums.php:258
+#, fuzzy
+msgid "Action"
+msgstr "dokumentacja"
+
+#: ../tools/validate_albums.php:225 ../view_photo.php:331
+msgid "delete photo"
+msgstr "kasuj zdjêcie"
+
+#: ../tools/validate_albums.php:241
+msgid "No Missing Files"
+msgstr ""
+
+#: ../tools/validate_albums.php:242
+#, fuzzy
+msgid "There are no missing files in this Gallery."
+msgstr "Nieokre¶lony b³±d w wywo³aniu %s!"
+
+#: ../tools/validate_albums.php:251
+#, fuzzy
+msgid "Invalid Albums:"
+msgstr "Nieprawid³owy u¿ytkownik"
+
+#: ../tools/validate_albums.php:252
+msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
+msgstr ""
+
+#: ../tools/validate_albums.php:256
+#, fuzzy
+msgid "Invalid Album"
+msgstr "Nieprawid³owy u¿ytkownik"
+
+#: ../tools/validate_albums.php:265
+#, fuzzy
+msgid "delete directory"
+msgstr "Wgraj z URLa lub katalogu"
+
+#: ../tools/validate_albums.php:281
+msgid "No Invalid Albums Found"
+msgstr ""
+
+#: ../tools/validate_albums.php:282
+#, fuzzy
+msgid "There are no invalid albums present in this Gallery."
+msgstr "Nieokre¶lony b³±d w wywo³aniu %s!"
 
 #: ../upgrade_album.php:81
 msgid "Progress"
@@ -3897,8 +4183,9 @@ msgid "gallery URL"
 msgstr "URL galerii"
 
 #: ../util.php:2971
+#, fuzzy
 msgid "No Skin"
-msgstr ""
+msgstr "Zaloguj"
 
 #: ../util.php:2972
 #, fuzzy, php-format
@@ -4252,10 +4539,6 @@ msgstr "Przepraszamy, ale ten album nie pozwala na komentarze."
 msgid "resize photo"
 msgstr "skaluj zdjêcie"
 
-#: ../view_photo.php:331
-msgid "delete photo"
-msgstr "kasuj zdjêcie"
-
 #: ../view_photo.php:342
 msgid "View Images"
 msgstr "Przegl±daj obrazki"
@@ -4278,8 +4561,9 @@ msgid "Send photo to..."
 msgstr "Skalowanie %d zdjêæ(/ia)..."
 
 #: ../view_photo.php:444
+#, fuzzy
 msgid "Print photo with..."
-msgstr ""
+msgstr "Skalowanie %d zdjêæ(/ia)..."
 
 #: ../view_photo.php:476
 #, fuzzy, php-format

@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-02 12:01+0100\n"
+"POT-Creation-Date: 2005-03-10 14:35+0100\n"
 "PO-Revision-Date: 2004-07-31 20:31+0100\n"
 "Last-Translator: Katona Tamás <tomkat AT freemail DOT hu>\n"
 "Language-Team: TomKat <tomkat AT freemail DOT hu>\n"
@@ -147,22 +147,32 @@ msgstr "megjegyzések megtekintése"
 msgid "Find and remove comments that contains spam."
 msgstr "megjegyzések megtekintése"
 
-#: ../admin-page.php:56
+#: ../admin-page.php:50
+#, fuzzy
+msgid "validate albums"
+msgstr "album törlése"
+
+#: ../admin-page.php:52
+msgid "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"
+msgstr ""
+
+#: ../admin-page.php:59
 msgid "manage users"
 msgstr "felhasználókezelés"
 
-#: ../admin-page.php:58
+#: ../admin-page.php:61
 #, fuzzy
 msgid "Manage your users."
 msgstr "Felhasználók karbantartása"
 
-#: ../admin-page.php:87
+#: ../admin-page.php:90
 #, fuzzy
 msgid "Admin options"
 msgstr "rendszergazdai opciók"
 
-#: ../admin-page.php:88 ../stats.php:634 ../tools/find_orphans.php:214
-#: ../tools/despam-comments.php:59
+#: ../admin-page.php:91 ../stats.php:634 ../stats-wizard.php:101
+#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:59
+#: ../tools/validate_albums.php:199
 #, fuzzy
 msgid "return to gallery"
 msgstr "Vissza a Galériához"
@@ -471,8 +481,9 @@ msgid "items in this album"
 msgstr "elem van ebben az albumban"
 
 #: ../captionator.php:184
+#, fuzzy
 msgid "on"
-msgstr ""
+msgstr "egyik sem"
 
 #: ../captionator.php:184
 #, php-format
@@ -656,8 +667,9 @@ msgid "Unable to make thumbnail"
 msgstr "A kiskép elkészítése nem sikerült"
 
 #: ../classes/AlbumItem.php:639
+#, fuzzy
 msgid "No preview"
-msgstr ""
+msgstr "Elõnézet"
 
 #: ../classes/AlbumItem.php:658
 msgid "No thumbnail"
@@ -872,7 +884,8 @@ msgid "Create"
 msgstr "Létrehoz"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:81
-#: ../delete_photo.php:89
+#: ../delete_photo.php:89 ../tools/validate_albums.php:125
+#: ../tools/validate_albums.php:129
 msgid "Delete Album"
 msgstr "Album törlése"
 
@@ -891,6 +904,7 @@ msgid "no album specified"
 msgstr "nincs album kiválasztva"
 
 #: ../delete_photo.php:81 ../delete_photo.php:118
+#: ../tools/validate_albums.php:125 ../tools/validate_albums.php:129
 msgid "Delete Photo"
 msgstr "Fotó törlése"
 
@@ -1261,8 +1275,9 @@ msgid "Apply values to nested albums."
 msgstr "A belsõ albumokra is alkalmaz."
 
 #: ../includes/add_photos/add_admin.inc:26
+#, fuzzy
 msgid "Admin help"
-msgstr ""
+msgstr "Adminisztrátor"
 
 #: ../includes/add_photos/add_admin.inc:30
 msgid "To install or upgrade the Gallery Remote Applets, please refer to "
@@ -1581,6 +1596,170 @@ msgstr "vissza az albumhoz"
 msgid "Slide Show for album"
 msgstr "Az album diavetítése"
 
+#: ../includes/stats/stats.inc.php:48
+msgid "Sort by most viewed image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:49
+msgid "most viewed"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:53
+msgid "Sort by the latest added image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:54
+msgid "latest added"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:58
+#, fuzzy
+msgid "Sort by image capture date"
+msgstr "Felvételi idõ"
+
+#: ../includes/stats/stats.inc.php:59
+#, fuzzy
+msgid "latest shots"
+msgstr "Utolsó kép"
+
+#: ../includes/stats/stats.inc.php:63
+#, fuzzy
+msgid "Show images with comments - latest are shown first"
+msgstr "Nincs elárvult album a galériában."
+
+#: ../includes/stats/stats.inc.php:64
+#, fuzzy
+msgid "latest comments"
+msgstr "Utolsó megjegyzés: %s."
+
+#: ../includes/stats/stats.inc.php:68
+#, fuzzy
+msgid "Show images with the highest ratings first"
+msgstr "Nincs elárvult album a galériában."
+
+#: ../includes/stats/stats.inc.php:69
+msgid "highest ratings"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:73
+#, fuzzy
+msgid "Show random images"
+msgstr "%s találomra kiválasztott kép a(z) %s albumból"
+
+#: ../includes/stats/stats.inc.php:74
+#, fuzzy
+msgid "random images"
+msgstr "0 kép"
+
+#: ../includes/stats/stats.inc.php:81
+#, fuzzy
+msgid "Show caption"
+msgstr "Nincs képaláírás"
+
+#: ../includes/stats/stats.inc.php:84
+#, fuzzy
+msgid "Show album link"
+msgstr "%s van ebben az albumban %son"
+
+#: ../includes/stats/stats.inc.php:87
+#, fuzzy
+msgid "Show description"
+msgstr "Nincs leírás"
+
+#: ../includes/stats/stats.inc.php:90
+#, fuzzy
+msgid "Show comments"
+msgstr "megjegyzések megtekintése"
+
+#: ../includes/stats/stats.inc.php:93
+#, fuzzy
+msgid "Show capture date"
+msgstr "Fotó készítési ideje"
+
+#: ../includes/stats/stats.inc.php:96
+#, fuzzy
+msgid "Show upload date"
+msgstr "Feltöltési dátum szerint"
+
+#: ../includes/stats/stats.inc.php:99
+#, fuzzy
+msgid "Show number of views"
+msgstr "A megtekintések száma szerint"
+
+#: ../includes/stats/stats.inc.php:102
+#, fuzzy
+msgid "Show the add comment link"
+msgstr "megjegyzés hozzáadása"
+
+#: ../includes/stats/stats.inc.php:109
+#, fuzzy
+msgid "Show the add vote link"
+msgstr "megjegyzés hozzáadása"
+
+#: ../includes/stats/stats.inc.php:112
+#, fuzzy
+msgid "Show the album owners"
+msgstr "%s van ebben az albumban %son"
+
+#: ../includes/stats/stats.inc.php:115
+msgid "Show timing basic information"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:121
+msgid "Reverses sort order - see above"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:124
+#, fuzzy
+msgid "Thumb size in pixels"
+msgstr "Maximális oldalhossz pixelben"
+
+#: ../includes/stats/stats.inc.php:127
+msgid "Controls the number of photos displayed on one page"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:130
+msgid "Controls the maximum number of photos listed, -1 for all"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:141
+#, fuzzy
+msgid "Above the comments"
+msgstr "megjegyzések megtekintése"
+
+#: ../includes/stats/stats.inc.php:142
+msgid "In the caption line"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:143
+#, fuzzy
+msgid "Above the stats"
+msgstr "megjegyzések megtekintése"
+
+#: ../includes/stats/stats.inc.php:144
+#, fuzzy
+msgid "Below the comments"
+msgstr "megjegyzés törlése"
+
+#: ../includes/stats/stats.inc.php:145
+#, fuzzy
+msgid "Position of the add vote and add comment links"
+msgstr "megjegyzés hozzáadása"
+
+#: ../includes/stats/stats.inc.php:150
+#, fuzzy
+msgid "Filter by year"
+msgstr "Felvételi idõ"
+
+#: ../includes/stats/stats.inc.php:153
+msgid "Filter by month"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:156
+#, fuzzy
+msgid "Filter by day"
+msgstr "Felvételi idõ"
+
 #: ../html/userData.inc:18
 msgid "Member file"
 msgstr "Tag fájl"
@@ -1810,8 +1989,9 @@ msgid "Lower&nbsp;Right"
 msgstr "Jobbra le"
 
 #: ../layout/watermarkform.inc:144
+#, fuzzy
 msgid "Preview Size"
-msgstr ""
+msgstr "Elõnézet"
 
 #: ../layout/watermarkform.inc:147
 msgid "Resized"
@@ -1841,8 +2021,9 @@ msgid "Only sized photos"
 msgstr "fotó újraméretezése"
 
 #: ../layout/watermarkform.inc:162
+#, fuzzy
 msgid "Only full photos"
-msgstr ""
+msgstr "fotó újraméretezése"
 
 #: ../lib/Form.php:56
 msgid "Check All"
@@ -1995,9 +2176,9 @@ msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You
 msgstr "Valaki a(z) %s felhasználó számára új jelszót kért a '%s' galériához %s-n. A jelszót létrehozhatod, ha a lenti linkre kattintasz. Ha nem Te kérted a jelszót, nincs semmi teendõd."
 
 #: ../login.php:122
-#, php-format
+#, fuzzy, php-format
 msgid "Click to reset your password: %s"
-msgstr ""
+msgstr "Elfelejtetted a jelszavad?"
 
 #: ../login.php:124
 #, php-format
@@ -2340,9 +2521,9 @@ msgid "Poll Results"
 msgstr "Szavazás eredményei "
 
 #: ../poll_results.php:95
-#, php-format
+#, fuzzy, php-format
 msgid "Return to  %s"
-msgstr ""
+msgstr "Vissza a Fotók hozzáadásához"
 
 #: ../poll_results.php:121
 msgid "Results Breakdown"
@@ -2960,12 +3141,14 @@ msgid "Reading info for photo index = %d , id = %d"
 msgstr ""
 
 #: ../stats.php:358
+#, fuzzy
 msgid "Getting SVotes"
-msgstr ""
+msgstr "Illeszkedõ megjegyzések"
 
 #: ../stats.php:366
+#, fuzzy
 msgid "Getting Item Clicks"
-msgstr ""
+msgstr "Felvételi idõ"
 
 #: ../stats.php:371
 #, fuzzy
@@ -2983,8 +3166,9 @@ msgid "Getting Comments"
 msgstr "Illeszkedõ megjegyzések"
 
 #: ../stats.php:404
+#, fuzzy
 msgid "Getting Ratings"
-msgstr ""
+msgstr "Illeszkedõ megjegyzések"
 
 #: ../stats.php:439
 #, php-format
@@ -3005,20 +3189,24 @@ msgid " - Images with the least votes"
 msgstr ""
 
 #: ../stats.php:537
+#, fuzzy
 msgid " - Top rated images"
-msgstr ""
+msgstr "%s találomra kiválasztott kép a(z) %s albumból"
 
 #: ../stats.php:540
+#, fuzzy
 msgid " - Bottom rated images"
-msgstr ""
+msgstr "%s találomra kiválasztott kép a(z) %s albumból"
 
 #: ../stats.php:546
+#, fuzzy
 msgid " - Latest added images"
-msgstr ""
+msgstr "Felvételi idõ"
 
 #: ../stats.php:549
+#, fuzzy
 msgid " - Oldest images first"
-msgstr ""
+msgstr "megjegyzés törlése"
 
 #: ../stats.php:555
 #, fuzzy
@@ -3179,11 +3367,43 @@ msgstr "Forgatás"
 msgid "Rating:"
 msgstr "Esõ"
 
+#: ../stats-wizard.php:98
+msgid "Wizard"
+msgstr ""
+
+#: ../stats-wizard.php:110
+msgid "Type"
+msgstr ""
+
+#: ../stats-wizard.php:114 ../tools/despam-comments.php:382
+#, fuzzy
+msgid "Options"
+msgstr "Opcionális:"
+
+#: ../stats-wizard.php:119
+#, fuzzy
+msgid "Layout"
+msgstr "Utolsó"
+
+#: ../stats-wizard.php:123
+#, fuzzy
+msgid "Filter by Capture Date"
+msgstr "Felvételi idõ"
+
+#: ../stats-wizard.php:128
+msgid "Show statistics"
+msgstr ""
+
+#: ../stats-wizard.php:131
+msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
+msgstr ""
+
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
 msgstr ""
 
 #: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#: ../tools/validate_albums.php:198
 #, fuzzy
 msgid "return to admin page"
 msgstr "vissza az albumhoz"
@@ -3342,12 +3562,14 @@ msgid "Delete Checked Comments"
 msgstr "megjegyzés törlése"
 
 #: ../tools/despam-comments.php:248
+#, fuzzy
 msgid "Delete from blacklist"
-msgstr ""
+msgstr "jelenlegi pozíció"
 
 #: ../tools/despam-comments.php:265 ../tools/despam-comments.php:309
+#, fuzzy
 msgid "Error saving blacklist!"
-msgstr ""
+msgstr "jelenlegi pozíció"
 
 #: ../tools/despam-comments.php:268
 #, php-format
@@ -3375,12 +3597,14 @@ msgid "Your blacklist is empty.  You must add new entries to your blacklist for 
 msgstr ""
 
 #: ../tools/despam-comments.php:354 ../tools/despam-comments.php:371
+#, fuzzy
 msgid "Update Blacklist"
-msgstr ""
+msgstr "jelenlegi pozíció"
 
 #: ../tools/despam-comments.php:361
+#, fuzzy
 msgid "Enter new blacklist entries"
-msgstr ""
+msgstr "megjegyzés törlése"
 
 #: ../tools/despam-comments.php:362
 #, fuzzy
@@ -3397,17 +3621,81 @@ msgid "Find blacklisted comments"
 msgstr "megjegyzés törlése"
 
 #: ../tools/despam-comments.php:378
+#, fuzzy
 msgid "View/Edit blacklist"
-msgstr ""
+msgstr "jelenlegi pozíció"
 
 #: ../tools/despam-comments.php:379
+#, fuzzy
 msgid "Add blacklist entries"
+msgstr "megjegyzés törlése"
+
+#: ../tools/validate_albums.php:162
+msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
 msgstr ""
 
-#: ../tools/despam-comments.php:382
+#: ../tools/validate_albums.php:185 ../tools/validate_albums.php:195
 #, fuzzy
-msgid "Options"
-msgstr "Opcionális:"
+msgid "Validate Albums"
+msgstr "album törlése"
+
+#: ../tools/validate_albums.php:209
+msgid "Missing Files:"
+msgstr ""
+
+#: ../tools/validate_albums.php:210
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+msgstr ""
+
+#: ../tools/validate_albums.php:214
+msgid "Missing File"
+msgstr ""
+
+#: ../tools/validate_albums.php:216 ../tools/validate_albums.php:258
+#, fuzzy
+msgid "Action"
+msgstr "súgó"
+
+#: ../tools/validate_albums.php:225 ../view_photo.php:331
+msgid "delete photo"
+msgstr "fotó törlése"
+
+#: ../tools/validate_albums.php:241
+msgid "No Missing Files"
+msgstr ""
+
+#: ../tools/validate_albums.php:242
+#, fuzzy
+msgid "There are no missing files in this Gallery."
+msgstr "Nincs elárvult album a galériában."
+
+#: ../tools/validate_albums.php:251
+#, fuzzy
+msgid "Invalid Albums:"
+msgstr "Érvénytelen felhasználónév"
+
+#: ../tools/validate_albums.php:252
+msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
+msgstr ""
+
+#: ../tools/validate_albums.php:256
+#, fuzzy
+msgid "Invalid Album"
+msgstr "Érvénytelen felhasználónév"
+
+#: ../tools/validate_albums.php:265
+#, fuzzy
+msgid "delete directory"
+msgstr "URL vagy könyvtár megadása"
+
+#: ../tools/validate_albums.php:281
+msgid "No Invalid Albums Found"
+msgstr ""
+
+#: ../tools/validate_albums.php:282
+#, fuzzy
+msgid "There are no invalid albums present in this Gallery."
+msgstr "Nincs elárvult album a galériában."
 
 #: ../upgrade_album.php:81
 msgid "Progress"
@@ -3680,14 +3968,14 @@ msgid "Item Capture Date : %s"
 msgstr "Felvételi idõ"
 
 #: ../util.php:1875
-#, php-format
+#, fuzzy, php-format
 msgid "Could not open lock file (%s)!"
-msgstr ""
+msgstr "A(z) %s URL nem nyitható meg."
 
 #: ../util.php:1880
-#, php-format
+#, fuzzy, php-format
 msgid "Could not acquire lock (%s)!"
-msgstr ""
+msgstr "A(z) %s URL nem nyitható meg."
 
 #: ../util.php:1969
 #, php-format
@@ -3833,8 +4121,9 @@ msgid "gallery URL"
 msgstr "Galéria URL"
 
 #: ../util.php:2971
+#, fuzzy
 msgid "No Skin"
-msgstr ""
+msgstr "Belépés"
 
 #: ../util.php:2972
 #, fuzzy, php-format
@@ -3860,8 +4149,9 @@ msgid "Dots"
 msgstr "Pöttyök"
 
 #: ../util.php:3048 ../util.php:3053
+#, fuzzy
 msgid "Solid"
-msgstr ""
+msgstr "Dia"
 
 #: ../util.php:3051
 msgid "No frames"
@@ -4016,9 +4306,9 @@ msgid "You MUST click on %s for your vote to be recorded."
 msgstr "A %s-ra KELL kattintani, hogy a szavazat rögzítésre kerüljön."
 
 #: ../view_album.php:590
-#, php-format
+#, fuzzy, php-format
 msgid "You have a total of %s and can change them if you wish."
-msgstr ""
+msgstr "A választásodon módosíthatsz."
 
 #: ../view_album.php:591
 #, php-format
@@ -4179,10 +4469,6 @@ msgstr "Sajnálom, erre az albumra nem tehetõk megjegyzések."
 msgid "resize photo"
 msgstr "fotó újraméretezése"
 
-#: ../view_photo.php:331
-msgid "delete photo"
-msgstr "fotó törlése"
-
 #: ../view_photo.php:342
 msgid "View Images"
 msgstr "Képek megtekintése"
@@ -4205,8 +4491,9 @@ msgid "Send photo to..."
 msgstr "%d fotó újraméretezése..."
 
 #: ../view_photo.php:444
+#, fuzzy
 msgid "Print photo with..."
-msgstr ""
+msgstr "%d fotó újraméretezése..."
 
 #: ../view_photo.php:476
 #, fuzzy, php-format

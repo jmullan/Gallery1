@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-02 12:01+0100\n"
+"POT-Creation-Date: 2005-03-10 14:35+0100\n"
 "PO-Revision-Date: 2003-09-03 16:55+09:00\n"
 "Last-Translator: Dmytro Kovalov, kov@tokyo.email.ne.jp\n"
 "Language-Team: Ukrainian\n"
@@ -46,8 +46,9 @@ msgstr ""
 #: ../resize_photo.php:31 ../rotate_photo.php:31 ../save_photos.php:33
 #: ../upgrade_album.php:57 ../user_preferences.php:31
 #: ../watermark_album.php:32
+#, fuzzy
 msgid "You are not allowed to perform this action!"
-msgstr ""
+msgstr "Ви можете зм╕нити свою ╕нформац╕ю тут."
 
 #: ../add_comment.php:58 ../view_photo.php:194
 msgid "Name and comment are both required to save a new comment!"
@@ -150,22 +151,32 @@ msgstr "переглянути коментар╕"
 msgid "Find and remove comments that contains spam."
 msgstr "переглянути коментар╕"
 
-#: ../admin-page.php:56
+#: ../admin-page.php:50
+#, fuzzy
+msgid "validate albums"
+msgstr "стерти альбом"
+
+#: ../admin-page.php:52
+msgid "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"
+msgstr ""
+
+#: ../admin-page.php:59
 msgid "manage users"
 msgstr "користувач╕"
 
-#: ../admin-page.php:58
+#: ../admin-page.php:61
 #, fuzzy
 msgid "Manage your users."
 msgstr "Користувач╕"
 
-#: ../admin-page.php:87
+#: ../admin-page.php:90
 #, fuzzy
 msgid "Admin options"
 msgstr "редагувати п╕дписи"
 
-#: ../admin-page.php:88 ../stats.php:634 ../tools/find_orphans.php:214
-#: ../tools/despam-comments.php:59
+#: ../admin-page.php:91 ../stats.php:634 ../stats-wizard.php:101
+#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:59
+#: ../tools/validate_albums.php:199
 #, fuzzy
 msgid "return to gallery"
 msgstr "повернутись до альбома"
@@ -688,8 +699,9 @@ msgid "Unable to make thumbnail"
 msgstr "Неможливо створити п╕ктограму"
 
 #: ../classes/AlbumItem.php:639
+#, fuzzy
 msgid "No preview"
-msgstr ""
+msgstr "Попередня стор╕нка"
 
 #: ../classes/AlbumItem.php:658
 msgid "No thumbnail"
@@ -732,9 +744,9 @@ msgid "Illegal username %s: must at most 15 characters"
 msgstr "Пароль не може бути коротшим за 3 л╕тери"
 
 #: ../classes/gallery/UserDB.php:291
-#, php-format
+#, fuzzy, php-format
 msgid "Illegal username %s: must contain only letters or digits"
-msgstr ""
+msgstr "Пароль не може бути коротшим за 3 л╕тери"
 
 #: ../classes/gallery/UserDB.php:298
 #, php-format
@@ -770,9 +782,9 @@ msgid "Copy Photo"
 msgstr "Перем╕стити фото #"
 
 #: ../copy_photo.php:54
-#, php-format
+#, fuzzy, php-format
 msgid "Invalid album selected: %s"
-msgstr ""
+msgstr "Нев╕домий тип файлу: %s"
 
 #: ../copy_photo.php:58 ../copy_photo.php:127
 #, fuzzy, php-format
@@ -908,7 +920,8 @@ msgid "Create"
 msgstr "Створити"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:81
-#: ../delete_photo.php:89
+#: ../delete_photo.php:89 ../tools/validate_albums.php:125
+#: ../tools/validate_albums.php:129
 msgid "Delete Album"
 msgstr "Стерти альбом"
 
@@ -927,6 +940,7 @@ msgid "no album specified"
 msgstr "альбом не вибрано"
 
 #: ../delete_photo.php:81 ../delete_photo.php:118
+#: ../tools/validate_albums.php:125 ../tools/validate_albums.php:129
 msgid "Delete Photo"
 msgstr "Стерти фото"
 
@@ -1264,8 +1278,9 @@ msgid "Choose which part of the image will compose your thumbnail:"
 msgstr "Вибер╕ть частину зображення, яка служитиме п╕ктограмою:"
 
 #: ../edit_watermark.php:43
+#, fuzzy
 msgid "Watermarking photo."
-msgstr ""
+msgstr "З альбома"
 
 #: ../edit_watermark.php:43 ../watermark_album.php:55
 #, fuzzy
@@ -1284,8 +1299,9 @@ msgstr "Вибер╕ть користувача, будь ласка."
 
 #: ../edit_watermark.php:75 ../edit_watermark.php:79 ../view_album.php:920
 #: ../view_album.php:956
+#, fuzzy
 msgid "Edit Watermark"
-msgstr ""
+msgstr "З альбома"
 
 #: ../edit_watermark.php:108 ../watermark_album.php:132
 #, fuzzy
@@ -1319,8 +1335,9 @@ msgid "Apply values to nested albums."
 msgstr "Застосувати до вкладених альбом╕в"
 
 #: ../includes/add_photos/add_admin.inc:26
+#, fuzzy
 msgid "Admin help"
-msgstr ""
+msgstr "редагувати п╕дписи"
 
 #: ../includes/add_photos/add_admin.inc:30
 msgid "To install or upgrade the Gallery Remote Applets, please refer to "
@@ -1474,14 +1491,14 @@ msgid "Your browser doesn't support applets; you should use one of the other sli
 msgstr ""
 
 #: ../includes/slideshow/high.inc:67
-#, php-format
+#, fuzzy, php-format
 msgid "%s Random Images from %s"
-msgstr ""
+msgstr "нема╓ зображення"
 
 #: ../includes/slideshow/high.inc:76
-#, php-format
+#, fuzzy, php-format
 msgid "%d Random Images from album :: %s"
-msgstr ""
+msgstr "пункт╕в в цьому альбом╕"
 
 #: ../includes/slideshow/high.inc:229
 msgid "Blend"
@@ -1521,8 +1538,9 @@ msgid "Pixelate"
 msgstr ""
 
 #: ../includes/slideshow/high.inc:247
+#, fuzzy
 msgid "Radial"
-msgstr ""
+msgstr "Дов╕льно"
 
 #: ../includes/slideshow/high.inc:249
 #, fuzzy
@@ -1655,6 +1673,170 @@ msgstr "повернутись в альбом"
 msgid "Slide Show for album"
 msgstr "Слайди з альбома"
 
+#: ../includes/stats/stats.inc.php:48
+msgid "Sort by most viewed image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:49
+msgid "most viewed"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:53
+msgid "Sort by the latest added image first"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:54
+msgid "latest added"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:58
+#, fuzzy
+msgid "Sort by image capture date"
+msgstr "Дата зйомки"
+
+#: ../includes/stats/stats.inc.php:59
+#, fuzzy
+msgid "latest shots"
+msgstr "Останн╓ фото"
+
+#: ../includes/stats/stats.inc.php:63
+#, fuzzy
+msgid "Show images with comments - latest are shown first"
+msgstr "Вже ╓ альбом з такою назвою!"
+
+#: ../includes/stats/stats.inc.php:64
+#, fuzzy
+msgid "latest comments"
+msgstr "Зм╕ни внесен╕ %s."
+
+#: ../includes/stats/stats.inc.php:68
+#, fuzzy
+msgid "Show images with the highest ratings first"
+msgstr "Вже ╓ альбом з такою назвою!"
+
+#: ../includes/stats/stats.inc.php:69
+msgid "highest ratings"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:73
+#, fuzzy
+msgid "Show random images"
+msgstr "нема╓ зображення"
+
+#: ../includes/stats/stats.inc.php:74
+#, fuzzy
+msgid "random images"
+msgstr "нема╓ зображення"
+
+#: ../includes/stats/stats.inc.php:81
+#, fuzzy
+msgid "Show caption"
+msgstr "Без п╕дпису"
+
+#: ../includes/stats/stats.inc.php:84
+#, fuzzy
+msgid "Show album link"
+msgstr "пункт╕в в цьому альбом╕"
+
+#: ../includes/stats/stats.inc.php:87
+#, fuzzy
+msgid "Show description"
+msgstr "Нема╓ опису"
+
+#: ../includes/stats/stats.inc.php:90
+#, fuzzy
+msgid "Show comments"
+msgstr "переглянути коментар╕"
+
+#: ../includes/stats/stats.inc.php:93
+#, fuzzy
+msgid "Show capture date"
+msgstr "Дата зйомки"
+
+#: ../includes/stats/stats.inc.php:96
+#, fuzzy
+msgid "Show upload date"
+msgstr "За датою вивантаження"
+
+#: ../includes/stats/stats.inc.php:99
+#, fuzzy
+msgid "Show number of views"
+msgstr "За числом перегляд╕в"
+
+#: ../includes/stats/stats.inc.php:102
+#, fuzzy
+msgid "Show the add comment link"
+msgstr "додати коментар"
+
+#: ../includes/stats/stats.inc.php:109
+#, fuzzy
+msgid "Show the add vote link"
+msgstr "додати коментар"
+
+#: ../includes/stats/stats.inc.php:112
+#, fuzzy
+msgid "Show the album owners"
+msgstr "пункт╕в в цьому альбом╕"
+
+#: ../includes/stats/stats.inc.php:115
+msgid "Show timing basic information"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:121
+msgid "Reverses sort order - see above"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:124
+#, fuzzy
+msgid "Thumb size in pixels"
+msgstr "Максимальна довжина сторони в п╕кселах"
+
+#: ../includes/stats/stats.inc.php:127
+msgid "Controls the number of photos displayed on one page"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:130
+msgid "Controls the maximum number of photos listed, -1 for all"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:141
+#, fuzzy
+msgid "Above the comments"
+msgstr "переглянути коментар╕"
+
+#: ../includes/stats/stats.inc.php:142
+msgid "In the caption line"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:143
+#, fuzzy
+msgid "Above the stats"
+msgstr "переглянути коментар╕"
+
+#: ../includes/stats/stats.inc.php:144
+#, fuzzy
+msgid "Below the comments"
+msgstr "стерти коментар"
+
+#: ../includes/stats/stats.inc.php:145
+#, fuzzy
+msgid "Position of the add vote and add comment links"
+msgstr "додати коментар"
+
+#: ../includes/stats/stats.inc.php:150
+#, fuzzy
+msgid "Filter by year"
+msgstr "Дата зйомки"
+
+#: ../includes/stats/stats.inc.php:153
+msgid "Filter by month"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:156
+#, fuzzy
+msgid "Filter by day"
+msgstr "Дата зйомки"
+
 #: ../html/userData.inc:18
 msgid "Member file"
 msgstr ""
@@ -1711,8 +1893,9 @@ msgstr "адм╕н╕стратори завжи можуть створювати альбоми"
 #: ../html_wrap/album.footer.default:45 ../html_wrap/gallery.footer.default:51
 #: ../html_wrap/photo.footer.default:44 ../html_wrap/search.footer.default:51
 #: ../html_wrap/slideshow.footer.default:47
+#, fuzzy
 msgid "Donate to Gallery now!!"
-msgstr ""
+msgstr "повернутись до альбома"
 
 #: ../html_wrap/wrapper.header.default:100 ../view_photo_properties.php:31
 msgid "Security violation"
@@ -1752,8 +1935,9 @@ msgid "view&nbsp;comments"
 msgstr "переглянути коментар╕"
 
 #: ../layout/adminAlbumCommands.inc:40
+#, fuzzy
 msgid "watermark&nbsp;album"
-msgstr ""
+msgstr "З альбома"
 
 #: ../layout/breadcrumb.inc:39
 #, fuzzy
@@ -1830,8 +2014,9 @@ msgid "%d of %d"
 msgstr "%d з %d"
 
 #: ../layout/watermarkform.inc:77
+#, fuzzy
 msgid "Watermark"
-msgstr ""
+msgstr "З альбома"
 
 #: ../layout/watermarkform.inc:80 ../util.php:3046 ../util.php:3051
 #, fuzzy
@@ -1890,8 +2075,9 @@ msgid "Lower&nbsp;Right"
 msgstr ""
 
 #: ../layout/watermarkform.inc:144
+#, fuzzy
 msgid "Preview Size"
-msgstr ""
+msgstr "Попередня стор╕нка"
 
 #: ../layout/watermarkform.inc:147
 #, fuzzy
@@ -1924,8 +2110,9 @@ msgid "Only sized photos"
 msgstr "зм╕нити розм╕р фото"
 
 #: ../layout/watermarkform.inc:162
+#, fuzzy
 msgid "Only full photos"
-msgstr ""
+msgstr "зм╕нити розм╕р фото"
 
 #: ../lib/Form.php:56
 msgid "Check All"
@@ -1995,7 +2182,6 @@ msgid "Result from one voter"
 msgid_plural "Result of %d voters"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: ../lib/voting.php:324
 #, fuzzy, php-format
@@ -2091,9 +2277,9 @@ msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You
 msgstr ""
 
 #: ../login.php:122
-#, php-format
+#, fuzzy, php-format
 msgid "Click to reset your password: %s"
-msgstr ""
+msgstr "Ви повинн╕ ввести старий пароль тут, щоб мати можлив╕сть його зм╕нити."
 
 #: ../login.php:124
 #, fuzzy, php-format
@@ -2354,8 +2540,9 @@ msgid "Make New Password"
 msgstr "Новий пароль"
 
 #: ../new_password.php:101
+#, fuzzy
 msgid "Enter the Gallery"
-msgstr ""
+msgstr "повернутись до альбома"
 
 #: ../new_password.php:105 ../user_preferences.php:117
 msgid "You can change your user information here."
@@ -2683,9 +2870,9 @@ msgid "Gallery Self Registration"
 msgstr "Конф╕гурац╕я Галере╖"
 
 #: ../register.php:114
-#, php-format
+#, fuzzy, php-format
 msgid "An email has been sent to %s."
-msgstr ""
+msgstr "Поштова (електронна) адреса"
 
 #: ../register.php:116
 msgid "Your account information is contained within the email."
@@ -3092,12 +3279,14 @@ msgid "Reading info for photo index = %d , id = %d"
 msgstr ""
 
 #: ../stats.php:358
+#, fuzzy
 msgid "Getting SVotes"
-msgstr ""
+msgstr "В╕дпов╕дн╕сть коментар╕в"
 
 #: ../stats.php:366
+#, fuzzy
 msgid "Getting Item Clicks"
-msgstr ""
+msgstr "Дата зйомки"
 
 #: ../stats.php:371
 #, fuzzy
@@ -3115,8 +3304,9 @@ msgid "Getting Comments"
 msgstr "В╕дпов╕дн╕сть коментар╕в"
 
 #: ../stats.php:404
+#, fuzzy
 msgid "Getting Ratings"
-msgstr ""
+msgstr "В╕дпов╕дн╕сть коментар╕в"
 
 #: ../stats.php:439
 #, php-format
@@ -3137,20 +3327,24 @@ msgid " - Images with the least votes"
 msgstr ""
 
 #: ../stats.php:537
+#, fuzzy
 msgid " - Top rated images"
-msgstr ""
+msgstr "нема╓ зображення"
 
 #: ../stats.php:540
+#, fuzzy
 msgid " - Bottom rated images"
-msgstr ""
+msgstr "нема╓ зображення"
 
 #: ../stats.php:546
+#, fuzzy
 msgid " - Latest added images"
-msgstr ""
+msgstr "Дата зйомки"
 
 #: ../stats.php:549
+#, fuzzy
 msgid " - Oldest images first"
-msgstr ""
+msgstr "стерти коментар"
 
 #: ../stats.php:555
 #, fuzzy
@@ -3186,9 +3380,9 @@ msgid " - Images with the least views"
 msgstr ""
 
 #: ../stats.php:613
-#, php-format
+#, fuzzy, php-format
 msgid "%d images with comments in album: %s"
-msgstr ""
+msgstr "Вже ╓ альбом з такою назвою!"
 
 #: ../stats.php:615
 #, fuzzy, php-format
@@ -3206,9 +3400,9 @@ msgid "%d images with comments in this Gallery"
 msgstr "Вже ╓ альбом з такою назвою!"
 
 #: ../stats.php:626
-#, php-format
+#, fuzzy, php-format
 msgid "%d images this Gallery"
-msgstr ""
+msgstr "Вже ╓ альбом з такою назвою!"
 
 #: ../stats.php:632
 msgid "Back to stats-wizard"
@@ -3311,11 +3505,43 @@ msgstr "Повернути"
 msgid "Rating:"
 msgstr "Дов╕льно"
 
+#: ../stats-wizard.php:98
+msgid "Wizard"
+msgstr ""
+
+#: ../stats-wizard.php:110
+msgid "Type"
+msgstr ""
+
+#: ../stats-wizard.php:114 ../tools/despam-comments.php:382
+#, fuzzy
+msgid "Options"
+msgstr "П╕дпис"
+
+#: ../stats-wizard.php:119
+#, fuzzy
+msgid "Layout"
+msgstr "Останн╓"
+
+#: ../stats-wizard.php:123
+#, fuzzy
+msgid "Filter by Capture Date"
+msgstr "Дата зйомки"
+
+#: ../stats-wizard.php:128
+msgid "Show statistics"
+msgstr ""
+
+#: ../stats-wizard.php:131
+msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
+msgstr ""
+
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
 msgstr ""
 
 #: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#: ../tools/validate_albums.php:198
 #, fuzzy
 msgid "return to admin page"
 msgstr "повернутись до альбома"
@@ -3479,12 +3705,14 @@ msgid "Delete Checked Comments"
 msgstr "стерти коментар"
 
 #: ../tools/despam-comments.php:248
+#, fuzzy
 msgid "Delete from blacklist"
-msgstr ""
+msgstr "Сучасне положення %s"
 
 #: ../tools/despam-comments.php:265 ../tools/despam-comments.php:309
+#, fuzzy
 msgid "Error saving blacklist!"
-msgstr ""
+msgstr "Сучасне положення %s"
 
 #: ../tools/despam-comments.php:268
 #, php-format
@@ -3512,12 +3740,14 @@ msgid "Your blacklist is empty.  You must add new entries to your blacklist for 
 msgstr ""
 
 #: ../tools/despam-comments.php:354 ../tools/despam-comments.php:371
+#, fuzzy
 msgid "Update Blacklist"
-msgstr ""
+msgstr "Сучасне положення %s"
 
 #: ../tools/despam-comments.php:361
+#, fuzzy
 msgid "Enter new blacklist entries"
-msgstr ""
+msgstr "стерти коментар"
 
 #: ../tools/despam-comments.php:362
 #, fuzzy
@@ -3534,17 +3764,81 @@ msgid "Find blacklisted comments"
 msgstr "стерти коментар"
 
 #: ../tools/despam-comments.php:378
+#, fuzzy
 msgid "View/Edit blacklist"
-msgstr ""
+msgstr "Сучасне положення %s"
 
 #: ../tools/despam-comments.php:379
+#, fuzzy
 msgid "Add blacklist entries"
+msgstr "стерти коментар"
+
+#: ../tools/validate_albums.php:162
+msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
 msgstr ""
 
-#: ../tools/despam-comments.php:382
+#: ../tools/validate_albums.php:185 ../tools/validate_albums.php:195
 #, fuzzy
-msgid "Options"
-msgstr "П╕дпис"
+msgid "Validate Albums"
+msgstr "стерти альбом"
+
+#: ../tools/validate_albums.php:209
+msgid "Missing Files:"
+msgstr ""
+
+#: ../tools/validate_albums.php:210
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+msgstr ""
+
+#: ../tools/validate_albums.php:214
+msgid "Missing File"
+msgstr ""
+
+#: ../tools/validate_albums.php:216 ../tools/validate_albums.php:258
+#, fuzzy
+msgid "Action"
+msgstr "Використовувати shutterfly без дотац╕йних внеск╕в"
+
+#: ../tools/validate_albums.php:225 ../view_photo.php:331
+msgid "delete photo"
+msgstr "стерти фото"
+
+#: ../tools/validate_albums.php:241
+msgid "No Missing Files"
+msgstr ""
+
+#: ../tools/validate_albums.php:242
+#, fuzzy
+msgid "There are no missing files in this Gallery."
+msgstr "Вже ╓ альбом з такою назвою!"
+
+#: ../tools/validate_albums.php:251
+#, fuzzy
+msgid "Invalid Albums:"
+msgstr "Нев╕рний користувач"
+
+#: ../tools/validate_albums.php:252
+msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
+msgstr ""
+
+#: ../tools/validate_albums.php:256
+#, fuzzy
+msgid "Invalid Album"
+msgstr "Нев╕рний користувач"
+
+#: ../tools/validate_albums.php:265
+#, fuzzy
+msgid "delete directory"
+msgstr "В╕д╕слати URL чи маршрут до каталогу"
+
+#: ../tools/validate_albums.php:281
+msgid "No Invalid Albums Found"
+msgstr ""
+
+#: ../tools/validate_albums.php:282
+#, fuzzy
+msgid "There are no invalid albums present in this Gallery."
+msgstr "Вже ╓ альбом з такою назвою!"
 
 #: ../upgrade_album.php:81
 msgid "Progress"
@@ -3764,9 +4058,9 @@ msgid "target file size %d kbytes"
 msgstr "Розм╕р файла"
 
 #: ../util.php:581 ../util.php:611
-#, php-format
+#, fuzzy, php-format
 msgid "-> file size %d kbytes"
-msgstr ""
+msgstr "Розм╕р файла"
 
 #: ../util.php:582
 #, php-format
@@ -3897,9 +4191,9 @@ msgid "Note: This is an automatically generated email message sent from the %s w
 msgstr ""
 
 #: ../util.php:2641
-#, php-format
+#, fuzzy, php-format
 msgid "Report abuse to %s"
-msgstr ""
+msgstr "Повернутись до Додати фото"
 
 #: ../util.php:2657
 msgid "Email not sent as it is disabled for this gallery"
@@ -3911,9 +4205,9 @@ msgid "Email not sent as no address provided"
 msgstr "Ви повинн╕ вказати ╕м'я"
 
 #: ../util.php:2668
-#, php-format
+#, fuzzy, php-format
 msgid "Email not sent to %s as it is not a valid address"
-msgstr ""
+msgstr "Ви повинн╕ вказати ╕м'я"
 
 #: ../util.php:2684
 #, php-format
@@ -3929,8 +4223,9 @@ msgid "not shown"
 msgstr ""
 
 #: ../util.php:2739
+#, fuzzy
 msgid "Message"
-msgstr ""
+msgstr "Пов╕домлення про помилки:"
 
 #: ../util.php:2743
 #, fuzzy
@@ -3983,8 +4278,9 @@ msgid "gallery URL"
 msgstr "Галерея"
 
 #: ../util.php:2971
+#, fuzzy
 msgid "No Skin"
-msgstr ""
+msgstr "Ре╓страц╕я"
 
 #: ../util.php:2972
 #, php-format
@@ -4011,8 +4307,9 @@ msgid "Dots"
 msgstr "Прим╕тка"
 
 #: ../util.php:3048 ../util.php:3053
+#, fuzzy
 msgid "Solid"
-msgstr ""
+msgstr "слайди"
 
 #: ../util.php:3051
 #, fuzzy
@@ -4351,10 +4648,6 @@ msgstr ""
 msgid "resize photo"
 msgstr "зм╕нити розм╕р фото"
 
-#: ../view_photo.php:331
-msgid "delete photo"
-msgstr "стерти фото"
-
 #: ../view_photo.php:342
 msgid "View Images"
 msgstr "Переглянути зображення"
@@ -4377,8 +4670,9 @@ msgid "Send photo to..."
 msgstr "Зм╕нюються розм╕ри %d фото..."
 
 #: ../view_photo.php:444
+#, fuzzy
 msgid "Print photo with..."
-msgstr ""
+msgstr "Зм╕нюються розм╕ри %d фото..."
 
 #: ../view_photo.php:476
 #, fuzzy, php-format
@@ -4402,8 +4696,9 @@ msgid "(if the data is current, this will not appear to do anything)"
 msgstr "(при поточн╕й дат╕, ця операц╕я не робить н╕чого)"
 
 #: ../watermark_album.php:49 ../watermark_album.php:53
+#, fuzzy
 msgid "Watermarking album."
-msgstr ""
+msgstr "З альбома"
 
 #: ../watermark_album.php:103
 #, fuzzy
@@ -4454,10 +4749,6 @@ msgstr "Прим╕тка"
 
 #~ msgid "You must specify a password"
 #~ msgstr "Ви повинн╕ вказати пароль"
-
-#, fuzzy
-#~ msgid "Invalid file type; %s !"
-#~ msgstr "Нев╕домий тип файлу: %s"
 
 #, fuzzy
 #~ msgid "with donation"
