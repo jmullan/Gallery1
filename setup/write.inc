@@ -15,18 +15,49 @@ if ($fd = @fopen($outfile, "a")) {
 	return;
 }
 
+/*
+ * Empty out the .htaccess file
+ */
 $outfile = "$GALLERY_DIR/.htaccess";
-$htaccess = file("htaccess.template");
 if ($fd = @fopen($outfile, "w")) {
-	foreach ($htaccess as $line) {
-		eval("\$line = \"$line\";");
-		fwrite($fd, $line);
-	}
 	fclose($fd);
-} else {
-	fail($outfile);	
-	return;
 }
+
+/*
+ * Write the php_value lines, if they're permissable in the user's
+ * environment..
+ */
+if ($GALLERY_PHP_VALUE_OK) {
+	$htaccess = file("php_value.template");
+	if ($fd = @fopen($outfile, "a")) {
+		foreach ($htaccess as $line) {
+			eval("\$line = \"$line\";");
+			fwrite($fd, $line);
+		}
+		fclose($fd);
+	} else {
+		fail($outfile);	
+		return;
+	}
+}
+
+/*
+ * Write the mod_rewrite lines, if that mod is available.
+ */
+if ($GALLERY_REWRITE_OK) {
+	$htaccess = file("mod_rewrite.template");
+	if ($fd = @fopen($outfile, "a")) {
+		foreach ($htaccess as $line) {
+			eval("\$line = \"$line\";");
+			fwrite($fd, $line);
+		}
+		fclose($fd);
+	} else {
+		fail($outfile);	
+		return;
+	}
+}
+
 
 /*
  * Don't require UserDB before we've written and included config.php or it will
