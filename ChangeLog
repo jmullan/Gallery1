@@ -1,3 +1,12 @@
+2004-10-26  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b254
+
+	* Change: Albums now generate notification mail when they're 
+	  created for the first time.
+
+	* Fix 1054337: Logic in extra_fields thought it was inside a foreach
+	  ... but it wasn't.  It skipped counting a field if both Title and
+	  AltText were enabled.
+
 2004-10-25  Chris Kelly <ckdake@users.sf.net>  1.4.5-cvs-b253
 
 	* Fix 1052876: Corrected CSS for RSS button

@@ -141,7 +141,7 @@ $i=0;
 foreach ($extra_fields as $value) {
 	if (in_array($value, array_keys(automaticFieldsList())))
 		continue;
-	if (!strcmp($value, "Title") or !strcmp($value, "AltText")) {
+	if (!strcmp($value, "Title") || !strcmp($value, "AltText")) {
 		continue;
 	}
 	print "\n<tr>";
@@ -152,7 +152,6 @@ foreach ($extra_fields as $value) {
 }
 
 function num_special_fields($extra_fields) {
-	global $special_fields;
 
 	$num_special_fields=0;
 	foreach (array_keys(automaticFieldsList()) as $special_field) {
@@ -160,10 +159,12 @@ function num_special_fields($extra_fields) {
 			$num_special_fields++;
 	}
 
-	if (in_array("Title", $extra_fields) || in_array("AltText", $extra_fields)) {
-		$num_special_fields++;
+	foreach (array("Title", "AltText") as $named_field) {
+		if (in_array($named_field, $extra_fields)) {
+			$num_special_fields++;
+		}
 	}
- 
+
 	return $num_special_fields;  
 }
 ?>

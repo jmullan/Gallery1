@@ -2152,18 +2152,17 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 	$gallery->album->fields['guid'] = genGUID();
 
         // set title and description
-        if ($newAlbumTitle) {
+        if (!empty($newAlbumTitle)) {
                 $gallery->album->fields["title"] = $newAlbumTitle;
         }
-        if ($newAlbumDesc) {
+        if (!empty($newAlbumDesc)) {
                 $gallery->album->fields["description"] = $newAlbumDesc;
         }
 
         $gallery->album->setOwner($gallery->user->getUid());
-        $gallery->album->save();
 
         /* if this is a nested album, set nested parameters */
-        if ($parentName) {
+        if (!empty($parentName)) {
                 $gallery->album->fields['parentAlbumName'] = $parentName;
                 $parentAlbum = $albumDB->getAlbumByName($parentName);
                 $parentAlbum->addNestedAlbum($gallery->session->albumName);
@@ -2204,8 +2203,9 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 		$gallery->album->fields["add_to_beginning"]   = $parentAlbum->fields["add_to_beginning"];
 		$gallery->album->fields['showDimensions']  = $parentAlbum->fields['showDimensions'];
 		
-                $returnVal = $gallery->album->save();
+                $returnVal = $gallery->album->save(array(i18n("Album \"{$gallery->album->fields['name']}\" created as a sub-album of \"$parentName\".")));
         } else {
+        	$gallery->album->save(array(i18n("Root album \"{$gallery->album->fields['name']}\" created.")));
                 /*
                  * Get a new albumDB because our old copy is not up to
                  * date after we created a new album
@@ -2218,7 +2218,7 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
                 $returnVal = $albumDB->save();
         }
 
-        if ($returnVal) {
+        if (!empty($returnVal)) {
 		return $gallery->session->albumName;
 	} else {
 		return 0;
