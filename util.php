@@ -218,7 +218,6 @@ function fromPnmCmd($file) {
 	}
 }
 
-
 function exec_wrapper($cmd) {
 	global $app;
 
@@ -417,7 +416,7 @@ function preprocessImage($dir, $file) {
 		$line = fgets($fd, 4096);
 
 		// Does it look like a content-type string?
-		if (strstr($tmp, "Content-Type:")) {
+		if (strstr($line, "Content-Type:")) {
 			// Skip till we find a line by itself.
 			do {
 				$line = fgets($fd, 4096);
