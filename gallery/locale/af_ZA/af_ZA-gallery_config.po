@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1
+# Version: 1_4_1-u1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -251,9 +251,9 @@ msgid "You can check via %s, they can often tell you."
 msgstr "Jy kan dit nagaan via %s, dit gee dikwils 'n antwoord."
 
 #: ../setup/check_imagemagick.php:100 ../setup/check_netpbm.php:100
-#, php-format
+#, fuzzy, php-format
 msgid "You told the config wizard that your %s binaries live here:"
-msgstr "Jy het aan die Towenaar gesê dat jou binêre kode hier woon:"
+msgstr "Jy het aan die Towenaar gesê dat jou bin&auml;re kode hier woon:"
 
 #: ../setup/check_imagemagick.php:102 ../setup/check_netpbm.php:102
 #, php-format
@@ -339,7 +339,7 @@ msgid "If you recevied this in error, then please disregard, as you should not r
 msgstr "As jy hierdie e-pos as gevolg van 'n fout ontvang het, ignoreer dit asseblief. Jy behoort nie verdere sulke e-posse te ontvang nie."
 
 #: ../setup/check_mail.php:41
-#, php-format
+#, fuzzy, php-format
 msgid "If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."
 msgstr "As jy 'n e-pos van die %s installasie verwag het, veels geluk! E-pos werk en jy kan die %s e-pos funksies ontsper."
 
@@ -429,7 +429,7 @@ msgid "I've found part of NetPBM, but some critical components are missing (see 
 msgstr "'n Deel van NetPBM is gevind, maar sommige onmisbare komponente ontbreek (sien hieronder). Dalk moet jy jou versie van NetPBM opgradeer."
 
 #: ../setup/config_data.inc:30
-#, php-format
+#, fuzzy, php-format
 msgid "Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from the %sImageMagick website%s."
 msgstr "<u>Gallery</u> verkies ImageMagick versie 5.4.8 of hoër. Jy kan die hele ImageMagick pakket kompileer en installeer vanaf %s."
 
@@ -473,7 +473,7 @@ msgstr "<i>Safe Mode</i> is op hierdie bediener aangeskakel. Jy moet dit afskake
 #: ../setup/config_data.inc:62
 #, php-format
 msgid "<b>Note</b>: In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."
-msgstr "<b>Nota:</b> In sommige rare omstandinghede dink <u>Gallery</u> dat <b>Safe Mode</b> aangeskakel is, terwyl dit in werklikheid afgeskakel is. Jy kan dit self in die <i>Local</i> kolom van die <i>safe_mode</i> ry in die %PHP Info%s blad bevestig. As daar <i>Off</i> of <i>0</i> of <i>undefined<i/> staan, is dit moontlik dat <u>Gallery</u> sigself vergis het en dan kan jy verdergaan. As dit nie die geval is nie, moet jy eers die probleem oplos voordat jy <u>Gallery</u> kan gebruik."
+msgstr "<b>Nota:</b> In sommige rare omstandinghede dink <u>Gallery</u> dat <b>Safe Mode</b> aangeskakel is, terwyl dit in werklikheid afgeskakel is. Jy kan dit self in die <i>Local</i> kolom van die <i>safe_mode</i> ry in die %sPHP Info%s blad bevestig. As daar <i>Off</i> of <i>0</i> of <i>undefined<i/> staan, is dit moontlik dat <u>Gallery</u> sigself vergis het en dan kan jy verdergaan. As dit nie die geval is nie, moet jy eers die probleem oplos voordat jy <u>Gallery</u> kan gebruik."
 
 #: ../setup/config_data.inc:69
 msgid "Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files) and you may not be able to use <b>mod_rewrite</b> (see below)."
@@ -546,7 +546,7 @@ msgstr "Kyk of PHP gekompileer is met <b>GNU gettext</b> vir die ondersteuning v
 #: ../setup/config_data.inc:136
 #, php-format
 msgid "Your PHP does not have <b>GNU gettext</b> support installed.  To include it, you'll need to recompile PHP (see the %sPHP docs%s for more information). Multi-language support is still available in Gallery without <b>gettext</b>, but the pages may take slightly longer to load."
-msgstr "Jou PHP ondersteun nie <b>GNU gettext</b> nie. Om gettext te ondersteun, moet jy PHP herkompileer. Vir meer informasie, sien %s. Let op dat meertalige ondersteuning nog steeds beskikbaar sal wees sonder gettext, maar dat dit iets langer sal duur om die blade te laai."
+msgstr "Jou PHP ondersteun nie <b>GNU gettext</b> nie. Om gettext te ondersteun, moet jy PHP herkompileer. Vir meer informasie, sien %sPHP docs%s. Let op dat meertalige ondersteuning nog steeds beskikbaar sal wees sonder gettext, maar dat dit iets langer sal duur om die blade te laai."
 
 #: ../setup/config_data.inc:141
 msgid "Check to see what languages are available."
@@ -879,7 +879,7 @@ msgstr "Datum formaat"
 #: ../setup/config_data.inc:453 ../setup/config_data.inc:464
 #, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
-msgstr "Hierdie formaat string sal gebruik word om %s in %s te vertoon. Dit word aanbeveel om %s te gebruik, wat die formaat sal verander afhangende van die taal keuse. Tog, as jy verkies om die string te verander, lees asseblief eers die %PHP dokumentasie%s."
+msgstr "Hierdie formaat string sal gebruik word om %s in %s te vertoon. Dit word aanbeveel om %s te gebruik, wat die formaat sal verander afhangende van die taal keuse. Tog, as jy verkies om die string te verander, lees asseblief eers die %sPHP dokumentasie%s."
 
 #: ../setup/config_data.inc:454
 msgid "date without time"
@@ -1186,7 +1186,7 @@ msgstr "Rand Kleur"
 #: ../setup/config_data.inc:739
 #, php-format
 msgid "Default color of image borders. You can learn about %scolors%s here."
-msgstr "Verstek kleur vir die rand van afbeeldings. Hier kan jy meer omtrent %kleure% leer."
+msgstr "Verstek kleur vir die rand van afbeeldings. Hier kan jy meer omtrent %skleure%s leer."
 
 #: ../setup/config_data.inc:750
 msgid "Border width"
@@ -1592,7 +1592,7 @@ msgid "Frames"
 msgstr "Fotorame"
 
 #: ../setup/config_data.inc:1078
-#, php-format
+#, fuzzy, php-format
 msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"
 msgstr "Elke beeld (duimnaelskets, verklein en volle grootte) in % kan 'n raam hê. Die volgende style is beskikbaar:"
 
@@ -1683,12 +1683,12 @@ msgstr "%s bestaan al maar maar is nie 'n lêrgids nie. Maak dit asseblief reg."
 #: ../setup/confirm.inc:218
 #, php-format
 msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
-msgstr "%: %s bestaan, maar die webbediener gebruiker het nie skryftoegang nie. Probeer: %s of as dit nie werk nie; %s. Maak ook seker dat as jy 'n %s beperking het, dan moet die <i>tmp</i> lêrgids onder die %s pad wees."
+msgstr "%s: %s bestaan, maar die webbediener gebruiker het nie skryftoegang nie. Probeer: %s of as dit nie werk nie; %s. Maak ook seker dat as jy 'n %s beperking het, dan moet die <i>tmp</i> lêrgids onder die %s pad wees."
 
 #: ../setup/confirm.inc:289
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
-msgstr "Kon nie % vind nie. Kyk in jou NetPBM lêrgids watter PNG->JPEG verwerker jy het (of probeer om %s te gebruik)."
+msgstr "Kon nie %s vind nie. Kyk in jou NetPBM lêrgids watter PNG->JPEG verwerker jy het (of probeer om %s te gebruik)."
 
 #: ../setup/confirm.inc:301
 #, php-format
@@ -1711,7 +1711,7 @@ msgstr "Jou bediener het die PHP <i>open_basedir</i> beperking aangeskakel, en s
 #: ../setup/confirm.inc:315
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
-msgstr "Dit beteken nie dat hulle nie sal werk nie, maar dit beteken wel dat paaie nie as korrek bevestig kan word nie. As dit nie moontlik is foto's korrek op te laai nie, lees die FAQ en die %diagnostiese blad% om die probleem op te los."
+msgstr "Dit beteken nie dat hulle nie sal werk nie, maar dit beteken wel dat paaie nie as korrek bevestig kan word nie. As dit nie moontlik is foto's korrek op te laai nie, lees die FAQ en die %sdiagnostiese blad%s om die probleem op te los."
 
 #: ../setup/confirm.inc:388
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it."
@@ -1909,12 +1909,12 @@ msgid "%s is not executable!"
 msgstr "%s is nie uitvoerbaar nie!"
 
 #: ../setup/functions.inc:453
-#, php-format
+#, fuzzy, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr "Alle %d NetPBM lêërs is gevind"
 
 #: ../setup/functions.inc:509
-#, php-format
+#, fuzzy, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr "Alle %d ImageMagick lêërs is gevind"
 
@@ -1945,7 +1945,7 @@ msgstr "Dit lyk of jy nie enige ander tale afgelaai het nie. Dit is nie 'n probl
 #: ../setup/functions.inc:570
 #, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
-msgstr "%s tale is beskikbaar. As 'n taal ontbreek, besoek die %sGallery Aflaai Blad%s."
+msgstr "%d tale is beskikbaar. As 'n taal ontbreek, besoek die %sGallery Aflaai Blad%s."
 
 #: ../setup/functions.inc:594
 #, php-format
@@ -2251,51 +2251,3 @@ msgstr "Jy vermis óf %s óf %s."
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "Hersien Instellings"
-
-#~ msgid "File missing or unreadable.  Please install then re-run this test."
-#~ msgstr "Lêr ontbreek of is onleesbaar. Installer asseblief weer en laat hierdie toets weer loop."
-
-#~ msgid "Please ensure that %s is the latest version."
-#~ msgstr "Maak asseblief seker dat %s die laatste versie is."
-
-#~ msgid "Testing status of %d files."
-#~ msgstr "Toets status van %d lêërs."
-
-#~ msgid "Cannot read file %s."
-#~ msgstr "Kan nie lêr %s lees nie."
-
-#~ msgid "File missing or unreadable."
-#~ msgstr "Lêr ontbreek of is onleesbaar."
-
-#~ msgid "Version information not found in %s.  File must be old version or corrupted."
-#~ msgstr "Kan nie versie informasie in %s vind nie. Lêr moet 'n ou versie wees of gekorrupteer wees."
-
-#~ msgid "Missing version"
-#~ msgstr "Ontbrekende versie"
-
-#~ msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-#~ msgstr "Probleem met %s. Het versie %s (of hoër) verwag, maar het versie %s gevind."
-
-#~ msgid "Expected version %s (or greater) but found %s."
-#~ msgstr "Het versie %s (of hoër) verwag, maar het versie %s gevind."
-
-#~ msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-#~ msgstr "%s OK. Huidige versie (%s) is meer onlangs as die verwagte versie (%s)"
-
-#~ msgid "%s is a more recent version than expected.  Expected version %s but found %s."
-#~ msgstr "%s is 'n meer onlnagse versie as wat verwag was. Het versie %s verwag maar het versie %s gevind."
-
-#~ msgid "%s OK"
-#~ msgstr "%s OK"
-
-#~ msgid "Check versions"
-#~ msgstr "Kontrolleer versies"
-
-#~ msgid "This page is for %s upgrades that have problems."
-#~ msgstr "Hierdie blad is vir %s opgradeerings wat probleme het."
-
-#~ msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-#~ msgstr "Dit lyk asof jy alreeds <u>Gallery</u> gekonfureer het, omdat daar alreeds %d administrateur rekening(s) bestaan"
-
-#~ msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-#~ msgstr "Jy moet 'n wagwoord invoer. Maar as jy did doen, sal <u>Gallery</u> 'n administratuer rekening kreëer met daardie wagwoord."
