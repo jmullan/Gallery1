@@ -1,3 +1,10 @@
+2004-04-26  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b61
+
+	* Fix: Adapted move_album issue from b49
+	  Until a ".root" album object can be created, move_album needs to
+	  not try and check getNestedAlbum against a rooted album.
+	  Added isRoot() check prior to getNestedAlbum to bypass.
+
 2004-04-25  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b60
 
 	* Change: view_album and view_photo are valid, again.
