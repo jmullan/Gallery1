@@ -13,32 +13,3 @@
 //      - Album Title: $album->fields["title"]    
 //      
 ?>
-
-<?
-session_register("cart");
-$add = $GLOBALS["cart_add"];
-$remove = $GLOBALS["cart_remove"];
-$cart = &$GLOBALS["cart"];
-if ($add) {
-	$cart[$add]++;
-}
-if ($remove) {
-	$cart[$remove]--;
-	if ($cart[$remove] == 0) {
-		unset($cart[$remove]);
-	}
-}
-
-if (count($cart)) {
-	print "Your cart contains: <ul>\n";
-	foreach ($cart as $itemname => $itemamount) {
-		print "<li> $itemamount $itemname\n";
-	}
-	print "</ul>\n";
-}
-?>
-
-<span class="head">
-<?= $album->fields["title"] ?>
-</span>
-<br><br>
