@@ -758,7 +758,7 @@ $constants = array_merge($constants,
                 "<br>",
                 "choices" => array("no" => _("no"), "yes" => _("yes")),
                 "optional" => 1,
-                "value" => array()
+                "value" => 'no',
         ),
         "smtpHost" => array(
                 "prompt" => _("SMTP Server"),

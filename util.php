@@ -25,36 +25,58 @@
 require(dirname(__FILE__) . '/nls.php');
 
 function getRequestVar($str) {
-	if (!isset($_REQUEST[$str])) {
-		return null;
+	if (!is_array($str)) {
+		if (!isset($_REQUEST[$str])) {
+			return null;
+		}
+		$ret = $_REQUEST[$str];
+		if (get_magic_quotes_gpc()) {
+			$ret = stripslashes($ret);
+		}	
 	}
-	$ret = $_REQUEST[$str];
-	if (get_magic_quotes_gpc()) {
-		$ret = stripslashes($ret);
+	else {
+		foreach ($str as $reqvar) {
+			$ret[] = getRequestVar($reqvar);
+		}
 	}
+	
 	return $ret;
 }
 
 function getFilesVar($str) {
-	if (!isset($_FILES[$str])) {
-		return null;
+	if (!is_array($str)) {
+		if (!isset($_FILES[$str])) {
+			return null;
+		}
+		$ret = $_FILES[$str];
+		if (get_magic_quotes_gpc()) {
+			$ret = stripslashes($ret);
+		}
+		return $ret;
 	}
-	$ret = $_FILES[$str];
-	if (get_magic_quotes_gpc()) {
-		$ret = stripslashes($ret);
+	else {
+		foreach ($str as $reqvar) {
+			$ret[] = getFilesVar($reqvar);
+		}
 	}
-	return $ret;
 }
 
 function getEnvVar($str) {
-	if (!isset($_ENV[$str])) {
-		return null;
+	if (!is_array($str)) {
+		if (!isset($_ENV[$str])) {
+			return null;
+		}
+		$ret = $_ENV[$str];
+		if (get_magic_quotes_gpc()) {
+			$ret = stripslashes($ret);
+		}
+		return $ret;
 	}
-	$ret = $_ENV[$str];
-	if (get_magic_quotes_gpc()) {
-		$ret = stripslashes($ret);
+	else {
+		foreach ($str as $reqvar) {
+			$ret[] = getEnvVar($reqvar);
+		}
 	}
-	return $ret;
 }
 
 function editField($album, $field, $link=null) {
