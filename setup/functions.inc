@@ -538,7 +538,7 @@ function check_gettext()
 	$fail = array();
 	$success = array();
 	$warn = array();
-	if (gettext_installed() {
+	if (gettext_installed()) {
 		$success[] = _("PHP has <b>GNU gettext</b> support.");
 	} else {
 		$fail["fail-gettext"] = 1;
@@ -548,14 +548,15 @@ function check_gettext()
 
 function check_gallery_languages()
 {
+	// Make sure initLanguage() or load_languages()  was called before this !
+
 	global $GALLERY_BASEDIR;
 	global $gallery;
 	$fail = array();
 	$success = array();
 	$warn = array();
-	$nls = getNLS();
 
-	$languages=gallery_languages();
+	$languages=$gallery->nls['language'];
 	if (sizeof($languages) == 0) {
 		$fail["fail-gallery-languages"] = _("No languages found."); // should never occur!
 	} else if (sizeof($languages) == 1 ) {
@@ -649,8 +650,10 @@ function check_absent_locales()
 }
 
 function check_locale() {
-	$nls=getNLS();
-	$gallery_languages=array_keys(gallery_languages());
+
+	// Make sure initLanguage() or load_languages()  was called before this !
+	global $gallery;
+
 	$system_locales=array();
 	
 	$available_locales=array();
@@ -686,7 +689,7 @@ function check_locale() {
 	/* There were at least one system locale
 	** Now lets test if our languages are supported by the system
 	*/
-	foreach ($gallery_languages as $locale) {
+	foreach ($gallery->nls['language'] as $locale => $langname) {
 		$aliases=array();
 		
 		/* Found an supported one, put it in availables */
@@ -698,8 +701,8 @@ function check_locale() {
 		/* we use the first 2 letter to build an alias list
 		**  e.G. nl to find nl_BE or nl_NL
 		*/
-		if (in_array($locale,$nls['alias'])) {
-			$keylist = array_keys($nls['alias'],$locale);
+		if (in_array($locale,$gallery->nls['alias'])) {
+			$keylist = array_keys($gallery->nls['alias'],$locale);
 			$aliases = $keylist;
 			if (getOS() != OS_WINDOWS) {
 				$sub='^(' . substr($locale,0,2) . '|' . implode('|', $keylist) . ')';
@@ -737,6 +740,13 @@ function check_locale() {
 		}
 	}
 
+	// Set locale correct back	
+	if (isset($gallery->locale)) {
+		setlocale(LC_ALL,$gallery->locale);	
+	} else {
+		setlocale(LC_ALL,"");
+	}
+
 	return array(
 		"available_locales" => $available_locales,
 		"maybe_locales" => $maybe_locales,
@@ -747,7 +757,10 @@ function check_locale() {
 
 
 function config_maybe_locales() {
+	// Make sure initLanguage() or load_languages()  was called before this !
+
 	global $locale_check;
+	global $gallery;
 
 	$results=array();
 	$locales=$locale_check;
@@ -758,8 +771,6 @@ function config_maybe_locales() {
 	// If we are in Linux, our PHP has gettext, 
 	// but we could not find any locale we skip the whole aliasing part.
 	if($locales == NULL) return;
-
-	$nls=getNLS();
 
 	$block_start_done=false;
 	
@@ -789,13 +800,13 @@ function config_maybe_locales() {
 					_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
 					);
 		}
-		$index = $nls['language'][$key] ;
+		$index = $gallery->nls['language'][$key] ;
 		$choices=array();
 		foreach ($aliases as $value) { 
 			$choices[$value]=$value;
 		}
 		$results["locale_alias['$key']"] = array (
-			"prompt" => $nr .".) ". $nls['language'][$key],
+			"prompt" => $nr .".) ". $gallery->nls['language'][$key],
 			"optional" => 1,
 			"name" => "locale_alias",
 			"key" => $key,
@@ -816,7 +827,7 @@ function config_maybe_locales() {
 	if (sizeof($available) > 0) {
 		if (getOS() == OS_OTHER) $choices=array("" => _("System locale"));
 		foreach ($available as $choice => $value) { 
-			$choices[$choice]=$nls['language'][$value];
+			$choices[$choice]=$gallery->nls['language'][$value];
 		}
 
 		$avail_keys=array_keys($available);
@@ -861,9 +872,9 @@ function config_maybe_locales() {
 							_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
 							);
 		}
-		$index = $nls['language'][$key] ;
+		$index = $gallery->nls['language'][$key] ;
 		$results["locale_alias['$key']"] = array (
-			"prompt" => $nls['language'][$key],
+			"prompt" => $gallery->nls['language'][$key],
 			"name" => "locale_alias",
 			"key" => $key,
 			"type" => "block_element",

@@ -117,11 +117,10 @@
 		 </td><td>
     <select name="defaultLanguage" size="1">
     <?php
-		$nls = getNLS();
 		foreach ($gallery->app->available_lang as $value) {
 			// Only use language from config.php if its 
 			// defined in nls.php
-			if (!isset($nls['language'][$value])) continue;
+			if (!isset($gallery->nls['language'][$value])) continue;
 		
 			if ( $defaultLanguage == $value) $selected="selected"; else $selected="";
 			echo "\n\t\t<option value=\"$value\" $selected>" 

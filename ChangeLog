@@ -1,3 +1,16 @@
+2003-10-13 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b150
+
+	* Change: Optimization! 
+	   - Removed function getNLS(). If initLanguage() or load_languages()
+	     was called the info is in $gallery->nls
+
+	   - Removed function gallery_languages(). If initLanguage() or load_languages()
+             was called the info is in $gallery->nls['language']
+
+	* Change: Modified makereport.
+
+	* Bugfix: Fixed #812116 with resetting locale.
+
 2003-10-13 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b149
 
 	* Change: Updated report and report tools.
@@ -91,10 +104,8 @@
 	Note: We are now ready for language packs, because all language related
 	      information is bundled into one folder per language.
 
-	Todo: - Code cleanup and optimization.
-	      - Improve handling of multiple same languages which just have
+	Todo: - Improve handling of multiple same languages which just have
 	        different charset.
-	      - Adjust scripts
 
 2003-10-07 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b136
 

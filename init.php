@@ -147,7 +147,7 @@ initLanguage();
 
 /* Make sure that Gallery is set up properly */
 if ($gallerySanity != NULL) {
-	include ("${GALLERY_BASEDIR}errors/$gallerySanity");
+	include ($GALLERY_BASEDIR ."errors/". $gallerySanity);
 	exit;
 }
 

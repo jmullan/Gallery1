@@ -13,6 +13,8 @@ if ($locale_check == NULL) {
 	$elawisyl = "yes";
 }
 
+$gallery_languages=$gallery->nls['language'];
+
 $common_messages["getting-netpbm"] = 
 			sprintf(_("Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."), 
 				 "<a href=\"http://sourceforge.net/projects/gallery\">",
@@ -410,28 +412,28 @@ $constants =  array_merge(
 		"prompt" => _("Default language"), 
 		"optional" => 1, 
 		"desc" => sprintf(_("This is the language you will see as %s, and what users will see if no other preference is set."), '<b>admin</b>'),
-		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
-		"choices" => gallery_languages(),
+		"type" => (sizeof($gallery_languages) > 1) ? "choices" : "hidden", 
+		"choices" => $gallery_languages,
 		"value" => !empty($gallery->language) ? $gallery->language : "en_US",
 		"enabled" => $elawisyl
 	),
 	"ML_mode" => array(
 		"prompt" => _("Multi language mode"), 
 		"desc" => _("Gallery has three multi language modes.  These affect the language that a user will see when visiting the site."),
-		"type" => ( (sizeof(gallery_languages()) > 1) && ($elawisyl == 'yes') ) ? "choices" : "hidden",
+		"type" => ( (sizeof($gallery_languages) > 1) && ($elawisyl == 'yes') ) ? "choices" : "hidden",
 		"choices" => array(
 				1 => "1: " . _("Gallery is only displayed in one language"), 
 				2 => "2: " . _("Gallery is displayed in the language the browser sends"), 
 				3 => "3: " . _("The User can choose the language via pulldown menu or flags.")),
-		"value" => ( (sizeof(gallery_languages()) > 1) && ($elawisyl == 'yes') ) ? 3 : 0,
+		"value" => ( (sizeof($gallery_languages) > 1) && ($elawisyl == 'yes') ) ? 3 : 0,
 	),
 	"available_lang" => array(
 		"prompt" => _("Available languages"), 
-		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
+		"type" => (sizeof($gallery_languages) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
 		"desc" => _("These languages will be available as user choices in a pulldown menu or flags, if you have chosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."), 
-		"multiple_choices" => gallery_languages(),
-		"value" => array_keys(gallery_languages()),
+		"multiple_choices" => $gallery_languages,
+		"value" => array_keys($gallery_languages),
 		"enabled" => $elawisyl
 	),
 	"show_flags" => array(
