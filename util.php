@@ -1469,25 +1469,6 @@ function gallerySanityCheck() {
 		$GALLERY_OK=false;
 		return "unconfigured.php";
 	}
-	if (fs_is_dir(GALLERY_SETUPDIR) && 
-		is_readable(GALLERY_SETUPDIR)) {
-		/* 
-		 * on some systems, PHP's is_readable returns false
-		 * positives.  Make extra sure.
-		 *
-		 * Note: it's not possible for a win32 directory to
-		 *       have 755 perms which is fine, since on win32
-		 *       we don't actually change the permissions of
-		 *       the directory anyway.
-		*/
-		$perms = sprintf("%o", fileperms(GALLERY_SETUPDIR));
-
-		if (strstr($perms, "755") ||
-			( getOS()== OS_WINDOWS && ! fs_file_exists(GALLERY_SETUPDIR ."/SECURE"))) {
-			$GALLERY_OK=false;
-			return "configmode.php";
-		}
-	}
 
 	if ($gallery->app->config_version != $gallery->config_version) {
 		$GALLERY_OK=false;

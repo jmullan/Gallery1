@@ -1,4 +1,3 @@
-
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
@@ -82,13 +81,13 @@ if ($old_htaccess) {
 $outfile = GALLERY_CONFDIR . '/.htaccess';
 
 if ($fd = @fs_fopen($outfile, "w")) {
-       	fwrite($fd, "$start_string\n");
-       	fwrite($fd, "# (Automatically generated.  Do not edit this section)\n");
-       	fwrite($fd, "# Note: still under development, so format may change.\n");
-       	fwrite($fd, "# If you edit this file, make a backup before runnng the Config. Wizard.\n\n");
-       	fclose($fd);
+	fwrite($fd, "$start_string\n");
+	fwrite($fd, "# (Automatically generated.  Do not edit this section)\n");
+	fwrite($fd, "# Note: still under development, so format may change.\n");
+	fwrite($fd, "# If you edit this file, make a backup before runnng the Config. Wizard.\n\n");
+	fclose($fd);
 } else {
-       	fail($outfile);	
+	fail($outfile);	
 	return;
 }
 
@@ -153,7 +152,7 @@ if ($fd = @fs_fopen($outfile, "a")) {
  */
 
 if ($fd = @fs_fopen($outfile, "a")) {
-       	foreach ($htaccess_save as $line) {
+	foreach ($htaccess_save as $line) {
 	       	fwrite($fd, $line);
        	}
        	fclose($fd);
@@ -196,24 +195,23 @@ if (strlen($editPassword[2]) > 0) {
 <div style="width:60%; text-align:center">
 	<div class="header"><?php echo _("Your configuration has been successfully saved!") ?></div>
 <?php
-if (isset($message)) {
-	echo '<div class="sitedesc">';
-	echo "\n\t$message";
-	echo "\n</div>";
-}
-?>	
+	if (isset($message)) {
+		echo '<div class="sitedesc">';
+		echo "\n\t$message";
+		echo "\n</div>";
+	}
+
+	// Inform the user that their gallery is not secure until they remove the 'resetadmin' file
+	if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
+?>
 	<div class="sitedesc">
 		<span style="font-size: 1.2em; color:red"><?php echo _("Note") ?>!</span>
 		<br>
-<?php 
-	echo _("Don't forget to run this to make your Gallery secure!");
-	configure("secure");
-?>
+		<span style='font-size: 1.2em; color:red'><?php printf(_("You must remove the '%s' file from the setup directory to make your Gallery configuration secure"), "resetpass"); ?></span>
 	</div>
+<?php } ?>
 </div>
 <p style="width:80%; text-align:center">
-	<span class="emphasis"><?php echo _("Gallery won't run if it is not in secure mode.") ?></span>
-	<br>
 <?php 
 	echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.");
 	echo '<br>';
