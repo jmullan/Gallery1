@@ -200,7 +200,7 @@ $defaults = array(
 	),
 	"fit_to_window" => array(
 		"desc" => "Auto fit-to-window for images without a resized copy",
-		"value" => "no",
+		"value" => "yes",
 		"choices" => array("yes", "no")
 	),
 	"page" => array(
