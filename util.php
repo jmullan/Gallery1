@@ -2685,7 +2685,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 					// begin data       
 				        $smtp[] = array("DATA".$lb,"354","DATA error: ");
 				        // header
-				        $smtp[] = array("Subject: ".$gallery->app->emailSubjPrefix." ".$subject.$lb,"","");
+				        $smtp[] = array("Subject: ".$subject.$lb,"","");
 				        $smtp[] = array("To:".$bccto.$lb,"","");       
 				        foreach($hdr as $h) {$smtp[] = array($h.$lb,"","");}
 				        // end header, begin the body
@@ -2701,7 +2701,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
                         // begin data
                         $smtp[] = array("DATA".$lb,"354","DATA error: ");
                         // header
-                        $smtp[] = array("Subject: ".$gallery->app->emailSubjPrefix." ".$subject.$lb,"","");                       
+                        $smtp[] = array("Subject: ".$subject.$lb,"","");                       
 			$smtp[] = array("To:".$to.$lb,"","");
                         foreach($hdr as $h) {$smtp[] = array($h.$lb,"","");}
                         // end header, begin the body
