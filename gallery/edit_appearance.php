@@ -135,9 +135,30 @@ if (isset($save)) {
 	** Check if we are using PHP >= 4.1.0
 	** If yes, we can use 3rd Parameter so e.g. titles in chinese BIG5 or UTF8 are displayed correct.
 	** Otherwise they are messed.
+	** Not all Gallery Charsets are supported by PHP, so only those listed are recognized.
 	*/
 
-	if (function_exists('version_compare')) {
+	$supportedCharsets=array(
+			'UTF-8',
+			'ISO-8859-1',
+			'ISO-8859-15',
+			'cp1252',
+			'BIG5',
+			'GB2312',
+			'BIG5-HKSCS',
+			'Shift_JIS',
+			'EUC-JP'
+	);
+
+	$supportedCharsetsNewerPHP=array(
+			'cp866',
+			'cp1251',
+			'KOI8-R'
+	);
+
+	if (function_exists('version_compare') && 
+		( version_compare(phpversion(), "4.1.0") >=0 && in_array($gallery->charset, $supportedCharsets) ) || 
+		( version_compare(phpversion(), "4.3.2") >=0 && in_array($gallery->charset, $supportedCharsetsNewerPHP) ) ) {
 		$album_title=htmlentities($gallery->album->fields["title"],ENT_COMPAT, $gallery->charset);
 	}
 	else {
