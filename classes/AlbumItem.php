@@ -341,7 +341,7 @@ class AlbumItem {
 			}
 			$size = $album->getHighlightSize();
 
-			if ($srcitem->image->thumb_width > 0  && !this->isMovie()) {
+			if ($srcitem->image->thumb_width > 0  && !$this->isMovie()) {
 				// Crop it first
 				$ret = cut_image("$srcdir/".$srcitem->image->name.".$tag",
 						"$dir/$name.tmp.$tag",

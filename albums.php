@@ -159,7 +159,9 @@ if ($gallery->user->isAdmin()) {
 	if ($doc) {
 		$adminCommands .= "$doc&nbsp;";
 	}
-	$adminCommands .= '<a href="'. $gallery->app->photoAlbumURL .'/setup">['. _("configuration wizard") .']</a>';
+	$adminCommands .= '<a href="' . makeGalleryUrl('setup/index.php') . '">[' . _("configuration wizard") .']</a>';
+	$adminCommands .= '&nbsp;';
+	$adminCommands .= '<a href="' . makeGalleryUrl('tools/find_orphans.php') . '">[' . _("find orphans") .']</a>';
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
