@@ -106,6 +106,7 @@ function makeSlideLowUrl($index, $loop, $pause, $full, $dir) {
 
 $borderColor = $gallery->album->fields["bordercolor"];
 $borderwidth = $gallery->album->fields["border"];
+$loop=($gallery->album->fields["slideshow_loop"] == "yes");
 if (!strcmp($borderwidth, "off")) {
         $borderwidth = 1;
 }
@@ -438,7 +439,9 @@ drawSelect("time", array(1 => "1 ". _("second"),
 	       	1, // select size
 	       	array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
 ?>
+    <?php if ($loop) { ?>
     &nbsp;<?php echo _("Loop") ?>:<input type="checkbox" name="loopCheck" <?php echo ($slide_loop) ? "checked" : "" ?> onclick='toggleLoop();'>
+    <?php } ?>
     </span>
     </td>
   </tr>

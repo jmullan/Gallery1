@@ -186,7 +186,7 @@ if (isset($message)) {
 <br>
 <font size=+1>
 <?php echo sprintf(_("Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),  
-		'<a href="http://lists.sourceforge.net/lists/listinfo/gallery-announce" class="namedurl">gallery-announce</a>', 
+		'<a href="http://gallery.sourceforge.net/lists.php" class="namedurl">gallery-announce</a>', 
 	       Gallery()) ?>
 </font>
 <p>

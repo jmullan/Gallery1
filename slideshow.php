@@ -55,17 +55,10 @@ if (empty($albumName)) {
 	$recursive=true;
 	$number=(int)$gallery->app->gallery_slideshow_length;
 	$random=($gallery->app->gallery_slideshow_type == "random");
+	$loop=($gallery->app->gallery_slideshow_loop == "yes");
 	$borderColor = $gallery->app->default["bordercolor"];
 	$borderwidth = 1;
 
-       	if ($random) {
-	       	$title = sprintf(_("%s Random Images from %s"), 
-				$number,
-			       	$gallery->app->galleryTitle);
-       	} else {
-	       	$title = sprintf(_("Slide Show for Gallery :: %s"), 
-			       	$gallery->app->galleryTitle);
-       	}
 } else {
        	$album = new Album();
        	$album->load($albumName);
@@ -74,6 +67,7 @@ if (empty($albumName)) {
 		return;
 	}
 	$recursive=($album->fields["slideshow_recursive"] == "yes");
+	$loop=($album->fields["slideshow_loop"] == "yes");
 	$random=($album->fields["slideshow_type"] == "random");
 	$number=(int)$album->fields["slideshow_length"];
 
@@ -83,13 +77,6 @@ if (empty($albumName)) {
 	       	$borderwidth = 1;
        	}
        	$bgcolor = $gallery->album->fields['bgcolor'];
-       	if ($random) {
-	       	$title = sprintf(_("%d Random Images from album :: %s"), 
-				$number,
-			       	$gallery->album->fields["title"] );
-       	} else {
-	       	$title = sprintf(_("Slide Show for album :: %s"), $gallery->album->fields["title"] );
-       	}
 }
 
 define('PHOTO_URL',         1 << 0);
@@ -204,6 +191,53 @@ function printSlideshowPhotos($full_urls, $urls, $captions, $what, $photo_count)
 
 
 ?>
+
+<?php
+$url=array();
+$full_urls=array();
+$caption=array();
+$photo_count = buildSlideshowPhotos($full_urls, $urls, $captions, $album, $recursive);
+
+if ($number == 0 || $number  > sizeof($urls)) {
+	$number=sizeof($urls);
+}
+if ($random) {
+	$random_full_urls=array();
+	$random_photos=array();
+       	srand ((float) microtime() * 10000000);
+       	$rand_keys = array_rand ($urls, $number);
+       	if ($number == 1)
+       	{
+	       	$rand_keys=array($rand_keys);
+       	}
+       	foreach ($rand_keys as $key)
+       	{
+	       	$random_urls[] = $urls[$key];
+	       	$random_full_urls[] = $full_urls[$key];
+	       	$random_captions[] = $captions[$key];
+       	}
+	$urls=$random_urls;
+	$full_urls=$random_full_urls;
+	$captions=$random_captions;
+}
+if (empty($albumName)) {
+       	if ($random) {
+	       	$title = sprintf(_("%s Random Images from %s"), 
+				$number,
+			       	$gallery->app->galleryTitle);
+       	} else {
+	       	$title = sprintf(_("Slide Show for Gallery :: %s"), 
+			       	$gallery->app->galleryTitle);
+       	}
+} else {
+       	if ($random) {
+	       	$title = sprintf(_("%d Random Images from album :: %s"), 
+				$number,
+			       	$gallery->album->fields["title"] );
+       	} else {
+	       	$title = sprintf(_("Slide Show for album :: %s"), $gallery->album->fields["title"] );
+       	}
+} ?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
@@ -243,34 +277,6 @@ if ($albumName) {
 <?php includeHtmlWrap("slideshow.header"); ?>
 
 <?php
-$url=array();
-$full_urls=array();
-$caption=array();
-$photo_count = buildSlideshowPhotos($full_urls, $urls, $captions, $album, $recursive);
-
-if ($number == 0) {
-	$number=sizeof($urls);
-}
-if ($random) {
-	$random_full_urls=array();
-	$random_photos=array();
-       	srand ((float) microtime() * 10000000);
-       	$rand_keys = array_rand ($urls, $number);
-       	if ($number == 1)
-       	{
-	       	$rand_keys=array($rand_keys);
-       	}
-       	foreach ($rand_keys as $key)
-       	{
-	       	$random_urls[] = $urls[$key];
-	       	$random_full_urls[] = $full_urls[$key];
-	       	$random_captions[] = $captions[$key];
-       	}
-	$urls=$random_urls;
-	$full_urls=$random_full_urls;
-	$captions=$random_captions;
-}
-
 $photo_count=$number;
 ?>
 <!-- Here are the URLs of the images written down as links. This is to make
@@ -698,7 +704,9 @@ drawSelect("time", array(1 => "1 ". _("second"),
     }
 
     </script>
+    <?php if ($loop) { ?>
     &nbsp;<?php echo _("Loop") ?>:<input type="checkbox" name="loopCheck" <?php echo ($defaultLoop) ? "checked" : "" ?> onclick='toggleLoop();'>
+    <?php } ?>
     </span>
     </td>
     <td width="1"><?php echo $pixelImage ?></td>

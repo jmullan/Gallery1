@@ -31,7 +31,7 @@
 
 <?php 
 global $GALLERY_EMBEDDED_INSIDE;
-if ($gallery->user->isAdmin()) {
+if ($gallery->user->isAdmin() || $gallery->app->devMode == "yes") {
        	if (! isset($GALLERY_EMBEDDED_INSIDE)) {
 	       	print "<br><br>";
 	       	print gallery_validation_link("albums.php");

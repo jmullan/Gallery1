@@ -349,7 +349,7 @@ for ($i = $start; $i <= $end; $i++) {
   <?php if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) { ?>
    <span class="admin">
     <?php echo popup_link("[" . _("permissions") ."]", "album_permissions.php?set_albumName={$tmpAlbumName}"); ?>
-   <?php if (!strcmp($gallery->album->fields["public_comments"],"yes")) { ?>
+   <?php if ($gallery->user->canViewComments($gallery->album)) { ?>
     <a href="<?php echo makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName)) ?>">[<?php echo _("view&nbsp;comments") ?>]</a>
    <?php } ?>
    </span>

@@ -40,6 +40,7 @@ if (!isset($uname)) {
 	$uname="";
 }
 $uname = removeTags($uname);
+doctype();
 ?>
 
 <html>
@@ -78,7 +79,7 @@ if (isset($uname) && isset($gallerypassword)) {
        	}
 }
 ?>
-<span class="popup">
+<div class="popup">
 <?php echo makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
 <?php echo _("Logging in gives you greater permission to view, create, modify and delete albums.") ?>
 <p>
@@ -187,6 +188,7 @@ if (isset($forgot)) {
  </table>
  <p>
 <input type="submit" name="forgot" value="<?php echo _("Send me my password") ?>">
+</form
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--
@@ -195,6 +197,11 @@ document.login_form.uname.focus();
 //--> 
 </script>
 
-</span>
+</div>
+</center>
+<?php if ($gallery->user->isAdmin() || $gallery->app->devMode == "yes") {
+       	print "<p>";
+       	print gallery_validation_link("login.php");
+} ?>
 </body>
 </html>

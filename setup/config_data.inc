@@ -585,6 +585,13 @@ $constants = array_merge($constants,
 		"attrs" => array("size" => 5),
 		"allow_empty" => true
 	),
+	"gallery_slideshow_loop" => array(
+		"prompt" => _("Allow slideshow to loop"),
+		"desc" => sprintf(_("This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."), "<b>"._("no")."</b>") .
+			newIn("1.4.1"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+	       	"value" => "yes"
+		),
        	"separator_comments" => array (
 		       	"type" => "separator",
 		       	"title" => _("Comments"),
@@ -613,6 +620,14 @@ $constants = array_merge($constants,
 	"comments_indication_verbose" => array(
 		       	"prompt" => _("Display date of last comment?"),
 		       	"desc" => sprintf(_("If an item has comments, display date of last comment, rather than a %s."), '"*"') .
+				newIn("1.4.1"),
+			"choices" => array("yes" => _("yes"), "no" => _("no")),
+		       	"value" => "no",
+			),
+	"comments_anonymous" => array(
+		       	"prompt" => _("Anonymous comments from known users?"),
+		       	"desc" => sprintf(_("When logged in, comments will automatically use fullname and username, unless this is set to %s."), 
+				"<b>"._("yes")."</b>") .
 				newIn("1.4.1"),
 			"choices" => array("yes" => _("yes"), "no" => _("no")),
 		       	"value" => "no",
@@ -843,12 +858,6 @@ $defaults = array(
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes",
 	),
-	"public_comments" => array(
-		"prompt" => _("Comments"),
-		"desc" => _("Allow the public to add comments to your photos?"),
-		"choices" => array("yes" => _("yes"), "no" => _("no")),
-		"value" => "yes",
-	),
 	"extra_fields" => array(
 		"prompt" => _("Custom Fields"),
 		"optional" => 1,
@@ -1008,6 +1017,13 @@ $defaults = array(
 			newIn("1.4.1"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
+			),
+	"slideshow_loop" => array(
+		"prompt" => _("Allow slideshow to loop"),
+		"desc" => sprintf(_("This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."), "<b>"._("no")."</b>") .
+			newIn("1.4.1"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "yes"
 			),
 	"slideshow_length" => array(
 		"prompt" => _("Slideshow length"),

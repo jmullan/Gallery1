@@ -132,12 +132,10 @@ $adminbox["top"] = true;
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
 ?><br><?php
-if(strcmp($gallery->album->fields["public_comments"], "yes"))
-{
-    ?></span><br><b><span class="error"><?php echo _("Sorry.  This album does not allow public comments.") ?></span><span class="popup"><br><br></b><?php
-}
-else
-{
+
+if (!$gallery->album->fields["perms"]['canAddComments']) {
+    ?></span><br><b><span class="error"><?php echo _("Sorry.  This album does not allow comments.") ?></span><span class="popup"><br><br></b><?php
+} else {
     $numPhotos = $gallery->album->numPhotos(1);
     $commentbox["bordercolor"] = $bordercolor;
     $i = 1;

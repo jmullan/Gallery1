@@ -827,8 +827,9 @@ if ($numPhotos) {
 				<span class="fineprint">
 				   <?php echo _("Changed: ") ?><?php echo $myAlbum->getLastModificationDate() ?>.  <br>
 				   <?php echo _("Contains: ") ?><?php echo pluralize_n($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), _("1 item"), _("items"), _("0 items")) ?>.
-				   <?php if (!strcmp($gallery->album->fields["public_comments"], "yes")) {
-					   $lastCommentDate = $myAlbum->lastCommentDate();
+				   <?php 
+				   $lastCommentDate = $myAlbum->lastCommentDate();
+				   if ($lastCommentDate > 0) {
 					   print lastCommentString($lastCommentDate, $displayCommentLegend);
 				   } ?><br>
 				   <?php if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) { ?>
@@ -840,7 +841,7 @@ if ($numPhotos) {
 				echo(nl2br($gallery->album->getCaption($i)));
 				echo($gallery->album->getCaptionName($i));
 				// indicate with * if we have a comment for a given photo
-				if (!strcmp($gallery->album->fields["public_comments"], "yes")) {
+				if ($gallery->user->canViewComments($gallery->album)) {
 					$lastCommentDate = $gallery->album->itemLastCommentDate($i);
 					print lastCommentString($lastCommentDate, $displayCommentLegend);
 				}
@@ -1017,7 +1018,7 @@ if ($numPhotos) {
 
 </table>
 
-<?php if (!strcmp($gallery->album->fields["public_comments"], "yes") && $displayCommentLegend) { //display legend for comments ?>
+<?php if ($displayCommentLegend) { //display legend for comments ?>
 <span class=error>*</span><span class=fineprint> <?php echo _("Comments available for this item.") ?></span>
 <br><br>
 <?php } ?>

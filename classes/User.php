@@ -235,6 +235,30 @@ class Abstract_User {
 
 		return false;
 	}
+
+        function canAddComments($album) {
+                if ($this->isAdmin()) {
+                        return true;
+                }
+
+                if ($album->canAddComments($this->uid)) {
+                        return true;
+                }
+
+                return false;
+        }
+
+        function canViewComments($album) {
+                if ($this->isAdmin()) {
+                        return true;
+                }
+
+                if ($album->canViewComments($this->uid)) {
+                        return true;
+                }
+
+                return false;
+        }
 	
 	function isOwnerOfAlbum($album) {
 		if ($album->isOwner($this->uid)) {

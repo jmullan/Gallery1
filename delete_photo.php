@@ -47,7 +47,7 @@ if (!$gallery->user->canDeleteFromAlbum($gallery->album)
 }
 
 if (isset($confirm) && isset($id)) {
-	if ($albumDelete) {
+	if (!empty($albumDelete)) {
 		/* Track down the corresponding photo index and remove it */
 		$index = 0;
 		for ($i = 1; $i <= sizeof($gallery->album->photos); $i++) {

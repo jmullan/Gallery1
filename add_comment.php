@@ -36,27 +36,24 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
 // Hack check
 
-if (strcmp($gallery->album->fields["public_comments"], "yes")) {
-	exit;
+if (!$gallery->user->canAddComments($gallery->album)) {
+        exit;
 }
 
 $error_text = "";
 
 if (isset($save)) {
-	if ($commenter_name && $comment_text) {
-	        $comment_text = removeTags($comment_text);
-	        $commenter_name = removeTags($commenter_name);
-		$IPNumber = $HTTP_SERVER_VARS['REMOTE_ADDR'];
-		$gallery->album->addComment($index, stripslashes($comment_text), $IPNumber, $commenter_name);
-		$gallery->album->save();
-		dismissAndReload();
-		return;
-	} else {
-		$error_text = _("Name and comment are both required to save a new comment!");
-	}
-} else {
-	$comment_text='';
-	$commenter_name='';
+       	if (!empty($commenter_name) && !empty($comment_text)) {
+	       	$comment_text = removeTags($comment_text);
+	       	$commenter_name = removeTags($commenter_name);
+	       	$IPNumber = $HTTP_SERVER_VARS['REMOTE_ADDR'];
+	       	$gallery->album->addComment($index, stripslashes($comment_text), $IPNumber, $commenter_name);
+	       	$gallery->album->save();
+	       	dismissAndReload();
+	       	return;
+       	} else {
+	       	$error_text = _("Name and comment are both required to save a new comment!");
+       	}
 }
 ?>
 <html>
@@ -89,8 +86,30 @@ if (isset($error_text)) {
 <input type="hidden" name="index" value="<?php echo $index ?>">
 <table border=0 cellpadding=5>
 <tr>
-  <td class="popup"><?php echo _("Name or email:") ?></td>
-  <td><input name="commenter_name" value="<?php echo $commenter_name ?>" size="30"></td>
+   <td class="popup"><?php echo _("Name or email:") ?></td>
+   <td>
+<?php
+if (!isset($commenter_name)) {
+	$commenter_name='';
+}
+if (!isset($comment_text)) {
+	$comment_text='';
+}
+if (!$gallery->user->isLoggedIn() ) {
+    echo "<input name=\"commenter_name\" value=\"".$commenter_name."\" size=\"30\">";
+} else {
+	if (empty($commenter_name)) {
+		$commenter_name=commenter_name_string($gallery->user->getUID());
+       	}
+       	if ($gallery->app->comments_anonymous == 'yes') {
+	       	echo '<input name="commenter_name" value="'.$commenter_name.'" size="30">';
+	} else {
+		echo $commenter_name;
+	       	echo '<input type="hidden" name="commenter_name" value="'.$commenter_name.'" size="30">';
+	}
+}
+?>
+  </td>
 </tr>
 <tr>
   <td colspan=2><textarea name="comment_text" rows="5" cols="40"><?php echo $comment_text ?></textarea></td>
@@ -109,5 +128,10 @@ document.theform.commenter_name.focus();
 //-->
 </script>
 
+<?php if ($gallery->user->isAdmin() || $gallery->app->devMode == "yes") {
+       	print "<p>";
+       	print gallery_validation_link("add_comments.php");
+       	print "Not valid yet.";
+} ?>
 </body>
 </html>

@@ -298,7 +298,7 @@ class AlbumItem {
 				$ret = 1;
 			} else {
 
-				if (($this->image->thumb_width > 0) || ($nestedHighlight->image->thumb_width > 0)) {
+				if ($this->image->thumb_width > 0) {
 					// Crop it first
 					if ($this->isAlbumName) {
 						$ret = cut_image("$dir/$name.$tag",

@@ -46,6 +46,7 @@ class Album {
 		$this->fields["bgcolor"] = "";
 		$this->fields["textcolor"] = "";
 		$this->fields["linkcolor"] = "";
+		$this->fields["background"] = "";
 		$this->fields["font"] = $gallery->app->default["font"];
 		$this->fields["border"] = $gallery->app->default["border"];
 		$this->fields["bordercolor"] = $gallery->app->default["bordercolor"];
@@ -69,11 +70,12 @@ class Album {
 		$everybody = $gallery->userDB->getEverybody();
 		$this->setPerm("canRead", $everybody->getUid(), 1);
 		$this->setPerm("canViewFullImages", $everybody->getUid(), 1);
+		$this->setPerm("canViewComments", $everybody->getUid(), 1);
+		$this->setPerm("canAddComments", $everybody->getUid(), 1);
 		$this->fields["parentAlbumName"] = 0;
 		$this->fields["clicks"] = 0;
 		$this->fields["clicks_date"] = time();
 		$this->fields["display_clicks"] = $gallery->app->default["display_clicks"];
-		$this->fields["public_comments"] = $gallery->app->default["public_comments"];
 		$this->fields["serial_number"] = 0;
 		$this->fields["extra_fields"] =
 		    split(",", trim($gallery->app->default["extra_fields"]));
@@ -121,10 +123,11 @@ class Album {
 	       $this->fields["slideshow_type"]=$gallery->app->default["slideshow_type"];
 	       $this->fields["slideshow_length"]=$gallery->app->default["slideshow_length"];
 	       $this->fields["slideshow_recursive"]=$gallery->app->default["slideshow_recursive"];
+	       $this->fields["slideshow_loop"]=$gallery->app->default["slideshow_loop"];
 	       $this->fields["album_frame"]=$gallery->app->default["album_frame"];
 	       $this->fields["thumb_frame"]=$gallery->app->default["thumb_frame"];
 	       $this->fields["image_frame"]=$gallery->app->default["image_frame"];
-		$this->fields["showDimensions"] = $gallery->app->default["showDimensions"];
+	       $this->fields["showDimensions"] = $gallery->app->default["showDimensions"];
 
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
@@ -146,7 +149,7 @@ class Album {
 	}
 	function lastCommentDate() {
 		global $gallery;
-		if ($this->fields["public_comments"] == "no") {
+		if (!$gallery->user->canViewComments($this)) {
 			return -1;
 		}
 		if ($gallery->app->comments_indication != "albums" && 
@@ -224,7 +227,6 @@ class Album {
 				"use_fullOnly", 
 				"print_photos",
 				"display_clicks",
-				"public_comments", 
 				"item_owner_display",
 				"item_owner_modify",
 				"item_owner_delete", 
@@ -239,10 +241,12 @@ class Album {
 				"slideshow_type",
 				"slideshow_length",
 				"slideshow_recursive",
+				"slideshow_loop",
 				"album_frame",
 				"thumb_frame",
 				"image_frame",
 				"showDimensions",
+				"background",
 				);
 		foreach ($check as $field) {
 			if (!isset($this->fields[$field])) {
@@ -304,6 +308,18 @@ class Album {
 				break;
 			}
 			$changed = true;
+		}
+		if ($this->version < 23) {
+			if ($this->fields['public_comments'] == 'yes') {
+			       	$everybody = $gallery->userDB->getEverybody();
+			       	$this->setPerm("canViewComments", $everybody->getUid(), 1);
+			       	$this->setPerm("canAddComments", $everybody->getUid(), 1);
+
+			} else {
+			       	$nobody = $gallery->userDB->getNobody();
+			       	$this->setPerm("canViewComments", $nobody->getUid(), 1);
+			       	$this->setPerm("canAddComments", $nobody->getUid(), 1);
+			}
 		}
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
@@ -1392,7 +1408,6 @@ class Album {
 				$nestedAlbum->fields["item_owner_modify"] = $this->fields["item_owner_modify"];
 				$nestedAlbum->fields["item_owner_delete"] = $this->fields["item_owner_delete"];
 				$nestedAlbum->fields["add_to_beginning"] = $this->fields["add_to_beginning"];
-				$nestedAlbum->fields['public_comments'] = $this->fields['public_comments'];				
 				$nestedAlbum->fields["showDimensions"] = $this->fields["showDimensions"];
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedProperties();
@@ -1566,6 +1581,30 @@ class Album {
 	function setViewFullImages($uid, $bool) {
 		$this->setPerm("canViewFullImages", $uid, $bool);
 	}
+
+	// ------------- 
+        function canAddComments($uid) {
+                if ($this->isOwner($uid)) {
+                        return true;
+                }
+                return $this->getPerm("canAddComments", $uid);
+        }
+
+        function setAddComments($uid, $bool) {
+                $this->setPerm("canAddComments", $uid, $bool);
+        }
+
+        // -------------
+        function canViewComments($uid) {
+                if ($this->isOwner($uid)) {
+                        return true;
+                }
+                return $this->getPerm("canViewComments", $uid);
+        }
+
+        function setViewComments($uid, $bool) {
+                $this->setPerm("canViewComments", $uid, $bool);
+        }
 
 	// ------------- 
 	function isOwner($uid) {

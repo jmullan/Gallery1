@@ -11,11 +11,11 @@
 // Some tips:
 // * Some application variables:
 //      - Gallery Title: $gallery->app->galleryTitle
-//      - Album Title: $gallery->album->fields["title"] 
 //
 ?>
 <?php
 includeHtmlWrap("wrapper.header");
+global $title;
 ?>
 
 <table width="100%" border=0>
@@ -29,7 +29,7 @@ includeHtmlWrap("wrapper.header");
               <tr>
                 <td class="mod_toplight_left" align="right"></td>
                 <td nowrap class="head" align="left">
-                  &nbsp;<?php echo $gallery->album->fields["title"] ?>&nbsp;
+                  &nbsp;<?php echo $title ?>&nbsp;
                 </td>
                 <td class="mod_toplight_right" align="left"></td>
               </tr>

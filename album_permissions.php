@@ -98,6 +98,22 @@ if (isset($allUid) && isset($submit_viewFullImages) && strchr($submit_viewFullIm
 	$changed++;
 }
 
+if (isset($allUid) && isset($submit_addComments) && strchr($submit_addComments, ">")) {
+        $gallery->album->setAddComments($allUid, 1);
+        $changed++;
+} else if (isset($addCommentsUid) && isset($submit_addComments) && strchr($submit_addComments, "<")) {
+        $gallery->album->setAddComments($addCommentsUid, 0);
+        $changed++;
+}
+
+if (isset($allUid) && isset($submit_viewComments) && strchr($submit_viewComments, ">")) {
+        $gallery->album->setViewComments($allUid, 1);
+        $changed++;
+} else if (isset($viewCommentsUid) && isset($submit_viewComments) && strchr($submit_viewComments, "<")) {
+        $gallery->album->setViewComments($addCommentsUid, 0);
+        $changed++;
+}
+
 if ( isset($save) && $ownerUid) {
 	$gallery->album->setOwner($ownerUid);
 	$changed++;
@@ -119,6 +135,8 @@ $uWrite = $gallery->album->getPermUids("canWrite");
 $uDelete = $gallery->album->getPermUids("canDeleteFrom");
 $uCreateSub = $gallery->album->getPermUids("canCreateSubAlbum");
 $uViewFullImages = $gallery->album->getPermUids("canViewFullImages");
+$uAddComments = $gallery->album->getPermUids("canAddComments");
+$uViewComments = $gallery->album->getPermUids("canViewComments");
 
 foreach ($gallery->userDB->getUidList() as $uid) {
 	$tmpUser = $gallery->userDB->getUserByUid($uid);
@@ -135,6 +153,8 @@ asort($uWrite);
 asort($uDelete);
 asort($uCreateSub);
 asort($uViewFullImages);
+asort($uAddComments);
+asort($uViewComments);
 asort($uAdd);
 asort($uAll);
 
@@ -144,9 +164,12 @@ correctPseudoUsers($uWrite, $ownerUid);
 correctPseudoUsers($uDelete, $ownerUid);
 correctPseudoUsers($uCreateSub, $ownerUid);
 correctPseudoUsers($uViewFullImages, $ownerUid);
+correctPseudoUsers($uAddComments, $ownerUid);
+correctPseudoUsers($uViewComments, $ownerUid);
 correctPseudoUsers($uAdd, $ownerUid);
 
 ?>
+<?php doctype() ?>
 <html>
 <head>
   <title><?php echo _("Album Permissions") ?></title>
@@ -157,7 +180,7 @@ correctPseudoUsers($uAdd, $ownerUid);
 <center>
 <span class="popuphead"><?php echo _("Album Permissions") ?></span>
 <br>
-<span class="popup">
+<div class="popup">
 <?php echo sprintf(_("Changing permissions for %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
 
 echo makeFormIntro("album_permissions.php", 
@@ -279,6 +302,37 @@ echo makeFormIntro("album_permissions.php",
      </td>
      <td>
       <?php echo drawSelect("viewFullImagesUid", $uViewFullImages, isset($viewFullImagesUid) ? $viewFullImagesUid : array(), 3); ?>
+      
+     </td>
+    </tr>
+
+    <tr>
+     <td colspan=2>
+      <?php echo _("Users who can add comments.") ?>
+     </td>
+    </tr>
+    <tr>
+     <td>
+           <input type=submit name="submit_addComments" value="-->">
+      <br> <input type=submit name="submit_addComments" value="<--">
+     </td>
+     <td>
+      <?php echo drawSelect("addCommentsUid", $uAddComments, isset($addCommentsUid) ? $addCommentsUid : array(), 3); ?>
+     </td>
+    </tr>
+
+    <tr>
+     <td colspan=2>
+      <?php echo _("Users who can view comments.") ?>
+     </td>
+    </tr>
+    <tr>
+     <td>
+           <input type=submit name="submit_viewComments" value="-->">
+      <br> <input type=submit name="submit_viewComments" value="<--">
+     </td>
+     <td>
+      <?php echo drawSelect("viewCommentsUid", $uViewComments, isset($viewCommentsUid) ? $viewCommentsUid : array(), 3); ?>
      </td>
     </tr>
 
@@ -291,6 +345,11 @@ echo makeFormIntro("album_permissions.php",
 <input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
 
-</span>
+</div>
+</center>
+<?php if ($gallery->user->isAdmin() || $gallery->app->devMode == "yes") {
+       	print "<p>";
+       	print gallery_validation_link("album_permissions.php");
+} ?>
 </body>
 </html>

@@ -44,7 +44,7 @@ function editField($album, $field, $link=null) {
 		if (!strcmp($buf, "")) {
 			$buf = "<i>&lt;". _("Empty") . "&gt;</i>";
 		}
-		$url = "edit_field.php?set_albumName={$album->fields['name']}&amp;field=$field";
+		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field"; // should replace with &amp; for validatation
 		$buf .= " <span class=editlink>";
 		$buf .= popup_link( "[". sprintf(_("edit %s"), _($field)) . "]", $url) ;
 		$buf .= "</span>";
@@ -65,14 +65,14 @@ function editCaption($album, $index) {
 			$buf = "<i>&lt;". _("No Caption") ."&gt;</i>";
 		}
 		$url = "edit_caption.php?set_albumName={$album->fields['name']}&index=$index";
-		$buf .= "<span class=editlink>";
+		$buf .= "<span class=\"editlink\">";
 		$buf .= popup_link("[". _("edit") ."]", $url);
 		$buf .= "</span>";
 	}
 	return $buf;
 }
 
-function viewComments($index) {
+function viewComments($index, $addComments) {
         global $gallery;
 	global $GALLERY_BASEDIR;
 	global $commentdraw;
@@ -91,11 +91,15 @@ function viewComments($index) {
 		$commentdraw["bordercolor"] = $borderColor;
 		includeLayout('commentdraw.inc');
 	}
-        $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&index=$index";
-        $buf = "<tr><td align=\"center\"><span class=\"editlink\">";
-        $buf .= popup_link('[' . _("add comment") . ']', $url, 0);
-        $buf .= "</span></td></tr>";
-        echo $buf;
+
+	if ($addComments)
+       	{
+	       	$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&index=$index";
+	       	$buf = "<tr><td><span class=editlink>";
+	       	$buf .= popup_link('[' . _("add comment") . ']', $url, 0);
+	       	$buf .= "</span></td></tr>";
+	       	echo $buf;
+       	}
 }
 
 function center($message) {
@@ -1060,7 +1064,7 @@ function makeGalleryUrl($target, $args=array()) {
 		$i = 0;
 		foreach ($args as $key => $value) {
 			if ($i++) {
-				$url .= "&amp;";  // &
+				$url .= "&";  // should replace with &amp; for validatation
 			} else {
 				$url .= "?";
 			}
@@ -1210,7 +1214,7 @@ function isDebugging() {
 
 function addUrlArg($url, $arg) {
 	if (strchr($url, "?")) {
-		return "$url&amp;$arg";
+		return "$url&$arg"; // should replace with &amp; for validatation
 	} else {
 		return "$url?$arg";
 	}
@@ -2262,7 +2266,7 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 
 function escapeEregChars($string)
 {
-	return ereg_replace('(\.|\\\\|\+|\*|\?|\[|\]|\^|\$|\(|\)|\{|\}|\=|\!|\<|\>|\||\:)', '\\\\1', $string);
+	return ereg_replace('(\.|\\\\|\+|\*|\?|\[|\]|\^|\$|\(|\)|\{|\}|\=|\!|<|>|\||\:)', '\\\\1', $string);
 }
 
 function findInPath($program)
@@ -2926,8 +2930,8 @@ function testRequirement($test) {
 	return $gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album);
 	break;
     case 'allowComments':
-	return $gallery->album->fields['public_comments'] === 'yes';
-	break;
+	return $gallery->album->fields["perms"]['canAddComments'];
+       	break;
     case 'canAddToAlbum':
 	return $gallery->user->canAddToAlbum($gallery->album);
 	break;
@@ -3059,5 +3063,18 @@ function where_i_am() {
 		return "config";
 	}
 
+}
+function commenter_name_string($uid) {
+       	global $gallery;
+       	$user=$gallery->userDB->getUserByUid($uid);
+       	if (!$user || $user == $gallery->userDB->getNobody())  {
+	       	return "";
+       	} else if ($user->getFullName()) {
+	       	return sprintf("%s (%s)",
+				$user->getFullName(),
+			       	$user->getUsername()); 
+       	} else {
+	       	return $user->getUsername();
+       	}
 }
 ?>

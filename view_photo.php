@@ -764,8 +764,8 @@ if ($table) {
 ?>
 </td>
 </tr>
-<?php if (!strcmp($gallery->album->fields["public_comments"], "yes")) { ?>
-<?php echo viewComments($index) ?>
+<?php if ($gallery->user->canViewComments($gallery->album)) {
+echo viewComments($index, $gallery->user->canAddComments($gallery->album)) ?>
 <tr><td>
 <?php } ?>
 <?php if (isset($printShutterflyForm)) { ?>

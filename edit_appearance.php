@@ -67,13 +67,13 @@ if (isset($save)) {
 	$gallery->album->fields["print_photos"] = $print_photos;
 	$gallery->album->fields["use_exif"] = $use_exif;
 	$gallery->album->fields["display_clicks"] = $display_clicks;
-	$gallery->album->fields["public_comments"] = $public_comments;
 	$gallery->album->fields["item_owner_modify"] = $item_owner_modify;
 	$gallery->album->fields["item_owner_delete"] = $item_owner_delete;
 	$gallery->album->fields["item_owner_display"] = $item_owner_display;
 	$gallery->album->fields["add_to_beginning"] = $add_to_beginning;
 	$gallery->album->fields["slideshow_type"] = $slideshow_type;
 	$gallery->album->fields["slideshow_recursive"] = $slideshow_recursive;
+	$gallery->album->fields["slideshow_loop"] = $slideshow_loop;
 	$gallery->album->fields["slideshow_length"] = $slideshow_length;
 	$gallery->album->fields["album_frame"] = $album_frame;
 	$gallery->album->fields["thumb_frame"] = $thumb_frame;
@@ -251,6 +251,11 @@ foreach ($services as $item => $data) {
 <td><select name="slideshow_recursive"><?php echo selectOptions($gallery->album, "slideshow_recursive", array("yes" => _("yes"), "no" => _("no"))) ?></select></td>
 </tr>
 <tr>
+<td class="popup"><?php echo _("Allow slideshow to loop") ?></td>
+<td><select name="slideshow_loop"><?php echo selectOptions($gallery->album, "slideshow_loop", array("yes" => _("yes"), "no" => _("no"))) ?></select></td>
+</tr>
+<tr>
+<tr>
 <td class="popup"><?php echo _("Slideshow Length") ?></td>
 <td><input type=text name="slideshow_length" value="<?php echo $gallery->album->fields["slideshow_length"] ?>"></td>
 </tr>
@@ -295,10 +300,6 @@ if ($gallery->app->use_exif) {
 <tr>
 <td class="popup"><?php echo _("Add new items at beginning of album") ?></td>
 <td><select name="add_to_beginning"><?php echo selectOptions($gallery->album, "add_to_beginning", array("yes" => _("yes"), "no" => _("no"))) ?></select></td>
-</tr>
-<tr>
-<td class="popup"><?php echo _("Allow public commenting for photos in this album?") ?></td>
-<td><select name="public_comments"><?php echo selectOptions($gallery->album, "public_comments", array("no" => _("no"), "yes" => _("yes"))) ?></select></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Display clickable image dimensions") ?></td>
