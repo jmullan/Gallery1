@@ -26,17 +26,32 @@ foreach ($checklist as $check) {
 	<td valign=top>
 <?
 	$func = $check["func"];
-	if ($func()) {
-		echo "<font color=green><b>Success</font>";
-	} else {
+	list($success, $fail) = $func();
+	foreach ($success as $key) {
+		if (strcmp($key, "")) {
+			$msg = "Success: $key";
+		} else {
+			$msg = "Success";
+		}
+		echo "<font color=green><b>$msg</b></font><br>";
+	}
+
+	foreach ($fail as $key => $val) {
 		if ($check["optional"]) {
 			echo "<font color=yellow><b>Warning!</b></font>";
-			echo "<br>$check[why]";
+			echo "<br>$check[$key]<p>";
 			$warning++;
 		} else {
 			echo "<font color=red><b>Failed!</b></font>";
-			echo "<br>$check[why]";
+			echo "<br>$check[$key]<p>";
 			$error = 1;
+		}
+		if (is_array($val)) {
+			foreach ($val as $msg) {
+				if ($val) {
+					echo "<font color=red>$msg</font><br>";
+				}
+			}
 		}
 	}
 ?>
