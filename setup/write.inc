@@ -111,7 +111,9 @@ to the setup URL.
 <br><br><br><br>
 
 <font size=+1>
-Help Gallery become a better product!  Fill out the <a href=http://gallery.sourceforge.net?action=survey>Gallery Survey</a>.
+Help Gallery become a better product!
+<br>
+Fill out the <a href=http://gallery.sourceforge.net?action=survey>Gallery Survey</a>.
 </font>
 
 <br><br>
