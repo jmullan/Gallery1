@@ -99,8 +99,8 @@ if ($searchstring) {
 			$uid = $gallery->user->getUid();
 			if ($searchAlbum->canRead($uid) || $gallery->user->isAdmin()) {
            		$albumMatch = 1;
-           		$searchTitle = eregi_replace($searchstring, "<b>$searchstring</b>",$searchTitle);  // cause search word to be bolded
-				$searchDescription = eregi_replace($searchstring, "<b>$searchstring</b>",$searchDescription);  // cause search word to be bolded
+				$searchTitle = eregi_replace("($searchstring)", "<b>\\1</b>", $searchTitle); // cause search word to be bolded
+				$searchDescription = eregi_replace("($searchstring)", "<b>\\1</b>", $searchDescription); // cause search word to be bolded
 				$photoURL = makeAlbumUrl($searchAlbum->fields['name']);
 				$searchdraw["bordercolor"] = $borderColor;
 				$searchdraw["top"] = true;
@@ -147,7 +147,7 @@ if ($searchstring) {
 							$commentText = "Matching Comments:<br>";
 							$commentMatch = 1;
 						} 
-						$searchComment = eregi_replace($searchstring, "<b>$searchstring</b>",$searchComment);
+						$searchComment = eregi_replace("($searchstring)", "<b>\\1</b>", $searchComment);
 						$commentText .= $searchComment . "<br><br>";
 					}
 				}
@@ -160,8 +160,8 @@ if ($searchstring) {
 						$photoMatch = 1;
 						$id = $searchAlbum->getPhotoId($j);
 						// cause search word to be bolded
-						$searchCaption = eregi_replace($searchstring, "<b>$searchstring</b>",$searchCaption);
-						$searchKeywords = eregi_replace($searchstring, "<b>$searchstring</b>",$searchKeywords);
+						$searchCaption = eregi_replace("($searchstring)", "<b>\\1</b>", $searchCaption);
+						$searchKeywords = eregi_replace("($searchstring)", "<b>\\1</b>", $searchKeywords);
 						$searchdraw["bordercolor"] = $borderColor;
 						$searchdraw["top"] = true;
 						$searchdraw["photolink"] = $searchAlbum->getThumbnailTag($j, $thumbSize);
