@@ -28,7 +28,7 @@ function editField($album, $field, $edit) {
 	if (isCorrectPassword($edit)) {
 		$url = "edit_field.php?set_albumName={$album->fields[name]}&field=$field";
 		$buf .= "<font size=1>";
-		$buf .= "<a href=" . popup($url) . ">[edit]</a>";
+		$buf .= "<a href=" . popup($url) . ">[edit $field]</a>";
 		$buf .= "</font>";
 	}
 	return $buf;
