@@ -757,7 +757,7 @@ $constants = array_merge($constants,
 		"prompt" => _("Slideshow Mode"),
 		"desc" => _("This allows you to set the default mode for the slideshow.  \"Java Applet\" requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. \"JavaScript\" is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."),
 		"choices" => array("applet" => _("Java Applet"), "high" => _("JavaScript")),
-		"value" => "applet"
+		"value" => "high"
 	),
 	"group7_end" => array (
 		"type"          => "group_end",
