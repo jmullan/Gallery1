@@ -19,7 +19,7 @@
  *
  * $Id$
  *
- * Version: 1_4_4
+ * Version: 1.4.4-pl2
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)

@@ -19,7 +19,7 @@
  *
  * $Id$
  *
- * Version: 1_4_4
+ * Version: 1.4.4-pl2
  */
 /**
  * NLS (National Language System) array.

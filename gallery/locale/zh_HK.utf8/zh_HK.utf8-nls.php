@@ -19,7 +19,7 @@
  *
  * $Id$
  *
- * Version: 1_4_4
+ * Version: 1.4.4-pl2
  */
 /**
  * NLS (National Language System) array.
@@ -35,29 +35,23 @@
 /**
  ** Native languagename
  **/
-	$nls['language']['zh_HK'] = 		'&#32321;&#39636;&#20013;&#25991; (&#39321;&#28207; UTF-8)'; // Traditional Chinese (UTF-8)
+	$nls['language']['zh_HK.utf8'] =	'&#32321;&#39636;&#20013;&#25991; (&#39321;&#28207; UTF-8)'; // Traditional Chinese (UTF-8)
 
 /**
  ** Alias for languages which we substitte or send by NUKE
  **/
 	$nls['alias']['chinese'] = 		'zh_HK.utf8' ;
-	$nls['alias']['zh_HK_utf-8'] =		'zh_HK.utf8' ;
 
 /**
  ** Charset
  **/	
 	
-	$nls['charset']['UTF-8'] = 		'UTF-8';	
+	$nls['charset']['zh_HK.utf8'] = 	'UTF-8';	
 	
 /**
  ** Multibyte charsets
  **/
 
-	$nls['multibyte']['UTF-8'] = 		true;
+	$nls['multibyte']['UTF-8'] =		true;
 
-/**
- ** phpNuke
- **/
-	$nls['phpnuke']['UTF-8'] = 		'chinese' ;
-	
 ?>
