@@ -78,7 +78,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 					$this->$k = $v;
 				}
 			}
-		} else {
+		} elseif (!is_writeable("$userDir/userdb.dat") {
 			echo gallery_error(_("Your Userfile is not writeable"));
 			exit;
 		}
