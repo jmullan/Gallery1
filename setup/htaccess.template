@@ -1,0 +1,6 @@
+php_value auto_prepend_file init.php
+php_value upload_max_filesize 20971520
+
+RewriteEngine On
+RewriteBase $GALLERY_DIR
+RewriteRule ^([^\.\?/]+)$	/photos/view_album.php?set_albumName=$1	[QSA]
