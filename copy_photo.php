@@ -49,7 +49,7 @@ if ($gallery->session->albumName && isset($index)) {
 	$numPhotos = $gallery->album->numPhotos(1);
 
         if (isset($newAlbum)) {	// we are copying from one album to another
-            	$postAlbum = $albumDB->getAlbumbyName($newAlbum);
+            	$postAlbum = $albumDB->getAlbumByName($newAlbum);
 		if (!$postAlbum) {
 			echo gallery_error(sprintf(_("Invalid album selected: %s"),
 						$newAlbum));

@@ -2224,7 +2224,7 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
         /* if this is a nested album, set nested parameters */
         if ($parentName) {
                 $gallery->album->fields['parentAlbumName'] = $parentName;
-                $parentAlbum = $albumDB->getAlbumbyName($parentName);
+                $parentAlbum = $albumDB->getAlbumByName($parentName);
                 $parentAlbum->addNestedAlbum($gallery->session->albumName);
                 $parentAlbum->save();
                 // Set default values in nested album to match settings of parent.

@@ -1832,6 +1832,24 @@ class Album {
 		return $this->getPerm("canRead", $uid);
 	}
 
+	function canReadRecurse($uid) {
+		global $albumDB;
+
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+		elseif ($this->canRead($uid)) {
+			if ($this->isRoot()) {
+				return true;
+			}
+			$parent = $albumDB->getAlbumByName($this->fields['parentAlbumName'], false);
+			return $parent->canReadRecurse($uid);
+		}
+		else {
+			return false;
+		}
+	}
+
 	function setRead($uid, $bool) {
 		$this->setPerm("canRead", $uid, $bool);
 	}

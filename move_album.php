@@ -67,7 +67,7 @@ if ($gallery->session->albumName && isset($index)) {
 			$gallery->album->save(array(i18n("Album moved from %s to %s"),
 						$old_parent,
 						$newAlbum));
-			$newAlbum = $albumDB->getAlbumbyName($newAlbum);
+			$newAlbum = $albumDB->getAlbumByName($newAlbum);
 			$newAlbum->addNestedAlbum($gallery->album->fields['name']);
 			if ($newAlbum->numPhotos(1) == 1) {
 				$newAlbum->setHighlight(1);

@@ -184,7 +184,7 @@ class AlbumDB {
 		return $list[$index-1];
 	}
 
-	function getAlbumbyName($name, $load=TRUE) {
+	function getAlbumByName($name, $load=TRUE) {
 		global $gallery;
 		/* Look for an exact match */
 		foreach ($this->albumList as $album) {

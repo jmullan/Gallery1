@@ -123,7 +123,7 @@ if (method_exists($albumDB, "getCachedNumPhotos")) {
 
 foreach ($albumDB->albumList as $album) {
 	if (isset($gallery->app->rssVisibleOnly)) {
-		if ($album->isHiddenRecurse()) {
+		if ($album->isHiddenRecurse() || !$album->canReadRecurse($gallery->user->uid)) {
 			continue;
 		}
 	} else {

@@ -69,7 +69,7 @@ if (!empty($newName)) {
 				print "newName=".$newName."<br>";
 				print "oldName=".$oldName."<br>";
 			}
-			$parentAlbum = $albumDB->getAlbumbyName($parentName);
+			$parentAlbum = $albumDB->getAlbumByName($parentName);
 			for ($i=1; $i <= $parentAlbum->numPhotos(1); $i++) {
 				if ($parentAlbum->getAlbumName($i) == $oldName) {
 					$parentAlbum->setAlbumName($i,$newName);
