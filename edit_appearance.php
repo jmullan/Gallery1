@@ -21,9 +21,11 @@
 <?
 if ($save) {
 	$album->fields["bgcolor"] = $bgcolor;
+	$album->fields["textcolor"] = $textcolor;
+	$album->fields["linkcolor"] = $linkcolor;
 	$album->fields["font"] = $font;
-	$album->fields["border"] = $border;
 	$album->fields["bordercolor"] = $bordercolor;
+	$album->fields["border"] = $border;
 	$album->fields["background"] = $background;
 	$album->fields["returnto"] = $returnto;
 	$album->save();
@@ -43,6 +45,14 @@ You can modify the appearance of your photo album here.
 <tr>
 <td>Background Color</td>
 <td><input type=text name="bgcolor" value=<?=$album->fields["bgcolor"]?>></td>
+</tr>
+<tr>
+<td>Text Color</td>
+<td><input type=text name="textcolor" value=<?=$album->fields["textcolor"]?>></td>
+</tr>
+<tr>
+<td>Link Color</td>
+<td><input type=text name="linkcolor" value=<?=$album->fields["linkcolor"]?>></td>
 </tr>
 <tr>
 <td>Background Image (URL)</td>

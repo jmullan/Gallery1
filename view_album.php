@@ -51,6 +51,13 @@ if ($album->fields["background"]) {
 	$bodyAttrs .= "bgcolor={$album->fields[bgcolor]}";
 }
 
+if ($album->fields["textcolor"]) {
+	$bodyAttrs .= " text={$album->fields[textcolor]}";
+}
+if ($album->fields["linkcolor"]) {
+	$bodyAttrs .= " link={$album->fields[linkcolor]}";
+}
+
 if (!strcmp($album->fields["border"], "off")) {
 	$border = 0;
 } else {
