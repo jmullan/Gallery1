@@ -23,26 +23,9 @@
  */
 ?>
 <?php
-/* load necessary functions */
-if (stristr (__FILE__, '/var/lib/gallery/setup')) {
-	/* Gallery runs on a Debian System */
-	require ('/usr/share/gallery/util.php');
-} else {
-	require (dirname(dirname(__FILE__)) . '/util.php');
-}
-
-/*
-** When we are in Windows we need a check if we secured.
-** We dont check when not in Windows, as we assume the permissions are set correct.		
-*/
-if (getOS() == OS_WINDOWS) {
-	include(dirname(dirname(__FILE__)) . '/platform/fs_win32.php');
-	if (fs_file_exists("SECURE")) {
-		echo "You cannot access this file while gallery is in secure mode.";
-		exit;
-	}
-}
-
+require(dirname(__FILE__) . "/init.php");
+require(GALLERY_SETUPDIR . "/functions.inc");
+configLogin(basename(__FILE__));
 
 /*
 desc - A description of the test
@@ -78,7 +61,7 @@ $tests = array (0 => array ("desc" => "safe mode",
 		);
 
 if (ini_get ('upload_tmp_dir')) { // it defaults to a default system location, only test if this is set
-       	$tests[] = array ("desc" => "upload_tmp_dir writable",
+	$tests[] = array ("desc" => "upload_tmp_dir writable",
 			  "test" => ( is_dir (ini_get ('upload_tmp_dir')) && is_writable (ini_get ('upload_tmp_dir')) ),
 			  "failmsg" => "<b>upload_tmp_dir</b> must be set to a valid directory and be writable by the web server user",
 			  "sev" => 1);
@@ -99,18 +82,18 @@ will not run on your host
 $warnings = false;
 $fatals = false;
 foreach ($tests as $arr) {
-       	print '<tr><th>';
-       	print $arr['desc'];
-       	print '</th>';
+	print '<tr><th>';
+	print $arr['desc'];
+	print '</th>';
 
 	print '<td>';
 	print str_repeat ('&nbsp;', 10);
 	print '<td>';
 
 	if ($arr['test']) {
-	       	print '<font color="#00aa00">Pass</font>';
-       	} else if (! $arr['sev']) {
-	       	print '<font color="#e0850f">Warning -- '.$arr['failmsg'] . '</font>';
+		print '<font color="#00aa00">Pass</font>';
+	} else if (! $arr['sev']) {
+		print '<font color="#e0850f">Warning -- '.$arr['failmsg'] . '</font>';
 		$warnings = true;
        	} else {
 	       	print '<font color="#bb0000">Fatal Warning -- ' . $arr['failmsg'] . '</font>';

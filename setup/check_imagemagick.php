@@ -31,6 +31,7 @@
 	<?php echo getStyleSheetLink() ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
+<?php configLogin(basename(__FILE__)); ?>
 <?php $app_name='ImageMagick' ?>
 
 <h1 class="header"><?php echo sprintf(_("Check %s"), $app_name) ?></h1>
@@ -67,7 +68,7 @@ if (! file_exists(dirname(dirname(__FILE__)) . '/config.php')) {
 </body>
 </html>
 <?php
-        exit;
+	exit;
 } else {
 	require(dirname(dirname(__FILE__)) . '/config.php');
 ?>

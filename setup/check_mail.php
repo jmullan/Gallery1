@@ -33,6 +33,7 @@
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
+<?php configLogin(basename(__FILE__)); ?>
 <h1 class="header"><?php echo _("Check Mail") ?></h1>
 
 <?php 

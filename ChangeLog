@@ -1,3 +1,19 @@
+2004-06-02  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b171
+
+	* Change: functionalize login requirement to configLogin() in
+	  functions.inc with a single parameter of "basename(__FILE__)"
+	  so that it can tell which file it's posting back to.
+
+	* Change: Add session support to setup/init.php so that the admin
+	  only has to log in once, instead of once for each php module.
+
+	* Change: Add authorization requirement to all setup/* modules
+	  (excluding frame_test, since there's no real reason)
+
+	* Change: Removed configure.bat/sh and secure.bat/sh from manifest.inc
+	  (I don't think this matters?  They'd be removed on the manifest rebuild
+	  anyway, right?)
+
 2004-06-02 Jens Tkotz <jens@peino.de>  1.4.4-cvs-b170
 
 	* Change: Removed Caption for Custom Fields

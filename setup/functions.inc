@@ -1317,11 +1317,11 @@ if (!function_exists('array_filter1')) {
 		       	if ($function && $function($value)) {
 			       	$output[$name]=$value;
 		       	} else if ($value) {
-			       	$output[$name]=$value;
-		       	}
+				$output[$name]=$value;
+			}
 		}
-	       	return $output;
-       	}
+		return $output;
+	}
 }
 
 function check_admins() {
@@ -1331,13 +1331,13 @@ function check_admins() {
 	$admins=array();
 	
 	if (isset($gallery->app->userDir) && fs_is_dir($gallery->app->userDir)) {
-		require(GALLERY_BASE . '/classes/User.php');
-		require(GALLERY_BASE . '/classes/EverybodyUser.php');
-		require(GALLERY_BASE . '/classes/NobodyUser.php');
-		require(GALLERY_BASE . '/classes/LoggedInUser.php');
-		require(GALLERY_BASE . '/classes/UserDB.php');
-		require(GALLERY_BASE . '/classes/gallery/UserDB.php');
-        	require(GALLERY_BASE . '/classes/gallery/User.php');
+		require_once(GALLERY_BASE . '/classes/User.php');
+		require_once(GALLERY_BASE . '/classes/EverybodyUser.php');
+		require_once(GALLERY_BASE . '/classes/NobodyUser.php');
+		require_once(GALLERY_BASE . '/classes/LoggedInUser.php');
+		require_once(GALLERY_BASE . '/classes/UserDB.php');
+		require_once(GALLERY_BASE . '/classes/gallery/UserDB.php');
+		require_once(GALLERY_BASE . '/classes/gallery/User.php');
 
 	
 		$userDB = new Gallery_UserDB();
@@ -1549,6 +1549,29 @@ function makeSectionTabs($array) {
 	echo "\n". '<script language="JavaScript" type="text/javascript">';
 	echo "\n\t section_tabs = new configSection('$initialtab')";
 	echo "\n</script>\n";
+}
+
+function configLogin($target, $closeForm=false) {
+	global $gallery, $gallerypassword, $username;
+	
+	// The gallery has never been configured, or the admin password has been lost and needs to be reset - ignore login requirement
+	// If the user has already logged in, and is viewing one of the setup pages, they will be logged in automatically by the form
+	if (!isset($gallery->app->userDir) || fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
+		return;
+	}
+	else {
+		// Load userDB for password validation - this is a re-configuration
+		require_once(GALLERY_BASE . '/classes/User.php');
+		require_once(GALLERY_BASE . '/classes/EverybodyUser.php');
+		require_once(GALLERY_BASE . '/classes/NobodyUser.php');
+		require_once(GALLERY_BASE . '/classes/LoggedInUser.php');
+		require_once(GALLERY_BASE . '/classes/UserDB.php');
+		require_once(GALLERY_BASE . '/classes/gallery/UserDB.php');
+		require_once(GALLERY_BASE . '/classes/gallery/User.php');
+		$gallery->userDB = new Gallery_UserDB();
+
+		include(dirname(__FILE__) . "/login.inc");
+	}
 }
 
 ?>

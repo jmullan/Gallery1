@@ -21,7 +21,11 @@
  */
 ?>
 <?php
-if (isset($username) && isset($gallerypassword)) {
+if (isset($gallery->session->username)) {
+	$tmpUser = $gallery->userDB->getUserByUsername($gallery->session->username);
+}
+elseif (isset($username) && isset($gallerypassword)) {
+	global $HTTP_SERVER_VARS;
 	$tmpUser = $gallery->userDB->getUserByUsername($username);
 	if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword) && $tmpUser->isAdmin()) {
 
@@ -33,8 +37,6 @@ if (isset($username) && isset($gallerypassword)) {
 			$gallery->session->language = 
 				$tmpUser->getDefaultLanguage();
 		}
-		echo "<input type='hidden' name='username' value='$username'>";
-		echo "<input type='hidden' name='gallerypassword' value='$gallerypassword'>";
 	}
 	elseif (!isset($tmpUser) || !$tmpUser->isCorrectPassword($gallerypassword)) {
 		$invalid = 1;
@@ -51,25 +53,26 @@ if (isset($username) && isset($gallerypassword)) {
 // Not logged in
 if (!isset($tmpUser) || !$tmpUser->isAdmin()) { 
 ?>
-</form>
 <div class="popup">
-<?php echo makeFormIntro("setup/index.php", array("name" => "login_form", "method" => "POST")); ?>
-<?php echo _("You must log in as an administrator to edit this server's configuration.") ?>
+<?php 
+	echo makeFormIntro("setup/" . $target, array("name" => "login_form", "method" => "POST"));
+	echo _("You must log in as an administrator to edit this server's configuration.") 
+?>
 <p>
 <table>
-<?php if (isset($invalid)) { ?>
+<?php   if (isset($invalid)) { ?>
  <tr>
   <td colspan=2>
-   <?php echo gallery_error(_("Invalid username or password")); ?>
+   <?php        echo gallery_error(_("Invalid username or password")); ?>
   </td>
  </tr>
-<?php } elseif (isset($notadmin)) {?>
+<?php   } elseif (isset($notadmin)) {?>
  <tr>
   <td colspan=2>
-   <?php echo gallery_error(_("User is not an admin - access denied")); ?>
+   <?php        echo gallery_error(_("User is not an admin - access denied")); ?>
   </td>
  </tr>
-<?php } ?>
+<?php   } ?>
  <tr>
   <td class="popup">
    <?php echo _("Username") ?>
@@ -107,7 +110,7 @@ if (!isset($tmpUser) || !$tmpUser->isAdmin()) {
 </table>
 <p>
 <input type="submit" name="login" value="<?php echo _("Login") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="reset" name="cancel" value="<?php echo _("Cancel") ?>">
 </form>
 </body>
 </html>

@@ -20,28 +20,10 @@
  * $Id$
  */
 ?>
-
 <?php
 	/* load necessary functions */
-	if (stristr (__FILE__, '/var/lib/gallery/setup')) {
-		/* Gallery runs on a Debian System */
-		require ('/usr/share/gallery/util.php');
-	} else {
-		require (dirname(dirname(__FILE__)) . '/util.php');
-	}
-
-	/*
-	** When we are in Windows we need a check if we secured.
-	** We dont check when not in Windows, as we assume the permissions are set correct.		
-	*/
-
-	if (getOS() == OS_WINDOWS) {
-		include(dirname(dirname(__FILE__)) . '/platform/fs_win32.php');
-		if (fs_file_exists("SECURE")) {
-			echo "You cannot access this file while gallery is in secure mode.";
-			exit;
-		}
-	}
-
+	require (dirname(__FILE__) . '/init.php');	
+	require (GALLERY_SETUPDIR . '/functions.inc');
+	configLogin(basename(__FILE__));
 	phpinfo(); 
 ?>

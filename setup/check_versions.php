@@ -36,6 +36,7 @@
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
+<?php configLogin(basename(__FILE__)); ?>
 <h1 class="header"><?php echo _("Check Versions") ?></h1>
 <div class="sitedesc"><?php
 	echo sprintf(_("This page gives you information about the version of each necessary %s file. "),"Gallery");
@@ -46,7 +47,7 @@
 <tr>
 	<td class="desc"><?php 
 if (empty($show_details)) {
-       	$show_details=0;
+	$show_details=0;
 }
 if ($show_details) {
        	print sprintf(_("%sClick here%s to hide the details"),

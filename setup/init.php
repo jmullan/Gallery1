@@ -29,9 +29,22 @@
 
 
 if (isset($gallery->app->devMode) && $gallery->app->devMode == "yes") {
-        error_reporting(E_ALL);
+	error_reporting(E_ALL);
 } else {
-        error_reporting(E_ALL & ~E_NOTICE);
+	error_reporting(E_ALL & ~E_NOTICE);
+}
+
+/*
+ * Figure out if register_globals is on or off and save that info
+ * for later
+ */
+$register_globals = ini_get("register_globals");
+if (empty($register_globals) ||
+	!strcasecmp($register_globals, "off") ||
+	!strcasecmp($register_globals, "false")) {
+    $gallery->register_globals = 0;
+} else {
+    $gallery->register_globals = 1;
 }
 
 /* emulate part of register_globals = on */
@@ -52,14 +65,15 @@ extract($HTTP_COOKIE_VARS);
 
 /* load necessary functions */
 if (stristr (__FILE__, '/var/lib/gallery/setup')) {
-        /* Gallery runs on a Debian System */
+	/* Gallery runs on a Debian System */
 	require ('/usr/share/gallery/util.php');
 } else {
 	require (dirname(dirname(__FILE__)) . '/util.php');
 }
 
+
 /* define the constants */
-	getGalleryPaths();
+getGalleryPaths();
 
 if (getOS() == OS_WINDOWS) {
 	require(GALLERY_BASE . '/platform/fs_win32.php');
@@ -69,16 +83,10 @@ if (getOS() == OS_WINDOWS) {
       
 	@include (GALLERY_BASE . '/config.php');
 	require (GALLERY_BASE . '/Version.php');
+	require(GALLERY_BASE . "/session.php");
 
 /* Set Language etc. */
 	initLanguage();
-
-if (getOS() == OS_WINDOWS && fs_file_exists("SECURE")) {
-		echo _("Gallery is in secure mode and cannot be configured. If you want to configure it, you must run the <b>configure.bat</b> script in the gallery directory then reload this page.");
-		exit;
-}
-
-
 
 /* We do this to get the config stylesheet */
 	$GALLERY_OK=false;

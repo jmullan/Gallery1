@@ -30,20 +30,6 @@
 	
 	require (dirname(__FILE__) . '/functions.inc');
 	require (dirname(__FILE__) . '/config_data.inc');
-	
-	//  Require a user to be logged in before allowing them to configure the server.
-	//  If Gallery has not been configured before, allow to continue without logging in
-	if (!isset($gallery->app->userDir) || fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
-		$ignorelogin = 1;
-	}
-	else {
-		// Load userDB for password validation, if this is a re-configuration
-		if (isset($gallery->app->userDir)) {
-			$gallery->userDB = new Gallery_UserDB;
-		}
-		$ignorelogin = 0;
-	}
-
 ?>
 <?php doctype(); ?>
 <html>
@@ -106,12 +92,15 @@
 	}
 
 	-->
-        </script>
+	</script>
 
 </head>
 
 <body dir="<?php echo $gallery->direction ?>" onload="enableButtons()">
 <?php
+// Require a user to be logged in before allowing them to configure the server.
+// If Gallery has not been configured before, allow to continue without logging in
+configLogin(basename(__FILE__));
 
 
 if (isset ($go_defaults)) {
@@ -152,13 +141,6 @@ foreach (array_keys($preserve) as $key) {
 
 <form method="post" action="index.php" name="config">
 <?php
-
-// Poll for login information if userDir is set, or automatically log in if the information is already stored in the form
-// If the 'resetadmin' file is present, the user has lost the admin password and needs to reset it - ignore login requirement
-if (isset($gallery->app->userDir) && !fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
-	include(dirname(__FILE__) . "/login.inc");
-}
-
 if (!isset($setup_page)) {
 	$setup_page = "check";
 }

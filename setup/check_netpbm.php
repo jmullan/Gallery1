@@ -31,6 +31,7 @@
 	<?php echo getStyleSheetLink() ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
+<?php configLogin(basename(__FILE__)); ?>
 <?php $app_name='NetPBM' ?>
 
 <h1 class="header"><?php echo sprintf(_("Check %s"), $app_name) ?></h1>

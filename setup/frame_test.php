@@ -53,7 +53,7 @@
 </head>
 <body>
       <?php
-        $descriptions = array();
+	$descriptions = array();
         $names = array();
 
         $names["none"] = _("None");
@@ -76,7 +76,7 @@
                                         $name=$file;
                                 }
                                 if (empty($description)) {
-                                        $description=$file;
+					$description=$file;
                                 }
                                 $names[$file] = $name;
                                 $descriptions[$file] = $description;
@@ -85,7 +85,7 @@
                                 if (false && isDebugging())
                                 {
                                         echo gallery_error(sprintf(_("Skipping %s."),
-                                                                $subdir));
+								$subdir));
                                 }
                         }
                 }
@@ -117,13 +117,13 @@
                  $firstkey = $key;
                  $tab = "tab-hi";
               }
-           }
+	   }
            if ($col) {
               print "<td class=\"tabspacer\">&nbsp;</td>\n";
            }
            print "<td class=\"$tab\" id=\"tab_group_$key\" onClick=\"section_tabs.toggle('group_$key')\">".$names[$key]."</td>\n";
            $count++;
-           $col++;
+	   $col++;
            if ($col > 3) {
 ?>
     </tr>
