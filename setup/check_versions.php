@@ -53,7 +53,7 @@ if  ($errors) { ?>
 if  ($warnings) { ?>
 	<p>
 	<span class="warninglong">
-       	<?php print sprintf(_("%s files more recent than expected."), 
+       	<?php print sprintf(_("%s more recent than expected."), 
 			pluralize_n(count($warnings), _("1 file"), 
 				_("files"), _("No files"))); ?>
 	       	</span>
