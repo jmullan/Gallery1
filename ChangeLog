@@ -1,3 +1,11 @@
+2004-09-07  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b165
+
+	* Change:  Remove session_register(), which is deprecated (and not
+	  necessary, since we use $_SESSION)
+
+	* Change:  save_photos - Don't save the album if there were 0 photos
+	  uploaded.
+
 2004-09-07  Andrew Lindeman <alindeman@users.sf.net>    1.4.5-cvs-b164
 	
 	* Prevent a possible PHP error (pedantic)

@@ -21,8 +21,6 @@
  */
 ?>
 <?php
-
-@ini_set('session.bug_compat_warn', 'off');
 /*
  * PHP 4.0.1pl2 introduces a bug where you can't unserialize a 
  * stdClass instance correctly.  So create a dummy class to hold all
@@ -69,9 +67,6 @@ if (isset($_SESSION[$gSessionVar])) {
 	/* Get a simple reference to the session container (for convenience) */
 	$gallery->session =& $_SESSION[$gSessionVar];
 } else {
-	/* Register the session variable */
-	session_register($gSessionVar);
-
 	/* Create a new session container */
 	if (!empty($useStdClass)) {
 		$_SESSION[$gSessionVar] = new stdClass();
