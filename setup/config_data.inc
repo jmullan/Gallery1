@@ -27,6 +27,7 @@ $checklist = array(
 			"<b>--enable-module=rewrite</b> </ul> flag and then " .
 			"reinstall it."
 	), 
+/*
 	"GD" => array(
 		"desc" => "Check to see if PHP was compiled with " .
 			"the GD libraries so that Gallery can manipulate " .
@@ -39,6 +40,18 @@ $checklist = array(
 			" <a href=ftp://ftp.boutell.com/pub/boutell/gd/> " .
 			"ftp://ftp.boutell.com/pub/boutell/gd/</a>"
 	), 
+*/
+	"NetPBM" => array(
+		"desc" => "Check to see if NetPBM is installed so that " .
+			"Gallery can manipulate images (rotate, resize, make " .
+			"thumbnails, etc).  NetPBM is way better than GD.",
+		"func" => "check_netpbm",
+		"why" => "I can't find NetPBM.  If it's installed, it's not in " .
+			"your path (or at least that of your webserver user). If not " .
+			"you'll need to install it.  You can get it from " .
+			"<a href=http://sourceforge.net/projects/netpbm>SourceForge</a>"
+	),
+
 	"jpeg" => array(
 		"desc" => "Check to see if PHP was compiled with " .
 			"the JPEG libraries so that Gallery can load and " .
@@ -55,7 +68,6 @@ $checklist = array(
 
 $features = array(
 	"zip_support" => array("zipinfo", "unzip"),
-	"gif_support" => array("pnmDir")
 );
 
 $constants = array(
@@ -69,7 +81,7 @@ $constants = array(
 	),
 	"pnmDir" => array(
 		"desc" => "The location of your NetPBM package.  If you don't " .
-			"have NetPBM, you won't be able to support GIF images.",
+			"have NetPBM, Gallery won't work at all.",
 		"value" => locateDir("anytopnm")
 	),
 	"highlight_size" => array(
