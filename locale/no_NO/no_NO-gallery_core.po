@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-02-24 15:48+0100\n"
+"POT-Creation-Date: 2005-03-02 12:01+0100\n"
 "PO-Revision-Date: 2005-02-17 12:51+0100\n"
 "Last-Translator: Håvard Mork Mork <havarmor AT stud.ntnu DOT no>\n"
 "Language-Team: Sverre M. Vikan <sverre AT urven DOT net>\n"
@@ -157,9 +157,10 @@ msgstr "Behandle brukere."
 msgid "Admin options"
 msgstr "adminegenskaper"
 
-#: ../admin-page.php:88 ../stats.php:635 ../tools/find_orphans.php:213
-#: ../tools/despam-comments.php:58
-msgid "Return to Gallery"
+#: ../admin-page.php:88 ../stats.php:634 ../tools/find_orphans.php:214
+#: ../tools/despam-comments.php:59
+#, fuzzy
+msgid "return to gallery"
 msgstr "G&aring; tilbake til galleriet"
 
 #: ../album_permissions.php:183 ../album_permissions.php:187
@@ -565,7 +566,7 @@ msgstr "Oppgraderer objekt %d av %d ... "
 msgid "msg should be an array!"
 msgstr "msg b&oslash;r v&aelig;re en elementrekke!"
 
-#: ../classes/Album.php:921 ../util.php:3494
+#: ../classes/Album.php:921 ../util.php:3505
 msgid "No email sent as no valid email addresses were found"
 msgstr "E-post ble ikke sendt fordi ingen gyldige e-postadresser ble funnet"
 
@@ -762,7 +763,7 @@ msgstr "Hopper over album #%d"
 
 #: ../copy_photo.php:119 ../create_user.php:104 ../do_command.php:226
 #: ../login.php:129 ../multi_create_user.php:127 ../register.php:47
-#: ../register.php:122 ../save_photos.php:366
+#: ../register.php:122 ../save_photos.php:369
 msgid "Dismiss"
 msgstr "Lukk"
 
@@ -880,7 +881,7 @@ msgstr "Vil du virkelig slette dette albumet?"
 
 #: ../delete_album.php:65 ../delete_photo.php:139 ../delete_user.php:80
 #: ../layout/commentbox.inc:17 ../manage_users.php:103
-#: ../tools/despam-comments.php:206 ../tools/despam-comments.php:342
+#: ../tools/despam-comments.php:207 ../tools/despam-comments.php:343
 msgid "Delete"
 msgstr "Slett"
 
@@ -1680,7 +1681,7 @@ msgstr "Innlogget som:"
 msgid "From:"
 msgstr "Fra:"
 
-#: ../layout/commentboxbottom.inc:11 ../stats.php:1318 ../util.php:187
+#: ../layout/commentboxbottom.inc:11 ../stats.php:1317 ../util.php:187
 msgid "add comment"
 msgstr "legg til kommentar"
 
@@ -1747,7 +1748,7 @@ msgstr "%d av %d"
 msgid "Watermark"
 msgstr "Vannmerke"
 
-#: ../layout/watermarkform.inc:80 ../util.php:3035 ../util.php:3040
+#: ../layout/watermarkform.inc:80 ../util.php:3046 ../util.php:3051
 msgid "None"
 msgstr "Ingen"
 
@@ -2707,35 +2708,40 @@ msgstr "Henter URL-er ..."
 msgid "Processing %s as a local directory."
 msgstr "Behandler %s som en lokal katalog."
 
-#: ../save_photos.php:148
+#: ../save_photos.php:118
+#, php-format
+msgid "Unable to find %s locally - trying %s."
+msgstr ""
+
+#: ../save_photos.php:151
 #, php-format
 msgid "Could not open url: %s"
 msgstr "Klarte ikke &aring; &aring;pne URL-en: %s"
 
-#: ../save_photos.php:176
+#: ../save_photos.php:179
 #, php-format
 msgid "Parsing %s for images..."
 msgstr "Ser etter bilder i %s ..."
 
-#: ../save_photos.php:242
+#: ../save_photos.php:245
 #, php-format
 msgid "Found %d images"
 msgstr "Fant %d bilder"
 
-#: ../save_photos.php:249
+#: ../save_photos.php:252
 msgid "Processing status..."
 msgstr "Status for bearbeidelser ..."
 
-#: ../save_photos.php:362
+#: ../save_photos.php:365
 msgid "No images uploaded!"
 msgstr "Ingen bilder lastet opp!"
 
-#: ../save_photos.php:412
+#: ../save_photos.php:415
 #, php-format
 msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
 msgstr "%d metafil(er) funnet.  Disse filene inneholder informasjon om bildene, slik som titler og beskrivelser."
 
-#: ../save_photos.php:444
+#: ../save_photos.php:447
 msgid "Add Files"
 msgstr "Legg til filer"
 
@@ -2898,241 +2904,246 @@ msgstr "Synkende"
 msgid "Sort"
 msgstr "Sorter"
 
-#: ../stats.php:227
+#: ../stats.php:226
 #, php-format
 msgid "Number Albums = %s"
 msgstr "Antall album = %s"
 
-#: ../stats.php:239
+#: ../stats.php:238
 #, php-format
 msgid "Cache filename = %s ; enabled = %s ; expires = %s"
 msgstr "Mellomlager-filnavn = %s ; påslått = %s ; utgår = %s"
 
-#: ../stats.php:252
+#: ../stats.php:251
 #, php-format
 msgid "Time now = %s ; Cache time = %s"
 msgstr "Tiden er nå = %s ; Mellomlagertid = %s"
 
-#: ../stats.php:269
+#: ../stats.php:268
 msgid "Using cache"
 msgstr "Bruker mellomlager"
 
-#: ../stats.php:272
+#: ../stats.php:271
 msgid "Not using cache"
 msgstr "Bruker ikke mellomlager"
 
-#: ../stats.php:275
+#: ../stats.php:274
 msgid "Cache to be rebuilt"
 msgstr "Mellomlager å gjenopprette"
 
-#: ../stats.php:298
+#: ../stats.php:297
 msgid "Version out of date."
 msgstr ""
 
-#: ../stats.php:332
+#: ../stats.php:331
 #, php-format
 msgid "Checking album: %s"
 msgstr "Unders&oslash;ker album: %s"
 
-#: ../stats.php:343
+#: ../stats.php:342
 #, php-format
 msgid "Reading info for photo index = %d , id = %d"
 msgstr "Leser informasjon for foto = %d , id = %d"
 
-#: ../stats.php:359
+#: ../stats.php:358
 msgid "Getting SVotes"
 msgstr "Henter SVotes"
 
-#: ../stats.php:367
+#: ../stats.php:366
 msgid "Getting Item Clicks"
 msgstr "Henter antall trykk"
 
-#: ../stats.php:372
+#: ../stats.php:371
 msgid "Getting Item Capture Date"
 msgstr "Henter bildedato"
 
-#: ../stats.php:390
+#: ../stats.php:389
 msgid "Getting Number of Comments"
 msgstr "Henter antall kommentarer"
 
-#: ../stats.php:394
+#: ../stats.php:393
 msgid "Getting Comments"
 msgstr "Henter kommentarer"
 
-#: ../stats.php:405
+#: ../stats.php:404
 msgid "Getting Ratings"
 msgstr "Henter stemmer"
 
-#: ../stats.php:440
+#: ../stats.php:439
 #, php-format
 msgid "Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"
 msgstr "Album: %s ; Indeks: %d ; Stemmer: %d ; Visninger: %d; Dato: %s; Biledato: %s; Kommentardato: %s; Rangering: %s; Antall rangeringer: %d; Tilfeldig: %d"
 
-#: ../stats.php:515
+#: ../stats.php:514
 #, php-format
 msgid "Total: %s ; Start: %s ; Last Page: %s"
 msgstr "Totalt: %s ; Start: %s ; Siste side: %s"
 
-#: ../stats.php:529
+#: ../stats.php:528
 msgid " - Images with the most votes"
 msgstr " - Bilder med flest stemmer"
 
-#: ../stats.php:532
+#: ../stats.php:531
 msgid " - Images with the least votes"
 msgstr " - Bilder med færrest stemmer"
 
-#: ../stats.php:538
+#: ../stats.php:537
 msgid " - Top rated images"
 msgstr " - Bilder med høyest rangering"
 
-#: ../stats.php:541
+#: ../stats.php:540
 msgid " - Bottom rated images"
 msgstr " - Bilder med lavest rangering"
 
-#: ../stats.php:547
+#: ../stats.php:546
 msgid " - Latest added images"
 msgstr " - Nyeste bilder"
 
-#: ../stats.php:550
+#: ../stats.php:549
 msgid " - Oldest images first"
 msgstr " - Eldste bilder først"
 
-#: ../stats.php:556
+#: ../stats.php:555
 msgid " - Latest Capture Date"
 msgstr " - Nyeste fotodato"
 
-#: ../stats.php:559
+#: ../stats.php:558
 msgid " - Oldest Capture Date"
 msgstr " - Eldste fotodato"
 
-#: ../stats.php:565
+#: ../stats.php:564
 msgid " - Latest Comments"
 msgstr " - Siste kommentarer"
 
-#: ../stats.php:568
+#: ../stats.php:567
 msgid " - Oldest Comments"
 msgstr " - Eldste kommentarer"
 
-#: ../stats.php:573
+#: ../stats.php:572
 msgid " - Random Images"
 msgstr " - Tilfeldige bilder"
 
-#: ../stats.php:579
+#: ../stats.php:578
 msgid " - Images with the most views"
 msgstr " - Bilder med flest visninger"
 
-#: ../stats.php:582
+#: ../stats.php:581
 msgid " - Images with the least views"
 msgstr " - Bilder med minst visninger"
 
-#: ../stats.php:614
+#: ../stats.php:613
 #, php-format
 msgid "%d images with comments in album: %s"
 msgstr "%d bilder med kommentarer i albumet: %s"
 
-#: ../stats.php:616
+#: ../stats.php:615
 #, php-format
 msgid "%d images in album: %s"
 msgstr "%d bilder i albumet: %s"
 
-#: ../stats.php:619
+#: ../stats.php:618
 #, php-format
 msgid "Given albumname: '%s' is invalid !"
 msgstr "Gitt albumnavn: '%s' er ugyldig !"
 
-#: ../stats.php:624
+#: ../stats.php:623
 #, php-format
 msgid "%d images with comments in this Gallery"
 msgstr "%d bilder med kommentarer i dette galleriet"
 
-#: ../stats.php:627
+#: ../stats.php:626
 #, php-format
 msgid "%d images this Gallery"
 msgstr "%d bilder i dette galleriet"
 
-#: ../stats.php:633
+#: ../stats.php:632
 msgid "Back to stats-wizard"
 msgstr "Tilbake til statistikk-veiviser"
 
-#: ../stats.php:669
+#: ../stats.php:668
 #, php-format
 msgid "Data load time %d seconds"
 msgstr "Data lastet inn på %d sekunder"
 
-#: ../stats.php:802
+#: ../stats.php:801
 msgid "Highlight for Album: "
 msgstr "Forsidebilde for albumet:"
 
-#: ../stats.php:983
+#: ../stats.php:982
 #, php-format
 msgid "Finished in %d seconds"
 msgstr "Fullf&oslash;rt p&aring; %d sekunder"
 
-#: ../stats.php:989
+#: ../stats.php:988
 #, fuzzy
 msgid "Update"
 msgstr "Dato opplastet"
 
-#: ../stats.php:990
+#: ../stats.php:989
 msgid "Cache update required. "
 msgstr "Oppdatering av mellomlager n&oslash;dvendig. "
 
-#: ../stats.php:994
+#: ../stats.php:993
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
 msgstr "Noen album ble ikke gjennoms&oslash;kt, siden de trenger oppgradering til den siste versjonen av %s f&oslash;rst"
 
-#: ../stats.php:997
+#: ../stats.php:996
 msgid "upgrade all albums"
 msgstr "oppgrader alle album"
 
-#: ../stats.php:1043
+#: ../stats.php:1042
 #, php-format
 msgid "Recursing album: %s"
 msgstr "Rekurserer album: %s"
 
-#: ../stats.php:1083
+#: ../stats.php:1082
 msgid "Read cache num photos lock failed."
 msgstr "Lås for mellomlager (antall bilder) feilet."
 
-#: ../stats.php:1109
+#: ../stats.php:1108
 #, php-format
 msgid "Album name : %s ; index: %s"
 msgstr "Albumnavn : %s ; indeks: %s"
 
-#: ../stats.php:1121 ../stats.php:1162
+#: ../stats.php:1120 ../stats.php:1161
 msgid "Read cache lock failed."
 msgstr "Leselås for mellomlageret feilet."
 
-#: ../stats.php:1331
+#: ../stats.php:1330
 msgid "add vote"
 msgstr "legg til stemme"
 
-#: ../stats.php:1435
+#: ../stats.php:1434
 msgid "From album"
 msgstr "Fra album"
 
-#: ../stats.php:1492
+#: ../stats.php:1438
+#, fuzzy
+msgid "Owned by:"
+msgstr "Eier:"
+
+#: ../stats.php:1491
 msgid "Capture Date:"
 msgstr "Dato fotografert:"
 
-#: ../stats.php:1503
+#: ../stats.php:1502
 msgid "Upload Date:"
 msgstr "Dato opplastet:"
 
-#: ../stats.php:1514
+#: ../stats.php:1513
 msgid "Views:"
 msgstr "Visninger:"
 
-#: ../stats.php:1523
+#: ../stats.php:1522
 msgid "Votes:"
 msgstr "Stemmer:"
 
-#: ../stats.php:1532
+#: ../stats.php:1531
 msgid "not rated"
 msgstr "ikke rangert"
 
-#: ../stats.php:1547 ../stats.php:1558
+#: ../stats.php:1546 ../stats.php:1557
 #, fuzzy
 msgid "Rating:"
 msgstr "Regn"
@@ -3141,80 +3152,85 @@ msgstr "Regn"
 msgid "Find Orphans"
 msgstr "finn foreldrel&oslash;se"
 
-#: ../tools/find_orphans.php:222
+#: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#, fuzzy
+msgid "return to admin page"
+msgstr "returner til album"
+
+#: ../tools/find_orphans.php:224
 msgid "Orphaned Albums:"
 msgstr "Foreldrel&oslash;se album:"
 
-#: ../tools/find_orphans.php:223
+#: ../tools/find_orphans.php:225
 msgid "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
 msgstr "Foreldrel&oslash;se album vil bli lenket fast til deres over-album, hvis det er mulig. Hvis det tilh&oslash;rende albumet mangler, vil det foreldrel&oslash;se albumet bli lenket fast til galleri-roten, og det kan da bli flyttet til en ny plass derfra."
 
-#: ../tools/find_orphans.php:227
+#: ../tools/find_orphans.php:229
 msgid "Parent Album"
 msgstr "Over-album"
 
-#: ../tools/find_orphans.php:229
+#: ../tools/find_orphans.php:231
 msgid "Orphaned Album"
 msgstr "Foreldrel&oslash;se album"
 
-#: ../tools/find_orphans.php:236
+#: ../tools/find_orphans.php:238
 msgid "Gallery Root"
 msgstr "Galleri-rot"
 
-#: ../tools/find_orphans.php:250
+#: ../tools/find_orphans.php:252
 msgid "Re-Attach Orphaned Albums!"
 msgstr "Gjenopprett foreldrel&oslash;se album!"
 
-#: ../tools/find_orphans.php:257
+#: ../tools/find_orphans.php:259
 msgid "Orphaned Files:"
 msgstr "Foreldrel&oslash;se filer:"
 
-#: ../tools/find_orphans.php:259
+#: ../tools/find_orphans.php:260
 msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
 msgstr "Foreldrel&oslash;se filer vil bli slettet fra disk. Foreldrel&oslash;se filer b&oslash;r aldri eksistere - hvis de gj&oslash;r det, er de et resultat av ufullstendige opplastingsfors&oslash;k, eller mer alvorlige tilfeller som f.eks. at foto-databasen blir overskrevet av d&aring;rlig informasjon."
 
-#: ../tools/find_orphans.php:263
+#: ../tools/find_orphans.php:264
 msgid "Album directory"
 msgstr "Albumkatalog"
 
-#: ../tools/find_orphans.php:265
+#: ../tools/find_orphans.php:266
 msgid "Orphaned file"
 msgstr "Foreldrel&oslash;s fil"
 
-#: ../tools/find_orphans.php:288
+#: ../tools/find_orphans.php:289
 msgid "Delete Orphaned Files!"
 msgstr "Slett foreldrel&oslash;se filer!"
 
-#: ../tools/find_orphans.php:294
+#: ../tools/find_orphans.php:295
 msgid "No Orphans Found"
 msgstr "Ingen foreldrel&oslash;se funnet"
 
-#: ../tools/find_orphans.php:295
+#: ../tools/find_orphans.php:296
 msgid "There are no orphaned elements in this Gallery."
 msgstr "Det var ingen foreldrel&oslash;se bilder i dette galleriet."
 
-#: ../tools/find_orphans.php:299
+#: ../tools/find_orphans.php:300
 #, php-format
 msgid "Orphan %s Repaired"
 msgstr "Foreldrel&oslash;s %s reparert"
 
-#: ../tools/find_orphans.php:299
+#: ../tools/find_orphans.php:300
 msgid "Albums"
 msgstr "Album"
 
-#: ../tools/find_orphans.php:299
+#: ../tools/find_orphans.php:300
 msgid "Files"
 msgstr "Filer"
 
-#: ../tools/find_orphans.php:306
+#: ../tools/find_orphans.php:307
 msgid "The Webserver has not enough permission to delete the following files:"
 msgstr "Nettsidetjeneren har ikke tilgang til å slette følgende filer:"
 
-#: ../tools/find_orphans.php:312
+#: ../tools/find_orphans.php:313
 msgid "Please check the permission of these files and the folder above. chmod them, or ask your admin to do this."
 msgstr "Kontroller tilgangen til filene og mappene ovenfor. Kjør chmod på dem, eller be systemansvarlige gjøre det."
 
-#: ../tools/find_orphans.php:313
+#: ../tools/find_orphans.php:314
 msgid "Reload"
 msgstr "Oppdater"
 
@@ -3222,120 +3238,120 @@ msgstr "Oppdater"
 msgid "Find and remove comment spam"
 msgstr "Finn og slett plagekommentarer"
 
-#: ../tools/despam-comments.php:118
+#: ../tools/despam-comments.php:119
 msgid "Delete Comments"
 msgstr "Slett kommentarer"
 
-#: ../tools/despam-comments.php:120 ../tools/despam-comments.php:249
-#: ../tools/despam-comments.php:260 ../tools/despam-comments.php:329
+#: ../tools/despam-comments.php:121 ../tools/despam-comments.php:250
+#: ../tools/despam-comments.php:261 ../tools/despam-comments.php:330
 msgid "No action taken!"
 msgstr "Ingen handling foretatt!"
 
-#: ../tools/despam-comments.php:144
+#: ../tools/despam-comments.php:145
 #, php-format
 msgid "Deleted %d spam comments"
 msgstr "Slettet %d plagekommentarer"
 
-#: ../tools/despam-comments.php:148
+#: ../tools/despam-comments.php:149
 #, php-format
 msgid "Deleted %d spam comment."
 msgid_plural "Deleted %d spam comments."
 msgstr[0] "Slettet %d plagekommentar."
 msgstr[1] "Slettet %d plagekommentarer."
 
-#: ../tools/despam-comments.php:149
+#: ../tools/despam-comments.php:150
 msgid "No comment deleted."
 msgstr "Ingen kommentarer slettet."
 
-#: ../tools/despam-comments.php:195
+#: ../tools/despam-comments.php:196
 #, php-format
 msgid "Scanned %d albums, %d photos, %d comments in %2.2f seconds"
 msgstr "S&oslash;kte gjennom %d album, %d bilder, %d kommentarer p&aring; %2.2f sekunder"
 
-#: ../tools/despam-comments.php:201
+#: ../tools/despam-comments.php:202
 msgid "No spam comments."
 msgstr "Ingen plagekommentarer."
 
-#: ../tools/despam-comments.php:206
+#: ../tools/despam-comments.php:207
 msgid "Entry"
 msgstr "Element"
 
-#: ../tools/despam-comments.php:210
+#: ../tools/despam-comments.php:211
 msgid "Location"
 msgstr "Plassering"
 
-#: ../tools/despam-comments.php:214
+#: ../tools/despam-comments.php:215
 msgid "Commenter"
 msgstr "Kommentar av"
 
-#: ../tools/despam-comments.php:218
+#: ../tools/despam-comments.php:219
 msgid "Comment"
 msgstr "Kommentar"
 
-#: ../tools/despam-comments.php:232
+#: ../tools/despam-comments.php:233
 msgid "Delete Checked Comments"
 msgstr "Slett merkede kommentarer"
 
-#: ../tools/despam-comments.php:247
+#: ../tools/despam-comments.php:248
 msgid "Delete from blacklist"
 msgstr "Slett fra svarteliste"
 
-#: ../tools/despam-comments.php:264 ../tools/despam-comments.php:308
+#: ../tools/despam-comments.php:265 ../tools/despam-comments.php:309
 msgid "Error saving blacklist!"
 msgstr "Feil ved lagring av svarteliste!"
 
-#: ../tools/despam-comments.php:267
+#: ../tools/despam-comments.php:268
 #, php-format
 msgid "Deleted %d entry from blacklist."
 msgid_plural "Deleted %d entries from blacklist"
 msgstr[0] "Slettet %d element fra svartelisten."
 msgstr[1] "Slettet %d bilder fra svartelisten."
 
-#: ../tools/despam-comments.php:311
+#: ../tools/despam-comments.php:312
 msgid "Added to blacklist:"
 msgstr "Lagt til i svartelisten:"
 
-#: ../tools/despam-comments.php:320
+#: ../tools/despam-comments.php:321
 msgid "Following duplicates were not added:"
 msgstr "F&oslash;lgende duplikater ble ikke lagt til:"
 
-#: ../tools/despam-comments.php:336
+#: ../tools/despam-comments.php:337
 msgid "Current blacklist"
 msgstr "Gjeldende svarteliste"
 
-#: ../tools/despam-comments.php:338
+#: ../tools/despam-comments.php:339
 msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
 msgstr "Svartelisten din er tom. Du m&aring; legge til nye bilder i svartelisten for at den skal v&aelig;re nyttig."
 
-#: ../tools/despam-comments.php:353 ../tools/despam-comments.php:370
+#: ../tools/despam-comments.php:354 ../tools/despam-comments.php:371
 msgid "Update Blacklist"
 msgstr "Oppdater svarteliste"
 
-#: ../tools/despam-comments.php:360
+#: ../tools/despam-comments.php:361
 msgid "Enter new blacklist entries"
 msgstr "Skriv nye svartelisteelementer"
 
-#: ../tools/despam-comments.php:361
+#: ../tools/despam-comments.php:362
 msgid "Useful blacklists: "
 msgstr "Nyttige svartelister: "
 
-#: ../tools/despam-comments.php:366
+#: ../tools/despam-comments.php:367
 msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
 msgstr "Du kan klippe og lime disse svartelistene inn i tekstboksen, eller legge til nye elementer selv."
 
-#: ../tools/despam-comments.php:376
+#: ../tools/despam-comments.php:377
 msgid "Find blacklisted comments"
 msgstr "Finn svartelistede kommentarer"
 
-#: ../tools/despam-comments.php:377
+#: ../tools/despam-comments.php:378
 msgid "View/Edit blacklist"
 msgstr "Vis/rediger svarteliste"
 
-#: ../tools/despam-comments.php:378
+#: ../tools/despam-comments.php:379
 msgid "Add blacklist entries"
 msgstr "Legg til i svarteliste"
 
-#: ../tools/despam-comments.php:381
+#: ../tools/despam-comments.php:382
 msgid "Options"
 msgstr "Innstillinger"
 
@@ -3518,7 +3534,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP-s %s kan ikke fastsl&aring; dimensjoner."
 
 #: ../util.php:386 ../util.php:707 ../util.php:960 ../util.php:1006
-#: ../util.php:2494
+#: ../util.php:2505
 msgid "You have no graphics package configured for use!"
 msgstr "Du har ingen grafikkpakke konfigurert for bruk!"
 
@@ -3578,165 +3594,165 @@ msgstr "Fil %s type %d."
 msgid "Unknown file type: %s"
 msgstr "Ukjent filtype: %s"
 
-#: ../util.php:1492
+#: ../util.php:1503
 #, php-format
 msgid "Can't write to %s."
 msgstr "Klarte ikke &aring; skrive til %s."
 
-#: ../util.php:1499
+#: ../util.php:1510
 #, php-format
 msgid "Can't read %s."
 msgstr "Klarte ikke &aring; lese %s."
 
-#: ../util.php:1603
+#: ../util.php:1614
 msgid "Select Album"
 msgstr "Velg album"
 
-#: ../util.php:1609
+#: ../util.php:1620
 msgid "Top Level"
 msgstr "&Oslash;verste niv&aring;"
 
-#: ../util.php:1630 ../util.php:1681
+#: ../util.php:1641 ../util.php:1692
 msgid "current location"
 msgstr "gjeldende plassering"
 
-#: ../util.php:1684
+#: ../util.php:1695
 msgid "self"
 msgstr "seg selv"
 
-#: ../util.php:1819
+#: ../util.php:1830
 #, php-format
 msgid "Item Capture Date : %s"
 msgstr "Dato fotografert : %s"
 
-#: ../util.php:1864
+#: ../util.php:1875
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Klarte ikke &aring; &aring;pne l&aring;sfil (%s)!"
 
-#: ../util.php:1869
+#: ../util.php:1880
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Kunne ikke hente l&aring;s (%s)!"
 
-#: ../util.php:1958
+#: ../util.php:1969
 #, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "1 treff"
 msgstr[1] "%d treff"
 
-#: ../util.php:1963
+#: ../util.php:1974
 msgid "Sub-albums"
 msgstr "Underalbum"
 
-#: ../util.php:2129
+#: ../util.php:2140
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Hopper over %s (%s-st&oslash;tte ikke p&aring;sl&aring;tt)"
 
-#: ../util.php:2242
+#: ../util.php:2253
 #, php-format
 msgid "Adding %s"
 msgstr "Legger til %s"
 
-#: ../util.php:2276
+#: ../util.php:2287
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Trenger du hjelp?  Se i  %s%s FAQ%s"
 
-#: ../util.php:2282
+#: ../util.php:2293
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Hopper over %s (kan ikke h&aring;ndtere %s-formatet)"
 
-#: ../util.php:2462
+#: ../util.php:2473
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Kan ikke ta vare p&aring; EXIF-data (jhead ikke installert)"
 
-#: ../util.php:2511
+#: ../util.php:2522
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generert av %s v%s"
 
-#: ../util.php:2513
+#: ../util.php:2524
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Kj&oslash;rer %s v%s"
 
-#: ../util.php:2563
+#: ../util.php:2574
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Hopper over ugyldig e-postadresse %s"
 
-#: ../util.php:2628
+#: ../util.php:2639
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Obs: Dette er en automatisk generert e-post sendt fra siden %s.  Om du har mottatt denne ved en feiltakelse kan du se bort fra denne meldingen."
 
-#: ../util.php:2630
+#: ../util.php:2641
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Rapporter misbruk til %s"
 
-#: ../util.php:2646
+#: ../util.php:2657
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "E-post ikke sendt da st&oslash;tte for e-post er sl&aring;tt av for dette galleriet"
 
-#: ../util.php:2651
+#: ../util.php:2662
 #, php-format
 msgid "Email not sent as no address provided"
 msgstr "E-post ikke sendt da ingen adresser ble gitt"
 
-#: ../util.php:2657
+#: ../util.php:2668
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "E-post ikke sendt til %s da det ikke er en gyldig adresse"
 
-#: ../util.php:2673
+#: ../util.php:2684
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Avsenders adresse %s er ugyldig, bruker %s."
 
-#: ../util.php:2687
+#: ../util.php:2698
 msgid "Administrator"
 msgstr "Administrator"
 
-#: ../util.php:2719 ../util.php:2724
+#: ../util.php:2730 ../util.php:2735
 msgid "not shown"
 msgstr "ikke vist"
 
-#: ../util.php:2728
+#: ../util.php:2739
 msgid "Message"
 msgstr "Melding"
 
-#: ../util.php:2732
+#: ../util.php:2743
 msgid "Email sent"
 msgstr "E-post er sendt"
 
-#: ../util.php:2734
+#: ../util.php:2745
 msgid "Email not sent"
 msgstr "E-post er ikke sendt"
 
-#: ../util.php:2867
+#: ../util.php:2878
 #, php-format
 msgid "Last comment %s."
 msgstr "Siste kommentar %s."
 
-#: ../util.php:2879
+#: ../util.php:2890
 msgid "FAILED"
 msgstr "FEILET"
 
-#: ../util.php:2888
+#: ../util.php:2899
 msgid "Email activity"
 msgstr "E-postaktivitet"
 
-#: ../util.php:2913
+#: ../util.php:2924
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Klarte ikke &aring; &aring;pne loggfilen: %s"
 
-#: ../util.php:2920
+#: ../util.php:2931
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3755,70 +3771,70 @@ msgstr ""
 "\n"
 "Gallery @ Administrator ved %s."
 
-#: ../util.php:2929 ../util.php:2931
+#: ../util.php:2940 ../util.php:2942
 msgid "gallery title"
 msgstr "galleriets tittel"
 
-#: ../util.php:2930
+#: ../util.php:2941
 msgid "gallery URL"
 msgstr "galleriets URL"
 
-#: ../util.php:2960
+#: ../util.php:2971
 msgid "No Skin"
 msgstr "Utseende ikke valgt"
 
-#: ../util.php:2961
+#: ../util.php:2972
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>%s</dt><dd>Det originale utseendet.</dd>"
 
-#: ../util.php:3006 ../util.php:3010
+#: ../util.php:3017 ../util.php:3021
 msgid "unknown"
 msgstr "ukjent"
 
-#: ../util.php:3014
+#: ../util.php:3025
 msgid "Version"
 msgstr "Versjon"
 
-#: ../util.php:3016
+#: ../util.php:3027
 msgid "Last Update"
 msgstr "Siste oppdatering"
 
-#: ../util.php:3036 ../util.php:3041
+#: ../util.php:3047 ../util.php:3052
 msgid "Dots"
 msgstr "Prikker"
 
-#: ../util.php:3037 ../util.php:3042
+#: ../util.php:3048 ../util.php:3053
 msgid "Solid"
 msgstr "Fast"
 
-#: ../util.php:3040
+#: ../util.php:3051
 msgid "No frames"
 msgstr "Ingen rammer"
 
-#: ../util.php:3041
+#: ../util.php:3052
 msgid "Just a simple dashed border around the thumb."
 msgstr "Bare en enkel oppstykket ramme rundt miniatyrbildet."
 
-#: ../util.php:3042
+#: ../util.php:3053
 msgid "Just a simple solid border around the thumb."
 msgstr "Bare en enkel fast ramme rundt miniatyrbildet."
 
-#: ../util.php:3063
+#: ../util.php:3074
 #, php-format
 msgid "Skipping %s."
 msgstr "Hopper over %s"
 
-#: ../util.php:3069
+#: ../util.php:3080
 #, php-format
 msgid "Can't open %s"
 msgstr "Klarte ikke &aring; &aring;pne %s"
 
-#: ../util.php:3189 ../util.php:3208
+#: ../util.php:3200 ../util.php:3219
 msgid "Not valid yet"
 msgstr "Ikke gyldig enn&aring;"
 
-#: ../util.php:3451
+#: ../util.php:3462
 msgid "EXIF Data"
 msgstr "EXIF-data"
 

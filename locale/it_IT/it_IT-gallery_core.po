@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-02-28 12:06+0100\n"
+"POT-Creation-Date: 2005-03-02 12:01+0100\n"
 "PO-Revision-Date: 2005-02-22 17:52+0100\n"
 "Last-Translator: Ermanno Baschiera <ermannob AT inwind DOT it>\n"
 "Language-Team: italiano <Italian <gallery-devel@lists.sourceforge.net>>\n"
@@ -158,9 +158,10 @@ msgstr "Gestisci gli utenti registrati."
 msgid "Admin options"
 msgstr "Opzioni amministrazione"
 
-#: ../admin-page.php:88 ../stats.php:635 ../tools/find_orphans.php:213
-#: ../tools/despam-comments.php:58
-msgid "Return to Gallery"
+#: ../admin-page.php:88 ../stats.php:634 ../tools/find_orphans.php:214
+#: ../tools/despam-comments.php:59
+#, fuzzy
+msgid "return to gallery"
 msgstr "Torna alla Galleria"
 
 #: ../album_permissions.php:183 ../album_permissions.php:187
@@ -566,7 +567,7 @@ msgstr "Aggiornamento oggetto %d di %d . . ."
 msgid "msg should be an array!"
 msgstr "msg deve essere un array!"
 
-#: ../classes/Album.php:921 ../util.php:3494
+#: ../classes/Album.php:921 ../util.php:3505
 msgid "No email sent as no valid email addresses were found"
 msgstr "Nessuna email spedita perch&eacute; non &egrave; stato trovato un indirizzo di email valido"
 
@@ -881,7 +882,7 @@ msgstr "Vuoi davvero eliminare questo album?"
 
 #: ../delete_album.php:65 ../delete_photo.php:139 ../delete_user.php:80
 #: ../layout/commentbox.inc:17 ../manage_users.php:103
-#: ../tools/despam-comments.php:206 ../tools/despam-comments.php:342
+#: ../tools/despam-comments.php:207 ../tools/despam-comments.php:343
 msgid "Delete"
 msgstr "Elimina"
 
@@ -1672,7 +1673,7 @@ msgstr "Connesso come:"
 msgid "From:"
 msgstr "Da: "
 
-#: ../layout/commentboxbottom.inc:11 ../stats.php:1318 ../util.php:187
+#: ../layout/commentboxbottom.inc:11 ../stats.php:1317 ../util.php:187
 msgid "add comment"
 msgstr "aggiungi commento"
 
@@ -1739,7 +1740,7 @@ msgstr "%d di %d"
 msgid "Watermark"
 msgstr "Marchia"
 
-#: ../layout/watermarkform.inc:80 ../util.php:3035 ../util.php:3040
+#: ../layout/watermarkform.inc:80 ../util.php:3046 ../util.php:3051
 msgid "None"
 msgstr "Nessuno"
 
@@ -2894,240 +2895,245 @@ msgstr "Discendente"
 msgid "Sort"
 msgstr "Ordina"
 
-#: ../stats.php:227
+#: ../stats.php:226
 #, php-format
 msgid "Number Albums = %s"
 msgstr "Numero Album = %s"
 
-#: ../stats.php:239
+#: ../stats.php:238
 #, php-format
 msgid "Cache filename = %s ; enabled = %s ; expires = %s"
 msgstr "Nome del file della cache = %s ; abilitato = %s ; scadenza = %s"
 
-#: ../stats.php:252
+#: ../stats.php:251
 #, php-format
 msgid "Time now = %s ; Cache time = %s"
 msgstr "Ora corrente = %s ; Durata cache = %s"
 
-#: ../stats.php:269
+#: ../stats.php:268
 msgid "Using cache"
 msgstr "Cache in uso"
 
-#: ../stats.php:272
+#: ../stats.php:271
 msgid "Not using cache"
 msgstr "Cache non in uso"
 
-#: ../stats.php:275
+#: ../stats.php:274
 msgid "Cache to be rebuilt"
 msgstr "Cache in fase di ricostruzione"
 
-#: ../stats.php:298
+#: ../stats.php:297
 msgid "Version out of date."
 msgstr "Versione non aggiornata."
 
-#: ../stats.php:332
+#: ../stats.php:331
 #, php-format
 msgid "Checking album: %s"
 msgstr "Controllo in corso dell'Album: %s"
 
-#: ../stats.php:343
+#: ../stats.php:342
 #, php-format
 msgid "Reading info for photo index = %d , id = %d"
 msgstr "Lettura informazioni dell'indice delle foto = %d , id = %d"
 
-#: ../stats.php:359
+#: ../stats.php:358
 msgid "Getting SVotes"
 msgstr "Richiesta SVotes"
 
-#: ../stats.php:367
+#: ../stats.php:366
 msgid "Getting Item Clicks"
 msgstr "Richiesta Numero Click dell'Elemento"
 
-#: ../stats.php:372
+#: ../stats.php:371
 msgid "Getting Item Capture Date"
 msgstr "Richiesta Data dello Scatto"
 
-#: ../stats.php:390
+#: ../stats.php:389
 msgid "Getting Number of Comments"
 msgstr "Richiesta Numero di Commenti"
 
-#: ../stats.php:394
+#: ../stats.php:393
 msgid "Getting Comments"
 msgstr "Richiesta Commenti"
 
-#: ../stats.php:405
+#: ../stats.php:404
 msgid "Getting Ratings"
 msgstr "Richiesta Valutazioni"
 
-#: ../stats.php:440
+#: ../stats.php:439
 #, php-format
 msgid "Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"
 msgstr "Album: %s ; Indice: %d ; Voti: %d ; Visualizzazioni: %d; Data: %s; Scatto: %s; Data Commento: %s; Valutazione: %s; Conteggio Valutazioni: %d; Casuale: %d"
 
-#: ../stats.php:515
+#: ../stats.php:514
 #, php-format
 msgid "Total: %s ; Start: %s ; Last Page: %s"
 msgstr "Totale: %s ; Inizio: %s ; Ultima Pagina: %s"
 
-#: ../stats.php:529
+#: ../stats.php:528
 msgid " - Images with the most votes"
 msgstr "- Immagini con maggior numero di voti"
 
-#: ../stats.php:532
+#: ../stats.php:531
 msgid " - Images with the least votes"
 msgstr "- Immagini con minor numero di voti"
 
-#: ../stats.php:538
+#: ../stats.php:537
 msgid " - Top rated images"
 msgstr "- Immagini con voti migliori"
 
-#: ../stats.php:541
+#: ../stats.php:540
 msgid " - Bottom rated images"
 msgstr "- Immagini con voti peggiori"
 
-#: ../stats.php:547
+#: ../stats.php:546
 msgid " - Latest added images"
 msgstr "- Ultime immagini aggiunte"
 
-#: ../stats.php:550
+#: ../stats.php:549
 msgid " - Oldest images first"
 msgstr "- Prima le immagini pi&ugrave; vecchie"
 
-#: ../stats.php:556
+#: ../stats.php:555
 msgid " - Latest Capture Date"
 msgstr "- Data dello Scatto pi&ugrave; Recente"
 
-#: ../stats.php:559
+#: ../stats.php:558
 msgid " - Oldest Capture Date"
 msgstr "- Data dello Scatto pi&ugrave; Vecchia"
 
-#: ../stats.php:565
+#: ../stats.php:564
 msgid " - Latest Comments"
 msgstr "- Ultimi commenti"
 
-#: ../stats.php:568
+#: ../stats.php:567
 msgid " - Oldest Comments"
 msgstr "- Commenti pi&ugrave; Vecchi"
 
-#: ../stats.php:573
+#: ../stats.php:572
 msgid " - Random Images"
 msgstr "- Immagini Casuali"
 
-#: ../stats.php:579
+#: ../stats.php:578
 msgid " - Images with the most views"
 msgstr "- Immagini pi&ugrave; viste"
 
-#: ../stats.php:582
+#: ../stats.php:581
 msgid " - Images with the least views"
 msgstr "- Immagini meno viste"
 
-#: ../stats.php:614
+#: ../stats.php:613
 #, php-format
 msgid "%d images with comments in album: %s"
 msgstr "%d immagini con commenti nell'album: %s"
 
-#: ../stats.php:616
+#: ../stats.php:615
 #, php-format
 msgid "%d images in album: %s"
 msgstr "%d immagini nell'album: %s"
 
-#: ../stats.php:619
+#: ../stats.php:618
 #, php-format
 msgid "Given albumname: '%s' is invalid !"
 msgstr "Nome dell'album in input: '%s' non &egrave; valido !"
 
-#: ../stats.php:624
+#: ../stats.php:623
 #, php-format
 msgid "%d images with comments in this Gallery"
 msgstr "%d immagini con commenti in questa Gallery"
 
-#: ../stats.php:627
+#: ../stats.php:626
 #, php-format
 msgid "%d images this Gallery"
 msgstr "%d immagini in questa Gallery"
 
-#: ../stats.php:633
+#: ../stats.php:632
 msgid "Back to stats-wizard"
 msgstr "Torna al wizard delle statistiche"
 
-#: ../stats.php:669
+#: ../stats.php:668
 #, php-format
 msgid "Data load time %d seconds"
 msgstr "Caricamento dati in %d secondi"
 
-#: ../stats.php:802
+#: ../stats.php:801
 msgid "Highlight for Album: "
 msgstr "Copertina dell'Album:"
 
-#: ../stats.php:983
+#: ../stats.php:982
 #, php-format
 msgid "Finished in %d seconds"
 msgstr "Operazione completata in %d secondi"
 
-#: ../stats.php:989
+#: ../stats.php:988
 msgid "Update"
 msgstr "Aggiorna"
 
-#: ../stats.php:990
+#: ../stats.php:989
 msgid "Cache update required. "
 msgstr "Aggiornamento cache necessario"
 
-#: ../stats.php:994
+#: ../stats.php:993
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
 msgstr "Alcuni album non sono stati consultati perch&egrave; richiedono prima un aggiornamento alla ultima versione di %s"
 
-#: ../stats.php:997
+#: ../stats.php:996
 msgid "upgrade all albums"
 msgstr "aggiorna tutti gli album"
 
-#: ../stats.php:1043
+#: ../stats.php:1042
 #, php-format
 msgid "Recursing album: %s"
 msgstr "Recupero album: %s"
 
-#: ../stats.php:1083
+#: ../stats.php:1082
 msgid "Read cache num photos lock failed."
 msgstr "Fallito il lock nella lettura della cache del numero di foto"
 
-#: ../stats.php:1109
+#: ../stats.php:1108
 #, php-format
 msgid "Album name : %s ; index: %s"
 msgstr "Nome album : %s ; indice: %s"
 
-#: ../stats.php:1121 ../stats.php:1162
+#: ../stats.php:1120 ../stats.php:1161
 msgid "Read cache lock failed."
 msgstr "Fallito il lock durante la lettura della cache."
 
-#: ../stats.php:1331
+#: ../stats.php:1330
 msgid "add vote"
 msgstr "aggiungi voto"
 
-#: ../stats.php:1435
+#: ../stats.php:1434
 msgid "From album"
 msgstr "Dall'album"
 
-#: ../stats.php:1492
+#: ../stats.php:1438
+#, fuzzy
+msgid "Owned by:"
+msgstr "Proprietario: "
+
+#: ../stats.php:1491
 msgid "Capture Date:"
 msgstr "Data dello Scatto:"
 
-#: ../stats.php:1503
+#: ../stats.php:1502
 msgid "Upload Date:"
 msgstr "Data Caricamento:"
 
-#: ../stats.php:1514
+#: ../stats.php:1513
 msgid "Views:"
 msgstr "Visite:"
 
-#: ../stats.php:1523
+#: ../stats.php:1522
 msgid "Votes:"
 msgstr "Voti:"
 
-#: ../stats.php:1532
+#: ../stats.php:1531
 msgid "not rated"
 msgstr "non valutato"
 
-#: ../stats.php:1547 ../stats.php:1558
+#: ../stats.php:1546 ../stats.php:1557
 msgid "Rating:"
 msgstr "Valutazione:"
 
@@ -3135,82 +3141,87 @@ msgstr "Valutazione:"
 msgid "Find Orphans"
 msgstr "Trova Orfani"
 
-#: ../tools/find_orphans.php:222
+#: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
+#, fuzzy
+msgid "return to admin page"
+msgstr "ritorna all'album"
+
+#: ../tools/find_orphans.php:224
 msgid "Orphaned Albums:"
 msgstr "Album Orfani:"
 
-#: ../tools/find_orphans.php:223
+#: ../tools/find_orphans.php:225
 msgid "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
 msgstr "Gli Album orfani verranno ricollegati agli album padri, se possibile. Se l'album padre non &egrave; presente, l'orfano verr&agrave; collegato alla Root di Gallery, e da l&igrave; potr&agrave; essere spostato da un'altra parte."
 
-#: ../tools/find_orphans.php:227
+#: ../tools/find_orphans.php:229
 msgid "Parent Album"
 msgstr "Album Padre"
 
-#: ../tools/find_orphans.php:229
+#: ../tools/find_orphans.php:231
 msgid "Orphaned Album"
 msgstr "Album Orfano"
 
-#: ../tools/find_orphans.php:236
+#: ../tools/find_orphans.php:238
 msgid "Gallery Root"
 msgstr "Radice Galleria"
 
-#: ../tools/find_orphans.php:250
+#: ../tools/find_orphans.php:252
 msgid "Re-Attach Orphaned Albums!"
 msgstr "Ricollega Album Orfani!"
 
-#: ../tools/find_orphans.php:257
+#: ../tools/find_orphans.php:259
 msgid "Orphaned Files:"
 msgstr "Album Orfani:"
 
-#: ../tools/find_orphans.php:259
+#: ../tools/find_orphans.php:260
 msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
 msgstr "I file orfani saranno eliminati dall'hard disk. Non dovrebbero mai esistere file orfani - se ce ne sono, sono il risultato di un tentativo di upload fallito, o di altri problemi pi&ugrave; seri, come una sovrascrittura del database delle foto con informazioni sbagliate."
 
-#: ../tools/find_orphans.php:263
+#: ../tools/find_orphans.php:264
 msgid "Album directory"
 msgstr "Directory Album"
 
-#: ../tools/find_orphans.php:265
+#: ../tools/find_orphans.php:266
 msgid "Orphaned file"
 msgstr "File orfano"
 
-#: ../tools/find_orphans.php:288
+#: ../tools/find_orphans.php:289
 msgid "Delete Orphaned Files!"
 msgstr "Elimina File Orfani!"
 
-#: ../tools/find_orphans.php:294
+#: ../tools/find_orphans.php:295
 msgid "No Orphans Found"
 msgstr "Nessun Orfano Trovato"
 
-#: ../tools/find_orphans.php:295
+#: ../tools/find_orphans.php:296
 msgid "There are no orphaned elements in this Gallery."
 msgstr "Non ci sono elementi orfani in Gallery."
 
-#: ../tools/find_orphans.php:299
+#: ../tools/find_orphans.php:300
 #, php-format
 msgid "Orphan %s Repaired"
 msgstr "Orfano %s Riparato"
 
-#: ../tools/find_orphans.php:299
+#: ../tools/find_orphans.php:300
 #, fuzzy
 msgid "Albums"
 msgstr "Album"
 
-#: ../tools/find_orphans.php:299
+#: ../tools/find_orphans.php:300
 #, fuzzy
 msgid "Files"
 msgstr "File"
 
-#: ../tools/find_orphans.php:306
+#: ../tools/find_orphans.php:307
 msgid "The Webserver has not enough permission to delete the following files:"
 msgstr "Il Webserver non ha autorizzazioni sufficienti per eliminare i seguenti file:"
 
-#: ../tools/find_orphans.php:312
+#: ../tools/find_orphans.php:313
 msgid "Please check the permission of these files and the folder above. chmod them, or ask your admin to do this."
 msgstr "Controlla le autorizzazioni di questi file e della cartella che segue. fa' il chmod, oppure chiedi di farlo all'amministratore."
 
-#: ../tools/find_orphans.php:313
+#: ../tools/find_orphans.php:314
 msgid "Reload"
 msgstr "Ricarica"
 
@@ -3218,120 +3229,120 @@ msgstr "Ricarica"
 msgid "Find and remove comment spam"
 msgstr "Trova e rimuovi commenti spam"
 
-#: ../tools/despam-comments.php:118
+#: ../tools/despam-comments.php:119
 msgid "Delete Comments"
 msgstr "Elimina Commenti"
 
-#: ../tools/despam-comments.php:120 ../tools/despam-comments.php:249
-#: ../tools/despam-comments.php:260 ../tools/despam-comments.php:329
+#: ../tools/despam-comments.php:121 ../tools/despam-comments.php:250
+#: ../tools/despam-comments.php:261 ../tools/despam-comments.php:330
 msgid "No action taken!"
 msgstr "Nessuna azione compiuta!"
 
-#: ../tools/despam-comments.php:144
+#: ../tools/despam-comments.php:145
 #, php-format
 msgid "Deleted %d spam comments"
 msgstr "Eliminati %d commenti spam"
 
-#: ../tools/despam-comments.php:148
+#: ../tools/despam-comments.php:149
 #, php-format
 msgid "Deleted %d spam comment."
 msgid_plural "Deleted %d spam comments."
 msgstr[0] "Eliminato %d commento spam"
 msgstr[1] "Eliminati %d commenti spam"
 
-#: ../tools/despam-comments.php:149
+#: ../tools/despam-comments.php:150
 msgid "No comment deleted."
 msgstr "Nessun commento eliminato."
 
-#: ../tools/despam-comments.php:195
+#: ../tools/despam-comments.php:196
 #, php-format
 msgid "Scanned %d albums, %d photos, %d comments in %2.2f seconds"
 msgstr "Analizzati %d album, %d foto, %d commenti in %2.2f secondi"
 
-#: ../tools/despam-comments.php:201
+#: ../tools/despam-comments.php:202
 msgid "No spam comments."
 msgstr "Nessun commento spam."
 
-#: ../tools/despam-comments.php:206
+#: ../tools/despam-comments.php:207
 msgid "Entry"
 msgstr "Entry"
 
-#: ../tools/despam-comments.php:210
+#: ../tools/despam-comments.php:211
 msgid "Location"
 msgstr "Locazione"
 
-#: ../tools/despam-comments.php:214
+#: ../tools/despam-comments.php:215
 msgid "Commenter"
 msgstr "Autore Commento"
 
-#: ../tools/despam-comments.php:218
+#: ../tools/despam-comments.php:219
 msgid "Comment"
 msgstr "Commento"
 
-#: ../tools/despam-comments.php:232
+#: ../tools/despam-comments.php:233
 msgid "Delete Checked Comments"
 msgstr "Elimina Commenti Selezionati"
 
-#: ../tools/despam-comments.php:247
+#: ../tools/despam-comments.php:248
 msgid "Delete from blacklist"
 msgstr "Elimina dalla lista nera"
 
-#: ../tools/despam-comments.php:264 ../tools/despam-comments.php:308
+#: ../tools/despam-comments.php:265 ../tools/despam-comments.php:309
 msgid "Error saving blacklist!"
 msgstr "Errore nel salvataggio della lista nera!"
 
-#: ../tools/despam-comments.php:267
+#: ../tools/despam-comments.php:268
 #, php-format
 msgid "Deleted %d entry from blacklist."
 msgid_plural "Deleted %d entries from blacklist"
 msgstr[0] "Eliminata %d entry dalla blacklist."
 msgstr[1] "Eliminate %d entry dalla blacklist."
 
-#: ../tools/despam-comments.php:311
+#: ../tools/despam-comments.php:312
 msgid "Added to blacklist:"
 msgstr "Aggiunto alla lista nera:"
 
-#: ../tools/despam-comments.php:320
+#: ../tools/despam-comments.php:321
 msgid "Following duplicates were not added:"
 msgstr "I seguenti duplicati non sono stati aggiunti:"
 
-#: ../tools/despam-comments.php:336
+#: ../tools/despam-comments.php:337
 msgid "Current blacklist"
 msgstr "Lista nera corrente"
 
-#: ../tools/despam-comments.php:338
+#: ../tools/despam-comments.php:339
 msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
 msgstr "La tua lista nera &egrave; vuota. Devi aggiungere qualche elemento alla lista nera affich&eacute; sia utile."
 
-#: ../tools/despam-comments.php:353 ../tools/despam-comments.php:370
+#: ../tools/despam-comments.php:354 ../tools/despam-comments.php:371
 msgid "Update Blacklist"
 msgstr "Aggiorna Lista Nera"
 
-#: ../tools/despam-comments.php:360
+#: ../tools/despam-comments.php:361
 msgid "Enter new blacklist entries"
 msgstr "Inserisci nuovi elementi nella lista nera"
 
-#: ../tools/despam-comments.php:361
+#: ../tools/despam-comments.php:362
 msgid "Useful blacklists: "
 msgstr "Liste nere utili: "
 
-#: ../tools/despam-comments.php:366
+#: ../tools/despam-comments.php:367
 msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
 msgstr "Puoi semplicemente tagliare e incollare queste liste nere nella casella di testo, oppure aggiungere nuovi elementi da solo."
 
-#: ../tools/despam-comments.php:376
+#: ../tools/despam-comments.php:377
 msgid "Find blacklisted comments"
 msgstr "Trova commenti nella lista nera"
 
-#: ../tools/despam-comments.php:377
+#: ../tools/despam-comments.php:378
 msgid "View/Edit blacklist"
 msgstr "Visualizza/Modifica lista nera"
 
-#: ../tools/despam-comments.php:378
+#: ../tools/despam-comments.php:379
 msgid "Add blacklist entries"
 msgstr "Aggiungi elementi alla lista nera"
 
-#: ../tools/despam-comments.php:381
+#: ../tools/despam-comments.php:382
 msgid "Options"
 msgstr "Opzioni"
 
@@ -3513,7 +3524,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP %s non ha potuto determinare le dimensioni."
 
 #: ../util.php:386 ../util.php:707 ../util.php:960 ../util.php:1006
-#: ../util.php:2494
+#: ../util.php:2505
 msgid "You have no graphics package configured for use!"
 msgstr "Non hai configurato nessun pacchetto grafico!"
 
@@ -3573,165 +3584,165 @@ msgstr "File %s tipo %d."
 msgid "Unknown file type: %s"
 msgstr "Tipo file sconosciuto: %s"
 
-#: ../util.php:1492
+#: ../util.php:1503
 #, php-format
 msgid "Can't write to %s."
 msgstr "Impossibile scrivere %s."
 
-#: ../util.php:1499
+#: ../util.php:1510
 #, php-format
 msgid "Can't read %s."
 msgstr "Impossibile leggere %s."
 
-#: ../util.php:1603
+#: ../util.php:1614
 msgid "Select Album"
 msgstr "Seleziona Album"
 
-#: ../util.php:1609
+#: ../util.php:1620
 msgid "Top Level"
 msgstr "Livello Superiore"
 
-#: ../util.php:1630 ../util.php:1681
+#: ../util.php:1641 ../util.php:1692
 msgid "current location"
 msgstr "posizione attuale "
 
-#: ../util.php:1684
+#: ../util.php:1695
 msgid "self"
 msgstr "auto"
 
-#: ../util.php:1819
+#: ../util.php:1830
 #, php-format
 msgid "Item Capture Date : %s"
 msgstr "Data dello Scatto : %s"
 
-#: ../util.php:1864
+#: ../util.php:1875
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Impossibile aprire file bloccato (%s)!"
 
-#: ../util.php:1869
+#: ../util.php:1880
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Impossibile acquisire il blocco (%s)!"
 
-#: ../util.php:1958
+#: ../util.php:1969
 #, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "1 visita"
 msgstr[1] "%d visite"
 
-#: ../util.php:1963
+#: ../util.php:1974
 msgid "Sub-albums"
 msgstr "sotto-album"
 
-#: ../util.php:2129
+#: ../util.php:2140
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Ignoro %s (supporto %s non attivato)"
 
-#: ../util.php:2242
+#: ../util.php:2253
 #, php-format
 msgid "Adding %s"
 msgstr "Aggiunta %s"
 
-#: ../util.php:2276
+#: ../util.php:2287
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Hai bisogno di aiuto? Guarda nel  %s%s FAQ%s"
 
-#: ../util.php:2282
+#: ../util.php:2293
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Salto %s (non gestito il formato %s)"
 
-#: ../util.php:2462
+#: ../util.php:2473
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Impossibile salvare dati EXIF (jhead non installato)"
 
-#: ../util.php:2511
+#: ../util.php:2522
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generato da %s v%s"
 
-#: ../util.php:2513
+#: ../util.php:2524
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2563
+#: ../util.php:2574
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Ignorato indirizzo di email invalido %s"
 
-#: ../util.php:2628
+#: ../util.php:2639
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Nota: Questa è un'email generata automaticamente e spedita dal sito web %s.  Se l'hai ricevuta per errore, per favore ignora questo messaggio."
 
-#: ../util.php:2630
+#: ../util.php:2641
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Segnala gli abusi a %s"
 
-#: ../util.php:2646
+#: ../util.php:2657
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Email non spedita poich&egrave; &egrave; disabilitata per questa galleria"
 
-#: ../util.php:2651
+#: ../util.php:2662
 #, php-format
 msgid "Email not sent as no address provided"
 msgstr "Email non spedita poich&egrave; non &egrave; stato fornito un indirizzo"
 
-#: ../util.php:2657
+#: ../util.php:2668
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Email non spedita a %s poich&egrave; non &egrave; un indirizzo valido"
 
-#: ../util.php:2673
+#: ../util.php:2684
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "L'indirizzo mittente %s non &egrave; valido, uso %s."
 
-#: ../util.php:2687
+#: ../util.php:2698
 msgid "Administrator"
 msgstr "Amministratore"
 
-#: ../util.php:2719 ../util.php:2724
+#: ../util.php:2730 ../util.php:2735
 msgid "not shown"
 msgstr "non mostrato"
 
-#: ../util.php:2728
+#: ../util.php:2739
 msgid "Message"
 msgstr "Messaggio"
 
-#: ../util.php:2732
+#: ../util.php:2743
 msgid "Email sent"
 msgstr "Email spedita"
 
-#: ../util.php:2734
+#: ../util.php:2745
 msgid "Email not sent"
 msgstr "Email non spedita"
 
-#: ../util.php:2867
+#: ../util.php:2878
 #, php-format
 msgid "Last comment %s."
 msgstr "Ultimo commento %s."
 
-#: ../util.php:2879
+#: ../util.php:2890
 msgid "FAILED"
 msgstr "FALLITO"
 
-#: ../util.php:2888
+#: ../util.php:2899
 msgid "Email activity"
 msgstr "Attività email"
 
-#: ../util.php:2913
+#: ../util.php:2924
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Impossibile aprire il file di log: %s"
 
-#: ../util.php:2920
+#: ../util.php:2931
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3750,70 +3761,70 @@ msgstr ""
 "\n"
 "L'Amministratore della Galleria presso %s."
 
-#: ../util.php:2929 ../util.php:2931
+#: ../util.php:2940 ../util.php:2942
 msgid "gallery title"
 msgstr "titolo della galleria"
 
-#: ../util.php:2930
+#: ../util.php:2941
 msgid "gallery URL"
 msgstr "URL della galleria"
 
-#: ../util.php:2960
+#: ../util.php:2971
 msgid "No Skin"
 msgstr "Nessuna Skin"
 
-#: ../util.php:2961
+#: ../util.php:2972
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>%s</dt><dd>Il tema originale.</dd>"
 
-#: ../util.php:3006 ../util.php:3010
+#: ../util.php:3017 ../util.php:3021
 msgid "unknown"
 msgstr "sconosciuto"
 
-#: ../util.php:3014
+#: ../util.php:3025
 msgid "Version"
 msgstr "Versione"
 
-#: ../util.php:3016
+#: ../util.php:3027
 msgid "Last Update"
 msgstr "Ultimo Aggiornamento"
 
-#: ../util.php:3036 ../util.php:3041
+#: ../util.php:3047 ../util.php:3052
 msgid "Dots"
 msgstr "Punti"
 
-#: ../util.php:3037 ../util.php:3042
+#: ../util.php:3048 ../util.php:3053
 msgid "Solid"
 msgstr "Solido"
 
-#: ../util.php:3040
+#: ../util.php:3051
 msgid "No frames"
 msgstr "Nessuna cornice"
 
-#: ../util.php:3041
+#: ../util.php:3052
 msgid "Just a simple dashed border around the thumb."
 msgstr "Solo un semplice bordo a trattini attorno all'immagine."
 
-#: ../util.php:3042
+#: ../util.php:3053
 msgid "Just a simple solid border around the thumb."
 msgstr "Solo un semplice bordo solido attorno all'immagine."
 
-#: ../util.php:3063
+#: ../util.php:3074
 #, php-format
 msgid "Skipping %s."
 msgstr "Salto %s."
 
-#: ../util.php:3069
+#: ../util.php:3080
 #, php-format
 msgid "Can't open %s"
 msgstr "Impossibile aprire %s"
 
-#: ../util.php:3189 ../util.php:3208
+#: ../util.php:3200 ../util.php:3219
 msgid "Not valid yet"
 msgstr "Non ancora valido"
 
-#: ../util.php:3451
+#: ../util.php:3462
 msgid "EXIF Data"
 msgstr "Dati EXIF"
 
