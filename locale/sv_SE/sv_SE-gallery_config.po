@@ -20,18 +20,18 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 # Swedish translation
-# Christian Wallin <crille@swipnet.se>, 2002-2004.
-# Mikael Gustafsson <mikael.gustafsson@lecando.com>, 2003-2004.
-# Peter Liversten <skansberget@telia.com>, 2003-2004.
+# Christian Wallin <crille@swipnet.se>, 2002-2005.
+# Mikael Gustafsson <mikael.gustafsson@lecando.com>, 2003-2005.
+# Peter Liversten <skansberget@telia.com>, 2003-2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-02 12:01+0100\n"
-"PO-Revision-Date: 2004-06-15 14:44+0100\n"
+"POT-Creation-Date: 2005-03-09 22:22+0100\n"
+"PO-Revision-Date: 2005-02-14 14:44+0100\n"
 "Last-Translator: Peter Liversten <skansberget AT telia DOT com>\n"
-"Language-Team: Swedish <crille AT swipnet DOT se>\n"
+"Language-Team: Swedish <skansberget@telia.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -422,9 +422,8 @@ msgstr[0] "En fil är uppdaterad."
 msgstr[1] "%d filer uppdaterade."
 
 #: ../setup/check_versions.php:132
-#, fuzzy
 msgid "All files are up-to-date."
-msgstr "Inga filer är uppdaterade."
+msgstr "Alla filer är uppdaterade."
 
 #: ../setup/check_versions.php:138
 msgid "The following files are up-to-date."
@@ -463,9 +462,9 @@ msgid "The site also has binaries available for assorted operating systems.  If 
 msgstr "Webbsidan har också binärkod tillgänglig för ett flertal operativsystem.  Om du inte får det att fungera så prova med att lämna ImageMagick sökvägen tom och använd NetPBM istället."
 
 #: ../setup/config_data.inc:90
-#, fuzzy, php-format
+#, php-format
 msgid "Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."
-msgstr "<b>Observera:</b> Din PHP installation är konfigurerad med %s begränsning.  Detta gör det svårt för Gallery att upptäcka och verifiera din binärkod, även om du redan framgångsrikt använt konfigurationsguiden tidigare.  Oroa dig inte så mycket om denna sida ger dig varningar; dina inställningar kommer fortfarande att sparas på rätt sätt."
+msgstr "Din PHP installation är konfigurerad med %s begränsning.  Detta gör det svårt för Gallery att upptäcka och verifiera din binärkod, även om du redan framgångsrikt använt konfigurationsguiden tidigare.  Oroa dig inte så mycket om denna sida ger dig varningar; dina inställningar kommer fortfarande att sparas på rätt sätt."
 
 #: ../setup/config_data.inc:96
 #, php-format
@@ -474,7 +473,7 @@ msgstr "Kontroll för att se hur gammal %s version %s är."
 
 #: ../setup/config_data.inc:102
 msgid "Check to see if you are running PHP 4.1.0 or greater."
-msgstr ""
+msgstr "Kontroll för att se om du kör PHP 4.1.0 eller senare."
 
 #: ../setup/config_data.inc:102
 msgid "Since Gallery 1.4.5 Gallery needs at least PHP 4.1.0, this is due to that some versions of PHP have bugs that cause Gallery to fail and that older Version does not have required functionality."
@@ -517,9 +516,9 @@ msgid "<b>safe_mode</b> is enabled on this server.  You must disable it before y
 msgstr "<b>safe_mode</b> är aktiverat på denna server.  Du måste avaktivera det innan du kan använda Gallery.  Titta i Frågor och svar, Forumen, och Hjälpsidan på %sGallery's webbplats%s och på %sPHP's webbplats%s för ytterligare hjälp."
 
 #: ../setup/config_data.inc:131
-#, fuzzy, php-format
+#, php-format
 msgid "In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."
-msgstr "<b>Observera:</b> Under vissa speciella omständigheter kan Gallery tro att Safe Mode är aktiverat, även fast det är avaktiverat.  Du kan se för dig själv genom att titta i <i>Local</i> kolumnen på <i>safe_mode</i> raden på %sPHP Info%s sidan.  Om det står 'Off' eller '0' eller 'undefiened' så är det möjligt att Gallery har gjort ett misstag och du kan fortsätta.  Om inte så måste du lösa detta problem innan du kan använda Gallery."
+msgstr "Under vissa speciella omständigheter kan Gallery tro att Safe Mode är aktiverat, även fast det är avaktiverat.  Du kan se för dig själv genom att titta i <i>Local</i> kolumnen på <i>safe_mode</i> raden på %sPHP Info%s sidan.  Om det står 'Off' eller '0' eller 'undefiened' så är det möjligt att Gallery har gjort ett misstag och du kan fortsätta.  Om inte så måste du lösa detta problem innan du kan använda Gallery."
 
 #: ../setup/config_data.inc:138
 msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
@@ -527,17 +526,15 @@ msgstr ""
 
 #: ../setup/config_data.inc:140
 msgid "The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."
-msgstr ""
+msgstr "<b>exec()</b> funktionen är avaktiverad på din server.  Gallery kommer inte att fungera med denna PHP konfiguration."
 
 #: ../setup/config_data.inc:144
-#, fuzzy
 msgid "Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."
-msgstr "Tillåt Gallery's <b>.htaccess</b> fil att sätta applikationsspecifika konfigurationsalternativ för Gallery applikationen.  Detta kontrolleras utav webbserverägaren så det är inte alltid säkert att du kan ändra det.  Den stora nackdelen med att inte ha detta är att du kanske inte kommer att kunna lämna filer större än > 2MB (t.ex. stora ZIP filer) och att du kanske inte kan använda <b>mod_rewrite</b> (se nedan)."
+msgstr "Tillåt Gallerys <b>.htaccess</b> fil att sätta applikationsspecifika konfigurationsalternativ för Gallery applikationen.  Detta kontrolleras utav webbserverägaren så det är inte alltid säkert att du kan ändra det.  Den stora nackdelen med att inte ha detta är att du kanske inte kommer att kunna lämna filer större än > 2MB (t.ex. stora ZIP filer eller filmer)."
 
 #: ../setup/config_data.inc:146
-#, fuzzy
 msgid "Apache is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:"
-msgstr "Apache lyder inte din <b>.htaccess</b> fil.  Prova med att skriva in följande i din webbservers <b>httpd.conf</b> fil:"
+msgstr "Apache lyder inte 'php_value' raden i din <b>.htaccess</b> fil.  Prova med att skriva in följande i din webbservers <b>httpd.conf</b> fil:"
 
 #: ../setup/config_data.inc:150
 msgid "If you are running PHP in CGI mode, this message is unavoidable."
@@ -642,7 +639,7 @@ msgstr "Gallery"
 
 #: ../setup/config_data.inc:260
 msgid "Use Icons ?"
-msgstr ""
+msgstr "Använd ikoner?"
 
 #: ../setup/config_data.inc:261
 msgid "You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."
@@ -650,15 +647,15 @@ msgstr ""
 
 #: ../setup/config_data.inc:262
 msgid "Icons and text"
-msgstr ""
+msgstr "Ikoner och text"
 
 #: ../setup/config_data.inc:263
 msgid "Text only"
-msgstr ""
+msgstr "Text endast"
 
 #: ../setup/config_data.inc:264
 msgid "Icons only"
-msgstr ""
+msgstr "Ikoner endast"
 
 #: ../setup/config_data.inc:269
 msgid "Skin Name"
@@ -670,7 +667,7 @@ msgstr "Välj ett skal att användas för Gallery.  Du har nu ett flertal val av &q
 
 #: ../setup/config_data.inc:271
 msgid "Here you can get a more Gallery Skins by Drazan"
-msgstr ""
+msgstr "Här kan du hämta fler Galleryskal av Drazan"
 
 #: ../setup/config_data.inc:277
 msgid "Default upload method"
@@ -823,9 +820,8 @@ msgid "Selecting this option has Gallery automatically attempt to rotate images 
 msgstr "Val av detta alternativ gör att Gallery automatiskt försöker att rotera bilder vid uppladdning, grundat på orienteringsinformationen som är sparad i JPEG EXIF-informationen av vissa nyare digitala kameror."
 
 #: ../setup/config_data.inc:430
-#, fuzzy
 msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
-msgstr "Kräver Jhead EXIF-tolkare v.1.9 eller senare (se nedan)."
+msgstr "Kräver Jhead EXIF-tolkare v.1.9 eller senare (se alternativa verktyg)."
 
 #: ../setup/config_data.inc:431 ../setup/config_data.inc:493
 #: ../setup/config_data.inc:507 ../setup/config_data.inc:513
@@ -904,18 +900,16 @@ msgid "GeekLog Dir"
 msgstr "GeekLog Katalog"
 
 #: ../setup/config_data.inc:456
-#, fuzzy
 msgid "If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"
-msgstr "Om du valde GeekLog ovan, vänligen skriv in placeringen för GeekLog public_html katalogen."
+msgstr "Om du använder GeekLog, vänligen skriv in placeringen för GeekLog public_html katalogen. t.ex. '/sökväg/till/geeklog/public_html"
 
 #: ../setup/config_data.inc:468
 msgid "Main Gallery page"
 msgstr "Gallery's Huvudsida"
 
 #: ../setup/config_data.inc:471
-#, fuzzy
 msgid "Show the album tree ?"
-msgstr "Visa albumträd?"
+msgstr "Visa albumträdet?"
 
 #: ../setup/config_data.inc:472
 #, fuzzy
@@ -923,25 +917,24 @@ msgid "If you turn this option on, you'll see a list of sub-albums when you're b
 msgstr "Om du aktiverar detta alternativ så kommer du att se en komplett lista över alla underliggande album när du bläddrar till huvudsidan av ditt Gallery.  Detta kommer att göra navigering till ett specificerat underliggande album mycket enklare (fastän det kan också skräpa ned på Gallery's huvudsida).  Är inställd på <b>nej</b> som förvalt."
 
 #: ../setup/config_data.inc:473
-#, fuzzy
 msgid "No tree"
-msgstr "Observera"
+msgstr "Inget träd"
 
 #: ../setup/config_data.inc:474
 #, php-format
 msgid "%d sublevel"
-msgstr ""
+msgstr "%d undernivå"
 
 #: ../setup/config_data.inc:475 ../setup/config_data.inc:476
 #: ../setup/config_data.inc:477 ../setup/config_data.inc:478
 #: ../setup/config_data.inc:479
 #, php-format
 msgid "%d sublevels"
-msgstr ""
+msgstr "%d undernivåer"
 
 #: ../setup/config_data.inc:480
 msgid "Complete Tree"
-msgstr ""
+msgstr "Komplett träd"
 
 #: ../setup/config_data.inc:484
 msgid "Highlight size"
@@ -1002,9 +995,9 @@ msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is opti
 msgstr "Filsystemets sökväg till <b>%s</b> binärkoden(program).  T.ex. %s eller %s. Detta är valfritt så oroa dig inte så mycket om du inte har det."
 
 #: ../setup/config_data.inc:571 ../setup/config_data.inc:583
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
-msgstr "Filsystemets sökväg till <b>jhead</b> EXIF-tolken.  T.ex. %s eller %s. Detta är valfritt så oroa dig inte så mycket om du inte har "
+msgstr "Filsystemets sökväg till <b>%s</b> EXIF-tolken.  T.ex. %s eller %s. Detta är valfritt så oroa dig inte så mycket om du inte har den."
 
 #: ../setup/config_data.inc:595
 #, php-format
@@ -1250,11 +1243,11 @@ msgstr ""
 
 #: ../setup/config_data.inc:804
 msgid "SMTP Server"
-msgstr ""
+msgstr "SMTP Server"
 
 #: ../setup/config_data.inc:805
 msgid "The name or IP address of the SMTP Server you want to use."
-msgstr ""
+msgstr "Namnet på eller IP-adressen för SMTP servern du önskar att använda."
 
 #: ../setup/config_data.inc:813
 msgid "Sender hostname"
@@ -1266,28 +1259,27 @@ msgstr ""
 
 #: ../setup/config_data.inc:821
 msgid "SMTP Port"
-msgstr ""
+msgstr "SMTP port"
 
 #: ../setup/config_data.inc:822
 msgid "The port on the SMTP server you are connecting to."
-msgstr ""
+msgstr "Porten på SMTP servern som du ansluter till."
 
 #: ../setup/config_data.inc:830
 msgid "SMTP account name"
-msgstr ""
+msgstr "SMTP kontonamn"
 
 #: ../setup/config_data.inc:831
 msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
 msgstr ""
 
 #: ../setup/config_data.inc:839
-#, fuzzy
 msgid "SMTP password"
-msgstr "Lösenord"
+msgstr "SMTP lösenord"
 
 #: ../setup/config_data.inc:840
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
-msgstr ""
+msgstr "Lösenord för att skicka e-post genom smtp server. OBSERVERA: Detta lösenord är sparat som klartext i config.php. Gör säkert att rättigheter är inställda så "
 
 #: ../setup/config_data.inc:855
 msgid "Gallery wide slideshow"
@@ -1473,18 +1465,16 @@ msgid "Do you want to allow everybody to see a complete overview of all Comments
 msgstr "Vill du tillåta alla att se en komplett översikt av kommentarer för ett album.  Ställ in detta på &quot;nej&quot; om endast administratörer och ägare skall kunna använda denna egenskap."
 
 #: ../setup/config_data.inc:977
-#, fuzzy
 msgid "Watermarking"
-msgstr "Vattenstämpelkatalog"
+msgstr "Vattenstämpling"
 
 #: ../setup/config_data.inc:979
 msgid "Choose wether you want to enable or disable watermarking. And set the defaults"
 msgstr ""
 
 #: ../setup/config_data.inc:980
-#, fuzzy
 msgid "Watermarking is not possible in this installation !"
-msgstr "NetPBM kommer inte att användas i denna installation."
+msgstr "Vattenstämpling är inte möjlig i denna installation!"
 
 #: ../setup/config_data.inc:983
 msgid "Watermark directory"
@@ -1497,7 +1487,7 @@ msgstr "Hela sökvägen på hårddisk (hotellkonto) till katalogen där dina vattenst
 
 #: ../setup/config_data.inc:994
 msgid "Which Imagetype is watermarked"
-msgstr ""
+msgstr "Vilken bildtyp är vattenstämplad"
 
 #: ../setup/config_data.inc:995
 msgid "Here you can choose which of the images should be watermarked per default."
@@ -1509,18 +1499,16 @@ msgid "Watermark both resized and full images"
 msgstr "Vattenstämpelkatalog"
 
 #: ../setup/config_data.inc:1001
-#, fuzzy
 msgid "Watermark resized image only"
-msgstr "Vattenstämpelkatalog"
+msgstr "Vattenstämpla storleksändrad bild endast"
 
 #: ../setup/config_data.inc:1002
-#, fuzzy
 msgid "Watermark full sized image only"
-msgstr "Vattenstämpelkatalog"
+msgstr "Vattenstämpla fullstorleksbild endast"
 
 #: ../setup/config_data.inc:1012
 msgid "Statistics"
-msgstr ""
+msgstr "Statistik"
 
 #: ../setup/config_data.inc:1013
 msgid "Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information."
@@ -1548,7 +1536,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:1022
 msgid "Available Stats for 'normal' users"
-msgstr ""
+msgstr "Tillgänglig statistik för 'vanliga' användare"
 
 #: ../setup/config_data.inc:1023
 msgid "Gallery can give a lot of statistics for admins, however you can enable some of them to normal users."
@@ -1561,51 +1549,49 @@ msgstr ""
 
 #: ../setup/config_data.inc:1029
 msgid "View cache"
-msgstr ""
+msgstr "Visa cache"
 
 #: ../setup/config_data.inc:1030 ../setup/config_data.inc:1041
 #: ../setup/config_data.inc:1052 ../setup/config_data.inc:1063
 #: ../setup/config_data.inc:1074 ../setup/config_data.inc:1085
 msgid "On"
-msgstr ""
+msgstr "På"
 
 #: ../setup/config_data.inc:1034
 msgid "View cache expiration"
-msgstr ""
+msgstr "Visa cacheförfallotid"
 
 #: ../setup/config_data.inc:1040
-#, fuzzy
 msgid "Comment cache"
-msgstr "Kommentarer"
+msgstr "Kommentarercache"
 
 #: ../setup/config_data.inc:1045
 msgid "Comment cache expiration"
-msgstr ""
+msgstr "Kommentarcache förfallotid"
 
 #: ../setup/config_data.inc:1051
 msgid "Date cache"
-msgstr ""
+msgstr "Datumcache"
 
 #: ../setup/config_data.inc:1056
 msgid "Date cache expiration"
-msgstr ""
+msgstr "Datumcache förfallotid"
 
 #: ../setup/config_data.inc:1062
-#, fuzzy
 msgid "Vote cache"
-msgstr "Röstningskategori?"
+msgstr "Röstningscache"
 
 #: ../setup/config_data.inc:1067
 msgid "Vote cache expiration"
-msgstr ""
+msgstr "Röstningscache förfallotid"
 
 #: ../setup/config_data.inc:1073
 msgid "Rating cache"
-msgstr ""
+msgstr "Bedömningscache"
 
 #: ../setup/config_data.inc:1078
 msgid "Rating cache expiration"
-msgstr ""
+msgstr "Bedömningscache förfallotid"
 
 #: ../setup/config_data.inc:1084
 msgid "Capturedate cache"
@@ -1666,23 +1652,23 @@ msgstr ""
 
 #: ../setup/config_data.inc:1132
 msgid "24 Hours"
-msgstr ""
+msgstr "24 timmar"
 
 #: ../setup/config_data.inc:1133
 msgid "12 Hours"
-msgstr ""
+msgstr "12 timmar"
 
 #: ../setup/config_data.inc:1134
 msgid "6 Hours"
-msgstr ""
+msgstr "6 timmar"
 
 #: ../setup/config_data.inc:1135
 msgid "1 Hour"
-msgstr ""
+msgstr "1 timme"
 
 #: ../setup/config_data.inc:1136
 msgid "30 Minutes"
-msgstr ""
+msgstr "30 minuter"
 
 #: ../setup/config_data.inc:1140
 msgid "Random Block Retrieval Attempts"
@@ -2013,7 +1999,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:1456
 msgid "Account for the mPUSH service"
-msgstr ""
+msgstr "Konto för mPUSH servicen"
 
 #: ../setup/config_data.inc:1457
 #, php-format
@@ -2354,9 +2340,9 @@ msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>&quot;%s&quot;</b> måste vara ett positivt nummer"
 
 #: ../setup/confirm.inc:235
-#, fuzzy, php-format
+#, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a number"
-msgstr "%s: <b>&quot;%s&quot;</b> måste vara ett positivt nummer"
+msgstr "%s: <b>&quot;%s&quot;</b> måste vara ett  nummer"
 
 #: ../setup/confirm.inc:243
 #, php-format
@@ -2655,7 +2641,7 @@ msgstr "Saknat värde"
 
 #: ../setup/functions.inc:351
 msgid "<b>exec()</b> is not disabled on this server."
-msgstr ""
+msgstr "<b>exec()</b> är inte   på denna server."
 
 #: ../setup/functions.inc:369
 msgid "I can read your <b>.htaccess</b> file."
@@ -2851,14 +2837,12 @@ msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "I %s, för namn %s (rad %d) värde %s bör vara ett positivt heltalsnummer"
 
 #: ../setup/functions.inc:1074
-#, fuzzy
 msgid "<b>register_globals</b> is off."
-msgstr "<b>safe_mode</b> är avaktiverat."
+msgstr "<b>register_globals</b> är inaktiverat."
 
 #: ../setup/functions.inc:1242
-#, fuzzy
 msgid "Your passwords do not match!"
-msgstr "Dina administratörslösenord matchar inte varandra!"
+msgstr "Dina lösenord matchar inte varandra!"
 
 #: ../setup/functions.inc:1258
 msgid "Valid admin email address given."
@@ -3172,9 +3156,8 @@ msgid "Your configuration has been successfully saved!"
 msgstr "Din konfiguration har framgångsrikt sparats!"
 
 #: ../setup/write.inc:186
-#, fuzzy
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
-msgstr "Vi rekomenderar dig att göra chm på dina .htaccess och config.php filer till 644 för ökad säkerhet."
+msgstr "Vi rekomenderar dig att köra 'secure.sh' eller göra chm på dina .htaccess och config.php filer till 644 för ökad säkerhet."
 
 #: ../setup/write.inc:193
 msgid "Note"
@@ -3276,45 +3259,3 @@ msgstr "Träram"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr "En ram med trästruktur"
-
-#~ msgid "You usually don't need to change anything in this section."
-#~ msgstr "Du behöver vanligtvis inte ändra någonting i denna sektion."
-
-#, fuzzy
-#~ msgid "Version of ImageMagick being used"
-#~ msgstr "%d av %d ImageMagick binärer lokaliserade."
-
-#, fuzzy
-#~ msgid "Enable caching for comments"
-#~ msgstr "Aktivera kommentarer"
-
-#, fuzzy
-#~ msgid "Enable caching for ratings"
-#~ msgstr "Aktivera kommentarer"
-
-#~ msgid "The full URL to the Gallery web application.  E.g. %s"
-#~ msgstr "Hela Webbadressen till Gallery Webbapplikationen.  T.ex. %s"
-
-#~ msgid "The full URL to your album directory (specified above) on your web server.  E.g. %s"
-#~ msgstr "Hela Webbadressen till din albumkatalog (specificerad ovan) på din webbserver.  T.ex. %s."
-
-#~ msgid "Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP 4.0.0 uses a different file upload protocol, and versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can. <p>"
-#~ msgstr "Kontroll för att se om du använder PHP 4.  Observera att vissa versioner av PHP har buggar som orsakar att Gallery inte fungerar.  PHP 4.0.0 använder en annan typ av fillämningsprotokoll, version 4.0.3 och 4.0.3pl1 har en bugg i sin deserialiseringskod som orsakar att Gallery inte kan läsa från sin egen databas.  Uppgradera till minst PHP 4.0.4pl1 om du har möjlighet. <p>"
-
-#~ msgid "Use this section to set options to configure gallery to be embedded in another web application."
-#~ msgstr "Använd denna sektion för alternativ att konfigurera Gallery för att vara inbäddat i andra applikationer."
-
-#~ msgid "Embed Gallery"
-#~ msgstr "Bädda in Gallery"
-
-#~ msgid "If you would like to run %s in another web application (such as *Nuke, phpBB2 or GeekLog) you have to choose the environment here."
-#~ msgstr "Om du vill använda %s i andra webbapplikationer (så som *Nuke, phpBB2 eller GeekLog) så måste du välja miljön här."
-
-#~ msgid "Standalone Gallery"
-#~ msgstr "Fristående Gallery"
-
-#~ msgid "with donation"
-#~ msgstr "Med donation"
-
-#~ msgid "without donation"
-#~ msgstr "Utan donation"
