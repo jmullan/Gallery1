@@ -155,7 +155,7 @@ function forceStaticLang() {
 	}
 }	
 
-function initLanguage($noHeader=false) {
+function initLanguage($sendHeader=true) {
 
 	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $HTTP_SERVER_VARS, $HTTP_COOKIE_VARS, $HTTP_GET_VARS, $HTTP_SESSION_VARS;
@@ -337,7 +337,7 @@ function initLanguage($noHeader=false) {
 	** We do this only if we are not embedded and the "user" wants it.
 	** Because headers might be sent already.
 	*/
-	if (! isset($GALLERY_EMBEDDED_INSIDE) || $noHeader == false) {
+	if (! isset($GALLERY_EMBEDDED_INSIDE) || $sendHeader == false) {
 		header('Content-Type: text/html; charset=' . $gallery->charset);
 	}
 
