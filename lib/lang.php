@@ -113,7 +113,7 @@ function getEnvLang() {
 		break;
 
 		case 'GeekLog':
-			/* Note : $_CONF is no Superglobal ;) */
+			/* Note: $_CONF is not a Superglobal ;) */
 			if (isset($_CONF['language'])) {
 				return $_CONF['language'];
 			} else if (isset($_CONF['locale'])) {

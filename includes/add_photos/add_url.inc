@@ -41,7 +41,7 @@
 <input type="text" name="urls[]" size="40">
 <p>
 <?php
-	echo _("How should the captions be ?");
+	echo _("What would you like the captions to default to?");
 	 echo "\n<br><br>";
 	include(dirname(__FILE__) .'/captionOptions.inc.php');
 ?>

@@ -109,7 +109,7 @@ if (!isset($metaboxes)) {
 
 </table>
 <?php 
-	echo _("If no caption is set, how do you want the captions to be ?");
+	echo _("If no caption is set, what would you like the captions to default to?");
 	echo "\n<br><br>";
 	include(dirname(__FILE__) .'/captionOptions.inc.php');
 

@@ -1019,8 +1019,7 @@ $constants = array_merge($constants,
 	),
 	"rssMaxAlbums" => array(
 		"prompt" => _("Maximum Albums Returned"),
-		"desc" => _("This value is the maximum number of albums that the RSS feed will display to the user. Only the most
-recently modified albums are chosen for this value."),
+		"desc" => _("This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."),
 		"value" => 25,
 		"type" => "text",
 		"must-be-number" => 1,
