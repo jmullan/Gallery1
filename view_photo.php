@@ -282,7 +282,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?> 
   </style> 
   </head>
-  <body dir="<?php echo $gallery->direction ?>" onresize="calculateNewSize()">
+  <body dir="<?php echo $gallery->direction ?>"<?php echo ($fitToWindow) ? ' onResize="calculateNewSize()"' : '' ?>>
 <?php
 } // End if ! embedded
 
