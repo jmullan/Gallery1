@@ -2547,7 +2547,7 @@ function compress_image($src, $out, $target=0, $quality, $keepProfiles=0) {
 					. ($target ? "-size ${target}x${target} " : '')
 					. $src
 					. ($target ? " -geometry ${target}x${target}" : '')
-					. ($keepProfiles ? ' ' : ' +profile icm +profile iptc +profile app1 ')
+					. ($keepProfiles ? ' ' : ' +profile \'*\' ')
 					. $out));
 			break;
 		default:
