@@ -388,7 +388,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			global $mosConfig_dbprefix;
 			global $my;
 
-			/* Session infos about Mambo are available when we open a Popup from Mambo, 
+			/* Session info about Mambo are available when we open a Popup from Mambo, 
 			** but content isnt parsed through Mambo
 			*/
 			if (isset($gallery->session->mambo)) {
@@ -401,7 +401,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			}
 
 			if(empty($mosConfig_db)) {
-				echo _("Gallery seems to be inside Mambo, but we couldnt get necessary infos.");
+				echo _("Gallery seems to be inside Mambo, but we couldn't get the necessary info.");
 				exit;
 			}
 
