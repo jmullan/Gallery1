@@ -41,11 +41,9 @@ foreach ($constants as $key => $val) {
 		$val["value"] = $gallery->app->$key;
 	}
 	else {
-        	if (isset ($$gallery->app->$key)) {
-                	$$defn = $$gallery->app->$key;
-                        $$val['value'] = $$gallery->app->$key;
-                } else {
-                        $$defn = false;
+        	if (isset ($gallery->app->$key) && isset (${$gallery->app->$key})) {
+                	$$defn = ${$gallery->app->$key};
+                        $$val['value'] = ${$gallery->app->$key};
                 }
 	}
 	$onThisPage[$key] = 1;

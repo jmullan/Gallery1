@@ -6,7 +6,7 @@
  * error reporting is turned all the way up.  We'll fix this in v2.0
  */
 error_reporting(E_ALL);
-error_reporting(E_ALL & ~E_NOTICE);
+//error_reporting(E_ALL & ~E_NOTICE);
 
 /* emulate part of register_globals = on */
 extract($HTTP_GET_VARS);
