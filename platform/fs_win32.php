@@ -48,6 +48,11 @@ function fs_is_dir($filename) {
 	return is_dir($filename);
 }
 
+function fs_is_file($filename) {
+	$filename = fs_import_filename($filename, 0);
+	return is_file($filename);
+}
+
 function fs_opendir($path) {
 	$filename = fs_import_filename($filename, 0);
 	return opendir($path);

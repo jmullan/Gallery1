@@ -52,6 +52,10 @@ function fs_is_dir($filename) {
 	return is_dir($filename);
 }
 
+function fs_is_file($filename) {
+	return is_file($filename);
+}
+
 function fs_opendir($path) {
 	return opendir($path);
 }
