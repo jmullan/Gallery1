@@ -40,9 +40,7 @@ $outfile = GALLERY_CONFDIR . '/config.php';
 @copy("gpl.txt", $outfile);
 
 if ($fd = @fs_fopen($outfile, "a")) {
-	$data = $gallery->session->configData;
-
-	fwrite($fd, $data);
+	fwrite($fd, $gallery->session->configData);
 	fclose($fd);
 } else {
 	fail($outfile);

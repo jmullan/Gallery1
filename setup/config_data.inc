@@ -423,8 +423,8 @@ relative URLs, however some features, such as printing, may not function correct
 	),
 	'ImVersion' => array(
 		'prompt' => _("Version of ImageMagick being used"),
-		'desc' => _("This setting is only required when using the ImageMagick graphics package.  Due to changes in the ImageMagick commandline parameters, we need to know which version is being used so that we can accurately tell it what to do."),
-		'choices' => array('600' => '5.4.8 to 6.0.9', '610' => '6.1.0+'),
+		'desc' => sprintf(_("This setting is only required when using the ImageMagick graphics package.  Due to changes in the ImageMagick commandline parameters, we need to know which version is being used so that we can accurately tell it what to do. If you are not sure which version you are using, you can run the %sCheck ImageMagick%s diagnostic."), "<a href=\"check_imagemagick.php\">", "</a>"),
+		'choices' => array('5x' => 'Version 5.x', '6x' => 'Version 6.x'),
 		'required' => true,
 	),
 	'autorotate' => array(

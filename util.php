@@ -379,6 +379,10 @@ function getFile($fname, $legacy=false) {
 		return $tmp;
 	}
 
+	if (function_exists("file_get_contents")) {
+		return file_get_contents($fname);
+	}
+
 	if ($legacy) {
 	    $modes = "rt";
 	} else {
@@ -2303,11 +2307,11 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 			break;
 		case "ImageMagick":
 			// Set the keepProfiles parameter based on the version
-			// of ImageMagick being used.  6.1.0 changed the
+			// of ImageMagick being used.  6.0.0 changed the
 			// parameters again.
-			if ($gallery->app->ImVersion == '600' && $keepProfiles) {
+			if ($gallery->app->ImVersion == '5x' && $keepProfiles) {
 				$keepProfiles = ' +profile \'*\' ';
-			} elseif ($gallery->app->ImVersion == '610' && $keepProfiles) {
+			} elseif ($gallery->app->ImVersion == '6x' && $keepProfiles) {
 				$keepProfiles = ' -strip ';
 			} else {
 				$keepProfiles = '';

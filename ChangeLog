@@ -1,3 +1,12 @@
+2004-11-11  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-b270
+
+	* Change: Use file_get_contents (when it's available) instead of using
+	  the while loop to fread.  Could be internally faster.
+
+	* Change: Modify the version ranges to be 5.x and 6.x for the IM issue
+	  and add a link to check_imagemagick for users who don't know what
+	  version they have.
+
 2004-11-11  Jens A. Tkotz <jens@peino.de>  1.5-cvs-b269
 
 	* Fix: fitToWindow failed on PHP where . was not in includepath.
