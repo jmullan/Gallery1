@@ -108,7 +108,7 @@ if (!strcmp($borderwidth, "off")) {
 if (!strcmp($gallery->album->fields["resize_size"], "off")) {
         $mainWidth = 0;
 } else {
-	$mainWidth = $gallery->album->fields["resize_size"] + ($borderwidth*2);
+	$mainWidth = "100%"; 
 }
 
 $navigator["id"] = $id;
@@ -245,7 +245,7 @@ includeHtmlWrap("photo.header");
 ?>
 
 <!-- Top Nav Bar -->
-<table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
+<table border=1 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
 
 <tr>
 <td>
