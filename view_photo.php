@@ -114,9 +114,9 @@ $navigator["noIndivPages"] = true;
 #-- breadcrumb text ---
 if (strcmp($album->fields["returnto"], "no")) {
 	$breadtext[0] = "Gallery: <a href=$top/albums.php>".$app->galleryTitle."</a>";
-	$breadtext[1] = "Album: <a href=$top/view_album.php?set_page=$page>".$album->fields["title"]."</a>";
+	$breadtext[1] = "Album: <a href=$top/view_album.php?page=$page>".$album->fields["title"]."</a>";
 } else {
-	$breadtext[0] = "Album: <a href=$top/view_album.php?set_page=$page>".$album->fields["title"]."</a>";
+	$breadtext[0] = "Album: <a href=$top/view_album.php?page=$page>".$album->fields["title"]."</a>";
 }
 ?>
 
