@@ -1,4 +1,17 @@
+2001-08-08  Bharat Mediratta  <bharat@menalto.com> (1.2-cvs-b11)
+
+	* Yet another bug fix to the highlight album code.  This time around
+	  we're fixing an edge case which occurs when you have a nested album
+	  that contains only an empty nested album.  This incidentally fixes
+	  some problems with the mirroring caused by the prior fixes.
+
+	* Sessions are no longer shared between multiple Galleries on the same
+	  server, unless both Galleries use the same user database files.  Each
+	  Gallery will have its own session (and you can flip back and forth
+	  between them).
+
 2001-08-07  John Kirkland  <jpk@bl.org> (1.2-cvs-b10)
+
 	* Removed an extraneous "Highlight $label" line from
 	  view_album.php.
 
