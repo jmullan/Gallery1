@@ -793,7 +793,7 @@ if ($numPhotos) {
 		if (!strcmp($gallery->album->fields['showDimensions'], 'yes')) {
 				$photo    = $gallery->album->getPhoto($i);
 				$image    = $photo->image;
-				if (!empty($image)) {
+				if (!empty($image) && !$photo->isMovie()) {
 					$viewFull = $gallery->user->canViewFullImages($gallery->album);
 					$fullOnly = (isset($gallery->session->fullOnly) &&
 						!strcmp($gallery->session->fullOnly, 'on') &&

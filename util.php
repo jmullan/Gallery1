@@ -1452,7 +1452,8 @@ function makeGalleryUrl($target, $args=array()) {
 				** E.g. the Upload Framwork does not work then
 				** So we need to put necessary infos of Mambo into session.
 				*/
-				if (isset($args['type']) && $args['type'] == 'popup') {
+				if ((isset($args['type']) && $args['type'] == 'popup') ||
+					(isset($args['gallery_popup']) && $args['gallery_popup'] == 'true')) {
 					$target= $gallery->app->photoAlbumURL . "/index.php";
 
 					if(!isset($gallery->session->mambo)) {
@@ -3309,25 +3310,17 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 
 	foreach ($tables as $caption => $fields) {
 		echo "\n". '<table border="0" align="center" class="popup">';
-		echo "\n". '<tr><th colspan="7" align="center">'. $caption .'</th></tr>';
+		echo "\n". '<tr><th colspan="3" align="center">'. $caption .'</th></tr>';
 
 	        $i=0;
-		echo "\n<tr>";
 	        foreach ($fields as $key => $value) {
         	        $i++;
+			echo "\n<tr>";
                 	echo "\n\t<td valign=\"top\"><b>$key<b></td>";
 	                echo "\n\t<td valign=\"top\">:</td>";
         	        echo "\n\t<td>$value</td>";
-                	        if ($i != sizeof($fields)) {
-                        	        if ($i%2 == 0) {
-                                	        echo "\n</tr>\n<tr>";
-	                                }
-        	                else {
-                	                echo '<td width="5">&nbsp;</td>';
-                        	}
-	                }
+	        	echo "\n</tr>";
         	}
-	        echo "\n</tr>";
 		echo "\n</table>";
 	}
 }
