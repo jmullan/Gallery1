@@ -202,7 +202,6 @@ if (isset($gallery->app->comments_length)) {
 	$maxlength=0;
 }
 
-
 if (isset($save)) {
 	if ( empty($commenter_name) || empty($comment_text)) {
 		$error_text = _("Name and comment are both required to save a new comment!");
@@ -215,10 +214,8 @@ if (isset($save)) {
 		$gallery->album->addComment($id, stripslashes($comment_text), $IPNumber, $commenter_name);
 		$gallery->album->save();
 		emailComments($id, $comment_text, $commenter_name);
-
 	}
 }
-$HTTP_POST_VARS;
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype(); ?>

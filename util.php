@@ -88,7 +88,7 @@ function viewComments($index, $addComments, $page_url) {
 	}
 	
 	if ($addComments) {
-		if (isset($gallery->app->comments_addInside) && $gallery->app->comments_addInside == "inside") {
+		if (isset($gallery->app->comments_addType) && $gallery->app->comments_addType == "inside") {
 			echo '<form name="theform" method="post" action="'. $page_url .'">';
 			drawCommentAddForm($commenter_name);
 			echo "</form>";

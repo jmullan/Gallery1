@@ -179,22 +179,4 @@ function emptyFormVar($name) {
 	return !isset($HTTP_GET_VARS[$name]) && !isset($HTTP_POST_VARS[$name]);
 }
 
-/*
-** $attrs is an array 
-*/
-function validateFormVars($attrs) {
-	if (!is_array($attrs)) {
-		return;
-	}
-	print_r($attrs);
-
-	foreach ($attrs as $fieldname => $values) {
-		$fieldValue=$values[0];
-		// Check if field is empty
-		if (empty($fieldValue)) {
-			return sprintf(_("%s is not allowed to be empty."), $fieldname);
-		}
-	}
-	return false;
-}
 ?>
