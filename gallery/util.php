@@ -2870,7 +2870,7 @@ Gallery @ %s Administrator.");
 }
 
 function gettext_installed() {
-	if (in_array("gettext", get_loaded_extensions()) && function_exists('gettext')) {
+	if (in_array("gettext", get_loaded_extensions()) && function_exists('gettext') && function_exists('_')) {
 		return true;
 	}
 	else {
