@@ -657,7 +657,7 @@ class Album {
 		return $ids;
 	}
 
-	function getPhoto($index) {
+	function &getPhoto($index) {
 		return $this->photos[$index-1];
 	}
 
@@ -704,7 +704,7 @@ class Album {
 
 	function getItemCaptureDate($index) {
 		$photo = $this->getPhoto($index);
-		$itemCaptureDate =  $photo->getItemCaptureDate();
+		$itemCaptureDate = $photo->getItemCaptureDate();
 		if (!$itemCaptureDate) { // populating old photos with data
 			$this->setItemCaptureDate($index);
 			$this->save();
