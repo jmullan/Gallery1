@@ -59,8 +59,13 @@ $constants = array(
 	),
 	"pnmDir" => array(
 		"desc" => "The location of your NetPBM package.  If you don't " .
-			"have NetPBM, Gallery won't work at all.",
+			  "have NetPBM, Gallery won't work at all.",
 		"value" => locateDir("anytopnm")
+	),
+	"anytopnm" => array(
+		"type" => "hidden",
+		"override" => 1,
+		"value" => makePathWrapper("anytopnm")
 	),
 	"highlight_size" => array(
 		"desc" => "The target size (in pixels) of thumbnails " .
@@ -92,7 +97,7 @@ $constants = array(
 			"Note that this " .
 			"directory needs to have write access by the user who " .
 			"is running the web server (in your case this user is <b>" .
-			$webserver_user["name"] . "</b>)",
+			$webserver_user . "</b>)",
 		"value" => getenv("DOCUMENT_ROOT") . "/albums",
 			"require-write-dir" => 1
 	),
