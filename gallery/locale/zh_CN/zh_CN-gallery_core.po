@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_1_RC2
+# Version: 1_4_1_RC3
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-09 15:25+0100\n"
+"POT-Creation-Date: 2003-11-12 11:47+0100\n"
 "PO-Revision-Date: 2003-08-27 18:13+0800\n"
 "Last-Translator: Merlin Ma <merlin@turbolinux.com.cn>\n"
 "Language-Team: Simplified Chinese <naoki@cmfans.cn>\n"
@@ -195,7 +195,7 @@ msgstr "相册权限"
 msgid "Changing permissions for %s"
 msgstr "更改 %s 的权限："
 
-#: ../album_permissions.php:190 ../albums.php:317
+#: ../album_permissions.php:190 ../albums.php:324
 msgid "Owner:"
 msgstr "所有者："
 
@@ -366,121 +366,121 @@ msgstr "%s 发现以下目录 %s 在您的 %s 相册中"
 msgid "These are not valid albums.  Please move them out of the albums directory."
 msgstr "这些都不是正确的相册, 请尽速移除. "
 
-#: ../albums.php:272
+#: ../albums.php:273 ../albums.php:279
 #, fuzzy
 msgid "Highlight for Album: "
 msgstr "Highlight 照片"
 
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../albums.php:289 ../view_album.php:904
+#: ../albums.php:296 ../view_album.php:904
 msgid "title"
 msgstr "标题"
 
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../albums.php:306 ../view_album.php:909
+#: ../albums.php:313 ../view_album.php:909
 msgid "description"
 msgstr "描述"
 
-#: ../albums.php:330
+#: ../albums.php:337
 msgid "delete album"
 msgstr "删除相册"
 
-#: ../albums.php:337
+#: ../albums.php:344
 msgid "move album"
 msgstr "搬移相册"
 
-#: ../albums.php:339
+#: ../albums.php:346
 #, fuzzy
 msgid "reorder album"
 msgstr "更改名称"
 
-#: ../albums.php:341 ../view_album.php:318
+#: ../albums.php:348 ../view_album.php:318
 msgid "rename album"
 msgstr "更改名称"
 
-#: ../albums.php:348 ../view_album.php:336
+#: ../albums.php:355 ../view_album.php:336
 msgid "edit captions"
 msgstr "修改说明"
 
-#: ../albums.php:354 ../view_album.php:368
+#: ../albums.php:361 ../view_album.php:368
 msgid "permissions"
 msgstr "权限设定"
 
-#: ../albums.php:356
+#: ../albums.php:363
 msgid "view&nbsp;comments"
 msgstr "检视评论"
 
-#: ../albums.php:360
+#: ../albums.php:367
 msgid "url:"
 msgstr ""
 
-#: ../albums.php:372
+#: ../albums.php:379
 msgid "Hey!"
 msgstr "嘿! "
 
-#: ../albums.php:373
+#: ../albums.php:380
 #, php-format
 msgid "%s this album so that the URL is not so generic!"
 msgstr "%s 该相册, 换个好记一点的名称吧! "
 
-#: ../albums.php:374 ../rename_album.php:120
+#: ../albums.php:381 ../rename_album.php:120
 msgid "Rename"
 msgstr "更名"
 
-#: ../albums.php:382
+#: ../albums.php:389
 msgid "Note:  This album is out of date!"
 msgstr "注意：这个相册已经过期! "
 
-#: ../albums.php:382
+#: ../albums.php:389
 msgid "upgrade album"
 msgstr "更新相册"
 
-#: ../albums.php:390
+#: ../albums.php:397
 #, php-format
 msgid "Last changed on %s."
 msgstr "上次更新：%s. "
 
-#: ../albums.php:391
+#: ../albums.php:398
 #, php-format
 msgid "This album contains %s."
 msgstr "<br>%s在这个相册里面. "
 
-#: ../albums.php:391 ../view_album.php:833
+#: ../albums.php:398 ../view_album.php:833
 #, fuzzy
 msgid "1 item"
 msgstr "项"
 
-#: ../albums.php:391 ../upgrade_album.php:194 ../view_album.php:833
+#: ../albums.php:398 ../upgrade_album.php:194 ../view_album.php:833
 msgid "items"
 msgstr "项"
 
-#: ../albums.php:391
+#: ../albums.php:398
 msgid "no items"
 msgstr "没有东东"
 
-#: ../albums.php:395
+#: ../albums.php:402
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "人气：%s (从 %s 开始计算)"
 
-#: ../albums.php:396 ../view_album.php:840 ../view_album.php:854
+#: ../albums.php:403 ../view_album.php:840 ../view_album.php:854
 #, fuzzy
 msgid "1 time"
 msgstr "度"
 
-#: ../albums.php:396 ../view_album.php:840 ../view_album.php:854
+#: ../albums.php:403 ../view_album.php:840 ../view_album.php:854
 msgid "times"
 msgstr "度"
 
-#: ../albums.php:396 ../view_album.php:840 ../view_album.php:854
+#: ../albums.php:403 ../view_album.php:840 ../view_album.php:854
 msgid "0 times"
 msgstr "0 次"
 
-#: ../albums.php:403
+#: ../albums.php:410
 msgid "reset counter"
 msgstr "人气归零"
 
-#: ../albums.php:429 ../view_album.php:1026
+#: ../albums.php:436 ../view_album.php:1026
 msgid "Comments available for this item."
 msgstr "代表有评论喔. "
 
@@ -2490,7 +2490,7 @@ msgstr "Status: %s (希望收到 %s)"
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP 的 %s 无法决定 dimensions. "
 
-#: ../util.php:245 ../util.php:585 ../util.php:631 ../util.php:2587
+#: ../util.php:245 ../util.php:585 ../util.php:631 ../util.php:2594
 msgid "You have no graphics package configured for use!"
 msgstr "您没有设定图形套件! "
 
@@ -2710,94 +2710,94 @@ msgstr "需要帮忙吗? 请看 %s%s FAQ%s"
 msgid "Skipping %s (can't handle %s format)"
 msgstr "跳过 %s (无法处理 %s 格式)"
 
-#: ../util.php:2545
+#: ../util.php:2552
 msgid "documentation"
 msgstr "说明文件"
 
-#: ../util.php:2570
+#: ../util.php:2577
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr ""
 
-#: ../util.php:2597
+#: ../util.php:2604
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generated by %s v%s"
 
-#: ../util.php:2599
+#: ../util.php:2606
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2643
+#: ../util.php:2650
 #, fuzzy, php-format
 msgid "Skipping invalid email address %s"
 msgstr "您一定要输入用户名"
 
-#: ../util.php:2709
+#: ../util.php:2716
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message."
 msgstr ""
 
-#: ../util.php:2711
+#: ../util.php:2718
 #, php-format
 msgid "Report abuse to %s."
 msgstr ""
 
-#: ../util.php:2727
+#: ../util.php:2734
 msgid "Email not sent as it is disabled for this gallery"
 msgstr ""
 
-#: ../util.php:2731
+#: ../util.php:2738
 msgid "Email not sent as no address provided"
 msgstr ""
 
-#: ../util.php:2736
+#: ../util.php:2743
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr ""
 
-#: ../util.php:2751
+#: ../util.php:2758
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr ""
 
-#: ../util.php:2775 ../util.php:2780
+#: ../util.php:2782 ../util.php:2787
 msgid "not shown"
 msgstr ""
 
-#: ../util.php:2784
+#: ../util.php:2791
 msgid "Message"
 msgstr ""
 
-#: ../util.php:2788
+#: ../util.php:2795
 #, fuzzy
 msgid "Email sent"
 msgstr "电子信箱"
 
-#: ../util.php:2790
+#: ../util.php:2797
 #, fuzzy
 msgid "Email not sent"
 msgstr "电子信箱"
 
-#: ../util.php:2804
+#: ../util.php:2811
 #, fuzzy, php-format
 msgid "Last comment %s."
 msgstr "上次更新：%s. "
 
-#: ../util.php:2815
+#: ../util.php:2822
 msgid "FAILED"
 msgstr ""
 
-#: ../util.php:2824
+#: ../util.php:2831
 msgid "Email activity"
 msgstr ""
 
-#: ../util.php:2842
+#: ../util.php:2849
 #, fuzzy, php-format
 msgid "Cannot open logfile: %s"
 msgstr "无法开启 lock file (%s)! "
 
-#: ../util.php:2849
+#: ../util.php:2856
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -2809,53 +2809,53 @@ msgid ""
 "Gallery @ %s Administrator."
 msgstr ""
 
-#: ../util.php:2858 ../util.php:2860
+#: ../util.php:2865 ../util.php:2867
 #, fuzzy
 msgid "gallery title"
 msgstr "Gallery 标题"
 
-#: ../util.php:2859
+#: ../util.php:2866
 #, fuzzy
 msgid "gallery URL"
 msgstr "Gallery 连结"
 
-#: ../util.php:2887
+#: ../util.php:2894
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr ""
 
-#: ../util.php:2919 ../util.php:2966
+#: ../util.php:2926 ../util.php:2973
 #, fuzzy, php-format
 msgid "Can't open %s"
 msgstr "无法读取 %s. "
 
-#: ../util.php:2932 ../util.php:2937
+#: ../util.php:2939 ../util.php:2944
 #, fuzzy
 msgid "None"
 msgstr "完成"
 
-#: ../util.php:2933 ../util.php:2938
+#: ../util.php:2940 ../util.php:2945
 #, fuzzy
 msgid "Dots"
 msgstr "注意"
 
-#: ../util.php:2934 ../util.php:2939
+#: ../util.php:2941 ../util.php:2946
 msgid "Solid"
 msgstr ""
 
-#: ../util.php:2937
+#: ../util.php:2944
 #, fuzzy
 msgid "No frames"
 msgstr "尚无相册"
 
-#: ../util.php:2938
+#: ../util.php:2945
 msgid "Just a simple dashed border around the thumb."
 msgstr ""
 
-#: ../util.php:2939
+#: ../util.php:2946
 msgid "Just a simple solid border around the thumb."
 msgstr ""
 
-#: ../util.php:2960
+#: ../util.php:2967
 #, fuzzy, php-format
 msgid "Skipping %s."
 msgstr "跳过相册 %d..."
@@ -3106,16 +3106,16 @@ msgstr "嘿! 放些东西吧～"
 msgid "This album is empty."
 msgstr "这个相册空空如也"
 
-#: ../view_album.php:1061 ../view_photo.php:863
+#: ../view_album.php:1061 ../view_photo.php:866
 #, fuzzy
 msgid "Email me when:"
 msgstr "电子信箱"
 
-#: ../view_album.php:1062 ../view_photo.php:864
+#: ../view_album.php:1062 ../view_photo.php:867
 msgid "Comments are added"
 msgstr ""
 
-#: ../view_album.php:1065 ../view_photo.php:868
+#: ../view_album.php:1065 ../view_photo.php:871
 msgid "Other changes are made"
 msgstr ""
 
@@ -3136,27 +3136,27 @@ msgstr "抱歉, 这个相册不允许匿名评论喔. "
 msgid "resize photo"
 msgstr "修改大小"
 
-#: ../view_photo.php:398
+#: ../view_photo.php:401
 msgid "delete photo"
 msgstr "删除文件"
 
-#: ../view_photo.php:421
+#: ../view_photo.php:424
 msgid "View Images"
 msgstr "检视影像"
 
-#: ../view_photo.php:425 ../view_photo.php:427
+#: ../view_photo.php:428 ../view_photo.php:430
 msgid "normal"
 msgstr "一般"
 
-#: ../view_photo.php:425 ../view_photo.php:427
+#: ../view_photo.php:428 ../view_photo.php:430
 msgid "full"
 msgstr "原始"
 
-#: ../view_photo.php:438
+#: ../view_photo.php:441
 msgid "photo properties"
 msgstr "文件属性"
 
-#: ../view_photo.php:506 ../view_photo.php:521
+#: ../view_photo.php:509 ../view_photo.php:524
 #, fuzzy, php-format
 msgid "print this photo with %s"
 msgstr "在 %s 上列印"
