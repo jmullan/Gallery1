@@ -1410,6 +1410,32 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="") {
 						$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
 					}
 				}
+				
+				/* auto-rotate the photo if needed */
+				if (!strcmp($gallery->app->autorotate, 'yes') && $gallery->app->use_exif) {
+					$index = $gallery->album->numPhotos(1);
+					$exifData = $gallery->album->getExif($index);
+					if ($orientation = trim($exifData['Orientation'])) {
+						$photo = $gallery->album->getPhoto($index);
+						switch ($orientation) {
+						case "rotate 90":
+							$rotate = -90;
+							break;
+						case "rotate 180":
+							$rotate = 180;
+							break;
+						case "rotate 270":
+							$rotate = 90;
+							break;
+						default:
+							$rotate = 0;
+						}
+						if ($rotate) {
+							$gallery->album->rotatePhoto($index, $rotate);
+							processingMsg("- Photo auto-rotated ${rotate}&deg;");
+						}
+					}
+				}
 			} else {
 				processingMsg("<font color=red>Error: $err!</font>");
 				processingMsg("<b>Need help?  Look in the " .
