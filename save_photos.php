@@ -93,6 +93,11 @@ if ($urls) {
 		/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
 		$url = eregi_replace("^[[:space:]]+", "", $url);
 
+		/* If the URI doesn't start with a scheme, prepend 'http://' */
+		if (!ereg("^(http|ftp)", $url)) {
+			$url = "http://$url";
+		}
+
 		/* Parse URL for name and file type */
 		$url_stuff = parse_url($url);
 		$name = basename($url_stuff["path"]);
@@ -168,12 +173,22 @@ if ($urls) {
 			while ($cnt = eregi('(src|href)="?([^" >]+\.' . acceptableFormatRegexp() . ')[" >]',
 					    $contents, 
 					    $results)) {
+				set_time_limit(30);
 				$things[$results[2]]++;
 				$contents = str_replace($results[2], "", $contents);
 			}
 
 			/* Add each unique link to an array we scan later */
 			foreach (array_keys($things) as $thing) {
+
+				/* 
+				 * Some sites (slashdot) have images that start with // and this
+				 * confuses Gallery.  Prepend 'http:'
+				 */
+				if (!strcmp(substr($thing, 0, 2), "//")) {
+					$thing = "http:$thing";
+				}
+
 				/* Absolute Link ( http://www.foo.com/bar ) */
 				if (substr($thing, 0, 4) == 'http') {
 					$image_tags[] = $thing;
