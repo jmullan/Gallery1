@@ -288,7 +288,7 @@ function detect_exec_status()
 		if ($dir) {
 			$file = "$dir/$prog";
 			if (fs_is_executable($file)) {
-				exec($file, $results, $status);
+				fs_exec($file, $results, $status);
 				$count[$status]++;
 			} 
 		}

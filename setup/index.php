@@ -24,7 +24,7 @@ if (function_exists("posix_getpwuid")) {
 } else {
 	$whoami = locateFile("whoami");
 	if ($whoami) {
-		exec($whoami, $results);
+		fs_exec($whoami, $results, $status);
 		$webserver_user = $results[0];
 	} else {
 		$webserver_user = "unknown";
