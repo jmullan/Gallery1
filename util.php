@@ -1584,11 +1584,21 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $r
 			// do nothing -- we are moving a root album, and we don't
 			// want to move it into its own album tree
 
+		/*
+		// Commented on 04-22-2004 - This code is not functioning the
+		// way it's intended. $gallery->album is referring to the album
+		// being moved, not the parent album.  getNestedAlbum returns
+		// the number of photos inside the album being moved - 
+		// if the index of the album being moved (inside its parent)
+		// is larger than the number of photos inside the album being
+		// moved, then getAlbumName will return an out of bounds error
+
 		} elseif ( !$readOnly && ($myAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto )  {
 
 			// do nothing -- we are moving an album, and we don't
 			// want to move it into its own album tree
 
+		*/
 		} else {
 			printNestedVals(1, $myAlbumName, $movePhoto, $readOnly);
 		}
@@ -1605,8 +1615,14 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 	$myAlbum->load($albumName);
 	
 	$numPhotos = $myAlbum->numPhotos(1);
+	echo "<!-- level: " . $level . " -->";
+	echo "<!-- albumName: " . $albumName . " -->";
+	echo "<!-- movePhoto: " . $movePhoto . " -->";
+	echo "<!-- readOnly: " . $readOnly . " -->";
+	echo "<!-- numPhotos: " . $numPhotos . " -->";
 
 	for ($i=1; $i <= $numPhotos; $i++) {
+	echo "<!-- i: " . $i . " -->";
 		$myName = $myAlbum->getAlbumName($i);
 		if ($myName) {
 			$nestedAlbum = new Album();

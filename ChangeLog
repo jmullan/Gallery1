@@ -1,3 +1,13 @@
+2004-04-22  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b49
+
+	* Bugfix: Commented code - This code is not functioning the
+	  way it's intended. $gallery->album is referring to the album
+	  being moved, not the parent album.  getNestedAlbum returns
+	  the number of photos inside the album being moved - 
+	  if the index of the album being moved (inside its parent)
+	  is larger than the number of photos inside the album being
+	  moved, then getAlbumName will return an out of bounds error
+
 2004-04-21  Chris Kelly <ckdake@users.sf.net> 1.4.4-cvs-b48
 
 	* Bugfix: #938293 - Config wizard now says "All tested files up-to-date."
