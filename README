@@ -1,8 +1,9 @@
 CONTENTS
-	1. WHAT IS GALLERY?
-	2. HOW DO I INSTALL GALLERY IF I HAVE SHELL ACCESS?
-	3. HOW DO I INSTALL GALLERY IF I ONLY HAVE FTP ACCESS?
-	4. HOW DO I CUSTOMIZE GALLERY?
+  1. What is Gallery?
+  2. How do I install Gallery if I have shell access?
+  3. How do I install Gallery if I only have FTP access?
+  4. My webserver doesn't have NetPBM!  Help!  Aiee!
+  5. How do I customize Gallery?
 
 1. WHAT IS GALLERY?
 
@@ -80,7 +81,38 @@ again, you need to change your permissions back again:
 
 That's all it takes!
 
-4. HOW DO I CUSTOMIZE GALLERY?
+4. MY WEBSERVER DOESN'T HAVE NETPBM!  HELP!  AIEE!
+
+Many servers don't have NetPBM installed on them.  Or if they do,
+they have an old version.  Some older versions are missing a few
+critical components (like JPEG or PNG support).
+
+To solve this problem, we're making statically compiled binaries
+of NetPBM available on the Gallery website.  I'd suggest that you
+first go through the Gallery config wizard and see if it complains
+about NetPBM.  If it complains, you can hunt around on your machine
+to see if NetPBM is installed (it's quite often found in /usr/bin,
+/usr/local/bin or /usr/local/netpbm) and provide that path to
+the Gallery config wizard.
+
+If all that fails, you can download binary versions of NetPBM
+from the Gallery download page.  The binaries are compiled
+statically so they have no dependencies.  We don't yet have
+binaries for all systems, but we're working on it (in fact, if you
+have a system that isn't supported and would like to be of
+assistance, please contact us and we'll give you instructions
+on how to make what Gallery needs).  
+
+The FreeBSD binaries *should* work on most/all flavors of FreeBSD for
+intel, and the Linux-RedHat binaries *should* work on most/all flavors
+of Linux for intel. However, they haven't been tested extensively. If
+you find that they don't work please let us know and we'll compile a
+version for the specific software/hardware flavor that you're
+running. Download and install these binaries somewhere on your system
+(it's perfectly find to upload them via FTP to a virtual server) and
+then tell Gallery where to find them in the config wizard.
+
+5. HOW DO I CUSTOMIZE GALLERY?
 
 Documentation on this is a bit sketchy right now, sorry.  Online
 context-sensitive help is on the way.  But in the meantime, it'd
