@@ -1140,7 +1140,7 @@ function getItemCaptureDate($file) {
 	}
 
 	if (isDebugging()) {
-		print "IN UTIL ITEMCAPTUREDATE = $itemCaptureDate['year']<br>";
+		print "IN UTIL ITEMCAPTUREDATE = ${itemCaptureDate['year']}<br>";
 	}
 	return $itemCaptureDate;
 }
