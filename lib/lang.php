@@ -425,8 +425,12 @@ function i18n($buf) {
        	return $buf;
 }
 
-function unhtmlentities ($string)
-{
+/*
+** Convert all HTML entities to their applicable characters
+** This is used primary in Slideshow for the Statusbar
+*/
+
+function unhtmlentities ($string) {
 	global $gallery;
 
 	if (function_exists('html_entity_decode')) {
@@ -436,7 +440,13 @@ function unhtmlentities ($string)
 		} else {
 			$charset=$nls['default']['charset'];
 		}
-		$return= html_entity_decode($string,ENT_COMPAT,$charset);
+
+		if ($charset != 'UTF-8') {
+			$return = html_entity_decode($string,ENT_COMPAT ,$charset);
+		}
+		else {
+			$return = $string;
+		}
 	} else {
 		// For users prior to PHP 4.3.0 you may do this:
 		$trans_tbl = get_html_translation_table (HTML_ENTITIES);
