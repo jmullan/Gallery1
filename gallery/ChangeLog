@@ -1,80 +1,80 @@
 2003-08-21 Jens Tkotz  <jens@peino.de> 1.4-cvs-b139
 
-	* Another italian update
+	* Another Italian update
 
 2003-08-20 Jens Tkotz  <jens@peino.de> 1.4-cvs-b138
 
-	* Language Update: Italian
+	* Language Update: Italian (it_IT)
 
 2003-08-20 Jens Tkotz  <jens@peino.de> 1.4-cvs-b137
 
-	* Language Update: Spanish, French
+	* Language Update: Spanish (es_ES), French (fr_FR)
 
 2003-08-18  Andrew Lindeman  <joyoflinux@yahoo.com> 1.4-cvs-b136
 
-        * Removed my code which caused gallery not to use nuke language
+        * Removed my code which caused Gallery not to use Nuke's language.
 
-2003-08-18  Joan McGalliard <gallery@joanhenge.plus.com> 1.4-cvs-b135
+2003-08-18  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4-cvs-b135
 
-	* Changed error level so Notices and warnings are not displayed.  
+	* Changed error level so notices and warnings are not displayed.  
 	  There may still be warnings we have overlooked, and users should
-	  not get them.
+	  not see them.
 
 2003-08-17  Andrew Lindeman  <joyoflinux@yahoo.com> 1.4-cvs-b134
 
         * Fix bug in Nuke integration where the language was never saved.
           (Thanks Warren).
 
-****NOTE: Code Freeze for 1.4-RC1 ********
+***** NOTE: Code Freeze for 1.4-RC1 *****
 
 2003-08-16 Jens Tkotz  <jens@peino.de> 1.4-cvs-b133
 
-	* Make poweredby() translateable
+	* Make poweredby() function translatable.
 
-	* synced all languages against this.
+	* Synced all languages against this change.
 
-	* Update zh_TW (traditional chinese Tawain)
+	* Language Update: Traditional Chinese (zh_TW)
 
-2003-08-16  Joan McGalliard <gallery@joanhenge.plus.com> 1.4-cvs-b132 
+2003-08-16  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4-cvs-b132 
 
 	* Fixed bug so hopefully offline browsing is restricted to the
 	  album with which you started.
 
 2003-08-16 Jens Tkotz  <jens@peino.de> 1.4-cvs-b131
 
-	* Added slovanian
+	* Added Slovenian (sl_SI).
 
-	* change $nls array naming:
-	'languages'	->	'language'
-	'aliases'	->	'alias'
+	* Change $nls array naming:
+	     'languages'   ->   'language'
+	     'aliases'     ->   'alias'
 
-2003-08-16  Joan McGalliard <gallery@joanhenge.plus.com> 1.4-cvs-b130 
+2003-08-16  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4-cvs-b130 
 
 	* Adding new sub albums now obeys the "add to beginning" flag.
 
-	* Field last_quality (the quality% that was used resizing the last 
+	* Field last_quality (the quality % that was used resizing the last 
 	  image) added to albums, to use as a best guess for resizing the
 	  next image to a particular filesize.
 
-	* Only use parse_url in save_photos if it's not a file (pathnames 
+	* Only use parse_url() in save_photos.php if it's not a file (pathnames
 	  with "#" in them failed).
 
 	* "Powered by" messages user poweredBy() for translation.
 
-	* Resize functions now called if h&w ok, but there is a target 
+	* Resize functions now called if height/width OK, but there is a target
 	  filesize.
 
-	* resize_image function modified to make it behave more correctly 
+	* resize_image() function modified to make it behave more correctly 
 	  and to use the last_quality field.  Better heuristic still needs 
 	  to be added. max_filesize and min_filesize variables added to 
 	  aid heuristic.
 
 	* Bugfix: $nls['alias'] replaced with $nls['aliases'].  Found 
-	  accidently, not sure what the implications are.
+	  accidently--not sure what the implications are.
 	
-2003-08-15  Joan McGalliard <gallery@joanhenge.plus.com> 1.4-cvs-b129
+2003-08-15  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4-cvs-b129
 
-	* Slight correction to fix in b127.
+	* Slight correction to fix in -b127.
 
 	* Get rid of warnings when creating a new user database.
 
@@ -82,70 +82,70 @@
 
 	* Avoid warnings from old config.php files.
 
-	* Added extra processingMsg to upgraded users for cosmetic reasons.
+	* Added extra processingMsg() to upgraded users for cosmetic reasons.
 
 2003-08-14 Jens Tkotz  <jens@peino.de> 1.4-cvs-b128
 	
-	* Added turkish
+	* Added Turkish (tr_TR).
 	
-	* Updated german, swedish, icelandic and hebrew
+	* Updated German (de_DE), Swedish (se_SE), Icelandic (is_IS) and Hebrew
+	  (he_IL).
 
-2003-08-13  Joan McGalliard <gallery@joanhenge.plus.com> 1.4-cvs-b127
+2003-08-13  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4-cvs-b127
 
-	* Vallimar's reported bug.  Configuration now behaves correctly if there are no 
-	  addional languages available.
+	* Vallimar's reported bug.  Config. Wizard now behaves correctly if
+	  there are no addional languages available.
 
-2003-08-13  Joan McGalliard <gallery@joanhenge.plus.com> 1.4-cvs-b126
+2003-08-13  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4-cvs-b126
 
-	* Curio's latest French translations.
+	* Language Update: French (fr_FR) (from Curio)
 
-2003-08-13  Joan McGalliard <gallery@joanhenge.plus.com> 1.4-cvs-b125
+2003-08-13  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4-cvs-b125
 
-	* Provide Link to documentation (if present) from first setup page,
-	  final setup page if there is a problem with files, and on 
-	  albums.php if logged in as admin.
+	* Provide link to documentation (if present) from first setup page,
+	  final setup page if there is a problem with files, and on albums.php
+	  if logged in as admin.
 
 2003-08-13  Bharat Mediratta  <bharat@menalto.com> 1.4-cvs-b124
 
-	* Changed the release version number from 1.3.5 to 1.4 
+	* Changed the release version number from 1.3.5 to 1.4.
 
 2003-08-13 Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b123
 
-        * cleaned up all language files.
-          No obsolete entries, no "# " lines, etc.
+        * Cleaned up all language files. No more obsolete entries, no "# "
+	  lines, etc.
 
-        * Updated german and hebrew
+        * Updated German (de_DE) and Hebrew (he_IL).
 
-        * replaced word" Gallery" with Gallery() in search.php
+        * Replaced word "Gallery" with Gallery() in search.php.
 
-2003-08-13  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b122
+2003-08-13  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b122
 
-	* Change informational strings in Config. Wizard to conform to 
-	  packaging decisions.  IE no language packs and README now 
+	* Change informational strings in Config. Wizard to conform to
+	  packaging decisions. I.e. no language packs and README is now
 	  basically content free.
 
-2003-08-13  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b121
+2003-08-13  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b121
 
-	* Give the appropriate error message for beta when checking the 
-	  gallery version in the Config. Wizard if verion is "-bnn" or 
-	  "-RCnn" 
+	* Give the appropriate error message for beta when checking the Gallery
+	  version in the Config. Wizard if verion is "-bnn" or "-RCnn".
 
-2003-08-13  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b120
+2003-08-13  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b120
 	
-	* From SF patch 772038: don't use "mailto:" link if there is no
+	* From Patch #772038: don't use "mailto:" link if there is no
 	  email address for album owner.
 
-2003-08-13  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b119
+2003-08-13  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b119
 
-	* Fixed bug introduced in b117 that caused Gallery not to run in 
+	* Fixed bug introduced in -b117 that caused Gallery not to run in
 	  embedded environments.
 
-2003-08-13  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b118
+2003-08-13  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b118
 	
 	* Simplified messages delivered during Configuration Wizard/check 
-	  gallery version code.  
+	  Gallery version code.  
 
-	* Changed $gallery->last_change from a string to a time stamp.
+	* Changed $gallery->last_change from a string to a timestamp.
 
 2003-08-12  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b117
 
@@ -153,46 +153,46 @@
           "redirects" people to the docs/ directory, where the docs will
           be distributed with Gallery.
 
-2003-08-12  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b116
+2003-08-12  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b116
 
-	* Improving the strings in Configuration Wizard/check gallery version
+	* Improving the strings in Configuration Wizard/check Gallery version
 	  code.  Probably needs more work before passing to the translators.
 
-2003-08-12  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b115
+2003-08-12  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b115
 
 	* Replace "$GALLERY_BASEDIR = ''" with "$GALLERY_BASEDIR = './'"; 
 	  added explicit path to setup/.htaccess; changed some setup require 
 	  statements to require("./filename") so we don't need "." in php 
 	  include path.
 
-	* Added defaultLanguage as a user preference for loggedin users in 
+	* Added $defaultLanguage as a user preference for loggedin users in
 	  non-embedded environments.
 
 	* This means that users and userdb now have a version number.
 
 	* Upgrade code implemented for users.
 
-	* Couple  more warnings removed.
+	* A few more warnings removed.
 
 	* $gallery->last_change added to Versions.php, so we can see how old 
 	  the current version installed is, and flag during configuration if 
-	  it might need updating.  
-	  [NOTE: there are other ways of doing this, most elegantly
-	  going to gallery.sf.net and getting the latest version
-	  number.  This has it's appeal, but having gallery silently
-	  visit a the main gallery site would be a bit like spyware.  
-	  Suggest we have a "check for latest version" button or 
-	  similar.]
+	  it might need updating.
+	
+	    [NOTE: there are other ways of doing this, most elegantly going to
+	    gallery.sf.net and getting the latest version number.  This has its
+	    appeal, but having gallery silently visit a the main gallery site
+	    would be a bit like spyware.  Suggest we have a "check for latest
+	    version" button or similar.]
 
-	* Added spaces between the sentences at the beginning of 
+	* Added spaces between the sentences at the beginning of
 	  upgrade_album.php, so they are not all jammed together.
 
-2003-08-11  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b114
+2003-08-11  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b114
 
 	* This change is Vallimar's tidy up patch, with some modifcations.  
 	  Details of changes are:
 
-	* Tidy of if/else call in rename_album.php
+	* Tidy of if/else call in rename_album.php.
 
 	* Reduce number of calls to getimagesize() by one.
 
@@ -208,86 +208,89 @@
 	* Full image viewing now restricted to people who have permission to 
 	  see them.
 
-	* Note, we should store file type as returned by getimagesize() in 
+	* Note: we should store file type as returned by getimagesize() in
 	  AlbumItem class.
 
 2003-08-11 Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b113
 	
-	* re enabled Language Initialization when Gallery is embedded.
-	  (was disabled in b107) 
-	  This caused many problems like wrong language, navigator probs etc.
+	* Re-enabled Language Initialization when Gallery is embedded (was
+	  disabled in -b107). This caused many problems like wrong language,
+	  navigator probs etc.
 
-	* very little language file change. (removed a .)
+	* Very small language file change. (removed a '.')
 
 2003-08-10  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b112
 
-        * Fix problems with international characters.  While *Gallery* supported
-          international chars fine, some browsers didn't like that they were not
-          URL encoded.  So, all album and photo names are now URL encoded.  This
-          has been tested and verified to work on IE, Mozilla, and Opera.
+        * Fixed problems with international characters.  While *Gallery*
+	  supported international chars fine, some browsers didn't like that
+	  they were not URL encoded.  So, all album and photo names are now URL
+	  encoded.  This has been tested and verified to work on IE, Mozilla,
+	  and Opera.
         
 2003-08-10 Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b111
 
-	* Changed text in config_data.inc which caused error in config
-	  wizard when php has no gettext support. Quotes (") and backslashes
-	  (\) shouldn' t be used in _() calls.  Instead, use &quot; and &#92
+	* Changed text in config_data.inc which caused error in Config. Wizard
+	  when PHP has no gettext support. Quotes (") and backslashes
+	  (\) shouldn't be used in _() calls.  Instead, use &quot; and &#92;
 	  respectively.
 
 	* Changed "Next XX" and "Prev XX" buttons in captionator.php to use
-	  sprintf since not all languages have the numbers at the end.
+	  sprintf() since not all languages have the numbers at the end.
 
-	* Added po analyzer / report tool for po files.
+	* Added po analyzer / report tool for .po files.
 	  Call it via http://path_to/gallery/tools/g1-report.php.
 
 	* Updated gallery.pot, German and French translations and synced all
 	  languages.
 
-	* Changed initLanguage() to emulate _() only if php has no gettext support.
+	* Changed initLanguage() to emulate _() only if php has no gettext
+	  support.
 
-	* Tweaked diagnostics page, check_netpbm, check_imagemagick and session_test:
+	* Tweaked diagnostics page, check_netpbm, check_imagemagick and
+	  session_test:
 	  1.) They now call initLanguage and are now translated.
 	  2.) Added error messages in check_netpbm and check_imagemagick if
 	      config.php is missing.
 
-2003-08-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b110
+2003-08-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b110
 
 	* Jens' one word fix so language setting now holds when you click
-	  a link.  Bug introduced in b103
+	  a link.  (Bug introduced in -b103)
 
-2003-08-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b109
+2003-08-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b109
 
-	* Fixed longstanding bug in resize_photo.php, where font tag was never 
+	* Fixed longstanding bug in resize_photo.php, where font tag was never
 	  closed.
 
 	* In ml_pulldown.inc, check if a language actually exists currently 
 	  before adding it to the pulldown.
 
-	* In util.php, reformatted initLanguage() and added new
-	  function language_exists(), which tests to see if the
-	  appropriate translation file for a language is present.
+	* In util.php, reformatted initLanguage() and added new function
+	  language_exists(), which tests to see if the appropriate translation
+	  file for a language is present.
 
 	* Added '".."' to setup/constants.inc to remove warning.
 
 	* Removed warning from setup/write.inc.
 
-	* Language check in Configuration Wizard now compares the number of 
+	* Language check in Configuration Wizard now compares the number of
 	  languages available with the actual number in this installation.
 
-	* Parameter added to po_filename(), so it can test of existance of 
-	  po files for other languages.
+	* Parameter added to po_filename(), so it can test of existence of .po
+	  files for other languages.
 
 	* Renamed check_gallery_locale() to check_gallery_languages().
 
 	* Greatly simplified gallery_languages(), by using language_exists() 
 	  to check each of the languages listed in getNLS().
 
-2003-08-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b108
+2003-08-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b108
 
-	* Modified setup/confirm.inc and setup/write.inc so that the 
-	  Configuration Wizard produces more intelligable errors and 
-	  warnings if .htaccess and/or config.php are absent or unwritable.
+	* Modified setup/confirm.inc and setup/write.inc so that the
+	  Configuration Wizard produces more intelligible errors and warnings
+	  if .htaccess and/or config.php are absent or unwritable.
 
-2003-08-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b107
+2003-08-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b107
 
         * Updated all 1.3.5 refs to 1.4, except for the version number.
 
@@ -298,14 +301,14 @@
           
 	* Changes to move_photo.php resizing.
 
-        * Stop language initialition in embedded galleries.
+        * Stop language initialization in embedded galleries.
 
         * Fixed bug that printed statement in move_photo.php.
         
         * Fixed bug in displaying number of hidden albums in view_album.php.
 	  (Thanks to Eelco Brolman)
 
-        * Changed "configurations wizard" to "configuration wizard".
+        * Changed "Configurations Wizard" to "Configuration Wizard".
 
 2003-08-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b106
 	
@@ -330,7 +333,7 @@
 	* Tweaked initLanguage() for better co-operation with Nuke. Charset
 	  header is no longer sent in Nuke.
 
-	* Tweaked util.php..
+	* Tweaked util.php.
 
 2003-08-07  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b102
 
