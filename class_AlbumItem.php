@@ -220,6 +220,14 @@ class AlbumItem {
 		}
 	}
 
+	function getPhotoId($dir) {
+		if ($this->image) {
+			return $this->image->getId($dir);
+		} else {
+			return "unknown";
+		}
+	}
+
 	function delete($dir) {
 		if ($this->image) {
 			$this->image->delete($dir);
