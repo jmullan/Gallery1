@@ -51,18 +51,18 @@ function locateFile($filename) {
 }
 
 function one_constant($key, $value) {
-	return "\$app->$key = \"$value\";\n";
+	return "\$gallery->app->$key = \"$value\";\n";
 }
 
 function defaults($key, $value) {
-	return "\$app->default[\"$key\"] = \"$value\";\n";
+	return "\$gallery->app->default[\"$key\"] = \"$value\";\n";
 }
 
 function use_feature($feature) {
-	return "\$app->feature[\"$feature\"] = 1;\n";
+	return "\$gallery->app->feature[\"$feature\"] = 1;\n";
 }
 function no_feature($feature, $cause) {
-	return "\$app->feature[\"$feature\"] = 0; // ($cause)\n";
+	return "\$gallery->app->feature[\"$feature\"] = 0; // ($cause)\n";
 }
 function error_missing($desc) {
 	return error_format("Missing value: <b>$desc</b>!");
@@ -130,7 +130,7 @@ function check_mod_rewrite()
 
 function check_exif($location="")
 {
-	global $app;
+	global $gallery;
 
 	$fail = array();
 	$success = array();
@@ -140,7 +140,7 @@ function check_exif($location="")
     if ($location) {
 		$d = locateDir(bin, $location);
 	} else {
-		$d = locateDir($bin, $app ? $app->pnmDir : "");
+		$d = locateDir($bin, $gallery->app ? $gallery->app->pnmDir : "");
 	}
 	if (!$d) {
 		$fail["fail-exif"] = "Could not locate jhead";
@@ -153,7 +153,7 @@ function check_exif($location="")
 
 function check_graphics($location="")
 {
-	global $app;
+	global $gallery;
 
 	$fail = array();
 	$success = array();
@@ -179,7 +179,7 @@ function check_graphics($location="")
 		if ($location) {
 			$d = locateDir($bin, $location);
 		} else {
-			$d = locateDir($bin, $app ? $app->pnmDir : "");
+			$d = locateDir($bin, $gallery->app ? $gallery->app->pnmDir : "");
 		}
 		if (!$d) {
 			$missing[$bin] = "Can't find <i>$bin</i>!";
@@ -210,19 +210,12 @@ function check_magic_quotes()
 	return array($success, $fail);
 }
 
-function makePathWrapper($path, $app)
-{
-	return "/bin/csh -c &#039;(setenv PATH $path:" . 
-		getenv("PATH") . 
-		" ; $app %s)&#039;";
-}
-
 function detect_exec_status() 
 {
-	global $app;
+	global $gallery;
 
-	if ($app && isset($app->expectedExecStatus)) {
-		return $app->expectedExecStatus;
+	if ($gallery->app && isset($gallery->app->expectedExecStatus)) {
+		return $gallery->app->expectedExecStatus;
 	}
 
 	// If PHP is compiled with the --enable-sigchild option, then every 
