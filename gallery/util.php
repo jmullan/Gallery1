@@ -1118,6 +1118,9 @@ function gallerySanityCheck() {
 	global $gallery;
 	global $GALLERY_BASEDIR;
 	global $GALLERY_OK;
+       	if (!empty($gallery->backup_mode)) {
+	       	return NULL;
+       	}
 
 	if (!fs_file_exists($GALLERY_BASEDIR . "config.php") ||
                 broken_link($GALLERY_BASEDIR . "config.php") ||
