@@ -38,8 +38,8 @@
 <body dir="<?php echo $gallery->direction ?>">
 <h1 class="header"><?php echo _("Check Versions") ?></h1>
 <div class="sitedesc"><?php
-	echo sprintf(_("This page gives you information about the version of each necessary %s file"),"Gallery");
-	echo _("If you see error, we highly suggest to get the actual version of that file/s");
+	echo sprintf(_("This page gives you information about the version of each necessary %s file. "),"Gallery");
+	echo _("If you see any error(s), we highly suggest to get the actual version of that file(s).");
 ?></div>
 
 <table class="inner" width="100%">
