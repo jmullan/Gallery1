@@ -102,9 +102,11 @@ class AlbumItem {
 		$type = $this->image->type;
 
 		/* GD doesn't do rotation!?!? */
-		exec("$app->pnmDir/anytopnm $dir/$name.$type | " .
-			"$app->pnmDir/pnmrotate $direction | ".
-			"$app->pnmDir/ppmtojpeg > $dir/tmp.jpg");
+		$cmd = getAnytopnmCmd("$dir/$name.$type", 
+			"| $app->pnmDir/pnmrotate $direction".
+			"| $app->pnmDir/ppmtojpeg > $dir/tmp.jpg");
+
+		exec_wrapper($cmd);
 		
 		if (file_exists("$dir/tmp.jpg") && filesize("$dir/tmp.jpg") > 0) {
 			copy("$dir/tmp.jpg", "$dir/$name.jpg");
@@ -150,8 +152,8 @@ class AlbumItem {
 		 * the thumbnail.
 		 */
 		if (!strcmp($tag, "gif")) {
-			exec("$app->pnmDir/giftopnm $dir/$name.gif | ".
-			     "$app->pnmDir/ppmtojpeg > $dir/$name.jpg");
+			exec_wrapper("$app->pnmDir/giftopnm $dir/$name.gif | ".
+				     "$app->pnmDir/ppmtojpeg > $dir/$name.jpg");
 			$tag = "jpg";
 			unlink("$dir/$name.gif");
 		} 
