@@ -36,10 +36,20 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 				echo ("<br> Rebuilding $np thumbnails...");
 				my_flush();
 				for ($i = 1; $i <= $np; $i++) {
-					echo("<br> Processing image $i...");
-					my_flush();
-					set_time_limit(90);
-					$album->makeThumbnail($i);
+					$isAlbumName = $album->isAlbumName($i);
+					if (!$isAlbumName) { // process the images
+						echo("<br> Processing image $i...");
+						my_flush();
+						set_time_limit(90);
+						$album->makeThumbnail($i);
+					} else { 
+						// we just skip albums... we could have
+						// recursively created new thumbnails in each
+						// album that we ran across, but skipping them
+						// might be preferred.
+						echo("<br> Skipping album $i...");
+						my_flush();
+					}
 				}
 			} else {
 				echo ("<br> Rebuilding 1 thumbnail...");
@@ -77,13 +87,22 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		$album->fields["name"] = $albumName;
 		$album->setOwner($user->getUid());
 		$album->save();
+		/* if this is a nested album, set nested parameters */
+		if ($parentName) {
+			$album->fields[parentAlbumName] = $parentName;
+			$myAlbum = $albumDB->getAlbumbyName($parentName);
+			$myAlbum->addNestedAlbum($albumName);
+			$myAlbum->save();
+			$album->fields["perms"] = $myAlbum->fields["perms"];
+			$album->save();
+		} else {
+			/* move the album to the top if not a nested album*/
+			$albumDB = new AlbumDB();
+                	$numAlbums = $albumDB->numAlbums($user);
+                	$albumDB->moveAlbum($user, $numAlbums, 1);
+                	$albumDB->save();
+		}
 	
-	        /* move the album to the top */ 
-		$albumDB = new AlbumDB();
-	        $numAlbums = $albumDB->numAlbums($user);
-	        $albumDB->moveAlbum($user, $numAlbums, 1);
-	        $albumDB->save();
-
 		$url = addUrlArg($return, "set_albumName=$albumName");
 		header("Location: $url");
 	} else {
