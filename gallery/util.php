@@ -214,8 +214,17 @@ function rotate_image($src, $dest, $target) {
 	else {
 		$out = $dest;
 	}
+
+	if (!strcmp($target, "90")) {
+		$args = "-r90";
+	} else if (!strcmp($target, "-90")) {
+		$args = "-r270";
+	} else {
+		$args = "-r180";
+	}
+
 	$err = exec_wrapper(toPnmCmd($src) .
-		     "| $app->pnmDir/pnmrotate $target".
+		     "| $app->pnmDir/pnmflip $args".
 		     "| " . fromPnmCmd($out));
 
 	if (file_exists("$out") && filesize("$out") > 0) {
