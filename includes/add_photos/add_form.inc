@@ -113,7 +113,7 @@ if (!isset($metaboxes)) {
 <br>
 <input type="radio" name="setCaption" value="1" id="setCaption1" checked><label for="setCaption1"><?php echo _("Use filename as caption if no caption is specified.") ?></label>
 <br>
-<input type="radio" name="setCaption" value="2" id="setCaption2"><label for="setCaption2"><?php echo _("Use file creation date stamp as caption if no caption is specified.") ?></label>
+<input type="radio" name="setCaption" value="2" id="setCaption2"><label for="setCaption2"><?php echo _("Use file creation date stamp as caption if no caption is specified. Gallery will use the format you specified in config for date/time strings.") ?></label>
 <?php
 if (isset($gallery->app->watermarkDir)) {
    global $watermarkForm;

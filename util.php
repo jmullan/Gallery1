@@ -2234,7 +2234,12 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 					$caption = strtr($originalFilename, '_', ' ');
 					break;
 				case 2:
-					$caption = date("F d Y H:i:s.", filectime($file));
+					if (isset($gallery->app->dateTimeString)) {
+						$dateTimeFormat = $gallery->app->dateTimeString;
+					} else {
+						$dateTimeFormat = "F d Y H:i:s.";
+					}
+					$caption = date($dateTimeFormat, filectime($file));
 					break;
 				}
 			}
