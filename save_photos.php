@@ -193,7 +193,7 @@ if ($urls) {
 					    $results)) {
 				set_time_limit($gallery->app->timeLimit);
 				$things[$results[2]]++;
-				$contents = str_replace($results[2], "", $contents);
+				$contents = str_replace($results[0], "", $contents);
 			}
 
 			/* Add each unique link to an array we scan later */
