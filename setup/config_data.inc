@@ -175,7 +175,7 @@ $constants = array_merge(
 			'<i>/usr/local/netpbm</i>',
 			'<i>/usr/local/bin</i>', 
 			'<i>c:\\apps\\netpbm</i>'),
-		"value" => locateDir("jpegtopnm", $gallery->app ? $gallery->app->pnmDir : ""),
+		"value" => locateDir("jpegtopnm", isset($gallery->app->pnmDir) ? $gallery->app->pnmDir : ""),
 		"verify-func" => "check_graphics",
 		"fail-netpbm" => _("I can't find NetPBM at the location you provided.") . "  " .
 			$common_messages["getting-netpbm"],
@@ -197,7 +197,7 @@ $constants = array_merge(
 		"prompt" => _("Path to ImageMagick"),
 		"desc" => _("The path to the directory containing ImageMagick on your system."),
 		"verify-func" => "check_graphics_im",
-		"value" => locateDir("convert", $gallery->app ? $gallery->app->ImPath : ""),
+		"value" => locateDir("convert", isset($gallery->app->ImPath) ? $gallery->app->ImPath : ""),
 		"fail-imagemagick" => _("I can't find ImageMagick at the location you provided.") . "  " .
 			$common_messages["getting-imagemagick"],
 		"filename" => 1,

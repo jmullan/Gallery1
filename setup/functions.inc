@@ -271,7 +271,7 @@ function check_exif($location="")
 	if ($location) {
 		$d = locateDir($bin, $location);
 	} else {
-		$d = locateDir($bin, $gallery->app ? dirname($gallery->app->use_exif) : "");
+		$d = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
 	}
 	if (!$d) {
 		$fail["fail-exif"] = _("Could not locate jhead");
@@ -323,7 +323,7 @@ function check_graphics($location="", $graphtool = "")
 		if ($location) {
 			$d = locateDir($bin, $location, 1);
 		} else {
-			$d = locateDir($bin, $gallery->app ? $gallery->app->pnmDir : "");
+			$d = locateDir($bin, isset($gallery->app->pnmDir) ? $gallery->app->pnmDir : "");
 		}
 
 		/*
@@ -335,7 +335,7 @@ function check_graphics($location="", $graphtool = "")
 			if ($location) {
 				$d = locateDir($newbin, $location, 1);
 			} else {
-				$d = locateDir($newbin, $gallery->app ? $gallery->app->pnmDir : "");
+				$d = locateDir($newbin, isset($gallery->app->pnmDir) ? $gallery->app->pnmDir : "");
 			}
 			if ($d) {
 				$bin = $newbin;
@@ -394,7 +394,7 @@ function check_graphics_im($location="", $graphtool="")
 		if ($location) {
 			$d = locateDir($bin, $location, 1);
 		} else {
-			$d = locateDir($bin, $gallery->app ? $gallery->app->ImPath : "");
+			$d = locateDir($bin, isset($gallery->app->ImPath) ? $gallery->app->ImPath : "");
 		}
 
 		if (!$d) {
@@ -433,7 +433,7 @@ function check_jpegtran($location="")
 	if ($location) {
 		$d = locateDir($bin, $location);
 	} else {
-		$d = locateDir($bin, $gallery->app ? $gallery->app->pnmDir : "");
+		$d = locateDir($bin, isset($gallery->app->pnmDir) ? $gallery->app->pnmDir : "");
 	}
 	if (!$d) {
 		$fail["fail-jpegtran"] = _("Could not locate jpegtran");
@@ -806,13 +806,18 @@ function detect_exec_status()
 		"sync",
 	);
 
+	$count = array();
 	foreach ($progs as $prog) {
 		$dir = locateDir($prog);
 		if ($dir) {
 			$file = "$dir/$prog";
 			if (fs_is_executable($file)) {
 				fs_exec($file, $results, $status);
-				$count[$status]++;
+				if (isset($count[$status])) {
+					$count[$status]++;
+				} else {
+					$count[$status]=1;
+				}
 			} 
 		}
 	}

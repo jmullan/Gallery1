@@ -27,7 +27,7 @@ foreach ($defaults as $key => $val) {
 	}
 
 	/* $gallery->app-> is the desired container, however */
-	if ($gallery->app->default[$key]) {
+	if (isset($gallery->app->default[$key])) {
 		$val["value"] = $gallery->app->default[$key];
 	}
 
