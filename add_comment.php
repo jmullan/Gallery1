@@ -29,8 +29,8 @@ if (strcmp($gallery->album->fields["public_comments"], "yes")) {
 $error_text = "";
 
 if ($save) {
-	if ($name && $comment_text) {
-		$gallery->album->addComment($index, stripslashes($comment_text), $IPNumber, $name);
+	if ($commenter_name && $comment_text) {
+		$gallery->album->addComment($index, stripslashes($comment_text), $IPNumber, $commenter_name);
 		$gallery->album->save();
 		dismissAndReload();
 		return;
@@ -60,14 +60,15 @@ if ($error_text) {
 <?
 }
 ?>
-<form name="theform" action=add_comment.php method=POST>
+
+<?= makeFormIntro("add_comment.php", array("name" => "theform", "method" => "POST")); ?>
 <input type=hidden name="save" value=1>
 <input type=hidden name="index" value="<?= $index ?>">
 <input type=hidden name="IPNumber" value="<?=$REMOTE_ADDR ?>">
 <table border=0 cellpadding=5>
 <tr>
   <td>Name or email:</td>
-  <td><input name="name" value="<?=$name?>" size=30></td>
+  <td><input name="commenter_name" value="<?=$commenter_name?>" size=30></td>
 </tr>
 <tr>
   <td colspan=2><textarea name="comment_text" rows=5 cols=40><?=$comment_text?></textarea></td>
@@ -82,7 +83,7 @@ if ($error_text) {
 <script language="javascript1.2">
 <!--   
 // position cursor in top form field
-document.theform.name.focus();
+document.theform.commenter_name.focus();
 //-->
 </script>
 
