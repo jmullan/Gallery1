@@ -1,0 +1,41 @@
+<?
+// This header file detects whether Gallery is embedded in any 
+// known PHP applications and then decorates Gallery appropriately.
+
+global $GALLERY_EMBEDDED_INSIDE;
+global $GALLERY_EMBEDDED_HEADER;
+
+switch($GALLERY_EMBEDDED_INSIDE) {
+	case "nuke":
+		global $PHP_SELF;
+		if (!eregi("modules.php", $PHP_SELF)) {
+			die ("You can't access this file directly...");
+		}
+
+		if (!isset($GALLERY_EMBEDDED_HEADER)) {
+			/*
+			 * Nuke owns the <head> tag and doesn't play
+		         * nice.  So, dynamically modify Nuke's code
+			 * to insert our own style sheet in place.
+			 */
+			$GALLERY_EMBEDDED_HEADER = "";
+			if ($fd = fopen("header.php", "r")) {
+				while (!feof($fd)) {
+					$line = fgets($fd, 1024);
+					if (strncmp($line, '<?php', 5) && strncmp($line, '?>', 2)) {
+						$GALLERY_EMBEDDED_HEADER .= $line;
+					}
+					if (strstr($line, "<head")) {
+						$links = getStyleSheetLink();
+						$links = str_replace('"', '\"', $links);
+						$GALLERY_EMBEDDED_HEADER .= 'echo "' . $links . '\n";' . "\n";
+					}
+				}
+			}
+		}
+		eval("$GALLERY_EMBEDDED_HEADER");
+
+		OpenTable();
+		break;
+}
+?>

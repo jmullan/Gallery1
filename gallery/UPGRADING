@@ -1,0 +1,105 @@
+CONTENTS
+ 1. How to upgrade Gallery
+ 2. How to upgrade a modified Gallery
+ 3. Notes on upgrading from pre-v1.1 to v1.1
+
+1. HOW TO UPGRADE GALLERY
+
+In general, upgrading is very easy.  All you need to do is unpack the
+latest version of Gallery on top of your old installation and then
+continue to use it as usual.  
+
+	NOTE: Back up your old Gallery installation just in case!
+
+If a significant enough change has happened to Gallery, it will force
+you to run through the config wizard again, but it will save all your
+old settings so that should be pretty easy.
+
+All your html_wrap/ and css/ changes will be preserved.
+
+2. HOW TO UPGRADE A MODIFIED GALLERY
+
+If you've only modified files in the html_wrap/ and css/ directories,
+then you can follow the instructions in section 1.  
+
+If you've modified the .php files that come with Gallery, then your
+upgrade difficulty is directly proportional to the number of changes
+that you've made.  It's best to avoid modifying the .php files because
+you can be sure that sooner or later we're going to change the system
+in a way that will cause your modifications to break.  You can control
+much of the appearance of Gallery by making changes in the html_wrap/
+and css/ directories; it's best to limit your changes to those files
+if at all possible.
+
+The easiest way to make this kind of upgrade is to first get an idea
+of the changes that you've made.  Get a copy of the original version
+of Gallery that you installed and unpack it in some other directory
+(we'll call it orig_gallery).  Then, diff all the files between the
+original gallery and the one that you've modified:
+
+	% cd home		[go to the dir containing both
+	% ls			 gallery and orig_gallery]
+	gallery   orig_gallery
+
+	% diff -r -C 3 orig_gallery gallery > my_changes
+
+This will create a file called "my_changes" that has all the changes
+that you made to Gallery.  You can apply these changes to the latest
+version that you've installed by saying:
+
+	% cd directory_containing_new_gallery
+	% patch < my_changes
+
+But the odds are good that this WON'T WORK because we'll have made
+so many little changes to the .PHP files that the patch program won't
+be able to handle them all.  It's worth a try, though.
+
+If you've done something that you think might be of value to the rest
+of the Gallery community, how about mailing that patch file to us
+along with a description of what it does so that we can take a look at
+it?  We don't want your work to go to waste and we want to make it
+easy for you to keep upgrading Gallery.
+
+3. NOTES ON UPGRADING FROM PRE-V1.1 TO V1.1
+
+If you've modified files in the html_wrap/ directory, you may
+experience some problems when you upgrade to v1.1.  We've moved some
+of the variables around since we were finding that there were some
+conflicts in the global namespace.  All global and session variables
+can now be found in the $gallery object.  Take a look at the tips in
+the html_wrap/xxx.default files to see what the new variable names
+are.  
+
+  HTML_WRAP CHANGES
+ 
+PHP-Nuke 5.0 integration is new in v1.1 and in order to make Gallery a
+seamless Nuke 5.0 module, we had to make some changes to the
+html_wrap/ default files.  If you look at the new
+html_wrap/xxx.header.default files, you'll see that we include a file
+called "wrapper.header".  This file (which also lives in html_wrap/)
+detects whether or not you're running inside PHP-Nuke, and if so it
+will Do the Right Thing.
+
+If you have problems with your customized look and feel after moving
+to v1.1, I suggest that you move your customized gallery.header and
+gallery.footer files out of the way and start again with the default
+ones in the html_wrap directory.
+
+  CSS CHANGES
+
+In order to make sure that Gallery's style doesn't override
+PHP-Nuke's, we've separated gallery_style.css into two files,
+embedded_style and standalone_style.  When Gallery is embedded, it
+will use the embedded_style, so be careful of what you put in there
+(since it can affect Nuke, also).
+
+When Gallery is running in standalone mode, it will use both the
+embedded_style and the standalone_style (in that order).  This gives
+you the freedom to customize the same gallery to run in both modes. 
+
+If you're upgrading from pre v1.0 and you've customized your
+gallery_style.css file, you'll need to pull the relevant changes out
+of your gallery_style.css and put them into either embedded_style
+or standalone_style, as appropriate. 
+
+

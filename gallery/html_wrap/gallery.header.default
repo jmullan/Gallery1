@@ -1,0 +1,29 @@
+<?
+// This is the default gallery header (for the main gallery
+// page: albums.php). It's companion is gallery.footer.default. 
+//
+// To override this header, create a file called gallery.header
+// in this directory. 
+//
+// NOTE: This header cets inserted below the <body> tag.
+// 
+// Some tips:
+// * Some application variables:
+//      - Gallery Title: $gallery->app->galleryTitle
+//
+?>
+
+<?
+includeHtmlWrap("wrapper.header");
+?>
+
+<table width=100% border=0>
+  <tr>
+    <td>
+      <span class="head">
+        <?= $gallery->app->galleryTitle ?>
+      </span>
+    </td>
+  </tr>
+</table>
+<br>

@@ -1,0 +1,26 @@
+<?
+// This is the default photo header (for the gallery photo
+// page: view_photo.php). It's companion is photo.footer.default.
+//
+// To override this header, create a file called photo.header
+// in this directory.
+//
+// NOTE: This header gets inserted below the <body> tag.
+//
+// Some tips:
+// * Some application variables:
+//      - Gallery Title: $gallery->app->galleryTitle
+//      - Album Title: $gallery->album->fields["title"] 
+//
+?>
+
+<?
+includeHtmlWrap("wrapper.header");
+?>
+
+<span class="head">
+<?= $gallery->album->fields["title"] ?>
+</span>
+<br>
+<br>
+<center>
