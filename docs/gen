@@ -1,0 +1,165 @@
+#!/bin/bash
+DIST=dist 
+
+# $Id$
+
+# Functions
+
+function gendate {
+	echo "<!ENTITY last-gen-date '"`date`"'>" > $DIST/gendate.ent
+}
+
+# End Functions
+
+case $1 in
+	html)
+		echo "Generating HTML Manual...";
+		
+		if [ ! -d $DIST/html ]; then
+			mkdir -p $DIST/html;
+		fi
+
+		gendate
+
+		cd $DIST/html
+		xsltproc --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../docbook-xsl/html/chunkfast.xsl ../../manual.xml
+
+
+		cp -Rf ../../images .
+		rm -rf images/CVS
+
+		cp ../../html.css .
+		;;
+
+	bightml)
+		echo "Generating Big HTML Manual...";
+
+		if [ ! -d $DIST/bightml ]; then
+			mkdir -p $DIST/bightml;
+		fi
+
+		gendate
+
+		xsltproc --param galleryweb 0 --param generate.section.toc.level 1 --param toc.section.depth 1 docbook-xsl/html/docbook.xsl manual.xml > $DIST/bightml/index.html
+
+		cp -Rf images $DIST/bightml
+		rm -rf $DIST/bightml/CVS
+
+		cp html.css $DIST/bightml
+		;;
+		
+	galleryweb)
+		echo "Generating Gallery Web Manual...";
+
+		if [ ! -d $DIST/galleryweb ]; then
+			mkdir -p $DIST/galleryweb;
+		fi
+
+		gendate
+
+		cd $DIST/galleryweb
+		xsltproc --param galleryweb 1 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../misc-xsl/galleryweb.xsl ../../manual.xml
+
+
+		cp -Rf ../../images .
+		rm -rf images/CVS
+
+		cp ../../html.css .
+		;;
+
+	g1package)
+		echo "Generating Gallery 1 Docs Only...";
+
+		if [ ! -d $DIST/g1package ]; then
+			mkdir -p $DIST/g1package;
+		fi
+
+		gendate
+
+		cd $DIST/g1package
+		xsltproc --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../misc-xsl/g1-package.xsl ../../manual.xml
+
+
+		cp -Rf ../../images .
+		rm -rf images/CVS
+
+		cp ../../html.css .
+		;;
+
+
+#	pdf)
+#		echo "Generating PDF Manual...";
+#
+#		if [ ! -d $DIST/pdf ]; then
+#			mkdir -p $DIST/pdf;
+#		fi
+#
+#		if [ -e $DIST/pdf/manual.pdf ]; then
+#			rm -f $DIST/pdf/manual.pdf;
+#		fi
+#
+#		gendate
+#
+#		fop -q -xsl docbook-xsl/fo/docbook.xsl -xml manual.xml -pdf $DIST/pdf/manual.pdf
+#
+#		rm -f manual.fo
+#		;;
+
+	autofaq)
+		if [ ! -d $DIST/autofaq ]; then
+			mkdir -p $DIST/autofaq;
+		fi
+
+		echo "Generating AutoFAQ data...";
+		cd $DIST/autofaq
+		xsltproc ../../misc-xsl/autofaq.xsl ../../manual.xml > autofaq_data.txt
+		;;
+		
+	test-saxon) 
+		echo "Testing documentation (if you see no errors, everything is good)..."
+
+		java -classpath ./docbook-xsl/extensions/saxon651.jar sax.SAXCount manual.xml
+		;;
+		
+	test-xmllint)
+		echo "Testing documentation (if you see no errors, everything is good)..."
+
+		xmllint --valid --noout manual.xml
+		;;		
+
+	help)
+		echo "Gallery Documentation Generation Script";
+		echo "---------------------------------------";
+		echo "Usage: ./gen [option]";
+		echo "";		
+		echo "Options:";
+		echo "html          Generate HTML documents";
+		echo "bightml       Generate one big HTML document";
+#		echo "pdf           Generate a PDF (requires fop)";
+		echo "galleryweb    Generate docs fitted for the Gallery Website";
+		echo "g1package     Generate only G1 docs";
+		echo "dist          Generate all types";
+		echo "test-saxon    Test for XML errors using saxon";
+		echo "test-xmllint  Test for XML errors using xmllint";
+		echo "clean         Remove all generated manuals (created by html, bightml, etc..)";
+		echo "help          Display this help page"
+		;;
+
+	dist)
+		$0 html
+		$0 bightml
+#		$0 pdf
+		$0 galleryweb
+		;;
+
+	clean)
+		echo "Deleting generated documentation...";
+                
+                #Remove files
+		rm -rf $DIST
+		;;
+
+	*)
+		echo "Invalid Action.  Type './gen help' for help";;
+esac
+

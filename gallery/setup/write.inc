@@ -1,0 +1,135 @@
+<?php /* $Id$ */ ?>
+<?php
+require("../classes/User.php");
+require("../classes/gallery/User.php");
+require("../classes/NobodyUser.php");
+require("../classes/LoggedInUser.php");
+require("../classes/EverybodyUser.php");
+require("../errors/configure_instructions.php");
+
+$outfile = "$GALLERY_DIR/config.php";
+@copy("gpl.txt", $outfile);
+
+if ($fd = @fs_fopen($outfile, "a")) {
+	$data = urldecode($data);
+
+	fwrite($fd, $data);
+	fclose($fd);
+} else {
+	fail($outfile);
+	return;
+}
+
+/*
+ * Empty out the .htaccess file
+ */
+$outfile = "$GALLERY_DIR/.htaccess";
+if ($fd = @fs_fopen($outfile, "w")) {
+	fclose($fd);
+}
+
+/*
+ * Write the php_value lines, if they're permissable in the user's
+ * environment..
+ */
+if (isset($GALLERY_PHP_VALUE_OK)) {
+	$htaccess = file("php_value.template");
+	if ($fd = @fs_fopen($outfile, "a")) {
+		foreach ($htaccess as $line) {
+			eval("\$line = \"$line\";");
+			fwrite($fd, $line);
+		}
+		fclose($fd);
+	} else {
+		fail($outfile);	
+		return;
+	}
+}
+
+/*
+ * Write the mod_rewrite lines, if that mod is available.
+ */
+if ($GALLERY_REWRITE_OK) {
+	$htaccess = file("mod_rewrite.template");
+	if ($fd = @fs_fopen($outfile, "a")) {
+		foreach ($htaccess as $line) {
+			eval("\$line = \"$line\";");
+			fwrite($fd, $line);
+		}
+		fclose($fd);
+	} else {
+		fail($outfile);	
+		return;
+	}
+}
+
+
+/*
+ * Don't require UserDB before we've written and included config.php or it will
+ * have a cow when it tries to verify that the $gallery->app->userDir exists.
+ */
+include("../config.php");
+include("../classes/UserDB.php");
+include("../classes/gallery/UserDB.php");
+
+$userDB = new Gallery_UserDB();
+$admin = $userDB->getOrCreateUser("admin");
+$admin->setPassword($editPassword);
+$admin->setIsAdmin(true);
+$admin->setFullName("Administrator");
+$admin->setCanCreateAlbums(true);
+$admin->save();
+
+?>
+
+<title><?php echo _("Success!") ?></title>
+<center>
+<table width=600><tr><td>
+<center>
+<font size=+2><?php echo _("Your configuration has been successfully saved!") ?></font>
+<p>
+<table cellspacing="1" cellpadding="4" border="1"><tr><td>
+<?php echo sprintf(_("An account called %s has been created for you with the password you specified."), '<i>admin</i>') ?>
+</td></tr></table>
+<p>
+<font size=+2 color=red><?php echo _("Note") ?>!</font>
+<br>
+<?php echo sprintf(_("Don't forget to run %s to make your Gallery secure!"),
+		configure("secure"))?>:
+</center>
+<br>
+<font size=+1>
+<?php echo _("Gallery won't run if it is not in secure mode") ?></font>.
+<?php echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.") ?>  
+<?php echo _("It will save your data so you won't have to enter it all again!") ?>
+
+<p>
+<center>
+<font size=+2>
+<a href=../albums.php><?php echo _("Enter the Gallery") ?></a>
+</font>
+
+<br><br><br><br>
+
+<img src="../images/gallery-tag.png">
+</center>
+
+</td></tr></table>
+
+<?php
+function fail($file) {
+?>
+	<title><?php echo _("Failure") ?>! </title>
+	<font size=+2><?php printf(_("Unable to write to %s."), $file )?> </font>
+	<p>
+<font color=red>
+	<?php printf (_("You are missing either %s or %s."), "<i>config.php</i>", "<i>.htaccess</i>") ?>
+	</font>
+	<p>
+	<input type=hidden name=back_page value="confirm">
+	<input type=submit name="go_back" value="<- <?php echo _("Review Settings") ?>">
+
+<?php
+	return;
+}
+?>

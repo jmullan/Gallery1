@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.windows">
+ <title>Installing on a Windows Server (Apache)</title>
+ 
+ &gallery1.upgrade;
+ 
+ &gallery1.requirements;
+
+ <para>
+  These are the steps to installing Gallery on a Windows Server
+  <orderedlist>
+   <listitem>
+    <para>
+     Unpack your downloaded Gallery files and place them under your webroot.
+    </para>
+    <para>
+     (Standard installation directory is "C:\Program Files\Apache Group\Apache\htdocs").
+     This may vary depending on the location of your Apache
+     installation. Don't worry if the file extension unknown to you,
+     since WinZip and WinRAR both support .tar.gz archives.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Create a directory on your webspace called <filename>albums</filename>.
+    </para>
+    <para>
+     Gallery will use this directory to store the albums you create and the
+     images you upload to those albums.  This directory can reside inside the
+     Gallery directory or outside the Gallery directory - your choice. 
+     The only requirement is that the directory is inside your webroot.
+     <emphasis>Make note of where you create this directory.</emphasis>
+    </para>
+   </listitem>
+    <listitem>
+    <para>
+     PHP.ini Changes
+    </para>
+    <para>
+     While you are at it, check the line in <filename>php.ini</filename>
+     (usually stored in <filename>c:\winnt\php.ini</filename>) that defines
+     <literal>session.save_path</literal> The default install of PHP refers to
+     <filename>/tmp</filename>, a path not valid in Windows. 
+     If that points  to <filename>/tmp</filename>, you will have trouble when
+     uploading pictures later on. Change that line to a valid directory, such as
+     <filename>C:\winnt\temp</filename>.  <emphasis>Make sure that this
+     directory actually exists.</emphasis> Restart Apache to make sure the changes are enforced
+     (Start Menu-&gt;Programs-&gt;Apache HTTP
+      Server-&gt;Configure Apache Server-&gt;Edit the Apache httpd.conf Configuration
+      File).
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Run the configuration wizard, as described in
+     <link linkend="gallery1-install.config-wizard">this guide</link>
+    </para>
+    <note>
+     <para>
+      If the config wizard complains about missing mod_rewrite support, there is
+      a simple solution for that. Mod_Rewrite is not enabled by default in a
+      Windows/Apache environment.  To correct this, follow these steps:
+      Edit <filename>httpd.conf</filename> (Start Menu-&gt;Programs-&gt;Apache HTTP
+      Server-&gt;Configure Apache Server-&gt;Edit the Apache httpd.conf Configuration
+      File). This will start up Notepad. Press CTRL-F to bring out the search
+      box, and type 'mod_rewrite' in the dialog box. You will find a line that
+      says <literal>#LoadModule rewrite_module modules/mod_rewrite.so</literal>.
+      Remove the # from that line, and press 'Find Next'.  The next entry that
+      it will find reads: <literal>#AddModule mod_rewrite.c</literal>. Remove the
+      '#' from that line too.
+     </para>
+     </note>
+     <note>
+      <para>
+       If you get this: Warning! Apache is not obeying your .htaccess file. 
+       Correct this by, following these steps:
+       Edit <filename>httpd.conf</filename> (Start Menu-&gt;Programs-&gt;Apache HTTP
+       Server-&gt;Configure Apache Server-&gt;Edit the Apache httpd.conf Configuration
+       File)
+       Add the text the config wizard provides to the end of the <filename>http.conf</filename> file.
+      </para>
+      <para>
+       Save the file, and restart Apache (Start Menu-&gt;Programs-&gt;Apache HTTP
+       Server-&gt;Control Apache Server-&gt;Restart).
+      </para>
+      <para>
+      There might be other errors aswell, but the config wizard wil show you examples as to how to fix them.
+      Just remember that everytime httpd.conf is referenced, in Windows/Apache this is the same as 
+      Start Menu-&gt;Programs-&gt;Apache HTTP Server-&gt;Configure Apache Server-&gt;Edit the Apache httpd.conf Configuration
+       File
+     </para>
+    </note>
+   </listitem>
+   <listitem>
+    <para>
+     Point your browser to <filename>http://www.example.com/gallery/</filename>
+     and you should see your freshly installed Gallery.  Press the 'login' link, and
+     log in with the username <literal>admin</literal> and the password you provided
+     in step 2 of the configuration wizard.
+    </para> 
+   </listitem>
+   <listitem>
+    <para>
+     Enjoy your new Gallery!
+    </para>
+   </listitem>
+  </orderedlist>
+ </para>
+</sect1>

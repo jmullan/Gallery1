@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.unix-ftp">
+ <title>Installing on a Unix/Linux Server with FTP</title>
+ 
+ &gallery1.upgrade;
+ 
+ &gallery1.requirements;
+ 
+ <para>
+  Once unpacked (unzipped), you should have a directory called
+  <filename>gallery</filename> that contains most of the files and
+  directories required. Now you're ready to install your Gallery:
+ </para>
+
+ <orderedlist>
+  <listitem>
+   <para>
+    <emphasis>CREATE 2 BLANK FILES with a text editor</emphasis>,(i.e.
+    Notepad, Note Tab, Editplus, Crimson Editor).
+   </para>
+   <para>
+    Call one <filename>.htaccess</filename> and the other
+    &config.php;. Place these inside the Gallery
+    directory.
+   </para>
+   <para>
+    Upload the Gallery directory to your server using an FTP program
+    (like WS_FTP, CuteFTP or Fetch). Upload all files except for image
+    files in <emphasis>ASCII</emphasis> mode. Upload image files in
+    <emphasis>binary</emphasis> mode. <emphasis>Keep the directory
+    tree intact</emphasis>&#8212;you should see 12 folders INSIDE the
+    Gallery folder if you have your albums folder inside Gallery, as
+    well as the php pages that go together to run your Gallery
+    site.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <emphasis>Create a directory on your webspace called
+    <filename>albums</filename>.</emphasis>
+   </para>
+   <para>
+    Gallery will use this directory to store the albums you create and
+    the images you upload to those albums. This directory can reside
+    inside the Gallery directory or outside the Gallery directory -
+    your choice. <emphasis>Make note of where you create this
+    directory.</emphasis>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    You need to set permissions to make some of the files and
+    directories writable. This involves using the
+    <function>CHMOD</function> command. If you do not understand
+    <function>CHMOD</function>, there are some resources and
+    information listed at <ulink
+    url="http://www.eclecticpixels.com/tutorials/chmod/">http://www.eclecticpixels.com/tutorials/chmod/</ulink>. Chmod
+    as follows:
+    <programlisting>
+     chmod 666 .htaccess
+     chmod 666 config.php
+     chmod 755 setup
+    </programlisting>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Run the configuration wizard, as described in <link linkend="gallery1-install.config-wizard">this guide</link>.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Enjoy your new Gallery!
+   </para>
+  </listitem>
+ </orderedlist>
+</sect1>

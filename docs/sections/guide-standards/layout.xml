@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="guide-standards.layout">
+ <title>Layout of the Documentation</title>
+ 
+ <para>
+  The documentation might seem complex at first, but it is really very simple.
+  This section will give you an idea of how the documentation is laid out, so
+  you can easily work with it.
+ </para>
+ <para>
+  <filename>manual.xml</filename> is the big cheese for all the documentation.
+  It defines the chapters and is used by the XML parser to generate the docs.
+  If you need to add a new chapter, this is the file to see.
+ </para>
+ <para>
+  The biggest chunk of the documentation is stored in the <literal>sections/</literal>
+  directory.  Unless it is a general file on the top level of the manual, files
+  should be contained in sub-directories in the <literal>sections/</literal>
+  directory.  For instance, Gallery 1.x files are located in the 
+  <literal>gallery1/</literal> directory in the <literal>sections/</literal>
+  directory.
+ </para>
+ <para>
+  In each of the sub-directories of <literal>sections/</literal>, there will
+  be an <filename>index.xml</filename> file, which defines the layout for
+  the chapter.  Normally, this file just contains entity references to all
+  the sections in the chapter (see below).  For example, the <filename>
+  index.xml</filename> for the <literal>guide-standards/</literal> directory
+  looks something like this:
+  <screen>
+<![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?>
+   
+ &chapters.guide-standards.basics;
+ &chapters.guide-standards.formatting; 
+ &chapters.guide-standards.generating;
+ &chapters.guide-standards.layout;
+]]>
+  </screen>
+  Where these entities come from is described below.
+ </para>
+ <para>
+  Most every file used in the documentation can be referenced by an entity (as
+  shown above).  This allows us to easily include the documentation.  File
+  entities are described in the <filename>files.ent</filename> file in the
+  base directory of the docs module.  The file is commented and should be
+  easy to understand.
+ </para>
+ <para>
+  Other entities, such as notes that will appear in the documentation often,
+  should appear in the <filename>global.ent</filename> file.  Entities should
+  be defined here if they appear in multiple places in the documentation, so
+  they can be updated in one place but automagically affect multiple places
+  in the documentation.
+ </para>
+</sect1>

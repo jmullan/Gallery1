@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-admin.embedding">
+ <title>Embedding Gallery</title>
+ 
+ <sect2 id="gallery1-admin.embedding.nuke">
+  <title>PHP Nuke / PostNuke</title>
+  
+  <para>
+   Embedding Gallery into PHP Nuke or PostNuke is incredibly easy.  We already
+   assume you have successfully setup your CMS (Content Management System).
+  </para>
+  <orderedlist>
+   <listitem>
+    <para>
+     Download Gallery, from the
+     <ulink url="http://gallery.menalto.com/modules.php?op=modload&amp;name=phpWiki&amp;file=index&amp;pagename=Download">Download Page</ulink>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Untar Gallery and upload it to your Nuke <filename>modules/</filename> directory.
+     It is very important that it goes in this directory
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Install Gallery just as if you were doing a non-nuke installation, see one
+     of the following guides:
+     <link linkend="gallery1-install.unix-shell">Unix with Shell Access</link>,
+     <link linkend="gallery1-install.unix-ftp">Unix with FTP Access</link>,
+     <link linkend="gallery1-install.windows">Windows on Apache</link>,
+     <link linkend="gallery1-install.windows-iis">Windows on IIS</link>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Through Nuke, login as an admin and navigate to the "Modules" administration
+     tool.  Install and activate Gallery (in Postnuke, you may need to "regenerate"
+     the list of modules).  <emphasis>You must activate the module or only admins
+     will be able to access it</emphasis>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Your Gallery is installed through Nuke!  In PHP-Nuke, Gallery should show
+     up in the Modules block.  In PostNuke, you may need to manually add it to the
+     menu.
+    </para>
+   </listitem>
+  </orderedlist>
+ 
+  <note>
+   <simpara>
+    You can change the name of the <filename>gallery</filename> directory in your
+    <filename>modules/</filename> directory.  Gallery will detect the changes
+    and do the right thing.
+   </simpara>
+  </note>
+     
+ </sect2>
+</sect1>

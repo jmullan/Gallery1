@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-admin.patching">
+ <title>Patching your Gallery</title>
+ 
+ <note>
+  <simpara>
+   This is pretty hard to explain to a beginner.  Contributions are welcome.
+  </simpara>
+ </note>
+ 
+ <sect2 id="gallery1-admin.patching.whatare">
+  <title>What are patches?</title>
+  
+  <para>
+   A patch is a set of instructions that tell you (or a program) what changes
+   to make to add a feature to your gallery. The advantage of a patch over just
+   getting the whole files, is that a patch can make the changes to files that
+   have already have changes to them. If you copied files over, you'd lose the
+   other changes.
+  </para>
+  <para>
+   Patches can be of three different forms "normal", context, and unified (and
+   unified-context).  Here's what each looks like.
+  </para>
+  <para>
+   Let's say this is the original file:
+   <programlisting>
+<![CDATA[
+ 1 The rain 
+
+ 2 On the plain 
+
+ 3 -Says Alice 
+
+ 4  
+
+ 5 Let's keep this sentence. 
+
+ 6 Let's ditch this long 
+
+ 7 and boring sentence.
+]]>
+   </programlisting>
+   And the changed file...
+   <programlisting>
+<![CDATA[
+ 1 The rain
+
+ 2 In Spain
+
+ 3 Falls mainly
+
+ 4 On the plain
+
+ 5 -Says Bob
+
+ 6
+ 7 Let's keep this sentence.   
+]]>
+   </programlisting>
+  </para>
+  <sect3 id="gallery1-admin.patching.whatare.normal">
+   <title>Normal</title>
+   
+   <programlisting>
+<![CDATA[
+ ///we'll Append these after line 1 to become lines 2--3///
+
+ 1a2,3
+
+ > In Spain
+
+ > Falls mainly
+
+ ///we'll Change line 3, which in the new file is line 5///
+
+ 3c5
+
+ < -Says Alice
+
+ ---
+
+ > -Says Bob
+
+ ///we'll Delete lines 6--7, but they would've been at line 7 in the new file///
+
+ 6,7d7
+
+ < Let's ditch this long
+
+ < and boring sentence.
+]]>
+   </programlisting>
+  </sect3>
+  
+  <sect3 id="gallery1-admin.patching.whatare.context">
+   <title>Context</title>
+   
+   <programlisting>
+<![CDATA[
+ *** file.orig  Sat Jan 01 00:00:00 2000 ///the original filename///
+
+ --- file  Tue Apr 29 00:00:00 2003
+
+ ///the start of a "hunk" of text to change///
+
+ ***************
+
+ ///start/end line numbers in your original file///
+
+ *** 1,8 ****
+
+ ///lines with no "!", "-", or "+" are there for context///
+
+   The rain
+
+   On the plain
+
+ ///the "!' means this line will have a change (see below)///
+
+ ! -Says Alice
+
+   Let's keep this sentence.
+
+ ///the "-" means this line should be deleted///
+
+ - Let's ditch this long
+
+ - and boring sentence.
+
+ ///start/end line numbers in changed file///
+
+ --- 1,8 ----
+
+   The rain
+
+ ///the "+" means this line should be added///
+
+ + In Spain
+
+ + Falls Mainly
+
+   On the plain
+
+ ///this is the change for the line marked "!" up above///
+
+ ! -Says Bob
+
+   
+
+   Let's keep this sentence.
+]]>
+   </programlisting>
+  </sect3>
+  
+  <sect3 id="gallery1-admin.patching.whatare.unified">
+   <title>Unified</title>
+   
+   <programlisting>
+<![CDATA[
+ --- file.orig  Sat Jan 01 00:00:00 2000 ///the original filename///
+
+ +++ file  Tue Apr 29 00:00:00 2003
+
+ ///''the start of a "hunk". "-#,#" gives the lines in the original file,
+
+ while "+#,#" gies the lines in the file once it's changed.''///
+
+ @@ -1,8 +1,8 @@
+
+ ///again, lines with no "-" or "+" are contextual///
+
+  The rain
+
+ +In Spain
+
+ +Falls Mainly
+
+  On the plain
+
+ ///the "replace" is made by a line delete followed by a line add///
+
+ --Says Alice
+
+ +-Says Bob
+
+  
+
+  Let's keep this sentence.
+
+ -Let's ditch this long
+
+ -and boring sentence.
+]]>
+   </programlisting>
+  </sect3>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.patching.applying">
+  <title>Applying Patches</title>
+  
+  <para>
+   Applying patches is easiest with ssh or telnet access.  Basically, just copy
+   the patch to the directory you'd like to patch.  Then simply type
+   <command>patch -p0 &lt; patchfile.txt</command>
+  </para>
+  <para>
+   If you're using Windows, you need the <command>patch.exe</command> program
+   from <ulink url="http://unxutils.sourceforge.net/">http://unxutils.sourceforge.net/</ulink>.
+   Then simply using this command: <command>patch -p0 -i patchfile.txt</command>.
+  </para>   
+  <para>
+   If only have FTP access, you'll have to apply the patchfile manually.  Add
+   lines with +, delete lines with -, and change lines with !.  It's painful, but
+   you will get the hang of it.
+  </para>
+  <warning>
+   <simpara>
+    Always back up your Gallery before patching it.
+   </simpara>
+  </warning>
+  <note>
+   <simpara>
+    If the patch was made with a different version of Gallery than you're using,
+    it probably won't work.  You may need to apply at least part of the patch
+    manually.
+   </simpara>
+  </note>
+ </sect2>
+
+ <sect2 id="gallery1-admin.patching.creating">
+  <title>Creating Patches</title>
+  
+  <warning>
+   <simpara>
+    Before making a patch, especially to distribute to the public, make sure
+    you have throughly tested it!  If possible, build patches aganist the
+    latest stable version and CVS version.
+   </simpara>
+  </warning>
+  
+  <sect3 id="gallery1-admin.patching.creating.cvs">
+   <title>Creating Patches with CVS</title>
+   
+   <para>
+    For more information about using CVS see: <ulink url="http://www.cvshome.org/">http://www.cvshome.org</ulink>.
+    For more information about how to check Gallery out via CVS, see
+    <ulink url="http://sourceforge.net/cvs/?group_id=7130">http://sourceforge.net/cvs/?group_id=7130</ulink>.
+   </para>
+   <para>
+    Once you have created the patch, simply type this command:
+    <command>cvs diff -cu > patch.txt</command>.  <filename>patch.txt</filename>
+    will now contain the patch.
+   </para>
+   <para>
+    Then build a zip file containing this patch and any new files that you have
+    created as part of this change. Upload them somewhere on the web, and 
+    publish the link.
+   </para>
+   <para>
+    It's just as easy to make patches under Windows as it is under *nix. You
+    just need the correct tools installed.  See the 
+    <ulink url="http://gnuwin32.sf.net">GNUWin32 Project</ulink> for the
+    "diffutils-bin" package and it's requirements.  Also get "patch-bin" as well.
+   </para>
+  </sect3>
+ </sect2>
+</sect1>
+   
