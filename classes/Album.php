@@ -1273,7 +1273,7 @@ class Album {
 	function getPhotoIndex($id) {
 		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			$photo = $this->getPhoto($i);
-			if (!strcmp($photo->getPhotoId(), $id) {
+			if (!strcmp($photo->getPhotoId(), $id)) {
 				return $i;
 			}
 		}
