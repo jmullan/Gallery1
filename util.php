@@ -57,7 +57,7 @@ function error($message) {
 }
 
 function popup($url) {
-	$attrs = "height=350,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes";
+	$attrs = "height=450,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes";
 	return "javascript:void(open('$url','Edit','$attrs'))";
 }
 
@@ -98,8 +98,10 @@ function acceptableFormat($tag) {
 }
 
 function isImage($tag) {
+	global $app; 
+
 	return (!strcmp($tag, "jpg") ||
-		!strcmp($tag, "gif") ||
+		($app->feature["gif_support"] && !strcmp($tag, "gif")) ||
 		!strcmp($tag, "png"));
 }
 
@@ -139,11 +141,11 @@ function dismissAndReload() {
 	echo "<BODY onLoad='opener.location.reload(); parent.close()'>";
 }
 
-function reload($url) {
+function reload() {
 	echo "<BODY onLoad='opener.location.reload()'>";
 }
 
 function dismissAndLoad($url) {
 	echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
 }
-?>
+
