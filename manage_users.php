@@ -57,7 +57,7 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 <br>
 <br>
 
-<form name=manageusers_form method=GET>
+<?= makeFormIntro("manage_users.php", array("name" => "manageusers_form")); ?>
 You can create, modify and delete users here.
 <br>
 The <i>admin</i> user will not appear in this list.

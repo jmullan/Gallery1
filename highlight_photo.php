@@ -54,7 +54,7 @@ gallery page, representing this album?
 <br>
 <?= $gallery->album->getCaption($index) ?>
 <br>
-<form action=highlight_photo.php>
+<?= makeFormIntro("highlight_photo.php"); ?>
 <input type=hidden name=index value=<?= $index?>>
 <input type=submit name=confirm value="Yes">
 <input type=submit value="No" onclick='parent.close()'>

@@ -96,7 +96,9 @@ and digits.
 
 <p>
 
-<form name=usermodify_form method=POST>
+<?= makeFormIntro("user_preferences.php", 
+			array("name" => "usermodify_form", 
+				"method" => "POST")); ?>
 <p>
 
 <? include($GALLERY_BASEDIR . "html/userData.inc"); ?>

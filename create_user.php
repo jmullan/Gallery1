@@ -75,7 +75,10 @@ $canCreate = 1;
 Create a new user here.
 <p>
 
-<form name=usercreate_form method=POST>
+
+<?= makeFormIntro("create_user.php", 
+			array("name" => "usercreate_form", 
+				"method" => "POST")); ?>
 <p>
 
 <? include($GALLERY_BASEDIR . "html/userData.inc"); ?>

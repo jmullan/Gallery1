@@ -69,7 +69,7 @@ photo is equal to the target size below.
 
 What is the target size for <?= $all ? "all the photos in this album" : "this photo" ?>?
 <br>
-<form>
+<?= makeFormIntro("resize_photo.php"); ?>
 <input type=hidden name=index value=<?=$index?>>
 <input type=submit name=resize value="Original Size">
 <input type=submit name=resize value="800">

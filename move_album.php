@@ -61,7 +61,8 @@ if ($gallery->session->albumName && isset($index)) {
 
 <center>
 Select the new location of album <?=$gallery->album->fields["title"]?>:
-<form name="theform">
+
+<?= makeFormIntro("move_album.php", array("name" => "theform")); ?>
 <input type=hidden name="index" value="<?=$index?>">
 <select name="newIndex">
 <?
@@ -91,7 +92,7 @@ if ($gallery->album->numPhotos(1)) {
 <br>
 Nest within another Album:
 <p>
-<form name=move_to_album_form>
+<?= makeFormIntro("move_album.php", array("name" => "move_to_album_form")); ?>
 <input type=hidden name="index" value="<?=$index?>">
 <select name="newAlbum">
 <?

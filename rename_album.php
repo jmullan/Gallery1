@@ -91,7 +91,7 @@ the following characters:  <br><center><b>\ / * ? " ' &amp; &lt; &gt; | </b>or<b
 Those characters will be ignored in your new album name.
 
 <br>
-<form name="theform">
+<?= makeFormIntro("rename_album.php", array("name" => "theform")); ?>
 <input type=text name="newName" value=<?=$newName?>>
 <input type=hidden name="oldName" value=<?=$gallery->session->albumName?>>
 <p>

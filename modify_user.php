@@ -94,7 +94,10 @@ $canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;
 You can change any information about the user using this form.
 <p>
 
-<form name=usermodify_form method=POST>
+<?= makeFormIntro("modify_user.php", 
+				array("name" => "usermodify_form", 
+					"method" => "POST")); ?>
+
 <input type=hidden name=old_uname value=<?=$uname?>>
 
 <p>

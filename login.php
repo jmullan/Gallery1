@@ -48,7 +48,7 @@ if ($submit) {
 }
 ?>
 
-<form name=login_form method=POST>
+<?= makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
 Logging in gives you greater permission to
 <br>
 view, create, modify and delete albums.

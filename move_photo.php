@@ -181,7 +181,7 @@ Move this photo within the album:<br>
 <p>
 <?= $gallery->album->getThumbnailTag($index) ?>
 <p>
-<form name="theform">
+<?= makeFormIntro("move_photo.php", array("name" => "theform")); ?>
 Select the new location:
 <input type=hidden name="index" value="<?=$index?>">
 <select name="newIndex">
@@ -212,7 +212,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 if ($gallery->album->isAlbumName($index)) {
 ?>
 Move the album to a new album:<br>
-<form name=move_to_album_form>
+<?= makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
 <input type=hidden name="index" value="<?=$index?>">
 <select name="newAlbum">
 <?
@@ -225,7 +225,7 @@ Move the album to a new album:<br>
 Move a range of photos to a new album:<br>
 <i>(To move just one photo, make First and Last the same)</i><br>
 <i>(Nested albums in this range will be ignored)</i><p>
-<form name=move_to_album_form>
+<?= makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
 <input type=hidden name="index" value="<?=$index?>">
 
 <?

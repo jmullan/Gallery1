@@ -312,7 +312,10 @@ if (!$msgcount) {
 /* Prompt for additional files if we found links in the HTML slurpage */
 if (count($image_tags)) {
 ?>
-<form enctype="multipart/form-data" action="save_photos.php" method=post name="uploadurl_form">
+<?= makeFormIntro("save_photos.php", 
+		array("name" => "uploadurl_form", 
+			"enctype" => "multipart/form-data", 
+			"method" => "POST")); ?>
 <table border=0>
 <?
 	/* Allow user to select which files to grab - only show url right now ( no image previews ) */

@@ -65,7 +65,7 @@ if ($gallery->album->getHighlight()) {
 <br>
 <?= $gallery->album->fields["caption"] ?>
 
-<form>
+<?= makeFormIntro("sort_album.php"); ?>
 <table>
   <tr>
     <td><input checked type="radio" name="sort" value="upload">&nbsp;By Upload Date</td>

@@ -155,7 +155,8 @@ correctEverybody(&$uAdd);
 <br>
 Changing permissions for <b><?=$gallery->album->fields["title"]?></b>
 
-<form name=albumperms_form method=GET>
+<?= makeFormIntro("album_permissions.php", 
+			array("name" => "albumperms_form")) ?>
 
 <? if ($gallery->user->isAdmin) { ?>
 Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1, $uNobody); ?>
