@@ -67,12 +67,12 @@ if (!strcmp($cmd, "fetch-albums")) {
     // display all albums that the user can move album to
     for ($i=1; $i<=$mynumalbums; $i++) {
         $myAlbum=$albumDB->getAlbum($gallery->user, $i);
+        $albumName = urlencode($myAlbum->fields[name]);
+        $albumTitle = urlencode($myAlbum->fields[title]);
         if ($gallery->user->canWriteToAlbum($myAlbum)) {
-            $albumName = urlencode($myAlbum->fields[name]);
-            $albumTitle = urlencode($myAlbum->fields[title]);
 			echo "$albumName\t$albumTitle\n";
-            appendNestedAlbums(0, $albumName, $albumString);
         }
+        appendNestedAlbums(0, $albumName, $albumString);
     }
 	echo "SUCCESS";
 
