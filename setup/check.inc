@@ -25,9 +25,14 @@ foreach ($checklist as $check) {
 	if ($func()) {
 		echo "<font color=green><b>Success</font>";
 	} else {
-		echo "<font color=red><b>Failed!</b></font>";
-		echo "<br>$check[why]";
-		$error = 1;
+		if ($check["optional"]) {
+			echo "<font color=yellow><b>Warning!</b></font>";
+			echo "<br>$check[why]";
+		} else {
+			echo "<font color=red><b>Failed!</b></font>";
+			echo "<br>$check[why]";
+			$error = 1;
+		}
 	}
 ?>
 	</td>
