@@ -3,9 +3,9 @@
 
 $common_messages["getting-netpbm"] = 
 			sprintf(_("Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from %sGallery on SourceForge%s.  Or, you can compile and install the entire NetPBM package from %sNetPBM on SourceForge%s."), 
-				 "<a href=http://sourceforge.net/projects/gallery>",
+				 "<a href=\"http://sourceforge.net/projects/gallery\">",
 				 "</a>",
-				 "<a href=http://sourceforge.net/projects/netpbm>",
+				 "<a href=\"http://sourceforge.net/projects/netpbm\">",
 				 "</a>")  .
 			"<br>" .
 			_("<b>Note:</b> You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick intead.");
@@ -16,7 +16,7 @@ $common_messages["fail-netpbm-partial"] =
 
 $common_messages["getting-imagemagick"] =
 			sprintf(_("Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from %s." ), 
-				"<a href=http://www.imagemagick.org>www.ImageMagick.org</a>") .
+				"<a href=\"http://www.imagemagick.org\">www.ImageMagick.org</a>") .
 			"<br>" .
 			_("<b>Note</b>:  They also have binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
 					
@@ -57,7 +57,7 @@ $checklist = array(
 			'</a>') .
 		"<br><br>" .
 			  sprintf(_("<b>Note</b>: In some rare circumstances, Gallery thinks that <b>safe mode</b> is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the safe_mode row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."),
-				 '<a href=phpinfo.php>',
+				 '<a href="phpinfo.php">',
 				 '</a>'),
 		"optional" => 1,
 		"serious" => 1,
@@ -122,8 +122,8 @@ $checklist = array(
 		"desc" => _("Check to see if jpegtran is installed so that Gallery can perform lossless rotations (only works on JPEG images)"),
 		"func" => "check_jpegtran",
 		"fail-jpegtran" => sprintf(_("I can't find jpegtran.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jpegtran by hand on the following page.  If it's not installed, you can install it yourself.  jpegtran is a freely distributable tool distributed by the Independent JPEG Group as part of libjpeg.  Source may be found at %sthe IJG homepage%s.  Binaries may be found at %sthe JPEG club website%s or in the libjpeg package of Linux distributions."),
-			'<a href="http://www.ijg.org"/>', '</a>',
-			'<a href=http://jpegclub.org/>', '</a>'),
+			'<a href="http://www.ijg.org">', '</a>',
+			'<a href="http://jpegclub.org/">', '</a>'),
 		"open-basedir-note" => $common_messages["open-basedir-active"],
 	),	
 	"gettext" => array (

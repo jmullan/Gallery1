@@ -204,7 +204,7 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 <?php echo makeFormIntro("captionator.php", array("method" => "POST")) ?>
 <input type=hidden name=page value=<?php echo $page ?>>
 <input type=hidden name=perPage value=<?php echo $perPage ?>>
-<table width=100% border=0 cellspacing=4 cellpadding=0>
+<table width="100%" border=0 cellspacing=4 cellpadding=0>
 <tr>
 <td colspan="3" align="right">
 <input type=submit name="save" value="<?php echo _("Save and Exit") ?>">

@@ -53,9 +53,9 @@ function image($name) {
 <p>
 <table border=0 cellpadding=0 cellspacing=0>
  <tr>
-  <td> <img src=<?php echo image("computer.gif") ?> width=31 height=32> </td>
-  <td> <img src=<?php echo image("uploading.gif") ?> width=160 height=11> </td>
-  <td> <img src=<?php echo image("computer.gif") ?> width=31 height=32> </td>
+  <td> <img src="<?php echo image("computer.gif") ?>" width="31" height="32"> </td>
+  <td> <img src="<?php echo image("uploading.gif") ?>" width="160" height="11"> </td>
+  <td> <img src="<?php echo image("computer.gif") ?>" width="31" height="32"> </td>
  </tr>
 </table>
 

@@ -117,7 +117,7 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 		$sizeOfTable = $sizeOfExif / 2;
 		$i = 1;
 		$column = 1;
-		echo ("<table width=100%>\n");
+		echo ("<table width=\"100%\">\n");
 		echo ("<tr valign=top>\n");
 		echo ("<td>\n");
 		while (list($key, $value) = each ($myExif)) {
@@ -149,12 +149,12 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 	if ($gallery->user->canWriteToAlbum($gallery->album) &&
 	    !strcmp($gallery->app->cacheExif, "yes")) {
 		echo "<br>";
-		echo "<a href=" .
+		echo "<a href=\"" .
 			makeGalleryUrl("view_photo_properties.php",
 					array("reloadExifFromFile" => 1,
 						"set_albumName" => $gallery->session->albumName,
 						"index" => $index)) .
-			">[". _("Reload EXIF Data From File") ."]</a>";
+			"\">[". _("Reload EXIF Data From File") ."]</a>";
 		echo "<br>";
 		echo "<span class=fineprint>";
 		echo _("(if the data is current, this will not appear to do anything)");

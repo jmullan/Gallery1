@@ -438,12 +438,12 @@ if (!$gallery->album->isMovie($id)) {
 		}
 		$printService = $gallery->album->fields["print_photos"];
 		if (!strncmp($printService, "shutterfly", 10)) {
-		    $adminCommands .= "<a href=# onClick=\"document.sflyc4p.returl.value=document.location; document.sflyc4p.submit();\">[". sprintf(_("print this photo on %s"), "Shutterfly") . "]</a>";
+		    $adminCommands .= "<a href=\"#\" onClick=\"document.sflyc4p.returl.value=document.location; document.sflyc4p.submit();\">[". sprintf(_("print this photo on %s"), "Shutterfly") . "]</a>";
 		    $printShutterflyForm = 1;
 		} else if (!strncmp($printService, "fotokasten", 10)) {
 		    $adminCommands .= popup_link("[". sprintf(_("print this photo on %s"), "Fotokasten") . "]", "'http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth . "'", 1);
 		} else if (!strncmp($printService, 'photoaccess', 11)) {
-		    $adminCommands .= "<a href=# onClick=\"document.photoAccess.returnUrl.value=document.location; document.photoAccess.submit()\">[". sprintf(_("print this photo on %s"), "PhotoAccess") . "]</a>";
+		    $adminCommands .= "<a href=\"#\" onClick=\"document.photoAccess.returnUrl.value=document.location; document.photoAccess.submit()\">[". sprintf(_("print this photo on %s"), "PhotoAccess") . "]</a>";
 		    $printPhotoAccessForm = 1;
 		}
 	}
@@ -499,24 +499,24 @@ includeHtmlWrap("inline_photo.header");
 <table width=1% border=0 cellspacing=0 cellpadding=0>
 <?php
 echo("<tr $bordercolor>");
-echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+echo("<td colspan=3 height=$borderwidth><img src=\"$top/images/pixel_trans.gif\"></td>");
 echo("</tr><tr>");
 echo("<td $bordercolor width=$borderwidth>");
-echo("<img src=$top/images/pixel_trans.gif width=$borderwidth height=1>");
+echo("<img src=\"$top/images/pixel_trans.gif\" width=$borderwidth height=1>");
 echo("</td><td align='center'>");
 
 $photoTag = $gallery->album->getPhotoTag($index, $full);
 if (!$gallery->album->isMovie($id)) {
 	if ($gallery->album->isResized($index) && !$do_fullOnly) { 
 		if ($full) { 
-			echo "<a href=" . makeAlbumUrl($gallery->session->albumName, $id) . ">";
+			echo "<a href=\"" . makeAlbumUrl($gallery->session->albumName, $id) . "\">";
 	 	} else if ($gallery->user->canViewFullImages($gallery->album)) {
-			echo "<a href=" . makeAlbumUrl($gallery->session->albumName, $id, array("full" => 1)) . ">";
+			echo "<a href=\"" . makeAlbumUrl($gallery->session->albumName, $id, array("full" => 1)) . "\">";
 		}
 		$openAnchor = 1;
 	}
 } else {
-	echo "<a href=" . $gallery->album->getPhotoPath($index) . " target=other>";
+	echo "<a href=\"" . $gallery->album->getPhotoPath($index) . "\" target=\"other\">";
 	$openAnchor = 1;
 }
 
@@ -541,11 +541,11 @@ if ($openAnchor) {
 
 echo("</td>");
 echo("<td $bordercolor width=$borderwidth>");
-echo("<img src=$top/images/pixel_trans.gif width=$borderwidth height=1>");
+echo("<img src=\"$top/images/pixel_trans.gif\" width=$borderwidth height=1>");
 echo("</td>");
 echo("</tr>");
 echo("<tr $bordercolor>");
-echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+echo("<td colspan=3 height=$borderwidth><img src=\"$top/images/pixel_trans.gif\"></td>");
 ?>
 </tr>
 </table>

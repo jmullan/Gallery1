@@ -106,7 +106,7 @@ $admin->save();
 <p>
 <center>
 <font size=+2>
-<a href=../albums.php><?php echo _("Enter the Gallery") ?></a>
+<a href="../albums.php"><?php echo _("Enter the Gallery") ?></a>
 </font>
 
 <br><br><br><br>

@@ -312,11 +312,11 @@ if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
 		$adminCommands .= popup_link("[" . _("custom fields") ."]", 
 			"extra_fields.php?set_albumName=" .
 			$gallery->session->albumName);
-		$adminCommands .= '<a href=' . makeGalleryUrl("captionator.php", 
+		$adminCommands .= '<a href="' . makeGalleryUrl("captionator.php", 
 			array("set_albumName" => $gallery->session->albumName, 
 				"page" => $page, 
 				"perPage" => $perPage)) .
-			'>['. _("captions") . ']</a>&nbsp;';
+			'">['. _("captions") . ']</a>&nbsp;';
 	}
 }
 
@@ -343,18 +343,18 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
 }
 if (($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) &&
 	!strcmp($gallery->album->fields["public_comments"],"yes")) { 
-    $adminCommands .= '<a href=' . makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)) . '>[' . _("view&nbsp;all&nbsp;comments") . ']</a>&nbsp;';
+    $adminCommands .= '<a href="' . makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)) . '">[' . _("view&nbsp;all&nbsp;comments") . ']</a>&nbsp;';
 }
-$adminCommands .= '<a href=' . 
+$adminCommands .= '<a href="' . 
 	 makeGalleryUrl("slideshow.php",
 		array("set_albumName" => $albumName)) .
-	'>['. _("slideshow") .']</a> ';
+	'">['. _("slideshow") .']</a> ';
 
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 	if ($gallery->user->isLoggedIn()) {
-	        $adminCommands .= "<a href=" .
+	        $adminCommands .= "<a href=\"" .
 					doCommand("logout", array(), "view_album.php", array("page" => $page)) .
-				  ">[" . _("logout") . "]</a>";
+				  "\">[" . _("logout") . "]</a>";
 	} else {
 	//	$adminCommands .= popup_link("[". _("login") ."]", "login.php", 0, true, 250, 500);
 		$adminCommands .= popup_link("[". _("login") ."]", "login.php", 0);

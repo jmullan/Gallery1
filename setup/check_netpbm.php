@@ -225,7 +225,7 @@ echo sprintf(_("If you see an error above complaining about reading or writing t
 
 echo "  ";
 echo sprintf(_("You should talk to your system administrator about this, or see the %sGallery Help Page%s."),
-		'<a href=http://gallery.sourceforge.net/help.php>',
+		'<a href="http://gallery.sourceforge.net/help.php">',
 		'</a>');
 
 ?>

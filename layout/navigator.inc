@@ -48,7 +48,7 @@ if ($navigator["page"] == 1) {
 } else {
 ?>
     <td align="center" width="27" height="18"><span class="nav"> 
-      <a href=<?php echo $url ?><?php echo $navigator['pageVar'] ?>=1><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_first.gif" : "nav_last.gif" ?>" border="0" width="27" height="11" alt="<?php echo _("First Page") ?>" title="<?php echo _("First Page") ?>"></a>
+      <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=1"><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_first.gif" : "nav_last.gif" ?>" border="0" width="27" height="11" alt="<?php echo _("First Page") ?>" title="<?php echo _("First Page") ?>"></a>
       </span></td>
     <td bgcolor="<?php echo $borderIn ?>" width="1" height="1"><?php echo $pixelImage ?></td>
 <?php
@@ -60,7 +60,7 @@ $prevPage = $navigator["page"] - 1;
 if ($prevPage >= 1) {
 ?>
     <td align="center" width="72" height="18"><span class="nav">
-      <a href=<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $prevPage ?>><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_prev.gif" : "nav_next.gif" ?>" border="0" width="72" height="11" alt="<?php echo _("Previous Page") ?>" title="<?php echo _("Previous Page") ?>"></a>
+      <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $prevPage ?>"><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_prev.gif" : "nav_next.gif" ?>" border="0" width="72" height="11" alt="<?php echo _("Previous Page") ?>" title="<?php echo _("Previous Page") ?>"></a>
       </span></td>
     <td bgcolor="<?php echo $borderIn ?>" width="1" height="1"><?php echo $pixelImage ?></td>
 <?php
@@ -82,7 +82,7 @@ if ($begin != $end) {
 			$number = "<b>$i</b>";
 			$leftdot = "<img src=\"$imageDir/nav_dot_left.gif\" width=\"8\" height=\"11\">";
 		} else {
-			$number = "<a href=".$url.$navigator['pageVar']."=$i>$i</a>";
+			$number = "<a href=\"".$url.$navigator['pageVar']."=$i\">$i</a>";
 			if (($i-1) == $navigator["page"]) {
 				$leftdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\">";
 			} else {
@@ -110,7 +110,7 @@ if ($nextPage <= $navigator["maxPages"]) {
 ?>
     <td bgcolor="<?php echo $borderIn ?>" width="1" height="1"><?php echo $pixelImage ?></td>
     <td align="center" width="72" height="18"><span class="nav">
-      <a href=<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $nextPage ?>><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_next.gif" : "nav_prev.gif" ?>" border="0" width="72" height="11" alt="<?php echo _("Next Page") ?>" title="<?php echo _("Next Page") ?>"></a>
+      <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $nextPage ?>"><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_next.gif" : "nav_prev.gif" ?>" border="0" width="72" height="11" alt="<?php echo _("Next Page") ?>" title="<?php echo _("Next Page") ?>"></a>
       </span></td>
 <?php
 } else {   
@@ -131,7 +131,7 @@ if ($navigator["page"] == $navigator["maxPages"]) {
 ?>
     <td bgcolor="<?php echo $borderIn ?>" width="1" height="1"><img src="<?php echo $imageDir ?>/pixel_trans.gif" width="1" height="1"></td>
     <td align="center" width="27" height="18"><span class="nav">
-      <a href=<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $navigator['maxPages'] ?>><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_last.gif" : "nav_first.gif" ?>" border="0" width="27" height="11" alt="<?php echo _("Last Page") ?>" title="<?php echo _("Last Page") ?>"></a>
+      <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $navigator['maxPages'] ?>"><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_last.gif" : "nav_first.gif" ?>" border="0" width="27" height="11" alt="<?php echo _("Last Page") ?>" title="<?php echo _("Last Page") ?>"></a>
       </span></td>
 <?php
 } 

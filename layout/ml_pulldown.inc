@@ -1,12 +1,12 @@
 <?php if ($gallery->app->ML_mode == 3 && !$gallery->session->offline) { ?>
-<script language="JavaScript">
+<script language="JavaScript" type="text/javascript">
 function ML_reload() {
 	var newlang=document.MLForm.newlang[document.MLForm.newlang.selectedIndex].value ;
 	window.location.href=newlang;
 }
 </script>
 
-	<form name="MLForm">
+	<form name="MLForm" action="#">
 	<table width="100%">
 	<tr>
 <td valign="top" align="right">

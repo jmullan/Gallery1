@@ -94,7 +94,7 @@ if (isset($submit)) {
 		_("Search Again") . '</a><p>';
 	print $search_again;
 }
-$breadtext[0] = _("Gallery") . ": <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
+$breadtext[0] = _("Gallery") . ": <a href=\"". makeGalleryUrl("albums.php") . "\">".$gallery->app->galleryTitle."</a>";
 $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;
@@ -164,7 +164,7 @@ if (isset($submit)) {
 				$searchdraw["top"] = true;
 				$searchdraw["photolink"] = $searchAlbum->getHighlightTag($thumbSize);
 				$searchdraw["photoURL"] = $photoURL;
-				$searchdraw["Text1"] = "<span class=title><a href=$photoURL>$searchTitle</a></span>";
+				$searchdraw["Text1"] = "<span class=title><a href=\"$photoURL\">$searchTitle</a></span>";
 				$searchdraw["Text2"] = "<span class=desc>$searchDescription</span>";
 				include($GALLERY_BASEDIR . "layout/searchdraw.inc");
 			}
@@ -220,7 +220,7 @@ if (isset($submit)) {
 						$searchCaption = $searchAlbum->getCaption($j);
 						$searchCaption .= $searchAlbum->getCaptionName($j, true);
 						$searchdraw["Text2"] = "<span class=desc>$searchCaption</span>";
-						$searchdraw["Text1"] = "<span class=fineprint>From Album:&nbsp;&nbsp;<a href=" .  makeAlbumUrl($searchAlbum->fields['name']) . ">" .  $searchAlbum->fields['title'] . "</a></span>";
+						$searchdraw["Text1"] = "<span class=fineprint>From Album:&nbsp;&nbsp;<a href=\"" .  makeAlbumUrl($searchAlbum->fields['name']) . "\">" .  $searchAlbum->fields['title'] . "</a></span>";
 						$searchdraw["Text3"] = "";
 						$searchdraw["Text4"] = "";
 						$searchdraw["Text5"] = "";
@@ -295,7 +295,7 @@ if (isset($submit)) {
 					$searchCaption = $searchAlbum->getCaption($j);
 					$searchCaption .= $searchAlbum->getCaptionName($j, true);
 					$searchdraw["Text2"] = "<span class=desc>$searchCaption</span>";
-					$searchdraw["Text1"] = "<span class=fineprint>From Album:&nbsp;&nbsp;<a href=" .  makeAlbumUrl($searchAlbum->fields['name']) . ">" .  $searchAlbum->fields['title'] . "</a></span>";
+					$searchdraw["Text1"] = "<span class=fineprint>From Album:&nbsp;&nbsp;<a href=\"" .  makeAlbumUrl($searchAlbum->fields['name']) . "\">" .  $searchAlbum->fields['title'] . "</a></span>";
 					$searchdraw["Text3"] = "";
 					$searchdraw["Text4"] = "";
 					$searchdraw["Text5"] = $commentText;
@@ -330,7 +330,7 @@ if (isset($submit)) {
 
 ?>
 <br><?php echo _("Search the Gallery's Album and Photo titles, descriptions and comment.") ?><p>
-	<table width=100% border=0 cellspacing=0>
+	<table width=\"100%\" border=0 cellspacing=0>
 	<tr><?php echo makeFormIntro("adv_search.php"); ?></tr>
 	<!--
 	<tr><td><?php echo _("Text for which to search:") ?></td>
@@ -361,7 +361,7 @@ if (isset($submit)) {
 <?php
 }
 echo "<br>";
-$breadtext[0] = _("Gallery") . ":<a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
+$breadtext[0] = _("Gallery") . ":<a href=\"". makeGalleryUrl("albums.php") . "\">".$gallery->app->galleryTitle."</a>";
 $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;

@@ -94,15 +94,16 @@ includeHtmlWrap("gallery.header");
 <?php
 if (!$gallery->session->offline && !strcmp($gallery->app->default["showSearchEngine"], "yes")) {
 ?>
-<table width=100% border=0 cellspacing=0>
-<tr><?php echo makeFormIntro("search.php"); ?>
+<table width="100%" border=0 cellspacing=0>
+<tr>
 <td valign="middle" align="right">
+<?php echo makeFormIntro("search.php"); ?>
 <span class="admin"> <?php echo _("Search") ?>: </span>
 <input style="font-size=10px;" type="text" name="searchstring" value="" size="25">
-</td>
 </form>
+</td>
 </tr>
-<tr><td height=2><img src=<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif></td></tr></table>
+<tr><td height=2><img src="<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif"></td></tr></table>
 <?php
 }
 ?>
@@ -142,7 +143,7 @@ if ($gallery->user->isAdmin()) {
 	}
 }
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
-	$adminCommands .= "<a href=" . doCommand("new-album", array(), "view_album.php") . ">[". _("new album") ."]</a>&nbsp;";
+	$adminCommands .= "<a href=\"" . doCommand("new-album", array(), "view_album.php") . "\">[". _("new album") ."]</a>&nbsp;";
 }
 
 if ($gallery->user->isAdmin()) {
@@ -161,7 +162,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	}
 	
 	if (!$GALLERY_EMBEDDED_INSIDE) {
-		$adminCommands .= "<a href=". doCommand("logout", array(), "albums.php"). ">[". _("logout") ."]</a>";
+		$adminCommands .= "<a href=\"". doCommand("logout", array(), "albums.php"). "\">[". _("logout") ."]</a>";
 	}
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
@@ -186,7 +187,7 @@ include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 
 
 <!-- album table begin -->
-<table width=100% border=0 cellpadding=0 cellspacing=7>
+<table width="100%" border=0 cellpadding=0 cellspacing=7>
 
 <?php
 /* Display warnings about broken albums */
@@ -265,7 +266,7 @@ for ($i = $start; $i <= $end; $i++) {
   <!-- Begin Text Cell -->
   <td align=<?php echo $gallery->alignment ?> valign=top>
   <span class="title">
-  <a href=<?php echo $albumURL ?>>
+  <a href="<?php echo $albumURL ?>">
   <?php _("title") ?>
   <?php echo editField($gallery->album, "title") ?></a>
   </span>
@@ -307,7 +308,7 @@ for ($i = $start; $i <= $end; $i++) {
   <?php if ($gallery->user->canChangeTextOfAlbum($gallery->album) 
   	&& !$gallery->session->offline) { ?>
    <span class="admin">
-    <a href=<?php echo makeGalleryUrl("captionator.php", array("set_albumName" => $tmpAlbumName)) ?>>[<?php echo _("edit captions") ?>]</a>
+    <a href="<?php echo makeGalleryUrl("captionator.php", array("set_albumName" => $tmpAlbumName)) ?>">[<?php echo _("edit captions") ?>]</a>
    </span>
   <?php } ?>
 
@@ -315,11 +316,11 @@ for ($i = $start; $i <= $end; $i++) {
    <span class="admin">
     <?php echo popup_link("[" . _("permissions") ."]", "album_permissions.php?set_albumName={$tmpAlbumName}"); ?>
    <?php if (!strcmp($gallery->album->fields["public_comments"],"yes")) { ?>
-    <a href=<?php echo makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName)) ?>>[<?php echo _("view&nbsp;comments") ?>]</a>
+    <a href="<?php echo makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName)) ?>">[<?php echo _("view&nbsp;comments") ?>]</a>
    <?php } ?>
    </span>
   <br>
-  url: <a href=<?php echo $albumURL ?>>
+  url: <a href="<?php echo $albumURL ?>">
   	<?php if (!$gallery->session->offline) {
 		echo breakString($albumURL, 60, '&', 5);
 	} else {

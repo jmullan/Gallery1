@@ -29,7 +29,7 @@ initLanguage();
 	  </tr>
 	  <tr>
 	    <td width=140 align=center valign=top>
-	      <a href=phpinfo.php><?php echo _("PHP Info") ?></a>
+	      <a href="phpinfo.php"><?php echo _("PHP Info") ?></a>
 	    </td>
 	    <td>
 		<?php echo _("This page provides information about your PHP installation.") ?>
@@ -39,7 +39,7 @@ initLanguage();
 
 	  <tr>
 	    <td width=140 align=center valign=top>
-	      <a href=check_netpbm.php><?php echo _("Check") ?> NetPBM</a>
+	      <a href="check_netpbm.php"><?php echo _("Check") ?> NetPBM</a>
 	    </td>
 	    <td>
 	      <?php echo _("This page provides information about your NetPBM binaries.") ?> 
@@ -49,7 +49,7 @@ initLanguage();
 
 	  <tr>
 	    <td width=140 align=center valign=top>
-	      <a href=check_imagemagick.php><?php echo _("Check") ?> ImageMagick</a>
+	      <a href="check_imagemagick.php"><?php echo _("Check") ?> ImageMagick</a>
 	    </td>
 	    <td>
 		<?php echo _("This page provides information about your ImageMagick binaries.") ?> 
@@ -59,7 +59,7 @@ initLanguage();
 
 	  <tr>
 	    <td width=140 align=center valign=top>
-	      <a href=session_test.php><?php echo _("Check Sessions") ?></a>
+	      <a href="session_test.php"><?php echo _("Check Sessions") ?></a>
 	    </td>
 	    <td>
 		<?php echo _("This page runs a very simple test on your PHP session configuration.") ?>
