@@ -84,17 +84,17 @@ Click the <b>Browse</b> button to locate a photo to upload.
 <? } ?>
 <br><br>
 <center>
-<input type="button" value="Upload Now" onClick='opener.showProgress(); submit()'>
+<input type="button" value="Upload Now" onClick='opener.showProgress(); document.upload_form.submit()'>
 <input type=submit value="Cancel" onclick='parent.close()'>
 </center>
 </form>
 
 <form enctype="multipart/form-data" action="save_photos.php" method=post name="uploadurl_form">
 Or, upload the image at this URL:
-<input name="url">
+<input type="text" name="urls[]" size=50>
 <br><br>
 <center>
-<input type="button" value="Submit URL" onClick='opener.showProgress(); submit()'>
+<input type="button" value="Submit URL" onClick='opener.showProgress(); document.uploadurl_form.submit()'>
 <input type=submit value="Cancel" onclick='parent.close()'>
 </center>
 </form>
