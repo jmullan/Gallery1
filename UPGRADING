@@ -66,7 +66,21 @@ If you've modified files in the html_wrap/ directory, you may
 experience some problems when you upgrade to v1.1.  We've moved some
 of the variables around since we were finding that there were some
 conflicts in the global namespace.  All global and session variables
-can now be found in the $gallery stdClass.  
+can now be found in the $gallery object.  Take a look at the tips in
+the html_wrap/xxx.default files to see what the new variable names
+are.  
 
-Take a look at the tips in the .default files to see what the new
-variable names are.  
+PHP-Nuke 5.0 integration is new in v1.1 and in order to make Gallery a
+seamless Nuke 5.0 module, we had to make some changes to the
+html_wrap/ default files.  If you look at the new
+html_wrap/xxx.header.default files, you'll see that we include a file
+called "wrapper.header".  This file (which also lives in html_wrap/)
+detects whether or not you're running inside PHP-Nuke, and if so it
+will Do the Right Thing.
+
+If you have problems with your customized look and feel after moving
+to v1.1, I suggest that you move your customized gallery.header and
+gallery.footer files out of the way and start again with the default
+ones in the html_wrap directory.
+
+
