@@ -85,14 +85,19 @@ if ($gallery->session->albumName && isset($index)) {
 			       	$votes=NULL;
 		       	}
 			if ($gallery->album->isAlbum($index)) { // moving "album" to another location
+				$myAlbum = $gallery->album->getNestedAlbum($index);
+				$hIndex = $myAlbum->getHighlight();
+				$oldHSize = $gallery->album->fields["thumb_size"];
 				if ($newAlbum == ".root") { // moving "album" to .root location
-					$myAlbum = $gallery->album->getNestedAlbum($index);
 					$myAlbum->fields['parentAlbumName'] = 0;
 					$gallery->album->deletePhoto($index, 0, 0); 
+					if ($oldHSize != $gallery->app->highlight_size && isset($hIndex)) {
+						$hPhoto =& $myAlbum->getPhoto($hIndex);
+						$hPhoto->setHighlight($myAlbum->getAlbumDir(), true, $myAlbum);
+					}
 					$myAlbum->save(array(i18n("Moved to ROOT")));
 					$gallery->album->save(array(i18n("Subalbum %s moved to ROOT"), $myAlbum->fields['name']));
 				} else { // moving "album" to another album
-					$myAlbum = $gallery->album->getNestedAlbum($index);
 					if ($postAlbum != $myAlbum) { // we don't ever want to point an album back at itself!!!
 						$postAlbum->addNestedAlbum($gallery->album->getAlbumName($index)); // copy "album" to new album
 						if ($votes) {
@@ -102,15 +107,22 @@ if ($gallery->session->albumName && isset($index)) {
 
 						// delete "album" from original album
 						$gallery->album->deletePhoto($index, 0, 0);
-						$postAlbum->save(array(i18n("New subalbum %s from %s"),
-									$myAlbum->fields['name'], 
-									$gallery->album->fields['name']));
+						if ($oldHSize != $postAlbum->fields["thumb_size"] && isset($hIndex)) {
+							$hPhoto =& $myAlbum->getPhoto($hIndex);
+							$hPhoto->setHighlight($myAlbum->getAlbumDir(), true, $myAlbum);
+						}
 						$gallery->album->save(array(i18n("Moved subalbum %s to %s"), 
 									$myAlbum->fields['name'], 
 									$postAlbum->fields['name']));
 					       	$myAlbum->save(array(i18n("Moved from %s to %s"),
 								       	$gallery->album->fields['name'],
 								       	$postAlbum->fields['name']));
+						if ($postAlbum->numPhotos(1) == 1) {
+							$postAlbum->setHighlight(1);
+						}
+						$postAlbum->save(array(i18n("New subalbum %s from %s"),
+									$myAlbum->fields['name'], 
+									$gallery->album->fields['name']));
 					}
 				}
 			} else { // moving "picture" to another album

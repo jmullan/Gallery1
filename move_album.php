@@ -53,6 +53,14 @@ if ($gallery->session->albumName && isset($index)) {
 		if ($gallery->album->fields['name'] != $newAlbum) {
 			$old_parent=$gallery->album->fields['parentAlbumName'];
 			$gallery->album->fields['parentAlbumName'] = $newAlbum;
+			// Regenerate highlight if needed..
+			if ($gallery->app->highlight_size != $newAlbum->fields["thumb_size"]) {
+				$hIndex = $gallery->album->getHighlight();
+				if (isset($hIndex)) {
+					$hPhoto =& $gallery->album->getPhoto($hIndex);
+					$hPhoto->setHighlight($gallery->album->getAlbumDir(), true, $gallery->album);
+				}
+			}
 			if ($old_parent== 0) {
 				$old_parent=".root";
 			}
@@ -61,6 +69,9 @@ if ($gallery->session->albumName && isset($index)) {
 						$newAlbum));
 			$newAlbum = $albumDB->getAlbumbyName($newAlbum);
 			$newAlbum->addNestedAlbum($gallery->album->fields['name']);
+			if ($newAlbum->numPhotos(1) == 1) {
+				$newAlbum->setHighlight(1);
+			}
 			$newAlbum->save(array(i18n("New subalbum %s, moved from %s"),
 						$gallery->album->fields['name'], 
 						$old_parent));
