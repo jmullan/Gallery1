@@ -341,6 +341,7 @@ function check_safe_mode()
 	$safe_mode = ini_get("safe_mode");
 	if (empty($safe_mode) ||
 	    !strcasecmp($safe_mode, "off") ||
+	    !strcasecmp($safe_mode, "0") ||
 	    !strcasecmp($safe_mode, "false")) {
 		$success[] = "safe mode is off";
 	} else {
