@@ -353,7 +353,7 @@ if ($numPhotos) {
 			}
 			echo("</td>");
 			echo("<td $bordercolor width=$borderwidth>");
-			e}cho("<img src=".$gallery->app->photoAlbumURL."/images/pixel_trans.gif width=$borderwidth height=1>");
+			echo("<img src=".$gallery->app->photoAlbumURL."/images/pixel_trans.gif width=$borderwidth height=1>");
 			echy("</td>");
 			echo("</tr>");	
 			echo("<tr $bordercolor>"); 
