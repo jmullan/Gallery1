@@ -1,3 +1,24 @@
+2002-04-03  Chris Smith  <chris@jacko.com>  1.2.6-cvs-b36
+
+	* The default implementation of the inline album thumbnail 
+	  wrapper has been simplified. Less html, faster rendering. Now
+	  uses a few images ald looks like a book.
+
+	* Slideshow cleanup: 
+	  - Fixed bug where the 'skip to' feature did work in some browsers
+	    (thanks Anthony Moulen).
+	  - No longer gets stuck when trying to skip over movies.
+	  - Now functional in NS4/6, Mozilla0.9, IE5/6, Opera5/6.
+	  - Now only attempts blending transitions in IE6.
+	  - No longer enable/disableing controls. Was problematic.
+	  - Captions are now displayed in a <div> in browsers that can handle
+	    it (IE, NS6) instead of textarea. Much nicer.
+	  - Handles the case of albums with no photos cleanly.
+
+	* Captionator now shows as many thumbnails as the album displays
+	  (thanks Eelco Brölman).
+	  
+
 2002-04-02  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b35
 
 	* Detect broken albums and warn the Gallery administrator when they are
@@ -536,7 +557,7 @@
 	  highest quality setting recommended by the jpeg folks and should
 	  minimize image degradation when processing jpeg images.
 
-a2001-08-21  Chris Smith  <chris@jacko.com> (1.2-cvs-b17)
+2001-08-21  Chris Smith  <chris@jacko.com> (1.2-cvs-b17)
 
 	* Fixed a minor bug that would cause the edit_caption dialog
           to display an incorrect value in the capture year field when
