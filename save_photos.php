@@ -74,7 +74,7 @@ while (sizeof($userfile)) {
 			$tag = strtolower($tag);
 
 			if (acceptableFormat($tag)) {
-				exec("$app->unzip -j -o $file '$pic_path' -d $app->tmpDir");
+				exec_wrapper("$app->unzip -j -o $file '$pic_path' -d $app->tmpDir");
 				process("$app->tmpDir/$pic", $tag, $pic);
 				unlink("$app->tmpDir/$pic");
 			}
