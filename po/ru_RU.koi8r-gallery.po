@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Russian Gallery 1.3.4 ML 7+\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-28 09:34+0100\n"
+"POT-Creation-Date: 2003-07-29 14:49+0100\n"
 "PO-Revision-Date: 2003-04-11 13:58+0100\n"
 "Last-Translator: Jens Tkotz <jens@f2h9.de>\n"
 "Language-Team: Yuri Gural <yuri@kpc.krg.kz>\n"
@@ -31,15 +31,17 @@ msgstr "Нарушение безопасности"
 #
 #: ../add_comment.php:45 ../add_comment.php:92 ../album_permissions.php:100
 #: ../album_permissions.php:288 ../edit_caption.php:42 ../edit_caption.php:170
-#: ../edit_field.php:42 ../edit_field.php:67 ../modify_user.php:42
-#: ../modify_user.php:143 ../photo_owner.php:47 ../photo_owner.php:104
-#: ../user_preferences.php:41 ../user_preferences.php:119
+#: ../edit_field.php:42 ../edit_field.php:60 ../edit_field.php:68
+#: ../modify_user.php:42 ../modify_user.php:143 ../photo_owner.php:47
+#: ../photo_owner.php:104 ../user_preferences.php:41
+#: ../user_preferences.php:119
 msgid "Save"
 msgstr "Сохранить"
 
 #
 #: ../add_comment.php:55
-msgid "Name and Comment are both required to save a new comment!"
+#, fuzzy
+msgid "Name and comment are both required to save a new comment!"
 msgstr "Поля имя и комментарий должны быть заполнены!"
 
 #
@@ -63,7 +65,7 @@ msgstr "Имя или e-mail: "
 #: ../add_photos.php:135 ../create_user.php:69 ../create_user.php:102
 #: ../delete_album.php:67 ../delete_photo.php:112 ../delete_photo.php:132
 #: ../delete_user.php:45 ../delete_user.php:84 ../edit_caption.php:171
-#: ../edit_field.php:68 ../login.php:126 ../modify_user.php:88
+#: ../edit_field.php:69 ../login.php:124 ../modify_user.php:88
 #: ../modify_user.php:144 ../move_album.php:93 ../move_album.php:119
 #: ../move_photo.php:224 ../move_photo.php:309 ../rename_album.php:119
 #: ../resize_photo.php:95 ../sort_album.php:116 ../user_preferences.php:120
@@ -77,7 +79,7 @@ msgid "Add Photo"
 msgstr "Добавить фотографии"
 
 #
-#: ../add_photo.php:73 ../do_command.php:134 ../save_photos.php:262
+#: ../add_photo.php:73 ../do_command.php:134 ../save_photos.php:264
 msgid "Dismiss"
 msgstr "Закрыть"
 
@@ -93,8 +95,7 @@ msgid "Supported file types"
 msgstr "Поддерживаемые типы файлов: "
 
 #
-#: ../add_photo.php:107 ../add_photos.php:104 ../setup/check_netpbm.php:126
-#: ../setup/check_imagemagick.php:118
+#: ../add_photo.php:107 ../add_photos.php:104
 msgid "File"
 msgstr "Файл"
 
@@ -173,15 +174,9 @@ msgid "A Java application that runs on Mac, Windows and Unix"
 msgstr "Java-апплет, который работает на Mac, Windows и Unix"
 
 #
-#: ../add_photos.php:147 ../setup/check_netpbm.php:65
-#: ../setup/check_imagemagick.php:66 ../setup/confirm.inc:290
-#: ../setup/write.inc:95
-msgid "Note"
-msgstr "Примечание"
-
-#
 #: ../add_photos.php:147
-msgid "this feature is still experimental"
+#, fuzzy
+msgid "<i>Note:</i> this feature is still experimental!"
 msgstr "эта возможность сейчас в стадии тестирования!"
 
 #
@@ -191,8 +186,8 @@ msgstr "Полномочия альбома"
 
 #
 #: ../album_permissions.php:159
-#, fuzzy
-msgid "Changing permissions for"
+#, fuzzy, php-format
+msgid "Changing permissions for %s"
 msgstr "Изменение полномочий для "
 
 #
@@ -239,7 +234,7 @@ msgstr "Пользователи, которые могут делать развернутый просмотр (оригиналы) фото
 #
 #: ../album_permissions.php:289 ../manage_users.php:101 ../photo_owner.php:105
 #: ../upgrade_album.php:68 ../upgrade_album.php:76
-#: ../view_photo_properties.php:163
+#: ../view_photo_properties.php:169
 msgid "Done"
 msgstr "Выполнить"
 
@@ -271,233 +266,241 @@ msgid "albums"
 msgstr "альбомов"
 
 #
-#: ../albums.php:112 ../view_album.php:252
+#: ../albums.php:112 ../view_album.php:251
 #, fuzzy
 msgid "No albums"
 msgstr "нет албома"
 
 #
-#: ../albums.php:114
-#, fuzzy
-msgid "total"
+#: ../albums.php:113
+#, fuzzy, php-format
+msgid "%d total"
 msgstr "Нет заголовка"
 
 #
-#: ../albums.php:116 ../view_album.php:253 ../view_album.php:255
+#: ../albums.php:114 ../view_album.php:252
 #, fuzzy
 msgid "image"
 msgstr "раз"
 
 #
-#: ../albums.php:116 ../view_album.php:253 ../view_album.php:255
+#: ../albums.php:114 ../view_album.php:252
 #, fuzzy
 msgid "images"
 msgstr "страницах"
 
 #
-#: ../albums.php:116
+#: ../albums.php:114
 #, fuzzy
 msgid "no image"
 msgstr "нет страниц"
 
 #
-#: ../albums.php:118 ../captionator.php:178 ../view_album.php:259
-#, fuzzy
-msgid "on"
-msgstr "нет"
-
-#
-#: ../albums.php:118 ../captionator.php:178 ../view_album.php:259
+#: ../albums.php:115 ../captionator.php:178 ../view_album.php:253
 msgid "page"
 msgstr "странице"
 
 #
-#: ../albums.php:118 ../captionator.php:178 ../view_album.php:259
+#: ../albums.php:115 ../captionator.php:178 ../view_album.php:253
 msgid "pages"
 msgstr "страницах"
 
 #
-#: ../albums.php:118 ../captionator.php:178
+#: ../albums.php:115 ../captionator.php:178
 msgid "no pages"
 msgstr "нет страниц"
 
+#: ../albums.php:118
+#, php-format
+msgid "%s (%s), %s on %s"
+msgstr ""
+
+#: ../albums.php:121
+#, php-format
+msgid "%s (%s), %s"
+msgstr ""
+
+#: ../albums.php:123
+#, php-format
+msgid "%s, %s on %s"
+msgstr ""
+
+#: ../albums.php:125
+#, php-format
+msgid "%s, %s"
+msgstr ""
+
 #
-#: ../albums.php:128
+#: ../albums.php:135
 #, fuzzy, php-format
 msgid "Welcome, %s"
 msgstr "Добро пожаловать"
 
 #
-#: ../albums.php:132
+#: ../albums.php:139
 msgid "new album"
 msgstr "новый альбом"
 
 #
-#: ../albums.php:139
+#: ../albums.php:146
 msgid "manage users"
 msgstr "управление пользователями"
 
 #
-#: ../albums.php:146
+#: ../albums.php:153
 msgid "preferences"
 msgstr "настройки"
 
 #
-#: ../albums.php:151 ../view_album.php:349
+#: ../albums.php:158 ../view_album.php:356
 msgid "logout"
 msgstr "выход"
 
 #
-#: ../albums.php:155 ../view_album.php:351
+#: ../albums.php:162 ../view_album.php:359
 msgid "login"
 msgstr "вход"
 
 #
-#: ../albums.php:182
+#: ../albums.php:190
 msgid "Attention Gallery Administrator!"
 msgstr "Внимание Администратор!"
 
 #
-#: ../albums.php:183
-msgid "Gallery has detected the following directories"
+#: ../albums.php:195
+#, fuzzy, php-format
+msgid "Gallery has detected the following directories: %s in your albums directory (%s)."
 msgstr "Галерея обнаружила следущие каталоги"
 
 #
-#: ../albums.php:190
-msgid "in your albums directory"
-msgstr "в вашем каталоге альбомов"
-
-#
-#: ../albums.php:191
+#: ../albums.php:199
 msgid "These are not valid albums.  Please move them out of the albums directory."
 msgstr "Они не являются альбомами. Пожалуйста переместите их из каталога альбомов."
 
 #
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../albums.php:253 ../view_album.php:573
+#: ../albums.php:261 ../view_album.php:581
 msgid "title"
 msgstr "название"
 
 #
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../albums.php:258 ../view_album.php:578
+#: ../albums.php:266 ../view_album.php:586
 msgid "description"
 msgstr "описание"
 
 #
-#: ../albums.php:264
+#: ../albums.php:272
 msgid "Owner: "
 msgstr "Владелец: "
 
 #
-#: ../albums.php:271
+#: ../albums.php:279
 msgid "delete album"
 msgstr "удалить альбом"
 
 #
-#: ../albums.php:278
+#: ../albums.php:286
 msgid "move album"
 msgstr "переместить альбом"
 
 #
-#: ../albums.php:280 ../view_album.php:288
+#: ../albums.php:288 ../view_album.php:295
 msgid "rename album"
 msgstr "переименовать альбом"
 
 #
-#: ../albums.php:287
+#: ../albums.php:295
 msgid "edit captions"
 msgstr "редактировать заголовки"
 
 #
-#: ../albums.php:293 ../view_album.php:332
+#: ../albums.php:301 ../view_album.php:339
 msgid "permissions"
 msgstr "полномочия"
 
 #
-#: ../albums.php:295
+#: ../albums.php:303
 msgid "view&nbsp;comments"
 msgstr "просмотреть&nbsp;комментарии"
 
 #
-#: ../albums.php:311
+#: ../albums.php:319
 msgid "Hey!"
 msgstr "Эй!"
 
 #
-#: ../albums.php:312 ../rename_album.php:118
+#: ../albums.php:320
+#, fuzzy, php-format
+msgid "%s this album so that the URL is not so generic!"
+msgstr "альбом, чтобы URL не был типовым!"
+
+#
+#: ../albums.php:321 ../rename_album.php:118
 msgid "Rename"
 msgstr "Переименуй"
 
 #
-#: ../albums.php:313
-msgid "this album so that the URL is not so generic!"
-msgstr "альбом, чтобы URL не был типовым!"
-
-#
-#: ../albums.php:321
+#: ../albums.php:329
 msgid "Note:  This album is out of date!"
 msgstr "Внимакние:  Этот альбом устаревает!"
 
 #
-#: ../albums.php:321
+#: ../albums.php:329
 #, fuzzy
 msgid "upgrade album"
 msgstr "[обновить альбом]"
 
 #
-#: ../albums.php:329
-#, fuzzy
-msgid "Last changed on"
+#: ../albums.php:337
+#, fuzzy, php-format
+msgid "Last changed on %s."
 msgstr "Последнее изменение "
 
 #
-#: ../albums.php:330
-msgid "This album contains"
+#: ../albums.php:338
+#, fuzzy, php-format
+msgid "This album contains %s."
 msgstr "Альбом содержит"
 
 #
-#: ../albums.php:330 ../view_album.php:516
+#: ../albums.php:338 ../view_album.php:524
 msgid "item"
 msgstr "позицию"
 
 #
-#: ../albums.php:330 ../upgrade_album.php:187 ../view_album.php:516
+#: ../albums.php:338 ../upgrade_album.php:186 ../view_album.php:524
 msgid "items"
 msgstr "позиций"
 
 #
-#: ../albums.php:330
+#: ../albums.php:338
 msgid "no items"
 msgstr "нет позиций"
 
 #
-#: ../albums.php:335
-msgid "This album has been viewed "
+#: ../albums.php:342
+#, fuzzy, php-format
+msgid "This album has been viewed %s since %s."
 msgstr "Альбом просматривался"
 
 #
-#: ../albums.php:336 ../view_album.php:518 ../view_album.php:533
+#: ../albums.php:343 ../view_album.php:526 ../view_album.php:541
 msgid "time"
 msgstr "раз"
 
 #
-#: ../albums.php:336 ../view_album.php:518 ../view_album.php:533
+#: ../albums.php:343 ../view_album.php:526 ../view_album.php:541
 msgid "times"
 msgstr "раза"
 
 #
-#: ../albums.php:336 ../view_album.php:518 ../view_album.php:533
+#: ../albums.php:343 ../view_album.php:526 ../view_album.php:541
 msgid "0 times"
 msgstr "0 раз"
 
 #
-#: ../albums.php:337
-msgid "since"
-msgstr "с"
-
-#
-#: ../albums.php:345
+#: ../albums.php:350
 msgid "reset counter"
 msgstr "сбросить счетчик"
 
@@ -520,6 +523,12 @@ msgstr "1 фотография в альбоме"
 #: ../captionator.php:176
 msgid "items in this album"
 msgstr "позиций в альбоме"
+
+#
+#: ../captionator.php:178
+#, fuzzy
+msgid "on"
+msgstr "нет"
 
 #
 #: ../captionator.php:207 ../captionator.php:317
@@ -559,7 +568,7 @@ msgid "Keywords"
 msgstr "Ключевые слова"
 
 #
-#: ../captionator.php:288 ../util.php:287
+#: ../captionator.php:288 ../util.php:289
 #, fuzzy
 msgid "Capture Date"
 msgstr "Дата фотографии"
@@ -575,7 +584,7 @@ msgid "Untitled"
 msgstr "Неназванный"
 
 #
-#: ../classes/Album.php:43 ../view_album.php:508
+#: ../classes/Album.php:43 ../view_album.php:516
 msgid "No description"
 msgstr "Нет описания"
 
@@ -622,24 +631,9 @@ msgid "No thumbnail"
 msgstr "Нет макета"
 
 #
-#: ../classes/EverybodyUser.php:26
-msgid "EVERYBODY"
-msgstr "ВСЕ"
-
-#
 #: ../classes/EverybodyUser.php:27 ../classes/LoggedInUser.php:27
 msgid "Anonymous User"
 msgstr "Анонимный пользователь"
-
-#
-#: ../classes/LoggedInUser.php:26
-msgid "LOGGEDIN"
-msgstr "ЗАРЕГИСТРИРОВАННЫЕ"
-
-#
-#: ../classes/NobodyUser.php:26
-msgid "NOBODY"
-msgstr "НИКТО"
 
 #
 #: ../classes/NobodyUser.php:27
@@ -674,21 +668,18 @@ msgstr "Имя пользователя должно содержать только буквы или цифры"
 
 #
 #: ../classes/gallery/UserDB.php:254
-msgid "is reserved and cannot be used."
+#, fuzzy, php-format
+msgid "%s is reserved and cannot be used."
 msgstr "зарезервировано и не может использоваться"
 
 #
-#: ../classes/gallery/UserDB.php:259
-msgid "A user with the username of"
+#: ../classes/gallery/UserDB.php:260
+#, fuzzy, php-format
+msgid "A user with the username of %s already exists"
 msgstr "Пользователь с именем"
 
 #
-#: ../classes/gallery/UserDB.php:259
-msgid "already exists"
-msgstr "уже существует"
-
-#
-#: ../classes/gallery/UserDB.php:267
+#: ../classes/gallery/UserDB.php:269
 msgid "Password must be at least 3 characters"
 msgstr "Пароль должен содержать не менее 3 символов"
 
@@ -704,9 +695,9 @@ msgstr "Пароли не совпадают!"
 
 #
 #: ../create_user.php:74 ../edit_appearance.php:145 ../modify_user.php:110
-#: ../modify_user.php:113 ../setup/config_data.inc:310
-#: ../setup/config_data.inc:316 ../setup/config_data.inc:351
-#: ../setup/config_data.inc:374 ../setup/config_data.inc:380
+#: ../modify_user.php:113 ../setup/config_data.inc:311
+#: ../setup/config_data.inc:317 ../setup/config_data.inc:352
+#: ../setup/config_data.inc:375 ../setup/config_data.inc:381
 #: ../setup/config_data.inc:460 ../setup/config_data.inc:466
 #: ../setup/config_data.inc:483 ../setup/config_data.inc:488
 #: ../setup/config_data.inc:500 ../setup/config_data.inc:506
@@ -718,9 +709,9 @@ msgstr "да"
 
 #
 #: ../create_user.php:74 ../edit_appearance.php:145 ../modify_user.php:110
-#: ../modify_user.php:113 ../setup/config_data.inc:310
-#: ../setup/config_data.inc:316 ../setup/config_data.inc:351
-#: ../setup/config_data.inc:374 ../setup/config_data.inc:380
+#: ../modify_user.php:113 ../setup/config_data.inc:311
+#: ../setup/config_data.inc:317 ../setup/config_data.inc:352
+#: ../setup/config_data.inc:375 ../setup/config_data.inc:381
 #: ../setup/config_data.inc:460 ../setup/config_data.inc:466
 #: ../setup/config_data.inc:483 ../setup/config_data.inc:488
 #: ../setup/config_data.inc:500 ../setup/config_data.inc:506
@@ -754,7 +745,7 @@ msgstr "Вы действительно хотите удалять этот альбом?"
 #
 #: ../delete_album.php:66 ../delete_photo.php:111 ../delete_photo.php:131
 #: ../delete_user.php:42 ../delete_user.php:79 ../manage_users.php:99
-#: ../view_album.php:620 ../view_album.php:625
+#: ../view_album.php:628 ../view_album.php:633
 msgid "Delete"
 msgstr "Удалить"
 
@@ -781,7 +772,7 @@ msgstr "Вы действительно хотите удалять эту фотографию?"
 #
 #: ../delete_photo.php:139 ../edit_thumb.php:135 ../move_album.php:124
 #: ../move_photo.php:314 ../resize_photo.php:108 ../rotate_photo.php:99
-#: ../view_photo_properties.php:158
+#: ../view_photo_properties.php:164
 msgid "no album / index specified"
 msgstr "не указан альбом / индекс"
 
@@ -827,24 +818,20 @@ msgstr "Обновление макетов"
 
 #
 #: ../do_command.php:50
-#, fuzzy
-msgid "Rebuilding"
-msgstr "Обновление "
+#, fuzzy, php-format
+msgid "Rebuilding %d thumbnails..."
+msgstr "Обновление 1 макета..."
 
 #
-#: ../do_command.php:50
-msgid "thumbnails..."
-msgstr "макетов..."
-
-#
-#: ../do_command.php:55 ../resize_photo.php:59
-msgid "Processing image"
-msgstr "Обработка изображения"
+#: ../do_command.php:55
+#, fuzzy, php-format
+msgid "Processing image %d..."
+msgstr "Обработка изображения "
 
 #
 #: ../do_command.php:64
-#, fuzzy
-msgid "Skipping album"
+#, fuzzy, php-format
+msgid "Skipping album %d..."
 msgstr "Пропущен альбом "
 
 #
@@ -898,19 +885,19 @@ msgid "Borders"
 msgstr "Бордюр"
 
 #
-#: ../edit_appearance.php:128 ../setup/config_data.inc:423
-#: ../setup/config_data.inc:453
+#: ../edit_appearance.php:128 ../setup/config_data.inc:424
+#: ../setup/config_data.inc:454
 #, fuzzy
 msgid "off"
 msgstr "из"
 
 #
-#: ../edit_appearance.php:132 ../setup/config_data.inc:409
+#: ../edit_appearance.php:132 ../setup/config_data.inc:410
 msgid "Border color"
 msgstr "Цвет бордюра"
 
 #
-#: ../edit_appearance.php:136 ../setup/config_data.inc:444
+#: ../edit_appearance.php:136 ../setup/config_data.inc:445
 msgid "Thumbnail size"
 msgstr "Размер макета"
 
@@ -950,7 +937,7 @@ msgid "Which photo printing service<br>do you want to let visitors use?"
 msgstr "Web-сервис печати фотографий<br>разрешить использование посетителям?"
 
 #
-#: ../edit_appearance.php:174 ../setup/config_data.inc:472 ../util.php:174
+#: ../edit_appearance.php:174 ../setup/config_data.inc:472 ../util.php:175
 msgid "none"
 msgstr "нет"
 
@@ -1016,7 +1003,7 @@ msgid "Year must be between 1000 and 3000"
 msgstr "Год должен быть между 1000 и 3000"
 
 #
-#: ../edit_caption.php:69 ../view_album.php:591
+#: ../edit_caption.php:69 ../view_album.php:599
 #, fuzzy
 msgid "Edit Text"
 msgstr "Редактировать название"
@@ -1057,18 +1044,15 @@ msgid "Seconds"
 msgstr "Секунды"
 
 #
-#: ../edit_field.php:53 ../view_album.php:548
-msgid "Edit"
+#: ../edit_field.php:53
+#, fuzzy, php-format
+msgid "Edit %s"
 msgstr "Редактировать"
 
 #
 #: ../edit_field.php:59
-msgid "Edit the"
-msgstr "Редактируйте"
-
-#
-#: ../edit_field.php:59
-msgid "and click <b>Save</b> when you're done."
+#, fuzzy, php-format
+msgid "Edit the %s and click %s when you're done"
 msgstr "и нажмите <b>Сохранить</b> когда закончите."
 
 #
@@ -1099,48 +1083,37 @@ msgstr "файл конфигурации XP"
 msgid "Gallery: Configuration Mode"
 msgstr "файл конфигурации XP"
 
-#
 #: ../errors/configmode.php:26
-msgid "To configure gallery,"
+#, php-format
+msgid "To configure gallery, %sStart the configurations wizard%s"
 msgstr ""
 
-#
-#: ../errors/configmode.php:28
-msgid "Start the configuration wizard"
-msgstr ""
-
-#: ../errors/configmode.php:33
+#: ../errors/configmode.php:32
 msgid "If you've finished your configuration but you're still seeing this page, that's because for safety's sake we don't let you run Gallery in an insecure mode.  You need to switch to secure mode before you can use it.  Here's how:"
 msgstr ""
 
 #
-#: ../errors/configmode.php:38
+#: ../errors/configmode.php:37
 msgid "Then just reload this page and all should be well."
 msgstr ""
 
-#
 #: ../errors/configure_help.php:2
-msgid "If you experience problems, you should seek help on the"
+#, php-format
+msgid "If you experience problems, you should seek help on the %s Gallery Help Page%s"
 msgstr ""
 
-#
-#: ../errors/configure_help.php:3 ../setup/check.inc:13
-#: ../setup/check_netpbm.php:203 ../setup/check_imagemagick.php:178
-msgid "Gallery Help Page"
-msgstr ""
-
-#
 #: ../errors/configure_instructions.php:10
-msgid "with shell access"
+#, php-format
+msgid "%s with shell access"
 msgstr ""
 
 #: ../errors/configure_instructions.php:11
 msgid "/path/to/your/gallery"
 msgstr ""
 
-#
 #: ../errors/configure_instructions.php:15
-msgid "with FTP access"
+#, php-format
+msgid "%s with FTP access"
 msgstr ""
 
 #
@@ -1150,26 +1123,17 @@ msgid "Gallery needs Reconfiguration"
 msgstr "файл конфигурации XP"
 
 #: ../errors/reconfigure.php:26
-msgid "Your Gallery configuration was created using the config wizard from an older version of Gallery."
+msgid "Your Gallery configuration was created using the config wizard from an older version of Gallery.  It is out of date.  Please re-run the configuration wizard!"
 msgstr ""
 
 #: ../errors/reconfigure.php:27
-msgid "It is out of date.  Please re-run the configuration wizard!"
-msgstr ""
-
-#: ../errors/reconfigure.php:28
 msgid "In a shell do this"
 msgstr ""
 
 #
-#: ../errors/reconfigure.php:32 ../errors/needinit.php:31
-msgid "Then launch the"
-msgstr ""
-
-#
-#: ../errors/reconfigure.php:32 ../errors/needinit.php:31
-#, fuzzy
-msgid "configuration wizard"
+#: ../errors/reconfigure.php:31 ../errors/needinit.php:28
+#, fuzzy, php-format
+msgid "Then launch the %sconfiguration wizard%s"
 msgstr "файл конфигурации XP"
 
 #
@@ -1182,24 +1146,8 @@ msgstr ""
 msgid "Uh oh!"
 msgstr ""
 
-#
 #: ../errors/needinit.php:24
-msgid "Gallery is not configured correctly."
-msgstr ""
-
-#
-#: ../errors/needinit.php:25
-msgid "There could be a variety of reasons for this."
-msgstr ""
-
-#
-#: ../errors/needinit.php:26
-msgid "The easiest way to fix this problem is to re-run the configuration wizard."
-msgstr ""
-
-#
-#: ../errors/needinit.php:27
-msgid "First, put Gallery in configuration mode"
+msgid "Gallery is not configured correctly.  There could be a variety of reasons for this.  The easiest way to fix this problem is to re-run the configuration wizard.  First, put Gallery in configuration mode:"
 msgstr ""
 
 #
@@ -1213,24 +1161,14 @@ msgstr "файл конфигурации XP"
 msgid "Gallery has not been configured!"
 msgstr ""
 
-#
 #: ../errors/unconfigured.php:28
-msgid "Gallery must be configured before you can use it."
-msgstr ""
-
-#: ../errors/unconfigured.php:29
-msgid "First, you must put it into configuration mode.  Here's how"
+msgid "Gallery must be configured before you can use it.  First, you must put it into configuration mode.  Here's how."
 msgstr ""
 
 #
-#: ../errors/unconfigured.php:32
-msgid "And then start the"
-msgstr ""
-
-#
-#: ../errors/unconfigured.php:32
-#, fuzzy
-msgid "Configuration Wizard"
+#: ../errors/unconfigured.php:31
+#, fuzzy, php-format
+msgid "And then start the %sConfiguration Wizard%s."
 msgstr "файл конфигурации XP"
 
 #
@@ -1278,7 +1216,7 @@ msgid "No"
 msgstr "Нет"
 
 #
-#: ../html/userData.inc:7 ../login.php:91 ../publish_xp.php:112
+#: ../html/userData.inc:7 ../login.php:89
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -1339,20 +1277,20 @@ msgid "delete comment"
 msgstr "удалить комментарий"
 
 #
-#: ../layout/commentboxbottom.inc:11 ../util.php:88
+#: ../layout/commentboxbottom.inc:11 ../util.php:89
 msgid "add comment"
 msgstr "добавить комментарий"
 
 #
-#: ../layout/commentboxtop.inc:16 ../slideshow.php:458 ../slideshow.php:472
+#: ../layout/commentboxtop.inc:16 ../slideshow.php:459 ../slideshow.php:473
 #: ../slideshow_low.php:358 ../slideshow_low.php:370 ../upgrade_album.php:91
-#: ../view_album.php:124 ../view_album.php:507 ../view_album.php:542
+#: ../view_album.php:124 ../view_album.php:515 ../view_album.php:550
 #: ../view_comments.php:74 ../view_photo.php:164 ../view_photo.php:178
 msgid "Album"
 msgstr "Альбом"
 
 #
-#: ../layout/commentboxtop.inc:19 ../view_album.php:500
+#: ../layout/commentboxtop.inc:19 ../view_album.php:508
 msgid "hidden"
 msgstr "скрытый"
 
@@ -1398,7 +1336,8 @@ msgid "Previous Photo"
 msgstr "Предыдущая фотография"
 
 #: ../layout/navphoto.inc:99
-msgid "%i of %i"
+#, php-format
+msgid "%d of %d"
 msgstr ""
 
 #
@@ -1412,43 +1351,39 @@ msgid "Last Photo"
 msgstr "Последняя фотография"
 
 #
-#: ../login.php:44 ../login.php:50 ../publish_xp.php:107
-#, fuzzy
-msgid "Login to"
+#: ../login.php:44 ../login.php:50 ../publish_xp.php:63 ../publish_xp.php:107
+#, fuzzy, php-format
+msgid "Login to %s"
 msgstr "Вход в "
 
 #
 #: ../login.php:76
-msgid "Logging in gives you greater permission to"
+#, fuzzy
+msgid "Logging in gives you greater permission to view, create, modify and delete albums."
 msgstr "Зарегистрированный вход дает Вам больше прав для"
 
 #
-#: ../login.php:78
-msgid "view, create, modify and delete albums."
-msgstr "просмотра, создания, корректировки и удаления альбомов."
-
-#
-#: ../login.php:84
+#: ../login.php:82
 msgid "Invalid username or password"
 msgstr "Неверные имя или пароль"
 
 #
-#: ../login.php:101
+#: ../login.php:99
 msgid "You must specify a username"
 msgstr "Вы должны указать имя"
 
 #
-#: ../login.php:108 ../publish_xp.php:115
+#: ../login.php:106
 msgid "Password"
 msgstr "Пароль"
 
 #
-#: ../login.php:118
+#: ../login.php:116
 msgid "You must specify a password"
 msgstr "Вы должны указать пароль"
 
 #
-#: ../login.php:125
+#: ../login.php:123
 msgid "Login"
 msgstr "Вход"
 
@@ -1544,14 +1479,14 @@ msgid "- Creating New Album Highlight"
 msgstr "- Создание новой обложки альбома"
 
 #
-#: ../move_photo.php:172 ../setup/check_netpbm.php:180
-#: ../setup/check_imagemagick.php:156 ../util.php:102 ../util.php:1605
+#: ../move_photo.php:172
 msgid "Error"
 msgstr "Ошибка"
 
 #
 #: ../move_photo.php:176
-msgid "Skipping Album #"
+#, fuzzy, php-format
+msgid "Skipping Album #%d"
 msgstr "Пропущен альбом #"
 
 #
@@ -1568,8 +1503,8 @@ msgstr "Преместить эту фотографию внутри альбома:"
 
 #
 #: ../move_photo.php:203
-#, fuzzy
-msgid "Current Location is"
+#, fuzzy, php-format
+msgid "Current Location is %s"
 msgstr "Текущее расположение "
 
 #
@@ -1631,15 +1566,9 @@ msgid "This page will go away automatically when the upload is complete.  Please
 msgstr "Эта страница закроется автоматически после окончания загрузки.  Немного терпения!"
 
 #
-#: ../photo_owner.php:80
+#: ../photo_owner.php:80 ../photo_owner.php:86 ../view_album.php:645
 #, fuzzy
 msgid "Change Owner"
-msgstr "Изменение : "
-
-#
-#: ../photo_owner.php:86 ../view_album.php:637
-#, fuzzy
-msgid "Change owner"
 msgstr "Изменение : "
 
 #
@@ -1648,9 +1577,9 @@ msgstr "Изменение : "
 msgid "Owner"
 msgstr "Владелец: "
 
-#
 #: ../publish_xp.php:53
-msgid "Publish Your Photos and Movies to"
+#, php-format
+msgid "Publish Your Photos and Movies to %s."
 msgstr ""
 
 #
@@ -1667,6 +1596,18 @@ msgstr ""
 #: ../publish_xp.php:99 ../publish_xp.php:105
 msgid "Login Incorrect"
 msgstr ""
+
+#
+#: ../publish_xp.php:112
+#, fuzzy
+msgid "Username:"
+msgstr "Имя пользователя"
+
+#
+#: ../publish_xp.php:115
+#, fuzzy
+msgid "Password:"
+msgstr "Пароль"
 
 #
 #: ../publish_xp.php:135
@@ -1758,37 +1699,30 @@ msgstr "Использование возможности <i>публикации в интернете</i> из Windows XP"
 
 #
 #: ../publish_xp_docs.php:49
-msgid "Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service."
+#, fuzzy
+msgid "Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.  Gallery <b>has experimental</b> support for this feature."
 msgstr "Windows XP пришел с хорошей возможностью, которая позволяет Вам публиковать изображения в сети непосредственно с вашего рабочего стола."
 
 #
 #: ../publish_xp_docs.php:50
-msgid "Gallery <b>has experimental</b> support for this feature."
-msgstr "Эта возможность галереи находится в стадии <b>тестирования</b>."
-
-#
-#: ../publish_xp_docs.php:51
 msgid "It's relatively easy to configure."
 msgstr "Относительно проста в настройки."
 
 #
-#: ../publish_xp_docs.php:57
+#: ../publish_xp_docs.php:56
 msgid "Step 1"
 msgstr "Шаг 1"
 
 #
-#: ../publish_xp_docs.php:59
-msgid "Download the"
-msgstr "Загрузите"
-
-#
-#: ../publish_xp_docs.php:59
-msgid "XP Configuration File"
+#: ../publish_xp_docs.php:58
+#, fuzzy, php-format
+msgid "Download the %sXP Configuration File%s"
 msgstr "файл конфигурации XP"
 
 #
 #: ../publish_xp_docs.php:60
-msgid "Save this file on your PC and rename it"
+#, fuzzy, php-format
+msgid "Save this file on your PC and rename it %s."
 msgstr "Сохраните этот файл на своем компьютере и переименуйте его в"
 
 #
@@ -1832,28 +1766,17 @@ msgstr "Нажмите &quot;ok&quot;."
 msgid "Step 2"
 msgstr "Шаг 2"
 
-#
 #: ../publish_xp_docs.php:73
-msgid "Open your Windows explorer and browse to a folder containing a JPG image."
-msgstr "Откройте Windows проводник и выберите папку с JPG изображениями."
+msgid "Open your Windows explorer and browse to a folder containing a JPG image.  Select the image and there should be a link on the left that says &quot;Publish this file to the web...&quot; Click this link and then follow the instructions to log into your Gallery, select an album and publish the image."
+msgstr ""
 
 #
-#: ../publish_xp_docs.php:74
-msgid "Select the image and there should be a link on the left that says &quot;Publish this file to the web...&quot;"
-msgstr "Выберите изображение и в левом окне должна появиться ссылка &quot;Опубликовать этот файл в интернете...&quot;"
-
-#
-#: ../publish_xp_docs.php:75
-msgid "Click this link and then follow the instructions to log into your Gallery, select an album and publish the image."
-msgstr "Нажмите на эту ссылку и следуйте инструкциям - подключитесь в свою Галерею, выберите альбом и опубликуйте изображение."
-
-#
-#: ../publish_xp_docs.php:80
+#: ../publish_xp_docs.php:78
 msgid "Return to Add Photos"
 msgstr "Вернуться к добавлению фотографий"
 
 #
-#: ../rename_album.php:45 ../view_album.php:585
+#: ../rename_album.php:45 ../view_album.php:593
 msgid "Rename Album"
 msgstr "Переименование альбома"
 
@@ -1894,14 +1817,15 @@ msgid "Resize Photo"
 msgstr "Изменение размера фотографии"
 
 #
-#: ../resize_photo.php:56 ../util.php:1569
-msgid "Resizing"
-msgstr "Изменение размера"
+#: ../resize_photo.php:56
+#, fuzzy, php-format
+msgid "Resizing %d photos..."
+msgstr "Изменение размера 1 фотографии..."
 
 #
-#: ../resize_photo.php:56
-msgid "photos..."
-msgstr "фотографий..."
+#: ../resize_photo.php:59
+msgid "Processing image"
+msgstr "Обработка изображения"
 
 #
 #: ../resize_photo.php:65
@@ -1921,18 +1845,15 @@ msgstr "Для изменения размера фотографии, "
 
 #
 #: ../resize_photo.php:83
-msgid "What is the target size for"
-msgstr "Какой размер для"
-
-#
-#: ../resize_photo.php:83
-msgid "all the photos in this album"
+#, fuzzy
+msgid "What is the target size for all the photos in this album?"
 msgstr "всех фотографий в этом альбоме"
 
 #
 #: ../resize_photo.php:83
-msgid "this photo"
-msgstr "этой фотографии"
+#, fuzzy
+msgid "What is the target size for this photo?"
+msgstr "Какой размер для"
 
 #
 #: ../resize_photo.php:87
@@ -2008,59 +1929,55 @@ msgstr "Выборка Url ссылок..."
 
 #
 #: ../save_photos.php:79
-msgid "Processing"
-msgstr "Обработка"
-
-#
-#: ../save_photos.php:79
-msgid "as a local directory."
+#, fuzzy, php-format
+msgid "Processing %s as a local directory."
 msgstr "как локального каталога"
 
 #
-#: ../save_photos.php:132
-#, fuzzy
-msgid "Could not open url:"
+#: ../save_photos.php:133
+#, fuzzy, php-format
+msgid "Could not open url: %s"
 msgstr "Не открывается url: "
 
 #
-#: ../save_photos.php:158
+#: ../save_photos.php:160
 #, fuzzy, php-format
 msgid "Parsing %s for images..."
 msgstr "и поиск изображений..."
 
 #
-#: ../save_photos.php:218
+#: ../save_photos.php:220
 #, fuzzy, php-format
 msgid "Found %d images"
 msgstr "нет страниц"
 
 #
-#: ../save_photos.php:226
+#: ../save_photos.php:228
 msgid "Processing status..."
 msgstr "Идет обработка..."
 
 #
-#: ../save_photos.php:257
+#: ../save_photos.php:259
 msgid "No images uploaded!"
 msgstr "Ни одной фотографии не загружено!"
 
 #
-#: ../save_photos.php:296 ../save_photos.php:320
+#: ../save_photos.php:298 ../save_photos.php:322
 msgid "Check All"
 msgstr "Проверить&nbsp;все"
 
 #
-#: ../save_photos.php:298 ../save_photos.php:322
+#: ../save_photos.php:300 ../save_photos.php:324
 msgid "Clear All"
 msgstr "Очистить&nbsp;все"
 
 #
-#: ../save_photos.php:300 ../save_photos.php:324
+#: ../save_photos.php:302 ../save_photos.php:326
 msgid "Invert Selection"
 msgstr "Инвертировать выбор"
 
 #
-#: ../save_photos.php:329
+#: ../save_photos.php:331
 msgid "Add Files"
 msgstr "Добавить файлы"
 
@@ -2070,15 +1987,16 @@ msgid "Search Again"
 msgstr "Повторить поиск"
 
 #
-#: ../search.php:74 ../search.php:236 ../setup/config_data.inc:154
-#: ../slideshow.php:476 ../slideshow_low.php:374 ../view_album.php:128
+#: ../search.php:74 ../search.php:236 ../setup/config_data.inc:152
+#: ../slideshow.php:477 ../slideshow_low.php:374 ../view_album.php:128
 #: ../view_photo.php:182
 msgid "Gallery"
 msgstr "Галерея"
 
 #
 #: ../search.php:97
-msgid "Albums containing"
+#, fuzzy, php-format
+msgid "Albums containing %s"
 msgstr "Альбомы содержащие вхождение"
 
 #
@@ -2088,7 +2006,8 @@ msgstr "Нет совпадений в альбомах"
 
 #
 #: ../search.php:141
-msgid "Photos containing"
+#, fuzzy, php-format
+msgid "Photos containing %s"
 msgstr "Фотографии содержащие вхождение"
 
 #
@@ -2102,7 +2021,7 @@ msgid "From Album"
 msgstr "Из альбома"
 
 #
-#: ../search.php:203 ../view_photo_properties.php:140
+#: ../search.php:203 ../view_photo_properties.php:146
 msgid "KEYWORDS"
 msgstr "КЛЮЧЕВЫЕ СЛОВА"
 
@@ -2137,103 +2056,80 @@ msgstr ""
 msgid "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably."
 msgstr ""
 
-#
 #: ../setup/check.inc:13
-msgid "Having problems?"
+#, php-format
+msgid "Having problems?  Try the %sGallery Diagnostics Page%s and the %sGallery Help Page%s."
 msgstr ""
 
 #
-#: ../setup/check.inc:13
-msgid "Try the"
-msgstr ""
-
-#
-#: ../setup/check.inc:13 ../setup/diagnostics.php:7
-msgid "Gallery Diagnostics Page"
-msgstr ""
-
-#
-#: ../setup/check.inc:13
-#, fuzzy
-msgid "and the"
-msgstr "Редактируйте"
-
-#
-#: ../setup/check.inc:37 ../setup/check.inc:39
+#: ../setup/check.inc:40 ../setup/check.inc:42
 msgid "Success"
 msgstr ""
 
 #
-#: ../setup/check.inc:49
+#: ../setup/check.inc:52
 msgid "Serious Warning"
 msgstr ""
 
 #
-#: ../setup/check.inc:52
+#: ../setup/check.inc:55
 #, fuzzy
 msgid "Warning"
 msgstr "Анализ"
 
 #
-#: ../setup/check.inc:61
+#: ../setup/check.inc:64
 #, fuzzy
-msgid "Failed"
+msgid "Failed!"
 msgstr "Файл"
 
 #
-#: ../setup/check.inc:93
+#: ../setup/check.inc:96
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr ""
 
 #
-#: ../setup/check.inc:95
+#: ../setup/check.inc:98
 msgid "You must fix them before you can continue."
 msgstr ""
 
 #
-#: ../setup/check.inc:99
+#: ../setup/check.inc:102
 msgid "Your installation has <b>serious warnings</b>!  Continue at your own risk..."
 msgstr ""
 
-#: ../setup/check.inc:101
+#: ../setup/check.inc:104
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr ""
 
 #
-#: ../setup/check.inc:104
+#: ../setup/check.inc:107
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr ""
 
 #
-#: ../setup/check.inc:107
+#: ../setup/check.inc:110
 msgid "Configure Gallery"
 msgstr ""
 
 #
-#: ../setup/check_netpbm.php:6 ../setup/check_imagemagick.php:6
-#: ../setup/diagnostics.php:39 ../setup/diagnostics.php:50
-#, fuzzy
-msgid "Check"
+#: ../setup/check_netpbm.php:7 ../setup/check_imagemagick.php:7
+#, fuzzy, php-format
+msgid "Check %s"
 msgstr "Проверить&nbsp;все"
 
-#
-#: ../setup/check_netpbm.php:8
-msgid "This script is designed to examine your NetPBM installation to see if it is ok to be used by Gallery."
+#: ../setup/check_netpbm.php:9 ../setup/check_imagemagick.php:9
+#, php-format
+msgid "This script is designed to examine your %s installation to see if it is ok to be used by Gallery."
 msgstr ""
 
-#
-#: ../setup/check_netpbm.php:9
-msgid "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your NetPBM installation that the wizard did not detect."
+#: ../setup/check_netpbm.php:10 ../setup/check_imagemagick.php:10
+#, php-format
+msgid "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."
 msgstr ""
-
-#
-#: ../setup/check_netpbm.php:14 ../setup/check_imagemagick.php:14
-#, fuzzy
-msgid "Loading configuration files."
-msgstr "файл конфигурации XP"
 
 #: ../setup/check_netpbm.php:15 ../setup/check_imagemagick.php:15
-msgid "If you see an error here, it is probably because you have not successfully run the config wizard."
+msgid "Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard."
 msgstr ""
 
 #
@@ -2242,205 +2138,110 @@ msgid "Let us see if we can figure out what operating system you are using."
 msgstr ""
 
 #
-#: ../setup/check_netpbm.php:26 ../setup/check_imagemagick.php:27
+#: ../setup/check_netpbm.php:27 ../setup/check_imagemagick.php:27
 msgid "This is what your system reports"
 msgstr ""
 
-#
-#: ../setup/check_netpbm.php:31 ../setup/check_imagemagick.php:32
-msgid "This is the type of system PHP was compiled on"
+#: ../setup/check_netpbm.php:32 ../setup/check_imagemagick.php:32
+msgid "This is the type of system on which PHP was compiled"
 msgstr ""
 
 #
-#: ../setup/check_netpbm.php:37 ../setup/check_imagemagick.php:38
+#: ../setup/check_netpbm.php:38 ../setup/check_imagemagick.php:38
 msgid "Make sure that the values above make sense to you."
 msgstr ""
 
-#: ../setup/check_netpbm.php:41 ../setup/check_imagemagick.php:42
-msgid "Look for keywords like &quot;Linux&quot;, &quot;Windows&quot;, &quot;FreeBSD&quot;, etc. in the output above."
+#: ../setup/check_netpbm.php:43 ../setup/check_imagemagick.php:43
+#, php-format
+msgid "Look for keywords like %s, %s, %s etc. in the output above."
 msgstr ""
 
 #
-#: ../setup/check_netpbm.php:42 ../setup/check_imagemagick.php:43
+#: ../setup/check_netpbm.php:45 ../setup/check_imagemagick.php:45
 msgid "If both the attempts above failed, you should ask your ISP what operating system you are using."
 msgstr ""
 
-#
-#: ../setup/check_netpbm.php:43 ../setup/check_imagemagick.php:44
-msgid "You can check via"
+#: ../setup/check_netpbm.php:46 ../setup/check_imagemagick.php:46
+#, php-format
+msgid "You can check via %s, they can often tell you."
+msgstr ""
+
+#: ../setup/check_netpbm.php:53 ../setup/check_imagemagick.php:53
+#, php-format
+msgid "You told the config wizard that your %s binaries live here:"
+msgstr ""
+
+#: ../setup/check_netpbm.php:61 ../setup/check_imagemagick.php:61
+#, php-format
+msgid "If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."
+msgstr ""
+
+#: ../setup/check_netpbm.php:72 ../setup/check_imagemagick.php:72
+#, php-format
+msgid "<b>Note</b>:  Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
+msgstr ""
+
+#: ../setup/check_netpbm.php:84 ../setup/check_imagemagick.php:83
+#, php-format
+msgid "We are going to test each %s binary individually."
+msgstr ""
+
+#: ../setup/check_netpbm.php:88 ../setup/check_imagemagick.php:87
+#, php-format
+msgid "%sClick here%s to hide the details"
+msgstr ""
+
+#: ../setup/check_netpbm.php:92 ../setup/check_imagemagick.php:90
+#, php-format
+msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr ""
 
 #
-#: ../setup/check_netpbm.php:44 ../setup/check_imagemagick.php:45
-msgid "they can often tell you."
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:47
-msgid "You told the config wizard that your NetPBM binaries live here"
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:54
-msgid "If that is not right (or if it is blank), re-run the configuration wizard and enter a location for NetPBM."
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:65
-#, fuzzy
-msgid "Your NetPBM directory"
-msgstr "в вашем каталоге альбомов"
-
-#
-#: ../setup/check_netpbm.php:66 ../setup/check_imagemagick.php:67
-msgid "is not in your open_basedir list (specified in php.ini)"
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:69 ../setup/check_imagemagick.php:70
-msgid "So we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:76
-msgid "We are going to test each NetPBM binary individually."
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:81 ../setup/check_imagemagick.php:82
-msgid "Click here"
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:81 ../setup/check_imagemagick.php:82
-msgid "to hide the details"
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:83 ../setup/check_imagemagick.php:84
-msgid "If you see errors, you should"
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:85 ../setup/check_imagemagick.php:86
-msgid "click here"
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:85 ../setup/check_imagemagick.php:86
-msgid "to see more details"
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:119 ../setup/check_imagemagick.php:111
+#: ../setup/check_netpbm.php:128 ../setup/check_imagemagick.php:117
 #, fuzzy, php-format
 msgid "Checking %s"
 msgstr "Проверить&nbsp;все"
 
-#
-#: ../setup/check_netpbm.php:126 ../setup/check_imagemagick.php:118
-msgid "does not exist."
+#: ../setup/check_netpbm.php:135 ../setup/check_imagemagick.php:124
+#, php-format
+msgid "File %s does not exist."
+msgstr ""
+
+#: ../setup/check_netpbm.php:148 ../setup/check_imagemagick.php:137
+#, php-format
+msgid "Expected status: %s, but actually received status %s."
 msgstr ""
 
 #
-#: ../setup/check_netpbm.php:138 ../setup/check_imagemagick.php:130
-msgid "Expected status"
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:140 ../setup/check_imagemagick.php:132
-msgid "but actually received status"
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:151 ../setup/check_imagemagick.php:143
+#: ../setup/check_netpbm.php:162 ../setup/check_imagemagick.php:150
 msgid "can't detect version on Windows"
 msgstr ""
 
-#
-#: ../setup/check_netpbm.php:178 ../setup/check_imagemagick.php:154
-msgid "Ok!  Version"
+#: ../setup/check_netpbm.php:189 ../setup/check_imagemagick.php:161
+#, php-format
+msgid "Ok!  Version: %s"
 msgstr ""
 
 #
-#: ../setup/check_netpbm.php:199 ../setup/check_imagemagick.php:175
-msgid "If you see an error above complaining about reading or writing to"
+#: ../setup/check_netpbm.php:191 ../setup/check_imagemagick.php:164
+#, fuzzy, php-format
+msgid "Error! %s"
+msgstr "Ошибка"
+
+#: ../setup/check_netpbm.php:211 ../setup/check_imagemagick.php:184
+#, php-format
+msgid "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled.  You should talk to your system administrator about this, or see the %sGallery Help Page%s."
 msgstr ""
 
-#
-#: ../setup/check_netpbm.php:200 ../setup/check_imagemagick.php:176
-msgid "then this is likely a permission/configuration issue on your system."
+#: ../setup/check_netpbm.php:221 ../setup/check_imagemagick.php:193
+#, php-format
+msgid "For other errors, please refer to the list of possible responses in %s to get more information."
 msgstr ""
 
-#
-#: ../setup/check_netpbm.php:201 ../setup/check_imagemagick.php:177
-msgid "If it mentions <i>open_basedir</i> then it's because your system is configured with"
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:202 ../setup/check_imagemagick.php:177
-#, fuzzy
-msgid "enabled"
-msgstr "Переименуй"
-
-#
-#: ../setup/check_netpbm.php:203 ../setup/check_imagemagick.php:178
-msgid "You should talk to your system administrator about this, or see the"
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:206 ../setup/check_imagemagick.php:182
-msgid "For other errors, please refer to the list of possible responses in"
-msgstr ""
-
-#
-#: ../setup/check_netpbm.php:207 ../setup/check_imagemagick.php:183
-#, fuzzy
-msgid "to get more information"
-msgstr "Здесь Вы можете изменить информацию о себе."
-
-#
-#: ../setup/check_netpbm.php:211 ../setup/check_imagemagick.php:187
-#: ../setup/diagnostics.php:74 ../setup/session_test.php:72
-#, fuzzy
-msgid "Return to the"
-msgstr "Вернуться к добавлению фотографий"
-
-#
-#: ../setup/check_netpbm.php:211 ../setup/check_imagemagick.php:187
-#: ../setup/diagnostics.php:74
-msgid "config wizard"
-msgstr ""
-
-#
-#: ../setup/check_imagemagick.php:8
-msgid "This script is designed to examine your ImageMagick installation to see if it is ok to be used by Gallery."
-msgstr ""
-
-#
-#: ../setup/check_imagemagick.php:9
-msgid "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your ImageMagick installation that the wizard did not detect."
-msgstr ""
-
-#
-#: ../setup/check_imagemagick.php:48
-msgid "You told the config wizard that your ImageMagick binaries live here"
-msgstr ""
-
-#
-#: ../setup/check_imagemagick.php:55
-msgid "If that is not right (or if it is blank), re-run the configuration wizard and enter a location for ImageMagick."
-msgstr ""
-
-#
-#: ../setup/check_imagemagick.php:66
-#, fuzzy
-msgid "Your ImageMagick directory"
-msgstr "в вашем каталоге альбомов"
-
-#
-#: ../setup/check_imagemagick.php:77
-msgid "We are going to test each ImageMagick binary individually."
+#: ../setup/check_netpbm.php:226 ../setup/check_imagemagick.php:198
+#: ../setup/diagnostics.php:71
+#, php-format
+msgid "Return to the %sconfig wizard%s."
 msgstr ""
 
 #: ../setup/config_data.inc:5
@@ -2512,7 +2313,7 @@ msgid "Allow the Gallery <b>.htaccess</b> file to set application specific confi
 msgstr ""
 
 #: ../setup/config_data.inc:61
-msgid "Apache is not obeying your .htaccess file.  Try entering the following into your web server's httpd.conf file"
+msgid "Apache is not obeying your .htaccess file.  Try entering the following into your web server's httpd.conf file:"
 msgstr ""
 
 #: ../setup/config_data.inc:69
@@ -2520,463 +2321,440 @@ msgstr ""
 msgid "Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behaviour if you put ' (single-quote), \" (double quote) or \\ (backslash) characters in titles or captions in the gallery."
 msgstr ""
 
-#
 #: ../setup/config_data.inc:73
-msgid "Magic quotes are on.  Your webserver owner can turn them off by putting"
+#, php-format
+msgid "Magic quotes are on.  Your webserver owner can turn them off by putting %s in your php.ini file"
 msgstr ""
 
-#
-#: ../setup/config_data.inc:76
-msgid "in your php.ini file"
-msgstr ""
-
-#: ../setup/config_data.inc:79
+#: ../setup/config_data.inc:77
 msgid "Check to see if your webserver is compiled with <b>mod_rewrite</b>.  Mod_rewrite allows the Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."
 msgstr ""
 
-#: ../setup/config_data.inc:81
+#: ../setup/config_data.inc:79
 msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on I'd suggest that you make sure that your <b>.htaccess</b> file works and then if it still doesn't work you may need to reconfigure and rebuild Apache with this flag:"
 msgstr ""
 
-#: ../setup/config_data.inc:87
+#: ../setup/config_data.inc:85
 msgid "Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc).  You need to have NetPBM <b>or</b> ImageMagick installed."
 msgstr ""
 
-#: ../setup/config_data.inc:89
+#: ../setup/config_data.inc:87
 msgid "I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK --  you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices:"
 msgstr ""
 
-#: ../setup/config_data.inc:94
+#: ../setup/config_data.inc:92
 msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK -- that just means you'll have to specify the path to NetPBM by hand on the following page"
 msgstr ""
 
-#: ../setup/config_data.inc:100
+#: ../setup/config_data.inc:98
 msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc).  You need to have ImageMagick <b>or</b> NetPBM installed."
 msgstr ""
 
-#: ../setup/config_data.inc:102
+#: ../setup/config_data.inc:100
 msgid "I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  "
 msgstr ""
 
 #
-#: ../setup/config_data.inc:108
+#: ../setup/config_data.inc:106
 msgid "Check to see if jhead is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
 msgstr ""
 
-#: ../setup/config_data.inc:110
+#: ../setup/config_data.inc:108
 #, php-format
 msgid "I can't find jhead.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jhead by hand on the following page.  If it's not installed, you can install it yourself.  jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at %sthe jhead homepage%s."
 msgstr ""
 
-#: ../setup/config_data.inc:117
-msgid "Check to see if jpegtran is installed so that Gallery can perform lossless rotations"
+#: ../setup/config_data.inc:115
+msgid "Check to see if jpegtran is installed so that Gallery can perform lossless rotations (only works on JPEG images)"
 msgstr ""
 
-#: ../setup/config_data.inc:119
+#: ../setup/config_data.inc:117
 #, php-format
 msgid "I can't find jpegtran.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jpegtran by hand on the following page.  If it's not installed, you can install it yourself.  jpegtran is a freely distributable tool distributed by the Independent JPEG Group as part of libjpeg.  Source may be found at %sthe IJG homepage%s.  Binaries may be found at %sthe JPEG club website%s or in the libjpeg package of Linux distributions."
 msgstr ""
 
-#: ../setup/config_data.inc:126
-msgid "Check to see if Apache is compiled with gettext so that Gallery can run in many languages"
+#: ../setup/config_data.inc:124
+msgid "Check to see if Apache is compiled with gettext for fast translations."
 msgstr ""
 
-#: ../setup/config_data.inc:128
+#: ../setup/config_data.inc:126
 #, php-format
 msgid "gettext in not installed.  To include gettext support, you need to recompile apache.  For more information see %s.  However, multilanguage support is still available in Gallery without gettext, but the pages may take slightly longer to load."
 msgstr ""
 
-#: ../setup/config_data.inc:133
+#: ../setup/config_data.inc:131
 msgid "Check to see what languages are available"
 msgstr ""
 
-#: ../setup/config_data.inc:138
+#: ../setup/config_data.inc:136
 msgid "Testing to see if which locales are absent"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:152
+#: ../setup/config_data.inc:150
 #, fuzzy
 msgid "Gallery Title"
 msgstr "Галерея"
 
 #
-#: ../setup/config_data.inc:153
+#: ../setup/config_data.inc:151
 msgid "The name of your gallery.  Eg. <i>My Cool Photos</i>"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:158
+#: ../setup/config_data.inc:156
 #, fuzzy
 msgid "Admin password"
 msgstr "Прежний пароль"
 
-#: ../setup/config_data.inc:159
+#: ../setup/config_data.inc:157
 msgid "REQUIRED"
 msgstr ""
 
-#: ../setup/config_data.inc:160
-msgid "The password for the <i>admin</i> account.  Unfortunately, you're required to re-enter this every time you reconfigure Gallery.  We'll fix this in a future release!"
+#: ../setup/config_data.inc:158
+#, php-format
+msgid "The password for the %s account.  Unfortunately, you're required to re-enter this every time you reconfigure Gallery.  We'll fix this in a future release!"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:166
+#: ../setup/config_data.inc:164
 msgid "Graphics suite to use?"
 msgstr ""
 
-#: ../setup/config_data.inc:167
+#: ../setup/config_data.inc:165
 msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
 msgstr ""
 
-#: ../setup/config_data.inc:168
-msgid "NetPBM"
-msgstr ""
-
-#: ../setup/config_data.inc:168
-msgid "ImageMagick"
-msgstr ""
-
 #
-#: ../setup/config_data.inc:173
+#: ../setup/config_data.inc:171
 msgid "Path to NetPBM"
 msgstr ""
 
-#: ../setup/config_data.inc:174
-msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  Eg. <i>/usr/local/netpbm</i> or <i>/usr/local/bin</i> or <i>c:\\apps\\netpbm</i>"
+#: ../setup/config_data.inc:172
+#, php-format
+msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  Eg. %s or %s or %s"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:177
+#: ../setup/config_data.inc:178
 msgid "I can't find NetPBM at the location you provided."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:186
+#: ../setup/config_data.inc:187
 msgid "PNM to JPEG converter"
 msgstr ""
 
-#: ../setup/config_data.inc:187
+#: ../setup/config_data.inc:188
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
-msgstr ""
-
-#: ../setup/config_data.inc:188
-msgid "pnmtojpeg"
-msgstr ""
-
-#: ../setup/config_data.inc:188
-msgid "ppmtojpeg"
-msgstr ""
-
-#
-#: ../setup/config_data.inc:193
-msgid "Path to ImageMagick"
 msgstr ""
 
 #
 #: ../setup/config_data.inc:194
+msgid "Path to ImageMagick"
+msgstr ""
+
+#
+#: ../setup/config_data.inc:195
 msgid "The path to the directory containing ImageMagick on your system."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:198
+#: ../setup/config_data.inc:199
 msgid "I can't find ImageMagick at the location you provided."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:206
+#: ../setup/config_data.inc:207
 #, fuzzy
 msgid "Highlight size"
 msgstr "Обложка "
 
 #
-#: ../setup/config_data.inc:207
+#: ../setup/config_data.inc:208
 msgid "The target size (in pixels) of thumbnails shown in the gallery page (highlight images)"
 msgstr ""
 
-#: ../setup/config_data.inc:213
+#: ../setup/config_data.inc:214
 msgid "The filesystem path to the 'zipinfo' binary.  This is optional so if you don't have it, don't worry about it too much."
 msgstr ""
 
-#: ../setup/config_data.inc:223
+#: ../setup/config_data.inc:224
 msgid "The filesystem path to the 'unzip' binary.  This is optional so if you don't have it, don't worry about it too much."
 msgstr ""
 
-#: ../setup/config_data.inc:233
+#: ../setup/config_data.inc:234
 #, php-format
 msgid "The filesystem path to the 'jhead' exif parser.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."
 msgstr ""
 
-#: ../setup/config_data.inc:244
+#: ../setup/config_data.inc:245
 #, php-format
 msgid "The filesystem path to the 'jpegtran' utility.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."
 msgstr ""
 
-#: ../setup/config_data.inc:247 ../setup/config_data.inc:329
-#: ../setup/config_data.inc:342 ../setup/config_data.inc:531
+#: ../setup/config_data.inc:248 ../setup/config_data.inc:330
+#: ../setup/config_data.inc:343 ../setup/config_data.inc:531
 #: ../setup/config_data.inc:538 ../setup/config_data.inc:545
-#: ../setup/config_data.inc:552 ../setup/functions.inc:651
-#: ../setup/functions.inc:679
+#: ../setup/config_data.inc:552 ../setup/functions.inc:654
+#: ../setup/functions.inc:682
 #, php-format
 msgid "this is new in version %s"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:256
+#: ../setup/config_data.inc:257
 #, fuzzy
 msgid "Thumbnail image"
 msgstr "Размер макета"
 
-#: ../setup/config_data.inc:257
+#: ../setup/config_data.inc:258
 #, php-format
 msgid "The filesystem path to the thumbnail image to show for movies.  Eg. %s"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:262
+#: ../setup/config_data.inc:263
 #, fuzzy
 msgid "Album directory"
 msgstr "в вашем каталоге альбомов"
 
-#: ../setup/config_data.inc:263
+#: ../setup/config_data.inc:264
 #, php-format
 msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty -- Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s.)"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:271
+#: ../setup/config_data.inc:272
 #, fuzzy
 msgid "Temporary directory"
 msgstr "прямое направление"
 
-#: ../setup/config_data.inc:272
+#: ../setup/config_data.inc:273
 #, php-format
 msgid "The filesystem path to a temporary directory.  Eg. %s or %s.  Note that if you have open_basedir configured on your system, then this temporary directory must be inside the open_basedir path!  In that case you may need to create the tmp directory yourself and make sure that it's writable by the webserver process."
 msgstr ""
 
-#: ../setup/config_data.inc:281
+#: ../setup/config_data.inc:282
 #, php-format
 msgid "The full URL to the Gallery web application.  Eg. %s."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:289
+#: ../setup/config_data.inc:290
 #, fuzzy
 msgid "Albums"
 msgstr "Альбом"
 
-#: ../setup/config_data.inc:290
+#: ../setup/config_data.inc:291
 #, php-format
 msgid "The full URL to your album directory (specified above) on your web server.  Eg. %s."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:298
+#: ../setup/config_data.inc:299
 #, fuzzy
 msgid "Mirror sites"
 msgstr "Сообщения об ошибках"
 
-#: ../setup/config_data.inc:299
+#: ../setup/config_data.inc:300
 #, php-format
 msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  Eg.%s."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:308
+#: ../setup/config_data.inc:309
 msgid "Show the album tree"
 msgstr ""
 
-#: ../setup/config_data.inc:309
+#: ../setup/config_data.inc:310
 msgid "If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page).  Set to <b>no</b> by default."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:314
+#: ../setup/config_data.inc:315
 msgid "Auto-rotate images"
 msgstr ""
 
-#: ../setup/config_data.inc:315
+#: ../setup/config_data.inc:316
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.  Requires Jhead EXIF parser v.1.9 or greater (see above)."
 msgstr ""
 
-#: ../setup/config_data.inc:320
+#: ../setup/config_data.inc:321
 msgid "Which language do you want as your default language"
 msgstr ""
 
-#: ../setup/config_data.inc:322
-msgid "This is what you will see as admin, and what users will see if no other preference is set."
-msgstr ""
-
-#: ../setup/config_data.inc:327
-msgid "Multi language mode"
+#: ../setup/config_data.inc:323
+#, php-format
+msgid "This is what you will see as %s, and what users will see if no other preference is set."
 msgstr ""
 
 #: ../setup/config_data.inc:328
+msgid "Multi language mode"
+msgstr ""
+
+#: ../setup/config_data.inc:329
 msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site"
 msgstr ""
 
-#: ../setup/config_data.inc:332 ../setup/config_data.inc:335
+#: ../setup/config_data.inc:333 ../setup/config_data.inc:336
 msgid "Gallery is only displayed in one language"
 msgstr ""
 
-#: ../setup/config_data.inc:333
+#: ../setup/config_data.inc:334
 msgid "Gallery is displayed in the language the browser sends"
 msgstr ""
 
-#: ../setup/config_data.inc:334
+#: ../setup/config_data.inc:335
 msgid "The User can choose the language via select Box."
 msgstr ""
 
-#: ../setup/config_data.inc:339
+#: ../setup/config_data.inc:340
 msgid "Available languages in mode 3"
 msgstr ""
 
-#: ../setup/config_data.inc:341
+#: ../setup/config_data.inc:342
 msgid "These languages will be available as user choices in a drop down menu, if you have chosen language mode 3"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:349 ../setup/config_data.inc:355
-#: ../setup/config_data.inc:363 ../setup/config_data.inc:372
-#: ../setup/config_data.inc:378 ../setup/config_data.inc:383
-#: ../setup/config_data.inc:389
+#: ../setup/config_data.inc:350 ../setup/config_data.inc:356
+#: ../setup/config_data.inc:364 ../setup/config_data.inc:373
+#: ../setup/config_data.inc:379 ../setup/config_data.inc:384
+#: ../setup/config_data.inc:390
 msgid "Advanced"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:349
+#: ../setup/config_data.inc:350
 #, fuzzy
 msgid "Cache EXIF data"
 msgstr "Показывать данные EXIF?"
 
-#: ../setup/config_data.inc:350
+#: ../setup/config_data.inc:351
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow.  Set to <b>no</b> by default."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:355
+#: ../setup/config_data.inc:356
 msgid "JPEG Quality"
 msgstr ""
 
-#: ../setup/config_data.inc:356
+#: ../setup/config_data.inc:357
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:363
+#: ../setup/config_data.inc:364
 msgid "Time Limit"
 msgstr ""
 
-#: ../setup/config_data.inc:364
+#: ../setup/config_data.inc:365
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:373
+#: ../setup/config_data.inc:374
 msgid "Turn debug mode on so that you can diagnose problems?"
 msgstr ""
 
-#
-#: ../setup/config_data.inc:378
-msgid "Use"
+#: ../setup/config_data.inc:379
+#, php-format
+msgid "Use %s?"
 msgstr ""
 
-#: ../setup/config_data.inc:379
+#: ../setup/config_data.inc:380
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:383
+#: ../setup/config_data.inc:384
 #, fuzzy
 msgid "Status code"
 msgstr "Статус"
 
-#: ../setup/config_data.inc:384
+#: ../setup/config_data.inc:385
 msgid "The status code Gallery expects to see after a successful exec() call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:389
+#: ../setup/config_data.inc:390
 msgid "Session variable"
 msgstr ""
 
-#: ../setup/config_data.inc:390
+#: ../setup/config_data.inc:391
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr ""
 
-#: ../setup/config_data.inc:410
+#: ../setup/config_data.inc:411
 #, php-format
 msgid "Default color of image borders. You can learn about %scolors%s here."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:420
+#: ../setup/config_data.inc:421
 #, fuzzy
 msgid "Border width"
 msgstr "Бордюр"
 
 #
-#: ../setup/config_data.inc:421
+#: ../setup/config_data.inc:422
 msgid "Default width of image borders"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:426
+#: ../setup/config_data.inc:427
 msgid "Default Font"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:427
+#: ../setup/config_data.inc:428
 msgid "Default font face.  Eg. <i>arial</i> or <i>trebuchet</i>"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:432
+#: ../setup/config_data.inc:433
 #, fuzzy
 msgid "Default Columns"
 msgstr "Колонок"
 
 #
-#: ../setup/config_data.inc:433
+#: ../setup/config_data.inc:434
 msgid "The default number of columns in an album"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:438
+#: ../setup/config_data.inc:439
 msgid "Default Rows"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:439
+#: ../setup/config_data.inc:440
 msgid "The default number of rows in an album"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:445
+#: ../setup/config_data.inc:446
 msgid "The default target size (in pixels) of album thumbnails."
 msgstr ""
 
 #
-#: ../setup/config_data.inc:450
+#: ../setup/config_data.inc:451
 msgid "Resized image size"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:451
+#: ../setup/config_data.inc:452
 msgid "When large images are added to an album, an intermediary version will automatically be generated at this size"
 msgstr ""
 
 #
-#: ../setup/config_data.inc:456
+#: ../setup/config_data.inc:457
 msgid "Fit-to-window"
 msgstr ""
 
-#
-#: ../setup/config_data.inc:457
-msgid "When viewing photos which don't have an intermediary version"
-msgstr ""
-
 #: ../setup/config_data.inc:458
-msgid "Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke"
+msgid "When viewing photos which don't have an intermediary version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke"
 msgstr ""
 
 #
@@ -3152,120 +2930,99 @@ msgstr "Редактировать заголовок"
 msgid "optional"
 msgstr "Нет заголовка"
 
-#
-#: ../setup/confirm.inc:134
-msgid "must be an absolute URL!"
+#: ../setup/confirm.inc:133
+#, php-format
+msgid "%s: <b>%s </b> must be an absolute URL!"
 msgstr ""
 
 #
-#: ../setup/confirm.inc:147
-#, fuzzy
-msgid "must be a valid file (not a directory)!"
+#: ../setup/confirm.inc:145
+#, fuzzy, php-format
+msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
 msgstr "существует, но не каталог"
 
-#
-#: ../setup/confirm.inc:157
-msgid "must be a number"
+#: ../setup/confirm.inc:154
+#, php-format
+msgid "%s: <b>\"%s\"</b> must be a number"
+msgstr ""
+
+#: ../setup/confirm.inc:162
+#, php-format
+msgid "%s: <b>%s</b> must not be zero"
+msgstr ""
+
+#: ../setup/confirm.inc:172
+#, php-format
+msgid "%s: <b>%s</b> must be an executable file!"
+msgstr ""
+
+#: ../setup/confirm.inc:181
+#, php-format
+msgid "Directory %s does not exist.  Please create it."
 msgstr ""
 
 #
-#: ../setup/confirm.inc:166
-msgid "must not be zero"
-msgstr ""
-
-#
-#: ../setup/confirm.inc:177
-msgid "must be an executable file!"
-msgstr ""
-
-#
-#: ../setup/confirm.inc:186
-#, fuzzy
-msgid "Directory"
-msgstr "направление"
-
-#: ../setup/confirm.inc:186
-msgid "does not exist.  Please create it."
-msgstr ""
-
-#
-#: ../setup/confirm.inc:192
+#: ../setup/confirm.inc:187
 #, fuzzy
 msgid "exists but is not a directory.  Please fix this."
 msgstr "существует, но не каталог"
 
-#
-#: ../setup/confirm.inc:199
-msgid "exists, but is not writeable by the webserver user.  Try:"
+#: ../setup/confirm.inc:194
+#, php-format
+msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
 msgstr ""
 
-#
-#: ../setup/confirm.inc:203
-msgid "or if that doesn't work:"
-msgstr ""
-
-#: ../setup/confirm.inc:207
-msgid "Also make sure that if you have an"
-msgstr ""
-
-#
-# Neccessary infact of hardcoded function editField() in util.php
-#: ../setup/confirm.inc:208
-#, fuzzy
-msgid "restriction"
-msgstr "описание"
-
-#
-#: ../setup/confirm.inc:209
-msgid "then this tmp directory should be under the open_basedir path"
-msgstr ""
-
-#: ../setup/confirm.inc:267
+#: ../setup/confirm.inc:261
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr ""
 
 #
-#: ../setup/confirm.inc:279
+#: ../setup/confirm.inc:273
 msgid "You must specify one of <i>pnmDir</i> or <i>ImPath</i> for Gallery to function!!"
 msgstr ""
 
-#: ../setup/confirm.inc:282
+#: ../setup/confirm.inc:276
 msgid "ImageMagick is not properly configured for use as a graphics package.  Make sure you entered a path to the ImageMagick binaries in step 2."
 msgstr ""
 
-#: ../setup/confirm.inc:285
+#: ../setup/confirm.inc:279
 msgid "NetPBM is not properly configured for use as a graphics package.  Make sure you entered a path to the NetPBM binaries in step 2."
 msgstr ""
 
 #
-#: ../setup/confirm.inc:291
+#: ../setup/confirm.inc:284 ../setup/write.inc:95
+msgid "Note"
+msgstr "Примечание"
+
+#
+#: ../setup/confirm.inc:285
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr ""
 
-#: ../setup/confirm.inc:293
+#: ../setup/confirm.inc:287
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
 msgstr ""
 
 #
-#: ../setup/confirm.inc:336 ../setup/confirm.inc:351
+#: ../setup/confirm.inc:330 ../setup/confirm.inc:345
 #, fuzzy
 msgid "Edit Config"
 msgstr "Редактировать заголовок"
 
 #
-#: ../setup/confirm.inc:338 ../setup/confirm.inc:353
+#: ../setup/confirm.inc:332 ../setup/confirm.inc:347
 msgid "Save Config"
 msgstr ""
 
 #
-#: ../setup/confirm.inc:356
+#: ../setup/confirm.inc:350
 msgid "There are errors in your configuration."
 msgstr ""
 
 #
-#: ../setup/confirm.inc:358
+#: ../setup/confirm.inc:352
 msgid "Please go back and fix them!"
 msgstr ""
 
@@ -3293,6 +3050,11 @@ msgstr "Нет совпадений в альбомах"
 #: ../setup/constants.inc:13 ../setup/constants.inc:78
 #: ../setup/defaults.inc:13 ../setup/defaults.inc:73
 msgid "Use Defaults"
+msgstr ""
+
+#
+#: ../setup/diagnostics.php:7
+msgid "Gallery Diagnostics Page"
 msgstr ""
 
 #
@@ -3337,53 +3099,46 @@ msgstr ""
 msgid "This page provides information about your PHP installation."
 msgstr ""
 
-#
 #: ../setup/diagnostics.php:32
-msgid "It's a good place to look to examine all the various PHP configuration settings, and to find out what kind of system you're running on"
+msgid "It's a good place to look to examine all the various PHP configuration settings, and to find out on what kind of system you're running (sometimes it's difficult to tell when you're on an ISP's machine)"
 msgstr ""
 
 #
-#: ../setup/diagnostics.php:33
-msgid "sometimes it's difficult to tell when you're on an ISP's machine"
-msgstr ""
+#: ../setup/diagnostics.php:38 ../setup/diagnostics.php:48
+#, fuzzy
+msgid "Check"
+msgstr "Проверить&nbsp;все"
 
 #
-#: ../setup/diagnostics.php:42
+#: ../setup/diagnostics.php:41
 msgid "This page provides information about your NetPBM binaries."
 msgstr ""
 
-#
-#: ../setup/diagnostics.php:43 ../setup/diagnostics.php:54
-msgid "You can only use this page after you have successfully complete the configuration wizard"
+#: ../setup/diagnostics.php:42
+msgid "You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to NetPBM)."
 msgstr ""
 
 #
-#: ../setup/diagnostics.php:44
-msgid "as it expects that you've already located and configured Gallery with the right path to NetPBM"
-msgstr ""
-
-#
-#: ../setup/diagnostics.php:53
+#: ../setup/diagnostics.php:51
 msgid "This page provides information about your ImageMagick binaries."
 msgstr ""
 
-#
-#: ../setup/diagnostics.php:55
-msgid "as it expects that you've already located and configured Gallery with the right path to ImageMagick"
+#: ../setup/diagnostics.php:52
+msgid "You can only use this page after you have successfully complete the configuration wizard (as it expects that you've already located and configured Gallery with the right path to ImageMagick)."
 msgstr ""
 
 #
-#: ../setup/diagnostics.php:61
+#: ../setup/diagnostics.php:58
 msgid "Check Sessions"
 msgstr ""
 
 #
-#: ../setup/diagnostics.php:64
+#: ../setup/diagnostics.php:61
 msgid "This page runs a very simple test on your PHP session configuration."
 msgstr ""
 
 #
-#: ../setup/diagnostics.php:65
+#: ../setup/diagnostics.php:62
 msgid "Gallery requires that your PHP installation is configured with proper session support."
 msgstr ""
 
@@ -3455,99 +3210,101 @@ msgid "NetPBM not being used in this installation"
 msgstr ""
 
 #
-#: ../setup/functions.inc:279 ../setup/functions.inc:363
+#: ../setup/functions.inc:279 ../setup/functions.inc:364
 msgid "Cannot verify this path (it's not in your open_basedir list)"
 msgstr ""
 
 #
-#: ../setup/functions.inc:328 ../setup/functions.inc:382
-#, fuzzy
-msgid "Can't find"
+#: ../setup/functions.inc:328 ../setup/functions.inc:383
+#, fuzzy, php-format
+msgid "Can't find %s!"
 msgstr "Не могу прочесть"
 
 #
-#: ../setup/functions.inc:333 ../setup/functions.inc:387
-msgid "is not executable"
-msgstr ""
+#: ../setup/functions.inc:333 ../setup/functions.inc:388
+#, fuzzy, php-format
+msgid "%s is not executable!"
+msgstr "Это не проблема!"
 
-#: ../setup/functions.inc:343
+#: ../setup/functions.inc:344
 #, php-format
 msgid "All %d NetPBM binaries located"
 msgstr ""
 
-#: ../setup/functions.inc:397
+#: ../setup/functions.inc:399
 #, php-format
 msgid "All %d ImageMagick binaries located"
 msgstr ""
 
 #
-#: ../setup/functions.inc:419
+#: ../setup/functions.inc:421
 #, fuzzy
 msgid "Could not locate jpegtran"
 msgstr "Не открывается url: "
 
-#: ../setup/functions.inc:421
+#: ../setup/functions.inc:423
 msgid "jpegtran binary located"
 msgstr ""
 
-#: ../setup/functions.inc:432
+#: ../setup/functions.inc:434
 msgid "gettext installed"
 msgstr ""
 
-#: ../setup/functions.inc:480
+#: ../setup/functions.inc:482
 msgid "No languages found."
 msgstr ""
 
-#: ../setup/functions.inc:482
+#: ../setup/functions.inc:484
 msgid "Only US English version is available.  If you want other languages, download language packs from gallery site"
 msgstr ""
 
-#: ../setup/functions.inc:484
+#: ../setup/functions.inc:486
 #, php-format
 msgid "%d languages found"
 msgstr ""
 
-#: ../setup/functions.inc:500
+#: ../setup/functions.inc:502
 msgid "All gallery locales are available on this host"
 msgstr ""
 
-#: ../setup/functions.inc:503
-msgid "We were unable to detect any locales.  However, your server is configured with the <a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\">open_basedir</a> restriction so this may be interfering with the way that we detect locales.  If you don't have any locales installed, the date format will not change for different languages.  Either way, it is ok to continue."
-msgstr ""
-
 #: ../setup/functions.inc:505
-msgid "Only the default locale for this machine is available, so date format will not change for different languages."
+#, php-format
+msgid "We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."
 msgstr ""
 
 #: ../setup/functions.inc:508
+msgid "Only the default locale for this machine is available, so date format will not change for different languages."
+msgstr ""
+
+#: ../setup/functions.inc:511
 msgid "Dates in these languages may not be formatted properly, because the corresponding locales are missing:"
 msgstr ""
 
-#: ../setup/functions.inc:648
+#: ../setup/functions.inc:651
 #, php-format
 msgid "Possible locale problems with %s."
 msgstr ""
 
-#: ../setup/functions.inc:650
+#: ../setup/functions.inc:653
 msgid "This language is available, but there seems to be a locale problem.  Please select a locale for date format style."
 msgstr ""
 
-#: ../setup/functions.inc:676
+#: ../setup/functions.inc:679
 #, php-format
 msgid "Locale problems with %s."
 msgstr ""
 
-#: ../setup/functions.inc:678
+#: ../setup/functions.inc:681
 msgid "This language is available, but we can't identified a suitable locale for it.  Please select a locale for date format style."
 msgstr ""
 
 #
-#: ../setup/functions.inc:713
+#: ../setup/functions.inc:716
 msgid "safe mode is off"
 msgstr ""
 
 #
-#: ../setup/functions.inc:725
+#: ../setup/functions.inc:728
 msgid "magic quotes are off"
 msgstr ""
 
@@ -3573,7 +3330,8 @@ msgid "The \"page views\" number should increase every time you reload the page.
 msgstr ""
 
 #: ../setup/session_test.php:34
-msgid "Clicking \"start over\" should reset the page view number back to 1."
+#, php-format
+msgid "Clicking %s should reset the page view number back to 1."
 msgstr ""
 
 #
@@ -3607,8 +3365,8 @@ msgstr ""
 
 #
 #: ../setup/session_test.php:72
-#, fuzzy
-msgid "Diagnostics Page"
+#, fuzzy, php-format
+msgid "Return to the %sDiagnostics Page%s"
 msgstr "Последняя страница"
 
 #
@@ -3616,19 +3374,14 @@ msgstr "Последняя страница"
 msgid "Your configuration has been successfully saved!"
 msgstr ""
 
-#
 #: ../setup/write.inc:92
-msgid "An account called <i>admin</i> has been created for you with the password you specified."
+#, php-format
+msgid "An account called %s has been created for you with the password you specified."
 msgstr ""
 
-#
 #: ../setup/write.inc:97
-msgid "Don't forget to run"
-msgstr ""
-
-#
-#: ../setup/write.inc:101
-msgid "to make your Gallery secure!"
+#, php-format
+msgid "Don't forget to run %s to make your Gallery secure!"
 msgstr ""
 
 #
@@ -3658,103 +3411,103 @@ msgstr "Файл"
 
 #
 #: ../setup/write.inc:123
-#, fuzzy
-msgid "Unable to write to"
+#, fuzzy, php-format
+msgid "Unable to write to %s."
 msgstr "Невозможно создать каталог"
 
 #
-#: ../slideshow.php:146 ../slideshow_low.php:167
+#: ../slideshow.php:147 ../slideshow_low.php:167
 #, fuzzy
 msgid "Slide Show for album"
 msgstr "Показ слайдов для альбома :: "
 
 #
-#: ../slideshow.php:294 ../slideshow_low.php:407
+#: ../slideshow.php:295 ../slideshow_low.php:407
 msgid "play"
 msgstr "показ"
 
 #
-#: ../slideshow.php:297 ../slideshow_low.php:228
+#: ../slideshow.php:298 ../slideshow_low.php:228
 msgid "The slide show is stopped, Click [play] to resume."
 msgstr "Показ слайдов остановлен, нажмите [показ] для продолжения."
 
 #
-#: ../slideshow.php:303 ../slideshow.php:520 ../slideshow_low.php:406
+#: ../slideshow.php:304 ../slideshow.php:521 ../slideshow_low.php:406
 msgid "stop"
 msgstr "стоп"
 
 #
-#: ../slideshow.php:306 ../slideshow.php:352 ../slideshow_low.php:234
+#: ../slideshow.php:307 ../slideshow.php:353 ../slideshow_low.php:234
 #, fuzzy
 msgid "Slide show is running..."
 msgstr "Показ слайдов..."
 
 #
-#: ../slideshow.php:313
+#: ../slideshow.php:314
 msgid "forward"
 msgstr "прямое"
 
 #
-#: ../slideshow.php:316 ../slideshow.php:521
+#: ../slideshow.php:317 ../slideshow.php:522
 msgid "reverse"
 msgstr "обратное"
 
 #
-#: ../slideshow.php:346 ../slideshow_low.php:266
+#: ../slideshow.php:347 ../slideshow_low.php:266
 msgid "Picture is loading..."
 msgstr "Загружается изображение..."
 
 #
-#: ../slideshow.php:346 ../slideshow.php:440 ../slideshow_low.php:266
+#: ../slideshow.php:347 ../slideshow.php:441 ../slideshow_low.php:266
 #: ../slideshow_low.php:481
 msgid "of"
 msgstr "из"
 
 #
-#: ../slideshow.php:347 ../slideshow_low.php:267
+#: ../slideshow.php:348 ../slideshow_low.php:267
 msgid "Please Wait..."
 msgstr "Пожалуйста подождите..."
 
 #
-#: ../slideshow.php:500
+#: ../slideshow.php:501
 msgid "not working for you? try the low-tech"
 msgstr "не работает? попробуйте упрощенную технологию"
 
 #
-#: ../slideshow.php:503 ../slideshow_low.php:391
+#: ../slideshow.php:504 ../slideshow_low.php:391
 msgid "Slide Show"
 msgstr "Показ слайдов"
 
 #
-#: ../slideshow.php:521
+#: ../slideshow.php:522
 msgid "direction"
 msgstr "направление"
 
 #
-#: ../slideshow.php:526 ../slideshow_low.php:412
+#: ../slideshow.php:527 ../slideshow_low.php:412
 msgid "normal size"
 msgstr "обычный рзмер"
 
 #
-#: ../slideshow.php:530 ../slideshow_low.php:415
+#: ../slideshow.php:531 ../slideshow_low.php:415
 msgid "full size"
 msgstr "развернутый размер"
 
 #
-#: ../slideshow.php:537 ../slideshow_low.php:429
+#: ../slideshow.php:538 ../slideshow_low.php:429
 #, fuzzy
 msgid "Delay:"
 msgstr "Пауза: "
 
 #
-#: ../slideshow.php:539 ../slideshow_low.php:431
+#: ../slideshow.php:540 ../slideshow_low.php:431
 msgid "second"
 msgstr "секунда"
 
 #
-#: ../slideshow.php:540 ../slideshow.php:541 ../slideshow.php:542
-#: ../slideshow.php:543 ../slideshow.php:544 ../slideshow.php:545
-#: ../slideshow.php:546 ../slideshow.php:547 ../slideshow.php:548
+#: ../slideshow.php:541 ../slideshow.php:542 ../slideshow.php:543
+#: ../slideshow.php:544 ../slideshow.php:545 ../slideshow.php:546
+#: ../slideshow.php:547 ../slideshow.php:548 ../slideshow.php:549
 #: ../slideshow_low.php:432 ../slideshow_low.php:433 ../slideshow_low.php:434
 #: ../slideshow_low.php:435 ../slideshow_low.php:436 ../slideshow_low.php:437
 #: ../slideshow_low.php:438 ../slideshow_low.php:439 ../slideshow_low.php:440
@@ -3763,24 +3516,24 @@ msgstr "секунд"
 
 #
 # -------------------------------------------
-#: ../slideshow.php:556
+#: ../slideshow.php:557
 #, fuzzy
 msgid "Transition:"
 msgstr "Переход: "
 
 #
-#: ../slideshow.php:566 ../slideshow_low.php:445
+#: ../slideshow.php:567 ../slideshow_low.php:445
 #, fuzzy
 msgid "Loop"
 msgstr "Цикл: "
 
 #
-#: ../slideshow.php:620 ../slideshow_low.php:495
+#: ../slideshow.php:621 ../slideshow_low.php:495
 msgid "This album has no photos to show in a slide show."
 msgstr "Этот альбом не имеет фотографий для показа слайдов."
 
 #
-#: ../slideshow.php:624 ../slideshow_low.php:499
+#: ../slideshow.php:625 ../slideshow_low.php:499
 msgid "back to album"
 msgstr "назад в альбом"
 
@@ -3907,21 +3660,12 @@ msgstr "Все альбомы уже модернизированы."
 
 #
 #: ../upgrade_album.php:176
-msgid "The following albums need to be upgraded."
-msgstr "Следующие альбомы должны быть модернизированы."
-
-#
-#: ../upgrade_album.php:177
-msgid "You can process them individually by clicking the upgrade link next to the album that you desire, or you can just"
+#, fuzzy, php-format
+msgid "The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %supgrade them all at once%s"
 msgstr "Вы можете обработать каждый альбом индивидуально, нажимая на ссылку рядом с альбомом или вы можете"
 
 #
-#: ../upgrade_album.php:178
-msgid "upgrade them all at once"
-msgstr "модернизировать все сразу"
-
-#
-#: ../upgrade_album.php:185
+#: ../upgrade_album.php:184
 msgid "upgrade"
 msgstr "модернизировать"
 
@@ -3956,170 +3700,203 @@ msgid "You can change your username to any combination of letters and digits."
 msgstr "Вы можете изменить свое имя пользователя на любую комбинацию символов и цифр."
 
 #
-#: ../util.php:37
+#: ../util.php:38
 msgid "Empty"
 msgstr "Пусто"
 
 #
-#: ../util.php:42 ../util.php:62
-msgid "edit"
+#: ../util.php:43
+#, fuzzy, php-format
+msgid "edit %s"
 msgstr "редактировать"
 
 #
-#: ../util.php:58
+#: ../util.php:59
 msgid "No Caption"
 msgstr "Нет заголовка"
 
 #
-#: ../util.php:170
-msgid "Results"
+#: ../util.php:63
+msgid "edit"
+msgstr "редактировать"
+
+#
+#: ../util.php:103
+#, fuzzy
+msgid "Error:"
+msgstr "Ошибка"
+
+#
+#: ../util.php:171
+#, fuzzy
+msgid "Results:"
 msgstr "Результаты"
 
 #
-#: ../util.php:179
-msgid "Error messages"
+#: ../util.php:180
+#, fuzzy
+msgid "Error messages:"
 msgstr "Сообщения об ошибках"
 
-#
-#: ../util.php:190
-msgid "Status"
-msgstr "Статус"
+#: ../util.php:191
+#, php-format
+msgid "Status: %s (expected %s)"
+msgstr ""
 
 #
-#: ../util.php:203
+#: ../util.php:205
 msgid "PHP's getimagesize() unable to determine dimensions."
 msgstr "Функция PHP getimagesize() не может определить размер."
 
 #
-#: ../util.php:222 ../util.php:395 ../util.php:493 ../util.php:539
+#: ../util.php:224 ../util.php:397 ../util.php:495 ../util.php:541
 msgid "You have no graphics package configured for use!"
 msgstr "У вас нет ни одного графического пакета сконфигурированного для использования!"
 
 #
-#: ../util.php:286
+#: ../util.php:288
 #, fuzzy
 msgid "Upload Date"
 msgstr " по дате загрузки"
 
-#: ../util.php:288
+#: ../util.php:290
 msgid "Image Size"
 msgstr ""
 
-#: ../util.php:289
+#: ../util.php:291
 msgid "Additional EXIF Data"
 msgstr ""
 
 #
-#: ../util.php:325 ../util.php:341
+#: ../util.php:327 ../util.php:343
 msgid "Not closing this window because debug mode is on"
 msgstr "Не закрывайте это окно, т.к. включен режим отладки"
 
 #
-#: ../util.php:572
-msgid "There was an unknown failure in the valid_image() call!"
+#: ../util.php:574
+#, fuzzy, php-format
+msgid "There was an unknown failure in the %s call!"
 msgstr "Неизвестный отказ при вызове функции valid_image()!"
 
 #
-#: ../util.php:596 ../util.php:616
-msgid "Unknown file type"
+#: ../util.php:598 ../util.php:618
+#, fuzzy, php-format
+msgid "Unknown file type: %s"
 msgstr "Неизвестный тип файла"
 
 #
-#: ../util.php:1020
-msgid "Can't write to"
+#: ../util.php:1022
+#, fuzzy, php-format
+msgid "Can't write to %s."
 msgstr "Не могу записать в"
 
 #
-#: ../util.php:1026
-msgid "Can't read"
+#: ../util.php:1029
+#, fuzzy, php-format
+msgid "Can't read %s."
 msgstr "Не могу прочесть"
 
 #
-#: ../util.php:1117
+#: ../util.php:1120
 msgid "Select Album"
 msgstr "Выберите альбом"
 
 #
-#: ../util.php:1122
+#: ../util.php:1125
 msgid "Top Level"
 msgstr "Верхний уровень"
 
 #
-#: ../util.php:1142 ../util.php:1188
+#: ../util.php:1145 ../util.php:1191
 #, fuzzy
 msgid "current location"
 msgstr "Текущее расположение "
 
 #
-#: ../util.php:1190
+#: ../util.php:1193
 msgid "self"
 msgstr ""
 
 #
-#: ../util.php:1444
+#: ../util.php:1361
+#, fuzzy, php-format
+msgid "Could not open lock file (%s)!"
+msgstr "Не открывается url: "
+
+#: ../util.php:1366
+#, php-format
+msgid "Could not acquire lock (%s)!"
+msgstr ""
+
+#
+#: ../util.php:1449
 msgid "hit"
 msgstr "посещение"
 
 #
-#: ../util.php:1444
+#: ../util.php:1449
 msgid "hits"
 msgstr "посещений"
 
 #
-#: ../util.php:1444
+#: ../util.php:1449
 msgid "0 hits"
 msgstr "0 посещений"
 
 #
-#: ../util.php:1449
+#: ../util.php:1454
 msgid "Sub-albums"
 msgstr "Вложенные&nbsp;альбомы:"
 
 #
-#: ../util.php:1478 ../util.php:1610
-msgid "Skipping"
-msgstr "Пропущен"
-
-#
-#: ../util.php:1478
-msgid "(ZIP support not enabled)"
+#: ../util.php:1483
+#, fuzzy, php-format
+msgid "Skipping %s (ZIP support not enabled)"
 msgstr "(ZIP поддрежка отключена)"
 
 #
-#: ../util.php:1552
-msgid "Adding"
+#: ../util.php:1557
+#, fuzzy, php-format
+msgid "Adding %s"
 msgstr "Добавление"
 
 #
-#: ../util.php:1595
-#, fuzzy
-msgid "Photo auto-rotated"
+#: ../util.php:1574
+#, fuzzy, php-format
+msgid "Resizing %s"
+msgstr "Изменение размера"
+
+#
+#: ../util.php:1600
+#, fuzzy, php-format
+msgid "Photo auto-rotated %s&deg;"
 msgstr "Дата фотографии"
 
 #
-#: ../util.php:1606
-msgid "Need help?  Look in the "
+#: ../util.php:1611
+#, fuzzy, php-format
+msgid "Error: %s!"
+msgstr "Ошибка"
+
+#
+#: ../util.php:1613
+#, fuzzy, php-format
+msgid "Need help?  Look in the  %sGallery FAQ%s"
 msgstr "Нужна помощь?  Смотри "
 
-#
-#: ../util.php:1610
-msgid "can't handle"
-msgstr "невозможно распознать формат"
+#: ../util.php:1618
+#, php-format
+msgid "Skipping %s (can't handle %s format)"
+msgstr ""
 
 #
-#: ../util.php:1610
-#, fuzzy
-msgid "format"
-msgstr "обычный"
-
-#
-#: ../view_album.php:252
+#: ../view_album.php:251
 #, fuzzy
 msgid "sub-album"
 msgstr "Вложенные&nbsp;альбомы:"
 
 #
-#: ../view_album.php:252
+#: ../view_album.php:251
 #, fuzzy
 msgid "sub-albums"
 msgstr "Вложенные&nbsp;альбомы:"
@@ -4127,200 +3904,211 @@ msgstr "Вложенные&nbsp;альбомы:"
 #
 #: ../view_album.php:252
 #, fuzzy
-msgid "and"
-msgstr "Редактируйте"
-
-#
-#: ../view_album.php:253
-#, fuzzy
 msgid "no images"
 msgstr "нет страниц"
 
 #
-#: ../view_album.php:255
-#, fuzzy
-msgid "No images"
-msgstr "нет страниц"
-
-#
-#: ../view_album.php:257
-#, fuzzy
-msgid "in this album"
-msgstr "позиций в альбоме"
-
-#
-#: ../view_album.php:259
+#: ../view_album.php:253
 msgid "0 pages"
 msgstr "0 страниц"
 
 #
+#: ../view_album.php:256
+#, fuzzy, php-format
+msgid "%s and %s in this album on %s"
+msgstr "позиций в альбоме"
+
+#
+#: ../view_album.php:259
+#, fuzzy, php-format
+msgid "%s and %s in this album"
+msgstr "позиций в альбоме"
+
+#
+#: ../view_album.php:262
+#, fuzzy, php-format
+msgid "%s in this album on %s"
+msgstr "позиций в альбоме"
+
+#
 #: ../view_album.php:265
+#, fuzzy, php-format
+msgid "%s in this album"
+msgstr "позиций в альбоме"
+
+#
+#: ../view_album.php:272
 #, fuzzy, php-format
 msgid "%s are hidden"
 msgstr "скрытый"
 
 #
-#: ../view_album.php:267
+#: ../view_album.php:274
 #, fuzzy, php-format
 msgid "%s is hidden"
 msgstr "скрытый"
 
 #
-#: ../view_album.php:277
+#: ../view_album.php:284
 msgid "add photos"
 msgstr "добавить фото"
 
 #
-#: ../view_album.php:282
+#: ../view_album.php:289
 #, fuzzy
 msgid "add photo"
 msgstr "добавить фото"
 
 #
-#: ../view_album.php:298
+#: ../view_album.php:305
 msgid "new nested album"
 msgstr "новый вложенный альбом"
 
 #
-#: ../view_album.php:304
+#: ../view_album.php:311
 msgid "custom fields"
 msgstr ""
 
 #
-#: ../view_album.php:311
+#: ../view_album.php:318
 msgid "captions"
 msgstr "заголовки"
 
 #
-#: ../view_album.php:317
+#: ../view_album.php:324
 msgid "sort"
 msgstr "сортировать"
 
 #
-#: ../view_album.php:319
+#: ../view_album.php:326
 msgid "resize all"
 msgstr "изменить размер всех"
 
 #
-#: ../view_album.php:322
+#: ../view_album.php:329
 msgid "rebuild thumbs"
 msgstr "обновить макеты"
 
 #
-#: ../view_album.php:326
+#: ../view_album.php:333
 msgid "properties"
 msgstr "свойства"
 
 #
-#: ../view_album.php:338
+#: ../view_album.php:345
 msgid "view&nbsp;all&nbsp;comments"
 msgstr "просмотр&nbsp;всех&nbsp;комментариев"
 
 #
-#: ../view_album.php:343
+#: ../view_album.php:350
 msgid "slideshow"
 msgstr "показ слайдов"
 
 #
-#: ../view_album.php:515
+#: ../view_album.php:523
 #, fuzzy
 msgid "Changed: "
 msgstr "Изменение : "
 
 #
-#: ../view_album.php:516
+#: ../view_album.php:524
 #, fuzzy
 msgid "Contains: "
 msgstr "Содержит :"
 
 #
-#: ../view_album.php:516
+#: ../view_album.php:524
 msgid "0 items"
 msgstr "0 позиций"
 
 #
-#: ../view_album.php:518 ../view_album.php:533
+#: ../view_album.php:526 ../view_album.php:541
 #, fuzzy
 msgid "Viewed:"
 msgstr "Просмотров :"
 
 #
-#: ../view_album.php:540
+#: ../view_album.php:548
 msgid "Movie"
 msgstr "Фильм"
 
 #
-#: ../view_album.php:544
+#: ../view_album.php:552
 msgid "Photo"
 msgstr "Фото"
 
 #
-#: ../view_album.php:574
+#: ../view_album.php:556
+msgid "Edit"
+msgstr "Редактировать"
+
+#
+#: ../view_album.php:582
 msgid "Edit Title"
 msgstr "Редактировать название"
 
 #
-#: ../view_album.php:579
+#: ../view_album.php:587
 msgid "Edit Description"
 msgstr "Редактировать описание"
 
 #
-#: ../view_album.php:596
+#: ../view_album.php:604
 msgid "Edit Thumbnail"
 msgstr "Редактировать макет"
 
 #
-#: ../view_album.php:597
+#: ../view_album.php:605
 #, fuzzy
 msgid "Rotate/Flip"
 msgstr "Поворот фотографии"
 
 #
-#: ../view_album.php:600
+#: ../view_album.php:608
 #, fuzzy
 msgid "Highlight"
 msgstr "Обложка "
 
 #
-#: ../view_album.php:605
+#: ../view_album.php:613
 msgid "Reset Counter"
 msgstr "Сброс счетчика"
 
 #
-#: ../view_album.php:610
+#: ../view_album.php:618
 msgid "Move "
 msgstr "Переместить "
 
 #
-#: ../view_album.php:612
+#: ../view_album.php:620
 #, fuzzy
 msgid "Show"
 msgstr "Показать "
 
 #
-#: ../view_album.php:614
+#: ../view_album.php:622
 #, fuzzy
 msgid "Hide"
 msgstr "Скрыть "
 
 #
-#: ../view_album.php:631
+#: ../view_album.php:639
 #, fuzzy
 msgid "Permissions"
 msgstr "полномочия"
 
 #
-#: ../view_album.php:670
+#: ../view_album.php:678
 msgid "Hey! Add some photos."
 msgstr "Эй! Добавь несколько фотографий."
 
 #
-#: ../view_album.php:672
+#: ../view_album.php:680
 msgid "This album is empty."
 msgstr "Этот альбом пуст."
 
 #
-#: ../view_album.php:683
+#: ../view_album.php:691
 msgid "Comments available for this item."
 msgstr "Доступны комментарии для этой фотографии."
 
@@ -4336,7 +4124,8 @@ msgstr "вернуться в альбом"
 
 #
 #: ../view_comments.php:136
-msgid "Sorry This album does not allow public comments."
+#, fuzzy
+msgid "Sorry.  This album does not allow public comments."
 msgstr "К сожалению, в этом альбоме нельзя размещать комментарии."
 
 #
@@ -4374,8 +4163,8 @@ msgstr "свойства фото"
 
 #
 #: ../view_photo.php:433 ../view_photo.php:436 ../view_photo.php:438
-#, fuzzy
-msgid "print this photo on"
+#, fuzzy, php-format
+msgid "print this photo on %s"
 msgstr "распечатать эту фотографию на Fotokasten"
 
 #
@@ -4396,27 +4185,187 @@ msgid "Item Capture Date"
 msgstr "Дата фотографии:"
 
 #
-#: ../view_photo_properties.php:151
+#: ../view_photo_properties.php:157
 msgid "Reload EXIF Data From File"
 msgstr "Перезагрузить EXIF данные из файла"
 
 #
-#: ../view_photo_properties.php:154
+#: ../view_photo_properties.php:160
 msgid "(if the data is current, this will not appear to do anything)"
 msgstr "если данные уже есть, то ничего не делайте"
 
 #
-#~ msgid " on "
-#~ msgstr " на "
+#~ msgid "in your albums directory"
+#~ msgstr "в вашем каталоге альбомов"
 
 #
-#~ msgid "Processing image "
-#~ msgstr "Обработка изображения "
+#~ msgid "since"
+#~ msgstr "с"
+
+#
+#~ msgid "EVERYBODY"
+#~ msgstr "ВСЕ"
+
+#
+#~ msgid "LOGGEDIN"
+#~ msgstr "ЗАРЕГИСТРИРОВАННЫЕ"
+
+#
+#~ msgid "NOBODY"
+#~ msgstr "НИКТО"
+
+#
+#~ msgid "already exists"
+#~ msgstr "уже существует"
 
 #
 #, fuzzy
-#~ msgid "ML Configuration Wizard"
+#~ msgid "Rebuilding"
+#~ msgstr "Обновление "
+
+#
+#~ msgid "thumbnails..."
+#~ msgstr "макетов..."
+
+#
+#~ msgid "Edit the"
+#~ msgstr "Редактируйте"
+
+#
+#, fuzzy
+#~ msgid "Configuration Wizard"
 #~ msgstr "файл конфигурации XP"
+
+#
+#, fuzzy
+#~ msgid "Login to"
+#~ msgstr "Вход в "
+
+#
+#~ msgid "view, create, modify and delete albums."
+#~ msgstr "просмотра, создания, корректировки и удаления альбомов."
+
+#
+#, fuzzy
+#~ msgid "Change owner"
+#~ msgstr "Изменение : "
+
+#
+#~ msgid "Gallery <b>has experimental</b> support for this feature."
+#~ msgstr "Эта возможность галереи находится в стадии <b>тестирования</b>."
+
+#
+#~ msgid "Download the"
+#~ msgstr "Загрузите"
+
+#
+#~ msgid "Open your Windows explorer and browse to a folder containing a JPG image."
+#~ msgstr "Откройте Windows проводник и выберите папку с JPG изображениями."
+
+#
+#~ msgid "Select the image and there should be a link on the left that says &quot;Publish this file to the web...&quot;"
+#~ msgstr "Выберите изображение и в левом окне должна появиться ссылка &quot;Опубликовать этот файл в интернете...&quot;"
+
+#
+#~ msgid "Click this link and then follow the instructions to log into your Gallery, select an album and publish the image."
+#~ msgstr "Нажмите на эту ссылку и следуйте инструкциям - подключитесь в свою Галерею, выберите альбом и опубликуйте изображение."
+
+#
+#~ msgid "photos..."
+#~ msgstr "фотографий..."
+
+#
+#~ msgid "this photo"
+#~ msgstr "этой фотографии"
+
+#
+#~ msgid "Processing"
+#~ msgstr "Обработка"
+
+#
+#, fuzzy
+#~ msgid "and the"
+#~ msgstr "Редактируйте"
+
+#
+#, fuzzy
+#~ msgid "Loading configuration files."
+#~ msgstr "файл конфигурации XP"
+
+#
+#, fuzzy
+#~ msgid "Your NetPBM directory"
+#~ msgstr "в вашем каталоге альбомов"
+
+#
+#, fuzzy
+#~ msgid "enabled"
+#~ msgstr "Переименуй"
+
+#
+#, fuzzy
+#~ msgid "to get more information"
+#~ msgstr "Здесь Вы можете изменить информацию о себе."
+
+#
+#, fuzzy
+#~ msgid "Return to the"
+#~ msgstr "Вернуться к добавлению фотографий"
+
+#
+#, fuzzy
+#~ msgid "Your ImageMagick directory"
+#~ msgstr "в вашем каталоге альбомов"
+
+#
+#, fuzzy
+#~ msgid "Directory"
+#~ msgstr "направление"
+
+#
+# Neccessary infact of hardcoded function editField() in util.php
+#, fuzzy
+#~ msgid "restriction"
+#~ msgstr "описание"
+
+#
+#~ msgid "The following albums need to be upgraded."
+#~ msgstr "Следующие альбомы должны быть модернизированы."
+
+#
+#~ msgid "upgrade them all at once"
+#~ msgstr "модернизировать все сразу"
+
+#
+#~ msgid "Status"
+#~ msgstr "Статус"
+
+#
+#~ msgid "Skipping"
+#~ msgstr "Пропущен"
+
+#
+#~ msgid "can't handle"
+#~ msgstr "невозможно распознать формат"
+
+#
+#, fuzzy
+#~ msgid "format"
+#~ msgstr "обычный"
+
+#
+#, fuzzy
+#~ msgid "and"
+#~ msgstr "Редактируйте"
+
+#
+#, fuzzy
+#~ msgid "No images"
+#~ msgstr "нет страниц"
+
+#
+#~ msgid " on "
+#~ msgstr " на "
 
 #
 #, fuzzy
@@ -4436,10 +4385,6 @@ msgstr "если данные уже есть, то ничего не делайте"
 #
 #~ msgid "gallery page, representing this album?"
 #~ msgstr "странице галереи, представляя этот альбом?"
-
-#
-#~ msgid "Login to "
-#~ msgstr "Вход в "
 
 #
 #, fuzzy
