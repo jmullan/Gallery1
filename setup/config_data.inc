@@ -240,7 +240,9 @@ $constants =  array_merge(
 	"editPassword" => check_admins(),
 	"skinname" => array(
 		"prompt" => _("Skin Name"),
-		"desc" => _("Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4.") . available_skins(true),
+		"desc" => _("Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4.") . 
+				'<br><a href="http://www.pownuke.com/galleryskins/">'. _("Here you can get a more Gallery Skins by Drazan") .'</a>'.
+				available_skins(true),
 		"choices" => available_skins(),
 		"value" => "none"
 	),
