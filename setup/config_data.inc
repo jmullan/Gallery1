@@ -476,7 +476,7 @@ $defaults = array(
 			"names?  If you select <i>no</i>, Gallery will assign a new name for " .
 			"each photo or movie that gets uploaded.",
                 "choices" => array("yes", "no"),
-                "value" => "no",
+                "value" => "yes",
 	),
 	"display_clicks" => array(
 		"prompt" => "Click counts",
