@@ -1324,6 +1324,8 @@ class Album {
 	}
 
 	function numVisibleItems($user, $returnVisibleItems=false) {
+		$uuid = $user->getUid();
+
 		if ($returnVisibleItems) {
 			$visibleItems = array();
 			$numVisibleItems = 0;
@@ -1333,7 +1335,7 @@ class Album {
 		$numItems = $this->numPhotos(1);
 		for ($i = 1; $i <= $numItems; $i++) {
 			$photo = $this->getPhoto($i);
-			if ($canWrite || !$photo->isHidden() || $this->isItemOwner($user->getUid(), $i)) {
+			if ($canWrite || !$photo->isHidden() || $this->isItemOwner($uuid, $i)) {
 				if ($photo->isAlbum()) {
 					$album = new Album();
 					$album->load($photo->getAlbumName(), false);
