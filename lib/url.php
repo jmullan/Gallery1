@@ -61,7 +61,7 @@ function makeGalleryUrl($target, $args=array()) {
 			break;
 
 			case 'mambo':
-				$args['option'] = $GALLERY_MODULENAME;
+				$args['option'] = "com_gallery";
 				$args['Itemid'] = $MOS_GALLERY_PARAMS['itemid'];
 				$args['include'] = $target;
 

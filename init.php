@@ -410,7 +410,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			$results = $db->query('SELECT id FROM ' . $gallery->database{'user_prefix'} . "components WHERE link='option=$GALLERY_MODULENAME'");
 			$row = $db->fetch_row($results);
 			$componentId = $row[0];
-			$results = $db->query('SELECT id FROM ' . $gallery->database{'user_prefix'} . "menu WHERE componentid='$componentId'");
+			$results = $db->query('SELECT id FROM ' . $gallery->database{'user_prefix'} . "menu WHERE componentid='$componentId' AND type = 'components' AND published = 1");
 			$row = $db->fetch_row($results);
 			$MOS_GALLERY_PARAMS['itemid'] = $row[0]; // pick the first one
 		break;
@@ -446,8 +446,8 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			/* we're in CPG-Nuke */
 			include_once(dirname(__FILE__) . "/classes/Database.php");
 			include_once(dirname(__FILE__) . "/classes/database/mysql/Database.php");
-			include_once(dirname(__FILE__) . "/classes/cpgnuke/UserDB.php");
-			include_once(dirname(__FILE__) . "/classes/cpgnuke/User.php");
+			include_once(dirname(__FILE__) . "/classes/nsnnuke/UserDB.php");
+			include_once(dirname(__FILE__) . "/classes/nsnnuke/User.php");
 
 	   		 $gallery->database{"cpgnuke"} = new MySQL_Database(
 				$GLOBALS['dbhost'],
@@ -479,7 +479,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			}
 	    
 			if (is_admin()) {
-				include_once(dirname(__FILE__) . "/classes/cpgnuke/AdminUser.php");
+				include_once(dirname(__FILE__) . "/classes/nsnnuke/AdminUser.php");
 				
 				$gallery->user = new CPGNuke_AdminUser();
 				$gallery->session->username = $gallery->user->getUsername();

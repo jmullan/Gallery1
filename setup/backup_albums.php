@@ -30,6 +30,11 @@ if (!file_exists(dirname(__FILE__) . '/util.php')) {
 $gallery->backup_mode="yes";
 require_once(dirname(__FILE__) . '/init.php');
 
+list($backup, $force, $backup_method, $zip_path, $gzip_path, $tar_path, $xargs_path, 
+	$find_path, $target_files) =
+	    getRequestVar(array('backup', 'force', 'backup_method', 'zip_path', 'gzip_path', 'tar_path', 
+	    'xargs_path', 'find_path', 'target_files'));
+
 set_time_limit(600);
 $showForce = false;
 if (!empty($backup) || !empty($force))

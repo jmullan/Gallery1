@@ -203,6 +203,7 @@ function initLanguage($sendHeader=true) {
 		}
 
 		/* Skip rest*/
+		$languages_initialized = true;
 		return;
 	}
 
