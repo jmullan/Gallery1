@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_4
+# Version: 1_4_4-u1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -20,18 +20,19 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 #
-# Paul Adriaanse <paulus@boskabouter.com>, 2003
-# Johan Speybrouck <jspeybro@p311.vub.ac.be>, 2003-2004
-# M. van der Kolk <internet@vanderkolk.demon.nl>, 2004
+# Paul Adriaanse <paulus AT boskabouter DOT com>, 2003-2004
+# Johan Speybrouck <jspeybro AT p311 DOT vub DOT ac DOT be>, 2003-2004
+# M. van der Kolk <internet  AT vanderkolk DOT demon DOT nl>, 2004
+# B. v/d Neut <neutcomp AT hotmail DOT com>, 2004
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-08-03 14:45+0200\n"
+"POT-Creation-Date: 2004-08-12 17:21+0200\n"
 "PO-Revision-Date: 2004-04-30 00:39+0100\n"
-"Last-Translator: M. van der Kolk <internet AT vanderkolk DOT demon DOT nl>\n"
-"Language-Team: Dutch M. van der Kolk <internet AT vanderkolk DOT demon DOT nl>\n"
+"Last-Translator: B. v/d Neut <neutcomp AT hotmail DOT com>\n"
+"Language-Team: Bjondy <neutcomp AT hotmail DOT com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -58,7 +59,7 @@ msgstr "Vul uw naam en commentaar in!"
 #: ../add_comment.php:58 ../view_photo.php:208
 #, php-format
 msgid "Your comment is too long, the admin set maximum length to %d chars"
-msgstr ""
+msgstr "Het commentaar is te lang, de admin heeft een maximum ingesteld van %d chars"
 
 #: ../add_comment.php:74 ../add_comment.php:80
 msgid "Add Comment"
@@ -263,7 +264,7 @@ msgstr "Configureer optionele velden"
 
 #: ../albums.php:163
 msgid "find orphans"
-msgstr ""
+msgstr "vind losstaande albums"
 
 #: ../albums.php:167
 msgid "new album"
@@ -305,7 +306,7 @@ msgstr "Dit zijn geen geldige albums. Verwijder ze alstublieft uit de album-map.
 #: ../albums.php:235
 #, php-format
 msgid "%s has detected that %d of your albums are out of date."
-msgstr ""
+msgstr "%s heeft gedetecteerd dat %d van de albums verlopen zijn."
 
 #: ../albums.php:239
 #, fuzzy, php-format
@@ -383,7 +384,7 @@ msgstr "Iemand heeft commentaar op dit item gegeven."
 
 #: ../captionator.php:47
 msgid "Captioned album does not match current album - aborting changes!"
-msgstr ""
+msgstr "Het onderschrift van het album komt niet overeen met het huidige album - wijzigingen niet doorgevoerd!"
 
 #: ../captionator.php:127
 msgid "Captionator"
@@ -406,11 +407,11 @@ msgid "on"
 msgstr "nog geen"
 
 #: ../captionator.php:175
-#, fuzzy, php-format
+#, php-format
 msgid "one page"
 msgid_plural "%d pages"
-msgstr[0] "geen pagina's"
-msgstr[1] "geen pagina's"
+msgstr[0] "een pagina"
+msgstr[1] "%d pagina's"
 
 #: ../captionator.php:204 ../captionator.php:312
 msgid "Save and Exit"
@@ -436,14 +437,12 @@ msgid "Album Caption"
 msgstr "Album Onderschrift:"
 
 #: ../captionator.php:260
-#, fuzzy
 msgid "Movie Caption"
-msgstr "Geen Onderschrift"
+msgstr "Film Onderschrift"
 
 #: ../captionator.php:262
-#, fuzzy
 msgid "Photo Caption"
-msgstr "Geen Onderschrift"
+msgstr "Foto Onderschrift"
 
 # Neccessary infact of hardcoded function editField() in util.php
 #: ../captionator.php:272 ../extra_fields.php:101 ../lib/lang.php:652
@@ -515,24 +514,23 @@ msgid "Photo auto-rotated/transformed"
 msgstr "Foto is automatisch gedraaid/veranderd"
 
 #: ../classes/Album.php:1077
-#, fuzzy
 msgid "Watermarking Image"
-msgstr "Album watermerken"
+msgstr "Foto watermerken"
 
 #: ../classes/Album.php:1223 ../classes/Album.php:1233
-#: ../classes/AlbumItem.php:627
+#: ../classes/AlbumItem.php:630
 msgid "No highlight"
 msgstr "Geen voorbeeldfoto aanwezig"
 
 #: ../classes/Album.php:1387
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
-msgstr ""
+msgstr "Gevraagde index [%d] buiten bereik [%d]"
 
 #: ../classes/Album.php:1698
 #, php-format
 msgid "Error %s getting EXIF data"
-msgstr ""
+msgstr "Fout %s bij opvragen van EXIF data"
 
 #: ../classes/Album.php:2203
 #, php-format
@@ -544,23 +542,23 @@ msgstr "#%d"
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "E-mail probleem: %s overgeslagen (UID %s) omdat het e-mailadres %s ongeldig is"
 
-#: ../classes/AlbumItem.php:526
+#: ../classes/AlbumItem.php:529
 msgid "Invalid image"
 msgstr "Ongeldig bestandsformaat"
 
-#: ../classes/AlbumItem.php:584
+#: ../classes/AlbumItem.php:587
 msgid "Unable to make thumbnail"
 msgstr "Kan geen voorbeeld maken"
 
-#: ../classes/AlbumItem.php:595
+#: ../classes/AlbumItem.php:598
 msgid "No preview"
-msgstr ""
+msgstr "Geen voorbeeld"
 
-#: ../classes/AlbumItem.php:605 ../util.php:61
+#: ../classes/AlbumItem.php:608 ../util.php:61
 msgid "No Caption"
 msgstr "Geen Onderschrift"
 
-#: ../classes/AlbumItem.php:614
+#: ../classes/AlbumItem.php:617
 msgid "No thumbnail"
 msgstr "Geen voorbeeld"
 
@@ -882,7 +880,7 @@ msgstr "Voorbeeld formaat"
 
 #: ../edit_appearance.php:150
 msgid "Maximum dimensions of intermediate sized images"
-msgstr ""
+msgstr "Maximale afmeting van een gemiddelde foto"
 
 #: ../edit_appearance.php:152 ../edit_appearance.php:163
 msgid "off"
@@ -890,11 +888,11 @@ msgstr "uit"
 
 #: ../edit_appearance.php:157
 msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-msgstr ""
+msgstr "Maximale bestands grootte van gemiddelde JPEG/PNG foto in kilobytes (0 of leeg geen grootte restrictie)"
 
 #: ../edit_appearance.php:161
 msgid "Maximum dimensions of full sized images"
-msgstr ""
+msgstr "Maximale afmeting van een vergrootte foto"
 
 #: ../edit_appearance.php:163
 #, php-format
@@ -903,7 +901,7 @@ msgstr "%d (%d Megapixels)"
 
 #: ../edit_appearance.php:168
 msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-msgstr ""
+msgstr "Maximale bestands grootte van een vergrootte JPEG/PNG foto in kilobytes (0 of leeg geen grootte restrictie)"
 
 #: ../edit_appearance.php:172
 msgid "Show <i>Return to</i> link"
@@ -995,7 +993,7 @@ msgstr "Voeg nieuwe onderdelen toe aan het begin van het album"
 
 #: ../edit_appearance.php:332
 msgid "Display clickable image dimensions"
-msgstr ""
+msgstr "Weergave foto afmeting bij het klikken"
 
 #: ../edit_appearance.php:341
 msgid "Apply values to nested Albums (except Album Title and Summary)."
@@ -1109,9 +1107,8 @@ msgid "Edit Watermark"
 msgstr "Bewerk watermerk"
 
 #: ../edit_watermark.php:103 ../watermark_album.php:116
-#, fuzzy
 msgid "Preview"
-msgstr "Vorige Pagina"
+msgstr "Voorbeeld"
 
 #: ../extra_fields.php:57
 #, fuzzy
@@ -1124,7 +1121,7 @@ msgstr "Configureer optionele velden"
 
 #: ../extra_fields.php:122 ../lib/lang.php:654
 msgid "Alt Text / onMouseOver"
-msgstr ""
+msgstr "Alt tekst / bij mouseover"
 
 #: ../extra_fields.php:132
 msgid "Number of user defined custom fields"
@@ -1144,12 +1141,11 @@ msgstr "Help voor beheerders"
 
 #: ../includes/add_photos/add_admin.inc:32
 msgid "To install or upgrade the Gallery Remote Applets, please refer to "
-msgstr ""
+msgstr "Om de Gallery Remote Applets te installeren of upgraden, verwijzen we naar "
 
 #: ../includes/add_photos/add_admin.inc:34
-#, fuzzy
 msgid "the documentation page"
-msgstr "documentatie"
+msgstr "de documentatie pagina"
 
 #: ../includes/add_photos/add_admin.inc:34
 msgid " on the Gallery web site."
@@ -1564,16 +1560,15 @@ msgstr "wijzig gebruikersrechten"
 
 #: ../layout/adminAlbumCommands.inc:34 ../view_album.php:479
 msgid "view&nbsp;comments"
-msgstr "bekijk&nbsp;commentaar"
+msgstr "bekijk commentaar"
 
 #: ../layout/adminAlbumCommands.inc:39
 msgid "watermark&nbsp;album"
 msgstr "watermark&nbsp;album"
 
 #: ../layout/breadcrumb.inc:34
-#, fuzzy
 msgid "Logged in as:"
-msgstr "Aangemeld"
+msgstr "Aangemeld als:"
 
 #: ../layout/commentbox.inc:7 ../layout/commentdraw.inc:19
 msgid "From:"
@@ -1604,9 +1599,8 @@ msgid "view comments for this nested album"
 msgstr "bekijk de commentaar op dit sub-album"
 
 #: ../layout/commentboxtop.inc:28
-#, fuzzy
 msgid "Album contains no comments"
-msgstr "Albums die %s bevatten"
+msgstr "Albums die geen commentaar bevatten"
 
 #: ../layout/navigator.inc:32
 msgid "First Page"
@@ -1654,9 +1648,9 @@ msgid "None"
 msgstr "Geen"
 
 #: ../layout/watermarkform.inc:89
-#, fuzzy, php-format
+#, php-format
 msgid "No files matching %s found in %s"
-msgstr "Fout: Er zijn geen bestanden gevonden met %s in %s"
+msgstr "Er zijn geen bestanden gevonden met %s in %s"
 
 #: ../layout/watermarkform.inc:97
 #, php-format
@@ -1705,22 +1699,19 @@ msgstr "Rechtsonder"
 
 #: ../layout/watermarkform.inc:140
 msgid "Preview Size"
-msgstr ""
+msgstr "Voorbeeld Grootte"
 
 #: ../layout/watermarkform.inc:143
-#, fuzzy
 msgid "Resized"
-msgstr "Fotoformaat wijzigen"
+msgstr "Formaat wijzigen"
 
 #: ../layout/watermarkform.inc:145
-#, fuzzy
 msgid "Full"
-msgstr "volledig"
+msgstr "Volledig"
 
 #: ../layout/watermarkform.inc:153
-#, fuzzy
 msgid "Watermark subalbums"
-msgstr "Watermerk album"
+msgstr "Watermerk onderliggend album"
 
 #: ../lib/Form.php:56
 msgid "Check All"
@@ -1736,7 +1727,7 @@ msgstr "Selectie omkeren"
 
 #: ../lib/lang.php:641
 msgid "Upload Date"
-msgstr " Op datum dat het bestand verstuurd is"
+msgstr "Datum van plaatsing"
 
 #: ../lib/lang.php:643
 msgid "Image Size"
@@ -1771,18 +1762,18 @@ msgid "Album: %s"
 msgstr "Album: %s"
 
 #: ../lib/voting.php:303
-#, fuzzy, php-format
+#, php-format
 msgid "1 voter"
 msgid_plural "%d voters"
 msgstr[0] "1 kiezer"
-msgstr[1] "1 kiezer"
+msgstr[1] "%d kiezers"
 
 #: ../lib/voting.php:315
-#, fuzzy, php-format
+#, php-format
 msgid "Result from one voter"
 msgid_plural "Result of %d voters"
-msgstr[0] "Resultaten van %s."
-msgstr[1] "Resultaten van %s."
+msgstr[0] "Resultaat van een stemmer."
+msgstr[1] "Resultaat van %d stemmers."
 
 #: ../lib/voting.php:324
 #, php-format
@@ -1817,11 +1808,11 @@ msgid "%s: %s"
 msgstr "%s: %s"
 
 #: ../lib/voting.php:368
-#, fuzzy, php-format
+#, php-format
 msgid "one vote"
 msgid_plural "%d votes"
-msgstr[0] "Geen stemmen"
-msgstr[1] "Geen stemmen"
+msgstr[0] "een stem"
+msgstr[1] "%d stemmen"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:54 ../publish_xp.php:97
 #, php-format
@@ -1830,7 +1821,7 @@ msgstr "Aanmelden op %s"
 
 #: ../login.php:75
 msgid "Logging in gives you greater permission to view, create, modify and delete albums."
-msgstr "Als u zich aanmeld heeft kunt meer rechten hebben om albums te bekijken, aan te maken, wijzigen of verwijderen."
+msgstr "Als u zicht aanmeld heeft u meer rechten om albums te bekijken, aan te maken, wijzigen of verwijderen."
 
 #: ../login.php:81
 msgid "Invalid username or password"
@@ -1883,7 +1874,7 @@ msgstr "Nieuw wachtwoord aangevraagd %s"
 #: ../login.php:152
 #, php-format
 msgid "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."
-msgstr "Een e-mail is verstuurd naar het e-mail adres opgeslagen voor %s. Volg de instructies op om uw wachtwoord te wijzigen. Als u geen e-mail ontvangt, neem contact op met de Gallery beheerders."
+msgstr "Een e-mail is verstuurd naar het e-mail adres %s. Volg de instructies op om uw wachtwoord te wijzigen. Als u geen e-mail ontvangt, neem contact op met de Gallery beheerders."
 
 #: ../login.php:157
 #, php-format
@@ -1987,11 +1978,11 @@ msgstr "Bezig met verplaatsen van foto #"
 
 #: ../move_photo.php:186
 msgid "- Creating New Album Highlight"
-msgstr "- Bezig met maken van Nieuwe Voorbeeldfoto"
+msgstr "- Bezig met maken van nieuwe voorbeeldfoto"
 
 #: ../move_photo.php:229
 msgid "Reorder this album within the album:"
-msgstr "Verplaats dit album naar het album: "
+msgstr "Herschik dit album binnen het album: "
 
 #: ../move_photo.php:231
 msgid "Reorder this photo within the album:"
@@ -2007,9 +1998,8 @@ msgid "Select the new location:"
 msgstr "Selecteer de nieuwe lokatie: "
 
 #: ../move_photo.php:253
-#, fuzzy
 msgid "Reorder it!"
-msgstr "Verplaats!"
+msgstr "Sorteer opnieuw!"
 
 #: ../move_photo.php:260
 msgid "Move the album to a new album:"
@@ -2021,7 +2011,7 @@ msgstr "Verplaats een reeks van foto's naar een nieuw album: "
 
 #: ../move_photo.php:272
 msgid "To move just one photo, make First and Last the same"
-msgstr "Om maar één foto te verplaatsen kiest u voor de eerste en de laatste dezelfde foto"
+msgstr "Om één foto te verplaatsen kiest u voor de eerste en de laatste dezelfde foto"
 
 #: ../move_photo.php:327
 msgid "Note: items that have votes will lose these votes when moved to another album"
@@ -2066,16 +2056,15 @@ msgid "%s added, %s skipped"
 msgstr "%s toegevoegd, %s overgeslagen"
 
 #: ../multi_create_user.php:113 ../multi_create_user.php:114
-#, fuzzy, php-format
+#, php-format
 msgid "1 user"
 msgid_plural "%d users"
 msgstr[0] "1 gebruiker"
-msgstr[1] "1 gebruiker"
+msgstr[1] "%d gebruikers"
 
 #: ../multi_create_user.php:138
-#, fuzzy
 msgid "Create Users"
-msgstr "Gebruikers toevoegen"
+msgstr "Gebruikers aanmaken"
 
 #: ../multi_create_user.php:141
 #, fuzzy
@@ -2089,15 +2078,15 @@ msgstr "Opmerkingen:"
 
 #: ../multi_create_user.php:173
 msgid "The members file should be one user per line, and the fields should be space separated.  Each line is of the form:<br> <i>username emailaddress fullname</i>.<br>  Only username is required. Everything after the email address is the full name, so there can be spaces in it.<p>"
-msgstr ""
+msgstr "Het leden bestand zou een gebruiker per lijn moeten zijn en tussen de velden zouden spaties moeten staan. Elk lijn is van het formulier:<br> <i>gebruikersnaam e-mailadres volledige naam</i>.<br>  Enkel gebruikersnaam is vereist. Alles na het e-mailadres is de volledige naam, dus er kunnen spaties tussen staan."
 
 #: ../multi_create_user.php:178
 msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked)."
-msgstr ""
+msgstr "De !!USERNAME!!, !!FULLNAME!! en !!PASSWORD!! zullen samengevoegd worden in de e-mail met de waarde uit het lidmaatschap. Een indivuele e-mail zal verzonden worden naar elk lid met een geldig e-mailadres (als &quot;verzonden e-mail&quot; checkbox is aangevinkt)."
 
 #: ../new_password.php:29
 msgid "missing hash parameter"
-msgstr ""
+msgstr "missende overige parameter"
 
 #: ../new_password.php:39
 msgid "The recovery password is not the expected value, please try again"
@@ -2211,7 +2200,7 @@ msgstr "Terug naar %s"
 
 #: ../poll_results.php:121
 msgid "Results Breakdown"
-msgstr ""
+msgstr "Afgebroken resultaten"
 
 #: ../progress_uploading.php:35
 msgid "Uploading Photos"
@@ -2228,7 +2217,7 @@ msgstr "Deze pagina verdwijnt automatisch als het versturen voltooid is.  Een mo
 #: ../publish_xp.php:43
 #, php-format
 msgid "Publish Your Photos and Movies to %s."
-msgstr "Publiceer Uw Foto's en Films op %s."
+msgstr "Publiceer uw foto's en films op %s."
 
 #: ../publish_xp.php:84
 msgid "Username and Password are not correct."
@@ -2248,7 +2237,7 @@ msgstr "Wachtwoord"
 
 #: ../publish_xp.php:127
 msgid "Select the Album to which to Publish"
-msgstr "Selecteer het album dat je wil publiceren"
+msgstr "Selecteer het album dat je wilt publiceren"
 
 #: ../publish_xp.php:152
 msgid "Use filenames as captions"
@@ -2327,7 +2316,7 @@ msgstr "Gebruik makend van de Windows XP webpublicatie"
 #: ../publish_xp_docs.php:41
 #, php-format
 msgid "Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.  %s <b>has experimental</b> support for this feature."
-msgstr ""
+msgstr "Windows kom XP met een mooie techniek dat toestaat inhoud van je bureau rechtstreeks naar een web dienst te publiceren. %s <b>heeft experimenteel</b> ondersteuning voor deze techniek."
 
 #: ../publish_xp_docs.php:42
 msgid "It's relatively easy to configure."
@@ -2385,9 +2374,8 @@ msgid "Open your Windows explorer and browse to a folder containing supported im
 msgstr "Open de Windows Verkenner en ga naar een map met een JPG bestand."
 
 #: ../publish_xp_docs.php:66
-#, fuzzy
 msgid "Select the image(s) or a folder and there should be a link on the left that says &quot;Publish this file to the web...&quot;"
-msgstr "Selecteer de foto en in het menu aan de linkerkant zou nu de optie &quot;Publiceer dit bestand op het web...&quot; moeten verschijnen"
+msgstr "Selecteer de foto(s) en in het menu aan de linkerkant zou nu de optie &quot;Publiceer dit bestand op het web...&quot; moeten verschijnen"
 
 #: ../publish_xp_docs.php:67
 msgid "Click this link and then follow the instructions to log into your Gallery, select an album and publish the image."
@@ -2761,42 +2749,36 @@ msgid "Sort"
 msgstr "Sorteer"
 
 #: ../tools/find_orphans.php:117
-#, fuzzy
 msgid "Orphaned Albums"
-msgstr "Albums opwaarderen"
+msgstr "Niet gekoppelde albums"
 
 #: ../tools/find_orphans.php:124
 msgid "Orphans will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
-msgstr ""
+msgstr "Wees albums zullen,  opnieuw naar hun onderliggende albums verplaatst worden, indien dit mogelijk is. Indien het onderliggende album mist, zal het album naar het begin van de Galerij verplaatst worden. Vanaf daar kan het vervolgens naar een nieuwe locatie verplaats worden."
 
 #: ../tools/find_orphans.php:126
-#, fuzzy
 msgid "Orphaned Album"
-msgstr "Albums opwaarderen"
+msgstr "Niet gekoppeld album"
 
 #: ../tools/find_orphans.php:126
-#, fuzzy
 msgid "Parent Album"
-msgstr "Selecteer bovenliggende album"
+msgstr "Bovenliggend album"
 
 #: ../tools/find_orphans.php:130
-#, fuzzy
 msgid "Gallery Root"
-msgstr "Gallery"
+msgstr "Hoofd Gallery"
 
 #: ../tools/find_orphans.php:136
 msgid "Correct Them!"
-msgstr ""
+msgstr "Corrigeer ze!"
 
 #: ../tools/find_orphans.php:142
-#, fuzzy
 msgid "Return to Gallery"
-msgstr "Ga naar de Gallery"
+msgstr "Terug naar de Gallery"
 
 #: ../tools/find_orphans.php:146
-#, fuzzy
 msgid "There are no orphaned albums in this Gallery."
-msgstr "Onbekende fout in de %s routine!"
+msgstr "Er zijn geen los staande albums in deze Gallery"
 
 #: ../upgrade_album.php:86
 msgid "Progress"
@@ -2913,24 +2895,20 @@ msgid "edit"
 msgstr "wijzig"
 
 #: ../util.php:122
-#, fuzzy
 msgid "Add your comment"
-msgstr "commentaar toevoegen"
+msgstr "Commentaar toevoegen"
 
 #: ../util.php:125
-#, fuzzy
 msgid "Commenter:"
-msgstr "Midden"
+msgstr "Commentator"
 
 #: ../util.php:142
-#, fuzzy
 msgid "Message:"
-msgstr "Bericht"
+msgstr "Bericht:"
 
 #: ../util.php:146
-#, fuzzy
 msgid "Post"
-msgstr "foto"
+msgstr "Post"
 
 #: ../util.php:153
 msgid "Error:"
@@ -2949,9 +2927,8 @@ msgid "none"
 msgstr "geen"
 
 #: ../util.php:249
-#, fuzzy
 msgid "Debug messages:"
-msgstr "Foutmeldingen"
+msgstr "Debug berichten:"
 
 #: ../util.php:260
 #, php-format
@@ -3001,9 +2978,8 @@ msgid "Done."
 msgstr "Sluiten"
 
 #: ../util.php:608
-#, fuzzy
 msgid "No watermark name specified!"
-msgstr "Fout: geen watermerk naam opgegeven!"
+msgstr "Geen watermerk naam opgegeven!"
 
 #: ../util.php:924
 #, php-format
@@ -3054,7 +3030,7 @@ msgstr "zichzelf"
 #: ../util.php:1857
 #, php-format
 msgid "IN UTIL ITEMCAPTUREDATE = %s"
-msgstr ""
+msgstr "De datum van de foto = %s"
 
 #: ../util.php:1901
 #, php-format
@@ -3062,16 +3038,16 @@ msgid "Could not open lock file (%s)!"
 msgstr "Kon bestand niet openen (%s)!"
 
 #: ../util.php:1906
-#, fuzzy, php-format
+#, php-format
 msgid "Could not acquire lock (%s)!"
-msgstr "Kon bestand niet openen (%s)!"
+msgstr "Kan bestand niet ontgrendelen (%s)!"
 
 #: ../util.php:1990
-#, fuzzy, php-format
+#, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "1 hit"
-msgstr[1] "1 hit"
+msgstr[1] "%d hits"
 
 #: ../util.php:1995
 msgid "Sub-albums"
@@ -3179,9 +3155,9 @@ msgid "Email activity"
 msgstr "E-mail activiteit"
 
 #: ../util.php:2657
-#, fuzzy, php-format
+#, php-format
 msgid "Cannot open logfile: %s"
-msgstr "Kon bestand niet openen (%s)!"
+msgstr "Kan logbestand niet openen (%s)!"
 
 #: ../util.php:2664
 #, php-format
@@ -3203,18 +3179,16 @@ msgstr ""
 "Gallery @ %s Beheerder."
 
 #: ../util.php:2673 ../util.php:2675
-#, fuzzy
 msgid "gallery title"
-msgstr "Gallery Titel"
+msgstr "Gallery titel"
 
 #: ../util.php:2674
-#, fuzzy
 msgid "gallery URL"
-msgstr "Gallery Link"
+msgstr "Gallery link"
 
 #: ../util.php:2701
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
-msgstr ""
+msgstr "<dt>Geen</dt><dd>De originele look and feel.</dd>"
 
 #: ../util.php:2748 ../util.php:2753
 msgid "Dots"
@@ -3251,20 +3225,19 @@ msgid "Not valid yet"
 msgstr "Nog niet geldig"
 
 #: ../util.php:3145
-#, fuzzy
 msgid "EXIF Data"
-msgstr "Extra EXIF gegevens"
+msgstr "EXIF gegevens"
 
 #: ../view_album.php:125 ../view_photo.php:156
 msgid "navigate UP"
 msgstr "Navigeer omhoog"
 
 #: ../view_album.php:267
-#, fuzzy, php-format
+#, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
-msgstr[0] "1 Sub-Album"
-msgstr[1] "1 Sub-Album"
+msgstr[0] "1 sub-album"
+msgstr[1] "%d sub-albums"
 
 #: ../view_album.php:267
 msgid "No albums"
@@ -3350,9 +3323,8 @@ msgid "view comments"
 msgstr "bekijk&amp;nbsp;commentaar"
 
 #: ../view_album.php:393
-#, fuzzy
 msgid "watermark album"
-msgstr "Watermerk album"
+msgstr "watermerk album"
 
 #: ../view_album.php:458
 msgid "admin options"
@@ -3389,16 +3361,16 @@ msgid "You MUST click on %s for your vote to be recorded."
 msgstr "U MOET op een %s klikken om uw stem te registreren."
 
 #: ../view_album.php:635
-#, fuzzy, php-format
+#, php-format
 msgid "You have a total of %s and can change them if you wish."
-msgstr "U heeft in totaal %s en u kunt ze wijzigen als u wilt"
+msgstr "U heeft in totaal van %s en u kunt ze wijzigen als u wilt."
 
 #: ../view_album.php:636
-#, fuzzy, php-format
+#, php-format
 msgid "1 vote"
 msgid_plural "%d votes"
 msgstr[0] "één stem"
-msgstr[1] "één stem"
+msgstr[1] "%d stemmen"
 
 #: ../view_album.php:641
 msgid "You can change your choices if you wish."
@@ -3422,11 +3394,11 @@ msgid "Contains: "
 msgstr "Bevat "
 
 #: ../view_album.php:903
-#, fuzzy, php-format
+#, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "1 item"
-msgstr[1] "1 item"
+msgstr[1] "%d items"
 
 #: ../view_album.php:918 ../view_album.php:941
 msgid "Viewed:"
@@ -3445,14 +3417,14 @@ msgid "Edit Thumbnail"
 msgstr "Wijzig voorbeeldfoto"
 
 #: ../view_album.php:984 ../view_album.php:1020
-#, fuzzy, php-format
+#, php-format
 msgid "Rotate/Flip %s"
-msgstr "Draai "
+msgstr "Draai/omkeren %s"
 
 #: ../view_album.php:993 ../view_album.php:1056 ../view_album.php:1061
-#, fuzzy, php-format
+#, php-format
 msgid "Delete %s"
-msgstr "Verwijder"
+msgstr "Verwijder %s"
 
 #: ../view_album.php:998
 msgid "Edit Title"
@@ -3463,38 +3435,38 @@ msgid "Edit Description"
 msgstr "Wijzig omschrijving"
 
 #: ../view_album.php:1029
-#, fuzzy, php-format
+#, php-format
 msgid "Highlight %s"
-msgstr "Kies als voorbeeld"
+msgstr "Kies als voorbeeld %s"
 
 #: ../view_album.php:1033
 msgid "Reset Counter"
 msgstr "Reset teller"
 
 #: ../view_album.php:1038
-#, fuzzy, php-format
+#, php-format
 msgid "Move %s"
-msgstr "Verplaats "
+msgstr "Verplaats %s"
 
 #: ../view_album.php:1039
-#, fuzzy, php-format
+#, php-format
 msgid "Reorder %s"
-msgstr "Hersorteer"
+msgstr "Hersorteer %s"
 
 #: ../view_album.php:1041
-#, fuzzy, php-format
+#, php-format
 msgid "Copy %s"
-msgstr "Kopieer"
+msgstr "Kopieer %s"
 
 #: ../view_album.php:1048
-#, fuzzy, php-format
+#, php-format
 msgid "Show %s"
-msgstr "Toon "
+msgstr "Toon %s"
 
 #: ../view_album.php:1050
-#, fuzzy, php-format
+#, php-format
 msgid "Hide %s"
-msgstr "Verberg "
+msgstr "Verberg %s"
 
 #: ../view_album.php:1067
 msgid "Permissions"
@@ -3505,9 +3477,8 @@ msgid "Watermark Album"
 msgstr "Watermerk album"
 
 #: ../view_album.php:1077
-#, fuzzy
 msgid "View Comments"
-msgstr "bekijk&amp;nbsp;commentaar"
+msgstr "Bekijk commentaar"
 
 #: ../view_album.php:1126
 msgid "Hey! Add some photos."
@@ -3566,9 +3537,8 @@ msgid "photo properties"
 msgstr "foto eigenschappen"
 
 #: ../view_photo.php:413
-#, fuzzy
 msgid "Select service"
-msgstr "Verwijder Gebruiker"
+msgstr "Selecteer dienst"
 
 #: ../view_photo.php:433 ../view_photo.php:449
 #, php-format
@@ -3592,109 +3562,5 @@ msgid "Watermarking album."
 msgstr "Album watermerken"
 
 #: ../watermark_album.php:87
-#, fuzzy
 msgid "No items to watermark."
-msgstr "Er zijn nog geen stemmen."
-
-#~ msgid "with donation"
-#~ msgstr "met donatie"
-
-#~ msgid "without donation"
-#~ msgstr "zonder donatie"
-
-#, fuzzy
-#~ msgid ""
-#~ "\n"
-#~ "<br>No email sent as no valid email addresses were found"
-#~ msgstr "Geen e-mail verzonden omdat er geen geldige e-mail adressen zijn gevonden"
-
-#~ msgid "Note:  This album is out of date!"
-#~ msgstr "Opmerking:  Dit album is te oud!"
-
-#~ msgid "upgrade album"
-#~ msgstr "album opwaarderen"
-
-#~ msgid "Login Incorrect"
-#~ msgstr "Gebruikersnaam en/of wachtwoord onjuist"
-
-#, fuzzy
-#~ msgid "Custom Fields"
-#~ msgstr "extra velden"
-
-#~ msgid "Edit"
-#~ msgstr "Wijzigen"
-
-# Neccessary infact of hardcoded function editField() in util.php
-#~ msgid "description"
-#~ msgstr "de omschrijving"
-
-#~ msgid "pages"
-#~ msgstr "pagina's"
-
-#~ msgid "voters"
-#~ msgstr "kiezers"
-
-#~ msgid "0 voters"
-#~ msgstr "geen kiezers"
-
-#~ msgid "votes"
-#~ msgstr "stemmen"
-
-#~ msgid "0 votes"
-#~ msgstr "geen stemmen"
-
-#~ msgid "users"
-#~ msgstr "gebruikers"
-
-#~ msgid "0 users"
-#~ msgstr "geen gebruikers"
-
-#~ msgid "hits"
-#~ msgstr "hits"
-
-#~ msgid "0 hits"
-#~ msgstr "0 hits"
-
-#~ msgid "albums"
-#~ msgstr "albums"
-
-#~ msgid "images"
-#~ msgstr "onderdelen"
-
-#~ msgid "no items"
-#~ msgstr "nog helemaal niets"
-
-#~ msgid "times"
-#~ msgstr "keer bekeken"
-
-#~ msgid "sub-albums"
-#~ msgstr "Sub-Albums"
-
-#~ msgid "no votes"
-#~ msgstr "geen stemmen"
-
-#~ msgid "0 items"
-#~ msgstr "geen onderdelen"
-
-#~ msgid "Name or email:"
-#~ msgstr "Naam of e-mail adres: "
-
-#~ msgid "File Upload Date"
-#~ msgstr "Foto is toegevoegd op:"
-
-#~ msgid "Item Capture Date"
-#~ msgstr "Foto is genomen op: "
-
-#, fuzzy
-#~ msgid "Keywords:"
-#~ msgstr "Trefwoorden"
-
-#, fuzzy
-#~ msgid "Capture Date:"
-#~ msgstr "Foto is genomen op"
-
-#~ msgid "Error"
-#~ msgstr "Fout"
-
-#~ msgid "Error: %s!"
-#~ msgstr "Fout: %s!"
+msgstr "Geen items voor een watermerk te plaatsen."
