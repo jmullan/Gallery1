@@ -125,7 +125,6 @@ if (!empty($urls)) {
 
 		} else {
 			$name = basename($url);
-//			$name = eregi_replace(".$tag\$", "", $name);
 
 		}
 		/* Dont output warning messages if we cant open url */
@@ -149,10 +148,22 @@ if (!empty($urls)) {
 							$url));
 			continue;
 		} 
-	
-		/* copy file locally */
-		$file = $gallery->app->tmpDir . "/photo.$name";
-		$od = fs_fopen($file, "wb");
+                // Ensure that the file we've retrieved is in an acceptable image/movie format
+                if (!acceptableFormat($tag)) {
+                        gallery_error(sprintf(_("Invalid file type; %s !"), $tag));
+                        continue;
+                }
+
+                // Prevent overly long temp names from an external source
+                if(strlen($name) > 20) {
+                        $name = substr($name, strlen($name) - 20);
+                }       
+                
+                /* copy file locally 
+                   use fopen instead of fs_fopen to prevent directory
+                   disclosure */
+                $file = $gallery->app->tmpDir . "/photo.$name";
+                $od = @fopen($file, "wb");
 		if ($id && $od) {
 			while (!feof($id)) {
 				fwrite($od, fread($id, 65536));
