@@ -330,23 +330,35 @@ class Album {
 		global $gallery;
 
 		$dir = $gallery->app->albumDir . "/$name";
-		$tmp = getFile("$dir/album.dat");
 
-		/*
-		 * v1.2.1 and prior had a bug where high volume albums
-		 * would lose album.dat files.  Deal with that by loading
-		 * the backup file silently.
-		 */
-		if (!$tmp) {
-			$tmp = getFile("$dir/album.dat.bak");
+		if (!$this->loadFromFile("$dir/album.dat")) {
+			/*
+			 * v1.2.1 and prior had a bug where high volume albums
+			 * would lose album.dat files.  Deal with that by loading
+			 * the backup file silently.
+			 */
+			if (!$this->loadFromFile("$dir/album.dat.bak")) {
+				/* Uh oh */
+				return 0;
+			}
 		}
-		if ($tmp) {
-			$this = unserialize($tmp);
-			$this->fields["name"] = $name;
-			$this->updateSerial = 0;
-			return 1;
+
+		$this->fields["name"] = $name;
+		$this->updateSerial = 0;
+		return 1;
+	}
+
+	function loadFromFile($filename) {
+
+		$data = getFile($filename);
+		$tmp = unserialize($data);
+		if (strcasecmp(get_class($tmp), "album")) {
+			/* Dunno what we unserialized .. but it wasn't an album! */
+			return 0;
 		}
-		return 0;
+
+		$this = $tmp;
+		return 1;
 	}
 
 	function isLoaded() {
@@ -505,7 +517,7 @@ class Album {
 			return $err;
 		} else {
 			$item->setCaption("$caption");
-			$originalItemCaptureDate = getItemCaptureDate("$dir/$name.$tag");
+			$originalItemCaptureDate = getItemCaptureDate($file);
 			$now = time();
 			$item->setItemCaptureDate($originalItemCaptureDate);
 			$item->setUploadDate($now);
