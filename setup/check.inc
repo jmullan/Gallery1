@@ -65,11 +65,11 @@ foreach ($checklist as $check) {
 	$func = $check["func"];
 	list($success, $fail, $warn) = $func();
 	foreach ($success as $key) {
-		echo "\t\t\t\t". '<p class="success">'. _("Success") . '</p>';
+		echo "\t\t\t". '<p class="success">'. _("Success") . '</p>';
 		if (strcmp($key, "")) {
 			$msg = "<i>$key</i>";
 		}
-		echo "\n\t\t\t\t<p>$msg</p>";
+		echo "\n\t\t\t<p>$msg</p>";
 	}
 	
 	$openBasedir = ini_get('open_basedir');
@@ -119,13 +119,12 @@ foreach ($checklist as $check) {
 		}
 	}
 
-	if (isset($warn)) {
+	if (isset($warn) && !empty($warn)) {
+		echo "\t\t\t". '<p class="warning">'. _("Warning") . '</p>';
 		foreach ($warn as $key => $val) {
 			if ($key === 'nocolor') continue;
-			echo "\t\t\t\t". '<p class="warning">'. _("Warning") . '</p>';
-                	echo "\n\t\t\t\t<p>";
 			if (isset($check[$key])) {
-				echo "\t\t\t\t<p>". $check[$key] . "</p>";
+				echo "\t\t\t<p>". $check[$key] . "</p>";
 			}
 
 			if (! isset($warn['nocolor'])) {
@@ -133,7 +132,7 @@ foreach ($checklist as $check) {
 			} else {
 				$class="";
 			}
-			echo "\n\t\t\t\t<p class=\"$class\">$val</p>";
+			echo "\n\t\t\t<p class=\"$class\">$val</p>";
 	        }
 	}
 ?>

@@ -34,6 +34,16 @@ if ($locale_check == NULL) {
 	$elawisyl = "yes";
 }
 
+$netpbm_check=check_graphics();
+$IM_check=check_graphics_im();
+
+if ( isset($netpbm_check[2]['pnmcomp']) && isset($IM_check[2]['composite']) ) {
+	$enablewatermark = "no";
+} else {
+	$enablewatermark = "yes";
+}
+
+
 if (function_exists("posix_getpwuid")) {
 	$rec = @posix_getpwuid(posix_getuid());
 	$webserver_user = $rec["name"];
@@ -290,6 +300,7 @@ $constants =  array_merge(
 	"desc" => sprintf(_("The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."),
 			"<b>". $webserver_user . "</b>") . newIn("1.4.3"),
 		"value" => "",
+		"enabled"  => $enablewatermark,
 		"optional" => 1,
 		"filename" => 1,
 		"type" => "text",
