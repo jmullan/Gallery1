@@ -65,7 +65,7 @@ if ($gallery->session->albumName && isset($index)) {
 
         if (isset($newAlbum)) {	// we are moving from one album to another
 		if ($gallery->session->albumName == $newAlbum) {
-			gallery_error(_("You can't move photos into the album they already exist in."));
+			echo gallery_error(_("You can't move photos into the album they already exist in."));
 			exit;
 		}
             	$postAlbum = $albumDB->getAlbumbyName($newAlbum);
