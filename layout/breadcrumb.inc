@@ -28,13 +28,13 @@ if ($breadcrumb["top"]) {
 $i = 0;
 while (isset($breadcrumb["text"][$i])) {
 	if ($i > 0) {
-		echo '<img src="' . getImagePath('nav_home.gif') . '" width=13 height=11 alt="UP">';
+		echo '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'">';
 	}
 	echo "&nbsp;".$breadcrumb["text"][$i]."&nbsp;";
 	$i++;
 }
 ?>
-      <img src="<?php echo getImagePath('nav_home.gif') ?>" width="13" height="11" alt="UP">&nbsp;
+      <img src="<?php echo getImagePath('nav_home.gif') ?>" width="13" height="11" alt="<?php echo _("navigate UP") ?>" title="<?php echo _("navigate UP") ?>">&nbsp;
     </td> 
   </tr>
 <?php
