@@ -73,9 +73,11 @@ $imageCellWidth = floor(100 / $cols) . "%";
 $fullWidth = $cols * $album->fields["thumb_size"]; 
 
 $navigator["page"] = $page;
+$navigator["pageVar"] = "page";
 $navigator["maxPages"] = $maxPages;
 $navigator["fullWidth"] = $fullWidth;
-$navigator["spread"] = 6;
+$navigator["url"] = "view_album.php";
+$navigator["spread"] = 5;
 ?>
 
 <body <?=$bodyAttrs?>>
