@@ -44,7 +44,7 @@ if (!$gallery->album->isLoaded()) {
 $gallery->session->offlineAlbums[$gallery->album->fields["name"]]=true;
 
 
-if (!isset($page)) {
+if (empty($page)) {
     if (isset($gallery->session->albumPage[$gallery->album->fields['name']])) {
 	$page = $gallery->session->albumPage[$gallery->album->fields["name"]];
     } else {
