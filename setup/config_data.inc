@@ -930,9 +930,7 @@ $constants = array_merge($constants,
 	),
 	"rssDCDate" => array(
 		"prompt" => _("Use dc:date"),
-		"desc" => _("(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try
-enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this off will
-cause your feed to not validate as RSS 2.0."),
+		"desc" => _("(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this off will cause your feed to not validate as RSS 2.0."),
 		"choices" => array(
 			"yes" => _("Yes"),
 			"no" => _("No")),
@@ -940,8 +938,7 @@ cause your feed to not validate as RSS 2.0."),
 	),
 	"rssBigPhoto" => array(
 		"prompt" => _("Use Big Photo"),
-		"desc" => _("(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn
-this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."),
+		"desc" => _("(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."),
 		"choices" => array(
 			"yes" => _("Yes"),
 			"no" => _("No")),
@@ -949,8 +946,7 @@ this feature on.  Turning this on will cause your feed to not validate as valid 
 	),
 	"rssPhotoTag" => array(
 		"prompt" => _("Use Photo Tag"),
-		"desc" => _("(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to
-be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."),
+		"desc" => _("(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."),
 		"choices" => array(
 			"yes" => _("Yes"),
 			"no" => _("No")),
