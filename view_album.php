@@ -75,6 +75,7 @@ $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 $perPage = $rows * $cols;
+$numAlbums = 0;
 $maxPages = max(ceil($numPhotos / $perPage), 1);
 
 if ($page > $maxPages) {
@@ -803,7 +804,8 @@ if ($numPhotos) {
 			} else { 
 				$showAdminForm = 0;
 			}
-			echo "<table width=$iWidth border=0 cellpadding=0 cellspacing=4><tr><td><span class=\"modcaption\">";
+			echo '<table width="' . $gallery->album->fields['thumb_size']
+				. '" border="0" cellpadding="0" cellspacing="4"><tr><td><span class="modcaption">';
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 				echo "(" . _("hidden") .")<br>";

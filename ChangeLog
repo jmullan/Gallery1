@@ -1,3 +1,27 @@
+2003-10-13  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b154
+
+	* Replaced colons (:) in filenames with underscores (_).
+	  (Fix from Vallimar) Task #84749, Bug #610791
+
+	* User deletion no longer leaves stale .bak and .lock files behind.
+	  (Fix from Vallimar)
+
+	* Bug #822339: delete_photo.php now returns to the correct location in
+	  all circumstances. (Fix from Vallimar)
+
+	* A handful of HTML issues fixed. (Bugs #821312, #555285 included)
+
+	* layout/adminbox.php: Added an "adminbox" classname to <td> elements
+	  for more CSS/skin customizability.
+
+	* Synced current list of "default" values available in
+	  edit_appearance.php to Album::setNestedProperties() and
+	  createNewAlbum(). We need to be more careful about this when adding
+	  items in the future. Perhaps we can centralize the list. Note that
+	  poll settings are still not inheritable from parent album.
+	
+	* vi_VN-nls.php: Changed 'Vietnamese' to native name.
+
 2003-10-13 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b153
 
 	* Language: Update: Korean (ko_KR)
@@ -43,7 +67,8 @@
 
 2003-10-12  Bharat Mediratta  <bharat@menalto.com> 1.4.1-cvs-b148
 
-	* Fixed bug 819770: "Config wizard does not always detect Apache2 mod_rewrite"
+	* Fixed bug 819770: "Config wizard does not always detect Apache2
+	  mod_rewrite"
 
  	* Fixed config versioning bug where versions have decimal values.  We
           now quote the value in config.php at all times.

@@ -46,7 +46,7 @@ if (!$gallery->version) { exit; }
 <span class="title">
 <?php echo _("Upgrading Users") ?>
 </span>
-</center>
+</center><br>
 <?php echo _("The user database in your gallery was created with an older version of the software and is out of date.") ?>  
 <?php echo _("This is not a problem!") ?>  
 <?php echo _("We will upgrade it.  This may take some time.") ?>  

@@ -307,7 +307,7 @@ if ($gallery->app->use_exif) {
 </table>
 
 <br>
-<input type="checkbox" name="setNested" value="1"><span class="popup"<?php echo _("Apply values to nested Albums (except Album Title and Summary).") ?></span>
+<input type="checkbox" name="setNested" value="1"><span class="popup"><?php echo _("Apply values to nested Albums (except Album Title and Summary).") ?></span>
 <br>
 <br>
 <input type="submit" name="apply" value="<?php echo _("Apply") ?>">

@@ -149,7 +149,7 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 				$itemCaptureDate['year']));
 
 	if ($gallery->album->getKeyWords($index)) {
-		echo "<b>". _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
+		echo "<br><b>". _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
 	}
 
 	if ($gallery->user->canWriteToAlbum($gallery->album) &&

@@ -181,6 +181,12 @@ class Gallery_UserDB extends Abstract_UserDB {
 			if (fs_file_exists("$userDir/$uid")) {
 				return fs_unlink("$userDir/$uid");
 			}
+			if (fs_file_exists("$userDir/$uid.bak")) {
+				return fs_unlink("$userDir/$uid.bak");
+			}
+			if (fs_file_exists("$userDir/$uid.lock")) {
+				return fs_unlink("$userDir/$uid.lock");
+			}
 		}
 		$this->rebuildUserMap();
 
@@ -220,7 +226,6 @@ class Gallery_UserDB extends Abstract_UserDB {
 				if (fs_is_dir($gallery->app->userDir . "/" . $file)) {
 					continue;
 				}
-
 
 				$tmp = getFile($gallery->app->userDir . "/" . $file);
 

@@ -33,7 +33,7 @@ class Abstract_User {
 	function Abstract_User() {
 		$this->setIsAdmin(false);
 		$this->setCanCreateAlbums(false);
-		$this->uid = time() . ":" . mt_rand();
+		$this->uid = time() . "_" . mt_rand();
 	}
 
 	function integrityCheck() {

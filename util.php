@@ -1016,7 +1016,7 @@ function makeFormIntro($target, $attrList=array()) {
 			continue;
 		}
 		list($key, $val) = split("=", $arg);
-		$form .= "<input type=hidden name=\"$key\" value=\"$val\">\n";
+		$form .= "<input type=\"hidden\" name=\"$key\" value=\"$val\">\n";
 	}
 	return $form;
 }
@@ -2205,30 +2205,40 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
                 $parentAlbum->save();
                 // Set default values in nested album to match settings of parent.
                 $gallery->album->fields["perms"]           = $parentAlbum->fields["perms"];
+		$gallery->album->fields['extra_fields']    = $parentAlbum->fields['extra_fields'];		
                 $gallery->album->fields["bgcolor"]         = $parentAlbum->fields["bgcolor"];
                 $gallery->album->fields["textcolor"]       = $parentAlbum->fields["textcolor"];
                 $gallery->album->fields["linkcolor"]       = $parentAlbum->fields["linkcolor"];
+		$gallery->album->fields['background']      = $parentAlbum->fields['background'];
                 $gallery->album->fields["font"]            = $parentAlbum->fields["font"];
                 $gallery->album->fields["border"]          = $parentAlbum->fields["border"];
                 $gallery->album->fields["bordercolor"]     = $parentAlbum->fields["bordercolor"];
-                $gallery->album->fields["returnto"]        = $parentAlbum->fields["returnto"];
                 $gallery->album->fields["thumb_size"]      = $parentAlbum->fields["thumb_size"];
                 $gallery->album->fields["resize_size"]     = $parentAlbum->fields["resize_size"];
                 $gallery->album->fields["resize_file_size"]     = $parentAlbum->fields["resize_file_size"];
+		$gallery->album->fields['max_size']        = $parentAlbum->fields['max_size'];
+		$gallery->album->fields['max_file_size']   = $parentAlbum->fields['max_file_size'];
+		$gallery->album->fields['returnto']        = $parentAlbum->fields['returnto'];
                 $gallery->album->fields["rows"]            = $parentAlbum->fields["rows"];
                 $gallery->album->fields["cols"]            = $parentAlbum->fields["cols"];
                 $gallery->album->fields["fit_to_window"]   = $parentAlbum->fields["fit_to_window"];
                 $gallery->album->fields["use_fullOnly"]    = $parentAlbum->fields["use_fullOnly"];
                 $gallery->album->fields["print_photos"]    = $parentAlbum->fields["print_photos"];
+		$gallery->album->fields['slideshow_type']  = $parentAlbum->fields['slideshow_type'];
+		$gallery->album->fields['slideshow_recursive'] = $parentAlbum->fields['slideshow_recursive'];
+		$gallery->album->fields['slideshow_length'] = $parentAlbum->fields['slideshow_length'];
+		$gallery->album->fields['album_frame']    = $parentAlbum->fields['album_frame'];
+		$gallery->album->fields['thumb_frame']    = $parentAlbum->fields['thumb_frame'];
+		$gallery->album->fields['image_frame']    = $parentAlbum->fields['image_frame'];
                 $gallery->album->fields["use_exif"]        = $parentAlbum->fields["use_exif"];
                 $gallery->album->fields["display_clicks"]  = $parentAlbum->fields["display_clicks"];
-                $gallery->album->fields["public_comments"] = $parentAlbum->fields["public_comments"];
-		$gallery->album->fields["extra_fields"]    = $parentAlbum->fields["extra_fields"];
 		$gallery->album->fields["item_owner_display"] = $parentAlbum->fields["item_owner_display"];
 		$gallery->album->fields["item_owner_modify"]  = $parentAlbum->fields["item_owner_modify"];
 		$gallery->album->fields["item_owner_delete"]  = $parentAlbum->fields["item_owner_delete"];
 		$gallery->album->fields["add_to_beginning"]   = $parentAlbum->fields["add_to_beginning"];
-
+                $gallery->album->fields["public_comments"] = $parentAlbum->fields["public_comments"];
+		$gallery->album->fields['showDimensions']  = $parentAlbum->fields['showDimensions'];
+		
                 $returnVal = $gallery->album->save();
         } else {
                 /*

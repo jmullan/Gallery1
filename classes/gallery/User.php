@@ -95,6 +95,25 @@ class Gallery_User extends Abstract_User {
 			$this->lastActionDate=time(0);
 			$this->origEmail=$this->email;
 		}
+		if ($this->version < 4) 
+		{
+			$dir = $gallery->app->userDir;
+			$olduid = $this->uid;
+			$uid = ereg_replace(':', '_', $olduid);
+			$this->uid = $uid;
+			$file1 = sprintf('%s/%s', $dir, $olduid);
+			$file2 = sprintf('%s/%s', $dir, $uid);
+
+			if (fs_is_file($file1)) {
+				fs_rename($file1, $file2);
+			}
+			if (fs_is_file("$file1.bak")) {
+				fs_rename("$file1.bak", "$file2.bak");
+			}
+			if (fs_is_file("$file1.lock")) {
+				fs_rename("$file1.lock", "$file2.lock");
+			}
+		}
 		$this->version = $gallery->user_version;
 		if ($this->save()) {
 			$success=true;
