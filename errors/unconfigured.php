@@ -11,7 +11,7 @@ Gallery has not been configured!
 </span>
 <p>
 To configure it, type:
-<?= configure("configure.sh"); ?>
+<?= configure("configure"); ?>
 <p>
 And then start the <a href="<?=$GALLERY_BASEDIR?>setup/index.php">Configuration Wizard</a>
 </span>

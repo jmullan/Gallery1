@@ -14,7 +14,7 @@ Gallery is not configured correctly.  There could be a variety of reasons
 for this.  The easiest way to fix this problem is to re-run the configuration
 wizard.  In a shell do this:
 <p>
-<?= configure("configure.sh"); ?>
+<?= configure("configure"); ?>
 <p>
 Then launch the <a href="<?=$GALLERY_BASEDIR?>setup/index.php">configuration wizard</a>.
 </table>

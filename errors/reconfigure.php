@@ -14,7 +14,7 @@ Your Gallery configuration was created using the config wizard
 from an older version of Gallery.  It is out of date.  Please
 re-run the configuration wizard!  In a shell do this:
 <p><center>
-<? configure("configure.sh"); ?>
+<? configure("configure"); ?>
 <p>
 Then launch the <a href="<?=$GALLERY_BASEDIR?>setup/index.php">configuration wizard</a>.
 </table>

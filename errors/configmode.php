@@ -24,7 +24,7 @@ an insecure mode.  You need to switch to secure mode before you can
 use it.  In a shell do this:
 
 <p><center>
-<?= configure("secure.sh"); ?>
+<?= configure("secure"); ?>
 <p>
 Then just reload this page and all should be well.
 </table>
