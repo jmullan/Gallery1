@@ -83,7 +83,10 @@ function fs_is_executable($filename) {
 	return is_executable($filename);
 }
 
-function fs_import_filename($filename) {
+function fs_import_filename($filename, $for_exec=1) {
+	if ($for_exec && strstr($filename, ' ')) {
+		$filename = "\"$filename\"";
+	}
 	return $filename;
 }
 
