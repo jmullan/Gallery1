@@ -112,7 +112,7 @@ foreach ($checklist as $check) {
 		echo '<br>';
 		echo _("You must fix them before you can continue.");
 	} else {
-		if (isset($warning)) {
+		if ($warning >0) {
 			if (isset($serious_warning)) {
 				echo '<p class="error" id="bottom">';
 				echo _("Your installation has <b>serious warnings</b>!<br>Continue at your own risk...");
