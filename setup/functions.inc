@@ -508,7 +508,7 @@ function check_jpegtran($location="")
 	if ($location) {
 		$d = locateDir($bin, $location);
 	} else {
-		$d = locateDir($bin, isset($gallery->app->pnmDir) ? $gallery->app->pnmDir : "");
+		$d = locateDir($bin, isset($gallery->app->use_jpegtran) ? $gallery->app->use_jpegtran : "");
 	}
 	if (!$d) {
 		$fail["fail-jpegtran"] = array(sprintf(_("Can't find %s!"), '<i>jpegtran</i>'));
