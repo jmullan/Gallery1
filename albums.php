@@ -156,7 +156,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline &&
 }
 
 if ($gallery->app->gallery_slideshow_type != "off") {
-    	 $adminCommands .= '<a class="admin" href="' . makeGalleryUrl("slideshow.php",
+    	 $adminCommands .= "\n". '<a class="admin" href="' . makeGalleryUrl("slideshow.php",
 	 array("set_albumName" => null)) .
 	       	'">['._("slideshow") . ']</a>&nbsp;';
 }
@@ -167,7 +167,7 @@ if ($gallery->user->isAdmin()) {
 	}
 }
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
-	$adminCommands .= "<a class=\"admin\" href=\"" . doCommand("new-album", array(), "view_album.php") . "\">[". _("new album") ."]</a>&nbsp;";
+	$adminCommands .= "\n<a class=\"admin\" href=\"" . doCommand("new-album", array(), "view_album.php") . "\">[". _("new album") ."]</a>&nbsp;";
 }
 
 if ($gallery->user->isAdmin()) {
@@ -188,7 +188,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	}
 	
 	if (!$GALLERY_EMBEDDED_INSIDE) {
-		$adminCommands .= "<a class=\"admin\" href=\"". doCommand("logout", array(), "albums.php"). "\">[". _("logout") ."]</a>";
+		$adminCommands .= "\n<a class=\"admin\" href=\"". doCommand("logout", array(), "albums.php"). "\">[". _("logout") ."]</a>";
 	}
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
