@@ -342,6 +342,13 @@ if ($numPhotos) {
 					$buf = $buf."<br>".$myDescription."";
 				}
 				echo($buf."<br>");
+?>
+				<br>
+				<span class="fineprint">
+				   Last changed on <?=$myAlbum->getLastModificationDate()?>.  
+				   This album contains <?=pluralize($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), "item", "no")?>.
+				</span>
+<?
 			} else {
 				echo($gallery->album->getCaption($i)."<br>");
 			}
