@@ -192,7 +192,7 @@ class AlbumItem {
 		}
 
 		if ($this->version < 29) {
-			if ($gallery->app->autorotate == 'yes' && $gallery->app->use_exif) {
+			if ($gallery->app->autorotate == 'yes' && !empty($gallery->app->use_exif)) {
 				$this->extraFields['autoRotated'] = true;
 			}
 		}

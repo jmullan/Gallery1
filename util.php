@@ -2348,7 +2348,7 @@ function galleryDocs($class='') {
 		else {  // When first time config without $gallery set.
 			$url='../docs/index.html';
 		}
-		return "<a class=\"$class\" href=\"$url\">[" .  _("documentation").']</a>';
+		return "<a class=\"$class\" style=\"white-space:nowrap;\" href=\"$url\">[" .  _("documentation").']</a>';
 	}
 	return NULL;
 }
