@@ -238,16 +238,22 @@ if ($gallery->album->fields["textcolor"]) {
   function imageEditChoice(selected_select) {
 	  var sel_index = selected_select.selectedIndex;
 	  var sel_value = selected_select.options[sel_index].value;
+	  var sel_class = selected_select.options[sel_index].className;
 	  selected_select.options[0].selected = true;
 	  selected_select.blur();
-	  <?php echo popup('sel_value', 1) ?>
+          if (sel_class == "url") {
+	      document.location = sel_value;
+	  } else {
+              // the only other option should be popup
+	      <?php echo popup('sel_value', 1) ?>
+          }
   } 
   //--> 
   </script>
 <?php } ?>
 
 <?php 
-function showChoice($label, $target, $args) {
+function showChoice($label, $target, $args, $class="popup") {
     global $gallery, $showAdminForm;
     if (!$showAdminForm)
     	return;
@@ -255,7 +261,7 @@ function showChoice($label, $target, $args) {
     if (empty($args['set_albumName'])) {
 	$args['set_albumName'] = $gallery->session->albumName;
     }
-	echo "<option value='" . htmlspecialchars(makeGalleryUrl($target, $args)) . "'>$label</option>";
+    echo "<option class=\"$class\" value='" . htmlspecialchars(makeGalleryUrl($target, $args)) . "'>$label</option>";
 }
 
 $adminText = "<span class=\"admin\">";
@@ -380,7 +386,8 @@ $adminOptions = array(
 		      'view_comments'   => array('name' => _('view comments'),
 						 'requirements' => array('isAdminOrAlbumOwner',
 									 'allowComments',
-									 'comments_enabled'),
+									 'comments_enabled',
+									 'hasComments'),
 						 'action' => 'url',
 						 'value' => makeGalleryUrl('view_comments.php',
 									   array('set_albumName' => $gallery->session->albumName)))
@@ -1006,12 +1013,16 @@ if ($numPhotos) {
 				if (strlen($gallery->app->watermarkDir)) {
 					showChoice(_("Watermark Album"), "watermark_album.php", array("set_albumName" => $myAlbum->fields["name"]));
 				}
+                                if ($gallery->user->canViewComments($myAlbum) &&
+                                    ($myAlbum->lastCommentDate() != -1))
+                                {
+                                        showChoice(_("View Comments"), "view_comments.php", array("set_albumName" => $myAlbum->fields["name"]),"url");
+                                }
 			    }
 			}
                        if ($gallery->user->isAdmin() && !$gallery->album->isAlbum($i)) {
                                showChoice(_("Change Owner"), "photo_owner.php", array("id" => $id));
                        }
-
 		       if ($showAdminForm) {
 			       echo "</select>\n";
 		       }
