@@ -57,15 +57,25 @@ if (empty($register_globals) ||
  * namespace.  
  */
 if (!$gallery->register_globals) {
-    extract($HTTP_GET_VARS);
-    extract($HTTP_POST_VARS);
-    extract($HTTP_COOKIE_VARS);
-    
-    foreach($HTTP_POST_FILES as $key => $value) {
-	${$key."_name"} = $value["name"];
-	${$key."_size"} = $value["size"];
-	${$key."_type"} = $value["type"];
-	${$key} = $value["tmp_name"];
+    if (is_array($HTTP_GET_VARS)) {
+	extract($HTTP_GET_VARS);
+    }
+
+    if (is_array($HTTP_POST_VARS)) {
+	extract($HTTP_POST_VARS);
+    }
+
+    if (is_array($HTTP_COOKIE_VARS)) {
+	extract($HTTP_COOKIE_VARS);
+    }
+
+    if (is_array($HTTP_POST_FILES)) {
+	foreach($HTTP_POST_FILES as $key => $value) {
+	    ${$key."_name"} = $value["name"];
+	    ${$key."_size"} = $value["size"];
+	    ${$key."_type"} = $value["type"];
+	    ${$key} = $value["tmp_name"];
+	}
     }
 }
 
