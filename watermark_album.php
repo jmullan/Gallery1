@@ -50,7 +50,7 @@ if (isset($save) || isset($preview)) {
 <div class="popuphead"><?php echo _("Watermarking album."); ?></div>
 <div class="popup" align="center">
 (<?php echo _("this may take a while"); ?> )
-<?
+<?php
         	        	my_flush();
                			set_time_limit($gallery->app->timeLimit);
 	                	$gallery->album->watermarkAlbum($wmName, "",
@@ -61,7 +61,7 @@ if (isset($save) || isset($preview)) {
 </div>
 </body>
 </html>
-<?
+<?php
                 		dismissAndReload();
 	                	return;
 			} else {
