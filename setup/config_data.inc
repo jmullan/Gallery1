@@ -77,6 +77,10 @@ $constants = array(
 		"value" => locateFile("unzip"),
 		"optional" => 1
 	),
+	"mv" => array(
+		"desc" => "The path to your 'mv' binary",
+		"value" => locateFile("mv"),
+	),
 	"movieThumbnail" => array(
 		"desc" => "The thumbnail image URL to show for movies",
 		"value" => $GALLERY_URL . "/images/movie.thumb.jpg"
