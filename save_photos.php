@@ -352,22 +352,72 @@ if (!$msgcount) {
 /* Prompt for additional files if we found links in the HTML slurpage */
 if (count($image_tags)) {
 ?>
+
+<?php $uploadURLFormName = "uploadurl_form"; ?>
+
+<script language="javascript">
+<!-- 
+function SetCheck(val) {
+	ufne=document.<?php echo $uploadURLFormName; ?>;
+	len = ufne.elements.length;
+	for(i = 0 ; i < len ; i++) {
+		if (ufne.elements[i].name=='urls[]') {
+			ufne.elements[i].checked=val;
+		}
+	}
+}
+function InvertCheck() {
+	ufne=document.<?php echo $uploadURLFormName; ?>;
+	len = ufne.elements.length;
+	for(i = 0 ; i < len ; i++) {
+		if (ufne.elements[i].name=='urls[]') {
+			ufne.elements[i].checked = !(ufne.elements[i].checked);
+		}
+	}
+}
+//-->
+</script>
+
+<p><span class="fineprint">
+<a href="javascript:SetCheck(1)">Check&nbsp;All</a>
+-
+<a href="javascript:SetCheck(0)">Clear&nbsp;All</a>
+-
+<a href="javascript:InvertCheck()">Invert Selection</a>
+</span></p>
+
+<table><tr><td>
 <?= makeFormIntro("save_photos.php", 
-		array("name" => "uploadurl_form", 
+		array("name" => $uploadURLFormName, 
 			"enctype" => "multipart/form-data", 
 			"method" => "POST")); ?>
-<table border=0>
 <?
 	/* Allow user to select which files to grab - only show url right now ( no image previews ) */
 	sort($image_tags);
 	foreach ( $image_tags as $image_src) {
-		print "<tr><td><input type=checkbox name=\"urls[]\" value=\"$image_src\" checked>$image_src</td></tr>\n";
+		print "<input type=checkbox name=\"urls[]\" value=\"$image_src\" checked>$image_src<br />\n";
 	}
 ?>
-</table>
+</td></tr></table>
+
+<?php /* REVISIT - it'd be nice to have these functions get shoved
+  into util.php at some time - maybe added functionality to the makeFormIntro? */ ?>
+
+<p><span class="fineprint">
+<a href="javascript:SetCheck(1)">Check&nbsp;All</a>
+-
+<a href="javascript:SetCheck(0)">Clear&nbsp;All</a>
+-
+<a href="javascript:InvertCheck()">Invert Selection</a>
+</span></p>
+
+<p>
 <input type=hidden name="setCaption" value="<?=$setCaption?>">
 <input type=button value="Add Files" onClick="opener.showProgress(); document.uploadurl_form.submit()">
+</p>
+
 </form>
+</center>
 <? } /* End if links slurped */ ?>
 </body>
 </html>
