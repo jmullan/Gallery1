@@ -45,6 +45,7 @@ if ($submit) {
 			$tmpUser->setUsername($uname);
 			$tmpUser->setPassword($password);
 			$tmpUser->setFullname($fullname);
+			$tmpUser->setCanCreateAlbums($canCreate);
 			$tmpUser->setEmail($email);
 			$tmpUser->save();
 			header("Location: manage_users.php");
@@ -53,6 +54,9 @@ if ($submit) {
 		header("Location: manage_users.php");
 	}
 }
+
+$canCreateChoices = array(1 => "yes", 0 => "no");
+$canCreate = 1;
 
 ?>
 <html>
