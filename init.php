@@ -19,14 +19,29 @@
  */
 ?>
 <?
+
+/* Load defaults */
+require('version.php');
+require('config.php');
+require('class_Album.php');
+require('class_Image.php');
+require('class_AlbumItem.php');
+require('class_AlbumDB.php');
+require('util.php');
+require('session.php');
+
 if (file_exists("setup") && is_readable("setup")) {
-	require("style.php");
 ?>
+	<html>
+	<head>
+	  <title>Gallery in Configuration Mode</title>
+	  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+	</head>
+	<body>	
 	<center>
-	<font size=+2 color=red> Uh oh! </font>
+	<span class="error"> Uh oh! </span>
 	<p>
 	<table width=80%><tr><td>
-	<font size=+1>
 	Gallery is still in configuration mode which means it's
 	anybody out there can mess with it.  
 	For safety's sake we don't let you run the app in this mode.
@@ -48,25 +63,20 @@ if (file_exists("setup") && is_readable("setup")) {
 	exit;
 }
 
-/* Load defaults */
-require('version.php');
-require('config.php');
-require('class_Album.php');
-require('class_Image.php');
-require('class_AlbumItem.php');
-require('class_AlbumDB.php');
-require('util.php');
-require('session.php');
-
 if ($app->config_version != $gallery->config_version) {
-	require("style.php");
 ?>
+?>
+	<html>
+	<head>
+	  <title>Gallery needs Re-Configuration</title>
+	  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+	</head>
+	<body>	
 	<center>
-	<font size=+2 color=red> Uh oh! </font>
+	<span class="error"> Uh oh! </span>
 	<p>
 	<center>
 	<table width=80%><tr><td>
-	<font size=+1>
 	Your Gallery configuration was created using the config wizard
 	from an older version of Gallery.  It is out of date.  Please
 	re-run the configuration wizard!  In a shell do this:
