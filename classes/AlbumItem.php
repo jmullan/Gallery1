@@ -33,6 +33,7 @@ class AlbumItem {
 	var $uploadDate;	// date the item was uploaded
 	var $itemCaptureDate;	// associative array of date the item was captured 
 				// not in EPOCH so we can support dates < 1970
+	var $exifData;
 
 	function setUploadDate($uploadDate="") { //upload date should only be set at file upload time.
 		global $gallery;
@@ -89,10 +90,24 @@ class AlbumItem {
 		}
 	}
 
-	function getExif($dir) {
+	function getExif($dir, $forceRefresh=0) {
 		$file = $dir . "/" . $this->image->name . "." . $this->image->type;
-		$myExif = getExif($file);
-		return $myExif;
+
+		/*
+		 * If we don't already have the exif data, get it now.
+		 * Otherwise return what we have.
+		 */
+		$needToSave = 0;
+		if (!empty($this->exifData) && !$forceRefresh) {
+		    $status = 0;
+		} else {
+		    list($status, $exifData) = getExif($file);
+		    if ($status == 0) {
+			$this->exifData = $exifData;
+			$needToSave = 1;
+		    }
+		}
+		return array($status, $this->exifData, $needToSave);
 	}
 
 	function numComments() {
