@@ -1054,7 +1054,7 @@ if ($numPhotos) {
 
 	<td colspan="<?php echo $rows ?>" align="center" class="headbox">
 <?php if ($gallery->user->canAddToAlbum($gallery->album) && !$gallery->session->offline) {
-	$url = makeGalleryUrl('add_photos_frame.php', array('set_albumName' => $gallery->session->albumName));
+	$url = makeGalleryUrl('add_photos_frame.php', array('set_albumName' => $gallery->session->albumName, 'type' => 'popup'));
 	echo popup_link('['. _("Hey! Add some photos.") .']', $url, 1, true, 500, 600, 'admin');
 } else {
 	echo _("This album is empty.");
