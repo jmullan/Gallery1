@@ -63,6 +63,8 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 		       "add_photos.php",
 		       "album_permissions.php",
 		       "albums.php",
+		       "block-random.php",
+		       "captionator.php",
 		       "create_user.php",
 		       "delete_album.php",
 		       "delete_photo.php",
