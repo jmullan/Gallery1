@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_4-cvs
+# Version: 1_4_3-RC1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -19,15 +19,15 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
-# KATONA, Tamás <tomkat@freemail.hu>, 2003
-# Tivadar Horvath <thorvath@hotmail.com>, 2003
+# KATONA, Tamás <tomkat@freemail.hu>, 2003-2004
+# Tivadar Horvath <thorvath@hotmail.com>, 2003-2004
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.4.4\n"
+"Project-Id-Version: Gallery 1.4.3\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-03-31 23:08+0200\n"
-"PO-Revision-Date: 2004-03-23 09:49+0100\n"
+"POT-Creation-Date: 2004-04-06 14:44+0200\n"
+"PO-Revision-Date: 2004-04-06 09:49+0100\n"
 "Last-Translator: Katona Tamás <tomkat@freemail.hu>\n"
 "Language-Team: TomKat <tomkat@freemail.hu>\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr "Név vagy email:"
 #: ../add_comment.php:151 ../album_permissions.php:344 ../edit_caption.php:190
 #: ../edit_field.php:66 ../edit_field.php:77 ../edit_watermark.php:81
 #: ../modify_user.php:158 ../new_password.php:135 ../photo_owner.php:109
-#: ../user_preferences.php:125 ../watermark_album.php:88
+#: ../user_preferences.php:125 ../watermark_album.php:87
 msgid "Save"
 msgstr "Mentés"
 
@@ -88,10 +88,10 @@ msgstr "Mentés"
 #: ../includes/add_photos/add_form_one.inc:72
 #: ../includes/add_photos/add_url.inc:52 ../login.php:132
 #: ../modify_user.php:159 ../move_album.php:111 ../move_album.php:131
-#: ../move_photo.php:238 ../move_photo.php:325 ../multi_create_user.php:173
-#: ../new_password.php:136 ../register.php:147 ../rename_album.php:122
-#: ../reset_votes.php:70 ../resize_photo.php:125 ../sort_album.php:122
-#: ../user_preferences.php:126 ../watermark_album.php:89
+#: ../move_photo.php:238 ../multi_create_user.php:173 ../new_password.php:136
+#: ../register.php:147 ../rename_album.php:122 ../reset_votes.php:70
+#: ../resize_photo.php:125 ../sort_album.php:122 ../user_preferences.php:126
+#: ../watermark_album.php:88
 msgid "Cancel"
 msgstr "Mégsem"
 
@@ -648,12 +648,12 @@ msgstr "Utolsó"
 msgid "New Album"
 msgstr "Új album"
 
-#: ../copy_photo.php:200 ../move_photo.php:319
+#: ../copy_photo.php:200
 #, php-format
 msgid "WARNING: Some of the albums need to be upgraded to the current version of %s."
 msgstr "FIGYELMEZTETÉS: Néhány albumot a %s legújabb verziójára kell frissíteni. "
 
-#: ../copy_photo.php:201 ../move_photo.php:320
+#: ../copy_photo.php:201
 msgid "Upgrade now"
 msgstr "Frissítés most"
 
@@ -662,8 +662,8 @@ msgid "Copy to Album!"
 msgstr "Másold az albumba!"
 
 #: ../copy_photo.php:210 ../delete_photo.php:141 ../edit_thumb.php:139
-#: ../move_album.php:137 ../move_photo.php:331 ../resize_photo.php:138
-#: ../rotate_photo.php:103 ../view_photo_properties.php:178
+#: ../move_album.php:137 ../resize_photo.php:138 ../rotate_photo.php:103
+#: ../view_photo_properties.php:178
 msgid "no album / index specified"
 msgstr "nem adtál meg albumot / indexet"
 
@@ -1536,7 +1536,7 @@ msgstr "jogosultságok"
 msgid "view&nbsp;comments"
 msgstr "megjegyzések&nbsp;megtekintése"
 
-#: ../layout/adminAlbumCommands.inc:38 ../view_album.php:1008
+#: ../layout/adminAlbumCommands.inc:38
 msgid "watermark&nbsp;album"
 msgstr ""
 
@@ -1610,7 +1610,7 @@ msgstr ""
 
 #: ../layout/watermarkform.inc:77
 #, php-format
-msgid "Error: No files matching %s found in %s"
+msgid "No files matching %s found in %s"
 msgstr ""
 
 #: ../layout/watermarkform.inc:85
@@ -1659,15 +1659,15 @@ msgstr ""
 msgid "Lower&nbsp;Right"
 msgstr ""
 
-#: ../lib/Form.php:58
+#: ../lib/Form.php:56
 msgid "Check All"
 msgstr "Összes kijelölése"
 
-#: ../lib/Form.php:60
+#: ../lib/Form.php:58
 msgid "Clear All"
 msgstr "Kijelölések törlése"
 
-#: ../lib/Form.php:62
+#: ../lib/Form.php:60
 msgid "Invert Selection"
 msgstr "Kijelölés invertálása"
 
@@ -1820,7 +1820,7 @@ msgstr "Áthelyez!"
 msgid "Nest within another Album:"
 msgstr "Elhelyez másik albumban:"
 
-#: ../move_album.php:130 ../move_photo.php:324
+#: ../move_album.php:130
 msgid "Move to Album!"
 msgstr "Áthelyez az albumba!"
 
@@ -1843,9 +1843,8 @@ msgid "Moving photo #"
 msgstr "Áthelyezés, fotó sorszáma: "
 
 #: ../move_photo.php:169
-#, fuzzy
 msgid "- Creating New Album Highlight"
-msgstr "Új album létrehozása"
+msgstr ""
 
 #: ../move_photo.php:214
 #, fuzzy
@@ -2824,14 +2823,14 @@ msgid "Unknown file type: %s"
 msgstr "Ismeretlen fájltípus: %s"
 
 #: ../util.php:1500
-#, fuzzy, php-format
+#, php-format
 msgid "Can't write to %s."
-msgstr "%s nem nyitható meg."
+msgstr ""
 
 #: ../util.php:1507
-#, fuzzy, php-format
+#, php-format
 msgid "Can't read %s."
-msgstr "A(z) %s fájl nem olvasható."
+msgstr ""
 
 #: ../util.php:1619
 msgid "Select Album"
@@ -2850,14 +2849,14 @@ msgid "self"
 msgstr ""
 
 #: ../util.php:1865
-#, fuzzy, php-format
+#, php-format
 msgid "Could not open lock file (%s)!"
-msgstr "A(z) %s URL nem nyitható meg."
+msgstr ""
 
 #: ../util.php:1870
-#, fuzzy, php-format
+#, php-format
 msgid "Could not acquire lock (%s)!"
-msgstr "A(z) %s URL nem nyitható meg."
+msgstr ""
 
 #: ../util.php:1954
 msgid "1 hit"
@@ -3061,6 +3060,13 @@ msgid ""
 "\n"
 "Gallery @ %s Administrator."
 msgstr ""
+"Üdv !!FULLNAME!!, \n"
+"\n"
+"Üdvözüllek a(z) %s (%s) új felhasználói között! A felhasználóneved !!USERNAME!!. Kérlek, mielõtt látogasd meg a galériát, és készíts magadnak új jelszót ezen a linken:\n"
+"\n"
+"!!NEWPASSWORDLINK!!\n"
+"\n"
+"Gallery @ %s Administrator."
 
 #: ../util.php:3021 ../util.php:3023
 msgid "gallery title"
@@ -3109,9 +3115,8 @@ msgid "Can't open %s"
 msgstr "%s nem nyitható meg."
 
 #: ../util.php:3214 ../util.php:3233
-#, fuzzy
 msgid "Not valid yet"
-msgstr "Helytelen felhasználó"
+msgstr "Még nem érvényes"
 
 #: ../view_album.php:135 ../view_album.php:136 ../view_photo.php:180
 #: ../view_photo.php:181
@@ -3239,9 +3244,9 @@ msgid "You MUST click on %s for your vote to be recorded."
 msgstr "A %s-ra KELL kattintani, hogy a szavazat rögzítésre kerüljön."
 
 #: ../view_album.php:605
-#, fuzzy, php-format
+#, php-format
 msgid "You have a total of %s and can change them if you wish."
-msgstr "A választásodon késõbb módosíthatsz."
+msgstr ""
 
 #: ../view_album.php:608
 msgid "no votes"
@@ -3262,7 +3267,7 @@ msgstr "Nincs leírás"
 
 #: ../view_album.php:854
 msgid "Changed: "
-msgstr "Módosult: "
+msgstr "Módosítva: "
 
 #: ../view_album.php:855
 msgid "Contains: "
@@ -3340,6 +3345,11 @@ msgstr "Elrejt"
 msgid "Permissions"
 msgstr "Jogosultságok"
 
+#: ../view_album.php:1008 ../watermark_album.php:69 ../watermark_album.php:74
+#, fuzzy
+msgid "Watermark Album"
+msgstr "Ebbõl az albumból:"
+
 #: ../view_album.php:1055
 msgid "Hey! Add some photos."
 msgstr "Figyu! Tölts fel képeket!"
@@ -3397,7 +3407,7 @@ msgid "photo properties"
 msgstr "fotó tulajdonságai"
 
 #: ../view_photo.php:436 ../view_photo.php:451
-#, fuzzy, php-format
+#, php-format
 msgid "print this photo with %s"
 msgstr "papírkép készítése a(z) %s szolgáltatással"
 
@@ -3424,11 +3434,6 @@ msgstr "(ha aktuális az adat, nem történik semmi)"
 #: ../watermark_album.php:51
 msgid "Watermarking album."
 msgstr ""
-
-#: ../watermark_album.php:69 ../watermark_album.php:74
-#, fuzzy
-msgid "Watermark Album"
-msgstr "Ebbõl az albumból:"
 
 #~ msgid "Error"
 #~ msgstr "Hiba"
