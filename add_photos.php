@@ -45,7 +45,54 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 <head>
   <title><?php echo _("Add Photos") ?></title>
   <?php echo getStyleSheetLink() ?>
+<style type="text/css">
+<!--
+#container
+	{
+		padding: 2px;
+	}
 
+#tabnav
+	{
+		height: 20px;
+		margin: 0;
+		padding-left: 5px;
+		background: url(images/tab_bottom.gif) repeat-x bottom;
+	}
+
+#tabnav li
+	{
+		margin: 0; 
+		padding: 0;
+  		display: inline;
+  		list-style-type: none;
+  	}
+	
+#tabnav a:link, #tabnav a:visited
+	{
+		float: left;
+		font-size: 10px;
+		line-height: 14px;
+		font-weight: bold;
+		padding: 2px 5px 2px 5px;
+		margin-right: 4px;
+		border: 1px solid #000;
+		text-decoration: none;
+		color: #666;
+	}
+
+#tabnav a:link.active, #tabnav a:visited.active
+	{
+		border-bottom: 1px solid #fff;
+		color: #000;
+	}
+
+#tabnav a:hover
+	{
+		color: #444
+	}
+-->
+</style>
 <script language="Javascript">
 <!--
 	function reloadPage() {
@@ -61,18 +108,18 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 
 if (file_exists("java/GalleryRemoteAppletMini.jar") &&
 	file_exists("java/GalleryRemoteHTTPClient.jar")) {
-    $modes["applet_mini"] = _("Applet (mini)");
+    $modes["applet_mini"] = _("Applet");
 	
 	if (file_exists("java/GalleryRemoteApplet.jar")) {
-	    $modes["applet"] = _("Applet (window)");
+	    $modes["applet"] = _("Applet (big)");
 	}
 }
 
 
 $modes["form"] = _("Form");
-$modes["form_one"] = _("Form (one picture)");
-$modes["url"] = _("Add from URL");
-$modes["other"] = _("Other methods");
+$modes["form_one"] = _("Form (1)");
+$modes["url"] = _("URL");
+$modes["other"] = _("Other");
 
 if ($gallery->user->isAdmin()) {
     $modes["admin"] = _("Admin");
@@ -83,25 +130,26 @@ if (!isset($mode) || !isset($modes[$mode])) {
 }
 ?>
 
-<table cellpadding="5" border="1">
-<tr>
+<div id="container">
+<ul id="tabnav">
 <?php
 foreach ($modes as $m => $mt) {
 	echo "<td>";
 	if ($m == $mode) {
-		echo "<b>$mt</b>";
+		echo "<li><a href=\"add_photos.php?mode=$m\" class=\"active\">$mt</a></li>";
 	} else {
-		echo "<a href=\"add_photos.php?mode=$m\">$mt</a>";
+		echo "<li><a href=\"add_photos.php?mode=$m\">$mt</a></li>";
 	}
 	echo "</td>";
 }
 ?>
-</tr>
-</table>
+</ul>
 
 <?php
-include "add_$mode.inc";
+include "includes/add_photos/add_$mode.inc";
 ?>
+
+</div>
 
 </body>
 </html>

@@ -43,7 +43,7 @@
 	<param name="gr_cookie_domain" value="<?php echo $cookieInfo['domain'] ?>">
 	<param name="gr_cookie_path" value="<?php echo $cookieInfo['path'] ?>">
 	<param name="gr_album" value="<?php echo $gallery->album->fields["name"] ?>">
-	<param name="gro_toSysOut" value="true">
+	<param name="GROverride_toSysOut" value="true">
 
 	<comment>
 		<embed
@@ -62,7 +62,7 @@
 				gr_cookie_domain"<?php echo $cookieInfo['domain'] ?>"
 				gr_cookie_path="<?php echo $cookieInfo['path'] ?>"
 				gr_album="<?php echo $gallery->album->fields["name"] ?>"
-				gro_toSysOut="true">
+				GROverride_toSysOut="true">
 			<noembed
 					alt="Your browser understands the &lt;APPLET&gt; tag but isn't running the applet, for some reason.">
 				Your browser doesn't support applets; you should use one of the other upload methods.

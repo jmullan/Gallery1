@@ -1,3 +1,14 @@
+2004-01-29  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.4.3-cvs-b11
+
+	* Move add_photos.php includes into includes/add_photos, per Jens' request
+	* Added support in gallery_remote2.php for:
+		- getting sub-albums as well as images in fetch-album-images
+		- returning the list of root albums in fetch-album-images when
+		  invoked with a blank set_albumName
+		- getting all albums (including non-writeable) in fetch-albums
+	* Made the add_photos menu a CSS-based tab list.
+	* Fixed applet invocation in both upload applets.
+
 2004-01-27  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.4.3-cvs-b10
 
 	* Tweaked slideshow applet invocation.
@@ -70,22 +81,21 @@
 
 2004-01-23 Jens Tkotz <jens@peino.de> 1.4.3-cvs-b2
 
-        * New: implemented Code for Gallery phpBB2 integration.
+	* New: implemented Code for Gallery phpBB2 integration.
 
 	  - Gallery is now ready to be integrated in phpBB2 (2.0.6), but unfortunately
 	    you have to modify phpBB2 code and put a new file in your phpBB2 installation.
 	    See documentation in the contrib folder.
 
-	  - Detecttion if we are in phpBB2 ($GALLERY_EMBEDDED_INSIDE_TYPE = 'phpBB2';)
+	  - Detection if we are in phpBB2 ($GALLERY_EMBEDDED_INSIDE_TYPE = 'phpBB2';)
 
 	  - new classes for phpBB2 users.
 
 	  - rewrite of fitToWindow.
-		
 
 2004-01-22  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.3-cvs-b1
 
-        * This is the beginning of development on v1.4.3.
+	* This is the beginning of development on v1.4.3.
 
 ===============================================================================
     v1.4.2 release branch created

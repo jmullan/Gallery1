@@ -62,7 +62,7 @@ if($gallery->app->debug == "no") {
  * Gallery remote protocol version 2.10
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 12;
+$GR_VER['MIN'] = 13;
 
 
 /*
@@ -120,7 +120,7 @@ switch($cmd === 0 ? '' : $cmd) {
 		gr_fetch_albums( $gallery, $response );
 		break;
 	case 'fetch-albums-prune':
-		gr_fetch_albums_prune( $gallery, $response );
+		gr_fetch_albums_prune( $gallery, $response, $check_writeable );
 		break;
 	case 'add-item':
 		gr_add_item( $gallery, $response, $userfile, $userfile_name, $caption, $force_filename, $auto_rotate );
@@ -132,7 +132,7 @@ switch($cmd === 0 ? '' : $cmd) {
 		gr_new_album( $gallery, $response, $newAlbumName, $newAlbumTitle, $newAlbumDesc );
 		break;
 	case 'fetch-album-images':
-		gr_fetch_album_images( $gallery, $response );
+		gr_fetch_album_images( $gallery, $response, $albums_too );
 		break;
 	case 'move-album':
 		gr_move_album( $gallery, $response, $set_destalbumName );
@@ -217,14 +217,18 @@ function gr_fetch_albums( &$gallery, &$response ) {
 
 }
 
-function gr_fetch_albums_prune( &$gallery, &$response ) {
+function gr_fetch_albums_prune( &$gallery, &$response, $check_writeable ) {
 
 	global $GR_STAT, $myMark;
 
 	$albumDB = new AlbumDB(FALSE);
 	$album_count = 0;
 
-	mark_and_sweep($albumDB);
+	if ($check_writeable == 'yes') {
+	    mark_and_sweep($albumDB);
+	} else {
+		mark_and_sweep($albumDB, FALSE);
+	}
 
 	foreach ($albumDB->albumList as $album) {
 		if ($myMark[$album->fields["name"]]) {
@@ -385,52 +389,82 @@ function gr_new_album( &$gallery, &$response, &$newAlbumName, &$newAlbumTitle, &
 
 }
 
-function gr_fetch_album_images( &$gallery, &$response ) {
+function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 
 	global $GR_STAT;
+	
+	if ($albums_too == 'yes') {
+	    $albums_too = TRUE;
+	} else {
+		$albums_too = FALSE;
+	}
 
 	$tmpImageNum = 0;
-	foreach($gallery->album->photos as $albumItemObj) {
-		if(empty($albumItemObj->isAlbumName)) { //Make sure this object is a picture, not an album
-			$tmpImageNum++;
- 
-			$response->setProperty( 'image.name.'.$tmpImageNum, $albumItemObj->image->name.'.'.$albumItemObj->image->type );
-			$fullSize = $albumItemObj->getDimensions(1);
-			$response->setProperty( 'image.raw_width.'.$tmpImageNum, $fullSize[0] );
-			$response->setProperty( 'image.raw_height.'.$tmpImageNum, $fullSize[1] );
-
-			if ($albumItemObj->isResized()) {
-				$response->setProperty( 'image.resizedName.'.$tmpImageNum, $albumItemObj->image->resizedName.'.'.$albumItemObj->image->type );
-				$resizedSize = $albumItemObj->getDimensions(0);
-				$response->setProperty( 'image.resized_width.'.$tmpImageNum, $resizedSize[0] );
-				$response->setProperty( 'image.resized_height.'.$tmpImageNum, $resizedSize[1] );
-			}
-
-			$response->setProperty( 'image.thumbName.'.$tmpImageNum, $albumItemObj->thumbnail->name.'.'.$albumItemObj->image->type );
-			$thumbnailSize = $albumItemObj->getThumbDimensions();
-			$response->setProperty( 'image.thumb_width.'.$tmpImageNum, $thumbnailSize[0] );
-			$response->setProperty( 'image.thumb_height.'.$tmpImageNum, $thumbnailSize[1] );
-
-			$response->setProperty( 'image.raw_filesize.'.$tmpImageNum, $albumItemObj->getFileSize(1) );
-			$response->setProperty( 'image.caption.'.$tmpImageNum, $albumItemObj->caption );
-			if(count($albumItemObj->extraFields)) { //if there are extra fields for this image
-				foreach($albumItemObj->extraFields as $extraFieldKey => $extraFieldName) {
-					if(strlen($extraFieldName)) {
-						$response->setProperty( 'image.extrafield.'.$extraFieldKey.'.'.$tmpImageNum, $extraFieldName );
+	
+	if (isset($gallery->album)) {
+		foreach($gallery->album->photos as $albumItemObj) {
+			if(empty($albumItemObj->isAlbumName)) { //Make sure this object is a picture, not an album
+				$tmpImageNum++;
+	 
+				$response->setProperty( 'image.name.'.$tmpImageNum, $albumItemObj->image->name.'.'.$albumItemObj->image->type );
+				$fullSize = $albumItemObj->getDimensions(1);
+				$response->setProperty( 'image.raw_width.'.$tmpImageNum, $fullSize[0] );
+				$response->setProperty( 'image.raw_height.'.$tmpImageNum, $fullSize[1] );
+	
+				if ($albumItemObj->isResized()) {
+					$response->setProperty( 'image.resizedName.'.$tmpImageNum, $albumItemObj->image->resizedName.'.'.$albumItemObj->image->type );
+					$resizedSize = $albumItemObj->getDimensions(0);
+					$response->setProperty( 'image.resized_width.'.$tmpImageNum, $resizedSize[0] );
+					$response->setProperty( 'image.resized_height.'.$tmpImageNum, $resizedSize[1] );
+				}
+	
+				$response->setProperty( 'image.thumbName.'.$tmpImageNum, $albumItemObj->thumbnail->name.'.'.$albumItemObj->image->type );
+				$thumbnailSize = $albumItemObj->getThumbDimensions();
+				$response->setProperty( 'image.thumb_width.'.$tmpImageNum, $thumbnailSize[0] );
+				$response->setProperty( 'image.thumb_height.'.$tmpImageNum, $thumbnailSize[1] );
+	
+				$response->setProperty( 'image.raw_filesize.'.$tmpImageNum, $albumItemObj->getFileSize(1) );
+				$response->setProperty( 'image.caption.'.$tmpImageNum, $albumItemObj->caption );
+				if(count($albumItemObj->extraFields)) { //if there are extra fields for this image
+					foreach($albumItemObj->extraFields as $extraFieldKey => $extraFieldName) {
+						if(strlen($extraFieldName)) {
+							$response->setProperty( 'image.extrafield.'.$extraFieldKey.'.'.$tmpImageNum, $extraFieldName );
+						}
 					}
 				}
+				$response->setProperty( 'image.clicks.'.$tmpImageNum, $albumItemObj->clicks );
+				$response->setProperty( 'image.capturedate.year.'.$tmpImageNum, $albumItemObj->itemCaptureDate['year'] );
+				$response->setProperty( 'image.capturedate.mon.'.$tmpImageNum, $albumItemObj->itemCaptureDate['mon'] );
+				$response->setProperty( 'image.capturedate.mday.'.$tmpImageNum, $albumItemObj->itemCaptureDate['mday'] );
+				$response->setProperty( 'image.capturedate.hours.'.$tmpImageNum, $albumItemObj->itemCaptureDate['hours'] );
+				$response->setProperty( 'image.capturedate.minutes.'.$tmpImageNum, $albumItemObj->itemCaptureDate['minutes'] );
+				$response->setProperty( 'image.capturedate.seconds.'.$tmpImageNum, $albumItemObj->itemCaptureDate['seconds'] );
+			} else {
+				if ($albums_too) {
+				    $tmpImageNum++;
+	 
+					$response->setProperty( 'album.name.'.$tmpImageNum, $albumItemObj->isAlbumName );
+				}
 			}
-			$response->setProperty( 'image.clicks.'.$tmpImageNum, $albumItemObj->clicks );
-			$response->setProperty( 'image.capturedate.year.'.$tmpImageNum, $albumItemObj->itemCaptureDate['year'] );
-			$response->setProperty( 'image.capturedate.mon.'.$tmpImageNum, $albumItemObj->itemCaptureDate['mon'] );
-			$response->setProperty( 'image.capturedate.mday.'.$tmpImageNum, $albumItemObj->itemCaptureDate['mday'] );
-			$response->setProperty( 'image.capturedate.hours.'.$tmpImageNum, $albumItemObj->itemCaptureDate['hours'] );
-			$response->setProperty( 'image.capturedate.minutes.'.$tmpImageNum, $albumItemObj->itemCaptureDate['minutes'] );
-			$response->setProperty( 'image.capturedate.seconds.'.$tmpImageNum, $albumItemObj->itemCaptureDate['seconds'] );
+		}
+	} else {
+		// we're in the root album: just list root albums
+		if ($albums_too) {
+			$albumDB = new AlbumDB(FALSE);
+			foreach ($albumDB->albumList as $myAlbum) {
+				if ($myAlbum->isRoot()) {
+				    $tmpImageNum++;
+		 
+					$response->setProperty( 'album.name.'.$tmpImageNum, $myAlbum->fields['name'] );
+				}
+			}
 		}
 	}
+	
 	$response->setProperty( 'image_count', $tmpImageNum );
-	$response->setProperty( 'baseurl', $gallery->album->getAlbumDirURL('full').'/' );
+	if (isset($gallery->album)) {
+	    $response->setProperty( 'baseurl', $gallery->album->getAlbumDirURL('full').'/' );
+	}
 
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Fetch images successful.' );
@@ -858,12 +892,12 @@ function processFile($file, $tag, $name, $setCaption="") {
     return $error;
 }
 
-function mark_and_sweep(&$albumDB) {
+function mark_and_sweep(&$albumDB, $checkWriteable = TRUE) {
 	global $gallery, $myMark;
 
 	foreach ($albumDB->albumList as $myAlbum) {
 		// echo "mark_and_sweep: ".$myAlbum->fields["name"]."\n";
-		if ($gallery->user->canAddToAlbum($myAlbum)) {
+		if (!$checkWriteable || $gallery->user->canAddToAlbum($myAlbum)) {
 			sweep($albumDB, $myAlbum);
 			// echo "mark_and_sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
 		}
