@@ -146,18 +146,18 @@ if (isset($forgot)) {
 		$wait_time=15;
 		if ($tmpUser->lastAction ==  "new_password_request" && 
 			time() - $tmpUser->lastActionDate < $wait_time * 60) {
-		       	echo gallery_error(sprintf(_("The last request for a password was left than %d minutes ago.  Please check for previous email, or wait before trying again."), $wait_time));
+		       	echo gallery_error(sprintf(_("The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."), $wait_time));
 			
 		} else if (validate_email($tmpUser->getEmail())) {
 		       	if (gallery_mail( $tmpUser->email,
 				_("New password request"),
-			       	sprintf(_("You requested a new password from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
+			       	sprintf(_("Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $uname, $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
 			      	sprintf(_("Click to reset your password: %s"),
 				       	$tmpUser->genRecoverPasswordHash()) . "\n",
 				sprintf(_("New password request %s"), $uname))) {
 			       	$tmpUser->log("new_password_request");
 			       	$tmpUser->save();
-			       	echo sprintf(_("An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."),$tmpUser->getUsername())  ?> 
+			       	echo sprintf(_("An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."),$uname)  ?> 
 					<br><br>
 			       	<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
 				<?php

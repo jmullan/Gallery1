@@ -2635,14 +2635,13 @@ function emailDisclaimer() {
 	global $gallery;
 	$msg=sprintf(_("Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message."),$gallery->app->photoAlbumURL).
 	     "  \r\n".
-	     sprintf(_("Report abuse to %s."),$gallery->app->adminEmail).
-	     "\r\n";
-	$msg2=sprintf("Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message.  \r\nReport abuse to %s.\r\n", 
+	     sprintf(_("Report abuse to %s."),$gallery->app->adminEmail);
+	$msg2=sprintf("Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message.  \r\nReport abuse to %s.", 
 		$gallery->app->photoAlbumURL, $gallery->app->adminEmail);
 	if ($msg != $msg2) {
-		return "$msg$msg2\r\n";
+		return "[$msg\r\n$msg2]\r\n\r\n";
 	} else {
-		return "$msg\r\n";
+		return "[$msg]\r\n\r\n";
 	}
 }
 
@@ -2751,10 +2750,9 @@ function welcome_email($show_default=false) {
 
 	$default=_("Hi !!FULLNAME!!,  
 
-Congratulations.  You have just been subscribed to %s at %s.  Please visit the gallery soon, and login using:
+Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:
 
-Username is !!USERNAME!!
-Password is !!PASSWORD!!
+!!NEWPASSWORDLINK!!
 
 Gallery @ %s Administrator.");
 	if ($show_default) {
@@ -2826,6 +2824,13 @@ function available_frames($description_only=false) {
 	} else {
 	       	return $opts;
 	}
+}
+function validation_link() {
+	/* <a href="albums.php?PHPSESSID=<?php echo session_id()?>">link with session id</a> */
+       	?> <a href="http://validator.w3.org/check/referer">
+	       	<img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>
+
+		<?php
 }
 
 /* simplify condition tests */

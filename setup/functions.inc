@@ -1125,8 +1125,12 @@ function verify_email($emailMaster)
        	if (!empty($emailGreeting) && !strstr($emailGreeting, "!!USERNAME!!")) {
 	       	$fail[]= sprintf(_("You must include %s in your welcome email"), "<b>!!USERNAME!!</b>");
        	}
-       	if (!empty($emailGreeting) && !strstr($emailGreeting, "!!PASSWORD!!")) {
-	       	$fail[]= sprintf(_("You must include %s in your welcome email"), "<b>!!PASSWORD!!</b>");
+       	if (!empty($emailGreeting) && 
+			!strstr($emailGreeting, "!!PASSWORD!!" ) && 
+			!strstr($emailGreeting, "!!NEWPASSWORDLINK!!" )) {
+	       	$fail[]= sprintf(_("You must include %s or %s in your welcome email"), 
+				"<b>!!PASSWORD!!</b>",
+				"<b>!!NEWPASSWORDLINK!!</b>");
        	}
        	return array($success, $fail);
 }

@@ -43,12 +43,35 @@ class Abstract_User {
 		return false;
 	}
 
+	function salt($len = 4)
+	{
+	       	srand ((float) microtime() * 10000000); // for php v < 4.2
+		$salt = '';
+		for($i = 0; $i < $len; $i++)
+		{
+			$char = mt_rand(48, 109);
+			if($char > 57) $char += 7;
+			if($char > 90) $char += 6;
+			$salt .= chr($char);
+		}
+		return $salt;
+	}
+
 	function setPassword($password) {
-		$this->password = md5($password);
+		$salt = $this->salt();
+		$this->password = $salt.md5($salt.$password);
 	}
 
 	function isCorrectPassword($password) {
-		return (!strcmp($this->password, md5($password)));
+		$hash = '';
+		if(strlen($this->password) == 32) { // old password schema
+			$hash =  md5($password);
+		}
+		else {
+			$salt = substr($this->password,0, 4);
+			$hash = $salt.md5($salt.$password);
+		}
+		return (!strcmp($this->password, $hash));
 	}
 
 	function getUid() {

@@ -96,11 +96,21 @@ if (isset($create)) {
 	if (!$errorCount) {
 
 		$password = generate_password(10);
+	       	$tmpUser = new Gallery_User();
+	       	$tmpUser->setUsername($uname);
+	       	$tmpUser->setPassword($password);
+	       	$tmpUser->setFullname($fullname);
+	       	$tmpUser->setCanCreateAlbums($canCreate);
+	       	$tmpUser->setEmail($email);
+	       	$tmpUser->origEmail=$email;
+	       	$tmpUser->log("self_register");
 		$msg = ereg_replace("!!PASSWORD!!", $password,
                                         ereg_replace("!!USERNAME!!", $uname,
-					ereg_replace("!!FULLNAME!!", $fullname,
-					welcome_email())));
-		$msg .= "\r\n\r\n" . pretty_password($password, false);
+					  ereg_replace("!!FULLNAME!!", $fullname,
+					    ereg_replace("!!NEWPASSWORDLINK!!", 
+						    $tmpUser->genRecoverPasswordHash(),
+					welcome_email()))));
+		// $msg .= "\r\n\r\n" . pretty_password($password, false);
 		$logmsg = sprintf(_("%s has registered.  Email has been sent to %s."),
 			$uname, $email);
 		$logmsg2  = sprintf("%s has registered.  Email has been sent to %s.",
@@ -110,14 +120,6 @@ if (isset($create)) {
 		}
 
 		if (gallery_mail($email, _("Gallery Self Registration"),$msg, $logmsg)) {
-			$tmpUser = new Gallery_User();
-			$tmpUser->setUsername($uname);
-			$tmpUser->setPassword($password);
-			$tmpUser->setFullname($fullname);
-			$tmpUser->setCanCreateAlbums($canCreate);
-			$tmpUser->setEmail($email);
-			$tmpUser->origEmail=$email;
-			$tmpUser->log("self_register");
 			$tmpUser->save();
 			echo "<p>".sprintf(_("An email has been sent to %s."), $email);
 			echo '<br>';

@@ -508,6 +508,8 @@ $constants = array_merge($constants,
 				"<i>!!FULLNAME!!</i>",
 				"<i>!!USERNAME!!</i>",
 				"<i>!!PASSWORD!!</i>") . "<p>" .
+			sprintf(_("%s will be replaced by a link the new user can click on to create a new password"),
+				"<i>!!NEWPASSWORDLINK!!</i>") . "<p>" .
 			_("Leave this field blank to get the default message that can be translated into other languages.  The default message is:") . 
 			'<table><tr><td width="20%"></td><td width="60%"><tt>' .
 			str_replace("\n", "<br>", welcome_email(true)) . 

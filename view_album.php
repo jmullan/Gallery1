@@ -354,7 +354,7 @@ $adminOptions = array(
 									 'photosExist'),
 						 'action' => 'popup',
 						 'value' => doCommand('remake-thumbnail',
-								      array('set_albumName' => $galery->session->albumName, 'index' => 'all'),
+								      array('set_albumName' => $gallery->session->albumName, 'index' => 'all'),
 								      'view_album.php')),
 		      'properties'      => array('name' => _('properties'),
 						 'requirements' => array('canWriteToAlbum'),
