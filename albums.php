@@ -49,6 +49,7 @@ if ($gallery->session->albumListPage > $maxPages) {
 	$gallery->session->albumListPage = $maxPages;
 }
 
+$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">";
 $borderColor = $gallery->app->default["bordercolor"];
 
 $navigator["page"] = $gallery->session->albumListPage;
@@ -147,7 +148,7 @@ include($GALLERY_BASEDIR . "layout/navigator.inc");
 
 
 <!-- album table begin -->
-<table width=100% border=0 cellspacing=7>
+<table width=100% border=0 cellpadding=0 cellspacing=7>
 
 <?
 $start = ($gallery->session->albumListPage - 1) * $perPage + 1;
@@ -163,6 +164,18 @@ for ($i = $start; $i <= $end; $i++) {
 
   <!-- Begin Album Column Block -->
   <tr>
+  <td height="1"><?=$pixelImage?></td>
+  <td bgcolor="<?=$borderColor?>" height="1"><?=$pixelImage?></td>
+<?
+  if (!strcmp($gallery->app->showAlbumTree, "yes")) {
+?>
+  <td bgcolor="<?=$borderColor?>" height="1"><?=$pixelImage?></td>
+
+<?
+  }
+?>
+  </tr>
+  <tr>
   <!-- Begin Image Cell -->
   <td width=<?=$gallery->app->highlight_size?> align=center valign=middle>
   <a href=<?=$albumURL?>>
@@ -176,7 +189,6 @@ for ($i = $start; $i <= $end; $i++) {
   <!-- End Image Cell -->
   <!-- Begin Text Cell -->
   <td align=left valign=top>
-  <hr size=1>
   <span class="title">
   <a href=<?=$albumURL?>>
   <?= editField($gallery->album, "title", $edit) ?></a>
@@ -262,7 +274,6 @@ if (!strcmp($gallery->album->fields["public_comments"],"yes")) {
   </td>
 <? if (!strcmp($gallery->app->showAlbumTree, "yes")) { ?>
   <td valign=top>
-   <hr size=1>
    <?= printChildren($albumName); ?>
   </td>
 <? } ?>
