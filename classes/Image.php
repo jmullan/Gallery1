@@ -25,6 +25,10 @@ class Image {
 	var $width;
 	var $height;
 	var $resizedName;
+	var $thumb_x;
+	var $thumb_y;
+	var $thumb_width;
+	var $thumb_height;
 
 	function setFile($dir, $name, $type) {
 		$this->name = $name;
@@ -122,6 +126,25 @@ class Image {
 
 	function getDimensions() {
 		return array($this->width, $this->height);
+	}
+
+	function setThumbRectangle($x, $y, $w, $h) {
+		$this->thumb_x = $x;
+		$this->thumb_y = $y;
+		$this->thumb_width = $w;
+		$this->thumb_height = $h;
+	}
+
+	function getThumbRectangle() {
+		return array($this->thumb_x, $this->thumb_y,
+		             $this->thumb_width, $this->thumb_height);
+	}
+
+	#-- XXX since raw dims are not stored, we fetch them each time ---
+	#--     Yukkie!
+	function getRawDimensions($dir) {
+		list($w, $h) = getDimensions("$dir/$this->name.$this->type");
+		return array($w, $h);
 	}
 }	
 
