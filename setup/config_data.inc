@@ -309,7 +309,7 @@ $constants =  array_merge(
 	"movieThumbnail" => array(
 		"prompt" => _("Thumbnail image"),
 		"desc" => sprintf(_('The filesystem path to the thumbnail image to show for movies. E.g. %s'), '<i>/home/foo/thumbnail.jpg</i>'),
-		"value" => $GALLERY_DIR . "/images/movie.thumb.jpg",
+		"value" => GALLERY_BASE . "/images/movie.thumb.jpg",
 		"type" => "text",
 		"attrs" => array("size" => 50)
 	),
