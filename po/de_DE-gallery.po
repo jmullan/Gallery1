@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.3.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-31 16:58+0200\n"
+"POT-Creation-Date: 2003-08-03 18:11+0200\n"
 "PO-Revision-Date: 2003-07-03 16:00+0100\n"
 "Last-Translator: Jens Tkotz <jens@f2h9.de>\n"
 "Language-Team: German <jens@f2h9.de\n"
@@ -28,7 +28,7 @@ msgstr ""
 #: ../move_photo.php:28 ../progress_uploading.php:28 ../photo_owner.php:30
 #: ../publish_xp.php:28 ../publish_xp_docs.php:28 ../rename_album.php:28
 #: ../resize_photo.php:28 ../rotate_photo.php:28 ../save_photos.php:28
-#: ../search.php:28 ../setup/index.php:85 ../slideshow.php:28
+#: ../search.php:28 ../setup/index.php:81 ../slideshow.php:28
 #: ../slideshow_low.php:28 ../sort_album.php:28 ../upgrade_album.php:28
 #: ../user_preferences.php:28 ../util.php:28 ../view_album.php:28
 #: ../view_comments.php:31 ../view_photo.php:28
@@ -564,8 +564,8 @@ msgstr "Die Passw&ouml;rter stimmen nicht &uuml;berein !"
 
 #: ../create_user.php:74 ../edit_appearance.php:145 ../modify_user.php:110
 #: ../modify_user.php:113 ../setup/config_data.inc:326
-#: ../setup/config_data.inc:332 ../setup/config_data.inc:367
-#: ../setup/config_data.inc:390 ../setup/config_data.inc:396
+#: ../setup/config_data.inc:332 ../setup/config_data.inc:366
+#: ../setup/config_data.inc:389 ../setup/config_data.inc:395
 #: ../setup/config_data.inc:480 ../setup/config_data.inc:486
 #: ../setup/config_data.inc:503 ../setup/config_data.inc:508
 #: ../setup/config_data.inc:521 ../setup/config_data.inc:527
@@ -577,8 +577,8 @@ msgstr "Ja"
 
 #: ../create_user.php:74 ../edit_appearance.php:145 ../modify_user.php:110
 #: ../modify_user.php:113 ../setup/config_data.inc:326
-#: ../setup/config_data.inc:332 ../setup/config_data.inc:367
-#: ../setup/config_data.inc:390 ../setup/config_data.inc:396
+#: ../setup/config_data.inc:332 ../setup/config_data.inc:366
+#: ../setup/config_data.inc:389 ../setup/config_data.inc:395
 #: ../setup/config_data.inc:480 ../setup/config_data.inc:486
 #: ../setup/config_data.inc:503 ../setup/config_data.inc:508
 #: ../setup/config_data.inc:521 ../setup/config_data.inc:527
@@ -2080,11 +2080,11 @@ msgstr "Der absolute Pfad zum 'jhead' EXIF-Parser.  Dieses Feature ist optional.
 msgid "The filesystem path to the 'jpegtran' utility.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."
 msgstr "Der absolute Pfad zum 'jpegtran' Tool.  Dieses Feature ist optional. Zum Beispiel %s oder %s."
 
-#: ../setup/config_data.inc:255 ../setup/config_data.inc:345
-#: ../setup/config_data.inc:358 ../setup/config_data.inc:553
+#: ../setup/config_data.inc:255 ../setup/config_data.inc:346
+#: ../setup/config_data.inc:359 ../setup/config_data.inc:553
 #: ../setup/config_data.inc:560 ../setup/config_data.inc:567
-#: ../setup/config_data.inc:574 ../setup/functions.inc:675
-#: ../setup/functions.inc:703
+#: ../setup/config_data.inc:574 ../setup/functions.inc:677
+#: ../setup/functions.inc:705
 #, php-format
 msgid "this is new in version %s"
 msgstr "Dies ist neu seit Version %s"
@@ -2164,23 +2164,23 @@ msgstr "Welche Sprache m&ouml;chten Sie als default Sprache ?"
 msgid "This is what you will see as %s, and what users will see if no other preference is set."
 msgstr "Dies ist was sie als %s sehen, und was die Benutzer sehen werden, wenn keine anderen Einstellungen gemacht wurden."
 
-#: ../setup/config_data.inc:343
+#: ../setup/config_data.inc:344
 msgid "Multi language mode"
 msgstr "Multilanguage Modus"
 
-#: ../setup/config_data.inc:344
+#: ../setup/config_data.inc:345
 msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site"
 msgstr "Gallery hat hat drei Modi.  Diese betreffen die Sprache in der die Gallery angezeigt wird."
 
-#: ../setup/config_data.inc:348 ../setup/config_data.inc:351
+#: ../setup/config_data.inc:349
 msgid "Gallery is only displayed in one language"
 msgstr "Die Gallery wird nur in einer festen Sprache angezeigt"
 
-#: ../setup/config_data.inc:349
+#: ../setup/config_data.inc:350
 msgid "Gallery is displayed in the language the browser sends"
 msgstr "Die Gallery wird in der Sprache angezeigt die der Browser sendet."
 
-#: ../setup/config_data.inc:350
+#: ../setup/config_data.inc:351
 msgid "The User can choose the language via select Box."
 msgstr "Der Benutzer kann die Sprache selber ausw&auml;hlen mittels einer Select-Box."
 
@@ -2188,67 +2188,68 @@ msgstr "Der Benutzer kann die Sprache selber ausw&auml;hlen mittels einer Select
 msgid "Available languages in mode 3"
 msgstr "Verf&uuml;gbare Sprachen im Modues 3"
 
-#: ../setup/config_data.inc:357
+#: ../setup/config_data.inc:358
 msgid "These languages will be available as user choices in a drop down menu, if you have chosen language mode 3"
 msgstr "Diese Sprachen werden dem Benutzer in einem Dropdown Menu angeboten, falls Sie Modus 3 gew&auml;hlt haben."
 
-#: ../setup/config_data.inc:365 ../setup/config_data.inc:371
-#: ../setup/config_data.inc:379 ../setup/config_data.inc:388
-#: ../setup/config_data.inc:394 ../setup/config_data.inc:399
-#: ../setup/config_data.inc:406
+#: ../setup/config_data.inc:364 ../setup/config_data.inc:370
+#: ../setup/config_data.inc:378 ../setup/config_data.inc:387
+#: ../setup/config_data.inc:393 ../setup/config_data.inc:398
+#: ../setup/config_data.inc:405 ../setup/functions.inc:674
+#: ../setup/functions.inc:702
 msgid "Advanced"
 msgstr "Fortgeschritten"
 
-#: ../setup/config_data.inc:365
+#: ../setup/config_data.inc:364
 msgid "Cache EXIF data"
 msgstr "Cache EXIF Daten"
 
-#: ../setup/config_data.inc:366
+#: ../setup/config_data.inc:365
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow.  Set to <b>no</b> by default."
 msgstr "Es besteht die M&ouml;glichkeit, die EXIF Daten der JPEG Bilder zu cachen, nachdem Sie das erste Mal geladen wurden.  Der Nachteil ist, dass wenn Sie diese Daten cachen Ihre Album Daten sehr gross werden und die Betrachtung langsamer wird.  Wenn diese Daten nicht gecached werden, m&uuml;ssen Sie jedesmal wenn ein Benutzer die Eigenschaften des Photos sehen will geladen werden."
 
-#: ../setup/config_data.inc:371
+#: ../setup/config_data.inc:370
 msgid "JPEG Quality"
 msgstr "JPEG Qualit&auml;t"
 
-#: ../setup/config_data.inc:372
+#: ../setup/config_data.inc:371
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
 msgstr "Das JPEG Format w&auml;gt ab zwischen Dateigr&ouml;sse und Qualit&auml;t.  Die Gallery kann die Qualit&auml;t regeln, wenn Sie die JPEG Bilder verarbeiten (Gr&ouml;sse anpassen, Thumbnails erstellen oder rotieren). Je h&ouml;her die Qualit&auml;t umso gr&ouml;sser die Dateien.  Wie auch immer, in vielen F&auml;llen werden bei hoher Qualit&auml;t die Dateien gr&ouml;sser ohne sichtbaren Erfolg.  b>Beachten Sie</b>, dass die Ver&auml;nderung dieses Wertes sich nur auf zuk&uuml;nftige Ver&auml;nderungen an Bilder auswirkt."
 
-#: ../setup/config_data.inc:379
+#: ../setup/config_data.inc:378
 msgid "Time Limit"
 msgstr "Zeit Limit"
 
-#: ../setup/config_data.inc:380
+#: ../setup/config_data.inc:379
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr "Maximale Menge an Zeit in Sekunde, die eine einzige Operation dauern darf.  Wenn Sie eine Fehlermeldung bekommen : <b>Maximum execution time exceeded</b>, dann sollten Sie den Wert erh&ouml;hen.  Vorsicht ! Ein zu hoher Wert <i>k&ouml;nnte</i> dazu f&uuml;hen, dass Sie einen Prozess haben, der sehr lange nichts tut !  Der Default-Wert von 30 ist recht vern&uuml;nftig."
 
-#: ../setup/config_data.inc:389
+#: ../setup/config_data.inc:388
 msgid "Turn debug mode on so that you can diagnose problems?"
 msgstr "Debug Modues einschalten, damit Sie Ihre Probleme analysieren k&ouml;nnen ?"
 
-#: ../setup/config_data.inc:394
+#: ../setup/config_data.inc:393
 #, php-format
 msgid "Use %s?"
 msgstr "Benutze %s?"
 
-#: ../setup/config_data.inc:395
+#: ../setup/config_data.inc:394
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>"
 msgstr "Gallery benutzt ein locking System das sich flock() nennt und dazu dient Dateien gegen Besch&auml;digung im Multiuser Betrieb zu sch&uuml;tzen.  Dies wird nicht auf allen Plattformen unterst&uuml;tzt.  Falls Sie einen Fehler bekommen wie : <i>Could not acquire lock</i>, dann setzen Sie diesen Wert auf <i>nein</i>"
 
-#: ../setup/config_data.inc:399
+#: ../setup/config_data.inc:398
 msgid "Status code"
 msgstr "Status Code"
 
-#: ../setup/config_data.inc:400
+#: ../setup/config_data.inc:399
 msgid "The status code Gallery expects to see after a successful exec() call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr "Dies ist der Status Code, den Gallery nach einem erfolgreichem Aufruf von exec() erwartet. Gallery wird versuchen diesen Wert selbstst&auml;ndig zu ermitteln, daher sollten Sie diesen Wert nur &auml;ndern, wenn Sie Probleme haben."
 
-#: ../setup/config_data.inc:406
+#: ../setup/config_data.inc:405
 msgid "Session variable"
 msgstr "Session Variable"
 
-#: ../setup/config_data.inc:407
+#: ../setup/config_data.inc:406
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr "Diese Variable enth&auml;lt wird von der Gallery genutzt um Session Informationen zu speichern. &Auml;ndern Sie diesen Wert, wenn es zu Problemen zwischen Gallery und anderen PHP Applikationen auf Ihrer Webseite kommt."
 
@@ -2642,128 +2643,128 @@ msgstr "Speichere Einstellungen"
 msgid "Gallery Configuration"
 msgstr "Gallery Konfiguration"
 
-#: ../setup/index.php:42
+#: ../setup/index.php:38
 msgid "unknown"
 msgstr "Unbekannt"
 
-#: ../setup/functions.inc:168
+#: ../setup/functions.inc:170
 msgid "Missing value"
 msgstr "Fehlende Angabe"
 
-#: ../setup/functions.inc:186
+#: ../setup/functions.inc:188
 msgid "I can read your .htaccess file"
 msgstr ".htaccess Datei lesbar"
 
-#: ../setup/functions.inc:210 ../setup/functions.inc:230
+#: ../setup/functions.inc:212 ../setup/functions.inc:232
 #, php-format
 msgid "PHP v%s is OK"
 msgstr "PHP v%s ist OK"
 
-#: ../setup/functions.inc:242
+#: ../setup/functions.inc:244
 msgid "mod_rewrite is enabled"
 msgstr "mod_rewrite ist aktiv"
 
-#: ../setup/functions.inc:265
+#: ../setup/functions.inc:267
 msgid "Could not locate jhead"
 msgstr "Konnte jhead nicht finden"
 
-#: ../setup/functions.inc:267
+#: ../setup/functions.inc:269
 msgid "jhead binary located"
 msgstr "jhead Binary gefunden"
 
-#: ../setup/functions.inc:280
+#: ../setup/functions.inc:282
 msgid "NetPBM not being used in this installation"
 msgstr "NetPBM wird nicht in dieser Installation verwendet"
 
-#: ../setup/functions.inc:285 ../setup/functions.inc:370
+#: ../setup/functions.inc:287 ../setup/functions.inc:372
 msgid "Cannot verify this path (it's not in your open_basedir list)"
 msgstr "Der Pfad kann nicht gepr&uuml;ft werden (Er ist nicht in Ihrer open_basedir Liste"
 
-#: ../setup/functions.inc:334 ../setup/functions.inc:389
+#: ../setup/functions.inc:336 ../setup/functions.inc:391
 #, php-format
 msgid "Can't find %s!"
 msgstr "Konnte %s nicht finden"
 
-#: ../setup/functions.inc:339 ../setup/functions.inc:394
+#: ../setup/functions.inc:341 ../setup/functions.inc:396
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s ist nicht ausf&uuml;hrbar"
 
-#: ../setup/functions.inc:350
+#: ../setup/functions.inc:352
 #, php-format
 msgid "All %d NetPBM binaries located"
 msgstr "Alle %d NetPBM Binaries gefunden"
 
-#: ../setup/functions.inc:405
+#: ../setup/functions.inc:407
 #, php-format
 msgid "All %d ImageMagick binaries located"
 msgstr "Alle %d ImageMagick Binaries gefunden"
 
-#: ../setup/functions.inc:427
+#: ../setup/functions.inc:429
 msgid "Could not locate jpegtran"
 msgstr "Konnte jpegtran nicht finden"
 
-#: ../setup/functions.inc:429
+#: ../setup/functions.inc:431
 msgid "jpegtran binary located"
 msgstr "jpegtran Binary gefunden"
 
-#: ../setup/functions.inc:440
+#: ../setup/functions.inc:442
 msgid "gettext installed"
 msgstr "Gettext installiert"
 
-#: ../setup/functions.inc:488
+#: ../setup/functions.inc:490
 msgid "No languages found."
 msgstr "Keine Sprachen gefunden"
 
-#: ../setup/functions.inc:490
+#: ../setup/functions.inc:492
 msgid "Only US English version is available.  If you want other languages, download language packs from gallery site"
 msgstr "Nur englisch ist verf&uuml;gbar.  Falls sie andere Sprachen m&ouml;chten, laden Sie sich das entsprechende Sprachpaket herrunter."
 
-#: ../setup/functions.inc:492
+#: ../setup/functions.inc:494
 #, php-format
 msgid "%d languages found"
 msgstr "%d Sprachen gefunden"
 
-#: ../setup/functions.inc:508
+#: ../setup/functions.inc:510
 msgid "All gallery locales are available on this host"
 msgstr "Alle Gallery locales sind verf&uuml;gbar auf diesem host"
 
-#: ../setup/functions.inc:511
+#: ../setup/functions.inc:513
 #, php-format
 msgid "We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."
 msgstr "Es war nicht m&ouml;glich irgendwelche locales zu finden. Eventuell ist Ihr Server mit der %s Einschr&auml;nkung konfiguriert, wodurch die Gallery nicht in der Lage ist die locales zu finden. Leider wird dadurch das Datum nicht korrekt angezeigt. Es ist aber in Ordnung fortzufahren."
 
-#: ../setup/functions.inc:514
+#: ../setup/functions.inc:516
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "Nur die default locale dieses Systems ist verf&uuml;gbar, dadurch wird sich die Datumsanzeige nicht &auml;ndern f&uuml;r andere Sprachen."
 
-#: ../setup/functions.inc:517
+#: ../setup/functions.inc:519
 msgid "Dates in these languages may not be formatted properly, because the corresponding locales are missing:"
 msgstr "Das Datum in diesen Sprachen wird eventuell nicht korrekt angezeigt werden, da die entsprechenden locales nicht vorhanden sind:"
 
-#: ../setup/functions.inc:672
+#: ../setup/functions.inc:674
 #, php-format
 msgid "Possible locale problems with %s."
 msgstr "Es bestehen eventuell Locale Probleme mit %s:"
 
-#: ../setup/functions.inc:674
+#: ../setup/functions.inc:676
 msgid "This language is available, but there seems to be a locale problem.  Please select a locale for date format style."
 msgstr "Diese Sprachen sind vielleicht nutzbar, es scheint jedoch ein locale Problem zu geben. Bitte w&auml;hlen Sie ein locale f%uuml;r die Datumsanzeige aus."
 
-#: ../setup/functions.inc:700
+#: ../setup/functions.inc:702
 #, php-format
 msgid "Locale problems with %s."
 msgstr "Es besteht ein locale Problem mit %s."
 
-#: ../setup/functions.inc:702
+#: ../setup/functions.inc:704
 msgid "This language is available, but we can't identified a suitable locale for it.  Please select a locale for date format style."
 msgstr "Diese Sprache ist verf&uuml;gbar, jedoch wurde kein passendes locale gefunde. Bitte w&auml;hlen Sei ein passendes locale manuell."
 
-#: ../setup/functions.inc:737
+#: ../setup/functions.inc:739
 msgid "safe mode is off"
 msgstr "Safe Mode ist aus"
 
-#: ../setup/functions.inc:749
+#: ../setup/functions.inc:751
 msgid "magic quotes are off"
 msgstr "Magic Quotes sind aus"
 
@@ -2971,7 +2972,8 @@ msgid "Sort Album"
 msgstr "Sortiere Album"
 
 #: ../sort_album.php:67
-msgid "Select your sorting criteria for this album below?"
+#, fuzzy
+msgid "Select your sorting criteria for this album below"
 msgstr "W&auml;hlen Sie das Sortierkriterium"
 
 #: ../sort_album.php:69
@@ -3151,89 +3153,89 @@ msgstr "Es trat ein unbekannter Fehler beim Funktionsaufruf von %s auf"
 msgid "Unknown file type: %s"
 msgstr "Unbekannter Datei Typ : %s"
 
-#: ../util.php:1022
+#: ../util.php:1031
 #, php-format
 msgid "Can't write to %s."
 msgstr "Fehler beim Schreiben nach %s"
 
-#: ../util.php:1029
+#: ../util.php:1038
 #, php-format
 msgid "Can't read %s."
 msgstr "Fehler beim Lesen von %s"
 
-#: ../util.php:1120
+#: ../util.php:1130
 msgid "Select Album"
 msgstr "W&auml;hlen Sie das Album"
 
-#: ../util.php:1125
+#: ../util.php:1136
 msgid "Top Level"
 msgstr "Oberste Ebene"
 
-#: ../util.php:1145 ../util.php:1191
+#: ../util.php:1157 ../util.php:1204
 msgid "current location"
 msgstr "Aktuelles Album"
 
-#: ../util.php:1193
+#: ../util.php:1206
 msgid "self"
 msgstr "Selber"
 
-#: ../util.php:1361
+#: ../util.php:1374
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Konnte die locl Datei (%s) nicht &ouml;ffnen!"
 
-#: ../util.php:1366
+#: ../util.php:1379
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Could not acquire lock (%s)!"
 
-#: ../util.php:1449
+#: ../util.php:1462
 msgid "hit"
 msgstr "mal gesehen"
 
-#: ../util.php:1449
+#: ../util.php:1462
 msgid "hits"
 msgstr "mal gesehen"
 
-#: ../util.php:1449
+#: ../util.php:1462
 msgid "0 hits"
 msgstr "kein mal gesehen"
 
-#: ../util.php:1454
+#: ../util.php:1467
 msgid "Sub-albums"
 msgstr "Unter-Alben"
 
-#: ../util.php:1483
+#: ../util.php:1496
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "(ZIP Unterst&uuml;tzung nicht aktiviert)"
 
-#: ../util.php:1557
+#: ../util.php:1570
 #, php-format
 msgid "Adding %s"
 msgstr "F&uuml;ge hinzu: %s"
 
-#: ../util.php:1574
+#: ../util.php:1587
 #, php-format
 msgid "Resizing %s"
 msgstr "Ver&auml;ndere Gr&ouml;sse von: %s"
 
-#: ../util.php:1600
+#: ../util.php:1613
 #, php-format
 msgid "Photo auto-rotated %s&deg;"
 msgstr "Photo wurde automatisch um %s&deg; gedreht"
 
-#: ../util.php:1611
+#: ../util.php:1624
 #, php-format
 msgid "Error: %s!"
 msgstr "Fehler: %s !"
 
-#: ../util.php:1613
+#: ../util.php:1626
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Brauchen Sie Hilfe? Schauen Sie in die %s%s F.A.Q.%s"
 
-#: ../util.php:1619
+#: ../util.php:1632
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "&Uuml;berspringe%s (Kann %s Format nicht verarbeiten)"

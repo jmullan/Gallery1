@@ -5,7 +5,7 @@ esc=`echo -en "\033"`
 tab="${esc}[5G"
 clear
 
-if [ -z $1 ] || [ ! -z $1 ]  && [ -z $2 ] ; then
+if [ -z $1 ] ; then
 	echo -e "\nusage :"
 	echo "sh update_po_files.sh -all for all .po file"
 	echo -e "or sh update_po_files.sh -po <language_COUNTRY> for only one. e.g. sh update_po_files.sh -po de_DE\n" 

@@ -36,7 +36,7 @@ function getNLS () {
 	$nls['languages']['en_GB'] = 'English (UK)';
 	$nls['languages']['en_US'] = 'English (US)';
 	$nls['languages']['es_ES'] = 'Espa&ntilde;ol';
-	$nls['languages']['fr_CA'] = 'Fran&ccedil;ais';
+	$nls['languages']['fr_FR'] = 'Fran&ccedil;ais';
 	$nls['languages']['it_IT'] = 'Italiano';
 	$nls['languages']['he_IL'] = 'Hebrew';
 	$nls['languages']['is_IS'] = '&Iacute;slenska';
@@ -44,6 +44,7 @@ function getNLS () {
 	$nls['languages']['nl_NL'] = 'Nederlands';
 	$nls['languages']['nb_NO'] = 'Norsk bokm&aring;l';
 	$nls['languages']['pl_PL'] = 'Polski';
+	$nls['languages']['pt_PT'] = 'Portugu&ecirc;s';
 	$nls['languages']['ru_RU'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (Windows)';
 	$nls['languages']['ru_RU.koi8r'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (KOI8-R)';
 	$nls['languages']['sv_SE'] = 'Svenska';
@@ -55,13 +56,14 @@ function getNLS () {
 	$nls['aliases']['de'] = 'de_DE';
 	$nls['aliases']['en'] = 'en_US';
 	$nls['aliases']['es'] = 'es_ES';
-	$nls['aliases']['fr'] = 'fr_CA';
+	$nls['aliases']['fr'] = 'fr_FR';
 	$nls['aliases']['is'] = 'is_IS';
 	$nls['aliases']['it'] = 'it_IT';
 	$nls['aliases']['lt'] = 'lt_LT';
 	$nls['aliases']['nl'] = 'nl_NL';
 	$nls['aliases']['no'] = 'nb_NO';
-	$nls['aliases']['pl'] = 'pl_PL';
+	$nls['aliases']['pl'] = 'pl_PL'
+	$nls['aliases']['pt'] = 'pt_PT'
 	$nls['aliases']['ru'] = 'ru_RU';
 	$nls['aliases']['sv'] = 'sv_SE';
 	
@@ -81,13 +83,13 @@ function getNLS () {
 
 	$nls['aliases']['es_ES.ISO8859-1'] =    'es_ES' ;
 	
-	$nls['aliases']['fr_FR'] = 		'fr_CA' ;
-	$nls['aliases']['fr_BE'] = 		'fr_CA' ;
-	$nls['aliases']['fr_LU'] = 		'fr_CA' ;
-	$nls['aliases']['fr_CH'] = 		'fr_CA' ;
-	$nls['aliases']['french'] =		'fr_CA' ;
-	$nls['aliases']['fr_FR.ISO8859-1'] =    'fr_CA' ;
-	$nls['aliases']['fr_CA.ISO8859-1'] =    'fr_CA' ;
+	$nls['aliases']['fr_BE'] = 		'fr_FR' ;
+	$nls['aliases']['fr_CA'] = 		'fr_FR' ;
+	$nls['aliases']['fr_LU'] = 		'fr_FR' ;
+	$nls['aliases']['fr_CH'] = 		'fr_FR' ;
+	$nls['aliases']['french'] =		'fr_FR' ;
+	$nls['aliases']['fr_FR.ISO8859-1'] =    'fr_FR' ;
+	$nls['aliases']['fr_FR.ISO8859-1'] =    'fr_FR' ;
 	
 	$nls['aliases']['icelandic']=		'is_IS' ;
 	$nls['aliases']['is_IS.ISO8859-1'] =    'is_IS' ;
@@ -111,6 +113,9 @@ function getNLS () {
 	
 	$nls['aliases']['polish'] =		'pl_PL' ;
 	$nls['aliases']['pl_PL.ISO8859-2'] =    'pl_PL' ;
+
+	$nls['aliases']['portuguese'] =		'pt_PT' ;
+	$nls['aliases']['pt_PT.ISO8859-2'] =    'pt_PT' ;
 	
 	$nls['aliases']['russian'] =		'ru_RU';
 	//$nls['aliases']['russian'] =		'ru_RU.koi8r';

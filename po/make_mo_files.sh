@@ -52,7 +52,7 @@ if [ -z $1 ] ; then
         exit
 fi
 
-if [ $1 != "all" ] && [ ! -e "$2-gallery.po" ] ; then
+if [ $1 != "-all" ] && [ ! -e "$2-gallery.po" ] ; then
         echo -e "\n$2-gallery.po does not exist or your paramater was wrong"
         echo -e "\nusage :"
         echo -e "sh make_mo_files.sh -<language_COUNTRY> for only one. e.g. sh update_po_files.sh -po de_DE\n"
@@ -91,6 +91,7 @@ if [ $1 = "-all" ] ; then
 	all_po=$(ls ??_*-*.po)
 else
 #just use the one the user gave as parameter
+	echo "only $2"
 	all_po=$2-gallery.po
 fi
 
