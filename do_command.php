@@ -138,10 +138,8 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	        header("Location: " . makeAlbumUrl());
 	}
 } else if (!strcmp($cmd, "reset-album-clicks")) {
-		$myAlbum = new Album();
-		$myAlbum->load($albumName);
-	if ($gallery->user->canWriteToAlbum($myAlbum)) {
-		$myAlbum->resetAllClicks();
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		$gallery->album->resetAllClicks();
 		// this is a popup do dismiss and reload!
 		dismissAndReload();
 	} else {

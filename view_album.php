@@ -189,6 +189,11 @@ if ($gallery->album->fields["textcolor"]) {
 includeHtmlWrap("album.header");
 
 function showChoice($label, $target, $args) {
+    global $gallery;
+    
+    if (empty($args['set_albumName'])) {
+	$args['set_albumName'] = $gallery->session->albumName;
+    }
 	echo "<option value='" . makeGalleryUrl($target, $args) . "'>$label</option>";
 }
 
@@ -464,18 +469,18 @@ if ($numPhotos) {
 					if ($gallery->user->canChangeTextOfAlbum($myAlbum)) {	
 						showChoice("Edit Title", 
 							"edit_field.php", 
-							array("set_albumName" => $myAlbum->fields[name],
+							array("set_albumName" => $myAlbum->fields["name"],
 								"field" => "title")) . 
 						showChoice("Edit Description",
 							"edit_field.php",
-							array("set_albumName" => $myAlbum->fields[name],
+							array("set_albumName" => $myAlbum->fields["name"],
 								"field" => "description"));
 					}
 					if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum)) {
 						showChoice("Rename Album",
 							"rename_album.php",
-							array("set_albumName" => $myAlbum->fields[name],
-								"index" => $i));
+							array("set_albumName" => $myAlbum->fields["name"],
+							      "index" => $i));
 					}
 				} else {
 					showChoice("Edit Caption", "edit_caption.php", array("index" => $i));
@@ -490,10 +495,11 @@ if ($numPhotos) {
 					showChoice("Highlight $label", "highlight_photo.php", array("index" => $i));
 				}
 				if ($gallery->album->isAlbumName($i)) {
-					$albumName=$gallery->album->isAlbumName($i);
+				        $myAlbumName = $gallery->album->isAlbumName($i);
+
 					showChoice("Reset Counter", "do_command.php",
-						array("albumName" => $albumName,
-							"cmd" => "reset-album-clicks",
+						array("cmd" => "reset-album-clicks",
+						      "set_albumName" => $myAlbumName,
 							"return" => urlencode(makeGalleryUrl("view_album.php"))));
 				}
 				showChoice("Move $label", "move_photo.php", array("index" => $i));
