@@ -1323,25 +1323,40 @@ class Album {
 		}
 	}
 
-	function numVisibleItems($user) {
+	function numVisibleItems($user, $returnVisibleItems=false) {
+		if ($returnVisibleItems) {
+			$visibleItems = array();
+			$numVisibleItems = 0;
+		}
 		$numPhotos = $numAlbums = 0;
 		$canWrite = $user->canWriteToAlbum($this);
 		$numItems = $this->numPhotos(1);
 		for ($i = 1; $i <= $numItems; $i++) {
 			$photo = $this->getPhoto($i);
-			if ($canWrite || !$photo->isHidden()) {
+			if ($canWrite || !$photo->isHidden() || $this->isItemOwner($user->getUid(), $i)) {
 				if ($photo->isAlbum()) {
 					$album = new Album();
 					$album->load($photo->getAlbumName(), false);
 					if ($user->canReadAlbum($album)) {
 						$numAlbums++;
+						if ($returnVisibleItems) {
+							$visibleItems[++$numVisibleItems] = $i;
+						}
 					}
 				} else{
 					$numPhotos++;
+					if ($returnVisibleItems) {
+						$visibleItems[++$numVisibleItems] = $i;
+					}
 				}
 			}
 		}
-		return array($numPhotos, $numAlbums);
+
+		if ($returnVisibleItems) {
+			return array($numPhotos, $numAlbums, $visibleItems);
+		} else {
+			return array($numPhotos, $numAlbums);
+		}
 	}
 
 	function getIds($show_hidden=0) {
@@ -1364,7 +1379,7 @@ class Album {
 	function getPhotoIndex($id) {
 		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			$photo = $this->getPhoto($i);
-			if (!strcmp($photo->getPhotoId(), $id)) {
+			if ($photo->getPhotoId() == $id) {
 				return $i;
 			}
 		}
@@ -1544,6 +1559,11 @@ class Album {
 
 	function isMovie($id) {
 		$index = $this->getPhotoIndex($id);
+		$photo = $this->getPhoto($index);
+		return $photo->isMovie();
+	}
+
+	function isMovieByIndex($index) {
 		$photo = $this->getPhoto($index);
 		return $photo->isMovie();
 	}

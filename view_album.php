@@ -63,7 +63,8 @@ if (!isset($gallery->session->viewedAlbum[$albumName]) && !$gallery->session->of
 
 $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
-list ($numPhotos, $numAlbums) = $gallery->album->numVisibleItems($gallery->user);
+list ($numPhotos, $numAlbums, $visibleItems) = $gallery->album->numVisibleItems($gallery->user, 1);
+$numVisibleItems = $numPhotos + $numAlbums;
 $perPage = $rows * $cols;
 $maxPages = max(ceil(($numPhotos + $numAlbums) / $perPage), 1);
 
@@ -679,14 +680,12 @@ if ($numPhotos) {
 	$rowStart = 0;
 	$cnt = 0;
 	$form_pos=0; // counts number of images that have votes below, ie withou albums;
-	while ($cnt < $start) {
-		$rowStart = getNextPhoto($rowStart);
-		$cnt++;
-	}
+	$rowStart = $start;
 
 	while ($rowCount < $rows) {
 		/* Do the inline_albumthumb header row */
-		$i = $rowStart;
+		$visibleItemIndex = $rowStart;
+		$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		$j = 1;
 		$printTableRow = false;
 		if ($j <= $cols && $i <= $numPhotos) {
@@ -698,13 +697,15 @@ if ($numPhotos) {
 			includeHtmlWrap("inline_albumthumb.header");
 			echo("</td>");
 			$j++; 
-			$i = getNextPhoto($i);
+			$visibleItemIndex++;
+			$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		}
 		if ($printTableRow) {
 			echo('</tr>');
 		}
 
 		/* Do the picture row */
+		$visibleItemIndex = $rowStart;
 		$i = $rowStart;
 		$j = 1;
 		if ($printTableRow) {
@@ -737,7 +738,7 @@ if ($numPhotos) {
 			$gallery->html_wrap['imageHeight'] = $iHeight;
 
 			$id = $gallery->album->getPhotoId($i);
-			if ($gallery->album->isMovie($id)) {
+			if ($gallery->album->isMovieByIndex($i)) {
 				$gallery->html_wrap['imageTag'] = $gallery->album->getThumbnailTag($i);
 				$gallery->html_wrap['imageHref'] = $gallery->album->getPhotoPath($i);
 				$gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
@@ -813,13 +814,15 @@ if ($numPhotos) {
 
 			echo("</td>");
 			$j++; 
-			$i = getNextPhoto($i);
+			$visibleItemIndex++;
+			$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		}
 		if ($printTableRow) {
 			echo('</tr>');
 		}
 	
 		/* Now do the caption row */
+		$visibleItemIndex = $rowStart;
 		$i = $rowStart;
 		$j = 1;
 		if ($printTableRow) {
@@ -929,7 +932,7 @@ if ($numPhotos) {
 		       	}
 
 			if ($showAdminForm) {
-				if ($gallery->album->isMovie($id)) {
+				if ($gallery->album->isMovieByIndex($i)) {
 					$label = _("Movie");
 				} elseif ($gallery->album->isAlbum($i)) {
 					$label = _("Album");
@@ -954,7 +957,7 @@ if ($numPhotos) {
 			if ($gallery->album->getItemOwnerModify() && 
 			    $gallery->album->isItemOwner($gallery->user->getUid(), $i) && 
 			    !$gallery->album->isAlbum($i) &&
-			    !$gallery->album->isMovie($id) &&
+			    !$gallery->album->isMovieByIndex($i) &&
 			    !$gallery->user->canWriteToAlbum($gallery->album)) {
 				showChoice(_("Edit Thumbnail"), "edit_thumb.php", array("index" => $i));
 				showChoice(sprintf(_("Rotate/Flip %s"),$label), "rotate_photo.php", array("index" => $i));
@@ -991,14 +994,14 @@ if ($numPhotos) {
 				}
 			}
 			if ($gallery->user->canWriteToAlbum($gallery->album) && $showAdminForm) {
-				if (!$gallery->album->isMovie($id) && !$gallery->album->isAlbum($i)) {
+				if (!$gallery->album->isMovieByIndex($i) && !$gallery->album->getAlbumName($i)) {
 					showChoice(_("Edit Thumbnail"), "edit_thumb.php", array("index" => $i));
 					showChoice(sprintf(_("Rotate/Flip %s"), $label), "rotate_photo.php", array("index" => $i));
 					if (!empty($gallery->app->watermarkDir)) {
 						showChoice(_("Edit Watermark"), "edit_watermark.php", array("index" => $i));
 					}
 				}
-				if (!$gallery->album->isMovie($id)) {
+				if (!$gallery->album->isMovieByIndex($i)) {
 					 /* Show Highlight Album/Photo only when this i a photo, or Album has a highlight */
 					$nestedAlbum=$gallery->album->getNestedAlbum($i);
 					if (!$gallery->album->isAlbum($i) || $nestedAlbum->hasHighlight()) {
@@ -1066,13 +1069,15 @@ if ($numPhotos) {
 
 			echo('</td>');
 			$j++;
-			$i = getNextPhoto($i);
+			$visibleItemIndex++;
+			$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		}
 		if ($printTableRow) {
 			echo('</tr>');
 		}
 
 		/* Now do the inline_albumthumb footer row */
+		$visibleItemIndex = $rowStart;
 		$i = $rowStart;
 		$j = 1;
 		if ($printTableRow) {
@@ -1083,7 +1088,8 @@ if ($numPhotos) {
 			includeHtmlWrap("inline_albumthumb.footer");
 			echo("</td>");
 			$j++;
-			$i = getNextPhoto($i);
+			$visibleItemIndex++;
+			$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		}
 		if ($printTableRow) {
 			echo('</tr>');
