@@ -25,14 +25,14 @@
    To download an album from a password protected gallery using httrack
    </p><pre class="screen">
     httrack -%F "" -K0 "http://www.example.com/gallery/login.php?uname=admin&amp;gallerypassword=SECRET \
-     &amp;submit=Login&amp;set_offline=true" \
+     &amp;login=Login&amp;set_offline=true" \
      http://www.example.com/gallery/album04 http://www.example.com/albums
    </pre><p>
   </p><p>
    To download an album from a password protected gallery using wget
    </p><pre class="screen">
     wget --proxy=off --cookies=on \
-     'http://www.example.com/login.php?uname=UNAME&amp;gallerypassword=SECRET&amp;submit=Login' \
+     'http://www.example.com/login.php?uname=UNAME&amp;gallerypassword=SECRET&amp;login=Login' \
      'http://www.example.com/backup.php'
    </pre><p>
   </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
