@@ -91,11 +91,8 @@ class AlbumItem {
 	}
 
 	function isResized() {
-		if ($this->image->resizedName) {
-			return 1;
-		} else {
-			return 0;
-		}
+		$im = $this->image;
+		return $im->isResized();
 	}
 
 	function rotate($dir, $direction, $thumb_size) {
@@ -121,8 +118,18 @@ class AlbumItem {
 			$this->delete($dir);
 		}
 
+		$isResized = $this->isResized();
+
+		if ($isResized) {
+			list($w, $h) = $this->image->getDimensions();			
+		}
+
 		/* And rebuild the thumbnail */
 		$this->setPhoto($dir, $name, $type, $thumb_size);
+
+		if ($isResized) {
+			$this->image->resize($dir, max($h, $w));
+		}
 	}
 
 	function setPhoto($dir, $name, $tag, $thumb_size) {
