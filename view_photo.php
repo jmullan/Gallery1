@@ -226,12 +226,12 @@ includeHtmlWrap("photo.header");
 if (!$album->isMovie($index)) {
 	if ($user->canWriteToAlbum($album)) {
 		$adminCommands .= '<a href="#" onClick="'.
-			popup("$top/resize_photo.php?index=$index").'">[resize photo]</a>';
+			popup("$top/resize_photo.php?index=$index").return false'">[resize photo]</a>';
 	}
 
 	if ($user->canDeleteFromAlbum($album)) {
 		$adminCommands .= '<a href="#" onClick="'.
-			popup("$top/delete_photo.php?index=$index").'">[delete photo]</a>';
+			popup("$top/delete_photo.php?index=$index");return false'">[delete photo]</a>';
 	}
 
 	if (!strcmp($album->fields["use_fullOnly"], "yes")) {
@@ -384,7 +384,7 @@ list($imageWidth, $imageHeight) = $photo->image->getRawDimensions($album->getAlb
 <br><br>
 </td>
 <td align=right>
-<span class="caption"><a href=# onClick="document.sflyc4p.submit();">Order a Print of this Photo on Shutterfly</a></span>
+<span class="caption"><a href=# onClick="document.sflyc4p.submit();return false">Order a Print of this Photo on Shutterfly</a></span>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value=1>
   <input type=hidden name=protocol value="SFP,100">
