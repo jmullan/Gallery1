@@ -1925,14 +1925,4 @@ function Gallery() {
 	return "Gallery";
 }
 
-function alignment() {
-	global $gallery;
-	$nls = getNLS();
-	if (isset ($nls['align'][$gallery->language])) {
-		return $nls['align'][$gallery->language];
-	}
-	else {
-		return $nls['align']['default'];
-	}
-}
 ?>
