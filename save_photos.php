@@ -92,21 +92,13 @@ foreach ($urls as $url) {
 		fclose($od);
 	}
 	/* Make sure we delete this file when we're through... */
-	$temp_files[] = $file;
+	$temp_files[$file]++;
 
 	/* If this is an image or movie - add it to the processor array */
-	if (	!strcmp($tag, "jpg") ||
-		!strcmp($tag, "gif") ||
-		!strcmp($tag, "png") ||
-		!strcmp($tag, "avi") ||
-		!strcmp($tag, "mpg") ||
-		!strcmp($tag, "wmv") ||
-		!strcmp($tag, "zip")	) {
-
+	if (acceptableFormat($tag)) {
 		/* Tack it onto userfile */
 		$userfile_name[] = $name;
 		$userfile[] = $file;
-
 	} else {
 		/* Slurp the file */
 		msg("Parsing $url for images...");
@@ -134,7 +126,9 @@ foreach ($urls as $url) {
 		}
 
 		/* Perl Regex: Find all src= and href= links to valid file types */
-		if(preg_match_all ('/(src|href)="?([^" >]+\.(jpg|gif|png|mpg|avi|wmv))[" >]/is', $contents, $things, PREG_PATTERN_ORDER)) {
+		if(preg_match_all ('/(src|href)="?([^" >]+\.' .
+				acceptableFormatRegexp() .
+				')[" >]/is', $contents, $things, PREG_PATTERN_ORDER)) {
 
 			/* Add each unique link to an array we scan later */
 			foreach (array_unique($things[2]) as $thing) {
@@ -201,7 +195,7 @@ while (sizeof($userfile)) {
 }
 
 /* Clean up the temporary url file */
-foreach ($temp_files as $tf) {
+foreach ($temp_files as $tf => $junk) {
 	unlink($tf);
 }
 
