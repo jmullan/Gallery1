@@ -1,3 +1,16 @@
+2001-04-06  Bharat Mediratta  <bharat@menalto.com>
+
+	* Released 1.0!
+
+	* If you compile PHP with the --enable-sigchild option, every call to
+	  exec() will return a status of -1.  We now run some tests in the
+	  config wizard to detect this condition and keep track of the
+	  expected error status code.  If we guess wrong, you can always
+	  modify it yourself.
+
+	* Added a verify function to check to see if you provided the
+	  right path to your NetPBM binaries on the confirm page.
+
 2001-04-02  Bharat Mediratta  <bharat@menalto.com>
 
 	* Released 1.0b10
