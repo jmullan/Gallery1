@@ -194,6 +194,8 @@ class UserDB {
 			return "Username must contain only letters or digits";
 		}
 
+		$nobody = $this->getNobody();
+		$everybody = $this->getEverybody();
 		if (!strcmp($username, $nobody->getUsername()) ||
 		    !strcmp($username, $everybody->getUsername())) {
 			return "<i>$username</i> is reserved and cannot be used.";
