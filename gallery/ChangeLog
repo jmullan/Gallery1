@@ -1,3 +1,32 @@
+2001-04-15  Bharat Mediratta  <bharat@menalto.com>
+
+	* Bumped version to 1.01
+
+	* Fixed a bug where a Gallery would show up as "Empty!" in the 
+	  albums page if all its photos are hidden.  I've adjusted this so 
+	  that you still see the highlight photo (even if its hidden). 
+
+	* Check if the item is a movie by id as opposed to index.  The
+	  index is unreliable because it will vary if there are hidden
+	  items in the album.
+
+	* Handle movies correctly in view_photo.  From the view_album
+	  page, we don't typically let you get to the view_photo page on a
+	  movie, but if you're navigating forward/ackwards in the album on
+	  the view_photo page already, we should show the movie.
+
+	* Partial fix for bug 412842; we were not correctly copying the
+	  movie jpg into the album when adding movies.
+
+	* Partially closed a security hole by creating a .htaccess file in
+	  the .user directory that prevents people from downloading user
+	  db records.
+
+	* Fixed bug 416033: Hidden photos can be viewed
+
+	* We had an unacknowledged dependency on "pnmcut".  It's now 
+	  made mandatory in the config wizard.
+
 2001-04-06  Bharat Mediratta  <bharat@menalto.com>
 
 	* Released 1.0!
