@@ -1340,21 +1340,19 @@ class Album {
 		$numItems = $this->numPhotos(1);
 		for ($i = 1; $i <= $numItems; $i++) {
 			$photo = $this->getPhoto($i);
-			if ($canWrite || !$photo->isHidden() || $this->isItemOwner($uuid, $i)) {
-				if ($photo->isAlbum()) {
-					$album = new Album();
-					$album->load($photo->getAlbumName(), false);
-					if ($user->canReadAlbum($album)) {
-						$numAlbums++;
-						if ($returnVisibleItems) {
-							$visibleItems[++$numVisibleItems] = $i;
-						}
-					}
-				} else{
-					$numPhotos++;
+			if ($photo->isAlbum()) {
+				$album = new Album();
+				$album->load($photo->getAlbumName(), false);
+				if (($user->canReadAlbum($album) && !$album->isHiddenRecurse()) || $user->canWriteToAlbum($album)) {
+					$numAlbums++;
 					if ($returnVisibleItems) {
 						$visibleItems[++$numVisibleItems] = $i;
 					}
+				}
+			} elseif ($canWrite || !$photo->isHidden() || $this->isItemOwner($uuid, $i)) {
+				$numPhotos++;
+				if ($returnVisibleItems) {
+					$visibleItems[++$numVisibleItems] = $i;
 				}
 			}
 		}
