@@ -536,7 +536,7 @@ function check_gallery_version()
 
 	$link="<a href=\"$gallery->url\">$gallery->url</a>";
 
-	$visit=sprintf(_("Visit %s to upgrade to the latest version."), $link);
+	$visit=sprintf(_("Visit %s to download the latest version."), $link);
 
 	if ($age > 365) {
 		$fail["too_old"] = sprintf(_("Your installation of gallery is %.1f years old."), $age/365). "  " . $visit; 
@@ -548,7 +548,7 @@ function check_gallery_version()
 		$success["ok"] = sprintf(_("Your installation of gallery is %.0d months old.  You can visit %s to see if there's a more recent version."),
 				$age/30, $link);
 	} else if ($age > 14 && $beta) {
-		$fail["too_old"] = sprintf(_("Your installation of gallery looks like a beta that is %.0d days old.  There's almost certainly a more recent version.  Visit %s to upgrade to the latest version."), 
+		$fail["too_old"] = sprintf(_("Your installation of gallery looks like a beta that is %.0d days old.  There's almost certainly a more recent version.  Visit %s to download the latest version."), 
 				$age, $link);
 	} else if ($beta) {
 		$success["ok"] = sprintf(_("You are using a beta version that is %.0d days old.  Please visit %s regularly, to ensure you have the latest version."),
