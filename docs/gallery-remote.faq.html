@@ -1,0 +1,56 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Frequently Asked Questions</title><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Gallery Manual"><link rel="up" href="gallery-remote.html" title="Chapter 4. Gallery Remote"><link rel="previous" href="gallery-remote.protocol.html" title="Gallery Remote Protocol"><link rel="next" href="gallery2-devguide.html" title="Chapter 5. Gallery 2.x Developer's Guide"><link rel="stylesheet" href="html.css"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Frequently Asked Questions</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="gallery-remote.protocol.html">Prev</a> </td><th width="60%" align="center">Chapter 4. Gallery Remote</th><td width="20%" align="right"> <a accesskey="n" href="gallery2-devguide.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gallery-remote.faq"></a>Frequently Asked Questions</h2></div></div><div></div></div><div class="qandaset"><table border="0" summary="Q and A Set"><col align="left" width="1%"><tbody><tr class="question"><td align="left" valign="top"><a name="gallery-remote.faq.1"></a><a name="id2920837"></a><b>1. </b></td><td align="left" valign="top"><p>
+How do I upgrade Gallery Remote?
+				</p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><div class="orderedlist"><ol type="1"><li><p>
+Download the newest zip patch for Gallery Remote from <a href="http://jpmullan.com/galleryupdates/" target="_top">the nightly site</a>.
+						</p></li><li><p>
+Extract the zip file on top of your existing GR install (you need to have previously installed a full
+version of Gallery Remote, and overwrite all files.
+							<span class="emphasis"><em>Remember to stop GR before doing this!</em></span>
+						</p></li><li><p>
+Restart Gallery Remote.
+						</p></li></ol></div></td></tr><tr class="question"><td align="left" valign="top"><a name="gallery-remote.faq.2"></a><a name="id2921294"></a><b>2. </b></td><td align="left" valign="top"><p>
+I found a bug, what do I do?
+				</p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><div class="orderedlist"><ol type="1"><li><p>
+Before you report bugs against Gallery Remote, please take some time to verify that what you
+were trying to do in Gallery Remote can be performed using the web interface in Gallery.
+						</p><p>
+A lot of the bugs reported against GR are actually installation problems that
+affect Gallery even when Gallery Remote is not involved: upload permissions,
+PHP settings, etc.
+						</p></li><li><p>
+With any bug report, you need to provide the following info:
+						</p><div class="orderedlist"><ol type="a"><li><p>
+the version of the Gallery installation you were trying to interact with.
+								</p></li><li><p>
+the version of the Gallery Remote installation, as well as the VM and OS under
+which Gallery Remote was being used.
+								</p></li><li><p>
+if the bug is that Gallery Remote doesn't do what's expected: it doesn't log you
+on, images aren't uploaded right, you get wierd error messages, please also attach
+the log or a portion thereof to the bug report.
+								</p></li></ol></div></li></ol></div></td></tr><tr class="question"><td align="left" valign="top"><a name="gallery-remote.faq.3"></a><a name="id2921396"></a><b>3. </b></td><td align="left" valign="top"><p>
+Log, what log?
+				</p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
+If you encounter a problem, the logging system may be some help, and we will definitely request it
+if you ask for support.  By default, GR writes most log information to the file <tt class="filename">log.txt
+</tt> in the directory where you installed GR. If you want to see more detailed information
+there, you can set the Log level to "Detailed, very verbose" in the Gallery Remote preferences dialog.
+				</p><p>
+If you would like to see the log unfold as you use the application rather than having
+it go to a file, you should change the following:
+					</p><div class="itemizedlist"><ul type="disc"><li><p>
+In file <tt class="filename">GalleryRemote.properties</tt> (this is the preferences file, explained in the
+<a href="gallery-remote.using.html#gallery-remote.using.preferences" title="Preferences">Preferences section</a>), set
+								</p><pre class="screen">
+toSysOut=true
+								</pre><p>
+							</p></li><li><p>
+In file <tt class="filename">Gallery Remote.lax</tt> (in the directory where Gallery Remote was installed),
+set:
+								</p><pre class="screen">
+lax.stdout.redirect=console
+								</pre><p>
+							</p></li></ul></div><p>
+				</p><p>
+Caution: Be careful before posting your log to forums or sending it to anyone: your password is printed in clear text in several places.
+				</p></td></tr></tbody></table></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="gallery-remote.protocol.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gallery-remote.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="gallery2-devguide.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Gallery Remote Protocol </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 5. Gallery 2.x Developer's Guide</td></tr></table></div></body></html>
