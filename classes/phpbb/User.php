@@ -18,13 +18,15 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-// This class is written for phpBB2 and provides full integration of the phpbb users database
-// Instead of using or duplicating memberships manually in Gallery.
-
-// Gallery -> phpBB2 integration ver. 1.4.1 (www.snailsource.com)
-
-// This file was modified for official integration into Gallery 1.4.2 by
-// Jens Tkotz
+/* This class is written for phpBB2 and provides full integration of the phpbb users database
+** Instead of using or duplicating memberships manually in Gallery.
+**
+** Gallery <-> phpBB2 integration ver. (www.snailsource.com)
+** Written by Martin Smallridge       <info@snailsource.com>
+**
+** This file was modified for official integration into Gallery 1.4.3 by
+** Jens Tkotz
+*/
 
 class phpbb_User extends Abstract_User {
 	var $db;
