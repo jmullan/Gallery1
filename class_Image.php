@@ -103,6 +103,14 @@ class Image {
 		}
 	}
 
+	function isResized() {
+		if ($this->resizedName) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
 	function setDimensions($w, $h) {
 		$this->width = $w;
 		$this->height = $h;
