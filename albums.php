@@ -294,7 +294,7 @@ for ($i = $start; $i <= $end; $i++) {
   <td height="1"><?php echo $pixelImage ?></td>
   <td height="1"><?php echo $pixelImage ?></td>
 <?php
-  if (!strcmp($gallery->app->showAlbumTree, "yes")) {
+  if (isset($gallery->app->albumTreeDepth) && $gallery->app->albumTreeDepth >0) {
 ?>
   <td height="1"><?php echo $pixelImage ?></td>
 
@@ -421,7 +421,7 @@ if($gallery->app->comments_enabled == 'yes') {
 
   </span>
   </td>
-<?php if (!strcmp($gallery->app->showAlbumTree, "yes")) { ?>
+<?php  if (isset($gallery->app->albumTreeDepth) && $gallery->app->albumTreeDepth >0) { ?>
   <td align="left" valign="top" class="albumdesc">
    <?php echo printChildren($albumName); ?>
   </td>
