@@ -461,7 +461,7 @@ function getFile($fname, $legacy=false) {
 function dismissAndReload() {
 	if (isDebugging()) {
 		echo "\n<body onLoad='opener.location.reload();'>\n";
-		echo '<p align="center" class="emphasis">';
+		echo '<p align="center" class="error">';
 		echo _("Not closing this window because debug mode is on") ;
 		echo "\n<hr>\n</p>";
 		echo "\n</body>";

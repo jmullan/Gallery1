@@ -289,7 +289,7 @@ if ($fitToWindow) {
 }
 ?>
 <!-- Top Nav Bar -->
-<form name="admin_form" action="view_photos.php">
+<form name="adminform" action="view_photos.php">
 <table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
 
 <tr>
@@ -574,7 +574,7 @@ includeHtmlWrap("inline_photo.frame");
 ?>
 <div class="pview" align="center">
 <!-- caption -->
-<p align="center" class="modcaption"><?php echo editCaption($gallery->album, $index) ?>
+<p align="center" class="pcaption"><?php echo editCaption($gallery->album, $index) ?>
 
 <!-- Custom Fields -->
 <?php

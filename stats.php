@@ -1428,7 +1428,7 @@ if ( $addLinksPos == 'oncaptionline' ) {
 
 if ( $showCaption && $showGrid ) {
 	echo '<table width="' . $statsAlbum->fields['thumb_size'] . '" border="0" cellpadding="0" cellspacing="4">';
-	echo '<tr><td class="modcaption">';
+	echo '<tr><td class="pcaption">';
 
 	$statsCaption = $statsAlbum->getCaption($photoIndex);
 	$statsCaption .= $statsAlbum->getCaptionName($photoIndex);

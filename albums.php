@@ -387,7 +387,7 @@ for ($i = $start; $i <= $end; $i++) {
 	echo pluralize_n2(ngettext("This album contains 1 item.", "This album contains %d items.", $visibleItems), $visibleItems);
 	if (!($gallery->album->fields["display_clicks"] == "no") && !$gallery->session->offline) {
 ?>
-   <br><br><?php
+   <br><?php
 	$clickCount=$gallery->album->getClicks();
 	echo sprintf(_("This album has been viewed %s since %s."),
 		pluralize_n2(ngettext("1 time", "%d times", $clickCount), $clickCount, _("0 times")),

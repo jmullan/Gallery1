@@ -67,9 +67,36 @@ TD, P
 	{ 
 	  font-size: 10px; 
 	}
-.modcaption  /* modifies background for caption text to reside */
+.modcaption  /* modifies background for caption text to reside - view_album */
 	{
 	  font-size: 10px; 
+	}
+.pcaption  /* modifies background for caption text to reside - view_photo*/
+	{
+	  font-size: 10px; 
+	}
+
+.vafloat /* float for view album - text */
+ 	{
+ 	   float: none;
+ 	}
+ 
+.vafloat2 /* float for view album - images */
+ 	{
+ 	 float: none;
+	}
+ 
+.vasummary /* controls the view of Album summary */
+	{
+        font-weight:bold;
+        padding:2px;
+        margin-top:10px;
+        width:80%;
+	}
+.commentIndication 
+	{
+	   color: red;
+	   font-size: 12px;
 	}
 .error                          /* all error text */
 	{ 
@@ -149,7 +176,8 @@ TD, P
 	  font-size: 10px;
 	}
 
-.viewcounter {
+.viewcounter 
+	{
 	  font-size: 10px;
 	}
 
@@ -166,13 +194,18 @@ TD, P
 	  font-weight: bold; 
 	}
 
-.adminform
+.adminform /* defines form for drop down menu */
 	{ 
 	  font-size: 10px; 
 	  font-weight: bold; 
 	}
 .search                          /* used in search text */
 	{ 
+	  font-size: 10px; 
+	  font-weight: bold; 
+	}
+.searchform /* defines form for search */
+	{
 	  font-size: 10px; 
 	  font-weight: bold; 
 	}
@@ -183,7 +216,7 @@ TD, P
 .modnavboxtop  /*navagation bar top of screen where admin buttons show*/
 	{
  
-        }
+     }
 .modnavboxmid  /*navagation bar middle where the link for the albums show*/
 	{
 
@@ -193,91 +226,99 @@ TD, P
 	}
 
 
-.pview /* brackets both the image and all text in one frame */
-{
-	margin:7px;
-	padding: 7px;
- }
-
-.pcaption /* brackets all text below photo */
-{ 
-	padding:2px;
-	margin-top:2px;
- }
-
-.presults /* text for poll results under photo  */
- {
- }
-
-.vatable /* width of the div set for all photo sets - view albums  */
- {
- }
-.vathumbs /* full background bracket for images and text - veiw albums  */
- {
- }
- 
-.vafloat /* float for view album - text */
- {
- float: none;
- }
- 
-.vafloat2 /* float for view album - images */
- {
-  float: none;
- }
- 
-.vasummary /* controls the view of Album summary */
-{
-        font-weight:bold;
-        padding:2px;
-        margin-top:10px;
-        width:80%;
-}
-
 .popupbody  /* controls the background of popup. */ 
- {
-   margin: 25px;
-   background-color: #808080;
- }
-
+	 {
+ 		margin: 25px;
+  		background-color: #808080;
+	 }
+	
 .popuphead  /* controls the title and background */ 
- {
-   text-align:center;
-   font-size: 14px;
-   font-weight: bold;
-   line-height: 150%;
-   color: #202020;
-   padding-left: 5px;
-   border-top: 1px solid #000000;
-   border-left: 1px solid #000000;
-   border-right: 1px solid #000000;
-   background-color: #c0c0c0;
- }
+	 {
+	   text-align:center;
+	   font-size: 14px;
+	   font-weight: bold;
+	   line-height: 150%;
+	   color: #202020;
+	   padding-left: 5px;
+	   border-top: 1px solid #000000;
+	   border-left: 1px solid #000000;
+	   border-right: 1px solid #000000;
+	   background-color: #c0c0c0;
+ 	}
 
 .popup /* controls the main text and message body */
- {
-   text-align:center;
-   font-size: 12px;
-   font-weight: none;
-   color: #202020;
-   padding: 5px;
-   border: 1px solid #000000;
-   background-color: #ffffff;
-   margin-bottom: 10px;  
- }
+	 {
+	   text-align:center;
+	   font-size: 12px;
+	   font-weight: none;
+	   color: #202020;
+	   padding: 5px;
+	   border: 1px solid #000000;
+	   background-color: #ffffff;
+	   margin-bottom: 10px;  
+	 }
 
 .popupform /* controls form textarea */
- {
-   font-size: 12px;
-   font-weight: none;
-   line-height: 120%;
-   color: #202020;
-   padding: 2px;
-   border: 1px solid #000000;
-   background-color: #c0c0c0;
- }
+	 {
+	   font-size: 12px;
+	   font-weight: none;
+	   line-height: 120%;
+	   color: #202020;
+	   padding: 2px;
+	   border: 1px solid #000000;
+	   background-color: #c0c0c0;
+	 }
 
-.commentIndication {
-	color: red;
-	font-size: 12px;
-}
+/* CSS ID for the add photos popup */
+
+#container
+	{
+		padding: 2px;
+	}
+
+#tabnav
+	{
+		height: 20px;
+		margin: 0;
+		padding-left: 5px;
+		background: url(images/tab_bottom.gif) repeat-x bottom;
+	}
+
+#tabnav li
+	{
+		margin: 0; 
+		padding: 0;
+  		display: inline;
+  		list-style-type: none;
+  	}
+	
+#tabnav a:link, #tabnav a:visited
+	{
+		float: left;
+		font-size: 11px;
+		line-height: 14px;
+		font-weight: bold;
+		padding: 2px 5px 2px 5px;
+		margin-right: 4px;
+		text-decoration: none;
+		color: #666;
+	        border-width:1px;
+	        border-style: solid; border-color: #000000;
+		-Moz-Border-Radius-TopLeft: 20px;
+		-Moz-Border-Radius-TopRight: 20px;
+	}
+
+#tabnav a:link.active, #tabnav a:visited.active
+	{
+	  background-color: #FCFCF3 ; padding:2px 5px 2px 5px; font-size:12px;
+	  margin-right: 4px;
+	  border-style: solid; border-color: #000000;
+	  -Moz-Border-Radius-TopLeft: 20px;
+	  -Moz-Border-Radius-TopRight: 20px;
+	  color:#000000;
+	}
+
+#tabnav a:hover
+	{
+		color: #444
+	}

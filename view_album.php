@@ -773,6 +773,7 @@ if ($numPhotos) {
 		echo "<div style=\"width: {$divCellWidth}px;\"  align=\"center\" class=\"vafloat\">\n";
 		/* Do the clickable-dimensions row */
 		if (!strcmp($gallery->album->fields['showDimensions'], 'yes')) {
+			echo '<span class="dim">';
 				$photo    = $gallery->album->getPhoto($i);
 				$image    = $photo->image;
 				if (!empty($image) && !$photo->isMovie()) {
@@ -804,6 +805,7 @@ if ($numPhotos) {
 				} else {
 					echo "&nbsp;";
 				}
+				echo '</span>';
 				
 		}
 				
@@ -1084,9 +1086,9 @@ if ($numPhotos) {
 
 	<td colspan="<?php echo $rows ?>" align="center" class="headbox">
 <?php if ($gallery->user->canAddToAlbum($gallery->album) && !$gallery->session->offline) { ?>
-	<span class="head"><?php echo _("Hey! Add some photos.") ?></span>
+	<?php echo _("Hey! Add some photos.") ?>
 <?php } else { ?>
-	<span class="head"><?php echo _("This album is empty.") ?></span>
+	<?php echo _("This album is empty.") ?>
 <?php } ?>
 	</td>
 	</tr>

@@ -57,7 +57,7 @@ if ($searchstring) {
 	<table width="100%" border="0" cellspacing="0">
 	<tr>
 		<td valign="middle" align="right"><span class="admin"><?php echo _("Search Again") ?>: </span>
-			<input style="font-size:10px;" type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
+			<input class="searchform" type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
 		</td>
 	</tr>
 	</table>
@@ -154,7 +154,7 @@ if ($searchstring) {
 				continue;
 			}
 
-			$searchCaption = _("Caption:") . $searchAlbum->getCaption($j);
+			$searchCaption = _("Caption: ") . $searchAlbum->getCaption($j);
 			$searchCaption .= $searchAlbum->getCaptionName($j);
 			$searchKeywords = $searchAlbum->getKeywords($j);
 
@@ -277,7 +277,7 @@ else {
 	<table width="100%" border="0" cellspacing="0">
 	<tr>
 		<td valign="middle" align="left">
-			<input type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
+			<input class="searchform" type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
 			<input type="submit" name="go" value="<?php echo _("Go") ?>!">
 		</td>
 	</tr>
