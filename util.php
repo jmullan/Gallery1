@@ -3426,7 +3426,7 @@ function genGUID() {
 	return md5(uniqid(mt_rand(), true));
 }
 
-function calcVAdivDimension($frame, $iHeight, $iWidth, $borderWidth) {
+function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 	global $gallery;
 	$thumbsize= $gallery->album->fields["thumb_size"];
 
@@ -3443,7 +3443,7 @@ function calcVAdivDimension($frame, $iHeight, $iWidth, $borderWidth) {
 		break;
 	
 		case "solid":
-			$divCellWidth = $thumbsize + $borderWidth +3;
+			$divCellWidth = $thumbsize + $borderwidth +3;
 			$divCellAdd =  $borderwidth +3;
 		break;
                   
