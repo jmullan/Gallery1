@@ -22,12 +22,14 @@
 ?>
 <?php
 // Hack prevention.
-$sensitiveList = array("gallery", "GALLERY_EMBEDDED_INSIDE", "GALLERY_EMBEDDED_INSIDE_TYPE");
+$sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'mosConfig_host', 'dbhost');
 foreach ($sensitiveList as $sensitive) {
 	if (!empty($HTTP_GET_VARS[$sensitive]) ||
 			!empty($HTTP_POST_VARS[$sensitive]) ||
 			!empty($HTTP_COOKIE_VARS[$sensitive]) ||
-			!empty($HTTP_POST_FILES[$sensitive])) {
+			!empty($HTTP_POST_FILES[$sensitive]) ||
+			!empty($_REQUEST[$sensitive]) || 
+			!empty($_FILES[$sensitive])) {
 		print _("Security violation") ."\n";
 		exit;
 	}
@@ -70,7 +72,7 @@ if (!$gallery->register_globals) {
      * appending "?HTTP_POST_VARS[gallery]=xxx" to the url would cause extract
      * to overwrite HTTP_POST_VARS when it extracts HTTP_GET_VARS
      */
-    $scrubList = array('HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_COOKIE_VARS', 'HTTP_POST_FILES');
+    $scrubList = array('HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_COOKIE_VARS', 'HTTP_POST_FILES', 'GLOBALS');
     if (function_exists("version_compare") && version_compare(phpversion(), "4.1.0", ">=")) {
 	array_push($scrubList, "_GET", "_POST", "_COOKIE", "_FILES", "_REQUEST");
     }
@@ -82,19 +84,19 @@ if (!$gallery->register_globals) {
     }
     
     if (is_array($_REQUEST)) {
-	extract($_REQUEST);
+	extract($_REQUEST, EXTR_SKIP);
     }
     else {
         if (is_array($HTTP_GET_VARS)) {
-	    extract($HTTP_GET_VARS);
+	    extract($HTTP_GET_VARS, EXTR_SKIP);
 	}
 
 	if (is_array($HTTP_POST_VARS)) {
-            extract($HTTP_POST_VARS);
+            extract($HTTP_POST_VARS, EXTR_SKIP);
 	}
 
 	if (is_array($HTTP_COOKIE_VARS)) {
-            extract($HTTP_COOKIE_VARS);
+            extract($HTTP_COOKIE_VARS, EXTR_SKIP);
 	}
     }
 

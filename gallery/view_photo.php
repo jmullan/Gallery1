@@ -445,7 +445,6 @@ if (!$gallery->album->isMovie($id)) {
 				$adminCommands .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" . sprintf(_('print this photo with %s'), $fullName[$name]) . ']</a>';
 			}
 		}
-	}
 ?>
 <script language="javascript1.2" type="text/JavaScript">
 	 function doPrintService(input) {
@@ -472,6 +471,7 @@ if (!$gallery->album->isMovie($id)) {
 	}
 </script>
 <?php
+	}
 }
 includeLayout('navtablebegin.inc');
 if ($adminCommands) {
