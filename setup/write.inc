@@ -78,7 +78,7 @@ if ($old_htaccess) {
 $outfile = "$GALLERY_DIR/.htaccess";
 if ($fd = @fs_fopen($outfile, "w")) {
        	fwrite($fd, "$start_string\n");
-       	fwrite($fd, "# (Automatically generated.  Do no edit this section)\n");
+       	fwrite($fd, "# (Automatically generated.  Do not edit this section)\n");
        	fwrite($fd, "# Note: still under development, so format may change.\n");
        	fwrite($fd, "# If you edit this file, make a backup before runnng the Config. Wizard.\n\n");
        	fclose($fd);
@@ -117,15 +117,17 @@ if ($GALLERY_REWRITE_OK) {
 			// If the gallery is in the root directory, then we need to
 			// make sure the .htaccess doesn't end up with "RewriteBase \/".
 			if ($GALLERY_URL === '\\' && ereg('RewriteBase', $line)) {
-			continue;
+				continue;
 			}
-		eval("\$line = \"$line\";");
-		fwrite($fd, $line);
+	                if (!ereg('^#', $line)) { 		
+				eval("\$line = \"$line\";");
+				fwrite($fd, $line);
+			}
 		}
-	fclose($fd);
-		} else {
-			fail($outfile);
-			return;
+		fclose($fd);
+	} else {
+		fail($outfile);
+		return;
 	}
 }
 
