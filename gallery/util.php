@@ -2370,30 +2370,38 @@ function initLanguage() {
 	}
 
 	/**
-	 ** We have now 2+1 Ways. PostNuke, phpNuke or not Nuke
+	 ** We have now several Ways. Embedded (PostNuke, phpNuke, phpBb2) or not embedded
 	 ** Now we (try) to do the language settings
 	 ** 
-	 ** Note: ML_mode is only used when not in *Nuke
+	 ** Note: ML_mode is only used when not embedded
 	 **/
 
-	if (isset($GALLERY_EMBEDDED_INSIDE)) {
-		//We're in NUKE";
+	if (isset($GALLERY_EMBEDDED_INSIDE_TYPE)) {
+		/* Gallery is embedded */
+
+		/* Gallery can set nukes language, for phpBB2 this is not possible.
+		** So gallery will always use phpBB2's language.
+		*/
+
 		if (!empty($newlang)) {
-			// if there was a new language given, use it
+			// if there was a new language given, use it for nuke
 			$gallery->nuke_language=$newlang;
 		} else {
-			//No new language. Lets see which Nuke we use and look for a language
-			if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
-				/* postnuke */
+			/* No new language.
+			** Lets see in which Environment were are and look for a language.
+			*/
+			
+			switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
+			case 'postnuke':
 				if (isset($HTTP_SESSION_VARS['PNSVlang'])) {
 					$gallery->nuke_language=$HTTP_SESSION_VARS['PNSVlang'];
 				}
-			}
-			else {
-				/* phpnuke */
+			break;		
+			case 'phpnuke':
 				if (isset($HTTP_COOKIE_VARS['lang'])) {
 					$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
 				}
+			break;
 			}
 		}
 

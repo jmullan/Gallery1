@@ -174,7 +174,7 @@ class Image {
 					"$attrs alt=\"$alttext\" title=\"$alttext\" />";
 			}
 		} else {
-			return "<img src=\"$dir/$this->name.$this->type\" $size_val $attrs alt=\"$alttext\" title=\"$alttext\" />";
+			return "<img src=\"$dir/$this->name.$this->type\" $size_val $attrs alt=\"$alttext\" title=\"$alttext\" name=\"photo_j\" />";
 		}
 	}
 
