@@ -29,7 +29,7 @@ foreach ($checklist as $check) {
 	list($success, $fail) = $func();
 	foreach ($success as $key) {
 		if (strcmp($key, "")) {
-			$msg = "Success: $key";
+			$msg = "Success<br><i>$key</i>";
 		} else {
 			$msg = "Success";
 		}
