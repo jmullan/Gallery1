@@ -255,6 +255,10 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
 }
 
 
+$adminCommands .= '<a href=' . 
+	 makeGalleryUrl("slideshow.php",
+		array("set_albumName" => $albumName)) .
+	'>[slideshow]</a>';
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	if ($gallery->user->isLoggedIn()) {
