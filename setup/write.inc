@@ -1,5 +1,6 @@
 <?
 $GALLERY_DIR = dirname(dirname(getenv("SCRIPT_FILENAME")));
+$GALLERY_URL = dirname(dirname(getenv("SCRIPT_NAME")));
 $outfile = "$GALLERY_DIR/config.php";
 copy("gpl.txt", $outfile);
 if ($fd = @fopen($outfile, "w")) {
