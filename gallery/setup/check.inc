@@ -10,9 +10,19 @@
 <p>
 
 <center>
-<?php echo sprintf(_("Having problems?  Try the %sGallery Diagnostics Page%s and the %sGallery Help Page%s."),
-		'<a href="diagnostics.php">', '</a>',
-		'<a href="http://gallery.sourceforge.net/help.php">', '</a>' );
+<?php 
+$diagnostics_page='<a href="diagnostics.php">' . 
+	_("Gallery Diagnostics Page").'</a>';
+$help_page='<a href="http://gallery.sourceforge.net/help.php">'.
+_("Gallery Help Page"). '</a>';
+$docs_page = galleryDocs();
+if ($docs_page) {
+	echo sprintf(_("Having problems?  Try the %s, %s and %s."),
+			$docs_page, $diagnostics_page, $help_page);
+} else {
+	echo sprintf(_("Having problems?  Try the %s and %s."),
+			$diagnostics_page, $help_page);
+}
 ?>
 </center>
 

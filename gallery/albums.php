@@ -135,6 +135,12 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	$adminCommands .= sprintf(_("Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br>";
 }
 
+if ($gallery->user->isAdmin()) {
+	$doc = galleryDocs();
+	if ($doc) {
+		$adminCommands .= "[$doc]&nbsp;";
+	}
+}
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
 	$adminCommands .= "<a href=" . doCommand("new-album", array(), "view_album.php") . ">[". _("new album") ."]</a>&nbsp;";
 }

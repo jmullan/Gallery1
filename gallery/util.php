@@ -2010,6 +2010,15 @@ function Gallery() {
 	return "Gallery";
 }
 
+/*returns a link to the docs, if present, or NULL */
+function galleryDocs() {
+	global $GALLERY_BASEDIR;
+	if (fs_file_exists($GALLERY_BASEDIR."docs/index.html")) {
+		return "<a href=\"${GALLERY_BASEDIR}docs/index.html\">" .  _("Documentation").'</a>';
+	}
+	return NULL;
+}
+
 function compress_image($src, $out, $target, $quality) {
 	global $gallery;
 	switch($gallery->app->graphics)
