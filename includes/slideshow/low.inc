@@ -111,6 +111,12 @@ var direction = <?php echo $slide_dir ?>;
 $numPhotos = $gallery->album->numPhotos(1);
 $numDisplayed = 0; 
 
+// A slideshow_length of 0 means "show all"
+// as does a length which is greater than the number of photos
+if ($number == 0 || $number > $numPhotos) {
+        $number = $numPhotos; 
+}       
+
 // Find the correct starting point, accounting for hidden photos
 $index = getNextPhoto(0);
 $photo_count = 0;
