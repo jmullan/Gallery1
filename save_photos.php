@@ -119,13 +119,15 @@ if ($urls) {
 	
 		/*
 		 * Try to open the url in lots of creative ways.
+		 * Do NOT use fs_fopen here because that will pre-process
+		 * the URL in win32 style (ie, convert / to \, etc).
 		 */
- 		$id = @fs_fopen($url, "rb");
+ 		$id = @fopen($url, "rb");
 		if (!ereg("http", $url)) {
-			if (!$id) $id = @fs_fopen("http://$url");
-			if (!$id) $id = @fs_fopen("http://$url/");
+			if (!$id) $id = @fopen("http://$url", "rb");
+			if (!$id) $id = @fopen("http://$url/", "rb");
 		}
-		if (!$id) $id = @fs_fopen("$url/");
+		if (!$id) $id = @fopen("$url/", "rb");
 
 		if ($id) {
 			msg(urldecode($url));
@@ -136,7 +138,7 @@ if ($urls) {
 	
 		/* copy file locally */
 		$file = $gallery->app->tmpDir . "/photo.$name";
-		$od = fs_fopen($file, "w");
+		$od = fs_fopen($file, "wb");
 		if ($id && $od) {
 			while (!feof($id)) {
 				fwrite($od, fread($id, 65536));
