@@ -194,7 +194,7 @@ for ($i = $start; $i <= $end; $i++) {
 
   <br>
   url: <a href=<?=$albumURL?>><?=$albumURL?></a>
-   <? if (preg_match("/album\d+$/", $albumURL)) { ?>
+   <? if (ereg("album[[:digit:]]+$", $albumURL)) { ?>
 	<br>
         <span class="error">
          Hey!
