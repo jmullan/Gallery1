@@ -24,6 +24,12 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
+list($save, $old_uname, $uname, $new_password1, $new_password2, $fullname ) = 
+	getRequestVar(array('save', 'old_uname', 'uname', 'new_password1', 'new_password2', 'fullname '));
+
+list($email, $defaultLanguage) = 
+	getRequestVar(array('email', 'defaultLanguage '));
+
 if (!$gallery->user->isAdmin()) {
 	echo _("You are not allowed to perform this action!");
 	exit;	

@@ -1,21 +1,23 @@
 <?php /* $Id$ */ ?>
-<?php global $embeddedAlbum, $id;
+<?php global $embeddedAlbum, $id, $index ;
 if(!$embeddedAlbum == 1)
 {
-?>
-</td>
-</tr>
-</table>
-<?php
         $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
-        $buf = "<span class=editlink>";
-	$buf .= '<br><a href="#" onClick="javascript:' . popup($url) . '">[' . _("add comment") .']</a>';
-        $buf .= "</span>";
-        echo "<br>$buf<br>";
 ?>
+                </td>
+        </tr>
+        </table>
+
+	<input type="button" onClick="javascript:<?php echo popup($url) ?>" value="<?php echo _("add comment") ?>">
+	<?php
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+	echo '<input type="submit" value="'. _("Delete marked comments") .'">';
+	}
+	?>
+	</form>
 <br>
-</td>
-<td width="20">&nbsp;</td>
+	</td>
+	<td width="20">&nbsp;</td>
 <?php } ?>
 </tr>
 </table>

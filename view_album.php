@@ -134,6 +134,7 @@ if ($gallery->album->fields['returnto'] != 'no') {
 
 $breadcrumb["bordercolor"] = $bordercolor;
 
+global $GALLERY_EMBEDDED_INSIDE;
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>

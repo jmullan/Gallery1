@@ -434,7 +434,7 @@ if($gallery->app->comments_enabled == 'yes') {
 <?php 
 if ($displayCommentLegend) { 
 	//display legend for comments
-	echo '<p><span class="error">*</span>';
+	echo '<p><span class="commentIndication">*</span>';
 	echo '<span class="fineprint">'. _("Comments available for this item.") .'</span></p>';
 } 
 ?>

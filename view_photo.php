@@ -152,7 +152,8 @@ $navigator["url"] = ".";
 $navigator["bordercolor"] = $bordercolor;
 
 #-- breadcrumb text ---
-$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
+$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
+		'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
 
 if ($gallery->album->fields['returnto'] != 'no') {
 	$breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" .
