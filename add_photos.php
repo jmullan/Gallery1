@@ -90,7 +90,7 @@ Click the <b>Browse</b> button to locate a photo to upload.
 </form>
 
 <form enctype="multipart/form-data" action="save_photos.php" method=post name="uploadurl_form">
-Or, upload the image at this URL:
+Or, upload any images found at this URL:
 <input type="text" name="urls[]" size=50>
 <br><br>
 <center>
