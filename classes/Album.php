@@ -1057,7 +1057,7 @@ class Album {
                         $this->resetClicks();
 			$time = $this->fields["clicks_date"];
                 }
-		return strftime("%d. %b %Y",$time);
+		return strftime("%x",$time);
 
         }
 

@@ -132,9 +132,15 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 		echo ("</td>\n</table><br>");
 	}
 
-	echo _("File Upload Date") .":&nbsp;&nbsp; " . strftime("%d.%m %Y , %H:%M:%S" , $gallery->album->getUploadDate($index)) . "<br>";
+	echo _("File Upload Date") .":&nbsp;&nbsp; " . strftime("%c" , $gallery->album->getUploadDate($index)) . "<br>";
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-	echo _("Item Capture Date") . ":&nbsp;&nbsp; " . strftime("%d.%m.%Y, %H:%M:%S", mktime($itemCaptureDate['hours'], $itemCaptureDate['minutes'],$itemCaptureDate['seconds'], $itemCaptureDate['mon'],$itemCaptureDate['mday'],$itemCaptureDate['year']));
+	echo _("Item Capture Date") . ":&nbsp;&nbsp; " . strftime("%c", 
+			mktime($itemCaptureDate['hours'], 
+				$itemCaptureDate['minutes'],
+				$itemCaptureDate['seconds'], 
+				$itemCaptureDate['mon'],
+				$itemCaptureDate['mday'],
+				$itemCaptureDate['year']));
 
 	if ($gallery->album->getKeyWords($index)) {
 		echo "<b>". _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);

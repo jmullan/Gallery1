@@ -294,7 +294,7 @@ if ($numPhotos) {
 	$mon = $itemCaptureDate["mon"];
 	$mday = $itemCaptureDate["mday"];
 	$year = $itemCaptureDate["year"];
-	print strftime("%d. %b %Y , %H:%M:%S" , mktime ($hours,$minutes,$seconds,$mon,$mday,$year));
+	print strftime("%c" , mktime ($hours,$minutes,$seconds,$mon,$mday,$year));
     }
 ?>
       </td>

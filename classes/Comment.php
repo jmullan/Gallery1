@@ -43,7 +43,7 @@ class Comment {
 
 	function getDatePosted() {
 		$time = $this->datePosted;
-		return date("M d, Y H:i T", $time);
+		return strftime("%c", $time);
 	}
 
 	function getIPNumber() {
