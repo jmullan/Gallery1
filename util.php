@@ -1809,7 +1809,7 @@ function addPolling ($id, $form_pos=-1, $immediate=true)
 		}
 		if ($current_vote == -1)
 		{
-			print "<option value=NULL><< VOTE >></option>\n";
+			print "<option value=NULL><< ". _("VOTE") ." >></option>\n";
 		}
 		for ($i = 0; $i < $gallery->album->getPollScale() ; $i++)
 		{
