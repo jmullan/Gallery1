@@ -1,5 +1,13 @@
 2004-07-22  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-RC3-cvs-b7
 
+	* Fix?: Revert an earlier checkin (b100?) that prevented a PHP notice
+	  when first loading sessions while embedded.  Some users report not
+	  getting a session at all in postnuke.  Since postnuke was the original
+	  problem, I'm confused, but this will work.  Supressing the notice using
+	  @session_start()
+
+2004-07-22  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-RC3-cvs-b7
+
 	* Change: Remove the != SUNOS line from lib/lang.php
 	  We're under the assumption that it was added based on a bogus
 	  bug report some time ago because all docs (and user reports)
