@@ -49,6 +49,12 @@ if ($album->fields["textcolor"]) {
 }
 if ($album->fields["linkcolor"]) {
         $bodyAttrs .= " link={$album->fields[linkcolor]}";
+
+if (!strcmp($album->fields["resize_size"], "off")) {
+        $mainWidth = 0;
+} else {
+	$mainWidth = $album->fields["resize_size"];
+}
 }
 
 ?>
@@ -58,19 +64,19 @@ if ($album->fields["linkcolor"]) {
 
 
 <center>
-<table border=0 width=1%>
+<table border=0 width=<?=$mainWidth?>>
 <!-- Top Nav Bar -->
 <tr>
 <td align=left>
 <font size=+1 face=<?=$album->fields["font"]?>>
 <?
 if ($first) {
-	//echo "<a href=../view_album.php></a>";
+	echo "< <a href=../view_album.php>Previous</a> | ";
 } else {
 	echo "< <a href=".$prev.">Previous</a> | ";
 }
 if ($last) {
-	echo "<a href=../view_album.php>Done</a>";
+	echo "<a href=../view_album.php>Next</a> >";
 } else {
 	echo "<a href=".$next.">Next</a> >";
 }
@@ -101,12 +107,12 @@ if ($last) {
 <font size=+1 face=<?=$album->fields["font"]?>>
 <?
 if ($first) {
-	//echo "<a href=../view_album.php></a>";
+	echo "< <a href=../view_album.php>Previous</a> | ";
 } else {
 	echo "< <a href=".$prev.">Previous</a> | ";
 }
 if ($last) {
-	echo "<a href=../view_album.php>Done</a>";
+	echo "<a href=../view_album.php>Next</a> >";
 } else {
 	echo "<a href=".$next.">Next</a> >";
 }
@@ -139,7 +145,8 @@ Admin: <a href=<?= popup("../resize_photo.php?index=$index") ?>>[resize photo]</
 <br>
 <? } ?>
 <font size=+0 face=<?=$album->fields["font"]?>>
-^ <a href=../view_album.php> Return to <b><?= $album->fields["title"] ?></b> </a>
+<< <a href=../albums.php> <b>The Gallery</b> </a>
+<< <a href=../view_album.php> <b><?= $album->fields["title"] ?></b> </a>
 </td>
 </tr>
 
