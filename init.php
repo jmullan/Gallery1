@@ -89,19 +89,14 @@ require($GALLERY_BASEDIR . "session.php");
 
 if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
         include($GALLERY_BASEDIR . "classes/Database.php");
-	include($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
-	
+
 	/* Check for PostNuke 0.7's new methodology */
 	if (isset($GLOBALS['pnconfig']) && function_exists("authorised")) {
 	    include($GALLERY_BASEDIR . "classes/postnuke/UserDB.php");
 	    include($GALLERY_BASEDIR . "classes/postnuke/User.php");
 
-	    $gallery->database{"nuke"} = new MySQL_Database(
-			$GLOBALS['dbhost'],
-			$GLOBALS['dbuname'],
-			$GLOBALS['dbpass'],
-			$GLOBALS['dbname']);
-	    $gallery->database{"nuke"}->setTablePrefix($GLOBALS['prefix'] . "_");
+	    $gallery->database{"db"} = $dbconn;
+	    $gallery->database{"prefix"} = $GLOBALS['pnconfig']['prefix'] . "_";
 
 	    /* Load our user database (and user object) */
 	    $gallery->userDB = new PostNuke_UserDB;
@@ -117,6 +112,7 @@ if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
 		    $gallery->userDB->getUserByUsername($gallery->session->username);
 	    }
 	} else {
+	    include($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
 	    include($GALLERY_BASEDIR . "classes/nuke5/UserDB.php");
 	    include($GALLERY_BASEDIR . "classes/nuke5/User.php");
 
