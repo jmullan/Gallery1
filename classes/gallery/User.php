@@ -83,7 +83,7 @@ class Gallery_User extends Abstract_User {
 		global $gallery;
 
 		if (!isset($this->version)) {
-			$this->version == "0";
+			$this->version = "0";
 		}
 		if (!strcmp($this->version, $gallery->user_version)) {
 			print _("up to date");
