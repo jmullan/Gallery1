@@ -546,8 +546,8 @@ class Album {
 		$this->updateSerial = 1;
 		$photo = array_splice($this->photos, $index-1, 1);
 		// need to check for nested albums and delete them ...
-		if ($photo->isAlbumName) {
-			$albumName = $photo->isAlbumName;
+		if ($photo[0]->isAlbumName) {
+			$albumName = $photo[0]->isAlbumName;
 			$album = new Album();
 			$album->load($albumName);
 			$album->delete();
