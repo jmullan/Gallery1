@@ -522,7 +522,7 @@ class Album {
 		}
 	
 		//print $filenameA $filenameB;
-		return (strnatcmp($filenameA, $filenameB));
+		return (strnatcasecmp($filenameA, $filenameB));
 	}
 	
 	function sortByClick($a, $b) {
@@ -547,7 +547,7 @@ class Album {
 		$objB = (object)$b;
 		$captionA = $objA->getCaption();	
 		$captionB = $objB->getCaption();
-		return (strnatcmp($captionA, $captionB));
+		return (strnatcasecmp($captionA, $captionB));
 	}
 	
 	function sortByComment($a, $b) {
