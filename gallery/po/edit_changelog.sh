@@ -52,6 +52,10 @@ for all_CF in $Cfiles ; do
 	echo "" >> $all_CF	
 	echo "  * Sync against latest changes." >> $all_CF	
 	echo "" >> $all_CF
+
+echo "===============================================================================
+                                 v1.4.2-RC1 release
+===============================================================================
 #read trash
 done
 

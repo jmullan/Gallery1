@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_2-cvs
+# Version: 1_4_2-RC1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2003 Bharat Mediratta
@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-01-08 16:06+0100\n"
-"PO-Revision-Date: 2003-11-13 12:30+0300\n"
+"POT-Creation-Date: 2004-01-26 14:04+0100\n"
+"PO-Revision-Date: 2004-01-26 12:30+0300\n"
 "Last-Translator: A.L.T <leanh@airland.kiev.ua>\n"
 "Language-Team: AIRLAND <admin@airland.kiev.ua>\n"
 "MIME-Version: 1.0\n"
@@ -330,9 +330,9 @@ msgid "If you recevied this in error, then please disregard, as you should not r
 msgstr "Nếu bạn nhận nó hỏng, cứ như là bạn không nhận được email nào như vậy."
 
 #: ../setup/check_mail.php:26
-#, fuzzy, php-format
+#, php-format
 msgid "If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."
-msgstr "Nếu bạn nhận được email từ quá trình cài đặt %s, xin chúc mừng!  Email có làm việc và bạn có thể cho phép chức năng %s email."
+msgstr "Nếu bạn nhận được email từ quá trình cài đặt %s tại %s, Xin chúc mừng!  Email có làm việc và bạn có thể cho phép chức năng %s email."
 
 #: ../setup/check_mail.php:30
 msgid "SUCCESS!"
@@ -356,9 +356,9 @@ msgid "This enables you to confirm that email is working correctly on your syste
 msgstr "Điều này cho phép bạn xác nhận rằng email có làm việc trên hệ thống của bạn.  Ghi địa chỉ email của bạn vào bên dưới, khi đó một email sẽ được gửi tới cho bạn. Nếu bạn nhận được nó, có nghĩa chức năng gửi mail có làm việc"
 
 #: ../setup/check_mail.php:44 ../setup/check_mail.php:49
-#, fuzzy, php-format
+#, php-format
 msgid "%s not set."
-msgstr "Lỗi! %s không được đặt."
+msgstr "%s không được đặt."
 
 #: ../setup/check_mail.php:69
 msgid "Your email address:"
@@ -386,14 +386,15 @@ msgstr "Nếu bạn thấy có lỗi, bạn nên %snhấn vào đây%s để xem
 msgid "Check Versions"
 msgstr "Kiểm tra Phiên bản"
 
+# php-format
 #: ../setup/check_versions.php:20
-#, fuzzy, php-format
+#, php-format
 msgid "This page gives you information about the version of each necessary %s file"
-msgstr "Trang này đưa ra thông tin về cấu hình cài đặt của ImageMagick binaries."
+msgstr "Trang này đưa ra cho bạn thông tin về phiên bản của mỗi file %s cần thiết"
 
 #: ../setup/check_versions.php:21
 msgid "If you see error, we highly suggest to get the actual version of that file/s"
-msgstr ""
+msgstr "Nếu bạn thấy có lỗi, chúng tôi đề nghị bạn hãy lấy phiên bản hiện tại của những file đó"
 
 #: ../setup/check_versions.php:34
 #, php-format
@@ -403,32 +404,32 @@ msgstr "%sNhấn vào đây%s để xem chi tiết"
 #: ../setup/check_versions.php:47
 #, php-format
 msgid "%s missing, corrupt or older than expected."
-msgstr ""
+msgstr "%s bị mất, hỏng hoặc quá cũ so với yêu cầu."
 
 #: ../setup/check_versions.php:48 ../setup/check_versions.php:73
 #: ../setup/check_versions.php:97
 msgid "1 file"
-msgstr ""
+msgstr "1 file"
 
 #: ../setup/check_versions.php:49 ../setup/check_versions.php:73
 #: ../setup/check_versions.php:98
 msgid "files"
-msgstr ""
+msgstr "files"
 
 #: ../setup/check_versions.php:49 ../setup/check_versions.php:73
 #: ../setup/check_versions.php:98
 msgid "No files"
-msgstr ""
+msgstr "Không file nào"
 
 #: ../setup/check_versions.php:54
 #, php-format
 msgid "There are problems with the following files.  Please correct them before configuring %s."
-msgstr ""
+msgstr "Có vấn đề với những file sau.  Xin hãy sửa lại chúng cho đúng trước khi cấu hình %s."
 
 #: ../setup/check_versions.php:72
 #, php-format
 msgid "%s more recent than expected."
-msgstr ""
+msgstr "%s mới gần đây hơn so với yêu cầu."
 
 #: ../setup/check_versions.php:79
 #, php-format
@@ -438,11 +439,11 @@ msgstr "Những file sau hơn cả đúng hạn so với phiên bản %s.  Nếu
 #: ../setup/check_versions.php:96
 #, php-format
 msgid "%s up-to-date."
-msgstr ""
+msgstr "%s đúng hạn"
 
 #: ../setup/check_versions.php:102
 msgid "The following files are up-to-date."
-msgstr ""
+msgstr "Những file sau là đúng hạn."
 
 #: ../setup/config_data.inc:17
 #, php-format
@@ -582,9 +583,8 @@ msgid "Check to see what languages are available."
 msgstr "Hãy xem những ngôn ngữ nào sẵn có."
 
 #: ../setup/config_data.inc:147
-#, fuzzy
 msgid "Testing to see which <b>system</b> locales (if any) are absent."
-msgstr "Kiểm tra xem locale nào (hoặc) bị thiếu"
+msgstr "Kiểm tra xem <b>hệ thống</b> locale nào (hoặc) bị thiếu."
 
 #: ../setup/config_data.inc:152
 msgid "Checking to see if you have the latest versions of all gallery files."
@@ -634,9 +634,8 @@ msgid "The full URL to the Gallery web application.  E.g. %s"
 msgstr "URL đầy đủ tới ứng dụng web của Thư viện ảnh.  VD: %s"
 
 #: ../setup/config_data.inc:212
-#, fuzzy
 msgid "Albums URL"
-msgstr "Albums"
+msgstr "Albums URL"
 
 #: ../setup/config_data.inc:213
 #, php-format
@@ -1030,7 +1029,7 @@ msgstr "Lựa chọn này cho phép bạn có thể tạo nhiều tài khoản t
 
 #: ../setup/config_data.inc:562
 msgid "Admin notification of email activity"
-msgstr "Thông báo QT về kích hoạt email"
+msgstr "Thô´ng báo QT về kích hoạt email"
 
 #: ../setup/config_data.inc:563
 msgid "You can keep a record of every email that is sent by Gallery."
@@ -1058,7 +1057,7 @@ msgstr "Thêm một liên kết trình diễn ảnh trên trang chính của th�
 
 #: ../setup/config_data.inc:576 ../setup/config_data.inc:1029
 msgid "These settings do not apply to the low tech slideshow."
-msgstr ""
+msgstr "Những cấu hình này không tác dụng với trình diễn ảnh chế độ thấp."
 
 #: ../setup/config_data.inc:579
 msgid "Slideshow preferences"
@@ -1159,18 +1158,17 @@ msgid "Anonymous comments from known users?"
 msgstr "Cho phép lời bình ẩn danh từ những thành viên?"
 
 #: ../setup/config_data.inc:641
-#, fuzzy, php-format
+#, php-format
 msgid "When logged in, comments will automatically use format described below, unless this is set to %s."
-msgstr "Khi đã đăng nhập, lời bình sẽ tự động dùng tên đầy đủ và tên truy cập, nếu không nó được đặt là %s."
+msgstr "Khi đã đăng nhập, lời bình sẽ tự động dùng dạng thức được mô tả bên dưới, nếu không nó được chọn là %s."
 
 #: ../setup/config_data.inc:648
-#, fuzzy
 msgid "Format for commenter names"
-msgstr "Dạng thức thời gian."
+msgstr "Dạng thức tên người bình"
 
 #: ../setup/config_data.inc:649
 msgid "Commenter names of logged in users can be displayed in a variety of different ways"
-msgstr ""
+msgstr "Tên người bình đã đăng nhập có thể hiển thị bằng nhiều cách khác nhau"
 
 #: ../setup/config_data.inc:656
 msgid "Technical"
@@ -1896,19 +1894,18 @@ msgid "This allows you to see if you can use the email functions in %s."
 msgstr "Điều này cho phép bạn xem nếu như bạn có thể dùng chức năng gửi email trong %s."
 
 #: ../setup/diagnostics.php:83
-#, fuzzy
 msgid "Check versions"
-msgstr "Kiểm tra Session"
+msgstr "Kiểm tra phiên bản"
 
 #: ../setup/diagnostics.php:86
 #, php-format
 msgid "This page is for %s upgrades that have problems."
-msgstr ""
+msgstr "Trang này dành cho nâng cấp %s mà có vấn đề."
 
 #: ../setup/diagnostics.php:87
-#, fuzzy, php-format
+#, php-format
 msgid "This allows you to check you have the correct version of all your %s files."
-msgstr "Điều này cho phép bạn xem nếu như bạn có thể dùng chức năng gửi email trong %s."
+msgstr "Điều này cho phép bạn kiểm tra xem bạn có phiên bản đúng của tất cả %s files."
 
 #: ../setup/functions.inc:109
 msgid "Please retype your password here"
@@ -2052,14 +2049,12 @@ msgid "Only the default locale for this machine is available, so date format wil
 msgstr "Chỉ locale mặc định cho hệ thống máy này là có sẵn nên dạng thức ngày tháng sẽ không thay đổi trên những ngôn ngữ khác nhau."
 
 #: ../setup/functions.inc:807
-#, fuzzy
 msgid "<b>System</b> locale selection required"
-msgstr "Yêu cầu lựa chọn locale"
+msgstr "<b>Hệ thống</b> locale được yêu cầu lựa chọn"
 
 #: ../setup/functions.inc:808
-#, fuzzy
 msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
-msgstr "Có hơn một loại locale phù hợp được cài đặt trên hệ thống máy của bạn cho những ngôn ngữ sau.  Xin hãy chọn một cái mà bạn nghĩ phù hợp nhất"
+msgstr "Có hơn một loại <b>hệ thống</b> locale phù hợp được cài đặt trên hệ thống máy của bạn cho những ngôn ngữ sau.  Xin hãy chọn một cái mà bạn nghĩ phù hợp nhất."
 
 #: ../setup/functions.inc:810 ../setup/functions.inc:883
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
@@ -2068,17 +2063,15 @@ msgstr "Chỉ dành cho định dạng ngày tháng và thời gian. Bạn chỉ
 #: ../setup/functions.inc:838 ../setup/functions.inc:845
 #: ../setup/functions.inc:855
 msgid "System locale"
-msgstr "Locale hệ thống"
+msgstr "Hệ thống locale"
 
 #: ../setup/functions.inc:880
-#, fuzzy
 msgid "<b>System</b> locale problems"
-msgstr "Vấn đề locale"
+msgstr "<b>Hệ thống</b> locale có vấn đề"
 
 #: ../setup/functions.inc:881
-#, fuzzy
 msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
-msgstr "Không có locale phù hợp nào được cài đặt trên hệ thống máy của bạn cho những ngôn ngữ sau.  Xin hãy chọn một cái mà bạn nghĩ phù hợp nhất."
+msgstr "Không có <b>hệ thống</b> locale phù hợp nào được cài đặt trên hệ thống máy của bạn cho những ngôn ngữ sau.  Xin hãy chọn một cái mà bạn nghĩ phù hợp nhất."
 
 #: ../setup/functions.inc:926
 msgid "<b>safe_mode</b> is off."
@@ -2182,19 +2175,19 @@ msgid "You must enter a password for the %s account."
 msgstr "Bạn phải ghi một mật khẩu cho tài khoản %s."
 
 #: ../setup/functions.inc:1282
-#, fuzzy, php-format
+#, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
-msgstr "Có vẻ như bạn đã cấu hình cho Thư viện ảnh, bởi vì thành viên %s đã có.  Bạn không nhất thiết phải ghi mật khẩu.  Nhưng nếu bạn vẫn ghi, thì Thư viện ảnh sẽ đổi mật khẩu cho thành viên tên %s."
+msgstr "Có vẻ như bạn đã cấu hình cho Thư viện ảnh, bởi vì đã có một tài khoản QT, nhưng không được gọi là %s."
 
 #: ../setup/functions.inc:1285
-#, fuzzy, php-format
+#, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-msgstr "Có vẻ như bạn đã cấu hình cho Thư viện ảnh, bởi vì thành viên %s đã có.  Bạn không nhất thiết phải ghi mật khẩu.  Nhưng nếu bạn vẫn ghi, thì Thư viện ảnh sẽ đổi mật khẩu cho thành viên tên %s."
+msgstr "Có vẻ như bạn đã cấu hình cho Thư viện ảnh, bởi vì đã có tài khoản QT %d, nhưng không ai có tên là %s."
 
 #: ../setup/functions.inc:1287
-#, fuzzy, php-format
+#, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "Có vẻ như bạn đã cấu hình cho thư viện ảnh, bởi vì đã có tài khoản QT %d, nhưng không phải là thành viên có tên %s.  Bạn không phải ghi mật khảu.  Nhưng nếu bạn vẫn ghi thì Thư viện ảnh sẽ tạo một thành viên có tên %s với mật khẩu đó."
+msgstr "Bạn không phải ghi mật khẩu.  Nhưng nếu bạn vẫn ghi, Thư viện ảnh sẽ tạo một tài khoản quản trị có tên %s với mật khẩu đó."
 
 #: ../setup/functions.inc:1296
 #, php-format
@@ -2207,27 +2200,25 @@ msgstr "Mật khẩu quản trị"
 
 #: ../setup/functions.inc:1316 ../setup/functions.inc:1318
 #: ../setup/functions.inc:1320 ../setup/functions.inc:1328
-#, fuzzy
 msgid "Full Name"
-msgstr "Tên"
+msgstr "Tên đầy đủ"
 
 #: ../setup/functions.inc:1316 ../setup/functions.inc:1318
 #: ../setup/functions.inc:1322 ../setup/functions.inc:1330
 msgid "Username"
-msgstr ""
+msgstr "Tên truy cập"
 
 #: ../setup/functions.inc:1324
 msgid "Full name that you can click on to send email (mailto:)"
-msgstr ""
+msgstr "Tên đầy đủ mà bạn có thể nhấn chuột vào và gửi mail (mailto:)"
 
 #: ../setup/functions.inc:1326
 msgid "Username that you can click on to send email (mailto:)"
-msgstr ""
+msgstr "Tên truy cập mà bạn có thể nhấn chuột vào và gửi mail (mailto:)"
 
 #: ../setup/functions.inc:1328 ../setup/functions.inc:1330
-#, fuzzy
 msgid "email address"
-msgstr "Địa chỉ email của bạn:"
+msgstr "địa chỉ email"
 
 #: ../setup/index.php:14
 msgid "Gallery Configuration"

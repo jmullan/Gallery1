@@ -19,14 +19,13 @@
  *
  * $Id$
  *
- * Version: 1_4_2-cvs
+ * Version: 1_4_2-RC1
  */
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
- * The original filename was horde/config/nls.php.dist and it was 
- * maintained by Jan Schneider (jan@horde.org)
+ * The original filename was horde/config/nls.php.
  * The modifications to fit it for Gallery were made by Jens Tkotz 
  * (jens@peino.de)
  *
