@@ -2780,7 +2780,8 @@ function available_skins($description_only=false) {
 }
 
 function available_frames($description_only=false) {
-	global $GALLERY_BASEDIR;
+
+	$GALLERY_BASE=dirname(__FILE__);
 
 	$opts=array(
 			'none' => _("None"), 
@@ -2788,10 +2789,10 @@ function available_frames($description_only=false) {
 			'solid' => _("Solid"), 
 			);
 	$descriptions="<dl>" .
-		"<dt>"._("None")."</dt><dd>"._("No frames")."</dd>" .
-		"<dt>"._("Dots")."</dt><dd>"._("Just a simple dashed border around the thumb.")."</dd>" .
-		"<dt>"._("Solid")."</dt><dd>"._("Just a simple solid border around the thumb.")."</dd>" ;
-	$dir = "${GALLERY_BASEDIR}html_wrap/frames";
+		"<dt>". _("None")  . "</dt><dd>". _("No frames")."</dd>" .
+		"<dt>". _("Dots")  . "</dt><dd>". _("Just a simple dashed border around the thumb.")."</dd>" .
+		"<dt>". _("Solid") . "</dt><dd>". _("Just a simple solid border around the thumb.")."</dd>" ;
+	$dir = $GALLERY_BASE . '/html_wrap/frames';
        	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
 	       	while ($file = readdir($fd)) {
 			$subdir="$dir/$file";
@@ -2827,8 +2828,6 @@ function available_frames($description_only=false) {
 	       	return $opts;
 	}
 }
-
-
 
 /* simplify condition tests */
 function testRequirement($test) {
@@ -2957,8 +2956,8 @@ function user_name_string($uid, $format='!!FULLNAME!! (!!USERNAME!!)') {
 // if version can't be found.
 
 function getCVSVersion($file) {
-	global $GALLERY_BASEDIR;
-	$path=$GALLERY_BASEDIR.$file;
+
+	$path= dirname(__FILE__) . "/$file";
 	if (!fs_file_exists($path)) {
 		return NULL;
 	} 
@@ -3006,66 +3005,6 @@ function compareVersions($old_str, $new_str) {
 		return 0;
 	}
 	return 1;
-}
-
-function checkVersions($verbose=false) {
-	global $GALLERY_BASEDIR, $gallery;
-	$manifest=$GALLERY_BASEDIR."manifest.inc";
-	$success=array();
-	$fail=array();
-	$warn=array();
-	if (!fs_file_exists($manifest)) {
-	       	$fail["manifest.inc"]=_("File missing or unreadable.  Please install then re-run this test.");
-		return array($success, $fail, $warn);
-	}
-	if (!function_exists('getCVSVersion')) {
-		$fail['util.php']=sprintf(_("Please ensure that %s is the latest version."), "util.php");
-		return array($success, $fail, $warn);
-	}
-	include $manifest;
-       	if ($verbose) {
-	       	print sprintf(_("Testing status of %d files."), count($versions));
-	}
-	foreach ($versions as $file => $version) {
-		$found_version=getCVSVersion($file);
-		if ($found_version === NULL) {
-		       	if ($verbose) {
-			       	print "<br>\n";
-			       	print sprintf(_("Cannot read file %s."), $file);
-			}
-			$fail[$file]=_("File missing or unreadable.");
-			continue;
-		} else if ($found_version === "") {
-			if ($verbose) {
-			       	print "<br>\n";
-			       	print sprintf(_("Version information not found in %s.  File must be old version or corrupted."), $file);
-		       	}
-		       	$fail[$file]=_("Missing version");
-		       	continue;
-	       	} 
-		$compare=compareVersions($version, $found_version);
-		if ($compare < 0) {
-			if ($verbose) {
-			       	print "<br>\n";
-			       	print sprintf(_("Problem with %s.  Expected version %s (or greater) but found %s."), $file, $version, $found_version);
-		       	}
-		       	$fail[$file]=sprintf(_("Expected version %s (or greater) but found %s."), $version, $found_version);
-	       	} else if ($compare > 0) {
-			if ($verbose) {
-			       	print "<br>\n";
-				print sprintf(_("%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
-			}
-			$warn[$file]=sprintf(_("Expected version %s but found %s."), $version, $found_version);
-		} else {
-			if ($verbose) {
-			       	print "<br>\n";
-			       	print sprintf(_("%s OK"), $file);
-		       	}
-			$success[$file]=sprintf(_("Found expected version %s."), $version);
-		}
-			
-	}
-       	return array($success, $fail, $warn);
 }
 
 function contextHelp ($link) {

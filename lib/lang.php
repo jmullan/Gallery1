@@ -75,7 +75,7 @@ function setLangDefaults() {
 
 function initLanguage() {
 
-	global $gallery, $GALLERY_BASEDIR, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
+	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $HTTP_SERVER_VARS, $HTTP_COOKIE_VARS, $HTTP_GET_VARS, $HTTP_SESSION_VARS;
 
 	// $locale is *NUKEs locale var
@@ -275,12 +275,12 @@ function initLanguage() {
 
 	/**
 	 ** Test if we're using gettext.
-	 ** if yes, do some gettext settings.
+	** if yes, do some gettext settings.
 	 ** if not emulate _() function
 	 **/
 
 	if (gettext_installed()) {
-		$bindtextdomain=bindtextdomain($gallery->language. "-gallery_". where_i_am(), $GALLERY_BASEDIR."locale");
+		$bindtextdomain=bindtextdomain($gallery->language. "-gallery_". where_i_am(), dirname(dirname(__FILE__)) . '/locale');
 		textdomain($gallery->language. "-gallery_". where_i_am());
 
 	}  else {
@@ -290,11 +290,11 @@ function initLanguage() {
 
 function emulate_gettext() {
 	global $translation;
-	global $GALLERY_BASEDIR, $gallery;
+	global $gallery;
 
 	if (in_array($gallery->language,array_keys(gallery_languages())) &&
 		$gallery->language != 'en_US') {
-		$filename=$GALLERY_BASEDIR ."locale/". $gallery->language ."/". $gallery->language ."-gallery_". where_i_am()  .".po";
+		$filename=dirname(dirname(__FILE__)) . '/locale/' . $gallery->language . '/'. $gallery->language . '-gallery_' .  where_i_am()  . '.po';
 		$lines=file($filename);
 
 		foreach ($lines as $key => $value) {
@@ -339,40 +339,37 @@ function gallery_languages() {
 }
 
 function getNLS() {
-	global $GALLERY_BASEDIR;
 	static $nls;
 
 	if (empty($nls)) {
 
 		$nls=array();
 		// Load defaults
-		include ($GALLERY_BASEDIR. "nls.php");
+		include (dirname(dirname(__FILE__)) . '/nls.php');
 
 		$modules=array('config','core');
-		$dir=$GALLERY_BASEDIR. "locale";
+		$dir=dirname(dirname(__FILE__)) . '/locale';
 	       	if (fs_is_dir($dir) && is_readable($dir) && $handle = fs_opendir($dir)) {
-	
-		    while ($dirname = readdir($handle)) {
-			if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
-				$locale=$dirname;
-				$fc=0;
-				foreach ($modules as $module) {
-					if (gettext_installed()) {
-						if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-gallery_$module.po")) $fc++;
-					} else {
-						if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
+			while ($dirname = readdir($handle)) {
+				if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
+					$locale=$dirname;
+					$fc=0;
+					foreach ($modules as $module) {
+						if (gettext_installed()) {
+							if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-gallery_$module.po")) $fc++;
+						} else {
+							if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
+						}
+					}
+					if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php") && $fc==sizeof($modules)) {
+						include (dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php");
 					}
 				}
-				if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-nls.php") && $fc==sizeof($modules)) {
-					include ($GALLERY_BASEDIR . "locale/$dirname/$locale-nls.php");
-				}
 			}
-		}
 		closedir($handle);
-	    }
+		}
 	}
 
-//print_r($nls);
 return $nls;
 }
 

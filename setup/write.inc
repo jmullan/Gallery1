@@ -1,14 +1,37 @@
+<?php
+/*
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2004 Bharat Mediratta
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
+ */
+?>
 <?php /* $Id$ */ ?>
 
 <?php
 
-require_once("../classes/User.php");
-require_once("../classes/gallery/User.php");
-require_once("../classes/NobodyUser.php");
-require_once("../classes/LoggedInUser.php");
-require_once("../classes/EverybodyUser.php");
+require_once(dirname(dirname(__FILE__)) . '/classes/User.php');
+require_once(dirname(dirname(__FILE__)) . '/classes/gallery/User.php');
+require_once(dirname(dirname(__FILE__)) . '/classes/NobodyUser.php');
+require_once(dirname(dirname(__FILE__)) . '/classes/LoggedInUser.php');
+require_once(dirname(dirname(__FILE__)) . '/classes/EverybodyUser.php');
 
-require("../errors/configure_instructions.php");
+require(dirname(dirname(__FILE__)) . '/errors/configure_instructions.php');
+
 $start_string = "# BEGIN Gallery section";
 $end_string = "# END Gallery section.  Add User changes below this line";
 
@@ -131,9 +154,9 @@ if ($fd = @fs_fopen($outfile, "a")) {
  * Don't require UserDB before we've written and included config.php or it will
  * have a cow when it tries to verify that the $gallery->app->userDir exists.
  */
-include("../config.php");
-include_once("../classes/UserDB.php");
-include_once("../classes/gallery/UserDB.php");
+include(dirname(dirname(__FILE__)) . '/config.php');
+include_once(dirname(dirname(__FILE__)) . '/classes/UserDB.php');
+include_once(dirname(dirname(__FILE__)) . '/classes/gallery/UserDB.php');
 
 $userDB = new Gallery_UserDB();
 $admin = $userDB->getOrCreateUser("admin");

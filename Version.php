@@ -40,7 +40,7 @@ if (!isset($gallery)) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = '1.4.3-cvs-b35';
+$gallery->version = '1.4.3-cvs-b36';
 $gallery->config_version = 79;
 $gallery->album_version = 25;
 $gallery->user_version = 5;

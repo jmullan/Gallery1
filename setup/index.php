@@ -1,12 +1,33 @@
+<?php
+/*
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2004 Bharat Mediratta
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
+ */
+?>
 <?php /* $Id$ */ ?>
 <?php 
 
-	$GALLERY_BASEDIR = '../';
-
-	@include($GALLERY_BASEDIR . "config.php");
-	require ($GALLERY_BASEDIR . 'setup/init.php');
-	require ($GALLERY_BASEDIR . 'setup/functions.inc');
-	require ($GALLERY_BASEDIR . 'Version.php');
+	@include(dirname(dirname(__FILE__)) . '/config.php');
+	require (dirname(dirname(__FILE__)) . '/Version.php');
+	require (dirname(__FILE__) . '/init.php');
+	require (dirname(__FILE__) . '/functions.inc');
+	require (dirname(__FILE__) . '/config_data.inc');
 ?>
 <?php echo doctype(); ?>
 <html>
@@ -29,8 +50,6 @@ if (function_exists("posix_getpwuid")) {
 		$webserver_user = _("unknown");
 	}
 }
-
-require($GALLERY_BASEDIR . 'setup/config_data.inc');
 
 if (isset ($go_defaults)) {
 	$setup_page = $this_page;

@@ -1,3 +1,25 @@
+<?php
+/*
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2004 Bharat Mediratta
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
+ */
+?>
 <?php /* $Id$ */ ?>
 <?php
 
@@ -566,7 +588,6 @@ function check_gettext()
 
 function check_gallery_languages()
 {
-	global $GALLERY_BASEDIR;
 	global $gallery;
 	$fail = array();
 	$success = array();
@@ -591,7 +612,6 @@ function check_gallery_languages()
 
 function check_gallery_version()
 {
-	global $GALLERY_BASEDIR;
 	global $gallery;
 	$fail = array();
 	$success = array();
@@ -627,7 +647,6 @@ function check_gallery_version()
 
 function check_absent_locales()
 {
-	global $GALLERY_BASEDIR;
 	global $locale_check;
 	$fail = array();
 	$success = array();
@@ -1266,19 +1285,17 @@ if (!function_exists('array_filter1')) {
 function check_admins() {
 
 	global $gallery;
-	global $GALLERY_BASEDIR;
 
 	$admins=array();
 	
 	if (isset($gallery->app->userDir) && fs_is_dir($gallery->app->userDir)) {
-		require($GALLERY_BASEDIR . "classes/User.php");
-		require($GALLERY_BASEDIR . "classes/EverybodyUser.php");
-		require($GALLERY_BASEDIR . "classes/NobodyUser.php");
-		require($GALLERY_BASEDIR . "classes/LoggedInUser.php");
-		require($GALLERY_BASEDIR . "classes/UserDB.php");
-
-		require($GALLERY_BASEDIR . "classes/gallery/UserDB.php");
-        	require($GALLERY_BASEDIR . "classes/gallery/User.php");
+		require(dirname(dirname(__FILE__)) . '/classes/User.php');
+		require(dirname(dirname(__FILE__)) . '/classes/EverybodyUser.php');
+		require(dirname(dirname(__FILE__)) . '/classes/NobodyUser.php');
+		require(dirname(dirname(__FILE__)) . '/classes/LoggedInUser.php');
+		require(dirname(dirname(__FILE__)) . '/classes/UserDB.php');
+		require(dirname(dirname(__FILE__)) . '/classes/gallery/UserDB.php');
+        	require(dirname(dirname(__FILE__)) . '/classes/gallery/User.php');
 
 	
 		$userDB = new Gallery_UserDB();
@@ -1369,5 +1386,65 @@ function check_filedirective() {
 return array($success, $fail, $warn);
 }
 
+function checkVersions($verbose=false) {
+	global $gallery;
+
+	$manifest=dirname(dirname(__FILE__)) . '/manifest.inc';
+	$success=array();
+	$fail=array();
+	$warn=array();
+	if (!fs_file_exists($manifest)) {
+	       	$fail["manifest.inc"]=_("File missing or unreadable.  Please install then re-run this test.");
+		return array($success, $fail, $warn);
+	}
+	if (!function_exists('getCVSVersion')) {
+		$fail['util.php']=sprintf(_("Please ensure that %s is the latest version."), "util.php");
+		return array($success, $fail, $warn);
+	}
+	include $manifest;
+       	if ($verbose) {
+	       	print sprintf(_("Testing status of %d files."), count($versions));
+	}
+	foreach ($versions as $file => $version) {
+		$found_version=getCVSVersion($file);
+		if ($found_version === NULL) {
+		       	if ($verbose) {
+			       	print "<br>\n";
+			       	print sprintf(_("Cannot read file %s."), $file);
+			}
+			$fail[$file]=_("File missing or unreadable.");
+			continue;
+		} else if ($found_version === "") {
+			if ($verbose) {
+			       	print "<br>\n";
+			       	print sprintf(_("Version information not found in %s.  File must be old version or corrupted."), $file);
+		       	}
+		       	$fail[$file]=_("Missing version");
+		       	continue;
+	       	} 
+		$compare=compareVersions($version, $found_version);
+		if ($compare < 0) {
+			if ($verbose) {
+			       	print "<br>\n";
+			       	print sprintf(_("Problem with %s.  Expected version %s (or greater) but found %s."), $file, $version, $found_version);
+		       	}
+		       	$fail[$file]=sprintf(_("Expected version %s (or greater) but found %s."), $version, $found_version);
+	       	} else if ($compare > 0) {
+			if ($verbose) {
+			       	print "<br>\n";
+				print sprintf(_("%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
+			}
+			$warn[$file]=sprintf(_("Expected version %s but found %s."), $version, $found_version);
+		} else {
+			if ($verbose) {
+			       	print "<br>\n";
+			       	print sprintf(_("%s OK"), $file);
+		       	}
+			$success[$file]=sprintf(_("Found expected version %s."), $version);
+		}
+			
+	}
+       	return array($success, $fail, $warn);
+}
 
 ?>

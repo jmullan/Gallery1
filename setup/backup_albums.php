@@ -22,22 +22,12 @@
  * $Id$
  */
 ?>
-<?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-
-$GALLERY_BASEDIR = './';
-if (!file_exists("${GALLERY_BASEDIR}/util.php")) {
+if (!file_exists(dirname(__FILE__) . '/util.php')) {
 	print _("You must move this file to the main Gallery directory before running it.");
 	exit;
 }
 $gallery->backup_mode="yes";
-require($GALLERY_BASEDIR . 'init.php');
+require(dirname(__FILE__) . '/init.php');
 
 set_time_limit(600);
 $showForce = false;

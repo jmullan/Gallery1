@@ -1,3 +1,25 @@
+<?php
+/*
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2004 Bharat Mediratta
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
+ */
+?>
 <?php /* $Id$ */ ?>
 <?php
 /*
@@ -16,7 +38,7 @@ if (isset($gallery->app->devMode) && $gallery->app->devMode == "yes") {
 /* emulate part of register_globals = on */
 /*
  * Prevent hackers from overwriting one HTTP_ global using another one.  For example,
- * appending "?HTTP_POST_VARS[GALLERY_BASEDIR]=xxx" to the url would cause extract
+ * appending "?HTTP_POST_VARS[sensitive_Var]=xxx" to the url would cause extract
  * to overwrite HTTP_POST_VARS when it extracts HTTP_GET_VARS
  */
 $scrubList = array('HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_COOKIE_VARS', 'HTTP_POST_FILES');
@@ -29,17 +51,13 @@ extract($HTTP_GET_VARS);
 extract($HTTP_POST_VARS);
 extract($HTTP_COOKIE_VARS);
 
-if (! isset ($GALLERY_BASEDIR)) {
-	$GALLERY_BASEDIR="../";
-}
-
 /* load necessary functions */
-	require ($GALLERY_BASEDIR . 'util.php');
+	require (dirname(dirname(__FILE__)) . '/util.php');
 
 if (getOS() == OS_WINDOWS) {
-	require($GALLERY_BASEDIR . "platform/fs_win32.php");
+	require(dirname(dirname(__FILE__)) . '/platform/fs_win32.php');
 } else {
-	require($GALLERY_BASEDIR . "platform/fs_unix.php");
+	require(dirname(dirname(__FILE__)) . '/platform/fs_unix.php');
 }
 
 /* Set Language etc. */
