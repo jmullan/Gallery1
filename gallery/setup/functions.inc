@@ -147,6 +147,7 @@ function check_graphics($location="")
 		"pnmscale", 
 		"pnmfile",
 		"ppmquant",
+		"pnmcut",
 		"pnmrotate",
 	);
 
