@@ -168,7 +168,8 @@ $breadcrumb["bordercolor"] = $bordercolor;
 <html> 
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
+
   <?php /* prefetching/navigation */
   if (!isset($first)) { ?>
       <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => 1)) ?>" >
@@ -223,7 +224,7 @@ if ($gallery->album->fields["textcolor"]) {
 <?php if (!$gallery->session->offline) { ?>
 
   <script language="javascript1.2" type="text/JavaScript">
-  // <!--
+  <!-- //
   var statusWin;
   function showProgress() {
 	statusWin = <?php echo popup_status("progress_uploading.php"); ?>
@@ -248,7 +249,7 @@ if ($gallery->album->fields["textcolor"]) {
 	  selected_select.blur();
 	  <?php echo popup('sel_value', 1) ?>
   } 
-  // --> 
+  //--> 
   </script>
 <?php } ?>
 
@@ -1031,10 +1032,11 @@ if ($numPhotos) {
 if (canVote())
 {
 ?>
-	<table width="100%"><tr><td align="center">
- 	<input type="submit" name="Vote" value="<?php print _("Vote") ?>">
-	</td></tr></table>
-
+	<table width="100%">
+	<tr>
+		<td align="center"><input type=submit name="Vote" value="<?php print _("Vote") ?>"></td>
+	</tr>
+	</table>
 <?php
 }
 

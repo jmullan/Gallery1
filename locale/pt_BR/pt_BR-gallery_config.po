@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-08 19:08+0100\n"
+"POT-Creation-Date: 2003-11-13 14:56+0100\n"
 "PO-Revision-Date: 2003-09-14 17:26-0300\n"
 "Last-Translator: Daniel Neto <dnetod@yahoo.com.br>\n"
 "Language-Team: Daniel Neto <danielneto@terra.com.br>\n"
@@ -184,7 +184,7 @@ msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "Sua instalação está aprovada com louvor! Pé na tábua!"
 
 #: ../setup/check.inc:146 ../setup/constants.inc:17 ../setup/constants.inc:119
-#: ../setup/defaults.inc:17 ../setup/defaults.inc:93
+#: ../setup/defaults.inc:19 ../setup/defaults.inc:95
 msgid "Next Page"
 msgstr "Próxima Página"
 
@@ -1377,12 +1377,12 @@ msgstr "Serviço de Impressão"
 msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. If you choose Shutterfly's &quot;with donation&quot; option, Gallery will charge an extra 2 cents (US) for every photo printed, and 1.8 cents of that will get donated back to the Gallery project. EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation. Using these services is a great way for you to help support this free software."
 msgstr "Permitir aos visitantes imprimir fotos diretamente a partir do álbum. Se você escolher o shutterlfy, Gallery cobrará 2 centavos de dólar americano por foto impressa (uma impressão de 4x6 polegadas custa normalmente 49 centavos de dólar americano) e 1,8 centavos que serão doados para o projeto Gallery. Esta é uma maneira interessante de você ajudar a suportar esse software gratuito."
 
-#: ../setup/config_data.inc:856
+#: ../setup/config_data.inc:850
 #, fuzzy
 msgid "with donation"
 msgstr "%s sem doação"
 
-#: ../setup/config_data.inc:857
+#: ../setup/config_data.inc:851
 #, fuzzy
 msgid "without donation"
 msgstr "%s sem doação"
@@ -1825,12 +1825,12 @@ msgid "In this step you'll customize various settings for Gallery.  If this is t
 msgstr "Neste passo você irá customizar várias configurações para o Gallery. Se esta for a primeira vez que você customiza o Gallery, você notará que tentamos escolher valores padrão razoáveis para você. Mesmo assim, você provavelmente terá que realizar algumas pequenas mudanças. Se você já configurou o Gallery antes, então você notará que esta página já possui suas informações de configuração e que você não terá muito o que fazer."
 
 #: ../setup/constants.inc:16 ../setup/constants.inc:118
-#: ../setup/defaults.inc:16 ../setup/defaults.inc:92
+#: ../setup/defaults.inc:18 ../setup/defaults.inc:94
 msgid "Previous Page"
 msgstr "Página Anterior"
 
 #: ../setup/constants.inc:18 ../setup/constants.inc:120
-#: ../setup/defaults.inc:18 ../setup/defaults.inc:94
+#: ../setup/defaults.inc:20 ../setup/defaults.inc:96
 msgid "Use Defaults"
 msgstr "Usar Padrões"
 
@@ -1838,6 +1838,10 @@ msgstr "Usar Padrões"
 #, fuzzy
 msgid "Here you can customize the default values for new albums that you create.  Note that these are not <b>master switches</b> (i.e., if you turn a setting on here, you can still turn it off in a given album).  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
 msgstr "Aqui você pode customizar os valores padrão para novos álbuns que você criar. Note que eses valores não são <b>controles principais (master switches)</b> (Ex: se você habilitar uma função aqui, você pode desabilitá-la em algum álbum). Se esta é a primeira vez que você customiza o Gallery, você perceberá que nós tentamos escolher os padrões razoáveis para você. Se você já configurou o Gallery anteriormente, então você perceberá que esta página já possui a sua informação de configuração e você provavelmente não precisará mudar muita coisa."
+
+#: ../setup/defaults.inc:12
+msgid "Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully."
+msgstr ""
 
 #: ../setup/diagnostics.php:29
 msgid "Gallery Diagnostics"
@@ -1914,6 +1918,20 @@ msgstr ""
 #: ../setup/diagnostics.php:88
 #, php-format
 msgid "This allows you to see if you can use the email functions in %s."
+msgstr ""
+
+#: ../setup/diagnostics.php:94
+#, fuzzy
+msgid "Check versions"
+msgstr "Verificar Sessões"
+
+#: ../setup/diagnostics.php:97
+#, php-format
+msgid "This page is for %s upgrades that have problems."
+msgstr ""
+
+#: ../setup/diagnostics.php:98
+msgid "This allows you to check you have the correct version of all your Gallery files."
 msgstr ""
 
 #: ../setup/functions.inc:108
@@ -2172,22 +2190,32 @@ msgstr ""
 msgid "Configuration Wizard"
 msgstr "Gallery: Modo de Configuração"
 
-#: ../setup/functions.inc:1246
+#: ../setup/functions.inc:1248
 #, fuzzy, php-format
 msgid "You must enter a password for the %s account."
 msgstr "Você deve especificar uma senha"
 
-#: ../setup/functions.inc:1251
+#: ../setup/functions.inc:1253
 #, php-format
-msgid "It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+msgstr ""
+
+#: ../setup/functions.inc:1256
+#, php-format
+msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr ""
 
 #: ../setup/functions.inc:1258
 #, php-format
+msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+msgstr ""
+
+#: ../setup/functions.inc:1267
+#, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr ""
 
-#: ../setup/functions.inc:1265
+#: ../setup/functions.inc:1274
 msgid "Admin password"
 msgstr "Senha do administrador"
 

@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-08 19:08+0100\n"
+"POT-Creation-Date: 2003-11-13 14:56+0100\n"
 "PO-Revision-Date: 2003-10-12 17:58+0900\n"
 "Last-Translator: The Darkness <xgate32@hotmail.com>\n"
 "Language-Team: Gallery Korean Translation <xgate32@hotmail.com>\n"
@@ -180,7 +180,7 @@ msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "모든 테스트가 통과되었습니다! 다음 단계로 가세요!"
 
 #: ../setup/check.inc:146 ../setup/constants.inc:17 ../setup/constants.inc:119
-#: ../setup/defaults.inc:17 ../setup/defaults.inc:93
+#: ../setup/defaults.inc:19 ../setup/defaults.inc:95
 msgid "Next Page"
 msgstr "다음 페이지"
 
@@ -1307,11 +1307,11 @@ msgstr "출력 서비스"
 msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. If you choose Shutterfly's &quot;with donation&quot; option, Gallery will charge an extra 2 cents (US) for every photo printed, and 1.8 cents of that will get donated back to the Gallery project. EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation. Using these services is a great way for you to help support this free software."
 msgstr "방문자가 앨범을 보면서 바로 사진을 인화를 할 수 있게 합니다. Fotokasten은 독일에 있는 출력서비스로 유럽시장에 좋습니다. PhotoAccess와 Shutterfly는 미국에 있습니다. PhotoAccess, Fotokasten 와 Shutterfly will all give a small donation to the Gallery project for every print you make.shutterfly를 선택하면 매 인화시마다 추가로 2센트(US)를 더 부과합니다. 이 중 1.8센트는 갤러리 프로젝트의 기부금으로 사용됩니다. PhotoAccess와 Fotokasten do not charge extra for the Gallery donation. 이것을 통해 여러분이 이 무료 소프트웨어를 지원할 수 있습니다."
 
-#: ../setup/config_data.inc:856
+#: ../setup/config_data.inc:850
 msgid "with donation"
 msgstr ""
 
-#: ../setup/config_data.inc:857
+#: ../setup/config_data.inc:851
 msgid "without donation"
 msgstr ""
 
@@ -1732,18 +1732,22 @@ msgid "In this step you'll customize various settings for Gallery.  If this is t
 msgstr "이 단계에서 갤러리에 대한 여러가지 세팅을 조절하게 됩니다. 만약 갤러리 설정을 처음 하시는 거라면 적당한 기본값을 제시할 것입니다. 그렇지만 몇가지 사소한 변경이 필요할 수도 있습니다. 이전에 설정을 하신 적이 있다면 현재 설정 정보가 이 페이지에 나타납니다. 따라서 크게 고쳐야 할 것은 없을 것입니다."
 
 #: ../setup/constants.inc:16 ../setup/constants.inc:118
-#: ../setup/defaults.inc:16 ../setup/defaults.inc:92
+#: ../setup/defaults.inc:18 ../setup/defaults.inc:94
 msgid "Previous Page"
 msgstr "이전 페이지"
 
 #: ../setup/constants.inc:18 ../setup/constants.inc:120
-#: ../setup/defaults.inc:18 ../setup/defaults.inc:94
+#: ../setup/defaults.inc:20 ../setup/defaults.inc:96
 msgid "Use Defaults"
 msgstr "기본사항 사용"
 
 #: ../setup/defaults.inc:11
 msgid "Here you can customize the default values for new albums that you create.  Note that these are not <b>master switches</b> (i.e., if you turn a setting on here, you can still turn it off in a given album).  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
 msgstr "여기에서 새로 생성되는 앨범의 기본값을 지정할 수 있습니다. 이 값들은 <b>고정값</b>은 아닙니다. 다시 말해서, 여기에서 설정된 것이라도 앨범에서 여전히 그 값을 변경할 수 있습니다. 만약 갤러리 설정을 처음 하시는 거라면 적당한 기본값을 제시할 것입니다. 이전에 설정을 하신 적이 있다면 현재 설정 정보가 이 페이지에 나타납니다. 따라서 크게 고쳐야 할 것은 없을 것입니다."
+
+#: ../setup/defaults.inc:12
+msgid "Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully."
+msgstr ""
 
 #: ../setup/diagnostics.php:29
 msgid "Gallery Diagnostics"
@@ -1820,6 +1824,20 @@ msgstr "이 페이지는 테스트용 이메일을 보냅니다."
 #: ../setup/diagnostics.php:88
 #, php-format
 msgid "This allows you to see if you can use the email functions in %s."
+msgstr ""
+
+#: ../setup/diagnostics.php:94
+#, fuzzy
+msgid "Check versions"
+msgstr "세션 확인"
+
+#: ../setup/diagnostics.php:97
+#, php-format
+msgid "This page is for %s upgrades that have problems."
+msgstr ""
+
+#: ../setup/diagnostics.php:98
+msgid "This allows you to check you have the correct version of all your Gallery files."
 msgstr ""
 
 #: ../setup/functions.inc:108
@@ -2062,22 +2080,32 @@ msgstr "%s로 돌아가기."
 msgid "Configuration Wizard"
 msgstr "설정 마법사"
 
-#: ../setup/functions.inc:1246
+#: ../setup/functions.inc:1248
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr "%s 계정을 위한 비밀번호를 입력하셔야 합니다."
 
-#: ../setup/functions.inc:1251
+#: ../setup/functions.inc:1253
 #, php-format
-msgid "It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+msgstr ""
+
+#: ../setup/functions.inc:1256
+#, php-format
+msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr ""
 
 #: ../setup/functions.inc:1258
 #, php-format
+msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+msgstr ""
+
+#: ../setup/functions.inc:1267
+#, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr ""
 
-#: ../setup/functions.inc:1265
+#: ../setup/functions.inc:1274
 msgid "Admin password"
 msgstr "최고관리자 비밀번호"
 

@@ -47,7 +47,7 @@ if (isset($create))
 	?>
 <html>
 <head>
-  <title><?php echo _("Create Mulitple Users") ?></title>
+  <title><?php echo _("Create Multiple Users") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
@@ -134,7 +134,7 @@ if (isset($create))
 
 <html>
 <head>
-  <title><?php echo _("Create Mulitple Users") ?></title>
+  <title><?php echo _("Create Multiple Users") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">

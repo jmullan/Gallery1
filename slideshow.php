@@ -413,7 +413,7 @@ function stop() {
     changeElementText("stopOrStartText", "<?php echo _("play") ?>");
 
     onoff = 0;
-    status = "<?php echo _("The slide show is stopped, Click [play] to resume.") ?>";
+    status = "<?php echo unhtmlentities(_("The slide show is stopped, Click [play] to resume.")) ?>";
     clearTimeout(timer);
 
 }
@@ -422,21 +422,21 @@ function play() {
     changeElementText("stopOrStartText", "<?php echo _("stop") ?>");
 
     onoff = 1;
-    status = "<?php echo _("Slide show is running...") ?>";
+    status = "<?php echo unhtmlentities(_("Slide show is running...")) ?>";
     go_to_next_photo();
 }
 
 function full() {
     changeElementText("fullOrNormalText", "<?php echo _("normal size") ?>");
     fullsized = 1;
-    status = "<?php echo _("The slide is showing full sized images, Click [normal size] to view resized images.") ?>";
+    status = "<?php echo unhtmlentities(_("The slide is showing full sized images, Click [normal size] to view resized images.")) ?>";
 }
 
 function normal() {
     changeElementText("fullOrNormalText", "<?php echo _("full size") ?>");
 
     fullsized = 0;
-    status = "<?php echo _("The slide is showing normal sized images, Click [full size] to view full sized images.") ?>";
+    status = "<?php echo unhtmlentities(_("The slide is showing normal sized images, Click [full size] to view full sized images.")) ?>";
 }
 
 function changeDirection() {
@@ -475,13 +475,13 @@ function wait_for_current_photo() {
 	 * The current photo isn't loaded yet.  Set a short timer just to wait
 	 * until the current photo is loaded.
 	 */
-	status = "<?php echo _("Picture is loading...") ?>(" + current_location + " <?php echo _("of") ?>" + photo_count +  
-		").  " + "<?php echo _("Please Wait...") ?>" ;
+	status = "<?php echo unhtmlentities(_("Picture is loading...")) ?>(" + current_location + " <?php echo unhtmlentities(_("of")) ?>" + photo_count +  
+		").  " + "<?php echo unhtmlentities(_("Please Wait...")) ?>" ;
 	clearTimeout(timer);
 	timer = setTimeout('wait_for_current_photo()', 500);
 	return 0;
     } else {
-   	status = "<?php echo _("Slide show is running...") ?>" ;
+   	status = "<?php echo unhtmlentities(_("Slide show is running...")) ?>" ;
 	preload_next_photo();
 	reset_timer();
     }
@@ -691,7 +691,7 @@ drawSelect("time", array(1 => "1 ". _("second"),
                          60 => "60 ". _("seconds")),
 	   $defaultPause, // default value
 	   1, // select size
-	   array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
+	   array('onchange' => 'reset_timer()', 'style' => 'font-size:10px;' ));
 ?>
     <script language="Javascript">
     /* show the blend select if appropriate */
@@ -701,7 +701,7 @@ drawSelect("time", array(1 => "1 ". _("second"),
 		$transitionNames,
 		$defaultTransition,
 		1,
-		array('onchange' => 'change_transition()', 'style' => 'font-size=10px;'))); 
+		array('onchange' => 'change_transition()', 'style' => 'font-size:10px;'))); 
 		?>');
     }
 

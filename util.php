@@ -883,7 +883,7 @@ function _getStyleSheetLink($filename, $skinname='') {
 	    }
 	}
 
-	return '<link rel="stylesheet" type="text/css" href="' .
+	return '  <link rel="stylesheet" type="text/css" href="' .
 		$url .
 		'">';
 }
@@ -2299,18 +2299,25 @@ function initLanguage() {
 	// $locale is *NUKEs locale var
 	global $locale ;
 
-       $nls = getNLS();
+	$nls = getNLS();
 
-       // before we do any tests or settings test if we are in mode 0
-       // If so, we skip language settings at all
+	// before we do any tests or settings test if we are in mode 0
+	// If so, we skip language settings at all
 
-       $gallery->direction=$nls['default']['direction'];
-       $gallery->align=$nls['default']['alignment'];
-       if (isset($gallery->app->ML_mode)) {
+	$gallery->direction=$nls['default']['direction'];
+	$gallery->align=$nls['default']['alignment'];
+	if (isset($gallery->app->ML_mode)) {
+		// Mode 0 means no Multilanguage at all.
 		if($gallery->app->ML_mode == 0) {
+			// Maybe PHP has no gettext, then we have to substitute _()
+			if (! gettext_installed()) {
+				function _($string) {
+					return $string ;
+				}
+			}
 			return;
 		}
-       }
+	}
        // Detect Browser Language
 
        if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
@@ -2365,7 +2372,7 @@ function initLanguage() {
 
 		if (isset ($gallery->session->language) && ! isset($gallery->nuke_language)) {
 			$gallery->language = $gallery->session->language;
-		} else {
+		} else if (isset ($nls['alias'][$gallery->nuke_language])) {
 			$gallery->language=$nls['alias'][$gallery->nuke_language];
 		}
 	} else {
@@ -3017,9 +3024,28 @@ function testRequirement($test) {
 }
 
 function doctype() {
-	?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-	<?php
+	echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">';
+	echo "\n\n";
+}
+
+
+function common_header() {
+
+// Do some meta tags
+	metatags();
+	
+// Import CSS Style_sheet
+	echo getStyleSheetLink();
+}
+
+	
+function metatags() {
+	global $gallery;
+
+	echo '<meta http-equiv="content-style-type" content="text/css">';
+	echo "\n  ". '<meta http-equiv="content-type" content="Mime-Type; charset='. $gallery->charset .'">';
+	echo "\n  ". '<meta name="content-language" content="' . str_replace ("_","-",$gallery->language) . '">';
+	echo "\n";
 }
 
 // uses makeGalleryURL
@@ -3136,4 +3162,28 @@ function getCVSVersion($file) {
 	}
 	return "";
 }
+
+
+function unhtmlentities ($string)
+{
+	global $gallery;
+
+	if (function_exists('html_entity_decode')) {
+		$nls=getNLS();
+		if (isset ($nls['charset'][$gallery->language])) {
+			$charset=$nls['charset'][$gallery->language];
+		} else {
+			$charset=$nls['default']['charset'];
+		}
+		$return= html_entity_decode($string,ENT_COMPAT,$charset);
+	} else {
+		// For users prior to PHP 4.3.0 you may do this:
+		$trans_tbl = get_html_translation_table (HTML_ENTITIES);
+		$trans_tbl = array_flip ($trans_tbl);
+		$return = strtr ($string, $trans_tbl);
+	}
+
+return $return;
+}
+
 ?>

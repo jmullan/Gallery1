@@ -100,7 +100,7 @@ if (!$gallery->session->offline && !strcmp($gallery->app->showSearchEngine, "yes
 <td valign="middle" align="right">
 <?php echo makeFormIntro("search.php"); ?>
 <span class="search"> <?php echo _("Search") ?>: </span>
-<input style="font-size=10px;" type="text" name="searchstring" value="" size="25">
+<input style="font-size:10px;" type="text" name="searchstring" value="" size="25">
 </form>
 </td>
 </tr>

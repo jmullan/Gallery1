@@ -62,7 +62,7 @@ if ($searchstring) {
 <?php echo makeFormIntro("search.php"); ?>
 <td valign="middle" align="right">
 <span class="admin"> <?php echo _("Search Again") ?>: </span>
-<input style="font-size=10px;" type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
+<input style="font-size:10px;" type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
 </td>
 </form>   
 </tr>

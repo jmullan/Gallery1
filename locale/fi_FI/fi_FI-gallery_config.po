@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-08 19:08+0100\n"
+"POT-Creation-Date: 2003-11-13 14:56+0100\n"
 "PO-Revision-Date: 2003-11-06 15:05+0200\n"
 "Last-Translator: Jussi Karppanen <bitti@bitti.eu.org>\n"
 "Language-Team: Finnish <bitti@bitti.eu.org>\n"
@@ -181,7 +181,7 @@ msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "Asennuksesi onnistui mutkitta! Jatka eteenp&auml;in!"
 
 #: ../setup/check.inc:146 ../setup/constants.inc:17 ../setup/constants.inc:119
-#: ../setup/defaults.inc:17 ../setup/defaults.inc:93
+#: ../setup/defaults.inc:19 ../setup/defaults.inc:95
 msgid "Next Page"
 msgstr "Seuraava sivu"
 
@@ -1298,11 +1298,11 @@ msgstr "Tulostuspalvelut"
 msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. If you choose Shutterfly's &quot;with donation&quot; option, Gallery will charge an extra 2 cents (US) for every photo printed, and 1.8 cents of that will get donated back to the Gallery project. EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation. Using these services is a great way for you to help support this free software."
 msgstr "Salli vierailijoiden tulostaa kuvia suoraan albumista.  Fotokasten on saksalainen tulostuspalvelu; EZ Prints, PhotoAccess ja Shutterfly ovat tulostuspalveluja USA:ssa. Kaikki palvelut antavat pienen lahjoituksen Gallerialle jokaisesta tulostuksestan jonka teet. Jos valitset Shutterfly:n lahjoituksella, Galleria laskuttaa ylim‰‰r‰iset 2 sentti‰ (US -rahayksikkˆ) jokaisesta tulostetusta kuvasta, ja 1.8 sentti‰ lahjoitetaan takaisin Gallerialle. EZ Prints, PhotoAccess ja Fotokasten eiv‰t laskuta ylim‰‰r‰ist‰ Gallerialle lahjoittamisesta. N‰iden palveluiden k‰ytt‰minen on erinomainen tapa tukea t‰t‰ ilmaisohjelmistoa."
 
-#: ../setup/config_data.inc:856
+#: ../setup/config_data.inc:850
 msgid "with donation"
 msgstr "ilman lahjoitusta"
 
-#: ../setup/config_data.inc:857
+#: ../setup/config_data.inc:851
 msgid "without donation"
 msgstr "ilman lahjoitusta"
 
@@ -1723,18 +1723,22 @@ msgid "In this step you'll customize various settings for Gallery.  If this is t
 msgstr "T&auml;ss&auml; vaiheessa m&auml;&auml;rit&auml;t useita Gallerian palvelinkohtaisia asetuksia.  Jos t&auml;m&auml; on ensimm&auml;inen kerta, kun asetat Gallerian asetuksia, huomaat, ett&auml; olemme pyrkineet valitsemaan j&auml;rkev&auml;t perusasetukset sinua varten. Joka tapauksessa voi olla, ett&auml; joudut tekem&auml;&auml;n hienos&auml;&auml;t&ouml;j&auml; asetuksiin. Jos olet jo konfiguroinut Gallerian aiemmin, niin alkuper&auml;isasetuksesi ovat s&auml;ilyneet, joten sinun ei tarvitse muokata niit&auml; uudelleen."
 
 #: ../setup/constants.inc:16 ../setup/constants.inc:118
-#: ../setup/defaults.inc:16 ../setup/defaults.inc:92
+#: ../setup/defaults.inc:18 ../setup/defaults.inc:94
 msgid "Previous Page"
 msgstr "Edellinen sivu"
 
 #: ../setup/constants.inc:18 ../setup/constants.inc:120
-#: ../setup/defaults.inc:18 ../setup/defaults.inc:94
+#: ../setup/defaults.inc:20 ../setup/defaults.inc:96
 msgid "Use Defaults"
 msgstr "K&auml;yt&auml; oletuksia"
 
 #: ../setup/defaults.inc:11
 msgid "Here you can customize the default values for new albums that you create.  Note that these are not <b>master switches</b> (i.e., if you turn a setting on here, you can still turn it off in a given album).  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
 msgstr "T‰‰ll‰ voit m&auml;&auml;ritt&auml;&auml; omat asetuksesi niiden oletusarvojen kohdalle, jotka m&auml;&auml;ritt&auml;v&auml;t luotavien albumien ominaisuudet. Huomaa, ett&auml; n&auml;m&auml; arvot eiv&auml;t ole <b>supervalitsimia</b> (toisin sanoen: jos m&auml;&auml;rit&auml;t toiminnon x p&auml;&auml;lle t&auml;&auml;ll&auml;, voit silti k&auml;&auml;nt&auml;&auml; sen pois p&auml;&auml;lt&auml; tietyss&auml; albumissa). Jos t&auml;m&auml; on ensimm&auml;inen kerta, kun teet omia asetuksia Galleriaan, huomaat pian, ett&auml; Galleria on valinnut j&auml;rkev&auml;t asetukset valmiiksi. Jos olet muokannut asetuksia jo aiemmin, huomaat, ett&auml; tekem&auml;si muutokset ovat tallessa, eik&auml; sinun tarvitse koskea niihin ollenkaan."
+
+#: ../setup/defaults.inc:12
+msgid "Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully."
+msgstr ""
 
 #: ../setup/diagnostics.php:29
 msgid "Gallery Diagnostics"
@@ -1812,6 +1816,20 @@ msgstr "T‰m‰ sivu l‰hett‰‰ yksinkertaisesti pelk‰n testis‰hkˆpostiviestin."
 #, php-format
 msgid "This allows you to see if you can use the email functions in %s."
 msgstr "T‰m‰ sallii sinun tiet‰‰, jos voit k‰yttt‰‰ s‰hkˆpostifunktioita %s."
+
+#: ../setup/diagnostics.php:94
+#, fuzzy
+msgid "Check versions"
+msgstr "Tarkasta sessiot"
+
+#: ../setup/diagnostics.php:97
+#, php-format
+msgid "This page is for %s upgrades that have problems."
+msgstr ""
+
+#: ../setup/diagnostics.php:98
+msgid "This allows you to check you have the correct version of all your Gallery files."
+msgstr ""
 
 #: ../setup/functions.inc:108
 msgid "Please retype your password here"
@@ -2051,22 +2069,32 @@ msgstr "Palauta osoitteeseen %s."
 msgid "Configuration Wizard"
 msgstr "Konfigurointivelho"
 
-#: ../setup/functions.inc:1246
+#: ../setup/functions.inc:1248
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr "Sinun t&auml;ytyy antaa salasana tunnukselle %s."
 
-#: ../setup/functions.inc:1251
+#: ../setup/functions.inc:1253
 #, php-format
-msgid "It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "N‰ytt‰‰ silt‰, ett‰ ole jo aikasemmin konfiguroinut Gallerian, koska lˆysin %d p‰‰k‰ytt‰j‰n tunnusta, mutta en k‰ytt‰j‰‰ nimelt‰ %s.  Sinun ei tarvitse antaa salasanaa, mutta jos kuitenkin annat, niin luon k‰ytt‰j‰n %s sill‰ salasanalla."
+msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+msgstr "N‰ytt‰‰ silt‰, ett‰ olet jo aikaisemmin konfiguroinut Gallerian, koska lˆysin yhden p‰‰k‰ytt‰j‰n tunnuksen, joka ei kuitenkaan ole nimelt‰‰n %s."
+
+#: ../setup/functions.inc:1256
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
+msgstr "N‰ytt‰‰ silt‰, ett‰ olet jo aikaisemmin konfiguroinut Gallerian, koska lˆysin %s p‰‰k‰ytt‰j‰n tunnusta, mutta en p‰‰k‰ytt‰j‰‰ nimelt‰ %s."
 
 #: ../setup/functions.inc:1258
+#, php-format
+msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+msgstr "Sinun ei tarvitse antaa salasanaa, mutta jos kuitenkin annat, niin luon k‰ytt‰j‰n %s antamallasi salasanalla."
+
+#: ../setup/functions.inc:1267
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr "N‰ytt‰‰ silt‰, ett‰ ole jo aikaisemmin konfiguroinut Gallerian, koska k‰ytt‰j‰ %s on jo j‰rjestelm‰ss‰.  Sinun ei tarvitse antaa salasanaa, ellet halua k‰ytt‰j‰lle %s uutta salasanaa."
 
-#: ../setup/functions.inc:1265
+#: ../setup/functions.inc:1274
 msgid "Admin password"
 msgstr "P&auml;&auml;k&auml;ytt&auml;j&auml;n salasana"
 

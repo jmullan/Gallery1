@@ -1,3 +1,27 @@
+2003-11-13 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b11
+
+	* Bugfix: Fixed wrong style.
+
+	* Change: Fix Typo.
+	
+	* Change: Doctype is now more detailed.
+
+	* New: Added function metatags() which writes metatags.
+		- content-style-type
+		- content-type
+		- content-language
+
+	* New: Added function common_header() which writes a commmon header
+		- stylesheets
+		- metatags
+
+	* New: Added function unhtmlentities() which transforms html entities
+	       back. This is necessary for Statusbar of IE and Opera.
+
+	* Bugfix: When in Language Mode 0 (No ML at all) then check for
+          PHP has gettext or not is skipped. So _() was undefined.
+          Fixed now.
+
 2003-11-13  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.2-cvs-b10
 
 	* Part 1 of 2 of improving skins capabilities.

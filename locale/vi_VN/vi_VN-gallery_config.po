@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-08 19:08+0100\n"
+"POT-Creation-Date: 2003-11-13 14:56+0100\n"
 "PO-Revision-Date: 2003-06-25 12:30+0300\n"
 "Last-Translator: A.L.T <leanh@airland.kiev.ua>\n"
 "Language-Team: AIRLAND <admin@airland.kiev.ua>\n"
@@ -178,7 +178,7 @@ msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "Quá trình cài đặt của bạn đã qua với các màu chỉ thị tốt!  Đi tiếp nào!"
 
 #: ../setup/check.inc:146 ../setup/constants.inc:17 ../setup/constants.inc:119
-#: ../setup/defaults.inc:17 ../setup/defaults.inc:93
+#: ../setup/defaults.inc:19 ../setup/defaults.inc:95
 msgid "Next Page"
 msgstr "Trang sau"
 
@@ -1295,11 +1295,11 @@ msgstr "Dịch vụ in ấn"
 msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. If you choose Shutterfly's &quot;with donation&quot; option, Gallery will charge an extra 2 cents (US) for every photo printed, and 1.8 cents of that will get donated back to the Gallery project. EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation. Using these services is a great way for you to help support this free software."
 msgstr "Cho phép người xem thực hiện in ảnh trực tiếp từ trong album.  Fotokasten là một dịch vụ in tại Đức và cũng rất thuận tiện cho thị trường Châu Âu.  EZ Prints, PhotoAccess và Shutterfly nằm tại Mỹ.  Tất cả các dịch vụ này sẽ chuyển tặng một chút cho dự án Thư viện ảnh cho mỗi ảnh bạn in.  Nếu bạn chọn Shutterfly với lựa chọn &quot;có quyên góp&quot;, Thư viện ảnh sẽ trả thêm 2 xu (Mỹ) cho mỗi ảnh được in, và 1.8 xu trong đó sẽ được tặng lại cho dự án của Thư viện ảnh.  EZ Prints, PhotoAccess và Fotokasten không chi trả gì thêm cho Thư viện ảnh.  Sử dụng những dịch vụ này là cách hay nhất để bạn có thể giúp đỡ cho dự án phần mềm miễn phí này."
 
-#: ../setup/config_data.inc:856
+#: ../setup/config_data.inc:850
 msgid "with donation"
 msgstr "có quyên góp"
 
-#: ../setup/config_data.inc:857
+#: ../setup/config_data.inc:851
 msgid "without donation"
 msgstr "không quyên góp"
 
@@ -1720,18 +1720,22 @@ msgid "In this step you'll customize various settings for Gallery.  If this is t
 msgstr "Trong bước này bạn sẽ thực hiện cấu hình theo ý cho Thư viện ảnh.  Nếu đây là lần đầu bạn làm, bạn sẽ được thông báo rằng chúng tôi đã để các giá trị mặc định cho bạn.  Tuy nhiên, bạn sẽ phải làm tối thiểu vài thay đổi nhỏ. Nếu bạn đã cấu hình cho Thư viện ảnh trước, khi đó bạn được thông báo rằng trang này đã có thông tin cấu hình của bạn trong nó, nên bạn không nhất thiết làm quá nhiều."
 
 #: ../setup/constants.inc:16 ../setup/constants.inc:118
-#: ../setup/defaults.inc:16 ../setup/defaults.inc:92
+#: ../setup/defaults.inc:18 ../setup/defaults.inc:94
 msgid "Previous Page"
 msgstr "Trang trước"
 
 #: ../setup/constants.inc:18 ../setup/constants.inc:120
-#: ../setup/defaults.inc:18 ../setup/defaults.inc:94
+#: ../setup/defaults.inc:20 ../setup/defaults.inc:96
 msgid "Use Defaults"
 msgstr "Sử dụng mặc định"
 
 #: ../setup/defaults.inc:11
 msgid "Here you can customize the default values for new albums that you create.  Note that these are not <b>master switches</b> (i.e., if you turn a setting on here, you can still turn it off in a given album).  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
 msgstr "Bạn có thể tùy biến các giá trị cho album mới mà bạn tạo tại đây.  Chú ý rằng chúng không phải là <b>master switches</b> (như là, nếu như bạn bật các lựa chọn lên, bạn có thể tắt chúng đi trong album chỉ định).  Nếu đây là lần đầu bạn làm, bạn sẽ được thông báo rằng chúng tôi đã để các giá trị mặc định cho bạn.  Nếu bạn đã cấu hình cho Thư viện ảnh trước, khi đó bạn được thông báo rằng trang này đã có thông tin cấu hình của bạn trong nó, nên bạn không nhất thiết làm quá nhiều."
+
+#: ../setup/defaults.inc:12
+msgid "Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully."
+msgstr ""
 
 #: ../setup/diagnostics.php:29
 msgid "Gallery Diagnostics"
@@ -1809,6 +1813,20 @@ msgstr "Trang này sẽ gửi một email thử nghiệm."
 #, php-format
 msgid "This allows you to see if you can use the email functions in %s."
 msgstr "Điều này cho phép bạn xem nếu như bạn có thể dùng chức năng gửi email trong %s."
+
+#: ../setup/diagnostics.php:94
+#, fuzzy
+msgid "Check versions"
+msgstr "Kiểm tra Session"
+
+#: ../setup/diagnostics.php:97
+#, php-format
+msgid "This page is for %s upgrades that have problems."
+msgstr ""
+
+#: ../setup/diagnostics.php:98
+msgid "This allows you to check you have the correct version of all your Gallery files."
+msgstr ""
 
 #: ../setup/functions.inc:108
 msgid "Please retype your password here"
@@ -2048,22 +2066,32 @@ msgstr "Quay lại %s."
 msgid "Configuration Wizard"
 msgstr "Thuật cấu hình"
 
-#: ../setup/functions.inc:1246
+#: ../setup/functions.inc:1248
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr "Bạn phải ghi một mật khẩu cho tài khoản %s."
 
-#: ../setup/functions.inc:1251
-#, php-format
-msgid "It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "Có vẻ như bạn đã cấu hình cho thư viện ảnh, bởi vì đã có tài khoản QT %d, nhưng không phải là thành viên có tên %s.  Bạn không phải ghi mật khảu.  Nhưng nếu bạn vẫn ghi thì Thư viện ảnh sẽ tạo một thành viên có tên %s với mật khẩu đó."
+#: ../setup/functions.inc:1253
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+msgstr "Có vẻ như bạn đã cấu hình cho Thư viện ảnh, bởi vì thành viên %s đã có.  Bạn không nhất thiết phải ghi mật khẩu.  Nhưng nếu bạn vẫn ghi, thì Thư viện ảnh sẽ đổi mật khẩu cho thành viên tên %s."
+
+#: ../setup/functions.inc:1256
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
+msgstr "Có vẻ như bạn đã cấu hình cho Thư viện ảnh, bởi vì thành viên %s đã có.  Bạn không nhất thiết phải ghi mật khẩu.  Nhưng nếu bạn vẫn ghi, thì Thư viện ảnh sẽ đổi mật khẩu cho thành viên tên %s."
 
 #: ../setup/functions.inc:1258
+#, fuzzy, php-format
+msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+msgstr "Có vẻ như bạn đã cấu hình cho thư viện ảnh, bởi vì đã có tài khoản QT %d, nhưng không phải là thành viên có tên %s.  Bạn không phải ghi mật khảu.  Nhưng nếu bạn vẫn ghi thì Thư viện ảnh sẽ tạo một thành viên có tên %s với mật khẩu đó."
+
+#: ../setup/functions.inc:1267
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr "Có vẻ như bạn đã cấu hình cho Thư viện ảnh, bởi vì thành viên %s đã có.  Bạn không nhất thiết phải ghi mật khẩu.  Nhưng nếu bạn vẫn ghi, thì Thư viện ảnh sẽ đổi mật khẩu cho thành viên tên %s."
 
-#: ../setup/functions.inc:1265
+#: ../setup/functions.inc:1274
 msgid "Admin password"
 msgstr "Mật khẩu quản trị"
 

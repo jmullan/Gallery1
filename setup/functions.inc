@@ -1249,8 +1249,15 @@ function check_admins() {
 		);
 	}
 	else if (! in_array("admin",$admins)) {
+		if (sizeof($admins) == 1) {
+			$desc_text=sprintf(_("It seems you've already configured Gallery, because there is one admin account, but its not called %s."), '<b>admin</b>');
+		} 
+		else {
+			$desc_text=sprintf(_("It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."), sizeof($admins), '<b>admin</b>');
+		}
+		$desc_text .= "  " . sprintf (_("You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."), '<b>admin</b>');
 		$result=array(
-			"desc" => sprintf(_("It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."), sizeof($admins), '<b>admin</b>', '<b>admin</b>') . newIn('1.4.1'),
+			"desc" => $desc_text . newIn('1.4.1'),
 			"optional" => 1,
 			"remove_empty" => true
 		);
