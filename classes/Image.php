@@ -150,7 +150,7 @@ class Image {
 
 		$name = $this->getName($dir);
 
-		$attrs .= " border=0";
+		$attrs .= " border=\"0\"";
 		if ($size) {
 			if ($this->width > $this->height) {
 				$width = $size;
@@ -159,20 +159,20 @@ class Image {
 				$width = $size * ($this->width / $this->height);
 				$height = $size;
 			}
-			$size_val = "width=$width height=$height";
+			$size_val = "width=\"$width\" height=\"$height";
 		} else if ($full || !$this->resizedName) {
-			$size_val = "width=$this->raw_width height=$this->raw_height";
+			$size_val = "width=\"$this->raw_width\" height=\"$this->raw_height\"";
 		} else {
-			$size_val = "width=$this->width height=$this->height";
+			$size_val = "width=\"$this->width\" height=\"$this->height\"";
 		}
 
 		if ($this->resizedName) {
 			if ($full) {
 				return "<img src=\"$dir/$this->name.$this->type\" " .
-					"width=$this->raw_width height=$this->raw_height $attrs>";
+					"width=\"$this->raw_width\" \"height=$this->raw_height $attrs\">";
 			} else {
 				return "<img src=\"$dir/$this->resizedName.$this->type\" " .
-					"width=$this->width height=$this->height " .
+					"width=\"$this->width\" \"height=$this->height\" " .
 					"$attrs>";
 			}
 		} else {

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-23 00:29+0200\n"
+"POT-Creation-Date: 2003-08-23 03:32+0200\n"
 "PO-Revision-Date: 2003-08-20 02:45--100\n"
 "Last-Translator: François Simond <curio@gplservice.fr>\n"
 "Language-Team: French - Isabelle Renaud / François Simond <curio@gplservice.fr>\n"
@@ -67,7 +67,7 @@ msgstr "Nom ou adresse email:"
 #: ../edit_field.php:69 ../login.php:131 ../modify_user.php:89
 #: ../modify_user.php:146 ../move_album.php:93 ../move_album.php:119
 #: ../move_photo.php:227 ../move_photo.php:311 ../rename_album.php:121
-#: ../resize_photo.php:100 ../sort_album.php:116 ../user_preferences.php:125
+#: ../resize_photo.php:117 ../sort_album.php:116 ../user_preferences.php:125
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -624,7 +624,7 @@ msgid "Do you really want to delete this photo?"
 msgstr "Voulez-vous vraiment supprimer cette photo ?"
 
 #: ../delete_photo.php:139 ../edit_thumb.php:135 ../move_album.php:124
-#: ../move_photo.php:316 ../resize_photo.php:113 ../rotate_photo.php:99
+#: ../move_photo.php:316 ../resize_photo.php:130 ../rotate_photo.php:99
 #: ../view_photo_properties.php:164
 msgid "no album / index specified"
 msgstr "pas d'album ou d'index choisi"
@@ -1495,46 +1495,55 @@ msgstr "Ces caractères seront ignorés dans les noms de nouveaux albums créés."
 msgid "Resize Photo"
 msgstr "Redimensionner la photo"
 
-#: ../resize_photo.php:56
+#: ../resize_photo.php:59
 #, php-format
 msgid "Resizing %d photos..."
 msgstr "Redimensionnement de %d photos..."
 
-#: ../resize_photo.php:59
+#: ../resize_photo.php:62
 msgid "Processing image"
 msgstr "Transformation de l'image"
 
-#: ../resize_photo.php:65
+#: ../resize_photo.php:68
 msgid "Resizing 1 photo..."
 msgstr "Redimensionnement d'une photo"
 
-#: ../resize_photo.php:77
+#: ../resize_photo.php:80
 msgid "Resizing photos"
 msgstr "Redimensionnement des photos"
 
-#: ../resize_photo.php:79
+#: ../resize_photo.php:82
 msgid "This will resize your photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size. "
 msgstr "Ceci va redimensionner vos photos pour que la hauteur ou largeur maximale de la photo et la taille maximale du fichier soient égaux aux plus proche des valeurs choisies ici."
 
-#: ../resize_photo.php:81
+#: ../resize_photo.php:84
 msgid "What is the target size for all the photos in this album?"
 msgstr "Quelle est la taille désirée pour les photos de cet album?"
 
-#: ../resize_photo.php:81
+#: ../resize_photo.php:84
 msgid "What is the target size for this photo?"
 msgstr "Quelle est la taille désirée pour cette photo?"
 
-#: ../resize_photo.php:85
+#: ../resize_photo.php:88
 msgid "Target filesize"
 msgstr "Taille de fichier de destination"
 
-#: ../resize_photo.php:88
+#: ../resize_photo.php:91
 msgid "Maximum side length in pixels"
 msgstr "Taille maximale d'un bord, en pixels"
 
-#: ../resize_photo.php:91
+#: ../resize_photo.php:97
 msgid "Original Size"
 msgstr "Dimension originale"
+
+#: ../resize_photo.php:112
+msgid "(manual value)"
+msgstr ""
+
+#: ../resize_photo.php:116
+#, fuzzy
+msgid "Change Size"
+msgstr "Taille de l'image"
 
 #: ../rotate_photo.php:45
 msgid "Rotate/Flip Photo"
