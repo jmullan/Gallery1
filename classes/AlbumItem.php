@@ -135,7 +135,11 @@ class AlbumItem {
 	}
 
 	function getComment($commentIndex) {
-		return $this->comments[$commentIndex-1];
+		if (!empty($this->comments)) {
+			return $this->comments[$commentIndex-1];
+		} else {
+			return null;
+		}
 	}
 
 	function integrityCheck($dir) {
