@@ -287,12 +287,12 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 } // End if ! embedded
 
+includeHtmlWrap("photo.header");
+
 if ($fitToWindow) {
 	/* Include Javascript */
 	include("js/fitToWindow.js.php");
 }
-
-includeHtmlWrap("photo.header");
 ?>
 <!-- Top Nav Bar -->
 <form name="admin_form" action="view_photos.php">

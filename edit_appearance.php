@@ -75,10 +75,8 @@ if (getRequestVar('save')) {
 	$gallery->album->fields["showDimensions"] = $showDimensions;
 	$gallery->album->save(array(i18n("Properties changed")));
 
-	if (isset($setNested)) {
-	
+	if (getRequestVar('setNested')) {
 		$gallery->album->setNestedProperties();
-
 	}
 
 	reload();
