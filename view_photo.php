@@ -547,6 +547,7 @@ if (!$gallery->album->isMovie($id)) {
 	}
 </script>
 <?php
+includeLayout('navtablebegin.inc');
 	if ($adminCommands) {
 	    
 		$adminCommands = "<span class=\"admin\">$adminCommands</span>";
@@ -562,14 +563,11 @@ if (!$gallery->album->isMovie($id)) {
 $breadcrumb["bordercolor"] = $bordercolor;
 $breadcrumb["top"] = true;
 $breadcrumb['bottom'] = false;
+includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
-?>
-</td>
-</tr>
-<tr>
-<td>
-<?php
+includeLayout('navtablemiddle.inc');
 includeLayout('navphoto.inc');
+includeLayout('navtableend.inc');
 
 #-- if borders are off, just make them the bgcolor ----
 if (!strcmp($gallery->album->fields["border"], "off")) {
@@ -642,9 +640,8 @@ includeHtmlWrap("inline_photo.frame");
 <table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
 <!-- caption -->
 <tr>
-<td colspan=3 align=center>
-<span class="modcaption"><?php echo editCaption($gallery->album, $index) ?>
-</span>
+<td colspan=3 align="center" class="modcaption">
+<?php echo editCaption($gallery->album, $index) ?>
 <?php
 if ( canVote() )
 {
@@ -677,7 +674,7 @@ if ($gallery->album->getPollShowResults())
 }
 ?>
 
-<br><br>
+<br>
 <?php
 
 $automaticFields=automaticFieldsList();
@@ -872,19 +869,14 @@ echo("</td></tr>");
 	       	<input type="hidden" name="submitEmailMe">
 		</form>
 <?php } ?>
-<table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
-<tr>
-<td>
-<?php
-includeLayout('navphoto.inc');
-$breadcrumb["top"] = false;
-includeLayout('breadcrumb.inc');
-?>
-</td>
-</tr>
-</table>
 
 <?php
+includeLayout('navtablebegin.inc');
+includeLayout('navphoto.inc');
+$breadcrumb["top"] = false;
+includeLayout('navtablemiddle.inc');
+includeLayout('breadcrumb.inc');
+includeLayout('navtableend.inc');
 includeLayout('ml_pulldown.inc');
 includeHtmlWrap("photo.footer");
 ?>

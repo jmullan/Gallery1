@@ -9,11 +9,13 @@ if ($commentdraw["bordercolor"]) {
 
 $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"\">";
 
-?>
+?><tr>
+    <td colspan="3">
+    </td>
+  </tr>
   <tr>
     <td width="15%"></td>
-    <td width="70%" class="bordertop">
-      <span class=modcaption>
+    <td width="70%" class="modcaption">
       <br>
 <?php echo _("From:") ?> <b><?php echo $commentdraw["name"] ?></b> &nbsp;
 <?php
@@ -34,7 +36,6 @@ if ($gallery->user->canWriteToAlbum($gallery->album)) {
 }
 ?>
       <br><br>
-      </span>
     </td>
     <td width="15%"></td>
   </tr>

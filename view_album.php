@@ -477,7 +477,7 @@ if (!empty($adminOptionHTML)) {
     print $adminJSFrame;
     print "<form name=\"admin_options_form\" action=\"view_album.php\">\n";
 }
-
+includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
 ?>
 
@@ -487,9 +487,12 @@ $breadcrumb["top"] = true;
 $breadcrumb['bottom'] = false;
 if (strcmp($gallery->album->fields["returnto"], "no") 
    || ($gallery->album->fields["parentAlbumName"])) {
+	includeLayout('navtablemiddle.inc');
 	includeLayout('breadcrumb.inc');
 }
+includeLayout('navtablemiddle.inc');
 includeLayout('navigator.inc');
+includeLayout('navtableend.inc');
 
 if (!empty($adminOptionHTML)) {
     print "</form>\n";
@@ -806,7 +809,7 @@ if ($numPhotos) {
 				$showAdminForm = 0;
 			}
 			echo '<table width="' . $gallery->album->fields['thumb_size']
-				. '" border="0" cellpadding="0" cellspacing="4"><tr><td><span class="modcaption">';
+				. '" border="0" cellpadding="0" cellspacing="4"><tr><td class="modcaption">';
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 				echo "(" . _("hidden") .")<br>";
@@ -852,7 +855,7 @@ if ($numPhotos) {
 				}
 
 			}
-		       	echo "</span></td></tr></table>";
+		       	echo "</td></tr></table>";
 		       	if (canVote()) {
 				print '<table><tr><td align="left">';
 			       	addPolling($gallery->album->getVotingIdByIndex($i),
@@ -1067,12 +1070,14 @@ if (canVote())
 <?php } ?>
 <!-- bottom nav -->
 <?php 
+includeLayout('navtablebegin.inc');
 includeLayout('navigator.inc');
 if (strcmp($gallery->album->fields["returnto"], "no")) {
 	$breadcrumb["top"] = false;
+	includeLayout('navtablemiddle.inc');
 	includeLayout('breadcrumb.inc');
 }
-
+includeLayout('navtableend.inc');
 includeLayout('ml_pulldown.inc');
 includeHtmlWrap("album.footer");
 ?>

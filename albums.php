@@ -185,12 +185,15 @@ $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $borderColor;
 $adminbox["top"] = true;
+includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
+includeLayout('navtablemiddle.inc');
 ?>
 
 <!-- top nav -->
 <?php
 includeLayout('navigator.inc');
+includeLayout('navtableend.inc');
 includeLayout('ml_pulldown.inc');
 ?>
 
@@ -428,7 +431,9 @@ print lastCommentString($lastCommentDate, $displayCommentLegend);
 <?php } ?>
 <!-- bottom nav -->
 <?php
+includeLayout('navtablebegin.inc');
 includeLayout('navigator.inc');
+includeLayout('navtableend.inc');
 ?>
 
 <!-- gallery.footer begin -->

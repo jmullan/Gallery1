@@ -97,9 +97,9 @@ function viewComments($index, $addComments) {
        	{
 		$id = $gallery->album->getPhotoId($index);
 	       	$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
-	       	$buf = "<tr><td align=\"center\"><span class=editlink>";
+	       	$buf = "<tr><td></td><td align=\"center\"><span class=editlink>";
 	       	$buf .= popup_link('[' . _("add comment") . ']', $url, 0);
-	       	$buf .= "</span></td></tr>";
+	       	$buf .= "<br><br></span></td><td></td></tr>";
 	       	echo $buf;
        	}
 }
@@ -1366,7 +1366,7 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 		$myName = $myAlbum->isAlbumName($i);
 		if ($myName) {
 			$nestedAlbum = new Album();
-			$nestedAlbum->load($myName);
+			$nestedAlbum->load($myName,0);
 			if ($gallery->user->canWriteToAlbum($nestedAlbum) ||
 			    ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
 
