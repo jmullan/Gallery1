@@ -1,3 +1,11 @@
+2004-07-16  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-RC2-cvs-b21
+
+        * Change: Revert last change to album_permissions
+
+        * Change: Fix PHP5 - they stopped using the old-style GET and POST
+          globals, and have switched to SuperGlobals only.  A couple session
+          and form functions needed adapting.
+
 2004-07-16  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-RC2-cvs-b20
 
         * Change: album_permissions - if $gallery->album is not set, but
