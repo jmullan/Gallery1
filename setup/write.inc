@@ -93,7 +93,11 @@ An account called <i>admin</i> has been created for you with the password you sp
 Don't forget to run:
 <br>
 <code>
-% sh secure.sh
+<br> <b>Unix</b>
+<br> % sh secure.sh
+<br>
+<br> <b>Windows</b>
+<br> C:\> secure.bat
 </code>
 </center>
 <br>
