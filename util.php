@@ -1765,7 +1765,7 @@ $nls = getNLS();
 if (isset($GALLERY_EMBEDDED_INSIDE) && isset($HTTP_COOKIE_VARS['lang'])) {
 	// We're in NUKE
 	$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
-	$gallery->language=$langalias[$gallery->nuke_language];
+	$gallery->language=$nls['aliases'][$gallery->nuke_language];
 } else {
 	//We're not in Nuke
 	switch ($gallery->app->ML_mode) {
