@@ -1,4 +1,12 @@
-2003-09-07  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b71
+2003-09-10  Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.1-cvs-b72
+
+        * Fixed an issue with paths with spaces when using jhead and
+          jpegtran.  With the former, we were adding too many quotes.
+          With the latter, we weren't adding any quotes.  Both situations
+          caused the programs to fail.  This commit should also fix
+          issues with paths with spaces on Unix-like operating systems.        
+
+2003-09-10  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b71
 	
 	* Fixed bug in 6 languages where "upgrade all" link did
 	  not appear in upgrade_album.php.  Note these files my be

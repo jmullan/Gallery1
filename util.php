@@ -467,6 +467,9 @@ function rotate_image($src, $dest, $target, $type) {
 		$out = $dest;
 	}
 
+        $outFile = fs_import_filename($out, 1);
+        $srcFile = fs_import_filename($src, 1);
+
 	$type = strtolower($type);
 	if (isset($gallery->app->use_jpegtran) && !empty($gallery->app->use_jpegtran) && ($type === 'jpg' || $type === 'jpeg')) {
 	    	if (!strcmp($target, '-90')) {
@@ -489,7 +492,7 @@ function rotate_image($src, $dest, $target, $type) {
 
 		$path = $gallery->app->use_jpegtran;
 		// -copy all ensures all headers (i.e. EXIF) are copied to the rotated image
-		exec_internal(fs_import_filename($path, 1) . " $args -copy all -outfile $out $src");
+		exec_internal(fs_import_filename($path, 1) . " $args -copy all -outfile $outFile $srcFile");
 	} else {
 		switch($gallery->app->graphics)
 		{
@@ -533,7 +536,7 @@ function rotate_image($src, $dest, $target, $type) {
 			// copy exif headers from original image to rotated image	
 			if (isset($gallery->app->use_exif)) {
 				$path = $gallery->app->use_exif;
-				exec_internal(fs_import_filename($path, 1) . " -te $src $out");
+				exec_internal(fs_import_filename($path, 1) . " -te $srcFile $outFile");
 			}
 			break;
 		case "ImageMagick":
@@ -558,7 +561,7 @@ function rotate_image($src, $dest, $target, $type) {
 		  	
 			$src = fs_import_filename($src);
 			$out = fs_import_filename($out);
-			$err = exec_wrapper(ImCmd('convert', "$im_cmd $src $out"));
+			$err = exec_wrapper(ImCmd('convert', "$im_cmd $srcFile $outFile"));
 			break;
 		default:
 			if (isDebugging())
@@ -1314,9 +1317,8 @@ function getExif($file) {
         $return = array();
         $path = $gallery->app->use_exif;
         list($return, $status) = exec_internal(fs_import_filename($path, 1) .
-						" \"" .
-						fs_import_filename($file, 1) .
-                                                "\"");
+						" " .
+						fs_import_filename($file, 1));
 
 	$myExif = array();
 	if ($status == 0) {
