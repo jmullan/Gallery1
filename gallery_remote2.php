@@ -159,12 +159,11 @@ if (!strcmp($cmd, "login")) {
 		// try to log in using URL parameters (probably not embedded)
 		$tmpUser = $gallery->userDB->getUserByUsername($uname);
 
-		$response->setProperty( "debug_user", $tmpUser->getUsername());
-		$response->setProperty( "debug_user_type", get_class($tmpUser));
-		//echo $tmpUser->getUsername()."\n";
-		//echo get_class($tmpUser)."\n";
-		//echo $gallery->user->getUsername()."\n";
-		//echo $gallery->user->isLoggedIn()."\n";
+		if ($tmpUser) {
+			$response->setProperty( "debug_user", $tmpUser->getUsername());
+			$response->setProperty( "debug_user_type", get_class($tmpUser));
+		}
+
 		if ($tmpUser && $tmpUser->isCorrectPassword($password)) {
 			// log user in
 			$gallery->session->username = $uname;
