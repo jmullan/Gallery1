@@ -159,7 +159,7 @@ if ($gallery->user->isAdmin()) {
 	if ($doc) {
 		$adminCommands .= "$doc ";
 	}
-	$adminCommands .= '<a style="white-space:nowrap;" href="' . $gallery->app->photoAlbumUrl . 'setup/index.php">[' . _("configuration wizard") .']</a> ';
+	$adminCommands .= '<a style="white-space:nowrap;" href="' . $gallery->app->photoAlbumURL . 'setup/index.php">[' . _("configuration wizard") .']</a> ';
 	$adminCommands .= '<a style="white-space:nowrap;" href="' . makeGalleryUrl('tools/find_orphans.php') . '>[' . _("find orphans") .']</a> ';
 }
 
