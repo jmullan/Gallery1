@@ -243,7 +243,7 @@ $constants = array(
 	"mirrorSites" => array(
 		"prompt" => "Mirror sites",
 		"desc" => "A list of URLs that contain mirrors of your " .
-			"albums directory.  Specify one URL line with the ones " .
+			"albums directory.  Specify one URL per line with the ones " .
 			"that are more reliable towards the top.  Eg. <center><i>" .
 			"http://www.fast.server/albums<br>http://www.other.server/albums</i>" .
 			"</center>",
