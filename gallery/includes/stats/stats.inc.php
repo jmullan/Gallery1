@@ -46,22 +46,22 @@ $stats['types'] = array (
 				 'default' => 'checked',
 				 'name' =>'type',
 				 'text' => _("Sort by most viewed image first"),
-				 'linktext' => _("most viewed")),
+				 'linktext' => '[' . _("most viewed") . ']'),
 	'date'		=> array('type' => 'radio',
 				 'default' => '',
 				 'name' =>'type',
 				 'text' => _("Sort by the latest added image first"),
-				 'linktext' => _("latest added")),
+				 'linktext' => '[' . _("latest added") . ']'),
 	'cdate'		=> array('type' => 'radio',
 				 'default' => '', 
 				 'name' =>'type',
 				 'text' => _("Sort by image capture date"),
-				 'linktext' => _("latest shots")),	
+				 'linktext' => '[' . _("latest shots") . ']'),	
 	'comments'	=> array('type' => 'radio',
 				 'default' => '',
 				 'name' =>'type',
 				 'text' => _("Show images with comments - latest are shown first"),
-				 'linktext' => _("most comments")),
+				 'linktext' => '[' . _("most comments") . ']'),
 	'ratings'	=> array('type' => 'radio',
 				 'default' => '',
 				 'name' =>'type',
@@ -71,7 +71,7 @@ $stats['types'] = array (
 				 'default' => '',
 				 'name' =>'type',
 				 'text' => _("Show random images"),
-				 'linktext' => _("random images"))
+				 'linktext' => '[' . _("random images") . ']')
 );
 
 
