@@ -72,7 +72,7 @@ if ($prevPage >= 0) {
 <?
         if ($prevAlbumName) {
 ?>
-      <a href="<?=makeAlbumUrl($prevAlbumName)?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo">
+      <a href="<?=makeAlbumUrl($prevAlbumName)?>"><img src="<?=$imageDir?>/nav_prev.gif" border="0" width="72" height="11" alt="Previous Photo">
 </a>
 <?
         } else {
