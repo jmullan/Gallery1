@@ -51,6 +51,8 @@ What is the target size for <?= $all ? "all the photos in this album" : "this ph
 <input type=submit name=resize value="800">
 <input type=submit name=resize value="700">
 <input type=submit name=resize value="600">
+<input type=submit name=resize value="500">
+<input type=submit name=resize value="400">
 <input type=submit value="Cancel" onclick='parent.close()'>
 </form>
 
