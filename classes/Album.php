@@ -142,6 +142,7 @@ class Album {
 		/* Special case for serial number */
 		if (!$this->fields["serial_number"]) {
 			$this->fields["serial_number"] = 0;
+			$this->updateSerial = 1;
 			$changed = 1;
 		}
 
