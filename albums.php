@@ -110,7 +110,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <tr>
 <?php
 	if ($GALLERY_EMBEDDED_INSIDE =='phpBB2') {
-		echo '<td class="nav"><a href="index.php">'. sprintf($lang['Forum_Index'], $board_config['sitename']) . '</a></td';
+		echo '<td class="nav"><a href="index.php">'. sprintf($lang['Forum_Index'], $board_config['sitename']) . '</a></td>';
 }
 	if ($numPhotos != 0) {
 		echo '<td valign="middle" align="right">';
