@@ -156,6 +156,12 @@ Now, you'll be able to get to your gallery directly via its new URL
 site (ie http://your.server.com/nuke/ -- then look for the "gallery"
 listing on the main menu).
 
+NOTE:  If you want your module to be called something other than
+"gallery" (which especially occurs when you have multiple galleries
+on a single Nuke site) you can rename the module or the symbolic link.
+However, you must then edit the index.php inside the Gallery and
+set $GALLERY_MODULENAME appropriately.
+
 7. I CAN'T UPLOAD LARGE FILES!
 
 PHP imposes a restriction on the size of a file upload.  This may get
