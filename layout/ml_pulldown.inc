@@ -31,13 +31,11 @@ function ML_reload() {
 		if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			if (isset($GLOBALS['pnconfig']) && function_exists("authorised")) {
 				/* postnuke */
-				echo "POSTNUKKE";
 				if (! isset($nls['postnuke'][$value])) continue;
 				$args["newlang"]=$nls['postnuke'][$value];
 			}
 			else {
 				/* phpnuke */ 
-				echo "<br>-->". $nls['phpnuke'][$value];
 				if (! isset($nls['phpnuke'][$value])) continue;
 				$args["newlang"]=$nls['phpnuke'][$value];
 			} 

@@ -24,8 +24,10 @@ cd $ACTUALPATH
 
 #make sure the pot file is uptodate:
 
-echo -n "making gallery.pot . . . "
-sh create_po_template.sh
+if [ $2 != "-f" ]; then
+	echo -n "making gallery.pot . . . "
+	sh create_po_template.sh
+}
 
 echo "done".
 #find all .po files or use only one

@@ -1804,13 +1804,15 @@ function findInPath($program)
 }
 
 function initLanguage() {
+
 	global $gallery, $GALLERY_BASEDIR, $GALLERY_EMBEDDED_INSIDE;
-	global $HTTP_SERVER_VARS, $HTTP_COOKIE_VARS, $HTTP_GET_VARS;
+	global $HTTP_SERVER_VARS, $HTTP_COOKIE_VARS, $HTTP_GET_VARS, $HTTP_SESSION_VARS;
 
 	// $locale is *NUKEs locale var
 	global $locale ;
 
 	// Detect Browser Language
+
 	if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
 		$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
 		$lang_pieces=explode ("-",$lang[0]);
@@ -1822,9 +1824,6 @@ function initLanguage() {
 				strtolower($lang_pieces[0]).
 				"_".strtoupper($lang_pieces[1]) ;
 		}
-	} else {
-		// wget doesn't have a browser language
-		$gallery->browser_language='en_US';
 	}
 
 	// If we have no Mode, use Browserlanguage
@@ -1835,7 +1834,7 @@ function initLanguage() {
 	$nls = getNLS();
 
 	/**
-	 ** We have 2 Ways. Nuke or not Nuke
+	 ** We have 2+1 Ways. PostNuke, phpNuke or not Nuke
 	 ** If we are in Nuke this override the Mode
 	 **/
 	if (isset($HTTP_GET_VARS['newlang'])) {
@@ -1848,10 +1847,21 @@ function initLanguage() {
 		//We're in NUKE";
 		if (!empty($newlang)) {
 			// if there was a new language given, use it
-			$gallery->nuke_language=$newlang;	
-		} elseif (isset($HTTP_COOKIE_VARS['lang'])) {
-			// if not and a language is given by NUKE Cookie use it
-			$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
+			$gallery->nuke_language=$newlang;
+		} else {
+			//No new language. Lets see which Nuke we use and look for a language
+			if (isset($GLOBALS['pnconfig']) && function_exists("authorised")) {
+				/* postnuke */
+				if (isset($HTTP_SESSION_VARS['PNSVlang'])) {
+					$gallery->nuke_language=$HTTP_SESSION_VARS['PNSVlang'];
+				}
+			}
+			else {
+				/* phpnuke */
+				if (isset($HTTP_COOKIE_VARS['lang'])) {
+					$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
+				}
+			}
 		}
 
 		if (isset ($gallery->session->language) && ! isset($gallery->nuke_language)) {
@@ -1871,7 +1881,7 @@ function initLanguage() {
 				if (!empty($gallery->user) && 
 						$gallery->user->getDefaultLanguage() != "") {
 					$gallery->language = $gallery->user->getDefaultLanguage();
-				} else {
+				} elseif (isset($gallery->browser_language)) {
 					$gallery->language=$gallery->browser_language;
 				}
 				break;
