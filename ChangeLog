@@ -1,5 +1,11 @@
 2000-12-27  Bharat Mediratta  <bharat@harmony.menalto.com>
 
+	* All references to specific images now use the image ID (eg
+	  "photo-aaa", "photo-aac") instead of the image index (eg "1",
+	  "3").  This means that URLs to specific images will continue to
+	  be valid even if they are moved around the album.  That's
+	  essential if you want to give a URL for an image to a friend.
+
 	* Broke main album page into separate pages and used the navigator
 	  to swap between them.  This will lighten the server load since
 	  every time the end user goes to the main gallery page they won't
