@@ -787,12 +787,13 @@ function config_maybe_locales() {
 			continue;
 		}
 		if (sizeof($aliases) == 1) {
+		echo "disco1";
 			$results["locale_alias['$key']"] = array (
 				"type" => "hidden", 
 				"value" => array_pop($aliases),
 				"desc" => "locale_alias[$key]",
 				"prompt" => "locale_alias[$key]"
-					);
+				);
 			continue;
 		}
 		$nr++;
@@ -838,7 +839,7 @@ function config_maybe_locales() {
 
 		$avail_keys=array_keys($available);
 	} elseif (sizeof($maybe) > 0) {
-		if (getOS() != OS_LINUX) $choices=array("" => _("System locale"));
+		if (getOS() == OS_OTHER) $choices=array("" => _("System locale"));
 		foreach ($maybe as $key => $aliases) {
 			foreach ($aliases as $choice) {
 				$choices[$choice]=$choice;
@@ -847,7 +848,7 @@ function config_maybe_locales() {
 
 		$avail_keys=array_keys($choices);
 	} else {
-		if (getOS() != OS_LINUX) {
+		if (getOS() == OS_OTHER) {
 			$choices=array("" => _("System locale"));
 			$array_keys=$choices;
 		} else {
@@ -863,7 +864,8 @@ function config_maybe_locales() {
 				"type" => "hidden", 
 				"value" => $avail_keys[0],
 				"desc" => "locale_alias[$key]",
-				"prompt" => "locale_alias[$key]"
+				"prompt" => "locale_alias[$key]",
+				"allow_empty" => (getOS() == OS_OTHER) ? true : false
 				);
 			continue;
 		}
@@ -885,9 +887,9 @@ function config_maybe_locales() {
 			"key" => $key,
 			"type" => "block_element",
 			"choices" => $choices,
-				"value" => "",
-				"allow_empty" => true
-				);
+			"value" => "",
+			"allow_empty" => (getOS() == OS_OTHER) ? true : false
+			);
         }
 	if ($block_start_done) {
 		$results[] = array ("type" => "block_end");
