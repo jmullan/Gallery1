@@ -1,4 +1,4 @@
-Gallery 1.0
+WHAT IS GALLERY?
 
 Gallery is a web based photo album viewer/creator.  It has the 
 following features:
@@ -26,4 +26,21 @@ following features:
    * Edit the appearance of an album (background color/image,
      font, borders, etc)
  * Cookie based session support
+
+
+HOW DO I INSTALL GALLERY?
+
+Installing and configuring Gallery is done via a set of web pages.
+To enable these web pages type:
+
+	% sh configure.sh
+
+Then go to the URL for the 'setup' directory in your Gallery installation.
+This will walk you through the process of configuring the application.
+When you're done, type:
+
+	% sh secure.sh
+
+And it will turn off the configuration application.  Gallery won't run
+if it is not in secure mode.
 
