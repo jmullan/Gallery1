@@ -88,27 +88,27 @@ asort($uAll);
 <body dir="<?php echo $gallery->direction ?>">
 
 <center>
-<span class="popuphead"> <?php echo _("Change Owner") ?> </span>
-<br>
-<?php $index=$gallery->album->getPhotoIndex($id) ?>
-<br>
-<br>
-<?php echo $gallery->album->getThumbnailTag($index) ?>
-<br>
-<?php $gallery->album->getCaption($index) ?>
-<br>
+<p class="popuphead"><?php echo _("Change Owner") ?></p>
+<?php 
+	$index=$gallery->album->getPhotoIndex($id);
+	echo $gallery->album->getThumbnailTag($index);
+	$gallery->album->getCaption($index);
+?>
 
-<?php echo makeFormIntro("photo_owner.php", 
-			array("name" => "photoowner_form")) ?>
-
-<?php if ($gallery->user->isAdmin) { ?>
-<?php echo _("Owner") ?>: <?php echo drawSelect("owner", $uAll, $owner, 1); ?>
-<?php } ?><p>
-
+<p>
+<?php 
+	echo makeFormIntro("photo_owner.php", array("name" => "photoowner_form"));
+	if ($gallery->user->isAdmin) {
+		echo _("Owner") .": ";
+		echo drawSelect("owner", $uAll, $owner, 1);
+	}
+?>
+</p>
 <input type="hidden" name="id" value="<?php echo $id ?>">
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
 <input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
+</center>
 
 </body>
 </html>

@@ -78,6 +78,7 @@ if (isset($save)) {
 <body dir="<?php echo $gallery->direction ?>">
 
 <center>
+<p class="popuphead"><?php echo _("Edit Caption"); ?></p>
 <?php echo $gallery->album->getThumbnailTag($index) ?>
 </center>
 <span class="popup">

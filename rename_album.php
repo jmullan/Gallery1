@@ -46,8 +46,8 @@ if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
 <center>
+<p class="popuphead"><?php echo _("Rename Album") ?></p>
 <span class="popup">
 <?php
 /* Read the album list */

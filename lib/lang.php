@@ -56,6 +56,22 @@ function get_BrowserLanguage() {
 	}
 }
 
+/*
+** Set Gallery Default:
+** - language
+** - charset
+** - direction
+** - alignment
+*/
+
+function setLangDefaults() {
+	global $gallery;
+
+	$gallery->language 	= 'en_US';
+	$gallery->charset  	= $nls['default']['charset'];
+	$gallery->direction	= $nls['default']['direction'];
+	$gallery->align		= $nls['default']['alignment'];
+}
 
 function initLanguage() {
 
@@ -67,11 +83,12 @@ function initLanguage() {
 
 	$nls = getNLS();
 
+	/* Set Defaults, they may be overwritten. */
+	setLangDefaults();
+
 	// before we do any tests or settings test if we are in mode 0
 	// If so, we skip language settings at all
 
-	$gallery->direction=$nls['default']['direction'];
-	$gallery->align=$nls['default']['alignment'];
 	if (isset($gallery->app->ML_mode)) {
 		// Mode 0 means no Multilanguage at all.
 		if($gallery->app->ML_mode == 0) {
@@ -81,12 +98,10 @@ function initLanguage() {
 					return $string ;
 				}
 			}
-			$gallery->language = 'en_US';
-			$gallery->charset  = $nls['default']['charset'];
+			/* Skip rest*/
 			return;
 		}
 	}
-
 
 	$gallery->browser_language=get_BrowserLanguage();
 
