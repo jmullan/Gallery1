@@ -48,11 +48,9 @@ for all_CF in $Cfiles ; do
 	echo "$tab Updating ..."
 	echo "" >> $all_CF
 #	echo "===============================================================================" >> $all_CF
-	echo "2004-09-01 Jens Tkotz <jens@peino.de> 1.4.5-cvs-b146" >> $all_CF
+	echo "2005-02-21 Jens Tkotz <jens@peino.de> 1.5-RC2-cvs-b13" >> $all_CF
 	echo "" >> $all_CF
-	echo " * Merge with updated files from 1.4.4" >> $all_CF
-	echo "" >> $all_CF
-	echo " * Sync with 1.4.5 code" >> $all_CF
+	echo " * Sync code" >> $all_CF
 #	echo "===============================================================================" >> $all_CF
 	echo "" >> $all_CF
 #read trash

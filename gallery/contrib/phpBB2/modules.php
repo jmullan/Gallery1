@@ -25,13 +25,14 @@
 /*
 ** This file was written by Martin Smallridge <info@snailsource.com>
 ** Adapted for 2.0.9 by Jens Tkotz
-** Adapted to fit with Register Globals ON for 2.0.9/10 by Jens A. Tkotz
 */
 
 define('MODULES_PATH', './modules/');
 
+$op = $_REQUEST['op'];
+$name = $_REQUEST['name'];
+$file = $_REQUEST['file'];
 
-$op = ( isset($_POST['op']) ) ? $_POST['op'] : (isset($_GET['op']) ? $_GET['op'] : '');
 switch ($op) {
     case 'modload':
 	// Added with changes in Security for PhpBB2.

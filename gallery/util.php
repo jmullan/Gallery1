@@ -297,14 +297,14 @@ function exec_internal($cmd) {
 	$results=array();
 	
 	if (isDebugging()) {
-		print "<p><b>". _("Executing:") ."<ul>$cmd</ul></b>";
+		print "\n<br><b>". _("Executing:") ."<ul>$cmd</ul></b>";
 		$debugfile = tempnam($gallery->app->tmpDir, "dbg");
 	}
 
 	fs_exec($cmd, $results, $status, $debugfile);
 
 	if (isDebugging()) {
-		print "<br>" . _("Results:") ." <pre>";
+		print "\n<br>". _("Results:") ."<pre>";
 		if ($results) {
 			print join("\n", $results);
 		} else {
@@ -313,7 +313,7 @@ function exec_internal($cmd) {
 		print "</pre>";
 
 		if (file_exists($debugfile)) {
-			print "<br> ". _("Debug messages:") .": <pre>";
+			print "\n<br> ". _("Debug messages:") ." <pre>";
 			if ($fd = fs_fopen($debugfile, "r")) {
 				while (!feof($fd)) {
 					$buf = fgets($fd, 4096);
@@ -324,7 +324,7 @@ function exec_internal($cmd) {
 			unlink($debugfile);
 			print "</pre>";
 		}
-		print "<br> ". sprintf(_("Status: %s (expected %s)"),
+		print "\n<br> ". sprintf(_("Status: %s (expected %s)"),
 				$status, $gallery->app->expectedExecStatus);
 	}
 
@@ -347,67 +347,71 @@ function exec_wrapper($cmd) {
 }
 
 function getDimensions($file, $regs=false) {
-	global $gallery;				
+    global $gallery;				
 
-	if (! fs_file_exists($file)) {
-		if (isDebugging()) {
-			echo "<br>". sprintf(_("The file %s does not exist ?!"),$file);
-		}
-		exit;
-	}
+    if (isDebugging()) {
+        processingMsg(sprintf(_("Getting Dimension of file: %s"), $file));
+    }
 
-	if ($regs === false) {
-		$regs = getimagesize($file);
-	}
-	if (($regs[0] > 1) && ($regs[1] > 1)) {
-		return array($regs[0], $regs[1]);
-	}
-	elseif (isDebugging()) {
-		echo "<br>" .sprintf(_("PHP's %s unable to determine dimensions."),
-				"getimagesize()") ."<br>";
-	}
+    if (! fs_file_exists($file)) {
+        if (isDebugging()) {
+            processingMsg(_("The file does not exist ?!"));
+        }
+        return array(0, 0);
+    }
+    if ($regs === false) {
+        $regs = getimagesize($file);
+    }
+    
+    if (($regs[0] > 1) && ($regs[1] > 1)) {
+        return array($regs[0], $regs[1]);
+    }
+    elseif (isDebugging()) {
+        processingMsg(sprintf(_("PHP's %s unable to determine dimensions."), "getimagesize()"));
+    }
 		
-	/* Just in case php can't determine dimensions. */
-	switch($gallery->app->graphics)
-	{
-	case "NetPBM":
-		list($lines, $status) =
-			exec_internal(toPnmCmd($file) .
-				" | " .
-				NetPBM("pnmfile", "--allimages"));
-		break;
-	case "ImageMagick":
-		/* This fails under windows, IM isn't returning parsable status output. */
-		list($lines, $status) = 
-			exec_internal(ImCmd("identify", fs_import_filename($file)));
-		break;
+    /* Just in case php can't determine dimensions. */
+    switch($gallery->app->graphics) {
+        case "NetPBM":
+            list($lines, $status) = exec_internal(toPnmCmd($file) ." | ". 
+                                      NetPBM("pnmfile", "--allimages"));
+            break;
+        case "ImageMagick":
+            /* This fails under windows, IM isn't returning parsable status output. */
+              list($lines, $status) = exec_internal(ImCmd("identify", fs_import_filename($file)));
+        break;
+        
 	default:
-		if (isDebugging())
-			echo "<br>" . _("You have no graphics package configured for use!") ."<br>";
-		return array(0, 0);
-		break;
-	}
+            if (isDebugging()) {
+                processingMsg(_("You have no graphics package configured for use!"));
+                return array(0, 0);
+            }
+        break;
+    }
 
-	if ($status == $gallery->app->expectedExecStatus) {
-		foreach ($lines as $line) {
-			switch($gallery->app->graphics)
-			{
-			case "NetPBM":
-				if (ereg("([0-9]+) by ([0-9]+)", $line, $regs))
-					return array($regs[1], $regs[2]);
-				break;
-			case "ImageMagick":
-				if (ereg("([0-9]+)x([0-9]+)", $line, $regs))
-					return array($regs[1], $regs[2]);
-				break;
-			}
-		}
-	}
+    if ($status == $gallery->app->expectedExecStatus) {
+        foreach ($lines as $line) {
+            switch($gallery->app->graphics) {
+                case "NetPBM":
+                    if (ereg("([0-9]+) by ([0-9]+)", $line, $regs)) {
+                        return array($regs[1], $regs[2]);
+                    }
+                break;
+                
+                case "ImageMagick":
+                    if (ereg("([0-9]+)x([0-9]+)", $line, $regs)) {
+                        return array($regs[1], $regs[2]);
+                    }
+                break;
+            }
+        }
+    }
 
-	if (isDebugging())
-		echo "<br>Unable to determine image dimensions!<br>";
-
-	return array(0, 0);
+    if (isDebugging()) {
+        processingMsg(_("Unable to determine image dimensions!"));
+    }
+    
+    return array(0, 0);
 }
 
 function acceptableFormat($tag) {
@@ -505,12 +509,16 @@ function my_flush() {
 }
 
 function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
-	/*
-	 *  Valid return codes:
-	 *  0:  File was not resized, no processing to be done
-	 *  1:  File resized, process normally
-	 *  2:  Existing resized file should be removed
-	 */
+    if (isDebugging()) {
+        processingMsg(sprintf(_("Resizing Image: %s"), $src));
+    }
+
+    /*
+     *  Valid return codes:
+     *  0:  File was not resized, no processing to be done
+     *  1:  File resized, process normally
+     *  2:  Existing resized file should be removed
+    */
 	global $gallery;				
 
 	if (!strcmp($src,$dest)) {
@@ -523,14 +531,13 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 	}
 
 	$regs = getimagesize($src);
-	echo $src;
 	if ($regs[2] !== 2 && $regs[2] !== 3) {
 		$target_fs = 0; // can't compress other images
 	}
 	if ($target === 'off') {
 	    $target = 0;
 	}
-		
+
 	/* Check for images smaller then target size, don't blow them up. */
 	$regs = getDimensions($src, $regs);
 	if ((empty($target) || ($regs[0] <= $target && $regs[1] <= $target))
@@ -549,7 +556,7 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 		}
 		return 0;
 	}
-	$target=min($target, max($regs[0],$regs[1]));
+	$target = min($target, max($regs[0],$regs[1]));
 
 	/* Jens Tkotz, 02.10.2004.
 	** Lines with $min_filesize commented because never used.
@@ -1709,6 +1716,18 @@ function getExifDisplayTool() {
 	}
 }
 
+/* This function does not really looks if EXIF Data is there or not.
+** It just looks at the extension
+*/
+
+function hasExif($file) {
+    if(eregi('jpe?g$', $file)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function getExif($file) {
 	global $gallery;
 
@@ -1806,7 +1825,7 @@ function getItemCaptureDate($file) {
 function doCommand($command, $args=array(), $returnTarget="", $returnArgs=array()) {
 
 	if ($returnTarget) {
-		$args["return"] = urlencode(makeGalleryUrl($returnTarget, $returnArgs));
+		$args["return"] = urlencode(makeGalleryHeaderUrl($returnTarget, $returnArgs));
 	}
 	$args["cmd"] = $command;
 	return makeGalleryUrl("do_command.php", $args);
@@ -2220,7 +2239,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
 				$temp_files[$newFile]=1;
 			}
 		    
-			processingMsg("<p>- ". sprintf(_("Adding %s"), $mangledFilename));
+			echo "\n<h3>******". sprintf(_("Adding %s"), $name) ."*****</h3>";
 
 			/* What should the caption be, if no caption was given by user ?
 			** See captionOptions.inc.php for options
@@ -2266,14 +2285,8 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
 }
 
 function processingMsg($buf) {
-        global $msgcount;
-
-        if ($msgcount) {
-                print "<br>";
-        }
-        print $buf;
-        my_flush();
-        $msgcount++;
+    echo "\n<br>$buf";
+    my_flush();
 }
 
 function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newAlbumDesc="") {
@@ -3444,7 +3457,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 	}
 
 	foreach ($tables as $caption => $fields) {
-		echo "\n". '<table border="0" align="center">';
+		echo "\n". '<table border="0" align="center" class="pcaption">';
 		echo "\n". '<tr><th colspan="3" align="center">'. $caption .'</th></tr>';
 
 	        $i=0;

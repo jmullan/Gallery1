@@ -86,7 +86,8 @@ $common_messages["getting-imagemagick"] =
 			_("The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
 
 $common_messages["open-basedir-active"] =
-	sprintf(_("<b>Note:</b> Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."),
+	'<span class="emphasis">' . _("Note:"). '</span>'.
+	sprintf(_("Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."),
 			"<b><a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\" target=\"_blank\">open_basedir</a></b>" );
 			
 $checklist = array(
@@ -126,7 +127,8 @@ $checklist = array(
 			'<a href="http://www.php.net/manual/en/features.safe-mode.php">',
 			'</a>') .
 		"<br><br>" .
-			  sprintf(_("<b>Note</b>: In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."),
+		'<span class="emphasis">' . _("Note:"). '</span>'.
+			  sprintf(_("In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."),
 				 '<a href="phpinfo.php">',
 				 '</a>'),
 		'optional' => 1,
@@ -600,12 +602,14 @@ $constants =  array_merge(
 		'type' => "text",
 		'attrs' => array ('size' => 50)
 	),		
-/*	'showContextHelp' => array(
+/*	
+	'showContextHelp' => array(
 		'prompt' => _("Show context help"),
 		'desc' => _("Show context sensitive help links (little ? links that describe in-depth what each function of Gallery does)?") . newIn ("1.4.2"),
 		'choices' => array('yes' => _("yes"), 'no' => _("no")),
 		'value' => "yes"
-	),*/
+	),
+*/
 	'group5_end' => array (
 		'type' => "group_end",
 	),
@@ -806,11 +810,10 @@ $constants = array_merge($constants,
                 'optional' => 1
         ),
         'smtpFromHost' => array(
-                'prompt' => _("Local Host Name"),
-                'desc' => _("The local hostname of the server as a reverse DNS lookup of the IP would show. If you are behind a NAT, this would be the DNS name of your router. If you don't know what to do here, 'localhost' is probably ok in most situations."),
-                "<br>",
+                'prompt' => _("Sender hostname"),
+                'desc' => _("The full hostname of the server you are sending the mail from (The Server where your Gallery is installed on). If your Server is behind a NAT, this would be the DNS name of your router."),
                 'type' => "text",
-                'value' => "localhost",
+                'value' => (!empty($_SERVER['SERVER_NAME'])) ? $_SERVER['SERVER_NAME'] : 'localhost',
                 'attrs' => array('size' => 60),
                 'optional' => 0
         ),
@@ -902,10 +905,7 @@ $constants = array_merge($constants,
 	'comments_enabled' => array(
 			'prompt' => _("Enable commenting"),
 			'desc' => _("This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."),
-			'choices' => array(
-						'yes' => _("yes"),
-						'no' => _("no")
-					   ),
+			'choices' => array('yes' => _("yes"), 'no' => _("no")),
 			'value' => "yes"
 			),
 	'comments_indication' => array(
@@ -937,7 +937,7 @@ $constants = array_merge($constants,
 	'comments_anonymous' => array(
 		       	'prompt' => _("Anonymous comments from known users?"),
 		       	'desc' => sprintf(_("When logged in, comments will automatically use format described below, unless this is set to %s."), 
-				"<b>"._("yes")."</b>"),
+				"<b>". _("yes"). "</b>"),
 			'choices' => array('yes' => _("yes"), 'no' => _("no")),
 		       	'value' => "no",
 			),
@@ -1099,8 +1099,10 @@ $constants = array_merge($constants,
 		'name' => "group_technical",
 		'default' => "none",
 		'title' => _("Technical"),
-		'desc' => _("The settings in this section are intended for advanced users only.<br><b style='color:red'>Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk.</b>"),
-	),
+		'desc' => _("The settings in this section are intended for advanced users only.") . 
+			'<br><span class="attention">'.
+			_("Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk.") .
+			'<span>'),
 	'debug' => array(
 		'prompt' => _("Debug mode"),
 		'desc' => _("Turn debug mode on so that you can diagnose problems?") .'<br><span class="emphasis">'. _("Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!") . '</span>',
@@ -1109,7 +1111,7 @@ $constants = array_merge($constants,
 	),
 	'skipRegisterGlobals' => array(
 		'prompt' => _('Disable register_globals check'),
-		'desc' => sprintf(_('<b>Be aware that changing this setting potentially decreases the security of your Gallery, and we may or may not support you if you encounter issues that don\'t occur when this is turned off.</b><br><br>Enabling this causes %s to ignore register_globals being turned on.  %s normally tries to unset all variables created by register_globals to help enforce security.  If a script that you run requires register_globals to be on, and will not cooperate with %s, set this to "yes".'), Gallery(), Gallery(), Gallery(), Gallery()),
+		'desc' => sprintf(_('<b>Be aware that changing this setting potentially decreases the security of your Gallery, and we may or may not support you if you encounter issues that don\'t occur when this is turned off.</b><br><br>Enabling this causes %s to ignore register_globals being turned on.  %s normally tries to unset all variables created by register_globals to help enforce security.  If a script that you run requires register_globals to be on, and will not cooperate with %s, set this to &quot;yes&quot;.'), Gallery(), Gallery(), Gallery(), Gallery()),
 		'choices' => array('yes' => _("yes"), 'no' => _("no")),
                 'value' => "no",
 	),
@@ -1358,13 +1360,17 @@ $defaults = array(
 	),
 	'max_size' => array(
 		'prompt' => _('Maximum image size'),
-		'desc' => _("You can optionally limit the dimensions your images on upload to Gallery.") . "<br><span style=\"color: red; font-weight:bold\">"  . _("Warning") . ':</span> '. _("Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."),
+		'desc' => _("You can optionally limit the dimensions your images on upload to Gallery.") . 
+			'<br><span class="attention>'. _("Warning:") .'</span> '. 
+			_("Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."),
 		'value' => 'off',
 		'choices' => array('off' => _('off'), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3))
 	),
 	'max_file_size' => array(
 		'prompt' => _('Maximum JPEG/PNG image file size'),
-		'desc' => _("You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery.") . "<br><span style=\"color: red; font-weight:bold\">" . _("Warning") . ':</span> ' . _("Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."),
+		'desc' => _("You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery.") . 
+			'<br><span class="attention">'. _("Warning:") . '</span> '. 
+			_("Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."),
 		'value' => 0,
 		'optional' => 1,
 		'type' => 'text'
@@ -1448,8 +1454,8 @@ $defaults = array(
 	),
 	'mPUSHAccount' => array(
 		'prompt' => _("Account for the mPUSH service"),
-		'desc' => sprintf(_("If you so choose, you can %screate your own account%s to use with the mPUSH cellular photo
-service.  If you do not use your own account, please leave this set to 'gallery'."), '<a href="http://mpush.msolutions.cc/safe.php?p=Register&ref=gallery" target="_blank">', '</a>'),
+		'desc' => sprintf(_("If you want to use mPUSH cellular photo service you can either use your own account, or leave this to 'gallery'. Visit this link to %screate your own account%s."), 
+				'<a href="http://mpush.msolutions.cc/safe.php?p=Register&ref=gallery" target="_blank">', '</a>'),
 		'value' => 'gallery',
 		'type' => 'text',
 	),
@@ -1700,4 +1706,3 @@ service.  If you do not use your own account, please leave this set to 'gallery'
 );
 
 ?>
-

@@ -239,7 +239,8 @@ if ($numPhotos) {
 			echo popup_link($gallery->album->getThumbnailTag($i, $thumbSize).
 						"<br />"._("(click to enlarge)"),
 					$gallery->album->getPhotoPath($i),1,false,
-					$height+20,$width+20);
+					$height+20,$width+20,
+                                        'modcaption');
 		} else {
 			echo $gallery->album->getThumbnailTag($i,$thumbSize);
 		}

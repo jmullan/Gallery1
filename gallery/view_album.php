@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($page,$votes, $Vote) = getRequestVar(array('page','votes','Vote'));
+list($page,$votes, $Vote) = getRequestVar(array('page', 'votes', 'Vote'));
 
 // Hack check and prevent errors
 if (empty($gallery->session->albumName) || !$gallery->user->canReadAlbum($gallery->album) || !$gallery->album->isLoaded()) {
@@ -451,7 +451,7 @@ if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 		$iconText = getIconText('exit.gif', _("logout"));
 		$iconElements[] = '<a href="'. 
 		  doCommand("logout", array(), "view_album.php", 
-		    array("page" => $page)) .'">'. $iconText .'</a>';
+		    array("page" => $page, 'set_albumName' => $albumName)) .'">'. $iconText .'</a>';
 	} else {
 		$iconText = getIconText('identity.gif', _("login"));
 		$iconElements[] = popup_link($iconText, "login.php", false, true, 500, 500);
@@ -820,7 +820,7 @@ if ($numPhotos) {
 			if (isset($myAlbum)) {
 				$myDescription = $myAlbum->fields['description'];
 				$buf = "";
-				$buf = $buf."<center><b>". sprintf(_("Album: %s"), '<a href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>'). '</b></center>';
+				$buf = $buf."<center><b>". sprintf(_("Album: %s"), '<a class="modcaption" href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>'). '</b></center>';
 				if ($myDescription != _("No description") &&
 					$myDescription != "No description" && 
 					$myDescription != "") {
@@ -1053,11 +1053,13 @@ if ($numPhotos) {
 ?>
 
 	<td colspan="<?php echo $rows ?>" align="center" class="headbox">
-<?php if ($gallery->user->canAddToAlbum($gallery->album) && !$gallery->session->offline) { ?>
-	<?php echo _("Hey! Add some photos.") ?>
-<?php } else { ?>
-	<?php echo _("This album is empty.") ?>
-<?php } ?>
+<?php if ($gallery->user->canAddToAlbum($gallery->album) && !$gallery->session->offline) {
+	$url = makeGalleryUrl('add_photos_frame.php', array('set_albumName' => $gallery->session->albumName));
+	echo popup_link('['. _("Hey! Add some photos.") .']', $url, 1, true, 500, 600, 'admin');
+} else {
+	echo _("This album is empty.");
+}
+?>
 	</td>
 	</tr>
 <?php

@@ -1,45 +1,111 @@
-2005-02-17  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC1-cvs-b10
+2005-02-26  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC2-cvs-b17
+
+	* Change: Fix the 'No images uploaded' condition
+
+	* Fix: Destroying the session at logout also prevented album redirection because
+	  $gallery->session->album was empty
+
+	* Fix: User input checking
+
+2005-02-24  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b16
+
+	* Change: css enhancement for better readability of links in attention messages.
+
+	* Change: Make "Hey! Add some photos." a link to add photos.
+
+	* Fix: Added width for adminbox in base.css.
+	  So "return to gallery" is correct aligned in tools/despam and tools/find-orphanes.
+
+	* Fix: Show public stats link only when there are accessable photos.
+
+	* Fix: Only check Files for EXIF Data on uploading that may have it. 
+
+	* Change: Added more Debug messages in upload.
+
+	* Change: The blue bar is now only in standalone, not in base.css for all.
+
+2005-02-23  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC2-cvs-b15
+
+	* Fix: Switch use_exif back to what it was supposed to be.
+	  The change in behavior was based on a user comment making me
+	  misunderstand what the old behavior was.
+
+2005-02-23  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC2-cvs-b14
+
+	* Change: stats link descriptions
+
+	* Fix: phpBB modules.php was relying on globals that didn't exist
+
+2005-02-21  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b13
+
+	* Change: Texts in setup/config_data.inc
+
+	* Change: css consolidation in setup/config_data.inc
+
+2005-02-21  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b12
+
+	* Fix: css class in EXIF Table
+
+	* Fix: adjust skins:
+	  - bpurple
+	  - bred
+
+2005-02-18  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b11
+
+	* Fix: css classes:
+	  - captionator.php
+	  - view_album.php
+
+	* Fix: adjust skins:
+	  - bblue
+	  - bgreen2
+	  - bluemod
+
+	* Fix: Changed [] in stats links again to work with rtl languages 
+	  (error appeared in FF)
+
+2005-02-17  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC2-cvs-b10
 
 	* Change: Add extra session security by preventing session fixation
 	  attacks.  Session IDs are changed on login and logout.
 
-2005-02-17  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC1-cvs-b9
+2005-02-17  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC2-cvs-b9
 
 	* Fix: stats.php was outputting an HTML comment before loading the embedded
 	  header.
 
 	* Fix: getIMVersion() was returning a full string instead of '5' or '6'
 
-2005-02-17  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC1-cvs-b8
+2005-02-17  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC2-cvs-b8
 
 	* Change: Add a new config option for bypassing our register_globals-disabled
 	  emulation.  I do this unwillingly, and it is not a supported
 	  configuration due to the potential for security issues and other problems
 	  bug some people require the option.
 
-2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC1-cvs-b7
+2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC2-cvs-b7
 
 	* Fix: Move SMTP execution into its own function to be 
 	  reused in emailLogMessage()
 
 	* Fix: Remove admin page link for non-admins
 
-2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC1-cvs-b6
+2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC2-cvs-b6
 
 	* Fix: Print providers didn't display correctly if only one was selected
 
-2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC1-cvs-b5
+2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC2-cvs-b5
 
 	* Fix: Correct the directory name for CPGNuke includes
 
-2005-02-15  John Kirkland <jpk@bl.org>  1.5-RC1-cvs-b4
+2005-02-15  John Kirkland <jpk@bl.org>  1.5-RC2-cvs-b4
 
 	* Fix: the mambo breadcrumb query in init.php was not quite
           specific enough.
         * Fix: the mambo component name, com_gallery, was being set
           by a variable, but this doesn't work in all cases.
 
-2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC1-cvs-b3
+2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC2-cvs-b3
 
 	* Change: Move PhotoWorks/PhotoAccess down in the list, to preemptively
 	  resolve some issues.
@@ -49,12 +115,12 @@
 	  If use_exif is disabled, but exiftags or jhead is present, display the
 	  "photo properties" link instead)
 
-2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC1-cvs-b2
+2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC2-cvs-b2
 
 	* Fix: ML_mode 0 caused error when gettext wasn't installed
 	  due to duplicate function declaration
 
-2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC1-cvs-b1
+2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC2-cvs-b1
 
 	* Fix: backup_albums.php was not globalized
 

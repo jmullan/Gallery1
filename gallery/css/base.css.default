@@ -115,10 +115,19 @@ form {
 	   font-size: 12px;
 	}
 .error                          /* all error text */
-	{ 
-	  color: red; 
-	  font-size: 12px; 
-	}
+{ 
+      color: red; 
+      font-size: 12px; 
+}
+
+a.error, a.error:link, a.error:visited, a.error:active {
+    color: red;
+    font-size: 12px; font-weight: bold;
+}
+
+a.error:hover {
+    text-decoration:underline;
+}
 
 .attention                          /* so far, just for voting instructions*/
         {
@@ -321,13 +330,13 @@ form {
 }
 
 #adminbox {
-	color: #FFFFFF;
+    width: 100%;
 }
 
 #adminbox td {
-    background-color: #6274CB; 
     font-size: 10px; font-weight: bold;
     vertical-align: bottom;
+    padding: 2px;
 }
 
 #adminbox a {

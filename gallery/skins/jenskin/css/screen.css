@@ -109,11 +109,16 @@ a:hover {
 	  font-size: 10px; 
 	}
 
-.error		{ background-color: #CC0000; color: #FFFFFF ;
-		  padding:3px;
-		  -Moz-Border-Radius: 20px;
-		  margin:5px; 
-		}
+.error {
+    background-color: #CC0000; color: #FFFFFF ;
+    padding:3px;
+    -Moz-Border-Radius: 20px;
+    margin:5px;
+}
+
+a.error, a.error:link, a.error:visited, a.error:active {
+    color: #FFFFFF;
+}
 
 .attention                          /* so far, just for voting instructions*/
         {
@@ -253,10 +258,6 @@ input, select, option, textarea
 { 
 	padding:2px;
 	margin-top:2px;
- }
-
-.presults /* text for poll results under photo  */
- {
  }
 
 .vatable /* width of the div set for all photo sets - view albums  */

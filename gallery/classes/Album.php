@@ -1003,6 +1003,9 @@ class Album {
 		$this->updateSerial = 1;
 
 		$dir = $this->getAlbumDir();
+		if (isDebugging()) {
+		        processingMsg(_("Doing the naming"));
+		}
 		if (!strcmp($gallery->app->default["useOriginalFileNames"], "yes")) {
 			$name = $originalFilename;
 			// check to see if a file by that name already exists
@@ -1034,6 +1037,10 @@ class Album {
 		$newFile = "$dir/$name.$tag";
 		fs_copy($file, $newFile);
 
+
+		if (isDebugging()) {
+		    processingMsg(_("Image Preprocessing"));
+		}
 		/* Do any preprocessing necessary on the image file */
 		preprocessImage($dir, "$name.$tag");
 
@@ -1042,9 +1049,12 @@ class Album {
 		if (isImage($tag)) {
 		    resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true);
 		} else {
-		    processingMsg(_('Cannot resize/compress this filetype') . "\n");
+		    processingMsg(_('Cannot resize/compress this filetype'));
 		}
 
+		if (isDebugging()) {
+		    processingMsg(_("Adding Photo to the photo list"));
+ 	        }
 		/* Add the photo to the photo list */
 		$item = new AlbumItem();
 		$err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $this, $pathToThumb);
@@ -1055,13 +1065,20 @@ class Album {
 			return $err;
 		} else {
 			$item->setCaption("$caption");
-			$originalItemCaptureDate = getItemCaptureDate($file);
+			/* Only try to get Capture Date if file could have it.
+			** Otherwise use file creation time
+			*/
+			if(hasExif($tag)) {
+				$originalItemCaptureDate = getItemCaptureDate($file);
+			} else {
+				$originalItemCaptureDate = filemtime($file);
+			}
+			
 			$now = time();
 			$item->setItemCaptureDate($originalItemCaptureDate);
 			$item->setUploadDate($now);
-			foreach ($extraFields as $field => $value)
-			{
-				$item->setExtraField($field, $value);
+			foreach ($extraFields as $field => $value) {
+			    $item->setExtraField($field, $value);
 			}
 			if (!strcmp($owner, "")) {
 				$nobody = $gallery->userDB->getNobody();
@@ -1098,13 +1115,15 @@ class Album {
 	       	}
 
 		/* auto-rotate the photo if needed */
-	       	if (!empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  &&
+		$index = $this->numPhotos(1);
+	       	if (hasExif($tag) && 
+	       		!empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  &&
 			    (!empty($gallery->app->use_exif) && $gallery->app->use_exif) || 
 			    (!empty($gallery->app->exiftags) && $gallery->app->exiftags)) {
 
 		       	$index = $this->numPhotos(1);
 		       	$exifData = $this->getExif($index);
-
+		       	
 			if (isset($exifData['Orientation'])) {
 				$orientation = trim($exifData['Orientation']);
 			} else if (isset($exifData['Image Orientation'])) {

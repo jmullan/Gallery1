@@ -173,7 +173,7 @@ else if ($numAccess != $numAlbums) {
 	$adminText .= sprintf(_("%s, %s"), $toplevel_str, $image_str);
 }
 
-if (!empty($gallery->app->stats_foruser)) {
+if (!empty($gallery->app->stats_foruser) && $numPhotos != 0) {
 	$adminText .= "\n<br>". generateStatsLinks();
 }
 
@@ -266,7 +266,7 @@ if ( (sizeof($albumDB->brokenAlbums) || sizeof($albumDB->outOfDateAlbums)) && $g
 			Gallery(), sizeof($albumDB->outOfDateAlbums));
 
 		echo "\n<br>";
-		echo sprintf(_("Please %s."), popup_link(_("upgrade those albums"), "upgrade_album.php"));
+		echo sprintf(_("Please %s."), popup_link(_("upgrade those albums"), "upgrade_album.php",0,0,500,500,"error"));
 	}
 	echo "\n</div></center>\n";
 }
@@ -387,10 +387,10 @@ for ($i = $start; $i <= $end; $i++) {
 
 		if (ereg("album[[:digit:]]+$", $albumURL)) {
 			if (!$gallery->session->offline) {
-				echo '<br><span class="error">' .
-				_("Hey!") .
-				sprintf(_("%s so that the URL is not so generic!"), 
-					popup_link(_("Rename this album"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i"));
+				echo '<br><span class="error">'.
+				  _("Hey!") .
+				  sprintf(_("%s so that the URL is not so generic!"), 
+					popup_link(_("Rename this album"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i",0,0,500,500,"error"));
 				echo '</span>';
 			}
 		}

@@ -46,32 +46,32 @@ $stats['types'] = array (
 				 'default' => 'checked',
 				 'name' =>'type',
 				 'text' => _("Sort by most viewed image first"),
-				 'linktext' => '[' . _("most viewed") . ']'),
+				 'linktext' => _("most viewed")),
 	'date'		=> array('type' => 'radio',
 				 'default' => '',
 				 'name' =>'type',
 				 'text' => _("Sort by the latest added image first"),
-				 'linktext' => '[' . _("latest added") . ']'),
+				 'linktext' => _("latest added")),
 	'cdate'		=> array('type' => 'radio',
 				 'default' => '', 
 				 'name' =>'type',
 				 'text' => _("Sort by image capture date"),
-				 'linktext' => '[' . _("latest shots") . ']'),	
+				 'linktext' => _("latest shots")),	
 	'comments'	=> array('type' => 'radio',
 				 'default' => '',
 				 'name' =>'type',
 				 'text' => _("Show images with comments - latest are shown first"),
-				 'linktext' => '[' . _("most comments") . ']'),
+				 'linktext' => _("latest comments")),
 	'ratings'	=> array('type' => 'radio',
 				 'default' => '',
 				 'name' =>'type',
 				 'text' => _("Show images with the highest ratings first"),
-				 'linktext' => ''),
+				 'linktext' => _('highest ratings')),
 	'random'	=> array('type' => 'radio',
 				 'default' => '',
 				 'name' =>'type',
 				 'text' => _("Show random images"),
-				 'linktext' => '[' . _("random images") . ']')
+				 'linktext' => _("random images"))
 );
 
 
@@ -166,7 +166,7 @@ function generateStatsLinks() {
 
 	if (!empty($gallery->app->stats_foruser)) {
 		foreach ($gallery->app->stats_foruser as $key) {
-                	$links .= "\n\t". '<a class="admin" href="'. defaultStatsUrl($key) .'">' . $stats['types'][$key]['linktext'] .'</a>&nbsp;';
+                	$links .= "\n\t". '[<a href="'. defaultStatsUrl($key) .'">' . $stats['types'][$key]['linktext'] .'</a>]';
 		}
         }
 

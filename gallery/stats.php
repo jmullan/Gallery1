@@ -1094,9 +1094,6 @@ function readCache( $cacheFilename, $start, $numPhotos ) {
 
 	$size = filesize($cacheFilename) + 1;
 	if ($fd = fs_fopen($cacheFilename, "rb")) {
-		if ( $debug > 1 ) {
-			echo sprintf(_("File open, size = %s"), $size) . "<br>";
-		}
 		if (myFlock($fd, LOCK_SH)) {
 			fgets($fd);
 			$posIndex = fgets($fd);

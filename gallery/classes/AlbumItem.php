@@ -576,18 +576,20 @@ class AlbumItem {
 		return $ret;
 	}
 
-	function makeThumbnail($dir, $thumb_size, &$album, $pathToThumb="")
-	{
+	function makeThumbnail($dir, $thumb_size, &$album, $pathToThumb="") {
 		global $gallery;
 		$name = $this->image->name;
 		$tag = $this->image->type;
 
+		if (isDebugging()) {
+		     processingMsg(_("Generating thumbnail."));
+		}
+		
 		if ($this->isMovie()) {
 			/* Use a preset thumbnail */
 			fs_copy($gallery->app->movieThumbnail, "$dir/$name.thumb.jpg");
 			$this->thumbnail = new Image;
 			$this->thumbnail->setFile($dir, "$name.thumb", "jpg");
-
 			list($w, $h) = getDimensions("$dir/$name.thumb.jpg");
 			$this->thumbnail->setDimensions($w, $h);
 		} else {

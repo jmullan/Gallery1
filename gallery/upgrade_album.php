@@ -157,7 +157,7 @@ if (!sizeof($albumDB->outOfDateAlbums)) {
 
 	echo "\n<p>";
 	echo sprintf(_("The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %s."),
-		'<a href="' . makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1, 'type' => 'popup')) . '"><b>' . _("upgrade them all at once") . '</b></a>');
+		'<a class="error" href="' . makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1, 'type' => 'popup')) . '"><b>' . _("upgrade them all at once") . '</b></a>');
 
 	echo '</p>';
 	echo "\n<table align=\"center\">";
