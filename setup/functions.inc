@@ -103,7 +103,7 @@ function check_gd()
 	return function_exists("ImageCreate");
 }
 
-function makePathWrapper($app)
+function makePathWrapper($path, $app)
 {
 	$path = locateDir($app);
 	return "/bin/csh -c &#039;(setenv PATH " . 
