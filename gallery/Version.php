@@ -38,7 +38,7 @@ if (!$gallery) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = "1.3.4";
+$gallery->version = "1.3.4-pl1-cvs-b1";
 $gallery->config_version = 35;
 $gallery->album_version = 10;
 $gallery->remote_protocol_version = 1;
