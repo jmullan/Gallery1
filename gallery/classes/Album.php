@@ -1232,10 +1232,11 @@ class Album {
 		$index = $this->getHighlight();
 		if (isset($index)) {
 			$photo = $this->getPhoto($index);
-			return $photo->getHighlightTag($this->getAlbumDirURL("highlight"), $size, $attrs, $alttext);
-		} else {
-			return "<span class=title>". _("No highlight") ."!</span>";
+			if (!empty($photo))
+				return $photo->getHighlightTag($this->getAlbumDirURL("highlight"), $size, $attrs, $alttext);
 		}
+
+		return "<span class=title>". _("No highlight") ."!</span>";
 	}
 
 	function getPhotoTag($index, $full) {
