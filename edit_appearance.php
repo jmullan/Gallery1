@@ -40,6 +40,17 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 }
 	
 if (isset($save)) {
+/*
+** The Radiobutton for Shutterflys Donation is set always.
+** So its saved always as Service.
+** This is a workaround. But if we have a similar Service in Future (another Radiobutton)
+** we should change it.
+**
+*/
+	if (! isset($print_photos['shutterfly']['checked'])) {
+        	unset($print_photos['shutterfly']);
+	}
+
 	if (get_magic_quotes_gpc()) {
 		$gallery->album->fields["summary"] = stripslashes($summary);
 		$gallery->album->fields["title"] = stripslashes($title);

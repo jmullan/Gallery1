@@ -2998,4 +2998,5 @@ function contextHelp ($link) {
 }
 
 require ($GALLERY_BASEDIR . "lib/lang.php");
+require ($GALLERY_BASEDIR . "lib/Form.php");
 ?>

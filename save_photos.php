@@ -288,66 +288,44 @@ if (!$msgcount) {
 <?php
 /* Prompt for additional files if we found links in the HTML slurpage */
 if (count($image_tags)) {
+
+	/*
+	** include JavaScript (de)selection and invert
+	*/
+	insertFormJS('uploadurl_form','urls[]');
 ?>
-
-<?php $uploadUrlFormName = "uploadurl_form"; ?>
-
-<?php /* Note: the w3c-suggested "text/javascript" doesn't work with Navigator 4 */ ?>
-<script language="javascript">
-// <!-- 
-function setCheck(val) {
-	ufne=document.<?php echo $uploadUrlFormName; ?>;
-	len = ufne.elements.length;
-	for(i = 0 ; i < len ; i++) {
-		if (ufne.elements[i].name=='urls[]') {
-			ufne.elements[i].checked=val;
-		}
-	}
-}
-function invertCheck() {
-	ufne=document.<?php echo $uploadUrlFormName; ?>;
-	len = ufne.elements.length;
-	for(i = 0 ; i < len ; i++) {
-		if (ufne.elements[i].name=='urls[]') {
-			ufne.elements[i].checked = !(ufne.elements[i].checked);
-		}
-	}
-}
-// -->
-</script>
 </span>
-<p><span class="popup">
-<a href="javascript:setCheck(1)"><?php echo _("Check All") ?></a>
--
-<a href="javascript:setCheck(0)"><?php echo _("Clear All") ?></a>
--
-<a href="javascript:invertCheck()"><?php echo _("Invert Selection") ?></a>
-</span></p>
+<p class="popup">
+<?php 
+	echo insertFormJSLinks(); 
+?>
+</p>
 
-<table><tr><td class="popup">
+<table>
+<tr>
+	<td class="popup">
 <?php echo makeFormIntro("save_photos.php", 
-		array("name" => $uploadUrlFormName, 
-			"method" => "POST")); ?>
-<?php
+		array("name" => 'uploadurl_form',
+			"method" => "POST")); 
+
 	/* Allow user to select which files to grab - only show url right now ( no image previews ) */
 	sort($image_tags);
 	foreach ( $image_tags as $image_src) {
-		print "<input type=checkbox name=\"urls[]\" value=\"$image_src\" checked>$image_src<br />\n";
+		print "\t<input type=checkbox name=\"urls[]\" value=\"$image_src\" checked>$image_src<br />\n";
 	}
 ?>
-</td></tr></table>
+	</td>
+</tr>
+</table>
 
 <?php /* REVISIT - it'd be nice to have these functions get shoved
   into util.php at some time - maybe added functionality to the makeFormIntro? */ ?>
 
-<p><span class="popup">
-<a href="javascript:setCheck(1)"><?php echo _("Check All") ?></a>
--
-<a href="javascript:setCheck(0)"><?php echo _("Clear All") ?></a>
--
-<a href="javascript:invertCheck()"><?php echo _("Invert Selection") ?></a>
-</span></p>
-
+<p class="popup">
+<?php 
+	echo insertFormJSLinks(); 
+?>
+</p>
 <p>
 <input type="hidden" name="setCaption" value="<?php echo $setCaption ?>">
 <input type="button" value="<?php echo _("Add Files") ?>" onClick="opener.showProgress(); document.uploadurl_form.submit()">

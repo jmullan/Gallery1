@@ -1,12 +1,34 @@
+2004-01-29 Jens Tkotz <jens@peino.de> 1.4.3-cvs-b12
+
+	* Change: Created lib/Form.php.
+
+	* New: Added "(un)check all" and "invert" selection in config wizard for languages.
+
+	* Chane: Added possible for an addon below multiple choices in config wizard.
+
+	* Bugfix: In javascript in the 2nd parameter (name)
+		  in window.open are no spaces allowed.
+		  NS doesnt care. IE does and result an error when trying to print via Fotokasten.
+
+	* Bugfix: The Radiobutton for Shutterflys Donation is set always.
+		  So its saved always as Service.
+		  Fix is a workaround.
+
+	* "Bugfix": - Added new css class .adminform.
+		    - Set textcolor corresponding in ALL skins.
+		    This fixes the "bug" that text was not readable in admin options.	
+
 2004-01-29  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.4.3-cvs-b11
 
 	* Move add_photos.php includes into includes/add_photos, per Jens' request
+
 	* Added support in gallery_remote2.php for:
 		- getting sub-albums as well as images in fetch-album-images
 		- returning the list of root albums in fetch-album-images when
 		  invoked with a blank set_albumName
 		- getting all albums (including non-writeable) in fetch-albums
 	* Made the add_photos menu a CSS-based tab list.
+
 	* Fixed applet invocation in both upload applets.
 
 2004-01-27  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.4.3-cvs-b10

@@ -1,5 +1,8 @@
 <?php /* $Id$ */ ?>
 
+<?php
+	insertFormJS('config','available_lang[]');
+?>
 <input type="hidden" name="this_page" value="constants">
 <input type="hidden" name="next_page" value="defaults">
 <input type="hidden" name="back_page" value="check">

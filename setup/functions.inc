@@ -161,18 +161,25 @@ function form_multiple_choice($key, $arr) {
 	
 	$buf= '<table><tr><td valign="top">';
 	$count=0;
+	$column=0;
 	foreach ($arr["multiple_choices"] as $item => $value) {
+		if ($item == 'addon') continue;
 		if ($count%15 ==0) {
 			$buf .= "</td>\n<td valign=\"top\">";
 		}
 		$count++;
+		$column++;
 		$selected = "";
 		if ($arr["value"] && in_array($item, $arr["value"])) {
 			$selected = "CHECKED";
 		}
 		$buf .= "\n\t<br><input name=\"${key}[]\" value=\"$item\" type=\"checkbox\" $selected>" . $value ;
 	}
-	$buf .="</td></tr></table>";
+	$buf .="</td></tr>";
+	if (isset($arr['multiple_choices']['addon'])) {
+		$buf .="\n<tr><td colspan=$column>++". $arr['multiple_choices']['addon'] . "\n++</td></tr>";
+	}
+	$buf .="</table>";
 	return $buf;
 }
 

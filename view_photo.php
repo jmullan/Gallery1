@@ -439,7 +439,7 @@ if (!$gallery->album->isMovie($id)) {
 				$printShutterflyForm = true;
 				break;
 			}
-			$adminCommands .= "<a class=\"admin\" href=\"javascript:doPrintService('$name')\" onClick=\"doPrintService('$name');\">[" . sprintf(_('print this photo with %s'), $fullName[$name]) . ']</a>';
+			$adminCommands .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" . sprintf(_('print this photo with %s'), $fullName[$name]) . ']</a>';
 		}
 	}
 ?>
@@ -454,9 +454,7 @@ if (!$gallery->album->isMovie($id)) {
 			document.ezPrintsForm.submit();
 			break;
 		case 'fotokasten':
-			nw=window.open('<?php echo "http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth; ?>','Print with Fotokasten','<?php echo "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes"; ?>');
-			nw.opener=self;
-			return false;
+			window.open('<?php echo "http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth; ?>','Print_with_Fotokasten','<?php echo "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes"; ?>');
 			break;
 		case 'photoaccess':
 			document.photoAccess.returnUrl.value=document.location;

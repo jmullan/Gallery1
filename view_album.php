@@ -440,7 +440,7 @@ if (!empty($adminOptionHTML)) {
 	    . "}\n"
 	    . "</script>\n\n";
     
-    $adminCommands .= "\n\t<select class=\"admin\" name=\"admin_select\" onChange=\"execAdminOption()\">\n";
+    $adminCommands .= "\n\t<select class=\"adminform\" name=\"admin_select\" onChange=\"execAdminOption()\">\n";
     $adminCommands .= "\t\t<option value=\"\">&laquo; " . _('admin options') . " &raquo;</option>\n";
     $adminCommands .= $adminOptionHTML;
     $adminCommands .= "\t</select>\n";
