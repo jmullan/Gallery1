@@ -251,7 +251,7 @@ function popup_js($url, $window, $attrs) {
 	if (ereg("^http|^ftp|&amp;", $url)) {
 		$url = "'$url'";
 	}
-	return "nw=window.open($url,'$window','$attrs');nw.opener=self;return false;";
+	return "nw=window.open($url,'$window','$attrs'); nw.opener=self; return false;";
 }
 
 function popup_status($url, $height=150, $width=350) {
@@ -259,7 +259,7 @@ function popup_status($url, $height=150, $width=350) {
 	return "open('" . unhtmlentities(makeGalleryUrl($url)) . "','Status','$attrs');";
 }
 
-function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=500,$width=500, $cssclass='') {
+function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=500,$width=500, $cssclass='', $extraJS='') {
     static $popup_counter = 0;
     global $gallery;
 
@@ -274,8 +274,9 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
     $url = build_popup_url($url, $url_is_complete);
     
 	$a1 = "<a $cssclass style=\"white-space:nowrap;\" id=\"$link_name\" target=\"Edit\" href=\"$url\" onClick=\"javascript:".
+	$extraJS . 
 	popup_js("document.getElementById('$link_name').href", "Edit",
-		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
+		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes") .
 	"\">$title</a>";
 
     return "\n$a1\n";
@@ -2853,9 +2854,11 @@ function available_skins($description_only=false) {
 	}
 
 	$dir = dirname(__FILE__) . '/skins';
-	$opts['none'] = 'None';
+	$opts['none'] = 'No Skin';
 	$descriptions="<dl>";
-	$descriptions .= _('<dt>None</dt><dd>The original look and feel.</dd>');
+	$name = "<a href \"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". _("No Skin") ."</a>";
+	$descriptions .= sprintf (_('<dt>%s</dt><dd>The original look and feel.</dd>'), $name);
+	$skincount=0;
 	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
                 while ($file = readdir($fd)) {
 			$subdir="$dir/$file/css";
@@ -2864,6 +2867,7 @@ function available_skins($description_only=false) {
 			$description="";
 			$skincss="$subdir/embedded_style.css";
 			if (fs_is_dir($subdir) && fs_file_exists($skincss)) {
+				$skincount++;
 				if (fs_file_exists($skininc)) {
 				       	require($skininc);
 			       	}
@@ -2880,8 +2884,8 @@ function available_skins($description_only=false) {
 				}
 				if ($screenshot) {
 					$name = popup_link($name,
-							   $screenshot, 1, false,
-							   500, 800);
+							$screenshot, 1, false,
+							500, 800, '', 'document.config.skinname.options['. $skincount. '].selected=true; ');
 				}
 
 				$descriptions.="\n<dt style=\"margin-top:5px;\">$name";
