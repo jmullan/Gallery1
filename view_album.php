@@ -38,11 +38,13 @@ $end = $start + $perPage;
 $nextPage = $page + 1;
 if ($nextPage > $maxPages) {
 	$nextPage = 1;
+        $last = 1;
 }
 
 $previousPage = $page - 1;
 if ($previousPage == 0) {
 	$previousPage = $maxPages;
+	$first = 1;
 }
 
 if ($album->fields["background"]) {
@@ -71,6 +73,9 @@ $width = floor(100 / $cols) . "%";
 <font face=<?=$album->fields["font"]?>>
 
 <center>
+<table width=1%>
+<tr>
+<td align=left>
 <font size=+3> <?= editField($album, "title", $edit)?> </font>
 <br>
 There are <font size=-1> <?= $numPhotos ?> photos in this album
@@ -90,16 +95,36 @@ if (editMode()) {
 
 <br>
 <font size=1>Click on a photo to enlarge it</font>
-
+</td>
+</tr>
+<tr>
+<td>
 <table width=80% border=<?=$border?> bordercolor=<?=$album->fields["bordercolor"]?> cellspacing=2 cellpadding=1>
 
 <? if ($maxPages > 1) { ?> 
 <tr><td colspan=<?=$cols?>>
 <table width=100%>
 <tr>
-<td align=left width=33%><a href=view_album.php?set_page=<?=$previousPage?>><font size=+2 face=<?=$album->fields["font"]?>>Previous Page</a></td>
-<td align=center width=33%><font=<?=$album->fields["font"]?>><font face=<?=$album->fields["font"]?>>Page <?=$page?> of <?=$maxPages?></td>
-<td align=right width=33%><a href=view_album.php?set_page=<?=$nextPage?>><font size=+2 face=<?=$album->fields["font"]?>>Next Page</a></td>
+<td align=left>
+<font size=+1>
+<?
+if ($first) {
+	//echo"";
+} else {
+	echo "< <a href=view_album.php?set_page=".$previousPage."><font size=+1 face=".$album->fields["font"].">Previous Page</a> | ";
+}
+
+if ($last) {
+        //echo "";
+} else {
+	echo "<a href=view_album.php?set_page=".$nextPage."><font size=+1 face=".$album->fields["font"].">Next Page</a> >";
+}
+?>
+</td>
+<td></td>
+<td align=right>
+<font=<?=$album->fields["font"]?>><font face=<?=$album->fields["font"]?>>Page <?=$page?> of <?=$maxPages?>
+</td>
 </tr>
 </table>
 </td></tr>
@@ -206,24 +231,43 @@ if ($numPhotos) {
 <tr><td colspan=<?=$cols?>>
 <table width=100%>
 <tr>
-<td align=left width=33%><a href=view_album.php?set_page=<?=$previousPage?>><font size=+2 face=<?=$album->fields["font"]?>>Previous Page</a></td>
-<td align=center width=33%><font=<?=$album->fields["font"]?>><font face=<?=$album->fields["font"]?>>Page <?=$page?> of <?=$maxPages?></td>
-<td align=right width=33%><a href=view_album.php?set_page=<?=$nextPage?>><font size=+2 face=<?=$album->fields["font"]?>>Next Page</a></td>
-</tr>
-</table>
+<td align=left>
+<font size=+1>
+<?
+if ($first) {
+        //echo"";
+} else {
+        echo "< <a href=view_album.php?set_page=".$previousPage."><font size=+1 face=".$album->fields["font"].">Previous Page</a> | ";                         
+}
+
+if ($last) {   
+        //echo "";                                      
+} else {
+        echo "<a href=view_album.php?set_page=".$nextPage."><font size=+1 face=".$album->fields["font"].">Next Page</a> >";               
+}       
+?>
+</td>
+<td></td>
+<td align=right>
+<font=<?=$album->fields["font"]?>><font face=<?=$album->fields["font"]?>>Page <?=$page?> of <?=$maxPages?>   
+</td>                        
+</tr></table>
 </td></tr>
 <? } ?> 
 
 <? if (isCorrectPassword($edit)) { ?> 
 <? } ?>
 
+</td>
+</tr>
 </table>
 
-<p>
-<font face=<?= $album->fields["font"]?> size=+2>
+<font face=<?= $album->fields["font"]?> size=+0>
 <? if (strcmp($album->fields["returnto"], "no")) { ?>
-<a href=albums.php> Return to The Gallery </a>
+^ <a href=albums.php>Return to The Gallery </a>
 <? } ?>
+
+</table>
 </center>
 <br>
 <hr size=1>
