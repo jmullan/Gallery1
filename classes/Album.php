@@ -1914,6 +1914,8 @@ class Album {
 	}
 	function getEmailMeList($type, $id=null) {
 		global $gallery;
+		return array(); // switched this function off until it's debugged
+
 		if (isset($this->fields['email_me'][$type])) {
 			$uids=array_keys($this->fields['email_me'][$type]);
 		} else {
