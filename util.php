@@ -435,8 +435,8 @@ function rotate_image($src, $dest, $target) {
 		    $target = "90";
 		    $im_cmd = "-rotate";
 		} else if (!strcmp($target, "180")) {
-		     	$target = "180";
-			$im_cmd = "-rotate";
+		    $target = "180";
+		    $im_cmd = "-rotate";
 		} else if (!strcmp($target, "fv")) {
 		    $target = "";
 		    $im_cmd = "-flip";
