@@ -3,7 +3,7 @@
   <tr>
   <td width="100%">
   <span class="admin">
-  <?php _ ("From: ") ?><?php echo $comment->getName() ?> @ <?php echo removeTags($comment->getIPNumber()) ?> (<?php echo $comment->getDatePosted() ?>)
+  <?php echo _("From:") ?> <?php echo $comment->getName() ?> @ <?php echo removeTags($comment->getIPNumber())?> (<?php echo $comment->getDatePosted() ?>)
   </span>
 </td>
 </tr><tr>
