@@ -159,15 +159,14 @@ function gr_login( &$gallery, &$response, &$uname, &$password ) {
 	}
 
 	$tmpUser = $gallery->userDB->getUserByUsername($uname);
-	if($tmpUser) {
-		$response->setProperty( 'debug_user', $tmpUser->getUsername());
-		$response->setProperty( 'debug_user_type', get_class($tmpUser));
-	}
 
 	if ($tmpUser && $tmpUser->isCorrectPassword($password)) {
 		// log user in
 		$gallery->session->username = $uname;
  
+		$response->setProperty( 'debug_user', $tmpUser->getUsername());
+		$response->setProperty( 'debug_user_type', get_class($tmpUser));
+
 		$response->setProperty( 'server_version', $GR_VER['MAJ'].'.'.$GR_VER['MIN'] );
 		$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 		$response->setProperty( 'status_text', 'Login successful.' );
