@@ -20,6 +20,12 @@
 ?>
 <? require_once('init.php'); ?>
 <?
+// Hack check
+if (!$user->isAdmin() && !$user->isOwnerOfAlbum($album)) {
+	exit;
+}
+?>
+<?
 if (isset($allUid) && strchr($submit_read, ">")) {
 	$album->setRead($allUid, 1);
 	$changed++;
