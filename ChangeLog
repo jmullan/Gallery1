@@ -1,3 +1,39 @@
+2003-01-12  Dr. Tilmann Bubeck  <t.bubeck@reinform.de> 1.3.4-cvs-b6
+
+	* Added function checkIfOnlineOrOffline in util.php to check if
+	  this album is used interactively by a browser or by Wget for
+	  downloading a complete album.
+
+	* Called checkIfOnlineOrOffline in init.php
+
+	* Added function build_popup_url in util.php for building a URL
+	  used by the various popup functions.
+
+	* Added function popup_link to generate HTML code for links
+  	  usefull with Wget.
+	
+	* Tightened function editField in util.php to show up only in
+	  online mode (not for downloaded album of Wget).
+
+	* Tightened '[search]' and '[login]' in albums.php to show only in
+	  online mode (not for downloaded album of Wget).
+
+	* Changed '[photo properties]' in view_photo.php to use
+	  popup_link.
+	
+	* Tightened '[login]' in view_album.php to show only in
+	  online mode (not for downloaded album of Wget).
+
+	* Added function printSlideshowPhotos in slideshow.php and
+	  slideshow_low.php which prints the URLs of the slideshow images
+	  or their captions.
+
+	* Changed JavaScript code in slideshow.php and slideshow_low.php. The
+	  URL of images is now stored in hidden hrefs and accessed with
+	  'document.getElementById(photo_url_X)' instead of using JavaScript
+	  variables containing the URL.  Moving the URL from JavaScript into
+	  HTML allows Wget to transform the URLs.
+
 2003-01-15  Bharat Mediratta  <bharat@menalto.com> 1.3.4-cvs-b5
 
 	* Integrated a patch from Ralphe Hesse to support printing on

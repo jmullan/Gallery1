@@ -73,7 +73,7 @@ $navigator["bordercolor"] = $borderColor;
 includeHtmlWrap("gallery.header");
 ?>
 <?php
-if (!strcmp($gallery->app->default["showSearchEngine"], "yes")) {
+if ( ($gallery->generatingMode & ONLINE) != 0 && !strcmp($gallery->app->default["showSearchEngine"], "yes")) {
 ?>
 <table width=100% border=0 cellspacing=0>
 <tr><?php echo makeFormIntro("search.php"); ?>
@@ -128,7 +128,7 @@ if ($gallery->user->isLoggedIn()) {
 	}
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
-		$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[login]</a>';
+	        $adminCommands .= popup_link("[login]", "login.php", 0, ONLINE);
 	}
 }
 

@@ -90,6 +90,80 @@ if (!strcmp($borderwidth, "off")) {
 }
 $bgcolor = $gallery->album->fields['bgcolor'];
 $title = $gallery->album->fields["title"];
+
+define(PHOTO_URL,         1 << 0);
+define(PHOTO_CAPTION,     1 << 1);
+define(PHOTO_URL_AS_HREF, 1 << 2);
+define(PHOTO_ALL    ,     (1<<16)-1);      // all bits set
+
+function printSlideshowPhotos($slide_full, $what = PHOTO_ALL) {
+    global $gallery;
+    
+    $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
+    $numDisplayed = 0; 
+
+    // Find the correct starting point, accounting for hidden photos
+    $index = getNextPhoto(0);
+    $photo_count = 0;
+    while ($numDisplayed < $numPhotos) {
+	if ($index > $numPhotos) {
+	    /*
+	     * We went past the end -- this can happen if the last element is
+	     * an album that we can't read.
+	     */
+	    break;
+	}
+    
+	$photo = $gallery->album->getPhoto($index);
+	$numDisplayed++;
+
+	// Skip movies and nested albums
+	if ($photo->isMovie() || $photo->isAlbumName) {
+	    $index = getNextPhoto($index);
+	    continue;
+	}
+	
+	$photo_count++;
+
+	if ( ($what & PHOTO_URL) != 0 ) {
+	    $photoURL = $gallery->album->getPhotoPath($index, $slide_full);
+	    print "photo_urls[$photo_count] = \"$photoURL\";\n";
+	}
+
+	if ( ($what & PHOTO_URL_AS_HREF) != 0 ) {
+	    $photoURL = $gallery->album->getPhotoPath($index, $slide_full);
+	    print "<a id=\"photo_urls_$photo_count\" href=\"$photoURL\"></a>\n";
+	}
+
+	if ( ($what & PHOTO_CAPTION) != 0 ) {
+	    // Now lets get the captions
+	    $caption = $gallery->album->getCaption($index);
+
+	    /*
+	     * Remove unwanted Characters from the comments,
+	     * We don't use the array based form of str_replace
+	     * because it's not supported on older versions of PHP
+	     */
+	    $caption = str_replace(";", " ", $caption);
+	    $caption = str_replace("\"", " ", $caption);
+	    $caption = str_replace("\n", " ", $caption);
+	    $caption = str_replace("\r", " ", $caption);
+	    
+	    // strip_tags takes out the html tags
+	    $caption = strip_tags($caption);
+	    
+	    // Print out the entry for this image as Javascript
+	    print "photo_captions[$photo_count] = \"$caption\";\n";
+	}
+
+	// Go to the next photo
+	$index = getNextPhoto($index);
+	$photosLeft--;
+    }
+
+    return $photo_count;
+}
+
 ?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
@@ -126,6 +200,17 @@ if ($gallery->album->fields["textcolor"]) {
 <?php } ?>
 <?php includeHtmlWrap("slideshow.header"); ?>
 
+<!-- Here are the URL of the images written down as links. This is to make
+     wget able to convert these links. It will not convert them, if they
+     are written inside JavaScript. JavaScript will then take the images
+     out of these links with "document.getElementById()". -->
+
+<?php 
+    echo "<a id=\"slideShowUrl\" href=\"".makeGalleryUrl('slideshow_low.php',
+							 array('set_albumName' => $gallery->session->albumName))."\"></a>\n\n";
+
+     printSlideshowPhotos($slide_full, PHOTO_URL_AS_HREF); ?>
+
 <script language="JavaScript">
 var timer; 
 var current_location = <?php echo $slide_index ?>;
@@ -139,66 +224,7 @@ var photo_captions = new Array;
 var loop = <?php echo $slide_loop ?>;
 var full = <?php echo $slide_full ?>;
 var direction = <?php echo $slide_dir ?>;
-<?php
-
-$numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
-$numDisplayed = 0; 
-
-// Find the correct starting point, accounting for hidden photos
-$index = getNextPhoto(0);
-$photo_count = 0;
-while ($numDisplayed < $numPhotos) { 
-    if ($index > $numPhotos) {
-	/*
-	 * We went past the end -- this can happen if the last element is an
-	 * album that we can't read.
-	 */
-	break;
-    }
-    $photo = $gallery->album->getPhoto($index);
-    $numDisplayed++;
-
-    // Skip movies and nested albums
-    if ($photo->isMovie() || $photo->isAlbumName) {
-	$index = getNextPhoto($index);
-	continue;
-    }
-
-    $photo_count++;
-
-    $image = $photo->image;
-    if ($photo->image->resizedName) {
-        $thumbImage = $photo->image->resizedName;
-    } else {
-        $thumbImage = $photo->image->name;
-    }
-    $photoURL = $gallery->album->getPhotoPath($index, $slide_full);
-
-    // Now lets get the captions
-    $caption = $gallery->album->getCaption($index);
-
-    /*
-     * Remove unwanted Characters from the comments,
-     * We don't use the array based form of str_replace
-     * because it's not supported on older versions of PHP
-     */
-    $caption = str_replace(";", " ", $caption);
-    $caption = str_replace("\"", " ", $caption);
-    $caption = str_replace("\n", " ", $caption);
-    $caption = str_replace("\r", " ", $caption);
-
-    // strip_tags takes out the html tags
-    $caption = strip_tags($caption);
-
-    // Print out the entry for this image as Javascript
-    print "photo_urls[$photo_count] = \"$photoURL\";\n";
-    print "photo_captions[$photo_count] = \"$caption\";\n";
-
-    // Go to the next photo
-    $index = getNextPhoto($index);
-    $photosLeft--;
-}
-?>
+<?php $photo_count = printSlideshowPhotos($slide_full, PHOTO_CAPTION); ?>
 var photo_count = <?php echo $photo_count?>; 
 
 function stop() {
@@ -254,8 +280,7 @@ function wait_for_current_photo() {
 
 function go_to_next_page() {
 
-    var slideShowUrl = "<?php echo makeGalleryUrl('slideshow_low.php',
-				array('set_albumName' => $gallery->session->albumName)); ?>";
+    var slideShowUrl = document.getElementById('slideShowUrl').href;
 
     document.location = slideShowUrl + "&slide_index=" + next_location + "&slide_full=" + full
 	+ "&slide_loop=" + loop + "&slide_pause=" + (timeout_value / 1000) 
@@ -315,7 +340,7 @@ function preload_photo(index) {
 	if (!images[index]) {
 	    images[index] = new Image;
 	    images[index].onLoad = preload_complete();
-	    images[index].src = photo_urls[index];
+	    images[index].src = document.getElementById("photo_urls_" + index).href;
 	    pics_loaded++;
 	}
     } 
@@ -445,7 +470,7 @@ if ($photo_count > 0) {
   <tr>
     <td bgcolor="<?php echo $borderColor?>" width=<?php echo $borderwidth?>><?php echo $pixelImage?></td>
     <script language="JavaScript">
-    document.write("<td><img border=0 src="+photo_urls[<?php echo $slide_index ?>]+" name=slide></td>");
+    document.write("<td><img border=0 src="+document.getElementById("photo_urls_<?php echo $slide_index ?>").href+" name=slide></td>");
     </script>
     <td bgcolor="<?php echo $borderColor?>" width=<?php echo $borderwidth?>><?php echo $pixelImage?></td>
   </tr>

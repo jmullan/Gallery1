@@ -274,7 +274,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 					doCommand("logout", array(), "view_album.php", array("page" => $page)) .
 				  ">[logout]</a>";
 	} else {
-		$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[login]</a>';
+		$adminCommands .= popup_link("[login]", "login.php", 0, ONLINE);
 	} 
 }
 $adminCommands .= "</span>";

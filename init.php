@@ -85,6 +85,12 @@ require($GALLERY_BASEDIR . "Version.php");
 require($GALLERY_BASEDIR . "util.php");
 
 /*
+ * Detect if we are used online by an interatice user or if we are used
+ * with wget to generate an offline album.
+ */
+checkIfOnlineOrOffline();
+
+/*
  * Detect if we're running under SSL and adjust the URL accordingly.
  */
 if (stristr($HTTP_SERVER_VARS["HTTPS"], "on")) {

@@ -29,6 +29,20 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 ?>
 <?php
 
+function checkIfOnlineOrOffline() {
+    global $gallery;
+
+    define("ONLINE",  1 << 0);
+    define("OFFLINE", 1 << 1);
+    define("ONANDOFFLINE", ONLINE|OFFLINE);
+
+    if ( strstr($GLOBALS['HTTP_USER_AGENT'], "Wget") !== false ) {
+	$gallery->generatingMode = OFFLINE;
+    } else {
+	$gallery->generatingMode = ONLINE;
+    }
+}
+
 function editField($album, $field, $edit) {
 	global $gallery;
 
@@ -81,7 +95,7 @@ function viewComments($index) {
 	}
         $url = "add_comment.php?set_albumName={$gallery->album->fields[name]}&index=$index";
         $buf = "<span class=editlink>";
-        $buf .= '<a href="#" onClick="' . popup($url) . '">[add comment]</a>';
+        $buf .= popup_link('[add comment]', $url, 0, ONLINE);
         $buf .= "</span>";
         echo "<tr align=center><td colspan=3>$buf<br><br></td></tr>";
 }
@@ -98,7 +112,8 @@ function error_format($message) {
 	return "<span class=error>Error: $message</span>";
 }
 
-function popup($url, $url_is_complete=0) {
+function build_popup_url($url, $url_is_complete=0) {
+    
 	/* Separate the target from the arguments */
 	list($target, $arglist) = split("\?", $url);
 
@@ -117,6 +132,12 @@ function popup($url, $url_is_complete=0) {
 		$url = "'$url'";
 	}
 
+	return $url;
+}
+
+function popup($url, $url_is_complete=0) {
+
+        $url = build_popup_url($url, $url_is_complete);
 	return popup_js($url, "Edit", 
 		"height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
 }
@@ -128,6 +149,27 @@ function popup_js($url, $window, $attrs) {
 function popup_status($url) {
 	$attrs = "height=150,width=350,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
 	return "open('" . makeGalleryUrl($url) . "','Status','$attrs');";
+}
+
+function popup_link($title, $url, $url_is_complete=0, $mode=ONANDOFFLINE ) {
+    static $popup_counter = 0;
+    global $gallery;
+
+    if ( ($gallery->generatingMode & $mode) == 0 ) {
+	return;
+    }
+
+    $popup_counter++;
+
+    $link_name = "popuplink_".$popup_counter;
+    $url = build_popup_url($url, $url_is_complete);
+    
+    $a1 = "<a id=\"$link_name\" target=\"Edit\" href=$url onClick=\"".
+	popup_js("document.getElementById('$link_name').href", "Edit",
+		 "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
+	"\">";
+    
+    return "$a1<nobr>$title</nobr></a>";
 }
 
 function exec_internal($cmd) {

@@ -321,13 +321,12 @@ if (!$gallery->album->isMovie($id)) {
     
 	if (!strcmp($gallery->album->fields["use_exif"],"yes") && (!strcmp($photo->image->type,"jpg")) &&
 	    ($gallery->app->use_exif)) {
-		$adminCommands .= "<a href=\"#\" onClick=\"".
-						popup("view_photo_properties.php?index=$index").
-						"\">[photo properties]</a>&nbsp;&nbsp;";
+		$albumName = $gallery->session->albumName;
+		$adminCommands .= popup_link("[photo properties]", "view_photo_properties.php?set_albumName=$albumName&index=$index");
 	}
 
-
 	if (strcmp($gallery->album->fields["print_photos"],"none") &&
+		$gallery->generatingMode & ONLINE &&
 		!$gallery->album->isMovie($id)){
 
 		$photo = $gallery->album->getPhoto($GLOBALS["index"]);
@@ -353,8 +352,8 @@ if (!$gallery->album->isMovie($id)) {
 		} else if (!strncmp($printService, "fotokasten", 10)) {
 		    $adminCommands .= "<a href=# onClick=\"" .
 			popup("'http://1012.partner.fotokasten.de/affiliateapi/standard.php?add=". 
-				$rawImage ."&thumbnail=" . $thumbImage . "&height=" . 
-				$imageHeight ."&width=" . $imageWidth . "'", 1) . 
+			      $rawImage ."&thumbnail=" . $thumbImage . "&height=" . 
+			      $imageHeight ."&width=" . $imageWidth . "'", 1) .
 			"\">[print this photo on Fotokasten]</a>";
 		}
 	}
