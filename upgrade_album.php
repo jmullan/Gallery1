@@ -36,9 +36,12 @@ if ($UPGRADE_LOOP == 2) {
 if (!$gallery->version) { require($GALLERY_BASEDIR . "init.php"); }
 ?>
 <?
-// Hack check
+/*
+ * If we're not the admin, we can only upgrade the album that we're
+ * looking at.
+ */
 if (!$gallery->user->isAdmin()) {
-        exit;
+	$upgrade_albumname = $gallery->session->albumName;
 }
 
 function close_button() {
