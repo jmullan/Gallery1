@@ -2,15 +2,12 @@
 
 $common_messages["getting-netpbm"] =
 			"Gallery prefers NetPBM version 9.9 and up.  " .
-			"You can install the entire NetPBM package from " .
-			"<a href=http://sourceforge.net/projects/netpbm>NetPBM on SourceForge</a> " .
-			"or you can install just the binaries Gallery needs from " .
-			"<a href=http://sourceforge.net/projects/gallery>Gallery on SourceForge</a>. ".
+			"You can install just the binaries Gallery needs from " .
+			"<a href=http://sourceforge.net/projects/gallery>Gallery on SourceForge</a> ".
+			"or, you can compile and install the entire NetPBM package from " .
+			"<a href=http://sourceforge.net/projects/netpbm>NetPBM on SourceForge</a>. " .
 			"<b>Note:</b> You can install the binaries from the Gallery site even ".
-			"if you don't have root access on your box!  If Gallery does not have the ".
-			"specific binaries for your hardware/software combination post a request ".
-			"On the Gallery website and we'll build them for you.";
-
+			"if you don't have root access on your box!";
 			
 $common_messages["fail-netpbm-partial"] =
 			"I've found part of NetPBM, but some critical components " .
