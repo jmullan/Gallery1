@@ -40,37 +40,37 @@
  * If you add a new language please use alphatical order by name.
  */
 function getNLS () {
-	$nls['language']['zh_CN'] = 'Simplified Chinese (&#31616;&#20307;&#20013;&#25991;)';
-        $nls['language']['zh_TW'] = 'Traditional Chinese (&#32321;&#39636;&#20013;&#25991;)';
-	$nls['language']['zh_TW.utf8'] = 'Traditional Chinese (&#32321;&#39636;&#20013;&#25991;) (UTF-8)';
-	$nls['language']['bg_BG'] = '&#x0411;&#x044a;&#x043b;&#x0433;&#x0430;&#x0440;&#x0441;&#x043a;&#x0438;';
-	$nls['language']['ca_ES'] = 'Catal&#xe0;';
-	$nls['language']['cs_CZ'] = '&#x010c;esky';
-	$nls['language']['da_DK'] = 'Dansk';
-	$nls['language']['de_DE'] = 'Deutsch';
+	$nls['language']['zh_CN'] = '&#31616;&#20307;&#20013;&#25991;'; // Simplified Chinese
+	$nls['language']['zh_TW'] = '&#32321;&#39636;&#20013;&#25991;'; // Traditional Chinese
+	$nls['language']['zh_TW.utf8'] = '&#32321;&#39636;&#20013;&#25991; (UTF-8)'; // Traditional Chinese (UTF-8)
+	$nls['language']['bg_BG'] = '&#x0411;&#x044a;&#x043b;&#x0433;&#x0430;&#x0440;&#x0441;&#x043a;&#x0438;'; // Bulgarian
+	$nls['language']['ca_ES'] = 'Catal&#xe0;'; // Catalan
+	$nls['language']['cs_CZ.iso'] = '&#x010c;esky'; // Czech
+	$nls['language']['da_DK'] = 'Dansk'; // Danish
+	$nls['language']['de_DE'] = 'Deutsch'; // German
 	$nls['language']['en_GB'] = 'English (UK)';
 	$nls['language']['en_US'] = 'English (US)';
-	$nls['language']['es_ES'] = 'Espa&#241;ol';
-	$nls['language']['fr_FR'] = 'Fran&#231;ais';
-	$nls['language']['it_IT'] = 'Italiano';
-	$nls['language']['he_IL'] = 'Hebrew';
-	$nls['language']['is_IS'] = '&#205;slenska';
-	$nls['language']['ja_JP'] = '&#x65e5;&#x672c;&#x8a9e; (EUC-JP)';
-	$nls['language']['ko_KR'] = '&#xd55c;&#xad6d;&#xc5b4;';
-	$nls['language']['lt_LT'] = 'Lietuvi&#x0173;';
-	$nls['language']['hu_HU'] = 'Magyar';
-	$nls['language']['nl_NL'] = 'Nederlands';
-	$nls['language']['no_NO'] = 'Norsk bokm&#229;l';
-	$nls['language']['pl_PL'] = 'Polski';
-	$nls['language']['pt_PT'] = 'Portugu&#234;s';
-	$nls['language']['pt_BR'] = 'Portugu&#234;s Brasileiro';
-	$nls['language']['ru_RU'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)';
-	$nls['language']['ru_RU.koi8r'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (KOI8-R)';
-	$nls['language']['sl_SI'] = 'Sloven&#x0161;&#x010d;ina';
-	$nls['language']['fi_FI'] = 'Suomi';
-	$nls['language']['sv_SE'] = 'Svenska';
-	$nls['language']['tr_TR'] = 'T&#252;rk&#231;e';
-	$nls['language']['uk_UA'] = '&#x0423;&#x043a;&#x0440;&#x0430;&#x0457;&#x043d;&#x0441;&#x044c;&#x043a;&#x0430;';
+	$nls['language']['es_ES'] = 'Espa&#241;ol'; // Spanish
+	$nls['language']['fr_FR'] = 'Fran&#231;ais'; // French
+	$nls['language']['it_IT'] = 'Italiano'; // Italian
+	$nls['language']['he_IL'] = '&#1506;&#1489;&#1512;&#1497;&#1514;'; // Hebrew
+	$nls['language']['is_IS'] = '&#205;slenska'; // Icelandic
+	$nls['language']['ja_JP'] = '&#x65e5;&#x672c;&#x8a9e; (EUC-JP)'; // Japanese (EUC-JP)
+	$nls['language']['ko_KR'] = '&#xd55c;&#xad6d;&#xc5b4;'; // Korean
+	$nls['language']['lt_LT'] = 'Lietuvi&#x0173;'; // Lithuanian
+	$nls['language']['hu_HU'] = 'Magyar'; // Hungarian
+	$nls['language']['nl_NL'] = 'Nederlands'; // Dutch
+	$nls['language']['no_NO'] = 'Norsk bokm&#229;l'; // Norwegian (Bokmal)
+	$nls['language']['pl_PL'] = 'Polski'; // Polish
+	$nls['language']['pt_PT'] = 'Portugu&#234;s'; // Portuguese
+	$nls['language']['pt_BR'] = 'Portugu&#234;s Brasileiro'; // Portuguese (Brazil)
+	$nls['language']['ru_RU'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)'; // Russian (Windows)
+	$nls['language']['ru_RU.koi8r'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (KOI8-R)'; // Russian (KOI8-R)
+	$nls['language']['sl_SI'] = 'Sloven&#x0161;&#x010d;ina'; // Slovenian
+	$nls['language']['fi_FI'] = 'Suomi'; // Finnish
+	$nls['language']['sv_SE'] = 'Svenska'; // Swedish
+	$nls['language']['tr_TR'] = 'T&#252;rk&#231;e'; // Turkish
+	$nls['language']['uk_UA'] = '&#x0423;&#x043a;&#x0440;&#x0430;&#x0457;&#x043d;&#x0441;&#x044c;&#x043a;&#x0430;'; // Ukranian
 
 /**
  ** Aliases for languages with different browser and gettext codes

@@ -92,9 +92,9 @@ function viewComments($index) {
 		includeLayout('commentdraw.inc');
 	}
         $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&index=$index";
-        $buf = "<tr><td></td><td align=\"center\"><span class=editlink>";
+        $buf = "<tr><td align=\"center\"><span class=\"editlink\">";
         $buf .= popup_link('[' . _("add comment") . ']', $url, 0);
-        $buf .= "</span><br><br></td></tr>";
+        $buf .= "</span></td></tr>";
         echo $buf;
 }
 
@@ -764,6 +764,7 @@ function getImagePath($name, $skinname='') {
 
 function includeLayout($name, $skinname='') {
 	global $GALLERY_BASEDIR;
+	global $HTTP_SERVER_VARS;
 	global $gallery;
 
 	if (!$skinname) {
@@ -1111,8 +1112,7 @@ function gallerySanityCheck() {
                 broken_link($GALLERY_BASEDIR . "config.php") ||
                 !$gallery->app) {
 		$GALLERY_OK=false;
-		include($GALLERY_BASEDIR . "errors/unconfigured.php");
-		exit;
+		return "unconfigured.php";
 	}
 
 	if (fs_file_exists($GALLERY_BASEDIR . "setup") && 
@@ -1130,16 +1130,16 @@ function gallerySanityCheck() {
 		$perms = sprintf("%o", fileperms($GALLERY_BASEDIR . "setup"));
 		if (strstr($perms, "755")) {
 			$GALLERY_OK=false;
-			include($GALLERY_BASEDIR . "errors/configmode.php");
-			exit;
+			return "configmode.php";
 		}
 	}
 
 	if ($gallery->app->config_version != $gallery->config_version) {
 		$GALLERY_OK=false;
-		include($GALLERY_BASEDIR . "errors/reconfigure.php");
-		exit;
+		return "reconfigure.php";
 	}
+	$GALLERY_OK=true;
+	return NULL;
 }
 
 function preprocessImage($dir, $file) {
@@ -2283,7 +2283,6 @@ function initLanguage() {
 			return;
 		}
 	}
-
 	// Detect Browser Language
 
 	if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
@@ -2456,11 +2455,10 @@ function initLanguage() {
 	 ** if not emulate _() function
 	 **/
 
-	$check=(in_array("gettext", get_loaded_extensions()) && 
-			function_exists('gettext'));
-	if ($check) {
-		$bindtextdomain=bindtextdomain("gallery", $GALLERY_BASEDIR."locale");
-		textdomain("gallery");
+	if (gettext_installed()) {
+		$bindtextdomain=bindtextdomain($gallery->language. "-gallery_". where_i_am(), $GALLERY_BASEDIR."locale");
+		textdomain($gallery->language. "-gallery_". where_i_am());
+		    
 	}  else {
 		emulate_gettext();
 	}
@@ -2468,9 +2466,10 @@ function initLanguage() {
 
 function emulate_gettext() {
 	global $translation;
-
-	$filename=po_filename();
-	if ($filename) {
+	global $GALLERY_BASEDIR, $gallery;
+	
+	if (in_array($gallery->language,gallery_languages())) {
+		$filename=$GALLERY_BASEDIR ."locale/". $gallery->language ."/". $gallery->language ."-gallery_". where_i_am();
 		$lines=file($filename);
 
 		foreach ($lines as $key => $value) {
@@ -2497,53 +2496,6 @@ function emulate_gettext() {
 	}
 }
 
-/* 
-   PO file will be in either gallery/po or gallery/locale/. The po directory 
-   will only exist in CVS installations, but if it does exist, it will be the 
-   same or more up-to-date than the one in locale
-*/
-function po_filename($lang=NULL) {
-	global $GALLERY_BASEDIR, $gallery;
-	if ($lang == NULL) {
-		$lang = $gallery->language;
-	}
-	$filename=$GALLERY_BASEDIR ."po/" . $lang . "-gallery.po";
-	if (file_exists($filename)) {
-			return $filename;
-	}
-
-	$filename=$GALLERY_BASEDIR ."locale/" . $lang . "/gallery.po";
-	if (file_exists($filename)) {
-			return $filename;
-	}
-	return NULL;
-}
-
-/* returns true if gettext is defined, and the mo file is found for language,
-   or no gettext, and a po file is found.
-   */
-
-function language_exists($lang) {
-	global $GALLERY_BASEDIR;
-	if ($lang == 'en_US') {
-		return true;
-	}
-	$check=(in_array("gettext", get_loaded_extensions()) && 
-			function_exists('gettext'));
-	if ($check) {
-		if (file_exists($GALLERY_BASEDIR ."locale/" . $lang . "/LC_MESSAGES/gallery.mo")) {
-			return true;
-		} else {
-			return false;
-		}
-	} else {
-		if (po_filename($lang)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-}
 /* little function useful for debugging.  no calls to this should be in 
    committed code. */
 
@@ -2971,5 +2923,46 @@ function album_validation_link($album, $photo='', $args=array()) {
 					makeAlbumURL($album, $photo, $args))).
 		'"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
 	return $link;
+}
+
+//returns all languages in this gallery installation
+function gallery_languages() {
+
+	global $GALLERY_BASEDIR;
+	$modules=array('config','core');
+	$handle=opendir($GALLERY_BASEDIR. "locale");
+	$available=array('en_US' => 'English (US)');
+	$nls=getNLS();
+	
+	while ($dirname = readdir($handle)) {
+		if (preg_match("/^([a-z]{2}_[A-Z]{2})/", $dirname)) {
+			$locale=$dirname;
+			$fc=0;
+			foreach ($modules as $module) {
+				if (gettext_installed()) {
+					if (file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-gallery_$module.po")) $fc++;
+				} else {
+					if (file_exists($GALLERY_BASEDIR . "locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
+				}
+			}
+			if ($fc == sizeof($modules)) {
+				$available[$dirname]=$nls['language'][$dirname];
+			}
+		}
+	}
+	closedir($handle);
+
+return $available;
+}
+
+function where_i_am() {
+	global $GALLERY_OK;
+
+	if ($GALLERY_OK == true && strpos($_SERVER['REQUEST_URI'],"setup") == 0) {
+		return "core";
+	} else {
+		return "config";
+	}
+
 }
 ?>

@@ -25,7 +25,7 @@ cd $ACTUALPATH
 #make sure the pot file is uptodate:
 
 [ ! -z $2 ] || {
-	echo -n "making gallery.pot . . . "
+	echo -n "making *.pot . . . "
 	sh create_po_template.sh
 }
 
@@ -42,12 +42,16 @@ if [ $1 = "-all" ] ; then
 
 	for all_po in $(ls ??_*-*.po) ; do
 		echo -e "\nFound : $all_po"
-		
-		lang=$(echo ${all_po%-*})
+
+		lang=${all_po%-*}
+		module1=${all_po##*_}
+		module=${module1/.po}
 		echo "$tab Language = $lang"
+		echo "$tab Module = $module"
+
 		echo "$tab Updating ..."
-		msgmerge -U $all_po gallery.pot --no-wrap -v || exit
+		msgmerge -U $all_po gallery-$module.pot --no-wrap -v || exit
 	done
 else
-	msgmerge -U $2 gallery.pot --no-wrap -v
+	msgmerge -U $2 gallery-$module.pot --no-wrap -v
 fi

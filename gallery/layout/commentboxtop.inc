@@ -1,5 +1,5 @@
 <?php /* $Id$ */ ?>
-<?php global $commantbox, $embeddedAlbum, $myAlbumName, $myHighlightTag, $myAlbum, $id, $i; ?>
+<?php global $commentbox, $embeddedAlbum, $myAlbumName, $myHighlightTag, $myAlbum, $id, $i; ?>
 <table width="100%" border="0" cellspacing="0" cellpadding=0>
 <tr>
 <td colspan="2"><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="1"></td>

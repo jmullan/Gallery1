@@ -413,14 +413,13 @@ if (!$gallery->album->isMovie($id)) {
                                       "on" : "off"))); 
               	}
 
-		$adminCommands .= "<nobr>". _("View Images") .": [ ";
+		$adminCommands .= _('View Images') .':&nbsp;[&nbsp;';
 		if (strcmp($gallery->session->fullOnly,"on"))
 		{
-			$adminCommands .= _("normal") ." | <a href=\"$link\">" . _("full") ."</a> ]";
+			$adminCommands .= _('normal') . "&nbsp;|&nbsp;<a href=\"$link\">" . _('full') .'</a>&nbsp;]';
 		} else {
-			$adminCommands .= "<a href=\"$link\">" . _("normal") .'</a> | '. _("full") ." ]";
+			$adminCommands .= "<a href=\"$link\">" . _("normal") .'</a>&nbsp;|&nbsp;'. _('full') .'&nbsp;]';
 		}
-		$adminCommands .= "</nobr>";
 	} 
 	
 	$field="EXIF";
@@ -628,7 +627,7 @@ $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 includeHtmlWrap("inline_photo.frame");
 ?>
 <br><br>
-<table border="0" bordercolor="red" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
+<table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
 <!-- caption -->
 <tr>
 <td colspan=3 align=center>
@@ -639,7 +638,6 @@ if ( canVote() )
        echo makeFormIntro("view_photo.php", array("name" => "vote_form",
                                        "method" => "POST"));
    ?>
-   <!-- voting ->
    <script language="javascript1.2" type="text/JavaScript">
  function chooseOnlyOne(i, form_pos, scale)
  {     
@@ -665,6 +663,7 @@ if ($gallery->album->getPollShowResults())
        print "<p>\n";
 }
 ?>
+
 <br><br>
 <?php
 
@@ -703,7 +702,7 @@ if (is_int($key))
 
 	$dimensions=$photo->getDimensions($full);
 	$table .= "<tr><td valign=top align=right><b>".$automaticFields[$field].":</b></td><td>".
-	$dimensions[0]." x ".$dimensions[1]." (". (int) $photo->getFileSize($full) >> 10 ."k)</td></tr>";
+	$dimensions[0]." x ".$dimensions[1]." (". ((int) $photo->getFileSize($full) >> 10) ."k)</td></tr>";
 	unSet($extra_fields[$key]);
 }
 
@@ -801,7 +800,7 @@ if ($table) {
 </form>
 <?php } ?> 
 <?php if (isset($printEZPrintsForm)) { ?>
-<form <?php /* illegal in 4.01 type="response" */ ?> method="post" name="ezPrintsForm" action="http://gallery.mye-pix.com/ecomm/default.asp">
+<form method="post" name="ezPrintsForm" action="http://gallery.mye-pix.com/ecomm/default.asp">
   <input type="hidden" name="EntryType" value="SingleImage" >
   <input type="hidden" name="PartnerID" value="440" >
   <input type="hidden" name="PartnerPassword" value="Gallery1" >

@@ -5,60 +5,89 @@
 $nls=getNLS();
 
 $total=array();
-$handle=opendir('../po');
+$handle=opendir("../locale");
 $eastergg=0;
-while ($file = readdir($handle)) {
-        if (ereg("^([a-z]{2}_[A-Z]{2})(\.[a-zA-Z0-9]+)?(\-gallery.po)$", $file, $matches)) {
-		$locale=$matches[1] . $matches[2];
+while ($dirname = readdir($handle)) {
+	if (preg_match("/^([a-z]{2}_[A-Z]{2})/", $dirname)) {
+		$locale=$dirname;
 		if ($locale == "en_GB") continue; 
 		$total['lang']++;
+		$dir=opendir("../locale/$dirname");
+		$tpd=0;
+		$cc=0;
+		while ($file = readdir($dir)) {
+		        if (ereg("^([a-z]{2}_[A-Z]{2})(\.[a-zA-Z0-9]+)?(\-gallery.+\.po)$", $file, $matches)) {
+				$pos=strpos($file,"gallery_");
+				$component=substr($file,$pos+8,-3);
 
-		$lines=file("../po/$file");
-		$fuzzy=0;
-		$untranslated=-2;
-		$translated=0;
-		$obsolete=0;
-		foreach ($lines as $line) {
-			if(strpos($line,'msgstr') === 0) {
-				if(stristr($line,'msgstr ""')) {
-					$untranslated++;
-				} else {
-					$translated++;
+				$lines=file("../locale/$dirname/$file");
+				$fuzzy=0;
+				$untranslated=-2;
+				$translated=0;
+				$obsolete=0;
+				foreach ($lines as $line) {	
+				if(strpos($line,'msgstr') === 0) {
+						if(stristr($line,'msgstr ""')) {
+						$untranslated++;
+						} else {
+							$translated++;
+						}
+					} elseif (strpos($line,'#, fuzzy') === 0) {
+						$fuzzy++;
+					} elseif (strpos($line,'#~ ') === 0) {
+						$obsolete++;
+					}
 				}
-			} elseif (strpos($line,'#, fuzzy') === 0) {
-				$fuzzy++;
-			} elseif (strpos($line,'#~ ') === 0) {
-				$obsolete++;
-			}
+				$all=$translated+$untranslated;
+				$percent_done=round(($translated-$fuzzy)/$all*100,2);
+				$rpd=round($percent_done,0);
+
+				if ($component =="config" ) {
+					$border=40;
+				} else {
+					$border=50;
+				}
+				if($rpd < $border) {
+					$color=dechex(255-$rpd*2). "0000";
+				} else {
+					$color="00" . dechex(55+$rpd*2). "00";
+				}
+				if (strlen($color) <6) $color="0". $color;
+				$tpd+=$percent_done;
+				if ($percent_done == 100) $easteregg++;
+				$report[$locale][$component]=array ($color,$percent_done,$all,$translated,$fuzzy,$untranslated,$obsolete);
+				$total['percent_done'] = $total['percent_done'] + $percent_done;
+				$cc++;
+		        }
 		}
-		$all=$translated+$untranslated;
-		$percent_done=round(($translated-$fuzzy)/$all*100,2);
-		$rpd=round($percent_done,0);
-		$report[$locale]=array ($percent_done,$translated,$fuzzy,$untranslated,$bgcolor);
-		if($rpd <50) {
-			$color=dechex(255-$rpd*2). "0000";
+
+		$rtpd=round($tpd/$cc,0);
+		if($rtpd <50) {
+			$color=dechex(255-$rtpd*2). "0000";
 		} else {
-			$color="00" . dechex(55+$rpd*2). "00";
+			$color="00" . dechex(55+$rtpd*2). "00";
 		}
 		if (strlen($color) <6) $color="0". $color;
-		if ($percent_done == 100) $easteregg++;
-		$report[$locale]=array ($color,$percent_done,$all,$translated,$fuzzy,$untranslated,$obsolete);
-		$total['percent_done'] = $total['percent_done'] + $percent_done;
-        }
+		$report[$locale]['tpd']=$tpd/$cc;
+		$report[$locale]['color']=$color;
+		closedir($dir);
+	}
 }
 closedir($handle);
 
-$total['percent_done'] = round($total['percent_done'] / $total['lang'],2);
+$total['percent_done'] = round($total['percent_done'] / ($total['lang']*2),2);
 
 function my_usort_function ($a, $b) {
-	if ($a[1] > $b[1]) { return -1; }
-	if ($a[1] < $b[1]) { return 1; }
+	if ($a['tpd'] > $b['tpd']) { return -1; }
+	if ($a['tpd'] < $b['tpd']) { return 1; }
 	return 0;
 }
 
 uasort ($report, 'my_usort_function');
 
-if ($easteregg ==1 && $report['de_DE'][1] == 100) $report['de_DE'][1]=substr($gallery->version,-3);
+//print_r($report);
+
+//if ($easteregg ==1 && $report['de_DE'][1] == 100) $report['de_DE'][1]=substr($gallery->version,-3);
 
 $filename="./g1-report.xml";
 
@@ -73,6 +102,7 @@ fwrite($handle,"<report date=\"".strftime("%x",time()). "\" time=\"".strftime("%
 $i=0;
 $j=0;
 foreach ($report as $key => $value) {
+	krsort($value);
 
 	$i++;
 	if ($i%2==0) {
@@ -80,8 +110,8 @@ foreach ($report as $key => $value) {
 	} else {
 		$scheme="dark";
 	}
-
-	if ($report[$key][1] != $report[$last_key][1]) { 
+	
+	if ($value['tpd'] != $last_value['tpd']) { 
 		$lfd_nr++;
 		$line=$lfd_nr;	
 	} else {
@@ -91,16 +121,24 @@ foreach ($report as $key => $value) {
 	fwrite($handle,"\n\t<locale id=\"$key\" scheme=\"$scheme\">");
 	fwrite($handle,"\n\t\t<nr scheme=\"$scheme\">$line</nr>");
 	fwrite($handle,"\n\t\t<language scheme=\"$scheme\">". $nls['language'][$key] ."</language>");
-	fwrite($handle,"\n\t\t<percent_done style=\"background-color:#". $value[0] ."\">$value[1] %</percent_done>");
-	fwrite($handle,"\n\t\t<lines scheme=\"$scheme\">". $value[2] ."</lines>");
-	fwrite($handle,"\n\t\t<translated scheme=\"translated_$scheme\">$value[3]</translated>");
-	fwrite($handle,"\n\t\t<fuzzy scheme=\"fuzzy_$scheme\">$value[4]</fuzzy>");
-	fwrite($handle,"\n\t\t<untranslated scheme=\"untranslated_$scheme\">$value[5]</untranslated>");
-	fwrite($handle,"\n\t\t<obsolete scheme=\"obsolete_$scheme\">$value[6]</obsolete>");
+	fwrite($handle,"\n\t\t<tpd style=\"background-color:#". $value['color'] ."\">". $value['tpd'] ."</tpd>");
+	
+	foreach ($value as $subkey => $subvalue) {
+		if ($subkey =="tpd" or $subkey=="cc" or $subkey=="color") continue;
+		fwrite($handle,"\n\t\t<component scheme=\"$scheme\">");
+		fwrite($handle,"\n\t\t\t<name scheme=\"$scheme\">". $subkey ."</name>");
+		fwrite($handle,"\n\t\t\t<percent_done style=\"background-color:#". $subvalue[0] ."\">$subvalue[1] %</percent_done>");
+		fwrite($handle,"\n\t\t\t<lines scheme=\"$scheme\">". $subvalue[2] ."</lines>");
+		fwrite($handle,"\n\t\t\t<translated scheme=\"translated_$scheme\">$subvalue[3]</translated>");
+		fwrite($handle,"\n\t\t\t<fuzzy scheme=\"fuzzy_$scheme\">$subvalue[4]</fuzzy>");
+		fwrite($handle,"\n\t\t\t<untranslated scheme=\"untranslated_$scheme\">$subvalue[5]</untranslated>");
+		fwrite($handle,"\n\t\t\t<obsolete scheme=\"obsolete_$scheme\">$subvalue[6]</obsolete>");
+		fwrite($handle,"\n\t\t</component>");
+	}
+
 	fwrite($handle,"\n\t</locale>");
 
-
-	$last_key=$key;	
+	$last_value=$value;	
 }
 fwrite($handle,"\n\t<total>");
 fwrite($handle,"\n\t\t<languages>". $total['lang'] ."</languages>");
