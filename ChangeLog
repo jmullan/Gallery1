@@ -1,4 +1,13 @@
+2003-12-05 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b53
+
+	* Bugfix: Avoid warning and resulting crash in publish_xp.php 
+		  when $HTTP_SERVER_VARS["HTTPS"] is not set.
+		  (H0bbel catched it.)
+
+	* Change: Typo in config.
+
 2003-12-04  Christian Mohn  <h0bbel@p0ggel.org> 1.4.2-cvs-b52
+
 	* Removed width=100% in view_photo_properties.php to make the table
 	  autosize. This keeps it centered, and not "left-shifted" if the popup window
 	  is resized

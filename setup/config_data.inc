@@ -640,7 +640,7 @@ $constants = array_merge($constants,
 
 	"comments_display_name" => array(
 			"prompt" => _("Format for commenter names"),
-			"desc" => _("Commenter names of logged in users can be dislayed in a variety of different ways") .
+			"desc" => _("Commenter names of logged in users can be displayed in a variety of different ways") .
 				newIn("1.4.2"),
 			"choices" => displayNameOptions(), 
 			"value" => "!!FULLNAME!! (!!USERNAME!!)",

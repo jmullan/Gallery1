@@ -34,7 +34,7 @@ if (!isset($GALLERY_BASEDIR)) {
 }
 require($GALLERY_BASEDIR . "init.php");
 
-if (stristr($HTTP_SERVER_VARS["HTTPS"], "on")) {
+if (isset($HTTP_SERVER_VARS["HTTPS"] ) && stristr($HTTP_SERVER_VARS["HTTPS"], "on")) {
     $proto = "https";
 } else {
     $proto = "http";
