@@ -1,22 +1,18 @@
 <?php /* $Id$ */ ?>
-<?php
-        require("../ML_files/ML_config.php");
-?>
+<?php require("../ML_files/ML_config.php"); ?>
 <html>
 <body dir=<?php echo $gallery->direction ?>>
 
-<h1><?php echo _("Check") ?> ImageMagick</h1>
+<h1> <?php echo _("Check") ?> ImageMagick </h1>
 
 <?php echo _("This script is designed to examine your ImageMagick installation to see if it is ok to be used by Gallery.") ?>
-<br>
 <?php echo _("You should run this script <b>after</b> you have run the config wizard, if you have had problems with your ImageMagick installation that the wizard did not detect.") ?>
 
 <p>
 <ol>
 
-<li>
-<?php echo _("Loading configuration files.") ?>
-<?php echo _("If you see an error here, it is probably because you  have not successfully run the config wizard.") ?>
+<li> <?php echo _("Loading configuration files.") ?>
+<?php echo _("If you see an error here, it is probably because you have not successfully run the config wizard.") ?>
 
 <?php
 require('init.php'); 
@@ -27,8 +23,8 @@ require("../config.php");
 
 <li> <?php echo _("Let us see if we can figure out what operating system you are using.") ?>
 
-<p> <?php echo _("This is what your system reports") ?>:
-
+<p> 
+<?php echo _("This is what your system reports") ?>:
 <br>
 <b><?php passthru("uname -a"); ?></b>
 
@@ -43,13 +39,10 @@ require("../config.php");
 
 <p>
 
-<?php echo _("Look for keywords like Linux, Windows, FreeBSD, etc. in the output above.") ?>
-<br>
+<?php echo _("Look for keywords like &quot;Linux&quot;, &quot;Windows&quot;, &quot;FreeBSD&quot;, etc. in the output above.") ?>
 <?php echo _("If both the attempts above failed, you should ask your ISP what operating system you are using.") ?>
-<br>
 <?php echo _("You can check via") ?> <a href="http://www.netcraft.com/whats?host=<?php echo $HTTP_SERVER_VARS['HTTP_HOST'] ?>">Netcraft</a>,
 <?php echo _("they can often tell you.") ?>
-
 <p>
 
 <li> <?php echo _("You told the config wizard that your ImageMagick binaries live here") ?>:
@@ -85,7 +78,7 @@ if (!inOpenBasedir($gallery->app->imDir)) {
 
 <?php
 if ($show_details) {
-	print " <a href=check_imagemagick.php?show_details=0>" .
+	print "<a href=check_imagemagick.php?show_details=0>" .
 			_("Click here") ."</a> ". _("to hide the details") ."</a>";
 } else {
 	print _("If you see errors, you should") .
@@ -115,7 +108,7 @@ function checkImageMagick($cmd) {
 	global $debugfile;
 
 	$cmd = fs_executable($gallery->app->ImPath . "/$cmd");
-	print _("Checking") .": " . fs_import_filename($cmd) ."\n";
+	print _("Checking"). " ". fs_import_filename($cmd). "\n";
 
 	$ok = 1;
 
@@ -157,13 +150,11 @@ function checkImageMagick($cmd) {
 		}
 	}
 
-
 	if ($ok) {
                 print "<font color=green>". _("Ok!  Version") .": $version</font>";
         } else {
                 print "<font color=red>". _("Error") ."! ($error) </font>";
         }
-
 	print "\n\n";
 }
     
@@ -182,12 +173,8 @@ function inOpenBasedir($dir) {
 <p>
 
 <?php echo _("If you see an error above complaining about reading or writing to") ?> <b><?php echo $debugfile ?></b>,
-<br>
 <?php echo _("then this is likely a permission/configuration issue on your system.") ?>
-
-<?php echo _("If it mentions <i>open_basedir</i> then it's because your system is configured with") ?> <a href="http://www.php.net/manual/en/configuration.php#ini.open-basedir"> open_basedir</a> enabled.
-<?php echo _("enabled") ?>.
-<br>
+<?php echo _("If it mentions <i>open_basedir</i> then it's because your system is configured with") ?> <a href="http://www.php.net/manual/en/configuration.php#ini.open-basedir"> open_basedir</a> <?php echo _("enabled") ?>.
 <?php echo _("You should talk to your system administrator about this, or see the") ?> <a href=http://gallery.sourceforge.net/help.php><?php echo _("Gallery Help Page") ?></a>
 
 <p>
