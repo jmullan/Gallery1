@@ -123,8 +123,7 @@ $checklist = array(
 		"serious" => 1
 	),
 	"exec" => array(
-		"desc" => _("The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and
-jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."),
+		"desc" => _("The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."),
 		"func" => "check_exec",
 		"fail-exec" => _("The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."),
 		"serious" => 1,
@@ -721,7 +720,7 @@ $constants = array_merge($constants,
 		"value" => "no"
 	),
 	"adminCommentsEmail" => array(
-		"desc" => _("This is allows the &quot;admin&quot account to get email whenever a comment is added to any album"),
+		"desc" => _("This is allows the &quot;admin&quot; account to get email whenever a comment is added to any album"),
 		"prompt" => _("Admin comment email"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
@@ -968,8 +967,7 @@ $constants = array_merge($constants,
 	),
 	"rssMaxAlbums" => array(
 		"prompt" => _("Maximum Albums Returned"),
-		"desc" => _("This value is the maximum number of albums that the RSS feed will display to the user. Only the most
-recently modified albums are chosen for this value."),
+		"desc" => _("This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."),
 		"value" => 25,
 		"type" => "text",
 		"must-be-number" => 1,

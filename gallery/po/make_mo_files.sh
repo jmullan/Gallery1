@@ -93,8 +93,11 @@ for po_file in $all_po ; do
 	echo 
 	echo "Found : $po_file"
 
+	version=$(head $po_file -n3 | tail -n1 | cut -d " " -f3)
+	echo "$tab Version: $version"
+
 	stripped=${po_file##*/}
-	echo "Stripped: $stripped"
+#	echo "Stripped: $stripped"
  	
 	lang=$(echo ${stripped%-*})
 

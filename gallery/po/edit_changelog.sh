@@ -48,14 +48,14 @@ for all_CF in $Cfiles ; do
 	echo "$tab Updating ..."
 	echo "" >> $all_CF
 	echo "===============================================================================" >> $all_CF
-	echo "2004-05-15 Jens Tkotz <jens@peino.de> 1.4.4-cvs-b111" >> $all_CF
-#	echo "===============================================================================" >> $all_CF
-	echo "" >> $all_CF
-	echo " * Switch to ngettext !" >> $all_CF
-	echo " * PLURAL DEFINTION MISSING !" >> $all_CF
-	echo "" >> $all_CF
+	echo "2004-07-15 Jens Tkotz <jens@peino.de> 1.4.4-RC2" >> $all_CF
 	echo "===============================================================================" >> $all_CF
-	echo "" >> $all_CF
+#	echo "" >> $all_CF
+#	echo " * Switch to ngettext !" >> $all_CF
+#	echo " * PLURAL DEFINTION MISSING !" >> $all_CF
+#	echo "" >> $all_CF
+#	echo "===============================================================================" >> $all_CF
+#	echo "" >> $all_CF
 #read trash
 done
 
