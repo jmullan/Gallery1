@@ -630,6 +630,8 @@ foreach ($extra_fields as $field)
 }
 if ($do_exif) {
 	$myExif = $gallery->album->getExif($index, isset($forceRefresh));
+	// we dont want to show the full system path to the file
+	array_shift($myExif);
 	foreach ($myExif as $field => $value) {
 		print "<tr><td valign=top align=right><b>$field:<b></td><td>".
 			str_replace("\n", "<p>", $value).
