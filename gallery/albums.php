@@ -95,8 +95,9 @@ includeHtmlWrap("gallery.header");
 <?php
 if (!$gallery->session->offline && !strcmp($gallery->app->showSearchEngine, "yes")) {
 ?>
-<table width="100%" border=0 cellspacing=0>
+<table width="100%" border="0" cellspacing="0">
 <tr>
+<td class="nav"><a href="index.php"><?php echo sprintf($lang['Forum_Index'], $board_config['sitename']); ?></a></td>
 <td valign="middle" align="right">
 <?php echo makeFormIntro("search.php"); ?>
 <span class="search"> <?php echo _("Search") ?>: </span>
