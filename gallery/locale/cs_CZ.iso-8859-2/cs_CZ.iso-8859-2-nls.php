@@ -19,7 +19,7 @@
  *
  * $Id$
  *
- * Version: 1.5-RC2
+ * Version: 1.5
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)

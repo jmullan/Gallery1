@@ -36,10 +36,15 @@ class GallerySession {}
 
 /* If using PHP < 4.3.2, create our own session_regenerate_id() function */
 if (!function_exists('session_regenerate_id')) {
-       function php_combined_lcg() {
+	function make_seed() {
+	    list($usec, $sec) = explode(' ', microtime());
+	    return (float) $sec + ((float) $usec * 100000);
+	}
+	function php_combined_lcg() {
+		mt_srand(make_seed());
 		$tv = gettimeofday();
 		$lcg['s1'] = $tv['sec'] ^ (~$tv['usec']);
-		$lcg['s2'] = posix_getpid();
+		$lcg['s2'] = mt_rand();
 		$q = (int) ($lcg['s1'] / 53668);
 		$lcg['s1'] = (int) (40014 * ($lcg['s1'] - 53668 * $q) - 12211 * $q);
 		if ($lcg['s1'] < 0) {

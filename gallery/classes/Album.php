@@ -222,10 +222,11 @@ class Album {
 		}
 
 		while (($parentAlbum = $parentAlbum->getParentAlbum(FALSE)) && $depth < 30) {
-			$parentNameArray = array($parentAlbum->fields['name'] => $parentAlbum->fields['title']) + $parentNameArray;
+			$parentNameArray[$parentAlbum->fields['name']] = $parentAlbum->fields['title'];
 			$depth++;
 		}
 
+		$parentNameArray = array_reverse($parentNameArray, true);
 		return $parentNameArray;
 	}
 
@@ -2538,7 +2539,7 @@ class Album {
 		} else {
 		       	$this->fields['email_me'][$type][$uid]=true;
 		}
-		$this->save();
+		$this->save(array(), false);
 	}
 	function unsetEmailMe($type, $user, $id=null) {
 		$uid=$user->getUid();
@@ -2552,7 +2553,7 @@ class Album {
 		} else {
 		       	unset($this->fields['email_me'][$type][$uid]);
 		}
-		$this->save();
+		$this->save(array(), false);
 	}
 }
 ?>

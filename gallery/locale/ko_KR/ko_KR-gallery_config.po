@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1.5-RC2
+# Version: 1.5
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2005 Bharat Mediratta
@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
 "POT-Creation-Date: 2005-03-02 12:01+0100\n"
-"PO-Revision-Date: 2005-02-26 17:58+0900\n"
+"PO-Revision-Date: 2005-03-07 17:58+0900\n"
 "Last-Translator: The Darkness <xgate32 AT hotmail DOT com>\n"
 "Language-Team: Gallery Korean Translation <xgate32 AT hotmail DOT com>\n"
 "MIME-Version: 1.0\n"
@@ -103,7 +103,7 @@ msgstr "이것은 갤러리 시스템 확인 페이지입니다."
 
 #: ../setup/check.inc:32
 msgid "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably."
-msgstr "여기에서 갤러리가 동작하기 위해 시스템에 필요한 컴포넌트와 권한설정 등을 확인하고 모든 것이 제대로 설정되었는지 확인합니다."
+msgstr "여기에서 갤러리가 동작하기 위해 시스템에 필요한 컴포넌트와 퍼미션 설정 등을 확인하고 모든 것이 제대로 설정되었는지 확인합니다."
 
 #: ../setup/check.inc:37 ../setup/diagnostics.php:30
 msgid "Gallery Diagnostics Page"
@@ -251,7 +251,7 @@ msgstr "open_basedir 목록은 php.ini에 정의되어 있습니다."
 
 #: ../setup/check_imagemagick.php:132 ../setup/check_netpbm.php:132
 msgid "The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
-msgstr ""
+msgstr "결과는, that we can't perform all of our basic checks on the files to make sure that 그들이 존재하고 실행하능하도록 파일에서 우리의 기본."
 
 #: ../setup/check_imagemagick.php:143 ../setup/check_netpbm.php:144
 #, php-format
@@ -265,7 +265,7 @@ msgstr "확인중:"
 #: ../setup/check_imagemagick.php:181 ../setup/check_netpbm.php:215
 #, php-format
 msgid "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."
-msgstr ""
+msgstr "%s 읽기 또는 쓰기에 대해 불평하는 에러를 보신다면, 이것은 당신 시스템의 퍼미션/설정 결과입니다. %s에 대해 언급된다면, 이것은 당신의 시스템이 %s가 사용가능하도록 설정되었기 때문입니다."
 
 #: ../setup/check_imagemagick.php:185 ../setup/check_netpbm.php:219
 #, php-format
@@ -499,7 +499,7 @@ msgstr "갤러리는 보안상 PHP 옵션 'register_globals'를 off로 하기를 강력히 추천합
 
 #: ../setup/config_data.inc:117
 msgid "The PHP option 'register_globals' is enabled on your server. Gallery highly recommends that you disable 'register_globals' unless it is required by software on your site.  Gallery does not officially support 'register_globals' being enabled, and will attempt to disable it internally."
-msgstr ""
+msgstr "PHP 옵션 'register_globals'이 당신의 서버에서 사용가능합니다. 당신의 사이트의 소프트웨어에 필요하지 않다면 'register_globals'을 사용하지 않기를 강력히 추천합니다. 갤러리는 'register_globals'가 사용가능하도록 공식적으로 지원하지 않으며, 내부적으로 사용불가능하도록 시도하게 됩니다."
 
 #: ../setup/config_data.inc:122
 msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
@@ -626,7 +626,7 @@ msgstr "갤러리 제목"
 
 #: ../setup/config_data.inc:253
 msgid "The name of your Gallery.  E.g. <i>My Cool Photos</i>"
-msgstr "당신의 갤러리 이름. 예. <i>My Cool Photos</i>"
+msgstr "당신의 갤러리 이름. 예: <i>My Cool Photos</i>"
 
 #: ../setup/config_data.inc:254
 msgid "Gallery"
@@ -638,7 +638,7 @@ msgstr "아이콘 사용?"
 
 #: ../setup/config_data.inc:261
 msgid "You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."
-msgstr "갤러리를 아이콘, 텍스트만, 또는 둘을 모두 사용할 것인지 선택할 수 있습니다. 아이콘을 선택하면, onMousover텍스트가 나옵니다."
+msgstr "갤러리를 아이콘, 텍스트 또는 둘을 모두 사용할 것인지 선택할 수 있습니다. 아이콘을 선택하면 풍선도움말이 나옵니다."
 
 #: ../setup/config_data.inc:262
 msgid "Icons and text"
@@ -646,11 +646,11 @@ msgstr "아이콘과 텍스트"
 
 #: ../setup/config_data.inc:263
 msgid "Text only"
-msgstr "텍스트만"
+msgstr "텍스트"
 
 #: ../setup/config_data.inc:264
 msgid "Icons only"
-msgstr "아이콘만"
+msgstr "아이콘"
 
 #: ../setup/config_data.inc:269
 msgid "Skin Name"
@@ -704,7 +704,7 @@ msgstr "필수"
 #: ../setup/config_data.inc:299
 #, php-format
 msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."
-msgstr "사진이 저장될 디렉토리의 전체 경로. 시작할 때는 디렉토리가 비어 있어야 합니다. 이 디렉토리는 웹서버를 구동하는 사용자가 쓸 수 있는 권한이 있어야 합니다. (여러분의 경우에 이 사용자는 %s입니다.)"
+msgstr "사진이 저장될 디렉토리의 전체 경로. 시작할 때는 디렉토리가 비어 있어야 합니다. 이 디렉토리는 웹서버를 구동하는 사용자가 쓸 수 있는 퍼미션이 있어야 합니다. (여러분의 경우에 이 사용자는 %s입니다.)"
 
 #: ../setup/config_data.inc:309
 msgid "Temporary directory"
@@ -887,7 +887,7 @@ msgstr "갤러리는 지원되는 CMS 환경중의 하나에 끼워질 때 자동적으로 감지하지만, �
 
 #: ../setup/config_data.inc:451
 msgid "If your ISP or CMS requires register_globals to be enabled, you may be required to enable the 'Disable register_globals check' option under the Technical tab."
-msgstr ""
+msgstr "당신의 ISP 혹은 CMS가 register_globals 사용이 필수이면, 기술적인 탭에서 'register_globals 확인 비활성화' 옵션을 사용가능하도록 하세요"
 
 #: ../setup/config_data.inc:454
 msgid "GeekLog Dir"
@@ -906,9 +906,8 @@ msgid "Show the album tree ?"
 msgstr "앨범트리 보이기?"
 
 #: ../setup/config_data.inc:472
-#, fuzzy
 msgid "If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."
-msgstr "이 옵션을 사용하면, 갤러리의 첫 화면에서 모든 서브 앨범의 목록을 볼 수 있습니다. 이것은 특정 서브 앨범에 대한 접근을 용이하게 합니다. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."
+msgstr "이 옵션을 사용하면, 갤러리의 첫 화면에서 모든 서브 앨범의 목록을 볼 수 있습니다. 이것은 특정 서브 앨범에 대한 접근을 용이하게 합니다. 상위 갤러리 페이지의 모양이 지저분해 지는 것을 피하기 위해 트리의 깊이를 제한하기를 원할 때 선택할 수 있습니다."
 
 #: ../setup/config_data.inc:473
 msgid "No tree"
@@ -968,7 +967,7 @@ msgstr "정확한 사진 조회수"
 
 #: ../setup/config_data.inc:512
 msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
-msgstr ""
+msgstr "갤러리 루트 페이지에서 앨범과 사진의 카운트를 표시하는데 정확하지만, 상당히 느려지는 카운팅 도구입니다. 이것은 많은 사용자의 요청에 의해 추가되었으나, 많은 수의 앨범과 사진을 소유하는 곳에서의 갤러리에는 추천되지 않습니다. 예를 들면 이 옵션을 가능하게 하면 색인 페이지를 여는데 30초 이상의 시간이 소요됩니다."
 
 #: ../setup/config_data.inc:517
 msgid "Frame around albums"
@@ -1271,9 +1270,8 @@ msgid "SMTP password"
 msgstr "SMTP 비밀번호"
 
 #: ../setup/config_data.inc:840
-#, fuzzy
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
-msgstr "smtp 서버를 통한 이메일 전송을 위한 비밀번호. 주의: 이 비밀번호는 config.php안의 cleartext에 저장됩니다. Make sure that permissions are set to keep others from getting at it!"
+msgstr "smtp 서버를 통한 이메일 전송을 위한 비밀번호. 주의: 이 비밀번호는 config.php안의 cleartext에 저장됩니다. 퍼미션을 다른 이들이 얻을 수 없도록 지정하세요!"
 
 #: ../setup/config_data.inc:855
 msgid "Gallery wide slideshow"
@@ -1780,7 +1778,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:1221
 msgid "Maximum Albums Returned"
-msgstr ""
+msgstr "반송된 앨범 최대값"
 
 #: ../setup/config_data.inc:1222
 msgid "This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."
@@ -1804,12 +1802,11 @@ msgstr "숨김 앨범 표시"
 
 #: ../setup/config_data.inc:1237
 msgid "Use dc:date"
-msgstr ""
+msgstr "dc:date 사용"
 
 #: ../setup/config_data.inc:1238
-#, fuzzy
 msgid "(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."
-msgstr "(고급) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."
+msgstr "(고급) 회원이 그들의 RSS 리더가 RSS 피드 진행이 안된다고 불평한다면, 이 옵션을 사용하세요.  dc:date을 포함하는 것은 RSS 2.0 compliant는 아니지만, 어떤 피드 리더는 이것을 필요로 합니다. 이것을 켜는 것은 당신의 피드가  RSS 2.0처럼 유효하지 않게 되는 원인이 됩니다."
 
 #: ../setup/config_data.inc:1245
 msgid "Use Big Photo"
@@ -2135,7 +2132,7 @@ msgstr "Logged in"
 
 #: ../setup/config_data.inc:1559
 msgid "Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices."
-msgstr "회원은 투표할 수 있습니다. 투표는 UserID에 대해 기록되고, 투표자는 돌아와 선택을 변경할 수 있습니다."
+msgstr "회원은 투표할 수 있습니다. 투표는 회원ID에 대해 기록되고, 투표자는 돌아와 선택을 변경할 수 있습니다."
 
 #: ../setup/config_data.inc:1566
 msgid "Poll type"

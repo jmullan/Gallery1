@@ -28,6 +28,7 @@ list($page,$votes, $Vote) = getRequestVar(array('page', 'votes', 'Vote'));
 
 // Hack check and prevent errors
 if (empty($gallery->session->albumName) || !$gallery->user->canReadAlbum($gallery->album) || !$gallery->album->isLoaded()) {
+	$gallery->session->gRedirDone = false;
 	header("Location: " . makeAlbumHeaderUrl('', '', array('gRedir' => 1)));
 	return;
 }

@@ -330,8 +330,6 @@ class AlbumItem {
 
 		if ($this->highlight) {
 			if (!isset($name)) {
-				$name = $this->image->name;
-				$tag = $this->image->type;
 				$srcdir = $dir;
 				$srcitem = $this;
 				if ($this->isAlbum()) {
@@ -350,6 +348,9 @@ class AlbumItem {
 						}
 						return;
 					}
+				} else {
+					$name = $this->image->name;
+					$tag = $this->image->type;
 				}
 			}
 			$size = $album->getHighlightSize();

@@ -131,21 +131,21 @@ if ($albumName) {
 	if ($gallery->album->fields["linkcolor"]) {
 ?>
     A:link, A:visited, A:active
-      { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
+      { color: <?php echo $gallery->album->fields['linkcolor'] ?>; }
     A:hover
       { color: #ff6600; }
 <?php
        	}
        	if ($gallery->album->fields["bgcolor"]) {
-	       	echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
+	       	echo "BODY { background-color:".$gallery->album->fields['bgcolor']."; }";
        	}
        	if (isset($gallery->album->fields["background"]) && $gallery->album->fields["background"]) {
-	       	echo "BODY { background-image:url(".$gallery->album->fields['background']."); } ";
+	       	echo "BODY { background-image:url(" . $gallery->album->fields['background'] . "); } ";
        	}
        	if ($gallery->album->fields["textcolor"]) {
-	       	echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
-	       	echo ".head {color:".$gallery->album->fields[textcolor]."; }";
-	       	echo ".headbox {background-color:".$gallery->album->fields[bgcolor]."; }";
+	       	echo "BODY, TD {color:" . $gallery->album->fields['textcolor']."; }";
+	       	echo ".head {color:" . $gallery->album->fields['textcolor'] . "; }";
+	       	echo ".headbox {background-color:" . $gallery->album->fields['bgcolor'] . "; }";
        	}
 	echo "\n</style>\n";
 }

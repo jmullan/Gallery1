@@ -2480,11 +2480,14 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 			// Set the keepProfiles parameter based on the version
 			// of ImageMagick being used.  6.0.0 changed the
 			// parameters again.
-			if ($ImVersion == '5' && $keepProfiles) {
-				$keepProfiles = ' +profile \'*\' ';
-			} elseif ($ImVersion == '6' && $keepProfiles) {
-				$keepProfiles = ' -strip ';
-			} else {
+			switch ($ImVersion) {
+			    case '5':
+				$keepProfiles = ($keepProfiles) ? '' : ' +profile \'*\' ';
+				break;
+			    case '6':
+				$keepProfiles = ($keepProfiles) ? '' : ' -strip ';
+				break;
+			    default:
 				$keepProfiles = '';
 			}
 
@@ -2653,6 +2656,9 @@ function emailDisclaimer() {
 function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $from = NULL) {
 	global $gallery;
 
+	$headers ='';	
+	$additional_headers = '';
+
 	if ($gallery->app->emailOn == "no") {
 		echo "\n<br>". gallery_error(_("Email not sent as it is disabled for this gallery"));
 		return false;
@@ -2695,8 +2701,13 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 		$bcc .= $join . $gallery->app->adminEmail;
 	}
 
-	$additional_headers  = "From: {$gallery->app->galleryTitle} " . _("Administrator") . " <$from>\r\n";
-	$additional_headers .= "Reply-To: <$reply_to>\r\n";
+	/* Minimum Headers according to RFC 822 A.3.1. */
+	$headers  = "Date: ". date("r") ."\r\n";
+	$headers  .= "From: ". $gallery->app->galleryTitle ." ". _("Administrator") . " <$from>\r\n";
+	$headers  .= "To: ". $to ."\r\n";
+	
+	/* Additional headers */
+	$additional_headers = "Reply-To: <$reply_to>\r\n";
 	$additional_headers .= "X-GalleryRequestIP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
 	$additional_headers .= "MIME-Version: 1.0\r\n";
 	$additional_headers .= "Content-type: text/plain; charset=\"". $gallery->charset ."\"\r\n";
@@ -2717,9 +2728,9 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	$msg = preg_replace("/([^\r])?\n|\r([^\n])?/", "\\1\r\n\\2", $msg);
 
 	if ($gallery->app->useOtherSMTP != "yes") {
-		$result = mail($to, $subject, emailDisclaimer() . $msg, $additional_headers);
+		$result = mail($to, $subject, emailDisclaimer() . $msg, $headers . $additional_headers);
 	} else {
-		$result = gallery_smtp($to, $bcc, $subject, $msg, $additional_headers);
+		$result = gallery_smtp($to, $bcc, $subject, $msg, $headers . $additional_headers);
 	}
 
 	// Commented to prevent accidental disclosure of passwords via debug screens
@@ -3548,7 +3559,14 @@ function genGUID() {
 
 function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 	global $gallery;
-	$thumbsize= $gallery->album->fields["thumb_size"];
+	$thumbsize = $gallery->album->fields["thumb_size"];
+
+	// If the user has set their Gallery to display larger images,
+	// accomodate for it.
+	if (!($iHeight < $thumbsize && $iWidth < $thumbsize)) {
+	    $thumbsize = max($iHeight, $iWidth);
+	}
+	    
 
 	switch ($frame) {
 		// special cases
@@ -3577,8 +3595,8 @@ function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 	} // end of switch
 
 	// This is needed to keep smaller images centered
-		$padding=round(($thumbsize-$iHeight)/2,0);
-		$divCellHeight=$thumbsize-$padding*2+$divCellAdd;
+	$padding=round(($thumbsize-$iHeight)/2,0);
+	$divCellHeight=$thumbsize-$padding*2+$divCellAdd;
 
 	/* For Debugging */
 	// echo "$divCellWidth, $divCellHeight, $padding";

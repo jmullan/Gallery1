@@ -29,6 +29,7 @@ list($save, $commenter_name, $comment_text) = getRequestVar(array('save', 'comme
 
 // Hack check and prevent errors
 if (empty($gallery->session->albumName) || !$gallery->user->canReadAlbum($gallery->album) || !$gallery->album->isLoaded()) {
+	$gallery->session->gRedirDone = false;
         header("Location: " . makeAlbumHeaderUrl('', '', array('gRedir' => 1)));
         return;
 }

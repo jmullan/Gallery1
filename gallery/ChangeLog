@@ -1,6 +1,84 @@
-2005-03-10  Chris Kelly <ckdake@users.sf.net> 1.5-RC2
-	
-	* 1.5-RC2 Release
+2005-03-23  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b15
+
+	* Change: Don't update the album's mod time when users request mail
+	  notifications.
+
+2005-03-23  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b14
+
+	* Change: An attempt to bypass the Zend problem of reversing breadcrumbs
+
+	* Fix: IM5 strip logic was backwards, too?  *confuzzled*
+
+2005-03-21  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b13
+
+	* Fix: stats wouldn't filter by day, month and year.  Only one at a time.
+
+2005-03-21  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b12
+
+	* Fix: check_mail.php wasn't globalized
+
+	* Change: rss.php - use <pb:width>... instead of attributes
+
+	* Fix: Custom regenerate_session_id didn't work on Win32
+
+2005-03-18  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b11
+
+	* Fix: Forgot a $ in b10 fix for the b4 fix.
+
+2005-03-18  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b10
+
+	* Fix: The headers in the b4 fix was not concatenated.
+
+2005-03-17  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b9
+
+	* Fix: b8 was senseless. Also removed a second senseless check.
+
+	* Change: Moved backup_albums.php to tools/ folder.
+
+2005-03-17  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b8
+
+	* Fix: Adminpage can be there for non admins, but for user you can modify users.
+
+2005-03-16  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b7
+
+	* Change: A Sentence in album_permissions.php was not translateable.
+
+2005-03-16  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b6
+
+	* Fix: Dont show warning message regarding permissions after having logged In.
+
+2005-03-16  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b5
+
+	* Fix:  The logic for determining whether to strip EXIF in IM6 is
+	  the backwards of IM5.  As so elequently put by fryfrog:
+	  "<fryfrog> so in 5.x they always dumped exif but had an option 
+	  to preserve and in 6.x they preserve with an option to dump?"
+
+2005-03-15  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b4
+
+	* Fix: Added Minimum Headers according to RFC 822 in gallery mail.
+
+2005-03-13  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b3
+
+	* Fix: Unquoted array refs, global scope issues, html comments 
+	  surrounding script tags.
+
+2005-03-12  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b2
+
+	* Fix: Attempt to address phpBB unset()ing the op/name/modload vars
+	  before we use them by not setting them until after we include
+	  phpBB's files.
+
+2005-03-12  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b1
+
+	* Fix: Unset array ref in do_command
+
+	* Fix: Correct view album div sizes in situations where the thumbnail 
+	  size is zero or blank.
+
+	* Fix: session_test wasn't referencing 'destroy' from $_REQUEST
+
+	* Fix: Update phpBB instructions to include new CSS file
 
 2005-03-10  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b32
 

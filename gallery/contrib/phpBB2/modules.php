@@ -29,11 +29,7 @@
 
 define('MODULES_PATH', './modules/');
 
-$op = $_REQUEST['op'];
-$name = $_REQUEST['name'];
-$file = $_REQUEST['file'];
-
-switch ($op) {
+switch ($_REQUEST['op']) {
     case 'modload':
 	// Added with changes in Security for PhpBB2.
 	define('IN_PHPBB', true);
@@ -51,6 +47,11 @@ switch ($op) {
 	init_userprefs($userdata);
 	//
 	// End session management
+
+	// phpBB may unset() these if we set them before loading
+	// their include files.
+	$name = $_REQUEST['name'];
+	$file = $_REQUEST['file'];
 
         // Security fix
         if (ereg("\.\.",$name) || ereg("\.\.",$file)) {

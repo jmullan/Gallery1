@@ -378,10 +378,12 @@ if ( !$useCache ) {
 							if ( !empty($timeYear) && $timeYear != strftime("%Y",$captureDate)) {
 								continue;
 							}
-							else if ( !empty($timeMonth) && $timeMonth != strftime("%m", $captureDate)) {
+							
+							if ( !empty($timeMonth) && $timeMonth != strftime("%m", $captureDate)) {
 								continue;
 							}
-							else if ( !empty($timeDay) && $timeDay != strftime("%d", $captureDate)) {
+							
+							if ( !empty($timeDay) && $timeDay != strftime("%d", $captureDate)) {
 								continue;
 							}
 

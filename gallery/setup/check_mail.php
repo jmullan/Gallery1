@@ -38,6 +38,8 @@
 
 <?php 
 
+list($submit, $email_address) = getRequestVar(array('submit', 'email_address'));
+
 if (isset($submit)) {
 	echo '<table class="inner" width="100%"><tr>';
 	if(gallery_validate_email($email_address)) {

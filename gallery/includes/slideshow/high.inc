@@ -207,6 +207,7 @@ function slideshow_body() {
 <?php // </script> ?>
 
 <script type="text/javascript">
+<!--
 var timer;
 var current_location = 1;
 var next_location = 1;
@@ -470,7 +471,7 @@ function preload_photo(index) {
 function setCaption(text) {
 	changeElementText("caption", "[" + current_location + " <?php echo _("of") ?> " + photo_count + "] " + text);
 }
-
+// -->
 </script>
 <?php
 }
@@ -479,7 +480,7 @@ function slideshow_controlPanel() {
 	global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
 			$album, $recursive, $number, $random, $loop, $borderColor, $borderwidth, $bgcolor,
 			$url, $full_urls, $urls, $caption, $captions, $photo_count, $title, $transitionNames,
-			$transitionCount, $pixelImage;
+			$transitionCount, $pixelImage, $stopIconText;
 
 	global $delayIconText, $loopIconText;
         ?>
@@ -521,15 +522,17 @@ function slideshow_controlPanel() {
 	echo makeIconMenu($iconElements, false);
 ?>
     <td class="noLink"><script type="text/javascript">
+    <!--
     /* show the blend select if appropriate */
     if (browserCanBlend) {
-	document.write('<?php echo _("Transition:"); ?></td>');
-	document.write('<td><?php echo str_replace("\n", "", drawSelect("transitionType",
+	document.write('<?php echo _("Transition:"); ?><\/td>');
+	document.write('<td><?php echo str_replace("/", "\/", drawSelect("transitionType",
                   $transitionNames,
                   $defaultTransition,
                   1,
                  array('onchange' => 'change_transition()', 'class' => 'adminform'))); ?>');
     }
+    // -->
     </script></td></tr></table>
 </form>
 <?php
@@ -549,18 +552,21 @@ function slideshow_controlPanel() {
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 	<td><script type="text/javascript">
+	<!--
 		firstPhotoURL = document.getElementById("photo_urls_" + 1).href;
 		document.write("<img border=<?php echo $borderwidth ?> bgcolor=<?php echo $borderColor ?> src=\"");
 		document.write(firstPhotoURL);
 		document.write("\" name=slide>");
+	// -->
 	</script></td>
 </tr>
 </table>
 <br>
 
 <script type="text/javascript">
+<!--
 /* show the caption */
-document.write("<div class='pcaption' id='caption'></div>");
+document.write("<div class='pcaption' id='caption'><\/div>");
 
 /* Load the first picture */
 setCaption(photo_captions[1]);
@@ -568,7 +574,7 @@ preload_photo(1);
 
 /* Start the show. */
 play();
-
+// -->
 </script>
 
 <?php
