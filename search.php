@@ -98,20 +98,28 @@ if ($searchstring) {
     	$searchAlbum = $list[$i];
 		$searchTitle = $searchAlbum->fields['title'];
 		$searchDescription = $searchAlbum->fields['description'];
-       	if (eregi($searchstring, $searchTitle) || eregi($searchstring, $searchDescription)) {
+		$searchSummary = $searchAlbum->fields['summary'];
+       		$matchTitle = eregi($searchstring, $searchTitle);
+		$matchDescription = eregi($searchstring, $searchDescription);
+		$matchSummary = eregi($searchstring, $searchSummary);
+       		if ($matchTitle || $matchDescription || $matchSummary) {
 			$uid = $gallery->user->getUid();
 			if ($searchAlbum->canRead($uid) || $gallery->user->isAdmin()) {
            		$albumMatch = 1;
-				$searchTitle = eregi_replace("($searchstring)", "<b>\\1</b>", $searchTitle); // cause search word to be bolded
-				$searchDescription = eregi_replace("($searchstring)", "<b>\\1</b>", $searchDescription); // cause search word to be bolded
-				$photoURL = makeAlbumUrl($searchAlbum->fields['name']);
-				$searchdraw["bordercolor"] = $borderColor;
-				$searchdraw["top"] = true;
-				$searchdraw["photolink"] = $searchAlbum->getHighlightTag($thumbSize);
-				$searchdraw["photoURL"] = $photoURL;
-				$searchdraw["Text1"] = "<span class=title><a href=$photoURL>$searchTitle</a></span>";
-				$searchdraw["Text2"] = "<span class=desc>$searchDescription</span>";
-				include($GALLERY_BASEDIR . "layout/searchdraw.inc");
+			$searchTitle = eregi_replace("($searchstring)", "<b>\\1</b>", $searchTitle); // cause search word to be bolded
+			$searchDescription = eregi_replace("($searchstring)", "<b>\\1</b>", $searchDescription); // cause search word to be bolded
+			$searchSummary = eregi_replace("($searchstring)", "<b>\\1</b>", $searchSummary); // cause search word to be bolded
+			$photoURL = makeAlbumUrl($searchAlbum->fields['name']);
+			$searchdraw["bordercolor"] = $borderColor;
+			$searchdraw["top"] = true;
+			$searchdraw["photolink"] = $searchAlbum->getHighlightTag($thumbSize);
+			$searchdraw["photoURL"] = $photoURL;
+			$searchdraw["Text1"] = "<span class=title><a href=$photoURL>$searchTitle</a></span>";
+			$searchdraw["Text2"] = "<span class=desc>$searchDescription</span>";
+			if ($searchSummary)  { // only print summary if it matches
+				$searchdraw["Text3"] = "<span class=desc>$searchSummary</span>";
+			}
+			include($GALLERY_BASEDIR . "layout/searchdraw.inc");
 			}
 		}
 	
