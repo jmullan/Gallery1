@@ -1,23 +1,107 @@
-WHAT IS GALLERY?
+CONTENTS
+	1. WHAT IS GALLERY?
+	2. HOW DO I INSTALL GALLERY IF I HAVE SHELL ACCESS?
+	3. HOW DO I INSTALL GALLERY IF I ONLY HAVE FTP ACCESS?
+	4. HOW DO I CUSTOMIZE GALLERY?
+
+1. WHAT IS GALLERY?
 
 Gallery is a web based photo album viewer/creator.  For the latest
 information, check out the web site:
 
 	http://gallery.sourceforge.net/
 
-HOW DO I INSTALL GALLERY?
+2. HOW DO I INSTALL GALLERY IF I HAVE SHELL ACCESS?
 
 Installing and configuring Gallery is done via a set of web pages.
-To enable these web pages type:
+To enable these web pages you need to log onto your web server, go
+to the gallery directory and type:
 
 	% sh configure.sh
 
-Then go to the URL for the 'setup' directory in your Gallery installation.
-This will walk you through the process of configuring the application.
-When you're done, type:
+Then go to the main Gallery URL and it will drop you into the
+configuration wizard.  This will walk you through the process of 
+configuring Gallery.  When you're done, type:
 
 	% sh secure.sh
 
 And it will turn off the configuration application.  Gallery won't run
 if it is not in secure mode.
+
+3. HOW DO I INSTALL GALLERY IF I HAVE ONLY FTP ACCESS?
+
+The process is pretty much the same as if you have shell access.
+The complicating factor is that you can't run the 'configure' and
+'secure' shell scripts.  You'll have to simulate running the 
+scripts by using FTP commands.  
+
+In order to FTP Gallery up to your web server you'll need to unpack 
+it locally and then use FTP to copy it file at a time to the web
+server.  The first time you configure it, you'll need to create
+two special files called "config.php" and ".htaccess" on the remote
+server.  The easiest way to do this is to create an empty file
+(we'll call it "empty-file") on your local machine.  Then upload
+that file as both "config.php" and ".htaccess".  ONLY DO THIS THE
+FIRST TIME you install Gallery or you'll overwrite your existing
+config file!
+
+YOU TYPE:
+	ftp> cd gallery
+	ftp> put empty-file config.php
+
+YOU SEE:
+	local: empty-file remote: config.php
+	150 Opening BINARY mode data connection for 'config.php'.
+	226 Transfer complete.
+
+YOU TYPE:
+	ftp> cd gallery
+	ftp> put empty-file .htaccess
+
+YOU SEE:
+	local: empty-file remote: config.php
+	150 Opening BINARY mode data connection for '.htaccess'.
+	226 Transfer complete.
+
+At this point, you need to make both of these files writable.  You
+can do this:
+
+	ftp> cd gallery
+	ftp> chmod 777 .htaccess
+	ftp> chmod 777 config.php
+
+Now you're all set to configure gallery so go to the Gallery web
+page.  When you're done and it prompts you to make the gallery secure
+again, you need to change your permissions back again:
+
+	ftp> cd gallery
+	ftp> chmod 755 config.php
+	ftp> chmod 755 .htaccess
+
+That's all it takes!
+
+4. HOW DO I CUSTOMIZE GALLERY?
+
+Documentation on this is a bit sketchy right now, sorry.  Online
+context-sensitive help is on the way.  But in the meantime, it'd
+be nice to change the way that Gallery looks and feels without
+having to hack PHP.
+
+There are two main ways that you can customize Gallery.  First, you
+can change the theme by modifying its style sheets.  In the "css"
+directory is a file called "gallery_style.css.default".  Copy
+that to (in the "css" directory still) "gallery_style.css".  Tweak
+this file to your heart's content.  
+
+The other way is to customize the gallery header and footers.  There
+are headers/footers for the main Gallery, for albums and for photos.
+In the "html_wrap" directory you can take any file that has ".default"
+and make a copy of it with the same name but without the ".default"
+at the end and modify it.  
+
+If you come up with cool themes feel free to send them to me and I'll
+include them in the gallery package (or create a theme library of some
+kind).  
+
+
 
