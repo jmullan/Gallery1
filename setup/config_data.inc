@@ -966,6 +966,15 @@ $constants = array_merge($constants,
 		"attrs" => array("size" => 30),
 		"optional" => 1,
 	),
+	"rssMaxAlbums" => array(
+		"prompt" => _("Maximum Albums Returned"),
+		"desc" => _("This value is the maximum number of albums that the RSS feed will display to the user. Only the most
+recently modified albums are chosen for this value."),
+		"value" => 25,
+		"type" => "text",
+		"must-be-number" => 1,
+		"must-not-be-zero" => 1,
+	),	
 	"rssVisibleOnly" => array(
 		"prompt" => _("Visible Albums Only"),
 		"desc" => _("Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."),

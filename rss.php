@@ -118,14 +118,10 @@ $albumList = array();
 list($numPhotos, $numAlbums,) = $albumDB->numAccessibleItems($gallery->user);
 
 foreach ($albumDB->albumList as $album) {
-	if (isset($gallery->app->rssVisibleOnly)) {
-		if ($album->isHiddenRecurse() || !$album->canReadRecurse($gallery->user->uid)) {
-			continue;
-		}
-	} else {
-		if (!$gallery->user->canReadAlbum($album)) {
-			continue;
-		}
+
+	// Save time later.. if we can't read it, don't add it.
+	if (!$gallery->user->canReadAlbum($album)) {
+		continue;
 	}
 
 	$albumInfo = array(
@@ -286,9 +282,27 @@ echo '<' . '?xml version="1.0" encoding="' . $gallery->locale . '"?' . '>';
 <?php } ?>
 <?php
 
+$maxAlbums = 0;
 foreach($albumList as $album) {
-	echo "\t\t<item>\n";
 	
+	// If we've hit the max album limit, bust out.
+	if($maxAlbums > $gallery->app->rssMaxAlbums) {
+		break;
+	}
+
+	// Retrieve
+	if (isset($gallery->app->rssVisibleOnly)) {
+		$myAlbum = $albumDB->getAlbumByName($album['!name']);
+		if ($myAlbum->isHiddenRecurse() || !$myAlbum->canReadRecurse($gallery->user->uid)) {
+			continue;
+		}
+	} 
+
+	// Only increment after we've determined that the album
+	// is valid to add to the feed
+	$maxAlbums++;
+
+	echo "\t\t<item>\n";
 	foreach($album as $tag => $info) {
 		# meta fields that should not be printed in the feed
 		# start with bang.
