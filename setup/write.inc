@@ -3,9 +3,6 @@ require("../classes/User.php");
 require("../classes/NobodyUser.php");
 require("../classes/EverybodyUser.php");
 
-$GALLERY_DIR = dirname(dirname(getenv("SCRIPT_FILENAME")));
-$GALLERY_URL = dirname(dirname(getenv("SCRIPT_NAME")));
-
 $outfile = "$GALLERY_DIR/config.php";
 copy("gpl.txt", $outfile);
 if ($fd = @fopen($outfile, "a")) {
