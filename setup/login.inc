@@ -40,6 +40,7 @@ elseif (isset($username) && isset($gallerypassword)) {
 	}
 	elseif (!isset($tmpUser) || !$tmpUser->isCorrectPassword($gallerypassword)) {
 		$invalid = 1;
+		$tmpUser = null;
 		$gallerypassword = null;
 		gallery_syslog("Failed config wizard login for $username from " . $HTTP_SERVER_VARS['REMOTE_ADDR']);
 	}
