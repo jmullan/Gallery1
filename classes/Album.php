@@ -1001,12 +1001,38 @@ class Album {
 		}
 
 		global $gallery;
+
+		/* If everybody has the perm, then we do too */
 		$everybody = $gallery->userDB->getEverybody();
 		if ($perm[$everybody->getUid()]) {
 			return true;
 		}
 
+		/*
+		 * If loggedIn has the perm and we're logged in, then
+		 * we're ok also.
+		 */
+		$loggedIn = $gallery->userDB->getLoggedIn();
+		if ($perm[$loggedIn->getUid()] &&
+		    strcmp($gallery->user->getUid(), $everybody->getUid())) {
+		        return true;
+		}
+
 		return false;
+	}
+
+	function getPermUids($permName) {
+	    global $gallery;
+	    
+	    $perms = array();
+	    if (!empty($this->fields["perms"][$permName])) {
+		foreach ($this->fields["perms"][$permName] as $uid => $junk) {
+		    $tmpUser = $gallery->userDB->getUserByUid($uid);
+		    $perms[$uid] = $tmpUser->getUsername();
+		}
+	    }
+
+	    return $perms;
 	}
 
 	function setPerm($permName, $uid, $bool) {
