@@ -251,7 +251,7 @@ if (!$gallery->session->offline) { ?>
   </script>
 <?php }
 
-function showChoice($label, $target, $args, $class="popup") {
+function showChoice($label, $target, $args, $class="") {
     global $gallery, $showAdminForm;
     if (!$showAdminForm)
     	return;
@@ -259,7 +259,7 @@ function showChoice($label, $target, $args, $class="popup") {
     if (empty($args['set_albumName'])) {
 	$args['set_albumName'] = $gallery->session->albumName;
     }
-    echo "<option class=\"$class\" value='" . makeGalleryUrl($target, $args) . "'>$label</option>";
+    echo "\t<option class=\"$class\" value='" . makeGalleryUrl($target, $args) . "'>$label</option>\n";
 }
 
 $adminText = "<span class=\"admin\">";
@@ -774,7 +774,6 @@ if ($numPhotos) {
 					    $fsr = '';
 					    $fsf = '';
 					}
-					echo "<br >\n";
 					if (($photo->isResized() && !$fullOnly) || !$viewFull) {
 						echo '<a href="'.
 							makeAlbumUrl($gallery->session->albumName, $id) .
@@ -832,8 +831,8 @@ if ($numPhotos) {
 			} else { 
 				$showAdminForm = 0;
 			}
-			echo '<table width="' . $gallery->album->fields['thumb_size']
-				. '" border="0" cellpadding="0" cellspacing="4"><tr><td class="modcaption">';
+			echo "\n". '<table width="' . $gallery->album->fields['thumb_size'] . '" border="0" cellpadding="0" cellspacing="4">';
+			echo "\n". '<tr><td class="modcaption">';
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 				echo "(" . _("hidden") .")<br>";
@@ -849,7 +848,7 @@ if ($numPhotos) {
 				}
 				echo $buf;
 
-				echo '<br><br><span class="fineprint">';
+				echo '<br><span class="fineprint">';
 				echo _("Changed: ") ." ". $myAlbum->getLastModificationDate();
  				echo "\n<br>";
 				$visibleItems=array_sum($myAlbum->numVisibleItems($gallery->user));
@@ -874,7 +873,7 @@ if ($numPhotos) {
 			} 
 			else {
 				echo '<center>';
-				echo '<a href="'.  makeAlbumUrl($gallery->session->albumName, $id) .'">'. nl2br($gallery->album->getCaption($i)) . '</a>';
+				echo nl2br($gallery->album->getCaption($i));
 				echo $gallery->album->getCaptionName($i) . ' ';
 				// indicate with * if we have a comment for a given photo
 				if ($gallery->user->canViewComments($gallery->album) 
@@ -916,7 +915,7 @@ if ($numPhotos) {
 				       	echo '</td></tr>';
 					echo "\n" . '<tr><td align="center">';
 				}
-				echo("\n\t<select style='FONT-SIZE: 10px;' name='s$i' ".
+				echo("\n\t<select style=\"font-size:10px\" class=\"adminform\" name=\"s$i\" ".
 					"onChange='imageEditChoice(document.vote_form.s$i)'>");
 				echo("\n\t\t<option value=''>&laquo; ". sprintf(_("Edit %s"), $label) . " &raquo;</option>");
 			}

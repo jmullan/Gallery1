@@ -50,14 +50,14 @@ function editCaption($album, $index) {
 	global $gallery;
 
 	$buf = nl2br($album->getCaption($index));
+	if (empty($buf)) {
+		$buf = "<i>&lt;". _("No Caption") ."&gt;</i>";
+	}
 	$buf .= $album->getCaptionName($index);
 	if (($gallery->user->canChangeTextOfAlbum($album) ||
                ($gallery->album->getItemOwnerModify() && 
 	         $gallery->album->isItemOwner($gallery->user->getUid(), $index))) 
 		&& !$gallery->session->offline) {
-		if (!strcmp($buf, "")) {
-			$buf = "<i>&lt;". _("No Caption") ."&gt;</i>";
-		}
 		$url = "edit_caption.php?set_albumName={$album->fields['name']}&index=$index";
 		$buf .= "<span class=\"editlink\">";
 		$buf .= popup_link("[". _("edit") ."]", $url);
@@ -134,7 +134,7 @@ function drawCommentAddForm($commenter_name='', $cols=50) {
 </td>
 </tr>
 <tr>
-	<td class="commentlabel" valign="top"><?php echo _("Message")  ?></td>
+	<td class="commentlabel" valign="top"><?php echo _("Message:") ?></td>
 	<td><textarea name="comment_text" cols="<?php echo $cols ?>" rows="5"></textarea></td>
 </tr>
 <tr>

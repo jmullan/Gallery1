@@ -37,10 +37,6 @@ if (!isset($full)) {
 	$full=NULL;
 }
 
-if (!isset($openAnchor)) {
-	$openAnchor=0;
-}
-
 if (isset($id)) {
 	$index = $gallery->album->getPhotoIndex($id);
 	if ($index == -1) {
@@ -97,7 +93,11 @@ if ($do_fullOnly) {
 	$full = $gallery->user->canViewFullImages($gallery->album);
 }
     
-$fitToWindow = !strcmp($gallery->album->fields["fit_to_window"], "yes") && !$gallery->album->isResized($index) && !$full && (!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE =='phpBB2');
+$fitToWindow = !strcmp($gallery->album->fields["fit_to_window"], "yes") 
+		&& !$gallery->album->isResized($index) 
+		&& !$full 
+		&& (!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE =='phpBB2');
+
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 $next = $index+1;
 if ($next > $numPhotos) {
@@ -153,8 +153,7 @@ $navigator["url"] = ".";
 $navigator["bordercolor"] = $bordercolor;
 
 #-- breadcrumb text ---
-$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" alt="' . _("navigate UP") .'" title="' .
-_("navigate UP") .'" border="0">';
+$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
 $breadCount = 0;
 $breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($gallery->session->albumName) .
       "\">" . $gallery->album->fields['title'] . "&nbsp;" . $upArrowURL . "</a>";
@@ -255,8 +254,12 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 		(!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">	 
 <?php 	}
-	$metakeywords = ereg_replace("[[:space:]]+",' ',$gallery->album->getKeywords($index)); ?>
-  <meta name="Keywords" content="<?php echo $metakeywords; ?>">
+	$keyWords=$gallery->album->getKeywords($index);
+	if (!empty($keyWords)) {
+		$metakeywords = ereg_replace("[[:space:]]+",' ',$keyWords); 
+		echo "  <meta name=\"Keywords\" content=\"$metakeywords\">\n";
+	}
+?>
   <style type="text/css">
 <?php
 	// the link colors have to be done here to override the style sheet
@@ -286,11 +289,12 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 } // End if ! embedded
 
-includeHtmlWrap("photo.header");
 if ($fitToWindow) {
 	/* Include Javascript */
 	include("js/fitToWindow.js.php");
 }
+
+includeHtmlWrap("photo.header");
 ?>
 <!-- Top Nav Bar -->
 <form name="admin_form" action="view_photos.php">
@@ -410,7 +414,7 @@ if (!$gallery->album->isMovie($id)) {
 		/* display a <select> menu if more than one option */
 		if ($numServices > 1) {
 			$selectCommand = '<select name="print_services" class="admin" onChange="doPrintService()">';
-			$selectCommand .= "<option value=''>&laquo; select service &raquo;</option>";
+			$selectCommand .= '<option value="">&laquo; '. _("Select service") .' &raquo;</option>';
 			foreach ($printServices as $name => $data) {
 				/* skip if it's not actually selected */
 				if (!isset($data['checked'])) {
@@ -526,7 +530,10 @@ includeHtmlWrap("inline_photo.header");
 $href="";
 if (!$gallery->album->isMovie($id)) {
 	if (!$do_fullOnly && ($full || $fitToWindow || $gallery->album->isResized($index))) {
-		if ($full) { 
+		if ($fitToWindow) {
+			$href="";
+		}
+		else if ($full) { 
 			$href= makeAlbumUrl($gallery->session->albumName, $id);
 	 	} else if ($gallery->user->canViewFullImages($gallery->album)) {
 			$href= makeAlbumUrl($gallery->session->albumName, $id, array("full" => 1));
@@ -552,15 +559,16 @@ $gallery->html_wrap['imageWidth'] = $width;
 $gallery->html_wrap['imageHeight'] = $height;
 $gallery->html_wrap['imageHref'] = $href;
 $gallery->html_wrap['imageTag'] = $photoTag;
+if ($gallery->user->canViewFullImages($gallery->album)) {
+	$gallery->html_wrap['attr'] = 'onclick="sizeChange.toggle()"';
+}
 $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 
 includeHtmlWrap("inline_photo.frame");
 ?>
 
 <!-- caption -->
-<p align="center" class="modcaption">
-	<?php echo editCaption($gallery->album, $index) ?>
-</p>
+<p align="center" class="modcaption"><?php echo editCaption($gallery->album, $index) ?></p>
 
 <?php
 

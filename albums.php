@@ -153,12 +153,14 @@ if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
 	 array("set_albumName" => null)) .
 	       	'">['._("slideshow") . ']</a>&nbsp;';
 }
+
 if ($gallery->user->isAdmin()) {
 	$doc = galleryDocs('admin');
 	if ($doc) {
 		$adminCommands .= "$doc&nbsp;";
 	}
 }
+
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
 	$adminCommands .= "\n<a class=\"admin\" href=\"" . doCommand("new-album", array(), "view_album.php") . "\">[". _("new album") ."]</a>&nbsp;";
 }
