@@ -134,7 +134,9 @@ function fs_export_filename($filename) {
 	
 	# Convert "d:\winnt\temp" to "d:/winnt/temp"
 	#
-	$filename = str_replace("\\\\", "\\", $filename);
+	while (strstr($filename, "\\\\")) {
+		$filename = str_replace("\\\\", "\\", $filename);
+	}
 	$filename = str_replace("\\", "/", $filename);
 
 	return $filename;
