@@ -198,46 +198,48 @@ $full_urls=array();
 $caption=array();
 $photo_count = buildSlideshowPhotos($full_urls, $urls, $captions, $album, $recursive);
 
-if ($number == 0 || $number  > sizeof($urls)) {
-	$number=sizeof($urls);
-}
-if ($random) {
-	$random_full_urls=array();
-	$random_photos=array();
-       	srand ((float) microtime() * 10000000);
-       	$rand_keys = array_rand ($urls, $number);
-       	if ($number == 1)
-       	{
-	       	$rand_keys=array($rand_keys);
+if ($photo_count > 0) {
+       	if ($number == 0 || $number  > $photo_count) {
+	       	$number=$photo_count;
        	}
-       	foreach ($rand_keys as $key)
-       	{
-	       	$random_urls[] = $urls[$key];
-	       	$random_full_urls[] = $full_urls[$key];
-	       	$random_captions[] = $captions[$key];
-       	}
-	$urls=$random_urls;
-	$full_urls=$random_full_urls;
-	$captions=$random_captions;
-}
-if (empty($albumName)) {
        	if ($random) {
-	       	$title = sprintf(_("%s Random Images from %s"), 
-				$number,
-			       	$gallery->app->galleryTitle);
-       	} else {
-	       	$title = sprintf(_("Slide Show for Gallery :: %s"), 
-			       	$gallery->app->galleryTitle);
+	       	$random_full_urls=array();
+	       	$random_photos=array();
+	       	srand ((float) microtime() * 10000000);
+	       	$rand_keys = array_rand ($urls, $number);
+	       	if ($number == 1)
+	       	{
+		       	$rand_keys=array($rand_keys);
+	       	}
+	       	foreach ($rand_keys as $key)
+	       	{
+		       	$random_urls[] = $urls[$key];
+		       	$random_full_urls[] = $full_urls[$key];
+		       	$random_captions[] = $captions[$key];
+	       	}
+	       	$urls=$random_urls;
+	       	$full_urls=$random_full_urls;
+	       	$captions=$random_captions;
        	}
-} else {
-       	if ($random) {
-	       	$title = sprintf(_("%d Random Images from album :: %s"), 
-				$number,
-			       	$gallery->album->fields["title"] );
+       	if (empty($albumName)) {
+	       	if ($random) {
+		       	$title = sprintf(_("%s Random Images from %s"), 
+					$number,
+				       	$gallery->app->galleryTitle);
+	       	} else {
+		       	$title = sprintf(_("Slide Show for Gallery :: %s"), 
+					$gallery->app->galleryTitle);
+	       	}
        	} else {
-	       	$title = sprintf(_("Slide Show for album :: %s"), $gallery->album->fields["title"] );
-       	}
-} ?>
+	       	if ($random) {
+		       	$title = sprintf(_("%d Random Images from album :: %s"), 
+					$number,
+				       	$gallery->album->fields["title"] );
+	       	} else {
+		       	$title = sprintf(_("Slide Show for album :: %s"), $gallery->album->fields["title"] );
+	       	}
+       	} 
+}?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
@@ -721,9 +723,7 @@ drawSelect("time", array(1 => "1 ". _("second"),
 <br>
 <div align="center">
 
-<?php
-if ($photo_count > 0) {
-?>
+<?php if ($photo_count > 0) { ?>
 
 <table width=1% border=0 cellspacing=0 cellpadding=0>
   <tr bgcolor="<?php echo $borderColor ?>">

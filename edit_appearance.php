@@ -247,7 +247,7 @@ foreach ($services as $item => $data) {
 <td><select name="slideshow_type"><?php echo selectOptions($gallery->album, "slideshow_type", array( "off" => _("Off"), "ordered" => _("Ordered"), "random" => _("Random"))) ?></select></td>
 </tr>
 <tr>
-<td class="popup"><?php echo _("Slideshow recursive") ?></td>
+<td class="popup"><?php echo _("Include sub-albums in slideshow") ?></td>
 <td><select name="slideshow_recursive"><?php echo selectOptions($gallery->album, "slideshow_recursive", array("yes" => _("yes"), "no" => _("no"))) ?></select></td>
 </tr>
 <tr>

@@ -337,15 +337,14 @@ $constants =  array_merge(
 	),
 	"skinname" => array(
 		"prompt" => _("Skin Name"),
-		"desc" => _("Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4.") . available_skins(true).newIn("1.4.1"),
+		"desc" => _("Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4.") . available_skins(true),
 		"choices" => available_skins(),
 		"value" => "none"
 	),
 	"gallery_thumb_frame_style" => array(
 		"prompt" => "Frame around albums",
 		"desc" => _("On the main page, the image representing each album has a frame arount it.  The following styles are available:") .
-			available_frames(true) .
-			newIn("1.4.1"),
+			available_frames(true),
 		"choices" => available_frames(),
 		"value" => "simple_book"
 	),
@@ -442,8 +441,7 @@ $constants =  array_merge(
 	"show_flags" => array(
 		"prompt" => _("Show flags?"),
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden",
-		"desc" => _("In Mode 3 you can choose to display flags instead of a small pulldown menu for the available languages.") .
-			newIn("1.4.1"),
+		"desc" => _("In Mode 3 you can choose to display flags instead of a small pulldown menu for the available languages."),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 		"enabled" => $elawisyl
@@ -452,8 +450,7 @@ $constants =  array_merge(
 		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("Format for date strings."),
 		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."),
 			_("date without time"), Gallery(), "<b>%x</b>",
-			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '" target="_blank">', '</a>') .
-			newIn("1.4.1") . "<br>" .
+			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '" target="_blank">', '</a>') .  "<br>" .
 			sprintf(_("For example, %s will display date like this: %s."), "<b>%b %d, %Y</b>", "<b>" . strftime("%b %d, %Y") . "</b>"), 
 		"value" => "%x",
 		"type" => "text",
@@ -463,8 +460,7 @@ $constants =  array_merge(
 		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("Format for date/time strings."),
 		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."),
 			_("date with time"), Gallery(), "<b>%c</b>",
-			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '" target="_blank">', '</a>') .
-			newIn("1.4.1") . "<br>" .
+			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '" target="_blank">', '</a>') .  "<br>" .
 			sprintf(_("For example, %s will display date and time like this: %s."), "<b>%H:%M, %b %d, %Y</b>", "<b>" . strftime("%H:%M, %b %d, %Y") . "</b>"), 
 		"value" => "%c",
 		"type" => "text",
@@ -481,21 +477,20 @@ $constants = array_merge($constants,
 		"type" => "separator",
 	       	"title" => _("Email and Registration"),
 	       	"desc" => sprintf(_("If you are having problems with email, please run the %s diagnostic."),
-		       	'<a href="check_mail.php">' . _("Check Email") . '</a>').
-	     	 	newIn("1.4.1")
+		       	'<a href="check_mail.php">' . _("Check Email") . '</a>')
 	),
 	"emailOn" => array(
 		"prompt" => _("Enable email"),
 		"verify-func" => "verify_email",
 	       	"desc" => sprintf(_("Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."),
-			"<i>" . _("no") . "</i>" ) .  newIn("1.4.1"),
+			"<i>" . _("no") . "</i>" ),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 	),
 	"adminEmail" => array(
 		"prompt" => _("Admin email address"),
 		"desc" => _("Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know whom to reach in case of problems. You may specify more than one address by separating them with commas.") .
-		newIn("1.4.1") . "<br>",
+		"<br>",
 		"type" => "text",
 		"value" => "",
 		"attrs" => array("size" => 50),
@@ -504,7 +499,7 @@ $constants = array_merge($constants,
 	"senderEmail" => array(
 		"prompt" => _("Sender email address"),
 		"desc" => _("Set this value to a valid working email address.  Emails that are automatically sent by Gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients.") .
-		newIn("1.4.1") . "<br>",
+		"<br>",
 		"type" => "text",
 		"value" => "",
 		"attrs" => array("size" => 50),
@@ -512,8 +507,7 @@ $constants = array_merge($constants,
 	),
 	"emailSubjPrefix" => array(
 		"prompt" => _("Email subject prefix"),
-		"desc" => _("All gallery emails will have this as the first part of their subject.") . 
-			newIn("1.4.1"),
+		"desc" => _("All gallery emails will have this as the first part of their subject."),
 		"type" => "text",
 		"attrs" => array("size" => 50),
 		"value" => (!empty( $gallery->app->galleryTitle)) ?
@@ -532,8 +526,7 @@ $constants = array_merge($constants,
 			_("Leave this field blank to get the default message that can be translated into other languages.  The default message is:") . 
 			'<table><tr><td width="20%"></td><td width="60%"><tt>' .
 			str_replace("\n", "<br>", welcome_email(true)) . 
-			'</tt></td><td width="20%"></td></tr></table>' .
-			newIn("1.4.1"),
+			'</tt></td><td width="20%"></td></tr></table>',
 		"optional" => 1,
 		"type" => "textarea",
 		"value" => "",
@@ -542,27 +535,27 @@ $constants = array_merge($constants,
 	"selfReg" => array(
 		"prompt" => _("Allow visitors to self register."),
 		"desc" => _("Enabling this will allow visitors to your site to create their own login accounts.") .
-		newIn("1.4.1") . "<br>",
+		"<br>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 	),
 	"selfRegCreate" => array(
 		"prompt" => _("Self registered users can create albums."),
 		"desc" => _("Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled.") .
-		newIn("1.4.1") . "<br>",
+		"<br>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"),
 	"multiple_create" => array(
 		"prompt" => _("Enable bulk account creation"),
 		"desc" => _("This option allows your to create many new user accounts at one time by creating a file of new users.") .
-		newIn("1.4.1") . "<br>",
+		"<br>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 	),
 	"email_notification" => array(
 		"prompt" => _("Admin notification of email activity"),
 		"desc" => _("You can keep a record of every email that is sent by Gallery.") .
-		newIn("1.4.1") . "<br>",
+		"<br>",
 		"multiple_choices" => array("email" => _("Send summary email"), 
 			"logfile" => _("Log to a file"),
 			"bcc" => _("Send duplicate email")),
@@ -572,7 +565,7 @@ $constants = array_merge($constants,
        	"separator7" => array (
 		       	"type" => "separator",
 		       	"title" => _("Gallery wide slideshow"),
-			"desc" => newIn("1.4.1") . "<br>" .
+			"desc" => "<br>" .
 				_("Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources.") . "  " .
 				_("These settings do not apply to the low tech slideshow.")
 			),
@@ -585,8 +578,7 @@ $constants = array_merge($constants,
 				."<dd>". _("Images will display in the same order as they appear in the Gallery.") . "</dd>"
 				."<dt>". _("Random") . "</dt>"
 				."<dd>". _("Images will appear in a random order.") . "</dd>"
-				."</dl>" .
-				newIn("1.4.1"),
+				."</dl>",
 		       	"choices" => array(
 			       	"off" => _("Off"),
 			       	"ordered" => _("Ordered"),
@@ -596,8 +588,7 @@ $constants = array_merge($constants,
 			),
 	"gallery_slideshow_length" => array(
 		"prompt" => _("Slideshow length"),
-		"desc" => _("Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images.") .
-			newIn("1.4.1"),
+		"desc" => _("Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."),
 		"type" => "text",
 		"value" => "20",
 		"attrs" => array("size" => 5),
@@ -605,15 +596,13 @@ $constants = array_merge($constants,
 	),
 	"gallery_slideshow_loop" => array(
 		"prompt" => _("Allow slideshow to loop"),
-		"desc" => sprintf(_("This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."), "<b>"._("no")."</b>") .
-			newIn("1.4.1"),
+		"desc" => sprintf(_("This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."), "<b>"._("no")."</b>"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 	       	"value" => "yes"
 		),
        	"separator_comments" => array (
 		       	"type" => "separator",
-		       	"title" => _("Comments"),
-			"desc" => newIn("1.4.1") 
+		       	"title" => _("Comments")
 			),
 	"comments_indication" => array(
 		       	"prompt" => _("Indicate if there are comments available"),
@@ -626,8 +615,7 @@ $constants = array_merge($constants,
 				. "<dd>" . _("Albums and sub-albums that have comments will be marked.") . "</dd>"
 				. "<dt>" ._("Both") . "</dt>"
 				. "<dd>" . _("Images and albums that have comments will be marked.") . "</dd>"
-				. "</dl>" .
-				newIn("1.4.1"),
+				. "</dl>",
 		       	"choices" => array(
 			       	"off" => _("Off"),
 			       	"photos" => _("Photos"),
@@ -638,16 +626,14 @@ $constants = array_merge($constants,
 			),
 	"comments_indication_verbose" => array(
 		       	"prompt" => _("Display date of last comment?"),
-		       	"desc" => sprintf(_("If an item has comments, display date of last comment, rather than a %s."), '"*"') .
-				newIn("1.4.1"),
+		       	"desc" => sprintf(_("If an item has comments, display date of last comment, rather than a %s."), '"*"'),
 			"choices" => array("yes" => _("yes"), "no" => _("no")),
 		       	"value" => "no",
 			),
 	"comments_anonymous" => array(
 		       	"prompt" => _("Anonymous comments from known users?"),
 		       	"desc" => sprintf(_("When logged in, comments will automatically use format described below, unless this is set to %s."), 
-				"<b>"._("yes")."</b>") .
-				newIn("1.4.1"),
+				"<b>"._("yes")."</b>"),
 			"choices" => array("yes" => _("yes"), "no" => _("no")),
 		       	"value" => "no",
 			),
@@ -813,13 +799,13 @@ $defaults = array(
 	),
 	'max_size' => array(
 		'prompt' => _('Maximum image size'),
-		'desc' => _("You can optionally limit the dimensions your images on upload to Gallery.") . "<br><span style=\"color: red; font-weight:bold\">"  . _("Warning") . ':</span> '. _("Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2).") . newIn("1.4.1"),
+		'desc' => _("You can optionally limit the dimensions your images on upload to Gallery.") . "<br><span style=\"color: red; font-weight:bold\">"  . _("Warning") . ':</span> '. _("Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."),
 		'value' => 'off',
 		'choices' => array('off' => _('off'), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3))
 	),
 	'max_file_size' => array(
 		'prompt' => _('Maximum JPEG/PNG image file size'),
-		'desc' => _("You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery.") . "<br><span style=\"color: red; font-weight:bold\">" . _("Warning") . ':</span> ' . _("Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize.") . newIn("1.4.1"),
+		'desc' => _("You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery.") . "<br><span style=\"color: red; font-weight:bold\">" . _("Warning") . ':</span> ' . _("Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."),
 		'value' => 0,
 		'optional' => 1,
 		'type' => 'text'
@@ -914,7 +900,7 @@ $defaults = array(
 	),
 	"showDimensions" => array(
 		"prompt" => _("Display clickable image dimensions"),
-		"desc" => _("Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image.") . newIn("1.4.1"),
+		"desc" => _("Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 	),
@@ -943,7 +929,7 @@ $defaults = array(
 	"separator7" => array (
 		"type" => "separator",
 		"title" => _("Polling configuration"),
-		"desc"  => newIn("1.4.1") . "  " .
+		"desc"  => 
 			sprintf(_("It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."),
 				"1.4.1") .
 			"<p>" .
@@ -965,8 +951,7 @@ $defaults = array(
 			. "<dd>" . _("Anyone can vote.  Votes are recorded against session ID.") ."</dd>"
 			. "<dt>" . _("Logged in") ."</dt>"
 			. "<dd>" . _("Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices.") . "</dd>"
-			. "</dl>" .
-			newIn("1.4.1"),
+			. "</dl>" ,
 		"choices" => array("Nobody" => _("Nobody"), 
 			"Everybody" => _("Everybody"), 
 			"Logged in" => _("Logged in")),
@@ -979,23 +964,20 @@ $defaults = array(
 			. "<dd>" . _("Users have a set of votes which they can allocate to the images.") . "</dd>"
 			. "<dt>" . _("Critique")."</dt>"
 			. "<dd>" . _("Enables users to give all images points without restriction.") . "</dd>"
-			. "</dl>" .
-	      	 	newIn("1.4.1"),
+			. "</dl>" ,
 		"choices" => array("rank" => _("Rank"), 
 			"critique" => _("Critique")),
 		"value" => "critique"
 			),
 	"poll_scale" => array(
 		"prompt" => _("Number of choices"),
-		"desc" => _("Number of choices that will be available to voters as radio buttons or in a pulldown menu.") .
-			newIn("1.4.1"),
+		"desc" => _("Number of choices that will be available to voters as radio buttons or in a pulldown menu."),
 		"value" => 3,
 		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)
 			),
 	"poll_hint" => array(
 		"prompt" => _("Vote hint"),
-		"desc" => _("This is displayed above the voting options under each image.") .
-			newIn("1.4.1"),
+		"desc" => _("This is displayed above the voting options under each image."),
 		"type" => "text",
 		"value" => _("Vote for this image"),
 		"attrs" => array("size" => 50),
@@ -1004,8 +986,7 @@ $defaults = array(
 	"poll_show_results" => array(
 		"prompt" => _("Show vote results"),
 		"desc" => sprintf(_("Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."),
-			_("no")) .
-			newIn("1.4.1"),
+			_("no")),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 			), 
@@ -1013,15 +994,13 @@ $defaults = array(
 		"prompt" => _("Number of results displayed"),
 		"desc" => sprintf(_("If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"),
 			'"'. _("Show vote results").'"' ,
-			'"'. _("yes").'"') .
-			newIn("1.4.1"),
+			'"'. _("yes").'"'),
 		"value" => 3,
 		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)),
 
 	"poll_orientation" => array(
 		"prompt" => _("Orientation of vote choices?"),
-		"desc" => _("Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu.") . 
-			newIn("1.4.1"),
+		"desc" => _("Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."),
 		"value" => "vertical",
 		"choices" => array(
 			"horizontal" => _("Horizontal"), 
@@ -1052,8 +1031,7 @@ $defaults = array(
 				. "<dd>" . _("Images will display in the same order as they appear in the Gallery.") . "</dd>"
 				. "<dt>" . _("Random") . "</dt>"
 				. "<dd>" . _("Images will appear in a random order.") . "</dd>"
-				. "</dl>" .
-				newIn("1.4.1"),
+				. "</dl>",
 		       	"choices" => array(
 			       	"off" => _("Off"),
 			       	"ordered" => _("Ordered"),
@@ -1063,22 +1041,19 @@ $defaults = array(
 			),
 	"slideshow_recursive" => array(
 		"prompt" => _("Recursive slideshow"),
-		"desc" => sprintf(_("Set to %s if you want to include images in sub albums as part of the slideshow."), "<b>"._("yes")."</b>") .
-			newIn("1.4.1"),
+		"desc" => sprintf(_("Set to %s if you want to include images in sub albums as part of the slideshow."), "<b>"._("yes")."</b>"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 			),
 	"slideshow_loop" => array(
 		"prompt" => _("Allow slideshow to loop"),
-		"desc" => sprintf(_("This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."), "<b>"._("no")."</b>") .
-			newIn("1.4.1"),
+		"desc" => sprintf(_("This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."), "<b>"._("no")."</b>"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes"
 			),
 	"slideshow_length" => array(
 		"prompt" => _("Slideshow length"),
-		"desc" => _("Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images.") .
-			newIn("1.4.1"),
+		"desc" => _("Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."),
 		"type" => "text",
 		"value" => "0",
 		"optional" => 1,
@@ -1088,28 +1063,24 @@ $defaults = array(
 		       	"type" => "separator",
 		       	"title" => _("Frames"),
 		       	"desc" => sprintf(_("Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"),Gallery()) .
-		available_frames(true).
-		     	 	newIn("1.4.1"),
+		available_frames(true),
 			),
 	"album_frame" => array(
 		"prompt" => _("Subalbum frames"),
-		"desc" => _("This frame will appear around the thumbnail image representing a subalbum.") .
-		newIn("1.4.1"),
+		"desc" => _("This frame will appear around the thumbnail image representing a subalbum."),
 		"choices" => available_frames(),
 		"value" => "simple_book"
 	),
 	"thumb_frame" => array(
 		"prompt" => _("Frame around thumbs"),
-		"desc" => _("This frame will appear around the thumbnail image representing a photo or movie.") .
-	      	newIn("1.4.1"),
+		"desc" => _("This frame will appear around the thumbnail image representing a photo or movie."),
 		"choices" => available_frames(),
 		"value" => "solid"
 	),
 	
 	"image_frame" => array(
 		"prompt" => _("Frame around images"),
-		"desc" => _("This frame will appear around fulled sized and resized photos.") .
-		newIn("1.4.1"),
+		"desc" => _("This frame will appear around fulled sized and resized photos."),
 		"choices" => available_frames(),
 		"value" => "solid"
 	),
