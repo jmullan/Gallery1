@@ -304,8 +304,6 @@ function resize_image($src, $dest, $target) {
 function rotate_image($src, $dest, $target) {
 	global $gallery;
 
-	print "<b>SRC=$src<br>DEST=$dest<br>TARGET=$target<br></b>";
-	
 	if (!strcmp($src,$dest)) {
 		$useTemp = true;
 		$out = "$dest.tmp";
@@ -896,12 +894,15 @@ function getExif($file) {
 						" " .
 						fs_import_filename($file, 1));
 
-        while (list($key,$value) = each ($return)) {
-            $explodeReturn = explode(':', $value, 2);
-            $myExif[trim($explodeReturn[0])] = trim($explodeReturn[1]);
-        }
+	$myExif = array();
+	if ($status == 0) {
+	        while (list($key,$value) = each ($return)) {
+	            $explodeReturn = explode(':', $value, 2);
+	            $myExif[trim($explodeReturn[0])] = trim($explodeReturn[1]);
+	        }
+	}
 
-        return $myExif;
+        return array($status, $myExif);
 }
 
 function getItemCaptureDate($file) {
