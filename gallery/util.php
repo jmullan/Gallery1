@@ -28,8 +28,6 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print "Security violation\n";
 	exit;
 }
-?>
-<?php
 
 function editField($album, $field) {
 	global $gallery;
@@ -730,6 +728,21 @@ function pluralize($amt, $noun, $none="") {
 	}
 
 	return "$amt ${noun}s";
+}
+
+function pluralize_n($amt, $one, $more, $none) {
+        switch ($amt) {
+                case 0 :
+                        return $none;
+                        break;
+                case 1 :
+                        return "$amt $one";
+                        break;
+
+                default :
+                        return "$amt $more";
+                        break;
+        }
 }
 
 function errorRow($key) {
@@ -1704,18 +1717,264 @@ function findInPath($program)
 	return false;
 }
 
-function pluralize_n($amt, $one, $more, $none) {
-        switch ($amt) {
-                case 0 :
-                        return $none;
-                        break;
-                case 1 :
-                        return "$amt $one";
-                        break;
+/**
+ * NLS (National Language System) array.
+ *
+ * This array was taken from then Horde Framework (http://horde.org)
+ * The original filename was horde/config/nls.php.dist and it was 
+ * maintained by Jan Schneider (mail@janschneider.de)
+ * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * (jens@f2h9.de)
+ */
 
-                default :
-                        return "$amt $more";
-                        break;
+function getNLS () {
+	$nls['languages']['da_DK'] = 'Dansk';
+	$nls['languages']['de_DE'] = 'Deutsch';
+	$nls['languages']['en_GB'] = 'English (UK)';
+	$nls['languages']['en_US'] = 'English (US)';
+	$nls['languages']['es_ES'] = 'Espa&ntilde;ol';
+	$nls['languages']['fr_FR'] = 'Fran&ccedil;ais';
+	$nls['languages']['it_IT'] = 'Italiano';
+	$nls['languages']['is_IS'] = '&Iacute;slenska';
+	$nls['languages']['lt_LT'] = 'Lietuvi&#x0173;';
+	$nls['languages']['nl_NL'] = 'Nederlands';
+	$nls['languages']['no_NO'] = 'Norsk';
+	$nls['languages']['pl_PL'] = 'Polski';
+	$nls['languages']['ru_RU'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (Windows)';
+	$nls['languages']['ru_RU.koi8r'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (KOI8-R)';
+	$nls['languages']['sv_SE'] = 'Svenska';
+	
+	
+	/**
+	 ** Aliases for languages with different browser and gettext codes
+	 **/
+	
+	$nls['aliases']['de'] = 'de_DE';
+	$nls['aliases']['en'] = 'en_US';
+	$nls['aliases']['es'] = 'es_ES';
+	$nls['aliases']['fr'] = 'fr_FR';
+	$nls['aliases']['is'] = 'is_IS';
+	$nls['aliases']['it'] = 'it_IT';
+	$nls['aliases']['lt'] = 'lt_LT';
+	$nls['aliases']['nl'] = 'nl_NL';
+	$nls['aliases']['no'] = 'no_NO';
+	$nls['aliases']['pl'] = 'pl_PL';
+	$nls['aliases']['ru'] = 'ru_RU';
+	$nls['aliases']['sv'] = 'sv_SE';
+	
+	$nls['aliases']['de_LI'] = 		'de_DE' ;
+	$nls['aliases']['de_LU'] = 		'de_DE' ;
+	$nls['aliases']['de_CH'] = 		'de_DE' ;
+	$nls['aliases']['de_AT'] = 		'de_DE' ;
+	$nls['aliases']['german'] =		'de_DE' ;
+	
+	$nls['aliases']['dutch'] = 		'nl_NL' ;
+	
+	$nls['aliases']['en_EN'] = 		'en_US' ;
+	$nls['aliases']['english'] = 		'en_US' ;
+	
+	$nls['aliases']['fr_FR'] = 		'fr_CA' ;
+	$nls['aliases']['fr_BE'] = 		'fr_CA' ;
+	$nls['aliases']['fr_LU'] = 		'fr_CA' ;
+	$nls['aliases']['fr_CH'] = 		'fr_CA' ;
+	$nls['aliases']['french'] =		'fr_CA' ;
+	
+	$nls['aliases']['icelandic']=		'is_IS' ;
+	$nls['aliases']['italian'] =		'it_IT' ;
+	
+	$nls['aliases']['he_HE'] = 		'he_IL' ;
+	$nls['aliases']['hebrew'] =		'he_IL' ;
+	
+	//$nls['aliases']['lithuanian'] =	'lt_LT' ,
+	
+	$nls['aliases']['norwegian'] = 		'no_NO' ;
+	
+	$nls['aliases']['polish'] =		'pl_PL' ;
+	
+	$nls['aliases']['russian'] =		'ru_RU';
+	//$nls['aliases']['russian'] =		'ru_RU.koi8r';
+	
+	$nls['aliases']['sv_SV'] = 		'sv_SE' ;
+	$nls['aliases']['swedish'] =		'sv_SE' ;
+	
+	$nls['aliases']['spanish'] = 		'es_ES' ;
+	
+	/**
+	 ** Charsets
+	 **/
+	
+	// Add your own charsets, if your system uses others than "normal"
+	
+	$nls['default']['charset'] = 'ISO-8859-1';
+	
+	$nls['charset']['pl_PL'] = 'ISO-8859-2';
+	$nls['charset']['ru_RU'] = 'windows-1251';
+	$nls['charset']['ru_RU.KOI8-R'] = 'KOI8-R';
+	$nls['charset']['lt_LT'] = 'windows-1257';
+	$nls['charset']['he_IL'] = 'windows-1255';
+	
+	//$nls['charset']['de_DE']='de_DE.ISO-8859-15@euro' ;
+	//$nls['charset']['lt_LT'] = 'ISO-8859-13';
+	
+	
+	// Direction
+	
+	$nls['default']['direction'] = 'ltr';
+	$nls['direction']['he_IL'] = 'rtl' ;
+	
+	// Alignment
+	
+	$nls['default']['align'] = 'left';
+	$nls['align']['he_IL'] = 'right' ;
+	return $nls;
+}
+
+function initLanguage() {
+	global $gallery, $GALLERY_BASEDIR, $newlang, $translation;
+// Detect Browser Language
+	$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
+        $lang_pieces=explode ("-",$lang[0]);
+
+        if (strlen($lang[0]) ==2) {
+		$gallery->browser_language=$lang[0] ."_".strtoupper($lang[0]);
+	} else {
+		$gallery->browser_language=strtolower($lang_pieces[0])."_".strtoupper($lang_pieces[1]) ;
         }
+
+// Check if we already have a language
+// Use this only if user dont want Browserlanguage only
+
+	if ($gallery->language and $gallery->app->ML_mode > 1) {
+		$gallery->language=$gallery->session->language;
+	}
+
+
+// Check in which Mode or Nuke and set language
+//
+	$nls = getNLS();
+	if ($gallery->app->ML_mode == 2 and ! $gallery->language) {
+		// Use Browser Language
+		$gallery->language=$gallery->browser_language;
+	} 
+	elseif ($gallery->app->ML_mode == 3 and ($newlang)) {
+		// Check New language
+		// Use Alias if
+		if ($nls['alias'][$newlang]) $newlang=$nls['alias'][$newlang] ;
+		// use Language if its okay, otherwise use default
+		// Set Language to the User selected language
+		if ($nls['languages'][$newlang] ||$nuke_langname[$newlang]) {
+			$gallery->language=$newlang;
+		}
+		else {
+			$gallery->language = $gallery->app->default_language;
+		}	
+	} 
+	elseif ($GALLERY_EMBEDDED_INSIDE) {
+		// We're in NUKE ... so there should be an alias
+		$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
+		$gallery->language=$langalias[$gallery->nuke_language];
+	}
+
+/* Fall back to Default Language if :
+	- we cant detect Language
+	- Nuke sends an unsupported
+	- We are in Config Mode
+*/			
+	if (! $gallery->language) {
+		$gallery->language = $gallery->app->default_language;
+	}
+
+// if an alias for a language is given, use it
+//
+	if ($nls['alias'][$gallery->language]) {
+		$gallery->language = $nls['alias'][$gallery->language] ;
+	}
+
+// And now set this language into session
+	$gallery->session->language= $gallery->language;
+
+
+// locale
+
+		//locale okay
+		if ($gallery->app->locale_alias[$gallery->language]) {
+			$gallery->locale=$gallery->app->locale_alias[$gallery->language];
+		} else {
+			$gallery->locale=$gallery->language;
+		}
+		// Override NUKES locale :)))	
+		$locale=$gallery->locale;
+
+// if no direction is present, use default
+        if ( ! $nls['direction'][$gallery->language]) {
+		$gallery->direction=$nls['default']['direction'] ;
+	} else {
+		$gallery->direction = $nls['direction'][$gallery->language] ;
+	}
+
+//If no Charset is given use default
+        if ( ! $nls['charset'][$gallery->language] ) {
+		$gallery->charset=$nls['default']['charset'];
+	} else {
+		$gallery->charset=$nls['charset'][$gallery->language] ;
+	}
+
+// if no alignment is given use default
+        if ( ! $nls['align'][$gallery->language] ) {
+		$gallery->align=$nls['default']['align'];
+	} else {
+		$gallery->align=$nls['align'][$gallery->language] ; 
+	}
+
+// When all is done do the settings
+
+// If theres an error switch to Mode 2
+//
+        putenv("LANG=". $gallery->locale);
+
+// Set Local
+	setlocale(LC_ALL,$gallery->locale);
+
+
+if (in_array("gettext", get_loaded_extensions())) {
+		$bindtextdomain=bindtextdomain("gallery", $gallery->locale_path);
+		textdomain("gallery");
+}
+
+//Set Charset
+        header('Content-Type: text/html; charset=' . $gallery->charset);
+	if (!in_array("gettext", get_loaded_extensions()) 
+		|| ! function_exists(gettext)) {
+		$filename=$GALLERY_BASEDIR ."po/" . $gallery->language . "-gallery.po";
+	
+		if (file_exists($filename)) {
+			$lines=file($filename);
+	
+			foreach ($lines as $key => $value) {
+				if (stristr($value, "msgid")) {
+					$new_key=substr($value, 7,-2);
+					$translation[$new_key]=substr($lines[$key+1],8,-2);
+				}	
+			}
+	
+			// Substitute _() gettext function
+			function _($search) {
+				if ($GLOBALS['translation'][$search]) {
+					return $GLOBALS['translation'][$search] ;
+				}
+				else {
+					return $search;
+				}
+			}
+		}
+		else {
+			function _($search) {
+				return $search;
+			}
+		}
+	
+	}
+	
+
 }
 ?>

@@ -40,6 +40,18 @@ $checklist = array(
 		"fail-incompatible" => _("You're running version ") . phpversion() .
 			_(" which has known bugs that cause Gallery to fail."),
 	),
+	"php4.1" => array(
+		"optional" => 1,
+		"desc" => _("Check to see if you are running PHP 4.1 or greater.") . "  " .
+			 _("If you want to run the multi-language version of gallery, you need php 4.1.") . "  " .
+			 _("") . "  " .
+			_("Upgrade to at least PHP 4.1 if you can."),
+	     	"func" => "check_php4_1",
+		"fail-too-old" => _("You're running version ") . phpversion() .
+			".  " . _("You need to upgrade to at least PHP 4.1.0 if you want to run the multilanguage version."),
+		"fail-incompatible" => _("You're running version ") . phpversion() .
+			_(" which has known bugs that cause Gallery to fail."),
+	),
 	"safe_mode" => array(
 		"desc" => _("Check to see if PHP is running in <b>Safe Mode</b>.") . "  " .
 			_("Safe mode is a PHP security feature commonly used in shared environments.") . "  " .
@@ -155,6 +167,35 @@ $checklist = array(
 			_("or in the libjpeg package of Linux distributions."),
 		"open-basedir-note" => $common_messages["open-basedir-active"],
 	),	
+	"gettext" => array (
+		"optional" => 1,
+		"desc" => _("Check to see if Apache is compiled with gettext so that Gallery can run in many languages"),
+		"func" => "check_gettext",
+		"fail-gettext" => _("gettext in not installed.") . "  " .
+			_("To include gettext support, you need to recompile apache.") . "  " .
+			_("For more information see") . " " .
+			'<a href="http://www.php.net/manual/en/ref.gettext.php">' .
+			'http://www.php.net/manual/en/ref.gettext.php</a>.  '.
+			_("However, multilanguage support is still available in Gallery without gettext, but the pages may take slightly longer to load.")
+	),
+	"locale" => array (
+		"optional" => 1,
+		"desc" => _("Check to see locale support is available"),
+		"func" => "check_locale",
+		"fail-locale" => _("locale in not installed."), 
+		"warning-locale" => _("We cannot tell if locale support is available."), 
+	),
+	"gallery-locale" => array (
+		"optional" => 1,
+		"desc" => _("Check to see gallery locale files are present"),
+		"func" => "check_gallery_locale",
+		"fail-gallery-locale" => _("Gallery locale files are absent.") 
+	),
+	"missing-locales" => array (
+		"optional" => 1,
+		"desc" => _("Testing to see if which locales are absent"),
+		"func" => "check_absent_locales"
+	)
 );
 
 $features = array(
@@ -163,7 +204,8 @@ $features = array(
 	"mirror" => array("mirrorSites"),
 );
 
-$constants = array(
+$constants = array_merge(
+    array(
 	"galleryTitle" => array(
 		"prompt" => _("Gallery Title"),
 		"desc" => _("The name of your gallery.  Eg. <i>My Cool Photos</i>"),
@@ -184,7 +226,7 @@ $constants = array(
 		"desc" => _("This setting tells Gallery which set of graphics tools you prefer it to use.") . "  " .
 			_("If Gallery says both are okay (on the first page) then this is simply user preference.") . "  " .
 			_("Otherwise go with the one that Gallery was able to find without error."),
-		"choices" => array("NetPBM", "ImageMagick"),
+		"choices" => array("NetPBM" => _("NetPBM"), "ImageMagick" => _("ImageMagick")),
 		"value" => default_graphics(),
 	),
 	"pnmDir" => array(
@@ -210,7 +252,7 @@ $constants = array(
 			_("This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.") . "  " .
 			_("Check your NetPBM directory to see which one you have installed and specify it here.") . "  " .
 			_("If you aren't sure, just take a guess and we'll try to verify it for you."),
-		"choices" => array("pnmtojpeg", "ppmtojpeg"),
+		"choices" => array("pnmtojpeg" => _("pnmtojpeg"), "ppmtojpeg" => _("ppmtojpeg")),
 		"value" => "pnmtojpeg",
 	),
 	"ImPath" => array(
@@ -350,23 +392,51 @@ $constants = array(
 			" (" .
 			_("although it can severely clutter the appearance of the top Gallery page") .
 			").  " . _("Set to <b>no</b> by default."),
-		"choices" => array("yes", "no"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")), 
 		"value" => "no"
 	),
 	"autorotate" => array(
                 "prompt" => _("Auto-rotate images"),
 		"desc" => _("Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.") . "  " .
 			_("Requires Jhead EXIF parser v.1.9 or greater (see above)."),
-                "choices" => array("yes", "no"),
+                "choices" => array("yes" => _("yes"), "no" => _("no")),
                 "value" => "yes"
         ),
+	"default_language" => array(
+		"prompt" => _("Which language do you want as your default language"), 
+		"optional" => 1, 
+		"desc" => _(""),
+		"choices" => available_locales(),
+		"value" => "en_US"
+	),
+	"ML_mode" => array(
+		"prompt" => _("Multi language mode"), 
+		"desc" => _("Gallery has three multi language modes.") . "  " .
+			  _("These affect the language that a user will see when visiting the site") .
+			"\n\t<br><font color=blue><b>(". _("this is new in version 1.3.5"). ")</b></font>",
+		"choices" => array(
+			1 => "1: " . _("Gallery is only displayed in one language"), 
+			2 => "2: " . _("Gallery is displayed in the language the browser sends"), 
+			3 => "3: " . _("The User can choose the language via select Box.")),
+		"value" => 1
+	),
+	available_lang => array(
+		"prompt" => _("Available languages in mode 3"), 
+		"optional" => 1, 
+		"desc" => _("These languages will be available as user choices in a drop down menu, if you have chosen ML mode 3") .
+			"\n\t<br><font color=blue><b>(". _("this is new in version 1.3.5"). ")</b></font>",
+		"multiple_choices" => available_locales(),
+		"value" => array('en_US')
+	)),
+	config_maybe_locales(),
+    array(
 	"cacheExif" => array(
 		"prompt" => "<b>(" . _("Advanced") . ")</b> ". _("Cache EXIF data"),
 		"desc" => _("The EXIF data extracted from JPEG files can be cached after it is read the first time.") . "  " .
 			_("The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.") . "  " .
 			_("But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow.") . "  " .
  			_("Set to <b>no</b> by default."),
-		"choices" => array("yes", "no"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 	),
 	"jpegImageQuality" => array(
@@ -377,9 +447,9 @@ $constants = array(
 			_("However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.") . "  " .
 			_("If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.") . "  " .
 			_("<b>Note</b> that changing this value will only affect images changed in the <i>future</i>."),
-		"choices" => array(50, 55, 60, 65,
-				   70, 75, 80, 85,
-				   90, 95, 100),
+		"choices" => array(50 => 50, 55 => 55, 60 => 60, 65 => 65,
+				   70 => 70, 75 => 75, 80 => 80, 85 => 85,
+				   90 => 90, 95 => 95, 100 => 100),
 		"value" => 95,
 	),
         "timeLimit" => array(
@@ -397,7 +467,7 @@ $constants = array(
 	"debug" => array(
 		"prompt" => "<b>(" . _("Advanced") .")</b> Debug mode",
 		"desc" => _("Turn debug mode on so that you can diagnose problems?"),
-		"choices" => array("yes", "no"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
 	"use_flock" => array(
@@ -405,7 +475,7 @@ $constants = array(
 		"desc" => _("Gallery uses a locking system called flock() for added protection against data corruption.") . "  " .
 			_("This is not supported on all platforms.") . "  " .
 			_("If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>"),
-		"choices" => array("yes", "no"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes"),
 	"expectedExecStatus" => array(
 		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Status code"),
@@ -430,12 +500,18 @@ $constants = array(
 		"eval" => '"$albumDir/.users"',
 		"filename" => 1,
 	),
+    )
 );
 
 $defaults = array(
 	"bordercolor" => array(
 		"prompt" => _("Border color"),
- 		"desc" => _("Default color of image borders. Given in <b>english</b>"),
+ 		"desc" => _("Default color of image borders. You can learn about colors here:") .   
+			   '  <a href="http://www.permadi.com/tutorial/websafecolor/">' . 
+			   // '  <a href="http://gotomy.com/color.html">' . 
+			   _("Colors") . '</a>',
+
+		// <a href="http://www.w3.org/TR/REC-html40/types.html#h-6.5">W3.org</a>',
  		"value" => "black",
 		"attrs" => array("size" => 10),
 	),
@@ -443,7 +519,7 @@ $defaults = array(
 		"prompt" => _("Border width"),
 		"desc" => _("Default width of image borders"),
 		"value" => 1,
-		"choices" => array("off", 1, 2, 3)
+		"choices" => array("off" => _("off"), 1 => 1, 2 => 2, 3 => 3)
 	),
 	"font" => array(
 		"prompt" => _("Default Font"),
@@ -455,13 +531,13 @@ $defaults = array(
 		"prompt" => _("Default Columns"),
 		"desc" => _("The default number of columns in an album"),
 		"value" => 3,
-		"choices" => array(1, 2, 3, 4, 5, 6, 7, 8, 9),
+		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9),
 	),
 	"rows" => array(
 		"prompt" => _("Default Rows"),
 		"desc" => _("The default number of rows in an album"),
 		"value" => 3,
-		"choices" => array(1, 2, 3, 4, 5, 6, 7, 8, 9),
+		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9),
 	),
 	"thumb_size" => array(
 		"prompt" => _("Thumbnail size"),
@@ -473,7 +549,7 @@ $defaults = array(
 		"prompt" => _("Resized image size"),
 		"desc" => _("When large images are added to an album, an intermediary version will automatically be generated at this size"),
 		"value" => 640,
-		"choices" => array("off", 400, 500, 600, 640, 700, 800, 1024)
+		"choices" => array("off" => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024)
 	),
 	"fit_to_window" => array(
 		"prompt" => _("Fit-to-window"),
@@ -481,14 +557,14 @@ $defaults = array(
 			_("Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).") . "  " .
 			_("This may not work in embedded environments such as Nuke"),
 		"value" => "no",
-		"choices" => array("yes", "no")
+		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),
 	"use_fullOnly" => array(
 		"prompt" => _("Visitor size prefs"),
 		"desc" => _("Offer visitors the choice of always viewing the full sized version of an image instead of the intermediary size.") . "  " .
 			_("This setting only lasts for the visitor's session."),
 		"value" => "no",
-		"choices" => array("yes", "no")
+		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),
 	"print_photos" => array(
 		"prompt" => _("Printing Service"),
@@ -498,7 +574,7 @@ $defaults = array(
 			"), " . _("and 1.8 cents of that will get donated back to the Gallery project.") . "  " .
 			_("This is one great way for you to help support this free software."),
 		"value" => "shutterfly",
-		"choices" => array("none", "shutterfly", "shutterfly without donation", "photoaccess", "fotokasten")
+		"choices" => array("none" => _("none"), "shutterfly" => _("shutterfly"), "shutterfly without donation" => _("shutterfly without donation"), "photoaccess" => _("photoaccess"), "fotokasten" => _("fotokasten"))
 	),
 	"returnto" => array(
 		"prompt" => _("Gallery Link"),
@@ -506,12 +582,12 @@ $defaults = array(
 			_("If you turn this feature off, the user will not be able to navigate out of the album.") . "  " .
 			_("This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery"),
 		"value" => "yes",
-		"choices" => array("yes", "no")
+		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),
 	"showOwners" => array(
 		"prompt" => _("Show Owner"),
 		"desc" => _("Show album owner's name on the top level Gallery page?"),
-		"choices" => array("yes", "no"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
 	"albumsPerPage" => array(
@@ -523,26 +599,26 @@ $defaults = array(
 	"showSearchEngine" => array(
 		"prompt" => _("Search Engine"),
 		"desc" => _("Display search engine on main Gallery page?"),
-		"choices" => array("yes", "no"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes",
 	),
 	"useOriginalFileNames" => array(
 		"prompt" => _("Preserve Names"),
                 "desc" => _("When uploading images to Gallery, should we preserve the original names?") . "  " .
 			 _("If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."),
-                "choices" => array("yes", "no"),
+                "choices" => array("yes" => _("yes"), "no" => _("no")),
                 "value" => "yes",
 	),
 	"display_clicks" => array(
 		"prompt" => _("Click counts"),
 		"desc" => _("Display click counts within Albums?"),
-		"choices" => array("yes", "no"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes",
 	),
 	"public_comments" => array(
 		"prompt" => _("Comments"),
 		"desc" => _("Allow the public to add comments to your photos?"),
-		"choices" => array("yes", "no"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes",
 	),
 	"extra_fields" => array(
@@ -558,30 +634,30 @@ $defaults = array(
 		"prompt" => _("Photo owner modification"),
 		"desc" => _("Allow photo owners to edit and rotate/flip their own photos?") .
 			  "<br><font color=blue><b>(". _("this is new in version 1.3.5") . ")</b></font>",
-		"choices" => array("yes", "no"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes",
 	),
 	"item_owner_delete" => array(
 		"prompt" => _("Photo owner deletion"),
 		"desc" => _("Allow photo owners to delete their own photos?") .
 			  "<br><font color=blue><b>(" . _("this is new in version 1.3.5") .")</b></font>",
-		"choices" => array("yes", "no"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes",
 	),
 	"item_owner_display" => array(
 		"prompt" => _("Photo owner display"),
 		"desc" => _("Display the name of photo owners with the caption?") .
 			  "<br><font color=blue><b>(" . _("this is new in version 1.3.5") .")</b></font>",
-		"choices" => array("yes", "no"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
 	"add_to_beginning" => array(
 		"prompt" => _("Add to beginning"),
 		"desc" => _("New images added to beginning rather than end of albums") .
 			  "<br><font color=blue><b>(" . _("this is new in version 1.3.5") .")</b></font>",
-		"choices" => array("yes", "no"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
-	)
+	),
 );
 
 ?>

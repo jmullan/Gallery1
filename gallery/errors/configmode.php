@@ -8,11 +8,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	            exit;
 		    }
 ?>
-<?php if (! (@include($GALLERY_BASEDIR . "ML_files/ML_config.php")) || ! $gallery->ML) {
-		include ($GALLERY_BASEDIR ."setup/ML_wizard.php");
-		exit;	
-	}
-	
+<?php 
 require($GALLERY_BASEDIR . "errors/configure_instructions.php");
 ?>
 <html>
@@ -21,16 +17,12 @@ require($GALLERY_BASEDIR . "errors/configure_instructions.php");
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir=<?php echo $gallery->direction ?>>
-<?php @include ($gallery->path ."ML_files/ML_info_addon.inc"); ?>
 <center>
 <span class="title"> <?php echo _("Gallery: Configuration Mode") ?> </span>
 <p>
 <table width=80%><tr><td>
 <br>
 <center>
-<?php echo _("If you want to reconfigure language settings first, start the"); ?> 
-<a href="<?php echo $GALLERY_BASEDIR ?>setup/ML_wizard.php"><?php echo _("ML Configuration Wizard") ?></a>
-</p>
 <?php echo _("To configure gallery,") ?> 
 <font size=+1>
 <a href="<?php echo $GALLERY_BASEDIR ?>setup/index.php"><?php echo _("Start the configuration wizard") ?></a>

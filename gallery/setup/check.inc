@@ -53,7 +53,9 @@ foreach ($checklist as $check) {
 				$color = "yellow";
 			}
 			echo "<font color=$color><b>$text!</b></font>";
-			echo "<br>$check[$key]<p>";
+			if ($check) {
+				echo "<br>$check[$key]<p>";
+			}
 			$warning++;
 		} else {
 			echo "<font color=red><b>". _("Failed") ."!</b></font>";
@@ -71,6 +73,9 @@ foreach ($checklist as $check) {
 					echo "<font color=red>$msg</font><br>";
 				}
 			}
+		}
+		else if (is_string($val)) {
+				echo "$val<br>";
 		}
 	}
 ?>

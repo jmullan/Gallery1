@@ -3,14 +3,15 @@
 <font size=+2><?php echo _("Gallery Setup: Step 4") ?></font>
 <br>
 <table width=80%><tr><td>
-<?php echo _("Confirm that the settings you entered came through correctly.") ?>
-<?php echo _("If you find this page confusing, you can probably safely ignore it") ?>
-(<?php echo _("unless you see stuff in red which indicates an error") ?>).
+<?php 
+echo _("Confirm that the settings you entered came through correctly.") . "  " .
+     _("If you find this page confusing, you can probably safely ignore it") . "  " .
+     "(" . _("unless you see stuff in red which indicates an error") . ")."
+?>
 </td></tr></table>
 
 <center>
 <table width=90% border=0>
-<pre>
 
 <?php
 require("../Version.php");
@@ -74,14 +75,26 @@ $graphpath = "";
 $graphtest = array();
 
 foreach ($constants as $key => $val) {
+	$real = $$key;
+	if (ereg("^(..*)\[.*\]$", $key, $matches)) {
+		$line='$real = $'.$key . ';';
+		eval($line);
+	}
+
         if (get_magic_quotes_gpc()) {
-	    $$key = stripslashes($$key);
+	    $real = stripslashes($real);
 	}
 
 	// Protect quote characters to avoid screwing up HTML forms
-	$$key = str_replace('"', '&quot;', $$key);
+	$real = str_replace('"', '&quot;', $real);
 
-	echo "<input type=hidden name=$key value=\"{$$key}\">";
+	if (is_array($real)) {
+		foreach ($real as $value) {
+			echo "<input type=hidden name=${key}[] value=\"{$value}\">";
+		}
+	} else {
+		echo "<input type=hidden name=$key value=\"{$real}\">";
+	}
 
 	if ($constants[$key]["eval"]) {
 		$tmp = $constants[$key]["eval"];
@@ -89,10 +102,10 @@ foreach ($constants as $key => $val) {
 	}
 
 	if (!strcmp($key, "graphics")) {
-		$graphtool = $$key;
+		$graphtool = $real;
 	}
 	
-	if (!strcmp($$key, "")) {
+	if (!strcmp($real, "")) {
 		if (!strcmp($key, "pnmDir")) {
 		        $graphtest['pnmDir'] = 1;
 		}
@@ -108,18 +121,18 @@ foreach ($constants as $key => $val) {
 		}
 	} else {
 		if ($constants[$key]["filename"]) {
-			$$key = fs_export_filename($$key);
+			$real = fs_export_filename($real);
 		}
 
 		if ($constants[$key]["no-trailing-slash"]) {
-			$$key = ereg_replace("\/$", "", $$key);
+			$real = ereg_replace("\/$", "", $real);
 			/* Catch windows paths too. */
-			$$key = ereg_replace("\\$", "", $$key);
+			$real = ereg_replace("\\$", "", $real);
 		}
 
 		if ($constants[$key]["must-be-url"]) {
-			if (!ereg("^http", $$key)) {
-				$view .= row_wrap(error_format("$key: <b>" . $$key . 
+			if (!ereg("^http", $real)) {
+				$view .= row_wrap(error_format("$key: <b>" . $real . 
 					"</b> ". _("must be an absolute URL!")));
 				$error = 1;
 				continue;
@@ -127,12 +140,12 @@ foreach ($constants as $key => $val) {
 		}
 
 		if ($constants[$key]["must-be-file"]) {
-			$dir = dirname($$key);
+			$dir = dirname($real);
 			if (!inOpenBasedir($dir)) {
 				$warn_about_open_basedir = 1;
 			} else {
-				if (!@is_file($$key)) {
-					$view .= row_wrap(error_format("$key: <b>" . $$key . 
+				if (!@is_file($real)) {
+					$view .= row_wrap(error_format("$key: <b>" . $real . 
 						"</b> " . _("must be a valid file (not a directory)!")));
 					$error = 1;
 					continue;
@@ -141,8 +154,8 @@ foreach ($constants as $key => $val) {
 		}
 
 		if ($constants[$key]["must-be-number"]) {
-			if (ereg("[^0-9]",$$key)) {
-				$view .= row_wrap(error_format("$key: <b>\"" . $$key .
+			if (ereg("[^0-9]",$real)) {
+				$view .= row_wrap(error_format("$key: <b>\"" . $real .
 					"\"</b> ". _("must be a number")));
 				$error = 1;
 				continue;
@@ -150,8 +163,8 @@ foreach ($constants as $key => $val) {
 		}
 
 		if ($constants[$key]["must-not-be-zero"]) {
-			if ($$key == 0) {
-				$view .= row_wrap(error_format("$key: <b>" . $$key .
+			if ($real == 0) {
+				$view .= row_wrap(error_format("$key: <b>" . $real .
 					"</b> ". _("must not be zero")));
 				$error = 1;
 				continue;
@@ -161,8 +174,8 @@ foreach ($constants as $key => $val) {
 		if ($constants[$key]["must-be-executable"]) {
 			if (!inOpenBasedir($dir)) {
 				$warn_about_open_basedir = 1;
-			} else if (!fs_is_executable($$key)) {
-				$view .= row_wrap(error_format("$key: <b>" . $$key . 
+			} else if (!fs_is_executable($real)) {
+				$view .= row_wrap(error_format("$key: <b>" . $real . 
 					"</b> " . _("must be an executable file!")));
 				$error = 1;
 				continue;
@@ -170,7 +183,7 @@ foreach ($constants as $key => $val) {
 		}
 
 		if ($constants[$key]["require-write-dir"]) {
-			$dir = $$key;
+			$dir = $real;
 			if (!file_exists($dir)) {
 				$view .= row_wrap(error_format(_("Directory") ." <b>$dir</b> " . _("does not exist.  Please create it.")));
 				$error = 1;
@@ -202,16 +215,21 @@ foreach ($constants as $key => $val) {
 		}
 
 		if (!$constants[$key]["dont-write"]) {
-			$data .= one_constant($key, $$key);
-			$view .= row_wrap(one_constant($key, $$key));
+			if (is_array($real)) {
+				$line = array_constant($key, $real);
+			} else {
+				$line = one_constant($key, $real);
+			}
+			$data .= $line;
+			$view .= row_wrap($line);
 		}
 
 		if ($constants[$key]["verify-func"]) {
 			$func = $constants[$key]["verify-func"];
 			if ($constants[$key]["verify-func-takes-graphics-type"]) {
-			    list($success, $fail) = $func($$key, $graphtool);
+			    list($success, $fail) = $func($real, $graphtool);
 			} else {
-			    list($success, $fail) = $func($$key);
+			    list($success, $fail) = $func($real);
 			}
 			
 			foreach ($fail as $fkey => $fval) {
@@ -228,7 +246,7 @@ foreach ($constants as $key => $val) {
 
 			/* Needed for the pnmtojpeg<->ppmtojpeg silliness */
 			if (!strcmp($key, "pnmDir")) {
-				$graphpath  = $$key;
+				$graphpath  = $real;
 			}
 		}
 	}
@@ -322,9 +340,15 @@ foreach ($defaults as $key => $val) {
 
 }
 $data .= "?" . ">\n";
-
-echo $view;
 ?>
+
+<input type=submit name="go_back" value="<- <?php echo _("Edit Config") ?>">
+<?php if (!$error) { ?>
+ <input type=submit name="go_next" value="<?php echo _("Save Config") ?> ->">
+<?php } ?>
+
+<pre>
+<?php echo $view; ?>
 
 <input type=hidden name=data value=<?php echo urlencode($data) ?>>
 </pre>

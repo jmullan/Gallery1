@@ -9,10 +9,6 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		    }
 ?>
 <?php 
-	if (! (@include($GALLERY_BASEDIR . "ML_files/ML_config.php")) || ! $gallery->ML) {
-                include ($GALLERY_BASEDIR ."setup/ML_wizard.php");
-                exit;
-        }
 	require($GALLERY_BASEDIR . "errors/configure_instructions.php") ;
 ?>
 <html>
@@ -27,12 +23,9 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 </span>
 <p>
 <center>
-<table width=80%><tr><td>
-<?php echo _("If you want to reconfigure language settings first, start the"); ?> 
-<a href="<?php echo $GALLERY_BASEDIR ?>setup/ML_wizard.php"><?php echo _("ML Configuration Wizard") ?></a>
-</td></tr>
+<table width=80%>
 <tr><td>
-<?php echo _("Gallery must be configured before you can use it.") ?>
+<?php echo _("Gallery must be configured before you can use it.") ?>  
 <?php echo _("First, you must put it into configuration mode.  Here's how") ?>:
 <?php echo configure("configure"); ?>
 <p>

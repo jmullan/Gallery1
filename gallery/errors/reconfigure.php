@@ -9,10 +9,6 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		    }
 ?>
 <?php 
-	if (! (@include($GALLERY_BASEDIR . "ML_files/ML_config.php")) || ! $gallery->ML) {
-                include ($GALLERY_BASEDIR ."setup/ML_wizard.php");
-                exit;
-        }
 
 	require($GALLERY_BASEDIR . "errors/configure_instructions.php") ;
 ?>
@@ -22,7 +18,6 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir=<?php echo $gallery->direction ?>>
-<?php include ($gallery->path ."ML_files/ML_info_addon.inc"); ?>
 <center>
 <span class="title"> <?php echo _("Gallery needs Reconfiguration") ?> </span>
 <p>

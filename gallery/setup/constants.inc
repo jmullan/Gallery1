@@ -3,12 +3,17 @@
 <font size=+2><?php echo _("Gallery Setup: Step 2") ?></font>
 <table width=80%><tr><td>
 
-<?php echo _("In this step you'll customize various settings for Gallery.") ?>
-<?php echo _("If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.") ?>
-<?php echo _("Even so, you'll probably have to make at least some minor changes.") ?>
-<?php echo _("If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much.") ?>
+<?php 
+echo _("In this step you'll customize various settings for Gallery.") . "  " .
+     _("If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.") . "  " .
+     _("Even so, you'll probably have to make at least some minor changes.") . "  " .
+     _("If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much.");
+?>
 
 </td></tr></table>
+<input type=submit name="go_back" value="<- <?php echo _("System Check Page") ?>">
+<input type=submit name="go_next" value="<?php echo _("Album Defaults") ?> ->">
+<input type=submit name="go_defaults" value="<?php echo _("Use Defaults") ?>">
 <p>
 
 <table border=0 cellspacing=0 cellpadding=0>
@@ -28,12 +33,24 @@ foreach ($constants as $key => $val) {
 	if ($gallery->app->$key) {
 		$val["value"] = $gallery->app->$key;
 	}
+	else {
+		eval ("\$defn=\$gallery->app->$key;");
+		if ($defn) {
+			eval ('$val["value"] = $gallery->app->'.$key.';');
+		}
+	}
 
-	if (!$go_defaults && isset($$key)) {
-	    $val["value"] = $$key;
+	if (!$go_defaults) {
+        	if (ereg("^(..*)\[.*\]$", $key, $matches)) {
+			$line='if (isset($'.$key.')) $val["value"] = $'.$key . ';';
+			eval($line);
+		}
+		else if( isset($$key)) {
+			$val["value"] = $$key;
 
-	    if (get_magic_quotes_gpc()) {
-		$val["value"] = stripslashes($val["value"]);
+		}
+		if (get_magic_quotes_gpc()) {
+			$val["value"] = stripslashes($val["value"]);
 	    }
 	}
 

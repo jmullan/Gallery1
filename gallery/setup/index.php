@@ -1,10 +1,14 @@
 <?php /* $Id$ */ ?>
 <?php 
+if (!isset($GALLERY_BASEDIR)) {
+	$GALLERY_BASEDIR = '../';
+}
+
 
 	require ('init.php');
-	require ('../ML_files/ML_config.php') ;
-	require("../util.php");
-	require("functions.inc");
+	require ('functions.inc');
+	require ($GALLERY_BASEDIR . 'util.php');
+initLanguage();
 ?>
 <html>
 <head>
@@ -17,10 +21,13 @@
 
 <body dir=<?php echo $gallery->direction ?>>
 <?php
-	include ($gallery->path ."ML_files/ML_info_addon.inc");
 
 if (fs_file_exists("../config.php")) {
 	include("../config.php");
+}
+
+if (!isset($gallery->ML)) {
+	$gallery->ML->mode = 2;
 }
 
 if (function_exists("posix_getpwuid")) {
@@ -58,7 +65,7 @@ foreach ($tmp as $key) {
 }
 
 foreach (array_keys($preserve) as $key) {
-	if ($$key) {
+	if ($$key && !is_array($$key)) {
 		$$key = urldecode($$key);
 	}
 }
@@ -81,9 +88,23 @@ if (in_array($setup_page, $legit)) {
 function embed_hidden($key) {
 	global $$key;
 
-	$buf .= "<input type=hidden name=$key value=\"";
-	$buf .= urlencode($$key);
-	$buf .= "\">\n";
+	$buf = "";
+	$real = $$key;
+	if (ereg("^(..*)\[.*\]$", $key, $matches)) {
+		$line='global $'.$matches[1].'; $real = $'.$key . ';';
+		eval($line);
+	}
+	if (is_array($real)) {
+		foreach ($real as $value) {
+			$buf .= "<input type=hidden name=${key}[] value=\"";
+			$buf .= urlencode($value);
+			$buf .= "\">\n";
+		}
+	} else {
+		$buf .= "<input type=hidden name=$key value=\"";
+		$buf .= urlencode($real);
+		$buf .= "\">\n";
+	}
 	return $buf;
 }
 

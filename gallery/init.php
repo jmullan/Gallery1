@@ -81,6 +81,8 @@ if (!$gallery->register_globals) {
     }
 }
 
+require($GALLERY_BASEDIR . "Version.php");
+require($GALLERY_BASEDIR . "util.php");
 /* Load bootstrap code */
 if (substr(PHP_OS, 0, 3) == 'WIN') {
 	include($GALLERY_BASEDIR . "platform/fs_win32.php");
@@ -93,8 +95,7 @@ if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
         global $gallery;
 	include($GALLERY_BASEDIR . "config.php");
 }
-require($GALLERY_BASEDIR . "Version.php");
-require($GALLERY_BASEDIR . "util.php");
+initLanguage();
 
 /*
  * Detect if we're running under SSL and adjust the URL accordingly.
@@ -137,8 +138,6 @@ if (!isset($GALLERY_NO_SESSIONS)) {
     require($GALLERY_BASEDIR . "session.php");
 }
 
-// Include ML stuff
-@include ($GALLERY_BASEDIR . "ML_files/ML_config.php");
 
 if (isset($GALLERY_EMBEDDED_INSIDE) &&
     !strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {

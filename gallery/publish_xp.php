@@ -64,7 +64,6 @@ if(empty($cmd)){
   <?php echo getStyleSheetLink() ?>
   </head>
 <body>
-<?php include ($gallery->path ."ML_files/ML_info_addon.inc") ; ?>
 <?php
 //---------------------------------------------------------
 //-- check version --
