@@ -245,7 +245,7 @@ includeHtmlWrap("photo.header");
 ?>
 
 <!-- Top Nav Bar -->
-<table border=1 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
+<table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
 
 <tr>
 <td>
