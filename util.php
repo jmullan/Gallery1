@@ -721,7 +721,7 @@ function preprocessImage($dir, $file) {
 
 			// Dump the rest to a file
 			$tempfile = tempnam($dir, $file);
-			if ($newfd = fs_fopen($tempfile, "w", 0777)) {
+			if ($newfd = fs_fopen($tempfile, "w", 0755)) {
 				while (!feof($fd)) {
 					/*
 					 * Copy the rest of the file.  Specify a length
