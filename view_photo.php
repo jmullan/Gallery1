@@ -19,6 +19,15 @@
  */
 ?>
 <?
+if ($id) {
+	$index = $album->getPhotoIndex($id);
+	if ($index == -1) {
+		$index = 1;
+	}
+} else {
+	$id = $album->getPhotoId($index);
+}
+
 $numPhotos = $album->numPhotos(editMode());
 $next = $index+1;
 if ($next > $numPhotos) {
@@ -85,7 +94,7 @@ if (!strcmp($album->fields["border"], "off")) {
 if ($first) {
         echo "<< <a href=../view_album.php>back to index</a>";
 } else {
-        echo "<a href=".$prev."><< previous</a>";
+        echo "<a href=".$album->getPhotoId($prev)."><< previous</a>";
 }      
 ?>
 </td>
@@ -93,19 +102,19 @@ if ($first) {
 <font size=+0 face=<?=$album->fields["font"]?>>
 <?=$index?> of <?=$numPhotos?>
 
-(
+
 <?
 if (!$album->isMovie($index)) {
 	if ($album->isResized($index)) {
 		if ($full) {
-			echo("<a href=$index?full=0>show scaled</a>");
+			echo("(<a href=$id?full=0>show scaled</a>)");
 		} else {
-			echo("<a href=$index?full=1>show full size</a>");
+			echo("(<a href=$id?full=1>show full size</a>)");
 		}
 	}      
 } 
 ?>
-)
+
 </td>
 <td width=<?=$mainWidth/3?> align=right>
 <font size=+0 face=<?=$album->fields["font"]?>>
@@ -113,7 +122,7 @@ if (!$album->isMovie($index)) {
 if ($last) {
         echo "<a href=../view_album.php>back to index</a> >>";
 } else {
-	echo "<a href=".$next.">next >></a>";
+	echo "<a href=".$album->getPhotoId($next).">next >></a>";
 }      
 ?>
 </td>
@@ -145,9 +154,9 @@ if ($last) {
 if (!$album->isMovie($index)) {
 	if ($album->isResized($index)) { 
 		if ($full) { 
-			echo "<a href=$index?full=0>";
+			echo "<a href=$id?full=0>";
 	 	} else {
-			echo "<a href=$index?full=1>";
+			echo "<a href=$id?full=1>";
 		}
 		$openAnchor = 1;
 	}
