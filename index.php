@@ -51,11 +51,24 @@ if (!strcmp($op, "modload")) {
 	}
 
 	/*
-	 * Only allow one of the following files to be included:
+	 * As a security precaution, only allow allow one of the following files to be included.
+	 * If you want Gallery to allow you to include other files (such as the random photo block)
+	 * then you need to add the name of the file including any relevant path components to this
+	 * array.
 	 */
-	$safe_to_include = array("albums.php", "view_photo.php", "view_album.php");
+	$safe_to_include =
+		 array(
+		       "albums.php",
+		       "view_photo.php",
+		       "view_album.php",
+		       );
+	
 	if (!in_array($include, $safe_to_include)) {
-	    print "Security error";
+	    print "Security error!  The file you tried to include ";
+	    print "is not on the <b>approved file list</b>.  To include ";
+	    print "this file you must edit Gallery's index.php ";
+	    print "and add <b>$include</b> to the <i>\$safe_to_include</i> ";
+	    print "array.";
 	    exit;
 	}
 
