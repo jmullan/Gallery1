@@ -103,11 +103,11 @@ $constants = array(
 
 $defaults = array(
 	"bordercolor" => array(
- 		"desc" => "Color of borders",
+ 		"desc" => "Color of image borders",
  		"value" => "black"
 	),
 	"border" => array(
-		"desc" => "Size of borders",
+		"desc" => "Size of image borders",
 		"value" => 1,
 		"choices" => array("off", 1, 2, 3)
 	),
@@ -133,11 +133,6 @@ $defaults = array(
 			"upon upload. ",
 		"value" => 600,
 		"choices" => array("off", 400, 500, 600, 700, 800)
-	),
-	"imageborders" => array(
-		"desc" => "Show image borders",
-		"value" => "no",
-		"choices" => array("yes", "no")
 	),
 	"page" => array(
 		"desc" => "Starting page",
