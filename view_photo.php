@@ -21,9 +21,15 @@
 <?
 $numPhotos = $album->numPhotos(editMode());
 $next = $index+1;
-if ($next > $numPhotos) $next = 1;
+if ($next > $numPhotos) {
+	//$next = 1;
+        $last = 1;
+}
 $prev = $index-1;
-if ($prev <= 0) $prev = $numPhotos;
+if ($prev <= 0) {
+	//$prev = $numPhotos;
+        $first = 1;
+}
 
 /*
  * We might be prev/next navigating using this page
@@ -53,22 +59,31 @@ if ($album->fields["linkcolor"]) {
 
 <center>
 <table border=0 width=1%>
+<!-- Top Nav Bar -->
 <tr>
-<td width=33% align=left>
-<font size=+2 face=<?=$album->fields["font"]?>>
-<a href=<?=$prev?>>Previous Photo</a>
+<td align=left>
+<font size=+1 face=<?=$album->fields["font"]?>>
+<?
+if ($first) {
+	//echo "<a href=../view_album.php></a>";
+} else {
+	echo "< <a href=".$prev.">Previous</a> | ";
+}
+if ($last) {
+	echo "<a href=../view_album.php>Done</a>";
+} else {
+	echo "<a href=".$next.">Next</a> >";
+}
+?>
 </td>
-<td width=33% align=center>
+<td></td>
+<td align=right>
 <font size=+1 face=<?=$album->fields["font"]?>>
 <?=$index?> of <?=$numPhotos?>
 </td>
-<td width=33% align=right>
-<font size=+2 face=<?=$album->fields["font"]?>>
-<a href=<?=$next?>>Next Photo</a>
-</td>
 </tr>
 
-<tr>
+<!-- image row --><tr>
 <td colspan=3 align=center>
 <font face=<?=$album->fields["font"]?>>
 <?=$album->getPhotoTag($index, $full)?>
@@ -80,42 +95,51 @@ if ($album->fields["linkcolor"]) {
 </td>
 </tr>
 
+<!-- bottom nav bar -->
 <tr>
 <td align=left>
-<font size=+2 face=<?=$album->fields["font"]?>>
-<a href=<?=$prev?>>Previous Photo</a>
+<font size=+1 face=<?=$album->fields["font"]?>>
+<?
+if ($first) {
+	//echo "<a href=../view_album.php></a>";
+} else {
+	echo "< <a href=".$prev.">Previous</a> | ";
+}
+if ($last) {
+	echo "<a href=../view_album.php>Done</a>";
+} else {
+	echo "<a href=".$next.">Next</a> >";
+}
+?>
 </td>
-<td align=center>
-<font size=+2 face=<?=$album->fields["font"]?>>
+<td></td>
+<td align=right>
+<font size=+0 face=<?=$album->fields["font"]?>>
 <?
 if (!$album->isMovie($index)) {
 	if ($album->isResized($index)) { 
 		if ($full) { 
 ?>
-<a href=<?=$index?>?full=0>Scaled Version</a>
+<a href=<?=$index?>?full=0>Show Scaled</a>
 <?	 	} else { ?>
-<a href=<?=$index?>?full=1>Full Version</a>
+<a href=<?=$index?>?full=1>Show Full Size</a>
 <?
 	}
 }
 ?>
-&nbsp;
 <? } ?>
-</td>
-<td align=right>
-<font size=+2 face=<?=$album->fields["font"]?>>
-<a href=<?=$next?>>Next Photo</a>
 </td>
 </tr>
 
 <tr>
-<td colspan=3 align=center>
+<td colspan=3 align=left>
+<hr size=1>
 <? if (!$album->isMovie($index) && isCorrectPassword($edit)) { ?>
 <a href=<?= popup("../resize_photo.php?index=$index") ?>>[resize photo]</a>
 <br>
 <? } ?>
-<font size=+3 face=<?=$album->fields["font"]?>>
-<a href=../view_album.php> Return to <b><?= $album->fields["title"] ?></b> </a>
+<font size=+0 face=<?=$album->fields["font"]?>>
+^ <a href=../view_album.php> Return to <b><?= $album->fields["title"] ?></b> </a>
 </td>
 </tr>
 
