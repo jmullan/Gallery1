@@ -4,7 +4,7 @@ $GALLERY_URL = dirname(dirname(getenv("SCRIPT_NAME")));
 
 $outfile = "$GALLERY_DIR/config.php";
 copy("gpl.txt", $outfile);
-if ($fd = @fopen($outfile, "w")) {
+if ($fd = @fopen($outfile, "a")) {
 	fwrite($fd, urldecode($data));
 	fclose($fd);
 } else {
