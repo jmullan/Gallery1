@@ -12,9 +12,12 @@
 <table width=80%><tr><td>
 Gallery is not configured correctly.  There could be a variety of reasons
 for this.  The easiest way to fix this problem is to re-run the configuration
-wizard.  In a shell do this:
+wizard.  First, put Gallery in configuration mode:
 <p>
 <?= configure("configure"); ?>
 <p>
 Then launch the <a href="<?=$GALLERY_BASEDIR?>setup/index.php">configuration wizard</a>.
+
+<? include("errors/configure_help.php"); ?>
+
 </table>
