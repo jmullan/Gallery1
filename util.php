@@ -384,6 +384,7 @@ function reload() {
 function dismissAndLoad($url) {
 	if (isDebugging()) {
 		echo("<BODY onLoad='opener.location = \"$url\"; '>");
+		echo("Loading URL: $url");
 		echo("<center><b>" . _("Not closing this window because debug mode is on") ."</b></center>");
 		echo("<hr>");
 	} else {

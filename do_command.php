@@ -139,7 +139,12 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 				       	$comment->getName(),
 				       	makeAlbumURL($gallery->album->fields["name"], 
 						$gallery->album->getPhotoId($index))));
-		dismissAndReload();
+		if (!empty($return)) {
+			dismissAndLoad($return);
+		}
+		else {
+			dismissAndReload();
+		}
 	} else {
 	        header("Location: " . makeAlbumHeaderUrl());
 	}
