@@ -115,7 +115,7 @@ if ($numAccess != $numAlbums) {
 }
 $adminText .= ",&nbsp;" . pluralize_n($numPhotos, _("image"), _("images"), _("no image"));
 if ($maxPages > 1) {
-	$adminText .= _(" on ") . pluralize_n($maxPages, _("page"), _("pages"), _("no pages")) . "&nbsp;";
+	$adminText .= " " . _("on") . " " . pluralize_n($maxPages, _("page"), _("pages"), _("no pages")) . "&nbsp;";
 }
 $adminText .= "</span>";
 $adminCommands = "<span class=\"admin\">";
@@ -250,10 +250,12 @@ for ($i = $start; $i <= $end; $i++) {
   <td align=left valign=top>
   <span class="title">
   <a href=<?php echo $albumURL ?>>
+  <?php _("title") ?>
   <?php echo editField($gallery->album, "title") ?></a>
   </span>
   <br>
   <span class="desc">
+  <?php _("description") ?>
   <?php echo editField($gallery->album, "description") ?>
   </span>
   <br>

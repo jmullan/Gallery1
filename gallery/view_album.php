@@ -256,7 +256,7 @@ if ($numAlbums) {
 }
 $adminText .= " " . _("in this album");
 	if ($maxPages > 1) {
-		$adminText .= _(" on ") . pluralize_n($maxPages, _("page") , _("pages") , _("0 pages")) ;
+		$adminText .= " " . _("on") . " " . pluralize_n($maxPages, _("page") , _("pages") , _("0 pages")) ;
 	}
 
 if ($gallery->user->canWriteToAlbum($gallery->album) && 
@@ -570,10 +570,12 @@ if ($numPhotos) {
 			if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
 				if ($gallery->album->isAlbumName($i)) {
 					if ($gallery->user->canChangeTextOfAlbum($myAlbum)) {	
+						_("title");
 						showChoice(_("Edit Title"),
 							"edit_field.php", 
 							array("set_albumName" => $myAlbum->fields["name"],
 								"field" => "title")) . 
+						_("description");
 						showChoice(_("Edit Description"),
 							"edit_field.php",
 							array("set_albumName" => $myAlbum->fields["name"],

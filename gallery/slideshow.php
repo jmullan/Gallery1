@@ -534,7 +534,7 @@ if ($gallery->user->canViewFullImages($gallery->album)) {
  echo "&nbsp;&nbsp;||";
 ?>
 
-    &nbsp;<?php echo _("Delay: ") ?>
+    &nbsp;<?php echo _("Delay:") ?>
 <?php echo 
 drawSelect("time", array(1 => "1 ". _("second"),
                          2 => "2 ". _("seconds"),
@@ -553,7 +553,7 @@ drawSelect("time", array(1 => "1 ". _("second"),
     <script language="Javascript">
     /* show the blend select if appropriate */
     if (browserCanBlend) {
-	document.write('&nbsp;<?php echo _("Transition: ") ?><?php 
+	document.write('&nbsp;<?php echo _("Transition:") ?><?php 
 		print ereg_replace("\n", ' ', drawSelect("transitionType", 
 		$transitionNames,
 		$defaultTransition,

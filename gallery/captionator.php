@@ -175,7 +175,7 @@ if ($numPhotos == 1) {
 } else {
         $adminText .= "$numPhotos ". _("items in this album") ;
     if ($maxPages > 1) {
-        $adminText .= _(" on ") . pluralize_n($maxPages, _("page") ,_("pages"), _("no pages"));
+        $adminText .= " " . _("on") . " " . pluralize_n($maxPages, _("page") ,_("pages"), _("no pages"));
     }
 }
 
@@ -285,7 +285,6 @@ if ($numPhotos) {
       	<span class="admin"><br><?php echo _("Keywords") ?>:</span><br>
       	<input type=text name="new_keywords_<?php echo $i ?>" size=65 value="<?php echo $oldKeywords ?>">
 
-	// this needs to be translated automatically.  Add it as a todo.
        	<span class="admin"><br><?php echo _("Capture Date") ?>:</span>
 <?php
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($i);
@@ -307,7 +306,7 @@ if ($numPhotos) {
 } else {
     echo("<tr>");
     echo("  <td>");
-    echo(_("  NO PHOTOS!"));
+    echo(_("NO PHOTOS!"));
     echo("  </td>");
     echo("</tr>");
 }

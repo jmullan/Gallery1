@@ -426,7 +426,7 @@ if ($slide_dir == 1) {
 }
 ?>
     &nbsp;&nbsp;||
-    &nbsp;<?php echo _("Delay: ") ?>
+    &nbsp;<?php echo _("Delay:") ?>
 <?php echo 
 drawSelect("time", array(1 => "1 ". _("second"),
                          2 => "2 ". _("seconds"),

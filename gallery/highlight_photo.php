@@ -58,8 +58,7 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <center>
-<?php echo _("Do you want this photo to be the one that shows up on the ") ?><br>
-<?php echo _("gallery page, representing this album?") ?>
+<?php echo _("Do you want this photo to be the one that shows up on the gallery page, representing this album?") ?>
 <br>
 <br>
 

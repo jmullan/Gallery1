@@ -39,7 +39,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 	
-if ($save) {
+if (isset($save)) {
     $gallery->album->fields["summary"] = $summary;
 	$gallery->album->fields["title"] = $title;
 	$gallery->album->fields["bgcolor"] = $bgcolor;
@@ -125,6 +125,7 @@ if ($save) {
 </tr>
 <tr>
 <td><?php echo _("Borders") ?></td>
+<?php _("off") ?>
 <td><select name="border"><?php echo selectOptions($gallery->album, "border", array("off", 1, 2, 3, 4)) ?></select></td>
 </tr>
 <tr>
@@ -141,6 +142,7 @@ if ($save) {
 </tr>
 <tr>
 <td><?php echo _("Show <i>Return to</i> link") ?></td>
+<?php _("yes"); _("no"); ?>
 <td><select name="returnto"><?php echo selectOptions($gallery->album, "returnto", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
@@ -169,6 +171,7 @@ if ($save) {
 </tr>
 <tr>
 <td><?php echo _("Which photo printing service<br>do you want to let visitors use?") ?></td>
+<?php _("none"); _("shutterfly without donation"); ?>
 <td><select name="print_photos"><?php echo selectOptions($gallery->album, "print_photos", array("none", "shutterfly", "shutterfly without donation", "photoaccess", "fotokasten")) ?></select></td>
 </tr>
 <?php

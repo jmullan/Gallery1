@@ -156,7 +156,7 @@ correctPseudoUsers($uAdd, $ownerUid);
 <center>
 <span class="popuphead"><?php echo _("Album Permissions") ?></span>
 <br>
-<?php echo _("Changing permissions for ") ?><b><?php echo $gallery->album->fields["title"] ?></b>
+<?php echo _("Changing permissions for") ?> <b><?php echo $gallery->album->fields["title"] ?></b>
 
 <?php echo makeFormIntro("album_permissions.php", 
 			array("name" => "albumperms_form")) ?>

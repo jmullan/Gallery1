@@ -769,7 +769,7 @@ function drawSelect($name, $array, $selected, $size, $attrList=array()) {
 		if (!strcmp($uid, $selected)) {
 			$sel = "selected";
 		} 
-		$buf .= "<option value=$uid $sel>". _($username) ."</option>\n";
+		$buf .= "<option value=$uid $sel>". $username ."</option>\n";
 	}
 	$buf .= "</select>\n";
 

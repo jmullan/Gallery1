@@ -206,8 +206,8 @@ foreach ($constants as $key => $val) {
 						"<br><b><code>" .
 						"chmod -R 777 $dir</code>" .
 						"</code></b><br><br>" .
-					        _("Also make sure that if you have an ") .
-					        "<a href=phpinfo.php>open_basedir ". _("restriction") ."</a> " .
+					        _("Also make sure that if you have an") .
+					        " <a href=phpinfo.php>open_basedir ". _("restriction") ."</a> " .
 						", " . _("then this tmp directory should be under the open_basedir path")));
 				$error = 1;
 				continue;

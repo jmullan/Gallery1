@@ -201,7 +201,7 @@ function check_php()
 	} else if (!strncmp($version, "4.0.3", 5)) {
 		$fail["fail-incompatible"]++;
 	} else {
-		$success[] = "PHP v" . phpversion() . _(" is OK");
+		$success[] = sprintf(_("PHP v%s is OK"), phpversion());
 	}
 
 	return array($success, $fail);
@@ -221,7 +221,7 @@ function check_php4_1()
         } elseif ($version[1] <1) {
 		$fail["fail-too-old"]++;
         } else{
-		$success[] = "PHP v" . phpversion() . _(" is OK");
+		$success[] = sprintf(_("PHP v%s is OK"), phpversion());
 	}
 
 	return array($success, $fail);

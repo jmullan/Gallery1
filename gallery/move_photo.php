@@ -205,7 +205,7 @@ if ($gallery->album->isAlbumName($index)) {
 <?php echo $gallery->album->getThumbnailTag($index) ?>
 <p>
 <?php echo makeFormIntro("move_photo.php", array("name" => "theform")); ?>
-<?php echo _("Select the new location: ") ?>
+<?php echo _("Select the new location:") ?> 
 <input type=hidden name="index" value="<?php echo $index ?>">
 <select name="newIndex">
 <?php

@@ -41,13 +41,13 @@ $uname = removeTags($uname);
 
 <html>
 <head>
-	<title><?php echo _("Login to ") ?><?php echo $gallery->app->galleryTitle ?></title>
+	<title><?php echo _("Login to") ?> <?php echo $gallery->app->galleryTitle ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<span class="popuphead"><?php echo _("Login to ") ?><?php echo $gallery->app->galleryTitle ?></span>
+<span class="popuphead"><?php echo _("Login to") ?> <?php echo $gallery->app->galleryTitle ?></span>
 <br>
 <br>
 <?php

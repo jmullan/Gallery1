@@ -35,22 +35,17 @@ $checklist = array(
 			_("versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.") . "  " .
 			_("Upgrade to at least PHP 4.0.4pl1 if you can."),
 	     	"func" => "check_php",
-		"fail-too-old" => _("You're running version ") . phpversion() .
-			".  " . _("You need to upgrade to PHP") . " " . $MIN_PHP_MAJOR_VERSION,
-		"fail-incompatible" => _("You're running version ") . phpversion() .
-			_(" which has known bugs that cause Gallery to fail."),
+		"fail-too-old" => sprintf(_("You're running version %s.  You need to upgrade to PHP %s."), phpversion(), $MIN_PHP_MAJOR_VERSION),
+		"fail-incompatible" => sprintf(_("You're running version %s which has known bugs that cause Gallery to fail."),  phpversion())
 	),
 	"php4.1" => array(
 		"optional" => 1,
 		"desc" => _("Check to see if you are running PHP 4.1 or greater.") . "  " .
 			 _("If you want to run the multi-language version of gallery, you need php 4.1.") . "  " .
-			 _("") . "  " .
 			_("Upgrade to at least PHP 4.1 if you can."),
 	     	"func" => "check_php4_1",
-		"fail-too-old" => _("You're running version ") . phpversion() .
+		"fail-too-old" => _("You're running version") .  " " . phpversion() .
 			".  " . _("You need to upgrade to at least PHP 4.1.0 if you want to run the multilanguage version."),
-		"fail-incompatible" => _("You're running version ") . phpversion() .
-			_(" which has known bugs that cause Gallery to fail."),
 	),
 	"safe_mode" => array(
 		"desc" => _("Check to see if PHP is running in <b>Safe Mode</b>.") . "  " .
@@ -163,7 +158,7 @@ $checklist = array(
 			_("jpegtran is a freely distributable tool distributed by the Independent JPEG Group as part of libjpeg.") . "  " .
 			_("Source may be found at") .
 			" <a href=http://www.ijg.org/>". _("the IJG homepage.") . "  " .
-			_("Binaries may be found at ") ."<a href=http://jpegclub.org/>" . _("the JPEG club website") ."</a> " .
+			_("Binaries may be found at") . " <a href=http://jpegclub.org/>" . _("the JPEG club website") ."</a> " .
 			_("or in the libjpeg package of Linux distributions."),
 		"open-basedir-note" => $common_messages["open-basedir-active"],
 	),	
@@ -405,7 +400,7 @@ $constants = array_merge(
 	"default_language" => array(
 		"prompt" => _("Which language do you want as your default language"), 
 		"optional" => 1, 
-		"desc" => _(""),
+		"desc" => _("This is what you will see as admin, and what users will see no other preference is set."),
 		"choices" => available_locales(),
 		"value" => "en_US"
 	),

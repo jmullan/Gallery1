@@ -129,7 +129,7 @@ if ($urls) {
 		if ($id) {
 			processingMsg(urldecode($url));
 		} else {
-			processingMsg(_("Could not open url: ")."'$url'");
+			processingMsg(_("Could not open url:")." '$url'");
 			continue;
 		} 
 	
@@ -214,7 +214,7 @@ if ($urls) {
 			}
 	
 			/* Tell user how many links we found, but delay processing */
-			processingMsg(_("Found ") . count($image_tags) . _(" Images."));
+			processingMsg(sprintf(_("Found %d images"), count($image_tags)));
 		}
 	}
 } /* if ($urls) */

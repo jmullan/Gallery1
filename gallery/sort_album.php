@@ -82,22 +82,22 @@ if ($gallery->album->getHighlight()) {
 <?php echo makeFormIntro("sort_album.php"); ?>
 <table>
   <tr>
-<td><input checked type="radio" name="sort" value="upload"><?php echo _(" By Upload Date") ?></td>
+<td><input checked type="radio" name="sort" value="upload"><?php echo _("By Upload Date") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="itemCapture"><?php echo _(" By Picture-Taken Date") ?></td>
+    <td><input type="radio" name="sort" value="itemCapture"><?php echo _("By Picture-Taken Date") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="filename"><?php echo _(" By Filename") ?></td>
+    <td><input type="radio" name="sort" value="filename"><?php echo _("By Filename") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="click"><?php echo _(" By Number of Clicks") ?></td>
+    <td><input type="radio" name="sort" value="click"><?php echo _("By Number of Clicks") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="caption"><?php echo _(" By Caption") ?></td>
+    <td><input type="radio" name="sort" value="caption"><?php echo _("By Caption") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="comment"><?php echo _(" By Number of Comments") ?></td>
+    <td><input type="radio" name="sort" value="comment"><?php echo _("By Number of Comments") ?></td>
   </tr>
   <tr>
     <td><input type="radio" name="sort" value="random"> <?php echo _("Randomly") ?></td>
