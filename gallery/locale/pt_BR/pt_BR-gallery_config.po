@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_4
+# Version: 1_4_4-u1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -20,14 +20,14 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 #
-# Daniel Neto <danielneto@terra.com.br>, 2003-2004
+# Daniel Neto <danielneto AT terra DOT com DOT br>, 2003-2004
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-08-03 14:45+0200\n"
-"PO-Revision-Date: 2004-06-16 13:42-0300\n"
+"POT-Creation-Date: 2004-08-12 17:43+0200\n"
+"PO-Revision-Date: 2004-08-05 15:35-0300\n"
 "Last-Translator: Daniel Neto <danielneto AT terra DOT com DOT br>\n"
 "Language-Team: Daniel Neto <danielneto AT terra DOT com DOT br>\n"
 "MIME-Version: 1.0\n"
@@ -390,7 +390,7 @@ msgstr[1] "%s faltando, corrompido ou mais antigo do que esperado."
 
 #: ../setup/check_versions.php:73 ../setup/check_versions.php:104
 msgid "All files okay."
-msgstr "Todos os arquivos estão okay."
+msgstr "Todos os arquivos estão ok."
 
 #: ../setup/check_versions.php:80
 #, php-format
@@ -503,21 +503,19 @@ msgstr "<b>Nota</b>: Em algumas raras circunstâncias, o Gallery acha que o <b>Mo
 
 #: ../setup/config_data.inc:126
 msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
-msgstr ""
+msgstr "A função <b>exec()</b> é usada pelo Gallery para iniciar processos tais como NetPBM, ImageMagick e jhead. Se o <b>exec()</b> está desabilitado em seu servidor, então o Gallery não será capaz de funcionar."
 
 #: ../setup/config_data.inc:128
 msgid "The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."
-msgstr ""
+msgstr "A função <b>exec()</b> foi desabilitada em seu servidor. O Gallery não funcionará com essa configuração do PHP."
 
 #: ../setup/config_data.inc:132
-#, fuzzy
 msgid "Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."
-msgstr "Permite ao arquivo <b>.htaccess</b> do Gallery realizar opções de configuração específicos para a aplicação Gallery. Isto é controlado pelo administrador do servidor web, então não será sempre que você poderá alterá-lo. Os principais problemas que você terá por não possuir esta função são as de não poder enviar arquivos maiores de 2MB (ex. grandes arquivos ZIP) e você não será capaz de utilizar o <b>mod_rewrite</b> (veja abaixo)."
+msgstr "Permite ao arquivo <b>.htaccess</b> do Gallery realizar opções de configuração específicos para a aplicação Gallery. Isto é controlado pelo administrador do servidor web, então não será sempre que você poderá alterá-lo. Os principais problemas que você terá por não possuir esta função são as de não poder enviar arquivos maiores de 2MB (ex. grandes arquivos ZIP)."
 
 #: ../setup/config_data.inc:134
-#, fuzzy
 msgid "Apache is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:"
-msgstr "O Apache não está obedecendo ao seu arquivo <b>.htaccess</b>. Tente inserir o conteúdo abaixo no arquivo <b<httpd.conf</b> do seu servidor web:"
+msgstr "O Apache não está obedecendo às linhas 'php_value' em seu arquivo <b>.htaccess</b>. Tente inserir o conteúdo abaixo no arquivo <b<httpd.conf</b> do seu servidor web:"
 
 #: ../setup/config_data.inc:138
 msgid "If you are running PHP in CGI mode, this message is unavoidable."
@@ -1368,31 +1366,31 @@ msgstr "A quantidade de tempo máximo em segundos que qualquer operação deve leva
 
 #: ../setup/config_data.inc:890
 msgid "Random Block Cache Time"
-msgstr ""
+msgstr "Random Block Cache Time"
 
 #: ../setup/config_data.inc:891
 msgid "This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."
-msgstr ""
+msgstr "Esta é a quantidade de tempo que o Bloco Randômico realizará cache de dados das suas fotos e álbuns, acelerando as requisições por fotos aleatórios. Se seus álbuns são modificados frequentemente, você deverá ajustar esse valor para números baixos para ter certeza que suas novas fotos sejam escolhidas rapidamente e para prevenir tentativas de obter fotos que talvez tenham sido apagadas. O cache é automaticamente regenerado quando um usuário visualiza o block randômico após o tempo limite ter expirado."
 
 #: ../setup/config_data.inc:893
 msgid "24 Hours"
-msgstr ""
+msgstr "24 Horas"
 
 #: ../setup/config_data.inc:893
 msgid "12 Hours"
-msgstr ""
+msgstr "12 Horas"
 
 #: ../setup/config_data.inc:893
 msgid "6 Hours"
-msgstr ""
+msgstr "6 Horas"
 
 #: ../setup/config_data.inc:893
 msgid "1 Hour"
-msgstr ""
+msgstr "1 Hora"
 
 #: ../setup/config_data.inc:894
 msgid "30 Minutes"
-msgstr ""
+msgstr "30 Minutos"
 
 #: ../setup/config_data.inc:897
 msgid "Debug mode"
@@ -1507,11 +1505,11 @@ msgstr "Especifica qual álbum será mostrado como um ícone para todos as entradas
 
 #: ../setup/config_data.inc:969
 msgid "Maximum Albums Returned"
-msgstr ""
+msgstr "Retornado Máximo de Álbuns"
 
 #: ../setup/config_data.inc:970
 msgid "This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."
-msgstr ""
+msgstr "Este valor é o número máximo de álbuns que o gerador RSS irá mostrar ao usuário. Somente os álbuns modificados mais recentemente serão escolhidos por este valor."
 
 #: ../setup/config_data.inc:977
 msgid "Visible Albums Only"
@@ -1704,9 +1702,8 @@ msgid "Printing Services"
 msgstr "Serviço de Impressão"
 
 #: ../setup/config_data.inc:1162
-#, fuzzy
 msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
-msgstr "Permitir aos visitantes imprimir fotos diretamente a partir do álbum. Fotokasten é um serviço de impressão localizado na Alemanha, facilitando o mercado Europeu. EZ Prints, PhotoAccess e Shutterfly são localizados nos Estados Unidos. Todos os serviço farão uma pequena doação para o projeto Gallery a cada foto que você imprima. Se você escolher o Shutterlfy &quot;sem doação&quot;, Gallery cobrará 2 centavos de dólar americano por foto impressa, e 1,8 centavos de dólar americano serão doados ao projeto Gallery. EZ Prints, PhotoAccess and Fotokasten não cobram taxa extra para doações ao Gallery. Usando estes serviços é uma ótima maneira de você ajudar a dar suporte a este software gratuito."
+msgstr "Permitir aos visitantes imprimir fotos diretamente a partir do álbum. Fotokasten é um serviço de impressão localizado na Alemanha, facilitando o mercado Europeu. EZ Prints, PhotoAccess e Shutterfly são localizados nos Estados Unidos. Todos os serviço farão uma pequena doação para o projeto Gallery a cada foto que você imprima. Usar estes serviços é uma ótima maneira de você ajudar a dar suporte a este software gratuito."
 
 #: ../setup/config_data.inc:1192
 msgid "Gallery Link"
@@ -2110,7 +2107,7 @@ msgstr "Editar Configuração"
 msgid "Save Config"
 msgstr "Salvar Configuração"
 
-#: ../setup/confirm.inc:459 ../setup/login.inc:68
+#: ../setup/confirm.inc:459 ../setup/login.inc:69
 msgid "Refresh"
 msgstr "Atualizar"
 
@@ -2123,7 +2120,7 @@ msgstr[1] "Um erro"
 
 #: ../setup/confirm.inc:461
 msgid "No errors."
-msgstr "Sem erros."
+msgstr "Nenhum erro."
 
 #: ../setup/confirm.inc:462
 msgid "See Details below."
@@ -2332,7 +2329,7 @@ msgstr "Valor faltando"
 
 #: ../setup/functions.inc:340
 msgid "<b>exec()</b> is not disabled on this server."
-msgstr ""
+msgstr "<b>exec()</b> não está desabilitadno neste servidor."
 
 #: ../setup/functions.inc:359
 msgid "I can read your <b>.htaccess</b> file."
@@ -2635,7 +2632,7 @@ msgstr "Nome Completo"
 
 #: ../setup/functions.inc:1431 ../setup/functions.inc:1433
 #: ../setup/functions.inc:1437 ../setup/functions.inc:1445
-#: ../setup/login.inc:89
+#: ../setup/login.inc:90
 msgid "Username"
 msgstr "Nome de usuário"
 
@@ -2721,50 +2718,50 @@ msgstr "Encontrada versão esperada %s."
 msgid "Security violation"
 msgstr "Violação de segurança"
 
-#: ../setup/login.inc:34
+#: ../setup/login.inc:35
 msgid "Please enter username and password."
 msgstr "Por favor, informe nome do usuário e senha."
 
-#: ../setup/login.inc:52
+#: ../setup/login.inc:53
 msgid "Invalid username or password"
 msgstr "Nome de usuário ou senha inválidos"
 
-#: ../setup/login.inc:57
+#: ../setup/login.inc:58
 msgid "User is not an admin - access denied"
 msgstr "Usuário não é um administrador - acesso negado"
 
-#: ../setup/login.inc:65
+#: ../setup/login.inc:66
 #, php-format
 msgid "Reset %s Password"
 msgstr "Restaurar Senha de %s"
 
-#: ../setup/login.inc:66
+#: ../setup/login.inc:67
 #, php-format
 msgid "To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;.  Once you have done that, press the refresh button below.  If you know your current admin password, please remove the &quot;%s&quot; file from the server."
 msgstr "Para continuar o processo de restauração de senha, você deve editar o arquivo &quot;%s&quot;, remover quaisquer informações dentro dele e adicionar o texto &quot;%s&quot;. Uma vez que você tiver feito esta operação, pressione o botão Refresh abaixo. Se você souber sua senha de administrador atual, por favor remova o arquivo &quot;%s&quot; do servidor web."
 
-#: ../setup/login.inc:79
+#: ../setup/login.inc:80
 #, php-format
 msgid "%s configuration"
 msgstr "Configuração de %s"
 
-#: ../setup/login.inc:80
+#: ../setup/login.inc:81
 msgid "You must log in as an administrator to edit this server's configuration."
 msgstr "Você deve autenticar como um administrador para editar as configurações do servidor."
 
-#: ../setup/login.inc:93
+#: ../setup/login.inc:94
 msgid "Password"
 msgstr "Senha"
 
-#: ../setup/login.inc:99
+#: ../setup/login.inc:100
 msgid "Login"
 msgstr "Autenticar"
 
-#: ../setup/login.inc:100
+#: ../setup/login.inc:101
 msgid "Reset"
 msgstr "Restaurar"
 
-#: ../setup/login.inc:101
+#: ../setup/login.inc:102
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -2833,7 +2830,7 @@ msgstr "Sua configuração foi salva com sucesso!"
 
 #: ../setup/write.inc:201
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
-msgstr ""
+msgstr "Nós sugerimos enfativamente que você execute 'secure.sh' ou execute o comando chmod 644 em seus arquivos .htaccess e config.php para aumento de segurança."
 
 #: ../setup/write.inc:208
 msgid "Note"
@@ -2935,9 +2932,3 @@ msgstr "Borda de Madeira"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr "Uma borda de madeira com textura"
-
-#~ msgid "with donation"
-#~ msgstr "com doação"
-
-#~ msgid "without donation"
-#~ msgstr "sem doação"
