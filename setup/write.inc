@@ -152,8 +152,8 @@ if (strlen($editPassword[2]) > 0) {
        			$admin->setEmail($adminEmail);
 		}
 		$admin->setCanCreateAlbums(true);
-		$admin->save();
 	}
+	$admin->save();
 }
 ?>
 
