@@ -86,7 +86,7 @@ if ($user->canCreateAlbums()) {
 }
 
 if ($user->isLoggedIn()) {
-	$adminCommands .= "<a href=".popup("user_preferences").">[Preferences]</a>";
+	$adminCommands .= "<a href=".popup("user_preferences.php").">[Preferences]</a>";
 	$adminCommands .= "<a href=do_command.php?cmd=logout&return=albums.php>[Logout]</a>";
 } else {
 	$adminCommands .= "<a href=".popup("login.php").">[Login]</a>";
