@@ -270,10 +270,17 @@ for ($i = $start; $i <= $end; $i++) {
   </span>
   <br>
   <?php if (strcmp($gallery->app->default["showOwners"], "no")) { ?>
-  <span class="desc">
-  <?php echo _("Owner: ") ?><a href=mailto:<?php echo $owner->getEmail() ?>><?php echo $owner->getFullName() ?></a>
-  </span>
-  <br>
+	  <span class="desc">
+		  <?php 
+		  echo _("Owner:") . " ";
+		  if (!$owner->getEmail()) {
+			  echo $owner->getFullName();
+		  } else {
+			  echo "<a href=\"mailto:" . $owner->getEmail() . "\">" . $owner->getFullName() . "</a>";
+		  }
+		  ?> 
+		  </span>
+		  <br>
   <?php } ?>
 
   <?php if ($gallery->user->canDeleteAlbum($gallery->album)) { ?>
