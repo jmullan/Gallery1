@@ -264,9 +264,9 @@ function showChoice($label, $target, $args, $class="popup") {
 }
 
 $adminText = "<span class=\"admin\">";
-$albums_str= pluralize_n($numAlbums, _("1 sub-album"), _("sub-albums"), _("No albums"));
-$imags_str= pluralize_n($numPhotos, _("1 image"), _("images") , _("no images"));
-$pages_str=pluralize_n($maxPages, _("1 page") , _("pages") , _("0 pages"));
+$albums_str= pluralize_n2(ngettext("1 sub-album", "%d sub-albums",$numAlbums), $numAlbums, _("No albums"));
+$imags_str= pluralize_n2(ngettext("1 image", "%d images", $numPhotos), $numPhotos, _("no images"));
+$pages_str=pluralize_n2(ngettext("1 page", "%d pages", $maxPages), $maxPages, _("0 pages"));
 
 if ($numAlbums && $maxPages > 1) {
 	$adminText .= sprintf(_("%s and %s in this album on %s"),
@@ -606,13 +606,12 @@ if (canVote())
 		print sprintf(_("To vote for an image, click on %s."), $options);
  		print "  ".sprintf(_("You MUST click on %s for your vote to be recorded."), 
 				"<b>"._("Vote")."</b>");
- 		if ($gallery->album->getPollType() == "rank")
- 		{
- 		    print "  ".sprintf(_("You have a total of %s and can change them if you wish."),
-				    pluralize_n($gallery->album->getPollScale(),
-					    _("1 vote"), _("votes"), 
-					    _("no votes"))) .
-				    '</span><p>';
+ 		if ($gallery->album->getPollType() == "rank") {
+			$voteCount=$gallery->album->getPollScale();
+			print "  ".
+				sprintf(_("You have a total of %s and can change them if you wish."), 
+					pluralize_n2(ngettext("1 vote", "%d votes", $voteCount))) .
+				'</span><p>';
  		}
  		else
  		{
@@ -854,7 +853,8 @@ if ($numPhotos) {
 				echo '<br><br><span class="fineprint">';
 				echo _("Changed: ") ." ". $myAlbum->getLastModificationDate();
  				echo "\n<br>";
-				echo _("Contains: ") ." ". pluralize_n(array_sum($myAlbum->numVisibleItems($gallery->user)), _("1 item"), _("items"), _("0 items")) . '.';
+				$visibleItems=array_sum($myAlbum->numVisibleItems($gallery->user));
+				echo _("Contains: ") ." ". pluralize_n2(ngettext("1 item", "%d items", $visibleItems)) . '.';
 				$lastCommentDate = $myAlbum->lastCommentDate();
 				if ($lastCommentDate > 0) {
 					print lastCommentString($lastCommentDate, $displayCommentLegend);
@@ -862,7 +862,7 @@ if ($numPhotos) {
 				echo '</span><br>';
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) {
 					echo '<span class="viewcounter">';
-					echo _("Viewed:") . " ". pluralize_n($myAlbum->getClicks(), _("1 time") , _("times"), _("0 times"));
+					echo _("Viewed:") . " ". pluralize_n2(ngettext("1 time", "%d times", $myAlbum->getClicks()));
 					echo ".<br></span>";
 				}
 				echo '</span>';
@@ -879,7 +879,7 @@ if ($numPhotos) {
 				echo("<br>");
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
 					echo '<span class="viewcounter">';
-					echo _("Viewed:") ." ". pluralize_n($gallery->album->getItemClicks($i), _("1 time"), _("times") ,_("0 times")) ;
+					echo _("Viewed:") ." ". pluralize_n2(ngettext("1 time", "%d times", $gallery->album->getItemClicks($i)));
 					echo ".<br></span>";
 				}
 			}

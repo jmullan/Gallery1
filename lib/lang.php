@@ -37,30 +37,44 @@ function pluralize_n($amt, $one, $more, $none) {
         }
 }
 
+function pluralize_n2($singPlu, $count=1, $none='') {
+	if ($count == 0 && $none != '') {
+		return $none;
+	} else {
+		return sprintf($singPlu, $count);
+	}
+}
+
 function getBrowserLanguage() {
 	/* Detect the first Language of users Browser
 	** Some Browser only send 2 digits like he or de.
-	** The we generate he_HE, de_DE and so on. if this is wrong, 
-	** like he_HE, this is catched later with the aliases
+	** This is caught later with the aliases
 	*/
 
 	global $HTTP_SERVER_VARS;
 
 	if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
 		$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
+
+		/* Maybe there are some extra infos we dont need, so we strip them. */
 		$spos=strpos($lang[0],";");
 		if ($spos >0) {
 			$lang[0]=substr($lang[0],0,$spos);
 		}
 		
+		/* browser may send aa-bb, then we convert to aa_BB */
 		$lang_pieces=explode ("-",$lang[0]);
-
-		if (strlen($lang[0]) ==2) {
-			return $lang[0] ."_".strtoupper($lang[0]);
+		if (strlen($lang[0]) >2) {
+			$browserLang=strtolower($lang_pieces[0]). "_".strtoupper($lang_pieces[1]) ;
 		} else {
-			return strtolower($lang_pieces[0]). "_".strtoupper($lang_pieces[1]) ;
+			$browserLang=$lang[0];
 		}
 	}
+	else {
+		$browserLang=false;
+	}
+	
+	return $browserLang;
 }
 
 function setLangDefaults($nls) {
@@ -148,7 +162,7 @@ function forceStaticLang() {
 	}
 }	
 
-function initLanguage() {
+function initLanguage($noHeader=false) {
 
 	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $HTTP_SERVER_VARS, $HTTP_COOKIE_VARS, $HTTP_GET_VARS, $HTTP_SESSION_VARS;
@@ -318,17 +332,17 @@ function initLanguage() {
 
 	/* 
 	** Set Charset header
-	** Only when we're not embedded, because headers might be sent already.
+	** We do this only if we are not embedded and the "user" wants it.
+	** Because headers might be sent already.
 	*/
-	if (! isset($GALLERY_EMBEDDED_INSIDE)) {
+	if (! isset($GALLERY_EMBEDDED_INSIDE) || $noHeader == false) {
 		header('Content-Type: text/html; charset=' . $gallery->charset);
 	}
-
 
 	/*
 	** Test if we're using gettext.
 	** if yes, do some gettext settings.
-	** if not emulate _() function
+	** if not emulate _() function or ngettext()
 	**/
 
 	if (gettext_installed()) {
@@ -337,6 +351,80 @@ function initLanguage() {
 
 	}  else {
 		emulate_gettext();
+	}
+
+	// We test this separate because ngettext() is only available in PHP >=4.2.0 but _() in all PHP4
+	if (! ngettext_installed()) {
+		emulate_ngettext();
+	}
+}
+
+
+function getTranslationFile() {
+
+	global $gallery;
+	static $translationfile;
+
+	if (empty($translationfile)) {
+		$filename=dirname(dirname(__FILE__)) . '/locale/' . $gallery->language . '/'. $gallery->language . '-gallery_' .  where_i_am()  . '.po';
+		$translationfile=file($filename);
+	}
+
+return $translationfile;
+}
+
+function emulate_ngettext() {
+	// Substitute ngettext function
+	/* NOTE: this is the first primitive Step !!
+	   It fully ignores the plural definition !!
+	*/
+
+	global $translation;
+	global $gallery;
+
+	if (in_array($gallery->language,array_keys(gallery_languages())) &&
+		$gallery->language != 'en_US') {
+		$lines=getTranslationFile();
+		foreach ($lines as $key => $value) {
+		//We trim the String to get rid of cr/lf
+			$value=trim($value);
+			if (stristr($value, "msgid") && ! stristr($lines[$key-1],"fuzzy")) {
+				if (stristr($lines[$key+1],"msgid_plural")) {
+					$singular_key=substr($value, 7,-1);
+					$translation[$singular_key]=substr(trim($lines[$key+2]),11,-1);
+					$plural_key=substr(trim($lines[$key+1]), 14,-1);
+					$translation[$plural_key]=substr(trim($lines[$key+3]),11,-1);
+				}
+			}
+		}
+		// Substitute ngettext() function
+		function ngettext($singular, $quasi_plural,$num=0) {
+			if ($num == 1) {
+				if (! empty($GLOBALS['translation'][$singular])) {
+					return $GLOBALS['translation'][$singular] ;
+				} else {
+					return $singular;
+				}
+			}
+			else {
+				if (! empty($GLOBALS['translation'][$quasi_plural])) {
+					return $GLOBALS['translation'][$quasi_plural] ;
+				}
+				else {
+					return $quasi_plural;
+				}
+			}
+		}
+	}
+	else {
+		// There is no translation file or we are using original (en_US), so just return what we got
+		function ngettext($singular, $quasi_plural,$num=0) {
+			if ($num == 1) {
+				return $singular;
+			} else {
+				return $quasi_plural;
+			}
+		}
 	}
 }
 
@@ -384,12 +472,23 @@ function gettext_installed() {
 	}
 }
 
-//returns all languages in this gallery installation
+function ngettext_installed() {
+	if (in_array("ngettext", get_loaded_extensions()) && function_exists('ngettext')) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+
+/* returns all languages in this gallery installation */
 function gallery_languages() {
 	$nls=getNLS();
 	return $nls['language'];
 }
 
+/* returns all language relative that gallery could collect. */
 function getNLS() {
 	static $nls;
 
@@ -432,7 +531,6 @@ function i18n($buf) {
 /*
 ** Convert all HTML entities to their applicable characters
 */
-
 function unhtmlentities ($string) {
 	global $gallery;
 
@@ -474,7 +572,6 @@ return $return;
  * user typing values.  The $value of each pair should be translated
  * as appropriate in the ML version.
  */
-
 function automaticFieldsList() {
         return array(
 		'Upload Date' 	=> _("Upload Date"),
@@ -486,7 +583,6 @@ function automaticFieldsList() {
 /* These are custom fields which can be entered manual by the User
 ** Since they are used often, we translated them.
 */
-
 function translateableFields() {
 	return array(
 		'Title'		=> _("Title"),

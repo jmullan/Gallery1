@@ -119,10 +119,15 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <!-- admin section begin -->
 <?php 
 $adminText = "<span class=\"admin\">";
-$toplevel_str= pluralize_n($numAlbums, ($numAccess != $numAlbums) ? _("1 top-level album") : _("1 album"), ($numAccess != $numAlbums) ? _("top-level albums") : _("albums"), _("No albums"));
+if ($numAccess == $numAlbums) {
+	$toplevel_str= pluralize_n2(ngettext("1 album","%d albums",$numAlbums), $numAlbums, _("no albums"));
+} else {
+	$toplevel_str= pluralize_n2(ngettext("1 top-level album","%d top-level albums",$numAlbums), $numAlbums, _("No top-level albums"));
+}
+
 $total_str= sprintf(_("%d total"), $numAccess); 
-$image_str= pluralize_n($numPhotos, _("1 image"), _("images"), _("no images"));
-$page_str= pluralize_n($maxPages, _("1 page"), _("pages"), _("no pages"));
+$image_str= pluralize_n2(ngettext("1 image", "%d images", $numPhotos), $numPhotos, _("no images"));
+$page_str= pluralize_n2(ngettext("1 page", "%d pages", $maxPages), $maxPages, _("no pages"));
 
 if (($numAccess != $numAlbums) && $maxPages > 1) {
 	$adminText .= sprintf(_("%s (%s), %s on %s"), $toplevel_str, $total_str, $image_str, $page_str);
@@ -350,12 +355,15 @@ for ($i = $start; $i <= $end; $i++) {
   <span class="fineprint">
    <?php 
 	echo sprintf(_("Last changed on %s."), $gallery->album->getLastModificationDate() );
-	echo sprintf(_("This album contains %s." ), pluralize_n(array_sum($gallery->album->numVisibleItems($gallery->user)), _("1 item"), _("items"), _("no items")));
+	$visibleItems=array_sum($gallery->album->numVisibleItems($gallery->user));
+	echo pluralize_n2(ngettext("This album contains 1 item", "This album contains %d items", $visibleItems));	
 	if (!($gallery->album->fields["display_clicks"] == "no") && !$gallery->session->offline) {
 ?>
-   <br><br><?php echo sprintf(_("This album has been viewed %s since %s."),
-		   pluralize_n($gallery->album->getClicks(), _("1 time"), _("times") , _("0 times")),
-		   $gallery->album->getClicksDate() );
+   <br><br><?php
+	$clickCount=$gallery->album->getClicks();
+	echo sprintf(_("This album has been viewed %s since %s."),
+		pluralize_n2(ngettext("1 time", "%d times", $clickCount), $clickCount, _("0 times")),
+		$gallery->album->getClicksDate());
 }
 $albumName=$gallery->album->fields["name"];
 if ($gallery->user->canWriteToAlbum($gallery->album) &&
