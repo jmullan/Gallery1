@@ -408,13 +408,12 @@ function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 	$tmpImageNum = 0;
 	
 	if (isset($gallery->album)) {
-		$includeFullSize = $gallery->user->canViewFullImages($gallery->album);
 
 		foreach($gallery->album->photos as $albumItemObj) {
 			if(!$albumItemObj->isAlbum()) { //Make sure this object is a picture, not an album
 				$tmpImageNum++;
 
-	 			if ($includeFullSize) {
+	 			if ($gallery->user->canViewFullImages($gallery->album) || !$albumItemObj->isResized()) {
 					$response->setProperty( 'image.name.'.$tmpImageNum, $albumItemObj->image->name.'.'.$albumItemObj->image->type );
 					$fullSize = $albumItemObj->getDimensions(1);
 					$response->setProperty( 'image.raw_width.'.$tmpImageNum, $fullSize[0] );
