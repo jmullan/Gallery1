@@ -41,6 +41,20 @@ class Album {
 		$this->fields["resize_size"] = $app->default["resize_size"];
 	}
 
+	function integrityCheck() {
+		global $app;
+
+		$changed = 0;
+		$check = array("thumb_size", "resize_size");
+		foreach ($check as $field) {
+			if (!$this->fields[$field]) {
+				$this->fields[$field] = $app->default[$field];
+				$changed = 1;
+			}
+		}
+		return $changed;
+	}
+
 	function shufflePhotos() {
 		shuffle($this->photos);
 	}
@@ -507,11 +521,13 @@ class AlbumItem {
 			unlink("$dir/$name.gif");
 		} 
 
-		/* Set our image */
+		/* Set our image.  It might not load if this is a movie. */
 		$img = loadImage("$dir", "$name", "$tag");
-		$this->image = new Image;
-		$this->image->setFile($dir, $name, $tag);
-		$this->image->setDimensions(ImageSX($img), ImageSY($img));
+		if ($img) {
+			$this->image = new Image;
+			$this->image->setFile($dir, $name, $tag);
+			$this->image->setDimensions(ImageSX($img), ImageSY($img));
+		}
 
 		if (!strcmp($tag, "avi") || !strcmp($tag, "mpg")) {
 			/* Use a preset thumbnail */
