@@ -202,6 +202,12 @@ for ($i = $start; $i <= $end; $i++) {
          this album so that the URL is not so generic!
         </span>
    <? } ?>
+   <? if ($gallery->album->versionOutOfDate()) { ?>
+  <br>
+  <span class="error">
+   Note:  This album is out of date! <a href="#" onClick="<?= popup("upgrade_album.php")?>">[upgrade album]</a>
+  </span>
+   <? } ?>
   <? } ?>
 
   <br>
