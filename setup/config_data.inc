@@ -126,11 +126,15 @@ $constants = array(
 	"zipinfo" => array(
 		"desc" => "The path to the 'zipinfo' binary",
 		"value" => locateFile("zipinfo"),
+		"must-be-file" => 1,
+		"must-be-executable" => 1,
 		"optional" => 1
 	),
 	"unzip" => array(
 		"desc" => "The path to the 'unzip' binary",
 		"value" => locateFile("unzip"),
+		"must-be-file" => 1,
+		"must-be-executable" => 1,
 		"optional" => 1
 	),
 	"movieThumbnail" => array(
