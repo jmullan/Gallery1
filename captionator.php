@@ -166,7 +166,7 @@ if ($borderwidth == 0) {
     $bordercolor = "black";
 }
 
-$adminText = "<span class=\"popup\">". _("Multiple Caption Editor.") . " ";
+$adminText = "<span>". _("Multiple Caption Editor.") . " ";
 if ($numPhotos == 1) {
         $adminText .= _("1 photo in this album") ;
 } else {

@@ -79,14 +79,13 @@ if (isset($action) && $action == 'delete' && isset($id)) {
   <title><?php echo isset($albumDelete) ? _("Delete Album") : _("Delete Photo") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <?php
 if ($gallery->album && isset($id)) {
 	if (isset($albumDelete)) {
 ?>
 <div class="popuphead"><?php echo _("Delete Album") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <?php 
         echo makeFormIntro("delete_photo.php", array('name' => 'deletephoto_form',
               'onsubmit' => "deletephoto_form.confirm.disabled = true;"));
@@ -143,7 +142,6 @@ if ($gallery->album && isset($id)) {
 }
 ?>
 <?php print gallery_validation_link("delete_photo.php", false, array('id' => $id, 'index' => $index)); ?>
-</div>
 </div>
 </body>
 </html>
