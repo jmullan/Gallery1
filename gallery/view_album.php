@@ -953,7 +953,11 @@ if ($numPhotos) {
 					showChoice(_("Rotate/Flip") ." $label", "rotate_photo.php", array("index" => $i));
 				}
 				if (!$gallery->album->isMovie($id)) {
-					showChoice(_('Highlight') . " $label", 'do_command.php', array('cmd' => 'highlight', 'index' => $i));
+					/* Show Highlight Album/Photo only when this i a photo, or Album has a highlight */
+					$nestedAlbum=$gallery->album->getNestedAlbum($i);
+					if (! $gallery->album->isAlbumName($i) || $nestedAlbum->hasHighlight()) {
+						showChoice(_('Highlight') . " $label", 'do_command.php', array('cmd' => 'highlight', 'index' => $i));
+					}
 				}
 				if ($gallery->album->isAlbumName($i)) {
 				        $myAlbumName = $gallery->album->isAlbumName($i);

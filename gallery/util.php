@@ -218,6 +218,12 @@ function exec_internal($cmd) {
 function getDimensions($file, $regs=false) {
 	global $gallery;				
 
+	if (! fs_file_exists($file)) {
+		if (isDebugging()) {
+			echo "<br>". sprintf(_("The file %s does not exist ?!"),$file);
+		}
+		exit;
+	}
 	if ($regs === false)
 		$regs = getimagesize($file);
 	if (($regs[0] > 1) && ($regs[1] > 1))
