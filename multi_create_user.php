@@ -27,6 +27,8 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
+list ($create, $cancel, $dismiss) = getRequestVar(array('create', 'cancel', 'dismiss'));
+
 if (!$gallery->user->isAdmin() || $gallery->app->multiple_create != "yes") {
 	echo _("You are not allowed to perform this action!");
 	exit;	
@@ -44,25 +46,25 @@ if (isset($create))
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Create Multiple Users") ?></div>
-<div class="popup" align="cemter">
+<div class="popup" align="center">
 <?php
-	if (empty($membersfile_name)) {
+	if (empty($_FILES['membersfile']['name'])) {
 		$gErrors["membersfile"] = _("No file selected.");
 		$errorCount++;
 	} else {
-	       	if (!is_uploaded_file($membersfile)) {
+	       	if (!is_uploaded_file($_FILES['membersfile']['tmp_name'])) {
 		       	$gErrors["membersfile"] = 
-				sprintf(_("Upload failed: %s."), $membersfile_name);
+				sprintf(_("Upload failed: %s."), $_FILES['membersfile']['name']);
 		       	$errorCount++;
 	       	}
 	}
 
 	if (!$errorCount) {
-		$users=@file($membersfile);
+		$users=@file($_FILES['membersfile']['tmp_name']);
 		if (sizeof($users) == 0) {
 			$gErrors["membersfile"] =
 			sprintf(_("Upload went fine, but the file is not readable, please make sure %s is accessable for your webserver. (Also check openbasedir restrictions.)"), 
-				dirname($membersfile));
+				dirname($_FILES['membersfile']));
 			$errorCount++;
 		}
 	}
@@ -72,7 +74,7 @@ if (isset($create))
 		{
 			$users=explode("\r\n", $users[0]);
 		}
-		unlink($membersfile);
+		unlink($_FILES['membersfile']['tmp_name']);
 		$total_added=0;
 		$total_skipped=0;
 		foreach ($users as $user)
