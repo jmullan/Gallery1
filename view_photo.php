@@ -431,7 +431,7 @@ if (!$gallery->album->isMovie($id)) {
 		$adminCommands .= popup_link("[" . _("photo properties") ."]", "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false);
 	}
 
-	if (strcmp($gallery->album->fields["print_photos"],"none") &&
+	if (sizeof($gallery->album->fields["print_photos"] == 0) &&
 		!$gallery->session->offline &&
 		!$gallery->album->isMovie($id)){
 
@@ -583,60 +583,50 @@ includeHtmlWrap("inline_photo.header");
 
 <!-- image -->
 
-<table width=1% border=0 cellspacing=0 cellpadding=0>
-<?php
-echo("<tr $bordercolor>");
-echo("<td colspan=3 height=$borderwidth><img src=\"$top/images/pixel_trans.gif\"></td>");
-echo("</tr><tr>");
-echo("<td $bordercolor width=$borderwidth>");
-echo("<img src=\"$top/images/pixel_trans.gif\" width=$borderwidth height=1>");
-echo("</td><td align='center'>");
 
-$photoTag = $gallery->album->getPhotoTag($index, $full);
+<?
+
+$href="";
 if (!$gallery->album->isMovie($id)) {
 	if ($gallery->album->isResized($index) && !$do_fullOnly) { 
 		if ($full) { 
-			echo "<a href=\"" . makeAlbumUrl($gallery->session->albumName, $id) . "\">";
+			$href= makeAlbumUrl($gallery->session->albumName, $id);
 	 	} else if ($gallery->user->canViewFullImages($gallery->album)) {
-			echo "<a href=\"" . makeAlbumUrl($gallery->session->albumName, $id, array("full" => 1)) . "\">";
+			$href= makeAlbumUrl($gallery->session->albumName, $id, array("full" => 1));
 		}
-		$openAnchor = 1;
 	}
 } else {
-	echo "<a href=\"" . $gallery->album->getPhotoPath($index) . "\" target=\"other\">";
-	$openAnchor = 1;
+	$href= $gallery->album->getPhotoPath($index) ;
 }
 
-if ($fitToWindow && !$GALLERY_EMBEDDED_INSIDE) { ?>
-<script language="javascript1.2">
+$photoTag="";
+$frame= $gallery->album->fields['image_frame'];
+if ($fitToWindow && !$GALLERY_EMBEDDED_INSIDE) { 
+	$frame="solid"; // no frame with fitToWindow (maybe we can fix this later)
+$photoTag .= "<script language=\"javascript1.2\">
 	// <!--
 	fitToWindow();
 	// -->
-</script><noscript><?php
+</script><noscript>";
+}
+$photoTag .= $gallery->album->getPhotoTag($index, $full);
+if ($fitToWindow && !$GALLERY_EMBEDDED_INSIDE) { 
+	$photoTag .=  "</noscript>";
 }
 
-echo $photoTag;
 
-if ($fitToWindow) {
-	echo "</noscript>";
-}
+list($width, $height) = $image->getDimensions($full);
+$gallery->html_wrap['borderColor'] = $gallery->album->fields["bordercolor"];
+$gallery->html_wrap['borderWidth'] = $gallery->album->fields["border"];
+$gallery->html_wrap['frame'] = $frame;
+$gallery->html_wrap['imageWidth'] = $width;
+$gallery->html_wrap['imageHeight'] = $height;
+$gallery->html_wrap['imageHref'] = $href;
+$gallery->html_wrap['imageTag'] = $photoTag;
+$gallery->html_wrap['pixelImage'] = $imageDir . "/pixel_trans.gif";
 
-if ($openAnchor) {
-	echo "</a>";
- 	$openAnchor = 0;
-}
-
-echo("</td>");
-echo("<td $bordercolor width=$borderwidth>");
-echo("<img src=\"$top/images/pixel_trans.gif\" width=$borderwidth height=1>");
-echo("</td>");
-echo("</tr>");
-echo("<tr $bordercolor>");
-echo("<td colspan=3 height=$borderwidth><img src=\"$top/images/pixel_trans.gif\"></td>");
+includeHtmlWrap("inline_photo.frame");
 ?>
-</tr>
-</table>
-
 <table border=0 width=<?php echo $mainWidth ?> cellpadding=0 cellspacing=0>
 <!-- caption -->
 <tr>

@@ -119,6 +119,9 @@ class Album {
 	       $this->fields["slideshow_type"]=$gallery->app->default["slideshow_type"];
 	       $this->fields["slideshow_length"]=$gallery->app->default["slideshow_length"];
 	       $this->fields["slideshow_recursive"]=$gallery->app->default["slideshow_recursive"];
+	       $this->fields["album_frame"]=$gallery->app->default["album_frame"];
+	       $this->fields["thumb_frame"]=$gallery->app->default["thumb_frame"];
+	       $this->fields["image_frame"]=$gallery->app->default["image_frame"];
 
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
@@ -231,6 +234,9 @@ class Album {
 				"slideshow_type",
 				"slideshow_length",
 				"slideshow_recursive",
+				"album_frame",
+				"thumb_frame",
+				"image_frame",
 				);
 		foreach ($check as $field) {
 			if (!isset($this->fields[$field])) {

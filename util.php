@@ -2779,4 +2779,51 @@ function gettext_installed() {
 		return false;
 	}
 }
+
+function available_frames($description_only=false) {
+	global $GALLERY_BASEDIR;
+	$opts=array(
+			'none' => _("None"), 
+			'dots' => _("Dots"), 
+			'solid' => _("Solid"), 
+			);
+	$descriptions="<dl>" .
+		"<dt>"._("None")."</dt><dd>"._("No frames")."</dd>" .
+		"<dt>"._("Dots")."</dt><dd>"._("Just a simple dashed border around the thumb.")."</dd>" .
+		"<dt>"._("Solid")."</dt><dd>"._("Just a simple solid border around the thumb.")."</dd>" ;
+	$dir = "$GALLERY_BASEDIR/html_wrap/frames";
+       	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
+	       	while ($file = readdir($fd)) {
+			$subdir="$dir/$file";
+			$frameinc="$subdir/frame.def";
+			if (fs_is_dir($subdir) && fs_file_exists($frameinc)) {
+				$name=NULL;
+				$description=NULL;
+				require($frameinc);
+				if (empty($name )) {
+					$name=$file;
+				}
+				if (empty($description )) {
+					$description=$file;
+				}
+				$opts[$file]=$name;
+				$descriptions.="<dt>$name</dt><dd>$description</dd>";
+			} else {
+				if (false && isDebugging()) 
+				{
+					gallery_error(sprintf(_("Skipping %s."),
+								$subdir));
+				}
+			}
+		}
+	} else {
+		gallery_error(sprintf(_("Can't open %s"), $dir));
+	}
+	if ($description_only) {
+		return $descriptions;
+	} else {
+	       	return $opts;
+	}
+}
+
 ?>

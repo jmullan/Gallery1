@@ -606,7 +606,13 @@ if ($numPhotos) {
 			$gallery->html_wrap['borderColor'] = $bordercolor;
 			$gallery->html_wrap['borderWidth'] = $borderwidth;
 			$gallery->html_wrap['pixelImage'] = $imageDir . "/pixel_trans.gif";
-			$scaleTo = $gallery->album->fields["thumb_size"];
+			if ($gallery->album->isAlbumName($i)) {
+				$scaleTo = $gallery->album->fields["thumb_size"];
+			} else {
+				$scaleTo=0;  // thumbs already the right 
+					    //	size for this album
+			}
+
 			list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i, $scaleTo);
 			if ($iWidth == 0) {
 			    $iWidth = $gallery->album->fields["thumb_size"];
@@ -614,26 +620,29 @@ if ($numPhotos) {
 			if ($iHeight == 0) {
 			    $iHeight = 100;
 			}
-			$gallery->html_wrap['thumbWidth'] = $iWidth;
-			$gallery->html_wrap['thumbHeight'] = $iHeight;
+			$gallery->html_wrap['imageWidth'] = $iWidth;
+			$gallery->html_wrap['imageHeight'] = $iHeight;
 
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isMovie($id)) {
-				$gallery->html_wrap['thumbTag'] = $gallery->album->getThumbnailTag($i);
-				$gallery->html_wrap['thumbHref'] = $gallery->album->getPhotoPath($i);
+				$gallery->html_wrap['imageTag'] = $gallery->album->getThumbnailTag($i);
+				$gallery->html_wrap['imageHref'] = $gallery->album->getPhotoPath($i);
+				$gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
 				includeHtmlWrap('inline_moviethumb.frame');
 			} elseif ($gallery->album->isAlbumName($i)) {
 				$myAlbumName = $gallery->album->isAlbumName($i);
 				$myAlbum = new Album();
 				$myAlbum->load($myAlbumName);
 
-				$gallery->html_wrap['thumbTag'] = $myAlbum->getHighlightAsThumbnailTag($scaleTo);
-				$gallery->html_wrap['thumbHref'] = makeAlbumUrl($myAlbumName);
+				$gallery->html_wrap['imageTag'] = $myAlbum->getHighlightAsThumbnailTag($scaleTo);
+				$gallery->html_wrap['imageHref'] = makeAlbumUrl($myAlbumName);
+				$gallery->html_wrap['frame'] = $gallery->album->fields['album_frame'];
 				includeHtmlWrap('inline_albumthumb.frame');
 
 			} else {
-				$gallery->html_wrap['thumbTag'] = $gallery->album->getThumbnailTag($i);
-				$gallery->html_wrap['thumbHref'] = makeAlbumUrl($gallery->session->albumName, $id);
+				$gallery->html_wrap['imageTag'] = $gallery->album->getThumbnailTag($i);
+				$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->session->albumName, $id);
+				$gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
 				includeHtmlWrap('inline_photothumb.frame');
 			}
 

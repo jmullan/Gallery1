@@ -73,6 +73,9 @@ if (isset($save)) {
 	$gallery->album->fields["slideshow_type"] = $slideshow_type;
 	$gallery->album->fields["slideshow_recursive"] = $slideshow_recursive;
 	$gallery->album->fields["slideshow_length"] = $slideshow_length;
+	$gallery->album->fields["album_frame"] = $album_frame;
+	$gallery->album->fields["thumb_frame"] = $thumb_frame;
+	$gallery->album->fields["image_frame"] = $image_frame;
 	$gallery->album->save();
 
 	if (isset($setNested)) {
@@ -210,7 +213,7 @@ foreach ($services as $item => $data) {
 	} else {
 		$value = array('checked' => false);
 	}
-	$checked = $value['checked'] ? ' checked' : '';
+	$checked = !empty($value['checked']) ? ' checked' : '';
 	print "<input name=\"print_photos[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a target=\"_blank\" href=\"${data['url']}\">${data['name']}</a><br />\n";
 	if (isset($data['radio'])) {
 		if (!isset($value['donation'])) {
@@ -237,6 +240,18 @@ foreach ($services as $item => $data) {
 <tr>
 <td><?php echo _("Slideshow Length") ?></td>
 <td><input type=text name="slideshow_length" value="<?php echo $gallery->album->fields["slideshow_length"] ?>"></td>
+</tr>
+<tr>
+<td><?php echo _("Album Frame") ?></td>
+<td><select name="album_frame"><?php echo selectOptions($gallery->album, "album_frame", available_frames()) ?></select></td>
+</tr>
+<tr>
+<td><?php echo _("Thumb Frame") ?></td>
+<td><select name="thumb_frame"><?php echo selectOptions($gallery->album, "thumb_frame", available_frames()) ?></select></td>
+</tr>
+<tr>
+<td><?php echo _("Image Frame") ?></td>
+<td><select name="image_frame"><?php echo selectOptions($gallery->album, "image_frame", available_frames()) ?></select></td>
 </tr>
 <?php
 if ($gallery->app->use_exif) {

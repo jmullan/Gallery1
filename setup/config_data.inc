@@ -341,18 +341,13 @@ $constants =  array_merge(
 		"value" => "yes"
 	),
 
-	"separator4" => array(
-		"type" => "separator",
-		"title" => _("Layout")
-	),
-
-	"album_thumb_frame_style" => array(
-		"prompt" => "Frame around album thumb",
-		"desc" => sprintf(_("%s marks an album with a special frame.  There are %d different styles:"),Gallery(),2) .
-			"<dl><dt>". _("Polaroid") ."</dt><dd>". _("This draws a frame which make the thumb look like a polaroid"). "</dd>".
-			"<dt>". _("Dots") ."</dt><dd>" . _("Just draw a simple dashed border around the thumb.") . "</dd></dl>",
-		"choices" => array("polaroid" => _("Polaroid"), "dots" => _("Dots")),
-		"value" => "yes"
+	"gallery_thumb_frame_style" => array(
+		"prompt" => "Frame around albums",
+		"desc" => _("On the main page, the image representing each album has a frame arount it.  The following styles are available:") .
+			available_frames(true) .
+			newIn("1.4.1"),
+		"choices" => available_frames(),
+		"value" => "simple_book"
 	),
 	
 	"separator5" => array (
@@ -997,6 +992,37 @@ $defaults = array(
 		"optional" => 1,
 		"attrs" => array("size" => 5)
 	),
+       	"separator_frames" => array (
+		       	"type" => "separator",
+		       	"title" => _("Frames"),
+		       	"desc" => sprintf(_("Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"),Gallery()) .
+		available_frames(true).
+		     	 	newIn("1.4.1"),
+			),
+	"album_frame" => array(
+		"prompt" => _("Subalbum frames"),
+		"desc" => _("This frame will appear around the thumbnail image representing a subalbum.") .
+		newIn("1.4.1"),
+		"choices" => available_frames(),
+		"value" => "simple_book"
+	),
+	"thumb_frame" => array(
+		"prompt" => "Frame around thumbs",
+		"desc" => _("This frame will appear around the thumbnail image representing a photo or movie.") .
+	      	newIn("1.4.1"),
+		"choices" => available_frames(),
+		"value" => "solid"
+	),
+	
+	"image_frame" => array(
+		"prompt" => "Frame around images",
+		"desc" => _("This frame will appear around fulled sized and resized photos.") .
+		newIn("1.4.1"),
+		"choices" => available_frames(),
+		"value" => "solid"
+	),
+	
+	
 );
 
 ?>
