@@ -31,7 +31,7 @@ require($GALLERY_BASEDIR . "init.php");
 
 //---------------------------------------------------------
 //-- check that we are not being called from the browser --
-if (empty ($HTTP_SERVER_VARS['QUERY_STRING'])) {
+if (empty ($cmd)) {
 	echo 'This page is not meant to be accessed from your browser.  ';
 	echo 'If you would like to use Gallery Remote, please refer to ';
 	echo 'Gallery\'s website located at ';

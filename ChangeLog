@@ -1,3 +1,8 @@
+2003-06-03  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.5-cvs-b8
+
+	* Fixed problem in gallery_remote*.php which caused GR to no longer
+	  be able to connect.
+
 2003-05-29  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b7
 
         * Checked in by Joan, but changes are actually by Jesse Mullan.
@@ -25,10 +30,10 @@
 	* Fix bug #672943, where searching for a string with special
 	  regular expression characters would cause warnings.  Also,
 	  users can now use asterisks as wildcards in search strings.
-	  
+
 	* Fix bug #607440.  Gallery now allows .mp4 movies
-	
-	* Fix bug #581790.  Gallery doesn't strip HTML tags from 
+
+	* Fix bug #581790.  Gallery doesn't strip HTML tags from
 	  slideshow captions anymore.
 
 2003-06-02  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b3
@@ -49,14 +54,14 @@
 
 	* Change the extension from .tar to .tar.gz when backing up
 	  albums.
-	
+
 	* If gallery_remote.php or gallery_remote2.php is accessed from
 	  the browser, exit with a nice message telling the user where
 	  to find Gallery Remote (bug #687235).
-	  
+
 	* Fix bug #552569, where a filename could be quoted twice,
 	 causing the upload to fail.
-	  
+
 	* Hopefully fix bug #595716, where NetPBM or ImageMagick
 	  wouldn't execute properly if they were in a directory with
 	  a space on Windows.
@@ -65,7 +70,7 @@
 
 	* Quote the filename given to the jhead parser.  This resolves a
           bug related to spaces in files names.
-          
+
         * Fix bug #550527, where double quotes in an album name would
           cause HTML weirdness and end up being truncated
 
@@ -102,7 +107,7 @@
 	  - Don't show [add photo] unless custom fields are activated, since
 	    it isn't terribly useful without them and it clutters the admin
 	    menu
-	
+
 	  - Roll the [edit summary] feature into the [properties] link for
 	    admin menu brevity.
 
@@ -112,14 +117,14 @@
 	  album items get the right album data version number, and that they
 	  start off with a blank set of extra fields.  Bumped the album version
 	  number one more time to make sure that everybody's data is clean.
-	
+
 2003-05-28  Bharat Mediratta  <bharat@menalto.com> 1.3.4-cvs-b46
 
 	* Tweaked the PhotoAccess affiliate ID
 
 2003-05-28  Bharat Mediratta  <bharat@menalto.com> 1.3.4-cvs-b45
 
-	* Updated view_photo.php to use the appropriate affiliate ID 
+	* Updated view_photo.php to use the appropriate affiliate ID
 	  for PhotoAccess
 
 2003-05-28  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.4-cvs-b44
@@ -134,16 +139,16 @@
 	  finding the error.
 
 2003-05-28  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b42
-	
+
 	* cosmetic changes to backup_albums.php, mostly suggest by beckett
 
 2003-05-28  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b41
-	
+
 	* Bugfix and a few cosmetic changes to backup_albums.php
 
 2003-05-28  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b40
 
-	* Added backup_albums.php.  Linked from albums.php, but that 
+	* Added backup_albums.php.  Linked from albums.php, but that
 	  perhaps should be removed.
 
 2003-05-25  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.4-cvs-b39
@@ -185,13 +190,13 @@
 	* Rewrote printAlbumOptionList and printNestedVals in util.php
 	  to conform to the requirements that I added as code comments
 	  above the 2 functions.  This fixes defects #488281 & #669764.
-	
+
 	* Bug fix in view_album.php with showAdminForm when a non-admin
 	  owns a nested album and not the parent album.
 
 2003-05-21  Bharat Mediratta  <bharat@menalto.com> 1.3.4-cvs-b34
 
-	* Fixed an incorrect short PHP tag in view_album.php 
+	* Fixed an incorrect short PHP tag in view_album.php
 
 	* Fixed a minor bug in add_photo.php where the fields were getting
 	  seeded with invalid data.
@@ -207,13 +212,13 @@
 	* Removed diagnostic statements left by bug fix.
 
 2003-05-20  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b31
-	
+
 	* BUGFIX.  Upgrading of albums did not add extra field defaults
 
 2003-05-20  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b30
 
 	* "Extra fields" added.
-		
+
 	* Configurable from Captionator and edit caption
 	  (now called "Edit text" in the pull down menu)
 
@@ -280,7 +285,7 @@
 
 	* Removed a handful of minor PHP notices (mostly adding quotes
 	  around associative array indices which were missing them).
-	
+
 2003-05-10  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.4-cvs-b24
 
 	* Changed HTML <form> tag to be more compliant (Bug #731679).
@@ -290,7 +295,7 @@
 	  offline mode on or off:
 	       http://www.site.com/gallery/index.php?set_offline=true
 	       http://www.site.com/gallery/index.php?set_offline=false
-	
+
 	* Updated copyright to 2000-2003.
 
 2003-04-25  Bharat Mediratta  <bharat@menalto.com> 1.3.4-cvs-b23
@@ -324,7 +329,7 @@
 
 	* Fixed bug #659299. The search page no longer skips some items in
 	  albums containing hidden photos.
-	
+
 2003-04-20  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.4-cvs-b20
 
 	* Gallery now handles the small database structure change
@@ -334,10 +339,10 @@
 
 	* Patch #530195: Strenghtened image type checking expressions in
 	  view_photo.php and util.php.
-	
+
 	* Patch #695792: Small bugfix from Andrew (joyoflinux). Hidden
 	  photos moved via move_photo.php no longer become un-hidden.
-	
+
 	* Patch #710428: Added Joan McGalliard's fix for a bug in
 	  slideshow.php and slideshow_low.php introduced in 1.3.4-cvs-b6,
 	  which teminated the slideshow early if there were hidden photos
@@ -345,7 +350,7 @@
 
 	* Patch #712159: Added Joan McGalliard's patch to replace the "?&"
 	  in the navigator block URLs with just "?" or "&" as appropriate.
-	
+
 2003-04-18  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.4-cvs-b18
 
 	* Added Steve Lacy's auto-rotate patch which lets Gallery
@@ -381,7 +386,7 @@
 
 2003-02-23  Bharat Mediratta  <bharat@menalto.com> 1.3.4-cvs-b12
 
-	* Fix boneheaded mistake in getAlbumbyName(): inverted logic 
+	* Fix boneheaded mistake in getAlbumbyName(): inverted logic
 	  on strcasecmp
 
 	* Added <IfModule> calls around php_value flags in setup/.htaccess.
@@ -391,20 +396,20 @@
 	* Added Troy Edwards (vallimar) to the AUTHORS file.
 
 	* Added a fix to handle porting from pre-v1.2 Galleries when the
-	  Gallery_User class was simply called User. 
+	  Gallery_User class was simply called User.
 
 2003-01-29  John Kirkland <jpk@bl.org> 1.3.4-cvs-b11
 
 	* Moved process() from save_photos.php to util.php - processNewImage()
 	  so it could be used by the xp publishing wizard.
 
-	* Moved msg() from save_photos.php to util.php - processingMsg() so it 
+	* Moved msg() from save_photos.php to util.php - processingMsg() so it
 	  could be used by the xp publishing wizard.
-	
+
 	* Created a createNewAlbum($parentName) function in util.php from
 	  code extracted from do_command.php.
 
-	* Modified xp publishing wizard to use new functions in util.php, 
+	* Modified xp publishing wizard to use new functions in util.php,
 	  removing duplicated code.
 
 	* Modified UI and logic flow for xp publishing wizard with regard
@@ -452,7 +457,7 @@
 
 	* Added function popup_link to generate HTML code for links
   	  usefull with Wget.
-	
+
 	* Tightened function editField in util.php to show up only in
 	  online mode (not for downloaded album of Wget).
 
@@ -461,7 +466,7 @@
 
 	* Changed '[photo properties]' in view_photo.php to use
 	  popup_link.
-	
+
 	* Tightened '[login]' in view_album.php to show only in
 	  online mode (not for downloaded album of Wget).
 
@@ -478,7 +483,7 @@
 2003-01-15  Bharat Mediratta  <bharat@menalto.com> 1.3.4-cvs-b5
 
 	* Integrated a patch from Ralphe Hesse to support printing on
-	  Fotokasten (a German print service).  
+	  Fotokasten (a German print service).
 
 	* Fixed a long standing issue where after album99 we start creating
 	  albums like "albun00".  Now we go from album99 -> album100
@@ -528,15 +533,15 @@
 2002-12-27  Bharat Mediratta  <bharat@menalto.com> 1.3.3-cvs-b6
 
 	* Fixed a bug in publish_xp_docs.php that allows a remote exploit by
-	  not checking GALLERY_BASEDIR appropriately 
+	  not checking GALLERY_BASEDIR appropriately
 	  (introduced in v1.3.2-cvs-b27)
 
 	* Renamed error() function to gallery_error() to avoid conflicts
 	  in PostNuke code.
 
-2002-12-14  Bharat Mediratta  <bharat@menalto.com> 1.3.3-cvs-b5 
+2002-12-14  Bharat Mediratta  <bharat@menalto.com> 1.3.3-cvs-b5
 
-	* Added a configuration option to allow you to choose to print your 
+	* Added a configuration option to allow you to choose to print your
 	  photos on shutterfly without making a donation to the project.
 
 	* Fixed a minor bug in the support for Nuke6's separate user table
@@ -564,7 +569,7 @@
 	* Fixed a bug where if you hide all the elements of an album, they get
 	  detached from the album.
 
-	* Added a link to the permissions dialog in the admin dropdown box for 
+	* Added a link to the permissions dialog in the admin dropdown box for
 	  nested albums
 
 ================================================================================
@@ -594,7 +599,7 @@
 
 	* Fixed a bug where the search function lowercases the result values
 	  that it displays in context.  Thanks to Beckett Madden-Woods for the
-	  patch. 
+	  patch.
 
 2002-11-13  Bharat Mediratta  <bharat@menalto.com> 1.3.2-cvs-b28
 
@@ -613,14 +618,14 @@
 2002-11-11  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.2-cvs-b26
 
 	* Fixed escaping of line breaks in GalleryRemoteProperties.php
-	
+
 2002-11-10  Bharat Mediratta  <bharat@menalto.com> 1.3.2-cvs-b25
 
 	* Grant canViewFullImages to EVERYBODY by default in new Albums
 
 	* Added publish_xp, a tool for publishing to Gallery directly from your
 	  Windows XP desktop, thanks to Demian Johnston!
-	
+
 2002-11-09  Bharat Mediratta  <bharat@menalto.com> 1.3.2-cvs-b24
 
 	* Fixed bug #587441: wrong # of photos resized w/ hidden pics
@@ -656,7 +661,7 @@
 
 2002-11-04  Bharat Mediratta  <bharat@menalto.com> 1.3.2-cvs-b19
 
-	* Fixed two small bugs in the setup code where we were using 
+	* Fixed two small bugs in the setup code where we were using
 	  is_executable instead of fs_is_executable (thanks Kwan Skinner)
 
 2002-11-02  Tim Miller <tim_miller@users.sourceforge.net> 1.3.2-cvs-b18
@@ -691,7 +696,7 @@
 
 	* Changed php_flag to php_value in the config wizard code.
 	  The PHP website claims that php_flag is legitimate, but some versions
-	  of PHP don't support it.  
+	  of PHP don't support it.
 
 2002-10-15  Bharat Mediratta  <bharat@menalto.com> 1.3.2-cvs-b12
 
@@ -713,7 +718,7 @@
 	  when register_globals is off
 
 	* Changed the comment display code so that it only shows the IP to
-	  administrators. 
+	  administrators.
 
 2002-09-23  Bharat Mediratta  <bharat@menalto.com> 1.3.2-cvs-b9
 
@@ -871,7 +876,7 @@ v1.3 release
 	    versions would not display.
 	  - Reverse-direction control is back, by popular demand.
 	  - Control panel rearranged some more.
-    
+
 2002-05-01  Bharat Mediratta  <bharat@menalto.com> 1.3-cvs-rc4
 
 	* Worked around http://bugs.php.net/bug.php?id=16905
@@ -890,16 +895,16 @@ v1.3 release
 2002-04-27  Chris Smith <chris@jacko.com> 1.3-cvs-rc3
 
 	* Slideshow modifications (both low and high tech):
-	  - Navigation bars now match rest of site UI, and 
+	  - Navigation bars now match rest of site UI, and
 	    controls have been cleaned up and consolidated.
-	  - IE5.5+ users now have a large choice of transition 
+	  - IE5.5+ users now have a large choice of transition
 	    modes.
 	  - User can choose whether slideshow loops.
 	  - User can choose whether to view photos in full size.
 	  - Removed reverse-direction and skip-to options.
 
 
-2002-04-23  Bharat Mediratta  <bharat@menalto.com> 
+2002-04-23  Bharat Mediratta  <bharat@menalto.com>
 
 	* Added 640 and 1024 as possible image resize choices.
 
@@ -926,11 +931,11 @@ v1.3 release
 
 2002-04-05  Chris Smith  <chris@jacko.com>  1.2.6-cvs-b36
 
-	* The default implementation of the inline album thumbnail 
+	* The default implementation of the inline album thumbnail
 	  wrapper has been simplified. Less html, faster rendering. Now
 	  uses a few images ald looks like a book.
 
-	* Slideshow cleanup: 
+	* Slideshow cleanup:
 	  - Fixed bug where the 'skip to' feature did work in some browsers
 	    (thanks Anthony Moulen).
 	  - No longer gets stuck when trying to skip over movies.
@@ -943,7 +948,7 @@ v1.3 release
 
 	* Captionator now shows as many thumbnails as the album displays
 	  (thanks Eelco Brölman).
-	  
+
 
 2002-04-02  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b35
 
@@ -1009,15 +1014,15 @@ v1.3 release
 
 2002-03-11  Chris Smith  <chris@jacko.com> 1.2.6-cvs-b28
 
-	* Cleanup of view_comments page: (1) better differentiation of 
-	  nested albums, (2) breadcrumb now in the context of the 
+	* Cleanup of view_comments page: (1) better differentiation of
+	  nested albums, (2) breadcrumb now in the context of the
 	  'view comments' mode, (3) added [return to album] link.
 
 	* Fixed bug in the rendering of nested album thumbnails in the
 	  view_album page. Now uses the proper dimensions for nested album
 	  highlight thumbnail, even in the case where the highlight is
 	  nested album.
- 
+
 2002-03-10  Chris Smith  <chris@jacko.com> 1.2.6-cvs-b27
 
 	* Cleaned up the caption-left-align in the view_album page so
@@ -1026,7 +1031,7 @@ v1.3 release
 2002-03-10  Chris Smith  <chris@jacko.com> 1.2.6-cvs-b26
 
 	* Fixed bug introduced in 1.2.6-cvs-b25 where configuration
-	  failed due to the setup script not including the new 
+	  failed due to the setup script not including the new
 	  LoggedInUser class.
 
 2002-03-08  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b25
@@ -1041,16 +1046,16 @@ v1.3 release
 	* Now left-align the text below thumbnails in the album page. Looks
 	  a little cleaner.
 
-	* Fixed a bug in view_album where the invisible elements of the 
-	  admin commands forms below each thumbnail were being output, even 
-	  when the user was not an admin (was not a security issue, but a 
+	* Fixed a bug in view_album where the invisible elements of the
+	  admin commands forms below each thumbnail were being output, even
+	  when the user was not an admin (was not a security issue, but a
 	  waste of bandwidth)
 .
 2002-03-07  Chris Smith  <chris@jacko.com> 1.2.6-cvs-b22
 
 	* Thumbnails in albums are now rendered with html_wrap files. The
-	  default implementation of the nested album thumbnail now has a 
-	  distinct look, like a stack of photos, to distinguish it from 
+	  default implementation of the nested album thumbnail now has a
+	  distinct look, like a stack of photos, to distinguish it from
 	  photo thumbnails. This feature inspired by work from Kees van den
 	  Broek, Jesse Mullan and JPK.
 
@@ -1076,14 +1081,14 @@ v1.3 release
 	* "Edit Caption", "Edit <Field>" and "Add Comment" popup
 	  windows no longer commit changes when "Cancel" button
 	  is hit (my god, this must be Gallery's oldest overlooked bug!).
- 
+
 2002-02-25  Chris Smith  <chris@jacko.com> 1.2.6-cvs-b19
 
 	* Tiny UI cleanup of view comments and showChild features.
- 
+
 2002-02-25  John Kirkland <jpk@bl.org> 1.2.6-cvs-b18
 
-	* Item Capture Date was not getting set with the new return values from 
+	* Item Capture Date was not getting set with the new return values from
 	  getExif();
 
 2002-02-25  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b17
@@ -1093,12 +1098,12 @@ v1.3 release
 
 2002-02-24  Chris Smith  <chris@jacko.com> 1.2.6-cvs-b16
 
-	* UI cleanup of slideshow, captionator. On main page, 
+	* UI cleanup of slideshow, captionator. On main page,
 	  got rid of reviled <hr> tag.
 
 	* New showChildAlbums feature now obeys display_clicks setting
 	  and no longer displays hidden albums.
-	
+
 	* View Comments page UI tweaked to match Gallery UI.
 
 2002-02-24  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b15
@@ -1118,11 +1123,11 @@ v1.3 release
 
 	* Rotated images no longer lose their exif data.  I incorporated
 	  a patch from Eelco Brolman (eelcob) and made some minor
-	  modifications.  This fixes bug #457358 and feature #473443. 
+	  modifications.  This fixes bug #457358 and feature #473443.
 
 2002-02-23  John Kirkland <jpk@bl.org> 1.2.6-cvs-b12
 
-	* Fixed buglet where a non-logged in user could not use the 
+	* Fixed buglet where a non-logged in user could not use the
 	  "View All Comments" feature.  This is bug #521810.
 
 2002-02-23  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b11
@@ -1141,12 +1146,12 @@ v1.3 release
 	  allows you to view all the comments for an album.  It's pimp!  Who
 	  says that open source doesn't work?
 
-	* Incorporated patch from Jesse Mullan <jmullan@visi.com> that 
+	* Incorporated patch from Jesse Mullan <jmullan@visi.com> that
 	  prevents users from viewing hidden photos by hand-crafting
 	  the direct image URL.
 
 2002-02-20  John Kirkland  <jpk@bl.org> 1.2.6-cvs-b9
-	
+
 	* At image upload time, jhead now runs against the image that we
 	  copy into our album directory instead of the original uploaded
 	  image.  The reason for this is because we were not escaping
@@ -1178,8 +1183,8 @@ v1.3 release
 2002-01-18  Bharat Mediratta <bharat@menalto.com> 1.2.6-cvs-b4
 
 	* Fix for bug #505234: Gallery with PHP-Nuke (5.4) include error
-	  In PHP-Nuke 5.4 they changed the $op variable to $mop	
-	
+	  In PHP-Nuke 5.4 they changed the $op variable to $mop
+
 	* Fix for bug #505120: "File upload in progress" bogs down server
 	  Change the "Upload Progress" dialog box to use a single animated GIF
 	  instead of the javascript solution.  This can reduce server load
@@ -1195,7 +1200,7 @@ v1.3 release
 	* Added "mpeg" to the list of movie types.
 
 2002-01-04  John Kirkland <jpk@bl.org> 1.2.6-cvs-b2
-	
+
 	* Fixed bug #426151 -- Upload fails on file names with apostrophe
 
 2002-01-04	Chris Smith <chris@jacko.com> 1.2.6-cvs-b1
@@ -1230,7 +1235,7 @@ v1.3 release
 	  Gallery's ability to deal with symbolic links.  It checks to see if a
 	  file is a symlink, and that the symlink is valid, before trying to
 	  open/read it.  This patch enables Adam's debian package of Gallery.
-	
+
 2001-12-04  Bharat Mediratta  <bharat@menalto.com> (1.2.4-p1-cvs-b1)
 
 	* PostNuke now has the capability for using encrypted database
@@ -1248,7 +1253,7 @@ v1.3 release
 	* Added support for PostNuke 0.7's authentication scheme.  We now
 	  detect if we're embedded in this release of PostNuke and Do the Right
 	  Thing.
-	
+
 2001-11-27  Bharat Mediratta  <bharat@menalto.com> (1.2.3-p1)
 
 	* Fix for bug #486228 -- Can't cancel comment in dialog box
@@ -1280,7 +1285,7 @@ v1.3 release
 	  IE6 now works without javascript errors.
 
 	* The following characters can no longer be used in an album name:
- 	  . (dot) # (pound) + (plus) 
+ 	  . (dot) # (pound) + (plus)
 	  This fixes bugs 461799, 466789, and 469346.
 
 	* Fixed two bugs having to do with URL and local file uploads on
@@ -1303,7 +1308,7 @@ v1.3 release
 
 2001-11-11  Chris Smith <chris@jacko.com> (1.2.3-cvs-b4)
 
-	* Added Gallery Remote communication script. Added link in 
+	* Added Gallery Remote communication script. Added link in
 	  add_photos.php to direct the user to the Gallery Remote
 	  download page.
 
@@ -1348,13 +1353,13 @@ v1.3 release
 
 	* Fixed bug #475151: Album link always goes to page 1.  We now track
 	  the most recently viewed page of each album in the session and return
-	  to that page.  
+	  to that page.
 
 	* (chris) Changed the vertical alignment of the caption for clarity.
 
 2001-10-16  Bharat Mediratta  <bharat@menalto.com> (1.2.2-cvs-b4)
 
-	* platform/fs_win32: fixed a bug where we were using a form of of 
+	* platform/fs_win32: fixed a bug where we were using a form of of
 	  str_replace that only works on PHP 4.0.5+
 
 	* Made the serialization code more robust by checking to see if any
@@ -1363,7 +1368,7 @@ v1.3 release
 
 	* platform/fs_win32: fixed a bug where it wasn't fully collapsing any
 	  number of \'s in a filename into a single \ properly.
-	
+
 2001-10-13  Bharat Mediratta  <bharat@menalto.com> (1.2.2-cvs-b3)
 
 	* Fixed bug [#466729] Bad aspect ratio in html 4 rotated imgs.  In
@@ -1377,8 +1382,8 @@ v1.3 release
 	  disabled in the album (we just don't show the results).  Now we don't
 	  count them, either.
 
-	* Added the binary flag to fs_fopen() so that batch uploads 
-	  from a directory work on Win32 (thanks to Steve White) 
+	* Added the binary flag to fs_fopen() so that batch uploads
+	  from a directory work on Win32 (thanks to Steve White)
 
 2001-10-11  Chris Smith  <chris@jacko.com> (1.2.2-cvs-b1)
 
@@ -1387,7 +1392,7 @@ v1.3 release
 
 2001-09-30  Bharat Mediratta  <bharat@menalto.com> (1.2.1-p1)
 
-	* Fixed a bug in the serialization code to remove a race condition 
+	* Fixed a bug in the serialization code to remove a race condition
 	  that can cause heavily used albums to lose their .dat files.
 
 	* Fixed Album.load() so that it loads the backup .dat file if the main
@@ -1397,30 +1402,30 @@ v1.3 release
 
 	* v1.2.1 ships!
 
-2001-09-13  Bharat Mediratta  <bharat@menalto.com> (1.2.1-cvs-b5) 
+2001-09-13  Bharat Mediratta  <bharat@menalto.com> (1.2.1-cvs-b5)
 
 	* Fixed bug "#461263: local upload don't work anymore!".  Thanks to
 	  Jens Langner for the catch.
 
-2001-09-12  Chris Smith  <chris@jacko.com> (1.2.1-cvs-b4) 
+2001-09-12  Chris Smith  <chris@jacko.com> (1.2.1-cvs-b4)
 
-	* Fixed a bug that caused [add comment] in view_photo.php to not	
-	  work in some circumstances. 
+	* Fixed a bug that caused [add comment] in view_photo.php to not
+	  work in some circumstances.
 
-2001-09-10  Bharat Mediratta  <bharat@menalto.com> (1.2.1-cvs-b3) 
+2001-09-10  Bharat Mediratta  <bharat@menalto.com> (1.2.1-cvs-b3)
 
 	* Fixed a bug that caused rotate images to appear with the wrong aspect
 	  ratio when using the auto-resize code, thanks to Edouard Lafargue
 
 	* Fixed several fairly serious security vulnerabilities thanks to
-	  timely info from Mary J. Alderdice and Scott Salvidio.  
+	  timely info from Mary J. Alderdice and Scott Salvidio.
 
 	* Updated copyright notice.
 
-2001-09-10  Bharat Mediratta  <bharat@menalto.com> (1.2.1-cvs-b2) 
+2001-09-10  Bharat Mediratta  <bharat@menalto.com> (1.2.1-cvs-b2)
 
 	* Fixed a harmless but annoying bug in Gallery_UserDB::getUidList()
-	  where we were failing to use the full pathname to refer to a file.  
+	  where we were failing to use the full pathname to refer to a file.
 
 2001-09-09  Bharat Mediratta  <bharat@menalto.com> (1.2.1-cvs-b2)
 
@@ -1430,9 +1435,9 @@ v1.3 release
 	  eventually cause the session id to drop out.  D'oh!
 
 	* Fixed issues with sucking images via the web:
-	  - Fixed timeout bug when parsing large HTML files 
-	  - Prepend http: when no scheme is present (both initially and on the 
-	    results of parsed data) 
+	  - Fixed timeout bug when parsing large HTML files
+	  - Prepend http: when no scheme is present (both initially and on the
+	    results of parsed data)
 
 	* It turns out that mod_rewrite requires the FollowSymLinks option
 	  enabled (thanks to Dan Brown for catching this).  The setup wizard
@@ -1444,10 +1449,10 @@ v1.3 release
 	  the mailing lists
 
 	* Dial down the error reporting (in case it's turned on for the
-	  server) for now.  We'll properly address this in v2.0	
-	
-	* Fixed a bug in the way that we were detecting HTTPS that was  
-	  accidentally causing false positives on some systems. 
+	  server) for now.  We'll properly address this in v2.0
+
+	* Fixed a bug in the way that we were detecting HTTPS that was
+	  accidentally causing false positives on some systems.
 
 2001-09-07  Bharat Mediratta  <bharat@menalto.com> (1.2.1-cvs)
 
@@ -1457,8 +1462,8 @@ v1.3 release
 
 	* Fixed a bug in the style sheet link function (thanks to Tony Clayton)
 	  that caused it to return a link in "/css" when upgrading from older
-	  versions of Gallery.	
-	
+	  versions of Gallery.
+
 2001-09-07  Bharat Mediratta  <bharat@menalto.com>
 
 	* At long last, released v1.2!
@@ -1468,7 +1473,7 @@ v1.3 release
 	* Set the umask before copying files and making directories (and
 	  restore it when we're done) so that we avoid any potential issues if
 	  the umask is in some weird state.  Thanks to Jeff Kilbride for the
-	  patch. 
+	  patch.
 
 2001-08-29  Bharat Mediratta  <bharat@menalto.com> (1.2-cvs-b18)
 
@@ -1487,7 +1492,7 @@ v1.3 release
 
 	* Fixed a minor bug that would cause the edit_caption dialog
           to display an incorrect value in the capture year field when
-          using IE6beta. 
+          using IE6beta.
 
 2001-08-20  Bharat Mediratta  <bharat@menalto.com> (1.2-cvs-b16)
 
@@ -1536,22 +1541,22 @@ v1.3 release
 	* Removed an extraneous "Highlight $label" line from
 	  view_album.php.
 
-2001-08-06  John Kirkland  <jpk@bl.org> 
+2001-08-06  John Kirkland  <jpk@bl.org>
 
 	(1.2-cvs-b9)
 	* Bug fix for "highlight Album" not working for nested
-	  albums.  There are a couple of changes here.  
+	  albums.  There are a couple of changes here.
 	  First, if we are highlighting a nested album, don't create
 	  a new highlight image... one already exists in the
-	  nested directory.  
-	  Second, if we are attempting to get a HighlightTag or 
-	  ThumbnailTag from an album, Gallery will now traverse the 
-	  nestedAlbum tree downwards until it actually hits a highlight 
-	  or thumbnail for a real picture.  
-	  Third, since we are not creating new highlight images 
-	  when highlighting a nestedAlbum, if you change the highlight 
-	  photo of a highlighted nested album it will change the 
-	  highlight in the parent as well.  (geez... try saying that 
+	  nested directory.
+	  Second, if we are attempting to get a HighlightTag or
+	  ThumbnailTag from an album, Gallery will now traverse the
+	  nestedAlbum tree downwards until it actually hits a highlight
+	  or thumbnail for a real picture.
+	  Third, since we are not creating new highlight images
+	  when highlighting a nestedAlbum, if you change the highlight
+	  photo of a highlighted nested album it will change the
+	  highlight in the parent as well.  (geez... try saying that
 	  3 times real fast)
 
 	(1.2-cvs-b8)
@@ -1564,7 +1569,7 @@ v1.3 release
 
 2001-08-05  Chris Smith <chris@jacko.com> (1.2-cvs-b7)
 
-	* Fixed a bug where the raw and sized dimensions of an 
+	* Fixed a bug where the raw and sized dimensions of an
 	  image were not getting updated after rotate.
 
 2001-08-05  John Kirkland  <jpk@bl.org>  (1.2-cvs-b6)
@@ -1577,7 +1582,7 @@ v1.3 release
 
 2001-08-05  John Kirkland  <jpk@bl.org>  (1.2-cvs-b4)
 	* Nested albums now inherit the album settings from their parents
-	  when they are created.  
+	  when they are created.
 
 	* Modified the "return-to" behavior when nested albums are used.
 	  Now, if return is turned off, then nested albums will only show
@@ -1592,7 +1597,7 @@ v1.3 release
 
 2001-08-03  Bharat Mediratta  <bharat@menalto.com>
 
-	* Fixed a bug that was causing you to be unable to modify the 
+	* Fixed a bug that was causing you to be unable to modify the
 	  photo capture date.
 
 	* Fixed a bug where if you change your own username it drops you
@@ -1613,19 +1618,19 @@ v1.3 release
 
 2001-08-02  Bharat Mediratta  <bharat@menalto.com>
 
-	* Improved the URL fetch code so that now 
-	   -  you don't need to specify http:// 
-	   -  if it fails the first time, it'll try again with a trailing / 
-	  The combination of these two tweaks allows you to enter 
-	  "www.cnn.com" in the URL box. 
+	* Improved the URL fetch code so that now
+	   -  you don't need to specify http://
+	   -  if it fails the first time, it'll try again with a trailing /
+	  The combination of these two tweaks allows you to enter
+	  "www.cnn.com" in the URL box.
 
 	* Removed dependency on Perl Compatible Regular Expression (PCRE)
-	  library.  
+	  library.
 
 	* Admin management improvements:
 	  o Admins can now modify other admin accounts.
-	  o Admins can now grant admin privileges to regular users, 
-	    making them full admins.  
+	  o Admins can now grant admin privileges to regular users,
+	    making them full admins.
 	  o The admin account can rename itself.
 
 2001-08-01  Bharat Mediratta  <bharat@menalto.com>
@@ -1643,7 +1648,7 @@ v1.3 release
 
 2001-07-31  John Kirkland  <jpk@bl.org>
 
-	* Added 3 new sorting methods.  
+	* Added 3 new sorting methods.
 		1.  Sort by number of clicks
 		2.  Sort alphabetically by Captions.
 		3.  Sort by number of comments.
@@ -1657,17 +1662,17 @@ v1.3 release
 
 	* Fixed bug #433374 (Gallery doesn't work well under http/https)
 	  by adding code to detect https and rewrite the
-	  $gallery->app->photoAlbumURL accordingly.	
+	  $gallery->app->photoAlbumURL accordingly.
 
-	* Fixed a variety of small Nuke problems (edit thumbnails feature 
+	* Fixed a variety of small Nuke problems (edit thumbnails feature
 	  broken, upload progress window had broken images)
 
 	* Fixed conflict between User class and PHPLib's User class
 
 2001-07-28  Bharat Mediratta  <bharat@menalto.com>
 
-	* Fixed bug #435495: Can't fetch ZIP file by URL.  I fixed this in 
-	  such a way that Gallery can now also handle nested ZIP files. 
+	* Fixed bug #435495: Can't fetch ZIP file by URL.  I fixed this in
+	  such a way that Gallery can now also handle nested ZIP files.
 
 2001-07-27  Bharat Mediratta  <bharat@menalto.com>
 
@@ -1694,11 +1699,11 @@ v1.3 release
 	  fs_is_executable() was missing from platform/ files.
 
 2001-07-21  John Kirkland  <jpk@bl.org>
-	
+
 	* Added ability to statically sort photos by name via the
 	  new sort feature.  This feature was added based on discussion
-	  between Ken Frank <kffrank@mn.mediaone.net> and 
-	  Ed Wilts <ewilts@ewilts.org> on our new Gallery-users mailing 
+	  between Ken Frank <kffrank@mn.mediaone.net> and
+	  Ed Wilts <ewilts@ewilts.org> on our new Gallery-users mailing
 	  list.
 
 	* uploadDate and itemCaptureDate now set at file upload time.
@@ -1710,16 +1715,16 @@ v1.3 release
 
 	* Display number of Photos in addition to number
 	  of albums in the header of the main page.  This is SF feature
-	  #438840. 
+	  #438840.
 
-	* Display "(hidden)" above the caption if you are viewing a 
+	* Display "(hidden)" above the caption if you are viewing a
 	  hidden photo in the view_album display.  This is SF feature
-	  #441336. 
+	  #441336.
 
 2001-07-19  John Kirkland  <jpk@bl.org>
 
 	* Fixed SF bug #442881.  "Extra </table> tag in search.php."
-	
+
 	* Fixed SF bug #439790.  "Add photos and nested albums."
 
 2001-07-19  Bharat Mediratta  <bharat@menalto.com>
@@ -1727,13 +1732,13 @@ v1.3 release
 	* Added Album upgrade code.  If you upgrade Gallery to a newer
 	  version and the album class has changed, you'll be required to
 	  upgrade your albums to the latest version.  There is a spiffy
-	  dialog that will walk you through a mostly automated process. 
+	  dialog that will walk you through a mostly automated process.
 
 2001-07-19  John Kirkland  <jpk@bl.org>
-	
+
 	* Replaced album shuffle with album sorting.  This feature
 	  will allow album owners to sort their albums according to
-	  the file upload date or the Picture-Taken date.  The 
+	  the file upload date or the Picture-Taken date.  The
 	  picture-taken date is editable from the edit_caption screen.
 	  Significant ideas and sorting code for this feature provided
 	  by Sean Kelly <kelly@ad1440.net>.
@@ -1753,10 +1758,10 @@ v1.3 release
 	  before viewing albums.
 
 2001-07-13  John Kirkland  <jpk@bl.org>
-	* Fixed SF bug#441249.  If a user was using the new "keep 
+	* Fixed SF bug#441249.  If a user was using the new "keep
 	  original filenames" feature and they uploaded a file with
 	  a purely numeric filename, this would cause issues if they
-	  were also using mod_rewrite!  So... now... if a user 
+	  were also using mod_rewrite!  So... now... if a user
 	  uploads a numeric filename and they wish to keep original
 	  filenames, I add a "_G" (for Gallery) to the end of the filename.
 
@@ -1821,9 +1826,9 @@ v1.3 release
 
 	* Photo captions now automagically get set from the original
 	  filenames.  This is controlled via a checkbox in the file
-	  upload screen.  Hi, Ed!  This feature is for you!  :-)  
+	  upload screen.  Hi, Ed!  This feature is for you!  :-)
 
-	* Added the ability to retain original file names when uploading.  
+	* Added the ability to retain original file names when uploading.
 	  All non-alpha-numeric characters are converted to underscores.
 	  This feature is a gallery-admin level config.  If dup names are found
 	  during upload, gallery will find a unique name based on the
@@ -1836,7 +1841,7 @@ v1.3 release
 	  album or photo during a given browser session.  If you have not,
 	  gallery will increment a click counter and display the results
 	  in the view_album.php and albums.php screens.  Admin functions
-	  exist at an album level to enable the viewing of click counts 
+	  exist at an album level to enable the viewing of click counts
 	  and to reset click counts back to zero.  This is feature #424728
 	  from sf.
 
@@ -1897,10 +1902,10 @@ v1.3 release
 
 2001-06-28  Bharat Mediratta  <bharat@menalto.com>
 
-	* Added a major hack to get the Gallery style sheet into Nuke.  Nuke 
-	  owns the header and doesn't allow anything else to dink with it. 
-	  We open Nuke's header.php file and rewrite its code to slip our 
-	  style sheet in at the end. 
+	* Added a major hack to get the Gallery style sheet into Nuke.  Nuke
+	  owns the header and doesn't allow anything else to dink with it.
+	  We open Nuke's header.php file and rewrite its code to slip our
+	  style sheet in at the end.
 
 	* Checked in fix for bug #437039.  We were using an absolute popup
 	  url for photo properties, instead of a relative one.
@@ -1942,7 +1947,7 @@ v1.3 release
 	  files from a local directory.  I had to hack it up so that it
 	  presents you with a list of the images that it has found, so
 	  that you can pick and choose the ones that you want.  It's very,
-	  very fast! 
+	  very fast!
 
 2001-06-25  Chris Smith <chris@jacko.com>
 
@@ -1953,7 +1958,7 @@ v1.3 release
 	* Moved order from Shutterfly link to the top of the view_photo
 	  page.
 
-	* Nested albums can be the highlights of their parent albums. 
+	* Nested albums can be the highlights of their parent albums.
 	  Patch be John Kirkland.
 
 2001-06-25  Bharat Mediratta  <bharat@menalto.com>
@@ -1964,24 +1969,24 @@ v1.3 release
 	  type Image) and then assign the .src of that image to the .src
 	  of the image on the page."
 
-	* Fixed a bug where the "last" button was taking you to the next photo. 
+	* Fixed a bug where the "last" button was taking you to the next photo.
 
-	* "mov" is now a valid movie tag. 
+	* "mov" is now a valid movie tag.
 
 2001-06-16  Bharat Mediratta  <bharat@menalto.com>
 
-	* We now force magic_quotes_runtime to be off.  That setting interferes 
-	  with our ability to deserialize classes from the filesystem. 
+	* We now force magic_quotes_runtime to be off.  That setting interferes
+	  with our ability to deserialize classes from the filesystem.
 
 2001-06-16  Chris Smith <chris@jacko.com>
 
 	* Bug #424361: Applet parameters caused applet to not load on
 	  IE for Mac. I am unable to test this (no mac), but this change
-	  doesn't break the applet on other platforms 
+	  doesn't break the applet on other platforms
 
 	* Bug #429531: Fixed broken <select> code. Broke Move photo
 	  code. Also cleaned up move messaging.
-	
+
 2001-06-04  Chris Smith <chris@jacko.com>
 
 	* Bumped the version to 1.1-cvs.
@@ -1995,7 +2000,7 @@ v1.3 release
 	  Kirkland for this patch. Thanks also to Marc Slemko for submitting
 	  a bug (#429531) with a patch (already!) related to this feature.
 
-	* Bugfix (#424361): The edit_thumb applet should now launch in 
+	* Bugfix (#424361): The edit_thumb applet should now launch in
 	  IE on the Macintosh. Thanks to "Anonomous" for submitting the
 	  bug with the patch.
 
@@ -2015,7 +2020,7 @@ v1.3 release
 	  unprivileged user (ie, you can't see the hidden photos) then the
 	  last N photos will not display correctly if you page through
 	  them one at a time in full/resized mode (ie, using
-	  view_photo.php).  
+	  view_photo.php).
 
 2001-05-20  Bharat Mediratta  <bharat@menalto.com>
 
@@ -2027,21 +2032,21 @@ v1.3 release
 
 	* 1.02 released
 
-	* Fixed security hole that allows non-authenticated users to modify 
+	* Fixed security hole that allows non-authenticated users to modify
 	  album permissions
 
-	* Rebuild thumbs command was not rebuilding thumbs for hidden photos. 
+	* Rebuild thumbs command was not rebuilding thumbs for hidden photos.
 
-	* ImageCrop loads the image properly if the webserver is not running 
+	* ImageCrop loads the image properly if the webserver is not running
 	  on the default port (jacko)
 
 2001-05-11  Bharat Mediratta  <bharat@menalto.com>
 
 	* Fixed a common problem where you cannot put Gallery back into secure
-	  mode.  PHP's is_readable() gives false positives on some systems causing 
-	  Gallery to fail to detect that the setup directory is unreadable (and 
-	  that therefore we are no longer in configuration mode).  We now double 
-	  check by using the fileperms() function and checking for permissions of 
+	  mode.  PHP's is_readable() gives false positives on some systems causing
+	  Gallery to fail to detect that the setup directory is unreadable (and
+	  that therefore we are no longer in configuration mode).  We now double
+	  check by using the fileperms() function and checking for permissions of
 	  755 on the setup dir.
 
 	* Image rotation now uses pnmflip instead of pnmrotate.  Pnmrotate
@@ -2050,7 +2055,7 @@ v1.3 release
 	  now requires the pnmflip binary, which is part of the NetPBM1.1-Gallery
 	  micro distributions on the Gallery download page.
 
-	* Modified to accept "jpeg" as a valid JPEG image file tag. 
+	* Modified to accept "jpeg" as a valid JPEG image file tag.
 
 	* Patch from John Kirkland (jpk@bl.org):
 	  AlbumItem.php was explicitly checking tags for "avi" and "mpg", but
@@ -2062,12 +2067,12 @@ v1.3 release
 	  on page 2 of the wizard.
 
 2001-05-01  Bharat Mediratta  <bharat@menalto.com>
-	
-	* Fixed a bug where we were generating the highlight photo from the 
+
+	* Fixed a bug where we were generating the highlight photo from the
 	  thumbnail image.  This would result in a reduced quality highlight,
 	  especially in the case where the highlight is larger than the
 	  source thumbnail!
-	
+
 2001-04-30  Bharat Mediratta  <bharat@menalto.com>
 
 	* Added --quiet flag to pnmscale to avoid dumping lots of output
@@ -2079,9 +2084,9 @@ v1.3 release
 
 	* Bumped version to 1.01
 
-	* Fixed a bug where a Gallery would show up as "Empty!" in the 
-	  albums page if all its photos are hidden.  I've adjusted this so 
-	  that you still see the highlight photo (even if its hidden). 
+	* Fixed a bug where a Gallery would show up as "Empty!" in the
+	  albums page if all its photos are hidden.  I've adjusted this so
+	  that you still see the highlight photo (even if its hidden).
 
 	* Check if the item is a movie by id as opposed to index.  The
 	  index is unreliable because it will vary if there are hidden
@@ -2101,7 +2106,7 @@ v1.3 release
 
 	* Fixed bug 416033: Hidden photos can be viewed
 
-	* We had an unacknowledged dependency on "pnmcut".  It's now 
+	* We had an unacknowledged dependency on "pnmcut".  It's now
 	  made mandatory in the config wizard.
 
 2001-04-06  Bharat Mediratta  <bharat@menalto.com>
@@ -2120,15 +2125,15 @@ v1.3 release
 2001-04-02  Bharat Mediratta  <bharat@menalto.com>
 
 	* Released 1.0b10
-	
-	* Removed the initial redirect that happens when you don't specify a page. 
-	  This was breaking Konqueror, and it was also messing up our neat short 
-	  urls. 
-	
-	* If rewrite is on, use the short URL for navigation also, instead of  
-	  view_album.php.  This preserves the album name in the URL while browsing. 
-	
-	* Fixed a bug in the table width; we were hardcoding it to 400 pixels instead 
+
+	* Removed the initial redirect that happens when you don't specify a page.
+	  This was breaking Konqueror, and it was also messing up our neat short
+	  urls.
+
+	* If rewrite is on, use the short URL for navigation also, instead of
+	  view_album.php.  This preserves the album name in the URL while browsing.
+
+	* Fixed a bug in the table width; we were hardcoding it to 400 pixels instead
 	  of calculating it from the width of the thumbnails * num of columns.
 
 2001-03-27  Bharat Mediratta  <bharat@menalto.com>
@@ -2200,7 +2205,7 @@ v1.3 release
 
 2001-03-10  Bharat Mediratta  <bharat@menalto.com>
 
-	* Fixed minor bug in save_photos where it was complaining about 
+	* Fixed minor bug in save_photos where it was complaining about
 	  "Invalid argument supplied for foreach".
 
 	* Added debug constant to the config wizard so that you can turn
@@ -2214,7 +2219,7 @@ v1.3 release
 
 2001-03-08  Bharat Mediratta  <bharat@menalto.com>
 
-	* Fixed a bug where rotating a photo wouldn't update the highlight (if 
+	* Fixed a bug where rotating a photo wouldn't update the highlight (if
 	  the photo was also the highlight).  It does now.
 
 2001-03-08  Dana Powers <dana@slothlovechunk.org>
@@ -2230,7 +2235,7 @@ v1.3 release
 
 	* Added full-only feature.  This allows the user to specify (per
 	  session) that they would like to view the full size version of
-	  photos directly, instead of having to click through from the 
+	  photos directly, instead of having to click through from the
 	  resized version.
 
 2001-03-04  Bharat Mediratta  <bharat@menalto.com>
@@ -2272,7 +2277,7 @@ v1.3 release
 	  the valid path to the actual zipinfo and unzip binaries (instead
 	  of just the directory that they live in).
 
-2001-02-24  Alan Harder <alan.harder@sun.com>, Bharat <bharat@menalto.com>, 
+2001-02-24  Alan Harder <alan.harder@sun.com>, Bharat <bharat@menalto.com>,
 
 	* Added fit-to-window feature.  This feature will automatically
 	  resize images to match the size of the user's browser.  It only
@@ -2321,12 +2326,12 @@ v1.3 release
 
 	* Added inline_photo headers and footers so that you can customize
 	  an action for each photo.  This is good for shopping cart
-	  integration. 
+	  integration.
 
 2001-02-13  Bharat Mediratta  <bharat@menalto.com>
 
-	* Gallery 1.0b7 release.  Bumped config version to 9 due to 
-	  setup wizard changes. 
+	* Gallery 1.0b7 release.  Bumped config version to 9 due to
+	  setup wizard changes.
 
 	* Radically changed the way that the check_XXX methods work in the
 	  config wizard.  Now we are able to be much more granular in what
@@ -2336,20 +2341,20 @@ v1.3 release
 	* Fixed a bug where init.php was getting loaded twice (this should
 	  only happen in the case when you embed a newer Gallery inside an
 	  older one).  Thanks to John Taber <john.taber@cntcorp.com> for
-	  finding this one 
+	  finding this one
 
 	* Fixed off-by-one error in the code that tells you the photo
 	  number.  Thanks to Alan Harder <alan.harder@sun.com> for this
-	  find. 
+	  find.
 
 	* Fixed bug that was preventing password changes.  Thanks to Alan
-	  Harder <alan.harder@sun.com> for this find. 
+	  Harder <alan.harder@sun.com> for this find.
 
 	* Added code to allow you to (optionally) display the album owner
 	  at the Gallery level.
 
 	* Only show the rotate command if the user has album write
-	  permission. 
+	  permission.
 
 	* Overhauled the way that we were using NetPBM.  Before we were
 	  depending on the (unreliable) anytopnm script to suck images
@@ -2364,7 +2369,7 @@ v1.3 release
 	  removing it.  I was trying to avoid this, but because resized
 	  and thumbnail images are no longer forced to be JPGs we can
 	  possibly have some legitimately stranded files in an album, and
-	  we don't want that to prevent an album from getting deleted.	
+	  we don't want that to prevent an album from getting deleted.
 
 2001-02-11  Bharat Mediratta  <bharat@menalto.com>
 
@@ -2375,9 +2380,9 @@ v1.3 release
 
 	* It appears that certain flavors of PHP4 prepend "Content-Type"
 	  info to upload images.  This totally confuses NetPBM because
-	  this info isn't exactly part of the image file specification.	
+	  this info isn't exactly part of the image file specification.
 	  This leads to errors like:
-	
+
 		ppmtojpeg: EOF / read error reading magic number
 		Not a JPEG file: starts with 0x43 0x6f
 
@@ -2387,11 +2392,11 @@ v1.3 release
 2001-02-09  Bharat Mediratta  <bharat@menalto.com>
 
 	* Fixed a bug in the UserDB code where we were not forcibly
-	  creating an Everybody user.  This was causing users to get 
+	  creating an Everybody user.  This was causing users to get
 	  errors like this:
 
 		Fatal error: Call to a member function on a non-object in
-	  		     albums.php on line 76 
+	  		     albums.php on line 76
 
 	* Made the magic_quotes check optional.
 
@@ -2420,20 +2425,20 @@ v1.3 release
 	* We're now being a lot smarter about detecting when the Gallery
 	  has not been configured and showing the user a sane error
 	  message (instead of allowing it to bomb on a missing  global
-	  variable) 
+	  variable)
 
 	* Changed the config_version to 8...you'll need to re-run the
-	  wizard. 
+	  wizard.
 
 2001-01-23  Bharat Mediratta  <bharat@menalto.com>
 
-	* Fixed a bug in makePathWrapper() where it was (ugh) ignoring 
+	* Fixed a bug in makePathWrapper() where it was (ugh) ignoring
 	  the path!
 
 2001-01-16  Bharat Mediratta  <bharat@menalto.com>
 
 	* Cleaned up the way that save-photo detail text was being
-	  displayed. 
+	  displayed.
 
 	* Fixed a bug where nobody but the owner was able to add photos
 	  to an album.
@@ -2449,7 +2454,7 @@ v1.3 release
 
 	* mod_rewrite is now totally optional.  If your Apache server does
 	  not support it, Gallery will not attempt to use the shorter URL
-	  style. 
+	  style.
 
 2001-01-09  Bharat Mediratta  <bharat@menalto.com>
 
@@ -2465,7 +2470,7 @@ v1.3 release
 	  This is a large change, but it should be fully backwards
 	  compatible with the old gallery data.  When you start a gallery
 	  with this new setup, all albums will by default be visible to
-	  the public, but modifiable only by the admin account.  
+	  the public, but modifiable only by the admin account.
 
 2001-01-06  Bharat Mediratta  <bharat@menalto.com>
 
@@ -2485,19 +2490,19 @@ v1.3 release
 2001-01-04  chris Smith <chris@jacko.com>
 
         * Moved 'Edit Album Title' to the Album Properties Popup.
-        
+
         * Added app parameter galleryTitle. Because of this bumped the
           version number.
 
         * Created a style sheet for the gallery. It can be overriden
-          by a custom style sheet. It controls fonts and colors. 
+          by a custom style sheet. It controls fonts and colors.
           Album parameters override these styles when appropriate.
 
-        * Created a new directory called html_wrap. It contains 
+        * Created a new directory called html_wrap. It contains
           wrapper html for the three page types in the gallery:
             gallery main, album view and photo view.
           These wrappers can be used to customize the look of the
-          three page types. If custom wrappers are not provided, 
+          three page types. If custom wrappers are not provided,
           the default ones are used.
           All gallery html is now encapsulated within the navigation
           bars on these pages (a nice rectangle).
@@ -2505,8 +2510,8 @@ v1.3 release
         * Added an 'admin' box to sit over the navigation bars. It
           contains the admin controls.
 
-        * All popups now use the gallery style sheet and when 
-          appropriate have a default focus. 
+        * All popups now use the gallery style sheet and when
+          appropriate have a default focus.
 
 2001-01-02  Bharat Mediratta  <bharat@menalto.com>
 
@@ -2520,8 +2525,8 @@ v1.3 release
 
 	* Made New Year's resolution to enter my changes in the changelog.
 
-	* Added fancy frames to the photos in AlbumView and PhotoView. 
-	  These frames can be configured on a per-Album basis (in the 
+	* Added fancy frames to the photos in AlbumView and PhotoView.
+	  These frames can be configured on a per-Album basis (in the
           'Edit Album Appearence' panel.
 
 	* UI revamp if the navigation controls (used in the main page and
@@ -2530,7 +2535,7 @@ v1.3 release
 	* Added navigation controls to the ViewPhoto Page. More fancy icons.
 
 	* Added 'breadcrumb' control to ViewAlbum and ViewPhoto pages. Even
-	  more fancy icons.  
+	  more fancy icons.
 
 	* Revamped the admin photo controls. You guessed it, fancy icons.
 
@@ -2542,11 +2547,11 @@ v1.3 release
 	* Added a wrapper around anytopnm so that it will work properly on
 	  webservers that don't have the NetPBM binary directory in the
 	  path.  This should ease the pain on most standard Linux
-	  configurations. 
+	  configurations.
 
 2000-12-29  Bharat Mediratta  <bharat@menalto.com>
 
-	* Fixed several small bugs involving uploading movies.  
+	* Fixed several small bugs involving uploading movies.
 
 	* We now include the error details when an error occurs adding a
 	  photo or movie to an album.
@@ -2592,7 +2597,7 @@ v1.3 release
 
 	* Rotating photos now also rotates the resized version (instead of
 	  throwing it out).
-	
+
 2000-11-23  Bharat Mediratta  <bharat@harmony.menalto.com>
 
 	* Removed an extra backslash from htaccess.template that was
@@ -2610,7 +2615,7 @@ v1.3 release
 
 	* Setup code: Removed extra commas at the end of array
 	  initializers as they caused parse problems on earlier versions
-	  of PHP 4  
+	  of PHP 4
 
 2000-09-19  Bharat Mediratta  <bharat@menalto.com>
 
@@ -2619,7 +2624,7 @@ v1.3 release
 	  prevent having extra crufty file lying around the album from
 	  failed photo insertions (which in turn leads to problems when we
 	  want to delete the album)
-	  
+
 	* Abstracted my ad-hoc flush code into a function and put it in
 	  util.php
 
@@ -2633,10 +2638,10 @@ v1.3 release
 	* Added versioning support
 
 	* Added feedback to the user when resizing all thumbnails or all
-	  photos. 
+	  photos.
 
 	* Lots of small changes regarding thumbnails not worth mentioning
-	  here. 
+	  here.
 
 	* Fixed a bug where resizing to original size was not working at all.
 
