@@ -1,3 +1,17 @@
+2001-06-28  Bharat Mediratta  <bharat@menalto.com>
+
+	* Gallery is now a PHP-Nuke 5.0 module!  This required a lot of
+	  tweaks all over the system, so there will probably be some small
+	  breakages.  However, you can now put your gallery in the modules
+	  directory of your PHP-Nuke 5.0 site and it will appear
+	  automagically in the Nuke modules list.
+
+	  NOTE:  In order to do this we had to modify some of the default
+	  wrapper code, so if you've defined your own custom html_wrap
+	  files, you'll need to make sure that you look at the new default
+	  files and suck in the changes found there (or your Gallery won't
+	  work as a Nuke plugin).
+
 2001-06-27  Bharat Mediratta  <bharat@menalto.com>
 
 	* Completely change the way that we handle session variables.  In
