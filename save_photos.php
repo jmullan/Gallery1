@@ -60,6 +60,7 @@ if (isset($userfile_name)) {
 
 <?php
 $image_tags = array();
+$info_tags = array();
 if (!empty($urls)) {
 ?>
 <span class="popuphead"><?php echo _("Fetching Urls...") ?></span>
@@ -92,6 +93,13 @@ if (!empty($urls)) {
 							$image_tags[] = fs_export_filename($url . $file);
 						} else {
 							$image_tags[] = fs_export_filename($url . "/" . $file);
+						}
+					}
+					if ($tag == "csv") {
+						if (substr($url,-1) == "/") {
+							$info_tags[] = fs_export_filename($url . $file);
+						} else {
+							$info_tags[] = fs_export_filename($url . "/" . $file);
 						}
 					}
 				}
@@ -246,11 +254,49 @@ if (!empty($urls)) {
 
 <?php
 $image_count=0;
+$image_info = array();
+// Get meta data
+if (isset($meta)) {
+	foreach ($meta as $data) {
+		$image_info = array_merge($image_info, parse_csv(fs_export_filename($data),";"));
+	}
+}
+while (isset($metafile) && sizeof($metafile)) {
+	$name = array_shift($metafile_name);
+	$file = array_shift($metafile);
+	$image_info = array_merge($image_info, parse_csv(fs_export_filename($file),";"));
+}
+if ($gallery->app->debug == "yes") {
+	// Print meta data
+	print "<table border=\"1\">\n";
+	$row = 0;
+	foreach ($image_info as $info) {
+		print "<tr>";
+		if ($row == 0) {
+			$keys = array_keys($info);
+			foreach ($keys as $key) {
+				print "<th>$key</th>";
+			}
+			print "</tr>\n<tr>";
+		}
+		foreach ($keys as $key) {
+			print "<td>".$info[$key]."</td>";
+		}
+		$row++;
+		print "</tr>\n";
+	}
+	print "</table>\n";
+}
+// $captionMetaFields will store the names (in order of priority to set caption to)
+$captionMetaFields = array("Caption", "Title", "Description", "Persons");
+
 while (isset($userfile) && sizeof($userfile)) {
 	$name = array_shift($userfile_name);
 	$file = array_shift($userfile);
 	if (!empty($usercaption) && is_array($usercaption)) {
 	    $caption = removeTags(array_shift($usercaption));
+	} else {
+	    $caption = '';
 	}
 	if (!isset($caption)) {
 	       	$caption="";
@@ -263,10 +309,36 @@ while (isset($userfile) && sizeof($userfile)) {
 	$tag = strtolower($tag);
 
 	if ($name) {
+		$extra_fields = array();
 		if (!isset($setCaption)) {
 			$setCaption = '';
 		}
-		processNewImage($file, $tag, $name, $caption, $setCaption);
+		// Find in meta data array
+		$firstRow = 1;
+		$fileNameKey = "File Name";
+                foreach ( $image_info as $info ) {
+			if ($firstRow) {
+				// Find the name of the file name field
+				foreach (array_keys($info) as $currKey) {
+					if (eregi("^\"?file\ ?name\"?$", $currKey)) {
+						$fileNameKey = $currKey;
+					}
+				}
+				$firstRow = 0;
+			}
+                        if ($info[$fileNameKey] == $name) {
+				// Loop through fields
+				foreach ($captionMetaFields as $field) {
+					// If caption isn't populated and current field is
+					if (!strlen($caption) && strlen($info[$field])) {
+						$caption = $info[$field];
+					}
+				}
+				$extra_fields = $info;
+                        }
+                }
+		// Add new image
+		processNewImage($file, $tag, $name, $caption, $setCaption, $extra_fields);
 		$image_count++;
 	}
 }
@@ -298,12 +370,12 @@ if (count($image_tags)) {
 	/*
 	** include JavaScript (de)selection and invert
 	*/
-	insertFormJS('uploadurl_form','urls[]');
+	insertFormJS('uploadurl_form');
 ?>
 </span>
 <p class="popup">
 <?php 
-	echo insertFormJSLinks(); 
+	echo insertFormJSLinks('urls[]'); 
 ?>
 </p>
 
@@ -317,7 +389,7 @@ if (count($image_tags)) {
 	/* Allow user to select which files to grab - only show url right now ( no image previews ) */
 	sort($image_tags);
 	foreach ( $image_tags as $image_src) {
-		print "\t<input type=checkbox name=\"urls[]\" value=\"$image_src\" checked>$image_src<br />\n";
+		print "\t<input type=checkbox name=\"urls[]\" value=\"$image_src\" checked>$image_src</input><br />\n";
 	}
 ?>
 	</td>
@@ -329,9 +401,37 @@ if (count($image_tags)) {
 
 <p class="popup">
 <?php 
-	echo insertFormJSLinks(); 
+	echo insertFormJSLinks('urls[]'); 
 ?>
 </p>
+<?php if (count($info_tags)) { ?>
+<span class="popup">
+<?php
+	processingMsg(sprintf(_("%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."), count($info_tags)));
+?>
+</span>
+<p class="popup">
+<?php
+        echo insertFormJSLinks('meta[]');
+?>
+</p>
+<table>
+<tr>
+	<td>
+<?php
+	foreach ($info_tags as $info_tag) {
+		print "\t<input type=\"checkbox\" name=\"meta[]\" value=\"$info_tag\" checked/>$info_tag</input><br />\n";
+	}
+
+?>
+	</td>
+</tr>
+</table>
+<p class="popup">
+<?php
+	echo insertFormJSLinks('meta[]');
+?>
+<?php } /* end if (count($info_tags)) */ ?>
 <p>
 <input type="hidden" name="setCaption" value="<?php echo $setCaption ?>">
 <input type="button" value="<?php echo _("Add Files") ?>" onClick="parent.opener.showProgress(); document.uploadurl_form.submit()">

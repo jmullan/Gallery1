@@ -22,7 +22,7 @@
 ?>
 
 <?php
-	insertFormJS('config','available_lang[]');
+	insertFormJS('config');
 ?>
 <input type="hidden" name="this_page" value="constants">
 <input type="hidden" name="next_page" value="defaults">
