@@ -90,7 +90,7 @@ if (!empty($newName)) {
 			}
 		}
 		if ($useLoad == 1) {
-			dismissAndLoad($newName);
+			dismissAndLoad(makeAlbumUrl($newName));
 		}
 		else {
 			dismissAndReload();

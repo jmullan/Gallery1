@@ -152,7 +152,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
     static $popup_counter = 0;
     global $gallery;
 
-    if ( $gallery->session->offline && $online_only ) {
+    if ( !empty($gallery->session->offline) && $online_only ) {
 	return;
     }
 
@@ -166,7 +166,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
 		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
 	"\">";
     
-    return "$a1<span style=\"white-space:nowrap;\">$title</span></a> ";
+    return "$a1<span style=\"white-space:nowrap;\">$title</span></a>";
 }
 
 function exec_internal($cmd) {
@@ -2808,23 +2808,54 @@ function gettext_installed() {
 	}
 }
 
-function available_skins() {
+function available_skins($description_only=false) {
 	global $GALLERY_BASEDIR;
 
 	$dir = "${GALLERY_BASEDIR}skins";
 	$opts['default'] = 'default';
+	$descriptions="<dl>";
 	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
                 while ($file = readdir($fd)) {
 			$subdir="$dir/$file/css";
+			$skininc="$dir/$file/style.def";
+		       	$name="";
+		       	$description="";
 			$skincss="$subdir/embedded_style.css";
 			if (fs_is_dir($subdir) && fs_file_exists($skincss)) {
-				$opts[$file]=$file;
+				if (fs_file_exists($skininc)) {
+				       	require($skininc);
+			       	}
+			       	if (empty($name )) {
+				       	$name=$file;
+			       	}
+				$opts[$file]=$name;
+				if (fs_file_exists("$dir/$file/images/screenshot.jpg")) {
+					$screenshot="$dir/$file/images/screenshot.jpg";
+				} else if (fs_file_exists("$dir/$file/images/screenshot.gif")) {
+					$screenshot="$dir/$file/images/screenshot.gif";
+				} else {
+					$screenshot="";
+				}
+				if ($screenshot) {
+					$description .=
+						" (" .
+						popup_link(_("screenshot"), 
+								$screenshot, 1, false) .
+					       ")";	
+				}
+				if ($description) {
+				       	$descriptions.="<dt>$name</dt><dd>$description</dd>";
+				}
 			}
 		}
 	} else {
 		gallery_error(sprintf(_("Can't open %s"), $dir));
 	}
-	return $opts;
+	if ($description_only) {
+		return $descriptions;
+	} else {
+	       	return $opts;
+	}
 }
 
 function available_frames($description_only=false) {
