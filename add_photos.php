@@ -57,7 +57,7 @@ Click the <b>Browse</b> button to locate a photo to upload.
 &nbsp;&nbsp;Tip:  Upload a ZIP file full of photos and movies!
 <? } ?>
 <br>
-&nbsp;&nbsp;(Supported file types: JPG, GIF, PNG, AVI, MPG, WMV)
+&nbsp;&nbsp;(Supported file types: <?= join(", ", acceptableFormatList()) ?>)
 </span>
 
 <br><br>
@@ -80,7 +80,7 @@ Click the <b>Browse</b> button to locate a photo to upload.
 2. Use the Browse button to find the photos on your computer
 <input type="hidden" name="max_file_size" value="10000000">
 <? for ($i = 0; $i < $boxes;  $i++) { ?>
-<br> <input name="userfile[]" type="file" size=50>
+<br> <input name="userfile[]" type="file" size=40>
 <? } ?>
 <br><br>
 <center>
@@ -90,11 +90,17 @@ Click the <b>Browse</b> button to locate a photo to upload.
 </form>
 
 <form enctype="multipart/form-data" action="save_photos.php" method=post name="uploadurl_form">
-Or, upload any images found at this URL:
-<input type="text" name="urls[]" size=50>
+Or, upload any images found at this location.  The location
+can either be a URL or a directory on the server.
+<br>
+<span class="admin">
+&nbsp;&nbsp;Tip: FTP images to a directory on your server then provide that path here!
+</span>
+
+<input type="text" name="urls[]" size=40>
 <br><br>
 <center>
-<input type="button" value="Submit URL" onClick='opener.showProgress(); document.uploadurl_form.submit()'>
+<input type="button" value="Submit URL or directory" onClick='opener.showProgress(); document.uploadurl_form.submit()'>
 <input type=submit value="Cancel" onclick='parent.close()'>
 </center>
 </form>
