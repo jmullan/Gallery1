@@ -74,7 +74,7 @@ if (isset($confirm) && isset($id)) {
 
 <html>
 <head>
-  <title><?php echo _("Delete Photo") ?></title>
+  <title><?php echo _(isset($albumDelete) ? "Delete Album" : "Delete Photo") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
