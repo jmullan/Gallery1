@@ -36,14 +36,32 @@ if ($gallery->session->albumName == "") {
         return;
 }
 
+// default settings ---
+$defaultLoop = 1;
+$defaultPause = 3;
+$defaultFull = 0;
+
 if (!$slide_index) {
     $slide_index = 1;
 }
-if (!$slide_dir) {
-    $slide_dir = 1;
-}
 if (!$slide_pause) {
-    $slide_pause = 3;
+    $slide_pause = $defaultPause;
+}
+if (!$slide_loop) {
+    $slide_loop = $defaultLoop;
+}
+if (!$slide_full) {
+    $slide_full = $defaultFull;
+}
+
+function makeSlideLowUrl($index, $loop, $pause, $full) {
+
+    return makeGalleryUrl('slideshow_low.php',
+	array('set_albumName' => $gallery->session->albumName,
+	      'slide_index' => $index,
+	      'slide_loop' => $loop,
+	      'slide_pause' => $pause,
+	      'slide_full' => $full));
 }
 
 $borderColor = $gallery->album->fields["bordercolor"];
@@ -92,13 +110,14 @@ if ($gallery->album->fields["textcolor"]) {
 var timer; 
 var current_location = <?= $slide_index ?>;
 var next_location = <?= $slide_index ?>; 
-var direction = <?= $slide_dir ?>; 
 var pics_loaded = 0;
 var onoff = 0;
 var timeout_value;
 var images = new Array;
 var photo_urls = new Array;
 var photo_captions = new Array;
+var loop = <?= $slide_loop ?>;
+var full = <?= $slide_full ?>;
 <?php
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
@@ -125,7 +144,7 @@ while ($index <= $numPhotos) {
     } else {
         $thumbImage = $photo->image->name;
     }
-    $photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $thumbImage . "." . $image->type;
+    $photoURL = $gallery->album->getPhotoPath($index, $slide_full);
 
     // Now lets get the captions
     $caption = $gallery->album->getCaption($index);
@@ -155,20 +174,22 @@ var photo_count = <?=$photo_count?>;
 
 function stop() {
     onoff = 0;
-	status = "The slide show is stopped, Click Fwd or Rev to resume.";
-	clearTimeout(timer);
-}
-
-function change_direction(newDir) {
-    onoff = 1;
-    direction = newDir;
-    go_to_next_photo();
-}
-
-function skip_to() {
+    status = "The slide show is stopped, Click [play] to resume.";
     clearTimeout(timer);
-    next_location = document.TopForm.currentPhoto.selectedIndex+1;
+}
+
+function play() {
+    onoff = 1;
+    status = "Slide show is running...";
     go_to_next_photo();
+}
+
+function toggleLoop() {
+    if (loop) {
+        loop = 0;
+    } else {
+        loop = 1;
+    }
 }
 
 function preload_complete() {
@@ -198,19 +219,18 @@ function wait_for_current_photo() {
 	return 0;
     } else {
 	preload_next_photo();
-	if (onoff) {
-	    reset_timer();
-	}
+	reset_timer();
     }
 }
 
 function go_to_next_page() {
 
+    alert("going");
     var slideShowUrl = "<?= makeGalleryUrl('slideshow_low.php',
 				array('set_albumName' => $gallery->session->albumName)); ?>";
 
-    document.location = slideShowUrl + "&slide_index=" + next_location 
-	+ "&slide_dir=" + direction + "&slide_pause=" + (timeout_value / 1000);
+    document.location = slideShowUrl + "&slide_index=" + next_location + "&slide_full=" + full
+	+ "&slide_loop=" + loop + "&slide_pause=" + (timeout_value / 1000);
     return 0;
 }
 
@@ -231,15 +251,13 @@ function go_to_next_photo() {
 
 function preload_next_photo() {
     
-    /* Calculate the new next location based upon the direction. */
-    next_location = (parseInt(current_location) + parseInt(direction));
+    /* Calculate the new next location */
+    next_location = parseInt(current_location) + 1;
     if (next_location > photo_count) {
 	next_location = 1;
-	stop();
-    }
-    if (next_location == 0) {
-	next_location = photo_count;
-	stop();
+	if (!loop) {
+	    stop();
+	}
     }
     
     /* Preload the next photo */
@@ -256,7 +274,6 @@ function show_current_photo() {
 	return 0;
     }
     
-    status = "Slide show running...(" + current_location + " of " + photo_count + ")...";
     return 1;
 }
 
@@ -285,77 +302,90 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
 ?>
 
 <form name="TopForm">
+
+<?
+
+#-- breadcrumb text ---
+$breadCount = 0;
+$breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
+      "\">" . $gallery->album->fields['title'] . "</a>";
+$breadCount++;
+$pAlbum = $gallery->album;
+do {
+  if (!strcmp($pAlbum->fields["returnto"], "no")) {
+    break;
+  }
+  $pAlbumName = $pAlbum->fields['parentAlbumName'];
+  if ($pAlbumName) {
+    $pAlbum = new Album();
+    $pAlbum->load($pAlbumName);
+    $breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($pAlbumName) .
+      "\">" . $pAlbum->fields['title'] . "</a>";
+  } else {
+    //-- we're at the top! ---
+    $breadtext[$breadCount] = "Gallery: <a href=\"" . makeGalleryUrl("albums.php") .
+      "\">" . $gallery->app->galleryTitle . "</a>";
+  }
+  $breadCount++;
+} while ($pAlbumName);
+
+//-- we built the array backwards, so reverse it now ---
+for ($i = count($breadtext) - 1; $i >= 0; $i--) {
+    $breadcrumb["text"][] = $breadtext[$i];
+}
+$breadcrumb["bordercolor"] = $borderColor;
+$breadcrumb["top"] = true;
+
+include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
+
+
+$adminbox["commands"] = "";
+$adminbox["text"] = "Slide Show";
+$adminbox["bordercolor"] = $borderColor;
+$adminbox["top"] = true;
+include ($GALLERY_BASEDIR . "layout/adminbox.inc");
+
+?>
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td colspan="3" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
   </tr>
   <tr>
-    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-    <td>
-    <span class=desc>
-    &nbsp;&nbsp;Slide Show:&nbsp;&nbsp;
+    <td height="25" width="1" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+    <td width="5000" align="left" valign="middle">
+    <span class=admin>
+    &nbsp;Delay:
+<?=
+drawSelect("time", array(1 => "1 second",
+                         2 => "2 second",
+                         3 => "3 second",
+                         4 => "4 second",
+                         5 => "5 second",
+                         10 => "10 second",
+                         15 => "15 second",
+                         30 => "30 second",
+                         45 => "45 second",
+                         60 => "60 second"),
+           $defaultPause, // default value
+           1, // select size
+           array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
+?>
+    &nbsp;Loop:<input type="checkbox" name="loopCheck" <?= ($defaultLoop) ? "checked" : "" ?> onclick='toggleLoop();'>
+    &nbsp;<a href="#" onClick='stop(); return false;'>[stop]</a>
+    <a href="#" onClick='play(); return false;'>[play]</a>
+<?
+if ($slide_full) {
+    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0) 
+	. "\">[normal size]</a>";
+} else {
+    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1)
+        . "\">[full size]</a>";
+}
+?>
     </span>
     </td>
-    <td align="right">
-     <span class="admin">
-       <a href=<?=makeGalleryUrl("view_album.php",
-				 array("set_albumName" => $gallery->session->albumName))?>>[back to album]</a>
-     </span>
-     &nbsp;
-    </td>
-    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td colspan="3" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td height=3 bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-    <td colspan="2"><?= $pixelImage ?></td>
-    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-    <td colspan="2" valign="bottom" align="left">&nbsp;
-    <span class=admin>
-      <Input style="font-size=10px;" type="button" name="buttonReverse" value="<< Rev" onClick='change_direction(-1)'>
-      <Input style="font-size=10px;" type="button" name="buttonStop" value=" Stop " onClick='stop()'>
-      <Input style="font-size=10px;" type="button" name="buttonForward" value="Fwd >>" onClick='change_direction(1)'>
-      &nbsp;&nbsp;
-<?=
-drawSelect("time", array(1 => "1 second pause",
-			 2 => "2 second pause",
-			 3 => "3 second pause",
-			 4 => "4 second pause",
-			 5 => "5 second pause",
-			 10 => "10 second pause",
-			 15 => "15 second pause",
-			 30 => "30 second pause",
-			 45 => "45 second pause",
-			 60 => "60 second pause"),
-	   $slide_pause, // default value
-	   1, // select size
-	   array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
-?>
-    &nbsp;&nbsp;Current Photo
-<?
-	$photoCountArray = array();
-	for ($i = 1; $i <= $numVisible; $i++) {
-		$photoCountArray[$i] = $i;
-	}
-	print drawSelect("currentPhoto", 
-			$photoCountArray, 
-			$slide_index, // default value 
-			1, // select size
-			array("onchange" => "skip_to()", 'style' => 'font-size=10px;'));
-?> (of <?= $numVisible ?>)
-     </span>
-    </td>
-    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td height=3 bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-    <td colspan="2"><?= $pixelImage ?></td>
-    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+    <td width="1" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
   </tr>
   <tr>
     <td colspan="3" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
@@ -388,13 +418,13 @@ if ($photo_count > 0) {
 
 <script language="Javascript">
 /* show the caption either in a nice div or an ugly form textarea */
-document.write("<div class='desc'>" + photo_captions[<?= $slide_index ?>] + "</div>");
+document.write("<div class='desc'>" + "[" + current_location + " of " + photo_count + "] " + photo_captions[<?= $slide_index ?>] + "</div>");
 
 /* Load the first picture */
 preload_photo(<?= $slide_index ?>);
 
 /* Start the show. */
-change_direction(<?= $slide_dir ?>);
+play();
 
 </script>
 

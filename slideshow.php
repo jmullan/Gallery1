@@ -36,6 +36,16 @@ if ($gallery->session->albumName == "") {
         return;
 }
 
+// default settings ---
+$defaultLoop = 0;
+$defaultTransition = 0;
+$defaultPause = 3;
+$defaultFull = 0;
+
+if (!slide_full) {
+    $slide_full = $defaultFull;
+}
+
 $borderColor = $gallery->album->fields["bordercolor"];
 $borderwidth = $gallery->album->fields["border"];
 if (!strcmp($borderwidth, "off")) {
@@ -85,7 +95,6 @@ if ($gallery->album->fields["textcolor"]) {
 var timer; 
 var current_location = 1;
 var next_location = 1; 
-var direction = 1; 
 var pics_loaded = 0;
 var onoff = 0;
 var timeout_value;
@@ -94,7 +103,8 @@ var photo_urls = new Array;
 var photo_captions = new Array;
 var transitionNames = new Array;
 var transitions = new Array;
-var current_transition = 1;
+var current_transition = <?= $defaultTransition ?>;
+var loop = <?= $defaultLoop ?>;
 <?php
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
@@ -115,13 +125,7 @@ while ($index <= $numPhotos) {
     $photo_count++;
     $numVisible++;
 
-    $image = $photo->image;
-    if ($photo->image->resizedName) {
-        $thumbImage = $photo->image->resizedName;
-    } else {
-        $thumbImage = $photo->image->name;
-    }
-    $photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $thumbImage . "." . $image->type;
+    $photoURL = $gallery->album->getPhotoPath($index, $slide_full);
 
     // Now lets get the captions
     $caption = $gallery->album->getCaption($index);
@@ -147,18 +151,12 @@ while ($index <= $numPhotos) {
     $index = getNextPhoto($index);
 }
 
-$transitionNames[] = '!! Random !!';
-$transitions[] = 'special case';
 $transitionNames[] = 'Blend';
 $transitions[] = 'progid:DXImageTransform.Microsoft.Fade(duration=1)';
 $transitionNames[] = 'Blinds';
 $transitions[] = 'progid:DXImageTransform.Microsoft.Blinds(Duration=1,bands=20)';
 $transitionNames[] = 'Checkerboard';
 $transitions[] = 'progid:DXImageTransform.Microsoft.Checkerboard(Duration=1,squaresX=20,squaresY=20)';
-$transitionNames[] = 'Crazy Bars';
-$transitions[] = 'progid:DXImageTransform.Microsoft.RandomBars(Duration=1,orientation=vertical)';
-$transitionNames[] = 'Crazy Pixels';
-$transitions[] = 'progid:DXImageTransform.Microsoft.RandomDissolve(Duration=1,orientation=vertical)';
 $transitionNames[] = 'Diagonal';
 $transitions[] = 'progid:DXImageTransform.Microsoft.Strips(Duration=1,motion=rightdown)';
 $transitionNames[] = 'Doors';
@@ -173,12 +171,19 @@ $transitionNames[] = 'Pixelate';
 $transitions[] = 'progid:DXImageTransform.Microsoft.Pixelate(maxSquare=10,duration=1)';
 $transitionNames[] = 'Radial';
 $transitions[] = 'progid:DXImageTransform.Microsoft.RadialWipe(Duration=1,wipeStyle=clock)';
+$transitionNames[] = 'Rain';
+$transitions[] = 'progid:DXImageTransform.Microsoft.RandomBars(Duration=1,orientation=vertical)';
 $transitionNames[] = 'Slide';
 $transitions[] = 'progid:DXImageTransform.Microsoft.Slide(Duration=1,slideStyle=push)';
+$transitionNames[] = 'Snow';
+$transitions[] = 'progid:DXImageTransform.Microsoft.RandomDissolve(Duration=1,orientation=vertical)';
 $transitionNames[] = 'Spiral';
 $transitions[] = 'progid:DXImageTransform.Microsoft.Spiral(Duration=1,gridSizeX=40,gridSizeY=40)';
 $transitionNames[] = 'Stretch';
 $transitions[] = 'progid:DXImageTransform.Microsoft.Stretch(Duration=1,stretchStyle=push)';
+
+$transitionNames[] = '!! RANDOM !!';
+$transitions[] = 'special case';
 
 $transitionCount = sizeof($transitions) - 1;
 
@@ -207,21 +212,38 @@ if (is_ie4up || is_nav6up) {
 // - IE5.5 and up can do the blending transition.
 var browserCanBlend = (is_ie5_5up);
 
+function stopOrStart() {
+    if (onoff) {
+	stop();
+    } else {
+	play();
+    }
+}
+
+function toggleLoop() {
+    if (loop) {
+	loop = 0;
+    } else {
+	loop = 1;
+    }
+}
+
 function stop() {
+    stopOrStartBlock = document.getElementById("stopOrStartText");
+    stopOrStartBlock.innerHTML = "play";
+
     onoff = 0;
-    status = "The slide show is stopped, Click Fwd or Rev to resume.";
+    status = "The slide show is stopped, Click [play] to resume.";
     clearTimeout(timer);
+
 }
 
-function change_direction(newDir) {
+function play() {
+    stopOrStartBlock = document.getElementById("stopOrStartText");
+    stopOrStartBlock.innerHTML = "stop";
+
     onoff = 1;
-    direction = newDir;
-    go_to_next_photo();
-}
-
-function skip_to() {
-    clearTimeout(timer);
-    next_location = document.TopForm.currentPhoto.selectedIndex+1;
+    status = "Slide show is running...";
     go_to_next_photo();
 }
 
@@ -255,6 +277,7 @@ function wait_for_current_photo() {
 	timer = setTimeout('wait_for_current_photo()', 500);
 	return 0;
     } else {
+	status = "Slide show is running...";
 	preload_next_photo();
 	reset_timer();
     }
@@ -276,15 +299,13 @@ function go_to_next_photo() {
 
 function preload_next_photo() {
     
-    /* Calculate the new next location based upon the direction. */
-    next_location = (parseInt(current_location) + parseInt(direction));
+    /* Calculate the new next location */
+    next_location = parseInt(current_location) + 1;
     if (next_location > photo_count) {
 	next_location = 1;
-	stop();
-    }
-    if (next_location == 0) {
-	next_location = photo_count;
-	stop();
+	if (!loop) {
+	    stop();
+	}
     }
     
     /* Preload the next photo */
@@ -301,16 +322,11 @@ function show_current_photo() {
 	return 0;
     }
     
-    status = "Slide show running...(" + current_location + " of " + photo_count + ")...";
-
-    /* Update our current location in the dropdown */
-    document.TopForm.currentPhoto.selectedIndex = current_location-1;
-
     /* transistion effects */
     if (browserCanBlend){
 	var do_transition;
-	if (current_transition == 0) {
-	    do_transition = Math.floor(Math.random() * transition_count) + 1;
+	if (current_transition == (transition_count)) {
+	    do_transition = Math.floor(Math.random() * transition_count);
 	} else {
 	    do_transition = current_transition;
 	}
@@ -344,7 +360,7 @@ function preload_photo(index) {
 
 function setCaption(text) {
     captionBlock = document.getElementById("caption");
-    captionBlock.innerHTML = text;
+    captionBlock.innerHTML = "[" + current_location + " of " + photo_count + "] " + text;
 }
 
 </Script>
@@ -354,98 +370,107 @@ function setCaption(text) {
 <?
 $imageDir = $gallery->app->photoAlbumURL."/images"; 
 $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">";
+
+?>
+<form name="TopForm">
+<?
+
+#-- breadcrumb text ---
+$breadCount = 0;
+$breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
+      "\">" . $gallery->album->fields['title'] . "</a>";
+$breadCount++;
+$pAlbum = $gallery->album;
+do {
+  if (!strcmp($pAlbum->fields["returnto"], "no")) {
+    break;
+  }
+  $pAlbumName = $pAlbum->fields['parentAlbumName'];
+  if ($pAlbumName) {
+    $pAlbum = new Album();
+    $pAlbum->load($pAlbumName);
+    $breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($pAlbumName) .
+      "\">" . $pAlbum->fields['title'] . "</a>";
+  } else {
+    //-- we're at the top! ---
+    $breadtext[$breadCount] = "Gallery: <a href=\"" . makeGalleryUrl("albums.php") .
+      "\">" . $gallery->app->galleryTitle . "</a>";
+  }
+  $breadCount++;
+} while ($pAlbumName);
+
+//-- we built the array backwards, so reverse it now ---
+for ($i = count($breadtext) - 1; $i >= 0; $i--) {
+    $breadcrumb["text"][] = $breadtext[$i];
+}
+$breadcrumb["bordercolor"] = $borderColor;
+$breadcrumb["top"] = true;
+
+include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
+
+
+$adminbox["commands"] = "";
+$adminbox["text"] = "Slide Show";
+$adminbox["bordercolor"] = $borderColor;
+$adminbox["top"] = true;
+include ($GALLERY_BASEDIR . "layout/adminbox.inc");
+
 ?>
 
-<form name="TopForm">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td colspan="3" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
   </tr>
   <tr>
-    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-    <td>
-    <span class=desc>
-    &nbsp;&nbsp;Slide Show:&nbsp;&nbsp;
-    </span>
-    <span class="admin">
-    [not working for you? Try the <a href="<?=makeGalleryUrl("slideshow_low.php",
-                                 array("set_albumName" => $gallery->session->albumName))?>">low-tech slide show</a>]
-    </span>
-    </td>
-    <td align="right">
-     <span class="admin">
-       <a href=<?=makeGalleryUrl("view_album.php",
-				 array("set_albumName" => $gallery->session->albumName))?>>[back to album]</a>
-     </span>
-     &nbsp;
-    </td>
-    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td colspan="3" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td height=3 bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-    <td colspan="2"><?= $pixelImage ?></td>
-    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-    <td colspan="2" valign="bottom" align="left">&nbsp;
+    <td height="25" width="1" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+    <td align="left" valign="middle">
     <span class=admin>
-      <Input style="font-size=10px;" type="button" name="buttonReverse" value="<< Rev" onClick='change_direction(-1)'>
-      <Input style="font-size=10px;" type="button" name="buttonStop" value=" Stop " onClick='stop()'>
-      <Input style="font-size=10px;" type="button" name="buttonForward" value="Fwd >>" onClick='change_direction(1)'>
-      &nbsp;&nbsp;
+    &nbsp;Delay: 
 <?=
-drawSelect("time", array(1 => "1 second pause",
-			 2 => "2 second pause",
-			 3 => "3 second pause",
-			 4 => "4 second pause",
-			 5 => "5 second pause",
-			 10 => "10 second pause",
-			 15 => "15 second pause",
-			 30 => "30 second pause",
-			 45 => "45 second pause",
-			 60 => "60 second pause"),
-	   2, // default value
+drawSelect("time", array(1 => "1 second",
+			 2 => "2 second",
+			 3 => "3 second",
+			 4 => "4 second",
+			 5 => "5 second",
+			 10 => "10 second",
+			 15 => "15 second",
+			 30 => "30 second",
+			 45 => "45 second",
+			 60 => "60 second"),
+	   $defaultPause, // default value
 	   1, // select size
 	   array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
 ?>
-    &nbsp;&nbsp;Current Photo
-<?
-	$photoCountArray = array();
-	for ($i = 1; $i <= $numVisible; $i++) {
-		$photoCountArray[$i] = $i;
-	}
-	print drawSelect("currentPhoto", 
-			$photoCountArray, 
-			1, // default value 
-			1, // select size
-			array("onchange" => "skip_to()", 'style' => 'font-size=10px;'));
-?> (of <?= $numVisible ?>).
-
     <script language="Javascript">
     /* show the blend select if appropriate */
     if (browserCanBlend) {
-	document.write('&nbsp;&nbsp;Transition <? 
+	document.write('&nbsp;Transition: <? 
 	    print ereg_replace("\n", ' ', drawSelect("transitionType",
 		$transitionNames,
-		1,
+		$defaultTransition,
 		1,
 		array('onchange' => 'change_transition()', 'style' => 'font-size=10px;')));
 	?>');
     }
     
     </script>
-     </span>
+    &nbsp;Loop:<input type="checkbox" name="loopCheck" <?= ($defaultLoop) ? "checked" : "" ?> onclick='toggleLoop();'>
+    &nbsp;<a href="#" onClick='stopOrStart(); return false;'>[<span id="stopOrStartText">stop</span>]</a>
+<?
+if ($slide_full) {
+    echo "<a href=\"" . makeGalleryUrl("slideshow.php",
+        array("set_albumName" => $gallery->session->albumName)) . "\">[normal size]</a>";
+} else {
+    echo "<a href=\"" . makeGalleryUrl("slideshow.php",
+        array("set_albumName" => $gallery->session->albumName, "slide_full" => 1))
+        . "\">[full size]</a>";
+}
+?>
+    <a href="<? echo makeGalleryUrl("slideshow_low.php",
+        array("set_albumName" => $gallery->session->albumName)) ?>">[not working? try low-tech]</a>
+    </span>
     </td>
-    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td height=3 bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
-    <td colspan="2"><?= $pixelImage ?></td>
-    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+    <td width="1" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
   </tr>
   <tr>
     <td colspan="3" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
@@ -485,7 +510,7 @@ setCaption(photo_captions[1]);
 preload_photo(1);
 
 /* Start the show. */
-change_direction(1);
+play();
 
 </script>
 
