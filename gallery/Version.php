@@ -44,7 +44,7 @@ $gallery->version = "1.3.5-cvs-b53_ML10-b10";
 $gallery->config_version = 40;
 $gallery->album_version = 13;
 $gallery->remote_protocol_version = 1;
-$gallery->url = "http://gallery-translation.ath.cx";
+$gallery->url = "http://gallery.sourceforge.net";
 
 /*
  * PostNuke version info
