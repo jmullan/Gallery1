@@ -354,7 +354,7 @@ if ($numPhotos) {
 			echo("</td>");
 			echo("<td $bordercolor width=$borderwidth>");
 			echo("<img src=".$gallery->app->photoAlbumURL."/images/pixel_trans.gif width=$borderwidth height=1>");
-			echy("</td>");
+			echo("</td>");
 			echo("</tr>");	
 			echo("<tr $bordercolor>"); 
 			echo("<td colspan=3 height=$borderwidth><img src=".$gallery->app->photoAlbumURL."/images/pixel_trans.gif></td>");
