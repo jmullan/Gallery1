@@ -89,7 +89,7 @@ if(!includeTemplate('navigator.tpl')) {
 					$leftdot = '<img valign="absmiddle" src="'. $ndUrl .'"  alt="leftdot">';
 				}
 			}
-			$mpContent .= "&nbsp;$leftdot&nbsp$number\n\t\t";
+			$mpContent .= "&nbsp;$leftdot&nbsp;$number";
 		}
 
 		if ($end == $current) {
