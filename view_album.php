@@ -195,6 +195,18 @@ if ($numPhotos) {
 
 	$rowCount = 0;
 	while ($rowCount < $rows) {
+		/* Do the inline_photo header row */
+		echo("<tr>");
+		$i = $start + $rowCount * $cols;
+		$j = 1;
+		while ($j <= $cols && $i <= $numPhotos) {
+			echo("<td>");
+			includeHtmlWrap("inline_photo.header");
+			echo("</td>");
+			$j++; $i++;
+		}
+		echo("</tr>");
+
 		/* Do the picture row */
 		echo("<tr>");
 		$i = $start + $rowCount * $cols;
@@ -301,6 +313,18 @@ if ($numPhotos) {
 			$j++; $i++;
 		}
 		echo "</tr>";
+
+		/* Now do the inline_photo footer row */
+		echo("<tr>");
+		$i = $start + $rowCount * $cols;
+		$j = 1;
+		while ($j <= $cols && $i <= $numPhotos) {
+			echo("<td>");
+			includeHtmlWrap("inline_photo.footer");
+			echo("</td>");
+			$j++; $i++;
+		}
+		echo("</tr>");
 		$rowCount++;
 	}
 } else {
