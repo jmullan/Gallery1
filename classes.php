@@ -612,8 +612,11 @@ class AlbumDB {
 	}
 
 	function newAlbumName() {
+		global $app;
+
 		$index = "album1";
-		while (file_exists("$GLOBALS[albumDir]/$index")) {
+		$albumDir = $app->albumDir;
+		while (file_exists("$albumDir/$index")) {
 			$index++;
 		}
 		return $index;
