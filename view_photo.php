@@ -385,7 +385,6 @@ if (!$gallery->album->isMovie($id)) {
 		
 		/* display photo printing services */
 		$printServices = $gallery->album->fields['print_photos'];
-		ksort($printServices);
 		$numServices = count($printServices);
 		$fullName = array(
 			'ezprints'    => 'EZ Prints - Photo Printing',
@@ -397,6 +396,7 @@ if (!$gallery->album->isMovie($id)) {
 		);
 		/* display a <select> menu if more than one option */
 		if ($numServices > 1) {
+			ksort($printServices);
 			$selectCommand = '<select name="print_services" class="adminform" onChange="doPrintService()">';
 			$selectCommand .= '<option value="">&laquo; '. _("Select service") .' &raquo;</option>';
 			foreach ($printServices as $name => $data) {
