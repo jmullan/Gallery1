@@ -1,508 +1,508 @@
 2003-08-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b107
 
-	* Updated all refs to 1.3.5 to 1.4, except version number.
+        * Updated all 1.3.5 refs to 1.4, except for the version number.
 
-	* Added filesize restriction for resize, and bump album version
-	  to store this value for each album.  If this value is set, the 
-	  compress function will be called repeatedly to get as close as 
-	  possible to this size.
-	  	- changes to move_photo.php resizing
+        * Added filesize restriction for resize, and bumped album version to
+	  store this value for each album.  If this value is set, the compress
+	  function will be called repeatedly to get as close as possible to
+	  this size.
+          
+	* Changes to move_photo.php resizing.
 
-	* Stop language initialition in embedded galleries.
+        * Stop language initialition in embedded galleries.
 
-	* Fixed bug that print statement in move_photo.php
+        * Fixed bug that printed statement in move_photo.php.
+        
+        * Fixed bug in displaying number of hidden albums in view_album.php.
+	  (Thanks to Eelco Brolman)
+
+        * Changed "configurations wizard" to "configuration wizard".
+
+2003-08-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b106
 	
-	* Fixed bug in displaying number hidden albums in view album (thanks to
-	  Eelco Brolman)
-
-	* Change "configurations wizard" to "configuration wizard".
-
-2003-08-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b106
-	
-	* Fixed bug in diagnositics so it will run without gettext defined.
+	* Fixed bug in diagnositics so it will run without gettext.
 
 2003-08-08  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b105
 
-	* Cleaned up warnings and minor errors in the setup diagnostics
+	* Cleaned up warnings and minor errors in the setup diagnostics.
 
 2003-08-08  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b104
 
-	* Fixed several small problems in the config wizard and util.php that 
+	* Fixed several small problems in the Config. Wizard and util.php that
 	  would generate PHP warnings.
 
-	* Added aliases for Portuguese (pt_PT) and Chinese (zh_TW) as they
-	  appear in FreeBSD
+	* Added aliases for Portuguese (pt_PT) and Chinese (Traditional)
+	  (zh_TW) as they appear in FreeBSD.
 
-2003-08-08  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b103
+2003-08-08  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b103
 
-	* fixed bug which caused gallery not shown in chinese in *NUKE
+	* Fixed bug which caused Gallery to not display Chinese in Nuke.
 
-	* Tweaked initLanguage() for better co-operation with NUKE. Charset header is not sent in *NUKE now
+	* Tweaked initLanguage() for better co-operation with Nuke. Charset
+	  header is no longer sent in Nuke.
 
-	* Tweaked util.php 
+	* Tweaked util.php..
 
-2003-08-07  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b102
+2003-08-07  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b102
 
 	* Fix the +profile "*" bug once and for all.  To do this, I specified
-          each profile type individually, as described on this page:
-          http://www.imagemagick.org/www/utilities.html#details-profile
+	  each profile type individually, as described on this page:
+	  http://www.imagemagick.org/www/utilities.html#details-profile
 
-2003-08-07  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b101
+2003-08-07  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b101
 
-	* Added traditional chinese/taiwan (zh_TW)
+	* Added Traditional Chinese (zh_TW) translation.
 
-	* Moved mode3 language selectbox from bottom to top (only in albums.php)
+	* Moved drop-down language select box from bottom to top (just for
+	  albums.php).
 	
-	* Tweaked mode3 language selectbox that it only shows lanuages defined in nls.php
+	* Modified ml_pulldown.php to only show languages defined in nls.php.
 
-	* Tweaked mode3 code for better co-operation with NUKE
+	* Tweaked drop-down box code for better co-operation with Nuke.
 
-2003-08-06  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b100
+2003-08-06  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b100
 
-	* fixed alignment bug, which caused gallery to render site incorrect
+	* Fixed text alignment bug, which caused Gallery to render incorrectly.
 
-	* removed alignment() and use $gallery->align
+	* Removed alignment() from util.php and now just use $gallery->align.
 
-2003-08-05  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b99
+2003-08-05  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b99
 
-	* synced all languages
+	* Synced all languages.
 	
-	* switched back from nb_NO to no_NO
+	* Reverted from nb_NO to no_NO for Norsk (Bokmål).
 
-	* updated german translation
+	* Updated German (de_DE) translation.
 
-2003-08-05  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b98
+2003-08-05  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b98
 	
-	* added text alignment for Hebrew.  Was in original multilanguage 
-	  branch.  Only used in albums.php (so far).
+	* Added proper text alignment for Hebrew and other right-to-left
+	  languages.  Was in original multilanguage branch.  Only used in
+	  albums.php (so far).
 
-2003-08-05  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b97
+2003-08-05  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b97
 	
-	* Code tweaked to reduce warnings in setup when error_reporting(E_ALL) 
-	  is used
+	* Code tweaked to reduce Config. Wizard warnings when
+	  error_reporting(E_ALL) is used.
 
-2003-08-05  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b96
+2003-08-05  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b96
 
-	* Removed just introduced bug where locale alternative would not 
-	  be saved if there was only one alternative.
+	* Removed just introduced bug where locale alternative would not be
+	  saved if there was only one alternative.
 
-2003-08-04  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b95
+2003-08-04  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b95
 	
-	* Code tweaked to reduce warnings in setup when error_reporting(E_ALL) 
-	  is used
+	* Code tweaked to reduce Config. Wizard warnings when
+	  error_reporting(E_ALL) is used.
 
-2003-08-04  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b94
+2003-08-04  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b94
 	
-	* Code tweaked to reduce warnings in setup when error_reporting(E_ALL) 
-	  is used
+	* Code tweaked to reduce Config. Wizard warnings in setup when
+	  error_reporting(E_ALL) is used.
 
-2003-08-05  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b93
+2003-08-05  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b93
 
-	* updated polish translation
+	* Updated Polish (pl_PL) translation.
 
-2003-08-04  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b92
+2003-08-04  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b92
 
-	* Revert back to -b88 (but with the changes made in -b90 by joan)
-	  as this is causing a bunch of notices and may cause more trouble
-	  than it's worth
+	* Revert back to -b88 (but with the changes made in -b90 by Joan) as
+	  this is causing a bunch of PHP notices and may cause more trouble
+	  than it's worth.
 
-2003-08-04  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b91
+2003-08-04  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b91
 
-	* Remove warnings I introduced in -b89
+	* Remove warnings I introduced in -b89.
 
-2003-08-04  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b90
+2003-08-04  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b90
 
-	* Code tweaked to reduce warnings in setup when error_reporting(E_ALL) 
-	  is used
+	* Code tweaked to reduce Config. Wizard warnings in setup when
+	  error_reporting(E_ALL) is used.
 
-2003-08-04  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b89
+2003-08-04  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b89
 
-	* Remove unnecessary eval()'s from the config wizard
+	* Removed unnecessary eval() calls from the Config. Wizard.
 
-2003-08-04  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b88
+2003-08-04  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b88
 
-	* Strip slashes from title, summary, extra fields if magic quotes are 
+	* Strip slashes from title, summary, extra fields if magic quotes are
 	  on, as suggested by BorgKing.  This should improve behaviour when
 	  magic quotes are on.
 
-2003-08-01  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b87
+2003-08-01  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b87
 
-	* Rework of configuration step 2, so it displays the problem locales
-	  closely grouped together
+	* Rework of Config. Wizard Step 2 to display the translation locales
+	  closely grouped together.
 
-2003-08-01  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b86
+2003-08-01  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b86
 	
-	* Latest french update from curio.  First complete french version.
+	* Updated French (fr_FR) tranlation from curio.
 
-2003-08-02  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b85
+2003-08-02  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b85
 
-	* fixed bug in nls.php
+	* Fixed bug in nls.php.
 
-2003-08-02  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b84
+2003-08-02  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b84
 
-	* updated translation
+	* Updated translations.
 	
-	* added pt_PT
+	* Added Portuguese (pt_PT) translation.
 
-	* removed fr_CA, added fr_FR
+	* Removed fr_CA, added fr_FR for French translation.
 
-2003-08-02  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b83
+2003-08-02  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b83
 
-	* added missing nb_NO files
+	* Added missing nb_NO files.
 
-	* fixed little langage bug, when gallery is in nuke
+	* Fixed small translation bug when running in Nuke.
 
-2003-08-01  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b82
+2003-08-01  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b82
 
-	* Pulldowns were appearing in setup with only one choice.  These are 
+	* Pulldowns were appearing in setup with only one choice.  These are
 	  replaced with hidden input fields.
 
-2003-08-01  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b81
+2003-08-01  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b81
 
-        * removed little old code
+        * Removed some old code.
 
-2003-08-01  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b80
+2003-08-01  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b80
 
-	* Fix bug with *Nuke integration where we could generate an
-          incorrect URL, so language changing didn't work (Thanks
-          Warren)
+	* Fixed bug with Nuke integration where we could generate an incorrect
+	URL, so language changing didn't work. (Thanks Warren)
 
-2003-08-01  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b79
+2003-08-01  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b79
 
-	* Fix error in index.php caused by weird typo
+	* Fixed error in index.php caused by weird typo.
 
-2003-08-01  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b78
+2003-08-01  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b78
 
-	* Moved language locale configs to the end of Step 2 and added 
+	* Moved language locale configs to the end of Step 2 and added
 	  "(Advanced)" to each one.
 
-2003-08-01  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b77
+2003-08-01  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b77
 
-	* default ML mode is now 3
+	* Default ML mode is now 3 (drop-down language select box).
 
-	* bug fix for languages for which there are no suitable locales
+	* Bug fix for languages for which there are no suitable locales.
 
-2003-08-01  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b76
+2003-08-01  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b76
 
-	* removed nl_BE and no_NO from locale folder
+	* Removed nl_BE and no_NO from locale folder.
 
-2003-07-31  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b75
+2003-07-31  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b75
 
-	* removed stray "?" in sort_album.php
+	* Removed stray "?" in sort_album.php.
 
-	* made drawSelect able to handle multiple selections (no behaviour 
-	  change to existing code)
+	* Made drawSelect() able to handle multiple selections (no behaviour
+	  change to existing code).
 
-	* made printAlbumOptionList able to produce a list of readable files 
-         (no behaviour change to existing code)
+	* Made printAlbumOptionList() able to produce a list of readable files
+         (no behaviour change to existing code).
 
-	* ML pull down no longer appears on offline mode.
+	* ML pull-down box no longer appears in offline mode.
 
-2003-07-31  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b74
+2003-07-31  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b74
 
-	* Changed no_NO (Norsk) to correct nb_NO (Norsk bokmal)
+	* Changed no_NO (Norsk) to correct nb_NO (Norsk Bokmål).
 
-2003-07-31  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b73
+2003-07-31  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b73
 
-	* fixed a bug in language detection introduced in b72
+	* Fixed a bug in language detection introduced in -b72.
 
-	* tweak navigation for languages showed rtl
+	* Tweaked navigation for right-to-left languages.
 
-2003-07-31  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b72
+2003-07-31  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b72
 
-	* continued tidy up. there should be no errormsg in config wizard when error_reporting(E_ALL);
+	* Continued tidy up. There should be no more warnings or notices in the
+	  Config. Wizard when error reporting is turned up.
 
-	* bash script updates in po
+	* Translation Bash script updates in po/ directory.
 	
-	* bugfixes in de_DE
+	* Bugfixes in German (de_DE) translation.
 
-	* browser language is now suggested as default language
+	* Browser language is now suggested as default language.
 
-	* tidy up language detection
+	* Cleaned up language detection.
 
-2003-07-31  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b71
+2003-07-31  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b71
 
-	* removed $_GET & $_SERVER as they are not available before PHP 4.1.0
+	* Removed $_GET & $_SERVER as they are not available before PHP 4.1.0.
 
-2003-07-31  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b70
+2003-07-31  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b70
 
 	* Begin great tidy up.  Step 1: No more notices during setup!
 
-	* fixed some spelling errors (ie bugs) etc revealed when
-	  notices displayed.
+	* Fixed some spelling errors (i.e. bugs), revealed when error reporting
+	  is turned up.
+	
+	* Tweaked function_exists('array_map') one more time.
 
-	* tweak function_exists('array_map') one more time
+	* Removed >= 4.0.6 function array_filter(), and wrapped _GET in
+	  isset().
 
-	* Removed >= 4.0.6 function array_filter, and wrapped _GET in isset
+2003-07-30  Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b59
 
-2003-07-30 Jens Tkotz <jens@peino.de> 1.3.5-cvs-b59
+	* Massive update of de_DE.
 
-	* massive update of de_DE
+	* Some minor tweaks.
 
-	* some minor tweaks
+	* Updated po/README.
 
-	* updated po/README
+2003-07-30  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b68
 
-2003-07-30  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b68
+	* Quoted argument to function_exists().
 
-	* Quote argument to function_exists
+2003-07-30  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b67
 
-2003-07-30  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b67
+	* Don't call array_map() if it doesn't exist.
 
-	* don't call array_map if it doesn't exist
+2003-07-30  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b66
 
-2003-07-30  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b66
+	* Should be able to change language in view_photo.php now.
 
-	* should be able to change language in view_photo.php now
-
-2003-07-30  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b65
+2003-07-30  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b65
 
 	* Make "Gallery" a literal string where it is the product name.
 
-	* re-jig of ml_pulldown, so it doesn't rely on request_uri
+	* Re-jig of ml_pulldown.inc, so it doesn't rely on request_uri().
 
-2003-07-30  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b64
+2003-07-30  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b64
 
-	* default language now browser language before configuration
+	* Default Config. Wizard language is now set to the default browser
+	  language at the start of configuration.
 
-2003-07-30  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b63
+2003-07-30  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b63
 
-	* bug fix with ML code and Magic quotes.
+	* Bug fix with ML code and magic quotes.
 
-2003-07-30  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b62
+2003-07-30  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b62
 
-	* bug fix in configuration wizard invocation
+	* Bug fix in Config. Wizard invocation.
 
-2003-07-29  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b61
+2003-07-29  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b61
 
-	* more strings to translations.
+	* Added more translation strings.
 
-2003-07-29  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b60
+2003-07-29  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b60
 
-	* big tidy up of strings for translation.  (Hopefully) no functional 
-	  changes"
+	* Big tidy up of strings for translation.  No functional changes
+	  (hopefully!).
 
-2003-07-28  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b59
+2003-07-28  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b59
 
-	* separated getNLS to it's own file
+	* Separated getNLS to its own file.
 
-	* couple of typo errors
+	* Couple of typo errors.
 
-2003-07-28  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b58
+2003-07-28  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b58
 
-	* fixed ML Mode 3 slideshow bug.
+	* Fixed ML Mode 3 slideshow bug.
 
-	* retain newlines in captions.
+	* Retain newlines in captions.
 	
-	* (from Jens' ML code) added height and width to popups,
-	but are not using them yet.  This is because the same window
-	is used for login and add photos, and if you don't close
-	the login window before opening the add photos, then you
-	will be stuck with a small window for that complicated
-	procedure.
+	* (From Jens' ML code) Added height and width to popups, but are not
+	  using them yet.  This is because the same window is used for login
+	  and add photos, and if you don't close the login window before
+	  opening the add photos, then you will be stuck with a small window
+	  for that complicated procedure.
 
-	* move ML Mode 3 pull down out of wrapper files
-
+	* Moved ML Mode 3 pull-down menu out of wrapper files.
 		
-2003-07-28  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b57
+2003-07-28  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b57
 
-	* Remove stray character in slide show footer (caught by h0bbel)
+	* Removed stray character in slideshow footer (caught by h0bbel).
         
-        * Expand on the jpegtran description a bit, explaining that it
-          only works on JPEG images (suggested by Jens)
+        * Expanded on the jpegtran description a bit, explaining that it only
+	  works on JPEG images (suggested by Jens).
 
-2003-07-28  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b56
+2003-07-28  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b56
 
-	* Gallery is now multilanguage.  Administrators and users
-	  will have access to languages as provided in language packs.
-	  Beyond this, functionality fundamentally unchanged from
-	  1.3.5-cvs-b55.
+	* Gallery is now multilanguage!!  Administrators and users will have
+	  access to languages as provided in language packs.  Beyond this,
+	  functionality is fundamentally unchanged from 1.3.5-cvs-b55.
 
-***************** MULTI LANGUAGE VERSION BRANCH *************************
+***************** MULTI LANGUAGE VERSION BRANCH *****************************
 
-2003-07-27  Christian Mohn <ch-moh@online.no> 1.3.5-cvs-b53_ML10-b15
+2003-07-27  Christian Mohn  <ch-moh@online.no> 1.3.5-cvs-b53_ML10-b15
         
-	* Added new putenv statement to util.php, to accomodate mandrake 
-          users.
+	* Added new putenv() statement to util.php to accomodate Mandrake
+	  users.
           
-2003-07-27  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b53_ML10-b14
+2003-07-27  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b53_ML10-b14
 
-	* Fix XSS security hole in the search code, caused by a typo in
-          search.php
+	* Fixed XSS security hole in the search code, caused by a typo in
+	  search.php.
 
 2003-07-27  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b53_ML10-b13
 
-	* Added FreeBSD locale names (which contain the code page) to 
-	  getNLS() so that we can detect them properly, even when open_basedir
-	  is enabled.
+	* Added FreeBSD locale names (which contain the code page) to getNLS()
+	  so that we can detect them properly, even when open_basedir is
+	  enabled.
 
 2003-07-26  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b53_ML10-b12
 
-	* Tweaked the config wizard to be more informative if open_basedir is
+	* Tweaked the Config. Wizard to be more informative if open_basedir is
 	  preventing locale detection.
 
-2003-07-25  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10-b11
+2003-07-25  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10-b11
 
-	* moved language pulldown to lower right corner.
+	* Moved language pull-down to lower right corner.
 
-2003-07-25  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b53_ML10-b10
+2003-07-25  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b53_ML10-b10
 
-	* Fix bug in ML Mode 2, where Gallery couldn't guess your language. 
+	* Fixed bug in ML Mode 2, where Gallery couldn't guess your language.
 
-2003-07-25  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10-b9
+2003-07-25  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10-b9
 
-	* Remembers language from one page to the next
+	* Language now remembered from one page to the next.
 
-2003-07-25  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10-b8
+2003-07-25  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10-b8
 
-	* REALLY fixed bug where config wizard couldn't handle locales with '.'
+	* REALLY fixed bug where the Config. Wizard couldn't handle locales
+	  with '.'
 
-2003-07-25  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10-b7
+2003-07-25  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10-b7
 
-	* fixed bug where config wizard couldn't handle locales with '.'
+	* Fixed bug where the Config. Wizard couldn't handle locales with '.'
 
-2003-07-24  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10-b6
+2003-07-24  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10-b6
 	
-	* Swapped the order of photo printers, so the usurian
-	  Shutterfly aren't number 1.
-	* Tidy up phrasing 
-	* now choose all all languages be default.
+	* Swapped the order of photo printers.
+	
+	* Cleaned up phrasing.
+	
+	* All languages are now chosen as default.
 
+2003-07-24  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10-b5
 
-2003-07-24  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10-b5
-
-	* first possible release candidate.  Needs much more testing, and 
+	* First possible release candidate.  Needs much more testing, and
 	  refinement of translation strings.
 
-2003-07-18  Joan McGalliard <gallery@joanhenge.plus.com> ????
+2003-07-18  Joan McGalliard  <gallery@joanhenge.plus.com> ????
 
-	* fixed bug where window wouldn't close in IE
+	* Fixed bug where window wouldn't close in IE.
 
-2003-07-10  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10
+2003-07-10  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b53_ML10
 
 	* First checkin of Jens' ML code.  Straight from his released sources.
 
 ***************** END MULTI LANGUAGE VERSION BRANCH *************************
 
-2003-07-27  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b55
+2003-07-27  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b55
 
-	* Fix XSS security hole in the search code, caused by a typo in
-          search.php
+	* Fixed XSS security hole in the search code, caused by a typo in
+	  search.php.
 
-2003-07-19  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.5-cvs-b54
+2003-07-19  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.5-cvs-b54
 
-	* Removed debugging statements in gallery_remote2.
+	* Removed debugging statements in gallery_remote2.php.
+	
 	* Added check to avoid warnings when PHP is configured to print
 	  warnings.
 
-2003-07-08  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b53
+2003-07-08  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b53
 
-        * Make the extension lowercase to catch file extensions like .JPG or
-          .JPEG (Thanks again Vallimar).
+        * Made the extension lowercase to catch file extensions like .JPG or
+	  .JPEG (Thanks again Vallimar).
 
-2003-07-08  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b52
+2003-07-08  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b52
 
         * Check to see if the image is a JPEG before attempting to use jpegtran
-          on it.  (Thanks for the catch, Vallimar).
+	  on it.  (Thanks for the catch, Vallimar).
 
-2003-07-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b51
+2003-07-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b51
 
-	* slight rework of b50
+	* Slight rework of -b50.
 
-2003-07-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b50
+2003-07-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b50
 
-	* fixed bug.  Correct image size with resized images in custom
-	  fields
+	* Fixed bug.  Correct image size with resized images in custom fields.
 
-2003-07-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b49
+2003-07-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b49
 
-	* use "round" instead of "ceil" for image size
+	* Now using "round" instead of "ceil" for image size.
 
-2003-07-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b48
+2003-07-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b48
 
-	* added "Image Size" as custom field.  Tidied up formatting and translation
+	* Added "Image Size" as a custom field.  Tidied up formatting and
+	  translation.
 
-2003-07-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b47
+2003-07-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b47
 
 	* Added the option to put new items at the beginning of an album.
 
-	* Little tweak to upgrade, so if you go back and forth
-	  between item_owner and pre-item_owner versions, you keep
-	  item_owner details intact.
+	* Little tweak to upgrade, so if you go back and forth between
+	  item_owner and pre-item_owner versions, you keep item_owner details
+	  intact.
 
-	* Add "new in 1.3.5" to jpegtran stuff.
+	* Added "new in 1.3.5" notice to jpegtran stuff.
 
-2003-07-07  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b46
+2003-07-07  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b46
 
-	* Implemented a slightly modified patch by Jonathan Larmour, to
-	  include jpegtran support.
+	* Implemented a slightly modified patch by Jonathan Larmour, to include
+	  jpegtran support.
 
-2003-07-07  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b45
+2003-07-07  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b45
 
-	* Change the text printed when an installation has warnings.
-	  This is based on some experiences from the forum, where users
-	  have been scared to go on when their installation just has a
-	  minor warning
+	* Changed the text printed when an installation has warnings.  This is
+	  based on some experiences from the forum, where users have been
+	  scared to go on when their installation just has a minor warning.
 
-2003-07-05  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b44
+2003-07-05  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b44
 
-	* Bug fix.  Number of custom fields as defined in
-	  extra_fields.php is incorrect when there is no "Title"
-	  field.
+	* Bug fix.  Number of custom fields as defined in extra_fields.php is
+	  incorrect when there is no "Title" field.
 
-2003-07-04  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b43
+2003-07-04  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b43
 
-	* added a function definition of array_search for compatibility with
-	  PHP 4.0.4
+	* Added a function definition of array_search() for compatibility with
+	  PHP 4.0.4.
 
-2003-07-02  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b42
+2003-07-02  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b42
 
 	* Wrapped realpath around __FILE__.  Hopefully this fixes a bug where
-	  __FILE__ is set to file name and not path in included files for
-	  some versions of PHP
+	  __FILE__ is set to file name and not path in included files for some
+	  versions of PHP.
 
-2003-06-30  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b41
+2003-06-30  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b41
 
-	* bug fix: if you are album and item owner, edit text etc will only
+	* Bug fix: if you are album and item owner, edit text etc. will only
 	  appear in pull down menu once, and edit thumbnail and rotate options
 	  do not appear for movies.
 
-2003-06-30  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b40
+2003-06-30  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b40
 
-	* added new custom field EXIF data. This displays exif data
-	  under the photo, but nly if data is available, and can be
-	  displayed in that album.  Photo properties link is removed
-	  if the data is displayed under photo.
+	* Added new custom field EXIF data. This displays EXIF data under the
+	  photo, but only if data is available, and can be displayed in that
+	  album.  The "photo properties" link is removed if the data is
+	  displayed under photo.
 
-	* made an array  "automatic fields" which is capture date,
-	  upload date and EXIF.  These are custom fields that are
-	  populated from exif data etc.  Should make translations a
-	  little easier, too.
-
+	* Made an "automatic fields" array which is capture date, upload date
+	  and EXIF data.  These are custom fields that are populated from EXIF
+	  data etc.  Should make translations a little easier, too.
 
 2003-06-29  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b39
 
 	* Augmented AlbumItem upgrade so that it scans for the "nobody" owner
 	  as well as for a missing owner altogether.
 
-2003-06-29  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b38
+2003-06-29  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b38
 
-	* upgrade album version to 12, to change item owner names
-	  from "nobody" to album owner.  This is for people who
-	  upgraded between b32 and b36.
+	* Bumped album version to 12, to change item owner names from "nobody"
+	  to album owner.  This is for people who upgraded between b32 and b36.
 
-2003-06-29  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b37
+2003-06-29  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b37
 
 	* During upgrade, item owner for all items will default to album owner,
-	  instead of "nobody"
+	  instead of "nobody".
 
 	* Bug fix in the owner code.  If owner is unknown, it now will not be
 	  printed as NOBODY.
 
 2003-06-28  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b36
 
-	* Fixed bugs in edit_appearance and photo_owner where we were using
-	  the php short open tags.
+	* Fixed bugs in edit_appearance and photo_owner where we were using the
+	  php short open tags.
 
 	* Fix a bug in AlbumItem where it crashes if the item owner is not set.
 
@@ -510,96 +510,95 @@
 
 	* Fixed HTML error in layout/breadcrumb.inc. (Bug #760294)
 
-	* Fixed CVS "Id" variables that were displaying in HTML. Some of
-	  these were generating PHP premature header errors.
+	* Fixed CVS "Id" variables that were displaying in HTML. Some of these
+	  were generating PHP premature header errors.
 
-2003-06-26  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.5-cvs-b34
+2003-06-26  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.5-cvs-b34
 
-	* Fixed erroneous error message when authentication fails in gallery_remote2.
+	* Fixed erroneous error message when authentication fails in
+	  gallery_remote2.
 
-2003-06-26  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b33
+2003-06-26  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b33
 
 	* Added missing </td> to edit_appearence.php.
 
-2003-06-26  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b32
+2003-06-26  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b32
 
 	* Added item owner.  Now each individual album item has an owner.
-	  Whether or not the owner can modify or delete her own images and
-	  whether the name of the owner is displayed is configurable at album
-	  level.
+	  Whether the owner can modify or delete her own images and whether the
+	  name of the owner is displayed is configurable at album level.
 
-2003-06-26  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b31
+2003-06-26  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b31
 
 	* added CVS "Id" variable to every file except:
 		./configure.bat   ./secure.bat ./setup/.htaccess
 		./setup/mod_rewrite.template ./setup/php_value.template
 
-2003-06-26  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b30
+2003-06-26  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b30
 
-	* Fix small html errors in view_photo.php.  Bug #760481.
+	* Fixed small HTML errors in view_photo.php.  (Bug #760481)
 
-2003-06-26  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.5-cvs-b29
+2003-06-26  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.5-cvs-b29
 
-	* Gallery Remote protocol version 2.3: fetch-albums returns the list
-	  of available extrafields for the album; add-item looks to HTTP vars
+	* Gallery Remote protocol version 2.3: fetch-albums returns the list of
+	  available extrafields for the album; add-item looks to HTTP vars
 	  extrafield_<fieldname> for extra fields and sets them on picture.
 
-2003-06-25  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b28
+2003-06-25  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b28
 
-	* change reload() to just call the javascript directly, rather
-	  adding a redundant <body> tag.
+	* Changed reload() to just call the JavaScript directly, rather adding
+	  a redundant <body> tag.
 
-	* Jens' suggestion to keep the rotate window open, so you
-	  can see the result of your handiwork.  I think it's pretty
-	  cool, actually, but we can always roll it back if people
-	  don't like it.
+	* Jens' suggestion to keep the rotate window open, so you can see the
+	  result of your handiwork.  I think it's pretty cool, actually, but we
+	  can always roll it back if people don't like it.
 
-2003-06-25  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.5-cvs-b27
+2003-06-25  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.5-cvs-b27
 
-	* Improved fetching list of albums from server anywhere from 50% to 95%.
+	* Improved fetching list of albums from server anywhere from 50% to
+	  95%.
 
-2003-06-23  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b26
+2003-06-23  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b26
 
-	* Jens' fix to rotate photo, which didn't do 180 rotation if ImageMagick
-	  is used.
+	* Jens' fix to rotate photo, which didn't do 180 rotation if
+	  ImageMagick is used.
 
-2003-06-23  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b25
+2003-06-23  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b25
 
-	* More changes to ease ML version (explicit strings for dates)
+	* More changes to ease ML version (explicit strings for dates).
 
-2003-06-23  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b24
+2003-06-23  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b24
 
 	* Make "Title" explicit to simplify ML version.
 
-2003-06-23  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b23
+2003-06-23  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b23
 
-	* bug in the delete/id2 code.  When delete is called from the
-	  pulldown menu in view_album.php, id2 is defaulting to an empty
-	  string, so test for that explicitly.
+	* Bug in the delete/id2 code.  When delete is called from the pulldown
+	  menu in view_album.php, id2 is defaulting to an empty string, so we
+	  now test for that explicitly.
 
 2003-06-19  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.5-cvs-b22
 
-	* Fixed error in Config. Wizard where Step 1 would incorrectly
-	  report Jhead as not found if Jhead was not in the same directory
-	  as the NetPBM binaries. (Bug #756925)
+	* Fixed error in Config. Wizard where Step 1 would incorrectly report
+	  Jhead as not found if Jhead was not in the same directory as the
+	  NetPBM binaries. (Bug #756925)
 
 	* Applied several patches from Vallimar (Patch #754649, 1-4):
 
 	  - Removed page navigator if there's only one page.
 
-	  - Removed check for ImageMagick's 'composite' binary, since
-	    Gallery doesn't actually use it anywhere.
+	  - Removed check for ImageMagick's 'composite' binary, since Gallery
+	    doesn't actually use it anywhere.
 
-	  - Restructured the format of the album/image count at the top of
-	    each page to be clearer and more accurate.
+	  - Restructured the format of the album/image count at the top of each
+	    page to be clearer and more accurate.
 
-	  - Changed delete_photo.php so that after deleting a photo from
-	    the photo view, the user is returned to the next photo in line
-	    (or the previous photo if at the end of the album), rather
-	    than being returned to the thumbnail view.
+	  - Changed delete_photo.php so that after deleting a photo from the
+	    photo view, the user is returned to the next photo in line
+	    (or the previous photo if at the end of the album), rather than
+	    being returned to the thumbnail view.
 
-	  - Added a [rename] button inside each album for added
-	    convenience.
+	  - Added a [rename] button inside each album for added convenience.
 
 	  - A couple of tiny UI cleanups.
 
@@ -608,17 +607,17 @@
 
 2003-06-15  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b21
 
-	* In session.php, attempt to force cookie support on if the server
-	  has turned it off.
+	* In session.php, attempt to force cookie support on if the server has
+	  turned it off.
 
 	* Added new <IfModule> lines to setup/.htaccess to cover the new sapi
-	  approach to installing PHP on Win32
+	  approach to installing PHP on Win32.
 
 	* Improve safe_serialize() to actually pay attention to the number of
 	  bytes written and abort if we wrote the wrong count.  This will
 	  prevent data corruption when you run out of disk space.
 
-2003-06-12  Bharat Mediratta <bharat@menalto.com> 1.3.5-cvs-b20
+2003-06-12  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b20
 
 	* Yet another change to fix the Win32 unserialization problem.  The
 	  issue is that on windows if we write files in binary mode that
@@ -628,11 +627,12 @@
 	  will cover legacy cases as a fallback but will migrate all data files
 	  forward as it touches them.
 
-2003-06-13  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.5-cvs-b19
+2003-06-13  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.5-cvs-b19
 
-	* Added more debug output to gallery_remote2.php, reorganized the code a bit.
+	* Added more debug output to gallery_remote2.php, reorganized the code
+	  a bit.
 
-2003-06-11  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b18
+2003-06-11  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b18
 
 	* Fixed an offline browsing bug, where under certain circumstance you
 	  could get into an infinite loop.  Only occurred with offline browsing
@@ -640,150 +640,145 @@
 
 2003-06-11  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b17
 
-	* Fixed a case where we were using the two argument form of trim()
-	  that isn't available until PHP 4.1.0
+	* Fixed a case where we were using the two argument form of trim() that
+	  isn't available until PHP 4.1.0.
 
 	* Changed util.php's getFile() to expect text files to preserve
-	  compatibility with the pre PHP 4.3.2 syntax for fopen()
+	  compatibility with the pre PHP 4.3.2 syntax for fopen().
 
-2003-06-10  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.5-cvs-b16
+2003-06-10  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.5-cvs-b16
 
 	* Added gallery_remote2.php to the $safe_to_include array in index.php
 	  so it can be invoked from CMS.
 
-2003-06-06  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b15
+2003-06-06  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b15
 
-	* Similar bug as previous.  If you did not have ImageMagick
-	  or NetPBM installed, but had a path in configuration for
-	  them, then you got an error even if you weren't using
-	  that graphics package.  Change requires setting $graphtool
-	  before the paths for each package, and passing $graphtool
-	  to the verification functions.
+	* Similar bug as previous.  If you did not have ImageMagick or NetPBM
+	  installed, but had a path in configuration for them, then you got an
+	  error even if you weren't using that graphics package.  Change
+	  requires setting $graphtool before the paths for each package, and
+	  passing $graphtool to the verification functions.
 
-2003-06-06  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b14
+2003-06-06  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b14
 
 	* Bug fix so we don't get a NetPBM file not found error if we are using
-	  ImageMagik
+	  ImageMagick.
 
 2003-06-06  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b13
 
-	* Adjusted the way that we gather and store the extra field info
-	  in config.php.  Now we store it as a comma delimited value instead
-	  of a set of quoted values.  If magic quotes is on, we strip off
-	  slashes and replace quotes with an html entity.  Fully backwards
-	  compatible with the format introduced in 1.3.4-b30, though you
-	  must re-run the config wizard.
+	* Adjusted the way that we gather and store the extra field info in
+	  config.php.  Now we store it as a comma delimited value instead of a
+	  set of quoted values.  If magic quotes is on, we strip off slashes
+	  and replace quotes with an html entity.  Fully backwards compatible
+	  with the format introduced in 1.3.4-b30, though you must re-run the
+	  Config. Wizard.
 
 2003-06-06  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.5-cvs-b12
 
-	* Applied a variation on Joan McGalliard's fix for custom fields,
-	  which were broken if magic_quotes_gpc was enabled.
+	* Applied a variation on Joan McGalliard's fix for custom fields, which
+	  were broken if magic_quotes_gpc was enabled.
 
-	* Fixed issue where PostNuke-embedded Gallery administrators
-	  required admin rights over all of PostNuke. Now, admin
-	  permissions can be restricted just to the Gallery module. (Bug
-	  #590999)
+	* Fixed issue where PostNuke-embedded Gallery administrators required
+	  admin rights over all of PostNuke. Now, admin permissions can be
+	  restricted just to the Gallery module. (Bug #590999)
 
-2003-06-05  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b11
+2003-06-05  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b11
 
-	* Try to detect where each program is located in backup_albums.php
+	* Try to detect where each program is located in backup_albums.php.
 
-2003-06-04  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.5-cvs-b10
+2003-06-04  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.5-cvs-b10
 
-	* Reworked user authentication in gallery_remote2.php to allow
-	  using users from embedding CMS. Only tested with PostNuke
-	  at the moment.
+	* Reworked user authentication in gallery_remote2.php to allow using
+	  users from embedding CMS. Only tested with PostNuke at the moment.
 
-2003-06-03  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b9
+2003-06-03  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b9
 
-	* Remove preg_* functions from search.php, in order to support
-	  older versions of PHP.
+	* Remove preg_* functions from search.php, in order to support older
+	  versions of PHP.
 
-2003-06-03  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.5-cvs-b8
+2003-06-03  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.5-cvs-b8
 
-	* Fixed problem in gallery_remote*.php which caused GR to no longer
-	  be able to connect.
+	* Fixed problem in gallery_remote*.php which caused GR to no longer be
+	  able to connect.
 
-2003-05-29  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b7
+2003-05-29  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b7
 
         * Checked in by Joan, but changes are actually by Jesse Mullan.
 
-        * fixed bug in backup_albums.php, so if zip file is found, no others
-          are checked for.
+        * Fixed bug in backup_albums.php, so if zip file is found, no others
+	  are checked for.
 
-        * default zip exe changed, and readfile replaces cat so that backup
-          will work on a windows machine with zip installed.
+        * Default zip exe changed, and readfile replaces cat so that backup
+	  will work on a Windows machine with zip installed.
 
-        * note: paths for zip, find, tar etc should be in wizard by
-          version 1.3.5
+        * Note: Paths for zip, find, tar etc. should be in the Config. Wizard
+	  by version 1.3.5.
 
 2003-06-02  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b6
 
-	* Add the \n and \r replacing code in slideshow_low.php too.
+	* Added the \n and \r replacing code in slideshow_low.php too.
 
 2003-06-02  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b5
 
-	* Replace \n and \r with spaces in the slideshow captions, as
-	  these do cause issues with JavaScript.
+	* Replaced \n and \r with spaces in the slideshow captions, as these do
+	  cause issues with JavaScript.
 
 2003-06-02  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b4
 
-	* Fix bug #672943, where searching for a string with special
-	  regular expression characters would cause warnings.  Also,
-	  users can now use asterisks as wildcards in search strings.
+	* Fixed bug #672943, where searching for a string with special regular
+	  expression characters would cause warnings.  Also, users can now use
+	  asterisks as wildcards in search strings.
 
-	* Fix bug #607440.  Gallery now allows .mp4 movies
+	* Fixed bug #607440.  Gallery now allows .mp4 movies.
 
-	* Fix bug #581790.  Gallery doesn't strip HTML tags from
-	  slideshow captions anymore.
+	* Fixed bug #581790.  Gallery doesn't strip HTML tags from slideshow
+	  captions anymore.
 
 2003-06-02  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b3
 
-	* Fix a bug in the configuration wizard that would cause errors in
-	  the custom fields configuration if magic_quotes_gpc was on
+	* Fixed a bug in the Configuration Wizard that would cause errors in
+	  the custom fields configuration if magic_quotes_gpc was on.
 
 2003-05-31  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b2
 
-	* Fixed a bug in gallery/UserDB.php where we were introducing
-	  a syntax error into .users/.htaccess
+	* Fixed a bug in gallery/UserDB.php where we were introducing a syntax
+	  error into .users/.htaccess.
 
-2003-05-31  Bharat Mediratta <bharat@menalto.com> 1.3.5-cvs-b1
+2003-05-31  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b1
 
-	* Migrated 1.3.4-cvs-b51 to 1.3.4-cvs-b55 into 1.3.5-cvs-b1
+	* Migrated 1.3.4-cvs-b51 to 1.3.4-cvs-b55 into 1.3.5-cvs-b1.
 
 2003-05-31  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.4-cvs-b55 (HEAD)
 
-	* Change the extension from .tar to .tar.gz when backing up
-	  albums.
+	* Changed the extension from .tar to .tar.gz when backing up albums.
 
-	* If gallery_remote.php or gallery_remote2.php is accessed from
-	  the browser, exit with a nice message telling the user where
-	  to find Gallery Remote (bug #687235).
+	* If gallery_remote.php or gallery_remote2.php is accessed from the
+	  browser, exit with a nice message telling the user where to find
+	  Gallery Remote. (Bug #687235)
 
-	* Fix bug #552569, where a filename could be quoted twice,
-	 causing the upload to fail.
+	* Fixed bug #552569, where a filename could be quoted twice, causing
+	  the upload to fail.
 
-	* Hopefully fix bug #595716, where NetPBM or ImageMagick
-	  wouldn't execute properly if they were in a directory with
-	  a space on Windows.
+	* Hopefully fixed bug #595716, where NetPBM or ImageMagick wouldn't
+	  execute properly if they were in a directory with a space on Windows.
 
 2003-05-30  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.4-cvs-b54 (HEAD)
 
-	* Quote the filename given to the jhead parser.  This resolves a
-          bug related to spaces in files names.
+	* Quoted the filename given to the jhead parser.  This resolves a bug
+	  related to spaces in files names.
 
-        * Fix bug #550527, where double quotes in an album name would
-          cause HTML weirdness and end up being truncated
+        * Fixed bug #550527, where double quotes in an album name would cause
+	  HTML weirdness and end up being truncated
 
 2003-05-30  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.4-cvs-b53 (HEAD)
 
-	* Remove unnecessary function call
+	* Removed unnecessary function call.
 
 2003-05-30  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.4-cvs-b52 (HEAD)
 
-	* Make the select box in the config wizard default to whichever
-	  image manipulation program it found (until now, it always defaulted
-	  to NetPBM).
+	* Made the select box in the config wizard default to whichever image
+	  manipulation program it found (until now, it always defaulted to
+	  NetPBM).
 
 2003-05-30  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.4-cvs-b51 (HEAD)
 
@@ -798,7 +793,7 @@
 
 	* Tweaked backup_albums.php so that it works with open_basedir enabled.
 
-2003-05-29  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b49
+2003-05-29  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.4-cvs-b49
 
 	* Moved backup_albums.php to setup, and removed it from albums.php
 
@@ -839,20 +834,20 @@
 	  photo from one album to another. Thanks to Jens Tkotz for
 	  finding the error.
 
-2003-05-28  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b42
+2003-05-28  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.4-cvs-b42
 
 	* cosmetic changes to backup_albums.php, mostly suggest by beckett
 
-2003-05-28  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b41
+2003-05-28  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.4-cvs-b41
 
 	* Bugfix and a few cosmetic changes to backup_albums.php
 
-2003-05-28  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b40
+2003-05-28  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.4-cvs-b40
 
 	* Added backup_albums.php.  Linked from albums.php, but that
 	  perhaps should be removed.
 
-2003-05-25  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.4-cvs-b39
+2003-05-25  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.4-cvs-b39
 
 	* Fixed a security problem in gallery_remote2.php, where users
 	  could create new nested albums inside albums where they didn't
@@ -868,7 +863,7 @@
 	* Fixed bug where add_photo.php's variable names conflict with
 	  PostNuke's
 
-2003-05-24  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b37
+2003-05-24  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.4-cvs-b37
 
 	* Changed "Extra Fields" to "Custom Fields" (GUI only)
 
@@ -902,21 +897,21 @@
 	* Fixed a minor bug in add_photo.php where the fields were getting
 	  seeded with invalid data.
 
-2003-05-20  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b33
+2003-05-20  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.4-cvs-b33
 
 	* Added 2 new file names to index.php.
 
 	* Added album summary search
 
-2003-05-20  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b32
+2003-05-20  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.4-cvs-b32
 
 	* Removed diagnostic statements left by bug fix.
 
-2003-05-20  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b31
+2003-05-20  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.4-cvs-b31
 
 	* BUGFIX.  Upgrading of albums did not add extra field defaults
 
-2003-05-20  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b30
+2003-05-20  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.4-cvs-b30
 
 	* "Extra fields" added.
 
@@ -947,7 +942,7 @@
 
 	* Added version and constructor to AlbumItem.
 
-2003-05-20  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b29
+2003-05-20  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.4-cvs-b29
 
 	* Wrapped "up" and "top" in if-clauses to test for offline
 	  mode.  This enables you to download an album and it's
@@ -956,7 +951,7 @@
 	* Added new field to Album class: summary.  Displays on
 	  page one of your album, and is editable through a popup.
 
-2003-05-20  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b28
+2003-05-20  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.4-cvs-b28
 
 	* Added commenter's name to search by prepending it to
 	  comment before searching it.  Comment will now display
@@ -1070,17 +1065,17 @@
 	  would wind up with a \r instead of a \n causing the comparison to
 	  fail.  Now we get rid of the \n altogether.
 
-2003-02-24  John Kirkland <jpk@bl.org> 1.3.4-cvs-b15
+2003-02-24  John Kirkland  <jpk@bl.org> 1.3.4-cvs-b15
 
 	* Merged GRcreateNewAlbum in gallery_remote2.php with createNewAlbum
 	  in util.php per Pierre's request.
 
-2003-02-24  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.4-cvs-b14
+2003-02-24  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.4-cvs-b14
 
 	* gallery_remote2.php: check to prevent new album creation to overwrite
 	  an existing album.
 
-2003-02-24  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.4-cvs-b13
+2003-02-24  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.4-cvs-b13
 
 	* Fixed method name collision between gallery_remote2.php and util.php
 	  which caused GalleryRemote to be unable to log in.
@@ -1099,7 +1094,7 @@
 	* Added a fix to handle porting from pre-v1.2 Galleries when the
 	  Gallery_User class was simply called User.
 
-2003-01-29  John Kirkland <jpk@bl.org> 1.3.4-cvs-b11
+2003-01-29  John Kirkland  <jpk@bl.org> 1.3.4-cvs-b11
 
 	* Moved process() from save_photos.php to util.php - processNewImage()
 	  so it could be used by the xp publishing wizard.
@@ -1131,7 +1126,7 @@
 	* Fixed XSS issue with commenting where it's possible to sneak
 	  malicious data into a comment submission.
 
-2003-01-38  John Kirkland <jpk@bl.org> 1.3.4-cvs-b9
+2003-01-38  John Kirkland  <jpk@bl.org> 1.3.4-cvs-b9
 
 	* Added album creation ability into xp publishing wizard.
 
@@ -1316,7 +1311,7 @@
 	  in standalone mode, because of the complexity of generating the
 	  right URLs for the browser when embedded.
 
-2002-11-11  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.2-cvs-b26
+2002-11-11  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.2-cvs-b26
 
 	* Fixed escaping of line breaks in GalleryRemoteProperties.php
 
@@ -1356,7 +1351,7 @@
 	  specifying the album name correctly, which would fail if the album
 	  information were not getting stored in the session properly.
 
-2002-11-04  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.2-cvs-b20
+2002-11-04  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.3.2-cvs-b20
 
         * Bumped gallery_remote2 protocol version to 2.1.
 
@@ -1365,7 +1360,7 @@
 	* Fixed two small bugs in the setup code where we were using
 	  is_executable instead of fs_is_executable (thanks Kwan Skinner)
 
-2002-11-02  Tim Miller <tim_miller@users.sourceforge.net> 1.3.2-cvs-b18
+2002-11-02  Tim Miller  <tim_miller@users.sourceforge.net> 1.3.2-cvs-b18
 
 	* Added the "new-album" command to gallery_remote2.php.
 	* Removed some incorrect urlencoding.
@@ -1570,7 +1565,7 @@ v1.3.1 release
 v1.3 release
 ================================================================================
 
-2002-05-05  Chris Smith <chris@jacko.com> 1.3-cvs-rc4
+2002-05-05  Chris Smith  <chris@jacko.com> 1.3-cvs-rc4
 
 	* Slideshow modifications (both low and high tech):
 	  - Fixed bug where photo that did not have resized
@@ -1593,7 +1588,7 @@ v1.3 release
 	  entirely possible that (without this fix) no Windows users have any
 	  backup files!  DOH!
 
-2002-04-27  Chris Smith <chris@jacko.com> 1.3-cvs-rc3
+2002-04-27  Chris Smith  <chris@jacko.com> 1.3-cvs-rc3
 
 	* Slideshow modifications (both low and high tech):
 	  - Navigation bars now match rest of site UI, and
@@ -1787,7 +1782,7 @@ v1.3 release
 
 	* Tiny UI cleanup of view comments and showChild features.
 
-2002-02-25  John Kirkland <jpk@bl.org> 1.2.6-cvs-b18
+2002-02-25  John Kirkland  <jpk@bl.org> 1.2.6-cvs-b18
 
 	* Item Capture Date was not getting set with the new return values from
 	  getExif();
@@ -1820,13 +1815,13 @@ v1.3 release
 	  off album size vs. cpu cycles.  I'm not yet sure if it's a good
 	  idea...
 
-2002-02-23  John Kirkland <jpk@bl.org> 1.2.6-cvs-b13
+2002-02-23  John Kirkland  <jpk@bl.org> 1.2.6-cvs-b13
 
 	* Rotated images no longer lose their exif data.  I incorporated
 	  a patch from Eelco Brolman (eelcob) and made some minor
 	  modifications.  This fixes bug #457358 and feature #473443.
 
-2002-02-23  John Kirkland <jpk@bl.org> 1.2.6-cvs-b12
+2002-02-23  John Kirkland  <jpk@bl.org> 1.2.6-cvs-b12
 
 	* Fixed buglet where a non-logged in user could not use the
 	  "View All Comments" feature.  This is bug #521810.
@@ -1841,7 +1836,7 @@ v1.3 release
 	  the entire tree of child albums at the top level of Gallery.  Thanks,
 	  Jesse!  Sorry it took me 5 months to incorporate your patch :-/
 
-2002-02-22 Bharat Mediratta <bharat@menalto.com> 1.2.6-cvs-b10
+2002-02-22  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b10
 
 	* Incorporated patch from Joseph D. Scheve <chevy@tnatech.com> that
 	  allows you to view all the comments for an album.  It's pimp!  Who
@@ -1881,7 +1876,7 @@ v1.3 release
 	  requires a bump to the config version so all new installations will
 	  be forced to re-run the config wizard.
 
-2002-01-18  Bharat Mediratta <bharat@menalto.com> 1.2.6-cvs-b4
+2002-01-18  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b4
 
 	* Fix for bug #505234: Gallery with PHP-Nuke (5.4) include error
 	  In PHP-Nuke 5.4 they changed the $op variable to $mop
@@ -1900,11 +1895,11 @@ v1.3 release
 
 	* Added "mpeg" to the list of movie types.
 
-2002-01-04  John Kirkland <jpk@bl.org> 1.2.6-cvs-b2
+2002-01-04  John Kirkland  <jpk@bl.org> 1.2.6-cvs-b2
 
 	* Fixed bug #426151 -- Upload fails on file names with apostrophe
 
-2002-01-04	Chris Smith <chris@jacko.com> 1.2.6-cvs-b1
+2002-01-04	Chris Smith  <chris@jacko.com> 1.2.6-cvs-b1
 
 	* Fixed bug #490317: mismatched table tags in view_photo.
 
@@ -1915,7 +1910,7 @@ v1.3 release
 	  that was 'also' symlinked, the paths to the pixel_trans.gif's
 	  were broken.
 
-2002-01-04  John Kirkland <jpk@bl.org> 1.2.5-p1
+2002-01-04  John Kirkland  <jpk@bl.org> 1.2.5-p1
 
 	* Fixed bug where if you deleted an album, gallery would not
 	  delete the nested albums within it.  SF #466790
@@ -2000,14 +1995,14 @@ v1.3 release
 	  to the save_photos script. Also made the page a bit easier to
 	  render for the user agent (removed the tr-per-checkbox).
 
-2001-11-12  Chris Smith <chris@jacko.com> (1.2.3-cvs-b5)
+2001-11-12  Chris Smith  <chris@jacko.com> (1.2.3-cvs-b5)
 
 	* Fixed a bug in Gallery Remote album fetch routine where if
 	  the user did not have write permission on a top level album,
 	  the album fetch refused to delve within to find nested albums
 	  the user might be able to write to.
 
-2001-11-11  Chris Smith <chris@jacko.com> (1.2.3-cvs-b4)
+2001-11-11  Chris Smith  <chris@jacko.com> (1.2.3-cvs-b4)
 
 	* Added Gallery Remote communication script. Added link in
 	  add_photos.php to direct the user to the Gallery Remote
@@ -2268,7 +2263,7 @@ v1.3 release
 	  method in Album.php called setNestedProperties().
 	  Ed and Mary, this one is for you.  :-)
 
-2001-08-05  Chris Smith <chris@jacko.com> (1.2-cvs-b7)
+2001-08-05  Chris Smith  <chris@jacko.com> (1.2-cvs-b7)
 
 	* Fixed a bug where the raw and sized dimensions of an
 	  image were not getting updated after rotate.
@@ -2518,12 +2513,12 @@ v1.3 release
 	* Turned off magic_quotes_runtime in the config wizard so that you
 	  can configure Gallery on servers that have it turned on.
 
-2001-07-09  John Kirkland <jpk@bl.org>
+2001-07-09  John Kirkland  <jpk@bl.org>
 
 	* Photo caption setting now works for URLs.  This is
 	  feature #425987 from sf.
 
-2001-07-08  John Kirkland <jpk@bl.org>
+2001-07-08  John Kirkland  <jpk@bl.org>
 
 	* Photo captions now automagically get set from the original
 	  filenames.  This is controlled via a checkbox in the file
@@ -2535,7 +2530,7 @@ v1.3 release
 	  during upload, gallery will find a unique name based on the
 	  original.  This is feature #429716 from sf.
 
-2001-07-07  John Kirkland <jpk@bl.org>
+2001-07-07  John Kirkland  <jpk@bl.org>
 
 	* Added a click counter to photos and albums.  This feature
 	  uses session cookies to determine if you have viewed a particular
@@ -2546,7 +2541,7 @@ v1.3 release
 	  and to reset click counts back to zero.  This is feature #424728
 	  from sf.
 
-2001-07-06  John Kirkland <jpk@bl.org>
+2001-07-06  John Kirkland  <jpk@bl.org>
 
 	* Bumped Gallery rev to 1.2-cvs
 
@@ -2554,7 +2549,7 @@ v1.3 release
 
 	* Bumped Gallery rev to 1.1
 
-2001-07-04  John Kirkland <jpk@bl.org>
+2001-07-04  John Kirkland  <jpk@bl.org>
 
 	* Fixed some minor bugs in the move_album.php form.
 
@@ -2583,7 +2578,7 @@ v1.3 release
 	* Fixed a bug that caused Gallery to fail under PHP 4.0RC1 and
 	  verified that Gallery now works with this release.
 
-2001-07-01  Chris Smith <chris@jacko.com>
+2001-07-01  Chris Smith  <chris@jacko.com>
 
 	* Search pages now embed properly in nuke, just like
 	  the other pages. Also tuned the look and feel of search.
@@ -2595,7 +2590,7 @@ v1.3 release
 	  Also, moved our style sheet to the top of the Nuke <head> tag when
 	  embedded so that it can be overridden by Nuke and/or the theme.
 
-2001-06-28 John Kirkland <jpk@bl.org>
+2001-06-28  John Kirkland  <jpk@bl.org>
 
 	* Added search functionality to Gallery.  If configured on, a
 	  search text box will appear on the main gallery screen.
@@ -2650,7 +2645,7 @@ v1.3 release
 	  that you can pick and choose the ones that you want.  It's very,
 	  very fast!
 
-2001-06-25  Chris Smith <chris@jacko.com>
+2001-06-25  Chris Smith  <chris@jacko.com>
 
 	* Added the option to see jpeg image EXIF data. This excellent
 	  patch was done by John Kirkland. This required jhead binary
@@ -2679,7 +2674,7 @@ v1.3 release
 	* We now force magic_quotes_runtime to be off.  That setting interferes
 	  with our ability to deserialize classes from the filesystem.
 
-2001-06-16  Chris Smith <chris@jacko.com>
+2001-06-16  Chris Smith  <chris@jacko.com>
 
 	* Bug #424361: Applet parameters caused applet to not load on
 	  IE for Mac. I am unable to test this (no mac), but this change
@@ -2688,7 +2683,7 @@ v1.3 release
 	* Bug #429531: Fixed broken <select> code. Broke Move photo
 	  code. Also cleaned up move messaging.
 
-2001-06-04  Chris Smith <chris@jacko.com>
+2001-06-04  Chris Smith  <chris@jacko.com>
 
 	* Bumped the version to 1.1-cvs.
 
@@ -2885,17 +2880,17 @@ v1.3 release
 
 	* Released version 1.0b8
 
-2001-03-15  Alan Harder <alan.harder@sun.com>
+2001-03-15  Alan Harder  <alan.harder@sun.com>
 
 	* Revamped fit-to-window code; now fully functional.
 	  (works for IE and Navigator and keeps the border around the image)
 
-2001-03-13  Chris Smith <chris@jacko.com>
+2001-03-13  Chris Smith  <chris@jacko.com>
 
 	* Added "Order This Photo on Shutterfly" capability.
 	  this is an optional album setting.
 
-2001-03-12  Chris Smith <chris@jacko.com>
+2001-03-12  Chris Smith  <chris@jacko.com>
 
 	* Added 'Edit Thumbnail' image editing command to the view_album
 	  page. This allows you to choose a sub-region of the image as
@@ -2923,7 +2918,7 @@ v1.3 release
 	* Fixed a bug where rotating a photo wouldn't update the highlight (if
 	  the photo was also the highlight).  It does now.
 
-2001-03-08  Dana Powers <dana@slothlovechunk.org>
+2001-03-08  Dana Powers  <dana@slothlovechunk.org>
 
 	* Added HTML slurp feature to Add Photos. This lets users specify
 	  a url for the gallery to parse for html links to images. Finds
@@ -2932,7 +2927,7 @@ v1.3 release
 
 	* Modified javascript for browser compatibility. Konqueror works now.
 
-2001-03-07  Alan Harder <alan.harder@sun.com>
+2001-03-07  Alan Harder  <alan.harder@sun.com>
 
 	* Added full-only feature.  This allows the user to specify (per
 	  session) that they would like to view the full size version of
@@ -2978,7 +2973,7 @@ v1.3 release
 	  the valid path to the actual zipinfo and unzip binaries (instead
 	  of just the directory that they live in).
 
-2001-02-24  Alan Harder <alan.harder@sun.com>, Bharat <bharat@menalto.com>,
+2001-02-24  Alan Harder  <alan.harder@sun.com>, Bharat  <bharat@menalto.com>,
 
 	* Added fit-to-window feature.  This feature will automatically
 	  resize images to match the size of the user's browser.  It only
@@ -3001,7 +2996,7 @@ v1.3 release
 	  * Albums can now control their rows/cols individually, although
 	    they draw their default value from the Gallery.
 
-2001-02-22  Chris Smith <chris@jacko.com>
+2001-02-22  Chris Smith  <chris@jacko.com>
 
 	* Added inline photo header and footer to the view_photo page. This
 	  page uses the html_wrap files that used to be used by view_album:
@@ -3188,7 +3183,7 @@ v1.3 release
 	* Added last modification date and the number of items in the
 	  album to the album description.
 
-2001-01-04  chris Smith <chris@jacko.com>
+2001-01-04  chris Smith  <chris@jacko.com>
 
         * Moved 'Edit Album Title' to the Album Properties Popup.
 
@@ -3222,7 +3217,7 @@ v1.3 release
 	* Fixed a conflict between PHP magic quotes and my new anytopnm
 	  wrapper by disabling magic quotes in the gallery app.
 
-2001-01-01  Chris Smith <chris@jacko.com>
+2001-01-01  Chris Smith  <chris@jacko.com>
 
 	* Made New Year's resolution to enter my changes in the changelog.
 
