@@ -16,7 +16,7 @@ if ($go_defaults) {
 }
 
 if (!$setup_page) {
-	$setup_page = "form";
+	$setup_page = "check";
 }
 
 ?>
