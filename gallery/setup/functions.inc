@@ -328,10 +328,15 @@ function check_exec() {
 	$success = array();
 	$fail = array();
 	$warn = array();
-	if (!empty($disabled) && eregi("exec", $disabled)) {
-		$fail["fail-exec"] = 1;
+	if (!empty($disabled)) {
+		foreach(explode(',', $disabled) as $disabled_func) {
+			if(eregi('^exec$', $disabled_func)) {
+				$fail["fail-exec"] = 1;
+			}
+		}
 	}
-	else {
+
+	if (empty($fail['fail-exec'])) {
 		$success[] = _("<b>exec()</b> is not disabled on this server.");
 	}
 
