@@ -57,23 +57,23 @@ You can modify the appearance of your photo album here.
 <table>
 <tr>
 <td>Album Title</td>
-<td><input type=text name="title" value=<?=$album->fields["title"]?>></td>
+<td><input type=text name="title" value="<?=$album->fields["title"]?>"></td>
 </tr>
 <tr>
 <td>Background Color</td>
-<td><input type=text name="bgcolor" value=<?=$album->fields["bgcolor"]?>></td>
+<td><input type=text name="bgcolor" value="<?=$album->fields["bgcolor"]?>"></td>
 </tr>
 <tr>
 <td>Text Color</td>
-<td><input type=text name="textcolor" value=<?=$album->fields["textcolor"]?>></td>
+<td><input type=text name="textcolor" value="<?=$album->fields["textcolor"]?>"></td>
 </tr>
 <tr>
 <td>Link Color</td>
-<td><input type=text name="linkcolor" value=<?=$album->fields["linkcolor"]?>></td>
+<td><input type=text name="linkcolor" value="<?=$album->fields["linkcolor"]?>"></td>
 </tr>
 <tr>
 <td>Background Image (URL)</td>
-<td><input type=text name="background" value=<?=$album->fields["background"]?>></td>
+<td><input type=text name="background" value="<?=$album->fields["background"]?>"></td>
 </tr>
 <tr>
 <td>Font</td>
@@ -94,7 +94,7 @@ You can modify the appearance of your photo album here.
 </tr>
 <tr>
 <td>Border color</td>
-<td><input type=text name="bordercolor" value=<?=$album->fields["bordercolor"]?>></td>
+<td><input type=text name="bordercolor" value="<?=$album->fields["bordercolor"]?>"></td>
 </tr>
 <tr>
 <td>Show <i>Return to</i> link</td>
