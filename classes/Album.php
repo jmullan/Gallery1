@@ -1393,6 +1393,28 @@ class Album {
 		}
 	}
 
+        function watermarkPhoto($index, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY) {
+                $this->updateSerial = 1;
+                $photo = &$this->getPhoto($index);
+                $retval = $photo->watermark($this->getAlbumDir(),
+                                            $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY);
+                if (!$retval) {
+                        return $retval;
+                }
+		$resetModDate = 1;
+		$this->save(array(), $resetModDate);
+        }
+
+	function watermarkAlbum($wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY) {
+		$this->updateSerial = 1;
+	       	$count = $this->numPhotos(1);
+		for ($index = 1; $index <= $count; $index++) {
+			$photo = &$this->getPhoto($index);
+			$retval = $photo->watermark($this->getAlbumDir(),
+						$wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY);
+		}
+	}
+
 	function makeThumbnail($index) {
 		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);

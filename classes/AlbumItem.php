@@ -439,6 +439,31 @@ class AlbumItem {
 		return 1;
 	}
 
+        function watermark($dir, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY) {
+                global $gallery;
+                $type = $this->image->type;
+		if (isMovie($type))
+		{
+			// currently there is no watermarking support for movies
+			return (0);
+		}
+                $name = $this->image->name;
+                $retval = watermark_image("$dir/$name.$type", "$dir/$name.$type",
+                                          $gallery->app->watermarkDir."/$wmName",
+                                          $gallery->app->watermarkDir."/$wmAlphaName",
+                                          $wmAlign, $wmAlignX, $wmAlignY);
+                if ($retval) {
+
+                    if ($this->isResized()) {
+                        $retval = watermark_image("$dir/$name.sized.$type", "$dir/$name.sized.$type",
+                                                  $gallery->app->watermarkDir."/$wmName",
+                                                  $gallery->app->watermarkDir."/$wmAlphaName",
+                                                  $wmAlign, $wmAlignX, $wmAlignY);
+                    }
+                }
+		return ($retval);
+        }
+
 	function setPhoto($dir, $name, $tag, $thumb_size, &$album, $pathToThumb="") {
 		global $gallery;
 
