@@ -106,7 +106,7 @@ class Album {
                        // be part of permissions
                $this->fields["poll_num_results"]=$gallery->app->default["poll_num_results"]; 
 	       		// number of lines of graph to show on the album page
-	       $this->fields["voter_class"]=$gallery->app->default["vote_class"];
+	       $this->fields["voter_class"]=$gallery->app->default["voter_class"];
                         // Nobody, Everybody, Logged in
 	       // end of VOTING variables
 
