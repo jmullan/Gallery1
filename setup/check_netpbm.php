@@ -23,21 +23,25 @@ require("../config.php");
 using.
 
 <p>
-Attempt #1: <b><? passthru("uname -a"); ?></b>
+This is what your system reports:
+<br>
+<b><? passthru("uname -a"); ?></b>
 
 <p>
-Attempt #2: <b><?= php_uname() ?></b>
+This is the type of system PHP was compiled on:
+<br>
+<b><?= php_uname() ?></b>
 
 <p>
 
-Make sure that the value above makes sense to you.
+Make sure that the values above make sense to you.
 
 <p>
 
 Look for keywords like "Linux", "Windows", "FreeBSD", etc. in the
 output above.  If both the attempts above failed, you should ask your
 ISP what operating system you're using.  You can check via
-<a href="http://www.netcraft.com/whats?host=<?php echo $HTTP_HOST?>">Netcraft</a>,
+<a href="http://www.netcraft.com/whats?host=<?php echo $HTTP_SERVER_VARS['HTTP_HOST']?>">Netcraft</a>,
 they can often tell you.  
 <p>
 
@@ -63,7 +67,7 @@ $debugfile = tempnam("", "gallerydbg");
 if ($show_details) {
 	print "<a href=check_netpbm.php?show_details=0>Click here</a> to hide the details</a>";
 } else {
-	print "<a href=check_netpbm.php?show_details=1>Click here</a> to see more details</a>";
+	print "If you see errors, you should <a href=check_netpbm.php?show_details=1>click here</a> to see more details</a>";
 }
 ?>
 
@@ -166,7 +170,7 @@ href=http://gallery.sourceforge.net/lists.php>mailing list</a>
 <p>
 
 For other errors, please refer to the list of possible responses in <a
-href=http://gallery.sf.net/faq.php>FAQ</a> 4.4 to get more
+href=http://gallery.sourceforge.net/faq.php>FAQ</a> 4.4 to get more
 information.
 
 </ol>
