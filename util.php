@@ -1628,4 +1628,9 @@ function restoreQuotes($string)
 	return ereg_replace("&quot;", '"', $string);
 }
 
+function escapeEregChars($string)
+{
+	return ereg_replace ('(\.|\\\\|\+|\*|\?|\[|\]|\^|\$|\(|\)|\{|\}|\=|\!|\<|\>|\||\:)', '\\\\1', $string);
+}
+
 ?>

@@ -89,7 +89,7 @@ $photoMatch = 0;
 $albumMatch = 0;
 if ($searchstring) {
 	$origstr = $searchstring;
-	$searchstring = preg_quote ($searchstring);
+	$searchstring = escapeEregChars ($searchstring);
 	$searchstring = str_replace ("\\*", ".*", $searchstring);
 
 	$adminbox["text"] = "<span class=\"admin\">Albums containing \"$origstr\"</span>";
@@ -103,16 +103,16 @@ if ($searchstring) {
 		$searchTitle = $searchAlbum->fields['title'];
 		$searchDescription = $searchAlbum->fields['description'];
 		$searchSummary = $searchAlbum->fields['summary'];
-       		$matchTitle = preg_match("/$searchstring/i", $searchTitle);
-		$matchDescription = preg_match("/$searchstring/i", $searchDescription);
-		$matchSummary = preg_match("/$searchstring/i", $searchSummary);
+       		$matchTitle = eregi("$searchstring", $searchTitle);
+		$matchDescription = eregi("$searchstring", $searchDescription);
+		$matchSummary = eregi("$searchstring", $searchSummary);
        		if ($matchTitle || $matchDescription || $matchSummary) {
 			$uid = $gallery->user->getUid();
 			if ($searchAlbum->canRead($uid) || $gallery->user->isAdmin()) {
            		$albumMatch = 1;
-			$searchTitle = preg_replace("/($searchstring)/i", "<b>\\1</b>", $searchTitle); // cause search word to be bolded
-			$searchDescription = preg_replace("/($searchstring)/i", "<b>\\1</b>", $searchDescription); // cause search word to be bolded
-			$searchSummary = preg_replace("/($searchstring)/i", "<b>\\1</b>", $searchSummary); // cause search word to be bolded
+			$searchTitle = eregi_replace("($searchstring)", "<b>\\1</b>", $searchTitle); // cause search word to be bolded
+			$searchDescription = eregi_replace("($searchstring)", "<b>\\1</b>", $searchDescription); // cause search word to be bolded
+			$searchSummary = eregi_replace("($searchstring)", "<b>\\1</b>", $searchSummary); // cause search word to be bolded
 			$photoURL = makeAlbumUrl($searchAlbum->fields['name']);
 			$searchdraw["bordercolor"] = $borderColor;
 			$searchdraw["top"] = true;
