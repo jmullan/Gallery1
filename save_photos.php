@@ -93,10 +93,6 @@ if ($urls) {
 		/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
 		$url = eregi_replace("^[[:space:]]+", "", $url);
 
-		if (!ereg("http", $url)) {
-			$url = "http://$url";
-		}
-
 		/* Parse URL for name and file type */
 		$url_stuff = parse_url($url);
 		$name = basename($url_stuff["path"]);
@@ -104,18 +100,23 @@ if ($urls) {
 		$tag = strtolower($tag);
 	
 		/* Dont output warning messages if we cant open url */
-		$id = @fs_fopen($url, "r");
 	
-		/* Manual check - was the url accessible? */
-		if (!$id) {
-			$id = @fs_fopen("$url/", "r");
-			if (!$id) {
-				msg("Could not open url: '$url'");
-				continue;
-			}
-		} else {
-			msg(urldecode($url));
+		/*
+		 * Try to open the url in lots of creative ways.
+		 */
+ 		$id = @fs_fopen($url, "r");
+		if (!ereg("http", $url)) {
+			if (!$id) $id = @fs_fopen("http://$url");
+			if (!$id) $id = @fs_fopen("http://$url/");
 		}
+		if (!$id) $id = @fs_fopen("$url/");
+
+		if ($id) {
+			msg(urldecode($url));
+		} else {
+			msg("Could not open url: '$url'");
+			continue;
+		} 
 	
 		/* copy file locally */
 		$file = $gallery->app->tmpDir . "/photo.$name";
