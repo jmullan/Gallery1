@@ -109,6 +109,8 @@ if (!isset($metaboxes)) {
 
 </table>
 
+<input type="radio" name="setCaption" value="0"><?php echo _("Leave blank if no caption is specified.") ?>
+<br>
 <input type="radio" name="setCaption" value="1" checked><?php echo _("Use filename as caption if no caption is specified.") ?>
 <br>
 <input type="radio" name="setCaption" value="2"><?php echo _("Use file creation date stamp as caption if no caption is specified.") ?>
