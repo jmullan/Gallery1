@@ -116,7 +116,7 @@ if ($searchstring) {
 			$searchdraw["photoURL"] = $photoURL;
 			$searchdraw["Text1"] = "<span class=title><a href=$photoURL>$searchTitle</a></span>";
 			$searchdraw["Text2"] = "<span class=desc>$searchDescription</span>";
-			if ($searchSummary)  { // only print summary if it matches
+			if ($matchSummary)  { // only print summary if it matches
 				$searchdraw["Text3"] = "<span class=desc>$searchSummary</span>";
 			}
 			include($GALLERY_BASEDIR . "layout/searchdraw.inc");
