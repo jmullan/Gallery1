@@ -24,6 +24,7 @@ if [ -d $GALLERY_DEB_ROOT ] && [ -d $GALLERY_DEB_CONFDIR ] ; then
 else
 	# We are in a "normal installation"
 	GALLERY_ROOT="."
+	GALLERY_CONFDIR="."
 	GALLERY_SETUPDIR="./setup"
 fi	
 	
