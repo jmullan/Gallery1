@@ -40,6 +40,7 @@ if ($save) {
 	$album->fields["rows"] = $rows;
 	$album->fields["cols"] = $cols;
 	$album->fields["fit_to_window"] = $fit_to_window;
+	$album->fields["use_fullOnly"] = $use_fullOnly;
 	$album->save();
 
 	reload();
@@ -122,6 +123,10 @@ Album Properties
 <tr>
 <td>Auto fit-to-window for<br>images without a resized copy</td>
 <td><select name="fit_to_window"><?= selectOptions($album, "fit_to_window", array("yes", "no")) ?></select></td>
+</tr>
+<tr>
+<td>Offer visitors ability to specify<br>preference for full-size or resized images</td>
+<td><select name="use_fullOnly"><?= selectOptions($album, "use_fullOnly", array("yes", "no")) ?></select></td>
 </tr>
 </table>
 
