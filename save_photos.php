@@ -235,7 +235,9 @@ if ($urls) {
 while (sizeof($userfile)) {
 	$name = array_shift($userfile_name);
 	$file = array_shift($userfile);
-	$caption = removeTags(array_shift($usercaption));
+	if (!empty($usercaption) && is_array($usercaption)) {
+	    $caption = removeTags(array_shift($usercaption));
+	}
 
 	$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);
 	$tag = strtolower($tag);
