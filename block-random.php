@@ -46,7 +46,7 @@
 require(dirname(__FILE__) . "/init.php");
 
 /* Initializing the seed */
-srand ((double) microtime() * 1000000);
+mt_srand((double) microtime() * 1000000);
 
 define('CACHE_FILE', $gallery->app->albumDir . "/block-random.dat");
 define('CACHE_EXPIRED', $gallery->app->blockRandomCache);
@@ -125,7 +125,7 @@ function choosePhoto($album) {
 			return null;
 		}
 	} else {
-		$choose = rand(1, $count);
+		$choose = mt_rand(1, $count);
 		$wrap = 0;
 		while ($album->isHiddenRecurse($choose) || $album->isAlbum($choose)) {
 			$choose++;
@@ -156,7 +156,7 @@ function chooseAlbum() {
 		}
 
 		$total += $count;
-		if ($total != 0 && ($total == 1 || rand(1, $total) <= $count)) {
+		if ($total != 0 && ($total == 1 || mt_rand(1, $total) <= $count)) {
 			$choose = $name;
 		}
 	}

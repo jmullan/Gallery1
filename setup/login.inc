@@ -26,7 +26,8 @@ if (isset($gallery->session->username) && !empty($gallery->session->username)) {
 }
 elseif (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
 	if (!isset($gallery->session->resetAdminGuid)) {
-		$gallery->session->resetAdminGuid = md5(uniqid(rand(), true));
+		mt_srand((double) microtime() * 1000000);
+		$gallery->session->resetAdminGuid = md5(uniqid(mt_rand(), true));
 	}
 }
 elseif (isset($GLOBALS['login'])) {

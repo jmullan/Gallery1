@@ -399,7 +399,8 @@ class Album {
 		}
 
 		if ($this->version < 29) {
-			$this->fields['guid'] = md5(uniqid(rand(), true));
+			mt_srand((double) microtime() * 1000000);
+			$this->fields['guid'] = md5(uniqid(mt_rand(), true));
 			$changed = 1;
 		}
 
@@ -1080,7 +1081,8 @@ class Album {
 				$wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, 0, 0); 
 		}
 
-		$this->fields['guid'] = md5(uniqid(rand(), true));
+		mt_srand((double) microtime() * 1000000);
+		$this->fields['guid'] = md5(uniqid(mt_rand(), true));
 
 		return 0;
 	}

@@ -2283,7 +2283,8 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 
 	// guid is not created during new Album() as a performance optimization
 	// it only needs to be created when an album is created or modified by adding or deleting photos
-	$gallery->album->fields['guid'] = md5(uniqid(rand(), true));    
+	mt_srand((double) microtime() * 1000000);
+	$gallery->album->fields['guid'] = md5(uniqid(mt_rand(), true));    
 
         // set title and description
         if ($newAlbumTitle) {
@@ -2521,12 +2522,12 @@ function generate_password($len = 10)
 			  '0123456789' .
 			  'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-	srand((double)microtime() * 1000000);
+	mt_srand((double)microtime() * 1000000);
 	$size = strlen($alpha) - 1;
 	$used = array();
 
 	while($len--) {
-		$random  = rand(0, $size);
+		$random  = mt_rand(0, $size);
 		$char    = $alpha[$random];
 
 		// No duplicate characters.
