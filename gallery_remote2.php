@@ -27,7 +27,7 @@ require(dirname(__FILE__) . '/classes/remote/GalleryRemoteProperties.php');
 
 //---------------------------------------------------------
 //-- check that we are not being called from the browser --
-if (empty (getRequestVar('cmd'))) {
+if (!getRequestVar('cmd')) {
 	echo 'This page is not meant to be accessed from your browser.  ';
 	echo 'If you would like to use Gallery Remote, please refer to ';
 	echo 'Gallery\'s website located at ';
