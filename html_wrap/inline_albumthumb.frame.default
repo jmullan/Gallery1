@@ -15,7 +15,7 @@ $base = $gallery->app->photoAlbumURL . '/images';
 switch ($gallery->app->album_thumb_frame_style) {
 
 case "dots":
-	echo "<table style=\"border-width:1px; border-style:dashed; border-color:white;\">";
+	echo "<table style=\"border-width:1px; border-style:dashed; border-color:$borderColor;\">";
 	echo "<tr><td><a href=\"$href\">$tag</a></td></tr>";
 	echo "</table>";
 break;
