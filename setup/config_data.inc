@@ -7,7 +7,9 @@ $checklist = array(
 	     	"func" => "check_htaccess",
 		"why" => "You may need to enter the following into " .
 			"your web server's httpd.conf file: <br><pre>" .
-			"&lt;Directory $GALLERY_URL&gt;\n\tAllowOverride Options\n" .
+			"&lt;Directory " .
+			dirname(dirname(getenv("SCRIPT_FILENAME")))
+			. "&gt;\n\tAllowOverride Options FileInfo\n" .
 			"&lt;/Directory&gt;"
 	),
 	"php4" => array(
