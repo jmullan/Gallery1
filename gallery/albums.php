@@ -203,10 +203,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	$iconElements[] = popup_link($iconText, "user_preferences.php", false, true, 500, 500);
     }
 
-	if ($gallery->user->isAdmin() ||
-	        $gallery->userDB->canCreateUser() ||
-        	$gallery->userDB->canDeleteUser()) {
-		
+	if ($gallery->user->isAdmin()) {
 		$docsUrl = galleryDocs('admin');
 	        if ($docsUrl) {
 			$iconText = getIconText('info.gif', _("documentation"));
