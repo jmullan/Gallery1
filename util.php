@@ -1167,7 +1167,7 @@ function _getStyleSheetLink($filename, $skinname='') {
         $sheetname = "skins/$skinname/css/$filename.css";
 	$sheetpath = dirname(__FILE__) . "/$sheetname";
 
-	$sheetdefaultdomainname = "css/$_SERVER['HTTP_HOST']/$filename.css";
+	$sheetdefaultdomainname = 'css/'. $_SERVER['HTTP_HOST'] ."/$filename.css";
 	$sheetdefaultname = "css/$filename.css";
 	$sheetdefaultpath = $sheetname;
 
