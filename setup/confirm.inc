@@ -80,8 +80,8 @@ foreach ($constants as $key => $val) {
 	}
 
         if (get_magic_quotes_gpc()) {
-		if (is_array($real)) {
-			$real=array_map(stripslashes, $real);
+		if (is_array($real) && function_exists(array_map)) {
+			$real = array_map(stripslashes, $real);
 		} else {
 			$real = stripslashes($real);
 		}
@@ -303,8 +303,8 @@ foreach ($defaults as $key => $val) {
 		$error = 1;
 	} else {
 	        if (get_magic_quotes_gpc()) {
-			if (is_array($$key)) {
-				$$key=array_map(stripslashes, $$key);
+			if (is_array($$key) && function_exists(array_map)) {
+				$$key = array_map(stripslashes, $$key);
 			} else {
 				$$key = stripslashes($$key);
 			}
