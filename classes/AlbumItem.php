@@ -419,6 +419,7 @@ class AlbumItem {
 		/* Reset the thumbnail to the default before regenerating thumb */
 		$this->image->setThumbRectangle(0, 0, 0, 0);
 		$this->makeThumbnail($dir, $thumb_size);
+		return 1;
 	}
 
 	function setPhoto($dir, $name, $tag, $thumb_size, $pathToThumb="") {
