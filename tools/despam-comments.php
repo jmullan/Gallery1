@@ -51,7 +51,7 @@ doctype();
 <?php  
         includeHtmlWrap("gallery.header");
 ?>
-<span class="admin"> [<a href="<?php print makeGalleryUrl('albums.php'); ?>"><?php print _("gallery") ?> </a>] </span>
+<span class="admin"> [<a href="<?php print makeGalleryUrl('albums.php'); ?>"><?php print _("gallery") ?></a>] </span>
 <p align="center" class="popuphead"><H1><?php echo _("Find and remove comment spam") ?></H1></p>
 
 <?php
@@ -136,6 +136,8 @@ function findBlacklistedComments() {
     $totals = array('albums' => 0,
 		    'photos' => 0,
 		    'comments' => 0);
+    $totalComments = 0;
+
     foreach ($albumDB->albumList as $album) {
 	set_time_limit(30);
 	$totals['albums']++;

@@ -29,7 +29,7 @@ function getRequestVar($str) {
 		if (!isset($_REQUEST[$str])) {
 			return null;
 		}
-		$ret = $_REQUEST[$str];
+		$ret = &$_REQUEST[$str];
 		if (get_magic_quotes_gpc()) {
 			$ret = stripslashes($ret);
 		}	
@@ -48,7 +48,7 @@ function getFilesVar($str) {
 		if (!isset($_FILES[$str])) {
 			return null;
 		}
-		$ret = $_FILES[$str];
+		$ret = &$_FILES[$str];
 		if (get_magic_quotes_gpc()) {
 			$ret = stripslashes($ret);
 		}
@@ -66,7 +66,7 @@ function getEnvVar($str) {
 		if (!isset($_ENV[$str])) {
 			return null;
 		}
-		$ret = $_ENV[$str];
+		$ret = &$_ENV[$str];
 		if (get_magic_quotes_gpc()) {
 			$ret = stripslashes($ret);
 		}

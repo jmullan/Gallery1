@@ -35,8 +35,13 @@ list($uname, $email, $fullname, $defaultLanguage) = getRequestVar(array('uname',
 $errorCount=0;
 if (isset($save)) {
 	if (strcmp($gallery->user->getUsername(), $uname)) {
-		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
-		if ($gErrors["uname"]) {
+		if ($gallery->user->isAdmin()) {
+			$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
+			if ($gErrors["uname"]) {
+				$errorCount++;
+			}
+		} else {
+			$gErrors['uname'] = _("You are not allowed to change your username.");
 			$errorCount++;
 		}
 	}
@@ -88,7 +93,7 @@ $fullname = $gallery->user->getFullname();
 $email = $gallery->user->getEmail();
 $defaultLanguage = $gallery->user->getDefaultLanguage();
 
-$allowChange["uname"] = true;
+$allowChange["uname"] = $gallery->user->isAdmin() ? true : false;
 $allowChange["email"] = true;
 $allowChange["fullname"] = true;
 $allowChange["password"] = true;

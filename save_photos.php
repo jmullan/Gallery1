@@ -150,7 +150,7 @@ if (!empty($urls)) {
 
 		// Ensure that the file we've retrieved is in an acceptable image/movie format
 		if (!acceptableFormat($tag)) {
-			gallery_error(sprintf(_("Invalid file type; %s !"), $tag));
+			echo gallery_error(sprintf(_("Invalid file type; %s !"), $tag));
 			continue;
 		}
 
