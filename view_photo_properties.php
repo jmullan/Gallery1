@@ -114,6 +114,9 @@ if ($myExif) {
     	$i++;
 	}
 	echo ("</td>\n</table><br>");
+	if ($myphoto->getKeyWords()) {
+		echo "<b>KEYWORDS</b>: &nbsp;&nbsp " . $myphoto->getKeyWords();
+	}
 }
 
 } else {

@@ -126,7 +126,9 @@ if ($searchstring) {
 			for ($j = 1; $j <= $numPhotos; $j++) {
 				$searchCaption = $searchAlbum->getCaption($j);
 				$searchKeywords = $searchAlbum->getKeywords($j);
-				if ((eregi($searchstring, $searchCaption)) || (eregi($searchstring, $searchKeywords))) {
+				$captionMatch = eregi($searchstring, $searchCaption);
+				$keywordMatch = eregi($searchstring, $searchKeywords);
+				if ($captionMatch || $keywordMatch) {
 					if (!$searchAlbum->isHidden($j) || 
 				    	$searchAlbum->isOwner($uid) || 
 			    	    	$gallery->user->isAdmin()) {
@@ -143,7 +145,11 @@ if ($searchstring) {
 						$searchdraw["Text1"] = "<span class=fineprint>From Album:&nbsp&nbsp<a href=" .
                                 			makeGalleryUrl($searchAlbum->fields['name']) . ">" .
                                 			$searchAlbum->fields['title'] . "</a></span>";
-						$searchdraw["Text3"] = "<span class=fineprint>KEYWORDS:&nbsp&nbsp $searchKeywords</span>";
+						if ($keywordMatch) { // only display Keywords if there was a keyword match
+							$searchdraw["Text3"] = "<span class=fineprint>KEYWORDS:&nbsp&nbsp $searchKeywords</span>";
+						} else {
+							$searchdraw["Text3"] = "";
+						}
 						include($GALLERY_BASEDIR . "layout/searchdraw.inc");
 					}
 				}
