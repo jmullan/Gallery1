@@ -45,7 +45,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (!fs_file_exists("$userDir/.htaccess")) {
 			$fd = fs_fopen("$userDir/.htaccess", "w");
-			fwrite($fd, "Order deny, allow\nDeny from all\n");
+			fwrite($fd, "Order deny,allow\nDeny from all\n");
 			fclose($fd);
 		}
 
