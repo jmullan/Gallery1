@@ -21,6 +21,9 @@
  */
 ?>
 <?php
+
+list($boxes, $metaboxes) = getRequestVar(array('boxes','metaboxes'));
+
 if (!isset($boxes)) {
 	$boxes = 5;
 }
@@ -104,10 +107,10 @@ echo makeFormIntro("add_photos.php", array("name" => "count_form", "method" => "
 	}
 ?>
 
-	</table>
+	</table><br>
 <?php 
 	echo _("If no caption is set, what would you like the captions to default to?");
-	echo "\n<br><br>";
+	echo "\n<p>";
 	include(dirname(__FILE__) .'/captionOptions.inc.php');
 
 if (isset($gallery->app->watermarkDir)) {

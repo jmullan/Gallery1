@@ -24,6 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($save, $field, $data) = getRequestVar(array('save', 'field', 'data'));
+
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");
@@ -57,23 +59,21 @@ if (isset($save)) {
 		"name" => "theform",
 		"method" => "POST")); 
 ?>
-<input type="hidden" name="field" value="<?php echo $field ?>">
-<textarea name="data" rows="8" cols="55">
-<?php echo $gallery->album->fields[$field] ?>
-</textarea>
-<p>
-<input type="submit" name="save" value="<?php echo _("Save") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</form>
+	<input type="hidden" name="field" value="<?php echo $field ?>">
+	<textarea name="data" rows="8" cols="50"><?php echo $gallery->album->fields[$field] ?></textarea>
+	<p>
+		<input type="submit" name="save" value="<?php echo _("Save") ?>">
+		<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+	</p>
+	</form>
 
-<script language="javascript1.2" type="text/JavaScript">
-<!--   
-// position cursor in top form field
-document.theform.data.focus();
-//-->
-</script>
-
-<?php print gallery_validation_link("edit_field.php",true,array('field' => $field)); ?>
+	<script language="javascript1.2" type="text/JavaScript">
+	<!--   
+	// position cursor in top form field
+	document.theform.data.focus();
+	//-->
+	</script>
 </div>
+<?php print gallery_validation_link("edit_field.php",true,array('field' => $field)); ?>
 </body>
 </html>

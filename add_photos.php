@@ -24,6 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+$mode = getRequestVar('mode');
+
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");
@@ -32,6 +34,7 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 
 $cookieName = $gallery->app->sessionVar . "_add_photos_mode";
 $modeCookie = isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
+
 if (isset($mode)) {
 	if ($modeCookie != $mode) {
 	    setcookie($cookieName, $mode, time()+60*60*24*365, "/" );

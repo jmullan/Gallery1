@@ -1,6 +1,8 @@
 #!/bin/bash
 # $Id$
 
+NEW_VERSION="1_4_5-cvs"
+
 esc=`echo -en "\033"`
 tab="${esc}[5G"
 clear
@@ -18,6 +20,12 @@ if [ $1 != "-all" ] && [ ! -e ../locale/$2 ]; then
 	echo -e "sh update_po_files.sh -po <language_COUNTRY> for only one. e.g. sh update_po_files.sh -po de_DE \n" 
 	exit
 fi
+
+# Okay, lets start
+
+echo "Trying to update all .po and nls fils to Version: $NEW_VERSION"
+
+read trash
 
 ACTUALPATH=${0%/*}
 cd $ACTUALPATH
@@ -53,7 +61,7 @@ for all_po in $pofiles ; do
 	echo "$tab Updating ..."
 	head -1 $all_po > tmp.po
 	echo "#" >> tmp.po
-	echo "# Version: 1_4_5-cvs" >> tmp.po
+	echo "# Version: $NEW_VERSION" >> tmp.po
 	echo "#" >> tmp.po
 	tail +5 $all_po >> tmp.po
 	mv tmp.po $all_po
@@ -70,7 +78,7 @@ for all_nls in $nlsfiles ; do
 	echo "$tab Updating ..."
 	head -20 $all_nls > tmp.nls
 	echo " *" >> tmp.nls
-	echo " * Version: 1_4_5-cvs" >> tmp.nls
+	echo " * Version: $NEW_VERSION" >> tmp.nls
 	tail +23 $all_nls >> tmp.nls
 	mv tmp.nls $all_nls
 done

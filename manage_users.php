@@ -29,10 +29,13 @@ if (!$gallery->user->isAdmin()) {
 	exit;	
 }
 
-if (isset($create)) {
+list($create, $bulkcreate, $modify, $delete, $unames) =
+                getRequestVar(array('create', 'bulkcreate', 'modify', 'delete', 'unames'));
+
+if (!empty($create)) {
 	header("Location: " . makeGalleryHeaderUrl("create_user.php"));
 }
-if (isset($bulk_create)) {
+if (!empty($bulk_create)) {
 	header("Location: " . makeGalleryHeaderUrl("multi_create_user.php"));
 }
 

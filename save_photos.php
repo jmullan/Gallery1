@@ -24,19 +24,29 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($userfile, $urls, $meta, $usercaption) = getRequestVar(array('userfile', 'urls', 'meta', 'usercaption'));
+list($wmName, $wmAlign, $wmAlignX, $wmAlignY) = getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY'));
+
+/* Note from Jens Tkotz, 09.09.2004
+** This is really ugly code in my eyes.
+** It seems to be needed when register globals is off
+** The concept of using those arrays with those appendix should be changed.
+*/
 foreach (array('userfile', 'metafile') as $filekey) {
 	if (!empty($_FILES[$filekey])) {
-		foreach($_FILES[$filekey] as $key => $value) {
-			${$key."_name"} = $value["name"];
-			${$key."_size"} = $value["size"];
-			${$key."_type"} = $value["type"];
-			${$key} = $value["tmp_name"];
+		foreach($_FILES[$filekey] as $key => $subkey) {
+			foreach($subkey as $value) {
+				if (!empty($value)) {
+					if ($key !='tmp_name') {
+						${$filekey ."_". $key}[] = $value;
+					} else {
+						${$filekey}[] = $value;
+					}
+				}
+			}
 		}
 	}
 }
-
-list($urls, $meta, $usercaption) = getRequestVar(array('urls', 'meta', 'usercaption'));
-list($wmName, $wmAlign, $wmAlignX, $wmAlignY) = getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY'));
 
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
@@ -44,7 +54,7 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
 
-if (isset($userfile_name)) {
+if (!empty($userfile_name)) {
 	$file_count = 0;
 	foreach ($userfile_name as $file) {
 		if ($file) {
@@ -53,10 +63,12 @@ if (isset($userfile_name)) {
 	}
 }
 
+/*
 if (!isset($wmName)) $wmName = "";
 if (!isset($wmAlign)) $wmAlign = "";
 if (!isset($wmAlignX)) $wmAlignX = "";
 if (!isset($wmAlignY)) $wmAlignY = "";
+*/
 
 doctype();
 ?>
@@ -68,6 +80,7 @@ doctype();
 </head>
 <body dir="<?php echo $gallery->direction ?>" onLoad='parent.opener.hideProgressAndReload();' class="popupbody">
 <?php
+
 $image_tags = array();
 $info_tags = array();
 if (!empty($urls)) {

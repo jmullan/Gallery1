@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-08-31 00:37+0200\n"
+"POT-Creation-Date: 2004-09-03 16:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -429,7 +429,7 @@ msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the bina
 msgstr ""
 
 #: ../setup/config_data.inc:67 ../setup/config_data.inc:77
-#: ../setup/config_data.inc:649 ../setup/confirm.inc:361
+#: ../setup/config_data.inc:649 ../setup/confirm.inc:368
 msgid "Note:"
 msgstr ""
 
@@ -2055,135 +2055,140 @@ msgstr ""
 
 #: ../setup/confirm.inc:42
 #, php-format
-msgid "You must create an empty file named %s and chmod it 777 before proceeding.  See %s for more details."
+msgid "You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."
 msgstr ""
 
-#: ../setup/confirm.inc:48
+#: ../setup/confirm.inc:50
+#, php-format
+msgid "File %s is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."
+msgstr ""
+
+#: ../setup/confirm.inc:54
 #, php-format
 msgid "File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."
 msgstr ""
 
-#: ../setup/confirm.inc:80 ../setup/confirm.inc:172
+#: ../setup/confirm.inc:87 ../setup/confirm.inc:179
 msgid "missing"
 msgstr ""
 
-#: ../setup/confirm.inc:80
+#: ../setup/confirm.inc:87
 msgid "it's optional"
 msgstr ""
 
-#: ../setup/confirm.inc:172
+#: ../setup/confirm.inc:179
 msgid "optional"
 msgstr ""
 
-#: ../setup/confirm.inc:192
+#: ../setup/confirm.inc:199
 #, php-format
 msgid "%s: <b>%s</b> must be an absolute URL!"
 msgstr ""
 
-#: ../setup/confirm.inc:204
+#: ../setup/confirm.inc:211
 #, php-format
 msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
 msgstr ""
 
-#: ../setup/confirm.inc:213
+#: ../setup/confirm.inc:220
 #, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr ""
 
-#: ../setup/confirm.inc:221
+#: ../setup/confirm.inc:228
 #, php-format
 msgid "%s: <b>%s</b> must not be zero"
 msgstr ""
 
-#: ../setup/confirm.inc:231
+#: ../setup/confirm.inc:238
 #, php-format
 msgid "%s: <b>%s</b> must be an executable file!"
 msgstr ""
 
-#: ../setup/confirm.inc:240
+#: ../setup/confirm.inc:247
 #, php-format
 msgid "Directory %s does not exist.  Please create it."
 msgstr ""
 
-#: ../setup/confirm.inc:246
+#: ../setup/confirm.inc:253
 #, php-format
 msgid "%s exists but is not a directory.  Please fix this."
 msgstr ""
 
-#: ../setup/confirm.inc:253
+#: ../setup/confirm.inc:260
 #, php-format
 msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
 msgstr ""
 
-#: ../setup/confirm.inc:316
+#: ../setup/confirm.inc:323
 #, php-format
 msgid "%s: <b>%s</b> must be an enabled for this feature to function!"
 msgstr ""
 
-#: ../setup/confirm.inc:338
+#: ../setup/confirm.inc:345
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr ""
 
-#: ../setup/confirm.inc:350
+#: ../setup/confirm.inc:357
 #, php-format
 msgid "You must specify a path for %s or %s for Gallery to function!!"
 msgstr ""
 
-#: ../setup/confirm.inc:353 ../setup/confirm.inc:356
+#: ../setup/confirm.inc:360 ../setup/confirm.inc:363
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr ""
 
-#: ../setup/confirm.inc:362
+#: ../setup/confirm.inc:369
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr ""
 
-#: ../setup/confirm.inc:364
+#: ../setup/confirm.inc:371
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
 msgstr ""
 
-#: ../setup/confirm.inc:434
+#: ../setup/confirm.inc:441
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it."
 msgstr ""
 
-#: ../setup/confirm.inc:436
+#: ../setup/confirm.inc:443
 msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
 msgstr ""
 
-#: ../setup/confirm.inc:441 ../setup/confirm.inc:459
+#: ../setup/confirm.inc:448 ../setup/confirm.inc:466
 msgid "Edit Config"
 msgstr ""
 
-#: ../setup/confirm.inc:443 ../setup/confirm.inc:461
+#: ../setup/confirm.inc:450 ../setup/confirm.inc:468
 msgid "Save Config"
 msgstr ""
 
-#: ../setup/confirm.inc:445 ../setup/login.inc:68
+#: ../setup/confirm.inc:452 ../setup/login.inc:68
 msgid "Refresh"
 msgstr ""
 
-#: ../setup/confirm.inc:447
+#: ../setup/confirm.inc:454
 #, php-format
 msgid "One error."
 msgid_plural "%d errors."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../setup/confirm.inc:447
+#: ../setup/confirm.inc:454
 msgid "No errors."
 msgstr ""
 
-#: ../setup/confirm.inc:449
+#: ../setup/confirm.inc:456
 msgid "See Details below."
 msgstr ""
 
-#: ../setup/confirm.inc:464
+#: ../setup/confirm.inc:471
 msgid "There are errors in your configuration."
 msgstr ""
 
-#: ../setup/confirm.inc:465
+#: ../setup/confirm.inc:472
 msgid "Please go back and fix them!"
 msgstr ""
 
@@ -2871,69 +2876,69 @@ msgstr ""
 msgid "Start over"
 msgstr ""
 
-#: ../setup/write.inc:174
+#: ../setup/write.inc:159
 #, php-format
 msgid "The password for user %s was changed."
 msgstr ""
 
-#: ../setup/write.inc:178
+#: ../setup/write.inc:163
 #, php-format
 msgid "An account called %s has been created for you with the password you specified."
 msgstr ""
 
-#: ../setup/write.inc:192
+#: ../setup/write.inc:177
 msgid "Success!"
 msgstr ""
 
-#: ../setup/write.inc:195
+#: ../setup/write.inc:180
 msgid "Your configuration has been successfully saved!"
 msgstr ""
 
-#: ../setup/write.inc:203
+#: ../setup/write.inc:188
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
 msgstr ""
 
-#: ../setup/write.inc:210
+#: ../setup/write.inc:195
 msgid "Note"
 msgstr ""
 
-#: ../setup/write.inc:212
+#: ../setup/write.inc:197
 #, php-format
 msgid "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"
 msgstr ""
 
-#: ../setup/write.inc:225
+#: ../setup/write.inc:210
 msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
 msgstr ""
 
-#: ../setup/write.inc:227
+#: ../setup/write.inc:212
 msgid "It will save your data so you won't have to enter it all again!"
 msgstr ""
 
-#: ../setup/write.inc:230
+#: ../setup/write.inc:215
 #, php-format
 msgid "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."
 msgstr ""
 
-#: ../setup/write.inc:237
+#: ../setup/write.inc:222
 msgid "Enter the Gallery"
 msgstr ""
 
-#: ../setup/write.inc:247
+#: ../setup/write.inc:232
 msgid "Failure"
 msgstr ""
 
-#: ../setup/write.inc:248
+#: ../setup/write.inc:233
 #, php-format
 msgid "Unable to write to %s."
 msgstr ""
 
-#: ../setup/write.inc:251
+#: ../setup/write.inc:236
 #, php-format
 msgid "You are missing either %s or %s."
 msgstr ""
 
-#: ../setup/write.inc:255
+#: ../setup/write.inc:240
 msgid "Review Settings"
 msgstr ""
 

@@ -24,12 +24,14 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($action, $uname, $new_password1, $new_password2, $fullname, $canCreate, $email, $defaultLanguage) = 
+	getRequestVar(array('action', 'uname', 'new_password1', 'new_password2', 'fullname', 'canCreate', 'email', 'defaultLanguage'));
+
 if (!$gallery->user->isAdmin()) {
 	echo _("You are not allowed to perform this action!");
 	exit;	
 }
-?>
-<?php
+
 $errorCount=0;
 if (!empty($action) && $action == 'create') {
 	$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
