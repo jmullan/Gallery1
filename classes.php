@@ -177,10 +177,14 @@ class Album {
 		$photo = array_splice($this->photos, $index-1, 1);
 		                
                 /* are we deleteing the highlight? pick a new one */
+		$needToRehighlight = 0;
 		if ($photo[0]->isHighlight() && ($this->numPhotos(1) > 0)) {
-			$this->setHighlight(1);
+			$needToRehighlight = 1;
 		}
 		$photo[0]->delete($this->getAlbumDir());
+		if ($needToRehighlight) {
+			$this->setHighlight(1);
+		}
 	}
 
 	function newPhotoName() {
@@ -338,6 +342,9 @@ class Image {
 	function delete($dir) {
 		if (file_exists("$dir/$this->resizedName.$this->type")) {
 			unlink("$dir/$this->resizedName.$this->type");
+		}
+		if (file_exists("$dir/$this->name.highlight.jpg")) {
+			unlink("$dir/$this->name.highlight.jpg");
 		}
 		unlink("$dir/$this->name.$this->type");
 	}
