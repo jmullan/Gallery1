@@ -37,7 +37,7 @@ require ("../../init.php");
  </p>
  <p>
   If you have trouble logging in, be sure to check with your admin and
-  the <a href="#" onclick="javascript:window.opener.location.href='http://gallery.sf.net/faq.php'">Gallery FAQ</a>
+  the <a href="#" onclick="javascript:window.opener.location.href='http://gallery.sf.net/faq.php'; window.close();">Gallery FAQ</a>
  </p>
 </body>
 </html>

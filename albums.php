@@ -110,7 +110,6 @@ if (!$gallery->session->offline && !strcmp($gallery->app->showSearchEngine, "yes
 <?php echo makeFormIntro("search.php"); ?>
 <span class="search"> <?php echo _("Search") ?>: </span>
 <input style="font-size:10px;" type="text" name="searchstring" value="" size="25">
-<?php echo contextHelp ("search.php"); ?>
 </form>
 </td>
 </tr>
@@ -150,9 +149,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 if ($gallery->app->gallery_slideshow_type != "off") {
     	 $adminCommands .= '<a class="admin" href="' . makeGalleryUrl("slideshow.php",
 	 array("set_albumName" => null)) .
-	       	'">['._("slideshow") . ']</a>';
-		
-	 $adminCommands .= contextHelp ('slideshow.php') . '&nbsp';
+	       	'">['._("slideshow") . ']</a>&nbsp;';
 }
 if ($gallery->user->isAdmin()) {
 	$doc = galleryDocs('admin');
@@ -187,12 +184,10 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
 	        $adminCommands .= popup_link("[" . _("login") . "]", "login.php", false, true, 500, 500, 'admin');
-		$adminCommands .= contextHelp ('login.php');
 		
             if (!strcmp($gallery->app->selfReg, 'yes')) {
                 $adminCommands .= '&nbsp;';
                 $adminCommands .= popup_link('[' . _("register") . ']', 'register.php', false, true, 500, 500, 'admin');
-		$adminCommands .= contextHelp ('register.php');
             }
 	}
 }
