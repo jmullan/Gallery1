@@ -26,6 +26,16 @@ A:link	{ color: #404040; text-decoration: none; }
 A:visited { color: #404040; text-decoration: none; }
 A:active { color: #404040; }
 A:hover	{ color: #C0C0C0; }
+
+textarea:focus, select:focus {
+    background-color: #FFFFFF;
+}
+
+input:focus {
+    background-color: #FFFFDA;
+}
+
+
 /* 
    text styles 
 */
@@ -114,6 +124,28 @@ A:hover	{ color: #C0C0C0; }
 	  margin-top:2px;		
 	  border:0px dashed #404040;
 	}
+
+a.modcaption {
+	color: #C0C0C0;
+}
+
+a.modcaption:hover {
+   text-decoration: underline;
+}
+
+.pcaption  /* modifies background for caption text to reside */
+       {
+         font-family:verdana, arial, sans-serif;
+         color: FFFFFF;
+         font-size: 10px;
+         font-weight:bold;
+         background-color: #202020;
+         line-height:140%;
+         padding:2px;
+         margin-top:2px;
+         border:0px dashed #404040;
+}
+
 .error  /* all error text */
 	{ 
 	  color: red; 
@@ -183,18 +215,7 @@ A:hover	{ color: #C0C0C0; }
 	{ 
 	  font-size: 10px; 
 	}
-.popuphead
-	{
-	  font-size: 16px;
- 	  font-weight: bold;
-	  color: #404040;
-	}
-.popup
-	{
-	  font-size: 12px;
-	  font-weight: bold;
-	  color: #404040;	  
-	}
+
 .editlink,  /* Used for the [edit] tags */
 .editlink a,
 .editlink a:link,
@@ -330,14 +351,8 @@ A:hover	{ color: #C0C0C0; }
 
 .pview /* brackets both the image and all text in one frame */
 {
-	margin:7px;
-	padding: 7px;
- }
-
-.pcaption /* brackets all text below photo */
-{ 
-	padding:2px;
-	margin-top:2px;
+    margin:7px;
+    padding: 7px;
  }
 
 .vatable /* width of the div set for all photo sets - view albums  */
@@ -367,3 +382,53 @@ A:hover	{ color: #C0C0C0; }
         margin-top:10px;
         width:80%;
 }
+
+
+.pollresults /* poll result text */
+{
+         font-size: 12px;
+         color: #404040;
+         font-weight: bold;
+}
+
+.popupbody  /* controls the background of popup. */
+        {
+               margin: 25px;
+               background-color: #808080;
+        }
+
+.popuphead  /* controls the title and background */
+{
+    text-align:center;
+    font-size: 14px; font-weight: bold;
+    line-height: 150%;
+    color: #202020;
+    padding-left: 5px;
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+    background-image: url(../images/mod_navbar.jpg);
+}
+
+
+.popup /* controls the main text and message body */
+{
+    text-align:center;
+    font-size: 12px; font-weight: none;
+    color: #202020;
+    padding: 5px;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+}
+
+#adminbox td {
+    font-family:verdana, arial, sans-serif;
+    color: #202020;
+    background-color: #c0c0c0;
+}
+
+#adminbox a:hover {
+    color: #FFFFFF;
+}
+
