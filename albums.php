@@ -67,26 +67,25 @@ includeHtmlWrap("gallery.header");
 <!-- admin section begin -->
 <? 
 $adminText = "<span class=\"admin\">";
-$adminText .= "There " . ($numAlbums == 1 ? "is " : "are ");
-$adminText .= pluralize($numAlbums, "album", "no") . " in this gallery ";
+$adminText .= pluralize($numAlbums, "album", "no");
 $adminText .= " on " . pluralize($maxPages, "page", "no") . "&nbsp;";
 $adminText .= "</span>";
 $adminCommands = "<span class=\"admin\">";
 
 if ($user->isLoggedIn()) {
-	$adminCommands .= "Welcome, " . $user->getFullname();
+	$adminCommands .= "Welcome, " . $user->getFullname() . "&nbsp;&nbsp;<br>";
+}
+
+if ($user->canCreateAlbums()) { 
+	$adminCommands .= "<a href=do_command.php?cmd=new-album&return=view_album.php>[New Album]</a>&nbsp;";
 }
 
 if ($user->isAdmin()) {
 	$adminCommands .= "<a href=".popup("manage_users.php").">[Manage Users]</a>&nbsp;";
 }
 
-if ($user->canCreateAlbums()) { 
-	$adminCommands .= "<a href=do_command.php?cmd=new-album&return=view_album.php>[Create a New Album]</a>&nbsp;";
-}
-
 if ($user->isLoggedIn()) {
-	$adminCommands .= "<a href=".popup("user_preferences.php").">[Preferences]</a>";
+	$adminCommands .= "<a href=".popup("user_preferences.php").">[Preferences]</a>&nbsp;";
 	$adminCommands .= "<a href=do_command.php?cmd=logout&return=albums.php>[Logout]</a>";
 } else {
 	$adminCommands .= "<a href=".popup("login.php").">[Login]</a>";
