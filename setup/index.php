@@ -1,4 +1,8 @@
-<? require("../style.php") ?>
+<html>
+<head>
+  <title>Gallery Configuration</title>
+</head>
+<body>
 <?
 require("functions.inc");
 
@@ -40,3 +44,5 @@ if (!$setup_page) {
 
 </form>
 
+</body>
+</html>
