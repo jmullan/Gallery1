@@ -51,6 +51,61 @@ doctype();
 <head>
   <title><?php echo _("Add Photos") ?></title>
   <?php common_header(); ?>
+<style type="text/css">
+<!--
+#container
+	{
+		padding: 2px;
+	}
+
+#tabnav
+	{
+		height: 20px;
+		margin: 0;
+		padding-left: 5px;
+		background: url(images/tab_bottom.gif) repeat-x bottom;
+	}
+
+#tabnav li
+	{
+		margin: 0; 
+		padding: 0;
+  		display: inline;
+  		list-style-type: none;
+  	}
+	
+#tabnav a:link, #tabnav a:visited
+	{
+		float: left;
+		font-size: 11px;
+		line-height: 14px;
+		font-weight: bold;
+		padding: 2px 5px 2px 5px;
+		margin-right: 4px;
+		text-decoration: none;
+		color: #666;
+	        border-width:1px;
+	        border-style: solid; border-color: #000000;
+		-Moz-Border-Radius-TopLeft: 20px;
+		-Moz-Border-Radius-TopRight: 20px;
+	}
+
+#tabnav a:link.active, #tabnav a:visited.active
+	{
+	  background-color: #FCFCF3 ; padding:2px 5px 2px 5px; font-size:12px;
+	  margin-right: 4px;
+	  border-style: solid; border-color: #000000;
+	  -Moz-Border-Radius-TopLeft: 20px;
+	  -Moz-Border-Radius-TopRight: 20px;
+	  color:#000000;
+	}
+
+#tabnav a:hover
+	{
+		color: #444
+	}
+-->
+</style>
 <script type="text/javascript" language="Javascript">
 <!--
 	function reloadPage() {
