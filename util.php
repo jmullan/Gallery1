@@ -2633,7 +2633,8 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 			in_array("bcc", $gallery->app->email_notification)) {
 		$bcc .= $join.$gallery->app->adminEmail;
 	}
-	$additional_headers = "From: $from\r\nReply-To: $reply_to\r\n";
+	$additional_headers  = "From: $from\r\n";
+	$additional_headers .= "Reply-To: $reply_to\r\n";
 	$additional_headers .= "X-GalleryRequestIP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
 	$additional_headers .= "MIME-Version: 1.0\r\n";
 	$additional_headers .= "Content-type: text/plain; charset=\"". $gallery->charset ."\"\r\n";

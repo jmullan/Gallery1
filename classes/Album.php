@@ -1156,6 +1156,14 @@ class Album {
 	}
 
 	function deletePhoto($index, $forceResetHighlight="0", $recursive=1) {
+
+		// Get rid of the block-random cache file, to prevent out-of-bounds
+		// errors from getPhoto()
+		$randomBlockCache = $gallery->app->albumDir . "/block-random.dat";
+		if (fs_exists($randomBlockCache)) {
+			fs_unlink($randomBlockCache);
+		}
+
 		$this->updateSerial = 1;
 		$photo = array_splice($this->photos, $index-1, 1);
 		// need to check for nested albums and delete them ...

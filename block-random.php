@@ -130,7 +130,7 @@ function choosePhoto($album) {
 		$wrap = 0;
 		while ($album->isHiddenRecurse($choose) || $album->isAlbum($choose)) {
 			$choose++;
-			if ($choose > $album->numPhotos(1)) {
+			if ($choose > $album->numPhotos(1) || $album->getPhoto($choose)) {
 				$choose = 1;
 				$wrap++;
 				if ($wrap == 2) {
