@@ -37,7 +37,7 @@ if ($action) {
 $displayUsers = array();
 foreach ($gallery->userDB->getUidList() as $uid) {
 	$tmpUser = $gallery->userDB->getUserByUid($uid);
-	if ($tmpUser->isAdmin() || $tmpUser->isPseudo()) {
+	if ($tmpUser->isPseudo()) {
 		continue;
 	}
 
