@@ -70,4 +70,9 @@ function fs_import_filename($filename) {
 function fs_export_filename($filename) {
 	return $filename;
 }
+
+function fs_executable($filename) {
+	return $filename;
+}
+
 ?>
