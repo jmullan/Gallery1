@@ -313,7 +313,9 @@ if ($numPhotos) {
 				$myAlbum = new Album();
 				$myAlbum->load($myAlbumName);
 				if ($myAlbum->numPhotos(1)) {
-					$myHighlightTag = $myAlbum->getHighlightTag();
+					$highlight = $myAlbum->getPhoto($myAlbum->getHighlight());
+					$myHighlightTag = 
+						$highlight->getThumbnailTag($myAlbum->getAlbumDirURL("highlight"));
 				} else {
 					$myHighlightTag = "<span class=title>Empty!</span>";
 				}
