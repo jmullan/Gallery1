@@ -347,7 +347,7 @@ if (!$gallery->album->isMovie($id)) {
 	}
     } 
 	
-    if ($gallery->album->fields["use_exif"] != "yes" &&
+    if ($gallery->album->fields["use_exif"] == "yes" &&
 	(eregi("jpe?g\$", $photo->image->type)) &&
 	(isset($gallery->app->use_exif) || isset($gallery->app->exiftags))) {
 	
@@ -611,7 +611,7 @@ includeHtmlWrap("inline_photo.frame");
 
 <!-- Custom Fields -->
 <?php
-	displayPhotoFields($index, $extra_fields, true, ($gallery->album->fields["use_exif"] == "yes"), $full);
+	displayPhotoFields($index, $extra_fields, true, in_array('EXIF', $extra_fields), $full);
 ?>
 </p>
 
