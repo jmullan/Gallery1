@@ -1768,7 +1768,7 @@ class Album {
 		if (isset($this->fields["perms"][$permName])) {
 			$perm = $this->fields["perms"][$permName];
 		} else {
-			$perm=array();
+			return false;
 		}
 		if (isset($perm[$uid])) {
 			return true;
@@ -1855,7 +1855,7 @@ class Album {
 	}
 
 	function canReadRecurse($uid) {
-		global $albumDB;
+		$albumDB = new AlbumDB();
 
 		if ($this->isOwner($uid)) {
 			return true;

@@ -1,3 +1,11 @@
+2004-06-25  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b216
+
+	* Add: Random Block - added and updated to use our save serialization
+	  functions
+
+	* Change: album->canReadRecurse() - change "global $albumDB" to a new
+	  albumDB, since not all callers have established an albumDB.
+
 2004-06-24  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b215
 
 	* Change: Suppress non-essential ini_set() error message, if server disallows
