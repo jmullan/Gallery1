@@ -24,6 +24,8 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
+list($oldName, $newName, $useLoad) = getRequestVar(array('oldName', 'newName', 'useLoad'));
+
 // Hack check
 if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");
@@ -48,8 +50,6 @@ if (!isset($useLoad)) {
 
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
-
-list($oldName, $newName) = getRequestVar(array('oldName', 'newName'));
 
 if (!empty($newName)) {
 	$dismiss = 0;
