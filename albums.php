@@ -247,9 +247,9 @@ if (!($gallery->album->fields["display_clicks"] == "no")) {
    <br><br>This album has been viewed <?=pluralize($gallery->album->getClicks(), "time", "0")?> since <?=$gallery->album->getClicksDate()?>.
 <?
 }
+$albumName=$gallery->album->fields["name"];
 if ($gallery->user->canWriteToAlbum($gallery->album) &&
    (!($gallery->album->fields["display_clicks"] == "no"))) {
-	$albumName=$gallery->album->fields["name"];
 ?>
 <a href="#" onClick="<?=popup("'" . doCommand("reset-album-clicks", array("albumName" => $albumName), "albums.php") . "'" , 1)?>">[reset counter]</a>
 <?
