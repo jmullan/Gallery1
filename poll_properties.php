@@ -116,8 +116,8 @@ if (! empty($error)) {
 
 <table border="0">
 <tr>
-	<td><?php echo _("Displayed Value") ?></td>
-	<td>Points</td>
+	<td><?php echo _("Displayed Value"); ?></td>
+	<td><?php echo _("Points"); ?></td>
 </tr>
 <?php
 $nv_pairs=$gallery->album->getVoteNVPairs();
