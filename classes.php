@@ -341,8 +341,8 @@ class Image {
 	}
 
 	function delete($dir) {
-		if (file_exists("$dir/$this->resizedName.$this->type")) {
-			unlink("$dir/$this->resizedName.$this->type");
+		if (file_exists("$dir/$this->resizedName.jpg")) {
+			unlink("$dir/$this->resizedName.jpg");
 		}
 		if (file_exists("$dir/$this->name.highlight.jpg")) {
 			unlink("$dir/$this->name.highlight.jpg");
@@ -358,12 +358,12 @@ class Image {
 		if (!strcmp($app->default["imageborders"], "no")) {
 			$attrs .= " border=0";
 		}
-		
+
 		if ($this->resizedName) {
 			if ($full) {
 				return "<img src=$dir/$this->name.$this->type $attrs>";
 			} else {
-				return "<img src=$dir/$this->resizedName.$this->type $attrs>";
+				return "<img src=$dir/$this->resizedName.jpg $attrs>";
 			}
 		} else {
 			return "<img src=$dir/$this->name.$this->type width=$this->width height=$this->height $attrs>";
@@ -376,7 +376,7 @@ class Image {
 	}
 	
 	function getName($dir) {
-		if (file_exists("$dir/$this->resizedName.$this->type")) {
+		if (file_exists("$dir/$this->resizedName.jpg")) {
 			return $this->resizedName;
 		} else {
 			return $this->name;
@@ -561,7 +561,7 @@ class AlbumItem {
 						 $new_width, $new_height, 
 						 $orig_width, $orig_height);
 				ImageJpeg($thumbImg, "$dir/$name.thumb.jpg");
-	
+
 				$this->thumbnail = new Image;
 				$this->thumbnail->setFile($dir, "$name.thumb", "jpg");
 	
