@@ -3304,4 +3304,11 @@ function unhtmlentities ($string)
 return $return;
 }
 
+function contextHelp ($link) {
+	global $gallery;
+	
+	if ($gallery->app->showContextHelp == 'yes') {
+		return popup_link ('?', 'docs/context-help/' . $link, false, true, 500, 500);
+	}
+}
 ?>
