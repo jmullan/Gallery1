@@ -115,18 +115,16 @@ if (fs_file_exists(dirname(__FILE__) . "/config.php")) {
 ** We also include the common lib file as we need it in initLanguage()
 */
 
-if (isset($gallery->app->embedded_inside_type) && $gallery->app->embedded_inside_type=='GeekLog') {
+// Verify that the geeklog_dir isn't overwritten with a remote exploit
+if (!empty($gallery->app->geeklog_dir) && !realpath($gallery->app->geeklog_dir)) {
+	print _("Security violation") ."\n";
+	exit;
+} elseif (!empty($gallery->app->geeklog_dir)) {
 	$GALLERY_EMBEDDED_INSIDE='GeekLog';
 	$GALLERY_EMBEDDED_INSIDE_TYPE = 'GeekLog';
 
-	// Verify that the geeklog_dir isn't overwritten with a remote exploit
-	if (!realpath($gallery->app->geeklog_dir)) {
-		print _("Security violation") ."\n";
-		exit;
-	} else {
-		if (! defined ("GEEKLOG_DIR")) {
-			define ("GEEKLOG_DIR",$gallery->app->geeklog_dir);
-		}
+	if (! defined ("GEEKLOG_DIR")) {
+		define ("GEEKLOG_DIR",$gallery->app->geeklog_dir);
 	}
 
 	require_once(GEEKLOG_DIR . '/lib-common.php');

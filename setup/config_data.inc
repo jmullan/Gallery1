@@ -350,31 +350,15 @@ $constants =  array_merge(
 		"name"		=> "group_embedded",
 		"default"	=> "none",
 	       	"title" => _("Embedded Gallery"),
-		"desc" => _("Use this section to set options to configure gallery to be embedded in another web application."),
-		"contains_required" => true,
-	),
-
-	"embedded_inside_type" => array(
-		"prompt" => _("Embed Gallery"),
-		"desc"   => sprintf(_("If you would like to run %s in another web application (such as *Nuke, phpBB2 or GeekLog) you have to choose the environment here."),gallery()),
-		"choices" => array(	NULL 	   => _("Standalone Gallery"),
-					'phpNuke'  => 'phpNuke',
-					'postNuke' => 'postNuke',
-					'phpBB2'   => 'phpBB2',
-					'GeekLog'  => 'GeekLog',
-					'nsnNuke'  => 'nsnNuke',
-					'Mambo'	   => 'Mambo'),
-		"value"  => NULL,
-		"allow_empty" => true,
-		"required" => true,
+		"desc" => _("Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."),
 	),
 	"geeklog_dir" => array(
 		"prompt" => _("GeekLog Dir"),
 		"optional" => 1,
-		"desc" => _("If you chose Geeklog above, please enter the location of the GeekLog public_html directory."),
+		"desc" => _("If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"),
 		"attrs" => array("size" => 80),
 		"type" => "text",
-		"value" => "/path/to/geeklog/public_html"
+		"value" => ""
 	),
 	"group_embedded_end"	=> array (
 			"type"	=> "group_end"
