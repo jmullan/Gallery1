@@ -664,7 +664,7 @@ if ($do_exif) {
         $imbkprnt = makeAlbumUrl($gallery->session->albumName, $id);
      }
   ?>
-  <input type=hidden name=imbkprnta-1 value="<?php echo $imbkprnt ?>">
+  <input type=hidden name=imbkprnta-1 value="<?php echo strip_tags($imbkprnt) ?>">
 </form>
 <?php } ?>
 <?php if (isset($printPhotoAccessForm)) { ?>
