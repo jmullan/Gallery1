@@ -147,9 +147,7 @@ class AlbumItem {
 			}
 		}
 		if ($this->version < 11) { 
-			$nobody = $gallery->userDB->getNobody(); 
-			$nobodyUid = $nobody->getUid();
-			$this->owner = $nobodyUid;
+			$this->owner = $gallery->album->fields["owner"];
 		}
 		if ($this->image) {
 			if ($this->image->integrityCheck($dir)) {

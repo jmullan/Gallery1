@@ -1402,11 +1402,11 @@ class Album {
 		$everybody = $gallery->userDB->getEverybody();
 		$everybodyUid = $everybody->getUid();
 
-		if (!strcmp($this->getItemOwner($index), $nobodyUid) || !strcmp($this->getItemOwner($index), $everybodyUid)) {
-			return "";
-		}
                 $user=$gallery->userDB->getUserByUid($this->getItemOwner($index));
 		if (!$user) {
+			return "";
+		}
+		if (!strcmp($user->getUid(), $nobodyUid) || !strcmp($user->getUid(), $everybodyUid)) {
 			return "";
 		}
 		return " - ".$user->getFullname()." (". $user->getUsername().")";
