@@ -270,9 +270,9 @@ function process($file, $tag, $name, $setCaption="") {
 				exec_wrapper(fs_import_filename($gallery->app->unzip, 1) . 
 					     " -j -o " .
 					     fs_import_filename($file, 1) .
-					     " '" .
+					     " \"" .
 					     fs_import_filename($cmd_pic_path, 1) .
-					     "' -d " .
+					     "\" -d " .
 					     fs_import_filename($gallery->app->tmpDir, 1));
 				process($gallery->app->tmpDir . "/$pic", $tag, $pic, $setCaption);
 				fs_unlink($gallery->app->tmpDir . "/$pic");
