@@ -2670,7 +2670,8 @@ function gallery_mail($to, $subject, $msg, $logmsg, $from = NULL) {
 	}
 	$additional_headers = "From: $from\r\nReply-To: $reply_to\r\n";
 	$additional_headers .= "X-GalleryRequestIP: " . $HTTP_SERVER_VARS['REMOTE_ADDR'] . "\r\n";
-	if (in_array("bcc", $gallery->app->email_notification)) {
+	if (isset($gallery->app->email_notification) &&
+			in_array("bcc", $gallery->app->email_notification)) {
 		$additional_headers .= "Bcc: " . $gallery->app->adminEmail . "\r\n";
 	}
 	$result=mail($to, $subject, emailDisclaimer().$msg, $additional_headers);
@@ -2714,11 +2715,13 @@ function emailLogMessage($logmsg, $result) {
 	if (!$result) {
 		$logmsg = _("FAILED")."/FAILED: $logmsg";
 	}
-	if (in_array("logfile", $gallery->app->email_notification)) {
+	if (isset($gallery->app->email_notification) &&
+			in_array("logfile", $gallery->app->email_notification)) {
 		$logfile=$gallery->app->albumDir."/email.log";
 		logMessage($logmsg, $logfile);
 	}
-	if (in_array("email", $gallery->app->email_notification)) {
+	if (isset($gallery->app->email_notification) &&
+			in_array("email", $gallery->app->email_notification)) {
 		$subject = _("Email activity");
 		if ($subject != "Email activity") {
 			$subject .= "/Email activity";

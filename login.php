@@ -74,32 +74,6 @@ if (isset($uname) && isset($gallerypassword)) {
 	       	$gallerypassword = null;
        	}
 }
-else if (isset($forgot)) {
-       	$tmpUser = $gallery->userDB->getUserByUsername($uname);
-       	if ($tmpUser) {
-
-
-	       	if (validate_email($tmpUser->getEmail())) {
-		       	if (gallery_mail( $tmpUser->email,
-				_("New password request"),
-			       	sprintf(_("You requested a new password from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
-			      	sprintf(_("Click to reset your password: %s"),
-				       	newPasswordHash($tmpUser)) . "\n",
-				sprintf(_("New password request %s"), $uname))) {
-			       	echo sprintf(_("An email has been sent to %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."),$tmpUser->email)  ?> 
-					<br><br>
-			       	<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
-				<?php
-		       	} else {
-			       	echo gallery_error(sprintf(_("Email could not be sent.  Please contact %s adminstrators for a new password"),$gallery->app->galleryTitle ));
-		       	}
-		       	return;
-	       	} else {
-		       	echo gallery_error(sprintf(_("There is no valid email for this account.  Please contact %s adminstrators for a new password"),$gallery->app->galleryTitle ));
-	       	}
-       	} else
-	       	echo gallery_error(_("Not a valid username"));
-} 
 ?>
 
 <?php echo makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
@@ -154,10 +128,41 @@ else if (isset($forgot)) {
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <br><hr>
+
+
 <?php echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST")); ?>
 <span class="popuphead"><?php echo _("Forgotten your password?") ?></span>
 <br>
 <br>
+<?php
+if (isset($forgot)) {
+       	$tmpUser = $gallery->userDB->getUserByUsername($uname);
+       	if ($tmpUser) {
+
+
+	       	if (validate_email($tmpUser->getEmail())) {
+		       	if (gallery_mail( $tmpUser->email,
+				_("New password request"),
+			       	sprintf(_("You requested a new password from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
+			      	sprintf(_("Click to reset your password: %s"),
+				       	newPasswordHash($tmpUser)) . "\n",
+				sprintf(_("New password request %s"), $uname))) {
+			       	echo sprintf(_("An email has been sent to %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."),$tmpUser->email)  ?> 
+					<br><br>
+			       	<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
+				<?php
+		       	} else {
+			       	echo gallery_error(sprintf(_("Email could not be sent.  Please contact %s adminstrators for a new password"),$gallery->app->galleryTitle ));
+		       	}
+		       	return;
+	       	} else {
+		       	echo gallery_error(sprintf(_("There is no valid email for this account.  Please contact %s adminstrators for a new password"),$gallery->app->galleryTitle ));
+	       	}
+       	} else {
+	       	echo gallery_error(_("Not a valid username"));
+	}
+} 
+?>
 
 <p>
 <table>
