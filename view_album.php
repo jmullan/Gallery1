@@ -73,7 +73,7 @@ $width = floor(100 / $cols) . "%";
 <font face=<?=$album->fields["font"]?>>
 
 <center>
-<table width=1%>
+<table width=400>
 <tr>
 <td align=left>
 <font size=+3> <?= editField($album, "title", $edit)?> </font>
@@ -218,9 +218,9 @@ if ($numPhotos) {
 	}
 } else {
 ?>
-	<tr>
+	<tr bgcolor=#333333>
 	<td colspan=$rows align=center>
-	<font size=+2> There are no photos in this album. </font> 
+	<font size=+2>Hey! Add some photos.</font> 
 	</td>
 	</tr>
 <?
@@ -264,7 +264,7 @@ if ($last) {
 
 <font face=<?= $album->fields["font"]?> size=+0>
 <? if (strcmp($album->fields["returnto"], "no")) { ?>
-^ <a href=albums.php>Return to The Gallery </a>
+<< <a href=albums.php>Return to The Gallery </a>
 <? } ?>
 
 </table>
