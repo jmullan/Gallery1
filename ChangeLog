@@ -1,3 +1,10 @@
+2004-05-05  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b97
+
+	* Change: Config wizard now starts with submit buttons disabled.  They
+	  are enabled during document.onload using JavaScript.  This will
+	  prevent errors from occuring due to people pressing Next before the page has
+	  completed loading, thereby not sending all of the config data to the next page.
+
 2004-05-04 Jens Tkotz <jens@peino.de> 1.4.4-cvs-b96
 
 	* Fix: Warning in when recovering password with adding isset to userData.inc.

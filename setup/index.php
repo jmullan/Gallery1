@@ -58,12 +58,24 @@
 		}
 	}
 
+	function enableButtons() {
+		var buttons = document.getElementsByTagName("input");
+
+		var i = 0;
+		while (buttons[i]) {
+			if (buttons[i].type == "submit") {
+				buttons[i].disabled = false;
+			}
+			i++;
+		}
+	}
+
 	-->
         </script>
 
 </head>
 
-<body dir="<?php echo $gallery->direction ?>">
+<body dir="<?php echo $gallery->direction ?>" onload="enableButtons()">
 <?php
 
 

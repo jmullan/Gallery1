@@ -39,9 +39,9 @@
 </div>
 
 <p align="center">
-	<input type="submit" name="go_back" value="<- <?php echo _("Previous Step") ?>">
-	<input type="submit" name="go_next" value="<?php echo _("Next Step") ?> ->">
-	<input type="submit" name="go_defaults" value="<?php echo _("Use Defaults") ?>">
+	<input type="submit" name="go_back" disabled="disabled" value="<- <?php echo _("Previous Step") ?>">
+	<input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> ->">
+	<input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
 
 </p>
 <?php
@@ -153,7 +153,7 @@ foreach ($constants as $key => $val) {
 }
 ?>
 <p align="center">
-	<input type=submit name="go_back" value="<- <?php echo _("Previous Step") ?>">
-	<input type=submit name="go_next" value="<?php echo _("Next Step") ?> ->">
-	<input type=submit name="go_defaults" value="<?php echo _("Use Defaults") ?>">
+	<input type=submit name="go_back" disabled="disabled" value="<- <?php echo _("Previous Step") ?>">
+	<input type=submit name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> ->">
+	<input type=submit name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
 </p>

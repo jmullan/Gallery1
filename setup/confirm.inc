@@ -453,9 +453,9 @@ if (!$error) {
 ?>
 </div>
 <p align="center">
-	<input type=submit name="go_back" value="<- <?php echo _("Edit Config") ?>">
+	<input type=submit name="go_back" disabled="disabled" value="<- <?php echo _("Edit Config") ?>">
 <?php if (!$error) {
-		echo '<input type=submit name="go_next" value="' . _("Save Config") .' ->">';
+		echo '<input type="submit" name="go_next" disabled="disabled" value="' . _("Save Config") .' ->">';
 	} else {
 		echo '<br><div class="error" id="top">';
 		echo sprintf(_("%s.  Details below."), pluralize_n($error, _("One error"), _("errors"), _("no errors")));
@@ -468,9 +468,9 @@ if (!$error) {
 <input type="hidden" name="data" value="<?php echo urlencode($data) ?>">
 
 <p align="center">
-<input type="submit" name="go_back" value="<- <?php echo _("Edit Config") ?>">
+<input type="submit" name="go_back" disabled="disabled" value="<- <?php echo _("Edit Config") ?>">
 <?php if (!$error) {
-	echo '<input type=submit name="go_next" value="'. _("Save Config") . '->">';
+	echo '<input type="submit" name="go_next" disabled="disabled" value="'. _("Save Config") . '->">';
 } else {
 	echo '<p class="error" id="bottom">';
 	echo _("There are errors in your configuration.");
