@@ -348,8 +348,8 @@ for ($i = $start; $i <= $end; $i++) {
 			if (!$gallery->session->offline) {
 				echo '<br><span class="error">' .
 				_("Hey!") .
-				sprintf(_("%s this album so that the URL is not so generic!"), 
-					popup_link(_("Rename"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i"));
+				sprintf(_("%s so that the URL is not so generic!"), 
+					popup_link(_("Rename this album"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i"));
 				echo '</span>';
 			}
 		}

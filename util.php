@@ -3137,7 +3137,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 			// to differences in versions of jhead.
 			// array_pop($myExif); // get rid of empty element at end
 			array_shift($myExif); // get rid of file name at beginning
-			$tables[_("Additional EXIF Data")]  = $myExif;
+			$tables[_("EXIF Data")]  = $myExif;
 		}
 	}
 

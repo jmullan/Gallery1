@@ -863,7 +863,7 @@ class Album {
 			       	gallery_mail($to, $subject, $text, $logmsg, true);
 
 			} else if (isDebugging()) {
-			       	print _("\n<br>No email sent as no valid email addresses were found");
+			       	print "\n<br>". _("No email sent as no valid email addresses were found");
 		       	}
 		}
 		return $success;

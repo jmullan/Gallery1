@@ -714,14 +714,14 @@ $constants = array_merge($constants,
 		"value" => "no"
 	),
 	"adminCommentsEmail" => array(
-		"desc" => "This is allows the \"admin\" account to get email whenever a comment is added to any album",
-		"prompt" => "Admin comment email",
+		"desc" => _("This is allows the &quot;admin&quot account to get email whenever a comment is added to any album"),
+		"prompt" => _("Admin comment email"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 		),
 	"adminOtherChangesEmail" => array(
-		"desc" => "This is allows the &quot;admin&quot; account to get email whenever a change is made to any album",
-		"prompt" => "Admin Other Changes email",
+		"desc" => _("This is allows the &quot;admin&quot; account to get email whenever a change is made to any album"),
+		"prompt" => _("Admin Other Changes email"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 		),
