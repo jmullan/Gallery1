@@ -1,7 +1,8 @@
 This readme gives you a very short view how to make your own translation
 
-- (if its not allready there) create a clear and empty .po file
+- if necessary, create a new gallery.pot file
   'sh create_po_template.sh'
+  This requires xgetText version 0.12.1 or later
 
 - copy gallery.pot (po template) to your own .po File
 
@@ -14,3 +15,5 @@ This readme gives you a very short view how to make your own translation
 
 - If all translations a done run make_mo_files.sh
   'sh make_mo_files.sh'
+
+- Add your new language to ML_files/ML_lang_alias.php
