@@ -49,10 +49,10 @@ $GR_VER['MIN'] = 1;
 
 $GR_STAT['SUCCESS']             = 0;
 
-$GR_STAT['PROTOCOL_MAJOR_VERSION_INVALID'] = 101;
-$GR_STAT['PROTOCOL_MINOR_VERSION_INVALID'] = 102;
+$GR_STAT['PROTOCOL_MAJOR_VERSION_INVALID'] 	= 101;
+$GR_STAT['PROTOCOL_MINOR_VERSION_INVALID'] 	= 102;
 $GR_STAT['PROTOCOL_VERSION_FORMAT_INVALID'] = 103;
-$GR_STAT['PROTOCOL_VERSION_MISSING']   = 104;
+$GR_STAT['PROTOCOL_VERSION_MISSING']   		= 104;
 
 $GR_STAT['PASSWORD_WRONG']      = 201;
 $GR_STAT['LOGIN_MISSING']       = 202;
@@ -64,6 +64,7 @@ $GR_STAT['NO_FILENAME']			= 402;
 $GR_STAT['UPLOAD_PHOTO_FAIL']	= 403;
 
 $GR_STAT['NO_CREATE_ALBUM_PERMISSION']	= 501;
+$GR_STAT['CREATE_ALBUM_FAILED']			= 502;
 
 
 /*
@@ -250,12 +251,16 @@ if (!strcmp($cmd, "new-album")) {
 
 
 		// add the album
-		createNewAlbum( $newAlbumName, $newAlbumTitle, $newAlbumDesc, $response );
-		
-		// set status and message
-		$response->setProperty( "status", $GR_STAT['SUCCESS'] );
-		$response->setProperty( "status_text", "New album created successfully." );
-		
+		if (GRcreateNewAlbum( $gallery->session->albumName,
+				$newAlbumName, $newAlbumTitle, $newAlbumDesc )) {
+			// set status and message
+			$response->setProperty( "status", $GR_STAT['SUCCESS'] );
+			$response->setProperty( "status_text", "New album created successfully." );
+		} else {
+			// set status and message
+			$response->setProperty( "status", $GR_STAT['CREATE_ALBUM_FAILED'] );
+			$response->setProperty( "status_text", "Create album failed." );
+		}
 	} else {
 		$response->setProperty( "status", $GR_STAT['NO_CREATE_ALBUM_PERMISSION'] );
 		$response->setProperty( "status_text", "A new album could not be created because the user does not have permission to do so." );
@@ -453,12 +458,12 @@ function processFile($file, $tag, $name, $setCaption="") {
 
 //---------------------------------------------------------
 // this is an edited version of code in do_command.php
+// TODO: merge with version from util.php
 //
-function createNewAlbum( $newAlbumName, $newAlbumTitle, $newAlbumDesc, &$response ) {
+function GRcreateNewAlbum( $parentName, $newAlbumName, $newAlbumTitle, $newAlbumDesc ) {
 	global $gallery;
 	
 	// get parent album name
-	$parentName = $gallery->session->albumName;
 	$albumDB = new AlbumDB(FALSE);
 	
 	// set new album name from param or default
@@ -508,7 +513,7 @@ function createNewAlbum( $newAlbumName, $newAlbumTitle, $newAlbumDesc, &$respons
 		$gallery->album->fields["display_clicks"]  = $parentAlbum->fields["display_clicks"];
 		$gallery->album->fields["public_comments"] = $parentAlbum->fields["public_comments"];
 
-		$gallery->album->save();
+		$returnVal = $gallery->album->save();
 	} else {
 		/*
 		 * Get a new albumDB because our old copy is not up to
@@ -519,10 +524,10 @@ function createNewAlbum( $newAlbumName, $newAlbumTitle, $newAlbumDesc, &$respons
 		/* move the album to the top if not a nested album*/
 		$numAlbums = $albumDB->numAlbums($gallery->user);
 		$albumDB->moveAlbum($gallery->user, $numAlbums, 1);
-		$albumDB->save();
+		$returnVal = $albumDB->save();
 	}
 	
-	return true;
+	return $returnVal;
 }
 
 ?>
