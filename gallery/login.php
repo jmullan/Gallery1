@@ -105,9 +105,9 @@ if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
 <div class="popuphead"><?php echo _("Forgotten your password?") ?></div>
 <div class="popup" align="center">
 <?php
-	echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST"));
+    echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST"));
 
-if (!empty($forgot)) {
+    if (!empty($forgot)) {
        	$tmpUser = $gallery->userDB->getUserByUsername($username);
        	if ($tmpUser) {
 		$wait_time=15;
@@ -138,7 +138,7 @@ if (!empty($forgot)) {
        	} else {
 	       	echo gallery_error(_("Not a valid username"));
 	}
-} 
+    } 
 ?>
 
 <p>
