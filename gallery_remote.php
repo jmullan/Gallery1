@@ -215,6 +215,21 @@ function process($file, $tag, $name, $setCaption="") {
                 $caption = "";
             }
    
+	    /*
+	     * Move the uploaded image to our temporary directory
+	     * using move_uploaded_file so that we work around
+	     * issues with the open_basedir restriction.
+	     */
+	    if (function_exists('move_uploaded_file')) {
+		$newFile = tempnam($gallery->app->tmpDir, "gallery");
+		if (move_uploaded_file($file, $newFile)) {
+		    $file = $newFile;
+
+		    /* Make sure we remove this file when we're done */
+		    $temp_files[$file]++;
+		}
+	    }
+
             $err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption);
             if (!$err) {
                 /* resize the photo if needed */
