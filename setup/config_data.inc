@@ -63,33 +63,35 @@ $checklist = array(
 		"desc" => "Check to see if NetPBM is installed so that " .
 			"Gallery can manipulate images (rotate, resize, make " .
 			"thumbnails, etc).",
-/*
- * We'll use this when we go to supporting multiple graphics packages.
- *
-		"desc" => "Check to see what graphics packages are available for your use. ".
-			"The graphics package allows Gallery to manipulate images (rotate, " .
-			"resize, make thumbnails, etc).  NetPBM produces higher quality " .
-			"thumbnails than GD.  Gallery can support two configurations: <ol> " .
-			"<li> GD and JPEG compiled into PHP " .
-			"<li> NetPBM installed on your system " .
-			"</ol> You must have one of these package for Gallery to work.",
-*/
 		"func" => "check_graphics",
-		"fail-gd" => "GD support is not compiled into PHP.  To use GD, you'll need to ".
-			"rebuild PHP with this flag: <br><b>--with-gd=/path/to/gd</b>",
-		"fail-jpeg" => "JPEG support is not compiled into PHP.  To use JPEG, you'll need to ".
-			"rebuild PHP with this flag: <br><b>--with-jpeg=/path/to/jpeg</b>",
 		"fail-netpbm" => "I can't find NetPBM.  If it's installed, it's not in " .
-			  "the path of the webserver user.  If it's not installed, " .
-			  "you'll need to <a href=http://sourceforge.net/projects/netpbm>install it</a>. " .
-			  "Gallery detects NetPBM by looking for the <i>anytopnm</i> script." .
-			  "<p>" .
-			  "<b> If it's installed and Gallery isn't finding it that's OK -- " .
-			  "that just means you'll have to specify the path to NetPBM by hand " .
-			  " on the following page </b>",
+			"the path of the webserver user.  If it's not installed, you have " .
+			"two choices.  You can install the entire NetPBM package from " .
+			"<a href=http://sourceforge.net/projects/netpbm>NetPBM on SourceForge</a>. " .
+			"or you can install just the binaries Gallery needs from " .
+			"<a href=http://sourceforge.net/projects/gallery>Gallery on SourceForge</a> ".
+			"<b>Note:</b> You can install the binaries from the Gallery site even ".
+			"if you don't have root access on your box!  If gallery does not have the ".
+			"specific binaries for your hardware/software combination post a request ".
+			"On the Gallery website and we'll build them for you." .
+			"<p><b> If NetPBM is installed and Gallery isn't finding it automatically " .
+			"that's OK -- that just means you'll have to specify the path to NetPBM " .
+			"by hand on the following page </b>",
 		"fail-netpbm-partial" => "I've found part of NetPBM, but some critical components " .
 			"are missing (see below).  Perhaps your version of NetPBM is out of date?  " .
-			"Gallery prefers NetPBM version 9.9 and up",
+			"Gallery prefers NetPBM version 9.9 and up.  " .
+			"You can install the entire NetPBM package from " .
+			"<a href=http://sourceforge.net/projects/netpbm>NetPBM on SourceForge</a> " .
+			"or you can install just the binaries Gallery needs from " .
+			"<a href=http://sourceforge.net/projects/gallery>Gallery on SourceForge</a>. ".
+			"<b>Note:</b> You can install the binaries from the Gallery site even ".
+			"if you don't have root access on your box!  If gallery does not have the ".
+			"specific binaries for your hardware/software combination post a request ".
+			"On the Gallery website and we'll build them for you." .
+			"<p><b> If NetPBM is installed and Gallery isn't finding it automatically " .
+			"that's OK -- that just means you'll have to specify the path to NetPBM " .
+			"by hand on the following page </b>",
+	
 	),
 );
 
@@ -112,20 +114,9 @@ $constants = array(
 		"desc" => "The location of a temp directory",
 		"value" => "/var/tmp"
 	),
-	"graphics" => array(
-		"desc" => "Which graphics package do you want to use: ",
-		"choices" => graphics_choices(),
-	),
 	"pnmDir" => array(
-		"desc" => "The location of your NetPBM package.  If you select NetPBM " .
-			  "above, then this <b>must</b> be the path to the 'anytopnm' script.",
-		"value" => locateDir("anytopnm", $app ? $app->pnmDir : "")
-	),
-	"anytopnm" => array(
-		"desc" => "anytopnm wrapper",
-		"type" => "hidden",
-		"value" => "",
-		"eval" => 'makePathWrapper($pnmDir, "anytopnm")'
+		"desc" => "The path to your NetPBM binaries.",
+		"value" => locateDir("jpegtopnm", $app ? $app->pnmDir : "")
 	),
 	"highlight_size" => array(
 		"desc" => "The target size (in pixels) of thumbnails " .
@@ -171,7 +162,7 @@ $constants = array(
 		"desc" => "The relative path to the album directory (specified above) " .
 			"on your web server",
 		"value" => "/albums"
-	)
+	),
 );
 
 $defaults = array(
@@ -215,6 +206,11 @@ $defaults = array(
 		"desc" => "Display the 'Return to Album List' link",
 		"value" => "yes",
 		"choices" => array("yes", "no")
-	)
+	),
+	"showOwners" => array(
+		desc => "Show album owner's name on the gallery page",
+		choices => array("yes", "no"),
+		value => "no",
+	),
 );
 ?>
