@@ -841,7 +841,7 @@ if ($numPhotos) {
 			if (isset($myAlbum)) {
 				$myDescription = $myAlbum->fields['description'];
 				$buf = "";
-				$buf = $buf."<b>". sprintf(_("Album: %s"), $myAlbum->fields['title'])."</b>";
+				$buf = $buf."<center><b>". sprintf(_("Album: %s"), '<a href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>'). '</b></center>';
 				if ($myDescription != _("No description") &&
 					$myDescription != "No description" && 
 					$myDescription != "") {
@@ -853,7 +853,7 @@ if ($numPhotos) {
 				echo _("Changed: ") ." ". $myAlbum->getLastModificationDate();
  				echo "\n<br>";
 				$visibleItems=array_sum($myAlbum->numVisibleItems($gallery->user));
-				echo _("Contains: ") ." ". pluralize_n2(ngettext("1 item", "%d items", $visibleItems), $visibleItems) . '.';
+				echo _("Contains: ") ." ". pluralize_n2(ngettext("1 item", "%d items", $visibleItems), $visibleItems) . '. ';
 				// If comments indication for either albums or both
 				switch ($gallery->app->comments_indication) {
 				case "albums":
@@ -873,8 +873,9 @@ if ($numPhotos) {
 				echo '</span>';
 			} 
 			else {
-				echo(nl2br($gallery->album->getCaption($i)));
-				echo($gallery->album->getCaptionName($i));
+				echo '<center>';
+				echo '<a href="'.  makeAlbumUrl($gallery->session->albumName, $id) .'">'. nl2br($gallery->album->getCaption($i)) . '</a>';
+				echo $gallery->album->getCaptionName($i) . ' ';
 				// indicate with * if we have a comment for a given photo
 				if ($gallery->user->canViewComments($gallery->album) 
 					&& $gallery->app->comments_enabled == 'yes') {
@@ -886,7 +887,7 @@ if ($numPhotos) {
 						print lastCommentString($lastCommentDate, $displayCommentLegend);
 					}
 				}
-				echo("<br>");
+				echo "</center><br>";
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
 					echo '<span class="viewcounter">';
 					echo _("Viewed:") ." ". pluralize_n2(ngettext("1 time", "%d times", $gallery->album->getItemClicks($i)), $gallery->album->getItemClicks($i));
