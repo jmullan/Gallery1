@@ -685,7 +685,7 @@ if ($numPhotos) {
 	while ($rowCount < $rows) {
 		/* Do the inline_albumthumb header row */
 		$visibleItemIndex = $rowStart;
-		$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
+		$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		$j = 1;
 		$printTableRow = false;
 		if ($j <= $cols && $i <= $numPhotos) {
@@ -785,7 +785,7 @@ if ($numPhotos) {
 			echo("</td>");
 			$j++; 
 			$visibleItemIndex++;
-			$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
+			$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		}
 		if ($printTableRow) {
 			echo('</tr>');
@@ -1091,7 +1091,7 @@ if ($numPhotos) {
 			echo('</td>');
 			$j++;
 			$visibleItemIndex++;
-			$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
+			$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		}
 		if ($printTableRow) {
 			echo('</tr>');
@@ -1110,13 +1110,13 @@ if ($numPhotos) {
 			echo("</td>");
 			$j++;
 			$visibleItemIndex++;
-			$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
+			$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		}
 		if ($printTableRow) {
 			echo('</tr>');
 		}
 		$rowCount++;
-		$rowStart = $i;
+		$rowStart = $visibleItemIndex;
 	}
 } else {
 ?>
