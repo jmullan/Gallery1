@@ -131,6 +131,8 @@ $breadCount = 0;
 $breadtext = array();
 $pAlbum = $gallery->album;
 $depth=0;
+$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" alt="' . _("navigate UP") .'" title="' .
+_("navigate UP") .'" border="0">';
 do {
   if (!strcmp($pAlbum->fields["returnto"], "no")) {
     break;
@@ -142,11 +144,11 @@ do {
 	$pAlbum = new Album();
 	$pAlbum->load($pAlbumName);
 	$breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($pAlbumName) . 
-	"\">" . $pAlbum->fields['title'] . "</a>";
+	"\">" . $pAlbum->fields['title'] . "&nbsp;" . $upArrowURL . "</a>";
   } elseif (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
 	//-- we're at the top! --- 
 	$breadtext[$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . 
-	"\">" . $gallery->app->galleryTitle . "</a>";
+	"\">" . $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
 	$pAlbumName = '';
   } 
   elseif ($gallery->session->offline) {	// test is redundant.  offline must be 

@@ -177,9 +177,11 @@ $navigator["url"] = ".";
 $navigator["bordercolor"] = $bordercolor;
 
 #-- breadcrumb text ---
+$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" alt="' . _("navigate UP") .'" title="' .
+_("navigate UP") .'" border="0">';
 $breadCount = 0;
 $breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($gallery->session->albumName) .
-      "\">" . $gallery->album->fields['title'] . "</a>";
+      "\">" . $gallery->album->fields['title'] . "&nbsp;" . $upArrowURL . "</a>";
 $breadCount++;
 $pAlbum = $gallery->album;
 $depth = 0;
@@ -195,11 +197,11 @@ do {
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
     $breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($pAlbumName) .
-      "\">" . $pAlbum->fields['title'] . "</a>";
+      "\">" . $pAlbum->fields['title'] . "&nbsp;" . $upArrowURL . "</a>";
   } elseif (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
     //-- we're at the top! ---
     $breadtext[$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") .
-      "\">" . $gallery->app->galleryTitle . "</a>";
+      "\">" . $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
     $pAlbumName = '';
   }
   $breadCount++;
