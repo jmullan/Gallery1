@@ -73,9 +73,9 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 	 */
 	$safe_to_include =
 		 array(
-
 		       "add_comment.php",
 		       "add_photos.php",
+			'add_photos_frame.php',
 		       "album_permissions.php",
 		       "albums.php",
 		       "block-random.php",

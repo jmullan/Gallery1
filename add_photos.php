@@ -32,12 +32,13 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print _("Security violation") ."\n";
 	exit;
 }
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
+
+if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = './';
 }
-require($GALLERY_BASEDIR . 'init.php'); ?>
-<?php
+
+require($GALLERY_BASEDIR . 'init.php');
+
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
@@ -62,6 +63,7 @@ ob_end_flush();
 <head>
   <title><?php echo _("Add Photos") ?></title>
   <?php echo getStyleSheetLink() ?>
+
 <style type="text/css">
 <!--
 #container
@@ -88,20 +90,27 @@ ob_end_flush();
 #tabnav a:link, #tabnav a:visited
 	{
 		float: left;
-		font-size: 10px;
+		font-size: 11px;
 		line-height: 14px;
 		font-weight: bold;
 		padding: 2px 5px 2px 5px;
 		margin-right: 4px;
-		border: 1px solid #000;
 		text-decoration: none;
 		color: #666;
+	        border-width:1px;
+	        border-style: solid; border-color: #000000;
+		-Moz-Border-Radius-TopLeft: 20px;
+		-Moz-Border-Radius-TopRight: 20px;
 	}
 
 #tabnav a:link.active, #tabnav a:visited.active
 	{
-		border-bottom: 1px solid #fff;
-		color: #000;
+	  background-color: #FCFCF3 ; padding:2px 5px 2px 5px; font-size:12px;
+	  margin-right: 4px;
+	  border-style: solid; border-color: #000000;
+	  -Moz-Border-Radius-TopLeft: 20px;
+	  -Moz-Border-Radius-TopRight: 20px;
+	  color:#000000;
 	}
 
 #tabnav a:hover
