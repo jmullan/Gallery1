@@ -379,7 +379,7 @@ function check_php()
 	$fail = array();
 	$warn = array();
 
-	if (!function_exists('version_compare') || version_compare($version, "4.1.0", ">=")) {
+	if (!function_exists('version_compare') || !version_compare($version, "4.1.0", ">=")) {
 		$fail['fail-too-old'] = 1;
 	} else {
 		$success[] = sprintf(_("PHP v%s is OK."), $version);
