@@ -43,7 +43,7 @@ if ($submit) {
 		if (!$errorCount) {
 			$tmpUser = new User();
 			$tmpUser->setUsername($uname);
-			$tmpUser->setPassword($password);
+			$tmpUser->setPassword($new_password1);
 			$tmpUser->setFullname($fullname);
 			$tmpUser->setCanCreateAlbums($canCreate);
 			$tmpUser->setEmail($email);
