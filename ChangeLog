@@ -1,3 +1,32 @@
+2003-06-19  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.5-cvs-b22
+
+	* Fixed error in Config. Wizard where Step 1 would incorrectly
+	  report Jhead as not found if Jhead was not in the same directory
+	  as the NetPBM binaries. (Bug #756925)
+
+	* Applied several patches from Vallimar (Patch #754649, 1-4):
+
+	  - Removed page navigator if there's only one page.
+
+	  - Removed check for ImageMagick's 'composite' binary, since
+	    Gallery doesn't actually use it anywhere.
+
+	  - Restructured the format of the album/image count at the top of
+	    each page to be clearer and more accurate.
+
+	  - Changed delete_photo.php so that after deleting a photo from
+	    the photo view, the user is returned to the next photo in line
+	    (or the previous photo if at the end of the album), rather
+	    than being returned to the thumbnail view.
+
+	  - Added a [rename] button inside each album for added
+	    convenience.
+
+	  - A couple of tiny UI cleanups.
+
+	* Added "Flip Horizontal/Vertical" to the rotation options in
+	  rotate_photo.php. (Patch #750769 from Ari Gordon-Schlosberg)
+	
 2003-06-15  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b21
 
 	* In session.php, attempt to force cookie support on if the server

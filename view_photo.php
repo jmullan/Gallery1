@@ -351,8 +351,9 @@ if (!$gallery->album->isMovie($id)) {
 	}
 
 	if ($gallery->user->canDeleteFromAlbum($gallery->album)) {
+		$nextId = ($index >= $numPhotos ? $index - 1 : $index);
 		$adminCommands .= popup_link("[delete photo]", 
-			"delete_photo.php?id=$id");
+			"delete_photo.php?id=$id&id2=$nextId");
 	}
 
 	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes")) {

@@ -408,6 +408,10 @@ function rotate_image($src, $dest, $target) {
 			$args = "-r90";
 		} else if (!strcmp($target, "-90")) {
 			$args = "-r270";
+		} else if (!strcmp($target, "fv")) {
+			$args = "-tb";
+		} else if (!strcmp($target, "fh")){
+			$args = "-lr";
 		} else {
 			$args = "-r180";
 		}
@@ -426,13 +430,22 @@ function rotate_image($src, $dest, $target) {
 	case "ImageMagick":
 	        if (!strcmp($target, "90")) {
 		    $target = "-90";
+		    $im_cmd = "-rotate";             
 		} else if (!strcmp($target, "-90")) {
 		    $target = "90";
+		    $im_cmd = "-rotate";
+		} else if (!strcmp($target, "fv")) {
+		    $target = "";
+		    $im_cmd = "-flip";
+		} else if (!strcmp($target, "fh")) {
+		    $target = "";
+		    $im_cmd = "-flop";
 		}
+		
 	  
 		$src = fs_import_filename($src);
 		$out = fs_import_filename($out);
-		$err = exec_wrapper(ImCmd("convert", "-rotate $target $src $out"));
+		$err = exec_wrapper(ImCmd("convert", "$im_cmd $target $src $out"));
 		break;
 	default:
 		if (isDebugging())

@@ -122,7 +122,6 @@ and digits.
 <script language="javascript1.2">
 <!--
 // position cursor in top form field
-document.usermodify_form.fullname.focus();
 document.usermodify_form.uname.focus();
 //--> 
 </script>

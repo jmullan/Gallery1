@@ -73,31 +73,33 @@ if ($prevPage >= 1) {
     <td align="center" width="3000" height="18">   
 <?php
 #-- 'page numbers' cell ---                  
-$current = $navigator["page"];
-echo "<span class=\"nav\">";
-for ($i = $begin; $i <= $end; $i++) {
-	if ($i == $current) {
-		$number = "<b>$i</b>";
-		$leftdot = "<img src=\"$imageDir/nav_dot_left.gif\" width=\"8\" height=\"11\">";
-	} else {
-		$number = "<a href=".$url.$navigator['pageVar']."=$i>$i</a>";
-		if (($i-1) == $navigator["page"]) {
-			$leftdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\">";
+if ($begin != $end) {
+	$current = $navigator["page"];
+	echo "<span class=\"nav\">";
+	for ($i = $begin; $i <= $end; $i++) {
+		if ($i == $current) {
+			$number = "<b>$i</b>";
+			$leftdot = "<img src=\"$imageDir/nav_dot_left.gif\" width=\"8\" height=\"11\">";
 		} else {
-			$leftdot = "<img src=\"$imageDir/nav_dot.gif\" width=\"8\" height=\"11\">";
+			$number = "<a href=".$url.$navigator['pageVar']."=$i>$i</a>";
+			if (($i-1) == $navigator["page"]) {
+				$leftdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\">";
+			} else {
+				$leftdot = "<img src=\"$imageDir/nav_dot.gif\" width=\"8\" height=\"11\">";
+			}
 		}
+	
+		echo "&nbsp;$leftdot&nbsp;";
+		echo "$number";
 	}
-
-	echo "&nbsp;$leftdot&nbsp;";
-	echo "$number";
+	echo "</span>";
+	if ($end == $current) {
+		$rightdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\">";
+	} else {
+		$rightdot = "<img src=\"$imageDir/nav_dot.gif\" width=\"8\" height=\"11\">";
+	}
+	echo "&nbsp;$rightdot&nbsp;";
 }
-echo "</span>";
-if ($end == $current) {
-	$rightdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\">";
-} else {
-	$rightdot = "<img src=\"$imageDir/nav_dot.gif\" width=\"8\" height=\"11\">";
-}
-echo "&nbsp;$rightdot&nbsp;";
 ?>
     </td>
 <?php

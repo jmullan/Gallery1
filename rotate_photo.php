@@ -40,7 +40,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 <html>
 <head>
-  <title>Rotate Photo</title>
+  <title>Rotate/Flip Photo</title>
   <?php echo getStyleSheetLink() ?>
 </head>
 <body>
@@ -50,7 +50,7 @@ if ($gallery->session->albumName && isset($index)) {
 	if ($rotate) {
 ?>
 	<center>
-	 Rotating photo.
+	 Rotating/Flipping photo.
 	 <br>
 	 (this may take a while)
 	</center>
@@ -65,20 +65,27 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <center>
-How do you want to rotate this photo?
-<br>
+How do you want to manipulate this photo?
+<br /><br />
 <?php $args = array("albumName" => $gallery->album->fields["name"], "index" => $index); ?>
+Rotate: [ 
 <?php $args["rotate"] = "90"; ?>
-<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>Counter-Clockwise 90&ordm;</a>
-/
+<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>Counter-Clockwise 90&deg;</a>
+ | 
 <?php $args["rotate"] = "180"; ?>
-<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>Flip 180&ordm;</a>
-/
+<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>180&deg;</a>
+ | 
 <?php $args["rotate"] = "-90"; ?>
-<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>Clockwise 90&ordm;</a>
-/
+<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>Clockwise 90&deg;</a>
+]<br /><br />Flip: [ 
+<?php $args["rotate"] = "fh"; ?>
+<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>Horizontal</a>
+ | 
+<?php $args["rotate"] = "fv"; ?>
+<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>Vertical</a>
+ ]<br /><br />
 <a href="javascript:void(parent.close())">Cancel</a>
-<br>
+<br />
 
 <p>
 <?php echo $gallery->album->getThumbnailTag($index) ?>

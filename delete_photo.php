@@ -57,7 +57,11 @@ if ($confirm && isset($id)) {
 
 	$gallery->album->deletePhoto($index);
 	$gallery->album->save();
+	if (isset($id2) && $id2 = $gallery->album->getPhotoId($id2)) {
+	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName, $id2));
+	} else {
 	dismissAndReload();
+	}
 	return;
 }
 ?>
@@ -118,6 +122,7 @@ Do you really want to delete this photo?
 <br>
 <?php echo makeFormIntro("delete_photo.php"); ?>
 <input type=hidden name=id value=<?php echo $id?>>
+<input type=hidden name=id2 value=<?php echo $id2 ?>>    
 <input type=submit name=confirm value="Delete">
 <input type=submit value="Cancel" onclick='parent.close()'>
 </form>

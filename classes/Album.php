@@ -319,6 +319,9 @@ class Album {
 	}
 
 	function getThumbDimensions($index, $size=0) {
+		if (empty($index)) {
+			return array(0, 0);
+		}	
 
 		$photo = $this->getPhoto($index);
 		$album = $this;

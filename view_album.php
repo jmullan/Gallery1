@@ -240,15 +240,22 @@ function showChoice($label, $target, $args) {
 	echo "<option value='" . makeGalleryUrl($target, $args) . "'>$label</option>";
 }
 
+for ($i = 1, $numAlbums = 0; $i <= $numPhotos; ++$i) {
+	if ($gallery->album->isAlbumName($i))
+	$numAlbums++;
+}
+
 $adminText = "<span class=\"admin\">";
-if ($numPhotos == 1) {  
-	$adminText .= "1 photo in this album";
+if ($numAlbums) {
+	$adminText .= pluralize($numAlbums, "album", "No") . " and ";
+	$adminText .= pluralize($numPhotos - $numAlbums, "image", "no");
 } else {
-	$adminText .= "$numPhotos items in this album";
+	$adminText .= pluralize($numPhotos - $numAlbums, "image", "No");
+}
+$adminText .= " in this album";
 	if ($maxPages > 1) {
 		$adminText .= " on " . pluralize($maxPages, "page");
 	}
-}
 
 if ($gallery->user->canWriteToAlbum($gallery->album) && 
 	!$gallery->session->offline) {
@@ -274,6 +281,12 @@ if ($gallery->user->canAddToAlbum($gallery->album)) {
 		    "add_photo.php?set_albumName=" .
 		    $gallery->session->albumName);
 	}
+}
+if ($gallery->user->isOwnerOfAlbum($gallery->album)) {
+	$adminCommands .= popup_link("[rename album]",
+		"rename_album.php?set_albumName=" .
+		$gallery->session->albumName .
+		"&index=". $i ."&useLoad=1");
 }
 if ($gallery->user->canCreateSubAlbum($gallery->album) 
 	&& !$gallery->session->offline) {
@@ -553,7 +566,7 @@ if ($numPhotos) {
 			if ($gallery->user->canWriteToAlbum($gallery->album)) {
 				if (!$gallery->album->isMovie($id) && !$gallery->album->isAlbumName($i)) {
 					showChoice("Edit Thumbnail", "edit_thumb.php", array("index" => $i));
-					showChoice("Rotate $label", "rotate_photo.php", array("index" => $i));
+					showChoice("Rotate/Flip $label", "rotate_photo.php", array("index" => $i));
 				}
 				if (!$gallery->album->isMovie($id)) {
 					showChoice("Highlight $label", "highlight_photo.php", array("index" => $i));

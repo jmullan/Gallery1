@@ -92,8 +92,7 @@ if ($show_details) {
 <?php
 $binaries = array(
 		"identify",
-		"convert",
-		"composite"
+		"convert"
 	    );
 
 foreach ($binaries as $bin) {

@@ -42,6 +42,7 @@ $page = 1;
 /* If there are albums in our list, display them in the table */
 $numAlbums = $albumDB->numAlbums($gallery->user);
 $numPhotos = $albumDB->getCachedNumPhotos($gallery->user);
+$numAccess = $albumDB->numAccessibleAlbums($gallery->user);
 
 if (!$gallery->session->albumListPage) {
 	$gallery->session->albumListPage = 1;
@@ -106,8 +107,11 @@ if (!$gallery->session->offline && !strcmp($gallery->app->default["showSearchEng
 <!-- admin section begin -->
 <?php 
 $adminText = "<span class=\"admin\">";
-$adminText .= pluralize($numAlbums, "album", "no");
-$adminText .= ",&nbsp;" . pluralize($numPhotos, "photo", "no");
+$adminText .= pluralize($numAlbums, ($numAccess != $numAlbums) ? "top-level album" : "album", "No");
+if ($numAccess != $numAlbums) {
+    $adminText .= " ($numAccess total)";
+}
+$adminText .= ",&nbsp;" . pluralize($numPhotos, "image", "no");
 if ($maxPages > 1) {
 	$adminText .= " on " . pluralize($maxPages, "page", "no") . "&nbsp;";
 }

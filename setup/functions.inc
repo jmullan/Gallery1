@@ -210,7 +210,7 @@ function check_exif($location="")
 	if ($location) {
 		$d = locateDir($bin, $location);
 	} else {
-		$d = locateDir($bin, $gallery->app ? $gallery->app->pnmDir : "");
+		$d = locateDir($bin, $gallery->app ? dirname($gallery->app->use_exif) : "");
 	}
 	if (!$d) {
 		$fail["fail-exif"] = "Could not locate jhead";
@@ -326,7 +326,6 @@ function check_graphics_im($location="", $graphtool="")
 	$imagick = array(
 		fs_executable("identify"), 
 		fs_executable("convert"),
-		fs_executable("composite")
 	);
 
 	foreach ($imagick as $bin) {

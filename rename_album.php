@@ -87,6 +87,9 @@ if ($newName) {
 				$childAlbum->save();
 			}
 		}
+		if ($useLoad == 1)
+			dismissAndLoad($newName);
+		else
 		dismissAndReload();
 		return;
 	} else {
@@ -108,6 +111,7 @@ Those characters will be ignored in your new album name.
 <?php echo makeFormIntro("rename_album.php", array("name" => "theform")); ?>
 <input type=text name="newName" value=<?php echo $newName?>>
 <input type=hidden name="oldName" value=<?php echo $gallery->session->albumName?>>
+<input type=hidden name="useLoad" value=<?php echo $useLoad?>>    
 <p>
 <input type=submit value="Rename">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>

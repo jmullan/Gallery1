@@ -257,6 +257,16 @@ class AlbumDB {
 		$dir = $gallery->app->albumDir;
 		return safe_serialize($this->albumOrder, "$dir/albumdb.dat");
 	}
+
+	function numAccessibleAlbums($user) {
+		$numAlbums = 0;
+		foreach ($this->albumList as $album) {
+			if ($user->canReadAlbum($album))
+			$numAlbums++;
+		}
+		return $numAlbums;
+	}
+
 }
 
 ?>
