@@ -31,6 +31,17 @@ if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
 require($GALLERY_BASEDIR . "version.php");
 require($GALLERY_BASEDIR . "util.php");
 
+/*
+ * Detect if we're running under SSL and adjust the URL accordingly.
+ */
+if ($HTTP_SERVER_VARS["HTTPS"]) {
+	$gallery->app->photoAlbumURL = 
+		eregi_replace("^http:", "https:", $gallery->app->photoAlbumURL);
+} else {
+	$gallery->app->photoAlbumURL = 
+		eregi_replace("^https:", "http:", $gallery->app->photoAlbumURL);
+}
+
 /* 
  * Turn off magic quotes runtime as they interfere with saving and
  * restoring data from our file-based database files
@@ -52,13 +63,48 @@ require($GALLERY_BASEDIR . "classes/UserDB.php");
 require($GALLERY_BASEDIR . "classes/Comment.php");
 require($GALLERY_BASEDIR . "session.php");
 
-/* Load our user database (and user object) */
-$gallery->userDB = new UserDB;
+if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
+	require($GALLERY_BASEDIR . "classes/Database.php");
+	require($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
+	require($GALLERY_BASEDIR . "classes/nuke5/UserDB.php");
+	require($GALLERY_BASEDIR . "classes/nuke5/User.php");
 
-/* Load their user object with their username as the key */
-if ($gallery->session->username) {
-	$gallery->user = 
-		$gallery->userDB->getUserByUsername($gallery->session->username);
+	$gallery->database{"nuke"} = new MySQL_Database(
+			$GLOBALS['dbhost'],
+			$GLOBALS['dbuname'],
+			$GLOBALS['dbpass'],
+			$GLOBALS['dbname']);
+	$gallery->database{"nuke"}->setTablePrefix($GLOBALS['prefix'] . "_");
+
+	/* Load our user database (and user object) */
+	$gallery->userDB = new Nuke5_UserDB;
+	if ($GLOBALS['user']) {
+		$gallery->session->username = $GLOBALS['user']; 
+	} 
+
+	if (is_admin($GLOBALS['admin'])) {
+		require($GALLERY_BASEDIR . "classes/nuke5/AdminUser.php");
+
+		$gallery->session->username = "admin"; 
+		$gallery->user = new Nuke5_AdminUser($GLOBALS['admin']);
+	} else if (is_user($GLOBALS['user'])) {
+		$user_info = getusrinfo($GLOBALS['user']);
+		$gallery->session->username = $user_info["uname"]; 
+		$gallery->user = 
+			$gallery->userDB->getUserByUsername($gallery->session->username);
+	}
+} else {
+	require($GALLERY_BASEDIR . "classes/gallery/UserDB.php");
+	require($GALLERY_BASEDIR . "classes/gallery/User.php");
+
+	/* Load our user database (and user object) */
+	$gallery->userDB = new Gallery_UserDB;
+
+	/* Load their user object with their username as the key */
+	if ($gallery->session->username) {
+		$gallery->user = $gallery->userDB->
+			getUserByUsername($gallery->session->username);
+	}
 }
 
 /* If there's no specific user, they are the special Everybody user */
