@@ -245,7 +245,7 @@ function loadBlacklist() {
     return $blacklist;
 }
 
-function isBlacklistedComment($comment, $existingComment = true) {
+function isBlacklistedComment(&$comment, $existingComment = true) {
 	$blacklist = loadBlacklist();
 	if ($existingComment) {
 		foreach ($blacklist['entries'] as $key => $entry) {
