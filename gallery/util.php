@@ -126,7 +126,7 @@ function acceptableFormat($tag) {
 }
 
 function acceptableFormatRegexp() {
-	return "(jpg|gif|png|mpg|avi|wmv)";
+	return "(jpg|jpeg|gif|png|mpg|avi|wmv)";
 }
 
 
@@ -134,6 +134,7 @@ function isImage($tag) {
 	global $app; 
 
 	return (!strcmp($tag, "jpg") ||
+		!strcmp($tag, "jpeg") ||
 		!strcmp($tag, "gif") ||
 		!strcmp($tag, "png"));
 }
@@ -270,7 +271,7 @@ function toPnmCmd($file) {
 
 	if (preg_match("/.png/i", $file)) {
 		$cmd = "pngtopnm";
-	} else if (preg_match("/.jpg/i", $file)) {
+	} else if (preg_match("/.(jpg|jpeg)/i", $file)) {
 		if (isDebugging()) {
 			$cmd = "jpegtopnm";
 		} else {
@@ -293,7 +294,7 @@ function fromPnmCmd($file) {
 
 	if (preg_match("/.png/i", $file)) {
 		$cmd = "pnmtopng";
-	} else if (preg_match("/.jpg/i", $file)) {
+	} else if (preg_match("/.(jpg|jpeg)/i", $file)) {
 		$cmd = "ppmtojpeg";
 	} else if (preg_match("/.gif/i", $file)) {
 		$cmd = "ppmquant 256| $app->pnmDir/ppmtogif";
