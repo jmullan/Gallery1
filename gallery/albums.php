@@ -282,11 +282,9 @@ for ($i = $start; $i <= $end; $i++) {
           <table cellspacing="0" cellpadding="0" border="0" class="mod_title_bg">
             <tr>
               <td class="mod_title_left" align="right"></td>
-              <td nowrap class="head" align="left">
-                <span class="title">
+              <td nowrap class="title" align="left">
                 <?php _("title") ?>
                 <?php echo editField($gallery->album, "title", $albumURL) ?>
-                </span>
               </td>
               <td class="mod_title_right" align="left"></td>
             </tr>
