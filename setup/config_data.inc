@@ -129,7 +129,7 @@ $checklist = array(
 	"gallery-locale" => array (
 		"optional" => 1,
 		"desc" => _("Check to see what languages are available"),
-		"func" => "check_gallery_locale"
+		"func" => "check_gallery_languages"
 	),
 	"missing-locales" => array (
 		"optional" => 1,

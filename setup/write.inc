@@ -32,7 +32,7 @@ if ($fd = @fs_fopen($outfile, "w")) {
  * Write the php_value lines, if they're permissable in the user's
  * environment..
  */
-if ($GALLERY_PHP_VALUE_OK) {
+if (isset($GALLERY_PHP_VALUE_OK)) {
 	$htaccess = file("php_value.template");
 	if ($fd = @fs_fopen($outfile, "a")) {
 		foreach ($htaccess as $line) {

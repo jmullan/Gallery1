@@ -1773,32 +1773,34 @@ function initLanguage() {
 	// $locale is *NUKEs locale var
 	global $locale ;
 
-// Detect Browser Language
+	// Detect Browser Language
 	$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
-        $lang_pieces=explode ("-",$lang[0]);
+	$lang_pieces=explode ("-",$lang[0]);
 
-        if (strlen($lang[0]) ==2) {
+	if (strlen($lang[0]) ==2) {
 		$gallery->browser_language=$lang[0] ."_".strtoupper($lang[0]);
 	} else {
-		$gallery->browser_language=strtolower($lang_pieces[0])."_".strtoupper($lang_pieces[1]) ;
-        }
+		$gallery->browser_language=
+			strtolower($lang_pieces[0]).
+			"_".strtoupper($lang_pieces[1]) ;
+	}
 
-// If we have no Mode, use Browserlanguage
+	// If we have no Mode, use Browserlanguage
 	if (!isset($gallery->app->ML_mode)) {
 		$gallery->app->ML_mode = 2;
 	}
 
-$nls = getNLS();
+	$nls = getNLS();
 
-/**
- ** We have 2 Ways. Nuke or not Nuke
- ** If we are in Nuke this override the Mode
- **/
+	/**
+	 ** We have 2 Ways. Nuke or not Nuke
+	 ** If we are in Nuke this override the Mode
+	 **/
 	if (isset($HTTP_GET_VARS['newlang'])) {
 		$newlang=$HTTP_GET_VARS['newlang'];
 	}
 
-// Check if we are in Nuke or in which Mode and set language
+	// Check if we are in Nuke or in which Mode and set language
 
 	if (isset($GALLERY_EMBEDDED_INSIDE)) {
 		//We're in NUKE";
@@ -1813,38 +1815,38 @@ $nls = getNLS();
 	} else {
 		//We're not in Nuke
 		switch ($gallery->app->ML_mode) {
-		    case 1:
-			//Static Language
-			$gallery->language = $gallery->app->default_language;
-        		break;
-		    case 2:
-			// Use Browser Language
-			$gallery->language=$gallery->browser_language;
-	        	break;
-		    case 3:
-			// Does the user want a new language ?
-			if (!empty($newlang)) {
-				// Use Alias if
-				if ($nls['alias'][$newlang]) $newlang=$nls['alias'][$newlang] ;
-				// use Language if its okay
-				// Set Language to the User selected language (if this language is defined
-				if ($nls['languages'][$newlang]) {
-					$gallery->language=$newlang;
+			case 1:
+				//Static Language
+				$gallery->language = $gallery->app->default_language;
+				break;
+			case 2:
+				// Use Browser Language
+				$gallery->language=$gallery->browser_language;
+				break;
+			case 3:
+				// Does the user want a new language ?
+				if (!empty($newlang)) {
+					// Use Alias if
+					if ($nls['alias'][$newlang]) $newlang=$nls['alias'][$newlang] ;
+					// use Language if its okay
+					// Set Language to the User selected language (if this language is defined
+					if ($nls['languages'][$newlang]) {
+						$gallery->language=$newlang;
+					}
+				} elseif (isset($gallery->session->session)) {
+					//maybe we already have a language
+					$gallery->language=$gallery->session->language;
 				}
-			} elseif (isset($gallery->session->session)) {
-				//maybe we already have a language
-				$gallery->language=$gallery->session->language;
-			}
-			break;
+				break;
 		}
 	}
 
-/**
- **  Fall back to Default Language if :
- **	- we cant detect Language
- **	- Nuke sent an unsupported
- **	- User sent an undefined
- **/
+	/**
+	 **  Fall back to Default Language if :
+	 **	- we cant detect Language
+	 **	- Nuke sent an unsupported
+	 **	- User sent an undefined
+	 **/
 	if (! isset($gallery->language)) {
 		if (isset($gallery->app->default_language)) {
 			$gallery->language = $gallery->app->default_language;
@@ -1853,16 +1855,16 @@ $nls = getNLS();
 		}
 	}
 
-// if an alias for a language is given, use it
-//
+	// if an alias for a language is given, use it
+	//
 	if (isset($nls['aliases'][$gallery->language])) {
 		$gallery->language = $nls['aliases'][$gallery->language] ;
 	}
 
-// And now set this language into session
+	// And now set this language into session
 	$gallery->session->language = $gallery->language;
 
-// locale
+	// locale
 	if (isset($gallery->app->locale_alias[$gallery->language])) {
 		$gallery->locale=$gallery->app->locale_alias[$gallery->language];
 	} else {
@@ -1872,40 +1874,41 @@ $nls = getNLS();
 	$locale=$gallery->locale;
 
 
-// Check defaults :
+	// Check defaults :
 	$checklist=array('direction', 'charset', 'alignment') ;
 
 	foreach($checklist as $check) {
 		// if no ... is given, use default
-	        if ( !isset($nls[$check][$gallery->language])) {
+		if ( !isset($nls[$check][$gallery->language])) {
 			$gallery->$check = $nls['default'][$check] ;
 		} else {
 			$gallery->$check = $nls[$check][$gallery->language] ;
 		}
 	}
 
-// When all is done do the settings
-//
-        putenv("LANG=". $gallery->language);
-        putenv("LANGUAGE=". $gallery->language);
+	// When all is done do the settings
+	//
+	putenv("LANG=". $gallery->language);
+	putenv("LANGUAGE=". $gallery->language);
 
-// Set Locale
+	// Set Locale
 	setlocale(LC_ALL,$gallery->locale);
 
-// Set Charset
-// Only when we're not in nuke, because headers might be sent already.
+	// Set Charset
+	// Only when we're not in nuke, because headers might be sent already.
 	if (! isset($GALLERY_EMBEDDED_INSIDE)) {
 		header('Content-Type: text/html; charset=' . $gallery->charset);
 	}
 
 
-/**
- ** Test if we're using gettext.
- ** if yes, do some gettext settings.
- ** if not emulate _() function
- **/
+	/**
+	 ** Test if we're using gettext.
+	 ** if yes, do some gettext settings.
+	 ** if not emulate _() function
+	 **/
 	emulate_gettext();
 }
+
 function emulate_gettext() {
 	global $translation, $GALLERY_BASEDIR;
 	$check=(in_array("gettext", get_loaded_extensions()) && 
@@ -1943,18 +1946,57 @@ function emulate_gettext() {
 		}
 	}
 }
-function po_filename() {
+
+/* 
+   PO file will be in either gallery/po or gallery/locale/. The po directory 
+   will only exist in CVS installations, but if it does exist, it will be the 
+   same or more up-to-date than the one in locale
+*/
+function po_filename($lang=NULL) {
 	global $GALLERY_BASEDIR, $gallery;
-	$filename=$GALLERY_BASEDIR ."locale/" . $gallery->language . "/gallery.po";
+	if ($lang == NULL) {
+		$lang = $gallery->language;
+	}
+	$filename=$GALLERY_BASEDIR ."po/" . $lang . "-gallery.po";
 	if (file_exists($filename)) {
 			return $filename;
 	}
-	$filename=$GALLERY_BASEDIR ."po/" . $gallery->language . "-gallery.po";
+
+	$filename=$GALLERY_BASEDIR ."locale/" . $lang . "/gallery.po";
 	if (file_exists($filename)) {
 			return $filename;
 	}
 	return NULL;
 }
+
+/* returns true if gettext is defined, and the mo file is found for language,
+   or no gettext, and a po file is found.
+   */
+
+function language_exists($lang) {
+	global $GALLERY_BASEDIR;
+	if ($lang == 'en_US') {
+		return true;
+	}
+	$check=(in_array("gettext", get_loaded_extensions()) && 
+			function_exists('gettext'));
+	if ($check) {
+		if (file_exists($GALLERY_BASEDIR ."locale/" . $lang . "/LC_MESSAGES/gallery.mo")) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		if (po_filename($lang)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+/* little function useful for debugging.  no calls to this should be in 
+   committed code. */
+
 function vd($x, $string="") {
 	print "<pre>\n$string: ";
 	var_dump($x);
@@ -1965,6 +2007,7 @@ function vd($x, $string="") {
 function Gallery() {
 	return "Gallery";
 }
+
 function compress_image($src, $out, $target, $quality) {
 	global $gallery;
 	switch($gallery->app->graphics)

@@ -23,6 +23,9 @@ function ML_reload() {
 		if (! isset($nls['languages'][$value])) continue;
 		if (isset($GALLERY_EMBEDDED_INSIDE) && ! $nls['nuke'][$value]) continue;
 		
+		if (!language_exists($value)) {
+			continue;
+		}
 		$args = $HTTP_GET_VARS;
 		if ($GALLERY_EMBEDDED_INSIDE) {
 			$args["newlang"]=$nls['nuke'][$value];

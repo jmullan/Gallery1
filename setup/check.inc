@@ -56,7 +56,7 @@ foreach ($checklist as $check) {
 				$text = _("Warning");
 				$color = "yellow";
 			}
-			echo "<font color=$color><b>$text!</b></font>";
+			echo "<font color=$color><b>$text!</b>  </font>";
 			if (isset($check) && isset($check[$key])) {
 				echo "<br>$check[$key]<p>";
 			}

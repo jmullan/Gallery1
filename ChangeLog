@@ -1,3 +1,30 @@
+2003-08-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b109
+
+	* Fixed longstanding bug in resize_photo.php, where font tag was never 
+	  closed.
+
+	* In ml_pulldown.inc, check if a language actually exists currently 
+	  before adding it to the pulldown.
+
+	* In util.php, reformatted initLanguage() and added new
+	  function language_exists(), which tests to see if the
+	  appropriate translation file for a language is present.
+
+	* Added '".."' to setup/constants.inc to remove warning.
+
+	* Removed warning from setup/write.inc.
+
+	* Language check in Configuration Wizard now compares the number of 
+	  languages available with the actual number in this installation.
+
+	* Parameter added to po_filename(), so it can test of existance of 
+	  po files for other languages.
+
+	* Renamed check_gallery_locale() to check_gallery_languages().
+
+	* Greatly simplified gallery_languages(), by using language_exists() 
+	  to check each of the languages listed in getNLS().
+
 2003-08-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b108
 
 	* Modified setup/confirm.inc and setup/write.inc so that the 

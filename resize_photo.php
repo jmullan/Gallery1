@@ -74,7 +74,7 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <center>
-<font size=+1><?php echo _("Resizing photos") ?></a>
+<font size=+1><?php echo _("Resizing photos") ?></font>
 <br>
 <?php echo _("This will resize your photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size. ") ?>
 

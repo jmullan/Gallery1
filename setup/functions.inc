@@ -475,7 +475,7 @@ function check_locale()
 	$success = array();
 
 	if (strncasecmp(PHP_OS,"win", 3)) {
-		# Unix / Linux
+		# Unix / Linux / Mac OS X
 		# Check which locales are installed
 		if (is_readable("/etc/locale.gen")) {
 			$list=split("\n",shell_exec('cat /etc/locale.gen | cut -d " " -f 1'));
@@ -501,19 +501,23 @@ function check_locale()
 }
 */
 
-function check_gallery_locale()
+function check_gallery_languages()
 {
 	global $GALLERY_BASEDIR;
 	$fail = array();
 	$success = array();
+	$nls = getNLS();
 
-	$locales=gallery_languages();
-	if (sizeof($locales) == 0) {
-		$fail["fail-gallery-locale"] = _("No languages found."); // should never occur!
-	} else if (sizeof($locales) == 1) {
-		$fail["fail-gallery-locale"] = _("Only US English version is available.  If you want other languages, download language packs from gallery site");
+	$languages=gallery_languages();
+	if (sizeof($languages) == 0) {
+		$fail["fail-gallery-languages"] = _("No languages found."); // should never occur!
+	} else if (sizeof($languages) < sizeof($nls['languages'])) {
+		$fail["fail-gallery-languages"] 
+			= sprintf(_("Only %d of %d languages are available.  If you want other languages, download language packs from gallery site"),
+					sizeof($languages),
+					sizeof($nls['languages']));
 	} else {
-		$success[] = sprintf(_("%d languages found"), sizeof($locales));
+		$success[] = sprintf(_("All %d languages found"), sizeof($languages));
 	}
 	return array($success, $fail);
 }
@@ -553,28 +557,14 @@ function check_absent_locales()
 //returns all languages in this gallery installation
 
 function gallery_languages() {
-	$locale_dir = "../locale/";
 	$nls=getNLS();
 	$locales = array('en_US' => $nls['languages']['en_US']);
-	if (is_dir($locale_dir)) {
-		if ($dh = opendir($locale_dir)) {
-			while (($file = readdir($dh)) !== false) {
-				if ($file != "CVS" && !ereg("^\.", $file)) {
-					if (isset($nls['languages'][$file])) {
-						$locales[$file]=$nls['languages'][$file];
-					} else {
-						$locales[$file] = "Unknown Language ($file)";
-					}
-				}
-			}
-			closedir($dh);
+	foreach ($nls['languages'] as $key => $value) {
+		if (language_exists($key)) {
+			$locales[$key]=$nls['languages'][$key];
 		}
 	}
-	$returnlocales=array();
-	foreach ($nls['languages'] as $key => $value) {
-		if(isset($locales[$key])) $returnlocales[$key]=$locales[$key];
-	}
-	return $returnlocales;
+	return $locales;
 }
 
 function test_locale($locale) {

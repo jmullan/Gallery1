@@ -27,11 +27,19 @@
  * maintained by Jan Schneider (mail@janschneider.de)
  * The modifications to fit it for Gallery were made by Jens Tkotz 
  * (jens@f2h9.de)
+ *
  */
 
-function getNLS () {
 
-// If you add a new language please order in alphatical by its name
+/*
+ * IMPORTANT
+ * +++++++++
+ * If you add or delete a language from this file, please bump the 
+ * $gallery->config_version in Version.php
+ *
+ * If you add a new language please use alphatical order by name.
+ */
+function getNLS () {
 	$nls['languages']['zh_TW'] = 'Chinese (Traditional) (&#x6b63;&#x9ad4;&#x4e2d;&#x6587;)';
 	$nls['languages']['de_DE'] = 'Deutsch';
 	$nls['languages']['en_GB'] = 'English (UK)';
