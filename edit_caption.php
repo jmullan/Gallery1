@@ -55,7 +55,7 @@ if (isset($save)) {
 			if (get_magic_quotes_gpc()) {
 				$value=stripslashes($value);    
 			}
-			$gallery->album->setExtraField($index, $field, trim(strip_tags($value)));
+			$gallery->album->setExtraField($index, $field, trim($value));
 		}
 		$gallery->album->save();
 		dismissAndReload();

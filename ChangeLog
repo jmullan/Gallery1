@@ -1,4 +1,26 @@
-2003-08-28  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b48
+2003-09-02  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b49
+
+	* Mostly cosmetic changes.
+
+	* More space to edit summary in album properties.
+
+	* No longer strip tags from custom fields.
+
+	* Only display "<Empty>" for a field if we can modify it.
+
+	* Album description defaults to "" rather than "No description".
+
+	* If we try to create an album with a name that already
+	  exists, add 00 to the album name, rather than reverting to
+	  albumXX.  Eg if we try to create and album "party", and it
+	  already exists, then "party01" will be created. Function
+	  createNewAlbum() returns the new album's name.
+
+	* No longer centering summary (easier to center it than uncenter it).
+
+
+2003-09-02  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b48
+
 	* Add voting
 		- Requires upgrade to config.php and albums.
 		- Added name-value pairs to Config. Wizard code.

@@ -79,7 +79,7 @@ if ($save || $next || $prev) {
 			if (get_magic_quotes_gpc()) {
 				$value=stripslashes($value);
 			}
-			$gallery->album->setExtraField($i, $field, trim(strip_tags($value)));
+			$gallery->album->setExtraField($i, $field, trim($value));
 		}
 	}
       }

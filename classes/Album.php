@@ -40,7 +40,7 @@ class Album {
 		global $gallery;
 
 		$this->fields["title"] = _("Untitled");
-		$this->fields["description"] = _("No description");
+		$this->fields["description"] = _("");
 		$this->fields["summary"]="";
 		$this->fields["nextname"] = "aaa";
 		$this->fields["bgcolor"] = "";
@@ -58,7 +58,7 @@ class Album {
 		$this->fields["fit_to_window"] = $gallery->app->default["fit_to_window"];
 		$this->fields["use_fullOnly"] = $gallery->app->default["use_fullOnly"];
 		$this->fields["print_photos"] = $gallery->app->default["print_photos"];
-		if ($gallery->app->use_exif) {
+		if (isset($gallery->app->use_exif)) {
 			$this->fields["use_exif"] = "yes";
 		} else {
 			$this->fields["use_exif"] = "no";

@@ -34,10 +34,10 @@ function editField($album, $field) {
 	global $gallery;
 
 	$buf = $album->fields[$field];
-	if (!strcmp($buf, "")) {
-		$buf = "<i>&lt;". _("Empty") . "&gt;</i>";
-	}
 	if ($gallery->user->canChangeTextOfAlbum($album)) {
+		if (!strcmp($buf, "")) {
+			$buf = "<i>&lt;". _("Empty") . "&gt;</i>";
+		}
 		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field";
 		$buf .= "<span class=editlink>";
 		$buf .= popup_link( "[". sprintf(_("edit %s"), _($field)) . "]", $url) ;
@@ -2099,23 +2099,14 @@ function processingMsg($buf) {
         $msgcount++;
 }
 
-function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newAlbumDesc="" ) {
+function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newAlbumDesc="") {
         global $gallery;
 
         // get parent album name
         $albumDB = new AlbumDB(FALSE);
 
-        // Make sure no album $newAlbumName exists
-        if ($newAlbumName && $albumDB->getAlbumbyName($newAlbumName)) {
-                $newAlbumName = null;
-        }
-
         // set new album name from param or default
-        if ($newAlbumName) {
-                $gallery->session->albumName = $newAlbumName;
-        } else {
-                $gallery->session->albumName = $albumDB->newAlbumName();
-        }
+	$gallery->session->albumName = $albumDB->newAlbumName($newAlbumName);
 
         $gallery->album = new Album();
         $gallery->album->fields["name"] = $gallery->session->albumName;
@@ -2177,7 +2168,11 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
                 $returnVal = $albumDB->save();
         }
 
-        return $returnVal;
+        if ($returnVal) {
+		return $gallery->session->albumName;
+	} else {
+		return 0;
+	}
 }
 
 function escapeEregChars($string)

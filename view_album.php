@@ -581,7 +581,7 @@ if ($showPolling)
 <?php
 if ($page == 1)
 {
-        print "<center>".$gallery->album->fields["summary"]."</center>";
+        print $gallery->album->fields["summary"];
 }
 ?>
 
@@ -708,7 +708,9 @@ if ($numPhotos) {
 				$myDescription = $myAlbum->fields['description'];
 				$buf = "";
 				$buf = $buf."<b>". _("Album") .": ".$myAlbum->fields['title']."</b>";
-				if ($myDescription != _("No description") or $myDescription != "No description") {
+				if ($myDescription != _("No description") &&
+					$myDescription != "No description" && 
+					$myDescription != "") {
 					$buf = $buf."<br>".$myDescription."";
 				}
 				echo($buf."<br>");

@@ -274,9 +274,13 @@ for ($i = $start; $i <= $end; $i++) {
   <br>
   <span class="desc">
   <?php _("description") ?>
-  <?php echo editField($gallery->album, "description") ?>
+  <?php 
+  $description=editField($gallery->album, "description") ;
+  if ($description != "") {
+	  echo "$description<br>";
+  }
+  ?>
   </span>
-  <br>
   <?php if (strcmp($gallery->app->showOwners, "no")) { ?>
 	  <span class="desc">
 		  <?php 

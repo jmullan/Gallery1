@@ -102,7 +102,7 @@ if (isset($save)) {
 </tr>
 <tr>
 <td colspan="2" align="left">
-<textarea cols=50 rows=4 name="summary"><?php echo $gallery->album->fields["summary"] ?></textarea>
+<textarea cols=60 rows=8 name="summary"><?php echo $gallery->album->fields["summary"] ?></textarea>
 </td>
 </tr>
 <tr>

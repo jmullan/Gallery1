@@ -104,10 +104,12 @@ class AlbumDB {
 		return 1;
 	}
 
-	function newAlbumName() {
+	function newAlbumName($name="album01") {
 		global $gallery;
 
-		$name = "album01";
+		if (!$name) {
+			$name="album01";
+		}
 		$albumDir = $gallery->app->albumDir;
 		while (fs_file_exists("$albumDir/$name")) {
 			switch($name) {
@@ -124,6 +126,9 @@ class AlbumDB {
 					break;
 
 				default:
+					if (!ereg('[0-9][0-9]$', $name)) {
+						$name.="00";
+					}
 					$name++;
 			}
 		}
