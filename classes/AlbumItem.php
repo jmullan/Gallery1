@@ -91,6 +91,7 @@ class AlbumItem {
 	}
 
 	function getExif($dir, $forceRefresh=0) {
+		global $gallery;
 		$file = $dir . "/" . $this->image->name . "." . $this->image->type;
 
 		/*
@@ -104,7 +105,11 @@ class AlbumItem {
 		    list($status, $exifData) = getExif($file);
 		    if ($status == 0) {
 			$this->exifData = $exifData;
-			$needToSave = 1;
+			if (!strcmp($gallery->app->cacheExif, "yes")) {
+				$needToSave = 1;
+			} else {
+				$needToSave = 0;
+			}
 		    }
 		}
 		return array($status, $this->exifData, $needToSave);
