@@ -82,9 +82,9 @@ Click the <b>Browse</b> button to locate a photo to upload.
 <? for ($i = 0; $i < $boxes;  $i++) { ?>
 <br> <input name="userfile[]" type="file" size=40>
 <? } ?>
-<br><br>
+<br>
 <input type=checkbox name=setCaption checked value="1">Set photo captions with original filenames.
-<br><br>
+<br>
 <center>
 <input type="button" value="Upload Now" onClick='opener.showProgress(); document.upload_form.submit()'>
 <input type=submit value="Cancel" onclick='parent.close()'>
@@ -101,7 +101,9 @@ can either be a URL or a directory on the server.
 <br>
 
 <input type="text" name="urls[]" size=40>
-<br><br>
+<br>
+<input type=checkbox name=setCaption checked value="1">Set photo captions with original filenames.
+<br>
 <center>
 <input type="button" value="Submit URL or directory" onClick='opener.showProgress(); document.uploadurl_form.submit()'>
 <input type=submit value="Cancel" onclick='parent.close()'>

@@ -296,6 +296,7 @@ if (count($image_tags)) {
 	}
 ?>
 </table>
+<input type=hidden name="setCaption" value="<?=$setCaption?>">
 <input type=submit value="Add Files" onClick="opener.showProgress(); document.uploadurl_form.submit()">
 </form>
 <? } /* End if links slurped */ ?>
