@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2004-04-06 22:01+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m@yahoo.co.jp>\n"
 "Language-Team: Japanese <ken_w3m@yahoo.co.jp>\n"
@@ -174,9 +174,23 @@ msgid "Search"
 msgstr "検索"
 
 #: ../albums.php:123
+#, fuzzy, php-format
+msgid "1 album"
+msgid_plural "%d albums"
+msgstr[0] "1個のアルバム"
+msgstr[1] "1個のアルバム"
+
+#: ../albums.php:123
 #, fuzzy
 msgid "no albums"
 msgstr "アルバムなしアルバムなし"
+
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "1個のトップレベルアルバム"
+msgstr[1] "1個のトップレベルアルバム"
 
 #: ../albums.php:125
 #, fuzzy
@@ -189,8 +203,22 @@ msgid "%d total"
 msgstr "総計 %d"
 
 #: ../albums.php:129 ../view_album.php:267
+#, fuzzy, php-format
+msgid "1 image"
+msgid_plural "%d images"
+msgstr[0] "1枚の画像"
+msgstr[1] "1枚の画像"
+
+#: ../albums.php:129 ../view_album.php:267
 msgid "no images"
 msgstr "画像なし"
+
+#: ../albums.php:130 ../view_album.php:268
+#, fuzzy, php-format
+msgid "1 page"
+msgid_plural "%d pages"
+msgstr[0] "1ページ"
+msgstr[1] "1ページ"
 
 #: ../albums.php:130
 msgid "no pages"
@@ -300,10 +328,24 @@ msgstr "アルバムアップグレード"
 msgid "Last changed on %s."
 msgstr "最終更新日 %s"
 
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "このアルバムの内容は %s です。"
+msgstr[1] "このアルバムの内容は %s です。"
+
 #: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "このアルバムの閲覧回数 %s (%s から)"
+
+#: ../albums.php:365 ../view_album.php:864 ../view_album.php:881
+#, fuzzy, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "1回"
+msgstr[1] "1回"
 
 #: ../albums.php:365
 msgid "0 times"
@@ -336,6 +378,13 @@ msgstr "アイテムがこのアルバムにあります"
 #: ../captionator.php:168
 msgid "on"
 msgstr ""
+
+#: ../captionator.php:168
+#, fuzzy, php-format
+msgid "one page"
+msgid_plural "%d pages"
+msgstr[0] "ページなし"
+msgstr[1] "ページなし"
 
 #: ../captionator.php:196 ../captionator.php:304
 msgid "Save and Exit"
@@ -1687,6 +1736,20 @@ msgstr "括弧内に平均得点"
 msgid "Album: %s"
 msgstr "アルバム: %s"
 
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "1人の投票者"
+msgstr[1] "1人の投票者"
+
+#: ../lib/voting.php:315
+#, fuzzy, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "%s からの結果"
+msgstr[1] "%s からの結果"
+
 #: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
@@ -1718,6 +1781,13 @@ msgstr "全体で %d 位"
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "投票なし"
+msgstr[1] "投票なし"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
@@ -1959,6 +2029,13 @@ msgstr "%sへのメール送信エラー"
 #, php-format
 msgid "%s added, %s skipped"
 msgstr "追加 %s, スキップ %s"
+
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, fuzzy, php-format
+msgid "1 user"
+msgid_plural "%d users"
+msgstr[0] "1人のユーザ"
+msgstr[1] "1人のユーザ"
 
 #: ../multi_create_user.php:136
 msgid "Create Users"
@@ -2937,6 +3014,13 @@ msgstr "ロックファイル(%s)を開けません。"
 msgid "Could not acquire lock (%s)!"
 msgstr "ロックできませんでした (%s)"
 
+#: ../util.php:1949
+#, fuzzy, php-format
+msgid "1 hit"
+msgid_plural "%d hits"
+msgstr[0] "1 ヒット"
+msgstr[1] "1 ヒット"
+
 #: ../util.php:1954
 msgid "Sub-albums"
 msgstr "サブアルバム"
@@ -2999,6 +3083,7 @@ msgid "Email not sent as it is disabled for this gallery"
 msgstr "このGalleryではメール機能は無効ですので、メールは送信されませんでした。"
 
 #: ../util.php:2500
+#, php-format
 msgid "Email not sent as no address provided"
 msgstr "アドレスが指定されなかったのでメールは送信されませんでした。"
 
@@ -3122,6 +3207,13 @@ msgid "navigate UP"
 msgstr "上へ"
 
 #: ../view_album.php:266
+#, fuzzy, php-format
+msgid "1 sub-album"
+msgid_plural "%d sub-albums"
+msgstr[0] "1個のサブアルバム"
+msgstr[1] "1個のサブアルバム"
+
+#: ../view_album.php:266
 msgid "No albums"
 msgstr "アルバムなしアルバムなし"
 
@@ -3242,6 +3334,13 @@ msgstr "投票を記録するには%sをクリックしなければいけません。"
 msgid "You have a total of %s and can change them if you wish."
 msgstr "あなたは全部で%sのを持っていて、それらは変更可能です。"
 
+#: ../view_album.php:612
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "1票"
+msgstr[1] "1票"
+
 #: ../view_album.php:617
 msgid "You can change your choices if you wish."
 msgstr "お望みならばあなたの選択を変更できます。"
@@ -3262,6 +3361,13 @@ msgstr "変更: "
 #: ../view_album.php:856
 msgid "Contains: "
 msgstr "内容: "
+
+#: ../view_album.php:856
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "1個のアイテム"
+msgstr[1] "1個のアイテム"
 
 #: ../view_album.php:864 ../view_album.php:881
 msgid "Viewed:"
@@ -3426,90 +3532,6 @@ msgstr "透かしアルバムにしています。"
 #, fuzzy
 msgid "No items to watermark."
 msgstr "今のところ投票はありません。"
-
-#, fuzzy
-#~ msgid "1 album"
-#~ msgid_plural "%d albums"
-#~ msgstr[0] "1個のアルバム"
-#~ msgstr[1] "1個のアルバム"
-
-#, fuzzy
-#~ msgid "1 top-level album"
-#~ msgid_plural "%d top-level albums"
-#~ msgstr[0] "1個のトップレベルアルバム"
-#~ msgstr[1] "1個のトップレベルアルバム"
-
-#, fuzzy
-#~ msgid "1 image"
-#~ msgid_plural "%d images"
-#~ msgstr[0] "1枚の画像"
-#~ msgstr[1] "1枚の画像"
-
-#, fuzzy
-#~ msgid "1 page"
-#~ msgid_plural "%d pages"
-#~ msgstr[0] "1ページ"
-#~ msgstr[1] "1ページ"
-
-#, fuzzy
-#~ msgid "This album contains one item"
-#~ msgid_plural "This album contains %d items"
-#~ msgstr[0] "このアルバムの内容は %s です。"
-#~ msgstr[1] "このアルバムの内容は %s です。"
-
-#, fuzzy
-#~ msgid "1 time"
-#~ msgid_plural "%d times"
-#~ msgstr[0] "1回"
-#~ msgstr[1] "1回"
-
-#, fuzzy
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "1人の投票者"
-#~ msgstr[1] "1人の投票者"
-
-#, fuzzy
-#~ msgid "Result from one voter"
-#~ msgid_plural "Result of %d voters"
-#~ msgstr[0] "%s からの結果"
-#~ msgstr[1] "%s からの結果"
-
-#, fuzzy
-#~ msgid "one vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "投票なし"
-#~ msgstr[1] "投票なし"
-
-#, fuzzy
-#~ msgid "1 user"
-#~ msgid_plural "%d users"
-#~ msgstr[0] "1人のユーザ"
-#~ msgstr[1] "1人のユーザ"
-
-#, fuzzy
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "1 ヒット"
-#~ msgstr[1] "1 ヒット"
-
-#, fuzzy
-#~ msgid "1 sub-album"
-#~ msgid_plural "%d sub-albums"
-#~ msgstr[0] "1個のサブアルバム"
-#~ msgstr[1] "1個のサブアルバム"
-
-#, fuzzy
-#~ msgid "1 vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "1票"
-#~ msgstr[1] "1票"
-
-#, fuzzy
-#~ msgid "1 item"
-#~ msgid_plural "%d items"
-#~ msgstr[0] "1個のアイテム"
-#~ msgstr[1] "1個のアイテム"
 
 #~ msgid "Edit"
 #~ msgstr "編集"

@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2004-04-21 12:30+0300\n"
 "Last-Translator: A.L.T <leanh@airland.kiev.ua>\n"
 "Language-Team: AIRLAND <admin@airland.kiev.ua>\n"
@@ -350,6 +350,7 @@ msgid "Try again?"
 msgstr "Thử lại?"
 
 #: ../setup/check_mail.php:60
+#, php-format
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "Điều này cho phép bạn xác nhận rằng email có làm việc trên hệ thống của bạn.  Ghi địa chỉ email của bạn vào bên dưới, khi đó một email sẽ được gửi tới cho bạn. Nếu bạn nhận được nó, có nghĩa chức năng gửi mail có làm việc"
 
@@ -399,6 +400,13 @@ msgstr "Nếu bạn thấy có lỗi, chúng tôi đề nghị bạn hãy lấy 
 msgid "%sClick here%s to see more details"
 msgstr "%sNhấn vào đây%s để xem chi tiết"
 
+#: ../setup/check_versions.php:70
+#, fuzzy, php-format
+msgid "One file is missing, corrupt or older than expected."
+msgid_plural "%d files are missing, corrupt or older than expected."
+msgstr[0] "%s bị mất, hỏng hoặc quá cũ so với yêu cầu."
+msgstr[1] "%s bị mất, hỏng hoặc quá cũ so với yêu cầu."
+
 #: ../setup/check_versions.php:72 ../setup/check_versions.php:103
 #, fuzzy
 msgid "All files okay."
@@ -409,10 +417,24 @@ msgstr "Tất cả %d file kiểm tra đúng hạn."
 msgid "There are problems with the following files.  Please correct them before configuring %s."
 msgstr "Có vấn đề với những file sau.  Xin hãy sửa lại chúng cho đúng trước khi cấu hình %s."
 
+#: ../setup/check_versions.php:101
+#, fuzzy, php-format
+msgid "One file is more recent than expected."
+msgid_plural "%d files are more recent than expected."
+msgstr[0] "%s mới gần đây hơn so với yêu cầu."
+msgstr[1] "%s mới gần đây hơn so với yêu cầu."
+
 #: ../setup/check_versions.php:111
 #, php-format
 msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
 msgstr "Những file sau hơn cả đúng hạn so với phiên bản %s.  Nếu bạn sử dụng các phiên bản giới thiệu trước, cũng chấp thuận được."
+
+#: ../setup/check_versions.php:129
+#, fuzzy, php-format
+msgid "One file is up-to-date."
+msgid_plural "%d files are up-to-date."
+msgstr[0] "Tất cả %d file kiểm tra đúng hạn."
+msgstr[1] "Tất cả %d file kiểm tra đúng hạn."
 
 #: ../setup/check_versions.php:131
 #, fuzzy
@@ -1891,6 +1913,13 @@ msgid "Save Config"
 msgstr "Lưu&nbsp;cấu&nbsp;hình"
 
 #: ../setup/confirm.inc:461
+#, fuzzy, php-format
+msgid "One error."
+msgid_plural "%d errors."
+msgstr[0] "Một lỗi"
+msgstr[1] "Một lỗi"
+
+#: ../setup/confirm.inc:461
 #, fuzzy
 msgid "No errors."
 msgstr "không có lỗi"
@@ -2234,6 +2263,7 @@ msgid "Only the default locale for this machine is available, so date format wil
 msgstr "Chỉ locale mặc định cho hệ thống máy này là có sẵn nên dạng thức ngày tháng sẽ không thay đổi trên những ngôn ngữ khác nhau."
 
 #: ../setup/functions.inc:870
+#, php-format
 msgid "<b>System</b> locale selection required"
 msgstr "<b>Hệ thống</b> locale được yêu cầu lựa chọn"
 
@@ -2251,6 +2281,7 @@ msgid "System locale"
 msgstr "Hệ thống locale"
 
 #: ../setup/functions.inc:943
+#, php-format
 msgid "<b>System</b> locale problems"
 msgstr "<b>Hệ thống</b> locale có vấn đề"
 
@@ -2336,7 +2367,7 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d files là mới gần đây hơn so với yêu cầu.  Điều đó tốt khi bạn sử dụng phiên bản giới thiệu trước, beta, CVS hoặc thay đổi mã."
 
 #: ../setup/functions.inc:1293
-#, fuzzy
+#, fuzzy, php-format
 msgid "All tested files up-to-date."
 msgstr "Tất cả %d file kiểm tra đúng hạn."
 
@@ -2648,30 +2679,6 @@ msgstr "Không file nào"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr ""
-
-#, fuzzy
-#~ msgid "One file is missing, corrupt or older than expected."
-#~ msgid_plural "%d files are missing, corrupt or older than expected."
-#~ msgstr[0] "%s bị mất, hỏng hoặc quá cũ so với yêu cầu."
-#~ msgstr[1] "%s bị mất, hỏng hoặc quá cũ so với yêu cầu."
-
-#, fuzzy
-#~ msgid "One file is more recent than expected."
-#~ msgid_plural "%d files are more recent than expected."
-#~ msgstr[0] "%s mới gần đây hơn so với yêu cầu."
-#~ msgstr[1] "%s mới gần đây hơn so với yêu cầu."
-
-#, fuzzy
-#~ msgid "One file is up-to-date."
-#~ msgid_plural "%d files are up-to-date."
-#~ msgstr[0] "Tất cả %d file kiểm tra đúng hạn."
-#~ msgstr[1] "Tất cả %d file kiểm tra đúng hạn."
-
-#, fuzzy
-#~ msgid "One error."
-#~ msgid_plural "%d errors."
-#~ msgstr[0] "Một lỗi"
-#~ msgstr[1] "Một lỗi"
 
 #~ msgid "1 file"
 #~ msgstr "1 file"

@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2004-04-07 09:29+0200\n"
 "Last-Translator: Olli Salo <salo@norssi.jyu.fi>\n"
 "Language-Team: Olli Salo <salo AT norssi dot jyu dot fi>\n"
@@ -174,9 +174,23 @@ msgid "Search"
 msgstr "Etsi"
 
 #: ../albums.php:123
+#, fuzzy, php-format
+msgid "1 album"
+msgid_plural "%d albums"
+msgstr[0] "albumi"
+msgstr[1] "albumi"
+
+#: ../albums.php:123
 #, fuzzy
 msgid "no albums"
 msgstr "Ei albumeita"
+
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "ylimm&auml;n tason albumi"
+msgstr[1] "ylimm&auml;n tason albumi"
 
 #: ../albums.php:125
 #, fuzzy
@@ -189,8 +203,22 @@ msgid "%d total"
 msgstr "%d yhteens&auml;"
 
 #: ../albums.php:129 ../view_album.php:267
+#, fuzzy, php-format
+msgid "1 image"
+msgid_plural "%d images"
+msgstr[0] "yksi valokuva"
+msgstr[1] "yksi valokuva"
+
+#: ../albums.php:129 ../view_album.php:267
 msgid "no images"
 msgstr "ei yht‰‰n kuvaa"
+
+#: ../albums.php:130 ../view_album.php:268
+#, fuzzy, php-format
+msgid "1 page"
+msgid_plural "%d pages"
+msgstr[0] "sivulla"
+msgstr[1] "sivulla"
 
 #: ../albums.php:130
 msgid "no pages"
@@ -300,10 +328,24 @@ msgstr "p&auml;ivit&auml; albumi"
 msgid "Last changed on %s."
 msgstr "Muokattu viimeksi %s."
 
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "T&auml;m&auml; albumi sis&auml;lt&auml;&auml; %s."
+msgstr[1] "T&auml;m&auml; albumi sis&auml;lt&auml;&auml; %s."
+
 #: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "T&auml;t&auml; albumia on katsottu %s %s l&auml;htien."
+
+#: ../albums.php:365 ../view_album.php:864 ../view_album.php:881
+#, fuzzy, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "kerran"
+msgstr[1] "kerran"
 
 #: ../albums.php:365
 msgid "0 times"
@@ -336,6 +378,13 @@ msgstr "kohdetta t&auml;ss&auml; albumissa"
 #: ../captionator.php:168
 msgid "on"
 msgstr "t&auml;ss&auml;"
+
+#: ../captionator.php:168
+#, fuzzy, php-format
+msgid "one page"
+msgid_plural "%d pages"
+msgstr[0] "ei sivuja"
+msgstr[1] "ei sivuja"
 
 #: ../captionator.php:196 ../captionator.php:304
 msgid "Save and Exit"
@@ -1687,6 +1736,20 @@ msgstr "Pisteiden keskiarvo sulkeissa"
 msgid "Album: %s"
 msgstr "Albumi: %s"
 
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "yksi ‰‰nest‰j‰"
+msgstr[1] "yksi ‰‰nest‰j‰"
+
+#: ../lib/voting.php:315
+#, fuzzy, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "%s tulokset."
+msgstr[1] "%s tulokset."
+
 #: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
@@ -1718,6 +1781,13 @@ msgstr "%d yhteens‰."
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "Ei ‰‰ni‰"
+msgstr[1] "Ei ‰‰ni‰"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
@@ -1959,6 +2029,13 @@ msgstr "Ongelmia l‰hett‰ess‰ s‰hkˆpostia osoitteeseen %s"
 #, php-format
 msgid "%s added, %s skipped"
 msgstr "%s lis‰tty, %s hyp‰tty yli"
+
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, fuzzy, php-format
+msgid "1 user"
+msgid_plural "%d users"
+msgstr[0] "yksi k‰ytt‰j‰tunnus"
+msgstr[1] "yksi k‰ytt‰j‰tunnus"
 
 #: ../multi_create_user.php:136
 msgid "Create Users"
@@ -2937,6 +3014,13 @@ msgstr "Ei voi avata lukkotiedostoa (%s)!"
 msgid "Could not acquire lock (%s)!"
 msgstr "Ei saatu lukkoa (%s)!"
 
+#: ../util.php:1949
+#, fuzzy, php-format
+msgid "1 hit"
+msgid_plural "%d hits"
+msgstr[0] "yksi k‰ynti"
+msgstr[1] "yksi k‰ynti"
+
 #: ../util.php:1954
 msgid "Sub-albums"
 msgstr "Sis‰lt‰‰ albumit"
@@ -2999,6 +3083,7 @@ msgid "Email not sent as it is disabled for this gallery"
 msgstr "S‰hkˆpostia ei l‰hetetty, koska s‰hkˆpostiominaisuus ei ole k‰ytˆss‰ t‰ss‰ galleriassa. "
 
 #: ../util.php:2500
+#, php-format
 msgid "Email not sent as no address provided"
 msgstr "S‰hkˆpostia ei l‰hetetty, koska osoite puuttui"
 
@@ -3121,6 +3206,13 @@ msgid "navigate UP"
 msgstr "navigoi ylˆs"
 
 #: ../view_album.php:266
+#, fuzzy, php-format
+msgid "1 sub-album"
+msgid_plural "%d sub-albums"
+msgstr[0] "yksi alialbumi"
+msgstr[1] "yksi alialbumi"
+
+#: ../view_album.php:266
 msgid "No albums"
 msgstr "Ei albumeita"
 
@@ -3241,6 +3333,13 @@ msgstr "Sinun TƒYTYY klikata %s jos haluat ‰‰nesi tallennettavan."
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Sinulla on yhteens‰ %s ja voit vaihtaa niit‰ jos haluat."
 
+#: ../view_album.php:612
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "yksi ‰‰ni"
+msgstr[1] "yksi ‰‰ni"
+
 #: ../view_album.php:617
 msgid "You can change your choices if you wish."
 msgstr "Voit vaihtaa valintasi jos haluat."
@@ -3261,6 +3360,13 @@ msgstr "Muutettu:"
 #: ../view_album.php:856
 msgid "Contains: "
 msgstr "Sis&auml;lt&auml;&auml;:"
+
+#: ../view_album.php:856
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "yhden kohteen"
+msgstr[1] "yhden kohteen"
 
 #: ../view_album.php:864 ../view_album.php:881
 msgid "Viewed:"
@@ -3425,90 +3531,6 @@ msgstr "Luodaan vesileimaa albumille."
 #, fuzzy
 msgid "No items to watermark."
 msgstr "Ei ‰‰ni‰ t‰h‰n menness‰"
-
-#, fuzzy
-#~ msgid "1 album"
-#~ msgid_plural "%d albums"
-#~ msgstr[0] "albumi"
-#~ msgstr[1] "albumi"
-
-#, fuzzy
-#~ msgid "1 top-level album"
-#~ msgid_plural "%d top-level albums"
-#~ msgstr[0] "ylimm&auml;n tason albumi"
-#~ msgstr[1] "ylimm&auml;n tason albumi"
-
-#, fuzzy
-#~ msgid "1 image"
-#~ msgid_plural "%d images"
-#~ msgstr[0] "yksi valokuva"
-#~ msgstr[1] "yksi valokuva"
-
-#, fuzzy
-#~ msgid "1 page"
-#~ msgid_plural "%d pages"
-#~ msgstr[0] "sivulla"
-#~ msgstr[1] "sivulla"
-
-#, fuzzy
-#~ msgid "This album contains one item"
-#~ msgid_plural "This album contains %d items"
-#~ msgstr[0] "T&auml;m&auml; albumi sis&auml;lt&auml;&auml; %s."
-#~ msgstr[1] "T&auml;m&auml; albumi sis&auml;lt&auml;&auml; %s."
-
-#, fuzzy
-#~ msgid "1 time"
-#~ msgid_plural "%d times"
-#~ msgstr[0] "kerran"
-#~ msgstr[1] "kerran"
-
-#, fuzzy
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "yksi ‰‰nest‰j‰"
-#~ msgstr[1] "yksi ‰‰nest‰j‰"
-
-#, fuzzy
-#~ msgid "Result from one voter"
-#~ msgid_plural "Result of %d voters"
-#~ msgstr[0] "%s tulokset."
-#~ msgstr[1] "%s tulokset."
-
-#, fuzzy
-#~ msgid "one vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "Ei ‰‰ni‰"
-#~ msgstr[1] "Ei ‰‰ni‰"
-
-#, fuzzy
-#~ msgid "1 user"
-#~ msgid_plural "%d users"
-#~ msgstr[0] "yksi k‰ytt‰j‰tunnus"
-#~ msgstr[1] "yksi k‰ytt‰j‰tunnus"
-
-#, fuzzy
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "yksi k‰ynti"
-#~ msgstr[1] "yksi k‰ynti"
-
-#, fuzzy
-#~ msgid "1 sub-album"
-#~ msgid_plural "%d sub-albums"
-#~ msgstr[0] "yksi alialbumi"
-#~ msgstr[1] "yksi alialbumi"
-
-#, fuzzy
-#~ msgid "1 vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "yksi ‰‰ni"
-#~ msgstr[1] "yksi ‰‰ni"
-
-#, fuzzy
-#~ msgid "1 item"
-#~ msgid_plural "%d items"
-#~ msgstr[0] "yhden kohteen"
-#~ msgstr[1] "yhden kohteen"
 
 #~ msgid "Edit"
 #~ msgstr "Muokkaa"

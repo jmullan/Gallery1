@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2004-04-23 01:27+0600\n"
 "Last-Translator: Yuri Gural <yurigural@inbox.ru>\n"
 "Language-Team: Yuri Gural <yurigural@inbox.ru>\n"
@@ -199,9 +199,25 @@ msgstr "Поиск"
 
 #
 #: ../albums.php:123
+#, fuzzy, php-format
+msgid "1 album"
+msgid_plural "%d albums"
+msgstr[0] "альбом"
+msgstr[1] "альбом"
+
+#
+#: ../albums.php:123
 #, fuzzy
 msgid "no albums"
 msgstr "Нет албомов"
+
+#
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "альбом верхнего уровня"
+msgstr[1] "альбом верхнего уровня"
 
 #
 #: ../albums.php:125
@@ -217,8 +233,24 @@ msgstr "%d всего"
 
 #
 #: ../albums.php:129 ../view_album.php:267
+#, fuzzy, php-format
+msgid "1 image"
+msgid_plural "%d images"
+msgstr[0] "фотография"
+msgstr[1] "фотография"
+
+#
+#: ../albums.php:129 ../view_album.php:267
 msgid "no images"
 msgstr "фотографий"
+
+#
+#: ../albums.php:130 ../view_album.php:268
+#, fuzzy, php-format
+msgid "1 page"
+msgid_plural "%d pages"
+msgstr[0] "странице"
+msgstr[1] "странице"
 
 #
 #: ../albums.php:130
@@ -349,10 +381,26 @@ msgid "Last changed on %s."
 msgstr "Последнее изменение %s."
 
 #
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "Альбом содержит %s."
+msgstr[1] "Альбом содержит %s."
+
+#
 #: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Альбом просматривался %s с %s."
+
+#
+#: ../albums.php:365 ../view_album.php:864 ../view_album.php:881
+#, fuzzy, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "раз"
+msgstr[1] "раз"
 
 #
 #: ../albums.php:365
@@ -393,6 +441,14 @@ msgstr "позиций в альбоме"
 #: ../captionator.php:168
 msgid "on"
 msgstr "на"
+
+#
+#: ../captionator.php:168
+#, fuzzy, php-format
+msgid "one page"
+msgid_plural "%d pages"
+msgstr[0] "страницах"
+msgstr[1] "страницах"
 
 #
 #: ../captionator.php:196 ../captionator.php:304
@@ -1978,6 +2034,21 @@ msgstr "Средний балл в скобках"
 msgid "Album: %s"
 msgstr "Альбом: %s"
 
+#
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "голосующий"
+msgstr[1] "голосующий"
+
+#: ../lib/voting.php:315
+#, fuzzy, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Результаты - %s."
+msgstr[1] "Результаты - %s."
+
 #: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
@@ -2012,6 +2083,14 @@ msgstr "Итоговая позиция %d."
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "Нет голосов"
+msgstr[1] "Нет голосов"
 
 #
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
@@ -2297,6 +2376,14 @@ msgstr "Проблема с e-mail для %s"
 #, php-format
 msgid "%s added, %s skipped"
 msgstr "%s добавлено, %s пропущено"
+
+#
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, fuzzy, php-format
+msgid "1 user"
+msgid_plural "%d users"
+msgstr[0] "пользователь"
+msgstr[1] "пользователь"
 
 #
 #: ../multi_create_user.php:136
@@ -3449,6 +3536,14 @@ msgid "Could not acquire lock (%s)!"
 msgstr "Не могу запросить блокировку (%s)!"
 
 #
+#: ../util.php:1949
+#, fuzzy, php-format
+msgid "1 hit"
+msgid_plural "%d hits"
+msgstr[0] "посещение"
+msgstr[1] "посещение"
+
+#
 #: ../util.php:1954
 msgid "Sub-albums"
 msgstr "Вложенные&nbsp;альбомы:"
@@ -3517,6 +3612,7 @@ msgstr "E-mail не отправлен, т.к. эта функция отключена в галереи"
 
 #
 #: ../util.php:2500
+#, php-format
 msgid "Email not sent as no address provided"
 msgstr "E-mail не отправлен т.к. не указан не один адрес"
 
@@ -3650,6 +3746,14 @@ msgstr "дополнительные поля"
 #: ../view_album.php:124 ../view_photo.php:156 ../view_photo.php:157
 msgid "navigate UP"
 msgstr "перейти ВВЕРХ"
+
+#
+#: ../view_album.php:266
+#, fuzzy, php-format
+msgid "1 sub-album"
+msgid_plural "%d sub-albums"
+msgstr[0] "вложенный альбом"
+msgstr[1] "вложенный альбом"
 
 #
 #: ../view_album.php:266
@@ -3796,6 +3900,14 @@ msgid "You have a total of %s and can change them if you wish."
 msgstr "У вас есть всего %s и вы можете изменить их если захотите."
 
 #
+#: ../view_album.php:612
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "голос"
+msgstr[1] "голос"
+
+#
 #: ../view_album.php:617
 msgid "You can change your choices if you wish."
 msgstr "Вы можете изменить вашу оценку если захотите."
@@ -3819,6 +3931,14 @@ msgstr "Изменение: "
 #: ../view_album.php:856
 msgid "Contains: "
 msgstr "Содержит: "
+
+#
+#: ../view_album.php:856
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "позиция"
+msgstr[1] "позиция"
 
 #
 #: ../view_album.php:864 ../view_album.php:881
@@ -4017,103 +4137,6 @@ msgstr "Установка водяного знака в альбоме."
 #, fuzzy
 msgid "No items to watermark."
 msgstr "Голосов пока нет."
-
-#
-#, fuzzy
-#~ msgid "1 album"
-#~ msgid_plural "%d albums"
-#~ msgstr[0] "альбом"
-#~ msgstr[1] "альбом"
-
-#
-#, fuzzy
-#~ msgid "1 top-level album"
-#~ msgid_plural "%d top-level albums"
-#~ msgstr[0] "альбом верхнего уровня"
-#~ msgstr[1] "альбом верхнего уровня"
-
-#
-#, fuzzy
-#~ msgid "1 image"
-#~ msgid_plural "%d images"
-#~ msgstr[0] "фотография"
-#~ msgstr[1] "фотография"
-
-#
-#, fuzzy
-#~ msgid "1 page"
-#~ msgid_plural "%d pages"
-#~ msgstr[0] "странице"
-#~ msgstr[1] "странице"
-
-#
-#, fuzzy
-#~ msgid "This album contains one item"
-#~ msgid_plural "This album contains %d items"
-#~ msgstr[0] "Альбом содержит %s."
-#~ msgstr[1] "Альбом содержит %s."
-
-#
-#, fuzzy
-#~ msgid "1 time"
-#~ msgid_plural "%d times"
-#~ msgstr[0] "раз"
-#~ msgstr[1] "раз"
-
-#
-#, fuzzy
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "голосующий"
-#~ msgstr[1] "голосующий"
-
-#, fuzzy
-#~ msgid "Result from one voter"
-#~ msgid_plural "Result of %d voters"
-#~ msgstr[0] "Результаты - %s."
-#~ msgstr[1] "Результаты - %s."
-
-#
-#, fuzzy
-#~ msgid "one vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "Нет голосов"
-#~ msgstr[1] "Нет голосов"
-
-#
-#, fuzzy
-#~ msgid "1 user"
-#~ msgid_plural "%d users"
-#~ msgstr[0] "пользователь"
-#~ msgstr[1] "пользователь"
-
-#
-#, fuzzy
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "посещение"
-#~ msgstr[1] "посещение"
-
-#
-#, fuzzy
-#~ msgid "1 sub-album"
-#~ msgid_plural "%d sub-albums"
-#~ msgstr[0] "вложенный альбом"
-#~ msgstr[1] "вложенный альбом"
-
-#
-#, fuzzy
-#~ msgid "1 vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "голос"
-#~ msgstr[1] "голос"
-
-#
-#, fuzzy
-#~ msgid "1 item"
-#~ msgid_plural "%d items"
-#~ msgstr[0] "позиция"
-#~ msgstr[1] "позиция"
 
 #
 #~ msgid "Edit"

@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2004-01-21 20:57+0100\n"
 "Last-Translator: An¾e Jesenko <jeso@sourceforge.net>\n"
 "Language-Team: Slovenian <marjan@slo-foto.com>\n"
@@ -180,9 +180,23 @@ msgid "Search"
 msgstr "I¹èi"
 
 #: ../albums.php:123
+#, fuzzy, php-format
+msgid "1 album"
+msgid_plural "%d albums"
+msgstr[0] "en album"
+msgstr[1] "en album"
+
+#: ../albums.php:123
 #, fuzzy
 msgid "no albums"
 msgstr "Nobenega albuma"
+
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "en album na tej strani"
+msgstr[1] "en album na tej strani"
 
 #: ../albums.php:125
 #, fuzzy
@@ -195,8 +209,22 @@ msgid "%d total"
 msgstr "%d skupaj"
 
 #: ../albums.php:129 ../view_album.php:267
+#, fuzzy, php-format
+msgid "1 image"
+msgid_plural "%d images"
+msgstr[0] "ena slika"
+msgstr[1] "ena slika"
+
+#: ../albums.php:129 ../view_album.php:267
 msgid "no images"
 msgstr "ni slik"
+
+#: ../albums.php:130 ../view_album.php:268
+#, fuzzy, php-format
+msgid "1 page"
+msgid_plural "%d pages"
+msgstr[0] "1 stran"
+msgstr[1] "1 stran"
 
 #: ../albums.php:130
 msgid "no pages"
@@ -307,10 +335,24 @@ msgstr "nadgrajujem album"
 msgid "Last changed on %s."
 msgstr "Nazadnje spremenjen %s."
 
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "Album vsebuje %s."
+msgstr[1] "Album vsebuje %s."
+
 #: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Album je bil obiskan %s  od %s."
+
+#: ../albums.php:365 ../view_album.php:864 ../view_album.php:881
+#, fuzzy, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "enkrat"
+msgstr[1] "enkrat"
 
 #: ../albums.php:365
 msgid "0 times"
@@ -343,6 +385,13 @@ msgstr "predmetov v tem albumum"
 #: ../captionator.php:168
 msgid "on"
 msgstr "v"
+
+#: ../captionator.php:168
+#, fuzzy, php-format
+msgid "one page"
+msgid_plural "%d pages"
+msgstr[0] "ni strani"
+msgstr[1] "ni strani"
 
 #: ../captionator.php:196 ../captionator.php:304
 msgid "Save and Exit"
@@ -1727,6 +1776,20 @@ msgstr "Povpreène toèke v oklepajih"
 msgid "Album: %s"
 msgstr "Album: %s"
 
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "en ocenjevalec"
+msgstr[1] "en ocenjevalec"
+
+#: ../lib/voting.php:315
+#, fuzzy, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Rezultat %s."
+msgstr[1] "Rezultat %s."
+
 #: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
@@ -1758,6 +1821,13 @@ msgstr "Od vseh %d."
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "Ni ocen"
+msgstr[1] "Ni ocen"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
@@ -2005,6 +2075,13 @@ msgstr "Problem z email za %s"
 #, php-format
 msgid "%s added, %s skipped"
 msgstr ""
+
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, fuzzy, php-format
+msgid "1 user"
+msgid_plural "%d users"
+msgstr[0] "1 uporabnik"
+msgstr[1] "1 uporabnik"
 
 #: ../multi_create_user.php:136
 msgid "Create Users"
@@ -2988,6 +3065,13 @@ msgstr "Ne morem odpreti zaklenjene datoteke  (%s)!"
 msgid "Could not acquire lock (%s)!"
 msgstr "Ne morem zakleniti (%s)!"
 
+#: ../util.php:1949
+#, fuzzy, php-format
+msgid "1 hit"
+msgid_plural "%d hits"
+msgstr[0] "en klik"
+msgstr[1] "en klik"
+
 #: ../util.php:1954
 msgid "Sub-albums"
 msgstr "Pod-album"
@@ -3050,6 +3134,7 @@ msgid "Email not sent as it is disabled for this gallery"
 msgstr "E-po¹ta ni poslana, ker je za to galerijo onemogoèena."
 
 #: ../util.php:2500
+#, php-format
 msgid "Email not sent as no address provided"
 msgstr "E-po¹ta ni poslana ker nimam naslova."
 
@@ -3174,6 +3259,13 @@ msgid "navigate UP"
 msgstr ""
 
 #: ../view_album.php:266
+#, fuzzy, php-format
+msgid "1 sub-album"
+msgid_plural "%d sub-albums"
+msgstr[0] "1 pod-album"
+msgstr[1] "1 pod-album"
+
+#: ../view_album.php:266
 msgid "No albums"
 msgstr "Nobenega albuma"
 
@@ -3295,6 +3387,13 @@ msgstr "Klikni na %s da odda¹ svojo oceno."
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Skupaj ima¹ %s. Lahko jih tudi spremeni¹."
 
+#: ../view_album.php:612
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "ena ocena"
+msgstr[1] "ena ocena"
+
 #: ../view_album.php:617
 msgid "You can change your choices if you wish."
 msgstr "Èe hoèe¹ lahko spremeni¹ svoje nastavitve."
@@ -3315,6 +3414,13 @@ msgstr "Spremenjeno:"
 #: ../view_album.php:856
 msgid "Contains: "
 msgstr "Vsebuje:"
+
+#: ../view_album.php:856
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "1 pod-album ali slika"
+msgstr[1] "1 pod-album ali slika"
 
 #: ../view_album.php:864 ../view_album.php:881
 msgid "Viewed:"
@@ -3480,90 +3586,6 @@ msgstr ""
 #, fuzzy
 msgid "No items to watermark."
 msgstr "Ni ocen."
-
-#, fuzzy
-#~ msgid "1 album"
-#~ msgid_plural "%d albums"
-#~ msgstr[0] "en album"
-#~ msgstr[1] "en album"
-
-#, fuzzy
-#~ msgid "1 top-level album"
-#~ msgid_plural "%d top-level albums"
-#~ msgstr[0] "en album na tej strani"
-#~ msgstr[1] "en album na tej strani"
-
-#, fuzzy
-#~ msgid "1 image"
-#~ msgid_plural "%d images"
-#~ msgstr[0] "ena slika"
-#~ msgstr[1] "ena slika"
-
-#, fuzzy
-#~ msgid "1 page"
-#~ msgid_plural "%d pages"
-#~ msgstr[0] "1 stran"
-#~ msgstr[1] "1 stran"
-
-#, fuzzy
-#~ msgid "This album contains one item"
-#~ msgid_plural "This album contains %d items"
-#~ msgstr[0] "Album vsebuje %s."
-#~ msgstr[1] "Album vsebuje %s."
-
-#, fuzzy
-#~ msgid "1 time"
-#~ msgid_plural "%d times"
-#~ msgstr[0] "enkrat"
-#~ msgstr[1] "enkrat"
-
-#, fuzzy
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "en ocenjevalec"
-#~ msgstr[1] "en ocenjevalec"
-
-#, fuzzy
-#~ msgid "Result from one voter"
-#~ msgid_plural "Result of %d voters"
-#~ msgstr[0] "Rezultat %s."
-#~ msgstr[1] "Rezultat %s."
-
-#, fuzzy
-#~ msgid "one vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "Ni ocen"
-#~ msgstr[1] "Ni ocen"
-
-#, fuzzy
-#~ msgid "1 user"
-#~ msgid_plural "%d users"
-#~ msgstr[0] "1 uporabnik"
-#~ msgstr[1] "1 uporabnik"
-
-#, fuzzy
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "en klik"
-#~ msgstr[1] "en klik"
-
-#, fuzzy
-#~ msgid "1 sub-album"
-#~ msgid_plural "%d sub-albums"
-#~ msgstr[0] "1 pod-album"
-#~ msgstr[1] "1 pod-album"
-
-#, fuzzy
-#~ msgid "1 vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "ena ocena"
-#~ msgstr[1] "ena ocena"
-
-#, fuzzy
-#~ msgid "1 item"
-#~ msgid_plural "%d items"
-#~ msgstr[0] "1 pod-album ali slika"
-#~ msgstr[1] "1 pod-album ali slika"
 
 #~ msgid "Edit"
 #~ msgstr "Uredi"

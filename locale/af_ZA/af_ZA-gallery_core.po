@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2004-04-26 00:39+0100\n"
 "Last-Translator: Gerrit Hoekstra <gerrit@hoekstra.co.uk>\n"
 "Language-Team: Afrikaans <gerrit@hoekstra.co.uk>\n"
@@ -177,9 +177,23 @@ msgid "Search"
 msgstr "Soek"
 
 #: ../albums.php:123
+#, fuzzy, php-format
+msgid "1 album"
+msgid_plural "%d albums"
+msgstr[0] "1 album"
+msgstr[1] "1 album"
+
+#: ../albums.php:123
 #, fuzzy
 msgid "no albums"
 msgstr "Geen albums"
+
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "1 hoofalbum"
+msgstr[1] "1 hoofalbum"
 
 #: ../albums.php:125
 #, fuzzy
@@ -192,8 +206,22 @@ msgid "%d total"
 msgstr "%d in totaal"
 
 #: ../albums.php:129 ../view_album.php:267
+#, fuzzy, php-format
+msgid "1 image"
+msgid_plural "%d images"
+msgstr[0] "1 foto"
+msgstr[1] "1 foto"
+
+#: ../albums.php:129 ../view_album.php:267
 msgid "no images"
 msgstr "geen foto's"
+
+#: ../albums.php:130 ../view_album.php:268
+#, fuzzy, php-format
+msgid "1 page"
+msgid_plural "%d pages"
+msgstr[0] "1 blad"
+msgstr[1] "1 blad"
 
 #: ../albums.php:130
 msgid "no pages"
@@ -303,10 +331,24 @@ msgstr "opgradeer album"
 msgid "Last changed on %s."
 msgstr "Laaste wysiging was op %s."
 
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "Hierdie album bevat %s."
+msgstr[1] "Hierdie album bevat %s."
+
 #: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Album is %s sedert %s besigtig."
+
+#: ../albums.php:365 ../view_album.php:864 ../view_album.php:881
+#, fuzzy, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "nog net 1 keer besigtig"
+msgstr[1] "nog net 1 keer besigtig"
 
 #: ../albums.php:365
 msgid "0 times"
@@ -339,6 +381,13 @@ msgstr "items in hierdie album"
 #: ../captionator.php:168
 msgid "on"
 msgstr "op"
+
+#: ../captionator.php:168
+#, fuzzy, php-format
+msgid "one page"
+msgid_plural "%d pages"
+msgstr[0] "geen blaaie"
+msgstr[1] "geen blaaie"
 
 #: ../captionator.php:196 ../captionator.php:304
 msgid "Save and Exit"
@@ -1691,6 +1740,20 @@ msgstr "Gemiddelde punte tussen hakies"
 msgid "Album: %s"
 msgstr "Album: %s"
 
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "1 kieser"
+msgstr[1] "1 kieser"
+
+#: ../lib/voting.php:315
+#, fuzzy, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Uitslae van %s."
+msgstr[1] "Uitslae van %s."
+
 #: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
@@ -1722,6 +1785,13 @@ msgstr "Aantal %d oor die geheel"
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "Geen stemme nie"
+msgstr[1] "Geen stemme nie"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
@@ -1963,6 +2033,13 @@ msgstr "Probleem met e-pos na %s"
 #, php-format
 msgid "%s added, %s skipped"
 msgstr "%s bygevoeg, %s oorgeslaan"
+
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, fuzzy, php-format
+msgid "1 user"
+msgid_plural "%d users"
+msgstr[0] "1 gebruiker"
+msgstr[1] "1 gebruiker"
 
 #: ../multi_create_user.php:136
 msgid "Create Users"
@@ -2942,6 +3019,13 @@ msgstr "Kon nie toegang tot slot l&ecirc;er kry nie (%s)!"
 msgid "Could not acquire lock (%s)!"
 msgstr "Kon 'n slot nie kry nie (%s)"
 
+#: ../util.php:1949
+#, fuzzy, php-format
+msgid "1 hit"
+msgid_plural "%d hits"
+msgstr[0] "1 trefslag"
+msgstr[1] "1 trefslag"
+
 #: ../util.php:1954
 msgid "Sub-albums"
 msgstr "Sub-Albums"
@@ -3004,6 +3088,7 @@ msgid "Email not sent as it is disabled for this gallery"
 msgstr "E-pos is nie gestuur nie, omdat dit in hierdie galery versper is"
 
 #: ../util.php:2500
+#, php-format
 msgid "Email not sent as no address provided"
 msgstr "E-pos is nie gestuur nie, omdat 'n adres nie verskaf is nie"
 
@@ -3126,6 +3211,13 @@ msgid "navigate UP"
 msgstr "navigeer OP"
 
 #: ../view_album.php:266
+#, fuzzy, php-format
+msgid "1 sub-album"
+msgid_plural "%d sub-albums"
+msgstr[0] "1 Sub-Album"
+msgstr[1] "1 Sub-Album"
+
+#: ../view_album.php:266
 msgid "No albums"
 msgstr "Geen albums"
 
@@ -3246,6 +3338,13 @@ msgstr "Jy MOET op %s kliek om jou stem te laat tel"
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Jy het 'n totaal van %s en kan hulle verander as jy wil."
 
+#: ../view_album.php:612
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "1 stem"
+msgstr[1] "1 stem"
+
 #: ../view_album.php:617
 msgid "You can change your choices if you wish."
 msgstr "Hier kan jy jou keuses verander as jy wil"
@@ -3266,6 +3365,13 @@ msgstr "Verander: "
 #: ../view_album.php:856
 msgid "Contains: "
 msgstr "Bevat: "
+
+#: ../view_album.php:856
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "1 item"
+msgstr[1] "1 item"
 
 #: ../view_album.php:864 ../view_album.php:881
 msgid "Viewed:"
@@ -3429,90 +3535,6 @@ msgstr "Watermerk album."
 #, fuzzy
 msgid "No items to watermark."
 msgstr "Geen stemme tot dus ver nie"
-
-#, fuzzy
-#~ msgid "1 album"
-#~ msgid_plural "%d albums"
-#~ msgstr[0] "1 album"
-#~ msgstr[1] "1 album"
-
-#, fuzzy
-#~ msgid "1 top-level album"
-#~ msgid_plural "%d top-level albums"
-#~ msgstr[0] "1 hoofalbum"
-#~ msgstr[1] "1 hoofalbum"
-
-#, fuzzy
-#~ msgid "1 image"
-#~ msgid_plural "%d images"
-#~ msgstr[0] "1 foto"
-#~ msgstr[1] "1 foto"
-
-#, fuzzy
-#~ msgid "1 page"
-#~ msgid_plural "%d pages"
-#~ msgstr[0] "1 blad"
-#~ msgstr[1] "1 blad"
-
-#, fuzzy
-#~ msgid "This album contains one item"
-#~ msgid_plural "This album contains %d items"
-#~ msgstr[0] "Hierdie album bevat %s."
-#~ msgstr[1] "Hierdie album bevat %s."
-
-#, fuzzy
-#~ msgid "1 time"
-#~ msgid_plural "%d times"
-#~ msgstr[0] "nog net 1 keer besigtig"
-#~ msgstr[1] "nog net 1 keer besigtig"
-
-#, fuzzy
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "1 kieser"
-#~ msgstr[1] "1 kieser"
-
-#, fuzzy
-#~ msgid "Result from one voter"
-#~ msgid_plural "Result of %d voters"
-#~ msgstr[0] "Uitslae van %s."
-#~ msgstr[1] "Uitslae van %s."
-
-#, fuzzy
-#~ msgid "one vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "Geen stemme nie"
-#~ msgstr[1] "Geen stemme nie"
-
-#, fuzzy
-#~ msgid "1 user"
-#~ msgid_plural "%d users"
-#~ msgstr[0] "1 gebruiker"
-#~ msgstr[1] "1 gebruiker"
-
-#, fuzzy
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "1 trefslag"
-#~ msgstr[1] "1 trefslag"
-
-#, fuzzy
-#~ msgid "1 sub-album"
-#~ msgid_plural "%d sub-albums"
-#~ msgstr[0] "1 Sub-Album"
-#~ msgstr[1] "1 Sub-Album"
-
-#, fuzzy
-#~ msgid "1 vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "1 stem"
-#~ msgstr[1] "1 stem"
-
-#, fuzzy
-#~ msgid "1 item"
-#~ msgid_plural "%d items"
-#~ msgstr[0] "1 item"
-#~ msgstr[1] "1 item"
 
 #~ msgid "Edit"
 #~ msgstr "Redigeer"

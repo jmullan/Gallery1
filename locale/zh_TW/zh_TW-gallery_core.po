@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2004-01-08 13:57+0800\n"
 "Last-Translator: Chia-Ming Lee <chip@turtle.ee.ncku.edu.tw>\n"
 "Language-Team: Traditional Chinese <gallery-translations@lists.sourceforge.net>\n"
@@ -180,9 +180,23 @@ msgid "Search"
 msgstr "搜尋"
 
 #: ../albums.php:123
+#, fuzzy, php-format
+msgid "1 album"
+msgid_plural "%d albums"
+msgstr[0] "1 個相簿"
+msgstr[1] "1 個相簿"
+
+#: ../albums.php:123
 #, fuzzy
 msgid "no albums"
 msgstr "尚無相簿"
+
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "1 個頂層相簿"
+msgstr[1] "1 個頂層相簿"
 
 #: ../albums.php:125
 #, fuzzy
@@ -195,8 +209,22 @@ msgid "%d total"
 msgstr "全部有 %d 個相簿"
 
 #: ../albums.php:129 ../view_album.php:267
+#, fuzzy, php-format
+msgid "1 image"
+msgid_plural "%d images"
+msgstr[0] "1 份檔案"
+msgstr[1] "1 份檔案"
+
+#: ../albums.php:129 ../view_album.php:267
 msgid "no images"
 msgstr "沒有檔案"
+
+#: ../albums.php:130 ../view_album.php:268
+#, fuzzy, php-format
+msgid "1 page"
+msgid_plural "%d pages"
+msgstr[0] "1 頁"
+msgstr[1] "1 頁"
 
 #: ../albums.php:130
 msgid "no pages"
@@ -308,10 +336,24 @@ msgstr "更新相簿"
 msgid "Last changed on %s."
 msgstr "上次更新：%s. "
 
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "%s在這個相簿裡面. "
+msgstr[1] "%s在這個相簿裡面. "
+
 #: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "點閱：%s (從 %s 開始計算)"
+
+#: ../albums.php:365 ../view_album.php:864 ../view_album.php:881
+#, fuzzy, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "1 次"
+msgstr[1] "1 次"
 
 #: ../albums.php:365
 msgid "0 times"
@@ -344,6 +386,13 @@ msgstr "份檔案在此相簿中"
 #: ../captionator.php:168
 msgid "on"
 msgstr "總共"
+
+#: ../captionator.php:168
+#, fuzzy, php-format
+msgid "one page"
+msgid_plural "%d pages"
+msgstr[0] "0 頁"
+msgstr[1] "0 頁"
 
 #: ../captionator.php:196 ../captionator.php:304
 msgid "Save and Exit"
@@ -1724,6 +1773,20 @@ msgstr "平均分是"
 msgid "Album: %s"
 msgstr "相簿: %s"
 
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "1 位評比者"
+msgstr[1] "1 位評比者"
+
+#: ../lib/voting.php:315
+#, fuzzy, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "由 %s 產生的結果. "
+msgstr[1] "由 %s 產生的結果. "
+
 #: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
@@ -1755,6 +1818,13 @@ msgstr "第 %d 名. "
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "尚未有評比"
+msgstr[1] "尚未有評比"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
@@ -2000,6 +2070,13 @@ msgstr "%s 的信件位址有問題"
 #, php-format
 msgid "%s added, %s skipped"
 msgstr "%s 位使用者已加入, %s 位略過"
+
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, fuzzy, php-format
+msgid "1 user"
+msgid_plural "%d users"
+msgstr[0] "1 位使用者"
+msgstr[1] "1 位使用者"
 
 #: ../multi_create_user.php:136
 msgid "Create Users"
@@ -2980,6 +3057,13 @@ msgstr "無法開啟這個鎖定檔 (%s)! "
 msgid "Could not acquire lock (%s)!"
 msgstr "無法要求鎖定 (%s)! "
 
+#: ../util.php:1949
+#, fuzzy, php-format
+msgid "1 hit"
+msgid_plural "%d hits"
+msgstr[0] "1 次"
+msgstr[1] "1 次"
+
 #: ../util.php:1954
 msgid "Sub-albums"
 msgstr "子相簿"
@@ -3042,6 +3126,7 @@ msgid "Email not sent as it is disabled for this gallery"
 msgstr "電子信件無法傳送，因為 gallery 取消此功能"
 
 #: ../util.php:2500
+#, php-format
 msgid "Email not sent as no address provided"
 msgstr "電子信件無法傳送，因為沒有提供地址"
 
@@ -3168,6 +3253,13 @@ msgid "navigate UP"
 msgstr "向上瀏覽"
 
 #: ../view_album.php:266
+#, fuzzy, php-format
+msgid "1 sub-album"
+msgid_plural "%d sub-albums"
+msgstr[0] "1 個子相簿"
+msgstr[1] "1 個子相簿"
+
+#: ../view_album.php:266
 msgid "No albums"
 msgstr "尚無相簿"
 
@@ -3288,6 +3380,13 @@ msgstr "您必須點選 %s 才能將您的評比送出. "
 msgid "You have a total of %s and can change them if you wish."
 msgstr "您總共有 %s 而且隨時可以更改您的選擇. "
 
+#: ../view_album.php:612
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "1 票"
+msgstr[1] "1 票"
+
 #: ../view_album.php:617
 msgid "You can change your choices if you wish."
 msgstr "您可以更改您的選擇. "
@@ -3308,6 +3407,13 @@ msgstr "更新： "
 #: ../view_album.php:856
 msgid "Contains: "
 msgstr "內容： "
+
+#: ../view_album.php:856
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "1 份檔案"
+msgstr[1] "1 份檔案"
 
 #: ../view_album.php:864 ../view_album.php:881
 msgid "Viewed:"
@@ -3472,90 +3578,6 @@ msgstr ""
 #, fuzzy
 msgid "No items to watermark."
 msgstr "目前沒有任何評比. "
-
-#, fuzzy
-#~ msgid "1 album"
-#~ msgid_plural "%d albums"
-#~ msgstr[0] "1 個相簿"
-#~ msgstr[1] "1 個相簿"
-
-#, fuzzy
-#~ msgid "1 top-level album"
-#~ msgid_plural "%d top-level albums"
-#~ msgstr[0] "1 個頂層相簿"
-#~ msgstr[1] "1 個頂層相簿"
-
-#, fuzzy
-#~ msgid "1 image"
-#~ msgid_plural "%d images"
-#~ msgstr[0] "1 份檔案"
-#~ msgstr[1] "1 份檔案"
-
-#, fuzzy
-#~ msgid "1 page"
-#~ msgid_plural "%d pages"
-#~ msgstr[0] "1 頁"
-#~ msgstr[1] "1 頁"
-
-#, fuzzy
-#~ msgid "This album contains one item"
-#~ msgid_plural "This album contains %d items"
-#~ msgstr[0] "%s在這個相簿裡面. "
-#~ msgstr[1] "%s在這個相簿裡面. "
-
-#, fuzzy
-#~ msgid "1 time"
-#~ msgid_plural "%d times"
-#~ msgstr[0] "1 次"
-#~ msgstr[1] "1 次"
-
-#, fuzzy
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "1 位評比者"
-#~ msgstr[1] "1 位評比者"
-
-#, fuzzy
-#~ msgid "Result from one voter"
-#~ msgid_plural "Result of %d voters"
-#~ msgstr[0] "由 %s 產生的結果. "
-#~ msgstr[1] "由 %s 產生的結果. "
-
-#, fuzzy
-#~ msgid "one vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "尚未有評比"
-#~ msgstr[1] "尚未有評比"
-
-#, fuzzy
-#~ msgid "1 user"
-#~ msgid_plural "%d users"
-#~ msgstr[0] "1 位使用者"
-#~ msgstr[1] "1 位使用者"
-
-#, fuzzy
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "1 次"
-#~ msgstr[1] "1 次"
-
-#, fuzzy
-#~ msgid "1 sub-album"
-#~ msgid_plural "%d sub-albums"
-#~ msgstr[0] "1 個子相簿"
-#~ msgstr[1] "1 個子相簿"
-
-#, fuzzy
-#~ msgid "1 vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "1 票"
-#~ msgstr[1] "1 票"
-
-#, fuzzy
-#~ msgid "1 item"
-#~ msgid_plural "%d items"
-#~ msgstr[0] "1 份檔案"
-#~ msgstr[1] "1 份檔案"
 
 #~ msgid "Edit"
 #~ msgstr "修改"

@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2003-10-12 17:58+0900\n"
 "Last-Translator: The Darkness <xgate32@hotmail.com>\n"
 "Language-Team: Gallery Korean Translation <xgate32@hotmail.com>\n"
@@ -353,6 +353,7 @@ msgid "Try again?"
 msgstr ""
 
 #: ../setup/check_mail.php:60
+#, php-format
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "이것은 이메일이 당신의 시스템에서 올바르게 작동하는지 확인하는 것입니다. 아래에 당신의 이메일주소를 적으시고, 당신에게 이메일을 보내보세요. 받게 되면 당신의 시스템이 작동하고 있는 겁니다"
 
@@ -403,6 +404,13 @@ msgstr ""
 msgid "%sClick here%s to see more details"
 msgstr "상세한 설명을 숨기기 위해 %s여기를 클릭%s"
 
+#: ../setup/check_versions.php:70
+#, php-format
+msgid "One file is missing, corrupt or older than expected."
+msgid_plural "%d files are missing, corrupt or older than expected."
+msgstr[0] ""
+msgstr[1] ""
+
 #: ../setup/check_versions.php:72 ../setup/check_versions.php:103
 msgid "All files okay."
 msgstr ""
@@ -412,10 +420,24 @@ msgstr ""
 msgid "There are problems with the following files.  Please correct them before configuring %s."
 msgstr ""
 
+#: ../setup/check_versions.php:101
+#, php-format
+msgid "One file is more recent than expected."
+msgid_plural "%d files are more recent than expected."
+msgstr[0] ""
+msgstr[1] ""
+
 #: ../setup/check_versions.php:111
 #, php-format
 msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
 msgstr ""
+
+#: ../setup/check_versions.php:129
+#, php-format
+msgid "One file is up-to-date."
+msgid_plural "%d files are up-to-date."
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../setup/check_versions.php:131
 msgid "No files are up-to-date."
@@ -1924,6 +1946,13 @@ msgid "Save Config"
 msgstr "설정 저장"
 
 #: ../setup/confirm.inc:461
+#, fuzzy, php-format
+msgid "One error."
+msgid_plural "%d errors."
+msgstr[0] "1개의 에러"
+msgstr[1] "1개의 에러"
+
+#: ../setup/confirm.inc:461
 #, fuzzy
 msgid "No errors."
 msgstr "에러 없음"
@@ -2271,7 +2300,7 @@ msgid "Only the default locale for this machine is available, so date format wil
 msgstr "이 시스템의 기본 로케일만 가능합니다. 따라서, 날짜 포맷이 각 언어에 따라 변경되지 않습니다."
 
 #: ../setup/functions.inc:870
-#, fuzzy
+#, fuzzy, php-format
 msgid "<b>System</b> locale selection required"
 msgstr "로케일 선택을 해야 합니다"
 
@@ -2290,7 +2319,7 @@ msgid "System locale"
 msgstr "시스템 로케일"
 
 #: ../setup/functions.inc:943
-#, fuzzy
+#, fuzzy, php-format
 msgid "<b>System</b> locale problems"
 msgstr "로케일 문제"
 
@@ -2379,6 +2408,7 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr ""
 
 #: ../setup/functions.inc:1293
+#, php-format
 msgid "All tested files up-to-date."
 msgstr ""
 
@@ -2693,12 +2723,6 @@ msgstr "틀"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr ""
-
-#, fuzzy
-#~ msgid "One error."
-#~ msgid_plural "%d errors."
-#~ msgstr[0] "1개의 에러"
-#~ msgstr[1] "1개의 에러"
 
 #~ msgid "errors"
 #~ msgstr "에러"

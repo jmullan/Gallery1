@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2004-04-27 17:41-0000\n"
 "Last-Translator: JASTMI.com <geral@jastmi.com>\n"
 "Language-Team: PT Team <GalleryPT@escritacomluz.com>;\n"
@@ -178,9 +178,23 @@ msgid "Search"
 msgstr "Pesquisar"
 
 #: ../albums.php:123
+#, fuzzy, php-format
+msgid "1 album"
+msgid_plural "%d albums"
+msgstr[0] "1 album"
+msgstr[1] "1 album"
+
+#: ../albums.php:123
 #, fuzzy
 msgid "no albums"
 msgstr "Sem albuns"
+
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "1 album principal"
+msgstr[1] "1 album principal"
 
 #: ../albums.php:125
 #, fuzzy
@@ -193,8 +207,22 @@ msgid "%d total"
 msgstr "%d total"
 
 #: ../albums.php:129 ../view_album.php:267
+#, fuzzy, php-format
+msgid "1 image"
+msgid_plural "%d images"
+msgstr[0] "1 imagem"
+msgstr[1] "1 imagem"
+
+#: ../albums.php:129 ../view_album.php:267
 msgid "no images"
 msgstr "sem imagens"
+
+#: ../albums.php:130 ../view_album.php:268
+#, fuzzy, php-format
+msgid "1 page"
+msgid_plural "%d pages"
+msgstr[0] "1 p&aacute;gina"
+msgstr[1] "1 p&aacute;gina"
 
 #: ../albums.php:130
 msgid "no pages"
@@ -305,10 +333,24 @@ msgstr "actualizar album"
 msgid "Last changed on %s."
 msgstr "&Uacute;ltima altera&ccedil;&atilde;o em %s."
 
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "Este album cont&eacute;m %s."
+msgstr[1] "Este album cont&eacute;m %s."
+
 #: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Este album foi visto %s desde %s."
+
+#: ../albums.php:365 ../view_album.php:864 ../view_album.php:881
+#, fuzzy, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "1 vez"
+msgstr[1] "1 vez"
 
 #: ../albums.php:365
 msgid "0 times"
@@ -341,6 +383,13 @@ msgstr "itens neste album"
 #: ../captionator.php:168
 msgid "on"
 msgstr "ligado"
+
+#: ../captionator.php:168
+#, fuzzy, php-format
+msgid "one page"
+msgid_plural "%d pages"
+msgstr[0] "sem p&aacute;ginas"
+msgstr[1] "sem p&aacute;ginas"
 
 #: ../captionator.php:196 ../captionator.php:304
 msgid "Save and Exit"
@@ -1717,6 +1766,20 @@ msgstr "M&eacute;dia de pontos entre par&ecirc;ntesis"
 msgid "Album: %s"
 msgstr "Album: %s"
 
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "1 votante"
+msgstr[1] "1 votante"
+
+#: ../lib/voting.php:315
+#, fuzzy, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Resultados de %s."
+msgstr[1] "Resultados de %s."
+
 #: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
@@ -1748,6 +1811,13 @@ msgstr "N&uacute;mero %d de todas."
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "Sem votos"
+msgstr[1] "Sem votos"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
@@ -1993,6 +2063,13 @@ msgstr "Imposs&iacute;vel enviar email para %s."
 #, php-format
 msgid "%s added, %s skipped"
 msgstr "%s adicionado(s), %s ignorado(s)"
+
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, fuzzy, php-format
+msgid "1 user"
+msgid_plural "%d users"
+msgstr[0] "1 utilizador"
+msgstr[1] "1 utilizador"
 
 #: ../multi_create_user.php:136
 msgid "Create Users"
@@ -2972,6 +3049,13 @@ msgstr "N&atilde;o foi poss&iacute;vel abrir o ficheiro de seguran&ccedil;a (%s)
 msgid "Could not acquire lock (%s)!"
 msgstr "N&atilde;o foi poss&iacute;vel ler o ficheiro de seguran&ccedil;a (%s)!"
 
+#: ../util.php:1949
+#, fuzzy, php-format
+msgid "1 hit"
+msgid_plural "%d hits"
+msgstr[0] "1 visita"
+msgstr[1] "1 visita"
+
 #: ../util.php:1954
 msgid "Sub-albums"
 msgstr "Sub-albuns"
@@ -3034,6 +3118,7 @@ msgid "Email not sent as it is disabled for this gallery"
 msgstr "Email n&atilde;o enviado pois foi desactivado nesta galeria"
 
 #: ../util.php:2500
+#, php-format
 msgid "Email not sent as no address provided"
 msgstr "Email n&atilde;o enviado pois n&atilde;o foi fornecido nenhum endere&ccedil;o"
 
@@ -3156,6 +3241,13 @@ msgid "navigate UP"
 msgstr "mover PARA CIMA"
 
 #: ../view_album.php:266
+#, fuzzy, php-format
+msgid "1 sub-album"
+msgid_plural "%d sub-albums"
+msgstr[0] "1 sub-album"
+msgstr[1] "1 sub-album"
+
+#: ../view_album.php:266
 msgid "No albums"
 msgstr "Sem albuns"
 
@@ -3276,6 +3368,13 @@ msgstr "DEVE clicar em %s para que o voto seja contabilizado."
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Tem um total de %s que pode alterar se o desejar."
 
+#: ../view_album.php:612
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "1 voto"
+msgstr[1] "1 voto"
+
 #: ../view_album.php:617
 msgid "You can change your choices if you wish."
 msgstr "Pode alterar as suas op&ccedil;&otilde;es se o desejar."
@@ -3296,6 +3395,13 @@ msgstr "Alterado: "
 #: ../view_album.php:856
 msgid "Contains: "
 msgstr "Contem: "
+
+#: ../view_album.php:856
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "1 item"
+msgstr[1] "1 item"
 
 #: ../view_album.php:864 ../view_album.php:881
 msgid "Viewed:"
@@ -3460,90 +3566,6 @@ msgstr ""
 #, fuzzy
 msgid "No items to watermark."
 msgstr "Nenhum voto at&eacute; agora."
-
-#, fuzzy
-#~ msgid "1 album"
-#~ msgid_plural "%d albums"
-#~ msgstr[0] "1 album"
-#~ msgstr[1] "1 album"
-
-#, fuzzy
-#~ msgid "1 top-level album"
-#~ msgid_plural "%d top-level albums"
-#~ msgstr[0] "1 album principal"
-#~ msgstr[1] "1 album principal"
-
-#, fuzzy
-#~ msgid "1 image"
-#~ msgid_plural "%d images"
-#~ msgstr[0] "1 imagem"
-#~ msgstr[1] "1 imagem"
-
-#, fuzzy
-#~ msgid "1 page"
-#~ msgid_plural "%d pages"
-#~ msgstr[0] "1 p&aacute;gina"
-#~ msgstr[1] "1 p&aacute;gina"
-
-#, fuzzy
-#~ msgid "This album contains one item"
-#~ msgid_plural "This album contains %d items"
-#~ msgstr[0] "Este album cont&eacute;m %s."
-#~ msgstr[1] "Este album cont&eacute;m %s."
-
-#, fuzzy
-#~ msgid "1 time"
-#~ msgid_plural "%d times"
-#~ msgstr[0] "1 vez"
-#~ msgstr[1] "1 vez"
-
-#, fuzzy
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "1 votante"
-#~ msgstr[1] "1 votante"
-
-#, fuzzy
-#~ msgid "Result from one voter"
-#~ msgid_plural "Result of %d voters"
-#~ msgstr[0] "Resultados de %s."
-#~ msgstr[1] "Resultados de %s."
-
-#, fuzzy
-#~ msgid "one vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "Sem votos"
-#~ msgstr[1] "Sem votos"
-
-#, fuzzy
-#~ msgid "1 user"
-#~ msgid_plural "%d users"
-#~ msgstr[0] "1 utilizador"
-#~ msgstr[1] "1 utilizador"
-
-#, fuzzy
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "1 visita"
-#~ msgstr[1] "1 visita"
-
-#, fuzzy
-#~ msgid "1 sub-album"
-#~ msgid_plural "%d sub-albums"
-#~ msgstr[0] "1 sub-album"
-#~ msgstr[1] "1 sub-album"
-
-#, fuzzy
-#~ msgid "1 vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "1 voto"
-#~ msgstr[1] "1 voto"
-
-#, fuzzy
-#~ msgid "1 item"
-#~ msgid_plural "%d items"
-#~ msgstr[0] "1 item"
-#~ msgstr[1] "1 item"
 
 #~ msgid "Edit"
 #~ msgstr "Editar"

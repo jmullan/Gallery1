@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2003-11-25 13:13+0100\n"
 "Last-Translator: Coyot <coyot@i.love.pinknet.cz>\n"
 "Language-Team: CZ_Czech <coyot@i.love.pinknet.cz>\n"
@@ -353,6 +353,7 @@ msgid "Try again?"
 msgstr "Zkuste to znovu."
 
 #: ../setup/check_mail.php:60
+#, php-format
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "Zde si mùžete ovìøit, že na vasem systému funguje email. Vyplòte svoji emailovou adresu a systém vám na ni pošle email. Pokud dorazí, víte, že na vašem systém email funguje"
 
@@ -402,6 +403,13 @@ msgstr ""
 msgid "%sClick here%s to see more details"
 msgstr "%sKlepnìte sem%s, pokud chcete skrýt detaily"
 
+#: ../setup/check_versions.php:70
+#, php-format
+msgid "One file is missing, corrupt or older than expected."
+msgid_plural "%d files are missing, corrupt or older than expected."
+msgstr[0] ""
+msgstr[1] ""
+
 #: ../setup/check_versions.php:72 ../setup/check_versions.php:103
 #, fuzzy
 msgid "All files okay."
@@ -412,10 +420,24 @@ msgstr "Všech %d souborù je aktuálních."
 msgid "There are problems with the following files.  Please correct them before configuring %s."
 msgstr ""
 
+#: ../setup/check_versions.php:101
+#, php-format
+msgid "One file is more recent than expected."
+msgid_plural "%d files are more recent than expected."
+msgstr[0] ""
+msgstr[1] ""
+
 #: ../setup/check_versions.php:111
 #, fuzzy, php-format
 msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
 msgstr "%d souborù je novìjších, než gallery oèekává. To je v poøádku, pokud používáte beta verzi, CVS nebo pozmìnìný kód."
+
+#: ../setup/check_versions.php:129
+#, fuzzy, php-format
+msgid "One file is up-to-date."
+msgid_plural "%d files are up-to-date."
+msgstr[0] "Všech %d souborù je aktuálních."
+msgstr[1] "Všech %d souborù je aktuálních."
 
 #: ../setup/check_versions.php:131
 #, fuzzy
@@ -1915,6 +1937,13 @@ msgid "Save Config"
 msgstr "Uložit nastavení"
 
 #: ../setup/confirm.inc:461
+#, fuzzy, php-format
+msgid "One error."
+msgid_plural "%d errors."
+msgstr[0] "Jedna chyba"
+msgstr[1] "Jedna chyba"
+
+#: ../setup/confirm.inc:461
 #, fuzzy
 msgid "No errors."
 msgstr "žádné chyby"
@@ -2260,7 +2289,7 @@ msgid "Only the default locale for this machine is available, so date format wil
 msgstr "K dispozici je pouze standardní locale tohoto stroje, takže formát data se nebude mìnit podle jazyka."
 
 #: ../setup/functions.inc:870
-#, fuzzy
+#, fuzzy, php-format
 msgid "<b>System</b> locale selection required"
 msgstr "Nutno vybrat locale"
 
@@ -2279,7 +2308,7 @@ msgid "System locale"
 msgstr "Locale systému"
 
 #: ../setup/functions.inc:943
-#, fuzzy
+#, fuzzy, php-format
 msgid "<b>System</b> locale problems"
 msgstr "Problémy s locale"
 
@@ -2366,7 +2395,7 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d souborù je novìjších, než gallery oèekává. To je v poøádku, pokud používáte beta verzi, CVS nebo pozmìnìný kód."
 
 #: ../setup/functions.inc:1293
-#, fuzzy
+#, fuzzy, php-format
 msgid "All tested files up-to-date."
 msgstr "Všech %d souborù je aktuálních."
 
@@ -2681,18 +2710,6 @@ msgstr "Rámeèky"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr ""
-
-#, fuzzy
-#~ msgid "One file is up-to-date."
-#~ msgid_plural "%d files are up-to-date."
-#~ msgstr[0] "Všech %d souborù je aktuálních."
-#~ msgstr[1] "Všech %d souborù je aktuálních."
-
-#, fuzzy
-#~ msgid "One error."
-#~ msgid_plural "%d errors."
-#~ msgstr[0] "Jedna chyba"
-#~ msgstr[1] "Jedna chyba"
 
 #, fuzzy
 #~ msgid "%s up-to-date."

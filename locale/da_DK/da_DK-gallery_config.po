@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2004-04-16 13:52+0100\n"
 "Last-Translator: Bjorn Graabek <bjorn@graabek.com>\n"
 "Language-Team: Niels Elgaard Larsen <elgaard@agol.dk>\n"
@@ -360,6 +360,7 @@ msgid "Try again?"
 msgstr ""
 
 #: ../setup/check_mail.php:60
+#, php-format
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr ""
 
@@ -410,6 +411,13 @@ msgstr ""
 msgid "%sClick here%s to see more details"
 msgstr "%sTryk her%s for at skjule detaljerne"
 
+#: ../setup/check_versions.php:70
+#, php-format
+msgid "One file is missing, corrupt or older than expected."
+msgid_plural "%d files are missing, corrupt or older than expected."
+msgstr[0] ""
+msgstr[1] ""
+
 #: ../setup/check_versions.php:72 ../setup/check_versions.php:103
 #, fuzzy
 msgid "All files okay."
@@ -420,10 +428,24 @@ msgstr "%s up-to-date."
 msgid "There are problems with the following files.  Please correct them before configuring %s."
 msgstr ""
 
+#: ../setup/check_versions.php:101
+#, php-format
+msgid "One file is more recent than expected."
+msgid_plural "%d files are more recent than expected."
+msgstr[0] ""
+msgstr[1] ""
+
 #: ../setup/check_versions.php:111
 #, php-format
 msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
 msgstr ""
+
+#: ../setup/check_versions.php:129
+#, fuzzy, php-format
+msgid "One file is up-to-date."
+msgid_plural "%d files are up-to-date."
+msgstr[0] "%s up-to-date."
+msgstr[1] "%s up-to-date."
 
 #: ../setup/check_versions.php:131
 #, fuzzy
@@ -2005,6 +2027,13 @@ msgid "Save Config"
 msgstr "Gem konfiguration"
 
 #: ../setup/confirm.inc:461
+#, fuzzy, php-format
+msgid "One error."
+msgid_plural "%d errors."
+msgstr[0] "Fejl"
+msgstr[1] "Fejl"
+
+#: ../setup/confirm.inc:461
 #, fuzzy
 msgid "No errors."
 msgstr "Fejl"
@@ -2361,7 +2390,7 @@ msgid "Only the default locale for this machine is available, so date format wil
 msgstr "Kun standard regionaldata er tilgængelig på denne maskine, så datoformatet vil ikke skifte med forskellige sprog."
 
 #: ../setup/functions.inc:870
-#, fuzzy
+#, fuzzy, php-format
 msgid "<b>System</b> locale selection required"
 msgstr "Regionaldata skal vælges"
 
@@ -2381,7 +2410,7 @@ msgid "System locale"
 msgstr "Systemcheck Side"
 
 #: ../setup/functions.inc:943
-#, fuzzy
+#, fuzzy, php-format
 msgid "<b>System</b> locale problems"
 msgstr "Locale problemer"
 
@@ -2474,7 +2503,7 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr ""
 
 #: ../setup/functions.inc:1293
-#, fuzzy
+#, fuzzy, php-format
 msgid "All tested files up-to-date."
 msgstr "%s up-to-date."
 
@@ -2793,18 +2822,6 @@ msgstr "Fulde navn"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr ""
-
-#, fuzzy
-#~ msgid "One file is up-to-date."
-#~ msgid_plural "%d files are up-to-date."
-#~ msgstr[0] "%s up-to-date."
-#~ msgstr[1] "%s up-to-date."
-
-#, fuzzy
-#~ msgid "One error."
-#~ msgid_plural "%d errors."
-#~ msgstr[0] "Fejl"
-#~ msgstr[1] "Fejl"
 
 #~ msgid "1 file"
 #~ msgstr "1 fil"

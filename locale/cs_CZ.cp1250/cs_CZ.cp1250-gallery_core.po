@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2003-11-25 13:14+0100\n"
 "Last-Translator: Coyot <coyot@i.love.pinknet.cz>\n"
 "Language-Team: CZ_Czech <coyot@i.love.pinknet.cz>\n"
@@ -178,9 +178,23 @@ msgid "Search"
 msgstr "Hledej"
 
 #: ../albums.php:123
+#, fuzzy, php-format
+msgid "1 album"
+msgid_plural "%d albums"
+msgstr[0] "1 album"
+msgstr[1] "1 album"
+
+#: ../albums.php:123
 #, fuzzy
 msgid "no albums"
 msgstr "Žádná alba"
+
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "1 album nejvyšší úrovnì"
+msgstr[1] "1 album nejvyšší úrovnì"
 
 #: ../albums.php:125
 #, fuzzy
@@ -193,8 +207,22 @@ msgid "%d total"
 msgstr "%d celkem"
 
 #: ../albums.php:129 ../view_album.php:267
+#, fuzzy, php-format
+msgid "1 image"
+msgid_plural "%d images"
+msgstr[0] "1 fotka"
+msgstr[1] "1 fotka"
+
+#: ../albums.php:129 ../view_album.php:267
 msgid "no images"
 msgstr "žádné fotky"
+
+#: ../albums.php:130 ../view_album.php:268
+#, fuzzy, php-format
+msgid "1 page"
+msgid_plural "%d pages"
+msgstr[0] "1 stránka"
+msgstr[1] "1 stránka"
 
 #: ../albums.php:130
 msgid "no pages"
@@ -305,10 +333,24 @@ msgstr "aktualizovat album"
 msgid "Last changed on %s."
 msgstr "Naposledy zmìnìno %s."
 
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "Toto album obsahuje %s."
+msgstr[1] "Toto album obsahuje %s."
+
 #: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Toto album bylo zbrazeno %s od %s."
+
+#: ../albums.php:365 ../view_album.php:864 ../view_album.php:881
+#, fuzzy, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "jednou"
+msgstr[1] "jednou"
 
 #: ../albums.php:365
 msgid "0 times"
@@ -341,6 +383,13 @@ msgstr "položek v tomto albu"
 #: ../captionator.php:168
 msgid "on"
 msgstr "v"
+
+#: ../captionator.php:168
+#, fuzzy, php-format
+msgid "one page"
+msgid_plural "%d pages"
+msgstr[0] "žádné stránky"
+msgstr[1] "žádné stránky"
 
 #: ../captionator.php:196 ../captionator.php:304
 msgid "Save and Exit"
@@ -1717,6 +1766,20 @@ msgstr "Prùmìr bodù v závorkách"
 msgid "Album: %s"
 msgstr "Album: %s"
 
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "1 hlasující"
+msgstr[1] "1 hlasující"
+
+#: ../lib/voting.php:315
+#, fuzzy, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Výsledky z %s."
+msgstr[1] "Výsledky z %s."
+
 #: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
@@ -1748,6 +1811,13 @@ msgstr "%d celkem."
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "Žádné hlasy"
+msgstr[1] "Žádné hlasy"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
@@ -1993,6 +2063,13 @@ msgstr "Nelze poslat email  %s"
 #, php-format
 msgid "%s added, %s skipped"
 msgstr "%s pøidáno, %s pøeskoèeno"
+
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, fuzzy, php-format
+msgid "1 user"
+msgid_plural "%d users"
+msgstr[0] "1 uživatel"
+msgstr[1] "1 uživatel"
 
 #: ../multi_create_user.php:136
 msgid "Create Users"
@@ -2973,6 +3050,13 @@ msgstr "Nemohu otevøít zámkový soubor (%s)!"
 msgid "Could not acquire lock (%s)!"
 msgstr "Nemohu získat zámek (%s)!"
 
+#: ../util.php:1949
+#, fuzzy, php-format
+msgid "1 hit"
+msgid_plural "%d hits"
+msgstr[0] "návštìva"
+msgstr[1] "návštìva"
+
 #: ../util.php:1954
 msgid "Sub-albums"
 msgstr "vnoøená alba"
@@ -3035,6 +3119,7 @@ msgid "Email not sent as it is disabled for this gallery"
 msgstr "Email nebyl poslán, v této Gallery je posílání emailù vypnuto"
 
 #: ../util.php:2500
+#, php-format
 msgid "Email not sent as no address provided"
 msgstr "Email nebyl poslán, nebyla zadána adresa"
 
@@ -3158,6 +3243,13 @@ msgid "navigate UP"
 msgstr "Návrat nahoru"
 
 #: ../view_album.php:266
+#, fuzzy, php-format
+msgid "1 sub-album"
+msgid_plural "%d sub-albums"
+msgstr[0] "1 vnoøené album"
+msgstr[1] "1 vnoøené album"
+
+#: ../view_album.php:266
 msgid "No albums"
 msgstr "Žádná alba"
 
@@ -3278,6 +3370,13 @@ msgstr "MUSÍTE klepnout na %s, aby byl váš hlas zapoèítán."
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Máte celkem %s a mùžete je zmìnit, chcete-li."
 
+#: ../view_album.php:612
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "1 hlas"
+msgstr[1] "1 hlas"
+
 #: ../view_album.php:617
 msgid "You can change your choices if you wish."
 msgstr "Zde mùžete zmìnit svoji volbu. "
@@ -3298,6 +3397,13 @@ msgstr "Zmìnìno:"
 #: ../view_album.php:856
 msgid "Contains: "
 msgstr "Obsahuje:"
+
+#: ../view_album.php:856
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "1 položku"
+msgstr[1] "1 položku"
 
 #: ../view_album.php:864 ../view_album.php:881
 msgid "Viewed:"
@@ -3462,90 +3568,6 @@ msgstr ""
 #, fuzzy
 msgid "No items to watermark."
 msgstr "Zatím žádné hlasy."
-
-#, fuzzy
-#~ msgid "1 album"
-#~ msgid_plural "%d albums"
-#~ msgstr[0] "1 album"
-#~ msgstr[1] "1 album"
-
-#, fuzzy
-#~ msgid "1 top-level album"
-#~ msgid_plural "%d top-level albums"
-#~ msgstr[0] "1 album nejvyšší úrovnì"
-#~ msgstr[1] "1 album nejvyšší úrovnì"
-
-#, fuzzy
-#~ msgid "1 image"
-#~ msgid_plural "%d images"
-#~ msgstr[0] "1 fotka"
-#~ msgstr[1] "1 fotka"
-
-#, fuzzy
-#~ msgid "1 page"
-#~ msgid_plural "%d pages"
-#~ msgstr[0] "1 stránka"
-#~ msgstr[1] "1 stránka"
-
-#, fuzzy
-#~ msgid "This album contains one item"
-#~ msgid_plural "This album contains %d items"
-#~ msgstr[0] "Toto album obsahuje %s."
-#~ msgstr[1] "Toto album obsahuje %s."
-
-#, fuzzy
-#~ msgid "1 time"
-#~ msgid_plural "%d times"
-#~ msgstr[0] "jednou"
-#~ msgstr[1] "jednou"
-
-#, fuzzy
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "1 hlasující"
-#~ msgstr[1] "1 hlasující"
-
-#, fuzzy
-#~ msgid "Result from one voter"
-#~ msgid_plural "Result of %d voters"
-#~ msgstr[0] "Výsledky z %s."
-#~ msgstr[1] "Výsledky z %s."
-
-#, fuzzy
-#~ msgid "one vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "Žádné hlasy"
-#~ msgstr[1] "Žádné hlasy"
-
-#, fuzzy
-#~ msgid "1 user"
-#~ msgid_plural "%d users"
-#~ msgstr[0] "1 uživatel"
-#~ msgstr[1] "1 uživatel"
-
-#, fuzzy
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "návštìva"
-#~ msgstr[1] "návštìva"
-
-#, fuzzy
-#~ msgid "1 sub-album"
-#~ msgid_plural "%d sub-albums"
-#~ msgstr[0] "1 vnoøené album"
-#~ msgstr[1] "1 vnoøené album"
-
-#, fuzzy
-#~ msgid "1 vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "1 hlas"
-#~ msgstr[1] "1 hlas"
-
-#, fuzzy
-#~ msgid "1 item"
-#~ msgid_plural "%d items"
-#~ msgstr[0] "1 položku"
-#~ msgstr[1] "1 položku"
 
 #~ msgid "Edit"
 #~ msgstr "Zmìnit"

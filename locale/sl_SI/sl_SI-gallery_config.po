@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2003-10-02 08:02+0100\n"
 "Last-Translator: Anze Jesenko <mesni@burek.uni.cc>\n"
 "Language-Team: Slovenian <mesni@burek.uni.cc>\n"
@@ -362,6 +362,7 @@ msgid "Try again?"
 msgstr ""
 
 #: ../setup/check_mail.php:60
+#, php-format
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr ""
 
@@ -412,6 +413,13 @@ msgstr ""
 msgid "%sClick here%s to see more details"
 msgstr ""
 
+#: ../setup/check_versions.php:70
+#, fuzzy, php-format
+msgid "One file is missing, corrupt or older than expected."
+msgid_plural "%d files are missing, corrupt or older than expected."
+msgstr[0] "%s je v redu. Dejanska razlièica (%s) je novej¹a kakor prièakovana (%s)."
+msgstr[1] "%s je v redu. Dejanska razlièica (%s) je novej¹a kakor prièakovana (%s)."
+
 #: ../setup/check_versions.php:72 ../setup/check_versions.php:103
 msgid "All files okay."
 msgstr ""
@@ -421,10 +429,24 @@ msgstr ""
 msgid "There are problems with the following files.  Please correct them before configuring %s."
 msgstr ""
 
+#: ../setup/check_versions.php:101
+#, fuzzy, php-format
+msgid "One file is more recent than expected."
+msgid_plural "%d files are more recent than expected."
+msgstr[0] "%s je v redu. Dejanska razlièica (%s) je novej¹a kakor prièakovana (%s)."
+msgstr[1] "%s je v redu. Dejanska razlièica (%s) je novej¹a kakor prièakovana (%s)."
+
 #: ../setup/check_versions.php:111
 #, php-format
 msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
 msgstr ""
+
+#: ../setup/check_versions.php:129
+#, php-format
+msgid "One file is up-to-date."
+msgid_plural "%d files are up-to-date."
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../setup/check_versions.php:131
 msgid "No files are up-to-date."
@@ -1935,6 +1957,13 @@ msgid "Save Config"
 msgstr ""
 
 #: ../setup/confirm.inc:461
+#, fuzzy, php-format
+msgid "One error."
+msgid_plural "%d errors."
+msgstr[0] "Ena napaka"
+msgstr[1] "Ena napaka"
+
+#: ../setup/confirm.inc:461
 #, fuzzy
 msgid "No errors."
 msgstr "brez napak"
@@ -2283,6 +2312,7 @@ msgid "Only the default locale for this machine is available, so date format wil
 msgstr ""
 
 #: ../setup/functions.inc:870
+#, php-format
 msgid "<b>System</b> locale selection required"
 msgstr ""
 
@@ -2300,6 +2330,7 @@ msgid "System locale"
 msgstr ""
 
 #: ../setup/functions.inc:943
+#, php-format
 msgid "<b>System</b> locale problems"
 msgstr ""
 
@@ -2387,6 +2418,7 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr ""
 
 #: ../setup/functions.inc:1293
+#, php-format
 msgid "All tested files up-to-date."
 msgstr ""
 
@@ -2703,18 +2735,6 @@ msgstr "Ime in priimek"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr ""
-
-#, fuzzy
-#~ msgid "One file is more recent than expected."
-#~ msgid_plural "%d files are more recent than expected."
-#~ msgstr[0] "%s je v redu. Dejanska razlièica (%s) je novej¹a kakor prièakovana (%s)."
-#~ msgstr[1] "%s je v redu. Dejanska razlièica (%s) je novej¹a kakor prièakovana (%s)."
-
-#, fuzzy
-#~ msgid "One error."
-#~ msgid_plural "%d errors."
-#~ msgstr[0] "Ena napaka"
-#~ msgstr[1] "Ena napaka"
 
 #~ msgid "errors"
 #~ msgstr "napake"

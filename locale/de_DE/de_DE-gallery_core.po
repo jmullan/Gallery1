@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2003-12-16 16:00+0100\n"
 "Last-Translator: Jens Tkotz <jens@f2h9.de>\n"
 "Language-Team: German <jens@f2h9.de\n"
@@ -172,8 +172,22 @@ msgid "Search"
 msgstr "Suche"
 
 #: ../albums.php:123
+#, fuzzy, php-format
+msgid "1 album"
+msgid_plural "%d albums"
+msgstr[0] "Keine Alben"
+msgstr[1] "Keine Alben"
+
+#: ../albums.php:123
 msgid "no albums"
 msgstr "Keine Alben"
+
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "Kein Hauptalbum"
+msgstr[1] "Kein Hauptalbum"
 
 #: ../albums.php:125
 msgid "No top-level albums"
@@ -185,8 +199,22 @@ msgid "%d total"
 msgstr "%d insgesamt"
 
 #: ../albums.php:129 ../view_album.php:267
+#, fuzzy, php-format
+msgid "1 image"
+msgid_plural "%d images"
+msgstr[0] "keine Bilder"
+msgstr[1] "keine Bilder"
+
+#: ../albums.php:129 ../view_album.php:267
 msgid "no images"
 msgstr "keine Bilder"
+
+#: ../albums.php:130 ../view_album.php:268
+#, fuzzy, php-format
+msgid "1 page"
+msgid_plural "%d pages"
+msgstr[0] "0 Seiten"
+msgstr[1] "0 Seiten"
 
 #: ../albums.php:130
 msgid "no pages"
@@ -296,10 +324,24 @@ msgstr "Aktualisiere Album"
 msgid "Last changed on %s."
 msgstr "Letzte &Auml;nderung am %s."
 
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "Dieses Album ist leer."
+msgstr[1] "Dieses Album ist leer."
+
 #: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Dieses Album wurde %s angeschaut seit dem %s."
+
+#: ../albums.php:365 ../view_album.php:864 ../view_album.php:881
+#, fuzzy, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "noch nie"
+msgstr[1] "noch nie"
 
 #: ../albums.php:365
 msgid "0 times"
@@ -332,6 +374,13 @@ msgstr "Elemente in diesem Album"
 #: ../captionator.php:168
 msgid "on"
 msgstr "auf"
+
+#: ../captionator.php:168
+#, fuzzy, php-format
+msgid "one page"
+msgid_plural "%d pages"
+msgstr[0] "0 Seiten"
+msgstr[1] "0 Seiten"
 
 #: ../captionator.php:196 ../captionator.php:304
 msgid "Save and Exit"
@@ -465,7 +514,7 @@ msgstr "Erstellung des Thumbnails nicht m&ouml;glich"
 
 #: ../classes/AlbumItem.php:580
 msgid "No preview"
-msgstr ""
+msgstr "Keine Vorschau"
 
 #: ../classes/AlbumItem.php:590 ../util.php:59
 msgid "No Caption"
@@ -1029,9 +1078,8 @@ msgid "Edit Watermark"
 msgstr "Wasserzeichen bearbeiten"
 
 #: ../edit_watermark.php:100 ../watermark_album.php:112
-#, fuzzy
 msgid "Preview"
-msgstr "Vorherige Seite"
+msgstr "Vorschau"
 
 #: ../extra_fields.php:57
 msgid "untitled field"
@@ -1613,22 +1661,19 @@ msgstr "Unten rechts"
 
 #: ../layout/watermarkform.inc:131
 msgid "Preview Size"
-msgstr ""
+msgstr "Vorschau Gr&ouml;&szlig;e"
 
 #: ../layout/watermarkform.inc:134
-#, fuzzy
 msgid "Resized"
-msgstr "Ver&auml;ndere Photogr&ouml;&szlig;e"
+msgstr "Zwischengr&ouml;&szlig;e"
 
 #: ../layout/watermarkform.inc:136
-#, fuzzy
 msgid "Full"
 msgstr "Voll"
 
 #: ../layout/watermarkform.inc:143
-#, fuzzy
 msgid "Watermark subalbums"
-msgstr "Album mit Wasserzeichen versehen."
+msgstr "Unterlalben mit Wasserzeichen versehen."
 
 #: ../lib/Form.php:56
 msgid "Check All"
@@ -1677,6 +1722,20 @@ msgstr "Durchschnittliche Punkte in Klammern"
 msgid "Album: %s"
 msgstr "Alben: %s"
 
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "Keine Stimmen"
+msgstr[1] "Keine Stimmen"
+
+#: ../lib/voting.php:315
+#, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] ""
+msgstr[1] ""
+
 #: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
@@ -1708,6 +1767,13 @@ msgstr "%d insgesamt."
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "Keine Stimmen"
+msgstr[1] "Keine Stimmen"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
@@ -1948,6 +2014,13 @@ msgstr "Es gab ein Problem beim Versenden der Email an %s"
 #, php-format
 msgid "%s added, %s skipped"
 msgstr "%s hinzugef&uuml;gt, %s &uuml;bersprungen"
+
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, php-format
+msgid "1 user"
+msgid_plural "%d users"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../multi_create_user.php:136
 msgid "Create Users"
@@ -2628,38 +2701,32 @@ msgid "Sort"
 msgstr "Sortiere"
 
 #: ../tools/find_orphans.php:114
-#, fuzzy
 msgid "Orphaned Albums"
-msgstr "Aktualisiere Alben"
+msgstr "Verweisete Alben"
 
 #: ../tools/find_orphans.php:122
-#, fuzzy
 msgid "Orphaned Album"
-msgstr "Aktualisiere Alben"
+msgstr "Verweistes Album"
 
 #: ../tools/find_orphans.php:122
-#, fuzzy
 msgid "Parent Album"
-msgstr "W&auml;hlen Sie das Stammalbum"
+msgstr "&Uuml;bergeordnetes Album"
 
 #: ../tools/find_orphans.php:126
-#, fuzzy
 msgid "Gallery Root"
-msgstr "Galerie"
+msgstr "Galerie Stammverzeichnis"
 
 #: ../tools/find_orphans.php:132
 msgid "Correct Them!"
-msgstr ""
+msgstr "Korrigieren"
 
 #: ../tools/find_orphans.php:138
-#, fuzzy
 msgid "Return to Gallery"
-msgstr "Betreten Sie die Gallery"
+msgstr "Zur&uuml;ck zur Gallery"
 
 #: ../tools/find_orphans.php:142
-#, fuzzy
 msgid "There are no orphaned albums in this Gallery."
-msgstr "Es trat ein unbekannter Fehler beim Funktionsaufruf von %s auf"
+msgstr "Es gibt keine verweisten Alben in dieser Gallerie."
 
 #: ../upgrade_album.php:84
 msgid "Progress"
@@ -2918,6 +2985,13 @@ msgstr "Konnte die lock Datei (%s) nicht &ouml;ffnen!"
 msgid "Could not acquire lock (%s)!"
 msgstr "Konnte die Datei nicht entsperren (%s)!"
 
+#: ../util.php:1949
+#, php-format
+msgid "1 hit"
+msgid_plural "%d hits"
+msgstr[0] ""
+msgstr[1] ""
+
 #: ../util.php:1954
 msgid "Sub-albums"
 msgstr "Unteralben"
@@ -2980,6 +3054,7 @@ msgid "Email not sent as it is disabled for this gallery"
 msgstr "Es wurde keine Email gesendet, da dieses Feature ausgeschaltet wurde."
 
 #: ../util.php:2500
+#, php-format
 msgid "Email not sent as no address provided"
 msgstr "Es wurde keine Email gesendet, da keine Emaildresse angegeben wurde."
 
@@ -3099,6 +3174,13 @@ msgstr "Individuelle Felder"
 #: ../view_album.php:124 ../view_photo.php:156 ../view_photo.php:157
 msgid "navigate UP"
 msgstr "Ebene hoch"
+
+#: ../view_album.php:266
+#, fuzzy, php-format
+msgid "1 sub-album"
+msgid_plural "%d sub-albums"
+msgstr[0] "Unteralben"
+msgstr[1] "Unteralben"
 
 #: ../view_album.php:266
 msgid "No albums"
@@ -3221,6 +3303,13 @@ msgstr "Sie M&Uuml;SSEN auf %s klicken, damit Ihre Stimme gewertet wird."
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Sie haben insgesamt %s Stimmen, k&ouml;nnen diese aber nachtr&auml;glich &auml;ndern."
 
+#: ../view_album.php:612
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "Keine Stimmen"
+msgstr[1] "Keine Stimmen"
+
 #: ../view_album.php:617
 msgid "You can change your choices if you wish."
 msgstr "Sie k&ouml;nnen Ihre Angabe ver&auml;ndern wenn Sie m&ouml;chten."
@@ -3242,6 +3331,13 @@ msgstr "Ge&auml;ndert: "
 msgid "Contains: "
 msgstr "Enth&auml;lt: "
 
+#: ../view_album.php:856
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "Elemente"
+msgstr[1] "Elemente"
+
 #: ../view_album.php:864 ../view_album.php:881
 msgid "Viewed:"
 msgstr "Betrachtet:"
@@ -3259,14 +3355,14 @@ msgid "Edit Thumbnail"
 msgstr "Bearbeite Thumbnail"
 
 #: ../view_album.php:923 ../view_album.php:959
-#, fuzzy, php-format
+#, php-format
 msgid "Rotate/Flip %s"
-msgstr "Drehe / Spiegele"
+msgstr "Drehe / Spiegele %s"
 
 #: ../view_album.php:932 ../view_album.php:995 ../view_album.php:1000
-#, fuzzy, php-format
+#, php-format
 msgid "Delete %s"
-msgstr "L&ouml;sche"
+msgstr "%s l&ouml;schen"
 
 #: ../view_album.php:937
 msgid "Edit Title"
@@ -3277,38 +3373,38 @@ msgid "Edit Description"
 msgstr "Bearbeite Beschreibung"
 
 #: ../view_album.php:968
-#, fuzzy, php-format
+#, php-format
 msgid "Highlight %s"
-msgstr "Hervorhebe"
+msgstr "%s hervorheben"
 
 #: ../view_album.php:972
 msgid "Reset Counter"
 msgstr "Z&auml;hler zur&uuml;cksetzen"
 
 #: ../view_album.php:977
-#, fuzzy, php-format
+#, php-format
 msgid "Move %s"
-msgstr "Verschiebe "
+msgstr "%s verschieben"
 
 #: ../view_album.php:978
-#, fuzzy, php-format
+#, php-format
 msgid "Reorder %s"
-msgstr "Ordne um "
+msgstr "%s umorrdnen"
 
 #: ../view_album.php:980
-#, fuzzy, php-format
+#, php-format
 msgid "Copy %s"
-msgstr "Kopiere "
+msgstr "%s kopieren"
 
 #: ../view_album.php:987
-#, fuzzy, php-format
+#, php-format
 msgid "Show %s"
-msgstr "Zeige"
+msgstr "%s anzeigen"
 
 #: ../view_album.php:989
-#, fuzzy, php-format
+#, php-format
 msgid "Hide %s"
-msgstr "Verstecke"
+msgstr "%s verstecken"
 
 #: ../view_album.php:1006
 msgid "Permissions"
@@ -3400,82 +3496,5 @@ msgid "Watermarking album."
 msgstr "Lege Wasserzeichen auf alle Bilder des Albums."
 
 #: ../watermark_album.php:86
-#, fuzzy
 msgid "No items to watermark."
-msgstr "Keine Stimmen bisher."
-
-#~ msgid "1 album"
-#~ msgid_plural "%d albums"
-#~ msgstr[0] "1 Album"
-#~ msgstr[1] "%d Alben"
-
-#~ msgid "1 top-level album"
-#~ msgid_plural "%d top-level albums"
-#~ msgstr[0] "1 Hauptalbum"
-#~ msgstr[1] "%d Hauptalben"
-
-#~ msgid "1 image"
-#~ msgid_plural "%d images"
-#~ msgstr[0] "1 Bild"
-#~ msgstr[1] "%d Bilder"
-
-#~ msgid "1 page"
-#~ msgid_plural "%d pages"
-#~ msgstr[0] "1 Seite"
-#~ msgstr[1] "%d Seiten"
-
-#~ msgid "This album contains one item"
-#~ msgid_plural "This album contains %d items"
-#~ msgstr[0] "Dieses Album enth&auml;lt ein Element"
-#~ msgstr[1] "Dieses Album enth&auml;lt %d Elemente."
-
-#~ msgid "1 time"
-#~ msgid_plural "%d times"
-#~ msgstr[0] "1 mal"
-#~ msgstr[1] "%d mal"
-
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "1 Stimme"
-#~ msgstr[1] "%d Stimme"
-
-#~ msgid "Result from one voter"
-#~ msgid_plural "Result of %d voters"
-#~ msgstr[0] "Ergebnis von einem W&auml;hler."
-#~ msgstr[1] "Ergebnis von %d W&auml;hlern."
-
-#~ msgid "one vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "Eine Stimme"
-#~ msgstr[1] "%d Stimmen"
-
-#~ msgid "1 user"
-#~ msgid_plural "%d users"
-#~ msgstr[0] "1 Benutzer"
-#~ msgstr[1] "%d Benutzer"
-
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "1 mal gesehen"
-#~ msgstr[1] "%d mal gesehen"
-
-#~ msgid "1 sub-album"
-#~ msgid_plural "%d sub-albums"
-#~ msgstr[0] "1 Unteralbum"
-#~ msgstr[1] "%d Unteralben"
-
-#~ msgid "1 vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "1 Stimme"
-#~ msgstr[1] "%d Stimmen"
-
-#~ msgid "1 item"
-#~ msgid_plural "%d items"
-#~ msgstr[0] "1 Element"
-#~ msgstr[1] "%d Elemente"
-
-#~ msgid "Edit"
-#~ msgstr "Bearbeiten Sie"
-
-#~ msgid "description"
-#~ msgstr "die Beschreibung"
+msgstr "Keine Elemente f&uuml;r Wasserzeichen vorhanden."

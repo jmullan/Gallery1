@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2003-12-24 14:33+0200\n"
 "Last-Translator: Rimvydas Zilinskas <aladdin@antakalnis.lt>\n"
 "Language-Team: Vilius Ðumskas <vilius@lnk.lt>\n"
@@ -163,9 +163,23 @@ msgid "Search"
 msgstr "Ieðkoti"
 
 #: ../albums.php:123
+#, fuzzy, php-format
+msgid "1 album"
+msgid_plural "%d albums"
+msgstr[0] "1 albumas"
+msgstr[1] "1 albumas"
+
+#: ../albums.php:123
 #, fuzzy
 msgid "no albums"
 msgstr "Albumø nëra"
+
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "1 pagr. albumas"
+msgstr[1] "1 pagr. albumas"
 
 #: ../albums.php:125
 #, fuzzy
@@ -178,8 +192,22 @@ msgid "%d total"
 msgstr "viso %d"
 
 #: ../albums.php:129 ../view_album.php:267
+#, fuzzy, php-format
+msgid "1 image"
+msgid_plural "%d images"
+msgstr[0] "1 nuotrauka"
+msgstr[1] "1 nuotrauka"
+
+#: ../albums.php:129 ../view_album.php:267
 msgid "no images"
 msgstr "0 nuotraukø"
+
+#: ../albums.php:130 ../view_album.php:268
+#, fuzzy, php-format
+msgid "1 page"
+msgid_plural "%d pages"
+msgstr[0] "1 puslapyje"
+msgstr[1] "1 puslapyje"
 
 #: ../albums.php:130
 msgid "no pages"
@@ -290,10 +318,24 @@ msgstr "atnaujinti albumà"
 msgid "Last changed on %s."
 msgstr "Paskutiná kartà keistas %s."
 
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "Ðiame albume yra %s."
+msgstr[1] "Ðiame albume yra %s."
+
 #: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Ðis albumas buvo perþiûrëtas %s nuo %s."
+
+#: ../albums.php:365 ../view_album.php:864 ../view_album.php:881
+#, fuzzy, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "1 kartà"
+msgstr[1] "1 kartà"
 
 #: ../albums.php:365
 msgid "0 times"
@@ -326,6 +368,13 @@ msgstr "elementai(-ø) ðiame albume"
 #: ../captionator.php:168
 msgid "on"
 msgstr "ant"
+
+#: ../captionator.php:168
+#, fuzzy, php-format
+msgid "one page"
+msgid_plural "%d pages"
+msgstr[0] "0 puslapiø"
+msgstr[1] "0 puslapiø"
 
 #: ../captionator.php:196 ../captionator.php:304
 msgid "Save and Exit"
@@ -1702,6 +1751,20 @@ msgstr "Vidutiniðkai taðkø"
 msgid "Album: %s"
 msgstr "Albumas: %s"
 
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "1 balsuotojas"
+msgstr[1] "1 balsuotojas"
+
+#: ../lib/voting.php:315
+#, fuzzy, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Rezultatai ið %s."
+msgstr[1] "Rezultatai ið %s."
+
 #: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
@@ -1733,6 +1796,13 @@ msgstr "Numeris %d ið visø."
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "Balsø nëra"
+msgstr[1] "Balsø nëra"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
@@ -1978,6 +2048,13 @@ msgstr "Vartotojas %s negavo laiðko"
 #, php-format
 msgid "%s added, %s skipped"
 msgstr "%s pridëtas, %s praleistas"
+
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, fuzzy, php-format
+msgid "1 user"
+msgid_plural "%d users"
+msgstr[0] "1 vartotojas"
+msgstr[1] "1 vartotojas"
 
 #: ../multi_create_user.php:136
 msgid "Create Users"
@@ -2957,6 +3034,13 @@ msgstr "Negaliu uþrakinti failo (%s)!"
 msgid "Could not acquire lock (%s)!"
 msgstr "Negaliu apsaugoti failo (%s)!"
 
+#: ../util.php:1949
+#, fuzzy, php-format
+msgid "1 hit"
+msgid_plural "%d hits"
+msgstr[0] "1 paspaudimas"
+msgstr[1] "1 paspaudimas"
+
 #: ../util.php:1954
 msgid "Sub-albums"
 msgstr "Vidiniai-albumai"
@@ -3019,6 +3103,7 @@ msgid "Email not sent as it is disabled for this gallery"
 msgstr "Laiðkas neiðsiøstas, nes ðioje galerijoje laiðku siuntimas iðjungtas"
 
 #: ../util.php:2500
+#, php-format
 msgid "Email not sent as no address provided"
 msgstr "Laiðkas neiðsiøstas, nes nëra nurodyta el. paðto adreso"
 
@@ -3141,6 +3226,13 @@ msgid "navigate UP"
 msgstr "keliauti AUKÐTYN"
 
 #: ../view_album.php:266
+#, fuzzy, php-format
+msgid "1 sub-album"
+msgid_plural "%d sub-albums"
+msgstr[0] "1 vidinis-albumas"
+msgstr[1] "1 vidinis-albumas"
+
+#: ../view_album.php:266
 msgid "No albums"
 msgstr "Albumø nëra"
 
@@ -3261,6 +3353,13 @@ msgstr "Norëdami kad jûsø balsas bûtø uþregistruotas PRIVALOTE paspausti ant %s.
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Ið viso turite %s ir, jeigu norite, galite juos pakeisti."
 
+#: ../view_album.php:612
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "1 balsas"
+msgstr[1] "1 balsas"
+
 #: ../view_album.php:617
 msgid "You can change your choices if you wish."
 msgstr "Jeigu norite, galite pakeisti savo pasirinkimà."
@@ -3281,6 +3380,13 @@ msgstr "Keistas: "
 #: ../view_album.php:856
 msgid "Contains: "
 msgstr "Yra: "
+
+#: ../view_album.php:856
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "1 elementas"
+msgstr[1] "1 elementas"
 
 #: ../view_album.php:864 ../view_album.php:881
 msgid "Viewed:"
@@ -3445,90 +3551,6 @@ msgstr ""
 #, fuzzy
 msgid "No items to watermark."
 msgstr "Kolkas balsø nëra."
-
-#, fuzzy
-#~ msgid "1 album"
-#~ msgid_plural "%d albums"
-#~ msgstr[0] "1 albumas"
-#~ msgstr[1] "1 albumas"
-
-#, fuzzy
-#~ msgid "1 top-level album"
-#~ msgid_plural "%d top-level albums"
-#~ msgstr[0] "1 pagr. albumas"
-#~ msgstr[1] "1 pagr. albumas"
-
-#, fuzzy
-#~ msgid "1 image"
-#~ msgid_plural "%d images"
-#~ msgstr[0] "1 nuotrauka"
-#~ msgstr[1] "1 nuotrauka"
-
-#, fuzzy
-#~ msgid "1 page"
-#~ msgid_plural "%d pages"
-#~ msgstr[0] "1 puslapyje"
-#~ msgstr[1] "1 puslapyje"
-
-#, fuzzy
-#~ msgid "This album contains one item"
-#~ msgid_plural "This album contains %d items"
-#~ msgstr[0] "Ðiame albume yra %s."
-#~ msgstr[1] "Ðiame albume yra %s."
-
-#, fuzzy
-#~ msgid "1 time"
-#~ msgid_plural "%d times"
-#~ msgstr[0] "1 kartà"
-#~ msgstr[1] "1 kartà"
-
-#, fuzzy
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "1 balsuotojas"
-#~ msgstr[1] "1 balsuotojas"
-
-#, fuzzy
-#~ msgid "Result from one voter"
-#~ msgid_plural "Result of %d voters"
-#~ msgstr[0] "Rezultatai ið %s."
-#~ msgstr[1] "Rezultatai ið %s."
-
-#, fuzzy
-#~ msgid "one vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "Balsø nëra"
-#~ msgstr[1] "Balsø nëra"
-
-#, fuzzy
-#~ msgid "1 user"
-#~ msgid_plural "%d users"
-#~ msgstr[0] "1 vartotojas"
-#~ msgstr[1] "1 vartotojas"
-
-#, fuzzy
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "1 paspaudimas"
-#~ msgstr[1] "1 paspaudimas"
-
-#, fuzzy
-#~ msgid "1 sub-album"
-#~ msgid_plural "%d sub-albums"
-#~ msgstr[0] "1 vidinis-albumas"
-#~ msgstr[1] "1 vidinis-albumas"
-
-#, fuzzy
-#~ msgid "1 vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "1 balsas"
-#~ msgstr[1] "1 balsas"
-
-#, fuzzy
-#~ msgid "1 item"
-#~ msgid_plural "%d items"
-#~ msgstr[0] "1 elementas"
-#~ msgstr[1] "1 elementas"
 
 #~ msgid "Edit"
 #~ msgstr "Redaguoti"

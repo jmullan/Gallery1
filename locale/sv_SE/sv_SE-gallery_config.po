@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2004-04-08 14:44+0100\n"
 "Last-Translator: Peter Liversten <skansberget@telia.com>\n"
 "Language-Team: Swedish <crille@swipnet.se>\n"
@@ -354,6 +354,7 @@ msgid "Try again?"
 msgstr "Försök igen?"
 
 #: ../setup/check_mail.php:60
+#, php-format
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "Detta möjliggör för dig att konfirmera att e-posten fungerar ordentligt på ditt system.  Skriv in din e-postadress nedan och en e-post kommer att skickas till dig.  Om du får den så vet du att e-posten fungerar på ditt system. "
 
@@ -402,6 +403,13 @@ msgstr "Om du ser några felmeddelanden så rekommenderar vi att hämta de aktuella
 msgid "%sClick here%s to see more details"
 msgstr "%sKlicka här%s för att se fler detaljer"
 
+#: ../setup/check_versions.php:70
+#, fuzzy, php-format
+msgid "One file is missing, corrupt or older than expected."
+msgid_plural "%d files are missing, corrupt or older than expected."
+msgstr[0] "%s saknas, korrupta eller är äldre än förväntat."
+msgstr[1] "%s saknas, korrupta eller är äldre än förväntat."
+
 #: ../setup/check_versions.php:72 ../setup/check_versions.php:103
 #, fuzzy
 msgid "All files okay."
@@ -412,10 +420,24 @@ msgstr "Alla %d testade filer uppdaterade."
 msgid "There are problems with the following files.  Please correct them before configuring %s."
 msgstr "Det är problem med följande filer.  Vänligen rätta till dem innan du forsätter %s."
 
+#: ../setup/check_versions.php:101
+#, fuzzy, php-format
+msgid "One file is more recent than expected."
+msgid_plural "%d files are more recent than expected."
+msgstr[0] "%s nyare än förväntat"
+msgstr[1] "%s nyare än förväntat"
+
 #: ../setup/check_versions.php:111
 #, php-format
 msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
 msgstr "Följande filer är mer uppdaterade än förväntat för denna version av %s.  Om du använder en förutgåva av koden så är detta förväntat."
+
+#: ../setup/check_versions.php:129
+#, fuzzy, php-format
+msgid "One file is up-to-date."
+msgid_plural "%d files are up-to-date."
+msgstr[0] "Alla %d testade filer uppdaterade."
+msgstr[1] "Alla %d testade filer uppdaterade."
 
 #: ../setup/check_versions.php:131
 #, fuzzy
@@ -1915,6 +1937,13 @@ msgid "Save Config"
 msgstr "Spara konfiguration"
 
 #: ../setup/confirm.inc:461
+#, fuzzy, php-format
+msgid "One error."
+msgid_plural "%d errors."
+msgstr[0] "Ett felmeddelande"
+msgstr[1] "Ett felmeddelande"
+
+#: ../setup/confirm.inc:461
 #, fuzzy
 msgid "No errors."
 msgstr "Inga felmeddelanden"
@@ -2258,6 +2287,7 @@ msgid "Only the default locale for this machine is available, so date format wil
 msgstr "Endast förvald nationell inställning för denna maskin är tillgängligt så datumformatet kommer inte ändras för olika språk."
 
 #: ../setup/functions.inc:870
+#, php-format
 msgid "<b>System</b> locale selection required"
 msgstr "Val av nationell <b>system</b>inställning krävs"
 
@@ -2275,6 +2305,7 @@ msgid "System locale"
 msgstr "Systemets teckenuppsättning"
 
 #: ../setup/functions.inc:943
+#, php-format
 msgid "<b>System</b> locale problems"
 msgstr "Nationella <b>system</b>inställningsproblem"
 
@@ -2361,7 +2392,7 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d filer är mer uppdaterade än förväntat.  Detta är OK om du använder en förutgåva, beta, CVS eller anpassad kod."
 
 #: ../setup/functions.inc:1293
-#, fuzzy
+#, fuzzy, php-format
 msgid "All tested files up-to-date."
 msgstr "Alla %d testade filer uppdaterade."
 
@@ -2674,30 +2705,6 @@ msgstr "Inga filer"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr ""
-
-#, fuzzy
-#~ msgid "One file is missing, corrupt or older than expected."
-#~ msgid_plural "%d files are missing, corrupt or older than expected."
-#~ msgstr[0] "%s saknas, korrupta eller är äldre än förväntat."
-#~ msgstr[1] "%s saknas, korrupta eller är äldre än förväntat."
-
-#, fuzzy
-#~ msgid "One file is more recent than expected."
-#~ msgid_plural "%d files are more recent than expected."
-#~ msgstr[0] "%s nyare än förväntat"
-#~ msgstr[1] "%s nyare än förväntat"
-
-#, fuzzy
-#~ msgid "One file is up-to-date."
-#~ msgid_plural "%d files are up-to-date."
-#~ msgstr[0] "Alla %d testade filer uppdaterade."
-#~ msgstr[1] "Alla %d testade filer uppdaterade."
-
-#, fuzzy
-#~ msgid "One error."
-#~ msgid_plural "%d errors."
-#~ msgstr[0] "Ett felmeddelande"
-#~ msgstr[1] "Ett felmeddelande"
 
 #~ msgid "1 file"
 #~ msgstr "1 fil"

@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2004-01-05 13:21+0100\n"
 "Last-Translator: Gunnlaugur Thor Briem <gthb@hi.is>\n"
 "Language-Team:  <>\n"
@@ -177,9 +177,23 @@ msgid "Search"
 msgstr "Leita"
 
 #: ../albums.php:123
+#, fuzzy, php-format
+msgid "1 album"
+msgid_plural "%d albums"
+msgstr[0] "1 albúm"
+msgstr[1] "1 albúm"
+
+#: ../albums.php:123
 #, fuzzy
 msgid "no albums"
 msgstr "Engin albúm"
+
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "Eitt albúm á efsta lagi"
+msgstr[1] "Eitt albúm á efsta lagi"
 
 #: ../albums.php:125
 #, fuzzy
@@ -192,8 +206,22 @@ msgid "%d total"
 msgstr "%d alls"
 
 #: ../albums.php:129 ../view_album.php:267
+#, fuzzy, php-format
+msgid "1 image"
+msgid_plural "%d images"
+msgstr[0] "1 mynd"
+msgstr[1] "1 mynd"
+
+#: ../albums.php:129 ../view_album.php:267
 msgid "no images"
 msgstr "engin mynd"
+
+#: ../albums.php:130 ../view_album.php:268
+#, fuzzy, php-format
+msgid "1 page"
+msgid_plural "%d pages"
+msgstr[0] "einni síðu"
+msgstr[1] "einni síðu"
 
 #: ../albums.php:130
 msgid "no pages"
@@ -305,10 +333,24 @@ msgstr "uppfæra albúm"
 msgid "Last changed on %s."
 msgstr "Síðast breytt %s."
 
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "Þetta albúm inniheldur %s."
+msgstr[1] "Þetta albúm inniheldur %s."
+
 #: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Þetta albúm hefur verið skoðað %s síðan %s."
+
+#: ../albums.php:365 ../view_album.php:864 ../view_album.php:881
+#, fuzzy, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "einu sinni"
+msgstr[1] "einu sinni"
 
 #: ../albums.php:365
 msgid "0 times"
@@ -341,6 +383,13 @@ msgstr "myndir í þessu albúmi"
 #: ../captionator.php:168
 msgid "on"
 msgstr "á"
+
+#: ../captionator.php:168
+#, fuzzy, php-format
+msgid "one page"
+msgid_plural "%d pages"
+msgstr[0] "engum síðum"
+msgstr[1] "engum síðum"
 
 #: ../captionator.php:196 ../captionator.php:304
 msgid "Save and Exit"
@@ -1720,6 +1769,20 @@ msgstr ""
 msgid "Album: %s"
 msgstr "Albúm: %s"
 
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "einn kjósandi"
+msgstr[1] "einn kjósandi"
+
+#: ../lib/voting.php:315
+#, fuzzy, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Staðan frá %s."
+msgstr[1] "Staðan frá %s."
+
 #: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
@@ -1751,6 +1814,13 @@ msgstr "Númer %d alls"
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "Engin atkv´ði"
+msgstr[1] "Engin atkv´ði"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
@@ -1996,6 +2066,13 @@ msgstr "Tókst ekki að senda tölvupóst til %s"
 #, php-format
 msgid "%s added, %s skipped"
 msgstr "%s bætt við, %s sleppt"
+
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, fuzzy, php-format
+msgid "1 user"
+msgid_plural "%d users"
+msgstr[0] "1 notanda"
+msgstr[1] "1 notanda"
 
 #: ../multi_create_user.php:136
 msgid "Create Users"
@@ -2976,6 +3053,13 @@ msgstr "Gat ekki opnað læsi skrá (%s)!"
 msgid "Could not acquire lock (%s)!"
 msgstr "Gat ekki opnað læsi skrá (%s)!"
 
+#: ../util.php:1949
+#, fuzzy, php-format
+msgid "1 hit"
+msgid_plural "%d hits"
+msgstr[0] "ein skoðun"
+msgstr[1] "ein skoðun"
+
 #: ../util.php:1954
 msgid "Sub-albums"
 msgstr "Undir-albúm"
@@ -3039,6 +3123,7 @@ msgid "Email not sent as it is disabled for this gallery"
 msgstr "Tölvupóstur ekki sendur, því að hann var gerður óvirkur fyrir þetta myndasafn"
 
 #: ../util.php:2500
+#, php-format
 msgid "Email not sent as no address provided"
 msgstr "Tölvupóstur ekki sendur, því að ekkert tölvupóstfang var gefið upp"
 
@@ -3153,6 +3238,13 @@ msgstr "sérsniðin svæði"
 #: ../view_album.php:124 ../view_photo.php:156 ../view_photo.php:157
 msgid "navigate UP"
 msgstr "vafra UPP"
+
+#: ../view_album.php:266
+#, fuzzy, php-format
+msgid "1 sub-album"
+msgid_plural "%d sub-albums"
+msgstr[0] "Eitt undiralbúm"
+msgstr[1] "Eitt undiralbúm"
 
 #: ../view_album.php:266
 msgid "No albums"
@@ -3275,6 +3367,13 @@ msgstr ""
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Þú getur breytt vali þínu ef þú vilt."
 
+#: ../view_album.php:612
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "eitt atkvæði"
+msgstr[1] "eitt atkvæði"
+
 #: ../view_album.php:617
 msgid "You can change your choices if you wish."
 msgstr "Þú getur breytt vali þínu ef þú vilt."
@@ -3295,6 +3394,13 @@ msgstr "Breytt:"
 #: ../view_album.php:856
 msgid "Contains: "
 msgstr "Inniheldur:"
+
+#: ../view_album.php:856
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "eina mynd"
+msgstr[1] "eina mynd"
 
 #: ../view_album.php:864 ../view_album.php:881
 msgid "Viewed:"
@@ -3459,90 +3565,6 @@ msgstr ""
 #, fuzzy
 msgid "No items to watermark."
 msgstr "Engin atkvæði enn."
-
-#, fuzzy
-#~ msgid "1 album"
-#~ msgid_plural "%d albums"
-#~ msgstr[0] "1 albúm"
-#~ msgstr[1] "1 albúm"
-
-#, fuzzy
-#~ msgid "1 top-level album"
-#~ msgid_plural "%d top-level albums"
-#~ msgstr[0] "Eitt albúm á efsta lagi"
-#~ msgstr[1] "Eitt albúm á efsta lagi"
-
-#, fuzzy
-#~ msgid "1 image"
-#~ msgid_plural "%d images"
-#~ msgstr[0] "1 mynd"
-#~ msgstr[1] "1 mynd"
-
-#, fuzzy
-#~ msgid "1 page"
-#~ msgid_plural "%d pages"
-#~ msgstr[0] "einni síðu"
-#~ msgstr[1] "einni síðu"
-
-#, fuzzy
-#~ msgid "This album contains one item"
-#~ msgid_plural "This album contains %d items"
-#~ msgstr[0] "Þetta albúm inniheldur %s."
-#~ msgstr[1] "Þetta albúm inniheldur %s."
-
-#, fuzzy
-#~ msgid "1 time"
-#~ msgid_plural "%d times"
-#~ msgstr[0] "einu sinni"
-#~ msgstr[1] "einu sinni"
-
-#, fuzzy
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "einn kjósandi"
-#~ msgstr[1] "einn kjósandi"
-
-#, fuzzy
-#~ msgid "Result from one voter"
-#~ msgid_plural "Result of %d voters"
-#~ msgstr[0] "Staðan frá %s."
-#~ msgstr[1] "Staðan frá %s."
-
-#, fuzzy
-#~ msgid "one vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "Engin atkv´ði"
-#~ msgstr[1] "Engin atkv´ði"
-
-#, fuzzy
-#~ msgid "1 user"
-#~ msgid_plural "%d users"
-#~ msgstr[0] "1 notanda"
-#~ msgstr[1] "1 notanda"
-
-#, fuzzy
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "ein skoðun"
-#~ msgstr[1] "ein skoðun"
-
-#, fuzzy
-#~ msgid "1 sub-album"
-#~ msgid_plural "%d sub-albums"
-#~ msgstr[0] "Eitt undiralbúm"
-#~ msgstr[1] "Eitt undiralbúm"
-
-#, fuzzy
-#~ msgid "1 vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "eitt atkvæði"
-#~ msgstr[1] "eitt atkvæði"
-
-#, fuzzy
-#~ msgid "1 item"
-#~ msgid_plural "%d items"
-#~ msgstr[0] "eina mynd"
-#~ msgstr[1] "eina mynd"
 
 #~ msgid "Edit"
 #~ msgstr "Breyta"

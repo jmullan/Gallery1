@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-17 14:13+0200\n"
+"POT-Creation-Date: 2004-05-17 15:00+0200\n"
 "PO-Revision-Date: 2003-08-27 18:13+0800\n"
 "Last-Translator: Merlin Ma <merlin@turbolinux.com.cn>\n"
 "Language-Team: Simplified Chinese <naoki@cmfans.cn>\n"
@@ -179,9 +179,23 @@ msgid "Search"
 msgstr "搜寻"
 
 #: ../albums.php:123
+#, fuzzy, php-format
+msgid "1 album"
+msgid_plural "%d albums"
+msgstr[0] "个相册"
+msgstr[1] "个相册"
+
+#: ../albums.php:123
 #, fuzzy
 msgid "no albums"
 msgstr "尚无相册"
+
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "个顶层相册"
+msgstr[1] "个顶层相册"
 
 #: ../albums.php:125
 #, fuzzy
@@ -194,8 +208,22 @@ msgid "%d total"
 msgstr "全部有 %d 个相册"
 
 #: ../albums.php:129 ../view_album.php:267
+#, fuzzy, php-format
+msgid "1 image"
+msgid_plural "%d images"
+msgstr[0] "个文件"
+msgstr[1] "个文件"
+
+#: ../albums.php:129 ../view_album.php:267
 msgid "no images"
 msgstr "没有文件"
+
+#: ../albums.php:130 ../view_album.php:268
+#, fuzzy, php-format
+msgid "1 page"
+msgid_plural "%d pages"
+msgstr[0] "页"
+msgstr[1] "页"
 
 #: ../albums.php:130
 msgid "no pages"
@@ -308,10 +336,24 @@ msgstr "更新相册"
 msgid "Last changed on %s."
 msgstr "上次更新：%s. "
 
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "<br>%s在这个相册里面. "
+msgstr[1] "<br>%s在这个相册里面. "
+
 #: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "人气：%s (从 %s 开始计算)"
+
+#: ../albums.php:365 ../view_album.php:864 ../view_album.php:881
+#, fuzzy, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "度"
+msgstr[1] "度"
 
 #: ../albums.php:365
 msgid "0 times"
@@ -344,6 +386,13 @@ msgstr "份文件在此相册中"
 #: ../captionator.php:168
 msgid "on"
 msgstr "总共"
+
+#: ../captionator.php:168
+#, fuzzy, php-format
+msgid "one page"
+msgid_plural "%d pages"
+msgstr[0] "0 页"
+msgstr[1] "0 页"
 
 #: ../captionator.php:196 ../captionator.php:304
 msgid "Save and Exit"
@@ -1748,6 +1797,20 @@ msgstr ""
 msgid "Album: %s"
 msgstr "相册"
 
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "注意"
+msgstr[1] "注意"
+
+#: ../lib/voting.php:315
+#, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] ""
+msgstr[1] ""
+
 #: ../lib/voting.php:324
 #, fuzzy, php-format
 msgid "%s: %s points; "
@@ -1782,6 +1845,13 @@ msgstr ""
 #, fuzzy, php-format
 msgid "%s: %s"
 msgstr "%s, %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "注意"
+msgstr[1] "注意"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
@@ -2034,6 +2104,13 @@ msgstr "无法写入 %s. "
 #, php-format
 msgid "%s added, %s skipped"
 msgstr ""
+
+#: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, fuzzy, php-format
+msgid "1 user"
+msgid_plural "%d users"
+msgstr[0] "注意"
+msgstr[1] "注意"
 
 #: ../multi_create_user.php:136
 #, fuzzy
@@ -3037,6 +3114,13 @@ msgstr "无法开启 lock file (%s)! "
 msgid "Could not acquire lock (%s)!"
 msgstr "无法获得 lock (%s)! "
 
+#: ../util.php:1949
+#, fuzzy, php-format
+msgid "1 hit"
+msgid_plural "%d hits"
+msgstr[0] "度"
+msgstr[1] "度"
+
 #: ../util.php:1954
 msgid "Sub-albums"
 msgstr "子相册"
@@ -3099,7 +3183,7 @@ msgid "Email not sent as it is disabled for this gallery"
 msgstr ""
 
 #: ../util.php:2500
-#, fuzzy
+#, fuzzy, php-format
 msgid "Email not sent as no address provided"
 msgstr "您一定要输入用户名"
 
@@ -3221,6 +3305,13 @@ msgstr "自订栏位"
 #: ../view_album.php:124 ../view_photo.php:156 ../view_photo.php:157
 msgid "navigate UP"
 msgstr ""
+
+#: ../view_album.php:266
+#, fuzzy, php-format
+msgid "1 sub-album"
+msgid_plural "%d sub-albums"
+msgstr[0] "个子相册"
+msgstr[1] "个子相册"
 
 #: ../view_album.php:266
 msgid "No albums"
@@ -3351,6 +3442,13 @@ msgstr ""
 msgid "You have a total of %s and can change them if you wish."
 msgstr "您可以在这边更改个人信息. "
 
+#: ../view_album.php:612
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "注意"
+msgstr[1] "注意"
+
 #: ../view_album.php:617
 #, fuzzy
 msgid "You can change your choices if you wish."
@@ -3372,6 +3470,13 @@ msgstr "更新： "
 #: ../view_album.php:856
 msgid "Contains: "
 msgstr "内容： "
+
+#: ../view_album.php:856
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "项"
+msgstr[1] "项"
 
 #: ../view_album.php:864 ../view_album.php:881
 msgid "Viewed:"
@@ -3538,84 +3643,6 @@ msgstr ""
 #, fuzzy
 msgid "No items to watermark."
 msgstr "注意"
-
-#, fuzzy
-#~ msgid "1 album"
-#~ msgid_plural "%d albums"
-#~ msgstr[0] "个相册"
-#~ msgstr[1] "个相册"
-
-#, fuzzy
-#~ msgid "1 top-level album"
-#~ msgid_plural "%d top-level albums"
-#~ msgstr[0] "个顶层相册"
-#~ msgstr[1] "个顶层相册"
-
-#, fuzzy
-#~ msgid "1 image"
-#~ msgid_plural "%d images"
-#~ msgstr[0] "个文件"
-#~ msgstr[1] "个文件"
-
-#, fuzzy
-#~ msgid "1 page"
-#~ msgid_plural "%d pages"
-#~ msgstr[0] "页"
-#~ msgstr[1] "页"
-
-#, fuzzy
-#~ msgid "This album contains one item"
-#~ msgid_plural "This album contains %d items"
-#~ msgstr[0] "<br>%s在这个相册里面. "
-#~ msgstr[1] "<br>%s在这个相册里面. "
-
-#, fuzzy
-#~ msgid "1 time"
-#~ msgid_plural "%d times"
-#~ msgstr[0] "度"
-#~ msgstr[1] "度"
-
-#, fuzzy
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "注意"
-#~ msgstr[1] "注意"
-
-#, fuzzy
-#~ msgid "one vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "注意"
-#~ msgstr[1] "注意"
-
-#, fuzzy
-#~ msgid "1 user"
-#~ msgid_plural "%d users"
-#~ msgstr[0] "注意"
-#~ msgstr[1] "注意"
-
-#, fuzzy
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "度"
-#~ msgstr[1] "度"
-
-#, fuzzy
-#~ msgid "1 sub-album"
-#~ msgid_plural "%d sub-albums"
-#~ msgstr[0] "个子相册"
-#~ msgstr[1] "个子相册"
-
-#, fuzzy
-#~ msgid "1 vote"
-#~ msgid_plural "%d votes"
-#~ msgstr[0] "注意"
-#~ msgstr[1] "注意"
-
-#, fuzzy
-#~ msgid "1 item"
-#~ msgid_plural "%d items"
-#~ msgstr[0] "项"
-#~ msgstr[1] "项"
 
 #~ msgid "Edit"
 #~ msgstr "修改"
