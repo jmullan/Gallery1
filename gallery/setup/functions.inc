@@ -1218,7 +1218,7 @@ function check_admins() {
 
 	$admins=array();
 	
-	if (isset($gallery->app->userDir)) {
+	if (isset($gallery->app->userDir) && fs_is_dir($gallery->app->userDir)) {
 		require($GALLERY_BASEDIR . "classes/User.php");
 		require($GALLERY_BASEDIR . "classes/EverybodyUser.php");
 		require($GALLERY_BASEDIR . "classes/NobodyUser.php");
