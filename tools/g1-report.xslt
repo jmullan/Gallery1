@@ -10,6 +10,7 @@
 				<xsl:value-of select="@id"/>
 			</td>
 			<xsl:apply-templates select="percent_done"/>
+			<xsl:apply-templates select="lines"/>
 			<xsl:apply-templates select="translated"/>
 			<xsl:apply-templates select="fuzzy"/>
 			<xsl:apply-templates select="untranslated"/>
@@ -38,6 +39,12 @@
 	<xsl:template match="percent_done">
 		<td align="right">
 			<xsl:attribute name="style"><xsl:value-of select="@style"/></xsl:attribute>
+			<xsl:apply-templates/>
+		</td>
+	</xsl:template>
+	<xsl:template match="lines">
+		<td>
+			<xsl:attribute name="class"><xsl:value-of select="@scheme"/></xsl:attribute>
 			<xsl:apply-templates/>
 		</td>
 	</xsl:template>
@@ -135,6 +142,7 @@
 						<th>Language</th>
 						<th>Locale</th>
 						<th>Status</th>
+						<th valign="bottom" style="width:30px;">A<br/>l<br/>l</th>
 						<th valign="bottom" style="width:30px;">T<br/>r<br/>a<br/>n<br/>s<br/>l<br/>a<br/>t<br/>e<br/>d</th>
 						<th valign="bottom" style="width:30px;">F<br/>u<br/>z<br/>z<br/>y</th>
 						<th valign="bottom" style="width:30px;">U<br/>n<br/>t<br/>r<br/>a<br/>n<br/>s<br/>l<br/>a<br/>t<br/>e<br/>d</th>

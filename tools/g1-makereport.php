@@ -30,8 +30,8 @@ while ($file = readdir($handle)) {
 				$obsolete++;
 			}
 		}
-		$all=$translated+$fuzzy+$untranslated;
-		$percent_done=round($translated/$all*100,2);
+		$all=$translated+$untranslated;
+		$percent_done=round(($translated-$fuzzy)/$all*100,2);
 		$rpd=round($percent_done,0);
 		$report[$locale]=array ($percent_done,$translated,$fuzzy,$untranslated,$bgcolor);
 		if($rpd <50) {
@@ -40,7 +40,7 @@ while ($file = readdir($handle)) {
 			$color="00" . dechex(55+$rpd*2). "00";
 		}
 		if (strlen($color) <6) $color="0". $color;
-		$report[$locale]=array ($color,$percent_done,$translated,$fuzzy,$untranslated,$obsolete);
+		$report[$locale]=array ($color,$percent_done,$all,$translated,$fuzzy,$untranslated,$obsolete);
 		$total['percent_done'] = $total['percent_done'] + $percent_done;
         }
 }
@@ -88,10 +88,11 @@ foreach ($report as $key => $value) {
 	fwrite($handle,"\n\t\t<nr scheme=\"$scheme\">$line</nr>");
 	fwrite($handle,"\n\t\t<language scheme=\"$scheme\">". $nls['language'][$key] ."</language>");
 	fwrite($handle,"\n\t\t<percent_done style=\"background-color:#". $value[0] ."\">$value[1] %</percent_done>");
-	fwrite($handle,"\n\t\t<translated scheme=\"translated_$scheme\">$value[2]</translated>");
-	fwrite($handle,"\n\t\t<fuzzy scheme=\"fuzzy_$scheme\">$value[3]</fuzzy>");
-	fwrite($handle,"\n\t\t<untranslated scheme=\"untranslated_$scheme\">$value[4]</untranslated>");
-	fwrite($handle,"\n\t\t<obsolete scheme=\"obsolete_$scheme\">$value[5]</obsolete>");
+	fwrite($handle,"\n\t\t<lines scheme=\"$scheme\">". $value[2] ."</lines>");
+	fwrite($handle,"\n\t\t<translated scheme=\"translated_$scheme\">$value[3]</translated>");
+	fwrite($handle,"\n\t\t<fuzzy scheme=\"fuzzy_$scheme\">$value[4]</fuzzy>");
+	fwrite($handle,"\n\t\t<untranslated scheme=\"untranslated_$scheme\">$value[5]</untranslated>");
+	fwrite($handle,"\n\t\t<obsolete scheme=\"obsolete_$scheme\">$value[6]</obsolete>");
 	fwrite($handle,"\n\t</locale>");
 
 
