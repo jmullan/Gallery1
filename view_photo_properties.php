@@ -132,7 +132,8 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 		echo "<b>KEYWORDS</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
 	}
 
-	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+	if ($gallery->user->canWriteToAlbum($gallery->album) &&
+	    !strcmp($gallery->app->cacheExif, "yes")) {
 		echo "<br>";
 		echo "<a href=" .
 			makeGalleryUrl("view_photo_properties.php",
