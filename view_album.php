@@ -317,11 +317,7 @@ if ($numPhotos) {
 				$myAlbumName = $gallery->album->isAlbumName($i);
 				$myAlbum = new Album();
 				$myAlbum->load($myAlbumName);
-				if ($myAlbum->numPhotos(1)) {
-					$myHighlightTag = $myAlbum->getThumbnailTag($myAlbum->getHighlight());
-				} else {
-					$myHighlightTag = "<span class=title>Empty!</span>";
-				}
+				$myHighlightTag = $myAlbum->getNestedHighlightTag();
 				echo("<a href=" . makeAlbumUrl($myAlbumName) . ">" . 
 					$myHighlightTag . "</a>");
 			} else {
