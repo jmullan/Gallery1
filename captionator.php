@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($page, $save, $next, $prev, $cancel) = getRequestVar(array('page', 'save', 'next', 'prev', 'cancel'));
+list($page, $perPage, $save, $next, $prev, $cancel) = getRequestVar(array('page', 'perPage', 'save', 'next', 'prev', 'cancel'));
 list($captionedAlbum, $extra_fields) = getRequestVar(array('captionedAlbum', 'extra_fields'));
 
 // Hack check
@@ -40,7 +40,10 @@ if (!isset($page)) {
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 
 if (!isset($perPage)) {
-    $perPage = 5;
+    $perPage = $gallery->album->fields['rows'] * $gallery->album->fields['cols'];
+    if (!$perPage) {
+	$perPage = 5;
+    }
 }
 
 #-- save the captions from the previous page ---
