@@ -28,21 +28,16 @@
               Powered by <a href=<?= $gallery->url ?>>Gallery v<?= $gallery->version ?></a>
             </span>
           </td>
-          <!-- PayPal donation block -->
+          <!-- donation block -->
           <? if ($gallery->user->isAdmin()) { ?>
           <td width=300 align=right>
-            <form action="https://secure.paypal.com/cgi-bin/webscr" method="POST">
-              <input type="hidden" name="cmd" value="_xclick">
-              <input type="hidden" name="business" value="donate2gallery@menalto.com">
-              <input type="hidden" name="return" value="http://gallery.sourceforge.net/donate_thanks.php">
-              <input type="hidden" name="undefined_quantity" value="1">
-              <input type="hidden" name="item_name" value="Gallery <?=$gallery->version?>">
-              <input type="hidden" name="amount" value="">
-              <input type="image" src="http://images.paypal.com/images/x-click-but7.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!" align="right" width="72" height="29">
-            </form>
             <span class="fineprint"> 
               Are you happy with Gallery?  Help us to be happy too.  Make a donation!<br>
             </span>
+          </td>
+          <td width="90" align="right">
+            <a href="<?= $gallery->url ?>/donate.php?tag=<?= $gallery->version ?>"><img align="right"
+              src="<?= $gallery->app->photoAlbumURL ?>/images/donate.jpg" width="88" height="31" border="0"></a>
           </td>
           <? } ?>
         </tr>
