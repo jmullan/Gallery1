@@ -1741,6 +1741,10 @@ function initLanguage() {
 // Check if we already have a language
 // Use this only if user dont want Browserlanguage only
 
+	if (!isset($gallery->app->ML_mode)) {
+		$gallery->app->ML_mode = 2;
+	}
+
 	if ($gallery->app->ML_mode > 1) {
 		$gallery->language=$gallery->session->language;
 	}
