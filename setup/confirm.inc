@@ -58,7 +58,7 @@ foreach ($constants as $key => $val) {
 			if (!is_writeable($dir)) {
 				$view .= error("$dir exists, but is not writeable by the " .
 						"webserver user.  Try:<br><center><b><code>" .
-						"chown -R " . $webserver_user["name"] . " $dir</code>");
+						"chown -R " . $webserver_user . " $dir</code>");
 				continue;
 			}
 		}
