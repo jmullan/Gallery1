@@ -912,12 +912,30 @@ class Album {
 		$photo->resetItemClicks();
 	}
 
-	function getExif( $index ) {
+	function getExif($index, $forceRefresh=0) {
 		global $gallery;
+
+		if (empty($gallery->app->use_exif)) {
+		    return array();
+		}
 		
 		$dir = $this->getAlbumDir();
-		$photo = $this->getPhoto($index);
-		return $photo->getExif($dir);
+		$photo =& $this->getPhoto($index);
+		list ($status, $exif, $needToSave) = $photo->getExif($dir, $forceRefresh);
+
+		if ($status != 0) {
+		    // An error occurred.
+		    return array("junk1" => "",
+				 "Error" => "Error $status getting EXIF data",
+				 "junk2" => "");
+		}
+
+		if ($needToSave) {
+		    $resetModDate=0; //don't reset last_mod_date
+		    $this->save($resetModDate);
+		}
+		
+		return $exif;
 	}
 
 	function getLastModificationDate() {
