@@ -49,9 +49,8 @@ if ($url) {
 
 ?>
 <br>
-Processing files...
 </center>
-<ul>
+Processing status...<br>
 <?
 
 while (sizeof($userfile)) {
@@ -63,7 +62,7 @@ while (sizeof($userfile)) {
 
 	if (!strcmp($tag, "zip")) {
 		if (!$app->feature["zip_support"]) {
-			echo "<li> Skipping $name (ZIP support not enabled)";
+			echo "Skipping $name (ZIP support not enabled)<br>";
 			$msgcount++;
 			continue;
 		}
@@ -98,12 +97,21 @@ function process($file, $tag, $name) {
 
 	set_time_limit(30);
 	if (acceptableFormat($tag)) {
-		echo "<li> Adding $name";
+		echo "- Adding $name<br>";
 		$album->addPhoto($file, $tag);
+		flush();
+
+		/* resize the photo if needed */
+		if ($album->fields["resize_size"] > 0) {
+			echo "- Resizing $name<br>";	
+			flush();
+			$index = $album->numPhotos(1);
+			$album->resizePhoto($index, $album->fields["resize_size"]);
+		}
 	} else {
-		echo "<li> Skipping $name (can't handle '$tag' format)";
+		echo "Skipping $name (can't handle '$tag' format)<br>";
+		flush();
 	}
-	flush();
 }
 
 $album->save();
