@@ -32,7 +32,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 <?
 		if ($albumName && isset($index)) {
 			if (!strcmp($index, "all")) {
-				$np = $album->numPhotos();
+				$np = $album->numPhotos(1);
 				echo ("<br> Rebuilding $np thumbnails...");
 				my_flush();
 				for ($i = 1; $i <= $np; $i++) {
