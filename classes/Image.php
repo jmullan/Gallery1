@@ -208,8 +208,21 @@ class Image {
 		$this->raw_height = $h;
 	}
 
-	function getDimensions() {
-		return array($this->width, $this->height);
+	function getDimensions($size=0) {
+	    if ($size) {
+                if ($this->width > $this->height) {
+                    $width = $size;
+                    $height = $size * ($this->height / $this->width);
+                } else {
+                    $width = $size * ($this->width / $this->height);
+                    $height = $size;
+                }
+            } else {
+		$width = $this->width;
+		$height = $this->height;
+            }
+	        
+		return array($width, $height);
 	}
 
 	function setThumbRectangle($x, $y, $w, $h) {

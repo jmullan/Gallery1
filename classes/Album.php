@@ -284,9 +284,19 @@ class Album {
 		usort($this->photos, create_function('$a,$b', $func));
 	}
 
-	function getThumbDimensions($index) {
+	function getThumbDimensions($index, $size=0) {
+
 		$photo = $this->getPhoto($index);
-		return $photo->getThumbDimensions();
+		$album = $this;
+		while ($photo->isAlbumName && $album->numPhotos(1)) {
+			$album = $album->getNestedAlbum($index);
+			$index = $album->getHighlight();
+			if (!isset($index)) {
+				return array(0, 0);
+			}
+			$photo = $album->getPhoto($index);
+		}
+		return $photo->getThumbDimensions($size);
 	}
 
 	function hasHighlight() {
@@ -794,8 +804,8 @@ class Album {
 	}
 
 	function addComment($index, $comment, $IPNumber, $name) {
-		$photo = &$this->getPhoto($index);
-		$photo->addComment($comment, $IPNumber, $name); 
+            $photo = &$this->getPhoto($index);
+            $photo->addComment($comment, $IPNumber, $name);
 	}
 
 	function deleteComment($index, $comment_index) {

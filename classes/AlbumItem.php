@@ -284,9 +284,9 @@ class AlbumItem {
 		return $this->highlight;
 	}
 
-	function getThumbDimensions() {
+	function getThumbDimensions($size=0) {
 		if ($this->thumbnail) {
-			return $this->thumbnail->getDimensions();
+			return $this->thumbnail->getDimensions($size);
 		} else {
 			return array(0, 0);
 		}
