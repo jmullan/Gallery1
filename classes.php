@@ -38,6 +38,7 @@ class Album {
 		$this->fields["bordercolor"] = $app->default["bordercolor"];
 		$this->fields["returnto"] = $app->default["returnto"];
 		$this->fields["thumb_size"] = $app->default["thumb_size"];
+		$this->fields["resize_size"] = $app->default["resize_size"];
 	}
 
 	function shufflePhotos() {
