@@ -94,15 +94,13 @@ if ($gallery->album->getHighlight()) {
     <td><input type="radio" name="sort" value="click"><?php echo _(" By Number of Clicks") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="caption"><?php echo _(" By Caption")
-?></td>
+    <td><input type="radio" name="sort" value="caption"><?php echo _(" By Caption") ?></td>
   </tr>
   <tr>
     <td><input type="radio" name="sort" value="comment"><?php echo _(" By Number of Comments") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="random"><?php echo _("Randomly")
-?></td>
+    <td><input type="radio" name="sort" value="random"> <?php echo _("Randomly") ?></td>
   </tr>
   <tr>
     <td align=center>
@@ -114,8 +112,8 @@ if ($gallery->album->getHighlight()) {
   </tr>
 </table>
 <br>
-<input type=submit name=confirm value=<?php echo _("Sort") ?>>
-<input type=submit value=<?php echo _("Cancel") ?> onclick='parent.close()'>
+<input type=submit name=confirm value="<?php echo _("Sort") ?>">
+<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <?php
 	}

@@ -77,13 +77,13 @@ asort($uAll);
 ?>
 <html>
 <head>
-  <title><?php echo _("Change owner") ;?></title>
+  <title><?php echo _("Change Owner") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir="<?php echo $gallery->ML->direction ; ?>">
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<span class="popuphead"><?php echo _("Change owner") ; ?></span>
+<span class="popuphead"> <?php echo _("Change owner") ?> </span>
 <br>
 <?php $index=$gallery->album->getPhotoIndex($id) ?>
 <br>
@@ -96,14 +96,14 @@ asort($uAll);
 <?php echo makeFormIntro("photo_owner.php", 
 			array("name" => "photoowner_form")) ?>
 
-<?php if ($gallery->user->isAdmin) { 
-	echo _("Owner") ." : " ;
-	echo drawSelect("owner", $uAll, $owner, 1);
-} ?><p>
+<?php if ($gallery->user->isAdmin) { ?>
+<?php echo _("Owner") ?>: <?php echo drawSelect("owner", $uAll, $owner, 1); ?>
+<?php } ?><p>
 
 <input type=hidden name="id" value="<?php echo $id ?>">
-<input type=submit name="submit" value="<?php echo _("Save") ; ?>">
-<input type=submit name="submit" value="<?php echo _("Done") ; ?>" onclick='parent.close()'>
+<input type=submit name="submit" value="<?php echo _("Save") ?>">
+<input type=submit name="submit" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
+
 </body>
 </html>

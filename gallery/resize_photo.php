@@ -53,16 +53,16 @@ if ($gallery->session->albumName && isset($index)) {
 	if ($resize) {
 		if (!strcmp($index, "all")) {
 			$np = $gallery->album->numPhotos(1);
-			echo "<br> ". _("Resizing") . " $np " . _("photos...");
+			echo("<br> ". _("Resizing") . " $np " . _("photos..."));
 			my_flush();
 			for ($i = 1; $i <= $np; $i++) {
-				echo "<br> ". _("Processing image") . " $i ...";
+				echo("<br> ". _("Processing image") . " $i...");
 				my_flush();
 				set_time_limit($gallery->app->timeLimit);
 				$gallery->album->resizePhoto($i, $resize);
 			}
 		} else {
-			echo "<br> ". _("Resizing 1 photo...");
+			echo("<br> ". _("Resizing 1 photo..."));
 			my_flush();
 			set_time_limit($gallery->app->timeLimit);
 			$gallery->album->resizePhoto($index, $resize);
@@ -74,19 +74,18 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <center>
-<!-- font size=+1 -->
-<?php echo _("Resizing photos") ?></a>
-<br><br>
+<font size=+1><?php echo _("Resizing photos") ?></a>
+<br>
 <?php echo _("This will resize your photos so that the longest side of the ") ?>
 <?php echo _("photo is equal to the target size below. ") ?>
 
 <p>
 
-<?php echo _("What is the target size for") ?> <?php echo $all ? _("all the photos in this album" ) : _("this photo") ?>?
+<?php echo _("What is the target size for") ?> <?php echo $all ? _("all the photos in this album") : _("this photo") ?>?
 <br>
 <?php echo makeFormIntro("resize_photo.php"); ?>
 <input type=hidden name=index value=<?php echo $index ?>>
-<input type=submit name=resize value=<?php echo _("Original Size") ?>>
+<input type=submit name=resize value="<?php echo _("Original Size") ?>">
 <input type=submit name=resize value="1024">
 <input type=submit name=resize value="800">
 <input type=submit name=resize value="700">
@@ -94,7 +93,7 @@ if ($gallery->session->albumName && isset($index)) {
 <input type=submit name=resize value="600">
 <input type=submit name=resize value="500">
 <input type=submit name=resize value="400">
-<input type=submit value=<?php echo _("Cancel") ?> onclick='parent.close()'>
+<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
 <br><br>
@@ -113,3 +112,8 @@ if (!$all) {
 
 </body>
 </html>
+
+
+
+
+

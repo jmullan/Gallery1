@@ -1,6 +1,6 @@
 <?php /* $Id$ */ ?>
 <center>
-<font size=+2><?php echo _("Gallery Setup: Step 1") ?></font>
+<font size=+2> <?php echo _("Gallery Setup: Step 1") ?> </font>
 <br>
 <table width=80%><tr><td>
 
@@ -10,7 +10,7 @@
 <p>
 
 <center>
-<?php echo _("Having problems?") ?> <?php echo _("Try the") ?> <a href=diagnostics.php><?php echo _("Gallery Diagnostics Page") ?></a> <?php echo _("and the") ?> <a href="http://gallery.sourceforge.net/help.php"><?php echo _("Gallery Help Page") ?></a>
+<?php echo _("Having problems?") ?>  <?php echo _("Try the") ?> <a href=diagnostics.php><?php echo _("Gallery Diagnostics Page") ?></a> <?php echo _("and the") ?> <a href="http://gallery.sourceforge.net/help.php"><?php echo _("Gallery Help Page") ?></a>
 </center>
 
 </td></tr></table>
@@ -34,7 +34,7 @@ foreach ($checklist as $check) {
 	list($success, $fail) = $func();
 	foreach ($success as $key) {
 		if (strcmp($key, "")) {
-			$msg = _("Success"). " <br><i>$key</i>";
+			$msg = _("Success"). "<br><i>$key</i>";
 		} else {
 			$msg = _("Success");
 		}
@@ -84,22 +84,20 @@ foreach ($checklist as $check) {
 
 </table>
 <p>
-<?php 
-
-if ($error) {
-	echo _("There are errors in your configuration that will prevent Gallery from functioning properly.") ;
-	echo "<br>"; 
-	echo _("You must fix them before you can continue.");
-} else {
-	if ($warning) {
-		if ($serious_warning) {
-			echo _("Your installation has <b>serious warnings</b>!  Continue at your own risk...") ;
- 		} else {
-			echo _("Your installation has warnings, but this is usually OK.  Keep going!") ;
- 		}
- 	} else {
- 		echo _("Your installation passed with flying colors!  Go go go!") ;
-	} ?>
+<?php if ($error) { ?>
+	<?php echo _("There are errors in your configuration that will prevent Gallery from functioning properly.") ?>
+	<br>
+	<?php echo _("You must fix them before you can continue.") ?>
+<?php } else { ?>
+<?php if ($warning) { ?>
+		<?php if ($serious_warning) { ?>
+			<?php echo _("Your installation has <b>serious warnings</b>!  Continue at your own risk...") ?>
+ 		<?php } else { ?>
+			<?php echo _("Your installation has warnings, but this is usually OK.  Keep going!") ?>
+ 		<?php } ?>
+ 	<?php } else { ?>
+ 		<?php echo _("Your installation passed with flying colors!  Go go go!") ?>
+	<?php } ?>
  <p>
- <input type=submit name="go_next" value=<?php echo '"' . _("Configure Gallery") .' ->"' ?>>
+ <input type=submit name="go_next" value="<?php echo _("Configure Gallery") ?> ->">
 <?php } ?>

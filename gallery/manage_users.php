@@ -93,12 +93,12 @@ if (!$displayUsers) {
 </select>
 
 <p>
-<input type=button value=<?php echo '"'.  _("Create") .'"' ?> onClick='my_submit("Create")'> 
-<?php  if (count($displayUsers)) { ?>
-<input type=button value=<?php echo '"'. _("Modify") .'"' ?> onClick='my_submit("Modify")'>
-<input type=button value=<?php echo '"'. _("Delete") .'"' ?> onClick='my_submit("Delete")'>
-<?php  } ?>
-<input type=button value=<?php echo '"'. _("Done") .'"' ?> onclick='parent.close()'>
+<input type=button value="<?php echo _("Create") ?>" onClick='my_submit("Create")'> 
+<?php if (count($displayUsers)) { ?>
+<input type=button value="<?php echo _("Modify") ?>" onClick='my_submit("Modify")'>
+<input type=button value="<?php echo _("Delete") ?>" onClick='my_submit("Delete")'>
+<?php } ?>
+<input type=button value="<?php echo _("Done") ?>" onclick='parent.close()'>
 <input type=hidden name=action value="">
 </form>
 

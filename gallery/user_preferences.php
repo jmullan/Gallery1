@@ -96,17 +96,16 @@ $email = $gallery->user->getEmail();
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir=<?php echo $gallery->direction ?>>
+
 <center>
 <span class="popuphead"><?php echo _("Change User Preferences") ?></span>
 <br>
 <br>
 
 <?php echo _("You can change your user information here.") ?>
-</center>
-<br>
 <?php echo _("If you want to change your password, you must provide your old password and then enter the new one twice.") ?>
-<br>
 <?php echo _("You can change your username to any combination of letters and digits.") ?>
+
 <p>
 
 <?php echo makeFormIntro("user_preferences.php", 
@@ -116,11 +115,11 @@ $email = $gallery->user->getEmail();
 
 <?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
-<center>
-<input type=submit name="submit" value=<?php echo _("Save") ?>>
+
+<input type=submit name="submit" value="<?php echo _("Save") ?>">
 <input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
-<center>
+
 <script language="javascript1.2">
 <!--
 // position cursor in top form field

@@ -135,7 +135,6 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 	echo _("File Upload Date") .":&nbsp;&nbsp; " . strftime("%d.%m %Y , %H:%M:%S" , $gallery->album->getUploadDate($index)) . "<br>";
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
 	echo _("Item Capture Date") . ":&nbsp;&nbsp; " . strftime("%d.%m.%Y, %H:%M:%S", mktime($itemCaptureDate['hours'], $itemCaptureDate['minutes'],$itemCaptureDate['seconds'], $itemCaptureDate['mon'],$itemCaptureDate['mday'],$itemCaptureDate['year']));
-	echo "<br>";
 
 	if ($gallery->album->getKeyWords($index)) {
 		echo "<b>". _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
@@ -161,7 +160,7 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 ?>
 <br><br>
 <form action=#>
-<input type=submit value=<?php echo _("Done") ?> onclick='parent.close()'>
+<input type=submit value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
 
 </body>

@@ -140,8 +140,8 @@ $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
 <p>
 
 
-<input type=submit name="submit" value=<?php echo _("Save") ?>>
-<input type=submit name="submit" value=<?php echo _("Cancel") ?>>
+<input type=submit name="submit" value="<?php echo _("Save") ?>">
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>">
 </form>
 
 <script language="javascript1.2">

@@ -103,9 +103,9 @@ if ($newName) {
 
 ?>
 <br>
-<?php echo _("What do you want to name this album ?") ?>
+<?php echo _("What do you want to name this album?") ?>
 <br>
-<?php echo _("The name cannot contain any of the following characters") ?>
+<?php echo _("The name cannot contain any of the following characters") ?>:
 <br><center><b>\ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # </b><?php echo _("or") ?><b> <?php echo _("spaces") ?></b><br></center>
 <?php echo _("Those characters will be ignored in your new album name.") ?>
 
@@ -115,8 +115,8 @@ if ($newName) {
 <input type=hidden name="oldName" value=<?php echo $gallery->session->albumName?>>
 <input type=hidden name="useLoad" value=<?php echo $useLoad?>>    
 <p>
-<input type=submit value=<?php echo '"' . _("Rename !") . '"' ?>>
-<input type=submit name="submit" value=<?php echo _("Cancel") ?> onclick='parent.close()'>
+<input type=submit value="<?php echo _("Rename") ?>">
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
 <script language="javascript1.2">

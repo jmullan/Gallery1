@@ -38,7 +38,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php 
 // Hack check
-if ($gallery->comment_hack !='yes' && !$gallery->user->isAdmin() && !$gallery->user->isOwnerOfAlbum($gallery->album)) {
+if (!$gallery->user->isAdmin() && !$gallery->user->isOwnerOfAlbum($gallery->album)) {
 	header("Location: albums.php");
 	return;
 }

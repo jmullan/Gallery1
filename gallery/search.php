@@ -25,7 +25,6 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
 	print _("Security violation") ."\n";
 	exit;
 }
@@ -95,7 +94,7 @@ if ($searchstring) {
 	$searchstring = escapeEregChars ($searchstring);
 	$searchstring = str_replace ("\\*", ".*", $searchstring);
 
-	$adminbox["text"] = "<span class=\"admin\">". _("Albums containing") ."\"$origstr\"</span>";
+	$adminbox["text"] = "<span class=\"admin\">". _("Albums containing") ." \"$origstr\"</span>";
 	$adminbox["bordercolor"] = $borderColor; 
 	$adminbox["top"] = false;
 	include($GALLERY_BASEDIR . "layout/adminbox.inc");
@@ -132,7 +131,7 @@ if ($searchstring) {
 	
 	}
 	if (!$albumMatch) {
-		echo "<tr><td valign=top><span class=desc>". _("No Album Matches") ."</span></td></tr>";
+		echo "<tr><td valign=top><span class=desc>". _("No Album Matches") .".</span></td></tr>";
 	}
 	echo "</table><br>";
 
@@ -226,7 +225,7 @@ else {
 	<tr><?php echo makeFormIntro("search.php"); ?>
 	<td valign="middle" align="left">
 	<input type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
-	<input type="submit" value=<?php echo '"' . _("Go") .'!"' ?>>
+	<input type="submit" value="<?php echo _("Go") ?>!">
 	</td>
 	</form>  
 	</tr>

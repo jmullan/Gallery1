@@ -85,7 +85,7 @@ function end_file() {
 
 function process($arr) {
 	print "<br>";
-	print "<b>" . _("Progress") ." :</b>";
+	print "<b>" . _("Progress") .":</b>";
 	print "<ul>";
 	foreach ($arr as $album) {
 		print "<b>". _("Album") . ": " . $album->fields["title"] . "</b><br>";
@@ -136,10 +136,10 @@ function find_albums(&$results, $album="") {
 </center>
 <p>
 <?php echo _("The following albums in your Gallery were created with an older version of the software and are out of date.") ?>
-<br><?php echo _("This is not a problem!") ?>
-<br><?php echo _("We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed.") ?>
-<br><?php echo _("None of your photos will be harmed in any way by this process.") ?>
-<br><?php echo _("Rest assured, that if this process takes a long time now, it's going to make your Gallery run more efficiently in the future.") ?>
+<?php echo _("This is not a problem!") ?>
+<?php echo _("We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed.") ?>
+<?php echo _("None of your photos will be harmed in any way by this process.") ?>
+<?php echo _("Rest assured, that if this process takes a long time now, it's going to make your Gallery run more efficiently in the future.") ?>
 
 <p>
 
@@ -175,7 +175,7 @@ if (!$ood) {
 ?>
 <?php echo _("The following albums need to be upgraded.") ?>
 <?php echo _("You can process them individually by clicking the upgrade link next to the album that you desire, or you can just") ?>
-<a href="<?php echo makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1)) ?>"> <?php echo _("upgrade them all at once") ?></a>.
+<a href="<?php echo makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1)) ?>"><?php echo _("upgrade them all at once") ?></a>.
 <ul>
 <?php
 	foreach ($ood as $album) {

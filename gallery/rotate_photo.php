@@ -47,15 +47,16 @@ if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isIt
   <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
   <META HTTP-EQUIV="expires" CONTENT="0"> 
 </head>
-<body dir=<?php echo $gallery->direction ; ?>>
+<body dir=<?php echo $gallery->direction ?>>
 
 <?php
 if ($gallery->session->albumName && isset($index)) {
 	if ($rotate) {
 ?>
-	<p align="center">
+	<center>
 	 <?php echo _("Rotating/Flipping photo.") ?>
-	</p>
+	<br>
+	 <?php echo _("(this may take a while)") ?>
 <?php
 		my_flush();
                 set_time_limit($gallery->app->timeLimit);
@@ -67,34 +68,27 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <center>
-
-<?php 
-	echo _("How do you want to manipulate this photo?");
-	}
-?>
+	<?php echo _("How do you want to manipulate this photo?") ?>
+<?php } ?>
 <br /><br />
-<?php 
-	$args = array("albumName" => $gallery->album->fields["name"], "index" => $index);
-	echo _("Rotate") .": [ ";
-	$args["rotate"] = "90"; 
-?>
-<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>><?php echo _("Counter-Clockwise") ;?> 90&deg;</a>
+<?php $args = array("albumName" => $gallery->album->fields["name"], "index" => $index); ?>
+<?php echo _("Rotate") ?>: [ 
+<?php $args["rotate"] = "90"; ?>
+<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>><?php echo _("Counter-Clockwise") ?> 90&deg;</a>
  | 
 	<?php $args["rotate"] = "180"; ?>
 <a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>180&deg;</a>
  | 
 	<?php $args["rotate"] = "-90"; ?>
-<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>><?php echo _("Clockwise") ; ?> 90&deg;</a>
-]<br /><br />
-	<?php echo _("Flip") .": [ "; ?>
+<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>><?php echo _("Clockwise") ?> 90&deg;</a>
+]<br /><br /><?php echo _("Flip") ?>: [ 
 	<?php $args["rotate"] = "fh"; ?>
-<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>><?php echo _("Horizontal") ; ?></a>
+<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>><?php echo _("Horizontal") ?></a>
  | 
 	<?php $args["rotate"] = "fv"; ?>
-<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>><?php echo _("Vertical") ; ?></a>
+<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>><?php echo _("Vertical") ?></a>
  ]<br /><br />
-
-<a href="javascript:parent.close()"><?php echo _("Done") ; ?></a>
+<a href="javascript:void(parent.close())"><?php echo _("Close") ?></a>
 <br />
 
 <p>

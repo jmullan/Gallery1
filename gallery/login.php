@@ -123,7 +123,7 @@ if ($submit) {
 </table>
 <p>
 <input type=submit name="submit" value=<?php echo '"' . _("Login") . '"' ?>>
-<input type=submit name="submit" value=<?php echo _("Cancel") ?> onclick='parent.close()'>
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
 <script language="javascript1.2">
