@@ -115,7 +115,7 @@ doctype();
 </head>
 <body dir="<?php echo $gallery->direction ?>" onload="window.focus()" class="popupbody">
 <div class="popuphead"><?php echo _("Add Photos") ?></div>
-<div class="popup" align="center">
+<div class="popup">
 <?php
 
 if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
@@ -138,32 +138,29 @@ if ($gallery->user->isAdmin()) {
     $modes["admin"] = _("Admin");
 }
 
-
 if (!isset($mode) || !isset($modes[$mode])) {
 	$mode = isset($modes[$gallery->app->uploadMode]) ? $gallery->app->uploadMode : "form";
 }
 ?>
 
-<div id="container">
-<ul id="tabnav">
+	<div id="container">
+	<ul id="tabnav">
 <?php
 foreach ($modes as $m => $mt) {
 	$url=makeGalleryUrl('add_photos.php',array('mode' => $m));
 	if ($m == $mode) {
-		echo "\n\t<li><a href=\"$url\" class=\"active\">$mt</a></li>";
+		echo "\t\t<li><a href=\"$url\" class=\"active\">$mt</a></li>\n";
 	} else {
-		echo "\n\t<li><a href=\"$url\">$mt</a></li>";
+		echo "\t\t<li><a href=\"$url\">$mt</a></li>\n";
 	}
 }
 ?>
-
-</ul>
-
+	</ul>
 <?php
 include (dirname(__FILE__) . "/includes/add_photos/add_$mode.inc");
 ?>
 
-</div>
+	</div>
 </div>
 </body>
 </html>

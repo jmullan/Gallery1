@@ -615,7 +615,7 @@ class AlbumItem {
 		} elseif (!empty($this->caption)) {
 			return $this->caption;
 		} else {
-			return _("No Caption");
+			return "";
 		}
 	}
 

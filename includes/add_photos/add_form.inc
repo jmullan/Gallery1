@@ -20,7 +20,6 @@
  * $Id$
  */
 ?>
-
 <?php
 if (!isset($boxes)) {
 	$boxes = 5;
@@ -29,7 +28,7 @@ if (!isset($metaboxes)) {
 	$metaboxes = 0 ;
 }
 
-	echo '<p>';
+	echo "\n\t<p>";
 	echo _("Click the <b>Browse</b> button to locate a photo to upload.");
 	echo '<br>';
 	echo _("Supported file types") ?>: <?php echo join(", ", acceptableFormatList());
@@ -38,63 +37,61 @@ if (!isset($metaboxes)) {
 	if ($gallery->app->feature["zip"]) {
 		echo '<p><b>'. _("Tip:") . '</b> ';
 		echo _("Upload a ZIP file full of photos and movies!");
-		echo '</p>';
+		echo "</p>\n\t";
 	}
-?>
 
-<?php echo makeFormIntro("add_photos.php", array("name" => "count_form", "method" => "POST")); ?>
-<input type="hidden" name="mode" value="<?php echo $mode ?>"/>
+echo makeFormIntro("add_photos.php", array("name" => "count_form", "method" => "POST")); ?>
+	<input type="hidden" name="mode" value="<?php echo $mode ?>"/>
 
-<table>
-<tr>
-	<td><?php echo _("1. Select the number of files you want to upload:") ?></td>
-	<td><select name="boxes" onChange="javascript:document.count_form.submit(); return false;">
+	<table>
+	<tr>
+		<td><?php echo _("1. Select the number of files you want to upload:") ?></td>
+		<td><select name="boxes" onChange="javascript:document.count_form.submit(); return false;">
 <?php 
 	for ($i = 1; $i <= 10;  $i++) {
 		$selected=($i == $boxes) ? 'selected' : '';
-		echo "<option $selected value=\"$i\">$i</option>\n";
+		echo "\t\t\t<option $selected value=\"$i\">$i</option>\n";
   	}
 ?>
-</select></td>
-</tr>
-<tr>
-	<td><?php 
-	echo '<b>'. _("Optional:") .'</b> ';
-	echo _("Select the number of meta data files you want to upload:");
-	echo '</td>';
-	echo '<td>';
-?>
-<select name="metaboxes" onChange="javascript:document.count_form.submit(); return false;">
+		</select>
+		</td>
+	</tr>
+	<tr>
+		<td><?php 
+		echo '<b>'. _("Optional:") .'</b> ';
+		echo _("Select the number of meta data files you want to upload:"); ?>
+		</td>
+		<td><select name="metaboxes" onChange="javascript:document.count_form.submit(); return false;">
 <?php 
 	for ($i = 0  ; $i <= 10;  $i++) {
 		$selected=($i == $metaboxes) ? 'selected' : '';
-                echo "<option $selected value=\"$i\">$i</option>\n";
+                echo "\t\t\t<option $selected value=\"$i\">$i</option>\n";
 	}
 ?>
-</select></td>
-</tr>
-</table>
-</form>
+		</select>
+		</td>
+	</tr>
+	</table>
+	</form>
 
-<?php echo makeFormIntro("save_photos.php",
+	<?php echo makeFormIntro("save_photos.php",
 			array("name" => "upload_form",
 				"enctype" => "multipart/form-data",
 				"method" => "POST")); ?>
 
-<table class="popuptd">
-<tr>
-	<td colspan="2"><?php echo _("2. Use the Browse button to find the photos on your computer") ?></td>
-</tr>
-
-<?php for ($i = 0; $i < $boxes;  $i++) { ?>
-<tr>
-	<td><?php echo _("File") ?></td>
-	<td><input name="userfile[]" type="file" size="40"></td>
-</tr>
-<tr>
-	<td><?php echo _("Caption") ?></td>
-	<td><input name="usercaption[]" type="text" size="40"><br><br></td>
-</tr>
+	<table>
+	<tr>
+		<td colspan="2"><?php echo _("2. Use the Browse button to find the photos on your computer") ?></td>
+	</tr>
+	<?php for ($i = 0; $i < $boxes;  $i++) { ?>
+	<tr>
+		<td><?php echo _("File") ?></td>
+		<td><input name="userfile[]" type="file" size="40"></td>
+	</tr>
+	<tr>
+		<td><?php echo _("Caption") ?></td>
+		<td><input name="usercaption[]" type="text" size="40"><br><br></td>
+	</tr>
 <?php }
 	if ($metaboxes >0) {
 		echo '<tr><td colspan="2">' . _("3. Use the Browse button to find the meta data files on your computer") . '</td></tr>';
@@ -107,7 +104,7 @@ if (!isset($metaboxes)) {
 	}
 ?>
 
-</table>
+	</table>
 <?php 
 	echo _("If no caption is set, what would you like the captions to default to?");
 	echo "\n<br><br>";
@@ -121,9 +118,8 @@ if (isset($gallery->app->watermarkDir)) {
    includeLayout('watermarkform.inc');
 }
 ?>
-<p align="center">
-<input type="button" value="<?php echo _("Upload Now") ?>" onClick='parent.opener.showProgress(); document.upload_form.submit()'>
-<input type="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</p>
-
-</form>
+	<p align="center">
+	<input type="button" value="<?php echo _("Upload Now") ?>" onClick='parent.opener.showProgress(); document.upload_form.submit()'>
+	<input type="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+	</p>
+	</form>
