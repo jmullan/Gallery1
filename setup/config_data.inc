@@ -27,11 +27,10 @@ $checklist = array(
 			"<b>--enable-module=rewrite</b> </ul> flag and then " .
 			"reinstall it."
 	), 
-/*
 	"GD" => array(
 		"desc" => "Check to see if PHP was compiled with " .
-			"the GD libraries so that Gallery can manipulate " .
-			"images (rotate, resize, make thumbnails, etc.)",
+			"the GD libraries so that Gallery can read " .
+			"and write images.",
 	     	"func" => "check_gd",
 		"why" => "You need to reconfigure PHP with the <ul>" .
 			"<b>--with-gd=<i>dir</i></b> </ul> flag and then " .
@@ -40,11 +39,11 @@ $checklist = array(
 			" <a href=ftp://ftp.boutell.com/pub/boutell/gd/> " .
 			"ftp://ftp.boutell.com/pub/boutell/gd/</a>"
 	), 
-*/
 	"NetPBM" => array(
 		"desc" => "Check to see if NetPBM is installed so that " .
 			"Gallery can manipulate images (rotate, resize, make " .
-			"thumbnails, etc).  NetPBM is way better than GD.",
+			"thumbnails, etc).  NetPBM is way better than GD for some " .
+			"operations.",
 		"func" => "check_netpbm",
 		"why" => "I can't find NetPBM.  If it's installed, it's not in " .
 			"your path (or at least that of your webserver user). If not " .
