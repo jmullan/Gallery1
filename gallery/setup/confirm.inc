@@ -2,12 +2,10 @@
 <center>
 <font size=+2><?php echo _("Gallery Setup: Step 4") ?></font>
 <br>
-<table width=60%><tr><td>
+<table width=80%><tr><td>
 <?php echo _("Confirm that the settings you entered came through correctly.") ?>
-<br>
-<?php echo _("If you find this page confusing, you can probably safely ignore it.") ?>
-<br>
-(<?php echo _("unless you see stuff in red which indicates an error.") ?>).
+<?php echo _("If you find this page confusing, you can probably safely ignore it") ?>
+(<?php echo _("unless you see stuff in red which indicates an error") ?>).
 </td></tr></table>
 
 <center>
@@ -174,13 +172,13 @@ foreach ($constants as $key => $val) {
 		if ($constants[$key]["require-write-dir"]) {
 			$dir = $$key;
 			if (!file_exists($dir)) {
-				$view .= row_wrap(error_format(_("Directory") ." <b>$dir</b> " . _("does not exist. Please create it.")));
+				$view .= row_wrap(error_format(_("Directory") ." <b>$dir</b> " . _("does not exist.  Please create it.")));
 				$error = 1;
 				continue;
 			}
 
 			if (!is_dir($dir)) {
-				$view .= row_wrap(error_format("<b>$dir</b> " . _("exists but is not a directory. Please fix this.")));
+				$view .= row_wrap(error_format("<b>$dir</b> " . _("exists but is not a directory.  Please fix this.")));
 				$error = 1;
 				continue;
 			}
@@ -250,7 +248,7 @@ if (!strcmp($graphtool, "NetPBM") && empty($graphtest['pnmDir'])) {
 		if (!fs_file_exists(fs_executable($graphpath . "/" . $pnmtojpeg))) {
 			$error = 1;
 			$view .= row_wrap(error_format(
-				_("Could not find") ." <i>$graphpath/$pnmtojpeg</i> " . 
+				_("Could not find") ." <i>$graphpath/$pnmtojpeg</i>.  " . 
 				_("Check your NetPBM directory to see which PNG->JPEG converter you have") .
 				" (or just try using " .
 				($pnmtojpeg == "pnmtojpeg" ? "ppmtojpeg" : "pnmtojpeg") .
@@ -268,23 +266,23 @@ if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
     $view .= row_wrap(error_format(_("You must specify one of <i>pnmDir</i> or <i>ImPath</i> for Gallery to function!!")));
     $error = 1;
 } else if (!strcmp($graphtool, "ImageMagick") && !empty($graphtest['ImPath'])) {
-    $view .= row_wrap(error_format(_("ImageMagick is not properly configured for use as a graphics package.") .
-				"<br>" . _("Make sure you entered a path to the ImageMagick binaries in step 2.")));
+    $view .= row_wrap(error_format(_("ImageMagick is not properly configured for use as a graphics package.") . "  " .
+				_("Make sure you entered a path to the ImageMagick binaries in step 2.")));
     $error = 1;
 } else if (!strcmp($graphtool, "NetPBM") && !empty($graphtest['pnmDir'])) {
-    $view .= row_wrap(error_format(_("NetPBM is not properly configured for use as a graphic spackage.") .
-				"<br>" . _("Make sure you entered a path to the NetPBM binaries in step 2.")));
+    $view .= row_wrap(error_format(_("NetPBM is not properly configured for use as a graphics package.") . "  " .
+				_("Make sure you entered a path to the NetPBM binaries in step 2.")));
     $error = 1;
 }
 
 if ($warn_about_open_basedir) {
 	$view .= row_wrap("<hr><b>". _("Note") .":</b> ". 
 			_("Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths") .
-			" (" . ini_get('open_basedir') . ")" .
-			"<br>". _("This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.") .
-			"<br>". _("If you are unable to upload photos correctly, please refer to the FAQ and to the") .
- 			"<a href=diagnostics.php>" . _("diagnostics") ." </a> ".
-			_("to resolve your problems.") .
+			" (" . ini_get('open_basedir') . ")  " .
+			_("This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.") . "  " .
+			_("If you are unable to upload photos correctly, please refer to the FAQ and to the") .
+ 			" <a href=diagnostics.php>" . _("diagnostics") ."</a> ".
+			_("to resolve your problems.") . 
 			  "<hr>");
 }
 
@@ -335,9 +333,9 @@ echo $view;
 <input type=hidden name=back_page value="defaults">
 <input type=hidden name=next_page value="write">
 <p>
-<input type=submit name="go_back" value=<?php echo '"<- ' . _("Edit Config") . '"' ?>>
+<input type=submit name="go_back" value="<- <?php echo _("Edit Config") ?>">
 <?php if (!$error) { ?>
- <input type=submit name="go_next" value=<?php echo '"' . _("Save Config") .' ->"' ?>>
+ <input type=submit name="go_next" value="<?php echo _("Save Config") ?> ->">
 <?php } else { ?>
 <br>
 <font color=red><?php echo _("There are errors in your configuration.") ?>
