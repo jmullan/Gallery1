@@ -49,14 +49,16 @@
 
 	$nls['alias']['russian'] =		'ru_RU';
 	$nls['alias']['rus'] =			'ru_RU';
-	$nls['alias']['ru_RU.ISO8859-5'] =	'ru_RU' ;
+	$nls['alias']['ru_RU.cp1251'] =		'ru_RU';
 
 /**
  ** Charset
  **
  **/	
 	
-	$nls['charset']['ru_RU'] = 		'windows-1251';
+	//$nls['charset']['ru_RU'] = 		'windows-1251';
+	//$nls['charset']['ru_RU'] = 		'cp1251';
+	$nls['charset']['ru_RU'] = 		'ISO8859-5';
 
 /**
  ** phpNuke
