@@ -703,7 +703,7 @@ class Album {
 		    $this->photos = $transient_photos;
 
 		    /* Create the new album serial file */
-		    if (isset($this->updateSerial)) {
+		    if (!empty($this->updateSerial)) {
 			$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
 			if ($fd = fs_fopen($serial, "w")) {
 			    /* This space intentionally left blank */
