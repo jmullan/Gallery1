@@ -34,7 +34,7 @@
 /**
  ** Native languagename
  **/
-	$nls['language']['vi_VN'] = 'Ti&#234;&#769;ng Vi&#234;&#803;t';	// Vietnamese
+	$nls['language']['vi_VN'] = 'Ti&#7871;ng Vi&#7879;t Nam';
 /**
  ** Alias for languages with different browser and gettext codes
  **/

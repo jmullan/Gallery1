@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-10-14 18:58+0200\n"
+"POT-Creation-Date: 2003-10-16 15:31+0200\n"
 "PO-Revision-Date: 2003-08-20 02:45--100\n"
 "Last-Translator: François Simond <curio@gplservice.fr>\n"
 "Language-Team: French - Isabelle Renaud / François Simond <curio@gplservice.fr>\n"
@@ -154,7 +154,7 @@ msgstr "Passé avec succès"
 msgid "Serious Warning"
 msgstr "Avertissement Sérieux"
 
-#: ../setup/check.inc:64 ../setup/check.inc:96 ../setup/config_data.inc:770
+#: ../setup/check.inc:64 ../setup/check.inc:97 ../setup/config_data.inc:770
 #: ../setup/config_data.inc:776
 msgid "Warning"
 msgstr "Attention"
@@ -163,216 +163,240 @@ msgstr "Attention"
 msgid "Failed!"
 msgstr "Échec"
 
-#: ../setup/check.inc:123
+#: ../setup/check.inc:129
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr "Ils existent des erreurs dans votre configuration qui empèchent Gallery de fonctionner correctement."
 
-#: ../setup/check.inc:125
+#: ../setup/check.inc:131
 msgid "You must fix them before you can continue."
 msgstr "Vous devez les corriger avant de continuer"
 
-#: ../setup/check.inc:130
+#: ../setup/check.inc:136
 #, fuzzy
 msgid "Your installation has <b>serious warnings</b>!<br>Continue at your own risk..."
 msgstr "Votre installation présente <b>de sérieux avertissements</b>!  Continuez à vos propres risques..."
 
-#: ../setup/check.inc:133
+#: ../setup/check.inc:139
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr "Votre installation présente certains avertissements, mais ce n'est en général pas un gros problème. On continue!"
 
-#: ../setup/check.inc:137
+#: ../setup/check.inc:143
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "Votre installation a passé le test haut la main! La suite, la suite!"
 
-#: ../setup/check.inc:140 ../setup/constants.inc:17 ../setup/constants.inc:119
+#: ../setup/check.inc:146 ../setup/constants.inc:17 ../setup/constants.inc:119
 #: ../setup/defaults.inc:17 ../setup/defaults.inc:93
 msgid "Next Page"
 msgstr "Page Suivante"
 
-#: ../setup/check_imagemagick.php:14 ../setup/check_netpbm.php:14
+#: ../setup/check_imagemagick.php:15
+msgid "Gallery ImageMagick Check"
+msgstr ""
+
+#: ../setup/check_imagemagick.php:21 ../setup/check_netpbm.php:21
 #, php-format
 msgid "Check %s"
 msgstr "Vérifier %s"
 
-#: ../setup/check_imagemagick.php:16 ../setup/check_netpbm.php:16
+#: ../setup/check_imagemagick.php:25 ../setup/check_netpbm.php:25
 #, php-format
 msgid "This script is designed to examine your %s installation to see if it is ok to be used by Gallery."
 msgstr "Ce script est conçu pour examiner votre %s installation afin de voir si elle compabible avec l'utilisation de Gallery."
 
-#: ../setup/check_imagemagick.php:17 ../setup/check_netpbm.php:17
+#: ../setup/check_imagemagick.php:26 ../setup/check_netpbm.php:26
 #, php-format
 msgid "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."
 msgstr "Vous pourrez lancer ce script <b>après</b> avoir effectué l'assistant de configuration, si vous rencontrez des problèmes avec votre installation de %s qui n'aurai pas été détecté par l'assistant."
 
-#: ../setup/check_imagemagick.php:22 ../setup/check_netpbm.php:22
+#: ../setup/check_imagemagick.php:37 ../setup/check_netpbm.php:37
 msgid "Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard."
 msgstr "Chargement du fichier de configuration.  Si vous voyez une erreur ici, c'est probablement parcque nous n'avez pas passé avec succès l'assitant de configuration."
 
-#: ../setup/check_imagemagick.php:26 ../setup/check_netpbm.php:26
+#: ../setup/check_imagemagick.php:45 ../setup/check_netpbm.php:45
 msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
 msgstr "Il semble que vous n'avez pas configuré votre Gallery. Merci de lancer et finir l'assistant de configuration."
 
-#: ../setup/check_imagemagick.php:36 ../setup/check_netpbm.php:36
+#: ../setup/check_imagemagick.php:59 ../setup/check_netpbm.php:59
+#: ../setup/functions.inc:1131
+msgid "OK"
+msgstr ""
+
+#: ../setup/check_imagemagick.php:69 ../setup/check_netpbm.php:69
 msgid "Let us see if we can figure out what operating system you are using."
 msgstr "Voyons voir si l'on peut détecter le système d'exploitation utilisé."
 
-#: ../setup/check_imagemagick.php:39 ../setup/check_netpbm.php:39
+#: ../setup/check_imagemagick.php:73 ../setup/check_netpbm.php:73
 msgid "This is what your system reports"
 msgstr "Voici ce que rapporte le système"
 
-#: ../setup/check_imagemagick.php:44 ../setup/check_netpbm.php:44
+#: ../setup/check_imagemagick.php:76 ../setup/check_netpbm.php:76
 msgid "This is the type of system on which PHP was compiled"
 msgstr "Ceci est le type de système sur lequel PHP fut compilé"
 
-#: ../setup/check_imagemagick.php:50 ../setup/check_netpbm.php:50
+#: ../setup/check_imagemagick.php:78 ../setup/check_netpbm.php:78
 msgid "Make sure that the values above make sense to you."
 msgstr "Soyez assuré que les valeurs présentes ci dessus vous paraissent sensées."
 
-#: ../setup/check_imagemagick.php:55 ../setup/check_netpbm.php:55
+#: ../setup/check_imagemagick.php:81 ../setup/check_netpbm.php:81
 #, php-format
 msgid "Look for keywords like %s, %s, %s etc. in the output above."
 msgstr "Voyez si des mots comme %s, %s, %s etc. sont présent dans la sortie ci dessus."
 
-#: ../setup/check_imagemagick.php:57 ../setup/check_netpbm.php:57
+#: ../setup/check_imagemagick.php:83 ../setup/check_netpbm.php:83
 msgid "If both the attempts above failed, you should ask your ISP what operating system you are using."
 msgstr "Si les deux tentatives précédentes ont échoué, vous pouvez demander à votre Fournisseur de Service quel système d'exploitation est utilisé."
 
-#: ../setup/check_imagemagick.php:58 ../setup/check_netpbm.php:58
+#: ../setup/check_imagemagick.php:84 ../setup/check_netpbm.php:84
 #, php-format
 msgid "You can check via %s, they can often tell you."
 msgstr "Vous pouvez tester par %s, ils peuvent souvent donner un résultat."
 
-#: ../setup/check_imagemagick.php:65 ../setup/check_netpbm.php:65
+#: ../setup/check_imagemagick.php:100 ../setup/check_netpbm.php:100
 #, php-format
 msgid "You told the config wizard that your %s binaries live here:"
 msgstr "Vous avez précisé à l'assistant de configuration que vos binaires %s sont ici:"
 
-#: ../setup/check_imagemagick.php:73 ../setup/check_netpbm.php:73
+#: ../setup/check_imagemagick.php:102 ../setup/check_netpbm.php:102
 #, php-format
 msgid "If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."
 msgstr "Si c'est incorrect (ou vide), re-lancez l'assistant de configuration et entrez un chemin pour %s."
 
-#: ../setup/check_imagemagick.php:84
-#, php-format
-msgid "<b>Note:</b>  Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
-msgstr "<b>Note:</b>  Votre répertoire %s (%s) n'est pas dans votre liste open_basedir (spécifiée dans le php.ini) %s Alors nous est impossible d'effectuer toutes nos vérifications de base sur les fichiers pour s'assurer qu'ils existent et qu'ils sont exécutables."
+#: ../setup/check_imagemagick.php:111 ../setup/check_netpbm.php:111
+#, fuzzy, php-format
+msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
+msgstr "Impossible de vérifier ce chemin (il n'est pas présent dans la liste open_basedir)"
 
-#: ../setup/check_imagemagick.php:95 ../setup/check_netpbm.php:96
+#: ../setup/check_imagemagick.php:115 ../setup/check_netpbm.php:115
+msgid "The open_basedir list is specified in php.ini."
+msgstr ""
+
+#: ../setup/check_imagemagick.php:116 ../setup/check_netpbm.php:116
+#, fuzzy
+msgid "The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
+msgstr "<b>Note:</b> Votre répertoire %s (%s) n'est pas présent dans la liste open_basedir (spécifiée dans le php.ini) %s alors nous ne pouvons pas lancer les tests basiques sur les fichiers pour s'assurer qu'ils existent et qu'ils sont exécutables."
+
+#: ../setup/check_imagemagick.php:127 ../setup/check_netpbm.php:128
 #, php-format
 msgid "We are going to test each %s binary individually."
 msgstr "Nous allons tester chaque binaire %s individuellement."
 
-#: ../setup/check_imagemagick.php:99 ../setup/check_netpbm.php:100
-#, php-format
-msgid "%sClick here%s to hide the details"
-msgstr "%sClicquez ici%s pour cacher les détrails"
-
-#: ../setup/check_imagemagick.php:102 ../setup/check_netpbm.php:104
-#, php-format
-msgid "If you see errors, you should %sclick here%s to see more details"
-msgstr "Si vous voyez des erreurs, vous pouvez %scliquer ici%s afin d'afficher plus de détails"
-
-#: ../setup/check_imagemagick.php:129 ../setup/check_netpbm.php:140
-#, php-format
-msgid "Checking %s"
+#: ../setup/check_imagemagick.php:142 ../setup/check_netpbm.php:163
+#, fuzzy
+msgid "Checking:"
 msgstr "Vérification de %s"
 
-#: ../setup/check_imagemagick.php:136 ../setup/check_netpbm.php:147
-#, php-format
-msgid "File %s does not exist."
-msgstr "Le fichier %s n'existe pas."
-
-#: ../setup/check_imagemagick.php:149 ../setup/check_netpbm.php:160
-#, php-format
-msgid "Expected status: %s, but actually received status %s."
-msgstr "Nous attendions l'état: %s, mais nous avons reçu l'état %s."
-
-#: ../setup/check_imagemagick.php:162 ../setup/check_netpbm.php:174
-msgid "can't detect version on Windows"
-msgstr "impossible de détecter la version sous Windows"
-
-#: ../setup/check_imagemagick.php:173 ../setup/check_netpbm.php:201
-#, php-format
-msgid "Ok!  Version: %s"
-msgstr "Ok! Version %s"
-
-#: ../setup/check_imagemagick.php:176 ../setup/check_mail.php:42
-#: ../setup/check_mail.php:46 ../setup/check_netpbm.php:203
-#, php-format
-msgid "Error! %s"
-msgstr "Erreur! %s"
-
-#: ../setup/check_imagemagick.php:186 ../setup/check_netpbm.php:214
+#: ../setup/check_imagemagick.php:165 ../setup/check_netpbm.php:193
 #, php-format
 msgid "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."
 msgstr "Si vous avez vu une erreur à propos de la lecture ou l'écriture de %s, c'est probablement un problème de permission/configuration sur ce système.  Si elle mentionne %s, c'est que votre système est configuré avec %s d'activé."
 
-#: ../setup/check_imagemagick.php:192 ../setup/check_netpbm.php:220
+#: ../setup/check_imagemagick.php:169 ../setup/check_netpbm.php:197
 #, php-format
 msgid "You should talk to your system administrator about this, or see the %sGallery Help Page%s."
 msgstr "Vous pourriez en parler à votre administrateur système, ou bien consulter la %sPage d'Aide de Gallery%s."
 
-#: ../setup/check_imagemagick.php:198 ../setup/check_netpbm.php:227
+#: ../setup/check_imagemagick.php:174 ../setup/check_netpbm.php:202
 #, php-format
 msgid "For other errors, please refer to the list of possible responses in %s to get more information."
 msgstr "Pour d'autres erreurs, merci de vous réferrer à la liste des réponses possibles dans la %s pour recevoir plus d'informations."
 
-#: ../setup/check_mail.php:20
+#: ../setup/check_imagemagick.php:202 ../setup/check_netpbm.php:230
+#, php-format
+msgid "File %s does not exist."
+msgstr "Le fichier %s n'existe pas."
+
+#: ../setup/check_imagemagick.php:213 ../setup/check_netpbm.php:241
+#, php-format
+msgid "Expected status: %s, but actually received status %s."
+msgstr "Nous attendions l'état: %s, mais nous avons reçu l'état %s."
+
+#: ../setup/check_imagemagick.php:226 ../setup/check_netpbm.php:255
+msgid "can't detect version on Windows"
+msgstr "impossible de détecter la version sous Windows"
+
+#: ../setup/check_imagemagick.php:237 ../setup/check_netpbm.php:281
+#, fuzzy, php-format
+msgid "OK!  Version: %s"
+msgstr "Ok! Version %s"
+
+#: ../setup/check_mail.php:12 ../setup/session_test.php:17
+msgid "You cannot access this file while gallery is in secure mode."
+msgstr ""
+
+#: ../setup/check_mail.php:25 ../setup/check_mail.php:30
 #, fuzzy
 msgid "Check Mail"
 msgstr "Sélectionner Tout"
 
-#: ../setup/check_mail.php:26
+#: ../setup/check_mail.php:37
 #, php-format
 msgid "Test email from %s"
 msgstr ""
 
-#: ../setup/check_mail.php:27
+#: ../setup/check_mail.php:38
 msgid "This email was automatically generated."
 msgstr ""
 
-#: ../setup/check_mail.php:28
+#: ../setup/check_mail.php:39
 msgid "If you recevied this in error, then please disregard, as you should not receive any similar emails."
 msgstr ""
 
-#: ../setup/check_mail.php:29
+#: ../setup/check_mail.php:40
 #, php-format
 msgid "If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."
 msgstr ""
 
-#: ../setup/check_mail.php:33
-#, php-format
-msgid "Test email sent to %s, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
+#: ../setup/check_mail.php:44
+msgid "SUCCESS!"
 msgstr ""
 
-#: ../setup/check_mail.php:35
+#: ../setup/check_mail.php:45
+#, php-format
+msgid "Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
+msgstr ""
+
+#: ../setup/check_mail.php:47
 #, fuzzy
 msgid "You must use a valid email address"
 msgstr "Le nom d'utilisateur est obligatoire"
 
-#: ../setup/check_mail.php:39
-msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
-msgstr ""
-
-#: ../setup/check_mail.php:41 ../setup/check_mail.php:45
-#, php-format
-msgid "%s not set."
+#: ../setup/check_mail.php:48
+msgid "Try again?"
 msgstr ""
 
 #: ../setup/check_mail.php:54
+msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
+msgstr ""
+
+#: ../setup/check_mail.php:57 ../setup/check_mail.php:61
+#, fuzzy, php-format
+msgid "Error! %s not set."
+msgstr "Erreur! %s"
+
+#: ../setup/check_mail.php:79
 #, fuzzy
 msgid "Your email address:"
 msgstr "Adresse IP du serveur"
 
-#: ../setup/check_mail.php:55
+#: ../setup/check_mail.php:81
 #, fuzzy
 msgid "Send Email"
 msgstr "Sélectionner Tout"
 
-#: ../setup/check_netpbm.php:84
+#: ../setup/check_netpbm.php:15
+#, fuzzy
+msgid "Gallery NetPBM Check"
+msgstr "Titre de Gallery"
+
+#: ../setup/check_netpbm.php:131
 #, php-format
-msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
-msgstr "<b>Note:</b> Votre répertoire %s (%s) n'est pas présent dans la liste open_basedir (spécifiée dans le php.ini) %s alors nous ne pouvons pas lancer les tests basiques sur les fichiers pour s'assurer qu'ils existent et qu'ils sont exécutables."
+msgid "%sClick here%s to hide the details"
+msgstr "%sClicquez ici%s pour cacher les détrails"
+
+#: ../setup/check_netpbm.php:134
+#, php-format
+msgid "If you see errors, you should %sclick here%s to see more details"
+msgstr "Si vous voyez des erreurs, vous pouvez %scliquer ici%s afin d'afficher plus de détails"
 
 #: ../setup/config_data.inc:17
 #, fuzzy, php-format
@@ -710,7 +734,7 @@ msgstr "non"
 
 #: ../setup/config_data.inc:290 ../setup/config_data.inc:387
 #: ../setup/config_data.inc:446 ../setup/config_data.inc:457
-#: ../setup/functions.inc:796 ../setup/functions.inc:868
+#: ../setup/functions.inc:801 ../setup/functions.inc:873
 msgid "Advanced"
 msgstr "Avancé"
 
@@ -1351,7 +1375,7 @@ msgstr "Service d'Impression"
 
 #: ../setup/config_data.inc:811
 #, fuzzy
-msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market.  EZ Prints, PhotoAccess and Shutterfly are based in the United States.  All services will give a small donation to the Gallery project for every print you make.  If you choose Shutterfly, Gallery will charge an extra 2 cents (US) for every photo printed (a 4x6 print normally costs 39 cents US) and 1.8 cents of that will get donated back to the Gallery project.  EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation.  Using these services is a great way for you to help support this free software.  "
+msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. If you choose Shutterfly's &quot;with donation&quot; option, Gallery will charge an extra 2 cents (US) for every photo printed, and 1.8 cents of that will get donated back to the Gallery project. EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation. Using these services is a great way for you to help support this free software."
 msgstr "Autorise les visiteurs à imprimer les photos directement depuis l'album.  Si vous choisissez shutterfly, Gallery prendra une part de 2 cents (US) pour chaque photo imprimée (une photo 10x15 coûte normalement 49 cents US) et 1.8 cents parmi cette somme seront reversés au projet Gallery.  C'est un bon moyen pour vous de fournir du support au logiciel libre."
 
 #: ../setup/config_data.inc:827
@@ -1565,8 +1589,8 @@ msgstr "Horizontal"
 msgid "Vertical"
 msgstr "Vertical"
 
-#: ../setup/config_data.inc:981 ../setup/functions.inc:946
-#: ../setup/functions.inc:955 ../setup/functions.inc:960
+#: ../setup/config_data.inc:981 ../setup/functions.inc:951
+#: ../setup/functions.inc:960 ../setup/functions.inc:965
 msgid "Vote words and values"
 msgstr ""
 
@@ -1893,277 +1917,278 @@ msgstr ""
 msgid "This allows you to see if you can use the email functions in %s."
 msgstr ""
 
-#: ../setup/functions.inc:104
+#: ../setup/functions.inc:108
 msgid "Please retype your password here"
 msgstr ""
 
-#: ../setup/functions.inc:116 ../setup/functions.inc:947
+#: ../setup/functions.inc:120 ../setup/functions.inc:952
 #, fuzzy
 msgid "Name"
 msgstr "Nom"
 
-#: ../setup/functions.inc:116 ../setup/functions.inc:947
+#: ../setup/functions.inc:120 ../setup/functions.inc:952
 #, fuzzy
 msgid "Value"
 msgstr "Échec"
 
-#: ../setup/functions.inc:275
+#: ../setup/functions.inc:279
 msgid "Missing value"
 msgstr "Valeur manquante"
 
-#: ../setup/functions.inc:297
+#: ../setup/functions.inc:301
 #, fuzzy
 msgid "I can read your <b>.htaccess</b> file."
 msgstr "Je peux lire le fichier .htaccess"
 
-#: ../setup/functions.inc:326
+#: ../setup/functions.inc:330
 #, fuzzy, php-format
 msgid "PHP v%s is OK."
 msgstr "PHP v%s est OK"
 
-#: ../setup/functions.inc:339
+#: ../setup/functions.inc:343
 #, fuzzy
 msgid "<b>mod_rewrite</b> is enabled."
 msgstr "mod_rewrite est activé"
 
-#: ../setup/functions.inc:363
+#: ../setup/functions.inc:367
 msgid "Can't find <i>jhead</i>"
 msgstr ""
 
-#: ../setup/functions.inc:365
+#: ../setup/functions.inc:369
 #, fuzzy
 msgid "<b>jhead</b> binary located."
 msgstr "binaire jhead trouvé"
 
-#: ../setup/functions.inc:379
+#: ../setup/functions.inc:383
 #, fuzzy
 msgid "NetPBM not being used in this installation."
 msgstr "NetPBM ne peut être utilisé dans cette installation"
 
-#: ../setup/functions.inc:384 ../setup/functions.inc:470
+#: ../setup/functions.inc:388 ../setup/functions.inc:474
 #, fuzzy
 msgid "Cannot verify this path (it's not in your open_basedir list)."
 msgstr "Impossible de vérifier ce chemin (il n'est pas présent dans la liste open_basedir)"
 
-#: ../setup/functions.inc:433 ../setup/functions.inc:489
+#: ../setup/functions.inc:437 ../setup/functions.inc:493
 #, php-format
 msgid "Can't find %s!"
 msgstr "Impossible de trouver %s!"
 
-#: ../setup/functions.inc:438 ../setup/functions.inc:494
+#: ../setup/functions.inc:442 ../setup/functions.inc:498
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s n'est pas exécutable!"
 
-#: ../setup/functions.inc:449
+#: ../setup/functions.inc:453
 #, fuzzy, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr "%d binaires NetPBM ont été trouvés"
 
-#: ../setup/functions.inc:505
+#: ../setup/functions.inc:509
 #, fuzzy, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr "%d binaires ImageMagick ont été trouvés"
 
-#: ../setup/functions.inc:528
+#: ../setup/functions.inc:532
 msgid "Can't find <i>jpegtran</i>!"
 msgstr ""
 
-#: ../setup/functions.inc:530
+#: ../setup/functions.inc:534
 #, fuzzy
 msgid "<b>jpegtran</b> binary located."
 msgstr "binaire jpegtran trouvé"
 
-#: ../setup/functions.inc:542
+#: ../setup/functions.inc:546
 #, fuzzy
 msgid "PHP has <b>GNU gettext</b> support."
 msgstr "gettext installé"
 
-#: ../setup/functions.inc:560
+#: ../setup/functions.inc:548
+#, fuzzy
+msgid "PHP does not have <b>GNU gettext</b> support."
+msgstr "gettext installé"
+
+#: ../setup/functions.inc:564
 msgid "No languages found."
 msgstr "Aucune langue trouvé."
 
-#: ../setup/functions.inc:562
+#: ../setup/functions.inc:566
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
 msgstr ""
 
-#: ../setup/functions.inc:565
+#: ../setup/functions.inc:570
 #, fuzzy, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
 msgstr "Seulement %d parmi %d langues sont disponibles.  Si vous voulez d'autres langues, téléchargez une version récente des %s depuis %s."
 
-#: ../setup/functions.inc:589
+#: ../setup/functions.inc:594
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr "Vous pouvez trouver les versions plus récentes à %s."
 
-#: ../setup/functions.inc:591
+#: ../setup/functions.inc:596
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr "Cette version de %s a été distribuée le %s."
 
-#: ../setup/functions.inc:593
+#: ../setup/functions.inc:598
 #, fuzzy, php-format
 msgid "This is a development build of %s that was released on %s."
 msgstr "Ceci est une version beta de %s, datant distribuée le %s."
 
-#: ../setup/functions.inc:602
+#: ../setup/functions.inc:607
 msgid "Please check regularly for updates."
 msgstr "Veuillez vérifier couramment les mises à jours."
 
-#: ../setup/functions.inc:623
+#: ../setup/functions.inc:628
 #, fuzzy
 msgid "All gallery locales are available on this host."
 msgstr "Tous les locales sont disponibles sur cette machine"
 
-#: ../setup/functions.inc:626
+#: ../setup/functions.inc:631
 #, php-format
 msgid "There are %d locales that Gallery was unable to locate. You will need to manually select date formats. "
 msgstr ""
 
-#: ../setup/functions.inc:632
+#: ../setup/functions.inc:637
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You will need to manually select date formats for these."
 msgstr ""
 
-#: ../setup/functions.inc:637
+#: ../setup/functions.inc:642
 #, fuzzy, php-format
 msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
 msgstr "Impossible de trouver les locales. Cependant, votre serveur est configuré avec la restriction %s, alors celà interfère peut être avec la manière dont les locales sont détectées. Malheureusement, celà signifie que les formats de date ne changeront pas pour les différentes langues. Malgré celà, il est ok de continuer."
 
-#: ../setup/functions.inc:641
+#: ../setup/functions.inc:646
 #, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
 msgstr ""
 
-#: ../setup/functions.inc:643
+#: ../setup/functions.inc:648
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "Seul la locale par défaut de cette machine est disponible, alors les formats de date ne changeront pas pour les langues différents."
 
-#: ../setup/functions.inc:796
+#: ../setup/functions.inc:801
 msgid "Locale Selection required"
 msgstr "La sélection d'une locale est requise."
 
-#: ../setup/functions.inc:797
+#: ../setup/functions.inc:802
 #, fuzzy
 msgid "There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "Il y a plus d'une locale adaptée installé sur votre système pour les langues suivantes. Merci de choisir celui que vous pensez le mieux approprié."
 
-#: ../setup/functions.inc:799 ../setup/functions.inc:871
+#: ../setup/functions.inc:804 ../setup/functions.inc:876
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
 msgstr ""
 
-#: ../setup/functions.inc:827 ../setup/functions.inc:834
-#: ../setup/functions.inc:844
+#: ../setup/functions.inc:832 ../setup/functions.inc:839
+#: ../setup/functions.inc:849
 #, fuzzy
 msgid "System locale"
 msgstr "Page de Vérifications Systèmes"
 
-#: ../setup/functions.inc:868
+#: ../setup/functions.inc:873
 msgid "Locale problems"
 msgstr "Problème de locale"
 
-#: ../setup/functions.inc:869
+#: ../setup/functions.inc:874
 msgid "There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "Aparemment il votre machine ne dispose pas des locales adaptées pour les langues suivantes. Merci de choisir celui que vous pensez le plus adapté."
 
-#: ../setup/functions.inc:914
+#: ../setup/functions.inc:919
 #, fuzzy
 msgid "<b>safe_mode</b> is off."
 msgstr "le \"safe mode\" est désactivé"
 
-#: ../setup/functions.inc:927
+#: ../setup/functions.inc:932
 #, fuzzy
 msgid "<b>magic_quotes</b> are off."
 msgstr "les \"magic quotes\" sont désacvivées"
 
-#: ../setup/functions.inc:945
+#: ../setup/functions.inc:950
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr ""
 
-#: ../setup/functions.inc:954
+#: ../setup/functions.inc:959
 #, php-format
 msgid "In %s, blank in row %d."
 msgstr ""
 
-#: ../setup/functions.inc:959
+#: ../setup/functions.inc:964
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr ""
 
-#: ../setup/functions.inc:1115
+#: ../setup/functions.inc:1120
 msgid "Your admin passwords do not match!"
 msgstr ""
 
-#: ../setup/functions.inc:1126
-msgid "OK"
-msgstr ""
-
-#: ../setup/functions.inc:1131
+#: ../setup/functions.inc:1136
 msgid "Valid admin email address given."
 msgstr ""
 
-#: ../setup/functions.inc:1138
+#: ../setup/functions.inc:1143
 #, fuzzy
 msgid "You must specify valid admin email addresses"
 msgstr "Le mot de passe est obligatoire."
 
-#: ../setup/functions.inc:1146
+#: ../setup/functions.inc:1151
 #, php-format
 msgid "%s is not a valid email address."
 msgstr ""
 
-#: ../setup/functions.inc:1155
+#: ../setup/functions.inc:1160
 msgid "Valid sender email address given."
 msgstr ""
 
-#: ../setup/functions.inc:1157
+#: ../setup/functions.inc:1162
 #, fuzzy
 msgid "You must specify a valid sender email address"
 msgstr "Le nom d'utilisateur est obligatoire"
 
-#: ../setup/functions.inc:1160
+#: ../setup/functions.inc:1165
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr ""
 
-#: ../setup/functions.inc:1165
+#: ../setup/functions.inc:1170
 #, php-format
 msgid "You must include %s or %s in your welcome email"
 msgstr ""
 
-#: ../setup/functions.inc:1186
+#: ../setup/functions.inc:1191
 #, php-format
 msgid "this is new in version %s"
 msgstr "nouveauté de la version %s"
 
-#: ../setup/functions.inc:1191
+#: ../setup/functions.inc:1196
 #, php-format
 msgid "Return to %s."
 msgstr ""
 
-#: ../setup/functions.inc:1192
+#: ../setup/functions.inc:1197
 #, fuzzy
 msgid "Configuration Wizard"
 msgstr "Gallery: Mode de Configuration"
 
-#: ../setup/functions.inc:1239
+#: ../setup/functions.inc:1244
 #, fuzzy, php-format
 msgid "You must enter a password for the %s account."
 msgstr "Le mot de passe est obligatoire."
 
-#: ../setup/functions.inc:1244
+#: ../setup/functions.inc:1249
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr ""
 
-#: ../setup/functions.inc:1251
+#: ../setup/functions.inc:1256
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr ""
 
-#: ../setup/functions.inc:1258
+#: ../setup/functions.inc:1263
 msgid "Admin password"
 msgstr "Mot de Passe Administrateur"
 
@@ -2175,40 +2200,40 @@ msgstr "Configuration de Gallery"
 msgid "unknown"
 msgstr "inconnu"
 
-#: ../setup/session_test.php:40
+#: ../setup/session_test.php:44
 msgid "Gallery Session Test"
 msgstr "Test de Session Gallery"
 
-#: ../setup/session_test.php:43
+#: ../setup/session_test.php:49
 msgid "Session Test"
 msgstr "Test de Session"
 
-#: ../setup/session_test.php:45
+#: ../setup/session_test.php:52
 msgid "If sessions are configured properly in your PHP installation, then you should see a session id below."
 msgstr "Si les sessions sont configurées correctement dans votre installation PHP, alors vous devriez vour un id de session ci dessous."
 
-#: ../setup/session_test.php:46
+#: ../setup/session_test.php:54
 msgid "The &quot;page views&quot; number should increase every time you reload the page."
 msgstr "Le nombre de \"visite de page\" devrai augmenter à chaque fois que vous rechargez la page."
 
-#: ../setup/session_test.php:47
+#: ../setup/session_test.php:56
 #, php-format
 msgid "Clicking %s should reset the page view number back to 1."
 msgstr "Cliquer %s devrai remettre à 1 le nombre de pages vue"
 
-#: ../setup/session_test.php:51
+#: ../setup/session_test.php:58
 msgid "If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation."
 msgstr "Si celà <b>ne marche pas</b>, alors vous avez sûrement un problème de configuration avec votre installation PHP."
 
-#: ../setup/session_test.php:52
+#: ../setup/session_test.php:59
 msgid "Gallery will not work properly until PHP's session management is configured properly."
 msgstr "Gallery ne fonctionnera pas tant que les sessions PHP ne seront pas configurées correctement."
 
-#: ../setup/session_test.php:59
+#: ../setup/session_test.php:67
 msgid "Your session id is"
 msgstr "Votre id de session est"
 
-#: ../setup/session_test.php:67
+#: ../setup/session_test.php:71
 msgid "Page views in this session"
 msgstr "Nombre de visite de pages durant cette session"
 
@@ -2216,7 +2241,7 @@ msgstr "Nombre de visite de pages durant cette session"
 msgid "Server IP address"
 msgstr "Adresse IP du serveur"
 
-#: ../setup/session_test.php:83
+#: ../setup/session_test.php:85
 msgid "Start over"
 msgstr "Recommencez"
 
@@ -2286,3 +2311,6 @@ msgstr "Il vous manque %s ou bien %s."
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "Revie des Paramètres"
+
+#~ msgid "<b>Note:</b>  Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
+#~ msgstr "<b>Note:</b>  Votre répertoire %s (%s) n'est pas dans votre liste open_basedir (spécifiée dans le php.ini) %s Alors nous est impossible d'effectuer toutes nos vérifications de base sur les fichiers pour s'assurer qu'ils existent et qu'ils sont exécutables."

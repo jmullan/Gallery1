@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-10-14 18:58+0200\n"
+"POT-Creation-Date: 2003-10-16 15:31+0200\n"
 "PO-Revision-Date: 2003-09-01 13:57+0800\n"
 "Last-Translator: Foxfair Hu <foxfair@cc.nsysu.edu.tw>\n"
 "Language-Team: Traditional Chinese <gallery-translations@lists.sourceforge.net>\n"
@@ -153,7 +153,7 @@ msgstr "沒問題"
 msgid "Serious Warning"
 msgstr "嚴重警告"
 
-#: ../setup/check.inc:64 ../setup/check.inc:96 ../setup/config_data.inc:770
+#: ../setup/check.inc:64 ../setup/check.inc:97 ../setup/config_data.inc:770
 #: ../setup/config_data.inc:776
 msgid "Warning"
 msgstr "警告"
@@ -162,211 +162,235 @@ msgstr "警告"
 msgid "Failed!"
 msgstr "失敗! "
 
-#: ../setup/check.inc:123
+#: ../setup/check.inc:129
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr "您的設定錯誤, Gallery 將無法正常執行"
 
-#: ../setup/check.inc:125
+#: ../setup/check.inc:131
 msgid "You must fix them before you can continue."
 msgstr "您必須修正這些錯誤才能進行下一步. "
 
-#: ../setup/check.inc:130
+#: ../setup/check.inc:136
 msgid "Your installation has <b>serious warnings</b>!<br>Continue at your own risk..."
 msgstr "您的安裝程序有 <b>嚴重警告</b>! 略過警告繼續的話，會有不可預期的風險..."
 
-#: ../setup/check.inc:133
+#: ../setup/check.inc:139
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr "您的安裝程序有 警告, 通常可以略過沒有關係. 繼續下一步吧! "
 
-#: ../setup/check.inc:137
+#: ../setup/check.inc:143
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "您的安裝程序沒有問題囉, 請繼續下一步吧! "
 
-#: ../setup/check.inc:140 ../setup/constants.inc:17 ../setup/constants.inc:119
+#: ../setup/check.inc:146 ../setup/constants.inc:17 ../setup/constants.inc:119
 #: ../setup/defaults.inc:17 ../setup/defaults.inc:93
 msgid "Next Page"
 msgstr "下一頁"
 
-#: ../setup/check_imagemagick.php:14 ../setup/check_netpbm.php:14
+#: ../setup/check_imagemagick.php:15
+msgid "Gallery ImageMagick Check"
+msgstr ""
+
+#: ../setup/check_imagemagick.php:21 ../setup/check_netpbm.php:21
 #, php-format
 msgid "Check %s"
 msgstr "檢查 %s"
 
-#: ../setup/check_imagemagick.php:16 ../setup/check_netpbm.php:16
+#: ../setup/check_imagemagick.php:25 ../setup/check_netpbm.php:25
 #, php-format
 msgid "This script is designed to examine your %s installation to see if it is ok to be used by Gallery."
 msgstr "這個 script 是用來檢查您的 %s 安裝程序是否完成, 以便在 Gallery 裡面正常執行. "
 
-#: ../setup/check_imagemagick.php:17 ../setup/check_netpbm.php:17
+#: ../setup/check_imagemagick.php:26 ../setup/check_netpbm.php:26
 #, php-format
 msgid "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."
 msgstr "如果您再安裝 %s 時發生問題而程式沒有檢查出來, 請在執行設定精靈 <b>之後</b> 執行這個 script. "
 
-#: ../setup/check_imagemagick.php:22 ../setup/check_netpbm.php:22
+#: ../setup/check_imagemagick.php:37 ../setup/check_netpbm.php:37
 msgid "Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard."
 msgstr "載入設定檔中. 如果有錯誤訊息產生, 有可能是您的設定精靈設定失敗. "
 
-#: ../setup/check_imagemagick.php:26 ../setup/check_netpbm.php:26
+#: ../setup/check_imagemagick.php:45 ../setup/check_netpbm.php:45
 msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
 msgstr "您的 Gallery 尚未設定完成, 請繼續執行設定精靈. "
 
-#: ../setup/check_imagemagick.php:36 ../setup/check_netpbm.php:36
+#: ../setup/check_imagemagick.php:59 ../setup/check_netpbm.php:59
+#: ../setup/functions.inc:1131
+msgid "OK"
+msgstr "OK"
+
+#: ../setup/check_imagemagick.php:69 ../setup/check_netpbm.php:69
 msgid "Let us see if we can figure out what operating system you are using."
 msgstr "讓我們看看您的作業系統為何. "
 
-#: ../setup/check_imagemagick.php:39 ../setup/check_netpbm.php:39
+#: ../setup/check_imagemagick.php:73 ../setup/check_netpbm.php:73
 msgid "This is what your system reports"
 msgstr "這是您的系統產生的報告"
 
-#: ../setup/check_imagemagick.php:44 ../setup/check_netpbm.php:44
+#: ../setup/check_imagemagick.php:76 ../setup/check_netpbm.php:76
 msgid "This is the type of system on which PHP was compiled"
 msgstr "這是系統編譯的 PHP 系統版本"
 
-#: ../setup/check_imagemagick.php:50 ../setup/check_netpbm.php:50
+#: ../setup/check_imagemagick.php:78 ../setup/check_netpbm.php:78
 msgid "Make sure that the values above make sense to you."
 msgstr "請確定上面的數值對你而言是有意義的. "
 
-#: ../setup/check_imagemagick.php:55 ../setup/check_netpbm.php:55
+#: ../setup/check_imagemagick.php:81 ../setup/check_netpbm.php:81
 #, php-format
 msgid "Look for keywords like %s, %s, %s etc. in the output above."
 msgstr "尋找上列關鍵字如 %s, %s, %s 等. "
 
-#: ../setup/check_imagemagick.php:57 ../setup/check_netpbm.php:57
+#: ../setup/check_imagemagick.php:83 ../setup/check_netpbm.php:83
 msgid "If both the attempts above failed, you should ask your ISP what operating system you are using."
 msgstr "如果上面的方式都無法成功, 請向您的網站服務提供者詢問所使用的作業系統為何. "
 
-#: ../setup/check_imagemagick.php:58 ../setup/check_netpbm.php:58
+#: ../setup/check_imagemagick.php:84 ../setup/check_netpbm.php:84
 #, php-format
 msgid "You can check via %s, they can often tell you."
 msgstr "您可以透過 %s 來檢查, 他們通常會回答你. "
 
-#: ../setup/check_imagemagick.php:65 ../setup/check_netpbm.php:65
+#: ../setup/check_imagemagick.php:100 ../setup/check_netpbm.php:100
 #, php-format
 msgid "You told the config wizard that your %s binaries live here:"
 msgstr "您說您的 %s 可執行檔在這邊："
 
-#: ../setup/check_imagemagick.php:73 ../setup/check_netpbm.php:73
+#: ../setup/check_imagemagick.php:102 ../setup/check_netpbm.php:102
 #, php-format
 msgid "If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."
 msgstr "如果上述資訊不正確 (或者是空白), 請重新執行設定精靈並輸入 %s 的位置. "
 
-#: ../setup/check_imagemagick.php:84
-#, php-format
-msgid "<b>Note:</b>  Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
+#: ../setup/check_imagemagick.php:111 ../setup/check_netpbm.php:111
+#, fuzzy, php-format
+msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
+msgstr "無法檢查該路徑 (不在您的 open_basedir 列表中)"
+
+#: ../setup/check_imagemagick.php:115 ../setup/check_netpbm.php:115
+msgid "The open_basedir list is specified in php.ini."
+msgstr ""
+
+#: ../setup/check_imagemagick.php:116 ../setup/check_netpbm.php:116
+#, fuzzy
+msgid "The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
 msgstr "<b>注意：</b> 您的 %s 目錄 (%s) 並不在 open_basedir 列表中 (在 php.ini 中定義) %s 所以我們無法進行所有的基本測試來確認檔案是否存在而且可以執行. "
 
-#: ../setup/check_imagemagick.php:95 ../setup/check_netpbm.php:96
+#: ../setup/check_imagemagick.php:127 ../setup/check_netpbm.php:128
 #, php-format
 msgid "We are going to test each %s binary individually."
 msgstr "我們準備逐一測試每一個 %s 可執行檔"
 
-#: ../setup/check_imagemagick.php:99 ../setup/check_netpbm.php:100
-#, php-format
-msgid "%sClick here%s to hide the details"
-msgstr "%s點選這裡%s 隱藏進階資訊"
-
-#: ../setup/check_imagemagick.php:102 ../setup/check_netpbm.php:104
-#, php-format
-msgid "If you see errors, you should %sclick here%s to see more details"
-msgstr "如果您看到錯誤產生, 請 %s點這裡%s 得到更多資訊"
-
-#: ../setup/check_imagemagick.php:129 ../setup/check_netpbm.php:140
-#, php-format
-msgid "Checking %s"
+#: ../setup/check_imagemagick.php:142 ../setup/check_netpbm.php:163
+#, fuzzy
+msgid "Checking:"
 msgstr "檢查 %s 中"
 
-#: ../setup/check_imagemagick.php:136 ../setup/check_netpbm.php:147
-#, php-format
-msgid "File %s does not exist."
-msgstr "檔案 %s 並不存在. "
-
-#: ../setup/check_imagemagick.php:149 ../setup/check_netpbm.php:160
-#, php-format
-msgid "Expected status: %s, but actually received status %s."
-msgstr "我們希望收到的狀態是：%s, 但傳回來的狀態是 %s. "
-
-#: ../setup/check_imagemagick.php:162 ../setup/check_netpbm.php:174
-msgid "can't detect version on Windows"
-msgstr "無法偵測 Windows 的版本"
-
-#: ../setup/check_imagemagick.php:173 ../setup/check_netpbm.php:201
-#, php-format
-msgid "Ok!  Version: %s"
-msgstr "Ok!  版本：%s"
-
-#: ../setup/check_imagemagick.php:176 ../setup/check_mail.php:42
-#: ../setup/check_mail.php:46 ../setup/check_netpbm.php:203
-#, php-format
-msgid "Error! %s"
-msgstr "錯誤!  %s"
-
-#: ../setup/check_imagemagick.php:186 ../setup/check_netpbm.php:214
+#: ../setup/check_imagemagick.php:165 ../setup/check_netpbm.php:193
 #, php-format
 msgid "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."
 msgstr "如果出現任何有關讀寫 %s 的錯誤, 那有可能是您系統權限/設定的問題. 如果錯誤訊息中提到 %s, 那是因為您的系統設定 %s 功能開啟了. "
 
-#: ../setup/check_imagemagick.php:192 ../setup/check_netpbm.php:220
+#: ../setup/check_imagemagick.php:169 ../setup/check_netpbm.php:197
 #, php-format
 msgid "You should talk to your system administrator about this, or see the %sGallery Help Page%s."
 msgstr "您應該向系統管理員回報上述錯誤, 或者參考 %sGallery Help Page%s. "
 
-#: ../setup/check_imagemagick.php:198 ../setup/check_netpbm.php:227
+#: ../setup/check_imagemagick.php:174 ../setup/check_netpbm.php:202
 #, php-format
 msgid "For other errors, please refer to the list of possible responses in %s to get more information."
 msgstr "其他的錯誤狀況, 請參考 %s 裡面所有可能回應訊息的列表以獲得更多資訊. "
 
-#: ../setup/check_mail.php:20
+#: ../setup/check_imagemagick.php:202 ../setup/check_netpbm.php:230
+#, php-format
+msgid "File %s does not exist."
+msgstr "檔案 %s 並不存在. "
+
+#: ../setup/check_imagemagick.php:213 ../setup/check_netpbm.php:241
+#, php-format
+msgid "Expected status: %s, but actually received status %s."
+msgstr "我們希望收到的狀態是：%s, 但傳回來的狀態是 %s. "
+
+#: ../setup/check_imagemagick.php:226 ../setup/check_netpbm.php:255
+msgid "can't detect version on Windows"
+msgstr "無法偵測 Windows 的版本"
+
+#: ../setup/check_imagemagick.php:237 ../setup/check_netpbm.php:281
+#, fuzzy, php-format
+msgid "OK!  Version: %s"
+msgstr "Ok!  版本：%s"
+
+#: ../setup/check_mail.php:12 ../setup/session_test.php:17
+msgid "You cannot access this file while gallery is in secure mode."
+msgstr ""
+
+#: ../setup/check_mail.php:25 ../setup/check_mail.php:30
 msgid "Check Mail"
 msgstr "檢查信件"
 
-#: ../setup/check_mail.php:26
+#: ../setup/check_mail.php:37
 #, php-format
 msgid "Test email from %s"
 msgstr "由 %s 產生的測試信. "
 
-#: ../setup/check_mail.php:27
+#: ../setup/check_mail.php:38
 msgid "This email was automatically generated."
 msgstr "信件已自動產生完畢. "
 
-#: ../setup/check_mail.php:28
+#: ../setup/check_mail.php:39
 msgid "If you recevied this in error, then please disregard, as you should not receive any similar emails."
 msgstr "假使您不知道為何收到本信件，請勿理會本封或爾後之類似信件. "
 
-#: ../setup/check_mail.php:29
+#: ../setup/check_mail.php:40
 #, php-format
 msgid "If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."
 msgstr "假使這是您由 %s 軟體安裝於此連結: %s 所發出的電子信件，那麼恭喜您！電子信箱設定正常，您可以啟動 %s 電子信箱功能。"
 
-#: ../setup/check_mail.php:33
-#, php-format
-msgid "Test email sent to %s, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
+#: ../setup/check_mail.php:44
+msgid "SUCCESS!"
+msgstr ""
+
+#: ../setup/check_mail.php:45
+#, fuzzy, php-format
+msgid "Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
 msgstr "測試信已送往 %s，應於數分鐘後收到，假使您尚未收到，請再次確認信箱地址設定正常。若無法收到測試信，那一定是本伺服器不提供此功能，所以 %s 電子信箱功能在伺服器啟動此功能前前將無法使用。"
 
-#: ../setup/check_mail.php:35
+#: ../setup/check_mail.php:47
 msgid "You must use a valid email address"
 msgstr "您一定要輸入有效的電子信箱地址"
 
-#: ../setup/check_mail.php:39
+#: ../setup/check_mail.php:48
+msgid "Try again?"
+msgstr ""
+
+#: ../setup/check_mail.php:54
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "啟動本功能以便確認系統的電子信件功能是否正常。在下面輸入您的電子信件地址，然後會自動發出一封測試信，假使您收到信了，就代表您的系統上電子信件功能是正常的。"
 
-#: ../setup/check_mail.php:41 ../setup/check_mail.php:45
-#, php-format
-msgid "%s not set."
+#: ../setup/check_mail.php:57 ../setup/check_mail.php:61
+#, fuzzy, php-format
+msgid "Error! %s not set."
 msgstr "沒有設定 %s."
 
-#: ../setup/check_mail.php:54
+#: ../setup/check_mail.php:79
 msgid "Your email address:"
 msgstr "您的電子信箱地址："
 
-#: ../setup/check_mail.php:55
+#: ../setup/check_mail.php:81
 msgid "Send Email"
 msgstr "傳送電子信件"
 
-#: ../setup/check_netpbm.php:84
+#: ../setup/check_netpbm.php:15
+#, fuzzy
+msgid "Gallery NetPBM Check"
+msgstr "Gallery 標題"
+
+#: ../setup/check_netpbm.php:131
 #, php-format
-msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
-msgstr "<b>注意：</b> 您的 %s 目錄 (%s) 並不在 open_basedir 列表中 (在 php.ini 中定義) %s 所以我們無法進行所有的基本測試來確認檔案是否存在而且可以執行. "
+msgid "%sClick here%s to hide the details"
+msgstr "%s點選這裡%s 隱藏進階資訊"
+
+#: ../setup/check_netpbm.php:134
+#, php-format
+msgid "If you see errors, you should %sclick here%s to see more details"
+msgstr "如果您看到錯誤產生, 請 %s點這裡%s 得到更多資訊"
 
 #: ../setup/config_data.inc:17
 #, fuzzy, php-format
@@ -704,7 +728,7 @@ msgstr "否"
 
 #: ../setup/config_data.inc:290 ../setup/config_data.inc:387
 #: ../setup/config_data.inc:446 ../setup/config_data.inc:457
-#: ../setup/functions.inc:796 ../setup/functions.inc:868
+#: ../setup/functions.inc:801 ../setup/functions.inc:873
 msgid "Advanced"
 msgstr "進階"
 
@@ -1327,7 +1351,7 @@ msgstr "列印服務"
 
 #: ../setup/config_data.inc:811
 #, fuzzy
-msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market.  EZ Prints, PhotoAccess and Shutterfly are based in the United States.  All services will give a small donation to the Gallery project for every print you make.  If you choose Shutterfly, Gallery will charge an extra 2 cents (US) for every photo printed (a 4x6 print normally costs 39 cents US) and 1.8 cents of that will get donated back to the Gallery project.  EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation.  Using these services is a great way for you to help support this free software.  "
+msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. If you choose Shutterfly's &quot;with donation&quot; option, Gallery will charge an extra 2 cents (US) for every photo printed, and 1.8 cents of that will get donated back to the Gallery project. EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation. Using these services is a great way for you to help support this free software."
 msgstr "允許訪客由相簿內上列印相片. 如果您選擇 shutterfly, 每一張相片會多收美金 2 cents(通常 4x6 是 49 cents), 其中 1.8 cents 將捐獻給 Gallery 計畫. 這是您贊助本自由軟體的最好途徑. "
 
 #: ../setup/config_data.inc:827
@@ -1540,8 +1564,8 @@ msgstr "水平"
 msgid "Vertical"
 msgstr "垂直"
 
-#: ../setup/config_data.inc:981 ../setup/functions.inc:946
-#: ../setup/functions.inc:955 ../setup/functions.inc:960
+#: ../setup/config_data.inc:981 ../setup/functions.inc:951
+#: ../setup/functions.inc:960 ../setup/functions.inc:965
 msgid "Vote words and values"
 msgstr "選項名稱與數值"
 
@@ -1860,271 +1884,272 @@ msgstr "這一頁只會送一封測試信. "
 msgid "This allows you to see if you can use the email functions in %s."
 msgstr "這會讓您得知是否您可以使用 %s 的電子信件功能. "
 
-#: ../setup/functions.inc:104
+#: ../setup/functions.inc:108
 msgid "Please retype your password here"
 msgstr ""
 
-#: ../setup/functions.inc:116 ../setup/functions.inc:947
+#: ../setup/functions.inc:120 ../setup/functions.inc:952
 msgid "Name"
 msgstr "名稱"
 
-#: ../setup/functions.inc:116 ../setup/functions.inc:947
+#: ../setup/functions.inc:120 ../setup/functions.inc:952
 msgid "Value"
 msgstr "分數"
 
-#: ../setup/functions.inc:275
+#: ../setup/functions.inc:279
 msgid "Missing value"
 msgstr "Missing value"
 
-#: ../setup/functions.inc:297
+#: ../setup/functions.inc:301
 #, fuzzy
 msgid "I can read your <b>.htaccess</b> file."
 msgstr "可以讀取您的 .htaccess 檔案"
 
-#: ../setup/functions.inc:326
+#: ../setup/functions.inc:330
 #, fuzzy, php-format
 msgid "PHP v%s is OK."
 msgstr "PHP %s OK"
 
-#: ../setup/functions.inc:339
+#: ../setup/functions.inc:343
 #, fuzzy
 msgid "<b>mod_rewrite</b> is enabled."
 msgstr "mod_rewrite 開啟"
 
-#: ../setup/functions.inc:363
+#: ../setup/functions.inc:367
 msgid "Can't find <i>jhead</i>"
 msgstr ""
 
-#: ../setup/functions.inc:365
+#: ../setup/functions.inc:369
 #, fuzzy
 msgid "<b>jhead</b> binary located."
 msgstr "找到 jhead 可執行檔"
 
-#: ../setup/functions.inc:379
+#: ../setup/functions.inc:383
 #, fuzzy
 msgid "NetPBM not being used in this installation."
 msgstr "安裝過程中沒有使用 NetPBM"
 
-#: ../setup/functions.inc:384 ../setup/functions.inc:470
+#: ../setup/functions.inc:388 ../setup/functions.inc:474
 #, fuzzy
 msgid "Cannot verify this path (it's not in your open_basedir list)."
 msgstr "無法檢查該路徑 (不在您的 open_basedir 列表中)"
 
-#: ../setup/functions.inc:433 ../setup/functions.inc:489
+#: ../setup/functions.inc:437 ../setup/functions.inc:493
 #, php-format
 msgid "Can't find %s!"
 msgstr "找不到 %s! "
 
-#: ../setup/functions.inc:438 ../setup/functions.inc:494
+#: ../setup/functions.inc:442 ../setup/functions.inc:498
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s 不能執行! "
 
-#: ../setup/functions.inc:449
+#: ../setup/functions.inc:453
 #, fuzzy, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr "找到 %d 個 NetPBM 可執行檔"
 
-#: ../setup/functions.inc:505
+#: ../setup/functions.inc:509
 #, fuzzy, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr "找到 %d 個 ImageMagick 可執行檔"
 
-#: ../setup/functions.inc:528
+#: ../setup/functions.inc:532
 msgid "Can't find <i>jpegtran</i>!"
 msgstr ""
 
-#: ../setup/functions.inc:530
+#: ../setup/functions.inc:534
 #, fuzzy
 msgid "<b>jpegtran</b> binary located."
 msgstr "找到 jpegtran"
 
-#: ../setup/functions.inc:542
+#: ../setup/functions.inc:546
 #, fuzzy
 msgid "PHP has <b>GNU gettext</b> support."
 msgstr "gettext 已安裝"
 
-#: ../setup/functions.inc:560
+#: ../setup/functions.inc:548
+#, fuzzy
+msgid "PHP does not have <b>GNU gettext</b> support."
+msgstr "gettext 已安裝"
+
+#: ../setup/functions.inc:564
 msgid "No languages found."
 msgstr "沒有找到任何語言. "
 
-#: ../setup/functions.inc:562
+#: ../setup/functions.inc:566
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
 msgstr ""
 
-#: ../setup/functions.inc:565
+#: ../setup/functions.inc:570
 #, fuzzy, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
 msgstr "只有 %d 分之 %d 種語言存在, 如果您想要使用其他語言, 請在 %s 下載 %s. "
 
-#: ../setup/functions.inc:589
+#: ../setup/functions.inc:594
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr "您可以點選 %s 察看是否有更新的版本. "
 
-#: ../setup/functions.inc:591
+#: ../setup/functions.inc:596
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr "這個版本的 %s 由第 %s 版釋出. "
 
-#: ../setup/functions.inc:593
+#: ../setup/functions.inc:598
 #, php-format
 msgid "This is a development build of %s that was released on %s."
 msgstr "這是一個 %s 的發展版本, 由第 %s 版釋出. "
 
-#: ../setup/functions.inc:602
+#: ../setup/functions.inc:607
 msgid "Please check regularly for updates."
 msgstr "請定期檢查是否有更新檔. "
 
-#: ../setup/functions.inc:623
+#: ../setup/functions.inc:628
 #, fuzzy
 msgid "All gallery locales are available on this host."
 msgstr "本伺服器支援所有的語系"
 
-#: ../setup/functions.inc:626
+#: ../setup/functions.inc:631
 #, php-format
 msgid "There are %d locales that Gallery was unable to locate. You will need to manually select date formats. "
 msgstr ""
 
-#: ../setup/functions.inc:632
+#: ../setup/functions.inc:637
 #, fuzzy, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You will need to manually select date formats for these."
 msgstr "日期無法有 %d 種語言中以正確格式顯示，因為所使用的語系不存在，但您仍可另外選擇新語系"
 
-#: ../setup/functions.inc:637
+#: ../setup/functions.inc:642
 #, fuzzy, php-format
 msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
 msgstr "我們無法偵測到任何的語系支援, 主動偵測語系的原因是您的伺服器有設定 %s 的限制條件. 很不幸地您的日期格式將不會隨著語系設定而有所改變, 不過您還是可以繼續下一步. "
 
-#: ../setup/functions.inc:641
+#: ../setup/functions.inc:646
 #, fuzzy, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
 msgstr "無法偵測到任何系統語系設定. 多國語系的功能將停用. 請安裝相關的語系設定或者洽詢您的網站提供者. 這是一個在 %s 系統的已知問題, 請參閱 %sDebian locale HowTo%s"
 
-#: ../setup/functions.inc:643
+#: ../setup/functions.inc:648
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "在這台機器上只有預設的語系存在, 所以日期格式將不會隨著語言的不同而有所改變. "
 
-#: ../setup/functions.inc:796
+#: ../setup/functions.inc:801
 msgid "Locale Selection required"
 msgstr "請選擇語系"
 
-#: ../setup/functions.inc:797
+#: ../setup/functions.inc:802
 msgid "There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "您的機器上有一個以上的語系可以選擇, 請設定一個您認為最適合的. "
 
-#: ../setup/functions.inc:799 ../setup/functions.inc:871
+#: ../setup/functions.inc:804 ../setup/functions.inc:876
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
 msgstr "本項僅供<b>日期與時間</b>格式設定. 您只需要修改上面的語言選項即可"
 
-#: ../setup/functions.inc:827 ../setup/functions.inc:834
-#: ../setup/functions.inc:844
+#: ../setup/functions.inc:832 ../setup/functions.inc:839
+#: ../setup/functions.inc:849
 msgid "System locale"
 msgstr "系統語系"
 
-#: ../setup/functions.inc:868
+#: ../setup/functions.inc:873
 msgid "Locale problems"
 msgstr "語系問題"
 
-#: ../setup/functions.inc:869
+#: ../setup/functions.inc:874
 msgid "There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "在您的機器上沒有適合下列語言的語系, 請設定一個您認為最適合的"
 
-#: ../setup/functions.inc:914
+#: ../setup/functions.inc:919
 #, fuzzy
 msgid "<b>safe_mode</b> is off."
 msgstr "safe mode 關閉"
 
-#: ../setup/functions.inc:927
+#: ../setup/functions.inc:932
 #, fuzzy
 msgid "<b>magic_quotes</b> are off."
 msgstr "magic quotes 關閉"
 
-#: ../setup/functions.inc:945
+#: ../setup/functions.inc:950
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr "在 %s 中, 找不到 %s 在第 %d 列與 %s %s. "
 
-#: ../setup/functions.inc:954
+#: ../setup/functions.inc:959
 #, php-format
 msgid "In %s, blank in row %d."
 msgstr "在 %s 中, 第 %d 列為空白. "
 
-#: ../setup/functions.inc:959
+#: ../setup/functions.inc:964
 #, fuzzy, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "在 %s 中, %s (第 %d 列) %s 應為正整數"
 
-#: ../setup/functions.inc:1115
+#: ../setup/functions.inc:1120
 msgid "Your admin passwords do not match!"
 msgstr ""
 
-#: ../setup/functions.inc:1126
-msgid "OK"
-msgstr "OK"
-
-#: ../setup/functions.inc:1131
+#: ../setup/functions.inc:1136
 msgid "Valid admin email address given."
 msgstr "已指定正確的管理者電子信件地址. "
 
-#: ../setup/functions.inc:1138
+#: ../setup/functions.inc:1143
 msgid "You must specify valid admin email addresses"
 msgstr "您一定要輸入正確的管理者電子信件位址"
 
-#: ../setup/functions.inc:1146
+#: ../setup/functions.inc:1151
 #, php-format
 msgid "%s is not a valid email address."
 msgstr "%s 並非正確的管理者電子信件地址. "
 
-#: ../setup/functions.inc:1155
+#: ../setup/functions.inc:1160
 msgid "Valid sender email address given."
 msgstr "已指定正確的管理者電子信件地址. "
 
-#: ../setup/functions.inc:1157
+#: ../setup/functions.inc:1162
 msgid "You must specify a valid sender email address"
 msgstr "您一定要輸入正確的送信者信件地址"
 
-#: ../setup/functions.inc:1160
+#: ../setup/functions.inc:1165
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr "您必須將 %s 放入歡迎信件中"
 
-#: ../setup/functions.inc:1165
+#: ../setup/functions.inc:1170
 #, fuzzy, php-format
 msgid "You must include %s or %s in your welcome email"
 msgstr "您必須將 %s 放入歡迎信件中"
 
-#: ../setup/functions.inc:1186
+#: ../setup/functions.inc:1191
 #, php-format
 msgid "this is new in version %s"
 msgstr "這是版本 %s 的新功能"
 
-#: ../setup/functions.inc:1191
+#: ../setup/functions.inc:1196
 #, php-format
 msgid "Return to %s."
 msgstr "返回 %s. "
 
-#: ../setup/functions.inc:1192
+#: ../setup/functions.inc:1197
 #, fuzzy
 msgid "Configuration Wizard"
 msgstr "Gallery: 設定模式"
 
-#: ../setup/functions.inc:1239
+#: ../setup/functions.inc:1244
 #, fuzzy, php-format
 msgid "You must enter a password for the %s account."
 msgstr "請輸入新密碼兩次"
 
-#: ../setup/functions.inc:1244
+#: ../setup/functions.inc:1249
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr ""
 
-#: ../setup/functions.inc:1251
+#: ../setup/functions.inc:1256
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr ""
 
-#: ../setup/functions.inc:1258
+#: ../setup/functions.inc:1263
 msgid "Admin password"
 msgstr "管理者密碼"
 
@@ -2136,40 +2161,40 @@ msgstr "Gallery 設定"
 msgid "unknown"
 msgstr "未知"
 
-#: ../setup/session_test.php:40
+#: ../setup/session_test.php:44
 msgid "Gallery Session Test"
 msgstr "Gallery Session 測試"
 
-#: ../setup/session_test.php:43
+#: ../setup/session_test.php:49
 msgid "Session Test"
 msgstr "Session 測試"
 
-#: ../setup/session_test.php:45
+#: ../setup/session_test.php:52
 msgid "If sessions are configured properly in your PHP installation, then you should see a session id below."
 msgstr "如果您 PHP 的 session 有正確設定, 您會在下面看到 session id. "
 
-#: ../setup/session_test.php:46
+#: ../setup/session_test.php:54
 msgid "The &quot;page views&quot; number should increase every time you reload the page."
 msgstr "當您重新載入這個網頁時 &quot;網頁瀏覽次數&quot; 應該會增加. "
 
-#: ../setup/session_test.php:47
+#: ../setup/session_test.php:56
 #, php-format
 msgid "Clicking %s should reset the page view number back to 1."
 msgstr "點選 %s 會重新設定瀏覽次數為 1. "
 
-#: ../setup/session_test.php:51
+#: ../setup/session_test.php:58
 msgid "If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation."
 msgstr "如果這 <b>無法</b> 正常運作, 那您的 PHP 安裝有設定上的問題. "
 
-#: ../setup/session_test.php:52
+#: ../setup/session_test.php:59
 msgid "Gallery will not work properly until PHP's session management is configured properly."
 msgstr "如果 PHP 的 session 管理沒有設定好, 那麼 Gallery 將無法正常運作. "
 
-#: ../setup/session_test.php:59
+#: ../setup/session_test.php:67
 msgid "Your session id is"
 msgstr "您的 session id 是"
 
-#: ../setup/session_test.php:67
+#: ../setup/session_test.php:71
 msgid "Page views in this session"
 msgstr "在 session 中瀏覽網頁次數"
 
@@ -2177,7 +2202,7 @@ msgstr "在 session 中瀏覽網頁次數"
 msgid "Server IP address"
 msgstr "伺服器 IP 位置"
 
-#: ../setup/session_test.php:83
+#: ../setup/session_test.php:85
 msgid "Start over"
 msgstr "重來一次"
 
@@ -2247,3 +2272,9 @@ msgstr "您不是沒有 %s 就是沒有 %s. "
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "重新瀏覽設定"
+
+#~ msgid "<b>Note:</b>  Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
+#~ msgstr "<b>注意：</b> 您的 %s 目錄 (%s) 並不在 open_basedir 列表中 (在 php.ini 中定義) %s 所以我們無法進行所有的基本測試來確認檔案是否存在而且可以執行. "
+
+#~ msgid "Error! %s"
+#~ msgstr "錯誤!  %s"

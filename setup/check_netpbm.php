@@ -112,7 +112,7 @@ if (! file_exists("../config.php")) {
 						$app_name,
 						$gallery->app->pnmDir,
 						'<ul>'.  ini_get('open_basedir') . '</ul>');
-						echo _("The 'open_basedir list is specified in php.ini.") . "<br>";
+						echo _("The open_basedir list is specified in php.ini.") . "<br>";
 						echo _("The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable.") ."\n"; ?>
 			</td>
 		</tr>
@@ -160,12 +160,11 @@ $binaries = array("giftopnm",
 foreach ($binaries as $bin) {
 	$result=checkNetPbm($bin);
 	echo "\n\t\t<tr>";
-	echo "\n\t\t\t". '<td class="desc" width="20%">' . _("Checking:"). ' <b>' . $result[0] . '</b></td>';
-	echo "\n\t\t\t". '<td width="5%">&nbsp</td>';
+	echo "\n\t\t\t". '<td class="desc" width="100%">' . _("Checking:"). ' <b>' . $result[0] . '</b></td>';
 	if (isset($result['error'])) {
-		echo "\n\t\t\t". '<td class="errorpct" colspan="2" width="30%">'. $result['error'] . '</td>';
+		echo "\n\t\t\t". '<td style="white-space:nowrap;" class="errorpct">'. $result['error'] . '</td>';
 	} else {
-		echo "\n\t\t\t". '<td class="success" width="30%">'. $result['ok'] . '</td>';
+		echo "\n\t\t\t". '<td style="white-space:nowrap;" class="successpct">'. $result['ok'] . '</td>';
 	}
 	if (isset($result['details'])) {
 		echo "\n\t\t\t" . '<td class="desc">';

@@ -545,7 +545,7 @@ function check_gettext()
 	if (gettext_installed()) {
 		$success[] = _("PHP has <b>GNU gettext</b> support.");
 	} else {
-		$warn["fail-gettext"] = _("PHP does not have GNU gettext support.");
+		$warn["fail-gettext"] = _("PHP does not have <b>GNU gettext</b> support.");
 	}
 	return array($success, $fail, $warn);
 }
@@ -563,7 +563,8 @@ function check_gallery_languages()
 	if (sizeof($languages) == 0) {
 		$fail["fail-gallery-languages"] = _("No languages found."); // should never occur!
 	} else if (sizeof($languages) == 1 ) {
-		$warn['only_english']= _("It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team.");
+		$warn['only_english'] = _("It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team.");
+		$warn['nocolor'] = true;
 	}
 	else {
 	$success[] = sprintf(_("%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),

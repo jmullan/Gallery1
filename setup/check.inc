@@ -93,12 +93,18 @@ foreach ($checklist as $check) {
 
 	if (isset($warn)) {
 		foreach ($warn as $key => $val) {
+			if ($key == 'nocolor') continue;
         	        echo "\t\t\t\t". '<p class="warning">'. _("Warning") . '</p>';
                 	echo "\n\t\t\t\t<p>";
 			if (isset($check[$key])) {
 				echo "\t\t\t\t<p>". $check[$key] . "</p>";
 			}
-			echo "\n\t\t\t\t". '<p class="warning">'. $val . '</p>';
+			if (! isset($warn['nocolor'])) {
+				$class="warningpct";
+			} else {
+				$class="";
+			}
+			echo "\n\t\t\t\t<p class=\"$class\">$val</p>";
 
 	        }
 	}

@@ -30,7 +30,11 @@ while ($dirname = readdir($handle)) {
 
 				$lines=file($GALLERY_BASEDIR . "locale/$dirname/$file");
 				$fuzzy=0;
-				$untranslated=-2;
+				if ($component == "core") {
+					$untranslated=-2;
+				} else {
+					$untranslated=-1;
+				}
 				$translated=0;
 				$obsolete=0;
 				foreach ($lines as $line) {	
@@ -63,7 +67,7 @@ while ($dirname = readdir($handle)) {
 				if (strlen($color) <6) $color="0". $color;
 				$tpd+=$percent_done;
 				if ($percent_done == 100) $easteregg++;
-				$report[$locale][$component]=array ($color,$percent_done,$all,$translated,$fuzzy,$untranslated,$obsolete);
+				$report[$locale][$component]=array ($color,$percent_done,$all,$translated,$fuzzy,$untranslated,$obsolete/2);
 				$total['percent_done'] = $total['percent_done'] + $percent_done;
 				$cc++;
 

@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-10-14 18:58+0200\n"
+"POT-Creation-Date: 2003-10-16 15:31+0200\n"
 "PO-Revision-Date: 2003-09-25 22:52+0100\n"
 "Last-Translator: Peter Liversten <skansberget@telia.com>\n"
 "Language-Team: SWEDISH <crille@swipnet.se>\n"
@@ -154,7 +154,7 @@ msgstr "Lyckades"
 msgid "Serious Warning"
 msgstr "Allvarlig varning"
 
-#: ../setup/check.inc:64 ../setup/check.inc:96 ../setup/config_data.inc:770
+#: ../setup/check.inc:64 ../setup/check.inc:97 ../setup/config_data.inc:770
 #: ../setup/config_data.inc:776
 msgid "Warning"
 msgstr "Varning"
@@ -163,211 +163,235 @@ msgstr "Varning"
 msgid "Failed!"
 msgstr "Misslyckades!"
 
-#: ../setup/check.inc:123
+#: ../setup/check.inc:129
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr "Det finns fel i din konfiguration som gör att Gallery inte fungerar som det skall."
 
-#: ../setup/check.inc:125
+#: ../setup/check.inc:131
 msgid "You must fix them before you can continue."
 msgstr "Du måste åtgärda dessa fel innan du kan fortsätta."
 
-#: ../setup/check.inc:130
+#: ../setup/check.inc:136
 msgid "Your installation has <b>serious warnings</b>!<br>Continue at your own risk..."
 msgstr "Din installation har <b>allvarliga varningar</b>!<br>Fortsätt på egen risk..."
 
-#: ../setup/check.inc:133
+#: ../setup/check.inc:139
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr "Din installation har varningar, men det är vanligt och OK.  Fortsätt!"
 
-#: ../setup/check.inc:137
+#: ../setup/check.inc:143
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "Din installation genomfördes med gott resultat!  Fortsätt!"
 
-#: ../setup/check.inc:140 ../setup/constants.inc:17 ../setup/constants.inc:119
+#: ../setup/check.inc:146 ../setup/constants.inc:17 ../setup/constants.inc:119
 #: ../setup/defaults.inc:17 ../setup/defaults.inc:93
 msgid "Next Page"
 msgstr "Nästa sida"
 
-#: ../setup/check_imagemagick.php:14 ../setup/check_netpbm.php:14
+#: ../setup/check_imagemagick.php:15
+msgid "Gallery ImageMagick Check"
+msgstr ""
+
+#: ../setup/check_imagemagick.php:21 ../setup/check_netpbm.php:21
 #, php-format
 msgid "Check %s"
 msgstr "Kontrollera %s"
 
-#: ../setup/check_imagemagick.php:16 ../setup/check_netpbm.php:16
+#: ../setup/check_imagemagick.php:25 ../setup/check_netpbm.php:25
 #, php-format
 msgid "This script is designed to examine your %s installation to see if it is ok to be used by Gallery."
 msgstr "Detta skript är konstruerat för att undersöka din %s installation och för att se om den är ok att användas av Gallery. "
 
-#: ../setup/check_imagemagick.php:17 ../setup/check_netpbm.php:17
+#: ../setup/check_imagemagick.php:26 ../setup/check_netpbm.php:26
 #, php-format
 msgid "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."
 msgstr "Du bör köra detta skript <b>efter</b> du har genomfört konfigurationsguiden och om du hade problem med din %s installation som guiden inte kunde upptäcka."
 
-#: ../setup/check_imagemagick.php:22 ../setup/check_netpbm.php:22
+#: ../setup/check_imagemagick.php:37 ../setup/check_netpbm.php:37
 msgid "Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard."
 msgstr "Laddar konfigurationsfiler. Om du får något felmeddelande här så beror det vanligtvis på att du inte har lyckats genomföra konfigurationsguiden."
 
-#: ../setup/check_imagemagick.php:26 ../setup/check_netpbm.php:26
+#: ../setup/check_imagemagick.php:45 ../setup/check_netpbm.php:45
 msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
 msgstr "Det verkar som om du inte har konfigurerat ditt GALLERY.  Vänligen genomför konfigurationsguiden."
 
-#: ../setup/check_imagemagick.php:36 ../setup/check_netpbm.php:36
+#: ../setup/check_imagemagick.php:59 ../setup/check_netpbm.php:59
+#: ../setup/functions.inc:1131
+msgid "OK"
+msgstr "OK"
+
+#: ../setup/check_imagemagick.php:69 ../setup/check_netpbm.php:69
 msgid "Let us see if we can figure out what operating system you are using."
 msgstr "Låt oss se om vi kan lista ut vilket operativsystem som du använder."
 
-#: ../setup/check_imagemagick.php:39 ../setup/check_netpbm.php:39
+#: ../setup/check_imagemagick.php:73 ../setup/check_netpbm.php:73
 msgid "This is what your system reports"
 msgstr "Detta är vad ditt system rapporterar"
 
-#: ../setup/check_imagemagick.php:44 ../setup/check_netpbm.php:44
+#: ../setup/check_imagemagick.php:76 ../setup/check_netpbm.php:76
 msgid "This is the type of system on which PHP was compiled"
 msgstr "Detta är systemet som PHP är kompilerat för"
 
-#: ../setup/check_imagemagick.php:50 ../setup/check_netpbm.php:50
+#: ../setup/check_imagemagick.php:78 ../setup/check_netpbm.php:78
 msgid "Make sure that the values above make sense to you."
 msgstr "Försäkra dig om att värdena ovan stämmer för dig."
 
-#: ../setup/check_imagemagick.php:55 ../setup/check_netpbm.php:55
+#: ../setup/check_imagemagick.php:81 ../setup/check_netpbm.php:81
 #, php-format
 msgid "Look for keywords like %s, %s, %s etc. in the output above."
 msgstr "Titta efter nyckelord såsom %s, %s, %s o.s.v. i utskriften ovan."
 
-#: ../setup/check_imagemagick.php:57 ../setup/check_netpbm.php:57
+#: ../setup/check_imagemagick.php:83 ../setup/check_netpbm.php:83
 msgid "If both the attempts above failed, you should ask your ISP what operating system you are using."
 msgstr "Om bägge försöken ovan misslyckades bör du fråga din ISP (internet-/webbhotellsleverantör) om vilket operativsystem du använder."
 
-#: ../setup/check_imagemagick.php:58 ../setup/check_netpbm.php:58
+#: ../setup/check_imagemagick.php:84 ../setup/check_netpbm.php:84
 #, php-format
 msgid "You can check via %s, they can often tell you."
 msgstr "Du kan också kontrollera genom %s, de kan ofta hjälpa dig."
 
-#: ../setup/check_imagemagick.php:65 ../setup/check_netpbm.php:65
+#: ../setup/check_imagemagick.php:100 ../setup/check_netpbm.php:100
 #, php-format
 msgid "You told the config wizard that your %s binaries live here:"
 msgstr "Du talade om för konfigurationsguiden att din %s binärkod (program) finns här:"
 
-#: ../setup/check_imagemagick.php:73 ../setup/check_netpbm.php:73
+#: ../setup/check_imagemagick.php:102 ../setup/check_netpbm.php:102
 #, php-format
 msgid "If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."
 msgstr "Om detta inte stämmer (eller om det är tomt), genomför konfigurationsguiden en gång till och skriv in platsen där %s finns."
 
-#: ../setup/check_imagemagick.php:84
-#, php-format
-msgid "<b>Note:</b>  Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
-msgstr "<b>Observera:</b> Din %s katalog (%s) finns inte i din open_basedir lista (specificerad i php.ini) %s så vi kan inte genomföra alla våra grundläggande kontroller på filerna för att säkerhetsställa att de finns och är körbara."
+#: ../setup/check_imagemagick.php:111 ../setup/check_netpbm.php:111
+#, fuzzy, php-format
+msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
+msgstr "Kan inte verifiera denna sökväg (den finns inte i din open_basedir lista)."
 
-#: ../setup/check_imagemagick.php:95 ../setup/check_netpbm.php:96
+#: ../setup/check_imagemagick.php:115 ../setup/check_netpbm.php:115
+msgid "The open_basedir list is specified in php.ini."
+msgstr ""
+
+#: ../setup/check_imagemagick.php:116 ../setup/check_netpbm.php:116
+#, fuzzy
+msgid "The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
+msgstr "<b>Observera:</b> Din %s katalog (%s) finns inte i din open_basedir lista (specificerad i php.ini) %s så vi kan inte genomföra alla våra grundläggande  kontroller på filerna för att säkerhetsställa att de finns och är körbara."
+
+#: ../setup/check_imagemagick.php:127 ../setup/check_netpbm.php:128
 #, php-format
 msgid "We are going to test each %s binary individually."
 msgstr "Vi kommer att pröva varje %s binärkod (program) individuellt."
 
-#: ../setup/check_imagemagick.php:99 ../setup/check_netpbm.php:100
-#, php-format
-msgid "%sClick here%s to hide the details"
-msgstr "%sKlicka här%s för att dölja detaljerna"
-
-#: ../setup/check_imagemagick.php:102 ../setup/check_netpbm.php:104
-#, php-format
-msgid "If you see errors, you should %sclick here%s to see more details"
-msgstr "Om du får felmeddelanden så kan du %sKlicka här%s för att finna mer information"
-
-#: ../setup/check_imagemagick.php:129 ../setup/check_netpbm.php:140
-#, php-format
-msgid "Checking %s"
+#: ../setup/check_imagemagick.php:142 ../setup/check_netpbm.php:163
+#, fuzzy
+msgid "Checking:"
 msgstr "Kontrollerar %s"
 
-#: ../setup/check_imagemagick.php:136 ../setup/check_netpbm.php:147
-#, php-format
-msgid "File %s does not exist."
-msgstr "Filen %s finns inte."
-
-#: ../setup/check_imagemagick.php:149 ../setup/check_netpbm.php:160
-#, php-format
-msgid "Expected status: %s, but actually received status %s."
-msgstr "Förväntad status: %s, men faktisk mottagen status är %s."
-
-#: ../setup/check_imagemagick.php:162 ../setup/check_netpbm.php:174
-msgid "can't detect version on Windows"
-msgstr "kan inte upptäcka version av Windows"
-
-#: ../setup/check_imagemagick.php:173 ../setup/check_netpbm.php:201
-#, php-format
-msgid "Ok!  Version: %s"
-msgstr "Ok!  Version: %s"
-
-#: ../setup/check_imagemagick.php:176 ../setup/check_mail.php:42
-#: ../setup/check_mail.php:46 ../setup/check_netpbm.php:203
-#, php-format
-msgid "Error! %s"
-msgstr "Felmeddelande! %s"
-
-#: ../setup/check_imagemagick.php:186 ../setup/check_netpbm.php:214
+#: ../setup/check_imagemagick.php:165 ../setup/check_netpbm.php:193
 #, php-format
 msgid "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."
 msgstr "Om du får felmeddelanden ovan som klagar på läsning och skrivning till %s så är detta troligtvis en  behörighets-/konfigurationsfråga på ditt system. Om det omtalar %s så beror det på att ditt system är konfigurerat med %s aktiverat."
 
-#: ../setup/check_imagemagick.php:192 ../setup/check_netpbm.php:220
+#: ../setup/check_imagemagick.php:169 ../setup/check_netpbm.php:197
 #, php-format
 msgid "You should talk to your system administrator about this, or see the %sGallery Help Page%s."
 msgstr "Du bör kontakta din systemadministratör(internet-/webbhotelsleverantör) om detta, eller se %sGallery's hjälpsida%s."
 
-#: ../setup/check_imagemagick.php:198 ../setup/check_netpbm.php:227
+#: ../setup/check_imagemagick.php:174 ../setup/check_netpbm.php:202
 #, php-format
 msgid "For other errors, please refer to the list of possible responses in %s to get more information."
 msgstr "För andra felmeddelanden, vänligen vänd dig till listan på möjliga orsaker i %s för mer information."
 
-#: ../setup/check_mail.php:20
+#: ../setup/check_imagemagick.php:202 ../setup/check_netpbm.php:230
+#, php-format
+msgid "File %s does not exist."
+msgstr "Filen %s finns inte."
+
+#: ../setup/check_imagemagick.php:213 ../setup/check_netpbm.php:241
+#, php-format
+msgid "Expected status: %s, but actually received status %s."
+msgstr "Förväntad status: %s, men faktisk mottagen status är %s."
+
+#: ../setup/check_imagemagick.php:226 ../setup/check_netpbm.php:255
+msgid "can't detect version on Windows"
+msgstr "kan inte upptäcka version av Windows"
+
+#: ../setup/check_imagemagick.php:237 ../setup/check_netpbm.php:281
+#, fuzzy, php-format
+msgid "OK!  Version: %s"
+msgstr "Ok!  Version: %s"
+
+#: ../setup/check_mail.php:12 ../setup/session_test.php:17
+msgid "You cannot access this file while gallery is in secure mode."
+msgstr ""
+
+#: ../setup/check_mail.php:25 ../setup/check_mail.php:30
 msgid "Check Mail"
 msgstr "Kontrollera e-post"
 
-#: ../setup/check_mail.php:26
+#: ../setup/check_mail.php:37
 #, php-format
 msgid "Test email from %s"
 msgstr "Teste-post från %s"
 
-#: ../setup/check_mail.php:27
+#: ../setup/check_mail.php:38
 msgid "This email was automatically generated."
 msgstr "Denna e-post var automatiskt genererad."
 
-#: ../setup/check_mail.php:28
+#: ../setup/check_mail.php:39
 msgid "If you recevied this in error, then please disregard, as you should not receive any similar emails."
 msgstr "Om du mottog detta i ett felmeddelande, så vänligen ignorera, eftersom du inte skulle motta några liknande e-post."
 
-#: ../setup/check_mail.php:29
+#: ../setup/check_mail.php:40
 #, php-format
 msgid "If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."
 msgstr "Om du har förväntat e-post från %s installation på %s, så Grattis!  E-posten fungerar och du kan aktivera %s e-post funktionen."
 
-#: ../setup/check_mail.php:33
-#, php-format
-msgid "Test email sent to %s, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
+#: ../setup/check_mail.php:44
+msgid "SUCCESS!"
+msgstr ""
+
+#: ../setup/check_mail.php:45
+#, fuzzy, php-format
+msgid "Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
 msgstr "Test e-post skickat till %s och borde komma fram om ett par minuter.  Om du inte får den,  vänligen kontrollera att e-postadressen som användes var riktig.  Om du inte kan mottaga e-posten så måste det avaktiveras för denna server och %s e-postegenskapen kan inte användas så länge detta inte är korrigerat"
 
-#: ../setup/check_mail.php:35
+#: ../setup/check_mail.php:47
 msgid "You must use a valid email address"
 msgstr "Du måste använda en giltig e-postadress"
 
-#: ../setup/check_mail.php:39
+#: ../setup/check_mail.php:48
+msgid "Try again?"
+msgstr ""
+
+#: ../setup/check_mail.php:54
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "Detta möjliggör för dig att konfirmera att e-posten fungerar ordentligt på ditt system.  Skriv in din e-postadress nedan och en e-post kommer att skickas till dig.  Om du får den så vet du att e-posten fungerar på ditt system. "
 
-#: ../setup/check_mail.php:41 ../setup/check_mail.php:45
-#, php-format
-msgid "%s not set."
+#: ../setup/check_mail.php:57 ../setup/check_mail.php:61
+#, fuzzy, php-format
+msgid "Error! %s not set."
 msgstr "%s inte inställd."
 
-#: ../setup/check_mail.php:54
+#: ../setup/check_mail.php:79
 msgid "Your email address:"
 msgstr "Din e-postadress:"
 
-#: ../setup/check_mail.php:55
+#: ../setup/check_mail.php:81
 msgid "Send Email"
 msgstr "Skicka E-post"
 
-#: ../setup/check_netpbm.php:84
+#: ../setup/check_netpbm.php:15
+#, fuzzy
+msgid "Gallery NetPBM Check"
+msgstr "Gallery Titel:"
+
+#: ../setup/check_netpbm.php:131
 #, php-format
-msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
-msgstr "<b>Observera:</b> Din %s katalog (%s) finns inte i din open_basedir lista (specificerad i php.ini) %s så vi kan inte genomföra alla våra grundläggande  kontroller på filerna för att säkerhetsställa att de finns och är körbara."
+msgid "%sClick here%s to hide the details"
+msgstr "%sKlicka här%s för att dölja detaljerna"
+
+#: ../setup/check_netpbm.php:134
+#, php-format
+msgid "If you see errors, you should %sclick here%s to see more details"
+msgstr "Om du får felmeddelanden så kan du %sKlicka här%s för att finna mer information"
 
 #: ../setup/config_data.inc:17
 #, php-format
@@ -693,7 +717,7 @@ msgstr "Nej"
 
 #: ../setup/config_data.inc:290 ../setup/config_data.inc:387
 #: ../setup/config_data.inc:446 ../setup/config_data.inc:457
-#: ../setup/functions.inc:796 ../setup/functions.inc:868
+#: ../setup/functions.inc:801 ../setup/functions.inc:873
 msgid "Advanced"
 msgstr "Avancerat"
 
@@ -1299,7 +1323,8 @@ msgid "Printing Services"
 msgstr "Utskriftservice"
 
 #: ../setup/config_data.inc:811
-msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market.  EZ Prints, PhotoAccess and Shutterfly are based in the United States.  All services will give a small donation to the Gallery project for every print you make.  If you choose Shutterfly, Gallery will charge an extra 2 cents (US) for every photo printed (a 4x6 print normally costs 39 cents US) and 1.8 cents of that will get donated back to the Gallery project.  EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation.  Using these services is a great way for you to help support this free software.  "
+#, fuzzy
+msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. If you choose Shutterfly's &quot;with donation&quot; option, Gallery will charge an extra 2 cents (US) for every photo printed, and 1.8 cents of that will get donated back to the Gallery project. EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation. Using these services is a great way for you to help support this free software."
 msgstr "Tillåt besökare att skriva ut foton direkt från ett album.  Fotokasten är en utskriftservice baserad i Tyskland som är god för den Europeiska marknaden.  EZ Prints, PhotoAccess och Shutterfly är baserade i USA.  Alla servicerna kommer alla att ge en liten donation till Gallery-projektet för varje utskrift du gör.  Om du väljer Shutterfly så kommer Gallery att lägga på 2 cent (US) extra för varje fotoutskrift (en 4x6 utskrift kostar normalt 39 cent US) och 1.8 cent av det kommer doneras tillbaka till Gallery-projektet.  EZ Prints, PhotoAccess och Fotokasten tar inget extra för Gallery donationen.  Användning av dessa tjänster är ett utmärkt sätt för dig att hjälpa stödja denna fria programvara."
 
 #: ../setup/config_data.inc:827
@@ -1504,8 +1529,8 @@ msgstr "Horisontellt"
 msgid "Vertical"
 msgstr "Vertikalt"
 
-#: ../setup/config_data.inc:981 ../setup/functions.inc:946
-#: ../setup/functions.inc:955 ../setup/functions.inc:960
+#: ../setup/config_data.inc:981 ../setup/functions.inc:951
+#: ../setup/functions.inc:960 ../setup/functions.inc:965
 msgid "Vote words and values"
 msgstr "Text och värden för omröstning:"
 
@@ -1817,261 +1842,262 @@ msgstr "Denna sida kommer helt enkelt att testa och skicka en e-post."
 msgid "This allows you to see if you can use the email functions in %s."
 msgstr "Detta tillåter dig att se om du kan använda e-post funktioner i %s."
 
-#: ../setup/functions.inc:104
+#: ../setup/functions.inc:108
 msgid "Please retype your password here"
 msgstr "Vänligen återge ditt lösenord här"
 
-#: ../setup/functions.inc:116 ../setup/functions.inc:947
+#: ../setup/functions.inc:120 ../setup/functions.inc:952
 msgid "Name"
 msgstr "Text"
 
-#: ../setup/functions.inc:116 ../setup/functions.inc:947
+#: ../setup/functions.inc:120 ../setup/functions.inc:952
 msgid "Value"
 msgstr "Värde"
 
-#: ../setup/functions.inc:275
+#: ../setup/functions.inc:279
 msgid "Missing value"
 msgstr "Saknat värde"
 
-#: ../setup/functions.inc:297
+#: ../setup/functions.inc:301
 msgid "I can read your <b>.htaccess</b> file."
 msgstr "Jag kan läsa din <b>.htaccess</b> fil."
 
-#: ../setup/functions.inc:326
+#: ../setup/functions.inc:330
 #, php-format
 msgid "PHP v%s is OK."
 msgstr "PHP v%s är OK."
 
-#: ../setup/functions.inc:339
+#: ../setup/functions.inc:343
 msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> är aktiverat."
 
-#: ../setup/functions.inc:363
+#: ../setup/functions.inc:367
 msgid "Can't find <i>jhead</i>"
 msgstr "Kan inte hitta <i>jhead</i>!"
 
-#: ../setup/functions.inc:365
+#: ../setup/functions.inc:369
 msgid "<b>jhead</b> binary located."
 msgstr "<b>jhead</b> binärkoden(program) lokaliserad."
 
-#: ../setup/functions.inc:379
+#: ../setup/functions.inc:383
 msgid "NetPBM not being used in this installation."
 msgstr "NetPBM kommer inte att användas i denna installation."
 
-#: ../setup/functions.inc:384 ../setup/functions.inc:470
+#: ../setup/functions.inc:388 ../setup/functions.inc:474
 msgid "Cannot verify this path (it's not in your open_basedir list)."
 msgstr "Kan inte verifiera denna sökväg (den finns inte i din open_basedir lista)."
 
-#: ../setup/functions.inc:433 ../setup/functions.inc:489
+#: ../setup/functions.inc:437 ../setup/functions.inc:493
 #, php-format
 msgid "Can't find %s!"
 msgstr "Kan inte finna %s!"
 
-#: ../setup/functions.inc:438 ../setup/functions.inc:494
+#: ../setup/functions.inc:442 ../setup/functions.inc:498
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s är inte körbar!"
 
-#: ../setup/functions.inc:449
+#: ../setup/functions.inc:453
 #, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr "%d av %d NetPBM binärer lokaliserade."
 
-#: ../setup/functions.inc:505
+#: ../setup/functions.inc:509
 #, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr "%d av %d ImageMagick binärer lokaliserade."
 
-#: ../setup/functions.inc:528
+#: ../setup/functions.inc:532
 msgid "Can't find <i>jpegtran</i>!"
 msgstr ""
 
-#: ../setup/functions.inc:530
+#: ../setup/functions.inc:534
 msgid "<b>jpegtran</b> binary located."
 msgstr "<b>jpegtran</b> binärkoden(program) lokaliserad."
 
-#: ../setup/functions.inc:542
+#: ../setup/functions.inc:546
 msgid "PHP has <b>GNU gettext</b> support."
 msgstr "PHP har <b>GNU gettext</b> stöd"
 
-#: ../setup/functions.inc:560
+#: ../setup/functions.inc:548
+#, fuzzy
+msgid "PHP does not have <b>GNU gettext</b> support."
+msgstr "PHP har <b>GNU gettext</b> stöd"
+
+#: ../setup/functions.inc:564
 msgid "No languages found."
 msgstr "Inga språk hittade."
 
-#: ../setup/functions.inc:562
+#: ../setup/functions.inc:566
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
 msgstr ""
 
-#: ../setup/functions.inc:565
+#: ../setup/functions.inc:570
 #, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
 msgstr "%d språk är tillgängliga.  Om du saknar något språk vänligen besök %sGallery's Hämtningssida%s."
 
-#: ../setup/functions.inc:589
+#: ../setup/functions.inc:594
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr "Du kan titta efter mer aktuella versioner genom att besöka %s."
 
-#: ../setup/functions.inc:591
+#: ../setup/functions.inc:596
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr "Denna version av %s är utgiven %s."
 
-#: ../setup/functions.inc:593
+#: ../setup/functions.inc:598
 #, php-format
 msgid "This is a development build of %s that was released on %s."
 msgstr "Detta är en utvecklingsversion av %s som är utgiven %s."
 
-#: ../setup/functions.inc:602
+#: ../setup/functions.inc:607
 msgid "Please check regularly for updates."
 msgstr "Vänligen kontrollera regelbundet om det finns nya uppdateringar."
 
-#: ../setup/functions.inc:623
+#: ../setup/functions.inc:628
 msgid "All gallery locales are available on this host."
 msgstr "Alla Gallery's nationella inställningar är tillgängliga på denna server."
 
-#: ../setup/functions.inc:626
+#: ../setup/functions.inc:631
 #, php-format
 msgid "There are %d locales that Gallery was unable to locate. You will need to manually select date formats. "
 msgstr "Det finns %d nationella inställningar som Gallery inte kunde lokalisera.  Du behöver manuellt välja datumformat."
 
-#: ../setup/functions.inc:632
+#: ../setup/functions.inc:637
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You will need to manually select date formats for these."
 msgstr "Datum i %d språk kan eventuellt inte formateras ordentligt eftersom de motsvarande nationella inställningarna saknas:  Du behöver manuellt välja datumformat för dessa."
 
-#: ../setup/functions.inc:637
+#: ../setup/functions.inc:642
 #, php-format
 msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
 msgstr "Vi kunde inte upptäcka några nationella inställningar.  Hur som helst är din PHP installation är konfigurerad med %s begränsning så det kan störa vägen vi upptäcker nationella inställningar.  Oturligt nog så betyder det att datumformatet inte kommer att ändras efter olika språk.  Hur som helst så är det ok att fortsätta."
 
-#: ../setup/functions.inc:641
+#: ../setup/functions.inc:646
 #, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
 msgstr "Vi kunde inte upptäcka några system nationella inställningar.  Flerspråksfunktioner kommer att vara avaktiverade.  Vänligen installera motsvarande nationella inställningar eller fråga fall din internet-/webbhotelleverantör kan göra det.  Detta problem är känt på %s system.  I detta fall vänligen ta en titt på denna %sDebian locale HowTo%s"
 
-#: ../setup/functions.inc:643
+#: ../setup/functions.inc:648
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "Endast förvald nationell inställning för denna maskin är tillgängligt så datumformatet kommer inte ändras för olika språk."
 
-#: ../setup/functions.inc:796
+#: ../setup/functions.inc:801
 msgid "Locale Selection required"
 msgstr "Välj nationell inställning"
 
-#: ../setup/functions.inc:797
+#: ../setup/functions.inc:802
 msgid "There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "Det finns fler än en passande nationell inställning installerat på din maskin för följande språk.  Vänligen välj den du tror passar bäst."
 
-#: ../setup/functions.inc:799 ../setup/functions.inc:871
+#: ../setup/functions.inc:804 ../setup/functions.inc:876
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
 msgstr "Detta är <b>endast</b> för datum- och tidsformat.  Du behöver bara redigera språken du aktiverade ovan"
 
-#: ../setup/functions.inc:827 ../setup/functions.inc:834
-#: ../setup/functions.inc:844
+#: ../setup/functions.inc:832 ../setup/functions.inc:839
+#: ../setup/functions.inc:849
 msgid "System locale"
 msgstr "Systemets teckenuppsättning"
 
-#: ../setup/functions.inc:868
+#: ../setup/functions.inc:873
 msgid "Locale problems"
 msgstr "Nationella inställningsproblem"
 
 # inte så säker på denna /Crille
-#: ../setup/functions.inc:869
+#: ../setup/functions.inc:874
 msgid "There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "Det finns inga synbara passande nationella inställningar installerade på din maskin för följande språk.  Vänligen välj den som du tror passar bäst."
 
-#: ../setup/functions.inc:914
+#: ../setup/functions.inc:919
 msgid "<b>safe_mode</b> is off."
 msgstr "<b>safe mode</b> är avaktiverat."
 
-#: ../setup/functions.inc:927
+#: ../setup/functions.inc:932
 msgid "<b>magic_quotes</b> are off."
 msgstr "<b>magic quotes</b> är avaktiverat."
 
-#: ../setup/functions.inc:945
+#: ../setup/functions.inc:950
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr "I %s, saknas %s på rad %d med %s %s."
 
-#: ../setup/functions.inc:954
+#: ../setup/functions.inc:959
 #, php-format
 msgid "In %s, blank in row %d."
 msgstr "I %s, tomt på rad %d."
 
-#: ../setup/functions.inc:959
+#: ../setup/functions.inc:964
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "I %s, för namn %s (rad %d) värde %s bör vara ett positivt heltalsnummer"
 
-#: ../setup/functions.inc:1115
+#: ../setup/functions.inc:1120
 msgid "Your admin passwords do not match!"
 msgstr "Dina administratörslösenord matchar inte varandra!"
 
-#: ../setup/functions.inc:1126
-msgid "OK"
-msgstr "OK"
-
-#: ../setup/functions.inc:1131
+#: ../setup/functions.inc:1136
 msgid "Valid admin email address given."
 msgstr "Giltig administratör e-postadress angiven."
 
-#: ../setup/functions.inc:1138
+#: ../setup/functions.inc:1143
 msgid "You must specify valid admin email addresses"
 msgstr "Du måste specificera en giltig administratör e-postadress"
 
-#: ../setup/functions.inc:1146
+#: ../setup/functions.inc:1151
 #, php-format
 msgid "%s is not a valid email address."
 msgstr "%s är inte en giltig e-postadress."
 
-#: ../setup/functions.inc:1155
+#: ../setup/functions.inc:1160
 msgid "Valid sender email address given."
 msgstr "Giltig avsändaradress given."
 
-#: ../setup/functions.inc:1157
+#: ../setup/functions.inc:1162
 msgid "You must specify a valid sender email address"
 msgstr "Du måste ange en giltig avsändare-postadress"
 
-#: ../setup/functions.inc:1160
+#: ../setup/functions.inc:1165
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr "Du måste inkludera %s i din välkomst e-post"
 
-#: ../setup/functions.inc:1165
+#: ../setup/functions.inc:1170
 #, php-format
 msgid "You must include %s or %s in your welcome email"
 msgstr "Du måste inkludera %s eller %s i din välkomst e-post"
 
-#: ../setup/functions.inc:1186
+#: ../setup/functions.inc:1191
 #, php-format
 msgid "this is new in version %s"
 msgstr "detta är nytt i version %s"
 
-#: ../setup/functions.inc:1191
+#: ../setup/functions.inc:1196
 #, php-format
 msgid "Return to %s."
 msgstr "Tillbaka till %s."
 
-#: ../setup/functions.inc:1192
+#: ../setup/functions.inc:1197
 msgid "Configuration Wizard"
 msgstr "Konfigurationsguiden"
 
-#: ../setup/functions.inc:1239
+#: ../setup/functions.inc:1244
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr "Du måste skriva in ett lösenord för %s kontot."
 
-#: ../setup/functions.inc:1244
+#: ../setup/functions.inc:1249
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr "Det ser ut som om du redan har konfigurerat gallery eftersom det redan finns %d administratörskonton.  Men inte någon användare kallad %s.  Du behöver inte skriva in något lösenord, men om du gör det så kommer Gallery att skapa en användare som kallas %s med det lösenordet."
 
-#: ../setup/functions.inc:1251
+#: ../setup/functions.inc:1256
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr "Det ser ut som om du redan har konfigurerat gallery eftersom %s användaren redan finns.  Du behöver inte skriva in ett lösenord.  Om du gör det så kommer Gallery att ändra lösenordet för användaren som kallas %s."
 
-#: ../setup/functions.inc:1258
+#: ../setup/functions.inc:1263
 msgid "Admin password"
 msgstr "Administratörslösenord:"
 
@@ -2083,40 +2109,40 @@ msgstr "Gallery's Konfiguration"
 msgid "unknown"
 msgstr "Okänd"
 
-#: ../setup/session_test.php:40
+#: ../setup/session_test.php:44
 msgid "Gallery Session Test"
 msgstr "Gallery's Sessionstest"
 
-#: ../setup/session_test.php:43
+#: ../setup/session_test.php:49
 msgid "Session Test"
 msgstr "Sessionstest"
 
-#: ../setup/session_test.php:45
+#: ../setup/session_test.php:52
 msgid "If sessions are configured properly in your PHP installation, then you should see a session id below."
 msgstr "Om sessions är konfigurerat riktigt i din PHP installation så bör du se ett sessions id nedan."
 
-#: ../setup/session_test.php:46
+#: ../setup/session_test.php:54
 msgid "The &quot;page views&quot; number should increase every time you reload the page."
 msgstr "&quot;Sidvisnings&quot;-nummret bör öka varje gång du laddar om sidan."
 
-#: ../setup/session_test.php:47
+#: ../setup/session_test.php:56
 #, php-format
 msgid "Clicking %s should reset the page view number back to 1."
 msgstr "Klickning på %s bör återställa sidvisningsnummret till 1"
 
-#: ../setup/session_test.php:51
+#: ../setup/session_test.php:58
 msgid "If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation."
 msgstr "Om detta <b>inte</b> fungerar så har du troligtvis ha ett konfigurationsproblem med din PHP-installation."
 
-#: ../setup/session_test.php:52
+#: ../setup/session_test.php:59
 msgid "Gallery will not work properly until PHP's session management is configured properly."
 msgstr "Gallery kommer inte att fungera ordentligt förens PHP's sessionshantering är ordentligt konfigurerad."
 
-#: ../setup/session_test.php:59
+#: ../setup/session_test.php:67
 msgid "Your session id is"
 msgstr "Ditt sessions id är"
 
-#: ../setup/session_test.php:67
+#: ../setup/session_test.php:71
 msgid "Page views in this session"
 msgstr "Sidvisningar i denna session"
 
@@ -2124,7 +2150,7 @@ msgstr "Sidvisningar i denna session"
 msgid "Server IP address"
 msgstr "Serverns IP-adress"
 
-#: ../setup/session_test.php:83
+#: ../setup/session_test.php:85
 msgid "Start over"
 msgstr "Starta om"
 
@@ -2193,3 +2219,9 @@ msgstr "Du saknar antingen %s eller %s."
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "Granska inställningar"
+
+#~ msgid "<b>Note:</b>  Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
+#~ msgstr "<b>Observera:</b> Din %s katalog (%s) finns inte i din open_basedir lista (specificerad i php.ini) %s så vi kan inte genomföra alla våra grundläggande kontroller på filerna för att säkerhetsställa att de finns och är körbara."
+
+#~ msgid "Error! %s"
+#~ msgstr "Felmeddelande! %s"

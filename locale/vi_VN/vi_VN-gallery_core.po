@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-10-14 18:58+0200\n"
+"POT-Creation-Date: 2003-10-16 15:10+0200\n"
 "PO-Revision-Date: 2003-06-14 12:30+0300\n"
 "Last-Translator: A.L.T <leanh@airland.kiev.ua>\n"
 "Language-Team: AIRLAND <admin@airland.kiev.ua>\n"
@@ -190,41 +190,39 @@ msgstr "Người sở hữu:"
 
 #: ../album_permissions.php:205
 msgid "Users who can see the album"
-msgstr "Những người có thể xem album:"
+msgstr "Những người có thể xem album"
 
 #: ../album_permissions.php:220
 msgid "Users who can change album text."
-msgstr "Những người có thể thay đổi album text:"
+msgstr "Những người có thể thay đổi album text."
 
 #: ../album_permissions.php:235
 msgid "Users who can add photos."
-msgstr "Những người có thể thêm ảnh:"
+msgstr "Những người có thể thêm ảnh."
 
 #: ../album_permissions.php:250
 msgid "Users who can modify photos."
-msgstr "Những người có thể thay đổi ảnh:"
+msgstr "Những người có thể thay đổi ảnh."
 
 #: ../album_permissions.php:265
 msgid "Users who can delete photos."
-msgstr "Những người có thể xóa ảnh:"
+msgstr "Những người có thể xóa ảnh."
 
 #: ../album_permissions.php:280
 msgid "Users who can create sub albums."
-msgstr "Những người có thể tạo những album phụ:"
+msgstr "Những người có thể tạo những album phụ."
 
 #: ../album_permissions.php:295
 msgid "Users who can view full (original) images."
-msgstr "Những người có thể xem đầy đủ (nguyên gốc) ảnh:"
+msgstr "Những người có thể xem đầy đủ (nguyên gốc) ảnh."
 
 #: ../album_permissions.php:311
-#, fuzzy
 msgid "Users who can add comments."
-msgstr "Những người có thể thêm ảnh:"
+msgstr "Những người có thể thêm ảnh."
 
 #: ../album_permissions.php:326
-#, fuzzy
 msgid "Users who can view comments."
-msgstr "Những người có thể thêm ảnh:"
+msgstr "Những người có thể thêm ảnh."
 
 #: ../album_permissions.php:345 ../manage_users.php:117 ../photo_owner.php:105
 #: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:70
@@ -372,9 +370,8 @@ msgid "move album"
 msgstr "chuyển album"
 
 #: ../albums.php:336
-#, fuzzy
 msgid "reorder album"
-msgstr "đổi tên album"
+msgstr "sắp xếp lại album"
 
 #: ../albums.php:338 ../view_album.php:316
 msgid "rename album"
@@ -545,11 +542,11 @@ msgstr "Đang nâng cấp mục %d của %d . . . "
 
 #: ../classes/Album.php:785
 msgid "Resizing/compressing original image"
-msgstr ""
+msgstr "Chỉnh cỡ/nén ảnh nguyên gốc"
 
 #: ../classes/Album.php:789
 msgid "Cannot resize/compress this filetype"
-msgstr ""
+msgstr "Không thể chỉnh cỡ/nén đối với loại file này"
 
 #: ../classes/Album.php:837
 #, php-format
@@ -599,45 +596,45 @@ msgstr "Không thể tạo thư mục"
 msgid "%s exists, but is not a directory!"
 msgstr "%s có, nhưng không phải là 1 thư mục!"
 
-#: ../classes/gallery/UserDB.php:255
+#: ../classes/gallery/UserDB.php:262
 #, php-format
 msgid "Illegal username %s: must at least 2 characters"
 msgstr "Tên truy cập %s không hợp lệ: phải có tối thiểu 2 ký tự"
 
-#: ../classes/gallery/UserDB.php:260
+#: ../classes/gallery/UserDB.php:267
 #, php-format
 msgid "Illegal username %s: must at most 15 characters"
 msgstr "Tên truy cập %s không hợp lệ: chỉ được có 15 ký tự tối đa"
 
-#: ../classes/gallery/UserDB.php:266
+#: ../classes/gallery/UserDB.php:273
 #, php-format
 msgid "Illegal username %s: must contain only letters or digits"
 msgstr "Tên truy cập %s không hợp lệ: chỉ được viết bằng các chữ và số"
 
-#: ../classes/gallery/UserDB.php:273
+#: ../classes/gallery/UserDB.php:280
 #, php-format
 msgid "%s is reserved and cannot be used."
 msgstr "%s bị giới hạn và không thể sử dụng."
 
-#: ../classes/gallery/UserDB.php:279
+#: ../classes/gallery/UserDB.php:286
 #, php-format
 msgid "A user with the username of %s already exists"
 msgstr "Tên truy cập của %s đã có"
 
-#: ../classes/gallery/UserDB.php:288
+#: ../classes/gallery/UserDB.php:295
 msgid "Password must be at least 3 characters"
 msgstr "Mật khẩu yêu cầu tối thiểu có 3 ký tự"
 
-#: ../classes/gallery/UserDB.php:319
+#: ../classes/gallery/UserDB.php:326
 #, php-format
 msgid "Checking user %d of %d . . . . "
 msgstr "Đang kiểm tra thành viên %d của %d . . . . "
 
-#: ../classes/gallery/UserDB.php:324
+#: ../classes/gallery/UserDB.php:331
 msgid "skipped"
 msgstr "bỏ qua"
 
-#: ../classes/gallery/UserDB.php:369
+#: ../classes/gallery/UserDB.php:377
 #, php-format
 msgid "Problem adding %s:"
 msgstr "Có vấn đề khi thêm %s:"
@@ -701,7 +698,7 @@ msgstr "Album mới"
 #: ../copy_photo.php:198 ../move_photo.php:300
 #, php-format
 msgid "WARNING: Some of the albums need to be upgraded to the current version of %s."
-msgstr "CHÚ Ý: Vài album cần được nâng cấp tới phiên bản hiện tại của thư viện ảnh."
+msgstr "CHÚ Ý: Vài album cần được nâng cấp tới phiên bản hiện tại của %s."
 
 #: ../copy_photo.php:199 ../move_photo.php:301
 msgid "Upgrade now"
@@ -908,29 +905,25 @@ msgid "Thumbnail size"
 msgstr "Cỡ thumbnail"
 
 #: ../edit_appearance.php:157
-#, fuzzy
 msgid "Auto-Resize 'sized' image dimensions"
-msgstr "Kích cỡ file ảnh được chỉnh cỡ"
+msgstr "Tự động chỉnh kích thước ảnh 'chỉnh cỡ'"
 
 #: ../edit_appearance.php:161
-#, fuzzy
 msgid "Auto-Resize JPEG/PNG 'sized' file size kilobytes (0 or blank for no size restriction)"
-msgstr "Tự động chỉnh dung lượng kilobytes của file (ghi 0 hoặc để trống để cấm chỉnh cỡ)"
+msgstr "Tự động chỉnh dung lượng kilobytes của file 'chỉnh cỡ' (ghi 0 hoặc để trống để không chỉnh)"
 
 #: ../edit_appearance.php:165
-#, fuzzy
 msgid "Max Image Size"
-msgstr "Kích cỡ ảnh"
+msgstr "Kích cỡ ảnh lớn nhất"
 
 #: ../edit_appearance.php:166
 #, php-format
 msgid "%d (%d MPix)"
-msgstr ""
+msgstr "%d (%d MêgaPixel)"
 
 #: ../edit_appearance.php:169
-#, fuzzy
 msgid "Max JPEG/PNG file size kilobytes (0 or blank for no size restriction)"
-msgstr "Tự động chỉnh dung lượng kilobytes của file (ghi 0 hoặc để trống để cấm chỉnh cỡ)"
+msgstr "Dung lượng kilobytes lớn nhất của file (ghi 0 hoặc để trống để không chỉnh)"
 
 #: ../edit_appearance.php:173
 msgid "Show <i>Return to</i> link"
@@ -986,7 +979,7 @@ msgstr "Trình diễn ảnh thêm"
 
 #: ../edit_appearance.php:254
 msgid "Allow slideshow to loop"
-msgstr ""
+msgstr "Cho phép trình diễn ảnh lặp lại"
 
 #: ../edit_appearance.php:259
 msgid "Slideshow Length"
@@ -1030,7 +1023,7 @@ msgstr "Các mục mới sẽ được thêm vào từ đầu album"
 
 #: ../edit_appearance.php:305
 msgid "Display clickable image dimensions"
-msgstr ""
+msgstr "Cho phép nhấn chuột trên ảnh để thay đổi kích cỡ"
 
 #: ../edit_appearance.php:311
 msgid "Apply values to nested Albums (except Album Title and Summary)."
@@ -1163,7 +1156,7 @@ msgstr "Thành viên có thể tạo album"
 
 #: ../html/userData.inc:158
 msgid "Send email to user <br>when account is created"
-msgstr "Gửi Email cho thành viên <br>khi tài khoản được tạo"
+msgstr "Gửi email cho thành viên <br>khi tài khoản được tạo"
 
 #: ../html/userData.inc:171
 msgid "User is an admin"
@@ -1178,9 +1171,8 @@ msgid "Note: admins can always create albums"
 msgstr "Chú ý: người QT có thể luôn tạo được album"
 
 #: ../html_wrap/album.footer.default:41 ../html_wrap/gallery.footer.default:54
-#, fuzzy
 msgid "Donate to Gallery now!!"
-msgstr "Bước vào Thư viện ảnh"
+msgstr "Quyên góp tặng cho Thư viện ảnh!!"
 
 #: ../layout/commentbox.inc:7 ../layout/commentdraw.inc:18
 msgid "From:"
@@ -1281,7 +1273,7 @@ msgid "Forgotten your password?"
 msgstr "Quên mật khẩu?"
 
 #: ../login.php:150
-#, fuzzy, php-format
+#, php-format
 msgid "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."
 msgstr "Yêu cầu gửi mật khẩu của bạn mới được gửi %d phút trước.  Xin hãy kiểm tra lại email lúc trước, hoặc chờ thêm trước khi thử lại."
 
@@ -1290,9 +1282,9 @@ msgid "New password request"
 msgstr "Yêu cầu gửi mật khẩu mới"
 
 #: ../login.php:155
-#, fuzzy, php-format
+#, php-format
 msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "
-msgstr "Bạn đã yêu cầu một mật khẩu mới từ Thư viện ảnh '%s' trên %s. Bạn có thể tạo một mật khẩu khi ghé thăm qua liên kết bên dưới. Nếu không phải bạn yêu cầu mật khẩu, hãy bỏ qua email này. "
+msgstr "Bạn đã yêu cầu một mật khẩu mới cho thành viên %s từ Thư viện ảnh '%s' trên %s. Bạn có thể tạo một mật khẩu khi ghé thăm qua liên kết bên dưới. Nếu không phải bạn yêu cầu mật khẩu, hãy bỏ qua email này. "
 
 #: ../login.php:156
 #, php-format
@@ -1438,9 +1430,8 @@ msgid "Note: items that have votes will lose these votes if moved to an album wi
 msgstr "Chú ý: những mục đã được bình chọn sẽ mất bình chọn nếu được chuyển tới một album không có chức năng bình chọn tương thích.  Những album tương thích được đánh dấu bằng một &quot;%s&quot;."
 
 #: ../multi_create_user.php:50 ../multi_create_user.php:132
-#, fuzzy
 msgid "Create Mulitple Users"
-msgstr "Tạo nhiều thành viên"
+msgstr "Tạo Nhiều Thành Viên"
 
 #: ../multi_create_user.php:57
 msgid "No file selected."
@@ -1698,7 +1689,7 @@ msgstr "Chọn Album gốc"
 
 #: ../publish_xp.php:302
 msgid "NEW TOP LEVEL ALBUM"
-msgstr "Album đầu mới"
+msgstr "ALBUM CHÍNH MỚI"
 
 #: ../publish_xp.php:355
 msgid "User cannot add to album"
@@ -1819,7 +1810,7 @@ msgstr "%s đã được đăng ký. Email đã được gửi tới %s."
 
 #: ../register.php:122
 msgid "Gallery Self Registration"
-msgstr "Tự đăng ký Thư viện ảnh"
+msgstr "Tự đăng ký vào Thư viện ảnh"
 
 #: ../register.php:124
 #, php-format
@@ -1844,7 +1835,7 @@ msgstr "Sửa tên album"
 
 #: ../rename_album.php:100
 msgid "There is already an album with that name!"
-msgstr "Đã có 1 album có tên đó"
+msgstr "Đã có một album có tên đó!"
 
 #: ../rename_album.php:108
 msgid "What do you want to name this album?"
@@ -1864,7 +1855,7 @@ msgstr "khoảng trống"
 
 #: ../rename_album.php:112
 msgid "Those characters will be ignored in your new album name."
-msgstr "Những ký tự đó sẽ bị bỏ qua trong tên album mới của bạn"
+msgstr "Những ký tự đó sẽ bị bỏ qua trong tên album mới của bạn."
 
 #: ../reset_votes.php:58
 msgid "Reset Voting"
@@ -1979,7 +1970,7 @@ msgstr "Đang tìm URL..."
 #: ../save_photos.php:81
 #, php-format
 msgid "Processing %s as a local directory."
-msgstr "Đang sử lý %s như 1 thư mục nội tại"
+msgstr "Đang sử lý %s như 1 thư mục nội tại."
 
 #: ../save_photos.php:143
 #, php-format
@@ -2458,7 +2449,7 @@ msgstr "Chọn Album"
 
 #: ../util.php:1306
 msgid "Top Level"
-msgstr "Mức đầu"
+msgstr "Chính"
 
 #: ../util.php:1327 ../util.php:1377
 msgid "current location"
@@ -2599,12 +2590,12 @@ msgstr "tài liệu"
 
 #: ../util.php:2562
 msgid "Unable to preserve EXIF data (jhead not installed)"
-msgstr ""
+msgstr "Không thể nhận dữ liệu EXIF (jhead không được cài đặt)"
 
 #: ../util.php:2589
 #, php-format
 msgid "Generated by %s v%s"
-msgstr ""
+msgstr "Được tạo bằng %s v%s"
 
 #: ../util.php:2591
 #, php-format
@@ -2657,7 +2648,7 @@ msgid "Cannot open logfile: %s"
 msgstr "Không thể mở logfile: %s"
 
 #: ../util.php:2794
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
 "\n"
@@ -2667,12 +2658,11 @@ msgid ""
 "\n"
 "Gallery @ %s Administrator."
 msgstr ""
-"Chào mừng !!FULLNAME!!,  \n"
+"Chào !!FULLNAME!!,  \n"
 "\n"
-"Xin chúc mừng.  Bạn đã được chấp thuận đăng ký vào %s tại %s.  Xin hãy ghé thăm thư viện ảnh, và sử dụng thông tin đăng nhập:\n"
+"Xin chức mừng.  Bạn đã ghi danh vào %s tại %s.  Tên tài khoản của bạn là !!USERNAME!!. Xin hãy sớm ghé thăm thư viện ảnh, và tạo một mật khẩu khi nhấn liên kết này:\n"
 "\n"
-"Tên truy cập !!USERNAME!!\n"
-"Mật khẩu !!PASSWORD!!\n"
+"!!NEWPASSWORDLINK!!\n"
 "\n"
 "Thư viện ảnh @ %s Administrator."
 
@@ -2686,7 +2676,7 @@ msgstr "URL thư viện ảnh"
 
 #: ../util.php:2857
 msgid "screenshot"
-msgstr ""
+msgstr "ảnh giới thiệu"
 
 #: ../util.php:2867 ../util.php:2914
 #, php-format
@@ -2829,9 +2819,8 @@ msgid "Your current choices are"
 msgstr "Lựa chọn hiện tại của bạn là"
 
 #: ../view_album.php:575
-#, fuzzy
 msgid "See full poll results"
-msgstr "kết quả bình chọn"
+msgstr "Xem kết quả bình chọn"
 
 #: ../view_album.php:596
 msgid ", "
@@ -2867,7 +2856,7 @@ msgstr "Bạn có thể thay đổi lựa chọn của bạn nếu bạn muốn.
 #: ../view_album.php:749 ../view_album.php:750
 #, php-format
 msgid "%dkB"
-msgstr ""
+msgstr "%dkB"
 
 #: ../view_album.php:819
 msgid "No description"
@@ -2911,7 +2900,7 @@ msgstr "Sửa chi tiết"
 
 #: ../view_album.php:923
 msgid "Edit Thumbnail"
-msgstr "Sử­­a thumbnails"
+msgstr "Sửa thumbnails"
 
 #: ../view_album.php:924
 msgid "Rotate/Flip"
@@ -2930,9 +2919,8 @@ msgid "Move "
 msgstr "Chuyển "
 
 #: ../view_album.php:938
-#, fuzzy
 msgid "Reorder "
-msgstr "Viền"
+msgstr "Sắp&nbsp;xếp&nbsp;lại "
 
 #: ../view_album.php:940
 msgid "Copy "
@@ -2967,9 +2955,8 @@ msgid "return to album"
 msgstr "quay lại album"
 
 #: ../view_comments.php:137
-#, fuzzy
 msgid "Sorry.  This album does not allow comments."
-msgstr "Xin lỗi.  Album này không cho phép lời bình công cộng."
+msgstr "Xin lỗi.  Album này không cho phép lời bình."
 
 #: ../view_photo.php:387
 msgid "resize photo"
@@ -3018,4 +3005,4 @@ msgstr "Tải lại dữ liệu EXIF từ file"
 
 #: ../view_photo_properties.php:166
 msgid "(if the data is current, this will not appear to do anything)"
-msgstr "(nếu là dữ liệu hiện tại, nó sẽ không biểu lộ để làm bất cứ cái gì"
+msgstr "(nếu là dữ liệu hiện tại, nó sẽ không biểu lộ để làm bất cứ cái gì)"
