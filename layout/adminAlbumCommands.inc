@@ -29,7 +29,7 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
 	/* User is allowed to view ALL comments */
 	if ($gallery->user->canViewComments($gallery->album)
 		&& ($gallery->app->comments_enabled == 'yes')
-		&& ($gallery->album->lastCommentDate() != -1)) {
+		&& ($gallery->album->lastCommentDate("no") != -1)) {
 	    	echo "\n\t". '<a href="'. makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName)) . '">' .
 			'[' . _("view&nbsp;comments") . ']</a>';
 	}

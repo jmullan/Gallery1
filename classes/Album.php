@@ -143,18 +143,14 @@ class Album {
 	       	$photo = $this->getPhoto($i);
 			if ($photo->isAlbum()) {
 		       	$album = $this->getNestedAlbum($i);
-		       	return $album->lastCommentDate();
+		       	return $album->lastCommentDate($gallery->app->comments_indication_verbose);
 	       	} else {
 		       	return $photo->lastCommentDate();
 	       	}
 	}
-	function lastCommentDate() {
+	function lastCommentDate($verbose = "yes") {
 		global $gallery;
 		if (!$gallery->user->canViewComments($this)) {
-			return -1;
-		}
-		if ($gallery->app->comments_indication != "albums" && 
-				$gallery->app->comments_indication != "both") {
 			return -1;
 		}
 	       	$count = $this->numPhotos(1);
@@ -163,7 +159,7 @@ class Album {
 			$subMostRecent=$this->itemLastCommentDate($i);
 		       	if ($subMostRecent > $mostRecent) {
 			       	$mostRecent = $subMostRecent;
-			       	if ($gallery->app->comments_indication_verbose == "no") {
+			       	if ($verbose == "no") {
 				       	break;
 			       	}
 

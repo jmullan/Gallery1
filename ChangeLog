@@ -1,3 +1,13 @@
+2004-05-17  Don Willingham <donwillingham@users.sf.net>  1.4.4-cvs-b125
+
+	* Fix: [View comments] links were disabled even when comments
+	  existed in a (sub)album if "Indicate if there are comments
+	  available" config option was set to photos and probably off.
+
+	* Change: Pass $gallery->app->comments_indication_verbose as a
+	  parameter so some calls to lastCommentDate() can use "no" to see
+	  if comments exist.
+
 2004-05-17  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b124
 
 	* Change: Rewrite of getNextPhoto() by Adventure

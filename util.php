@@ -2754,7 +2754,7 @@ function testRequirement($test) {
 	return $gallery->album->fields["perms"]['canAddComments'];
        	break;
     case 'hasComments':
-        return ($gallery->album->lastCommentDate() != -1);
+        return ($gallery->album->lastCommentDate("no") != -1);
         break;
     case 'canAddToAlbum':
 	return $gallery->user->canAddToAlbum($gallery->album);

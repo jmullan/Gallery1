@@ -854,9 +854,15 @@ if ($numPhotos) {
  				echo "\n<br>";
 				$visibleItems=array_sum($myAlbum->numVisibleItems($gallery->user));
 				echo _("Contains: ") ." ". pluralize_n2(ngettext("1 item", "%d items", $visibleItems), $visibleItems) . '.';
-				$lastCommentDate = $myAlbum->lastCommentDate();
-				if ($lastCommentDate > 0) {
-					print lastCommentString($lastCommentDate, $displayCommentLegend);
+				// If comments indication for either albums or both
+				switch ($gallery->app->comments_indication) {
+				case "albums":
+				case "both":
+					$lastCommentDate = $myAlbum->lastCommentDate(
+						$gallery->app->comments_indication_verbose);
+					if ($lastCommentDate > 0) {
+						print lastCommentString($lastCommentDate, $displayCommentLegend);
+					}
 				}
 				echo '</span><br>';
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) {
@@ -872,8 +878,13 @@ if ($numPhotos) {
 				// indicate with * if we have a comment for a given photo
 				if ($gallery->user->canViewComments($gallery->album) 
 					&& $gallery->app->comments_enabled == 'yes') {
-					$lastCommentDate = $gallery->album->itemLastCommentDate($i);
-					print lastCommentString($lastCommentDate, $displayCommentLegend);
+					// If comments indication for either photos or both
+					switch ($gallery->app->comments_indication) {
+					case "photos":
+					case "both":
+						$lastCommentDate = $gallery->album->itemLastCommentDate($i);
+						print lastCommentString($lastCommentDate, $displayCommentLegend);
+					}
 				}
 				echo("<br>");
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
@@ -1011,7 +1022,7 @@ if ($numPhotos) {
 					showChoice(_("Watermark Album"), "watermark_album.php", array("set_albumName" => $myAlbum->fields["name"]));
 				}
                                 if ($gallery->user->canViewComments($myAlbum) &&
-                                    ($myAlbum->lastCommentDate() != -1))
+                                    ($myAlbum->lastCommentDate("no") != -1))
                                 {
                                         showChoice(_("View Comments"), "view_comments.php", array("set_albumName" => $myAlbum->fields["name"]),"url");
                                 }

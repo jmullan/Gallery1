@@ -699,10 +699,6 @@ class AlbumItem {
 	function lastCommentDate() 
 	{
 		global $gallery;
-		if ($gallery->app->comments_indication != "photos" && 
-				$gallery->app->comments_indication != "both") {
-			return -1;
-		}
 		if ($this->numComments() == 0) {
 			return -1;
 		}

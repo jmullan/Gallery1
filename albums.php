@@ -370,10 +370,14 @@ if ($gallery->user->canWriteToAlbum($gallery->album) &&
    (!($gallery->album->fields["display_clicks"] == "no"))) {
 	echo " ".popup_link("[" . _("reset counter") ."]", doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php"), 1);
 }
-
 if($gallery->app->comments_enabled == 'yes') {
-	$lastCommentDate = $gallery->album->lastCommentDate();
-	print lastCommentString($lastCommentDate, $displayCommentLegend);
+	// if comments_indication are "albums" or "both"
+	switch ($gallery->app->comments_indication) {
+	case "albums":
+        case "both":
+		$lastCommentDate = $gallery->album->lastCommentDate($gallery->app->comments_indication_verbose);
+		print lastCommentString($lastCommentDate, $displayCommentLegend);
+	} // end switch
 }
 ?>
 
