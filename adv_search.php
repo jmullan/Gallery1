@@ -73,7 +73,7 @@ $thumbSize = $gallery->app->default["thumb_size"];
   <title><?php echo $gallery->app->galleryTitle ?> :: Advanced Search</title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir="<?php echo gallery->direction; ?>">
 <?php } ?>
 
 <!-- search.header begin -->
@@ -89,7 +89,7 @@ $searchstring = removeTags($searchstring);
 <!-- search.header ends -->
 <!-- Top Nav -->
 <?php
-if (isset($submit)) {
+if (isset($go)) {
 	$search_again='<a href="'.makeGalleryUrl('adv_search.php').'">' .
 		_("Search Again") . '</a><p>';
 	print $search_again;
@@ -129,7 +129,7 @@ if (!isset ($item_owners)) {
 if (!isset ($commenters)) {
 	$commenters = NULL;
 }
-if (isset($submit)) {
+if (isset($go)) {
   if ($searchstring || $album_owners) {
 	$adminbox["text"] = "<span class=\"admin\">Albums";
 	if ($album_owners) {
@@ -354,7 +354,7 @@ if (isset($submit)) {
 	<tr> <td valign="top"><?php echo _("Search for comments made by:") ?></td> <td>
 <?php echo drawSelect("commenters[]", $uAll, $commenters, 5, array("MULTIPLE" =>NULL)); ?>
 	</td> </tr>
-	<tr><td><input type="submit" name="submit" value="<?php echo _("Go!") ?>"></td></tr>
+	<tr><td><input type="submit" name="go" value="<?php echo _("Go!") ?>"></td></tr>
 	</form>  
 	</tr>
 	</table>

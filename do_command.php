@@ -42,7 +42,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
   <title><?php echo _("Rebuilding Thumbnails") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <?php
 		if ($gallery->session->albumName && isset($index)) {
 			if (!strcmp($index, "all")) {
@@ -132,7 +132,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 
 <center>
 <form>
-<input type=submit value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
+<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
 </form>
 </body>
 </html>

@@ -42,7 +42,7 @@ if (strcmp($gallery->album->fields["public_comments"], "yes")) {
 
 $error_text = "";
 
-if (isset($submit) && !strcmp($submit, _("Save"))) {
+if (isset($save)) {
 	if ($commenter_name && $comment_text) {
 	        $comment_text = removeTags($comment_text);
 	        $commenter_name = removeTags($commenter_name);
@@ -64,7 +64,7 @@ if (isset($submit) && !strcmp($submit, _("Save"))) {
   <title><?php echo _("Add Comment") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <center>
 <?php echo _("Enter your comment for this picture in the text box below.") ?>
@@ -74,26 +74,29 @@ if (isset($submit) && !strcmp($submit, _("Save"))) {
 if (isset($error_text)) {
 ?>
 <br><br>
-<span class=error><?php echo $error_text ?></span>
+<span class="error"><?php echo $error_text ?></span>
 <br><br>
 <?php
 }
 ?>
 
-<?php echo makeFormIntro("add_comment.php", array("name" => "theform", "method" => "POST")); ?>
-<input type=hidden name="index" value="<?php echo $index ?>">
+<?php echo makeFormIntro("add_comment.php", array(
+	"name" => "theform", 
+	"method" => "POST")); 
+?>
+<input type="hidden" name="index" value="<?php echo $index ?>">
 <table border=0 cellpadding=5>
 <tr>
   <td><?php echo _("Name or email:") ?></td>
-  <td><input name="commenter_name" value="<?php echo $commenter_name ?>" size=30></td>
+  <td><input name="commenter_name" value="<?php echo $commenter_name ?>" size="30"></td>
 </tr>
 <tr>
-  <td colspan=2><textarea name="comment_text" rows=5 cols=40><?php echo $comment_text ?></textarea></td>
+  <td colspan=2><textarea name="comment_text" rows="5" cols="40"><?php echo $comment_text ?></textarea></td>
 </tr>
 </table>
 <br>
-<input type=submit name="submit" value="<?php echo _("Save") ?>">
-<input type=button value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="save" value="<?php echo _("Save") ?>">
+<input type="button" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 
 </form>
 

@@ -38,13 +38,12 @@ if (!$gallery->user->isAdmin()) {
 	exit;	
 }
 
-if ($submit) {
-	if (!strcmp($submit, _("Delete"))) {
+if (isset($delete)) {
 		$gallery->userDB->deleteUserByUsername($uname);
 		header("Location: manage_users.php");
-	} else if (!strcmp(htmlentities($submit), _("Cancel"))) {
-		header("Location: manage_users.php");
-	}
+}
+if (isset($cancel)) {
+	header("Location: manage_users.php");
 }
 
 ?>
@@ -60,7 +59,7 @@ if ($submit) {
 <br>
 <br>
 <?php echo makeFormIntro("delete_user.php"); ?>
-<input type=hidden name=uname value=<?php echo $uname ?>>
+<input type="hidden" name="uname" value="<?php echo $uname ?>">
 
 <?php
 if (!strcmp($gallery->user->getUsername(), $uname)) {
@@ -76,12 +75,12 @@ if (!strcmp($gallery->user->getUsername(), $uname)) {
 <p>
 <p>
 
-<input type="submit" name="submit" value="<?php echo _("Delete") ?>">
+<input type="submit" name="delete" value="<?php echo _("Delete") ?>">
 <?php
 }
 ?>
 
-<input type="submit" name="submit" value="<?php echo _("Cancel") ?>">
+<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
 </form> 
 
 </body>

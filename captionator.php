@@ -156,7 +156,7 @@ if ($gallery->album->fields["textcolor"]) {
   </style>
 </head>
 
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <?php } ?>
 
 <?php 
@@ -202,22 +202,22 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 <!-- image grid table -->
 <br>
 <?php echo makeFormIntro("captionator.php", array("method" => "POST")) ?>
-<input type=hidden name=page value=<?php echo $page ?>>
-<input type=hidden name=perPage value=<?php echo $perPage ?>>
-<table width="100%" border=0 cellspacing=4 cellpadding=0>
+<input type="hidden" name="page" value="<?php echo $page ?>">
+<input type="hidden" name="perPage" value="<?php echo $perPage ?>">
+<table width="100%" border="0" cellspacing="4" cellpadding="0">
 <tr>
 <td colspan="3" align="right">
-<input type=submit name="save" value="<?php echo _("Save and Exit") ?>">
+<input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">
 
 <?php if (!$last) { ?>
-    <input type=submit name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
+    <input type="submit" name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
 <?php } ?>
 
 <?php if ($page != 1) { ?>
-    <input type=submit name="prev" value="<?php echo sprintf(_("Save and Edit Previous %d"), $perPage) ?>">
+    <input type="submit" name="prev" value="<?php echo sprintf(_("Save and Edit Previous %d"), $perPage) ?>">
 <?php } ?>
 
-<input type=submit name="cancel" value="<?php echo _("Exit") ?>">
+<input type="submit" name="cancel" value="<?php echo _("Exit") ?>">
 </td>
 </tr>
 <?php
@@ -316,18 +316,18 @@ if ($numPhotos) {
 ?>
 
 <tr>
-<td colspan=3 align="right">
-<input type=submit name="save" value="<?php echo _("Save and Exit") ?>">
+<td colspan="3" align="right">
+<input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">
 
 <?php if (!$last) { ?>
-    <input type=submit name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
+    <input type="submit" name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
 <?php } ?>
 
 <?php if ($page != 1) { ?>
-    <input type=submit name="prev" value="<?php echo sprintf(_("Save and Edit Previous %d"), $perPage) ?>">
+    <input type="submit" name="prev" value="<?php echo sprintf(_("Save and Edit Previous %d"), $perPage) ?>">
 <?php } ?>
 
-<input type=submit name="cancel" value="<?php echo _("Exit") ?>">
+<input type="submit" name="cancel" value="<?php echo _("Exit") ?>">
 </td>
 </tr>
 </table>

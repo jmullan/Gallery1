@@ -39,7 +39,7 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album) && !($gallery->album-
 	exit;
 }
 $err = "";	
-if (!strcmp($submit, _("Save"))) {
+if (isset($save)) {
 	if (($capture_year < 3000) && ($capture_year > 1000)) { // only allow photo capture dates from 1000 to 3000.
 		$gallery->album->setCaption($index, stripslashes($data));
 		$gallery->album->setKeywords($index, stripslashes($keywords));
@@ -170,8 +170,8 @@ echo "</td>";
   </tr>
 </table>
 <br><br>
-<input type=submit name="submit" value="<?php echo _("Save") ?>">
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="save" value="<?php echo _("Save") ?>">
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 
 
 </form>

@@ -221,12 +221,12 @@ if ($gallery->app->use_exif) {
 </table>
 
 <br>
-<input type=checkbox name=setNested value="1"><?php echo _("Apply values to nested Albums (except Album Title and Summary).") ?>
+<input type="checkbox" name="setNested" value="1"><?php echo _("Apply values to nested Albums (except Album Title and Summary).") ?>
 <br>
 <br>
-<input type=submit name="submit" value="<?php echo _("Apply") ?>">
-<input type=reset value="<?php echo _("Undo") ?>">
-<input type=submit name="submit" value="<?php echo _("Close") ?>" onclick='parent.close()'>
+<input type="submit" name="apply" value="<?php echo _("Apply") ?>">
+<input type="reset" value="<?php echo _("Undo") ?>">
+<input type="button" name="close" value="<?php echo _("Close") ?>" onclick='parent.close()'>
 
 </form>
 

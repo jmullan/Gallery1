@@ -38,57 +38,54 @@ if (!$gallery->user->isAdmin()) {
 	exit;	
 }
 
-if ($submit) {
-	if (!strcmp($submit, _("Save"))) {
-		if (strcmp($old_uname, $uname)) {
-			$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
-			if ($gErrors["uname"]) {
+if (isset($save)) {
+	if (strcmp($old_uname, $uname)) {
+		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
+		if ($gErrors["uname"]) {
+			$errorCount++;
+		}
+	}
+
+	if ($new_password1 || $new_password2) {
+		if (strcmp($new_password1, $new_password2)) {
+			$gErrors["new_password2"] = _("Passwords do not match!");
+			$errorCount++;
+		} else {
+			$gErrors["new_password1"] = 
+				$gallery->userDB->validPassword($new_password1);
+			if ($gErrors["new_password1"]) {
 				$errorCount++;
 			}
 		}
+	}
 
-		if ($new_password1 || $new_password2) {
-			if (strcmp($new_password1, $new_password2)) {
-				$gErrors["new_password2"] = _("Passwords do not match!");
-				$errorCount++;
-			} else {
-				$gErrors["new_password1"] = 
-					$gallery->userDB->validPassword($new_password1);
-				if ($gErrors["new_password1"]) {
-					$errorCount++;
-				}
-			}
+	if (!$errorCount) {
+		$tmpUser = $gallery->userDB->getUserByUsername($old_uname);
+		$tmpUser->setUsername($uname);
+		$tmpUser->setFullname($fullname);
+		$tmpUser->setEmail($email);
+		$tmpUser->setDefaultLanguage($defaultLanguage);
+		if (isset($canCreate)) {
+			$tmpUser->setCanCreateAlbums($canCreate);
+		}
+		if (isset($isAdmin)) {
+			$tmpUser->setIsAdmin($isAdmin);
 		}
 
-		if (!$errorCount) {
-			$tmpUser = $gallery->userDB->getUserByUsername($old_uname);
-			$tmpUser->setUsername($uname);
-			$tmpUser->setFullname($fullname);
-			$tmpUser->setEmail($email);
-			$tmpUser->setDefaultLanguage($defaultLanguage);
-			if (isset($canCreate)) {
-				$tmpUser->setCanCreateAlbums($canCreate);
-			}
-			if (isset($isAdmin)) {
-				$tmpUser->setIsAdmin($isAdmin);
-			}
-
-			// If a new password was entered, use it.  Otherwise leave
-			// it the same.
-			if ($new_password1) {
-				$tmpUser->setPassword($new_password1);
-			}
-			$tmpUser->save();
-
-			if (!strcmp($old_uname, $gallery->session->username)) {
-				$gallery->session->username = $uname;
-			}
-
-			header("Location: manage_users.php");
+		// If a new password was entered, use it.  Otherwise leave
+		// it the same.
+		if ($new_password1) {
+			$tmpUser->setPassword($new_password1);
 		}
-	} else if (!strcmp($submit, _("Cancel"))) {
+		$tmpUser->save();
+		if (!strcmp($old_uname, $gallery->session->username)) {
+			$gallery->session->username = $uname;
+		}
+
 		header("Location: manage_users.php");
 	}
+} else if (isset($cancel)) {
+	header("Location: manage_users.php");
 }
 
 $tmpUser = $gallery->userDB->getUserByUsername($uname);
@@ -121,7 +118,7 @@ $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
   <title><?php echo _("Modify User") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <center>
 <span class="popuphead"><?php echo _("Modify User") ?></span>
@@ -134,7 +131,7 @@ $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
 				array("name" => "usermodify_form", 
 					"method" => "POST")); ?>
 
-<input type=hidden name=old_uname value=<?php echo $uname ?>>
+<input type="hidden" name="old_uname" value="<?php echo $uname ?>">
 
 <p>
 
@@ -142,8 +139,8 @@ $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
 <p>
 
 
-<input type=submit name="submit" value="<?php echo _("Save") ?>">
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>">
+<input type="submit" name="save" value="<?php echo _("Save") ?>">
+<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
 </form>
 
 <script language="javascript1.2">

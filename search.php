@@ -43,7 +43,7 @@ $thumbSize = $gallery->app->default["thumb_size"];
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo _("Search") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <?php } ?>
 
 <!-- search.header begin -->
@@ -258,7 +258,7 @@ else {
 	<tr><?php echo makeFormIntro("search.php"); ?>
 	<td valign="middle" align="left">
 	<input type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
-	<input type="submit" value="<?php echo _("Go") ?>!">
+	<input type="submit" name="go" value="<?php echo _("Go") ?>!">
 	</td>
 	</form>  
 	</tr>

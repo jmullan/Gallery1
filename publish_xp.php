@@ -134,10 +134,10 @@ if (!strcmp($cmd, "fetch-albums")) {
     echo "<center>"; ?>
 <span class='popuphead'><?php echo _("Select the Album to which to Publish") ?></span>
 <?php	
-    echo "<form id='folder'>";
-    echo "<table border=0>";
-    echo "<tr><td align=center>";
-    echo "<select id='album' name='set_albumName' size=10 width=40>";
+    echo "<form id=\"folder\">";
+    echo "<table border=\"0\">";
+    echo "<tr><td align=\"center\">";
+    echo "<select id=\"album\" name=\"set_albumName\" size=\"10\" width=\"40\">";
 
     $albumDB = new AlbumDB(FALSE);
     $mynumalbums = $albumDB->numAlbums($gallery->user);
@@ -150,7 +150,7 @@ if (!strcmp($cmd, "fetch-albums")) {
         if ($gallery->user->canAddToAlbum($myAlbum)) {
 		echo "<option ";
 		if ($albumName == $album) echo "selected ";
-		echo "value='$albumName'>\t$albumTitle</option>\n";
+		echo "value=\"$albumName\">\t$albumTitle</option>\n";
         }
         appendNestedAlbums(0, "canAddToAlbum", $albumName, $albumString, $album);
     }
@@ -158,10 +158,10 @@ if (!strcmp($cmd, "fetch-albums")) {
     echo "</select><br>\n";
     echo "</td></tr><tr><td align=center>\n";
     echo "<input id='setCaption' type=checkbox name=setCaption checked value=1>". _("Use filenames as captions") ."<br><br>\n";
-    echo "<input type=button value='" . _("Create New Album") ."' onClick=\"folder.cmd.value='new-album';folder.submit();\">\n";
+    echo "<input type=\"button\" value='" . _("Create New Album") ."' onClick=\"folder.cmd.value='new-album';folder.submit();\">\n";
     echo "</td></tr>\n";
     echo "</table>\n";
-    echo "<input type=hidden name='cmd' value='select-album'>\n";
+    echo "<input type=\"hidden\" name=\"cmd\" value=\"select-album\">\n";
     echo "</form></center>\n";
     $ONNEXT_SCRIPT="folder.submit();"; 
     $ONBACK_SCRIPT="window.location.href = \"publish_xp.php?cmd=publish\";";
@@ -323,16 +323,16 @@ if (!strcmp($cmd, "new-album")) {
         if ($error) {
                 echo "<span class='error'>$error</span><p>";
 		echo _("Press the 'Back' button and try again!");
-		echo "<form id='folder'>";
-		echo "<input type=hidden name='cmd' value='new-album'>\n";
-		echo "<input type=hidden name='newAlbumTitle' value=\"$newAlbumTitle\">\n";
+		echo "<form id=\"folder\">";
+		echo "<input type=\"hidden\" name=\"cmd\" value=\"new-album\">\n";
+		echo "<input type=\"hidden\" name=\"newAlbumTitle\" value=\"$newAlbumTitle\">\n";
 		echo "</form>\n";
                 $ONBACK_SCRIPT="folder.submit();";
                 $WIZARD_BUTTONS="true,false,true";
         } else {
                 echo "<form id='folder'>\n";
-                echo "<input type=hidden name=album value=" . $gallery->album->fields[name] . ">\n";
-		echo "<input type=hidden name=cmd value='fetch-albums'>\n";
+                echo "<input type=\"hidden\" name=\"album\" value=\"" . $gallery->album->fields[name] . "\">\n";
+		echo "<input type=\"hidden\" name=\"cmd value=\"fetch-albums\">\n";
                 echo "</form>\n";
 		
 		if ($success) {	

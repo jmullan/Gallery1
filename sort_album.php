@@ -44,7 +44,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
   <title><?php echo _("Sort Album") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <?php
 if ($gallery->session->albumName) {
@@ -112,8 +112,8 @@ if ($gallery->album->getHighlight()) {
   </tr>
 </table>
 <br>
-<input type=submit name=confirm value="<?php echo _("Sort") ?>">
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="confirm" value="<?php echo _("Sort") ?>">
+<input type="close" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <?php
 	}

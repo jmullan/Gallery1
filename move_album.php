@@ -89,8 +89,8 @@ for ($i = 1; $i <= $numAlbums; $i++) {
 }
 ?>
 </select>
-<input type="submit" value="<?php _("Move it!") ?>">
-<input type="button" name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="move" value="<?php _("Move it!") ?>">
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
 <p>
@@ -107,7 +107,7 @@ if ($gallery->album->numPhotos(1)) {
 <?php echo _("Nest within another Album:") ?>
 <p>
 <?php echo makeFormIntro("move_album.php", array("name" => "move_to_album_form")); ?>
-<input type=hidden name="index" value="<?php echo $index ?>">
+<input type="hidden" name="index" value="<?php echo $index ?>">
 <select name="newAlbum">
 <?php
 printAlbumOptionList(0,1)  

@@ -97,7 +97,7 @@ if (isset($allUid) && strchr($submit_viewFullImages, ">")) {
 	$changed++;
 }
 
-if (!strcmp($submit, _("Save")) && $ownerUid) {
+if ( isset($save) && $ownerUid) {
 	$gallery->album->setOwner($ownerUid);
 	$changed++;
 }
@@ -182,8 +182,8 @@ echo makeFormIntro("album_permissions.php",
     </tr>
     <tr>
      <td>   
-           <input type=submit name="submit_read" value="-->">
-      <br> <input type=submit name="submit_read" value="<--">
+           <input type="submit" name="submit_read" value="-->">
+      <br> <input type="submit" name="submit_read" value="<--">
      </td>
      <td align=left>
       <?php echo drawSelect("readUid", $uRead, $readUid, 3); ?>
@@ -197,8 +197,8 @@ echo makeFormIntro("album_permissions.php",
     </tr>
     <tr>
      <td>
-           <input type=submit name="submit_text" value="-->">
-      <br> <input type=submit name="submit_text" value="<--">
+           <input type="submit" name="submit_text" value="-->">
+      <br> <input type="submit" name="submit_text" value="<--">
      </td>
      <td>
       <?php echo drawSelect("textUid", $uText, $textUid, 3); ?>
@@ -212,8 +212,8 @@ echo makeFormIntro("album_permissions.php",
     </tr>
     <tr>
      <td>   
-           <input type=submit name="submit_add" value="-->">
-      <br> <input type=submit name="submit_add" value="<--">
+           <input type="submit" name="submit_add" value="-->">
+      <br> <input type="submit" name="submit_add" value="<--">
      </td>
      <td>
       <?php echo drawSelect("addUid", $uAdd, $addUid, 3); ?>
@@ -227,8 +227,8 @@ echo makeFormIntro("album_permissions.php",
     </tr>
     <tr>
      <td>   
-           <input type=submit name="submit_write" value="-->">
-      <br> <input type=submit name="submit_write" value="<--">
+           <input type="submit" name="submit_write" value="-->">
+      <br> <input type="submit" name="submit_write" value="<--">
      </td>
      <td>
       <?php echo drawSelect("writeUid", $uWrite, $writeUid, 3); ?>
@@ -242,8 +242,8 @@ echo makeFormIntro("album_permissions.php",
     </tr>
     <tr>
      <td>   
-           <input type=submit name="submit_delete" value="-->">
-      <br> <input type=submit name="submit_delete" value="<--">
+           <input type="submit" name="submit_delete" value="-->">
+      <br> <input type="submit" name="submit_delete" value="<--">
      </td>
      <td>
       <?php echo drawSelect("deleteUid", $uDelete, $deleteUid, 3); ?>
@@ -257,8 +257,8 @@ echo makeFormIntro("album_permissions.php",
     </tr>
     <tr>
      <td>   
-           <input type=submit name="submit_createSub" value="-->">
-      <br> <input type=submit name="submit_createSub" value="<--">
+           <input type="submit" name="submit_createSub" value="-->">
+      <br> <input type="submit" name="submit_createSub" value="<--">
      </td>
      <td>
       <?php echo drawSelect("createSubUid", $uCreateSub, $createSubUid, 3); ?>
@@ -272,8 +272,8 @@ echo makeFormIntro("album_permissions.php",
     </tr>
     <tr>
      <td>   
-           <input type=submit name="submit_viewFullImages" value="-->">
-      <br> <input type=submit name="submit_viewFullImages" value="<--">
+           <input type="submit" name="submit_viewFullImages" value="-->">
+      <br> <input type="submit" name="submit_viewFullImages" value="<--">
      </td>
      <td>
       <?php echo drawSelect("viewFullImagesUid", $uViewFullImages, $viewFullImagesUid, 3); ?>
@@ -285,8 +285,8 @@ echo makeFormIntro("album_permissions.php",
  </tr>
 </table>
 
-<input type=submit name="submit" value="<?php echo _("Save") ?>">
-<input type=submit name="submit" value="<?php echo _("Done") ?>" onclick='parent.close()'>
+<input type="submit" name="save" value="<?php echo _("Save") ?>">
+<input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
 
 </body>

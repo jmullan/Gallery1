@@ -38,38 +38,36 @@ if (!$gallery->user->isAdmin()) {
 	exit;	
 }
 
-if ($submit) {
-	if (!strcmp($submit, _("Create"))) {
-		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
-		if ($gErrors["uname"]) {
+if (isset($create)) {
+	$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
+	if ($gErrors["uname"]) {
+		$errorCount++;
+	}
+
+	if (strcmp($new_password1, $new_password2)) {
+		$gErrors["new_password2"] = _("Passwords do not match!");
+		$errorCount++;
+	} else {
+		$gErrors["new_password1"] = 
+			$gallery->userDB->validPassword($new_password1);
+		if ($gErrors["new_password1"]) {
 			$errorCount++;
 		}
+	}
 
-		if (strcmp($new_password1, $new_password2)) {
-			$gErrors["new_password2"] = _("Passwords do not match!");
-			$errorCount++;
-		} else {
-			$gErrors["new_password1"] = 
-				$gallery->userDB->validPassword($new_password1);
-			if ($gErrors["new_password1"]) {
-				$errorCount++;
-			}
-		}
-
-		if (!$errorCount) {
-			$tmpUser = new Gallery_User();
-			$tmpUser->setUsername($uname);
-			$tmpUser->setPassword($new_password1);
-			$tmpUser->setFullname($fullname);
-			$tmpUser->setCanCreateAlbums($canCreate);
-			$tmpUser->setEmail($email);
-			$tmpUser->setDefaultLanguage($defaultLanguage);
-			$tmpUser->save();
-			header("Location: manage_users.php");
-		}
-	} else if (!strcmp($submit, _("Cancel"))) {
+	if (!$errorCount) {
+		$tmpUser = new Gallery_User();
+		$tmpUser->setUsername($uname);
+		$tmpUser->setPassword($new_password1);
+		$tmpUser->setFullname($fullname);
+		$tmpUser->setCanCreateAlbums($canCreate);
+		$tmpUser->setEmail($email);
+		$tmpUser->setDefaultLanguage($defaultLanguage);
+		$tmpUser->save();
 		header("Location: manage_users.php");
 	}
+} else if (isset($cancel)) {
+	header("Location: manage_users.php");
 }
 
 $canCreateChoices = array(1 => _("yes"), 0 => _("no"));
@@ -91,16 +89,17 @@ $canCreate = 1;
 <p>
 
 
-<?php echo makeFormIntro("create_user.php", 
-			array("name" => "usercreate_form", 
-				"method" => "POST")); ?>
+<?php echo makeFormIntro("create_user.php", array(
+				"name" => "usercreate_form", 
+				"method" => "POST"));
+?>
 <p>
 
 <?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
 
-<input type="submit" name="submit" value="<?php echo _("Create") ?>">
-<input type="submit" name="submit" value="<?php echo _("Cancel") ?>">
+<input type="submit" name="create" value="<?php echo _("Create") ?>">
+<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
 </form>
 
 <script language="javascript1.2">

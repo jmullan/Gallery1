@@ -116,8 +116,8 @@ if ($gallery->session->albumName && isset($index)) {
 </table>
 </p>
 
-<input type="submit" value="<?php echo _("Change Size") ?>">
-<input type="submit" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
+<input type="submit" name="change_size" value="<?php echo _("Change Size") ?>">
+<input type="button" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
 </form>
 
 <br><br>

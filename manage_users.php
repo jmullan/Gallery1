@@ -38,20 +38,16 @@ if (!$gallery->user->isAdmin()) {
 	exit;	
 }
 
-if ($action) {
-	if (!strcmp($action, _("Create"))) {
-		header("Location: create_user.php?uname=$uname");
-	} else if (! isset($uname)) {
-		$error=_("Please select a user");
-	} else {
-		switch ($action) {
-			case _("Modify"):
-				header("Location: modify_user.php?uname=$uname");
-			break;
-			case _("Delete"):
-				header("Location: delete_user.php?uname=$uname");
-		}
-	}
+if (isset($create)) {
+	header("Location: create_user.php?uname=$uname");
+}
+
+if ( (isset($modify) || isset($delete)) && ! isset($uname)) {
+	$error=_("Please select a user");
+} elseif (isset($modify)) {
+	header("Location: modify_user.php?uname=$uname");
+} elseif (isset($delete)) {
+	header("Location: delete_user.php?uname=$uname");
 }
 
 $displayUsers = array();
@@ -107,10 +103,10 @@ if (!$displayUsers) {
 </select>
 
 <p>
-<input type="submit" name="action" value="<?php echo _("Create") ?>"> 
+<input type="submit" name="create" value="<?php echo _("Create") ?>"> 
 <?php if (count($displayUsers)) { ?>
-<input type="submit" name="action" value="<?php echo _("Modify") ?>">
-<input type="submit" name="action" value="<?php echo _("Delete") ?>">
+<input type="submit" name="modify" value="<?php echo _("Modify") ?>">
+<input type="submit" name="delete" value="<?php echo _("Delete") ?>">
 <?php } ?>
 <input type="button" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>

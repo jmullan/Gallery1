@@ -108,8 +108,8 @@ $myAlbum->load($id);
 <?php echo makeFormIntro("delete_photo.php"); ?>
 <input type="hidden" name="id" value="<?php echo $id ?>">
 <input type="hidden" name="albumDelete" value=<?php echo $albumDelete ?>>
-<input type="submit" name=confirm value="<?php echo _("Delete") ?>">
-<input type="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="confirm" value="<?php echo _("Delete") ?>">
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <br>
 
@@ -129,7 +129,7 @@ $myAlbum->load($id);
 <input type="hidden" name="id" value="<?php echo $id?>">
 <input type="hidden" name="id2" value=2<?php echo $id2 ?>">    
 <input type="submit" name="confirm" value="<?php echo _("Delete") ?>">
-<input type="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <br>
 

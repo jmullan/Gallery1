@@ -1,0 +1,1500 @@
+? .htaccess
+? b30_b31.patch
+? config.php
+? diff.txt
+Index: ChangeLog
+===================================================================
+RCS file: /cvsroot/gallery/gallery/ChangeLog,v
+retrieving revision 1.513
+diff -u -r1.513 ChangeLog
+--- ChangeLog	26 Aug 2003 12:34:56 -0000	1.513
++++ ChangeLog	26 Aug 2003 16:41:29 -0000
+@@ -1,3 +1,12 @@
++2003-08-26 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b31
++
++	* Rewrite all check against value of buttons, because this cause several checks to fail
++	  when value contained special chars.
++
++	* Added a lot of quotes
++
++	* Valid HTML image only displayed when standalone. (thanks darius)
++
+ 2003-08-26 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b30
+ 
+ 	* Fixed missing > which caused gallery to ignore alias for absent locales.
+Index: Version.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/Version.php,v
+retrieving revision 1.311
+diff -u -r1.311 Version.php
+--- Version.php	26 Aug 2003 12:34:56 -0000	1.311
++++ Version.php	26 Aug 2003 16:41:29 -0000
+@@ -40,7 +40,7 @@
+ 	$gallery = new stdClass();
+ }
+ 
+-$gallery->version = "1.4.1-cvs-b30";
++$gallery->version = "1.4.1-cvs-b31";
+ $gallery->config_version = 47;
+ $gallery->album_version = 15;
+ $gallery->remote_protocol_version = 1;
+Index: add_comment.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/add_comment.php,v
+retrieving revision 1.18
+diff -u -r1.18 add_comment.php
+--- add_comment.php	18 Aug 2003 09:37:28 -0000	1.18
++++ add_comment.php	26 Aug 2003 16:41:29 -0000
+@@ -42,7 +42,7 @@
+ 
+ $error_text = "";
+ 
+-if (isset($submit) && !strcmp($submit, _("Save"))) {
++if (isset($save)) {
+ 	if ($commenter_name && $comment_text) {
+ 	        $comment_text = removeTags($comment_text);
+ 	        $commenter_name = removeTags($commenter_name);
+@@ -64,7 +64,7 @@
+   <title><?php echo _("Add Comment") ?></title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body dir=<?php echo $gallery->direction ?>>
++<body dir="<?php echo $gallery->direction ?>">
+ 
+ <center>
+ <?php echo _("Enter your comment for this picture in the text box below.") ?>
+@@ -74,26 +74,29 @@
+ if (isset($error_text)) {
+ ?>
+ <br><br>
+-<span class=error><?php echo $error_text ?></span>
++<span class="error"><?php echo $error_text ?></span>
+ <br><br>
+ <?php
+ }
+ ?>
+ 
+-<?php echo makeFormIntro("add_comment.php", array("name" => "theform", "method" => "POST")); ?>
+-<input type=hidden name="index" value="<?php echo $index ?>">
++<?php echo makeFormIntro("add_comment.php", array(
++	"name" => "theform", 
++	"method" => "POST")); 
++?>
++<input type="hidden" name="index" value="<?php echo $index ?>">
+ <table border=0 cellpadding=5>
+ <tr>
+   <td><?php echo _("Name or email:") ?></td>
+-  <td><input name="commenter_name" value="<?php echo $commenter_name ?>" size=30></td>
++  <td><input name="commenter_name" value="<?php echo $commenter_name ?>" size="30"></td>
+ </tr>
+ <tr>
+-  <td colspan=2><textarea name="comment_text" rows=5 cols=40><?php echo $comment_text ?></textarea></td>
++  <td colspan=2><textarea name="comment_text" rows="5" cols="40"><?php echo $comment_text ?></textarea></td>
+ </tr>
+ </table>
+ <br>
+-<input type=submit name="submit" value="<?php echo _("Save") ?>">
+-<input type=button value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
++<input type="submit" name="save" value="<?php echo _("Save") ?>">
++<input type="button" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+ 
+ </form>
+ 
+Index: add_photo.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/add_photo.php,v
+retrieving revision 1.12
+diff -u -r1.12 add_photo.php
+--- add_photo.php	12 Aug 2003 12:34:35 -0000	1.12
++++ add_photo.php	26 Aug 2003 16:41:29 -0000
+@@ -53,7 +53,7 @@
+ // -->
+ </script>
+ </head>
+-<body>
++<body dir="<?php echo $gallery->direction ?>">
+ <?php
+ if ($userfile_name) {
+         $tag = ereg_replace(".*\.([^\.]*)$", "\\1", $userfile_name);
+@@ -76,7 +76,7 @@
+ 	reload();
+ 	?>
+ 	<p><center><form>
+-	<input type=submit value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
++	<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
+ 	</form></center>
+ <script language="Javascript">
+ <!--
+@@ -139,7 +139,7 @@
+ <br>
+ <center>
+ <input type="button" value="<?php echo _("Upload Now") ?>" onClick='opener.showProgress(); document.upload_form.submit()'>
+-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
++<input type="button" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+ </center>
+ </form>
+ <?php } ?>
+Index: adv_search.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/adv_search.php,v
+retrieving revision 1.2
+diff -u -r1.2 adv_search.php
+--- adv_search.php	21 Aug 2003 21:49:20 -0000	1.2
++++ adv_search.php	26 Aug 2003 16:41:29 -0000
+@@ -73,7 +73,7 @@
+   <title><?php echo $gallery->app->galleryTitle ?> :: Advanced Search</title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body>
++<body dir="<?php echo gallery->direction; ?>">
+ <?php } ?>
+ 
+ <!-- search.header begin -->
+@@ -89,7 +89,7 @@
+ <!-- search.header ends -->
+ <!-- Top Nav -->
+ <?php
+-if (isset($submit)) {
++if (isset($go)) {
+ 	$search_again='<a href="'.makeGalleryUrl('adv_search.php').'">' .
+ 		_("Search Again") . '</a><p>';
+ 	print $search_again;
+@@ -129,7 +129,7 @@
+ if (!isset ($commenters)) {
+ 	$commenters = NULL;
+ }
+-if (isset($submit)) {
++if (isset($go)) {
+   if ($searchstring || $album_owners) {
+ 	$adminbox["text"] = "<span class=\"admin\">Albums";
+ 	if ($album_owners) {
+@@ -354,7 +354,7 @@
+ 	<tr> <td valign="top"><?php echo _("Search for comments made by:") ?></td> <td>
+ <?php echo drawSelect("commenters[]", $uAll, $commenters, 5, array("MULTIPLE" =>NULL)); ?>
+ 	</td> </tr>
+-	<tr><td><input type="submit" name="submit" value="<?php echo _("Go!") ?>"></td></tr>
++	<tr><td><input type="submit" name="go" value="<?php echo _("Go!") ?>"></td></tr>
+ 	</form>  
+ 	</tr>
+ 	</table>
+Index: album_permissions.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/album_permissions.php,v
+retrieving revision 1.24
+diff -u -r1.24 album_permissions.php
+--- album_permissions.php	12 Aug 2003 12:34:35 -0000	1.24
++++ album_permissions.php	26 Aug 2003 16:41:29 -0000
+@@ -97,7 +97,7 @@
+ 	$changed++;
+ }
+ 
+-if (!strcmp($submit, _("Save")) && $ownerUid) {
++if ( isset($save) && $ownerUid) {
+ 	$gallery->album->setOwner($ownerUid);
+ 	$changed++;
+ }
+@@ -182,8 +182,8 @@
+     </tr>
+     <tr>
+      <td>   
+-           <input type=submit name="submit_read" value="-->">
+-      <br> <input type=submit name="submit_read" value="<--">
++           <input type="submit" name="submit_read" value="-->">
++      <br> <input type="submit" name="submit_read" value="<--">
+      </td>
+      <td align=left>
+       <?php echo drawSelect("readUid", $uRead, $readUid, 3); ?>
+@@ -197,8 +197,8 @@
+     </tr>
+     <tr>
+      <td>
+-           <input type=submit name="submit_text" value="-->">
+-      <br> <input type=submit name="submit_text" value="<--">
++           <input type="submit" name="submit_text" value="-->">
++      <br> <input type="submit" name="submit_text" value="<--">
+      </td>
+      <td>
+       <?php echo drawSelect("textUid", $uText, $textUid, 3); ?>
+@@ -212,8 +212,8 @@
+     </tr>
+     <tr>
+      <td>   
+-           <input type=submit name="submit_add" value="-->">
+-      <br> <input type=submit name="submit_add" value="<--">
++           <input type="submit" name="submit_add" value="-->">
++      <br> <input type="submit" name="submit_add" value="<--">
+      </td>
+      <td>
+       <?php echo drawSelect("addUid", $uAdd, $addUid, 3); ?>
+@@ -227,8 +227,8 @@
+     </tr>
+     <tr>
+      <td>   
+-           <input type=submit name="submit_write" value="-->">
+-      <br> <input type=submit name="submit_write" value="<--">
++           <input type="submit" name="submit_write" value="-->">
++      <br> <input type="submit" name="submit_write" value="<--">
+      </td>
+      <td>
+       <?php echo drawSelect("writeUid", $uWrite, $writeUid, 3); ?>
+@@ -242,8 +242,8 @@
+     </tr>
+     <tr>
+      <td>   
+-           <input type=submit name="submit_delete" value="-->">
+-      <br> <input type=submit name="submit_delete" value="<--">
++           <input type="submit" name="submit_delete" value="-->">
++      <br> <input type="submit" name="submit_delete" value="<--">
+      </td>
+      <td>
+       <?php echo drawSelect("deleteUid", $uDelete, $deleteUid, 3); ?>
+@@ -257,8 +257,8 @@
+     </tr>
+     <tr>
+      <td>   
+-           <input type=submit name="submit_createSub" value="-->">
+-      <br> <input type=submit name="submit_createSub" value="<--">
++           <input type="submit" name="submit_createSub" value="-->">
++      <br> <input type="submit" name="submit_createSub" value="<--">
+      </td>
+      <td>
+       <?php echo drawSelect("createSubUid", $uCreateSub, $createSubUid, 3); ?>
+@@ -272,8 +272,8 @@
+     </tr>
+     <tr>
+      <td>   
+-           <input type=submit name="submit_viewFullImages" value="-->">
+-      <br> <input type=submit name="submit_viewFullImages" value="<--">
++           <input type="submit" name="submit_viewFullImages" value="-->">
++      <br> <input type="submit" name="submit_viewFullImages" value="<--">
+      </td>
+      <td>
+       <?php echo drawSelect("viewFullImagesUid", $uViewFullImages, $viewFullImagesUid, 3); ?>
+@@ -285,8 +285,8 @@
+  </tr>
+ </table>
+ 
+-<input type=submit name="submit" value="<?php echo _("Save") ?>">
+-<input type=submit name="submit" value="<?php echo _("Done") ?>" onclick='parent.close()'>
++<input type="submit" name="save" value="<?php echo _("Save") ?>">
++<input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
+ </form>
+ 
+ </body>
+Index: captionator.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/captionator.php,v
+retrieving revision 1.26
+diff -u -r1.26 captionator.php
+--- captionator.php	23 Aug 2003 08:34:44 -0000	1.26
++++ captionator.php	26 Aug 2003 16:41:29 -0000
+@@ -156,7 +156,7 @@
+   </style>
+ </head>
+ 
+-<body dir=<?php echo $gallery->direction ?>>
++<body dir="<?php echo $gallery->direction ?>">
+ <?php } ?>
+ 
+ <?php 
+@@ -202,22 +202,22 @@
+ <!-- image grid table -->
+ <br>
+ <?php echo makeFormIntro("captionator.php", array("method" => "POST")) ?>
+-<input type=hidden name=page value=<?php echo $page ?>>
+-<input type=hidden name=perPage value=<?php echo $perPage ?>>
+-<table width="100%" border=0 cellspacing=4 cellpadding=0>
++<input type="hidden" name="page" value="<?php echo $page ?>">
++<input type="hidden" name="perPage" value="<?php echo $perPage ?>">
++<table width="100%" border="0" cellspacing="4" cellpadding="0">
+ <tr>
+ <td colspan="3" align="right">
+-<input type=submit name="save" value="<?php echo _("Save and Exit") ?>">
++<input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">
+ 
+ <?php if (!$last) { ?>
+-    <input type=submit name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
++    <input type="submit" name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
+ <?php } ?>
+ 
+ <?php if ($page != 1) { ?>
+-    <input type=submit name="prev" value="<?php echo sprintf(_("Save and Edit Previous %d"), $perPage) ?>">
++    <input type="submit" name="prev" value="<?php echo sprintf(_("Save and Edit Previous %d"), $perPage) ?>">
+ <?php } ?>
+ 
+-<input type=submit name="cancel" value="<?php echo _("Exit") ?>">
++<input type="submit" name="cancel" value="<?php echo _("Exit") ?>">
+ </td>
+ </tr>
+ <?php
+@@ -316,18 +316,18 @@
+ ?>
+ 
+ <tr>
+-<td colspan=3 align="right">
+-<input type=submit name="save" value="<?php echo _("Save and Exit") ?>">
++<td colspan="3" align="right">
++<input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">
+ 
+ <?php if (!$last) { ?>
+-    <input type=submit name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
++    <input type="submit" name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
+ <?php } ?>
+ 
+ <?php if ($page != 1) { ?>
+-    <input type=submit name="prev" value="<?php echo sprintf(_("Save and Edit Previous %d"), $perPage) ?>">
++    <input type="submit" name="prev" value="<?php echo sprintf(_("Save and Edit Previous %d"), $perPage) ?>">
+ <?php } ?>
+ 
+-<input type=submit name="cancel" value="<?php echo _("Exit") ?>">
++<input type="submit" name="cancel" value="<?php echo _("Exit") ?>">
+ </td>
+ </tr>
+ </table>
+Index: create_user.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/create_user.php,v
+retrieving revision 1.22
+diff -u -r1.22 create_user.php
+--- create_user.php	26 Aug 2003 12:34:56 -0000	1.22
++++ create_user.php	26 Aug 2003 16:41:29 -0000
+@@ -38,38 +38,36 @@
+ 	exit;	
+ }
+ 
+-if ($submit) {
+-	if (!strcmp($submit, _("Create"))) {
+-		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
+-		if ($gErrors["uname"]) {
+-			$errorCount++;
+-		}
++if (isset($create)) {
++	$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
++	if ($gErrors["uname"]) {
++		$errorCount++;
++	}
+ 
+-		if (strcmp($new_password1, $new_password2)) {
+-			$gErrors["new_password2"] = _("Passwords do not match!");
++	if (strcmp($new_password1, $new_password2)) {
++		$gErrors["new_password2"] = _("Passwords do not match!");
++		$errorCount++;
++	} else {
++		$gErrors["new_password1"] = 
++			$gallery->userDB->validPassword($new_password1);
++		if ($gErrors["new_password1"]) {
+ 			$errorCount++;
+-		} else {
+-			$gErrors["new_password1"] = 
+-				$gallery->userDB->validPassword($new_password1);
+-			if ($gErrors["new_password1"]) {
+-				$errorCount++;
+-			}
+ 		}
++	}
+ 
+-		if (!$errorCount) {
+-			$tmpUser = new Gallery_User();
+-			$tmpUser->setUsername($uname);
+-			$tmpUser->setPassword($new_password1);
+-			$tmpUser->setFullname($fullname);
+-			$tmpUser->setCanCreateAlbums($canCreate);
+-			$tmpUser->setEmail($email);
+-			$tmpUser->setDefaultLanguage($defaultLanguage);
+-			$tmpUser->save();
+-			header("Location: manage_users.php");
+-		}
+-	} else if (!strcmp($submit, _("Cancel"))) {
++	if (!$errorCount) {
++		$tmpUser = new Gallery_User();
++		$tmpUser->setUsername($uname);
++		$tmpUser->setPassword($new_password1);
++		$tmpUser->setFullname($fullname);
++		$tmpUser->setCanCreateAlbums($canCreate);
++		$tmpUser->setEmail($email);
++		$tmpUser->setDefaultLanguage($defaultLanguage);
++		$tmpUser->save();
+ 		header("Location: manage_users.php");
+ 	}
++} else if (isset($cancel)) {
++	header("Location: manage_users.php");
+ }
+ 
+ $canCreateChoices = array(1 => _("yes"), 0 => _("no"));
+@@ -91,16 +89,17 @@
+ <p>
+ 
+ 
+-<?php echo makeFormIntro("create_user.php", 
+-			array("name" => "usercreate_form", 
+-				"method" => "POST")); ?>
++<?php echo makeFormIntro("create_user.php", array(
++				"name" => "usercreate_form", 
++				"method" => "POST"));
++?>
+ <p>
+ 
+ <?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
+ <p>
+ 
+-<input type="submit" name="submit" value="<?php echo _("Create") ?>">
+-<input type="submit" name="submit" value="<?php echo _("Cancel") ?>">
++<input type="submit" name="create" value="<?php echo _("Create") ?>">
++<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
+ </form>
+ 
+ <script language="javascript1.2">
+Index: delete_album.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/delete_album.php,v
+retrieving revision 1.21
+diff -u -r1.21 delete_album.php
+--- delete_album.php	12 Aug 2003 12:34:35 -0000	1.21
++++ delete_album.php	26 Aug 2003 16:41:29 -0000
+@@ -53,7 +53,7 @@
+   <title><?php echo _("Delete Album") ?></title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body dir=<?php echo $gallery->direction ?>>
++<body dir="<?php echo $gallery->direction ?>">
+ 
+ <center>
+ <span class="popuphead"><?php echo _("Delete Album") ?></span>
+@@ -63,8 +63,8 @@
+ <b><?php echo $gallery->album->fields["title"] ?></b>
+ <p>
+ <?php echo makeFormIntro("delete_album.php"); ?>
+-<input type=submit name=confirm value="<?php echo _("Delete") ?>">
+-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
++<input type="submit" name="delete" value="<?php echo _("Delete") ?>">
++<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+ </form>
+ <p>
+ <?php
+Index: delete_photo.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/delete_photo.php,v
+retrieving revision 1.29
+diff -u -r1.29 delete_photo.php
+--- delete_photo.php	26 Aug 2003 12:34:56 -0000	1.29
++++ delete_photo.php	26 Aug 2003 16:41:29 -0000
+@@ -108,8 +108,8 @@
+ <?php echo makeFormIntro("delete_photo.php"); ?>
+ <input type="hidden" name="id" value="<?php echo $id ?>">
+ <input type="hidden" name="albumDelete" value=<?php echo $albumDelete ?>>
+-<input type="submit" name=confirm value="<?php echo _("Delete") ?>">
+-<input type="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
++<input type="submit" name="confirm" value="<?php echo _("Delete") ?>">
++<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+ </form>
+ <br>
+ 
+@@ -129,7 +129,7 @@
+ <input type="hidden" name="id" value="<?php echo $id?>">
+ <input type="hidden" name="id2" value=2<?php echo $id2 ?>">    
+ <input type="submit" name="confirm" value="<?php echo _("Delete") ?>">
+-<input type="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
++<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+ </form>
+ <br>
+ 
+Index: delete_user.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/delete_user.php,v
+retrieving revision 1.20
+diff -u -r1.20 delete_user.php
+--- delete_user.php	26 Aug 2003 12:34:56 -0000	1.20
++++ delete_user.php	26 Aug 2003 16:41:29 -0000
+@@ -38,13 +38,12 @@
+ 	exit;	
+ }
+ 
+-if ($submit) {
+-	if (!strcmp($submit, _("Delete"))) {
++if (isset($delete)) {
+ 		$gallery->userDB->deleteUserByUsername($uname);
+ 		header("Location: manage_users.php");
+-	} else if (!strcmp(htmlentities($submit), _("Cancel"))) {
+-		header("Location: manage_users.php");
+-	}
++}
++if (isset($cancel)) {
++	header("Location: manage_users.php");
+ }
+ 
+ ?>
+@@ -60,7 +59,7 @@
+ <br>
+ <br>
+ <?php echo makeFormIntro("delete_user.php"); ?>
+-<input type=hidden name=uname value=<?php echo $uname ?>>
++<input type="hidden" name="uname" value="<?php echo $uname ?>">
+ 
+ <?php
+ if (!strcmp($gallery->user->getUsername(), $uname)) {
+@@ -76,12 +75,12 @@
+ <p>
+ <p>
+ 
+-<input type="submit" name="submit" value="<?php echo _("Delete") ?>">
++<input type="submit" name="delete" value="<?php echo _("Delete") ?>">
+ <?php
+ }
+ ?>
+ 
+-<input type="submit" name="submit" value="<?php echo _("Cancel") ?>">
++<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
+ </form> 
+ 
+ </body>
+Index: do_command.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/do_command.php,v
+retrieving revision 1.41
+diff -u -r1.41 do_command.php
+--- do_command.php	12 Aug 2003 12:34:35 -0000	1.41
++++ do_command.php	26 Aug 2003 16:41:29 -0000
+@@ -42,7 +42,7 @@
+   <title><?php echo _("Rebuilding Thumbnails") ?></title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body dir=<?php echo $gallery->direction ?>>
++<body dir="<?php echo $gallery->direction ?>">
+ <?php
+ 		if ($gallery->session->albumName && isset($index)) {
+ 			if (!strcmp($index, "all")) {
+@@ -132,7 +132,7 @@
+ 
+ <center>
+ <form>
+-<input type=submit value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
++<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
+ </form>
+ </body>
+ </html>
+Index: edit_appearance.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/edit_appearance.php,v
+retrieving revision 1.46
+diff -u -r1.46 edit_appearance.php
+--- edit_appearance.php	12 Aug 2003 12:34:35 -0000	1.46
++++ edit_appearance.php	26 Aug 2003 16:41:29 -0000
+@@ -221,12 +221,12 @@
+ </table>
+ 
+ <br>
+-<input type=checkbox name=setNested value="1"><?php echo _("Apply values to nested Albums (except Album Title and Summary).") ?>
++<input type="checkbox" name="setNested" value="1"><?php echo _("Apply values to nested Albums (except Album Title and Summary).") ?>
+ <br>
+ <br>
+-<input type=submit name="submit" value="<?php echo _("Apply") ?>">
+-<input type=reset value="<?php echo _("Undo") ?>">
+-<input type=submit name="submit" value="<?php echo _("Close") ?>" onclick='parent.close()'>
++<input type="submit" name="apply" value="<?php echo _("Apply") ?>">
++<input type="reset" value="<?php echo _("Undo") ?>">
++<input type="button" name="close" value="<?php echo _("Close") ?>" onclick='parent.close()'>
+ 
+ </form>
+ 
+Index: edit_caption.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/edit_caption.php,v
+retrieving revision 1.33
+diff -u -r1.33 edit_caption.php
+--- edit_caption.php	12 Aug 2003 12:34:35 -0000	1.33
++++ edit_caption.php	26 Aug 2003 16:41:29 -0000
+@@ -39,7 +39,7 @@
+ 	exit;
+ }
+ $err = "";	
+-if (!strcmp($submit, _("Save"))) {
++if (isset($save)) {
+ 	if (($capture_year < 3000) && ($capture_year > 1000)) { // only allow photo capture dates from 1000 to 3000.
+ 		$gallery->album->setCaption($index, stripslashes($data));
+ 		$gallery->album->setKeywords($index, stripslashes($keywords));
+@@ -170,8 +170,8 @@
+   </tr>
+ </table>
+ <br><br>
+-<input type=submit name="submit" value="<?php echo _("Save") ?>">
+-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
++<input type="submit" name="save" value="<?php echo _("Save") ?>">
++<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+ 
+ 
+ </form>
+Index: edit_field.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/edit_field.php,v
+retrieving revision 1.24
+diff -u -r1.24 edit_field.php
+--- edit_field.php	12 Aug 2003 12:34:35 -0000	1.24
++++ edit_field.php	26 Aug 2003 16:41:30 -0000
+@@ -39,7 +39,7 @@
+ 	exit;
+ }
+ 	
+-if (!strcmp($submit, _("Save"))) {
++if (isset($save)) {
+ 	$gallery->album->fields[$field] = stripslashes($data);
+ 	$gallery->album->save();
+ 	dismissAndReload();
+@@ -53,20 +53,23 @@
+   <title><?php echo sprintf(_("Edit %s"), _($field)) ?></title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body dir=<?php echo $gallery->direction ?>>
++<body dir="<?php echo $gallery->direction ?>">
+ 
+ <center>
+ <?php echo sprintf(_("Edit the %s and click %s when you're done"),
+ 		_($field), '<b>' . _("Save") . '</b>') ?>
+ 
+-<?php echo makeFormIntro("edit_field.php", array("name" => "theform", "method" => "POST")); ?>
+-<input type=hidden name="field" value="<?php echo $field ?>">
+-<textarea name="data" rows=5 cols=40>
++<?php echo makeFormIntro("edit_field.php", array(
++	"name" => "theform",
++	 "method" => "POST")); 
++?>
++<input type="hidden" name="field" value="<?php echo $field ?>">
++<textarea name="data" rows="5" cols="40">
+ <?php echo $gallery->album->fields[$field] ?>
+ </textarea>
+ <p>
+-<input type=submit name="submit" value="<?php echo _("Save") ?>">
+-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
++<input type="submit" name="save" value="<?php echo _("Save") ?>">
++<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+ </form>
+ 
+ <script language="javascript1.2">
+Index: extra_fields.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/extra_fields.php,v
+retrieving revision 1.9
+diff -u -r1.9 extra_fields.php
+--- extra_fields.php	12 Aug 2003 12:34:35 -0000	1.9
++++ extra_fields.php	26 Aug 2003 16:41:30 -0000
+@@ -88,21 +88,22 @@
+   <title><?php echo _("Configure Custom Fields") ?></title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body>
++<body dir="<?php echo $gallery->direction ?>">
+ 
+ <center>
+ <?php echo _("Configure Custom Fields") ?>
+ 
+ <p>
+-<?php echo makeFormIntro("extra_fields.php", 
+-			array("name" => "theform", 
+-				"method" => "POST")); ?>
+-<input type=hidden name="save" value=1>
++<?php echo makeFormIntro("extra_fields.php", array(
++				"name" => "theform", 
++				"method" => "POST")); 
++?>
++<input type="hidden" name="save" value="1">
+ 
+ <?php echo _("Number of user defined custom fields") ?>
+ <?php $num_user_fields=sizeof($gallery->album->getExtraFields()) - 
+ 	num_special_fields($gallery->album->getExtraFields()); ?>
+-<input type=text size=4 name="num_user_fields" value="<?php echo $num_user_fields ?>">
++<input type="text" size="4" name="num_user_fields" value="<?php echo $num_user_fields ?>">
+ <table>
+ 
+ <?php
+@@ -111,7 +112,7 @@
+ // Translate the first "Title" in the line below only
+ ?>
+ <tr><td><?php echo _("Title") ?></td><td>
+-<input type=checkbox name="extra_fields[]" value="Title"
++<input type="checkbox" name="extra_fields[]" value="Title"
+ <?php print in_array("Title", $extra_fields) ?  "checked" : ""; 
+ ?> > </td></tr>
+ <?php
+@@ -121,9 +122,7 @@
+ 	}
+ ?>
+ 	<tr><td><?php print $printable_automatic ?></td>
+-	<td><input type=checkbox 
+-	name="extra_fields[]" 
+-	value="<?php print $automatic ?>"
++	<td><input type="checkbox" name="extra_fields[]" value="<?php print $automatic ?>"
+ 	<?php print in_array($automatic, $extra_fields) ?  "checked" : ""; 
+ 	?> > </td></tr>
+ <?php
+@@ -140,7 +139,7 @@
+ 	if (!strcmp($value, "Title"))
+ 		continue;
+ 	print "<tr><td>". _("Field").($i+1).": </td><td>";
+-	print "<input type=text name=\"extra_fields[]\"";
++	print "<input type=\"text\" name=\"extra_fields[]\"";
+         print "value=\"".$value."\"><p></td></tr>";
+ 	$i++;
+ }
+@@ -161,11 +160,11 @@
+ }
+ ?>
+ </table>
+-<input type=checkbox name=setNested value="1"><?php echo _("Apply to nested Albums") ?>.
++<input type="checkbox" name="setNested" value="1"><?php echo _("Apply to nested Albums") ?>.
+ <p>
+-<input type=submit name="submit" value="<?php echo _("Apply") ?>">
+-<input type=reset value="<?php echo _("Undo") ?>">
+-<input type=submit name="submit" value="<?php echo _("Close") ?>" onclick='parent.close()'>
++<input type="submit" name="apply" value="<?php echo _("Apply") ?>">
++<input type="reset" value="<?php echo _("Undo") ?>">
++<input type="button" name="close" value="<?php echo _("Close") ?>" onclick='parent.close()'>
+ 
+ </form>
+ </body>
+Index: highlight_photo.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/highlight_photo.php,v
+retrieving revision 1.21
+diff -u -r1.21 highlight_photo.php
+--- highlight_photo.php	12 Aug 2003 12:34:35 -0000	1.21
++++ highlight_photo.php	26 Aug 2003 16:41:30 -0000
+@@ -45,7 +45,7 @@
+   <title><?php echo _("Highlight Photo") ?></title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body dir=<?php echo $gallery->direction ?>>
++<body dir="<?php echo $gallery->direction ?>">
+ 
+ <?php
+ if ($gallery->session->albumName && isset($index)) {
+@@ -67,9 +67,9 @@
+ <?php echo $gallery->album->getCaption($index) ?>
+ <br>
+ <?php echo makeFormIntro("highlight_photo.php"); ?>
+-<input type=hidden name=index value=<?php echo $index ?>>
+-<input type=submit name=confirm value="<?php echo _("Yes") ?>">
+-<input type=submit value="<?php echo _("No") ?>" onclick='parent.close()'>
++<input type="hidden" name="index" value="<?php echo $index ?>">
++<input type="submit" name="confirm" value="<?php echo _("Yes") ?>">
++<input type="button" name ="no" value="<?php echo _("No") ?>" onclick='parent.close()'>
+ </form>
+ 
+ <?php
+Index: login.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/login.php,v
+retrieving revision 1.23
+diff -u -r1.23 login.php
+--- login.php	18 Aug 2003 09:37:29 -0000	1.23
++++ login.php	26 Aug 2003 16:41:30 -0000
+@@ -47,14 +47,14 @@
+ 	<title><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body dir=<?php echo $gallery->direction ?>>
++<body dir="<?php echo $gallery->direction ?>">
+ 
+ <center>
+ <span class="popuphead"><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></span>
+ <br>
+ <br>
+ <?php
+-if (isset($submit)) {
++if (isset($login)) {
+ 	if ($uname && $gallerypassword) {
+ 		$tmpUser = $gallery->userDB->getUserByUsername($uname);
+ 		if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword)) {
+@@ -127,8 +127,8 @@
+ 
+ </table>
+ <p>
+-<input type=submit name="submit" value=<?php echo '"' . _("Login") . '"' ?>>
+-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
++<input type="submit" name="login" value="<?php _("Login") ?>">
++<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+ </form>
+ 
+ <script language="javascript1.2">
+Index: manage_users.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/manage_users.php,v
+retrieving revision 1.20
+diff -u -r1.20 manage_users.php
+--- manage_users.php	26 Aug 2003 12:34:56 -0000	1.20
++++ manage_users.php	26 Aug 2003 16:41:30 -0000
+@@ -38,20 +38,16 @@
+ 	exit;	
+ }
+ 
+-if ($action) {
+-	if (!strcmp($action, _("Create"))) {
+-		header("Location: create_user.php?uname=$uname");
+-	} else if (! isset($uname)) {
+-		$error=_("Please select a user");
+-	} else {
+-		switch ($action) {
+-			case _("Modify"):
+-				header("Location: modify_user.php?uname=$uname");
+-			break;
+-			case _("Delete"):
+-				header("Location: delete_user.php?uname=$uname");
+-		}
+-	}
++if (isset($create)) {
++	header("Location: create_user.php?uname=$uname");
++}
++
++if ( (isset($modify) || isset($delete)) && ! isset($uname)) {
++	$error=_("Please select a user");
++} elseif (isset($modify)) {
++	header("Location: modify_user.php?uname=$uname");
++} elseif (isset($delete)) {
++	header("Location: delete_user.php?uname=$uname");
+ }
+ 
+ $displayUsers = array();
+@@ -107,10 +103,10 @@
+ </select>
+ 
+ <p>
+-<input type="submit" name="action" value="<?php echo _("Create") ?>"> 
++<input type="submit" name="create" value="<?php echo _("Create") ?>"> 
+ <?php if (count($displayUsers)) { ?>
+-<input type="submit" name="action" value="<?php echo _("Modify") ?>">
+-<input type="submit" name="action" value="<?php echo _("Delete") ?>">
++<input type="submit" name="modify" value="<?php echo _("Modify") ?>">
++<input type="submit" name="delete" value="<?php echo _("Delete") ?>">
+ <?php } ?>
+ <input type="button" value="<?php echo _("Done") ?>" onclick='parent.close()'>
+ </form>
+Index: modify_user.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/modify_user.php,v
+retrieving revision 1.22
+diff -u -r1.22 modify_user.php
+--- modify_user.php	12 Aug 2003 12:34:35 -0000	1.22
++++ modify_user.php	26 Aug 2003 16:41:30 -0000
+@@ -38,57 +38,54 @@
+ 	exit;	
+ }
+ 
+-if ($submit) {
+-	if (!strcmp($submit, _("Save"))) {
+-		if (strcmp($old_uname, $uname)) {
+-			$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
+-			if ($gErrors["uname"]) {
+-				$errorCount++;
+-			}
++if (isset($save)) {
++	if (strcmp($old_uname, $uname)) {
++		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
++		if ($gErrors["uname"]) {
++			$errorCount++;
+ 		}
++	}
+ 
+-		if ($new_password1 || $new_password2) {
+-			if (strcmp($new_password1, $new_password2)) {
+-				$gErrors["new_password2"] = _("Passwords do not match!");
++	if ($new_password1 || $new_password2) {
++		if (strcmp($new_password1, $new_password2)) {
++			$gErrors["new_password2"] = _("Passwords do not match!");
++			$errorCount++;
++		} else {
++			$gErrors["new_password1"] = 
++				$gallery->userDB->validPassword($new_password1);
++			if ($gErrors["new_password1"]) {
+ 				$errorCount++;
+-			} else {
+-				$gErrors["new_password1"] = 
+-					$gallery->userDB->validPassword($new_password1);
+-				if ($gErrors["new_password1"]) {
+-					$errorCount++;
+-				}
+ 			}
+ 		}
++	}
+ 
+-		if (!$errorCount) {
+-			$tmpUser = $gallery->userDB->getUserByUsername($old_uname);
+-			$tmpUser->setUsername($uname);
+-			$tmpUser->setFullname($fullname);
+-			$tmpUser->setEmail($email);
+-			$tmpUser->setDefaultLanguage($defaultLanguage);
+-			if (isset($canCreate)) {
+-				$tmpUser->setCanCreateAlbums($canCreate);
+-			}
+-			if (isset($isAdmin)) {
+-				$tmpUser->setIsAdmin($isAdmin);
+-			}
+-
+-			// If a new password was entered, use it.  Otherwise leave
+-			// it the same.
+-			if ($new_password1) {
+-				$tmpUser->setPassword($new_password1);
+-			}
+-			$tmpUser->save();
+-
+-			if (!strcmp($old_uname, $gallery->session->username)) {
+-				$gallery->session->username = $uname;
+-			}
++	if (!$errorCount) {
++		$tmpUser = $gallery->userDB->getUserByUsername($old_uname);
++		$tmpUser->setUsername($uname);
++		$tmpUser->setFullname($fullname);
++		$tmpUser->setEmail($email);
++		$tmpUser->setDefaultLanguage($defaultLanguage);
++		if (isset($canCreate)) {
++			$tmpUser->setCanCreateAlbums($canCreate);
++		}
++		if (isset($isAdmin)) {
++			$tmpUser->setIsAdmin($isAdmin);
++		}
+ 
+-			header("Location: manage_users.php");
++		// If a new password was entered, use it.  Otherwise leave
++		// it the same.
++		if ($new_password1) {
++			$tmpUser->setPassword($new_password1);
++		}
++		$tmpUser->save();
++		if (!strcmp($old_uname, $gallery->session->username)) {
++			$gallery->session->username = $uname;
+ 		}
+-	} else if (!strcmp($submit, _("Cancel"))) {
++
+ 		header("Location: manage_users.php");
+ 	}
++} else if (isset($cancel)) {
++	header("Location: manage_users.php");
+ }
+ 
+ $tmpUser = $gallery->userDB->getUserByUsername($uname);
+@@ -121,7 +118,7 @@
+   <title><?php echo _("Modify User") ?></title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body dir=<?php echo $gallery->direction ?>>
++<body dir="<?php echo $gallery->direction ?>">
+ 
+ <center>
+ <span class="popuphead"><?php echo _("Modify User") ?></span>
+@@ -134,7 +131,7 @@
+ 				array("name" => "usermodify_form", 
+ 					"method" => "POST")); ?>
+ 
+-<input type=hidden name=old_uname value=<?php echo $uname ?>>
++<input type="hidden" name="old_uname" value="<?php echo $uname ?>">
+ 
+ <p>
+ 
+@@ -142,8 +139,8 @@
+ <p>
+ 
+ 
+-<input type=submit name="submit" value="<?php echo _("Save") ?>">
+-<input type=submit name="submit" value="<?php echo _("Cancel") ?>">
++<input type="submit" name="save" value="<?php echo _("Save") ?>">
++<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
+ </form>
+ 
+ <script language="javascript1.2">
+Index: move_album.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/move_album.php,v
+retrieving revision 1.27
+diff -u -r1.27 move_album.php
+--- move_album.php	26 Aug 2003 12:34:56 -0000	1.27
++++ move_album.php	26 Aug 2003 16:41:30 -0000
+@@ -89,8 +89,8 @@
+ }
+ ?>
+ </select>
+-<input type="submit" value="<?php _("Move it!") ?>">
+-<input type="button" name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
++<input type="submit" name="move" value="<?php _("Move it!") ?>">
++<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+ </form>
+ 
+ <p>
+@@ -107,7 +107,7 @@
+ <?php echo _("Nest within another Album:") ?>
+ <p>
+ <?php echo makeFormIntro("move_album.php", array("name" => "move_to_album_form")); ?>
+-<input type=hidden name="index" value="<?php echo $index ?>">
++<input type="hidden" name="index" value="<?php echo $index ?>">
+ <select name="newAlbum">
+ <?php
+ printAlbumOptionList(0,1)  
+Index: photo_owner.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/photo_owner.php,v
+retrieving revision 1.9
+diff -u -r1.9 photo_owner.php
+--- photo_owner.php	12 Aug 2003 12:34:35 -0000	1.9
++++ photo_owner.php	26 Aug 2003 16:41:30 -0000
+@@ -44,7 +44,7 @@
+ ?>
+ <?php
+ 
+-if (!strcmp($submit, _("Save")) && $owner) {
++if ( isset($save) && $owner) {
+ 	$gallery->album->setItemOwnerById($id, $owner);
+ 	$gallery->album->save();
+ 	dismissAndReload();
+@@ -80,7 +80,7 @@
+   <title><?php echo _("Change Owner") ?></title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body dir=<?php echo $gallery->direction ?>>
++<body dir="<?php echo $gallery->direction ?>">
+ 
+ <center>
+ <span class="popuphead"> <?php echo _("Change Owner") ?> </span>
+@@ -100,9 +100,9 @@
+ <?php echo _("Owner") ?>: <?php echo drawSelect("owner", $uAll, $owner, 1); ?>
+ <?php } ?><p>
+ 
+-<input type=hidden name="id" value="<?php echo $id ?>">
+-<input type=submit name="submit" value="<?php echo _("Save") ?>">
+-<input type=submit name="submit" value="<?php echo _("Done") ?>" onclick='parent.close()'>
++<input type="hidden" name="id" value="<?php echo $id ?>">
++<input type="submit" name="save" value="<?php echo _("Save") ?>">
++<input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
+ </form>
+ 
+ </body>
+Index: publish_xp.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/publish_xp.php,v
+retrieving revision 1.15
+diff -u -r1.15 publish_xp.php
+--- publish_xp.php	12 Aug 2003 12:34:35 -0000	1.15
++++ publish_xp.php	26 Aug 2003 16:41:30 -0000
+@@ -134,10 +134,10 @@
+     echo "<center>"; ?>
+ <span class='popuphead'><?php echo _("Select the Album to which to Publish") ?></span>
+ <?php	
+-    echo "<form id='folder'>";
+-    echo "<table border=0>";
+-    echo "<tr><td align=center>";
+-    echo "<select id='album' name='set_albumName' size=10 width=40>";
++    echo "<form id=\"folder\">";
++    echo "<table border=\"0\">";
++    echo "<tr><td align=\"center\">";
++    echo "<select id=\"album\" name=\"set_albumName\" size=\"10\" width=\"40\">";
+ 
+     $albumDB = new AlbumDB(FALSE);
+     $mynumalbums = $albumDB->numAlbums($gallery->user);
+@@ -150,7 +150,7 @@
+         if ($gallery->user->canAddToAlbum($myAlbum)) {
+ 		echo "<option ";
+ 		if ($albumName == $album) echo "selected ";
+-		echo "value='$albumName'>\t$albumTitle</option>\n";
++		echo "value=\"$albumName\">\t$albumTitle</option>\n";
+         }
+         appendNestedAlbums(0, "canAddToAlbum", $albumName, $albumString, $album);
+     }
+@@ -158,10 +158,10 @@
+     echo "</select><br>\n";
+     echo "</td></tr><tr><td align=center>\n";
+     echo "<input id='setCaption' type=checkbox name=setCaption checked value=1>". _("Use filenames as captions") ."<br><br>\n";
+-    echo "<input type=button value='" . _("Create New Album") ."' onClick=\"folder.cmd.value='new-album';folder.submit();\">\n";
++    echo "<input type=\"button\" value='" . _("Create New Album") ."' onClick=\"folder.cmd.value='new-album';folder.submit();\">\n";
+     echo "</td></tr>\n";
+     echo "</table>\n";
+-    echo "<input type=hidden name='cmd' value='select-album'>\n";
++    echo "<input type=\"hidden\" name=\"cmd\" value=\"select-album\">\n";
+     echo "</form></center>\n";
+     $ONNEXT_SCRIPT="folder.submit();"; 
+     $ONBACK_SCRIPT="window.location.href = \"publish_xp.php?cmd=publish\";";
+@@ -323,16 +323,16 @@
+         if ($error) {
+                 echo "<span class='error'>$error</span><p>";
+ 		echo _("Press the 'Back' button and try again!");
+-		echo "<form id='folder'>";
+-		echo "<input type=hidden name='cmd' value='new-album'>\n";
+-		echo "<input type=hidden name='newAlbumTitle' value=\"$newAlbumTitle\">\n";
++		echo "<form id=\"folder\">";
++		echo "<input type=\"hidden\" name=\"cmd\" value=\"new-album\">\n";
++		echo "<input type=\"hidden\" name=\"newAlbumTitle\" value=\"$newAlbumTitle\">\n";
+ 		echo "</form>\n";
+                 $ONBACK_SCRIPT="folder.submit();";
+                 $WIZARD_BUTTONS="true,false,true";
+         } else {
+                 echo "<form id='folder'>\n";
+-                echo "<input type=hidden name=album value=" . $gallery->album->fields[name] . ">\n";
+-		echo "<input type=hidden name=cmd value='fetch-albums'>\n";
++                echo "<input type=\"hidden\" name=\"album\" value=\"" . $gallery->album->fields[name] . "\">\n";
++		echo "<input type=\"hidden\" name=\"cmd value=\"fetch-albums\">\n";
+                 echo "</form>\n";
+ 		
+ 		if ($success) {	
+Index: rename_album.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/rename_album.php,v
+retrieving revision 1.29
+diff -u -r1.29 rename_album.php
+--- rename_album.php	26 Aug 2003 12:34:56 -0000	1.29
++++ rename_album.php	26 Aug 2003 16:41:30 -0000
+@@ -117,8 +117,8 @@
+ <input type="hidden" name="oldName" value="<?php echo $gallery->session->albumName?>">
+ <input type="hidden" name="useLoad" value="<?php echo $useLoad?>">    
+ <p>
+-<input type="submit" value="<?php echo _("Rename") ?>">
+-<input type="button" name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
++<input type="submit" name="rename" value="<?php echo _("Rename") ?>">
++<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+ </form>
+ 
+ <script language="javascript1.2">
+Index: resize_photo.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/resize_photo.php,v
+retrieving revision 1.32
+diff -u -r1.32 resize_photo.php
+--- resize_photo.php	25 Aug 2003 20:20:10 -0000	1.32
++++ resize_photo.php	26 Aug 2003 16:41:30 -0000
+@@ -116,8 +116,8 @@
+ </table>
+ </p>
+ 
+-<input type="submit" value="<?php echo _("Change Size") ?>">
+-<input type="submit" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
++<input type="submit" name="change_size" value="<?php echo _("Change Size") ?>">
++<input type="button" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
+ </form>
+ 
+ <br><br>
+Index: save_photos.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/save_photos.php,v
+retrieving revision 1.72
+diff -u -r1.72 save_photos.php
+--- save_photos.php	19 Aug 2003 01:39:32 -0000	1.72
++++ save_photos.php	26 Aug 2003 16:41:30 -0000
+@@ -55,12 +55,12 @@
+   <?php echo getStyleSheetLink() ?>
+ 
+ </head>
+-<body onLoad='opener.hideProgressAndReload();'>
++<body dir="<?php echo $gallery->direction ?>" onLoad='opener.hideProgressAndReload();'>
+ 
+ <?php
+ if ($urls) {
+ ?>
+-<span class=title><?php echo _("Fetching Urls...") ?></span>
++<span class="title"><?php echo _("Fetching Urls...") ?></span>
+ <br>
+ <?php
+ 	/* Process all urls first */
+@@ -230,7 +230,7 @@
+ 
+ 
+ <br>
+-<span class=title><?php echo _("Processing status...") ?></span>
++<span class="title"><?php echo _("Processing status...") ?></span>
+ <br>
+ 
+ <?php
+@@ -269,7 +269,7 @@
+ ?>
+ <center>
+ <form>
+-<input type=submit value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
++<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
+ </form>
+ <?php
+ /* Prompt for additional files if we found links in the HTML slurpage */
+@@ -335,8 +335,8 @@
+ </span></p>
+ 
+ <p>
+-<input type=hidden name="setCaption" value="<?php echo $setCaption ?>">
+-<input type=button value=<?php echo '"' . _("Add Files") . '"' ?> onClick="opener.showProgress(); document.uploadurl_form.submit()">
++<input type="hidden" name="setCaption" value="<?php echo $setCaption ?>">
++<input type="button" value="<?php echo _("Add Files") ?>" onClick="opener.showProgress(); document.uploadurl_form.submit()">
+ </p>
+ 
+ </form>
+Index: search.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/search.php,v
+retrieving revision 1.38
+diff -u -r1.38 search.php
+--- search.php	21 Aug 2003 21:49:20 -0000	1.38
++++ search.php	26 Aug 2003 16:41:30 -0000
+@@ -43,7 +43,7 @@
+   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo _("Search") ?></title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body dir=<?php echo $gallery->direction ?>>
++<body dir="<?php echo $gallery->direction ?>">
+ <?php } ?>
+ 
+ <!-- search.header begin -->
+@@ -258,7 +258,7 @@
+ 	<tr><?php echo makeFormIntro("search.php"); ?>
+ 	<td valign="middle" align="left">
+ 	<input type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
+-	<input type="submit" value="<?php echo _("Go") ?>!">
++	<input type="submit" name="go" value="<?php echo _("Go") ?>!">
+ 	</td>
+ 	</form>  
+ 	</tr>
+Index: sort_album.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/sort_album.php,v
+retrieving revision 1.15
+diff -u -r1.15 sort_album.php
+--- sort_album.php	12 Aug 2003 12:34:35 -0000	1.15
++++ sort_album.php	26 Aug 2003 16:41:30 -0000
+@@ -44,7 +44,7 @@
+   <title><?php echo _("Sort Album") ?></title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body dir=<?php echo $gallery->direction ?>>
++<body dir="<?php echo $gallery->direction ?>">
+ 
+ <?php
+ if ($gallery->session->albumName) {
+@@ -112,8 +112,8 @@
+   </tr>
+ </table>
+ <br>
+-<input type=submit name=confirm value="<?php echo _("Sort") ?>">
+-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
++<input type="submit" name="confirm" value="<?php echo _("Sort") ?>">
++<input type="close" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+ </form>
+ <?php
+ 	}
+Index: upgrade_album.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/upgrade_album.php,v
+retrieving revision 1.16
+diff -u -r1.16 upgrade_album.php
+--- upgrade_album.php	18 Aug 2003 09:37:29 -0000	1.16
++++ upgrade_album.php	26 Aug 2003 16:41:30 -0000
+@@ -71,7 +71,7 @@
+ function close_button() {
+ 	print "<center>";
+ 	print "<form>";
+-	print "<input type=submit value=\"" . _("Done") ."\" onclick='opener.location.reload(); parent.close()'>";
++	print "<input type=\"button\" value=\"" . _("Done") ."\" onclick='opener.location.reload(); parent.close()'>";
+ 	print "</form>";
+ 	print "</center>";
+ }
+@@ -79,7 +79,7 @@
+ function reload_button() {
+ 	print "<center>";
+ 	print "<form>";
+-	print "<input type=submit value=\"" . _("Done") ."\" onclick='location.reload()'>";
++	print "<input type=\"button\" value=\"" . _("Done") ."\" onclick='location.reload()'>";
+ 	print "</form>";
+ 	print "</center>";
+ }
+Index: user_preferences.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/user_preferences.php,v
+retrieving revision 1.23
+diff -u -r1.23 user_preferences.php
+--- user_preferences.php	26 Aug 2003 12:34:56 -0000	1.23
++++ user_preferences.php	26 Aug 2003 16:41:30 -0000
+@@ -38,7 +38,7 @@
+ 	exit;	
+ }
+ 
+-if (!strcmp($submit, _("Save"))) {
++if ( isset($save)) {
+ 	if (strcmp($gallery->user->getUsername(), $uname)) {
+ 		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
+ 		if ($gErrors["uname"]) {
+@@ -113,16 +113,17 @@
+ 
+ <p>
+ 
+-<?php echo makeFormIntro("user_preferences.php", 
+-			array("name" => "usermodify_form", 
+-				"method" => "POST")); ?>
++<?php echo makeFormIntro("user_preferences.php", array(
++			"name" => "usermodify_form", 
++			"method" => "POST"));
++?>
+ <p>
+ 
+ <?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
+ <p>
+ 
+-<input type="submit" name="submit" value="<?php echo _("Save") ?>">
+-<input type="submit" name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
++<input type="submit" name="save" value="<?php echo _("Save") ?>">
++<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+ </form>
+ 
+ <script language="javascript1.2">
+Index: html_wrap/gallery.footer.default
+===================================================================
+RCS file: /cvsroot/gallery/gallery/html_wrap/gallery.footer.default,v
+retrieving revision 1.21
+diff -u -r1.21 gallery.footer.default
+--- html_wrap/gallery.footer.default	25 Aug 2003 20:20:10 -0000	1.21
++++ html_wrap/gallery.footer.default	26 Aug 2003 16:41:30 -0000
+@@ -28,11 +28,16 @@
+             <span class="fineprint">
+ 	    <?php print poweredBy() ?>
+             </span>
++
++<?php 
++	global $GALLERY_EMBEDDED_INSIDE;
++	if (! isset($GALLERY_EMBEDDED_INSIDE)) { ?>
+ 		<p><a href="http://validator.w3.org/check/referer">
+ 			<img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>
+ 		</p>
+           </td>
+           <!-- donation block -->
++<?php } ?>
+           <?php if ($gallery->user->isAdmin()) { ?>
+           <td width=300 align=right>
+             <span class="fineprint"> 
+Index: po/nl_NL-gallery.po
+===================================================================
+RCS file: /cvsroot/gallery/gallery/po/nl_NL-gallery.po,v
+retrieving revision 1.20
+diff -u -r1.20 nl_NL-gallery.po
+--- po/nl_NL-gallery.po	26 Aug 2003 12:34:57 -0000	1.20
++++ po/nl_NL-gallery.po	26 Aug 2003 16:41:30 -0000
+@@ -255,7 +255,7 @@
+ #: ../albums.php:120
+ #, php-format
+ msgid "%s (%s), %s on %s"
+-msgstr ""
++msgstr "%s (%s), %s op %s"
+ 
+ #: ../albums.php:123
+ #, php-format
+@@ -265,7 +265,7 @@
+ #: ../albums.php:125
+ #, php-format
+ msgid "%s, %s on %s"
+-msgstr ""
++msgstr "%s, %s op %s"
+ 
+ #: ../albums.php:127
+ #, php-format
+Index: setup/backup_albums.php
+===================================================================
+RCS file: /cvsroot/gallery/gallery/setup/backup_albums.php,v
+retrieving revision 1.9
+diff -u -r1.9 backup_albums.php
+--- setup/backup_albums.php	12 Aug 2003 12:34:36 -0000	1.9
++++ setup/backup_albums.php	26 Aug 2003 16:41:30 -0000
+@@ -42,7 +42,7 @@
+ }
+ set_time_limit(0);
+ $showForce = false;
+-if (!empty($submit) || !empty($force))
++if (!empty($backup) || !empty($force))
+ {
+ 	$error_text='';
+ 	switch ($backup_method) {
+@@ -89,14 +89,14 @@
+   <title>Backup Albums</title>
+   <?php echo getStyleSheetLink() ?>
+ </head>
+-<body>
++<body dir="<?php echo $gallery->direction; ?>">
+ 
+-<span class="popuphead">Backup album data</span>
++<span class="popuphead"><?php echo _("Backup album data") ?></span>
+ <p>
+ <?php
+ if ($error_text) {
+ ?>
+-<span class=error><?php echo $error_text ?></span>
++<span class="error"><?php echo $error_text ?></span>
+ <?php
+ }
+ ?>
+@@ -111,33 +111,65 @@
+ if (!isset($zip_path)) { $zip_path="C:\bin\zip.exe";}
+ ?>
+ <center>
+-Choose archiving option and which files you wish to archive.
+-<?php echo makeFormIntro("backup_albums.php", array("name" => "theform", "method" => "POST")); ?>
++<?php echo _("Choose archiving option and which files you wish to archive.") ?>
++<?php echo makeFormIntro("backup_albums.php", array(
++		"name" => "theform", 
++		"method" => "POST"));
++?>
+ <table>
+ 
+-<tr> <td>Backup Method:</td> <td><input type="radio" name="backup_method" value="tgz" align="middle" <?php ($backup_method == "tgz") ? print 'checked' : '' ?> >tar/gzip</td> </tr>
+-<tr> <td></td> <td><input type="radio" name="backup_method" value="zip" align="middle" <?php $backup_method =="zip" ? print 'checked' : '' ?> >zip</td> </tr>
+-<tr><td></td> </tr>
+-<tr> <td>Files to backup:</td> <td><input type="radio" name="target_files" value="all" align="middle" <?php $target_files =="all" ? print 'checked' : '' ?> >All files</td> </tr>
+-<tr> <td></td> <td><input type="radio" name="target_files" value="dat" align="middle" <?php $target_files =="dat" ? print 'checked' : '' ?> >Data files only</td> </tr>
+-<tr> <td>zip path</td> <td><input name="zip_path" value="<?php echo $zip_path ?>" size=30></td> </tr>
+-<tr> <td>tar path</td> <td><input name="tar_path" value="<?php echo $tar_path ?>" size=30></td> </tr>
+-<tr> <td>gzip path</td> <td><input name="gzip_path" value="<?php echo $gzip_path ?>" size=30></td> </tr>
+-<tr> <td>find path</td> <td><input name="find_path" value="<?php echo $find_path ?>" size=30></td> </tr>
+-<tr> <td>xargs path</td> <td><input name="xargs_path" value="<?php echo $xargs_path ?>" size=30></td> </tr>
+-</table>
++<tr>
++	<td><?php echo _("Backup Method:") ?></td>
++	<td><input type="radio" name="backup_method" value="tgz" align="middle" <?php ($backup_method == "tgz") ? print 'checked' : '' ?> >tar/gzip</td>
++</tr>
++<tr>
++	<td>&nbsp;</td>
++	<td><input type="radio" name="backup_method" value="zip" align="middle" <?php $backup_method =="zip" ? print 'checked' : '' ?> >zip</td>
++</tr>
++<tr>
++	<td colspan="2">&nbsp;</td>
++</tr>
++<tr>
++	<td><?php echo _("Files to backup:") ?></td>
++	<td><input type="radio" name="target_files" value="all" align="middle" <?php $target_files =="all" ? print 'checked' : '' ?> >All files</td>
++</tr>
++<tr>
++	<td>&nbsp;</td>
++	<td><input type="radio" name="target_files" value="dat" align="middle" <?php $target_files =="dat" ? print 'checked' : '' ?> >Data files only</td>
++</tr>
++<tr>
++	<td><?php echo _("zip path:") ?></td>
++	<td><input name="zip_path" value="<?php echo $zip_path ?>" size="30"></td>
++</tr>
++<tr>
++	<td><?php echo _("tar path:") ?></td>
++	<td><input name="tar_path" value="<?php echo $tar_path ?>" size="30"></td>
++</tr>
++<tr>
++	<td><?php echo _("gzip path:") ?></td>
++	<td><input name="gzip_path" value="<?php echo $gzip_path ?>" size="30"></td>
++</tr>
++<tr>
++	<td><?php echo _("find path:") ?></td>
++	<td><input name="find_path" value="<?php echo $find_path ?>" size="30"></td>
++</tr>
++<tr> 
++	td><?php echo _("xargs path") ?></td>
++	<td><input name="xargs_path" value="<?php echo $xargs_path ?>" size="30"></td>
++</tr>
+ </table>
++
+ <p>
+-<input type=submit name="submit" value=<?php echo  _("Backup") ?>>
++<input type="submit" name="backup" value=<?php echo  _("Backup") ?>>
+ <?php if ($showForce) { ?>
+-<input type=submit name="force" value=<?php echo  _("Force Backup") ?>>
++<input type="submit" name="force" value=<?php echo  _("Force Backup") ?>>
+ <?php } ?>
+-<input type=button value=<?php echo  _("Cancel") ?> onclick='parent.close()'>
++<input type="button" value=<?php echo  _("Cancel") ?> onclick='parent.close()'>
+ 
+ </form>
+ <p>
+ <hr>
+-<span class=title>Notes</span>
++<span class=title><?php echo _("Notes") ?></span>
+ </center>
+ <ol>
+ <li> <?php echo _("On Linux/Unix systems, tar/gzip is recommended.") ?>

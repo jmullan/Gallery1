@@ -53,7 +53,7 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 // -->
 </script>
 </head>
-<body>
+<body dir="<?php echo $gallery->direction ?>">
 <?php
 if ($userfile_name) {
         $tag = ereg_replace(".*\.([^\.]*)$", "\\1", $userfile_name);
@@ -76,7 +76,7 @@ if ($userfile_name) {
 	reload();
 	?>
 	<p><center><form>
-	<input type=submit value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
+	<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
 	</form></center>
 <script language="Javascript">
 <!--
@@ -139,7 +139,7 @@ foreach ($gallery->album->getExtraFields() as $field) {
 <br>
 <center>
 <input type="button" value="<?php echo _("Upload Now") ?>" onClick='opener.showProgress(); document.upload_form.submit()'>
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="button" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </center>
 </form>
 <?php } ?>

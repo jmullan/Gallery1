@@ -47,14 +47,14 @@ $uname = removeTags($uname);
 	<title><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <center>
 <span class="popuphead"><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></span>
 <br>
 <br>
 <?php
-if (isset($submit)) {
+if (isset($login)) {
 	if ($uname && $gallerypassword) {
 		$tmpUser = $gallery->userDB->getUserByUsername($uname);
 		if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword)) {
@@ -127,8 +127,8 @@ if (isset($submit)) {
 
 </table>
 <p>
-<input type=submit name="submit" value=<?php echo '"' . _("Login") . '"' ?>>
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="login" value="<?php _("Login") ?>">
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
 <script language="javascript1.2">
