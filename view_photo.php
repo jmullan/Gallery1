@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require_once('init.php'); ?>
+<? require($GALLERY_BASEDIR . "init.php"); ?>
 <?
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
@@ -113,13 +113,14 @@ $navigator["bordercolor"] = $bordercolor;
 
 #-- breadcrumb text ---
 if (strcmp($gallery->album->fields["returnto"], "no")) {
-	$breadtext[0] = "Gallery: <a href=$top/albums.php>".$gallery->app->galleryTitle."</a>";
-	$breadtext[1] = "Album: <a href=$top/view_album.php?page=$page>".$gallery->album->fields["title"]."</a>";
+	$breadtext[0] = "Gallery: <a href=" . makeGalleryUrl() . ">".$gallery->app->galleryTitle."</a>";
+	$breadtext[1] = "Album: <a href=" . makeGalleryUrl($gallery->session->albumName) . "&page=$page>".$gallery->album->fields["title"]."</a>";
 } else {
-	$breadtext[0] = "Album: <a href=$top/view_album.php?page=$page>".$gallery->album->fields["title"]."</a>";
+	$breadtext[0] = "Album: <a href=" . makeGalleryUrl($gallery->session->albumName) . "&page=$page>".$gallery->album->fields["title"]."</a>";
 }
 ?>
 
+<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <head>
   <title><?= $gallery->app->galleryTitle ?> :: <?= $gallery->album->fields["title"] ?> :: <?= $index ?></title>
   <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
@@ -230,6 +231,7 @@ if ($fitToWindow) {
 <? } else { ?>
 <body>
 <? } ?>
+<? } # if not embedded ?>
 
 <?
 includeHtmlWrap("photo.header");
@@ -254,9 +256,8 @@ if (!$gallery->album->isMovie($id)) {
 	}
 
 	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes")) {
-		$link = "$top/do_command.php?set_fullOnly=" .
-		        (strcmp($gallery->session->fullOnly,"on") ? "on" : "off") .
-		        "&return=" . urlencode($REQUEST_URI);
+		$link = doCommand("none", "set_fullOnly=" .
+		        (strcmp($gallery->session->fullOnly,"on") ? "on" : "off"));
 		$adminCommands .= " View Images: [ ";
 		if (strcmp($gallery->session->fullOnly,"on"))
 		{
@@ -290,7 +291,7 @@ if (!$gallery->album->isMovie($id)) {
 
 		$adminbox["bordercolor"] = $bordercolor;
 		$adminbox["top"] = true;
-		include ("layout/adminbox.inc");
+		include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 	}
 }
 
@@ -298,14 +299,14 @@ $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $bordercolor;
 $breadcrumb["top"] = true;
 
-include("layout/breadcrumb.inc");
+include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?>
 </td>
 </tr>
 <tr>
 <td>
 <?
-include("layout/navphoto.inc");
+include($GALLERY_BASEDIR . "layout/navphoto.inc");
 
 #-- if borders are off, just make them the bgcolor ----
 if (!strcmp($gallery->album->fields["border"], "off")) {
@@ -357,7 +358,7 @@ if (!$gallery->album->isMovie($id)) {
 	$openAnchor = 1;
 }
 
-if ($fitToWindow) { ?>
+if ($fitToWindow && !$GALLERY_EMBEDDED_INSIDE) { ?>
 <script language="javascript1.2">
 	// <!--
 	fitToWindow();
@@ -441,9 +442,9 @@ echo("</td></tr>");
 <tr>
 <td>
 <?
-include("layout/navphoto.inc");
+include($GALLERY_BASEDIR . "layout/navphoto.inc");
 $breadcrumb["top"] = false;
-include("layout/breadcrumb.inc");
+include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?>
 </td>
 </tr>
@@ -453,5 +454,8 @@ include("layout/breadcrumb.inc");
 includeHtmlWrap("photo.footer");
 ?>
 
+<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
+<? } ?>
+
