@@ -24,6 +24,9 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($index, $save, $preview, $wmAlign, $wmName) = getRequestVar(array('index', 'save', 'preview', 'wmAlign', 'wmName'));
+list($wmAlignX, $wmAlignY, $recursive, $previewFull) = getRequestVar(array('wmAlignX', 'wmAlignY', 'recursive', 'previewFull'));
+
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");

@@ -1138,13 +1138,13 @@ if (canVote()) { ?>
 		$gallery->user->getEmail() &&
 		!$gallery->session->offline &&
 		$gallery->app->emailOn == "yes") {
-	if (isset($submitEmailMe)) {
-		if (isset($comments)) {
+	if (getRequestVar('submitEmailMe')) {
+		if (getRequestVar('comments')) {
 			$gallery->album->setEmailMe('comments', $gallery->user);
 		} else {
 			$gallery->album->unsetEmailMe('comments', $gallery->user);
 		}
-		if (isset($other)) {
+		if (getRequestVar('other')) {
 			$gallery->album->setEmailMe('other', $gallery->user);
 		} else {
 			$gallery->album->unsetEmailMe('other', $gallery->user);
