@@ -37,7 +37,7 @@ require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
-    header("Location: albums.php");
+    header("Location: " . makeAlbumUrl());
     return;
 }
 

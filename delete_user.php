@@ -40,11 +40,10 @@ if (!$gallery->user->isAdmin()) {
 }
 
 if (isset($delete)) {
-		$gallery->userDB->deleteUserByUsername($uname);
-		header("Location: manage_users.php");
+	$gallery->userDB->deleteUserByUsername($uname);
 }
-if (isset($cancel)) {
-	header("Location: manage_users.php");
+if (isset($delete) || isset($cancel)) {
+	header("Location: " . makeGalleryUrl("manage_users.php"));
 }
 
 ?>

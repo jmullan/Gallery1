@@ -84,10 +84,10 @@ if (isset($save)) {
 			$gallery->session->username = $uname;
 		}
 
-		header("Location: manage_users.php");
+		header("Location: " . makeGalleryUrl("manage_users.php"));
 	}
 } else if (isset($cancel)) {
-	header("Location: manage_users.php");
+	header("Location: " . makeGalleryUrl("manage_users.php"));
 }
 
 $tmpUser = $gallery->userDB->getUserByUsername($uname);

@@ -38,7 +38,7 @@ if (isset($mode)) {
 // Hack check
 if (empty($gallery->session->albumName) &&
 	   $gallery->app->gallery_slideshow_type == "off") {
-	header("Location: albums.php");
+	header("Location: " . makeAlbumUrl());
 	return;
 }
 

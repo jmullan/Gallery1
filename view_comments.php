@@ -40,12 +40,12 @@ require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->isAdmin() && !$gallery->user->isOwnerOfAlbum($gallery->album)) {
-	header("Location: albums.php");
+	header("Location: " . makeAlbumUrl());
 	return;
 }
 
 if (!$gallery->album->isLoaded()) {
-	header("Location: albums.php");
+	header("Location: " . makeAlbumUrl());
 	return;
 }
 

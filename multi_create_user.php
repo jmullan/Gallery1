@@ -129,7 +129,7 @@ if (isset($create))
 	}	
 
 } else if (isset($cancel) || isset($dismiss)) {
-	header("Location: manage_users.php");
+	header("Location: " . makeGalleryUrl("manage_users.php"));
 } 
 ?>
 
