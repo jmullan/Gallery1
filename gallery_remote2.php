@@ -83,50 +83,9 @@ $GR_STAT['NO_CREATE_ALBUM_PERMISSION']	= 501;
 $GR_STAT['CREATE_ALBUM_FAILED']			= 502;
 $GR_STAT['MOVE_ALBUM_FAILED']	= 503;
 $GR_STAT['ROTATE_IMAGE_FAILED'] = 504;
-/*
- * Check protocol version
- */
-function check_proto_version( &$response ) {
-	global $protocol_version, $GR_STAT, $GR_VER;
-	
-	// this method returns without modifying the $response if the version
-	// presented by the client is acceptable.  otherwise, it returns directly
-	// with a status code appropriate to the problem.
-	
-	if ( isset( $protocol_version ) ) {
-		// check version format
-		if ( eregi( "^([2-9]{1,2})\.([0-9]{1,2})$", $protocol_version, $ver_regs ) ) {
-			// version string is valid
-			$major_ver = $ver_regs[1];
-			$minor_ver = $ver_regs[2];
-			if ( $major_ver != $GR_VER['MAJ'] ) {
-				$response->setProperty( "status", $GR_STAT['PROTOCOL_MAJOR_VERSION_INVALID'] );
-				$response->setProperty( "status_text", "Protocol major version invalid." );
-
-				// return the response
-				echo $response->listprops();
-				exit;
-			}
-			// else version compatible, proceed
-		} else {
-			$response->setProperty( "status", $GR_STAT['PROTOCOL_VERSION_FORMAT_INVALID'] );
-			$response->setProperty( "status_text", "Protocol version format invalid." );
 
 
-			// return the response
-			echo $response->listprops();
-			exit;
-		}
-	} else {
-		// must specify protocol_version
-		$response->setProperty( "status", $GR_STAT['PROTOCOL_VERSION_MISSING'] );
-		$response->setProperty( "status_text", "Protocol version not found." );
 
-		// return the response
-		echo $response->listprops();
-		exit;
-	}
-}
 
 $response = new Properties();
 check_proto_version( $response );
@@ -145,78 +104,112 @@ if ($gallery->user) {
 
 // -- Handle request --
 
-if (!strcmp($cmd, "login")) {
-	//---------------------------------------------------------
-	//-- login --
+switch($cmd === 0 ? '' : $cmd) {
+	case 'login':
+		gr_login( $gallery, $response, $uname, $password );
+		break;
+	case 'fetch-albums':
+		gr_fetch_albums( $gallery, $response );
+		break;
+	case 'fetch-albums-prune':
+		gr_fetch_albums_prune( $gallery, $response );
+		break;
+	case 'add-item':
+		gr_add_item( $gallery, $response, $userfile, $userfile_name, $caption, $force_filename, $auto_rotate );
+		break;
+	case 'album-properties':
+		gr_album_properties( $gallery, $response );
+		break;
+	case 'new-album':
+		gr_new_album( $gallery, $response, $newAlbumName, $newAlbumTitle, $newAlbumDesc );
+		break;
+	case 'fetch-album-images':
+		gr_fetch_album_images( $gallery, $response );
+		break;
+	case 'move-album':
+		gr_move_album( $gallery, $response, $set_destalbumName );
+		break;
+	default:
+		$response->setProperty( 'status', $GR_STAT['UNKNOWN_COMMAND'] );
+		$response->setProperty( 'status_text', "Command '$cmd' unknown." );
+		break;
+}
 
-	if ($uname && $password) {
-		//echo $gallery->user->getUsername()."\n";
-		//echo $gallery->user->isLoggedIn()."\n";
+echo $response->listprops();
+//end of processing
 
-		if ($gallery->user->isLoggedIn()) {
-			// we're embedded and the user is authenticated
 
-			$response->setProperty( "server_version", $GR_VER['MAJ'].".".$GR_VER['MIN'] );
-			$response->setProperty( "status", $GR_STAT['SUCCESS'] );
-			$response->setProperty( "status_text", "Login successful." );
 
-			// return the response
-			echo $response->listprops();
-			exit;
-		}
+function gr_login( &$gallery, &$response, &$uname, &$password ) {
 
-		// try to log in using URL parameters (probably not embedded)
-		$tmpUser = $gallery->userDB->getUserByUsername($uname);
+	global $GR_STAT, $GR_VER;
 
-		if ($tmpUser) {
-			$response->setProperty( "debug_user", $tmpUser->getUsername());
-			$response->setProperty( "debug_user_type", get_class($tmpUser));
-		}
-
-		if ($tmpUser && $tmpUser->isCorrectPassword($password)) {
-			// log user in
-			$gallery->session->username = $uname;
-			
-			$response->setProperty( "server_version", $GR_VER['MAJ'].".".$GR_VER['MIN'] );
-			$response->setProperty( "status", $GR_STAT['SUCCESS'] );
-			$response->setProperty( "status_text", "Login successful." );
-		} else {
-			$response->setProperty( "status", $GR_STAT['PASSWORD_WRONG'] );
-			$response->setProperty( "status_text", "Password incorrect." );
-		}
-	} else {
-		$response->setProperty( "status", $GR_STAT['LOGIN_MISSING'] );
-		$response->setProperty( "status_text", "Login parameters not found." );
+	if (!$uname | !$password) {
+		$response->setProperty( 'status', $GR_STAT['LOGIN_MISSING'] );
+		$response->setProperty( 'status_text', 'Login parameters not found.' );
+		return 0;
 	}
 
-} else if (!strcmp($cmd, "fetch-albums")) {
-	//---------------------------------------------------------
-	//-- fetch-albums --
+	if ($gallery->user->isLoggedIn()) {
+		$response->setProperty( 'server_version', $GR_VER['MAJ'].'.'.$GR_VER['MIN'] );
+		$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+		$response->setProperty( 'status_text', 'Login successful.' );
+		return 1;
+	}
+
+	$tmpUser = $gallery->userDB->getUserByUsername($uname);
+	if($tmpUser) {
+		$response->setProperty( 'debug_user', $tmpUser->getUsername());
+		$response->setProperty( 'debug_user_type', get_class($tmpUser));
+	}
+
+	if ($tmpUser && $tmpUser->isCorrectPassword($password)) {
+		// log user in
+		$gallery->session->username = $uname;
+ 
+		$response->setProperty( 'server_version', $GR_VER['MAJ'].'.'.$GR_VER['MIN'] );
+		$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+		$response->setProperty( 'status_text', 'Login successful.' );
+		return 1;
+	} else {
+		$response->setProperty( 'status', $GR_STAT['PASSWORD_WRONG'] );
+		$response->setProperty( 'status_text', 'Password incorrect.' );
+		return 0;
+	}
+
+}
+
+function gr_fetch_albums( &$gallery, &$response ) {
+
+	global $GR_STAT;
 
 	$albumDB = new AlbumDB(FALSE);
-    $mynumalbums = $albumDB->numAlbums($gallery->user);
+	$mynumalbums = $albumDB->numAlbums($gallery->user);
 	$album_index = 0;
 
-    // display all albums that the user can move album to
-    for ($i=1; $i<=$mynumalbums; $i++) {
-        $myAlbum=$albumDB->getAlbum($gallery->user, $i);
-        // if readable, add this plus readable nested albums
-        if ($gallery->user->canReadAlbum($myAlbum)) {
-        	add_album( $myAlbum, $album_index, 0, $response );
-		    appendNestedAlbums( $myAlbum, $album_index, $response );
-    	}
-    }
+	// display all albums that the user can move album to
+	for ($i=1; $i<=$mynumalbums; $i++) {
+		$myAlbum=$albumDB->getAlbum($gallery->user, $i);
+		// if readable, add this plus readable nested albums
+		if ($gallery->user->canReadAlbum($myAlbum)) {
+			add_album( $myAlbum, $album_index, 0, $response );
+			appendNestedAlbums( $myAlbum, $album_index, $response );
+		}
+	}
 
-    // add album count
-	$response->setProperty( "album_count", $album_index );
+	// add album count
+	$response->setProperty( 'album_count', $album_index );
 
 	// add status and repond
-	$response->setProperty( "status", $GR_STAT['SUCCESS'] );
-	$response->setProperty( "status_text", "Fetch albums successful." );
+	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+	$response->setProperty( 'status_text', 'Fetch albums successful.' );
+	return 1;
 
-} else if (!strcmp($cmd, "fetch-albums-prune")) {
-	//---------------------------------------------------------
-	//-- fetch-albums-prune --
+}
+
+function gr_fetch_albums_prune( &$gallery, &$response ) {
+
+	global $GR_STAT, $myMark;
 
 	$albumDB = new AlbumDB(FALSE);
 	$album_count = 0;
@@ -229,124 +222,131 @@ if (!strcmp($cmd, "login")) {
 		}
 	}
 
-    // add album count
+	// add album count
 	$response->setProperty( "album_count", $album_count );
 
 	// add status and repond
 	$response->setProperty( "status", $GR_STAT['SUCCESS'] );
 	$response->setProperty( "status_text", "Fetch albums successful." );
+	return 1;
 
-} else if (!strcmp($cmd, "add-item")) {
-	//---------------------------------------------------------
-	//-- add-item --
+}
 
-	// current album is set by the "set_albumName" form data and session.php
-	
-	// Hack check
+function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, &$caption, &$force_filename, &$auto_rotate ) {
+
+	global $GR_STAT, $temp_files;
+
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
-		$response->setProperty( "status", $GR_STAT['NO_ADD_PERMISSION'] );
-		$response->setProperty( "status_text", _("User cannot add to album." ));
-	} else if (!$userfile_name) {
-		$response->setProperty( "status", $GR_STAT['NO_FILENAME'] );
-		$response->setProperty( "status_text", "Filename not specified." );
+		$response->setProperty( 'status', $GR_STAT['NO_ADD_PERMISSION'] );
+		$response->setProperty( 'status_text', 'User cannot add to album.' );
+		return 0;
+	}
+	if (!$userfile_name) {
+		$response->setProperty( 'status', $GR_STAT['NO_FILENAME'] );
+		$response->setProperty( 'status_text', 'Filename not specified.' );
+		return 0;
+	}
+
+	if(!empty($auto_rotate)) {
+		if($auto_rotate == 'yes') {
+			$gallery->app->autorotate = 'yes';
+		} else {
+			$gallery->app->autorotate = 'no';
+		}
+	}
+
+	if(!empty($force_filename)) {
+		$name = $force_filename;
 	} else {
-		if(isset($auto_rotate)) {
-			if($auto_rotate == 'yes') {
-				$gallery->app->autorotate = 'yes';
-			} else {
-				$gallery->app->autorotate = 'no';
-			}
-		}
-		if(!empty($force_filename)) {
-			$name = $force_filename;
-		} else {
-			$name = $userfile_name;
-		}
-		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $userfile_name);
-		$tag = strtolower($tag);
-	
-		if ($name) {
-    		$error = processFile($userfile, $tag, $name, $caption);
-		}
-		
-		$gallery->album->save(array(i18n("Image added")));
-		
-		if ($temp_files) {
-    		/* Clean up the temporary url file */
-    		foreach ($temp_files as $tf => $junk) {
-        		fs_unlink($tf);
-    		}
-		}
-		
-		if ($error) {
-			$response->setProperty( "status", $GR_STAT['UPLOAD_PHOTO_FAIL'] );
-			$response->setProperty( "status_text", "Upload failed: '$error'." );
-		} else {
-			$response->setProperty( "status", $GR_STAT['SUCCESS'] );
-			$response->setProperty( "status_text", "Add photo successful." );
+		$name = $userfile_name;
+	}
+	$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $userfile_name);
+	$tag = strtolower($tag);
+
+	if ($name) {
+		$error = processFile($userfile, $tag, $name, $caption);
+	}
+
+	if ($temp_files) {
+		/* Clean up the temporary url file */
+		foreach ($temp_files as $tf => $junk) {
+			fs_unlink($tf);
 		}
 	}
 
-} else if (!strcmp($cmd, "album-properties")) {
-	//---------------------------------------------------------
-	//-- album-properties --
-
-	// current album is set by the "set_albumName" form data and session.php
-	
-	$max_dimension = $gallery->album->fields["resize_size"];
-	if ( $max_dimension == "off" ) {
-		$max_dimension = 0;	
+	if ($error) {
+		$response->setProperty( 'status', $GR_STAT['UPLOAD_PHOTO_FAIL'] );
+		$response->setProperty( 'status_text', 'Upload failed: \''.$error.'\'.' );
+		return 0;
+	} else {
+		$gallery->album->save(array(i18n('Image added')));
+		$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+		$response->setProperty( 'status_text', 'Add photo successful.' );
+		return 1;
 	}
-	
-	$response->setProperty( "auto_resize", $max_dimension );
-	$response->setProperty( "extra_fields", $gallery->album->getExtraFields() );
 
-	$response->setProperty( "status", $GR_STAT['SUCCESS'] );
-	$response->setProperty( "status_text", "Album properties retrieved successfully." );
+}
 
-} else if (!strcmp($cmd, "new-album")) {
-	//---------------------------------------------------------
-	//-- new-album --
+function gr_album_properties( &$gallery, &$response ) {
 
-	// Hack: detect this magic name that means the albumName should be null
-	//if ($gallery->session->albumName == "hack_null_albumName") {
-	//	$gallery->session->albumName = "";
-	//}
+	global $GR_STAT;
 
-	// Hack check
+	$max_dimension = $gallery->album->fields['resize_size'];
+	if ($max_dimension == 'off') {
+		$max_dimension = 0;
+	}
+
+	$response->setProperty( 'auto_resize', $max_dimension );
+	$response->setProperty( 'extra_fields', $gallery->album->getExtraFields() );
+
+	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+	$response->setProperty( 'status_text', 'Album properties retrieved successfully.' );
+	return 1;
+
+}
+
+function gr_new_album( &$gallery, &$response, &$newAlbumName, &$newAlbumTitle, &$newAlbumDesc ) {
+
+	global $GR_STAT;
+
 	if(isset($gallery->album)) {
 		$canAddAlbum = $gallery->user->canCreateSubAlbum($gallery->album);
 	} else {
 		$canAddAlbum = $gallery->user->canCreateAlbums();
 	}
-	if($canAddAlbum) {
-		// add the album
-		if ($returnVal = createNewAlbum( $gallery->session->albumName,
-				$newAlbumName, $newAlbumTitle, $newAlbumDesc )) {
-			// set status and message
-			$response->setProperty( "status", $GR_STAT['SUCCESS'] );
-			$response->setProperty( "status_text", "New album created successfully." );
-			$response->setProperty( "album_name", $returnVal );
-		} else {
-			// set status and message
-			$response->setProperty( "status", $GR_STAT['CREATE_ALBUM_FAILED'] );
-			$response->setProperty( "status_text", "Create album failed." );
-		}
-	} else {
-		$response->setProperty( "status", $GR_STAT['NO_CREATE_ALBUM_PERMISSION'] );
-		$response->setProperty( "status_text", "A new album could not be created because the user does not have permission to do so." );
+
+	if(!$canAddAlbum) {
+		$response->setProperty( 'status', $GR_STAT['NO_CREATE_ALBUM_PERMISSION'] );
+		$response->setProperty( 'status_text', 'A new album could not be created because the user does not have permission to do so.' );
+		return 0;
 	}
 
-} else if (!strcmp($cmd, 'fetch-album-images')) {
-	//---------------------------------------------------------
-	//-- fetch-album-images --
+	if ($returnVal = createNewAlbum( $gallery->session->albumName,
+		$newAlbumName, $newAlbumTitle, $newAlbumDesc )) {
+		// set status and message
+		$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+		$response->setProperty( 'status_text', 'New album created successfully.' );
+		$response->setProperty( 'album_name', $returnVal );
+		return 1;
+	} else {
+		// set status and message
+		$response->setProperty( 'status', $GR_STAT['CREATE_ALBUM_FAILED'] );
+		$response->setProperty( 'status_text', 'Create album failed.' );
+		return 0;
+	}
+
+}
+
+function gr_fetch_album_images( &$gallery, &$response ) {
+
+	global $GR_STAT;
 
 	$tmpURL = $gallery->app->albumDirURL;
 	$tmpImageNum = 0;
 	foreach($gallery->album->photos as $albumItemObj) {
 		if(empty($albumItemObj->isAlbumName)) { //Make sure this object is a picture, not an album
 			$tmpImageNum++;
-			
+ 
 			$response->setProperty( 'image.name.'.$tmpImageNum, $albumItemObj->image->name.'.'.$albumItemObj->image->type );
 			$fullSize = $albumItemObj->getDimensions(1);
 			$response->setProperty( 'image.raw_width.'.$tmpImageNum, $fullSize[0] );
@@ -387,83 +387,115 @@ if (!strcmp($cmd, "login")) {
 
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Fetch images successful.' );
+	return 1;
 
-} else if (!strcmp($cmd, 'move-album')) {
-	if(isset($set_destalbumName)) { //moving album to different album
-		$destAlbum = new Album();
-		if($set_destalbumName != '0') { //destalbum can be 0 when moving to root
-			$destAlbum->load($set_destalbumName);
-		}
-		if($set_destalbumName != $gallery->album->fields['name']) {
-			if($gallery->album->isRoot()) {
-				if(checkIfNestedAlbum($gallery->album,$destAlbum)) {
-					$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
-					$response->setProperty( 'status_text', 'Cannot move album into a sub-album of itself.' );
-				} else {
-					if($gallery->user->canWriteToAlbum($gallery->album) && $gallery->user->canWriteToAlbum($destAlbum)) {
-						$gallery->album->fields['parentAlbumName'] = $set_destalbumName;
-						$gallery->album->save();
-						$destAlbum->addNestedAlbum($gallery->album->fields['name']);
-						$destAlbum->save();
-						$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
-						$response->setProperty( 'status_text', 'Move album successful.' );
-					} else {
-						$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
-						$response->setProperty( 'status_text', 'No write permission to album or destination.' );
-					}
-				}
-			} else {
-				if(checkIfNestedAlbum($gallery->album,$destAlbum)) {
-					$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
-					$response->setProperty( 'status_text', 'Cannot move album into a sub-album of itself.' );
-				} else {
-					if($gallery->album->fields['parentAlbumName'] == $set_destalbumName) {
-						$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
-						$response->setProperty( 'status_text', 'Album is already in specified destination album.' );
-					} else {
-						if($set_destalbumName == '0') {
-							$parentAlbum = new Album();
-							$parentAlbum->load($gallery->album->fields['parentAlbumName']);
-							if($gallery->user->canWriteToAlbum($parentAlbum) && $gallery->user->canCreateAlbums()) {
-								$gallery->album->fields['parentAlbumName'] = 0;
-								$parentAlbum->deletePhoto($parentAlbum->getAlbumIndex($gallery->album->fields['name']),0,0);
-								$parentAlbum->save();
-								$gallery->album->save();
-								$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
-								$response->setProperty( 'status_text', 'success' );
-							} else {
-								$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
-								$response->setProperty( 'status_text', 'No write permission to album or destination.' );
-							}
-						} else {
-							if($gallery->user->canWriteToAlbum($gallery->album) && $gallery->user->canWriteToAlbum($destAlbum)) {
-								$parentAlbum = new Album();
-								$parentAlbum->load($gallery->album->fields['parentAlbumName']);
-								$destAlbum->addNestedAlbum($gallery->album->fields['name']); //add album to new
-								$gallery->album->fields['parentAlbumName'] = $destAlbum->fields['name'];
-								$parentAlbum->deletePhoto($parentAlbum->getAlbumIndex($gallery->album->fields['name']),0,0); //delete album from old
-								$parentAlbum->save();
-								$destAlbum->save();
-								$gallery->album->save();
-								$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
-								$response->setProperty( 'status_text', 'success' );
-							} else {
-								$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
-								$response->setProperty( 'status_text', 'No write permission to album or destination.' );
-							}
-						}
-					}
-				}
-			}
-		} else {
+}
+
+function gr_move_album( &$gallery, &$response, &$set_destalbumName ) {
+
+	global $GR_STAT;
+
+	if(empty($set_destalbumName) && $set_destalbumName != '0') {
+		$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
+		$response->setProperty( 'status_text', 'You must specify a destination album.' );
+		return 0;
+	}
+	if($set_destalbumName == $gallery->album->fields['name']) {
+		$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
+		$response->setProperty( 'status_text', 'Album and destination album cannot be the same.' );
+		return 0;
+	}
+
+	$destAlbum = new Album();
+	if($set_destalbumName != '0') { //destalbum can be 0 when moving to root
+		$destAlbum->load($set_destalbumName);
+	}
+
+	
+	if($gallery->album->isRoot()) {
+		if($set_destalbumName == '0') {
 			$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
-			$response->setProperty( 'status_text', 'Album and destination album cannot be the same.' );
+			$response->setProperty( 'status_text', 'Album is already in specified destination album.' );
+			return 0;
+		}
+		if(checkIfNestedAlbum($gallery->album,$destAlbum)) {
+			$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
+			$response->setProperty( 'status_text', 'Cannot move album into a sub-album of itself.' );
+			return 0;
+		}
+		if($gallery->user->canWriteToAlbum($gallery->album) && $gallery->user->canWriteToAlbum($destAlbum)) {
+			$gallery->album->fields['parentAlbumName'] = $set_destalbumName;
+			$gallery->album->save();
+			$destAlbum->addNestedAlbum($gallery->album->fields['name']);
+			$destAlbum->save();
+			$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+			$response->setProperty( 'status_text', 'Move album successful.' );
+			return 1;
+		} else {
+			$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
+			$response->setProperty( 'status_text', 'No write permission to album or destination.' );
+			return 0;
 		}
 	}
-/*
-} else if (!strcmp($cmd, 'move-image')) {
 
-} else if (!strcmp($cmd, 'reorder')) {
+	if(checkIfNestedAlbum($gallery->album,$destAlbum)) {
+		$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
+		$response->setProperty( 'status_text', 'Cannot move album into a sub-album of itself.' );
+		return 0;
+	}
+	if($gallery->album->fields['parentAlbumName'] == $set_destalbumName) {
+		$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
+		$response->setProperty( 'status_text', 'Album is already in specified destination album.' );
+		return 0;
+	}
+
+	if($set_destalbumName == '0') {
+		$parentAlbum = new Album();
+		$parentAlbum->load($gallery->album->fields['parentAlbumName']);
+		if($gallery->user->canWriteToAlbum($parentAlbum) && $gallery->user->canCreateAlbums()) {
+			$gallery->album->fields['parentAlbumName'] = 0;
+			$parentAlbum->deletePhoto($parentAlbum->getAlbumIndex($gallery->album->fields['name']),0,0);
+			$parentAlbum->save();
+			$gallery->album->save();
+			$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+			$response->setProperty( 'status_text', 'Move album successful.' );
+			return 1;
+		} else {
+			$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
+			$response->setProperty( 'status_text', 'No write permission to album or destination.' );
+			return 0;
+		}
+	} else {
+		if($gallery->user->canWriteToAlbum($gallery->album) && $gallery->user->canWriteToAlbum($destAlbum)) {
+			$parentAlbum = new Album();
+			$parentAlbum->load($gallery->album->fields['parentAlbumName']);
+			$destAlbum->addNestedAlbum($gallery->album->fields['name']); //add album to new
+			$gallery->album->fields['parentAlbumName'] = $destAlbum->fields['name'];
+			$parentAlbum->deletePhoto($parentAlbum->getAlbumIndex($gallery->album->fields['name']),0,0); //delete album from old
+			$parentAlbum->save();
+			$destAlbum->save();
+			$gallery->album->save();
+			$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+			$response->setProperty( 'status_text', 'Move album successful.' );
+			return 1;
+		} else {
+			$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
+			$response->setProperty( 'status_text', 'No write permission to album or destination.' );
+			return 0;
+		}
+	}
+
+}
+
+/*
+function gr_move_image( &$gallery, &$response ) {
+
+}
+
+function gr_change_index( &$gallery, &$response ) {
+
+	global $GR_STAT;
+
 	if(!isset($gallery->album)) { //if reordering root album
 		if($gallery->user->canCreateAlbums() or $gallery->user->isAdmin()) {
 			$albumDB = new AlbumDB(FALSE);
@@ -486,8 +518,12 @@ if (!strcmp($cmd, "login")) {
 			$response->setProperty( 'status_text', 'No write permission.' );
 		}
 	}
-} else if (!strcmp($cmd, 'rotate-image')) {
-	//verify index is a picture
+}
+
+function gr_rotate_image( &$gallery, &$response ) {
+
+	global $GR_STAT;
+
 	if(is_object($gallery->album->photos[$index-1]->image)) {
 		if($gallery->user->canWriteToAlbum($gallery->album)) {
 			if(isset($index) && $gallery->session->albumName) {
@@ -504,14 +540,53 @@ if (!strcmp($cmd, "login")) {
 	} else {
 		$response->setProperty( 'status', $GR_STAT['ROTATE_IMAGE_FAILED'] );
 		$response->setProperty( 'status_text', 'Specified index is not an image.' );
-	}*/
-} else {
-	// if the command hasn't been handled yet, we don't recognize it
-	$response->setProperty( "status", $GR_STAT['UNKNOWN_COMMAND'] );
-	$response->setProperty( "status_text", "Command '$cmd' unknown." );
+	}
+}
+*/
+
+
+
+function check_proto_version( &$response ) {
+	global $protocol_version, $GR_STAT, $GR_VER;
+
+	// this method returns without modifying the $response if the version
+	// presented by the client is acceptable.  otherwise, it returns directly
+	// with a status code appropriate to the problem.
+
+	if ( isset( $protocol_version ) ) {
+		// check version format
+		if ( eregi( "^([2-9]{1,2})\.([0-9]{1,2})$", $protocol_version, $ver_regs ) ) {
+			// version string is valid
+			$major_ver = $ver_regs[1];
+			$minor_ver = $ver_regs[2];
+			if ( $major_ver != $GR_VER['MAJ'] ) {
+				$response->setProperty( "status", $GR_STAT['PROTOCOL_MAJOR_VERSION_INVALID'] );
+				$response->setProperty( "status_text", "Protocol major version invalid." );
+
+				// return the response
+				echo $response->listprops();
+				exit;
+			}
+		// else version compatible, proceed
+		} else {
+			$response->setProperty( "status", $GR_STAT['PROTOCOL_VERSION_FORMAT_INVALID'] );
+			$response->setProperty( "status_text", "Protocol version format invalid." );
+
+			// return the response
+			echo $response->listprops();
+			exit;
+		}
+	} else {
+		// must specify protocol_version
+		$response->setProperty( "status", $GR_STAT['PROTOCOL_VERSION_MISSING'] );
+		$response->setProperty( "status_text", "Protocol version not found." );
+
+		// return the response
+		echo $response->listprops();
+		exit;
+	}
 }
 
-echo $response->listprops();
 
 function checkIfNestedAlbum(&$startAlbum,&$possibleSub) {
 	if(count($startAlbum->photos) < 1) {
@@ -528,8 +603,6 @@ function checkIfNestedAlbum(&$startAlbum,&$possibleSub) {
 					return TRUE;
 				}
 			}
-			//check if $possiblesub equals this subitem
-			//checkifnetstedalbum($subitem,$possibleSub)
 		}
 	}
 	return FALSE;
