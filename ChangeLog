@@ -1,3 +1,48 @@
+2001-05-12  Bharat Mediratta  <bharat@menalto.com>
+
+	* 1.02 released
+
+	* Fixed security hole that allows non-authenticated users to modify 
+	  album permissions
+
+	* Rebuild thumbs command was not rebuilding thumbs for hidden photos. 
+
+	* ImageCrop loads the image properly if the webserver is not running 
+	  on the default port (jacko)
+
+2001-05-11  Bharat Mediratta  <bharat@menalto.com>
+
+	* Fixed a common problem where you cannot put Gallery back into secure
+	  mode.  PHP's is_readable() gives false positives on some systems causing 
+	  Gallery to fail to detect that the setup directory is unreadable (and 
+	  that therefore we are no longer in configuration mode).  We now double 
+	  check by using the fileperms() function and checking for permissions of 
+	  755 on the setup dir.
+
+	* Image rotation now uses pnmflip instead of pnmrotate.  Pnmrotate
+	  is very slow and memory intensive for large images.  Pnmflip is fast
+	  and is very effective for 90 degree rotations.  This means that Gallery
+	  now requires the pnmflip binary, which is part of the NetPBM1.1-Gallery
+	  micro distributions on the Gallery download page.
+
+	* Modified to accept "jpeg" as a valid JPEG image file tag. 
+
+	* Patch from John Kirkland (jpk@bl.org):
+	  AlbumItem.php was explicitly checking tags for "avi" and "mpg", but
+	  not "wmv".  I changed AlbumItem.php to use isMovie() instead of doing
+	  the tag checking itself.
+
+	* Improved the NetPBM-missing error message to indicate that if NetPBM
+	  is installed but not in the webserver user path you can add it by hand
+	  on page 2 of the wizard.
+
+2001-05-01  Bharat Mediratta  <bharat@menalto.com>
+	
+	* Fixed a bug where we were generating the highlight photo from the 
+	  thumbnail image.  This would result in a reduced quality highlight,
+	  especially in the case where the highlight is larger than the
+	  source thumbnail!
+	
 2001-04-30  Bharat Mediratta  <bharat@menalto.com>
 
 	* Added --quiet flag to pnmscale to avoid dumping lots of output

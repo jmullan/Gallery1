@@ -126,7 +126,7 @@ function acceptableFormat($tag) {
 }
 
 function acceptableFormatRegexp() {
-	return "(jpg|gif|png|mpg|avi|wmv)";
+	return "(jpg|jpeg|gif|png|mpg|avi|wmv)";
 }
 
 
@@ -134,6 +134,7 @@ function isImage($tag) {
 	global $app; 
 
 	return (!strcmp($tag, "jpg") ||
+		!strcmp($tag, "jpeg") ||
 		!strcmp($tag, "gif") ||
 		!strcmp($tag, "png"));
 }
@@ -213,8 +214,17 @@ function rotate_image($src, $dest, $target) {
 	else {
 		$out = $dest;
 	}
+
+	if (!strcmp($target, "90")) {
+		$args = "-r90";
+	} else if (!strcmp($target, "-90")) {
+		$args = "-r270";
+	} else {
+		$args = "-r180";
+	}
+
 	$err = exec_wrapper(toPnmCmd($src) .
-		     "| $app->pnmDir/pnmrotate $target".
+		     "| $app->pnmDir/pnmflip $args".
 		     "| " . fromPnmCmd($out));
 
 	if (file_exists("$out") && filesize("$out") > 0) {
@@ -270,7 +280,7 @@ function toPnmCmd($file) {
 
 	if (preg_match("/.png/i", $file)) {
 		$cmd = "pngtopnm";
-	} else if (preg_match("/.jpg/i", $file)) {
+	} else if (preg_match("/.(jpg|jpeg)/i", $file)) {
 		if (isDebugging()) {
 			$cmd = "jpegtopnm";
 		} else {
@@ -293,7 +303,7 @@ function fromPnmCmd($file) {
 
 	if (preg_match("/.png/i", $file)) {
 		$cmd = "pnmtopng";
-	} else if (preg_match("/.jpg/i", $file)) {
+	} else if (preg_match("/.(jpg|jpeg)/i", $file)) {
 		$cmd = "ppmtojpeg";
 	} else if (preg_match("/.gif/i", $file)) {
 		$cmd = "ppmquant 256| $app->pnmDir/ppmtogif";
@@ -460,8 +470,15 @@ function gallerySanityCheck() {
 	}
 
 	if (file_exists("setup") && is_readable("setup")) {
-		include("errors/configmode.php");
-		exit;
+		/* 
+		 * on some systems, PHP's is_readable returns false
+		 * positives.  Make extra sure.
+		 */
+		$perms = sprintf("%o", fileperms("setup"));
+		if (strstr($perms, "755")) {
+			include("errors/configmode.php");
+			exit;
+		}
 	}
 
 	if ($app->config_version != $gallery->config_version) {

@@ -51,14 +51,28 @@ class AlbumItem {
 		$name = $this->image->name;
 		$tag = $this->image->type;
 
-		if (file_exists("$dir/$name.thumb.$tag")) {
-			$resizeFrom = "$dir/$name.thumb.$tag";
-		} else {
-			$resizeFrom = "$dir/$name.$tag";
-		}
 		if ($this->highlight) {
-			$ret = resize_image($resizeFrom, "$dir/$name.highlight.$tag",
-					     $app->highlight_size);
+			if ($this->image->thumb_width > 0) {
+				// Crop it first
+				$ret = cut_image("$dir/$name.$tag", 
+						 "$dir/$name.tmp.$tag", 
+						 $this->image->thumb_x, 
+						 $this->image->thumb_y,
+						 $this->image->thumb_width, 
+						 $this->image->thumb_height);
+
+				// Then resize it down
+				if ($ret) {
+					$ret = resize_image("$dir/$name.tmp.$tag", 
+							    "$dir/$name.highlight.$tag",
+							    $app->highlight_size);
+				}
+				unlink("$dir/$name.tmp.$tag");
+			} else {
+				$ret = resize_image("$dir/$name.$tag", 
+						    "$dir/$name.highlight.$tag",
+						    $app->highlight_size);
+			}
 
 			if ($ret) {
 				list($w, $h) = getDimensions("$dir/$name.highlight.$tag");
@@ -124,8 +138,7 @@ class AlbumItem {
 		/*
 	 	 * Sanity: make sure we can handle the file first.
 		 */
-		if (!strcmp($tag, "avi") &&
-		    !strcmp($tag, "mpg") && 
+		if (!isMovie($tag) &&
 		    !valid_image("$dir/$name.$tag")) {
 			return "Invalid image: $name.$tag";
 		}

@@ -175,6 +175,9 @@ if ($user->canWriteToAlbum($album)) {
 	        $adminCommands .= '<a href="#" onClick="'.popup("do_command.php?cmd=remake-thumbnail&albumName=$albumName&index=all").'">[Rebuild Thumbs]</a>&nbsp;&nbsp;<br>'; 
 	}
         $adminCommands .= '<a href="#" onClick="'.popup("edit_appearance.php?albumName=$albumName").'">[Properties]</a>&nbsp;';
+}
+
+if ($user->isAdmin() || $user->isOwnerOfAlbum($album)) {
         $adminCommands .= '<a href="#" onClick="'.popup("album_permissions.php?set_albumName=$albumName").'">[Permissions]</a>&nbsp;';
 }
 

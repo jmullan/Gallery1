@@ -85,9 +85,10 @@ $checklist = array(
 			"Gallery can manipulate images (rotate, resize, make " .
 			"thumbnails, etc).",
 		"func" => "check_graphics",
-		"fail-netpbm" => "I can't find NetPBM.  If it's installed, it's not in " .
-			"the path of the webserver user.  If it's not installed, you have " .
-			"two choices.  " .
+		"fail-netpbm" => "I can't find NetPBM.  If it's installed and not in " .
+			"the path of the webserver user that's OK -- you can specify the " .
+			"path to NetPBM by hand on the following page.  If it's not " .
+			"installed, you have two choices.  " .
 			$common_messages["getting-netpbm"],
 
 		"fail-netpbm-partial" => 
