@@ -321,8 +321,8 @@ class AlbumItem {
 				$tag = $this->image->type;
 				$srcdir = $dir;
 				$srcitem = $this;
-				if ($this->isAlbumName) {
-					$name = $this->isAlbumName;
+				if ($this->isAlbum()) {
+					$name = $this->getAlbumName();
 					$nestedAlbum = new Album();
 					$nestedAlbum->load($name);
 					list ($srcalbum, $srcitem) = $nestedAlbum->getHighlightedItem();

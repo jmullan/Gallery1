@@ -51,7 +51,7 @@ if ($gallery->session->albumName) {
 }
 
 // Hack check
-if (!$gallery->user->isAdmin() && !$upgrade_albumname) {
+if (!$gallery->user->isAdmin() && empty($upgrade_albumname)) {
 	echo _("You are no allowed to perform this action !");
 	exit;
 }
@@ -98,7 +98,7 @@ function find_albums(&$results, $album="") {
 	global $albumDB;
 
 	foreach ($albumDB->outOfDateAlbums as $albumName) {
-		$results[] = $albumDB->getAlbumByName($albumName, false);
+		$results[] = $albumDB->getAlbumByName($albumName);
 	}
 
 	// All this recursive calling isn't necessary, since we already have a list (above)

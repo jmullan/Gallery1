@@ -1,3 +1,13 @@
+2004-07-08  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b241
+
+	* Change: Problem with upgrading - photos weren't being loaded prior
+	  to running integrityCheck.
+
+	* Change: During integrityCheck, set $gallery->album to the current album
+	  because AlbumItem::integrityCheck relies on it to get the current album
+
+	* Change: Fix a couple PHP notices for unset variables
+
 2004-07-08  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b240
 
 	* Change: Add a check for exec() being disabled in the check section

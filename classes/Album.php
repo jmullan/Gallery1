@@ -225,6 +225,11 @@ class Album {
 	 */	
 	function integrityCheck() {
 		global $gallery;
+		$gallery->album = $this;
+		
+		if (!$this->transient->photosloaded) {
+			$this->load($this->fields['name']);
+		}
 
 		if (!strcmp($this->version, $gallery->album_version)) {
 			print _("Album up to date.") ." <br>";
