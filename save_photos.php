@@ -90,10 +90,13 @@ if ($urls) {
 			continue;
 		}
 
-	
 		/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
 		$url = eregi_replace("^[[:space:]]+", "", $url);
-	
+
+		if (!ereg("http", $url)) {
+			$url = "http://$url";
+		}
+
 		/* Parse URL for name and file type */
 		$url_stuff = parse_url($url);
 		$name = basename($url_stuff["path"]);
@@ -105,8 +108,11 @@ if ($urls) {
 	
 		/* Manual check - was the url accessible? */
 		if (!$id) {
-			msg("Could not open url: '$url'");
-			continue;
+			$id = @fs_fopen("$url/", "r");
+			if (!$id) {
+				msg("Could not open url: '$url'");
+				continue;
+			}
 		} else {
 			msg(urldecode($url));
 		}
@@ -135,7 +141,7 @@ if ($urls) {
 			/* Slurp the file */
 			msg("Parsing $url for images...");
 			$fd = fs_fopen ($file, "r");
-			$contents = fread ($fd, filesize ($file));
+			$contents = fread ($fd, fs_filesize ($file));
 			fclose ($fd);
 	
 			/* We'll need to add some stuff to relative links */
@@ -156,27 +162,27 @@ if ($urls) {
 			if (!ereg("/$", $base_dir)) {
 				$base_dir .= '/';
 			}
-	
-			/* Perl Regex: Find all src= and href= links to valid file types */
-			if(preg_match_all ('/(src|href)="?([^" >]+\.' .
-					acceptableFormatRegexp() .
-					')[" >]/is', $contents, $things, PREG_PATTERN_ORDER)) {
-	
-				/* Add each unique link to an array we scan later */
-				foreach (array_unique($things[2]) as $thing) {
-	
-					/* Absolute Link ( http://www.foo.com/bar ) */
-					if (substr($thing, 0, 4) == 'http') {
-						$image_tags[] = $thing;
-	
-					/* Relative link to the host ( /foo.bar )*/
-					} elseif (substr($thing, 0, 1) == '/') {
-						$image_tags[] = $base_url . $thing;
-	
-					/* Relative link to the dir ( foo.bar ) */
-					} else {
-						$image_tags[] = $base_url . $base_dir . $thing;
-					}
+
+			$things = array();
+			foreach (split("[[:space:]\=\"\'\<\>\?]", $contents) as $value) {
+				if (eregi("\." . acceptableFormatRegexp(), $value, $regs)) {
+					$things[$value]++;
+				}
+			}
+
+			/* Add each unique link to an array we scan later */
+			foreach (array_keys($things) as $thing) {
+				/* Absolute Link ( http://www.foo.com/bar ) */
+				if (substr($thing, 0, 4) == 'http') {
+					$image_tags[] = $thing;
+
+				/* Relative link to the host ( /foo.bar )*/
+				} elseif (substr($thing, 0, 1) == '/') {
+					$image_tags[] = $base_url . $thing;
+
+				/* Relative link to the dir ( foo.bar ) */
+				} else {
+					$image_tags[] = $base_url . $base_dir . $thing;
 				}
 			}
 	
@@ -243,9 +249,13 @@ function process($file, $tag, $name, $setCaption="") {
 		// remove %20 and the like from name
 		$name = urldecode($name);
 		// parse out original filename without extension
-		$originalFilenameArray = preg_split ( "/.$tag\$/i" , $name);
+		$originalFilename = eregi_replace(".$tag$", "", $name);
 		// replace multiple non-word characters with a single "_"
-		$originalFilename = preg_replace("/\W+/", "_", $originalFilenameArray[0]);
+		$mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
+
+		/* Get rid of extra underscores */
+		$mangledFilename = ereg_replace("_+", "_", $mangledFilename);
+		$mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
 	
 		/* 
 		need to prevent users from using original filenames that are purely numeric.
@@ -254,20 +264,20 @@ function process($file, $tag, $name, $setCaption="") {
 		RewriteRule ^([^\.\?/]+)/([0-9]+)$	/~jpk/gallery/view_photo.php?set_albumName=$1&index=$2	[QSA]
 		*/
 	
-		if (ereg("^([0-9]+)$", $originalFilename)) {
-			$originalFilename = $originalFilename . "_G";
+		if (ereg("^([0-9]+)$", $mangledFilename)) {
+			$mangledFilename .= "_G";
 		}
 	
 		set_time_limit(30);
 		if (acceptableFormat($tag)) {
 			msg("- Adding $name");
 			if ($setCaption) {
-				$caption = $originalFilenameArray[0];
+				$caption = $originalFilename;
 			} else {
 				$caption = "";
 			}	
 	
-			$err = $gallery->album->addPhoto($file, $tag, $originalFilename, $caption);
+			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption);
 			if (!$err) {
 				/* resize the photo if needed */
 				if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
