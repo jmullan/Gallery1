@@ -369,7 +369,6 @@ if (!$gallery->album->isMovie($id)) {
 		!$gallery->session->offline &&
 		!$gallery->album->isMovie($id)){
 
-		$photo = $gallery->album->getPhoto($GLOBALS["index"]);
 		$photoPath = $gallery->album->getAlbumDirURL("full");
 		$prependURL = '';
 		if (!ereg('^https?://', $photoPath)) {
