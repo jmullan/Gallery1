@@ -24,9 +24,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-02-21 16:00+0100\n"
-"PO-Revision-Date: 2005-01-20 09:51+0100\n"
-"Last-Translator: Misa <misa@bayercz.com>\n"
+"POT-Creation-Date: 2005-02-24 12:41+0100\n"
+"PO-Revision-Date: 2005-02-12 16:59+0100\n"
+"Last-Translator: Misa <misa AT bayercz DOT com>\n"
 "Language-Team: CZ_Czech <misa AT bayercz DOT com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-2\n"
@@ -374,7 +374,7 @@ msgstr "Pozor!"
 #: ../albums.php:279
 #, php-format
 msgid "The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not posess. %s"
-msgstr ""
+msgstr "Album nebo fotka, které jste se pokou¹el zobrazit, buï neexistuje, nebo po¾aduje u¾ivatelská práva, která nemáte. %s"
 
 #: ../albums.php:279
 #, php-format
@@ -444,7 +444,7 @@ msgstr "0krát"
 msgid "reset counter"
 msgstr "vynuluj poèítadlo"
 
-#: ../albums.php:453 ../view_album.php:1071
+#: ../albums.php:453 ../view_album.php:1073
 msgid "Comments available for this item."
 msgstr "Komentáøe k této polo¾ce"
 
@@ -569,11 +569,11 @@ msgstr "Aktualizuji polo¾ku %d z %d . . . "
 msgid "msg should be an array!"
 msgstr "zpráva by mìla být pole!"
 
-#: ../classes/Album.php:921 ../util.php:3481
+#: ../classes/Album.php:921 ../util.php:3494
 msgid "No email sent as no valid email addresses were found"
 msgstr "E-mail nebyl odeslaný, proto¾e nebyla nalezena ¾ádná e-mailová adresa"
 
-#: ../classes/Album.php:988 ../classes/Album.php:1677
+#: ../classes/Album.php:988 ../classes/Album.php:1696
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr "Z alba %s zpracovávám %d fotek"
@@ -583,53 +583,65 @@ msgstr "Z alba %s zpracovávám %d fotek"
 msgid "Processing element %d..."
 msgstr "Zpracovávám fotku %d..."
 
-#: ../classes/Album.php:1041
+#: ../classes/Album.php:1007
+msgid "Doing the naming"
+msgstr ""
+
+#: ../classes/Album.php:1042
+msgid "Image Preprocessing"
+msgstr ""
+
+#: ../classes/Album.php:1048
 msgid "Resizing/compressing original image"
 msgstr "Zmen¹uji/komprimuji originální fotku"
 
-#: ../classes/Album.php:1045
+#: ../classes/Album.php:1052
 msgid "Cannot resize/compress this filetype"
 msgstr "Nemohu zmen¹it/zkomprimovat tento soubor"
 
-#: ../classes/Album.php:1093
+#: ../classes/Album.php:1056
+msgid "Adding Photo to the photo list"
+msgstr ""
+
+#: ../classes/Album.php:1110
 #, php-format
 msgid "Resizing %s"
 msgstr "Vytváøím zmen¹enou kopii %s"
 
-#: ../classes/Album.php:1156
+#: ../classes/Album.php:1175
 msgid "Photo auto-rotated/transformed"
 msgstr "Fotka byla otoèena/transformována"
 
-#: ../classes/Album.php:1164
+#: ../classes/Album.php:1183
 msgid "Watermarking Image"
 msgstr "Vkládám vodoznak do fotky"
 
-#: ../classes/Album.php:1321 ../classes/Album.php:1331
-#: ../classes/AlbumItem.php:669
+#: ../classes/Album.php:1340 ../classes/Album.php:1350
+#: ../classes/AlbumItem.php:671
 msgid "No highlight"
 msgstr "®ádný náhled alba"
 
-#: ../classes/Album.php:1485
+#: ../classes/Album.php:1504
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr ""
 
-#: ../classes/Album.php:1691 ../do_command.php:82
+#: ../classes/Album.php:1710 ../do_command.php:82
 #, php-format
 msgid "Processing image %d..."
 msgstr "Zpracovávám fotku %d"
 
-#: ../classes/Album.php:1829
+#: ../classes/Album.php:1848
 #, php-format
 msgid "Error %s getting EXIF data"
 msgstr "Chyba %s pøi získání EXIF informací"
 
-#: ../classes/Album.php:2350
+#: ../classes/Album.php:2369
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2503
+#: ../classes/Album.php:2522
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Problém s e-mailem: pøeskakuji %s (UID %s) proto¾e e-mailová  addresa %s není platná."
@@ -638,15 +650,20 @@ msgstr "Problém s e-mailem: pøeskakuji %s (UID %s) proto¾e e-mailová  addresa %s
 msgid "Invalid image"
 msgstr "Po?kozená fotka"
 
-#: ../classes/AlbumItem.php:626
+#: ../classes/AlbumItem.php:585
+#, fuzzy
+msgid "Generating thumbnail."
+msgstr "Vytváøím náhled"
+
+#: ../classes/AlbumItem.php:628
 msgid "Unable to make thumbnail"
 msgstr "Nelze vytvoøit náhled"
 
-#: ../classes/AlbumItem.php:637
+#: ../classes/AlbumItem.php:639
 msgid "No preview"
-msgstr ""
+msgstr "®ádný náhled"
 
-#: ../classes/AlbumItem.php:656
+#: ../classes/AlbumItem.php:658
 msgid "No thumbnail"
 msgstr "®ádný náhled"
 
@@ -674,7 +691,7 @@ msgstr ""
 
 #: ../classes/gallery/UserDB.php:82
 msgid "Your Userfile is not writeable"
-msgstr "Va¹eho u¾ivatelského souboru se nedá zapisovat"
+msgstr "Do va¹eho u¾ivatelského souboru se nedá zapisovat"
 
 #: ../classes/gallery/UserDB.php:280
 #, php-format
@@ -1504,49 +1521,40 @@ msgid "full size"
 msgstr "plná velikost"
 
 #: ../includes/slideshow/high.inc:501 ../includes/slideshow/low.inc:314
-#, fuzzy
 msgid "1 second"
-msgstr "sekunda"
+msgstr "1 sekunda"
 
 #: ../includes/slideshow/high.inc:502 ../includes/slideshow/low.inc:315
-#, fuzzy
 msgid "2 seconds"
-msgstr "sekund"
+msgstr "2 sekundy"
 
 #: ../includes/slideshow/high.inc:503 ../includes/slideshow/low.inc:316
-#, fuzzy
 msgid "3 seconds"
-msgstr "sekund"
+msgstr "3 sekundy"
 
 #: ../includes/slideshow/high.inc:504 ../includes/slideshow/low.inc:317
-#, fuzzy
 msgid "5 seconds"
-msgstr "sekund"
+msgstr "5 sekund"
 
 #: ../includes/slideshow/high.inc:505 ../includes/slideshow/low.inc:318
-#, fuzzy
 msgid "10 seconds"
-msgstr "sekund"
+msgstr "10 sekund"
 
 #: ../includes/slideshow/high.inc:506 ../includes/slideshow/low.inc:319
-#, fuzzy
 msgid "15 seconds"
-msgstr "sekund"
+msgstr "15 sekund"
 
 #: ../includes/slideshow/high.inc:507 ../includes/slideshow/low.inc:320
-#, fuzzy
 msgid "30 seconds"
-msgstr "sekund"
+msgstr "30 sekund"
 
 #: ../includes/slideshow/high.inc:508 ../includes/slideshow/low.inc:321
-#, fuzzy
 msgid "45 seconds"
-msgstr "sekund"
+msgstr "45 sekund"
 
 #: ../includes/slideshow/high.inc:509 ../includes/slideshow/low.inc:322
-#, fuzzy
 msgid "1 Minute"
-msgstr "Minuty"
+msgstr "1 minuta"
 
 #: ../includes/slideshow/high.inc:526
 msgid "Transition:"
@@ -1737,9 +1745,9 @@ msgstr "%d z %d"
 msgid "Watermark"
 msgstr "Vodoznak"
 
-#: ../layout/watermarkform.inc:80 ../util.php:3022 ../util.php:3027
+#: ../layout/watermarkform.inc:80 ../util.php:3035 ../util.php:3040
 msgid "None"
-msgstr ""
+msgstr "®ádný"
 
 #: ../layout/watermarkform.inc:93
 #, php-format
@@ -1856,7 +1864,7 @@ msgid "description"
 msgstr "popis"
 
 #: ../lib/voting.php:215 ../view_album.php:586 ../view_album.php:615
-#: ../view_album.php:1077
+#: ../view_album.php:1079
 msgid "Vote"
 msgstr "Hlasovat"
 
@@ -1932,7 +1940,7 @@ msgstr[2] "%d hlasù"
 
 #: ../login.php:51
 msgid "SUCCEEDED"
-msgstr ""
+msgstr "PROVEDENO"
 
 #: ../login.php:55
 msgid "Invalid username or password"
@@ -1940,7 +1948,7 @@ msgstr "©patné u¾ivatelské jméno nebo heslo"
 
 #: ../login.php:60
 msgid "Please enter username and password."
-msgstr "Prosím zadejte u¾ivatelské jméno a heslo"
+msgstr "Prosím, zadejte u¾ivatelské jméno a heslo."
 
 #: ../login.php:67 ../login.php:71 ../publish_xp.php:56 ../publish_xp.php:99
 #, php-format
@@ -1961,12 +1969,12 @@ msgstr "Pøihlá¹ení"
 
 #: ../login.php:105
 msgid "Forgotten your password?"
-msgstr "Zpomìli jste své heslo?"
+msgstr "Zapomìli jste své heslo?"
 
 #: ../login.php:116
 #, php-format
 msgid "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."
-msgstr "Poslední po¾adavek na zmìnu hesla byl odeslán mémì ne¾ pøed  %d minutami. Zkontrolujte prosím pøedchozí e-mail, nebo poèkejte, ne¾ to zkusíte znovu."
+msgstr "Poslední po¾adavek na zmìnu hesla byl odeslán mémì ne¾ pøed  %d minutami. Zkontrolujte, prosím, pøedchozí e-mail, nebo poèkejte, ne¾ to zkusíte znovu."
 
 #: ../login.php:120
 msgid "New password request"
@@ -1975,12 +1983,12 @@ msgstr "Po¾adavek na nové heslo"
 #: ../login.php:121
 #, php-format
 msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "
-msgstr "Nìkdo po¾aduje nové heslo pro u¾ivatele %s z Gallery '%s' na %s. Nové heslo mù¾ete vytvoøit kliknutím na link uvedený ní¾e. Pokud jste nepo¾adoval nové heslo, prosím, ignorujte tento e-mail."
+msgstr "Nìkdo po¾adoval nové heslo pro u¾ivatele %s z Gallery '%s' na %s. Nové heslo mù¾ete vytvoøit kliknutím na odkaz uvedený ní¾e. Pokud jste nepo¾adoval nové heslo, prosím, ignorujte tento e-mail."
 
 #: ../login.php:122
 #, php-format
 msgid "Click to reset your password: %s"
-msgstr "Kliknìte zde, pro vynulování va¹eho hesla: %s"
+msgstr "Kliknìte zde, pro nastavení va¹eho hesla: %s"
 
 #: ../login.php:124
 #, php-format
@@ -1990,17 +1998,17 @@ msgstr "Po¾adavek na nové heslo %s"
 #: ../login.php:127
 #, php-format
 msgid "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."
-msgstr "E-mail byl odeslán na adresu uvedenou u u¾ivatele %s. Postupujte podle pokynù uvedených v e-mailu pro zmìnu hesla. Pokud neobdr¾íte tento e-mail, kontaktujte Gallery administrátora."
+msgstr "E-mail byl odeslán na adresu uvedenou u u¾ivatele %s. Postupujte podle pokynù uvedených v e-mailu pro zmìnu hesla. Pokud neobdr¾íte tento e-mail, kontaktujte Gallery administrátory."
 
 #: ../login.php:132
 #, php-format
 msgid "Email could not be sent.  Please contact %s administrators for a new password"
-msgstr "E-mail nemohl být odeslán. Kontaktujte %s administrátora aby vám pøidìlil nové heslo."
+msgstr "E-mail nemohl být odeslán. Kontaktujte %s administrátory, aby vám pøidìlili nové heslo."
 
 #: ../login.php:136
 #, php-format
 msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
-msgstr "Pro tento úèet není zadána správná e-mailová adresa. Kontaktujte, prosím, %s administrátora aby vám nové heslo pøidìlil"
+msgstr "Pro tento úèet není zadána správná e-mailová adresa. Kontaktujte, prosím, %s administrátory, aby vám pøidìlili nové heslo"
 
 #: ../login.php:139 ../new_password.php:35 ../new_password.php:39
 msgid "Not a valid username"
@@ -2028,7 +2036,7 @@ msgstr "Neexistují ¾ádní u¾ivatelé! Vytvoøte nìjakého!"
 
 #: ../manage_users.php:93
 msgid "To select multiple users (only recognized for deletion), hold down the Control (PC) or Command (Mac) key while clicking."
-msgstr "Pro zvolení více u¾ivatelù (fuguje pouze pro mazání), stisknìte klávesu Control (PC), nebo Command (MAC) a kliknìte na u¾ivatele."
+msgstr "Pro zvolení více u¾ivatelù (funguje pouze pro mazání) stisknìte klávesu Control (PC) nebo Command (MAC) a kliknìte na u¾ivatele."
 
 #: ../manage_users.php:99
 msgid "Bulk Create"
@@ -2097,7 +2105,7 @@ msgstr "Pøesunuji fotku #"
 
 #: ../move_photo.php:181
 msgid "- Creating New Album Highlight"
-msgstr "Vytváøím nový náhled alba"
+msgstr "- Vytváøím náhled nového alba"
 
 #: ../move_photo.php:224
 msgid "Reorder this album within the album:"
@@ -2114,11 +2122,11 @@ msgstr "Souèasné umístìní je %s"
 
 #: ../move_photo.php:233
 msgid "Select the new location:"
-msgstr "Vyberte nové umístìní"
+msgstr "Vyberte nové umístìní:"
 
 #: ../move_photo.php:248
 msgid "Reorder it!"
-msgstr "Zaøadit"
+msgstr "Zaøadit!"
 
 #: ../move_photo.php:255
 msgid "Move the album to a new album:"
@@ -2130,7 +2138,7 @@ msgstr "Pøesunout skupinu fotek do nového alba:"
 
 #: ../move_photo.php:267
 msgid "To move just one photo, make First and Last the same."
-msgstr "Kdy¾ chcete pøesunout jednu fotku, nastavte ji zároveò jako První a Poslední"
+msgstr "Kdy¾ chcete pøesunout jednu fotku, nastavte ji zároveò jako První a Poslední."
 
 #: ../move_photo.php:322
 msgid "Note: items that have votes will lose these votes when moved to another album"
@@ -2144,7 +2152,7 @@ msgstr "Poznámka: polo¾ky, které dostaly nìjaké hlasy, tyto hlasí ztratí, kdy¾ b
 #: ../multi_create_user.php:42 ../multi_create_user.php:46
 #: ../multi_create_user.php:140
 msgid "Create Multiple Users"
-msgstr "Hromadné vytváøení u¾ivatelù"
+msgstr "Hromadné vytvoøení u¾ivatelù"
 
 #: ../multi_create_user.php:50
 msgid "No file selected."
@@ -2153,7 +2161,7 @@ msgstr "Nebyl vybrán ¾ádný soubor."
 #: ../multi_create_user.php:55
 #, php-format
 msgid "Upload failed: %s."
-msgstr "Nahrání nebylo úspì¹né: %s."
+msgstr "Nahrání selhalo: %s."
 
 #: ../multi_create_user.php:64
 #, php-format
@@ -2173,7 +2181,7 @@ msgstr "Odeslat e-mail %s"
 #: ../multi_create_user.php:110
 #, php-format
 msgid "Problem with email to %s"
-msgstr "Problém s emailem do %s"
+msgstr "Problém s e-mailem do %s"
 
 #: ../multi_create_user.php:122
 #, php-format
@@ -2210,15 +2218,15 @@ msgstr ""
 
 #: ../new_password.php:32
 msgid "missing hash parameter"
-msgstr "schází hash parametr"
+msgstr "chybí hash parametr"
 
 #: ../new_password.php:41
 msgid "The recovery password is not the expected value, please try again"
-msgstr "Obnovení hesla neobsahuje oèekávanou hodnotu, zkuste to prosím znovu."
+msgstr "Obnovení hesla neobsahuje oèekávanou hodnotu, zkuste to, prosím, znovu."
 
 #: ../new_password.php:48
 msgid "You must provide your new password."
-msgstr "Chcete-li zmìnit heslo, musíte zadat staré heslo."
+msgstr "Musíte zadat nové heslo."
 
 #: ../new_password.php:92 ../new_password.php:96
 msgid "Make New Password"
@@ -2247,7 +2255,7 @@ msgstr "Vlastník"
 #: ../poll_properties.php:51
 #, php-format
 msgid "Warning: you have changed voters from %s to %s.  It is advisable to reset the poll to remove all previous votes."
-msgstr "Varování: Zmìnili jste volièe od %s do %s. Doporuèejeme odstranit stávající hlasy pomocí vynulování volby. "
+msgstr "Varování: Zmìnili jste volièe z %s na %s. Doporuèujeme odstranit stávající hlasy pomocí vynulování hlasování. "
 
 #: ../poll_properties.php:52 ../poll_properties.php:104
 msgid "Everybody"
@@ -2283,7 +2291,7 @@ msgstr "Ukazovat výsledky hlasování v¹em náv¹tìvníkùm?"
 
 #: ../poll_properties.php:99
 msgid "Number of lines of results graph to display on the album page"
-msgstr "Kolik øádek z grafu výsledkù se má zobrazit na stránce alb?"
+msgstr "Kolik øádek z grafu výsledkù se má zobrazit na stránce alb"
 
 #: ../poll_properties.php:103
 msgid "Who can vote"
@@ -2310,9 +2318,8 @@ msgid "Displayed Value"
 msgstr "Zobrazená hodnota"
 
 #: ../poll_properties.php:121
-#, fuzzy
 msgid "Points"
-msgstr "Minuty"
+msgstr ""
 
 #: ../poll_results.php:38
 #, fuzzy
@@ -2338,7 +2345,7 @@ msgstr "Nahrávám fotky"
 
 #: ../progress_uploading.php:40
 msgid "File upload in progress!"
-msgstr "Nahrávání souborù probíhá"
+msgstr "Nahrávání souborù probíhá!"
 
 #: ../progress_uploading.php:42
 msgid "This page will go away automatically when the upload is complete.  Please be patient!"
@@ -2351,7 +2358,7 @@ msgstr "Zveøejnìte své fotky a videa v %s."
 
 #: ../publish_xp.php:86
 msgid "Username and Password are not correct."
-msgstr "U¾ivatelské jméno a heslo není v poøádku."
+msgstr "U¾ivatelské jméno a heslo není správné."
 
 #: ../publish_xp.php:91
 msgid "Please Enter Username and Password"
@@ -2371,7 +2378,7 @@ msgstr "Vyberte album, které chcete zveøejnit"
 
 #: ../publish_xp.php:154
 msgid "Use filenames as captions"
-msgstr "Pou¾ít jména souborù jako popisky"
+msgstr "Pou¾ít jména souborù jako titulky"
 
 #: ../publish_xp.php:157 ../publish_xp.php:271
 msgid "Create New Album"
@@ -2396,12 +2403,12 @@ msgstr "Kliknìte na \"Zpìt\" a zkuste to znovu!"
 
 #: ../publish_xp.php:240
 msgid "User cannot create ROOT level album."
-msgstr "Tento u¾ivatel nemù¾e zakládat koøenová alba."
+msgstr "Tento u¾ivatel nemù¾e zakládat koøenové album."
 
 #: ../publish_xp.php:248
 #, php-format
 msgid "User cannot create nested album in %s."
-msgstr "Tento u¾ivatel nemù¾e zakládat vnoøená alba v %s."
+msgstr "Tento u¾ivatel nemù¾e zakládat vnoøené album v %s."
 
 #: ../publish_xp.php:251
 msgid "No Parent Album Specified!"
@@ -2409,7 +2416,7 @@ msgstr "Nezadáno nadøazené album!"
 
 #: ../publish_xp.php:275
 msgid "Enter New Album Title"
-msgstr "Zadejte nový popisek alba"
+msgstr "Zadejte název nového alba"
 
 #: ../publish_xp.php:278
 msgid "Select Parent Album"
@@ -2429,7 +2436,7 @@ msgstr "Nezadán soubor"
 
 #: ../publish_xp.php:441
 msgid "Photo Upload"
-msgstr "nahrávání fotek"
+msgstr "Nahrávání fotek"
 
 #: ../publish_xp.php:441
 msgid "Upload Photos to"
@@ -2446,11 +2453,11 @@ msgstr "Pou¾ití fuknce \"Zveøejnit na web\" ve Windows XP"
 #: ../publish_xp_docs.php:37
 #, php-format
 msgid "Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.  %s <b>has experimental</b> support for this feature."
-msgstr "Windows XP nabízejí funkci, která umo¾òuje zveøejòovat data z va¹í plochy pøímo pøes webovou slu¾bu. %s <b>experimentálnì</b> podporuje tuto funkci."
+msgstr "Windows XP nabízejí funkci, která umo¾òuje zveøejòovat data z va¹í plochy pøímo pøes webovou slu¾bu. %s <b>zku¹ebnì</b> podporuje tuto funkci."
 
 #: ../publish_xp_docs.php:38
 msgid "It's relatively easy to configure."
-msgstr "Nastavení je celkem snadné."
+msgstr "Nastavení je pomìrnì jednoduché."
 
 #: ../publish_xp_docs.php:43
 msgid "Step 1"
@@ -2464,27 +2471,27 @@ msgstr "Stáhnìte si %sXP konfiguraèní soubor%s"
 #: ../publish_xp_docs.php:48
 #, php-format
 msgid "Save this file on your PC and rename it %s."
-msgstr "Ulo¾te jej na svém poèítaèi a pøejmenujte na %s."
+msgstr "Ulo¾te tento soubor na svùj poèítaè a pøejmenujte ho na %s."
 
 #: ../publish_xp_docs.php:49
 msgid "If it asks you for confirmation about changing the file type, answer &quot;yes&quot;."
-msgstr "Systém se vás dotá¾e, zda chcete zmìnit typ souboru. Odpovìzte  &quot;ano&quot;."
+msgstr "Jestli¾e se vás systém zeptá, zda chcete zmìnit typ souboru, odpovìzte  &quot;ano&quot;."
 
 #: ../publish_xp_docs.php:50
 msgid "Right click on this file and you should see a menu appear."
-msgstr "Klepnìte na soubor pravým tlaèítkem a objeví se nabídka."
+msgstr "Kliknìte na tento soubor pravým tlaèítkem a objeví se menu."
 
 #: ../publish_xp_docs.php:51
 msgid "Select the <b>Merge</b> option (this should be at the top of the menu)."
-msgstr "Vyberte <b>Pøidat</b> (tato volba by mìla být první v nabídce)"
+msgstr "Vyberte <b>Pøidat</b> (tato volba by mìla být první v menu)"
 
 #: ../publish_xp_docs.php:52
 msgid "It will ask you if you want to import these values into your registry."
-msgstr "Systém se váz otá¾e, zda chcete tyto hodnoty vlo¾it do registru."
+msgstr "Systém se vás zeptá, zda chcete tyto hodnoty importovat do registru."
 
 #: ../publish_xp_docs.php:53
 msgid "Click &quot;ok&quot;."
-msgstr "Klepnìte na &quot;ok&quot;."
+msgstr "Kliknìte na &quot;ok&quot;."
 
 #: ../publish_xp_docs.php:54
 msgid "It will tell you that the files were imported successfully."
@@ -2500,15 +2507,15 @@ msgstr "Krok 2"
 
 #: ../publish_xp_docs.php:61
 msgid "Open your Windows explorer and browse to a folder containing supported images."
-msgstr "Spus»te va¹eho windows prùzkumníka a najdìte slo¾ku s nìjakými podporovanými soubory."
+msgstr "Spus»te Windows prùzkumníka a najdìte adresáø obsahující podporované soubory."
 
 #: ../publish_xp_docs.php:62
 msgid "Select the image(s) or a folder and there should be a link on the left that says &quot;Publish this file to the web...&quot;"
-msgstr "Vyberte nìjaký obrázek a vlevo by se mìl objevit odkaz &quot;Zveøejnit tento soubor na web...&quot;"
+msgstr "Vyberte obrázek nebo adresáø a vlevo by se mìl objevit odkaz &quot;Zveøejnit tento soubor na web...&quot;"
 
 #: ../publish_xp_docs.php:63
 msgid "Click this link and then follow the instructions to log into your Gallery, select an album and publish the image."
-msgstr "Klepnìte na tento odkaz a øiïte se instrukcemi, jak se pøihlásit do Gallery, vybrat album a zveøejnit fotku."
+msgstr "Kliknìte na tento odkaz a øiïte se instrukcemi, jak se pøihlásit do Gallery, vybrat album a zveøejnit fotku."
 
 #: ../publish_xp_docs.php:68
 msgid "Return to Add Photos"
@@ -2525,7 +2532,7 @@ msgstr "Tato Gallery nepodporuje registraci pro náv¹tìvníky."
 
 #: ../register.php:77
 msgid "You must specify a name."
-msgstr "Musíte zadat své jméno, nebo pøezdívku."
+msgstr "Musíte zadat své jméno."
 
 #: ../register.php:82
 msgid "You must specify a valid email address."
@@ -2534,7 +2541,7 @@ msgstr "Musíte zadat funkèní e-mailovou adresu."
 #: ../register.php:104
 #, php-format
 msgid "%s has registered.  Email has been sent to %s."
-msgstr "%s byl zaregistrován. E-mail pro %s byl odeslán."
+msgstr "%s byl zaregistrován. E-mail byl odeslán na %s."
 
 #: ../register.php:112
 msgid "Gallery Self Registration"
@@ -2543,7 +2550,7 @@ msgstr "Samostatná registrace do Gallery"
 #: ../register.php:114
 #, php-format
 msgid "An email has been sent to %s."
-msgstr "E-mail pro %s byl odeslán."
+msgstr "E-mail byl odeslán na %s."
 
 #: ../register.php:116
 msgid "Your account information is contained within the email."
@@ -2551,7 +2558,7 @@ msgstr "Informace o va¹em úètu jsou obsa¾eny v e-mailu."
 
 #: ../register.php:118
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
-msgstr "E-mail nemohl být odeslán. Prosím, kontaktujte Gallery administrátora, aby vás zaregistroval."
+msgstr "E-mail nemohl být odeslán. Prosím, kontaktujte Gallery administrátora, aby vás zaregistroval"
 
 #: ../register.php:138
 msgid "Your account information will be sent to the email address you provide."
@@ -2583,11 +2590,11 @@ msgstr "mezery"
 
 #: ../rename_album.php:119
 msgid "Those characters will be ignored in your new album name."
-msgstr "Tyto znaky budou z nového jména vypu¹tìny."
+msgstr "Tyto znaky budou z nového názvu alba vypu¹tìny."
 
 #: ../rename_album.php:130
 msgid "Rename"
-msgstr "Pøejmenujte"
+msgstr "Pøejmenovat"
 
 #: ../reset_votes.php:52 ../reset_votes.php:56
 msgid "Reset Voting"
@@ -2612,7 +2619,7 @@ msgstr "Mìním velikost fotek"
 
 #: ../resize_photo.php:61
 msgid "Resizing 1 photo..."
-msgstr "Mìním velikost 1 fotky"
+msgstr "Mìním velikost 1 fotky..."
 
 #: ../resize_photo.php:73
 msgid "This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."
@@ -2620,15 +2627,15 @@ msgstr "Velikost fotek bude zmìnìna tak, ¾e del¹í strana fotky bude rovna hodnot
 
 #: ../resize_photo.php:81
 msgid "What is the target size for all the intermediate photos in this album?"
-msgstr "Jaká je cílová velikost v¹ech støedních fotek v tomto albu?"
+msgstr "Jaká je velikost v¹ech støedních fotek v tomto albu?"
 
 #: ../resize_photo.php:81
 msgid "What is the target size for the intermediate version of this photo?"
-msgstr "Jaká je cílová velikost støední fotky?"
+msgstr "Jaká je velikost støední verze této fotky?"
 
 #: ../resize_photo.php:92
 msgid "Target filesize"
-msgstr "®ádaná velikost souboru"
+msgstr "Velikost cílového souboru"
 
 #: ../resize_photo.php:96
 msgid "Maximum side length in pixels"
@@ -2656,11 +2663,11 @@ msgstr "Zmìnit velikost"
 
 #: ../rotate_photo.php:40 ../rotate_photo.php:46
 msgid "Rotate/Flip Photo"
-msgstr "Otoèit/pøevrátit fotku"
+msgstr "Otoèit/Pøevrátit fotku"
 
 #: ../rotate_photo.php:51
 msgid "Rotating/Flipping photo."
-msgstr "Otáèím/pøevracím fotku"
+msgstr "Otáèím/Pøevracím fotku"
 
 #: ../rotate_photo.php:53
 msgid "(this may take a while)"
@@ -2696,7 +2703,7 @@ msgstr "Zpracovávám a ukládám fotky"
 
 #: ../save_photos.php:61
 msgid "Fetching Urls..."
-msgstr "Získávam URL"
+msgstr "Získávám URL..."
 
 #: ../save_photos.php:80
 #, php-format
@@ -2711,12 +2718,12 @@ msgstr "Nemohu otevøít adresu: %s"
 #: ../save_photos.php:176
 #, php-format
 msgid "Parsing %s for images..."
-msgstr "Hledám fotky v %s"
+msgstr "Analyzuji %s na fotky..."
 
 #: ../save_photos.php:242
 #, php-format
 msgid "Found %d images"
-msgstr "Na¹el jsem %d fotek"
+msgstr "Nalezeno %d fotek"
 
 #: ../save_photos.php:249
 msgid "Processing status..."
@@ -2729,7 +2736,7 @@ msgstr "®ádné fotky nebyly nahrány!"
 #: ../save_photos.php:412
 #, php-format
 msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
-msgstr "Nalezeno %d meta archiv(y).  Tyto archivy obsahují informace o fotkách, jako napøíklad titulek a popis."
+msgstr "Nalezeno %d meta soubor(ù).  Tyto soubory obsahují informace o fotkách, jako napøíklad názvy a popisky."
 
 #: ../save_photos.php:444
 msgid "Add Files"
@@ -2755,7 +2762,7 @@ msgstr "Odpovídající komentáøe"
 
 #: ../search.php:214
 msgid "From Album"
-msgstr "Z alb"
+msgstr "Z alba"
 
 #: ../search.php:221 ../view_photo_properties.php:111
 msgid "KEYWORDS"
@@ -2773,7 +2780,7 @@ msgstr "®ádná taková alba nenalezena"
 #: ../search.php:243
 #, php-format
 msgid "Photos containing %s in caption or comment"
-msgstr "Fotky obsahující %s v popisku, nebo komentáøi"
+msgstr "Fotky obsahující %s v popisku nebo komentáøi"
 
 #: ../search.php:244
 msgid "No Photo Matches"
@@ -2782,7 +2789,7 @@ msgstr "®ádné takové fotky nenalezeny"
 #: ../search.php:264
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first."
-msgstr "Nìkterá alba nebyla prohledána, proto¾e nejdøíve potøebují aktualizovat na aktuální verzi %s."
+msgstr "Nìkterá alba nebyla prohledána, proto¾e nejdøíve potøebují aktualizovat na verzi %s."
 
 #: ../search.php:267
 msgid "Upgrade all albums."
@@ -2790,7 +2797,7 @@ msgstr "Aktualizovat v¹echna alba."
 
 #: ../search.php:286
 msgid "Search the Gallery's Album and Photo<br> titles, descriptions and comments"
-msgstr "Prohledat titulky, popisky a komentáøe<br> alb a fotek"
+msgstr "Prohledat názvy, popisky a komentáøe<br> alb a fotek"
 
 #: ../search.php:292
 msgid "Go"
@@ -2826,11 +2833,11 @@ msgstr "Celoobrazovkový re¾im"
 
 #: ../slideshow.php:104
 msgid "Modern browsers"
-msgstr "Moderní prohlí¾eè"
+msgstr "Moderní prohlí¾eèe"
 
 #: ../slideshow.php:107
 msgid "Compatible but limited"
-msgstr "Kopatibilní, ale limitovaný"
+msgstr "Kompatibilní, ale limitovaný"
 
 #: ../slideshow.php:181 ../view_album.php:108 ../view_comments.php:56
 #: ../view_photo.php:166
@@ -2847,7 +2854,7 @@ msgstr "Setøiï album"
 
 #: ../sort_album.php:62
 msgid "Select your sorting criteria for this album below"
-msgstr "Vyberte kritérium pro tøídìní"
+msgstr "Vyberte kritérium pro tøídìní tohoto alba"
 
 #: ../sort_album.php:64
 msgid "Warning:  This operation can't be undone."
@@ -2859,7 +2866,7 @@ msgstr "Podle data nahrání"
 
 #: ../sort_album.php:86
 msgid "By Picture-Taken Date"
-msgstr "Podle data vytvoøení fotky"
+msgstr "Podle data vytvoøení"
 
 #: ../sort_album.php:89
 msgid "By Filename"
@@ -2871,7 +2878,7 @@ msgstr "Podle poètu náv¹tìv"
 
 #: ../sort_album.php:95
 msgid "By Caption"
-msgstr "Podle popisku"
+msgstr "Podle titulku"
 
 #: ../sort_album.php:98
 msgid "By Number of Comments"
@@ -2883,11 +2890,11 @@ msgstr "Náhodnì"
 
 #: ../sort_album.php:106
 msgid "Ascending"
-msgstr "vzestupnì"
+msgstr "Vzestupnì"
 
 #: ../sort_album.php:107
 msgid "Descending"
-msgstr "sestupnì"
+msgstr "Sestupnì"
 
 #: ../sort_album.php:113
 msgid "Sort"
@@ -2927,7 +2934,7 @@ msgstr ""
 #: ../stats.php:332
 #, php-format
 msgid "Checking album: %s"
-msgstr "Pøeskakuji album: %s"
+msgstr "Kontroluji album: %s"
 
 #: ../stats.php:343
 #, php-format
@@ -2943,18 +2950,16 @@ msgid "Getting Item Clicks"
 msgstr ""
 
 #: ../stats.php:372
-#, fuzzy
 msgid "Getting Item Capture Date"
-msgstr "Datum vytvoøení fotky"
+msgstr "Zji¹»uji datum vytvoøení"
 
 #: ../stats.php:390
 msgid "Getting Number of Comments"
-msgstr "Podle poètu komentáøù"
+msgstr "Zji¹»uji poèet komentáøù"
 
 #: ../stats.php:394
-#, fuzzy
 msgid "Getting Comments"
-msgstr "Odpovídající komentáøe"
+msgstr "Zji¹»uji komentáøe"
 
 #: ../stats.php:405
 msgid "Getting Ratings"
@@ -2972,11 +2977,11 @@ msgstr ""
 
 #: ../stats.php:529
 msgid " - Images with the most votes"
-msgstr "- Fotky s nejvìt¹ím poètem hlasù"
+msgstr "- Fotky s nejvíce hlasy"
 
 #: ../stats.php:532
 msgid " - Images with the least votes"
-msgstr "- Fotky s nejnovìj¹ími hlasy"
+msgstr "- Fotky s nejménì hlasy"
 
 #: ../stats.php:538
 msgid " - Top rated images"
@@ -2995,28 +3000,24 @@ msgid " - Oldest images first"
 msgstr "- Star¹í fotky na zaèátku"
 
 #: ../stats.php:556
-#, fuzzy
 msgid " - Latest Capture Date"
-msgstr "Den "
+msgstr "- Nejnovìj¹í datum vytvoøení"
 
 #: ../stats.php:559
-#, fuzzy
 msgid " - Oldest Capture Date"
-msgstr "Den "
+msgstr "- Nejstar¹í datum vytvoøení"
 
 #: ../stats.php:565
-#, fuzzy
 msgid " - Latest Comments"
-msgstr "Poslední komentáø %s."
+msgstr "- Nejnovìj¹í komentáøe"
 
 #: ../stats.php:568
 msgid " - Oldest Comments"
-msgstr "Smazat komentáøe"
+msgstr "- Nejstar¹í komentáøe"
 
 #: ../stats.php:573
-#, fuzzy
 msgid " - Random Images"
-msgstr "%s Náhodné fotky z %s"
+msgstr "- Náhodné fotky"
 
 #: ../stats.php:579
 msgid " - Images with the most views"
@@ -3029,12 +3030,12 @@ msgstr "- Fotky s nejmen¹ím poètem zobrazení"
 #: ../stats.php:614
 #, php-format
 msgid "%d images with comments in album: %s"
-msgstr "%d Náhodných fotkek z alba: %s"
+msgstr "%d fotkek s komentáøi v albu: %s"
 
 #: ../stats.php:616
 #, php-format
 msgid "%d images in album: %s"
-msgstr "%d Náhodných fotkek z alba: %s"
+msgstr "%d fotkek v albu: %s"
 
 #: ../stats.php:619
 #, php-format
@@ -3042,23 +3043,23 @@ msgid "Given albumname: '%s' is invalid !"
 msgstr ""
 
 #: ../stats.php:624
-#, fuzzy, php-format
+#, php-format
 msgid "%d images with comments in this Gallery"
-msgstr "Nenalezany ¾ádné osiøelé prvky v této Gallery."
+msgstr "%d fotkek s komentáøi v této Gallery"
 
 #: ../stats.php:627
-#, fuzzy, php-format
+#, php-format
 msgid "%d images this Gallery"
-msgstr "Vstupte do Gallery"
+msgstr "%d fotkek v této Gallery"
 
 #: ../stats.php:633
 msgid "Back to stats-wizard"
-msgstr ""
+msgstr "Zpìt na prùvodce statistikou"
 
 #: ../stats.php:669
 #, php-format
 msgid "Data load time %d seconds"
-msgstr ""
+msgstr "Data byla nahrána za %d sekund"
 
 #: ../stats.php:802
 msgid "Highlight for Album: "
@@ -3067,12 +3068,11 @@ msgstr "Náhled alba:"
 #: ../stats.php:983
 #, php-format
 msgid "Finished in %d seconds"
-msgstr ""
+msgstr "Hotovo za %d sekund"
 
 #: ../stats.php:989
-#, fuzzy
 msgid "Update"
-msgstr "Datum nahrání"
+msgstr "Aktualizovat"
 
 #: ../stats.php:990
 msgid "Cache update required. "
@@ -3081,17 +3081,16 @@ msgstr ""
 #: ../stats.php:994
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
-msgstr "Nìkterá alba nebyla prohledána, proto¾e nejdøíve potøebují aktualizovat na aktuální verzi %s."
+msgstr "Nìkterá alba nebyla prohledána, proto¾e nejdøíve potøebují aktualizovat na verzi %s"
 
 #: ../stats.php:997
-#, fuzzy
 msgid "upgrade all albums"
-msgstr "Aktualizovat v¹echna alba"
+msgstr "aktualizovat v¹echna alba"
 
 #: ../stats.php:1043
-#, fuzzy, php-format
+#, php-format
 msgid "Recursing album: %s"
-msgstr "Vytváøím zmen¹enou kopii %s"
+msgstr "Recursing album: %s"
 
 #: ../stats.php:1083
 msgid "Read cache num photos lock failed."
@@ -3107,43 +3106,36 @@ msgid "Read cache lock failed."
 msgstr ""
 
 #: ../stats.php:1331
-#, fuzzy
 msgid "add vote"
-msgstr "1 hlas"
+msgstr "pøidat hlas"
 
 #: ../stats.php:1435
-#, fuzzy
 msgid "From album"
-msgstr "Z alb"
+msgstr "Z alba"
 
 #: ../stats.php:1492
-#, fuzzy
 msgid "Capture Date:"
-msgstr "Den "
+msgstr "Datum vytvoøení:"
 
 #: ../stats.php:1503
-#, fuzzy
 msgid "Upload Date:"
-msgstr "Datum nahrání"
+msgstr "Datum nahrání:"
 
 #: ../stats.php:1514
-#, fuzzy
 msgid "Views:"
-msgstr "Zobrazeno"
+msgstr "Zobrazení:"
 
 #: ../stats.php:1523
 msgid "Votes:"
-msgstr "Poznámky:"
+msgstr "Hlasù:"
 
 #: ../stats.php:1532
-#, fuzzy
 msgid "not rated"
-msgstr "Otáèet"
+msgstr "nehodnoceno"
 
 #: ../stats.php:1547 ../stats.php:1558
-#, fuzzy
 msgid "Rating:"
-msgstr "Rain"
+msgstr "Hodnocení:"
 
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
@@ -3175,7 +3167,7 @@ msgstr "Znovu pøipojit osiøelé album!"
 
 #: ../tools/find_orphans.php:257
 msgid "Orphaned Files:"
-msgstr "Osiøelé soubory"
+msgstr "Osiøelé soubory:"
 
 #: ../tools/find_orphans.php:259
 msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
@@ -3191,7 +3183,7 @@ msgstr "Osiøelý soubor"
 
 #: ../tools/find_orphans.php:288
 msgid "Delete Orphaned Files!"
-msgstr "Smazat osiøelé soubory"
+msgstr "Smazat osiøelé soubory!"
 
 #: ../tools/find_orphans.php:294
 msgid "No Orphans Found"
@@ -3199,7 +3191,7 @@ msgstr "Nenalezeny ¾ádné osiøelé soubory"
 
 #: ../tools/find_orphans.php:295
 msgid "There are no orphaned elements in this Gallery."
-msgstr "Nenalezany ¾ádné osiøelé prvky v této Gallery."
+msgstr "Nenalezeny ¾ádné osiøelé prvky v této Gallery."
 
 #: ../tools/find_orphans.php:299
 #, php-format
@@ -3227,9 +3219,8 @@ msgid "Reload"
 msgstr "Obnovit"
 
 #: ../tools/despam-comments.php:55
-#, fuzzy
 msgid "Find and remove comment spam"
-msgstr "Vyhledání a odstranìní spamù z komentáøù"
+msgstr "Vyhledání a odstranìní spamu z komentáøù"
 
 #: ../tools/despam-comments.php:118
 msgid "Delete Comments"
@@ -3243,7 +3234,7 @@ msgstr "Nic se nestalo!"
 #: ../tools/despam-comments.php:144
 #, php-format
 msgid "Deleted %d spam comments"
-msgstr "Smazáno %d zaspamovaných komentáøù"
+msgstr "Smazáno %d spamových komentáøù"
 
 #: ../tools/despam-comments.php:148
 #, php-format
@@ -3264,7 +3255,7 @@ msgstr "Prohledáno %d alb, %d fotek, %d komentáøù za %2.2f sekund"
 
 #: ../tools/despam-comments.php:201
 msgid "No spam comments."
-msgstr "®ádný spam nenalezen"
+msgstr "®ádný spam nenalezen."
 
 #: ../tools/despam-comments.php:206
 msgid "Entry"
@@ -3316,7 +3307,7 @@ msgstr "Souèasné polo¾ky v blacklistu"
 
 #: ../tools/despam-comments.php:338
 msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
-msgstr "Vá¹ blacklist je prázdný. Musíte do nìj vlo¾it nové záznamy aby zaèal fungovat."
+msgstr "Vá¹ blacklist je prázdný. Musíte do nìj vlo¾it nové záznamy, aby zaèal fungovat."
 
 #: ../tools/despam-comments.php:353 ../tools/despam-comments.php:370
 msgid "Update Blacklist"
@@ -3336,7 +3327,7 @@ msgstr "Mù¾ete jednodu¹e zkopírovat a vlo¾it tyto blacklisty do textového pole n
 
 #: ../tools/despam-comments.php:376
 msgid "Find blacklisted comments"
-msgstr "Vyhledání zaspamovaných komentáøù"
+msgstr "Vyhledání spamových komentáøù"
 
 #: ../tools/despam-comments.php:377
 msgid "View/Edit blacklist"
@@ -3364,15 +3355,15 @@ msgstr "Následující alba byla vytvoøena ve star¹í verzi a nelze je pou¾ít."
 
 #: ../upgrade_album.php:123 ../upgrade_users.php:42
 msgid "This is not a problem!"
-msgstr "Ale to se spraví!"
+msgstr "To není problém!"
 
 #: ../upgrade_album.php:125
 msgid "We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed."
-msgstr "Mù¾eme je aktualizovat. Bude to chvilku trvat, budete informován o prùbìhu."
+msgstr "Mù¾eme je aktualizovat. Bude to chvilku trvat, ale my vás budeme informovat o prùbìhu."
 
 #: ../upgrade_album.php:127
 msgid "None of your photos will be harmed in any way by this process."
-msgstr "Va¹im fotkám se nic nestane."
+msgstr "®ádné va¹e fotky nebudou nijak po¹kozeny v tomto procesu."
 
 #: ../upgrade_album.php:129 ../upgrade_users.php:45
 msgid "Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future."
@@ -3380,12 +3371,12 @@ msgstr "I kdy¾ to teï bude chvíli trvat, v budoucnu to u¹etøí spoustu èasu."
 
 #: ../upgrade_album.php:155
 msgid "All albums are up to date."
-msgstr "V¹echna alba jsou aktualizována"
+msgstr "V¹echna alba jsou aktualizována."
 
 #: ../upgrade_album.php:159
 #, php-format
 msgid "The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %s."
-msgstr "Následující alba musí být aktualizována podle novìj¹í verze Gallery. Mù¾ete je aktualizovat postupnì klepnutím na odkazy vedle alb nebo jednodu¹e %s."
+msgstr "Následující alba musí být aktualizována. Mù¾ete je aktualizovat postupnì kliknutím na odkazy vedle alba nebo mù¾ete jednodu¹e %s."
 
 #: ../upgrade_album.php:160
 msgid "upgrade them all at once"
@@ -3409,7 +3400,7 @@ msgstr "Databáze u¾ivatelù Gallery byla vytvoøena ve star¹í verzi a nelze ji pou
 
 #: ../upgrade_users.php:43
 msgid "We will upgrade it.  This may take some time."
-msgstr "Aktualizujeme tuto databázi. Mù¾e to chvíli trvat"
+msgstr "Aktualizujeme tuto databázi. Mù¾e to chvíli trvat."
 
 #: ../upgrade_users.php:44
 msgid "Your data will not be harmed in any way by this process."
@@ -3421,7 +3412,7 @@ msgstr "Pokud se zde objeví chyba a nìkteøí u¾ivatelé nejsou upraveni, obnovte s
 
 #: ../upgrade_users.php:55
 msgid "There was a problem upgrading users.  Please check messages above, and try again"
-msgstr "Pøi úpravì databáze u¾ivatelù se vyskytly problémy. Podívejte se na zprávy a zkuste to znovu."
+msgstr "Pøi úpravì databáze u¾ivatelù se vyskytly problémy. Zkontrolujte zprávy ní¾e a zkuste to znovu."
 
 #: ../upgrade_users.php:56
 msgid "Retry"
@@ -3429,7 +3420,7 @@ msgstr "Zkusit znovu"
 
 #: ../upgrade_users.php:60
 msgid "Users upgraded successfully."
-msgstr "U¾ivatelé aktualizování úspì¹nì."
+msgstr "U¾ivatelé úspì¹nì aktualizováni."
 
 #: ../user_preferences.php:44
 msgid "You are not allowed to change your username."
@@ -3513,109 +3504,123 @@ msgstr "Debug messages:"
 msgid "Status: %s (expected %s)"
 msgstr "Status %s (oèekávaný %s)"
 
-#: ../util.php:354
+#: ../util.php:353
 #, php-format
-msgid "The file %s does not exist ?!"
-msgstr "Soubor %s neexistuje?!"
+msgid "Getting Dimension of file: %s"
+msgstr ""
 
-#: ../util.php:366
+#: ../util.php:358
+msgid "The file does not exist ?!"
+msgstr "Soubor neexistuje?!"
+
+#: ../util.php:370
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
 msgstr "%s PHP nebylo schopné zjistit rozmìry."
 
-#: ../util.php:386 ../util.php:700 ../util.php:953 ../util.php:999
-#: ../util.php:2481
+#: ../util.php:386 ../util.php:707 ../util.php:960 ../util.php:1006
+#: ../util.php:2494
 msgid "You have no graphics package configured for use!"
 msgstr "Není nastaven ¾ádný grafický balík!"
 
-#: ../util.php:473 ../util.php:492
+#: ../util.php:411
+#, fuzzy
+msgid "Unable to determine image dimensions!"
+msgstr "%s PHP nebylo schopné zjistit rozmìry."
+
+#: ../util.php:477 ../util.php:496
 msgid "Not closing this window because debug mode is on"
 msgstr "Toto okno se nezavírá, proto¾e je zapnutý ladící re¾im."
 
-#: ../util.php:538
+#: ../util.php:513
+#, fuzzy, php-format
+msgid "Resizing Image: %s"
+msgstr "Vytváøím zmen¹enou kopii %s"
+
+#: ../util.php:545
 msgid "No resizing required"
 msgstr "Zmen¹ení není nutné"
 
-#: ../util.php:568
+#: ../util.php:575
 #, php-format
 msgid "target file size %d kbytes"
-msgstr "cílová velikost %d kilobytù"
+msgstr "velikost cílového souboru %d kilobytù"
 
-#: ../util.php:574 ../util.php:604
+#: ../util.php:581 ../util.php:611
 #, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> velikost souboru %d kilobytù"
 
-#: ../util.php:575
+#: ../util.php:582
 #, php-format
 msgid "trying quality %d%%"
 msgstr "zkou¹ím kvalitu %d%%"
 
-#: ../util.php:605
+#: ../util.php:612
 msgid "Done."
-msgstr "Hotovo"
+msgstr "Hotovo."
 
-#: ../util.php:704
+#: ../util.php:711
 msgid "No watermark name specified!"
 msgstr "Nebylo zadáno jméno vodoznaku!"
 
-#: ../util.php:1018
+#: ../util.php:1025
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "Volání %s selhalo v %s pro soubour %s!"
 
-#: ../util.php:1024
+#: ../util.php:1031
 #, php-format
 msgid "File %s type %d."
 msgstr "Soubor %s je typu %d."
 
-#: ../util.php:1067 ../util.php:1090
+#: ../util.php:1074 ../util.php:1097
 #, php-format
 msgid "Unknown file type: %s"
-msgstr "Neznámý typ souboru:: %s."
+msgstr "Neznámý typ souboru: %s."
 
-#: ../util.php:1485
+#: ../util.php:1492
 #, php-format
 msgid "Can't write to %s."
 msgstr "Nemohu zapsat do %s."
 
-#: ../util.php:1492
+#: ../util.php:1499
 #, php-format
 msgid "Can't read %s."
 msgstr "Nemohu èíst %s."
 
-#: ../util.php:1596
+#: ../util.php:1603
 msgid "Select Album"
 msgstr "Zvol album"
 
-#: ../util.php:1602
+#: ../util.php:1609
 msgid "Top Level"
 msgstr "Hlavní úroveò"
 
-#: ../util.php:1623 ../util.php:1674
+#: ../util.php:1630 ../util.php:1681
 msgid "current location"
 msgstr "souèasné umístìní"
 
-#: ../util.php:1677
+#: ../util.php:1684
 msgid "self"
 msgstr "sebe"
 
-#: ../util.php:1800
-#, fuzzy, php-format
+#: ../util.php:1819
+#, php-format
 msgid "Item Capture Date : %s"
-msgstr "Datum vytvoøení fotky"
+msgstr "Datum vytvoøení: %s "
 
-#: ../util.php:1845
+#: ../util.php:1864
 #, php-format
 msgid "Could not open lock file (%s)!"
-msgstr "Nemohu otevøít zámkový soubor (%s)!"
+msgstr "Nemohu otevøít lock soubor (%s)!"
 
-#: ../util.php:1850
+#: ../util.php:1869
 #, php-format
 msgid "Could not acquire lock (%s)!"
-msgstr "Nemohu získat zámek (%s)!"
+msgstr "Nemohu získat lock (%s)!"
 
-#: ../util.php:1939
+#: ../util.php:1958
 #, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
@@ -3623,117 +3628,117 @@ msgstr[0] "1 náv¹tìva"
 msgstr[1] "%d náv¹tìvy"
 msgstr[2] "%d náv¹tìv"
 
-#: ../util.php:1944
+#: ../util.php:1963
 msgid "Sub-albums"
 msgstr "Vnoøená alba"
 
-#: ../util.php:2110
+#: ../util.php:2129
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Vynechávám %s (podpora formátu %s nebyla aktivována)"
 
-#: ../util.php:2223
+#: ../util.php:2242
 #, php-format
 msgid "Adding %s"
 msgstr "Pøidávám %s"
 
-#: ../util.php:2257
+#: ../util.php:2276
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Potøebujete pomoc? Pøeètìte si %s%s FAQ%s"
 
-#: ../util.php:2263
+#: ../util.php:2282
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
-msgstr "Pøeskakuj %s (Neumím pracovat s formátem %s)"
+msgstr "Vynechávám %s (Neumím pracovat s formátem %s)"
 
-#: ../util.php:2449
+#: ../util.php:2462
 msgid "Unable to preserve EXIF data (jhead not installed)"
-msgstr ""
+msgstr "Nemohu uchovat EXIF data (jhead není nainstalovaný)"
 
-#: ../util.php:2498
+#: ../util.php:2511
 #, php-format
 msgid "Generated by %s v%s"
-msgstr "Vytvoøeno %s v%s"
+msgstr "Vytvoøeno v %s v%s"
 
-#: ../util.php:2500
+#: ../util.php:2513
 #, php-format
 msgid "Powered by %s v%s"
-msgstr "Bìhá na %s v%s"
+msgstr "Powered by %s v%s"
 
-#: ../util.php:2550
+#: ../util.php:2563
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Vynechávám neplatnou e-mailovou adresu %s"
 
-#: ../util.php:2615
+#: ../util.php:2628
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
-msgstr "Poznámka: Toto je automaticky generovaný e-mail  odeslaný z %s. Pokud jste ho dostal omylem, ignorujte ho, prosím."
+msgstr "Poznámka: Toto je automaticky generovaný e-mail  odeslaný ze stránky %s. Pokud jste ho dostal omylem, ignorujte ho, prosím."
 
-#: ../util.php:2617
+#: ../util.php:2630
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Oznamte zneu¾ití na %s"
 
-#: ../util.php:2633
+#: ../util.php:2646
 msgid "Email not sent as it is disabled for this gallery"
-msgstr "E-mail nebyl odeslán, proto¾e je zablokován v této Gallery."
+msgstr "E-mail nebyl odeslán, proto¾e je zablokován v této Gallery"
 
-#: ../util.php:2638
+#: ../util.php:2651
 #, php-format
 msgid "Email not sent as no address provided"
 msgstr "E-mail nebyl odeslán, proto¾e nebyla zadaná e-mailová adresa"
 
-#: ../util.php:2644
+#: ../util.php:2657
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "E-mail nebyl odeslán, proto¾e %s není platná adresa"
 
-#: ../util.php:2660
+#: ../util.php:2673
 #, php-format
 msgid "Sender address %s is invalid, using %s."
-msgstr "Odesílatelova adresa %s není platná, pou¾ita bude %s."
+msgstr "Adresa odesílatele %s je neplatná, pou¾ita bude %s."
 
-#: ../util.php:2674
+#: ../util.php:2687
 msgid "Administrator"
 msgstr "Administrátor"
 
-#: ../util.php:2706 ../util.php:2711
+#: ../util.php:2719 ../util.php:2724
 msgid "not shown"
-msgstr ""
+msgstr "nezobrazeno"
 
-#: ../util.php:2715
+#: ../util.php:2728
 msgid "Message"
 msgstr "Zpráva"
 
-#: ../util.php:2719
+#: ../util.php:2732
 msgid "Email sent"
 msgstr "E-mail byl odeslán"
 
-#: ../util.php:2721
+#: ../util.php:2734
 msgid "Email not sent"
 msgstr "E-mail nebyl odeslán"
 
-#: ../util.php:2854
+#: ../util.php:2867
 #, php-format
 msgid "Last comment %s."
 msgstr "Poslední komentáø %s."
 
-#: ../util.php:2866
+#: ../util.php:2879
 msgid "FAILED"
-msgstr ""
+msgstr "SELHALO"
 
-#: ../util.php:2875
+#: ../util.php:2888
 msgid "Email activity"
 msgstr "E-mailová èinnost"
 
-#: ../util.php:2900
+#: ../util.php:2913
 #, php-format
 msgid "Cannot open logfile: %s"
-msgstr "Nemohu otevøít logovací soubor %s"
+msgstr "Nemohu otevøít logovací soubor: %s"
 
-#: ../util.php:2907
+#: ../util.php:2920
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3746,76 +3751,76 @@ msgid ""
 msgstr ""
 "Ahoj !!FULLNAME!!,  \n"
 "\n"
-"Gratulujeme.  Právì jste byl pøidán do %s v %s.  Va¹e u¾ivatelské jméno je !!USERNAME!!.  Prosím nav¹tivte Gallery co nejdøíve a vytvoøte si heslo kliknutím na tyto odkazy:\n"
+"Gratulujeme.  Právì jste byl pøidán do %s na %s.  Va¹e u¾ivatelské jméno je !!USERNAME!!.  Prosím, nav¹tivte Gallery co nejdøíve a vytvoøte si heslo kliknutím na tento odkaz:\n"
 "\n"
 "!!NEWPASSWORDLINK!!\n"
 "\n"
-"Gallery @ %s Administrator."
+"Gallery @ %s Administrátor."
 
-#: ../util.php:2916 ../util.php:2918
+#: ../util.php:2929 ../util.php:2931
 msgid "gallery title"
 msgstr "titulek galerie"
 
-#: ../util.php:2917
+#: ../util.php:2930
 msgid "gallery URL"
 msgstr "URL galerie"
 
-#: ../util.php:2947
+#: ../util.php:2960
 msgid "No Skin"
-msgstr "®ádné téma"
+msgstr "®ádný vzhled"
 
-#: ../util.php:2948
+#: ../util.php:2961
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
-msgstr ""
+msgstr "<dt>%s</dt><dd>Originální vzhled.</dd>"
 
-#: ../util.php:2993 ../util.php:2997
+#: ../util.php:3006 ../util.php:3010
 msgid "unknown"
 msgstr "neznámá"
 
-#: ../util.php:3001
+#: ../util.php:3014
 msgid "Version"
 msgstr "Verze"
 
-#: ../util.php:3003
+#: ../util.php:3016
 msgid "Last Update"
 msgstr "Poslední úprava"
 
-#: ../util.php:3023 ../util.php:3028
+#: ../util.php:3036 ../util.php:3041
 msgid "Dots"
 msgstr "Teèky"
 
-#: ../util.php:3024 ../util.php:3029
+#: ../util.php:3037 ../util.php:3042
 msgid "Solid"
-msgstr "Plné"
+msgstr "Plný"
 
-#: ../util.php:3027
+#: ../util.php:3040
 msgid "No frames"
 msgstr "®ádné okraje"
 
-#: ../util.php:3028
+#: ../util.php:3041
 msgid "Just a simple dashed border around the thumb."
 msgstr "Pouze jednoduchý èákovaný okraj okolo náhledu."
 
-#: ../util.php:3029
+#: ../util.php:3042
 msgid "Just a simple solid border around the thumb."
-msgstr "Pouze jednoduchý okraj okolo náhledu."
+msgstr "Pouze jednoduchý plný okraj okolo náhledu."
 
-#: ../util.php:3050
+#: ../util.php:3063
 #, php-format
 msgid "Skipping %s."
 msgstr "Pøeskakuji %s."
 
-#: ../util.php:3056
+#: ../util.php:3069
 #, php-format
 msgid "Can't open %s"
 msgstr "Nemohu otevøít %s."
 
-#: ../util.php:3176 ../util.php:3195
+#: ../util.php:3189 ../util.php:3208
 msgid "Not valid yet"
 msgstr "Zatím neplatné"
 
-#: ../util.php:3438
+#: ../util.php:3451
 msgid "EXIF Data"
 msgstr "EXIF data"
 
@@ -3915,11 +3920,11 @@ msgstr "administrátorská nastavení"
 
 #: ../view_album.php:514
 msgid "You have no votes recorded for this poll."
-msgstr "V tomto hlasování nemáte zaznamenán ¾ádný las."
+msgstr "V tomto hlasování nemáte zaznamenán ¾ádný hlas."
 
 #: ../view_album.php:518
 msgid "Your current choices are"
-msgstr "Va¹e souèasné hlasování je:"
+msgstr "Va¹e souèasné volby jsou"
 
 #: ../view_album.php:558
 msgid "See full poll results"
@@ -3941,7 +3946,7 @@ msgstr "Chcete-li hlasovat pro nìjakou fotku, klepnìte na %s."
 #: ../view_album.php:585
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
-msgstr "MUSÍTE klepnout na %s, aby byl vá¹ hlas zapoèítán."
+msgstr "MUSÍTE kliknout na %s, aby byl vá¹ hlas zapoèítán."
 
 #: ../view_album.php:590
 #, php-format
@@ -3999,7 +4004,7 @@ msgstr "Videoklip"
 
 #: ../view_album.php:895
 msgid "Photo"
-msgstr "fotku"
+msgstr "Fotku"
 
 #: ../view_album.php:917 ../view_album.php:953
 msgid "Edit Thumbnail"
@@ -4069,23 +4074,23 @@ msgstr "Vodoznak alba"
 msgid "View Comments"
 msgstr "Zobrazit komentáøe"
 
-#: ../view_album.php:1057
+#: ../view_album.php:1058
 msgid "Hey! Add some photos."
 msgstr "Hej! Pøidejte nìjaké fotky."
 
-#: ../view_album.php:1059
+#: ../view_album.php:1060
 msgid "This album is empty."
 msgstr "Toto album je prázdné"
 
-#: ../view_album.php:1102
+#: ../view_album.php:1104
 msgid "Email me when one of the following actions are done to this album:"
-msgstr ""
+msgstr "Po¹li mi e-mail, pokud v tomto albu nastane jedna z následujících situací:"
 
-#: ../view_album.php:1107
+#: ../view_album.php:1109
 msgid "Comments are added"
 msgstr "Komentáø byl pøidán"
 
-#: ../view_album.php:1110
+#: ../view_album.php:1112
 msgid "Other changes are made"
 msgstr "Ostatní zmìny byli provedeny"
 
@@ -4131,13 +4136,12 @@ msgid "photo properties"
 msgstr "vlastnosti fotky"
 
 #: ../view_photo.php:442
-#, fuzzy
 msgid "Send photo to..."
-msgstr "Mìním velikost 1 fotky"
+msgstr "Odeslat fotku do..."
 
 #: ../view_photo.php:444
 msgid "Print photo with..."
-msgstr ""
+msgstr "Vytisknout fotku v..."
 
 #: ../view_photo.php:476
 #, php-format
@@ -4167,6 +4171,3 @@ msgstr "Pøidávám vodoznak do alba."
 #: ../watermark_album.php:103
 msgid "No items to watermark."
 msgstr "®ádné polo¾ky pro aplikaci vodoznaku."
-
-#~ msgid "Select service"
-#~ msgstr "Zvolte slu¾bu"
