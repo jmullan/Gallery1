@@ -9,15 +9,13 @@ if [ ! -f .htaccess ]; then
 fi
 chmod 666 config.php .htaccess
 
-cat <<EOF
-
-You are now in setup mode, which is *INSECURE*.  Your Gallery
-installation can be configured by pointing your web browser
-to the URL to 'setup' in this directory.
-
-When you are done with your installation, don't forget to
-run the secure.sh script!
-
-    % sh secure.sh
-
-EOF
+echo ""
+echo "You are now in setup mode, which is *INSECURE*.  Your Gallery"
+echo "installation can be configured by pointing your web browser"
+echo "to the URL to 'setup' in this directory."
+echo ""
+echo "When you are done with your installation, don't forget to"
+echo "run the secure.sh script!"
+echo ""
+echo "    % sh secure.sh"
+echo ""

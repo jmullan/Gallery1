@@ -9,11 +9,9 @@ if [ -f .htaccess ]; then
     chmod 644 .htaccess
 fi
 
-cat <<EOF
-
-Your Gallery is now secure and cannot be configured.  If
-you wish to reconfigure it, run:
-
-    % sh configure.sh
-
-EOF
+echo ""
+echo "Your Gallery is now secure and cannot be configured.  If"
+echo "you wish to reconfigure it, run:"
+echo ""
+echo "    % sh configure.sh"
+echo ""
