@@ -2,18 +2,12 @@
 // $Id$
 
 //-- shorten the variables for convinience ---
-if (!empty($GLOBALS['HTTP_GET_VARS']["GALLERY_BASEDIR"]) ||
-	       	!empty($GLOBALS['HTTP_POST_VARS']["GALLERY_BASEDIR"]) ||
-	       	!empty($GLOBALS['HTTP_COOKIE_VARS']["GALLERY_BASEDIR"])) {
-       	print _("Security violation") ."\n";
-       	exit;
-}
 
 $borderWidth = $gallery->html_wrap['borderWidth'];
 $borderColor = $gallery->html_wrap['borderColor'];
 $pixelImage = isset($gallery->html_wrap['pixelImage']) ?
      $gallery->html_wrap['pixelImage'] :
-    "${GALLERY_BASEDIR}images/pixel_trans.gif";
+    dirname(dirname(__FILE__)) . '/images/pixel_trans.gif';
 $imageWidth = $gallery->html_wrap['imageWidth'];
 $imageHeight = $gallery->html_wrap['imageHeight'];
 $href = $gallery->html_wrap['imageHref'];
