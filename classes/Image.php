@@ -94,8 +94,8 @@ class Image {
 		}
 	}
 
-	function getName($dir) {
-		if (file_exists("$dir/$this->resizedName.$this->type")) {
+	function getName($dir, $full=0) {
+		if ((!$full) && (file_exists("$dir/$this->resizedName.$this->type"))) {
 			return $this->resizedName;
 		} else {
 			return $this->name;
@@ -106,8 +106,8 @@ class Image {
 		return $this->name;
 	}
 	
-	function getPath($dir) {
-		$name = $this->getName($dir);
+	function getPath($dir, $full=0) {
+		$name = $this->getName($dir, $full);
 		return "$dir/$name.$this->type";
 	}
 
