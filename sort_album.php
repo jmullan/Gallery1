@@ -77,10 +77,12 @@ if ($gallery->album->getHighlight()) {
     <td><input type="radio" name="sort" value="random">&nbsp;Randomly</td>
   </tr>
   <tr>
+    <td align=center>
 <select name="order">
   <option value="0">Ascending</option>
   <option value="1">Descending</option>
 </select>
+    </td>
   </tr>
 </table>
 <br>
