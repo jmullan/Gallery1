@@ -399,7 +399,7 @@ if (!$gallery->album->isMovie($id)) {
 		);
 		/* display a <select> menu if more than one option */
 		if ($numServices > 1) {
-			$selectCommand = '<select name="print_services" class="admin" onChange="doPrintService()">';
+			$selectCommand = '<select name="print_services" class="adminform" onChange="doPrintService()">';
 			$selectCommand .= '<option value="">&laquo; '. _("Select service") .' &raquo;</option>';
 			foreach ($printServices as $name => $data) {
 				/* skip if it's not actually selected */
