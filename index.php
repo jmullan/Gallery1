@@ -107,7 +107,8 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 	
 	if (!in_array($include, $safe_to_include)) {
 	    $include = escapeshellcmd($include);
-	    print sprintf(_("Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit Gallery's index.php and add <b>%s</b> to the <i>\$safe_to_include</i> array"), $include);
+	    print sprintf(_("Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit %s's index.php and add <b>%s</b> to the <i>\$safe_to_include</i> array"), 
+			    Gallery(), $include);
 	    exit;
 	}
 

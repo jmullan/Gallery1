@@ -192,7 +192,8 @@ if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
     foreach ($albumDB->brokenAlbums as $tmpAlbumName) {
 	$broken_albums .= "$tmpAlbumName<br>";
     }
-    print sprintf(_("Gallery has detected the following directories: %s in your albums directory (%s)."),
+    print sprintf(_("%s has detected the following directories: %s in your albums directory (%s)."),
+		    Gallery(),
 		    "<br><br> <center>$broken_albums</center>",
 		    $gallery->app->albumDir);
     print "<br>";

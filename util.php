@@ -1610,8 +1610,9 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				processingMsg("<font color=red>" . 
 						sprintf(_("Error: %s!"), $err) .
 						"</font>");
-				processingMsg("<b>". sprintf(_("Need help?  Look in the  %sGallery FAQ%s"),
+				processingMsg("<b>". sprintf(_("Need help?  Look in the  %s%s FAQ%s"),
 				    '<a href="http://gallery.sourceforge.net/faq.php" target=_new>', 
+				    Gallery(),
 				    '</a>')."</b>");
 			}
 		} else {
@@ -1894,4 +1895,8 @@ function vd($x, $string="") {
 	var_dump($x);
 	print "</pre>\n";
 }       
+/* returns the offical name of the gallery */
+function Gallery() {
+	return "Gallery";
+}
 ?>

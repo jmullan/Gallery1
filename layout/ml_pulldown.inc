@@ -2,15 +2,7 @@
 <script language="JavaScript">
 function ML_reload() {
 	var newlang=document.MLForm.newlang[document.MLForm.newlang.selectedIndex].value ;
-	<?php
-		$len=strpos($HTTP_SERVER_VARS['REQUEST_URI'],"&newlang");
-		if ($len == FALSE) $len=strlen($HTTP_SERVER_VARS['REQUEST_URI']);
-		$path=substr($HTTP_SERVER_VARS['REQUEST_URI'],0, $len);
-		if (strpos($path,"?") == FALSE) $path=$path ."?";
-	?>
-	var new_path='<?php echo $path ?>&newlang='+ newlang;
-//	alert('<?php echo $HTTP_SERVER_VARS['REQUEST_URI'] ?>' + ' <-----> ' + new_path);
-	window.location.href=new_path;
+	window.location.href=newlang;
 }
 </script>
 
@@ -28,7 +20,9 @@ function ML_reload() {
 	$nls = getNLS();
 	foreach ($gallery->app->available_lang as $value) {
 		if ($gallery->language == $value) $selected="selected"; else $selected="";
-		echo "\n\t\t<option value=\"$value\" $selected>" . $nls['languages'][$value] ."</option>";
+		echo "\n\t\t<option value=\"".makeGalleryUrl(
+				end(explode("/", $_SERVER["PHP_SELF"])),
+				array("newlang" => $value))."\" $selected>" . $nls['languages'][$value] ."</option>";
 	}
 ?>
 	</select>

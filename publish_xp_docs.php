@@ -46,7 +46,7 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 </span>
 </center>
 
-<?php echo _("Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.  Gallery <b>has experimental</b> support for this feature.") ?>
+<?php echo sprintf(_("Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.  %s <b>has experimental</b> support for this feature."), Gallery()) ?>
 <?php echo _("It's relatively easy to configure.") ?>  
 
 <br>
