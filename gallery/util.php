@@ -88,7 +88,7 @@ function exec_internal($cmd) {
 
 	if (isDebugging()) {
 		print "<br> Results: <pre>" . join("\n", $results);
-		print "<br> Status: $status";
+		print "<br> Status: $status (expected $app->expectedExecStatus)";
 	}
 
 	return array($results, $status);
@@ -100,7 +100,7 @@ function getDimensions($file) {
 	list($lines, $status) = 
 		exec_internal(toPnmCmd($file) . "| $app->pnmDir/pnmfile ");
 
-	if ($status == 0) {
+	if ($status == $app->expectedExecStatus) {
 		foreach ($lines as $line) {
 			if (ereg("([0-9]+) by ([0-9]+)", $line, $regs)) {
 				return array($regs[1], $regs[2]);
@@ -258,7 +258,7 @@ function valid_image($file) {
 	list($results, $status) = 
 		exec_internal(toPnmCmd($file) . "| $app->pnmDir/pnmfile");
 
-	if ($status == 0) {
+	if ($status == $app->expectedExecStatus) {
 		return 1;
 	} else {
 		return 0;
@@ -312,7 +312,7 @@ function exec_wrapper($cmd) {
 
 	list($results, $status) = exec_internal($cmd);
 
-	if ($status == 0) {
+	if ($status == $app->expectedExecStatus) {
 		return 0;
 	} else {
 		if ($results) {
