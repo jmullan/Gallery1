@@ -22,6 +22,7 @@
  * $Id$
  */
 ?>
+<?php
 if (!file_exists(dirname(__FILE__) . '/util.php')) {
 	print _("You must move this file to the main Gallery directory before running it.");
 	exit;
