@@ -113,7 +113,7 @@ if ($gallery->album && isset($id)) {
 	} else {
 ?>
 <div class="popuphead"><?php echo _("Delete Photo") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <?php 
 	echo _("Do you really want to delete this photo?") ;
         echo makeFormIntro("delete_photo.php", array('name' => 'deletephoto_form',
