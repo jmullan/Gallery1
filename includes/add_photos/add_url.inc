@@ -48,7 +48,7 @@
 </p>
 
 <p align="center">
-<input type="button" value="<?php echo _("Submit URL or directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()'>
+<input type="button" value="<?php echo _("Submit URL or directory") ?>" onclick='parent.opener.showProgress(); document.uploadurl_form.submit()'>
 <input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </p>
 </form>

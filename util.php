@@ -39,7 +39,7 @@ function editField($album, $field, $link=null) {
 			$buf = "<i>&lt;". _("Empty") . "&gt;</i>";
 		}
 		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field"; // should replace with &amp; for validatation
-		$buf .= " <span class=editlink>";
+		$buf .= " <span class=\"editlink\">";
 		$buf .= popup_link( "[". sprintf(_("edit %s"), _($field)) . "]", $url) ;
 		$buf .= "</span>";
 	}
@@ -98,7 +98,7 @@ function viewComments($index, $addComments, $page_url) {
 		       	$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
 	       		echo "\n" .'<div align="center" class="editlink">' .
 				popup_link('[' . _("add comment") . ']', $url, 0) .
-				'</div><br>';
+				'</div><br />';
 		}
        	}
 
@@ -121,13 +121,13 @@ function drawCommentAddForm($commenter_name='', $cols=50) {
 	<td class="commentboxhead">
 <?php
 			if (!$gallery->user->isLoggedIn() ) {
-				echo "<input name=\"commenter_name\" value=\"". $commenter_name ."\" size=\"30\">";
+				echo "<input name=\"commenter_name\" value=\"". $commenter_name ."\" size=\"30\" />";
 			} else {
 				if ($gallery->app->comments_anonymous == 'yes') {
-					echo '<input name="commenter_name" value="'.$commenter_name.'" size="30">';
+					echo '<input name="commenter_name" value="'.$commenter_name.'" size="30" />';
 				} else {
 					echo $commenter_name;
-					echo '<input type="hidden" name="commenter_name" value="'. $commenter_name .'" size="30">';
+					echo '<input type="hidden" name="commenter_name" value="'. $commenter_name .'" size="30" />';
 				}
 			}
 ?>
@@ -138,7 +138,7 @@ function drawCommentAddForm($commenter_name='', $cols=50) {
 	<td><textarea name="comment_text" cols="<?php echo $cols ?>" rows="5"></textarea></td>
 </tr>
 <tr>
-	<td colspan="2" class="commentboxfooter" align="right"><input name="save" type="submit" value="<?php echo _("Post") ?>"></td>
+	<td colspan="2" class="commentboxfooter" align="right"><input name="save" type="submit" value="<?php echo _("Post") ?>" /></td>
 </tr>
 </table>
 <?php 
@@ -212,7 +212,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
     $link_name = "popuplink_".$popup_counter;
     $url = build_popup_url($url, $url_is_complete);
     
-	$a1 = "<a $cssclass id=\"$link_name\" target=\"Edit\" href=\"$url\" onClick=\"javascript:".
+	$a1 = "<a $cssclass id=\"$link_name\" target=\"Edit\" href=\"$url\" onclick=\"javascript:".
 	popup_js("document.getElementById('$link_name').href", "Edit",
 		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
 	"\">";
@@ -232,7 +232,7 @@ function exec_internal($cmd) {
 	fs_exec($cmd, $results, $status, $debugfile);
 
 	if (isDebugging()) {
-		print "<br>" . _("Results:") ." <pre>";
+		print "<br />" . _("Results:") ." <pre>";
 		if ($results) {
 			print join("\n", $results);
 		} else {
@@ -241,7 +241,7 @@ function exec_internal($cmd) {
 		print "</pre>";
 
 		if (file_exists($debugfile)) {
-			print "<br> ". _("Error messages:") .": <pre>";
+			print "<br /> ". _("Error messages:") .": <pre>";
 			if ($fd = fs_fopen($debugfile, "r")) {
 				while (!feof($fd)) {
 					$buf = fgets($fd, 4096);
@@ -252,7 +252,7 @@ function exec_internal($cmd) {
 			unlink($debugfile);
 			print "</pre>";
 		}
-		print "<br> ". sprintf(_("Status: %s (expected %s)"),
+		print "<br /> ". sprintf(_("Status: %s (expected %s)"),
 				$status, $gallery->app->expectedExecStatus);
 	}
 
@@ -264,7 +264,7 @@ function getDimensions($file, $regs=false) {
 
 	if (! fs_file_exists($file)) {
 		if (isDebugging()) {
-			echo "<br>". sprintf(_("The file %s does not exist ?!"),$file);
+			echo "<br />". sprintf(_("The file %s does not exist ?!"),$file);
 		}
 		exit;
 	}
@@ -274,8 +274,8 @@ function getDimensions($file, $regs=false) {
 	if (($regs[0] > 1) && ($regs[1] > 1))
 		return array($regs[0], $regs[1]);
 	else if (isDebugging())
-		echo "<br>" .sprintf(_("PHP's %s unable to determine dimensions."),
-				"getimagesize()") ."<br>";
+		echo "<br />" .sprintf(_("PHP's %s unable to determine dimensions."),
+				"getimagesize()") ."<br />";
 		
 
 	/* Just in case php can't determine dimensions. */
@@ -294,7 +294,7 @@ function getDimensions($file, $regs=false) {
 		break;
 	default:
 		if (isDebugging())
-			echo "<br>" . _("You have no graphics package configured for use!") ."<br>";
+			echo "<br />" . _("You have no graphics package configured for use!") ."<br />";
 		return array(0, 0);
 		break;
 	}
@@ -316,7 +316,7 @@ function getDimensions($file, $regs=false) {
 	}
 
 	if (isDebugging())
-		echo "<br>Unable to determine image dimensions!<br>";
+		echo "<br />Unable to determine image dimensions!<br />";
 
 	return array(0, 0);
 }
@@ -591,7 +591,7 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
          break;
       default:
          if (isDebugging())
-            echo "<br> ". _("You have no graphics package configured for use!") ."<br>";
+            echo "<br /> ". _("You have no graphics package configured for use!") ."<br />";
          return 0;
       }
    } else {
@@ -846,7 +846,7 @@ function rotate_image($src, $dest, $target, $type) {
 			break;
 		default:
 			if (isDebugging())
-				echo "<br>". _("You have no graphics package configured for use!") ."<br>";
+				echo "<br />". _("You have no graphics package configured for use!") ."<br />";
 			return 0;
 			break;
 		}	
@@ -892,7 +892,7 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 		break;
 	default:
 		if (isDebugging())
-			echo "<br>" . _("You have no graphics package configured for use!") ."<br>";
+			echo "<br />" . _("You have no graphics package configured for use!") ."<br />";
 		return 0;
 		break;
 	}
@@ -911,13 +911,13 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 function valid_image($file) {
 	if (($type = getimagesize($file)) == FALSE) {
 		if (isDebugging()) {
-			echo "<br>". sprintf(_("Call to %s failed in %s for file %s!"), 'getimagesize()', 'valid_image()', $file) ."<br>";
+			echo "<br />". sprintf(_("Call to %s failed in %s for file %s!"), 'getimagesize()', 'valid_image()', $file) ."<br />";
 		}
 		return 0;
 	}
 
 	if (isDebugging()) {
-		echo "<br>". sprintf(_("File %s type %d."), $file, $type[2]) ."<br>";
+		echo "<br />". sprintf(_("File %s type %d."), $file, $type[2]) ."<br />";
 	}
 	switch($type[2])
 	{
@@ -932,7 +932,7 @@ function valid_image($file) {
 	}
 
 	if (isDebugging())
-		echo "<br>". sprintf(_("There was an unknown failure in the %s call!"), 'valid_image()') ."<br>";
+		echo "<br />". sprintf(_("There was an unknown failure in the %s call!"), 'valid_image()') ."<br />";
 	return 0;
 }
 
@@ -1012,7 +1012,7 @@ function exec_wrapper($cmd) {
 		return 0;
 	} else {
 		if ($results) {
-			echo gallery_error(join("<br>", $results));
+			echo gallery_error(join("<br />", $results));
 		}
 		return 1;
 	}
@@ -1152,7 +1152,7 @@ function _getStyleSheetLink($filename, $skinname='') {
 		$url = "$base/${sheetdefaultname}.default";
 	}
 
-	return '  <link rel="stylesheet" type="text/css" href="' .$url . '">';
+	return '  <link rel="stylesheet" type="text/css" href="' .$url . '" />';
 }
 
 function errorRow($key) {
@@ -1753,7 +1753,7 @@ function getExif($file) {
 		    if (trim($value)) {
 			$explodeReturn = explode(':', $value, 2);
 			if (isset($myExif[trim($explodeReturn[0])])) { 
-			    $myExif[trim($explodeReturn[0])] .= "<br>" . 
+			    $myExif[trim($explodeReturn[0])] .= "<br />" . 
 				    trim($explodeReturn[1]);
 			} else {
 			    $myExif[trim($explodeReturn[0])] = 
@@ -1816,7 +1816,7 @@ function getItemCaptureDate($file) {
 	}
 
 	if (isDebugging()) {
-		print "IN UTIL ITEMCAPTUREDATE = ${itemCaptureDate['year']}<br>";
+		print "IN UTIL ITEMCAPTUREDATE = ${itemCaptureDate['year']}<br />";
 	}
 	return $itemCaptureDate;
 }
@@ -1838,7 +1838,7 @@ function breakString($buf, $desired_len=40, $space_char=' ', $overflow=5) {
 		if (($col > $desired_len && $buf{$i} == $space_char) ||
 		    ($col > $desired_len + $overflow)) {
 			$col = 0;
-			$result .= "<br>";
+			$result .= "<br />";
 		}
 	}
 	return $result;
@@ -1957,7 +1957,7 @@ function printChildren($albumName,$depth=0) {
 					echo "<strong>". _("Sub-albums") .":</strong>";
 				}
 				echo "<div style=\"margin: 0px 0px 0px 20px\">";
-				echo "<span class=fineprint>";
+				echo "<span class=\"fineprint\">";
 				echo "<a href=\"";
 				echo makeAlbumUrl($myName);
 				echo "\">$val2 $val3</a>\n";
@@ -2173,7 +2173,7 @@ function processingMsg($buf) {
         global $msgcount;
 
         if ($msgcount) {
-                print "<br>";
+                print "<br />";
         }
         print $buf;
         my_flush();
@@ -2350,7 +2350,7 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 			break;
 		default:
 			if (isDebugging())
-				echo "<br>" . _("You have no graphics package configured for use!")."<br>";
+				echo "<br />" . _("You have no graphics package configured for use!")."<br />";
 			return 0;
 			break;
 	}
@@ -2554,10 +2554,10 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 					$additional_headers));
 		print "</td></tr>";
 		print '<tr><td valign="top">' . _("Message") . 
-			':</td><td valign="top">'. str_replace("\n", "<br>", $msg). '</td></tr>';
+			':</td><td valign="top">'. str_replace("\n", "<br />", $msg). '</td></tr>';
 		print "</table>";
 	       	if ($result) {
-			print _("Email sent")."<br>";
+			print _("Email sent")."<br />";
 		} else {
 			echo gallery_error(_("Email not sent"));
 	       	}
@@ -2573,10 +2573,10 @@ function lastCommentString($lastCommentDate, &$displayCommentLegend) {
 		return  "";
 	}
 	if ($gallery->app->comments_indication_verbose=="yes") {
-		$ret = "<br>".sprintf(_("Last comment %s."), 
+		$ret = "<br />".sprintf(_("Last comment %s."), 
 				strftime($gallery->app->dateString, $lastCommentDate));
 	} else {
-		$ret= "<span class=error>*</span>";
+		$ret= "<span class=\"error\">*</span>";
 		$displayCommentLegend = 1;
 	}
 	return $ret;
@@ -2788,7 +2788,7 @@ function testRequirement($test) {
 }
 
 function doctype() {
-	echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">';
+	echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
 	echo "\n\n";
 }
 
@@ -2804,9 +2804,9 @@ function common_header() {
 function metatags() {
 	global $gallery;
 
-	echo '<meta http-equiv="content-style-type" content="text/css">';
-	echo "\n  ". '<meta http-equiv="content-type" content="Mime-Type; charset='. $gallery->charset .'">';
-	echo "\n  ". '<meta name="content-language" content="' . str_replace ("_","-",$gallery->language) . '">';
+	echo '<meta http-equiv="content-style-type" content="text/css" />';
+	echo "\n  ". '<meta http-equiv="content-type" content="Mime-Type; charset='. $gallery->charset .'" />';
+	echo "\n  ". '<meta name="content-language" content="' . str_replace ("_","-",$gallery->language) . '" />';
 	echo "\n\n";
 }
 
@@ -2825,7 +2825,7 @@ function gallery_validation_link($file, $valid=true, $args='') {
 	$link='<a href="http://validator.w3.org/check?uri='.
 		urlencode(eregi_replace("&amp;", "&",
 					makeGalleryURL($file, $args))) .
-		'"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
+		'"><img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88" /></a>';
 	if (!$valid) {
 		$link .= _("Not valid yet");
 	}
@@ -2844,7 +2844,7 @@ function album_validation_link($album, $photo='', $valid=true) {
 	$link='<a href="http://validator.w3.org/check?uri='.
 		urlencode(eregi_replace("&amp;", "&", 
 					makeAlbumURL($album, $photo, $args))).
-		'"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
+		'"><img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88" /></a>';
 	if (!$valid) {
 		$link .= _("Not valid yet");
 	}
@@ -3052,7 +3052,7 @@ function getExtraFieldsValues($index, $extra_fields, $full) {
 		else {
         	        $value=$gallery->album->getExtraField($index, $key);
                 	if ($value) {
-                        	$table[$key] = str_replace("\n", "<br>", $value);
+                        	$table[$key] = str_replace("\n", "<br />", $value);
 	                }
         	}
 	}

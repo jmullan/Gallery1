@@ -134,7 +134,7 @@ include(dirname(__FILE__) . '/html/userData.inc');
 <?php echo _("Your account information will be sent to the email address you provide.") ?>
 <br><br>
 <input type="submit" name="create" value="<?php echo _("Create") ?>">
-<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onClick='parent.close()'>
+<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <script language="javascript1.2" type="text/JavaScript">
 <!--

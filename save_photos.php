@@ -425,7 +425,7 @@ if (count($image_tags)) {
 <?php } /* end if (count($info_tags)) */ ?>
 <p>
 <input type="hidden" name="setCaption" value="<?php echo $setCaption ?>">
-<input type="button" value="<?php echo _("Add Files") ?>" onClick="parent.opener.showProgress(); document.uploadurl_form.submit()">
+<input type="button" value="<?php echo _("Add Files") ?>" onclick="parent.opener.showProgress(); document.uploadurl_form.submit()">
 </p>
 
 </form>

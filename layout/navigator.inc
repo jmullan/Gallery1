@@ -54,18 +54,18 @@ $maxPages = $navigator["maxPages"];
 #-- 'first' and 'previous button cell ---
 if ($navigator["page"] != 1) {
 	$fpContent ='<a href="'. $url . $navigator['pageVar'] .'=1">';
-	$fpContent .='<img src="'. $fpImgUrl . '" border="0" width="27" height="11" alt="'. $fpAltText .'" title="'. $fpAltText .'">';
+	$fpContent .='<img src="'. $fpImgUrl . '" border="0" width="27" height="11" alt="'. $fpAltText .'" title="'. $fpAltText .'" />';
 	$fpContent .='</a>';
 
 	$ppContent ='<a href="'. $url . $navigator['pageVar'] .'='. $prevPage .'">';
-	$ppContent .='<img src="'. $ppImgUrl . '" border="0" width="72" height="11" alt="'. $ppAltText .'" title="'. $ppAltText .'">';
+	$ppContent .='<img src="'. $ppImgUrl . '" border="0" width="72" height="11" alt="'. $ppAltText .'" title="'. $ppAltText .'" />';
         $ppContent .='</a>';
 
 	$pClass='borderright';
 
 } else {
-	$fpContent='&nbsp';
-	$ppContent='&nbsp';
+	$fpContent='&nbsp;';
+	$ppContent='&nbsp;';
 
 	$pClass='';
 } 
@@ -80,22 +80,22 @@ $ndUrl=getImagePath('nav_dot.gif');
 	for ($i = $begin; $i <= $end; $i++) {
 		if ($i == $current) {
 			$number = "<b>$i</b>";
-			$leftdot = '<img valign="absmiddle" src="'. $ndlUrl .'" alt="leftdot">';
+			$leftdot = '<img valign="absmiddle" src="'. $ndlUrl .'" alt="leftdot" />';
 		} else {
 			$number = '<a class="nav" href="'. $url. $navigator['pageVar'] .'='. $i .'">'. $i .'</a>';
 			if ( $i-1 == $current) {
-				$leftdot = '<img valign="absmiddle" src="'. $ndrUrl .'" alt="leftdot">';
+				$leftdot = '<img valign="absmiddle" src="'. $ndrUrl .'" alt="leftdot" />';
 			} else {
-				$leftdot = '<img valign="absmiddle" src="'. $ndUrl .'"  alt="leftdot">';
+				$leftdot = '<img valign="absmiddle" src="'. $ndUrl .'"  alt="leftdot" />';
 			}
 		}
 		$mpContent .= "&nbsp;$leftdot&nbsp$number\n\t\t";
 	}
 
 	if ($end == $current) {
-		$rightdot = '<img valign="absmiddle" src="'. $ndrUrl .'"  alt="rightdot">';
+		$rightdot = '<img valign="absmiddle" src="'. $ndrUrl .'"  alt="rightdot" />';
 	} else {
-		$rightdot = '<img valign="absmiddle" src="'. $ndUrl .'"  alt="rightdot">';
+		$rightdot = '<img valign="absmiddle" src="'. $ndUrl .'"  alt="rightdot" />';
 	}
 
 	$mpContent .="&nbsp;$rightdot&nbsp;";
@@ -106,17 +106,17 @@ $ndUrl=getImagePath('nav_dot.gif');
 #-- 'next' and 'last' button cell ---
 if ($current < $maxPages) {
 	$npContent ='<a href="'. $url . $navigator['pageVar'] .'='. $nextPage .'">';
-	$npContent .='<img src="'. $npImgUrl . '" border="0" width="72" height="11" alt="'. $npAltText .'" title="'. $npAltText .'">';
+	$npContent .='<img src="'. $npImgUrl . '" border="0" width="72" height="11" alt="'. $npAltText .'" title="'. $npAltText .'" />';
         $npContent .='</a>';
 
 	$lpContent ='<a href="'. $url . $navigator['pageVar'] .'='. $navigator['maxPages'] .'">';
-	$lpContent .='<img src="'. $lpImgUrl . '" border="0" width="27" height="11" alt="'. $lpAltText .'" title="'. $lpAltText .'">';
+	$lpContent .='<img src="'. $lpImgUrl . '" border="0" width="27" height="11" alt="'. $lpAltText .'" title="'. $lpAltText .'" />';
 	$lpContent .='</a>';
 
 	$nClass='borderleft';
 } else {
-	$npContent='&nbsp';
-	$lpContent='&nbsp';
+	$npContent='&nbsp;';
+	$lpContent='&nbsp;';
 
         $nClass ='';
 }

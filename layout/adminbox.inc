@@ -15,7 +15,7 @@ if (!isset($adminbox["commands"])) {
 	$adminbox["commands"] = "";
 }
 
-$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"pixel_trans\">";
+$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"pixel_trans\" />";
 
 $width='';
 if (isset($navigator["fullWidth"]) && isset($navigator["widthUnits"])) {

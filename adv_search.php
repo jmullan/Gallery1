@@ -166,7 +166,7 @@ if (isset($go)) {
 	    else {
 		print _("search albums here") . "<p>";
 	    }
-	    echo "<tr><td valign=top><span class=desc>".
+	    echo "<tr><td valign=\"top\"><span class=\"desc\">".
 		    pluralize_n2(ngettext("One album matches", "%d albums match", $albumMatch), $albumMatch, _("No album matches")) .".</span></td></tr>";
 	    echo "</table><br>";
     }
@@ -230,7 +230,7 @@ if (isset($go)) {
 	else {
 		print _("search photos here") . "<p>";
 	}
-	    echo "<tr><td valign=top><span class=desc>".
+	    echo "<tr><td valign=\"top\"><span class=\"desc\">".
 			pluralize_n2(ngettext("One photo matches", "%d photos match", $photoMatch), $photoMatch, _("No photo matches")).".
 		    "</span></td></tr>";
 	    echo "</table><br>";
@@ -306,7 +306,7 @@ if (isset($go)) {
 	else {
 		print _("search comments here") . "<p>";
 	}
-	    echo "<tr><td valign=top><span class=desc>".
+	    echo "<tr><td valign=\"top\"><span class=\"desc\">".
 			pluralize_n2(ngettext("One comment Matches", "%d comment match", $commentMatch), 
 				$commentMatch, _("No comment matches")) .
 		    "</span></td></tr>";

@@ -114,7 +114,7 @@ foreach ($gallery->album->getExtraFields() as $field)
 ?>
 
 <tr>
-	<td valign=top><b><?php echo _("Keywords") ?>:</b></td>
+	<td valign=\"top\"><b><?php echo _("Keywords") ?>:</b></td>
 	<td><textarea name="keywords" rows="1" cols="40"><?php echo $gallery->album->getKeywords($index) ?></textarea></td>
 </tr>
 </table>

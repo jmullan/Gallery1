@@ -60,7 +60,7 @@ if (isset($username) && isset($gallerypassword)) {
 	       	if (!$gallery->session->offline) {
 		       	dismissAndReload();
 	       	} else {
-		       	print "<span class=error>SUCCEEDED</span><p>";
+		       	print "<span class=\"error\">SUCCEEDED</span><p>";
 		       	return;
 	       	}
        	} else {
@@ -77,7 +77,7 @@ if (isset($username) && isset($gallerypassword)) {
 <table>
 <?php if (isset($invalid)) { ?>
  <tr>
-  <td colspan=2>
+  <td colspan="2">
    <?php echo gallery_error(_("Invalid username or password")); ?>
   </td>
  </tr>
@@ -94,7 +94,7 @@ if (isset($username) && isset($gallerypassword)) {
 
 <?php if (isset($error) && !isset($username)) { ?>
  <tr>
-  <td colspan=2 align=center>
+  <td colspan="2" align="center">
    <?php echo gallery_error(_("You must specify a username")); ?>
   </td>
  </tr>
@@ -111,7 +111,7 @@ if (isset($username) && isset($gallerypassword)) {
 
 <?php if (isset($error) && !isset($gallerypassword)) { ?>
  <tr>
-  <td colspan=2 align=center>
+  <td colspan="2" align="center">
    <?php echo gallery_error(_("You must specify a password")); ?>
   </td>
  </tr>

@@ -25,11 +25,11 @@
 <?php echo _("You can use one of these desktop agents to drag and drop photos from your desktop") ?>:
 <br>
 <ul>
-<li><b><a href="#" onClick="parent.opener.location = 'http://gallery.sourceforge.net/gallery_remote.php'; parent.close();">Gallery Remote</a></b></li>
+<li><b><a href="#" onclick="parent.opener.location = 'http://gallery.sourceforge.net/gallery_remote.php'; parent.close();">Gallery Remote</a></b></li>
 <dt><?php echo _("A Java application that runs on Mac, Windows and Unix") ?></dt>
 
 <br>
-<li><b><a href="#" onClick="parent.opener.location = 'http://gallery.sourceforge.net/wiki.php?page=Other%20methods'; parent.close();"><?php echo _("Other methods") ?></a></b></li>
+<li><b><a href="#" onclick="parent.opener.location = 'http://gallery.sourceforge.net/wiki.php?page=Other%20methods'; parent.close();"><?php echo _("Other methods") ?></a></b></li>
 <dt><?php echo _("See a couple of other Methods for adding pictures to your Gallery on Gallerys Website.") ?></dt>
 
 <?php if (empty($GALLERY_EMBEDDED_INSIDE)) { ?>

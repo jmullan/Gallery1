@@ -35,7 +35,7 @@ if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	echo "\n<tr>";
 	echo "\n\t". '<td colspan="3" align="center" class="commentboxfooter">';
         $url = doCommand("delete-comment", array("index" => $index, "comment_index" => $i), "view_photo.php", array("set_albumName" => $gallery->session->albumName, "id" => $id));
-	echo '<a href="#" onClick="javascript:' . popup($url,1) . '">['. _("delete comment") . ']</a>';
+	echo '<a href="#" onclick="javascript:' . popup($url,1) . '">['. _("delete comment") . ']</a>';
 	echo "\n\t</td>";
 	echo "\n</tr>";
 }

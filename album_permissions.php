@@ -188,7 +188,7 @@ echo makeFormIntro("album_permissions.php",
 
   <td> &nbsp; </td>
 
-  <td valign=top>
+  <td valign="top">
    <table border="0" cellspacing="3" cellpadding="0">
     <tr>
      <td colspan="2" class="popup">

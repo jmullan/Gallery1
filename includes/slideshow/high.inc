@@ -500,11 +500,11 @@ function slideshow_controlPanel()
     <span class=admin>
 
 <?php
-        echo "&nbsp;<a class=\"admin\" href='#' onClick='stopOrStart(); return false;'>[<span id='stopOrStartText'>" . _("stop") . "</span>]</a>";
-        echo "&nbsp;<a class=\"admin\" href='#' onClick='changeDirection(); return false;'>[<span id='changeDirText'>" . _("reverse direction") . "</span>]</a>";
+        echo "&nbsp;<a class=\"admin\" href='#' onclick='stopOrStart(); return false;'>[<span id='stopOrStartText'>" . _("stop") . "</span>]</a>";
+        echo "&nbsp;<a class=\"admin\" href='#' onclick='changeDirection(); return false;'>[<span id='changeDirText'>" . _("reverse direction") . "</span>]</a>";
 
         if ($full_option) {
-            echo "&nbsp;<a class=\"admin\" href='#' onClick='fullOrNormal(); return false;'>[<span id='fullOrNormalText'>" . _("full size") . "</span>]</a>";
+            echo "&nbsp;<a class=\"admin\" href='#' onclick='fullOrNormal(); return false;'>[<span id='fullOrNormalText'>" . _("full size") . "</span>]</a>";
         } 
         echo "&nbsp;&nbsp;||";
 
