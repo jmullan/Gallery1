@@ -50,7 +50,7 @@ class AlbumDB {
 				$album = new Album;
 				if ($album->load($name,$loadphotos)) {
 					array_push($this->albumList, $album);
-				} else {
+				} else if ($name != 'CVS') {
 					array_push($this->brokenAlbums, $name);
 				}
 				$i++;
