@@ -127,6 +127,7 @@ class Album {
 
 	function resizeAllPhotos($target) {
 		for ($i = 0; $i < $this->numPhotos(1); $i++) {
+			set_time_limit(30);
 			if (!$this->isMovie($i)) {
 				$this->resizePhoto($i, $target);
 			}
