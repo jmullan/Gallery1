@@ -723,6 +723,16 @@ if ($numPhotos) {
 				$gallery->html_wrap['imageTag'] = $gallery->album->getThumbnailTag($i);
 				$gallery->html_wrap['imageHref'] = $gallery->album->getPhotoPath($i);
 				$gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
+			       	/*begin backwards compatibility */
+			       	// $gallery->html_wrap['thumbWidth'] = 
+					// $gallery->html_wrap['imageWidth'];
+			       	// $gallery->html_wrap['thumbHeight'] = 
+					// $gallery->html_wrap['imageHeight'];
+			       	$gallery->html_wrap['thumbTag'] = 
+					$gallery->html_wrap['imageTag'];
+			       	$gallery->html_wrap['thumbHref'] = 
+					$gallery->html_wrap['imageHref'];
+			       	/*end backwards compatibility*/
 				includeHtmlWrap('inline_moviethumb.frame');
 			} elseif ($gallery->album->isAlbumName($i)) {
 				$myAlbumName = $gallery->album->isAlbumName($i);
@@ -732,12 +742,30 @@ if ($numPhotos) {
 				$gallery->html_wrap['imageTag'] = $myAlbum->getHighlightAsThumbnailTag($scaleTo);
 				$gallery->html_wrap['imageHref'] = makeAlbumUrl($myAlbumName);
 				$gallery->html_wrap['frame'] = $gallery->album->fields['album_frame'];
+			       	/*begin backwards compatibility */
+			       	$gallery->html_wrap['thumbWidth'] = 
+					$gallery->html_wrap['imageWidth'];
+			       	$gallery->html_wrap['thumbHeight'] = 
+					$gallery->html_wrap['imageHeight'];
+			       	$gallery->html_wrap['thumbTag'] = 
+					$gallery->html_wrap['imageTag'];
+			       	$gallery->html_wrap['thumbHref'] = 
+					$gallery->html_wrap['imageHref'];
+			       	/*end backwards compatibility*/
+      
 				includeHtmlWrap('inline_albumthumb.frame');
 
 			} else {
 				$gallery->html_wrap['imageTag'] = $gallery->album->getThumbnailTag($i);
 				$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->session->albumName, $id);
 				$gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
+			       	/*begin backwards compatibility */
+			       	$gallery->html_wrap['thumbTag'] =
+				       	$gallery->html_wrap['imageTag'];
+			       	$gallery->html_wrap['thumbHref'] =
+				       	$gallery->html_wrap['imageHref'];
+			       	/*end backwards compatibility*/
+      
 				includeHtmlWrap('inline_photothumb.frame');
 
 				if (!strcmp($gallery->album->fields['showDimensions'], 'yes')) {

@@ -94,8 +94,8 @@ initLanguage();
 	      <a href="check_versions.php"><?php echo _("Check versions") ?></a>
 	    </td>
 	    <td class="desc" valign="top">
-		<?php echo _("This page is for %s upgrades that have problems.") ?>
-		<?php echo sprintf(_("This allows you to check you have the correct version of all your Gallery files."), Gallery()) ?>
+		<?php echo sprintf(_("This page is for %s upgrades that have problems."), Gallery()); ?>
+		<?php echo sprintf(_("This allows you to check you have the correct version of all your %s files."), Gallery()) ?>
 	    </td>
 	  </tr>
 	</table>
