@@ -29,7 +29,7 @@
 
 <div class="sitedesc">
 <?php
-	echo _("Here you can customize the default values for <b>new albums</b> that you create. These settings have no effect on existing albums !");
+	echo _("Here you can customize the default values for <b>new albums</b> that you create. These settings have no effect on existing albums!");
 	echo '<br>';
 	echo _("Note that these are <b>not master switches</b>. This means you can change those settings for each separately.");
 	echo _("If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");

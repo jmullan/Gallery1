@@ -34,6 +34,20 @@ if ($locale_check == NULL) {
 	$elawisyl = "yes";
 }
 
+if (function_exists("posix_getpwuid")) {
+	$rec = @posix_getpwuid(posix_getuid());
+	$webserver_user = $rec["name"];
+} else {
+	$whoami = locateFile("whoami");
+	if ($whoami) {
+		fs_exec($whoami, $results, $status);
+		$webserver_user = $results[0];
+	} else {
+		$webserver_user = _("unknown");
+	}
+}
+
+
 $common_messages["getting-netpbm"] = 
 			sprintf(_("Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."), 
 				 "<a href=\"http://sourceforge.net/projects/gallery\">",
@@ -495,14 +509,14 @@ $constants =  array_merge(
 		"choices" => array(
 				1 => "1: " . _("Gallery is only displayed in one language"), 
 				2 => "2: " . _("Gallery is displayed in the language the browser sends"), 
-				3 => "3: " . _("The User can choose the language via pulldown menu or flags.")),
+				3 => "3: " . _("The User can choose the language via pulldown menu or national flags.")),
 		"value" => ( (sizeof(gallery_languages()) > 1) && ($elawisyl == 'yes') ) ? 3 : 0,
 	),
 	"available_lang" => array(
 		"prompt" => _("Available languages"), 
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
-		"desc" => _("These languages will be available as user choices in a pulldown menu or flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."), 
+		"desc" => _("These languages will be available as user choices in a pulldown menu or national flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."), 
 		"multiple_choices" => array_merge(gallery_languages(), array('addon' => insertFormJSLinks())),
 		"value" => array_keys(gallery_languages()),
 		"enabled" => $elawisyl
@@ -510,7 +524,7 @@ $constants =  array_merge(
 	"show_flags" => array(
 		"prompt" => _("Show flags?"),
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden",
-		"desc" => _("In Mode 3 you can choose to display flags instead of a small pulldown menu for the available languages."),
+		"desc" => _("In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 		"enabled" => $elawisyl

@@ -43,18 +43,7 @@
 
 <body dir="<?php echo $gallery->direction ?>">
 <?php
-if (function_exists("posix_getpwuid")) {
-	$rec = @posix_getpwuid(posix_getuid());
-	$webserver_user = $rec["name"];
-} else {
-	$whoami = locateFile("whoami");
-	if ($whoami) {
-		fs_exec($whoami, $results, $status);
-		$webserver_user = $results[0];
-	} else {
-		$webserver_user = _("unknown");
-	}
-}
+
 
 if (isset ($go_defaults)) {
 	$setup_page = $this_page;

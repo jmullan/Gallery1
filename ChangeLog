@@ -1,3 +1,14 @@
+2004-03-18  Chris Kelly <ckdake@users.sf.net> 1.4.3-cvs-b126
+
+	* Change:  More typos thanks to h0bbel.  This version bump
+		includes several commits from earlier today.
+		
+	* Bugfix: Moved code for defining $webserver_user from 
+		setup/index.php to setup/config_data.inc. 
+		$webserver_user is only used in config_data.inc 
+		and previously $webserver_user was undefined at
+		execution time in config_data.inc
+
 2004-03-18  Chris Kelly <ckdake@users.sf.net> 1.4.3-cvs-b125
 
 	* Change: Fixed various typos in the config wizard that h0bbel found
