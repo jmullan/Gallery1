@@ -84,6 +84,7 @@ if (isset($confirm) && isset($id)) {
 <div align="center">
 <?php
 if ($gallery->album && isset($id)) {
+	echo makeFormIntro("delete_photo.php", array('name' => 'deletephoto_form', 'onsubmit' => 'deletephoto_form.confirm.disabled = true;'));
 	if (isset($albumDelete)) {
 ?>
 
@@ -108,18 +109,11 @@ $myAlbum->load($id);
 <br>
 <?php echo $myAlbum->fields['description'] ?>
 <br>
-<?php echo makeFormIntro("delete_photo.php"); ?>
 <input type="hidden" name="id" value="<?php echo $id ?>">
 <input type="hidden" name="albumDelete" value="<?php echo $myAlbum->fields['guid']; ?>">
-<input type="submit" name="confirm" value="<?php echo _("Delete") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</form>
-<br>
-
 <?php
 	} else {
 ?>
-
 <p class="popuphead"><?php echo _("Delete Photo") ?></p>
 
 <?php echo _("Do you really want to delete this photo?") ?>
@@ -128,20 +122,18 @@ $myAlbum->load($id);
 
 <p><?php echo $gallery->album->getCaption($index) ?></p>
 
-<?php echo makeFormIntro("delete_photo.php"); ?>
 <input type="hidden" name="id" value="<?php echo $id?>">
 <?php 
-if (isset($nextId)) {
-	echo "\n". '<input type="hidden" name="nextId" value="'. $nextId .'"> ';
-} 
+		if (isset($nextId)) {
+			echo "\n". '<input type="hidden" name="nextId" value="'. $nextId .'"> ';
+		} 
+	}
 ?>
-
 <input type="submit" name="confirm" value="<?php echo _("Delete") ?>">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
-
+<br>
 <?php
-	}
 } else {
 	echo gallery_error(_("no album / index specified"));
 }

@@ -134,7 +134,8 @@ $allowChange["member_file"] = false;
 
 <?php echo makeFormIntro("create_user.php", array(
 				"name" => "usercreate_form", 
-				"method" => "POST"));
+				"method" => "POST",
+				'onsubmit' => 'usercreate_form.create.disabled = true;'));
 ?>
 <br>
 

@@ -246,7 +246,7 @@ if (isset($go)) {
 		print _("search photos here") . "<p>";
 	}
 	    echo "<tr><td valign=top><span class=desc>".
-			pluralize_n2(ngettext("One photo matches", "%d photos match", $photoMatch), $photoMatch, _("No photo matches")).".
+			pluralize_n2(ngettext("One photo matches", "%d photos match", $photoMatch), $photoMatch, _("No photo matches")) .
 		    "</span></td></tr>";
 	    echo "</table><br>";
 	}

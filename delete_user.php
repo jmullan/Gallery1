@@ -49,7 +49,8 @@ doctype();
 <p class="popuphead"><?php echo _("Delete User") ?></p>
 
 <div class="popup">
-<?php echo makeFormIntro("delete_user.php"); ?>
+<?php echo makeFormIntro("delete_user.php", array('name' => 'deleteuser_form', 'onsubmit' => 'deleteuser_form.delete.disabled =
+true;')); ?>
 <input type="hidden" name="uname" value="<?php echo $uname ?>">
 
 <?php

@@ -127,7 +127,8 @@ if (isset($create)) {
 
 echo makeFormIntro('register.php', array(
 			'name' => 'usercreate_form',
-			'method' => 'POST'));
+			'method' => 'POST',
+			'onsubmit' => 'usercreate_form.create.disabled = true;'));
 
 include(dirname(__FILE__) . '/html/userData.inc');
 ?>
