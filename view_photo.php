@@ -61,7 +61,7 @@ if ($photo->isMovie()) {
 	$image = $photo->image;
 }
 $photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $image->name . "." . $image->type;
-list($imageWidth, $imageHeight) = $image->getDimensions();
+list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
 $do_fullOnly = !strcmp($gallery->session->fullOnly,"on") &&
                !strcmp($gallery->album->fields["use_fullOnly"],"yes");
