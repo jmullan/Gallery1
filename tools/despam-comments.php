@@ -387,8 +387,6 @@ function offerOptions() {
     foreach (array(
 		   "findBlacklistedComments" => _("Find blacklisted comments"),
 		   "viewBlacklist" => _("View/Edit blacklist"),
-		   "removeBlacklistEntries" => _("Remove blacklist entries"),
-		   "addBlacklistEntries" => _("Add blacklist entries"),
 		   "addBlacklistEntries" => _("Add blacklist entries"),
 		   )
 	     as $key => $text) {
