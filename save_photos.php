@@ -55,7 +55,7 @@ if (isset($userfile_name)) {
   <?php echo getStyleSheetLink() ?>
 
 </head>
-<body dir="<?php echo $gallery->direction ?>" onLoad='opener.hideProgressAndReload();'>
+<body dir="<?php echo $gallery->direction ?>" onLoad='parent.opener.hideProgressAndReload();'>
 
 <?php
 $image_tags = array();
@@ -328,7 +328,7 @@ if (count($image_tags)) {
 </p>
 <p>
 <input type="hidden" name="setCaption" value="<?php echo $setCaption ?>">
-<input type="button" value="<?php echo _("Add Files") ?>" onClick="opener.showProgress(); document.uploadurl_form.submit()">
+<input type="button" value="<?php echo _("Add Files") ?>" onClick="parent.opener.showProgress(); document.uploadurl_form.submit()">
 </p>
 
 </form>

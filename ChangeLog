@@ -1,4 +1,10 @@
-2004-01-30  Bharat Mediratta  <bharat@menalto.com> 1.4.3-cvss-b18
+2004-02-01  Bharat Mediratta  <bharat@menalto.com> 1.4.3-cvs-b19
+
+	* Fixed a bug in save_photos caused by the new tabbed interface.  We
+	  were not properly referencing the opener so the progress dialog was
+	  not going away after adding photos.
+
+2004-01-30  Bharat Mediratta  <bharat@menalto.com> 1.4.3-cvs-b18
 
 	* Fixed several issues in add_photos:
 	  - Removed ob_start/ob_end buffering code; if includes are leaking
