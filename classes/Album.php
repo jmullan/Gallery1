@@ -701,7 +701,7 @@ class Album {
 		if ($index >= 1 && $index <= sizeof($this->photos)) { 
 			return $this->photos[$index-1];
 		} else {
-			print "ERROR: requested index [$index] out of bounds";
+			print "ERROR: requested index [$index] out of bounds [" . sizeof($this->photos) . "]";
 		}
 	}
 
