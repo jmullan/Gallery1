@@ -39,6 +39,7 @@ class AlbumDB {
 
 		$this->albumList = array();
 		$this->brokenAlbums = array();
+		$this->outOfDateAlbums = array();
 		$i = 0;
 		$changed = 0;
 		while ($i < sizeof($this->albumOrder)) {
@@ -50,6 +51,9 @@ class AlbumDB {
 				$album = new Album;
 				if ($album->load($name,$loadphotos)) {
 					array_push($this->albumList, $album);
+					if ($album->versionOutOfDate()) {
+						array_push($this->outOfDateAlbums, $name);
+					}
 				} else if ($name != 'CVS') {
 					array_push($this->brokenAlbums, $name);
 				}

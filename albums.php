@@ -215,19 +215,29 @@ includeLayout('ml_pulldown.inc');
 echo "<!-- End top nav -->";
 
 /* Display warnings about broken albums */
-if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
+if ( (sizeof($albumDB->brokenAlbums) || sizeof($albumDB->outOfDateAlbums)) && $gallery->user->isAdmin()) {
 
-    echo "\n<center><div style=\"margin:3px; width:60%; border-style:outset; border-width:5px; border-color:red\">";
-    echo "\n<p class=\"head\"><u>". _("Attention Gallery Administrator!") ."</u></p>";
+	echo "\n<center><div style=\"width:60%; border-style:outset; border-width:5px; border-color:red; padding: 5px\">";
+	echo "\n<p class=\"head\"><u>". _("Attention Gallery Administrator!") ."</u></p>";
 
-    echo sprintf(_("%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"),
+	if (sizeof($albumDB->brokenAlbums)) {
+		echo sprintf(_("%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"),
 		    Gallery(), sizeof($albumDB->brokenAlbums), $gallery->app->albumDir);
-    echo "\n<p>";
-    foreach ($albumDB->brokenAlbums as $tmpAlbumName) {
-	echo "<br>$tmpAlbumName\n";
-    }
-    echo "\n</p>". _("Please move it/them out of the albums directory.") ;
-    echo "\n</p></div></center>\n";
+		echo "\n<p>";
+		foreach ($albumDB->brokenAlbums as $tmpAlbumName) {
+			echo "<br>$tmpAlbumName\n";
+		}
+	echo "\n</p>". _("Please move it/them out of the albums directory.") ;
+	}
+
+	if(sizeof($albumDB->outOfDateAlbums)) {
+		echo sprintf(_("%s has detected that %d of your album are out of Date"),
+			Gallery(), sizeof($albumDB->outOfDateAlbums));
+
+		echo "\n<br>";
+		echo sprintf(_("Please %s."), popup_link(_("upgrade those albums"), "upgrade_album.php"));
+	}
+	echo "\n</div></center>\n";
 }
 ?>
 
@@ -344,13 +354,6 @@ for ($i = $start; $i <= $end; $i++) {
 			}
 		}
 
-		if ($gallery->album->versionOutOfDate()) {
-			if ($gallery->user->isAdmin()) {
-  				echo '<br><span class="error">';
-				echo _("Note:  This album is out of date!") ?> <?php echo popup_link("[" . _("upgrade album") ."]", "upgrade_album.php");
-				echo '</span>';
-			}
-		}
 	} 
 	?>
 
