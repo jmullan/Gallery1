@@ -92,7 +92,8 @@ $page = ceil($index / ($rows * $cols));
  */
 $top = $gallery->app->photoAlbumURL;
 
-$bordercolor = $gallery->album->fields["bordercolor"];
+$bordercolor = $gallery->album
+->fields["bordercolor"];
 $borderwidth = $gallery->album->fields["border"];
 if (!strcmp($borderwidth, "off")) {
 	$borderwidth = 1;
@@ -198,7 +199,7 @@ if ($fitToWindow) {
 		img.width = imageWidth;
 	} else {
 		if (changed) {
-			document.write('<a href="<?=makeGalleryUrl($gallery->session->albumName, $id, "full=1")?>">');
+			document.write('<a href="<?=makeGalleryUrl($gallery->session->albumName, $id, "&full=1")?>">');
 		}
 		document.write('<img name=photo src="<?=$photoURL?>" border=0 width=' +
 		                 imageWidth + ' height=' + imageHeight + '>');
@@ -256,8 +257,9 @@ if (!$gallery->album->isMovie($id)) {
 	}
 
 	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes")) {
-		$link = doCommand("none", "set_fullOnly=" .
-		        (strcmp($gallery->session->fullOnly,"on") ? "on" : "off"));
+		$link = doCommand("", "set_fullOnly=" .
+		        (strcmp($gallery->session->fullOnly,"on") ? "on" : "off"),
+			"view_photo.php", "id=$id");
 		$adminCommands .= " View Images: [ ";
 		if (strcmp($gallery->session->fullOnly,"on"))
 		{
@@ -280,7 +282,7 @@ if (!$gallery->album->isMovie($id)) {
 		if (strlen($adminCommands) > 0) {
 			$adminCommands .="<br>";
 		}
-		$adminCommands .= "<a href=# onClick=\"document.sflyc4p.submit();return false\">[print this photo on Shutterfly]</a>";
+		$adminCommands .= "<a href=# onClick=\"document.sflyc4p.returl.value=document.location; document.sflyc4p.submit();return false\">[print this photo on Shutterfly]</a>";
 	}
 
 
@@ -349,7 +351,7 @@ if (!$gallery->album->isMovie($id)) {
 		if ($full) { 
 			echo "<a href=" . makeGalleryUrl($gallery->session->albumName, $id) . ">";
 	 	} else {
-			echo "<a href=" . makeGalleryUrl($gallery->session->albumName, $id, "full=1") . ">";
+			echo "<a href=" . makeGalleryUrl($gallery->session->albumName, $id, "&full=1") . ">";
 		}
 		$openAnchor = 1;
 	}
@@ -419,7 +421,7 @@ list($imageWidth, $imageHeight) = $photo->image->getRawDimensions($gallery->albu
   <input type=hidden name=pid value=C4P>
   <input type=hidden name=psid value=AFFL>
   <input type=hidden name=referid value=jackodog>
-  <input type=hidden name=returl value="<?= $gallery->app->photoAlbumURL."/view_album.php" ?>">
+  <input type=hidden name=returl value="this-gets-set-by-javascript-in-onClick">
   <input type=hidden name=imraw-1 value="<?= $rawImage ?>">
   <input type=hidden name=imrawheight-1 value="<?= $imageHeight ?>">
   <input type=hidden name=imrawwidth-1 value="<?= $imageWidth ?>">
