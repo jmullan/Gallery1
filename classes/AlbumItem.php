@@ -358,8 +358,13 @@ class AlbumItem {
 				}
 				fs_unlink("$dir/$name.tmp.$tag");
 			} elseif ($this->isMovie()) {
-				$tag = substr(strrchr($gallery->app->movieThumbnail, '.'), 1);
-				$ret = resize_image($gallery->app->movieThumbnail, "$dir/$name.highlight.$tag", $size);
+				if (fs_file_exists($gallery->app->movieThumbnail)) {
+					$tag = substr(strrchr($gallery->app->movieThumbnail, '.'), 1);
+					$ret = resize_image($gallery->app->movieThumbnail, "$dir/$name.highlight.$tag", $size);
+				}
+				else {
+					$ret = 0;
+				}
 			} else {
 				$ret = resize_image("$srcdir/".$srcitem->image->name.".$tag",
 						    "$dir/$name.highlight.$tag",

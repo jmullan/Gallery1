@@ -440,6 +440,10 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 	if ((empty($target) || ($regs[0] <= $target && $regs[1] <= $target))
 			&& (empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs)) {
 		processingMsg("&nbsp;&nbsp;&nbsp;". _("No resizing required"));
+
+		/* If the file is already smaller than the target filesize, don't
+		 * create a new sized image.  return 2 indicates that the current .sized.
+		 * needs to be removed */
 		if ($useTemp == false && !strstr($dest, ".sized.")) {
 			fs_copy($src, $dest);
 			return 1;

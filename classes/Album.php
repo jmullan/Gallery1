@@ -635,8 +635,9 @@ class Album {
 
 	function setHighlight($index) {
 		$this->updateSerial = 1;
-
-		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+		$numPhotos = $this->numPhotos(1);
+		
+		for ($i = 1; $i <= $numPhotos; $i++) {
 			$photo = &$this->getPhoto($i);
 			$photo->setHighlight($this->getAlbumDir(), $i == $index, $this);
 		}
@@ -1011,7 +1012,7 @@ class Album {
 				       	break;
 				       	case "rotate 180":
 					       	$rotate = 180;
-				       	break;
+					break;
 				       	case "rotate 270":
 					       	$rotate = 90;
 				       	break;
@@ -1124,7 +1125,7 @@ class Album {
 			if ($this->numPhotos(1) > 0) {
 				$newHighlight = $this->getPhoto(1);
 				// make sure not to try on a movie or subalbum
-                		if (!$newHighlight->isMovie() && !$newHighlight->isAlbum()) {
+				if (!$newHighlight->isMovie() && !$newHighlight->isAlbum()) {
 					$this->setHighlight(1);
 				}
 			}
