@@ -3,7 +3,10 @@
 <html>
 <head>
   <title>Gallery Configuration</title>
-  <link rel="stylesheet" type="text/css" href="../css/standalone_style.css.default">
+  <style type="text/css">
+   body { background: #CCCCCC; }
+   .error { color: #FF0000; }
+  </style>
 </head>
 <body>
 
@@ -42,11 +45,46 @@ if (!$setup_page) {
 	$setup_page = "check";
 }
 
+/* Array-ize the preserve list */
+$tmp = split(" ", urldecode($preserve));
+$preserve = array();
+foreach ($tmp as $key) {
+	$preserve[$key] = 1;
+}
+
+foreach (array_keys($preserve) as $key) {
+	if ($$key) {
+		$$key = urldecode($$key);
+	}
+}
+
 ?>
 
 <form method=POST>
 
 <? include("$setup_page.inc"); ?>
+
+<?
+function embed_hidden($key) {
+	global $$key;
+
+	$buf .= "<input type=hidden name=$key value=\"";
+	$buf .= urlencode($$key);
+	$buf .= "\">\n";
+	return $buf;
+}
+
+foreach ($preserve as $key => $val) {
+	if ($key && !$onThisPage[$key]) {
+		print embed_hidden($key);
+	}
+}
+
+// String-ize preserve list
+$preserve = join(" ", array_keys($preserve));
+print embed_hidden("preserve");
+
+?>
 
 </form>
 
