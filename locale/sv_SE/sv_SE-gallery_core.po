@@ -26,10 +26,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-10-24 03:08+0200\n"
-"PO-Revision-Date: 2003-10-13 18:19+0100\n"
+"POT-Creation-Date: 2003-09-26 17:51+0200\n"
+"PO-Revision-Date: 2003-10-24 14:04+0100\n"
 "Last-Translator: Peter Liversten <skansberget@telia.com>\n"
-"Language-Team: SWEDISH <crille@swipnet.se>\n"
+"Language-Team: Swedish <crille@swipnet.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,9 +59,8 @@ msgid "Security violation"
 msgstr "Säkerhetsintrång"
 
 #: ../add_comment.php:63 ../classes/Album.php:728
-#, fuzzy
 msgid "No email sent as no valid email addresses were found"
-msgstr "Du måste skriva in en giltig e-postadress."
+msgstr "Ingen e-post skickades eftersom inga giltiga e-postadresser hittades"
 
 #: ../add_comment.php:80
 msgid "Name and comment are both required to save a new comment!"
@@ -129,7 +128,9 @@ msgstr "Fil"
 msgid "Caption"
 msgstr "Objektrubrik"
 
-#: ../add_photo.php:149 ../add_photos.php:109
+# Lägger till kommentar för att kunna hitta luddiga översättningar, kan inte sätta luddig då översättningen ej syns i Gallery.  /P.
+#: ../add_photo.php:149
+#: ../add_photos.php:109
 msgid "Use filename as caption if no caption is specified."
 msgstr "Använd filnamn som objektrubrik om ingen objektrubrik är specificerad."
 
@@ -228,14 +229,12 @@ msgid "Users who can view full (original) images."
 msgstr "Användare som kan visa hela (original) bilder."
 
 #: ../album_permissions.php:311
-#, fuzzy
 msgid "Users who can add comments."
-msgstr "Användare som kan lägga till foton."
+msgstr "Användare som kan lämna kommentarer."
 
 #: ../album_permissions.php:326
-#, fuzzy
 msgid "Users who can view comments."
-msgstr "Användare som kan lägga till foton."
+msgstr "Användare som kan visa kommentarer."
 
 #: ../album_permissions.php:345 ../manage_users.php:117 ../photo_owner.php:110
 #: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:70
@@ -361,7 +360,7 @@ msgstr "%s har hittat följande kataloger: %s i dina albumkataloger (%s)."
 
 #: ../albums.php:220
 msgid "These are not valid albums.  Please move them out of the albums directory."
-msgstr "Dessa är inte giltiga album.  Vänligen flytta ut dem från albumkatalogen."
+msgstr "Dessa är inte giltiga album.  Vänligen flytta ut dem från albumkatalogerna."
 
 #: ../albums.php:272
 msgid "Highlight for Album: "
@@ -459,7 +458,7 @@ msgstr "Detta album har visats %s sedan%s."
 
 #: ../albums.php:396 ../view_album.php:840 ../view_album.php:854
 msgid "1 time"
-msgstr "1 Gång"
+msgstr "1 gång"
 
 #: ../albums.php:396 ../view_album.php:840 ../view_album.php:854
 msgid "times"
@@ -563,7 +562,7 @@ msgstr "Uppgraderar objekt %d av %d . . . "
 
 #: ../classes/Album.php:708
 msgid "msg should be an array!"
-msgstr ""
+msgstr "meddelande bör vara en ordnad rad!"
 
 #: ../classes/Album.php:819
 msgid "Resizing/compressing original image"
@@ -595,7 +594,7 @@ msgstr "#%d"
 #: ../classes/Album.php:1946
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
-msgstr ""
+msgstr "E-post problem: utesluter %s (UID %s) eftersom e-postadress %s inte är giltig."
 
 #: ../classes/AlbumItem.php:417
 msgid "Invalid image"
@@ -937,17 +936,16 @@ msgstr "Miniatyrbildstorlek?"
 
 #: ../edit_appearance.php:157
 msgid "Maximum dimensions of intermediate sized images"
-msgstr ""
+msgstr "Maximala dimensioner på mellanliggande storleks bilder"
 
 # Lägger till kommentar för att kunna hitta luddiga översättningar, kan inte sätta luddig då översättningen ej syns i Gallery.  /P.
 #: ../edit_appearance.php:161
-#, fuzzy
 msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-msgstr "Maximal JPEG/PNG filstorlek i kilobyte?<br>(0 eller tomt för ingen storleksbegränsning)"
+msgstr "Maximal filstorlek på mellanliggande storleksändrade JPEG/PNG bilder i kilobyte?<br>(0 eller tomt för ingen storleksbegränsning)"
 
 #: ../edit_appearance.php:165
 msgid "Maximum dimensions of full sized images"
-msgstr ""
+msgstr "Maximala dimensioner på hela originalstorleksbilder"
 
 # Lägger till kommentar för att kunna hitta luddiga översättningar, kan inte sätta luddig då översättningen ej syns i Gallery.  /P.
 #: ../edit_appearance.php:166
@@ -957,9 +955,8 @@ msgstr "%d (%d MPix)"
 
 # Lägger till kommentar för att kunna hitta luddiga översättningar, kan inte sätta luddig då översättningen ej syns i Gallery.  /P.
 #: ../edit_appearance.php:169
-#, fuzzy
 msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-msgstr "Maximal JPEG/PNG filstorlek i kilobyte?<br>(0 eller tomt för ingen storleksbegränsning)"
+msgstr "Maximal filstorlek på hela originalstorleks JPEG/PNG bilder i kilobyte?<br>(0 eller tomt för ingen storleksbegränsning)"
 
 #: ../edit_appearance.php:173
 msgid "Show <i>Return to</i> link"
@@ -980,7 +977,7 @@ msgstr "Automatisk fönsteranpassning av<br>bilder som inte har en storleksändrad
 # Lägger till kommentar för att kunna hitta luddiga översättningar, kan inte sätta luddig då översättningen ej syns i Gallery.  /P.
 #: ../edit_appearance.php:197
 msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
-msgstr "Erbjud besökare möjligheten att skriva in<br>egenskaper för orginalstorlek eller storleksändrade bilder"
+msgstr "Erbjud besökare möjligheten att skriva in<br>egenskaper för orginalstorlek eller storleksändrade bilder?"
 
 #: ../edit_appearance.php:201
 msgid "Which photo printing services<br>do you want to let visitors use?"
@@ -1016,7 +1013,7 @@ msgstr "Bildspelsperiod?"
 
 #: ../edit_appearance.php:254
 msgid "Allow slideshow to loop"
-msgstr ""
+msgstr "Tillåt bidspel att gå i slinga"
 
 #: ../edit_appearance.php:259
 msgid "Slideshow Length"
@@ -1059,6 +1056,7 @@ msgstr "Tillåt objektägare att ta bort sina egna bilder?"
 msgid "Add new items at beginning of album"
 msgstr "Lägg till nya objekt i början av album?"
 
+# Lägger till kommentar för att kunna hitta luddiga översättningar, kan inte sätta luddig då översättningen ej syns i Gallery.  /P.
 #: ../edit_appearance.php:305
 msgid "Display clickable image dimensions"
 msgstr "Visa klickbara bildstorlekar?"
@@ -1180,7 +1178,7 @@ msgstr "Nytt lösenord (igen):"
 
 #: ../html/userData.inc:86
 msgid "Full Name"
-msgstr "För- och efternamn"
+msgstr "För- och efternamn:"
 
 #: ../html/userData.inc:100
 msgid "Email Address"
@@ -1217,7 +1215,7 @@ msgstr "Donera till Gallery nu!!"
 
 #: ../layout/breadcrumb.inc:31 ../layout/breadcrumb.inc:37
 msgid "navigate UP"
-msgstr ""
+msgstr "navigera UPP"
 
 #: ../layout/commentbox.inc:7 ../layout/commentdraw.inc:20
 msgid "From:"
@@ -2184,7 +2182,6 @@ msgid "normal size"
 msgstr "Normalstorlek"
 
 #: ../slideshow.php:432
-#, fuzzy
 msgid "The slide is showing full sized images, Click [normal size] to view resized images."
 msgstr "Bildspelet visar hel orginalstorlek på bilder, Klicka [Normalstorlek] för att visa storleksändrade bilder."
 
@@ -2199,7 +2196,7 @@ msgstr "Bildspelet visar normalstorlek på bilder, Klicka [Orginalstorlek] för at
 
 #: ../slideshow.php:445 ../slideshow_low.php:422
 msgid "forward direction"
-msgstr "Frammåt"
+msgstr "Framåt"
 
 #: ../slideshow.php:448 ../slideshow.php:670 ../slideshow_low.php:419
 msgid "reverse direction"
@@ -2432,9 +2429,10 @@ msgstr "Ingen objektrubrik"
 msgid "edit"
 msgstr "Redigera"
 
+# Verkställer eller Utför, det kanske menas att en fil görs körbar?  /P.
 #: ../util.php:183
 msgid "Executing:"
-msgstr ""
+msgstr "Verkställer:"
 
 #: ../util.php:190
 msgid "Results:"
@@ -2455,6 +2453,7 @@ msgstr "Felmeddelanden:"
 msgid "Status: %s (expected %s)"
 msgstr "Status: %s (förväntat %s)"
 
+# Lägger till kommentar för att kunna hitta luddiga översättningar, kan inte sätta luddig då översättningen ej syns i Gallery.  /P.
 #: ../util.php:225
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
@@ -2482,6 +2481,7 @@ msgstr "Ytterligare EXIF-information"
 msgid "Not closing this window because debug mode is on"
 msgstr "Stänger inte detta fönster eftersom felsökningsläge är på"
 
+# Lägger till kommentar för att kunna hitta luddiga översättningar, kan inte sätta luddig då översättningen ej syns i Gallery.  /P.
 #: ../util.php:426
 #, php-format
 msgid "target file size %d kbytes"
@@ -2490,7 +2490,7 @@ msgstr "Målfilens storlek %d kbyte"
 #: ../util.php:432 ../util.php:463
 #, php-format
 msgid "- file size %d kbytes"
-msgstr "- filstorlek %d kbytes"
+msgstr "- filstorlek %d kbyte"
 
 #: ../util.php:433
 #, php-format
@@ -2529,7 +2529,7 @@ msgstr "Kan inte skriva till %s."
 #: ../util.php:1206
 #, php-format
 msgid "Can't read %s."
-msgstr "Kan inte läsa %s."
+msgstr "Kan inte läsa från %s."
 
 # Lägger till kommentar för att kunna hitta luddiga översättningar, kan inte sätta luddig då översättningen ej syns i Gallery.  /P.
 #: ../util.php:1302
@@ -2538,7 +2538,7 @@ msgstr "Välj album"
 
 #: ../util.php:1308
 msgid "Top Level"
-msgstr "Toppnivå"
+msgstr "Huvudnivå"
 
 #: ../util.php:1329 ../util.php:1379
 msgid "current location"
@@ -2696,9 +2696,9 @@ msgid "Powered by %s v%s"
 msgstr "Med stöd av %s v%s"
 
 #: ../util.php:2637
-#, fuzzy, php-format
+#, php-format
 msgid "Skipping invalid email address %s"
-msgstr "Du måste skriva in en giltig e-postadress."
+msgstr "Utesluter ogiltig e-postadress %s"
 
 #: ../util.php:2703
 #, php-format
@@ -2726,24 +2726,23 @@ msgstr "E-post skickades inte till %s eftersom det inte är en giltig adress"
 #: ../util.php:2745
 #, php-format
 msgid "Sender address %s is invalid, using %s."
-msgstr ""
+msgstr "Avsändarens adress %s är ogiltig, användandes %s."
 
 #: ../util.php:2769 ../util.php:2774
 msgid "not shown"
-msgstr ""
+msgstr "visas inte"
 
 #: ../util.php:2778
 msgid "Message"
-msgstr ""
+msgstr "Meddelande"
 
 #: ../util.php:2782
 msgid "Email sent"
 msgstr "E-post skickad"
 
 #: ../util.php:2784
-#, fuzzy
 msgid "Email not sent"
-msgstr "E-post skickad"
+msgstr "E-post inte skickad"
 
 #: ../util.php:2798
 #, php-format
@@ -3071,17 +3070,16 @@ msgid "This album is empty."
 msgstr "Detta album är tomt."
 
 #: ../view_album.php:1061 ../view_photo.php:863
-#, fuzzy
 msgid "Email me when:"
-msgstr "E-post skickad"
+msgstr "E-posta mig när:"
 
 #: ../view_album.php:1062 ../view_photo.php:864
 msgid "Comments are added"
-msgstr ""
+msgstr "Kommentarer är lämnade"
 
 #: ../view_album.php:1065 ../view_photo.php:868
 msgid "Other changes are made"
-msgstr ""
+msgstr "Andra ändringar är gjorda"
 
 #: ../view_comments.php:124
 msgid "Comments for this Album"
@@ -3093,7 +3091,7 @@ msgstr "Tillbaka till album"
 
 #: ../view_comments.php:137
 msgid "Sorry.  This album does not allow comments."
-msgstr "Tyvärr.  Detta album tillåter inte kommentarer."
+msgstr "Tyvärr.  Detta album tillåter inga kommentarer."
 
 #: ../view_photo.php:391
 msgid "resize photo"
