@@ -1,6 +1,12 @@
-<title> Gallery Setup: Step 3 </title>
+<center>
+<font size=+2> Gallery Setup: Step 3 </font>
+<br>
+<table width=80%><tr><td>
+Confirm that the settings you entered came through correctly.
+If you find this page confusing, you can probably safely ignore it
+(unless you see stuff in red which indicates an error).
+</td></tr></table>
 
-This is what your configuration file will look like:
 <center>
 <table width=90% border=0>
 <pre>
