@@ -1832,7 +1832,12 @@ function initLanguage() {
 			// if not and a language is given by NUKE Cookie use it
 			$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
 		}
-		$gallery->language=$nls['alias'][$gallery->nuke_language];
+                
+		if (isset ($gallery->session->language) && empty ($newlang)) {
+			$gallery->language = $gallery->session->language;
+		} else {
+			$gallery->language=$nls['alias'][$gallery->nuke_language];
+		}
 	} else {
 		//We're not in Nuke
 		switch ($gallery->app->ML_mode) {
