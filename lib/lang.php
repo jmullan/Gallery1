@@ -41,6 +41,8 @@ function pluralize_n2($singPlu, $count=1, $none='') {
 	if ($count == 0 && $none != '') {
 		return $none;
 	} else {
+//		echo "\n<br>----";
+//		echo "\nNG $singPlu, C: $count";
 		return sprintf($singPlu, $count);
 	}
 }
@@ -388,17 +390,25 @@ function emulate_ngettext() {
 		foreach ($lines as $key => $value) {
 		//We trim the String to get rid of cr/lf
 			$value=trim($value);
-			if (stristr($value, "msgid") && ! stristr($lines[$key-1],"fuzzy")) {
+			if (stristr($value, "msgid") && ! stristr($lines[$key-1],"fuzzy") && !stristr($value,"msgid_plural")) {
+//				echo "\n<br>---SID". $value;
+//					echo "\n<br>---PID". $lines[$key+1];
 				if (stristr($lines[$key+1],"msgid_plural")) {
 					$singular_key=substr($value, 7,-1);
 					$translation[$singular_key]=substr(trim($lines[$key+2]),11,-1);
 					$plural_key=substr(trim($lines[$key+1]), 14,-1);
 					$translation[$plural_key]=substr(trim($lines[$key+3]),11,-1);
+//	echo "\n<br>SK". $singular_key;
+//	echo "\n<br>ST". $translation[$singular_key];
+//	echo "\n<br>PK". $plural_key;
+//	echo "\n<br>PT". $translation[$plural_key];
 				}
 			}
 		}
 		// Substitute ngettext() function
 		function ngettext($singular, $quasi_plural,$num=0) {
+//			echo "\n<br>----";
+//			echo "\nSL: $singular, PL: $quasi_plural, N: $num";
 			if ($num == 1) {
 				if (! empty($GLOBALS['translation'][$singular])) {
 					return $GLOBALS['translation'][$singular] ;
@@ -440,9 +450,14 @@ function emulate_gettext() {
 		foreach ($lines as $key => $value) {
 			/* We trim the String to get rid of cr/lf */
 			$value=trim($value);
-			if (stristr($value, "msgid") && ! stristr($lines[$key-1],"fuzzy")) {
+			if (stristr($value, "msgid") 
+				&& ! stristr($lines[$key-1],"fuzzy") 
+				&& ! stristr($lines[$key],"msgid_plural")
+				&& ! stristr($value,"msgid_plural")) {
 				$new_key=substr($value, 7,-1);
 				$translation[$new_key]=substr(trim($lines[$key+1]),8,-1);
+//		echo "\n<br>NK". $new_key;
+//		echo "\n<br>NT". $translation[$new_key];
 			}
 		}
 		// Substitute _() gettext function
@@ -473,7 +488,7 @@ function gettext_installed() {
 }
 
 function ngettext_installed() {
-	if (in_array("ngettext", get_loaded_extensions()) && function_exists('ngettext')) {
+	if (in_array("ngettext", get_loaded_extensions()) || function_exists('ngettext')) {
 		return true;
 	}
 	else {
