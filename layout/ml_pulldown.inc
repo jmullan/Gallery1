@@ -67,7 +67,7 @@ if($gallery->app->show_flags !='yes') {
 			} else {
 				$flagname=$value;
 			}
-			echo "\n\t\t<a href=\"". makeGalleryUrl( $urlTemp, $args) . "\"><img src=\"". $gallery->app->photoAlbumURL ."/images/flags/$flagname.gif\" border=\"0\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a>";
+			echo "\n\t\t<a href=\"". makeGalleryUrl( $urlTemp, $args) . "\"><img src=\"". $gallery->app->photoAlbumURL ."/images/flags/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a>";
 		}
 	}
 
