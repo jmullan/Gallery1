@@ -125,17 +125,17 @@ asort($uDelete);
 asort($uAdd);
 asort($uAll);
 
-correctNobody(&$uRead);
-correctNobody(&$uText);
-correctNobody(&$uWrite);
-correctNobody(&$uDelete);
-correctNobody(&$uAdd);
+correctNobody($uRead);
+correctNobody($uText);
+correctNobody($uWrite);
+correctNobody($uDelete);
+correctNobody($uAdd);
 
-correctEverybody(&$uRead);
-correctEverybody(&$uText);
-correctEverybody(&$uWrite);
-correctEverybody(&$uDelete);
-correctEverybody(&$uAdd);
+correctEverybody($uRead);
+correctEverybody($uText);
+correctEverybody($uWrite);
+correctEverybody($uDelete);
+correctEverybody($uAdd);
 
 ?>
 <html>
