@@ -1685,25 +1685,57 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 	}
 }
 
+/*
+** This function checks which tool
+** can we use for getting exif data from a photo.
+** returns false when no way works.
+*/
+function getExifDisplayTool() {
+	global $gallery;
+
+	if(isset($gallery->app->exiftags)) {
+		return 'exiftags';
+	} elseif (isset($gallery->app->use_exif)) {
+		return 'jhead';
+	} else {
+		return false;
+	}
+}
+
 function getExif($file) {
 	global $gallery;
 
 	$return = array();
-	$path = $gallery->app->use_exif;
-	list($return, $status) = exec_internal(fs_import_filename($path, 1) .
-		" " . fs_import_filename($file, 1));
+
+	switch(getExifDisplayTool()) {
+		case 'exiftags':
+			$path = $gallery->app->exiftags;
+			list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' -a '.
+			  fs_import_filename($file, 1));
+
+			break;
+		case 'jhead':
+			$path = $gallery->app->use_exif;
+			list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' '.
+			  fs_import_filename($file, 1));
+			
+			break;
+		default:
+			return array(false,'');
+		break;
+	}			
 
 	$myExif = array();
 	if ($status == 0) {
 	        foreach ($return as $value) {
 	        	$value=trim($value);
 		    	if (!empty($value)) {
-					$explodeReturn = explode(':', $value, 2);
-					if (isset($myExif[trim($explodeReturn[0])])) { 
+				$explodeReturn = explode(':', $value, 2);
+				if (isset($myExif[trim($explodeReturn[0])])) { 
 			    		$myExif[trim($explodeReturn[0])] .= "<br>" . trim($explodeReturn[1]);
-					} else {
-			    		$myExif[trim($explodeReturn[0])] = trim($explodeReturn[1]);
-					}
+				} else {
+			   		$myExif[trim($explodeReturn[0])] = trim($explodeReturn[1]);
+				}
 		    	}
 	        }
 	}
@@ -1711,28 +1743,52 @@ function getExif($file) {
 	return array($status, $myExif);
 }
 
+/*
+** This function tries to get the ItemCaptureDate from Exif Data.
+** If exif is not supported, or no date was gotten, then the file creation date is returned.
+** Note: i used switch/case because this is easier to extend later.
+*/
 function getItemCaptureDate($file) {
-	global $gallery;
+	$success = false;
+	$exifSupported = getExifDisplayTool();
 
-	$success = 0;
-	if ($gallery->app->use_exif) {
+	if ($exifSupported) {
 		$return = getExif($file);
 		$exifData = $return[1];
-		if (isset($exifData["Date/Time"])) {
-			$success = 1;
-			$tempDate = split(" ", $exifData["Date/Time"], 2);
+		switch($exifSupported) {
+                	case 'exiftags':
+				echo "step1";
+				if (isset($exifData['Image Created'])) {
+					$tempDate = split(" ", $exifData['Image Created'], 2);
+				}
+                        	break;
+	                case 'jhead':
+				if (isset($exifData['Date/Time'])) {
+					$tempDate = split(" ", $exifData['Date/Time'], 2);
+				}
+        	                break;
+        	}
+		if (isset($tempDate)) {
+			echo "2y";
 			$tempDay = strtr($tempDate[0], ':', '-');
 			$tempTime = $tempDate[1];
 
 			$itemCaptureTimeStamp = strtotime("$tempDay $tempTime");
+
+			if ($itemCaptureTimeStamp != 0) {
+				echo "step2yy";
+				$success = true;
+			}
 		}
 	}
+
 	if (!$success) { // we were not able to get the capture date from exif... use file creation time
+		echo "3n";
 		$itemCaptureTimeStamp = filemtime($file);
 	}
 
-	if (isDebugging()) {
-		sprintf (_("IN UTIL ITEMCAPTUREDATE = %s"). '<br>', strftime('%Y', $itemCaptureTimeStamp));
+	if (!isDebugging()) {
+		sprintf (_("Item Capture Date : %s"), strftime('%Y', $itemCaptureTimeStamp));
 	}
 
 	return $itemCaptureTimeStamp;
@@ -2301,13 +2357,11 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 	}
 }
 
-function escapeEregChars($string)
-{
+function escapeEregChars($string) {
 	return ereg_replace('(\.|\\\\|\+|\*|\?|\[|\]|\^|\$|\(|\)|\{|\}|\=|\!|<|>|\||\:)', '\\\\1', $string);
 }
 
-function findInPath($program)
-{
+function findInPath($program) {
 	$path = explode(':', getenv('PATH'));
 	
 	foreach ($path as $dir) {
@@ -3333,7 +3387,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 	
 	if ($withExif && ($gallery->app->use_exif && (eregi("jpe?g\$", $photo->image->type)))) {
 		$myExif = $gallery->album->getExif($index, isset($forceRefresh));
-		if ($myExif) {
+		if (!empty($myExif) && !isset($myExif['Error'])) {
 			// following line commented out because we were losing
 			// comments from the Exif array.  This is probably due
 			// to differences in versions of jhead.

@@ -507,7 +507,7 @@ $constants =  array_merge(
 	'zipinfo' => array(
 		'prompt' => "Zipinfo",
 		'desc' => sprintf(_("The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
-			'zipinfo', '<i>/usr/local/bin/zipinfo</i>', '<i>c:\\bin\\zipinfo.exe</i>'),
+			'<a href="http://www.info-zip.org/" target="_blank">zipinfo</a>', '<i>/usr/local/bin/zipinfo</i>', '<i>c:\\bin\\zipinfo.exe</i>'),
 		'value' => locateFile("zipinfo"),
 		'must-be-file' => 1,
 		'must-be-executable' => 1,
@@ -519,7 +519,7 @@ $constants =  array_merge(
 	'unzip' => array(
 		'prompt' => "Unzip",
 		'desc' => sprintf(_("The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
-		'unzip', '<i>/usr/local/bin/unzip</i>', '<i>c:\\bin\\unzip.exe</i>'),
+			'<a href="http://www.info-zip.org/" target="_blank">unzip</a>', '<i>/usr/local/bin/unzip</i>', '<i>c:\\bin\\unzip.exe</i>'),
 		'value' => locateFile("unzip"),
 		'must-be-file' => 1,
 		'must-be-executable' => 1,
@@ -531,7 +531,7 @@ $constants =  array_merge(
 	'rar' => array(
 		'prompt' => "rar",
 		'desc' => sprintf(_("The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
-			'rar', '<i>/usr/local/bin/rar</i>', '<i>c:\\bin\\rar.exe</i>'),
+			'<a href="http://www.rarlab.com/" target="_blank">rar</a>', '<i>/usr/local/bin/rar</i>', '<i>c:\\bin\\rar.exe</i>'),
 		'value' => locateFile("rar"),
 		'must-be-file' => 1,
 		'must-be-executable' => 1,
@@ -542,8 +542,8 @@ $constants =  array_merge(
 	),
 	'use_exif' => array(
 		'prompt' => "Jhead EXIF Parser",
-		'desc' => sprintf(_("The filesystem path to the <b>jhead</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
-			'<i>/usr/local/bin/jhead</i>', '<i>c:\\bin\\jhead.exe</i>'),
+		'desc' => sprintf(_("The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
+			'<a href="http://www.sentex.net/~mwandel/jhead/" target=_"blank">jhead</a>', '<i>/usr/local/bin/jhead</i>', '<i>c:\\bin\\jhead.exe</i>'),
 		'value' => locateFile("jhead"),
 		'must-be-file' => 1,
 		'must-be-executable' => 1,
@@ -552,7 +552,18 @@ $constants =  array_merge(
 		'type' => "text",
 		'attrs' => array('size' => 50)
 	),
-
+	'exiftags' => array(
+		'prompt' => "exiftags EXIF Parser",
+		'desc' => sprintf(_("The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
+			'<a href="http://johnst.org/sw/exiftags/" target="_blank">exiftags</a>', '<i>/usr/local/bin/exiftags</i>', '<i>c:\\bin\\exiftags.exe</i>'),
+		'value' => locateFile("exiftags"),
+		'must-be-file' => 1,
+		'must-be-executable' => 1,
+		'optional' => 1,
+		'filename' => 1,
+		'type' => "text",
+		'attrs' => array('size' => 50)
+	),
 	'use_jpegtran' => array (
 		'prompt' => "Jpegtran",
 		'desc' => sprintf(_("The filesystem path to the <b>jpegtran</b> utility.  E.g. %s or %s.  This is optional so if you don't have it, don't worry about it too much."), 
