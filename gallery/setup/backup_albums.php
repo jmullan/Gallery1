@@ -110,7 +110,7 @@ if (!isset($tar_path)) { $tar_path="/usr/bin/tar";}
 if (!isset($find_path)) { $find_path="/usr/bin/find";}
 if (!isset($xargs_path)) { $xargs_path="/usr/bin/xargs";}
 if (!isset($gzip_path)) { $gzip_path="/usr/bin/gzip";}
-if (!isset($zip_path)) { $zip_path="C:\\bin\\zip.exe";}
+if (!isset($zip_path)) { $zip_path="C:\bin\zip.exe";}
 ?>
 <center>
 Choose archiving option and which files you wish to archive.
