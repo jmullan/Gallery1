@@ -1,3 +1,9 @@
+2004-01-24  Bharat Mediratta  <bharat@menalto.com> 1.4.2-cvs-b79
+
+        * Fixed remote security exploit in init.php and setup/init.php where 
+	  one extract() call can be used to overwrite the input for a 
+	  subsequent extract() call letting users overwrite GALLERY_BASEDIR
+	
 2004-01-21 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b78
 	
 	* Change: Added possibility for LARGE bordes, bigger Images and MORE pages
