@@ -190,6 +190,12 @@ class AlbumItem {
 			    $gallery->userDB->convertUidToNewFormat($this->comments[$i]->UID);
 		    }
 		}
+
+		if ($this->version < 29) {
+			if ($gallery->app->autorotate == 'yes' && $gallery->app->use_exif) {
+				$this->extraFields['autoRotated'] = true;
+			}
+		}
 		
 		if ($this->image) {
 			if ($this->image->integrityCheck($dir)) {

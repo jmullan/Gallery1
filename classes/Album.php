@@ -377,6 +377,11 @@ class Album {
 			}
 		}
 
+		if ($this->version < 29) {
+			$this->fields['guid'] = md5(uniqid(rand(), true));
+			$changed = 1;
+		}
+
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
 			if ($gallery->app->use_exif) {
@@ -994,7 +999,7 @@ class Album {
 	       	}
 
 		/* auto-rotate the photo if needed */
-	       	if (!strcmp($gallery->app->autorotate, 'yes') && $gallery->app->use_exif) {
+	       	if ($gallery->app->autorotate == 'yes' && $gallery->app->use_exif && empty($item->extraFields['autoRotated'])) {
 		       	$index = $this->numPhotos(1);
 		       	$exifData = $this->getExif($index);
 		       	if (isset($exifData['Orientation']) && $orientation = trim($exifData['Orientation'])) {
@@ -1026,6 +1031,7 @@ class Album {
 			       	}
 			       	if ($rotate) {
 				       	$this->rotatePhoto($index, $rotate);
+					$item->extraFields['autoRotated'] = true;
 				       	processingMsg("- ". _("Photo auto-rotated/transformed"));
 			       	}
 		       	}
@@ -1039,6 +1045,8 @@ class Album {
 			$photo->watermark($this->getAlbumDir(),
 				$wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, 0, 0); 
 		}
+
+		$this->fields['guid'] = md5(uniqid(rand(), true));
 
 		return 0;
 	}

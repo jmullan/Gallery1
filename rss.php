@@ -137,7 +137,7 @@ foreach ($albumDB->albumList as $album) {
 	$albumInfo = array(
 		"!name" => $album->fields["name"],
 		"link" => makeAlbumUrl($album->fields["name"]),
-		"guid" => makeAlbumUrl($album->fields["name"]),
+		"guid" => array($album->fields['guid'], array("isPermaLink" => "false")),
 		"!date" => bestDate($album),
 		"title" => htmlspecialchars(removeUnprintable($album->fields["title"])));
 
