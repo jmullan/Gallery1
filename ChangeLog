@@ -1,6 +1,11 @@
-2001-10-13  Bharat Mediratta  <bharat@menalto.com> (1.2.2-cvs-b2)
+2001-10-13  Bharat Mediratta  <bharat@menalto.com> (1.2.2-cvs-b3)
 
-	* Fixed bug [#466729] Bad aspect ratio in html 4 rotated imgs 
+	* Fixed bug [#466729] Bad aspect ratio in html 4 rotated imgs.  In
+	  fixing this bug I found another problem: we were not upgrading the
+	  thumbnail and highlight images as part of the upgrade process.  So I
+	  fixed the upgrade code and have bumped the album version.  This means
+	  that YOUR ALBUMS WILL BE AUTOMATICALLY UPGRADED next time you view
+	  them, after getting this code.
 
 	* Fixed a bug where we still count clicks, even when they are
 	  disabled in the album (we just don't show the results).  Now we don't
