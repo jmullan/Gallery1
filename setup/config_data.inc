@@ -50,6 +50,10 @@ $features = array(
 );
 
 $constants = array(
+	"galleryTitle" => array(
+		"desc" => "The Gallery Title",
+		"value" => "Gallery"
+	),
 	"editPassword" => array(
 		"desc" => "The edit password",
 		"type" => "password"
