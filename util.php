@@ -61,57 +61,24 @@ function popup($url) {
 	return "javascript:void(open('$url','Edit','$attrs'))";
 }
 
-function loadJpeg ($imgname) {
-	$im = ImageCreateFromJPEG ($imgname); /* Attempt to open */
-	if ($im == "") { /* See if it failed */
-		$im = ImageCreate (150, 30); /* Create a blank image */
-		$bgc = ImageColorAllocate ($im, 255, 255, 255);
-		$tc  = ImageColorAllocate ($im, 0, 0, 0);
-		ImageFilledRectangle ($im, 0, 0, 150, 30, $bgc);
-		/* Output an errmsg */
-		ImageString ($im, 1, 5, 5, "Error loading $imgname", $tc); 
-	}
-	return $im;
-}
-
 function getDimensions($file) {
 	global $app;				
 
-	/* We might eventually want to do it the NetPBM way:
-	 * 
-	exec("$app->pnmDir/anytopnm $src | " .
-	     "$app->pnmDir/pnmfile",
+	exec("$app->pnmDir/anytopnm $file 2>/dev/null | " .
+	     "$app->pnmDir/pnmfile ",
 	     $lines,
 	     $status);
 
 	if ($status == 0) {
 		foreach ($lines as $line) {
 			if (ereg("([0-9]+) by ([0-9]+)", $line, $regs)) {
-				return array($regs[0], $regs[1]);
+				return array($regs[1], $regs[2]);
 			}
 		}
 	}
-	 *
-	 * But for now there's no advantage.
-	 */
 
-	$img = loadImage($file);
-	if ($img) {
-		return array(ImageSX($img), ImageSY($img));
-	} else {
-		return array(0, 0);
-	}
+	return array(0, 0);
 }
-
-function loadImage($file) {
-	$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $file);
-	if (!strcmp($tag, "jpg")) {
-		$img = loadJpeg($file);
-	} elseif (!strcmp($tag, "png")) {
-		$img = @ImageCreateFromPng($file);
-  	}
-	return $img;
-} 
 
 function selectOptions($album, $field, $opts) {
 	foreach ($opts as $opt) {
@@ -186,7 +153,7 @@ function my_flush() {
 function resize_image($src, $dest, $target) {
 	global $app;				
 
-	exec("$app->pnmDir/anytopnm $src | " .
+	exec("$app->pnmDir/anytopnm $src 2>/dev/null | " .
 	     "$app->pnmDir/pnmscale -xysize $target $target | ".
 	     "$app->pnmDir/ppmtojpeg > $dest");
 
@@ -200,7 +167,7 @@ function resize_image($src, $dest, $target) {
 function valid_image($file) {
 	global $app;
 	
-	exec("$app->pnmDir/anytopnm $file |" .
+	exec("$app->pnmDir/anytopnm $file 2>/dev/null |" .
 	     "$app->pnmDir/pnmfile",
 	     $results,
 	     $status);
