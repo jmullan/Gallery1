@@ -94,7 +94,7 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 		print "</select>\n";
 	}
 } else {
-	$err=printf (_("Could not open directory %s"), $gallery->app->watermarkDir);
+	$err=sprintf (_("Could not open directory %s"), $gallery->app->watermarkDir);
 	echo gallery_error($err);
 }
 ?>
