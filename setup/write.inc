@@ -1,3 +1,4 @@
+
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
