@@ -166,7 +166,9 @@ class Album {
 		$item = new AlbumItem();
 		$err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"]);
 		if ($err) {
-			unlink("$dir/$name.$tag");
+			if (file_exists("$dir/$name.$tag")) {
+				unlink("$dir/$name.$tag");
+			}
 			return $err;
 		}
 		$this->photos[] = $item;
