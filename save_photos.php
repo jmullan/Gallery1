@@ -95,7 +95,7 @@ while (sizeof($userfile)) {
 		}
 		/* Figure out what files we can handle */
 		list($files, $status) = exec_internal("$app->zipinfo -1 $file");
-		foreach ($files as $pic_path) {
+		foreach (sort($files, SORT_NUMERIC) as $pic_path) {
 			$pic = basename($pic_path);
 			$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
 			$tag = strtolower($tag);
