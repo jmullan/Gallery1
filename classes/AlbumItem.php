@@ -73,14 +73,8 @@ class AlbumItem {
 
 	function setItemCaptureDate($itemCaptureDate="") {
 		global $gallery;
-		/*$itemCaptureDate should be passed in as an associative array with the following elements:
-	 	$itemCaptureDate["hours"]
-		$itemCaptureDate["minutes"]
-		$itemCaptureDate["seconds"]
-		$itemCaptureDate["mon"]
-		$itemCaptureDate["mday"]
-		$itemCaptureDate["year"]
-		*/ 
+		/* Before 1.4.5-cvs-b106 this was an associative array */
+
 		if (!$itemCaptureDate) {	
 			// we want to attempt to set the $itemCaptureDate from the information that
 			// is available to us.  First, look in the exif data if it is a jpeg file.  If that
@@ -197,6 +191,24 @@ class AlbumItem {
 			}
 		}
 		
+
+		// Use TimeStamp for capture Date instead of assoziative Array
+
+		if ($this->version < 32) {
+		echo "\n<br>";
+		print_r($this->itemCaptureDate);
+		if (isset($this->itemCaptureDate)) {
+                                $this->itemCaptureDate = mktime(
+                                        $this->itemCaptureDate['hours'],
+                                        $this->itemCaptureDate['minutes'],
+                                        $this->itemCaptureDate['seconds'],
+                                        $this->itemCaptureDate['mon'],
+                                        $this->itemCaptureDate['mday'],
+                                        $this->itemCaptureDate['year']
+                                        );
+                        }
+                }
+
 		if ($this->image) {
 			if ($this->image->integrityCheck($dir)) {
 				$changed = 1;

@@ -46,6 +46,8 @@ if (isset($save)) {
 		$dateArray["hours"] = $capture_hours;
 		$dateArray["minutes"] = $capture_minutes;
 		$dateArray["seconds"] = $capture_seconds;
+
+		$timestamp=mktime($capture_hours, $capture_minutes, $capture_seconds, $capture_mon, $capture_mday, $capture_year);
 		$gallery->album->setItemCaptureDate($index, $dateArray );
 		if (isset($extra_fields)) {
 			foreach ($extra_fields as $field => $value)
@@ -126,12 +128,12 @@ if (isset($error)) {
 }
 $itemCaptureDate = $gallery->album->getItemCaptureDate($index);
 
-$hours = $itemCaptureDate["hours"];
-$minutes = $itemCaptureDate["minutes"];
-$seconds = $itemCaptureDate["seconds"];
-$mon = $itemCaptureDate["mon"];
-$mday = $itemCaptureDate["mday"];
-$year = $itemCaptureDate["year"];
+$hours 	 = strftime('%H', $itemCaptureDate);
+$minutes = strftime('%M', $itemCaptureDate);
+$seconds = strftime('%S', $itemCaptureDate);
+$mon 	 = strftime('%m', $itemCaptureDate);
+$mday 	 = strftime('%d', $itemCaptureDate);
+$year 	 = strftime('%Y', $itemCaptureDate);
 // start capture date table
 ?>
 

@@ -292,14 +292,8 @@ if ($numPhotos) {
 			echo "\n\t\t". '<input type="text" name="new_keywords_'. $i .'" size="65" value="'. $oldKeywords .'"></p>';
 
 			$itemCaptureDate = $gallery->album->getItemCaptureDate($i);
-			$hours = $itemCaptureDate["hours"];
-			$minutes = $itemCaptureDate["minutes"];
-			$seconds = $itemCaptureDate["seconds"];
-			$mon = $itemCaptureDate["mon"];
-			$mday = $itemCaptureDate["mday"];
-			$year = $itemCaptureDate["year"];
+			$capturedate=strftime($gallery->app->dateTimeString , $itemCaptureDate);
 
-			$capturedate=strftime($gallery->app->dateTimeString , mktime ($hours,$minutes,$seconds,$mon,$mday,$year));
 			echo "\n\t\t". '<p class="admin">'. _("Capture Date") . ': '. $capturedate. '</p><br>';
 		}
 	echo "\n\t</td>";

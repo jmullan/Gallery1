@@ -525,10 +525,8 @@ class Album {
 	function sortByItemCapture($a, $b) {
 		$objA = (object)$a;
 		$objB = (object)$b;
-		$arrayTimeA = $objA->getItemCaptureDate();
-		$arrayTimeB = $objB->getItemCaptureDate();
-		$timeA = "${arrayTimeA['year']}${arrayTimeA['mon']}${arrayTimeA['mday']}${arrayTimeA['hours']}${arrayTimeA['minutes']}${arrayTimeA['seconds']}";
-		$timeB = "${arrayTimeB['year']}${arrayTimeB['mon']}${arrayTimeB['mday']}${arrayTimeB['hours']}${arrayTimeB['minutes']}${arrayTimeB['seconds']}";
+		$timeA = $objA->getItemCaptureDate();
+		$timeB = $objB->getItemCaptureDate();
 		//print "$timeA $timeB<br>";
 	
 		if ($timeA == $timeB) {
