@@ -86,7 +86,7 @@ if (!empty($newName)) {
 		for ($i=1; $i <= $gallery->album->numPhotos(1); $i++) {
 			if ($gallery->album->getAlbumName($i)) {
 				$childAlbum = $gallery->album->getNestedAlbum($i);
-				$childAlbum->fields[parentAlbumName] = $newName;
+				$childAlbum->fields['parentAlbumName'] = $newName;
 				$childAlbum->save();
 			}
 		}
