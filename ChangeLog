@@ -1,3 +1,14 @@
+2003-09-04  Bharat Mediratta  <bharat@menalto.com> 1.4.1-cvs-b60
+
+	* Further on my fix from 1.4.1-cvs-b55.  Turns out that I should have
+	  changed the album data protocol back then and forced an upgrade, but
+	  didn't.  I'm bumping the album data version to 16 now which will
+	  trigger an upgrade and removing the raw_filesize value from the Image
+	  class altogether.  Now we'll calculate that on the fly (which will
+	  take care of any lingering data mistmatches between -b9 and -b10 as
+	  well as resolve any instances where the value was never set in the
+	  first place.
+
 2003-09-05  Jens Tkotz <jens@peino.de> 1.4.1-cvs-b59
 
 	* Language update: Swedish (sv_SE)
