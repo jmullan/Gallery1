@@ -575,6 +575,7 @@ class Album {
 	}
 
 	function setHighlight($index) {
+		global $gallery;
 		$this->updateSerial = 1;
 
 		$parent = $this->fields['parentAlbumName'];
