@@ -60,7 +60,7 @@ if  ($errors) {
 if  ($warnings) {
 	print "<p>";
 	print '<span class="warninglong">';
-       	print sprintf(_("The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is expected."), Gallery());
+       	print sprintf(_("The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."), Gallery());
 	print '</span>';
        	print "<br><br>\n";
        	foreach ($warnings as $file => $warning) {

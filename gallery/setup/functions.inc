@@ -1202,7 +1202,7 @@ function check_gallery_versions()  {
 					"<a href=check_versions.php>", "</a>");
 		$warn['nocolor'] = true;
 	} else {
-		$success[]=sprintf(_("%d files up-to-date."), count($oks));
+		$success[]=sprintf(_("All %d tested files up-to-date."), count($oks));
 	}
 	return array($success, $fail, $warn);
 }
