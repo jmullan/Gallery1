@@ -379,14 +379,8 @@ function check_php()
 	$fail = array();
 	$warn = array();
 
-	if (floor($version) < floor($MIN_PHP_MAJOR_VERSION)) {
-		$fail["fail-too-old"] = 1;
-	} else if (!strcmp($version, "4.0.0")) {
-		$fail["fail-incompatible"] = 1;
-	} else if (!strcmp($version, "4.0RC1")) {
-		$fail["fail-incompatible"] = 1;
-	} else if (!strncmp($version, "4.0.3", 5)) {
-		$fail["fail-incompatible"] = 1;
+	if (!function_exists('version_compare') || version_compare($version, "4.1.0", ">=")) {
+		$fail['fail-too-old'] = 1;
 	} else {
 		$success[] = sprintf(_("PHP v%s is OK."), $version);
 	}
@@ -1076,6 +1070,23 @@ function check_poll_nv_pairs($var) {
 		}
 	}
 	return array($success, $fail);
+}
+
+function check_register_globals() {
+	$fail = array();
+	$success = array();
+	$warn = array();
+
+	$globals_enabled = ini_get('register_globals');
+
+	if (!empty($globals_enabled) || !eregi('no|off', $globals_enabled)) {
+		$fail['register_globals'] = _("The PHP option 'register_globals' is enabled on your server. Gallery is not compatible with this option.");
+	}
+	else {
+		$success[] = _("<b>register_globals</b> is off.");
+	}
+
+	return array($success, $fail, $warn);
 }
 
 function detect_exec_status() 
