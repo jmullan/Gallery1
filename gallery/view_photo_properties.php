@@ -160,7 +160,7 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 ?>
 <br><br>
 <form action=#>
-<input type=submit value="<?php echo _("Done") ?>" onclick='parent.close()'>
+<input type=button value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
 
 </body>
