@@ -997,16 +997,19 @@ function padded_range_array($start, $end) {
 }
 
 function safe_serialize($obj, $file) {
+	global $gallery;
 
-	/* Acquire an advisory lock */
-	$lockfd = fs_fopen("$file.lock", "a+");
-	if (!$lockfd) {
-		error("Could not open lock file ($file.lock)!");
-		return 0;
-	}
-	if (!flock($lockfd, LOCK_EX)) {
-		error("Could not acquire lock ($file.lock)!");
-		return 0;
+	if (!strcmp($gallery->app->use_flock, "yes")) {
+		/* Acquire an advisory lock */
+		$lockfd = fs_fopen("$file.lock", "a+");
+		if (!$lockfd) {
+			error("Could not open lock file ($file.lock)!");
+			return 0;
+		}
+		if (!flock($lockfd, LOCK_EX)) {
+			error("Could not acquire lock ($file.lock)!");
+			return 0;
+		}
 	}
 
 	/*
@@ -1050,7 +1053,9 @@ function safe_serialize($obj, $file) {
 		$success = 0;
 	}
 
-	flock($lockfd, LOCK_UN);
+	if (!strcmp($gallery->app->use_flock, "yes")) {
+		flock($lockfd, LOCK_UN);
+	}
 	return $success;
 }
 

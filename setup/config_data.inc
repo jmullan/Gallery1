@@ -250,6 +250,14 @@ $constants = array(
 		"type" => "textarea",
 		"attrs" => array("cols" => 50, "rows" => 5),
 	),
+	"use_flock" => array(
+		"prompt" => "<b>(Advanced)</b> Use flock()?",
+		"desc" => "Gallery uses a locking system called flock() for added ".
+			  "protection against data corruption.  This is not supported " .
+			  "on all platforms.  If you're seeing errors like <i>Could " .
+			  "not acquire lock</i> then set this value to <i>no</i>",
+		"choices" => array("yes", "no"),
+		"value" => "yes"),
 	"debug" => array(
 		"prompt" => "<b>(Advanced)</b> Debug mode",
 		"desc" => "Turn debug mode on so that you can diagnose problems?",
