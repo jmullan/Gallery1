@@ -139,10 +139,10 @@ function popup($url, $url_is_complete=0, $height=500,$width=500) {
 }
 
 function popup_js($url, $window, $attrs) {
-	$badstr = array("\"", "'");
-	$repstr = array("\\'", "\\'");
-	str_replace($badstr, $repstr, $url);
-	return "nw=window.open('$url','$window','$attrs');nw.opener=self;return false;";
+	if (ereg("^http|^ftp", $url)) {
+		$url = "'$url'";
+	}
+	return "nw=window.open($url,'$window','$attrs');nw.opener=self;return false;";
 }
 
 function popup_status($url, $height=150, $width=350) {
