@@ -96,6 +96,7 @@ if (!$gallery->register_globals) {
 
 require($GALLERY_BASEDIR . "Version.php");
 require($GALLERY_BASEDIR . "util.php");
+
 /* Load bootstrap code */
 if (getOS() == OS_WINDOWS) {
 	include($GALLERY_BASEDIR . "platform/fs_win32.php");
@@ -107,6 +108,16 @@ if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
         global $gallery;
 	include($GALLERY_BASEDIR . "config.php");
 }
+
+/* 
+** Now we can catch if were are in GeekLog
+*/
+
+if (isset($gallery->app->embedded_inside_type) && $gallery->app->embedded_inside_type=='GeekLog') {
+	$GALLERY_EMBEDDED_INSIDE='GeekLog';
+	$GALLERY_EMBEDDED_INSIDE_TYPE = 'GeekLog';
+}
+
 if (isset($gallery->app->devMode) && 
 		$gallery->app->devMode == "yes") {
        	ini_set("display_errors", "1");
@@ -275,6 +286,32 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);		
 			}
 		break;
+
+		case 'GeekLog':
+			// Cheat, and grab USER information from the global session variables.
+			// Hey, it's faster and easier than reading them out of the database.
+     
+			require_once($gallery->app->geeklog_dir . '/lib-common.php');
+			global $_USER;
+
+			if (isset($_USER["username"])) {
+				$gallery->session->username = $_USER['username'];
+			} else if (!empty($gallery->session->username)) {
+				$gallery->session->username = "";
+			}
+
+			/* Implement GeekLogUserDB and User class. */
+			include($GALLERY_BASEDIR . "classes/geeklog/UserDB.php");
+			include($GALLERY_BASEDIR . "classes/geeklog/User.php");
+
+			/* Load GeekLog user database (and user object) */
+			
+			$gallery->userDB = new Geeklog_UserDB;
+
+			/* Load their user object with their username as the key */
+			if ($gallery->session->username) {
+				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
+    			}
 	}
 } 
 else {

@@ -41,6 +41,18 @@ switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
 		global $lang;
 		
 		include ($phpbb_root_path . "includes/page_tail.php");
-		break;
+	break;
+
+	case 'GeekLog':
+	
+	/*
+	** We can control whether we see the right side blocks
+	** by setting passing a parameter to COM_siteFooter.
+	** To see the blocks, pass true; to hide them pass false.
+	*/
+
+		echo COM_siteFooter( false );
+	break;
+
 }
 ?>

@@ -38,7 +38,11 @@ global $mop;
 global $include;
 global $name;
 
-/* Detect phpNuke, postnuke or phpBB2 and react accordingly */
+/* 
+** Detect phpNuke, postnuke or phpBB2 and react accordingly.
+** Gallery can run embedded in GeekLog too, but to catch this we need config.php
+** Therefore we have to detect GeeLog in init.php.
+*/
 if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 
 	/* 

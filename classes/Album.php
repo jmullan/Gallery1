@@ -1536,6 +1536,24 @@ class Album {
 		        return true;
 		}
 
+
+		/* GEEKLOG MOD
+		** We're also going to check to see if its possible that a
+		** group membership can authenticate us.
+		*/
+		
+		if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'GeekLog' && is_array($perm)) {
+			foreach ($perm as $gid => $pbool) {
+				$group = $gallery->userDB->getUserByUid($gid);
+				if ($group->isGroup == 1) {
+					if (SEC_inGroup(abs($group->uid), $uid)) {
+						return true;
+					}
+				}
+			}
+		}
+
+		
 		return false;
 	}
 

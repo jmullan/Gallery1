@@ -236,6 +236,30 @@ $constants =  array_merge(
 		"value" => NULL,
 		"attrs" => array("cols" => 50, "rows" => 5)
 	),
+	"separator_embeded" => array (
+	       	"type" => "separator",
+	       	"title" => _("Embedded Gallery"),
+	       	"desc" => _("Use this section to set options to configure gallery to be embedded in another web application."),
+	),
+	"embedded_inside_type" => array(
+		"prompt" => _("Embed Gallery"),
+		"desc"   => sprintf(_("If you would like to run your %s in into another web application (such as *Nuke, phpBB2 or GeekLog) you have to choose the environment now"),gallery()),
+		"choices" => array(	NULL 	   => _("Standalone Gallery"),
+					'phpNuke'  => 'phpNuke',
+					'postNuke' => 'postNuke',
+					'phpBB2'   => 'phpBB2' 
+					'GeekLog'  => 'GeekLog'),
+		"value"  => NULL,
+		"allow_empty" => true
+	),
+	"geeklog_dir" => array(
+		"prompt" => _("GeekLog Dir"),
+		"optional" => 1,
+		"desc" => _("If you choosed Geeklog above, please enter the location of the GeekLog public_html."),
+		"attrs" => array("size" => 80),
+		"type" => "text",
+		"value" => "/path/to/geeklog/public_html"
+	),
 	"separator2" => array (
 		"type" => "separator",
 		"title" => _("Toolkits / image processing")
