@@ -192,11 +192,17 @@ function getAnyToPnmCmd($file, $args) {
 function exec_wrapper($cmd) {
 	global $app;
 
-	// print "<p><b> About to exec [$cmd]</b>";
+	$debug = 0;
+	if ($debug) {
+		print "<p><b> About to exec [$cmd]</b>";
+	}
+
 	exec($cmd, $results, $status);
 
-	// print "<br> Results: <pre>" . join("\n", $results);
-	// print "<br> Status: $status";
+	if ($debug) {
+		print "<br> Results: <pre>" . join("\n", $results);
+		print "<br> Status: $status";
+	}
 
 	if ($status == 0) {
 		return 0;
@@ -381,7 +387,7 @@ function preprocessImage($dir, $file) {
 		$line = fgets($fd, 4096);
 
 		// Does it look like a content-type string?
-		if (!strstr($tmp, "Content-Type:")) {
+		if (strstr($tmp, "Content-Type:")) {
 			// Skip till we find a line by itself.
 			do {
 				$line = fgets($fd, 4096);
