@@ -1444,7 +1444,7 @@ if ( $showCaption && $showGrid ) {
 
 if ( $showAlbumLink ) {
 ?>
-         <span class="fineprint"><br clear="all"><?php echo _("From album"); ?>
+         <span class="fineprint"><br clear="all"><?php echo _("From album") . ' '; /* Needs a trailing space */ ?>
 <?php
 $owner_var = '';
 if ( $showAlbumOwner == 1 ) {

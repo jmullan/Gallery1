@@ -191,8 +191,6 @@ if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) {
 	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . doCommand("new-album", array(), "view_album.php") . '">[' . _("new album") . ']</a> ';
 }
 
-
-
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	if ($gallery->userDB->canModifyUser()) {
 		$adminCommands .= popup_link("[". _("preferences") ."]", 
@@ -200,7 +198,6 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 			. ' ';
 	}
 
-	$adminCommands .="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	if ($gallery->user->isAdmin() ||
 		$gallery->userDB->canModifyUser() ||
 	        $gallery->userDB->canCreateUser() ||
