@@ -465,7 +465,6 @@ if ($numPhotos) {
 			if ($showAdminForm) {
 				echo makeFormIntro("view_album.php", array("name" => "image_form_$i")); 
 			}
-
 			echo "<table width=$iWidth border=0 cellpadding=0 cellspacing=4><tr><td><span class=\"caption\">";
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
@@ -576,9 +575,8 @@ if ($numPhotos) {
 				}
 			}
 			if($gallery->album->isAlbumName($i)) { 
-			    if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum)) {
-				showChoice("Permissions",
-					   "album_permissions.php",
+			    if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum) && $showAdminForm) {
+				showChoice("Permissions", "album_permissions.php",
 					   array("set_albumName" => $myAlbum->fields["name"]));
 			    }
 			}

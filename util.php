@@ -1005,37 +1005,86 @@ function getNextPhoto($idx) {
 	return $idx;
 }
 
+// The following 2 functions, printAlbumOptionList and printNestedVals provide
+// a html options list for moving photos and albums around within gallery.  There
+// were some defects in the original implimentation (I take full credit for the
+// defects), and thus on 5/22/03, I rewrote the 2 functions to conform to the
+// following requirements:
+//
+// For moving albums, there are 2 cases:
+// 1. moving root albums:  the user should be able to move a
+//    root album to any album to which they have write permissions
+//    AND not to an album nested beneath it in the same tree
+//    AND not to itself.
+// 2. moving nested albums:  the user should be able to move a
+//    nested album to any album to which they have write permissions
+//    AND not to an album nested beneath it in the same tree
+//    AND not to itself
+//    AND not to its parent album.
+//    The user should also be able to move it to the ROOT level
+//    with appropriate permissions.
+//
+// For moving pictures, there is 1 case:
+// 1. moving pictures:  the user should be able to move a picture
+//    to any album to which they have write permissions
+//    AND not to the album to which it already belongs.
+//
+// -jpk
+
 function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 	global $gallery, $albumDB, $index;
+
 	$uptodate=true;
 	
 	$mynumalbums = $albumDB->numAlbums($gallery->user);
 
+	echo "<option value=0 selected> << Select Album >> </option>\n";
+
 	// create a ROOT option for the user to move the 
 	// album to the main display
-	echo "<option value=0 selected> << Select Album >> </option>\n";
 	if ($gallery->user->canCreateAlbums() && $rootDisplay) {
 		echo "<option value=ROOT>Top Level</option>";
 	}
-	$rootAlbumName = $gallery->album->getRootAlbumName();	
+
 	// display all albums that the user can move album to
 	for ($i=1; $i<=$mynumalbums; $i++) {
-		$myAlbum=$albumDB->getAlbum($gallery->user, $i);
-		if ($gallery->user->canWriteToAlbum($myAlbum) && 
-		    ($rootAlbumName != $myAlbum->fields['name'] || !$moveRootAlbum) ) {
+
+		$myAlbum = $albumDB->getAlbum($gallery->user, $i);
+		$myAlbumName = $myAlbum->fields['name'];
+		$myAlbumTitle = $myAlbum->fields['title'];
+
+		if ($gallery->user->canWriteToAlbum($myAlbum)) {
+
 			if ($myAlbum->versionOutOfDate()) {
 				print "problem with $myAlbum";
 				$uptodate=false;
 				continue;
 			}
-			$albumName = $myAlbum->fields['name'];
-			$albumTitle = $myAlbum->fields['title'];
-			if ($myAlbum != $gallery->album) {
-				echo "<option value=\"$albumName\">-- $albumTitle</option>\n";
+
+			if ($myAlbum == $gallery->album) {
+				// Don't allow the user to move to the current location with
+				// value=0, but notify them that this is the current location
+				echo "<option value=0>-- $myAlbumTitle (current location)</option>\n";
+			} else {
+				echo "<option value=\"$myAlbumName\">-- $myAlbumTitle</option>\n";
 			}
-			printNestedVals(1, $albumName, $albumTitle, $movePhoto);
+		}
+
+		if ( $moveRootAlbum && ($myAlbum == $gallery->album) && !$movePhoto )  {
+
+			// do nothing -- we are moving a root album, and we don't
+			// want to move it into its own album tree
+
+		} elseif ( ($myAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto )  {
+
+			// do nothing -- we are moving an album, and we don't
+			// want to move it into its own album tree
+
+		} else {
+			printNestedVals(1, $myAlbumName, $myAlbumTitle, $movePhoto);
 		}
 	}
+
 	return $uptodate;
 }
 
@@ -1054,16 +1103,27 @@ function printNestedVals($level, $albumName, $val, $movePhoto) {
 			$nestedAlbum = new Album();
 			$nestedAlbum->load($myName);
 			if ($gallery->user->canWriteToAlbum($nestedAlbum)) {
+
 				$val2 = str_repeat("-- ", $level+1);
 				$val2 = $val2 . $nestedAlbum->fields['title'];
-				if ($nestedAlbum != $gallery->album &&
-				    $gallery->album->numPhotos(1) <= $index ||
-				    $nestedAlbum != $gallery->album->getNestedAlbum($index)) {
+				
+				if ($nestedAlbum == $gallery->album) {
+					// don't allow user to move to here (value=0), but
+					// notify them that this is their current location
+					echo "<option value=0> $val2 (current location)</option>\n";
+				} elseif ($nestedAlbum == $gallery->album->getNestedAlbum($index)) {
+					echo "<option value=0> $val2 (self)</option>\n";
+				} else {
 					echo "<option value=\"$myName\"> $val2</option>\n";
-					printNestedVals($level + 1, $myName, $val2, $movePhoto);
-				} elseif ($movePhoto) {
-					printNestedVals( $level + 1, $myName, $val2, $movePhoto);
 				}
+			}
+
+			if ( ($nestedAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto ) {
+
+				// do nothing -- don't allow album move into its own tree
+
+			} else {
+				printNestedVals($level + 1, $myName, $val2, $movePhoto);
 			}
 		}
 	}
