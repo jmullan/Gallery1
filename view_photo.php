@@ -21,42 +21,45 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canReadAlbum($album)) {
+if (!$gallery->user->canReadAlbum($gallery->album)) {
 	header("Location: albums.php");
 	return;
 }
 
 if ($id) {
-	$index = $album->getPhotoIndex($id);
+	$index = $gallery->album->getPhotoIndex($id);
 	if ($index == -1) {
 		// That photo no longer exists.
-		header("Location: $app->photoAlbumURL/$albumName");
+		header("Location: " .
+			$gallery->app->photoAlbumURL . 
+			"/" . 
+			$gallery->session->albumName);
 		return;
 	}
 } else {
-	$id = $album->getPhotoId($index);
+	$id = $gallery->album->getPhotoId($index);
 }
-$photo = $album->getPhoto($index);
+$photo = $gallery->album->getPhoto($index);
 if ($photo->isMovie()) {
 	$image = $photo->thumbnail;
 } else {
 	$image = $photo->image;
 }
-$photoURL = $album->getAlbumDirURL() . "/" . $image->name . "." . $image->type;
+$photoURL = $gallery->album->getAlbumDirURL() . "/" . $image->name . "." . $image->type;
 list($imageWidth, $imageHeight) = $image->getDimensions();
 
-$do_fullOnly = !strcmp($fullOnly,"on") &&
-               !strcmp($album->fields["use_fullOnly"],"yes");
+$do_fullOnly = !strcmp($gallery->session->fullOnly,"on") &&
+               !strcmp($gallery->album->fields["use_fullOnly"],"yes");
 if ($do_fullOnly) {
 	$full = 1;
 }
-$fitToWindow = !strcmp($album->fields["fit_to_window"], "yes") && !$album->isResized($index) && !$full;
+$fitToWindow = !strcmp($gallery->album->fields["fit_to_window"], "yes") && !$gallery->album->isResized($index) && !$full;
 
 if ($full) {
 	$fullTag = "?full=1";
 }
 
-$numPhotos = $album->numPhotos($user->canWriteToAlbum($album));
+$numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 $next = $index+1;
 if ($next > $numPhotos) {
 	//$next = 1;
@@ -68,7 +71,7 @@ if ($prev <= 0) {
         $first = 1;
 }
 
-if ($index > $album->numPhotos(1)) {
+if ($index > $gallery->album->numPhotos(1)) {
 	$index = $numPhotos;
 }
 
@@ -76,8 +79,8 @@ if ($index > $album->numPhotos(1)) {
  * We might be prev/next navigating using this page
  *  so recalculate the 'page' variable
  */
-$rows = $album->fields["rows"];
-$cols = $album->fields["cols"];
+$rows = $gallery->album->fields["rows"];
+$cols = $gallery->album->fields["cols"];
 $perPage = $rows * $cols;
 $page = ceil($index / ($rows * $cols));
 
@@ -87,60 +90,60 @@ $page = ceil($index / ($rows * $cols));
  * we're down 1 dir farther than we really are.  Use absolute 
  * urls wherever possible.
  */
-$top = $app->photoAlbumURL;
+$top = $gallery->app->photoAlbumURL;
 
-$bordercolor = $album->fields["bordercolor"];
-$borderwidth = $album->fields["border"];
+$bordercolor = $gallery->album->fields["bordercolor"];
+$borderwidth = $gallery->album->fields["border"];
 if (!strcmp($borderwidth, "off")) {
 	$borderwidth = 1;
 }
 
-if (!strcmp($album->fields["resize_size"], "off")) {
+if (!strcmp($gallery->album->fields["resize_size"], "off")) {
         $mainWidth = 0;
 } else {
-	$mainWidth = $album->fields["resize_size"] + ($borderwidth*2);
+	$mainWidth = $gallery->album->fields["resize_size"] + ($borderwidth*2);
 }
 
 $navigator["id"] = $id;
-$navigator["allIds"] = $album->getIds($user->canWriteToAlbum($album));
+$navigator["allIds"] = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
 $navigator["fullWidth"] = "100";
 $navigator["widthUnits"] = "%";
 $navigator["url"] = ".";
 $navigator["bordercolor"] = $bordercolor;
 
 #-- breadcrumb text ---
-if (strcmp($album->fields["returnto"], "no")) {
-	$breadtext[0] = "Gallery: <a href=$top/albums.php>".$app->galleryTitle."</a>";
-	$breadtext[1] = "Album: <a href=$top/view_album.php?page=$page>".$album->fields["title"]."</a>";
+if (strcmp($gallery->album->fields["returnto"], "no")) {
+	$breadtext[0] = "Gallery: <a href=$top/albums.php>".$gallery->app->galleryTitle."</a>";
+	$breadtext[1] = "Album: <a href=$top/view_album.php?page=$page>".$gallery->album->fields["title"]."</a>";
 } else {
-	$breadtext[0] = "Album: <a href=$top/view_album.php?page=$page>".$album->fields["title"]."</a>";
+	$breadtext[0] = "Album: <a href=$top/view_album.php?page=$page>".$gallery->album->fields["title"]."</a>";
 }
 ?>
 
 <head>
-  <title><?= $app->galleryTitle ?> :: <?= $album->fields["title"] ?> :: <?= $index ?></title>
+  <title><?= $gallery->app->galleryTitle ?> :: <?= $gallery->album->fields["title"] ?> :: <?= $index ?></title>
   <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
   <style type="text/css">
 <?
 // the link colors have to be done here to override the style sheet
-if ($album->fields["linkcolor"]) {
+if ($gallery->album->fields["linkcolor"]) {
 ?>      
     A:link, A:visited, A:active
-      { color: <?= $album->fields[linkcolor] ?>; }
+      { color: <?= $gallery->album->fields[linkcolor] ?>; }
     A:hover
       { color: #ff6600; }
 <? 
 }       
-if ($album->fields["bgcolor"]) {
-        echo "BODY { background-color:".$album->fields[bgcolor]."; }";
+if ($gallery->album->fields["bgcolor"]) {
+        echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
 }       
-if ($album->fields["background"]) {
-        echo "BODY { background-image:url(".$album->fields[background]."); } ";
+if ($gallery->album->fields["background"]) {
+        echo "BODY { background-image:url(".$gallery->album->fields[background]."); } ";
 } 
-if ($album->fields["textcolor"]) {
-        echo "BODY, TD {color:".$album->fields[textcolor]."; }";
-	echo ".head {color:".$album->fields[textcolor]."; }";
-	echo ".headbox {background-color:".$album->fields[bgcolor]."; }";
+if ($gallery->album->fields["textcolor"]) {
+        echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
+	echo ".head {color:".$gallery->album->fields[textcolor]."; }";
+	echo ".headbox {background-color:".$gallery->album->fields[bgcolor]."; }";
 }       
 ?> 
   </style> 
@@ -194,7 +197,7 @@ if ($fitToWindow) {
 		img.width = imageWidth;
 	} else {
 		if (changed) {
-			document.write('<a href="<?=makeGalleryUrl($albumName, $id, "full=1")?>">');
+			document.write('<a href="<?=makeGalleryUrl($gallery->session->albumName, $id, "full=1")?>">');
 		}
 		document.write('<img name=photo src="<?=$photoURL?>" border=0 width=' +
 		                 imageWidth + ' height=' + imageHeight + '>');
@@ -239,23 +242,23 @@ includeHtmlWrap("photo.header");
 <td>
 <?
 
-if (!$album->isMovie($id)) {
-	if ($user->canWriteToAlbum($album)) {
+if (!$gallery->album->isMovie($id)) {
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$adminCommands .= '<a href="#" onClick="'.
 			popup("$top/resize_photo.php?index=$index").';return false">[resize photo]</a>';
 	}
 
-	if ($user->canDeleteFromAlbum($album)) {
+	if ($gallery->user->canDeleteFromAlbum($gallery->album)) {
 		$adminCommands .= '<a href="#" onClick="'.
 			popup("$top/delete_photo.php?index=$index").';return false">[delete photo]</a>';
 	}
 
-	if (!strcmp($album->fields["use_fullOnly"], "yes")) {
+	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes")) {
 		$link = "$top/do_command.php?set_fullOnly=" .
-		        (strcmp($fullOnly,"on") ? "on" : "off") .
+		        (strcmp($gallery->session->fullOnly,"on") ? "on" : "off") .
 		        "&return=" . urlencode($REQUEST_URI);
 		$adminCommands .= " View Images: [ ";
-		if (strcmp($fullOnly,"on"))
+		if (strcmp($gallery->session->fullOnly,"on"))
 		{
 			$adminCommands .= "normal | <a href=\"$link\">full</a> ]";
 		} else {
@@ -264,19 +267,19 @@ if (!$album->isMovie($id)) {
 	}
 
     
-	if (!strcmp($album->fields["use_exif"],"yes") && (!strcmp($photo->image->type,"jpg")) &&
-	    ($app->use_exif)) {
+	if (!strcmp($gallery->album->fields["use_exif"],"yes") && (!strcmp($photo->image->type,"jpg")) &&
+	    ($gallery->app->use_exif)) {
 		$adminCommands .= "<a href=\"#\" onClick=\"".
-						popup($app->photoAlbumURL."/view_photo_properties.php?index=$index").
-						"\">[Photo Properties]</a>&nbsp;&nbsp;";
+						popup($gallery->app->photoAlbumURL."/view_photo_properties.php?index=$index").
+						"\">[photo properties]</a>&nbsp;&nbsp;";
 	}
 
 
-	if (strcmp($album->fields["print_photos"],"none")) {
+	if (strcmp($gallery->album->fields["print_photos"],"none")) {
 		if (strlen($adminCommands) > 0) {
 			$adminCommands .="<br>";
 		}
-		$adminCommands .= "<a href=# onClick=\"document.sflyc4p.submit();return false\">[Order a Print of this Photo on Shutterfly]</a>";
+		$adminCommands .= "<a href=# onClick=\"document.sflyc4p.submit();return false\">[print this photo on Shutterfly]</a>";
 	}
 
 
@@ -305,8 +308,8 @@ include("layout/breadcrumb.inc");
 include("layout/navphoto.inc");
 
 #-- if borders are off, just make them the bgcolor ----
-if (!strcmp($album->fields["border"], "off")) {
-	$bordercolor = $album->fields["bgcolor"];
+if (!strcmp($gallery->album->fields["border"], "off")) {
+	$bordercolor = $gallery->album->fields["bgcolor"];
 }
 if ($bordercolor) {
 	$bordercolor = "bgcolor=$bordercolor";
@@ -338,19 +341,19 @@ echo("<img src=$top/images/pixel_trans.gif width=$borderwidth height=1>");
 echo("</td><td>");
 echo "<center>";
 
-$photoTag = $album->getPhotoTag($index, $full);
+$photoTag = $gallery->album->getPhotoTag($index, $full);
 
-if (!$album->isMovie($id)) {
-	if ($album->isResized($index) && !$do_fullOnly) { 
+if (!$gallery->album->isMovie($id)) {
+	if ($gallery->album->isResized($index) && !$do_fullOnly) { 
 		if ($full) { 
-			echo "<a href=" . makeGalleryUrl($albumName, $id) . ">";
+			echo "<a href=" . makeGalleryUrl($gallery->session->albumName, $id) . ">";
 	 	} else {
-			echo "<a href=" . makeGalleryUrl($albumName, $id, "full=1") . ">";
+			echo "<a href=" . makeGalleryUrl($gallery->session->albumName, $id, "full=1") . ">";
 		}
 		$openAnchor = 1;
 	}
 } else {
-	echo "<a href=" . $album->getPhotoPath($index) . " target=other>";
+	echo "<a href=" . $gallery->album->getPhotoPath($index) . " target=other>";
 	$openAnchor = 1;
 }
 
@@ -388,17 +391,17 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 <!-- caption -->
 <tr>
 <td colspan=3 align=center>
-<span class="caption"><?= editCaption($album, $index, $edit) ?></span>
+<span class="caption"><?= editCaption($gallery->album, $index, $edit) ?></span>
 <br><br>
 </td>
 <?
-if (!strcmp($album->fields["print_photos"],"none") ||
-    $album->isMovie($id)) {
+if (!strcmp($gallery->album->fields["print_photos"],"none") ||
+    $gallery->album->isMovie($id)) {
 } else {
 $hostname = $GLOBALS["SERVER_NAME"];
 $protocal = "http";
-$photo = $album->getPhoto($GLOBALS["index"]);
-$photoPath = $protocal . "://" . $hostname . $album->getAlbumDirURL();
+$photo = $gallery->album->getPhoto($GLOBALS["index"]);
+$photoPath = $protocal . "://" . $hostname . $gallery->album->getAlbumDirURL();
 $rawImage = $photoPath . "/" . $photo->image->name . "." . $photo->image->type;
 
 $thumbImage= $photoPath . "/";
@@ -407,7 +410,7 @@ if ($photo->image->resizedName) {
 } else {
 	$thumbImage .= $photo->image->name . "." . $photo->image->type;
 }
-list($imageWidth, $imageHeight) = $photo->image->getRawDimensions($album->getAlbumDir());
+list($imageWidth, $imageHeight) = $photo->image->getRawDimensions($gallery->album->getAlbumDir());
 ?>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value=1>
@@ -415,7 +418,7 @@ list($imageWidth, $imageHeight) = $photo->image->getRawDimensions($album->getAlb
   <input type=hidden name=pid value=C4P>
   <input type=hidden name=psid value=AFFL>
   <input type=hidden name=referid value=jackodog>
-  <input type=hidden name=returl value="<?= $app->photoAlbumURL."/view_album.php" ?>">
+  <input type=hidden name=returl value="<?= $gallery->app->photoAlbumURL."/view_album.php" ?>">
   <input type=hidden name=imraw-1 value="<?= $rawImage ?>">
   <input type=hidden name=imrawheight-1 value="<?= $imageHeight ?>">
   <input type=hidden name=imrawwidth-1 value="<?= $imageWidth ?>">

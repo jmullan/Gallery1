@@ -23,23 +23,23 @@
 <?
 /* Read the album list */
 $albumDB = new AlbumDB();
-$albumName = "";
+$gallery->session->albumName = "";
 $page = 1;
 
 /* If there are albums in our list, display them in the table */
-$numAlbums = $albumDB->numAlbums($user);
+$numAlbums = $albumDB->numAlbums($gallery->user);
 
-if (!$albumListPage) {
-	$albumListPage = 1;
+if (!$gallery->session->albumListPage) {
+	$gallery->session->albumListPage = 1;
 }
-$perPage = $app->default["albumsPerPage"];
+$perPage = $gallery->app->default["albumsPerPage"];
 $maxPages = max(ceil($numAlbums / $perPage), 1);
 
-if ($albumListPage > $maxPages) {
-	$albumListPage = $maxPages;
+if ($gallery->session->albumListPage > $maxPages) {
+	$gallery->session->albumListPage = $maxPages;
 }
 
-$navigator["page"] = $albumListPage;
+$navigator["page"] = $gallery->session->albumListPage;
 $navigator["pageVar"] = "set_albumListPage";
 $navigator["url"] = "albums.php";
 $navigator["maxPages"] = $maxPages;
@@ -53,7 +53,7 @@ $navigator["bordercolor"] = "#DDDDDD";
 
 <html>
 <head>
-<title><?= $app->galleryTitle ?></title>
+<title><?= $gallery->app->galleryTitle ?></title>
 <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
 </head>
 <body>
@@ -74,23 +74,23 @@ if ($maxPages > 1) {
 $adminText .= "</span>";
 $adminCommands = "<span class=\"admin\">";
 
-if ($user->isLoggedIn()) {
-	$adminCommands .= "Welcome, " . $user->getFullname() . "&nbsp;&nbsp;<br>";
+if ($gallery->user->isLoggedIn()) {
+	$adminCommands .= "Welcome, " . $gallery->user->getFullname() . "&nbsp;&nbsp;<br>";
 }
 
-if ($user->canCreateAlbums()) { 
-	$adminCommands .= "<a href=do_command.php?cmd=new-album&return=view_album.php?page=1>[New Album]</a>&nbsp;";
+if ($gallery->user->canCreateAlbums()) { 
+	$adminCommands .= "<a href=do_command.php?cmd=new-album&return=view_album.php?page=1>[new album]</a>&nbsp;";
 }
 
-if ($user->isAdmin()) {
-	$adminCommands .= '<a href="#" onClick="'.popup("manage_users.php").'">[Manage Users]</a>&nbsp;';
+if ($gallery->user->isAdmin()) {
+	$adminCommands .= '<a href="#" onClick="'.popup("manage_users.php").'">[manage users]</a>&nbsp;';
 }
 
-if ($user->isLoggedIn()) {
-	$adminCommands .= '<a href="#" onClick="'.popup("user_preferences.php").'">[Preferences]</a>&nbsp;';
-	$adminCommands .= "<a href=do_command.php?cmd=logout&return=albums.php>[Logout]</a>";
+if ($gallery->user->isLoggedIn()) {
+	$adminCommands .= '<a href="#" onClick="'.popup("user_preferences.php").'">[preferences]</a>&nbsp;';
+	$adminCommands .= "<a href=do_command.php?cmd=logout&return=albums.php>[logout]</a>";
 } else {
-	$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[Login]</a>';
+	$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[login]</a>';
 }
 /*
 $adminCommands .= '<a href="#" onClick="'.popup_help("commands", "gallery").'"><img src="images/question_mark.gif" border=0></a>';
@@ -113,25 +113,25 @@ include("layout/navigator.inc");
 
 
 <?
-$start = ($albumListPage - 1) * $perPage + 1;
+$start = ($gallery->session->albumListPage - 1) * $perPage + 1;
 $end = min($start + $perPage - 1, $numAlbums);
 for ($i = $start; $i <= $end; $i++) {
-        $album = $albumDB->getAlbum($user, $i);
-	$isRoot = $album->isRoot(); // Only display album if it is a root album
+        $gallery->album = $albumDB->getAlbum($gallery->user, $i);
+	$isRoot = $gallery->album->isRoot(); // Only display album if it is a root album
 	if($isRoot) {
-		$owner = $album->getOwner();
-        	$tmpAlbumName = $album->fields["name"];
+		$owner = $gallery->album->getOwner();
+        	$tmpAlbumName = $gallery->album->fields["name"];
         	$albumURL = makeGalleryUrl($tmpAlbumName);
 ?>     
 
   <!-- Begin Album Column Block -->
   <tr>
   <!-- Begin Image Cell -->
-  <td width=<?=$app->highlight_size?> align=center valign=middle>
+  <td width=<?=$gallery->app->highlight_size?> align=center valign=middle>
   <a href=<?=$albumURL?>>
   <?   
-        if ($album->numPhotos(1)) {
-                echo $album->getHighlightTag();
+        if ($gallery->album->numPhotos(1)) {
+                echo $gallery->album->getHighlightTag();
         } else {
                 echo "<span class=title>Empty!</span>";
         }
@@ -142,34 +142,34 @@ for ($i = $start; $i <= $end; $i++) {
   <hr size=1>
   <span class="title">
   <a href=<?=$albumURL?>>
-  <?= editField($album, "title", $edit) ?></a>
+  <?= editField($gallery->album, "title", $edit) ?></a>
   </span>
   <br>
   <span class="desc">
-  <?= editField($album, "description", $edit) ?>
+  <?= editField($gallery->album, "description", $edit) ?>
   </span>
   <br>
-  <? if (strcmp($app->default["showOwners"], "no")) { ?>
+  <? if (strcmp($gallery->app->default["showOwners"], "no")) { ?>
   <span class="desc">
   Owner: <a href=mailto:<?=$owner->getEmail()?>><?=$owner->getFullName()?></a>
   </span>
   <br>
   <? } ?>
 
-  <? if ($user->canDeleteAlbum($album)) { ?>
+  <? if ($gallery->user->canDeleteAlbum($gallery->album)) { ?>
    <span class="admin">
     <a href="#" onClick="<?= popup("delete_album.php?set_albumName={$tmpAlbumName}")?>">[delete album]</a>
    </span>
   <? } ?>
 
-  <? if ($user->canWriteToAlbum($album)) { ?>
+  <? if ($gallery->user->canWriteToAlbum($gallery->album)) { ?>
    <span class="admin">
     <a href="#" onClick="<?= popup("move_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">[move album]</a>
     <a href="#" onClick="<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">[rename album]</a>
    </span>
   <? } ?>
 
-  <? if ($user->isAdmin() || $user->isOwnerOfAlbum($album)) { ?>
+  <? if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) { ?>
    <span class="admin">
     <a href="#" onClick="<?= popup("album_permissions.php?set_albumName={$tmpAlbumName}")?>">[permissions]</a>
    </span>
@@ -188,8 +188,8 @@ for ($i = $start; $i <= $end; $i++) {
 
   <br>
   <span class="fineprint">
-   Last changed on <?=$album->getLastModificationDate()?>.  
-   This album contains <?=pluralize($album->numPhotos(0), "item", "no")?>.
+   Last changed on <?=$gallery->album->getLastModificationDate()?>.  
+   This album contains <?=pluralize($gallery->album->numPhotos(0), "item", "no")?>.
   </span>
   </td>
   </tr>
