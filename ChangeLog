@@ -1,3 +1,13 @@
+2004-02-25  Andrew Lindeman <joyoflinux@yahoo.com> 1.4.3-cvs-63
+	
+	* Added security checks to GHCC and enabled it.
+	
+	* Fixed a few bugs (including 826586 and 869838) that deal with
+	  certain characters needing to be escaped in shell
+	  
+	* Reduced the number of eval() statements needed by converting
+	  some to use variable variables.  This should fix 843268.
+
 2004-02-24  Jay Rossiter <cryptographite@users.sourceforge.net> 1.4.3-cvs-b62
 
 	* Prevent infinite redirection for directory names which

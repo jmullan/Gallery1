@@ -62,7 +62,7 @@ session_start();
 /* emulate register_globals for sessions */
 if (!$gallery->register_globals) {
     foreach($HTTP_SESSION_VARS as $key => $value) {
-        eval("\$$key = & \$HTTP_SESSION_VARS[\"$key\"];");
+        $$key =& $HTTP_SESSION_VARS[$key];
     }
 }
 

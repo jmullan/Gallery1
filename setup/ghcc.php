@@ -23,8 +23,18 @@
  */
 ?>
 <?php
-// test is disabled until we perform adequate security checks on windows
-exit();
+/*
+** When we are in Windows we need a check if we secured.
+** We dont check when not in Windows, as we assume the permissions are set correct.		
+*/
+if (getOS() == OS_WINDOWS) {
+	include(dirname(dirname(__FILE__)) . '/platform/fs_win32.php');
+	if (fs_file_exists("SECURE")) {
+		echo "You cannot access this file while gallery is in secure mode.";
+		exit;
+	}
+}
+
 
 /*
 desc - A description of the test

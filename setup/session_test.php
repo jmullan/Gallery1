@@ -30,7 +30,7 @@ session_start();
 
 // Pull the $count variable in also
 foreach($HTTP_SESSION_VARS as $key => $value) {
-    eval("\$$key =& \$HTTP_SESSION_VARS[\"$key\"];");
+	$$key =& $HTTP_SESSION_VARS[$key];
 }
 session_register("count");
 

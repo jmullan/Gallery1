@@ -25,8 +25,7 @@
 /*
  * workaround for php < 4.1.0
  */
-if ( phpversion() < '4.1' ) {
-eval('
+if (!function_exists ('array_key_exists')) {
 	function array_key_exists($key, $arr)
 	{
 		if (!is_array($arr)) {
@@ -39,7 +38,6 @@ eval('
 		}
 		return false;
 	}
-');
 }
 
 /**

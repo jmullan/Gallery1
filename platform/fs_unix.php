@@ -89,11 +89,9 @@ function fs_is_executable($filename) {
 
 function fs_import_filename($filename, $for_exec=1) {
 	if ($for_exec) {
-		if (strstr($filename, " ")) {
-			$filename = "\"$filename\"";
-		}
+		$filename = escapeshellarg ($filename); // Might as well use the function PHP provides!
 	}
-
+	
 	return $filename;
 }
 
