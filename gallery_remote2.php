@@ -49,7 +49,7 @@ if (empty ($cmd)) {
 /*
  * Set content type
  */
-//header("Content-type: text/plain");
+header("Content-type: text/plain");
 
 /*
  * Gallery remote protocol version 2.7
