@@ -38,7 +38,7 @@ if ($id) {
 }
 $photo = $album->getPhoto($index);
 $photoURL = $album->getAlbumDirURL() . "/" . $photo->image->name . "." . $photo->image->type;
-$fitToWindow = !strcmp($album->fields["fit_to_window"], "yes");
+$fitToWindow = !strcmp($album->fields["fit_to_window"], "yes") && !$album->isResized($index);
 list($imageWidth, $imageHeight) = $photo->image->getDimensions();
 
 if ($full) {
@@ -294,7 +294,11 @@ echo "<center>";
 $photoTag = $album->getPhotoTag($index, $full);
 
 if (!$album->isMovie($index)) {
-	if ($album->isResized($index)) { 
+	if ($fitToWindow) {
+		echo "<a href=" . makeGalleryUrl($albumName, $id) . ">";
+		$photoTag = "<img name=photo src=$photoURL border=0 width=$imageWidth height=$imageHeight>";
+		$openAnchor = 1;
+	} else if ($album->isResized($index)) { 
 		if ($full) { 
 			echo "<a href=" . makeGalleryUrl($albumName, $id) . ">";
 	 	} else {
@@ -304,12 +308,8 @@ if (!$album->isMovie($index)) {
 	} else if (!$full) {
 		echo "<a href=" . makeGalleryUrl($albumName, $id, "full=1") . ">";
 		$openAnchor = 1;
-		$photoTag = "<img name=photo src=$photoURL border=0 " .
-			    "width=$imageWidth height=$imageHeight>";
-	} else if ($fitToWindow) {
-		echo "<a href=" . makeGalleryUrl($albumName, $id) . ">";
-		$openAnchor = 1;
-	}
+		$photoTag = "<img src=$photoURL border=0 width=$imageWidth height=$imageHeight>";
+	} 
 } else {
 	echo "<a href=" . $album->getPhotoPath($index) . " target=other>";
 	$openAnchor = 1;
