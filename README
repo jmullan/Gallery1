@@ -51,8 +51,7 @@ easiest way to do this is to create an empty file (we'll call it
 you install Gallery or you'll overwrite your existing config file!
 
 YOU TYPE:
-	ftp> cd gallery
-	ftp> put empty-file config.php
+	put empty-file config.php
 
 YOU SEE:
 	local: empty-file remote: config.php
@@ -60,8 +59,7 @@ YOU SEE:
 	226 Transfer complete.
 
 YOU TYPE:
-	ftp> cd gallery
-	ftp> put empty-file .htaccess
+	put empty-file .htaccess
 
 YOU SEE:
 	local: empty-file remote: config.php
@@ -69,23 +67,23 @@ YOU SEE:
 	226 Transfer complete.
 
 At this point, you need to make both of these files writable.  You
-can do this:
+can do this (in the gallery directory)
 
-	ftp> cd gallery
-	ftp> chmod 777 .htaccess
-	ftp> chmod 777 config.php
-	ftp> chmod 755 setup
+	chmod 777 .htaccess
+	chmod 777 config.php
+	chmod 755 setup
 
 Now you're all set to configure gallery so go to the Gallery web
 page.  When you're done and it prompts you to make the gallery secure
 again, you need to change your permissions back again:
 
-	ftp> cd gallery
-	ftp> chmod 644 config.php
-	ftp> chmod 644 .htaccess
-	ftp> chmod 0 setup
+	chmod 644 config.php
+	chmod 644 .htaccess
+	chmod 0 setup
 
-That's all it takes!
+That's all it takes!  If you use CuteFTP or some other FTP program,
+you may need to hunt around a bit to find the CHMOD command.  In
+CuteFTP it's a menu option.  
 
 4. HOW DO I INSTALL GALLERY ON WINDOWS?
 
