@@ -681,6 +681,10 @@ function config_maybe_locales() {
 
 			
         }
+	$choices=array();
+	foreach ($available as $choice => $value) { 
+		$choices[$choice]=$value;
+	}
         foreach ($unavailable as $key) {
 		if (sizeof($available) == 1) {
 			$results["locale_alias['$key']"] = array (
@@ -692,10 +696,6 @@ function config_maybe_locales() {
 			continue;
 		}
 		$index = $nls['languages'][$key] ;
-		$choices=array();
-		foreach ($available as $value) { 
-			$choices[$value]=$value;
-		}
 		$results["locale_alias['$key']"] = array (
 			"prompt" => sprintf(_("Locale problems with %s."),
 				$nls['languages'][$key]),

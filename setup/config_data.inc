@@ -349,7 +349,7 @@ $constants = array_merge(
 				2 => "2: " . _("Gallery is displayed in the language the browser sends"), 
 				3 => "3: " . _("The User can choose the language via select Box."))
 			: array(1 => "1: " . _("Gallery is only displayed in one language")),
-		"value" => 1
+		"value" => 3
 	),
 	"available_lang" => array(
 		"prompt" => _("Available languages in mode 3"), 
