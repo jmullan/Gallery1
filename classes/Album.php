@@ -896,6 +896,10 @@ class Album {
 	}
 
 	function incrementItemClicks($index) {
+		if (strcmp($this->fields["display_clicks"], "yes")) {
+			return;
+		}
+
 		$photo = &$this->getPhoto($index);
 		$photo->incrementItemClicks();
 
