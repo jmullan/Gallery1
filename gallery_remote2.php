@@ -130,7 +130,26 @@ if (!strcmp($cmd, "login")) {
 	check_proto_version( $response );
 	
 	if ($uname && $password) {
+		//echo $gallery->user->getUsername()."\n";
+		//echo $gallery->user->isLoggedIn()."\n";
+
+		if ($gallery->user->isLoggedIn()) {
+			// we're embedded and the user is authenticated
+			$response->setProperty( "server_version", $GR_VER['MAJ'].".".$GR_VER['MIN'] );
+			$response->setProperty( "status", $GR_STAT['SUCCESS'] );
+			$response->setProperty( "status_text", "Login successful." );
+
+			// return the response
+			echo $response->listprops();
+			exit;
+		}
+
+		// try to log in using URL parameters (probably not embedded)
 		$tmpUser = $gallery->userDB->getUserByUsername($uname);
+		//echo $tmpUser->getUsername()."\n";
+		//echo get_class($tmpUser)."\n";
+		//echo $gallery->user->getUsername()."\n";
+		//echo $gallery->user->isLoggedIn()."\n";
 		if ($tmpUser && $tmpUser->isCorrectPassword($password)) {
 			// log user in
 			$gallery->session->username = $uname;
