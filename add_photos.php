@@ -19,6 +19,10 @@
  *
  * $Id$
  */
+?><?php
+// we need to turn on output buffering because all the includes leak 
+// some text before we're ready to set the cookies!
+ob_start();
 ?>
 <?php
 // Hack prevention.
@@ -38,7 +42,20 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
-	
+?>
+<?php
+$cookieName = $gallery->app->sessionVar."add_photos_mode";
+$modeCookie = $HTTP_COOKIE_VARS[$cookieName];
+if (isset($mode)) {
+	if ($modeCookie != $mode) {
+	    setcookie($cookieName, $mode, time()+60*60*24*365, "/" );
+	}
+} else {
+	if (isset($modeCookie)) {
+	    $mode = $modeCookie;
+	}
+}
+ob_end_flush();
 ?>
 
 <html>
@@ -117,7 +134,8 @@ if (file_exists("java/GalleryRemoteAppletMini.jar") &&
 
 
 $modes["form"] = _("Form");
-$modes["form_one"] = _("Form (1)");
+// todo: this mode is broken. Fix it before enabling it again...
+//$modes["form_one"] = _("Form (1)");
 $modes["url"] = _("URL");
 $modes["other"] = _("Other");
 

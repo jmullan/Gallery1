@@ -308,7 +308,7 @@ $adminOptions = array(
 		      'add_photos'      => array('name' => _('add photos'),
 						 'requirements' => array('canAddToAlbum'),
 						 'action' => 'popup',
-						 'value' => makeGalleryUrl('add_photos.php',
+						 'value' => makeGalleryUrl('add_photos_frame.php',
 									   array('set_albumName' => $gallery->session->albumName))),
 		      'rename_album'    => array('name' => _('rename album'),
 						 'requirements' => array('isAlbumOwner'),
