@@ -21,7 +21,7 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canWriteToAlbum($album)) {
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 ?>
@@ -45,47 +45,55 @@ if ($newName) {
 	$newName = strtr($newName, "\\/*?\"<>|& ", "----------");
 	$newName = ereg_replace("\-+", "-", $newName);
 	$newName = ereg_replace("\-+$", "", $newName);
-	$albumDB->renameAlbum($oldName, $newName);
-	$albumDB->save();
-	// need to account for nested albums by updating
-	// the parent album when renaming an album
-        if ($album->fields[parentAlbumName]) {
-		$parentName = $album->fields[parentAlbumName];
-		print "parentName=".$parentName."<br>";
-		print "newName=".$newName."<br>";
-		print "oldName=".$oldName."<br>";
-		$parentAlbum = $albumDB->getAlbumbyName($parentName);
-		for ($i=1; $i <= $parentAlbum->numPhotos(1); $i++) {
-			if ($parentAlbum->isAlbumName($i) == $oldName) {
-				$parentAlbum->setIsAlbumName($i,$newName);
-				$parentAlbum->save();
-				break;
+	if ($albumDB->renameAlbum($oldName, $newName)) {
+		$albumDB->save();
+		// need to account for nested albums by updating
+		// the parent album when renaming an album
+	        if ($gallery->album->fields[parentAlbumName]) {
+			$parentName = $gallery->album->fields[parentAlbumName];
+			if (isDebugging()) {
+				print "parentName=".$parentName."<br>";
+				print "newName=".$newName."<br>";
+				print "oldName=".$oldName."<br>";
+			}
+			$parentAlbum = $albumDB->getAlbumbyName($parentName);
+			for ($i=1; $i <= $parentAlbum->numPhotos(1); $i++) {
+				if ($parentAlbum->isAlbumName($i) == $oldName) {
+					$parentAlbum->setIsAlbumName($i,$newName);
+					$parentAlbum->save();
+					break;
+				}
 			}
 		}
-	}
-	// then we need to update the parentAlbumName field in the children
-	for ($i=1; $i <= $album->numPhotos(1); $i++) {
-		if ($album->isAlbumName($i)) {
-			$childAlbum = $album->getNestedAlbum($i);
-			$childAlbum->fields[parentAlbumName] = $newName;
-			$childAlbum->save();
+		// then we need to update the parentAlbumName field in the children
+		for ($i=1; $i <= $gallery->album->numPhotos(1); $i++) {
+			if ($gallery->album->isAlbumName($i)) {
+				$childAlbum = $gallery->album->getNestedAlbum($i);
+				$childAlbum->fields[parentAlbumName] = $newName;
+				$childAlbum->save();
+			}
 		}
+		dismissAndReload();
+		return;
+	} else {
+		error("There is already an album with that name!");
 	}
-	dismissAndReload();
-	return;
 } else {
+	$newName = $gallery->session->albumName;
 }
 
 ?>
-
-What do you want to name this album?  The name cannot contain any of
+<br>
+What do you want to name this album?
+<br>
+The name cannot contain any of
 the following characters:  <br><center><b>\ / * ? " ' &amp; &lt; &gt; | </b>or<b> spaces</b><br></center>
 Those characters will be ignored in your new album name.
 
 <br>
 <form name="theform">
-<input type=text name="newName" value=<?=$albumName?>>
-<input type=hidden name="oldName" value=<?=$albumName?>>
+<input type=text name="newName" value=<?=$newName?>>
+<input type=hidden name="oldName" value=<?=$gallery->session->albumName?>>
 <p>
 <input type=submit value="Rename">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>
