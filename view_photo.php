@@ -281,14 +281,14 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?> 
   </style> 
   </head>
-  <body dir="<?php echo $gallery->direction ?>"
+  <body dir="<?php echo $gallery->direction ?>">
 <?php
 } // End if ! embedded
 
 includeHtmlWrap("photo.header");
 if ($fitToWindow) {
 	/* Include Javascript */
-	include("test.php");
+	include("js/fitToWindow.js.php");
 }
 ?>
 <!-- Top Nav Bar -->
@@ -795,6 +795,7 @@ if ($fitToWindow) {
 ?>
 <script type="text/javascript">
 <!--
+	calculateNewSize();
 	document.photo_j.height=imageheight;
 	document.photo_j.width=imagewidth;
 //-->

@@ -106,7 +106,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	includeHtmlWrap("gallery.header");
 	if (!$gallery->session->offline && !strcmp($gallery->app->showSearchEngine, "yes")) {
 ?>
-<table width="100%" border="0" cellspacing="0">
+<table width="100%" border="0" cellspacing="0" style="margin-bottom:2px">
 <tr>
 <?php
 	if ($GALLERY_EMBEDDED_INSIDE =='phpBB2') {
@@ -120,7 +120,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 </form>
 </td>
 </tr>
-<tr><td height="2"><img src="<?php echo getImagePath('pixel_trans.gif')?>" alt="pixel_trans"></td></tr></table>
+</table>
+
 <?php
 }
 ?>
@@ -209,41 +210,34 @@ $adminbox["top"] = true;
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
 includeLayout('navtablemiddle.inc');
-?>
 
-<!-- top nav -->
-<?php
+echo "<!-- Begin top nav -->";
+
 includeLayout('navigator.inc');
 includeLayout('navtableend.inc');
 includeLayout('ml_pulldown.inc');
-?>
 
+echo "<!-- End top nav -->";
+
+/* Display warnings about broken albums */
+if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
+
+    echo "\n<center><div style=\"margin:3px; width:60%; border-style:outset; border-width:5px; border-color:red\">";
+    echo "\n<p class=\"head\"><u>". _("Attention Gallery Administrator!") ."</u></p>";
+
+    echo sprintf(_("%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"),
+		    Gallery(), sizeof($albumDB->brokenAlbums), $gallery->app->albumDir);
+    echo "\n<p>";
+    foreach ($albumDB->brokenAlbums as $tmpAlbumName) {
+	echo "<br>$tmpAlbumName\n";
+    }
+    echo "\n</p>". _("Please move it/them out of the albums directory.") ;
+    echo "\n</p></div></center>\n";
+}
+?>
 
 <!-- album table begin -->
 <table width="100%" border="0" cellpadding=0 cellspacing=7>
-
-<?php
-/* Display warnings about broken albums */
-if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
-    print "<tr>";
-    print "<td colspan=\"3\" align=\"center\">";
-    print "<table bordercolor=\"red\" border=\"2\" cellpadding=\"2\" cellspacing=\"2\"><tr><td>";
-    print "<center><b><u>". _("Attention Gallery Administrator!") ."</u></b></center><br>";
-    $broken_albums = '';
-    foreach ($albumDB->brokenAlbums as $tmpAlbumName) {
-	$broken_albums .= "$tmpAlbumName<br>";
-    }
-    print sprintf(_("%s has detected the following directories: %s in your albums directory (%s)."),
-		    Gallery(),
-		    "<br><br> <center>$broken_albums</center>",
-		    $gallery->app->albumDir);
-    print "<br>";
-    print _("These are not valid albums.  Please move them out of the albums directory.") ;
-    print "</td></tr></table>";
-    print "</td>";
-    print "</tr>";
-}
-?>
 
 <?php
 $start = ($gallery->session->albumListPage - 1) * $perPage + 1;
