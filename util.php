@@ -219,12 +219,13 @@ function includeHtmlWrap($name) {
 }
 
 function getGalleryStyleSheetName() {
+	global $app;
         $sheetname = "css/gallery_style.css";
 
 	if (file_exists($sheetname)) {
-		return ($sheetname);
+		return ("$app->photoAlbumURL/$sheetname");
 	} else {
-		return ("$sheetname.default");
+		return ("$app->photoAlbumURL/$sheetname.default");
 	}
 
 	return 1;
