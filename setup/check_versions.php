@@ -1,23 +1,8 @@
 <?php /* $Id$ */ ?>
 <?php 
-$GALLERY_BASEDIR="../";
-require($GALLERY_BASEDIR . "util.php");
-require($GALLERY_BASEDIR . "setup/init.php");
+	$GALLERY_BASEDIR="../";
+	require($GALLERY_BASEDIR . "setup/init.php");
 
-initLanguage();
-if (getOS() == OS_WINDOWS) {
-       	if (fs_file_exists("SECURE")) {
-	       	print _("You cannot access this file while gallery is in secure mode.");
-	       	exit;
-       	}
-}
-if (!function_exists('fs_is_readable')) {
-       	function fs_is_readable($filename) {
-	       	return @is_readable($filename);
-       	}
-}
-
-// No translation yet, as we may not release this in 1.4.1
 function checkVersions() {
 	global $GALLERY_BASEDIR, $gallery, $show_details;
 	$manifest=$GALLERY_BASEDIR."manifest.inc";

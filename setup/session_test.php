@@ -2,25 +2,8 @@
 <?php
 
 	$GALLERY_BASEDIR="../";
-	require($GALLERY_BASEDIR . 'util.php');
 	require($GALLERY_BASEDIR . 'setup/init.php');
 	require($GALLERY_BASEDIR . 'setup/functions.inc');
-
-	initLanguage();
-
-	// We set this to false to get the config stylesheet
-        $GALLERY_OK=false;
-
-	if (getOS() == OS_WINDOWS) {
-		include($GALLERY_BASEDIR . "platform/fs_win32.php");
-		if (fs_file_exists("SECURE")) {
-		print _("You cannot access this file while gallery is in secure mode.");
-		exit;
-	    }
-	}
-
-// Pull the $destroy variable into the global namespace
-extract($HTTP_GET_VARS);
 
 session_start();
 
