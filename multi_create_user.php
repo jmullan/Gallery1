@@ -176,7 +176,7 @@ echo makeFormIntro("multi_create_user.php", array(
 
 <li>
 <?php 
-echo _("The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if \"send emails\" checkbox is ticked).") 
+echo _("The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked).") 
 ?>
 <p>
 

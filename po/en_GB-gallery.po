@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-09-25 15:14+0200\n"
+"POT-Creation-Date: 2003-09-26 17:51+0200\n"
 "PO-Revision-Date: 2003-07-16 14:18+0100\n"
 "Last-Translator: Joan McGalliard <jefmcg@users.sourceforge.net>\n"
 "Language-Team: UK_English <jefmcg@users.sourceforge.net>\n"
@@ -42,7 +42,7 @@ msgstr ""
 #: ../multi_create_user.php:31 ../new_password.php:28 ../photo_owner.php:30
 #: ../poll_properties.php:28 ../poll_results.php:28
 #: ../progress_uploading.php:28 ../publish_xp.php:28 ../publish_xp_docs.php:28
-#: ../register.php:30 ../rename_album.php:28 ../reset_votes.php:28
+#: ../register.php:30 ../rename_album.php:28 ../reset_votes.php:30
 #: ../resize_photo.php:28 ../rotate_photo.php:28 ../save_photos.php:28
 #: ../search.php:28 ../setup/index.php:81 ../slideshow.php:28
 #: ../slideshow_low.php:44 ../sort_album.php:28 ../upgrade_album.php:28
@@ -81,7 +81,7 @@ msgstr ""
 #: ../login.php:131 ../modify_user.php:157 ../move_album.php:93
 #: ../move_album.php:119 ../move_photo.php:218 ../move_photo.php:311
 #: ../multi_create_user.php:165 ../new_password.php:135 ../register.php:149
-#: ../rename_album.php:121 ../reset_votes.php:64 ../resize_photo.php:120
+#: ../rename_album.php:121 ../reset_votes.php:66 ../resize_photo.php:120
 #: ../sort_album.php:116 ../user_preferences.php:135
 msgid "Cancel"
 msgstr ""
@@ -1573,7 +1573,7 @@ msgid "The members file should be one user per line, and the fields should be sp
 msgstr ""
 
 #: ../multi_create_user.php:177
-msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if \"send emails\" checkbox is ticked)."
+msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked)."
 msgstr ""
 
 #: ../new_password.php:39
@@ -1961,16 +1961,16 @@ msgstr ""
 msgid "Those characters will be ignored in your new album name."
 msgstr ""
 
-#: ../reset_votes.php:53
+#: ../reset_votes.php:55
 msgid "Reset Voting"
 msgstr ""
 
-#: ../reset_votes.php:59
+#: ../reset_votes.php:61
 #, php-format
 msgid "Do you really want to remove all votes in %s?"
 msgstr ""
 
-#: ../reset_votes.php:63
+#: ../reset_votes.php:65
 msgid "Remove Votes"
 msgstr ""
 
@@ -2702,7 +2702,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:300 ../setup/config_data.inc:397
 #: ../setup/config_data.inc:456 ../setup/config_data.inc:467
-#: ../setup/functions.inc:741 ../setup/functions.inc:811
+#: ../setup/functions.inc:740 ../setup/functions.inc:810
 msgid "Advanced"
 msgstr ""
 
@@ -3388,8 +3388,8 @@ msgstr ""
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr ""
 
-#: ../setup/config_data.inc:926 ../setup/functions.inc:889
-#: ../setup/functions.inc:898 ../setup/functions.inc:903
+#: ../setup/config_data.inc:926 ../setup/functions.inc:888
+#: ../setup/functions.inc:897 ../setup/functions.inc:902
 msgid "Vote words and values"
 msgstr ""
 
@@ -3650,11 +3650,11 @@ msgstr ""
 msgid "This allows you to see if you can use the email functions in %s."
 msgstr ""
 
-#: ../setup/functions.inc:98 ../setup/functions.inc:890
+#: ../setup/functions.inc:98 ../setup/functions.inc:889
 msgid "Name"
 msgstr ""
 
-#: ../setup/functions.inc:98 ../setup/functions.inc:890
+#: ../setup/functions.inc:98 ../setup/functions.inc:889
 msgid "Value"
 msgstr ""
 
@@ -3756,122 +3756,122 @@ msgstr ""
 msgid "Please check regularly for updates."
 msgstr ""
 
-#: ../setup/functions.inc:574
+#: ../setup/functions.inc:573
 msgid "All gallery locales are available on this host"
 msgstr ""
 
-#: ../setup/functions.inc:577
+#: ../setup/functions.inc:576
 #, php-format
-msgid "There are %d locales where Gallery was able to identify them correct. You need to choose manually the correct value."
+msgid "There are %d locales where Gallery was not able to identify them correct. You need to choose manually the correct value."
 msgstr ""
 
-#: ../setup/functions.inc:583
+#: ../setup/functions.inc:582
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. But you can choose another locale for those."
 msgstr ""
 
-#: ../setup/functions.inc:588
+#: ../setup/functions.inc:587
 #, php-format
 msgid "We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."
 msgstr ""
 
-#: ../setup/functions.inc:592
+#: ../setup/functions.inc:591
 #, php-format
 msgid "We were unable to detect any system locales. Multilanguage functions will be disabled. Please install the corresponding locales or ask your Provider to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s"
 msgstr ""
 
-#: ../setup/functions.inc:594
+#: ../setup/functions.inc:593
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr ""
 
-#: ../setup/functions.inc:741
+#: ../setup/functions.inc:740
 msgid "Locale Selection required"
 msgstr ""
 
-#: ../setup/functions.inc:742
+#: ../setup/functions.inc:741
 msgid "There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr ""
 
-#: ../setup/functions.inc:744 ../setup/functions.inc:814
+#: ../setup/functions.inc:743 ../setup/functions.inc:813
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
 msgstr ""
 
-#: ../setup/functions.inc:778 ../setup/functions.inc:788
+#: ../setup/functions.inc:777 ../setup/functions.inc:787
 msgid "System locale"
 msgstr ""
 
-#: ../setup/functions.inc:811
+#: ../setup/functions.inc:810
 msgid "Locale problems"
 msgstr ""
 
-#: ../setup/functions.inc:812
+#: ../setup/functions.inc:811
 msgid "There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr ""
 
-#: ../setup/functions.inc:857
+#: ../setup/functions.inc:856
 msgid "safe mode is off"
 msgstr ""
 
-#: ../setup/functions.inc:870
+#: ../setup/functions.inc:869
 msgid "magic quotes are off"
 msgstr ""
 
-#: ../setup/functions.inc:888
+#: ../setup/functions.inc:887
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr ""
 
-#: ../setup/functions.inc:897
+#: ../setup/functions.inc:896
 #, php-format
 msgid "In %s, blank in row %d."
 msgstr ""
 
-#: ../setup/functions.inc:902
+#: ../setup/functions.inc:901
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr ""
 
-#: ../setup/functions.inc:1058
+#: ../setup/functions.inc:1057
 msgid "OK"
 msgstr ""
 
-#: ../setup/functions.inc:1063
+#: ../setup/functions.inc:1062
 msgid "Valid admin email address given."
 msgstr ""
 
-#: ../setup/functions.inc:1070
+#: ../setup/functions.inc:1069
 msgid "You must specify valid admin email addresses"
 msgstr ""
 
-#: ../setup/functions.inc:1078
+#: ../setup/functions.inc:1077
 #, php-format
 msgid "%s is not a valid email address."
 msgstr ""
 
-#: ../setup/functions.inc:1087
+#: ../setup/functions.inc:1086
 msgid "Valid sender email address given."
 msgstr ""
 
-#: ../setup/functions.inc:1089
+#: ../setup/functions.inc:1088
 msgid "You must specify a valid sender email address"
 msgstr ""
 
-#: ../setup/functions.inc:1092 ../setup/functions.inc:1095
+#: ../setup/functions.inc:1091 ../setup/functions.inc:1094
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr ""
 
-#: ../setup/functions.inc:1114
+#: ../setup/functions.inc:1113
 #, php-format
 msgid "this is new in version %s"
 msgstr ""
 
-#: ../setup/functions.inc:1119
+#: ../setup/functions.inc:1118
 #, php-format
 msgid "Return to %s."
 msgstr ""
 
-#: ../setup/functions.inc:1120
+#: ../setup/functions.inc:1119
 msgid "Configuration Wizard"
 msgstr ""
 
@@ -4504,7 +4504,7 @@ msgstr ""
 
 #: ../util.php:2634
 #, php-format
-msgid "[Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message."
+msgid "Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message."
 msgstr ""
 
 #: ../util.php:2636

@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-09-25 15:14+0200\n"
+"POT-Creation-Date: 2003-09-26 17:51+0200\n"
 "PO-Revision-Date: 2003-07-03 16:00+0100\n"
 "Last-Translator: Jens Tkotz <jens@f2h9.de>\n"
 "Language-Team: German <jens@f2h9.de\n"
@@ -42,7 +42,7 @@ msgstr ""
 #: ../multi_create_user.php:31 ../new_password.php:28 ../photo_owner.php:30
 #: ../poll_properties.php:28 ../poll_results.php:28
 #: ../progress_uploading.php:28 ../publish_xp.php:28 ../publish_xp_docs.php:28
-#: ../register.php:30 ../rename_album.php:28 ../reset_votes.php:28
+#: ../register.php:30 ../rename_album.php:28 ../reset_votes.php:30
 #: ../resize_photo.php:28 ../rotate_photo.php:28 ../save_photos.php:28
 #: ../search.php:28 ../setup/index.php:81 ../slideshow.php:28
 #: ../slideshow_low.php:44 ../sort_album.php:28 ../upgrade_album.php:28
@@ -81,7 +81,7 @@ msgstr "Speichern"
 #: ../login.php:131 ../modify_user.php:157 ../move_album.php:93
 #: ../move_album.php:119 ../move_photo.php:218 ../move_photo.php:311
 #: ../multi_create_user.php:165 ../new_password.php:135 ../register.php:149
-#: ../rename_album.php:121 ../reset_votes.php:64 ../resize_photo.php:120
+#: ../rename_album.php:121 ../reset_votes.php:66 ../resize_photo.php:120
 #: ../sort_album.php:116 ../user_preferences.php:135
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -711,7 +711,7 @@ msgstr "Benutzer %s angelegt"
 #: ../create_user.php:87 ../multi_create_user.php:97
 #, php-format
 msgid "%s has registered by %s.  Email has been sent to %s."
-msgstr ""
+msgstr "%s hat sich als %s registriert.  Es wurde eine Email an %s gesendet."
 
 #: ../create_user.php:95 ../multi_create_user.php:105
 msgid "Gallery Registration"
@@ -720,7 +720,7 @@ msgstr "Gallery Registrierung"
 #: ../create_user.php:96
 #, php-format
 msgid "Email sent to %s."
-msgstr ""
+msgstr "Es wurde eine Email an %s gesendet."
 
 #: ../create_user.php:124 ../edit_appearance.php:158
 #: ../edit_appearance.php:178 ../edit_appearance.php:182
@@ -1212,7 +1212,7 @@ msgstr "Nein"
 
 #: ../html/userData.inc:15
 msgid "Member file"
-msgstr ""
+msgstr "Mitglieder Datei"
 
 #: ../html/userData.inc:22 ../login.php:96 ../login.php:181
 msgid "Username"
@@ -1248,7 +1248,7 @@ msgstr "Benutzer kann Alben anlegen"
 
 #: ../html/userData.inc:161
 msgid "Send email to user <br>when account is created"
-msgstr ""
+msgstr "Email zum Benutzer senden, wenn der Zugang erzeugt wurde"
 
 #: ../html/userData.inc:174
 msgid "User is an admin"
@@ -1376,12 +1376,12 @@ msgstr "Neue Passwort Anfrage"
 #: ../login.php:154
 #, php-format
 msgid "You requested a new password from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "
-msgstr ""
+msgstr "Sie haben ein neues Passwort der Gallerie '%s' auf %s angefordert.  Sie k&ouml;nnen ein neues Passwort generieren indem Sie auf den Link weiter unten klicken.  Falls Sie keine Anfrage gestellt habe, bitte ignorieren Sie diese Mail."
 
 #: ../login.php:155
 #, php-format
 msgid "Click to reset your password: %s"
-msgstr ""
+msgstr "Dieser Link f&uuml;hrt Sie zur Seite mit dem neuen Passwort: %s"
 
 #: ../login.php:157
 #, php-format
@@ -1391,7 +1391,7 @@ msgstr "Neue Passwort Anfreage %s"
 #: ../login.php:160
 #, php-format
 msgid "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."
-msgstr ""
+msgstr "Es wurde eine Email an die Adresse des Benutzers %s gesendet.  Folgen Sie den Anweisung in der Mail um Ihr Passwort zu &auml;ndern.  Falls Sie keine Mail erhalten melden Sie sich bitte beim Gallery Administrator."
 
 #: ../login.php:165
 #, php-format
@@ -1541,7 +1541,7 @@ msgstr "Upload fehlgeschlagen: %s."
 #: ../multi_create_user.php:106
 #, php-format
 msgid "Problem with email to %s"
-msgstr ""
+msgstr "Es gab ein Problem beim Versenden der Email an %s"
 
 #: ../multi_create_user.php:115
 #, php-format
@@ -1566,23 +1566,23 @@ msgstr "Benutzer anlegen"
 
 #: ../multi_create_user.php:142
 msgid "Create multiple new users from a file."
-msgstr ""
+msgstr "Mehrere Benutzer auf einmal erzeugen via einer Datei."
 
 #: ../multi_create_user.php:172
 msgid "The members file should be one user per line, and the fields should be space separated.  Each line is of the form:<br> <i>username emailaddress fullname</i><br>.  Only username is required. Everything after the email address is the full name, so there can be spaces in it.<p>"
-msgstr ""
+msgstr "In der Datei f&uuml;r die Benutzer sollte pro Zeile einen Benutzer enthalten sein. Die Felder jeweils mit einem Leezeichen getrennt.  Die Zeilen sollten in dieser Form sein:<br> <i> Benutzername Email voller Name</i><br>.  Nur der Benutzername ist Pflicht.  Alles nach der Email wird als vollst&auml;ndiger Name interpriert, daher sind dort Leerzeichen erlaubt.<p>"
 
 #: ../multi_create_user.php:177
-msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if \"send emails\" checkbox is ticked)."
-msgstr ""
+msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked)."
+msgstr "Die Symbole !!USERNAME!!, !!FULLNAME!! und !!PASSWORD!! werden in den Email an die Benutzer ersezt durch die Werte in der Datei.  Es wird an jeden neuen Benutzer eine Email geschickt, wenn Sie &quot;Email senden&quot; aktiviert haben."
 
 #: ../new_password.php:39
 msgid "missing hash parameter"
-msgstr ""
+msgstr "Der Hash Parameter fehlt."
 
 #: ../new_password.php:49
 msgid "The recovery password is not the expected value, please try again"
-msgstr ""
+msgstr "Das neue Passwort ist fehlerhaft, bitte versuchen Sie es erneut."
 
 #: ../new_password.php:56
 msgid "You must provide your new password."
@@ -1897,7 +1897,7 @@ msgstr "Benutzer anlegen f&uuml;r %s."
 
 #: ../register.php:53
 msgid "This Gallery does not support self-registration by visitors."
-msgstr ""
+msgstr "Diese Gallery unterst&uuml;tzt keine Selbstregistrierung."
 
 #: ../register.php:87
 msgid "You must specify a name."
@@ -1905,33 +1905,33 @@ msgstr "Sie m&uuml;ssen einen Nnamen angeben"
 
 #: ../register.php:92
 msgid "You must specify a valid email address."
-msgstr ""
+msgstr "Sie m&uuml;ssen eine g&uuml;ltige Emailadresse eingeben."
 
 #: ../register.php:104
 #, php-format
 msgid "%s has registered.  Email has been sent to %s."
-msgstr ""
+msgstr "%s hat sich registriert.  Es wurde eine Email an %s gesendet."
 
 #: ../register.php:112
 msgid "Gallery Self Registration"
-msgstr ""
+msgstr "Gallery Registrierung"
 
 #: ../register.php:122
 #, php-format
 msgid "An email has been sent to %s."
-msgstr ""
+msgstr "Es wurde eine Email an %s gesendet."
 
 #: ../register.php:124
 msgid "Your account information is contained within the email."
-msgstr ""
+msgstr "Ihre Zugangsdaten sind in der Mail enthalten."
 
 #: ../register.php:126
 msgid "Email could not be sent.  Please contact gallery adminstrator to register on this site"
-msgstr ""
+msgstr "Die Email konnte nicht gesendet werden.  Bitte wenden Sie sich an den Gallery Admin um einen Zugang zu bekommen."
 
 #: ../register.php:146
 msgid "Your account information will be sent to the email address you provide."
-msgstr ""
+msgstr "Ihre Zugangsdaten werden in der Mail enhalten sein. Diese Mail wird an die von Ihnen angegebene Adresse geschickt."
 
 #: ../rename_album.php:45 ../view_album.php:776
 msgid "Rename Album"
@@ -1961,16 +1961,16 @@ msgstr "Leerzeichen"
 msgid "Those characters will be ignored in your new album name."
 msgstr "Diese Zeichen werden ignoriert."
 
-#: ../reset_votes.php:53
+#: ../reset_votes.php:55
 msgid "Reset Voting"
 msgstr "Abstimmung zur&uuml;cksetzen"
 
-#: ../reset_votes.php:59
+#: ../reset_votes.php:61
 #, php-format
 msgid "Do you really want to remove all votes in %s?"
 msgstr "M&ouml;chten Sie wirklich alle Stimme in %s entfernen?"
 
-#: ../reset_votes.php:63
+#: ../reset_votes.php:65
 msgid "Remove Votes"
 msgstr "Stimmen entfernen"
 
@@ -2370,47 +2370,47 @@ msgstr "F&uuml;r weitere Fehler schauen Sie sich bitte die Liste der m&ouml;glic
 
 #: ../setup/check_mail.php:11
 msgid "Check Mail"
-msgstr ""
+msgstr "Mail pr&uuml;fen"
 
 #: ../setup/check_mail.php:17
 #, php-format
 msgid "Test email from %s"
-msgstr ""
+msgstr "Teste Email von %s"
 
 #: ../setup/check_mail.php:18
 msgid "This email was automatically generated."
-msgstr ""
+msgstr "Diese Email wurde automatisch generiert."
 
 #: ../setup/check_mail.php:19
 msgid "If you recevied this in error, then please disregard, as you should not receive any similar emails."
-msgstr ""
+msgstr "Falls Sie diese Mail irrt&uuml;lich erhalten, ignorieren Sie sie einfach. Es sollten keine weiteren Mails dieser Art kommen."
 
 #: ../setup/check_mail.php:20
 #, php-format
 msgid "If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."
-msgstr ""
+msgstr "Falls Sie eine Mail der %s Gallery Installation auf %s erwarten, herzlich Gl&uuml;ckwunsch.  Emailing funktioniert und Sie k&ouml;nnen %s Email Funktionen nutzen."
 
 #: ../setup/check_mail.php:24
 #, php-format
 msgid "Test email sent to %s, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
-msgstr ""
+msgstr "Es wurde eine Testemail an %s geschickt und sollte in wenigen Minuten ankommen.  Falls keine ankommt, bitte &uuml;berpr&uuml;fen Sie ob die Emailadresse korrekt war.  Falls es dennoch nicht funktioniert wurden wahrscheinlich die Emailfunktionen auf Ihrem Server deaktiviert.  In diesem Falle k&ouml;nnen Sie die Emailfunktionen von %s nicht nutzen."
 
 #: ../setup/check_mail.php:26
 msgid "You must use a valid email address"
-msgstr ""
+msgstr "Sie m&uuml;ssen eine g&uuml;ltige Emailadresse benutzen."
 
 #: ../setup/check_mail.php:30
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
-msgstr ""
+msgstr "Dies gibt Ihnen die M&ouml;glichkeit zu testen, ob Emailing auf Ihrem Server korrekt funktioniert.  Es wird versucht eine Testemail an die von Ihnen anzugebende Adresse zu schicken.  Falls Sie ankommt, wissen Sie das das Emailing funktioniert."
 
 #: ../setup/check_mail.php:32 ../setup/check_mail.php:36
 #, php-format
 msgid "%s not set."
-msgstr ""
+msgstr "%s nicht angegeben."
 
 #: ../setup/check_mail.php:45
 msgid "Your email address:"
-msgstr ""
+msgstr "Ihre Email Adresse:"
 
 #: ../setup/check_mail.php:46
 msgid "Send Email"
@@ -2702,7 +2702,7 @@ msgstr "Wenn Sie diese Option einschalten, wird Gallery versuchen die Bilder aut
 
 #: ../setup/config_data.inc:300 ../setup/config_data.inc:397
 #: ../setup/config_data.inc:456 ../setup/config_data.inc:467
-#: ../setup/functions.inc:741 ../setup/functions.inc:811
+#: ../setup/functions.inc:740 ../setup/functions.inc:810
 msgid "Advanced"
 msgstr "Fortgeschritten"
 
@@ -2765,7 +2765,7 @@ msgstr "Layout"
 #: ../setup/config_data.inc:351
 #, php-format
 msgid "%s marks an album with a special frame.  There are %d different styles:"
-msgstr ""
+msgstr "%s zeigt Alben mit einem speziellen Rahmen an.  Es gibt %s verschiedne Stile derzeit:"
 
 #: ../setup/config_data.inc:352 ../setup/config_data.inc:354
 msgid "Polaroid"
@@ -2773,7 +2773,7 @@ msgstr "Polaroid"
 
 #: ../setup/config_data.inc:352
 msgid "This draws a frame which make the thumb look like a polaroid"
-msgstr ""
+msgstr "Zeichnet einen Rahmnen um das Thumbnail der wie ein Polaroid aussieht"
 
 #: ../setup/config_data.inc:353 ../setup/config_data.inc:354
 msgid "Dots"
@@ -2781,7 +2781,7 @@ msgstr "Gestrichelte Linie"
 
 #: ../setup/config_data.inc:353
 msgid "Just draw a simple dashed border around the thumb."
-msgstr ""
+msgstr "Zeichnet einen einfachen gestrichelten Rand um das Thumbnail"
 
 #: ../setup/config_data.inc:360
 msgid "Optional tools"
@@ -2899,12 +2899,12 @@ msgstr "Zum Beispiel wird %s Ihre Daten/Zeiten so aussehen lassen: %s."
 
 #: ../setup/config_data.inc:486
 msgid "Email and Registration"
-msgstr ""
+msgstr "Email un Registrierung"
 
 #: ../setup/config_data.inc:487
 #, php-format
 msgid "If you are having problems with email, please run the %s diagnostic."
-msgstr ""
+msgstr "Falls Sie Probleme mit Email haben, bitte die %s Diagnose durchf&uuml;hren."
 
 #: ../setup/config_data.inc:488 ../setup/diagnostics.php:73
 msgid "Check Email"
@@ -2917,7 +2917,7 @@ msgstr "Emailfunktionalit&auml;ten aktivieren"
 #: ../setup/config_data.inc:494
 #, php-format
 msgid "Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."
-msgstr ""
+msgstr "Schaltet die Email Funktionen f&uuml;r die ganze Gallery ein.  Fall Sie dies auf %s setzen haben alle folgenden Einstellungen in dieser Sektion keine Auswirkung."
 
 #: ../setup/config_data.inc:500
 msgid "Admin email address"
@@ -2925,7 +2925,7 @@ msgstr "Admin Email-Adresse"
 
 #: ../setup/config_data.inc:501
 msgid "Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know who to reach in case of problems. You may specify more than one address by seperating them with commas."
-msgstr ""
+msgstr "Geben Sie eine g&uuml;ltige Email an um, benachrichtigt zu werden, wenn Sie bei bestimmte Benutzeraktionen getätigt wurden, oder um damit die Benutzer ein Emailadresse f&uuml;r einen Ansprechpartner haben.  Sie k&ouml;nnen mehrere Adressen kommasepariert angeben."
 
 #: ../setup/config_data.inc:509
 msgid "Sender email address"
@@ -2933,68 +2933,68 @@ msgstr "Absender Adresse der Emails"
 
 #: ../setup/config_data.inc:510
 msgid "Set this value to a valid working email address.  Emails that are automatically sent by gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients."
-msgstr ""
+msgstr "Geben Sie eine g&uuml;ltige Email an. Automatisch von Gallery versandte Email bekommen diese als Absenderadresse."
 
 #: ../setup/config_data.inc:518
 msgid "Welcome email message text"
-msgstr ""
+msgstr "Text der 'Willkommen' Email."
 
 #: ../setup/config_data.inc:519
 msgid "This email will be sent when new accounts are created."
-msgstr ""
+msgstr "Diese Mail wird an neue Benutzer gesendet."
 
 #: ../setup/config_data.inc:520
 #, php-format
 msgid "%s, %s and %s will be replaced by the fullname, user name and password of the newly created user."
-msgstr ""
+msgstr "In der Mail an neue Benuzter wird %s, %s und %s werden durch den vollst&auml;ndigen Name, Benutzernamen und Passwort ersetzt."
 
 #: ../setup/config_data.inc:524
 msgid "Leave this field blank to get the default message that can be translated into other languages.  The default message is:"
-msgstr ""
+msgstr "Lassen Sie leer um dem Standardtext zu benutzen. Diese ist mehrsprachig vorhanden. Der Standardtext ist:"
 
 #: ../setup/config_data.inc:535
 msgid "Allow visitors to self register."
-msgstr ""
+msgstr "Erlaube Besuchern sich selbst zu registrieren."
 
 #: ../setup/config_data.inc:536
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
-msgstr ""
+msgstr "Wenn Sie dies einschalten k&ouml;nnen sich Benutzer selbstst&auml;ndig einen Account erstellen. (Ohne Admin Best&auml;tigung)"
 
 #: ../setup/config_data.inc:542
 msgid "Self registered users can create albums."
-msgstr ""
+msgstr "Selbstst&auml;ndig registrierte Benutzer k&ouml;nnen Alben anlegen."
 
 #: ../setup/config_data.inc:543
 msgid "Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before then can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled."
-msgstr ""
+msgstr "Wenn Sie dies einschalten k&ouml;nnen selbstst&auml;ndig registrierte Benutzer sofort Alben erzeugen.  Wenn Sie dies nicht erlauben, m&uuml;ssen Sie den Benutzer dieses Recht sp&auml;ter manuell geben."
 
 #: ../setup/config_data.inc:548
 msgid "Enable bulk account creation"
-msgstr ""
+msgstr "Erm&ouml;gliche anlegen von mehreren Benutzern gleichzeitig."
 
 #: ../setup/config_data.inc:549
 msgid "This option allows your to create many new user accounts at one time by creating a file of new users."
-msgstr ""
+msgstr "Diese Optioner erlaubt es Admin mehrere Benutzer auf einmal durch einen Datei zu erzeugen."
 
 #: ../setup/config_data.inc:555
 msgid "Admin notification of email activity"
-msgstr ""
+msgstr "Admin Benachrichtigung bei Email Aktivitäten."
 
 #: ../setup/config_data.inc:556
 msgid "You can keep a record of every email that is sent by gallery."
-msgstr ""
+msgstr "Sie k&ouml;nnen einen Logeintrag f&uuml;r jede von Gallery versandte Mail erzeugen lassen."
 
 #: ../setup/config_data.inc:558
 msgid "Send summary email"
-msgstr ""
+msgstr "Sende Ergebnis Mail"
 
 #: ../setup/config_data.inc:559
 msgid "Log to a file"
-msgstr ""
+msgstr "Protokolliere in eine Datei"
 
 #: ../setup/config_data.inc:560
 msgid "Send duplicate email"
-msgstr ""
+msgstr "Sende Kopie der Mail"
 
 #: ../setup/config_data.inc:566
 msgid "Gallery wide slideshow"
@@ -3071,11 +3071,11 @@ msgstr "Wenn ein Kommentar vorhanden ist, m&ouml;chten Sie das Datum des letzten
 
 #: ../setup/config_data.inc:630
 msgid "Technical"
-msgstr ""
+msgstr "Technisches"
 
 #: ../setup/config_data.inc:631
 msgid "You usually don't need to change anything in this section."
-msgstr ""
+msgstr "Normalerweise sollte in dieser Sektion keine &Auml;nderungen n&ouml;tig sein."
 
 #: ../setup/config_data.inc:635
 msgid "Time Limit"
@@ -3388,8 +3388,8 @@ msgstr "Ausrichtung der Wahlm&ouml;glichkeiten?"
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr "Die Ranking Radiobuttons k&ouml;nnen nebeneinander (horizontal) oder untereinander (vertikal) angeordnet werden. Hat keinen Effekt auf &quot;Kritik&quot; Abstimmungen."
 
-#: ../setup/config_data.inc:926 ../setup/functions.inc:889
-#: ../setup/functions.inc:898 ../setup/functions.inc:903
+#: ../setup/config_data.inc:926 ../setup/functions.inc:888
+#: ../setup/functions.inc:897 ../setup/functions.inc:902
 msgid "Vote words and values"
 msgstr "Abstimmungswerte"
 
@@ -3538,11 +3538,11 @@ msgstr "Konfiguration speichern"
 #: ../setup/confirm.inc:395
 #, php-format
 msgid "%s.  Details below."
-msgstr ""
+msgstr "%s.  Details weiter unten."
 
 #: ../setup/confirm.inc:395
 msgid "One error"
-msgstr ""
+msgstr "Ein Fehler"
 
 #: ../setup/confirm.inc:395
 msgid "errors"
@@ -3550,7 +3550,7 @@ msgstr "Fehler"
 
 #: ../setup/confirm.inc:395
 msgid "no errors"
-msgstr ""
+msgstr "Kein Fehler"
 
 #: ../setup/confirm.inc:408
 msgid "There are errors in your configuration."
@@ -3643,18 +3643,18 @@ msgstr "Gallery ben&ouml;tigt eine PHP-Installation mit funktionierender Session
 
 #: ../setup/diagnostics.php:76
 msgid "This page will simply send a test email."
-msgstr ""
+msgstr "Diese Seite wird als Test Email geschickt."
 
 #: ../setup/diagnostics.php:77
 #, php-format
 msgid "This allows you to see if you can use the email functions in %s."
-msgstr ""
+msgstr "Dies dient dazu, um zu pr&uuml;fen, ob Sie die Email Funktion der %s nutzen k&ouml;nnen."
 
-#: ../setup/functions.inc:98 ../setup/functions.inc:890
+#: ../setup/functions.inc:98 ../setup/functions.inc:889
 msgid "Name"
 msgstr "Name"
 
-#: ../setup/functions.inc:98 ../setup/functions.inc:890
+#: ../setup/functions.inc:98 ../setup/functions.inc:889
 msgid "Value"
 msgstr "Wert"
 
@@ -3756,122 +3756,122 @@ msgstr "Dies ist eine Entwicklerversion der %s und wurde am %s released."
 msgid "Please check regularly for updates."
 msgstr "Bitte schauen Sie regelm&auml;ssig nach Updates"
 
-#: ../setup/functions.inc:574
+#: ../setup/functions.inc:573
 msgid "All gallery locales are available on this host"
 msgstr "Alle Gallery locales sind verf&uuml;gbar auf diesem Rechner"
 
-#: ../setup/functions.inc:577
+#: ../setup/functions.inc:576
 #, php-format
-msgid "There are %d locales where Gallery was able to identify them correct. You need to choose manually the correct value."
-msgstr ""
+msgid "There are %d locales where Gallery was not able to identify them correct. You need to choose manually the correct value."
+msgstr "Es gibt %d locale die von Gallery nicht korrekt erkannt wurden. Sie m&uuml;ssen den korrekten Wert selber w&auml;hlen."
 
-#: ../setup/functions.inc:583
+#: ../setup/functions.inc:582
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. But you can choose another locale for those."
 msgstr "Das Datum in %d Sprachen wird eventuell nicht korrekt angezeigt werden, da die entsprechenden locales nicht vorhanden sind. Aber Sie k&ouml;nnen einen Ersatz w&auml;hlen."
 
-#: ../setup/functions.inc:588
+#: ../setup/functions.inc:587
 #, php-format
 msgid "We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."
 msgstr "Es war nicht m&ouml;glich, irgendwelche locales zu finden. Eventuell ist Ihr Server mit der %s Einschr&auml;nkung konfiguriert, wodurch die Gallery nicht in der Lage ist die locales zu finden. Leider wird dadurch das Datum nicht korrekt angezeigt. Es ist aber in Ordnung fortzufahren."
 
-#: ../setup/functions.inc:592
+#: ../setup/functions.inc:591
 #, php-format
 msgid "We were unable to detect any system locales. Multilanguage functions will be disabled. Please install the corresponding locales or ask your Provider to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s"
 msgstr "Gallery war nicht in der Lage mindesten ein System locale zu finden. Alle Mehrsprachen Funktionen werden deaktiviert. Bitte installieren Sie die entsprechenden locales, oder bitten Sie Ihren Provider dies zu tun. Dieses Problem ist bekannt f&uuml;r %s System. Falls dies auf Ihr System zutrifft, werfen Sie einen Blick auf dieses %sDebian local HowTo%s"
 
-#: ../setup/functions.inc:594
+#: ../setup/functions.inc:593
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "Nur die default locale dieses Systems ist verf&uuml;gbar, dadurch wird sich die Datumsanzeige nicht &auml;ndern f&uuml;r andere Sprachen."
 
-#: ../setup/functions.inc:741
+#: ../setup/functions.inc:740
 msgid "Locale Selection required"
 msgstr "Locale Auswahl ben&ouml;tigt"
 
-#: ../setup/functions.inc:742
+#: ../setup/functions.inc:741
 msgid "There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "Es ist mehr als eine passende locale information auf Ihrem System vorhanden f&uuml;r die folgenden Sprachen vorhanden. Bitte w&auml;hlen Sie das naheliegenste aus."
 
-#: ../setup/functions.inc:744 ../setup/functions.inc:814
+#: ../setup/functions.inc:743 ../setup/functions.inc:813
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
-msgstr ""
+msgstr "Dies ist <b>nur<b> f&uuml;r das Zeit- und Datumsformat. Sie brauchen auch nur Werte f&uuml;r Sprachen angeben, die Sie weiter oben angeklickt haben."
 
-#: ../setup/functions.inc:778 ../setup/functions.inc:788
+#: ../setup/functions.inc:777 ../setup/functions.inc:787
 msgid "System locale"
 msgstr "System locale"
 
-#: ../setup/functions.inc:811
+#: ../setup/functions.inc:810
 msgid "Locale problems"
 msgstr "Es besteht ein locale Problem."
 
-#: ../setup/functions.inc:812
+#: ../setup/functions.inc:811
 msgid "There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "Es sind offensichtloch keine passenden locales auf Ihren System f&uuml;r die folgenden Sprachen vorhanden. Bitte w&auml;hlen Sie das naheliegenste aus."
 
-#: ../setup/functions.inc:857
+#: ../setup/functions.inc:856
 msgid "safe mode is off"
 msgstr "Safe Mode ist aus"
 
-#: ../setup/functions.inc:870
+#: ../setup/functions.inc:869
 msgid "magic quotes are off"
 msgstr "Magic Quotes sind aus"
 
-#: ../setup/functions.inc:888
+#: ../setup/functions.inc:887
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr "Im Punkt %1$s, fehlt in Reihe %3$d der %2$s zum %4$s %5$s."
 
-#: ../setup/functions.inc:897
+#: ../setup/functions.inc:896
 #, php-format
 msgid "In %s, blank in row %d."
 msgstr "Im Punkt %s, ist Zeile %d komplett leer."
 
-#: ../setup/functions.inc:902
+#: ../setup/functions.inc:901
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "Im Punkt %s, sollte f&uuml;r %s (Reihe %d) der Wert %s eine positive ganze Zahl sein."
 
-#: ../setup/functions.inc:1058
+#: ../setup/functions.inc:1057
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
-#: ../setup/functions.inc:1063
+#: ../setup/functions.inc:1062
 msgid "Valid admin email address given."
-msgstr ""
+msgstr "Es wurde eine g&uuml;ltige Admin Emailadresse angegeben."
 
-#: ../setup/functions.inc:1070
+#: ../setup/functions.inc:1069
 msgid "You must specify valid admin email addresses"
 msgstr "Sie m&uuml;ssen eine g&uuml;ltige Admin Emailadresse angeben."
 
-#: ../setup/functions.inc:1078
+#: ../setup/functions.inc:1077
 #, php-format
 msgid "%s is not a valid email address."
-msgstr ""
+msgstr "%s ist keine g&uuml;ltihe Admin Emailadresse angegeben."
 
-#: ../setup/functions.inc:1087
+#: ../setup/functions.inc:1086
 msgid "Valid sender email address given."
-msgstr ""
+msgstr "Es "
 
-#: ../setup/functions.inc:1089
+#: ../setup/functions.inc:1088
 msgid "You must specify a valid sender email address"
 msgstr "Sie m&uuml;ssen eine g&uuml;ltige Absender Emailadresse angeben"
 
-#: ../setup/functions.inc:1092 ../setup/functions.inc:1095
+#: ../setup/functions.inc:1091 ../setup/functions.inc:1094
 #, php-format
 msgid "You must include %s in your welcome email"
-msgstr ""
+msgstr "Es wurde eine g&uuml;ltige Absender Emailadresse angegeben."
 
-#: ../setup/functions.inc:1114
+#: ../setup/functions.inc:1113
 #, php-format
 msgid "this is new in version %s"
 msgstr "Dies ist neu seit Version %s"
 
-#: ../setup/functions.inc:1119
+#: ../setup/functions.inc:1118
 #, php-format
 msgid "Return to %s."
 msgstr "R&uuml;ckkehr zu %s."
 
-#: ../setup/functions.inc:1120
+#: ../setup/functions.inc:1119
 msgid "Configuration Wizard"
 msgstr "Konfigurationsassistent"
 
@@ -4213,7 +4213,7 @@ msgstr "Ihre Daten durch diesen Prozess ver&auml;ndert."
 
 #: ../upgrade_users.php:56
 msgid "If you get an error, and only some users are upgraded, try refreshing the page to upgrade remaining users."
-msgstr ""
+msgstr "Falls Probleme auftraten, oder nicht alle Benutzer aktualisiert wurden, laden Sie diese Seite erneut und versuchen die restlichen Benutzer zu aktualisieren."
 
 #: ../upgrade_users.php:64
 msgid "There was a problem upgrading users.  Please check messages above, and try again"
@@ -4275,7 +4275,7 @@ msgstr "Fehlermeldungen:"
 #: ../util.php:203
 #, php-format
 msgid "Status: %s (expected %s)"
-msgstr "Statis: %s (erwartet: %s)"
+msgstr "Status: %s (erwartet: %s)"
 
 #: ../util.php:218
 #, php-format
@@ -4400,11 +4400,11 @@ msgstr "Vote !"
 
 #: ../util.php:1867
 msgid "Total points in brackets"
-msgstr ""
+msgstr "Gesamtpunkte in Klammern"
 
 #: ../util.php:1872
 msgid "Average points in brackets"
-msgstr ""
+msgstr "Durchschnittliche Punkte in Klammern"
 
 #: ../util.php:1930
 #, php-format
@@ -4504,26 +4504,26 @@ msgstr "Powered by %s v%s"
 
 #: ../util.php:2634
 #, php-format
-msgid "[Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message."
-msgstr ""
+msgid "Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message."
+msgstr "Hinweis:  Dies ist eine automatisch generierete Email der Webseite %s.  Falls Sie sie nicht angefordert haben, bitte ignorieren Sie sie."
 
 #: ../util.php:2636
 #, php-format
 msgid "Report abuse to %s."
-msgstr ""
+msgstr "Bitte melden Sie Missbrauch an $s."
 
 #: ../util.php:2651
 msgid "Email not sent as it is disabled for this gallery"
-msgstr ""
+msgstr "Es wurde keine Email gesendet, da dieses Feature ausgeschaltet wurde."
 
 #: ../util.php:2655
 msgid "Email not sent as no address provided"
-msgstr ""
+msgstr "Es wurde keine Email gesendet, da keine Emaildresse angegeben wurde."
 
 #: ../util.php:2660
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
-msgstr ""
+msgstr "Es wurde keine Email an %s gesendet, da die Adresse ung&uuml;ltig ist."
 
 #: ../util.php:2680
 msgid "Email sent"
@@ -4536,11 +4536,11 @@ msgstr "Letztes Kommentar am %s."
 
 #: ../util.php:2716
 msgid "FAILED"
-msgstr ""
+msgstr "FEHLGESCHLAGEN"
 
 #: ../util.php:2725
 msgid "Email activity"
-msgstr ""
+msgstr "Email Aktivit&auml;t"
 
 #: ../util.php:2743
 #, php-format
@@ -4559,6 +4559,13 @@ msgid ""
 "\n"
 "Gallery @ %s Administrator."
 msgstr ""
+"Hi !!FULLNAME!!, \n"
+"\n"
+"Gl&uuml;ckwunsch.  Sie haben sich bei %s als %s angemeldet.  Ihre Zugangsdaten sind:\n"
+"Benutzername is !!USERNAME!!\n"
+"Password is !!PASSWORD!!\n"
+"\n"
+"Gallery @ %s Administratir."
 
 #: ../util.php:2760 ../util.php:2762
 msgid "gallery title"
@@ -4767,7 +4774,7 @@ msgstr "Verschiebe "
 
 #: ../view_album.php:803
 msgid "Copy "
-msgstr ""
+msgstr "Kopiere "
 
 #: ../view_album.php:806
 msgid "Show"

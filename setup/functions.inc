@@ -568,17 +568,16 @@ function check_absent_locales()
 	$available=$locale_check["available_locales"];
 	$maybe=$locale_check["maybe_locales"];
 	$unavailable=$locale_check["unavailable_locales"];
-	$useable=sizeof($available)+sizeof($maybe) ;
 
 	if($locale_check != NULL && sizeof($unavailable) ==0) {
 		$success[] = _("All gallery locales are available on this host");
-	} else if($maybe+$unavailable >0) {
-		if ($maybe >0) {
-			$msg = sprintf(_("There are %d locales where Gallery was able to identify them correct. You need to choose manually the correct value."),sizeof($maybe));
+	} else if( (sizeof($maybe) + sizeof($unavailable)) >0) {
+		if (sizeof($maybe) >0) {
+			$msg = sprintf(_("There are %d locales where Gallery was not able to identify them correct. You need to choose manually the correct value."),sizeof($maybe));
 		}
 
-		if ($unavailable >0) {
-			if(isset($maybe)) $msg.="<p></p>";
+		if (sizeof($unavailable) >0) {
+			if(sizeof($maybe) >0) $msg.="<p></p>";
 
 			$msg .= sprintf(_("Dates in %d languages may not be formatted properly, because the corresponding locales are missing. But you can choose another locale for those."),sizeof($unavailable));
 		}

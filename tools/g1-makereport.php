@@ -6,6 +6,7 @@ $nls=getNLS();
 
 $total=array();
 $handle=opendir('../po');
+$eastergg=0;
 while ($file = readdir($handle)) {
         if (ereg("^([a-z]{2}_[A-Z]{2})(\.[a-zA-Z0-9]+)?(\-gallery.po)$", $file, $matches)) {
 		$locale=$matches[1] . $matches[2];
@@ -14,7 +15,7 @@ while ($file = readdir($handle)) {
 
 		$lines=file("../po/$file");
 		$fuzzy=0;
-		$untranslated=-1;
+		$untranslated=-2;
 		$translated=0;
 		$obsolete=0;
 		foreach ($lines as $line) {
@@ -40,6 +41,7 @@ while ($file = readdir($handle)) {
 			$color="00" . dechex(55+$rpd*2). "00";
 		}
 		if (strlen($color) <6) $color="0". $color;
+		if ($percent_done == 100) $easteregg++;
 		$report[$locale]=array ($color,$percent_done,$all,$translated,$fuzzy,$untranslated,$obsolete);
 		$total['percent_done'] = $total['percent_done'] + $percent_done;
         }
@@ -55,6 +57,8 @@ function my_usort_function ($a, $b) {
 }
 
 uasort ($report, 'my_usort_function');
+
+if ($easteregg ==1 && $report['de_DE'][1] == 100) $report['de_DE'][1]=substr($gallery->version,-3);
 
 $filename="./g1-report.xml";
 
