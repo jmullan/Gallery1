@@ -538,8 +538,8 @@ function check_gettext()
 	$fail = array();
 	$success = array();
 	$warn = array();
-	if (in_array ("gettext", get_loaded_extensions()) && function_exists('gettext')) {
-		$success[] = _("<b>GNU gettext</b> installed.");
+	if (gettext_installed() {
+		$success[] = _("PHP has <b>GNU gettext</b> support.");
 	} else {
 		$fail["fail-gettext"] = 1;
 	}
@@ -678,9 +678,8 @@ function check_locale() {
 		}
 	}
 
-	/* DAMN, there are none we use Linux and our PHP uses gettext*/ if(
-	sizeof($system_locales) == 0 && getOS() == OS_LINUX &&
-	gettext_installed()) {
+	/* DAMN, there are none we use Linux and our PHP uses gettext*/ 
+	if( sizeof($system_locales) == 0 && getOS() == OS_LINUX && gettext_installed()) {
 		return NULL;
 	}
 

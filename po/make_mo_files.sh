@@ -48,14 +48,14 @@ clear
 if [ -z $1 ] ; then
         echo -e "\nusage :"
         echo "sh make_mo_files.sh -all for all .po file"
-        echo -e "or sh make_mo_files.sh -po <language_COUNTRY>-gallery.po for only one. e.g. sh make_mo_files.sh -po de_DE-gallery.po\n"
+        echo -e "or sh make_mo_files.sh -po <language_COUNTRY> for only one. e.g. sh make_mo_files.sh -po de_DE \n"
         exit
 fi
 
-if [ $1 != "-all" ] && [ ! -e $2 ] ; then
+if [ $1 != "-all" ] && [ ! -e ../locale/$2 ] ; then
         echo -e "\n$2-gallery.po does not exist or your paramater was wrong"
         echo -e "\nusage :"
-        echo -e "sh make_mo_files.sh -<language_COUNTRY>-gallery.po for only one. e.g. sh update_po_files.sh -po de_DE-gallery.po\n"
+        echo -e "sh make_mo_files.sh -<language_COUNTRY> for only one. e.g. sh update_po_files.sh -po de_DE \n"
         exit
 fi
 
@@ -63,7 +63,7 @@ fi
 ACTUALPATH=${0%/*}
 cd $ACTUALPATH
 
-# check if ../locale dir is there, if not create
+# check if ../locale dir is there
 
 echo -n "Checking ../locale"
 if [ ! -e ../locale ] ; then 
@@ -85,7 +85,7 @@ if [ $1 = "-all" ] ; then
 else
 #just use the one the user gave as parameter
 	echo "only $2"
-	all_po=$2
+	all_po=$(find ../locale/$2 -iname ??_*-*.po)
 fi
 
 for po_file in $all_po ; do
@@ -133,7 +133,7 @@ for po_file in $all_po ; do
 		}
 	fi
 
-read trash
+#read trash
 done
 
 # /etc/init.d/apache restart

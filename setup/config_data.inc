@@ -288,7 +288,7 @@ $constants =  array_merge(
 
 	"jpegImageQuality" => array(
 		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("JPEG Quality"),
-		"desc" => _("The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to \"100\" is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."),
+		"desc" => _("The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."),
 		"choices" => array(50 => 50, 55 => 55, 60 => 60, 65 => 65,
 				   70 => 70, 75 => 75, 80 => 80, 85 => 85,
 				   90 => 90, 95 => 95, 100 => 100),

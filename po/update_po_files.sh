@@ -8,14 +8,14 @@ clear
 if [ -z $1 ] ; then
 	echo -e "\nusage :"
 	echo "sh update_po_files.sh -all for all .po file"
-	echo -e "or sh update_po_files.sh -po <language_COUNTRY>-gallery.po for only one. e.g. sh update_po_files.sh -po de_DE-gallery.po\n" 
+	echo -e "or sh update_po_files.sh -po <language_COUNTRY> for only one. e.g. sh update_po_files.sh -po de_DE \n" 
 	exit
 fi
 
-if [ $1 != "-all" ] && [ ! -e $2 ]; then
+if [ $1 != "-all" ] && [ ! -e ../locale/$2 ]; then
 	echo -e "\n$2 does not exist or your paramater was wrong"
 	echo -e "\nusage :"
-	echo -e "sh update_po_files.sh -po <language_COUNTRY>-gallery.po for only one. e.g. sh update_po_files.sh -po de_DE-gallery.po\n" 
+	echo -e "sh update_po_files.sh -po <language_COUNTRY> for only one. e.g. sh update_po_files.sh -po de_DE \n" 
 	exit
 fi
 
@@ -24,26 +24,25 @@ cd $ACTUALPATH
 
 #make sure the pot file is uptodate:
 
-[ ! -z $2 ] || {
-	echo -n "making *.pot . . . "
-	sh create_po_template.sh
-}
+echo -n "making *.pot . . . "
+sh create_po_template.sh
+echo -e "Done.\n"
 
-echo "done".
 #find all .po files or use only one
 
 if [ $1 = "-all" ] ; then
 	echo -n "checking for .po files ...."
-	ls ??_??-*.po >/dev/null 2>/dev/null || {
+	find ../locale/ -name ??_??*.po >/dev/null 2>/dev/null || {
 		echo $rc_failed	
 		echo "$tab No valid .po files found"
 		exit 0
 	}
 
-	for all_po in $(ls ??_*-*.po) ; do
+	for all_po in $(find ../locale/ -name ??_??*.po) ; do
 		echo -e "\nFound : $all_po"
 		
-		lang=${all_po%-*}
+		lang1=${all_po%-*}
+		lang=${lang1##*/}
 		module1=${all_po##*_}
 		module=${module1/.po}
 
@@ -54,5 +53,13 @@ if [ $1 = "-all" ] ; then
 		msgmerge -U $all_po gallery-$module.pot --no-wrap -v || exit
 	done
 else
-	msgmerge -U $2 gallery-$module.pot --no-wrap -v
+	echo "$tab Updating ../locale/$2/$2-gallery_config.po ..."
+	msgmerge -U ../locale/$2/$2-gallery_config.po gallery-config.pot --no-wrap -v
+
+	echo -e "\n-----------------------------\n"
+
+	echo "$tab Updating ../locale/$2/$2-gallery_core.po ..."
+	msgmerge -U ../locale/$2/$2-gallery_core.po gallery-core.pot --no-wrap -v
 fi
+
+find ../locale/ -iname "*~" -exec rm {} \;

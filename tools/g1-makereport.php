@@ -1,18 +1,26 @@
 <?php
-	include ("../Version.php");
-	include ("../nls.php");
+	$GALLERY_BASEDIR="../";
 
-$nls=getNLS();
+	include ($GALLERY_BASEDIR . "Version.php");
+
+        if(substr(PHP_OS, 0, 3) == 'WIN') {
+		include($GALLERY_BASEDIR . "platform/fs_win32.php");
+        } else {
+		include($GALLERY_BASEDIR . "platform/fs_unix.php");
+	}
+	include ($GALLERY_BASEDIR . "util.php");
+
+	$nls=getNLS();
 
 $total=array();
-$handle=opendir("../locale");
+$handle=fs_opendir($GALLERY_BASEDIR ."locale");
 $eastergg=0;
 while ($dirname = readdir($handle)) {
 	if (preg_match("/^([a-z]{2}_[A-Z]{2})/", $dirname)) {
 		$locale=$dirname;
-		if ($locale == "en_GB") continue; 
+		if ($locale == "en_GB" || $locale == "en_US") continue; 
 		$total['lang']++;
-		$dir=opendir("../locale/$dirname");
+		$dir=opendir($GALLERY_BASEDIR . "locale/$dirname");
 		$tpd=0;
 		$cc=0;
 		while ($file = readdir($dir)) {
@@ -20,7 +28,7 @@ while ($dirname = readdir($handle)) {
 				$pos=strpos($file,"gallery_");
 				$component=substr($file,$pos+8,-3);
 
-				$lines=file("../locale/$dirname/$file");
+				$lines=file($GALLERY_BASEDIR . "locale/$dirname/$file");
 				$fuzzy=0;
 				$untranslated=-2;
 				$translated=0;
