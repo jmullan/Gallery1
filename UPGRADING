@@ -1,6 +1,7 @@
 CONTENTS
  1. How to upgrade Gallery
  2. How to upgrade a modified Gallery
+ 3. Notes on upgrading from pre-v1.1 to v1.1
 
 1. HOW TO UPGRADE GALLERY
 
@@ -58,3 +59,14 @@ of the Gallery community, how about mailing that patch file to us
 along with a description of what it does so that we can take a look at
 it?  We don't want your work to go to waste and we want to make it
 easy for you to keep upgrading Gallery.
+
+3. NOTES ON UPGRADING FROM PRE-V1.1 TO V1.1
+
+If you've modified files in the html_wrap/ directory, you may
+experience some problems when you upgrade to v1.1.  We've moved some
+of the variables around since we were finding that there were some
+conflicts in the global namespace.  All global and session variables
+can now be found in the $gallery stdClass.  
+
+Take a look at the tips in the .default files to see what the new
+variable names are.  
