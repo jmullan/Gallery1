@@ -1355,7 +1355,12 @@ function makeGalleryUrl($target, $args=array()) {
 			    $args['option'] = $GALLERY_MODULENAME;
 			    $args['Itemid'] = $MOS_GALLERY_PARAMS['itemid'];
 			    $args['include'] = $target;
-			    $target = 'index.php';
+			if (isset($args['type']) && $args['type'] == 'popup') {
+				$target = $gallery->app->photoAlbumURL . "/" . $target;
+			} else {
+				$target = 'index.php';
+			}
+
 			break;
 			// Maybe something went wrong, then we assume we are like standalone.		
 			default:
@@ -2707,11 +2712,14 @@ function Gallery() {
 
 /*returns a link to the docs, if present, or NULL */
 function galleryDocs($class='') {
-	global $GALLERY_BASEDIR;
-	if (fs_file_exists($GALLERY_BASEDIR."docs/index.html")) {
-		return "<a class=\"$class\" href=\"${GALLERY_BASEDIR}docs/index.html\">[" .  _("documentation").']</a>';
+	global $gallery;
+
+	if (fs_file_exists(dirname(__FILE__) .'/docs/index.html')) {
+		$url=$gallery->app->photoAlbumURL . '/docs/index.html';
+		return "<a class=\"$class\" href=\"$url\">[" .  _("documentation").']</a>';
+	} else {
+	        return NULL;
 	}
-	return NULL;
 }
 
 function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
