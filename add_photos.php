@@ -51,9 +51,7 @@ Tip:  Upload a ZIP file full of photos and movies!
 <? } ?>
 <br>
 (Supported file types: JPG, 
-<? if ($app->feature["gif_support"]) { ?>
 GIF, 
-<? } ?>
 PNG, AVI, MPG)
 
 <p>

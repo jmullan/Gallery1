@@ -101,7 +101,7 @@ function isImage($tag) {
 	global $app; 
 
 	return (!strcmp($tag, "jpg") ||
-		($app->feature["gif_support"] && !strcmp($tag, "gif")) ||
+		!strcmp($tag, "gif") ||
 		!strcmp($tag, "png"));
 }
 
