@@ -20,7 +20,6 @@
 </p>
 
 
-<table width="100%">
 
 <?php
 $i = 0;
@@ -29,17 +28,23 @@ foreach ($constants as $key => $val) {
 	if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
 	
 	if( isset($val["type"]) && ($val["type"] === "separator")) {
+		echo "\n<table width=\"100%\">";
 		echo make_separator($key, $val);
+		continue;
 	} else {
 		if (isset($val["type"]) && ($val["type"] === "block_start" )) {
+			echo "\n<table width=\"100%\" class=\"inner\">";
 			echo evenOdd_row(make_fields($key, $val), $i % 2);
 			continue;
 		}
 		if (isset($val["type"]) && ($val["type"] === "block_end" )) {
 			echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 			echo "\n<tr><td colspan=\"2\"> &nbsp; </td></tr>";
+			echo "\n</table><!-- .inc blockend -->";
 			continue;
 		}
+
+
 		$onThisPage[$key] = 1;
 		$preserve[$key] = 1;
 
@@ -62,6 +67,7 @@ foreach ($constants as $key => $val) {
 			list($f1, $f2) = make_fields($key, $val);
 			echo $f2;
 		} else {
+			echo "\n<!-- Element Start --><table width=\"100%\" class=\"inner\">";
 			/* Support $app-> for backwards compatibility */
 			if (isset($app->$key)) {
 				$val["value"] = $app->$key;
@@ -104,16 +110,16 @@ foreach ($constants as $key => $val) {
 			// Protect quote characters to avoid screwing up HTML forms
 			$val["value"] = str_replace('"', "&quot;", $val["value"]);
 	
-			echo evenOdd_row(make_fields($key, $val),
-					$i++ % 2);
-			if (!isset($val["type"]) || ($val["type"] !== "block_element" )) {
-				echo "<tr><td colspan=2> &nbsp; </td></tr>";
-			}
+			echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 		}
+	}
+	if (isset($val["type"]) && ($val["type"] === "hidden")) {
+		// aasd
+	} else {
+		echo "\n</table><!-- Element Ende -->";
 	}
 }
 ?>
-</table>
 <p align="center">
 	<input type=submit name="go_back" value="<- <?php echo _("Previous Page") ?>">
 	<input type=submit name="go_next" value="<?php echo _("Next Page") ?> ->">

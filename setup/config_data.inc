@@ -578,13 +578,14 @@ $constants = array_merge($constants,
 			),
 	"gallery_slideshow_type" => array(
 		       	"prompt" => _("Slideshow preferences"),
-		       	"desc" => "<dl><dt>"._("Off")."</dt><dd>" . 
-		       		_("No slideshow link will appear.") .
-		      		"</dd><dt>"._("Ordered")."</dt><dd>" . 
-		       		_("Images will display in the same order as they appear in the Gallery.") .
-		      		"</dd><dt>"._("Random")."</dt><dd>" . 
-		       		_("Images will appear in a random order.") .
-		      		"</dl>" .
+		       	"desc" => "<dl>"
+				."<dt>". _("Off") . "</dt>"
+				."<dd>". _("No slideshow link will appear.") . "</dd>"
+				."<dt>". _("Ordered") . "</dt>"
+				."<dd>". _("Images will display in the same order as they appear in the Gallery.") . "</dd>"
+				."<dt>". _("Random") . "</dt>"
+				."<dd>". _("Images will appear in a random order.") . "</dd>"
+				."</dl>" .
 				newIn("1.4.1"),
 		       	"choices" => array(
 			       	"off" => _("Off"),
@@ -616,15 +617,16 @@ $constants = array_merge($constants,
 			),
 	"comments_indication" => array(
 		       	"prompt" => _("Indicate if there are comments available"),
-		       	"desc" => "<dl><dt>"._("Off")."</dt><dd>" . 
-		       		_("No indication that an item has comments.") .
-		      		"</dd><dt>"._("Photos")."</dt><dd>" . 
-		       		_("Images that have comments will be marked.") .
-		      		"</dd><dt>"._("Albums")."</dt><dd>" . 
-		       		_("Albums and sub-albums that have comments will be marked.") .
-		      		"</dd><dt>"._("Both")."</dt><dd>" . 
-		       		_("Images and albums that have comments will be marked.") .
-		      		"</dl>" .
+		       	"desc" => "<dl>"
+				. "<dt>" . _("Off") . "</dt>"
+				. "<dd>" . _("No indication that an item has comments.") . "</dd>"
+				. "<dt>" . _("Photos") . "</dt>"
+				. "<dd>" . _("Images that have comments will be marked.") . "</dd>"
+				. "<dt>" . _("Albums"). " </dt>"
+				. "<dd>" . _("Albums and sub-albums that have comments will be marked.") . "</dd>"
+				. "<dt>" ._("Both") . "</dt>"
+				. "<dd>" . _("Images and albums that have comments will be marked.") . "</dd>"
+				. "</dl>" .
 				newIn("1.4.1"),
 		       	"choices" => array(
 			       	"off" => _("Off"),
@@ -948,13 +950,14 @@ $defaults = array(
 	"voter_class" => array(
 		"prompt" => _("Voter class"),
 		"desc" => _("Voting is available to:") . 
-		"<dl><dt>"._("Nobody")."</dt><dd>" . 
-		_("Voting is off.") .
-		"</dd><dt>"._("Everybody")."</dt><dd>" . 
-		_("Anyone can vote.  Votes are recorded against session ID.") .
-		"</dd><dt>"._("Logged in")."</dt><dd>" . 
-		_("Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices.") .
-		"</dl>" .
+			"<dl>"
+			. "<dt>" . _("Nobody")."</dt>"
+			. "<dd>" . _("Voting is off.") ."</dd>"
+			. "<dt>" . _("Everybody") . "</dt>"
+			. "<dd>" . _("Anyone can vote.  Votes are recorded against session ID.") ."</dd>"
+			. "<dt>" . _("Logged in") ."</dt>"
+			. "<dd>" . _("Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices.") . "</dd>"
+			. "</dl>" .
 			newIn("1.4.1"),
 		"choices" => array("Nobody" => _("Nobody"), 
 			"Everybody" => _("Everybody"), 
@@ -963,11 +966,12 @@ $defaults = array(
 	"poll_type" => array(
 		"prompt" => _("Poll type"),
 	       	"desc" => _("Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation.") . 
-		"<dl><dt>"._("Rank")."</dt><dd>" . 
-		_("Users have a set of votes which they can allocate to the images.") . 
-		"<dd><dt>"._("Critique")."</dt><dd>" . 
-		_("Enables users to give all images points without restriction.") .
-		"</dl>" .
+			"<dl>"
+			. "<dt>" . _("Rank")."</dt>"
+			. "<dd>" . _("Users have a set of votes which they can allocate to the images.") . "</dd>"
+			. "<dt>" . _("Critique")."</dt>"
+			. "<dd>" . _("Enables users to give all images points without restriction.") . "</dd>"
+			. "</dl>" .
 	      	 	newIn("1.4.1"),
 		"choices" => array("rank" => _("Rank"), 
 			"critique" => _("Critique")),
@@ -1033,15 +1037,15 @@ $defaults = array(
 			),
 	"slideshow_type" => array(
 		       	"prompt" => _("Slideshow Type"),
-		       	"desc" => "<dl><dt>"._("Off")."</dt><dd>" . 
-		       		_("No slideshow link will appear.") .
-		      		"</dd><dt>"._("Ordered")."</dt><dd>" . 
-		       		_("Images will display in the same order as they appear in the Gallery.") .
-		      		"</dd><dt>"._("Random")."</dt><dd>" . 
-		       		_("Images will appear in a random order.") .
-		      		"</dl>" .
+		       	"desc" => "<dl>"
+				. "<dt>" . _("Off") ."</dt>"
+				. "<dd>" . _("No slideshow link will appear.") . "</dd>"
+				. "<dt>" . _("Ordered") . "</dt>"
+				. "<dd>" . _("Images will display in the same order as they appear in the Gallery.") . "</dd>"
+				. "<dt>" . _("Random") . "</dt>"
+				. "<dd>" . _("Images will appear in a random order.") . "</dd>"
+				. "</dl>" .
 				newIn("1.4.1"),
-			newIn("1.4.1"),
 		       	"choices" => array(
 			       	"off" => _("Off"),
 			       	"ordered" => _("Ordered"),

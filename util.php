@@ -168,7 +168,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
     $link_name = "popuplink_".$popup_counter;
     $url = build_popup_url($url, $url_is_complete);
     
-    $a1 = "<a $class id=\"$link_name\" target=\"Edit\" href=$url onClick=\"javascript:".
+    $a1 = "<a $class id=\"$link_name\" target=\"Edit\" href=\"$url\" onClick=\"javascript:".
 	popup_js("document.getElementById('$link_name').href", "Edit",
 		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
 	"\">";
@@ -2925,10 +2925,12 @@ function available_skins($description_only=false) {
 							   $screenshot, 1, false,
 							   500, 800);
 				}
-			       	$descriptions.="<dt>$name</dt><dd>$description</dd>";
+			       	$descriptions.="\n<dt>$name</dt><dd>$description</dd>";
 			}
 		}
-	} 
+	}
+	$descriptions .="\n</dl>";
+ 
 	if ($description_only) {
 		return $descriptions;
 	} else {
@@ -2964,7 +2966,7 @@ function available_frames($description_only=false) {
 					$description=$file;
 				}
 				$opts[$file]=$name;
-				$descriptions.="<dt>$name</dt><dd>$description</dd>";
+				$descriptions.="\n<dt>$name</dt><dd>$description</dd>";
 			} else {
 				if (false && isDebugging()) 
 				{
@@ -2976,6 +2978,8 @@ function available_frames($description_only=false) {
 	} else {
 		gallery_error(sprintf(_("Can't open %s"), $dir));
 	}
+
+	$descriptions.="\n</dl>";
 	if ($description_only) {
 		return $descriptions;
 	} else {
@@ -3259,7 +3263,7 @@ function checkVersions($verbose=false) {
 			       	print "<br>\n";
 				print sprintf(_("%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
 			}
-			$warn[$file]=sprintf(_("%s is a more recent version than expected.  Expected version %s but found %s."), $file, $version, $found_version);
+			$warn[$file]=sprintf(_("Expected version %s but found %s."), $version, $found_version);
 		} else {
 			if ($verbose) {
 			       	print "<br>\n";
