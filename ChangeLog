@@ -1,19 +1,25 @@
+2003-07-19  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.5-cvs-b54
+
+	* Removed debugging statements in gallery_remote2.
+	* Added check to avoid warnings when PHP is configured to print
+	  warnings.
+
 2003-07-08  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b53
 
         * Make the extension lowercase to catch file extensions like .JPG or
           .JPEG (Thanks again Vallimar).
-        
+
 2003-07-08  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b52
 
         * Check to see if the image is a JPEG before attempting to use jpegtran
           on it.  (Thanks for the catch, Vallimar).
 
 2003-07-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b51
-	
+
 	* slight rework of b50
 
 2003-07-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b50
-	
+
 	* fixed bug.  Correct image size with resized images in custom
 	  fields
 
@@ -36,12 +42,12 @@
 	* Add "new in 1.3.5" to jpegtran stuff.
 
 2003-07-07  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b46
-	
+
 	* Implemented a slightly modified patch by Jonathan Larmour, to
 	  include jpegtran support.
 
 2003-07-07  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b45
-	
+
 	* Change the text printed when an installation has warnings.
 	  This is based on some experiences from the forum, where users
 	  have been scared to go on when their installation just has a
@@ -61,8 +67,8 @@
 2003-07-02  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b42
 
 	* Wrapped realpath around __FILE__.  Hopefully this fixes a bug where
-	  __FILE__ is set to file name and not path in included files for 
-	  some versions of PHP 
+	  __FILE__ is set to file name and not path in included files for
+	  some versions of PHP
 
 2003-06-30  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b41
 
@@ -71,7 +77,7 @@
 	  do not appear for movies.
 
 2003-06-30  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b40
-	
+
 	* added new custom field EXIF data. This displays exif data
 	  under the photo, but nly if data is available, and can be
 	  displayed in that album.  Photo properties link is removed
@@ -89,17 +95,17 @@
 	  as well as for a missing owner altogether.
 
 2003-06-29  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b38
-	
+
 	* upgrade album version to 12, to change item owner names
 	  from "nobody" to album owner.  This is for people who
 	  upgraded between b32 and b36.
 
 2003-06-29  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b37
-	
-	* During upgrade, item owner for all items will default to album owner, 
+
+	* During upgrade, item owner for all items will default to album owner,
 	  instead of "nobody"
 
-	* Bug fix in the owner code.  If owner is unknown, it now will not be 
+	* Bug fix in the owner code.  If owner is unknown, it now will not be
 	  printed as NOBODY.
 
 2003-06-28  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b36
