@@ -120,12 +120,12 @@ var loop = <?= $defaultLoop ?>;
 <?php
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
-$numVisible = 0; 
+$numDisplayed = 0; 
 
 // Find the correct starting point, accounting for hidden photos
 $index = getNextPhoto(0);
 $photo_count = 0;
-while ($index <= $numPhotos) {
+while ($numDisplayed < $numPhotos) { 
     $photo = $gallery->album->getPhoto($index);
 
     // Skip movies and nested albums
@@ -135,7 +135,7 @@ while ($index <= $numPhotos) {
     }
 
     $photo_count++;
-    $numVisible++;
+    $numDisplayed++;
 
     $photoURL = $gallery->album->getPhotoPath($index, $slide_full);
 
@@ -161,6 +161,7 @@ while ($index <= $numPhotos) {
 
     // Go to the next photo
     $index = getNextPhoto($index);
+    $photosLeft--;
 }
 
 $transitionNames[] = 'Blend';

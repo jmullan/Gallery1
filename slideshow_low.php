@@ -137,12 +137,12 @@ var direction = <?= $slide_dir ?>;
 <?php
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
-$numVisible = 0; 
+$numDisplayed = 0; 
 
 // Find the correct starting point, accounting for hidden photos
 $index = getNextPhoto(0);
 $photo_count = 0;
-while ($index <= $numPhotos) {
+while ($numDisplayed < $numPhotos) { 
     $photo = $gallery->album->getPhoto($index);
 
     // Skip movies and nested albums
@@ -152,7 +152,7 @@ while ($index <= $numPhotos) {
     }
 
     $photo_count++;
-    $numVisible++;
+    $numDisplayed++;
 
     $image = $photo->image;
     if ($photo->image->resizedName) {
@@ -184,6 +184,7 @@ while ($index <= $numPhotos) {
 
     // Go to the next photo
     $index = getNextPhoto($index);
+    $photosLeft--;
 }
 ?>
 var photo_count = <?=$photo_count?>; 
