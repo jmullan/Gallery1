@@ -1884,6 +1884,7 @@ function AcceptableArchive($ext) {
 function canHandleArchive($ext) {
 	global $gallery;
 
+	$ext = strtolower($ext);
 	switch ($ext) {
 		case 'zip':
 			if ($gallery->app->feature["zip"] == 1) {
@@ -1966,7 +1967,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
 	global $temp_files;
 	if (acceptableArchive($ext)) {
 		$tool=canHandleArchive($ext);
-		if (!empty($tool)) {
+		if (empty($tool)) {
 			processingMsg(sprintf(_("Skipping %s (%s support not enabled)"), $name, $ext));
 			return;
 		}
