@@ -6,7 +6,7 @@ function evenOdd_row($fields, $evenOdd) {
 
 	$f0 = str_replace(" ", "&nbsp;", $fields[0]);
 	if ($fields[3] == "block_element") {
-		$buf .= "\n<tr><td class=\"content\"$f0</td><td class=\"content\">".$fields[1]."</td></tr>";
+		$buf .= "\n<tr><td class=\"content\">$f0</td><td class=\"content\">".$fields[1]."</td></tr>";
 	} else if ($fields[3] == "block_start") {
 		$buf .= "\n<tr><td class=\"content\" colspan=2 valign=top align=left><table>";
 		$buf .= "\n\t<td class=\"content\" align=\"left\" valign=\"top\">$f0<p>";
@@ -614,7 +614,7 @@ function check_locale() {
 		
 		/* Found an supported one, put it in availables */
 		if (in_array($locale, $system_locales)) {
-			$available_locales[]=$locale;
+			$available_locales[$locale]=$locale;
 			continue;
 		}
 		

@@ -76,7 +76,7 @@ if ($confirm && isset($id)) {
   <title><?php echo _("Delete Photo") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 
 <?php
@@ -106,10 +106,10 @@ $myAlbum->load($id);
 <?php echo $myAlbum->fields[description] ?>
 <br>
 <?php echo makeFormIntro("delete_photo.php"); ?>
-<input type=hidden name=id value=<?php echo $id ?>>
-<input type=hidden name=albumDelete value=<?php echo $albumDelete ?>>
-<input type=submit name=confirm value="<?php echo _("Delete") ?>">
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="hidden" name="id" value="<?php echo $id ?>">
+<input type="hidden" name="albumDelete" value=<?php echo $albumDelete ?>>
+<input type="submit" name=confirm value="<?php echo _("Delete") ?>">
+<input type="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <br>
 
@@ -126,10 +126,10 @@ $myAlbum->load($id);
 <?php echo $gallery->album->getCaption($index) ?>
 <br>
 <?php echo makeFormIntro("delete_photo.php"); ?>
-<input type=hidden name=id value=<?php echo $id?>>
-<input type=hidden name=id2 value=<?php echo $id2 ?>>    
-<input type=submit name=confirm value="<?php echo _("Delete") ?>">
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="hidden" name="id" value="<?php echo $id?>">
+<input type="hidden" name="id2" value=2<?php echo $id2 ?>">    
+<input type="submit" name="confirm" value="<?php echo _("Delete") ?>">
+<input type="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <br>
 

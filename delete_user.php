@@ -39,7 +39,7 @@ if (!$gallery->user->isAdmin()) {
 }
 
 if ($submit) {
-	if (!strcmp(htmlentities($submit), _("Delete"))) {
+	if (!strcmp($submit, _("Delete"))) {
 		$gallery->userDB->deleteUserByUsername($uname);
 		header("Location: manage_users.php");
 	} else if (!strcmp(htmlentities($submit), _("Cancel"))) {
@@ -53,7 +53,7 @@ if ($submit) {
   <title><?php echo _("Delete User") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <center>
 <span class="popuphead"><?php echo _("Delete User") ?></span>
@@ -76,12 +76,12 @@ if (!strcmp($gallery->user->getUsername(), $uname)) {
 <p>
 <p>
 
-<input type=submit name="submit" value="<?php echo _("Delete") ?>">
+<input type="submit" name="submit" value="<?php echo _("Delete") ?>">
 <?php
 }
 ?>
 
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>">
+<input type="submit" name="submit" value="<?php echo _("Cancel") ?>">
 </form> 
 
 </body>

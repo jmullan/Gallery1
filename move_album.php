@@ -45,7 +45,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
   <title><?php echo _("Move Album") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <?php
 /* Read the album list */
@@ -77,7 +77,7 @@ if ($gallery->session->albumName && isset($index)) {
 <?php echo _("Select the new location of album") ?> <?php echo $gallery->album->fields["title"] ?>:
 
 <?php echo makeFormIntro("move_album.php", array("name" => "theform")); ?>
-<input type=hidden name="index" value="<?php echo $index ?>">
+<input type="hidden" name="index" value="<?php echo $index ?>">
 <select name="newIndex">
 <?php
 for ($i = 1; $i <= $numAlbums; $i++) {
@@ -85,12 +85,12 @@ for ($i = 1; $i <= $numAlbums; $i++) {
 	if ($i == $index) {
 		$sel = "selected";
 	} 
-	echo "<option value=$i $sel> $i</option>";
+	echo "<option value=\"$i\" $sel> $i</option>";
 }
 ?>
 </select>
-<input type=submit value=<?php echo '"' . _("Move it!") . '"' ?>>
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" value="<?php _("Move it!") ?>">
+<input type="button" name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
 <p>
@@ -115,8 +115,8 @@ printAlbumOptionList(0,1)
 </select>
 <br>
 <br>
-<input type=submit value=<?php echo '"' . _("Move to Album!") .'"' ?>>
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" value="<?php echo _("Move to Album!") ?>">
+<input type="button" name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <?php
 	}
@@ -134,4 +134,3 @@ document.theform.newIndex.focus();
 
 </body>
 </html>
-

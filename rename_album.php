@@ -45,7 +45,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
   <title><?php echo _("Rename Album") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <center>
 
@@ -113,12 +113,12 @@ if ($newName) {
 
 <br>
 <?php echo makeFormIntro("rename_album.php", array("name" => "theform")); ?>
-<input type=text name="newName" value=<?php echo $newName?>>
-<input type=hidden name="oldName" value=<?php echo $gallery->session->albumName?>>
-<input type=hidden name="useLoad" value=<?php echo $useLoad?>>    
+<input type="text" name="newName" value="<?php echo $newName?>">
+<input type="hidden" name="oldName" value="<?php echo $gallery->session->albumName?>">
+<input type="hidden" name="useLoad" value="<?php echo $useLoad?>">    
 <p>
-<input type=submit value="<?php echo _("Rename") ?>">
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" value="<?php echo _("Rename") ?>">
+<input type="button" name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
 <script language="javascript1.2">

@@ -100,7 +100,7 @@ $defaultLanguage = $gallery->user->getDefaultLanguage();
   <title><?php echo _("Change User Preferences") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <center>
 <span class="popuphead"><?php echo _("Change User Preferences") ?></span>
@@ -121,8 +121,8 @@ $defaultLanguage = $gallery->user->getDefaultLanguage();
 <?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
 
-<input type=submit name="submit" value="<?php echo _("Save") ?>">
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="submit" value="<?php echo _("Save") ?>">
+<input type="submit" name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
 <script language="javascript1.2">

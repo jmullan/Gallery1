@@ -39,12 +39,18 @@ if (!$gallery->user->isAdmin()) {
 }
 
 if ($action) {
-	if (!strcmp($action, "Create")) {
+	if (!strcmp($action, _("Create"))) {
 		header("Location: create_user.php?uname=$uname");
-	} else if (!strcmp($action, "Modify") && $uname) {
-		header("Location: modify_user.php?uname=$uname");
-	} else if (!strcmp($action, "Delete") && $uname) {
-		header("Location: delete_user.php?uname=$uname");
+	} else if (! isset($uname)) {
+		$error=_("Please select a user");
+	} else {
+		switch ($action) {
+			case _("Modify"):
+				header("Location: modify_user.php?uname=$uname");
+			break;
+			case _("Delete"):
+				header("Location: delete_user.php?uname=$uname");
+		}
 	}
 }
 
@@ -64,14 +70,22 @@ foreach ($gallery->userDB->getUidList() as $uid) {
   <title><?php echo _("Manage Users") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <center>
 <span class="popuphead"><?php echo _("Manage Users") ?></span>
 <br>
 <br>
-
-<?php echo makeFormIntro("manage_users.php", array("name" => "manageusers_form")); ?>
+<?php 
+	if (isset($error)) {
+		echo "<span style=\"color:red\">". _("Error:") . $error ."</span>";
+	}
+?>
+	
+<?php echo makeFormIntro("manage_users.php", array(
+			"name" => "manageusers_form", 
+			"method" => "POST"));
+?>
 <?php echo _("You can create, modify and delete users here.") ?>
 <p>
 
@@ -81,7 +95,7 @@ if (!$displayUsers) {
 } else {
 ?>
 
-<select name=uname size=15 onDblClick='my_submit("Modify")'>
+<select name="uname" size="15" onDblClick='my_submit("Modify")'>
 
 <?php
 	foreach ($displayUsers as $name) {
@@ -93,26 +107,13 @@ if (!$displayUsers) {
 </select>
 
 <p>
-<input type=button value="<?php echo _("Create") ?>" onClick='my_submit("Create")'> 
+<input type="submit" name="action" value="<?php echo _("Create") ?>"> 
 <?php if (count($displayUsers)) { ?>
-<input type=button value="<?php echo _("Modify") ?>" onClick='my_submit("Modify")'>
-<input type=button value="<?php echo _("Delete") ?>" onClick='my_submit("Delete")'>
+<input type="submit" name="action" value="<?php echo _("Modify") ?>">
+<input type="submit" name="action" value="<?php echo _("Delete") ?>">
 <?php } ?>
-<input type=button value="<?php echo _("Done") ?>" onclick='parent.close()'>
-<input type=hidden name=action value="">
+<input type="button" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
-
-<script language="javascript1.2">
-<!--
-// position cursor in top form field
-// document.manageusers_form.uname.focus();
-
-function my_submit(action) {
-	document.manageusers_form.action.value = action;
-	document.manageusers_form.submit();
-}
-//--> 
-</script>
 
 </body>
 </html>

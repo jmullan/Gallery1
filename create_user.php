@@ -39,7 +39,7 @@ if (!$gallery->user->isAdmin()) {
 }
 
 if ($submit) {
-	if (!strcmp(htmlentities($submit), _("Create"))) {
+	if (!strcmp($submit, _("Create"))) {
 		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 		if ($gErrors["uname"]) {
 			$errorCount++;
@@ -81,7 +81,7 @@ $canCreate = 1;
   <title><?php echo _("Create User") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <center>
 <span class="popuphead"><?php echo _("Create User") ?></span>
@@ -99,8 +99,8 @@ $canCreate = 1;
 <?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
 
-<input type=submit name="submit" value="<?php echo _("Create") ?>">
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>">
+<input type="submit" name="submit" value="<?php echo _("Create") ?>">
+<input type="submit" name="submit" value="<?php echo _("Cancel") ?>">
 </form>
 
 <script language="javascript1.2">

@@ -1934,10 +1934,11 @@ function initLanguage() {
 
 	// locale
 	if (isset($gallery->app->locale_alias[$gallery->language])) {
-		$gallery->locale=$gallery->app->locale_alias[$gallery->language];
+		$gallery->locale=$gallery->app->locale_alias["$gallery->language"];
 	} else {
 		$gallery->locale=$gallery->language;
 	}
+
 	// Override NUKEs locale :)))	
 	$locale=$gallery->locale;
 
