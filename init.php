@@ -91,7 +91,7 @@ if ($app->config_version != $gallery->config_version) {
 		% sh ./configure.sh
 	</td></tr></table>
 	<p>
-	Then launch the <a href=<?=$app->photoAlbumURL?>/setup/>configuration wizard</a>.
+	Then launch the <a href=<?=$app->photoAlbumURL?>/setup/index.php>configuration wizard</a>.
 	</table>
 <?
 	exit;
