@@ -48,7 +48,7 @@ Do you really want to delete this album?
 <br>
 <b><?= $gallery->album->fields["title"] ?></b>
 <p>
-<form action=delete_album.php>
+<?= makeFormIntro("delete_album.php"); ?>
 <input type=submit name=confirm value="Delete">
 <input type=submit value="Cancel" onclick='parent.close()'>
 </form>

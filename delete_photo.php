@@ -70,7 +70,7 @@ $myAlbum = $gallery->album->getNestedAlbum($index);
 <br>
 <?= $myAlbum->fields[description] ?>
 <br>
-<form action=delete_photo.php>
+<?= makeFormIntro("delete_photo.php"); ?>
 <input type=hidden name=index value=<?= $index?>>
 <input type=hidden name=albumDelete value=<?= $albumDelete?>>
 <input type=submit name=confirm value="Delete">
@@ -90,7 +90,7 @@ Do you really want to delete this photo?
 <br>
 <?= $gallery->album->getCaption($index) ?>
 <br>
-<form action=delete_photo.php>
+<?= makeFormIntro("delete_photo.php"); ?>
 <input type=hidden name=index value=<?= $index?>>
 <input type=submit name=confirm value="Delete">
 <input type=submit value="Cancel" onclick='parent.close()'>

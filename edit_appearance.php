@@ -61,6 +61,9 @@ if ($save) {
 <center>
 Album Properties
 
+<?= makeFormIntro("edit_appearance.php", 
+			array("name" => "theform", 
+				"method" => "POST")); ?>
 <form name="theform" action=edit_appearance.php method=POST>
 <input type=hidden name="save" value=1>
 <table>

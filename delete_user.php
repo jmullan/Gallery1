@@ -51,7 +51,7 @@ Even if this user is recreated, those permissions are gone.
 Do you really want to delete user <b><?=$uname?></b>?
 <p>
 
-<form name=userdelete_form method=GET>
+<?= makeFormIntro("delete_user.php"); ?>
 <input type=hidden name=uname value=<?=$uname?>>
 <p>
 

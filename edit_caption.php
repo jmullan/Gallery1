@@ -57,7 +57,9 @@ box below.
 <br><br>
 <?= $gallery->album->getThumbnailTag($index) ?>
 
-<form name="theform" action=edit_caption.php method=POST>
+<?= makeFormIntro("edit_caption.php", 
+			array("name" => "theform", 
+				"method" => "POST")); ?>
 <input type=hidden name="save" value=1>
 <input type=hidden name="index" value="<?= $index ?>">
 <textarea name="data" rows=5 cols=40>

@@ -44,7 +44,7 @@ if ($save) {
 <center>
 Edit the <?= $field ?> and click <b>Save</b> when you're done.
 
-<form name="theform" action=edit_field.php method=POST>
+<?= makeFormIntro("edit_field.php", array("name" => "theform", "method" => "POST")); ?>
 <input type=hidden name="save" value=1>
 <input type=hidden name="field" value="<?= $field ?>">
 <textarea name="data" rows=5 cols=40>
