@@ -667,11 +667,46 @@ if (canVote())
 <?php }
 }
 ?>
-
+</td>
+</tr>
+<tr>
+<td valign="top">
 <!-- image grid table -->
-<table border="0" cellspacing="0" cellpadding="0" class="vatable" align="center">
+<?php 
+/* Set DivCell cases */
+$frame = $gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
+$frameThumb = $gallery->album->fields['thumb_frame'];
+$borderWidth = $gallery->html_wrap['borderWidth'];
+$divImage = $gallery->album->fields["thumb_size"];
+
+switch ($frame) {
+
+// special cases
+case "none":
+  $divCellWidth = ($divImage + 3);
+  $divCellHeight = ($divImage + 3);
+  break;
+case "dots":
+  $divCellWidth = ($divImage + 7);
+  $divCellHeight = ($divImage + 7);
+  break;
+case "solid":
+  $divCellWidth = ($divImage + $borderWidth +3);
+  $divCellHeight = ($divImage + $borderWidth +3);
+  break;
+default: // use frames directory
+
+  require(dirname(__FILE__) . "/html_wrap/frames/$frameThumb/frame.def");
+
+  $divCellWidth = $widthTL + $divImage + $widthTR;
+  $divCellHeight = $heightTT + $divImage + $heightBB;
+  break;
+  } // end of switch 
+
+/* End DivCell cases */
+?>
+<table border="0" cellspacing="7" cellpadding="0" width="100%" class="vatable" align="center">
 <?php
-$divCell = $gallery->album->fields["thumb_size"];
 $numPhotos = $gallery->album->numPhotos(1);
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
 if ($numPhotos) {
@@ -691,20 +726,13 @@ if ($numPhotos) {
 		$printTableRow = false;
 		if ($j <= $cols && $i <= $numPhotos) {
 			$printTableRow = true;
-			echo('<tr>');
 		}
 		while ($j <= $cols && $i <= $numPhotos) {
-			echo("<td>");
-			includeHtmlWrap("inline_albumthumb.header");
-			echo("</td>");
-			echo("<td class=\"vaspacer\">&nbsp;</td>");
 			$j++; 
 			$visibleItemIndex++;
 			$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		}
 		if ($printTableRow) {
-			echo('</tr>');
-			echo("\n");
 		}
 
 		/* Do the picture row */
@@ -716,7 +744,7 @@ if ($numPhotos) {
 		}
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td align=\"center\" valign=\"top\" class=\"vathumbs\">\n");
-			echo("<div  style=\"width: $divCell; height: $divCell;\" align=\"center\" class=\"vafloat2\">\n");
+ 			echo("<div style=\"width: {$divCellWidth}px; height: {$divCellHeight}px;\" align=\"center\" class=\"vafloat2\">\n");
 
 			//-- put some parameters for the wrap files in the global object ---
 			$gallery->html_wrap['borderColor'] = $bordercolor;
@@ -786,9 +814,10 @@ if ($numPhotos) {
 				includeHtmlWrap('inline_photothumb.frame');
 						}
 
+
 		echo "\n";
 		echo("</div>\n");
-		echo("<div align=\"center\" style=\"width: $divCell;\" class=\"vafloat\">\n");
+		echo("<div style=\"width: {$divCellWidth}px;\"  align=\"center\" class=\"vafloat\">\n");
 		/* Do the clickable-dimensions row */
 		if (!strcmp($gallery->album->fields['showDimensions'], 'yes')) {
 				$photo    = $gallery->album->getPhoto($i);
@@ -856,7 +885,7 @@ if ($numPhotos) {
 
 			// Caption itself
 			echo "\n";		
-			echo '<div class="captiontable" align="center"><div class="modcaption">';
+			echo '<div align="center" class="modcaption">';
 			echo "\n";
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
@@ -900,10 +929,9 @@ if ($numPhotos) {
 					echo _("Viewed:") . " ". pluralize_n2(ngettext("1 time", "%d times", $myAlbum->getClicks()), $myAlbum->getClicks());
 					echo ".</div>";
 				}
-				echo '</span>';
 			} 
 			else {
-				echo '<center>';
+				echo("<div align=\"center\">\n");
 				echo nl2br($gallery->album->getCaption($i));
 				echo $gallery->album->getCaptionName($i) . ' ';
 				// indicate with * if we have a comment for a given photo
@@ -917,7 +945,7 @@ if ($numPhotos) {
 						print lastCommentString($lastCommentDate, $displayCommentLegend);
 					}
 				}
-				echo "</center>";
+				echo ".</div>\n";
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
 					echo '<div class="viewcounter" style="margin-top:3px">';
 					echo _("Viewed:") ." ". pluralize_n2(ngettext("1 time", "%d times", $gallery->album->getItemClicks($i)), $gallery->album->getItemClicks($i));
@@ -1069,12 +1097,9 @@ if ($numPhotos) {
 		       if (canVote()) {
 			       print '</div>';
 		       }
-
-			echo("</div></div></div>");
+			echo("</div></div>");
 			echo "\n";
 			echo("</td>");
-			echo "\n";
-			echo("<td class=\"vaspacer\">&nbsp;</td>");
 			echo "\n";
 			$j++;
 			$visibleItemIndex++;
@@ -1089,20 +1114,13 @@ if ($numPhotos) {
 		$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		$j = 1;
 		if ($printTableRow) {
-			echo('<tr>');
 		}
 		while ($j <= $cols && $i <= $numPhotos) {
-			echo("<td>");
-			includeHtmlWrap("inline_albumthumb.footer");
-			echo("</td>");
-			echo("<td class=\"vaspacer\">&nbsp;</td>");
 			$j++;
 			$visibleItemIndex++;
 			$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		}
 		if ($printTableRow) {
-			echo('</tr>');
-			echo("\n");
 		}
 		$rowCount++;
 		$rowStart = $visibleItemIndex;
