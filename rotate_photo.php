@@ -54,11 +54,15 @@ if ($gallery->session->albumName && isset($index)) {
 <center>
 How do you want to rotate this photo?
 <br>
-<a href=rotate_photo.php?rotate=90&albumName=<?= $gallery->album->fields["name"] ?>&index=<?= $index ?>>Counter-Clockwise 90&ordm;</a>
+<? $args = array("albumName" => $gallery->album->fields["name"], "index" => $index); ?>
+<? $args["rotate"] = "90"; ?>
+<a href=<?=makeGalleryUrl("rotate_photo.php", $args)?>>Counter-Clockwise 90&ordm;</a>
 /
-<a href=rotate_photo.php?rotate=180&albumName=<?= $gallery->album->fields["name"] ?>&index=<?= $index ?>>Flip 180&ordm;</a>
+<? $args["rotate"] = "180"; ?>
+<a href=<?=makeGalleryUrl("rotate_photo.php", $args)?>>Flip 180&ordm;</a>
 /
-<a href=rotate_photo.php?rotate=-90&albumName=<?= $gallery->album->fields["name"] ?>&index=<?= $index ?>>Clockwise 90&ordm;</a>
+<? $args["rotate"] = "-90"; ?>
+<a href=<?=makeGalleryUrl("rotate_photo.php", $args)?>>Clockwise 90&ordm;</a>
 /
 <a href="javascript:void(parent.close())">Cancel</a>
 <br>
