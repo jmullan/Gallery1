@@ -1,3 +1,9 @@
+2001-08-31  Bharat Mediratta  <bharat@menalto.com> (1.2-cvs-b19)
+
+	* Set the umask before copying files and making directories (and
+	  restore it when we're done) so that we avoid any potential issues if
+	  the umask is in some weird state.
+
 2001-08-29  Bharat Mediratta  <bharat@menalto.com> (1.2-cvs-b18)
 
 	* Potentially fixed a bug on PHP 4.0.1 where it complains that the
