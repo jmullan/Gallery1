@@ -101,7 +101,9 @@ while (sizeof($userfile)) {
 			$tag = strtolower($tag);
 
 			if (acceptableFormat($tag)) {
-				exec_wrapper("$app->unzip -j -o $file '$pic_path' -d $app->tmpDir");
+				$cmd_pic_path = str_replace("[", "\[", $pic_path); 
+				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path); 
+				exec_wrapper("$app->unzip -j -o $file '$cmd_pic_path' -d $app->tmpDir");
 				process("$app->tmpDir/$pic", $tag, $pic);
 				unlink("$app->tmpDir/$pic");
 			}
