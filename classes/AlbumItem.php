@@ -154,7 +154,7 @@ class AlbumItem {
 		$this->makeThumbnail($dir, $thumb_size);
 	}
 
-	function setPhoto($dir, $name, $tag, $thumb_size) {
+	function setPhoto($dir, $name, $tag, $thumb_size, $pathToThumb="") {
 		global $gallery;
 
 		/*
@@ -169,11 +169,11 @@ class AlbumItem {
 		$this->image = new Image;
 		$this->image->setFile($dir, $name, $tag);
 
-		$ret = $this->makeThumbnail($dir, $thumb_size);
+		$ret = $this->makeThumbnail($dir, $thumb_size, $pathToThumb);
 		return $ret;
 	}
 
-	function makeThumbnail($dir, $thumb_size)
+	function makeThumbnail($dir, $thumb_size, $pathToThumb="")
 	{
 		global $gallery;
 		$name = $this->image->name;
@@ -194,7 +194,9 @@ class AlbumItem {
 			}
 
 			/* Make thumbnail (first crop it spec) */
-			if ($this->image->thumb_width > 0)
+			if ($pathToThumb) {
+				$ret = copy ($pathToThumb,"$dir/$name.thumb.$tag");
+			} else if ($this->image->thumb_width > 0)
 			{
 				$ret = cut_image("$dir/$name.$tag", 
 								 "$dir/$name.thumb.$tag", 
@@ -301,9 +303,9 @@ class AlbumItem {
 		return isMovie($this->image->type);
 	}
 
-	function resize($dir, $target) {
+	function resize($dir, $target, $pathToResized="") {
 		if ($this->image) {
-			$this->image->resize($dir, $target);
+			$this->image->resize($dir, $target, $pathToResized);
 		}
 	}
 }

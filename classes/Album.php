@@ -105,6 +105,20 @@ class Album {
 		return $photo->getThumbDimensions();
 	}
 
+	function hasHighlight() {
+		if ($this->numPhotos(1) == 0) {
+			return 0;
+		}
+
+		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+			$photo = $this->getPhoto($i);
+                        if ($photo->isHighlight()) {
+                                return 1;
+			}
+		}
+		return 0;
+	}
+
 	function getHighlight() {
 		if ($this->numPhotos(1) == 0) {
 			return null;
@@ -210,15 +224,15 @@ class Album {
 		rmdir($dir);
 	}
 
-	function resizePhoto($index, $target) {
+	function resizePhoto($index, $target, $pathToResized="") {
 		$photo = $this->getPhoto($index);
 		if (!$photo->isMovie()) {
-			$photo->resize($this->getAlbumDir(), $target);
+			$photo->resize($this->getAlbumDir(), $target, $pathToResized);
 			$this->setPhoto($photo, $index);
 		}
 	}
 
-	function addPhoto($file, $tag) {
+	function addPhoto($file, $tag, $pathToThumb="") {
 		$dir = $this->getAlbumDir();
 		$name = $this->newPhotoName();
 
@@ -230,7 +244,7 @@ class Album {
 		
 		/* Add the photo to the photo list */
 		$item = new AlbumItem();
-		$err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"]);
+		$err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $pathToThumb);
 		if ($err) {
 			if (file_exists("$dir/$name.$tag")) {
 				unlink("$dir/$name.$tag");
@@ -270,7 +284,7 @@ class Album {
 		return $photo->isHidden();
 	}
 
-	function deletePhoto($index) {
+	function deletePhoto($index, $forceResetHighlight="0") {
 		$photo = array_splice($this->photos, $index-1, 1);
 		// need to check for nested albums and delete them ...
 		if ($photo->isAlbumName) {
@@ -281,12 +295,17 @@ class Album {
 		}
                 /* are we deleteing the highlight? pick a new one */
 		$needToRehighlight = 0;
-		if ($photo[0]->isHighlight() && ($this->numPhotos(1) > 0)) {
+		if ( ($photo[0]->isHighlight()) && ($this->numPhotos(1) > 0) && (!$forceResetHighlight==-1)) {
 			$needToRehighlight = 1;
 		}
 		$photo[0]->delete($this->getAlbumDir());
-		if ($needToRehighlight) {
-			$this->setHighlight(1);
+		if (($needToRehighlight) || ($forceResetHighlight==1)){
+			if ($this->numPhotos(1) > 0) {
+				$newHighlight = $this->getPhoto(1);
+                		if (!$newHighlight->isMovie()) {
+					$this->setHighlight(1);
+				}
+			}
 		}
 	}
 

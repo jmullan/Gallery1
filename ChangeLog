@@ -1,3 +1,18 @@
+2001-07-04  John Kirkland <jpk@bl.org>
+
+	* Fixed some minor bugs in the move_album.php form.
+
+	* Implemented 3 optimizations for moving photos between galaries:
+		1.  if thumbnail exists and is correct size -- use it
+		    instead of creating new one.
+		2.  if resized image exists and is correct size --
+		    use it instead of creating new one.
+		3.  if the album highlight image is amongst the
+		    images that are being moved, don't create a new
+		    highlight image until all of the photos are moved.
+	  Pre-optimization time:  81 seconds to move 11 images
+	  Post-optimization time:  5 seconds to move 11 images
+
 2001-07-03  Bharat Mediratta  <bharat@menalto.com>
 
 	* Fixed the config wizard inside Nuke.

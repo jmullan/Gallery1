@@ -77,11 +77,12 @@ if ($gallery->session->albumName && isset($index)) {
 				$index = $startPhoto; // set the index to the first photo that we are moving.	
 				while ($startPhoto <= $endPhoto) {
 					if (!$gallery->album->isAlbumName($index)) {
-						print "<br>Moving photo #".$startPhoto."<br>";
+						echo "Moving photo #".$startPhoto."<br>";
 						my_flush();
 						$mydir = $gallery->album->getAlbumDir();
 						$myphoto = $gallery->album->getPhoto($index);
 						$myname = $myphoto->image->name;
+						$myresized = $myphoto->image->resizedName;
 						$mytype=$myphoto->image->type;
 						$myfile="$mydir/$myname.$mytype";
 						//print "mydir=".$mydir."<br>";
@@ -89,7 +90,15 @@ if ($gallery->session->albumName && isset($index)) {
 						//print "myname=".$myname."<br>";
 						//print "mytype=".$mytype."<br>";
 						//print "myfile=".$myfile."<br>";
-						$err = $postAlbum->addPhoto($myfile, $mytype);
+						if (($postAlbum->fields["thumb_size"] == $gallery->album->fields["thumb_size"]) &&
+						    (!$myphoto->isMovie())) {
+							$pathToThumb="$mydir/$myname.thumb.$mytype";
+						} else {
+							$pathToThumb="";
+							echo "- Creating Thumbnail<br>";
+							my_flush();
+						}
+						$err = $postAlbum->addPhoto($myfile, $mytype, $pathToThumb);
 						if (!$err) {
 							$newPhotoIndex = $postAlbum->numPhotos(1);
 							// Set the caption of the new photo
@@ -101,19 +110,39 @@ if ($gallery->session->albumName && isset($index)) {
 								list($w, $h) = $photo->getDimensions();
 								if ($w > $postAlbum->fields["resize_size"] ||
 								    $h > $postAlbum->fields["resize_size"]) {
-									print "- Resizing #".$startPhoto;
-									$postAlbum->resizePhoto($newPhotoIndex, $postAlbum->fields["resize_size"]);
+									if (($postAlbum->fields["resize_size"] == $gallery->album->fields["resize_size"]) &&
+									   ($myresized)) {
+										$pathToResized="$mydir/$myresized.$mytype";
+									} else {
+										$pathToResized="";
+										echo "- Resizing photo<br>";
+										my_flush();
+									}
+									$postAlbum->resizePhoto($newPhotoIndex, $postAlbum->fields["resize_size"], $pathToResized);
 								}
 							}
+							
 							$postAlbum->save();
-							$gallery->album->deletePhoto($index);
+							if ($startPhoto == $endPhoto) {
+								print "hasHighlight = " . $gallery->album->hasHighlight() . "<br>";
+								if (!$gallery->album->hasHighlight()) {
+									$resetHighlight = 1;
+									$gallery->album->deletePhoto($index,$resetHighlight);
+									echo "- Creating New Album Highlight<br>";
+								} else {
+									$gallery->album->deletePhoto($index);
+								}
+							} else {
+								$resetHighlight = -1;
+								$gallery->album->deletePhoto($index,$resetHighlight);
+							}
 							$gallery->album->save();
 						} else {
-							print "<font color=red>Error: $err!</font>";
+							echo "<font color=red>Error: $err!</font>";
 							return;
                 				}
 			     		} else {
-						print "<br>Skipping Album #".$startPhoto."<br>";
+						echo "Skipping Album #".$startPhoto."<br>";
 						$index++; // we hit an album... don't move it... just increment the index
 					}
 					$startPhoto++;

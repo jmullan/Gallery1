@@ -35,7 +35,7 @@ class Image {
 		$this->type = $type;
 	}
 
-	function resize($dir, $target) {
+	function resize($dir, $target, $pathToResized="") {
 		global $gallery;
 
 		/* getting rid of the resized image */
@@ -51,12 +51,16 @@ class Image {
 		} else {
 			$name = $this->name;
 			$type = $this->type;
-
-			$ret = resize_image("$dir/$name.$type",
+			
+			if ($pathToResized) {
+				$ret = copy($pathToResized,"$dir/$name.sized.$this->type");	
+			} else {
+				$ret = resize_image("$dir/$name.$type",
 					     "$dir/$name.sized.$this->type",
 					     $target);
+			}
 			
-			#-- resized image is always a jpeg ---
+			#-- resized image is not always a jpeg ---
 			if ($ret) {
 				$this->resizedName = "$name.sized";
 				list($w, $h) = getDimensions("$dir/$name.sized.$this->type");
