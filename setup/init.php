@@ -21,13 +21,6 @@
  */
 ?>
 <?php
-/*
- * Turn down the error reporting to just critical errors for now.
- * In v1.2, we know that we'll have lots and lots of warnings if
- * error reporting is turned all the way up.  We'll fix this in v2.0
- */
-
-
 if (isset($gallery->app->devMode) && $gallery->app->devMode == "yes") {
 	error_reporting(E_ALL);
 } else {

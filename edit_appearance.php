@@ -209,8 +209,8 @@ doctype();
 <?php
 $services = array(
 	'photoaccess' => array(
-		'name'    => 'PhotoAccess',
-		'url'     => 'http://www.photoaccess.com/'),
+		'name'    => 'PhotoWorks',
+		'url'     => 'http://www.photoworks.com/'),
 	'shutterfly'  => array(
 		'name'    => 'Shutterfly',
 		'url'     => 'http://www.shutterfly.com/',

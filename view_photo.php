@@ -395,7 +395,7 @@ if (!$gallery->album->isMovie($id)) {
 			'fotokasten'  => 'Fotokasten - Photo Printing',
 			'fotoserve'   => 'Fotoserve - Photo Printing',
 			'mpush'       => 'mPUSH - Send to Mobile',
-			'photoaccess' => 'PhotoAccess - Photo Printing',
+			'photoaccess' => 'PhotoWorks - Photo Printing',
 			'shutterfly'  => 'Shutterfly - Photo Printing',
 		);
 		/* display a <select> menu if more than one option */
@@ -717,7 +717,7 @@ action="http://www.fotoserve.com/menalto/build.html" method="post">
 </form>
 <?php }
 if (isset($printPhotoAccessForm)) { ?>
-  <form method="post" name="photoAccess" action="http://www.photoaccess.com/buy/anonCart.jsp">
+  <form method="post" name="photoAccess" action="http://www.photoworks.com/sbo/anonCart.jsp">
   <input type="hidden" name="cb" value="CB_GP">
   <input type="hidden" name="redir" value="true">
   <input type="hidden" name="returnUrl" value="this-gets-set-by-javascript-in-onClick">
