@@ -75,8 +75,14 @@ class Album {
 		$this->fields["serial_number"] = 0;
 		$this->fields["extra_fields"] =
 		    split(",", trim($gallery->app->default["extra_fields"]));
-		for ($i = 0; $i < sizeof($this->fields["extra_fields"]); $i++) {
-		    $this->fields["extra_fields"][$i] = trim($this->fields["extra_fields"][$i]);
+		foreach ($this->fields["extra_fields"] as $key => $value) {
+			$value=trim($value);
+			if ($value == "") {
+				unset($this->fields["extra_fields"][$key]);
+			} else {
+				$this->fields["extra_fields"][$key]=$value;
+			}
+
 		}
 		$this->fields["cached_photo_count"] = 0;
 		$this->fields["photos_separate"] = FALSE;

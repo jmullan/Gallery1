@@ -69,7 +69,7 @@ foreach ($outfile_list as $outfile) {
 	} else {
 		$docs=galleryDocs() ? galleryDocs() : _("documentation");
 		echo '<p class="errorlong">' .
-			_("Warning:") . 
+			_("Warning:") . "  " .
 			sprintf(_("You must create empty file %s and chmod it 777 before proceeding.  See %s for more details."), 
 					"<i><b>".$outfile."</b></i>", $docs) . 
 			"</p>\n";

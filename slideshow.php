@@ -165,7 +165,8 @@ function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album=NULL, $rec
 
        	$caption = $album->getCaption($index);
 	if ($recursive) {
-		$caption .= ' (' . $album->fields["title"] . ')';
+		$caption .= ' (<a href="' . $album->fields["name"] .
+				        '">' . $album->fields['title'] . '</a>)';
        	} 
        	$caption .= $album->getCaptionName($index);
        	$caption = str_replace("\"", " ", $caption);

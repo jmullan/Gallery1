@@ -138,7 +138,8 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 }
 
 if ($gallery->app->gallery_slideshow_type != "off") {
-    	 $adminCommands .= '<a href="' . makeGalleryUrl("slideshow.php") .
+    	 $adminCommands .= '<a href="' . makeGalleryUrl("slideshow.php",
+	 array("set_albumName" => null)) .
 	       	'">['._("slideshow") . ']</a>&nbsp;';
 }
 if ($gallery->user->isAdmin()) {

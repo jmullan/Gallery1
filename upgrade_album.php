@@ -115,7 +115,7 @@ function find_albums(&$results, $album="") {
 		$count = $album->numPhotos(1);
 		for ($j = 1; $j <= $count; $j++) {
 			$name = $album->isAlbumName($j);
-			if ($name) {
+			if ($name && $albumDB->getAlbumByName($name)) {
 				find_albums($results, $albumDB->getAlbumByName($name));
 			}
 		}
@@ -123,7 +123,9 @@ function find_albums(&$results, $album="") {
 		$numAlbums = $albumDB->numAlbums($gallery->user);
 		for ($i = 1; $i <= $numAlbums; $i++) {
 			$album = $albumDB->getAlbum($gallery->user, $i);
-			find_albums($results, $album);
+			if ($album) {
+				find_albums($results, $album);
+			}
 		}
 	} 
 }
@@ -179,8 +181,8 @@ if (!$ood) {
 	close_button();
 } else {
 ?>
-<?php echo sprintf(_("The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %supgrade them all at once%s"),
-		'<a href="' . makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1)) . '">', '</a>') ?>
+<?php echo sprintf(_("The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %s."),
+		'<a href="' . makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1)) . '">' . _("upgrade them all at once") . '</a>') ?>
 <ul>
 <?php
 	foreach ($ood as $album) {

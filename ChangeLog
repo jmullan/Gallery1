@@ -1,3 +1,24 @@
+2003-09-11  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b73
+
+	* upgrade_albums.php could go into an infinite loop with
+	  a corrupted database.  Added a couple of tests to avoid
+	  this situation, and be able to upgrade the non-corrupt
+	  albums.
+
+	* Modified the "upgrade all at once" text to make it better for the 
+	  translators.
+
+	* Add parameter to gallery slideshow, to make sure it doesn't use 
+	  the album variables.
+
+	* In recursive slideshow, changed name of album to a link to that album.
+
+	* Fix so we don't create blank extra fields (thanks Beckett!).
+
+	* Changed the CSS for errors in Config. Wizard.  Now white on red.
+
+	* Added extra space after "Warning:" in Config. Wizard.
+
 2003-09-10  Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.1-cvs-b72
 
         * Fixed an issue with paths with spaces when using jhead and
