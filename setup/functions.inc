@@ -89,8 +89,8 @@ function check_php()
 
 function check_mod_rewrite() 
 {
-	global $got_mod_rewrite;
-	return $got_mod_rewrite;
+	global $GALLERY_REWRITE;
+	return $GALLERY_REWRITE;
 }
 
 function check_jpeg()
