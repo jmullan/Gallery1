@@ -48,7 +48,7 @@ if ($gallery->album) {
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
+DISCO
 <center>
 <p class="popuphead"><?php echo _("Delete Album") ?></p>
 

@@ -44,10 +44,8 @@ function getBrowserLanguage() {
 	** This is caught later with the aliases
 	*/
 
-	global $HTTP_SERVER_VARS;
-
-	if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
-		$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
+	if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"])) {
+		$lang = explode (",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 
 		/* Maybe there are some extra infos we dont need, so we strip them. */
 		$spos=strpos($lang[0],";");
@@ -91,23 +89,21 @@ function getEnvLang() {
 
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-	global $HTTP_SESSION_VARS;			/* Needed for PostNuke 	*/
-	global $HTTP_COOKIE_VARS;			/* Needed for phpNuke 	*/
 	global $board_config;				/* Needed for phpBB2 	*/
 	global $_CONF;					/* Needed for GeekLog	*/
 	global $mosConfig_locale;			/* Needed for Mambo	*/
 
 	switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 		case 'postnuke':
-			if (isset($HTTP_SESSION_VARS['PNSVlang'])) {
-				return $HTTP_SESSION_VARS['PNSVlang'];
+			if (isset($_SESSION['PNSVlang'])) {
+				return $_SESSION['PNSVlang'];
 			}
 		break;
 
 		case 'phpnuke':
 		case 'nsnnuke':
-			if (isset($HTTP_COOKIE_VARS['lang'])) {
-				return $HTTP_COOKIE_VARS['lang'];
+			if (isset($_COOKIE['lang'])) {
+				return $_COOKIE['lang'];
 			}
 
 		break;
@@ -119,6 +115,7 @@ function getEnvLang() {
 		break;
 
 		case 'GeekLog':
+			/* Note : $_CONF is no Superglobal ;) */
 			if (isset($_CONF['language'])) {
 				return $_CONF['language'];
 			} else if (isset($_CONF['locale'])) {
@@ -155,10 +152,9 @@ function forceStaticLang() {
 	}
 }	
 
-function initLanguage($noHeader=false) {
+function initLanguage($sendHeader=true) {
 
 	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
-	global $HTTP_SERVER_VARS, $HTTP_COOKIE_VARS, $HTTP_GET_VARS, $HTTP_SESSION_VARS;
 
 	// $locale is *NUKEs locale var
 	global $locale ;
@@ -199,8 +195,8 @@ function initLanguage($noHeader=false) {
 	** Does the user wants a new lanuage ?
 	** This is used in Standalone and *Nuke
 	*/
-	if (isset($HTTP_GET_VARS['newlang'])) {
-		$newlang=$HTTP_GET_VARS['newlang'];
+	if (isset($_GET['newlang'])) {
+		$newlang=$_GET['newlang'];
 	}
 
 	/**
@@ -337,7 +333,7 @@ function initLanguage($noHeader=false) {
 	** We do this only if we are not embedded and the "user" wants it.
 	** Because headers might be sent already.
 	*/
-	if (! isset($GALLERY_EMBEDDED_INSIDE) || $noHeader == false) {
+	if (! isset($GALLERY_EMBEDDED_INSIDE) || $sendHeader == false) {
 		header('Content-Type: text/html; charset=' . $gallery->charset);
 	}
 

@@ -26,6 +26,9 @@ function evenOdd_row($fields, $evenOdd) {
 	$buf='';
 
 	$f0 = str_replace(" ", "&nbsp;", $fields[0]);
+	if (isset($fields[4])) {
+                        $f0 .= '&nbsp;<span class="littlered">*</span>';
+	}
 	if ($fields[3] == "block_element") {
 		$buf .= "\n<tr><td class=\"shortdesc\" width=\"30%\">$f0</td><td class=\"shortdesc\">".$fields[1]."</td></tr>";
 	} else if ($fields[3] == "block_start") {
@@ -98,7 +101,9 @@ function make_fields($key, $arr) {
 		$col3 = "";
 	}
 	$col4 = isset($arr["type"]) ?  $arr["type"] : NULL;
-	return array($col1, $col2, $col3,$col4);
+	$col5 = isset($arr["required"]) ? true : NULL;
+
+	return array($col1, $col2, $col3,$col4,$col5);
 }
 
 function form_textarea($key, $arr) {
@@ -1425,7 +1430,8 @@ function check_admins() {
 		"dont-write" => 1,
 		'verify-func' => 'verify_password',
 		"value" => "",
-		"attrs" => array("size" => 20)
+		"attrs" => array("size" => 20),
+		"required" => true,
 	));
 	
 	return $result;
@@ -1542,11 +1548,12 @@ function checkVersions($verbose=false) {
 **			"desc"		=>
 **        )
 **
-** "type"	: Indicates that a group starts or ends. Possible values: 'group_start' , 'group_end'.
-** "name"	: To identify the group you have to set a name.
-** "default"	: Indicates wether the group is visible or not. Possible values: 'inlineÄ', 'none'.
-** "title"	: When the group is visible, this title is displayed in the header line.
-** "desc"	: This optional Description is displayed under the title.
+** "type"		: Indicates that a group starts or ends. Possible values: 'group_start' , 'group_end'.
+** "name"		: To identify the group you have to set a name.
+** "default"		: Indicates wether the group is visible or not. Possible values: 'inlineÄ', 'none'.
+** "title"		: When the group is visible, this title is displayed in the header line.
+** "desc"		: This optional Description is displayed under the title.
+** ""contains_required"	: Indicates that this Group contains field that are required
 **
 ** Note: - The first group which default is 'inline' will the group that is selected when opening the Page.
 **	 - You always need a group_end for a group. Otherwise everything below will belong to the group.	
@@ -1575,7 +1582,12 @@ function makeSectionTabs($array) {
 		else { 
 			$class = 'class="tab"';
 		}
-		echo "\n\t<td $class id=\"tab_". $cell['name'] ."\" onClick=\"section_tabs.toggle('" . $cell['name'] ."')\">". $cell['title'] ."</td>";
+		echo "\n\t<td $class id=\"tab_". $cell['name'] ."\" onClick=\"section_tabs.toggle('" . $cell['name'] ."')\">";
+		echo '<span class="tab-text">'. $cell['title'] . '&nbsp;</span>';
+		if (isset($cell['contains_required'])) {
+			echo '<span class="littlered">*</span>';
+		}
+		echo '</td>';
 		echo "\n\t<td class=\"tabspacer\">&nbsp;</td>";
 		if ($tabcount %6 ==0) {
 			echo "\n</tr>\n</table>";
