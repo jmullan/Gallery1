@@ -2065,9 +2065,8 @@ function showResultsGraph($num_rows)
 			// image has been deleted!
 			continue;
 		} 
-		$isAlbumName=$gallery->album->getAlbumName($index);
-		if ($isAlbumName) {
-			$url=makeAlbumUrl($isAlbumName);
+		if ($gallery->album->isAlbum($index)) {
+			$url = makeAlbumUrl($gallery->album->getAlbumName($index));
 			$album=$gallery->album->getSubAlbum($index);
 			$desc=sprintf(_("Album: %s"), 
 					$album->fields['title']);

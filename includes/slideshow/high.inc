@@ -129,7 +129,7 @@ function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album = null, $r
             $index = getNextPhoto($index, $album);
             continue;
         } 
-        if ($photo->isAlbumName) {
+        if ($photo->isAlbum()) {
             if ($recursive) {
                 $subAlbumName = $album->getAlbumName($index);
                 $subAlbum = new Album();

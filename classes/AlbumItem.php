@@ -575,7 +575,11 @@ class AlbumItem {
 		return $this->caption;
 	}
 
-	function setIsAlbumName($name) {
+	function isAlbum() {
+		return ($this->isAlbumName !== NULL) ? true : false;
+	}
+	
+	function setAlbumName($name) {
 		$this->isAlbumName = $name;
 	}
 

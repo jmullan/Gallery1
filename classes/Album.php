@@ -141,7 +141,7 @@ class Album {
 
 	function itemLastCommentDate($i) {
 	       	$photo = $this->getPhoto($i);
-	       	if ($photo->isAlbumName) {
+			if ($photo->isAlbum()) {
 		       	$album = $this->getNestedAlbum($i);
 		       	return $album->lastCommentDate();
 	       	} else {
@@ -473,13 +473,13 @@ class Album {
 			}    
 		} else if (!strcmp($sort, "filename")) {
 			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
-			$func .= "if (\$objA->isAlbumName) { ";
-			$func .= "	\$filenameA = \$objA->isAlbumName; ";
+			$func .= "if (\$objA->isAlbum()) { ";
+			$func .= "	\$filenameA = \$objA->getAlbumName(); ";
 			$func .= "} else { ";
 			$func .= "	\$filenameA = \$objA->image->name; ";
 			$func .= "} ";
-			$func .= "if (\$objB->isAlbumName) { ";
-			$func .= "	\$filenameB = \$objB->isAlbumName; ";
+			$func .= "if (\$objB->isAlbum()) { ";
+			$func .= "	\$filenameB = \$objB->getAlbumName(); ";
 			$func .= "} else { ";
 			$func .= "	\$filenameB = \$objB->image->name; ";
 			$func .= "} ";
@@ -534,7 +534,7 @@ class Album {
 
 		$photo = $this->getPhoto($index);
 		$album = $this;
-		while ($photo->isAlbumName && $album->numPhotos(1)) {
+		while ($photo->isAlbum() && $album->numPhotos(1)) {
 			$album = $album->getNestedAlbum($index);
 			$index = $album->getHighlight();
 			if (!isset($index)) {
@@ -1003,7 +1003,7 @@ class Album {
 	function addNestedAlbum($albumName) {
 		$this->updateSerial = 1;
 		$item = new AlbumItem();
-		$item->setIsAlbumName($albumName);
+		$item->setAlbumName($albumName);
 		$this->photos[] = $item;
 		if ($this->getAddToBeginning() ) {
 			$this->movePhoto($this->numPhotos(1), 0);
@@ -1029,8 +1029,8 @@ class Album {
 		$this->updateSerial = 1;
 		$photo = array_splice($this->photos, $index-1, 1);
 		// need to check for nested albums and delete them ...
-		if ($recursive && $photo[0]->isAlbumName) {
-			$albumName = $photo[0]->isAlbumName;
+		if ($recursive && $photo[0]->isAlbum()) {
+			$albumName = $photo[0]->getAlbumName();
 			$album = new Album();
 			$album->load($albumName);
 			$album->delete();
@@ -1060,7 +1060,7 @@ class Album {
 			return "";
 		}
 		$photo = $this->getPhoto($index);
-		if ($photo->isAlbumName) {
+		if ($photo->isAlbum()) {
 			$myAlbum = $this->getNestedAlbum($index);
 			return $myAlbum->getHighlightAsThumbnailTag($size, $attrs);
 		} else {
@@ -1078,7 +1078,7 @@ class Album {
 		}
 		$photo = $this->getPhoto($index);
 		$album = $this;
-		while ($photo->isAlbumName && $album->numPhotos(1)) {
+		while ($photo->isAlbum() && $album->numPhotos(1)) {
 			$album = $album->getNestedAlbum($index);
 			$index = $album->getHighlight();
 			if (!isset($index)) {
@@ -1199,9 +1199,9 @@ class Album {
 		for ($i = 1; $i <= $numItems; $i++) {
 			$photo = $this->getPhoto($i);
 			if ($canWrite || !$photo->isHidden()) {
-				if ($photo->isAlbumName) {
+				if ($photo->isAlbum()) {
 					$album = new Album();
-					$album->load($photo->isAlbumName);
+					$album->load($photo->getAlbumName());
 					if ($user->canReadAlbum($album)) {
 						$numAlbums++;
 					}
@@ -1358,7 +1358,7 @@ class Album {
 	function makeThumbnail($index) {
 		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);
-		if (!$photo->isAlbumName) {
+		if (!$photo->isAlbum()) {
 			$photo->makeThumbnail($this->getAlbumDir(), $this->fields["thumb_size"], $this);
 		} else {
 			// Reselect highlight of subalbum..
@@ -1406,9 +1406,9 @@ class Album {
 		return $photo->getAlbumName();
 	}
 
-	function setIsAlbumName($index, $name) {
+	function setAlbumName($index, $name) {
 		$photo = &$this->getPhoto($index);
-		$photo->setIsAlbumName($name);
+		$photo->setAlbumName($name);
 	}
 	
 	function resetClicks() {

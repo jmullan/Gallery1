@@ -52,7 +52,7 @@ if (isset($confirm) && isset($id)) {
 		$index = 0;
 		for ($i = 1; $i <= sizeof($gallery->album->photos); $i++) {
 		    $photo = $gallery->album->getPhoto($i);
-		    if (isset($photo->isAlbumName) && !strcmp($photo->isAlbumName, $id)) {
+		    if ($photo->isAlbum() && !strcmp($photo->getAlbumName(), $id)) {
 			/* Found it */
 			$index = $i;
 			break;

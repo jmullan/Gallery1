@@ -76,7 +76,7 @@ if (!empty($newName)) {
 			$parentAlbum = $albumDB->getAlbumbyName($parentName);
 			for ($i=1; $i <= $parentAlbum->numPhotos(1); $i++) {
 				if ($parentAlbum->getAlbumName($i) == $oldName) {
-					$parentAlbum->setIsAlbumName($i,$newName);
+					$parentAlbum->setAlbumName($i,$newName);
 					$parentAlbum->save();
 					break;
 				}

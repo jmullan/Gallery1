@@ -409,7 +409,7 @@ function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 	
 	if (isset($gallery->album)) {
 		foreach($gallery->album->photos as $albumItemObj) {
-			if(empty($albumItemObj->isAlbumName)) { //Make sure this object is a picture, not an album
+			if(!$albumItemObj->isAlbum()) { //Make sure this object is a picture, not an album
 				$tmpImageNum++;
 	 
 				$response->setProperty( 'image.name.'.$tmpImageNum, $albumItemObj->image->name.'.'.$albumItemObj->image->type );
@@ -449,7 +449,7 @@ function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 				if ($albums_too) {
 				    $tmpImageNum++;
 	 
-					$response->setProperty( 'album.name.'.$tmpImageNum, $albumItemObj->isAlbumName );
+					$response->setProperty( 'album.name.'.$tmpImageNum, $albumItemObj->getAlbumName() );
 				}
 			}
 		}
@@ -694,12 +694,12 @@ function checkIfNestedAlbum(&$startAlbum,&$possibleSub) {
 		return FALSE;
 	}
 	foreach($startAlbum->photos as $subItem) {
-		if(!empty($subItem->isAlbumName)) { //if it's an album
-			if($subItem->isAlbumName == $possibleSub->fields['name']) {
+		if($subItem->isAlbum()) { //if it's an album
+			if($subItem->getAlbumName() == $possibleSub->fields['name']) {
 				return TRUE; //possible sub was found to be a sub of startalbum
 			} else {
 				$subAlbum = new Album();
-				$subAlbum->load($subItem->isAlbumName);
+				$subAlbum->load($subItem->getAlbumName());
 				if(checkIfNestedAlbum($subAlbum,$possibleSub)) {
 					return TRUE;
 				}

@@ -126,7 +126,7 @@ while ($numDisplayed < $numPhotos) {
     $numDisplayed++;
 
     // Skip movies and nested albums
-    if ($photo->isMovie() || $photo->isAlbumName) {
+    if ($photo->isMovie() || $photo->isAlbum()) {
 	$index = getNextPhoto($index);
 	continue;
     }
