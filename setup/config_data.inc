@@ -930,7 +930,7 @@ $constants = array_merge($constants,
 	),
 	"rssDCDate" => array(
 		"prompt" => _("Use dc:date"),
-		"desc" => _("(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this off will cause your feed to not validate as RSS 2.0."),
+		"desc" => _("(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."),
 		"choices" => array(
 			"yes" => _("Yes"),
 			"no" => _("No")),
