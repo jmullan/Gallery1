@@ -11,14 +11,12 @@ You can use this page to customize the default values for
 <input type=hidden name=prev_page value="check">
 <?
 foreach ($constants as $key => $val) {
-	if (!$val["override"]) {
-		if ($app->$key) {
-			$val["value"] = $app->$key;
-		}
-	
-		if (!$go_defaults && isset($$key)) {
-			$val["value"] = $$key;
-		}
+	if ($app->$key) {
+		$val["value"] = $app->$key;
+	}
+
+	if (!$go_defaults && isset($$key)) {
+		$val["value"] = $$key;
 	}
 
 	if ($val["choices"]) {
