@@ -2,11 +2,11 @@
 chmod 0 setup
 
 if [ -f config.php ]; then
-    chmod 755 config.php 
+    chmod 644 config.php 
 fi
 
 if [ -f .htaccess ]; then
-    chmod 755 .htaccess
+    chmod 644 .htaccess
 fi
 
 cat <<EOF

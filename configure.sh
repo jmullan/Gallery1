@@ -7,7 +7,7 @@ fi
 if [ ! -f .htaccess ]; then
     touch .htaccess
 fi
-chmod 777 config.php .htaccess
+chmod 666 config.php .htaccess
 
 cat <<EOF
 
