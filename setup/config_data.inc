@@ -71,7 +71,7 @@ $constants = array(
 		"desc" => "anytopnm wrapper",
 		"type" => "hidden",
 		"value" => "",
-		"eval" => 'makePathWrapper($pnmDir)'
+		"eval" => 'makePathWrapper($pnmDir, "anytopnm")'
 	),
 	"highlight_size" => array(
 		"desc" => "The target size (in pixels) of thumbnails " .
