@@ -207,7 +207,7 @@ function fromPnmCmd($file) {
 	} else if (preg_match("/.jpg/i", $file)) {
 		$cmd = "ppmtojpeg";
 	} else if (preg_match("/.gif/i", $file)) {
-		$cmd = "ppmtogif";
+		$cmd = "ppmquant 256| $app->pnmDir/ppmtogif";
 	}
 
 	if ($cmd) {
