@@ -395,8 +395,6 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 
 			if (isset($_USER["username"])) {
 				$gallery->session->username = $_USER['username'];
-			} else if (!empty($gallery->session->username)) {
-				$gallery->session->username = "";
 			}
 
 			/* Implement GeekLogUserDB and User class. */

@@ -41,7 +41,7 @@ function loadByUid($uid) {
       $this->fullname = $userInfo['fullname'];
       $this->email = $userInfo['email'];
       $this->isAdmin = SEC_inGroup('Root', $uid);
-      $this->canCreateAlbums = 0;
+      $this->canCreateAlbums = $this->canCreateAlbums();
       $this->isGroup = 0;
    } else {
       $result = DB_query("SELECT grp_name " .
@@ -71,7 +71,7 @@ function loadByUserName($uname) {
 	$this->fullname = $userInfo['fullname'];
 	$this->email = $userInfo['email'];
 	$this->isAdmin = SEC_inGroup('Root', $this->uid);
-	$this->canCreateAlbums = 0;
+	$this->canCreateAlbums = $this->canCreateAlbums();
 }
 
 function isLoggedIn() {
@@ -80,6 +80,12 @@ function isLoggedIn() {
    }
    return false;
 }
+
+function isCorrectPassword($password) {
+	# Get the user's password hash from Geeklog
+	$gl_passwd = COM_getpassword($this->username);
+	return (!strcmp($gl_passwd, md5($password)));
+} 
 
 }
 

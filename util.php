@@ -145,7 +145,7 @@ function drawCommentAddForm($commenter_name='', $cols=50) {
 }
 
 function gallery_error($message) {
-	return '<span class="error">'. _("Error:") . $message .'</span>';
+	return '<span class="error">'. _("Error:") . " $message</span>\n";
 }
 
 function gallery_syslog($message) {
@@ -241,7 +241,7 @@ function exec_internal($cmd) {
 		print "</pre>";
 
 		if (file_exists($debugfile)) {
-			print "<br> ". _("Error messages:") .": <pre>";
+			print "<br> ". _("Debug messages:") .": <pre>";
 			if ($fd = fs_fopen($debugfile, "r")) {
 				while (!feof($fd)) {
 					$buf = fgets($fd, 4096);
@@ -1835,7 +1835,7 @@ function getItemCaptureDate($file) {
 	}
 
 	if (isDebugging()) {
-		print "IN UTIL ITEMCAPTUREDATE = ${itemCaptureDate['year']}<br>";
+		sprintf (_("IN UTIL ITEMCAPTUREDATE = %s"). '<br>', $itemCaptureDate['year']);
 	}
 	return $itemCaptureDate;
 }
