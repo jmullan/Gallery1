@@ -70,7 +70,7 @@ Click this link and then follow the instructions to log into your Gallery, selec
 <br>
 
 <center>
-<a href="<?php echo makeGalleryUrl("add_photos.php")?>>Return to Add Photos</a>
+<a href="<?php echo makeGalleryUrl("add_photos.php")?>">Return to Add Photos</a>
 <center>
 
 <?php
