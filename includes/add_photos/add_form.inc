@@ -109,11 +109,11 @@ if (!isset($metaboxes)) {
 
 </table>
 
-<input type="radio" name="setCaption" value="0"><?php echo _("Leave blank if no caption is specified.") ?>
+<input type="radio" name="setCaption" value="0" id="setCaption0"><label for="setCaption0"><?php echo _("Leave blank if no caption is specified.") ?></label>
 <br>
-<input type="radio" name="setCaption" value="1" checked><?php echo _("Use filename as caption if no caption is specified.") ?>
+<input type="radio" name="setCaption" value="1" id="setCaption1" checked><label for="setCaption1"><?php echo _("Use filename as caption if no caption is specified.") ?></label>
 <br>
-<input type="radio" name="setCaption" value="2"><?php echo _("Use file creation date stamp as caption if no caption is specified.") ?>
+<input type="radio" name="setCaption" value="2" id="setCaption2"><label for="setCaption2"><?php echo _("Use file creation date stamp as caption if no caption is specified.") ?></label>
 
 <p align="center">
 <input type="button" value="<?php echo _("Upload Now") ?>" onClick='parent.opener.showProgress(); document.upload_form.submit()'>
