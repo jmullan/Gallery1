@@ -111,6 +111,15 @@ if (getOS() == OS_WINDOWS) {
 
 if (fs_file_exists(dirname(__FILE__) . "/config.php")) {
 	include(dirname(__FILE__) . "/config.php");
+
+	/* Here we set a default execution time limit for the entire Gallery script
+	 * the value is defined by the user during setup, so we want it inside the
+	 * 'if config.php' block.  If the user increases from the default, this will cover
+	 * potential execution issues on slow systems, or installs with gigantic galleries.
+	 * By calling set_time_limit() again further in the script (in locations we know can
+	 * take a long time) we reset the counter to 0 so that a longer execution can occur.
+	 */
+	set_time_limit($gallery->app->timeLimit);
 }
 
 /* 

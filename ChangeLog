@@ -1,3 +1,11 @@
+2004-06-10  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b189
+
+	* Change: Add set_time_limit() to init.php to cover situations
+	  where we don't explicitly reset the timer.  If the user increases
+	  the default timer, it will cover all of Gallery, not just the specific
+	  points that we call it for.  By calling set_time_limit() for specific
+	  processes, we just reset the timer so that things can take longer.
+
 2004-06-10  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b188
 
 	* Change: Minor optimization in Album->setHighlight()
