@@ -209,7 +209,7 @@ $constants =  array_merge(
 		"attrs" => array("size" => 50)
 	),
 	"albumDirURL" => array(
-		"prompt" => _("Albums") ." URL",
+		"prompt" => _("Albums URL"),
 		"desc" => sprintf(_("The full URL to your album directory (specified above) on your web server.  E.g. %s"), 
 			'<i>http://www.foo.com/albums</i>'),
 		"value" => "http://" . getenv("SERVER_NAME") . "/albums",
