@@ -26,7 +26,7 @@
 
 require(dirname(__FILE__) . '/init.php');
 
-list($index, $confirm) = getRequestVar(array('index', 'confirm'));
+list($id, $index, $confirm) = getRequestVar(array('id', 'index', 'confirm'));
 
 if (isset($id)) {
         $index = $gallery->album->getPhotoIndex($id);

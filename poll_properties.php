@@ -26,6 +26,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($apply, $nv_pairs, $voter_class, $poll_scale, $poll_show_results, $poll_num_results, $poll_orientation, $poll_hint, $poll_type) = getRequestVar(array('apply', 'nv_pairs', 'voter_class', 'poll_scale', 'poll_show_results', 'poll_num_results', 'poll_orientation', 'poll_hint', 'poll_type'));
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");
@@ -58,7 +60,7 @@ if (!empty($apply)) {
 	$gallery->album->fields["poll_orientation"] = $poll_orientation;
 	$gallery->album->save(array(i18n("Poll properties change")));
 
-	if (isset($setNested)) {
+	if (getRequestVar('setNested')) {
 		$gallery->album->setNestedPollProperties();
        	}
 	reload();
