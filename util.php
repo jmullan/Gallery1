@@ -74,7 +74,7 @@ function popup_help($entry, $group) {
 function getDimensions($file) {
 	global $app;				
 
-	exec(toPnmCmd($file, "| $app->pnmDir/pnmfile "),
+	exec(toPnmCmd($file) . "| $app->pnmDir/pnmfile ",
 	     $lines,
 	     $status);
 
@@ -155,9 +155,9 @@ function my_flush() {
 function resize_image($src, $dest, $target) {
 	global $app;				
 
-	$err = exec_wrapper(toPnmCmd($src,
-		     "| $app->pnmDir/pnmscale -xysize $target $target ".
-		     "| $app->pnmDir/ppmtojpeg > $dest"));
+	$err = exec_wrapper(toPnmCmd($src) .
+		     "| $app->pnmDir/pnmscale -xysize $target $target".
+		     "| " . fromPnmCmd($dest));
 
 	if (file_exists("$dest") && filesize("$dest") > 0) {
 		return 1;
@@ -169,7 +169,7 @@ function resize_image($src, $dest, $target) {
 function valid_image($file) {
 	global $app;
 	
-	exec(toPnmCmd($file, "| $app->pnmDir/pnmfile"),
+	exec(toPnmCmd($file) . "| $app->pnmDir/pnmfile",
 	     $results,
 	     $status);
 
@@ -180,7 +180,7 @@ function valid_image($file) {
 	}
 }
 
-function toPnmCmd($file, $args) {
+function toPnmCmd($file) {
 	global $app;
 
 	if (preg_match("/.png/i", $file)) {
@@ -192,12 +192,32 @@ function toPnmCmd($file, $args) {
 	}
 
 	if ($cmd) {
-		return "$app->pnmDir/$cmd $file $args";
+		return "$app->pnmDir/$cmd $file";
 	} else {
 		error("Unknown file type: $file");
 		return "";
 	}
 }
+
+function fromPnmCmd($file) {
+	global $app;
+
+	if (preg_match("/.png/i", $file)) {
+		$cmd = "pnmtopng";
+	} else if (preg_match("/.jpg/i", $file)) {
+		$cmd = "ppmtojpeg";
+	} else if (preg_match("/.gif/i", $file)) {
+		$cmd = "ppmtogif";
+	}
+
+	if ($cmd) {
+		return "$app->pnmDir/$cmd > $file";
+	} else {
+		error("Unknown file type: $file");
+		return "";
+	}
+}
+
 
 function exec_wrapper($cmd) {
 	global $app;
