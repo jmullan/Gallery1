@@ -79,8 +79,15 @@ if ($gallery->session->albumName && isset($index)) {
 <?php echo makeFormIntro("resize_photo.php"); ?>
 
 <h3><?php echo $all ? _("What is the target size for all the intermediate photos in this album?") : _("What is the target size for the intermediate version of this photo?");?></h3>
+<?php
+		if (!$all) {
+			echo "\n<p>";
+			echo $gallery->album->getThumbnailTag($index);
+			echo "\n</p>";
+		}
+?>
 
-<table style="border-width:1px; border-style:solid; padding:20px;" class="popup">
+<table style="border-width:1px; border-style:solid; padding:10px; padding-left:20px; padding-right:20px" class="popup">
 <tr>
 	<td><?php echo _("Target filesize"); ?></td>
 	<td><input type="text" size="4" name="resize_file_size" value="<?php print $gallery->album->fields["resize_file_size"] ?>" >  kbytes</td>
@@ -121,9 +128,6 @@ if ($gallery->session->albumName && isset($index)) {
 </form>
 
 <?php
-		if (!$all) {
-			echo $gallery->album->getThumbnailTag($index);
-		}
 	}
 } else {
 	echo gallery_error(_("no album / index specified"));
