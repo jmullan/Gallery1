@@ -50,7 +50,6 @@
 require_once(dirname(__FILE__) . '/init.php');
 require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
-$statsVersion = "2.03j-3";
 $debug = 0;
 //$album="album01";
 
@@ -1436,7 +1435,7 @@ if ( $showAlbumLink ) {
 <?php
 $owner_var = '';
 if ( $showAlbumOwner == 1 ) {
-	$owner_var = showOwner($statsAlbum->getOwner());
+	$owner_var = '<br>' . _("Owned by:") . ' ' . showOwner($statsAlbum->getOwner());
 }
 
 echo '<a href="'. makeAlbumUrl($statsAlbum->fields['name']) .'">'. $statsAlbum->fields['title'] .'</a>'. $owner_var;
