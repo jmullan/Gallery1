@@ -50,9 +50,14 @@ class AlbumItem {
 		 */
 		$name = $this->image->name;
 		$tag = $this->image->type;
+
+		if (file_exists("$dir/$name.thumb.$tag")) {
+			$resizeFrom = "$dir/$name.thumb.$tag";
+		} else {
+			$resizeFrom = "$dir/$name.$tag";
+		}
 		if ($this->highlight) {
-			$ret = resize_image("$dir/$name.$tag",
-					     "$dir/$name.highlight.$tag",
+			$ret = resize_image($resizeFrom, "$dir/$name.highlight.$tag",
 					     $app->highlight_size);
 
 			if ($ret) {
@@ -91,13 +96,6 @@ class AlbumItem {
 		}
 	}
 
-	function makeThumbnail($dir, $size) {
-		$name = $this->image->name;
-		$type = $this->image->type;
-
-		$this->setPhoto($dir, $name, $type, $size);
-	}
-
 	function isResized() {
 		$im = $this->image;
 		return $im->isResized();
@@ -108,29 +106,16 @@ class AlbumItem {
 
 		$name = $this->image->name;
 		$type = $this->image->type;
+		flip_image("$dir/$name.$type", "$dir/$name.$type", $direction);
 
-		$cmd = toPnmCmd("$dir/$name.$type") .
-			"| $app->pnmDir/pnmrotate $direction" .
-			"| " . fromPnmCmd("$dir/tmp.$type");
-		exec_wrapper($cmd);
-		
-		if (file_exists("$dir/tmp.$type") && filesize("$dir/tmp.$type") > 0) {
-			copy("$dir/tmp.$type", "$dir/$name.$type");
-			unlink("$dir/tmp.$type");
-		}
-
-		$isResized = $this->isResized();
-
-		if ($isResized) {
+		if ($this->isResized()) {
 			list($w, $h) = $this->image->getDimensions();			
+			flip_image("$dir/$name.sized.$type", "$dir/$name.sized.$type", $direction);
 		}
 
-		/* And rebuild the thumbnail */
-		$this->setPhoto($dir, $name, $type, $thumb_size);
-
-		if ($isResized) {
-			$this->image->resize($dir, max($h, $w));
-		}
+		/* Reset the thumbnail to the default before regenerating thumb */
+		$this->image->setThumbRectangle(0, 0, 0, 0);
+		$this->makeThumbnail($dir, $thumb_size);
 	}
 
 	function setPhoto($dir, $name, $tag, $thumb_size) {
@@ -149,6 +134,15 @@ class AlbumItem {
 		$this->image = new Image;
 		$this->image->setFile($dir, $name, $tag);
 
+		$ret = $this->makeThumbnail($dir, $thumb_size);
+		return $ret;
+	}
+
+	function makeThumbnail($dir, $thumb_size)
+	{
+		$name = $this->image->name;
+		$tag = $this->image->type;
+
 		if (!strcmp($tag, "avi") || !strcmp($tag, "mpg")) {
 			/* Use a preset thumbnail */
 			copy($app->movieThumbnail, "$dir/$name.thumb.jpg");
@@ -163,10 +157,23 @@ class AlbumItem {
 				$this->image->setDimensions($w, $h);
 			}
 
-			/* Make thumbnail */
-			$ret = resize_image("$dir/$name.$tag",
-					     "$dir/$name.thumb.$tag",
+			/* Make thumbnail (first crop it spec) */
+			if ($this->image->thumb_width > 0)
+			{
+				$ret = cut_image("$dir/$name.$tag", 
+								 "$dir/$name.thumb.$tag", 
+								 $this->image->thumb_x, 
+								 $this->image->thumb_y,
+								 $this->image->thumb_width, 
+								 $this->image->thumb_height);
+				if ($ret) {
+					$ret = resize_image("$dir/$name.thumb.$tag", 
+										"$dir/$name.thumb.$tag", $thumb_size);
+				}
+			} else {
+				$ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag",
 					     $thumb_size);
+			}
 
 			if ($ret) { 
 				$this->thumbnail = new Image;
@@ -174,6 +181,11 @@ class AlbumItem {
 	
 				list($w, $h) = getDimensions("$dir/$name.thumb.$tag");
 				$this->thumbnail->setDimensions($w, $h);
+
+				/* if this is the highlight, remake it */
+				if ($this->highlight) {
+					$this->setHighlight($dir, 1);
+				}
 			} else {
 				return "Unable to make thumbnail ($ret)";
 			}
@@ -181,6 +193,7 @@ class AlbumItem {
 
 		return 0;
 	}
+
 
 	function getThumbnailTag($dir, $attrs="") {
 		if ($this->thumbnail) {
