@@ -1,3 +1,19 @@
+2001-07-30  Bharat Mediratta  <bharat@menalto.com>
+
+	* Added the ability for Gallery to use the Nuke database.  If you
+	  run Gallery under Nuke it will automatically detect the Nuke
+	  user database and use it.  One known problem currently is that
+	  only admins can create new top level albums.
+
+	* Fixed bug #433374 (Gallery doesn't work well under http/https)
+	  by adding code to detect https and rewrite the
+	  $gallery->app->photoAlbumURL accordingly.	
+
+	* Fixed a variety of small Nuke problems (edit thumbnails feature 
+	  broken, upload progress window had broken images)
+
+	* Fixed conflict between User class and PHPLib's User class
+
 2001-07-28  Bharat Mediratta  <bharat@menalto.com>
 
 	* Fixed bug #435495: Can't fetch ZIP file by URL.  I fixed this in 
