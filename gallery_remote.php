@@ -153,6 +153,7 @@ if (!strcmp($cmd, "add-item")) {
 
 function process($file, $tag, $name, $setCaption="") {
     global $gallery;
+    global $temp_files;
 
     if (!strcmp($tag, "zip")) {
         if (!$gallery->app->feature["zip"]) {
