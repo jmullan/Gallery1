@@ -46,8 +46,9 @@ function slideshow_controlPanel() {
   </tr>
   <tr>
     <td height="25" width="1"><?php echo $pixelImage ?></td>
-    <td align="left" valign="middle">
-    </td>
+    <td align="center" valign="middle"><span class="admin">
+<?php echo _("If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions.") ?>
+    </span></td>
     <td width="1"><?php echo $pixelImage ?></td>
   </tr>
   <tr>
@@ -60,12 +61,9 @@ function slideshow_controlPanel() {
 
 <?php
 function slideshow_image() {
-	global $photo_count, $gallery, $album;
+	global $photo_count, $gallery, $album, $albumName, $recursive, $random, $number;
 ?>
 <div align="center">
-<p>
-<?php echo _("If you don't have the Java Plugin 1.3 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions.") ?>
-</p>
 
 <?php
 	drawApplet(
@@ -76,9 +74,9 @@ function slideshow_image() {
 		$gallery->album->fields["name"],
 		array(
 			"slideshowLowRez" => "true",
-			"slideshowRecursive" => ($album->fields["slideshow_recursive"] == "yes")?"true":"false",
-			"slideshowRandom" => ($album->fields["slideshow_type"] == "random")?"true":"false",
-			"slideshowMaxPictures" => (int)$album->fields["slideshow_length"]
+			"slideshowRecursive" => $recursive?"true":"false",
+			"slideshowRandom" => $random?"true":"false",
+			"slideshowMaxPictures" => $number
 		),
 		array("toSysOut" => "true"),
 		_("Your browser doesn't support applets; you should use one of the other slideshow methods.")

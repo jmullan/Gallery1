@@ -55,22 +55,14 @@ if ($gallery->session->albumName == "" &&
         return;
 }
 
-/*
-** I dont know what this is good for, but it breaks
-** Gallery wide slideshow. So i commented it out.
-** 11.02.2004 / Jens Tkotz
-*/
-
-/*
-if (!$gallery->user->canReadAlbum($gallery->album)) {
-	header("Location: " . makeAlbumUrl());
-	return;
-}
-*/
-
 $albumName = $gallery->session->albumName;
 
 if (!empty($albumName)) {
+	if (!$gallery->user->canReadAlbum($gallery->album)) {
+		header("Location: " . makeAlbumUrl());
+		return;
+	}
+
 	$album = new Album();
 	$album->load($albumName);
 	if ($album->fields["slideshow_type"] == "off") {
@@ -82,6 +74,29 @@ if (!empty($albumName)) {
 		header("Location: " . makeAlbumUrl());
 		return;
 	}
+}
+
+// common initialization
+if (empty($albumName)) {
+	$album = null;
+	$recursive = true;
+	$number = (int)$gallery->app->gallery_slideshow_length;
+	$random = ($gallery->app->gallery_slideshow_type == "random");
+	$loop = ($gallery->app->gallery_slideshow_loop == "yes");
+	$borderColor = $gallery->app->default["bordercolor"];
+	$borderwidth = 1;
+} else {
+	$recursive = ($album->fields["slideshow_recursive"] == "yes");
+	$loop = ($album->fields["slideshow_loop"] == "yes");
+	$random = ($album->fields["slideshow_type"] == "random");
+	$number = (int)$album->fields["slideshow_length"];
+
+	$borderColor = $gallery->album->fields["bordercolor"];
+	$borderwidth = $gallery->album->fields["border"];
+	if (!strcmp($borderwidth, "off")) {
+		$borderwidth = 1;
+	}
+	$bgcolor = $gallery->album->fields['bgcolor'];
 }
 ?>
 
@@ -103,8 +118,6 @@ if (!empty($albumName) && !$gallery->session->offline) {
 if (!isset($mode) || !isset($modes[$mode])) {
 	$mode = key($modes);
 }
-
-// todo: on the client, prevent old browsers from using High, and remove High from the bar
 
 include($GALLERY_BASEDIR . "includes/slideshow/$mode.inc");
 
@@ -210,14 +223,13 @@ do {
 for ($i = count($breadtext) - 1; $i >= 0; $i--) {
     $breadcrumb["text"][] = $breadtext[$i];
 }
-}
-else {
-       	if (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
-	       	//-- we're at the top! ---
-	       	$breadcrumb["text"][$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") .
-		      	"\">" . $gallery->app->galleryTitle . "</a>";
+} else {
+	if (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
+		//-- we're at the top! ---
+		$breadcrumb["text"][$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") .
+			"\">" . $gallery->app->galleryTitle . "</a>";
 		$breadCount++;
-       	}
+	}
 }
 
 $breadcrumb["bordercolor"] = $borderColor;
@@ -225,6 +237,7 @@ $breadcrumb["top"] = true;
 
 $adminbox["commands"] = "<span class=\"admin\">";
 
+// todo: on the client, prevent old browsers from using High, and remove High from the bar
 if ( !$gallery->session->offline) {
 	foreach ($modes as $m => $mt) {
 		$url=makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));

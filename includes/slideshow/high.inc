@@ -34,29 +34,7 @@ function slideshow_initialize()
     $defaultPause = 3;
 
     $full_option = false;
-
-    if (empty($albumName)) {
-        $album = null;
-        $recursive = true;
-        $number = (int)$gallery->app->gallery_slideshow_length;
-        $random = ($gallery->app->gallery_slideshow_type == "random");
-        $loop = ($gallery->app->gallery_slideshow_loop == "yes");
-        $borderColor = $gallery->app->default["bordercolor"];
-        $borderwidth = 1;
-    } else {
-        $recursive = ($album->fields["slideshow_recursive"] == "yes");
-        $loop = ($album->fields["slideshow_loop"] == "yes");
-        $random = ($album->fields["slideshow_type"] == "random");
-        $number = (int)$album->fields["slideshow_length"];
-
-        $borderColor = $gallery->album->fields["bordercolor"];
-        $borderwidth = $gallery->album->fields["border"];
-        if (!strcmp($borderwidth, "off")) {
-            $borderwidth = 1;
-        } 
-        $bgcolor = $gallery->album->fields['bgcolor'];
-    } 
-
+    
     define('PHOTO_URL', 1 << 0);
     define('PHOTO_CAPTION', 1 << 1);
     define('PHOTO_URL_AS_HREF', 1 << 2);

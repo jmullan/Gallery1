@@ -68,12 +68,6 @@ function slideshow_initialize() {
 	    $slide_full = 0;
 	}
 	
-	$borderColor = $gallery->album->fields["bordercolor"];
-	$borderwidth = $gallery->album->fields["border"];
-	$loop=($gallery->album->fields["slideshow_loop"] == "yes");
-	if (!strcmp($borderwidth, "off")) {
-	        $borderwidth = 1;
-	}
 	$bgcolor = $gallery->album->fields['bgcolor'];
 	$title = _("Slide Show for album") ." :: ". $gallery->album->fields["title"];
 }
