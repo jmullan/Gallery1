@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_4
+# Version: 1_4_4-u1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-08-19 14:36+0200\n"
-"PO-Revision-Date: 2004-08-07 13:57+0800\n"
+"POT-Creation-Date: 2004-08-22 01:16+0200\n"
+"PO-Revision-Date: 2004-08-30 13:57+0800\n"
 "Last-Translator: Kenneth Cheung\n"
 "Language-Team: Traditional Chinese <gallery-translations AT lists DOT sourceforge DOT net>\n"
 "MIME-Version: 1.0\n"
@@ -414,7 +414,8 @@ msgid_plural "%d files are up-to-date."
 msgstr[0] "%d 個檔案是最新的。"
 
 #: ../setup/check_versions.php:132
-msgid "No files are up-to-date."
+#, fuzzy
+msgid "All files are up-to-date."
 msgstr "沒有最新版本。"
 
 #: ../setup/check_versions.php:138
@@ -581,7 +582,7 @@ msgstr "檢查 PHP 是否有支援 <b>GNU gettext</b> 以獲得較快的翻譯�
 #: ../setup/config_data.inc:200
 #, php-format
 msgid "Your PHP does not have <b>GNU gettext</b> support installed.  To include it, you'll need to recompile PHP (see the %sPHP docs%s for more information). Multi-language support is still available in Gallery without <b>gettext</b>, but the pages may take slightly longer to load."
-msgstr "您的 PHP 並未支援 <b>GNU gettext</b>。如果要支援它，您需要把 PHP 重新編譯（參閱 %sPHP 文件%s 以取得更多資訊）。您的 Gallery 在沒有 <b>gettext</b> 下還弄支援多國語系功能，只是網頁載入時間會稍微久一點。"
+msgstr "您的 PHP 並未支援 <b>GNU gettext</b>。如果要支援它，您需要把 PHP 重新編譯（參閱 %sPHP 文件%s 以取得更多資訊）。您的 Gallery 在沒有 <b>gettext</b> 下還可支援多國語系功能，只是網頁載入時間會稍微長一點。"
 
 #: ../setup/config_data.inc:205
 msgid "Check to see what languages are available."
@@ -713,7 +714,7 @@ msgstr "備份網站"
 #: ../setup/config_data.inc:334
 #, php-format
 msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  E.g. %s"
-msgstr "包含相簿目錄的備份網站列表，在每一行中輸入一個 URL，越上面的越穩定。例如 %s。"
+msgstr "包含相簿目錄的備份網站列表，在每一行中輸入一個 URL，越上面的越穩定。例如 %s"
 
 #: ../setup/config_data.inc:350
 msgid "Embedded Gallery"
@@ -721,7 +722,7 @@ msgstr "嵌入 Gallery"
 
 #: ../setup/config_data.inc:351
 msgid "Use this section to set options to configure gallery to be embedded in another web application."
-msgstr "Gallery 將被插入其他網頁軟體時，請用這些選擇建立 Gallery 的形廓。"
+msgstr "請在此欄目設定將要嵌入其他網絡程式的 Gallery。"
 
 #: ../setup/config_data.inc:355
 msgid "Embed Gallery"
@@ -742,7 +743,7 @@ msgstr "GeekLog 目錄"
 
 #: ../setup/config_data.inc:370
 msgid "If you chose Geeklog above, please enter the location of the GeekLog public_html directory."
-msgstr "如果您選擇 Geeklog，請您輸入 GeekLog public-html directory 的位置。"
+msgstr "如果您選擇 Geeklog，請您輸入 GeekLog public-html 目錄的位置。"
 
 #: ../setup/config_data.inc:382
 msgid "Toolkits / image processing"
@@ -906,11 +907,11 @@ msgstr "在 Gallery 的主頁顯示搜尋引擎？"
 
 #: ../setup/config_data.inc:486
 msgid "Accurate Photo Count"
-msgstr ""
+msgstr "準確相片計算"
 
 #: ../setup/config_data.inc:487
 msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
-msgstr ""
+msgstr "使用一個準確（但出奇地慢）的計算方式，在 Gallery 主頁顯示相簿及相片的數目。這是在眾多用家要求下被加入的，但絕不鼓勵在擁有很多相簿及相片的 Gallery 上使用。在一些範例中顯示，啟動此選項會令主頁載入時間長達 30 秒。"
 
 #: ../setup/config_data.inc:492
 msgid "Frame around albums"
@@ -1003,7 +1004,7 @@ msgstr "顯示日期字串的格式。"
 #: ../setup/config_data.inc:615 ../setup/config_data.inc:625
 #, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
-msgstr "這個字串格式將用來在 $2%s 中顯示 $1%s。建議使用 $3%s，這樣子格式將會自動隨著所選語言而改變。如果您想要更改這些字串，請看 $4%sPHP 文件$5%s。"
+msgstr "這個字串格式將用來在%2$s中顯示%1$s。建議使用%3$s，這樣子格式將會自動隨著所選語言而改變。如果您想要更改這些字串，請看 %4$sPHP 文件%5$s。"
 
 #: ../setup/config_data.inc:616
 msgid "date without time"
@@ -1967,7 +1968,7 @@ msgstr "設定為 %s 如果您想要將子相簿裡的影像包含在幻燈片�
 #: ../setup/config_data.inc:1395
 #, php-format
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
-msgstr "這個選項可以讓訪客重複觀看幻燈片輪播直到他們關閉視窗或移至另一頁為止。如果您想節省頻寬請設定為%s。"
+msgstr "這個選項可以讓訪客重複觀看幻燈片輪播直到他們關閉視窗或移至另一頁為止。如果您想節省頻寬請設定為「%s」。"
 
 #: ../setup/config_data.inc:1414 ../setup/frame_test.php:29
 msgid "Frames"
@@ -2391,7 +2392,7 @@ msgstr "找到 %d 之 %d 個 NetPBM 執行檔。"
 
 #: ../setup/functions.inc:559
 msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
-msgstr "沒有合成，gallery 將無法為影像加上水印，除非您使用 NetPBM 並安裝 pnmcomp 執行檔。"
+msgstr "沒有 composit，gallery 將無法為影像加上水印，除非您使用 NetPBM 並安裝 pnmcomp 執行檔。"
 
 #: ../setup/functions.inc:588 ../setup/functions.inc:595
 #, php-format
