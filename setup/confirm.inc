@@ -69,7 +69,7 @@ foreach ($outfile_list as $outfile) {
 		fclose($fd);
 	} else {
 		print "<font color=red><b>" . 
-			_("Warning:"). "</b>  " . sprintf(_("You must create empty file %s and chmod it 777 before proceeding.  See README for more details."), "<i><b>".$outfile."</b></i>"). "<p>";
+			_("Warning:"). "</b>  " . sprintf(_("You must create empty file %s and chmod it 777 before proceeding.  See documentation for more details."), "<i><b>".$outfile."</b></i>"). "<p>";
 	}
 }
 

@@ -504,6 +504,7 @@ function check_locale()
 function check_gallery_languages()
 {
 	global $GALLERY_BASEDIR;
+	global $gallery;
 	$fail = array();
 	$success = array();
 	$nls = getNLS();
@@ -513,9 +514,11 @@ function check_gallery_languages()
 		$fail["fail-gallery-languages"] = _("No languages found."); // should never occur!
 	} else if (sizeof($languages) < sizeof($nls['languages'])) {
 		$fail["fail-gallery-languages"] 
-			= sprintf(_("Only %d of %d languages are available.  If you want other languages, download language packs from gallery site"),
+			= sprintf(_("Only %d of %d languages are available.  If you want other languages, download a fresh copy of %s from %s."),
 					sizeof($languages),
-					sizeof($nls['languages']));
+					sizeof($nls['languages']),
+					Gallery(),
+					"<a href=\"$gallery->url\">$gallery->url</a>");
 	} else {
 		$success[] = sprintf(_("All %d languages found"), sizeof($languages));
 	}
