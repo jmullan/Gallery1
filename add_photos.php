@@ -40,7 +40,7 @@ Tip:  Upload a ZIP file full of photos and movies!
 <form enctype="multipart/form-data" action="save_photos.php" method=post>
 <input type="hidden" name="max_file_size" value="10000000">
 <? for ($i = 0; $i < $boxes;  $i++) { ?>
-<br> <input name="userfile[]" type="file">
+<br> <input name="userfile[]" type="file" size=50>
 <? } ?>
 <br> URL <input name="url">
 
