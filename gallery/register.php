@@ -124,7 +124,7 @@ if (isset($create)) {
 			echo '<br>';
 			echo _("Your account information is contained within the email.");
 		} else {
-			gallery_error(_("Email could not be sent.  Please contact gallery adminstrator to register on this site"));
+			gallery_error(_("Email could not be sent.  Please contact gallery administrator to register on this site"));
 		}
 ?>
 		<br><br>

@@ -2,12 +2,7 @@
 <?php 
 	$GALLERY_BASEDIR="../";
 	require($GALLERY_BASEDIR . "setup/init.php");
-
-
-// We set this to false to get the config stylesheet
-$GALLERY_OK=false;
-extract($HTTP_POST_VARS);
-require($GALLERY_BASEDIR . "setup/functions.inc");
+	require($GALLERY_BASEDIR . "setup/functions.inc");
 ?>
 
 <html>
@@ -29,7 +24,6 @@ if ($show_details) {
 } else {
        	print sprintf(_("%sClick here%s to see more details"),
 		       	'<a href="check_versions.php?show_details=1">','</a>');
-}             
 print "<p>";          
 
 list($oks, $errors, $warnings)=checkVersions(false);
@@ -50,7 +44,6 @@ if  ($errors) { ?>
 	       	}
        	}
 }
-
 if  ($warnings) { ?>
 	<p>
 	<span class="warninglong">
@@ -76,7 +69,6 @@ if  ($warnings) { ?>
 		pluralize_n(count($oks), _("1 file"), 
 			_("files"), _("No files"))); ?>
 </span>
-
 <?php if ($show_details && $oks) { ?>
 	       	<br><br>
 	       	<?php 
