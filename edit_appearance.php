@@ -289,7 +289,7 @@ foreach ($services as $item => $data) {
 		$value = array('checked' => false);
 	}
 	$checked = !empty($value['checked']) ? ' checked' : '';
-	print "\t<input name=\"print_photos[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a target=\"_blank\" href=\"${data['url']}\">${data['name']}</a><br />\n";
+	print "\t<input name=\"print_photos[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a target=\"_blank\" href=\"${data['url']}\">${data['name']}</a><br>\n";
 	if (isset($data['radio'])) {
 		if (!isset($value['donation'])) {
 			$value['donation'] = 'yes';
@@ -297,7 +297,7 @@ foreach ($services as $item => $data) {
 		foreach ($data['radio'] as $radio => $values) {
 			$checked = $value['donation'] === $radio
 				? ' checked' : '';
-			print "\t&nbsp;&nbsp;&nbsp;<input name=\"print_photos[$item][donation]\" value=\"$radio\" type=\"radio\"$checked>" . $values . "<br />\n";
+			print "\t&nbsp;&nbsp;&nbsp;<input name=\"print_photos[$item][donation]\" value=\"$radio\" type=\"radio\"$checked>" . $values . "<br>\n";
 		}
 	}
 }

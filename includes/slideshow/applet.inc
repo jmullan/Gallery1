@@ -20,7 +20,6 @@
  * $Id$
  */
 ?>
-
 <?php
 function slideshow_initialize() {
 	global $albumName, $gallery, $title;
@@ -34,9 +33,7 @@ function slideshow_initialize() {
 }
 
 function slideshow_body() {}
-?>
 
-<?php
 function slideshow_controlPanel() {
 	global $pixelImage;
 ?>
@@ -57,9 +54,7 @@ function slideshow_controlPanel() {
 </table>
 <?php
 }
-?>
 
-<?php
 function slideshow_image() {
 	global $photo_count, $gallery, $album, $albumName, $recursive, $random, $number;
 ?>

@@ -114,7 +114,9 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 }
 	if ($numPhotos != 0) {
 		echo '<td valign="middle" align="right">';
-		echo makeFormIntro("search.php");
+		echo makeFormIntro('search.php', array(
+							'name'		=> 'search_form',
+							'method'	=> 'post'));
 		echo '<span class="search">'. _("Search") .': </span>';
 		echo '<input style="font-size:10px;" type="text" name="searchstring" value="" size="25">';
 		echo '</form></td>';

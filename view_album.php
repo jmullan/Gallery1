@@ -891,7 +891,7 @@ if ($numPhotos) {
 					echo ".<br></span>";
 				}
 			}
-		       	echo "</td></tr></table>";
+		       	echo "</td></tr></table>\n";
 		       	if (canVote()) {
 				print '<table><tr><td align="left">';
 			       	addPolling($gallery->album->getVotingIdByIndex($i),
@@ -965,7 +965,7 @@ if ($numPhotos) {
 				if (!$gallery->album->isMovie($id) && !$gallery->album->isAlbum($i)) {
 					showChoice(_("Edit Thumbnail"), "edit_thumb.php", array("index" => $i));
 					showChoice(_("Rotate/Flip") ." $label", "rotate_photo.php", array("index" => $i));
-					if (strlen($gallery->app->watermarkDir)) {
+					if (!empty($gallery->app->watermarkDir)) {
 						showChoice(_("Edit Watermark"), "edit_watermark.php", array("index" => $i));
 					}
 				}

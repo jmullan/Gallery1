@@ -143,7 +143,7 @@ function mosNotAuth() {
 
 	echo _NOT_AUTH;
 	if ($my->id < 1) {
-		echo "<br />" . _DO_LOGIN;
+		echo "<br>" . _DO_LOGIN;
 	}
 }
 ?>

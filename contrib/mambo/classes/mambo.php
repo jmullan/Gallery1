@@ -1130,7 +1130,7 @@ class mosUser extends mosDBTable {
 			$acl->add_group_object( $this->gid, $section_value, $this->$k, 'ARO' );
 		}
 		if( !$ret ) {
-			$this->_error = get_class( $this )."::store failed <br />" . $this->_db->getErrorMsg();
+			$this->_error = get_class( $this )."::store failed <br>" . $this->_db->getErrorMsg();
 			return false;
 		} else {
 			return true;
@@ -1427,7 +1427,7 @@ class mosSession extends mosDBTable {
 		$ret = $this->_db->insertObject( $this->_tbl, $this );
 
 		if( !$ret ) {
-			$this->_error = get_class( $this )."::store failed <br />" . $this->_db->stderr();
+			$this->_error = get_class( $this )."::store failed <br>" . $this->_db->stderr();
 			return false;
 		} else {
 			return true;
@@ -1438,7 +1438,7 @@ class mosSession extends mosDBTable {
 		$ret = $this->_db->updateObject( $this->_tbl, $this, 'session_id', $updateNulls );
 
 		if( !$ret ) {
-			$this->_error = get_class( $this )."::store failed <br />" . $this->_db->stderr();
+			$this->_error = get_class( $this )."::store failed <br>" . $this->_db->stderr();
 			return false;
 		} else {
 			return true;

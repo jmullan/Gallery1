@@ -74,7 +74,7 @@ if ($gallery->session->albumName && isset($index)) {
 <center>
 	<?php echo _("How do you want to manipulate this photo?") ?>
 <?php } ?>
-<br /><br />
+<br><br>
 <?php $args = array("albumName" => $gallery->album->fields["name"], "index" => $index); ?>
 <?php echo _("Rotate") ?>: [ 
 <?php $args["rotate"] = "90"; ?>
@@ -85,15 +85,15 @@ if ($gallery->session->albumName && isset($index)) {
  | 
 	<?php $args["rotate"] = "-90"; ?>
 <a href="<?php echo makeGalleryUrl("rotate_photo.php", $args)?>"><?php echo _("Clockwise") ?> 90&deg;</a>
-]<br /><br /><?php echo _("Flip") ?>: [ 
+]<br><br><?php echo _("Flip") ?>: [ 
 	<?php $args["rotate"] = "fh"; ?>
 <a href="<?php echo makeGalleryUrl("rotate_photo.php", $args)?>"><?php echo _("Horizontal") ?></a>
  | 
 	<?php $args["rotate"] = "fv"; ?>
 <a href="<?php echo makeGalleryUrl("rotate_photo.php", $args)?>"><?php echo _("Vertical") ?></a>
- ]<br /><br />
+ ]<br><br>
 <a href="javascript:void(parent.close())"><?php echo _("Close") ?></a>
-<br />
+<br>
 
 <p>
 <?php echo $gallery->album->getThumbnailTag($index) ?>

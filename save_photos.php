@@ -389,7 +389,7 @@ if (count($image_tags)) {
 	/* Allow user to select which files to grab - only show url right now ( no image previews ) */
 	sort($image_tags);
 	foreach ( $image_tags as $image_src) {
-		print "\t<input type=checkbox name=\"urls[]\" value=\"$image_src\" checked>$image_src</input><br />\n";
+		print "\t<input type=checkbox name=\"urls[]\" value=\"$image_src\" checked>$image_src</input><br>\n";
 	}
 ?>
 	</td>
@@ -420,7 +420,7 @@ if (count($image_tags)) {
 	<td>
 <?php
 	foreach ($info_tags as $info_tag) {
-		print "\t<input type=\"checkbox\" name=\"meta[]\" value=\"$info_tag\" checked/>$info_tag</input><br />\n";
+		print "\t<input type=\"checkbox\" name=\"meta[]\" value=\"$info_tag\" checked/>$info_tag</input><br>\n";
 	}
 
 ?>

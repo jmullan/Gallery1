@@ -34,7 +34,7 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
 	}
 
 	/* Watermarking support is enabled and user is allowed to watermark images/albums */
-	if (strlen($gallery->app->watermarkDir)) {
+	if (!empty($gallery->app->watermarkDir)) {
 		echo "\n\t". popup_link("[" . _("watermark&nbsp;album") . "]", "watermark_album.php?set_albumName={$tmpAlbumName}");
 	}
 }
