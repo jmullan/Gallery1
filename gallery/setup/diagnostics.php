@@ -1,6 +1,6 @@
 <?php /* $Id$ */ ?>
 <?php
-	require("../ML_files/ML_config.php");
+	require("../config.php");
 ?>
 <html>
     <head>

@@ -1,7 +1,7 @@
 <?php /* $Id$ */ ?>
 <?php
 
-require ("../ML_files/ML_config.php") ;
+require ("../config.php") ;
 // Pull the $destroy variable into the global namespace
 extract($HTTP_GET_VARS);
 
@@ -35,8 +35,8 @@ $count++;
 
       <p>
 
-	<?php echo _("If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation.") ?>  
-	<?php echo _(" Gallery will not work properly until PHP's session management is configured properly.") ?>  
+	<?php echo _("If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation.") ?>   
+	<?php echo _("Gallery will not work properly until PHP's session management is configured properly.") ?>  
 
       <p>
 

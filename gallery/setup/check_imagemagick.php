@@ -1,5 +1,5 @@
 <?php /* $Id$ */ ?>
-<?php require("../ML_files/ML_config.php"); ?>
+<?php require("../config.php"); ?>
 <html>
 <body dir=<?php echo $gallery->direction ?>>
 

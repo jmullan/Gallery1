@@ -1,5 +1,5 @@
 <?php /* $Id$ */ ?>
-<?php require("../ML_files/ML_config.php"); ?>
+<?php require("../config.php"); ?>
 <html>
 <body dir=<?php echo $gallery->direction ?>>
 
@@ -116,7 +116,7 @@ function checkNetPbm($cmd) {
 	global $debugfile;
 
 	$cmd = fs_executable($gallery->app->pnmDir . "/$cmd");
-	print _("Checking "). fs_import_filename($cmd) ."\n";
+	print _("Checking"). " " . fs_import_filename($cmd) ."\n";
 
 	$ok = 1;
 
