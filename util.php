@@ -54,6 +54,7 @@ function editCaption($album, $index, $edit) {
 
 function viewComments($index) {
         global $gallery;
+	global $GALLERY_BASEDIR;
 
 	// get number of comments to use as counter for display loop
 	$numComments = $gallery->album->numComments($index);
@@ -67,7 +68,7 @@ function viewComments($index) {
 		$commentdraw["name"] = $comment->getName();
 		$commentdraw["UID"] = $comment->getUID();
 		$commentdraw["bordercolor"] = $borderColor;
-		include("layout/commentdraw.inc");
+		include($GALLERY_BASEDIR . "layout/commentdraw.inc");
 	}
         $url = "add_comment.php?set_albumName={$album->fields[name]}&index=$index";
         $buf = "<span class=editlink>";
@@ -85,30 +86,36 @@ function error_format($message) {
 	return "<span class=error>Error: $message</span>";
 }
 
-function popup($url, $no_expand_url=0) {
-	global $GALLERY_BASEDIR;
+function popup($url, $url_is_complete=0) {
+	/* Separate the target from the arguments */
+	list($target, $arglist) = split("\?", $url);
 
-	$dir = $GALLERY_BASEDIR;
-	if (!$dir) {
-		global $gallery;
-		$dir = $gallery->app->photoAlbumURL . "/";
+	/* Split the arguments into an associative array */
+	$tmpargs = split("&", $arglist);
+	foreach ($tmpargs as $arg) {
+		if (!$arg) {
+			continue;
+		}
+		list($key, $val) = split("\=", $arg);
+		$args[$key] = $val;
 	}
 
-	if (!$no_expand_url) {
-		$url = "'$dir$url'";
-	}
-	$attrs = "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes";
-	return "javascript:nw=window.open($url,'Edit','$attrs');nw.opener=self;return false;";
+	if (!$url_is_complete) {
+		$url = makeGalleryUrl($target, $args);
+		$url = "'$url'";
+	} 
+
+	return popup_js($url, "Edit", 
+		"height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
+}
+
+function popup_js($url, $window, $attrs) {
+	return "javascript:nw=window.open($url,'$window','$attrs');nw.opener=self;return false;";
 }
 
 function popup_status($url) {
 	$attrs = "height=150,width=350,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
-	return "open('$url','Status','$attrs');";
-}
-
-function popup_help($entry, $group) {
-	$attrs = "height=500,width=400,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
-	return "javascript: nw=window.open('http://www.menalto.com/projects/gallery/help?group=$group&entry=$entry','Help','$attrs'); nw.opener=self; return false;";
+	return "open('" . makeGalleryUrl($url) . "','Status','$attrs');";
 }
 
 function exec_internal($cmd) {
@@ -520,85 +527,123 @@ function correctEverybody($array) {
 	}
 }
 
-function makeSearchFormIntro() {
-	global $gallery;
-	global $GALLERY_EMBEDDED_INSIDE;
-	global $GALLERY_MODULENAME;
-	switch ($GALLERY_EMBEDDED_INSIDE) {
-		case "nuke":
-            $form = "<form action=modules.php>";
-			$form .= "<input type=hidden name=op value=modload>";
-			$form .= "<input type=hidden name=file value=index>";
-			$form .= "<input type=hidden name=name value=$GALLERY_MODULENAME>";
-			$form .= "<input type=hidden name=include value=search.php>";
-			break;
-		default:
-			$form = "<form action=search.php>";
+/*
+ * makeFormIntro() is a wrapper around makeGalleryUrl() that will generate
+ * a <form> tag suitable for usage in either standalone or embedded mode.
+ * You can specify the additional attributes you want in the optional second
+ * argument.  Eg:
+ *
+ * makeFormIntro("add_photos.php",
+ *			array("name" => "count_form",
+ *				"enctype" => "multipart/form-data",
+ *				"method" => "POST"));
+ */
+function makeFormIntro($target, $attrList=array()) {
+	$url = makeGalleryUrl($target);
+	list($target, $tmp) = split("\?", $url);
+
+	foreach ($attrList as $key => $value) {
+		$attrs .= " $key=\"$value\"";
+	}
+
+	$form .= "<form action=$target $attrs>\n";
+
+	$args = split("&", $tmp);
+	foreach ($args as $arg) {
+		list($key, $val) = split("=", $arg);
+		$form .= "<input type=hidden name=\"$key\" value=\"$val\">\n";
 	}
 	return $form;
 }
 
-
-function makeGalleryUrl($albumName="", $photoId="", $extra="") {
+/*
+ * Any URL that you want to use can either be accessed directly
+ * in the case of a standalone Gallery, or indirectly if we're
+ * mbedded in another app such as Nuke.  makeGalleryUrl() will 
+ * always create the appropriate URL for you.
+ *
+ * Usage:  makeGalleryUrl(target, args [optional])
+ *
+ * target is a file with a relative path to the gallery base
+ *        (eg, "album_permissions.php")
+ *
+ * args   are extra key/value pairs used to send data
+ *        (eg, array("index" => 1, "set_albumName" => "foo"))
+ */
+function makeGalleryUrl($target, $args=array()) {
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
 	global $GALLERY_MODULENAME;
 
 	switch ($GALLERY_EMBEDDED_INSIDE) {
 		case "nuke":
-			$url = "modules.php?op=modload&name=$GALLERY_MODULENAME&file=index";
-			if ($albumName) {
-				$inc = "&include=view_album.php";
-				$url .= "&set_albumName=$albumName";
-			}
-			if ($photoId) {
-				$inc = "&include=view_photo.php";
-				$url .= "&id=$photoId";
-			}
-			$url .= $inc;
-			$url .= "&" . $extra;
+			$args["op"] = "modload";
+			$args["name"] = "$GALLERY_MODULENAME";
+			$args["file"] = "index";
+
+			/*
+			 * include *must* be last so that the JavaScript code in 
+			 * view_album.php can append a filename to the resulting URL.
+			 */
+			$args["include"] = $target;
+			$target = "modules.php";
 			break;
 
 		default:
-			$url = $gallery->app->photoAlbumURL;
-
-			$args = array();
-			if ($gallery->app->feature["rewrite"]) {
-				if ($albumName) {
-					$url .= "/$albumName";
-		
-					// Can't have photo without album
-					if ($photoId) {
-						$url .= "/$photoId";
-					} 
-				} else {
-					$url .= "/albums.php";
-				}
-			} else {
-				if ($albumName) {
-					$url = $gallery->app->photoAlbumURL . "/view_album.php";
-					array_push($args, "set_albumName=$albumName");
-				} else {
-					$url .= "/albums.php";
-				}
-		
-				if ($photoId) {
-					$url = $gallery->app->photoAlbumURL . "/view_photo.php";
-					array_push($args, "id=$photoId");
-				}
-			}
-
-			if ($extra) {
-				array_push($args, $extra);
-			}
-
-			if (count($args)) {
-				$url .= "?" . join("&", $args);
-			} 
-		
+			$target = $gallery->app->photoAlbumURL . "/" . $target;
+			break;
 	}
 
+	$url = $target;
+	if ($args) {
+		$i = 0;
+		foreach ($args as $key => $value) {
+			if ($i++) {
+				$url .= "&";
+			} else {
+				$url .= "?";
+			}
+			$url .= "$key=$value";
+		}
+	}
 	return $url;
+}
+
+/*
+ * makeAlbumUrl is a wrapper around makeGalleryUrl.  You tell it what
+ * album (and optional photo id) and it does the rest.  You can also
+ * specify additional key/value pairs in the optional third argument.
+ */
+function makeAlbumUrl($albumName="", $photoId="", $args=array()) {
+	global $GALLERY_EMBEDDED_INSIDE;
+	global $gallery;
+
+	if (!$GALLERY_EMBEDDED_INSIDE && $gallery->app->feature["rewrite"]) {
+		if ($albumName) {
+			$target = "$albumName";
+
+			// Can't have photo without album
+			if ($photoId) {
+				$target .= "/$photoId";
+			} 
+		} else {
+			$target = "albums.php";
+		}
+	} else {
+		if ($albumName) {
+			$args["set_albumName"] = "$albumName";
+			if ($photoId) {
+				$target = "view_photo.php";
+				$args["id"] = "$photoId";
+			} else {
+				$target = "view_album.php";
+			}
+		} else {
+			$target = "albums.php";
+		}
+
+	}
+	return makeGalleryUrl($target, $args);
 }
 
 function gallerySanityCheck() {
@@ -865,41 +910,13 @@ function getItemCaptureDate($file) {
 	return $itemCaptureDate;
 }
 
-function doCommand($command, $args="", $returnFile="", $returnArgs="") {
-	global $GALLERY_EMBEDDED_INSIDE;
-	global $GALLERY_MODULENAME;
+function doCommand($command, $args=array(), $returnTarget="", $returnArgs=array()) {
 
-	switch ($GALLERY_EMBEDDED_INSIDE) {
-		case "nuke":
-			$url = "modules.php?op=modload&name=$GALLERY_MODULENAME&file=index" .
-				"&include=do_command.php&cmd=$command";
-
-			if ($returnFile) {
-				$returnFile = "modules.php?op=modload&name=$GALLERY_MODULENAME&file=index" .
-				"&include=$returnFile&$returnArgs";
-			}
-			break;
-
-		default:
-			global $gallery;
-			$url = $gallery->app->photoAlbumURL . 
-				"/do_command.php?cmd=$command";
-			if ($returnFile && $returnArgs) {
-				$returnFile = $returnFile . "?" . $returnArgs;
-			}
-
-			break;
+	if ($returnTarget) {
+		$args["return"] = urlencode(makeGalleryUrl($returnTarget, $returnArgs));
 	}
-
-	if ($args) {
-		$url .= "&$args";
-	}
-
-	if ($returnFile) {
-		$url .= "&return=" . urlencode($returnFile);
-	}
-
-	return $url;
+	$args["cmd"] = $command;
+	return makeGalleryUrl("do_command.php", $args);
 }
 
 function formVar($name) {
@@ -921,3 +938,18 @@ function emptyFormVar($name) {
 
 	return empty($HTTP_GET_VARS[$name]) && empty($HTTP_POST_VARS[$name]);
 }
+
+function breakString($buf, $desired_len=40, $space_char=' ', $overflow=5) {
+	$result = "";
+	$col = 0;
+	for ($i = 0; $i < strlen($buf); $i++, $col++) {
+		$result .= $buf{$i};
+		if (($col > $desired_len && $buf{$i} == $space_char) ||
+		    ($col > $desired_len + $overflow)) {
+			$col = 0;
+			$result .= "<br>";
+		}
+	}
+	return $result;
+}
+?>
