@@ -138,7 +138,7 @@ $defaultLanguage = $tmpUser->getDefaultLanguage();
 <script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
-document.usermodify_form.uname.focus();
+document.usermodify_form.new_password1.focus();
 //--> 
 </script>
 
