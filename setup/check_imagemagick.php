@@ -114,7 +114,7 @@ if (! file_exists(dirname(dirname(__FILE__)) . '/config.php')) {
 		<tr>
 			<td class="desc">
 				<?php echo sprintf(_("You told the config wizard that your %s binaries live here:"), $app_name) . "\n" ?>
-				<p><ul><b><?php echo $gallery->app->pnmDir ?></b></ul></p>
+				<p><ul><b><?php echo $gallery->app->ImPath ?></b></ul></p>
 				<p><?php echo sprintf(_("If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."), $app_name) . "\n"; ?>
 			</td>
 		</tr>
