@@ -3265,7 +3265,7 @@ function checkVersions($verbose=false) {
 			       	print "<br>\n";
 			       	print sprintf(_("%s OK"), $file);
 		       	}
-			$success[$file]="OK";
+			$success[$file]=sprintf(_("Found expected version %s."), $version);
 		}
 			
 	}
