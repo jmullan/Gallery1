@@ -358,6 +358,18 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$mosConfig_dbprefix	= $gallery->session->mambo->mosConfig_dbprefix;
 				$MOS_GALLERY_PARAMS	= $gallery->session->mambo->MOS_GALLERY_PARAMS;
 			}
+			elseif (!empty($mosConfig_db)) {
+				$gallery->session->mambo->mosRoot = dirname($_SERVER['PHP_SELF']);
+				if (substr($gallery->session->mambo->mosRoot, -1) != '/') {
+					$gallery->session->mambo->mosRoot .= '/';
+				}
+				$gallery->session->mambo->mosConfig_host=$mosConfig_host;
+				$gallery->session->mambo->mosConfig_user=$mosConfig_user;
+				$gallery->session->mambo->mosConfig_password=$mosConfig_password;
+				$gallery->session->mambo->mosConfig_db=$mosConfig_db;
+				$gallery->session->mambo->mosConfig_dbprefix=$mosConfig_dbprefix;
+				$gallery->session->mambo->MOS_GALLERY_PARAMS = $MOS_GALLERY_PARAMS;
+			}
 
 			if(empty($mosConfig_db)) {
 				echo _("Gallery seems to be inside Mambo, but we couldn't get the necessary info.");
@@ -376,7 +388,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			$gallery->userDB = new Mambo_UserDB;
 
 			/* Check if user is logged in, else explicit log him/her out */
-			if (isset($my->username) && !empty($my->username)) {
+			if (!empty($my->username)) {
 				$gallery->session->username = $my->username;
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 				
@@ -384,7 +396,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				if (isset($gallery->session->mambo)) {
 					unset ($gallery->session->mambo);
 				}
-			} elseif (isset($gallery->session->username) && !isset($my)) {
+			} elseif (!empty($gallery->session->username) && empty($my)) {
 				/* This happens, when we are in a Popup */
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 			} else {

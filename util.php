@@ -1419,14 +1419,6 @@ function makeGalleryUrl($target, $args=array()) {
 	global $userdata;
 	global $board_config;
 
-	/*needed for Mambo */
-	global $MOS_GALLERY_PARAMS;
-	global $mosConfig_host;
-	global $mosConfig_user;
-	global $mosConfig_password;
-	global $mosConfig_db;
-	global $mosConfig_dbprefix;
-
 	if( isset($GALLERY_EMBEDDED_INSIDE)) {
                 switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 	                case 'phpBB2':
@@ -1465,21 +1457,8 @@ function makeGalleryUrl($target, $args=array()) {
 				** So we need to put necessary infos of Mambo into session.
 				*/
 				if ((isset($args['type']) && $args['type'] == 'popup') ||
-					(!empty($args['gallery_popup']))) {
+						(!empty($args['gallery_popup']))) {
 					$target= $gallery->app->photoAlbumURL . "/index.php";
-
-					if (empty($gallery->session->mambo->mosConfig_db)) {
-						$gallery->session->mambo->mosRoot = dirname($_SERVER['PHP_SELF']);
-						if (substr($gallery->session->mambo->mosRoot, -1) != '/') {
-							$gallery->session->mambo->mosRoot .= '/';
-						}
-						$gallery->session->mambo->mosConfig_host=$mosConfig_host;
-						$gallery->session->mambo->mosConfig_user=$mosConfig_user;
-						$gallery->session->mambo->mosConfig_password=$mosConfig_password;
-						$gallery->session->mambo->mosConfig_db=$mosConfig_db;
-						$gallery->session->mambo->mosConfig_dbprefix=$mosConfig_dbprefix;
-						$gallery->session->mambo->MOS_GALLERY_PARAMS = $MOS_GALLERY_PARAMS;
-					}
 				} else {
 					if (!empty($gallery->session->mambo->mosRoot)) {
 						$target = $gallery->session->mambo->mosRoot . "index.php";
