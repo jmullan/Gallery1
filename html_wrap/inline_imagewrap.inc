@@ -76,7 +76,7 @@ default: // use frames directory
   $hRR = $imageHeight - $heightRRT - $heightRRB;
   ?>
 
-  <table width="1" border="0" cellspacing="0" cellpadding="0">
+  <table width="1" border="0" cellspacing="0" cellpadding="0" dir="ltr">
   <tr>
 	<!-- TL -->
 	<td width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>"><img src="<?php echo "$base/$imageTL" ?>" border="0" width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>" alt=""></td>
