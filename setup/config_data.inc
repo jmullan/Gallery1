@@ -62,11 +62,11 @@ $checklist = array(
 			"<i>directory</i> above.  You can get libjpeg from: " .
 			" <a href=ftp://ftp.uu.net/graphics/jpeg/> " .
 			"ftp://ftp.uu.net/graphics/jpeg/</a>"
-	), 
+	)
 );
 
 $features = array(
-	"zip_support" => array("zipinfo", "unzip"),
+	"zip_support" => array("zipinfo", "unzip")
 );
 
 $constants = array(
@@ -119,7 +119,7 @@ $constants = array(
 		"desc" => "The relative path to the album directory (specified above) " .
 			"on your web server",
 		"value" => "/albums"
-	),
+	)
 );
 
 $defaults = array(
