@@ -286,7 +286,6 @@ function resize_image($src, $dest, $target) {
 	$err = exec_wrapper(toPnmCmd($src) .
 		     " | " . 
 		     NetPBM("pnmscale", 
-				(!isDebugging() ? " --quiet" : " ") .
 				" -xysize $target $target") .
 		     " | " . fromPnmCmd($out));
 
@@ -399,10 +398,6 @@ function toPnmCmd($file) {
 		$cmd = "giftopnm";
 	}
 
-	if (!isDebugging()) {
-		$args = "--quiet";
-	}
-
 	if ($cmd) {
 		return NetPBM($cmd, $args) .
 		 	" " .
@@ -437,6 +432,9 @@ function netPbm($cmd, $args="") {
 	global $gallery;
 
 	$cmd = fs_import_filename($gallery->app->pnmDir . "/$cmd");
+	if (!isDebugging()) {
+		$cmd  .= " --quiet";
+	}
 	$cmd .= " $args";
 	return $cmd;
 }
