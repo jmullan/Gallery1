@@ -27,14 +27,14 @@ $GALLERY_URL = preg_replace("/\/$/", "", $GALLERY_URL);
 $MIN_PHP_MAJOR_VERSION = 4;
 
 if ($init_mod_rewrite) {
-	$GALLERY_REWRITE = 1;
+	$GALLERY_REWRITE_OK = 1;
 	if (strstr($init_mod_rewrite, "ampersandbroken")) {
 		$GALLERY_REWRITE_SEPARATOR = "\&";
 	} else {
 		$GALLERY_REWRITE_SEPARATOR = "&";
 	}
 } else {
-	$GALLERY_REWRITE = 0;
+	$GALLERY_REWRITE_OK = 0;
 }
 
 ?>
