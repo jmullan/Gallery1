@@ -2306,7 +2306,14 @@ function initLanguage() {
        $gallery->direction=$nls['default']['direction'];
        $gallery->align=$nls['default']['alignment'];
        if (isset($gallery->app->ML_mode)) {
+		// Mode 0 means no Multilanguage at all.
 		if($gallery->app->ML_mode == 0) {
+			// Maybe PHP has no gettext, then we have to substitute _()
+			if (! gettext_installed()) {
+				function _($string) { 
+					return $string ;
+				}
+			}
 			return;
 		}
        }
