@@ -225,6 +225,12 @@ if ($gallery->user->canCreateAlbums()) {
 						 '">[new nested album]</a>&nbsp;<br>';
 }
 
+if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
+	$adminCommands .= '<a href=' . makeGalleryUrl("captionator.php", 
+						array("set_albumName" => $tmpAlbumName)) .
+			'>[captions]</a>&nbsp;';
+}
+
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	if ($gallery->album->numPhotos(1)) {
 	        $adminCommands .= '<a href="#" onClick="'.popup("sort_album.php?albumName=" .

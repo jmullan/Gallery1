@@ -206,6 +206,12 @@ for ($i = $start; $i <= $end; $i++) {
    </span>
   <? } ?>
 
+  <? if ($gallery->user->canChangeTextOfAlbum($gallery->album)) { ?>
+   <span class="admin">
+    <a href=<?=makeGalleryUrl("captionator.php", array("set_albumName" => $tmpAlbumName))?>>[edit captions]</a>
+   </span>
+  <? } ?>
+
   <? if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) { ?>
    <span class="admin">
     <a href="#" onClick="<?= popup("album_permissions.php?set_albumName={$tmpAlbumName}")?>">[permissions]</a>
