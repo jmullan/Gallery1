@@ -31,9 +31,9 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
+$GALLERY_BASEDIR = './';
+
+$gallery->backup_mode="yes";
 require($GALLERY_BASEDIR . 'init.php');
 
 set_time_limit(600);
