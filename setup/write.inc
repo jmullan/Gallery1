@@ -7,7 +7,7 @@ require("../classes/EverybodyUser.php");
 $outfile = "$GALLERY_DIR/config.php";
 copy("gpl.txt", $outfile);
 
-if ($fd = @fopen($outfile, "a")) {
+if ($fd = @fs_fopen($outfile, "a")) {
 	$data = urldecode($data);
 
 	fwrite($fd, $data);
