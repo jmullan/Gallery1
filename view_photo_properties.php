@@ -38,7 +38,7 @@ doctype();
   <title><?php echo _("Photo Properties") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>" class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <?php
 if ($gallery->session->albumName && $index) {
 ?>
