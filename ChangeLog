@@ -1,3 +1,11 @@
+2001-08-15  Bharat Mediratta  <bharat@menalto.com> (1.2-cvs-b15)
+
+	* Fixed a serious bug that could cause album corruption in large
+	  albums.  The way that we were serializing data files had a race
+	  condition; if you have two users who modify an album at the same
+	  time (one of them might just be updating a click count) you will wind
+	  up with a mangled data file.
+
 2001-08-10  Bharat Mediratta  <bharat@menalto.com> (1.2-cvs-b14)
 
 	* Fixed a bug where if you turned off image resizing in the album and
