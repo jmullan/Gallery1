@@ -327,7 +327,7 @@ if ($numPhotos) {
 							($user->canChangeTextOfAlbum($album))) {
 				echo('</select>');
 			}
-			echo('</form>');
+			echo('</form></td>');
 			$j++; $i++;
 		}
 		echo "</tr>";
