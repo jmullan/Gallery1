@@ -226,7 +226,7 @@ includeHtmlWrap("photo.header");
 if (!$album->isMovie($index)) {
 	if ($user->canWriteToAlbum($album)) {
 		$adminCommands .= '<a href="#" onClick="'.
-			popup("$top/resize_photo.php?index=$index").return false'">[resize photo]</a>';
+			popup("$top/resize_photo.php?index=$index");return false'">[resize photo]</a>';
 	}
 
 	if ($user->canDeleteFromAlbum($album)) {
