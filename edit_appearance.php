@@ -41,6 +41,7 @@ if ($save) {
 	$album->fields["cols"] = $cols;
 	$album->fields["fit_to_window"] = $fit_to_window;
 	$album->fields["use_fullOnly"] = $use_fullOnly;
+	$album->fields["use_shutterfly"] = $use_shutterfly;
 	$album->save();
 
 	reload();
@@ -127,6 +128,10 @@ Album Properties
 <tr>
 <td>Offer visitors ability to specify<br>preference for full-size or resized images</td>
 <td><select name="use_fullOnly"><?= selectOptions($album, "use_fullOnly", array("yes", "no")) ?></select></td>
+</tr>
+<tr>
+<td>Offer visitors ability to order<br>prints of photos at Shutterfly.com</td>
+<td><select name="use_shutterfly"><?= selectOptions($album, "use_shutterfly", array("yes", "no")) ?></select></td>
 </tr>
 </table>
 
