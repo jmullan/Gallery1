@@ -132,7 +132,7 @@ include($GALLERY_BASEDIR . "layout/navigator.inc");
 			<?php echo _("Results Breakdown") ?>
 			</span>
 			<table width=<?php print $fullWidth?> border=0 cellspacing=0 cellpadding=7>
-			<?
+			<?php
 		
 			$rowStart = 0;
 			$i = 0;
@@ -174,7 +174,7 @@ include($GALLERY_BASEDIR . "layout/navigator.inc");
 		
 		</table>
 		
-	<?
+	<?php
 	includeHtmlWrap("album.footer");
 ?>
 

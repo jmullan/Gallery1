@@ -4,11 +4,11 @@
 <input type="hidden" name="next_page" value="defaults">
 <input type="hidden" name="back_page" value="check">
 
-<div class="header"><?php echo sprintf (_("Gallery Setup: Step %d"),2); ?></div>
+<div class="header"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),2); ?></div>
 
 <div class="sitedesc">
 <?php 
-	echo _("In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much.");
+	echo _("In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
 ?>
 </div>
 

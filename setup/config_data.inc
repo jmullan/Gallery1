@@ -14,65 +14,63 @@ if ($locale_check == NULL) {
 }
 
 $common_messages["getting-netpbm"] = 
-			sprintf(_("Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from %sGallery on SourceForge%s.  Or, you can compile and install the entire NetPBM package from %sNetPBM on SourceForge%s."), 
+			sprintf(_("Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."), 
 				 "<a href=\"http://sourceforge.net/projects/gallery\">",
 				 "</a>",
 				 "<a href=\"http://sourceforge.net/projects/netpbm\">",
 				 "</a>")  .
 			"<br>" .
-			_("<b>Note:</b> You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick intead.");
+			_("<br><b>Note:</b> You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead.");
 			
 $common_messages["fail-netpbm-partial"] =
-			_("I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date?") . "  " .
+			_("I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date.") . "  " .
 			$common_messages["getting-netpbm"];
 
 $common_messages["getting-imagemagick"] =
-			sprintf(_("Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from %s." ), 
-				"<a href=\"http://www.imagemagick.org\">www.ImageMagick.org</a>") .
+			sprintf(_("Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from the %sImageMagick website%s." ), 
+				'<a href="http://www.imagemagick.org">', '</a>') .
 			"<br>" .
-			_("<b>Note</b>:  They also have binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
-					
+			_("<br><b>Note</b>:  The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
 
 $common_messages["open-basedir-active"] = 
-	"<br>" . 
-	sprintf(_("<b>Note:</b> Your webserver is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."),
-			"<a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\">open_basedir</a>" );
+	sprintf(_("<b>Note:</b> Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."),
+			"<b><a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\" target=\"_blank\">open_basedir</a></b>" );
 			
 $checklist = array(
 	"gallery_version" => array(
 		"optional" => 1,
-		"desc" => sprintf(_("Check to see how old version %s of %s is."),
+		"desc" => sprintf(_("Check to see how old %s version %s is."),
 			Gallery(),
 			"<i>$gallery->version</i>"),
 	     	"func" => "check_gallery_version"
 	),
 	"php" => array(
-		"desc" => _("Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP4.0.0 uses a different file upload protocol, versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can. <p>") .
-			_("If you want to run the multi-language version of gallery, you need php 4.1.  Upgrade to at least PHP 4.1 if you can."),
+		"desc" => _("Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP 4.0.0 uses a different file upload protocol, and versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can. <p>") .
+			_("Gallery can be viewed in multiple languages. To use Gallery in languages other than English, PHP 4.1 or newer is required."),
 	     	"func" => "check_php",
-		"fail-too-old" => sprintf(_("You're running version %s.  You need to upgrade to PHP %s."), phpversion(), $MIN_PHP_MAJOR_VERSION),
-		"fail-incompatible" => sprintf(_("You're running version %s which has known bugs that cause Gallery to fail."),  phpversion()),
-		"warn-too-old-ml" => sprintf(_("You're running version %s.  You need to upgrade to at least PHP 4.1.0 if you want to run the multilanguage version.") ,phpversion())
+		"fail-too-old" => sprintf(_("You're running PHP version %s.  You need to upgrade to PHP %s."), phpversion(), $MIN_PHP_MAJOR_VERSION),
+		"fail-incompatible" => sprintf(_("You're running PHP version %s which has known bugs that cause Gallery to fail."),  phpversion()),
+		"warn-too-old-ml" => sprintf(_("You're running version %s.  You need to upgrade to at least PHP 4.1 if you want to use Gallery in languages other than English.") ,phpversion())
 	),
 	"safe_mode" => array(
-		"desc" => _("Check to see if PHP is running in <b>Safe Mode</b>.  Safe mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when safe mode is enabled because it imposes too many restrictions."),
+		"desc" => _("Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."),
 		"func" => "check_safe_mode",
-		"fail-safe-mode" => sprintf(_("<b>Safe Mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."),
+		"fail-safe-mode" => sprintf(_("<b>safe_mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."),
 			'<a href="http://gallery.sourceforge.net">',
 			'</a>',
 			'<a href="http://www.php.net/manual/en/features.safe-mode.php">',
 			'</a>') .
 		"<br><br>" .
-			  sprintf(_("<b>Note</b>: In some rare circumstances, Gallery thinks that <b>safe mode</b> is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the safe_mode row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."),
+			  sprintf(_("<b>Note</b>: In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."),
 				 '<a href="phpinfo.php">',
 				 '</a>'),
 		"optional" => 1,
 		"serious" => 1
 	),
 	"htaccess" => array(
-		"desc" => _("Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (eg, big ZIP files) and you may not be able to use mod_rewrite (see below)."),
+		"desc" => _("Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files) and you may not be able to use <b>mod_rewrite</b> (see below)."),
 	     	"func" => "check_htaccess",
-		"fail-htaccess" => _("Apache is not obeying your .htaccess file.  Try entering the following into your web server's httpd.conf file:") ."<br><pre>" .
+		"fail-htaccess" => _("Apache is not obeying your <b>.htaccess</b> file.  Try entering the following into your web server's <b>httpd.conf</b> file:") ."<br><pre>" .
 			 "&lt;Directory $GALLERY_DIR" .
 			 "&gt;\n\tAllowOverride Options FileInfo\n" .
 			 "&lt;/Directory&gt;",
@@ -80,74 +78,74 @@ $checklist = array(
 	),
 	"magic-quotes" => array(
 		"optional" => 1,
-		"desc" => sprintf(_("Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behaviour if you put ' (single-quote), &quot; (double quote) or &#92; (backslash) characters in titles or captions in the gallery."),
-		 '<a href="http://www.php.net/manual/en/configuration.php#ini.magic-quotes-gpc target=_top">',
-		'</a>'),
+		"desc" => sprintf(_("Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behavior if you put ' (single-quote), &quot; (double quote) or &#92; (backslash) characters in titles or captions in Gallery."),
+		 '<b><a href="http://www.php.net/manual/en/configuration.php#ini.magic-quotes-gpc" target="_blank">',
+		'</a></b>'),
 	     	"func" => "check_magic_quotes",
-		"fail-magic-quotes" => sprintf(_("Magic quotes are on.  Your webserver owner can turn them off by putting %s in your php.ini file"),
+		"fail-magic-quotes" => sprintf(_("Magic quotes are on.  Your webserver administrator can turn them off by putting %s in your <b>php.ini</b> file."),
 			": <pre>\n\tmagic_quotes_gpc = Off</pre>")
 	),
 	"mod-rewrite" => array(
-		"desc" => _("Check to see if your webserver is compiled with <b>mod_rewrite</b>.  Mod_rewrite allows the Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."),
+		"desc" => _("Check to see if your webserver is compiled with <b>mod_rewrite</b>.  This Apache module allows Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."),
 	     	"func" => "check_mod_rewrite",
-		"fail-mod-rewrite" => _("Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on I'd suggest that you make sure that your <b>.htaccess</b> file works and then if it still doesn't work you may need to reconfigure and rebuild Apache with this flag:") . 
-			"<br><b>--enable-module=rewrite</b>",
+		"fail-mod-rewrite" => _("Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: ") . 
+			"<pre>\t--enable-module=rewrite</pre>",
 		"optional" => 1
 	),
 	"NetPBM" => array(
 		"optional" => 1,
-		"desc" => _("Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc).  You need to have NetPBM <b>or</b> ImageMagick installed."),
+		"desc" => _("Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."),
 		"func" => "check_graphics",
-		"fail-netpbm" => _("I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK --  you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices:" ) .
+		"fail-netpbm" => _("I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: " ) .
 			$common_messages["getting-netpbm"],
 
 		"fail-netpbm-partial" => 
 			$common_messages["fail-netpbm-partial"] . 
-			"<p><b> " . _("If NetPBM is installed and Gallery isn't finding it automatically that's OK -- that just means you'll have to specify the path to NetPBM by hand on the following page") ." </b>",
+			"<p><b> " . _("If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page.") ." </b>",
 
 		"open-basedir-note" => $common_messages["open-basedir-active"]
 	),
 	"ImageMagick" => array(
 		"optional" => 1,
-		"desc" => _("Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc).  You need to have ImageMagick <b>or</b> NetPBM installed."),
+		"desc" => _("Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."),
 		"func" => "check_graphics_im",
-		"fail-imagemagick" => _("I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  ") .
+		"fail-imagemagick" => _("I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  ") .
 			$common_messages["getting-imagemagick"],
 		"open-basedir-note" => $common_messages["open-basedir-active"]
 	),
 	"exif" => array(
 		"optional" => 1,
-		"desc" => _("Check to see if jhead is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."),
+		"desc" => _("Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."),
 		"func" => "check_exif",
-		"fail-exif" => sprintf(_("I can't find jhead.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jhead by hand on the following page.  If it's not installed, you can install it yourself.  jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at %sthe jhead homepage%s."),
+		"fail-exif" => sprintf(_("I can't find <b>jhead</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."),
 			'<a href="http://www.sentex.net/~mwandel/jhead/index.html">',
 			'</a>'),
 		"open-basedir-note" => $common_messages["open-basedir-active"]
 	),
 	"jpegtran" => array (
 		"optional" => 1,
-		"desc" => _("Check to see if jpegtran is installed so that Gallery can perform lossless rotations (only works on JPEG images)"),
+		"desc" => _("Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."),
 		"func" => "check_jpegtran",
-		"fail-jpegtran" => sprintf(_("I can't find jpegtran.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jpegtran by hand on the following page.  If it's not installed, you can install it yourself.  jpegtran is a freely distributable tool distributed by the Independent JPEG Group as part of libjpeg.  Source may be found at %sthe IJG homepage%s.  Binaries may be found at %sthe JPEG club website%s or in the libjpeg package of Linux distributions."),
+		"fail-jpegtran" => sprintf(_("I can't find <b>jpegtran</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."),
 			'<a href="http://www.ijg.org">', '</a>',
 			'<a href="http://jpegclub.org/">', '</a>'), 
 		"open-basedir-note" => $common_messages["open-basedir-active"]
 	),	
 	"gettext" => array (
 		"optional" => 1,
-		"desc" => _("Check to see if PHP is compiled with gettext for fast translations."),
+		"desc" => _("Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."),
 		"func" => "check_gettext",
-		"fail-gettext" => sprintf(_("Your PHP does not have gettext support.  To include gettext support, you need to recompile PHP.  For more information see %s.  However, multilanguage support is still available in Gallery without gettext, but the pages may take slightly longer to load."),
-			'<a href="http://www.php.net/manual/en/ref.gettext.php">http://www.php.net/manual/en/ref.gettext.php</a>')
+		"fail-gettext" => sprintf(_("Your PHP does not have <b>GNU gettext</b> support installed.  To include it, you'll need to recompile PHP (see the %sPHP docs%s for more information). Multi-language support is still available in Gallery without <b>gettext</b>, but the pages may take slightly longer to load."),
+			'<a href="http://www.php.net/manual/en/ref.gettext.php">', '</a>')
 	),
 	"gallery-locale" => array (
 		"optional" => 1,
-		"desc" => _("Check to see what languages are available"),
+		"desc" => _("Check to see what languages are available."),
 		"func" => "check_gallery_languages"
 	),
 	"missing-locales" => array (
 		"optional" => 1,
-		"desc" => _("Testing to see if which locales are absent"),
+		"desc" => _("Testing to see which locales (if any) are absent."),
 		"func" => "check_absent_locales",
 		"serious" => ( $elawisyl == "no" ) ? 1 : 0 ,
 	)
@@ -163,7 +161,7 @@ $constants =  array_merge(
   array(
 	"galleryTitle" => array(
 		"prompt" => _("Gallery Title"),
-		"desc" => _("The name of your gallery.  Eg. <i>My Cool Photos</i>"),
+		"desc" => _("The name of your gallery.  E.g. <i>My Cool Photos</i>"),
 		"value" => _("Gallery"),
 		"type" => "text",
 		"attrs" => array("size" => 50)
@@ -176,7 +174,7 @@ $constants =  array_merge(
 	),
 	"albumDir" => array(
 		"prompt" => _("Album directory"),
-		"desc" => sprintf(_("The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty -- Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s.)"),
+		"desc" => sprintf(_("The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."),
 			"<b>". $webserver_user . "</b>"),
 		"value" => getenv("DOCUMENT_ROOT") . "/albums",
 		"require-write-dir" => 1,
@@ -187,7 +185,7 @@ $constants =  array_merge(
 	"tmpDir" => array(
 		"prompt" => _("Temporary directory"),
 		"desc" => '(<font color=red>' . _('REQUIRED') . '</font>) '.
-			  sprintf(_("The filesystem path to a temporary directory.  Eg. %s or %s.  Note that if you have open_basedir configured on your system, then this temporary directory must be inside the open_basedir path!  In that case you may need to create the tmp directory yourself and make sure that it's writable by the webserver process."),
+			  sprintf(_("The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."),
 		'<i>/tmp</i>','<i>c:\\windows\\temp</i>'),
 		"value" => getenv("TMP"),
 		"filename" => 1,
@@ -197,7 +195,7 @@ $constants =  array_merge(
 	),
 	"photoAlbumURL" => array(
 		"prompt" => "Gallery URL",
-		"desc" => sprintf(_("The full URL to the Gallery web application.  Eg. %s."),
+		"desc" => sprintf(_("The full URL to the Gallery web application.  E.g. %s"),
 			'<i>http://www.foo.com/gallery</i>'),
 		"value" => "http://" . getenv("SERVER_NAME") . $GALLERY_URL,
 		"no-trailing-slash" => 1,
@@ -207,7 +205,7 @@ $constants =  array_merge(
 	),
 	"albumDirURL" => array(
 		"prompt" => _("Albums") ." URL",
-		"desc" => sprintf(_("The full URL to your album directory (specified above) on your web server.  Eg. %s."), 
+		"desc" => sprintf(_("The full URL to your album directory (specified above) on your web server.  E.g. %s"), 
 			'<i>http://www.foo.com/albums</i>'),
 		"value" => "http://" . getenv("SERVER_NAME") . "/albums",
 		"no-trailing-slash" => 1,
@@ -217,7 +215,7 @@ $constants =  array_merge(
 	),
 	"movieThumbnail" => array(
 		"prompt" => _("Thumbnail image"),
-		"desc" => sprintf(_("The filesystem path to the thumbnail image to show for movies.  Eg. %s"), "/home/foo/thumbnail.jpg"),
+		"desc" => sprintf(_('The filesystem path to the thumbnail image to show for movies. E.g. %s'), '<i>/home/foo/thumbnail.jpg</i>'),
 		"value" => $GALLERY_DIR . "/images/movie.thumb.jpg",
 		"type" => "text",
 		"attrs" => array("size" => 50)
@@ -238,7 +236,7 @@ $constants =  array_merge(
 		"title" => _("Toolkits / image processing")
 	),
 	"graphics" => array(
-		"prompt" => _("Graphics suite to use?"),
+		"prompt" => _("Graphics suite to use"),
 		"desc" => _("This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."),
 		"choices" => array("NetPBM" => "NetPBM", "ImageMagick" => "ImageMagick"),
 		"value" => default_graphics()
@@ -246,7 +244,7 @@ $constants =  array_merge(
 	"pnmDir" => array(
 		"optional" => 1,
 		"prompt" => _("Path to NetPBM"),
-		"desc" => sprintf(_("The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  Eg. %s or %s or %s"),
+		"desc" => sprintf(_("The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"),
 			'<i>/usr/local/netpbm</i>',
 			'<i>/usr/local/bin</i>', 
 			'<i>c:\\apps\\netpbm</i>'),
@@ -283,18 +281,18 @@ $constants =  array_merge(
 	),
 	"autorotate" => array(
                 "prompt" => _("Auto-rotate images"),
-		"desc" => _("Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.  Requires Jhead EXIF parser v.1.9 or greater (see above)."),
+		"desc" => _("Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.  Requires Jhead EXIF parser v.1.9 or greater (see below)."),
                 "choices" => array("yes" => _("yes"), "no" => _("no")),
                 "value" => "yes"
         ),
 
 	"jpegImageQuality" => array(
 		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("JPEG Quality"),
-		"desc" => _("The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."),
+		"desc" => _("The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to \"100\" is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."),
 		"choices" => array(50 => 50, 55 => 55, 60 => 60, 65 => 65,
 				   70 => 70, 75 => 75, 80 => 80, 85 => 85,
 				   90 => 90, 95 => 95, 100 => 100),
-		"value" => 95
+		"value" => 90
 	),
 	"separator3" => array (
 		"type" => "separator",
@@ -308,14 +306,14 @@ $constants =  array_merge(
 	),
 	"highlight_size" => array(
 		"prompt" => _("Highlight size"),
-		"desc" => _("The target size (in pixels) of thumbnails shown in the gallery page (highlight images)"),
+		"desc" => _("The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."),
  		"value" => 200,
 		"type" => "text",
 		"attrs" => array("size" => 5)
 	),
 	"showOwners" => array(
 		"prompt" => _("Show Owner"),
-		"desc" => _("Show album owner's name on the top level Gallery page?"),
+		"desc" => _("Show album owner's name next to each album?"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 	),
@@ -348,7 +346,7 @@ $constants =  array_merge(
 	),
 	"zipinfo" => array(
 		"prompt" => "Zipinfo",
-		"desc" => _("The filesystem path to the 'zipinfo' binary.  This is optional so if you don't have it, don't worry about it too much."),
+		"desc" => _("The filesystem path to the <b>zipinfo</b> binary.  This is optional so if you don't have it, don't worry about it too much."),
 		"value" => locateFile("zipinfo"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
@@ -359,7 +357,7 @@ $constants =  array_merge(
 	),
 	"unzip" => array(
 		"prompt" => "Unzip",
-		"desc" => _("The filesystem path to the 'unzip' binary.  This is optional so if you don't have it, don't worry about it too much."),
+		"desc" => _("The filesystem path to the <b>unzip</b> binary.  This is optional so if you don't have it, don't worry about it too much."),
 		"value" => locateFile("unzip"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
@@ -369,8 +367,8 @@ $constants =  array_merge(
 		"attrs" => array("size" => 50)
 	),
 	"use_exif" => array(
-		"prompt" => "EXIF",
-		"desc" => sprintf(_("The filesystem path to the 'jhead' exif parser.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."),
+		"prompt" => "Jhead EXIF Parser",
+		"desc" => sprintf(_("The filesystem path to the <b>jhead</b> EXIF parser.  This is optional so if you don't have it, don't worry about it too much.  E.g. %s or %s"),
 		'<i>/usr/local/bin/jhead</i>', '<i>c:\\bin\\jhead.exe</i>'),
 		"value" => locateFile("jhead"),
 		"must-be-file" => 1,
@@ -388,7 +386,7 @@ $constants =  array_merge(
 	),
 	"use_jpegtran" => array (
 		"prompt" => "Jpegtran",
-		"desc" => sprintf(_("The filesystem path to the 'jpegtran' utility.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."), 
+		"desc" => sprintf(_("The filesystem path to the <b>jpegtran</b> utility.  This is optional so if you don't have it, don't worry about it too much.  E.g. %s or %s"), 
 			'<i>/usr/local/bin/jpegtran</i>', 
 			'<i>c:\\bin\\jpegtran.exe</i>'),
 		"value" => locateFile("jpegtran"),
@@ -406,7 +404,7 @@ $constants =  array_merge(
 	"default_language" => array(
 		"prompt" => _("Default language"), 
 		"optional" => 1, 
-		"desc" => sprintf(_("This is the language you will see as %s, and what users will see if no other preference is set."), 'admin'),
+		"desc" => sprintf(_("This is the language you will see as %s, and what users will see if no other preference is set."), '<b>admin</b>'),
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"choices" => gallery_languages(),
 		"value" => !empty($gallery->language) ? $gallery->language : "en_US",
@@ -414,7 +412,7 @@ $constants =  array_merge(
 	),
 	"ML_mode" => array(
 		"prompt" => _("Multi language mode"), 
-		"desc" => _("Gallery has three multi language modes.  These affect the language that a user will see when visiting the site"),
+		"desc" => _("Gallery has three multi language modes.  These affect the language that a user will see when visiting the site."),
 		"type" => ( (sizeof(gallery_languages()) > 1) && ($elawisyl == 'yes') ) ? "choices" : "hidden",
 		"choices" => array(
 				1 => "1: " . _("Gallery is only displayed in one language"), 
@@ -426,7 +424,7 @@ $constants =  array_merge(
 		"prompt" => _("Available languages"), 
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
-		"desc" => _("These languages will be available as user choices in a pulldown menu or flags, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3."), 
+		"desc" => _("These languages will be available as user choices in a pulldown menu or flags, if you have chosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."), 
 		"multiple_choices" => gallery_languages(),
 		"value" => array_keys(gallery_languages()),
 		"enabled" => $elawisyl
@@ -441,9 +439,9 @@ $constants =  array_merge(
 	),
 	"dateString" => array(
 		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("Format for date strings."),
-		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
+		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."),
 			_("date without time"), Gallery(), "<b>%x</b>",
-			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '">'._("http://www.php.net/manual/en/function.strftime.php").'</a>') .
+			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '" target="_blank">', '</a>') .
 			newIn("1.4.1") . "<br>" .
 			sprintf(_("For example, %s will display date like this: %s."), "<b>%b %d, %Y</b>", "<b>" . strftime("%b %d, %Y") . "</b>"), 
 		"value" => "%x",
@@ -452,9 +450,9 @@ $constants =  array_merge(
 	),
 	"dateTimeString" => array(
 		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("Format for date/time strings."),
-		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
+		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."),
 			_("date with time"), Gallery(), "<b>%c</b>",
-			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '">'._("http://www.php.net/manual/en/function.strftime.php").'</a>') .
+			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '" target="_blank">', '</a>') .
 			newIn("1.4.1") . "<br>" .
 			sprintf(_("For example, %s will display date and time like this: %s."), "<b>%H:%M, %b %d, %Y</b>", "<b>" . strftime("%H:%M, %b %d, %Y") . "</b>"), 
 		"value" => "%c",
@@ -485,7 +483,7 @@ $constants = array_merge($constants,
 	),
 	"adminEmail" => array(
 		"prompt" => _("Admin email address"),
-		"desc" => _("Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know who to reach in case of problems. You may specify more than one address by seperating them with commas.") .
+		"desc" => _("Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know whom to reach in case of problems. You may specify more than one address by separating them with commas.") .
 		newIn("1.4.1") . "<br>",
 		"type" => "text",
 		"value" => "",
@@ -494,7 +492,7 @@ $constants = array_merge($constants,
 	),
 	"senderEmail" => array(
 		"prompt" => _("Sender email address"),
-		"desc" => _("Set this value to a valid working email address.  Emails that are automatically sent by gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients.") .
+		"desc" => _("Set this value to a valid working email address.  Emails that are automatically sent by Gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients.") .
 		newIn("1.4.1") . "<br>",
 		"type" => "text",
 		"value" => "",
@@ -529,7 +527,7 @@ $constants = array_merge($constants,
 	),
 	"selfRegCreate" => array(
 		"prompt" => _("Self registered users can create albums."),
-		"desc" => _("Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before then can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled.") .
+		"desc" => _("Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled.") .
 		newIn("1.4.1") . "<br>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"),
@@ -542,7 +540,7 @@ $constants = array_merge($constants,
 	),
 	"email_notification" => array(
 		"prompt" => _("Admin notification of email activity"),
-		"desc" => _("You can keep a record of every email that is sent by gallery.") .
+		"desc" => _("You can keep a record of every email that is sent by Gallery.") .
 		newIn("1.4.1") . "<br>",
 		"multiple_choices" => array("email" => _("Send summary email"), 
 			"logfile" => _("Log to a file"),
@@ -636,13 +634,13 @@ $constants = array_merge($constants,
 		"value" => "no",
 	),
 	"use_flock" => array(
-		"prompt" => sprintf(_("Use %s?"), " flock()"),
-		"desc" => _("Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>"),
+		"prompt" => sprintf(_("Use %s"), " flock()"),
+		"desc" => _("Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes"),
 	"expectedExecStatus" => array(
 		"prompt" => _("Status code"),
-		"desc" => _("The status code Gallery expects to see after a successful exec() call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."),
+		"desc" => _("The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."),
 		"value" => detect_exec_status(),
 		"type" => "text",
 		"attrs" => array("size" => 5),
@@ -674,7 +672,7 @@ $defaults = array(
 	"bordercolor" => array(
 		"prompt" => _("Border color"),
  		"desc" => sprintf(_("Default color of image borders. You can learn about %scolors%s here."),    
-			   '<a href="http://www.permadi.com/tutorial/websafecolor/">',
+			   '<a href="http://www.permadi.com/tutorial/websafecolor/" target="_blank">',
 			   '</a>'),
 			   // '  <a href="http://gotomy.com/color.html">' . 
 
@@ -685,13 +683,13 @@ $defaults = array(
 	),
 	"border" => array(
 		"prompt" => _("Border width"),
-		"desc" => _("Default width of image borders"),
+		"desc" => _("Default width of image borders."),
 		"value" => 1,
 		"choices" => array("off" => _("off"), 1 => 1, 2 => 2, 3 => 3)
 	),
 	"font" => array(
 		"prompt" => _("Default Font"),
-		"desc" => _("Default font face.  Eg. <i>arial</i> or <i>trebuchet</i>"),
+		"desc" => _("Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"),
 		"value" => "arial",
 		"attrs" => array("size" => 10),
 		"type" => "text"
@@ -702,13 +700,13 @@ $defaults = array(
         ),
 	"cols" => array(
 		"prompt" => _("Default Columns"),
-		"desc" => _("The default number of columns in an album"),
+		"desc" => _("The default number of columns in an album."),
 		"value" => 3,
 		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9),
 	),
 	"rows" => array(
 		"prompt" => _("Default Rows"),
-		"desc" => _("The default number of rows in an album"),
+		"desc" => _("The default number of rows in an album."),
 		"value" => 3,
 		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9),
 	),
@@ -725,7 +723,7 @@ $defaults = array(
 	),
 	"resize_size" => array(
 		"prompt" => _("Resized image size"),
-		"desc" => _("When large images are added to an album, an intermediary version will automatically be generated at this size"),
+		"desc" => _("When large images are added to an album, an intermediary version will automatically be generated at this size."),
 		"value" => 640,
 		"choices" => array("off" => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024)
 	),
@@ -758,13 +756,13 @@ $defaults = array(
 	),
 	"add_to_beginning" => array(
 		"prompt" => _("Add to beginning"),
-		"desc" => _("New images added to beginning rather than end of albums"),
+		"desc" => _("New images added to beginning rather than end of albums."),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
 	"fit_to_window" => array(
 		"prompt" => _("Fit-to-window"),
-		"desc" => _("When viewing photos which don't have an intermediary version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke"),
+		"desc" => _("When viewing photos which don't have an intermediary version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."),
 		"value" => "no",
 		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),
@@ -780,7 +778,7 @@ $defaults = array(
         ),
 	"print_photos" => array(
 		"prompt" => _("Printing Services"),
-		"desc" => _("Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market.  PhotoAccess and Shutterfly are based in the United States.  PhotoAccess, Fotokasten and Shutterfly will all give a small donation to the Gallery project for every print you make.  If you choose Shutterfly, Gallery will charge an extra 2 cents (US) for every photo printed (a 4x6 print normally costs 49 cents US) and 1.8 cents of that will get donated back to the Gallery project.  PhotoAccess and Fotokasten do not charge extra for the Gallery donation.  Using these services is a great way for you to help support this free software.  "),
+		"desc" => _("Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market.  EZ Prints, PhotoAccess and Shutterfly are based in the United States.  All services will give a small donation to the Gallery project for every print you make.  If you choose Shutterfly, Gallery will charge an extra 2 cents (US) for every photo printed (a 4x6 print normally costs 39 cents US) and 1.8 cents of that will get donated back to the Gallery project.  EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation.  Using these services is a great way for you to help support this free software.  "),
 		'type' => 'print_services',
 		'services' => array(
 			'ezprints'    => array(
@@ -816,7 +814,7 @@ $defaults = array(
 	),
 	"returnto" => array(
 		"prompt" => _("Gallery Link"),
-		"desc" => _("Display the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery"),
+		"desc" => _("Display the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."),
 		"value" => "yes",
 		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),
@@ -839,7 +837,7 @@ $defaults = array(
 	"extra_fields" => array(
 		"prompt" => _("Custom Fields"),
 		"optional" => 1,
-		"desc" => _("Custom fields that are available to describe each image.  They should be separated by commas.  Eg. <i>Description, Location, Film Type</i>"),
+		"desc" => _("Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"),
 		"attrs" => array("size" => 80),
 		"type" => "text",
 		"value" => "Description"
@@ -881,7 +879,7 @@ $defaults = array(
 			"<p>" .
 			_("In each album, voting can be switched off, restricted to logged in users or open to all visitors.") 
 			. "<p>" .
-			sprintf(_("There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc; and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."),
+			sprintf(_("There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."),
 				"<b>"._("Rank")."</b>",
 				"<b>"._("Critique")."</b>",
 				_("Critique"),
@@ -893,9 +891,9 @@ $defaults = array(
 		"<dl><dt>"._("Nobody")."</dt><dd>" . 
 		_("Voting is off.") .
 		"</dd><dt>"._("Everybody")."</dt><dd>" . 
-		_("Anyone can vote.  Votes are recorded against session id.") .
+		_("Anyone can vote.  Votes are recorded against session ID.") .
 		"</dd><dt>"._("Logged in")."</dt><dd>" . 
-		_("Registered users can vote.  Votes are recorded against UserID, and voters can come back and change their choices.") .
+		_("Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices.") .
 		"</dl>" .
 			newIn("1.4.1"),
 		"choices" => array("Nobody" => _("Nobody"), 
@@ -906,7 +904,7 @@ $defaults = array(
 		"prompt" => _("Poll type"),
 	       	"desc" => _("Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation.") . 
 		"<dl><dt>"._("Rank")."</dt><dd>" . 
-		_("Users have a set of votes than can allocate to the images.") . 
+		_("Users have a set of votes which they can allocate to the images.") . 
 		"<dd><dt>"._("Critique")."</dt><dd>" . 
 		_("Enables users to give all images points without restriction.") .
 		"</dl>" .
@@ -917,7 +915,7 @@ $defaults = array(
 			),
 	"poll_scale" => array(
 		"prompt" => _("Number of choices"),
-		"desc" => _("Number of choices that will be available to voters as radio buttons or in a pulldown menu") .
+		"desc" => _("Number of choices that will be available to voters as radio buttons or in a pulldown menu.") .
 			newIn("1.4.1"),
 		"value" => 3,
 		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)

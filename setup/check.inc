@@ -3,7 +3,7 @@
 <input type="hidden" name="this_page" value="check">
 <input type="hidden" name="next_page" value="constants">
 
-<div class="header"><?php echo sprintf (_("Gallery Setup: Step %d"),1); ?></div>
+<div class="header"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),1); ?></div>
 
 <div class="sitedesc">
 <?php 
@@ -41,7 +41,7 @@ foreach ($checklist as $check) {
 		<tr>
 			<td class="desc" width="50%" valign="top"><?php echo $check["desc"] ?></td>
 			<td width="5%">&nbsp;</td>
-			<td class="desc">
+			<td class="desc" valign="top">
 <?php
 	$func = $check["func"];
 	list($success, $fail, $warn) = $func();
@@ -55,9 +55,9 @@ foreach ($checklist as $check) {
 	
 	$openBasedir = ini_get('open_basedir');
 	foreach ($fail as $key => $val) {
-		if ($check["optional"]) {
+		if (isset($check['optional']) && $check['optional'] == 1) {
 			if (isset($check["serious"]) && $check["serious"] == 1) {
-				$serious_warning++;
+				$serious_warning = true;
 				$text = _("Serious Warning");
 				$class="error";
 			} else {
