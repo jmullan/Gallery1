@@ -22,7 +22,7 @@
 ?>
 <?php
 // Hack prevention.
-$sensitiveList = array("gallery", "GALLERY_BASEDIR");
+$sensitiveList = array("gallery", "GALLERY_BASEDIR", "GALLERY_EMBEDDED_INSIDE", "GALLERY_EMBEDDED_INSIDE_TYPE");
 foreach ($sensitiveList as $sensitive) {
 	if (!empty($HTTP_GET_VARS[$sensitive]) ||
 			!empty($HTTP_POST_VARS[$sensitive]) ||
