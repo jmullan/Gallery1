@@ -840,6 +840,13 @@ $constants = array_merge($constants,
 			"must-be-number" => 1,
 			"value"		=> 300
 	),
+	"comments_overview_for_all" => array(
+			"prompt"	=> _("Can everybody see a Comments overview"),
+			"desc"		=> _("Do you want to allow everybody to see a complete overview of all Comments of an Album. Set this to &quot;no&quot; if only admin and owners can use this feature."),
+			"type" 		=> "text",
+			"choices" => array("yes" => _("yes"), "no" => _("no")),
+		       	"value" => "no",
+	),
 	"group_comments_end" => array (
 		"type"          => "group_end",
         ),

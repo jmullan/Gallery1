@@ -10,9 +10,9 @@ if ($breadcrumb["bordercolor"]) {
 }
 $pixelImage = '<img src="' . getImagePath('pixel_trans.gif') .'" width="1" height="1" alt="transpixel">';
 
+global $adminbox, $adminText;
 
-
-if (!isset($navigator)) {
+if (!isset($navigator) && !isset($adminbox) && !isset($adminText)) {
 	$navigator["fullWidth"] = 100;
 	$navigator["widthUnits"] = "%";
 	$style="border-color: $borderIn; border-width:1px; border-style: solid;";
