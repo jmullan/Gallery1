@@ -24,6 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($action, $guid) = getRequestVar(array('action', 'guid'));
+
 // Hack check
 if (!$gallery->user->canDeleteAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");

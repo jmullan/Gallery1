@@ -24,6 +24,9 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($hash, $uname, $save, $new_password1, $new_password2) = getRequestVar(array('hash', 'uname', 'save', 'new_password1', 'new_password2'));
+list($fullname, $email, $defaultLanguage) = getRequestVar(array('fullname', 'email', 'defaultLanguage'));
+
 $error_string="";
 if (!isset($hash)) {
        	$error_string .= _("missing hash parameter") . "<br>";
