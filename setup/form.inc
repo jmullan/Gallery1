@@ -27,8 +27,8 @@ foreach ($constants as $key => $val) {
 }
 
 foreach ($defaults as $key => $val) {
-	if ($app->defaults[$key]) {
-		$val["value"] = $app->defaults[$key];
+	if ($app->default[$key]) {
+		$val["value"] = $app->default[$key];
 	}
 
 	if (!$go_defaults && isset($$key)) {
