@@ -1,4 +1,3 @@
-<form name=usercreate_form method=GET>
 <p>
 <table>
 
