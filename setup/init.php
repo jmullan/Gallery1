@@ -13,8 +13,6 @@ extract($HTTP_GET_VARS);
 extract($HTTP_POST_VARS);
 extract($HTTP_COOKIE_VARS);
 
-require ($GALLERY_BASEDIR . 'util.php');
-
 if (getOS() == OS_WINDOWS) {
 	include("../platform/fs_win32.php");
 	if (fs_file_exists("SECURE")) {

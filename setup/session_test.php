@@ -17,7 +17,7 @@ foreach($HTTP_SESSION_VARS as $key => $value) {
 session_register("count");
 
 
-if ($destroy) {
+if (isset($destroy)) {
     session_destroy();
     header("Location: session_test.php");
     exit;

@@ -110,7 +110,6 @@ if (!isset($xargs_path)) { $xargs_path=( ($path = findInPath ("xargs")) ? $path 
 if (!isset($gzip_path)) { $gzip_path=( ($path = findInPath ("gzip")) ? $path : "/usr/bin/gzip");}
 if (!isset($zip_path)) { $zip_path="C:\bin\zip.exe";}
 ?>
-<center>
 <?php echo _("Choose archiving option and which files you wish to archive.") ?>
 <?php echo makeFormIntro("backup_albums.php", array(
 		"name" => "theform", 
@@ -154,7 +153,7 @@ if (!isset($zip_path)) { $zip_path="C:\bin\zip.exe";}
 	<td><input name="find_path" value="<?php echo $find_path ?>" size="30"></td>
 </tr>
 <tr> 
-	td><?php echo _("xargs path") ?></td>
+	<td><?php echo _("xargs path") ?></td>
 	<td><input name="xargs_path" value="<?php echo $xargs_path ?>" size="30"></td>
 </tr>
 </table>
@@ -170,7 +169,6 @@ if (!isset($zip_path)) { $zip_path="C:\bin\zip.exe";}
 <p>
 <hr>
 <span class=title><?php echo _("Notes") ?></span>
-</center>
 <ol>
 <li> <?php echo _("On Linux/Unix systems, tar/gzip is recommended.") ?>
 <li> <?php echo _("On Windows system, choose zip backup, and ensure the path for the zip.exe is correct.") ?>

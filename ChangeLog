@@ -1,3 +1,13 @@
+2003-08-29  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b38
+
+	* Replaced preg_grep() functions in favour of ereg() in
+	  setup/functions.inc to support PHP pre-4.2.0.
+
+	* Re-ordered include of util.php in setup. Previous change had broken
+	  check_netpbm.php and check_imagemagick.php.
+
+	* Fixed check_php4_1() to work with PHP versions 5 and newer.
+	
 2003-08-29  Jens <jens@peino.de> 1.4.1-cvs-b37
 
 	* Fixed bug which caused Gallery to use locale aliases which are
@@ -7,8 +17,9 @@
 
 2003-08-28  Jens <jens@peino.de> 1.4.1-cvs-b36
 
-	* Fixed missing global $gallery in function getDatePosted() in classes/Comment.php
-	  This fixes a bug which caused gallery not to show Datetime of Comment
+	* Fixed missing global $gallery in function getDatePosted() in
+	  classes/Comment.php This fixes a bug which caused Gallery not to show
+	  Datetime of Comment
 
 2003-08-28  Jens <jens@peino.de> 1.4.1-cvs-b35
 
@@ -25,7 +36,6 @@
 	* "Valid HTML" Image/Link only visible for admins
 
 	* Added a lot of quotes
-
 
 2003-08-28  Jens <jens@peino.de> & Joan <gallery@joanhenge.plus.com> 1.4.1-cvs-b34
 

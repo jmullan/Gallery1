@@ -4,7 +4,7 @@ if (!isset($GALLERY_BASEDIR)) {
 	$GALLERY_BASEDIR = '../';
 }
 
-
+	require ($GALLERY_BASEDIR . 'util.php');
 	require ('./init.php');
 	require ('./functions.inc');
 	require ($GALLERY_BASEDIR . 'Version.php');
