@@ -14,6 +14,7 @@
 <?php
 	$index = 0;
 	$nr=1;
+	$old_percentDone=0;
 	foreach ($reportData as $locale => $localeData) {
 		if (!($index % 5)) {
 			include(dirname(__FILE__) . '/row_header.inc');

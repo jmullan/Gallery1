@@ -66,6 +66,7 @@ function parsePoFiles($poFiles) {
     $poData = array();
     $seenPlugins = array();
     $maxMessageCount = array();
+    $total_percentDone=array();
     foreach ($poFiles as $poFile) {
 	preg_match("/^(.*?)-gallery_(.*?).po$/", basename($poFile), $matches);
 	list ($plugin, $locale) = array($matches[2], $matches[1]);
