@@ -3,6 +3,15 @@
 $GALLERY_BASEDIR="../";
 require($GALLERY_BASEDIR . "util.php");
 require("./init.php");
+
+if (getOS() == OS_WINDOWS) {
+    include($GALLERY_BASEDIR . "platform/fs_win32.php");
+    if (fs_file_exists("SECURE")) {
+       print "You cannot access this file while gallery is in secure mode.";
+       exit;
+    }
+}
+
 initLanguage();
 extract($HTTP_POST_VARS);
 require("functions.inc");

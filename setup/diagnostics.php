@@ -7,6 +7,15 @@ require('./init.php');
 require('./functions.inc');
 @include($GALLERY_BASEDIR . "config.php"); 
 $GALLERY_OK = false;
+
+if (getOS() == OS_WINDOWS) {
+    include($GALLERY_BASEDIR . "platform/fs_win32.php");
+    if (fs_file_exists("SECURE")) {
+       print "You cannot access this file while gallery is in secure mode.";
+       exit;
+    }
+}
+
 initLanguage();
 ?>
 <html>

@@ -1,10 +1,19 @@
 <?php /* $Id$ */ ?>
 <?php
-	$GALLERY_BASEDIR="../";
-	require($GALLERY_BASEDIR . 'util.php');
-	require($GALLERY_BASEDIR . 'setup/init.php');
-	require($GALLERY_BASEDIR . 'setup/functions.inc');
-	initLanguage();
+$GALLERY_BASEDIR="../";
+require($GALLERY_BASEDIR . 'util.php');
+require($GALLERY_BASEDIR . 'setup/init.php');
+require($GALLERY_BASEDIR . 'setup/functions.inc');
+
+if (getOS() == OS_WINDOWS) {
+    include($GALLERY_BASEDIR . "platform/fs_win32.php");
+    if (fs_file_exists("SECURE")) {
+       print "You cannot access this file while gallery is in secure mode.";
+       exit;
+    }
+}
+
+initLanguage();
 
 // Pull the $destroy variable into the global namespace
 extract($HTTP_GET_VARS);
