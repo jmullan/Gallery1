@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 class LoggedinUser extends Abstract_User {
 	function LoggedinUser() {
 		$this->username = "LOGGEDIN";

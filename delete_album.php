@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canDeleteAlbum($gallery->album)) {
 	exit;
@@ -46,7 +46,7 @@ if ($gallery->album) {
 <html>
 <head>
   <title>Delete Album</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
@@ -55,14 +55,14 @@ if ($gallery->album) {
 <br><br>
 Do you really want to delete this album?
 <br>
-<b><?= $gallery->album->fields["title"] ?></b>
+<b><?php echo $gallery->album->fields["title"] ?></b>
 <p>
-<?= makeFormIntro("delete_album.php"); ?>
+<?php echo makeFormIntro("delete_album.php"); ?>
 <input type=submit name=confirm value="Delete">
 <input type=submit value="Cancel" onclick='parent.close()'>
 </form>
 <p>
-<?
+<?php
 	if ($gallery->album->numPhotos(1)) {
 		echo $gallery->album->getThumbnailTag($gallery->album->getHighlight());
 	}

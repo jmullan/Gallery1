@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
@@ -43,7 +43,7 @@ if (!$boxes) {
 <html>
 <head>
   <title>Add Photos</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 
 <script language="Javascript">
 <!--
@@ -61,21 +61,21 @@ if (!$boxes) {
 <span class="popup">
 Click the <b>Browse</b> button to locate a photo to upload.
 <span class="admin">
-<? if ($gallery->app->feature["zip"]) { ?>
+<?php if ($gallery->app->feature["zip"]) { ?>
 <br>
 &nbsp;&nbsp;Tip:  Upload a ZIP file full of photos and movies!
-<? } ?>
+<?php } ?>
 <br>
-&nbsp;&nbsp;(Supported file types: <?= join(", ", acceptableFormatList()) ?>)
+&nbsp;&nbsp;(Supported file types: <?php echo join(", ", acceptableFormatList()) ?>)
 </span>
 
 <br><br>
-<?= makeFormIntro("add_photos.php",
+<?php echo makeFormIntro("add_photos.php",
 			array("name" => "count_form",
 				"method" => "POST")); ?>
 1. Select the number of files you want to upload:
 <select name="boxes" onChange='reloadPage()'>
-<? for ($i = 1; $i <= 10;  $i++) {
+<?php for ($i = 1; $i <= 10;  $i++) {
 	echo "<option ";
         if ($i == $boxes) {
 		echo "selected ";
@@ -87,15 +87,15 @@ Click the <b>Browse</b> button to locate a photo to upload.
 <br>
 </form>
 
-<?= makeFormIntro("save_photos.php",
+<?php echo makeFormIntro("save_photos.php",
 			array("name" => "upload_form",
 				"enctype" => "multipart/form-data",
 				"method" => "POST")); ?>
 2. Use the Browse button to find the photos on your computer
 <input type="hidden" name="max_file_size" value="10000000">
-<? for ($i = 0; $i < $boxes;  $i++) { ?>
+<?php for ($i = 0; $i < $boxes;  $i++) { ?>
 <br> <input name="userfile[]" type="file" size=40>
-<? } ?>
+<?php } ?>
 <br>
 <input type=checkbox name=setCaption checked value="1">Set photo captions with original filenames.
 <br>
@@ -105,7 +105,7 @@ Click the <b>Browse</b> button to locate a photo to upload.
 </center>
 </form>
 
-<?= makeFormIntro("save_photos.php",
+<?php echo makeFormIntro("save_photos.php",
 			array("name" => "uploadurl_form",
 				"method" => "POST")); ?>
 Or, upload any images found at this location.  The location
@@ -125,7 +125,7 @@ can either be a URL or a directory on the server.
 <input type=submit value="Cancel" onclick='parent.close()'>
 </center>
 </form>
-Download <b><a href="#" onClick="opener.location = 'http://gallery.sourceforge.net/gallery_remote.php?protocol_version=<?= $gallery->remote_protocol_version ?>'; parent.close();">Gallery Remote</a></b>. Upload photos using drag-and-drop from your desktop.
+Download <b><a href="#" onClick="opener.location = 'http://gallery.sourceforge.net/gallery_remote.php?protocol_version=<?php echo $gallery->remote_protocol_version ?>'; parent.close();">Gallery Remote</a></b>. Upload photos using drag-and-drop from your desktop.
 </span>
 
 </body>

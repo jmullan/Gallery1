@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 $sensitiveList = array("gallery", "GALLERY_BASEDIR");
 foreach ($sensitiveList as $sensitive) {
@@ -31,7 +31,7 @@ foreach ($sensitiveList as $sensitive) {
 	}
 }
 ?>
-<?
+<?php
 /*
  * Turn down the error reporting to just critical errors for now.
  * In v1.2, we know that we'll have lots and lots of warnings if

@@ -18,7 +18,7 @@ so you probably won't need to do much.
 <input type=hidden name=next_page value="defaults">
 <input type=hidden name=back_page value="check">
 
-<?
+<?php
 $i = 0;
 foreach ($constants as $key => $val) {
 

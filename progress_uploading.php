@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 function image($name) {
 	global $GALLERY_BASEDIR;
 	return $GALLERY_BASEDIR . "images/$name";
@@ -37,7 +37,7 @@ function image($name) {
 <html>
 <head>
   <title>Uploading Photos</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 
 <body>
@@ -48,9 +48,9 @@ This page will go away automatically when the upload is complete.  Please be pat
 <p>
 <table border=0 cellpadding=0 cellspacing=0>
  <tr>
-  <td> <img src=<?=image("computer.gif")?> width=31 height=32> </td>
-  <td> <img src=<?=image("uploading.gif")?> width=160 height=11> </td>
-  <td> <img src=<?=image("computer.gif")?> width=31 height=32> </td>
+  <td> <img src=<?php echo image("computer.gif")?> width=31 height=32> </td>
+  <td> <img src=<?php echo image("uploading.gif")?> width=160 height=11> </td>
+  <td> <img src=<?php echo image("computer.gif")?> width=31 height=32> </td>
  </tr>
 </table>
 

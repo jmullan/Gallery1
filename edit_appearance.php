@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
@@ -69,14 +69,14 @@ if ($save) {
 <html>
 <head>
   <title>Album Properties</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
 <center>
 Album Properties
 
-<?= makeFormIntro("edit_appearance.php", 
+<?php echo makeFormIntro("edit_appearance.php", 
 			array("name" => "theform", 
 				"method" => "POST")); ?>
 <form name="theform" action=edit_appearance.php method=POST>
@@ -84,53 +84,53 @@ Album Properties
 <table>
 <tr>
 <td>Album Title</td>
-<td><input type=text name="title" value="<?=$gallery->album->fields["title"]?>"></td>
+<td><input type=text name="title" value="<?php echo $gallery->album->fields["title"]?>"></td>
 </tr>
 <tr>
 <td>Background Color</td>
-<td><input type=text name="bgcolor" value="<?=$gallery->album->fields["bgcolor"]?>"></td>
+<td><input type=text name="bgcolor" value="<?php echo $gallery->album->fields["bgcolor"]?>"></td>
 </tr>
 <tr>
 <td>Text Color</td>
-<td><input type=text name="textcolor" value="<?=$gallery->album->fields["textcolor"]?>"></td>
+<td><input type=text name="textcolor" value="<?php echo $gallery->album->fields["textcolor"]?>"></td>
 </tr>
 <tr>
 <td>Link Color</td>
-<td><input type=text name="linkcolor" value="<?=$gallery->album->fields["linkcolor"]?>"></td>
+<td><input type=text name="linkcolor" value="<?php echo $gallery->album->fields["linkcolor"]?>"></td>
 </tr>
 <tr>
 <td>Background Image (URL)</td>
-<td><input type=text name="background" value="<?=$gallery->album->fields["background"]?>"></td>
+<td><input type=text name="background" value="<?php echo $gallery->album->fields["background"]?>"></td>
 </tr>
 <tr>
 <td>Font</td>
-<td><input type=text name="font" value="<?=$gallery->album->fields["font"]?>"></td>
+<td><input type=text name="font" value="<?php echo $gallery->album->fields["font"]?>"></td>
 </tr>
 <tr>
 <td>Borders</td>
-<td><select name="border"><?= selectOptions($gallery->album, "border", array("off", 1, 2, 3, 4)) ?></select></td>
+<td><select name="border"><?php echo selectOptions($gallery->album, "border", array("off", 1, 2, 3, 4)) ?></select></td>
 </tr>
 <tr>
 <td>Border color</td>
-<td><input type=text name="bordercolor" value="<?=$gallery->album->fields["bordercolor"]?>"></td>
+<td><input type=text name="bordercolor" value="<?php echo $gallery->album->fields["bordercolor"]?>"></td>
 </tr>
 <tr>
 <td>Thumbnail size</td>
-<td><input type=text name="thumb_size" value="<?=$gallery->album->fields["thumb_size"]?>"></td>
+<td><input type=text name="thumb_size" value="<?php echo $gallery->album->fields["thumb_size"]?>"></td>
 </tr>
 <tr>
 <td>Auto-Resize</td>
-<td><select name="resize_size"><?= selectOptions($gallery->album, "resize_size", array("off", 400, 500, 600, 640, 700, 800, 1024)) ?></select></td>
+<td><select name="resize_size"><?php echo selectOptions($gallery->album, "resize_size", array("off", 400, 500, 600, 640, 700, 800, 1024)) ?></select></td>
 </tr>
 <tr>
 <td>Show <i>Return to</i> link</td>
-<td><select name="returnto"><?= selectOptions($gallery->album, "returnto", array("yes", "no")) ?></select></td>
+<td><select name="returnto"><?php echo selectOptions($gallery->album, "returnto", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Rows</td>
 <td>
  <select name="rows">
-  <?= selectOptions($gallery->album, "rows", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
+  <?php echo selectOptions($gallery->album, "rows", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
  </select>
 </td>
 </tr>
@@ -138,39 +138,39 @@ Album Properties
 <td>Columns</td>
 <td>
  <select name="cols">
-  <?= selectOptions($gallery->album, "cols", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
+  <?php echo selectOptions($gallery->album, "cols", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
  </select>
 </td>
 </tr>
 <tr>
 <td>Auto fit-to-window for<br>images without a resized copy</td>
-<td><select name="fit_to_window"><?= selectOptions($gallery->album, "fit_to_window", array("yes", "no")) ?></select></td>
+<td><select name="fit_to_window"><?php echo selectOptions($gallery->album, "fit_to_window", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Offer visitors ability to specify<br>preference for full-size or resized images</td>
-<td><select name="use_fullOnly"><?= selectOptions($gallery->album, "use_fullOnly", array("yes", "no")) ?></select></td>
+<td><select name="use_fullOnly"><?php echo selectOptions($gallery->album, "use_fullOnly", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Which photo printing service<br>do you want to let visitors use?</td>
-<td><select name="print_photos"><?= selectOptions($gallery->album, "print_photos", array("none", "shutterfly")) ?></select></td>
+<td><select name="print_photos"><?php echo selectOptions($gallery->album, "print_photos", array("none", "shutterfly")) ?></select></td>
 </tr>
-<?
+<?php
 if ($gallery->app->use_exif) {
 ?>
 <tr>
 <td>Display EXIF data?</td>
-<td><select name="use_exif"><?=selectOptions($gallery->album, "use_exif", array("no", "yes")) ?></select></td>
+<td><select name="use_exif"><?php echo selectOptions($gallery->album, "use_exif", array("no", "yes")) ?></select></td>
 </tr>
-<?
+<?php
 } // end if
 ?>
 <tr>
 <td>Display click counter for this album?</td>
-<td><select name="display_clicks"><?=selectOptions($gallery->album, "display_clicks", array("yes", "no")) ?></select></td>
+<td><select name="display_clicks"><?php echo selectOptions($gallery->album, "display_clicks", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Allow public commenting for photos in this album?</td>
-<td><select name="public_comments"><?=selectOptions($gallery->album, "public_comments", array("no", "yes")) ?></select></td>
+<td><select name="public_comments"><?php echo selectOptions($gallery->album, "public_comments", array("no", "yes")) ?></select></td>
 </tr>
 </table>
 

@@ -1,5 +1,5 @@
 
-<?
+<?php
 
 function evenOdd_row($fields, $evenOdd) {
 	if ($evenOdd) {

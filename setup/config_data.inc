@@ -1,4 +1,4 @@
-<?
+<?php
 
 $common_messages["getting-netpbm"] =
 			"Gallery prefers NetPBM version 9.9 and up.  " .

@@ -1,4 +1,4 @@
-<?
+<?php
 // This is the default gallery header (for the main gallery
 // page: albums.php). It's companion is gallery.footer.default. 
 //
@@ -13,7 +13,7 @@
 //
 ?>
 
-<?
+<?php
 includeHtmlWrap("wrapper.header");
 ?>
 
@@ -21,7 +21,7 @@ includeHtmlWrap("wrapper.header");
   <tr>
     <td>
       <span class="head">
-        <?= $gallery->app->galleryTitle ?>
+        <?php echo $gallery->app->galleryTitle ?>
       </span>
     </td>
   </tr>

@@ -19,7 +19,7 @@ won't need to do much.
 <input type=hidden name=next_page value="confirm">
 <input type=hidden name=back_page value="constants">
 
-<?
+<?php
 $i = 0;
 foreach ($defaults as $key => $val) {
 

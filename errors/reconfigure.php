@@ -1,4 +1,4 @@
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
                     !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -7,11 +7,11 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	            exit;
 		    }
 ?>
-<? require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
+<?php require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
 <html>
 <head>
   <title>Gallery needs Reconfiguration</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>	
 <center>
@@ -23,11 +23,11 @@ Your Gallery configuration was created using the config wizard
 from an older version of Gallery.  It is out of date.  Please
 re-run the configuration wizard!  In a shell do this:
 <p><center>
-<? configure("configure"); ?>
+<?php configure("configure"); ?>
 <p>
-Then launch the <a href="<?=$GALLERY_BASEDIR?>setup/index.php">configuration wizard</a>.
+Then launch the <a href="<?php echo $GALLERY_BASEDIR?>setup/index.php">configuration wizard</a>.
 
-<? include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
+<?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 
 </table>
 </body>

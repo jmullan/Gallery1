@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,15 +27,15 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->isAdmin() && 
     !$gallery->user->isOwnerOfAlbum($gallery->album)) {
 	exit;
 }
 ?>
-<?
+<?php
 if (isset($allUid) && strchr($submit_read, ">")) {
 	$gallery->album->setRead($allUid, 1);
 	$changed++;
@@ -133,26 +133,26 @@ correctPseudoUsers($uAdd, $ownerUid);
 <html>
 <head>
   <title>Album Permissions</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
 <center>
 <span class="popuphead">Album Permissions</span>
 <br>
-Changing permissions for <b><?=$gallery->album->fields["title"]?></b>
+Changing permissions for <b><?php echo $gallery->album->fields["title"]?></b>
 
-<?= makeFormIntro("album_permissions.php", 
+<?php echo makeFormIntro("album_permissions.php", 
 			array("name" => "albumperms_form")) ?>
 
-<? if ($gallery->user->isAdmin) { ?>
-Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
-<? } ?>
+<?php if ($gallery->user->isAdmin) { ?>
+Owner: <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
+<?php } ?>
 
 <table border=0 cellspacing=0 cellpadding=0>
  <tr>
   <td align=center>
-   <?= drawSelect("allUid", $uAll, $allUid, 28); ?>
+   <?php echo drawSelect("allUid", $uAll, $allUid, 28); ?>
   </td>
 
   <td> &nbsp; </td>
@@ -170,7 +170,7 @@ Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
       <br> <input type=submit name="submit_read" value="<--">
      </td>
      <td align=left>
-      <?= drawSelect("readUid", $uRead, $readUid, 3); ?>
+      <?php echo drawSelect("readUid", $uRead, $readUid, 3); ?>
      </td>
     </tr>
 
@@ -185,7 +185,7 @@ Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
       <br> <input type=submit name="submit_text" value="<--">
      </td>
      <td>
-      <?= drawSelect("textUid", $uText, $textUid, 3); ?>
+      <?php echo drawSelect("textUid", $uText, $textUid, 3); ?>
      </td>
     </tr>
 
@@ -200,7 +200,7 @@ Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
       <br> <input type=submit name="submit_add" value="<--">
      </td>
      <td>
-      <?= drawSelect("addUid", $uAdd, $addUid, 3); ?>
+      <?php echo drawSelect("addUid", $uAdd, $addUid, 3); ?>
      </td>
     </tr>
 
@@ -215,7 +215,7 @@ Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
       <br> <input type=submit name="submit_write" value="<--">
      </td>
      <td>
-      <?= drawSelect("writeUid", $uWrite, $writeUid, 3); ?>
+      <?php echo drawSelect("writeUid", $uWrite, $writeUid, 3); ?>
      </td>
     </tr>
 
@@ -230,7 +230,7 @@ Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
       <br> <input type=submit name="submit_delete" value="<--">
      </td>
      <td>
-      <?= drawSelect("deleteUid", $uDelete, $deleteUid, 3); ?>
+      <?php echo drawSelect("deleteUid", $uDelete, $deleteUid, 3); ?>
      </td>
     </tr>
 
@@ -245,7 +245,7 @@ Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
       <br> <input type=submit name="submit_createSub" value="<--">
      </td>
      <td>
-      <?= drawSelect("createSubUid", $uCreateSub, $createSubUid, 3); ?>
+      <?php echo drawSelect("createSubUid", $uCreateSub, $createSubUid, 3); ?>
      </td>
     </tr>
 

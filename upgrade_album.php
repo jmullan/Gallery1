@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,7 +27,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<?
+<?php
 /*
  * This page is designed to work in standalone mode AND to be included
  * from init.php, so be certain not to require init.php twice.  We
@@ -44,7 +44,7 @@ if ($UPGRADE_LOOP == 2) {
 
 if (!$gallery->version) { require($GALLERY_BASEDIR . "init.php"); }
 ?>
-<?
+<?php
 /*
  * If we're not the admin, we can only upgrade the album that we're
  * looking at.
@@ -124,7 +124,7 @@ function find_albums(&$results, $album="") {
 <html>
 <head>
   <title>Upgrade Albums</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 <center>
@@ -143,7 +143,7 @@ more efficiently in the future.
 
 <p>
 
-<?
+<?php
 if ($upgrade_albumname) {
 	$album = new Album();
 	$album->load($upgrade_albumname);
@@ -176,9 +176,9 @@ if (!$ood) {
 The following albums need to be upgraded.  You can process them
 individually by clicking the upgrade link next to the album that
 you desire, or you can just
-<a href="<?=makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1))?>">upgrade them all at once</a>.
+<a href="<?php echo makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1))?>">upgrade them all at once</a>.
 <ul>
-<?
+<?php
 	foreach ($ood as $album) {
 		print "<a href=\"";
 		print makeGalleryUrl("upgrade_album.php", 
@@ -192,6 +192,6 @@ you desire, or you can just
 }
 ?>
 </ul>
-<?
+<?php
 end_file();
 ?>

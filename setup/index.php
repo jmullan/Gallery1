@@ -1,4 +1,4 @@
-<? require('init.php'); ?>
+<?php require('init.php'); ?>
 
 <html>
 <head>
@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<?
+<?php
 require("../util.php");
 require("functions.inc");
 
@@ -62,7 +62,7 @@ foreach (array_keys($preserve) as $key) {
 
 <form method=POST>
 
-<?
+<?php
 $legit = array("check", "constants", "defaults", "confirm", "write");
 if (in_array($setup_page, $legit)) {
   include("$setup_page.inc");
@@ -72,7 +72,7 @@ if (in_array($setup_page, $legit)) {
 }
 ?>
 
-<?
+<?php
 function embed_hidden($key) {
 	global $$key;
 

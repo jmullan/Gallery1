@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Turn down the error reporting to just critical errors for now.
  * In v1.2, we know that we'll have lots and lots of warnings if
@@ -18,7 +18,7 @@ if (substr(PHP_OS, 0, 3) == 'WIN') {
 Gallery is in secure mode and cannot be configured.
 If you want to configure it, you must run the <b>configure.bat</b>
 script in the gallery directory then reload this page.
-<?
+<?php
 		exit;
 	}
 } else {

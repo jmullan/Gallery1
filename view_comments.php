@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -21,7 +21,7 @@
  * very pimp application that is Gallery.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -30,8 +30,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<? 
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php 
 // Hack check
 if (!$gallery->user->isAdmin() && !$gallery->user->isOwnerOfAlbum($gallery->album)) {
 	header("Location: albums.php");
@@ -79,21 +79,21 @@ $breadcrumb["top"] = true;
 $breadcrumb["bottom"] = true;
 ?>
 
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
-  <title><?= $gallery->app->galleryTitle ?> :: <?= $gallery->album->fields["title"] ?></title>
-  <?= getStyleSheetLink() ?>
+  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
+  <?php echo getStyleSheetLink() ?>
   <style type="text/css">
-<?
+<?php
 // the link colors have to be done here to override the style sheet 
 if ($gallery->album->fields["linkcolor"]) {
 ?>
     A:link, A:visited, A:active
-      { color: <?= $gallery->album->fields[linkcolor] ?>; }
+      { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
     A:hover
       { color: #ff6600; }
-<?
+<?php
 }
 if ($gallery->album->fields["bgcolor"]) {
 	echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
@@ -111,7 +111,7 @@ if ($gallery->album->fields["textcolor"]) {
 </head>
 
 <body> 
-<? } 
+<?php } 
 includeHtmlWrap("album.header");
 $adminText = "<span class=\"admin\">Comments for this Album</span>";
 $adminCommands = "<span class=\"admin\">";
@@ -123,10 +123,10 @@ $adminbox["bordercolor"] = $bordercolor;
 $adminbox["top"] = true;
 include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
-?><br><?
+?><br><?php
 if(strcmp($gallery->album->fields["public_comments"], "yes"))
 {
-    ?><br><b><span class="error">Sorry This album does not allow public comments.</span><br><br></b><?
+    ?><br><b><span class="error">Sorry This album does not allow public comments.</span><br><br></b><?php
 }
 else
 {
@@ -173,7 +173,7 @@ include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 includeHtmlWrap("album.footer");
 ?>
 
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
-<? } ?>
+<?php } ?>

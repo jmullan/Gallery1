@@ -1,4 +1,4 @@
-<?
+<?php
 // This is the default gallery footer (for the main gallery
 // page: albums.php). It's companion is gallery.header.default.
 //
@@ -22,11 +22,11 @@
     <td>
     <!-- The Gallery code version number, linked to the Gallery home page -->
     <span class="fineprint">
-    Powered by <a href=<?= $gallery->url ?>>Gallery v<?= $gallery->version ?></a>
+    Powered by <a href=<?php echo $gallery->url ?>>Gallery v<?php echo $gallery->version ?></a>
     </span>
     </td>
   </tr>
 </table>
-<?
+<?php
 includeHtmlWrap("wrapper.footer");
 ?>

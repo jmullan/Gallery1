@@ -1,4 +1,4 @@
-<?
+<?php
 //-- draw a simple border around the thumb ---
 
 //-- shorten the variables for convinience ---
@@ -9,14 +9,14 @@ $tag = $gallery->html_wrap['thumbTag'];
 $href = $gallery->html_wrap['thumbHref'];
 ?>
 <table width="1%" border="0" cellspacing="0" cellpadding="0">
-  <tr bgcolor="<?= $borderColor ?>">
-    <td colspan="3" height="<?= $borderWidth ?>"><img src="<?= $pixelImage ?>" width="<?= $borderWidth ?>" height="1"></td>
+  <tr bgcolor="<?php echo $borderColor ?>">
+    <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1"></td>
   </tr>
   <tr>
-    <td bgcolor="<?= $borderColor ?>" width=<?= $borderWidth ?>"><img src="<?= $pixelImage ?>" width="<?= $borderWidth ?>" height="1"></td>
-    <td><a href="<?= $href ?>" target="other"><?= $tag ?></a></td>
-    <td bgcolor="<?= $borderColor ?>" width=<?= $borderWidth ?>"><img src="<?= $pixelImage ?>" width="<?= $borderWidth ?>" height="1"></td></tr>
-  <tr bgcolor="<?= $borderColor ?>">
-    <td colspan="3" height="<?= $borderWidth ?>"><img src="<?= $pixelImage ?>" width="<?= $borderWidth ?>" height="1"></td>
+    <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1"></td>
+    <td><a href="<?php echo $href ?>" target="other"><?php echo $tag ?></a></td>
+    <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1"></td></tr>
+  <tr bgcolor="<?php echo $borderColor ?>">
+    <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1"></td>
   </tr>
 </table>

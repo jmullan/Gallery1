@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,9 +27,9 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
 
-<?
+<?php
 /* Read the album list */
 $albumDB = new AlbumDB();
 $gallery->session->albumName = "";
@@ -63,37 +63,37 @@ $navigator["bordercolor"] = $borderColor;
 
 ?>
 
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html>
 <head>
-  <title><?= $gallery->app->galleryTitle ?></title>
-  <?= getStyleSheetLink() ?>
+  <title><?php echo $gallery->app->galleryTitle ?></title>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
-<? } ?>
+<?php } ?>
 
 <!-- gallery.header begin -->
-<?
+<?php
 includeHtmlWrap("gallery.header");
 ?>
 <!-- gallery.header end -->
-<?
+<?php
 if (!strcmp($gallery->app->default["showSearchEngine"], "yes")) {
 ?>
 <table width=100% border=0 cellspacing=0>
-<tr><?= makeFormIntro("search.php"); ?>
+<tr><?php echo makeFormIntro("search.php"); ?>
 <td valign="middle" align="right">
 <span class="admin"> Search: </span>
 <input style="font-size=10px;" type="text" name="searchstring" value="" size="25">
 </td>
 </form>
 </tr>
-<tr><td height=2><img src=<?= $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif></td></tr></table>
-<?
+<tr><td height=2><img src=<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif></td></tr></table>
+<?php
 }
 ?>
 <!-- admin section begin -->
-<? 
+<?php 
 $adminText = "<span class=\"admin\">";
 $adminText .= pluralize($numAlbums, "album", "no");
 $adminText .= ",&nbsp;" . pluralize($numPhotos, "photo", "no");
@@ -142,7 +142,7 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 ?>
 
 <!-- top nav -->
-<?
+<?php
 include($GALLERY_BASEDIR . "layout/navigator.inc");
 ?>
 
@@ -150,7 +150,7 @@ include($GALLERY_BASEDIR . "layout/navigator.inc");
 <!-- album table begin -->
 <table width=100% border=0 cellpadding=0 cellspacing=7>
 
-<?
+<?php
 /* Display warnings about broken albums */
 if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
     print "<tr>";
@@ -172,7 +172,7 @@ if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
 }
 ?>
 
-<?
+<?php
 $start = ($gallery->session->albumListPage - 1) * $perPage + 1;
 $end = min($start + $perPage - 1, $numAlbums);
 for ($i = $start; $i <= $end; $i++) {
@@ -188,14 +188,14 @@ for ($i = $start; $i <= $end; $i++) {
 
   <!-- Begin Album Column Block -->
   <tr>
-  <td height="1"><?=$pixelImage?></td>
-  <td bgcolor="<?=$borderColor?>" height="1"><?=$pixelImage?></td>
-<?
+  <td height="1"><?php echo $pixelImage?></td>
+  <td bgcolor="<?php echo $borderColor?>" height="1"><?php echo $pixelImage?></td>
+<?php
   if (!strcmp($gallery->app->showAlbumTree, "yes")) {
 ?>
-  <td bgcolor="<?=$borderColor?>" height="1"><?=$pixelImage?></td>
+  <td bgcolor="<?php echo $borderColor?>" height="1"><?php echo $pixelImage?></td>
 
-<?
+<?php
   }
 ?>
   </tr>
@@ -203,7 +203,7 @@ for ($i = $start; $i <= $end; $i++) {
   <!-- Begin Image Cell -->
   <td align="center" valign="middle">
 
-<?
+<?php
       $gallery->html_wrap['borderColor'] = $borderColor;
       $gallery->html_wrap['borderWidth'] = 1;
       $gallery->html_wrap['pixelImage'] = $imageDir . "/pixel_trans.gif";
@@ -226,115 +226,115 @@ for ($i = $start; $i <= $end; $i++) {
   <!-- Begin Text Cell -->
   <td align=left valign=top>
   <span class="title">
-  <a href=<?=$albumURL?>>
-  <?= editField($gallery->album, "title", $edit) ?></a>
+  <a href=<?php echo $albumURL?>>
+  <?php echo editField($gallery->album, "title", $edit) ?></a>
   </span>
   <br>
   <span class="desc">
-  <?= editField($gallery->album, "description", $edit) ?>
+  <?php echo editField($gallery->album, "description", $edit) ?>
   </span>
   <br>
-  <? if (strcmp($gallery->app->default["showOwners"], "no")) { ?>
+  <?php if (strcmp($gallery->app->default["showOwners"], "no")) { ?>
   <span class="desc">
-  Owner: <a href=mailto:<?=$owner->getEmail()?>><?=$owner->getFullName()?></a>
+  Owner: <a href=mailto:<?php echo $owner->getEmail()?>><?php echo $owner->getFullName()?></a>
   </span>
   <br>
-  <? } ?>
+  <?php } ?>
 
-  <? if ($gallery->user->canDeleteAlbum($gallery->album)) { ?>
+  <?php if ($gallery->user->canDeleteAlbum($gallery->album)) { ?>
    <span class="admin">
-    <a href="#" onClick="<?= popup("delete_album.php?set_albumName={$tmpAlbumName}")?>">[delete album]</a>
+    <a href="#" onClick="<?php echo popup("delete_album.php?set_albumName={$tmpAlbumName}")?>">[delete album]</a>
    </span>
-  <? } ?>
+  <?php } ?>
 
-  <? if ($gallery->user->canWriteToAlbum($gallery->album)) { ?>
+  <?php if ($gallery->user->canWriteToAlbum($gallery->album)) { ?>
    <span class="admin">
-    <a href="#" onClick="<?= popup("move_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">[move album]</a>
-    <a href="#" onClick="<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">[rename album]</a>
+    <a href="#" onClick="<?php echo popup("move_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">[move album]</a>
+    <a href="#" onClick="<?php echo popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">[rename album]</a>
    </span>
-  <? } ?>
+  <?php } ?>
 
-  <? if ($gallery->user->canChangeTextOfAlbum($gallery->album)) { ?>
+  <?php if ($gallery->user->canChangeTextOfAlbum($gallery->album)) { ?>
    <span class="admin">
-    <a href=<?=makeGalleryUrl("captionator.php", array("set_albumName" => $tmpAlbumName))?>>[edit captions]</a>
+    <a href=<?php echo makeGalleryUrl("captionator.php", array("set_albumName" => $tmpAlbumName))?>>[edit captions]</a>
    </span>
-  <? } ?>
+  <?php } ?>
 
-  <? if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) { ?>
+  <?php if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) { ?>
    <span class="admin">
-    <a href="#" onClick="<?= popup("album_permissions.php?set_albumName={$tmpAlbumName}")?>">[permissions]</a>
-   <? if (!strcmp($gallery->album->fields["public_comments"],"yes")) { ?>
-    <a href=<?=makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName))?>>[view&nbsp;comments]</a>
-   <? } ?>
+    <a href="#" onClick="<?php echo popup("album_permissions.php?set_albumName={$tmpAlbumName}")?>">[permissions]</a>
+   <?php if (!strcmp($gallery->album->fields["public_comments"],"yes")) { ?>
+    <a href=<?php echo makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName))?>>[view&nbsp;comments]</a>
+   <?php } ?>
    </span>
   <br>
-  url: <a href=<?=$albumURL?>><?=breakString($albumURL, 60, '&', 5)?></a>
-   <? if (ereg("album[[:digit:]]+$", $albumURL)) { ?>
+  url: <a href=<?php echo $albumURL?>><?php echo breakString($albumURL, 60, '&', 5)?></a>
+   <?php if (ereg("album[[:digit:]]+$", $albumURL)) { ?>
 	<br>
         <span class="error">
          Hey!
-         <a href="#" onClick="<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">Rename</a> 
+         <a href="#" onClick="<?php echo popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">Rename</a> 
          this album so that the URL is not so generic!
         </span>
-   <? } ?>
-   <? if ($gallery->album->versionOutOfDate()) { ?>
-    <? if ($gallery->user->isAdmin()) { ?>
+   <?php } ?>
+   <?php if ($gallery->album->versionOutOfDate()) { ?>
+    <?php if ($gallery->user->isAdmin()) { ?>
   <br>
   <span class="error">
-   Note:  This album is out of date! <a href="#" onClick="<?= popup("upgrade_album.php")?>">[upgrade album]</a>
+   Note:  This album is out of date! <a href="#" onClick="<?php echo popup("upgrade_album.php")?>">[upgrade album]</a>
   </span>
-    <? } ?>
-   <? } ?>
-  <? } ?>
+    <?php } ?>
+   <?php } ?>
+  <?php } ?>
 
   <br>
   <span class="fineprint">
-   Last changed on <?=$gallery->album->getLastModificationDate()?>.  
-   This album contains <?=pluralize($gallery->album->numPhotos(0), "item", "no")?>.
-<?
+   Last changed on <?php echo $gallery->album->getLastModificationDate()?>.  
+   This album contains <?php echo pluralize($gallery->album->numPhotos(0), "item", "no")?>.
+<?php
 if (!($gallery->album->fields["display_clicks"] == "no")) {
 ?>
-   <br><br>This album has been viewed <?=pluralize($gallery->album->getClicks(), "time", "0")?> since <?=$gallery->album->getClicksDate()?>.
-<?
+   <br><br>This album has been viewed <?php echo pluralize($gallery->album->getClicks(), "time", "0")?> since <?php echo $gallery->album->getClicksDate()?>.
+<?php
 }
 $albumName=$gallery->album->fields["name"];
 if ($gallery->user->canWriteToAlbum($gallery->album) &&
    (!($gallery->album->fields["display_clicks"] == "no"))) {
 ?>
-<a href="#" onClick="<?=popup("'" . doCommand("reset-album-clicks", array("albumName" => $albumName), "albums.php") . "'" , 1)?>">[reset counter]</a>
-<?
+<a href="#" onClick="<?php echo popup("'" . doCommand("reset-album-clicks", array("albumName" => $albumName), "albums.php") . "'" , 1)?>">[reset counter]</a>
+<?php
 }
 ?>
   </span>
   </td>
-<? if (!strcmp($gallery->app->showAlbumTree, "yes")) { ?>
+<?php if (!strcmp($gallery->app->showAlbumTree, "yes")) { ?>
   <td valign=top>
-   <?= printChildren($albumName); ?>
+   <?php echo printChildren($albumName); ?>
   </td>
-<? } ?>
+<?php } ?>
   </tr>
   <!-- End Text Cell -->
   <!-- End Album Column Block -->
 
-<?
+<?php
 } // if isRoot() close
 } // for() loop      
 ?>
 </table>
 <!-- album table end -->
 <!-- bottom nav -->
-<?
+<?php
 include($GALLERY_BASEDIR . "layout/navigator.inc");
 ?>
 
 <!-- gallery.footer begin -->
-<?
+<?php
 includeHtmlWrap("gallery.footer");
 ?>
 <!-- gallery.footer end -->
 
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
-<? } ?>
+<?php } ?>
 

@@ -1,5 +1,5 @@
 <tr>
  <td colspan=2>
-  <?= error($error) ?>
+  <?php echo error($error) ?>
  </td>
 </tr>

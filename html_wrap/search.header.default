@@ -1,4 +1,4 @@
-<?
+<?php
 // This is the default search header (for the search results
 // page: albums.php). It's companion is search.footer.default. 
 //
@@ -8,7 +8,7 @@
 // NOTE: This header gets inserted below the <body> tag.
 // 
 ?>
-<?
+<?php
 includeHtmlWrap("wrapper.header");
 ?>
 
@@ -16,7 +16,7 @@ includeHtmlWrap("wrapper.header");
   <tr>
     <td>
       <span class="head">
-        <?= $gallery->app->galleryTitle ?> :: Search
+        <?php echo $gallery->app->galleryTitle ?> :: Search
       </span>
     </td>
   </tr>

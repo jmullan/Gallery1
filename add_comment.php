@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 
 if (strcmp($gallery->album->fields["public_comments"], "yes")) {
@@ -53,7 +53,7 @@ if (!strcmp($submit, "Save")) {
 <html>
 <head>
   <title>Add Comment</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
@@ -61,27 +61,27 @@ if (!strcmp($submit, "Save")) {
 Enter your comment for this picture in the text
 box below.
 <br><br>
-<?= $gallery->album->getThumbnailTag($index) ?>
-<?
+<?php echo $gallery->album->getThumbnailTag($index) ?>
+<?php
 if ($error_text) {
 ?>
 <br><br>
-<span class=error><?=$error_text?></span>
+<span class=error><?php echo $error_text?></span>
 <br><br>
-<?
+<?php
 }
 ?>
 
-<?= makeFormIntro("add_comment.php", array("name" => "theform", "method" => "POST")); ?>
-<input type=hidden name="index" value="<?= $index ?>">
-<input type=hidden name="IPNumber" value="<?=$REMOTE_ADDR ?>">
+<?php echo makeFormIntro("add_comment.php", array("name" => "theform", "method" => "POST")); ?>
+<input type=hidden name="index" value="<?php echo $index ?>">
+<input type=hidden name="IPNumber" value="<?php echo $REMOTE_ADDR ?>">
 <table border=0 cellpadding=5>
 <tr>
   <td>Name or email:</td>
-  <td><input name="commenter_name" value="<?=$commenter_name?>" size=30></td>
+  <td><input name="commenter_name" value="<?php echo $commenter_name?>" size=30></td>
 </tr>
 <tr>
-  <td colspan=2><textarea name="comment_text" rows=5 cols=40><?=$comment_text?></textarea></td>
+  <td colspan=2><textarea name="comment_text" rows=5 cols=40><?php echo $comment_text?></textarea></td>
 </tr>
 </table>
 <br>

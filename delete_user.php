@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 if (!$gallery->user->isAdmin()) {
 	exit;	
 }
@@ -46,7 +46,7 @@ if ($submit) {
 <html>
 <head>
   <title>Delete User</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
@@ -54,10 +54,10 @@ if ($submit) {
 <span class="popuphead">Delete User</span>
 <br>
 <br>
-<?= makeFormIntro("delete_user.php"); ?>
-<input type=hidden name=uname value=<?=$uname?>>
+<?php echo makeFormIntro("delete_user.php"); ?>
+<input type=hidden name=uname value=<?php echo $uname?>>
 
-<?
+<?php
 if (!strcmp($gallery->user->getUsername(), $uname)) {
 	print center(error("You can't delete your own account!"));
 	print "<p>";
@@ -66,12 +66,12 @@ if (!strcmp($gallery->user->getUsername(), $uname)) {
 Users can have special permissions in each album.  If you delete
 this user, any such permissions go away.  Users cannot be recreated.
 Even if this user is recreated, those permissions are gone.  
-Do you really want to delete user <b><?=$uname?></b>?
+Do you really want to delete user <b><?php echo $uname?></b>?
 <p>
 <p>
 
 <input type=submit name="submit" value="Delete">
-<?
+<?php
 }
 ?>
 

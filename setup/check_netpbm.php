@@ -12,7 +12,7 @@ problems with your NetPBM installation that the wizard did not detect.
 <li> Loading configuration files.  If you see an error here, it is probably
 because you have not successfully run the config wizard.
 
-<? 
+<?php 
 require('init.php'); 
 require("../config.php"); 
 ?>
@@ -25,12 +25,12 @@ using.
 <p>
 This is what your system reports:
 <br>
-<b><? passthru("uname -a"); ?></b>
+<b><?php passthru("uname -a"); ?></b>
 
 <p>
 This is the type of system PHP was compiled on:
 <br>
-<b><?= php_uname() ?></b>
+<b><?php echo php_uname() ?></b>
 
 <p>
 
@@ -48,7 +48,7 @@ they can often tell you.
 <li> You told the config wizard that your NetPBM binaries live here:
 <p>
 <ul>
-<b><?= $gallery->app->pnmDir ?></b>
+<b><?php echo $gallery->app->pnmDir ?></b>
 </ul>
 <p>
 
@@ -57,13 +57,13 @@ wizard and enter a location for NetPBM.
 
 <p>
 
-<?
+<?php
 $debugfile = tempnam($gallery->app->tmpDir, "gallerydbg");
 ?>
 
 <li>We are going to test each NetPBM binary individually.  
 
-<?
+<?php
 if ($show_details) {
 	print "<a href=check_netpbm.php?show_details=0>Click here</a> to hide the details</a>";
 } else {
@@ -72,7 +72,7 @@ if ($show_details) {
 ?>
 
 <pre>
-<?
+<?php
 $binaries = array("giftopnm",
 		  "jpegtopnm",
 		  "pngtopnm",
@@ -172,7 +172,7 @@ function checkNetPbm($cmd) {
 <p>
 
 If you see an error above complaining about reading or writing to
-<b><?=$debugfile?></b>, then this is likely a permission/configuration
+<b><?php echo $debugfile?></b>, then this is likely a permission/configuration
 issue on your system.  If it mentions <i>open_basedir</i> then it's
 because your system is configured with <a
 href="http://www.php.net/manual/en/configuration.php#ini.open-basedir">

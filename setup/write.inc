@@ -1,4 +1,4 @@
-<?
+<?php
 require("../classes/User.php");
 require("../classes/gallery/User.php");
 require("../classes/NobodyUser.php");
@@ -94,7 +94,7 @@ An account called <i>admin</i> has been created for you with the password you sp
 <font size=+2 color=red>Note!</font>
 <br>
 Don't forget to run:
-<?= configure("secure") ?>
+<?php echo configure("secure") ?>
 </center>
 <br>
 to make your Gallery secure!  <font size=+1>Gallery won't run if it is not in secure
@@ -117,12 +117,12 @@ it all again!)
 
 
 
-<?
+<?php
 function fail($file) {
 ?>
 	<title> Failure! </title>
-	<font size=+2> Unable to write to <?=$file?> </font>
-<?
+	<font size=+2> Unable to write to <?php echo $file?> </font>
+<?php
 	return;
 }
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
@@ -38,11 +38,11 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 <html>
 <head>
   <title>Rotate Photo</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
-<?
+<?php
 if ($gallery->session->albumName && isset($index)) {
 	if ($rotate) {
 ?>
@@ -51,7 +51,7 @@ if ($gallery->session->albumName && isset($index)) {
 	 <br>
 	 (this may take a while)
 	</center>
-<?
+<?php
 		my_flush();
                 set_time_limit($gallery->app->timeLimit);
 		$gallery->album->rotatePhoto($index, $rotate);
@@ -64,23 +64,23 @@ if ($gallery->session->albumName && isset($index)) {
 <center>
 How do you want to rotate this photo?
 <br>
-<? $args = array("albumName" => $gallery->album->fields["name"], "index" => $index); ?>
-<? $args["rotate"] = "90"; ?>
-<a href=<?=makeGalleryUrl("rotate_photo.php", $args)?>>Counter-Clockwise 90&ordm;</a>
+<?php $args = array("albumName" => $gallery->album->fields["name"], "index" => $index); ?>
+<?php $args["rotate"] = "90"; ?>
+<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>Counter-Clockwise 90&ordm;</a>
 /
-<? $args["rotate"] = "180"; ?>
-<a href=<?=makeGalleryUrl("rotate_photo.php", $args)?>>Flip 180&ordm;</a>
+<?php $args["rotate"] = "180"; ?>
+<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>Flip 180&ordm;</a>
 /
-<? $args["rotate"] = "-90"; ?>
-<a href=<?=makeGalleryUrl("rotate_photo.php", $args)?>>Clockwise 90&ordm;</a>
+<?php $args["rotate"] = "-90"; ?>
+<a href=<?php echo makeGalleryUrl("rotate_photo.php", $args)?>>Clockwise 90&ordm;</a>
 /
 <a href="javascript:void(parent.close())">Cancel</a>
 <br>
 
 <p>
-<?= $gallery->album->getThumbnailTag($index) ?>
+<?php echo $gallery->album->getThumbnailTag($index) ?>
 
-<?
+<?php
 	}
 } else {
 	error("no album / index specified");

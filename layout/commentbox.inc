@@ -2,13 +2,13 @@
   <tr>
   <td width="100%">
   <span class="admin">
-  From: <?= $comment->getName() ?> @ <?= $comment->getIPNumber()?> (<?= $comment->getDatePosted() ?>)
+  From: <?php echo $comment->getName() ?> @ <?php echo $comment->getIPNumber()?> (<?php echo $comment->getDatePosted() ?>)
   </span>
 </td>
 </tr><tr>
-<td width="100%" height="20" valign="top"><?= $comment->getCommentText() ?><td>
+<td width="100%" height="20" valign="top"><?php echo $comment->getCommentText() ?><td>
 </tr>
-<?
+<?php
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	$url = "do_command.php?cmd=delete-comment&index=$index&comment_index=$j";
 	$buf = '<span class="admin"> <a href="#" onClick="' . popup($url) . '">[delete comment]</a></span>';
@@ -16,6 +16,6 @@ if ($gallery->user->canWriteToAlbum($gallery->album)) {
 }
 ?>
 <tr>
-<td width=100%><img src="<?= $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" width="1" height="6"></td>
+<td width=100%><img src="<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" width="1" height="6"></td>
 </tr>
 </table>

@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 if (!$gallery->user->isLoggedIn()) {
 	exit;	
 }
@@ -88,7 +88,7 @@ $email = $gallery->user->getEmail();
 <html>
 <head>
   <title>Change User Preferences</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
@@ -104,12 +104,12 @@ and digits.
 
 <p>
 
-<?= makeFormIntro("user_preferences.php", 
+<?php echo makeFormIntro("user_preferences.php", 
 			array("name" => "usermodify_form", 
 				"method" => "POST")); ?>
 <p>
 
-<? include($GALLERY_BASEDIR . "html/userData.inc"); ?>
+<?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
 
 <input type=submit name="submit" value="Save">

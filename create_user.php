@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 if (!$gallery->user->isAdmin()) {
 	exit;	
 }
@@ -73,7 +73,7 @@ $canCreate = 1;
 <html>
 <head>
   <title>Create User</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
@@ -85,12 +85,12 @@ Create a new user here.
 <p>
 
 
-<?= makeFormIntro("create_user.php", 
+<?php echo makeFormIntro("create_user.php", 
 			array("name" => "usercreate_form", 
 				"method" => "POST")); ?>
 <p>
 
-<? include($GALLERY_BASEDIR . "html/userData.inc"); ?>
+<?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
 
 <input type=submit name="submit" value="Create">

@@ -58,7 +58,7 @@ function msg($buf) {
 <html>
 <head>
   <title>Processing and Saving Photos</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 
 </head>
 <body onLoad='opener.hideProgressAndReload();'>
@@ -410,7 +410,7 @@ function invertCheck() {
 </span></p>
 
 <table><tr><td>
-<?= makeFormIntro("save_photos.php", 
+<?php echo makeFormIntro("save_photos.php", 
 		array("name" => $uploadUrlFormName, 
 			"method" => "POST")); ?>
 <?php
@@ -434,7 +434,7 @@ function invertCheck() {
 </span></p>
 
 <p>
-<input type=hidden name="setCaption" value="<?=$setCaption?>">
+<input type=hidden name="setCaption" value="<?php echo $setCaption?>">
 <input type=button value="Add Files" onClick="opener.showProgress(); document.uploadurl_form.submit()">
 </p>
 

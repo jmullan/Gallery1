@@ -1,4 +1,4 @@
-<?
+<?php
 // Pull the $destroy variable into the global namespace
 extract($HTTP_GET_VARS);
 
@@ -45,7 +45,7 @@ $count++;
 	    Your session id is
 	  </td>
 	  <td>
-	    <?=session_id()?> &nbsp;
+	    <?php echo session_id()?> &nbsp;
 	  </td>
 	</tr>
 	<tr>
@@ -53,7 +53,7 @@ $count++;
 	    Page views in this session
 	  </td>
 	  <td>
-	    <?=$count?>
+	    <?php echo $count?>
 	  </td>
 	</tr>
       </table>

@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
@@ -38,11 +38,11 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 <html>
 <head>
   <title>Resize Photo</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
-<?
+<?php
 $all = !strcmp($index, "all");
 if ($gallery->session->albumName && isset($index)) {
 	if ($resize) {
@@ -76,10 +76,10 @@ photo is equal to the target size below.
 
 <p>
 
-What is the target size for <?= $all ? "all the photos in this album" : "this photo" ?>?
+What is the target size for <?php echo $all ? "all the photos in this album" : "this photo" ?>?
 <br>
-<?= makeFormIntro("resize_photo.php"); ?>
-<input type=hidden name=index value=<?=$index?>>
+<?php echo makeFormIntro("resize_photo.php"); ?>
+<input type=hidden name=index value=<?php echo $index?>>
 <input type=submit name=resize value="Original Size">
 <input type=submit name=resize value="1024">
 <input type=submit name=resize value="800">
@@ -92,13 +92,13 @@ What is the target size for <?= $all ? "all the photos in this album" : "this ph
 </form>
 
 <br><br>
-<?
+<?php
 if (!$all) {
 	echo $gallery->album->getThumbnailTag($index);
 } 
 ?>
 
-<?
+<?php
 	}
 } else {
 	error("no album / index specified");

@@ -6,106 +6,106 @@
    Username
   </td>
   <td>
-   <? if ($dontChange["uname"]) { ?>
-	<?= $uname ?>
-	<input type=hidden name="uname" value="<?=$uname?>">
-   <? } else { ?>
-	<input type=text name="uname" value="<?=$uname?>">
-   <?
+   <?php if ($dontChange["uname"]) { ?>
+	<?php echo $uname ?>
+	<input type=hidden name="uname" value="<?php echo $uname?>">
+   <?php } else { ?>
+	<input type=text name="uname" value="<?php echo $uname?>">
+   <?php
 	}
    ?>
   </td>
  </tr>
 
- <?= errorRow("uname") ?>
+ <?php echo errorRow("uname") ?>
 
- <? if ($askForOldPassword) { ?>
+ <?php if ($askForOldPassword) { ?>
 
  <tr>
   <td>
    Old Password
   </td>
   <td>
-   <input type=password name="old_password" value="<?=$old_password?>">
+   <input type=password name="old_password" value="<?php echo $old_password?>">
   </td>
  </tr>
 
- <?= errorRow("old_password") ?>
+ <?php echo errorRow("old_password") ?>
 
- <? } ?>
+ <?php } ?>
 
  <tr>
   <td>
    New Password
   </td>
   <td>
-   <input type=password name="new_password1" value="<?=$new_password1?>">
+   <input type=password name="new_password1" value="<?php echo $new_password1?>">
   </td>
  </tr>
 
- <?= errorRow("new_password1") ?>
+ <?php echo errorRow("new_password1") ?>
 
  <tr>
   <td>
    New Password (again)
   </td>
   <td>
-   <input type=password name="new_password2" value="<?=$new_password2?>">
+   <input type=password name="new_password2" value="<?php echo $new_password2?>">
   </td>
  </tr>
 
- <?= errorRow("new_password2") ?>
+ <?php echo errorRow("new_password2") ?>
 
  <tr>
   <td>
    Full Name
   </td>
   <td>
-   <input type=text name="fullname" value="<?=$fullname?>">
+   <input type=text name="fullname" value="<?php echo $fullname?>">
   </td>
  </tr>
 
- <?= errorRow("fullname") ?>
+ <?php echo errorRow("fullname") ?>
 
  <tr>
   <td>
    Email Address
   </td>
   <td>
-   <input type=text name="email" value="<?=$email?>">
+   <input type=text name="email" value="<?php echo $email?>">
   </td>
  </tr>
 
- <?= errorRow("email") ?>
+ <?php echo errorRow("email") ?>
 
-<? if ($gallery->user->isAdmin() && isset($canCreate)) { ?>
+<?php if ($gallery->user->isAdmin() && isset($canCreate)) { ?>
  <tr>
   <td>
    User can create albums
   </td>
   <td> 
-   <? if ($dontChange["create-albums"]) { ?>
-	<?= $canCreateChoices[$canCreate] ?> <i>(admins can always create albums)</i>
-   <? } else { ?>
-        <?= drawSelect("canCreate", $canCreateChoices, $canCreate, 1); ?>
-   <? } ?>
+   <?php if ($dontChange["create-albums"]) { ?>
+	<?php echo $canCreateChoices[$canCreate] ?> <i>(admins can always create albums)</i>
+   <?php } else { ?>
+        <?php echo drawSelect("canCreate", $canCreateChoices, $canCreate, 1); ?>
+   <?php } ?>
   </td>
  </tr>
-<? } ?>
+<?php } ?>
 
-<? if ($gallery->user->isAdmin() && isset($isAdmin)) { ?>
+<?php if ($gallery->user->isAdmin() && isset($isAdmin)) { ?>
  <tr>
   <td>
    User is an admin
   </td>
   <td> 
-   <? if ($dontChange["admin"]) { ?>
-	<?= $isAdminChoices[$isAdmin] ?> <i>(you can't un-admin yourself)</i>
-   <? } else { ?>
-        <?= drawSelect("isAdmin", $isAdminChoices, $isAdmin, 1); ?>
-   <? } ?>
+   <?php if ($dontChange["admin"]) { ?>
+	<?php echo $isAdminChoices[$isAdmin] ?> <i>(you can't un-admin yourself)</i>
+   <?php } else { ?>
+        <?php echo drawSelect("isAdmin", $isAdminChoices, $isAdmin, 1); ?>
+   <?php } ?>
   </td>
  </tr>
-<? } ?>
+<?php } ?>
 
 </table>

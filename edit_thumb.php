@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,7 +27,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<?
+<?php
 require($GALLERY_BASEDIR . "init.php");
 
 // Hack check
@@ -40,10 +40,10 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 <html>
 <head>
   <title>Custom Thumbnail</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 
-<? 
+<?php 
 if ($action == "doit") {
 	
 	#-- rebuild the thumbnail, cropped) ---
@@ -71,7 +71,7 @@ if ($action == "doit") {
 <span class="popuphead">Custom Thumbnail</span>
 <br>
 
-<?
+<?php
 	#-- are we a go? ---
 	if ($gallery->session->albumName && isset($index)) { 
 
@@ -113,21 +113,21 @@ if ($action == "doit") {
 Choose which part of the image will compose your thumbnail:
 </span>
 
-<APPLET CODE="ImageCrop" WIDTH=460 HEIGHT=430 CODEBASE="<?=$GALLERY_BASEDIR?>java" ARCHIVE="ImageTools.jar">
+<APPLET CODE="ImageCrop" WIDTH=460 HEIGHT=430 CODEBASE="<?php echo $GALLERY_BASEDIR?>java" ARCHIVE="ImageTools.jar">
   <PARAM NAME="type"   VALUE="application/x-java-applet;version=1.1.2">
-  <PARAM NAME=bgcolor  VALUE="<?= $bgcolor ?>">
-  <PARAM NAME=image    VALUE="<?= $photoURL ?>">
-  <PARAM NAME=image_w  VALUE="<?= $image_w ?>">
-  <PARAM NAME=image_h  VALUE="<?= $image_h ?>">
-  <PARAM NAME=crop_x   VALUE="<?= $t_x ?>">
-  <PARAM NAME=crop_y   VALUE="<?= $t_y ?>">
-  <PARAM NAME=crop_w   VALUE="<?= $t_w ?>">
-  <PARAM NAME=crop_h   VALUE="<?= $t_h ?>">
-  <PARAM NAME=submit   VALUE="<?= $submit ?>">
-  <PARAM NAME=crop_to_size  VALUE="<?= $gallery->album->fields["thumb_size"] ?>">
+  <PARAM NAME=bgcolor  VALUE="<?php echo $bgcolor ?>">
+  <PARAM NAME=image    VALUE="<?php echo $photoURL ?>">
+  <PARAM NAME=image_w  VALUE="<?php echo $image_w ?>">
+  <PARAM NAME=image_h  VALUE="<?php echo $image_h ?>">
+  <PARAM NAME=crop_x   VALUE="<?php echo $t_x ?>">
+  <PARAM NAME=crop_y   VALUE="<?php echo $t_y ?>">
+  <PARAM NAME=crop_w   VALUE="<?php echo $t_w ?>">
+  <PARAM NAME=crop_h   VALUE="<?php echo $t_h ?>">
+  <PARAM NAME=submit   VALUE="<?php echo $submit ?>">
+  <PARAM NAME=crop_to_size  VALUE="<?php echo $gallery->album->fields["thumb_size"] ?>">
 </APPLET>
 
-<? 
+<?php 
     	#-- we're not a go. abort! abort! ---
 	} else { 
 		error("no album / index specified");

@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,20 +27,20 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
 
 <html>
 <head>
-  <title>Login to <?=$gallery->app->galleryTitle?></title>
-  <?= getStyleSheetLink() ?>
+  <title>Login to <?php echo $gallery->app->galleryTitle?></title>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
 <center>
-<span class="popuphead">Login to <?=$gallery->app->galleryTitle?></span>
+<span class="popuphead">Login to <?php echo $gallery->app->galleryTitle?></span>
 <br>
 <br>
-<?
+<?php
 if ($submit) {
 	if ($uname && $gallerypassword) {
 		$tmpUser = $gallery->userDB->getUserByUsername($uname);
@@ -57,53 +57,53 @@ if ($submit) {
 }
 ?>
 
-<?= makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
+<?php echo makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
 Logging in gives you greater permission to
 <br>
 view, create, modify and delete albums.
 <p>
 <table>
-<? if ($invalid) { ?>
+<?php if ($invalid) { ?>
  <tr>
   <td colspan=2>
-   <?= error("Invalid username or password"); ?>
+   <?php echo error("Invalid username or password"); ?>
   </td>
  </tr>
-<? } ?>
+<?php } ?>
 
  <tr>
   <td>
    Username
   </td>
   <td>
-   <input type=text name="uname" value=<?=$uname?>>
+   <input type=text name="uname" value=<?php echo $uname?>>
   </td>
  </tr>
 
-<? if ($error && !$uname) { ?>
+<?php if ($error && !$uname) { ?>
  <tr>
   <td colspan=2 align=center>
-   <?= error("You must specify a username"); ?>
+   <?php echo error("You must specify a username"); ?>
   </td>
  </tr>
-<? } ?>
+<?php } ?>
 
  <tr>
   <td>
    Password
   </td>
   <td>
-   <input type=password name="gallerypassword" value=<?=$gallerypassword?>>
+   <input type=password name="gallerypassword" value=<?php echo $gallerypassword?>>
   </td>
  </tr>
 
-<? if ($error && !$gallerypassword) { ?>
+<?php if ($error && !$gallerypassword) { ?>
  <tr>
   <td colspan=2 align=center>
-   <?= error("You must specify a password"); ?>
+   <?php echo error("You must specify a password"); ?>
   </td>
  </tr>
-<? } ?>
+<?php } ?>
 
 </table>
 <p>

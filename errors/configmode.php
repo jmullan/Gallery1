@@ -1,4 +1,4 @@
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
                     !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -7,11 +7,11 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	            exit;
 		    }
 ?>
-<? require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
+<?php require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
 <html>
 <head>
   <title>Gallery in Configuration Mode</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>	
 <center>
@@ -22,7 +22,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <center>
 To configure gallery, 
 <font size=+1>
-<a href="<?=$GALLERY_BASEDIR?>setup/index.php">Start the configuration wizard</a>
+<a href="<?php echo $GALLERY_BASEDIR?>setup/index.php">Start the configuration wizard</a>
 </font>
 </center>
 <br>
@@ -33,11 +33,11 @@ an insecure mode.  You need to switch to secure mode before you can
 use it.  Here's how:
 
 <p><center>
-<?= configure("secure"); ?>
+<?php echo configure("secure"); ?>
 <p>
 Then just reload this page and all should be well.  
 
-<? include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
+<?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 
 </table>
 </body>

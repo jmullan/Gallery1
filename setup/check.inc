@@ -23,14 +23,14 @@ Having problems?  Try the <a href=diagnostics.php>Gallery Diagnostics Page</a> a
 <input type=hidden name=this_page value="check">
 <input type=hidden name=next_page value="constants">
 
-<?
+<?php
 foreach ($checklist as $check) {
 ?> 
 	<tr>
-	<td width=50% valign=top><?=$check["desc"]?></td>
+	<td width=50% valign=top><?php echo $check["desc"]?></td>
 	<td width=5%> &nbsp; </td>
 	<td valign=top>
-<?
+<?php
 	$func = $check["func"];
 	list($success, $fail) = $func();
 	foreach ($success as $key) {
@@ -73,26 +73,26 @@ foreach ($checklist as $check) {
 	</tr>
 
 	<tr><td colspan=3> <hr width=50%> </td></tr>
-<?
+<?php
 }
 ?>
 
 </table>
 <p>
-<? if ($error) { ?>
+<?php if ($error) { ?>
  There are errors in your configuration that will prevent
 <br> Gallery from functioning properly.  You must fix them 
 <br> before you can continue.  
-<? } else { ?>
-<?	if ($warning) { ?>
-<?		if ($serious_warning) { ?>
+<?php } else { ?>
+<?php	if ($warning) { ?>
+<?php		if ($serious_warning) { ?>
 Your installation has <b>serious warnings</b>!  Continue at your own risk...
-<? 		} else { ?>
+<?php 		} else { ?>
 Your installation has warnings, but life is short so let's GO!
-<? 		} ?>
-<? 	} else { ?>
+<?php 		} ?>
+<?php 	} else { ?>
 Your installation passed with flying colors!  Go go go!
-<? 	} ?>
+<?php 	} ?>
  <p>
  <input type=submit name="go_next" value="Configure Gallery ->">
-<? } ?>
+<?php } ?>

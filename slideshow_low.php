@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
                 !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
         exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
  
 if ($gallery->session->albumName == "") {
@@ -87,21 +87,21 @@ if (!strcmp($borderwidth, "off")) {
 $bgcolor = $gallery->album->fields['bgcolor'];
 $title = $gallery->album->fields["title"];
 ?>
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
-  <title>Slide Show for album :: <?= $gallery->album->fields["title"] ?></title>
-  <?= getStyleSheetLink() ?>
+  <title>Slide Show for album :: <?php echo $gallery->album->fields["title"] ?></title>
+  <?php echo getStyleSheetLink() ?>
   <style type="text/css">
-<?
+<?php
 // the link colors have to be done here to override the style sheet
 if ($gallery->album->fields["linkcolor"]) {
 ?>
     A:link, A:visited, A:active
-      { color: <?= $gallery->album->fields[linkcolor] ?>; }
+      { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
     A:hover
       { color: #ff6600; }
-<?
+<?php
 }
 if ($gallery->album->fields["bgcolor"]) {
         echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
@@ -119,22 +119,22 @@ if ($gallery->album->fields["textcolor"]) {
 </head>
 
 <body>
-<? } ?>
+<?php } ?>
 
 
 <script language="JavaScript">
 var timer; 
-var current_location = <?= $slide_index ?>;
-var next_location = <?= $slide_index ?>; 
+var current_location = <?php echo $slide_index ?>;
+var next_location = <?php echo $slide_index ?>; 
 var pics_loaded = 0;
 var onoff = 0;
 var timeout_value;
 var images = new Array;
 var photo_urls = new Array;
 var photo_captions = new Array;
-var loop = <?= $slide_loop ?>;
-var full = <?= $slide_full ?>;
-var direction = <?= $slide_dir ?>;
+var loop = <?php echo $slide_loop ?>;
+var full = <?php echo $slide_full ?>;
+var direction = <?php echo $slide_dir ?>;
 <?php
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
@@ -188,7 +188,7 @@ while ($numDisplayed < $numPhotos) {
     $photosLeft--;
 }
 ?>
-var photo_count = <?=$photo_count?>; 
+var photo_count = <?php echo $photo_count?>; 
 
 function stop() {
     onoff = 0;
@@ -243,7 +243,7 @@ function wait_for_current_photo() {
 
 function go_to_next_page() {
 
-    var slideShowUrl = "<?= makeGalleryUrl('slideshow_low.php',
+    var slideShowUrl = "<?php echo makeGalleryUrl('slideshow_low.php',
 				array('set_albumName' => $gallery->session->albumName)); ?>";
 
     document.location = slideShowUrl + "&slide_index=" + next_location + "&slide_full=" + full
@@ -313,15 +313,15 @@ function preload_photo(index) {
 </Script>
 
 
-<? includeHtmlWrap("slideshow.header"); ?>
-<?
+<?php includeHtmlWrap("slideshow.header"); ?>
+<?php
 $imageDir = $gallery->app->photoAlbumURL."/images"; 
 $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">";
 ?>
 
 <form name="TopForm">
 
-<?
+<?php
 
 #-- breadcrumb text ---
 $breadCount = 0;
@@ -367,15 +367,15 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td colspan="3" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+    <td colspan="3" bgcolor="<?php echo $borderColor ?>"><?php echo $pixelImage ?></td>
   </tr>
   <tr>
-    <td height="25" width="1" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+    <td height="25" width="1" bgcolor="<?php echo $borderColor ?>"><?php echo $pixelImage ?></td>
     <td width="5000" align="left" valign="middle">
     <span class=admin>
     &nbsp;<a href="#" onClick='stop(); return false;'>[stop]</a>
     <a href="#" onClick='play(); return false;'>[play]</a>
-<?
+<?php
 if ($slide_full) {
     echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0, $slide_dir) 
 	. "\">[normal size]</a>";
@@ -384,7 +384,7 @@ if ($slide_full) {
         . "\">[full size]</a>";
 }
 ?>
-<?
+<?php
 if ($slide_dir == 1) {
     echo "&nbsp;<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, -1) 
 	. "\">[reverse direction]</a>";
@@ -395,7 +395,7 @@ if ($slide_dir == 1) {
 ?>
     &nbsp;&nbsp;||
     &nbsp;Delay:
-<?=
+<?php echo 
 drawSelect("time", array(1 => "1 second",
                          2 => "2 second",
                          3 => "3 second",
@@ -410,64 +410,64 @@ drawSelect("time", array(1 => "1 second",
            1, // select size
            array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
 ?>
-    &nbsp;Loop:<input type="checkbox" name="loopCheck" <?= ($slide_loop) ? "checked" : "" ?> onclick='toggleLoop();'>
+    &nbsp;Loop:<input type="checkbox" name="loopCheck" <?php echo ($slide_loop) ? "checked" : "" ?> onclick='toggleLoop();'>
     </span>
     </td>
-    <td width="1" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+    <td width="1" bgcolor="<?php echo $borderColor ?>"><?php echo $pixelImage ?></td>
   </tr>
   <tr>
-    <td colspan="3" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+    <td colspan="3" bgcolor="<?php echo $borderColor ?>"><?php echo $pixelImage ?></td>
   </tr>
 </table>
 
 <br>
 <div align="center">
 
-<?
+<?php
 if ($photo_count > 0) {
 ?>
 
 <table width=1% border=0 cellspacing=0 cellpadding=0>
-  <tr bgcolor="<?=$borderColor?>">
-    <td colspan=3 height=<?=$borderwidth?>><?=$pixelImage?></td>
+  <tr bgcolor="<?php echo $borderColor?>">
+    <td colspan=3 height=<?php echo $borderwidth?>><?php echo $pixelImage?></td>
   </tr>
   <tr>
-    <td bgcolor="<?=$borderColor?>" width=<?=$borderwidth?>><?=$pixelImage?></td>
+    <td bgcolor="<?php echo $borderColor?>" width=<?php echo $borderwidth?>><?php echo $pixelImage?></td>
     <script language="JavaScript">
-    document.write("<td><img border=0 src="+photo_urls[<?= $slide_index ?>]+" name=slide></td>");
+    document.write("<td><img border=0 src="+photo_urls[<?php echo $slide_index ?>]+" name=slide></td>");
     </script>
-    <td bgcolor="<?=$borderColor?>" width=<?=$borderwidth?>><?=$pixelImage?></td>
+    <td bgcolor="<?php echo $borderColor?>" width=<?php echo $borderwidth?>><?php echo $pixelImage?></td>
   </tr>
-  <tr bgcolor="<?=$borderColor?>">
-    <td colspan=3 height=<?=$borderwidth?>><?=$pixelImage?></td>
+  <tr bgcolor="<?php echo $borderColor?>">
+    <td colspan=3 height=<?php echo $borderwidth?>><?php echo $pixelImage?></td>
   </tr>
 </table>
 <br>
 
 <script language="Javascript">
 /* show the caption either in a nice div or an ugly form textarea */
-document.write("<div class='desc'>" + "[" + current_location + " of " + photo_count + "] " + photo_captions[<?= $slide_index ?>] + "</div>");
+document.write("<div class='desc'>" + "[" + current_location + " of " + photo_count + "] " + photo_captions[<?php echo $slide_index ?>] + "</div>");
 
 /* Load the first picture */
-preload_photo(<?= $slide_index ?>);
+preload_photo(<?php echo $slide_index ?>);
 
 /* Start the show. */
 play();
 
 </script>
 
-<?
+<?php
 } else {
 ?>
 
 <br><b>This album has no photos to show in a slide show.</b>
 <br><br>
 <span class="admin">
-<a href="<?=makeGalleryUrl("view_album.php",
+<a href="<?php echo makeGalleryUrl("view_album.php",
                array("set_albumName" => $gallery->session->albumName))?>">[back to album]</a>
 </span>
 
-<?
+<?php
 }
 ?> 
 
@@ -475,9 +475,9 @@ play();
 </form>
 
 
-<? includeHtmlWrap("slideshow.footer"); ?>
+<?php includeHtmlWrap("slideshow.footer"); ?>
 
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
-<? } ?>
+<?php } ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
@@ -37,11 +37,11 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 <html>
 <head>
   <title>Sort Album</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
-<?
+<?php
 if ($gallery->session->albumName) {
 	if ($confirm) {
 		if (!strcmp($sort,"random")) {
@@ -66,15 +66,15 @@ Warning:  This operation can't be undone.
 <br>
 
 <p>
-<?
+<?php
 if ($gallery->album->getHighlight()) {
 	print $gallery->album->getThumbnailTag($gallery->album->getHighlight());
 }
 ?>
 <br>
-<?= $gallery->album->fields["caption"] ?>
+<?php echo $gallery->album->fields["caption"] ?>
 
-<?= makeFormIntro("sort_album.php"); ?>
+<?php echo makeFormIntro("sort_album.php"); ?>
 <table>
   <tr>
     <td><input checked type="radio" name="sort" value="upload">&nbsp;By Upload Date</td>
@@ -110,7 +110,7 @@ if ($gallery->album->getHighlight()) {
 <input type=submit name=confirm value="Sort">
 <input type=submit value="Cancel" onclick='parent.close()'>
 </form>
-<?
+<?php
 	}
 } else {
 	error("no album specified");

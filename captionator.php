@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
                     !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
     exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<? 
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
     header("Location: albums.php");
@@ -110,21 +110,21 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
 $bordercolor = $gallery->album->fields["bordercolor"];
 ?>
 
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
-  <title><?= $gallery->app->galleryTitle ?> :: <?= $gallery->album->fields["title"] ?> :: Captionator</title>
-  <?= getStyleSheetLink() ?>
+  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: Captionator</title>
+  <?php echo getStyleSheetLink() ?>
   <style type="text/css">
-<?
+<?php
 // the link colors have to be done here to override the style sheet 
 if ($gallery->album->fields["linkcolor"]) {
 ?>
     A:link, A:visited, A:active
-      { color: <?= $gallery->album->fields[linkcolor] ?>; }
+      { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
     A:hover
       { color: #ff6600; }
-<?
+<?php
 }
 if ($gallery->album->fields["bgcolor"]) {
     echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
@@ -142,9 +142,9 @@ if ($gallery->album->fields["textcolor"]) {
 </head>
 
 <body> 
-<? } ?>
+<?php } ?>
 
-<? 
+<?php 
 includeHtmlWrap("album.header");
 
 #-- if borders are off, just make them the bgcolor ----
@@ -186,26 +186,26 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 
 <!-- image grid table -->
 <br>
-<?= makeFormIntro("captionator.php", array("method" => "POST")) ?>
-<input type=hidden name=page value=<?= $page ?>>
-<input type=hidden name=perPage value=<?= $perPage ?>>
+<?php echo makeFormIntro("captionator.php", array("method" => "POST")) ?>
+<input type=hidden name=page value=<?php echo $page ?>>
+<input type=hidden name=perPage value=<?php echo $perPage ?>>
 <table width=100% border=0 cellspacing=4 cellpadding=0>
 <tr>
 <td colspan="3" align="right">
 <input type=submit name="save" value="Save and Exit">
 
-<? if (!$last) { ?>
-    <input type=submit name="next" value="Save and Edit Next <?= $perPage ?>">
-<? } ?>
+<?php if (!$last) { ?>
+    <input type=submit name="next" value="Save and Edit Next <?php echo $perPage ?>">
+<?php } ?>
 
-<? if ($page != 1) { ?>
-    <input type=submit name="prev" value="Save and Edit Previous <?= $perPage ?>">
-<? } ?>
+<?php if ($page != 1) { ?>
+    <input type=submit name="prev" value="Save and Edit Previous <?php echo $perPage ?>">
+<?php } ?>
 
 <input type=submit name="cancel" value="Exit">
 </td>
 </tr>
-<?
+<?php
 if ($numPhotos) {
 
 
@@ -221,21 +221,21 @@ if ($numPhotos) {
 
 ?>    
     <tr>
-      <td height="1"><?=$pixelImage?></td>
-      <td height="1"><?=$pixelImage?></td>
-      <td bgcolor="<?=$bordercolor?>" height="1"><?=$pixelImage?></td>
+      <td height="1"><?php echo $pixelImage?></td>
+      <td height="1"><?php echo $pixelImage?></td>
+      <td bgcolor="<?php echo $bordercolor?>" height="1"><?php echo $pixelImage?></td>
     </tr>
     <tr>
-      <td width=<?= $thumbSize ?> align=center valign="top">
+      <td width=<?php echo $thumbSize ?> align=center valign="top">
       <span class="admin">&nbsp;</span><br>
-      <?= $gallery->album->getThumbnailTag($i, $thumbSize); ?>
+      <?php echo $gallery->album->getThumbnailTag($i, $thumbSize); ?>
       </td width=10>
       <td height=1>
-      <?= $pixelImage ?>
+      <?php echo $pixelImage ?>
       </td>
 
       <td valign=top>
-<?
+<?php
     if ($gallery->album->isAlbumName($i)) {
         $myAlbumName = $gallery->album->isAlbumName($i);
         $myAlbum = new Album();
@@ -243,24 +243,24 @@ if ($numPhotos) {
         $oldCaption = $myAlbum->fields['description'];
 ?>
       <span class="admin">Album Caption:</span><br>
-      <textarea name="new_captions_<?=$i?>" rows=3 cols=60><?= $oldCaption ?></textarea><br>
+      <textarea name="new_captions_<?php echo $i?>" rows=3 cols=60><?php echo $oldCaption ?></textarea><br>
 
-<?
+<?php
     } else {
         $oldCaption = $gallery->album->getCaption($i);
         $oldKeywords = $gallery->album->getKeywords($i);
 ?>
       <span class="admin">Caption:</span><br>
-      <textarea name="new_captions_<?=$i?>" rows=3 cols=60><?= $oldCaption ?></textarea><br>
+      <textarea name="new_captions_<?php echo $i?>" rows=3 cols=60><?php echo $oldCaption ?></textarea><br>
       <span class="admin">Keywords:</span><br>
-      <input type=text name="new_keywords_<?=$i?>" size=65 value="<?= $oldKeywords ?>">
+      <input type=text name="new_keywords_<?php echo $i?>" size=65 value="<?php echo $oldKeywords ?>">
 
-<?
+<?php
     }
 ?>
       </td>
     </tr>
-<?
+<?php
         $i++;
         $count++;
     }
@@ -277,13 +277,13 @@ if ($numPhotos) {
 <td colspan=3 align="right">
 <input type=submit name="save" value="Save and Exit">
 
-<? if (!$last) { ?>
-    <input type=submit name="next" value="Save and Edit Next <?= $perPage ?>">
-<? } ?>
+<?php if (!$last) { ?>
+    <input type=submit name="next" value="Save and Edit Next <?php echo $perPage ?>">
+<?php } ?>
 
-<? if ($page != 1) { ?>
-    <input type=submit name="prev" value="Save and Edit Previous <?= $perPage ?>">
-<? } ?>
+<?php if ($page != 1) { ?>
+    <input type=submit name="prev" value="Save and Edit Previous <?php echo $perPage ?>">
+<?php } ?>
 
 <input type=submit name="cancel" value="Exit">
 </td>
@@ -293,11 +293,11 @@ if ($numPhotos) {
 
 <br>
 
-<?
+<?php
 includeHtmlWrap("album.footer");
 ?>
 
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
-<? } ?>
+<?php } ?>

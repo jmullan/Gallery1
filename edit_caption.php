@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	exit;
@@ -58,7 +58,7 @@ if (!strcmp($submit, "Save")) {
 <html>
 <head>
   <title>Edit Caption</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
@@ -66,25 +66,25 @@ if (!strcmp($submit, "Save")) {
 Enter a caption for this picture in the text
 box below.
 <br><br>
-<?= $gallery->album->getThumbnailTag($index) ?>
+<?php echo $gallery->album->getThumbnailTag($index) ?>
 
-<?= makeFormIntro("edit_caption.php", 
+<?php echo makeFormIntro("edit_caption.php", 
 			array("name" => "theform", 
 				"method" => "POST")); ?>
-<input type=hidden name="index" value="<?= $index ?>">
+<input type=hidden name="index" value="<?php echo $index ?>">
 <textarea name="data" rows=5 cols=40>
-<?= $gallery->album->getCaption($index) ?>
+<?php echo $gallery->album->getCaption($index) ?>
 </textarea>
 <br><br>
 Enter "keywords" for this photo in the text box below.
 <br><br>
 <textarea name="keywords" rows=1 cols=40>
-<?= $gallery->album->getKeywords($index) ?>
+<?php echo $gallery->album->getKeywords($index) ?>
 </textarea>
 
 <br>
 
-<?
+<?php
 // get the itemCaptureDate
 echo "<span class=error>$err</span><br><br>";
 $itemCaptureDate = $gallery->album->getItemCaptureDate($index);
@@ -110,7 +110,7 @@ $year = $itemCaptureDate["year"];
     <td>Seconds</td>
   </tr>
   <tr>
-<?
+<?php
 // start making drop downs
 echo "<td>";
 echo drawSelect("capture_mon", padded_range_array(1, 12), $mon, 1);

@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
@@ -38,13 +38,13 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 <html>
 <head>
   <title>Rename Album</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
 <center>
 
-<?
+<?php
 /* Read the album list */
 $albumDB = new AlbumDB();
 
@@ -102,9 +102,9 @@ the following characters:  <br><center><b>\ / * ? " ' &amp; &lt; &gt; | . + # </
 Those characters will be ignored in your new album name.
 
 <br>
-<?= makeFormIntro("rename_album.php", array("name" => "theform")); ?>
-<input type=text name="newName" value=<?=$newName?>>
-<input type=hidden name="oldName" value=<?=$gallery->session->albumName?>>
+<?php echo makeFormIntro("rename_album.php", array("name" => "theform")); ?>
+<input type=text name="newName" value=<?php echo $newName?>>
+<input type=hidden name="oldName" value=<?php echo $gallery->session->albumName?>>
 <p>
 <input type=submit value="Rename">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>

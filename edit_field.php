@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	exit;
@@ -45,18 +45,18 @@ if (!strcmp($submit, "Save")) {
 
 <html>
 <head>
-  <title>Edit <?= $field ?></title>
-  <?= getStyleSheetLink() ?>
+  <title>Edit <?php echo $field ?></title>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
 <center>
-Edit the <?= $field ?> and click <b>Save</b> when you're done.
+Edit the <?php echo $field ?> and click <b>Save</b> when you're done.
 
-<?= makeFormIntro("edit_field.php", array("name" => "theform", "method" => "POST")); ?>
-<input type=hidden name="field" value="<?= $field ?>">
+<?php echo makeFormIntro("edit_field.php", array("name" => "theform", "method" => "POST")); ?>
+<input type=hidden name="field" value="<?php echo $field ?>">
 <textarea name="data" rows=5 cols=40>
-<?= $gallery->album->fields[$field] ?>
+<?php echo $gallery->album->fields[$field] ?>
 </textarea>
 <p>
 <input type=submit name="submit" value="Save">

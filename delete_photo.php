@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canDeleteFromAlbum($gallery->album)) {
 	exit;
@@ -62,12 +62,12 @@ if ($confirm && isset($id)) {
 <html>
 <head>
   <title>Delete Photo</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
 
-<?
+<?php
 if ($gallery->album && isset($id)) {
 	if (isset($albumDelete)) {
 ?>
@@ -79,29 +79,29 @@ if ($gallery->album && isset($id)) {
 Do you really want to delete this Album?
 <br>
 <br>
-<?
+<?php
 $myAlbum = new Album();
 $myAlbum->load($id);
 ?>
-<?= $myAlbum->getHighlightTag() ?>
+<?php echo $myAlbum->getHighlightTag() ?>
 <br>
 <br>
 <b>
-<?= $myAlbum->fields[title] ?>
+<?php echo $myAlbum->fields[title] ?>
 </b>
 <br>
 <br>
-<?= $myAlbum->fields[description] ?>
+<?php echo $myAlbum->fields[description] ?>
 <br>
-<?= makeFormIntro("delete_photo.php"); ?>
-<input type=hidden name=id value=<?= $id?>>
-<input type=hidden name=albumDelete value=<?= $albumDelete?>>
+<?php echo makeFormIntro("delete_photo.php"); ?>
+<input type=hidden name=id value=<?php echo $id?>>
+<input type=hidden name=albumDelete value=<?php echo $albumDelete?>>
 <input type=submit name=confirm value="Delete">
 <input type=submit value="Cancel" onclick='parent.close()'>
 </form>
 <br>
 
-<?
+<?php
 	} else {
 ?>
 
@@ -109,18 +109,18 @@ $myAlbum->load($id);
 Do you really want to delete this photo?
 <br>
 <br>
-<?= $gallery->album->getThumbnailTag($index) ?>
+<?php echo $gallery->album->getThumbnailTag($index) ?>
 <br>
-<?= $gallery->album->getCaption($index) ?>
+<?php echo $gallery->album->getCaption($index) ?>
 <br>
-<?= makeFormIntro("delete_photo.php"); ?>
-<input type=hidden name=id value=<?= $id?>>
+<?php echo makeFormIntro("delete_photo.php"); ?>
+<input type=hidden name=id value=<?php echo $id?>>
 <input type=submit name=confirm value="Delete">
 <input type=submit value="Cancel" onclick='parent.close()'>
 </form>
 <br>
 
-<?
+<?php
 	}
 } else {
 	error("no album / index specified");

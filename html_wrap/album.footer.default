@@ -1,4 +1,4 @@
-<?
+<?php
 // This is the default album footer (for the gallery album
 // page: view_album.php). It's companion is album.header.default.
 //
@@ -17,11 +17,11 @@
           <td valign=top>
             <!-- The Gallery code version number, linked to the Gallery home page -->
             <span class="fineprint">
-              Powered by <a href=<?= $gallery->url ?>>Gallery v<?= $gallery->version ?></a>
+              Powered by <a href=<?php echo $gallery->url ?>>Gallery v<?php echo $gallery->version ?></a>
             </span>
           </td>
           <!-- PayPal donation block -->
-          <? if ($gallery->user->isAdmin()) { ?>
+          <?php if ($gallery->user->isAdmin()) { ?>
           <td width=300 align=right>
             <span class="fineprint">
               Are you happy with Gallery?<br>
@@ -29,16 +29,16 @@
             </span>
           </td>
           <td width="90" align="right">
-            <a href="<?= $gallery->url ?>/donate.php?donate_tag=v<?= $gallery->version ?>"><img align="right"
-              src="<?= $gallery->app->photoAlbumURL ?>/images/donate.jpg" width="88" height="31" border="0"></a>
-          </td><? } ?>
+            <a href="<?php echo $gallery->url ?>/donate.php?donate_tag=v<?php echo $gallery->version ?>"><img align="right"
+              src="<?php echo $gallery->app->photoAlbumURL ?>/images/donate.jpg" width="88" height="31" border="0"></a>
+          </td><?php } ?>
         </tr>
       </table>
     </td>
   </tr>
 </table>
 
-<?
+<?php
 includeHtmlWrap("wrapper.footer");
 ?>
 

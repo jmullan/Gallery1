@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<? 
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php 
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
 	header("Location: " . makeAlbumUrl());
@@ -122,21 +122,21 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
 $breadcrumb["bordercolor"] = $bordercolor;
 ?>
 
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
-  <title><?= $gallery->app->galleryTitle ?> :: <?= $gallery->album->fields["title"] ?></title>
-  <?= getStyleSheetLink() ?>
+  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
+  <?php echo getStyleSheetLink() ?>
   <style type="text/css">
-<?
+<?php
 // the link colors have to be done here to override the style sheet 
 if ($gallery->album->fields["linkcolor"]) {
 ?>
     A:link, A:visited, A:active
-      { color: <?= $gallery->album->fields[linkcolor] ?>; }
+      { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
     A:hover
       { color: #ff6600; }
-<?
+<?php
 }
 if ($gallery->album->fields["bgcolor"]) {
 	echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
@@ -154,13 +154,13 @@ if ($gallery->album->fields["textcolor"]) {
 </head>
 
 <body> 
-<? } ?>
+<?php } ?>
 
   <script language="javascript1.2">
   // <!--
   var statusWin;
   function showProgress() {
-	statusWin = <?=popup_status("progress_uploading.php");?>
+	statusWin = <?php echo popup_status("progress_uploading.php");?>
   }
 
   function hideProgress() {
@@ -180,12 +180,12 @@ if ($gallery->album->fields["textcolor"]) {
 	  var sel_value = selected_select.options[sel_index].value;
 	  selected_select.options[0].selected = true;
 	  selected_select.blur();
-	  <?= popup(sel_value, 1) ?>
+	  <?php echo popup(sel_value, 1) ?>
   } 
   // --> 
   </script>
 
-<? 
+<?php 
 includeHtmlWrap("album.header");
 
 function showChoice($label, $target, $args) {
@@ -283,7 +283,7 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 ?>
 
 <!-- top nav -->
-<?
+<?php
 $breadcrumb["top"] = true;
 if (strcmp($gallery->album->fields["returnto"], "no") 
    || ($gallery->album->fields["parentAlbumName"])) {
@@ -301,8 +301,8 @@ if (!strcmp($borderwidth, "off")) {
 
 <!-- image grid table -->
 <br>
-<table width=<?=$fullWidth?> border=0 cellspacing=0 cellpadding=7>
-<?
+<table width=<?php echo $fullWidth?> border=0 cellspacing=0 cellpadding=7>
+<?php
 $numPhotos = $gallery->album->numPhotos(1);
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
 if ($numPhotos) {
@@ -425,13 +425,13 @@ if ($numPhotos) {
 ?>
 				<br>
 				<span class="fineprint">
-				   Changed: <?=$myAlbum->getLastModificationDate()?>.  <br>
-				   Contains: <?=pluralize($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), "item", "no")?>.<br>
-				   <? if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && ($myAlbum->getClicks() > 0)) { ?>
-				   	Viewed: <?=pluralize($myAlbum->getClicks(), "time", "0")?>.<br>
-				   <? } ?>
+				   Changed: <?php echo $myAlbum->getLastModificationDate()?>.  <br>
+				   Contains: <?php echo pluralize($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), "item", "no")?>.<br>
+				   <?php if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && ($myAlbum->getClicks() > 0)) { ?>
+				   	Viewed: <?php echo pluralize($myAlbum->getClicks(), "time", "0")?>.<br>
+				   <?php } ?>
 				</span>
-<?
+<?php
 			} else {
 				echo($gallery->album->getCaption($i));
 				// indicate with * if we have a comment for a given photo
@@ -544,26 +544,26 @@ if ($numPhotos) {
 ?>
 
 	<td colspan=$rows align=center class="headbox">
-<? if ($gallery->user->canAddToAlbum($gallery->album)) { ?>
+<?php if ($gallery->user->canAddToAlbum($gallery->album)) { ?>
 	<span class="head">Hey! Add some photos.</span> 
-<? } else { ?>
+<?php } else { ?>
 	<span class="head">This album is empty.</span> 
-<? } ?>
+<?php } ?>
 	</td>
 	</tr>
-<?
+<?php
 }
 ?>
 
 </table>
 
-<? if (!strcmp($gallery->album->fields["public_comments"], "yes") && $displayCommentLegend) { //display legend for comments ?>
+<?php if (!strcmp($gallery->album->fields["public_comments"], "yes") && $displayCommentLegend) { //display legend for comments ?>
 <span class=error>*</span><span class=fineprint> Comments available for this item.</span>
 <br><br>
-<? } ?>
+<?php } ?>
 
 <!-- bottom nav -->
-<? 
+<?php 
 include($GALLERY_BASEDIR . "layout/navigator.inc");
 if (strcmp($gallery->album->fields["returnto"], "no")) {
 	$breadcrumb["top"] = false;
@@ -574,7 +574,7 @@ if (strcmp($gallery->album->fields["returnto"], "no")) {
 includeHtmlWrap("album.footer");
 ?>
 
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
-<? } ?>
+<?php } ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 //-- draw a table which looks like  a book.
 //-- This uses the album's border color/size to draw.
 
@@ -21,22 +21,22 @@ $imageBR = "$base/albumthumb_BR.gif";
 <table width="1" border="0" cellspacing="0" cellpadding="0">
 
   <tr>
-    <td bgcolor="<?= $borderColor ?>" rowspan="2" colspan="2" width="1" height="1"><table cellspacing="0" cellpadding="<?= $borderWidth ?>">
+    <td bgcolor="<?php echo $borderColor ?>" rowspan="2" colspan="2" width="1" height="1"><table cellspacing="0" cellpadding="<?php echo $borderWidth ?>">
       <tr>
-        <td width="<?= $thumbWidth ?>" height="<?= $thumbHeight ?>"><a href="<?= $href ?>"><?= $tag ?></a></td>
+        <td width="<?php echo $thumbWidth ?>" height="<?php echo $thumbHeight ?>"><a href="<?php echo $href ?>"><?php echo $tag ?></a></td>
       </tr>
     </table></td>
 
-    <td width="5" height="<?= $borderWidth ?>" valign="bottom"><img src="<?= $imageTR ?>" width="5" height="1"></td>
+    <td width="5" height="<?php echo $borderWidth ?>" valign="bottom"><img src="<?php echo $imageTR ?>" width="5" height="1"></td>
   </tr>
 
   <tr>
-    <td width="5" height="<?= $thumbHeight ?>" background="<?= $imageRR ?>"><img src="<?= $pixelImage ?>" width="1" height="1"></td>
+    <td width="5" height="<?php echo $thumbHeight ?>" background="<?php echo $imageRR ?>"><img src="<?php echo $pixelImage ?>" width="1" height="1"></td>
   </tr>
 
   <tr>
-    <td width="5" height="3"><img src="<?= $imageBL ?>" width="5" height="3"></td>
-    <td background="<?= $imageBB ?>" width="<?= $thumbWidth ?>"><img src="<?= $pixelImage ?>" width="1" height="1"></td>
-    <td><img src="<?= $imageBR ?>" width="5" height="3"></td>
+    <td width="5" height="3"><img src="<?php echo $imageBL ?>" width="5" height="3"></td>
+    <td background="<?php echo $imageBB ?>" width="<?php echo $thumbWidth ?>"><img src="<?php echo $pixelImage ?>" width="1" height="1"></td>
+    <td><img src="<?php echo $imageBR ?>" width="5" height="3"></td>
   </tr>
 </table>

@@ -1,4 +1,4 @@
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
                     !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -7,11 +7,11 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	            exit;
 		    }
 ?>
-<? require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
+<?php require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
 <html>
 <head>
   <title>Gallery Configuration Error</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 <center>
@@ -23,11 +23,11 @@ Gallery has not been configured!
 <table width=80%><tr><td>
 Gallery must be configured before you can use it.  First, you must put it
 into configuration mode.  Here's how:
-<?= configure("configure"); ?>
+<?php echo configure("configure"); ?>
 <p>
-And then start the <a href="<?=$GALLERY_BASEDIR?>setup/index.php">Configuration Wizard</a>
+And then start the <a href="<?php echo $GALLERY_BASEDIR?>setup/index.php">Configuration Wizard</a>
 
-<? include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
+<?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 </table>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<?
+<?php
 
 // If the border color is not passed in, we do a black/white combo
 if ($breadcrumb["bordercolor"]) {
@@ -11,21 +11,21 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
 
 ?>
 
-<table width="<?=$navigator["fullWidth"] . $navigator["widthUnits"]?>" border="0" cellspacing="0" cellpadding="0">
-<?
+<table width="<?php echo $navigator["fullWidth"] . $navigator["widthUnits"]?>" border="0" cellspacing="0" cellpadding="0">
+<?php
 if ($breadcrumb["top"]) {
 ?>
   <tr> 
-    <td colspan="3" bgcolor="<?=$borderIn?>"><?=$pixelImage?></td>
+    <td colspan="3" bgcolor="<?php echo $borderIn?>"><?php echo $pixelImage?></td>
   </tr>
-<?
+<?php
 }
 ?>
   <tr> 
-    <td bgcolor="<?=$borderIn?>" width="1" height="18"><?=$pixelImage?></td>
+    <td bgcolor="<?php echo $borderIn?>" width="1" height="18"><?php echo $pixelImage?></td>
     <td align="right" width="3000" height="18">
       <span class="bread">
-<?
+<?php
 $i = 0;
 while ($breadcrumb["text"][$i]) {
 	if ($i > 0) {
@@ -36,19 +36,19 @@ while ($breadcrumb["text"][$i]) {
 	$i++;
 }
 ?>
-      <img src="<?=$imageDir?>/nav_home.gif" width="13" height="11">&nbsp;
+      <img src="<?php echo $imageDir?>/nav_home.gif" width="13" height="11">&nbsp;
       </span>
     </td> 
                 
-    <td bgcolor="<?=$borderIn?>" width="1" height="18"><?=$pixelImage?></td>
+    <td bgcolor="<?php echo $borderIn?>" width="1" height="18"><?php echo $pixelImage?></td>
   </tr>
-<?
+<?php
 if (!$breadcrumb["top"] || $breadcrumb["bottom"]) {
 ?>
   <tr> 
-    <td colspan="3" height="1" bgcolor="<?=$borderIn?>"><?=$pixelImage?></td>
+    <td colspan="3" height="1" bgcolor="<?php echo $borderIn?>"><?php echo $pixelImage?></td>
   </tr>
-<?
+<?php
 }
 ?>
 </table>    

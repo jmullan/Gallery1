@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,45 +27,45 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 $borderColor = $gallery->app->default["bordercolor"];
 $thumbSize = $gallery->app->default["thumb_size"];
 ?>
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html>
 <head>
-  <title><?= $gallery->app->galleryTitle ?> :: Search</title>
-  <?= getStyleSheetLink() ?>
+  <title><?php echo $gallery->app->galleryTitle ?> :: Search</title>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
-<? } ?>
+<?php } ?>
 
 <!-- search.header begin -->
-<? 
+<?php 
 includeHtmlWrap("search.header");
 ?>
-<?
+<?php
 $searchString = removeTags($searchstring);
 if ($searchstring) {
 ?>
 <table width=100% border=0 cellspacing=0>
 <tr>
-<?= makeFormIntro("search.php"); ?>
+<?php echo makeFormIntro("search.php"); ?>
 <td valign="middle" align="right">
 <span class="admin"> Search Again: </span>
-<input style="font-size=10px;" type="text" name="searchstring" value="<?= $searchstring ?>" size="25">
+<input style="font-size=10px;" type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
 </td>
 </form>   
 </tr>
-<tr><td height=2><img src=<?= $GALLERY_BASEDIR ?>images/pixel_trans.gif></td></tr>
+<tr><td height=2><img src=<?php echo $GALLERY_BASEDIR ?>images/pixel_trans.gif></td></tr>
 </table> 
-<?
+<?php
 }
 ?>
 <!-- search.header ends -->
 <!-- Top Nav -->
-<?
+<?php
 $breadtext[0] = "Gallery: <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
 $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
@@ -74,7 +74,7 @@ $breadcrumb["bottom"] = true;
 include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?>
 <!-- end Top Nav -->
-<?
+<?php
 
 $navigator["fullWidth"] = 100;
 $navigator["widthUnits"] = "%";
@@ -192,15 +192,15 @@ else {
 ?>
 <br>Search the Gallery's Album and Photo<br> titles and descriptions:<br>
 	<table width=100% border=0 cellspacing=0>
-	<tr><?= makeFormIntro("search.php"); ?>
+	<tr><?php echo makeFormIntro("search.php"); ?>
 	<td valign="middle" align="left">
-	<input type="text" name="searchstring" value="<?= $searchstring ?>" size="25">
+	<input type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
 	<input type="submit" value="Go!">
 	</td>
 	</form>  
 	</tr>
 	</table>
-<?
+<?php
 }
 echo "<br>";
 $breadtext[0] = "Gallery: <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
@@ -210,11 +210,11 @@ $breadcrumb["top"] = true;
 $breadcrumb["bottom"] = true;
 include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?>
-<? 
+<?php 
 includeHtmlWrap("search.footer");
 ?>
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
-<? } ?>
+<?php } ?>
 

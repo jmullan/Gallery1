@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 if (!$gallery->user->isAdmin()) {
 	exit;	
 }
@@ -57,7 +57,7 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 <html>
 <head>
   <title>Manage Users</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
@@ -66,11 +66,11 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 <br>
 <br>
 
-<?= makeFormIntro("manage_users.php", array("name" => "manageusers_form")); ?>
+<?php echo makeFormIntro("manage_users.php", array("name" => "manageusers_form")); ?>
 You can create, modify and delete users here.
 <p>
 
-<?
+<?php
 if (!$displayUsers) {
 	print "<i>There are no users!  Create one.</i>";
 } else {
@@ -78,7 +78,7 @@ if (!$displayUsers) {
 
 <select name=uname size=15 onDblClick='my_submit("Modify")'>
 
-<?
+<?php
 	foreach ($displayUsers as $name) {
 		print "<option value=\"$name\"> $name";
 	}
@@ -89,10 +89,10 @@ if (!$displayUsers) {
 
 <p>
 <input type=button value="Create" onClick='my_submit("Create")'>
-<? if (count($displayUsers)) { ?>
+<?php if (count($displayUsers)) { ?>
 <input type=button value="Modify" onClick='my_submit("Modify")'>
 <input type=button value="Delete" onClick='my_submit("Delete")'>
-<? } ?>
+<?php } ?>
 <input type=button value="Done" onclick='parent.close()'>
 <input type=hidden name=action value="">
 </form>

@@ -1,4 +1,4 @@
-<?
+<?php
 function configure($cmd="configure") {
 ?>
 <center>
@@ -8,23 +8,23 @@ function configure($cmd="configure") {
     <code>
      <br> <b>Unix</b> with shell access
      <br> % cd /path/to/your/gallery
-     <br> % sh ./<?=$cmd?>.sh
+     <br> % sh ./<?php echo $cmd?>.sh
      <br>
      <br> <b>Unix</b> with FTP access
-     <br> ftp> chmod <?= configure_filemode($cmd) ?> .htaccess
-     <br> ftp> chmod <?= configure_filemode($cmd) ?> config.php
-     <br> ftp> chmod <?= configure_dirmode($cmd) ?> setup
+     <br> ftp> chmod <?php echo configure_filemode($cmd) ?> .htaccess
+     <br> ftp> chmod <?php echo configure_filemode($cmd) ?> config.php
+     <br> ftp> chmod <?php echo configure_dirmode($cmd) ?> setup
      <br>
      <br> <b>Windows</b>
      <br> C:\> cd \path\to\your\gallery
-     <br> C:\> <?=$cmd?>.bat
+     <br> C:\> <?php echo $cmd?>.bat
      <br>
      <br>
    </td>
   </tr>
  </table>
 </center>
-<?
+<?php
 }
 
 function configure_filemode($cmd = "configure") {

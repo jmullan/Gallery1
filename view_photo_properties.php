@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,16 +27,16 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
 
 <html>
 <head>
   <title>Photo Properties</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
-<?
+<?php
 if ($gallery->session->albumName && $index) {
 ?>
 
@@ -44,12 +44,12 @@ if ($gallery->session->albumName && $index) {
 Photo Properties<br>
 <br>
 
-<?= $gallery->album->getThumbnailTag($index) ?>
+<?php echo $gallery->album->getThumbnailTag($index) ?>
 <br>
-<?= $gallery->album->getCaption($index) ?>
+<?php echo $gallery->album->getCaption($index) ?>
 <br><br>
 
-<?
+<?php
 /* 
 Here is the EXIF parsing code...
 I have chosen to use a program called "jhead" to do EXIF parsing.

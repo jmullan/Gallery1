@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
@@ -40,11 +40,11 @@ $albumDB = new AlbumDB(); // read album database
 <html>
 <head>
   <title>Move Photo</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
-<?
+<?php
 if ($gallery->session->albumName && isset($index)) {
 	$numPhotos = $gallery->album->numPhotos(1);
 
@@ -182,22 +182,22 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <center>
-<?
+<?php
 if ($gallery->album->isAlbumName($index)) {
 ?>
 Move this album within the album:<br>
-<? } else { ?>
+<?php } else { ?>
 Move this photo within the album:<br>
-<? } ?>
-<i>(Current Location is <?=$index?>)</i>
+<?php } ?>
+<i>(Current Location is <?php echo $index?>)</i>
 <p>
-<?= $gallery->album->getThumbnailTag($index) ?>
+<?php echo $gallery->album->getThumbnailTag($index) ?>
 <p>
-<?= makeFormIntro("move_photo.php", array("name" => "theform")); ?>
+<?php echo makeFormIntro("move_photo.php", array("name" => "theform")); ?>
 Select the new location:
-<input type=hidden name="index" value="<?=$index?>">
+<input type=hidden name="index" value="<?php echo $index?>">
 <select name="newIndex">
-<?
+<?php
 for ($i = 1; $i <= $numPhotos; $i++) {
         $sel = "";
         if ($i == $index) {
@@ -220,27 +220,27 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 
 
 
-<?
+<?php
 if ($gallery->album->isAlbumName($index)) {
 ?>
 Move the album to a new album:<br>
-<?= makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
-<input type=hidden name="index" value="<?=$index?>">
+<?php echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
+<input type=hidden name="index" value="<?php echo $index?>">
 <select name="newAlbum">
-<?
+<?php
 	printAlbumOptionList(1,0,0);
 ?>
 </select>
-<?
+<?php
 } else {  
 ?>
 Move a range of photos to a new album:<br>
 <i>(To move just one photo, make First and Last the same)</i><br>
 <i>(Nested albums in this range will be ignored)</i><p>
-<?= makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
-<input type=hidden name="index" value="<?=$index?>">
+<?php echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
+<input type=hidden name="index" value="<?php echo $index?>">
 
-<?
+<?php
 // Display album list for a photo and display num photos to move
 ?>
 <table>
@@ -252,7 +252,7 @@ Move a range of photos to a new album:<br>
 <tr>
 <td align=center>
 <select name="startPhoto">
-<?
+<?php
 for ($i = 1; $i <= $numPhotos; $i++) {
         $sel = "";
         if ($i == $index) {
@@ -265,7 +265,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 </td>
 <td align=center>
 <select name="endPhoto">
-<?
+<?php
 for ($i = 1; $i <= $numPhotos; $i++) {
         $sel = "";
         if ($i == $index) {
@@ -278,21 +278,21 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 </td>
 <td>
 <select name="newAlbum">
-<?
+<?php
 printAlbumOptionList(0,0,1); 
 ?>
 </select>
 </td>
 </tr>
 </table>
-<?
+<?php
 } // end else
 ?>
 <br>
 <input type=submit value="Move to Album!">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>
 </form>
-<?
+<?php
 }
 } else {
 	error("no album / index specified");

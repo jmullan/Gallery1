@@ -11,12 +11,12 @@ If you find this page confusing, you can probably safely ignore it
 <table width=90% border=0>
 <pre>
 
-<?
+<?php
 require("../Version.php");
 
 $error = 0;
 
-$data .= "<" . "?\n";
+$data .= "<" . "?php\n";
 
 $data .= "/* \n"
         ." * Protect against very old versions of 4.0 (like 4.0RC1) which  \n"
@@ -229,7 +229,7 @@ $data .= "?" . ">\n";
 echo $view;
 ?>
 
-<input type=hidden name=data value=<?=urlencode($data)?>>
+<input type=hidden name=data value=<?php echo urlencode($data)?>>
 </pre>
 </table>
 
@@ -237,12 +237,12 @@ echo $view;
 <input type=hidden name=next_page value="write">
 <p>
 <input type=submit name="go_back" value="<- Edit Config">
-<? if (!$error) { ?>
+<?php if (!$error) { ?>
  <input type=submit name="go_next" value="Save Config ->">
-<? } else { ?>
+<?php } else { ?>
 <br>
 <font color=red>There are errors in your configuration.
 <br>
 Please go back and fix them!</font>
-<? } ?>
+<?php } ?>
 

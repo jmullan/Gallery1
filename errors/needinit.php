@@ -1,4 +1,4 @@
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
                     !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -7,11 +7,11 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	            exit;
 		    }
 ?>
-<? require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
+<?php require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
 <html>
 <head>
   <title>Gallery is misconfigured</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>	
 <center>
@@ -23,11 +23,11 @@ Gallery is not configured correctly.  There could be a variety of reasons
 for this.  The easiest way to fix this problem is to re-run the configuration
 wizard.  First, put Gallery in configuration mode:
 <p>
-<?= configure("configure"); ?>
+<?php echo configure("configure"); ?>
 <p>
-Then launch the <a href="<?=$GALLERY_BASEDIR?>setup/index.php">configuration wizard</a>.
+Then launch the <a href="<?php echo $GALLERY_BASEDIR?>setup/index.php">configuration wizard</a>.
 
-<? include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
+<?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 
 </table>
 </body>

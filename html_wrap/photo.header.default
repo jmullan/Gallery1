@@ -1,4 +1,4 @@
-<?
+<?php
 // This is the default photo header (for the gallery photo
 // page: view_photo.php). It's companion is photo.footer.default.
 //
@@ -14,7 +14,7 @@
 //
 ?>
 
-<?
+<?php
 includeHtmlWrap("wrapper.header");
 ?>
 
@@ -22,7 +22,7 @@ includeHtmlWrap("wrapper.header");
   <tr>
     <td>
       <span class="head">
-        <?= $gallery->album->fields["title"] ?>
+        <?php echo $gallery->album->fields["title"] ?>
       </span>
     </td>
   </tr>

@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2002 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
         header("Location: " . makeAlbumUrl());
@@ -163,21 +163,21 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
 }
 ?>
 
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
-  <title><?= $gallery->app->galleryTitle ?> :: <?= $gallery->album->fields["title"] ?> :: <?= $index ?></title>
-  <?= getStyleSheetLink() ?>
+  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: <?php echo $index ?></title>
+  <?php echo getStyleSheetLink() ?>
   <style type="text/css">
-<?
+<?php
 // the link colors have to be done here to override the style sheet
 if ($gallery->album->fields["linkcolor"]) {
 ?>      
     A:link, A:visited, A:active
-      { color: <?= $gallery->album->fields[linkcolor] ?>; }
+      { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
     A:hover
       { color: #ff6600; }
-<? 
+<?php 
 }       
 if ($gallery->album->fields["bgcolor"]) {
         echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
@@ -195,7 +195,7 @@ if ($gallery->album->fields["textcolor"]) {
   <script language="javascript1.2">
   // <!--
 
-<?
+<?php
 if ($fitToWindow) { 
 ?>
 
@@ -203,8 +203,8 @@ if ($fitToWindow) {
 	var changed = 0;
 	var heightMargin = 160;
 	var widthMargin = 40;
-	var imageHeight = <?=$imageHeight?>;
-	var imageWidth = <?=$imageWidth?>;
+	var imageHeight = <?php echo $imageHeight?>;
+	var imageWidth = <?php echo $imageWidth?>;
 	var aspect = imageHeight / imageWidth;
 
 	// Get the window dimensions height.  IE and Nav use different techniques.
@@ -242,9 +242,9 @@ if ($fitToWindow) {
 		img.width = imageWidth;
 	} else {
 		if (changed) {
-			document.write('<a href="<?=makeAlbumUrl($gallery->session->albumName, $id, array("full" => 1))?>">');
+			document.write('<a href="<?php echo makeAlbumUrl($gallery->session->albumName, $id, array("full" => 1))?>">');
 		}
-		document.write('<img name=photo src="<?=$photoURL?>" border=0 width=' +
+		document.write('<img name=photo src="<?php echo $photoURL?>" border=0 width=' +
 		                 imageWidth + ' height=' + imageHeight + '>');
 		if (changed) {
 			document.write('</a>');
@@ -262,7 +262,7 @@ if ($fitToWindow) {
 	}
   }
 
-<? 
+<?php 
 } // if ($fitToWindow)
 ?>
 
@@ -270,23 +270,23 @@ if ($fitToWindow) {
   </script>
 </head>
 
-<? if ($fitToWindow) { ?>
+<?php if ($fitToWindow) { ?>
 <body onResize='doResize()'>
-<? } else { ?>
+<?php } else { ?>
 <body>
-<? } ?>
-<? } # if not embedded ?>
+<?php } ?>
+<?php } # if not embedded ?>
 
-<?
+<?php
 includeHtmlWrap("photo.header");
 ?>
 
 <!-- Top Nav Bar -->
-<table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
+<table border=0 width=<?php echo $mainWidth?> cellpadding=0 cellspacing=0>
 
 <tr>
 <td>
-<?
+<?php
 
 if (!$gallery->album->isMovie($id)) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
@@ -351,7 +351,7 @@ include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 </tr>
 <tr>
 <td>
-<?
+<?php
 include($GALLERY_BASEDIR . "layout/navphoto.inc");
 
 #-- if borders are off, just make them the bgcolor ----
@@ -368,9 +368,9 @@ if ($bordercolor) {
 
 
 </table>
-<table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
+<table border=0 width=<?php echo $mainWidth?> cellpadding=0 cellspacing=0>
 <tr><td colspan=3>
-<?
+<?php
 includeHtmlWrap("inline_photo.header");
 ?>
 </td></tr>
@@ -379,7 +379,7 @@ includeHtmlWrap("inline_photo.header");
 <!-- image -->
 
 <table width=1% border=0 cellspacing=0 cellpadding=0>
-<?
+<?php
 echo("<tr $bordercolor>");
 echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
 echo("</tr><tr>");
@@ -409,7 +409,7 @@ if ($fitToWindow && !$GALLERY_EMBEDDED_INSIDE) { ?>
 	// <!--
 	fitToWindow();
 	// -->
-</script><noscript><?
+</script><noscript><?php
 }
 
 echo $photoTag;
@@ -434,24 +434,24 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 </tr>
 </table>
 
-<table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
+<table border=0 width=<?php echo $mainWidth?> cellpadding=0 cellspacing=0>
 <!-- caption -->
 <tr>
 <td colspan=3 align=center>
-<span class="caption"><?= editCaption($gallery->album, $index, $edit) ?></span>
+<span class="caption"><?php echo editCaption($gallery->album, $index, $edit) ?></span>
 <br><br>
 </td>
 </tr>
-<? if (!strcmp($gallery->album->fields["public_comments"], "yes")) { ?>
+<?php if (!strcmp($gallery->album->fields["public_comments"], "yes")) { ?>
 <tr>
 <td colspan=3 align=center>
 <!-- comments -->
-<span class="caption"><?= viewComments($index) ?></span>
+<span class="caption"><?php echo viewComments($index) ?></span>
 <br><br>
 </td>
 </tr>
-<? } ?>
-<?
+<?php } ?>
+<?php
 if (!strcmp($gallery->album->fields["print_photos"],"none") ||
     $gallery->album->isMovie($id)) {
 } else {
@@ -474,17 +474,17 @@ list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
   <input type=hidden name=psid value=AFFL>
   <input type=hidden name=referid value=jackodog>
   <input type=hidden name=returl value="this-gets-set-by-javascript-in-onClick">
-  <input type=hidden name=imraw-1 value="<?= $rawImage ?>">
-  <input type=hidden name=imrawheight-1 value="<?= $imageHeight ?>">
-  <input type=hidden name=imrawwidth-1 value="<?= $imageWidth ?>">
-  <input type=hidden name=imthumb-1 value="<?= $thumbImage ?>">
+  <input type=hidden name=imraw-1 value="<?php echo $rawImage ?>">
+  <input type=hidden name=imrawheight-1 value="<?php echo $imageHeight ?>">
+  <input type=hidden name=imrawwidth-1 value="<?php echo $imageWidth ?>">
+  <input type=hidden name=imthumb-1 value="<?php echo $thumbImage ?>">
   <input type=hidden name=imbkprntb-1 value="Hi">
 </form>
-<?
+<?php
 }
 ?>
 
-<?
+<?php
 
 echo("<tr><td colspan=3 align=center>");
 includeHtmlWrap("inline_photo.footer");
@@ -492,10 +492,10 @@ echo("</td></tr>");
 ?>
 
 </table>
-<table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
+<table border=0 width=<?php echo $mainWidth?> cellpadding=0 cellspacing=0>
 <tr>
 <td>
-<?
+<?php
 include($GALLERY_BASEDIR . "layout/navphoto.inc");
 $breadcrumb["top"] = false;
 include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
@@ -504,12 +504,12 @@ include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 </tr>
 </table>
 </center>
-<?
+<?php
 includeHtmlWrap("photo.footer");
 ?>
 
-<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
-<? } ?>
+<?php } ?>
 
