@@ -819,7 +819,7 @@ class Album {
 		if ($success && $msg) { // send email
 			global $HTTP_SERVER_VARS;
 			if (!is_array($msg)) {
-				gallery_error(_("msg should be an array!"));
+				echo gallery_error(_("msg should be an array!"));
 				vd($msg);
 				return $success;
 			}
@@ -1266,7 +1266,7 @@ class Album {
 		if ($index >= 1 && $index <= sizeof($this->photos)) { 
 			return $this->photos[$index-1];
 		} else {
-			print "ERROR: requested index [$index] out of bounds [" . sizeof($this->photos) . "]";
+			echo gallery_error(sprintf(_("Requested index [%d] out of bounds [%d]"),$index,sizeof($this->photos)));
 		}
 	}
 
@@ -1558,7 +1558,7 @@ class Album {
 		if ($status != 0) {
 		    // An error occurred.
 		    return array("junk1" => "",
-				 "Error" => "Error $status getting EXIF data",
+				 "Error" => sprintf(_("Error %s getting EXIF data"),$status),
 				 "junk2" => "");
 		}
 
@@ -2162,7 +2162,7 @@ class Album {
 		       	if (gallery_validate_email($user->getEmail())) {
 			       	$result[]=$user->getEmail();
 		       	} else if (isDebugging()) {
-			       	gallery_error( sprintf(_("Email problem: skipping %s (UID %s) because email address %s is not valid."), 
+				echo gallery_error( sprintf(_("Email problem: skipping %s (UID %s) because email address %s is not valid."), 
 							$user->getUsername(), $uid, $user->getEmail()));
 		       	}
 	       	}

@@ -138,7 +138,7 @@ $myAlbum->load($id);
 <?php
 	}
 } else {
-	gallery_error(_("no album / index specified"));
+	echo gallery_error(_("no album / index specified"));
 }
 ?>
 

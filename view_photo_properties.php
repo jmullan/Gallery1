@@ -175,7 +175,7 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
         echo "</span>";
     }
 } else {
-    gallery_error(_("no album / index specified"));
+	echo gallery_error(_("no album / index specified"));
 }
 ?>
 <br><br>

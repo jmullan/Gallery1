@@ -105,17 +105,10 @@ function viewComments($index, $addComments) {
        	}
 }
 
-function center($message) {
-	return "<center>$message</center>";
-}
-
 function gallery_error($message) {
-	echo error_format($message);
+	return '<span class="error">'. _("Error:") . $message .'</span>';
 }
 
-function error_format($message) {
-	return "<span class=\"error\">". _("Error:") . " $message</span>";
-}
 
 function build_popup_url($url, $url_is_complete=0) {
 
@@ -562,8 +555,8 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
          return 0;
       }
    } else {
-      echo "<br> ". _("Error: No watermark name specified!") ."<br>";
-      return 0;
+	echo gallery_error(_("No watermark name specified!"));
+	return 0;
    }
 
    // Set or Clip $wmAlignX and $wmAlignY
@@ -899,7 +892,7 @@ function toPnmCmd($file) {
 		 	" " .
 			fs_import_filename($file);
 	} else {
-		gallery_error(sprintf(_("Unknown file type: %s"), $file));
+		echo gallery_error(sprintf(_("Unknown file type: %s"), $file));
 		return "";
 	}
 }
@@ -922,7 +915,7 @@ function fromPnmCmd($file, $quality=NULL) {
 	if ($cmd) {
 		return "$cmd > " . fs_import_filename($file);
 	} else {
-		gallery_error(sprintf(_("Unknown file type: %s"), $file));
+		echo gallery_error(sprintf(_("Unknown file type: %s"), $file));
 		return "";
 	}
 }
@@ -955,7 +948,7 @@ function exec_wrapper($cmd) {
 		return 0;
 	} else {
 		if ($results) {
-			gallery_error(join("<br>", $results));
+			echo gallery_error(join("<br>", $results));
 		}
 		return 1;
 	}
@@ -1500,18 +1493,18 @@ function preprocessImage($dir, $file) {
 				fclose($newfd);
 				$success = fs_rename($tempfile, "$dir/$file");
 				if (!$success) {
-					gallery_error("Couldn't move $tempfile -> $dir/$file");
+					echo gallery_error("Couldn't move $tempfile -> $dir/$file");
 					fs_unlink($tempfile);
 				}
 			} else {
-				gallery_error(sprintf(_("Can't write to %s."),
+				echo gallery_error(sprintf(_("Can't write to %s."),
 							$tempfile));
 			}
 			chmod("$dir/$file", 0644);
 		}
 		fclose($fd);
 	} else {
-		gallery_error(sprintf(_("Can't read %s."), "$dir/$file"));
+		echo gallery_error(sprintf(_("Can't read %s."), "$dir/$file"));
 	}
 
 	return 1;
@@ -1869,12 +1862,12 @@ function safe_serialize($obj, $file) {
 		/* Acquire an advisory lock */
 		$lockfd = fs_fopen("$file.lock", "a+");
 		if (!$lockfd) {
-			gallery_error(sprintf(_("Could not open lock file (%s)!"),
+			echo gallery_error(sprintf(_("Could not open lock file (%s)!"),
 						"$file.lock"));
 			return 0;
 		}
 		if (!flock($lockfd, LOCK_EX)) {
-			gallery_error(sprintf(_("Could not acquire lock (%s)!"),
+			echo gallery_error(sprintf(_("Could not acquire lock (%s)!"),
 						"$file.lock"));
 			return 0;
 		}
@@ -2561,9 +2554,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 			}
 			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $extra_fields, $gallery->user->uid);
 			if ($err) {
-				processingMsg("<font color=red>" . 
-						sprintf(_("Error: %s!"), $err) .
-						"</font>");
+				processingMsg(gallery_error($err));
 				processingMsg("<b>". sprintf(_("Need help?  Look in the  %s%s FAQ%s"),
 				    '<a href="http://gallery.sourceforge.net/faq.php" target=_new>', 
 				    Gallery(),
@@ -2896,16 +2887,16 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 		$hide_recipients = false, $from = NULL) {
 	global $gallery;
 	if ($gallery->app->emailOn == "no") {
-	       	gallery_error(_("Email not sent as it is disabled for this gallery"));
+		echo gallery_error(_("Email not sent as it is disabled for this gallery"));
 		return false;
 	}
        	if (!$to) {
-	       	gallery_error(sprintf(_("Email not sent as no address provided"),
+		echo gallery_error(sprintf(_("Email not sent as no address provided"),
 				       	"<i>" . $to . "</i>"));
 		return false;
 	}
        	if (!gallery_validate_email($to, true)) {
-	       	gallery_error(sprintf(_("Email not sent to %s as it is not a valid address"),
+		echo gallery_error(sprintf(_("Email not sent to %s as it is not a valid address"),
 				       	"<i>" . $to . "</i>"));
 		return false;
 	}
@@ -2920,7 +2911,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 	global $gallery, $HTTP_SERVER_VARS;
 	if (!gallery_validate_email($from)) {
 		if (isDebugging() && $from) {
-			gallery_error( sprintf(_("Sender address %s is invalid, using %s."),
+			echo gallery_error( sprintf(_("Sender address %s is invalid, using %s."),
 				       	$from, $gallery->app->senderEmail));
 	       	}
 		$from = $gallery->app->senderEmail;
@@ -2959,7 +2950,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 	       	if ($result) {
 			print _("Email sent")."<br>";
 		} else {
-		       	gallery_error(_("Email not sent"));
+			echo gallery_error(_("Email not sent"));
 	       	}
 	}
 	emailLogMessage($logmsg, $result);
@@ -3123,13 +3114,13 @@ function available_frames($description_only=false) {
 			} else {
 				if (false && isDebugging()) 
 				{
-					gallery_error(sprintf(_("Skipping %s."),
+					echo gallery_error(sprintf(_("Skipping %s."),
 								$subdir));
 				}
 			}
 		}
 	} else {
-		gallery_error(sprintf(_("Can't open %s"), $dir));
+		echo gallery_error(sprintf(_("Can't open %s"), $dir));
 	}
 
 	$descriptions.="\n</dl>";

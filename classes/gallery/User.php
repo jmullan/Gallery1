@@ -160,7 +160,7 @@ class Gallery_User extends Abstract_User {
 				"bulk_register", "login", 
 				"new_password_request", "new_password_set");
 		if (!in_array($action, $valid_actions)) {
-			gallery_error(sprintf(_("Not a valid action: %s"), 
+			echo gallery_error(sprintf(_("Not a valid action: %s"), 
 						$action));
 			return;
 	       	}

@@ -40,50 +40,51 @@
 ?>
 <p>
 <?php
-   if (!isset($wmAlign)) {
-      $wmAlign = 0;
-   }
-   // get a list of watermarks
-   if ($wmDir = opendir($gallery->app->watermarkDir)) { 
-      $found = 0;
-      $extensions = array ("png", "gif", "tif");
-      $extensions_string = "png, gif, tif";
-      while ($wmFile = readdir($wmDir)) {
-         $matches_ext = 0;
-         foreach ($extensions as $ext) {
-            if (eregi("\\.$ext$", $wmFile, $regs)) {
-               $matches_ext = 1;
-            }
-         }
-         if ($matches_ext) {
-            $found++;
-            if ($found == 1) {
-               // Start select form element on first matching file
-               print "<b>" . _("Watermark") . ":</b>";
-               print "<select name=\"wmName\">\n";
-            }
-            print "\t<option ";
-            if ($wmName == $wmFile) {
-               print "selected ";
-            }
-            print "label=\"".$wmFile."\" value=\"".$wmFile."\">".$wmFile."</option>\n";
-         } // end if ($matches_ext)
-      } // end while ($wmFile
-      closedir($wmDir);
-      if ($found == 0) {
-         print "<span class=\"error\">\n";
-         printf(_("Error: No files matching %s found in %s"),
-                "<b>" . $extensions_string . "</b>",
-                "<b>" . $gallery->app->watermarkDir . "</b>");
-         print "</span>\n";
-      } else {
-         print "</select>\n";
-      }
-   } else {
-      print "<span class=\"error\">\n";
-      printf (_("Could not open directory %s"), $gallery->app->watermarkDir);
-      print "</span>\n";
-   }
+   
+if (!isset($wmAlign)) {
+	$wmAlign = 0;
+}
+
+// get a list of watermarks
+if ($wmDir = opendir($gallery->app->watermarkDir)) { 
+	$found = 0;
+	$extensions = array ("png", "gif", "tif");
+	$extensions_string = "png, gif, tif";
+	while ($wmFile = readdir($wmDir)) {
+		$matches_ext = 0;
+		foreach ($extensions as $ext) {
+			if (eregi("\\.$ext$", $wmFile, $regs)) {
+				$matches_ext = 1;
+			}
+		}
+		if ($matches_ext) {
+			$found++;
+			if ($found == 1) {
+				// Start select form element on first matching file
+				print "<b>" . _("Watermark") . ":</b>";
+				print "<select name=\"wmName\">\n";
+			}
+			print "\t<option ";
+			if ($wmName == $wmFile) {
+				print "selected ";
+			}
+			print "label=\"".$wmFile."\" value=\"".$wmFile."\">".$wmFile."</option>\n";
+		} // end if ($matches_ext)
+	} // end while ($wmFile
+	closedir($wmDir);
+
+	if ($found == 0) {
+		$err=printf(_("Error: No files matching %s found in %s"),
+			"<b>" . $extensions_string . "</b>",
+			"<b>" . $gallery->app->watermarkDir . "</b>");
+		echo gallery_error($err);
+	} else {
+		print "</select>\n";
+	}
+} else {
+	$err=printf (_("Could not open directory %s"), $gallery->app->watermarkDir);
+	echo gallery_error($err);
+}
 ?>
 </p>
 

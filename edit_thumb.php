@@ -136,7 +136,7 @@ if (isset($action)) {
 <?php 
 //    	-- we're not a go. abort! abort! ---
 	} else { 
-		gallery_error(_("no album / index specified"));
+		echo gallery_error(_("no album / index specified"));
 	} 
 } 
 ?>

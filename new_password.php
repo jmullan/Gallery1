@@ -37,17 +37,17 @@ require(dirname(__FILE__) . '/init.php');
 
 $error_string="";
 if (!isset($hash)) {
-       	$error_string .=error_format (_("missing hash parameter")) . "<br>";
+       	$error_string .= _("missing hash parameter") . "<br>";
 }
 if (empty($uname) ) {
-       	$error_string .=error_format (_("Not a valid username")) . "<br>";
+       	$error_string .= _("Not a valid username") . "<br>";
 } else {
        	$tmpUser = $gallery->userDB->getUserByUsername($uname);
        	if (!$tmpUser) {
-	       	$error_string .=error_format (_("Not a valid username")) . "<br>";
+	       	$error_string .= _("Not a valid username") . "<br>";
        	}
        	if (!$tmpUser->checkRecoverPasswordHash($hash)) {
-	       	$error_string .=_("The recovery password is not the expected value, please try again") . "<br>";
+	       	$error_string .= _("The recovery password is not the expected value, please try again") . "<br>";
 	}
 }
 
@@ -108,15 +108,15 @@ $allowChange["member_file"] = false;
 <br>
 <?php 
 if ($error_string) {
-       	gallery_error($error_string);
+       	echo gallery_error($error_string);
        	echo "<a href='albums.php'>" . _("Enter the Gallery") . "</a></body></html>"; 
 	exit;
 }
+
+echo _("You can change your user information here.");
+echo _("You must enter the new password twice.");
+
 ?>
-
-
-<?php echo _("You can change your user information here.") ?>
-<?php echo _("You must enter the new password twice.") ?>
 
 <p>
 

@@ -98,7 +98,7 @@ if (!empty($newName)) {
 		}
 		return;
 	} else {
-		gallery_error(_("There is already an album with that name!"));
+		echo gallery_error(_("There is already an album with that name!"));
 	}
 } else {
 	$newName = $gallery->session->albumName;

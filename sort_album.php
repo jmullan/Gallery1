@@ -124,7 +124,7 @@ echo makeFormIntro("sort_album.php");
 <?php
 	}
 } else {
-	gallery_error(_("no album specified"));
+	echo gallery_error(_("no album specified"));
 }
 ?>
 

@@ -178,7 +178,7 @@ if ($gallery->session->albumName && isset($index)) {
 										$id,
 										$postAlbum->fields['name']));
 						} else {
-							echo "<font color=red>". _("Error") . ": "."$err!</font>";
+							echo gallery_error($err);
 							return;
                 				}
 			     		} else {
@@ -316,8 +316,8 @@ if (sizeof($gallery->album->fields["votes"])> 0) {
 }
 
 if (!$uptodate) {
-	print '<span class="error"> <br>' . sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>  ' .
-	'<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>.<p>';
+	echo gallery_error(sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()));
+	echo '<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>.<p>';
 }
 ?>
 <br><br>
@@ -328,7 +328,7 @@ if (!$uptodate) {
 } // end reorder    
 }
 } else {
-	gallery_error(_("no album / index specified"));
+	echo gallery_error(_("no album / index specified"));
 }
 ?>
 </font>

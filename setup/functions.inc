@@ -314,7 +314,7 @@ function error_missing($desc, $key) {
 	if (empty($desc)) {
 		$desc=$key;
 	}
-	return error_format(_("Missing value").": <b>$desc</b>!<br>");
+	return gallery_error(_("Missing value").": <b>$desc</b>!<br>");
 }
 function row_wrap($buf) {
 	return "<code>$buf</code><br>";

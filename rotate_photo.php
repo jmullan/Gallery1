@@ -100,7 +100,7 @@ if ($gallery->session->albumName && isset($index)) {
 
 <?php
 } else {
-	gallery_error(_("no album / index specified"));
+	echo gallery_error(_("no album / index specified"));
 }
 ?>
 

@@ -58,11 +58,11 @@ if ($gallery->session->albumName && isset($index)) {
         if (isset($newAlbum)) {	// we are copying from one album to another
             	$postAlbum = $albumDB->getAlbumbyName($newAlbum);
 		if (!$postAlbum) {
-			gallery_error(sprintf(_("Invalid album selected: %s"),
+			echo gallery_error(sprintf(_("Invalid album selected: %s"),
 						$newAlbum));
 		} else {
 			if ($gallery->album->getAlbumName($index)) {
-			       gallery_error(sprintf(_("Can't copy album #%d"),
+				echo gallery_error(sprintf(_("Can't copy album #%d"),
 						       $index));
 			} else { // copying "picture" to another album
 
@@ -112,7 +112,7 @@ if ($gallery->session->albumName && isset($index)) {
 							$postAlbum->setPhoto($newphoto,$newPhotoIndex);
 							$postAlbum->save(array(i18n("An image %s has been copied into this album"), $id));
 						} else {
-							echo "<font color=red>". _("Error") . ": "."$err!</font>";
+							echo gallery_error($err);
 							return;
                 				}
 			     		} else {
@@ -135,7 +135,7 @@ if ($gallery->session->albumName && isset($index)) {
 <center>
 <?php
 if ($gallery->album->getAlbumName($index)) {
-       	gallery_error(sprintf(_("Can't copy album #%d"),
+	echo gallery_error(sprintf(_("Can't copy album #%d"),
 			       	$index));
 	return;
 } else {  
@@ -197,8 +197,8 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 } // end else
 
 if (!$uptodate) {
-	print '<span class="error"> <br>' . sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>  ' .
-	'<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>.<p>';
+	echo gallery_error(sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery())) ;
+	echo '<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>.<p>';
 }
 ?>
 <br>
@@ -207,7 +207,7 @@ if (!$uptodate) {
 </form>
 <?php
 } else {
-	gallery_error(_("no album / index specified"));
+	echo gallery_error(_("no album / index specified"));
 }
 ?>
 </font>

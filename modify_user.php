@@ -92,7 +92,7 @@ if (isset($save)) {
 
 $tmpUser = $gallery->userDB->getUserByUsername($uname);
 if (!$tmpUser) {
-	gallery_error(_("Invalid user") ." <i>$uname</i>");
+	echo gallery_error(_("Invalid user") ." <i>$uname</i>");
 	exit;
 }
 

@@ -134,7 +134,7 @@ printAlbumOptionList(0,1)
 } // End Reorder
 	}
 } else {
-	gallery_error(_("no album / index specified"));
+	echo gallery_error(_("no album / index specified"));
 }
 ?>
 

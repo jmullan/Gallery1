@@ -74,7 +74,7 @@ if ($gallery->album) {
 		echo $gallery->album->getHighlightTag();
 	}
 } else {
-	gallery_error(_("no album specified"));
+	echo gallery_error(_("no album specified"));
 }
 ?>
 
