@@ -67,8 +67,9 @@ if (isset($_SESSION[$gSessionVar])) {
 	/* Get a simple reference to the session container (for convenience) */
 	$gallery->session =& $_SESSION[$gSessionVar];
 
-	if ($gallery->session->remoteHost != $_SERVER['REMOTE_ADDR']) {
-		exit("Attempted security breach");
+	if (!empty($gallery->session->remoteHost) && $gallery->session->remoteHost != $_SERVER['REMOTE_ADDR']) {
+		printf('Attempted security breach. Please <a href="%s">re-login</a>.', $gallery->app->photoAlbumURL . '?PHPSESSID=');
+		exit;
 	}
 } else {
 	/* Create a new session container */
