@@ -25,11 +25,13 @@
 require(dirname(__FILE__) . '/init.php');
 
 foreach (array('userfile', 'metafile') as $filekey) {
-	foreach($_FILES[$filekey] as $key => $value) {
-		${$key."_name"} = $value["name"];
-		${$key."_size"} = $value["size"];
-		${$key."_type"} = $value["type"];
-		${$key} = $value["tmp_name"];
+	if (!empty($_FILES[$filekey])) {
+		foreach($_FILES[$filekey] as $key => $value) {
+			${$key."_name"} = $value["name"];
+			${$key."_size"} = $value["size"];
+			${$key."_type"} = $value["type"];
+			${$key} = $value["tmp_name"];
+		}
 	}
 }
 
@@ -441,7 +443,7 @@ if (count($image_tags)) {
 ?>
 <?php } /* end if (count($info_tags)) */ ?>
 <p>
-<input type="hidden" name="setCaption" value="<?php echo $setCaption ?>">
+<input type="hidden" name="setCaption" value="<?php echo isset($setCaption) ? $setCaption : '' ?>">
 <input type="hidden" name="wmName" value="<?php echo $wmName ?>">
 <input type="hidden" name="wmAlign" value="<?php echo $wmAlign ?>">
 <input type="hidden" name="wmAlignX" value="<?php echo $wmAlignX ?>">
