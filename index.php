@@ -87,6 +87,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 		       "rotate_photo.php",
 		       "save_photos.php",
 		       "search.php",
+		       "slideshow.php",
 		       "sort_album.php",
 		       "upgrade_album.php",
 		       "user_preferences.php",
