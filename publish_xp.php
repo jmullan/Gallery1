@@ -45,7 +45,7 @@ if(empty($cmd)){
   $lines[] = '';
   $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\' . $gallery->app->galleryTitle . ']';
   $lines[] = '"displayname"="' . $gallery->app->galleryTitle . '"';
-  $lines[] = '"description"="Publish and Share Your Windows XP Files via ' . $gallery->app->galleryTitle . ' on the Web."';
+  $lines[] = '"description"="Publish Your Photos and Movies to ' . $gallery->app->galleryTitle . '."';
   $lines[] = '"href"="' . makeGalleryUrl("publish_xp.php", array("cmd" => "publish")) . '"';
   $lines[] = '"icon"="' . $proto . '://' . $HTTP_SERVER_VARS['SERVER_NAME'] . '/favicon.ico"';
   print join("\r\n", $lines);
@@ -123,7 +123,7 @@ if (!strcmp($cmd,"publish") || $returnval == "Login Incorrect") {?>
 if (!strcmp($cmd, "fetch-albums")) {
 	echo "<center>"; ?>
 <span class="popuphead">Logged in to <?php echo $gallery->app->galleryTitle?></span>
-<br>If this is not "<b><i><?php echo $gallery->session->username?></i></b>" please click <a href="<?php echo makeGalleryUrl("publish_xp.php", array("cmd" => "publish"))?>">here</a>.
+<br>If you are not "<b><i><?php echo $gallery->session->username?></i></b>" please click <a href="<?php echo makeGalleryUrl("publish_xp.php", array("cmd" => "publish"))?>">here</a>.
 <br>
 <?php	echo "<form id='folder'>";
 	echo "<select id='album' name='albumName' size=10 width=40>";
@@ -366,7 +366,7 @@ files.item(i).appendChild(postTag);
 }
 var uploadTag = xml.createNode(1, "uploadinfo", "");
 var htmluiTag = xml.createNode(1, "htmlui", "");
-htmluiTag.text = "<?php echo $gallery->app->photoAlbumURL?>/"+folder.album.value;
+htmluiTag.text = "<?php echo forceQuestionMark(makeGalleryUrl("view_album.php"))?>&set_albumName="+folder.album.value;
 uploadTag.appendChild(htmluiTag);
 
 xml.documentElement.appendChild(uploadTag);
