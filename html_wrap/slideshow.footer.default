@@ -14,7 +14,7 @@
     <td>
     <!-- The Gallery code version number, linked to the Gallery home page -->
     <span class="fineprint">
-    Powered by <a href=<?php echo $gallery->url ?>>Gallery v<?php echo $gallery->version ?></a>
+    <?php $gallery->session->offline ? print "Generated" : print "Powered"; ?> by <a href=<?php echo $gallery->url ?>>Gallery v<?php echo $gallery->version ?></a>
     </span>
     </td>
   </tr>

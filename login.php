@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2002 Bharat Mediratta
+ * Copyright (C) 2000-2003 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,7 +51,12 @@ if ($submit) {
 		$tmpUser = $gallery->userDB->getUserByUsername($uname);
 		if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword)) {
 			$gallery->session->username = $uname;
-			dismissAndReload();
+			if (!$gallery->session->offline) {
+				dismissAndReload();
+			} else {
+				print "<span class=error>SUCCEEDED</span><p>";
+				return;
+			}
 		} else {
 			$invalid = 1;
 			$gallerypassword = null;

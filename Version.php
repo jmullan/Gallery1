@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2002 Bharat Mediratta
+ * Copyright (C) 2000-2003 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ if (!$gallery) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = "1.3.4-cvs-b23";
+$gallery->version = "1.3.4-cvs-b24";
 $gallery->config_version = 33;
 $gallery->album_version = 6;
 $gallery->remote_protocol_version = 1;

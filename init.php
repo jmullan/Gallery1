@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2002 Bharat Mediratta
+ * Copyright (C) 2000-2003 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,12 +93,6 @@ if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
 }
 require($GALLERY_BASEDIR . "Version.php");
 require($GALLERY_BASEDIR . "util.php");
-
-/*
- * Detect if we are used online by an interatice user or if we are used
- * with wget to generate an offline album.
- */
-checkIfOnlineOrOffline();
 
 /*
  * Detect if we're running under SSL and adjust the URL accordingly.

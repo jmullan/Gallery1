@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2002 Bharat Mediratta
+ * Copyright (C) 2000-2003 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 ?>
 <?php require($GALLERY_BASEDIR . "init.php"); ?>
 <?php
+$gallery->session->offlineAlbums["albums.php"]=true;
+
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
 $gallery->session->albumName = "";
@@ -73,7 +75,7 @@ $navigator["bordercolor"] = $borderColor;
 includeHtmlWrap("gallery.header");
 ?>
 <?php
-if ( ($gallery->generatingMode & ONLINE) != 0 && !strcmp($gallery->app->default["showSearchEngine"], "yes")) {
+if (!$gallery->session->offline && !strcmp($gallery->app->default["showSearchEngine"], "yes")) {
 ?>
 <table width=100% border=0 cellspacing=0>
 <tr><?php echo makeFormIntro("search.php"); ?>
@@ -98,7 +100,7 @@ if ($maxPages > 1) {
 $adminText .= "</span>";
 $adminCommands = "<span class=\"admin\">";
 
-if ($gallery->user->isLoggedIn()) {
+if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	$displayName = $gallery->user->getFullname();
 	if (empty($displayName)) {
 		$displayName = $gallery->user->getUsername();
@@ -106,7 +108,7 @@ if ($gallery->user->isLoggedIn()) {
 	$adminCommands .= "Welcome, $displayName &nbsp;&nbsp;<br>";
 }
 
-if ($gallery->user->canCreateAlbums()) { 
+if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
 	$adminCommands .= "<a href=" . doCommand("new-album", array(), "view_album.php") . ">[new album]</a>&nbsp;";
 }
 
@@ -114,13 +116,15 @@ if ($gallery->user->isAdmin()) {
 	if ($gallery->userDB->canModifyUser() ||
 	    $gallery->userDB->canCreateUser() ||
 	    $gallery->userDB->canDeleteUser()) {
-		$adminCommands .= '<a href="#" onClick="'.popup("manage_users.php").'">[manage users]</a>&nbsp;';
+		$adminCommands .= popup_link("[manage users]", 
+			"manage_users.php");
 	}
 }
 
-if ($gallery->user->isLoggedIn()) {
+if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	if ($gallery->userDB->canModifyUser()) {
-		$adminCommands .= '<a href="#" onClick="'.popup("user_preferences.php").'">[preferences]</a>&nbsp;';
+		$adminCommands .= popup_link("[preferences]", 
+			"user_preferences.php");
 	}
 	
 	if (!$GALLERY_EMBEDDED_INSIDE) {
@@ -128,7 +132,7 @@ if ($gallery->user->isLoggedIn()) {
 	}
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
-	        $adminCommands .= popup_link("[login]", "login.php", 0, ONLINE);
+	        $adminCommands .= popup_link("[login]", "login.php", 0);
 	}
 }
 
@@ -242,18 +246,21 @@ for ($i = $start; $i <= $end; $i++) {
 
   <?php if ($gallery->user->canDeleteAlbum($gallery->album)) { ?>
    <span class="admin">
-    <a href="#" onClick="<?php echo popup("delete_album.php?set_albumName={$tmpAlbumName}")?>">[delete album]</a>
+    <?php echo popup_link("[delete album]", 
+    	"delete_album.php?set_albumName={$tmpAlbumName}"); ?>
    </span>
   <?php } ?>
 
   <?php if ($gallery->user->canWriteToAlbum($gallery->album)) { ?>
    <span class="admin">
-    <a href="#" onClick="<?php echo popup("move_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">[move album]</a>
-    <a href="#" onClick="<?php echo popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">[rename album]</a>
+    <?php echo popup_link("[move album]", 
+    	"move_album.php?set_albumName={$tmpAlbumName}&index=$i"); ?>
+    <?php echo popup_link("[rename album]", "rename_album.php?set_albumName={$tmpAlbumName}&index=$i"); ?>
    </span>
   <?php } ?>
 
-  <?php if ($gallery->user->canChangeTextOfAlbum($gallery->album)) { ?>
+  <?php if ($gallery->user->canChangeTextOfAlbum($gallery->album) 
+  	&& !$gallery->session->offline) { ?>
    <span class="admin">
     <a href=<?php echo makeGalleryUrl("captionator.php", array("set_albumName" => $tmpAlbumName))?>>[edit captions]</a>
    </span>
@@ -261,26 +268,35 @@ for ($i = $start; $i <= $end; $i++) {
 
   <?php if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) { ?>
    <span class="admin">
-    <a href="#" onClick="<?php echo popup("album_permissions.php?set_albumName={$tmpAlbumName}")?>">[permissions]</a>
+    <?php echo popup_link("[permissions]", "album_permissions.php?set_albumName={$tmpAlbumName}");?>
    <?php if (!strcmp($gallery->album->fields["public_comments"],"yes")) { ?>
     <a href=<?php echo makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName))?>>[view&nbsp;comments]</a>
    <?php } ?>
    </span>
   <br>
-  url: <a href=<?php echo $albumURL?>><?php echo breakString($albumURL, 60, '&', 5)?></a>
+  url: <a href=<?php echo $albumURL?>>
+  	<?php if (!$gallery->session->offline) {
+		echo breakString($albumURL, 60, '&', 5);
+	} else {
+		echo $tmpAlbumName;
+	}
+	?>
+	</a>
    <?php if (ereg("album[[:digit:]]+$", $albumURL)) { ?>
+	<?php if (!$gallery->session->offline) { ?>
 	<br>
         <span class="error">
          Hey!
-         <a href="#" onClick="<?php echo popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">Rename</a> 
+         <?php echo popup_link("Rename", "rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>
          this album so that the URL is not so generic!
         </span>
+   	<?php } ?>
    <?php } ?>
    <?php if ($gallery->album->versionOutOfDate()) { ?>
     <?php if ($gallery->user->isAdmin()) { ?>
   <br>
   <span class="error">
-   Note:  This album is out of date! <a href="#" onClick="<?php echo popup("upgrade_album.php")?>">[upgrade album]</a>
+   Note:  This album is out of date! <?php echo popup_link("[upgrade album]", "upgrade_album.php")?>
   </span>
     <?php } ?>
    <?php } ?>
@@ -291,7 +307,8 @@ for ($i = $start; $i <= $end; $i++) {
    Last changed on <?php echo $gallery->album->getLastModificationDate()?>.  
    This album contains <?php echo pluralize($gallery->album->numPhotos(0), "item", "no")?>.
 <?php
-if (!($gallery->album->fields["display_clicks"] == "no")) {
+if (!($gallery->album->fields["display_clicks"] == "no") && 
+	!$gallery->session->offline) {
 ?>
    <br><br>This album has been viewed <?php echo pluralize($gallery->album->getClicks(), "time", "0")?> since <?php echo $gallery->album->getClicksDate()?>.
 <?php
@@ -300,7 +317,8 @@ $albumName=$gallery->album->fields["name"];
 if ($gallery->user->canWriteToAlbum($gallery->album) &&
    (!($gallery->album->fields["display_clicks"] == "no"))) {
 ?>
-<a href="#" onClick="<?php echo popup("'" . doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php") . "'" , 1)?>">[reset counter]</a>
+<?php echo popup_link("[reset counter]", "'" . doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php") . "'" , 1)?>"
+
 <?php
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2002 Bharat Mediratta
+ * Copyright (C) 2000-2003 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -253,8 +253,13 @@ print "var transition_count = $transitionCount;\n";
 ?>
 var photo_count = <?php echo $photo_count?>; 
 
+<?php if (!$gallery->session->offline) { ?>
 var slideShowLow = "<?php echo makeGalleryUrl('slideshow_low.php',
                            array('set_albumName' => $gallery->session->albumName)); ?>";
+<?php } else {?>
+var slideShowLow = "<?php echo "view_album.php?set_albumName=".$gallery->session->albumName; ?>";
+<?php } ?>
+
 
 // Browser capabilities detection ---
 // - assume only IE4+ and NAV6+ can do image resizing, others redirect to low 
@@ -452,21 +457,25 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
 
 #-- breadcrumb text ---
 $breadCount = 0;
-$breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
-      "\">" . $gallery->album->fields['title'] . "</a>";
-$breadCount++;
+if (!$gallery->session->offline 
+	|| $gallery->session->offlineAlbums[$gallery->session->albumName]) {
+	$breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
+      	"\">" . $gallery->album->fields['title'] . "</a>";
+	$breadCount++;
+}
 $pAlbum = $gallery->album;
 do {
   if (!strcmp($pAlbum->fields["returnto"], "no")) {
     break;
   }
   $pAlbumName = $pAlbum->fields['parentAlbumName'];
-  if ($pAlbumName) {
+  if ($pAlbumName && (!$gallery->session->offline 
+  	|| $gallery->session->offlineAlbums[$pAlbumName])) {
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
     $breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($pAlbumName) .
       "\">" . $pAlbum->fields['title'] . "</a>";
-  } else {
+  } elseif (!$gallery->session->offline || $gallery->session->offlineAlbums["albums.php"]) {
     //-- we're at the top! ---
     $breadtext[$breadCount] = "Gallery: <a href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>";
@@ -489,7 +498,7 @@ $adminbox["commands"] = "<span class=\"admin\">";
 // Low-tech version is just for online. It does not work offline (because the
 // URLs are generated dynamically by JavaScript and were therfore not 
 // downloaded by Wget).
-if ( ($gallery->generatingMode & ONLINE) != 0 ) {
+if ( !$gallery->session->offline ) {
     $adminbox["commands"] .= "&nbsp;<a href=\"" . makeGalleryUrl("slideshow_low.php",
         array("set_albumName" => $gallery->session->albumName)) . 
 	"\">[not working for you? try the low-tech]</a>";
@@ -582,7 +591,10 @@ if ($photo_count > 0) {
   <tr>
     <td bgcolor="<?php echo $borderColor?>" width=<?php echo $borderwidth?>><?php echo $pixelImage?></td>
     <script language="JavaScript">
-    document.write("<td><img border=0 src="+document.getElementById("photo_urls_1").href+" name=slide></td>");
+    firstPhotoURL = document.getElementById("photo_urls_" + 1).href;
+    document.write("<td><img border=0 src=\"");
+    document.write(firstPhotoURL);
+    document.write("\" name=slide></td>");
     </script>
     <td bgcolor="<?php echo $borderColor?>" width=<?php echo $borderwidth?>><?php echo $pixelImage?></td>
   </tr>

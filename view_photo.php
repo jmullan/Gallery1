@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2002 Bharat Mediratta
+ * Copyright (C) 2000-2003 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,7 +61,8 @@ if (($gallery->album->isHidden($index))
 
 
 $albumName = $gallery->session->albumName;
-if (!$gallery->session->viewedItem[$gallery->session->albumName][$id]) {
+if (!$gallery->session->viewedItem[$gallery->session->albumName][$id] 
+	&& !$gallery->session->offline) {
 	$gallery->session->viewedItem[$albumName][$id] = 1;
 	$gallery->album->incrementItemClicks($index);
 }
@@ -150,12 +151,14 @@ do {
     break;
   }
   $pAlbumName = $pAlbum->fields['parentAlbumName'];
-  if ($pAlbumName) {
+  if ($pAlbumName && (!$gallery->session->offline
+          || $gallery->session->offlineAlbums[$pAlbumName])) {
+
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
     $breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($pAlbumName) .
       "\">" . $pAlbum->fields['title'] . "</a>";
-  } else {
+  } elseif (!$gallery->session->offline || $gallery->session->offlineAlbums["albums.php"]) {
     //-- we're at the top! ---
     $breadtext[$breadCount] = "Gallery: <a href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>";
@@ -247,10 +250,12 @@ if ($fitToWindow) {
 		img.width = imageWidth;
 	} else {
 		if (changed) {
-			document.write('<a href="<?php echo makeAlbumUrl($gallery->session->albumName, $id, array("full" => 1))?>">');
+			document.write('<a href="'+ document.getElementById("page_url").href+ '">');
 		}
-		document.write('<img name=photo src="<?php echo $photoURL?>" border=0 width=' +
-		                 imageWidth + ' height=' + imageHeight + '>');
+		src= document.getElementById("photo_url").href;
+		document.write('<img name=photo src="'+src +
+			'" border=0 + width=' + imageWidth +
+				' height=' + imageHeight + '>');
 		if (changed) {
 			document.write('</a>');
 		}
@@ -293,21 +298,37 @@ includeHtmlWrap("photo.header");
 <?php
 
 if (!$gallery->album->isMovie($id)) {
+	print "<a id=\"photo_url\" href=\"$photoURL\" ></a>\n";
+	print '<a id="page_url" href="'. 
+		makeAlbumUrl($gallery->session->albumName, $id, 
+			array("full" => 1)).'"></a>'."\n";
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		$adminCommands .= '<a href="#" onClick="'.
-			popup("resize_photo.php?index=$index").';return false"><nobr>[resize photo]</nobr></a>';
+		$adminCommands .= popup_link("[resize photo]", 
+			"resize_photo.php?index=$index");
 	}
 
 	if ($gallery->user->canDeleteFromAlbum($gallery->album)) {
-		$adminCommands .= '<a href="#" onClick="'.
-			popup("delete_photo.php?id=$id").';return false"><nobr>[delete photo]</nobr></a>';
+		$adminCommands .= popup_link("[delete photo]", 
+			"delete_photo.php?id=$id");
 	}
 
 	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes")) {
-		$link = doCommand("", 
-			array("set_fullOnly" => (strcmp($gallery->session->fullOnly,"on") ? "on" : "off")),
-			"view_photo.php", 
-			array("id" => $id));
+		if (!$gallery->session->offline) {
+			$link = doCommand("", 
+				array("set_fullOnly" => 
+					(strcmp($gallery->session->fullOnly,"on") 
+					? "on" : "off")),
+				"view_photo.php", 
+				array("id" => $id));
+              	}
+              	else {
+                      $link = makeAlbumUrl($gallery->session->albumName, $id,
+                              array("set_fullOnly" => 
+                                      (strcmp($gallery->session->fullOnly,
+                                              "on") ?
+                                      "on" : "off"))); 
+              	}
+
 		$adminCommands .= "<nobr>View Images: [ ";
 		if (strcmp($gallery->session->fullOnly,"on"))
 		{
@@ -322,11 +343,11 @@ if (!$gallery->album->isMovie($id)) {
 	if (!strcmp($gallery->album->fields["use_exif"],"yes") && (eregi("jpe?g\$", $photo->image->type)) &&
 	    ($gallery->app->use_exif)) {
 		$albumName = $gallery->session->albumName;
-		$adminCommands .= popup_link("[photo properties]", "view_photo_properties.php?set_albumName=$albumName&index=$index");
+		$adminCommands .= popup_link("[photo properties]", "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false);
 	}
 
 	if (strcmp($gallery->album->fields["print_photos"],"none") &&
-		$gallery->generatingMode & ONLINE &&
+		!$gallery->session->offline &&
 		!$gallery->album->isMovie($id)){
 
 		$photo = $gallery->album->getPhoto($GLOBALS["index"]);
@@ -347,16 +368,12 @@ if (!$gallery->album->isMovie($id)) {
 		}
 		$printService = $gallery->album->fields["print_photos"];
 		if (!strncmp($printService, "shutterfly", 10)) {
-		    $adminCommands .= "<a href=# onClick=\"document.sflyc4p.returl.value=document.location; document.sflyc4p.submit();return false\">[print this photo on Shutterfly]</a>";
+		    $adminCommands .= "<a href=# onClick=\"document.sflyc4p.returl.value=document.location; document.sflyc4p.submit();\">[print this photo on Shutterfly]</a>";
 		    $printShutterflyForm = 1;
 		} else if (!strncmp($printService, "fotokasten", 10)) {
-		    $adminCommands .= "<a href=# onClick=\"" .
-			popup("'http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=". 
-			      $rawImage ."&thumbnail=" . $thumbImage . "&height=" . 
-			      $imageHeight ."&width=" . $imageWidth . "'", 1) .
-			"\">[print this photo on Fotokasten]</a>";
+		    $adminCommands .= popup_link("[Lasse dieses Foto drucken mit Fotokasten]", "'http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth . "'", 1);
 		} else if (!strncmp($printService, 'photoaccess', 11)) {
-		    $adminCommands .= "<a href=# onClick=\"document.photoAccess.returnUrl.value=document.location; document.photoAccess.submit(); return false\">[print this photo on PhotoAccess]</a>";
+		    $adminCommands .= "<a href=# onClick=\"document.photoAccess.returnUrl.value=document.location; document.photoAccess.submit()\">[print this photo on PhotoAccess]</a>";
 		    $printPhotoAccessForm = 1;
 		}
 	}

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2002 Bharat Mediratta
+ * Copyright (C) 2000-2003 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,20 +29,6 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 ?>
 <?php
 
-function checkIfOnlineOrOffline() {
-    global $gallery;
-
-    define("ONLINE",  1 << 0);
-    define("OFFLINE", 1 << 1);
-    define("ONANDOFFLINE", ONLINE|OFFLINE);
-
-    if ( strstr($GLOBALS['HTTP_USER_AGENT'], "Wget") !== false ) {
-	$gallery->generatingMode = OFFLINE;
-    } else {
-	$gallery->generatingMode = ONLINE;
-    }
-}
-
 function editField($album, $field, $edit) {
 	global $gallery;
 
@@ -53,7 +39,7 @@ function editField($album, $field, $edit) {
 	if ($gallery->user->canChangeTextOfAlbum($album)) {
 		$url = "edit_field.php?set_albumName={$album->fields[name]}&field=$field";
 		$buf .= "<span class=editlink>";
-		$buf .= '<a href="#" onClick="' . popup($url) . "\">[edit $field]</a>";
+		$buf .= popup_link( "[edit $field]", $url) ;
 		$buf .= "</span>";
 	}
 	return $buf;
@@ -63,13 +49,14 @@ function editCaption($album, $index, $edit) {
 	global $gallery;
 
 	$buf = $album->getCaption($index);
-	if ($gallery->user->canChangeTextOfAlbum($album)) {
+	if ($gallery->user->canChangeTextOfAlbum($album) 
+		&& !$gallery->session->offline) {
 		if (!strcmp($buf, "")) {
 			$buf = "<i>&lt;No Caption&gt;</i>";
 		}
 		$url = "edit_caption.php?set_albumName={$album->fields[name]}&index=$index";
 		$buf .= "<span class=editlink>";
-		$buf .= '<a href="#" onClick="' . popup($url) . '">[edit]</a>';
+		$buf .= popup_link("[edit]", $url);
 		$buf .= "</span>";
 	}
 	return $buf;
@@ -95,7 +82,7 @@ function viewComments($index) {
 	}
         $url = "add_comment.php?set_albumName={$gallery->album->fields[name]}&index=$index";
         $buf = "<span class=editlink>";
-        $buf .= popup_link('[add comment]', $url, 0, ONLINE);
+        $buf .= popup_link('[add comment]', $url, 0);
         $buf .= "</span>";
         echo "<tr align=center><td colspan=3>$buf<br><br></td></tr>";
 }
@@ -151,11 +138,11 @@ function popup_status($url) {
 	return "open('" . makeGalleryUrl($url) . "','Status','$attrs');";
 }
 
-function popup_link($title, $url, $url_is_complete=0, $mode=ONANDOFFLINE ) {
+function popup_link($title, $url, $url_is_complete=0, $online_only=true) {
     static $popup_counter = 0;
     global $gallery;
 
-    if ( ($gallery->generatingMode & $mode) == 0 ) {
+    if ( $gallery->session->offline && $online_only ) {
 	return;
     }
 
@@ -169,7 +156,7 @@ function popup_link($title, $url, $url_is_complete=0, $mode=ONANDOFFLINE ) {
 		 "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
 	"\">";
     
-    return "$a1<nobr>$title</nobr></a>";
+    return "$a1<nobr>$title</nobr></a> ";
 }
 
 function exec_internal($cmd) {
@@ -781,7 +768,7 @@ function makeFormIntro($target, $attrList=array()) {
 		$attrs .= " $key=\"$value\"";
 	}
 
-	$form .= "<form action=$target $attrs>\n";
+	$form .= "<form action=\"$target\" $attrs>\n";
 
 	$args = split("&", $tmp);
 	foreach ($args as $arg) {
@@ -1172,16 +1159,24 @@ function doCommand($command, $args=array(), $returnTarget="", $returnArgs=array(
 }
 
 function formVar($name) {
-	global $HTTP_GET_VARS;
-	global $HTTP_POST_VARS;
+    global $HTTP_GET_VARS;
+    global $HTTP_POST_VARS;
 
-	if (!empty($HTTP_GET_VARS[$name])) {
-		return($HTTP_GET_VARS[$name]);
+    if (!empty($HTTP_GET_VARS[$name])) {
+	if (!strncmp($HTTP_GET_VARS[$name], 'false', 5)) {
+	    return false;
+	} else {
+	    return($HTTP_GET_VARS[$name]);
 	}
+    }
 
-	if (!empty($HTTP_POST_VARS[$name])) {
-		return($HTTP_POST_VARS[$name]);
+    if (!empty($HTTP_POST_VARS[$name])) {
+	if (!strncmp($HTTP_POST_VARS[$name], 'false', 5)) {
+	    return false;
+	} else {
+	    return($HTTP_POST_VARS[$name]);
 	}
+    }
 }
 
 function emptyFormVar($name) {
@@ -1303,7 +1298,8 @@ function printChildren($albumName,$depth=0) {
 			$nestedAlbum->load($myName);
 			if ($gallery->user->canReadAlbum($nestedAlbum)) {
 				$val2 = $nestedAlbum->fields['title'];
-				if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')) {
+				if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
+					&& !$gallery->session->offline) {
 				    $val3 = "(" . pluralize($nestedAlbum->getClicks(), "hit", "0") . ")";
 				} else {
 				    $val3 = "";

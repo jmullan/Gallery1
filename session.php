@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2002 Bharat Mediratta
+ * Copyright (C) 2000-2003 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -101,6 +101,12 @@ update_session_var("version");
 update_session_var("albumListPage");
 update_session_var("fullOnly");
 update_session_var("username", 1);
+update_session_var("offline");
+update_session_var("offlineAlbums");
+if ($gallery->session->offlineAlbums == null)
+{
+      $gallery->session->offlineAlbums=array();
+}
 
 /*
  * Process changes to session variables via parameters submitted in a 

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2002 Bharat Mediratta
+ * Copyright (C) 2000-2003 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,7 +45,8 @@ if (!$gallery->album->isLoaded()) {
 
 $albumName = $gallery->session->albumName;
 
-if (!$gallery->session->viewedAlbum[$albumName]) {
+if (!$gallery->session->viewedAlbum[$albumName] && 
+	!$gallery->session->offline) {
 	$gallery->session->viewedAlbum[$albumName] = 1;
 	$gallery->album->incrementClicks();
 } 
@@ -61,7 +62,8 @@ do {
     break;
   }
   $pAlbumName = $pAlbum->fields['parentAlbumName'];
-  if ($pAlbumName) {
+  if ($pAlbumName && (!$gallery->session->offline
+      || $gallery->session->offlineAlbums[$pAlbumName])) {
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
     $breadtext[$breadCount] = "Album: <a href=\"" . makeGalleryUrl("view_comments.php", array("set_albumName" => $pAlbumName)) .
