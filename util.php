@@ -724,7 +724,7 @@ function preprocessImage($dir, $file) {
 	 * newline
 	 */
 
-	if ($fd = fs_fopen("$dir/$file", "r")) {
+	if ($fd = fs_fopen("$dir/$file", "rb")) {
 		// Read the first line
 		$line = fgets($fd, 4096);
 
