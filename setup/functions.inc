@@ -544,15 +544,14 @@ function check_gallery_languages()
 	$languages=gallery_languages();
 	if (sizeof($languages) == 0) {
 		$fail["fail-gallery-languages"] = _("No languages found."); // should never occur!
-	} else if (sizeof($languages) < sizeof($nls['language'])) {
-		$fail["fail-gallery-languages"] 
-			= sprintf(_("Only %d of %d possible languages are available.  If you want the missing languages, download a fresh copy of Gallery from the %sGallery download page%s."),
+	} else if (sizeof($languages) == 1 ) {
+		$warn['only_english']= _("It seems you did not download any additional language. This is no problem ! Gallery will appear in english");
+	}
+	else {
+		$success[] = sprintf(_("%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
 					sizeof($languages),
-					sizeof($nls['language']),
 					"<a href=\"$gallery->url\">",
 					'</a>');
-	} else {
-		$success[] = sprintf(_("All %d languages found."), sizeof($languages));
 	}
 	return array($success, $fail, $warn);
 }
@@ -635,19 +634,6 @@ function check_absent_locales()
 	return array($success, $fail, $warn);
 }
 
-//returns all languages in this gallery installation
-
-function gallery_languages() {
-	$nls=getNLS();
-	$locales = array('en_US' => $nls['language']['en_US']);
-	foreach ($nls['language'] as $key => $value) {
-		if (language_exists($key)) {
-			$locales[$key]=$nls['language'][$key];
-		}
-	}
-	return $locales;
-}
-
 function check_locale() {
 	$nls=getNLS();
 	$gallery_languages=gallery_languages();
@@ -684,7 +670,7 @@ function check_locale() {
 	** Now lets test if our languages are supported by the system
 	*/
 	
-	foreach ($gallery_languages as $locale => $locale_name) {
+	foreach ($gallery_languages as $locale) {
 		$aliases=array();
 		
 		/* Found an supported one, put it in availables */

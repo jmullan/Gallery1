@@ -22,7 +22,10 @@
 */
 ?>
 
-<?php if ($gallery->app->ML_mode == 3 && !$gallery->session->offline) {
+<?php 
+
+$gallery_languages=gallery_languages();
+if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery_languages) >1) {
 
 if($gallery->app->show_flags !='yes') {?>
 <script language="JavaScript" type="text/javascript">
@@ -57,10 +60,10 @@ if($gallery->app->show_flags !='yes') {
 	$half=sizeof($gallery->app->available_lang)/2;
 	foreach ($gallery->app->available_lang as $value) {
 
-		// Only use language from config.php if its defined in nls.php
+		// Only use language from config.php if its available
 		if (! isset($nls['language'][$value])) continue;
 
-		if (!language_exists($value)) {
+		if (!in_array($value,$gallery_languages)) {
 			continue;
 		}
 

@@ -1,25 +1,20 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/TR/xhtml1/strict">
-	<xsl:strip-space elements="doc chapter section"/>
 	<xsl:output method="xml" indent="yes" encoding="iso-8859-1"/>
 	<xsl:template match="locale">
 		<tr>
 			<xsl:apply-templates select="nr"/>
 			<xsl:apply-templates select="language"/>
-			<td>
+			<td rowspan="{3}">
 				<xsl:attribute name="class"><xsl:value-of select="@scheme"/></xsl:attribute>
 				<xsl:value-of select="@id"/>
 			</td>
-			<xsl:apply-templates select="percent_done"/>
-			<xsl:apply-templates select="lines"/>
-			<xsl:apply-templates select="translated"/>
-			<xsl:apply-templates select="fuzzy"/>
-			<xsl:apply-templates select="untranslated"/>
-			<xsl:apply-templates select="obsolete"/>
+			<xsl:apply-templates select="tpd"/>
+			<td colspan="{7}" height="{1}"></td>
 		</tr>
+			<xsl:apply-templates select="component"/>
 	</xsl:template>
 	<xsl:template match="nr">
-		<td>
-			<xsl:attribute name="class"><xsl:value-of select="@scheme"/></xsl:attribute>
+		<td rowspan="{3}" class="{@scheme}">
 			<xsl:choose>
 				<xsl:when test="text() != 0">
 					<xsl:apply-templates/>
@@ -31,26 +26,46 @@
 		</td>
 	</xsl:template>
 	<xsl:template match="language">
-		<td>
-			<xsl:attribute name="class"><xsl:value-of select="@scheme"/></xsl:attribute>
+		<td rowspan="{3}" class="{@scheme}">
 			<xsl:apply-templates/>
 		</td>
 	</xsl:template>
+	<xsl:template match="tpd">
+		<td rowspan="{3}" style="{@style}">
+			<xsl:apply-templates/>
+		</td>
+	</xsl:template>
+
+	<xsl:template match="component">
+	<tr>
+		<xsl:apply-templates select="name"/>
+		<xsl:apply-templates select="percent_done"/>
+		<xsl:apply-templates select="lines"/>
+		<xsl:apply-templates select="translated"/>
+		<xsl:apply-templates select="fuzzy"/>
+		<xsl:apply-templates select="untranslated"/>
+		<xsl:apply-templates select="obsolete"/>
+	</tr>
+	</xsl:template>
+
+	<xsl:template match="name">
+		<td style="{@style}">
+			<xsl:apply-templates/>
+		</td>
+	</xsl:template>
+
 	<xsl:template match="percent_done">
-		<td align="right">
-			<xsl:attribute name="style"><xsl:value-of select="@style"/></xsl:attribute>
+		<td align="right" style="{@style}">
 			<xsl:apply-templates/>
 		</td>
 	</xsl:template>
 	<xsl:template match="lines">
-		<td>
-			<xsl:attribute name="class"><xsl:value-of select="@scheme"/></xsl:attribute>
+		<td class="{@scheme}">
 			<xsl:apply-templates/>
 		</td>
 	</xsl:template>
 	<xsl:template match="translated">
-		<td>
-			<xsl:attribute name="class"><xsl:value-of select="@scheme"/></xsl:attribute>
+		<td class="{@scheme}">
 			<xsl:choose>
 				<xsl:when test="text() != 0">
 					<xsl:apply-templates/>
@@ -62,8 +77,7 @@
 		</td>
 	</xsl:template>
 	<xsl:template match="fuzzy">
-		<td>
-			<xsl:attribute name="class"><xsl:value-of select="@scheme"/></xsl:attribute>
+		<td class="{@scheme}">
 			<xsl:choose>
 				<xsl:when test="text() != 0">
 					<xsl:apply-templates/>
@@ -75,8 +89,7 @@
 		</td>
 	</xsl:template>
 	<xsl:template match="untranslated">
-		<td>
-			<xsl:attribute name="class"><xsl:value-of select="@scheme"/></xsl:attribute>
+		<td class="{@scheme}">
 			<xsl:choose>
 				<xsl:when test="text() != 0">
 					<xsl:apply-templates/>
@@ -88,8 +101,7 @@
 		</td>
 	</xsl:template>
 	<xsl:template match="obsolete">
-		<td>
-			<xsl:attribute name="class"><xsl:value-of select="@scheme"/></xsl:attribute>
+		<td class="{@scheme}">
 			<xsl:choose>
 				<xsl:when test="text() != 0">
 					<xsl:apply-templates/>
@@ -102,8 +114,12 @@
 	</xsl:template>
 
 	<xsl:template match="total">
-		<tr><td><xsl:attribute name="colspan"><xsl:value-of select="8"/></xsl:attribute>&#160;</td></tr>
-		<tr><xsl:apply-templates/></tr>
+		<tr>
+			<td colspan="{11}">&#160;</td>
+		</tr>
+		<tr>
+			<xsl:apply-templates/>
+		</tr>
 	</xsl:template>
 
 	<xsl:template match="languages">
@@ -116,18 +132,12 @@
 			<xsl:attribute name="colspan"><xsl:value-of select="3"/></xsl:attribute>&#160;
 			<xsl:apply-templates/> %
 		</td>
-		<td>
-			<xsl:attribute name="colspan"><xsl:value-of select="4"/></xsl:attribute>
-			&#160;
-		</td>
 	</xsl:template>
 
 	<xsl:template match="report">
 		<html>
 			<head>
-				<title>
-			Localization Report for <xsl:value-of select="@date"/>
-				</title>
+				<title>Localization Report for <xsl:value-of select="@date"/></title>
 				<link rel="stylesheet" type="text/css" href="g1-report.css"/>
 			</head>
 			<body>
@@ -141,6 +151,8 @@
 						<th>Nr</th>
 						<th>Language</th>
 						<th>Locale</th>
+						<th>Tpd</th>
+						<th>Component</th>
 						<th>Status</th>
 						<th valign="bottom" style="width:30px;">A<br/>l<br/>l</th>
 						<th valign="bottom" style="width:30px;">T<br/>r<br/>a<br/>n<br/>s<br/>l<br/>a<br/>t<br/>e<br/>d</th>

@@ -45,7 +45,8 @@ function getNLS () {
 	$nls['language']['zh_TW.utf8'] = 'Traditional Chinese (&#32321;&#39636;&#20013;&#25991;) (UTF-8)';
 	$nls['language']['bg_BG'] = '&#x0411;&#x044a;&#x043b;&#x0433;&#x0430;&#x0440;&#x0441;&#x043a;&#x0438;';
 	$nls['language']['ca_ES'] = 'Catal&#xe0;';
-	$nls['language']['cs_CZ'] = '&#x010c;esky';
+	$nls['language']['cs_CZ.cp1250'] = '&#x010c;esky (Windows)';
+	$nls['language']['cs_CZ.iso'] = '&#x010c;esky (ISO)';
 	$nls['language']['da_DK'] = 'Dansk';
 	$nls['language']['de_DE'] = 'Deutsch';
 	$nls['language']['en_GB'] = 'English (UK)';

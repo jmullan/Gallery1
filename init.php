@@ -137,10 +137,14 @@ if (!isset($GALLERY_NO_SESSIONS)) {
     require($GALLERY_BASEDIR . "session.php");
 }
 
+$gallerySanity=gallerySanityCheck();
 initLanguage();
 
 /* Make sure that Gallery is set up properly */
-gallerySanityCheck();
+if($gallerySanity != NULL) {
+	include ($GALLERY_BASEDIR. "errors/". $gallerySanity);
+	exit;
+}
 
 if (isset($GALLERY_EMBEDDED_INSIDE) &&
 	!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
