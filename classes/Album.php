@@ -62,6 +62,7 @@ class Album {
 
 		$everybody = $gallery->userDB->getEverybody();
 		$this->setPerm("canRead", $everybody->getUid(), 1);
+		$this->setPerm("canViewFullImages", $everybody->getUid(), 1);
 		$this->fields["parentAlbumName"] = 0;
 		$this->fields["clicks"] = 0;
 		$this->fields["clicks_date"] = time();

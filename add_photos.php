@@ -125,7 +125,15 @@ can either be a URL or a directory on the server.
 <input type=submit value="Cancel" onclick='parent.close()'>
 </center>
 </form>
-Download <b><a href="#" onClick="opener.location = 'http://gallery.sourceforge.net/gallery_remote.php?protocol_version=<?php echo $gallery->remote_protocol_version ?>'; parent.close();">Gallery Remote</a></b>. Upload photos using drag-and-drop from your desktop.
+Alternatively, you can use one of these desktop agents to drag and drop photos from your desktop:
+<br>
+&nbsp;&nbsp;&nbsp;<b><a href="#" onClick="opener.location = 'http://gallery.sourceforge.net/gallery_remote.php?protocol_version=<?php echo $gallery->remote_protocol_version ?>'; parent.close();">Gallery Remote</a></b>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A Java application that runs on Mac, Windows and Unix
+<br>
+&nbsp;&nbsp;&nbsp;<b><a href="<?php echo makeGalleryUrl("publish_xp.php") ?>">Windows XP Publishing Agent</a></b>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note:</i> this feature is still experimental!
 </span>
 
 </body>
