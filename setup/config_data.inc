@@ -271,7 +271,7 @@ $constants =  array_merge(
 	),
 	"watermarkDir" => array(
 	"prompt" => _("Watermark directory"),
-	"desc" => sprintf(_("The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  Leave blank to disable watermarking support. Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."),
+	"desc" => sprintf(_("The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."),
 			"<b>". $webserver_user . "</b>") . newIn("1.4.3"),
 		"value" => "",
 		"optional" => 1,
@@ -699,6 +699,15 @@ $constants = array_merge($constants,
        	"separator_comments" => array (
 		       	"type" => "separator",
 		       	"title" => _("Comments")
+			),
+	"comments_enabled" => array(
+			"prompt"	=> _("Enable commenting"),
+			"desc"		=> _("This option will enable or disbale the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."),
+			"choices"	=> array(
+						"yes" => _("yes"),
+						"no"  => _("no")
+					   ),
+			"value"		=> "yes"
 			),
 	"comments_indication" => array(
 		       	"prompt" => _("Indicate if there are comments available"),

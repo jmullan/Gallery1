@@ -35,12 +35,12 @@
     $wmName = "";
   }
 ?>
-<b>Watermark:</b>
+<p><b><?php echo _("Watermark") ?>:</b>
 <select name="wmName">
-  <option <?php if ($wmName == "") echo selected ?> label="None" value="">None</option>
+	<option <?php if ($wmName == "") echo selected ?> label="None" value=""><?php echo _("None") ?></option>
 <?php
   // get a list of watermarks
-  $wmDir = opendir("watermarks");
+  $wmDir = opendir($gallery->app->watermarkDir);
   $i = 0;
   $extensions = array ("png", "gif", "tif");
   while ($wmFile = readdir($wmDir))
@@ -54,7 +54,7 @@
     }
     if ($matches_ext)
     {
-      print "<option ";
+      print "\t<option ";
       if ($wmName == $regs[1])
       {
         print "selected ";
@@ -63,9 +63,10 @@
     }
   }
 ?>
-</select><br/>
+</select>
+</p>
 
-<b><?php echo _("Alignment") ?>:</b><br/>
+<b><?php echo _("Alignment") ?>:</b><br>
 <table name="watermark_alignment" border="1" width="100%">
 <tr>
  <td><input <?php if ($wmAlign==1) echo checked ?> type="radio" name="wmAlign" value="1">
@@ -95,9 +96,9 @@
   <td colspan="3">
     <input <?php if ($wmAlign==10) echo checked ?> type="radio" name="wmAlign" value="10">
     <?php echo _("Other") ?></input>
-    X=<input type="text" name="wmAlignX" value="<?php echo $wmAlignX ?>"/>
-    Y=<input type="text" name="wmAlignY" value="<?php echo $wmAlignY ?>"/>
+    X=<input type="text" name="wmAlignX" value="<?php echo $wmAlignX ?>">
+    Y=<input type="text" name="wmAlignY" value="<?php echo $wmAlignY ?>">
   </td>
 </tr>
 </table>
-<br><br>
+<br>

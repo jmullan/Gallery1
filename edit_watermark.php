@@ -21,25 +21,16 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = '';
-}
-require($GALLERY_BASEDIR . 'init.php'); ?>
-<?php
+	require(dirname(__FILE__) . '/init.php');
+
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
+	echo _("You are not allowed to perform this action.");
 	exit;
 }
+
 $err = "";	
-if (isset($submit) && !strcmp($submit, "Save")) {
+if (isset($save)) {
         if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12))
         {
 		if (isset($wmName) && strlen($wmName)) {
@@ -66,21 +57,30 @@ if (isset($submit) && !strcmp($submit, "Save")) {
   <title><?php echo _("Edit Watermark") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir="<?php echo $gallery->direction ?>">
 
 <center>
-<?php echo $gallery->album->getThumbnailTag($index) ?>
+<p class="popuphead"><?php echo _("Edit Watermark") ?></p>
+<p><?php echo $gallery->album->getThumbnailTag($index) ?></p>
 </center>
 
-<?php echo makeFormIntro("edit_watermark.php", 
+<?php 
+
+if (!empty($err)) {
+	echo '<p class="error">'. $err . '</p>';
+}
+
+echo makeFormIntro("edit_watermark.php", 
 			array("name" => "theform", 
 				"method" => "POST"));
-echo "<span class=error>$err</span><br><br>";
-include $GALLERY_BASEDIR . 'layout/watermarkform.inc';
+
+include (dirname(__FILE__) .'/layout/watermarkform.inc');
 ?>
-<input type=hidden name="index" value="<?php echo $index ?>"/>
-<input type=submit name="submit" value="<?php echo _("Save") ?>">
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<div align="center">
+	<input type="hidden" name="index" value="<?php echo $index ?>">
+	<input type="submit" name="save" value="<?php echo _("Save") ?>">
+	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+</div>
 </form>
 
 <script language="javascript1.2">

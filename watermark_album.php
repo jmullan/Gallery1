@@ -40,21 +40,24 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 }
 
 $err = "";	
-if (!strcmp($submit, "Save")) {
-        if (($wmAlign > 0) && ($wmAlign < 12))
-        {
-		print "<html><body>\n";
-                echo "<center> ". _("Watermarking album.")."<br/>(". _("this may take a while"). ")</center>\n";
+if (isset($save)) {
+	if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12)) {
+		if (isset($wmName) && strlen($wmName)) {
+			print "<html><body>\n";
+	                echo "<center> ". _("Watermarking album.")."<br>(". _("this may take a while"). ")</center>\n";
 
-                my_flush();
-                set_time_limit($gallery->app->timeLimit);
-                $gallery->album->watermarkAlbum($wmName, "", $wmAlign, $wmAlignX, $wmAlignY);
-                $gallery->album->save();
-                dismissAndReload();
-                return;
-        } else {
-            $err = "Alignment must be between 1 and 11, inclusive.";
-        }
+        	        my_flush();
+                	set_time_limit($gallery->app->timeLimit);
+	                $gallery->album->watermarkAlbum($wmName, "", $wmAlign, $wmAlignX, $wmAlignY);
+        	        $gallery->album->save();
+                	dismissAndReload();
+	                return;
+		} else {
+			$err = _("Please select a watermark.");
+		}
+	} else {
+		$err = _("Please select an alignment.");
+	}
 }
 ?>
 <html>
@@ -62,21 +65,25 @@ if (!strcmp($submit, "Save")) {
   <title><?php echo _("Watermark Album") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir="<?php echo $gallery->direction ?>">
+
+<p align="center" class="popuphead"><?php echo _("Watermark Album") ?></p>
 
 <?php
-   if ($err)
-   {
-      echo "<span class=error>$err</span><br><br>";
-   }
+if (!empty($err)) {
+	echo '<p class="error">'. $err . "</p>\n";
+}
+
    echo makeFormIntro("watermark_album.php",
                       array("name" => "theform",
                             "method" => "POST"));
-   include $GALLERY_BASEDIR . 'layout/watermarkform.inc';
+   include (dirname(__FILE__). '/layout/watermarkform.inc') ;
 ?>
-<input type=hidden name="index" value="<?php echo $index ?>"/>
-<input type=submit name="submit" value="<?php echo _("Save") ?>">
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<div align="center">
+	<input type="hidden" name="index" value="<?php echo $index ?>">
+	<input type="submit" name="save" value="<?php echo _("Save") ?>">
+	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+</div>
 </form>
 
 <script language="javascript1.2">
