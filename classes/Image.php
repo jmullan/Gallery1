@@ -201,6 +201,11 @@ class Image {
 		$this->height = $h;
 	}
 
+	function setRawDimensions($w, $h) {
+		$this->raw_width = $w;
+		$this->raw_height = $h;
+	}
+
 	function getDimensions() {
 		return array($this->width, $this->height);
 	}
