@@ -61,6 +61,11 @@ function popup($url) {
 	return "javascript:void(open('$url','Edit','$attrs'))";
 }
 
+function popup_status($url) {
+	$attrs = "height=150,width=350,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
+	return "open('$url','Status','$attrs');";
+}
+
 function getDimensions($file) {
 	global $app;				
 
