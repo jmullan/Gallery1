@@ -83,7 +83,7 @@ function popup_status($url) {
 
 function popup_help($entry, $group) {
 	$attrs = "height=500,width=400,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
-	return "javascript: nw=windown.open('http://www.menalto.com/projects/gallery/help?group=$group&entry=$entry','Help','$attrs'); nw.opener=self; return false;";
+	return "javascript: nw=window.open('http://www.menalto.com/projects/gallery/help?group=$group&entry=$entry','Help','$attrs'); nw.opener=self; return false;";
 }
 
 function exec_internal($cmd) {
