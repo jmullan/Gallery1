@@ -2,18 +2,18 @@
 <font size=+2> Gallery Setup: Step 1 </font>
 <br>
 <table width=80%><tr><td>
-<font size=+1>This is the Gallery system check page. </font>
-<br>
-This page will validate your installation to make sure
-that you have all the necessary components and permissions
-on this system and that everything is configured
+
+This is the Gallery system check page. This page will validate your
+installation to make sure that you have all the necessary components
+and permissions on this system and that everything is configured
 reasonably.
+
 </td></tr></table>
 
 <p> 
 
 <center>
-<table width=100%>
+<table width=800>
 <input type=hidden name=this_page value="check">
 <input type=hidden name=next_page value="form">
 
@@ -21,7 +21,7 @@ reasonably.
 foreach ($checklist as $check) {
 ?> 
 	<tr>
-	<td valign=top><?=$check["desc"]?></td>
+	<td width=60% valign=top><?=$check["desc"]?></td>
 	<td width=5%> &nbsp; </td>
 	<td valign=top>
 <?
