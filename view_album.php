@@ -73,10 +73,9 @@ if (!isset($gallery->session->viewedAlbum[$albumName]) && !$gallery->session->of
 
 $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
-$numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
+list ($numPhotos, $numAlbums) = $gallery->album->numVisibleItems($gallery->user);
 $perPage = $rows * $cols;
-$numAlbums = 0;
-$maxPages = max(ceil($numPhotos / $perPage), 1);
+$maxPages = max(ceil(($numPhotos + $numAlbums) / $perPage), 1);
 
 if ($page > $maxPages) {
 	$page = $maxPages;
@@ -266,15 +265,9 @@ function showChoice($label, $target, $args) {
 	echo "<option value='" . makeGalleryUrl($target, $args) . "'>$label</option>";
 }
 
-for ($i = 1, $numAlbums = 0; $i <= $numPhotos; ++$i) {
-	if ($gallery->album->isAlbumName($i)){
-		$numAlbums++;
-	}
-}
-
 $adminText = "<span class=\"admin\">";
 $albums_str= pluralize_n($numAlbums, _("1 sub-album"), _("sub-albums"), _("No albums"));
-$imags_str= pluralize_n($numPhotos - $numAlbums, _("1 image"), _("images") , _("no images"));
+$imags_str= pluralize_n($numPhotos, _("1 image"), _("images") , _("no images"));
 $pages_str=pluralize_n($maxPages, _("1 page") , _("pages") , _("0 pages"));
 
 if ($numAlbums && $maxPages > 1) {
@@ -850,7 +843,7 @@ if ($numPhotos) {
 				<br>
 				<span class="fineprint">
 				   <?php echo _("Changed: ") ?><?php echo $myAlbum->getLastModificationDate() ?>.  <br>
-				   <?php echo _("Contains: ") ?><?php echo pluralize_n($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), _("1 item"), _("items"), _("0 items")) ?>.
+				   <?php echo _("Contains: ") ?><?php echo pluralize_n(array_sum($myAlbum->numVisibleItems($gallery->user)), _("1 item"), _("items"), _("0 items")) ?>.
 				   <?php 
 				   $lastCommentDate = $myAlbum->lastCommentDate();
 				   if ($lastCommentDate > 0) {

@@ -392,7 +392,7 @@ for ($i = $start; $i <= $end; $i++) {
   <br>
   <span class="fineprint">
    <?php echo sprintf(_("Last changed on %s."), $gallery->album->getLastModificationDate() )?>  
-   <?php echo sprintf(_("This album contains %s." ), pluralize_n($gallery->album->numPhotos(0), _("1 item"), _("items"), _("no items")));
+   <?php echo sprintf(_("This album contains %s." ), pluralize_n(array_sum($gallery->album->numVisibleItems($gallery->user)), _("1 item"), _("items"), _("no items")));
 if (!($gallery->album->fields["display_clicks"] == "no") && 
 	!$gallery->session->offline) {
 ?>

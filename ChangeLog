@@ -1,3 +1,13 @@
+2004-02-24  Alan Harder  <alan.harder@sun.com> 1.4.3-cvs-b60
+
+	* Bugfix #805443 (75% fix): check hidden items and no-permission
+	  subalbums to correctly display album/image count in header of
+	  album view and in "album contains:" count in subalbums and at
+	  top level.  Count in header of gallery top level still incorrect.
+
+	* More on #598025: regenerate highlight with correct size after
+	  rotating the highlight.
+
 2004-02-24 Jens Tkotz <jens@peino.de> 1.4.3-cvs-b59
 
 	* Bugfix: The lang defaults were not set correctly.
@@ -8,12 +18,12 @@
 
 	Thanks to Vallimar for catching this.
 
-2004-02-24  Alan Harder <alan.harder@sun.com> 1.4.3-cvs-b58
+2004-02-24  Alan Harder  <alan.harder@sun.com> 1.4.3-cvs-b58
 
 	* Bugfix #470766: Avoid filename conflict between thumbnails of
 	  a movie item and jpeg item with same basename.
 
-2004-02-24  Alan Harder <alan.harder@sun.com> 1.4.3-cvs-b57
+2004-02-24  Alan Harder  <alan.harder@sun.com> 1.4.3-cvs-b57
 
 	* Bugfix #598025: Create highlights to match thumbnail size of
 	  parent album, don't stretch/compress existing thumbnail to
@@ -21,6 +31,8 @@
 
 	* Bugfix: Copy clicks/keywords/etc to the right AlbumItem when
 	  moving photo(s) to an album that has add-to-beginning set.
+
+	* Bugfix: added missing ?> in errors/unconfigured.php
 
 	* delete_photo: set title to "Delete Album" when deleting an album.
 

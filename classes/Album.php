@@ -1174,6 +1174,27 @@ class Album {
 		}
 	}
 
+	function numVisibleItems($user) {
+		$numPhotos = $numAlbums = 0;
+		$canWrite = $user->canWriteToAlbum($this);
+		$numItems = $this->numPhotos(1);
+		for ($i = 1; $i <= $numItems; $i++) {
+			$photo = $this->getPhoto($i);
+			if ($canWrite || !$photo->isHidden()) {
+				if ($photo->isAlbumName) {
+					$album = new Album();
+					$album->load($photo->isAlbumName);
+					if ($user->canReadAlbum($album)) {
+						$numAlbums++;
+					}
+				} else{
+					$numPhotos++;
+				}
+			}
+		}
+		return array($numPhotos, $numAlbums);
+	}
+
 	function getIds($show_hidden=0) {
 		foreach ($this->photos as $photo) {
 			if (!$photo->isHidden() || $show_hidden) {
