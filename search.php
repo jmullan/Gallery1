@@ -298,7 +298,6 @@ includeLayout('ml_pulldown.inc');
 includeHtmlWrap("search.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-	print gallery_validation_link("search.php", true, array('searchstring' => $searchstring)); 
 ?> 
 </body>
 </html>

@@ -19,7 +19,7 @@
 <?php 
 global $GALLERY_EMBEDDED_INSIDE;
        	if (! isset($GALLERY_EMBEDDED_INSIDE)) {
-	       	print gallery_validation_link("albums.php");
+		print album_validation_link($gallery->session->albumName, NULL);
        	} ?>
           </td>
 <?php if (!isset($gallery->app->rssEnabled) || $gallery->app->rssEnabled == "yes") { ?>
