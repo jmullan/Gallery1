@@ -248,16 +248,23 @@ for ($i = 1, $numAlbums = 0; $i <= $numPhotos; ++$i) {
 }
 
 $adminText = "<span class=\"admin\">";
-if ($numAlbums) {
-	$adminText .= pluralize_n($numAlbums, _("sub-album"), _("sub-albums"), _("No albums")) . " " . _("and") ." ";
-	$adminText .= pluralize_n($numPhotos - $numAlbums, _("image"), _("images") , _("no images"));
+$albums_str= pluralize_n($numAlbums, _("sub-album"), _("sub-albums"), _("No albums"));
+$imags_str= pluralize_n($numPhotos - $numAlbums, _("image"), _("images") , _("no images"));
+$pages_str=pluralize_n($maxPages, _("page") , _("pages") , _("0 pages"));
+
+if ($numAlbums && $maxPages > 1) {
+	$adminText .= sprintf(_("%s and %s in this album on %s"),
+			$albums_str, $imags_str, $pages_str);
+} else if ($numAlbums) {
+	$adminText .= sprintf(_("%s and %s in this album"),
+			$albums_str, $imags_str);
+} else if ($maxPages > 1) {
+	$adminText .= sprintf(_("%s in this album on %s"),
+			$imags_str, $pages_str);
 } else {
-	$adminText .= pluralize_n($numPhotos - $numAlbums, _("image"), _("images") , _("No images"));
+	$adminText .= sprintf(_("%s in this album"),
+			$imags_str);
 }
-$adminText .= " " . _("in this album");
-	if ($maxPages > 1) {
-		$adminText .= " " . _("on") . " " . pluralize_n($maxPages, _("page") , _("pages") , _("0 pages")) ;
-	}
 
 if ($gallery->user->canWriteToAlbum($gallery->album) && 
 	!$gallery->session->offline) {
@@ -635,7 +642,7 @@ if ($numPhotos) {
 			}
                        if ($gallery->user->isAdmin())
                        {
-                               showChoice(_("Change owner"), "photo_owner.php", array("id" => $id));
+                               showChoice(_("Change Owner"), "photo_owner.php", array("id" => $id));
                        }
 
 			if ($showAdminForm) {

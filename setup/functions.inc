@@ -325,12 +325,13 @@ function check_graphics($location="", $graphtool = "")
 		}
 
 		if (!$d) {
-			$missing[$bin] = _("Can't find") ." <i>$bin</i>!";
+			$missing[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
 		}
 
 		if (!empty($d) && inOpenBasedir($d)) {
 		    if (!fs_is_executable("$d/$bin")) {
-			$missing[$bin] = "<i>$bin</i> ". _("is not executable") ."!";
+			$missing[$bin] = sprintf(_("%s is not executable!"),
+					"<i>$bin</i> "); 
 		    }
 		}
 	}
@@ -379,12 +380,13 @@ function check_graphics_im($location="", $graphtool="")
 		}
 
 		if (!$d) {
-			$missing[$bin] = _("Can't find") ." <i>$bin</i>!";
+			$missing[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
 		}
 
 		if (!empty($d) && inOpenBasedir($d)) {
 		    if (!fs_is_executable("$d/$bin")) {
-			$missing[$bin] = "<i>$bin</i> ". _("is not executable"). "!";
+			$missing[$bin] = sprintf(_("%s is not executable!"),
+					"<i>$bin</i> "); 
 		    }
 		}
 	}
@@ -500,9 +502,8 @@ function check_absent_locales()
 		$success[] = _("All gallery locales are available on this host");
 	} else if (sizeof($avail_locales) <= 1 || $missing_locales == $avail_locales) {
 	    if (ini_get('open_basedir')) {
-		$fail[] = sprintf(_("We were unable to detect any locales.  However, your server is configured with the %sopen_basedir%s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."),
-				'<a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir">', 
-				'</a>');
+		$fail[] = sprintf(_("We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."),
+				'<a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir">open_basedir</a>');
 	    } else {
 		$fail[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
 	    }

@@ -21,15 +21,12 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <p>
 <center>
 <table width=80%><tr><td>
-<?php echo _("Gallery is not configured correctly.") ?>
-<?php echo _("There could be a variety of reasons for this.") ?>
-<?php echo _("The easiest way to fix this problem is to re-run the configuration wizard.") ?>
-<?php echo _("First, put Gallery in configuration mode") ?>:
+<?php echo _("Gallery is not configured correctly.  There could be a variety of reasons for this.  The easiest way to fix this problem is to re-run the configuration wizard.  First, put Gallery in configuration mode:") ?>
 <p>
 <?php echo configure("configure"); ?>
 <p>
-<?php echo _("Then launch the") ?> <a href="<?php echo $GALLERY_BASEDIR ?>setup/index.php"><?php echo _("configuration wizard") ?></a>.
-
+<?php echo sprintf(_("Then launch the %sconfiguration wizard%s"),
+		'<a href="'.$GALLERY_BASEDIR . 'setup/index.php">', '</a>'); ?>
 <?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 
 </table>

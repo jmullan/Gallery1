@@ -130,8 +130,7 @@ foreach ($constants as $key => $val) {
 
 		if ($constants[$key]["must-be-url"]) {
 			if (!ereg("^http", $real)) {
-				$view .= row_wrap(error_format("$key: <b>" . $real . 
-					"</b> ". _("must be an absolute URL!")));
+				$view .= row_wrap(error_format(sprintf(_("%s: <b>%s </b> must be an absolute URL!"), $key, $real)));
 				$error = 1;
 				continue;
 			}
@@ -143,8 +142,7 @@ foreach ($constants as $key => $val) {
 				$warn_about_open_basedir = 1;
 			} else {
 				if (!@is_file($real)) {
-					$view .= row_wrap(error_format("$key: <b>" . $real . 
-						"</b> " . _("must be a valid file (not a directory)!")));
+					$view .= row_wrap(error_format(sprintf(_("%s: <b>%s</b> must be a valid file (not a directory)!"), $key, $real)));
 					$error = 1;
 					continue;
 				}
@@ -153,8 +151,7 @@ foreach ($constants as $key => $val) {
 
 		if ($constants[$key]["must-be-number"]) {
 			if (ereg("[^0-9]",$real)) {
-				$view .= row_wrap(error_format("$key: <b>\"" . $real .
-					"\"</b> ". _("must be a number")));
+				$view .= row_wrap(error_format(sprintf(_("%s: <b>\"%s\"</b> must be a number"), $key, $real)));
 				$error = 1;
 				continue;
 			}
@@ -162,8 +159,7 @@ foreach ($constants as $key => $val) {
 
 		if ($constants[$key]["must-not-be-zero"]) {
 			if ($real == 0) {
-				$view .= row_wrap(error_format("$key: <b>" . $real .
-					"</b> ". _("must not be zero")));
+				$view .= row_wrap(error_format(sprintf(_("%s: <b>%s</b> must not be zero"), $key, $real)));
 				$error = 1;
 				continue;
 			}
@@ -173,8 +169,7 @@ foreach ($constants as $key => $val) {
 			if (!inOpenBasedir($dir)) {
 				$warn_about_open_basedir = 1;
 			} else if (!fs_is_executable($real)) {
-				$view .= row_wrap(error_format("$key: <b>" . $real . 
-					"</b> " . _("must be an executable file!")));
+				$view .= row_wrap(error_format(sprintf(_("%s: <b>%s</b> must be an executable file!"), $key, $real)));
 				$error = 1;
 				continue;
 			}
@@ -183,7 +178,7 @@ foreach ($constants as $key => $val) {
 		if ($constants[$key]["require-write-dir"]) {
 			$dir = $real;
 			if (!file_exists($dir)) {
-				$view .= row_wrap(error_format(_("Directory") ." <b>$dir</b> " . _("does not exist.  Please create it.")));
+				$view .= row_wrap(error_format(sprintf(_("Directory %s does not exist.  Please create it."), "<b>$dir</b>")));
 				$error = 1;
 				continue;
 			}
@@ -196,17 +191,16 @@ foreach ($constants as $key => $val) {
 
 			if (!is_writeable($dir) ||
 			    !test_write_to_dir($dir)) {
-				$view .= row_wrap(error_format("$key: $dir " . _("exists, but is not writeable by the webserver user.  Try:") .
+				$view .= row_wrap(error_format(sprintf(_("%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
+						$key, $dir,
 						"<br><b><code>" .
 						"chown -R " . $webserver_user . " $dir" .
-						"</code></b><br><br>" .
-						_("or if that doesn't work:") .
+						"</code></b><br><br>",
 						"<br><b><code>" .
 						"chmod -R 777 $dir</code>" .
-						"</code></b><br><br>" .
-					        _("Also make sure that if you have an") .
-					        " <a href=phpinfo.php>open_basedir ". _("restriction") ."</a> " .
-						", " . _("then this tmp directory should be under the open_basedir path")));
+						"</code></b><br><br>", 
+						'<a href="phpinfo.php">open_basedir</a>', 
+						'open_basedir')));
 				$error = 1;
 				continue;
 			}

@@ -50,7 +50,7 @@ if(empty($cmd)){
   $lines[] = '';
   $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\' . $gallery->app->galleryTitle . ']';
   $lines[] = '"displayname"="' . $gallery->app->galleryTitle . '"';
-  $lines[] = '"description"="' . _("Publish Your Photos and Movies to") . ' ' . $gallery->app->galleryTitle . '."';
+  $lines[] = '"description"="' . sprintf(_("Publish Your Photos and Movies to %s."),  $gallery->app->galleryTitle) . '"';
   $lines[] = '"href"="' . makeGalleryUrl("publish_xp.php", array("cmd" => "publish")) . '"';
   $lines[] = '"icon"="' . $proto . '://' . $HTTP_SERVER_VARS['SERVER_NAME'] . '/favicon.ico"';
   print join("\r\n", $lines);
@@ -60,7 +60,7 @@ if(empty($cmd)){
 ?>
 <html>
   <head>
-  <title>Login to <?php echo $gallery->app->galleryTitle ?></title>
+  <title><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?> </title>
   <?php echo getStyleSheetLink() ?>
   </head>
 <body>
@@ -104,15 +104,15 @@ if (!strcmp($cmd, "login")) {
 
 if (!strcmp($cmd,"publish") || $returnval == _("Login Incorrect")) { ?>
 <center>
-<span class="popuphead"><?php echo _("Login to") ?> <?php echo $gallery->app->galleryTitle ?></span>
+<span class="popuphead"> <?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?> </span>
 <br>
 <?php echo  makeFormIntro("publish_xp.php", array("id" => "login", "method" => "POST")); ?>
 <table>
  <tr>
-  <td><?php echo _("Username") ?>:</td><td><input type='TEXT' name='uname' value=''/></td>
+  <td><?php echo _("Username:") ?></td><td><input type='TEXT' name='uname' value=''/></td>
  </tr>
  <tr>
-  <td><?php echo _("Password") ?>:</td><td><input type='PASSWORD' name='password' value=''/></td>
+  <td><?php echo _("Password:") ?></td><td><input type='PASSWORD' name='password' value=''/></td>
  </tr>
 </table>
 <input type=hidden name='lcid' value='<?php echo $lcid; ?>'/>

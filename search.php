@@ -94,7 +94,7 @@ if ($searchstring) {
 	$searchstring = escapeEregChars ($searchstring);
 	$searchstring = str_replace ("\\*", ".*", $searchstring);
 
-	$adminbox["text"] = "<span class=\"admin\">". _("Albums containing") ." \"$origstr\"</span>";
+	$adminbox["text"] = "<span class=\"admin\">". sprintf(_("Albums containing %s"), "\"$origstr\"") . "</span>";
 	$adminbox["bordercolor"] = $borderColor; 
 	$adminbox["top"] = false;
 	include($GALLERY_BASEDIR . "layout/adminbox.inc");
@@ -138,7 +138,7 @@ if ($searchstring) {
 	$breadtext[0] = "";
 	$breadcrumb["text"] = $breadtext;
 	include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
-	$adminbox["text"] = "<span class=\"admin\">" . _("Photos containing"). " \"$origstr\"</span>";
+	$adminbox["text"] = "<span class=\"admin\">" . sprintf(_("Photos containing %s"), "\"$origstr\"") . "</span>";
    	$adminbox["bordercolor"] = $borderColor; 
 	$adminbox["top"] = false;
 	include($GALLERY_BASEDIR . "layout/adminbox.inc");

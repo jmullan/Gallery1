@@ -173,7 +173,7 @@ if ($gallery->session->albumName && isset($index)) {
 							return;
                 				}
 			     		} else {
-						echo _("Skipping Album #").$startPhoto."<br>";
+						echo sprintf(_("Skipping Album #%d"), $startPhoto)."<br>";
 						$index++; // we hit an album... don't move it... just increment the index
 					}
 					$startPhoto++;
@@ -200,7 +200,7 @@ if ($gallery->album->isAlbumName($index)) {
 <?php } else { ?>
 <?php echo _("Move this photo within the album:") ?><br>
 <?php } ?>
-<i>(<?php echo _("Current Location is") ?> <?php echo $index ?>)</i>
+<i>(<?php echo sprintf(_("Current Location is %s"), $index) ?>)</i>
 <p>
 <?php echo $gallery->album->getThumbnailTag($index) ?>
 <p>

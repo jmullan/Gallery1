@@ -10,7 +10,10 @@
 <p>
 
 <center>
-<?php echo _("Having problems?") ?>  <?php echo _("Try the") ?> <a href=diagnostics.php><?php echo _("Gallery Diagnostics Page") ?></a> <?php echo _("and the") ?> <a href="http://gallery.sourceforge.net/help.php"><?php echo _("Gallery Help Page") ?></a>
+<?php echo sprintf(_("Having problems?  Try the %sGallery Diagnostics Page%s and the %sGallery Help Page%s."),
+		'<a href="diagnostics.php">', '</a>',
+		'<a href="http://gallery.sourceforge.net/help.php">', '</a>' );
+?>
 </center>
 
 </td></tr></table>
@@ -58,7 +61,7 @@ foreach ($checklist as $check) {
 			}
 			$warning++;
 		} else {
-			echo "<font color=red><b>". _("Failed") ."!</b></font>";
+			echo "<font color=red><b>". _("Failed!") ."</b></font>";
 			echo "<br>$check[$key]<p>";
 			$error = 1;
 		}

@@ -89,16 +89,16 @@ $admin->save();
 <font size=+2><?php echo _("Your configuration has been successfully saved!") ?></font>
 <p>
 <table cellspacing="1" cellpadding="4" border="1"><tr><td>
-<?php echo _("An account called <i>admin</i> has been created for you with the password you specified.") ?>
+<?php echo sprintf(_("An account called %s has been created for you with the password you specified."), '<i>admin</i>') ?>
 </td></tr></table>
 <p>
 <font size=+2 color=red><?php echo _("Note") ?>!</font>
 <br>
-<?php echo _("Don't forget to run") ?>:
-<?php echo configure("secure") ?>
+<?php echo sprintf(_("Don't forget to run %s to make your Gallery secure!"),
+		configure("secure"))?>:
 </center>
 <br>
-<?php echo _("to make your Gallery secure!") ?>  <font size=+1>
+<font size=+1>
 <?php echo _("Gallery won't run if it is not in secure mode") ?></font>.
 <?php echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.") ?>  
 <?php echo _("It will save your data so you won't have to enter it all again!") ?>
@@ -120,7 +120,7 @@ $admin->save();
 function fail($file) {
 ?>
 	<title><?php echo _("Failure") ?>! </title>
-	<font size=+2><?php echo _("Unable to write to") ?> <?php echo $file ?> </font>
+	<font size=+2><?php echo sprintf(_("Unable to write to %s."), $file )?> </font>
 <?php
 	return;
 }

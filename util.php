@@ -40,7 +40,7 @@ function editField($album, $field) {
 	if ($gallery->user->canChangeTextOfAlbum($album)) {
 		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field";
 		$buf .= "<span class=editlink>";
-		$buf .= popup_link( "[". _("edit") . " " . _($field)."]", $url) ;
+		$buf .= popup_link( "[". sprintf(_("edit %s"), _($field)) . "]", $url) ;
 		$buf .= "</span>";
 	}
 	return $buf;
@@ -100,7 +100,7 @@ function gallery_error($message) {
 }
 
 function error_format($message) {
-	return "<span class=error>". _("Error") . ": $message</span>";
+	return "<span class=error>". _("Error:") . " $message</span>";
 }
 
 function build_popup_url($url, $url_is_complete=0) {
@@ -131,7 +131,7 @@ function popup_js($url, $window, $attrs) {
 }
 
 function popup_status($url, $height=150, $width=350) {
-	$attrs = "height=$height,width=$witdth,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
+	$attrs = "height=$height,width=$width,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
 	return "open('" . makeGalleryUrl($url) . "','Status','$attrs');";
 }
 
@@ -168,7 +168,7 @@ function exec_internal($cmd) {
 	fs_exec($cmd, $results, $status, $debugfile);
 
 	if (isDebugging()) {
-		print "<br>" . _("Results") .": <pre>";
+		print "<br>" . _("Results:") ." <pre>";
 		if ($results) {
 			print join("\n", $results);
 		} else {
@@ -177,7 +177,7 @@ function exec_internal($cmd) {
 		print "</pre>";
 
 		if (file_exists($debugfile)) {
-			print "<br> ". _("Error messages") .": <pre>";
+			print "<br> ". _("Error messages:") .": <pre>";
 			if ($fd = fs_fopen($debugfile, "r")) {
 				while (!feof($fd)) {
 					$buf = fgets($fd, 4096);
@@ -188,7 +188,8 @@ function exec_internal($cmd) {
 			unlink($debugfile);
 			print "</pre>";
 		}
-		print "<br> ". _("Status") .": $status (expected " . $gallery->app->expectedExecStatus . ")";
+		print "<br> ". sprintf(_("Status: %s (expected %s)"),
+				$status, $gallery->app->expectedExecStatus);
 	}
 
 	return array($results, $status);
@@ -570,7 +571,7 @@ function valid_image($file) {
     }
 
 	if (isDebugging())
-		echo "<br>". _("There was an unknown failure in the valid_image() call!") ."<br>";
+		echo "<br>". sprintf(_("There was an unknown failure in the %s call!"), 'valid_image()') ."<br>";
     return 0;
 }
 
@@ -594,7 +595,7 @@ function toPnmCmd($file) {
 		 	" " .
 			fs_import_filename($file);
 	} else {
-		gallery_error(_("Unknown file type") .": $file");
+		gallery_error(sprintf(_("Unknown file type: %s"), $file));
 		return "";
 	}
 }
@@ -614,7 +615,7 @@ function fromPnmCmd($file) {
 	if ($cmd) {
 		return "$cmd > " . fs_import_filename($file);
 	} else {
-		gallery_error(_("Unknown file type") .": $file");
+		gallery_error(sprintf(_("Unknown file type: %s"), $file));
 		return "";
 	}
 }
@@ -1018,13 +1019,14 @@ function preprocessImage($dir, $file) {
 					fs_unlink($tempfile);
 				}
 			} else {
-				gallery_error(_("Can't write to") ." $tempfile");
+				gallery_error(sprintf(_("Can't write to %s."),
+							$tempfile));
 			}
 			chmod("$dir/$file", 0644);
 		}
 		fclose($fd);
 	} else {
-		gallery_error(_("Can't read") ." $dir/$file");
+		gallery_error(sprintf(_("Can't read %s."), "$dir/$file"));
 	}
 
 	return 1;
@@ -1356,11 +1358,13 @@ function safe_serialize($obj, $file) {
 		/* Acquire an advisory lock */
 		$lockfd = fs_fopen("$file.lock", "a+");
 		if (!$lockfd) {
-			gallery_error("Could not open lock file ($file.lock)!");
+			gallery_error(sprintf(_("Could not open lock file (%s)!"),
+						"$file.lock"));
 			return 0;
 		}
 		if (!flock($lockfd, LOCK_EX)) {
-			gallery_error("Could not acquire lock ($file.lock)!");
+			gallery_error(sprintf(_("Could not acquire lock (%s)!"),
+						"$file.lock"));
 			return 0;
 		}
 	}
@@ -1476,7 +1480,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 
 	if (!strcmp($tag, "zip")) {
 		if (!$gallery->app->feature["zip"]) {
-			processingMsg(_("Skipping") . " " . $name . _("(ZIP support not enabled)"));
+			processingMsg(sprintf(_("Skipping %s (ZIP support not enabled)"), $name));
 			continue;
 		}
 		/* Figure out what files we can handle */
@@ -1550,7 +1554,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				$temp_files[$newFile]++;
 			}
 		    
-			processingMsg("- ". _("Adding") ." " .$name);
+			processingMsg("- ". sprintf(_("Adding %s"),$name));
 			if ($setCaption and $caption == "") {
 				$caption = $originalFilename;
 			}
@@ -1567,7 +1571,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 					list($w, $h) = $photo->image->getRawDimensions();
 					if ($w > $gallery->album->fields["resize_size"] ||
 					    $h > $gallery->album->fields["resize_size"]) {
-						processingMsg("- " . _("Resizing") ." ". $name);
+						processingMsg("- " . sprintf(_("Resizing %s"), $name));
 						$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
 					}
 				}
@@ -1593,7 +1597,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 						}
 						if ($rotate) {
 							$gallery->album->rotatePhoto($index, $rotate);
-							processingMsg("- ". _("Photo auto-rotated") ." ${rotate}&deg;");
+							processingMsg("- ". sprintf(_("Photo auto-rotated %s&deg;"), $rotate));
 						}
 					}
 				}
@@ -1603,12 +1607,16 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				}
 
 			} else {
-				processingMsg("<font color=red>" . _("Error") . ": $err!</font>");
-				processingMsg("<b>". _("Need help?  Look in the ") .
-				    "<a href=http://gallery.sourceforge.net/faq.php target=_new>Gallery FAQ</a></b>");
+				processingMsg("<font color=red>" . 
+						sprintf(_("Error: %s!"), $err) .
+						"</font>");
+				processingMsg("<b>". sprintf(_("Need help?  Look in the  %sGallery FAQ%s"),
+				    '<a href="http://gallery.sourceforge.net/faq.php" target=_new>', 
+				    '</a>')."</b>");
 			}
 		} else {
-			processingMsg(_("Skipping") . " " . $name . " (". _("can't handle") ." '$tag' ". _("format") .")");
+			processingMsg(sprintf(_("Skipping %s (can't handle %s format)"),
+						$name, $tag));
 		}
 	}
 }

@@ -133,7 +133,7 @@ include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?><br><?php
 if(strcmp($gallery->album->fields["public_comments"], "yes"))
 {
-    ?><br><b><span class="error"><?php echo _("Sorry This album does not allow public comments.") ?></span><br><br></b><?php
+    ?><br><b><span class="error"><?php echo _("Sorry.  This album does not allow public comments.") ?></span><br><br></b><?php
 }
 else
 {

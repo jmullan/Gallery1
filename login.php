@@ -41,13 +41,13 @@ $uname = removeTags($uname);
 
 <html>
 <head>
-	<title><?php echo _("Login to") ?> <?php echo $gallery->app->galleryTitle ?></title>
+	<title><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<span class="popuphead"><?php echo _("Login to") ?> <?php echo $gallery->app->galleryTitle ?></span>
+<span class="popuphead"><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></span>
 <br>
 <br>
 <?php
@@ -73,9 +73,7 @@ if ($submit) {
 ?>
 
 <?php echo makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
-<?php echo _("Logging in gives you greater permission to") ?>
-<br>
-<?php echo _("view, create, modify and delete albums.") ?>
+<?php echo _("Logging in gives you greater permission to view, create, modify and delete albums.") ?>
 <p>
 <table>
 <?php if ($invalid) { ?>

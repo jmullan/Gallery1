@@ -23,10 +23,9 @@ require($GALLERY_BASEDIR . "errors/configure_instructions.php");
 <table width=80%><tr><td>
 <br>
 <center>
-<?php echo _("To configure gallery,") ?> 
-<font size=+1>
-<a href="<?php echo $GALLERY_BASEDIR ?>setup/index.php"><?php echo _("Start the configuration wizard") ?></a>
-</font>
+<?php echo sprintf(_("To configure gallery, %sStart the configurations wizard%s"),
+		'<font size=+1> <a href="' . $GALLERY_BASEDIR . 'setup/index.php">', 
+		'</a></font>') ?>
 </center>
 <br>
 

@@ -29,8 +29,7 @@
 	    </td>
 	    <td>
 		<?php echo _("This page provides information about your PHP installation.") ?>
-		<?php echo _("It's a good place to look to examine all the various PHP configuration settings, and to find out what kind of system you're running on") ?> 
- 		(<?php echo _("sometimes it's difficult to tell when you're on an ISP's machine") ?>)
+		<?php echo _("It's a good place to look to examine all the various PHP configuration settings, and to find out on what kind of system you're running (sometimes it's difficult to tell when you're on an ISP's machine)") ?>
 	    </td>
 	  </tr>
 
@@ -40,8 +39,7 @@
 	    </td>
 	    <td>
 	      <?php echo _("This page provides information about your NetPBM binaries.") ?> 
-		<?php echo _("You can only use this page after you have successfully complete the configuration wizard") ?> 
- 		(<?php echo _("as it expects that you've already located and configured Gallery with the right path to NetPBM") ?>).
+		<?php echo _("You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to NetPBM).") ?>
 	    </td>
 	  </tr>
 
@@ -51,8 +49,7 @@
 	    </td>
 	    <td>
 		<?php echo _("This page provides information about your ImageMagick binaries.") ?> 
-		<?php echo _("You can only use this page after you have successfully complete the configuration wizard") ?>
-		(<?php echo _("as it expects that you've already located and configured Gallery with the right path to ImageMagick") ?>).
+		<?php echo _("You can only use this page after you have successfully complete the configuration wizard (as it expects that you've already located and configured Gallery with the right path to ImageMagick).") ?>
 	    </td>
 	  </tr>
 
@@ -71,7 +68,8 @@
 	<p> </p>
 
 	<center>
-	  <?php echo _("Return to the") ?> <a href="index.php"><?php echo _("config wizard") ?></a>.
+	  <?php echo sprintf(_("Return to the %sconfig wizard%s."),
+			  '<a href="index.php">', '</a>') ?>
 	</center>
 
     </body>

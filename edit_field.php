@@ -50,13 +50,14 @@ if (!strcmp($submit, _("Save"))) {
 
 <html>
 <head>
-  <title><?php echo _("Edit") ?> <?php echo _($field) ?></title>
+  <title><?php echo sprintf(_("Edit %s"), _($field)) ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<?php echo _("Edit the") ?> <?php echo _($field) ?> <?php echo _("and click <b>Save</b> when you're done.") ?>
+<?php echo sprintf(_("Edit the %s and click %s when you're done"),
+		_($field), '<b>' . _("Save") . '</b>') ?>
 
 <?php echo makeFormIntro("edit_field.php", array("name" => "theform", "method" => "POST")); ?>
 <input type=hidden name="field" value="<?php echo $field ?>">

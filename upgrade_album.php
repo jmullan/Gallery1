@@ -173,9 +173,8 @@ if (!$ood) {
 	close_button();
 } else {
 ?>
-<?php echo _("The following albums need to be upgraded.") ?>
-<?php echo _("You can process them individually by clicking the upgrade link next to the album that you desire, or you can just") ?>
-<a href="<?php echo makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1)) ?>"><?php echo _("upgrade them all at once") ?></a>.
+<?php echo sprintf(_("The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %supgrade them all at once%s"),
+		'<a href="' . makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1)) . '">', '</a>') ?>
 <ul>
 <?php
 	foreach ($ood as $album) {

@@ -109,13 +109,20 @@ if (!$gallery->session->offline && !strcmp($gallery->app->default["showSearchEng
 <!-- admin section begin -->
 <?php 
 $adminText = "<span class=\"admin\">";
-$adminText .= pluralize_n($numAlbums, ($numAccess != $numAlbums) ? _("top-level album") : _("album"), ($numAccess != $numAlbums) ? _("top-level albums") : _("albums"), _("No albums"));
-if ($numAccess != $numAlbums) {
-    $adminText .= " ($numAccess ". _("total") .")";
+$toplevel_str= pluralize_n($numAlbums, ($numAccess != $numAlbums) ? _("top-level album") : _("album"), ($numAccess != $numAlbums) ? _("top-level albums") : _("albums"), _("No albums"));
+$total_str= sprintf(_("%d total"), $numAccess); 
+$image_str= pluralize_n($numPhotos, _("image"), _("images"), _("no image"));
+$page_str= pluralize_n($maxPages, _("page"), _("pages"), _("no pages"));
+
+if (($numAccess != $numAlbums) && $maxPages > 1) {
+	$adminText .= sprintf(_("%s (%s), %s on %s"), $toplevel_str, $total_str, $image_str, $page_str);
 }
-$adminText .= ",&nbsp;" . pluralize_n($numPhotos, _("image"), _("images"), _("no image"));
-if ($maxPages > 1) {
-	$adminText .= " " . _("on") . " " . pluralize_n($maxPages, _("page"), _("pages"), _("no pages")) . "&nbsp;";
+else if ($numAccess != $numAlbums) {
+	$adminText .= sprintf(_("%s (%s), %s"), $toplevel_str, $total_str, $image_str);
+} else if ($maxPages > 1) {
+	$adminText .= sprintf(_("%s, %s on %s"), $toplevel_str, $image_str, $page_str);
+} else {
+	$adminText .= sprintf(_("%s, %s"), $toplevel_str, $image_str);
 }
 $adminText .= "</span>";
 $adminCommands = "<span class=\"admin\">";
@@ -181,14 +188,14 @@ if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
     print "<td colspan=3 align=center>";
     print "<table bordercolor=red border=2 cellpadding=2 cellspacing=2><tr><td>";
     print "<center><b><u>". _("Attention Gallery Administrator!") ."</u></b></center><br>";
-    print _("Gallery has detected the following directories") .":<br><br>";
-    print "<center>";
-    
+    $broken_albums = '';
     foreach ($albumDB->brokenAlbums as $tmpAlbumName) {
-	print "$tmpAlbumName<br>";
+	$broken_albums .= "$tmpAlbumName<br>";
     }
-    print "</center>";
-    print "<br>". _("in your albums directory") ." (" . $gallery->app->albumDir . ").<br>" ;
+    print sprintf(_("Gallery has detected the following directories: %s in your albums directory (%s)."),
+		    "<br><br> <center>$broken_albums</center>",
+		    $gallery->app->albumDir);
+    print "<br>";
     print _("These are not valid albums.  Please move them out of the albums directory.") ;
     print "</td></tr></table>";
     print "</td>";
@@ -310,8 +317,8 @@ for ($i = $start; $i <= $end; $i++) {
 	<br>
         <span class="error">
          <?php echo _("Hey!") ?>
-         <?php echo popup_link(_("Rename"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i") ?>
-	 <?php echo _("this album so that the URL is not so generic!") ?>
+	 <?php echo sprintf(_("%s this album so that the URL is not so generic!"),
+			 popup_link(_("Rename"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i")) ?>
         </span>
    	<?php } ?>
    <?php } ?>
@@ -327,17 +334,14 @@ for ($i = $start; $i <= $end; $i++) {
 
   <br>
   <span class="fineprint">
-   <?php echo _("Last changed on") ?> <?php echo $gallery->album->getLastModificationDate() ?>.  
-   <?php echo _("This album contains" ) ?> <?php echo pluralize_n($gallery->album->numPhotos(0), _("item"), _("items"), _("no items")) ?>.
-<?php
+   <?php echo sprintf(_("Last changed on %s."), $gallery->album->getLastModificationDate() )?>  
+   <?php echo sprintf(_("This album contains %s." ), pluralize_n($gallery->album->numPhotos(0), _("item"), _("items"), _("no items")));
 if (!($gallery->album->fields["display_clicks"] == "no") && 
 	!$gallery->session->offline) {
 ?>
-   <br><br><?php echo _("This album has been viewed ") ?>
-	<?php echo pluralize_n($gallery->album->getClicks(), _("time"), _("times") , _("0 times")) ?>
-	<?php echo _("since") ?>
-	<?php echo $gallery->album->getClicksDate() ?>.
-<?php
+   <br><br><?php echo sprintf(_("This album has been viewed %s since %s."),
+		   pluralize_n($gallery->album->getClicks(), _("time"), _("times") , _("0 times")),
+		   $gallery->album->getClicksDate() );
 }
 $albumName=$gallery->album->fields["name"];
 if ($gallery->user->canWriteToAlbum($gallery->album) &&

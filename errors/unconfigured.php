@@ -25,13 +25,14 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <center>
 <table width=80%>
 <tr><td>
-<?php echo _("Gallery must be configured before you can use it.") ?>  
-<?php echo _("First, you must put it into configuration mode.  Here's how") ?>:
-<?php echo configure("configure"); ?>
+<?php echo _("Gallery must be configured before you can use it.  First, you must put it into configuration mode.  Here's how.");
+echo configure("configure"); ?>
 <p>
-<?php echo _("And then start the") ?> <a href="<?php echo $GALLERY_BASEDIR ?>setup/index.php"><?php echo _("Configuration Wizard") ?></a>
-
-<?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
+<?php echo sprintf(_("And then start the %sConfiguration Wizard%s."), 
+		'<a href="<?php echo $GALLERY_BASEDIR ?>setup/index.php">',
+		'</a>');
+print "  ";
+include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 </table>
 </body>
 </html>

@@ -46,8 +46,7 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 </span>
 </center>
 
-<?php echo _("Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.") ?>
-<?php echo _("Gallery <b>has experimental</b> support for this feature.") ?>
+<?php echo _("Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.  Gallery <b>has experimental</b> support for this feature.") ?>
 <?php echo _("It's relatively easy to configure.") ?>  
 
 <br>
@@ -56,8 +55,9 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 <br>
 <b><?php echo _("Step 1") ?></b>
 <br>
-<?php echo _("Download the") ?> <a href="<?php echo makeGalleryUrl("publish_xp.php") ?>"><?php echo _("XP Configuration File") ?></a>.
-<?php echo _("Save this file on your PC and rename it") ?> "install_registry.reg".  
+<?php echo sprintf(_("Download the %sXP Configuration File%s"), 
+		'<a href="'.makeGalleryUrl('publish_xp.php').'">', '</a>'); ?>
+<?php echo sprintf(_("Save this file on your PC and rename it %s."), '"install_registry.reg"') ?>  
 <?php echo _("If it asks you for confirmation about changing the file type, answer &quot;yes&quot;.") ?>
 <?php echo _("Right click on this file and you should see a menu appear.") ?> 
 <?php echo _("Select the <b>Merge</b> option (this should be at the top of the menu).") ?>
@@ -70,9 +70,7 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 
 <b><?php echo _("Step 2") ?></b>
 <br>
-<?php echo _("Open your Windows explorer and browse to a folder containing a JPG image.") ?>
-<?php echo _("Select the image and there should be a link on the left that says &quot;Publish this file to the web...&quot;") ?>
-<?php echo _("Click this link and then follow the instructions to log into your Gallery, select an album and publish the image.") ?>
+<?php echo _("Open your Windows explorer and browse to a folder containing a JPG image.  Select the image and there should be a link on the left that says &quot;Publish this file to the web...&quot; Click this link and then follow the instructions to log into your Gallery, select an album and publish the image.") ?>
 <br>
 <br>
 

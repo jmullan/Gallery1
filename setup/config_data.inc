@@ -58,7 +58,7 @@ $checklist = array(
 	"htaccess" => array(
 		"desc" => _("Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (eg, big ZIP files) and you may not be able to use mod_rewrite (see below)."),
 	     	"func" => "check_htaccess",
-		"fail-htaccess" => _("Apache is not obeying your .htaccess file.  Try entering the following into your web server's httpd.conf file") .": <br><pre>" .
+		"fail-htaccess" => _("Apache is not obeying your .htaccess file.  Try entering the following into your web server's httpd.conf file:") ."<br><pre>" .
 			 "&lt;Directory $GALLERY_DIR" .
 			 "&gt;\n\tAllowOverride Options FileInfo\n" .
 			 "&lt;/Directory&gt;",
@@ -70,10 +70,8 @@ $checklist = array(
 		 '<a href="http://www.php.net/manual/en/configuration.php#ini.magic-quotes-gpc target=_top">',
 		'</a>'),
 	     	"func" => "check_magic_quotes",
-		"fail-magic-quotes" => _("Magic quotes are on.  Your webserver owner can turn them off by putting") .
-			": <pre>\n\t" .
-			 "magic_quotes_gpc = Off" .
-			 "</pre> " . _("in your php.ini file"),
+		"fail-magic-quotes" => sprintf(_("Magic quotes are on.  Your webserver owner can turn them off by putting %s in your php.ini file"),
+			": <pre>\n\tmagic_quotes_gpc = Off</pre>"),
 	),
 	"mod-rewrite" => array(
 		"desc" => _("Check to see if your webserver is compiled with <b>mod_rewrite</b>.  Mod_rewrite allows the Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."),
@@ -123,7 +121,7 @@ $checklist = array(
 	),	
 	"gettext" => array (
 		"optional" => 1,
-		"desc" => _("Check to see if Apache is compiled with gettext so that Gallery can run in many languages"),
+		"desc" => _("Check to see if Apache is compiled with gettext for fast translations."),
 		"func" => "check_gettext",
 		"fail-gettext" => sprintf(_("gettext in not installed.  To include gettext support, you need to recompile apache.  For more information see %s.  However, multilanguage support is still available in Gallery without gettext, but the pages may take slightly longer to load."),
 			'<a href="http://www.php.net/manual/en/ref.gettext.php">http://www.php.net/manual/en/ref.gettext.php</a>'),
@@ -157,7 +155,7 @@ $constants = array_merge(
 	"editPassword" => array(
 		"prompt" => _("Admin password"),
 		"desc" => '(<font color=red>' . _('REQUIRED') . '</font>) '.
-		_("The password for the <i>admin</i> account.  Unfortunately, you're required to re-enter this every time you reconfigure Gallery.  We'll fix this in a future release!"),
+		sprintf(_("The password for the %s account.  Unfortunately, you're required to re-enter this every time you reconfigure Gallery.  We'll fix this in a future release!"), '<i>admin</i>'),
 		"type" => "text",
 		"dont-write" => 1,
 		"attrs" => array("size" => 50),
@@ -165,13 +163,16 @@ $constants = array_merge(
 	"graphics" => array(
 		"prompt" => _("Graphics suite to use?"),
 		"desc" => _("This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."),
-		"choices" => array("NetPBM" => _("NetPBM"), "ImageMagick" => _("ImageMagick")),
+		"choices" => array("NetPBM" => "NetPBM", "ImageMagick" => "ImageMagick"),
 		"value" => default_graphics(),
 	),
 	"pnmDir" => array(
 		"optional" => 1,
 		"prompt" => _("Path to NetPBM"),
-		"desc" => _("The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  Eg. <i>/usr/local/netpbm</i> or <i>/usr/local/bin</i> or <i>c:\\apps\\netpbm</i>"),
+		"desc" => sprintf(_("The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  Eg. %s or %s or %s"),
+			'<i>/usr/local/netpbm</i>',
+			'<i>/usr/local/bin</i>', 
+			'<i>c:\\apps\\netpbm</i>'),
 		"value" => locateDir("jpegtopnm", $gallery->app ? $gallery->app->pnmDir : ""),
 		"verify-func" => "check_graphics",
 		"fail-netpbm" => _("I can't find NetPBM at the location you provided.") . "  " .
@@ -185,7 +186,7 @@ $constants = array_merge(
 	"pnmtojpeg" => array(
 		"prompt" => _("PNM to JPEG converter"),
 		"desc" => _("This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."),
-		"choices" => array("pnmtojpeg" => _("pnmtojpeg"), "ppmtojpeg" => _("ppmtojpeg")),
+		"choices" => array("pnmtojpeg" => "pnmtojpeg", "ppmtojpeg" => "ppmtojpeg"),
 		"value" => "pnmtojpeg",
 	),
 	"ImPath" => array(
@@ -319,7 +320,7 @@ $constants = array_merge(
 	"default_language" => array(
 		"prompt" => _("Which language do you want as your default language"), 
 		"optional" => 1, 
-		"desc" => _("This is what you will see as admin, and what users will see if no other preference is set."),
+		"desc" => sprintf(_("This is what you will see as %s, and what users will see if no other preference is set."), 'admin'),
 		"choices" => gallery_languages(),
 		"value" => "en_US"
 	),
@@ -375,7 +376,7 @@ $constants = array_merge(
 		"value" => "no",
 	),
 	"use_flock" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b> " . _("Use") ." flock()?",
+		"prompt" => "<b>(" . _("Advanced") .")</b> " . sprintf(_("Use %s?"), " flock()"),
 		"desc" => _("Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes"),
@@ -454,8 +455,7 @@ $defaults = array(
 	),
 	"fit_to_window" => array(
 		"prompt" => _("Fit-to-window"),
-		"desc" => _("When viewing photos which don't have an intermediary version") . ", " .
-			_("Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke"),
+		"desc" => _("When viewing photos which don't have an intermediary version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke"),
 		"value" => "no",
 		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),

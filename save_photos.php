@@ -73,10 +73,11 @@ if ($urls) {
 		
 		/*
 		 * Check to see if the URL is a local directory (inspired by
-		 * code from Jared (hogalot)
+		 * code from Jared (hogalot))
 		 */
 		if (fs_is_dir($url)) {
-			processingMsg(_("Processing") ." <i>$url</i> " . _("as a local directory."));
+			processingMsg(sprintf(_("Processing %s as a local directory."),
+						"<i>$url</i>"));
 			$handle = fs_opendir($url);
 			while (($file = readdir($handle)) != false) {
 				if ($file != "." && $file != "..") {
@@ -129,7 +130,8 @@ if ($urls) {
 		if ($id) {
 			processingMsg(urldecode($url));
 		} else {
-			processingMsg(_("Could not open url:")." '$url'");
+			processingMsg(sprintf(_("Could not open url: %s"), 
+							$url));
 			continue;
 		} 
 	

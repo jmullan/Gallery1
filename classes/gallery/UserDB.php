@@ -251,12 +251,14 @@ class Gallery_UserDB extends Abstract_UserDB {
 		if (!strcmp($username, $this->nobody->getUsername()) ||
 		    !strcmp($username, $this->everybody->getUsername()) ||
 		    !strcmp($username, $this->loggedIn->getUsername())) {
-			return "<i>$username</i> ". _("is reserved and cannot be used.") ;
+			return sprintf(_("%s is reserved and cannot be used."),
+					"<i>$username</i> ");
 		}
 
 		$user = $this->getUserByUsername($username);
 		if ($user) {
-			return _("A user with the username of") ." <i>$username</i> " . _("already exists");
+			return sprintf(_("A user with the username of %s already exists"),
+				" <i>$username</i> ");
 		}
 
 		return null;

@@ -144,7 +144,7 @@ if (!$boxes) {
 <?php if (empty($GALLERY_EMBEDDED_INSIDE)) { ?>
 &nbsp;&nbsp;&nbsp;<b><a href="<?php echo makeGalleryUrl("publish_xp_docs.php") ?>">Windows XP Publishing Agent</a></b>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><?php echo _("Note") ?>:</i> <?php echo _("this feature is still experimental") ?>!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo _("<i>Note:</i> this feature is still experimental!") ?>
 <?php } ?>					 
 </span>
 

@@ -83,7 +83,7 @@ asort($uAll);
 <body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<span class="popuphead"> <?php echo _("Change owner") ?> </span>
+<span class="popuphead"> <?php echo _("Change Owner") ?> </span>
 <br>
 <?php $index=$gallery->album->getPhotoIndex($id) ?>
 <br>

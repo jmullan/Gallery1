@@ -31,7 +31,7 @@ $count++;
 
 	<?php echo _("If sessions are configured properly in your PHP installation, then you should see a session id below.") ?>  
 	<?php echo _("The \"page views\" number should increase every time you reload the page.") ?>  
-	<?php echo _("Clicking \"start over\" should reset the page view number back to 1.") ?>
+	<?php echo sprintf(_("Clicking %s should reset the page view number back to 1."), '"Start over"') ?>
 
       <p>
 
@@ -69,6 +69,7 @@ $count++;
 
       <a href="session_test.php?destroy=1"><?php echo _("Start over") ?></a>
       <p>
-      <?php echo _("Return to the") ?> <a href="diagnostics.php"><?php echo _("Diagnostics Page") ?></a>
+      <?php echo sprintf(_("Return to the %sDiagnostics Page%s"), 
+		      '<a href="diagnostics.php">', '</a>') ?>
     </body>
   </html>

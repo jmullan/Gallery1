@@ -53,7 +53,7 @@ if ($gallery->session->albumName && isset($index)) {
 	if ($resize) {
 		if (!strcmp($index, "all")) {
 			$np = $gallery->album->numPhotos(1);
-			echo("<br> ". _("Resizing") . " $np " . _("photos..."));
+			echo("<br> ". sprintf(_("Resizing %d photos..."),$np));
 			my_flush();
 			for ($i = 1; $i <= $np; $i++) {
 				echo("<br> ". _("Processing image") . " $i...");
@@ -80,7 +80,7 @@ if ($gallery->session->albumName && isset($index)) {
 
 <p>
 
-<?php echo _("What is the target size for") ?> <?php echo $all ? _("all the photos in this album") : _("this photo") ?>?
+<?php echo $all ? _("What is the target size for all the photos in this album?") : _("What is the target size for this photo?") ?>
 <br>
 <?php echo makeFormIntro("resize_photo.php"); ?>
 <input type=hidden name=index value=<?php echo $index ?>>

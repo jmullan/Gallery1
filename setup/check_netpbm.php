@@ -1,20 +1,20 @@
 <?php /* $Id$ */ ?>
-<?php require("../config.php"); ?>
+<?php require("../config.php") ?>
 <html>
 <body dir=<?php echo $gallery->direction ?>>
+<?php $app_name='NetPBM' ?>
 
-<h1><?php echo _("Check") ?> NetPBM </h1>
+<h1> <?php echo sprintf(_("Check %s"), $app_name) ?> </h1>
 
-<?php echo _("This script is designed to examine your NetPBM installation to see if it is ok to be used by Gallery.") ?>
-<?php echo _("You should run this script <b>after</b> you have run the config wizard, if you have had problems with your NetPBM installation that the wizard did not detect.") ?>
+<?php echo sprintf(_("This script is designed to examine your %s installation to see if it is ok to be used by Gallery."), $app_name);
+echo sprintf(_("You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."), $app_name) ?>
 
 <p>
 <ol>
 
-<li> <?php echo _("Loading configuration files.") ?>  
-<?php echo _("If you see an error here, it is probably because you have not successfully run the config wizard.") ?>
+<li> <?php echo _("Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard.") ?>
 
-<?php 
+<?php
 require('init.php'); 
 require("../config.php"); 
 ?>
@@ -23,12 +23,13 @@ require("../config.php");
 
 <li> <?php echo _("Let us see if we can figure out what operating system you are using.") ?>
 
-<p> <?php echo _("This is what your system reports") ?>:
+<p> 
+<?php echo _("This is what your system reports") ?>:
 <br>
 <b><?php passthru("uname -a"); ?></b>
 
 <p>
-<?php echo _("This is the type of system PHP was compiled on") ?>:
+<?php echo _("This is the type of system on which PHP was compiled") ?>:
 <br>
 <b><?php echo php_uname() ?></b>
 
@@ -38,20 +39,26 @@ require("../config.php");
 
 <p>
 
-<?php echo _("Look for keywords like &quot;Linux&quot;, &quot;Windows&quot;, &quot;FreeBSD&quot;, etc. in the output above.") ?>
-<?php echo _("If both the attempts above failed, you should ask your ISP what operating system you are using.") ?>
-<?php echo _("You can check via") ?> <a href="http://www.netcraft.com/whats?host=<?php echo $HTTP_SERVER_VARS['HTTP_HOST'] ?>">Netcraft</a>,
-<?php echo _("they can often tell you.") ?>  
+<?php 
+echo sprintf(_("Look for keywords like %s, %s, %s etc. in the output above."),
+		'&quot;Linux&quot;', '&quot;Windows&quot;', '&quot;FreeBSD&quot;');
+echo _("If both the attempts above failed, you should ask your ISP what operating system you are using."); 
+echo sprintf(_("You can check via %s, they can often tell you."),
+		'<a href="http://www.netcraft.com/whats?host=' .
+		$HTTP_SERVER_VARS['HTTP_HOST'] . 
+		'">Netcraft</a>') ;
+?>
 <p>
 
-<li> <?php echo _("You told the config wizard that your NetPBM binaries live here") ?>:
+<li> <?php echo sprintf(_("You told the config wizard that your %s binaries live here:"),
+		$app_name) ?>
 <p>
 <ul>
 <b><?php echo $gallery->app->pnmDir ?></b>
 </ul>
 <p>
 
-<?php echo _("If that is not right (or if it is blank), re-run the configuration wizard and enter a location for NetPBM.") ?>
+<?php echo sprintf(_("If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."), $app_name) ?>
 
 <p>
 
@@ -62,27 +69,29 @@ $debugfile = tempnam($gallery->app->tmpDir, "gallerydbg");
 <?php
 if (!inOpenBasedir($gallery->app->pnmDir)) {
 ?>
-<b><?php echo _("Note") ?></b>:  <?php echo _("Your NetPBM directory") ?> (<?php echo $gallery->app->pnmDir ?>)
-<?php echo _("is not in your open_basedir list (specified in php.ini)") ?>: <ul>
- <?php echo join('<br>', explode(':', ini_get('open_basedir'))) ?>
- </ul>
- <?php echo _("So we can't perform all of our basic checks on the files to make sure that they exist and they're executable.") ?>
+<?php echo sprintf(_("<b>Note</b>:  Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."),
+		$app_name,
+		$gallery->app->pnmDir,
+		'<ul>'.  join('<br>', explode(':', ini_get('open_basedir'))) .
+		'</ul>') ?>
+
 <br><br>
 
 <?php
 }
 ?>
 
-<li><?php echo _("We are going to test each NetPBM binary individually.") ?>  
+<li><?php echo sprintf(_("We are going to test each %s binary individually."), $app_name) ?>  
 
 <?php
 if ($show_details) {
-	print "<a href=check_netpbm.php?show_details=0>". 
-		_("Click here") ."</a> ". _("to hide the details") ."</a>";
+	print sprintf(_("%sClick here%s to hide the details"), 
+		'<a href="check_netpbm.php?show_details=0">',
+			'</a>');
 } else {
-	print _("If you see errors, you should") .
-		" <a href=check_netpbm.php?show_details=1>" . 
-			_("click here") ."</a> " . _("to see more details") ."</a>";
+	print sprintf(_("If you see errors, you should %sclick here%s to see more details"),
+			'<a href="check_netpbm.php?show_details=1">',
+			'</a>');
 }
 ?>
 
@@ -123,7 +132,8 @@ function checkNetPbm($cmd) {
 	if ($ok) {
 		if (inOpenBasedir($gallery->app->pnmDir)) {
 			if (!fs_file_exists($cmd)) {
-				$error = _("File") . $cmd . _("does not exist.") ;
+				$error = sprintf(_("File %s does not exist."), 
+						$cmd);
 				$ok = 0;
 			}
 		}
@@ -135,9 +145,10 @@ function checkNetPbm($cmd) {
 
 	if ($ok) {
 		if ($status != $gallery->app->expectedExecStatus) {
-			$error = _("Expected status") .": " .
-				$gallery->app->expectedExecStatus .
-				", ". _("but actually received status") .": $status";
+			$error = sprintf(_("Expected status: %s, but actually received status %s."),
+					$gallery->app->expectedExecStatus,
+					$status);
+
 			$ok = 0;
 		}
 	}
@@ -175,9 +186,9 @@ function checkNetPbm($cmd) {
 	}
 
 	if ($ok) {
-		print "<font color=green>". _("Ok!  Version") .": $version</font>";
+		print "<font color=green>". sprintf(_("Ok!  Version: %s"), $version).'</font>';
 	} else {
-		print "<font color=red>". _("Error") ."! ($error) </font>";
+		print "<font color=red>". sprintf(_("Error! %s"), $error).'</font>';
 	}
 	print "\n\n";
 }
@@ -196,19 +207,25 @@ function inOpenBasedir($dir) {
 
 <p>
 
-<?php echo _("If you see an error above complaining about reading or writing to") ?> <b><?php echo $debugfile ?></b>,
-<?php echo _("then this is likely a permission/configuration issue on your system.") ?>
-<?php echo _("If it mentions <i>open_basedir</i> then it's because your system is configured with") ?> <a href="http://www.php.net/manual/en/configuration.php#ini.open-basedir"> open_basedir</a>
-<?php echo _("enabled") ?>.
-<?php echo _("You should talk to your system administrator about this, or see the") ?> <a href=http://gallery.sourceforge.net/help.php><?php echo _("Gallery Help Page") ?></a>
+<?php 
+echo sprintf(_("If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled.  You should talk to your system administrator about this, or see the %sGallery Help Page%s."),
+		"<b>$debugfile</b>",
+		'<i>open_basedir</i>',
+		'<a href="http://www.php.net/manual/en/configuration.php#ini.open-basedir"> open_basedir</a>',
+		'<a href=http://gallery.sourceforge.net/help.php>',
+		'</a>');
+
+?>
 <p>
 
-<?php echo _("For other errors, please refer to the list of possible responses in") ?> <a href=http://gallery.sourceforge.net/faq.php>FAQ</a> 4.4 
-<?php echo _("to get more information") ?>.
+<?php echo sprintf(_("For other errors, please refer to the list of possible responses in %s to get more information."), '<a href="http://gallery.sourceforge.net/faq.php">FAQ</a> C.2');
+?>
 
 </ol>
 
-<?php echo _("Return to the") ?> <a href="index.php"><?php echo _("config wizard") ?></a>.
+<?php echo sprintf(_("Return to the %sconfig wizard%s."),
+		'<a href="index.php">', '</a>');
+?>
 
 </body>
 </html>

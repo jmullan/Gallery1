@@ -7,12 +7,12 @@ function configure($cmd="configure") {
   <tr>
    <td>
     <code>
-     <br> <b>Unix</b> <?php echo _("with shell access") ?>
+     <br> <?php echo sprintf(_("%s with shell access"), '<b>Unix</b>') ?>
      <?php $pathstring = _("/path/to/your/gallery") ?>
      <br> % cd <?php echo $pathstring ?>
      <br> % sh ./<?php echo $cmd ?>.sh
      <br>
-     <br> <b>Unix</b> <?php echo _("with FTP access") ?>
+     <br> <?php echo sprintf(_("%s with FTP access"), '<b>Unix</b>') ?>
      <br> ftp> chmod <?php echo configure_filemode($cmd) ?> .htaccess
      <br> ftp> chmod <?php echo configure_filemode($cmd) ?> config.php
      <br> ftp> chmod <?php echo configure_dirmode($cmd) ?> setup
