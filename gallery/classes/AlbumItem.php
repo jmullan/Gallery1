@@ -313,8 +313,17 @@ class AlbumItem {
 					$nestedAlbum = new Album();
 					$nestedAlbum->load($name);
 					list ($srcalbum, $srcitem) = $nestedAlbum->getHighlightedItem();
-					$srcdir = $srcalbum->getAlbumDir();
-					$tag = $srcitem->image->type;
+					if ($srcalbum !== null && $srcitem !== null) {
+						$srcdir = $srcalbum->getAlbumDir();
+						$tag = $srcitem->image->type;
+					}
+					else {
+						if (is_object($this->highlightImage)) {
+							$this->highlightImage->simpleDelete($dir);
+							$this->highlightImage = null;
+						}
+						return;
+					}
 				}
 			}
 			$size = $album->getHighlightSize();
@@ -613,11 +622,13 @@ class AlbumItem {
 	}
 
 	function isMovie() {
-		return isMovie($this->image->type);
+		if (isset($this->image)) {
+			return isMovie($this->image->type);
+		}
 	}
 
 	function resize($dir, $target, $filesize, $pathToResized) {
-		if ($this->image) {
+		if (isset($this->image)) {
 			$this->image->resize($dir, $target, $filesize, $pathToResized);
 		}
 	}
