@@ -412,7 +412,7 @@ class Album {
 			if (isset($this->fields['print_photos']['shutterfly']['donation'])) {
 				unset($this->fields['print_photos']['shutterfly']['donation']);
 			}
-			if (isset($this->fields['print_photos']['shutterfly'] && 
+			if (isset($this->fields['print_photos']['shutterfly']) && 
 			    !isset($this->fields['print_photos']['shutterfly']['checked'])) {
 				unset($this->fields['print_photos']['shutterfly']);
 			}
