@@ -78,8 +78,9 @@ page.  When you're done and it prompts you to make the gallery secure
 again, you need to change your permissions back again:
 
 	ftp> cd gallery
-	ftp> chmod 755 config.php
-	ftp> chmod 755 .htaccess
+	ftp> chmod 644 config.php
+	ftp> chmod 644 .htaccess
+	ftp> chmod 0 setup
 
 That's all it takes!
 
