@@ -163,11 +163,11 @@ if (isset($forgot)) {
 			       	<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
 				<?php
 		       	} else {
-			       	echo gallery_error(sprintf(_("Email could not be sent.  Please contact %s adminstrators for a new password"),$gallery->app->galleryTitle ));
+			       	echo gallery_error(sprintf(_("Email could not be sent.  Please contact %s administrators for a new password"),$gallery->app->galleryTitle ));
 		       	}
 		       	return;
 	       	} else {
-		       	echo gallery_error(sprintf(_("There is no valid email for this account.  Please contact %s adminstrators for a new password"),$gallery->app->galleryTitle ));
+		       	echo gallery_error(sprintf(_("There is no valid email for this account.  Please contact %s administrators for a new password"),$gallery->app->galleryTitle ));
 	       	}
        	} else {
 	       	echo gallery_error(_("Not a valid username"));
