@@ -46,6 +46,7 @@ $navigator["maxPages"] = $maxPages;
 $navigator["spread"] = 6;
 $navigator["fullWidth"] = 90;
 $navigator["widthUnits"] = "%";
+$navigator["bordercolor"] = "#DDDDDD";
 ?>
 
 <!-- gallery.header begin -->
@@ -137,19 +138,19 @@ for ($i = $start; $i <= $end; $i++) {
 ?>
 </table>
 <!-- album table end -->
+<!-- bottom nav -->
+<?
+include("layout/navigator.inc");
+?>
 <p>
 <!-- admin section begin -->
+<? if (isCorrectPassword($edit)) { ?>
 <hr size=1>
 Admin:
-<? if (isCorrectPassword($edit)) { ?>
 <font size=+0 face=arial>
 <a href=do_command.php?cmd=new-album&return=view_album.php>[Create a New Album]</a>
 &nbsp;
 <a href=do_command.php?cmd=leave-edit&return=albums.php>[Leave edit mode]</a>
-</font>
-<? }  else { ?>
-<font size=+0>
-<a href=<?= popup("edit_mode.php")?>>[Enter edit mode]</a>
 </font>
 <? } ?>
 
