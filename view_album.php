@@ -253,12 +253,14 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
 			$gallery->session->albumName).
 			'">[permissions]</a>&nbsp;';
 }
-
-
+if (($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) &&
+	!strcmp($gallery->album->fields["public_comments"],"yes")) { 
+    $adminCommands .= '<a href=' . makeGalleryUrl("view_comments.php") . '>[view&nbsp;all&nbsp;comments]</a>&nbsp;';
+}
 $adminCommands .= '<a href=' . 
 	 makeGalleryUrl("slideshow.php",
 		array("set_albumName" => $albumName)) .
-	'>[slideshow]</a>';
+	'>[slideshow]</a>&nbsp;';
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	if ($gallery->user->isLoggedIn()) {
@@ -413,13 +415,6 @@ if ($numPhotos) {
 				   <? } ?>
 				</span>
 <?
-				if (($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) &&
-					!strcmp($myAlbum->fields["public_comments"],"yes")) { ?>
-					<span class="admin">
-                                         <br><a href=<?=makeGalleryUrl("view_comments.php", array("set_albumName" => $myAlbum->fields["name"]))?>>[view&nbsp;comments]</a><br>
-					</span>
-<?
-                                }
 			} else {
 				echo($gallery->album->getCaption($i));
 				// indicate with * if we have a comment for a given photo
