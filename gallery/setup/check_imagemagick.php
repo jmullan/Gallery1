@@ -204,7 +204,7 @@ function checkImageMagick($cmd) {
 		}
 	}
 
-	$cmd .= " --version";
+	$cmd .= " -version";
 	
 	fs_exec($cmd, $results, $status, $debugfile);
 
