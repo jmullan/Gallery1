@@ -2555,7 +2555,8 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 		$msg = stripslashes($msg);
 	}
 	$result=mail($to, $gallery->app->emailSubjPrefix." ".$subject, emailDisclaimer().$msg, $additional_headers);
-	if (isDebugging()) {
+//	if (isDebugging()) {
+	if (false) {
 		print "<table>";
 		print "<tr><td valign=\"top\">To:</td><td valign=\"top\">&lt;" .
 			_("not shown") . "&gt;</td></tr>";
