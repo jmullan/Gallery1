@@ -771,6 +771,71 @@ function printNestedVals($level, $albumName, $val, $movePhoto) {
 	}
 }
 
+function getExif($file) {
+		global $gallery;
+
+        $return = array();
+        $path = $gallery->app->use_exif;
+        exec("$path $file",$return);
+        while (list($key,$value) = each ($return)) {
+            $explodeReturn = explode(':', $value, 2);
+            $myExif[trim($explodeReturn[0])] = trim($explodeReturn[1]);
+        }
+
+        return $myExif;
+}
+
+function getItemCaptureDate($file) {
+	global $gallery;
+
+	$success = 0;
+	if ($gallery->app->use_exif) {
+		$exifData = getExif($file);
+		if ($exifData["Date/Time"]) {
+			$success = 1;
+			$tempDate = split(" ", $exifData["Date/Time"], 2);
+			$tempDay = split(":" , $tempDate[0], 3);
+			$tempTime = split(":", $tempDate[1], 3);
+			$hours = "$tempTime[0]";
+			$minutes = "$tempTime[1]";
+			$seconds = "$tempTime[2]";
+			$mday = "$tempDay[2]";
+			$mon = "$tempDay[1]";
+			$year = "$tempDay[0]";
+
+			$itemCaptureDate[hours] = $hours;
+			$itemCaptureDate[minutes] = $minutes;
+			$itemCaptureDate[seconds] = $seconds;
+			$itemCaptureDate[mday] = $mday;
+			$itemCaptureDate[mon] = $mon;
+			$itemCaptureDate[year] = $year;
+		}
+	}
+	if (!$success) { // we were not able to get the capture date from exif... use file creation time
+		$itemCaptureDate = getdate(filemtime($file));
+	}
+
+	// make sure everything (other than year) is 2 digits so we can do sorts with
+	// the resulting concatenated data i.e.:  20010708123412
+	if (strlen($itemCaptureDate["mon"]) == 1) {
+		$itemCaptureDate["mon"] = "0" . $itemCaptureDate["mon"];
+	}
+	if (strlen($itemCaptureDate["mday"]) == 1) {
+		$itemCaptureDate["mday"] = "0" . $itemCaptureDate["mday"];
+	}
+	if (strlen($itemCaptureDate["hours"]) == 1) {
+		$itemCaptureDate["hours"] = "0" . $itemCaptureDate["hours"];
+	}
+	if (strlen($itemCaptureDate["minutes"]) == 1) {
+		$itemCaptureDate["minutes"] = "0" . $itemCaptureDate["minutes"];
+	}
+	if (strlen($itemCaptureDate["seconds"]) == 1) {
+		$itemCaptureDate["seconds"] = "0" . $itemCaptureDate["seconds"];
+	}
+	print "IN UTIL ITEMCAPTUREDATE = $itemCaptureDate[year]<br>";
+	return $itemCaptureDate;
+}
+
 function doCommand($command, $args="", $returnFile="", $returnArgs="") {
 	global $GALLERY_EMBEDDED_INSIDE;
 	global $GALLERY_MODULENAME;

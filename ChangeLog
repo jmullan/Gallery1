@@ -6,6 +6,13 @@
 	  Ed Wilts <ewilts@ewilts.org> on our new Gallery-users mailing 
 	  list.
 
+	* uploadDate and itemCaptureDate now set at file upload time.
+	  One benefit to this is...  if you upload a zip file of
+	  photos, and you do not have exif data in the photos, the
+	  itemCaptureDate will be set to the time/date stamp of the
+	  files contained within the zip file.  This is SF feature
+	  #423208.
+
 2001-07-19  John Kirkland  <jpk@bl.org>
 
 	* Fixed SF bug #442881.  "Extra </table> tag in search.php."

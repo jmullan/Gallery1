@@ -402,6 +402,10 @@ class Album {
 			return $err;
 		} else {
 			$item->setCaption("$caption");
+			$originalItemCaptureDate = getItemCaptureDate($file);
+			$now = time();
+			$item->setItemCaptureDate($originalItemCaptureDate);
+			$item->setUploadDate($now);
 		}
 		$this->photos[] = $item;
 

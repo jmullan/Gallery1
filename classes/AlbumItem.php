@@ -71,53 +71,11 @@ class AlbumItem {
 			// is available to us.  First, look in the exif data if it is a jpeg file.  If that
 			// doesn't help us, then use the file creation date.
 			$dir = $gallery->album->getAlbumDir();
-			$success = 0;
-			if ($gallery->app->use_exif) {
-				$exifData = $this->getExif($dir);
-				if ($exifData["Date/Time"]) {
-					$success = 1;
-					$tempDate = split(" ", $exifData["Date/Time"], 2);
-					$tempDay = split(":" , $tempDate[0], 3);
-					$tempTime = split(":", $tempDate[1], 3);
-					$hours = "$tempTime[0]";
-					$minutes = "$tempTime[1]";
-					$seconds = "$tempTime[2]";
-					$mday = "$tempDay[2]";
-					$mon = "$tempDay[1]";
-					$year = "$tempDay[0]";
-
-					$itemCaptureDate[hours] = $hours;
-					$itemCaptureDate[minutes] = $minutes;
-					$itemCaptureDate[seconds] = $seconds;
-					$itemCaptureDate[mday] = $mday;
-					$itemCaptureDate[mon] = $mon;
-					$itemCaptureDate[year] = $year;
-				}
-			} 
-			if (!$success) { // we were not able to get the capture date from exif... use file creation time
-				$name = $this->image->name;
-				$tag = $this->image->type;
-				$file = "$dir/$name.$tag";
-				$itemCaptureDate = getdate(filectime($file));
-			}
-		}	
-		// make sure everything (other than year) is 2 digits so we can do sorts with 
-		// the resulting concatenated data i.e.:  20010708123412
-		if (strlen($itemCaptureDate["mon"]) == 1) {
-			$itemCaptureDate["mon"] = "0" . $itemCaptureDate["mon"];
+			$name = $this->image->name;
+			$tag = $this->image->type;
+			$file = "$dir/$name.$tag";
+			$itemCaptureDate = getItemCaptureDate($file);
 		}
-		if (strlen($itemCaptureDate["mday"]) == 1) {
-			$itemCaptureDate["mday"] = "0" . $itemCaptureDate["mday"];
-		}
-		if (strlen($itemCaptureDate["hours"]) == 1) {
-			$itemCaptureDate["hours"] = "0" . $itemCaptureDate["hours"];
-		}
-		if (strlen($itemCaptureDate["minutes"]) == 1) {
-			$itemCaptureDate["minutes"] = "0" . $itemCaptureDate["minutes"];
-		}
-		if (strlen($itemCaptureDate["seconds"]) == 1) {
-			$itemCaptureDate["seconds"] = "0" . $itemCaptureDate["seconds"];
-		} 
  
 		$this->itemCaptureDate = $itemCaptureDate;
 	}
@@ -132,17 +90,8 @@ class AlbumItem {
 	}
 
 	function getExif($dir) {
-		global $gallery;
-
-		$return = array();
-		$path = $gallery->app->use_exif;
 		$file = $dir . "/" . $this->image->name . "." . $this->image->type;
-		exec("$path $file",$return);
-		while (list($key,$value) = each ($return)) {
-       		$explodeReturn = explode(':', $value, 2);
-        	$myExif[trim($explodeReturn[0])] = trim($explodeReturn[1]);
-		}
-
+		$myExif = getExif($file);
 		return $myExif;
 	}
 
