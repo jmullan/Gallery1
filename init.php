@@ -440,7 +440,6 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 		break;
 
 		case 'cpgnuke':
-			print_r($GLOBALS);
 			/* we're in CPG-Nuke */
 			include_once(dirname(__FILE__) . "/classes/Database.php");
 			include_once(dirname(__FILE__) . "/classes/database/mysql/Database.php");
