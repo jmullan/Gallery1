@@ -2,6 +2,14 @@
 
 	* v1.4.3 Release Candidate 3
 
+2004-04-12  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.4.3-RC3-cvs-b9
+
+        * Fix: Updated gallery_remote2.php protocol to send hidden state of AlbumItems
+          and only include an a sub-album in a list of items if the sub-album
+          is readable. Also only sending full-size URL if the user is allowed to
+          see it, although that can easily be faked by clients.
+        * Bugfix: #932389
+
 2004-04-12  Jay Rossiter <cryptographite@users.sf.net>  1.4.3-RC3-cvs-b8
 
         * Change: Extra checks to prevent people from Moving photos into the 
