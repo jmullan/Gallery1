@@ -29,7 +29,7 @@ function ML_reload() {
 
 		$args = $HTTP_GET_VARS;
 		if (isset($GALLERY_EMBEDDED_INSIDE)) {
-			if (isset($GLOBALS['pnconfig']) && function_exists("authorised")) {
+			if ($GALLERY_EMBEDDED_INSIDE == 'postnuke') {
 				/* postnuke */
 				if (! isset($nls['postnuke'][$value])) continue;
 				$args["newlang"]=$nls['postnuke'][$value];
