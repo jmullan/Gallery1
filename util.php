@@ -1416,10 +1416,12 @@ function makeGalleryHeaderUrl($target, $args=array()) {
  * specify additional key/value pairs in the optional third argument.
  */
 function makeAlbumUrl($albumName="", $photoId="", $args=array()) {
-	global $GALLERY_EMBEDDED_INSIDE;
+	global $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $gallery;
 
-	if (!$GALLERY_EMBEDDED_INSIDE && $gallery->app->feature["rewrite"]) {
+	// We can use GeekLog with rewrite because Gallery is embedded in a different way.
+	if ( $gallery->app->feature["rewrite"] == 1 && 
+		(! $GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE_TYPE == 'GeekLog')) {
 		if ($albumName) {
 			$target = urlencode ($albumName);
 
