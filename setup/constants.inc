@@ -54,7 +54,7 @@ foreach ($constants as $key => $val) {
 		}
 		if (get_magic_quotes_gpc()) {
 			if (is_array($val["value"]) && 
-					function_exists(array_map)) { 
+					function_exists('array_map')) { 
 				$val["value"] = array_map(stripslashes, $val["value"]);
 			} else {
 				$val["value"] = stripslashes($val["value"]);
