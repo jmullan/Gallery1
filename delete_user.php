@@ -59,7 +59,7 @@ if ($submit) {
 
 <?php
 if (!strcmp($gallery->user->getUsername(), $uname)) {
-	print center(error("You can't delete your own account!"));
+	print center(gallery_error("You can't delete your own account!"));
 	print "<p>";
 } else {
 ?>

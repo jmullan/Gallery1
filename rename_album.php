@@ -87,7 +87,7 @@ if ($newName) {
 		dismissAndReload();
 		return;
 	} else {
-		error("There is already an album with that name!");
+		gallery_error("There is already an album with that name!");
 	}
 } else {
 	$newName = $gallery->session->albumName;

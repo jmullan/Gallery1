@@ -83,7 +83,7 @@ How do you want to rotate this photo?
 <?php
 	}
 } else {
-	error("no album / index specified");
+	gallery_error("no album / index specified");
 }
 ?>
 

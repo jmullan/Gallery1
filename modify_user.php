@@ -87,7 +87,7 @@ if ($submit) {
 
 $tmpUser = $gallery->userDB->getUserByUsername($uname);
 if (!$tmpUser) {
-	error("Invalid user <i>$uname</i>");
+	gallery_error("Invalid user <i>$uname</i>");
 	exit;
 }
 

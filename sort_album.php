@@ -113,7 +113,7 @@ if ($gallery->album->getHighlight()) {
 <?php
 	}
 } else {
-	error("no album specified");
+	gallery_error("no album specified");
 }
 ?>
 

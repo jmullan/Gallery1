@@ -130,7 +130,7 @@ Choose which part of the image will compose your thumbnail:
 <?php 
     	#-- we're not a go. abort! abort! ---
 	} else { 
-		error("no album / index specified");
+		gallery_error("no album / index specified");
 	} 
 } 
 ?>

@@ -71,7 +71,7 @@ view, create, modify and delete albums.
 <?php if ($invalid) { ?>
  <tr>
   <td colspan=2>
-   <?php echo error("Invalid username or password"); ?>
+   <?php echo gallery_error("Invalid username or password"); ?>
   </td>
  </tr>
 <?php } ?>
@@ -88,7 +88,7 @@ view, create, modify and delete albums.
 <?php if ($error && !$uname) { ?>
  <tr>
   <td colspan=2 align=center>
-   <?php echo error("You must specify a username"); ?>
+   <?php echo gallery_error("You must specify a username"); ?>
   </td>
  </tr>
 <?php } ?>
@@ -105,7 +105,7 @@ view, create, modify and delete albums.
 <?php if ($error && !$gallerypassword) { ?>
  <tr>
   <td colspan=2 align=center>
-   <?php echo error("You must specify a password"); ?>
+   <?php echo gallery_error("You must specify a password"); ?>
   </td>
  </tr>
 <?php } ?>

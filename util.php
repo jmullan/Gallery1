@@ -90,7 +90,7 @@ function center($message) {
 	return "<center>$message</center>";
 }
 
-function error($message) {
+function gallery_error($message) {
 	echo error_format($message);
 }
 
@@ -510,7 +510,7 @@ function toPnmCmd($file) {
 		 	" " .
 			fs_import_filename($file);
 	} else {
-		error("Unknown file type: $file");
+		gallery_error("Unknown file type: $file");
 		return "";
 	}
 }
@@ -530,7 +530,7 @@ function fromPnmCmd($file) {
 	if ($cmd) {
 		return "$cmd > " . fs_import_filename($file);
 	} else {
-		error("Unknown file type: $file");
+		gallery_error("Unknown file type: $file");
 		return "";
 	}
 }
@@ -563,7 +563,7 @@ function exec_wrapper($cmd) {
 		return 0;
 	} else {
 		if ($results) {
-			error(join("<br>", $results));
+			gallery_error(join("<br>", $results));
 		}
 		return 1;
 	}
@@ -899,17 +899,17 @@ function preprocessImage($dir, $file) {
 				fclose($newfd);
 				$success = fs_rename($tempfile, "$dir/$file");
 				if (!$success) {
-					error("Couldn't move $tempfile -> $dir/$file");
+					gallery_error("Couldn't move $tempfile -> $dir/$file");
 					fs_unlink($tempfile);
 				}
 			} else {
-				error("Can't write to $tempfile");
+				gallery_error("Can't write to $tempfile");
 			}
 			chmod("$dir/$file", 0644);
 		}
 		fclose($fd);
 	} else {
-		error("Can't read $dir/$file");
+		gallery_error("Can't read $dir/$file");
 	}
 
 	return 1;
@@ -1164,11 +1164,11 @@ function safe_serialize($obj, $file) {
 		/* Acquire an advisory lock */
 		$lockfd = fs_fopen("$file.lock", "a+");
 		if (!$lockfd) {
-			error("Could not open lock file ($file.lock)!");
+			gallery_error("Could not open lock file ($file.lock)!");
 			return 0;
 		}
 		if (!flock($lockfd, LOCK_EX)) {
-			error("Could not acquire lock ($file.lock)!");
+			gallery_error("Could not acquire lock ($file.lock)!");
 			return 0;
 		}
 	}

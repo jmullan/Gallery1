@@ -67,7 +67,7 @@ Do you really want to delete this album?
 		echo $gallery->album->getThumbnailTag($gallery->album->getHighlight());
 	}
 } else {
-	error("no album specified");
+	gallery_error("no album specified");
 }
 ?>
 

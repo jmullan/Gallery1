@@ -123,7 +123,7 @@ Do you really want to delete this photo?
 <?php
 	}
 } else {
-	error("no album / index specified");
+	gallery_error("no album / index specified");
 }
 ?>
 

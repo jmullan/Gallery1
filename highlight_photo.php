@@ -72,7 +72,7 @@ gallery page, representing this album?
 <?php
 	}
 } else {
-	error("no album / index specified");
+	gallery_error("no album / index specified");
 }
 ?>
 

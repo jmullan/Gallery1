@@ -295,7 +295,7 @@ printAlbumOptionList(0,0,1);
 <?php
 }
 } else {
-	error("no album / index specified");
+	gallery_error("no album / index specified");
 }
 ?>
 </font>
