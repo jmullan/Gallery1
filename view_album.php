@@ -82,8 +82,12 @@ if ($gallery->album->fields[parentAlbumName]) {
 	$top = $gallery->app->photoAlbumURL;
 	$myAlbum= new Album();
 	$myAlbum->load($gallery->album->fields[parentAlbumName]);
-	$breadtext[0] = "Gallery: <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
-	$breadtext[1] = "Album: <a href=". makeAlbumUrl($gallery->album->fields[parentAlbumName]).">".$myAlbum->fields["title"]."</a>";
+	$breadCounter = 0;
+	if (strcmp($gallery->album->fields["returnto"], "no")) {
+		$breadtext[$breadCounter] = "Gallery: <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
+		$breadCounter++;
+	}
+	$breadtext[$breadCounter] = "Album: <a href=". makeAlbumUrl($gallery->album->fields[parentAlbumName]).">".$myAlbum->fields["title"]."</a>";
 } else {
 	$breadtext[0] = "Gallery: <a href=". makeGalleryUrl("albums.php") .">".$gallery->app->galleryTitle."</a>";
 }
@@ -240,7 +244,8 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 <!-- top nav -->
 <?
 $breadcrumb["top"] = true;
-if (strcmp($gallery->album->fields["returnto"], "no")) {
+if (strcmp($gallery->album->fields["returnto"], "no") 
+   || ($gallery->album->fields["parentAlbumName"])) {
 	include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 }
 include($GALLERY_BASEDIR . "layout/navigator.inc");

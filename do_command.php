@@ -90,10 +90,29 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		/* if this is a nested album, set nested parameters */
 		if ($parentName) {
 			$gallery->album->fields[parentAlbumName] = $parentName;
-			$myAlbum = $albumDB->getAlbumbyName($parentName);
-			$myAlbum->addNestedAlbum($gallery->session->albumName);
-			$myAlbum->save();
-			$gallery->album->fields["perms"] = $myAlbum->fields["perms"];
+			$parentAlbum = $albumDB->getAlbumbyName($parentName);
+			$parentAlbum->addNestedAlbum($gallery->session->albumName);
+			$parentAlbum->save();
+			// Set default values in nested album to match settings of parent.
+			$gallery->album->fields["perms"] 	= $parentAlbum->fields["perms"];
+			$gallery->album->fields["bgcolor"] 	= $parentAlbum->fields["bgcolor"];
+			$gallery->album->fields["textcolor"] 	= $parentAlbum->fields["textcolor"];
+			$gallery->album->fields["linkcolor"]	= $parentAlbum->fields["linkcolor"];
+			$gallery->album->fields["font"]		= $parentAlbum->fields["font"];
+			$gallery->album->fields["border"]	= $parentAlbum->fields["border"];
+			$gallery->album->fields["bordercolor"]	= $parentAlbum->fields["bordercolor"];
+			$gallery->album->fields["returnto"]	= $parentAlbum->fields["returnto"];
+			$gallery->album->fields["thumb_size"]	= $parentAlbum->fields["thumb_size"];
+			$gallery->album->fields["resize_size"]	= $parentAlbum->fields["resize_size"];
+			$gallery->album->fields["rows"]		= $parentAlbum->fields["rows"];
+			$gallery->album->fields["cols"]		= $parentAlbum->fields["cols"];
+			$gallery->album->fields["fit_to_window"]= $parentAlbum->fields["fit_to_window"];
+			$gallery->album->fields["use_fullOnly"]	= $parentAlbum->fields["use_fullOnly"];
+			$gallery->album->fields["print_photos"]	= $parentAlbum->fields["print_photos"];
+			$gallery->album->fields["use_exif"]	= $parentAlbum->fields["use_exif"];
+			$gallery->album->fields["display_clicks"]=$parentAlbum->fields["display_clicks"];
+			$gallery->album->fields["public_comments"]=$parentAlbum->fields["public_comments"];
+
 			$gallery->album->save();
 		} else {
 			/* move the album to the top if not a nested album*/
