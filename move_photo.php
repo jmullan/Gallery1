@@ -45,7 +45,7 @@ if ($albumName && isset($index)) {
 
 <center>
 <font size=+0>
-Select the new location of photo #<?=$index+1?>:
+Select the new location of photo #<?=$index?>:
 <form name="theform">
 <input type=hidden name="index" value="<?=$index?>">
 <select name="newIndex">
