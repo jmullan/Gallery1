@@ -28,42 +28,39 @@ if (!isset($gallery->version)) {
 }
 
 // Security check
-if (!$gallery->user->isAdmin() &&
-       ! ($gallery->userDB->canModifyUser() ||
-        $gallery->userDB->canCreateUser() ||
-        $gallery->userDB->canDeleteUser())
-    ) {
+if (!$gallery->user->isAdmin()) {
 	header("Location: " . makeAlbumHeaderUrl());
 	exit;
 }
 
-if ($gallery->user->isAdmin()) {
 
-	$adminOptions[] = array( 'text' => _("statistics"), 
-				 'url' => makeGalleryUrl('stats-wizard.php'),
-				 'longtext' => _("View some statistics about your Gallery. Such as most viewed pictures, or best rated photos etc."));
-	$adminOptions[] = array( 'text' => _("configuration wizard"),
-				 'url' => $gallery->app->photoAlbumURL . '/setup/index.php',
-				 'longtext' => _("Use the config wizard to reconfigure or tweak your Gallery"));
-	$adminOptions[] = array( 'text' => _("find orphans"),
-				 'url' => makeGalleryUrl('tools/find_orphans.php'),
-				 'longtext' => _("Find, remove or re-attach orphaned elements."));
-	$adminOptions[] = array( 'text' => _("find comment spam"),
-				 'url' => makeGalleryUrl('tools/despam-comments.php'),
-				 'longtext' => _("Find and remove comments that contains spam."));
-	$adminOptions[] = array( 'text' => _("validate albums"),
-				 'url' => makeGalleryUrl('tools/validate_albums.php'),
-				 'longtext' => _("Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"));
-}
+$adminOptions[] = array( 'text' => _("statistics"), 
+			 'url' => makeGalleryUrl('stats-wizard.php'),
+			 'longtext' => _("View some statistics about your Gallery. Such as most viewed pictures, or best rated photos etc."));
 
+$adminOptions[] = array( 'text' => _("configuration wizard"),
+			 'url' => $gallery->app->photoAlbumURL . '/setup/index.php',
+			 'longtext' => _("Use the config wizard to reconfigure or tweak your Gallery"));
 
-if ($gallery->userDB->canModifyUser() ||
-	$gallery->userDB->canCreateUser() ||
-	$gallery->userDB->canDeleteUser()) {
-		$adminOptions[]  = array('text' => _("manage users"),
-					 'popupFile' => 'manage_users.php',
-				 	 'longtext' => _("Manage your users."));
-}
+$adminOptions[] = array( 'text' => _("find orphans"),
+			 'url' => makeGalleryUrl('tools/find_orphans.php'),
+			 'longtext' => _("Find, remove or re-attach orphaned elements."));
+
+$adminOptions[] = array( 'text' => _("find comment spam"),
+			 'url' => makeGalleryUrl('tools/despam-comments.php'),
+			 'longtext' => _("Find and remove comments that contains spam."));
+
+$adminOptions[] = array( 'text' => _("validate albums"),
+			 'url' => makeGalleryUrl('tools/validate_albums.php'),
+			 'longtext' => _("Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"));
+
+#$adminOptions[] = array( 'text' => _("Gallery backup"),
+#			 'url' => makeGalleryUrl('backup_albums.php'),
+#			 'longtext' => _("Make a backup of your Gallery."));
+
+$adminOptions[]  = array('text' => _("manage users"),
+			 'popupFile' => 'manage_users.php',
+			 'longtext' => _("Manage your users."));
 
 function cmp ($a, $b) {
    return strcmp($a["text"], $b["text"]);
