@@ -2610,7 +2610,99 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 	if (get_magic_quotes_gpc() ) {
 		$msg = stripslashes($msg);
 	}
-	$result=mail($to, $gallery->app->emailSubjPrefix." ".$subject, emailDisclaimer().$msg, $additional_headers);
+	if ($gallery->app->useOtherSMTP != "yes") {
+		$result=mail($to, $gallery->app->emailSubjPrefix." ".$subject, emailDisclaimer().$msg, $additional_headers);
+	} else {
+	        $lb="\r\n";                        //linebreak
+	        $msg_lb="\r\n";                //body linebreak
+	        $hdr = explode($lb,$additional_headers);        //header
+		$result = 0;
+     
+	        if(emailDisclaimer().$msg) {
+			$bdy = preg_replace("/^\./","..",explode($msg_lb,emailDisclaimer().$msg));
+		}
+     
+	        // build the array for the SMTP dialog. Line content is array(command, success code, additonal error message)
+	        if($gallery->app->smtpUserName != ""){// SMTP authentication methode AUTH LOGIN, use extended HELO "EHLO"
+	            $smtp = array(
+	                // call the server and tell the name of your local host
+	                array("EHLO ".$gallery->app->smtpFromHost.$lb,"220,250","HELO error: "),
+	                // request to auth
+	                array("AUTH LOGIN".$lb,"334","AUTH error:"),
+	                // username
+	                array(base64_encode($gallery->app->smtpUserName).$lb,"334","AUTHENTICATION error : "),
+	                // password
+	                array(base64_encode($gallery->app->smtpPassword).$lb,"235","AUTHENTICATION error : "));
+	        }
+	        else {// no authentication, use standard HELO   
+	            $smtp = array(
+	                // call the server and tell the name of your local host
+	                array("HELO ".$gallery->app->smtpFromHost.$lb,"220,250","HELO error: "));
+	        }
+ 
+	        // envelop
+		if ($to == "") {
+			$bcc_array = explode(", ",$bcc);
+			foreach($bcc_array as $bccto) {
+				if ($bccto != "") {
+				        $smtp[] = array("MAIL FROM: ".$from.$lb,"250","MAIL FROM error: ");
+					$smtp[] = array("RCPT TO: ".$bccto.$lb,"250","RCPT TO:".$bccto." error: ");
+					// begin data       
+				        $smtp[] = array("DATA".$lb,"354","DATA error: ");
+				        // header
+				        $smtp[] = array("Subject: ".$gallery->app->emailSubjPrefix." ".$subject.$lb,"","");
+				        $smtp[] = array("To:".$bccto.$lb,"","");       
+				        foreach($hdr as $h) {$smtp[] = array($h.$lb,"","");}
+				        // end header, begin the body
+				        $smtp[] = array($lb,"","");
+				        if($bdy) {foreach($bdy as $b) {$smtp[] = array($b.emailDisclaimer().$msg_lb,"","");}}
+				        // end of messageO5B
+				        $smtp[] = array(".".$lb,"250","DATA(end)error: ");
+				}
+			}
+		} else {
+                        $smtp[] = array("MAIL FROM: ".$from.$lb,"250","MAIL FROM error: ");
+                        $smtp[] = array("RCPT TO: ".$to.$lb,"250","RCPT TO:".$to." error: ");
+                        // begin data
+                        $smtp[] = array("DATA".$lb,"354","DATA error: ");
+                        // header
+                        $smtp[] = array("Subject: ".$gallery->app->emailSubjPrefix." ".$subject.$lb,"","");                       
+			$smtp[] = array("To:".$to.$lb,"","");
+                        foreach($hdr as $h) {$smtp[] = array($h.$lb,"","");}
+                        // end header, begin the body
+                        $smtp[] = array($lb,"","");
+                        if($bdy) {foreach($bdy as $b) {$smtp[] = array($b.emailDisclaimer().$msg_lb,"","");}}
+			// end of message
+                        $smtp[] = array(".".$lb,"250","DATA(end)error: ");
+		}
+	        $smtp[] = array("QUIT".$lb,"221","QUIT error: ");
+
+	        // open socket
+	        $fp = @fsockopen($gallery->app->smtpHost, $gallery->app->smtpPort);
+	        if (!$fp){
+			 echo "<b>Error:</b> Cannot connect to ".$gallery->app->smtpHost."<br>";
+     			 $result = 1;
+		}
+	        $banner = @fgets($fp, 1024);
+	        // perform the SMTP dialog with all lines of the list
+	        foreach($smtp as $req){
+	            $r = $req[0];
+	            // send request
+	            @fputs($fp, $req[0]);
+	            // get available server messages and stop on errors
+	            if($req[1]){
+	                while($result = @fgets($fp, 1024)){if(substr($result,3,1) == " ") { break; }};
+	                if (!strstr($req[1],substr($result,0,3))) {
+				echo"$req[2].$result<br>";
+				$result = 1;
+			}
+	            }
+	       }
+	       $done = @fgets($fp, 1024);
+	       // close socket
+	       @fclose($fp);
+	}
+
 //	if (isDebugging()) {
 	if (false) {
 		print "<table>";

@@ -1,5 +1,5 @@
 <?php
-/*
+O5B/*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2004 Bharat Mediratta
  *
@@ -31,8 +31,8 @@ if (!isset($gallery)) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = '1.4.5-cvs-b45';
-$gallery->config_version = 82;
+$gallery->version = '1.4.5-cvs-b46';
+$gallery->config_version = 83;
 $gallery->album_version = 31;
 $gallery->user_version = 5;
 $gallery->url = "http://gallery.sourceforge.net";

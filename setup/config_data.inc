@@ -752,6 +752,59 @@ $constants = array_merge($constants,
 		"optional" => 1,
 		"value" => array()
 	),
+        "useOtherSMTP" => array(
+                "prompt" => _("Use non-local SMTP server."),
+                "desc" => _("Use a smtp server running on a different machine (ie: Your ISPs mail server) to process outgoing gallery email."),
+                "<br>",
+                "choices" => array("no" => _("no"), "yes" => _("yes")),
+                "optional" => 1,
+                "value" => array()
+        ),
+        "smtpHost" => array(
+                "prompt" => _("SMTP Server"),
+                "desc" => _("The name or IP address of the SMTP Server you want to use."),
+                "<br>",
+                "type" => "text",
+                "value" => "localhost",
+                "attrs" => array("size" => 60),
+                "optional" => 1
+        ),
+        "smtpFromHost" => array(
+                "prompt" => _("Local Host Name"),
+                "desc" => _("The local hostname of the server as a reverse DNS lookup of the IP would show. If you are behind a NAT, this would be the DNS name of your router. If you don't know what to do here, 'localhost' is probably ok in most situations."),
+                "<br>",
+                "type" => "text",
+                "value" => "localhost",
+                "attrs" => array("size" => 60),
+                "optional" => 0
+        ),
+	"smtpPort" => array(
+                "prompt" => _("SMTP Port"),
+                "desc" => _("The port on the SMTP server you are connecting to."),
+                "<br>",
+                "type" => "text",
+                "value" => "25",
+                "attrs" => array("size" => 10),
+                "optional" => 1
+        ),
+        "smtpUserName" => array(
+                "prompt" => _("SMTP account name"),
+                "desc" => _("If your provide requires a username for outgoing email, use it here, otherwise leave blank."),
+                "<br>",
+                "type" => "text",
+                "value" => "",
+                "attrs" => array("size" => 20),
+                "optional" => 1
+        ),        
+	"smtpPassword" => array(
+                "prompt" => _("SMTP password"),
+                "desc" => _("Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"),                
+		"<br>",
+                "type" => "password",
+                "value" => "",
+                "attrs" => array("size" => 20),
+                "optional" => 1
+        ),
 	"group_email_end" => array (
 		"type"          => "group_end",
         ),
