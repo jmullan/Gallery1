@@ -645,11 +645,19 @@ $constants = array_merge($constants,
 			),
 	"comments_anonymous" => array(
 		       	"prompt" => _("Anonymous comments from known users?"),
-		       	"desc" => sprintf(_("When logged in, comments will automatically use fullname and username, unless this is set to %s."), 
+		       	"desc" => sprintf(_("When logged in, comments will automatically use format described below, unless this is set to %s."), 
 				"<b>"._("yes")."</b>") .
 				newIn("1.4.1"),
 			"choices" => array("yes" => _("yes"), "no" => _("no")),
 		       	"value" => "no",
+			),
+
+	"comments_display_name" => array(
+			"prompt" => _("Format for commenter names"),
+			"desc" => _("Commenter names of logged in users can be dislayed in a variety of different ways") .
+				newIn("1.4.2"),
+			"choices" => displayNameOptions(), 
+			"value" => "!!FULLNAME!! (!!USERNAME!!)",
 			),
 	"separator8" => array (
 		"type" => "separator",

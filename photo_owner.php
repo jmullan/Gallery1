@@ -48,7 +48,7 @@ if ( isset($save) && $owner) {
 	$gallery->album->setItemOwnerById($id, $owner);
 	$user=$gallery->userDB->getUserByUid($owner);
 	$gallery->album->save(array(i18n("New owner %s for %s"),  
-				$user->printableName(),
+				$user->printableName('!!FULLNAME!! (!!USERNAME!!)'),
 				makeAlbumURL($gallery->album->fields["name"], $id)));
 
 

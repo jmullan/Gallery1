@@ -3150,13 +3150,15 @@ function where_i_am() {
 	}
 
 }
-function user_name_string($uid) {
+function user_name_string($uid, $format='!!FULLNAME!! (!!USERNAME!!)') {
        	global $gallery;
-       	$user=$gallery->userDB->getUserByUid($uid);
-       	if (!$user || $user->isPseudo()) {
+       	if ($uid) {
+		$user=$gallery->userDB->getUserByUid($uid);
+	}
+       	if (empty($user) || $user->isPseudo()) {
 	       	return "";
        	} else {
-		return $user->printableName();
+		return $user->printableName($format);
 	}
 }
 

@@ -86,14 +86,19 @@ class Abstract_User {
 	       	return $this->username;
        	}
 
-       	function printableName() {
-	       	if ($this->getFullName()) {
-		       	return sprintf("%s (%s)",
-				       	$this->getFullName(),
-				       	$this->getUsername()); 
-		} else {
-		       	return $this->getUsername();
-	       	}
+       	function printableName($format) {
+		$name=$format;
+		$name=str_replace('!!FULLNAME!!', $this->getFullName(), $name);
+		$name=str_replace('!!USERNAME!!', $this->getUsername(), $name);
+		$name=str_replace('!!EMAIL!!',$this->getEmail(), $name);
+		$name=str_replace('!!MAILTO_FULLNAME!!', '<a href="mailto:'.
+				$this->getEmail().'">'.
+				$this->getFullName() ? $this->getFullName() : $this->getUserName() .
+			       	'</a>', $name);
+	       	$name=str_replace('!!MAILTO_USERNAME!!', '<a href="mailto:'.
+				$this->getEmail().'">'.$this->getUserName() .
+			       	'</a>', $name);
+	       	return $name;
 	}
 
 	function setEmail($email) {
