@@ -1219,6 +1219,8 @@ function check_admins() {
 	global $gallery;
 	global $GALLERY_BASEDIR;
 
+	$admins=array();
+	
 	if (isset($gallery->app->userDir)) {
 		require($GALLERY_BASEDIR . "classes/User.php");
 		require($GALLERY_BASEDIR . "classes/EverybodyUser.php");
@@ -1249,7 +1251,7 @@ function check_admins() {
 	}
 	else if (! in_array("admin",$admins)) {
 		$result=array(
-			"desc" => sprintf(_("It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."), sizeof($admin), '<b>admin</b>', '<b>admin</b>') . newIn('1.4.1'),
+			"desc" => sprintf(_("It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."), sizeof($admins), '<b>admin</b>', '<b>admin</b>') . newIn('1.4.1'),
 			"optional" => 1,
 			"remove_empty" => true
 		);
