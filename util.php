@@ -281,14 +281,20 @@ function isMovie($tag) {
     return in_array($tag, acceptableMovieList());
 }
 
-function getFile($fname) {
+function getFile($fname, $legacy=false) {
 	$tmp = "";
 
 	if (!fs_file_exists($fname) || broken_link($fname)) {
 		return $tmp;
 	}
 
-	if ($fd = fs_fopen($fname, "rt")) {
+	if ($legacy) {
+	    $modes = "rt";
+	} else {
+	    $modes = "rb";
+	}
+	
+	if ($fd = fs_fopen($fname, $modes)) {
 		while (!feof($fd)) {
 			$tmp .= fread($fd, 65536);
 		}
@@ -1299,7 +1305,7 @@ function safe_serialize($obj, $file) {
 		$i++;
 	} while (fs_file_exists($tmpfile));
 
-	if ($fd = fs_fopen($tmpfile, "w")) {
+	if ($fd = fs_fopen($tmpfile, "wb")) {
 		fwrite($fd, serialize($obj));
 		fclose($fd);
 

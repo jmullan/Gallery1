@@ -422,7 +422,10 @@ class Album {
 		$tmp = unserialize(getFile($filename));
 		if (strcasecmp(get_class($tmp), "album")) {
 			/* Dunno what we unserialized .. but it wasn't an album! */
-			return 0;
+		        $tmp = unserialize(getFile($filename, true));
+			if (strcasecmp(get_class($tmp), "album")) {
+				return 0;
+			}
 		}
 
 		$this = $tmp;
@@ -432,7 +435,10 @@ class Album {
 	function loadPhotosFromFile($filename) {
 		$tmp = unserialize(getFile($filename));
 		if (!is_Array($tmp)){
-			return 0;
+			$tmp = unserialize(getFile($filename, true));
+			if (!is_Array($tmp)){
+				return 0;
+			}
 		}
 		if (count($tmp) > 0) {
 			if (strcasecmp(get_class($tmp[0]), "albumitem")) {
