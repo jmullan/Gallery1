@@ -20,18 +20,37 @@
 ?>
 <?
 // Hack check
-if (!$user->canWriteToAlbum($album)) {
+if (!$user->canAddToAlbum($album)) {
 	exit;
 }
+
+if ($userfile_name) {
+	$file_count = 0;
+	foreach ($userfile_name as $file) {
+		if ($file) {
+			$file_count++;
+		}
+	}
+}
+
+function msg($buf) {
+	global $msgcount;
+
+	if ($msgcount) {
+		print "<br>";
+	}
+	print $buf;
+	$msgcount++;
+}
+
 ?>
 <html>
 <head>
   <title>Processing and Saving Photos</title>
   <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
 </head>
-<body>
+<body onLoad='opener.location.reload(); '>
 
-<center>
 <?
 if ($url) {
 	$file = basename($url);
@@ -42,8 +61,6 @@ if ($url) {
 	$urlFile = "$app->tmpDir/photo.$file";
 	$id = fopen($url, "r");
 	$od = fopen($urlFile, "w");
-	echo ("Downloading<br>$url<br>"); flush(); 
-	$msgcount++;
 	if ($id && $od) {
 		while (!feof($id)) {
 			fwrite($od, fread($id, 65536));
@@ -59,9 +76,8 @@ if ($url) {
 }
 
 ?>
+<span class=title>Processing status...</span>
 <br>
-</center>
-Processing status...<br>
 <?
 
 while (sizeof($userfile)) {
@@ -73,8 +89,7 @@ while (sizeof($userfile)) {
 
 	if (!strcmp($tag, "zip")) {
 		if (!$app->feature["zip"]) {
-			echo "Skipping $name (ZIP support not enabled)<br>";
-			$msgcount++;
+			msg("Skipping $name (ZIP support not enabled)");
 			continue;
 		}
 		/* Figure out what files we can handle */
@@ -93,7 +108,6 @@ while (sizeof($userfile)) {
 	} else {
 		if ($name) {
 			process($file, $tag, $name);
-			$msgcount++;
 		}
 	}
 }
@@ -108,14 +122,14 @@ function process($file, $tag, $name) {
 
 	set_time_limit(30);
 	if (acceptableFormat($tag)) {
-		echo "<br> - Adding $name";
+		msg("- Adding $name");
 		my_flush();
 
 		$err = $album->addPhoto($file, $tag);
 		if (!$err) {
 			/* resize the photo if needed */
 			if ($album->fields["resize_size"] > 0) {
-				echo "<br> - Resizing $name"; 
+				msg("- Resizing $name"); 
 				my_flush();
 				$index = $album->numPhotos(1);
 				$album->resizePhoto($index, $album->fields["resize_size"]);
@@ -124,24 +138,22 @@ function process($file, $tag, $name) {
 			print "<font color=red>Error: $err!</font>";
 		}
 	} else {
-		echo "Skipping $name (can't handle '$tag' format)<br>";
+		msg("Skipping $name (can't handle '$tag' format)");
 		my_flush();
 	}
 }
 
 $album->save();
-if (!$msgcount) {
-	dismissAndReload();
-} else {
-	reload();
-?>
-	<center>
-	<form>
-	<input type=submit value="Dismiss" onclick='parent.close()'>
-	</form>
-<?
-}
 ?>
 
+<?
+if (!$msgcount) {
+	print "No images uploaded!";
+}
+?>
+<center>
+<form>
+<input type=submit value="Dismiss" onclick='parent.close()'>
+</form>
 </body>
 </html>
