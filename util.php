@@ -24,28 +24,6 @@
 
 require(dirname(__FILE__) . '/nls.php');
 
-function getPostVar($str) {
-	if (!isset($_POST[$str]) {
-		return null;
-	}
-	$ret = $_POST[str];
-	if (get_magic_quotes_gpc()) {
-		$ret = stripslashes($ret);
-	}
-	return $ret;
-}
-
-function getGetVar($str) {
-	if (!isset($_GET[$str]) {
-		return null;
-	}
-	$ret = $_GET[$str];
-	if (get_magic_quotes_gpc()) {
-		$ret = stripslashes($ret);
-	}
-	return $ret;
-}
-
 function getRequestVar($str) {
 	if (!isset($_REQUEST[$str]) {
 		return null;
@@ -57,33 +35,11 @@ function getRequestVar($str) {
 	return $ret;
 }
 
-function getServerVar($str) {
-	if (!isset($_SERVER[$str]) {
-		return null;
-	}
-	$ret = $_SERVER[$str];
-	if (get_magic_quotes_gpc()) {
-		$ret = stripslashes($ret);
-	}
-	return $ret;
-}
-
 function getFilesVar($str) {
 	if (!isset($_FILES[$str]) {
 		return null;
 	}
 	$ret = $_FILES[$str];
-	if (get_magic_quotes_gpc()) {
-		$ret = stripslashes($ret);
-	}
-	return $ret;
-}
-
-function getCookieVar($str) {
-	if (!isset($_COOKIE[$str]) {
-		return null;
-	}
-	$ret = $_COOKIE[$str];
 	if (get_magic_quotes_gpc()) {
 		$ret = stripslashes($ret);
 	}
