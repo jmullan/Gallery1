@@ -285,10 +285,13 @@ class AlbumItem {
 		$name = $this->image->name;
 		$type = $this->image->type;
 	 	rotate_image("$dir/$name.$type", "$dir/$name.$type", $direction);
+		list($w, $h) = getDimensions("$dir/$name.$type");
+		$this->image->setRawDimensions($w, $h);	
 
 		if ($this->isResized()) {
-			list($w, $h) = $this->image->getDimensions();			
 			rotate_image("$dir/$name.sized.$type", "$dir/$name.sized.$type", $direction);
+			list($w, $h) = getDimensions("$dir/$name.sized.$type");
+			$this->image->setDimensions($w, $h);	
 		}
 
 		/* Reset the thumbnail to the default before regenerating thumb */
@@ -330,11 +333,6 @@ class AlbumItem {
 			list($w, $h) = getDimensions("$dir/$name.thumb.jpg");
 			$this->thumbnail->setDimensions($w, $h);
 		} else {
-			list($w, $h) = getDimensions("$dir/$name.$tag");
-			if ($w != 0 && $h != 0) {
-				$this->image->setDimensions($w, $h);
-			}
-
 			/* Make thumbnail (first crop it spec) */
 			if ($pathToThumb) {
 				$ret = copy ($pathToThumb,"$dir/$name.thumb.$tag");
