@@ -71,10 +71,7 @@ if ($previousPage == 0) {
 $bordercolor = $gallery->album->fields["bordercolor"];
 
 $imageCellWidth = floor(100 / $cols) . "%";
-$fullWidth = $cols * $gallery->album->fields["thumb_size"];
-
-// Account for cell spacing/padding
-$fullWidth += ($cols * 6); 
+$fullWidth="100%";
 
 $navigator["page"] = $page;
 $navigator["pageVar"] = "page";
@@ -257,7 +254,6 @@ if ($bordercolor) {
 	$bordercolor = "bgcolor=$bordercolor";
 }
 ?>
-
 
 <!-- image grid table -->
 <br>
