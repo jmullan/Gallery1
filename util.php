@@ -615,12 +615,19 @@ function includeHtmlWrap($name) {
 
 	// define these globals to make them available to custom text
         global $gallery;
-	$fullname = $GALLERY_BASEDIR . "html_wrap/$name";
-	
-	if (fs_file_exists($fullname) && !broken_link($fullname)) {
-		include ($fullname);
+
+	global $HTTP_SERVER_VARS;
+	$domainname = $GALLERY_BASEDIR . "html_wrap/" . $HTTP_SERVER_VARS['HTTP_HOST'] . "/$name";
+	if (fs_file_exists($domainname) && !broken_link($domainname)) {
+	    include ($domainname);
 	} else {
+	    $fullname = $GALLERY_BASEDIR . "html_wrap/$name";
+	    
+	    if (fs_file_exists($fullname) && !broken_link($fullname)) {
+		include ($fullname);
+	    } else {
 		include ("$fullname.default");
+	    }
 	}
 
 	return 1;
@@ -641,6 +648,10 @@ function getStyleSheetLink() {
 function _getStyleSheetLink($filename) {
 	global $gallery;
 	global $GALLERY_BASEDIR;
+	global $HTTP_SERVER_VARS;
+
+        $sheetdomainname = "css/$HTTP_SERVER_VARS[HTTP_HOST]/$filename.css";
+	$sheetdomainpath = "${GALLERY_BASEDIR}$sheetdomainname";
 
         $sheetname = "css/$filename.css";
 	$sheetpath = "${GALLERY_BASEDIR}$sheetname";
@@ -651,10 +662,14 @@ function _getStyleSheetLink($filename) {
 		$base = ".";
 	}
 
-	if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
-		$url = "$base/$sheetname";
+	if (fs_file_exists($sheetdomainpath) && !broken_link($sheetdomainpath)) {
+		$url = "$base/$sheetdomainname";
 	} else {
+	    if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
+		$url = "$base/$sheetname";
+	    } else {
 		$url = "$base/$sheetname.default";
+	    }
 	}
 
 	return '<link rel="stylesheet" type="text/css" href="' .

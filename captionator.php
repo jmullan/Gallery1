@@ -254,8 +254,17 @@ if ($numPhotos) {
       <textarea name="new_captions_<?php echo $i?>" rows=3 cols=60><?php echo $oldCaption ?></textarea><br>
       <span class="admin">Keywords:</span><br>
       <input type=text name="new_keywords_<?php echo $i?>" size=65 value="<?php echo $oldKeywords ?>">
-
+      <br>
+      <span class="admin">Capture Date:</span>
 <?php
+$itemCaptureDate = $gallery->album->getItemCaptureDate($i);
+$hours = $itemCaptureDate["hours"];
+$minutes = $itemCaptureDate["minutes"];
+$seconds = $itemCaptureDate["seconds"];
+$mon = $itemCaptureDate["mon"];
+$mday = $itemCaptureDate["mday"];
+$year = $itemCaptureDate["year"];
+       print "$mon/$mday/$year $hours:$minutes:$seconds"; 
     }
 ?>
       </td>
