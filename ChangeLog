@@ -1,4 +1,9 @@
-2001-09-09  Bharat Mediratta  <bharat@menalto.com> (1.2.1-cvs)
+2001-09-09  Bharat Mediratta  <bharat@menalto.com> (1.2.1-cvs-b1)
+
+	* Fixed issues with sucking images via the web:
+	  - Fixed timeout bug when parsing large HTML files 
+	  - Prepend http: when no scheme is present (both initially and on the 
+	    results of parsed data) 
 
 	* It turns out that mod_rewrite requires the FollowSymLinks option
 	  enabled (thanks to Dan Brown for catching this).  The setup wizard
