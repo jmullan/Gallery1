@@ -12,7 +12,7 @@ If you find this page confusing, you can probably safely ignore it
 <pre>
 
 <?
-require("../version.php");
+require("../Version.php");
 
 $error = 0;
 
