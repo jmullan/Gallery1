@@ -78,9 +78,10 @@ if(! isset($gallery->app->sessionVar)) {
 }
 session_register($gSessionVar);
 
-if (isset($$gSessionVar)) {
+
+if (isset($_SESSION[$gSessionVar])) {
 	/* Get a simple reference to the session container (for convenience) */
-	$gallery->session =& $$gSessionVar;
+	$gallery->session =& $_SESSION[$gSessionVar];
 
 	/* Make sure our session is current.  If not, nuke it and restart. */
 	/* Disabled this code -- it has too many repercussions */

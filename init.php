@@ -69,7 +69,7 @@ if (!$gallery->register_globals) {
      * appending "?HTTP_POST_VARS[gallery]=xxx" to the url would cause extract
      * to overwrite HTTP_POST_VARS when it extracts HTTP_GET_VARS
      */
-    $scrubList = array("_GET", "_POST", "_COOKIE", "_FILES", "_REQUEST", "_SESSION");
+    $scrubList = array("_GET", "_POST", "_COOKIE", "_FILES", "_REQUEST");
 
     foreach ($scrubList as $outer) {
 	foreach ($scrubList as $inner) {
@@ -115,7 +115,8 @@ if (fs_file_exists(dirname(__FILE__) . "/config.php")) {
 ** We also include the common lib file as we need it in initLanguage()
 */
 
-if ($gallery->app->geeklog_dir == "/path/to/geeklog/public_html") {
+// If the old example path is still set, remove it.
+if (!empty($gallery->app->geeklog_dir) && $gallery->app->geeklog_dir == "/path/to/geeklog/public_html") {
 	$gallery->app->geeklog_dir = "";
 }
 

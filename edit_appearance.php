@@ -30,7 +30,10 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 	
-if (isset($save)) {
+if (getRequestVar('save')) {
+	foreach ($gallery->album->fields as $key => $name) {
+		${$key} = getRequestVar($key);
+	}
 	if (get_magic_quotes_gpc()) {
 		$gallery->album->fields["summary"] = stripslashes($summary);
 		$gallery->album->fields["title"] = stripslashes($title);
