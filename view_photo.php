@@ -222,12 +222,14 @@ if (!$title) {
 }
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-	doctype() ?>
+	doctype(); ?>
 <html> 
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: <?php echo $title ?></title>
-  	<?php echo getStyleSheetLink() ?>
-  	<?php /* prefetch/navigation */
+  <title><?php echo $gallery->app->galleryTitle . ' :: '. $gallery->album->fields["title"] . ' :: '. $title ; ?></title>
+  <?php 	
+	common_header();
+	
+	/* prefetch/navigation */
   	$navcount = sizeof($navigator['allIds']);
   	$navpage = $navcount - 1; 
   	while ($navpage > 0) {

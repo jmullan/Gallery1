@@ -35,12 +35,12 @@ if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = './';
 }
 require(dirname(__FILE__) . '/init.php'); 
+doctype();
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
   <title><?php echo sprintf(_("Create User for %s."), $gallery->app->galleryTitle) ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
@@ -49,13 +49,13 @@ require(dirname(__FILE__) . '/init.php');
 <br>
 <br>
 <?php if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
-<p>
-<?php echo _("This Gallery does not support self-registration by visitors.") ?>
-<br><br>
-<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
-</center>
-</body>
-</html>
+	<p>
+	<?php echo _("This Gallery does not support self-registration by visitors.") ?>
+	<br><br>
+	<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
+	</center>
+	</body>
+	</html>
 <?php
     exit();
 }
@@ -153,5 +153,6 @@ document.usercreate_form.uname.focus();
 //--> 
 </script>
 </center>
+<?php print gallery_validation_link("register.php"); ?>
 </body>
 </html>

@@ -46,7 +46,7 @@ doctype();
 <html>
 <head>
 	<title><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 

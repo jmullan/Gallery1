@@ -25,6 +25,7 @@
 require(dirname(__FILE__) . '/init.php');
 
 if (!$gallery->user->isLoggedIn()) {
+	echo _("You are no allowed to perform this action !");
 	exit;	
 }
 
@@ -94,44 +95,44 @@ $allowChange["send_email"] = false;
 $allowChange["member_file"] = false;
 $allowChange["create_albums"] = false;
 
+doctype();
 ?>
 <html>
 <head>
   <title><?php echo _("Change User Preferences") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
 <center>
-<span class="popuphead"><?php echo _("Change User Preferences") ?></span>
-<br>
-<br>
+<p class="popuphead"><?php echo _("Change User Preferences") ?></p>
 
 <?php echo _("You can change your user information here.") ?>
 <?php echo _("If you want to change your password, you must provide your old password and then enter the new one twice.") ?>
 <?php echo _("You can change your username to any combination of letters and digits.") ?>
 
-<p>
+<br>
 
 <?php echo makeFormIntro("user_preferences.php", array(
 			"name" => "usermodify_form", 
 			"method" => "POST"));
 ?>
-<p>
 
+<br>
 <?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
-<p>
+<br>
 
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
 </form>
 
+</center>
 <script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
 document.usermodify_form.uname.focus();
 //--> 
 </script>
-
+<?php print gallery_validation_link("user_preferences.php"); ?>
 </body>
 </html>

@@ -21,21 +21,11 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
 if (!$gallery->user->isAdmin()) {
+	echo _("You are no allowed to perform this action !");
 	exit;	
 }
 
@@ -46,19 +36,19 @@ if (isset($delete) || isset($cancel)) {
 	header("Location: " . makeGalleryUrl("manage_users.php"));
 }
 
+doctype();
 ?>
 <html>
 <head>
   <title><?php echo _("Delete User") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
 <center>
-<span class="popuphead"><?php echo _("Delete User") ?></span>
-<br>
-<br>
-<span class="popup">
+<p class="popuphead"><?php echo _("Delete User") ?></p>
+
+<div class="popup">
 <?php echo makeFormIntro("delete_user.php"); ?>
 <input type="hidden" name="uname" value="<?php echo $uname ?>">
 
@@ -68,14 +58,12 @@ if (!strcmp($gallery->user->getUsername(), $uname)) {
 	echo gallery_error(_("You can't delete your own account!"));
 	echo '</p>';
 } else {
+	echo _("Users can have special permissions in each album.") .
+		_("If you delete this user, any such permissions go away.") .
+		_("Users cannot be recreated.") .
+		_("Even if this user is recreated, those permissions are gone.");
 ?>
-<?php echo _("Users can have special permissions in each album.") ?>
-<?php echo _("If you delete this user, any such permissions go away.") ?>
-<?php echo _("Users cannot be recreated.") ?>
-<?php echo _("Even if this user is recreated, those permissions are gone.") ?>
-<?php echo _("Do you really want to delete user") ?> <b><?php echo $uname ?></b>?
-<p>
-<p>
+<p class="emphasis"><?php echo  _("Do you really want to delete user"). ": ". $uname ?></p>
 
 <input type="submit" name="delete" value="<?php echo _("Delete") ?>">
 <?php
@@ -85,6 +73,8 @@ if (!strcmp($gallery->user->getUsername(), $uname)) {
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
 </form> 
 
-</span>
+</div>
+</center>
+<?php print gallery_validation_link("delete_user.php"); ?>
 </body>
 </html>

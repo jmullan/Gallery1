@@ -87,8 +87,9 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <html>
 <head>
   <title><?php echo $gallery->app->galleryTitle ?></title>
-  <?php 
-	echo getStyleSheetLink();
+  <?php
+	common_header() ;
+
 	/* prefetching/navigation */
   if ($navigator['page'] > 1) { ?>
       <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" />

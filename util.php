@@ -3106,7 +3106,7 @@ function metatags() {
 	echo '<meta http-equiv="content-style-type" content="text/css">';
 	echo "\n  ". '<meta http-equiv="content-type" content="Mime-Type; charset='. $gallery->charset .'">';
 	echo "\n  ". '<meta name="content-language" content="' . str_replace ("_","-",$gallery->language) . '">';
-	echo "\n";
+	echo "\n\n";
 }
 
 // uses makeGalleryURL

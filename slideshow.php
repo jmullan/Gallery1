@@ -108,16 +108,19 @@ include(dirname(__FILE__) . "/includes/slideshow/$mode.inc");
 
 slideshow_initialize();
 
-if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+if (!$GALLERY_EMBEDDED_INSIDE) {
+doctype();
+?>
 <html>
 <head>
   <title><?php echo $title; ?></title>
-  <?php echo getStyleSheetLink() ?>
-  <style type="text/css">
-<?php
+<?php 
+	common_header();
+
 // the link colors have to be done here to override the style sheet
 if ($albumName) {
-       	if ($gallery->album->fields["linkcolor"]) {
+	echo "\n". '<style type="text/css">';
+	if ($gallery->album->fields["linkcolor"]) {
 ?>
     A:link, A:visited, A:active
       { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
@@ -136,10 +139,9 @@ if ($albumName) {
 	       	echo ".head {color:".$gallery->album->fields[textcolor]."; }";
 	       	echo ".headbox {background-color:".$gallery->album->fields[bgcolor]."; }";
        	}
+	echo "\n</style>\n";
 }
 ?>
-  </style>
-
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">

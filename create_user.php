@@ -21,21 +21,11 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
 if (!$gallery->user->isAdmin()) {
+	echo _("You are no allowed to perform this action !");
 	exit;	
 }
 ?>
@@ -59,11 +49,12 @@ if (isset($create)) {
 	}
 
 	if (!$errorCount) {
+		doctype();
 		?>
 	       	<html>
 		<head>
 		<title><?php echo _("Create User") ?></title>
-		<?php echo getStyleSheetLink() ?>
+		<?php common_header(); ?>
 		</head>
 		<body dir="<?php echo $gallery->direction ?>">
 		<center>
@@ -109,19 +100,17 @@ if (isset($create)) {
 } else if (isset($cancel) || isset($dismiss)) {
 	header("Location: " . makeGalleryUrl("manage_users.php"));
 }
-
+doctype();
 ?>
 <html>
 <head>
   <title><?php echo _("Create User") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
 <center>
-<span class="popuphead"><?php echo _("Create User") ?></span>
-<br>
-<br>
+<p class="popuphead"><?php echo _("Create User") ?></p>
 
 <?php
 $canCreate = 1;
@@ -138,23 +127,25 @@ $allowChange["default_language"] = true;
 $allowChange["member_file"] = false;
 
 ?>
-<span class="popup">
+<div class="popup">
 <?php echo _("Create a new user here.") ?>
-<p>
-
+<br>
 
 <?php echo makeFormIntro("create_user.php", array(
 				"name" => "usercreate_form", 
 				"method" => "POST"));
 ?>
-<p>
+<br>
 
 <?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
-<p>
+
+<br>
 
 <input type="submit" name="create" value="<?php echo _("Create") ?>">
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
 </form>
+</div>
+</center>
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--
@@ -163,6 +154,6 @@ document.usercreate_form.uname.focus();
 //--> 
 </script>
 
-</span>
+<?php print gallery_validation_link("create_user.php"); ?>
 </body>
 </html>

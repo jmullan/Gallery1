@@ -165,9 +165,10 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
 	$breadcrumb["text"][] = $breadtext[$i];
 }
 $breadcrumb["bordercolor"] = $bordercolor;
+
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	doctype();
 ?>
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
-<?php doctype() ?>
 <html> 
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
