@@ -1096,7 +1096,8 @@ class Album {
 	       	}
 
 		/* auto-rotate the photo if needed */
-	       	if ($gallery->app->autorotate == 'yes' && $gallery->app->use_exif) {
+	       	if (!empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes' 
+			    && !empty($gallery->app->use_exif) && $gallery->app->use_exif) {
 		       	$index = $this->numPhotos(1);
 		       	$exifData = $this->getExif($index);
 		       	if (isset($exifData['Orientation']) && $orientation = trim($exifData['Orientation'])) {

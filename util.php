@@ -3606,8 +3606,13 @@ function getIconText($iconName='', $altText='') {
 }
 
 function makeIconMenu($iconElements, $closeTable = true) {
+
+    if (empty($iconElements)) {
+	return "";
+    }
+
     $html = "\n". '<table id="menu"><tr>';
-    foreach($iconElements as $element) {
+    foreach ($iconElements as $element) {
 	if (stristr($element,'</a>')) {
 	    $html .= "\n\t". '<td>'.  $element .'</td>';
 	} else {

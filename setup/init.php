@@ -21,12 +21,6 @@
  */
 ?>
 <?php
-if (isset($gallery->app->devMode) && $gallery->app->devMode == "yes") {
-	error_reporting(E_ALL);
-} else {
-	error_reporting(E_ALL & ~E_NOTICE);
-}
-
 /* load necessary functions */
 if (stristr (__FILE__, '/var/lib/gallery/setup')) {
 	/* Gallery runs on a Debian System */
@@ -48,6 +42,13 @@ if (getOS() == OS_WINDOWS) {
 	@include (GALLERY_BASE . '/config.php');
 	require (GALLERY_BASE . '/Version.php');
 	require(GALLERY_BASE . "/session.php");
+
+// We can't set devMode until after config.php is loaded
+if (isset($gallery->app->devMode) && $gallery->app->devMode == "yes") {
+	error_reporting(E_ALL);
+} else {
+	error_reporting(E_ALL & ~E_NOTICE);
+}
 
 /* Set Language etc. */
 	initLanguage();
