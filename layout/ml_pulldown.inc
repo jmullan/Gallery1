@@ -25,7 +25,7 @@
 <?php 
 
 $gallery_languages=gallery_languages();
-if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery_languages) >1) {
+if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery->app->available_lang) >1) {
 
 if($gallery->app->show_flags !='yes') {?>
 <script language="JavaScript" type="text/javascript">
@@ -63,7 +63,7 @@ if($gallery->app->show_flags !='yes') {
 		// Only use language from config.php if its available
 		if (! isset($nls['language'][$value])) continue;
 
-		if (!in_array($value,$gallery_languages)) {
+		if (!in_array($value,array_keys($gallery_languages))) {
 			continue;
 		}
 

@@ -2870,21 +2870,22 @@ function gallery_languages() {
 	global $GALLERY_BASEDIR;
 	$modules=array('config','core');
 	$handle=opendir($GALLERY_BASEDIR. "locale");
-	$available=array('en_US');
-
+	$available=array('en_US' => 'English (US)');
+	$nls=getNLS();
+	
 	while ($dirname = readdir($handle)) {
 		if (preg_match("/^([a-z]{2}_[A-Z]{2})/", $dirname)) {
 			$locale=$dirname;
 			$fc=0;
 			foreach ($modules as $module) {
 				if (gettext_installed()) {
-					if (file_exists("../locale/$dirname/$locale-gallery_$module.po")) $fc++;
+					if (file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-gallery_$module.po")) $fc++;
 				} else {
-					if (file_exists("../locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
+					if (file_exists($GALLERY_BASEDIR . "locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
 				}
 			}
 			if ($fc == sizeof($modules)) {
-				$available[]=$dirname;
+				$available[$dirname]=$nls['language'][$dirname];
 			}
 		}
 	}

@@ -636,7 +636,7 @@ function check_absent_locales()
 
 function check_locale() {
 	$nls=getNLS();
-	$gallery_languages=gallery_languages();
+	$gallery_languages=array_keys(gallery_languages());
 	$system_locales=array();
 
 	$available_locales=array();
