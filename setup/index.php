@@ -31,6 +31,10 @@
 	require (dirname(__FILE__) . '/functions.inc');
 	require (dirname(__FILE__) . '/config_data.inc');
 	require (dirname(dirname(__FILE__)) . '/js/sectionTabs.js.php');
+
+	list('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults') = 
+	  getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults'));
+
 ?>
 <?php doctype(); ?>
 <html>
@@ -105,7 +109,7 @@ if (isset($editPassword) && (!empty($editPassword[0]) || !empty($editPassword[1]
 }
 
 /* Array-ize the preserve list */
-if (isset($preserve)) {
+if (!empty($preserve)) {
 	$tmp = explode(" ", urldecode($preserve));
 	$preserve = array();
 	foreach ($tmp as $key) {

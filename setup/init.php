@@ -57,8 +57,7 @@ if (!$gallery->register_globals) {
      * appending "?HTTP_POST_VARS[gallery]=xxx" to the url would cause extract
      * to overwrite HTTP_POST_VARS when it extracts HTTP_GET_VARS
      */
-    $scrubList = array('HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_COOKIE_VARS', 'HTTP_POST_FILES');
-    array_push($scrubList, "_GET", "_POST", "_COOKIE", "_FILES", "_REQUEST");
+    $scrubList = array("_GET", "_POST", "_COOKIE", "_FILES", "_REQUEST");
 
     foreach ($scrubList as $outer) {
 	foreach ($scrubList as $inner) {
@@ -66,40 +65,14 @@ if (!$gallery->register_globals) {
 	}
     }
     
-    if (is_array($_REQUEST)) {
 	extract($_REQUEST);
-    }
-    else {
-	if (is_array($_GET)) {
-	    extract($_GET);
-	}
 
-	if (is_array($_POST)) {
-	    extract($_POST);
-	}
-
-	if (is_array($_COOKIE)) {
-	    extract($_COOKIE);
-	}
-    }
-
-
-    if (is_array($_FILES)) {
 	foreach($_FILES as $key => $value) {
 	    ${$key."_name"} = $value["name"];
 	    ${$key."_size"} = $value["size"];
 	    ${$key."_type"} = $value["type"];
 	    ${$key} = $value["tmp_name"];
 	}
-    }
-    elseif (is_array($_FILES)) {
-	foreach($_FILES as $key => $value) {
-	    ${$key."_name"} = $value["name"];
-	    ${$key."_size"} = $value["size"];
-	    ${$key."_type"} = $value["type"];
-	    ${$key} = $value["tmp_name"];
-	}
-    }
 }
 
 /* load necessary functions */
@@ -154,7 +127,7 @@ $GALLERY_URL = ereg_replace("\/$", "", $GALLERY_URL);
 
 $MIN_PHP_MAJOR_VERSION = 4;
 
-if (!empty($init_mod_rewrite)) {
+if ($init_mod_rewrite = getRequestVar('init_mod_rewrite')) {
 	$GALLERY_REWRITE_OK = 1;
 	if (strstr($init_mod_rewrite, "ampersandbroken")) {
 		$GALLERY_REWRITE_SEPARATOR = "\&";
