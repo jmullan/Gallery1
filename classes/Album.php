@@ -1156,11 +1156,12 @@ class Album {
 	}
 
 	function deletePhoto($index, $forceResetHighlight="0", $recursive=1) {
+		global $gallery;
 
 		// Get rid of the block-random cache file, to prevent out-of-bounds
 		// errors from getPhoto()
 		$randomBlockCache = $gallery->app->albumDir . "/block-random.dat";
-		if (fs_exists($randomBlockCache)) {
+		if (fs_file_exists($randomBlockCache)) {
 			fs_unlink($randomBlockCache);
 		}
 
