@@ -1,4 +1,3 @@
-
 <?php
 
 function evenOdd_row($fields, $evenOdd) {
@@ -281,7 +280,7 @@ function check_graphics($location="")
 			$missing[$bin] = "Can't find <i>$bin</i>!";
 		}
 
-		if (inOpenBasedir($d)) {
+		if (!empty($d) && inOpenBasedir($d)) {
 		    if (!fs_is_executable("$d/$bin")) {
 			$missing[$bin] = "<i>$bin</i> is not executable!";
 		    }
@@ -330,7 +329,7 @@ function check_graphics_im($location="")
 			$missing[$bin] = "Can't find <i>$bin</i>!";
 		}
 
-		if (inOpenBasedir($d)) {
+		if (!empty($d) && inOpenBasedir($d)) {
 		    if (!fs_is_executable("$d/$bin")) {
 			$missing[$bin] = "<i>$bin</i> is not executable!";
 		    }
@@ -448,7 +447,17 @@ function inOpenBasedir($dir) {
 	return true;
     }
 
-    return in_array($dir, explode(':', $openBasedir));
+    /*
+     * XXX: this is not perfect.  For example, if the open_basedir list
+     * contains "/usr/localx" this code will match "/usr/local".  Let's not
+     * worry too much about that now.
+     */
+    foreach (explode(':', $openBasedir) as $basedir) {
+	if (!strncmp($basedir, $dir, strlen($basedir))) {
+	    return true;
+	}
+    }
+    
+    return false;
 }
 ?>
-
