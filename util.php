@@ -3548,7 +3548,14 @@ function genGUID() {
 
 function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 	global $gallery;
-	$thumbsize= $gallery->album->fields["thumb_size"];
+	$thumbsize = $gallery->album->fields["thumb_size"];
+
+	// If the user has set their Gallery to display larger images,
+	// accomodate for it.
+	if (!($iHeight < $thumbsize && $iWidth < $thumbsize)) {
+	    $thumbsize = max($iHeight, $iWidth);
+	}
+	    
 
 	switch ($frame) {
 		// special cases
@@ -3577,8 +3584,8 @@ function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 	} // end of switch
 
 	// This is needed to keep smaller images centered
-		$padding=round(($thumbsize-$iHeight)/2,0);
-		$divCellHeight=$thumbsize-$padding*2+$divCellAdd;
+	$padding=round(($thumbsize-$iHeight)/2,0);
+	$divCellHeight=$thumbsize-$padding*2+$divCellAdd;
 
 	/* For Debugging */
 	// echo "$divCellWidth, $divCellHeight, $padding";

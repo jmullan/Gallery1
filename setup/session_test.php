@@ -34,7 +34,7 @@ foreach($_SESSION as $key => $value) {
 session_register("count");
 
 
-if (isset($destroy)) {
+if (isset($_REQUEST['destroy'])) {
     session_destroy();
     header("Location: session_test.php");
     exit;
