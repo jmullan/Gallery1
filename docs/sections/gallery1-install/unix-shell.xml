@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.unix-shell">
+ <title>Installing on a Unix/Linux Server with Shell Access</title>
+
+ &gallery1.upgrade;
+ 
+ &gallery1.requirements;
+ 
+ <para>
+  Before you can start doing anything, you must first download Gallery.  Gallery
+  is available for download from the
+  <ulink url="http://sf.net/project/showfiles.php?group_id=7130">SourceForge Download
+  Page</ulink>.  Once you have downloaded Gallery, you're ready to start
+  installing it.
+ </para>
+ 
+ <orderedlist>
+  <listitem>
+   <para>
+    You now need to untar Gallery.  Move the Gallery tarball (named
+    gallery-1.x.x.tar.gz to somewhere in your web directory [accessible to
+    the web]).  Next type the following command:
+    <screen>
+     tar -xvzf gallery-1.x.x.tar.gz
+    </screen>
+    You will see a long list of files.  You are now ready for the next step.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Create two blank files, &htaccess; and
+    &config.php;.  The easiest way is to use the <command>touch
+    </command> command.
+    <screen>
+     cd gallery (cd to where you are installing Gallery)
+     touch config.php .htaccess
+    </screen>
+    Now, you need to chmod both of these files 0777.
+    <screen>
+     chmod 0777 config.php .htaccess
+    </screen>
+    You also need to chmod the <filename>setup/</filename> directory 0755.
+    <screen>
+     chmod 0755 setup
+    </screen>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    You now need to create a directory to hold Gallery's albums.  You can
+    create the directory anywhere in your web space (accessible via the web).
+    It is easiest to just create another directory in your gallery/ directory.
+    <screen>
+     mkdir albums
+    </screen>
+    This directory must be chmodded 0777
+    <screen>
+     chmod 0777 albums
+    </screen>
+    If you didn't create the albums directory in your Gallery directory, make
+    sure you remember where you did create it.  You'll need to tell Gallery where
+    you put it later.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Run the configuration wizard, as described in <link linkend="gallery1-install.config-wizard">this guide</link>.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Enjoy your new Gallery!
+   </para>
+  </listitem>  
+ </orderedlist>
+</sect1>

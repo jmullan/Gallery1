@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.required-programs">
+ <title>Installing Required Programs</title>
+ 
+ <para>
+  Gallery, being PHP, cannot do all of the complex image operations required to
+  resize and otherwise manipulate images by itself.  It requires other programs
+  to be able to do this, and you must install these programs or Gallery cannot
+  work.
+ </para>
+ 
+ <sect2 id="gallery1-install.required-programs.netpbm">
+  <title>NetPBM (required)</title>
+
+  <para>
+   NetPBM is easy to install yourself. You can grab the files from
+   the <ulink
+   url="http://sourceforge.net/project/showfiles.php&#63;group_id=7130">Gallery
+   Download Page</ulink>. You do not need root access; just upload
+   the <filename>NetPBM</filename> files via your FTP client (in
+   <emphasis>binary</emphasis> mode) and <function>CHMOD</function>
+   the directory and all the files in that directory with the
+   following permissions: 755. If the configuration wizard can't
+   locate the <filename>NetPBM</filename> directory it will ask you
+   for the exact location and you can fill in the correct path.
+  </para>
+  <note>
+   <simpara>
+    NetPBM is not required if you are using ImageMagick.
+   </simpara>
+  </note>
+ </sect2>
+ <sect2 id="gallery1-install.required-programs.imagemagick">
+  <title>ImageMagick (required)</title>
+
+  <para>
+   ImageMagick is an alternative for NetPBM.  It is usually considered to be
+   faster, but can be more difficult to install.  As with NetPBM, you don't
+   need root access to install the binaries.  You can download ImageMagick
+   builds from <ulink url="http://www.imagemagick.org/">http://www.imagemagick.org
+   </ulink>.  Also as with NetPBM, the binaries must be chmodded 0755 (including
+   the directory they are in).
+  </para>
+  <note>
+   <simpara>
+    ImageMagick is not required if you are using NetPBM.
+   </simpara>
+  </note>
+ </sect2>
+ <sect2 id="gallery1-install.required-programs.jhead">
+  <title>Jhead (Optional)</title>
+  
+  <para>
+   If you want to display the EXIF information that many digital
+   cameras store in JPEG images, you'll need to install a small
+   program called <filename>Jhead</filename> to your webspace. A few
+   hosts have begun having it pre-installed for Gallery users. If you
+   are installing Jhead yourself you can install it either in the
+   <filename>gallery</filename> directory or in your
+   <filename>public_html</filename> directory (sometimes called
+   <filename>www</filename> or something similar). If you don't need
+   to display the exif information for your photos, skip this
+   step.
+  </para>
+  <para>
+   Download the pre-built executable and upload it to your webspace
+   via FTP, making sure that you upload it in
+   <emphasis>BINARY</emphasis> mode. If Windows has saved it with a
+   <filename>.txt</filename> extension, simply remove the extension
+   once you've uploaded it and call the file
+   <filename>jhead</filename> (with no file
+   extension). <function>CHMOD</function> this file to 755. You will
+   have to fill in the path to the Jhead file when you run the
+   configuration wizard.
+  </para>
+  <para>
+   You can download the correct build for your webspace and find out
+   more information here: <ulink
+   url="http://www.sentex.net/~mwandel/jhead/">http://www.sentex.net/~mwandel/jhead/</ulink>
+  </para>
+ </sect2>
+ 
+ <sect2 id="gallery1-install.required-programs.jpegtran">
+  <title>JpegTRAN (optional)</title>
+  
+  <note>
+   <simpara>
+    JpegTRAN support added in 1.4.0
+   </simpara>
+  </note>
+  
+  <para>
+   JpegTRAN is a utility to allow Gallery perform lossless rotation on JPEG
+   images.  This results in a better quality rotation, as well as a speed
+   increase, according to some.
+  </para>
+  <para>
+   JpegTRAN is incredibly easy to install, and is usually included in most
+   distributions.  JpegTRAN is usually included in the <literal>libjpeg</literal>
+   or <literal>libjpeg-progs</literal> package.  Simply install this package
+   on your system, and (re)-run the <link linkend="gallery1-install.config-wizard">
+   configuration wizard</link> and specify the path to JpegTRAN.
+  </para>
+  <para>
+   For Windows, JpegTRAN can be downloaded from
+   <ulink url="http://www.sf.net/projects/gnuwin32">the GNU Win32 project</ulink>.
+   It is in the <literal>jpeg</literal> package, specifically the <literal>jpeg-bin</literal>
+   package.  Download the file and unzip it in a directory (<command>jpegtran</command>
+   will be in the <filename>bin/</filename> directory), then specify the full
+   path to it in the config wizard.
+  </para>
+ </sect2>
+   
+</sect1>

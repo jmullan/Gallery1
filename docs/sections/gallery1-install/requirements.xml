@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.requirements">
+ <title>Installation Requirements</title>
+  
+ <note>
+  <para>
+   For information on installing all the required programs, along with other
+   optional programs that can enhance Gallery, see the
+   <link linkend="gallery1-install.required-programs">installing required programs</link>
+   guide.
+  </para>
+ </note> 
+
+ <sect2 id="gallery1-install.requirements.required">
+  <title>Required Items</title>
+  
+  <itemizedlist>
+   <listitem>
+    <para>
+     <ulink url="http://httpd.apache.org/">Apache</ulink> 1.x, 2.x or <ulink url="http://www.zeus.com/products/zws/">Zeus</ulink> web server
+    </para>
+    <para>
+     Our primary development and testing is on the Apache web server on
+     Unix. Our user base includes:
+     <itemizedlist>
+      <listitem>
+       <para>
+        Apache 1.x and 2.x on Linux, FreeBSD, Solaris, HP-UX, NetBSD,
+        OpenBSD, Mac OS X
+       </para>
+      </listitem>
+      <listitem>
+       <para>
+        Zeus Web Server on Linux and HP-UX 11
+       </para>
+      </listitem>
+      <listitem>
+       <para>
+        Apache 1.x and 2.x on Windows 2000, Windows NT and Windows XP
+       </para>
+      </listitem>
+     </itemizedlist>
+    </para>
+    
+    <para>
+     Users have experienced a great deal of difficulty getting Gallery
+     to run properly on Win95, Win98, WinME or using IIS4.0/5.0.  As a
+     result, we <emphasis>do not support</emphasis> those platforms.
+    </para>
+    
+    <para>
+     <emphasis>Apache2 Note:</emphasis> The first correctly functioning
+     version of PHP on Apache2 is PHP 4.3.0.  If you're having problems
+     on Apache2 and you're not running PHP 4.3.0, you must upgrade (or
+     ask your host to upgrade), until then we cannot help you.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <ulink url="http://www.php.net/">PHP</ulink> 4
+    </para>
+    <para>
+     PHP is a web server module that allows you to create applications
+     using an embedded scripting language. If you don't yet have a web
+     host and are looking for one, check their site to see what their
+     features and software include. If you don't see PHP listed, write
+     and ask if they support PHP (while you are at it, make sure they
+     run it with <function>safe mode</function> OFF). You need PHP to
+     run Gallery.
+    </para>
+    <para>
+     Run your own server? If you're on a Unix box, the odds are good
+     that you'll be able to download PHP easily in either source or
+     binary form for your system. As of this writing, Gallery requires
+     PHP version 4.0.4pl1 or more recent. It has been tested on
+     versions of PHP up to 4.2.2
+    </para>
+    <para>
+     <emphasis>PLEASE NOTE</emphasis>: Your PHP installation
+     <emphasis>must not be in <function>safe
+     mode</function></emphasis>. Gallery is a sophisticated
+     application and its operations require extensive privileges. Safe
+     mode prevents Gallery from functioning properly.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     mod_rewrite (optional)
+    </para>
+    <para>
+     mod_rewrite is an Apache module that lets web server applications
+     do clever things with URLs. Gallery uses this module to allow it
+     to use short URLs. In other words, you see this:
+     <blockquote>
+      <para>
+       http://www.example.com/photos/cole-earlydays/aga
+      </para>
+     </blockquote>
+     instead of this:
+     <blockquote>
+      <para>
+       http://www.example.com/photos/view_photo.php&#63;set_albumName=cole-earlydays&amp;id=aga
+      </para>
+     </blockquote>
+     Obviously the shorter one is easier to remember and nicer to use
+     when sending links to friends and family. Unfortunately, if you
+     don't own the web server then it may be difficult or impossible to
+     enable mod_rewrite, but you can always write your host and ask.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <ulink url="http://netpbm.sourceforge.net/">NetPBM</ulink> or
+     <ulink url="http://www.imagemagick.org/">ImageMagick</ulink>
+    </para>
+    <para>
+     Gallery requires an image manipulation program to do certain operations
+     with images.  Please install either NetPBM or ImageMagick before trying
+     to install Gallery.  See this <link linkend="gallery1-install.required-programs">
+     installation guide</link> for information.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </sect2>
+ 
+ <sect2 id="gallery1-install.requirements.whatyouhave">
+  <title>How to find out what you have</title>
+  
+  <para>
+   To find out which version of Apache and PHP is installed on your
+   webspace (or server), use the <filename>phpinfo.php</filename> file
+   in the setup directory of Gallery to display this information, by
+   typing the following in your browser window:
+   
+   <blockquote>
+    <para>
+     http://www.example.com/gallery/setup/phpinfo.php
+    </para>
+   </blockquote>
+   
+   This file is accessible only when Gallery is still in configure
+   mode (or freshly copied to the server).
+  </para>
+ </sect2>
+
+</sect1>

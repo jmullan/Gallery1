@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.config-wizard">
+ <title>The Configuration Wizard</title>
+ 
+ <para>
+  The Gallery configuration wizard guides you through the steps of installing
+  Gallery.  It will notify you of potential errors and help you setup Gallery.
+ </para>
+ <orderedlist>
+  <listitem>
+   <para>
+     RUN THE CONFIGURATION WIZARD by typing
+     <blockquote>
+      <para>
+       http://www.example.com/gallery/setup/index.php
+      </para>
+     </blockquote>
+     in your browser window. You will see a page that starts with this:
+     <blockquote>
+      <para>
+       Gallery Setup: Step 1
+      </para>
+      <para>
+       This is the Gallery system check page. This page will validate
+       your installation to make sure that you have all the necessary
+       components and permissions on this system and that everything is
+       configured reasonably.
+      </para>
+      <para>
+       Having problems? Try the Gallery Diagnostics Page and the Gallery
+       Help Page.
+      </para>
+     </blockquote>
+     <mediaobject>
+      <imageobject>
+       <imagedata fileref="images/diagnostics.gif" format="GIF" />
+      </imageobject>  
+      <caption>  
+       <para>  
+        Screenshot of the Gallery Diagnostics Page
+       </para>
+      </caption>
+     </mediaobject>
+    </para>
+    <para>
+     Use the Diagnostics Page to help find out more about the PHP
+     installation on your webserver, if you have NetPBM or ImageMagick
+     located and configured correctly and to check your PHP session
+     configuration.
+    </para>
+    <para>
+     The other link takes you to the <ulink
+     url="http://gallery.menalto.com/modules.php&#63;op=modload&amp;name=phpWiki&amp;file=index&amp;pagename=Help">Gallery
+     Help Page</ulink> at <ulink
+     url="http://gallery.menalto.com/">gallery.menalto.com</ulink>&#8212;where
+     you can find more detailed answers for any problems you might
+     incur during installation.
+    </para>
+    <para>
+     This first part will run through a series of automatic checks to
+     see if you have a current version of PHP running, whether or not
+     <function>Safe Mode</function> is off (you want it OFF), whether
+     it can read your <filename>.htaccess</filename> file, if magic
+     quotes are on or off, if <function>mod_rewrite</function> is
+     installed, whether it can find NetPBM or ImageMagick binaries and
+     to see if you have Jhead installed. There is also some information
+     there about NetPBM and ImageMagick and links to more
+     information.
+    </para>
+    <para>
+     For all of the above you will either see a green text message that
+     says: "SUCCESS", with a short list of what was found, or a yellow
+     "WARNING!" message with a brief description of the problem.
+    </para>
+    <para>
+     If the errors are minor (unable to locate paths automatically),
+     you will see this message: "Your installation has warnings, but
+     life is short so let's GO!" and a button to click to continue with
+     the configuration of Gallery.
+    </para>
+    <para>
+     Now you're on to the fun stuff! Step Two of the Gallery setup is
+     where you enter the name you'd like to have appear for your
+     Gallery, your admin password and the paths Gallery needs to know
+     for where your albums will be stored, etc.
+     <mediaobject>
+      <imageobject>
+       <imagedata fileref="images/step2setup.gif" format="GIF" />
+      </imageobject>  
+      <caption>  
+       <para>  
+        Screenshot of Configuration Wizard, Step 2
+      </para>
+     </caption>
+    </mediaobject>
+   </para>
+   <para>
+    <emphasis>REMEMBER THE PASSWORD YOU ENTER. YOU WILL NEED IT LATER
+    TO ADMINISTRATE YOUR GALLERY ONLINE.</emphasis> The default
+    username is "admin" (without quotes).
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Once you've successfully run the Configuration wizard, Gallery
+    will ask you to secure certain files before you can enter the
+    Gallery. These are the same 3 files you applied permissions to
+    above. This time you apply the permissions as follows:
+    <programlisting>
+     chmod 644 .htaccess
+     chmod 644 config.php
+     chmod 400 setup
+    </programlisting>
+    These directions are for Unix/Linux installs only.
+   </para>
+   <para>
+    If you're on Windows, you cannot chmod files.  Instead, run the 
+    <filename>secure.bat</filename> file, located in your gallery directory.
+    This will tighten up security, and disallow the usage of the
+    configuration wizard. If you want to redo any configuration tasks, run
+    <filename>configure.bat</filename> from the same directory, do your 
+    changes and run <filename>secure.bat</filename> again.
+   </para>
+  </listitem>
+ </orderedlist>
+</sect1>

@@ -1,0 +1,38 @@
+<?php
+// $Id$
+// This is the default photo footer (for the gallery slideshow
+// page: slideshow.php). It's companion is slideshow.header.default.
+//
+// To override this header, create a file called slideshow.footer
+// in this directory.
+//
+// NOTE: This header gets inserted above the </body> tag. 
+?>
+
+    </td>
+  </tr>
+  <tr>
+    <td class="modfooter">
+    <!-- The Gallery code version number, linked to the Gallery home page -->
+    <table width="100%"><tr><td>
+    <span class="fineprint">
+    <?php print poweredBy() ?>
+    </span>
+    </td>
+<?php if ($gallery->user->isAdmin() || $gallery->app->devMode == "yes") {
+       	if (! isset($GALLERY_EMBEDDED_INSIDE)) {
+	       	print '<td align="right">';
+	       	print gallery_validation_link("albums.php");
+	       	print "Not valid yet.";
+		print "</td>";
+       	} 
+}?>
+    </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<?php
+includeHtmlWrap("wrapper.footer");
+?>
+

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-admin.offline">
+ <title>Creating an Offline Copy</title>
+
+ <sect2 id="gallery1-admin.offline.intro">
+  <title>Introduction</title>
+  
+  <para>
+   A new feature in Gallery 1.3.4 is offline browsing, designed to assist you
+   when using tools like
+   <ulink url="http://www.gnu.org/software/wget/wget.html">wget</ulink>
+   or <ulink url="http://www.httrack.com/">httrack</ulink> to make an offline
+   version of your gallery. This can be for cutting a CD, keeping on your home
+   machine, putting on a site that doesn't have PHP installed or any other
+   purpose for which you might want a static version of your gallery.
+  </para>
+  <para>
+   Offline browsing gives you two things: it removes links that don't make
+   sense in a static gallery (like "Login" and "Add Comment"), and does not
+   display links to albums in the tree above the current album, unless that
+   has been visited already in this session. In other words, you can just
+   download an album and it's sub-albums, and not the whole tree if you want.
+  </para>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.offline.command">
+  <title>Command</title>
+  
+  <para>
+   To move Gallery into off line mode, simply add <literal>set_offline=true</literal>
+   to any gallery URL, e.g. <filename>http://www.example.com/gallery/?set_offline=true</filename>.
+   To stop using offline mode, then use <literal>set_offline=false</literal>
+  </para>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.offline.examples">
+  <title>Examples</title>
+  
+  <para>
+   To download an entire, non-password protected gallery using wget
+   <screen>
+    wget -r -k --html-extension 'http://www.example.com/gallery/?set_offline=true'
+   </screen>
+  </para>
+  <para>
+   To download an album from a password protected gallery using httrack
+   <screen>
+    httrack -%F "" -K0 "http://www.example.com/gallery/login.php?uname=admin&amp;gallerypassword=SECRET \
+     &amp;login=Login&amp;set_offline=true" \
+     http://www.example.com/gallery/album04 http://www.example.com/albums
+   </screen>
+  </para>
+  <para>
+   To download an album from a password protected gallery using wget
+   <screen>
+    wget --proxy=off --cookies=on \
+     'http://www.example.com/login.php?uname=UNAME&amp;gallerypassword=SECRET&amp;login=Login' \
+     'http://www.example.com/backup.php'
+   </screen>
+  </para>
+
+  <note>
+   <para>
+    You need to give the URL of your gallery directory to httrack, or it won't
+    download images. So add a .htaccess file to prevent directory listing to
+    your albums directory (i.e. "Options -Indexes")
+   </para>
+  </note>
+  <note>
+   <para>
+    The domain you give must be the same as the one you defined during
+    configuration. eg if you put the domain as 
+    <filename>http://www.example.com/gallery</filename>, then 
+    <filename>http://example.com/gallery</filename> will not work.
+   </para>
+  </note>
+  
+ </sect2>
+ 
+</sect1>

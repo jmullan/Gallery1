@@ -1,0 +1,42 @@
+<?php
+// $Id$
+// This is the default photo footer (for the gallery photo
+// page: view_photo.php). It's companion is photo.header.default.
+//
+// To override this header, create a file called photo.footer
+// in this directory.
+//
+// NOTE: This header gets inserted above the </body> tag. 
+?>
+
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <td class="modfooter">
+          <!-- The Gallery code version number, linked to the Gallery home page -->
+          <table width="100%" >
+	    <tr>
+	      <td>
+                <span class="fineprint">
+                  <?php print poweredBy() ?>
+                </span>
+    <?php 
+    if (! isset($GALLERY_EMBEDDED_INSIDE) || $gallery->app->devMode == 'yes') {
+	    global $id;
+	    print "<br><br>";
+	    print album_validation_link($gallery->session->albumName, $id);
+	    print "Not valid yet.";
+    } ?>
+              </td>
+	    </tr>
+	  </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+  </tr>
+</table>
+
+<?php
+includeHtmlWrap("wrapper.footer");
+?>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="guide-standards.generating">
+ <title>Generating the manual</title>
+ 
+ <para>
+  To generate the manual, you must have <literal>xsltproc</literal> installed
+  on your computer (this is usually in the <literal>libxslt</literal> package).
+  As of right now, the generation script uses a bash shell script, so you need
+  to be in a Unix-like environment to run it (Linux, Unix, OS X, CygWin,
+  etc...   ).  If you have that installed, generating the manual is relatively
+  easy.
+  <screen>
+   cd /path/to/gallery/documentation
+   ./gen html
+  </screen>
+  The documentation will then be generated in the <literal>dist/html</literal>
+  directory.  There are other options to generating the manual, some of
+  which require additional software.  To view all the options for the
+  generation script, type <literal>./gen help</literal>.
+ </para>
+ <para>
+  The generation script can also quickly test the documentation to make sure
+  it's valid XML and follows the DocBook DTD.  This requires either
+  <literal>xmllint</literal> or <literal>Saxon</literal> to be installed on
+  your computer.
+  <screen>
+   ./gen test-saxon [use this to test using Saxon]
+   ./gen test-xmllint [use this to test using xmllint]
+  </screen>
+  <emphasis>
+   You should always run one of these commands before committing
+   anything to the documentation.  You may break the manual build if you commit
+   something with an error, and it's very easy to test before committing.
+  </emphasis>
+ </para>
+</sect1>
