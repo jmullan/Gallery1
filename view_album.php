@@ -87,21 +87,28 @@ $navigator["url"] = makeAlbumUrl($gallery->session->albumName);
 $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
 
-if ($gallery->album->fields[parentAlbumName]) {
-	$top = $gallery->app->photoAlbumURL;
-	$myAlbum= new Album();
-	$myAlbum->load($gallery->album->fields[parentAlbumName]);
-	$breadCounter = 0;
-	if (strcmp($gallery->album->fields["returnto"], "no")) {
-		$breadtext[$breadCounter] = "Gallery: <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
-		$breadCounter++;
-	}
-	$breadtext[$breadCounter] = "Album: <a href=". makeAlbumUrl($gallery->album->fields[parentAlbumName]).">".$myAlbum->fields["title"]."</a>";
-} else {
-	$breadtext[0] = "Gallery: <a href=". makeGalleryUrl("albums.php") .">".$gallery->app->galleryTitle."</a>";
-}
+$breadCount = 0;
+$pAlbum = $gallery->album;
+do {
+  if (!strcmp($pAlbum->fields["returnto"], "no")) {
+    break;
+  }
+  $pAlbumName = $pAlbum->fields['parentAlbumName'];
+  if ($pAlbumName) {
+    $pAlbum = new Album();
+    $pAlbum->load($pAlbumName);
+    $breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($pAlbumName) .
+      "\">" . $pAlbum->fields['title'] . "</a>";
+  } else {
+    //-- we're at the top! ---
+    $breadtext[$breadCount] = "Gallery: <a href=\"" . makeGalleryUrl("albums.php") .
+      "\">" . $gallery->app->galleryTitle . "</a>"; 
+  }
+  $breadCount++;
+} while ($pAlbumName);
 
-$breadcrumb["text"] = $breadtext;
+//-- we built the array backwards, so reverse it now ---
+$breadcrumb["text"] = array_reverse($breadtext, false);
 $breadcrumb["bordercolor"] = $bordercolor;
 ?>
 

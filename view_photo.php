@@ -128,12 +128,31 @@ $navigator["url"] = ".";
 $navigator["bordercolor"] = $bordercolor;
 
 #-- breadcrumb text ---
-if (strcmp($gallery->album->fields["returnto"], "no")) {
-	$breadtext[0] = "Gallery: <a href=" . makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
-	$breadtext[1] = "Album: <a href=" . makeAlbumUrl($gallery->session->albumName, "", array("page" => $page)) . ">".$gallery->album->fields["title"]."</a>";
-} else {
-	$breadtext[0] = "Album: <a href=" . makeAlbumUrl($gallery->session->albumName, "", array("page" => $page)) . ">".$gallery->album->fields["title"]."</a>";
-}
+$breadCount = 0;
+$breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
+      "\">" . $gallery->album->fields['title'] . "</a>";
+$breadCount++;
+$pAlbum = $gallery->album;
+do {
+  if (!strcmp($pAlbum->fields["returnto"], "no")) {
+    break;
+  }
+  $pAlbumName = $pAlbum->fields['parentAlbumName'];
+  if ($pAlbumName) {
+    $pAlbum = new Album();
+    $pAlbum->load($pAlbumName);
+    $breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($pAlbumName) .
+      "\">" . $pAlbum->fields['title'] . "</a>";
+  } else {
+    //-- we're at the top! ---
+    $breadtext[$breadCount] = "Gallery: <a href=\"" . makeGalleryUrl("albums.php") .
+      "\">" . $gallery->app->galleryTitle . "</a>";
+  }
+  $breadCount++;
+} while ($pAlbumName);
+
+//-- we built the array backwards, so reverse it now ---
+$breadcrumb["text"] = array_reverse($breadtext, false);
 ?>
 
 <? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
@@ -314,7 +333,6 @@ if (!$gallery->album->isMovie($id)) {
 	}
 }
 
-$breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $bordercolor;
 $breadcrumb["top"] = true;
 
