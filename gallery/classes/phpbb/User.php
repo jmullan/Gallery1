@@ -50,23 +50,6 @@ class phpbb_User extends Abstract_User {
 			$this->isAdmin = 1;
 			$this->canCreateAlbums = 1;
 		}
-/* Commented out by Jens Tkotz
-		else {
-			// Not an Admin so Check if User ID is in the Gallery User Group (ie: can create albums)
-			$gallery_perm = $this->galleryperm($userdata['user_id']);
-
-			// Defaults
-			$this->isAdmin = 0;
-			$this->canCreateAlbums = 0;
-
-			if ($gallery_perm == 2) {
-				$this->isAdmin = 1;
-			}
-			if ($gallery_perm >= 1) {
-				$this->canCreateAlbums = 1;
-			}
-		}
-*/
 	}
 
 	function loadByUserName($uname) {
@@ -83,62 +66,7 @@ class phpbb_User extends Abstract_User {
 			$this->isAdmin = 1;
 			$this->canCreateAlbums = 1;
 		}
-/* Commented out by Jens Tkotz
-		else {
-			// Not an Admin so Check if User ID is in the Gallery User Group (ie: can create albums)
-			$gallery_perm = $this->galleryperm($userdata['user_id']);
-
-			// Defaults
-			$this->isAdmin = 0;
-			$this->canCreateAlbums = 0;
-
-			if ($gallery_perm == 2) {
-				$this->isAdmin = 1;
-			}
-			if ($gallery_perm >= 1) {
-				$this->canCreateAlbums = 1;
-			}
-		}
-*/
 	}
-
-/* Commented out by Jens Tkotz
-	function galleryperm($user_id) {
-		global $table_prefix, $db;
-
-		// NB: We use the phpBB2 database object as it allows the use of named fields (easier to debug!)
-
-		$gallery_perm = 0; // Set default
-		// Get the user permissions first.
-		$sql = "SELECT user_gallery_perm FROM " . $table_prefix. "users WHERE user_id = '$user_id'";
-		if ( !($result = $db->sql_query($sql)) ) {
-			message_die(GENERAL_ERROR, 'Could not select Gallery permission from user table', '', __LINE__, __FILE__, $sql);
-		}
-		$row = $db->sql_fetchrow($result);
-
-		// Get the group permissions second.
-		$sql2 = "SELECT group_gallery_perm FROM " . $table_prefix. "user_group ug, " . $table_prefix. "groups g 
-			WHERE ug.user_id = '$user_id' AND g.group_id = ug.group_id";
-		if ( !($result2 = $db->sql_query($sql2)) ) {
-			message_die(GENERAL_ERROR, 'Could not select Gallery permission from user, usergroup table', '', __LINE__, __FILE__, $sql2);
-		}
-		$topgroup = 0;
-		while($rowg = $db->sql_fetchrow($result2)) {
-			if($topgroup < $rowg['group_gallery_perm']) {
-				$topgroup = $rowg['group_gallery_perm']; 
-			}
-		}
-
-		// Use whichever value is highest.
-		if ($topgroup > $row['user_gallery_perm']) {
-			$gallery_perm = $topgroup;
-		}
-		else {
-			$gallery_perm = $row['user_gallery_perm'];
-		}
-	        return $gallery_perm;
-	}
-*/
 
 	function isLoggedIn() {
 		if ($this->uid != -1) {

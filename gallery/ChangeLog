@@ -1,3 +1,53 @@
+2005-04-01  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b23
+
+	* "Fix": highest rating code in stats was broken -> commented out
+
+2005-03-30  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b22
+
+	* Fix: Logged in users now no longer use the stats cache - this will
+	  prevent issues when using stats filters (which only logged-in users can see)
+	  and should alleviate a possible caching-permissions/exposure bug.
+
+	* Change: Removed some dead, commented code.
+
+2005-03-29  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b21
+
+	* Fix: check_mail.php now uses gallery_mail() instead of calling mail()
+	  directly.
+
+2005-03-28  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b20
+
+	* Change: Wording on view_album. 
+		"admin options" -> "album actions"
+		"edit ..." -> "... actions"
+
+2005-03-27  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b19
+
+	* Fix: madmod1 skin had unquoted keys.
+
+2005-03-27  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b18
+
+	* Fix: admin-page.php, stats-wizard.php, tools/despam-comments.php and 
+	       tools/validate_albums.php gave errors when embedded.
+
+	* Fix: Show manage user link in adminpage only when not embedded.
+
+	* Fix: Added tools/validate_albums.php to securelsit to allow running embedded.
+
+	* Fix: Typo in tools/despam-comments.php.
+
+	* CHange: Moved some css from adminpage and stats-wizard into base.css
+	        
+2005-03-24  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b17
+
+	* Change: Upgrade GR Applets to 1.4.2-b12
+
+2005-03-24  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b16
+
+	* Fix: multi_create_user wasn't globalized
+
+	* Fix: Variable typo in manager_users
+
 2005-03-23  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b15
 
 	* Change: Don't update the album's mod time when users request mail

@@ -24,8 +24,8 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($create, $bulkcreate, $modify, $delete, $unames) =
-                getRequestVar(array('create', 'bulkcreate', 'modify', 'delete', 'unames'));
+list($create, $bulk_create, $modify, $delete, $unames) =
+                getRequestVar(array('create', 'bulk_create', 'modify', 'delete', 'unames'));
 
 if (!$gallery->user->isAdmin()) {
 	echo _("You are not allowed to perform this action!");

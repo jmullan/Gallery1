@@ -33,7 +33,6 @@ if (!$gallery->user->isAdmin()) {
 	exit;
 }
 
-
 $adminOptions[] = array( 'text' => _("statistics"), 
 			 'url' => makeGalleryUrl('stats-wizard.php'),
 			 'longtext' => _("View some statistics about your Gallery. Such as most viewed pictures, or best rated photos etc."));
@@ -58,9 +57,11 @@ $adminOptions[] = array( 'text' => _("validate albums"),
 #			 'url' => makeGalleryUrl('backup_albums.php'),
 #			 'longtext' => _("Make a backup of your Gallery."));
 
-$adminOptions[]  = array('text' => _("manage users"),
+if (!$GALLERY_EMBEDDED_INSIDE) {
+    $adminOptions[]  = array('text' => _("manage users"),
 			 'popupFile' => 'manage_users.php',
 			 'longtext' => _("Manage your users."));
+}
 
 function cmp ($a, $b) {
    return strcmp($a["text"], $b["text"]);
@@ -68,7 +69,8 @@ function cmp ($a, $b) {
 
 usort($adminOptions, "cmp");
 
-doctype();
+if (!$GALLERY_EMBEDDED_INSIDE) {
+    doctype();
 ?>
 <html>
 <head>
@@ -76,12 +78,10 @@ doctype();
 <?php 
 	common_header() ;
 ?>
-  <style>
-	td.adm_options { vertical-align:top; height:30px; padding: 5px; }
-  </style>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php  
+}
         
 includeHtmlWrap("gallery.header");
 

@@ -62,11 +62,13 @@ $stats['types'] = array (
 				 'name' =>'type',
 				 'text' => _("Show images with comments - latest are shown first"),
 				 'linktext' => _("latest comments")),
+/*
 	'ratings'	=> array('type' => 'radio',
 				 'default' => '',
 				 'name' =>'type',
 				 'text' => _("Show images with the highest ratings first"),
 				 'linktext' => _('highest ratings')),
+*/
 	'random'	=> array('type' => 'radio',
 				 'default' => '',
 				 'name' =>'type',
@@ -160,15 +162,17 @@ $stats['filter'] = array(
 
 
 function generateStatsLinks() {
-	global $gallery;
-	global $stats;
-	$links = '';
+    global $gallery;
+    global $stats;
+    $links = '';
 
-	if (!empty($gallery->app->stats_foruser)) {
-		foreach ($gallery->app->stats_foruser as $key) {
-                	$links .= "\n\t". '[<a href="'. defaultStatsUrl($key) .'">' . $stats['types'][$key]['linktext'] .'</a>]';
-		}
-        }
+    if (!empty($gallery->app->stats_foruser)) {
+	foreach ($gallery->app->stats_foruser as $key) {
+	    if (isset($stats['types'][$key])) {
+	        $links .= "\n\t". '[<a href="'. defaultStatsUrl($key) .'">' . $stats['types'][$key]['linktext'] .'</a>]';
+	    }
+	}
+    }
 
 	return $links;
 }

@@ -41,18 +41,22 @@
 list($submit, $email_address) = getRequestVar(array('submit', 'email_address'));
 
 if (isset($submit)) {
-	echo '<table class="inner" width="100%"><tr>';
 	if(gallery_validate_email($email_address)) {
-		mail($email_address, sprintf(_("Test email from %s"), Gallery()), 
+		$ret = gallery_mail($email_address, sprintf(_("Test email from %s"), Gallery()), 
 			_("This email was automatically generated."). "\n\n" .
 			_("If you recevied this in error, then please disregard, as you should not receive any similar emails.") . "\n\n" .
 			sprintf(_("If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."),
 			Gallery(),
 			"http://" . getenv("SERVER_NAME") . $GALLERY_URL,
-			Gallery()) . "\n\n");
-		echo '<td class="successpct">'. _("SUCCESS!"). '</td></tr>';
-		echo '<tr><td class="desc">' . sprintf(_("Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"), $email_address, Gallery()) .'</td>';
+			Gallery()) . "\n\n", 
+			'');
+		if ($ret) {
+			echo '<table class="inner" width="100%"><tr>';
+			echo '<td class="successpct">'. _("SUCCESS!"). '</td></tr>';
+			echo '<tr><td class="desc">' . sprintf(_("Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"), $email_address, Gallery()) .'</td>';
+		}
 	} else {
+		echo '<table class="inner" width="100%"><tr>';
 		echo '<td class="errorlong">'. _("You must use a valid email address") . '</td>';
 		echo '</tr><tr><td class="desc">' . _("Try again?") .'</td>';
 	}

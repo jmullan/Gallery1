@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
 "POT-Creation-Date: 2005-03-02 15:50+0100\n"
-"PO-Revision-Date: 2005-02-28 23:33+0900\n"
+"PO-Revision-Date: 2005-03-24 07:20+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m AT yahoo DOT co DOT jp>\n"
 "Language-Team: Japanese <ken_w3m AT yahoo DOT co DOT jp>\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr "成功"
 msgid "Serious Warning"
 msgstr "深刻な警告"
 
-#: ../setup/check.inc:83 ../setup/check.inc:123 ../setup/check_mail.php:76
+#: ../setup/check.inc:83 ../setup/check.inc:123 ../setup/check_mail.php:78
 msgid "Warning"
 msgstr "警告"
 
@@ -299,56 +299,56 @@ msgstr "OK! バージョン: %s"
 msgid "Check Mail"
 msgstr "メールをチェック"
 
-#: ../setup/check_mail.php:44
+#: ../setup/check_mail.php:46
 #, php-format
 msgid "Test email from %s"
 msgstr "%sからのテストメール"
 
-#: ../setup/check_mail.php:45
+#: ../setup/check_mail.php:47
 msgid "This email was automatically generated."
 msgstr "このメールは自動生成されたものです。"
 
-#: ../setup/check_mail.php:46
+#: ../setup/check_mail.php:48
 msgid "If you recevied this in error, then please disregard, as you should not receive any similar emails."
 msgstr "エラーを受け取っても、同様のいかなるメールも受け取ってはならないので、無視してください。"
 
-#: ../setup/check_mail.php:47
+#: ../setup/check_mail.php:49
 #, php-format
 msgid "If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."
 msgstr "%2$sの%1$sインストレーションからのメールを期待していたなら、喜んでください! 電子メールは正常動作し、%3$sメール機能が利用できます。"
 
-#: ../setup/check_mail.php:51
+#: ../setup/check_mail.php:53
 msgid "SUCCESS!"
 msgstr "成功"
 
-#: ../setup/check_mail.php:52
+#: ../setup/check_mail.php:54
 #, php-format
 msgid "Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
 msgstr "テストメールが <b>%s</b> に送信され、数分で到着するはずです。もしメールを受け取らなかった場合、メールアドレスが正しいことを確認してください。メールを受け取れない場合は、このサーバではメール機能が無効で、それを直すまで %s メール関数が使えません。"
 
-#: ../setup/check_mail.php:54
+#: ../setup/check_mail.php:56
 msgid "You must use a valid email address"
 msgstr "正しいメールアドレスを使用してください"
 
-#: ../setup/check_mail.php:55
+#: ../setup/check_mail.php:57
 msgid "Try again?"
 msgstr "もう一度?"
 
-#: ../setup/check_mail.php:61
+#: ../setup/check_mail.php:63
 #, php-format
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "これは、このシステムで電子メールが正しく動作するか確認するものです。メールアドレスを以下から送信すると、メールが送信されます。それを受け取ったら、電子メールはシステムは動作しています。"
 
-#: ../setup/check_mail.php:65 ../setup/check_mail.php:70
+#: ../setup/check_mail.php:67 ../setup/check_mail.php:72
 #, php-format
 msgid "%s not set."
 msgstr "%s はセットされていません。"
 
-#: ../setup/check_mail.php:90
+#: ../setup/check_mail.php:92
 msgid "Your email address:"
 msgstr "あなたのメールアドレス:"
 
-#: ../setup/check_mail.php:92
+#: ../setup/check_mail.php:94
 msgid "Send Email"
 msgstr "メールを送る"
 
@@ -724,9 +724,10 @@ msgid "Albums URL"
 msgstr "アルバムのURL"
 
 #: ../setup/config_data.inc:334
-#, php-format
+#, php-format, fuzzy
 msgid "The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
 msgstr ""
+"ウェブサーバ上のあなたのアルバムへの完全なURL。(例: %s) Galleryは関連するURL しかし、印刷などいくつかの機能は正しく機能しないかもしれません。"
 
 #: ../setup/config_data.inc:344
 msgid "Thumbnail image"
@@ -786,7 +787,7 @@ msgstr "この値はNetPBMを使う場合にのみ関係があります。NetPBMは内部の画像フォーマ
 
 #: ../setup/config_data.inc:406
 msgid "PNM Composite (Overlay)"
-msgstr ""
+msgstr "PNM 合成 (オーバーレイ)"
 
 #: ../setup/config_data.inc:407
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
@@ -886,7 +887,7 @@ msgstr "Galleryは、サポートされているCMSに組み込まれている場合は自動的に検出でき
 
 #: ../setup/config_data.inc:451
 msgid "If your ISP or CMS requires register_globals to be enabled, you may be required to enable the 'Disable register_globals check' option under the Technical tab."
-msgstr ""
+msgstr "あなたのISPやCMSがregister_globalsを有効にすることを必要としている場合、テクニカルタブの「register_globalsチェックを無効にする」を「はい」にしなければなりません。"
 
 #: ../setup/config_data.inc:454
 msgid "GeekLog Dir"
@@ -909,21 +910,20 @@ msgid "If you turn this option on, you'll see a list of sub-albums when you're b
 msgstr "このオプションをONにした場合、Galleryのトップレベルを閲覧しているときにサブアルバムの完全なリストを見ることができるようになります。これは特定のサブアルバムへ移動するのがより容易になるでしょう。(それはGalleryのトップページの見かけを激しくかき乱すかも知れませんが)"
 
 #: ../setup/config_data.inc:473
-#, fuzzy
 msgid "No tree"
-msgstr "注意"
+msgstr "ツリーなし"
 
 #: ../setup/config_data.inc:474
 #, php-format
 msgid "%d sublevel"
-msgstr ""
+msgstr "サブレベル %d"
 
 #: ../setup/config_data.inc:475 ../setup/config_data.inc:476
 #: ../setup/config_data.inc:477 ../setup/config_data.inc:478
 #: ../setup/config_data.inc:479
 #, php-format
 msgid "%d sublevels"
-msgstr ""
+msgstr "サブレベル %d"
 
 #: ../setup/config_data.inc:480
 msgid "Complete Tree"
@@ -1243,11 +1243,11 @@ msgstr "使いたいSMTPサーバのホスト名かIPアドレス。"
 
 #: ../setup/config_data.inc:813
 msgid "Sender hostname"
-msgstr ""
+msgstr "Sender ホスト名"
 
 #: ../setup/config_data.inc:814
 msgid "The full hostname of the server you are sending the mail from (The Server where your Gallery is installed on). If your Server is behind a NAT, this would be the DNS name of your router."
-msgstr ""
+msgstr "メールの送信元サーバの完全なホスト名(Galleryがインストールされているサーバ)。サーバがNATの後ろにある場合、ルータのDNS名を入れてください。"
 
 #: ../setup/config_data.inc:821
 msgid "SMTP Port"
@@ -1461,12 +1461,11 @@ msgstr "透かし"
 
 #: ../setup/config_data.inc:979
 msgid "Choose wether you want to enable or disable watermarking. And set the defaults"
-msgstr ""
+msgstr "透かしを有効にするか無効にするか選択してください。デフォルトを設定してください。"
 
 #: ../setup/config_data.inc:980
-#, fuzzy
 msgid "Watermarking is not possible in this installation !"
-msgstr "NetPBMはこのインストレーションでは使用されていません"
+msgstr "透かしはこのインストレーションでは使用できません。"
 
 #: ../setup/config_data.inc:983
 msgid "Watermark directory"
@@ -1479,11 +1478,11 @@ msgstr "透かし画像が保存される物理ディスク上のディレクトリのフルパス。This direc
 
 #: ../setup/config_data.inc:994
 msgid "Which Imagetype is watermarked"
-msgstr ""
+msgstr "どのタイプの画像に透かしを入れるか"
 
 #: ../setup/config_data.inc:995
 msgid "Here you can choose which of the images should be watermarked per default."
-msgstr ""
+msgstr "ここでデフォルトで透かしを入れる画像を選択します。"
 
 #: ../setup/config_data.inc:1000
 msgid "Watermark both resized and full images"
@@ -2287,14 +2286,14 @@ msgid "This frame will appear around fulled sized and resized photos."
 msgstr "このフレームはフルサイズあるいはリサイズ画像の周りに表示されます。"
 
 #: ../setup/confirm.inc:44
-#, fuzzy, php-format
+#, php-format
 msgid "You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."
-msgstr "次に進む前に、空のファイル %s を作成し、chmod 777 を実行してください。 詳細は%sを参照してください。"
+msgstr "次に進む前に、空の %s という名前のファイルを作成し、chmod 777 を実行してください。 詳細は %s を参照してください。"
 
 #: ../setup/confirm.inc:52
-#, fuzzy, php-format
+#, php-format
 msgid "File %s is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."
-msgstr "次に進む前に、空のファイル %s を作成し、chmod 777 を実行してください。 詳細は%sを参照してください。"
+msgstr "%s ファイルはオプションですが、いくつかの %s 機能は空の %s と言う名前のファイルを作成し、chmod 777 を次に進む前に実行しないと無効になります。詳細は %s を参照してください。"
 
 #: ../setup/confirm.inc:56
 #, php-format
@@ -2329,9 +2328,9 @@ msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>&quot;%s&quot;</b>は正の数でなくてはいけません。"
 
 #: ../setup/confirm.inc:235
-#, fuzzy, php-format
+#, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a number"
-msgstr "%s: <b>&quot;%s&quot;</b>は正の数でなくてはいけません。"
+msgstr "%s: <b>&quot;%s&quot;</b>は数字でなくてはいけません。"
 
 #: ../setup/confirm.inc:243
 #, php-format
@@ -2369,9 +2368,9 @@ msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG co
 msgstr "%sが見つかりませんでした。あなたがどのPNG->JPEGコンバータを持っているか確認するため、NetPBMディレクトリをチェックしてください。(もしくは単に%sを試してください) コンフィグレーションをチェックしてください。(もしくは、ImageMagickを使ってください。)"
 
 #: ../setup/confirm.inc:373
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
-msgstr "%sが見つかりませんでした。あなたがどのPNG->JPEGコンバータを持っているか確認するため、NetPBMディレクトリをチェックしてください。(もしくは単に%sを試してください) コンフィグレーションをチェックしてください。(もしくは、ImageMagickを使ってください。)"
+msgstr "%s が見つかりませんでした。あなたがどのPNMコンポジット/オーバレイ実行ファイルを持っているか確認するため、NetPBMディレクトリをチェックしてください (もしくは単に%sを試してください)。 コンフィグレーションをチェックしてください。(もしくは、ImageMagickを使ってください)"
 
 #: ../setup/confirm.inc:385
 #, php-format
@@ -2686,9 +2685,8 @@ msgid "%d of %d NetPBM binaries located."
 msgstr "%2$d個中%1$d個のNetPBMバイナリ全てが検出されました"
 
 #: ../setup/functions.inc:540
-#, fuzzy
 msgid "ImageMagick not being used in this installation."
-msgstr "NetPBMはこのインストレーションでは使用されていません"
+msgstr "ImageMacickはこのインストレーションでは使用されていません"
 
 #: ../setup/functions.inc:559
 msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
@@ -2825,14 +2823,12 @@ msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "%s におけるラベル %s (列 %d) の値 %s は正の数でなくてはいけません。"
 
 #: ../setup/functions.inc:1074
-#, fuzzy
 msgid "<b>register_globals</b> is off."
-msgstr "<b>safe_mode</b> はOFFです"
+msgstr "<b>register_glocals</b> はOFFです"
 
 #: ../setup/functions.inc:1242
-#, fuzzy
 msgid "Your passwords do not match!"
-msgstr "管理者パスワードが一致しません!"
+msgstr "パスワードが一致しません!"
 
 #: ../setup/functions.inc:1258
 msgid "Valid admin email address given."
@@ -3062,9 +3058,9 @@ msgid "You must log in as an administrator to edit this server's configuration."
 msgstr "このサーバの設定を変更するために、管理者としてログインしなければなりません。"
 
 #: ../setup/login.inc:84
-#, php-format
+#, php-format, fuzzy
 msgid "If you have forgotten the password to your admin account, you can reset it by creating a blank file named '%s' in your %s directory and then refreshing and following the instructions on this page."
-msgstr ""
+msgstr "管理者アカウントのパスワードを忘れた場合、"
 
 #: ../setup/login.inc:97
 msgid "Password"

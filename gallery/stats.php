@@ -92,10 +92,13 @@ if ( $type == "comments" ) {
 	$showComments = 1;
 	$cache = new cacheCtrl( $gallery->app->stats_commentsCacheOn, $gallery->app->stats_commentsCacheExpireSecs );
 }
+/*
+** Commented out, because the rating code is broken.
 else if ( $type == "ratings" ) {
 	$showRatings = 1;
 	$cache = new cacheCtrl( $gallery->app->stats_ratingsCacheOn, $gallery->app->stats_ratingsCacheExpireSecs );
 }
+*/
 else if ( $type == "views" ) {
 	$showViews = 1;
 	$cache = new cacheCtrl($gallery->app->stats_viewsCacheOn, $gallery->app->stats_viewsCacheExpireSecs);
@@ -144,11 +147,11 @@ if (!empty( $svi )) {
 if (!empty( $svo )) {
 	$showVotes = $svo;
 }
-
+/*
 if (!empty( $sra )) {
 	$showRatings = $sra;
 }
-
+*/
 if (!empty( $sco )) {
 	$showComments = $sco;
 }
@@ -202,20 +205,13 @@ if (!empty( $td )) {
 	$timeDay = $td;
 }
 
-
-
-if ( 0 && isset($showGrid)) {
-	// In grid mode photos per page is controlled by the number of rows and columns.
-	$photosPerPage = $numCols * $numRows;
-}
-
 $albumDB = new AlbumDB(FALSE);
 
 // Retrieve all albums and store in list array.
 // This can be done using new AlbumDB() but this doesn't work
 // on all hosts.
 $numTopAlbums = $albumDB->numAlbums($gallery->user);
-for ($i = 1; $i<=$numTopAlbums; $i++) {
+for ($i = 1; $i <= $numTopAlbums; $i++) {
 	$topAlbum = $albumDB->getAlbum($gallery->user, $i);
 	$list[] = $topAlbum;
 	recurseAlbums( $topAlbum );
@@ -261,6 +257,15 @@ if ( !isset($refreshcache) &&
 	if ( !$useCache ) {
 		$refreshcache = true;
 	}
+
+	// Logged in users don't use the cache
+	if ($gallery->user->isLoggedIn()) {
+		if ($debug > 1) {
+			echo _("Logged In - Disabling Cache") . "<br>";
+		}
+		$refreshcache = false;
+		$useCache = false;
+	}
 }
 
 if ( $debug > 1 ) {
@@ -270,7 +275,7 @@ if ( $debug > 1 ) {
 	else {
 		echo _("Not using cache"). "<br>";
 	}
-	if ( isset($refreshcache) ) {
+	if ( !empty($refreshcache) ) {
 		echo _("Cache to be rebuilt"). "<br>";
 	}
 }
@@ -332,10 +337,11 @@ if ( !$useCache ) {
 			}
 
 			// Haplo code to make sense of the Gallery rankings.
+			/*
 			if ( isset($showRatings) || $type == "ratings" ) {
 				$ratingAverageList = getRatingAverage();
 			}
-
+			*/
 			$numPhotos = $statsAlbum->numPhotos(1);
 			for ($j = 1; $j <= $numPhotos; $j++) {
 				if ( $debug > 1 ) {
@@ -400,13 +406,13 @@ if ( !$useCache ) {
 							else {
 								$commentDate = 0;
 							}
-
+							/*
 							if ( isset($showRatings) || $type == "ratings" ) {
 								if ( $debug > 2 ) {
 									echo _("Getting Ratings"). "<br>";
 								}
 
-								if (isset($ratingAverageList[$j])) {
+								if (!empty($ratingAverageList[$j])) {
 									$ratingCount = $ratingAverageList[$j]['count'];
 									if ( $ratingAverageList[$j]['average'] != 0 ) {
 										// Only show rating when sufficient votes have been cast.
@@ -422,6 +428,7 @@ if ( !$useCache ) {
 									}
 								}
 							}
+							*/
 
 							if ( $type == "random" ) {
 								$randomNum = rand();
@@ -485,10 +492,10 @@ if ( !$useCache ) {
 	}
 }
 
-if ( isset($refreshcache) &&
-!isset($period) &&
-!isset($album) &&
-is_array($arrPhotos)) {
+if ( !empty($refreshcache) &&
+    !isset($period) &&
+    !isset($album) &&
+    is_array($arrPhotos)) {
 	writeCache($cacheFilename);
 }
 
@@ -670,232 +677,6 @@ if (isset($stm)) {
 	echo sprintf(_("Data load time %d seconds"), $time);
 }
 
-if ( $showGrid ) {
-	$imageCellWidth = floor(100 / $numCols) . "%";
-	$statsAlbums = array();
-	$photoInfos  = array();
-	$numPhotos = 0;
-	for ($j = $startPhoto; $j < $totalPhotosToDisplay && $j < $startPhoto + $photosPerPage; ++$j) {
-		$statsAlbums[$numPhotos] = NULL;
-		$photoInfo = $arrPhotos[$j];
-		$foundAlbum = false;
-		for ( $i = 0; $i < $numAlbums; ++$i ) {
-			if ( !strcmp($photoInfo['albumName'], $list[$i]->fields['name']) ) {
-				$statsAlbums[$numPhotos] = $list[$i];
-				$photoInfos[$numPhotos]  = $photoInfo;
-				++$numPhotos;
-				$foundAlbum = true;
-				break;
-			}
-		}
-		if (!$foundAlbum) {
-			$cacheReloadRequired = true;
-		}
-	}
-
-	// Set to NULL all stats array index for which there is no photo.
-	for ( $j = $startPhoto + $numPhotos; $j < $totalPhotosToDisplay && $j < $startPhoto + $photosPerPage; ++$j) {
-		$statsAlbums[$j] = NULL;
-	}
-
-?>
-<!-- image grid table -->
-   <table width="100%" cellspacing="0" cellpadding="7">
-<?php
-
-if ($numPhotos) {
-	$rowCount = 0;
-
-	while ($rowCount < $numRows) {
-		/* Do the inline_albumthumb header row */
-		$i = $rowCount * $numCols;
-		$j = 0;
-		$printTableRow = false;
-		if ($j < $numCols && $i < $numPhotos) {
-			$printTableRow = true;
-			echo('<tr>');
-		}
-		while ($j < $numCols && $i < $numPhotos) {
-			echo("<td>");
-			includeHtmlWrap("inline_albumthumb.header");
-			echo("</td>");
-			$j++;
-			$i++;
-		}
-		if ($printTableRow) {
-			echo('</tr>');
-		}
-
-		/* Do the picture row */
-		$i = $rowCount * $numCols;
-		$j = 0;
-		if ($printTableRow) {
-			echo('<tr>');
-		}
-
-		while ($j < $numCols && $i < $numPhotos) {
-			$statsAlbum = $statsAlbums[$i];
-			$photoInfo  = $photoInfos[$i];
-			$photoId    = $photoInfo['photoId'];
-			$photoIndex = $statsAlbum->getPhotoIndex($photoId);
-
-			if ( $photoIndex == -1 ) {
-				$cacheReloadRequired = true;
-				$j++;
-				$i++;
-			}
-			else {
-				echo '<td width="'. $imageCellWidth .'" align="center" valign="middle">';
-
-				#-- if borders are off, just make them the bgcolor ----
-				$borderwidth = $statsAlbum->fields["border"];
-				$bordercolor = $statsAlbum->fields["bordercolor"];
-				if (!strcmp($borderwidth, "off")) {
-					$bordercolor = $statsAlbum->fields["bgcolor"];
-					$borderwidth = 1;
-				}
-
-				//-- put some parameters for the wrap files in the global object ---
-				$gallery->html_wrap['borderColor'] = $bordercolor;
-				$gallery->html_wrap['borderWidth'] = $borderwidth;
-				$gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
-
-				if ($statsAlbum->getAlbumName($photoIndex)) {
-					$scaleTo = 0;
-					$album = $statsAlbum->getNestedAlbum($photoIndex);
-					list($iWidth, $iHeight) = $album->getHighlightDimensions($scaleTo);
-				}
-				else {
-					$scaleTo=0;  // thumbs already the right size for this album
-					list($iWidth, $iHeight) = $statsAlbum->getThumbDimensions($photoIndex, $scaleTo);
-				}
-				if ($iWidth == 0) {
-					$iWidth = $statsAlbum->fields["thumb_size"];
-				}
-				if ($iHeight == 0) {
-					$iHeight = 100;
-				}
-				//              $gallery->html_wrap['imageWidth'] = $iWidth;
-				//              $gallery->html_wrap['imageHeight'] = $iHeight;
-
-				if ($statsAlbum->isMovie($photoId)) {
-					$gallery->html_wrap['imageTag'] = $statsAlbum->getThumbnailTag($photoIndex, $thumbSize);
-					$gallery->html_wrap['imageHref'] = $statsAlbum->getPhotoPath($photoIndex);
-					$gallery->html_wrap['frame'] = $statsAlbum->fields['thumb_frame'];
-
-					/*begin backwards compatibility */
-					$gallery->html_wrap['thumbTag'] = $gallery->html_wrap['imageTag'];
-					$gallery->html_wrap['thumbHref'] = $gallery->html_wrap['imageHref'];
-					/*end backwards compatibility*/
-
-					// Added for Gallery 1.44
-					$imgTag = $gallery->html_wrap['imageTag'];
-					$gallery->html_wrap['imageWidth']  = getWidthFromTag($imgTag);
-					$gallery->html_wrap['imageHeight'] = getHeightFromTag($imgTag);
-
-					includeHtmlWrap('inline_moviethumb.frame');
-				}
-				elseif ($statsAlbum->getAlbumName($photoIndex)) {
-					$myAlbumName = $statsAlbum->getAlbumName($photoIndex);
-					$myAlbum = new Album();
-					$myAlbum->load($myAlbumName);
-
-					$gallery->html_wrap['imageTag'] = $myAlbum->getHighlightTag($scaleTo,'',_("Highlight for Album: ").htmlentities(removeTags($myAlbum->fields['title']),ENT_COMPAT));
-					$gallery->html_wrap['imageHref'] = makeAlbumUrl($myAlbumName);
-					$gallery->html_wrap['frame'] = $statsAlbum->fields['thumb_frame'];
-
-					/*begin backwards compatibility */
-					$gallery->html_wrap['thumbWidth'] = $gallery->html_wrap['imageWidth'];
-					$gallery->html_wrap['thumbHeight'] = $gallery->html_wrap['imageHeight'];
-					$gallery->html_wrap['thumbTag'] = $gallery->html_wrap['imageTag'];
-					$gallery->html_wrap['thumbHref'] = $gallery->html_wrap['imageHref'];
-					/*end backwards compatibility*/
-
-					// Added for Gallery 1.44
-					$imgTag = $gallery->html_wrap['imageTag'];
-					$gallery->html_wrap['imageWidth']  = getWidthFromTag($imgTag);
-					$gallery->html_wrap['imageHeight'] = getHeightFromTag($imgTag);
-
-					includeHtmlWrap('inline_albumthumb.frame');
-
-				}
-				else {
-					$gallery->html_wrap['imageTag'] = $statsAlbum->getThumbnailTag($photoIndex, $thumbSize);
-					$gallery->html_wrap['imageHref'] = makeAlbumUrl($statsAlbum->fields['name'], $photoId);
-					$gallery->html_wrap['frame'] = $statsAlbum->fields['thumb_frame'];
-
-					/*begin backwards compatibility */
-					$gallery->html_wrap['thumbTag'] = $gallery->html_wrap['imageTag'];
-					$gallery->html_wrap['thumbHref'] = $gallery->html_wrap['imageHref'];
-					/*end backwards compatibility*/
-
-					// Added for Gallery 1.44
-					$imgTag = $gallery->html_wrap['imageTag'];
-					$gallery->html_wrap['imageWidth']  = getWidthFromTag($imgTag);
-					$gallery->html_wrap['imageHeight'] = getHeightFromTag($imgTag);
-
-					includeHtmlWrap('inline_photothumb.frame');
-				}
-
-				echo("</td>");
-				$j++;
-				$i++;
-			}
-		}
-		if ($printTableRow) {
-			echo('</tr>');
-		}
-
-		/* Now do the caption row */
-		$i = $rowCount * $numCols;
-		$j = 0;
-		if ($printTableRow) {
-			echo('<tr>');
-		}
-		while ($j < $numCols && $i < $numPhotos) {
-			$statsAlbum = $statsAlbums[$i];
-			$photoInfo  = $photoInfos[$i];
-			$photoId    = $photoInfo['photoId'];
-			$photoIndex = $statsAlbum->getPhotoIndex($photoId);
-			if ( $photoIndex != -1 ) {
-				displayTextCell($statsAlbum, $photoIndex, $photoId, $photoInfo['rating'], $photoInfo['ratingcount'] );
-			}
-			else {
-				$cacheReloadRequired = true;
-			}
-			$j++;
-			$i++;
-		}
-		if ($printTableRow) {
-			echo('</tr>');
-		}
-
-		/* Now do the inline_albumthumb footer row */
-		$i = $rowCount * $numCols;
-		$j = 0;
-		if ($printTableRow) {
-			echo('<tr>');
-		}
-		while ($j < $numCols && $i < $numPhotos) {
-			echo("<td>");
-			includeHtmlWrap("inline_albumthumb.footer");
-			echo("</td>");
-			$j++;
-			$i++;
-		}
-		if ($printTableRow) {
-			echo('</tr>');
-		}
-
-		$rowCount++;
-	}
-}
-   ?>
-
-   </table>
-<?php
-}
-else {
 	/* Start of album layout style. */
 	echo '<table width="'. $navigator["fullWidth"] . $navigator["widthUnits"] .'" border="0" cellspacing="7>';
 
@@ -977,7 +758,6 @@ displayTextCell($statsAlbum, $photoIndex, $photoId, $photoInfo['rating'], $photo
 	}
 
 	echo "</table>";
-}   /* End of album layout style. */
 
 if (isset($stm)) {
 	$time = getmicrotime() - $time_start;
@@ -986,7 +766,7 @@ if (isset($stm)) {
 
 if ($cacheReloadRequired) {
 	$url = makeStatsUrl( $page );
-	$url .= "&refreshcache";
+	$url .= "&refreshcache=1";
 	$urlhref = '<a href="'. $url .'">['. _("Update") .']</a>';
 	echo gallery_error(_("Cache update required. ").$urlhref);
 }
@@ -1227,7 +1007,9 @@ function randomsort($a, $b) {
 function makeStatsUrl( $urlpage ) {
 	global $type, $period, $album, $thumbSize;
 	global $showCaption, $showAlbumLink, $showDescription;
-	global $showUploadDate, $showViews, $showVotes, $showRatings, $showComments, $showCaptureDate;
+	global $showUploadDate, $showViews, $showVotes;
+//	global $showRatings;
+	global $showComments, $showCaptureDate;
 	global $showAddComment, $showAddVote, $showAlbumOwner, $showGrid, $numRows, $numCols;
 	global $photosPerPage, $totalPhotosReq, $reverseOrder;
 	global $timeMonth, $timeYear, $timeDay;
@@ -1239,7 +1021,7 @@ function makeStatsUrl( $urlpage ) {
 		"sud" => $showUploadDate,
 		"svi" => $showViews,
 		"svo" => $showVotes,
-		"sra" => $showRatings,
+//		"sra" => $showRatings,
 		"sco" => $showComments,
 		"scd" => $showCaptureDate,
 		"sac" => $showAddComment,
@@ -1349,7 +1131,9 @@ function getWidthFromTag($str) {
 
 function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcount ) {
 	global $addLinksPos, $showAddComment, $showAddVote, $page, $showAlbumOwner, $showCaptureDate, $showUploadDate;
-	global $showViews, $gallery, $showVotes, $showRatings, $showComments, $newestCommentsFirst;
+	global $showViews, $gallery, $showVotes;
+//	global $showRatings;
+	global $showComments, $newestCommentsFirst;
 	global $showCaption, $showAlbumLink, $showDescription, $showGrid,  $imageCellWidth;
 
 	if ( $showGrid ) {
@@ -1519,14 +1303,14 @@ if ( $showViews &&
 	echo "\n</tr>";
 }
 
-if ( $showVotes ) {
+if ( !empty($showVotes )) {
 	echo "\n<tr>";
 	echo "\n\t". '<td width="105" class="fineprint">' . _("Votes:") .'</td>';
 	echo "\n\t". '<td class="fineprint">'. $statsAlbum->getItemSVotes($photoIndex) .'</td>';
 	echo "\n</tr>";
 }
 
-if ( $showRatings ) {
+if ( !empty($showRatings)) {
 	switch ($rating) {
 		case -2:
 		$photoRateCounts = '';

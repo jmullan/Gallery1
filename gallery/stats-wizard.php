@@ -35,21 +35,23 @@ if (!$gallery->user->isAdmin()) {
 
 require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
-doctype();
+if (!$GALLERY_EMBEDDED_INSIDE) {
+    doctype();
 ?>
-
 <html>
 <head>
 <title><?php echo $gallery->app->galleryTitle ?></title>
 <?php 
 	common_header() ;
 ?>
-  <style type="text/css">
-	.blockcell { vertical-align: top; border-bottom: 1px solid #000000 }
-	caption	{ font-weight:bold; margin-bottom: 5px}
-  </style>
 </head>
 <body dir="<?php echo $gallery->direction ?>" onLoad="updateUrl()">
+<?php  
+}
+	$stats_title = " - " . _("Wizard");
+        includeHtmlWrap("stats.header");
+/* note: the script is below as the header of the environment needs to loaded before. */
+?>
 <script type="text/javascript">
   function updateUrl() {
 	var value;
@@ -94,10 +96,7 @@ doctype();
 	document.url_form.stats_url.value = url;
 }
 </script>
-<?php  
-	$stats_title = " - " . _("Wizard");
-        includeHtmlWrap("stats.header");
-?>
+
 <div style="text-align:right">[<a href="<?php echo makeAlbumUrl(); ?>"><?php echo _("return to gallery"); ?></a>]</div>
 
 <?php

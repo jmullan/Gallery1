@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-22 13:57+0100\n"
+"POT-Creation-Date: 2005-03-28 23:43+0200\n"
 "PO-Revision-Date: 2005-03-22 12:51+0100\n"
 "Last-Translator: Håvard Mork Mork <havarmor AT stud.ntnu DOT no>\n"
 "Language-Team: Sverre M. Vikan <sverre AT urven DOT net>\n"
@@ -43,7 +43,7 @@ msgstr ""
 #: ../edit_caption.php:33 ../edit_field.php:31 ../edit_thumb.php:31
 #: ../edit_watermark.php:28 ../extra_fields.php:33 ../manage_users.php:31
 #: ../modify_user.php:34 ../move_album.php:31 ../move_photo.php:31
-#: ../multi_create_user.php:31 ../photo_owner.php:34 ../poll_properties.php:34
+#: ../multi_create_user.php:33 ../photo_owner.php:34 ../poll_properties.php:34
 #: ../poll_results.php:37 ../rename_album.php:31 ../reset_votes.php:37
 #: ../resize_photo.php:31 ../rotate_photo.php:31 ../save_photos.php:33
 #: ../upgrade_album.php:57 ../user_preferences.php:31
@@ -78,7 +78,7 @@ msgstr "Skriv inn kommentaren til bildet i rammen nedenfor."
 #: ../includes/add_photos/add_form.inc:127
 #: ../includes/add_photos/add_url.inc:60 ../login.php:97
 #: ../modify_user.php:152 ../move_album.php:113 ../move_album.php:135
-#: ../move_photo.php:249 ../move_photo.php:335 ../multi_create_user.php:172
+#: ../move_photo.php:249 ../move_photo.php:335 ../multi_create_user.php:174
 #: ../new_password.php:125 ../register.php:142 ../rename_album.php:131
 #: ../reset_votes.php:64 ../resize_photo.php:135 ../sort_album.php:114
 #: ../user_preferences.php:134 ../watermark_album.php:134
@@ -113,43 +113,43 @@ msgstr "Annet"
 msgid "Admin"
 msgstr "Admin"
 
-#: ../admin-page.php:37
+#: ../admin-page.php:36
 msgid "statistics"
 msgstr "statistikk"
 
-#: ../admin-page.php:39
+#: ../admin-page.php:38
 msgid "View some statistics about your Gallery. Such as most viewed pictures, or best rated photos etc."
 msgstr "Vis statistikk om galleriet ditt. Som for eksempel mest viste bilder, eller best rangerte bilder."
 
-#: ../admin-page.php:41
+#: ../admin-page.php:40
 msgid "configuration wizard"
 msgstr "konfigurasjon"
 
-#: ../admin-page.php:43
+#: ../admin-page.php:42
 msgid "Use the config wizard to reconfigure or tweak your Gallery"
 msgstr "Bruk konfigurasjon for &aring; bestemme hvordan Gallery skal oppf&oslash;re seg"
 
-#: ../admin-page.php:45
+#: ../admin-page.php:44
 msgid "find orphans"
 msgstr "finn foreldrel&oslash;se"
 
-#: ../admin-page.php:47
+#: ../admin-page.php:46
 msgid "Find, remove or re-attach orphaned elements."
 msgstr "Rett opp eller fjern foreldrel&oslash;se bilder."
 
-#: ../admin-page.php:49
+#: ../admin-page.php:48
 msgid "find comment spam"
 msgstr "plagekommentarer"
 
-#: ../admin-page.php:51
+#: ../admin-page.php:50
 msgid "Find and remove comments that contains spam."
 msgstr "Finn og fjern kommentarer som er gjentatt mange ganger."
 
-#: ../admin-page.php:53
+#: ../admin-page.php:52
 msgid "validate albums"
 msgstr "validering"
 
-#: ../admin-page.php:55
+#: ../admin-page.php:54
 msgid "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"
 msgstr "Identifiser ugyldige album, manglende filer og andre feil som kan forhindre deg fra &aring; oppgradere til Gallery 2"
 
@@ -165,9 +165,9 @@ msgstr "Behandle brukere."
 msgid "Admin options"
 msgstr "Innstillinger"
 
-#: ../admin-page.php:92 ../stats.php:636 ../stats-wizard.php:101
-#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:59
-#: ../tools/validate_albums.php:199
+#: ../admin-page.php:92 ../stats.php:636 ../stats-wizard.php:100
+#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:60
+#: ../tools/validate_albums.php:204
 msgid "return to gallery"
 msgstr "tilbake til galleriet"
 
@@ -552,105 +552,105 @@ msgstr "INGEN BILDER!"
 msgid "Untitled"
 msgstr "Uten navn"
 
-#: ../classes/Album.php:264
+#: ../classes/Album.php:265
 msgid "Album up to date."
 msgstr "Album oppdatert."
 
-#: ../classes/Album.php:268
+#: ../classes/Album.php:269
 msgid "Upgrading album properties..."
 msgstr "Oppgraderer albumegenskaper ..."
 
-#: ../classes/Album.php:411
+#: ../classes/Album.php:412
 #, php-format
 msgid "Renaming album from %s to %s..."
 msgstr "Endrer albumnavn fra %s til %s ..."
 
-#: ../classes/Album.php:466 ../classes/Album.php:483
+#: ../classes/Album.php:467 ../classes/Album.php:484
 msgid "done"
 msgstr "fullf&oslash;rt"
 
-#: ../classes/Album.php:474
+#: ../classes/Album.php:475
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "Oppgraderer objekt %d av %d ... "
 
-#: ../classes/Album.php:900
+#: ../classes/Album.php:901
 msgid "msg should be an array!"
 msgstr "msg b&oslash;r v&aelig;re en elementrekke!"
 
-#: ../classes/Album.php:921 ../util.php:3516
+#: ../classes/Album.php:922 ../util.php:3516
 msgid "No email sent as no valid email addresses were found"
 msgstr "E-post ble ikke sendt fordi ingen gyldige e-postadresser ble funnet"
 
-#: ../classes/Album.php:988 ../classes/Album.php:1696
+#: ../classes/Album.php:989 ../classes/Album.php:1697
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr "G&aring;r til albumet %s, behandler %d bilder"
 
-#: ../classes/Album.php:993
+#: ../classes/Album.php:994
 #, php-format
 msgid "Processing element %d..."
 msgstr "Behandler bilde %d ..."
 
-#: ../classes/Album.php:1007
+#: ../classes/Album.php:1008
 msgid "Doing the naming"
 msgstr "Utf&oslash;rer navngiving"
 
-#: ../classes/Album.php:1042
+#: ../classes/Album.php:1043
 msgid "Image Preprocessing"
 msgstr "Forbehandling av bilder"
 
-#: ../classes/Album.php:1048
+#: ../classes/Album.php:1049
 msgid "Resizing/compressing original image"
 msgstr "Endrer st&oslash;rrelse/komprimerer originalt bilde"
 
-#: ../classes/Album.php:1052
+#: ../classes/Album.php:1053
 msgid "Cannot resize/compress this filetype"
 msgstr "Kan ikke endre st&oslash;rrelse p&aring;/komprimere denne filtypen"
 
-#: ../classes/Album.php:1056
+#: ../classes/Album.php:1057
 msgid "Adding Photo to the photo list"
 msgstr "Legger til foto i bildelisten"
 
-#: ../classes/Album.php:1110
+#: ../classes/Album.php:1111
 #, php-format
 msgid "Resizing %s"
 msgstr "Endrer st&oslash;rrelse p&aring; %s"
 
-#: ../classes/Album.php:1175
+#: ../classes/Album.php:1176
 msgid "Photo auto-rotated/transformed"
 msgstr "Bildet er auto-rotert/transformert"
 
-#: ../classes/Album.php:1183
+#: ../classes/Album.php:1184
 msgid "Watermarking Image"
 msgstr "Vannmerker bilde"
 
-#: ../classes/Album.php:1340 ../classes/Album.php:1350
+#: ../classes/Album.php:1341 ../classes/Album.php:1351
 #: ../classes/AlbumItem.php:672
 msgid "No highlight"
 msgstr "Uten forsidebilde"
 
-#: ../classes/Album.php:1504
+#: ../classes/Album.php:1505
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr "Forespurt indeks [%d] er utenfor grensene [%d]"
 
-#: ../classes/Album.php:1710 ../do_command.php:82
+#: ../classes/Album.php:1711 ../do_command.php:82
 #, php-format
 msgid "Processing image %d..."
 msgstr "Behandler bilde %d ..."
 
-#: ../classes/Album.php:1848
+#: ../classes/Album.php:1849
 #, php-format
 msgid "Error %s getting EXIF data"
 msgstr "Feil %s ved mottak av EXIF-data"
 
-#: ../classes/Album.php:2369
+#: ../classes/Album.php:2370
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2522
+#: ../classes/Album.php:2523
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "E-postproblem: hopper over %s (UID %s) fordi e-postadresse %s er ugyldig"
@@ -773,7 +773,7 @@ msgid "Skipping Album #%d"
 msgstr "Hopper over album #%d"
 
 #: ../copy_photo.php:119 ../create_user.php:104 ../do_command.php:226
-#: ../login.php:129 ../multi_create_user.php:127 ../register.php:47
+#: ../login.php:129 ../multi_create_user.php:129 ../register.php:47
 #: ../register.php:122 ../save_photos.php:369
 msgid "Dismiss"
 msgstr "Lukk"
@@ -836,12 +836,12 @@ msgstr "Opprett bruker"
 msgid "User %s created"
 msgstr "Bruker %s er opprettet"
 
-#: ../create_user.php:86 ../multi_create_user.php:101
+#: ../create_user.php:86 ../multi_create_user.php:103
 #, php-format
 msgid "%s has registered by %s.  Email has been sent to %s."
 msgstr "%s har registrert via %s.  E-post er sendt til %s."
 
-#: ../create_user.php:94 ../multi_create_user.php:109
+#: ../create_user.php:94 ../multi_create_user.php:111
 msgid "Gallery Registration"
 msgstr "Gallery-registrering"
 
@@ -857,7 +857,7 @@ msgstr "E-post sendt til %s."
 #: ../edit_appearance.php:313 ../edit_appearance.php:320
 #: ../edit_appearance.php:327 ../edit_appearance.php:334
 #: ../edit_appearance.php:341 ../modify_user.php:120 ../modify_user.php:123
-#: ../multi_create_user.php:163 ../poll_properties.php:96
+#: ../multi_create_user.php:165 ../poll_properties.php:96
 msgid "yes"
 msgstr "ja"
 
@@ -868,7 +868,7 @@ msgstr "ja"
 #: ../edit_appearance.php:313 ../edit_appearance.php:320
 #: ../edit_appearance.php:327 ../edit_appearance.php:334
 #: ../edit_appearance.php:341 ../modify_user.php:120 ../modify_user.php:123
-#: ../multi_create_user.php:163 ../poll_properties.php:96
+#: ../multi_create_user.php:165 ../poll_properties.php:96
 msgid "no"
 msgstr "nei"
 
@@ -876,14 +876,14 @@ msgstr "nei"
 msgid "Create a new user here."
 msgstr "Opprett ny bruker her."
 
-#: ../create_user.php:155 ../manage_users.php:97 ../multi_create_user.php:171
+#: ../create_user.php:155 ../manage_users.php:97 ../multi_create_user.php:173
 #: ../register.php:141
 msgid "Create"
 msgstr "Opprett"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:81
-#: ../delete_photo.php:89 ../tools/validate_albums.php:125
-#: ../tools/validate_albums.php:129
+#: ../delete_photo.php:89 ../tools/validate_albums.php:128
+#: ../tools/validate_albums.php:135
 msgid "Delete Album"
 msgstr "Slett album"
 
@@ -893,7 +893,7 @@ msgstr "Vil du virkelig slette dette albumet?"
 
 #: ../delete_album.php:65 ../delete_photo.php:139 ../delete_user.php:80
 #: ../layout/commentbox.inc:17 ../manage_users.php:103
-#: ../tools/despam-comments.php:207 ../tools/despam-comments.php:343
+#: ../tools/despam-comments.php:208 ../tools/despam-comments.php:344
 msgid "Delete"
 msgstr "Slett"
 
@@ -902,7 +902,7 @@ msgid "no album specified"
 msgstr "ingen album angitt"
 
 #: ../delete_photo.php:81 ../delete_photo.php:118
-#: ../tools/validate_albums.php:125 ../tools/validate_albums.php:129
+#: ../tools/validate_albums.php:128 ../tools/validate_albums.php:135
 msgid "Delete Photo"
 msgstr "Slett bilde"
 
@@ -1197,7 +1197,7 @@ msgstr "Minutt"
 msgid "Seconds"
 msgstr "Sekund"
 
-#: ../edit_field.php:49 ../edit_field.php:53 ../view_album.php:905
+#: ../edit_field.php:49 ../edit_field.php:53
 #, php-format
 msgid "Edit %s"
 msgstr "Endre %s"
@@ -2293,69 +2293,69 @@ msgstr "Obs: Bildet som allerede har stemmer, vil miste disse n&aring;r de flytt
 msgid "Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."
 msgstr "Obs: Bilder som har stemmer vil miste disse om de blir flyttet til et album uten kompatibel stemmegivning.  Kompatible album er markert med &quot;%s&quot;."
 
-#: ../multi_create_user.php:42 ../multi_create_user.php:46
-#: ../multi_create_user.php:140
+#: ../multi_create_user.php:44 ../multi_create_user.php:48
+#: ../multi_create_user.php:142
 msgid "Create Multiple Users"
 msgstr "Opprett flere brukere"
 
-#: ../multi_create_user.php:50
+#: ../multi_create_user.php:52
 msgid "No file selected."
 msgstr "Ingen fil valgt"
 
-#: ../multi_create_user.php:55
+#: ../multi_create_user.php:57
 #, php-format
 msgid "Upload failed: %s."
 msgstr "Opplasting feilet: %s."
 
-#: ../multi_create_user.php:64
+#: ../multi_create_user.php:66
 #, php-format
 msgid "Upload went fine, but the file is not readable, please make sure %s is accessable for your webserver. (Also check openbasedir restrictions.)"
 msgstr "Opplasting gikk bra, men filen er ikke lesbar. Forsikre deg om at %s er tilgjengelig for din webserver. (Kontoller ogs&aring; openbasedir-restriksjoner.)"
 
-#: ../multi_create_user.php:87
+#: ../multi_create_user.php:89
 #, php-format
 msgid "adding %s"
 msgstr "legger til %s"
 
-#: ../multi_create_user.php:94
+#: ../multi_create_user.php:96
 #, php-format
 msgid "Send email to %s"
 msgstr "Send e-post til %s"
 
-#: ../multi_create_user.php:110
+#: ../multi_create_user.php:112
 #, php-format
 msgid "Problem with email to %s"
 msgstr "Problem med e-post til %s"
 
-#: ../multi_create_user.php:122
+#: ../multi_create_user.php:124
 #, php-format
 msgid "%s added, %s skipped"
 msgstr "%s lagt til, %s hoppet over"
 
-#: ../multi_create_user.php:123 ../multi_create_user.php:124
+#: ../multi_create_user.php:125 ../multi_create_user.php:126
 #, php-format
 msgid "1 user"
 msgid_plural "%d users"
 msgstr[0] "1 bruker"
 msgstr[1] "%d brukere"
 
-#: ../multi_create_user.php:144
+#: ../multi_create_user.php:146
 msgid "Create Users"
 msgstr "Opprett brukere"
 
-#: ../multi_create_user.php:146
+#: ../multi_create_user.php:148
 msgid "Create multiple new users from a file."
 msgstr "Opprett flere nye brukere fra fil."
 
-#: ../multi_create_user.php:176
+#: ../multi_create_user.php:178
 msgid "Notes:"
 msgstr "Obs:"
 
-#: ../multi_create_user.php:179
+#: ../multi_create_user.php:181
 msgid "The members file should be one user per line, and the fields should be space separated.  Each line is of the form:<br> <i>username emailaddress fullname</i>.<br>  Only username is required. Everything after the email address is the full name, so there can be spaces in it.<p>"
 msgstr "Medlemsfilen b&oslash;r v&aelig;re ett medlem per linje, og det b&aelig;r v&aelig;re mellomrom mellom hvert felt.  Hver linje er i formen:<br> <i>brukernavn e-postadresse fulltanvn</i>.<br>  Bare brukernavn er n&oslash;dvendig. Alt etter e-postadresse er det fulle navnet, s&aring; det kan v&aelig;re mellomrom i det.<p>"
 
-#: ../multi_create_user.php:184
+#: ../multi_create_user.php:186
 msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked)."
 msgstr "Strengene !!USERNAME!!, !!FULLNAME!! og !!PASSWORD!! will bli byttet ut i e-posten med verdiene fra medlemsfilen.  En individuell e-post vil bli sendt til hvert medlem med gyldig e-postadresse i medlemsfilen (if &quot;send e-post&quot; er avmerket)."
 
@@ -3288,31 +3288,31 @@ msgstr "ikke rangert"
 msgid "Rating:"
 msgstr "Rangering:"
 
-#: ../stats-wizard.php:98
+#: ../stats-wizard.php:51
 msgid "Wizard"
 msgstr "Veiviser"
 
-#: ../stats-wizard.php:110
+#: ../stats-wizard.php:109
 msgid "Type"
 msgstr "Type"
 
-#: ../stats-wizard.php:114 ../tools/despam-comments.php:382
+#: ../stats-wizard.php:113 ../tools/despam-comments.php:383
 msgid "Options"
 msgstr "Innstillinger"
 
-#: ../stats-wizard.php:119
+#: ../stats-wizard.php:118
 msgid "Layout"
 msgstr "Utseende"
 
-#: ../stats-wizard.php:123
+#: ../stats-wizard.php:122
 msgid "Filter by Capture Date"
 msgstr "Filtrer etter bildedato"
 
-#: ../stats-wizard.php:128
+#: ../stats-wizard.php:127
 msgid "Show statistics"
 msgstr "Vis statistikk"
 
-#: ../stats-wizard.php:131
+#: ../stats-wizard.php:130
 msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
 msgstr "Dersom du vil vise din egen statistikk et sted, kopier og lim inn adressen fra denne tekstboksen."
 
@@ -3320,8 +3320,8 @@ msgstr "Dersom du vil vise din egen statistikk et sted, kopier og lim inn adress
 msgid "Find Orphans"
 msgstr "finn foreldrel&oslash;se"
 
-#: ../tools/find_orphans.php:213 ../tools/despam-comments.php:58
-#: ../tools/validate_albums.php:198
+#: ../tools/find_orphans.php:213 ../tools/despam-comments.php:59
+#: ../tools/validate_albums.php:203
 msgid "return to admin page"
 msgstr "tilbake til Innstillinger"
 
@@ -3402,180 +3402,180 @@ msgstr "Kontroller tilgangen til filene og mappene ovenfor. Kj&oslash;r chmod p&
 msgid "Reload"
 msgstr "Oppdater"
 
-#: ../tools/despam-comments.php:55
+#: ../tools/despam-comments.php:56
 msgid "Find and remove comment spam"
 msgstr "Finn og slett plagekommentarer"
 
-#: ../tools/despam-comments.php:119
+#: ../tools/despam-comments.php:120
 msgid "Delete Comments"
 msgstr "Slett kommentarer"
 
-#: ../tools/despam-comments.php:121 ../tools/despam-comments.php:250
-#: ../tools/despam-comments.php:261 ../tools/despam-comments.php:330
+#: ../tools/despam-comments.php:122 ../tools/despam-comments.php:251
+#: ../tools/despam-comments.php:262 ../tools/despam-comments.php:331
 msgid "No action taken!"
 msgstr "Ingen handling foretatt!"
 
-#: ../tools/despam-comments.php:145
+#: ../tools/despam-comments.php:146
 #, php-format
 msgid "Deleted %d spam comments"
 msgstr "Slettet %d plagekommentarer"
 
-#: ../tools/despam-comments.php:149
+#: ../tools/despam-comments.php:150
 #, php-format
 msgid "Deleted %d spam comment."
 msgid_plural "Deleted %d spam comments."
 msgstr[0] "Slettet %d plagekommentar."
 msgstr[1] "Slettet %d plagekommentarer."
 
-#: ../tools/despam-comments.php:150
+#: ../tools/despam-comments.php:151
 msgid "No comment deleted."
 msgstr "Ingen kommentarer slettet."
 
-#: ../tools/despam-comments.php:196
+#: ../tools/despam-comments.php:197
 #, php-format
 msgid "Scanned %d albums, %d photos, %d comments in %2.2f seconds"
 msgstr "S&oslash;kte gjennom %d album, %d bilder, %d kommentarer p&aring; %2.2f sekunder"
 
-#: ../tools/despam-comments.php:202
+#: ../tools/despam-comments.php:203
 msgid "No spam comments."
 msgstr "Ingen plagekommentarer."
 
-#: ../tools/despam-comments.php:207
+#: ../tools/despam-comments.php:208
 msgid "Entry"
 msgstr "Element"
 
-#: ../tools/despam-comments.php:211
+#: ../tools/despam-comments.php:212
 msgid "Location"
 msgstr "Plassering"
 
-#: ../tools/despam-comments.php:215
+#: ../tools/despam-comments.php:216
 msgid "Commenter"
 msgstr "Kommentar av"
 
-#: ../tools/despam-comments.php:219
+#: ../tools/despam-comments.php:220
 msgid "Comment"
 msgstr "Kommentar"
 
-#: ../tools/despam-comments.php:233
+#: ../tools/despam-comments.php:234
 msgid "Delete Checked Comments"
 msgstr "Slett merkede kommentarer"
 
-#: ../tools/despam-comments.php:248
+#: ../tools/despam-comments.php:249
 msgid "Delete from blacklist"
 msgstr "Slett fra svarteliste"
 
-#: ../tools/despam-comments.php:265 ../tools/despam-comments.php:309
+#: ../tools/despam-comments.php:266 ../tools/despam-comments.php:310
 msgid "Error saving blacklist!"
 msgstr "Feil ved lagring av svarteliste!"
 
-#: ../tools/despam-comments.php:268
+#: ../tools/despam-comments.php:269
 #, php-format
 msgid "Deleted %d entry from blacklist."
 msgid_plural "Deleted %d entries from blacklist"
 msgstr[0] "Slettet %d element fra svartelisten."
 msgstr[1] "Slettet %d bilder fra svartelisten."
 
-#: ../tools/despam-comments.php:312
+#: ../tools/despam-comments.php:313
 msgid "Added to blacklist:"
 msgstr "Lagt til i svartelisten:"
 
-#: ../tools/despam-comments.php:321
+#: ../tools/despam-comments.php:322
 msgid "Following duplicates were not added:"
 msgstr "F&oslash;lgende duplikater ble ikke lagt til:"
 
-#: ../tools/despam-comments.php:337
+#: ../tools/despam-comments.php:338
 msgid "Current blacklist"
 msgstr "Gjeldende svarteliste"
 
-#: ../tools/despam-comments.php:339
+#: ../tools/despam-comments.php:340
 msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
 msgstr "Svartelisten din er tom. Du m&aring; legge til nye bilder i svartelisten for at den skal v&aelig;re nyttig."
 
-#: ../tools/despam-comments.php:354 ../tools/despam-comments.php:371
+#: ../tools/despam-comments.php:355 ../tools/despam-comments.php:372
 msgid "Update Blacklist"
 msgstr "Oppdater svarteliste"
 
-#: ../tools/despam-comments.php:361
+#: ../tools/despam-comments.php:362
 msgid "Enter new blacklist entries"
 msgstr "Skriv nye svartelisteelementer"
 
-#: ../tools/despam-comments.php:362
+#: ../tools/despam-comments.php:363
 msgid "Useful blacklists: "
 msgstr "Nyttige svartelister: "
 
-#: ../tools/despam-comments.php:367
+#: ../tools/despam-comments.php:368
 msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
 msgstr "Du kan klippe og lime disse svartelistene inn i tekstboksen, eller legge til nye elementer selv."
 
-#: ../tools/despam-comments.php:377
+#: ../tools/despam-comments.php:378
 msgid "Find blacklisted comments"
 msgstr "Finn svartelistede kommentarer"
 
-#: ../tools/despam-comments.php:378
+#: ../tools/despam-comments.php:379
 msgid "View/Edit blacklist"
 msgstr "Vis/rediger svarteliste"
 
-#: ../tools/despam-comments.php:379
+#: ../tools/despam-comments.php:380
 msgid "Add blacklist entries"
 msgstr "Legg til i svarteliste"
 
-#: ../tools/validate_albums.php:162
+#: ../tools/validate_albums.php:168
 msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
 msgstr "Merk: Selv om miniatyrbildet er ordentlig vist ovenfor, har det virkelige fullst&oslash;rrelsesbildet blitt bekreftet &aring; mangle."
 
-#: ../tools/validate_albums.php:185 ../tools/validate_albums.php:195
+#: ../tools/validate_albums.php:190 ../tools/validate_albums.php:200
 msgid "Validate Albums"
 msgstr "Valider album"
 
-#: ../tools/validate_albums.php:209
+#: ../tools/validate_albums.php:214
 msgid "Missing Files:"
 msgstr "Manglende filer:"
 
-#: ../tools/validate_albums.php:210
+#: ../tools/validate_albums.php:215
 msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
 msgstr "F&oslash;lgende filer mangler fra album-katalogen.  Informasjon er fortsatt lagret om bildet i albumdata, men filen eksisterer selv ikke lenger av en eller annen &aring;rsak.  Disse filene vil skape feil n&aring;r du fors&oslash;ker &aring; oppgradere til Gallery 2.0. Dette kan bli rettet opp p&aring; to ulike m&aring;ter; den f&oslash;rste er &aring; bare slette bildet fra albumet.  Den andre er &aring; manuelt legge til filen i album-katalogen ved &aring; bruke filnavnet du ser p&aring; venstresiden av tabellen."
 
-#: ../tools/validate_albums.php:214
+#: ../tools/validate_albums.php:219
 msgid "Missing File"
 msgstr "Manglende fil"
 
-#: ../tools/validate_albums.php:216 ../tools/validate_albums.php:258
+#: ../tools/validate_albums.php:221 ../tools/validate_albums.php:263
 msgid "Action"
 msgstr "Handling"
 
-#: ../tools/validate_albums.php:225 ../view_photo.php:332
+#: ../tools/validate_albums.php:230 ../view_photo.php:332
 msgid "delete photo"
 msgstr "slett bilde"
 
-#: ../tools/validate_albums.php:241
+#: ../tools/validate_albums.php:246
 msgid "No Missing Files"
 msgstr "Ingen manglende filer"
 
-#: ../tools/validate_albums.php:242
+#: ../tools/validate_albums.php:247
 msgid "There are no missing files in this Gallery."
 msgstr "Det var ingen manglende filer i dette galleriet."
 
-#: ../tools/validate_albums.php:251
+#: ../tools/validate_albums.php:256
 msgid "Invalid Albums:"
 msgstr "Ugyldige album:"
 
-#: ../tools/validate_albums.php:252
+#: ../tools/validate_albums.php:257
 msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
 msgstr "Ugyldige album er kataloger som har blitt opprettet i album-katalogen, som egentlig ikke inneholder albumdata. At disse katalogene eksisterer, kan skape problemer om du senere fors&oslash;ker &aring; oppgradere til Gallery 2.0"
 
-#: ../tools/validate_albums.php:256
+#: ../tools/validate_albums.php:261
 msgid "Invalid Album"
 msgstr "Ugyldig album"
 
-#: ../tools/validate_albums.php:265
+#: ../tools/validate_albums.php:270
 msgid "delete directory"
 msgstr "slett katalog"
 
-#: ../tools/validate_albums.php:281
+#: ../tools/validate_albums.php:286
 msgid "No Invalid Albums Found"
 msgstr "Ingen ugyldige album ble funnet"
 
-#: ../tools/validate_albums.php:282
+#: ../tools/validate_albums.php:287
 msgid "There are no invalid albums present in this Gallery."
 msgstr "Det var ingen ugyldige album i dette galleriet."
 
@@ -4150,8 +4150,9 @@ msgid "watermark album"
 msgstr "vannmerk album"
 
 #: ../view_album.php:427
-msgid "admin options"
-msgstr "innstillinger"
+#, fuzzy
+msgid "album actions"
+msgstr "Albumtittel"
 
 #: ../view_album.php:515
 msgid "You have no votes recorded for this poll."
@@ -4238,6 +4239,11 @@ msgstr "Film"
 #: ../view_album.php:896
 msgid "Photo"
 msgstr "bilde"
+
+#: ../view_album.php:905
+#, fuzzy, php-format
+msgid "%s actions"
+msgstr "Handling"
 
 #: ../view_album.php:918 ../view_album.php:954
 msgid "Edit Thumbnail"
@@ -4400,3 +4406,6 @@ msgstr "Vannmerker album."
 #: ../watermark_album.php:103
 msgid "No items to watermark."
 msgstr "Ingen bilder &aring; vannmerke."
+
+#~ msgid "admin options"
+#~ msgstr "innstillinger"

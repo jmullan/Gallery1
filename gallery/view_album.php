@@ -424,7 +424,7 @@ if (!empty($adminOptionHTML)) {
 	  . "</script>\n\n";
     
 	$iconElements[] = "\n\t<select class=\"adminform\" name=\"admin_select\" onChange=\"execAdminOption()\">\n"
-	  . "\t\t<option value=\"\">&laquo; " . _('admin options') . " &raquo;</option>\n"
+	  . "\t\t<option value=\"\">&laquo; " . _('album actions') . " &raquo;</option>\n"
 	  . $adminOptionHTML
 	  . "\t</select>\n";
 }
@@ -902,7 +902,7 @@ if ($numPhotos) {
 				echo("</div>\n");
 				echo("\n\t<select style=\"font-size:10px\" class=\"adminform\" name=\"s$i\" ".
 					"onChange='imageEditChoice(document.vote_form.s$i)'>");
-				echo("\n\t\t<option value=''>&laquo; ". sprintf(_("Edit %s"), $label) . " &raquo;</option>");
+				echo("\n\t\t<option value=''>&laquo; ". sprintf(_("%s actions"), $label) . " &raquo;</option>");
 			}
 			if ($gallery->album->getItemOwnerModify() && 
 			    $gallery->album->isItemOwner($gallery->user->getUid(), $i) && 
