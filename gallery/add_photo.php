@@ -73,11 +73,11 @@ if ($userfile_name) {
 		    fs_unlink($tf);
 		}
 	}
-	reload();
 	?>
 	<p><center><form>
 	<input type="button" value="<?php echo _("Dismiss") ?>" onclick="parent.close()">
 	</form></center>
+
 <script language="Javascript">
 <!--
 opener.hideProgressAndReload();
@@ -85,6 +85,7 @@ opener.hideProgressAndReload();
 </script>
 
 <?php
+reload();
 }
 
 else
