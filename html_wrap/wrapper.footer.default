@@ -3,9 +3,11 @@
 // This header file detects whether Gallery is embedded in any 
 // known PHP applications and then decorates Gallery appropriately.
 
-global $GALLERY_EMBEDDED_INSIDE;
-switch($GALLERY_EMBEDDED_INSIDE) {
-	case "nuke":
+global $GALLERY_EMBEDDED_INSIDE_TYPE;
+
+switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
+	case 'phpnuke':
+	case 'postnuke':
 
 		/*
 		 * We can control whether we see the right side blocks
@@ -20,6 +22,25 @@ switch($GALLERY_EMBEDDED_INSIDE) {
 
 		CloseTable();
 		include('footer.php');
+	break;
+
+	case 'phpBB2':
+		/*
+		** PhpBB2 doesn't require the OpenTable() function or any of the
+		** other functions that are native to Nuke.
+		*/
+
+		global $phpbb_root_path;
+		global $userdata;
+		global $phpEx;
+		global $gen_simple_header;
+		global $template;
+		global $board_config;
+		global $db;
+		global $do_gzip_compress;
+		global $lang;
+		
+		include ($phpbb_root_path . "includes/page_tail.php");
 		break;
 }
 ?>

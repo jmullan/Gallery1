@@ -191,7 +191,6 @@ function printSlideshowPhotos($full_urls, $urls, $captions, $what, $photo_count)
 
 
 ?>
-
 <?php
 $url=array();
 $full_urls=array();

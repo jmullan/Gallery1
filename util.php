@@ -132,7 +132,7 @@ function build_popup_url($url, $url_is_complete=0) {
 	
 	if (!$url_is_complete) {
 		$url = makeGalleryUrl($target, $args);
-		$url = "'$url'";
+		$url = "$url";
 	}
 
 	return $url;
@@ -168,7 +168,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
     $link_name = "popuplink_".$popup_counter;
     $url = build_popup_url($url, $url_is_complete);
     
-    $a1 = "<a $class id=\"$link_name\" target=\"Edit\" href=$url onClick=\"javascript:".
+    $a1 = "<a $class id=\"$link_name\" target=\"Edit\" href=\"$url\" onClick=\"javascript:".
 	popup_js("document.getElementById('$link_name').href", "Edit",
 		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
 	"\">";
@@ -866,7 +866,7 @@ function _getStyleSheetLink($filename, $skinname='') {
 	} elseif (stristr($HTTP_SERVER_VARS['REQUEST_URI'],"setup")) {
 		$base = "..";
 	} else {
-		$base = ".";
+		$base = $GALLERY_BASEDIR;
 	}
 
 	if (fs_file_exists($sheetdomainpath) && !broken_link($sheetdomainpath)) {
@@ -883,9 +883,7 @@ function _getStyleSheetLink($filename, $skinname='') {
 	    }
 	}
 
-	return '  <link rel="stylesheet" type="text/css" href="' .
-		$url .
-		'">';
+	return '  <link rel="stylesheet" type="text/css" href="' .$url . '">';
 }
 
 function pluralize_n($amt, $one, $more, $none) {
@@ -1046,21 +1044,45 @@ function makeFormIntro($target, $attrList=array()) {
 function makeGalleryUrl($target, $args=array()) {
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
+	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $GALLERY_MODULENAME;
 
-	if(stristr($GALLERY_EMBEDDED_INSIDE,"nuke")) {
-			$args["op"] = "modload";
-			$args["name"] = "$GALLERY_MODULENAME";
-			$args["file"] = "index";
+	/* Needed for phpBB2 */
+	global $userdata;
+	global $board_config;
+	global $HTTP_COOKIE_VARS;
 
-			/*
-			 * include *must* be last so that the JavaScript code in 
-			 * view_album.php can append a filename to the resulting URL.
-			 */
-			$args["include"] = $target;
-			$target = "modules.php";
-	} else {
-			$target = $gallery->app->photoAlbumURL . "/" . $target;
+	if( isset($GALLERY_EMBEDDED_INSIDE)) {
+                switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
+	                case 'phpBB2':
+				$cookiename = $board_config['cookie_name'];			
+				if(!isset($HTTP_COOKIE_VARS[$cookiename . '_sid'])) {
+					// no cookie so we need to pass the session ID manually.
+					$args["sid"] = $userdata['session_id'];
+					if(!isset($args["set_albumName"])) {
+						// This var is only passed some of the time and but is required so PUT IT IN when needed.
+						$args["set_albumName"] = $gallery->session->albumName;
+					}
+				}	
+
+        	        case 'phpnuke':
+                	case 'postnuke':
+				$args["op"] = "modload";
+				$args["name"] = "$GALLERY_MODULENAME";
+				$args["file"] = "index";
+
+				/*
+				 * include *must* be last so that the JavaScript code in 
+				 * view_album.php can append a filename to the resulting URL.
+				 */
+				$args["include"] = $target;
+				$target = "modules.php";
+
+			break;
+			
+			default:
+				$target = $gallery->app->photoAlbumURL . "/" . $target;
+		}
 	}
 
 	$url = $target;
@@ -2351,37 +2373,58 @@ function initLanguage() {
 	}
 
 	/**
-	 ** We have now 2+1 Ways. PostNuke, phpNuke or not Nuke
+	 ** We have now several Ways. Embedded (PostNuke, phpNuke, phpBB2) or not embedded
 	 ** Now we (try) to do the language settings
 	 ** 
-	 ** Note: ML_mode is only used when not in *Nuke
+	 ** Note: ML_mode is only used when not embedded
 	 **/
 
-	if (isset($GALLERY_EMBEDDED_INSIDE)) {
-		//We're in NUKE";
+	if (isset($GALLERY_EMBEDDED_INSIDE_TYPE)) {
+		/* Gallery is embedded */
+
+		/* Gallery can set nukes language, for phpBB2 this is not possible.
+		** So gallery will always use phpBB2's language.
+		*/
+
 		if (!empty($newlang)) {
-			// if there was a new language given, use it
+			// if there was a new language given, use it for nuke
 			$gallery->nuke_language=$newlang;
 		} else {
-			//No new language. Lets see which Nuke we use and look for a language
-			if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
-				/* postnuke */
+			/* No new language.
+			** Lets see in which Environment were are and look for a language.
+			*/
+			
+			switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
+			case 'postnuke':
 				if (isset($HTTP_SESSION_VARS['PNSVlang'])) {
 					$gallery->nuke_language=$HTTP_SESSION_VARS['PNSVlang'];
 				}
-			}
-			else {
-				/* phpnuke */
+
+			case 'phpnuke':
 				if (isset($HTTP_COOKIE_VARS['lang'])) {
 					$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
 				}
-			}
-		}
 
-		if (isset ($gallery->session->language) && ! isset($gallery->nuke_language)) {
-			$gallery->language = $gallery->session->language;
-		} else if (isset ($nls['alias'][$gallery->nuke_language])) {
-			$gallery->language=$nls['alias'][$gallery->nuke_language];
+				/* This is executed for both nukes */
+				if (isset ($gallery->session->language) && ! isset($gallery->nuke_language)) {
+					$gallery->language = $gallery->session->language;
+				} else if (isset ($nls['alias'][$gallery->nuke_language])) {
+					$gallery->language=$nls['alias'][$gallery->nuke_language];
+				}
+			break;
+			case 'phpBB2':
+				/* Gallery will always use phpBB2's language, so we override the mode to 1.
+				** And no pulldown or flags appear.
+				*/
+				global $board_config;
+				$gallery->app->ML_mode=1;
+				if (isset($board_config['default_lang'])) {
+					if (isset ($nls['alias'][$board_config['default_lang']])) {
+						$gallery->language = $nls['alias'][$board_config['default_lang']];
+					}
+				}				
+			break;
+			}
 		}
 	} else {
 		// We're not in Nuke
@@ -2429,7 +2472,7 @@ function initLanguage() {
 	/**
 	 **  Fall back to Default Language if :
 	 **	- we cant detect Language
-	 **	- Nuke sent an unsupported
+	 **	- Nuke/phpBB2 sent an unsupported
 	 **	- User sent an undefined
 	 **/
 	if (empty($gallery->language)) {
@@ -3280,7 +3323,6 @@ function checkVersions($verbose=false) {
 	}
        	return array($success, $fail, $warn);
 }
-
 
 function unhtmlentities ($string)
 {

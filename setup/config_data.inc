@@ -643,7 +643,6 @@ $constants = array_merge($constants,
 			"choices" => array("yes" => _("yes"), "no" => _("no")),
 		       	"value" => "no",
 			),
-
 	"comments_display_name" => array(
 			"prompt" => _("Format for commenter names"),
 			"desc" => _("Commenter names of logged in users can be displayed in a variety of different ways") .

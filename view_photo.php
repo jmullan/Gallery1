@@ -121,8 +121,7 @@ if ($do_fullOnly) {
 	$full = $gallery->user->canViewFullImages($gallery->album);
 }
     
-$fitToWindow = !strcmp($gallery->album->fields["fit_to_window"], "yes") && !$gallery->album->isResized($index) && !$full;
-
+$fitToWindow = !strcmp($gallery->album->fields["fit_to_window"], "yes") && !$gallery->album->isResized($index) && !$full && (!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE =='phpBB2');
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 $next = $index+1;
 if ($next > $numPhotos) {
@@ -219,160 +218,79 @@ if (!$title) {
 	$title=$index;
 }
 
-?>
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
-<?php doctype() ?>
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	doctype() ?>
 <html> 
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: <?php echo $title ?></title>
-  <?php echo getStyleSheetLink() ?>
-  <?php /* prefetch/navigation */
-  $navcount = sizeof($navigator['allIds']);
-  $navpage = $navcount - 1; 
-  while ($navpage > 0) {
-      if (!strcmp($navigator['allIds'][$navpage], $id)) {
-	  break;
-      }
-      $navpage--;
-  }
-  if ($navigator['allIds'][0] != $id) {
-      if ($navigator['allIds'][0] != 'unknown') { ?>
-          <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0]) ?>" >
-      <?php }
-      if ($navigator['allIds'][$navpage-1] != 'unknown') { ?>
-          <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage-1]) ?>" >
-      <?php }
-  }
-  if ($navigator['allIds'][$navcount - 1] != $id) {
-      if ($navigator['allIds'][$navpage+1] != 'unknown') { ?>
-          <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage+1]) ?>" >
-      <?php }
-      if ($navigator['allIds'][$navcount-1] != 'unknown') { ?>
-          <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1]) ?>" >
-      <?php }
-  } ?>
+  	<?php echo getStyleSheetLink() ?>
+  	<?php /* prefetch/navigation */
+  	$navcount = sizeof($navigator['allIds']);
+  	$navpage = $navcount - 1; 
+  	while ($navpage > 0) {
+		if (!strcmp($navigator['allIds'][$navpage], $id)) {
+			break;
+		}
+		$navpage--;
+  	}
+  	if ($navigator['allIds'][0] != $id) {
+      		if ($navigator['allIds'][0] != 'unknown') { ?>
+   <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0]) ?>" >
+<?php		}
+      		if ($navigator['allIds'][$navpage-1] != 'unknown') { ?>
+   <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage-1]) ?>" >
+<?php 		}
+  	}
+  	if ($navigator['allIds'][$navcount - 1] != $id) {
+      		if ($navigator['allIds'][$navpage+1] != 'unknown') { ?>
+  <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage+1]) ?>" >
+ <?php 		}
+      		if ($navigator['allIds'][$navcount-1] != 'unknown') { ?>
+  <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1]) ?>" >
+<?php 		}
+  	} ?>
   <link rel="up" href="<?php echo makeAlbumUrl($gallery->session->albumName) ?>">
-	  <?php if ($gallery->album->isRoot() &&
-			  (!$gallery->session->offline ||
-			   isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
+<?php 	if ($gallery->album->isRoot() && 
+		(!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">	 
-	  <?php }?>
-  <?php $metakeywords = ereg_replace("[[:space:]]+",' ',$gallery->album->getKeywords($index)); ?>
+<?php 	}
+	$metakeywords = ereg_replace("[[:space:]]+",' ',$gallery->album->getKeywords($index)); ?>
   <meta name="Keywords" content="<?php echo $metakeywords; ?>">
   <style type="text/css">
 <?php
-// the link colors have to be done here to override the style sheet
-if ($gallery->album->fields["linkcolor"]) {
+	// the link colors have to be done here to override the style sheet
+	if ($gallery->album->fields["linkcolor"]) {
 ?>      
     A:link, A:visited, A:active
       { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
     A:hover
       { color: #ff6600; }
 <?php 
-}       
-if ($gallery->album->fields["bgcolor"]) {
-        echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
-}       
-if (isset($gallery->album->fields["background"]) && $gallery->album->fields["background"]) {
-        echo "BODY { background-image:url(".$gallery->album->fields['background']."); } ";
-} 
-if ($gallery->album->fields["textcolor"]) {
-        echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
-	echo ".head {color:".$gallery->album->fields[textcolor]."; }";
-	echo ".headbox {background-color:".$gallery->album->fields[bgcolor]."; }";
-}       
+	}       
+	if ($gallery->album->fields["bgcolor"]) {
+        	echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
+	}       
+	if (isset($gallery->album->fields["background"]) && $gallery->album->fields["background"]) {
+        	echo "BODY { background-image:url(".$gallery->album->fields['background']."); } ";
+	} 
+	if ($gallery->album->fields["textcolor"]) {
+        	echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
+		echo ".head {color:".$gallery->album->fields[textcolor]."; }";
+		echo ".headbox {background-color:".$gallery->album->fields[bgcolor]."; }";
+	}       
 ?> 
   </style> 
-
+  </head>
+  <body dir="<?php echo $gallery->direction ?>"
 <?php
-if ($fitToWindow) { 
-?>
-  <script language="javascript1.2" type="text/JavaScript">
-  // <!--
+} // End if ! embedded
 
-  function fitToWindow(do_resize) {
-	var changed = 0;
-	var heightMargin = 160;
-	var widthMargin = 40;
-	var imageHeight = <?php echo $imageHeight ?>;
-	var imageWidth = <?php echo $imageWidth ?>;
-	var aspect = imageHeight / imageWidth;
-
-	// Get the window dimensions height.  IE and Nav use different techniques.
-	var windowWidth, windowHeight;
-	if (typeof(window.innerWidth) == "number") {
-		windowWidth = window.innerWidth;
-		windowHeight = window.innerHeight;
-	} else {
-		windowWidth = document.body.clientWidth;
-		windowHeight = document.body.clientHeight;
-	}
-
-	// Leave a gutter around the edges
-	windowWidth = windowWidth - widthMargin;
-	windowHeight = windowHeight - heightMargin;
-
-	var diffx = windowWidth - imageWidth,
-	    diffy = windowHeight - imageHeight;
-
-	if (diffx < 0 || diffy < 0) {
-	    if (diffx < diffy) {
-		imageWidth = windowWidth;
-		imageHeight = aspect * imageWidth;
-		changed = 1;
-	    } else {
-		imageHeight = windowHeight;
-		imageWidth = imageHeight / aspect;
-		changed = 1;
-	    }
-	}
-
-	if (do_resize) {
-		var img = document.images.photo;
-		img.height = imageHeight;
-		img.width = imageWidth;
-	} else {
-		if (changed) {
-			document.write('<a href="'+ document.getElementById("page_url").href+ '">');
-		}
-		src= document.getElementById("photo_url").href;
-		document.write('<img name=photo src="'+src +
-			'" border=0 + width=' + imageWidth +
-				' height=' + imageHeight + '>');
-		if (changed) {
-			document.write('</a>');
-		}
-	}
-  }
-
-  function doResize() {
-	if (document.all) {
-		// We're in IE where we can just resize the image.
-		fitToWindow(true);
-	} else {
-		// In Netscape we've got to reload the page.
-		document.reload();
-	}
-  }
-
-  // -->
-  </script>
-<?php 
-} // if ($fitToWindow)
-
-?>
-</head>
-
-<?php if ($fitToWindow) { ?>
-	<body dir="<?php echo $gallery->direction ?>" onResize='doResize()'>
-<?php } else { ?>
-	<body dir="<?php echo $gallery->direction ?>">
-<?php } ?>
-<?php } # if not embedded ?>
-<?php
 includeHtmlWrap("photo.header");
+if ($fitToWindow) {
+	/* Include Javascript */
+	include("test.php");
+}
 ?>
-
 <!-- Top Nav Bar -->
 <form name="admin_form" action="view_photos.php">
 <table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
@@ -615,19 +533,10 @@ if (!$gallery->album->isMovie($id)) {
 
 $photoTag="";
 $frame= $gallery->album->fields['image_frame'];
-if ($fitToWindow && !$GALLERY_EMBEDDED_INSIDE) { 
+if ($fitToWindow) {
 	$frame="solid"; // no frame with fitToWindow (maybe we can fix this later)
-$photoTag .= "<script language=\"javascript1.2\" type=\"text/JavaScript\">
-	// <!--
-	fitToWindow();
-	// -->
-</script><noscript>";
 }
 $photoTag .= $gallery->album->getPhotoTag($index, $full);
-if ($fitToWindow && !$GALLERY_EMBEDDED_INSIDE) { 
-	$photoTag .=  "</noscript>";
-}
-
 
 list($width, $height) = $photo->getDimensions($full);
 $gallery->html_wrap['borderColor'] = $gallery->album->fields["bordercolor"];
@@ -882,9 +791,18 @@ includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
 includeLayout('ml_pulldown.inc');
+if ($fitToWindow) {
+?>
+<script type="text/javascript">
+<!--
+	document.photo_j.height=imageheight;
+	document.photo_j.width=imagewidth;
+//-->
+</script>
+<?php
+}
 includeHtmlWrap("photo.footer");
 ?>
-
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>

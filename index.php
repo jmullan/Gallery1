@@ -38,21 +38,27 @@ global $mop;
 global $include;
 global $name;
 
-/* Detect PHP-Nuke and react accordingly */
+/* Detect phpNuke, postnuke or phpBB2 and react accordingly */
 if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 
 	/* 
 	 * Change this variable if your Gallery module has a different
-	 * name in the Nuke modules directory.
+	 * name in the Nuke or phpBB2 modules directory.
 	 */
 	$GALLERY_MODULENAME = $name;
 	$GALLERY_BASEDIR = "modules/$GALLERY_MODULENAME/";
-	$GALLERY_EMBEDDED_INSIDE='nuke';
 
-	if (isset($GLOBALS['pnconfig']) && function_exists("authorised")) {
-		$GALLERY_EMBEDDED_INSIDE_TYPE = "postnuke"; 
-	} else {
-		$GALLERY_EMBEDDED_INSIDE_TYPE = "phpnuke"; 
+	if (isset($GLOBALS['phpbb_root_path'])) {
+		$GALLERY_EMBEDDED_INSIDE='phpBB2';
+		$GALLERY_EMBEDDED_INSIDE_TYPE = 'phpBB2';
+	}
+	elseif (isset($GLOBALS['pnconfig']) && function_exists('authorised')) {
+		$GALLERY_EMBEDDED_INSIDE='nuke';
+		$GALLERY_EMBEDDED_INSIDE_TYPE = 'postnuke';
+	}
+	else {
+		$GALLERY_EMBEDDED_INSIDE='nuke';
+		$GALLERY_EMBEDDED_INSIDE_TYPE = 'phpnuke';
 	}
 
 	if (!$include) {
