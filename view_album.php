@@ -317,7 +317,7 @@ if ($numPhotos) {
 				$myAlbumName = $gallery->album->isAlbumName($i);
 				$myAlbum = new Album();
 				$myAlbum->load($myAlbumName);
-				$myHighlightTag = $myAlbum->getNestedHighlightTag();
+				$myHighlightTag = $myAlbum->getHighlightAsThumbnailTag();
 				echo("<a href=" . makeAlbumUrl($myAlbumName) . ">" . 
 					$myHighlightTag . "</a>");
 			} else {
