@@ -45,10 +45,6 @@
 
 require(dirname(__FILE__) . "/init.php");
 
-if (!empty($profile)) {
-	$timer = time();
-}
-
 /* Initializing the seed */
 srand ((double) microtime() * 1000000);
 
@@ -74,11 +70,11 @@ if ($rebuild) {
 
 $album = chooseAlbum();
 
-if ($album) {
+if (!empty($album)) {
 	$index = choosePhoto($album);
 }
 
-if (isset($index)) {
+if (!empty($index)) {
 	$id = $album->getPhotoId($index);
 	echo ""
 		. "<center><a href=" . makeAlbumUrl($album->fields["name"], $id) . ">"
@@ -95,12 +91,7 @@ if (isset($index)) {
 		.$album->fields["title"]
 		."</a></center>";
 } else {
-	print "No photo chosen.";
-}
-
-if (!empty($profile)) {
-	$elapsed = time() - $timer;
-	print "<br>Elapsed: $elapsed secs";
+	print "<center>No photo chosen.</center>";
 }
 
 /*
@@ -128,17 +119,19 @@ function choosePhoto($album) {
 	if ($count == 0) {
 		// Shouldn't happen
 		return null;
-	} else if ($count == 1) {
+	} elseif ($count == 1) {
 		$choose = 1;
+		if ($album->isAlbum($choose)) {
+			return null;
+		}
 	} else {
 		$choose = rand(1, $count);
 		$wrap = 0;
-		if ($album->isHiddenRecurse($choose)) {
+		while ($album->isHiddenRecurse($choose) || $album->isAlbum($choose)) {
 			$choose++;
 			if ($choose > $album->numPhotos(1)) {
 				$choose = 1;
 				$wrap++;
-
 				if ($wrap == 2) {
 					return null;
 				}
