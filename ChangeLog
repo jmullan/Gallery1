@@ -1,3 +1,19 @@
+2000-09-19  Bharat Mediratta  <bharat@menalto.com>
+
+	* Added error checking code to allow us to catch photos that we
+	  won't be able to work with and flag them early.  This helps us
+	  prevent having extra crufty file lying around the album from
+	  failed photo insertions (which in turn leads to problems when we
+	  want to delete the album)
+	  
+	* Abstracted my ad-hoc flush code into a function and put it in
+	  util.php
+
+	* Broke classes.php up into individual class files.  I should have
+	  done this ages ago...the repetition of method names across
+	  classes makes it hard to find the right method if they're all in
+	  the same file.
+
 2000-09-17  Bharat Mediratta  <bharat@menalto.com>
 
 	* Added versioning support
