@@ -247,7 +247,7 @@ $constants =  array_merge(
 		"choices" => array(	NULL 	   => _("Standalone Gallery"),
 					'phpNuke'  => 'phpNuke',
 					'postNuke' => 'postNuke',
-					'phpBB2'   => 'phpBB2' 
+					'phpBB2'   => 'phpBB2',
 					'GeekLog'  => 'GeekLog'),
 		"value"  => NULL,
 		"allow_empty" => true
