@@ -817,10 +817,10 @@ $constants = array_merge($constants,
 			"value" => "!!FULLNAME!! (!!USERNAME!!)",
 			),
 	"comments_addInside" => array(
-			"prompt"	=> _("Add Comments inside"),
+			"prompt"	=> _("Add Comments inside the photo page"),
 			"desc"		=> _("Do you want to have the possibility to add comments inside the view photo page, or do you prefer a link to a popup"),
 			"choices"	=> array ("popup" => _("Popup"), "inside" => _("Inside")),
-			"value"		=> "inside"
+			"value"		=> "popup"
 			),
 	"group_comments_end" => array (
 		"type"          => "group_end",
