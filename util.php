@@ -1479,14 +1479,24 @@ function makeGalleryUrl($target, $args=array()) {
 
 	$url = $target;
 	if ($args) {
-		$i = 0;
 		foreach ($args as $key => $value) {
 			if ($i++) {
 				$url .= "&";  // should replace with &amp; for validatation
 			} else {
 				$url .= "?";
 			}
-			$url .= "$key=$value";
+				
+			if (! is_array($value)) {
+				$url .= "$key=$value";
+			} else {
+				$j=0;
+				foreach ($value as $subkey => $subvalue) {
+					if ($j++) {
+						$url .= "&";  // should replace with &amp; for validatation
+					}
+					$url .= $key .'[' . $subkey .']=' . $subvalue;
+				}
+			}
 		}
 	}
 	return htmlspecialchars($url);

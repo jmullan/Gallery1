@@ -36,12 +36,12 @@ if (isset($bulk_create)) {
 	header("Location: " . makeGalleryHeaderUrl("multi_create_user.php"));
 }
 
-if ( (isset($modify) || isset($delete)) && ! isset($uname)) {
+if ( (isset($modify) || isset($delete)) && ! isset($unames)) {
 	$error=_("Please select a user");
 } elseif (isset($modify)) {
-	header("Location: " . makeGalleryHeaderUrl("modify_user.php", array("uname" => $uname)));
+	header("Location: " . makeGalleryHeaderUrl("modify_user.php", array('uname' => $unames[0])));
 } elseif (isset($delete)) {
-	header("Location: " . makeGalleryHeaderUrl("delete_user.php", array("uname" => $uname)));
+	header("Location: " . makeGalleryHeaderUrl("delete_user.php", array('unames' => $unames)));
 }
 
 $displayUsers = array();
@@ -66,40 +66,37 @@ doctype();
 <div class="popuphead"><?php echo _("Manage Users") ?></div>
 <div class="popupcontent" align="center">
 <?php 
-	if (isset($error)) {
-		echo gallery_error($error);
-	}
-?>
-<?php echo makeFormIntro("manage_users.php", array(
+if (isset($error)) {
+	echo gallery_error($error);
+}
+
+echo makeFormIntro("manage_users.php", array(
 			"name" => "manageusers_form", 
 			"method" => "POST"));
-?>
-<?php echo _("You can create, modify and delete users here.") ?>
-<p>
 
-<?php
+echo _("You can create, modify and delete users here.");
+echo "\n<p>";
+
 if (!$displayUsers) {
 	print "<i>". _("There are no users!  Create one.") ."</i>";
 } else {
-?>
-
-<select name="uname" size="15">
-
-<?php
+	echo '<select name="unames[]" size="15" multiple>';
 	foreach ($displayUsers as $name) {
-		print "<option value=\"$name\"> $name";
+		print "\t<option value=\"$name\">$name</option>\n";
 	}
-}
-?>
+	echo "\n</select>";
+}	
 
-</select>
+echo "\n</p>";
+echo _("To select multiple users (only recognized for deletion), hold down the Control (PC) or Command (Mac) key while clicking.");
+?>
 
 <p>
 <input type="submit" name="create" value="<?php echo _("Create") ?>"> 
 <?php if ($gallery->app->multiple_create == "yes") { ?>
 	<input type="submit" name="bulk_create" value="<?php echo _("Bulk Create") ?>"> 
-<?php } ?>
-<?php if (count($displayUsers)) { ?>
+<?php }
+if (count($displayUsers)) { ?>
 <input type="submit" name="modify" value="<?php echo _("Modify") ?>">
 <input type="submit" name="delete" value="<?php echo _("Delete") ?>">
 <?php } ?>

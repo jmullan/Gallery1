@@ -29,8 +29,13 @@ if (!$gallery->user->isAdmin()) {
 	exit;	
 }
 
+$action=getRequestVar('action');
+$unames=getRequestVar('unames');
+
 if (isset($action) && $action == 'delete') {
-	$gallery->userDB->deleteUserByUsername($uname);
+	foreach($unames as $user) {
+		$gallery->userDB->deleteUserByUsername($user);
+	}
 }
 if (!empty($action)) {
 	header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
@@ -47,29 +52,37 @@ doctype();
 <div class="popup">
 <div class="popuphead"><?php echo _("Delete User") ?></div>
 <div class="popupcontent" align="center">
-<?php echo makeFormIntro("delete_user.php", array('name' => 'deleteuser_form', 
-						'onsubmit' => 'deleteuser_form.delete.disabled = true;')); ?>
-<input type="hidden" name="uname" value="<?php echo $uname ?>">
 
-<?php
-if (!strcmp($gallery->user->getUsername(), $uname)) {
-	echo '<p align="center">';
-	echo gallery_error(_("You can't delete your own account!"));
-	echo '</p>';
-} else {
+<?php echo makeFormIntro("delete_user.php", array(
+                                "name" => "deleteuser_form"));
+//				"onsubmit" => "deleteuser_form.delete.disabled='true'"));
+
+foreach ($unames as $user) {
+	if (!strcmp($gallery->user->getUsername(), $user)) {
+		echo '<p align="center">';
+		echo gallery_error(_("You can't delete your own account!"));
+		echo '</p>';
+		$error++;
+	}
+}
+if (! isset($error)) {	
 	echo _("Users can have special permissions in each album.") .
-		_("If you delete this user, any such permissions go away.") .
-		_("Users cannot be recreated.") .
-		_("Even if this user is recreated, those permissions are gone.");
+	ngettext("If you delete this user, any such permissions go away.", "if you delete these users, any permissions will go away", sizeof($unames)) .
+	_("Users cannot be recreated.") .
+	ngettext ("Even if this user is recreated, those permissions are gone.", "Even if you recreate one of those users, the permissions are gone.", sizeof($unames));
 ?>
-<p><b><?php echo  _("Do you really want to delete user"). ": ". $uname ?><b></p>
-
-<input type="hidden" name="action" value="">
+<p><b><?php echo ngettext("Do you really want to delete user", "Do you really want to delete these users", sizeof($unames)); ?>:
+<?php 
+	foreach ($unames as $key => $value) { 
+		echo "<input type=\"hidden\" name=\"unames[$key]\" value=\"$value\"><br>$value\n";
+	}
+?>
+<br><br>
 <input type="submit" name="delete" value="<?php echo _("Delete") ?>" onclick="deleteuser_form.action.value='delete'">
 <?php
 }
 ?>
-
+<input type="hidden" name="action" value="">
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick="deleteuser_form.action.value='cancel'">
 </form> 
 

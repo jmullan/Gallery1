@@ -32,8 +32,6 @@ function pluralize_n2($singPlu, $count, $none='') {
 	if ($count == 0 && $none != '') {
 		return $none;
 	} else {
-//		echo "\n<br>----";
-//		echo "\nNG $singPlu, C: $count";
 		return sprintf($singPlu, $count);
 	}
 }
