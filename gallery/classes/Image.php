@@ -104,7 +104,7 @@ class Image {
 		global $gallery;
 
 		/* getting rid of the resized image */
-		if (stristr($target, "orig")) {
+		if ( (stristr($target, "orig")) || (stristr($target, _("Original Size"))) ) {
 			list($w, $h) = getDimensions("$dir/$this->name.$this->type");
 			$this->width = $w;
 			$this->height = $h;
