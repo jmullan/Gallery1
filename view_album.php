@@ -284,7 +284,6 @@ if (isCorrectPassword($edit)) {
 <font size=+0 face=arial>
 Admin:
 <a href=<?= popup("add_photos.php?albumName=$albumName") ?>>[Add Photos] </a>
-<a href=<?= popup("add_photos2.php?albumName=$albumName") ?>>[Add Test] </a>
 <a href=<?= popup("shuffle_album.php?albumName=$albumName") ?>>[Shuffle Photos] </a>
 <a href=<?= popup("resize_photo.php?albumName=$albumName&index=all") ?>>[Resize All] </a>
 <a href=<?= popup("do_command.php?cmd=remake-thumbnail&albumName=$albumName&index=all") ?>>[Rebuild Thumbs]</a>
