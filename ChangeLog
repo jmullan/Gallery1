@@ -1,3 +1,9 @@
+2002-02-11  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b6
+
+	* When uploading photos, we now move the newly uploaded file into
+	  gallery's temp directory using the move_uploaded_file() function.
+	  This allows us to sidestep the open_basedir restriction.
+
 2002-01-18  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b5
 
 	* Fix for bug #487744: Gallery $index conflicts with Nuke $index
