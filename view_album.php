@@ -248,7 +248,7 @@ if ($numPhotos) {
 ?>
 	<tr bgcolor=#333333>
 	<td colspan=$rows align=center>
-	<font size=+2>Hey! Add some photos.</font> 
+	<font size=+2 color=#FFFFFF>Hey! Add some photos.</font> 
 	</td>
 	</tr>
 <?
