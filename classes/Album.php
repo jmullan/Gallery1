@@ -24,7 +24,7 @@ class Album {
 	var $photos;
 	var $dir;
 	var $version;
-	var $tsilb = "TSILB\n";
+	var $tsilb = "TSILB";
 
 	/* 
 	 * This variable contains data that is useful for the lifetime
@@ -425,6 +425,13 @@ class Album {
 			}
 		}
 
+		/*
+		 * We used to pad TSILB with \n, but on win32 that gets
+		 * converted to \r which causes problems.  So get rid of it
+		 * when we load albums back.
+		 */
+		$this->tsilb = trim($this->tsilb);
+		
 		$this->photos = $tmp;
 
 		return 1;
@@ -497,7 +504,7 @@ class Album {
 			$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
 			if ($fd = fs_fopen($serial, "w")) {
 				/* This space intentionally left blank */
-				fwrite($fd, $this->tsilb);
+				fwrite($fd, trim($this->tsilb));
 				fclose($fd);
 			}
 
@@ -766,7 +773,7 @@ class Album {
 
 				/* Don't use fs_fopen here since we're opening a url */
 				if ($fd = @fopen($serial, "r")) {
-					$serialContents = fgets($fd, 6);
+					$serialContents = fgets($fd, strlen($this->tsilb)+1);
 					if (!strcmp($serialContents, $this->tsilb)) {
 						$this->transient->mirrorUrl = $base_url;
 						return $this->transient->mirrorUrl;

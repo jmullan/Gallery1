@@ -1,3 +1,9 @@
+2003-03-30  Bharat Mediratta  <bharat@menalto.com> 1.3.4-cvs-b16
+
+	* Fixed a bug in the mirroring code on win32 where the serial.dat file
+	  would wind up with a \r instead of a \n causing the comparison to
+	  fail.  Now we get rid of the \n altogether.
+
 2003-02-24  John Kirkland <jpk@bl.org> 1.3.4-cvs-b15
 
 	* Merged GRcreateNewAlbum in gallery_remote2.php with createNewAlbum
