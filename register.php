@@ -70,8 +70,7 @@ $allowChange['create_albums'] = false;
 $allowChange["send_email"] = false;
 $allowChange["member_file"] = false;
 
-$canCreateChoices = array(1 => _("yes"), 0 => _("no"));
-$canCreate = (!strcmp($gallery->app->selfRegCreate, _("yes")) ? 1 : 0);
+$canCreate = (!strcmp($gallery->app->selfRegCreate, 'yes') ? 1 : 0);
 
 $errorCount=0;
 if (isset($create)) {
