@@ -848,7 +848,7 @@ $constants = array_merge($constants,
 	),
 	"comments_enabled" => array(
 			"prompt"	=> _("Enable commenting"),
-			"desc"		=> _("This option will enable or disbale the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."),
+			"desc"		=> _("This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."),
 			"choices"	=> array(
 						"yes" => _("yes"),
 						"no"  => _("no")
