@@ -123,7 +123,11 @@ function drawSelect($name, $array, $selected, $size, $attrList=array()) {
  *                              "method" => "POST"));
  */
 function makeFormIntro($target, $attrList=array()) {
-	$url = makeGalleryUrl($target);
+
+	// We don't want the result HTML escaped since we split on "&", below
+	// use the header version of makeGalleryUrl()
+	$url = makeGalleryHeaderUrl($target);
+
 	$result = split("\?", $url);
 	$target = $result[0];
 	if (sizeof($result) > 1) {
