@@ -139,7 +139,7 @@ $constants = array(
 	),
 	"tmpDir" => array(
 		"prompt" => "Temporary directory",
-		"desc" => "The filesystem path to a temp directory.  Eg. <i>/tmp</i> or " .
+		"desc" => "The filesystem path to a temporary directory.  Eg. <i>/tmp</i> or " .
 			"<i>c:\\windows\\temp</i>",
 		"value" => getenv("TMP"),
 		"filename" => 1,
@@ -148,9 +148,10 @@ $constants = array(
 	),
 	"pnmDir" => array(
 		"prompt" => "Path to NetPBM",
-		"desc" => "The path to NetPBM on your system.  If you downloaded NetPBM " .
-			"from the Gallery download page, don't forget to make the files " .
-			"executable.",
+		"desc" => "The path to the directory containing NetPBM on your system.  If you " .
+			"downloaded NetPBM from the Gallery download page, don't forget to make " .
+			"the files executable.  Eg. <i>/usr/local/netpbm</i> or <i>/usr/local/bin</i> " .
+			"or <i>c:\\apps\\netpbm</i>",
 		"value" => locateDir("jpegtopnm", $gallery->app ? $gallery->app->pnmDir : ""),
 		"verify_func" => "check_graphics",
 		"fail-netpbm" => "I can't find NetPBM at the location you provided.  " .
@@ -191,7 +192,8 @@ $constants = array(
 	"use_exif" => array(
 		"prompt" => "EXIF",
 		"desc" => "The filesystem path to the 'jhead' exif parser.  This is optional " .	
-			"so if you don't have it, don't worry about it too much",
+			"so if you don't have it, don't worry about it too much.  Eg. <i> " .
+			"/usr/local/bin/jhead</i> or <i>c:\\bin\\jhead.exe</i>",
 		"value" => locateFile("jhead"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
@@ -260,7 +262,7 @@ $constants = array(
 	"expectedExecStatus" => array(
 		"prompt" => "<b>(Advanced)</b> Status code",
 		"desc" => "The status code Gallery expects to see after a successful " .
-			"exec() call.  It'll try to figure this out on its own so you " .
+			"exec() call.  Gallery will try to figure this out on its own so you " .
 			"probably won't need to change this value unless you have problems.",
 		"value" => detect_exec_status(),
 		"attrs" => array("size" => 5),
