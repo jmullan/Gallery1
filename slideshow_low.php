@@ -68,6 +68,10 @@ if (!$slide_dir) {
     $slide_dir = $defaultDir;
 }
 
+if ($slide_full && !$gallery->user->canViewFullImages($gallery->album)) {
+    $slide_full = 0;
+}
+
 function makeSlideLowUrl($index, $loop, $pause, $full, $dir) {
 
     return makeGalleryUrl('slideshow_low.php',
@@ -376,12 +380,14 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
     &nbsp;<a href="#" onClick='stop(); return false;'>[stop]</a>
     <a href="#" onClick='play(); return false;'>[play]</a>
 <?php
-if ($slide_full) {
-    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0, $slide_dir) 
-	. "\">[normal size]</a>";
-} else {
-    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1, $slide_dir)
-        . "\">[full size]</a>";
+if ($gallery->user->canViewFullImages($gallery->album)) {
+    if ($slide_full) {
+	echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0, $slide_dir) 
+	    . "\">[normal size]</a>";
+    } else {
+	echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1, $slide_dir)
+            . "\">[full size]</a>";
+    }
 }
 ?>
 <?php

@@ -53,9 +53,14 @@ $defaultTransition = 0;
 $defaultPause = 3;
 $defaultFull = 0;
 
-if (!slide_full) {
+if (!isset($slide_full)) {
     $slide_full = $defaultFull;
 }
+
+if ($slide_full && !$gallery->user->canViewFullImages($gallery->album)) {
+    $slide_full = 0;
+}
+
 
 $borderColor = $gallery->album->fields["bordercolor"];
 $borderwidth = $gallery->album->fields["border"];
@@ -467,15 +472,19 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 <?php
 echo "&nbsp;<a href='#' onClick='stopOrStart(); return false;'>[<span id='stopOrStartText'>stop</span>]</a>";
 echo "&nbsp;<a href='#' onClick='changeDirection(); return false;'>[<span id='changeDirText'>reverse</span> direction]</a>";
-if ($slide_full) {
-    echo "&nbsp;<a href=\"" . makeGalleryUrl("slideshow.php",
-        array("set_albumName" => $gallery->session->albumName)) . "\">[normal size]</a>";
-} else {
-    echo "&nbsp;<a href=\"" . makeGalleryUrl("slideshow.php",
-        array("set_albumName" => $gallery->session->albumName, "slide_full" => 1))
-        . "\">[full size]</a>";
+
+if ($gallery->user->canViewFullImages($gallery->album)) {
+    if ($slide_full) {
+	echo "&nbsp;<a href=\"" . makeGalleryUrl("slideshow.php",
+            array("set_albumName" => $gallery->session->albumName)) . "\">[normal size]</a>";
+    } else {
+	echo "&nbsp;<a href=\"" . makeGalleryUrl("slideshow.php",
+            array("set_albumName" => $gallery->session->albumName, "slide_full" => 1))
+	    . "\">[full size]</a>";
+    }
 }
-echo "&nbsp;&nbsp;||";
+ 
+ echo "&nbsp;&nbsp;||";
 ?>
 
     &nbsp;Delay: 
