@@ -42,6 +42,13 @@ require('session.php');
 
 /* Load our user database (and user object) */
 $userDB = new UserDB;
+
+/* Check to see if we have the serialization bug */
+if (strcmp(get_class($userDB),"userdb")) {
+	include("errors/bug_unserialization.php");
+	exit;
+}
+
 if ($username) {
 	$user = $userDB->getUserByUsername($username);
 }
