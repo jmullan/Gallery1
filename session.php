@@ -50,6 +50,13 @@ if (session_id()) {
 /* Start a new session, or resume our current one */
 session_start();
 
+/* emulate register_globals for sessions */
+if (!$gallery->register_globals) {
+    foreach($HTTP_SESSION_VARS as $key => $value) {
+        eval("\$$key = & \$HTTP_SESSION_VARS[\"$key\"];");
+    }
+}
+
 /*
  * Are we resuming an existing session?  Determine this by checking
  * to see if the session container variable is already set.  If not, then

@@ -39,6 +39,28 @@ foreach ($sensitiveList as $sensitive) {
  */
 error_reporting(E_ALL & ~E_NOTICE);
 
+/* emulate register_globals for all but session (which is done elsewhere) */
+$register_globals = ini_get("register_globals");
+if (empty($register_globals) ||
+        !strcasecmp($register_globals, "off") ||
+        !strcasecmp($register_globals, "false")) {
+    $gallery->register_globals = 0;
+} else {
+    $gallery->register_globals = 1;
+}
+
+if (!$gallery->register_globals) {
+    import_request_variables("gpc");
+    foreach($HTTP_POST_FILES as $key => $value) {
+	${$key."_name"} = $value["name"];
+	${$key."_size"} = $value["size"];
+	${$key."_type"} = $value["type"];
+	${$key} = $value["tmp_name"];
+    }
+    extract($HTTP_SERVER_VARS);
+    extract($HTTP_ENV_VARS);
+}
+
 /* Load bootstrap code */
 if (substr(PHP_OS, 0, 3) == 'WIN') {
 	include($GALLERY_BASEDIR . "platform/fs_win32.php");

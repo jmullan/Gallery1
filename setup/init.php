@@ -6,6 +6,8 @@
  */
 error_reporting(E_ALL & ~E_NOTICE);
 
+/* emulate part of register_variables = on */
+import_request_variables("gpc");
 if (substr(PHP_OS, 0, 3) == 'WIN') {
 	include("../platform/fs_win32.php");
 	if (fs_file_exists("SECURE")) {
