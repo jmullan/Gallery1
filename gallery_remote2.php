@@ -56,7 +56,7 @@ header("Content-type: text/plain");
  * Gallery remote protocol version 2.3
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 5;
+$GR_VER['MIN'] = 6;
 
 
 /*
@@ -255,6 +255,13 @@ if (!strcmp($cmd, "login")) {
 		$response->setProperty( "status", $GR_STAT['NO_FILENAME'] );
 		$response->setProperty( "status_text", "Filename not specified." );
 	} else {
+		if(isset($autoRotate)) {
+			if($autoRotate == 'yes') {
+				$gallery->app->autorotate = 'yes';
+			} else {
+				$gallery->app->autorotate = 'no';
+			}
+		}
 		if(!empty($force_filename)) {
 			$name = $force_filename;
 		} else {
