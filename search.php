@@ -41,7 +41,7 @@ if ($searchstring) {
 ?>
 <table width=100% border=0 cellspacing=0>
 <tr>
-<?= makeGetFormIntro("search.php"); ?>
+<?= makeFormIntro("search.php"); ?>
 <td valign="middle" align="right">
 <span class="admin"> Search Again: </span>
 <input style="font-size=10px;" type="text" name="searchstring" value="<?= $searchstring ?>" size="25">
@@ -182,7 +182,7 @@ else {
 ?>
 <br>Search the Gallery's Album and Photo<br> titles and descriptions:<br>
 	<table width=100% border=0 cellspacing=0>
-	<tr><?= makeGetFormIntro("search.php"); ?>
+	<tr><?= makeFormIntro("search.php"); ?>
 	<td valign="middle" align="left">
 	<input type="text" name="searchstring" value="<?= $searchstring ?>" size="25">
 	<input type="submit" value="Go!">
