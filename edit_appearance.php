@@ -27,6 +27,7 @@ if ($save) {
 	$album->fields["bordercolor"] = $bordercolor;
 	$album->fields["border"] = $border;
 	$album->fields["background"] = $background;
+	$album->fields["resize_size"] = $resize_size;
 	$album->fields["returnto"] = $returnto;
 	$album->save();
 	reload();
@@ -65,6 +66,10 @@ You can modify the appearance of your photo album here.
 <tr>
 <td>Borders</td>
 <td><select name="border"><?= selectOptions($album, "border", array("off", 1, 2, 3, 4)) ?></select></td>
+</tr>
+<tr>
+<td>Auto-Resize</td>
+<td><select name="resize_size"><?= selectOptions($album, "resize_size", array("off", 400, 500, 600, 700, 800)) ?></select></td>
 </tr>
 <tr>
 <td>Border color</td>
