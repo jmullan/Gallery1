@@ -916,7 +916,8 @@ function getItemCaptureDate($file) {
 
 	$success = 0;
 	if ($gallery->app->use_exif) {
-		$exifData = getExif($file);
+		$return = getExif($file);
+		$exifData = $return[1];
 		if ($exifData["Date/Time"]) {
 			$success = 1;
 			$tempDate = split(" ", $exifData["Date/Time"], 2);
