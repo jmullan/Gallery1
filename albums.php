@@ -68,7 +68,9 @@ includeHtmlWrap("gallery.header");
 <? 
 $adminText = "<span class=\"admin\">";
 $adminText .= pluralize($numAlbums, "album", "no");
-$adminText .= " on " . pluralize($maxPages, "page", "no") . "&nbsp;";
+if ($maxPages > 1) {
+	$adminText .= " on " . pluralize($maxPages, "page", "no") . "&nbsp;";
+}
 $adminText .= "</span>";
 $adminCommands = "<span class=\"admin\">";
 
@@ -147,7 +149,7 @@ for ($i = $start; $i <= $end; $i++) {
   <?= editField($album, "description", $edit) ?>
   </span>
   <br>
-  <? if ($app->default["showOwners"]) { ?>
+  <? if (strcmp($app->default["showOwners"], "no")) { ?>
   <span class="desc">
   Owner: <a href=mailto:<?=$owner->getEmail()?>><?=$owner->getFullName()?></a>
   </span>
