@@ -1,7 +1,7 @@
 
 <?
 function row_text($key, $arr) {
-	$buf = "<tr><td valign=top align=right>$arr[desc]</td><td valign=top>";
+	$buf = "<tr><td width=50% valign=top align=right>$arr[desc]</td><td valign=top>";
 	if ($arr["type"]) {
 		$type = "type=$arr[type]";
 	}
@@ -63,6 +63,40 @@ function error($msg) {
 }
 function row_wrap($buf) {
 	return "<tr><td><code>$buf</td></tr>";
+}
+
+function check_htaccess()
+{
+	global $GALLERY_URL; 
+
+	/*
+	 * the .htaccess file in the parent directory tries to auto_prepend the 
+	 * init.php file.  If that worked, then GALLERY_URL will be set. 
+	 */
+	return isset($GALLERY_URL);
+}
+
+function check_php()
+{
+	global $MIN_PHP_MAJOR_VERSION;
+
+	return floor(phpversion()) >= floor($MIN_PHP_MAJOR_VERSION);
+}
+
+function check_mod_rewrite() 
+{
+	global $got_mod_rewrite;
+	return $got_mod_rewrite;
+}
+
+function check_jpeg()
+{
+	return function_exists("ImageCreateFromJPEG");
+}
+
+function check_gd()
+{
+	return function_exists("ImageCreate");
 }
 ?>
 
