@@ -2,6 +2,7 @@
 require("../classes/User.php");
 require("../classes/gallery/User.php");
 require("../classes/NobodyUser.php");
+require("../classes/LoggedInUser.php");
 require("../classes/EverybodyUser.php");
 require("../errors/configure_instructions.php");
 
