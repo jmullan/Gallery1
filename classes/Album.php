@@ -86,6 +86,14 @@ class Album {
 		return $returnValue;
 	}
 			
+	function versionOutOfDate() {
+		global $gallery;
+		if (strcmp($this->version, $gallery->album_version)) {
+			return 1;
+		}
+		return 0;
+	}
+
 	/*
 	 * Whenever you change this code, you should bump the $gallery->album_version
 	 * appropriately.
@@ -94,8 +102,12 @@ class Album {
 		global $gallery;
 
 		if (!strcmp($this->version, $gallery->album_version)) {
+			print "Album up to date.<br>";
 			return 0;
 		}
+
+		print "Upgrading album properties...";
+		my_flush();
 
 		$changed = 0;
 		$check = array("thumb_size", 
@@ -113,6 +125,7 @@ class Album {
 				$changed = 1;
 			}
 		}
+		print "done.<br>";
 
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
@@ -126,16 +139,23 @@ class Album {
 		/* 
 		 * Check all items 
 		 */
-		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+		$count = $this->numPhotos(1);
+		for ($i = 1; $i <= $count; $i++) {
+			set_time_limit(30);
+			print "Upgrading photo $i of $count...";
+			my_flush();
+
 			$photo = $this->getPhoto($i);
 			if ($photo->integrityCheck($this->getAlbumDir())) {
 				$this->setPhoto($photo, $i);
 				$changed = 1;
 			}
+
+			print "done.<br>";
 		}
 
-		if (strcmp($this->version, $gallery->config_version)) {
-			$this->version = $gallery->config_version;
+		if (strcmp($this->version, $gallery->album_version)) {
+			$this->version = $gallery->album_version;
 			$changed = 1;
 		}
 
