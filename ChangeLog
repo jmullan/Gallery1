@@ -1,3 +1,11 @@
+2003-11-28 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b42
+
+	* Bugfix: poll_results.php contained blank line in header 
+		  which causes warning when embedded.
+
+	* Bugfix: result bar image was not displayed when embedded,
+		  because $GALLERY_BASEDIR was not used.
+
 2003-11-28 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b41
 
 	* Bugfix: trim strings got from language files in emulate_gettext().
