@@ -24,101 +24,79 @@
 ?>
 <?php
 if (!file_exists(dirname(__FILE__) . '/util.php')) {
-        print _("You must move this file to the main Gallery directory before running it.");
-        exit;
+	print _("You must move this file to the main Gallery directory before running it.");
+	exit;
 }
-
 $gallery->backup_mode="yes";
 require_once(dirname(__FILE__) . '/init.php');
-
-// Security check
-if (!$gallery->user->isAdmin()) {
-        header("Location: " . makeAlbumHeaderUrl());
-        exit;
-}
 
 list($backup, $force, $backup_method, $zip_path, $gzip_path, $tar_path, $xargs_path, 
 	$find_path, $target_files) =
 	    getRequestVar(array('backup', 'force', 'backup_method', 'zip_path', 'gzip_path', 'tar_path', 
 	    'xargs_path', 'find_path', 'target_files'));
 
-global $GALLERY_EMBEDDED_INSIDE;
-
 set_time_limit(600);
 $showForce = false;
-if (!empty($backup) || !empty($force)) {
-    $error_text='';
-    switch ($backup_method) {
-	case "zip":
-	    if (!fs_file_exists($zip_path)) {
-		$error_text .= sprintf(_("Zip file \"%s\" does not exist or is not readable"), $zip_path) . "<br>";
-	    }
-	break;
-	
-	case "tgz":
-	    if (!fs_file_exists($gzip_path)) {
-		$error_text .= sprintf(_("Gzip file \"%s\" does not exist or is not readable"), $gzip_path) . "<br>";
-	    }
-	
-	    if (!fs_file_exists($tar_path)) {
-		$error_text .= sprintf(_("Tar file \"%s\" does not exist or is not readable"), $tar_path) . "<br>";
-	    }
-	
-	    if (!strcmp($target_files, "dat")) { 
-		if (!fs_file_exists($find_path)) {
-		    $error_text .= sprintf(_("Find file \"%s\" does not exist or is not readable"), $find_path) . "<br>";
-		}
-		
-		if (!fs_file_exists($xargs_path)) {
-		    $error_text .= sprintf(_("Xargs file \"%s\" does not exist or is not readable"), $xargs_path) . "<br>";
-		}
+if (!empty($backup) || !empty($force))
+{
+	$error_text='';
+	switch ($backup_method) {
+		case "zip":
+			if (!fs_file_exists($zip_path))
+			{
+				$error_text .= sprintf(_("Zip file \"%s\" does not exist or is not readable"), $zip_path) . "<br>";
+			}
+			break;
+		case "tgz":
+			if (!fs_file_exists($gzip_path))
+			{
+				$error_text .= sprintf(_("Gzip file \"%s\" does not exist or is not readable"), $gzip_path) . "<br>";
+			}
+			if (!fs_file_exists($tar_path))
+			{
+				$error_text .= sprintf(_("Tar file \"%s\" does not exist or is not readable"), $tar_path) . "<br>";
+			}
+			if (!strcmp($target_files, "dat")) { 
+				if (!fs_file_exists($find_path)) {
+					$error_text .= sprintf(_("Find file \"%s\" does not exist or is not readable"), $find_path) . "<br>";
+				}
+				if (!fs_file_exists($xargs_path)) {
+					$error_text .= sprintf(_("Xargs file \"%s\" does not exist or is not readable"), $xargs_path) . "<br>";
+				}
+			}
 	}
-    }
 
-    if (!empty($force) || strlen($error_text) == 0) {
-	backup();
-	exit;
-    } else {
-	if (ini_get('open_basedir')) {
-	    $error_text = sprintf(_("<b>Note:</b> Your webserver is configured with  the %sopen_basedir%s restriction.  This may make it difficult for Gallery to detect and verify your binaries, even if they exist and function properly.  If you know that the paths you entered are correct, you must click the \"force\" button.  We detected the following error(s):"),
- 		'<a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir">', '</a>'). "<ul>$error_text</ul>";
-	    $showForce = true;
+	if (!empty($force) || strlen($error_text) == 0)
+	{
+		backup();
+		exit;
+	} else {
+	    if (ini_get('open_basedir')) {
+		$error_text = sprintf(_("<b>Note:</b> Your webserver is configured with  the %sopen_basedir%s restriction.  This may make it difficult for Gallery to detect and verify your binaries, even if they exist and function properly.  If you know that the paths you entered are correct, you must click the \"force\" button.  We detected the following error(s):"),
+ '<a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir">', '</a>'). "<ul>$error_text</ul>";
+		$showForce = true;
+	    }
 	}
-    }
 } 
-global $GALLERY_EMBEDDED_INSIDE;
-if (!$GALLERY_EMBEDDED_INSIDE) {
-        doctype();
 ?>
 <html>
 <head>
-  <title><?php echo _("Backup Albums"); ?></title>
-<?php
-        common_header();
-?>
+  <title>Backup Albums</title>
+  <?php echo getStyleSheetLink() ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<?php
-} // end if embedded
-        includeHtmlWrap("gallery.header");
-?>
-<div class="popuphead"><?php echo _("Backup album data") ?></div>
-<?php
-$adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
-$adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+<body dir="<?php echo $gallery->direction; ?>">
 
-$adminbox["commands"] = $adminCommands;
-$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-includeLayout('adminbox.inc');
-includeLayout('ml_pulldown.inc');
-?>
-
-<div class="popup" align="center">
+<span class="popuphead"><?php echo _("Backup album data") ?></span>
+<p>
 <?php
 if (!empty($error_text)) {
-    echo gallery_error($error_text);
+?>
+<span class="error"><?php echo $error_text ?></span>
+<?php
 }
+?>
 
+<?php
 if (!isset($backup_method)) { $backup_method="zip";}
 if (!isset($target_files)) { $target_files="dat";}
 if (!isset($tar_path)) { $tar_path= ( ($path = findInPath ("tar")) ? $path : "/usr/bin/tar" );}
@@ -126,13 +104,14 @@ if (!isset($find_path)) { $find_path=( ($path = findInPath ("find")) ? $path : "
 if (!isset($xargs_path)) { $xargs_path=( ($path = findInPath ("xargs")) ? $path : "/usr/bin/xargs");}
 if (!isset($gzip_path)) { $gzip_path=( ($path = findInPath ("gzip")) ? $path : "/usr/bin/gzip");}
 if (!isset($zip_path)) { $zip_path="C:\bin\zip.exe";}
-
-echo _("Choose archiving option and which files you wish to archive.");
-echo makeFormIntro("backup_albums.php", array(
+?>
+<?php echo _("Choose archiving option and which files you wish to archive.") ?>
+<?php echo makeFormIntro("backup_albums.php", array(
 		"name" => "theform", 
 		"method" => "POST"));
 ?>
 <table>
+
 <tr>
 	<td><?php echo _("Backup Method:") ?></td>
 	<td><input type="radio" name="backup_method" value="tgz" align="middle" <?php ($backup_method == "tgz") ? print 'checked' : '' ?> >tar/gzip</td>
@@ -182,10 +161,9 @@ echo makeFormIntro("backup_albums.php", array(
 <input type="button" value=<?php echo  _("Cancel") ?> onclick='parent.close()'>
 
 </form>
-</div>
 <p>
 <hr>
-<span class="title"><?php echo _("Notes") ?></span>
+<span class=title><?php echo _("Notes") ?></span>
 <ol>
 <li> <?php echo _("To use this feature, copy this file from gallery/setup/ to gallery/backup_albums.php.") ?>
 <li> <?php echo _("On Linux/Unix systems, tar/gzip is recommended.") ?>
@@ -193,17 +171,13 @@ echo makeFormIntro("backup_albums.php", array(
 <li> <?php echo _("Zip file backup requires enough space in the temporary directory to create a zip file of entire backup.") ?>
 <li> <?php echo _("Data files backup will <b>not</b> backup your images, and is recommended before upgrade.") ?>
 <li> <?php echo _("If you choose a tar/gzip backup of data files only, you need to have correct paths for <b>xargs</b> and <b>find</b>, otherwise these are not needed.") ?>
-<li> <?php echo _("This will take a while, please be patient. Hit &quot;Backup&quot; to begin, and when download is complete, hit &quot;Cancel&quot;") ?>
+<li> <?php echo _("This will take a while, please be patient. Hit \"Backup\" to begin, and when download is complete, hit \"Cancel\"") ?>
+<li> <?php echo _("After you have finished backing up your Gallery, please <b>remove this file</b> from the gallery/ directory, to prevent visitors to your site from copying your entire gallery.") ?>
 </ol>
-<?php
-
-includeHtmlWrap("gallery.footer");
-if (!$GALLERY_EMBEDDED_INSIDE) {
-?>
 </body>
 </html>
-<?php }
 
+<?php
 function backup() {
 	global $gallery, $backup_method, $tar_path, $gzip_path, $find_path,$zip_path,$target_files, $xargs_path;
 	if ( !strcmp($backup_method, "tgz") && 
