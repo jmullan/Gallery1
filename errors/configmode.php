@@ -13,7 +13,7 @@
 <center>
 To configure gallery, 
 <font size=+1>
-<a href=setup/index.php>Start the configuration wizard</a>
+<a href="<?=$GALLERY_BASEDIR?>setup/index.php">Start the configuration wizard</a>
 </font>
 </center>
 <br>

@@ -13,7 +13,7 @@ Gallery has not been configured!
 To configure it, type:
 <?= configure("configure.sh"); ?>
 <p>
-And then start the <a href="setup/index.php">Configuration Wizard</a>
+And then start the <a href="<?=$GALLERY_BASEDIR?>setup/index.php">Configuration Wizard</a>
 </span>
 </body>
 </html>

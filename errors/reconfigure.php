@@ -16,5 +16,5 @@ re-run the configuration wizard!  In a shell do this:
 <p><center>
 <? configure("configure.sh"); ?>
 <p>
-Then launch the <a href=setup/index.php>configuration wizard</a>.
+Then launch the <a href="<?=$GALLERY_BASEDIR?>setup/index.php">configuration wizard</a>.
 </table>
