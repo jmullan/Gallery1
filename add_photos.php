@@ -33,10 +33,6 @@ if (!$boxes) {
 		document.count_form.submit();
 		return false;
 	}
-	function submitForm() {
-		document.upload_form.submit();
-		return false;
-	}
 // -->
 </script>
 
@@ -78,7 +74,7 @@ PNG, AVI, MPG)
 <? } ?>
 <p>
 <center>
-<input type="submit" value="Upload Now" onclick="return submitForm()">
+<input type="submit" value="Upload Now">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>
 </center>
 </form>
