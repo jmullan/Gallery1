@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_4-RC2
+# Version: 1_4_4
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-07-15 23:41+0200\n"
+"POT-Creation-Date: 2004-08-03 14:45+0200\n"
 "PO-Revision-Date: 2004-07-11 15:19+0100\n"
 "Last-Translator: jact <jachavar AT terra DOT es>\n"
 "Language-Team: spanish <jachavar AT terra DOT es>\n"
@@ -66,13 +66,13 @@ msgid "Enter your comment for this picture in the text box below."
 msgstr "Introduzca su comentario para esta imagen en la caja de texto inferior."
 
 #: ../add_comment.php:99 ../copy_photo.php:194 ../create_user.php:148
-#: ../delete_album.php:64 ../delete_photo.php:135 ../delete_user.php:74
+#: ../delete_album.php:65 ../delete_photo.php:135 ../delete_user.php:75
 #: ../edit_caption.php:183 ../edit_field.php:68 ../edit_watermark.php:104
 #: ../includes/add_photos/add_form.inc:128
 #: ../includes/add_photos/add_form_one.inc:72
 #: ../includes/add_photos/add_url.inc:60 ../login.php:123
 #: ../modify_user.php:149 ../move_album.php:117 ../move_album.php:137
-#: ../move_photo.php:254 ../move_photo.php:340 ../multi_create_user.php:164
+#: ../move_photo.php:254 ../move_photo.php:340 ../multi_create_user.php:166
 #: ../new_password.php:126 ../register.php:139 ../rename_album.php:127
 #: ../reset_votes.php:64 ../resize_photo.php:126 ../sort_album.php:114
 #: ../user_preferences.php:126 ../watermark_album.php:118
@@ -297,8 +297,8 @@ msgid "Please move it/them out of the albums directory."
 msgstr "Por favor, muévalo(s) fuera del directorio de álbumes."
 
 #: ../albums.php:235
-#, php-format
-msgid "%s has detected that %d of your album are out of Date"
+#, fuzzy, php-format
+msgid "%s has detected that %d of your albums are out of date."
 msgstr "%s ha detectado que %d de sus álbumes están obsoletos"
 
 #: ../albums.php:239
@@ -432,7 +432,7 @@ msgstr "Leyenda de la película"
 msgid "Photo Caption"
 msgstr "Leyenda de la fotografía"
 
-#: ../captionator.php:272 ../extra_fields.php:101 ../lib/lang.php:651
+#: ../captionator.php:272 ../extra_fields.php:101 ../lib/lang.php:652
 msgid "Title"
 msgstr "Título"
 
@@ -440,7 +440,7 @@ msgstr "Título"
 msgid "Keywords"
 msgstr "Palabras clave"
 
-#: ../captionator.php:293 ../lib/lang.php:641
+#: ../captionator.php:293 ../lib/lang.php:642
 msgid "Capture Date"
 msgstr "Fecha de toma de la foto"
 
@@ -465,65 +465,65 @@ msgstr "Actualizando las propiedades del álbum..."
 msgid "Renaming album from %s to %s..."
 msgstr "Renombrando álbum con nombre %s a %s..."
 
-#: ../classes/Album.php:426 ../classes/Album.php:443
+#: ../classes/Album.php:433 ../classes/Album.php:450
 msgid "done"
 msgstr "hecho"
 
-#: ../classes/Album.php:434
+#: ../classes/Album.php:441
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "Actualizando elemento %d de %d . . . "
 
-#: ../classes/Album.php:850
+#: ../classes/Album.php:857
 msgid "msg should be an array!"
 msgstr "¡msg debería ser un vector!"
 
-#: ../classes/Album.php:871 ../util.php:3194
+#: ../classes/Album.php:878 ../util.php:3188
 msgid "No email sent as no valid email addresses were found"
 msgstr "El correo no se ha enviado porque la dirección no se encontró"
 
-#: ../classes/Album.php:968
+#: ../classes/Album.php:975
 msgid "Resizing/compressing original image"
 msgstr "Redimensionar/comprimir la imagen original"
 
-#: ../classes/Album.php:972
+#: ../classes/Album.php:979
 msgid "Cannot resize/compress this filetype"
 msgstr "No se puede redimensionar/comprimir este tipo de archivo"
 
-#: ../classes/Album.php:1020
+#: ../classes/Album.php:1027
 #, php-format
 msgid "Resizing %s"
 msgstr "Redimensionando el tamaño de %s"
 
-#: ../classes/Album.php:1061
+#: ../classes/Album.php:1068
 msgid "Photo auto-rotated/transformed"
 msgstr "Fotos auto-rotadas/transformadas"
 
-#: ../classes/Album.php:1070
+#: ../classes/Album.php:1077
 msgid "Watermarking Image"
 msgstr "Imagen con marcas de agua"
 
-#: ../classes/Album.php:1216 ../classes/Album.php:1226
+#: ../classes/Album.php:1223 ../classes/Album.php:1233
 #: ../classes/AlbumItem.php:627
 msgid "No highlight"
 msgstr "Sin destacar"
 
-#: ../classes/Album.php:1380
+#: ../classes/Album.php:1387
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr "El índice solicitado [%d] está fuera de rango [%d]"
 
-#: ../classes/Album.php:1691
+#: ../classes/Album.php:1698
 #, php-format
 msgid "Error %s getting EXIF data"
 msgstr "Error %s obteniendo los datos EXIF"
 
-#: ../classes/Album.php:2196
+#: ../classes/Album.php:2203
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2334
+#: ../classes/Album.php:2341
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Error en el correo: saltando %s (UID %s) porque la dirección de correo %s no es válida."
@@ -713,25 +713,25 @@ msgstr "Registro de Gallery"
 msgid "Email sent to %s."
 msgstr "Email enviado a %s."
 
-#: ../create_user.php:118 ../edit_appearance.php:185
-#: ../edit_appearance.php:206 ../edit_appearance.php:213
-#: ../edit_appearance.php:272 ../edit_appearance.php:279
-#: ../edit_appearance.php:314 ../edit_appearance.php:324
-#: ../edit_appearance.php:331 ../edit_appearance.php:338
-#: ../edit_appearance.php:345 ../edit_appearance.php:352
-#: ../edit_appearance.php:359 ../modify_user.php:114 ../modify_user.php:117
-#: ../multi_create_user.php:156 ../poll_properties.php:96
+#: ../create_user.php:118 ../edit_appearance.php:174
+#: ../edit_appearance.php:195 ../edit_appearance.php:202
+#: ../edit_appearance.php:247 ../edit_appearance.php:254
+#: ../edit_appearance.php:289 ../edit_appearance.php:299
+#: ../edit_appearance.php:306 ../edit_appearance.php:313
+#: ../edit_appearance.php:320 ../edit_appearance.php:327
+#: ../edit_appearance.php:334 ../modify_user.php:114 ../modify_user.php:117
+#: ../multi_create_user.php:158 ../poll_properties.php:96
 msgid "yes"
 msgstr "sí"
 
-#: ../create_user.php:118 ../edit_appearance.php:185
-#: ../edit_appearance.php:206 ../edit_appearance.php:213
-#: ../edit_appearance.php:272 ../edit_appearance.php:279
-#: ../edit_appearance.php:314 ../edit_appearance.php:324
-#: ../edit_appearance.php:331 ../edit_appearance.php:338
-#: ../edit_appearance.php:345 ../edit_appearance.php:352
-#: ../edit_appearance.php:359 ../modify_user.php:114 ../modify_user.php:117
-#: ../multi_create_user.php:156 ../poll_properties.php:96
+#: ../create_user.php:118 ../edit_appearance.php:174
+#: ../edit_appearance.php:195 ../edit_appearance.php:202
+#: ../edit_appearance.php:247 ../edit_appearance.php:254
+#: ../edit_appearance.php:289 ../edit_appearance.php:299
+#: ../edit_appearance.php:306 ../edit_appearance.php:313
+#: ../edit_appearance.php:320 ../edit_appearance.php:327
+#: ../edit_appearance.php:334 ../modify_user.php:114 ../modify_user.php:117
+#: ../multi_create_user.php:158 ../poll_properties.php:96
 msgid "no"
 msgstr "no"
 
@@ -739,7 +739,7 @@ msgstr "no"
 msgid "Create a new user here."
 msgstr "Cree un nuevo usuario aquí."
 
-#: ../create_user.php:147 ../manage_users.php:99 ../multi_create_user.php:163
+#: ../create_user.php:147 ../manage_users.php:99 ../multi_create_user.php:165
 #: ../register.php:138
 msgid "Create"
 msgstr "Crear"
@@ -753,12 +753,12 @@ msgstr "Borrar álbum"
 msgid "Do you really want to delete this album?"
 msgstr "¿Realmente quiere borrar este álbum?"
 
-#: ../delete_album.php:63 ../delete_photo.php:134 ../delete_user.php:69
+#: ../delete_album.php:64 ../delete_photo.php:134 ../delete_user.php:70
 #: ../manage_users.php:105
 msgid "Delete"
 msgstr "Borrar"
 
-#: ../delete_album.php:72 ../sort_album.php:119
+#: ../delete_album.php:73 ../sort_album.php:119
 msgid "no album specified"
 msgstr "no ha especificado ningún álbum"
 
@@ -820,190 +820,182 @@ msgstr "Procesando imagen %d..."
 msgid "Rebuilding 1 thumbnail..."
 msgstr "Reconstruyendo 1 miniatura..."
 
-#: ../edit_appearance.php:99 ../edit_appearance.php:105
+#: ../edit_appearance.php:88 ../edit_appearance.php:94
 msgid "Album Properties"
 msgstr "Propiedades del álbum"
 
-#: ../edit_appearance.php:114
+#: ../edit_appearance.php:103
 msgid "Album Summary"
 msgstr "Resumen del Álbum"
 
-#: ../edit_appearance.php:122
+#: ../edit_appearance.php:111
 msgid "Album Title"
 msgstr "Título del álbum"
 
-#: ../edit_appearance.php:126
+#: ../edit_appearance.php:115
 msgid "Background Color"
 msgstr "Color de fondo"
 
-#: ../edit_appearance.php:130
+#: ../edit_appearance.php:119
 msgid "Text Color"
 msgstr "Color del texto"
 
-#: ../edit_appearance.php:134
+#: ../edit_appearance.php:123
 msgid "Link Color"
 msgstr "Color de los enlaces"
 
-#: ../edit_appearance.php:138
+#: ../edit_appearance.php:127
 msgid "Background Image"
 msgstr "Imagen de fondo"
 
-#: ../edit_appearance.php:142
+#: ../edit_appearance.php:131
 msgid "Font"
 msgstr "Fuente"
 
-#: ../edit_appearance.php:146
+#: ../edit_appearance.php:135
 msgid "Borders"
 msgstr "Anchura de los bordes"
 
-#: ../edit_appearance.php:153
+#: ../edit_appearance.php:142
 msgid "Border color"
 msgstr "Color de los bordes"
 
-#: ../edit_appearance.php:157
+#: ../edit_appearance.php:146
 msgid "Thumbnail size"
 msgstr "Tamaño de las miniaturas"
 
-#: ../edit_appearance.php:161
+#: ../edit_appearance.php:150
 msgid "Maximum dimensions of intermediate sized images"
 msgstr "Máximas dimensiones de las imágenes de tamaño intermedio"
 
-#: ../edit_appearance.php:163 ../edit_appearance.php:174
+#: ../edit_appearance.php:152 ../edit_appearance.php:163
 msgid "off"
 msgstr "desactivado"
 
-#: ../edit_appearance.php:168
+#: ../edit_appearance.php:157
 msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "Máximo tamaño en KBs de los archivos JPEG/PNG de magnitud intermedia (0 o vacío para no hacer restricciones de tamaño)"
 
-#: ../edit_appearance.php:172
+#: ../edit_appearance.php:161
 msgid "Maximum dimensions of full sized images"
 msgstr "Máximas dimensiones de las imágenes a tamaño completo"
 
-#: ../edit_appearance.php:174
+#: ../edit_appearance.php:163
 #, php-format
 msgid "%d (%d MPix)"
 msgstr "%d (%d MPix)"
 
-#: ../edit_appearance.php:179
+#: ../edit_appearance.php:168
 msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "Máximo tamaño en KBs de los archivos JPEG/PNG a tamaño completo (0 o vacío para no hacer restricciones de tamaño)"
 
-#: ../edit_appearance.php:183
+#: ../edit_appearance.php:172
 msgid "Show <i>Return to</i> link"
 msgstr "Mostrar el enlace <i>volver al</i>"
 
-#: ../edit_appearance.php:190
+#: ../edit_appearance.php:179
 msgid "Rows"
 msgstr "Filas"
 
-#: ../edit_appearance.php:197
+#: ../edit_appearance.php:186
 msgid "Columns"
 msgstr "Columnas"
 
-#: ../edit_appearance.php:204
+#: ../edit_appearance.php:193
 msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr "Ajustar tamaño a la ventana para<br>imágenes sin una copia redimensionada"
 
-#: ../edit_appearance.php:211
+#: ../edit_appearance.php:200
 msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
 msgstr "Ofrecer a los visitantes la posibilidad de especificar <br>si prefieren imágenes redimensionadas o a tamaño completo"
 
-#: ../edit_appearance.php:218
+#: ../edit_appearance.php:207
 msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "¿Qué servicio de impresión de imágenes online<br>desea que usen sus visitantes?"
 
-#: ../edit_appearance.php:229
-msgid "with donation"
-msgstr "con donación"
-
-#: ../edit_appearance.php:230
-msgid "without donation"
-msgstr "sin donación"
-
-#: ../edit_appearance.php:263
+#: ../edit_appearance.php:238
 msgid "Slideshow Type"
 msgstr "Tipo de presentación"
 
-#: ../edit_appearance.php:265
+#: ../edit_appearance.php:240
 msgid "Off"
 msgstr "Desactivado"
 
-#: ../edit_appearance.php:265
+#: ../edit_appearance.php:240
 msgid "Ordered"
 msgstr "Ordenado"
 
-#: ../edit_appearance.php:265
+#: ../edit_appearance.php:240
 msgid "Random"
 msgstr "Aleatoriamente"
 
-#: ../edit_appearance.php:270
+#: ../edit_appearance.php:245
 msgid "Include sub-albums in slideshow"
 msgstr "Incluir subálbumes en la presentación"
 
-#: ../edit_appearance.php:277
+#: ../edit_appearance.php:252
 msgid "Allow slideshow to loop"
 msgstr "Permitir bucle en las presentaciones"
 
-#: ../edit_appearance.php:284
+#: ../edit_appearance.php:259
 msgid "Slideshow Length"
 msgstr "Longitud de la presentación"
 
-#: ../edit_appearance.php:288
+#: ../edit_appearance.php:263
 msgid "Album Frame"
 msgstr "Marco del álbum"
 
-#: ../edit_appearance.php:295
+#: ../edit_appearance.php:270
 msgid "Thumb Frame"
 msgstr "Marco de la miniatura"
 
-#: ../edit_appearance.php:302
+#: ../edit_appearance.php:277
 msgid "Image Frame"
 msgstr "Marco de la imagen"
 
-#: ../edit_appearance.php:312
+#: ../edit_appearance.php:287
 msgid "Display EXIF data?"
 msgstr "¿Mostrar datos EXIF?"
 
-#: ../edit_appearance.php:322
+#: ../edit_appearance.php:297
 msgid "Display click counter for this album?"
 msgstr "¿Mostrar contador de clicks para éste álbum?"
 
-#: ../edit_appearance.php:329
+#: ../edit_appearance.php:304
 msgid "Display owners name with caption"
 msgstr "Mostrar el nombre de los propietarios en la leyenda"
 
-#: ../edit_appearance.php:336
+#: ../edit_appearance.php:311
 msgid "Allow item owners to modify their images"
 msgstr "Permitir a los propietarios modificar sus imágenes"
 
-#: ../edit_appearance.php:343
+#: ../edit_appearance.php:318
 msgid "Allow item owners to delete their images"
 msgstr "Permitir a los propietarios borrar sus imágenes"
 
-#: ../edit_appearance.php:350
+#: ../edit_appearance.php:325
 msgid "Add new items at beginning of album"
 msgstr "Añadir los nuevos elementos al principio del álbum"
 
-#: ../edit_appearance.php:357
+#: ../edit_appearance.php:332
 msgid "Display clickable image dimensions"
 msgstr "Mostrar las dimensiones de la imagen donde se puede pulsar"
 
-#: ../edit_appearance.php:366
+#: ../edit_appearance.php:341
 msgid "Apply values to nested Albums (except Album Title and Summary)."
 msgstr "Aplicar los valores a los álbumes anidados (excepto el título de álbum y el resumen)."
 
-#: ../edit_appearance.php:369 ../extra_fields.php:175
+#: ../edit_appearance.php:344 ../extra_fields.php:175
 #: ../poll_properties.php:140
 msgid "Apply"
 msgstr "Aplicar"
 
-#: ../edit_appearance.php:370 ../extra_fields.php:176
+#: ../edit_appearance.php:345 ../extra_fields.php:176
 #: ../poll_properties.php:141
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../edit_appearance.php:371 ../extra_fields.php:177
+#: ../edit_appearance.php:346 ../extra_fields.php:177
 #: ../poll_properties.php:142 ../rotate_photo.php:86
 msgid "Close"
 msgstr "Cerrar"
@@ -1112,7 +1104,7 @@ msgstr "campo sin título"
 msgid "Configure Custom Fields"
 msgstr "Configurar los campos personalizados"
 
-#: ../extra_fields.php:122 ../lib/lang.php:653
+#: ../extra_fields.php:122 ../lib/lang.php:654
 msgid "Alt Text / onMouseOver"
 msgstr "Texto alternativo / onMouseOver"
 
@@ -1496,23 +1488,23 @@ msgstr "Dirección de correo electrónico"
 msgid "Gallery language"
 msgstr "Idioma de Gallery"
 
-#: ../html/userData.inc:106
+#: ../html/userData.inc:113
 msgid "User can create albums"
 msgstr "El usuario puede crear álbumes"
 
-#: ../html/userData.inc:114
+#: ../html/userData.inc:121
 msgid "Send email to user <br>when account is created"
 msgstr "Enviar email al usuario <br> cuando se cree la cuenta"
 
-#: ../html/userData.inc:123
+#: ../html/userData.inc:130
 msgid "User is an admin"
 msgstr "El usuario es un administrador"
 
-#: ../html/userData.inc:127
+#: ../html/userData.inc:134
 msgid "you can't un-admin yourself"
 msgstr "No puede eliminar su categoría de administrador"
 
-#: ../html/userData.inc:131
+#: ../html/userData.inc:138
 msgid "Note: admins can always create albums"
 msgstr "Nota: los administradores pueden crear álbumes siempre"
 
@@ -1575,21 +1567,22 @@ msgid "add comment"
 msgstr "añadir comentario"
 
 #: ../layout/commentboxtop.inc:17 ../slideshow.php:179 ../slideshow.php:193
-#: ../upgrade_album.php:87 ../view_album.php:136 ../view_album.php:959
-#: ../view_comments.php:65 ../view_photo.php:158 ../view_photo.php:174
+#: ../upgrade_album.php:89 ../upgrade_album.php:101 ../view_album.php:136
+#: ../view_album.php:959 ../view_comments.php:65 ../view_photo.php:158
+#: ../view_photo.php:174
 msgid "Album"
 msgstr "Álbum"
 
-#: ../layout/commentboxtop.inc:20 ../layout/commentboxtop.inc:46
+#: ../layout/commentboxtop.inc:20 ../layout/commentboxtop.inc:47
 #: ../view_album.php:886
 msgid "hidden"
 msgstr "oculta"
 
-#: ../layout/commentboxtop.inc:25
+#: ../layout/commentboxtop.inc:26
 msgid "view comments for this nested album"
 msgstr "ver comentarios para este álbum anidado"
 
-#: ../layout/commentboxtop.inc:27
+#: ../layout/commentboxtop.inc:28
 msgid "Album contains no comments"
 msgstr "El álbum no contiene comentarios"
 
@@ -1634,7 +1627,7 @@ msgstr "%d de %d"
 msgid "Watermark"
 msgstr "Marca de agua"
 
-#: ../layout/watermarkform.inc:76 ../util.php:2745 ../util.php:2750
+#: ../layout/watermarkform.inc:76 ../util.php:2747 ../util.php:2752
 msgid "None"
 msgstr "Ninguno"
 
@@ -1716,19 +1709,19 @@ msgstr "Deseleccionar todos"
 msgid "Invert Selection"
 msgstr "Invertir selección"
 
-#: ../lib/lang.php:640
+#: ../lib/lang.php:641
 msgid "Upload Date"
 msgstr "Fecha de carga (subida)"
 
-#: ../lib/lang.php:642
+#: ../lib/lang.php:643
 msgid "Image Size"
 msgstr "Tamaño de la imagen"
 
-#: ../lib/lang.php:643
+#: ../lib/lang.php:644
 msgid "Additional EXIF Data"
 msgstr "Datos adicionales EXIF"
 
-#: ../lib/lang.php:652
+#: ../lib/lang.php:653
 msgid "Description"
 msgstr "Descripción"
 
@@ -2011,7 +2004,7 @@ msgstr "Nota: los elementos que han sido votados perderán los votos cuando se mu
 msgid "Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."
 msgstr "Nota: los elementos que han sido votados perderán los votos si se mueven a un álbum que tenga implementada una encuesta incompatible. Los álbumes compatibles están marcados con una &quot;%s&quot;."
 
-#: ../multi_create_user.php:42 ../multi_create_user.php:129
+#: ../multi_create_user.php:42 ../multi_create_user.php:131
 msgid "Create Multiple Users"
 msgstr "Crear múltiples usuarios"
 
@@ -2051,23 +2044,23 @@ msgid_plural "%d users"
 msgstr[0] "1 usuario"
 msgstr[1] "1 usuario"
 
-#: ../multi_create_user.php:136
+#: ../multi_create_user.php:138
 msgid "Create Users"
 msgstr "Crear usuarios"
 
-#: ../multi_create_user.php:139
+#: ../multi_create_user.php:141
 msgid "Create multiple new users from a file."
 msgstr "Cree múltiples nuevos usuarios desde un fichero."
 
-#: ../multi_create_user.php:168
+#: ../multi_create_user.php:170
 msgid "Notes:"
 msgstr "Notas:"
 
-#: ../multi_create_user.php:171
+#: ../multi_create_user.php:173
 msgid "The members file should be one user per line, and the fields should be space separated.  Each line is of the form:<br> <i>username emailaddress fullname</i>.<br>  Only username is required. Everything after the email address is the full name, so there can be spaces in it.<p>"
 msgstr "Debería haber un usuarios por línea en el fichero de miembros, y los campos deberían estar separados por espacios. Cada línea tendrá esta forma:<br> <i>nombre_usuario dirección_correo nombre_completo</i>.<br> Sólamente nombre_usuario es imprescindible. Todo lo que haya después de la dirección de correo será el nombre completo. De esta forma puede contener espacios en blanco.<p>"
 
-#: ../multi_create_user.php:176
+#: ../multi_create_user.php:178
 msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked)."
 msgstr "Las cadenas ¡¡NOMBRE_USUARIO!!, ¡¡NOMBRE_COMPLETO!! y ¡¡CONTRASEÑA!! serán sustituidas en el correo con los valores del fichero de miembros. Un correo individual será enviado a cada miembro con una dirección de correo válida (si la casilla de verificación &quot;enviar correos&quot; está marcada)."
 
@@ -2761,52 +2754,52 @@ msgstr "Volver a la Galería"
 msgid "There are no orphaned albums in this Gallery."
 msgstr "No hay álbums huérfanos en esta Galería."
 
-#: ../upgrade_album.php:84
+#: ../upgrade_album.php:86
 msgid "Progress"
 msgstr "Progreso"
 
-#: ../upgrade_album.php:133 ../upgrade_album.php:138
+#: ../upgrade_album.php:118 ../upgrade_album.php:123
 msgid "Upgrade Albums"
 msgstr "Actualizar álbumes"
 
-#: ../upgrade_album.php:141
+#: ../upgrade_album.php:126
 msgid "The following albums in your gallery were created with an older version of the software and are out of date."
 msgstr "Los siguientes álbumes de su galería fueron creados con una versión anterior de este programa y han quedado obsoletos."
 
-#: ../upgrade_album.php:143 ../upgrade_users.php:45
+#: ../upgrade_album.php:128 ../upgrade_users.php:45
 msgid "This is not a problem!"
 msgstr "¡Esto no es un problema!"
 
-#: ../upgrade_album.php:145
+#: ../upgrade_album.php:130
 msgid "We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed."
 msgstr "Podemos actualizarlos. Esto puede tardar algo más de tiempo para los álbumes grandes pero intentaremos mantenerle informado durante el proceso."
 
-#: ../upgrade_album.php:147
+#: ../upgrade_album.php:132
 msgid "None of your photos will be harmed in any way by this process."
 msgstr "Ninguna de sus fotos serán dañadas por este proceso en ningún caso."
 
-#: ../upgrade_album.php:149 ../upgrade_users.php:48
+#: ../upgrade_album.php:134 ../upgrade_users.php:48
 msgid "Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future."
 msgstr "Seguramente, si este proceso lleva demasiado tiempo ahora, hará que Gallery funcione más eficientemente en el futuro."
 
-#: ../upgrade_album.php:178
+#: ../upgrade_album.php:160
 msgid "All albums are up to date."
 msgstr "Todos los álbumes están actualizados"
 
-#: ../upgrade_album.php:183
+#: ../upgrade_album.php:165
 #, php-format
 msgid "The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %s."
 msgstr "Los siguientes álbumes necesitan ser actualizados. Puede procesarlos individualmente pulsando el enlace de actualización a continuación del álbum que desee, o simplemente puede %s"
 
-#: ../upgrade_album.php:184
+#: ../upgrade_album.php:166
 msgid "upgrade them all at once"
 msgstr "actualizar todos los álbumes de una vez"
 
-#: ../upgrade_album.php:191
+#: ../upgrade_album.php:174
 msgid "upgrade"
 msgstr "actualizar"
 
-#: ../upgrade_album.php:193
+#: ../upgrade_album.php:176
 msgid "items"
 msgstr "elementos"
 
@@ -2927,7 +2920,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP's %s no es capaz de determinar las dimensiones."
 
 #: ../util.php:302 ../util.php:604 ../util.php:859 ../util.php:905
-#: ../util.php:2392
+#: ../util.php:2394
 msgid "You have no graphics package configured for use!"
 msgstr "No tienes ningún paquete gráfico configurado para usarlo"
 
@@ -2982,165 +2975,165 @@ msgstr "¡Hubo un fallo desconocido en la llamada %s!"
 msgid "Unknown file type: %s"
 msgstr "Tipo desconocido de archivo: %s"
 
-#: ../util.php:1558
+#: ../util.php:1560
 #, php-format
 msgid "Can't write to %s."
 msgstr "No se puede escribir en %s."
 
-#: ../util.php:1565
+#: ../util.php:1567
 #, php-format
 msgid "Can't read %s."
 msgstr "No se puede leer %s."
 
-#: ../util.php:1678
+#: ../util.php:1680
 msgid "Select Album"
 msgstr "Seleccionar álbum"
 
-#: ../util.php:1684
+#: ../util.php:1686
 msgid "Top Level"
 msgstr "Nivel superior"
 
-#: ../util.php:1705 ../util.php:1756
+#: ../util.php:1707 ../util.php:1758
 msgid "current location"
 msgstr "situación actual"
 
-#: ../util.php:1759
+#: ../util.php:1761
 msgid "self"
 msgstr "él mismo"
 
-#: ../util.php:1855
+#: ../util.php:1857
 #, php-format
 msgid "IN UTIL ITEMCAPTUREDATE = %s"
 msgstr "IN UTIL ITEMCAPTUREDATE = %s"
 
-#: ../util.php:1899
+#: ../util.php:1901
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "¡No se puede abrir el fichero de cerrojo (%s)!"
 
-#: ../util.php:1904
+#: ../util.php:1906
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "¡No se puede adquirir el cerrojo (%s)!"
 
-#: ../util.php:1988
+#: ../util.php:1990
 #, fuzzy, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "1 coincidencia"
 msgstr[1] "1 coincidencia"
 
-#: ../util.php:1993
+#: ../util.php:1995
 msgid "Sub-albums"
 msgstr "Subálbumes"
 
-#: ../util.php:2032
+#: ../util.php:2034
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Saltando %s (soporte para formato ZIP no activado)"
 
-#: ../util.php:2177
+#: ../util.php:2179
 #, php-format
 msgid "Adding %s"
 msgstr "Añadiendo %s"
 
-#: ../util.php:2195
+#: ../util.php:2197
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "¿Necesita ayuda? Mire en el %s%s FAQ%s"
 
-#: ../util.php:2201
+#: ../util.php:2203
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Saltando %s (no se puede hacer nada con el formato %s)"
 
-#: ../util.php:2351
+#: ../util.php:2353
 msgid "documentation"
 msgstr "documentación"
 
-#: ../util.php:2377
+#: ../util.php:2379
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "No es posible preservar los datos EXIF (jhead no está instalado)"
 
-#: ../util.php:2402
+#: ../util.php:2404
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generado por %s v%s"
 
-#: ../util.php:2404
+#: ../util.php:2406
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2454
+#: ../util.php:2456
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Saltando dirección de envío de correo %s"
 
-#: ../util.php:2520
+#: ../util.php:2522
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Nota: Esto es un mensaje de correo generado automáticamente por el sitio web %s. Si lo ha recibido, ha sido por error. Ignore este mensaje."
 
-#: ../util.php:2522
+#: ../util.php:2524
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Informar del abuso a %s"
 
-#: ../util.php:2538
+#: ../util.php:2540
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Correo no enviado mientras esté deshabilitado en esta galería"
 
-#: ../util.php:2542
+#: ../util.php:2544
 #, php-format
 msgid "Email not sent as no address provided"
 msgstr "Correo no enviado mientras no se proporcione una dirección"
 
-#: ../util.php:2547
+#: ../util.php:2549
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Correo no enviado a %s mientras no sea una dirección válida"
 
-#: ../util.php:2562
+#: ../util.php:2564
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "La dirección del remitente %s no es válido, se usará %s."
 
-#: ../util.php:2587 ../util.php:2592
+#: ../util.php:2589 ../util.php:2594
 msgid "not shown"
 msgstr "no mostrado"
 
-#: ../util.php:2596
+#: ../util.php:2598
 msgid "Message"
 msgstr "Mensaje"
 
-#: ../util.php:2600
+#: ../util.php:2602
 msgid "Email sent"
 msgstr "Correo enviado"
 
-#: ../util.php:2602
+#: ../util.php:2604
 msgid "Email not sent"
 msgstr "Correo NO enviado"
 
-#: ../util.php:2616
+#: ../util.php:2618
 #, php-format
 msgid "Last comment %s."
 msgstr "Último comentario: %s."
 
-#: ../util.php:2628
+#: ../util.php:2630
 msgid "FAILED"
 msgstr "FALLO"
 
-#: ../util.php:2637
+#: ../util.php:2639
 msgid "Email activity"
 msgstr "Actividad del correo"
 
-#: ../util.php:2655
+#: ../util.php:2657
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "No se puede abrir el fichero de log: %s"
 
-#: ../util.php:2662
+#: ../util.php:2664
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3153,59 +3146,59 @@ msgid ""
 msgstr ""
 "¡¡Hola  FULLNAME!!,\n"
 "\n"
-"Felicidades. Acaba de ser subscrito a %s a las %s. Su cuenta de usuario es USERNAME. Visite la galería lo antes posible y cree una contraseña pulsando en este enlace:\n"
+"Felicidades. Acaba de ser subscrito a %s a las %s. Su cuenta de usuario es !!USERNAME!!. Visite la galería lo antes posible y cree una contraseña pulsando en este enlace:\n"
 "\n"
 "NEWPASSWORDLINK\n"
 "\n"
 "El administrador @ %s de Gallery."
 
-#: ../util.php:2671 ../util.php:2673
+#: ../util.php:2673 ../util.php:2675
 msgid "gallery title"
 msgstr "título de la galería"
 
-#: ../util.php:2672
+#: ../util.php:2674
 msgid "gallery URL"
 msgstr "URL de la galería"
 
-#: ../util.php:2699
+#: ../util.php:2701
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>Ninguno</dt><dd>El tema original.</dd>"
 
-#: ../util.php:2746 ../util.php:2751
+#: ../util.php:2748 ../util.php:2753
 msgid "Dots"
 msgstr "Puntos"
 
-#: ../util.php:2747 ../util.php:2752
+#: ../util.php:2749 ../util.php:2754
 msgid "Solid"
 msgstr "Sólido"
 
-#: ../util.php:2750
+#: ../util.php:2752
 msgid "No frames"
 msgstr "Sin marcos"
 
-#: ../util.php:2751
+#: ../util.php:2753
 msgid "Just a simple dashed border around the thumb."
 msgstr "Borde simple discontinuo alrededor de la miniatura."
 
-#: ../util.php:2752
+#: ../util.php:2754
 msgid "Just a simple solid border around the thumb."
 msgstr "Borde simple continuo alrededor de la miniatura."
 
-#: ../util.php:2773
+#: ../util.php:2775
 #, php-format
 msgid "Skipping %s."
 msgstr "Saltando %s."
 
-#: ../util.php:2779
+#: ../util.php:2781
 #, php-format
 msgid "Can't open %s"
 msgstr "No se puede abrir %s"
 
-#: ../util.php:2880 ../util.php:2899
+#: ../util.php:2882 ../util.php:2901
 msgid "Not valid yet"
 msgstr "Todavía no es válido"
 
-#: ../util.php:3143
+#: ../util.php:3145
 msgid "EXIF Data"
 msgstr "Datos EXIF"
 
@@ -3468,11 +3461,11 @@ msgstr "Puede añadir algunas fotos."
 msgid "This album is empty."
 msgstr "Este álbum está vacío."
 
-#: ../view_album.php:1170 ../view_photo.php:645
+#: ../view_album.php:1170 ../view_photo.php:643
 msgid "Email me when:"
 msgstr "Envíame un correo cuando:"
 
-#: ../view_album.php:1171 ../view_photo.php:646
+#: ../view_album.php:1171 ../view_photo.php:644
 msgid "Comments are added"
 msgstr "Los comentarios han sido añadidos"
 
@@ -3516,11 +3509,11 @@ msgstr "completo"
 msgid "photo properties"
 msgstr "propiedades de la fotografía"
 
-#: ../view_photo.php:417
+#: ../view_photo.php:413
 msgid "Select service"
 msgstr "Seleccionar servicio"
 
-#: ../view_photo.php:437 ../view_photo.php:452
+#: ../view_photo.php:433 ../view_photo.php:449
 #, php-format
 msgid "print this photo with %s"
 msgstr "imprimir esta foto con %s"
@@ -3544,3 +3537,9 @@ msgstr "Álbum de marcas de agua."
 #: ../watermark_album.php:87
 msgid "No items to watermark."
 msgstr "No hay elementos para marcar."
+
+#~ msgid "with donation"
+#~ msgstr "con donación"
+
+#~ msgid "without donation"
+#~ msgstr "sin donación"
