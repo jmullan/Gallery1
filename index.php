@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -107,11 +107,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 	
 	if (!in_array($include, $safe_to_include)) {
 	    $include = escapeshellcmd($include);
-	    print "Security error!  The file you tried to include ";
-	    print "is not on the <b>approved file list</b>.  To include ";
-	    print "this file you must edit Gallery's index.php ";
-	    print "and add <b>$include</b> to the <i>\$safe_to_include</i> ";
-	    print "array.";
+	    print sprintf(_("Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit Gallery's index.php and add <b>%s</b> to the <i>\$safe_to_include</i> array"), $include);
 	    exit;
 	}
 

@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 
@@ -122,11 +122,11 @@ if (!strcmp($cmd, "add-item")) {
 
 	// Hack check
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
-    	$error = "User cannot add to album";
+    	$error = _("User cannot add to album");
 	}
 
 	else if (!$userfile_name) {
-    	$error = "No file specified";
+    	$error = _("No file specified");
 	}
 
 	else {

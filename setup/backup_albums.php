@@ -27,7 +27,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 
@@ -37,7 +37,7 @@ if (!isset($GALLERY_BASEDIR)) {
 require($GALLERY_BASEDIR . 'init.php');
 
 if (!$gallery->user->isAdmin()) {
-    print "You must be logged on as a Gallery admin to use this feature.";
+    print _("You must be logged on as a Gallery admin to use this feature.");
     exit;
 }
 set_time_limit(0);
@@ -49,24 +49,24 @@ if (!empty($submit) || !empty($force))
 		case "zip":
 			if (!fs_file_exists($zip_path))
 			{
-				$error_text .= "Zip file \"$zip_path\" does not exist or is not readable.<br>";
+				$error_text .= sprintf(_("Zip file \"%s\" does not exist or is not readable"), $zip_path) . "<br>";
 			}
 			break;
 		case "tgz":
 			if (!fs_file_exists($gzip_path))
 			{
-				$error_text .= "Gzip file \"$gzip_path\" does not exist or is not readable.<br>";
+				$error_text .= sprintf(_("Gzip file \"%s\" does not exist or is not readable"), $gzip_path) . "<br>";
 			}
 			if (!fs_file_exists($tar_path))
 			{
-				$error_text .= "Tar file \"$tar_path\" does not exist or is not readable.<br>";
+				$error_text .= sprintf(_("Tar file \"%s\" does not exist or is not readable"), $tar_path) . "<br>";
 			}
 			if (!strcmp($target_files, "dat")) { 
 				if (!fs_file_exists($find_path)) {
-					$error_text .= "Find file \"$find_path\" does not exist or is not readable.<br>";
+					$error_text .= sprintf(_("Find file \"%s\" does not exist or is not readable"), $find_path) . "<br>";
 				}
 				if (!fs_file_exists($xargs_path)) {
-					$error_text .= "Xargs file \"$xargs_path\" does not exist or is not readable.<br>";
+					$error_text .= sprintf(_("Xargs file \"%s\" does not exist or is not readable"), $xargs_path) . "<br>";
 				}
 			}
 	}
@@ -77,12 +77,8 @@ if (!empty($submit) || !empty($force))
 		exit;
 	} else {
 	    if (ini_get('open_basedir')) {
-		$error_text = " <b>Note:</b> Your webserver is configured with the 
- <a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\">
- open_basedir</a> restriction.  This may make it difficult for Gallery to detect 
- and verify your binaries, even if they exist and function properly.  If you know
- that the paths you entered are correct, you must click the \"force\" button.  We
- detected the following error(s):<ul>$error_text</ul>";
+		$error_text = sprintf(_("<b>Note:</b> Your webserver is configured with  the %sopen_basedir%s restriction.  This may make it difficult for Gallery to detect and verify your binaries, even if they exist and function properly.  If you know that the paths you entered are correct, you must click the \"force\" button.  We detected the following error(s):"),
+ '<a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir">', '</a>'). "<ul>$error_text</ul>";
 		$showForce = true;
 	    }
 	}
@@ -132,11 +128,11 @@ Choose archiving option and which files you wish to archive.
 </table>
 </table>
 <p>
-<input type=submit name="submit" value="Backup">
+<input type=submit name="submit" value=<?php echo  _("Backup") ?>>
 <?php if ($showForce) { ?>
-<input type=submit name="force" value="Force Backup">
+<input type=submit name="force" value=<?php echo  _("Force Backup") ?>>
 <?php } ?>
-<input type=button value="Cancel" onclick='parent.close()'>
+<input type=button value=<?php echo  _("Cancel") ?> onclick='parent.close()'>
 
 </form>
 <p>
@@ -144,12 +140,12 @@ Choose archiving option and which files you wish to archive.
 <span class=title>Notes</span>
 </center>
 <ol>
-<li> On Linux/Unix systems, tar/gzip is recommended.
-<li> On Windows system, choose zip backup, and ensure the path for the zip.exe is correct.
-<li> Zip file backup requires enough space in the temporary directory to create a zip file of entire backup.
-<li> Data files backup will <b>not</b> backup your images, and is recommended before upgrade.
-<li> If you choose a tar/gzip backup of data files only, you need to have correct paths for <b>xargs</b> and <b>find</b>, otherwise these are not needed.
-<li> This will take a while, please be patient. Hit "Backup" to begin, and when download is complete, hit "Cancel"
+<li> <?php echo _("On Linux/Unix systems, tar/gzip is recommended.") ?>
+<li> <?php echo _("On Windows system, choose zip backup, and ensure the path for the zip.exe is correct.") ?>
+<li> <?php echo _("Zip file backup requires enough space in the temporary directory to create a zip file of entire backup.") ?>
+<li> <?php echo _("Data files backup will <b>not</b> backup your images, and is recommended before upgrade.") ?>
+<li> <?php echo _("If you choose a tar/gzip backup of data files only, you need to have correct paths for <b>xargs</b> and <b>find</b>, otherwise these are not needed.") ?>
+<li> <?php echo _("This will take a while, please be patient. Hit \"Backup\" to begin, and when download is complete, hit \"Cancel\"") ?>
 </ol>
 </body>
 </html>

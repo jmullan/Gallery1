@@ -24,7 +24,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n"; 
+	print _("Security violation") ."\n"; 
 	exit;
 }
 
@@ -249,7 +249,7 @@ if (!strcmp($cmd, "login")) {
 	// Hack check
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
 		$response->setProperty( "status", $GR_STAT['NO_ADD_PERMISSION'] );
-		$response->setProperty( "status_text", "User cannot add to album." );
+		$response->setProperty( "status_text", _("User cannot add to album." ));
 	} else if (!$userfile_name) {
 		$response->setProperty( "status", $GR_STAT['NO_FILENAME'] );
 		$response->setProperty( "status_text", "Filename not specified." );

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.3.5_ML10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-29 14:49+0100\n"
+"POT-Creation-Date: 2003-07-29 18:13+0100\n"
 "PO-Revision-Date: 2003-07-03 16:00+0100\n"
 "Last-Translator: Jens Tkotz <jens@f2h9.de>\n"
 "Language-Team: German <jens@f2h9.de\n"
@@ -16,15 +16,23 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: ../add_comment.php:28 ../add_photos.php:28 ../album_permissions.php:28
-#: ../delete_album.php:28 ../delete_photo.php:28 ../do_command.php:28
-#: ../edit_appearance.php:28 ../edit_caption.php:28 ../edit_field.php:28
+#: ../add_comment.php:28 ../add_photo.php:28 ../add_photos.php:28
+#: ../album_permissions.php:28 ../albums.php:28 ../captionator.php:28
+#: ../create_user.php:28 ../delete_album.php:28 ../delete_photo.php:28
+#: ../delete_user.php:28 ../do_command.php:28 ../edit_appearance.php:28
+#: ../edit_caption.php:28 ../edit_field.php:28 ../edit_thumb.php:28
+#: ../errors/configmode.php:7 ../errors/reconfigure.php:7
+#: ../errors/needinit.php:7 ../errors/unconfigured.php:7
 #: ../extra_fields.php:30 ../highlight_photo.php:28 ../login.php:28
-#: ../move_album.php:28 ../move_photo.php:28 ../rename_album.php:28
+#: ../manage_users.php:28 ../modify_user.php:28 ../move_album.php:28
+#: ../move_photo.php:28 ../progress_uploading.php:28 ../photo_owner.php:30
+#: ../publish_xp.php:28 ../publish_xp_docs.php:28 ../rename_album.php:28
 #: ../resize_photo.php:28 ../rotate_photo.php:28 ../save_photos.php:28
 #: ../search.php:28 ../setup/index.php:82 ../slideshow.php:28
-#: ../slideshow_low.php:28 ../sort_album.php:28 ../view_album.php:28
+#: ../slideshow_low.php:28 ../sort_album.php:28 ../upgrade_album.php:28
+#: ../user_preferences.php:28 ../util.php:28 ../view_album.php:28
 #: ../view_comments.php:31 ../view_photo.php:28
+#: ../view_photo_properties.php:28
 msgid "Security violation"
 msgstr "Schutz Verletzung"
 
@@ -1320,7 +1328,7 @@ msgstr "W&auml;hlen Sie das Album in dem Sie ver&ouml;ffentlichen wollen."
 msgid "Use filenames as captions"
 msgstr "Benutze Dateiname als Beschreibung"
 
-#: ../publish_xp.php:161 ../publish_xp.php:286
+#: ../publish_xp.php:161 ../publish_xp.php:287
 msgid "Create New Album"
 msgstr "Erzeuge neues Album"
 
@@ -1328,44 +1336,59 @@ msgstr "Erzeuge neues Album"
 msgid "No album specified!"
 msgstr "Kein Album ausgew&auml;hlt !"
 
-#: ../publish_xp.php:221 ../publish_xp.php:324
+#: ../publish_xp.php:215
+#, fuzzy, php-format
+msgid "User cannot add photos in %s."
+msgstr "Benutzer die Photos hinzuf&uuml;gen k&ouml;nnen"
+
+#: ../publish_xp.php:222 ../publish_xp.php:325
 msgid "Press the 'Back' button and try again!"
 msgstr "Dr&uuml;cken Sie den 'Zur&uuml;ck' Button und versuchen Sie es erneut !"
 
-#: ../publish_xp.php:241
+#: ../publish_xp.php:242
 msgid "Not Logged In!"
 msgstr "Sie sins nicht eingeloggt !!!"
 
-#: ../publish_xp.php:250
+#: ../publish_xp.php:251
 msgid "User cannot create ROOT level album."
 msgstr "Dieser Bemutzer darf keine eigenst&auml;ndige Alben anlegenn"
 
-#: ../publish_xp.php:255
+#: ../publish_xp.php:256
 #, fuzzy, php-format
 msgid "User cannot create nested album in %s."
 msgstr "Dieser Benutzer darf keine Unteralben anlegen in"
 
-#: ../publish_xp.php:260
+#: ../publish_xp.php:261
 msgid "No Parent Album Specified!"
 msgstr "Kein Stammalbum angegeben !"
 
-#: ../publish_xp.php:287
+#: ../publish_xp.php:288
 msgid "Enter New Album Title"
 msgstr "Geben Sie den Album Titel ein"
 
-#: ../publish_xp.php:291
+#: ../publish_xp.php:292
 msgid "Select Parent Album"
 msgstr "W&auml;hlen Sie das Stammalbum"
 
-#: ../publish_xp.php:297
+#: ../publish_xp.php:298
 msgid "NEW TOP LEVEL ALBUM"
 msgstr "Neues TOP LEVEL Album"
 
-#: ../publish_xp.php:462
+#: ../publish_xp.php:351
+#, fuzzy
+msgid "User cannot add to album"
+msgstr "Benutzer kann Alben anlegen"
+
+#: ../publish_xp.php:355
+#, fuzzy
+msgid "No file specified"
+msgstr "Kein Album ausgew&auml;hlt !"
+
+#: ../publish_xp.php:463
 msgid "Photo Upload"
 msgstr ""
 
-#: ../publish_xp.php:462
+#: ../publish_xp.php:463
 msgid "Upload Photos to"
 msgstr "Laden Sie Photos hoch zu"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-29 14:49+0100\n"
+"POT-Creation-Date: 2003-07-29 18:13+0100\n"
 "PO-Revision-Date: 2002-11-07 21:57+0100\n"
 "Last-Translator: Isabelle Renaud  <zab@makisart.com>\n"
 "Language-Team: French Isabelle Renaud  <zab@makisart.com>\n"
@@ -17,15 +17,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #
-#: ../add_comment.php:28 ../add_photos.php:28 ../album_permissions.php:28
-#: ../delete_album.php:28 ../delete_photo.php:28 ../do_command.php:28
-#: ../edit_appearance.php:28 ../edit_caption.php:28 ../edit_field.php:28
+#: ../add_comment.php:28 ../add_photo.php:28 ../add_photos.php:28
+#: ../album_permissions.php:28 ../albums.php:28 ../captionator.php:28
+#: ../create_user.php:28 ../delete_album.php:28 ../delete_photo.php:28
+#: ../delete_user.php:28 ../do_command.php:28 ../edit_appearance.php:28
+#: ../edit_caption.php:28 ../edit_field.php:28 ../edit_thumb.php:28
+#: ../errors/configmode.php:7 ../errors/reconfigure.php:7
+#: ../errors/needinit.php:7 ../errors/unconfigured.php:7
 #: ../extra_fields.php:30 ../highlight_photo.php:28 ../login.php:28
-#: ../move_album.php:28 ../move_photo.php:28 ../rename_album.php:28
+#: ../manage_users.php:28 ../modify_user.php:28 ../move_album.php:28
+#: ../move_photo.php:28 ../progress_uploading.php:28 ../photo_owner.php:30
+#: ../publish_xp.php:28 ../publish_xp_docs.php:28 ../rename_album.php:28
 #: ../resize_photo.php:28 ../rotate_photo.php:28 ../save_photos.php:28
 #: ../search.php:28 ../setup/index.php:82 ../slideshow.php:28
-#: ../slideshow_low.php:28 ../sort_album.php:28 ../view_album.php:28
+#: ../slideshow_low.php:28 ../sort_album.php:28 ../upgrade_album.php:28
+#: ../user_preferences.php:28 ../util.php:28 ../view_album.php:28
 #: ../view_comments.php:31 ../view_photo.php:28
+#: ../view_photo_properties.php:28
 msgid "Security violation"
 msgstr "Violation de s&eacute;curit&eacute;"
 
@@ -1616,7 +1624,7 @@ msgid "Use filenames as captions"
 msgstr ""
 
 #
-#: ../publish_xp.php:161 ../publish_xp.php:286
+#: ../publish_xp.php:161 ../publish_xp.php:287
 #, fuzzy
 msgid "Create New Album"
 msgstr "Nouvel album"
@@ -1628,56 +1636,74 @@ msgid "No album specified!"
 msgstr "Aucun album n'a &eacute;t&eacute; s&eacute;lectionn&eacute;"
 
 #
-#: ../publish_xp.php:221 ../publish_xp.php:324
+#: ../publish_xp.php:215
+#, fuzzy, php-format
+msgid "User cannot add photos in %s."
+msgstr "Utilisateurs qui ont la permission d'ajouter des photos."
+
+#
+#: ../publish_xp.php:222 ../publish_xp.php:325
 msgid "Press the 'Back' button and try again!"
 msgstr ""
 
 #
-#: ../publish_xp.php:241
+#: ../publish_xp.php:242
 msgid "Not Logged In!"
 msgstr ""
 
 #
-#: ../publish_xp.php:250
+#: ../publish_xp.php:251
 #, fuzzy
 msgid "User cannot create ROOT level album."
 msgstr "L'utilisateur peut cr&eacute;er des albums"
 
 #
-#: ../publish_xp.php:255
+#: ../publish_xp.php:256
 #, fuzzy, php-format
 msgid "User cannot create nested album in %s."
 msgstr "L'utilisateur peut cr&eacute;er des albums"
 
 #
-#: ../publish_xp.php:260
+#: ../publish_xp.php:261
 #, fuzzy
 msgid "No Parent Album Specified!"
 msgstr "Aucun album n'a &eacute;t&eacute; s&eacute;lectionn&eacute;"
 
 #
-#: ../publish_xp.php:287
+#: ../publish_xp.php:288
 #, fuzzy
 msgid "Enter New Album Title"
 msgstr "Titre de l'album"
 
 #
-#: ../publish_xp.php:291
+#: ../publish_xp.php:292
 #, fuzzy
 msgid "Select Parent Album"
 msgstr "Supprimer l'album"
 
 #
-#: ../publish_xp.php:297
+#: ../publish_xp.php:298
 msgid "NEW TOP LEVEL ALBUM"
 msgstr ""
 
-#: ../publish_xp.php:462
+#
+#: ../publish_xp.php:351
+#, fuzzy
+msgid "User cannot add to album"
+msgstr "L'utilisateur peut cr&eacute;er des albums"
+
+#
+#: ../publish_xp.php:355
+#, fuzzy
+msgid "No file specified"
+msgstr "Aucun album n'a &eacute;t&eacute; s&eacute;lectionn&eacute;"
+
+#: ../publish_xp.php:463
 msgid "Photo Upload"
 msgstr ""
 
 #
-#: ../publish_xp.php:462
+#: ../publish_xp.php:463
 #, fuzzy
 msgid "Upload Photos to"
 msgstr "T&eacute;l&eacute;chargement des photos"

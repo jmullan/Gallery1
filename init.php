@@ -28,7 +28,7 @@ foreach ($sensitiveList as $sensitive) {
 			!empty($HTTP_POST_VARS[$sensitive]) ||
 			!empty($HTTP_COOKIE_VARS[$sensitive]) ||
 			!empty($HTTP_POST_FILES[$sensitive])) {
-		print "Security violation\n";
+		print _("Security violation") ."\n";
 		exit;
 	}
 }
