@@ -643,6 +643,7 @@ function check_locale() {
 					$maybe_locales[$locale][]=$test;
 				}
 			}
+			if (! isset( $maybe_locales[$locale])) $unavailable_locales[]=$locale;
 		} else {
 			$unavailable_locales[]=$locale;
 		}
