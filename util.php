@@ -66,6 +66,11 @@ function popup_status($url) {
 	return "open('$url','Status','$attrs');";
 }
 
+function popup_help($entry, $group) {
+	$attrs = "height=500,width=400,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
+	return "javascript:void(open('http://www.menalto.com/projects/gallery/help?group=$group&entry=$entry','Help','$attrs'));";
+}
+
 function getDimensions($file) {
 	global $app;				
 
