@@ -19,10 +19,31 @@
  */
 ?>
 <?
+/* Start a new session, or resume our current one */
+session_start();
+
+/*
+ * Are we resuming an existing session?  Determine this by checking
+ * to see if a pre-existing session variable is already associated
+ * (before we register it, below).  I arbitrarily choose $albumName
+ */
+if (session_is_registered("albumName")) {
+	/* Make sure our session is current.  If not, nuke it and restart. */
+	if (strcmp($galleryVersion, $gallery->version)) {
+		session_destroy();
+		header("Location: $app->photoAlbumURL");
+		exit;
+	}	
+}
+
 session_register_and_set("albumName");
+session_register_and_set("galleryVersion");
 session_register_and_set("albumListPage");
 session_register_and_set("fullOnly");
 session_register_and_set("username", 1);
+
+/* Tag this session with the gallery version */
+$galleryVersion = $gallery->version;
 
 function session_register_and_set($name, $protected=0) {
 	session_register($name);
