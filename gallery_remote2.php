@@ -338,7 +338,10 @@ function gr_album_properties( &$gallery, &$response ) {
 	}
 
 	$response->setProperty( 'auto_resize', $max_dimension );
-	$response->setProperty( 'extra_fields', $gallery->album->getExtraFields() );
+	$extrafields = $gallery->album->getExtraFields();
+	if ($extrafields) {
+		$response->setProperty( 'extra_fields', implode(",", $extrafields) );
+	}
 	$response->setProperty( 'add_to_beginning', $gallery->album->fields['add_to_beginning'] );
 
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
@@ -398,59 +401,60 @@ function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 	$tmpImageNum = 0;
 	
 	if (isset($gallery->album)) {
+		if (isset($gallery->album->photos)) {
+			foreach($gallery->album->photos as $albumItemObj) {
+				if(!$albumItemObj->isAlbum()) { //Make sure this object is a picture, not an album
+					$tmpImageNum++;
 
-		foreach($gallery->album->photos as $albumItemObj) {
-			if(!$albumItemObj->isAlbum()) { //Make sure this object is a picture, not an album
-				$tmpImageNum++;
+					if ($gallery->user->canViewFullImages($gallery->album) || !$albumItemObj->isResized()) {
+						$response->setProperty( 'image.name.'.$tmpImageNum, $albumItemObj->image->name.'.'.$albumItemObj->image->type );
+						$fullSize = $albumItemObj->getDimensions(1);
+						$response->setProperty( 'image.raw_width.'.$tmpImageNum, $fullSize[0] );
+						$response->setProperty( 'image.raw_height.'.$tmpImageNum, $fullSize[1] );
+						$response->setProperty( 'image.raw_filesize.'.$tmpImageNum, $albumItemObj->getFileSize(1) );
+					}
 
-	 			if ($gallery->user->canViewFullImages($gallery->album) || !$albumItemObj->isResized()) {
-					$response->setProperty( 'image.name.'.$tmpImageNum, $albumItemObj->image->name.'.'.$albumItemObj->image->type );
-					$fullSize = $albumItemObj->getDimensions(1);
-					$response->setProperty( 'image.raw_width.'.$tmpImageNum, $fullSize[0] );
-					$response->setProperty( 'image.raw_height.'.$tmpImageNum, $fullSize[1] );
-					$response->setProperty( 'image.raw_filesize.'.$tmpImageNum, $albumItemObj->getFileSize(1) );
-				}
+					if ($albumItemObj->isResized()) {
+						$response->setProperty( 'image.resizedName.'.$tmpImageNum, $albumItemObj->image->resizedName.'.'.$albumItemObj->image->type );
+						$resizedSize = $albumItemObj->getDimensions(0);
+						$response->setProperty( 'image.resized_width.'.$tmpImageNum, $resizedSize[0] );
+						$response->setProperty( 'image.resized_height.'.$tmpImageNum, $resizedSize[1] );
+					}
 
-				if ($albumItemObj->isResized()) {
-					$response->setProperty( 'image.resizedName.'.$tmpImageNum, $albumItemObj->image->resizedName.'.'.$albumItemObj->image->type );
-					$resizedSize = $albumItemObj->getDimensions(0);
-					$response->setProperty( 'image.resized_width.'.$tmpImageNum, $resizedSize[0] );
-					$response->setProperty( 'image.resized_height.'.$tmpImageNum, $resizedSize[1] );
-				}
-	
-				$response->setProperty( 'image.thumbName.'.$tmpImageNum, $albumItemObj->thumbnail->name.'.'.$albumItemObj->image->type );
-				$thumbnailSize = $albumItemObj->getThumbDimensions();
-				$response->setProperty( 'image.thumb_width.'.$tmpImageNum, $thumbnailSize[0] );
-				$response->setProperty( 'image.thumb_height.'.$tmpImageNum, $thumbnailSize[1] );
-	
-				$response->setProperty( 'image.caption.'.$tmpImageNum, $albumItemObj->caption );
-				if(count($albumItemObj->extraFields)) { //if there are extra fields for this image
-					foreach($albumItemObj->extraFields as $extraFieldKey => $extraFieldName) {
-						if(strlen($extraFieldName)) {
-							$response->setProperty( 'image.extrafield.'.$extraFieldKey.'.'.$tmpImageNum, $extraFieldName );
+					$response->setProperty( 'image.thumbName.'.$tmpImageNum, $albumItemObj->thumbnail->name.'.'.$albumItemObj->image->type );
+					$thumbnailSize = $albumItemObj->getThumbDimensions();
+					$response->setProperty( 'image.thumb_width.'.$tmpImageNum, $thumbnailSize[0] );
+					$response->setProperty( 'image.thumb_height.'.$tmpImageNum, $thumbnailSize[1] );
+
+					$response->setProperty( 'image.caption.'.$tmpImageNum, $albumItemObj->caption );
+					if(count($albumItemObj->extraFields)) { //if there are extra fields for this image
+						foreach($albumItemObj->extraFields as $extraFieldKey => $extraFieldName) {
+							if(strlen($extraFieldName)) {
+								$response->setProperty( 'image.extrafield.'.$extraFieldKey.'.'.$tmpImageNum, $extraFieldName );
+							}
 						}
 					}
-				}
-				$response->setProperty( 'image.clicks.'.$tmpImageNum, $albumItemObj->clicks );
-				$response->setProperty( 'image.capturedate.year.'.$tmpImageNum, $albumItemObj->itemCaptureDate['year'] );
-				$response->setProperty( 'image.capturedate.mon.'.$tmpImageNum, $albumItemObj->itemCaptureDate['mon'] );
-				$response->setProperty( 'image.capturedate.mday.'.$tmpImageNum, $albumItemObj->itemCaptureDate['mday'] );
-				$response->setProperty( 'image.capturedate.hours.'.$tmpImageNum, $albumItemObj->itemCaptureDate['hours'] );
-				$response->setProperty( 'image.capturedate.minutes.'.$tmpImageNum, $albumItemObj->itemCaptureDate['minutes'] );
-				$response->setProperty( 'image.capturedate.seconds.'.$tmpImageNum, $albumItemObj->itemCaptureDate['seconds'] );
-				$response->setProperty( 'image.hidden.'.$tmpImageNum, $albumItemObj->isHidden()?"yes":"no" );
-			} else {
-				if ($albums_too) {
-					if (! isset($albumDB)) {
-						$albumDB = new AlbumDB(FALSE);
-					}
+					$response->setProperty( 'image.clicks.'.$tmpImageNum, $albumItemObj->clicks );
+					$response->setProperty( 'image.capturedate.year.'.$tmpImageNum, $albumItemObj->itemCaptureDate['year'] );
+					$response->setProperty( 'image.capturedate.mon.'.$tmpImageNum, $albumItemObj->itemCaptureDate['mon'] );
+					$response->setProperty( 'image.capturedate.mday.'.$tmpImageNum, $albumItemObj->itemCaptureDate['mday'] );
+					$response->setProperty( 'image.capturedate.hours.'.$tmpImageNum, $albumItemObj->itemCaptureDate['hours'] );
+					$response->setProperty( 'image.capturedate.minutes.'.$tmpImageNum, $albumItemObj->itemCaptureDate['minutes'] );
+					$response->setProperty( 'image.capturedate.seconds.'.$tmpImageNum, $albumItemObj->itemCaptureDate['seconds'] );
+					$response->setProperty( 'image.hidden.'.$tmpImageNum, $albumItemObj->isHidden()?"yes":"no" );
+				} else {
+					if ($albums_too) {
+						if (! isset($albumDB)) {
+							$albumDB = new AlbumDB(FALSE);
+						}
 
-					$myAlbum = $albumDB->getAlbumByName($albumItemObj->getAlbumName(), FALSE);
+						$myAlbum = $albumDB->getAlbumByName($albumItemObj->getAlbumName(), FALSE);
 
-					if ($gallery->user->canReadAlbum($myAlbum)) {
-						$tmpImageNum++;
+						if ($gallery->user->canReadAlbum($myAlbum)) {
+							$tmpImageNum++;
 
-						$response->setProperty( 'album.name.'.$tmpImageNum, $albumItemObj->getAlbumName() );
+							$response->setProperty( 'album.name.'.$tmpImageNum, $albumItemObj->getAlbumName() );
+						}
 					}
 				}
 			}

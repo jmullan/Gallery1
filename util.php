@@ -1208,6 +1208,9 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 		} else if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'GeekLog') {
 			$cookie_name = $_CONF['cookie_session'];
 			$cookie_value = $HTTP_COOKIE_VARS[$cookie_name];
+		} else if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2') {
+			$cookie_name = $_CONF['phpbb2mysql_sid'];
+			$cookie_value = $HTTP_COOKIE_VARS[$cookie_name];
 		}
 	}
 
