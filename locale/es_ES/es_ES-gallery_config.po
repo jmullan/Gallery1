@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-12-11 13:44+0100\n"
-"PO-Revision-Date: 2003-11-30 16:30+0100\n"
+"POT-Creation-Date: 2003-12-11 14:02+0100\n"
+"PO-Revision-Date: 2003-12-06 16:48+0100\n"
 "Last-Translator: jact <jachavar@terra.es>\n"
 "Language-Team: spanish <jachavar@terra.es>\n"
 "MIME-Version: 1.0\n"
@@ -344,7 +344,7 @@ msgstr "¡Correcto!"
 #: ../setup/check_mail.php:31
 #, php-format
 msgid "Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
-msgstr ""
+msgstr "Correo de prueba enviado a <b>%s</b> que debería llegar en unos pocos minutos. Si no lo recibe, asegúrese de la que la dirección de correo usada es válida. Si no puede recibir el mensaje, el servicio de correo debe estar deshabilitado en este servidor y las funciones de correo %s no pueden ser usadas hasta que esta situación cambie"
 
 #: ../setup/check_mail.php:33
 msgid "You must use a valid email address"
@@ -847,7 +847,7 @@ msgstr "¿Mostrar datos EXIF?"
 
 #: ../setup/config_data.inc:392
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
-msgstr ""
+msgstr "Los datos EXIF extraídos de los ficheros JPEG pueden ser cacheados después de haber sido leídos por primera vez. El problema es que si cachea estos datos es posible los datos de los archivos de sus álbumes auementen de espacio, lo cual puede hacer que se visualicen más despacio. Pero, si no cachea estos datos, será necesario obtenerlos cada vez que un usuario vea las propiedades de una foto, lo cual también ralentizará el proceso."
 
 #: ../setup/config_data.inc:398
 #, php-format
@@ -975,7 +975,7 @@ msgstr "Dirección de correo electrónico del administrador"
 
 #: ../setup/config_data.inc:498
 msgid "Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know whom to reach in case of problems. You may specify more than one address by separating them with commas."
-msgstr ""
+msgstr "Establezca este valor con una dirección de correo válida para recibir noticias por correo sobre ciertas acciones de usuarios y también para que esos usuarios sepan a quién dirigirse en caso de algún problema. Puede especificar más de una dirección de correo separándolas por comas."
 
 #: ../setup/config_data.inc:506
 msgid "Sender email address"
@@ -983,7 +983,7 @@ msgstr "Dirección de correo del remitente"
 
 #: ../setup/config_data.inc:507
 msgid "Set this value to a valid working email address.  Emails that are automatically sent by Gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients."
-msgstr ""
+msgstr "Establezca este valor con una dirección de correo válida. Los correos que son mandados automáticamente por Gallery usarán este valor como dirección remitente. Debería monitorizar esta dirección de correo para activar las respuestas automáticas a los destinatarios."
 
 #: ../setup/config_data.inc:515
 msgid "Email subject prefix"
@@ -1069,7 +1069,7 @@ msgstr "Añade un enlace a la presentación en la página principal de la galería. 
 
 #: ../setup/config_data.inc:576 ../setup/config_data.inc:1029
 msgid "These settings do not apply to the low tech slideshow."
-msgstr ""
+msgstr "Estos ajustes no se aplicarán a la presentación de baja calidad."
 
 #: ../setup/config_data.inc:579
 msgid "Slideshow preferences"
@@ -1161,27 +1161,26 @@ msgid "Display date of last comment?"
 msgstr "¿Mostrar la fecha del último comentario?"
 
 #: ../setup/config_data.inc:635
-#, php-format
+#, fuzzy, php-format
 msgid "If an item has comments, display date of last comment, rather than a %s."
-msgstr ""
+msgstr "Si un elemento tiene comentarios, muestra la fecha del último comentario..."
 
 #: ../setup/config_data.inc:640
 msgid "Anonymous comments from known users?"
 msgstr "¿Comentarios anónimos de los usuarios conocidos?"
 
 #: ../setup/config_data.inc:641
-#, fuzzy, php-format
+#, php-format
 msgid "When logged in, comments will automatically use format described below, unless this is set to %s."
-msgstr "Cuando los usuarios se logueen, los comentarios usarán automáticamente el nombre completo y el nombre de usuario, a menos que establezca la opción a %s."
+msgstr "Cuando los usuarios se logueen, los comentarios usarán automáticamente el formato que se describe debajo, a menos que establezca la opción a %s."
 
 #: ../setup/config_data.inc:648
-#, fuzzy
 msgid "Format for commenter names"
-msgstr "Formato para usar con las fechas."
+msgstr "Formato para los nombres comentados"
 
 #: ../setup/config_data.inc:649
 msgid "Commenter names of logged in users can be displayed in a variety of different ways"
-msgstr ""
+msgstr "Los nombres comentados de los usuarios autentificados pueden ser mostrados de varias formas"
 
 #: ../setup/config_data.inc:656
 msgid "Technical"
@@ -1324,7 +1323,7 @@ msgstr "Puede, opcionalmente, limitar las dimensiones de la imágenes que suba a 
 
 #: ../setup/config_data.inc:808
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
-msgstr ""
+msgstr "Activando esta característica se le dejará <b>sin el tamaño original</b> de la imagen en su galería, pero esto le permitirá ahorrar espacio en disco duro. Gallery intentará preservar los comentarios JPEG y los datos EXIF para las imágenes reducidas, pero esto requerirá la presencia de <b>ImageMagick</b> y opcionalmente de <b>jhead</b> (vea el Paso 2)."
 
 #: ../setup/config_data.inc:810
 #, php-format
@@ -1429,7 +1428,7 @@ msgstr "Mostrar dimensiones de la imagen donde se puede pulsar"
 
 #: ../setup/config_data.inc:909
 msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
-msgstr ""
+msgstr "Mostrar las dimensiones de la imagen debajo de las miniaturas. Se enseñarán las dimensiones para las imágenes redimensionadas (si hay) primero, después para las imágenes a tamaño completo, dependiendo de los parámetros permitidos para cada usuario para cada álbum. Puede pulsar en estos en vez de en la miniatura de cada imagen."
 
 #: ../setup/config_data.inc:915
 msgid "Item Owner"
@@ -1475,7 +1474,7 @@ msgstr "En cada álbum, las votaciones pueden desactivarse y ser restringidas a l
 #: ../setup/config_data.inc:944
 #, php-format
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
-msgstr ""
+msgstr "Hay dos clases de encuestas: %s, que permite a los votantes elegir sus favoritos como primero, segundo, tercero, etc, y %s, que permite a los votantes tasar cada una o todas las imágenes sin ninguna restricción. %s es como hacer una crítica donde todas las imágenes pueden obtener (por ejemplo) 5 puntos, mientras que %s es útil en competiciones con tanteo."
 
 #: ../setup/config_data.inc:945 ../setup/config_data.inc:948
 #: ../setup/config_data.inc:969 ../setup/config_data.inc:974
@@ -1823,11 +1822,11 @@ msgstr "Usar valores por defecto"
 
 #: ../setup/defaults.inc:11
 msgid "Here you can customize the default values for new albums that you create.  Note that these are not <b>master switches</b> (i.e., if you turn a setting on here, you can still turn it off in a given album).  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
-msgstr ""
+msgstr "Aquí puede personalizar los valores por defecto de los álbumes que cree. Estos no son <b>interruptores maestros</b> (por ejemplo, si activa un parámetro aquí, todavía puede desactivarlo en un álbum determinado). Si esta es la primera vez que personaliza Gallery, se dará cuenta que hemos intentado poner unos valores por defecto razonables para usted. Si ya ha configurado Gallery con anterioridad, notará que esta página ha cargado sus parámetros actuales, así que probablemente no necesitará realizar muchos cambios."
 
 #: ../setup/defaults.inc:12
 msgid "Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully."
-msgstr ""
+msgstr "Nota para los usuarios que se actualizan desde una versión anterior: los parámetros nuevos serán aplicados a todos los álbumes existentes. Si quiere cambiarlos después, deben ser cambiados de uno en uno para cada álbum. Por favor, escoja los valores por defecto con cuidado."
 
 #: ../setup/diagnostics.php:18
 msgid "Gallery Diagnostics"
@@ -2007,7 +2006,7 @@ msgstr "No se han encontrado lenguajes"
 
 #: ../setup/functions.inc:573
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr ""
+msgstr "Parece que no pudo descargarse más idiomas. Esto no es un problema. Gallery sólo se mostrará en inglés. Nota: Si esto no es cierto, compruebe que todos los ficheros del directorio locale pueden ser leídos por el servidor web, o contacte con el Equipo de Gallery."
 
 #: ../setup/functions.inc:577
 #, php-format
@@ -2216,27 +2215,25 @@ msgstr "Contraseña del Administrador"
 
 #: ../setup/functions.inc:1321 ../setup/functions.inc:1323
 #: ../setup/functions.inc:1325 ../setup/functions.inc:1333
-#, fuzzy
 msgid "Full Name"
-msgstr "Nombre"
+msgstr "Nombre completo"
 
 #: ../setup/functions.inc:1321 ../setup/functions.inc:1323
 #: ../setup/functions.inc:1327 ../setup/functions.inc:1335
 msgid "Username"
-msgstr ""
+msgstr "Nombre de usuario"
 
 #: ../setup/functions.inc:1329
 msgid "Full name that you can click on to send email (mailto:)"
-msgstr ""
+msgstr "Nombre completo sobre el que puede pulsar para enviar un mensaje de correo (mailto:)"
 
 #: ../setup/functions.inc:1331
 msgid "Username that you can click on to send email (mailto:)"
-msgstr ""
+msgstr "Nombre de usuario sobre el que puede pulsar para enviar un mensaje de correo (mailto:)"
 
 #: ../setup/functions.inc:1333 ../setup/functions.inc:1335
-#, fuzzy
 msgid "email address"
-msgstr "Su dirección de correo electrónico:"
+msgstr "dirección de correo electrónico"
 
 #: ../setup/index.php:14
 msgid "Gallery Configuration"
