@@ -80,7 +80,7 @@ foreach ($features as $feature => $dependents) {
 	$use = 1;
 	$cause = "";
 	foreach ($dependents as $dep) {
-		if (!isset($$dep) && !isset($gallery->session->configForm->$dep)) {
+		if (empty($$dep) && empty($gallery->session->configForm->$dep)) {
 			$use = 0;
 			if ($cause) {
 				$cause .= ", ";
