@@ -32,27 +32,40 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <?php
 global $GALLERY_BASEDIR;
 global $GALLERY_EMBEDDED_INSIDE;
+global $GALLERY_EMBEDDED_INSIDE_TYPE;
 global $GALLERY_MODULENAME;
 global $op;
 global $mop;
 global $include;
 global $name;
+global $option;
+global $MOS_GALLERY_PARAMS;
 
-/* 
-** Detect phpNuke, postnuke or phpBB2 and react accordingly.
-** Gallery can run embedded in GeekLog too, but to catch this we need config.php
-** Therefore we have to detect GeeLog in init.php.
-*/
-if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
+/* Detect PHP-Nuke, Postnuke, phpBB2 or Mambo and react accordingly.
+ * Gallery can run embedded in GeekLog too, but to catch this we need
+ * config.php * Therefore we have to detect GeeLog in init.php.
+ */
+if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option)) {
 
 	/* 
 	 * Change this variable if your Gallery module has a different
 	 * name in the Nuke or phpBB2 modules directory.
 	 */
-	$GALLERY_MODULENAME = $name;
-	$GALLERY_BASEDIR = "modules/$GALLERY_MODULENAME/";
 
-	if (isset($GLOBALS['phpbb_root_path'])) {
+	if (isset($name)) {
+		$GALLERY_MODULENAME = $name;
+		$GALLERY_BASEDIR = "modules/$GALLERY_MODULENAME/";
+	} elseif (isset($option)) {
+		$GALLERY_MODULENAME = $option;
+		$mamboDir = getcwd();
+		$GALLERY_BASEDIR = $MOS_GALLERY_PARAMS['path'];
+	}
+
+	if (isset($option)) {
+		$GALLERY_EMBEDDED_INSIDE = 'mambo';
+		$GALLERY_EMBEDDED_INSIDE_TYPE = 'mambo';
+	}
+	elseif (isset($GLOBALS['phpbb_root_path'])) {
 		$GALLERY_EMBEDDED_INSIDE='phpBB2';
 		$GALLERY_EMBEDDED_INSIDE_TYPE = 'phpBB2';
 	}
@@ -137,8 +150,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 			    'Gallery', $include);
 	    exit;
 	}
-
-	include(${GALLERY_BASEDIR} . $include);
+	include($GALLERY_BASEDIR . $include);
 } else {
 	include("albums.php");
 }

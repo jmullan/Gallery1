@@ -129,6 +129,7 @@ function build_popup_url($url, $url_is_complete=0) {
 
 	/* Parse the query string arguments */
 	parse_str($arglist, $args);
+	$args['gallery_popup'] = 'true';
 	
 	if (!$url_is_complete) {
 		$url = makeGalleryUrl($target, $args);
@@ -139,7 +140,6 @@ function build_popup_url($url, $url_is_complete=0) {
 }
 
 function popup($url, $url_is_complete=0, $height=500,$width=500) {
-
         $url = build_popup_url($url, $url_is_complete);
 	return popup_js($url, "Edit", 
 		"height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
@@ -172,7 +172,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
 	popup_js("document.getElementById('$link_name').href", "Edit",
 		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
 	"\">";
-    
+
     return "$a1<span style=\"white-space:nowrap;\">$title</span></a>";
 }
 
@@ -1104,6 +1104,7 @@ function makeGalleryUrl($target, $args=array()) {
 	global $GALLERY_EMBEDDED_INSIDE;
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $GALLERY_MODULENAME;
+	global $MOS_GALLERY_PARAMS;
 
 	/* Needed for phpBB2 */
 	global $userdata;
@@ -1137,7 +1138,12 @@ function makeGalleryUrl($target, $args=array()) {
 				$target = "modules.php";
 
 			break;
-	
+			case 'mambo':
+			    $args['option'] = $GALLERY_MODULENAME;
+			    $args['Itemid'] = $MOS_GALLERY_PARAMS['itemid'];
+			    $args['include'] = $target;
+			    $target = 'index.php';
+			break;
 			// Maybe something went wrong, then we assume we are like standalone.		
 			default:
 				$target = $gallery->app->photoAlbumURL . "/" . $target;
@@ -1207,14 +1213,13 @@ function gallerySanityCheck() {
 	       	return NULL;
        	}
 
-
 	if (!fs_file_exists($GALLERY_BASEDIR . "config.php") ||
                 broken_link($GALLERY_BASEDIR . "config.php") ||
                 !$gallery->app) {
 		$GALLERY_OK=false;
 		return "unconfigured.php";
 	}
-
+	
 	if (fs_file_exists($GALLERY_BASEDIR . "setup") && 
                 !broken_link($GALLERY_BASEDIR . "setup") &&
 		is_readable($GALLERY_BASEDIR . "setup")) {
@@ -1234,7 +1239,6 @@ function gallerySanityCheck() {
 			return "configmode.php";
 		}
 	}
-
 	if ($gallery->app->config_version != $gallery->config_version) {
 		$GALLERY_OK=false;
 		return "reconfigure.php";

@@ -93,7 +93,7 @@ if (!$gallery->register_globals) {
 	}
     }
 }
-
+global $gallery;
 require($GALLERY_BASEDIR . "Version.php");
 require($GALLERY_BASEDIR . "util.php");
 
@@ -105,7 +105,6 @@ if (getOS() == OS_WINDOWS) {
 }
 
 if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
-        global $gallery;
 	include($GALLERY_BASEDIR . "config.php");
 }
 
@@ -149,7 +148,6 @@ if(isset($gallery->app)) {
  */
 set_magic_quotes_runtime(0);
 
-
 /* Load classes and session information */
 require($GALLERY_BASEDIR . "classes/Album.php");
 require($GALLERY_BASEDIR . "classes/Image.php");
@@ -165,7 +163,6 @@ require($GALLERY_BASEDIR . "classes/Comment.php");
 if (!isset($GALLERY_NO_SESSIONS)) {
     require($GALLERY_BASEDIR . "session.php");
 }
-
 $gallerySanity = gallerySanityCheck();
 initLanguage();
 
@@ -286,7 +283,45 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);		
 			}
 		break;
+		case 'mambo':
+			include($GALLERY_BASEDIR . 'classes/Database.php');
+			include($GALLERY_BASEDIR . 'classes/database/mysql/Database.php');
+			include($GALLERY_BASEDIR . 'classes/mambo/UserDB.php');
+			include($GALLERY_BASEDIR . 'classes/mambo/User.php');
 
+			global $mosConfig_host;
+			global $mosConfig_user;
+			global $mosConfig_password;
+			global $mosConfig_db;
+			global $mosConfig_dbprefix;
+			global $my;
+
+			$gallery->database{'mambo'} = new MySQL_Database($mosConfig_host, $mosConfig_user, $mosConfig_password, $mosConfig_db);
+			$gallery->database{'user_prefix'} = $mosConfig_dbprefix;
+			$gallery->database{'fields'} =
+			array ('name'  => 'name',
+			       'uname' => 'username',
+			       'email' => 'email',
+			       'uid'   => 'id',
+			       'gid'   => 'gid');
+
+			$gallery->userDB = new Mambo_UserDB;
+			if (isset($my->username) && !empty($my->username)) {
+				$gallery->session->username = $my->username;
+				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
+			}
+
+			/* For proper Mambo breadcrumb functionality, we need
+			 * to know the Item ID of the Gallery component's menu
+			 * item. +2 DB calls. <sigh> */
+			$db = $gallery->database{'mambo'};
+			$results = $db->query('SELECT id FROM ' . $gallery->database{'user_prefix'} . "components WHERE link='option=$GALLERY_MODULENAME'");
+			$row = $db->fetch_row($results);
+			$componentId = $row[0];
+			$results = $db->query('SELECT id FROM ' . $gallery->database{'user_prefix'} . "menu WHERE componentid='$componentId'");
+			$row = $db->fetch_row($results);
+			$MOS_GALLERY_PARAMS['itemid'] = $row[0]; // pick the first one
+		break;
 		case 'GeekLog':
 			// Cheat, and grab USER information from the global session variables.
 			// Hey, it's faster and easier than reading them out of the database.
@@ -317,7 +352,8 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			/* Load their user object with their username as the key */
 			if ($gallery->session->username) {
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
-    			}
+			}
+		break;
 	}
 } 
 else {
@@ -329,13 +365,13 @@ else {
 	$gallery->userDB = new Gallery_UserDB;
 
 	/* Load their user object with their username as the key */
-	if (isset($gallery->session->username)) {
+	if (isset($gallery->session->username) && !empty($gallery->session->username)) {
 		$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 	}
 }
 
 /* If there's no specific user, they are the special Everybody user */
-if (!isset($gallery->user)) {
+if (!isset($gallery->user) || empty($gallery->user)) {
 	$gallery->user = $gallery->userDB->getEverybody();
 	$gallery->session->username = "";
 }
