@@ -75,7 +75,7 @@ if ($begin != $end) {
 			$number = "<b>$i</b>";
 			$leftdot = "<img valign=\"absmiddle\" src=\"" . getImagePath('nav_dot_left.gif') . "\">";
 		} else {
-			$number = "<a href=\"".$url.$navigator['pageVar']."=$i\">$i</a>";
+			$number = "<a class=\"nav\" href=\"".$url.$navigator['pageVar']."=$i\">$i</a>";
 			if (($i-1) == $navigator["page"]) {
 				$leftdot = "<img valign=\"absmiddle\" src=\"" . getImagePath('nav_dot_right.gif') . "\">";
 			} else {

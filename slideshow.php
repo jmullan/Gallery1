@@ -593,7 +593,7 @@ $breadtext=array();
 if ($albumName) {
 if (!$gallery->session->offline 
 	|| isset($gallery->session->offlineAlbums[$gallery->session->albumName])) {
-	$breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
+	$breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($gallery->session->albumName) .
       	"\">" . $gallery->album->fields['title'] . "</a>";
 	$breadCount++;
 }
@@ -607,11 +607,11 @@ do {
   	|| isset($gallery->session->offlineAlbums[$pAlbumName]))) {
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
-    $breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($pAlbumName) .
+    $breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($pAlbumName) .
       "\">" . $pAlbum->fields['title'] . "</a>";
   } elseif (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
     //-- we're at the top! ---
-    $breadtext[$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") .
+    $breadtext[$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>";
   } else {
 	  break;
@@ -627,7 +627,7 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
 else {
        	if (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
 	       	//-- we're at the top! ---
-	       	$breadcrumb["text"][$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") .
+	       	$breadcrumb["text"][$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") .
 		      	"\">" . $gallery->app->galleryTitle . "</a>";
 		$breadCount++;
        	}
@@ -636,15 +636,13 @@ else {
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;
 
-includeLayout('breadcrumb.inc');
-
 $adminbox["commands"] = "<span class=\"admin\">";
 
 // Low-tech version is just for online. It does not work offline (because the
 // URLs are generated dynamically by JavaScript and were therfore not 
 // downloaded by Wget).
 if ( !$gallery->session->offline && isset($gallery->session->albumName)) {
-    $adminbox["commands"] .= "&nbsp;<a href=\"" . makeGalleryUrl("slideshow_low.php",
+    $adminbox["commands"] .= "&nbsp;<a class=\"admin\" href=\"" . makeGalleryUrl("slideshow_low.php",
         array("set_albumName" => $gallery->session->albumName)) . 
 	"\">[" ._("not working for you? try the low-tech") ."]</a>";
 }
@@ -652,7 +650,11 @@ $adminbox["commands"] .= "</span>";
 $adminbox["text"] = _("Slide Show");
 $adminbox["bordercolor"] = $borderColor;
 $adminbox["top"] = true;
+includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
+includeLayout('navtablemiddle.inc');
+includeLayout('breadcrumb.inc');
+includeLayout('navtablemiddle.inc');
 
 ?>
 
@@ -666,16 +668,16 @@ includeLayout('adminbox.inc');
     <span class=admin>
 
 <?php
-echo "&nbsp;<a href='#' onClick='stopOrStart(); return false;'>[<span id='stopOrStartText'>". _("stop") ."</span>]</a>";
-echo "&nbsp;<a href='#' onClick='changeDirection(); return false;'>[<span id='changeDirText'>". _("reverse direction") ."</span>]</a>";
+echo "&nbsp;<a class=\"admin\" href='#' onClick='stopOrStart(); return false;'>[<span id='stopOrStartText'>". _("stop") ."</span>]</a>";
+echo "&nbsp;<a class=\"admin\" href='#' onClick='changeDirection(); return false;'>[<span id='changeDirText'>". _("reverse direction") ."</span>]</a>";
 
 if ( $full_option) {
-       	echo "&nbsp;<a href='#' onClick='fullOrNormal(); return false;'>[<span id='fullOrNormalText'>". _("full size") ."</span>]</a>";
+       	echo "&nbsp;<a class=\"admin\" href='#' onClick='fullOrNormal(); return false;'>[<span id='fullOrNormalText'>". _("full size") ."</span>]</a>";
 }
        	echo "&nbsp;&nbsp;||";
 ?>
 
-    &nbsp;<?php echo _("Delay:") ?>
+    &nbsp;<?php echo _('Delay:') . '&nbsp;' ?>
 <?php echo 
 drawSelect("time", array(1 => "1 ". _("second"),
                          2 => "2 ". _("seconds"),
@@ -705,7 +707,7 @@ drawSelect("time", array(1 => "1 ". _("second"),
 
     </script>
     <?php if ($loop) { ?>
-    &nbsp;<?php echo _("Loop") ?>:<input type="checkbox" name="loopCheck" <?php echo ($defaultLoop) ? "checked" : "" ?> onclick='toggleLoop();'>
+    &nbsp;<?php echo _('Loop') ?>:&nbsp;<input type="checkbox" name="loopCheck" <?php echo ($defaultLoop) ? "checked" : "" ?> onclick='toggleLoop();'>
     <?php } ?>
     </span>
     </td>
@@ -715,7 +717,10 @@ drawSelect("time", array(1 => "1 ". _("second"),
     <td colspan="3"><?php echo $pixelImage ?></td>
   </tr>
 </table>
-
+<?php
+    includeLayout('navtableend.inc');
+?>
+    
 <br>
 <div align="center">
 

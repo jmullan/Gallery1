@@ -179,7 +179,7 @@ $navigator["bordercolor"] = $bordercolor;
 
 #-- breadcrumb text ---
 $breadCount = 0;
-$breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
+$breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($gallery->session->albumName) .
       "\">" . $gallery->album->fields['title'] . "</a>";
 $breadCount++;
 $pAlbum = $gallery->album;
@@ -195,11 +195,11 @@ do {
 
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
-    $breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($pAlbumName) .
+    $breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($pAlbumName) .
       "\">" . $pAlbum->fields['title'] . "</a>";
   } elseif (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
     //-- we're at the top! ---
-    $breadtext[$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") .
+    $breadtext[$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>";
   }
   $breadCount++;
@@ -389,7 +389,7 @@ if (!$gallery->album->isMovie($id)) {
 			array("full" => 1)).'"></a>'."\n";
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$adminCommands .= popup_link("[" . _("resize photo") ."]", 
-			"resize_photo.php?index=$index");
+			"resize_photo.php?index=$index", false, true, 500, 500, 'admin');
 	}
 
 	if ($gallery->user->canDeleteFromAlbum($gallery->album) || 
@@ -398,8 +398,8 @@ if (!$gallery->album->isMovie($id)) {
 		if($gallery->album->isAlbumName($nextId+1)) {
 			$nextId="";
 		}
-		$adminCommands .= popup_link("[" . _("delete photo") ."]", 
-			"delete_photo.php?id=$id&id2=$nextId");
+		$adminCommands .= '&nbsp;' . popup_link("[" . _("delete photo") ."]", 
+			"delete_photo.php?id=$id&id2=$nextId", false, true, 500, 500, 'admin');
 	}
 
 	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes") &&
@@ -421,13 +421,13 @@ if (!$gallery->album->isMovie($id)) {
                                       "on" : "off"))); 
               	}
 
-		$adminCommands .= _('View Images') .':&nbsp;[&nbsp;';
+		$adminCommands .= '&nbsp;' . _('View Images') .':&nbsp;[&nbsp;';
 		if (isset($gallery->session->fullOnly) && 
 				strcmp($gallery->session->fullOnly,"on"))
 		{
-			$adminCommands .= _('normal') . "&nbsp;|&nbsp;<a href=\"$link\">" . _('full') .'</a>&nbsp;]';
+			$adminCommands .= _('normal') . "&nbsp;|&nbsp;<a class=\"admin\" href=\"$link\">" . _('full') .'</a>&nbsp;]';
 		} else {
-			$adminCommands .= "<a href=\"$link\">" . _("normal") .'</a>&nbsp;|&nbsp;'. _('full') .'&nbsp;]';
+			$adminCommands .= "<a class=\"admin\" href=\"$link\">" . _("normal") .'</a>&nbsp;|&nbsp;'. _('full') .'&nbsp;]';
 		}
 	} 
 	
@@ -438,7 +438,7 @@ if (!$gallery->album->isMovie($id)) {
 	    (eregi("jpe?g\$", $photo->image->type)) &&
 	    isset($gallery->app->use_exif)) {
 		$albumName = $gallery->session->albumName;
-		$adminCommands .= popup_link("[" . _("photo properties") ."]", "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false);
+		$adminCommands .= '&nbsp;' . popup_link("[" . _("photo properties") ."]", "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false, 500, 500, 'admin');
 	}
 
 	if (isset($gallery->album->fields["print_photos"]) &&
@@ -485,7 +485,7 @@ if (!$gallery->album->isMovie($id)) {
 		);
 		/* display a <select> menu if more than one option */
 		if ($numServices > 1) {
-			$selectCommand = '<select name="print_services" style="font-size: 10px;" onChange="doPrintService()">';
+			$selectCommand = '<select name="print_services" class="admin" onChange="doPrintService()">';
 			$selectCommand .= "<option value=''>&laquo; select service &raquo;</option>";
 			foreach ($printServices as $name => $data) {
 				/* skip if it's not actually selected */
@@ -521,7 +521,7 @@ if (!$gallery->album->isMovie($id)) {
 				$printShutterflyForm = true;
 				break;
 			}
-			$adminCommands .= "<a href=\"javascript:doPrintService('$name')\" onClick=\"doPrintService('$name');\">[" . sprintf(_('print this photo with %s'), $fullName[$name]) . ']</a>';
+			$adminCommands .= "<a class=\"admin\" href=\"javascript:doPrintService('$name')\" onClick=\"doPrintService('$name');\">[" . sprintf(_('print this photo with %s'), $fullName[$name]) . ']</a>';
 		}
 	}
 ?>

@@ -24,8 +24,8 @@ if ($adminbox["top"]) {
 }
 ?>
   <tr> 
-    <td class="adminbox" align="left" valign="middle" width="4000" height="18">&nbsp;<?php echo $adminbox["text"] ?></td>
-    <td class="adminbox" align="right" valign="middle" width="3000" height="18">&nbsp;<?php echo $adminbox["commands"] ?>&nbsp;</td>
+    <td class="admin" align="left" valign="middle" width="4000" height="18">&nbsp;<?php echo $adminbox["text"] ?></td>
+    <td class="admin" align="right" valign="middle" width="3000" height="18">&nbsp;<?php echo $adminbox["commands"] ?>&nbsp;</td>
   </tr>
 <?php
 if (!$adminbox["top"]) {

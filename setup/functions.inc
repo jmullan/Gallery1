@@ -1232,7 +1232,7 @@ function check_admins() {
 		$userDB = new Gallery_UserDB();
 
 		$admins=array();
-	       	if (function_exists($userDB->getUidList)) {
+	       	if (isset($userDB)) {
 		       	foreach ($userDB->getUidList() as $uid) {
 			       	$tmpUser = $userDB->getUserByUid($uid, true);
 

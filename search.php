@@ -74,7 +74,7 @@ if ($searchstring) {
 <!-- search.header ends -->
 <!-- Top Nav -->
 <?php
-$breadtext[0] = _("Gallery") .": <a href=\"". makeGalleryUrl("albums.php") . "\">".$gallery->app->galleryTitle."</a>";
+$breadtext[0] = _("Gallery") .": <a class=\"bread\" href=\"". makeGalleryUrl("albums.php") . "\">".$gallery->app->galleryTitle."</a>";
 $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;
@@ -277,7 +277,7 @@ else {
 <?php
 }
 echo "<br>";
-$breadtext[0] = _("Gallery") .": <a href=\"". makeGalleryUrl("albums.php") . "\">".$gallery->app->galleryTitle."</a>";
+$breadtext[0] = _("Gallery") .": <a class=\"bread\" href=\"". makeGalleryUrl("albums.php") . "\">".$gallery->app->galleryTitle."</a>";
 $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;

@@ -142,11 +142,11 @@ do {
      || isset($gallery->session->offlineAlbums[$pAlbumName]))) {
 	$pAlbum = new Album();
 	$pAlbum->load($pAlbumName);
-	$breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($pAlbumName) . 
+	$breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($pAlbumName) . 
 	"\">" . $pAlbum->fields['title'] . "</a>";
   } elseif (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
 	//-- we're at the top! --- 
-	$breadtext[$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") . 
+	$breadtext[$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . 
 	"\">" . $gallery->app->galleryTitle . "</a>"; 
   } 
   elseif ($gallery->session->offline) {	// test is redundant.  offline must be 
@@ -445,7 +445,7 @@ if (!empty($adminOptionHTML)) {
 	    . "}\n"
 	    . "</script>\n\n";
     
-    $adminCommands .= "\n\t<select style=\"font-size: 10px;\" name=\"admin_select\" onChange=\"execAdminOption()\">\n";
+    $adminCommands .= "\n\t<select class=\"admin\" name=\"admin_select\" onChange=\"execAdminOption()\">\n";
     $adminCommands .= "\t\t<option value=\"\">&laquo; " . _('admin options') . " &raquo;</option>\n";
     $adminCommands .= $adminOptionHTML;
     $adminCommands .= "\t</select>\n";
@@ -453,18 +453,18 @@ if (!empty($adminOptionHTML)) {
 
 $userCommands = '';
 if ($gallery->album->fields["slideshow_type"] != "off") {
-       	$userCommands .= "\t<a href=\"" . 
+       	$userCommands .= "<a class=\"admin\" href=\"" . 
 	       	makeGalleryUrl("slideshow.php",
 			       	array("set_albumName" => $albumName)) .
-	      	'">['. _("slideshow") ."]</a>\n";
+	      	'">['. _("slideshow") ."]</a>&nbsp;";
 }
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 	if ($gallery->user->isLoggedIn()) {
-	        $userCommands .= "\t<a href=\"" .
+	        $userCommands .= "<a class=\"admin\" href=\"" .
 					doCommand("logout", array(), "view_album.php", array("page" => $page)) .
 				  "\">[" . _("logout") . "]</a>\n";
 	} else {
-		$userCommands .= "\t" . popup_link("[". _("login") ."]", "login.php", 0) . "\n";
+		$userCommands .= popup_link("[". _("login") ."]", "login.php", false, true, 500, 500, 'admin') . "\n";
 	} 
 }
 $adminbox["text"] = $adminText;

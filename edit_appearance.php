@@ -202,12 +202,6 @@ if (isset($save)) {
 <td valign="top">
 <?php
 $services = array(
-	'ezprints'    => array(
-		'name'    => 'EZ Prints',
-		'url'     => 'http://www.ezprints.com/'),
-	'fotokasten'  => array(
-		'name'    => 'Fotokasten',
-		'url'     => 'http://www.fotokasten.de/'),
 	'photoaccess' => array(
 		'name'    => 'PhotoAccess',
 		'url'     => 'http://www.photoaccess.com/'),
@@ -218,7 +212,13 @@ $services = array(
 			'yes' => _('with donation'),
 			'no'  => _('without donation')
 		)
-	)
+	),
+	'fotokasten'  => array(
+		'name'    => 'Fotokasten',
+		'url'     => 'http://www.fotokasten.de/'),
+	'ezprints'    => array(
+		'name'    => 'EZ Prints',
+		'url'     => 'http://www.ezprints.com/')                  
 );
 foreach ($services as $item => $data) {
 	if (isset($gallery->album->fields['print_photos'][$item])) {

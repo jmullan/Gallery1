@@ -71,7 +71,7 @@ do {
       || $gallery->session->offlineAlbums[$pAlbumName])) {
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
-    $breadtext[$breadCount] = _("Album") .": <a href=\"" . makeGalleryUrl("view_comments.php", array("set_albumName" => $pAlbumName)) .
+    $breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeGalleryUrl("view_comments.php", array("set_albumName" => $pAlbumName)) .
       "\">" . $pAlbum->fields['title'] . "</a>";
   }
   $breadCount++;
@@ -123,14 +123,17 @@ if ($gallery->album->fields["textcolor"]) {
 includeHtmlWrap("album.header");
 $adminText = "<span class=\"admin\">". _("Comments for this Album") ."</span>";
 $adminCommands = "<span class=\"admin\">";
-$adminCommands .= "<a href=\"" . makeAlbumUrl($gallery->session->albumName) . "\">[". _("return to album") ."]</a>&nbsp;";
+$adminCommands .= "<a class=\"admin\" href=\"" . makeAlbumUrl($gallery->session->albumName) . "\">[". _("return to album") ."]</a>";
 $adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $bordercolor;
 $adminbox["top"] = true;
+includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
+includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
+includeLayout('navtableend.inc');
 ?><br><?php
 
 if (!$gallery->album->fields["perms"]['canAddComments']) {
@@ -174,7 +177,9 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
 }
 $breadcrumb["top"] = true;
 $breadcrumb["bottom"] = true;
+includeLayout('navtablebegin.inc');
 includeLayout('breadcrumb.inc');
+includeLayout('navtableend.inc');
 
 includeLayout('ml_pulldown.inc');
 includeHtmlWrap("album.footer");

@@ -355,7 +355,7 @@ $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" 
 
 #-- breadcrumb text ---
 $breadCount = 0;
-$breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
+$breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($gallery->session->albumName) .
       "\">" . $gallery->album->fields['title'] . "</a>";
 $breadCount++;
 $pAlbum = $gallery->album;
@@ -367,11 +367,11 @@ do {
   if ($pAlbumName) {
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
-    $breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($pAlbumName) .
+    $breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($pAlbumName) .
       "\">" . $pAlbum->fields['title'] . "</a>";
   } else {
     //-- we're at the top! ---
-    $breadtext[$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") .
+    $breadtext[$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>";
   }
   $breadCount++;
@@ -384,46 +384,46 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;
 
-includeLayout('breadcrumb.inc');
-
-
 $adminbox["commands"] = "";
 $adminbox["text"] = _("Slide Show");
 $adminbox["bordercolor"] = $borderColor;
 $adminbox["top"] = true;
+includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
-
+includeLayout('navtablemiddle.inc');
+includeLayout('breadcrumb.inc');
+includeLayout('navtablemiddle.inc');
 ?>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="modnavboxmid">
   <tr>
     <td width="5000" align="left" valign="middle">
     <span class=admin>
-    &nbsp;<a href="#" onClick='stop(); return false;'>[<?php echo _("stop") ?>]</a>
-    <a href="#" onClick='play(); return false;'>[<?php echo _("play") ?>]</a>
+    &nbsp;<a class="admin" href="#" onClick='stop(); return false;'>[<?php echo _("stop") ?>]</a>
+    <a class="admin" href="#" onClick='play(); return false;'>[<?php echo _("play") ?>]</a>
 
 <?php
 if ($gallery->user->canViewFullImages($gallery->album)) {
     if ($slide_full) {
-	    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0, $slide_dir) 
+	    echo "<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0, $slide_dir) 
 	   . "\">[". _("normal size") ."]</a>";
     } else {
-	echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1, $slide_dir)
+	echo "<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1, $slide_dir)
             . "\">[". _("full size") ."]</a>";
     }
 }
 ?>
 <?php
 if ($slide_dir == 1) {
-    echo "&nbsp;<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, -1) 
+    echo "&nbsp;<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, -1) 
 	. "\">[". _("reverse direction") ."]</a>";
 } else {
-    echo "&nbsp;<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, 1)
+    echo "&nbsp;<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, 1)
         . "\">[". _("forward direction") ."]</a>";
 }
 ?>
     &nbsp;&nbsp;||
-    &nbsp;<?php echo _("Delay:") ?>
+    &nbsp;<?php echo _('Delay:') . '&nbsp;' ?>
 <?php echo 
 drawSelect("time", array(1 => "1 ". _("second"),
 		       	2 => "2 ". _("seconds"),
@@ -440,13 +440,15 @@ drawSelect("time", array(1 => "1 ". _("second"),
 	       	array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
 ?>
     <?php if ($loop) { ?>
-    &nbsp;<?php echo _("Loop") ?>:<input type="checkbox" name="loopCheck" <?php echo ($slide_loop) ? "checked" : "" ?> onclick='toggleLoop();'>
+    &nbsp;<?php echo _('Loop') ?>:&nbsp;<input type="checkbox" name="loopCheck" <?php echo ($slide_loop) ? "checked" : "" ?> onclick='toggleLoop();'>
     <?php } ?>
     </span>
     </td>
   </tr>
 </table>
-
+<?php
+    includeLayout('navtableend.inc');
+?>
 <br>
 <div align="center">
 

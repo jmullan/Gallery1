@@ -138,18 +138,18 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 }
 
 if ($gallery->app->gallery_slideshow_type != "off") {
-    	 $adminCommands .= '<a href="' . makeGalleryUrl("slideshow.php",
+    	 $adminCommands .= '<a class="admin" href="' . makeGalleryUrl("slideshow.php",
 	 array("set_albumName" => null)) .
 	       	'">['._("slideshow") . ']</a>&nbsp;';
 }
 if ($gallery->user->isAdmin()) {
-	$doc = galleryDocs();
+	$doc = galleryDocs('admin');
 	if ($doc) {
 		$adminCommands .= "[$doc]&nbsp;";
 	}
 }
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
-	$adminCommands .= "<a href=\"" . doCommand("new-album", array(), "view_album.php") . "\">[". _("new album") ."]</a>&nbsp;";
+	$adminCommands .= "<a class=\"admin\" href=\"" . doCommand("new-album", array(), "view_album.php") . "\">[". _("new album") ."]</a>&nbsp;";
 }
 
 if ($gallery->user->isAdmin()) {
@@ -157,25 +157,27 @@ if ($gallery->user->isAdmin()) {
 	    $gallery->userDB->canCreateUser() ||
 	    $gallery->userDB->canDeleteUser()) {
 		$adminCommands .= popup_link("[" . _("manage users") ."]", 
-			"manage_users.php");
+			"manage_users.php", false, true, 500, 500, 'admin')
+			. '&nbsp;';
 	}
 }
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	if ($gallery->userDB->canModifyUser()) {
 		$adminCommands .= popup_link("[". _("preferences") ."]", 
-			"user_preferences.php");
+			"user_preferences.php", false, true, 500, 500, 'admin')
+			. '&nbsp;';
 	}
 	
 	if (!$GALLERY_EMBEDDED_INSIDE) {
-		$adminCommands .= "<a href=\"". doCommand("logout", array(), "albums.php"). "\">[". _("logout") ."]</a>";
+		$adminCommands .= "<a class=\"admin\" href=\"". doCommand("logout", array(), "albums.php"). "\">[". _("logout") ."]</a>";
 	}
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
-	        $adminCommands .= popup_link("[" . _("login") . "]", "login.php", 0);
+	        $adminCommands .= popup_link("[" . _("login") . "]", "login.php", false, true, 500, 500, 'admin');
             if (!strcmp($gallery->app->selfReg, 'yes')) {
                 $adminCommands .= '&nbsp;';
-                $adminCommands .= popup_link('[' . _("register") . ']', 'register.php', 0);
+                $adminCommands .= popup_link('[' . _("register") . ']', 'register.php', false, true, 500, 500, 'admin');
             }
 	}
 }
