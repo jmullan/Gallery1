@@ -298,7 +298,7 @@ if (!strcmp($borderwidth, "off")) {
 
 <!-- image grid table -->
 <br>
-<table width=<?=$fullWidth?> border=0>
+<table width=<?=$fullWidth?> border=0 cellspacing=0 cellpadding=7>
 <?
 $numPhotos = $gallery->album->numPhotos(1);
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
@@ -334,7 +334,7 @@ if ($numPhotos) {
 		$i = $rowStart;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
-			echo("<td width=$imageCellWidth align=center valign=middle>");
+			echo("<td width=$imageCellWidth align=left valign=middle>");
 
 			//-- put some parameters for the wrap files in the global object ---
 			$gallery->html_wrap['borderColor'] = $bordercolor;
@@ -383,12 +383,23 @@ if ($numPhotos) {
 		$i = $rowStart;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
-			echo("<td width=$imageCellWidth valign=top align=center>");
+			echo("<td width=$imageCellWidth valign=top align=left>");
 
 			// put form outside caption to compress lines
-			echo makeFormIntro("view_album.php", array("name" => "image_form_$i")); 
 
-			echo "<center><span class=\"caption\">";
+
+                        if (($gallery->user->canDeleteFromAlbum($gallery->album)) ||
+                                    ($gallery->user->canWriteToAlbum($gallery->album)) ||
+                                    ($gallery->user->canChangeTextOfAlbum($gallery->album))) {
+				$showAdminForm = 1;
+			} else { 
+				$showAdminForm = 0;
+			}
+			if ($showAdminForm) {
+				echo makeFormIntro("view_album.php", array("name" => "image_form_$i")); 
+			}
+
+			echo "<span class=\"caption\">";
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isHidden($i)) {
 				echo "(hidden)<br>";
@@ -428,9 +439,7 @@ if ($numPhotos) {
 			}
 			echo "</span>";
 
-			if (($gallery->user->canDeleteFromAlbum($gallery->album)) || 
-				    ($gallery->user->canWriteToAlbum($gallery->album)) ||
-				    ($gallery->user->canChangeTextOfAlbum($gallery->album))) {
+			if ($showAdminForm) {
 				if ($gallery->album->isMovie($id)) {
 					$label = "Movie";
 				} elseif ($gallery->album->isAlbumName($i)) {
@@ -496,12 +505,10 @@ if ($numPhotos) {
 					showChoice("Delete $label", "delete_photo.php", array("index" => $i));
 				}
 			}
-			if (($gallery->user->canDeleteFromAlbum($gallery->album)) || 
-					($gallery->user->canWriteToAlbum($gallery->album)) ||
-					($gallery->user->canChangeTextOfAlbum($gallery->album))) {
-				echo('</select>');
+			if ($showAdminForm) {
+				echo('</select></form>');
 			}
-			echo('</form></td>');
+			echo('</td>');
 			$j++;
 			$i = getNextPhoto($i);
 		}
