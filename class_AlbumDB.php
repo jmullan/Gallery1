@@ -85,12 +85,12 @@ class AlbumDB {
 	function newAlbumName() {
 		global $app;
 
-		$index = "album1";
+		$name = "album01";
 		$albumDir = $app->albumDir;
-		while (file_exists("$albumDir/$index")) {
-			$index++;
+		while (file_exists("$albumDir/$name")) {
+			$name++;
 		}
-		return $index;
+		return $name;
 	}
 
 	function numAlbums() {
@@ -98,13 +98,13 @@ class AlbumDB {
 	}
 
 	function getAlbum($index) {
-		return $this->albumList[$index];
+		return $this->albumList[$index-1];
 	}
 
 	function moveAlbum($index, $newIndex) {
 		/* Pull album out */
-		$name = array_splice($this->albumOrder, $index, 1);
-		array_splice($this->albumOrder, $newIndex, 0, $name);
+		$name = array_splice($this->albumOrder, $index-1, 1);
+		array_splice($this->albumOrder, $newIndex-1, 0, $name);
 	}
 
 	function save() {
