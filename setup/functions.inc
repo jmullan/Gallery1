@@ -8,13 +8,13 @@ function evenOdd_row($fields, $evenOdd) {
 		$bgColor = "#88cccc";
 	}
 	$f0 = str_replace(" ", "&nbsp;", $fields[0]);
-	$buf .= "<tr>";
-	$buf .= "<td bgcolor=$bgColor valign=top align=left>$f0</td>";
-	$buf .= "<td bgColor=$bgColor width=90% valign=top>$fields[1]</td>";
-	$buf .= "</tr>";
-	$buf .= "<tr>";
-	$buf .= "<td bgcolor=$bgColor colspan=2 valign=top align=left>$fields[2]</td>";
-	$buf .= "</tr>";
+	$buf .= "\n<tr>";
+	$buf .= "\n\t<td bgcolor=$bgColor valign=top align=left>$f0</td>";
+	$buf .= "\n\t<td bgColor=$bgColor width=90% valign=top>$fields[1]</td>";
+	$buf .= "\n</tr>";
+	$buf .= "\n<tr>";
+	$buf .= "\n\t<td bgcolor=$bgColor colspan=2 valign=top align=left>$fields[2]</td>";
+	$buf .= "\n</tr>\n";
 
 	return $buf;
 }
@@ -33,8 +33,10 @@ function make_attrs($attrList) {
 
 function make_fields($key, $arr) {
 	$col1 = $arr["prompt"];
-	if ($arr["choices"]) {
+	if (isset($arr["choices"])) {
 		$col2 = form_choice($key, $arr);
+	} else if (isset($arr["multiple_choices"])) {
+		$col2 = form_multiple_choice($key, $arr);
 	} else if (!strcmp($arr["type"], "textarea")) {
 		$col2 = form_textarea($key, $arr);
 	} else {
@@ -60,15 +62,28 @@ function form_input($key, $arr) {
 
 function form_choice($key, $arr) {
 	
-	$buf .= "<select name=$key>";
-	foreach ($arr["choices"] as $choice) {
+	$buf = "\n\t<select name=$key>";
+	foreach ($arr["choices"] as $choice => $value) {
 		$selected = "";
 		if (!strcmp($choice, $arr["value"])) {
 			$selected = "SELECTED";
 		}
-		$buf .= "<option $selected> $choice";
+		$buf .= "\n\t\t". '<option value="' . $choice . '" ' . $selected . '>'. $value . '</option>';
 	}
-	$buf .= "</select>";
+	$buf .= "\n\t</select>\n";
+	return $buf;
+}
+
+function form_multiple_choice($key, $arr) {
+	
+	$buf="";
+	foreach ($arr["multiple_choices"] as $item => $value) {
+		$selected = "";
+		if (in_array($item, $arr["value"])) {
+			$selected = "CHECKED";
+		}
+		$buf .= "\n\t<br><input name=\"${key}[]\" value=\"$item\" type=\"checkbox\" $selected>" . $value ;
+	}
 	return $buf;
 }
 
@@ -125,6 +140,14 @@ function one_constant($key, $value) {
 	return "\$gallery->app->$key = \"{$value}\";\n";
 }
 
+function array_constant($key, $value) {
+	$buf="";
+	foreach ($value as $item) {
+		$buf .= "\$gallery->app->${key}[] = \"{$item}\";\n";
+	}
+	return $buf;
+}
+
 function defaults($key, $value) {
 	return "\$gallery->app->default[\"$key\"] = \"$value\";\n";
 }
@@ -136,10 +159,10 @@ function no_feature($feature, $cause) {
 	return "\$gallery->app->feature[\"$feature\"] = 0; // ($cause)\n";
 }
 function error_missing($desc) {
-	return error_format("Missing value: <b>$desc</b>!");
+	return error_format(_("Missing value").": <b>$desc</b>!");
 }
 function row_wrap($buf) {
-	return "<tr><td><code>$buf</td></tr>";
+	return "<tr><td><code>$buf</code></td></tr>";
 }
 
 function check_htaccess()
@@ -154,7 +177,7 @@ function check_htaccess()
 	$success = array();
 	$fail = array();
 	if ($GALLERY_PHP_VALUE_OK) {
-		$success[] = "I can read your .htaccess file";
+		$success[] = _("I can read your .htaccess file");
 	} else {
 		$fail["fail-htaccess"]++;
 	}
@@ -178,12 +201,31 @@ function check_php()
 	} else if (!strncmp($version, "4.0.3", 5)) {
 		$fail["fail-incompatible"]++;
 	} else {
-		$success[] = "PHP v" . phpversion() . " is OK";
+		$success[] = sprintf(_("PHP v%s is OK"), phpversion());
 	}
 
 	return array($success, $fail);
 }
 
+function check_php4_1()
+{
+	global $MIN_PHP_MAJOR_VERSION;
+
+	$success = array();
+	$fail = array();
+
+        $version = explode(".", phpversion());
+        // $version = explode(".", "4.0.4");
+        if ($version[0] < 4) {
+		$fail["fail-too-old"]++;
+        } elseif ($version[1] <1) {
+		$fail["fail-too-old"]++;
+        } else{
+		$success[] = sprintf(_("PHP v%s is OK"), phpversion());
+	}
+
+	return array($success, $fail);
+}
 function check_mod_rewrite() 
 {
 	global $GALLERY_REWRITE_OK;
@@ -191,7 +233,7 @@ function check_mod_rewrite()
 	$success = array();
 	$fail = array();
 	if ($GALLERY_REWRITE_OK) {
-		$success[] = "mod_rewrite is enabled";
+		$success[] = _("mod_rewrite is enabled");
 	} else {
 		$fail["fail-mod-rewrite"]++;
 	}
@@ -214,9 +256,9 @@ function check_exif($location="")
 		$d = locateDir($bin, $gallery->app ? dirname($gallery->app->use_exif) : "");
 	}
 	if (!$d) {
-		$fail["fail-exif"] = "Could not locate jhead";
+		$fail["fail-exif"] = _("Could not locate jhead");
 	} else {
-		$success[] = "jhead binary located";
+		$success[] = _("jhead binary located");
 	}
 
 	return array($success, $fail);
@@ -228,14 +270,13 @@ function check_graphics($location="", $graphtool = "")
 
 	$fail = array();
 	$success = array();
-
 	if (!strcmp($graphtool, "ImageMagick")) {
-		$success[] = "NetPBM not being used in this installation";
+		$success[] = _("NetPBM not being used in this installation");
 	    	return array($success, $fail);
 	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
-	    $success[] = "Cannot verify this path (it's not in your open_basedir list)";
+	    $success[] = _("Cannot verify this path (it's not in your open_basedir list)");
 	    return array($success, $fail);
 	}
 
@@ -284,12 +325,12 @@ function check_graphics($location="", $graphtool = "")
 		}
 
 		if (!$d) {
-			$missing[$bin] = "Can't find <i>$bin</i>!";
+			$missing[$bin] = _("Can't find") ." <i>$bin</i>!";
 		}
 
 		if (!empty($d) && inOpenBasedir($d)) {
 		    if (!fs_is_executable("$d/$bin")) {
-			$missing[$bin] = "<i>$bin</i> is not executable!";
+			$missing[$bin] = "<i>$bin</i> ". _("is not executable") ."!";
 		    }
 		}
 	}
@@ -299,7 +340,8 @@ function check_graphics($location="", $graphtool = "")
 	} else if (count($missing)) {
 		$fail["fail-netpbm-partial"] = array_values($missing);
 	} else {
-		$success[] = "All " . count($netpbm) . " NetPBM binaries located";
+		$success[] = sprintf(_("All %d NetPBM binaries located"),
+				count($netpbm) );
 	}
 
 	return array($success, $fail);
@@ -318,7 +360,7 @@ function check_graphics_im($location="", $graphtool="")
 	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
-	    $success[] = "Cannot verify this path (it's not in your open_basedir list)";
+	    $success[] = _("Cannot verify this path (it's not in your open_basedir list)");
 	    return array($success, $fail);
 	}
 
@@ -337,12 +379,12 @@ function check_graphics_im($location="", $graphtool="")
 		}
 
 		if (!$d) {
-			$missing[$bin] = "Can't find <i>$bin</i>!";
+			$missing[$bin] = _("Can't find") ." <i>$bin</i>!";
 		}
 
 		if (!empty($d) && inOpenBasedir($d)) {
 		    if (!fs_is_executable("$d/$bin")) {
-			$missing[$bin] = "<i>$bin</i> is not executable!";
+			$missing[$bin] = "<i>$bin</i> ". _("is not executable"). "!";
 		    }
 		}
 	}
@@ -352,7 +394,8 @@ function check_graphics_im($location="", $graphtool="")
 	} else if (count($missing)) {
 		$fail["fail-imagemagick"] = array_values($missing);
 	} else {
-		$success[] = "All " . count($imagick) . " ImageMagick binaries located";
+		$success[] = sprintf(_("All %d ImageMagick binaries located"),
+				count($imagick));
 	}
 
 	return array($success, $fail);
@@ -373,12 +416,278 @@ function check_jpegtran($location="")
 		$d = locateDir($bin, $gallery->app ? $gallery->app->pnmDir : "");
 	}
 	if (!$d) {
-		$fail["fail-jpegtran"] = "Could not locate jpegtran";
+		$fail["fail-jpegtran"] = _("Could not locate jpegtran");
 	} else {
-		$success[] = "jpegtran binary located";
+		$success[] = _("jpegtran binary located");
 	}
 
 	return array($success, $fail);
+}
+
+function check_gettext()
+{
+	$fail = array();
+	$success = array();
+	if (in_array ("gettext", get_loaded_extensions()) && function_exists(gettext)) {
+		$success[] = _("gettext installed");
+	} else {
+		$fail["fail-gettext"]++;
+	}
+	return array($success, $fail);
+}
+/*
+function check_locale()
+{
+
+	$fail = array();
+	$success = array();
+
+	if (strncasecmp(PHP_OS,"win", 3)) {
+		# Unix / Linux
+		# Check which locales are installed
+		if (is_readable("/etc/locale.gen")) {
+			$list=split("\n",shell_exec('cat /etc/locale.gen | cut -d " " -f 1'));
+		}
+		if (sizeof($list) == 0 && is_readable("/usr/share/locale/")) {
+			$list=split("\n",shell_exec('ls /usr/share/locale/'));
+		}
+		if (sizeof($list) == 0) {
+			$list=split("\n", shell_exec("locale -a")) ;
+		}
+		if (sizeof($list) > 0) {
+			$success[] = _("locale support found");
+		} else {
+			$fail["fail-locale"] = _("locale support not found");
+		}
+	}
+	else {
+		# Windows
+		$fail["warning-locale"] = _("Locale support not determined");
+		
+	}
+	return array($success, $fail);
+}
+*/
+
+function check_gallery_locale()
+{
+	global $GALLERY_BASEDIR;
+	$fail = array();
+	$success = array();
+
+	$locales=gallery_languages();
+	if (sizeof($locales) == 0) {
+		$fail["fail-gallery-locale"] = _("No languages found."); // should never occur!
+	} else if (sizeof($locales) == 1) {
+		$fail["fail-gallery-locale"] = _("Only US English version is available.  If you want other languages, download language packs from gallery site");
+	} else {
+		$success[] = sprintf(_("%d languages found"), sizeof($locales));
+	}
+	return array($success, $fail);
+}
+
+function check_absent_locales()
+{
+	global $GALLERY_BASEDIR;
+	$fail = array();
+	$success = array();
+
+	$missing_locales=unavailable_locales();
+	$avail_locales=available_locales();
+	sort($missing_locales);
+	sort($avail_locales);
+	if (sizeof($missing_locales) == 0 ) {
+		$success[] = _("All gallery locales are available on this host");
+	} else if (sizeof($avail_locales) <= 1 || $missing_locales == $avail_locales) {
+	    if (ini_get('open_basedir')) {
+		$fail[] = _("We were unable to detect any locales.  However, your server is configured with the <a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\">open_basedir</a> restriction so this may be interfering with the way that we detect locales.  If you don't have any locales installed, the date format will not change for different languages.  Either way, it is ok to continue.");
+	    } else {
+		$fail[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
+	    }
+	} else {
+		$msg = _("Dates in these languages may not be formatted properly, because the corresponding locales are missing:") . "<br>";
+		$nls=getNLS();
+		foreach ($missing_locales as $value) {
+			$msg .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			$msg .= $nls['languages'][$value];
+			$msg .= " ($value)<br>";
+		}
+		$fail[] = $msg;
+	}
+	return array($success, $fail);
+}
+
+//returns all languages in this gallery installation
+
+function gallery_languages() {
+	$locale_dir = "../locale/";
+	$nls=getNLS();
+	$locales = array('en_US' => $nls['languages']['en_US']);
+	if (is_dir($locale_dir)) {
+		if ($dh = opendir($locale_dir)) {
+			while (($file = readdir($dh)) !== false) {
+				if ($file != "CVS" && !ereg("^\.", $file)) {
+					$locales[$file]=$nls['languages'][$file];
+				}
+			}
+			closedir($dh);
+		}
+	}
+	return $locales;
+}
+
+function test_locale($locale) {
+	if (setlocale(LC_ALL, $locale)) {
+		return true;
+	}
+	return false;
+}
+function all_locales ($set) {
+	$list = array();
+	$nls=getNLS();
+	$gallery_languages=gallery_languages();
+	$available_locales=array();
+	$maybe_locales=array();
+	$non_available_locales=array();
+
+	$current_local=setlocale(LC_ALL, 0);
+	$available_locales['en_US']=$nls['languages']['en_US'];
+
+	if (strncasecmp(PHP_OS,"win", 3)) {
+		# Unix / Linux
+		# Check which locales are installed
+		if (@is_readable("/etc/locale.gen")) {
+			$list=array_merge($list, split("\n",shell_exec('cat /etc/locale.gen | cut -d " " -f 1')));
+		}
+		if (@is_readable("/usr/share/locale/")) {
+			$list=array_merge($list, split("\n",shell_exec('ls /usr/share/locale/')));
+		}
+		$list=array_merge($list, split("\n", shell_exec("locale -a")) );
+	}
+	foreach ($gallery_languages as $locale => $locale_name) {
+		if (in_array($locale,$nls['aliases'])) {
+                        $keylist=array_keys($nls['aliases'],$locale);
+                        $aliases = preg_grep ("/^(". substr($locale,0,2) 
+						."|" . implode ("|", $keylist) 
+						.")/",$list);
+                } else {
+                        $aliases =
+				preg_grep ("/^". substr($locale,0,2) ."/",$list);
+		}
+		if (in_array($locale,$nls['aliases'])) {
+                        $keylist=array_keys($nls['aliases'],$locale);
+			foreach($keylist as $item) {
+				if (setlocale(LC_ALL, $item)) {
+					$aliases[]=$item;
+				}
+			}
+                } 
+		$aliases=array_filter(array_unique($aliases), test_locale);
+		if (setlocale(LC_ALL, $locale)) {
+			$available_locales[$locale]=$locale_name;
+		} else if ($aliases) {
+			$available_locales[$locale]=$locale_name;
+			$maybe_locales[$locale]=$aliases;
+		} else {
+			$non_available_locales[]=$locale;
+		}
+	}
+	setlocale(LC_ALL, $currrent_locale);
+	switch ($set) {
+		case 0:
+			return $available_locales;
+			break;
+		case 1:
+			return $maybe_locales;
+			break;
+		case 2:
+			return $non_available_locales;
+			break;
+	}
+}
+
+function available_locales () {
+	return all_locales(0);
+}
+
+function maybe_locales () {
+	return all_locales(1);
+}
+
+function unavailable_locales () {
+	return all_locales(2);
+}
+
+function config_maybe_locales() {
+	$results=array();
+	$maybe=maybe_locales();
+	$unavailable=unavailable_locales();
+	$available=available_locales();
+	$nls=getNLS();
+
+        foreach ($maybe as $key => $aliases) {
+		if (sizeof($aliases) < 1) {
+			$unavailable[]=$key;
+			continue;
+		}
+		if (sizeof($aliases) == 1) {
+			$results["locale_alias[$key]"] = array (
+				"type" => "hidden", 
+				"value" => array_pop($aliases),
+				"desc" => "locale_alias[$key]",
+				"prompt" => "locale_alias[$key]"
+					);
+			continue;
+		}
+		$index = $nls['languages'][$key] ;
+		$choices=array();
+		foreach ($aliases as $value) { 
+			$choices[$value]=$value;
+		}
+		$results["locale_alias[$key]"] = array (
+			"prompt" => sprintf(_("Possible locale problems with %s."),
+				$nls['languages'][$key]),
+			"desc" => _("This language is available, but there seems to be a locale problem.  Please select a locale for date format style.") .
+				  "\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), " 1.3.5"). ")</b></font>",
+			"optional" => 1,
+			"name" => "locale_alias",
+			"key" => $key,
+			"choices" => $choices,
+			"value" => $choices[0]);
+
+			
+        }
+        foreach ($unavailable as $key) {
+		if (sizeof($available) == 1) {
+			$results["locale_alias[$key]"] = array (
+				"type" => "hidden", 
+				"value" => 0,
+				"desc" => "locale_alias[$key]",
+				"prompt" => "locale_alias[$key]"
+					);
+			continue;
+		}
+		$index = $nls['languages'][$key] ;
+		$choices=array();
+		foreach ($available as $value) { 
+			$choices[$value]=$value;
+		}
+		$results["locale_alias[$key]"] = array (
+			"prompt" => sprintf(_("Locale problems with %s."),
+				$nls['languages'][$key]),
+			"desc" => _("This language is available, but we can't identified a suitable locale for it.  Please select a locale for date format style.") .
+				  "\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), " 1.3.5"). ")</b></font>",
+			"optional" => 1,
+			"name" => "locale_alias",
+			"key" => $key,
+			"choices" => $choices,
+			"value" => $choices[0]);
+
+			
+        }
+
+
+	return $results;
 }
 
 function default_graphics()
@@ -401,7 +710,7 @@ function check_safe_mode()
 	    !strcasecmp($safe_mode, "off") ||
 	    !strcasecmp($safe_mode, "0") ||
 	    !strcasecmp($safe_mode, "false")) {
-		$success[] = "safe mode is off";
+		$success[] = _("safe mode is off");
 	} else {
 		$fail["fail-safe-mode"]++;
 	}
@@ -413,7 +722,7 @@ function check_magic_quotes()
 	$fail = array();
 	$success = array();
 	if (!get_magic_quotes_gpc()) {
-		$success[] = "magic quotes are off";
+		$success[] = _("magic quotes are off");
 	} else {
 		$fail["fail-magic-quotes"]++;
 	}

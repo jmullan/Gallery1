@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") . "\n";
 	exit;
 }
 ?>
@@ -42,7 +42,7 @@ if (strcmp($gallery->album->fields["public_comments"], "yes")) {
 
 $error_text = "";
 
-if (!strcmp($submit, "Save")) {
+if (!strcmp($submit, _("Save"))) {
 	if ($commenter_name && $comment_text) {
 	        $comment_text = removeTags($comment_text);
 	        $commenter_name = removeTags($commenter_name);
@@ -52,27 +52,26 @@ if (!strcmp($submit, "Save")) {
 		dismissAndReload();
 		return;
 	} else {
-		$error_text = "Name and Comment are both required to save a new comment!";
+		$error_text = _("Name and Comment are both required to save a new comment!");
 	}
 }
 ?>
 <html>
 <head>
-  <title>Add Comment</title>
+  <title><?php echo _("Add Comment") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
-Enter your comment for this picture in the text
-box below.
+<?php echo _("Enter your comment for this picture in the text box below.") ?>
 <br><br>
 <?php echo $gallery->album->getThumbnailTag($index) ?>
 <?php
 if ($error_text) {
 ?>
 <br><br>
-<span class=error><?php echo $error_text?></span>
+<span class=error><?php echo $error_text ?></span>
 <br><br>
 <?php
 }
@@ -82,16 +81,16 @@ if ($error_text) {
 <input type=hidden name="index" value="<?php echo $index ?>">
 <table border=0 cellpadding=5>
 <tr>
-  <td>Name or email:</td>
-  <td><input name="commenter_name" value="<?php echo $commenter_name?>" size=30></td>
+  <td><?php echo _("Name or email:") ?></td>
+  <td><input name="commenter_name" value="<?php echo $commenter_name ?>" size=30></td>
 </tr>
 <tr>
-  <td colspan=2><textarea name="comment_text" rows=5 cols=40><?php echo $comment_text?></textarea></td>
+  <td colspan=2><textarea name="comment_text" rows=5 cols=40><?php echo $comment_text ?></textarea></td>
 </tr>
 </table>
 <br>
-<input type=submit name="submit" value="Save">
-<input type=button value="Cancel" onclick='parent.close()'>
+<input type=submit name="submit" value="<?php echo _("Save") ?>">
+<input type=button value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 
 </form>
 

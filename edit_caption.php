@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -39,7 +39,7 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album) && !($gallery->album-
 	exit;
 }
 $err = "";	
-if (!strcmp($submit, "Save")) {
+if (!strcmp($submit, _("Save"))) {
 	if (($capture_year < 3000) && ($capture_year > 1000)) { // only allow photo capture dates from 1000 to 3000.
 		$gallery->album->setCaption($index, stripslashes($data));
 		$gallery->album->setKeywords($index, stripslashes($keywords));
@@ -60,23 +60,23 @@ if (!strcmp($submit, "Save")) {
 			return;
 		}
 	} else {
-		$err = "Year must be between 1000 and 3000";
+		$err = _("Year must be between 1000 and 3000");
 	}
 }
 ?>
 <html>
 <head>
-  <title>Edit Text</title>
+  <title><?php echo _("Edit Text") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
 <?php echo $gallery->album->getThumbnailTag($index) ?>
 </center>
 
 <table>
-<tr><td valign=top><b>Caption:</b></td>
+<tr><td valign=top><b><?php echo _("Caption") ?>:</b></td>
 <?php echo makeFormIntro("edit_caption.php", 
 			array("name" => "theform", 
 				"method" => "POST")); ?>
@@ -94,7 +94,7 @@ foreach ($gallery->album->getExtraFields() as $field)
         $value=$gallery->album->getExtraField($index, $field);
 	if ($field == "Title")
 	{
-		print "<tr><td valign=top><b>Title:<b></td><td>";
+		print "<tr><td valign=top><b>" . _("Title") .":<b></td><td>";
 		print "<input type=text name=\"extra_fields[$field]\" value=\"$value\" size=\"40\">";
 	}
 	else
@@ -106,7 +106,7 @@ foreach ($gallery->album->getExtraFields() as $field)
 	print "</td></tr>";
 }
 ?>
-<tr><td valign=top><b>Keywords:</b></td>
+<tr><td valign=top><b><?php echo _("Keywords") ?>:</b></td>
 <td><textarea name="keywords" rows=1 cols=40>
 <?php echo $gallery->album->getKeywords($index) ?>
 </textarea></td></tr>
@@ -127,15 +127,15 @@ $year = $itemCaptureDate["year"];
 ?>
 <table border=0>
   <tr>
-    <td colspan="6" align="center">Photo Capture Date</td>
+	<td colspan="6" align="center"><?php echo _("Photo Capture Date") ?></td>
   </tr>
   <tr>
-    <td>Month</td>
-    <td>Day</td>
-    <td>Year</td>
-    <td>Hours</td>
-    <td>Minutes</td>
-    <td>Seconds</td>
+    <td><?php echo _("Month") ?></td>
+    <td><?php echo _("Day") ?></td>
+    <td><?php echo _("Year") ?></td>
+    <td><?php echo _("Hours") ?></td>
+    <td><?php echo _("Minutes") ?></td>
+    <td><?php echo _("Seconds") ?></td>
   </tr>
   <tr>
 <?php
@@ -167,8 +167,8 @@ echo "</td>";
   </tr>
 </table>
 <br><br>
-<input type=submit name="submit" value="Save">
-<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+<input type=submit name="submit" value="<?php echo _("Save") ?>">
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 
 
 </form>

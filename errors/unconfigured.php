@@ -8,25 +8,28 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	            exit;
 		    }
 ?>
-<?php require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
+<?php 
+	require($GALLERY_BASEDIR . "errors/configure_instructions.php") ;
+?>
 <html>
 <head>
-  <title>Gallery Configuration Error</title>
+  <title><?php echo _("Gallery Configuration Error") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 <center>
 <span class="title">
-Gallery has not been configured!
+<?php echo _("Gallery has not been configured!") ?>
 </span>
 <p>
 <center>
-<table width=80%><tr><td>
-Gallery must be configured before you can use it.  First, you must put it
-into configuration mode.  Here's how:
+<table width=80%>
+<tr><td>
+<?php echo _("Gallery must be configured before you can use it.") ?>  
+<?php echo _("First, you must put it into configuration mode.  Here's how") ?>:
 <?php echo configure("configure"); ?>
 <p>
-And then start the <a href="<?php echo $GALLERY_BASEDIR?>setup/index.php">Configuration Wizard</a>
+<?php echo _("And then start the") ?> <a href="<?php echo $GALLERY_BASEDIR ?>setup/index.php"><?php echo _("Configuration Wizard") ?></a>
 
 <?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 </table>

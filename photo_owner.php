@@ -44,7 +44,7 @@ if (!$gallery->user->isAdmin() &&
 ?>
 <?php
 
-if (!strcmp($submit, "Save") && $owner) {
+if (!strcmp($submit, _("Save")) && $owner) {
 	$gallery->album->setItemOwnerById($id, $owner);
 	$gallery->album->save();
 	dismissAndReload();
@@ -77,13 +77,13 @@ asort($uAll);
 ?>
 <html>
 <head>
-  <title>Change Owner</title>
+  <title><?php echo _("Change Owner") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<span class="popuphead"> Change owner </span>
+<span class="popuphead"> <?php echo _("Change owner") ?> </span>
 <br>
 <?php $index=$gallery->album->getPhotoIndex($id) ?>
 <br>
@@ -97,12 +97,12 @@ asort($uAll);
 			array("name" => "photoowner_form")) ?>
 
 <?php if ($gallery->user->isAdmin) { ?>
-Owner: <?php echo drawSelect("owner", $uAll, $owner, 1); ?>
+<?php echo _("Owner") ?>: <?php echo drawSelect("owner", $uAll, $owner, 1); ?>
 <?php } ?><p>
 
 <input type=hidden name="id" value="<?php echo $id ?>">
-<input type=submit name="submit" value="Save">
-<input type=submit name="submit" value="Done" onclick='parent.close()'>
+<input type=submit name="submit" value="<?php echo _("Save") ?>">
+<input type=submit name="submit" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
 
 </body>

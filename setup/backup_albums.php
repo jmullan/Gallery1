@@ -100,7 +100,7 @@ if (!empty($submit) || !empty($force))
 <?php
 if ($error_text) {
 ?>
-<span class=error><?php echo $error_text?></span>
+<span class=error><?php echo $error_text ?></span>
 <?php
 }
 ?>

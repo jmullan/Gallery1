@@ -28,20 +28,18 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print "Security violation\n";
 	exit;
 }
-?>
-<?php
 
 function editField($album, $field) {
 	global $gallery;
 
 	$buf = $album->fields[$field];
 	if (!strcmp($buf, "")) {
-		$buf = "<i>&lt;Empty&gt;</i>";
+		$buf = "<i>&lt;". _("Empty") . "&gt;</i>";
 	}
 	if ($gallery->user->canChangeTextOfAlbum($album)) {
 		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field";
 		$buf .= "<span class=editlink>";
-		$buf .= popup_link( "[edit $field]", $url) ;
+		$buf .= popup_link( "[". _("edit") . " " . _($field)."]", $url) ;
 		$buf .= "</span>";
 	}
 	return $buf;
@@ -57,11 +55,11 @@ function editCaption($album, $index) {
 	         $gallery->album->isItemOwner($gallery->user->getUid(), $index))) 
 		&& !$gallery->session->offline) {
 		if (!strcmp($buf, "")) {
-			$buf = "<i>&lt;No Caption&gt;</i>";
+			$buf = "<i>&lt;". _("No Caption") ."&gt;</i>";
 		}
 		$url = "edit_caption.php?set_albumName={$album->fields['name']}&index=$index";
 		$buf .= "<span class=editlink>";
-		$buf .= popup_link("[edit]", $url);
+		$buf .= popup_link("[". _("edit") ."]", $url);
 		$buf .= "</span>";
 	}
 	return $buf;
@@ -87,7 +85,7 @@ function viewComments($index) {
 	}
         $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&index=$index";
         $buf = "<span class=editlink>";
-        $buf .= popup_link('[add comment]', $url, 0);
+        $buf .= popup_link('[' . _("add comment") . ']', $url, 0);
         $buf .= "</span>";
         echo "<tr align=center><td colspan=3>$buf<br><br></td></tr>";
 }
@@ -101,7 +99,7 @@ function gallery_error($message) {
 }
 
 function error_format($message) {
-	return "<span class=error>Error: $message</span>";
+	return "<span class=error>". _("Error") . ": $message</span>";
 }
 
 function build_popup_url($url, $url_is_complete=0) {
@@ -169,16 +167,16 @@ function exec_internal($cmd) {
 	fs_exec($cmd, $results, $status, $debugfile);
 
 	if (isDebugging()) {
-		print "<br> Results: <pre>";
+		print "<br>" . _("Results") .": <pre>";
 		if ($results) {
 			print join("\n", $results);
 		} else {
-			print "<b>none</b>";
+			print "<b>" ._("none") ."</b>";
 		}
 		print "</pre>";
 
 		if (file_exists($debugfile)) {
-			print "<br> Error messages: <pre>";
+			print "<br> ". _("Error messages") .": <pre>";
 			if ($fd = fs_fopen($debugfile, "r")) {
 				while (!feof($fd)) {
 					$buf = fgets($fd, 4096);
@@ -189,7 +187,7 @@ function exec_internal($cmd) {
 			unlink($debugfile);
 			print "</pre>";
 		}
-		print "<br> Status: $status (expected " . $gallery->app->expectedExecStatus . ")";
+		print "<br> ". _("Status") .": $status (expected " . $gallery->app->expectedExecStatus . ")";
 	}
 
 	return array($results, $status);
@@ -202,7 +200,7 @@ function getDimensions($file) {
 	if (($regs[0] > 1) && ($regs[1] > 1))
 		return array($regs[0], $regs[1]);
 	else if (isDebugging())
-		echo "<br>PHP's getimagesize() unable to determine dimensions.<br>";
+		echo "<br>" ._("PHP's getimagesize() unable to determine dimensions.") ."<br>";
 		
 
 	/* Just in case php can't determine dimensions. */
@@ -221,7 +219,7 @@ function getDimensions($file) {
 		break;
 	default:
 		if (isDebugging())
-			echo "<br>You have no graphics package configured for use!<br>";
+			echo "<br>" . _("You have no graphics package configured for use!") ."<br>";
 		return array(0, 0);
 		break;
 	}
@@ -254,7 +252,7 @@ function selectOptions($album, $field, $opts) {
 		if (!strcmp($opt, $album->fields[$field])) {
 			$sel = "selected";
 		}
-		echo "<option $sel>$opt";
+		echo "\n<option value=\"$opt\" $sel>" . _($opt) ."</option>";
 	}
 }
 
@@ -285,10 +283,10 @@ function acceptableFormatList() {
  */
 
 function automaticFieldsList() {
-	return array("Upload Date" => "Upload Date", 
-	      "Capture Date" => "Capture Date", 
-	      "Dimensions" => "Image Size",
-	      "EXIF" => "Additional EXIF Data");
+	return array("Upload Date" => _("Upload Date"),
+		"Capture Date" => _("Capture Date"),
+		"Dimensions" => _("Image Size"),
+		"EXIF" => _("Additional EXIF Data"));
 }
 
 function isImage($tag) {
@@ -324,7 +322,7 @@ function getFile($fname, $legacy=false) {
 function dismissAndReload() {
 	if (isDebugging()) {
 		echo "<BODY onLoad='opener.location.reload();'>";
-		echo("<center><b>Not closing this window because debug mode is on</b></center>");
+		echo("<center><b>" ._("Not closing this window because debug mode is on") ."</b></center>");
 		echo("<hr>");
 	} else {
 		echo "<BODY onLoad='opener.location.reload(); parent.close()'>";
@@ -340,7 +338,7 @@ function reload() {
 function dismissAndLoad($url) {
 	if (isDebugging()) {
 		echo("<BODY onLoad='opener.location = \"$url\"; '>");
-		echo("<center><b>Not closing this window because debug mode is on</b></center>");
+		echo("<center><b>" . _("Not closing this window because debug mode is on") ."</b></center>");
 		echo("<hr>");
 	} else {
 		echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
@@ -394,7 +392,7 @@ function resize_image($src, $dest, $target) {
 		break;
 	default:
 		if (isDebugging())
-			echo "<br>You have no graphics package configured for use!<br>";
+			echo "<br>" . _("You have no graphics package configured for use!")."<br>";
 		return 0;
 		break;
 	}
@@ -492,7 +490,7 @@ function rotate_image($src, $dest, $target) {
 			break;
 		default:
 			if (isDebugging())
-				echo "<br>You have no graphics package configured for use!<br>";
+				echo "<br>". _("You have no graphics package configured for use!") ."<br>";
 			return 0;
 			break;
 		}	
@@ -538,7 +536,7 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 		break;
 	default:
 		if (isDebugging())
-			echo "<br>You have no graphics package configured for use!<br>";
+			echo "<br>" . _("You have no graphics package configured for use!") ."<br>";
 		return 0;
 		break;
 	}
@@ -571,7 +569,7 @@ function valid_image($file) {
     }
 
 	if (isDebugging())
-		echo "<br>There was an unknown failure in the valid_image() call!<br>";
+		echo "<br>". _("There was an unknown failure in the valid_image() call!") ."<br>";
     return 0;
 }
 
@@ -595,7 +593,7 @@ function toPnmCmd($file) {
 		 	" " .
 			fs_import_filename($file);
 	} else {
-		gallery_error("Unknown file type: $file");
+		gallery_error(_("Unknown file type") .": $file");
 		return "";
 	}
 }
@@ -615,7 +613,7 @@ function fromPnmCmd($file) {
 	if ($cmd) {
 		return "$cmd > " . fs_import_filename($file);
 	} else {
-		gallery_error("Unknown file type: $file");
+		gallery_error(_("Unknown file type") .": $file");
 		return "";
 	}
 }
@@ -732,6 +730,21 @@ function pluralize($amt, $noun, $none="") {
 	return "$amt ${noun}s";
 }
 
+function pluralize_n($amt, $one, $more, $none) {
+        switch ($amt) {
+                case 0 :
+                        return $none;
+                        break;
+                case 1 :
+                        return "$amt $one";
+                        break;
+
+                default :
+                        return "$amt $more";
+                        break;
+        }
+}
+
 function errorRow($key) {
 	global $gErrors;
 
@@ -756,7 +769,7 @@ function drawSelect($name, $array, $selected, $size, $attrList=array()) {
 		if (!strcmp($uid, $selected)) {
 			$sel = "selected";
 		} 
-		$buf .= "<option value=$uid $sel> $username\n";
+		$buf .= "<option value=$uid $sel>". $username ."</option>\n";
 	}
 	$buf .= "</select>\n";
 
@@ -1004,13 +1017,13 @@ function preprocessImage($dir, $file) {
 					fs_unlink($tempfile);
 				}
 			} else {
-				gallery_error("Can't write to $tempfile");
+				gallery_error(_("Can't write to") ." $tempfile");
 			}
 			chmod("$dir/$file", 0644);
 		}
 		fclose($fd);
 	} else {
-		gallery_error("Can't read $dir/$file");
+		gallery_error(_("Can't read") ." $dir/$file");
 	}
 
 	return 1;
@@ -1101,12 +1114,12 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 	
 	$mynumalbums = $albumDB->numAlbums($gallery->user);
 
-	echo "<option value=0 selected> << Select Album >> </option>\n";
+	echo "<option value=0 selected> << ". _("Select Album") ." >> </option>\n";
 
 	// create a ROOT option for the user to move the 
 	// album to the main display
 	if ($gallery->user->canCreateAlbums() && $rootDisplay) {
-		echo "<option value=ROOT>Top Level</option>";
+		echo "<option value=ROOT>". _("Top Level") ."</option>";
 	}
 
 	// display all albums that the user can move album to
@@ -1126,7 +1139,7 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 			if ($myAlbum == $gallery->album) {
 				// Don't allow the user to move to the current location with
 				// value=0, but notify them that this is the current location
-				echo "<option value=0>-- $myAlbumTitle (current location)</option>\n";
+				echo "<option value=0>-- $myAlbumTitle (". _("current location"). ")</option>\n";
 			} else {
 				echo "<option value=\"$myAlbumName\">-- $myAlbumTitle</option>\n";
 			}
@@ -1172,9 +1185,9 @@ function printNestedVals($level, $albumName, $val, $movePhoto) {
 				if ($nestedAlbum == $gallery->album) {
 					// don't allow user to move to here (value=0), but
 					// notify them that this is their current location
-					echo "<option value=0> $val2 (current location)</option>\n";
+					echo "<option value=0> $val2 (". _("current location") .")</option>\n";
 				} elseif ($nestedAlbum == $gallery->album->getNestedAlbum($index)) {
-					echo "<option value=0> $val2 (self)</option>\n";
+					echo "<option value=0> $val2 (". _("self"). ")</option>\n";
 				} else {
 					echo "<option value=\"$myName\"> $val2</option>\n";
 				}
@@ -1428,12 +1441,12 @@ function printChildren($albumName,$depth=0) {
 				$val2 = $nestedAlbum->fields['title'];
 				if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
 					&& !$gallery->session->offline) {
-				    $val3 = "(" . pluralize($nestedAlbum->getClicks(), "hit", "0") . ")";
+				    $val3 = "(" . pluralize_n($nestedAlbum->getClicks(), _("hit"), _("hits"), _("0 hits")) . ")";
 				} else {
 				    $val3 = "";
 				}
 				if ($depth==0 && !$printedHeader++) {
-					echo "<strong>Sub-albums:</strong>";
+					echo "<strong>". _("Sub-albums") .":</strong>";
 				}
 				echo "<div style=\"margin: 0px 0px 0px 20px\">";
 				echo "<span class=fineprint>";
@@ -1462,7 +1475,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 
 	if (!strcmp($tag, "zip")) {
 		if (!$gallery->app->feature["zip"]) {
-			processingMsg("Skipping $name (ZIP support not enabled)");
+			processingMsg(_("Skipping") . " " . $name . _("(ZIP support not enabled)"));
 			continue;
 		}
 		/* Figure out what files we can handle */
@@ -1536,7 +1549,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				$temp_files[$newFile]++;
 			}
 		    
-			processingMsg("- Adding $name");
+			processingMsg("- ". _("Adding") ." " .$name);
 			if ($setCaption and $caption == "") {
 				$caption = $originalFilename;
 			}
@@ -1553,7 +1566,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 					list($w, $h) = $photo->image->getRawDimensions();
 					if ($w > $gallery->album->fields["resize_size"] ||
 					    $h > $gallery->album->fields["resize_size"]) {
-						processingMsg("- Resizing $name"); 
+						processingMsg("- " . _("Resizing") ." ". $name);
 						$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
 					}
 				}
@@ -1579,7 +1592,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 						}
 						if ($rotate) {
 							$gallery->album->rotatePhoto($index, $rotate);
-							processingMsg("- Photo auto-rotated ${rotate}&deg;");
+							processingMsg("- ". _("Photo auto-rotated") ." ${rotate}&deg;");
 						}
 					}
 				}
@@ -1589,12 +1602,12 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				}
 
 			} else {
-				processingMsg("<font color=red>Error: $err!</font>");
-				processingMsg("<b>Need help?  Look in the " .
+				processingMsg("<font color=red>" . _("Error") . ": $err!</font>");
+				processingMsg("<b>". _("Need help?  Look in the ") .
 				    "<a href=http://gallery.sourceforge.net/faq.php target=_new>Gallery FAQ</a></b>");
 			}
 		} else {
-			processingMsg("Skipping $name (can't handle '$tag' format)");
+			processingMsg(_("Skipping") . " " . $name . " (". _("can't handle") ." '$tag' ". _("format") .")");
 		}
 	}
 }
@@ -1703,4 +1716,304 @@ function findInPath($program)
 	
 	return false;
 }
+
+/**
+ * NLS (National Language System) array.
+ *
+ * This array was taken from then Horde Framework (http://horde.org)
+ * The original filename was horde/config/nls.php.dist and it was 
+ * maintained by Jan Schneider (mail@janschneider.de)
+ * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * (jens@f2h9.de)
+ */
+
+function getNLS () {
+	$nls['languages']['da_DK'] = 'Dansk';
+	$nls['languages']['de_DE'] = 'Deutsch';
+	$nls['languages']['en_GB'] = 'English (UK)';
+	$nls['languages']['en_US'] = 'English (US)';
+	$nls['languages']['es_ES'] = 'Espa&ntilde;ol';
+	$nls['languages']['fr_FR'] = 'Fran&ccedil;ais';
+	$nls['languages']['fr_CA'] = 'Canadien Fran&ccedil;ais';
+	$nls['languages']['it_IT'] = 'Italiano';
+	$nls['languages']['he_IL'] = 'Hebrew';
+	$nls['languages']['is_IS'] = '&Iacute;slenska';
+	$nls['languages']['lt_LT'] = 'Lietuvi&#x0173;';
+	$nls['languages']['nl_NL'] = 'Nederlands';
+	$nls['languages']['nl_BE'] = 'Dutch';
+	$nls['languages']['no_NO'] = 'Norsk';
+	$nls['languages']['pl_PL'] = 'Polski';
+	$nls['languages']['ru_RU'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (Windows)';
+	$nls['languages']['ru_RU.koi8r'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (KOI8-R)';
+	$nls['languages']['sv_SE'] = 'Svenska';
+	
+	
+	/**
+	 ** Aliases for languages with different browser and gettext codes
+	 **/
+	
+	$nls['aliases']['de'] = 'de_DE';
+	$nls['aliases']['en'] = 'en_US';
+	$nls['aliases']['es'] = 'es_ES';
+	$nls['aliases']['fr'] = 'fr_FR';
+	$nls['aliases']['is'] = 'is_IS';
+	$nls['aliases']['it'] = 'it_IT';
+	$nls['aliases']['lt'] = 'lt_LT';
+	$nls['aliases']['nl'] = 'nl_NL';
+	$nls['aliases']['no'] = 'no_NO';
+	$nls['aliases']['pl'] = 'pl_PL';
+	$nls['aliases']['ru'] = 'ru_RU';
+	$nls['aliases']['sv'] = 'sv_SE';
+	
+	$nls['aliases']['de_LI'] = 		'de_DE' ;
+	$nls['aliases']['de_LU'] = 		'de_DE' ;
+	$nls['aliases']['de_CH'] = 		'de_DE' ;
+	$nls['aliases']['de_AT'] = 		'de_DE' ;
+	$nls['aliases']['german'] =		'de_DE' ;
+	$nls['aliases']['de_DE.ISO8859-1'] =    'de_DE' ;
+	
+	$nls['aliases']['dutch'] = 		'nl_NL' ;
+	
+	$nls['aliases']['en_EN'] = 		'en_US' ;
+	$nls['aliases']['english'] = 		'en_US' ;
+	$nls['aliases']['en_US.ISO8859-1'] =    'en_US' ;
+	$nls['aliases']['en_GB.ISO8859-1'] =    'en_GB' ;
+
+	$nls['aliases']['es_ES.ISO8859-1'] =    'es_ES' ;
+	
+	$nls['aliases']['fr_FR'] = 		'fr_CA' ;
+	$nls['aliases']['fr_BE'] = 		'fr_CA' ;
+	$nls['aliases']['fr_LU'] = 		'fr_CA' ;
+	$nls['aliases']['fr_CH'] = 		'fr_CA' ;
+	$nls['aliases']['french'] =		'fr_CA' ;
+	$nls['aliases']['fr_CA.ISO8859-1'] =    'fr_CA' ;
+	
+	$nls['aliases']['icelandic']=		'is_IS' ;
+	$nls['aliases']['is_IS.ISO8859-1'] =    'is_IS' ;
+	
+	$nls['aliases']['italian'] =		'it_IT' ;
+	$nls['aliases']['it_IT.ISO8859-1'] =    'it_IT' ;
+	
+	$nls['aliases']['he_HE'] = 		'he_IL' ;
+	$nls['aliases']['hebrew'] =		'he_IL' ;
+	$nls['aliases']['he_IL.ISO8859-8'] =    'he_IL' ;
+	
+	//$nls['aliases']['lithuanian'] =	'lt_LT' ;
+	$nls['aliases']['lt_LT.ISO8859-4'] =    'lt_LT' ;
+	$nls['aliases']['lt_LT.ISO8859-13'] =   'lt_LT' ;
+	
+	$nls['aliases']['nl_BE.ISO8859-1'] =    'nl_BE' ;
+	$nls['aliases']['nl_NL.ISO8859-1'] =    'nl_NL' ;
+	
+	$nls['aliases']['norwegian'] = 		'no_NO' ;
+	$nls['aliases']['no_NO.ISO8859-1'] =    'no_NO' ;
+	
+	$nls['aliases']['polish'] =		'pl_PL' ;
+	$nls['aliases']['pl_PL.ISO8859-2'] =    'pl_PL' ;
+	
+	$nls['aliases']['russian'] =		'ru_RU';
+	//$nls['aliases']['russian'] =		'ru_RU.koi8r';
+	$nls['aliases']['ru_RU.ISO8859-5'] =    'ru_RU' ;
+	$nls['aliases']['ru_RU.KOI8-R'] =       'ru_RU.koi8r' ;
+	
+	$nls['aliases']['sv_SV'] = 		'sv_SE' ;
+	$nls['aliases']['swedish'] =		'sv_SE' ;
+	$nls['aliases']['sv_SE.ISO8859-1'] =    'sv_SE' ;
+	
+	$nls['aliases']['spanish'] = 		'es_ES' ;
+	
+	/**
+	 ** Charsets
+	 **/
+	
+	// Add your own charsets, if your system uses others than "normal"
+	
+	$nls['default']['charset'] = 'ISO-8859-1';
+	
+	$nls['charset']['pl_PL'] = 'ISO-8859-2';
+	$nls['charset']['ru_RU'] = 'windows-1251';
+	$nls['charset']['ru_RU.KOI8-R'] = 'KOI8-R';
+	$nls['charset']['lt_LT'] = 'windows-1257';
+	$nls['charset']['he_IL'] = 'windows-1255';
+	
+	//$nls['charset']['de_DE']='de_DE.ISO-8859-15@euro' ;
+	//$nls['charset']['lt_LT'] = 'ISO-8859-13';
+	
+	
+	// Direction
+	
+	$nls['default']['direction'] = 'ltr';
+	$nls['direction']['he_IL'] = 'rtl' ;
+	
+	// Alignment
+	
+	$nls['default']['align'] = 'left';
+	$nls['align']['he_IL'] = 'right' ;
+	return $nls;
+}
+
+function initLanguage() {
+	global $gallery, $GALLERY_BASEDIR, $newlang, $translation, $HTTP_SERVER_VARS;
+// Detect Browser Language
+	$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
+        $lang_pieces=explode ("-",$lang[0]);
+
+        if (strlen($lang[0]) ==2) {
+		$gallery->browser_language=$lang[0] ."_".strtoupper($lang[0]);
+	} else {
+		$gallery->browser_language=strtolower($lang_pieces[0])."_".strtoupper($lang_pieces[1]) ;
+        }
+
+// Check if we already have a language
+// Use this only if user dont want Browserlanguage only
+
+	if ($gallery->app->ML_mode > 1) {
+		$gallery->language=$gallery->session->language;
+	}
+
+
+// Check in which Mode or Nuke and set language
+//
+	$nls = getNLS();
+	if ($gallery->app->ML_mode == 1) {
+		$gallery->language = $gallery->app->default_language;
+	} elseif ($gallery->app->ML_mode == 2 and ! $gallery->language) {
+		// Use Browser Language
+		$gallery->language=$gallery->browser_language;
+	} elseif ($gallery->app->ML_mode == 3 and ($newlang)) {
+		// Check New language
+		// Use Alias if
+		if ($nls['alias'][$newlang]) $newlang=$nls['alias'][$newlang] ;
+		// use Language if its okay, otherwise use default
+		// Set Language to the User selected language
+		if ($nls['languages'][$newlang] ||$nuke_langname[$newlang]) {
+			$gallery->language=$newlang;
+		} else {
+			$gallery->language = $gallery->app->default_language;
+		}	
+	} elseif ($GALLERY_EMBEDDED_INSIDE) {
+		// We're in NUKE ... so there should be an alias
+		$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
+		$gallery->language=$langalias[$gallery->nuke_language];
+	}
+
+/* Fall back to Default Language if :
+	- we cant detect Language
+	- Nuke sends an unsupported
+	- We are in Config Mode
+*/			
+	if (! $gallery->language) {
+		$gallery->language = $gallery->app->default_language;
+	}
+
+// if an alias for a language is given, use it
+//
+	if ($nls['alias'][$gallery->language]) {
+		$gallery->language = $nls['alias'][$gallery->language] ;
+	}
+
+// And now set this language into session
+	$gallery->session->language= $gallery->language;
+
+
+// locale
+
+		//locale okay
+		if ($gallery->app->locale_alias[$gallery->language]) {
+			$gallery->locale=$gallery->app->locale_alias[$gallery->language];
+		} else {
+			$gallery->locale=$gallery->language;
+		}
+		// Override NUKES locale :)))	
+		$locale=$gallery->locale;
+
+// if no direction is present, use default
+        if ( ! $nls['direction'][$gallery->language]) {
+		$gallery->direction=$nls['default']['direction'] ;
+	} else {
+		$gallery->direction = $nls['direction'][$gallery->language] ;
+	}
+
+//If no Charset is given use default
+        if ( ! $nls['charset'][$gallery->language] ) {
+		$gallery->charset=$nls['default']['charset'];
+	} else {
+		$gallery->charset=$nls['charset'][$gallery->language] ;
+	}
+
+// if no alignment is given use default
+        if ( ! $nls['align'][$gallery->language] ) {
+		$gallery->align=$nls['default']['align'];
+	} else {
+		$gallery->align=$nls['align'][$gallery->language] ; 
+	}
+
+// When all is done do the settings
+
+// If theres an error switch to Mode 2
+//
+        putenv("LANG=". $gallery->language);
+        putenv("LANGUAGE=". $gallery->language);
+
+// Set Local
+	setlocale(LC_ALL,$gallery->locale);
+
+
+if (in_array("gettext", get_loaded_extensions())) {
+		$bindtextdomain=bindtextdomain("gallery", $GALLERY_BASEDIR."locale");
+		textdomain("gallery");
+}
+
+//Set Charset
+        header('Content-Type: text/html; charset=' . $gallery->charset);
+	if (!in_array("gettext", get_loaded_extensions()) 
+		|| ! function_exists(gettext)) {
+		$filename=po_filename();
+		if ($filename) {
+			$lines=file($filename);
+	
+			foreach ($lines as $key => $value) {
+				if (stristr($value, "msgid")) {
+					$new_key=substr($value, 7,-2);
+					$translation[$new_key]=substr($lines[$key+1],8,-2);
+				}	
+			}
+	
+			// Substitute _() gettext function
+			function _($search) {
+				if ($GLOBALS['translation'][$search]) {
+					return $GLOBALS['translation'][$search] ;
+				}
+				else {
+					return $search;
+				}
+			}
+		}
+		else {
+			function _($search) {
+				return $search;
+			}
+		}
+	
+	}
+	
+
+}
+function po_filename() {
+	global $GALLERY_BASEDIR, $gallery;
+	$filename=$GALLERY_BASEDIR ."locale/" . $gallery->language . "/gallery.po";
+	if (file_exists($filename)) {
+			return $filename;
+	}
+	$filename=$GALLERY_BASEDIR ."po/" . $gallery->language . "-gallery.po";
+	if (file_exists($filename)) {
+			return $filename;
+	}
+	return NULL;
+}
+function vd($x, $string="") {
+	print "<pre>\n$string: ";
+	var_dump($x);
+	print "</pre>\n";
+}       
 ?>

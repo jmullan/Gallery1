@@ -39,10 +39,10 @@ if (!$gallery->user->isAdmin()) {
 }
 
 if ($submit) {
-	if (!strcmp($submit, "Delete")) {
+	if (!strcmp(htmlentities($submit), _("Delete"))) {
 		$gallery->userDB->deleteUserByUsername($uname);
 		header("Location: manage_users.php");
-	} else if (!strcmp($submit, "Cancel")) {
+	} else if (!strcmp(htmlentities($submit), _("Cancel"))) {
 		header("Location: manage_users.php");
 	}
 }
@@ -50,38 +50,39 @@ if ($submit) {
 ?>
 <html>
 <head>
-  <title>Delete User</title>
+  <title><?php echo _("Delete User") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<span class="popuphead">Delete User</span>
+<span class="popuphead"><?php echo _("Delete User") ?></span>
 <br>
 <br>
 <?php echo makeFormIntro("delete_user.php"); ?>
-<input type=hidden name=uname value=<?php echo $uname?>>
+<input type=hidden name=uname value=<?php echo $uname ?>>
 
 <?php
 if (!strcmp($gallery->user->getUsername(), $uname)) {
-	print center(gallery_error("You can't delete your own account!"));
+	print center(gallery_error(_("You can't delete your own account!")));
 	print "<p>";
 } else {
 ?>
-Users can have special permissions in each album.  If you delete
-this user, any such permissions go away.  Users cannot be recreated.
-Even if this user is recreated, those permissions are gone.  
-Do you really want to delete user <b><?php echo $uname?></b>?
+<?php echo _("Users can have special permissions in each album.") ?>
+<?php echo _("If you delete this user, any such permissions go away.") ?>
+<?php echo _("Users cannot be recreated.") ?>
+<?php echo _("Even if this user is recreated, those permissions are gone.") ?>
+<?php echo _("Do you really want to delete user") ?> <b><?php echo $uname ?></b>?
 <p>
 <p>
 
-<input type=submit name="submit" value="Delete">
+<input type=submit name="submit" value="<?php echo _("Delete") ?>">
 <?php
 }
 ?>
 
-<input type=submit name="submit" value="Cancel">
-</form>
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>">
+</form> 
 
 </body>
 </html>

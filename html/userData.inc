@@ -4,14 +4,14 @@
 
  <tr>
   <td>
-   Username
+  <?php echo _("Username") ?>
   </td>
   <td>
    <?php if ($dontChange["uname"]) { ?>
 	<?php echo $uname ?>
-	<input type=hidden name="uname" value="<?php echo $uname?>">
+	<input type=hidden name="uname" value="<?php echo $uname ?>">
    <?php } else { ?>
-	<input type=text name="uname" value="<?php echo $uname?>">
+	<input type=text name="uname" value="<?php echo $uname ?>">
    <?php
 	}
    ?>
@@ -24,10 +24,10 @@
 
  <tr>
   <td>
-   Old Password
+  <?php echo _("Old Password") ?>
   </td>
   <td>
-   <input type=password name="old_password" value="<?php echo $old_password?>">
+   <input type=password name="old_password" value="<?php echo $old_password ?>">
   </td>
  </tr>
 
@@ -37,10 +37,10 @@
 
  <tr>
   <td>
-   New Password
+  <?php echo _("New Password") ?>
   </td>
   <td>
-   <input type=password name="new_password1" value="<?php echo $new_password1?>">
+   <input type=password name="new_password1" value="<?php echo $new_password1 ?>">
   </td>
  </tr>
 
@@ -48,10 +48,10 @@
 
  <tr>
   <td>
-   New Password (again)
+  <?php echo _("New Password (again)") ?>
   </td>
   <td>
-   <input type=password name="new_password2" value="<?php echo $new_password2?>">
+   <input type=password name="new_password2" value="<?php echo $new_password2 ?>">
   </td>
  </tr>
 
@@ -59,10 +59,10 @@
 
  <tr>
   <td>
-   Full Name
+  <?php echo _("Full Name") ?>
   </td>
   <td>
-   <input type=text name="fullname" value="<?php echo $fullname?>">
+   <input type=text name="fullname" value="<?php echo $fullname ?>">
   </td>
  </tr>
 
@@ -70,10 +70,10 @@
 
  <tr>
   <td>
-   Email Address
+   <?php echo _("Email Address") ?>
   </td>
   <td>
-   <input type=text name="email" value="<?php echo $email?>">
+   <input type=text name="email" value="<?php echo $email ?>">
   </td>
  </tr>
 
@@ -82,11 +82,11 @@
 <?php if ($gallery->user->isAdmin() && isset($canCreate)) { ?>
  <tr>
   <td>
-   User can create albums
+   <?php echo _("User can create albums") ?>
   </td>
   <td> 
    <?php if ($dontChange["create-albums"]) { ?>
-	<?php echo $canCreateChoices[$canCreate] ?> <i>(admins can always create albums)</i>
+	<?php echo $canCreateChoices[$canCreate] ?> <i>(<?php echo _("admins can always create albums") ?>)</i>
    <?php } else { ?>
         <?php echo drawSelect("canCreate", $canCreateChoices, $canCreate, 1); ?>
    <?php } ?>
@@ -97,11 +97,11 @@
 <?php if ($gallery->user->isAdmin() && isset($isAdmin)) { ?>
  <tr>
   <td>
-   User is an admin
+   <?php echo _("User is an admin") ?>
   </td>
   <td> 
    <?php if ($dontChange["admin"]) { ?>
-	<?php echo $isAdminChoices[$isAdmin] ?> <i>(you can't un-admin yourself)</i>
+	<?php echo $isAdminChoices[$isAdmin] ?> <i>(<?php echo _("you can't un-admin yourself") ?>)</i>
    <?php } else { ?>
         <?php echo drawSelect("isAdmin", $isAdminChoices, $isAdmin, 1); ?>
    <?php } ?>

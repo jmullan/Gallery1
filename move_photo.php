@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -44,10 +44,10 @@ $albumDB = new AlbumDB(FALSE); // read album database
 ?>
 <html>
 <head>
-  <title>Move Photo</title>
+  <title><?php echo _("Move Photo") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <?php
 if ($gallery->session->albumName && isset($index)) {
@@ -94,7 +94,7 @@ if ($gallery->session->albumName && isset($index)) {
 				while ($startPhoto <= $endPhoto) {
 					if (!$gallery->album->isAlbumName($index)) {
 					        set_time_limit($gallery->app->timeLimit);
-						echo "Moving photo #".$startPhoto."<br>";
+						echo _("Moving photo #").$startPhoto."<br>";
 						my_flush();
 						$mydir = $gallery->album->getAlbumDir();
 						$myphoto = $gallery->album->getPhoto($index);
@@ -113,7 +113,7 @@ if ($gallery->session->albumName && isset($index)) {
 							$pathToThumb="$mydir/$myname.thumb.$mytype";
 						} else {
 							$pathToThumb="";
-							echo "- Creating Thumbnail<br>";
+							echo "- ". _("Creating Thumbnail") ."<br>";
 							my_flush();
 						}
 						$photo=$gallery->album->getPhoto($index);
@@ -147,7 +147,7 @@ if ($gallery->session->albumName && isset($index)) {
 										$pathToResized="$mydir/$myresized.$mytype";
 									} else {
 										$pathToResized="";
-										echo "- Resizing photo<br>";
+										echo "- " . _("Resizing photo") ."<br>";
 										my_flush();
 									}
 									$postAlbum->resizePhoto($newPhotoIndex, $postAlbum->fields["resize_size"], $pathToResized);
@@ -159,7 +159,7 @@ if ($gallery->session->albumName && isset($index)) {
 								if (!$gallery->album->hasHighlight()) {
 									$resetHighlight = 1;
 									$gallery->album->deletePhoto($index,$resetHighlight);
-									echo "- Creating New Album Highlight<br>";
+									echo _("- Creating New Album Highlight") ."<br>";
 								} else {
 									$gallery->album->deletePhoto($index);
 								}
@@ -169,11 +169,11 @@ if ($gallery->session->albumName && isset($index)) {
 							}
 							$gallery->album->save();
 						} else {
-							echo "<font color=red>Error: $err!</font>";
+							echo "<font color=red>". _("Error") . ": "."$err!</font>";
 							return;
                 				}
 			     		} else {
-						echo "Skipping Album #".$startPhoto."<br>";
+						echo _("Skipping Album #").$startPhoto."<br>";
 						$index++; // we hit an album... don't move it... just increment the index
 					}
 					$startPhoto++;
@@ -196,17 +196,17 @@ if ($gallery->session->albumName && isset($index)) {
 <?php
 if ($gallery->album->isAlbumName($index)) {
 ?>
-Move this album within the album:<br>
+<?php echo _("Move this album within the album:") ?><br>
 <?php } else { ?>
-Move this photo within the album:<br>
+<?php echo _("Move this photo within the album:") ?><br>
 <?php } ?>
-<i>(Current Location is <?php echo $index?>)</i>
+<i>(<?php echo _("Current Location is") ?> <?php echo $index ?>)</i>
 <p>
 <?php echo $gallery->album->getThumbnailTag($index) ?>
 <p>
 <?php echo makeFormIntro("move_photo.php", array("name" => "theform")); ?>
-Select the new location:
-<input type=hidden name="index" value="<?php echo $index?>">
+<?php echo _("Select the new location:") ?> 
+<input type=hidden name="index" value="<?php echo $index ?>">
 <select name="newIndex">
 <?php
 for ($i = 1; $i <= $numPhotos; $i++) {
@@ -220,12 +220,12 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 ?>
 </select>
 <p>
-<input type=submit value="Move it!">
-<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+<input type=submit value=<?php echo '"' . _("Move it!") . '"' ?>>
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <p>
 <hr size=1>
-<b>OR</b>
+<b><?php echo _("OR") ?></b>
 <hr size=1>
 
 
@@ -234,9 +234,9 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <?php
 if ($gallery->album->isAlbumName($index)) {
 ?>
-Move the album to a new album:<br>
+<?php echo _("Move the album to a new album:") ?><br>
 <?php echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
-<input type=hidden name="index" value="<?php echo $index?>">
+<input type=hidden name="index" value="<?php echo $index ?>">
 <select name="newAlbum">
 <?php
 	$uptodate=printAlbumOptionList(1,0,0);
@@ -245,20 +245,20 @@ Move the album to a new album:<br>
 <?php
 } else {  
 ?>
-Move a range of photos to a new album:<br>
-<i>(To move just one photo, make First and Last the same)</i><br>
-<i>(Nested albums in this range will be ignored)</i><p>
+<?php echo _("Move a range of photos to a new album:") ?><br>
+<i>(<?php echo _("To move just one photo, make First and Last the same") ?>)</i><br>
+<i>(<?php echo _("Nested albums in this range will be ignored") ?>)</i><p>
 <?php echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
-<input type=hidden name="index" value="<?php echo $index?>">
+<input type=hidden name="index" value="<?php echo $index ?>">
 
 <?php
 // Display album list for a photo and display num photos to move
 ?>
 <table>
 <tr>
-<td align=center><b>First</b></td>
-<td align=center><b>Last</b></td>
-<td align=center><b>New Album</b></td>
+<td align=center><b><?php echo _("First") ?></b></td>
+<td align=center><b><?php echo _("Last") ?></b></td>
+<td align=center><b><?php echo _("New Album") ?></b></td>
 </tr>
 <tr>
 <td align=center>
@@ -305,13 +305,13 @@ if (!$uptodate) {
 }
 ?>
 <br>
-<input type=submit value="Move to Album!">
-<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+<input type=submit value=<?php echo '"' . _("Move to Album!") . '"' ?>>
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <?php
 }
 } else {
-	gallery_error("no album / index specified");
+	gallery_error(_("no album / index specified"));
 }
 ?>
 </font>

@@ -1,16 +1,15 @@
 <?php /* $Id$ */ ?>
 <center>
-<font size=+2> Gallery Setup: Step 4 </font>
+<font size=+2><?php echo _("Gallery Setup: Step 4") ?></font>
 <br>
 <table width=80%><tr><td>
-Confirm that the settings you entered came through correctly.
-If you find this page confusing, you can probably safely ignore it
-(unless you see stuff in red which indicates an error).
+<?php 
+echo _("Confirm that the settings you entered came through correctly.  If you find this page confusing, you can probably safely ignore it  (unless you see stuff in red which indicates an error)")
+?>
 </td></tr></table>
 
 <center>
 <table width=90% border=0>
-<pre>
 
 <?php
 require("../Version.php");
@@ -51,7 +50,7 @@ foreach ($features as $feature => $dependents) {
 			if ($cause) {
 				$cause .= ", ";
 			}
-			$cause .= "missing <i>$dep</i> -- it's optional";
+			$cause .= _("missing") ." <i>$dep</i> -- " . _("it's optional");
 		}
 	}
 
@@ -74,25 +73,37 @@ $graphpath = "";
 $graphtest = array();
 
 foreach ($constants as $key => $val) {
+	$real = $$key;
+	if (ereg("^(..*)\[(.*)\]$", $key, $matches)) {
+		$line='$real = $'. $matches[1] . '["' . $matches[2] . '"];';
+		eval($line);
+	}
+
         if (get_magic_quotes_gpc()) {
-	    $$key = stripslashes($$key);
+	    $real = stripslashes($real);
 	}
 
 	// Protect quote characters to avoid screwing up HTML forms
-	$$key = str_replace('"', '&quot;', $$key);
+	$real = str_replace('"', '&quot;', $real);
 
-	echo "<input type=hidden name=$key value=\"{$$key}\">";
+	if (is_array($real)) {
+		foreach ($real as $value) {
+			echo "<input type=hidden name=${key}[] value=\"{$value}\">";
+		}
+	} else {
+		echo "<input type=hidden name=$key value=\"{$real}\">";
+	}
 
 	if ($constants[$key]["eval"]) {
 		$tmp = $constants[$key]["eval"];
-		eval("\$$key = $tmp;");
+		eval("\$real = $tmp;");
 	}
 
 	if (!strcmp($key, "graphics")) {
-		$graphtool = $$key;
+		$graphtool = $real;
 	}
 	
-	if (!strcmp($$key, "")) {
+	if (!strcmp($real, "")) {
 		if (!strcmp($key, "pnmDir")) {
 		        $graphtest['pnmDir'] = 1;
 		}
@@ -100,40 +111,40 @@ foreach ($constants as $key => $val) {
 		        $graphtest['ImPath'] = 1;
 		}
 		if ($constants[$key]["optional"]) {
-			$data .= "// optional <i>$key</i> missing\n";
-			$view .= row_wrap("// optional <i>$key</i> missing");
+			$data .= "// ". _("optional") . " <i>$key</i> ". _("missing") ."\n";
+			$view .= row_wrap("// ". _("optional") ." <i>$key</i> ". _("missing"));
 		} else {
 			$view .= row_wrap(error_missing($constants[$key]["prompt"]));
 			$error = 1;
 		}
 	} else {
 		if ($constants[$key]["filename"]) {
-			$$key = fs_export_filename($$key);
+			$real = fs_export_filename($real);
 		}
 
 		if ($constants[$key]["no-trailing-slash"]) {
-			$$key = ereg_replace("\/$", "", $$key);
+			$real = ereg_replace("\/$", "", $real);
 			/* Catch windows paths too. */
-			$$key = ereg_replace("\\$", "", $$key);
+			$real = ereg_replace("\\$", "", $real);
 		}
 
 		if ($constants[$key]["must-be-url"]) {
-			if (!ereg("^http", $$key)) {
-				$view .= row_wrap(error_format("$key: <b>" . $$key . 
-					"</b> must be an absolute URL!"));
+			if (!ereg("^http", $real)) {
+				$view .= row_wrap(error_format("$key: <b>" . $real . 
+					"</b> ". _("must be an absolute URL!")));
 				$error = 1;
 				continue;
 			}
 		}
 
 		if ($constants[$key]["must-be-file"]) {
-			$dir = dirname($$key);
+			$dir = dirname($real);
 			if (!inOpenBasedir($dir)) {
 				$warn_about_open_basedir = 1;
 			} else {
-				if (!@is_file($$key)) {
-					$view .= row_wrap(error_format("$key: <b>" . $$key . 
-						"</b> must be a valid file (not a directory)!"));
+				if (!@is_file($real)) {
+					$view .= row_wrap(error_format("$key: <b>" . $real . 
+						"</b> " . _("must be a valid file (not a directory)!")));
 					$error = 1;
 					continue;
 				}
@@ -141,18 +152,18 @@ foreach ($constants as $key => $val) {
 		}
 
 		if ($constants[$key]["must-be-number"]) {
-			if (ereg("[^0-9]",$$key)) {
-				$view .= row_wrap(error_format("$key: <b>\"" . $$key .
-					"\"</b> must be a number"));
+			if (ereg("[^0-9]",$real)) {
+				$view .= row_wrap(error_format("$key: <b>\"" . $real .
+					"\"</b> ". _("must be a number")));
 				$error = 1;
 				continue;
 			}
 		}
 
 		if ($constants[$key]["must-not-be-zero"]) {
-			if ($$key == 0) {
-				$view .= row_wrap(error_format("$key: <b>" . $$key .
-					"</b> must not be zero"));
+			if ($real == 0) {
+				$view .= row_wrap(error_format("$key: <b>" . $real .
+					"</b> ". _("must not be zero")));
 				$error = 1;
 				continue;
 			}
@@ -161,61 +172,62 @@ foreach ($constants as $key => $val) {
 		if ($constants[$key]["must-be-executable"]) {
 			if (!inOpenBasedir($dir)) {
 				$warn_about_open_basedir = 1;
-			} else if (!fs_is_executable($$key)) {
-				$view .= row_wrap(error_format("$key: <b>" . $$key . 
-					"</b> must be an executable file!"));
+			} else if (!fs_is_executable($real)) {
+				$view .= row_wrap(error_format("$key: <b>" . $real . 
+					"</b> " . _("must be an executable file!")));
 				$error = 1;
 				continue;
 			}
 		}
 
 		if ($constants[$key]["require-write-dir"]) {
-			$dir = $$key;
+			$dir = $real;
 			if (!file_exists($dir)) {
-				$view .= row_wrap(error_format("Directory <b>$dir</b> does not exist.  " .
-						"Please create it."));
+				$view .= row_wrap(error_format(_("Directory") ." <b>$dir</b> " . _("does not exist.  Please create it.")));
 				$error = 1;
 				continue;
 			}
 
 			if (!is_dir($dir)) {
-				$view .= row_wrap(error_format("<b>$dir</b> exists but is not a directory.  " .
-						"Please fix this."));
+				$view .= row_wrap(error_format("<b>$dir</b> " . _("exists but is not a directory.  Please fix this.")));
 				$error = 1;
 				continue;
 			}
 
 			if (!is_writeable($dir) ||
 			    !test_write_to_dir($dir)) {
-				$view .= row_wrap(error_format("$key: $dir exists, but is not " .
-						"writeable by the webserver user.  Try:" .
+				$view .= row_wrap(error_format("$key: $dir " . _("exists, but is not writeable by the webserver user.  Try:") .
 						"<br><b><code>" .
 						"chown -R " . $webserver_user . " $dir" .
 						"</code></b><br><br>" .
-						"or if that doesn't work:" .
+						_("or if that doesn't work:") .
 						"<br><b><code>" .
 						"chmod -R 777 $dir</code>" .
 						"</code></b><br><br>" .
-					        "Also make sure that if you have an " .
-					        "<a href=phpinfo.php>open_basedir restriction</a> " .
-						", then this tmp directory " .
-					        "should be under the open_basedir path"));
+					        _("Also make sure that if you have an") .
+					        " <a href=phpinfo.php>open_basedir ". _("restriction") ."</a> " .
+						", " . _("then this tmp directory should be under the open_basedir path")));
 				$error = 1;
 				continue;
 			}
 		}
 
 		if (!$constants[$key]["dont-write"]) {
-			$data .= one_constant($key, $$key);
-			$view .= row_wrap(one_constant($key, $$key));
+			if (is_array($real)) {
+				$line = array_constant($key, $real);
+			} else {
+				$line = one_constant($key, $real);
+			}
+			$data .= $line;
+			$view .= row_wrap($line);
 		}
 
 		if ($constants[$key]["verify-func"]) {
 			$func = $constants[$key]["verify-func"];
 			if ($constants[$key]["verify-func-takes-graphics-type"]) {
-			    list($success, $fail) = $func($$key, $graphtool);
+			    list($success, $fail) = $func($real, $graphtool);
 			} else {
-			    list($success, $fail) = $func($$key);
+			    list($success, $fail) = $func($real);
 			}
 			
 			foreach ($fail as $fkey => $fval) {
@@ -232,7 +244,7 @@ foreach ($constants as $key => $val) {
 
 			/* Needed for the pnmtojpeg<->ppmtojpeg silliness */
 			if (!strcmp($key, "pnmDir")) {
-				$graphpath  = $$key;
+				$graphpath  = $real;
 			}
 		}
 	}
@@ -252,12 +264,9 @@ if (!strcmp($graphtool, "NetPBM") && empty($graphtest['pnmDir'])) {
 		if (!fs_file_exists(fs_executable($graphpath . "/" . $pnmtojpeg))) {
 			$error = 1;
 			$view .= row_wrap(error_format(
-				"Could not find <i>$graphpath/$pnmtojpeg</i>  Check your ".
-				"NetPBM directory to see which PNG->JPEG converter you have " .
-				"(or just try using " .
-				($pnmtojpeg == "pnmtojpeg" ? "ppmtojpeg" : "pnmtojpeg") .
-			        " instead). " .
-				"Please check your configuration (or use ImageMagick)."));
+				sprintf(_("Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
+					"<i>$graphpath/$pnmtojpeg</i>",
+					($pnmtojpeg == "pnmtojpeg" ? "ppmtojpeg" : "pnmtojpeg"))));
 		}
 	}
 }
@@ -267,29 +276,22 @@ if (!strcmp($graphtool, "NetPBM") && empty($graphtest['pnmDir'])) {
  * chose is configured properly.
  */
 if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
-    $view .= row_wrap(error_format("You must specify one of <i>pnmDir</i> or ".
-				   "<i>ImPath</i> for Gallery to function!!"));
+    $view .= row_wrap(error_format(_("You must specify one of <i>pnmDir</i> or <i>ImPath</i> for Gallery to function!!")));
     $error = 1;
 } else if (!strcmp($graphtool, "ImageMagick") && !empty($graphtest['ImPath'])) {
-    $view .= row_wrap(error_format("ImageMagick is not properly configured for use ".
-				   "as a graphics package.  Make sure you entered ".
-				   "a path to the ImageMagick binaries in step 2."));
+    $view .= row_wrap(error_format(_("ImageMagick is not properly configured for use as a graphics package.  Make sure you entered a path to the ImageMagick binaries in step 2.")));
     $error = 1;
 } else if (!strcmp($graphtool, "NetPBM") && !empty($graphtest['pnmDir'])) {
-    $view .= row_wrap(error_format("NetPBM is not properly configured for use ".
-				   "as a graphics package.  Make sure you entered ".
-				   "a path to the NetPBM binaries in step 2."));
+    $view .= row_wrap(error_format(_("NetPBM is not properly configured for use as a graphics package.  Make sure you entered a path to the NetPBM binaries in step 2.")));
     $error = 1;
 }
 
 if ($warn_about_open_basedir) {
-	$view .= row_wrap("<hr><b>Note:</b> Your server has the PHP open_basedir restriction " .
-			  "set, and certain of your paths are not in the list of restricted paths " .
-			  "(" .ini_get('open_basedir') . ")  This doesn't mean that they won't ".
-			  "work, however it does mean that we can't verify that the paths are " .
-			  "correct.  If you are unable to upload photos correctly, please refer " .
-			  "to the FAQ and to the <a href=diagnostics.php>diagnostics</a> to " .
-			  "resolve your problems." .
+	$view .= row_wrap("<hr><b>". _("Note") .":</b> ". 
+			_("Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths") .
+			" (" . ini_get('open_basedir') . ")  " .
+			sprintf(_("This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."),
+ 			'<a href="diagnostics.php">', '</a>').
 			  "<hr>");
 }
 
@@ -329,24 +331,30 @@ foreach ($defaults as $key => $val) {
 
 }
 $data .= "?" . ">\n";
-
-echo $view;
 ?>
 
-<input type=hidden name=data value=<?php echo urlencode($data)?>>
+<input type=submit name="go_back" value="<- <?php echo _("Edit Config") ?>">
+<?php if (!$error) { ?>
+ <input type=submit name="go_next" value="<?php echo _("Save Config") ?> ->">
+<?php } ?>
+
+<pre>
+<?php echo $view; ?>
+
+<input type=hidden name=data value=<?php echo urlencode($data) ?>>
 </pre>
 </table>
 
 <input type=hidden name=back_page value="defaults">
 <input type=hidden name=next_page value="write">
 <p>
-<input type=submit name="go_back" value="<- Edit Config">
+<input type=submit name="go_back" value="<- <?php echo _("Edit Config") ?>">
 <?php if (!$error) { ?>
- <input type=submit name="go_next" value="Save Config ->">
+ <input type=submit name="go_next" value="<?php echo _("Save Config") ?> ->">
 <?php } else { ?>
 <br>
-<font color=red>There are errors in your configuration.
+<font color=red><?php echo _("There are errors in your configuration.") ?>
 <br>
-Please go back and fix them!</font>
+<?php echo _("Please go back and fix them!") ?></font>
 <?php } ?>
 

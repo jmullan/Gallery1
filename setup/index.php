@@ -1,22 +1,33 @@
 <?php /* $Id$ */ ?>
-<?php require('init.php'); ?>
+<?php 
+if (!isset($GALLERY_BASEDIR)) {
+	$GALLERY_BASEDIR = '../';
+}
 
+
+	require ('init.php');
+	require ('functions.inc');
+	require ($GALLERY_BASEDIR . 'util.php');
+if (fs_file_exists("../config.php")) {
+	include("../config.php");
+}
+
+initLanguage();
+?>
 <html>
 <head>
-  <title>Gallery Configuration</title>
+  <title><?php echo _("Gallery Configuration") ?></title>
   <style type="text/css">
    body { background: #CCCCCC; }
    .error { color: #FF0000; }
   </style>
 </head>
-<body>
 
+<body dir=<?php echo $gallery->direction ?>>
 <?php
-require("../util.php");
-require("functions.inc");
 
-if (fs_file_exists("../config.php")) {
-	include("../config.php");
+if (!isset($gallery->ML)) {
+	$gallery->ML->mode = 2;
 }
 
 if (function_exists("posix_getpwuid")) {
@@ -28,7 +39,7 @@ if (function_exists("posix_getpwuid")) {
 		fs_exec($whoami, $results, $status);
 		$webserver_user = $results[0];
 	} else {
-		$webserver_user = "unknown";
+		$webserver_user = _("unknown");
 	}
 }
 
@@ -54,7 +65,7 @@ foreach ($tmp as $key) {
 }
 
 foreach (array_keys($preserve) as $key) {
-	if ($$key) {
+	if ($$key && !is_array($$key)) {
 		$$key = urldecode($$key);
 	}
 }
@@ -68,7 +79,7 @@ $legit = array("check", "constants", "defaults", "confirm", "write");
 if (in_array($setup_page, $legit)) {
   include("$setup_page.inc");
 } else {
-  print "Security violation.\n";
+  print _("Security violation") .".\n";
   exit;
 }
 ?>
@@ -77,9 +88,23 @@ if (in_array($setup_page, $legit)) {
 function embed_hidden($key) {
 	global $$key;
 
-	$buf .= "<input type=hidden name=$key value=\"";
-	$buf .= urlencode($$key);
-	$buf .= "\">\n";
+	$buf = "";
+	$real = $$key;
+	if (ereg("^(..*)\[.*\]$", $key, $matches)) {
+		$line='global $'.$matches[1].'; $real = $'.$key . ';';
+		eval($line);
+	}
+	if (is_array($real)) {
+		foreach ($real as $real_key => $value) {
+			$buf .= "<input type=hidden name=${key}[$real_key] value=\"";
+			$buf .= urlencode($value);
+			$buf .= "\">\n";
+		}
+	} else {
+		$buf .= "<input type=hidden name=$key value=\"";
+		$buf .= urlencode($real);
+		$buf .= "\">\n";
+	}
 	return $buf;
 }
 

@@ -41,21 +41,21 @@ function image($name) {
 ?>
 <html>
 <head>
-  <title>Uploading Photos</title>
+  <title><?php echo _("Uploading Photos") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
 
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 <center>
-<span class="title">File upload in progress!</span>
+<span class="title"><?php echo _("File upload in progress!") ?></span>
 <p>
-This page will go away automatically when the upload is complete.  Please be patient!
+<?php echo _("This page will go away automatically when the upload is complete.  Please be patient!") ?>
 <p>
 <table border=0 cellpadding=0 cellspacing=0>
  <tr>
-  <td> <img src=<?php echo image("computer.gif")?> width=31 height=32> </td>
-  <td> <img src=<?php echo image("uploading.gif")?> width=160 height=11> </td>
-  <td> <img src=<?php echo image("computer.gif")?> width=31 height=32> </td>
+  <td> <img src=<?php echo image("computer.gif") ?> width=31 height=32> </td>
+  <td> <img src=<?php echo image("uploading.gif") ?> width=160 height=11> </td>
+  <td> <img src=<?php echo image("computer.gif") ?> width=31 height=32> </td>
  </tr>
 </table>
 

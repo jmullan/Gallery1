@@ -399,7 +399,7 @@ class AlbumItem {
 		 */
 		if (!isMovie($tag) &&
 		    !valid_image("$dir/$name.$tag")) {
-			return "Invalid image: $name.$tag";
+			return _("Invalid image") .": $name.$tag";
 		}
 
 		/* Set our image. */
@@ -457,7 +457,7 @@ class AlbumItem {
 					$this->setHighlight($dir, 1);
 				}
 			} else {
-				return "Unable to make thumbnail ($ret)";
+				return _("Unable to make thumbnail") ." ($ret)";
 			}
 		}
 
@@ -469,7 +469,7 @@ class AlbumItem {
 		if ($this->thumbnail) {
 			return $this->thumbnail->getTag($dir, 0, $size, $attrs);
 		} else {
-			return "<i>No thumbnail</i>";
+			return "<i>". _("No thumbnail") ."</i>";
 		}
 	}
 
@@ -477,7 +477,7 @@ class AlbumItem {
 		if (is_object($this->highlightImage)) {
 			return $this->highlightImage->getTag($dir, 0, $size, $attrs);
 		} else {
-			return "<i>No highlight</i>";
+			return "<i>". _("No highlight") ."</i>";
 		}
 	}
 

@@ -8,25 +8,27 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	            exit;
 		    }
 ?>
-<?php require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
+<?php 
+	require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
 <html>
 <head>
-  <title>Gallery is misconfigured</title>
+  <title><?php echo _("Gallery is misconfigured") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>	
+<body dir=<?php echo $gallery->direction ?>>
 <center>
-<span class="error"> Uh oh! </span>
+<span class="error"> <?php echo _("Uh oh!") ?> </span>
 <p>
 <center>
 <table width=80%><tr><td>
-Gallery is not configured correctly.  There could be a variety of reasons
-for this.  The easiest way to fix this problem is to re-run the configuration
-wizard.  First, put Gallery in configuration mode:
+<?php echo _("Gallery is not configured correctly.") ?>
+<?php echo _("There could be a variety of reasons for this.") ?>
+<?php echo _("The easiest way to fix this problem is to re-run the configuration wizard.") ?>
+<?php echo _("First, put Gallery in configuration mode") ?>:
 <p>
 <?php echo configure("configure"); ?>
 <p>
-Then launch the <a href="<?php echo $GALLERY_BASEDIR?>setup/index.php">configuration wizard</a>.
+<?php echo _("Then launch the") ?> <a href="<?php echo $GALLERY_BASEDIR ?>setup/index.php"><?php echo _("configuration wizard") ?></a>.
 
 <?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 

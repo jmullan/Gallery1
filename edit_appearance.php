@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -39,7 +39,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 	
-if ($save) {
+if (isset($save)) {
     $gallery->album->fields["summary"] = $summary;
 	$gallery->album->fields["title"] = $title;
 	$gallery->album->fields["bgcolor"] = $bgcolor;
@@ -78,13 +78,13 @@ if ($save) {
 ?>
 <html>
 <head>
-  <title>Album Properties</title>
+  <title><?php echo _("Album Properties") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
-Album Properties
+<?php echo _("Album Properties") ?>
 
 <?php echo makeFormIntro("edit_appearance.php", 
 			array("name" => "theform", 
@@ -92,7 +92,7 @@ Album Properties
 <input type=hidden name="save" value=1>
 <table>
 <tr>
-<td colspan="2">Album Summary</td>
+<td colspan="2"><?php echo _("Album Summary") ?></td>
 </tr>
 <tr>
 <td colspan="2" align="left">
@@ -100,51 +100,53 @@ Album Properties
 </td>
 </tr>
 <tr>
-<td>Album Title</td>
-<td><input type=text name="title" value="<?php echo htmlentities($gallery->album->fields["title"])?>"></td>
+<td><?php echo _("Album Title") ?></td>
+<td><input type=text name="title" value="<?php echo htmlentities($gallery->album->fields["title"]) ?>"></td>
 </tr>
 <tr>
-<td>Background Color</td>
-<td><input type=text name="bgcolor" value="<?php echo $gallery->album->fields["bgcolor"]?>"></td>
+<td><?php echo _("Background Color") ?></td>
+<td><input type=text name="bgcolor" value="<?php echo $gallery->album->fields["bgcolor"] ?>"></td>
 </tr>
 <tr>
-<td>Text Color</td>
-<td><input type=text name="textcolor" value="<?php echo $gallery->album->fields["textcolor"]?>"></td>
+<td><?php echo _("Text Color") ?></td>
+<td><input type=text name="textcolor" value="<?php echo $gallery->album->fields["textcolor"] ?>"></td>
 </tr>
 <tr>
-<td>Link Color</td>
-<td><input type=text name="linkcolor" value="<?php echo $gallery->album->fields["linkcolor"]?>"></td>
+<td><?php echo _("Link Color") ?></td>
+<td><input type=text name="linkcolor" value="<?php echo $gallery->album->fields["linkcolor"] ?>"></td>
 </tr>
 <tr>
-<td>Background Image (URL)</td>
-<td><input type=text name="background" value="<?php echo $gallery->album->fields["background"]?>"></td>
+<td><?php echo _("Background Image") ?> (URL)</td>
+<td><input type=text name="background" value="<?php echo $gallery->album->fields["background"] ?>"></td>
 </tr>
 <tr>
-<td>Font</td>
-<td><input type=text name="font" value="<?php echo $gallery->album->fields["font"]?>"></td>
+<td><?php echo _("Font") ?></td>
+<td><input type=text name="font" value="<?php echo $gallery->album->fields["font"] ?>"></td>
 </tr>
 <tr>
-<td>Borders</td>
+<td><?php echo _("Borders") ?></td>
+<?php _("off") ?>
 <td><select name="border"><?php echo selectOptions($gallery->album, "border", array("off", 1, 2, 3, 4)) ?></select></td>
 </tr>
 <tr>
-<td>Border color</td>
-<td><input type=text name="bordercolor" value="<?php echo $gallery->album->fields["bordercolor"]?>"></td>
+<td><?php echo _("Border color") ?></td>
+<td><input type=text name="bordercolor" value="<?php echo $gallery->album->fields["bordercolor"] ?>"></td>
 </tr>
 <tr>
-<td>Thumbnail size</td>
-<td><input type=text name="thumb_size" value="<?php echo $gallery->album->fields["thumb_size"]?>"></td>
+<td><?php echo _("Thumbnail size") ?></td>
+<td><input type=text name="thumb_size" value="<?php echo $gallery->album->fields["thumb_size"] ?>"></td>
 </tr>
 <tr>
-<td>Auto-Resize</td>
+<td><?php echo _("Auto-Resize") ?></td>
 <td><select name="resize_size"><?php echo selectOptions($gallery->album, "resize_size", array("off", 400, 500, 600, 640, 700, 800, 1024)) ?></select></td>
 </tr>
 <tr>
-<td>Show <i>Return to</i> link</td>
+<td><?php echo _("Show <i>Return to</i> link") ?></td>
+<?php _("yes"); _("no"); ?>
 <td><select name="returnto"><?php echo selectOptions($gallery->album, "returnto", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td>Rows</td>
+<td><?php echo _("Rows") ?></td>
 <td>
  <select name="rows">
   <?php echo selectOptions($gallery->album, "rows", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
@@ -152,7 +154,7 @@ Album Properties
 </td>
 </tr>
 <tr>
-<td>Columns</td>
+<td><?php echo _("Columns") ?></td>
 <td>
  <select name="cols">
   <?php echo selectOptions($gallery->album, "cols", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
@@ -160,60 +162,61 @@ Album Properties
 </td>
 </tr>
 <tr>
-<td>Auto fit-to-window for<br>images without a resized copy</td>
+<td><?php echo _("Auto fit-to-window for<br>images without a resized copy") ?></td>
 <td><select name="fit_to_window"><?php echo selectOptions($gallery->album, "fit_to_window", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td>Offer visitors ability to specify<br>preference for full-size or resized images</td>
+<td><?php echo _("Offer visitors ability to specify<br>preference for full-size or resized images") ?></td>
 <td><select name="use_fullOnly"><?php echo selectOptions($gallery->album, "use_fullOnly", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td>Which photo printing service<br>do you want to let visitors use?</td>
-<td><select name="print_photos"><?php echo selectOptions($gallery->album, "print_photos", array("none", "shutterfly", "shutterfly without donation", "photoaccess", "fotokasten")) ?></select></td>
+<td><?php echo _("Which photo printing service<br>do you want to let visitors use?") ?></td>
+<?php _("none"); _("shutterfly without donation"); ?>
+<td><select name="print_photos"><?php echo selectOptions($gallery->album, "print_photos", array("none", "photoaccess", "fotokasten", "shutterfly", "shutterfly without donation")) ?></select></td>
 </tr>
 <?php
 if ($gallery->app->use_exif) {
 ?>
 <tr>
-<td>Display EXIF data?</td>
+<td><?php echo _("Display EXIF data?") ?></td>
 <td><select name="use_exif"><?php echo selectOptions($gallery->album, "use_exif", array("no", "yes")) ?></select></td>
 </tr>
 <?php
 } // end if
 ?>
 <tr>
-<td>Display click counter for this album?</td>
+<td><?php echo _("Display click counter for this album?") ?></td>
 <td><select name="display_clicks"><?php echo selectOptions($gallery->album, "display_clicks", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td>Display owners name with caption</td>
+<td><?php echo _("Display owners name with caption") ?></td>
 <td><select name="item_owner_display"><?php echo selectOptions($gallery->album, "item_owner_display", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td>Allow item owners to modify their images</td>
+<td><?php echo _("Allow item owners to modify their images") ?></td>
 <td><select name="item_owner_modify"><?php echo selectOptions($gallery->album, "item_owner_modify", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td>Allow item owners to delete their images</td>
+<td><?php echo _("Allow item owners to delete their images") ?></td>
 <td><select name="item_owner_delete"><?php echo selectOptions($gallery->album, "item_owner_delete", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td>Add new items at beginning of album</td>
+<td><?php echo _("Add new items at beginning of album") ?></td>
 <td><select name="add_to_beginning"><?php echo selectOptions($gallery->album, "add_to_beginning", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td>Allow public commenting for photos in this album?</td>
+<td><?php echo _("Allow public commenting for photos in this album?") ?></td>
 <td><select name="public_comments"><?php echo selectOptions($gallery->album, "public_comments", array("no", "yes")) ?></select></td>
 </tr>
 </table>
 
 <br>
-<input type=checkbox name=setNested value="1">Apply values to nested Albums (except Album Title and Summary).
+<input type=checkbox name=setNested value="1"><?php echo _("Apply values to nested Albums (except Album Title and Summary).") ?>
 <br>
 <br>
-<input type=submit name="submit" value="Apply">
-<input type=reset value="Undo">
-<input type=submit name="submit" value="Close" onclick='parent.close()'>
+<input type=submit name="submit" value="<?php echo _("Apply") ?>">
+<input type=reset value="<?php echo _("Undo") ?>">
+<input type=submit name="submit" value="<?php echo _("Close") ?>" onclick='parent.close()'>
 
 </form>
 

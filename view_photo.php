@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -161,7 +161,7 @@ $navigator["bordercolor"] = $bordercolor;
 
 #-- breadcrumb text ---
 $breadCount = 0;
-$breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
+$breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
       "\">" . $gallery->album->fields['title'] . "</a>";
 $breadCount++;
 $pAlbum = $gallery->album;
@@ -175,11 +175,11 @@ do {
 
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
-    $breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($pAlbumName) .
+    $breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($pAlbumName) .
       "\">" . $pAlbum->fields['title'] . "</a>";
   } elseif (!$gallery->session->offline || $gallery->session->offlineAlbums["albums.php"]) {
     //-- we're at the top! ---
-    $breadtext[$breadCount] = "Gallery: <a href=\"" . makeGalleryUrl("albums.php") .
+    $breadtext[$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>";
   }
   $breadCount++;
@@ -267,8 +267,8 @@ if ($fitToWindow) {
 	var changed = 0;
 	var heightMargin = 160;
 	var widthMargin = 40;
-	var imageHeight = <?php echo $imageHeight?>;
-	var imageWidth = <?php echo $imageWidth?>;
+	var imageHeight = <?php echo $imageHeight ?>;
+	var imageWidth = <?php echo $imageWidth ?>;
 	var aspect = imageHeight / imageWidth;
 
 	// Get the window dimensions height.  IE and Nav use different techniques.
@@ -337,9 +337,9 @@ if ($fitToWindow) {
 </head>
 
 <?php if ($fitToWindow) { ?>
-<body onResize='doResize()'>
+	<body dir=<?php echo $gallery->direction ?> onResize='doResize()'>
 <?php } else { ?>
-<body>
+	<body dir=<?php echo $gallery->direction ?>>
 <?php } ?>
 <?php } # if not embedded ?>
 <?php
@@ -347,7 +347,7 @@ includeHtmlWrap("photo.header");
 ?>
 
 <!-- Top Nav Bar -->
-<table border=0 width=<?php echo $mainWidth?> cellpadding=0 cellspacing=0>
+<table border=0 width=<?php echo $mainWidth ?> cellpadding=0 cellspacing=0>
 
 <tr>
 <td>
@@ -360,14 +360,14 @@ if (!$gallery->album->isMovie($id)) {
 		makeAlbumUrl($gallery->session->albumName, $id, 
 			array("full" => 1)).'"></a>'."\n";
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		$adminCommands .= popup_link("[resize photo]", 
+		$adminCommands .= popup_link("[" . _("resize photo") ."]", 
 			"resize_photo.php?index=$index");
 	}
 
 	if ($gallery->user->canDeleteFromAlbum($gallery->album) || 
 	    ($gallery->album->getItemOwnerDelete() && $gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
 		$nextId = ($index >= $numPhotos ? $index - 1 : $index);
-		$adminCommands .= popup_link("[delete photo]", 
+		$adminCommands .= popup_link("[" . _("delete photo") ."]", 
 			"delete_photo.php?id=$id&id2=$nextId");
 	}
 
@@ -388,12 +388,12 @@ if (!$gallery->album->isMovie($id)) {
                                       "on" : "off"))); 
               	}
 
-		$adminCommands .= "<nobr>View Images: [ ";
+		$adminCommands .= "<nobr>". _("View Images") .": [ ";
 		if (strcmp($gallery->session->fullOnly,"on"))
 		{
-			$adminCommands .= "normal | <a href=\"$link\">full</a> ]";
+			$adminCommands .= _("normal") ." | <a href=\"$link\">" . _("full") ."</a> ]";
 		} else {
-			$adminCommands .= "<a href=\"$link\">normal</a> | full ]";
+			$adminCommands .= "<a href=\"$link\">" . _("normal") .'</a> | '. _("full") ." ]";
 		}
 		$adminCommands .= "</nobr>";
 	} 
@@ -405,7 +405,7 @@ if (!$gallery->album->isMovie($id)) {
 	    (eregi("jpe?g\$", $photo->image->type)) &&
 	    ($gallery->app->use_exif)) {
 		$albumName = $gallery->session->albumName;
-		$adminCommands .= popup_link("[photo properties]", "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false);
+		$adminCommands .= popup_link("[" . _("photo properties") ."]", "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false);
 	}
 
 	if (strcmp($gallery->album->fields["print_photos"],"none") &&
@@ -430,12 +430,12 @@ if (!$gallery->album->isMovie($id)) {
 		}
 		$printService = $gallery->album->fields["print_photos"];
 		if (!strncmp($printService, "shutterfly", 10)) {
-		    $adminCommands .= "<a href=# onClick=\"document.sflyc4p.returl.value=document.location; document.sflyc4p.submit();\">[print this photo on Shutterfly]</a>";
+		    $adminCommands .= "<a href=# onClick=\"document.sflyc4p.returl.value=document.location; document.sflyc4p.submit();\">[". _("print this photo on") ." Shutterfly]</a>";
 		    $printShutterflyForm = 1;
 		} else if (!strncmp($printService, "fotokasten", 10)) {
-		    $adminCommands .= popup_link("[Lasse dieses Foto drucken mit Fotokasten]", "'http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth . "'", 1);
+		    $adminCommands .= popup_link("[". _("print this photo on") ." Fotokasten]", "'http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth . "'", 1);
 		} else if (!strncmp($printService, 'photoaccess', 11)) {
-		    $adminCommands .= "<a href=# onClick=\"document.photoAccess.returnUrl.value=document.location; document.photoAccess.submit()\">[print this photo on PhotoAccess]</a>";
+		    $adminCommands .= "<a href=# onClick=\"document.photoAccess.returnUrl.value=document.location; document.photoAccess.submit()\">[". _("print this photo on") ." PhotoAccess]</a>";
 		    $printPhotoAccessForm = 1;
 		}
 	}
@@ -478,7 +478,7 @@ if ($bordercolor) {
 
 
 </table>
-<table border=0 width=<?php echo $mainWidth?> cellpadding=0 cellspacing=0>
+<table border=0 width=<?php echo $mainWidth ?> cellpadding=0 cellspacing=0>
 <tr><td colspan=3>
 <?php
 includeHtmlWrap("inline_photo.header");
@@ -542,7 +542,7 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 </tr>
 </table>
 
-<table border=0 width=<?php echo $mainWidth?> cellpadding=0 cellspacing=0>
+<table border=0 width=<?php echo $mainWidth ?> cellpadding=0 cellspacing=0>
 <!-- caption -->
 <tr>
 <td colspan=3 align=center>
@@ -664,7 +664,7 @@ if ($do_exif) {
         $imbkprnt = makeAlbumUrl($gallery->session->albumName, $id);
      }
   ?>
-  <input type=hidden name=imbkprnta-1 value="<?php echo $imbkprnt ?>">
+  <input type=hidden name=imbkprnta-1 value="<?php echo strip_tags($imbkprnt) ?>">
 </form>
 <?php } ?>
 <?php if (isset($printPhotoAccessForm)) { ?>
@@ -687,7 +687,7 @@ echo("</td></tr>");
 ?>
 
 </table>
-<table border=0 width=<?php echo $mainWidth?> cellpadding=0 cellspacing=0>
+<table border=0 width=<?php echo $mainWidth ?> cellpadding=0 cellspacing=0>
 <tr>
 <td>
 <?php

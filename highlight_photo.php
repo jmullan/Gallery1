@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -42,10 +42,10 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 <html>
 <head>
-  <title>Highlight Photo</title>
+  <title><?php echo _("Highlight Photo") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <?php
 if ($gallery->session->albumName && isset($index)) {
@@ -58,9 +58,7 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <center>
-Do you want this photo to be the one that
-shows up on the <br>
-gallery page, representing this album?
+<?php echo _("Do you want this photo to be the one that shows up on the gallery page, representing this album?") ?>
 <br>
 <br>
 
@@ -69,9 +67,9 @@ gallery page, representing this album?
 <?php echo $gallery->album->getCaption($index) ?>
 <br>
 <?php echo makeFormIntro("highlight_photo.php"); ?>
-<input type=hidden name=index value=<?php echo $index?>>
-<input type=submit name=confirm value="Yes">
-<input type=submit value="No" onclick='parent.close()'>
+<input type=hidden name=index value=<?php echo $index ?>>
+<input type=submit name=confirm value="<?php echo _("Yes") ?>">
+<input type=submit value="<?php echo _("No") ?>" onclick='parent.close()'>
 </form>
 
 <?php

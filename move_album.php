@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -42,10 +42,10 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 <html>
 <head>
-  <title>Move Album</title>
+  <title><?php echo _("Move Album") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <?php
 /* Read the album list */
@@ -74,10 +74,10 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <center>
-Select the new location of album <?php echo $gallery->album->fields["title"]?>:
+<?php echo _("Select the new location of album") ?> <?php echo $gallery->album->fields["title"] ?>:
 
 <?php echo makeFormIntro("move_album.php", array("name" => "theform")); ?>
-<input type=hidden name="index" value="<?php echo $index?>">
+<input type=hidden name="index" value="<?php echo $index ?>">
 <select name="newIndex">
 <?php
 for ($i = 1; $i <= $numAlbums; $i++) {
@@ -89,8 +89,8 @@ for ($i = 1; $i <= $numAlbums; $i++) {
 }
 ?>
 </select>
-<input type=submit value="Move it!">
-<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+<input type=submit value=<?php echo '"' . _("Move it!") . '"' ?>>
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
 <p>
@@ -101,13 +101,13 @@ if ($gallery->album->numPhotos(1)) {
 ?>
 <p>
 <br>
-<b>OR</b>
+<b><?php echo _("OR") ?></b>
 <br>
 <br>
-Nest within another Album:
+<?php echo _("Nest within another Album:") ?>
 <p>
 <?php echo makeFormIntro("move_album.php", array("name" => "move_to_album_form")); ?>
-<input type=hidden name="index" value="<?php echo $index?>">
+<input type=hidden name="index" value="<?php echo $index ?>">
 <select name="newAlbum">
 <?php
 printAlbumOptionList(0,1)  
@@ -115,13 +115,13 @@ printAlbumOptionList(0,1)
 </select>
 <br>
 <br>
-<input type=submit value="Move to Album!">
-<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+<input type=submit value=<?php echo '"' . _("Move to Album!") .'"' ?>>
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <?php
 	}
 } else {
-	gallery_error("no album / index specified");
+	gallery_error(_("no album / index specified"));
 }
 ?>
 

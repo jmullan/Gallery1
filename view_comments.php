@@ -28,7 +28,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -71,7 +71,7 @@ do {
       || $gallery->session->offlineAlbums[$pAlbumName])) {
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
-    $breadtext[$breadCount] = "Album: <a href=\"" . makeGalleryUrl("view_comments.php", array("set_albumName" => $pAlbumName)) .
+    $breadtext[$breadCount] = _("Album") .": <a href=\"" . makeGalleryUrl("view_comments.php", array("set_albumName" => $pAlbumName)) .
       "\">" . $pAlbum->fields['title'] . "</a>";
   }
   $breadCount++;
@@ -117,12 +117,12 @@ if ($gallery->album->fields["textcolor"]) {
   </style>
 </head>
 
-<body> 
+<body dir=<?php echo $gallery->direction ?>>
 <?php } 
 includeHtmlWrap("album.header");
-$adminText = "<span class=\"admin\">Comments for this Album</span>";
+$adminText = "<span class=\"admin\">". _("Comments for this Album") ."</span>";
 $adminCommands = "<span class=\"admin\">";
-$adminCommands .= "<a href=\"" . makeAlbumUrl($gallery->session->albumName) . "\">[return to album]</a>&nbsp;"; 
+$adminCommands .= "<a href=\"" . makeAlbumUrl($gallery->session->albumName) . "\">[". _("return to album") ."]</a>&nbsp;";
 $adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands;
@@ -133,7 +133,7 @@ include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?><br><?php
 if(strcmp($gallery->album->fields["public_comments"], "yes"))
 {
-    ?><br><b><span class="error">Sorry This album does not allow public comments.</span><br><br></b><?php
+    ?><br><b><span class="error"><?php echo _("Sorry This album does not allow public comments.") ?></span><br><br></b><?php
 }
 else
 {

@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
                 !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
                 !empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-        print "Security violation\n";
+	print _("Security violation") ."\n";
         exit;
 }
 ?>
@@ -164,7 +164,7 @@ function printSlideshowPhotos($slide_full, $what = PHOTO_ALL) {
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
-  <title>Slide Show for album :: <?php echo $gallery->album->fields["title"] ?></title>
+  <title><?php echo _("Slide Show for album") ?> :: <?php echo $gallery->album->fields["title"] ?></title>
   <?php echo getStyleSheetLink() ?>
   <style type="text/css">
 <?php
@@ -221,17 +221,17 @@ var loop = <?php echo $slide_loop ?>;
 var full = <?php echo $slide_full ?>;
 var direction = <?php echo $slide_dir ?>;
 <?php $photo_count = printSlideshowPhotos($slide_full, PHOTO_CAPTION); ?>
-var photo_count = <?php echo $photo_count?>; 
+var photo_count = <?php echo $photo_count ?>; 
 
 function stop() {
     onoff = 0;
-    status = "The slide show is stopped, Click [play] to resume.";
+    status = "<?php echo _("The slide show is stopped, Click [play] to resume.") ?>";
     clearTimeout(timer);
 }
 
 function play() {
     onoff = 1;
-    status = "Slide show is running...";
+    status = "<?php echo _("Slide show is running...") ?>";
     go_to_next_photo();
 }
 
@@ -263,8 +263,8 @@ function wait_for_current_photo() {
 	 * The current photo isn't loaded yet.  Set a short timer just to wait
 	 * until the current photo is loaded.
 	 */
-	status = "Picture is loading...(" + current_location + " of " + photo_count +
-		").  Please Wait..." ;
+	status = "<?php echo _("Picture is loading...") ?>(" + current_location + " <?php echo _("of") ?> " + photo_count + 
+		").  <?php echo _("Please Wait...") ?>" ;
 	clearTimeout(timer);
 	timer = setTimeout('wait_for_current_photo()', 500);
 	return 0;
@@ -355,7 +355,7 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
 
 #-- breadcrumb text ---
 $breadCount = 0;
-$breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
+$breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
       "\">" . $gallery->album->fields['title'] . "</a>";
 $breadCount++;
 $pAlbum = $gallery->album;
@@ -367,11 +367,11 @@ do {
   if ($pAlbumName) {
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
-    $breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($pAlbumName) .
+    $breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($pAlbumName) .
       "\">" . $pAlbum->fields['title'] . "</a>";
   } else {
     //-- we're at the top! ---
-    $breadtext[$breadCount] = "Gallery: <a href=\"" . makeGalleryUrl("albums.php") .
+    $breadtext[$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>";
   }
   $breadCount++;
@@ -388,7 +388,7 @@ include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 
 
 $adminbox["commands"] = "";
-$adminbox["text"] = "Slide Show";
+$adminbox["text"] = _("Slide Show");
 $adminbox["bordercolor"] = $borderColor;
 $adminbox["top"] = true;
 include ($GALLERY_BASEDIR . "layout/adminbox.inc");
@@ -403,46 +403,46 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
     <td height="25" width="1" bgcolor="<?php echo $borderColor ?>"><?php echo $pixelImage ?></td>
     <td width="5000" align="left" valign="middle">
     <span class=admin>
-    &nbsp;<a href="#" onClick='stop(); return false;'>[stop]</a>
-    <a href="#" onClick='play(); return false;'>[play]</a>
+    &nbsp;<a href="#" onClick='stop(); return false;'>[<?php echo _("stop") ?>]</a>
+    <a href="#" onClick='play(); return false;'>[<?php echo _("play") ?>]</a>
 <?php
 if ($gallery->user->canViewFullImages($gallery->album)) {
     if ($slide_full) {
 	echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0, $slide_dir) 
-	    . "\">[normal size]</a>";
+	    . "\">[". _("normal size") ."]</a>";
     } else {
 	echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1, $slide_dir)
-            . "\">[full size]</a>";
+	    . "\">[". _("full size") ."]</a>";
     }
 }
 ?>
 <?php
 if ($slide_dir == 1) {
     echo "&nbsp;<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, -1) 
-	. "\">[reverse direction]</a>";
+	. "\">[". _("reverse direction") ."]</a>";
 } else {
     echo "&nbsp;<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, 1)
-        . "\">[forward direction]</a>";
+	. "\">[". _("forward direction") ."]</a>";
 }
 ?>
     &nbsp;&nbsp;||
-    &nbsp;Delay:
+    &nbsp;<?php echo _("Delay:") ?>
 <?php echo 
-drawSelect("time", array(1 => "1 second",
-                         2 => "2 second",
-                         3 => "3 second",
-                         4 => "4 second",
-                         5 => "5 second",
-                         10 => "10 second",
-                         15 => "15 second",
-                         30 => "30 second",
-                         45 => "45 second",
-                         60 => "60 second"),
+drawSelect("time", array(1 => "1 ". _("second"),
+                         2 => "2 ". _("seconds"),
+                         3 => "3 ". _("seconds"),
+                         4 => "4 ". _("seconds"),
+                         5 => "5 ". _("seconds"),
+                         10 => "10 ". _("seconds"),
+                         15 => "15 ". _("seconds"),
+                         30 => "30 ". _("seconds"),
+                         45 => "45 ". _("seconds"),
+                         60 => "60 ". _("seconds")),
            $slide_pause, // default value
            1, // select size
            array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
 ?>
-    &nbsp;Loop:<input type="checkbox" name="loopCheck" <?php echo ($slide_loop) ? "checked" : "" ?> onclick='toggleLoop();'>
+    &nbsp;<?php echo _("Loop") ?>:<input type="checkbox" name="loopCheck" <?php echo ($slide_loop) ? "checked" : "" ?> onclick='toggleLoop();'>
     </span>
     </td>
     <td width="1" bgcolor="<?php echo $borderColor ?>"><?php echo $pixelImage ?></td>
@@ -460,25 +460,25 @@ if ($photo_count > 0) {
 ?>
 
 <table width=1% border=0 cellspacing=0 cellpadding=0>
-  <tr bgcolor="<?php echo $borderColor?>">
-    <td colspan=3 height=<?php echo $borderwidth?>><?php echo $pixelImage?></td>
+  <tr bgcolor="<?php echo $borderColor ?>">
+    <td colspan=3 height=<?php echo $borderwidth ?>><?php echo $pixelImage ?></td>
   </tr>
   <tr>
-    <td bgcolor="<?php echo $borderColor?>" width=<?php echo $borderwidth?>><?php echo $pixelImage?></td>
+    <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderwidth ?>><?php echo $pixelImage ?></td>
     <script language="JavaScript">
     document.write("<td><img border=0 src="+document.getElementById("photo_urls_<?php echo $slide_index ?>").href+" name=slide></td>");
     </script>
-    <td bgcolor="<?php echo $borderColor?>" width=<?php echo $borderwidth?>><?php echo $pixelImage?></td>
+    <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderwidth ?>><?php echo $pixelImage ?></td>
   </tr>
-  <tr bgcolor="<?php echo $borderColor?>">
-    <td colspan=3 height=<?php echo $borderwidth?>><?php echo $pixelImage?></td>
+  <tr bgcolor="<?php echo $borderColor ?>">
+    <td colspan=3 height=<?php echo $borderwidth ?>><?php echo $pixelImage ?></td>
   </tr>
 </table>
 <br>
 
 <script language="Javascript">
 /* show the caption either in a nice div or an ugly form textarea */
-document.write("<div class='desc'>" + "[" + current_location + " of " + photo_count + "] " + photo_captions[<?php echo $slide_index ?>] + "</div>");
+document.write("<div class='desc'>" + "[" + current_location + " <?php echo _("of") ?> " + photo_count + "] " + photo_captions[<?php echo $slide_index ?>] + "</div>");
 
 /* Load the first picture */
 preload_photo(<?php echo $slide_index ?>);
@@ -492,11 +492,11 @@ play();
 } else {
 ?>
 
-<br><b>This album has no photos to show in a slide show.</b>
+<br><b><?php echo _("This album has no photos to show in a slide show.") ?></b>
 <br><br>
 <span class="admin">
 <a href="<?php echo makeGalleryUrl("view_album.php",
-               array("set_albumName" => $gallery->session->albumName))?>">[back to album]</a>
+array("set_albumName" => $gallery->session->albumName)) ?>">[<?php echo _("back to album") ?>]</a>
 </span>
 
 <?php

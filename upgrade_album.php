@@ -65,7 +65,7 @@ $albumDB = new AlbumDB(FALSE);
 function close_button() {
 	print "<center>";
 	print "<form>";
-	print "<input type=submit value=\"Done\" onclick='opener.location.reload(); parent.close()'>";
+	print "<input type=submit value=\"" . _("Done") ."\" onclick='opener.location.reload(); parent.close()'>";
 	print "</form>";
 	print "</center>";
 }
@@ -73,7 +73,7 @@ function close_button() {
 function reload_button() {
 	print "<center>";
 	print "<form>";
-	print "<input type=submit value=\"Done\" onclick='location.reload()'>";
+	print "<input type=submit value=\"" . _("Done") ."\" onclick='location.reload()'>";
 	print "</form>";
 	print "</center>";
 }
@@ -85,10 +85,10 @@ function end_file() {
 
 function process($arr) {
 	print "<br>";
-	print "<b>Progress:</b>";
+	print "<b>" . _("Progress") .":</b>";
 	print "<ul>";
 	foreach ($arr as $album) {
-		print "<b>Album: " . $album->fields["title"] . "</b><br>";
+		print "<b>". _("Album") . ": " . $album->fields["title"] . "</b><br>";
 		if ($album->integrityCheck()) {
 			$album->save(0);
 		}
@@ -125,23 +125,21 @@ function find_albums(&$results, $album="") {
 
 <html>
 <head>
-  <title>Upgrade Albums</title>
+  <title><?php echo _("Upgrade Albums") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 <center>
 <span class="title">
-Upgrade Albums
+<?php echo _("Upgrade Albums") ?>
 </span>
 </center>
 <p>
-The following albums in your Gallery were created with an older
-version of the software and are out of date.  This is not a problem!
-We can upgrade them.  This may take some time for large albums but
-we'll try to keep you informed as we proceed.  None of your photos
-will be harmed in any way by this process.  Rest assured, that if this
-process takes a long time now, it's going to make your Gallery run
-more efficiently in the future.
+<?php echo _("The following albums in your Gallery were created with an older version of the software and are out of date.") ?>
+<?php echo _("This is not a problem!") ?>
+<?php echo _("We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed.") ?>
+<?php echo _("None of your photos will be harmed in any way by this process.") ?>
+<?php echo _("Rest assured, that if this process takes a long time now, it's going to make your Gallery run more efficiently in the future.") ?>
 
 <p>
 
@@ -170,24 +168,23 @@ if ($upgradeall && sizeof($ood)) {
 	
 if (!$ood) {
 	print "<center>";
-	print "<b>All albums are up to date.</b>";
+	print "<b>". _("All albums are up to date.") ."</b>";
 	print "</center>";
 	close_button();
 } else {
 ?>
-The following albums need to be upgraded.  You can process them
-individually by clicking the upgrade link next to the album that
-you desire, or you can just
-<a href="<?php echo makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1))?>">upgrade them all at once</a>.
+<?php echo _("The following albums need to be upgraded.") ?>
+<?php echo _("You can process them individually by clicking the upgrade link next to the album that you desire, or you can just") ?>
+<a href="<?php echo makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1)) ?>"><?php echo _("upgrade them all at once") ?></a>.
 <ul>
 <?php
 	foreach ($ood as $album) {
 		print "<a href=\"";
 		print makeGalleryUrl("upgrade_album.php", 
 			array("upgrade_albumname" => $album->fields["name"]));
-		print "\">[upgrade]</a> ";
+		print "\">[" . _("upgrade") ."]</a> ";
 		print "<b>" . $album->fields["title"] . "</b>";
-		print " (" . $album->numPhotos(1) . " items)";
+		print " (" . $album->numPhotos(1) . " " ._("items").")";
 		print "<br>";
 	}
 	close_button();

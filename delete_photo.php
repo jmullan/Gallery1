@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation"). "\n";
 	exit;
 }
 ?>
@@ -73,10 +73,10 @@ if ($confirm && isset($id)) {
 
 <html>
 <head>
-  <title>Delete Photo</title>
+  <title><?php echo _("Delete Photo") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 
 <?php
@@ -85,10 +85,10 @@ if ($gallery->album && isset($id)) {
 ?>
 
 <center>
-<span class="popuphead">Delete Album</span>
+<span class="popuphead"><?php echo _("Delete Album") ?></span>
 <br>
 <br>
-Do you really want to delete this Album?
+<?php echo _("Do you really want to delete this Album?") ?>
 <br>
 <br>
 <?php
@@ -106,10 +106,10 @@ $myAlbum->load($id);
 <?php echo $myAlbum->fields[description] ?>
 <br>
 <?php echo makeFormIntro("delete_photo.php"); ?>
-<input type=hidden name=id value=<?php echo $id?>>
-<input type=hidden name=albumDelete value=<?php echo $albumDelete?>>
-<input type=submit name=confirm value="Delete">
-<input type=submit value="Cancel" onclick='parent.close()'>
+<input type=hidden name=id value=<?php echo $id ?>>
+<input type=hidden name=albumDelete value=<?php echo $albumDelete ?>>
+<input type=submit name=confirm value="<?php echo _("Delete") ?>">
+<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <br>
 
@@ -118,7 +118,7 @@ $myAlbum->load($id);
 ?>
 
 <center>
-Do you really want to delete this photo?
+<?php echo _("Do you really want to delete this photo?") ?>
 <br>
 <br>
 <?php echo $gallery->album->getThumbnailTag($index) ?>
@@ -128,15 +128,15 @@ Do you really want to delete this photo?
 <?php echo makeFormIntro("delete_photo.php"); ?>
 <input type=hidden name=id value=<?php echo $id?>>
 <input type=hidden name=id2 value=<?php echo $id2 ?>>    
-<input type=submit name=confirm value="Delete">
-<input type=submit value="Cancel" onclick='parent.close()'>
+<input type=submit name=confirm value="<?php echo _("Delete") ?>">
+<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <br>
 
 <?php
 	}
 } else {
-	gallery_error("no album / index specified");
+	gallery_error(_("no album / index specified"));
 }
 ?>
 

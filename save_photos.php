@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -51,7 +51,7 @@ if ($userfile_name) {
 ?>
 <html>
 <head>
-  <title>Processing and Saving Photos</title>
+  <title><?php echo _("Processing and Saving Photos") ?></title>
   <?php echo getStyleSheetLink() ?>
 
 </head>
@@ -60,7 +60,7 @@ if ($userfile_name) {
 <?php
 if ($urls) {
 ?>
-<span class=title>Fetching Urls...</span>
+<span class=title><?php echo _("Fetching Urls...") ?></span>
 <br>
 <?php
 	/* Process all urls first */
@@ -76,7 +76,7 @@ if ($urls) {
 		 * code from Jared (hogalot)
 		 */
 		if (fs_is_dir($url)) {
-			processingMsg("Processing <i>$url</i> as a local directory.");
+			processingMsg(_("Processing") ." <i>$url</i> " . _("as a local directory."));
 			$handle = fs_opendir($url);
 			while (($file = readdir($handle)) != false) {
 				if ($file != "." && $file != "..") {
@@ -129,7 +129,7 @@ if ($urls) {
 		if ($id) {
 			processingMsg(urldecode($url));
 		} else {
-			processingMsg("Could not open url: '$url'");
+			processingMsg(_("Could not open url:")." '$url'");
 			continue;
 		} 
 	
@@ -155,7 +155,8 @@ if ($urls) {
 			$userfile[] = $file;
 		} else {
 			/* Slurp the file */
-			processingMsg("Parsing $url for images...");
+			processingMsg(sprintf(_("Parsing %s for images..."),
+						$url));
 			$fd = fs_fopen ($file, "r");
 			$contents = fread ($fd, fs_filesize ($file));
 			fclose ($fd);
@@ -214,7 +215,7 @@ if ($urls) {
 			}
 	
 			/* Tell user how many links we found, but delay processing */
-			processingMsg("Found " . count($image_tags) . " Images.");
+			processingMsg(sprintf(_("Found %d images"), count($image_tags)));
 		}
 	}
 } /* if ($urls) */
@@ -222,7 +223,7 @@ if ($urls) {
 
 
 <br>
-<span class=title>Processing status...</span>
+<span class=title><?php echo _("Processing status...") ?></span>
 <br>
 
 <?php
@@ -253,12 +254,12 @@ if ($temp_files) {
 
 <?php
 if (!$msgcount) {
-	print "No images uploaded!";
+	print _("No images uploaded!");
 }
 ?>
 <center>
 <form>
-<input type=submit value="Dismiss" onclick='parent.close()'>
+<input type=submit value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
 </form>
 <?php
 /* Prompt for additional files if we found links in the HTML slurpage */
@@ -292,11 +293,11 @@ function invertCheck() {
 </script>
 
 <p><span class="fineprint">
-<a href="javascript:setCheck(1)">Check&nbsp;All</a>
+<a href="javascript:setCheck(1)"><?php echo _("Check All") ?></a>
 -
-<a href="javascript:setCheck(0)">Clear&nbsp;All</a>
+<a href="javascript:setCheck(0)"><?php echo _("Clear All") ?></a>
 -
-<a href="javascript:invertCheck()">Invert Selection</a>
+<a href="javascript:invertCheck()"><?php echo _("Invert Selection") ?></a>
 </span></p>
 
 <table><tr><td>
@@ -316,16 +317,16 @@ function invertCheck() {
   into util.php at some time - maybe added functionality to the makeFormIntro? */ ?>
 
 <p><span class="fineprint">
-<a href="javascript:setCheck(1)">Check&nbsp;All</a>
+<a href="javascript:setCheck(1)"><?php echo _("Check All") ?></a>
 -
-<a href="javascript:setCheck(0)">Clear&nbsp;All</a>
+<a href="javascript:setCheck(0)"><?php echo _("Clear All") ?></a>
 -
-<a href="javascript:invertCheck()">Invert Selection</a>
+<a href="javascript:invertCheck()"><?php echo _("Invert Selection") ?></a>
 </span></p>
 
 <p>
-<input type=hidden name="setCaption" value="<?php echo $setCaption?>">
-<input type=button value="Add Files" onClick="opener.showProgress(); document.uploadurl_form.submit()">
+<input type=hidden name="setCaption" value="<?php echo $setCaption ?>">
+<input type=button value=<?php echo '"' . _("Add Files") . '"' ?> onClick="opener.showProgress(); document.uploadurl_form.submit()">
 </p>
 
 </form>

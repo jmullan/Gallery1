@@ -23,8 +23,8 @@
 <?php
 class NobodyUser extends Abstract_User {
 	function NobodyUser() {
-		$this->username = "NOBODY";
-		$this->fullname = "Nobody";
+		$this->username = _("NOBODY");
+		$this->fullname = _("Nobody");
 		$this->setIsAdmin(false);
 		$this->setCanCreateAlbums(false);
 		$this->uid = "nobody";

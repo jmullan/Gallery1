@@ -27,7 +27,7 @@ switch($GALLERY_EMBEDDED_INSIDE) {
 			while (!feof($fd)) {
 				$line = fgets($fd, 1024);
 				$line = str_replace('<?php', '', $line);
-				$line = str_replace('?>', '', $line);
+				$line = str_replace(' ?>', '', $line);
 				$header .= $line;
 				if (strstr($line, "<head")) {
 					$links = getStyleSheetLink();

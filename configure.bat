@@ -1,4 +1,5 @@
 @echo off
+rem $Id$
 del setup\SECURE
 
 echo :

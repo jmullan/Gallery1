@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2003 Bharat Mediratta
- *
+ * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
@@ -24,12 +24,12 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print "Security violation\n"; 
 	exit;
 }
 
 if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = '';
+	$GALLERY_BASEDIR = '';
 }
 
 require($GALLERY_BASEDIR . "init.php");
@@ -88,11 +88,11 @@ $GR_STAT['CREATE_ALBUM_FAILED']			= 502;
  */
 function check_proto_version( &$response ) {
 	global $protocol_version, $GR_STAT, $GR_VER;
-
+	
 	// this method returns without modifying the $response if the version
 	// presented by the client is acceptable.  otherwise, it returns directly
 	// with a status code appropriate to the problem.
-
+	
 	if ( isset( $protocol_version ) ) {
 		// check version format
 		if ( eregi( "^([2-9]{1,2})\.([0-9]{1,2})$", $protocol_version, $ver_regs ) ) {
@@ -171,7 +171,7 @@ if (!strcmp($cmd, "login")) {
 		if ($tmpUser && $tmpUser->isCorrectPassword($password)) {
 			// log user in
 			$gallery->session->username = $uname;
-
+			
 			$response->setProperty( "server_version", $GR_VER['MAJ'].".".$GR_VER['MIN'] );
 			$response->setProperty( "status", $GR_STAT['SUCCESS'] );
 			$response->setProperty( "status_text", "Login successful." );
@@ -245,7 +245,7 @@ if (!strcmp($cmd, "login")) {
 	//-- add-item --
 
 	// current album is set by the "set_albumName" form data and session.php
-
+	
 	// Hack check
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
 		$response->setProperty( "status", $GR_STAT['NO_ADD_PERMISSION'] );
@@ -258,20 +258,20 @@ if (!strcmp($cmd, "login")) {
 		$file = $userfile;
 		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);
 		$tag = strtolower($tag);
-
+		
 		if ($name) {
     		$error = processFile($userfile, $tag, $userfile_name, $caption);
 		}
-
+		
 		$gallery->album->save();
-
+		
 		if ($temp_files) {
     		/* Clean up the temporary url file */
     		foreach ($temp_files as $tf => $junk) {
         		fs_unlink($tf);
     		}
 		}
-
+		
 		if ($error) {
 			$response->setProperty( "status", $GR_STAT['UPLOAD_PHOTO_FAIL'] );
 			$response->setProperty( "status_text", "Upload failed: '$error'." );
@@ -286,12 +286,12 @@ if (!strcmp($cmd, "login")) {
 	//-- album-properties --
 
 	// current album is set by the "set_albumName" form data and session.php
-
+	
 	$max_dimension = $gallery->album->fields["resize_size"];
 	if ( $max_dimension == "off" ) {
-		$max_dimension = 0;
+		$max_dimension = 0;	
 	}
-
+	
 	$response->setProperty( "auto_resize", $max_dimension );
 	$response->setProperty( "extra_fields", $gallery->album->getExtraFields() );
 
@@ -338,11 +338,11 @@ echo $response->listprops();
 //--
 function appendNestedAlbums( &$myAlbum, &$album_index, &$response ) {
     global $gallery;
-
+	
 	$parent_index = $album_index;
 
 	$numPhotos = $myAlbum->numPhotos(1);
-
+    
     for ($i=1; $i <= $numPhotos; $i++) {
         $myName = $myAlbum->isAlbumName($i);
         if ($myName) {
@@ -359,26 +359,26 @@ function appendNestedAlbums( &$myAlbum, &$album_index, &$response ) {
 
 function add_album( &$myAlbum, &$album_index, $parent_index, &$response ){
 	global $gallery;
-
+	
 	// increment index
 	$album_index++;
-
+	
 	// fetch name & title
 	$albumName = $myAlbum->fields[name];
 	$albumTitle = $myAlbum->fields[title];
-
+	
 	// write name, title and parent
 	$response->setProperty( "album.name.$album_index", $albumName );
 	$response->setProperty( "album.title.$album_index", $albumTitle );
 	$response->setProperty( "album.parent.$album_index", $parent_index );
-
+	
 	// write permissions
 	$can_add = $gallery->user->canAddToAlbum($myAlbum) ? "true" : "false";
 	$can_write = $gallery->user->canWriteToAlbum($myAlbum) ? "true" : "false";
 	$can_delete_from = $gallery->user->canDeleteFromAlbum($myAlbum) ? "true" : "false";
 	$can_delete_alb = $gallery->user->canDeleteAlbum($myAlbum) ? "true" : "false";
 	$can_create_sub = $gallery->user->canCreateSubAlbum($myAlbum) ? "true" : "false";
-
+	
 	$response->setProperty( "album.perms.add.$album_index", $can_add );
 	$response->setProperty( "album.perms.write.$album_index", $can_write );
 	$response->setProperty( "album.perms.del_item.$album_index", $can_delete_from );
@@ -397,7 +397,7 @@ function add_album( &$myAlbum, &$album_index, $parent_index, &$response ){
 
 //-- Renamed this function because it conflicts with
 //-- another one that happens when upgrading the album
-//-- Speaking of which, trying to upload a picture to
+//-- Speaking of which, trying to upload a picture to 
 //-- an album which is not yet upgraded fails. Need warning
 //-- in the docs.
 
@@ -446,22 +446,22 @@ function processFile($file, $tag, $name, $setCaption="") {
         /* Get rid of extra underscores */
         $mangledFilename = ereg_replace("_+", "_", $mangledFilename);
         $mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
-
+   
         /*
         need to prevent users from using original filenames that are purely numeric.
         Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
         specifically:
         RewriteRule ^([^\.\?/]+)/([0-9]+)$  /~jpk/gallery/view_photo.php?set_albumName=$1&index=$2  [QSA]
         */
-
+   
         if (ereg("^([0-9]+)$", $mangledFilename)) {
             $mangledFilename .= "_G";
         }
-
+   
         set_time_limit($gallery->app->timeLimit);
-
+        
         if (acceptableFormat($tag)) {
-
+   
 		    /*
 		     * Move the uploaded image to our temporary directory
 		     * using move_uploaded_file so that we work around
@@ -471,7 +471,7 @@ function processFile($file, $tag, $name, $setCaption="") {
 				$newFile = tempnam($gallery->app->tmpDir, "gallery");
 				if (move_uploaded_file($file, $newFile)) {
 				    $file = $newFile;
-
+		
 				    /* Make sure we remove this file when we're done */
 				    $temp_files[$file]++;
 				}
@@ -517,7 +517,7 @@ function processFile($file, $tag, $name, $setCaption="") {
 	    	$error = "Skipping $name (can't handle '$tag' format)";
 	    }
     }
-
+    
     return $error;
 }
 
@@ -525,25 +525,25 @@ function mark_and_sweep(&$albumDB) {
 	global $gallery, $myMark;
 
 	foreach ($albumDB->albumList as $myAlbum) {
-		//echo "mark_and_sweep: ".$myAlbum->fields["name"]."\n";
+		// echo "mark_and_sweep: ".$myAlbum->fields["name"]."\n";
 		if ($gallery->user->canAddToAlbum($myAlbum)) {
 			sweep($albumDB, $myAlbum);
-			//echo "mark_and_sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
+			// echo "mark_and_sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
 		}
 	}
 }
 
 function sweep(&$albumDB, &$myAlbum) {
 global $myMark;
-	//echo "sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
+	// echo "sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
 	if (! $myMark[$myAlbum->fields["name"]]) {
-		//echo "sweep: ".$myAlbum->fields["name"]." is not marked: marking\n";
+		// echo "sweep: ".$myAlbum->fields["name"]." is not marked: marking\n";
 		$myMark[$myAlbum->fields["name"]] = TRUE;
-		//echo "sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
+		// echo "sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
 
 		$parentName = $myAlbum->fields["parentAlbumName"];
 		if ($parentName) {
-			//echo "sweep: got parent ".$parentName."\n";
+			// echo "sweep: got parent ".$parentName."\n";
 			$parentAlbum = $albumDB->getAlbumByName($parentName, FALSE);
 
 			sweep($albumDB, $parentAlbum);

@@ -125,7 +125,7 @@ $bordercolor = $gallery->album->fields["bordercolor"];
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: Captionator</title>
+  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: <?php echo _("Captionator") ?></title>
   <?php echo getStyleSheetLink() ?>
   <style type="text/css">
 <?php
@@ -153,7 +153,7 @@ if ($gallery->album->fields["textcolor"]) {
   </style>
 </head>
 
-<body> 
+<body dir=<?php echo $gallery->direction ?>>
 <?php } ?>
 
 <?php 
@@ -169,13 +169,13 @@ if (!strcmp($borderwidth, "off")) {
     $bordercolor = "black";
 }
 
-$adminText = "<span class=\"admin\">Multiple Caption Editor. ";
-if ($numPhotos == 1) {  
-    $adminText .= "1 photo in this album";
+$adminText = "<span class=\"admin\">". _("Multiple Caption Editor.") . " ";
+if ($numPhotos == 1) {
+        $adminText .= _("1 photo in this album") ;
 } else {
-    $adminText .= "$numPhotos items in this album";
+        $adminText .= "$numPhotos ". _("items in this album") ;
     if ($maxPages > 1) {
-        $adminText .= " on " . pluralize($maxPages, "page");
+        $adminText .= " " . _("on") . " " . pluralize_n($maxPages, _("page") ,_("pages"), _("no pages"));
     }
 }
 
@@ -204,17 +204,17 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 <table width=100% border=0 cellspacing=4 cellpadding=0>
 <tr>
 <td colspan="3" align="right">
-<input type=submit name="save" value="Save and Exit">
+<input type=submit name="save" value="<?php echo _("Save and Exit") ?>">
 
 <?php if (!$last) { ?>
-    <input type=submit name="next" value="Save and Edit Next <?php echo $perPage ?>">
+    <input type=submit name="next" value="<?php echo _("Save and Edit Next") ?> <?php echo $perPage ?>">
 <?php } ?>
 
 <?php if ($page != 1) { ?>
-    <input type=submit name="prev" value="Save and Edit Previous <?php echo $perPage ?>">
+    <input type=submit name="prev" value="<?php echo _("Save and Edit Previous") ?> <?php echo $perPage ?>">
 <?php } ?>
 
-<input type=submit name="cancel" value="Exit">
+<input type=submit name="cancel" value="<?php echo _("Exit") ?>">
 </td>
 </tr>
 <?php
@@ -233,9 +233,9 @@ if ($numPhotos) {
 
 ?>    
     <tr>
-      <td height="1"><?php echo $pixelImage?></td>
-      <td height="1"><?php echo $pixelImage?></td>
-      <td bgcolor="<?php echo $bordercolor?>" height="1"><?php echo $pixelImage?></td>
+      <td height="1"><?php echo $pixelImage ?></td>
+      <td height="1"><?php echo $pixelImage ?></td>
+      <td bgcolor="<?php echo $bordercolor ?>" height="1"><?php echo $pixelImage ?></td>
     </tr>
     <tr>
       <td width=<?php echo $thumbSize ?> align=center valign="top">
@@ -254,16 +254,16 @@ if ($numPhotos) {
         $myAlbum->load($myAlbumName);
         $oldCaption = $myAlbum->fields['description'];
 ?>
-      <span class="admin">Album Caption:</span><br>
-      <textarea name="new_captions_<?php echo $i?>" rows=3 cols=60><?php echo $oldCaption ?></textarea><br>
+      <span class="admin"><?php echo _("Album Caption:") ?></span><br>
+      <textarea name="new_captions_<?php echo $i ?>" rows=3 cols=60><?php echo $oldCaption ?></textarea><br>
 
 <?php
     } else {
         $oldCaption = $gallery->album->getCaption($i);
         $oldKeywords = $gallery->album->getKeywords($i);
 ?>
-      <span class="admin">Caption:</span><br>
-      <textarea name="new_captions_<?php echo $i?>" rows=3 cols=60><?php echo $oldCaption ?></textarea><br>
+      <span class="admin"><?php echo _("Caption") ?>:</span><br>
+      <textarea name="new_captions_<?php echo $i ?>" rows=3 cols=60><?php echo $oldCaption ?></textarea><br>
       <br>
 <?php
 	foreach ($gallery->album->getExtraFields() as $field) { 
@@ -273,7 +273,7 @@ if ($numPhotos) {
 		}
 		$value=$gallery->album->getExtraField($i, $field);
         	if ($field == "Title") {
-			print "<br><span class=\"admin\">Title:</span><br>";
+			print "<br><span class=\"admin\">" . _("Title") .":</span><br>";
                 	print "<input type=text name=\"extra_fields[$i][$field]\" value=\"$value\" size=\"40\">";
         	}
 		else {
@@ -282,11 +282,10 @@ if ($numPhotos) {
 		}
 	}
 ?>
-      	<span class="admin"><br>Keywords:</span><br>
-      	<input type=text name="new_keywords_<?php echo $i?>" size=65 value="<?php echo $oldKeywords ?>">
+      	<span class="admin"><br><?php echo _("Keywords") ?>:</span><br>
+      	<input type=text name="new_keywords_<?php echo $i ?>" size=65 value="<?php echo $oldKeywords ?>">
 
-	// this needs to be translated automatically.  Add it as a todo.
-       	<span class="admin"><br>Capture Date:</span>
+       	<span class="admin"><br><?php echo _("Capture Date") ?>:</span>
 <?php
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($i);
 	$hours = $itemCaptureDate["hours"];
@@ -295,7 +294,7 @@ if ($numPhotos) {
 	$mon = $itemCaptureDate["mon"];
 	$mday = $itemCaptureDate["mday"];
 	$year = $itemCaptureDate["year"];
-       	print "$mon/$mday/$year $hours:$minutes:$seconds"; 
+	print strftime("%d. %b %Y , %H:%M:%S" , mktime ($hours,$minutes,$seconds,$mon,$mday,$year));
     }
 ?>
       </td>
@@ -307,7 +306,7 @@ if ($numPhotos) {
 } else {
     echo("<tr>");
     echo("  <td>");
-    echo("  NO PHOTOS!");
+    echo(_("NO PHOTOS!"));
     echo("  </td>");
     echo("</tr>");
 }
@@ -315,17 +314,17 @@ if ($numPhotos) {
 
 <tr>
 <td colspan=3 align="right">
-<input type=submit name="save" value="Save and Exit">
+<input type=submit name="save" value="<?php echo _("Save and Exit") ?>">
 
 <?php if (!$last) { ?>
-    <input type=submit name="next" value="Save and Edit Next <?php echo $perPage ?>">
+    <input type=submit name="next" value="<?php echo _("Save and Edit Next") ?> <?php echo $perPage ?>">
 <?php } ?>
 
 <?php if ($page != 1) { ?>
-    <input type=submit name="prev" value="Save and Edit Previous <?php echo $perPage ?>">
+    <input type=submit name="prev" value="<?php echo _("Save and Edit Previous") ?> <?php echo $perPage ?>">
 <?php } ?>
 
-<input type=submit name="cancel" value="Exit">
+<input type=submit name="cancel" value="<?php echo _("Exit") ?>">
 </td>
 </tr>
 </table>

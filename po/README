@@ -1,0 +1,21 @@
+$Id$
+
+This readme gives you a very short view how to make your own translation
+
+- if necessary, create a new gallery.pot file
+  'sh create_po_template.sh'
+  This requires xgetText version 0.12.1 or later
+
+- copy gallery.pot (po template) to your own .po File
+
+- Your .po Translation-File has to be named language_COUNTRY-gallery.po
+
+  For example : english, Great Britain -> en_GB-gallery.po (or en_US-gallery.po for USA)
+  		de, Deutschland -> de_DE-gallery.po
+
+- Don't forget to change the header Information correctly (charset etc ..)
+
+- If all translations a done run make_mo_files.sh
+  'sh make_mo_files.sh'
+
+- Add your new language to getNLS in util.php (this should change!)

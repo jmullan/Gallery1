@@ -41,7 +41,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isIt
 
 <html>
 <head>
-  <title>Custom Thumbnail</title>
+  <title><?php echo _("Custom Thumbnail") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
 
@@ -49,7 +49,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isIt
 if ($action == "doit") {
 	
 	#-- rebuild the thumbnail, cropped) ---
-	echo("Remaking the Thumbnail...");
+	echo(_("Remaking the Thumbnail..."));
 	my_flush();
 	if ($gallery->session->albumName && isset($index)) { 
 		$photo = $gallery->album->getPhoto($index);
@@ -68,9 +68,9 @@ if ($action == "doit") {
 } else {
 	#-- show the applet ---
 ?>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
-<span class="popuphead">Custom Thumbnail</span>
+<span class="popuphead"><?php echo _("Custom Thumbnail") ?></span>
 <br>
 
 <?php
@@ -112,10 +112,10 @@ if ($action == "doit") {
 ?>
 
 <span class="popup">
-Choose which part of the image will compose your thumbnail:
+<?php echo _("Choose which part of the image will compose your thumbnail:") ?>
 </span>
 
-<APPLET CODE="ImageCrop" WIDTH=460 HEIGHT=430 CODEBASE="<?php echo $GALLERY_BASEDIR?>java" ARCHIVE="ImageTools.jar">
+<APPLET CODE="ImageCrop" WIDTH=460 HEIGHT=430 CODEBASE="<?php echo $GALLERY_BASEDIR ?>java" ARCHIVE="ImageTools.jar">
   <PARAM NAME="type"   VALUE="application/x-java-applet;version=1.1.2">
   <PARAM NAME=bgcolor  VALUE="<?php echo $bgcolor ?>">
   <PARAM NAME=image    VALUE="<?php echo $photoURL ?>">
@@ -130,9 +130,9 @@ Choose which part of the image will compose your thumbnail:
 </APPLET>
 
 <?php 
-    	#-- we're not a go. abort! abort! ---
+//    	-- we're not a go. abort! abort! ---
 	} else { 
-		gallery_error("no album / index specified");
+		gallery_error(_("no album / index specified"));
 	} 
 } 
 ?>

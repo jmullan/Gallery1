@@ -61,23 +61,23 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 ?>
 <html>
 <head>
-  <title>Manage Users</title>
+  <title><?php echo _("Manage Users") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<span class="popuphead">Manage Users</span>
+<span class="popuphead"><?php echo _("Manage Users") ?></span>
 <br>
 <br>
 
 <?php echo makeFormIntro("manage_users.php", array("name" => "manageusers_form")); ?>
-You can create, modify and delete users here.
+<?php echo _("You can create, modify and delete users here.") ?>
 <p>
 
 <?php
 if (!$displayUsers) {
-	print "<i>There are no users!  Create one.</i>";
+	print "<i>". _("There are no users!  Create one.") ."</i>";
 } else {
 ?>
 
@@ -93,12 +93,12 @@ if (!$displayUsers) {
 </select>
 
 <p>
-<input type=button value="Create" onClick='my_submit("Create")'>
+<input type=button value="<?php echo _("Create") ?>" onClick='my_submit("Create")'> 
 <?php if (count($displayUsers)) { ?>
-<input type=button value="Modify" onClick='my_submit("Modify")'>
-<input type=button value="Delete" onClick='my_submit("Delete")'>
+<input type=button value="<?php echo _("Modify") ?>" onClick='my_submit("Modify")'>
+<input type=button value="<?php echo _("Delete") ?>" onClick='my_submit("Delete")'>
 <?php } ?>
-<input type=button value="Done" onclick='parent.close()'>
+<input type=button value="<?php echo _("Done") ?>" onclick='parent.close()'>
 <input type=hidden name=action value="">
 </form>
 

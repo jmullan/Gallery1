@@ -35,12 +35,13 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (!fs_file_exists($userDir)) {
 			if (!mkdir($userDir, 0777)) {
-				gallery_error("Unable to create dir: $userDir");
+				gallery_error(_("Unable to create dir") .": $userDir");
 				return;
 			}
 		} else {
 			if (!fs_is_dir($userDir)) {
-				gallery_error("$userDir exists, but is not a directory!");
+				gallery_error(sprintf(_("%s exists, but is not a directory!"),
+							$userDir));
 				return;
 			}
 		}
@@ -236,26 +237,26 @@ class Gallery_UserDB extends Abstract_UserDB {
 	function validNewUsername($username) {
 
 		if (strlen($username) < 2) {
-			return "Username must be at least 2 characters";
+			return _("Username must be at least 2 characters") ;
 		}
 
 		if (strlen($username) > 15) {
-			return "Username must be at most 15 characters";
+			return _("Username must be at most 15 characters") ;
 		}
 
 		if (ereg("[^[:alnum:]]", $username)) {
-			return "Username must contain only letters or digits";
+			return _("Username must contain only letters or digits") ;
 		}
 
 		if (!strcmp($username, $this->nobody->getUsername()) ||
 		    !strcmp($username, $this->everybody->getUsername()) ||
 		    !strcmp($username, $this->loggedIn->getUsername())) {
-			return "<i>$username</i> is reserved and cannot be used.";
+			return "<i>$username</i> ". _("is reserved and cannot be used.") ;
 		}
 
 		$user = $this->getUserByUsername($username);
 		if ($user) {
-			return "A user with the username of <i>$username</i> already exists";
+			return _("A user with the username of") ." <i>$username</i> " . _("already exists");
 		}
 
 		return null;
@@ -263,7 +264,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	function validPassword($password) {
 		if (strlen($password) < 3) {
-			return "Password must be at least 3 characters";
+			return _("Password must be at least 3 characters");
 		}
 
 		return null;

@@ -14,9 +14,13 @@
   <tr>
     <td>
     <!-- The Gallery code version number, linked to the Gallery home page -->
+    <table width="100%"><tr><td>j
     <span class="fineprint">
     <?php $gallery->session->offline ? print "Generated" : print "Powered"; ?> by <a href=<?php echo $gallery->url ?>>Gallery v<?php echo $gallery->version ?></a>
     </span>
+    </td>
+    <?php include($GALLERY_BASEDIR . "layout/ml_pulldown.inc")  ?>
+    </tr></table>
     </td>
   </tr>
 </table>

@@ -38,7 +38,7 @@ if (!$gallery->user->isLoggedIn()) {
 	exit;	
 }
 
-if (!strcmp($submit, "Save")) {
+if (!strcmp($submit, _("Save"))) {
 	if (strcmp($gallery->user->getUsername(), $uname)) {
 		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 		if ($gErrors["uname"]) {
@@ -47,18 +47,18 @@ if (!strcmp($submit, "Save")) {
 	}
 
 	if ($old_password && !$gallery->user->isCorrectPassword($old_password)) {
-		$gErrors["old_password"] = "Incorrect password";
+		$gErrors["old_password"] = _("Incorrect password") ;
 		$errorCount++;
 	}
 
 	if ($new_password1 || $new_password2) {
 		if (!$old_password) {
-			$gErrors["old_password"] = "You must provide your old password to change it.";
+			$gErrors["old_password"] = _("You must provide your old password to change it.");
 			$errorCount++;
 		}
 
 		if (strcmp($new_password1, $new_password2)) {
-			$gErrors["new_password2"] = "Passwords do not match!";
+			$gErrors["new_password2"] = _("Passwords do not match!");
 			$errorCount++;
 		} else {
 			$gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
@@ -92,20 +92,19 @@ $email = $gallery->user->getEmail();
 ?>
 <html>
 <head>
-  <title>Change User Preferences</title>
+  <title><?php echo _("Change User Preferences") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<span class="popuphead">Change User Preferences</span>
+<span class="popuphead"><?php echo _("Change User Preferences") ?></span>
 <br>
 <br>
 
-You can change your user information here.  If you want to change your
-password, you must provide your old password and then enter the new
-one twice.  You can change your username to any combination of letters
-and digits.
+<?php echo _("You can change your user information here.") ?>
+<?php echo _("If you want to change your password, you must provide your old password and then enter the new one twice.") ?>
+<?php echo _("You can change your username to any combination of letters and digits.") ?>
 
 <p>
 
@@ -117,8 +116,8 @@ and digits.
 <?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
 
-<input type=submit name="submit" value="Save">
-<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+<input type=submit name="submit" value="<?php echo _("Save") ?>">
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
 <script language="javascript1.2">

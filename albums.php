@@ -86,7 +86,7 @@ $navigator["bordercolor"] = $borderColor;
       <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>" />
   <?php } ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 <?php } ?>
 <?php
 includeHtmlWrap("gallery.header");
@@ -97,7 +97,7 @@ if (!$gallery->session->offline && !strcmp($gallery->app->default["showSearchEng
 <table width=100% border=0 cellspacing=0>
 <tr><?php echo makeFormIntro("search.php"); ?>
 <td valign="middle" align="right">
-<span class="admin"> Search: </span>
+<span class="admin"> <?php echo _("Search") ?>: </span>
 <input style="font-size=10px;" type="text" name="searchstring" value="" size="25">
 </td>
 </form>
@@ -109,13 +109,13 @@ if (!$gallery->session->offline && !strcmp($gallery->app->default["showSearchEng
 <!-- admin section begin -->
 <?php 
 $adminText = "<span class=\"admin\">";
-$adminText .= pluralize($numAlbums, ($numAccess != $numAlbums) ? "top-level album" : "album", "No");
+$adminText .= pluralize_n($numAlbums, ($numAccess != $numAlbums) ? _("top-level album") : _("album"), ($numAccess != $numAlbums) ? _("top-level albums") : _("albums"), _("No albums"));
 if ($numAccess != $numAlbums) {
-    $adminText .= " ($numAccess total)";
+    $adminText .= " ($numAccess ". _("total") .")";
 }
-$adminText .= ",&nbsp;" . pluralize($numPhotos, "image", "no");
+$adminText .= ",&nbsp;" . pluralize_n($numPhotos, _("image"), _("images"), _("no image"));
 if ($maxPages > 1) {
-	$adminText .= " on " . pluralize($maxPages, "page", "no") . "&nbsp;";
+	$adminText .= " " . _("on") . " " . pluralize_n($maxPages, _("page"), _("pages"), _("no pages")) . "&nbsp;";
 }
 $adminText .= "</span>";
 $adminCommands = "<span class=\"admin\">";
@@ -125,34 +125,34 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	if (empty($displayName)) {
 		$displayName = $gallery->user->getUsername();
 	}
-	$adminCommands .= "Welcome, $displayName &nbsp;&nbsp;<br>";
+	$adminCommands .= sprintf(_("Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br>";
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
-	$adminCommands .= "<a href=" . doCommand("new-album", array(), "view_album.php") . ">[new album]</a>&nbsp;";
+	$adminCommands .= "<a href=" . doCommand("new-album", array(), "view_album.php") . ">[". _("new album") ."]</a>&nbsp;";
 }
 
 if ($gallery->user->isAdmin()) {
 	if ($gallery->userDB->canModifyUser() ||
 	    $gallery->userDB->canCreateUser() ||
 	    $gallery->userDB->canDeleteUser()) {
-		$adminCommands .= popup_link("[manage users]", 
+		$adminCommands .= popup_link("[" . _("manage users") ."]", 
 			"manage_users.php");
 	}
 }
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	if ($gallery->userDB->canModifyUser()) {
-		$adminCommands .= popup_link("[preferences]", 
+		$adminCommands .= popup_link("[". _("preferences") ."]", 
 			"user_preferences.php");
 	}
 	
 	if (!$GALLERY_EMBEDDED_INSIDE) {
-		$adminCommands .= "<a href=". doCommand("logout", array(), "albums.php"). ">[logout]</a>";
+		$adminCommands .= "<a href=". doCommand("logout", array(), "albums.php"). ">[". _("logout") ."]</a>";
 	}
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
-	        $adminCommands .= popup_link("[login]", "login.php", 0);
+	        $adminCommands .= popup_link("[" . _("login") . "]", "login.php", 0);
 	}
 }
 
@@ -179,16 +179,16 @@ if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
     print "<tr>";
     print "<td colspan=3 align=center>";
     print "<table bordercolor=red border=2 cellpadding=2 cellspacing=2><tr><td>";
-    print "<center><b><u>Attention Gallery Administrator!</u></b></center><br>";
-    print "Gallery has detected the following directories:<br><br>";
+    print "<center><b><u>". _("Attention Gallery Administrator!") ."</u></b></center><br>";
+    print _("Gallery has detected the following directories") .":<br><br>";
     print "<center>";
     
     foreach ($albumDB->brokenAlbums as $tmpAlbumName) {
 	print "$tmpAlbumName<br>";
     }
     print "</center>";
-    print "<br>in your albums directory (" . $gallery->app->albumDir . ").<br>These ";
-    print "are not valid albums.  Please move them out of the albums directory.";
+    print "<br>". _("in your albums directory") ." (" . $gallery->app->albumDir . ").<br>" ;
+    print _("These are not valid albums.  Please move them out of the albums directory.") ;
     print "</td></tr></table>";
     print "</td>";
     print "</tr>";
@@ -211,12 +211,12 @@ for ($i = $start; $i <= $end; $i++) {
 
   <!-- Begin Album Column Block -->
   <tr>
-  <td height="1"><?php echo $pixelImage?></td>
-  <td bgcolor="<?php echo $borderColor?>" height="1"><?php echo $pixelImage?></td>
+  <td height="1"><?php echo $pixelImage ?></td>
+  <td bgcolor="<?php echo $borderColor ?>" height="1"><?php echo $pixelImage ?></td>
 <?php
   if (!strcmp($gallery->app->showAlbumTree, "yes")) {
 ?>
-  <td bgcolor="<?php echo $borderColor?>" height="1"><?php echo $pixelImage?></td>
+  <td bgcolor="<?php echo $borderColor ?>" height="1"><?php echo $pixelImage ?></td>
 
 <?php
   }
@@ -249,52 +249,54 @@ for ($i = $start; $i <= $end; $i++) {
   <!-- Begin Text Cell -->
   <td align=left valign=top>
   <span class="title">
-  <a href=<?php echo $albumURL?>>
+  <a href=<?php echo $albumURL ?>>
+  <?php _("title") ?>
   <?php echo editField($gallery->album, "title") ?></a>
   </span>
   <br>
   <span class="desc">
+  <?php _("description") ?>
   <?php echo editField($gallery->album, "description") ?>
   </span>
   <br>
   <?php if (strcmp($gallery->app->default["showOwners"], "no")) { ?>
   <span class="desc">
-  Owner: <a href=mailto:<?php echo $owner->getEmail()?>><?php echo $owner->getFullName()?></a>
+  <?php echo _("Owner: ") ?><a href=mailto:<?php echo $owner->getEmail() ?>><?php echo $owner->getFullName() ?></a>
   </span>
   <br>
   <?php } ?>
 
   <?php if ($gallery->user->canDeleteAlbum($gallery->album)) { ?>
    <span class="admin">
-    <?php echo popup_link("[delete album]", 
+    <?php echo popup_link("[". _("delete album") ."]", 
     	"delete_album.php?set_albumName={$tmpAlbumName}"); ?>
    </span>
   <?php } ?>
 
   <?php if ($gallery->user->canWriteToAlbum($gallery->album)) { ?>
    <span class="admin">
-    <?php echo popup_link("[move album]", 
+    <?php echo popup_link("[". _("move album") ."]", 
     	"move_album.php?set_albumName={$tmpAlbumName}&index=$i"); ?>
-    <?php echo popup_link("[rename album]", "rename_album.php?set_albumName={$tmpAlbumName}&index=$i"); ?>
+    <?php echo popup_link("[" . _("rename album") ."]", "rename_album.php?set_albumName={$tmpAlbumName}&index=$i"); ?>
    </span>
   <?php } ?>
 
   <?php if ($gallery->user->canChangeTextOfAlbum($gallery->album) 
   	&& !$gallery->session->offline) { ?>
    <span class="admin">
-    <a href=<?php echo makeGalleryUrl("captionator.php", array("set_albumName" => $tmpAlbumName))?>>[edit captions]</a>
+    <a href=<?php echo makeGalleryUrl("captionator.php", array("set_albumName" => $tmpAlbumName)) ?>>[<?php echo _("edit captions") ?>]</a>
    </span>
   <?php } ?>
 
   <?php if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) { ?>
    <span class="admin">
-    <?php echo popup_link("[permissions]", "album_permissions.php?set_albumName={$tmpAlbumName}");?>
+    <?php echo popup_link("[" . _("permissions") ."]", "album_permissions.php?set_albumName={$tmpAlbumName}"); ?>
    <?php if (!strcmp($gallery->album->fields["public_comments"],"yes")) { ?>
-    <a href=<?php echo makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName))?>>[view&nbsp;comments]</a>
+    <a href=<?php echo makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName)) ?>>[<?php echo _("view&nbsp;comments") ?>]</a>
    <?php } ?>
    </span>
   <br>
-  url: <a href=<?php echo $albumURL?>>
+  url: <a href=<?php echo $albumURL ?>>
   	<?php if (!$gallery->session->offline) {
 		echo breakString($albumURL, 60, '&', 5);
 	} else {
@@ -306,9 +308,9 @@ for ($i = $start; $i <= $end; $i++) {
 	<?php if (!$gallery->session->offline) { ?>
 	<br>
         <span class="error">
-         Hey!
-         <?php echo popup_link("Rename", "rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>
-         this album so that the URL is not so generic!
+         <?php echo _("Hey!") ?>
+         <?php echo popup_link(_("Rename"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i") ?>
+	 <?php echo _("this album so that the URL is not so generic!") ?>
         </span>
    	<?php } ?>
    <?php } ?>
@@ -316,7 +318,7 @@ for ($i = $start; $i <= $end; $i++) {
     <?php if ($gallery->user->isAdmin()) { ?>
   <br>
   <span class="error">
-   Note:  This album is out of date! <?php echo popup_link("[upgrade album]", "upgrade_album.php")?>
+   <?php echo _("Note:  This album is out of date!") ?> <?php echo popup_link("[" . _("upgrade album") ."]", "upgrade_album.php") ?>
   </span>
     <?php } ?>
    <?php } ?>
@@ -324,20 +326,23 @@ for ($i = $start; $i <= $end; $i++) {
 
   <br>
   <span class="fineprint">
-   Last changed on <?php echo $gallery->album->getLastModificationDate()?>.  
-   This album contains <?php echo pluralize($gallery->album->numPhotos(0), "item", "no")?>.
+   <?php echo _("Last changed on") ?> <?php echo $gallery->album->getLastModificationDate() ?>.  
+   <?php echo _("This album contains" ) ?> <?php echo pluralize_n($gallery->album->numPhotos(0), _("item"), _("items"), _("no items")) ?>.
 <?php
 if (!($gallery->album->fields["display_clicks"] == "no") && 
 	!$gallery->session->offline) {
 ?>
-   <br><br>This album has been viewed <?php echo pluralize($gallery->album->getClicks(), "time", "0")?> since <?php echo $gallery->album->getClicksDate()?>.
+   <br><br><?php echo _("This album has been viewed ") ?>
+	<?php echo pluralize_n($gallery->album->getClicks(), _("time"), _("times") , _("0 times")) ?>
+	<?php echo _("since") ?>
+	<?php echo $gallery->album->getClicksDate() ?>.
 <?php
 }
 $albumName=$gallery->album->fields["name"];
 if ($gallery->user->canWriteToAlbum($gallery->album) &&
    (!($gallery->album->fields["display_clicks"] == "no"))) {
 ?>
-<?php echo popup_link("[reset counter]", "'" . doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php") . "'" , 1)?>
+<?php echo popup_link("[" . _("reset counter") ."]", "'" . doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php") . "'" , 1) ?>
 
 <?php
 }

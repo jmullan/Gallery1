@@ -8,7 +8,7 @@ require("../classes/EverybodyUser.php");
 require("../errors/configure_instructions.php");
 
 $outfile = "$GALLERY_DIR/config.php";
-copy("gpl.txt", $outfile);
+@copy("gpl.txt", $outfile);
 
 if ($fd = @fs_fopen($outfile, "a")) {
 	$data = urldecode($data);
@@ -86,27 +86,27 @@ $admin->save();
 <center>
 <table width=600><tr><td>
 <center>
-<font size=+2> Your configuration has been successfully saved! </font>
+<font size=+2><?php echo _("Your configuration has been successfully saved!") ?></font>
 <p>
 <table cellspacing="1" cellpadding="4" border="1"><tr><td>
-An account called <i>admin</i> has been created for you with the password you specified.
+<?php echo _("An account called <i>admin</i> has been created for you with the password you specified.") ?>
 </td></tr></table>
 <p>
-<font size=+2 color=red>Note!</font>
+<font size=+2 color=red><?php echo _("Note") ?>!</font>
 <br>
-Don't forget to run:
+<?php echo _("Don't forget to run") ?>:
 <?php echo configure("secure") ?>
 </center>
 <br>
-to make your Gallery secure!  <font size=+1>Gallery won't run if it is not in secure
-mode</font>.  You can reconfigure Gallery at any time by re-running this
-configuration wizard (it will save your data so you won't have to enter
-it all again!)
+<?php echo _("to make your Gallery secure!") ?>  <font size=+1>
+<?php echo _("Gallery won't run if it is not in secure mode") ?></font>.
+<?php echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.") ?>  
+<?php echo _("It will save your data so you won't have to enter it all again!") ?>
 
 <p>
 <center>
 <font size=+2>
-<a href=../albums.php>Enter the Gallery</a>
+<a href=../albums.php><?php echo _("Enter the Gallery") ?></a>
 </font>
 
 <br><br><br><br>
@@ -116,13 +116,11 @@ it all again!)
 
 </td></tr></table>
 
-
-
 <?php
 function fail($file) {
 ?>
-	<title> Failure! </title>
-	<font size=+2> Unable to write to <?php echo $file?> </font>
+	<title><?php echo _("Failure") ?>! </title>
+	<font size=+2><?php echo _("Unable to write to") ?> <?php echo $file ?> </font>
 <?php
 	return;
 }

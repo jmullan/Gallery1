@@ -1,76 +1,68 @@
 <?php /* $Id$ */ ?>
-  <html>
+<?php
+	require("../config.php");
+?>
+<html>
     <head>
-      <title> Gallery Diagnostics Page </title>
+      <title><?php echo _("Gallery Diagnostics Page") ?></title>
     </head>
-    <body>
+    <body dir=<?php echo $gallery->direction ?>>
       <center>
-	<H1> Gallery Diagnostics </H1>
+	<H1><?php echo _("Gallery Diagnostics") ?></H1>
       </center>
 
-      This page is designed to provide some diagnostics about your
-      server to help you find issues that may prevent Gallery from
-      functioning properly.  The config wizard tries all kinds of
-      diagnostics to try to find and work around any issues that it
-      finds on your system, but there may be other problems that we
-      have not thought of.  You can use these tools to find out more
-      about your setup:
+	<?php echo _("This page is designed to provide some diagnostics about your server to help you find issues that may prevent Gallery from functioning properly.") ?>
+	<?php echo _("The config wizard tries all kinds of diagnostics to try to find and work around any issues that it finds on your system, but there may be other problems that we have not thought of.") ?>
+	<?php echo _("You can use these tools to find out more about your setup") ?>:
 
       <p></p>
 
       <center>
 	<table width=90% border=1>
 	  <tr>
-	    <th bgcolor=#99AACC> Tool </th>
-	    <th bgcolor=#99AACC> Description </th>
+	    <th bgcolor=#99AACC> <?php echo _("Tool") ?> </th>
+	    <th bgcolor=#99AACC> <?php echo _("Description") ?> </th>
 	  </tr>
 	  <tr>
 	    <td width=140 align=center valign=top>
-	      <a href=phpinfo.php>PHP Info</a>
+	      <a href=phpinfo.php><?php echo _("PHP Info") ?></a>
 	    </td>
 	    <td>
-	      This page provides information about your PHP
-	      installation.  It's a good place to look to examine all
-	      the various PHP configuration settings, and to find out
-	      what kind of system you're running on (sometimes it's
-	      difficult to tell when you're on an ISP's machine)
+		<?php echo _("This page provides information about your PHP installation.") ?>
+		<?php echo _("It's a good place to look to examine all the various PHP configuration settings, and to find out what kind of system you're running on") ?> 
+ 		(<?php echo _("sometimes it's difficult to tell when you're on an ISP's machine") ?>)
 	    </td>
 	  </tr>
 
 	  <tr>
 	    <td width=140 align=center valign=top>
-	      <a href=check_netpbm.php>Check NetPBM</a>
+	      <a href=check_netpbm.php><?php echo _("Check") ?> NetPBM</a>
 	    </td>
 	    <td>
-	      This page provides information about your NetPBM
-	      binaries.  You can only use this page after you have
-	      successfully complete the configuration wizard (as it
-	      expects that you've already located and configured
-	      Gallery with the right path to NetPBM).
+	      <?php echo _("This page provides information about your NetPBM binaries.") ?> 
+		<?php echo _("You can only use this page after you have successfully complete the configuration wizard") ?> 
+ 		(<?php echo _("as it expects that you've already located and configured Gallery with the right path to NetPBM") ?>).
 	    </td>
 	  </tr>
 
 	  <tr>
 	    <td width=140 align=center valign=top>
-	      <a href=check_imagemagick.php>Check ImageMagick</a>
+	      <a href=check_imagemagick.php><?php echo _("Check") ?> ImageMagick</a>
 	    </td>
 	    <td>
-	      This page provides information about your ImageMagick
-	      binaries.  You can only use this page after you have
-	      successfully complete the configuration wizard (as it
-	      expects that you've already located and configured
-	      Gallery with the right path to ImageMagick).
+		<?php echo _("This page provides information about your ImageMagick binaries.") ?> 
+		<?php echo _("You can only use this page after you have successfully complete the configuration wizard") ?>
+		(<?php echo _("as it expects that you've already located and configured Gallery with the right path to ImageMagick") ?>).
 	    </td>
 	  </tr>
 
 	  <tr>
 	    <td width=140 align=center valign=top>
-	      <a href=session_test.php>Check Sessions</a>
+	      <a href=session_test.php><?php echo _("Check Sessions") ?></a>
 	    </td>
 	    <td>
-	      This page runs a very simple test on your PHP session
-	      configuration.  Gallery requires that your PHP
-	      installation is configured with proper session support.
+		<?php echo _("This page runs a very simple test on your PHP session configuration.") ?>
+		<?php echo _("Gallery requires that your PHP installation is configured with proper session support.") ?>
 	    </td>
 	  </tr>
 
@@ -79,9 +71,9 @@
 	<p> </p>
 
 	<center>
-	  Return to the <a href="index.php">config wizard</a>.
+	  <?php echo _("Return to the") ?> <a href="index.php"><?php echo _("config wizard") ?></a>.
 	</center>
 
     </body>
   </html>
-  
+ 
