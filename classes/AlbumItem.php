@@ -354,12 +354,12 @@ class AlbumItem {
 
 				/* Check if we need to cascade highlight up to parent album */
 				$parentAlbum =& $album->getParentAlbum();
-				if (isset($parentAlbum)) {
+				if (isset($parentAlbum) && !strcmp($parentAlbum->version, $gallery->album_version)) {
 					$highlightIndex = $parentAlbum->getHighlight();
 					if ($highlightIndex == $parentAlbum->getAlbumIndex($album->fields['name'])) {
 						$item = &$parentAlbum->getPhoto($highlightIndex);
 						$item->setHighlight($parentAlbum->getAlbumDir(), 1, $parentAlbum, $album->fields['name'], $tag, $srcdir, $srcitem);
-						$parentAlbum->save("",0);
+						$parentAlbum->save(array(),0);
 					}
 				}
 			}
