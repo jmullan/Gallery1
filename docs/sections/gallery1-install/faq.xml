@@ -368,7 +368,9 @@ ADD OR EDIT WHATEVER YOU WANT, AS LONG AS IT'S NOT A DRASTIC CHANGE
          <emphasis>/usr/bin/convert: Not a JPEG file: starts with 0x0a 0x4d
          (/home/uspalmer/public_html/gallery/AUTHORS).</emphasis> -- This is a bug
          that has been fixed with the latest version of Gallery, please upgrade
-         (FIXME: Has this really been fixed???)
+         (FIXME: Has this really been fixed???)  If you are using FreeBSD and
+         installed ImageMagick from the ports collection, see
+         <link linkend="gallery1-install.faq.c.30">FAQ C.30</link>.
         </para>
        </listitem>
        <listitem>
@@ -1134,6 +1136,46 @@ if (!function_exists('array_search')) {
       </para>
      </answer>
     </qandaentry>
+    
+    <qandaentry id="gallery1-install.faq.c.30">
+     <question>
+      <para>
+       Why can't I upload images using ImageMagick on FreeBSD?
+      </para>
+     </question>
+     <answer>
+      <para>
+       The default install of ImageMagick on FreeBSD doesn't seem to compile with some
+       important image support (e.g. JPEG), so you must explicitly tell it to.
+       There are two ways of doing this.
+       <orderedlist>
+        <listitem>
+         <para>
+          Compile ImageMagick using this command:
+          <command>
+           cd /usr/ports/graphics/ImageMagick/ &amp;&amp; make -DWITH_JPEG -DWITH_TIFF -DWITH_PNG
+           install clean
+          </command>
+         </para>
+        </listitem>
+        <listitem>
+         <para>
+          Add the following lines to <filename>/etc/make.conf</filename>:
+          <screen>
+           WITH_JPEG=yes
+           WITH_TIFF=yes
+           WITH_PNG=yes 
+          </screen>
+          Then uninstall ImageMagick via ports (<command>make deinstall clean</command>)
+          and reinstall it (<command>make install clean</command>)
+         </para>
+        </listitem>
+       </orderedlist>
+      </para>
+     </answer>
+    </qandaentry>
+
+
     
    </qandadiv>
   
