@@ -2056,7 +2056,7 @@ class Album {
 		if ($this->fields["poll_type"] != "critique") {
 			return false;
 		}
-		if ($album->fields["poll_type"] != "critique") {
+		if (isset($album->fields["poll_type"]) && ($album->fields["poll_type"] != "critique")) {
 			return false;
 		}
 		if ($this->fields["poll_scale"] != $album->fields["poll_scale"]) {
