@@ -539,22 +539,32 @@ function check_gallery_version()
 	$visit=sprintf(_("Visit %s to download the latest version."), $link);
 
 	if ($age > 365) {
-		$fail["too_old"] = sprintf(_("Your installation of gallery is %.1f years old."), $age/365). "  " . $visit; 
-	} else if ($age > 180) {
-		$fail["too_old"] = sprintf(_("Your installation of gallery is %.0d months old."), $age/30) . "  " . $visit;
-	} else if ($age > 60 && $beta) {
-		$fail["too_old"] = sprintf(_("Your installation of gallery looks like a beta that is %.0d days old."), $age) . "  " . $visit;
+		$age_str = sprintf(_("%.1f years"), $age/365);
 	} else if ($age > 60) {
-		$success["ok"] = sprintf(_("Your installation of gallery is %.0d months old.  You can visit %s to see if there's a more recent version."),
-				$age/30, $link);
-	} else if ($age > 14 && $beta) {
-		$fail["too_old"] = sprintf(_("Your installation of gallery looks like a beta that is %.0d days old.  There's almost certainly a more recent version.  Visit %s to download the latest version."), 
-				$age, $link);
-	} else if ($beta) {
-		$success["ok"] = sprintf(_("You are using a beta version that is %.0d days old.  Please visit %s regularly, to ensure you have the latest version."),
-				$age, $link);
+		$age_str = sprintf(_("%.0d months"), $age/30); 
 	} else {
-		$success["ok"] = sprintf(_("Your version of gallery is %.0d days old"), $age);
+		$age_str = sprintf(_("%.0d days"), $age); 
+	}
+				
+	if ($age > 180) {
+		$fail["too_old"] = sprintf(_("Your version of %s is %s old."), 
+				Gallery(), $age_str). "  " . $visit; 
+	} else if ($age > 60 && $beta) {
+		$fail["too_old"] = sprintf(_("Your version of %s looks like a beta that is %s old."), 
+				Gallery(), $age_str) . "  " . $visit;
+	} else if ($age > 60) {
+		$success["ok"] = sprintf(_("Your version of %s was released %s ago.  You can visit %s to see if there's a more recent version."),
+				Gallery(), $age_str, $link);
+	} else if ($age > 14 && $beta) {
+		$fail["too_old"] = sprintf(_("Your version of %s looks like a beta that is %s old.  There's almost certainly a more recent version."),
+				Gallery(), $age_str, $link) . "  " . $visit;
+	} else if ($beta) {
+		$success["ok"] = sprintf(_("You are using a beta version of %s that was released %s ago.  Please visit %s regularly, to ensure you have the latest version."),
+				
+				Gallery(), $age_str, $link);
+	} else {
+		$success["ok"] = sprintf(_("Your version of %s was released %s ago."), 
+				Gallery(), $age_str);
 	}
 	return array($success, $fail);
 }

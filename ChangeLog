@@ -1,3 +1,8 @@
+2003-08-11  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b116
+
+	* Improving the strings in Configuration Wizard/check gallery version
+	  code.  Probably needs more work before passing to the translators.
+
 2003-08-11  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b115
 
 	* Replace "$GALLERY_BASEDIR = ''" with "$GALLERY_BASEDIR = './'"; 
@@ -16,7 +21,13 @@
 
 	* $gallery->last_change added to Versions.php, so we can see how old 
 	  the current version installed is, and flag during configuration if 
-	  it might need updating.
+	  it might need updating.  
+	  [NOTE: there are other ways of doing this, most elegantly
+	  going to gallery.sf.net and getting the latest version
+	  number.  This has it's appeal, but having gallery silently
+	  visit a the main gallery site would be a bit like spyware.  
+	  Suggest we have a "check for latest version" button or 
+	  similar.]
 
 	* Added spaces between the sentences at the beginning of 
 	  upgrade_album.php, so they are not all jammed together.
