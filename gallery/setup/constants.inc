@@ -36,11 +36,17 @@ foreach ($constants as $key => $val) {
 			eval ('$val["value"] = $gallery->app->'.$key.';');
 		}
 	}
+	$onThisPage[$key] = 1;
+	$preserve[$key] = 1;
 
 	if (!$go_defaults) {
-        	if (ereg("^(..*)\[.*\]$", $key, $matches)) {
+		if (ereg("^(..*)\[.*\]$", $key, $matches)) {
 			$line='if (isset($'.$key.')) $val["value"] = $'.$key . ';';
 			eval($line);
+			unset($preserve[$key]);
+			$preserve[$matches[1]] = 1;
+			unset($onThisPage[$key]);
+			$onThisPage[$matches[1]] = 1;
 		}
 		else if( isset($$key)) {
 			$val["value"] = $$key;
@@ -63,8 +69,6 @@ foreach ($constants as $key => $val) {
 		echo "<tr><td colspan=2> &nbsp; </td></tr>";
 	}
 
-	$onThisPage[$key] = 1;
-	$preserve[$key] = 1;
 }
 ?>
 </table>

@@ -95,8 +95,8 @@ function embed_hidden($key) {
 		eval($line);
 	}
 	if (is_array($real)) {
-		foreach ($real as $value) {
-			$buf .= "<input type=hidden name=${key}[] value=\"";
+		foreach ($real as $real_key => $value) {
+			$buf .= "<input type=hidden name=${key}[$real_key] value=\"";
 			$buf .= urlencode($value);
 			$buf .= "\">\n";
 		}
