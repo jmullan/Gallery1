@@ -73,16 +73,16 @@ function row_wrap($buf) {
 
 function check_htaccess()
 {
-	global $GALLERY_GOT_HTACCESS; 
+	global $GALLERY_PHP_VALUE_OK; 
 
 	/*
 	 * the .htaccess file in the parent directory tries to
 	 * auto_prepend the got-htaccess.php file.  If that worked, 
-	 * then GALLERY_GOT_HTACCESS will be set. 
+	 * then GALLERY_PHP_VALUE_OK will be set. 
 	 */
 	$success = array();
 	$fail = array();
-	if (isset($GALLERY_GOT_HTACCESS)) {
+	if ($GALLERY_PHP_VALUE_OK) {
 		$success[] = "I can read your .htaccess file";
 	} else {
 		$fail["fail-htaccess"]++;
@@ -102,8 +102,6 @@ function check_php()
 		$fail["fail-too-old"]++;
 	} else if (!strcmp($version, "4.0.0")) {
 		$fail["fail-incompatible"]++;
-	} else if (!strcmp($version, "4.0.2")) {
-		$fail["fail-incompatible"]++;
 	} else if (!strncmp($version, "4.0.3", 5)) {
 		$fail["fail-incompatible"]++;
 	} else {
@@ -115,11 +113,11 @@ function check_php()
 
 function check_mod_rewrite() 
 {
-	global $GALLERY_REWRITE;
+	global $GALLERY_REWRITE_OK;
 
 	$success = array();
 	$fail = array();
-	if ($GALLERY_REWRITE) {
+	if ($GALLERY_REWRITE_OK) {
 		$success[] = "mod_rewrite is enabled";
 	} else {
 		$fail["fail-mod-rewrite"]++;
