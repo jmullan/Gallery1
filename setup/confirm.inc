@@ -83,7 +83,7 @@ $graphpath = "";
 $graphtest = array();
 
 foreach ($constants as $key => $val) {
-
+	
 	if (isset($val["enabled"]) && $val["enabled"] == "no") continue;
 
 	if (isset($val["type"]) && 
@@ -92,17 +92,26 @@ foreach ($constants as $key => $val) {
 			 $val["type"] == "separator")) { 
 		continue;
 	}
+
 	$bracketStart = strpos($key, '[');
 	$bracketEnd = strpos($key, ']');
+
 	if ($bracketStart > 0 && $bracketEnd > 0) {
-	        $line='$real = $'. substr($key, 0, $bracketStart) . '["' .
-		    substr($key, $bracketStart+1, $bracketEnd - $bracketStart - 1) . '"];';
-		eval($line);
+	/* This is a somewhat strange workaround i made for
+	** a strange SunOS with 
+	** register global On an Magic Quotes On
+	** This only works an onedimensional arrays !
+	** 02/2004 , Jens Tkotz
+	*/
+		$subKey=substr($key,0, $bracketStart);
+		$newKey=$$subKey;
+		$arrKeys=(array_keys($newKey));
+		$real=$newKey[$arrKeys[0]];
 	} else {
 		$real = $$key;
 	}
 
-        if (get_magic_quotes_gpc()) {
+	if (get_magic_quotes_gpc()) {
 		$real = array_stripslashes($real);
 	}
 
@@ -414,6 +423,6 @@ if (!$error) {
 	echo '<p class="error" id="bottom">';
 	echo _("There are errors in your configuration.");
 	echo '<br>' . _("Please go back and fix them!");
-	echo '</p>';
+    echo '</p>';
 } ?>
 </p>

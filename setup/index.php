@@ -85,27 +85,31 @@ if (in_array($setup_page, $legit)) {
 ?>
 
 <?php
+
 function embed_hidden($key) {
 	global $$key;
 
 	$buf = "";
 	$real = $$key;
+
 	if (is_array($real)) {
 		foreach ($real as $real_key => $value) {
 			if (is_array($value)) {
 				foreach($value as $sub_key => $sub_value) {
-					$buf .= "<input type=hidden name=${key}[$real_key][$sub_key] value=\"";
+					$name = stripWQuotesON($key . "[$real_key][$sub_key]");
+					$buf .= '<input type="hidden" name="'. $name .'" value="';
 					$buf .= urlencode($sub_value);
 					$buf .= "\">\n";
 				}
 			} else {
-				$buf .= "<input type=hidden name=${key}[$real_key] value=\"";
+				$name = stripWQuotesON(${key} ."[$real_key]");
+				$buf .= '<input type="hidden" name="'. $name .'" value="';
 				$buf .= urlencode($value);
 				$buf .= "\">\n";
 			}
 		}
 	} else {
-		$buf .= "<input type=hidden name=$key value=\"";
+		$buf .= '<input type="hidden" name="'. stripWQuotesON($key) . '" value="';
 		$buf .= urlencode($real);
 		$buf .= "\">\n";
 	}

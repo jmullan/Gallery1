@@ -798,7 +798,7 @@ function config_maybe_locales() {
 			continue;
 		}
 		if (sizeof($aliases) == 1) {
-			$results["locale_alias['$key']"] = array (
+			$results["locale_alias[$key]"] = array (
 				"type" => "hidden", 
 				"value" => array_pop($aliases),
 				"desc" => "locale_alias[$key]",
@@ -1096,6 +1096,22 @@ function array_stripslashes($subject) {
 		$ret[$key]=array_stripslashes($value);
 	}
 	return $ret;
+}
+
+/*
+** Check if Magic Quotes are On
+** If yes stripslashes and return the cleaned input.
+** 
+** Jens Tkotz, 02/2004
+*/
+function stripWQuotesON($mixed) {
+        if (get_magic_quotes_gpc()) {
+                return array_stripslashes($mixed);
+        }
+        else {
+                return $mixed;
+        }
+
 }
 
 function array_urldecode($subject) {

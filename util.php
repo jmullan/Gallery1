@@ -2997,6 +2997,33 @@ function contextHelp ($link) {
 	}
 }
 
+
+
+/*
+** This function strips slashes from an array Key
+** 
+** e.g. $foo[\'bar\'] will become $foo['bar']
+**
+** Created by Andrew Lindeman, 02/2004
+*/
+
+function key_strip_slashes (&$arr) {
+    $keys = array_keys ($arr);
+
+    foreach ($keys as $val) {
+        $tmpVal = stripslashes ($val);
+
+        if ($tmpVal != $val) {
+            $arr[$tmpVal] = $arr[$val];
+            unset ($arr[$val]);
+        }
+
+        if (is_array ($arr[$tmpVal])) {
+            key_strip_slashes ($arr[$tmpVal]);
+        }
+    }
+}
+
 require ($GALLERY_BASEDIR . "lib/lang.php");
 require ($GALLERY_BASEDIR . "lib/Form.php");
 ?>
