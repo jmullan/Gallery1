@@ -38,7 +38,7 @@
 # discussed above.  Also note that 'thumbs' and 'thumbs-with-captions'
 # have been known to crash NetNewsWire.
 
-$mode = "basic";
+$mode = "highlight";
 
 # highlightAlbum
 # 
@@ -49,7 +49,7 @@ $mode = "basic";
 # If set to "", it will turn off the channel highlight feature.
 # (See noBigPhoto below for more info).
 
-$highlightAlbum = "*";
+$highlightAlbum = "";
 
 # onlyFindable
 #
@@ -122,86 +122,60 @@ function albumSort($a, $b) {
 }
 
 function bestDate($album) {
-  if (isset($album->fields["clicks_date"])) {
-    return $album->fields["clicks_date"];
-  } else {
-    return $album->fields["last_mod_time"];
-  }
+	if (isset($album->fields["clicks_date"])) {
+		return $album->fields["clicks_date"];
+	} else {
+		return $album->fields["last_mod_time"];
+	}
 }
 
 function removeUnprintable($string) {
 	return preg_replace("/[^[:print:]]/", "", $string);
 }
 
-function albumFindable($db, $album) {
-	global $gallery;
-
-	if (isset($album->fields['marked']) && $album->fields['marked']) {
-		/* Cyclic loop! */
-		return FALSE;
-	} else {
-		$album->fields["marked"] = TRUE;
-	}
-
-	if (! $gallery->user->canReadAlbum($album)) {
-		return FALSE;
-	} elseif ($album->isRoot()) {
-		return TRUE;
-	} else {
-	 	$parentName = $album->fields["parentAlbumName"];
-	  $parentAlbum = $db->getAlbumbyName($parentName);
-		return albumFindable($db, $parentAlbum);
-	}
-}
-
 function getThumbs($album) {
-  $tags = "border=0 vspace=2 hspace=0 align=$align";
-
-  $photos = "";
-  $base = makeAlbumURL($album->fields["name"]);
-  $photoCount = $album->numPhotos(1);
-
-  for ($i = 1; $i <= $photoCount; $i += 1) {
-    $photo = $album->getPhoto($i);
-    if (!$photo->isHidden() && !$photo->isMovie() && $photo->thumbnail) {
-      $path = $photo->image->getName($album->getPhotoPath($i));
-      $imgtag = $album->getThumbnailTag($i, 0, $tags);
-      $photos .= "<a href=\"$base/$path\">$imgtag</a>\n";
-    }
-  }
-
-  return $photos;
+	$tags = "border=0 vspace=2 hspace=0 align=top";
+	
+	$photos = "";
+	$photoCount = $album->numPhotos(1);
+	
+	for ($i = 1; $i <= $photoCount; $i += 1) {
+		$photo = $album->getPhoto($i);
+		if (!$photo->isHidden() && !$photo->isMovie() && $photo->thumbnail) {
+			$imgtag = $album->getThumbnailTag($i, 0, $tags);
+			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) . "\">" . $imgtag . "</a>\n";
+		}
+	}
+	
+	return $photos;
 }
 
 function getThumbsAndCaptions($album) {
-  $tags = "border=0 vspace=2 hspace=0 align=top";
-
-  $photos = "";
-  $base = makeAlbumURL($album->fields["name"]);
-  $photoCount = $album->numPhotos(1);
-
-  for ($i = 1; $i <= $photoCount; $i += 1) {
-    $photo = $album->getPhoto($i);
-    if (!$photo->isHidden() && !$photo->isMovie() && is_object($photo->thumbnail)) {
-      # incredibly complicated way of saying PATH + FILENAME
-      $path = $photo->image->getName($album->getPhotoPath($i));
-      $imgtag = $album->getThumbnailTag($i, 0, $tags);
-      $caption = $photo->getCaption();
-      $photos .= "<a href=\"$base/$path\">$imgtag</a> $caption<br />\n";
-    }
-  }
-
-  return $photos;
+	$tags = "border=0 vspace=2 hspace=0 align=top";
+	
+	$photos = "";
+	$photoCount = $album->numPhotos(1);
+	
+	for ($i = 1; $i <= $photoCount; $i += 1) {
+		$photo = $album->getPhoto($i);
+		if (!$photo->isHidden() && !$photo->isMovie() && is_object($photo->thumbnail)) {
+			$imgtag = $album->getThumbnailTag($i, 0, $tags);
+			$caption = $photo->getCaption();
+			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) . "\">" . $imgtag . "</a>\n";
+		}
+	}
+	
+	return $photos;
 }
 
 function makeDCDate($unixDate) {
-  $dcDate = date("Y-m-d\TH:i:sO", $unixDate);
-
-   /* CAUTION: This will not work in zones with 
+	$dcDate = date("Y-m-d\TH:i:sO", $unixDate);
+	
+	/* CAUTION: This will not work in zones with 
 	 * half-our time offsets
 	 */
-
-  return eregi_replace("..$", ":00", $dcDate);
+	
+	return eregi_replace("..$", ":00", $dcDate);
 }
 
 /* Read the album list */
@@ -219,11 +193,11 @@ if (method_exists($albumDB, "getCachedNumPhotos")) {
 
 foreach ($albumDB->albumList as $album) {
 	if ($onlyFindable) {
-		if(! albumFindable($albumDB, $album)) {
+		if($album->isHiddenRecurse()) {
 			continue;
 		}
 	} else {
-		if(! $gallery->user->canReadAlbum($album)) {
+		if(!$gallery->user->canReadAlbum($album)) {
 			continue;
 		}
 	}
@@ -231,89 +205,89 @@ foreach ($albumDB->albumList as $album) {
 	$numAlbums++;
 
 	$albumInfo = array(
-    "!name" => $album->fields["name"],
-    "link" => makeAlbumUrl($album->fields["name"]),
-    "guid" => makeAlbumUrl($album->fields["name"]),
-    "!date" => bestDate($album),
+		"!name" => $album->fields["name"],
+		"link" => makeAlbumUrl($album->fields["name"]),
+		"guid" => makeAlbumUrl($album->fields["name"]),
+		"!date" => bestDate($album),
 		"title" => htmlspecialchars(removeUnprintable($album->fields["title"])));
 
-  # DATE TAGS
+	# DATE TAGS
 
 	$unixDate = $albumInfo["!date"];
 	if (IsSet($unixDate)) {
 		$albumInfo["pubDate"] = date("r", $unixDate);
-    if (! $noDCDate) {
-      $albumInfo["dc:date"] = makeDCDate($unixDate);
-    }
+		if (! $noDCDate) {
+			$albumInfo["dc:date"] = makeDCDate($unixDate);
+		}
 	}
 
-  # COMMENTS TAG
+	# COMMENTS TAG
 
-  if(method_exists($album, "canViewComments") 
-     && $album->canViewComments($gallery->user->uid)) {
-    $albumInfo["comments"] = makeGalleryURL("view_comments.php", 
-      array("set_albumName" => $album->fields["name"]));
-  }
+	if (method_exists($album, "canViewComments") 
+	   && $album->canViewComments($gallery->user->uid)) {
+		$albumInfo["comments"] = makeGalleryUrl("view_comments.php", 
+		  array("set_albumName" => $album->fields["name"]));
+	}
 
-  # PHEED AND PHOTO TAGS
+	# PHEED AND PHOTO TAGS
 
-  if (! $noPhotoTag) {
-    if (! $album->transient->photosloaded) {
-      $album->load($album->fields["name"], TRUE);
-    }
+	if (!$noPhotoTag) {
+		if (! $album->transient->photosloaded) {
+			$album->load($album->fields["name"], TRUE);
+		}
 
-    list($subalbum, $highlight) = $album->getHighlightedItem();
+		list($subalbum, $highlight) = $album->getHighlightedItem();
 
-    if($highlight) {
-      # makeAlbumURL is for the pretty page, getAlbumDirURL is for the image itself
-      $base = $album->getAlbumDirURL("highlight");
-      $albumInfo["photo:imgsrc"] = $highlight->thumbnail->getPath($base);
-      $albumInfo["photo:thumbnail"] = $highlight->getPhotoPath($base);
+		if($highlight) {
+			# makeAlbumURL is for the pretty page, getAlbumDirURL is for the image itself
+			$base = $album->getAlbumDirURL("highlight");
+			$albumInfo["photo:imgsrc"] = $highlight->thumbnail->getPath($base);
+			$albumInfo["photo:thumbnail"] = $highlight->getPhotoPath($base);
+			
+			$width = $highlight->thumbnail->width;
+			$height = $highlight->thumbnail->height;
 
-      $width = $highlight->thumbnail->width;
-      $height = $highlight->thumbnail->height;
+			if ($noBigPhoto) {
+				if ($width > 144) {
+					$width = 144;
+				}
+			
+				if ($height > 400) {
+					$height = 400;
+				}
+			}
 
-      if ($noBigPhoto) {
-        if ($width > 144) {
-          $width = 144;
-        }
+		$albumInfo["pb:thumb"] = array($highlight->thumbnail->getPath($base),
+		array("height" => $height, "width" => $width));
+		}
+	}
 
-        if ($height > 400) {
-          $height = 400;
-        }
-      }
+	# INSET HTML IMAGES
 
-      $albumInfo["pb:thumb"] = array($highlight->thumbnail->getPath($base),
-        array("height" => $height, "width" => $width));
-    }
-  }
+	if ($mode == "thumbs" || $mode == "mdm") {
+		if (! $album->transient->photosloaded) {
+			$album->load($album->fields["name"], TRUE);
+		}
+		
+		$albumInfo["description"]  = removeUnprintable($album->fields["description"]) . '<p />';
+		$albumInfo["description"] .= getThumbs($album);
+	} elseif ($mode == "thumbs-with-captions") {
+		if (! $album->transient->photosloaded) {
+			$album->load($album->fields["name"], TRUE);
+		}
 
-  # INSET HTML IMAGES
-
-  if ($mode == "thumbs" || $mode == "mdm") {
-    if (! $album->transient->photosloaded) {
-      $album->load($album->fields["name"], TRUE);
-    }
-
-    $albumInfo["description"]  = removeUnprintable($album->fields["description"]) . '<p />';
-    $albumInfo["description"] .= getThumbs($album);
-  } elseif ($mode == "thumbs-with-captions") {
-    if (! $album->transient->photosloaded) {
-      $album->load($album->fields["name"], TRUE);
-    }
-
-    $albumInfo["description"]  = removeUnprintable($album->fields["description"]) . '<p />';
-    $albumInfo["description"] .= getThumbsAndCaptions($album);
-  } elseif ($mode == "highlight" && isset($highlight)) {
-    $url = makeAlbumUrl($album->fields["name"]);
-    $imgtag = $highlight->thumbnail->getTag($base, 0, 0, 'border=0');
-    $albumInfo["description"]  = "<a href=\"$url\">$imgtag</a> ";
+		$albumInfo["description"]  = removeUnprintable($album->fields["description"]) . '<p />';
+		$albumInfo["description"] .= getThumbsAndCaptions($album);
+	} elseif ($mode == "highlight" && isset($highlight)) {
+		$url = makeAlbumUrl($album->fields["name"]);
+		$imgtag = $highlight->thumbnail->getTag($base, 0, 0, 'border=0');
+		$albumInfo["description"]  = "<a href=\"$url\">$imgtag</a> ";
 		$albumInfo["description"] .= removeUnprintable($album->fields["description"]);      
 	} else { # mode = "basic"
 		$albumInfo["description"] = removeUnprintable($album->fields["description"]);
-  }
+	}
 
-  $albumInfo["description"] = htmlspecialchars($albumInfo["description"]);
+	$albumInfo["description"] = htmlspecialchars($albumInfo["description"]);
 
 	array_push($albumList, $albumInfo);
 }
@@ -322,27 +296,27 @@ usort($albumList, "albumSort");
 
 unset($ha); $channel_image = $channel_width = $channel_height = "";
 if (isset($highlightAlbum) && $highlightAlbum != "*") {
-  foreach($albumList as $album) {
-    if ($album["!name"] == $highlightAlbum && isset($album["pb:thumb"])) {
-      $ha = $album;
-      break;
-    }
-  }
+	foreach($albumList as $album) {
+		if ($album["!name"] == $highlightAlbum && isset($album["pb:thumb"])) {
+			$ha = $album;
+			break;
+		}
+	}
 } elseif (isset($albumList[0]["pb:thumb"])) {
-  $ha = $albumList[0];
+	$ha = $albumList[0];
 }
 
 if (isset($ha)) {
-  $channel_image = $ha["pb:thumb"][0];
-  $channel_image_width = $ha["pb:thumb"][1]["width"];
-  $channel_image_height = $ha["pb:thumb"][1]["height"];
+	$channel_image = $ha["pb:thumb"][0];
+	$channel_image_width = $ha["pb:thumb"][1]["width"];
+	$channel_image_height = $ha["pb:thumb"][1]["height"];
 }
 
 if (function_exists('pluralize_n2')) {
 	$total_str = pluralize_n2($numAlbums, _("1 album"), _("albums"), _("no albums"));
 	$image_str = pluralize_n2($numPhotos, _("1 photo"), _("photos"), _("no photos"));
 } else {
-  /* Probably older version of Gallery */
+	/* Probably older version of Gallery */
 	$total_str = pluralize($numAlbums, "album", "no");
 	$image_str = pluralize($numPhotos, "photo", "no");
 }
@@ -353,7 +327,7 @@ $description = sprintf(_("%s in %s"), $image_str, $total_str);
 
 $xml_header = 'xml version="1.0"';
 if($gallery->locale == 0) {
-  $gallery->locale = 'ISO-8859-1';
+	$gallery->locale = 'ISO-8859-1';
 }
 
 echo '<' . '?xml version="1.0" encoding="' . $gallery->locale . '"?' . '>';
@@ -362,53 +336,53 @@ echo '<' . '?xml version="1.0" encoding="' . $gallery->locale . '"?' . '>';
 
 <rss version="2.0" xmlns="http://blogs.law.harvard.edu/tech/rss" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:photo="http://www.pheed.com/pheed/" xmlns:pb="http://snaplog.com/backend/PhotoBlog.html">
 	<channel>
-		<title><?= htmlspecialchars($gallery->app->galleryTitle) ?></title>
-		<link><?= $gallery->app->photoAlbumURL ?></link>
-		<description><?= htmlspecialchars($description) ?></description>
-<?php if (isSet($gallery->app->default_language)) { ?>
-		<language><?= preg_replace("/_/", "-", $gallery->app->default_language) ?></language>
+		<title><?php echo htmlspecialchars($gallery->app->galleryTitle) ?></title>
+		<link><?php echo $gallery->app->photoAlbumURL ?></link>
+		<description><?php echo htmlspecialchars($description) ?></description>
+<?php if (isset($gallery->app->default_language)) { ?>
+		<language><?php echo preg_replace("/_/", "-", $gallery->app->default_language) ?></language>
 <?php } ?>
 		<lastBuildDate><?php echo date("r"); ?></lastBuildDate>
-<?php if (isSet($gallery->app->adminEmail)) { ?>
-		<managingEditor><?= $gallery->app->adminEmail ?></managingEditor>
-		<webMaster><?= $gallery->app->adminEmail ?></webMaster>
+<?php if (isset($gallery->app->adminEmail)) { ?>
+		<managingEditor><?php echo $gallery->app->adminEmail ?></managingEditor>
+		<webMaster><?php echo $gallery->app->adminEmail ?></webMaster>
 <?php } ?>
-		<generator>Gallery Generator v0.4, http://www.c7f.net/gal.php</generator>
+		<generator>Gallery <?php echo $gallery->version; ?>, http://gallery.menalto.com/</generator>
 		<docs>http://blogs.law.harvard.edu/tech/rss</docs>
 		<ttl>40</ttl>
 <?php if ($channel_image) { ?>
 		<image>
-			<title><?= htmlspecialchars($gallery->app->galleryTitle) ?></title>
-			<url><?= $channel_image ?></url>
-			<link><?= $gallery->app->photoAlbumURL ?></link>
-			<width><?= $channel_image_width ?></width>
-			<height><?= $channel_image_height ?></height>
+			<title><?php echo htmlspecialchars($gallery->app->galleryTitle) ?></title>
+			<url><?php echo $channel_image ?></url>
+			<link><?php echo $gallery->app->photoAlbumURL ?></link>
+			<width><?php echo $channel_image_width ?></width>
+			<height><?php echo $channel_image_height ?></height>
 		</image>
 <?php } ?>
 <?php
 
 foreach($albumList as $album) {
-  echo "\t\t<item>\n";
-
-  foreach($album as $tag => $info) {
-    # meta fields that should not be printed in the feed
-    # start with bang.
-    if(ereg("^!", $tag)) {
-      continue;
-    }
-
-    if(is_array($info)) {
-      echo "\t\t\t<$tag";
-      foreach($info[1] as $attr => $value) {
-        echo ' ' . $attr . '="' . $value . '"';
-      }
-      echo ">$info[0]</$tag>\n";
-    } else {
-      echo "\t\t\t<$tag>$info</$tag>\n";
-    }
-  }
-
-  echo "\t\t</item>\n";
+	echo "\t\t<item>\n";
+	
+	foreach($album as $tag => $info) {
+		# meta fields that should not be printed in the feed
+		# start with bang.
+		if(ereg("^!", $tag)) {
+			continue;
+		}
+		
+		if(is_array($info)) {
+			echo "\t\t\t<$tag";
+			foreach($info[1] as $attr => $value) {
+				echo ' ' . $attr . '="' . $value . '"';
+			}
+			echo ">$info[0]</$tag>\n";
+		} else {
+			echo "\t\t\t<$tag>$info</$tag>\n";
+		}
+	}
+	
+	echo "\t\t</item>\n";
 }
 
 ?>
