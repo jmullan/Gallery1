@@ -795,7 +795,10 @@ class Album {
 	function rotatePhoto($index, $direction) {
 		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);
-		$photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"]);
+		$retval = $photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"]);
+		if (!$retval) {
+			return $retval;
+		}
 
 		/* Are we rotating the highlight?  If so, rebuild the highlight. */
 		if ($photo->isHighlight()) {

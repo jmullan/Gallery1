@@ -278,7 +278,10 @@ class AlbumItem {
 
 		$name = $this->image->name;
 		$type = $this->image->type;
-	 	rotate_image("$dir/$name.$type", "$dir/$name.$type", $direction);
+		$retval = rotate_image("$dir/$name.$type", "$dir/$name.$type", $direction);
+		if (!$retval) {
+			return $retval;
+		}
 		list($w, $h) = getDimensions("$dir/$name.$type");
 		$this->image->setRawDimensions($w, $h);	
 
