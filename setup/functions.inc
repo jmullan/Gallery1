@@ -438,7 +438,8 @@ function check_graphics($location="", $graphtool = "")
 		fs_executable("ppmquant"),
 		fs_executable("pnmcut"),
 		fs_executable("pnmrotate"),
-		fs_executable("pnmflip")
+		fs_executable("pnmflip"),
+		fs_executable("pnmcomp"),
 	);
 
 	$fallback = array(
@@ -515,6 +516,7 @@ function check_graphics_im($location="", $graphtool="")
 	$imagick = array(
 		fs_executable("identify"), 
 		fs_executable("convert"),
+		fs_executable("composite"),
 	);
 
 	foreach ($imagick as $bin) {
