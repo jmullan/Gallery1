@@ -22,13 +22,13 @@
 
 class Geeklog_User extends Abstract_User {
 
- var $isGroup;
+var $isGroup;
  
- function Geeklog_User() {
-   global $gallery;
- }
+function Geeklog_User() {
+	global $gallery;
+}
 
- function loadByUid($uid) {
+function loadByUid($uid) {
    global $_TABLES;
 
    if ($uid > 0) {
@@ -56,9 +56,9 @@ class Geeklog_User extends Abstract_User {
       $this->canCreateAlbums = 0;
       $this->isGroup = 1;
    }
- }
+}
 
- function loadByUserName($uname) {
+function loadByUserName($uname) {
    global $_TABLES;
 
    $result = DB_query("SELECT uid,fullname,email " .
@@ -72,14 +72,15 @@ class Geeklog_User extends Abstract_User {
    $this->email = $userInfo['email'];
    $this->isAdmin = SEC_inGroup('Root', $uid);
    $this->canCreateAlbums = 0;
- }
+}
 
- function isLoggedIn() {
+function isLoggedIn() {
    if ($this->uid > 1) {
       return true;
    }
    return false;
- }
+}
+
 }
 
 ?>

@@ -153,16 +153,31 @@ function initLanguage() {
 			break;
 			case 'phpBB2':
 				/* Gallery will always use phpBB2's language, so we override the mode to 1.
-				** And no pulldown or flags appear.
+				** No pulldown or flags appear.
 				*/
-				global $board_config;
 				$gallery->app->ML_mode=1;
+
+				global $board_config;
 				if (isset($board_config['default_lang'])) {
 					if (isset ($nls['alias'][$board_config['default_lang']])) {
 						$gallery->language = $nls['alias'][$board_config['default_lang']];
 					}
 				}				
 			break;
+
+			case 'GeekLog':
+				/* Gallery will always use GeekLog's language, so we override the mode to 1.
+				** No pulldown or flags appear.
+				*/
+				$gallery->app->ML_mode=1;
+		
+				global $_CONF;
+				if (isset($_CONF['locale'])) {
+						$gallery->language = $_CONF['locale'];
+				}				
+			break;
+
+
 			}
 		}
 	} else {

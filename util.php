@@ -769,9 +769,15 @@ function getImagePath($name, $skinname='') {
 		$skinname = $gallery->app->skinname;
 	}
 
-	$defaultname = $gallery->app->photoAlbumURL . "/images/$name";
+	if (isset($gallery->app->photoAlbumURL)) {
+		$base = $gallery->app->photoAlbumURL;
+	} else {
+		$base = '.';
+	}
+
+	$defaultname = $base . "/images/$name";
 	$fullname = dirname(__FILE__) . "/skins/$skinname/images/$name";
-	$fullURL = $gallery->app->photoAlbumURL . "/skins/$skinname/images/$name";
+	$fullURL = $base . "/skins/$skinname/images/$name";
 
 	if (fs_file_exists($fullname) && !broken_link($fullname)) {
 		return "$fullURL";
@@ -872,7 +878,9 @@ function _getStyleSheetLink($filename, $skinname='') {
 	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
 		$base = $gallery->app->photoAlbumURL;
 	} elseif (stristr($HTTP_SERVER_VARS['REQUEST_URI'],"setup")) {
-		$base = "..";
+		$base = '..';
+	} elseif (GALLERY_URL== "") {
+		$base = '.';
 	} else {
 		$base = GALLERY_URL;
 	}
@@ -2748,6 +2756,9 @@ Gallery @ %s Administrator.");
 
 function available_skins($description_only=false) {
 
+	global $GALLERY_BASEDIR;
+	if ($GALLERY_BASEDIR == "") $GALLERY_BASEDIR = '..';
+
 	$dir = dirname(__FILE__) . '/skins';
 	$opts['none'] = 'None';
 	$descriptions="<dl>";
@@ -2768,9 +2779,9 @@ function available_skins($description_only=false) {
 			       	}
 				$opts[$file]=$name;
 				if (fs_file_exists("$dir/$file/images/screenshot.jpg")) {
-					$screenshot="$dir/$file/images/screenshot.jpg";
+					$screenshot="$GALLERY_BASEDIR/skins/$file/images/screenshot.jpg";
 				} else if (fs_file_exists("$dir/$file/images/screenshot.gif")) {
-					$screenshot="$dir/$file/images/screenshot.gif";
+					$screenshot="$GALLERY_BASEDIR/skins/$file/images/screenshot.gif";
 				} else {
 					$screenshot="";
 				}

@@ -315,10 +315,15 @@ foreach ($constants as $key => $val) {
 			}
 		}
 
-		if (isset($constants[$key]["requires-features"])) {
-			$reqFeatures = $constants[$key]["requires-features"];
-			foreach ($reqFeatures as $func => $desc) {
-				if ($constants[$func]["value"] == "no") {
+		/*
+		** This checks for dependencies between to constants values.
+		**
+		** Note: This breaks if the key of the constant is an array.
+		*/
+		if (isset($constants[$key]['requires-features']) && $real == 'yes') {
+			$reqFeatures = $constants[$key]['requires-features'];
+			foreach ($reqFeatures as $reqFeatKey => $desc) {
+				if ($$reqFeatKey  == 'no') {
 					$view .= error_row_wrap(error_format(sprintf(_("%s: <b>%s</b> must be an enabled for this feature to function!"), $key, $desc)));
                                 	$error++;
 				}

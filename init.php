@@ -110,11 +110,20 @@ if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
 
 /* 
 ** Now we can catch if were are in GeekLog
+** We also include the common lib file as we need it in initLanguage()
 */
 
 if (isset($gallery->app->embedded_inside_type) && $gallery->app->embedded_inside_type=='GeekLog') {
 	$GALLERY_EMBEDDED_INSIDE='GeekLog';
 	$GALLERY_EMBEDDED_INSIDE_TYPE = 'GeekLog';
+
+	// Verify that the geeklog_dir isn't overwritten with a remote exploit
+	if (!realpath($gallery->app->geeklog_dir)) {
+		print _("Security violation") ."\n";
+		exit;
+	}
+
+	require_once($gallery->app->geeklog_dir . '/lib-common.php');
 }
 
 if (isset($gallery->app->devMode) && 
@@ -373,13 +382,6 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			// Cheat, and grab USER information from the global session variables.
 			// Hey, it's faster and easier than reading them out of the database.
 
-			// Verify that the geeklog_dir isn't overwritten with a remote exploit
-		        if (!realpath($gallery->app->geeklog_dir)) {
-				print _("Security violation") ."\n";
-				exit;
-			}
-
-			require_once($gallery->app->geeklog_dir . '/lib-common.php');
 			global $_USER;
 
 			if (isset($_USER["username"])) {
@@ -389,8 +391,8 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			}
 
 			/* Implement GeekLogUserDB and User class. */
-			include($GALLERY_BASEDIR . "classes/geeklog/UserDB.php");
-			include($GALLERY_BASEDIR . "classes/geeklog/User.php");
+			require($GALLERY_BASEDIR . "classes/geeklog/UserDB.php");
+			require($GALLERY_BASEDIR . "classes/geeklog/User.php");
 
 			/* Load GeekLog user database (and user object) */
 			
