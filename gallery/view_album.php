@@ -706,7 +706,7 @@ if ($numPhotos) {
 
 		/* Do the picture row */
 		$visibleItemIndex = $rowStart;
-		$i = $rowStart;
+		$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		$j = 1;
 		if ($printTableRow) {
 			echo('<tr>');
@@ -823,7 +823,7 @@ if ($numPhotos) {
 	
 		/* Now do the caption row */
 		$visibleItemIndex = $rowStart;
-		$i = $rowStart;
+		$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		$j = 1;
 		if ($printTableRow) {
 		    echo('<tr>');
@@ -1078,7 +1078,7 @@ if ($numPhotos) {
 
 		/* Now do the inline_albumthumb footer row */
 		$visibleItemIndex = $rowStart;
-		$i = $rowStart;
+		$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		$j = 1;
 		if ($printTableRow) {
 			echo('<tr>');
