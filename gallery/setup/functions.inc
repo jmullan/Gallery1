@@ -100,6 +100,10 @@ function check_php()
 	$fail = array();
 	if (floor($version) < floor($MIN_PHP_MAJOR_VERSION)) {
 		$fail["fail-too-old"]++;
+	} else if (!strcmp($version, "4.0.0")) {
+		$fail["fail-incompatible"]++;
+	} else if (!strcmp($version, "4.0.2")) {
+		$fail["fail-incompatible"]++;
 	} else if (!strncmp($version, "4.0.3", 5)) {
 		$fail["fail-incompatible"]++;
 	} else {
