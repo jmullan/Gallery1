@@ -1940,6 +1940,9 @@ class Album {
 		$result=array();
 	       	foreach ($uids as $uid) {
 		       	$user=$gallery->userDB->getUserByUid($uid);
+			if ($user->isPseudo()) {
+				continue;
+			}
 		       	if (validate_email($user->getEmail())) {
 			       	$result[]=$user->getEmail();
 		       	} else if (isDebugging()) {

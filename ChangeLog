@@ -1,3 +1,22 @@
+2003-10-21 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b194
+
+	* Bug fixes (mostly thanks to h0bbel).  Viz:
+
+	* Don't try to send mail to pseudo users.
+
+	* New password link is now sent (if mail requested) to newly created 
+	  users from "Manage Users"
+
+	* CreateNewUser now returns user rather than 1 on success (so hash 
+	  can be added if email sent).
+
+	* As password change page is now correctly inserted into the email as 
+	  new password link, no longer include pretty-printed passwords in 
+	  email.
+
+	* One sentence changed in translation, due to misplaced <br> - sorry 
+	  Jens!
+
 2003-10-25 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b193
 
 	* Language: Update Vietnamese (vi_VN), yeah 2nd 100% !

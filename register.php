@@ -109,8 +109,7 @@ if (isset($create)) {
 					  ereg_replace("!!FULLNAME!!", $fullname,
 					    ereg_replace("!!NEWPASSWORDLINK!!", 
 						    $tmpUser->genRecoverPasswordHash(),
-					welcome_email()))));
-		// $msg .= "\r\n\r\n" . pretty_password($password, false);
+						    welcome_email()))));
 		$logmsg = sprintf(_("%s has registered.  Email has been sent to %s."),
 			$uname, $email);
 		$logmsg2  = sprintf("%s has registered.  Email has been sent to %s.",

@@ -372,7 +372,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 			$tmpUser->origEmail=$email;
 		       	$tmpUser->log($log);
 		       	$tmpUser->save();
-		       	return true;
+		       	return $tmpUser;
 	       	} else { 
 			processingMsg( "<b>" . sprintf(_("Problem adding %s:"), $uname)."</b>");
 		       	foreach ($gErrors as $key_var => $value_var)

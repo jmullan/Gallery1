@@ -80,10 +80,11 @@ if (isset($create)) {
 		print sprintf(_("User %s created"), $uname) . "<br><br>";
 		if (isset($send_email)) {
 		       	$msg = ereg_replace("!!PASSWORD!!", $new_password1,
-				       	ereg_replace("!!USERNAME!!", $uname,
-					       	ereg_replace("!!FULLNAME!!", $fullname,
-						       	welcome_email())));
-		       	$msg .= "\r\n\r\n" . pretty_password($new_password1, false);
+				ereg_replace("!!USERNAME!!", $uname,
+				       	ereg_replace("!!FULLNAME!!", $fullname,
+					       	ereg_replace("!!NEWPASSWORDLINK!!", 
+							$tmpUser->genRecoverPasswordHash(),
+							welcome_email()))));
 		       	$logmsg = sprintf(_("%s has registered by %s.  Email has been sent to %s."),
 				       	$uname, $gallery->user->getUsername(), $email);
 		       	$logmsg2  = sprintf("%s has registered by %s.  Email has been sent to %s.",
@@ -93,6 +94,8 @@ if (isset($create)) {
 		       	}
 
 			if (gallery_mail($email, _("Gallery Registration"),$msg, $logmsg)) {
+			       	clearstatcache();
+			       	$tmpUser->save();
 			       	print sprintf(_("Email sent to %s."), $email);
 			       	print "<br><br>";
 		       	}

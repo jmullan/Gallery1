@@ -86,16 +86,18 @@ if (isset($create))
 			$fullname=trim(strtok(''));
 			processingMsg("- adding $uname");
 			$password=generate_password(10);
-			if ($gallery->userDB->CreateUser($uname, $email, $password, $fullname,
-				$canCreate, $defaultLanguage, "bulk_register")) {
+			$tmpUser= $gallery->userDB->CreateUser($uname, $email, $password, $fullname,
+				$canCreate, $defaultLanguage, "bulk_register");
+			if ($tmpUser) {
 				$total_added++;
 				if ($send_email=="on") {
 				       	processingMsg("- emailing $email");
 				       	$msg = ereg_replace("!!PASSWORD!!", $password,
 						       	ereg_replace("!!USERNAME!!", $uname,
 							       	ereg_replace("!!FULLNAME!!", $fullname,
-								       	welcome_email())));
-				       	$msg .= "\r\n\r\n" . pretty_password($password, false);
+								       	ereg_replace("!!NEWPASSWORDLINK!!", 
+										$tmpUser->genRecoverPasswordHash(),
+									       	welcome_email()))));
 				       	$logmsg = sprintf(_("%s has registered by %s.  Email has been sent to %s."),
 						       	$uname, $gallery->user->getUsername(), $email);
 				       	$logmsg2  = sprintf("%s has registered by %s.  Email has been sent to %s.",
@@ -107,7 +109,10 @@ if (isset($create))
 					if (!gallery_mail($email, _("Gallery Registration"),$msg, $logmsg)) {
 						processingMsg(sprintf(_("Problem with email to %s"), $uname));
 						print "<br>";
-				       	}
+				       	} else {
+					       	clearstatcache();
+					       	$tmpUser->save();
+					}
 			       	}
 		       	} else {
 			       	$total_skipped++;
@@ -171,7 +176,7 @@ echo makeFormIntro("multi_create_user.php", array(
 <b>Notes: </b>
 <ul>
 <li>
-<?php echo _("The members file should be one user per line, and the fields should be space separated.  Each line is of the form:<br> <i>username emailaddress fullname</i><br>.  Only username is required. Everything after the email address is the full name, so there can be spaces in it.<p>") ?>
+<?php echo _("The members file should be one user per line, and the fields should be space separated.  Each line is of the form:<br> <i>username emailaddress fullname</i>.<br>  Only username is required. Everything after the email address is the full name, so there can be spaces in it.<p>") ?>
 
 
 <li>
