@@ -120,47 +120,6 @@ doctype();
 </tr>
 <tr>
 	<td class="popup"><?php echo _("Album Title") ?></td>
-<?php 
-	/* 
-	** Check if we are using PHP >= 4.1.0
-	** If yes, we can use 3rd Parameter so e.g. titles in chinese BIG5 or UTF8 are displayed correct.
-	** Otherwise they are messed.
-	** Not all Gallery Charsets are supported by PHP, so only those listed are recognized.
-	*/
-
-	$supportedCharsets=array(
-			'UTF-8',
-			'ISO-8859-1',
-			'ISO-8859-15',
-			'cp1252',
-			'BIG5',
-			'GB2312',
-			'BIG5-HKSCS',
-			'Shift_JIS',
-			'EUC-JP'
-	);
-
-	$supportedCharsetsNewerPHP=array(
-			'cp866',
-			'cp1251',
-			'KOI8-R'
-	);
-	
-/*
-	if (function_exists('version_compare')) {
-		if ( in_array($gallery->charset, $supportedCharsets) ||		// PHP >=4.1.0, but < 4.3.2
-		   ( version_compare(phpversion(), "4.3.2") >=0 && in_array($gallery->charset, $supportedCharsetsNewerPHP) ) ) {
-			$album_title=htmlentities($gallery->album->fields["title"],ENT_COMPAT, $gallery->charset);
-		} else {
-			$album_title=htmlentities($gallery->album->fields["title"]);
-		}
-	}
-	else {
-		$album_title=htmlentities($gallery->album->fields["title"]);
-	}
-*/
-$album_title=$gallery->album->fields["title"];
-?>
 	<td><input type="text" name="title" value="<?php echo $gallery->album->fields["title"]; ?>"></td>
 </tr>
 <tr>

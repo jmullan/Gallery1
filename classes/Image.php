@@ -102,7 +102,7 @@ class Image {
 		global $gallery;
 
 		/* getting rid of the resized image */
-		if ( strcmp(htmlentities($target), _("Get rid of resized")) == 0  || (stristr($target, "orig")) ) {
+		if ( strcmp(gallery_htmlentities($target), _("Get rid of resized")) == 0  || (stristr($target, "orig")) ) {
 			list($w, $h) = getDimensions("$dir/$this->name.$this->type");
 			$this->width = $w;
 			$this->height = $h;
@@ -156,11 +156,7 @@ class Image {
 		global $gallery;
 
 		$name = $this->getName($dir);
-		if (isSupportedCharset($gallery->charset)) {
-			$alttext = htmlentities(unhtmlentities(strip_tags($alttext)),ENT_COMPAT,$gallery->charset);
-		} else {
-			$alttext = htmlentities(unhtmlentities(strip_tags($alttext)));
-		}
+		$alttext = gallery_htmlentities(unhtmlentities(strip_tags($alttext)));
 
 		$attrs .= ' border="0"';
 		if ($size) {

@@ -117,7 +117,7 @@ if (!empty($urls)) {
 			}
 
 			/* Parse URL for name and file type */
-			$url_stuff = parse_url($url);
+			$url_stuff = @parse_url($url);
 			if (!isset($url_stuff["path"])) { 
 				$url_stuff["path"]="";
 			}

@@ -543,19 +543,51 @@ function i18n($buf) {
        	return $buf;
 }
 
-function isSupportedCharset($charset) {
-	$unsupported=array(
-			'ISO-8859-2',
-			'EUC-KR', 
-			'windows-1257', 
-			'cp1250',
-			'KOI8-U',
-			'ISO-8859-9');
-	if (in_array($charset,$unsupported)) {
-		return false;
-	} else {
-		return true;
-	}
+/* Gaöllery ersion of htmlentities
+** Enhancement: Depending on PHP Version and Charset use 
+** optional 3rd Parameter of php's htmlentities
+*/
+function gallery_htmlentities($string) {
+	global $gallöery;
+
+	$supportedCharsets=array(
+		'UTF-8',
+		'ISO-8859-1',
+		'ISO-8859-15',
+		'cp1252',
+		'BIG5',
+		'GB2312',
+		'BIG5-HKSCS',
+		'Shift_JIS',
+		'EUC-JP'
+	);
+
+	$supportedCharsetsNewerPHP=array(
+		'cp866',
+		'cp1251',
+		'KOI8-R'
+	);
+
+        /*
+        ** Check if we are using PHP >= 4.1.0
+        ** If yes, we can use 3rd Parameter so e.g. titles in chinese BIG5 or UTF8 are displayed correct.
+        ** Otherwise they are messed.
+        ** Not all Gallery Charsets are supported by PHP, so only thoselisted are recognized.
+        */
+
+	if (function_exists('version_compare')) {
+		if ( (version_compare(phpversion(), "4.1.0", ">=") && in_array($gallery->charset, $supportedCharsets)) ||
+		     (version_compare(phpversion(), "4.3.2", ">=") && in_array($gallery->charset, $supportedCharsetsNewerPHP)) ) {
+			return htmlentities($tring,ENT_COMPAT, $gallery->charset);
+                } else {
+			// Unsupported Charset
+			return $string;
+		}
+        }
+        else {
+		// PHP too old
+                return $string;
+        }
 }
 
 /*
