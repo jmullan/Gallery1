@@ -101,6 +101,13 @@ $checklist = array(
 		"buggy__FILE__" => _("It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"),
 		"serious" => 1
 	),
+	"register_globals" => array(
+		"desc" => _("Gallery requires that the PHP option 'register_globals' be turned off, for security purposes."),
+		"func" => "check_register_globals",
+		"fail-register_globals" => _("The PHP option 'register_globals' is enabled on your server. Gallery is not
+compatible with this option."),
+		"serious" => 1,
+	),
 	"safe_mode" => array(
 		"desc" => _("Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."),
 		"func" => "check_safe_mode",

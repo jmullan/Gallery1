@@ -1077,8 +1077,8 @@ function check_register_globals() {
 
 	$globals_enabled = ini_get('register_globals');
 
-	if (!empty($globals_enabled) || !eregi('no|off', $globals_enabled)) {
-		$fail['register_globals'] = _("The PHP option 'register_globals' is enabled on your server. Gallery is not compatible with this option.");
+	if (!empty($globals_enabled) && !eregi('no|off', $globals_enabled)) {
+		$fail['fail-register_globals'] = 1;
 	}
 	else {
 		$success[] = _("<b>register_globals</b> is off.");

@@ -21,6 +21,9 @@
  */
 ?>
 <?php
+
+list($login, $username, $gallerypassword) = getRequestVar(array('login', 'username', 'gallerypassword'));
+
 if (isset($gallery->session->username) && !empty($gallery->session->username)) {
 	$tmpUser = $gallery->userDB->getUserByUsername($gallery->session->username);
 }
@@ -30,9 +33,9 @@ if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
 		$gallery->session->resetAdminGuid = md5(uniqid(mt_rand(), true));
 	}
 }
-elseif (isset($GLOBALS['login'])) {
+elseif (!empty($login)) {
 	if (empty($username) || empty($gallerypassword)) {
-		$error=_("Please enter username and password.");
+		$error = _("Please enter username and password.");
 	} else {
 		$tmpUser = $gallery->userDB->getUserByUsername($username);
 		if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword) && $tmpUser->isAdmin()) {
