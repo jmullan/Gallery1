@@ -21,9 +21,14 @@
 		}
 		$index++;
 		$class = $index % 2 ? 'dark' : 'light';
+		if ($localeData['plugins']['core']['percentDone'] <50) {
+			$wclass='kicked';
+		} else {
+			$wclass=$class;
+		}
 ?>
 	<tr>
-		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" class="<?php echo $class ?>"><?php echo ($localeData['percentDone'] != $old_percentDone) ? $nr : "&nbsp" ?></td>
+		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" class="<?php echo $wclass ?>"><?php echo ($localeData['percentDone'] != $old_percentDone) ? $nr : "&nbsp" ?></td>
 		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" class="<?php echo $class ?>"><?php print $reportData[$locale]['langname'] ?></td>
 		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" class="<?php echo $class ?>"><?php print $locale ?></td>
 		<td bgcolor="<?php print percentColor($localeData['percentDone']) ?>" rowspan="<?php print sizeof($localeData['plugins']) +1 ?>" class="locale_percent"><?php print $localeData['percentDone'] ?>%</td>
