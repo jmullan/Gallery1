@@ -19,10 +19,16 @@
  */
 ?>
 <?
-
-/* Load defaults */
+/* Load bootstrap code */
 require('version.php');
 require('config.php');
+require('util.php');
+
+/* Make sure that Gallery is set up properly */
+galleryInit();
+gallerySanityCheck();
+
+/* Load classes and session information */
 require('classes/Album.php');
 require('classes/Image.php');
 require('classes/AlbumItem.php');
@@ -31,11 +37,7 @@ require('classes/User.php');
 require('classes/EverybodyUser.php');
 require('classes/NobodyUser.php');
 require('classes/UserDB.php');
-require('util.php');
 require('session.php');
-
-galleryInit();
-gallerySanityCheck();
 
 /* Load our user database (and user object) */
 $userDB = new UserDB;
