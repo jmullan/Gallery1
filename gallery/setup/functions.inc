@@ -175,7 +175,7 @@ function check_magic_quotes()
 	if (!get_magic_quotes_gpc()) {
 		$success[] = "magic quotes are off";
 	} else {
-		$fail[] = "fail-magic-quotes";
+		$fail["fail-magic-quotes"]++;
 	}
 
 	return array($success, $fail);
