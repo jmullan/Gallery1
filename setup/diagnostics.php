@@ -22,7 +22,6 @@
 ?>
 <?php 
 
-	@include(dirname(dirname(__FILE__)) . '/config.php'); 
 	require(dirname(__FILE__) . '/init.php');
 	require(dirname(__FILE__) . '/functions.inc');
 ?>

@@ -1646,7 +1646,7 @@ function configLogin($target) {
 		// Check the UserDB for upgrades before trying to make someone login
 		if ($gallery->userDB->versionOutOfDate())
 		{
-			include(dirname(dirname(__FILE__)) . "/upgrade_users.php");
+			include(GALLERY_BASE . "/upgrade_users.php");
 			exit;
 		}
 

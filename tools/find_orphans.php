@@ -36,7 +36,7 @@ if (!$gallery->user->isAdmin()) {
 
 $albumDB = new AlbumDB();
 
-function attachOrphans($orphans) {
+function attachOrphanedAlbums($orphans) {
 	global $albumDB;
 	foreach ($orphans as $childname => $parentname) {
 		if ($parentname == 0) {
@@ -62,7 +62,7 @@ function attachOrphans($orphans) {
 	}
 }
 
-function findOrphans() {
+function findOrphanedAlbums() {
 	global $albumDB;
 	$orphaned = Array();
 	foreach ($albumDB->albumList as $album) {
@@ -100,6 +100,53 @@ function findOrphans() {
 	return $orphaned;
 }
 
+function findOrphanedImages() {
+	global $gallery, $albumDB;
+
+	$orphans = Array();
+
+	foreach ($albumDB->albumList as $album) {
+
+		$albumName = $album->fields['name'];
+
+		$albumDir = $gallery->app->albumDir . "/" . $albumName;
+
+		$dirhandle = opendir($albumDir);
+
+		$albumFiles = array();
+
+		$ignoreFiles = array('.', 'dat', 'bak', 'lock');
+
+		while (false !== ($file = readdir($dirhandle))) { 
+			$file = pathinfo($file);
+
+			if (empty($file['extension']) || in_array($file['extension'], $ignoreFiles))
+				continue;
+
+			$albumFiles[] = $file['basename'];
+		} 
+
+		if (sizeof($albumFiles)) {
+			foreach ($album->photos as $photo) {
+				foreach ($photo as $image) {
+					if (strcasecmp(get_class($image), "Image")) {
+						continue;
+					} elseif (!in_array($image->name . "." . $image->type, $albumFiles)) {
+						$orphans[] = $image->name . "." . $image->type;
+					}
+				}
+			}
+		}
+	}
+
+	asort($orphans);
+	return $orphans;
+}
+
+function deleteOrphanedImages() {
+
+}
+
 global $GALLERY_EMBEDDED_INSIDE;
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -119,11 +166,11 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <p align="center" class="popuphead"><?php echo _("Orphaned Albums") ?></p>
 
 <?php
-$orphans = findOrphans();
+$orphans = findOrphanedAlbums();
 
 if (!empty($orphans)) {
 	if (!isset($update)) { ?>
-		<p><?php echo _("Orphans will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there.") ?></p>
+		<p><?php echo _("Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there.") ?></p>
 		<table>
 		<tr><th><?php echo _("Orphaned Album") ?></th><th>&nbsp;</th><th><?php echo _("Parent Album") ?></th></tr>
 <?php
@@ -140,7 +187,7 @@ if (!empty($orphans)) {
 <?php 
 	} // !isset(update) 
 	else { 
-		attachOrphans($orphans);
+		attachOrphanedAlbums($orphans);
 		echo '<a href="' . makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>';
 	}
 } else {

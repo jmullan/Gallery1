@@ -54,7 +54,7 @@
 			</td>
 
 <?php
-if (! file_exists(dirname(dirname(__FILE__)) . '/config.php')) {
+if (! file_exists(GALLERY_BASE . '/config.php')) {
 ?>
 		</tr>
 		<tr>
@@ -70,7 +70,7 @@ if (! file_exists(dirname(dirname(__FILE__)) . '/config.php')) {
 <?php
 	exit;
 } else {
-	require(dirname(dirname(__FILE__)) . '/config.php');
+	require(GALLERY_BASE . '/config.php');
 ?>
 			<td class="Success"><?php echo _("OK") ?></td>
 		</tr>
