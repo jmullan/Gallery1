@@ -1,5 +1,5 @@
 <?php /* $Id$ */ ?>
-<?php
+<?php global $commentdraw, $i;
 // If the border color is not passed in, we do a black/white combo
 if ($commentdraw["bordercolor"]) {
         $borderIn = $commentdraw["bordercolor"];
@@ -7,19 +7,13 @@ if ($commentdraw["bordercolor"]) {
         $borderIn = "#FFFFFF";
 }
 
-$imageDir = $gallery->app->photoAlbumURL."/images";
-$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\" alt=\"\">";
+$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\">";
 
 ?>
   <tr>
-    <td width="15%"><?php echo $pixelImage ?></td>
-    <td width="70%" bgcolor="<?php echo $borderIn ?>"><?php echo $pixelImage ?></td>
-    <td width="15%"><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td><?php echo $pixelImage ?></td>
+    <td></td>
     <td>
-      <span class=caption>
+      <span class=modcaption>
       <br>
 <?php echo _("From:") ?> <b><?php echo $commentdraw["name"] ?></b> &nbsp;
 <?php

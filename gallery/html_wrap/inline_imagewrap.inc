@@ -2,18 +2,11 @@
 // $Id$
 
 //-- shorten the variables for convinience ---
-if (!empty($GLOBALS['HTTP_GET_VARS']["GALLERY_BASEDIR"]) ||
-	       	!empty($GLOBALS['HTTP_POST_VARS']["GALLERY_BASEDIR"]) ||
-	       	!empty($GLOBALS['HTTP_COOKIE_VARS']["GALLERY_BASEDIR"])) {
-       	print _("Security violation") ."\n";
-       	exit;
-}
-
 $borderWidth = $gallery->html_wrap['borderWidth'];
 $borderColor = $gallery->html_wrap['borderColor'];
 $pixelImage = isset($gallery->html_wrap['pixelImage']) ?
     $gallery->html_wrap['pixelImage'] :
-    "$GALLERY_BASEDIR/images/pixel_trans.gif";
+    getImagePath('pixel_trans.gif');
 $imageWidth = $gallery->html_wrap['imageWidth'];
 $imageHeight = $gallery->html_wrap['imageHeight'];
 $href = $gallery->html_wrap['imageHref'];
@@ -47,23 +40,23 @@ case "solid":
 ?>
   <table width="1%" border="0" cellspacing="0" cellpadding="0">
     <tr bgcolor="<?php echo $borderColor ?>">
-      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" height="1" alt=""></td>
+      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" height="1"></td>
     </tr>
     <tr>
-      <td bgcolor="<?php echo $borderColor ?>" width="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>"  alt=""></td>
+      <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" ></td>
       <td align="center"><?php echo $href_tag ?></td>
-      <td bgcolor="<?php echo $borderColor ?>" width="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1" alt=""></td>
+      <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1"></td>
     </tr>
     <tr bgcolor="<?php echo $borderColor ?>">
-      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1" alt=""></td>
+      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1"></td>
     </tr>
   </table>
   <?php
   break;
 default: // use frames directory
 
-  $base = $gallery->app->photoAlbumURL . "/html_wrap/frames/$frame";
-  include "$GALLERY_BASEDIR/html_wrap/frames/$frame/frame.def";
+  $base = $gallery->app->photoAlbumURL . "/skins/default/html_wrap/frames/$frame";
+  includeHtmlWrap("frames/$frame/frame.def");
   ?>
 
   <table width="1" border="0" cellspacing="0" cellpadding="0">

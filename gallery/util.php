@@ -770,7 +770,7 @@ function includeLayout($name, $skinname='') {
                 $skinname = $gallery->app->skinname;
         }
 
-	$defaultname = $GALLERY_BASEDIR . "skins/default/layout/$name";
+	$defaultname = $GALLERY_BASEDIR . "layout/$name";
 	$fullname = $GALLERY_BASEDIR . "skins/$skinname/layout/$name";
 
 	if (fs_file_exists($fullname) && !broken_link($fullname)) {
@@ -796,7 +796,7 @@ function includeHtmlWrap($name, $skinname='') {
 	if (fs_file_exists($domainname) && !broken_link($domainname)) {
 	    include ($domainname);
 	} else {
-	    $defaultname = $GALLERY_BASEDIR . "skins/default/html_wrap/$name";
+	    $defaultname = $GALLERY_BASEDIR . "html_wrap/$name";
 	    $fullname = $GALLERY_BASEDIR . "skins/$skinname/html_wrap/$name";
 	    
 	    if (fs_file_exists($fullname) && !broken_link($fullname)) {
