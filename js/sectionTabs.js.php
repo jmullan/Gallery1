@@ -2,12 +2,10 @@
 
 function insertSectionToggle() {
 ?>
+
 <!-- This Javascript and the Tabs are inspired by the Horde Forms code -->
 
         function configSection(inittab) {
-
-                this.oldtab=inittab;
-		this.currentSectionNr= 1;
 
                 this.toggle = function(id) {
                         document.getElementById(this.oldtab).style.display 	= 'none';
@@ -48,6 +46,12 @@ function insertSectionToggle() {
 				this.toggle(prevTab);
 			}
 		}
+
+		// Init Values
+
+                this.oldtab=inittab;
+		this.currentSectionNr= this.getTabByName(inittab);
+
 	}
 <?php
 }
