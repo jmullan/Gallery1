@@ -81,6 +81,10 @@ $navigator["maxPages"] = $maxPages;
 $navigator["fullWidth"] = $fullWidth;
 $navigator["url"] = "view_album.php";
 $navigator["spread"] = 5;
+$navigator["bordercolor"] = $bordercolor;
+
+$breadcrumb["text"][0] = "Gallery: <a href=albums.php>The Gallery</a>";
+$breadcrumb["bordercolor"] = $bordercolor;
 ?>
 
 <body <?=$bodyAttrs?>>
@@ -91,13 +95,18 @@ $navigator["spread"] = 5;
 <table border=0 width=<?=$fullWidth?>>
 <tr>
 <td align=left>
-<font size=+3> <?= editField($album, "title", $edit)?> </font>
+<font size=+2> <?= editField($album, "title", $edit)?> </font>
 <br>
+<font size=-1>
 <? if ($numPhotos == 1) { ?> 
-There is 1 photo in this album
+1 photo in this album
 <? } else { ?>
-There are <?= $numPhotos ?> photos in this album on <?= $maxPages ?> pages.
+<?= $numPhotos ?> photos in this album on <?= $maxPages ?> pages
 <? } ?>
+<? if (!isCorrectPassword($edit)) { ?>
+&nbsp;<a href=<?= popup("edit_mode.php")?>>[Admin]</a>
+<? } ?>
+</font>
 <?
 if (editMode()) {
 	$hidden = $album->numHidden();
@@ -113,23 +122,21 @@ if (editMode()) {
 ?>
 
 </td>
-<td valign=top align=right>
-<!--  -->
-<? if (strcmp($album->fields["returnto"], "no")) { ?>
-<font face=<?= $album->fields["font"]?> size=+0>
-<a href=albums.php><< return to <b>The Gallery</b></a> 
-<? } ?>
-</td>
 </tr>
 </table>
-
+<br>
 <!-- top nav -->
 <?
+$breadcrumb["top"] = true;
+if (strcmp($album->fields["returnto"], "no")) {
+	include("layout/breadcrumb.inc");
+}
 include("layout/navigator.inc");
 ?>
 
 
 <!-- image grid table -->
+<br>
 <table width=400 border=0>
 <?
 $numPhotos = $album->numPhotos(1);
@@ -215,25 +222,25 @@ if ($numPhotos) {
 				echo("<font size=2>");
 				echo("<a href=");
 				echo(popup("delete_photo.php?index=$i"));
-				echo("><br>[delete]</a>");
+				echo("><br><img src=\"images/admin_delete.gif\" width=11 height=11 border=0 alt=\"Delete Photo\"></a>");
 				if (!$album->isMovie($i)) {
 					echo(" <a href=");
 					echo(popup("rotate_photo.php?index=$i"));
-					echo(">[rotate]</a>");
-					echo(" <a href=");
-					echo(popup("do_command.php?cmd=remake-thumbnail&index=$i"));
-					echo(">[thumbnail]</a>");
+					echo("><img src=\"images/admin_rotate.gif\" width=11 height=11 border=0 alt=\"Rotate Photo\"></a>");
+					//echo(" <a href=");
+					//echo(popup("do_command.php?cmd=remake-thumbnail&index=$i"));
+					//echo(">[Thumbnail]/a>");
 				}
 				echo(" <a href=");
 				echo(popup("move_photo.php?index=$i"));
-				echo(">[move]</a>");
+				echo("><img src=\"images/admin_move.gif\" width=11 height=11 border=0 alt=\"Move Photo\"></a>");
 				echo(" <a href=");
 				echo(popup("highlight_photo.php?index=$i"));
-				echo(">[highlight]</a>");
+				echo("><img src=\"images/admin_highlight.gif\" width=11 height=11 border=0 alt=\"Highlight Photo\"></a>");
 				if ($album->isHidden($i)) {
-					echo("<a href=do_command.php?cmd=show&index=$i&return=view_album.php>[show]</a>");
+					echo("<a href=do_command.php?cmd=show&index=$i&return=view_album.php><img src=\"images/admin_show.gif\" width=11 height=11 border=0 alt=\"Show Photo\"></a>");
 				} else {
-					echo("<a href=do_command.php?cmd=hide&index=$i&return=view_album.php>[hide]</a>");
+					echo("<a href=do_command.php?cmd=hide&index=$i&return=view_album.php><img src=\"images/admin_hide.gif\" width=11 height=11 border=0 alt=\"Hide Photo\"></a>");
 				}
 			}
 			#echo("<hr size=1>");
@@ -257,38 +264,34 @@ if ($numPhotos) {
 
 
 </table>
-
+<br>
 <!-- bottom nav -->
 <? 
 include("layout/navigator.inc");
+if (strcmp($album->fields["returnto"], "no")) {
+	$breadcrumb["top"] = false;
+	include("layout/breadcrumb.inc");
+}
 ?>
 
-<!--  -->
-<? if (strcmp($album->fields["returnto"], "no")) { ?>
-<table width=<?=$fullWidth?>>
-<tr>
-<td>
-<font face=<?= $album->fields["font"]?> size=+0>
-<a href=albums.php><< return to <b>The Gallery</b></a>
-</td>
-</tr>
-</table>
-<? } ?>
 
 </center>
+<? 
+if (isCorrectPassword($edit)) { 
+?>
 <br>
 <hr size=1>
 <font size=+0 face=arial>
 Admin:
-<? if (isCorrectPassword($edit)) { ?>
 <a href=<?= popup("add_photos.php?albumName=$albumName") ?>>[Add Photos] </a>
+<a href=<?= popup("add_photos2.php?albumName=$albumName") ?>>[Add Test] </a>
 <a href=<?= popup("shuffle_album.php?albumName=$albumName") ?>>[Shuffle Photos] </a>
 <a href=<?= popup("resize_photo.php?albumName=$albumName&index=all") ?>>[Resize All] </a>
 <a href=<?= popup("do_command.php?cmd=remake-thumbnail&albumName=$albumName&index=all") ?>>[Rebuild Thumbs]</a>
 <a href=<?= popup("edit_appearance.php?albumName=$albumName") ?>>[Edit Appearance] </a>
 <a href=do_command.php?cmd=leave-edit&return=view_album.php>[Leave edit mode]</a>
 </font>
-<? }  else { ?>
-<a href=<?= popup("edit_mode.php")?>>[Enter edit mode]</a>
-<? } ?>
-</font>
+<?
+}  else { 
+} 
+?>
