@@ -1350,7 +1350,7 @@ function makeGalleryUrl($target, $args=array()) {
 
 function makeGalleryHeaderUrl($target, $args=array()) {
 	$url = makeGalleryUrl($target, $args);
-	return strtr($url, array_flip(get_html_translation_table(HTML_SPECIALCHARS)));
+	return unhtmlentities($url);
 }
 
 /*
@@ -1392,7 +1392,7 @@ function makeAlbumUrl($albumName="", $photoId="", $args=array()) {
 
 function makeAlbumHeaderUrl($albumName="", $photoId="", $args=array()) {
 	$url = makeAlbumUrl($albumName, $photoId, $args);
-	return strtr($url, array_flip(get_html_translation_table(HTML_SPECIALCHARS)));
+	return unhtmlentities($url);
 }
 
 function gallerySanityCheck() {

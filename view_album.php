@@ -415,7 +415,7 @@ if (!$gallery->session->offline) {
 	$adminJavaScript .= "adminOptions.$key.action = \"${data['action']}\";\n";
 	/* We need to pass un-html-entityified URLs to the JavaScript
 	 * This line effectively reverses htmlentities() */
-	$decodeHtml = strtr($data['value'], array_flip(get_html_translation_table(HTML_SPECIALCHARS)));
+	$decodeHtml = unhtmlentities($data['value']);
 	$adminJavaScript .= "adminOptions.$key.value = \"${decodeHtml}\";\n";
     }
   }
