@@ -530,41 +530,29 @@ function check_gallery_version()
 	$success = array();
 
 	/* how many days old is the gallery version? */
-	$age = (time() - strtotime (substr($gallery->last_change, 7, -1)))/86400;
+	$age = (time() - $gallery->last_change)/86400;
+
 	/* is this a beta version? */
 	$beta = ereg('-b[0-9]*$', $gallery->version);
 
 	$link="<a href=\"$gallery->url\">$gallery->url</a>";
 
-	$visit=sprintf(_("Visit %s to download the latest version."), $link);
+	$visit=sprintf(_("You can check for more recent versions by visiting %s."), 
+			$link);
+	$this_version = sprintf(_("This version of %s was released on %s."),
+			Gallery(), strftime("%x", $gallery->last_change));
+	$this_beta_version = sprintf(_("This is a beta version of %s that was released on %s."),
+			Gallery(), strftime("%x", $gallery->last_change));
 
-	if ($age > 365) {
-		$age_str = sprintf(_("%.1f years"), $age/365);
-	} else if ($age > 60) {
-		$age_str = sprintf(_("%.0d months"), $age/30); 
-	} else {
-		$age_str = sprintf(_("%.0d days"), $age); 
-	}
-				
 	if ($age > 180) {
-		$fail["too_old"] = sprintf(_("Your version of %s is %s old."), 
-				Gallery(), $age_str). "  " . $visit; 
-	} else if ($age > 60 && $beta) {
-		$fail["too_old"] = sprintf(_("Your version of %s looks like a beta that is %s old."), 
-				Gallery(), $age_str) . "  " . $visit;
-	} else if ($age > 60) {
-		$success["ok"] = sprintf(_("Your version of %s was released %s ago.  You can visit %s to see if there's a more recent version."),
-				Gallery(), $age_str, $link);
+		$fail["too_old"] = "$this_version  $visit";
 	} else if ($age > 14 && $beta) {
-		$fail["too_old"] = sprintf(_("Your version of %s looks like a beta that is %s old.  There's almost certainly a more recent version."),
-				Gallery(), $age_str, $link) . "  " . $visit;
+		$fail["too_old"] = "$this_beta_version  $visit";
 	} else if ($beta) {
-		$success["ok"] = sprintf(_("You are using a beta version of %s that was released %s ago.  Please visit %s regularly, to ensure you have the latest version."),
-				
-				Gallery(), $age_str, $link);
+		$success["ok"] = "$this_beta_version  $visit" . "  "  
+			. _("Please check regularly for updates.");
 	} else {
-		$success["ok"] = sprintf(_("Your version of %s was released %s ago."), 
-				Gallery(), $age_str);
+		$success["ok"] = "$this_version  $visit";
 	}
 	return array($success, $fail);
 }
