@@ -6,9 +6,9 @@ BODY
 	{ 
 	  font-family: Verdana, Arial, Helvetica, sans-serif;
 	  font-size: 10pt;
-	  color:#ffffff;
+	  color:#000000;
 	  font-weight:bold;
-	  background-color: #000000;
+	  background-color: #bac5b4;
 	  margin-top: 25px;
 	  margin-left: 0px;
 	  margin-right: 0px;
@@ -21,11 +21,11 @@ TD, P
 /* 
    link colors - overridden by the album 'linkcolor' property.
 */
-A   	{ color: #E91414; text-decoration: none; }
-A:link	{ color: #E91414; text-decoration: none; }
-A:visited { color: #E91414; text-decoration: none; }
-A:active { color: #E91414; }
-A:hover	{ color: #E91414; }
+A   	{ color: #333366; text-decoration: none; }
+A:link	{ color: #333366; text-decoration: none; }
+A:visited { color: #333366; text-decoration: none; }
+A:active { color: #333366; }
+A:hover	{ color: #333366; }
 /* 
    text styles 
 */
@@ -49,7 +49,7 @@ A:hover	{ color: #E91414; }
 	  text-decoration: none;
 	}
 .title a:hover {
-	  color: #E91414;
+	  color: #742d45;
 	  text-decoration: none;
 	} 
 .mod_title	/* album title  Text is controled by .title */ 
@@ -70,24 +70,24 @@ A:hover	{ color: #E91414; }
 .albumdesc  /*album description includes all text and background*/
 	{
 	  font-family:verdana, arial, sans-serif;
-	  color:#000000;
+	  color:#742d45;
 	  font-size:x-small;
 	  font-weight:bold;
+	  background-image: url(../images/mod_descbg.jpg);
 	  line-height:140%;
 	  padding:2px;
-	  margin-top:2px;
-	  background-image: url(../images/mod_descbg.jpg);
-	  border:0px dashed #000000;
+	  margin-top:2px;		
+	  border:1px dashed #000000;
 	}
 .desc  /* album descriptions on main page just description and author*/
 	{ 
 	  font-family:verdana, arial, sans-serif;
-	  color:#000000;
+	  color:#742d45;
 	  font-size:x-small;
 	  font-weight:bold;
 	  line-height:140%;
 	  padding:2px;
-	  margin-top:2px;
+	  margin-top:2px;		
 	  text-transform:uppercase;
 	  letter-spacing: .2em; 
 	}
@@ -98,14 +98,14 @@ A:hover	{ color: #E91414; }
 .modcaption  /* modifies background for caption text to reside */
 	{
 	  font-family:verdana, arial, sans-serif;
-	  color: #E91414;
+	  color: #742d45;
 	  font-size: 10px;
 	  font-weight:bold;
 	  background-image: url(../images/mod_descbg.jpg);
 	  line-height:140%;
 	  padding:2px;
 	  margin-top:2px;		
-	  border:0px dashed #000000;
+	  border:1px dashed #000000;
 	}
 .error  /* all error text */
 	{ 
@@ -143,7 +143,7 @@ A:hover	{ color: #E91414; }
 .head a:hover
 	{
 	  font-weight: normal;
-	  color: #E91414;
+	  color: #336666;
 	  text-decoration: underline;
 	}
 .mod_headliner  /* Gallery & Album titles. Text is controled by .head */ 
@@ -178,14 +178,7 @@ A:hover	{ color: #E91414; }
 	{ 
 	  font-size: 10px; 
 	}
-.popuphead
-	{
-	  font-size: 16px;
-	}
-.popup
-	{
-	  font-size: 12px;
-	}
+
 .editlink,  /* Used for the [edit] tags */
 .editlink a,
 .editlink a:link,
@@ -219,13 +212,13 @@ A:hover	{ color: #E91414; }
 	}
 .modnavbox a:hover {
 	  font-weight: normal;
-	  color: #E91414;
+	  color: #336666;
 	  text-decoration: underline;
 	}
 .admin  /* used in admin bars - the serch text*/
 	{ 
 	  font-size: 10px;
-	  color: #000000;
+	  color: #9F01B7; 
 	  font-weight: bold;
 	}
 
@@ -233,11 +226,12 @@ A:hover	{ color: #E91414; }
         {
           font-size: 10px;
           font-weight: bold;
-          color: #FB0202;
+          color: #7501A0;
         }
 .search  /* used in admin bars - the serch text*/
 	{ 
 	  font-size: 10px;
+	  color: #E91414; 
 	  font-weight: bold;
 	}
 .leftspacer /* amount of space to the left of the header and titles */
@@ -247,13 +241,13 @@ A:hover	{ color: #E91414; }
 .modnavboxtop  /*navagation bar top of screen where admin buttons show*/
 	{ 
 	  font-family:verdana, arial, sans-serif;
-	  color: #E91414;
+	  color: #742d45;
 	  font-size: 10px;
 	  font-weight:bold;
 	  background-image: url(../images/mod_navbox.jpg);
 	  line-height:140%;
 	  letter-spacing: .1em;
-	  border:0px dashed #000000;
+	  border:1px dashed #000000;
 	  width: 100%  
 	}
 .modnavboxtop a,
@@ -266,17 +260,17 @@ A:hover	{ color: #E91414; }
 	}
 .modnavboxtop a:hover {
 	  font-weight: normal;
-	  color: #E91414;
-	  text-decoration: none;
+	  color: #336666;
+	  text-decoration: underline;
 	}
 .modnavboxmid  /*navagation bar middle where the link for the albums show*/
 	{ 
 	  font-family:verdana, arial, sans-serif;
-	  color: #E91414;
+	  color: #742d45;
 	  font-size: 10px;
 	  font-weight:bold;
+	  background:#9E91A3;
 	  line-height:140%;
-	  background-image: url(../images/mod_descbg.jpg);
 	  border:0px dashed #000000;
 	  width: 100%  
 	}
@@ -290,19 +284,19 @@ A:hover	{ color: #E91414; }
 	}
 .modnavboxmid a:hover {
 	  font-weight: normal;
-	  color: #E91414;
+	  color: #336666;
 	  text-decoration: underline;
 	}
 .modfooter  /*footer where the Gallery version is located*/
 	{ 
 	  font-family:verdana, arial, sans-serif;
-	  color:#000000;
+	  color:#742d45;
 	  font-size: 8px;
 	  font-weight:normal;
-	  background-image: url(../images/mod_descbg.jpg); 
+	  background-image: url(../images/mod_descbg.jpg);
 	  line-height:140%;
 	  padding:2px;
-	  border:0px dashed #000000;
+	  border:1px dashed #000000;
 	  width:100%   
 	}
 .modfooter a,
@@ -313,6 +307,7 @@ A:hover	{ color: #E91414; }
 	}
 .modfooter a:hover {
 	  text-decoration: none;
+	  color:#336666;
 	}
 
 .pview /* brackets both the image and all text in one frame */
@@ -354,3 +349,17 @@ A:hover	{ color: #E91414; }
         margin-top:10px;
         width:80%;
 }
+
+.popuphead {
+    font-size: 16px;
+    background-image: url(../images/mod_navbar.jpg);
+    color: #FFFFFF;
+    margin: 2px;
+}
+
+.popup {
+    font-size: 12px;
+    background-image: url(../images/mod_descbg.jpg);
+    margin: 2px;
+}
+
