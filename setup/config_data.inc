@@ -145,6 +145,7 @@ $checklist = array(
 	),
 	"missing-locales" => array (
 		"optional" => 1,
+		"enabled" => (sizeof(gallery_languages()) > 1) ? "yes" :"no",
 		"desc" => _("Testing to see which locales (if any) are absent."),
 		"func" => "check_absent_locales",
 		"serious" => ( $elawisyl == "no" ) ? 1 : 0 ,
@@ -412,7 +413,7 @@ $constants =  array_merge(
 		"desc" => sprintf(_("This is the language you will see as %s, and what users will see if no other preference is set."), '<b>admin</b>'),
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"choices" => gallery_languages(),
-		"value" => !empty($gallery->language) ? $gallery->language : "en_US",
+		"value" => (!empty($gallery->language) && sizeof(gallery_languages()) >1 ) ? $gallery->language : "en_US",
 		"enabled" => $elawisyl
 	),
 	"ML_mode" => array(
@@ -436,6 +437,7 @@ $constants =  array_merge(
 	),
 	"show_flags" => array(
 		"prompt" => _("Show flags?"),
+		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden",
 		"desc" => _("In Mode 3 you can choose to display flags instead of a small pulldown menu for the available languages.") .
 			newIn("1.4.1"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
@@ -707,7 +709,7 @@ $constants = array_merge($constants,
 		"value" => "no"
 		),
 	"adminOtherChangesEmail" => array(
-		"desc" => "This is allows the \"admin\" account to get email whenever a change is made to any album",
+		"desc" => "This is allows the &quot;admin&quot; account to get email whenever a change is made to any album",
 		"prompt" => "Admin Other Changes email",
 		"type" => "hidden",
 		"persistent" => 1,
@@ -979,6 +981,7 @@ $defaults = array(
 			newIn("1.4.1"),
 		"type" => "text",
 		"value" => _("Vote for this image"),
+		"attrs" => array("size" => 50),
 		"optional" => 1
 			),
 	"poll_show_results" => array(

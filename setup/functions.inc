@@ -631,24 +631,24 @@ function check_absent_locales()
 		$success[] = _("All gallery locales are available on this host.");
 	} else if( (sizeof($maybe) + sizeof($unavailable)) >0) {
 		if (sizeof($maybe) >0) {
-			$msg = sprintf(_("There are %d locales that Gallery was unable to locate. You will need to manually select date formats. "),sizeof($maybe));
+			$msg = sprintf(_("There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "),sizeof($maybe));
 		}
 
 		if (sizeof($unavailable) >0) {
 			if(sizeof($maybe) >0) $msg.="<p></p>";
 
-			$msg .= sprintf(_("Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You will need to manually select date formats for these."),sizeof($unavailable));
+			$msg .= sprintf(_("Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manyally the date formats for these."),sizeof($unavailable));
 		}
-		$fail[] = $msg;
+		$warn[] = $msg;
 	} else {
 		if (ini_get('open_basedir') && getOS() != OS_LINUX) {
-			$fail[] = sprintf(_("We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."),
+			$warn[] = sprintf(_("We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."),
 				'<b><a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir" target="_blank">open_basedir</a></b>');
 		} else {
 			if (getOS() == OS_LINUX) {
 				$fail[] = sprintf(_("We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."),"Debian", '<a href="http://people.debian.org/~schultmc/locales.html" target="_blank">', "</a>");
 			} else {
-				$fail[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
+				$warn[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
 			}
 		}
 	}
@@ -760,7 +760,6 @@ function check_locale() {
 		"maybe_locales" => $maybe_locales,
 		"unavailable_locales" => $unavailable_locales
 	);
-
 }
 
 
