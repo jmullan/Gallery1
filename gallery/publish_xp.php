@@ -50,7 +50,7 @@ if(empty($cmd)){
   $lines[] = '';
   $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\' . $gallery->app->galleryTitle . ']';
   $lines[] = '"displayname"="' . $gallery->app->galleryTitle . '"';
-  $lines[] = '"description"=' . _("Publish Your Photos and Movies to") . ' ' . $gallery->app->galleryTitle . '."';
+  $lines[] = '"description"="' . _("Publish Your Photos and Movies to") . ' ' . $gallery->app->galleryTitle . '."';
   $lines[] = '"href"="' . makeGalleryUrl("publish_xp.php", array("cmd" => "publish")) . '"';
   $lines[] = '"icon"="' . $proto . '://' . $HTTP_SERVER_VARS['SERVER_NAME'] . '/favicon.ico"';
   print join("\r\n", $lines);
@@ -64,9 +64,7 @@ if(empty($cmd)){
   <?php echo getStyleSheetLink() ?>
   </head>
 <body>
-<?php
-	include ($gallery->path ."ML_files/ML_info_addon.inc") ;
-?>
+<?php include ($gallery->path ."ML_files/ML_info_addon.inc") ; ?>
 <?php
 //---------------------------------------------------------
 //-- check version --
@@ -107,7 +105,7 @@ if (!strcmp($cmd, "login")) {
 
 if (!strcmp($cmd,"publish") || $returnval == _("Login Incorrect")) { ?>
 <center>
-<br><span class="popuphead"><?php echo _("Login to") ?> '<?php echo $gallery->app->galleryTitle ?>'</span>
+<span class="popuphead"><?php echo _("Login to") ?> <?php echo $gallery->app->galleryTitle ?></span>
 <br>
 <?php echo  makeFormIntro("publish_xp.php", array("id" => "login", "method" => "POST")); ?>
 <table>
@@ -461,7 +459,7 @@ function OnCancel() {
 }
 
 function window.onload() {
-   window.external.SetHeaderText("<?php echo $gallery->app->galleryTitle ?>", <?php echo '"' . _("Upload Photos to") ?> <?php echo $gallery->app->galleryTitle . '"' ?>);
+   window.external.SetHeaderText("<?php echo $gallery->app->galleryTitle ?> <?php echo _("Photo Upload") ?>","<?php echo _("Upload Photos to") ?> <?php echo $gallery->app->galleryTitle ?>");
    window.external.SetWizardButtons(<?php echo $WIZARD_BUTTONS; ?>);
 }
 

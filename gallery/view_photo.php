@@ -175,7 +175,7 @@ do {
 
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
-    $breadtext[$breadCount] = _("Album") ." : <a href=\"" . makeAlbumUrl($pAlbumName) .
+    $breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($pAlbumName) .
       "\">" . $pAlbum->fields['title'] . "</a>";
   } elseif (!$gallery->session->offline || $gallery->session->offlineAlbums["albums.php"]) {
     //-- we're at the top! ---
@@ -359,7 +359,6 @@ if (!$gallery->album->isMovie($id)) {
 	print '<a id="page_url" href="'. 
 		makeAlbumUrl($gallery->session->albumName, $id, 
 			array("full" => 1)).'"></a>'."\n";
-
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$adminCommands .= popup_link("[" . _("resize photo") ."]", 
 			"resize_photo.php?index=$index");
@@ -389,13 +388,12 @@ if (!$gallery->album->isMovie($id)) {
                                       "on" : "off"))); 
               	}
 
-		$adminCommands .= "<nobr>". _("View Images") ." : [ ";
-
+		$adminCommands .= "<nobr>". _("View Images") .": [ ";
 		if (strcmp($gallery->session->fullOnly,"on"))
 		{
-			$adminCommands .= _("normal") .' | <a href="' .$link .'">' . _("full") .'</a> ]';
+			$adminCommands .= _("normal") ." | <a href=\"$link\">" . _("full") ."</a> ]";
 		} else {
-			$adminCommands .= '<a href="'. $link. '">' . _("normal") .'</a> | '. _("full") .' ]';
+			$adminCommands .= "<a href=\"$link\">" . _("normal") .'</a> | '. _("full") ." ]";
 		}
 		$adminCommands .= "</nobr>";
 	} 
@@ -432,7 +430,7 @@ if (!$gallery->album->isMovie($id)) {
 		}
 		$printService = $gallery->album->fields["print_photos"];
 		if (!strncmp($printService, "shutterfly", 10)) {
-		    $adminCommands .= "<a href=# onClick=\"document.sflyc4p.returl.value=document.location; document.sflyc4p.submit();\">[". _("print this photo on") ." Shutterfly]]</a>";
+		    $adminCommands .= "<a href=# onClick=\"document.sflyc4p.returl.value=document.location; document.sflyc4p.submit();\">[". _("print this photo on") ." Shutterfly]</a>";
 		    $printShutterflyForm = 1;
 		} else if (!strncmp($printService, "fotokasten", 10)) {
 		    $adminCommands .= popup_link("[". _("print this photo on") ." Fotokasten]", "'http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth . "'", 1);

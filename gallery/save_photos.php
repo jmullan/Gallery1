@@ -155,7 +155,7 @@ if ($urls) {
 			$userfile[] = $file;
 		} else {
 			/* Slurp the file */
-			processingMsg(_("Parsing").  $url . _("for images..."));
+			processingMsg(_("Parsing") .  $url . _("for images..."));
 			$fd = fs_fopen ($file, "r");
 			$contents = fread ($fd, fs_filesize ($file));
 			fclose ($fd);
