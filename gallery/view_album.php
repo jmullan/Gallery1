@@ -120,6 +120,11 @@ do {
     $breadtext[$breadCount] = "Gallery: <a href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>"; 
   }
+  elseif ($gallery->session->offline) {	// test is redundant.  offline must be 
+  					// true if you reach this line.
+ 	 break; 
+  }
+
   $breadCount++;
 } while ($pAlbumName);
 

@@ -1,3 +1,23 @@
+2003-06-12  Bharat Mediratta  <bharat@menalto.com> 1.3.4-final-cvs-b1
+
+        * Yet another change to fix the Windows unserialization problem.  The
+          issue is that on Windows if we write files in binary mode that
+          contain carriage returns, then we can't read them back in text mode.
+          This new fix allows us to try reading in binary mode (fopen with
+          "rb") and if that fails we try text mode (fopen with "rt").  This
+          will cover legacy cases as a fallback but will migrate all data files
+          forward as it touches them.
+	  [2003-06-12  Bharat Mediratta <bharat@menalto.com> 1.3.5-cvs-b20]
+
+        * Fixed an offline browsing bug, where under certain circumstance you
+          could get into an infinite loop.  Only occurred with offline browsing
+          starting in a non-root album.
+	  [2003-06-11  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b18]
+
+        * Fixed a case where we were using the two argument form of trim()
+          that isn't available until PHP 4.1.0
+	  [2003-06-11  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b17]
+	
 2003-06-09  Bharat Mediratta  <bharat@menalto.com> 1.3.4-RC3
 
 	* v1.3.4 Release Candidate 3
@@ -8,14 +28,11 @@
 	  strip off slashes and replace quotes with an html entity.  Fully
 	  backwards compatible with the format introduced in 1.3.4-b30,
 	  though you must re-run the config wizard.
-
 	  [2003-06-06 Bharat Mediratta <bharat@menalto.com> 1.3.5-cvs-b13]
   
 	* Bug fix so we don't get a NetPBM file not found error if we are
 	  using ImageMagick.
-
-	  [2003-06-06 Joan McGalliard <gallery@joanhenge.plus.com>
-	  1.3.5-cvs-b14]
+	  [2003-06-06 Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b14]
 
 	* Similar bug as previous.  If you did not have ImageMagick or
 	  NetPBM installed, but had a path in configuration for them, then
@@ -23,9 +40,7 @@
 	  package.  Change requires setting $graphtool before the paths
 	  for each package, and passing $graphtool to the verification
 	  functions.
-
-	  [2003-06-06 Joan McGalliard <gallery@joanhenge.plus.com>
-	  1.3.5-cvs-b15]
+	  [2003-06-06 Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b15]
 
 2003-06-04  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.4-RC2
 
