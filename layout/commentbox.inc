@@ -18,6 +18,6 @@ if ($gallery->user->canWriteToAlbum($gallery->album)) {
 }
 ?>
 <tr>
-<td width=100%><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="6"></td>
+<td width=100%><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="6" alt=""></td>
 </tr>
 </table>

@@ -20,9 +20,15 @@
             <span class="fineprint">
 	    <?php print poweredBy() ?>
             </span>
-          </td>
           <!-- PayPal donation block -->
-          <?php if ($gallery->user->isAdmin()) { ?>
+	  <?php if ($gallery->user->isAdmin()) { 
+		  if (! isset($GALLERY_EMBEDDED_INSIDE)) {
+			  print "<br><br>";
+			  print album_validation_link($gallery->session->albumName);                      
+			  print "Not valid yet.";
+		  } ?>
+		  </td>        
+
           <td width=300 align=right>
             <span class="fineprint">
               Are you happy with Gallery?<br>
@@ -32,7 +38,7 @@
           </td>
           <td width="90" align="right">
             <a href="<?php echo $gallery->url ?>/donate.php?donate_tag=v<?php echo $gallery->version ?>"><img align="right"
-              src="<?php echo getImagePath('donate.jpg') ?>" width="88" height="31" border="0"></a>
+              src="<?php echo getImagePath('donate.jpg') ?>" width="88" height="31" border="0" ALT="<?php echo _("Donate to Gallery now!!") ?>"></a>
           </td><?php } ?>
         </tr>
       </table>

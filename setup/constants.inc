@@ -45,7 +45,11 @@ foreach ($constants as $key => $val) {
 
 		/* if the variable is hidden, lock it in as we don't want to use previous values*/
 		if (isset($val["type"]) && ($val["type"] === "hidden")) {
-			if (is_array($val["value"])) {
+		       	if (!empty($val["persistent"]) && 
+					isset($gallery->app->$key)) {
+				$val["value"] = $gallery->app->$key;
+			}
+			else if (is_array($val["value"])) {
 				$key=$key."[]";
 				$val["value"]=$val["value"][0];
 			}

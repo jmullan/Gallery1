@@ -575,7 +575,7 @@ function setCaption(text) {
 
 <?php
 $imageDir = $gallery->app->photoAlbumURL."/images"; 
-$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\">";
+$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"\">";
 
 ?>
 <form name="TopForm">

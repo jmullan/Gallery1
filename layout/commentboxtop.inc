@@ -2,8 +2,8 @@
 <?php global $commentbox, $embeddedAlbum, $myAlbumName, $myHighlightTag, $myAlbum, $id, $i; ?>
 <table width="100%" border="0" cellspacing="0" cellpadding=0>
 <tr>
-<td colspan="2"><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="1"></td>
-<td colspan="2"><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="1"></td>
+<td colspan="2"><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="1" alt=""></td>
+<td colspan="2"><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="1" alt=""></td>
 </tr>
 <tr>
 <?php if ($embeddedAlbum == 1)
@@ -43,8 +43,8 @@ else
 } ?>
 <table width="100%" border="0" cellspacing="0" cellpadding=0>
 <tr>
-<td colspan="2"><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="1"></td>
-<td colspan="2"><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="1"></td>
+<td colspan="2"><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="1" alt=""></td>
+<td colspan="2"><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="1" alt=""></td>
 </tr>
 <tr>
 <td>

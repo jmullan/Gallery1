@@ -4,7 +4,7 @@
 // Note that this box is assumed to be attached to a navigator and uses the navigator's
 // width parameters .
 
-global $adminbox;
+global $adminbox, $navigator;
 // If the border color is not passed in, we do a black/white combo
 if ($adminbox["bordercolor"]) {
 	$borderIn = $adminbox["bordercolor"];

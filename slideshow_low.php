@@ -131,7 +131,7 @@ if ($gallery->album->fields["linkcolor"]) {
 if ($gallery->album->fields["bgcolor"]) {
         echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
 }
-if ($gallery->album->fields["background"]) {
+if (!empty($gallery->album->fields["background"])) {
         echo "BODY { background-image:url(".$gallery->album->fields[background]."); } ";
 }
 if ($gallery->album->fields["textcolor"]) {
@@ -345,7 +345,7 @@ function preload_photo(index) {
 
 <?php
 $imageDir = $gallery->app->photoAlbumURL."/images"; 
-$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\">";
+$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"\">";
 ?>
 
 <form name="TopForm">

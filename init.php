@@ -40,7 +40,6 @@ foreach ($sensitiveList as $sensitive) {
  * error reporting is turned all the way up.  We'll fix this in v2.0
  */
 error_reporting(E_ALL & ~E_NOTICE);
-// error_reporting(E_ALL);
 
 /*
  * Figure out if register_globals is on or off and save that info
@@ -95,6 +94,12 @@ if (getOS() == OS_WINDOWS) {
 if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
         global $gallery;
 	include($GALLERY_BASEDIR . "config.php");
+}
+if (isset($gallery->app->devMode) && 
+		$gallery->app->devMode == "yes") {
+       	error_reporting(E_ALL);
+} else {
+       	error_reporting(E_ALL & ~E_NOTICE);
 }
 
 /*

@@ -66,7 +66,7 @@ if ($searchstring) {
 </td>
 </form>   
 </tr>
-<tr><td height=2><img src="<?php echo getImagePath('pixel_trans.gif') ?>"></td></tr>
+<tr><td height=2><img src="<?php echo getImagePath('pixel_trans.gif') ?>" alt=""></td></tr>
 </table> 
 <?php
 }

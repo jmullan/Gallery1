@@ -7,7 +7,7 @@ if ($commentdraw["bordercolor"]) {
         $borderIn = "#FFFFFF";
 }
 
-$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\">";
+$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"\">";
 
 ?>
   <tr>

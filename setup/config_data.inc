@@ -657,15 +657,25 @@ $constants = array_merge($constants,
 		"type" => "text",
 		"attrs" => array("size" => 20),
 	),
-	/* Keep this one at the end of the list because it's hidden */
+	/* Keep these two at the end of the list because they're hidden */
 	"userDir" => array(
 		"desc" => "Filesystem location of user information",
 		"prompt" => ".users directory",
 		"type" => "hidden",
 		"value" => "",
 		"eval" => '"$albumDir/.users"',
+		"persistent" => 1,
 		"filename" => 1
+		),
+	"devMode" => array(
+		"desc" => "Developers should switch this to yes, to see all warnings and notices",
+		"prompt" => "Developer Mode",
+		"type" => "hidden",
+		"persistent" => 1,
+		"value" => "no"
 		)
+
+
 	)
 );
 

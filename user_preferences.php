@@ -102,6 +102,7 @@ $allowChange["old_password"] = true;
 $allowChange["default_language"] = true;
 $allowChange["send_email"] = false;
 $allowChange["member_file"] = false;
+$allowChange["create_albums"] = false;
 
 ?>
 <html>

@@ -94,7 +94,13 @@ foreach ($checklist as $check) {
 	if (isset($warn)) {
 		foreach ($warn as $key => $val) {
         	        echo "\t\t\t\t". '<p class="warning">'. _("Warning") . '</p>';
-                	echo "\n\t\t\t\t<p>$check[$key]</p>";
+                	echo "\n\t\t\t\t<p>";
+		       	if (isset($check[$key])) {
+			       	echo $check[$key];
+			} else {
+				echo $val;
+			}
+		       	echo "</p>";
 	        }
 	}
 ?>

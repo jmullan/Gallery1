@@ -38,7 +38,7 @@ function ML_reload() {
 
 	<form name="MLForm" action="#">
 	<table width="100%" cellpadding="0" cellspacing="0">
-	<tr><td valign="top" align="right"><br />
+	<tr><td valign="top" align="right"><br >
 
 <?php
 
@@ -49,7 +49,7 @@ if($gallery->app->show_flags !='yes') {
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
 	// we have 2+1 ways: phpnuke, postnuke or standalone
-	if ($GALLERY_EMBEDDED_INSIDE) {
+	if (!empty($GALLERY_EMBEDDED_INSIDE)) {
 		$urlTemp = (!empty($HTTP_GET_VARS['include']) ? $HTTP_GET_VARS['include'] : '');        
 	} else {
         	$urlTemp = end(explode("/", $HTTP_SERVER_VARS["PHP_SELF"]));
@@ -68,7 +68,7 @@ if($gallery->app->show_flags !='yes') {
 		}
 
 		$count++;
-		$args = $HTTP_GET_VARS;
+		$args = isset($HTTP_GET_VARS) ? $HTTP_GET_VARS : array();
 		if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
 				/* postnuke */

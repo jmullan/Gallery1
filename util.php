@@ -682,7 +682,7 @@ function toPnmCmd($file) {
 		$cmd = "giftopnm";
 	}
 
-	if ($cmd) {
+	if (!empty($cmd)) {
 		return NetPBM($cmd) .
 		 	" " .
 			fs_import_filename($file);
@@ -2278,19 +2278,19 @@ function initLanguage() {
 
        $nls = getNLS();
 
-	// before we do any tests or settings test if we are in mode 0
-	// If so, we skip language settings at all
-       
-	if (isset($gallery->app->ML_mode)) {
+       // before we do any tests or settings test if we are in mode 0
+       // If so, we skip language settings at all
+
+       $gallery->direction=$nls['default']['direction'];
+       $gallery->align=$nls['default']['alignment'];
+       if (isset($gallery->app->ML_mode)) {
 		if($gallery->app->ML_mode == 0) {
-			$gallery->direction=$nls['default']['direction'];
-			$gallery->align=$nls['default']['alignment'];
 			return;
 		}
-	}
-	// Detect Browser Language
+       }
+       // Detect Browser Language
 
-	if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
+       if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
 		$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
 		$spos=strpos($lang[0],";");
 		if ($spos >0) {

@@ -7,7 +7,7 @@ if ($breadcrumb["bordercolor"]) {
 } else {
 	$borderIn = "#FFFFFF";
 }
-$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\">";
+$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"\">";
 
 ?>
 
@@ -28,13 +28,13 @@ if ($breadcrumb["top"]) {
 $i = 0;
 while (isset($breadcrumb["text"][$i])) {
 	if ($i > 0) {
-		echo "<img src=\"" . getImagePath('nav_home.gif') . "\" width=13 height=11>";
+		echo '<img src="' . getImagePath('nav_home.gif') . '" width=13 height=11 alt="UP">';
 	}
 	echo "&nbsp;".$breadcrumb["text"][$i]."&nbsp;";
 	$i++;
 }
 ?>
-      <img src="<?php echo getImagePath('nav_home.gif') ?>" width="13" height="11">&nbsp;
+      <img src="<?php echo getImagePath('nav_home.gif') ?>" width="13" height="11" alt="UP">&nbsp;
     </td> 
   </tr>
 <?php

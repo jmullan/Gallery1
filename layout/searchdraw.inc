@@ -9,7 +9,7 @@ if ($searchdraw["bordercolor"]) {
 	$borderIn = "#FFFFFF";
 }
 
-$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"0\" height=\"0\">";
+$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"0\" height=\"0\" alt=\"\">";
 
 ?>
   <tr>

@@ -400,7 +400,8 @@ if (!$gallery->album->isMovie($id)) {
 		if (!$gallery->session->offline) {
 			$link = doCommand("", 
 				array("set_fullOnly" => 
-					(strcmp($gallery->session->fullOnly,"on") 
+					(isset($gallery->session->fullOnly) &&
+					 strcmp($gallery->session->fullOnly,"on") 
 					? "on" : "off")),
 				"view_photo.php", 
 				array("id" => $id));
@@ -414,7 +415,8 @@ if (!$gallery->album->isMovie($id)) {
               	}
 
 		$adminCommands .= _('View Images') .':&nbsp;[&nbsp;';
-		if (strcmp($gallery->session->fullOnly,"on"))
+		if (isset($gallery->session->fullOnly) && 
+				strcmp($gallery->session->fullOnly,"on"))
 		{
 			$adminCommands .= _('normal') . "&nbsp;|&nbsp;<a href=\"$link\">" . _('full') .'</a>&nbsp;]';
 		} else {
@@ -640,6 +642,7 @@ includeHtmlWrap("inline_photo.frame");
 <tr>
 <td colspan=3 align=center>
 <span class="modcaption"><?php echo editCaption($gallery->album, $index) ?>
+</span>
 <?php
 if ( canVote() )
 {
@@ -759,7 +762,6 @@ if ($table) {
 	print "<table>$table</table>\n";
 }
 ?>
-</span>
 </td>
 </tr>
 <?php if (!strcmp($gallery->album->fields["public_comments"], "yes")) { ?>
