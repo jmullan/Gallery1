@@ -48,13 +48,13 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <?php
 $all = !strcmp($index, "all");
 if ($gallery->session->albumName && isset($index)) {
 	if (isset($manual) && $manual >0) $resize=$manual;
-	if ($resize >0) {
+	if (! empty($resize)) {
 		if (!strcmp($index, "all")) {
 			$np = $gallery->album->numPhotos(1);
 			echo("<br> ". sprintf(_("Resizing %d photos..."),$np));
@@ -93,12 +93,11 @@ if ($gallery->session->albumName && isset($index)) {
 <p>
 
 <input type="hidden" name="index" value="<?php echo $index ?>">
+	<input type="submit" name="resize" value="<?php echo _("Get rid of resized") ?>">
+		<?php echo _("(Use only the original picture)"); ?>
+
+<p>
 <table border="0">
-<tr>
-	<td><input type="radio" name="resize" value="<?php echo _("Original Size") ?>" id="orig_size">
-		<label for="orig_size"><?php echo _("Original Size") ?></label></td>
-	<td>&nbsp;</td>
-</tr>
 <?php 
 	$choices=array(1280,1024,700,800,640,600,500,400);
 	for ($i=0; $i<count($choices); $i=$i+2) {
@@ -111,10 +110,12 @@ if ($gallery->session->albumName && isset($index)) {
 
 <tr>
 	<td colspan="2"><input id="none" type="radio" name="resize" value="manual">
-		<input type="text" name="manual" onFocus="document.getElementById('none').checked=true;"><?php echo _("(manual value)"); ?></td>
+		<input type="text" size="5" name="manual" onFocus="document.getElementById('none').checked=true;">
+			<label for="none"> <?php echo _("(manual value)"); ?></lablel></td>
 </tr>
 </table>
-<br>
+</p>
+
 <input type="submit" value="<?php echo _("Change Size") ?>">
 <input type="submit" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
 </form>

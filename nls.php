@@ -26,7 +26,7 @@
  * The original filename was horde/config/nls.php.dist and it was 
  * maintained by Jan Schneider (mail@janschneider.de)
  * The modifications to fit it for Gallery were made by Jens Tkotz 
- * (jens@f2h9.de)
+ * (jens@peino.de)
  *
  */
 
@@ -40,6 +40,7 @@
  * If you add a new language please use alphatical order by name.
  */
 function getNLS () {
+	$nls['language']['zh_CN'] = 'Chinese (Simplified) (&#x7b80;&#x4f53;&#x4e2d;&#x6587;)';
 	$nls['language']['zh_TW'] = 'Chinese (Traditional) (&#x6b63;&#x9ad4;&#x4e2d;&#x6587;)';
 	$nls['language']['de_DE'] = 'Deutsch';
 	$nls['language']['en_GB'] = 'English (UK)';
@@ -84,8 +85,6 @@ function getNLS () {
 /**
  ** Aliases for languages which we substitte or send by NUKE
  **/
-	
-
 
 	$nls['alias']['de_LI'] = 		'de_DE' ;
 	$nls['alias']['de_LU'] = 		'de_DE' ;
@@ -162,6 +161,8 @@ function getNLS () {
 	$nls['alias']['turkish'] =		'tr_TR' ;	
 	$nls['alias']['tr_TR.ISO8859-9'] =	'tr_TR' ;
 
+	$nls['alias']['zh_TW.GB2312'] =         'zh_CN' ;
+
 	$nls['alias']['zh_TW.Big5']      =	'zh_TW' ;
 	$nls['alias']['chinese'] = 		'zh_TW' ;
 	
@@ -174,25 +175,25 @@ function getNLS () {
 	
 	$nls['default']['charset'] = 'ISO-8859-1';
 	
-	$nls['charset']['zh_TW'] = 'BIG5';
+	$nls['charset']['he_IL'] = 'windows-1255';
+	$nls['charset']['lt_LT'] = 'windows-1257';
 	$nls['charset']['pl_PL'] = 'ISO-8859-2';
 	$nls['charset']['ru_RU'] = 'windows-1251';
 	$nls['charset']['ru_RU.KOI8-R'] = 'KOI8-R';
-	$nls['charset']['lt_LT'] = 'windows-1257';
-	$nls['charset']['he_IL'] = 'windows-1255';
 	$nls['charset']['sl_SI'] = 'ISO-8859-2';
 	$nls['charset']['tr_TR'] = 'ISO-8859-9';
-	
+	$nls['charset']['zh_CN'] = 'GB2312';
+	$nls['charset']['zh_TW'] = 'BIG5';	
+
 	//$nls['charset']['de_DE']='de_DE.ISO-8859-15@euro' ;
 	//$nls['charset']['lt_LT'] = 'ISO-8859-13';
 	
-
-
 /**
  ** Multibyte charsets
  **/
 
 	$nls['multibyte']['BIG5'] = true;
+	$nls['multibyte']['GB2312'] =   true;
 	$nls['multibyte']['UTF-8'] = true;	
 
 /**

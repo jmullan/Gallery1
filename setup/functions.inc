@@ -486,7 +486,7 @@ function check_locale()
 		if (sizeof($list) == 0) {
 			$list=split("\n", shell_exec("locale -a")) ;
 		}
-		if (sizeof($list) > 0) {
+		if (sizeof($list) > 4) {
 			$success[] = _("locale support found");
 		} else {
 			$fail["fail-locale"] = _("locale support not found");

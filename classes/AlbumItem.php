@@ -473,9 +473,9 @@ class AlbumItem {
 		}
 	}
 
-	function getHighlightTag($dir, $size=0, $attrs) {
+	function getHighlightTag($dir, $size=0, $attrs="",$alttext="") {
 		if (is_object($this->highlightImage)) {
-			return $this->highlightImage->getTag($dir, 0, $size, $attrs);
+			return $this->highlightImage->getTag($dir, 0, $size, $attrs,$alttext);
 		} else {
 			return "<i>". _("No highlight") ."</i>";
 		}

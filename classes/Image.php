@@ -104,7 +104,7 @@ class Image {
 		global $gallery;
 
 		/* getting rid of the resized image */
-		if (stristr($target, "orig")) {
+		if ( (stristr($target, _("Get rid of resized"))) || (stristr($target, "orig")) ) {
 			list($w, $h) = getDimensions("$dir/$this->name.$this->type");
 			$this->width = $w;
 			$this->height = $h;
@@ -145,7 +145,7 @@ class Image {
 		fs_unlink("$dir/$this->name.$this->type");
 	}
 
-	function getTag($dir, $full=0, $size=0, $attrs="") {
+	function getTag($dir, $full=0, $size=0, $attrs="",$alttext="") {
 		global $gallery;
 
 		$name = $this->getName($dir);
@@ -169,14 +169,14 @@ class Image {
 		if ($this->resizedName) {
 			if ($full) {
 				return "<img src=\"$dir/$this->name.$this->type\" " .
-					"width=\"$this->raw_width\" \"height=$this->raw_height $attrs\">";
+					"width=\"$this->raw_width\" \"height=$this->raw_height $attrs\" alt=\"$alttext\" title=\"$alttext\">";
 			} else {
 				return "<img src=\"$dir/$this->resizedName.$this->type\" " .
 					"width=\"$this->width\" \"height=$this->height\" " .
-					"$attrs>";
+					"$attrs alt=\"$alttext\" title=\"$alttext\">";
 			}
 		} else {
-			return "<img src=\"$dir/$this->name.$this->type\" $size_val $attrs>";
+			return "<img src=\"$dir/$this->name.$this->type\" $size_val $attrs alt=\"$alttext\" title=\"$alttext\">";
 		}
 	}
 

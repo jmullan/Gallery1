@@ -1,3 +1,21 @@
+2003-08-25 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b28
+
+	* Startpage is now valid html
+	  To make this a changed/added:
+	  
+	  - Added alt="...." to every image
+	  - replaced <td background= ...> with <td style="background-image: ....> (css1)
+	  - replaced <nobr>...</nobr> with <span style="white-space:nowrap;">... </span> (css2)
+
+	* added additional parameter alttext="..." to:
+	  - getHighlightTag in classes/Album.php
+	  - getHighlightTag in classse/AlbumItem.php
+	  - getTag in classes/Images		
+
+	* Fixed Bug in resize_photo.php which caused resize to original (get rid of resized) not to work 
+
+	* Added new language: Simplified Chinese (zh_CN)
+
 2003-08-24 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b27
 
 	* Added separator for sectioning (only) on step2 in configwizard.

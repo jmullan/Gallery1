@@ -57,7 +57,7 @@ if ($gallery->session->albumListPage > $maxPages) {
 }
 
 $imageDir = $gallery->app->photoAlbumURL . '/images';
-$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">";
+$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\" alt=\"pixel_trans\">";
 $borderColor = $gallery->app->default["bordercolor"];
 
 $navigator["page"] = $gallery->session->albumListPage;
@@ -71,6 +71,7 @@ $navigator["bordercolor"] = $borderColor;
 
 ?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
   <title><?php echo $gallery->app->galleryTitle ?></title>
@@ -103,7 +104,7 @@ if (!$gallery->session->offline && !strcmp($gallery->app->default["showSearchEng
 </form>
 </td>
 </tr>
-<tr><td height=2><img src="<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif"></td></tr></table>
+<tr><td height=2><img src="<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" alt="pixel_trans"></td></tr></table>
 <?php
 }
 ?>
@@ -257,14 +258,14 @@ for ($i = $start; $i <= $end; $i++) {
       }
       $gallery->html_wrap['thumbWidth'] = $iWidth;
       $gallery->html_wrap['thumbHeight'] = $iHeight;
-      $gallery->html_wrap['thumbTag'] = $gallery->album->getHighlightTag($scaleTo);
+      $gallery->html_wrap['thumbTag'] = $gallery->album->getHighlightTag($scaleTo,'', _("Highlight for Album: "). $gallery->album->fields["title"]);
       $gallery->html_wrap['thumbHref'] = $albumURL;
       includeHtmlWrap('inline_gallerythumb.frame');
 ?>
   </td>
   <!-- End Image Cell -->
   <!-- Begin Text Cell -->
-  <td align=<?php echo $gallery->alignment ?> valign=top>
+  <td align="<?php echo $gallery->alignment ?>" valign="top">
   <span class="title">
   <a href="<?php echo $albumURL ?>">
   <?php _("title") ?>

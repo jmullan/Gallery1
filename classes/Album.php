@@ -769,10 +769,10 @@ class Album {
 		}
 	}
 
-	function getHighlightTag($size=0, $attrs="") {
+	function getHighlightTag($size=0, $attrs="",$alttext) {
 		list ($album, $photo) = $this->getHighlightedItem();
 		if ($photo) {
-			return $photo->getHighlightTag($album->getAlbumDirURL("highlight"), $size, $attrs);
+			return $photo->getHighlightTag($album->getAlbumDirURL("highlight"), $size, $attrs, $alttext);
 		} else {
 			return "<span class=title>". _("No highlight") ."!</span>";
 		}

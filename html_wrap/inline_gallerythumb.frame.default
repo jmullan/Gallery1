@@ -20,24 +20,36 @@ $imageBB = "$base/albumthumb_BB.gif";
 $imageBR = "$base/albumthumb_BR.gif";
 ?>
 <table width="1" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td bgcolor="<?php echo $borderColor ?>" rowspan="2" colspan="2" width="1" height="1">
+		<table cellspacing="0" cellpadding="<?php echo $borderWidth ?>">
+		<tr>
+			<td width="<?php echo $thumbWidth ?>" height="<?php echo $thumbHeight ?>">
+				<a href="<?php echo $href ?>"><?php echo $tag ?></a>
+			</td>
+		</tr>
+		</table>
+	</td>
+	<td width="5" height="<?php echo $borderWidth ?>" valign="bottom">
+		<img src="<?php echo $imageTR ?>" width="5" height="1" alt="TR">
+	</td>
+</tr>
 
-  <tr>
-    <td bgcolor="<?php echo $borderColor ?>" rowspan="2" colspan="2" width="1" height="1"><table cellspacing="0" cellpadding="<?php echo $borderWidth ?>">
-      <tr>
-        <td width="<?php echo $thumbWidth ?>" height="<?php echo $thumbHeight ?>"><a href="<?php echo $href ?>"><?php echo $tag ?></a></td>
-      </tr>
-    </table></td>
+<tr>
+	<td width="5" height="<?php echo $thumbHeight ?>" style="background-image:url(<?php echo $imageRR ?>); margin:0px;">
+		<img src="<?php echo $pixelImage ?>" width="1" height="1" alt="RR">
+	</td>
+</tr>
 
-    <td width="5" height="<?php echo $borderWidth ?>" valign="bottom"><img src="<?php echo $imageTR ?>" width="5" height="1"></td>
-  </tr>
-
-  <tr>
-    <td width="5" height="<?php echo $thumbHeight ?>" background="<?php echo $imageRR ?>"><img src="<?php echo $pixelImage ?>" width="1" height="1"></td>
-  </tr>
-
-  <tr>
-    <td width="5" height="3"><img src="<?php echo $imageBL ?>" width="5" height="3"></td>
-    <td background="<?php echo $imageBB ?>" width="<?php echo $thumbWidth ?>"><img src="<?php echo $pixelImage ?>" width="1" height="1"></td>
-    <td><img src="<?php echo $imageBR ?>" width="5" height="3"></td>
-  </tr>
+<tr>
+	<td width="5" height="3">
+		<img src="<?php echo $imageBL ?>" width="5" height="3" alt="BL">
+	</td>
+	<td  style="background-image:url(<?php echo $imageBB ?>); margin:0px;" width="<?php echo $thumbWidth ?>">
+		<img src="<?php echo $pixelImage ?>" width="1" height="1" alt="BB">
+	</td>
+	<td>
+		<img src="<?php echo $imageBR ?>" width="5" height="3" alt="BR">
+	</td>
+</tr>
 </table>
