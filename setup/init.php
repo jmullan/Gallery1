@@ -48,8 +48,7 @@ if (empty($register_globals) ||
 }
 
 /*
- * If register_globals is off, then extract all HTTP variables into the global
- * namespace.  
+ * If register_globals is off, then extract all superglobals into the global namespace.
  */
 if (!$gallery->register_globals) {
 
@@ -59,9 +58,7 @@ if (!$gallery->register_globals) {
      * to overwrite HTTP_POST_VARS when it extracts HTTP_GET_VARS
      */
     $scrubList = array('HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_COOKIE_VARS', 'HTTP_POST_FILES');
-    if (function_exists("version_compare") && version_compare(phpversion(), "4.1.0", ">=")) {
-	array_push($scrubList, "_GET", "_POST", "_COOKIE", "_FILES", "_REQUEST");
-    }
+    array_push($scrubList, "_GET", "_POST", "_COOKIE", "_FILES", "_REQUEST");
 
     foreach ($scrubList as $outer) {
 	foreach ($scrubList as $inner) {
@@ -73,22 +70,22 @@ if (!$gallery->register_globals) {
 	extract($_REQUEST);
     }
     else {
-	if (is_array($HTTP_GET_VARS)) {
-	    extract($HTTP_GET_VARS);
+	if (is_array($_GET)) {
+	    extract($_GET);
 	}
 
-	if (is_array($HTTP_POST_VARS)) {
-	    extract($HTTP_POST_VARS);
+	if (is_array($_POST)) {
+	    extract($_POST);
 	}
 
-	if (is_array($HTTP_COOKIE_VARS)) {
-	    extract($HTTP_COOKIE_VARS);
+	if (is_array($_COOKIE)) {
+	    extract($_COOKIE);
 	}
     }
 
 
-    if (is_array($HTTP_POST_FILES)) {
-	foreach($HTTP_POST_FILES as $key => $value) {
+    if (is_array($_FILES)) {
+	foreach($_FILES as $key => $value) {
 	    ${$key."_name"} = $value["name"];
 	    ${$key."_size"} = $value["size"];
 	    ${$key."_type"} = $value["type"];
@@ -143,9 +140,9 @@ set_magic_quotes_runtime(0);
  * Init prepend file for setup directory.
  */
 
-$tmp = $HTTP_SERVER_VARS["PHP_SELF"];
+$tmp = $_SERVER["PHP_SELF"];
 if (!$tmp) {
-	$tmp = $HTTP_ENV_VARS["PHP_SELF"];
+	$tmp = $_ENV["PHP_SELF"];
 }
 if (!$tmp) {
 	$tmp = getenv("SCRIPT_NAME");

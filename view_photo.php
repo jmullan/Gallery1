@@ -209,7 +209,7 @@ if (isset($save)) {
 	} else {
 		$comment_text = removeTags($comment_text);
 		$commenter_name = removeTags($commenter_name);
-		$IPNumber = $HTTP_SERVER_VARS['REMOTE_ADDR'];
+		$IPNumber = $_SERVER['REMOTE_ADDR'];
 		$gallery->album->addComment($id, stripslashes($comment_text), $IPNumber, $commenter_name);
 		$gallery->album->save();
 		emailComments($id, $comment_text, $commenter_name);
@@ -378,10 +378,10 @@ if (!$gallery->album->isMovie($id)) {
 		$prependURL = '';
 		if (!ereg('^https?://', $photoPath)) {
 		    $prependURL = 'http';
-		    if  (isset($HTTP_SERVER_VARS['HTTPS']) && stristr($HTTP_SERVER_VARS['HTTPS'], "on")) {
+		    if  (isset($_SERVER['HTTPS']) && stristr($_SERVER['HTTPS'], "on")) {
 			$prependURL .= 's';
 		    }
-		    $prependURL .= '://'. $HTTP_SERVER_VARS['HTTP_HOST'];
+		    $prependURL .= '://'. $_SERVER['HTTP_HOST'];
 		}
 		$rawImage = $prependURL . $photoPath . "/" . $photo->image->name . "." . $photo->image->type;
 
@@ -541,7 +541,7 @@ if (!$gallery->album->isMovie($id)) {
 
 $photoTag="";
 $frame= $gallery->album->fields['image_frame'];
-if ($fitToWindow && (preg_match('/safari|opera/i', $HTTP_SERVER_VARS['HTTP_USER_AGENT']) || $gallery->session->offline)) {
+if ($fitToWindow && (preg_match('/safari|opera/i', $_SERVER['HTTP_USER_AGENT']) || $gallery->session->offline)) {
 	//Safari/Opera can't render dynamically sized image frame
 	$frame = 'none';
 }

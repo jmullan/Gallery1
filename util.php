@@ -1108,8 +1108,7 @@ function includeHtmlWrap($name, $skinname='') {
 	// define these globals to make them available to custom text
         global $gallery;
 
-	global $HTTP_SERVER_VARS;
-	$domainname = dirname(__FILE__) . '/html_wrap/' . $HTTP_SERVER_VARS['HTTP_HOST'] . "/$name";
+	$domainname = dirname(__FILE__) . '/html_wrap/' . $_SERVER['HTTP_HOST'] . "/$name";
 
 	if (!$skinname) {
 		$skinname = $gallery->app->skinname;
@@ -1153,7 +1152,6 @@ function getStyleSheetLink() {
 
 function _getStyleSheetLink($filename, $skinname='') {
 	global $gallery;
-	global $HTTP_SERVER_VARS;
 	global $GALLERY_EMBEDDED_INSIDE;
 
 	if (! defined("GALLERY_URL")) define ("GALLERY_URL","");
@@ -1169,13 +1167,13 @@ function _getStyleSheetLink($filename, $skinname='') {
         $sheetname = "skins/$skinname/css/$filename.css";
 	$sheetpath = dirname(__FILE__) . "/$sheetname";
 
-	$sheetdefaultdomainname = "css/$HTTP_SERVER_VARS[HTTP_HOST]/$filename.css";
+	$sheetdefaultdomainname = "css/$_SERVER['HTTP_HOST']/$filename.css";
 	$sheetdefaultname = "css/$filename.css";
 	$sheetdefaultpath = $sheetname;
 
 	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
 		$base = $gallery->app->photoAlbumURL;
-	} elseif (stristr($HTTP_SERVER_VARS['REQUEST_URI'],"setup")) {
+	} elseif (stristr($_SERVER['REQUEST_URI'],"setup")) {
 		$base = '..';
 	} elseif (GALLERY_URL== "") {
 		$base = '.';
@@ -1212,7 +1210,7 @@ function errorRow($key) {
 }
 
 function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $configFile, $errorMsg) {
-	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE, $HTTP_COOKIE_VARS;
+	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $_CONF; // for geeklog
 
 	if (file_exists($configFile)) {
@@ -1237,13 +1235,13 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 	if (isset($GALLERY_EMBEDDED_INSIDE)) {
 		if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnuke') {
 			$cookie_name = 'user';
-			$cookie_value = $HTTP_COOKIE_VARS[$cookie_name];
+			$cookie_value = $_COOKIE[$cookie_name];
 		} else if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'GeekLog') {
 			$cookie_name = $_CONF['cookie_session'];
-			$cookie_value = $HTTP_COOKIE_VARS[$cookie_name];
+			$cookie_value = $_COOKIE[$cookie_name];
 		} else if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2') {
 			$cookie_name = $_CONF['phpbb2mysql_sid'];
-			$cookie_value = $HTTP_COOKIE_VARS[$cookie_name];
+			$cookie_value = $_COOKIE[$cookie_name];
 		}
 	}
 
@@ -1384,7 +1382,6 @@ function makeGalleryUrl($target, $args=array()) {
 	/* Needed for phpBB2 */
 	global $userdata;
 	global $board_config;
-	global $HTTP_COOKIE_VARS;
 
 	/*needed for Mambo */
 	global $MOS_GALLERY_PARAMS;
@@ -1398,7 +1395,7 @@ function makeGalleryUrl($target, $args=array()) {
                 switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 	                case 'phpBB2':
 				$cookiename = $board_config['cookie_name'];			
-				if(!isset($HTTP_COOKIE_VARS[$cookiename . '_sid'])) {
+				if(!isset($_COOKIE[$cookiename . '_sid'])) {
 					// no cookie so we need to pass the session ID manually.
 					$args["sid"] = $userdata['session_id'];
 					if(!isset($args["set_albumName"])) {
@@ -2589,7 +2586,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 		$bcc="";
 		$join="";
 	}
-	global $gallery, $HTTP_SERVER_VARS;
+	global $gallery;
 	if (!gallery_validate_email($from)) {
 		if (isDebugging() && $from) {
 			echo gallery_error( sprintf(_("Sender address %s is invalid, using %s."),
@@ -2605,7 +2602,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 		$bcc .= $join.$gallery->app->adminEmail;
 	}
 	$additional_headers = "From: $from\r\nReply-To: $reply_to\r\n";
-	$additional_headers .= "X-GalleryRequestIP: " . $HTTP_SERVER_VARS['REMOTE_ADDR'] . "\r\n";
+	$additional_headers .= "X-GalleryRequestIP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
 	if ($bcc) {
 		$additional_headers .= "Bcc: " . $bcc. "\r\n";
 	}
