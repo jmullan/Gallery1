@@ -713,6 +713,19 @@ $constants = array_merge($constants,
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 	),
+	"adminCommentsEmail" => array(
+		"desc" => "This is allows the \"admin\" account to get email whenever a comment is added to any album",
+		"prompt" => "Admin comment email",
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no"
+		),
+	"adminOtherChangesEmail" => array(
+		"desc" => "This is allows the &quot;admin&quot; account to get email whenever a change is made to any album",
+		"prompt" => "Admin Other Changes email",
+		"choices" => array("yes" => _("Yes"), "no" => _("No")),
+		"value" => "no"
+		),
+
 	"email_notification" => array(
 		"prompt" => _("Admin notification of email activity"),
 		"desc" => _("You can keep a record of every email that is sent by Gallery.") .
@@ -983,20 +996,6 @@ $constants = array_merge($constants,
 		"eval" => '"$albumDir/.users"',
 		"persistent" => 1,
 		"filename" => 1
-		),
-	"adminCommentsEmail" => array(
-		"desc" => "This is allows the \"admin\" account to get email whenever a comment is added to any album",
-		"prompt" => "Admin comment email",
-		"type" => "hidden",
-		"persistent" => 1,
-		"value" => "no"
-		),
-	"adminOtherChangesEmail" => array(
-		"desc" => "This is allows the &quot;admin&quot; account to get email whenever a change is made to any album",
-		"prompt" => "Admin Other Changes email",
-		"type" => "hidden",
-		"persistent" => 1,
-		"value" => "no"
 		),
 	"maximumAlbumDepth" => array(
 		"desc" => "Stops the breadcrumb code infinitely recursing.",
