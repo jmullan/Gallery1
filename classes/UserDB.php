@@ -44,6 +44,10 @@ class Abstract_UserDB {
 		return $this->everybody;
 	}
 
+	function getLoggedIn() {
+		return $this->loggedIn;
+	}
+
 	function getUidList() {
 		print "Error: getUidList() should be overridden by a subclass!";
 	}
