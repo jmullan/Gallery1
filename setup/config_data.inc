@@ -111,11 +111,11 @@ $constants = array(
 		"dont-write" => 1,
 	),
 	"tmpDir" => array(
-		"desc" => "The location of a temp directory",
+		"desc" => "The filesystem path of a temp directory",
 		"value" => "/var/tmp"
 	),
 	"pnmDir" => array(
-		"desc" => "The path to your NetPBM binaries.",
+		"desc" => "The filesystem path to your NetPBM binaries.",
 		"value" => locateDir("jpegtopnm", $app ? $app->pnmDir : "")
 	),
 	"highlight_size" => array(
@@ -124,21 +124,21 @@ $constants = array(
  		"value" => 200
 	),
 	"zipinfo" => array(
-		"desc" => "The path to the 'zipinfo' binary",
+		"desc" => "The filesystem path to the 'zipinfo' binary",
 		"value" => locateFile("zipinfo"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
 		"optional" => 1
 	),
 	"unzip" => array(
-		"desc" => "The path to the 'unzip' binary",
+		"desc" => "The filesystem path to the 'unzip' binary",
 		"value" => locateFile("unzip"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
 		"optional" => 1
 	),
 	"movieThumbnail" => array(
-		"desc" => "The path to the thumbnail image to show for movies",
+		"desc" => "The filesystem path to the thumbnail image to show for movies",
 		"value" => $GALLERY_DIR . "/images/movie.thumb.jpg"
 	),
 	"albumDir" => array(
@@ -153,7 +153,7 @@ $constants = array(
 			"require-write-dir" => 1
 	),
 	"userDir" => array(
-		"desc" => "Location of user information",
+		"desc" => "Filesystem location of user information",
 		"type" => "hidden",
 		"value" => "",
 		"eval" => '"$albumDir/.users"',
