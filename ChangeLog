@@ -1,3 +1,11 @@
+2001-09-30  Bharat Mediratta  <bharat@menalto.com> (1.2.1-p1)
+
+	* Fixed a bug in the serialization code to remove a race condition 
+	  that can cause heavily used albums to lose their .dat files.
+
+	* Fixed Album.load() so that it loads the backup .dat file if the main
+	  one is missing (to aid galleries stricken by the serialization bug)
+
 2001-09-14  Bharat Mediratta  <bharat@menalto.com>
 
 	* v1.2.1 ships!
