@@ -20,11 +20,15 @@
 ?>
 <?
 // Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
-	exit;
+$sensitiveList = array("gallery", "GALLERY_BASEDIR");
+foreach ($sensitiveList as $sensitive) {
+	if (!empty($HTTP_GET_VARS[$sensitive]) ||
+			!empty($HTTP_POST_VARS[$sensitive]) ||
+			!empty($HTTP_COOKIE_VARS[$sensitive]) ||
+			!empty($HTTP_POST_FILES[$sensitive])) {
+		print "Security violation\n";
+		exit;
+	}
 }
 ?>
 <?
