@@ -437,7 +437,6 @@ class Album {
 	}
 
 	function loadFromFile($filename) {
-
 		$tmp = unserialize(getFile($filename));
 		if (strcasecmp(get_class($tmp), "album")) {
 			/* Dunno what we unserialized .. but it wasn't an album! */
@@ -494,7 +493,7 @@ class Album {
 	function save($resetModDate=1) {
 		global $gallery;
 		$dir = $this->getAlbumDir();
-		$savephotosuccess = FALSE;
+		$success = FALSE;
 
 		if ($resetModDate) {
 			$this->fields["last_mod_time"] = time();
@@ -521,40 +520,44 @@ class Album {
 
 		/* Save photo data separately */
 		if ($this->transient->photosloaded) {
-			$savephotosuccess = (safe_serialize($this->photos, "$dir/photos.dat"));
-			if ($savephotosuccess) {
+			$success = (safe_serialize($this->photos, "$dir/photos.dat"));
+			if ($success) {
 				$this->fields["photos_separate"] = TRUE;
 				unset ($this->photos);
+			} else {
+			    $success = FALSE;
 			}
 		} else {
-			$savephotosuccess = TRUE;
+			$success = TRUE;
 		}
 
 		/* Don't save transient data */
 		$transient_save = $this->transient;
 		unset($this->transient);
 
-		$success = (safe_serialize($this, "$dir/album.dat") && $savephotosuccess);
+		if ($success) {
+		    $success = (safe_serialize($this, "$dir/album.dat"));
 
-		/* Restore transient data after saving */
-		$this->transient = $transient_save;
-		$this->photos = $transient_photos;
+		    /* Restore transient data after saving */
+		    $this->transient = $transient_save;
+		    $this->photos = $transient_photos;
 
-		/* Create the new album serial file */
-		if ($this->updateSerial) {
+		    /* Create the new album serial file */
+		    if ($this->updateSerial) {
 			$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
 			if ($fd = fs_fopen($serial, "w")) {
-				/* This space intentionally left blank */
-				fwrite($fd, trim($this->tsilb));
-				fclose($fd);
+			    /* This space intentionally left blank */
+			    fwrite($fd, trim($this->tsilb));
+			    fclose($fd);
 			}
 
 			/* Update the master serial file */
 			if ($fd = fs_fopen($gallery->app->albumDir . "/serial.dat", "w")) {
-				fwrite($fd, time() . "\n");
-				fclose($fd);
+			    fwrite($fd, time() . "\n");
+			    fclose($fd);
 			}
 			$this->updateSerial = 0;
+		    }
 		}
 
 		return $success;

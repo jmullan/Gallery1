@@ -1,3 +1,17 @@
+2003-09-03 Bharat Mediratta <bharat@vasoftware.com> 1.4-RC3-cvs-b6
+
+	* Worked around a PHP serialization bug where serialize() stores 
+	  decimal values with commas in de_DE, but unserialize() can't handle
+	  that format.  To avoid this issue, we don't use decimal values. This
+	  also turned up an issue in Album::save() where if we failed to save
+	  photos.dat we'd continue onwards and try to save album.dat (including
+	  the photos data there), when instead we should fail.
+		- Removed file size rounding code from classes/Image.php
+		- Adjusted move_photo.php to expect file sizes in bytes
+		- Improved classes/Album.php's save() method
+
+	* Fixed minor HTML typo in user_preferences.php
+
 2003-09-02  Jens Tkotz <jens@peino.de> 1.4-RC3-cvs-b5
 
 	* Language Update: German (de_DE)
