@@ -10,6 +10,7 @@ $common_messages["getting-netpbm"] =
 			"if you don't have root access on your box!  If Gallery does not have the ".
 			"specific binaries for your hardware/software combination post a request ".
 			"On the Gallery website and we'll build them for you.";
+
 			
 $common_messages["fail-netpbm-partial"] =
 			"I've found part of NetPBM, but some critical components " .
@@ -96,6 +97,21 @@ $checklist = array(
 			"<p><b> If NetPBM is installed and Gallery isn't finding it automatically " .
 			"that's OK -- that just means you'll have to specify the path to NetPBM " .
 			"by hand on the following page </b>",
+	),
+	"exif" => array(
+		"optional" => 1,
+		"desc" => "Check to see if jhead is installed so that " .
+			"Gallery can examine EXIF headers embedded in images " .
+			"created with most digital cameras.",
+		"func" => "check_exif",
+		"fail-exif" => "I can't find jhead.  If it's installed and not in " .
+			"the path of the webserver user that's OK -- you can specify the " .
+			"path to jhead by hand on the following page.  If it's not " .
+			"installed, you can install it yourself.  " .
+			"jhead is a public domain EXIF parser. Source, linux binaries, and " .
+			"windows binaries can be found at " .
+			"<a href=http://www.sentex.net/~mwandel/jhead/index.html>the jhead " .
+			"homepage</a>.",
 	)
 );
 
@@ -141,6 +157,13 @@ $constants = array(
 	"unzip" => array(
 		"desc" => "The filesystem path to the 'unzip' binary",
 		"value" => locateFile("unzip"),
+		"must-be-file" => 1,
+		"must-be-executable" => 1,
+		"optional" => 1
+	),
+	"use_exif" => array(
+		desc => "The filesystem path to the 'jhead' exif parser (optional)",
+		"value" => locateFile("jhead"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
 		"optional" => 1
@@ -250,6 +273,6 @@ $defaults = array(
 	"albumsPerPage" => array(
 		desc => "How many albums should be displayed per Gallery page?",
 		value => "5",
-	),
+	)
 );
 ?>

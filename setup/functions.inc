@@ -128,6 +128,29 @@ function check_mod_rewrite()
 	return array($success, $fail);
 }
 
+function check_exif($location="")
+{
+	global $app;
+
+	$fail = array();
+	$success = array();
+
+	$bin = "jhead";
+
+    if ($location) {
+		$d = locateDir(bin, $location);
+	} else {
+		$d = locateDir($bin, $app ? $app->pnmDir : "");
+	}
+	if (!$d) {
+		$fail["fail-exif"] = "Could not locate jhead";
+	} else {
+		$success[] = "jhead binary located";
+	}
+
+	return array($success, $fail);
+}
+
 function check_graphics($location="")
 {
 	global $app;
