@@ -271,9 +271,13 @@ if ($numPhotos) {
 	}
 } else {
 ?>
-	<tr bgcolor=#333333>
-	<td colspan=$rows align=center>
+
+	<td colspan=$rows align=center class="headbox">
+<? if (isCorrectPassword($edit)) { ?>
 	<span class="head">Hey! Add some photos.</span> 
+<? } else { ?>
+	<span class="head">This album is empty.</span> 
+<? } ?>
 	</td>
 	</tr>
 <?
