@@ -1,3 +1,13 @@
+2004-05-30  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b159
+
+	* Bug 921262:  Add -trim to jpegtran rotation options to prevent
+	  artifacting when images don't match the "normal" dimensions
+
+	* Bug 852395:  If the user navigates to a new album while editing 
+	  captions, throw an error and abort changes.  This *could* be adapted
+	  to just load the correct album, however if they've navigated, we
+	  don't know if they have modified that album or not.
+
 2004-05-28  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b158
 
 	* Change: Better detection of which pubDate to use for RSS feeds

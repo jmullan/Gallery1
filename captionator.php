@@ -43,6 +43,13 @@ if (!isset($perPage)) {
 #-- save the captions from the previous page ---
 if (isset($save) || isset($next) || isset($prev)) {
 
+    if ($captionedAlbum != $gallery->album->fields['name']) {
+        echo gallery_error(_("Captioned album does not match current album - aborting changes!"));
+	echo '<br><br>';
+	echo '<input type="submit" onclick="window.location=\'' . makeAlbumUrl($captionedAlbum) . '\'" value="Exit">';
+        exit;
+    }
+
     $i = 0;
     $start = ($page - 1) * $perPage + 1;
     while ($i < $start) {
@@ -81,7 +88,7 @@ if (isset($save) || isset($next) || isset($prev)) {
 }
 
 if (isset($cancel) || isset($save)) {
-    header("Location: " . makeGalleryHeaderUrl("view_album.php"));
+    header("Location: " . makeAlbumHeaderUrl($captionedAlbum));
     return;
 }
 
@@ -191,6 +198,7 @@ includeLayout('navtableend.inc');
 <?php echo makeFormIntro("captionator.php", array("method" => "POST")) ?>
 <input type="hidden" name="page" value="<?php echo $page ?>">
 <input type="hidden" name="perPage" value="<?php echo $perPage ?>">
+<input type="hidden" name="captionedAlbum" value="<?php echo $gallery->album->fields['name']; ?>">
 
 <div align="right">
 	<input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">

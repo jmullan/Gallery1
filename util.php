@@ -777,7 +777,7 @@ function rotate_image($src, $dest, $target, $type) {
 
 		$path = $gallery->app->use_jpegtran;
 		// -copy all ensures all headers (i.e. EXIF) are copied to the rotated image
-		exec_internal(fs_import_filename($path, 1) . " $args -copy all -outfile $outFile $srcFile");
+		exec_internal(fs_import_filename($path, 1) . " $args -trim -copy all -outfile $outFile $srcFile");
 	} else {
 		switch($gallery->app->graphics)
 		{
