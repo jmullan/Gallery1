@@ -45,17 +45,27 @@ function make_attrs($attrList) {
 }
 
 function make_fields($key, $arr) {
-	$col1 = $arr["prompt"];
+	if (isset($arr["prompt"])) {
+		$col1 = $arr["prompt"];
+	} else {
+		$col1 = "";
+	}
 	if (isset($arr["choices"])) {
 		$col2 = form_choice($key, $arr);
 	} else if (isset($arr["multiple_choices"])) {
 		$col2 = form_multiple_choice($key, $arr);
 	} else if (!strcmp($arr["type"], "textarea")) {
 		$col2 = form_textarea($key, $arr);
-	} else {
+	} else if (isset($arr["type"]) && $arr["type"] == "text") {
 		$col2 = form_input($key, $arr);
+	} else {
+		$col2 ="";
 	}
-	$col3 = $arr["desc"];
+	if (isset($arr["desc"])) {
+		$col3 = $arr["desc"];
+	} else {
+		$col3 = "";
+	}
 	$col4 = isset($arr["type"]) ?  $arr["type"] : NULL;
 	return array($col1, $col2, $col3,$col4);
 }
@@ -330,7 +340,7 @@ function check_graphics($location="", $graphtool = "")
 		 * If we can't find the primary file, look for the fallback file
 		 * instead.
 		 */
-		if (!$d && $fallback[$bin]) {
+		if (!$d && isset($fallback[$bin])) {
 			$newbin = $fallback[$bin];
 			if ($location) {
 				$d = locateDir($newbin, $location, 1);
@@ -695,7 +705,7 @@ function config_maybe_locales() {
 			"key" => $key,
 			"type" => "block_element",
 			"choices" => $choices,
-			"value" => $choices[0]);
+			"value" => current($choices));
 
 			
         }
@@ -732,7 +742,7 @@ function config_maybe_locales() {
 			"key" => $key,
 			"type" => "block_element",
 			"choices" => $choices,
-			"value" => $choices[0]);
+			"value" => current($choices));
 
 			
         }

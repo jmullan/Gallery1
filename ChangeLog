@@ -1,6 +1,12 @@
+2003-08-04  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b95
+	
+	* Code tweaked to reduce warnings in setup when error_reporting(E_ALL) 
+	  is used
+
 2003-08-04  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b94
 	
-	* More warnings removed.
+	* Code tweaked to reduce warnings in setup when error_reporting(E_ALL) 
+	  is used
 
 2003-08-05  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b93
 
@@ -12,14 +18,14 @@
 	  as this is causing a bunch of notices and may cause more trouble
 	  than it's worth
 
->>>>>>> 1.443
 2003-08-04  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b91
 
 	* Remove warnings I introduced in -b89
 
 2003-08-04  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b90
 
-	* removed warnings I introduced.
+	* Code tweaked to reduce warnings in setup when error_reporting(E_ALL) 
+	  is used
 
 2003-08-04  Andrew Lindeman <joyoflinux@yahoo.com> 1.3.5-cvs-b89
 
@@ -27,8 +33,9 @@
 
 2003-08-04  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b88
 
-	* strip slashes from title, summary, extra fields if magic quotes are 
-	  on, as suggested by BorgKing.
+	* Strip slashes from title, summary, extra fields if magic quotes are 
+	  on, as suggested by BorgKing.  This should improve behaviour when
+	  magic quotes are on.
 
 2003-08-01  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b87
 
@@ -37,7 +44,7 @@
 
 2003-08-01  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b86
 	
-	* latest french update from curio
+	* Latest french update from curio.  First complete french version.
 
 2003-08-02  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b85
 
@@ -59,7 +66,8 @@
 
 2003-08-01  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b82
 
-	* Stop config items appearing if they are the only choice
+	* Pulldowns were appearing in setup with only one choice.  These are 
+	  replaced with hidden input fields.
 
 2003-08-01  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b81
 
@@ -94,11 +102,13 @@
 
 	* removed stray "?" in sort_album.php
 
-	* made drawSelect able to handle multiple selections
+	* made drawSelect able to handle multiple selections (no behaviour 
+	  change to existing code)
 
-	* made printAlbumOptionList able to produce a list of readable files
+	* made printAlbumOptionList able to produce a list of readable files 
+         (no behaviour change to existing code)
 
-	* modified ml_pulldown for offline browsing
+	* ML pull down no longer appears on offline mode.
 
 2003-07-31  Jens Tkotz <jens@peino.de> 1.3.5-cvs-b74
 
@@ -124,7 +134,7 @@
 
 2003-07-31  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b71
 
-	* removed $_GET & $_SERVER
+	* removed $_GET & $_SERVER as they are not available before PHP 4.1.0
 
 2003-07-31  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b70
 

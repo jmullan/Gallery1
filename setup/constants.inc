@@ -82,7 +82,7 @@ foreach ($constants as $key => $val) {
 	} else {
 		echo evenOdd_row(make_fields($key, $val),
 				$i++ % 2);
-		if (!isset($val["type"]) || ($val["type"] !== "block_end" )) {
+		if (!isset($val["type"]) || ($val["type"] !== "block_element" )) {
 			echo "<tr><td colspan=2> &nbsp; </td></tr>";
 		}
 	}
