@@ -52,11 +52,13 @@ session_start();
 
 /*
  * Are we resuming an existing session?  Determine this by checking
- * to see if a pre-existing session variable is already associated
- * (before we register it, below).  
+ * to see if the session container variable is already set.  If not, then
+ * create the appropriate container for it.
  */
 $sessionVar = $gallery->app->sessionVar . "_" . md5($gallery->app->userDir);
-if (session_is_registered($sessionVar)) {
+session_register($sessionVar);
+
+if (isset($$sessionVar)) {
 	/* Get a simple reference to the session container (for convenience) */
 	$gallery->session =& $$sessionVar;
 
