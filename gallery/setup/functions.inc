@@ -614,11 +614,6 @@ function unavailable_locales () {
 	return all_locales(2);
 }
 
-function vd($x, $string="") {
-	print "\n$string <pre>";
-	var_dump($x);
-	print "</pre>\n";
-}
 function config_maybe_locales() {
 	$results=array();
 	$maybe=maybe_locales();
