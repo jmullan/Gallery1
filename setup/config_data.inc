@@ -293,7 +293,7 @@ $constants =  array_merge(
 	"geeklog_dir" => array(
 		"prompt" => _("GeekLog Dir"),
 		"optional" => 1,
-		"desc" => _("If you choosed Geeklog above, please enter the location of the GeekLog public_html."),
+		"desc" => _("If you chose Geeklog above, please enter the location of the GeekLog public_html directory."),
 		"attrs" => array("size" => 80),
 		"type" => "text",
 		"value" => "/path/to/geeklog/public_html"

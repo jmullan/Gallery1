@@ -129,7 +129,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 $adminText = "<span class=\"admin\">";
 $toplevel_str= pluralize_n($numAlbums, ($numAccess != $numAlbums) ? _("1 top-level album") : _("1 album"), ($numAccess != $numAlbums) ? _("top-level albums") : _("albums"), _("No albums"));
 $total_str= sprintf(_("%d total"), $numAccess); 
-$image_str= pluralize_n($numPhotos, _("1 image"), _("images"), _("no image"));
+$image_str= pluralize_n($numPhotos, _("1 image"), _("images"), _("no images"));
 $page_str= pluralize_n($maxPages, _("1 page"), _("pages"), _("no pages"));
 
 if (($numAccess != $numAlbums) && $maxPages > 1) {

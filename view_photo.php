@@ -315,12 +315,17 @@ if (!$gallery->album->isMovie($id)) {
 
 	if ($gallery->user->canDeleteFromAlbum($gallery->album) || 
 	    ($gallery->album->getItemOwnerDelete() && $gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
-		$nextId = ($index >= $numPhotos ? $index - 1 : $index);
-		if($gallery->album->getAlbumName($nextId+1)) {
-			$nextId="";
+		// determine index of next item (after deletion)
+		// (we move to previous image if we're at the end)
+		$nextIndex = ($index >= $numPhotos ? $index-1 : $index);
+		// make sure that the "next" item isn't an album
+		if ($gallery->album->getAlbumName($index >= $numPhotos ? $nextIndex : $nextIndex+1)) {
+			$nextId='';
+		} else {
+			$nextId = $gallery->album->getPhotoId($nextIndex);
 		}
 		$adminCommands .= '&nbsp;' . popup_link("[" . _("delete photo") ."]", 
-			"delete_photo.php?id=$id&id2=$nextId", false, true, 500, 500, 'admin');
+			"delete_photo.php?id=$id&nextId=$nextId", false, true, 500, 500, 'admin');
 	}
 
 	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes") &&

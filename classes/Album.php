@@ -1081,7 +1081,8 @@ class Album {
 		if (($needToRehighlight) || ($forceResetHighlight==1)){
 			if ($this->numPhotos(1) > 0) {
 				$newHighlight = $this->getPhoto(1);
-                		if (!$newHighlight->isMovie()) {
+				// make sure not to try on a movie or subalbum
+                		if (!$newHighlight->isMovie() && !$newHighlight->isAlbum()) {
 					$this->setHighlight(1);
 				}
 			}

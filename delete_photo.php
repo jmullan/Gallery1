@@ -63,8 +63,8 @@ if (isset($confirm) && isset($id)) {
 	$gallery->album->deletePhoto($index);
 	$gallery->album->save(array(i18n("%s removed"), $id));
 
-	if (isset($id2) && $id2 != 0 && $id2 = $gallery->album->getPhotoId($id2)) {
-	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName, $id2));
+	if (isset($nextId) && !empty($nextId)) {
+	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName, $nextId));
 	} else {
 	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName));
 	}
