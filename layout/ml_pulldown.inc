@@ -23,7 +23,7 @@ if($gallery->app->show_flags !='yes') {
 
 	// we have 2+1 ways: phpnuke, postnuke or standalone
 	if ($GALLERY_EMBEDDED_INSIDE) {
-		$urlTemp = ($HTTP_GET_VARS['include'] ? $HTTP_GET_VARS['include'] : '');        
+		$urlTemp = (!empty($HTTP_GET_VARS['include']) ? $HTTP_GET_VARS['include'] : '');        
 	} else {
         	$urlTemp = end(explode("/", $HTTP_SERVER_VARS["PHP_SELF"]));
 	}

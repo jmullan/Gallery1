@@ -1247,7 +1247,10 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $r
 				// value=0, but notify them that this is the current location
 				echo "<option value=0>-- $myAlbumTitle (". _("current location"). ")</option>\n";
 			} else {
-				echo "<option value=\"$myAlbumName\">-- $myAlbumTitle</option>\n";
+				if (sizeof($gallery->album->fields["votes"]) && $gallery->album->pollsCompatible($myAlbum)) {
+					$myAlbumTitle .= " *";
+				}
+			       	echo "<option value=\"$myAlbumName\">-- $myAlbumTitle</option>\n";
 			}
 		}
 
@@ -1262,7 +1265,7 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $r
 			// want to move it into its own album tree
 
 		} else {
-			printNestedVals(1, $myAlbumName, $myAlbumTitle, $movePhoto, $readOnly);
+			printNestedVals(1, $myAlbumName, $movePhoto, $readOnly);
 		}
 	}
 
@@ -1270,7 +1273,7 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $r
 }
 
 
-function printNestedVals($level, $albumName, $val, $movePhoto, $readOnly) {
+function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 	global $gallery, $index;
 	
 	$myAlbum = new Album();
@@ -1305,7 +1308,7 @@ function printNestedVals($level, $albumName, $val, $movePhoto, $readOnly) {
 				// do nothing -- don't allow album move into its own tree
 
 			} else {
-				printNestedVals($level + 1, $myName, $val2, $movePhoto, $readOnly);
+				printNestedVals($level + 1, $myName, $movePhoto, $readOnly);
 			}
 		}
 	}
@@ -1569,6 +1572,9 @@ function printChildren($albumName,$depth=0) {
 	}
 }
 
+/* this function left in place to support patches that use it, but please use
+   lastCommentDate functions in classes Album and AlbumItem.
+ */
 function mostRecentComment($album, $i)
 {
         $id=$album->getPhotoId($i); 
@@ -2582,4 +2588,19 @@ function getOS () {
 	}
 }
 
+/* Formats a nice string to print below an item with comments */
+function lastCommentString($lastCommentDate, &$displayCommentLegend) {
+	global $gallery;
+	if ($lastCommentDate  <= 0) {
+		return  "";
+	}
+	if ($gallery->app->comments_indication_verbose=="yes") {
+		$ret = "<br>".sprintf(_("Last comment %s."), 
+				strftime($gallery->app->dateString, $lastCommentDate));
+	} else {
+		$ret= "<span class=error>*</span>";
+		$displayCommentLegend = 1;
+	}
+	return $ret;
+}
 ?>

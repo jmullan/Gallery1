@@ -128,8 +128,6 @@ if ($Vote) {
        saveResults($votes);
 }
 
-
-
 $bordercolor = $gallery->album->fields["bordercolor"];
 
 $imageCellWidth = floor(100 / $cols) . "%";
@@ -731,7 +729,11 @@ if ($numPhotos) {
 				<br>
 				<span class="fineprint">
 				   <?php echo _("Changed: ") ?><?php echo $myAlbum->getLastModificationDate() ?>.  <br>
-				   <?php echo _("Contains: ") ?><?php echo pluralize_n($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), _("item"), _("items"), _("0 items")) ?>.<br>
+				   <?php echo _("Contains: ") ?><?php echo pluralize_n($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), _("item"), _("items"), _("0 items")) ?>.
+				   <?php if (!strcmp($gallery->album->fields["public_comments"], "yes")) {
+					   $lastCommentDate = $myAlbum->lastCommentDate();
+					   print lastCommentString($lastCommentDate, $displayCommentLegend);
+				   } ?><br>
 				   <?php if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) { ?>
 				   	<?php echo _("Viewed:") ?> <?php echo pluralize_n($myAlbum->getClicks(), _("time") , _("times"), _("0 times")) ?>.<br>
 				   <?php } ?>
@@ -746,10 +748,9 @@ if ($numPhotos) {
 				echo(nl2br($gallery->album->getCaption($i)));
 				echo($gallery->album->getCaptionName($i));
 				// indicate with * if we have a comment for a given photo
-				if ((!strcmp($gallery->album->fields["public_comments"], "yes")) && 
-				   ($gallery->album->numComments($i) > 0)) {
-					echo("<span class=error>*</span>");
-					$displayCommentLegend = 1;
+				if (!strcmp($gallery->album->fields["public_comments"], "yes")) {
+					$lastCommentDate = $gallery->album->itemLastCommentDate($i);
+					print lastCommentString($lastCommentDate, $displayCommentLegend);
 				}
 				echo("<br>");
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {

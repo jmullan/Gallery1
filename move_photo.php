@@ -60,7 +60,17 @@ if ($gallery->session->albumName && isset($index)) {
 
         if (isset($newAlbum)) {	// we are moving from one album to another
             	$postAlbum = $albumDB->getAlbumbyName($newAlbum);
-	    	if ($gallery->album->fields['name'] != $postAlbum->fields['name']) {
+	       	if ($gallery->album->fields['name'] != $postAlbum->fields['name']) {
+		       	$votes_transferable=
+			       	$gallery->album->pollsCompatible($postAlbum);
+			$vote_id=$gallery->album->getVotingIdByIndex($index);
+
+		       	if (isset($gallery->album->fields["votes"][$vote_id]) && 
+					$votes_transferable) {
+			       	$votes=$gallery->album->fields["votes"][$vote_id];
+		       	} else {
+			       	$votes=NULL;
+		       	}
 			if ($gallery->album->isAlbumName($index)) { // moving "album" to another location
 				if ($newAlbum == "ROOT") { // moving "album" to ROOT location
 					$myAlbum = $gallery->album->getNestedAlbum($index);
@@ -72,6 +82,9 @@ if ($gallery->session->albumName && isset($index)) {
 					$myAlbum = $gallery->album->getNestedAlbum($index);
 					if ($postAlbum != $myAlbum) { // we don't ever want to point an album back at itself!!!
 						$postAlbum->addNestedAlbum($gallery->album->isAlbumName($index)); // copy "album" to new album
+						if ($votes) {
+							$postAlbum->fields["votes"]["album.".$myAlbum->fields["name"]]=$votes;
+						}
 						$myAlbum->fields[parentAlbumName] = $postAlbum->fields[name];
 
 						// delete "album" from original album
@@ -83,8 +96,6 @@ if ($gallery->session->albumName && isset($index)) {
 				}
 			} else { // moving "picture" to another album
 				$index = $startPhoto; // set the index to the first photo that we are moving.	
-				$votes_transferable=
-					$gallery->album->pollsCompatible($postAlbum);
 
 				while ($startPhoto <= $endPhoto) {
 					if (!$gallery->album->isAlbumName($index)) {
@@ -110,12 +121,6 @@ if ($gallery->session->albumName && isset($index)) {
 
 						$id=$gallery->album->getPhotoId($index);
 
-						if (isset($gallery->album->fields["votes"][$id]) && 
-								$votes_transferable) {
-							$votes=$gallery->album->fields["votes"][$id];
-						} else {
-							$votes=NULL;
-						}
 
 						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, 
 								$gallery->album->getCaption($index), 
@@ -187,6 +192,10 @@ if ($gallery->session->albumName && isset($index)) {
 					$startPhoto++;
 	    			} //end while
 			} //end else
+		       	if ($votes) {
+			       	unset($gallery->album->fields["votes"][$vote_id]);
+				$gallery->album->save();
+		       	}
 		} //end if ($gallery->album != $postAlbum)
 		dismissAndReload();
 		return;
@@ -305,15 +314,16 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 </tr>
 </table>
 <?php
-	if (sizeof($gallery->album->fields["votes"]> 0)) {
-		if ($gallery->album->fields["poll_type"] == "rank") {
-			echo "<font color=red>". _("Note: items that have votes will lose these votes when moved to another album") . "</font>"; // can't move rank votes, doesn't  make sense.
-		} else {
-			echo "<font color=red>". _("Note: items that have votes will lose these votes if moved to an album with in compatible polling implemented.") . "</font>";
-		}
-	}
-
 } // end else
+if (sizeof($gallery->album->fields["votes"])> 0) {
+	print "<br>";
+       	if ($gallery->album->fields["poll_type"] == "rank") {
+	       	echo "<font color=red>". _("Note: items that have votes will lose these votes when moved to another album") . "</font>"; // can't move rank votes, doesn't  make sense.
+      	} else {
+	       	echo "<font color=red>". sprintf(_("Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an \"%s\"."), "*") . "</font>";
+       	}
+}
+
 if (!$uptodate) {
 	print '<span class="error"> <br>' . sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>  ' .
 	'<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>.<p>';

@@ -135,8 +135,7 @@ $checklist = array(
 		"func" => "check_jpegtran",
 		"fail-jpegtran" => sprintf(_("I can't find jpegtran.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jpegtran by hand on the following page.  If it's not installed, you can install it yourself.  jpegtran is a freely distributable tool distributed by the Independent JPEG Group as part of libjpeg.  Source may be found at %sthe IJG homepage%s.  Binaries may be found at %sthe JPEG club website%s or in the libjpeg package of Linux distributions."),
 			'<a href="http://www.ijg.org">', '</a>',
-			'<a href="http://jpegclub.org/">', '</a>'). 
-			newIn("1.4"),
+			'<a href="http://jpegclub.org/">', '</a>'), 
 		"open-basedir-note" => $common_messages["open-basedir-active"]
 	),	
 	"gettext" => array (
@@ -395,8 +394,7 @@ $constants =  array_merge(
 		"prompt" => "Jpegtran",
 		"desc" => sprintf(_("The filesystem path to the 'jpegtran' utility.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."), 
 			'<i>/usr/local/bin/jpegtran</i>', 
-			'<i>c:\\bin\\jpegtran.exe</i>') .
-			newIn("1.4"),
+			'<i>c:\\bin\\jpegtran.exe</i>'),
 		"value" => locateFile("jpegtran"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
@@ -420,8 +418,7 @@ $constants =  array_merge(
 	),
 	"ML_mode" => array(
 		"prompt" => _("Multi language mode"), 
-		"desc" => _("Gallery has three multi language modes.  These affect the language that a user will see when visiting the site") .
-			newIn("1.4"),
+		"desc" => _("Gallery has three multi language modes.  These affect the language that a user will see when visiting the site"),
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"choices" => array(
 				1 => "1: " . _("Gallery is only displayed in one language"), 
@@ -434,8 +431,7 @@ $constants =  array_merge(
 		"prompt" => _("Available languages in mode 3 and user preferences"), 
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
-		"desc" => _("These languages will be available as user choices in a pulldown menu or flags, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3.") .
-			newIn("1.4"),
+		"desc" => _("These languages will be available as user choices in a pulldown menu or flags, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3."), 
 		"multiple_choices" => gallery_languages(),
 		"value" => array_keys(gallery_languages()),
 		"enabled" => $elawisyl
@@ -510,6 +506,38 @@ $constants = array_merge($constants,
 		"value" => "20",
 		"attrs" => array("size" => 5)
 	),
+       	"separator_comments" => array (
+		       	"type" => "separator",
+		       	"title" => _("Comments"),
+			"desc" => newIn("1.4.1") 
+			),
+	"comments_indication" => array(
+		       	"prompt" => _("Indicate if there are comments available"),
+		       	"desc" => "<dl><dt>"._("Off")."</dt><dd>" . 
+		       		_("No indication that an item has comments.") .
+		      		"</dd><dt>"._("Photos")."</dt><dd>" . 
+		       		_("Images that have comments will be marked.") .
+		      		"</dd><dt>"._("Albums")."</dt><dd>" . 
+		       		_("Albums and sub-albums that have comments will be marked.") .
+		      		"</dd><dt>"._("Both")."</dt><dd>" . 
+		       		_("Images and albumss that have comments will be marked.") .
+		      		"</dl>" .
+				newIn("1.4.1"),
+		       	"choices" => array(
+			       	"off" => _("Off"),
+			       	"photos" => _("Photos"),
+			       	"albums" => _("Albums"),
+			       	"both" => _("Both"),
+				),
+		       	"value" => "photos",
+			),
+	"comments_indication_verbose" => array(
+		       	"prompt" => _("Display date of last comment?"),
+		       	"desc" => sprintf(_("If an item has comments, display date of last comment, rather than a %s."), '"*"') .
+				newIn("1.4.1"),
+			"choices" => array("yes" => _("yes"), "no" => _("no")),
+		       	"value" => "no",
+			),
 	"separator7" => array (
 		"type" => "separator",
 		"title" => _("Advanced"),
@@ -627,8 +655,8 @@ $defaults = array(
 	),
 	"resize_file_size" => array(
 		"prompt" => _("Resized images file size"),
-		"desc" => _("The default target size (in kilobyte) of resized JPEG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size.").
-			  newIn("1.4"),
+		"desc" => _("The default target size (in kilobyte) of resized JPEG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."),
+			  
 		"value" => 0,
 		"optional" => 1,
 		"type" => "text"
@@ -641,8 +669,7 @@ $defaults = array(
 	),
 	"add_to_beginning" => array(
 		"prompt" => _("Add to beginning"),
-		"desc" => _("New images added to beginning rather than end of albums") .
-			  newIn("1.4"),
+		"desc" => _("New images added to beginning rather than end of albums"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
@@ -709,22 +736,19 @@ $defaults = array(
         ),
 	"item_owner_modify" => array(
 		"prompt" => _("Photo owner modification"),
-		"desc" => _("Allow photo owners to edit and rotate/flip their own photos?") .
-			  newIn("1.4"),
+		"desc" => _("Allow photo owners to edit and rotate/flip their own photos?"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes",
 	),
 	"item_owner_delete" => array(
 		"prompt" => _("Photo owner deletion"),
-		"desc" => _("Allow photo owners to delete their own photos?") .
-			  newIn("1.4"),
+		"desc" => _("Allow photo owners to delete their own photos?"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes",
 	),
 	"item_owner_display" => array(
 		"prompt" => _("Photo owner display"),
-		"desc" => _("Display the name of photo owners with the caption?") .
-			  newIn("1.4"),
+		"desc" => _("Display the name of photo owners with the caption?"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),

@@ -69,6 +69,7 @@ $navigator["fullWidth"] = 100;
 $navigator["widthUnits"] = "%";
 $navigator["bordercolor"] = $borderColor;
 
+$displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page 
 ?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -376,7 +377,10 @@ if ($gallery->user->canWriteToAlbum($gallery->album) &&
 
 <?php
 }
+$lastCommentDate = $gallery->album->lastCommentDate();
+print lastCommentString($lastCommentDate, $displayCommentLegend);
 ?>
+
   </span>
   </td>
 <?php if (!strcmp($gallery->app->showAlbumTree, "yes")) { ?>
@@ -394,6 +398,10 @@ if ($gallery->user->canWriteToAlbum($gallery->album) &&
 ?>
 </table>
 <!-- album table end -->
+<?php if ($displayCommentLegend) { //display legend for comments ?>
+<span class=error>*</span><span class=fineprint> <?php echo _("Comments available for this item.") ?></span>
+<br><br>
+<?php } ?>
 <!-- bottom nav -->
 <?php
 include($GALLERY_BASEDIR . "layout/navigator.inc");

@@ -129,6 +129,39 @@ class Album {
 		else return 1;
 	}
 
+	function itemLastCommentDate($i) {
+	       	$photo = $this->getPhoto($i);
+	       	if ($photo->isAlbumName) {
+		       	$album = $this->getNestedAlbum($i);
+		       	return $album->lastCommentDate();
+	       	} else {
+		       	return $photo->lastCommentDate();
+	       	}
+	}
+	function lastCommentDate() {
+		global $gallery;
+		if ($gallery->album->fields["public_comments"] == "no") {
+			return -1;
+		}
+		if ($gallery->app->comments_indication != "albums" && 
+				$gallery->app->comments_indication != "both") {
+			return -1;
+		}
+	       	$count = $this->numPhotos(1);
+		$mostRecent = -1;
+	       	for ($i = 1; $i <= $count; $i++) {
+			$subMostRecent=$this->itemLastCommentDate($i);
+		       	if ($subMostRecent > $mostRecent) {
+			       	$mostRecent = $subMostRecent;
+			       	if ($gallery->app->comments_indication_verbose == "no") {
+				       	break;
+			       	}
+
+			}
+	       	}
+		return $mostRecent;
+	}
+
 	function getNestedAlbum($index) {
 		
 		$albumName = $this->isAlbumName($index);
@@ -732,7 +765,7 @@ class Album {
 		}
 
 		if ($votes) {
-			$this->fields["votes"][$name]=$votes;
+			$this->fields["votes"]["item.$name"]=$votes;
 		}
 
 		return 0;
@@ -1659,6 +1692,16 @@ class Album {
 		return $index;
 																			 
 	}
+	function getVotingIdByIndex($index) {
+		$albumName = $this->isAlbumName($index);
+		if ($albumName) {
+			$vote_id = "album.$albumName";
+		} else {
+			$vote_id = "item.".$this->getPhotoId($index);
+		}
+		return $vote_id;
+	}
+
 	function getSubAlbum($index) {
 		$myAlbum = new Album();
 		$myAlbum->load($this->isAlbumName($index));

@@ -561,6 +561,19 @@ class AlbumItem {
 		}
 		return null;
 	}
+	function lastCommentDate() 
+	{
+		global $gallery;
+		if ($gallery->app->comments_indication != "photos" && 
+				$gallery->app->comments_indication != "both") {
+			return -1;
+		}
+		if ($this->numComments() == 0) {
+			return -1;
+		}
+		$comment=$this->getComment($this->numComments());
+		return $comment->datePosted; // returns the time()
+       	}
 }
 
 ?>

@@ -63,6 +63,23 @@ if ($GALLERY_REWRITE_OK) {
 	}
 }
 
+/*
+ * Write the user's htaccess.inc file, if present.
+ */
+$include_file = "../htaccess.inc";
+if (fs_file_exists($include_file)) {
+	$htaccess = file($include_file);
+	if ($fd = @fs_fopen($outfile, "a")) {
+		foreach ($htaccess as $line) {
+			eval("\$line = \"$line\";");
+			fwrite($fd, $line);
+		}
+		fclose($fd);
+	} else {
+		fail($outfile);	
+		return;
+	}
+}
 
 /*
  * Don't require UserDB before we've written and included config.php or it will
