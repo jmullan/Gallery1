@@ -2271,6 +2271,10 @@ function initLanguage() {
 
 	if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
 		$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
+		$spos=strpos($lang[0],";");
+		if ($spos >0) {
+			$lang[0]=substr($lang[0],0,$spos);
+		}
 		$lang_pieces=explode ("-",$lang[0]);
 
 		if (strlen($lang[0]) ==2) {
