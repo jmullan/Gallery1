@@ -56,7 +56,14 @@ if (!strcmp($album->fields["resize_size"], "off")) {
 	$mainWidth = $album->fields["resize_size"];
 }
 }
-$bordercolor = $album->fields["bordercolor"];
+#-- if borders are off, just make them the bgcolor ----
+if (!strcmp($album->fields["border"], "off")) {
+        $bordercolor = $album->fields["bgcolor"];
+        $borderwidth = 4;
+} else {
+        $bordercolor = $album->fields["bordercolor"];
+        $borderwidth = $album->fields["border"];
+}
 
 ?>
 
@@ -119,12 +126,16 @@ if ($last) {
 
                         echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
                         echo("<tr bgcolor=$bordercolor>");
-                        echo("<td height=4 width=4><img src=../images/pixel_trans.gif></td>");
-                        echo("<td height=4><img src=../images/pixel_trans.gif></td>");
-                        echo("<td height=4 width=4><img src=../images/pixel_trans.gif></td>");
+                        echo("<td height=$borderwidth width=$borderwidth><img src=../images/pixel_trans.gif></td>");
+                        echo("<td height=$borderwidth><img src=../images/pixel_trans.gif></td>");
+                        echo("<td height=$borderwidth width=$borderwidth><img src=../images/pixel_trans.gif></td>");
                         echo("</tr>");
                         echo("<tr>");
-                        echo("<td bgcolor=$bordercolor width=4>&nbsp;</td>");
+			echo("<td bgcolor=$bordercolor width=$borderwidth>");
+			for ($k=0; $k<$borderwidth; $k++) {
+				echo("<img src=../images/pixel_trans.gif>");
+			}
+                        echo("</td>");
                         echo("<td>");
 
 if (!$album->isMovie($index)) {
@@ -145,13 +156,17 @@ if ($openAnchor) {
  	$openAnchor = 0;
 }
 
+			echo("</td>");
+			echo("<td bgcolor=$bordercolor width=$borderwidth>");
+			for ($k=0; $k<$borderwidth; $k++) {
+				echo("<img src=../images/pixel_trans.gif>");
+			}
                         echo("</td>");
-                        echo("<td bgcolor=$bordercolor width=4>&nbsp;</td>");
-                        echo("</tr>");
+			echo("</tr>");
                         echo("<tr bgcolor=$bordercolor>");
-                        echo("<td height=4 width=4><img src=../images/pixel_trans.gif></td>");
-                        echo("<td height=4><img src=../images/pixel_trans.gif></td>");
-                        echo("<td height=4 width=4><img src=../images/pixel_trans.gif></td>");
+                        echo("<td height=$borderwidth width=$borderwidth><img src=../images/pixel_trans.gif></td>");
+                        echo("<td height=$borderwidth><img src=../images/pixel_trans.gif></td>");
+                        echo("<td height=$borderwidth width=$borderwidth><img src=../images/pixel_trans.gif></td>");
                         echo("</tr>");
                         echo("</table>");
 

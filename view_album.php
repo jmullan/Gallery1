@@ -60,13 +60,14 @@ if ($album->fields["linkcolor"]) {
 	$bodyAttrs .= " link={$album->fields[linkcolor]}";
 }
 
+#-- if borders are off, just make them the bgcolor ----
 if (!strcmp($album->fields["border"], "off")) {
-	$border = 0;
+	$bordercolor = $album->fields["bgcolor"];
+	$borderwidth = 4;
 } else {
-	$border = $album->fields["border"];
+	$bordercolor = $album->fields["bordercolor"];
+	$borderwidth = $album->fields["border"];
 }
-$bordercolor = $album->fields["bordercolor"];
-$borderwidth = 4;
 
 $imageCellWidth = floor(100 / $cols) . "%";
 $fullWidth = $cols * $album->fields["thumb_size"]; 
@@ -174,7 +175,11 @@ if ($numPhotos) {
 			echo("<td height=$borderwidth width=$borderwidth><img src=images/pixel_trans.gif></td>");
 			echo("</tr>");
 			echo("<tr>");
-			echo("<td bgcolor=$bordercolor width=$borderwidth>&nbsp;</td>");
+			echo("<td bgcolor=$bordercolor width=$borderwidth>");
+			for ($k=0; $k<$borderwidth; $k++) {
+				echo("<img src=images/pixel_trans.gif>");
+			}
+			echo("</td>");
 			echo("<td>");
 
 			if ($album->isMovie($i)) {
@@ -187,7 +192,11 @@ if ($numPhotos) {
 					"</a>");
 			}
 			echo("</td>");
-			echo("<td bgcolor=$bordercolor width=$borderwidth>&nbsp;</td>");
+			echo("<td bgcolor=$bordercolor width=$borderwidth>");
+			for ($k=0; $k<$borderwidth; $k++) {
+				echo("<img src=images/pixel_trans.gif>");
+			}
+			echo("</td>");
 			echo("</tr>");	
 			echo("<tr bgcolor=$bordercolor>"); 
 			echo("<td height=$borderwidth width=$borderwidth><img src=images/pixel_trans.gif></td>");
