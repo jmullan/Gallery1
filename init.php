@@ -49,7 +49,10 @@ if (file_exists("setup") && is_readable("setup")) {
 /* Load defaults */
 require('version.php');
 require('config.php');
-require('classes.php');
+require('class_Album.php');
+require('class_Image.php');
+require('class_AlbumItem.php');
+require('class_AlbumDB.php');
 require('util.php');
 require('session.php');
 
