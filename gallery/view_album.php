@@ -274,7 +274,7 @@ if ($gallery->user->canWriteToAlbum($gallery->album) &&
 		$verb = _("%s is hidden");
 	}
 	if ($hidden) {
-		$adminText .= "(".sprintf($verb, $hidden).")";
+		$adminText .= " (".sprintf($verb, $hidden).")";
 	}
 } 
 $adminText .="</span>";

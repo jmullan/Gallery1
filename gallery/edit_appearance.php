@@ -226,7 +226,7 @@ if ($gallery->app->use_exif) {
 <br>
 <input type="submit" name="apply" value="<?php echo _("Apply") ?>">
 <input type=reset value="<?php echo _("Undo") ?>">
-<input type="button "name="close" value="<?php echo _("Close") ?>" onclick="parent.close()">
+<input type="button" name="close" value="<?php echo _("Close") ?>" onclick="parent.close()">
 
 </form>
 

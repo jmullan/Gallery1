@@ -55,8 +55,7 @@ if ($userfile_name) {
   <?php echo getStyleSheetLink() ?>
 
 </head>
-<body dir="<?php echo $gallery->direction ?>" onLoad='opener.hideProgressAndRe\
-load();'>
+<body dir="<?php echo $gallery->direction ?>" onLoad='opener.hideProgressAndReload();'>
 
 <?php
 if ($urls) {
