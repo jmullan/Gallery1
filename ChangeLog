@@ -1,3 +1,13 @@
+2004-05-22  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b137
+
+	* Change: Create watermark preview files with an incrementing number.
+	  This prevent an issue where the preview doesn't reload after modification
+	  due to smart browser caching.
+
+	  This change required addition of a generic glob() function for PHP < 4.3.0
+	  so that the old preview files can be removed when creating a new one, or
+	  when finalizing the watermark. (PHP >= 4.3 uses the native glob())
+
 2004-05-22  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b136
 
 	* Change: Watermarking code was missing some quotes around "checked"

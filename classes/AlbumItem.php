@@ -464,21 +464,25 @@ class AlbumItem {
 			return (0);
 		}
                 $name = $this->image->name;
+		foreach (glob($dir . "/$name.preview*.$type") as $oldpreview) {
+			unlink($oldpreview);
+		}
 		if ($preview) {
+			$previewtag = "preview" . time();
 			if (($previewSize == 0) && $this->isResized()) {
 				$src_image = "$dir/" . $this->image->resizedName . ".$type";
 			} else {
 				$src_image = "$dir/$name.$type";
 			}
-                        $retval = watermark_image($src_image, "$dir/$name.preview.$type",
+			$retval = watermark_image($src_image, "$dir/$name.$previewtag.$type",
                                           $gallery->app->watermarkDir."/$wmName",
                                           $gallery->app->watermarkDir."/$wmAlphaName",
                                           $wmAlign, $wmAlignX, $wmAlignY);
 			if ($retval) {
-                                list($w, $h) = getDimensions("$dir/$name.preview.$type");
+				list($w, $h) = getDimensions("$dir/$name.$previewtag.$type");
                                                                                                                            
                                 $high = new Image;
-                                $high->setFile($dir, "$name.preview", "$type");
+				$high->setFile($dir, "$name.$previewtag", "$type");
                                 $high->setDimensions($w, $h);
                                 $this->preview = $high;
 			}

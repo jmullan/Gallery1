@@ -3163,7 +3163,27 @@ if (!function_exists('array_search')) {
                         }
                 }
                 return NULL;
-        }
+	}
+}
+
+if (!function_exists('glob')) {
+	function glob($pattern) {
+		$path_parts = pathinfo($pattern);
+		$pattern = '^' . str_replace(array('*',  '?'), array('(.+)', '(.)'), $path_parts['basename'] . '$');
+		$dir = opendir($path_parts['dirname']);
+		while ($file = readdir($dir)) {
+			if (ereg($pattern, $file)) {
+				$result[] = "{$path_parts['dirname']}/$file";
+			}
+		}
+		closedir($dir);
+
+		// my changes here
+		if (isset($result))
+			return $result;
+
+		return (array)null;
+	} 
 }
 
 require (dirname(__FILE__) . '/lib/lang.php');
