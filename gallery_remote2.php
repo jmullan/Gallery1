@@ -357,7 +357,7 @@ function gr_new_album( &$gallery, &$response, &$newAlbumName, &$newAlbumTitle, &
 
 	global $GR_STAT;
 
-	if(isset($gallery->album)) {
+	if(isset($gallery->album) && isset($gallery->album->fields["name"])) {
 		$canAddAlbum = $gallery->user->canCreateSubAlbum($gallery->album);
 	} else {
 		$canAddAlbum = $gallery->user->canCreateAlbums();
