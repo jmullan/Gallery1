@@ -17,7 +17,11 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
+<<<<<<< Album.php
  * $Id$
+=======
+ * $Id$
+>>>>>>> 1.214.2.1
  */
 ?>
 <?php
@@ -1752,7 +1756,7 @@ class Album {
 
 	function setNestedProperties() {
 		for ($i=1; $i <= $this->numPhotos(1); $i++) {
-			if ($this->getAlbumName($i)) {
+			if ($this->isAlbum($i)) {
 				$nestedAlbum = new Album();
 				$nestedAlbum->load($this->getAlbumName($i));
 				$nestedAlbum->fields["bgcolor"] = $this->fields["bgcolor"];
@@ -1796,7 +1800,7 @@ class Album {
 
 	function setNestedExtraFields() {
 		for ($i=1; $i <= $this->numPhotos(1); $i++) {
-			if ($this->getAlbumName($i)) {
+			if ($this->isAlbum($i)) {
 				$nestedAlbum = new Album();
 				$nestedAlbum->load($this->getAlbumName($i));
 				$nestedAlbum->fields["extra_fields"] = $this->fields["extra_fields"];
@@ -1807,7 +1811,7 @@ class Album {
 	}
 	function setNestedPollProperties() {
 		for ($i=1; $i <= $this->numPhotos(1); $i++) {
-			if ($this->getAlbumName($i)) {
+			if ($this->isAlbum($i)) {
 				$nestedAlbum = new Album();
 			       	$nestedAlbum->load($this->getAlbumName($i));
 			       	$nestedAlbum->fields["poll_type"]=$this->fields["poll_type"];
@@ -1820,6 +1824,22 @@ class Album {
 
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedPollProperties();
+			}
+		}
+	}
+
+	function setNestedPermissions() {
+		for ($i=1; $i <= $this->numPhotos(1); $i++) {
+			if ($this->isAlbum($i)) {
+				$nestedAlbum = new Album();
+			       	$nestedAlbum->load($this->getAlbumName($i));
+
+				$nestedAlbum->fields['owner'] = $this->fields['owner'];
+				$nestedAlbum->fields['perms'] = $this->fields['perms'];
+
+				$nestedAlbum->save();
+				$nestedAlbum->setNestedPermissions();
+
 			}
 		}
 	}

@@ -105,13 +105,17 @@ if (isset($allUid) && isset($submit_viewComments) && strchr($submit_viewComments
         $changed++;
 }
 
-if ( isset($save) && $ownerUid) {
+if (isset($save) && $ownerUid) {
 	$gallery->album->setOwner($ownerUid);
 	$changed++;
 }
 
 if ($changed) {
 	$gallery->album->save(array(i18n("Permissions have been changed")));
+
+	if (getRequestVar('setNested')) {
+		$gallery->album->setNestedPermissions();
+	}
 }
 
 // Start with a default owner of nobody -- if there is an
@@ -331,6 +335,9 @@ echo makeFormIntro("album_permissions.php",
 
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
 <input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
+<br>
+<label for="setNested">Apply permissions to all sub-albums</label><input type="checkbox" id="setNested" name="setNested"
+value="setNested" <?php if (getRequestVar('setNested')) echo 'CHECKED'; ?>>
 </form>
 <?php print gallery_validation_link("album_permissions.php"); ?>
 </div>
