@@ -403,6 +403,11 @@ if ($numPhotos) {
 				   <? } ?>
 				</span>
 <?
+			        if (!strcmp($myAlbum->fields["public_comments"],"yes")) {
+?>
+                                        <br><a href="<?= $GALLERY_BASEDIR ?>view_comments.php?set_albumName=<?= $gallery->album->fields["name"]?>">View All Comments</a><br>
+<?
+                                }
 			} else {
 				echo($gallery->album->getCaption($i));
 				// indicate with * if we have a comment for a given photo

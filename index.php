@@ -89,6 +89,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 		       "upgrade_album.php",
 		       "user_preferences.php",
 		       "view_album.php",
+		       "view_comments.php",
 		       "view_photo.php",
 		       "view_photo_properties.php",
 		       );
