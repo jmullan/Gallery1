@@ -149,6 +149,11 @@ $defaults = array(
 			"shown in the albums",
 		"value" => 150 
 	),
+	"highlight_size" => array(
+		"desc" => "The target size (in pixels) of highlight " .
+			"photos shown in the album list",
+		"value" => 150 
+	),
 	"resize_size" => array(
 		"desc" => "The size images will be resized to this size ".
 			"upon upload. ",
