@@ -150,7 +150,7 @@ if (!isset($mode) || !isset($modes[$mode])) {
 	<ul id="tabnav">
 <?php
 foreach ($modes as $m => $mt) {
-	$url=makeGalleryUrl('add_photos.php',array('mode' => $m));
+	$url = makeGalleryUrl('add_photos.php', array('mode' => $m, 'type' => 'popup'));
 	if ($m == $mode) {
 		echo "\t\t<li><a href=\"$url\" class=\"active\">$mt</a></li>\n";
 	} else {

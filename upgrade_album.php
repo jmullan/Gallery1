@@ -166,14 +166,14 @@ if (!sizeof($albumDB->outOfDateAlbums)) {
 } else {
 ?>
 <?php echo sprintf(_("The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %s."),
-		'<a href="' . makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1)) . '">' . _("upgrade them all at once") . '</a>') ?>
+		'<a href="' . makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1, 'type' => 'popup')) . '">' . _("upgrade them all at once") . '</a>') ?>
 <ul>
 <?php
 	foreach ($albumDB->outOfDateAlbums as $albumName) {
 		$album = $albumDB->getAlbumByName($albumName);
 		print "<a href=\"";
 		print makeGalleryUrl("upgrade_album.php", 
-			array("upgrade_albumname" => $album->fields["name"]));
+			array("upgrade_albumname" => $album->fields["name"], 'type' => 'popup'));
 		print "\">[" . _("upgrade") ."]</a> ";
 		print "<b>" . $album->fields["title"] . "</b>";
 		print " (" . $album->numPhotos(1) . " " ._("items").")";

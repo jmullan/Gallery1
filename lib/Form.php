@@ -122,11 +122,11 @@ function drawSelect($name, $array, $selected, $size, $attrList=array()) {
  *                              "enctype" => "multipart/form-data",
  *                              "method" => "POST"));
  */
-function makeFormIntro($target, $attrList=array()) {
+function makeFormIntro($target, $attrList=array(), $urlargs=array()) {
 
 	// We don't want the result HTML escaped since we split on "&", below
 	// use the header version of makeGalleryUrl()
-	$url = makeGalleryHeaderUrl($target);
+	$url = makeGalleryHeaderUrl($target, $urlargs);
 
 	$result = split("\?", $url);
 	$target = $result[0];

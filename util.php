@@ -30,7 +30,7 @@ function getRequestVar($str) {
 			return null;
 		}
 		$ret = &$_REQUEST[$str];
-		if (get_magic_quotes_gpc()) {
+		if (get_magic_quotes_gpc() && !is_array($ret)) {
 			$ret = stripslashes($ret);
 		}	
 	}
@@ -1465,21 +1465,28 @@ function makeGalleryUrl($target, $args=array()) {
 				** So we need to put necessary infos of Mambo into session.
 				*/
 				if ((isset($args['type']) && $args['type'] == 'popup') ||
-					(isset($args['gallery_popup']) && $args['gallery_popup'] == 'true')) {
+					(!empty($args['gallery_popup']))) {
 					$target= $gallery->app->photoAlbumURL . "/index.php";
 
-					if (!isset($gallery->session->mambo) || empty($gallery->session->mambo->mosConfig_db)) {
+					if (empty($gallery->session->mambo->mosConfig_db)) {
+						$gallery->session->mambo->mosRoot = dirname($_SERVER['PHP_SELF']);
+						if (substr($gallery->session->mambo->mosRoot, -1) != '/') {
+							$gallery->session->mambo->mosRoot .= '/';
+						}
 						$gallery->session->mambo->mosConfig_host=$mosConfig_host;
-		                	        $gallery->session->mambo->mosConfig_user=$mosConfig_user;
-	        	        	        $gallery->session->mambo->mosConfig_password=$mosConfig_password;
-	                		        $gallery->session->mambo->mosConfig_db=$mosConfig_db;
-	                		        $gallery->session->mambo->mosConfig_dbprefix=$mosConfig_dbprefix;
-		                	        $gallery->session->mambo->MOS_GALLERY_PARAMS = $MOS_GALLERY_PARAMS;
+						$gallery->session->mambo->mosConfig_user=$mosConfig_user;
+						$gallery->session->mambo->mosConfig_password=$mosConfig_password;
+						$gallery->session->mambo->mosConfig_db=$mosConfig_db;
+						$gallery->session->mambo->mosConfig_dbprefix=$mosConfig_dbprefix;
+						$gallery->session->mambo->MOS_GALLERY_PARAMS = $MOS_GALLERY_PARAMS;
 					}
 				} else {
-					$target = 'index.php';
+					if (!empty($gallery->session->mambo->mosRoot)) {
+						$target = $gallery->session->mambo->mosRoot . "index.php";
+					} else {
+						$target = 'index.php';
+					}
 				}
-
 			break;
 
 			// Maybe something went wrong, then we assume we are like standalone.		

@@ -43,7 +43,7 @@ if (!isset($metaboxes)) {
 		echo "</p>\n\t";
 	}
 
-echo makeFormIntro("add_photos.php", array("name" => "count_form", "method" => "POST")); ?>
+echo makeFormIntro("add_photos.php", array("name" => "count_form", "method" => "POST"), array('type' => 'popup')); ?>
 	<input type="hidden" name="mode" value="<?php echo $mode ?>"/>
 
 	<table>
@@ -80,7 +80,7 @@ echo makeFormIntro("add_photos.php", array("name" => "count_form", "method" => "
 	<?php echo makeFormIntro("save_photos.php",
 			array("name" => "upload_form",
 				"enctype" => "multipart/form-data",
-				"method" => "POST")); ?>
+				"method" => "POST"), array('type' => 'popup')); ?>
 
 	<table>
 	<tr>

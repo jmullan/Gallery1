@@ -36,7 +36,7 @@
 <?php 
 	echo makeFormIntro("save_photos.php",
 			array("name" => "uploadurl_form",
-				"method" => "POST"));
+				"method" => "POST"), array('type' => 'popup'));
 ?>
 <input type="text" name="urls[]" size="40">
 <p>
