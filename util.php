@@ -535,15 +535,15 @@ function valid_image($file) {
 function toPnmCmd($file) {
 	global $gallery;
 
-	if (eregi("\.png", $file)) {
+	if (eregi("\.png\$", $file)) {
 		$cmd = "pngtopnm";
-	} else if (eregi("\.(jpg|jpeg)", $file)) {
+	} else if (eregi("\.jpe?g\$", $file)) {
 		if (isDebugging()) {
 			$cmd = "jpegtopnm";
 		} else {
 			$cmd = "jpegtopnm";
 		}
-	} else if (eregi("\.gif", $file)) {
+	} else if (eregi("\.gif\$", $file)) {
 		$cmd = "giftopnm";
 	}
 
@@ -560,12 +560,12 @@ function toPnmCmd($file) {
 function fromPnmCmd($file) {
 	global $gallery;
 
-	if (eregi("\.png", $file)) {
+	if (eregi("\.png(\.tmp)?\$", $file)) {
 		$cmd = NetPBM("pnmtopng");
-	} else if (eregi("\.(jpg|jpeg)", $file)) {
+	} else if (eregi("\.jpe?g(\.tmp)?\$", $file)) {
 		$cmd = NetPBM($gallery->app->pnmtojpeg,
 			      "--quality=" . $gallery->app->jpegImageQuality);
-	} else if (eregi(".gif", $file)) {
+	} else if (eregi("\.gif(\.tmp)?\$", $file)) {
 		$cmd = NetPBM("ppmquant", "256") . " | " . NetPBM("ppmtogif");
 	}
 

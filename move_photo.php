@@ -97,6 +97,7 @@ if ($gallery->session->albumName && isset($index)) {
 						$myresized = $myphoto->image->resizedName;
 						$mytype=$myphoto->image->type;
 						$myfile="$mydir/$myname.$mytype";
+						$myhidden="$myphoto->isHidden();
 						//print "mydir=".$mydir."<br>";
 						//print "myphoto=".$myphoto."<br>";
 						//print "myname=".$myname."<br>";
@@ -123,6 +124,9 @@ if ($gallery->session->albumName && isset($index)) {
 							$newphoto->comments = $oldphoto->comments;
 							$newphoto->uploadDate = $oldphoto->uploadDate;
 							$newphoto->itemCaptureDate = $oldphoto->itemCaptureDate;
+							if ($myhidden) {
+								$newphoto->hide();
+							}
 							$postAlbum->setPhoto($newphoto,$newPhotoIndex);
 
 							/* resize the photo if needed */

@@ -99,7 +99,7 @@ define(PHOTO_ALL    ,     (1<<16)-1);      // all bits set
 function printSlideshowPhotos($slide_full, $what = PHOTO_ALL) {
     global $gallery;
     
-    $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
+    $numPhotos = $gallery->album->numPhotos(1);
     $numDisplayed = 0; 
 
     // Find the correct starting point, accounting for hidden photos

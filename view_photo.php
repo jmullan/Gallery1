@@ -319,7 +319,7 @@ if (!$gallery->album->isMovie($id)) {
 	}
 
     
-	if (!strcmp($gallery->album->fields["use_exif"],"yes") && (!strcmp($photo->image->type,"jpg")) &&
+	if (!strcmp($gallery->album->fields["use_exif"],"yes") && (eregi("jpe?g\$", $photo->image->type)) &&
 	    ($gallery->app->use_exif)) {
 		$albumName = $gallery->session->albumName;
 		$adminCommands .= popup_link("[photo properties]", "view_photo_properties.php?set_albumName=$albumName&index=$index");
