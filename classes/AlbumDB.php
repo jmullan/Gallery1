@@ -301,9 +301,12 @@ class AlbumDB {
 				if ($album->isRoot()) {
 					$numTopAlbums++;
 				}
-				// $numPhotos += $album->fields["cached_photo_count"];
-				$album->load($album->fields['name']);
-				$numPhotos += $album->numPhotos(1,1);
+				if (empty($gallery->app->slowPhotoCount) || $gallery->app->slowPhotoCount == "no") {
+					$numPhotos += $album->fields["cached_photo_count"];
+				} else {
+					$album->load($album->fields['name']);
+					$numPhotos += $album->numPhotos(1,1);
+				}
 			}
 		}
 		return array($numPhotos, $numAlbums, $numTopAlbums);
