@@ -29,7 +29,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 ?>
 <?php
 
-function editField($album, $field, $edit) {
+function editField($album, $field) {
 	global $gallery;
 
 	$buf = $album->fields[$field];
@@ -37,7 +37,7 @@ function editField($album, $field, $edit) {
 		$buf = "<i>&lt;Empty&gt;</i>";
 	}
 	if ($gallery->user->canChangeTextOfAlbum($album)) {
-		$url = "edit_field.php?set_albumName={$album->fields[name]}&field=$field";
+		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field";
 		$buf .= "<span class=editlink>";
 		$buf .= popup_link( "[edit $field]", $url) ;
 		$buf .= "</span>";
@@ -45,7 +45,7 @@ function editField($album, $field, $edit) {
 	return $buf;
 }
 
-function editCaption($album, $index, $edit) {
+function editCaption($album, $index) {
 	global $gallery;
 
 	$buf = $album->getCaption($index);
@@ -54,7 +54,7 @@ function editCaption($album, $index, $edit) {
 		if (!strcmp($buf, "")) {
 			$buf = "<i>&lt;No Caption&gt;</i>";
 		}
-		$url = "edit_caption.php?set_albumName={$album->fields[name]}&index=$index";
+		$url = "edit_caption.php?set_albumName={$album->fields['name']}&index=$index";
 		$buf .= "<span class=editlink>";
 		$buf .= popup_link("[edit]", $url);
 		$buf .= "</span>";
@@ -80,7 +80,7 @@ function viewComments($index) {
 		$commentdraw["bordercolor"] = $borderColor;
 		include($GALLERY_BASEDIR . "layout/commentdraw.inc");
 	}
-        $url = "add_comment.php?set_albumName={$gallery->album->fields[name]}&index=$index";
+        $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&index=$index";
         $buf = "<span class=editlink>";
         $buf .= popup_link('[add comment]', $url, 0);
         $buf .= "</span>";
@@ -100,20 +100,13 @@ function error_format($message) {
 }
 
 function build_popup_url($url, $url_is_complete=0) {
-    
+
 	/* Separate the target from the arguments */
-	list($target, $arglist) = split("\?", $url);
+	list($target, $arglist) = explode('?', $url);
 
-	/* Split the arguments into an associative array */
-	$tmpargs = split("&", $arglist);
-	foreach ($tmpargs as $arg) {
-		if (!$arg) {
-			continue;
-		}
-		list($key, $val) = split("\=", $arg);
-		$args[$key] = $val;
-	}
-
+	/* Parse the query string arguments */
+	parse_str($arglist, $args);
+	
 	if (!$url_is_complete) {
 		$url = makeGalleryUrl($target, $args);
 		$url = "'$url'";
@@ -764,11 +757,12 @@ function makeFormIntro($target, $attrList=array()) {
 	$url = makeGalleryUrl($target);
 	list($target, $tmp) = split("\?", $url);
 
+	$attrs = '';
 	foreach ($attrList as $key => $value) {
 		$attrs .= " $key=\"$value\"";
 	}
 
-	$form .= "<form action=\"$target\" $attrs>\n";
+	$form = "<form action=\"$target\" $attrs>\n";
 
 	$args = split("&", $tmp);
 	foreach ($args as $arg) {
@@ -975,6 +969,7 @@ function addUrlArg($url, $arg) {
 function getNextPhoto($idx) {
 	global $gallery;
 
+	$numPhotos = $gallery->album->numPhotos(1);	
 	$idx++;
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		// even though a user can write to an album, they may
@@ -990,7 +985,6 @@ function getNextPhoto($idx) {
 		return $idx;
 	}
 
-	$numPhotos = $gallery->album->numPhotos(1);
 	while ($idx <= $numPhotos && $gallery->album->isHidden($idx)) {
 		$idx++;
 	}
@@ -1027,9 +1021,9 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 	for ($i=1; $i<=$mynumalbums; $i++) {
 		$myAlbum=$albumDB->getAlbum($gallery->user, $i);
 		if ($gallery->user->canWriteToAlbum($myAlbum) && 
-			($rootAlbumName != $myAlbum->fields[name] || !$moveRootAlbum) ) {
-			$albumName = $myAlbum->fields[name];
-			$albumTitle = $myAlbum->fields[title];
+			($rootAlbumName != $myAlbum->fields['name'] || !$moveRootAlbum) ) {
+			$albumName = $myAlbum->fields['name'];
+			$albumTitle = $myAlbum->fields['title'];
 			if ($myAlbum != $gallery->album) {
 				echo "<option value=\"$albumName\">-- $albumTitle</option>\n";
 			}
@@ -1054,7 +1048,7 @@ function printNestedVals($level, $albumName, $val, $movePhoto) {
 			$nestedAlbum->load($myName);
 			if ($gallery->user->canWriteToAlbum($nestedAlbum)) {
 				$val2 = str_repeat("-- ", $level+1);
-				$val2 = $val2 . $nestedAlbum->fields[title];
+				$val2 = $val2 . $nestedAlbum->fields['title'];
 				if ($nestedAlbum != $gallery->album &&
 				    $gallery->album->numPhotos(1) <= $index ||
 				    $nestedAlbum != $gallery->album->getNestedAlbum($index)) {
@@ -1080,13 +1074,15 @@ function getExif($file) {
 	$myExif = array();
 	if ($status == 0) {
 	        while (list($key,$value) = each ($return)) {
-	            $explodeReturn = explode(':', $value, 2);
-		    if ($myExif[trim($explodeReturn[0])]) { 
-		    	$myExif[trim($explodeReturn[0])] .= "<br>" . 
-		    		trim($explodeReturn[1]);
-		    } else {
-		    	$myExif[trim($explodeReturn[0])] = 
-		    		trim($explodeReturn[1]);
+		    if (trim($value)) {
+			$explodeReturn = explode(':', $value, 2);
+			if ($myExif[trim($explodeReturn[0])]) { 
+			    $myExif[trim($explodeReturn[0])] .= "<br>" . 
+				    trim($explodeReturn[1]);
+			} else {
+			    $myExif[trim($explodeReturn[0])] = 
+				    trim($explodeReturn[1]);
+			}
 		    }
 	        }
 	}
@@ -1113,12 +1109,12 @@ function getItemCaptureDate($file) {
 			$mon = "$tempDay[1]";
 			$year = "$tempDay[0]";
 
-			$itemCaptureDate[hours] = $hours;
-			$itemCaptureDate[minutes] = $minutes;
-			$itemCaptureDate[seconds] = $seconds;
-			$itemCaptureDate[mday] = $mday;
-			$itemCaptureDate[mon] = $mon;
-			$itemCaptureDate[year] = $year;
+			$itemCaptureDate['hours'] = $hours;
+			$itemCaptureDate['minutes'] = $minutes;
+			$itemCaptureDate['seconds'] = $seconds;
+			$itemCaptureDate['mday'] = $mday;
+			$itemCaptureDate['mon'] = $mon;
+			$itemCaptureDate['year'] = $year;
 		}
 	}
 	if (!$success) { // we were not able to get the capture date from exif... use file creation time
@@ -1144,7 +1140,7 @@ function getItemCaptureDate($file) {
 	}
 
 	if (isDebugging()) {
-		print "IN UTIL ITEMCAPTUREDATE = $itemCaptureDate[year]<br>";
+		print "IN UTIL ITEMCAPTUREDATE = $itemCaptureDate['year']<br>";
 	}
 	return $itemCaptureDate;
 }
@@ -1503,7 +1499,7 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 
         /* if this is a nested album, set nested parameters */
         if ($parentName) {
-                $gallery->album->fields[parentAlbumName] = $parentName;
+                $gallery->album->fields['parentAlbumName'] = $parentName;
                 $parentAlbum = $albumDB->getAlbumbyName($parentName);
                 $parentAlbum->addNestedAlbum($gallery->session->albumName);
                 $parentAlbum->save();

@@ -27,7 +27,10 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php if (!isset($GALLERY_BASEDIR)) {
+    $GALLERY_BASEDIR = '';
+}
+require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php 
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
@@ -43,11 +46,12 @@ if (!$gallery->album->isLoaded()) {
 $gallery->session->offlineAlbums[$gallery->album->fields["name"]]=true;
 
 
-if (!$page) {
+if (!isset($page)) {
+    if (isset($gallery->session->albumPage[$gallery->album->fields['name']])) {
 	$page = $gallery->session->albumPage[$gallery->album->fields["name"]];
-	if (!$page) {
-		$page = 1;
-	}
+    } else {
+	$page = 1;
+    }
 } else {
 	$gallery->session->albumPage[$gallery->album->fields["name"]] = $page;
 }
@@ -130,27 +134,43 @@ $breadcrumb["bordercolor"] = $bordercolor;
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
   <?php echo getStyleSheetLink() ?>
+  <?php /* prefetching/navigation */
+  if (!isset($first)) { ?>
+      <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => 1)) ?>" />
+      <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $previousPage)) ?>" />
+  <?php }
+  if (!isset($last)) { ?>
+      <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $nextPage)) ?>" />
+      <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $maxPages)) ?>" />
+  <?php } ?>
+  <link rel="up" href="<?php
+      if ($gallery->album->isRoot()) {
+         echo makeAlbumUrl();
+      } else {
+         echo makeAlbumUrl($gallery->album->fields['parentAlbumName']);
+      }?>" />
+  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" />
   <style type="text/css">
 <?php
 // the link colors have to be done here to override the style sheet 
 if ($gallery->album->fields["linkcolor"]) {
 ?>
     A:link, A:visited, A:active
-      { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
+      { color: <?php echo $gallery->album->fields['linkcolor'] ?>; }
     A:hover
       { color: #ff6600; }
 <?php
 }
 if ($gallery->album->fields["bgcolor"]) {
-	echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
+	echo "BODY { background-color:".$gallery->album->fields['bgcolor']."; }";
 }
 if ($gallery->album->fields["background"]) {
-	echo "BODY { background-image:url(".$gallery->album->fields[background]."); } ";
+	echo "BODY { background-image:url(".$gallery->album->fields['background']."); } ";
 }
 if ($gallery->album->fields["textcolor"]) {
-	echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
-	echo ".head {color:".$gallery->album->fields[textcolor]."; }";
-	echo ".headbox {background-color:".$gallery->album->fields[bgcolor]."; }";
+	echo "BODY, TD {color:".$gallery->album->fields['textcolor']."; }";
+	echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+	echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
 }
 ?>
   </style>
@@ -245,7 +265,7 @@ if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	if (!$gallery->session->offline)
 	{
 		$adminCommands .= '<a href=' . makeGalleryUrl("captionator.php", 
-			array("set_albumName" => $tmpAlbumName, 
+			array("set_albumName" => $gallery->session->albumName, 
 				"page" => $page, 
 				"perPage" => $perPage)) .
 			'>[captions]</a>&nbsp;';
@@ -302,6 +322,7 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 <!-- top nav -->
 <?php
 $breadcrumb["top"] = true;
+$breadcrumb['bottom'] = false;
 if (strcmp($gallery->album->fields["returnto"], "no") 
    || ($gallery->album->fields["parentAlbumName"])) {
 	include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
@@ -433,9 +454,9 @@ if ($numPhotos) {
 			if ($gallery->album->isAlbumName($i)) {
 				$myAlbum = new Album();
 				$myAlbum->load($gallery->album->isAlbumName($i));
-				$myDescription = $myAlbum->fields[description];
+				$myDescription = $myAlbum->fields['description'];
 				$buf = "";
-				$buf = $buf."<b>Album: ".$myAlbum->fields[title]."</b>";
+				$buf = $buf."<b>Album: ".$myAlbum->fields['title']."</b>";
 				if ($myDescription != "No description") {
 					$buf = $buf."<br>".$myDescription."";
 				}

@@ -27,7 +27,10 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php if (!isset($GALLERY_BASEDIR)) {
+    $GALLERY_BASEDIR = '';
+}
+require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
 // Hack check
 if (!$gallery->user->isAdmin() && 

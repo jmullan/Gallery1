@@ -23,10 +23,10 @@ $data .= "/* \n"
         ." * don't implicitly create a new stdClass() when you use a variable \n"
         ." * like a class. \n"
         ." */ \n"
-        ."if (!\$gallery) { \n"
+        ."if (!isset(\$gallery)) { \n"
         ."        \$gallery = new stdClass(); \n"
         ."}\n"
-        ."if (!\$gallery->app) { \n"
+        ."if (!isset(\$gallery->app)) { \n"
         ."        \$gallery->app = new stdClass(); \n"
         ."}\n\n";
 

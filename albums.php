@@ -27,7 +27,10 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php if (!isset($GALLERY_BASEDIR)) {
+    $GALLERY_BASEDIR = '';
+}
+require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
 $gallery->session->offlineAlbums["albums.php"]=true;
 
@@ -50,6 +53,7 @@ if ($gallery->session->albumListPage > $maxPages) {
 	$gallery->session->albumListPage = $maxPages;
 }
 
+$imageDir = $gallery->app->photoAlbumURL . '/images';
 $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">";
 $borderColor = $gallery->app->default["bordercolor"];
 
@@ -68,6 +72,16 @@ $navigator["bordercolor"] = $borderColor;
 <head>
   <title><?php echo $gallery->app->galleryTitle ?></title>
   <?php echo getStyleSheetLink() ?>
+  <?php /* prefetching/navigation */
+  if ($navigator['page'] > 1) { ?>
+      <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" />
+      <link rel="first" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" />
+      <link rel="prev" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']-1)) ?>" />
+  <?php }
+  if ($navigator['page'] < $maxPages) { ?>
+      <link rel="next" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1)) ?>" />
+      <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>" />
+  <?php } ?>
 </head>
 <body>
 <?php } ?>
@@ -230,11 +244,11 @@ for ($i = $start; $i <= $end; $i++) {
   <td align=left valign=top>
   <span class="title">
   <a href=<?php echo $albumURL?>>
-  <?php echo editField($gallery->album, "title", $edit) ?></a>
+  <?php echo editField($gallery->album, "title") ?></a>
   </span>
   <br>
   <span class="desc">
-  <?php echo editField($gallery->album, "description", $edit) ?>
+  <?php echo editField($gallery->album, "description") ?>
   </span>
   <br>
   <?php if (strcmp($gallery->app->default["showOwners"], "no")) { ?>

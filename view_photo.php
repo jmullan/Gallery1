@@ -27,7 +27,10 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php if (!isset($GALLERY_BASEDIR)) {
+    $GALLERY_BASEDIR = '';
+}
+require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
@@ -35,7 +38,7 @@ if (!$gallery->user->canReadAlbum($gallery->album)) {
 	return;
 }
 
-if ($full && !$gallery->user->canViewFullImages($gallery->album)) {
+if (isset($full) && !$gallery->user->canViewFullImages($gallery->album)) {
     header("Location: " . makeAlbumUrl($gallery->session->albumName,
 				       $id));
     return;
@@ -76,11 +79,15 @@ if ($photo->isMovie()) {
 $photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $image->name . "." . $image->type;
 list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
-$do_fullOnly = !strcmp($gallery->session->fullOnly,"on") &&
+$do_fullOnly = isset($gallery->session->fullOnly) &&
+		!strcmp($gallery->session->fullOnly,"on") &&
                !strcmp($gallery->album->fields["use_fullOnly"],"yes");
 if ($do_fullOnly) {
 	$full = 1;
+} else {
+	$full = '';
 }
+    
 $fitToWindow = !strcmp($gallery->album->fields["fit_to_window"], "yes") && !$gallery->album->isResized($index) && !$full;
 
 if ($full) {
@@ -176,6 +183,33 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: <?php echo $index ?></title>
   <?php echo getStyleSheetLink() ?>
+  <?php /* prefetch/navigation */
+  $navcount = sizeof($navigator['allIds']);
+  $navpage = $navcount - 1; 
+  while ($navpage > 0) {
+      if (!strcmp($navigator['allIds'][$navpage], $id)) {
+	  break;
+      }
+      $navpage--;
+  }
+  if ($navigator['allIds'][0] != $id) {
+      if ($navigator['allIds'][0] != 'unknown') { ?>
+          <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0]) ?>" />
+      <?php }
+      if ($navigator['allIds'][$navpage-1] != 'unknown') { ?>
+          <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage-1]) ?>" />
+      <?php }
+  }
+  if ($navigator['allIds'][$navcount - 1] != $id) {
+      if ($navigator['allIds'][$navpage+1] != 'unknown') { ?>
+          <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage+1]) ?>" />
+      <?php }
+      if ($navigator['allIds'][$navcount-1] != 'unknown') { ?>
+          <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1]) ?>" />
+      <?php }
+  } ?>
+  <link rel="up" href="<?php echo makeAlbumUrl($gallery->session->albumName) ?>">
+  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">	 
   <style type="text/css">
 <?php
 // the link colors have to be done here to override the style sheet
@@ -297,6 +331,7 @@ includeHtmlWrap("photo.header");
 <td>
 <?php
 
+$adminCommands = '';
 if (!$gallery->album->isMovie($id)) {
 	print "<a id=\"photo_url\" href=\"$photoURL\" ></a>\n";
 	print '<a id="page_url" href="'. 
@@ -392,7 +427,7 @@ if (!$gallery->album->isMovie($id)) {
 
 $breadcrumb["bordercolor"] = $bordercolor;
 $breadcrumb["top"] = true;
-
+$breadcrumb['bottom'] = false;
 include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?>
 </td>
@@ -485,7 +520,7 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 <!-- caption -->
 <tr>
 <td colspan=3 align=center>
-<span class="caption"><?php echo editCaption($gallery->album, $index, $edit) ?></span>
+<span class="caption"><?php echo editCaption($gallery->album, $index) ?></span>
 <br><br>
 </td>
 </tr>
@@ -498,7 +533,7 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 </td>
 </tr>
 <?php } ?>
-<?php if ($printShutterflyForm) { ?>
+<?php if (isset($printShutterflyForm)) { ?>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value="1">
   <input type=hidden name=protocol value="SFP,100">
@@ -527,7 +562,7 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
   <input type=hidden name=imbkprnta-1 value="<?php echo $imbkprnt ?>">
 </form>
 <?php } ?>
-<?php if ($printPhotoAccessForm) { ?>
+<?php if (isset($printPhotoAccessForm)) { ?>
   <form method="post" name="photoAccess" action="http://www.photoaccess.com/buy/anonCart.jsp">
   <input type="hidden" name="cb" value="PA">
   <input type="hidden" name="redir" value="true">

@@ -27,7 +27,7 @@ if ($breadcrumb["top"]) {
       <span class="bread">
 <?php
 $i = 0;
-while ($breadcrumb["text"][$i]) {
+while (isset($breadcrumb["text"][$i])) {
 	if ($i > 0) {
 		//echo "<img src=\"$imageDir/nav_dot_left.gif\" width=8 height=11>";
 		echo "<img src=\"$imageDir/nav_home.gif\" width=13 height=11>";

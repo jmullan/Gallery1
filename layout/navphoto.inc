@@ -1,7 +1,7 @@
 <?php
 // Calculate the beginning and ending of the navigator range
 $begin = 0;
-$navpage = sizeof($navigator["allIds"]);
+$navpage = sizeof($navigator["allIds"]) - 1;
 while ($navpage > 0) {
 	if (!strcmp($navigator["allIds"][$navpage], $navigator["id"])) {
 		break;

@@ -92,12 +92,12 @@ class Album {
 
 	function getRootAlbumName() {
 
-		if ($this->fields[parentAlbumName]) {
+		if ($this->fields['parentAlbumName']) {
 			$parentAlbum = new Album();
-			$parentAlbum->load($this->fields[parentAlbumName]);
+			$parentAlbum->load($this->fields['parentAlbumName']);
 			$returnValue = $parentAlbum->getRootAlbumName();
 		} else {
-			$returnValue = $this->fields[name];
+			$returnValue = $this->fields['name'];
 		}
 		return $returnValue;
 	}
@@ -237,8 +237,8 @@ class Album {
 			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
 			$func .= "\$arrayTimeA = \$objA->getItemCaptureDate(); ";
 			$func .= "\$arrayTimeB = \$objB->getItemCaptureDate(); ";
-			$func .= "\$timeA = \"\$arrayTimeA[year]\$arrayTimeA[mon]\$arrayTimeA[mday]\$arrayTimeA[hours]\$arrayTimeA[minutes]\$arrayTimeA[seconds]\";";
-			$func .= "\$timeB = \"\$arrayTimeB[year]\$arrayTimeB[mon]\$arrayTimeB[mday]\$arrayTimeB[hours]\$arrayTimeB[minutes]\$arrayTimeB[seconds]\";";
+			$func .= "\$timeA = \"\$arrayTimeA['year']\$arrayTimeA['mon']\$arrayTimeA['mday']\$arrayTimeA['hours']\$arrayTimeA['minutes']\$arrayTimeA['seconds']\";";
+			$func .= "\$timeB = \"\$arrayTimeB['year']\$arrayTimeB['mon']\$arrayTimeB['mday']\$arrayTimeB['hours']\$arrayTimeB['minutes']\$arrayTimeB['seconds']\";";
 			//$func .= "print \"\$timeA \$timeB<br>\";";
 			$func .= "if (\$timeA == \$timeB) return 0; ";
 			if (!$order) {
@@ -747,17 +747,17 @@ class Album {
 	function getAlbumDir() {
 		global $gallery;
 
-		return $gallery->app->albumDir . "/{$this->fields[name]}";
+		return $gallery->app->albumDir . "/{$this->fields['name']}";
 	}
 
 	function getAlbumDirURL($type) {
 		global $gallery;
 
-		if ($this->transient->mirrorUrl) {
+		if (!empty($this->transient->mirrorUrl)) {
 			return $this->transient->mirrorUrl;
 		}
 
-		$albumPath = "/{$this->fields[name]}";
+		$albumPath = "/{$this->fields['name']}";
 
 		/* 
 		 * Highlights are typically shown for many albums at once,
@@ -769,7 +769,7 @@ class Album {
 		    strcmp($type, "highlight")) {
 			foreach(split("[[:space:]]+", $gallery->app->mirrorSites) as $base_url) {
 				$base_url .= $albumPath;
-				$serial = $base_url . "/serial.{$this->fields[serial_number]}.dat";
+				$serial = $base_url . "/serial.{$this->fields['serial_number']}.dat";
 
 				/* Don't use fs_fopen here since we're opening a url */
 				if ($fd = @fopen($serial, "r")) {

@@ -27,7 +27,10 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php if (!isset($GALLERY_BASEDIR)) {
+    $GALLERY_BASEDIR = '';
+}
+require($GALLERY_BASEDIR . 'init.php'); ?>
 
 <html>
 <head>
@@ -94,7 +97,7 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 */
 	$forceRefresh = 0;
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		if ($reloadExifFromFile) {
+		if (isset($reloadExifFromFile)) {
 			$forceRefresh = 1;
 		}
 	}
@@ -128,8 +131,8 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 
 	echo ("File Upload Date: &nbsp;&nbsp; " . date("m-d-Y H:i:s" , $gallery->album->getUploadDate($index)) . "<br>");
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-	echo ("Item Capture Date: &nbsp;&nbsp; " . $itemCaptureDate[mon] . "-" . $itemCaptureDate[mday] . "-" . $itemCaptureDate[year] . "&nbsp;&nbsp;");
-	echo ($itemCaptureDate[hours] . ":" . $itemCaptureDate[minutes] . ":" . $itemCaptureDate[seconds] . "<br>");
+	echo ("Item Capture Date: &nbsp;&nbsp; " . $itemCaptureDate['mon'] . "-" . $itemCaptureDate['mday'] . "-" . $itemCaptureDate['year'] . "&nbsp;&nbsp;");
+	echo ($itemCaptureDate['hours'] . ":" . $itemCaptureDate['minutes'] . ":" . $itemCaptureDate['seconds'] . "<br>");
 
 	if ($gallery->album->getKeyWords($index)) {
 		echo "<b>KEYWORDS</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);

@@ -97,7 +97,8 @@ require($GALLERY_BASEDIR . "util.php");
 /*
  * Detect if we're running under SSL and adjust the URL accordingly.
  */
-if (stristr($HTTP_SERVER_VARS["HTTPS"], "on")) {
+if (isset($HTTP_SERVER_VARS["HTTPS"]) &&
+    stristr($HTTP_SERVER_VARS["HTTPS"], "on")) {
 	$gallery->app->photoAlbumURL = 
 		eregi_replace("^http:", "https:", $gallery->app->photoAlbumURL);
 	$gallery->app->albumDirURL = 
@@ -130,11 +131,12 @@ require($GALLERY_BASEDIR . "classes/LoggedInUser.php");
 require($GALLERY_BASEDIR . "classes/UserDB.php");
 require($GALLERY_BASEDIR . "classes/Comment.php");
 
-if (!$GALLERY_NO_SESSIONS) {
+if (!isset($GALLERY_NO_SESSIONS)) {
     require($GALLERY_BASEDIR . "session.php");
 }
 
-if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
+if (isset($GALLERY_EMBEDDED_INSIDE) &&
+    !strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
         include($GALLERY_BASEDIR . "classes/Database.php");
 
 	/* Check for PostNuke */
@@ -237,6 +239,10 @@ if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
 if (!$gallery->user) {
 	$gallery->user = $gallery->userDB->getEverybody();
 	$gallery->session->username = "";
+}
+
+if (!isset($gallery->session->offline)) {
+    $gallery->session->offline = FALSE;
 }
 
 /* Load the correct album object */
