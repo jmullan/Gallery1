@@ -102,5 +102,13 @@ function check_gd()
 {
 	return function_exists("ImageCreate");
 }
+
+function makePathWrapper($app)
+{
+	$path = locateDir($app);
+	return "/bin/csh -c &#039;(setenv PATH " . 
+		getenv("PATH") . 
+		":$path ; $app %s)&#039;";
+}
 ?>
 
