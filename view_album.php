@@ -132,6 +132,13 @@ if ($album->fields["textcolor"]) {
 	}
   }
 
+  function imageEditChoice(selected_select) {
+	  var sel_index = selected_select.selectedIndex;
+	  var sel_value = selected_select.options[sel_index].value;
+	  selected_select.options[0].selected = true;
+	  selected_select.blur();
+	  <?= popup(sel_value, 1) ?>
+  } 
   // --> 
   </script>
 </head>
@@ -291,40 +298,43 @@ if ($numPhotos) {
 				}
 			}
 
-			echo("<td width=$imageCellWidth valign=top align=center>");
+			echo("<td width=$imageCellWidth valign=bottom align=center>");
+			echo("<form name='image_form_$i'>"); // put form outside caption to compress lines
 			echo "<center><span class=\"caption\">";
-			echo(editCaption($album, $i, $edit));
+			echo($album->getCaption($i)."<br>");
 			echo "</span>";
-			if ($user->canDeleteFromAlbum($album)) {
-				echo('<a href="#" onClick="');
-				echo(popup("delete_photo.php?index=$i"));
-				echo('"><br><img src="images/admin_delete.gif" width=11 height=11 border=0 alt="Delete Photo"></a>');
-				if (!$album->isMovie($i)) {
-					//echo(' <a href="#" onClick="');
-					//echo(popup("do_command.php?cmd=remake-thumbnail&index=$i"));
-					//echo('">[Thumbnail]/a>');
-				}
-			}
 
-			if ($user->canWriteToAlbum($album)) {
-				echo(' <a href="#" onClick="');
-				echo(popup("move_photo.php?index=$i"));
-				echo('"><img src="images/admin_move.gif" width=11 height=11 border=0 alt="Move Photo"></a>');
-				if (!$album->isMovie($i)) {
-					echo(' <a href="#" onClick="');
-					echo(popup("rotate_photo.php?index=$i"));
-					echo('"><img src="images/admin_rotate.gif" width=11 height=11 border=0 alt="Rotate Photo"></a>');
-					echo(' <a href="#" onClick="');
-					echo(popup("highlight_photo.php?index=$i"));
-					echo('"><img src="images/admin_highlight.gif" width=11 height=11 border=0 alt="Highlight Photo"></a>');
-				}
-				if ($album->isHidden($i)) {
-					echo("<a href=do_command.php?cmd=show&index=$i&return=view_album.php?page=$page><img src=\"images/admin_unhide.gif\" width=11 height=11 border=0 alt=\"Show Photo\"></a>");
-				} else {
-					echo("<a href=do_command.php?cmd=hide&index=$i&return=view_album.php?page=$page><img src=\"images/admin_hide.gif\" width=11 height=11 border=0 alt=\"Hide Photo\"></a>");
-				}
+			if (($user->canDeleteFromAlbum($album)) || ($user->canWriteToAlbum($album)) ||
+				($user->canChangeTextOfAlbum($album))) {
+				$label = ($album->isMovie($i)) ? "Movie" : "Photo";
+				echo("<select style='FONT-SIZE: 10px;' name='s' ".
+					"onChange='imageEditChoice(document.image_form_$i.s)'>");
+				echo("<option value=''><< Edit $label>></option>");
 			}
-			echo("</td>");
+			if ($user->canChangeTextOfAlbum($album)) {
+				echo("<option value='edit_caption.php?index=$i'>Edit Caption</option>");
+			}
+			if ($user->canWriteToAlbum($album)) {
+				if (!$album->isMovie($i)) {
+					echo("<option value='edit_thumb.php?index=$i'>Edit Thumbnail</option>");
+					echo("<option value='rotate_photo.php?index=$i'>Rotate $label</option>");
+					echo("<option value='highlight_photo.php?index=$i'>Highlight $label</option>");
+				}
+				echo("<option value='move_photo.php?index=$i'>Move $label</option>");
+				if ($album->isHidden($i)) {
+					echo("<option value='do_command.php?cmd=show&index=$i'>Show $label</option>");
+				} else {
+					echo("<option value='do_command.php?cmd=hide&index=$i'>Hide $label</option>");
+				}
+			if ($user->canDeleteFromAlbum($album)) {
+				echo("<option value='delete_photo.php?index=$i'>Delete $label</option>");
+			}
+			}
+			if (($user->canDeleteFromAlbum($album)) || ($user->canWriteToAlbum($album)) ||
+							($user->canChangeTextOfAlbum($album))) {
+				echo('</select>');
+			}
+			echo('</form>');
 			$j++; $i++;
 		}
 		echo "</tr>";
