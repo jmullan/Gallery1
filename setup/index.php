@@ -1,4 +1,4 @@
-<? require('init.php'); ?>
+<? require_once('init.php'); ?>
 
 <html>
 <head>
