@@ -256,13 +256,17 @@ function getDimensions($file, $regs=false) {
 	return array(0, 0);
 }
 
+/*
+   $opts is now a name/value array, where $key is the value returned, and $name 
+   is the value displayed (and translated).
+ */
 function selectOptions($album, $field, $opts) {
-	foreach ($opts as $opt) {
+	foreach ($opts as $key => $value) {
 		$sel = "";
-		if (!strcmp($opt, $album->fields[$field])) {
+		if (!strcmp($key, $album->fields[$field])) {
 			$sel = "selected";
 		}
-		echo "\n<option value=\"$opt\" $sel>" . _($opt) ."</option>";
+		echo "\n<option value=\"$key\" $sel>" . _($value) ."</option>";
 	}
 }
 
@@ -1613,8 +1617,6 @@ function saveResults($votes)
 	{
 		return;
 	}
-	if (!$gallery->album->fields["votes"])
-		$gallery->album->fields["votes"]=array();
 	if ($gallery->album->getPollType() == "critique")
 	{
 		foreach ($votes as $vote_key => $vote_value)
@@ -1789,8 +1791,6 @@ function showResultsGraph($num_rows)
 	$results=array();
 	$nv_pairs=$gallery->album->getVoteNVPairs();
 	$buf='';
-	if (!$gallery->album->fields["votes"])
-		$gallery->album->fields["votes"]=array();
 
 	$voters=array();
 	foreach ($gallery->album->fields["votes"] as $element => $image_votes)

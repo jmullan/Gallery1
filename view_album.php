@@ -460,7 +460,8 @@ if (($gallery->album->getPollType() == "rank") && $showPolling)
 	{
             foreach ($gallery->album->fields["votes"] as $id => $image_votes)
             {
-		if ($gallery->album->getPhotoIndex($id) < 0)
+		$index=$gallery->album->getIndexByVotingId($id);
+		if ($index < 0)
 		{
 			// image has been deleted!
 			unset($gallery->album->fields["votes"][$id]);
@@ -490,12 +491,21 @@ if (($gallery->album->getPollType() == "rank") && $showPolling)
                         print "<tr><td>".
                                 $nv_pairs[$key]["name"].
                                 ":</td>\n";
-                        $index=$gallery->album->getPhotoIndex($id);
-                        print "<td><a href=\n";
-                        print makeAlbumUrl($gallery->session->albumName, $id);
-                        print  ">\n";
-                        print  $gallery->album->getCaption($index);
-                        print  "</a></td></tr>\n";
+			$index=$gallery->album->getIndexByVotingId($id);
+			$albumName=$gallery->album->isAlbumName($index);
+			if ($albumName) {
+                        	print "<td><a href=\n".
+					makeAlbumUrl($albumName). ">\n";
+			       	$myAlbum = new Album();
+			       	$myAlbum->load($gallery->album->isAlbumName($index));
+			       	print sprintf(_("Album: %s"), $myAlbum->fields['title']);
+			       	print  "</a></td></tr>\n";
+			} else {
+                        	print makeAlbumUrl($gallery->session->albumName, $id);
+                        	print  ">\n";
+                        	print  $gallery->album->getCaption($index);
+			       	print  "</a></td></tr>\n";
+			}
                 }
                 print "</table>\n";
         }

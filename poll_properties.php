@@ -29,8 +29,12 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<?php require($GALLERY_BASEDIR . "init.php"); ?>
-<?php
+<?php 
+if (!isset($GALLERY_BASEDIR)) {
+       	$GALLERY_BASEDIR = './';
+}
+require($GALLERY_BASEDIR . "init.php"); 
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;

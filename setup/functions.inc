@@ -999,4 +999,11 @@ function array_str_replace($search, $replace, $subject) {
 	}
 	return $ret;
 }
+
+function newIn($version) {
+	$buf = "\n\t<br><font color=blue><b>(";
+	$buf .= sprintf(_("this is new in version %s"), $version);
+	$buf .= ")</b></font>";
+	return $buf;
+}
 ?>

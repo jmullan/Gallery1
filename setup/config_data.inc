@@ -136,7 +136,7 @@ $checklist = array(
 		"fail-jpegtran" => sprintf(_("I can't find jpegtran.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jpegtran by hand on the following page.  If it's not installed, you can install it yourself.  jpegtran is a freely distributable tool distributed by the Independent JPEG Group as part of libjpeg.  Source may be found at %sthe IJG homepage%s.  Binaries may be found at %sthe JPEG club website%s or in the libjpeg package of Linux distributions."),
 			'<a href="http://www.ijg.org">', '</a>',
 			'<a href="http://jpegclub.org/">', '</a>'). 
-			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
+			newIn("1.4"),
 		"open-basedir-note" => $common_messages["open-basedir-active"]
 	),	
 	"gettext" => array (
@@ -396,7 +396,7 @@ $constants =  array_merge(
 		"desc" => sprintf(_("The filesystem path to the 'jpegtran' utility.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."), 
 			'<i>/usr/local/bin/jpegtran</i>', 
 			'<i>c:\\bin\\jpegtran.exe</i>') .
-			"<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
+			newIn("1.4"),
 		"value" => locateFile("jpegtran"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
@@ -421,7 +421,7 @@ $constants =  array_merge(
 	"ML_mode" => array(
 		"prompt" => _("Multi language mode"), 
 		"desc" => _("Gallery has three multi language modes.  These affect the language that a user will see when visiting the site") .
-			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
+			newIn("1.4"),
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"choices" => array(
 				1 => "1: " . _("Gallery is only displayed in one language"), 
@@ -435,7 +435,7 @@ $constants =  array_merge(
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
 		"desc" => _("These languages will be available as user choices in a pulldown menu or flags, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3.") .
-			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
+			newIn("1.4"),
 		"multiple_choices" => gallery_languages(),
 		"value" => array_keys(gallery_languages()),
 		"enabled" => $elawisyl
@@ -443,7 +443,7 @@ $constants =  array_merge(
 	"show_flags" => array(
 		"prompt" => _("Show flags?"),
 		"desc" => _("In Mode 3 you can choose if you want to display a small pulldown menu or flags for the available languages. Set to <b>no</b> per default as its only an eye catcher.") .
-			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>",
+			newIn("1.4.1"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 		"enabled" => $elawisyl
@@ -453,7 +453,7 @@ $constants =  array_merge(
 		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
 			_("date without time"), Gallery(), "<b>%x</b>",
 			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '">'._("http://www.php.net/manual/en/function.strftime.php").'</a>') .
-			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>" . "<p>" .
+			newIn("1.4.1") .
 			sprintf(_("For example, %s will display date like this: %s."), "<b>%b %d, %Y</b>", "<b>" . strftime("%b %d, %Y") . "</b>"), 
 		"value" => "%x",
 		"type" => "text",
@@ -464,7 +464,7 @@ $constants =  array_merge(
 		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
 			_("date with time"), Gallery(), "<b>%c</b>",
 			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '">'._("http://www.php.net/manual/en/function.strftime.php").'</a>') .
-			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>" ."<p>" .
+			newIn("1.4.1") .
 			sprintf(_("For example, %s will display date and time like this: %s."), "<b>%H:%M, %b %d, %Y</b>", "<b>" . strftime("%H:%M, %b %d, %Y") . "</b>"), 
 		"value" => "%c",
 		"type" => "text",
@@ -516,6 +516,30 @@ $constants = array_merge($constants,
 		"type" => "text",
 		"attrs" => array("size" => 20),
 	),
+       	"separator7" => array (
+		       	"type" => "separator",
+		       	"title" => _("Gallery wide slideshow"),
+			),
+	"gallery_slideshow_type" => array(
+		       	"prompt" => _("Slideshow preferences"),
+		       	"desc" => _("Slideshow on gallery main page") .
+			newIn("1.4.1"),
+		       	"choices" => array(
+			       	"off" => _("Off"),
+			       	"ordered" => _("Ordered"),
+			       	"random" => _("Random"),
+				),
+		       	"value" => "off",
+			),
+	"gallery_slideshow_length" => array(
+		"prompt" => _("slideshowLength "),
+		"desc" => _("") .
+			newIn("1.4.1"),
+		"type" => "text",
+		"value" => "20",
+		"attrs" => array("size" => 50)
+	),
+
 
 	/* Keep this one at the end of the list because it's hidden */
 	"userDir" => array(
@@ -525,8 +549,8 @@ $constants = array_merge($constants,
 		"value" => "",
 		"eval" => '"$albumDir/.users"',
 		"filename" => 1
+		)
 	)
-    )
 );
 
 $defaults = array(
@@ -595,7 +619,7 @@ $defaults = array(
 	"resize_file_size" => array(
 		"prompt" => _("Resized images file size"),
 		"desc" => _("The default target size (in kilobyte) of resized JPEG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size.").
-			  "<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
+			  newIn("1.4"),
 		"value" => 0,
 		"optional" => 1,
 		"type" => "text"
@@ -609,7 +633,7 @@ $defaults = array(
 	"add_to_beginning" => array(
 		"prompt" => _("Add to beginning"),
 		"desc" => _("New images added to beginning rather than end of albums") .
-			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4") .")</b></font>",
+			  newIn("1.4"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
@@ -677,21 +701,21 @@ $defaults = array(
 	"item_owner_modify" => array(
 		"prompt" => _("Photo owner modification"),
 		"desc" => _("Allow photo owners to edit and rotate/flip their own photos?") .
-			  "<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
+			  newIn("1.4"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes",
 	),
 	"item_owner_delete" => array(
 		"prompt" => _("Photo owner deletion"),
 		"desc" => _("Allow photo owners to delete their own photos?") .
-			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
+			  newIn("1.4"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes",
 	),
 	"item_owner_display" => array(
 		"prompt" => _("Photo owner display"),
 		"desc" => _("Display the name of photo owners with the caption?") .
-			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4") .")</b></font>",
+			  newIn("1.4"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
@@ -720,7 +744,7 @@ $defaults = array(
 		"</dd><dt>"._("Logged in")."</dt><dd>" . 
 		_("Registered users can vote.  Votes are recorded against UserID, and voters can come back and change their choices.") .
 		"</dl>" .
-			"<font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+			newIn("1.4.1"),
 		"choices" => array("Nobody" => _("Nobody"), 
 			"Everybody" => _("Everybody"), 
 			"Logged in" => _("Logged in")),
@@ -733,7 +757,7 @@ $defaults = array(
 		"<dd><dt>"._("Critique")."</dt><dd>" . 
 		_("Enables users to give all images points without restriction.") .
 		"</dl>" .
-	      	 	"<font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+	      	 	newIn("1.4.1"),
 		"choices" => array("rank" => _("Rank"), 
 			"critique" => _("Critique")),
 		"value" => "critique"
@@ -741,14 +765,14 @@ $defaults = array(
 	"poll_scale" => array(
 		"prompt" => _("Number of choices"),
 		"desc" => _("Number of choices that will be available to voters as radio buttons or in a pulldown menu") .
-			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+			newIn("1.4.1"),
 		"value" => 3,
 		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)
 			),
 	"poll_hint" => array(
 		"prompt" => _("Vote hint"),
 		"desc" => _("This is displayed above the voting options under each image.") .
-			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+			newIn("1.4.1"),
 		"type" => "text",
 		"value" => _("Vote for this image"),
 		"optional" => 1
@@ -757,7 +781,7 @@ $defaults = array(
 		"prompt" => _("Show vote results"),
 		"desc" => sprintf(_("Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."),
 			_("no")) .
-			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+			newIn("1.4.1"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 			), 
@@ -766,14 +790,14 @@ $defaults = array(
 		"desc" => sprintf(_("If %s is %s, display this many top images on the thumbnail page.  (Full results will be available on a linked page.)"),
 			'"'. _("Show vote results").'"' ,
 			'"'. _("yes").'"') .
-			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+			newIn("1.4.1"),
 		"value" => 3,
 		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)),
 
 	"poll_orientation" => array(
 		"prompt" => _("Orientation of vote choices?"),
 		"desc" => _("Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu.") . 
-			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+			newIn("1.4.1"),
 		"value" => "vertical",
 		"choices" => array(
 			"horizontal" => _("Horizontal"), 
@@ -789,7 +813,38 @@ $defaults = array(
 				array("name" => _("Poor"), "value" => 1)),
 			"type" => "nv_pairs",
 			"verify-func" => "check_poll_nv_pairs",
-			"size" => 9)
+			"size" => 9),
+       	"separator8" => array (
+		       	"type" => "separator",
+		       	"title" => _("Slideshow"),
+			),
+	"slideshow_type" => array(
+		       	"prompt" => _("Slideshow preferences"),
+		       	"desc" => _("Slideshow on gallery main page") .
+			newIn("1.4.1"),
+		       	"choices" => array(
+			       	"off" => _("Off"),
+			       	"ordered" => _("Ordered"),
+			       	"random" => _("Random"),
+				),
+		       	"value" => "ordered",
+			),
+	"slideshow_length" => array(
+		"prompt" => _("slideshowLength "),
+		"desc" => _("0 for all") .
+			newIn("1.4.1"),
+		"type" => "text",
+		"value" => "0",
+		"optional" => 1,
+		"attrs" => array("size" => 50)
+	),
+	"slideshow_recurive" => array(
+		"prompt" => _("slideshow_recurive "),
+		"desc" => _("xx") .
+			newIn("1.4.1"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no"
+			)
 );
 
 ?>

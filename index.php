@@ -67,6 +67,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 	 */
 	$safe_to_include =
 		 array(
+
 		       "add_comment.php",
 		       "add_photo.php",
 		       "add_photos.php",
@@ -92,10 +93,14 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 		       "modify_user.php",
 		       "move_album.php",
 		       "move_photo.php",
+		       "photo_owner.php",
+		       "poll_properties.php",
+		       "poll_results.php",
 		       "progress_uploading.php",
 		       "publish_xp.php",
 		       "publish_xp_docs.php",
 		       "rename_album.php",
+		       "reset_votes.php",
 		       "resize_photo.php",
 		       "rotate_photo.php",
 		       "save_photos.php",
@@ -104,11 +109,13 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 		       "slideshow_low.php",
 		       "sort_album.php",
 		       "upgrade_album.php",
+		       "upgrade_users.php",
 		       "user_preferences.php",
 		       "view_album.php",
 		       "view_comments.php",
 		       "view_photo.php",
 		       "view_photo_properties.php"
+
 		       );
 	
 	if (!in_array($include, $safe_to_include)) {

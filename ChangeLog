@@ -1,3 +1,21 @@
+2003-09-07  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b65
+
+	* Fix for bug #801580, where polling did not work correctly
+	  in view_photo.php.  Now uses correct $id.  Also now uses
+	  correct $id to display your current choices in Rank mode.
+
+	* Fixed polling bug where you could not change mode to Critique.
+
+	* Set $GALLERY_BASEDIR in poll_properties.php.
+
+	* Change function selectOptions() so $opts is now a name/value
+	  array, where $key is the value returned, and $name is the
+	  value displayed (and translated).
+
+	* added photo_owner.php, poll_properties.php, poll_results.php and
+	  reset_votes.php to index.php
+
+
 2003-09-05  Jens Tkotz <jens@peino.de> 1.4.1-cvs-b64
 
         * Again some corrections. Synced .mo against these

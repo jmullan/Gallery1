@@ -592,13 +592,13 @@ if ( canVote() )
    </script>
        <?php
        print "<input type=hidden name=id value=$id>";
-       addPolling($id);
+       addPolling("item.$id");
        print '</form>';
 }
 if ($gallery->album->getPollShowResults())
 {
        print "<p>\n";
-       print showResults($id);
+       print showResults("item.$id");
        print "<p>\n";
 }
 ?>
