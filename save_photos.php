@@ -265,8 +265,7 @@ while (isset($userfile) && sizeof($userfile)) {
 	}
 }
 
-_("%d files uploaded");
-$gallery->album->save(array("%d files uploaded", $image_count));
+$gallery->album->save(array(i18n("%d files uploaded"), $image_count));
 
 if ($temp_files) {
 	/* Clean up the temporary url file */

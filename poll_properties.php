@@ -64,8 +64,7 @@ if (isset($apply) && $apply) {
 	$gallery->album->fields["poll_show_results"] = $poll_show_results;
 	$gallery->album->fields["poll_num_results"] = $poll_num_results;
 	$gallery->album->fields["poll_orientation"] = $poll_orientation;
-	_("Poll properties change");
-	$gallery->album->save(array("Poll properties change"));
+	$gallery->album->save(array(i18n("Poll properties change")));
 
 	reload();
 }

@@ -140,8 +140,7 @@ if (!strcmp($cmd, "add-item")) {
     		process($userfile, $tag, $userfile_name, $setCaption);
 		}
 
-		_("Image added");
-		$gallery->album->save(array("Image added"));
+		$gallery->album->save(array(i18n("Image added")));
 
 		if ($temp_files) {
     		/* Clean up the temporary url file */

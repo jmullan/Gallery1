@@ -51,14 +51,12 @@ if ($gallery->session->albumName) {
 	if (isset($confirm) && $confirm) {
 		if (!strcmp($sort,"random")) {
 			$gallery->album->shufflePhotos();
-			_("Album resorted");
-			$gallery->album->save(array("Album resorted"));
+			$gallery->album->save(array(i18n("Album resorted")));
 			dismissAndReload();
 			return;
 		} else {
 			$gallery->album->sortPhotos($sort,$order);
-			_("Album resorted");
-			$gallery->album->save(array("Album resorted"));
+			$gallery->album->save(array(i18n("Album resorted")));
 			dismissAndReload();
 			return;
 		}

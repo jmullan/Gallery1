@@ -61,8 +61,9 @@ if ($gallery->session->albumName && isset($index)) {
 		my_flush();
                 set_time_limit($gallery->app->timeLimit);
 		$gallery->album->rotatePhoto($index, $rotate);
-		_("Image rotated");
-		$gallery->album->save(array("Image rotated"));
+		$gallery->album->save(array(i18n("Image %s rotated"),
+				       	makeAlbumURL($gallery->album->fields["name"], 
+						$gallery->album->getPhotoId($index))));
 		reload();
 		print "<p>Manipulate again?";
 	} else {

@@ -69,8 +69,7 @@ if (isset($userfile_name) && fs_file_exists($userfile)) { ?>
 		}
 	}
 	processNewImage($userfile, $tag, $userfile_name, $caption, $setCaption, $extra_fields);
-	_("A new item has been added.");
-	$gallery->album->save(array("A new item has been added."));
+	$gallery->album->save(array(i18n("A new item %s has been added"), $userfile_name));
 
 	if ($temp_files) {
 		/* Clean up the temporary url file */

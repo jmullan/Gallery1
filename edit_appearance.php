@@ -79,8 +79,7 @@ if (isset($save)) {
 	$gallery->album->fields["thumb_frame"] = $thumb_frame;
 	$gallery->album->fields["image_frame"] = $image_frame;
 	$gallery->album->fields["showDimensions"] = $showDimensions;
-	_("Properties changed");
-	$gallery->album->save(array("Properties changed"));
+	$gallery->album->save(array(i18n("Properties changed")));
 
 	if (isset($setNested)) {
 	

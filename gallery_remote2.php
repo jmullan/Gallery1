@@ -269,8 +269,7 @@ if (!strcmp($cmd, "login")) {
     		$error = processFile($userfile, $tag, $name, $caption);
 		}
 		
-		_("Image added");
-		$gallery->album->save(array("Image added"));
+		$gallery->album->save(array(i18n("Image added")));
 		
 		if ($temp_files) {
     		/* Clean up the temporary url file */
@@ -385,8 +384,7 @@ if (!strcmp($cmd, "login")) {
 			if($set_destalbumName == $gallery->session->albumName) {
 
 				$gallery->album->movePhoto($index,$newIndex-1);
-				_("Moved photo from %d to %d");
-				$gallery->album->save(array("Moved photo from %d to %d", 
+				$gallery->album->save(array(i18n("Moved photo from %d to %d"), 
 							$index, $newIndex));
 				$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 				$response->setProperty( 'status_text', 'Change image index successful.' );
@@ -402,8 +400,7 @@ if (!strcmp($cmd, "login")) {
 		} else {
 			if(!$gallery->album->isAlbumName($index)) { //make sure not moving an album
 		                $gallery->album->movePhoto($index, $newIndex-1);
-				_("Moved photo from %d to %d"); 
-				$gallery->album->save(array("Moved photo from %d to %d", 
+				$gallery->album->save(array(i18n("Moved photo from %d to %d"), 
 							$index, $newIndex));
 				$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 				$response->setProperty( 'status_text', 'Change image index successful.' );

@@ -67,8 +67,7 @@ if (isset($save) || isset($next) || isset($prev)) {
         $myAlbum = new Album();
         $myAlbum->load($myAlbumName);
         $myAlbum->fields['description'] = stripslashes(${"new_captions_" . $i});
-	_("Text has been changed");
-	$myAlbum->save(array("Text has been changed"));
+	$myAlbum->save(array(i18n("Text has been changed")));
 
       } else {
         $gallery->album->setCaption($i, stripslashes(${"new_captions_" . $i}));
@@ -89,8 +88,7 @@ if (isset($save) || isset($next) || isset($prev)) {
       $count++;
     }
 
-    _("Text has been changed");
-    $gallery->album->save(array("Text has been changed"));
+    $gallery->album->save(array(i18n("Text has been changed")));
 
 }
 

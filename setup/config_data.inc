@@ -698,7 +698,23 @@ $constants = array_merge($constants,
 		"type" => "hidden",
 		"persistent" => 1,
 		"value" => "no"
+		),
+	"adminCommentsEmail" => array(
+		"desc" => "This is allows the \"admin\" account to get email whenever a comment is added to any album",
+		"prompt" => "Admin comment email",
+		"type" => "hidden",
+		"persistent" => 1,
+		"value" => "no"
+		),
+	"adminOtherChangesEmail" => array(
+		"desc" => "This is allows the \"admin\" account to get email whenever a change is made to any album",
+		"prompt" => "Admin Other Changes email",
+		"type" => "hidden",
+		"persistent" => 1,
+		"value" => "no"
 		)
+
+
 
 
 	)

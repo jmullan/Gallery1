@@ -76,6 +76,7 @@ function viewComments($index, $addComments) {
         global $gallery;
 	global $GALLERY_BASEDIR;
 	global $commentdraw;
+	global $i;
 
 	// get number of comments to use as counter for display loop
 	$numComments = $gallery->album->numComments($index);
@@ -1779,8 +1780,7 @@ function saveResults($votes)
 		}
 		
 	}
-	_("New vote recorded");
-	$gallery->album->save(array("New vote recorded"));
+	$gallery->album->save(array(i18n("New vote recorded")));
 }
 
 function getVotingID()
@@ -3102,4 +3102,7 @@ function user_name_string($uid) {
 	}
 }
 
+function i18n($buf) {
+       	return $buf;
+}
 ?>

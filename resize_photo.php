@@ -71,8 +71,8 @@ if ($gallery->session->albumName && isset($index)) {
 			set_time_limit($gallery->app->timeLimit);
 			$gallery->album->resizePhoto($index, $resize, $resize_file_size);
 		}
-		_("Images resized");
-		$gallery->album->save(array("Images resized"));
+		$gallery->album->save(array(i18n("Images resized to %s pixels, %s kbytes"),
+					$resize, $resize_file_size));
 		dismissAndReload();
 		return;
 	} else {

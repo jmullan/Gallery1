@@ -98,8 +98,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 } else if (!strcmp($cmd, "highlight")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$gallery->album->setHighlight($index);
-		_("Changed Highlight");
-		$gallery->album->save(array("Changed Highlight"));
+		$gallery->album->save(array(i18n("Changed Highlight")));
 	}
 	//-- this is expected to be loaded in a popup, so dismiss ---
 	dismissAndReload();
@@ -128,9 +127,13 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 
 } else if (!strcmp($cmd, "delete-comment")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		$comment=$gallery->album->getComment($index, $comment_index); 
 		$gallery->album->deleteComment($index, $comment_index);
-		_("Comment deleted");
-		$gallery->album->save(array("Comment deleted"));
+		$gallery->album->save(array(i18n("Comment \"%s\" by %s deleted from %s"),
+					$comment->getCommentText(),
+				       	$comment->getName(),
+				       	makeAlbumURL($gallery->album->fields["name"], 
+						$gallery->album->getPhotoId($index))));
 		dismissAndReload();
 	} else {
 	        header("Location: " . makeAlbumUrl());

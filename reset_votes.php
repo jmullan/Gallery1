@@ -47,8 +47,7 @@ if (!$gallery->user->canDeleteFromAlbum($gallery->album) && !$gallery->album->is
 
 if (isset($confirm) && $confirm) {
 	$gallery->album->fields["votes"]=array();
-	_("All votes removed");
-	$gallery->album->save(array("All votes removed"));
+	$gallery->album->save(array(i18n("All votes removed")));
 	dismissAndReload();
 	return;
 }

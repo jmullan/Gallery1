@@ -709,13 +709,10 @@ class Album {
 				vd($msg);
 				return $success;
 			}
-			if (!isset($id)) {
-			    $id = null;
-			}
-		       	$to = implode(", ", $this->getEmailMeList('other', $id));
+		       	$to = implode(", ", $this->getEmailMeList('other'));
 			$msg_str=call_user_func_array('sprintf', $msg);
 		       	if (strlen($to) > 0) {
-			       	$text = sprintf("A change has been made to %s by %s (IP %s).  The change is: %s.",
+			       	$text = sprintf("A change has been made to %s by %s (IP %s).  The change is: %s",
 					       	makeAlbumUrl($this->fields['name']),
 						user_name_string($gallery->user->getUID()),
 						$HTTP_SERVER_VARS['REMOTE_ADDR'],
@@ -1922,6 +1919,15 @@ class Album {
 		} else {
 			$uids=array();
 		}
+		$admin=$gallery->userDB->getUserByUsername('admin');
+		if ($admin) {
+			if ($type == 'comments' && $gallery->app->adminCommentsEmail == "yes") {
+				$uids[]=$admin->getUid();
+			} else if ($type == 'other' && $gallery->app->adminOtherChangesEmail == "yes") {
+				$uids[]=$admin->getUid();
+			}
+		}
+
 		if ($id) {
 			$index=$this->getPhotoIndex($id);
 			$photo=$this->getPhoto($index);
