@@ -1,5 +1,7 @@
 <?
 require("../classes/User.php");
+require("../classes/NobodyUser.php");
+require("../classes/EverybodyUser.php");
 require("../classes/UserDB.php");
 
 $GALLERY_DIR = dirname(dirname(getenv("SCRIPT_FILENAME")));
