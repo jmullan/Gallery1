@@ -166,6 +166,8 @@ class Album {
 		if ($this->numPhotos(1) == 1) {
 			$this->setHighlight(1);
 		}
+
+		return 1;
 	}
 
 	function hidePhoto($index) {
