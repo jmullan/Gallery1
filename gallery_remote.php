@@ -207,7 +207,7 @@ function process($file, $tag, $name, $setCaption="") {
             $mangledFilename .= "_G";
         }
    
-        set_time_limit(30);
+        set_time_limit($gallery->app->timeLimit);
         if (acceptableFormat($tag)) {
             if ($setCaption) {
                 $caption = $originalFilename;

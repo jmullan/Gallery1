@@ -53,13 +53,13 @@ if ($gallery->session->albumName && isset($index)) {
 			for ($i = 1; $i <= $np; $i++) {
 				echo("<br> Processing image $i...");
 				my_flush();
-				set_time_limit(90);
+				set_time_limit($gallery->app->timeLimit);
 				$gallery->album->resizePhoto($i, $resize);
 			}
 		} else {
 			echo("<br> Resizing 1 photo...");
 			my_flush();
-			set_time_limit(90);
+			set_time_limit($gallery->app->timeLimit);
 			$gallery->album->resizePhoto($index, $resize);
 		}
 		$gallery->album->save();

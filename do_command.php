@@ -49,7 +49,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 					if (!$isAlbumName) { // process the images
 						echo("<br> Processing image $i...");
 						my_flush();
-						set_time_limit(90);
+						set_time_limit($gallery->app->timeLimit);
 						$gallery->album->makeThumbnail($i);
 					} else { 
 						// we just skip albums... we could have
@@ -63,7 +63,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 			} else {
 				echo ("<br> Rebuilding 1 thumbnail...");
 				my_flush();
-				set_time_limit(90);
+				set_time_limit($gallery->app->timeLimit);
 				$gallery->album->makeThumbnail($index);
 			}
 			$gallery->album->save();

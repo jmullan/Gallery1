@@ -145,7 +145,7 @@ if ($urls) {
 		if ($id && $od) {
 			while (!feof($id)) {
 				fwrite($od, fread($id, 65536));
-				set_time_limit(30);
+				set_time_limit($gallery->app->timeLimit);
 			}
 			fclose($id);
 			fclose($od);
@@ -189,7 +189,7 @@ if ($urls) {
 			while ($cnt = eregi('(src|href)="?([^" >]+\.' . acceptableFormatRegexp() . ')[" >]',
 					    $contents, 
 					    $results)) {
-				set_time_limit(30);
+				set_time_limit($gallery->app->timeLimit);
 				$things[$results[2]]++;
 				$contents = str_replace($results[2], "", $contents);
 			}
@@ -302,7 +302,7 @@ function process($file, $tag, $name, $setCaption="") {
 			$mangledFilename .= "_G";
 		}
 	
-		set_time_limit(30);
+		set_time_limit($gallery->app->timeLimit);
 		if (acceptableFormat($tag)) {
 
 		        /*
