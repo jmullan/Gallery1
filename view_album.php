@@ -854,8 +854,9 @@ if ($numPhotos) {
 			} else { 
 				$showAdminForm = 0;
 			}
-			echo "\n". '<table width="' . $gallery->album->fields['thumb_size'] . '" border="0" cellpadding="0" cellspacing="4">';
-			echo "\n". '<tr><td class="modcaption">';
+
+			// Caption itself
+			echo "\n". '<div class="modcaption" style="width:60%">';
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 				echo "(" . _("hidden") .")<br>";
@@ -871,7 +872,7 @@ if ($numPhotos) {
 				}
 				echo $buf;
 
-				echo '<br><span class="fineprint">';
+				echo '<div class="fineprint" style="margin-top:3px">';
 				echo _("Changed: ") ." ". $myAlbum->getLastModificationDate();
  				echo "\n<br>";
 				$visibleItems=array_sum($myAlbum->numVisibleItems($gallery->user));
@@ -886,11 +887,12 @@ if ($numPhotos) {
 						print lastCommentString($lastCommentDate, $displayCommentLegend);
 					}
 				}
-				echo '</span><br>';
+				echo '</div>';
+
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) {
-					echo '<span class="viewcounter">';
+					echo '<div class="viewcounter" style="margin-top:3px">';
 					echo _("Viewed:") . " ". pluralize_n2(ngettext("1 time", "%d times", $myAlbum->getClicks()), $myAlbum->getClicks());
-					echo ".<br></span>";
+					echo ".</div>";
 				}
 				echo '</span>';
 			} 
@@ -909,14 +911,15 @@ if ($numPhotos) {
 						print lastCommentString($lastCommentDate, $displayCommentLegend);
 					}
 				}
-				echo "</center><br>";
+				echo "</center>";
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
-					echo '<span class="viewcounter">';
+					echo '<div class="viewcounter" style="margin-top:3px">';
 					echo _("Viewed:") ." ". pluralize_n2(ngettext("1 time", "%d times", $gallery->album->getItemClicks($i)), $gallery->album->getItemClicks($i));
-					echo ".<br></span>";
+					echo ".</div>\n";
 				}
 			}
-		       	echo "</td></tr></table>\n";
+		       	echo "</div>\n";
+			// End Caption
 
 		       	if (canVote()) {
 				print '<table><tr><td align="center">';
