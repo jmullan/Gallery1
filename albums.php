@@ -183,9 +183,9 @@ if ($gallery->user->isAdmin()) {
 	if ($doc) {
 		$adminCommands .= "$doc ";
 	}
-	$adminCommands .= '<a style="white-space:nowrap;" href="' . $gallery->app->photoAlbumURL . '/setup/index.php">[' . _("configuration wizard") .']</a> ';
-	$adminCommands .= '<a style="white-space:nowrap;" href="' . makeGalleryUrl('tools/find_orphans.php') . '">[' . _("find orphans") .']</a> ';
-	$adminCommands .= '<a style="white-space:nowrap;" href="' . makeGalleryUrl('tools/despam-comments.php') . '">[' . _("find comment spam") .']</a> ';
+	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . $gallery->app->photoAlbumURL . '/setup/index.php">[' . _("configuration wizard") .']</a> ';
+	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . makeGalleryUrl('tools/find_orphans.php') . '">[' . _("find orphans") .']</a> ';
+	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . makeGalleryUrl('tools/despam-comments.php') . '">[' . _("find comment spam") .']</a> ';
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
