@@ -1552,6 +1552,7 @@ class Album {
 			$i = $album->getHighlight();
 			if (isset($i)) {
 				$album->setHighlight($i);
+				$album->save();
 			}
 		}
 	}
