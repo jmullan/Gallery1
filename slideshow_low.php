@@ -142,6 +142,8 @@ function printSlideshowPhotos($slide_full, $what = PHOTO_ALL) {
 	    // Now lets get the captions
 	    $caption = $gallery->album->getCaption($index);
 	    $caption = str_replace("\"", " ", $caption);
+	    $caption = str_replace("\n", " ", $caption);
+	    $caption = str_replace("\r", " ", $caption);
 	    
 	    // Print out the entry for this image as Javascript
 	    print "photo_captions[$photo_count] = \"$caption\";\n";
