@@ -22,8 +22,6 @@ won't need to do much.
 <?php
 $i = 0;
 foreach ($defaults as $key => $val) {
-
-	$$key=stripQuotes($$key);
 	/* Support $app-> for backwards compatibility */
 	if ($app->default[$key]) {
 		$val["value"] = $app->default[$key];
@@ -34,10 +32,28 @@ foreach ($defaults as $key => $val) {
 		$val["value"] = $gallery->app->default[$key];
 	}
 
-	if (!$go_defaults && isset($$key)) {
-		$val["value"] = $$key;
+	/* Convert custom fields for compatibility */
+	if ($key == "extra_fields" && strrpos($val["value"], "&quot;")) {
+	    /* Convert:
+             *    "&quot;Description&quot;, &quot;Foo Bar&quot;"
+	     * to
+	     *    "Description, Foo Bar"
+	     */
+	    $val["value"] = str_replace("&quot;", "", $val["value"]);
+	    $val["value"] = trim($val["value"], " ,");
 	}
 
+	if (!$go_defaults && isset($$key)) {
+		$val["value"] = $$key;
+		
+		if (get_magic_quotes_gpc()) {
+		    $val["value"] = stripslashes($val["value"]);
+		}
+	}
+
+	// Protect quote characters to avoid screwing up HTML forms
+	$val["value"] = str_replace('"', "&quot;", $val["value"]);
+	
 	if (!strcmp($val["type"], "hidden")) {
 		list($f1, $f2) = make_fields($key, $val);
 		echo $f2;

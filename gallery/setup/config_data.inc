@@ -191,6 +191,12 @@ $constants = array(
 		"dont-write" => 1,
 		"attrs" => array("size" => 50),
 	),
+	"graphics" => array(
+		"prompt" => "Graphics suite to use?",
+		"desc" => "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error.",
+		"choices" => array("NetPBM", "ImageMagick"),
+		"value" => default_graphics(),
+	),
 	"pnmDir" => array(
 		"optional" => 1,
 		"prompt" => "Path to NetPBM",
@@ -206,6 +212,7 @@ $constants = array(
 		"filename" => 1,
 		"attrs" => array("size" => 50),
 		"no-trailing-slash" => 1,
+		"verify-func-takes-graphics-type" => true,			  
 	),
 	"pnmtojpeg" => array(
 		"prompt" => "PNM to JPEG converter",
@@ -233,12 +240,7 @@ $constants = array(
 		"filename" => 1,
 		"attrs" => array("size" => 50),
 		"no-trailing-slash" => 1,
-	),
-	"graphics" => array(
-		"prompt" => "Graphics suite to use?",
-		"desc" => "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error.",
-		"choices" => array("NetPBM", "ImageMagick"),
-		"value" => "NetPBM",
+		"verify-func-takes-graphics-type" => true,			  
 	),
 	"highlight_size" => array(
 		"prompt" => "Highlight size",
@@ -573,13 +575,12 @@ $defaults = array(
 	"extra_fields" => array(
 		"prompt" => "Custom Fields",
 		"optional" => 1,
-		"verify-func" => "check_generate_array",
 		"desc" => "Custom fields that are available to describe each image.  ".
-			  "Quoted and comma separated ".
-			  "Eg. <i>\"Description\", \"Location\", \"Film Type\"<i>".
+			  "They should be separated by commas ".
+			  "Eg. <i>Description, Location, Film Type<i>".
 			  "<br><font color=blue><b>(this is new in version 1.3.4)</b></font>",
 		"attrs" => array("size" => 80),
-		"value" => "&quot;Description&quot;"
+		"value" => "Description"
 	)
 );
 

@@ -1609,17 +1609,4 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 
         return $returnVal;
 }
-function stripQuotes($string)
-{
-	if (!$string)
-		return $string;
-	return ereg_replace('"', "&quot;", $string);
-}
-function restoreQuotes($string)
-{
-	if (!$string)
-		return $string;
-	return ereg_replace("&quot;", '"', $string);
-}
-
 ?>

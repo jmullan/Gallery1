@@ -38,8 +38,8 @@ if (!$gallery) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = "1.3.4-RC2";
-$gallery->config_version = 34;
+$gallery->version = "1.3.4-RC3";
+$gallery->config_version = 35;
 $gallery->album_version = 10;
 $gallery->remote_protocol_version = 1;
 $gallery->url = "http://gallery.sourceforge.net";

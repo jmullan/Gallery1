@@ -70,11 +70,11 @@ class Album {
 		$this->fields["display_clicks"] = $gallery->app->default["display_clicks"];
 		$this->fields["public_comments"] = $gallery->app->default["public_comments"];
 		$this->fields["serial_number"] = 0;
-		$extra_field_string=
-			"\$this->fields[\"extra_fields\"] = array(".  
-				restoreQuotes(
-					$gallery->app->default["extra_fields"]) .");";
-		eval($extra_field_string);
+		$this->fields["extra_fields"] =
+		    split(",", trim($gallery->app->default["extra_fields"], " ,"));
+		for ($i = 0; $i < sizeof($this->fields["extra_fields"]); $i++) {
+		    $this->fields["extra_fields"][$i] = trim($this->fields["extra_fields"][$i]);
+		}
 		$this->fields["cached_photo_count"] = 0;
 		$this->fields["photos_separate"] = FALSE;
 		$this->transient->photosloaded = TRUE;

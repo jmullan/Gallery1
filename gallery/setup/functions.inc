@@ -221,28 +221,17 @@ function check_exif($location="")
 	return array($success, $fail);
 }
 
-function check_generate_array($string)
-{
-	if (ini_get ('magic_quotes_gpc')) {
-		$string = stripslashes ($string);
-	}
-
-	$fail = array();
-	$success = array();
-	eval ("\$array=array(".restoreQuotes($string).");");
-	if (!is_array($array))
-	{
-		$fail[]=array("<i>$string</i> is not of the form <i>\"field one\", \"field two\", \"field three\"");
-	}
-	return array($success, $fail);
-}
-
-function check_graphics($location="")
+function check_graphics($location="", $graphtool = "")
 {
 	global $gallery;
 
 	$fail = array();
 	$success = array();
+
+ 	if (!strcmp($graphtool, "ImageMagick")) {
+ 		$success[] = "NetPBM not being used in this installation";
+	return array($success, $fail);
+}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
 	    $success[] = "Cannot verify this path (it's not in your open_basedir list)";
@@ -315,12 +304,17 @@ function check_graphics($location="")
 	return array($success, $fail);
 }
 
-function check_graphics_im($location="")
+function check_graphics_im($location="", $graphtool="")
 {
 	global $gallery;
 
 	$fail = array();
 	$success = array();
+
+	if (!strcmp($graphtool, "NetPBM")) {
+		$success[] = "ImageMagick not being used in this installation";
+	    	return array($success, $fail);
+	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
 	    $success[] = "Cannot verify this path (it's not in your open_basedir list)";
@@ -362,6 +356,17 @@ function check_graphics_im($location="")
 	}
 
 	return array($success, $fail);
+}
+
+function default_graphics()
+{
+	list ($imageMagick,) = check_graphics_im();
+        
+	if (count ($imageMagick)) {
+		return "ImageMagick";
+	} else {
+		return "NetPBM";
+	}
 }
 
 function check_safe_mode()
