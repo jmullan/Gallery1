@@ -180,11 +180,19 @@ class Album {
 		return $album;	
 	}
 
-	function getRootAlbumName() {
-
+	function &getParentAlbum($loadphotos=TRUE) {
 		if ($this->fields['parentAlbumName']) {
 			$parentAlbum = new Album();
-			$parentAlbum->load($this->fields['parentAlbumName']);
+			$parentAlbum->load($this->fields['parentAlbumName'], $loadphotos);
+			return $parentAlbum;
+		}
+		return null;
+	}
+
+	function getRootAlbumName() {
+
+		$parentAlbum =& $this->getParentAlbum(FALSE);
+		if (isset($parentAlbum)) {
 			$returnValue = $parentAlbum->getRootAlbumName();
 		} else {
 			$returnValue = $this->fields['name'];
@@ -576,11 +584,9 @@ class Album {
 
 	function getHighlightSize() {
 		global $gallery;
-		$parent = $this->fields['parentAlbumName'];
-		if ($parent) {
-			$pAlbum = new Album();
-			$pAlbum->load($parent, FALSE);
-			$size = $pAlbum->fields["thumb_size"];
+		$parentAlbum =& $this->getParentAlbum(FALSE);
+		if (isset($parentAlbum)) {
+			$size = $parentAlbum->fields["thumb_size"];
 		} else {
 			$size = $gallery->app->highlight_size;
 		}
@@ -592,7 +598,7 @@ class Album {
 
 		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			$photo = &$this->getPhoto($i);
-			$photo->setHighlight($this->getAlbumDir(), $i == $index, $this->getHighlightSize());
+			$photo->setHighlight($this->getAlbumDir(), $i == $index, $this);
 		}
 	}
 
@@ -899,7 +905,7 @@ class Album {
 
 		/* Add the photo to the photo list */
 		$item = new AlbumItem();
-		$err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $this->getHighlightSize(), $pathToThumb);
+		$err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $this, $pathToThumb);
 		if ($err) {
 			if (fs_file_exists($newFile)) {
 				fs_unlink($newFile);
@@ -1343,7 +1349,7 @@ class Album {
 	function rotatePhoto($index, $direction) {
 		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);
-		$retval = $photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"], $this->getHighlightSize());
+		$retval = $photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"], $this);
 		if (!$retval) {
 			return $retval;
 		}
@@ -1353,7 +1359,7 @@ class Album {
 		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);
 		if (!$photo->isAlbumName) {
-			$photo->makeThumbnail($this->getAlbumDir(), $this->fields["thumb_size"], $this->getHighlightSize());
+			$photo->makeThumbnail($this->getAlbumDir(), $this->fields["thumb_size"], $this);
 		} else {
 			// Reselect highlight of subalbum..
 			$album = $this->getNestedAlbum($index);

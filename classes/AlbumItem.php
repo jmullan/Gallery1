@@ -291,30 +291,33 @@ class AlbumItem {
 		return $this->hidden;
 	}
 
-	function setHighlight($dir, $bool, $size=0) {
+	function setHighlight($dir, $bool, &$album,
+	    $name=null, $tag=null, $srcdir=null, $srcitem=null) {
 		global $gallery;
 		
 		$this->highlight = $bool;
-		if (!$size) $size = $gallery->app->highlight_size;
 		
 		/*
 		 * if it is now the highlight make sure it has a highlight
                  * thumb otherwise get rid of it's thumb (ouch!).
 		 */
-		$name = $this->image->name;
-		$tag = $this->image->type;
 
 		if ($this->highlight) {
-			$srcdir = $dir;
-			$srcitem = $this;
-			if ($this->isAlbumName) {
-				$name = $this->isAlbumName;
-				$nestedAlbum = new Album();
-				$nestedAlbum->load($name);
-				list ($srcalbum, $srcitem) = $nestedAlbum->getHighlightedItem();
-				$srcdir = $srcalbum->getAlbumDir();
-				$tag = $srcitem->image->type;
+			if (!isset($name)) {
+				$name = $this->image->name;
+				$tag = $this->image->type;
+				$srcdir = $dir;
+				$srcitem = $this;
+				if ($this->isAlbumName) {
+					$name = $this->isAlbumName;
+					$nestedAlbum = new Album();
+					$nestedAlbum->load($name);
+					list ($srcalbum, $srcitem) = $nestedAlbum->getHighlightedItem();
+					$srcdir = $srcalbum->getAlbumDir();
+					$tag = $srcitem->image->type;
+				}
 			}
+			$size = $album->getHighlightSize();
 
 			if ($srcitem->image->thumb_width > 0) {
 				// Crop it first
@@ -348,6 +351,17 @@ class AlbumItem {
 				$high->setFile($dir, "$name.highlight", "$tag");
 				$high->setDimensions($w, $h);
 				$this->highlightImage = $high;
+
+				/* Check if we need to cascade highlight up to parent album */
+				$parentAlbum =& $album->getParentAlbum();
+				if (isset($parentAlbum)) {
+					$highlightIndex = $parentAlbum->getHighlight();
+					if ($highlightIndex == $parentAlbum->getAlbumIndex($album->fields['name'])) {
+						$item = &$parentAlbum->getPhoto($highlightIndex);
+						$item->setHighlight($parentAlbum->getAlbumDir(), 1, $parentAlbum, $album->fields['name'], $tag, $srcdir, $srcitem);
+						$parentAlbum->save("",0);
+					}
+				}
 			}
 		} else {
 			if (is_object($this->highlightImage)) {
@@ -399,7 +413,7 @@ class AlbumItem {
 		return $im->isResized();
 	}
 
-	function rotate($dir, $direction, $thumb_size, $highlight_size) {
+	function rotate($dir, $direction, $thumb_size, &$album) {
 		global $gallery;
 
 		$name = $this->image->name;
@@ -421,11 +435,11 @@ class AlbumItem {
 
 		/* Reset the thumbnail to the default before regenerating thumb */
 		$this->image->setThumbRectangle(0, 0, 0, 0);
-		$this->makeThumbnail($dir, $thumb_size, $highlight_size);
+		$this->makeThumbnail($dir, $thumb_size, $album);
 		return 1;
 	}
 
-	function setPhoto($dir, $name, $tag, $thumb_size, $highlight_size, $pathToThumb="") {
+	function setPhoto($dir, $name, $tag, $thumb_size, &$album, $pathToThumb="") {
 		global $gallery;
 
 		/*
@@ -440,11 +454,11 @@ class AlbumItem {
 		$this->image = new Image;
 		$this->image->setFile($dir, $name, $tag);
 
-		$ret = $this->makeThumbnail($dir, $thumb_size, $highlight_size, $pathToThumb);
+		$ret = $this->makeThumbnail($dir, $thumb_size, $album, $pathToThumb);
 		return $ret;
 	}
 
-	function makeThumbnail($dir, $thumb_size, $highlight_size, $pathToThumb="")
+	function makeThumbnail($dir, $thumb_size, &$album, $pathToThumb="")
 	{
 		global $gallery;
 		$name = $this->image->name;
@@ -488,7 +502,7 @@ class AlbumItem {
 
 				/* if this is the highlight, remake it */
 				if ($this->highlight) {
-					$this->setHighlight($dir, 1, $highlight_size);
+					$this->setHighlight($dir, 1, $album);
 				}
 			} else {
 				return _("Unable to make thumbnail") ." ($ret)";
