@@ -34,7 +34,7 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	exit;
 }
 $err = "";	
-if ($save) {
+if (!strcmp($submit, "Save")) {
 	if (($capture_year < 3000) && ($capture_year > 1000)) { // only allow photo capture dates from 1000 to 3000.
 		$gallery->album->setCaption($index, stripslashes($data));
 		$gallery->album->setKeywords($index, stripslashes($keywords));
@@ -71,7 +71,6 @@ box below.
 <?= makeFormIntro("edit_caption.php", 
 			array("name" => "theform", 
 				"method" => "POST")); ?>
-<input type=hidden name="save" value=1>
 <input type=hidden name="index" value="<?= $index ?>">
 <textarea name="data" rows=5 cols=40>
 <?= $gallery->album->getCaption($index) ?>

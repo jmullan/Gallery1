@@ -37,7 +37,7 @@ if (strcmp($gallery->album->fields["public_comments"], "yes")) {
 
 $error_text = "";
 
-if ($save) {
+if (!strcmp($submit, "Save")) {
 	if ($commenter_name && $comment_text) {
 	        $comment_text = removeTags($comment_text);
 	        $commenter_name = removeTags($commenter_name);
@@ -73,7 +73,6 @@ if ($error_text) {
 ?>
 
 <?= makeFormIntro("add_comment.php", array("name" => "theform", "method" => "POST")); ?>
-<input type=hidden name="save" value=1>
 <input type=hidden name="index" value="<?= $index ?>">
 <input type=hidden name="IPNumber" value="<?=$REMOTE_ADDR ?>">
 <table border=0 cellpadding=5>

@@ -34,7 +34,7 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	exit;
 }
 	
-if ($save) {
+if (!strcmp($submit, "Save")) {
 	$gallery->album->fields[$field] = stripslashes($data);
 	$gallery->album->save();
 	dismissAndReload();
@@ -54,7 +54,6 @@ if ($save) {
 Edit the <?= $field ?> and click <b>Save</b> when you're done.
 
 <?= makeFormIntro("edit_field.php", array("name" => "theform", "method" => "POST")); ?>
-<input type=hidden name="save" value=1>
 <input type=hidden name="field" value="<?= $field ?>">
 <textarea name="data" rows=5 cols=40>
 <?= $gallery->album->fields[$field] ?>
