@@ -2192,12 +2192,55 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 			" -1 " .
 			fs_import_filename($file, 1));
 		sort($files);
+		// Get meta data
+		$image_info = array();
+		foreach ($files as $pic_path) {
+			$pic = basename($pic_path);
+			$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
+			$tag = strtolower($tag);
+			if (!strcmp($tag, "csv")) {
+				$cmd_pic_path = str_replace("[", "\[", $pic_path); 
+				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
+				exec_wrapper(fs_import_filename($gallery->app->unzip, 1) .
+					     " -j -o " .
+					     fs_import_filename($file, 1) .
+					     ' ' .
+					     fs_import_filename($cmd_pic_path) .
+					     ' -d ' .
+					     fs_import_filename($gallery->app->tmpDir, 1));
+
+				$image_info = array_merge($image_info, parse_csv($gallery->app->tmpDir . "/$pic",";"));
+			}
+		}
+
+		if ($gallery->app->debug == "yes") {
+			// Print meta data
+			print "<table border=\"1\">\n";
+			$row = 0;
+			foreach ($image_info as $info) {
+				print "<tr>";
+				if ($row == 0) {
+					$keys = array_keys($info);
+					foreach ($keys as $key) {
+						print "<th>$key</th>";
+					}
+					print "</tr>\n<tr>";
+				}
+				foreach ($keys as $key) {
+					print "<td>".$info[$key]."</td>";
+				}
+				$row++;
+				print "</tr>\n";
+			}
+			print "</table>\n";
+		}
+
 		foreach ($files as $pic_path) {
 			$pic = basename($pic_path);
 			$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
 			$tag = strtolower($tag);
 
-			if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
+		 	if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
 				$cmd_pic_path = str_replace("[", "\[", $pic_path); 
 				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
 				exec_wrapper(fs_import_filename($gallery->app->unzip, 1) . 
@@ -2208,11 +2251,39 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 					     ' -d ' .
 					     fs_import_filename($gallery->app->tmpDir, 1));
 					     
+				$extra_fields = array();
+				// Find in meta data array
+				$firstRow = 1;
+				$fileNameKey = "File Name";
+				// $captionMetaFields will store the names (in order of priority to set caption to)
+				$captionMetaFields = array("Caption", "Title", "Description", "Persons");
+				foreach ( $image_info as $info ) {
+					if ($firstRow) {
+						// Find the name of the file name field
+						foreach (array_keys($info) as $currKey) {
+							if (eregi("^\"?file\ ?name\"?$", $currKey)) {
+								$fileNameKey = $currKey;
+							}
+						}
+						$firstRow = 0;
+					}
+					if ($info[$fileNameKey] == $pic) {
+						// Loop through fields
+						foreach ($captionMetaFields as $field) {
+							// If caption isn't populated and current field is
+							if (!strlen($caption) && strlen($info[$field])) {
+								$caption = $info[$field];
+							}
+						}
+						$extra_fields = $info;
+					}
+				}
 					     /*
 					      Don't use the second argument for $cmd_pic_path, because it is
 					      already quoted.
 					     */
-				processNewImage($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption);
+
+				processNewImage($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption, $extra_fields);
 				fs_unlink($gallery->app->tmpDir . "/$pic");
 			}
 		}
@@ -2258,8 +2329,15 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 			}
 		    
 			processingMsg("<p>- ". sprintf(_("Adding %s"),$name));
-			if ($setCaption and $caption == "") {
-				$caption = strtr($originalFilename, '_', ' ');
+			if ($caption == "") {
+				switch ($setCaption) {
+				case 1:
+					$caption = strtr($originalFilename, '_', ' ');
+					break;
+				case 2:
+					$caption = date("F d Y H:i:s.", filectime($file));
+					break;
+				}
 			}
 	
 			if (!$extra_fields) {
@@ -3032,7 +3110,23 @@ function contextHelp ($link) {
 	}
 }
 
-
+function parse_csv ($filename, $delimiter=";") {
+	$maxLength = 1024;
+	$return_array = array();
+	if ($fd = fs_fopen($filename, "rt")) {
+		$headers = fgetcsv($fd, $maxLength, $delimiter);
+		while ($columns = fgetcsv($fd, $maxLength, $delimiter)) {
+			$i = 0;
+			$current_image = array();
+			foreach ($columns as $column) {
+				$current_image[$headers[$i++]] = $column;
+			}
+			$return_array[] = $current_image;
+		}
+		fclose($fd);
+	}
+	return $return_array;	
+}
 
 /*
 ** This function strips slashes from an array Key

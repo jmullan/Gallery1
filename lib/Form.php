@@ -22,28 +22,28 @@
 ?>
 <?php 
 
-function insertFormJS($formName,$elementName) {
+function insertFormJS($formName) {
 
 /* Note: the w3c-suggested "text/javascript" doesn't work with Navigator 4 */
 
 ?>
 <script language="javascript">
 // <!-- 
-function setCheck(val) {
+function setCheck(val,elementName) {
 	ufne=document.<?php echo $formName; ?>;
 	len = ufne.elements.length;
 	for(i = 0 ; i < len ; i++) {
-		if (ufne.elements[i].name=='<?php echo $elementName; ?>') {
+		if (ufne.elements[i].name==elementName) {
 			ufne.elements[i].checked=val;
 		}
 	}
 }
 
-function invertCheck() {
+function invertCheck(elementName) {
 	ufne=document.<?php echo $formName; ?>;
 	len = ufne.elements.length;
 	for(i = 0 ; i < len ; i++) {
-		if (ufne.elements[i].name=='<?php echo $elementName; ?>') {
+		if (ufne.elements[i].name==elementName) {
 			ufne.elements[i].checked = !(ufne.elements[i].checked);
 		}
 	}
@@ -53,13 +53,13 @@ function invertCheck() {
 <?php
 }
 
-function insertFormJSLinks() {
+function insertFormJSLinks($elementName) {
 $buf='
-	<a href="javascript:setCheck(1)">'. _("Check All") . '</a>
+	<a href="javascript:setCheck(1,\'' . $elementName . '\')">'. _("Check All") . '</a>
 	-
-	<a href="javascript:setCheck(0)">'. _("Clear All") . '</a>
+	<a href="javascript:setCheck(0,\'' . $elementName . '\')">'. _("Clear All") . '</a>
 	-
-	<a href="javascript:invertCheck()">'. _("Invert Selection") .'</a>';
+	<a href="javascript:invertCheck(\'' . $elementName . '\')">'. _("Invert Selection") .'</a>';
 
 return $buf;
 }

@@ -35,7 +35,16 @@
 
 <input type="text" name="urls[]" size=40>
 <br>
-<input type="checkbox" name="setCaption" checked value="1"><?php echo _("Set photo captions with original filenames.") ?>
+<input type="radio" name="setCaption" <?php
+  if (!isset($setCaption) || ($setCaption < 2) ) {
+    print "checked ";
+  }
+?> value="1"><?php echo _("Set photo captions with original filenames.") ?> <br/>
+<input type="radio" name="setCaption" <?php
+  if (isset($setCaption) && ($setCaption > 1) ) {
+    print "checked ";
+  }
+?> value="2"><?php echo _("Set photo captions with file creation times.") ?>
 <br>
 <center>
 <input type="button" value="<?php echo _("Submit URL or directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()'>

@@ -25,6 +25,9 @@
 if (!isset($boxes)) {
 	$boxes = 5;
 }
+if (!isset($metaboxes)) {
+	$metaboxes = 1;
+}
 ?>
 
 <p>
@@ -42,18 +45,6 @@ if (!isset($boxes)) {
 <?php echo makeFormIntro("add_photos.php",
 			array("name" => "count_form",
 				"method" => "POST")); ?>
-<?php echo _("1. Select the number of files you want to upload:") ?>
-<select name="boxes" onChange="javascript:document.count_form.submit(); return false;">
-<?php for ($i = 1; $i <= 10;  $i++) {
-	echo "<option ";
-        if ($i == $boxes) {
-		echo "selected ";
-	}
-	echo "value=\"$i\">$i\n";
-
-} ?>
-</select>
-<br>
 <input type="hidden" name="mode" value="<?php echo $mode ?>"/>
 </form>
 
@@ -61,9 +52,21 @@ if (!isset($boxes)) {
 			array("name" => "upload_form",
 				"enctype" => "multipart/form-data",
 				"method" => "POST")); ?>
-<?php echo _("2. Use the Browse button to find the photos on your computer") ?>
 <input type="hidden" name="max_file_size" value="10000000">
 <table>
+<tr><td colspan="2">
+  <?php echo _("1. Select the number of files you want to upload:") ?>
+  <select name="boxes" onChange="javascript:document.count_form.submit(); return false;">
+  <?php for ($i = 1; $i <= 10;  $i++) {
+    echo "<option ";
+    if ($i == $boxes) {
+      echo "selected ";
+    }
+    echo "value=\"$i\">$i\n";
+  } ?>
+  </select>
+
+<tr><td colspan="2"><?php echo _("2. Use the Browse button to find the photos on your computer") ?></td></tr>
 <?php for ($i = 0; $i < $boxes;  $i++) { ?>
 <tr><td>
 <?php echo _("File") ?></td>
@@ -71,12 +74,40 @@ if (!isset($boxes)) {
 <td><?php echo _("Caption") ?></td><td> <input name="usercaption[]" type="text" size=40></td></tr>
 <tr><td></td></tr> 
 <?php } ?>
+<tr><td colspan="2"><?php echo _("3. Select the number of meta data files you want to upload:") ?>
+  <select name="metaboxes" onChange="javascript:document.count_form.submit(); return false;">
+  <?php for ($i = 1; $i <= 10;  $i++) {
+    echo "<option ";
+    if ($i == $metaboxes) {
+      echo "selected ";
+    }
+    echo "value=\"$i\">$i\n";
+  } ?>
+  </select>
+</td></tr>
+<tr><td colspan="2"><?php echo _("4. Use the Browse button to find the meta data files on your computer") ?></td></tr>
+<?php for ($i = 0; $i < $metaboxes;  $i++) { ?>
+<tr><td>
+<?php echo _("File") ?></td>
+<td><input name="metafile[]" type="file" size=40></td></tr>
+<?php } ?>
+
 </table>
-<input type=checkbox name=setCaption checked value="1"><?php echo _("Use filename as caption if no caption is specified.") ?>
+<input type="radio" name="setCaption" <?php
+  if (!isset($setCaption) || ($setCaption < 2) ) {
+    print "checked ";
+  }
+?> value="1"><?php echo _("Use filename as caption if no caption is specified.") ?> </input> <br/>
+<input type="radio" name="setCaption" <?php
+  if (isset($setCaption) && ($setCaption > 1) ) {
+    print "checked ";
+  }
+?> value="2"><?php echo _("Use file creation date stamp as caption if no caption is specified.") ?> </input>
+
 <br>
 <center>
 <input type="button" value="<?php echo _("Upload Now") ?>" onClick='parent.opener.showProgress(); document.upload_form.submit()'>
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </center>
 </form>
 
