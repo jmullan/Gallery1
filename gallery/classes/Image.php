@@ -88,9 +88,7 @@ class Image {
 		}
 
 		/* We introduced raw_filesize in 1.28 of this file, then got rid of it later. */
-		if (isset($this->raw_filesize)) {
-		    unset($this->raw_filesize);
-		}
+		unset($this->raw_filesize);
 
 		if (strcmp($this->version, $gallery->album_version)) {
 			$this->version = $gallery->album_version;
