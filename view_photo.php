@@ -37,6 +37,8 @@ if ($id) {
 	$id = $album->getPhotoId($index);
 }
 $photo = $album->getPhoto($index);
+$photoURL = $album->getAlbumDirURL() . "/" . $photo->image->name . "." . $photo->image->type;
+$fitToWindow = !strcmp($album->fields["fit_to_window"], "yes");
 list($imageWidth, $imageHeight) = $photo->image->getDimensions();
 
 if ($full) {
@@ -144,9 +146,8 @@ if ($album->fields["textcolor"]) {
 
   function fitToWindow() {
 	var changed = 0;
-	var heightMargin = 225;
-	var widthMargin = 40;
-	var photo = document.images.photo;
+	var heightMargin = 30;
+	var widthMargin = 30;
 	var imageHeight = <?=$imageHeight?>;
 	var imageWidth = <?=$imageWidth?>;
 	var aspect = imageHeight / imageWidth;
@@ -163,31 +164,30 @@ if ($album->fields["textcolor"]) {
 	windowWidth = windowWidth - widthMargin;
 	windowHeight = windowHeight - heightMargin;
 
-	if (windowHeight > windowWidth) {
-		if (imageWidth > windowWidth) {
-			imageWidth = windowWidth;
-			imageHeight = aspect * imageWidth;
-			changed = 1;
-		} else if (imageHeight > windowHeight) {
-			imageHeight = windowHeight;
-			imageWidth = imageHeight / aspect;
-			changed = 1;
-		}
-	} else {
-		if (imageHeight > windowHeight) {
-			imageHeight = windowHeight;
-			imageWidth = imageHeight / aspect;
-			changed = 1;
-		} else if (imageWidth > windowWidth) {
-			imageWidth = windowWidth;
-			imageHeight = aspect * imageWidth;
-			changed = 1;
-		}
+	if (imageWidth > windowWidth) {
+		imageWidth = windowWidth;
+		imageHeight = aspect * imageWidth;
+		changed = 1;
+	} else if (imageHeight > windowHeight) {
+		imageHeight = windowHeight;
+		imageWidth = imageHeight / aspect;
+		changed = 1;
 	}
 
 	if (changed) {
-		photo.height = imageHeight;
-		photo.width = imageWidth;
+		img = document.images.photo;
+		if (document.all) {
+			// We're in IE where we can just resize the image.
+			img.height = imageHeight;
+			img.width = imageWidth;
+		} else {
+			// In Netscape we've got to rewrite the DIV container.
+			container = document.layers["zoom"];
+			container.document.write('<img src=\"<?=$photoURL?>\" ' +
+						'width=' + imageWidth + 
+						' height=' + imageHeight + '>');
+			container.document.close();
+		}
 	}
   }
 
@@ -195,7 +195,7 @@ if ($album->fields["textcolor"]) {
   </script>
 </head>
 
-<? if (!strcmp($album->fields["fit_to_window"], "yes") && !$full) { ?>
+<? if ($fitToWindow && !$full) { ?>
 <body onLoad='fitToWindow()' onResize='fitToWindow()'>
 <? } else { ?>
 <body>
@@ -211,6 +211,7 @@ includeHtmlWrap("photo.header");
 <tr>
 <td>
 <?
+
 if (!$album->isMovie($index)) {
 	if ($user->canWriteToAlbum($album)) {
 		$adminCommands .= "<a href=".popup("$top/resize_photo.php?index=$index").">[resize photo]</a>";
@@ -260,7 +261,13 @@ includeHtmlWrap("inline_photo.header");
 </table>
 
 <!-- image -->
+
+
 <?
+if ($fitToWindow) {
+	echo "<div align=left id=\"zoom\" " .
+		"style=\"height:$imageHeight; width:$imageWidth; top:0; left:0; position: relative\">";
+}
 echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
 echo("<tr bgcolor=$bordercolor>");
 echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
@@ -289,13 +296,9 @@ if (!$album->isMovie($index)) {
 	} else if (!$full) {
 		echo "<a href=" . makeGalleryUrl($albumName, $id, "full=1") . ">";
 		$openAnchor = 1;
-		$photoTag = "<img name=photo " .
-			    "src=" . $album->getAlbumDirURL() . "/" . $photo->image->name . 
-					"." . $photo->image->type . " " .
-			    "border=0 " .
-			    "width=$imageWidth height=$imageHeight" .
-			    ">";
-	} else if (!strcmp($album->fields["fit_to_window"], "yes")) {
+		$photoTag = "<img name=photo src=$photoURL border=0 " .
+			    "width=$imageWidth height=$imageHeight>";
+	} else if ($fitToWindow) {
 		echo "<a href=" . makeGalleryUrl($albumName, $id) . ">";
 		$openAnchor = 1;
 	}
@@ -324,6 +327,10 @@ echo("<td height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
 echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
 echo("</tr>");
 echo("</table>");
+
+if ($fitToWindow) {
+	echo "</div>";
+}
 ?>
 
 <table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
