@@ -22,7 +22,7 @@
 <html>
 <head>
   <title>Uploading Photos</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 
 <body onload='start_animation()'>

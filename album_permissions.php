@@ -146,7 +146,7 @@ correctEverybody(&$uAdd);
 <html>
 <head>
   <title>Album Permissions</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

@@ -34,7 +34,7 @@ if (!$boxes) {
 <html>
 <head>
   <title>Add Photos</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 
 <script language="Javascript">
 <!--

@@ -37,7 +37,7 @@ if ($save) {
 <html>
 <head>
   <title>Edit <?= $field ?></title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

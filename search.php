@@ -23,7 +23,7 @@
 <html>
 <head>
   <title>Search Results</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

@@ -64,7 +64,7 @@ $canCreate = 1;
 <html>
 <head>
   <title>Create User</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

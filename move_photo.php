@@ -31,7 +31,7 @@ $albumDB = new AlbumDB(); // read album database
 <html>
 <head>
   <title>Move Photo</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

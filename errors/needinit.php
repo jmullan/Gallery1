@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Gallery is misconfigured</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>	
 <center>

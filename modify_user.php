@@ -83,7 +83,7 @@ $canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;
 <html>
 <head>
   <title>Modify User</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

@@ -124,7 +124,7 @@ if (strcmp($gallery->album->fields["returnto"], "no")) {
 <? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <head>
   <title><?= $gallery->app->galleryTitle ?> :: <?= $gallery->album->fields["title"] ?> :: <?= $index ?></title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
   <style type="text/css">
 <?
 // the link colors have to be done here to override the style sheet

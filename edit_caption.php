@@ -35,7 +35,7 @@ if ($save) {
 <html>
 <head>
   <title>Edit Caption</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

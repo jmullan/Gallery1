@@ -31,7 +31,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 <html>
 <head>
   <title>Custom Thumbnail</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 
 <? 

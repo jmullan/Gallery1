@@ -80,7 +80,7 @@ if ($gallery->user->isAdmin()) {
 <html>
 <head>
   <title>Change User Preferences</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

@@ -26,7 +26,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 <html>
 <head>
   <title>Rebuilding Thumbnails</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 <?

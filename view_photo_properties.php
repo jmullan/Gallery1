@@ -23,7 +23,7 @@
 <html>
 <head>
   <title>Photo Properties</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Gallery Configuration Error</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 <center>

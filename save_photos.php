@@ -49,7 +49,7 @@ function msg($buf) {
 <html>
 <head>
   <title>Processing and Saving Photos</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 
 </head>
 <body onLoad='opener.hideProgressAndReload();'>

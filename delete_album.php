@@ -37,7 +37,7 @@ if ($gallery->album) {
 <html>
 <head>
   <title>Delete Album</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

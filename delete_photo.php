@@ -40,7 +40,7 @@ if ($confirm && isset($index)) {
 <html>
 <head>
   <title>Delete Photo</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

@@ -37,7 +37,7 @@ if ($submit) {
 <html>
 <head>
   <title>Delete User</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

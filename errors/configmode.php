@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Gallery in Configuration Mode</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>	
 <center>

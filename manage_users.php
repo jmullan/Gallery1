@@ -48,7 +48,7 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 <html>
 <head>
   <title>Manage Users</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

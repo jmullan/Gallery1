@@ -23,7 +23,7 @@
 <html>
 <head>
   <title>Login to <?=$gallery->app->galleryTitle?></title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

@@ -52,7 +52,7 @@ if ($save) {
 <html>
 <head>
   <title>Album Properties</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

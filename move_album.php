@@ -29,7 +29,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 <html>
 <head>
   <title>Move Album</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 

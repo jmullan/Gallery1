@@ -53,8 +53,8 @@ $navigator["bordercolor"] = "#DDDDDD";
 <? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html>
 <head>
-<title><?= $gallery->app->galleryTitle ?></title>
-<link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <title><?= $gallery->app->galleryTitle ?></title>
+  <?= getStyleSheetLink() ?>
 </head>
 <body>
 <? } ?>
