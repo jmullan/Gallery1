@@ -1,3 +1,8 @@
+2004-02-24  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.4.3-cvs-b55
+
+	* Fixed bug #903434: add_photos_frame.php was not using makeGalleryUrl
+	  to generate a URL, which lost the CMS variables.
+
 2004-02-24 Jens Tkotz <jens@peino.de> 1.4.3-cvs-b54
 
 	* Bugfix: #869311 and #802716, fitToWindow did not work correct.
@@ -81,7 +86,7 @@
 
 2004-02-21  Christian Mohn  <ch-moh@online.no> 1.4.3-cvs-b45
 
-        * Fixed bug #818376: Bad-rewrite rule in setup/write.inc when 
+    * Fixed bug #818376: Bad-rewrite rule in setup/write.inc when
 	  Gallery installed in webroot folder. 
 	  Thanks to sgartner for the fixed code.
 
@@ -89,8 +94,8 @@
 
 2004-02-21  Christian Mohn  <ch-moh@online.no> 1.4.3-cvs-b44
 
-        * Changed wrong image height in navphoto.inc
-          The table cell height was set to 28, and not 18. This only
+    * Changed wrong image height in navphoto.inc
+      The table cell height was set to 28, and not 18. This only
 	  affected the first photo page in an album.
 	  Reported by autobulb in the forums.
 
@@ -103,7 +108,7 @@
 
 2004-02-18  Christian Mohn  <ch-moh@online.no> 1.4.3-cvs-b42
 
-        * Added missing GALLERY_CONFDIR="." in configure.sh
+    * Added missing GALLERY_CONFDIR="." in configure.sh
 	  Thanks to Luka Kladric for reporting
 
 2004-02-18  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.3-cvs-b41
@@ -122,10 +127,11 @@
 	  anywhere just yet.
 
 2004-02-18  Don Willingham <donwillingh@users.sourceforge.net> 1.4.3-cvs-b39
+
 	* Change: html_wrap/inline_imagewrap.inc in response to sf.net bug
-	          #890804 titled "exposed php variable in inline_imagewrap.inc"
-	          by changing $borderColor to <?php echo $borderColor ?>.
-	          Thanks to Ron Rothman for reporting this bug.
+	  #890804 titled "exposed php variable in inline_imagewrap.inc"
+	  by changing $borderColor to <?php echo $borderColor ?>.
+	  Thanks to Ron Rothman for reporting this bug.
 
 2004-02-17  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.4.3-cvs-b38
 

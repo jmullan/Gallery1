@@ -39,7 +39,7 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
   <title><?php echo _("Add Photos") ?></title>
 </head>
 <frameset rows="100%, 0%" border=0 frameborder=0 framespacing=0>
-  <frame src="<?php echo $GALLERY_BASEDIR ; ?>add_photos.php" noresize />
+  <frame src="<?php echo makeGalleryUrl('add_photos.php', array('set_albumName' => $gallery->session->albumName)); ?>" noresize />
   <frame name="hack" src="" noresize noscroll />
 </frameset>
 
