@@ -1466,7 +1466,7 @@ function makeGalleryUrl($target, $args=array()) {
 					(isset($args['gallery_popup']) && $args['gallery_popup'] == 'true')) {
 					$target= $gallery->app->photoAlbumURL . "/index.php";
 
-					if(!isset($gallery->session->mambo)) {
+					if (!isset($gallery->session->mambo) || empty($gallery->session->mambo->mosConfig_db)) {
 						$gallery->session->mambo->mosConfig_host=$mosConfig_host;
 		                	        $gallery->session->mambo->mosConfig_user=$mosConfig_user;
 	        	        	        $gallery->session->mambo->mosConfig_password=$mosConfig_password;
