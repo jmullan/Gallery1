@@ -48,6 +48,8 @@ class Image {
 			list($w, $h) = getDimensions("$dir/$this->name.$this->type");
 			$this->raw_width = $w;
 			$this->raw_height = $h;
+			$this->width = $w;
+			$this->height = $h;
 		}
 	}
 
