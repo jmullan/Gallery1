@@ -325,12 +325,7 @@ for ($i = $start; $i <= $end; $i++) {
 
 	if (strcmp($gallery->app->showOwners, "no")) {
 		echo "\n<div class=\"desc\">";
-		echo _("Owner:") . " ";
-		if (!$owner->getEmail()) {
-			echo $owner->getFullName();
-		} else {
-			echo "<a href=\"mailto:" . $owner->getEmail() . "\">" . $owner->getFullName() . "</a>";
-		}
+		echo _("Owner:") . ' '. showOwner($owner);
 		echo '</div>';
 	}
 

@@ -3282,6 +3282,28 @@ if ( __FILE__ == '/usr/share/gallery/util.php') {
 define ("GALLERY_BASE", dirname(__FILE__));
 }
 
+function showOwner($owner) {
+
+global $GALLERY_EMBEDDED_INSIDE_TYPE;
+global $_CONF;				/* Needed for GeekLog */
+
+	switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
+		case 'GeekLog':
+			//print_r($_USER);
+			//print_r($owner);
+			return '<a href="'. $_CONF['site_url'] .'/users.php?mode=profile&uid='. $owner->uid .'">'. $owner->getFullName() .'</a>';
+		break;
+		
+		default:
+			if (!$owner->getEmail()) {
+				return $owner->getFullName();
+			} else {
+				return '<a href="mailto:' . $owner->getEmail() . '">' . $owner->getFullName() . '</a>';
+			}
+		break;
+	}
+}
+
 require (dirname(__FILE__) . '/lib/lang.php');
 require (dirname(__FILE__) . '/lib/Form.php');
 ?>
