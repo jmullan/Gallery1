@@ -624,8 +624,6 @@ class AlbumItem {
 		return $this->caption;
 	}
 
-
-
 	function isAlbum() {
 		return ($this->isAlbumName !== NULL) ? true : false;
 	}

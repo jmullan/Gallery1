@@ -242,16 +242,16 @@ if ($numPhotos) {
 			$myAlbum->load($myAlbumName);
 			$oldCaption = $myAlbum->fields['description'];
 
-			echo "\n\t\t". '<p class="admin">'. _("Album Caption:") ;
+			echo "\n\t\t". '<p class="admin">'. _("Album Caption") . ': ';
                 	echo '<br><textarea name="new_captions_'. $i .'" rows="3" cols="60">'. $oldCaption .'</textarea></p>';
 		} else {
         		$oldCaption = $gallery->album->getCaption($i);
 	        	$oldKeywords = $gallery->album->getKeywords($i);
 
 			if ($gallery->album->photos[$i-1]->isMovie()) {
-				echo "\n\t\t". '<p class="admin">'. _("Movie Caption:") ;
+				echo "\n\t\t". '<p class="admin">'. _("Movie Caption") . ': ';
 			} else {
-				echo "\n\t\t". '<p class="admin">'. _("Photo Caption:") ;
+				echo "\n\t\t". '<p class="admin">'. _("Photo Caption") . ': ';
 			}
 			echo '<br><textarea name="new_captions_'. $i .'" rows="3" cols="60">'. $oldCaption .'</textarea></p>';
 			foreach ($gallery->album->getExtraFields() as $field) { 
@@ -261,16 +261,16 @@ if ($numPhotos) {
 				}
 				$value=$gallery->album->getExtraField($i, $field);
 	        		if ($field == "Title") {
-					echo "\n\t\t". '<div class="admin">' . _("Title") .':</div>';
+					echo "\n\t\t". '<div class="admin">' . _("Title") .': </div>';
 					echo "\n\t\t<input type=\"text\" name=\"extra_fields[$i][$field]\" value=\"$value\" size=\"40\">";
         			}
 				else {
-					echo "\n\t\t". '<br><span class="admin">'. $field .':</span><br>';
+					echo "\n\t\t". '<br><span class="admin">'. $field .': </span><br>';
 					echo "\n\t\t<textarea name=\"extra_fields[$i][$field]\" rows=\"2\" cols=\"60\">$value</textarea>";
 				}
 			}
 
-			echo "\n\t\t". '<p class="admin">'. _("Keywords:") .'<br>';
+			echo "\n\t\t". '<p class="admin">'. _("Keywords") .': <br>';
 			echo "\n\t\t". '<input type="text" name="new_keywords_'. $i .'" size="65" value="'. $oldKeywords .'"></p>';
 
 			$itemCaptureDate = $gallery->album->getItemCaptureDate($i);
@@ -282,7 +282,7 @@ if ($numPhotos) {
 			$year = $itemCaptureDate["year"];
 
 			$capturedate=strftime($gallery->app->dateTimeString , mktime ($hours,$minutes,$seconds,$mon,$mday,$year));
-			echo "\n\t\t". '<p class="admin">'. _("Capture Date:") . ' '. $capturedate. '</p><br>';
+			echo "\n\t\t". '<p class="admin">'. _("Capture Date") . ': '. $capturedate. '</p><br>';
 		}
 	echo "\n\t</td>";
 	echo "\n</tr>";

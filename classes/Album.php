@@ -1958,13 +1958,20 @@ class Album {
 		$everybodyUid = $everybody->getUid();
 
                 $user=$gallery->userDB->getUserByUid($this->getItemOwner($index));
-		if (!$user) {
+
+		if ( !$user) {
 			return "";
 		}
-		if (!strcmp($user->getUid(), $nobodyUid) || !strcmp($user->getUid(), $everybodyUid)) {
+		if ( !strcmp($user->getUid(), $nobodyUid) || !strcmp($user->getUid(), $everybodyUid) ) {
 			return "";
 		}
-		return " - ".$user->getFullname()." (". $user->getUsername().")";
+
+		$fullName=$user->getFullname();	
+		if (empty($fullName) {
+			return ' - '. $user->getUsername();
+		} else {
+			return ' - '. $user->getFullname() .' ('. $user->getUsername() .')';
+		}
         }
 
 

@@ -63,7 +63,7 @@ if (!strcmp($gallery->user->getUsername(), $uname)) {
 		_("Users cannot be recreated.") .
 		_("Even if this user is recreated, those permissions are gone.");
 ?>
-<p class="emphasis"><?php echo  _("Do you really want to delete user"). ": ". $uname ?></p>
+<p><b><?php echo  _("Do you really want to delete user"). ": ". $uname ?><b></p>
 
 <input type="submit" name="delete" value="<?php echo _("Delete") ?>">
 <?php

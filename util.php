@@ -3296,17 +3296,12 @@ global $_CONF;				/* Needed for GeekLog */
 
 	switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 		case 'GeekLog':
-			//print_r($_USER);
-			//print_r($owner);
-			return '<a href="'. $_CONF['site_url'] .'/users.php?mode=profile&uid='. $owner->uid .'">'. $owner->getFullName() .'</a>';
+			return '<a href="'. $_CONF['site_url'] .'/users.php?mode=profile&uid='. $owner->uid .'">'. $owner->displayName() .'</a>';
 		break;
 		
 		default:
-			// Try to use full name, fall back to user name
-			$name = $owner->getFullName();
-			if (!$name) {
-				$name = $owner->getUsername();
-			}
+			$name = $owner->displayName();
+
 			if (!$owner->getEmail()) {
 				return $name;
 			} else {

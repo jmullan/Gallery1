@@ -290,11 +290,23 @@ class Abstract_User {
 	function isLoggedIn() {
 		return true;
 	}
+
 	function getDefaultLanguage() {
 		return "";
 	}
+
 	function setDefaultLanguage($var) {
 	}
+
+	function displayName() {
+		$FullName=$this->getFullName();
+	        if (! empty($FullName)) {
+			return $this->getFullname();
+		} else {
+			return $this->getUsername();
+	        }
+	}
+
 }
 
 ?>
