@@ -204,3 +204,30 @@ function exec_wrapper($cmd) {
 		return 1;
 	}
 }
+function includeHtmlWrap($name) {
+	// define these globals to make them available to custom text
+        global $app, $gallery, $album;
+	$fullname = "html_wrap/$name";
+
+	if (file_exists($fullname)) {
+		include ($fullname);
+	} else {
+		include ("$fullname.default");
+	}
+
+	return 1;
+}
+
+function getGalleryStyleSheetName() {
+        global $app;
+        $sheetname = $app->photoAlbumURL."/css/gallery_style.css";
+
+	if (file_exists($sheetname)) {
+		return ($sheetname);
+	} else {
+		return ("$sheetname.default");
+	}
+
+	return 1;
+}
+
