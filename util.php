@@ -571,11 +571,15 @@ function makeGalleryUrl($albumName="", $photoId="", $extra="") {
 					if ($photoId) {
 						$url .= "/$photoId";
 					} 
+				} else {
+					$url .= "/albums.php";
 				}
 			} else {
 				if ($albumName) {
 					$url = $gallery->app->photoAlbumURL . "/view_album.php";
 					array_push($args, "set_albumName=$albumName");
+				} else {
+					$url .= "/albums.php";
 				}
 		
 				if ($photoId) {
@@ -587,10 +591,11 @@ function makeGalleryUrl($albumName="", $photoId="", $extra="") {
 			if ($extra) {
 				array_push($args, $extra);
 			}
-		
+
 			if (count($args)) {
 				$url .= "?" . join("&", $args);
-			}
+			} 
+		
 	}
 
 	return $url;
