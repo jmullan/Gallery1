@@ -942,31 +942,93 @@ ADD OR EDIT WHATEVER YOU WANT, AS LONG AS IT'S NOT A DRASTIC CHANGE
       </para>
      </question>
      <answer>
-      <para>
-       The easiest way to do this is to use relative URLs in &config.php;.
-       <note>
-        <simpara>
-         You will have to redo this each time you run the config wizard, since
-         the config wizard won't accept relative urls.
-        </simpara>
-       </note>
-       You need to edit &config.php; manually. There are two URLs in that file. Change each of them as follows:
-      </para>
-      <para>
-       From:
-       <literal>http://www.example.com/gallery</literal>
-       <literal>http://www.example.com/gallery/albums</literal>
-       To:
-       <literal>/gallery</literal>
-       <literal>/gallery/albums</literal>
-       (change these URL's to match your Gallery setup)
-      </para>
       <note>
        <simpara>
         There is a fix planned for future versions of Gallery to allow the config
         wizard to use relative URLs.  Stay tuned.
        </simpara>
       </note>
+      <para>
+       There are two ways to do this; both are shown below:
+       <itemizedlist>
+        <listitem>
+         <para>
+          The easiest way to do this is to use relative URLs in &config.php;.
+          <note>
+           <simpara>
+            You will have to redo this each time you run the config wizard, since
+            the config wizard won't accept relative urls.
+           </simpara>
+          </note>
+          You need to edit &config.php; manually. There are two URLs in that file. Change each of them as follows:
+         </para>
+         <para>
+          From:
+          <literal>http://www.example.com/gallery</literal>
+          <literal>http://www.example.com/gallery/albums</literal>
+          To:
+          <literal>/gallery</literal>
+          <literal>/gallery/albums</literal>
+          (change these URL's to match your Gallery setup)
+         </para>
+        </listitem>
+        <listitem>
+         <para>
+          The second method does not require any server-side changes, as the changes you
+          make are made on the client.  This may not be the most efficent solution, especially
+          if you have many client computers.
+         </para>
+         <para>
+          You need to edit a file called HOSTS on your client machine. The HOSTS file is a ip-address to
+          domain-name mapping file.  Adding a line to this file, will make your client look for a local
+          ip instead of an external ip, even if you use a fully qualified domain name.
+         </para>
+         <para>
+          Add a line similar to this:
+          <screen>
+           10.0.0.2	example.com www.example.com
+          </screen>
+         </para>
+         <para>
+          This line will make all requests to example.com (and www.example.com) request the server at
+          10.0.0.2 (replace this with your server's real LAN IP address).
+         </para>
+         <para>
+          Depending on your client's operating system, the HOSTS file will be in a different place.
+          Also note that on Windows clients, you will need to reboot the system for the changes
+          to take place.
+          <itemizedlist>
+           <listitem>
+            <para>
+             <emphasis>Windows 95/98/ME</emphasis> <filename>C:\windows\hosts</filename>
+             <note>
+              <simpara>
+               By defaults this file in called <filename>hosts.sam</filename>.  It must
+               be renamed <filename>hosts</filename> for everything to work.
+              </simpara>
+             </note>
+            </para>
+           </listitem>
+           <listitem>
+            <para>
+             <emphasis>Windows NT/2000/XP Pro</emphasis> <filename>c:\winnt\system32\drivers\etc\hosts</filename>
+            </para>
+           </listitem>
+           <listitem>
+            <para>
+             <emphasis>Windows XP Home</emphasis> <filename>c:\windows\system32\drivers\etc\hosts</filename>
+            </para>
+           </listitem>
+           <listitem>
+            <para>
+             <emphasis>Linux/Unix</emphasis> <filename>/etc/hosts</filename>
+            </para>
+           </listitem>
+          </itemizedlist>
+         </para>
+        </listitem>
+       </itemizedlist>
+      </para>
      </answer>
     </qandaentry>
     
