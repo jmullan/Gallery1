@@ -421,7 +421,8 @@ function rotate_image($src, $dest, $target) {
 		$out = $dest;
 	}
 
-        $pathinfo = pathinfo ($src);
+        $pathinfo = pathinfo($src);
+        $pathinfo['extension'] = strtolower($pathinfo['extension']);
 
 	if (isset ($gallery->app->use_jpegtran) && ($pathinfo['extension'] == "jpg" || $pathinfo['extension'] == "jpeg")) {
 		if (!strcmp($target, "90")) {
