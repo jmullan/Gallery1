@@ -1,7 +1,7 @@
 <center>
 <font size=+2> Gallery Setup: Step 1 </font>
 <br>
-<table width=80%><tr><td align=center>
+<table width=80%><tr><td>
 <font size=+1>This is the Gallery system check page. </font>
 <br>
 This page will validate your installation to make sure
