@@ -817,7 +817,7 @@ function config_maybe_locales() {
 			continue;
 		}
 		if (sizeof($aliases) == 1) {
-			$results["locale_alias[$key]"] = array (
+			$results["locale_alias['$key']"] = array (
 				"type" => "hidden", 
 				"value" => array_pop($aliases),
 				"desc" => "locale_alias[$key]",
