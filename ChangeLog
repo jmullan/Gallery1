@@ -1,4 +1,14 @@
-2002-02-19  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b7
+2002-02-20  John Kirkland  <jpk@bl.org> 1.2.6-cvs-b9
+	
+	* At image upload time, jhead now runs against the image that we
+	  copy into our album directory instead of the original uploaded
+	  image.  The reason for this is because we were not escaping
+	  special characters in the original filename.  Characters like
+	  <space>, ', and " would cause jhead to fail.  Since our copied
+	  version of the file has all of these characters removed, it is
+	  a safe alternative.
+
+2002-02-19  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b8
 
 	* Minor tweak -- we now set an extended time limit when moving photos
 	  also.

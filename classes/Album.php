@@ -505,7 +505,7 @@ class Album {
 			return $err;
 		} else {
 			$item->setCaption("$caption");
-			$originalItemCaptureDate = getItemCaptureDate($file);
+			$originalItemCaptureDate = getItemCaptureDate("$dir/$name.$tag");
 			$now = time();
 			$item->setItemCaptureDate($originalItemCaptureDate);
 			$item->setUploadDate($now);
