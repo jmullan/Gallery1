@@ -28,8 +28,8 @@
 session_start();
 
 // Pull the $count variable in also
-foreach($HTTP_SESSION_VARS as $key => $value) {
-	$$key =& $HTTP_SESSION_VARS[$key];
+foreach($_SESSION as $key => $value) {
+	$$key =& $_SESSION[$key];
 }
 session_register("count");
 
@@ -76,7 +76,7 @@ $count++;
 		</tr>
 		<tr>
 			<td class="shortdesc"><?php echo _("Server IP address") ?></td>
-			<td class="desc"><?php echo $HTTP_SERVER_VARS["SERVER_ADDR"] ?></td>
+			<td class="desc"><?php echo $_SERVER["SERVER_ADDR"] ?></td>
 		</tr>
 		</table>
 		</td>

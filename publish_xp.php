@@ -24,7 +24,7 @@
 
 require(dirname(__FILE__) . '/init.php');
 
-if (isset($HTTP_SERVER_VARS["HTTPS"] ) && stristr($HTTP_SERVER_VARS["HTTPS"], "on")) {
+if (isset($_SERVER["HTTPS"] ) && stristr($_SERVER["HTTPS"], "on")) {
     $proto = "https";
 } else {
     $proto = "http";
@@ -42,7 +42,7 @@ if(empty($cmd)){
   $lines[] = '"displayname"="' . $gallery->app->galleryTitle . '"';
   $lines[] = '"description"="' . sprintf(_("Publish Your Photos and Movies to %s."),  $gallery->app->galleryTitle) . '"';
   $lines[] = '"href"="' . makeGalleryUrl("publish_xp.php", array("cmd" => "publish")) . '"';
-  $lines[] = '"icon"="' . $proto . '://' . $HTTP_SERVER_VARS['SERVER_NAME'] . '/favicon.ico"';
+  $lines[] = '"icon"="' . $proto . '://' . $_SERVER['SERVER_NAME'] . '/favicon.ico"';
   print join("\r\n", $lines);
   print "\r\n";
   exit;

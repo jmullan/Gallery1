@@ -17,22 +17,22 @@ After add:
 Find:
  	{
  		$sessiondata = array();
- 		$session_id = ( isset($HTTP_GET_VARS['sid']) ) ? $HTTP_GET_VARS['sid'] : '';
+ 		$session_id = ( isset($_GET['sid']) ) ? $_GET['sid'] : '';
 After add:
 		// Added for Gallery
-		if(!isset($HTTP_GET_VARS['sid'])) {
-			$session_id = ( isset($HTTP_POST_VARS['sid']) ) ? $HTTP_POST_VARS['sid'] : '';
+		if(!isset($_GET['sid'])) {
+			$session_id = ( isset($_POST['sid']) ) ? $_POST['sid'] : '';
 		}
 		//
 
 Again Find: 
  	{
  		$sessiondata = array();
- 		$session_id = ( isset($HTTP_GET_VARS['sid']) ) ? $HTTP_GET_VARS['sid'] : '';
+ 		$session_id = ( isset($_GET['sid']) ) ? $_GET['sid'] : '';
 Again add:
 		// Added for Gallery
-		if(!isset($HTTP_GET_VARS['sid'])) {
-			$session_id = ( isset($HTTP_POST_VARS['sid']) ) ? $HTTP_POST_VARS['sid'] : '';
+		if(!isset($_GET['sid'])) {
+			$session_id = ( isset($_POST['sid']) ) ? $_POST['sid'] : '';
 		}
 		// 
 

@@ -15,10 +15,10 @@ diff -ur -x config.php phpBB2/includes/sessions.php phpBB2.gallery/includes/sess
 @@ -44,6 +44,11 @@
  	{
  		$sessiondata = array();
- 		$session_id = ( isset($HTTP_GET_VARS['sid']) ) ? $HTTP_GET_VARS['sid'] : '';
+ 		$session_id = ( isset($_GET['sid']) ) ? $_GET['sid'] : '';
 +		// Added for Gallery
-+		if(!isset($HTTP_GET_VARS['sid'])) {
-+			$session_id = ( isset($HTTP_POST_VARS['sid']) ) ? $HTTP_POST_VARS['sid'] : '';
++		if(!isset($_GET['sid'])) {
++			$session_id = ( isset($_POST['sid']) ) ? $_POST['sid'] : '';
 +		}
 +		//
  		$sessionmethod = SESSION_METHOD_GET;
@@ -27,10 +27,10 @@ diff -ur -x config.php phpBB2/includes/sessions.php phpBB2.gallery/includes/sess
 @@ -214,6 +219,11 @@
  	{
  		$sessiondata = array();
- 		$session_id = ( isset($HTTP_GET_VARS['sid']) ) ? $HTTP_GET_VARS['sid'] : '';
+ 		$session_id = ( isset($_GET['sid']) ) ? $_GET['sid'] : '';
 +		// Added for Gallery
-+		if(!isset($HTTP_GET_VARS['sid'])) {
-+			$session_id = ( isset($HTTP_POST_VARS['sid']) ) ? $HTTP_POST_VARS['sid'] : '';
++		if(!isset($_GET['sid'])) {
++			$session_id = ( isset($_POST['sid']) ) ? $_POST['sid'] : '';
 +		}
 +		// 
  		$sessionmethod = SESSION_METHOD_GET;

@@ -59,7 +59,7 @@ if (isset($save)) {
 	} else {
 		$comment_text = removeTags($comment_text);
 		$commenter_name = removeTags($commenter_name);
-		$IPNumber = $HTTP_SERVER_VARS['REMOTE_ADDR'];
+		$IPNumber = $_SERVER['REMOTE_ADDR'];
 		$gallery->album->addComment($id, stripslashes($comment_text), $IPNumber, $commenter_name);
 		$gallery->album->save();
 		emailComments($id, $comment_text, $commenter_name);

@@ -103,8 +103,8 @@
         $count = 0;
         $col = 0;
         foreach (array_keys($names) as $key) {
-           if (isset($HTTP_GET_VARS['frame'])) {
-              if ($key != $HTTP_GET_VARS['frame']) {
+           if (isset($_GET['frame'])) {
+              if ($key != $_GET['frame']) {
                  $tab = "tab";
               } else {
                  $firstkey = $key;

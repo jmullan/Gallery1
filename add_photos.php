@@ -31,7 +31,7 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 }
 
 $cookieName = $gallery->app->sessionVar . "_add_photos_mode";
-$modeCookie = isset($HTTP_COOKIE_VARS[$cookieName]) ? $HTTP_COOKIE_VARS[$cookieName] : null;
+$modeCookie = isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
 if (isset($mode)) {
 	if ($modeCookie != $mode) {
 	    setcookie($cookieName, $mode, time()+60*60*24*365, "/" );

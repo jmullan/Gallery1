@@ -99,7 +99,7 @@ if (! file_exists(dirname(dirname(__FILE__)) . '/config.php')) {
 	echo _("If both the attempts above failed, you should ask your ISP what operating system you are using."); 
 	echo sprintf(_("You can check via %s, they can often tell you."),
 		'<a href="http://www.netcraft.com/whats?host=' .
-		$HTTP_SERVER_VARS['HTTP_HOST'] . 
+		$_SERVER['HTTP_HOST'] . 
 		'">Netcraft</a>') ;
 ?>
 		</p>

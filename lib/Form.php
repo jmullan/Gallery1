@@ -155,22 +155,20 @@ function makeFormIntro($target, $attrList=array()) {
 }
 
 function formVar($name) {
-	global $HTTP_GET_VARS;
-	global $HTTP_POST_VARS;
 
-	if (!empty($HTTP_GET_VARS[$name])) {
-		if (!strncmp($HTTP_GET_VARS[$name], 'false', 5)) {
+	if (!empty($_GET[$name])) {
+		if (!strncmp($_GET[$name], 'false', 5)) {
 			return false;
 		} else {
-			return($HTTP_GET_VARS[$name]);
+			return($_GET[$name]);
 		}
 	}
 
-	if (!empty($HTTP_POST_VARS[$name])) {
-		if (!strncmp($HTTP_POST_VARS[$name], 'false', 5)) {
+	if (!empty($_POST[$name])) {
+		if (!strncmp($_POST[$name], 'false', 5)) {
 			return false;
 		} else {
-			return($HTTP_POST_VARS[$name]);
+			return($_POST[$name]);
 		}
 	}
 
@@ -185,10 +183,7 @@ function formVar($name) {
 
 
 function emptyFormVar($name) {
-	global $HTTP_GET_VARS;
-	global $HTTP_POST_VARS;
-
-	$ret = !isset($HTTP_GET_VARS[$name]) && !isset($HTTP_POST_VARS[$name]);
+	$ret = !isset($_GET[$name]) && !isset($_POST[$name]);
 	if (is_array($_REQUEST)) {
 		$ret = $ret && !isset($_REQUEST[$name]);
 	}

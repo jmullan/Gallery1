@@ -23,7 +23,7 @@
 ?>
 
 <?php 
-global $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE, $HTTP_SERVER_VARS;
+global $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
 if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery->app->available_lang) > 1) {
     
@@ -56,7 +56,7 @@ if($gallery->app->show_flags !='yes') {
 		if (! isset($nls['language'][$value])) continue;
 
 		$count++;
-		$args = isset($HTTP_GET_VARS) ? $HTTP_GET_VARS : array();
+		$args = isset($_GET) ? $_GET : array();
 		if (isset($GALLERY_EMBEDDED_INSIDE) && $GALLERY_EMBEDDED_INSIDE=='nuke') {
 			if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
 				/* postnuke */
@@ -73,7 +73,7 @@ if($gallery->app->show_flags !='yes') {
 		}
 
 		/* now we buil the URL according to the new language */
-		$request_url=$HTTP_SERVER_VARS['REQUEST_URI'];
+		$request_url=$_SERVER['REQUEST_URI'];
 		$pos=strpos($request_url, "newlang");
 		if ($pos >0) {
 			$request_url=substr($request_url,0,$pos-1);

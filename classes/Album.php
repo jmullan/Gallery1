@@ -852,7 +852,6 @@ class Album {
 		    }
 		}
 		if ($success && $msg) { // send email
-			global $HTTP_SERVER_VARS;
 			if (!is_array($msg)) {
 				echo gallery_error(_("msg should be an array!"));
 				vd($msg);
@@ -865,7 +864,7 @@ class Album {
 					       	makeAlbumUrl($this->fields['name']),
 						user_name_string($gallery->user->getUID(),
 							$gallery->app->comments_display_name),
-						$HTTP_SERVER_VARS['REMOTE_ADDR'],
+						$_SERVER['REMOTE_ADDR'],
 					       	$msg_str);
 			       	$text .= "\n\n". "If you no longer wish to receive emails about this image, follow the links above and ensure that \"Email me when other changes are made\" is unchecked (You'll need to login first).";
 			       	$subject=sprintf("Changes to %s", $this->fields['name']);
