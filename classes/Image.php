@@ -153,10 +153,10 @@ class Image {
 				$height = $size;
 			}
 			$size_val = "width=$width height=$height";
-		} else if ($this->width && $this->height) {
-			$size_val = "width=$this->width height=$this->height";
+		} else if ($full || !$this->resizedName) {
+			$size_val = "width=$this->raw_width height=$this->raw_height";
 		} else {
-			$size_val = "";
+			$size_val = "width=$this->width height=$this->height";
 		}
 
 		if ($this->resizedName) {
