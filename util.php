@@ -3056,9 +3056,10 @@ function getNLS() {
 		include ($GALLERY_BASEDIR. "nls.php");
 
 		$modules=array('config','core');
-		$handle=fs_opendir($GALLERY_BASEDIR. "locale");
+		$dir=$GALLERY_BASEDIR. "locale";
+	       	if (fs_is_dir($dir) && is_readable($dir) && $handle = fs_opendir($dir)) {
 	
-		while ($dirname = readdir($handle)) {
+		    while ($dirname = readdir($handle)) {
 			if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
 				$locale=$dirname;
 				$fc=0;
@@ -3075,6 +3076,7 @@ function getNLS() {
 			}
 		}
 		closedir($handle);
+	    }
 	}
 
 //print_r($nls);
@@ -3133,8 +3135,8 @@ function getCVSVersion($file) {
 
 // No translation yet, as we don't want may not release this in 1.4.1
 function checkVersions() {
-	global $GALLERY_BASEDIR;
-	include $GALLERY_BASEDIR."manifest.inc";
+	global $GALLERY_BASEDIR, $gallery;
+	include $GALLERY_BASEDIR."setup/manifest.inc";
 	$errors=array();
 	foreach ($versions as $file => $version) {
 		$found_version=getCVSVersion($file);
@@ -3143,29 +3145,34 @@ function checkVersions() {
 			       	print sprintf("Cannot read file %s.", $file);
 			       	print "<br>\n";
 			}
-			$errors[]=$file;
+			$errors[$file]="File missing or unreadable.";
 			continue;
 		} else if ($found_version === "") {
 		       	if (isDebugging()) {
 			       	print sprintf("Version information not found in %s.  File must be old version or corrupted.", $file);
 			       	print "<br>\n";
 		       	}
-		       	$errors[]=$file;
+		       	$errors[$file]="Missing version";
 		       	continue;
 	       	} else if ($found_version < $version) {
 		       	if (isDebugging()) {
 			       	print sprintf("Problem with %s.  Expected version %s (or greater) but found %s.", $file, $version, $found_version);
 			       	print "<br>\n";
 		       	}
-		       	$errors[]=$file;
-	       	}
-	}
-	if  ($errors) {
-		print sprintf("The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version.", Gallery());
-		print "<br>\n";
-		foreach ($errors as $error) {
-			print "\t$error<br>\n";
+		       	$errors[$file]=sprintf("Expected version %s (or greater) but found %s.", $version, $found_version);
+	       	} else if ($found_version > $version) {
+		       	if (isDebugging()) {
+				print sprintf("%s OK.  Actual version (%s) more recent than expected version (%s)", $file, $found_version, $version);
+			       	print "<br>\n";
+			}
+		} else {
+		       	if (isDebugging()) {
+			       	print sprintf("%s OK", $file);
+			       	print "<br>\n";
+		       	}
 		}
+			
 	}
+	return $errors;
 }
 ?>

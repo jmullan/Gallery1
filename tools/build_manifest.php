@@ -20,6 +20,12 @@
  *
  * $Id$
  */
+
+
+/*
+ * This script must be run from command line, in directory gallery/
+ * eg php tools/build_manifest.php
+ */
 ?>
 <?php
 $GALLERY_BASEDIR="./";
@@ -194,7 +200,7 @@ $setup = array(	"setup/.htaccess",
 	       	"setup/session_test.php",
 	       	"setup/write.inc");
 
-$outfile="manifest.inc";
+$outfile="setup/manifest.inc";
 copy("setup/gpl.txt", $outfile);
 $fd=fopen($outfile, "a");
 
@@ -211,17 +217,17 @@ foreach ($files as $file) {
        	}
 }	
 
-fwrite($fd, "\nif (fs_is_readable(\$GALLERY_BASEDIR.'setup')) {\n"); // }
+// fwrite($fd, "\nif (fs_is_readable(\$GALLERY_BASEDIR.'setup')) {\n"); // }
 foreach ($setup as $file) {
        	$version=getCVSVersion($file);
        	if (!$version) {
 	       	print "skipping $file\n";
        	} else {
-	       	fwrite($fd, "\t\$versions['$file']='$version';\n");
+	       	fwrite($fd, "\$versions['$file']='$version';\n");
        	}
 }
 
-fwrite($fd,  "}\n");
+// fwrite($fd,  "}\n");
 fwrite($fd, "?>\n");
 
 

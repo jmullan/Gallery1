@@ -31,7 +31,7 @@ $versions=array();
 $versions['AUTHORS']='1.16';
 $versions['LICENSE.txt']='1.2';
 $versions['README']='1.28';
-$versions['Version.php']='1.457';
+$versions['Version.php']='1.458';
 $versions['add_comment.php']='1.26';
 $versions['add_photo.php']='1.18';
 $versions['add_photos.php']='1.49';
@@ -163,8 +163,6 @@ $versions['layout/navphoto.inc']='1.25';
 $versions['layout/searchdraw.inc']='1.15';
 $versions['platform/fs_unix.php']='1.19';
 $versions['platform/fs_win32.php']='1.20';
-
-if (fs_is_readable($GALLERY_BASEDIR.'setup')) {
 	$versions['setup/.htaccess']='1.16';
 	$versions['setup/backup_albums.php']='1.11';
 	$versions['setup/check.inc']='1.30';
@@ -186,5 +184,4 @@ if (fs_is_readable($GALLERY_BASEDIR.'setup')) {
 	$versions['setup/phpinfo.php']='1.5';
 	$versions['setup/session_test.php']='1.19';
 	$versions['setup/write.inc']='1.46';
-}
 ?>
