@@ -2370,7 +2370,7 @@ function initLanguage() {
 	}
 
 	/**
-	 ** We have now several Ways. Embedded (PostNuke, phpNuke, phpBb2) or not embedded
+	 ** We have now several Ways. Embedded (PostNuke, phpNuke, phpBB2) or not embedded
 	 ** Now we (try) to do the language settings
 	 ** 
 	 ** Note: ML_mode is only used when not embedded
@@ -2396,19 +2396,32 @@ function initLanguage() {
 				if (isset($HTTP_SESSION_VARS['PNSVlang'])) {
 					$gallery->nuke_language=$HTTP_SESSION_VARS['PNSVlang'];
 				}
-			break;		
+
 			case 'phpnuke':
 				if (isset($HTTP_COOKIE_VARS['lang'])) {
 					$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
 				}
+
+				/* This is executed for both nukes */
+				if (isset ($gallery->session->language) && ! isset($gallery->nuke_language)) {
+					$gallery->language = $gallery->session->language;
+				} else if (isset ($nls['alias'][$gallery->nuke_language])) {
+					$gallery->language=$nls['alias'][$gallery->nuke_language];
+				}
+			break;
+			case 'phpBB2':
+				/* Gallery will always use phpBB2's language, so we override the mode to 1.
+				** And no pulldown or flags appear.
+				*/
+				global $board_config;
+				$gallery->app->ML_mode=1;
+				if (isset($board_config['default_lang'])) {
+					if (isset ($nls['alias'][$board_config['default_lang']])) {
+						$gallery->language = $nls['alias'][$board_config['default_lang']];
+					}
+				}				
 			break;
 			}
-		}
-
-		if (isset ($gallery->session->language) && ! isset($gallery->nuke_language)) {
-			$gallery->language = $gallery->session->language;
-		} else if (isset ($nls['alias'][$gallery->nuke_language])) {
-			$gallery->language=$nls['alias'][$gallery->nuke_language];
 		}
 	} else {
 		// We're not in Nuke
@@ -2456,7 +2469,7 @@ function initLanguage() {
 	/**
 	 **  Fall back to Default Language if :
 	 **	- we cant detect Language
-	 **	- Nuke sent an unsupported
+	 **	- Nuke/phpBB2 sent an unsupported
 	 **	- User sent an undefined
 	 **/
 	if (empty($gallery->language)) {

@@ -43,7 +43,7 @@
 	$nls['alias']['de'] = 			'de_DE';
 
 /**
- ** Aliases for languages which we substitte or send by NUKE
+ ** Aliases for languages which we substitte or send by NUKE or phpBB2
  **/
 
 	$nls['alias']['german'] =		'de_DE' ;
