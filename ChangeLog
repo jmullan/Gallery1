@@ -1,5 +1,14 @@
 2001-08-02  Bharat Mediratta  <bharat@menalto.com>
 
+	* Improved the URL fetch code so that now 
+	   -  you don't need to specify http:// 
+	   -  if it fails the first time, it'll try again with a trailing / 
+	  The combination of these two tweaks allows you to enter 
+	  "www.cnn.com" in the URL box. 
+
+	* Removed dependency on Perl Compatible Regular Expression (PCRE)
+	  library.  
+
 	* Admin management improvements:
 	  o Admins can now modify other admin accounts.
 	  o Admins can now grant admin privileges to regular users, 
