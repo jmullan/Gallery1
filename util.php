@@ -160,9 +160,6 @@ function build_popup_url($url, $url_is_complete=0) {
 	if (!$url_is_complete) {
 		$url = makeGalleryUrl($target, $args);
 	}
-	else {
-		$url = htmlspecialchars($url);
-	}
 
 	return $url;
 }
