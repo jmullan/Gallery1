@@ -20,12 +20,13 @@ initLanguage();
 <head>
   <title><?php echo _("Gallery Configuration") ?></title>
   <style type="text/css">
-   body { background: #CCCCCC; }
+   body { background-color: #CCCCCC; }
    .error { color: #FF0000; }
+   .separator { background-color:#FFA888; text-align:center; }
   </style>
 </head>
 
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <?php
 
 if (function_exists("posix_getpwuid")) {
@@ -73,7 +74,7 @@ foreach (array_keys($preserve) as $key) {
 
 ?>
 
-<form method=POST>
+<form method="POST">
 
 <?php
 $legit = array("check", "constants", "defaults", "confirm", "write");

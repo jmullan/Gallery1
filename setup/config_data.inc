@@ -32,7 +32,7 @@ $checklist = array(
 		"desc" => sprintf(_("Check to see how old version %s of %s is."),
 			Gallery(),
 			"<i>$gallery->version</i>"),
-	     	"func" => "check_gallery_version",
+	     	"func" => "check_gallery_version"
 	),
 	"php4" => array(
 		"desc" => _("Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP4.0.0 uses a different file upload protocol, versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can."),
@@ -60,7 +60,7 @@ $checklist = array(
 				 '<a href="phpinfo.php">',
 				 '</a>'),
 		"optional" => 1,
-		"serious" => 1,
+		"serious" => 1
 	),
 	"htaccess" => array(
 		"desc" => _("Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (eg, big ZIP files) and you may not be able to use mod_rewrite (see below)."),
@@ -69,7 +69,7 @@ $checklist = array(
 			 "&lt;Directory $GALLERY_DIR" .
 			 "&gt;\n\tAllowOverride Options FileInfo\n" .
 			 "&lt;/Directory&gt;",
-		"optional" => 1,
+		"optional" => 1
 	),
 	"magic-quotes" => array(
 		"optional" => 1,
@@ -78,14 +78,14 @@ $checklist = array(
 		'</a>'),
 	     	"func" => "check_magic_quotes",
 		"fail-magic-quotes" => sprintf(_("Magic quotes are on.  Your webserver owner can turn them off by putting %s in your php.ini file"),
-			": <pre>\n\tmagic_quotes_gpc = Off</pre>"),
+			": <pre>\n\tmagic_quotes_gpc = Off</pre>")
 	),
 	"mod-rewrite" => array(
 		"desc" => _("Check to see if your webserver is compiled with <b>mod_rewrite</b>.  Mod_rewrite allows the Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."),
 	     	"func" => "check_mod_rewrite",
 		"fail-mod-rewrite" => _("Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on I'd suggest that you make sure that your <b>.htaccess</b> file works and then if it still doesn't work you may need to reconfigure and rebuild Apache with this flag:") . 
 			"<br><b>--enable-module=rewrite</b>",
-		"optional" => 1,
+		"optional" => 1
 	),
 	"NetPBM" => array(
 		"optional" => 1,
@@ -98,7 +98,7 @@ $checklist = array(
 			$common_messages["fail-netpbm-partial"] . 
 			"<p><b> " . _("If NetPBM is installed and Gallery isn't finding it automatically that's OK -- that just means you'll have to specify the path to NetPBM by hand on the following page") ." </b>",
 
-		"open-basedir-note" => $common_messages["open-basedir-active"],
+		"open-basedir-note" => $common_messages["open-basedir-active"]
 	),
 	"ImageMagick" => array(
 		"optional" => 1,
@@ -106,7 +106,7 @@ $checklist = array(
 		"func" => "check_graphics_im",
 		"fail-imagemagick" => _("I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  ") .
 			$common_messages["getting-imagemagick"],
-		"open-basedir-note" => $common_messages["open-basedir-active"],
+		"open-basedir-note" => $common_messages["open-basedir-active"]
 	),
 	"exif" => array(
 		"optional" => 1,
@@ -115,7 +115,7 @@ $checklist = array(
 		"fail-exif" => sprintf(_("I can't find jhead.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jhead by hand on the following page.  If it's not installed, you can install it yourself.  jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at %sthe jhead homepage%s."),
 			'<a href="http://www.sentex.net/~mwandel/jhead/index.html">',
 			'</a>'),
-		"open-basedir-note" => $common_messages["open-basedir-active"],
+		"open-basedir-note" => $common_messages["open-basedir-active"]
 	),
 	"jpegtran" => array (
 		"optional" => 1,
@@ -125,15 +125,15 @@ $checklist = array(
 			'<a href="http://www.ijg.org">', '</a>',
 			'<a href="http://jpegclub.org/">', '</a>'). 
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
-		"open-basedir-note" => $common_messages["open-basedir-active"],
+		"open-basedir-note" => $common_messages["open-basedir-active"]
 	),	
 	"gettext" => array (
 		"optional" => 1,
 		"desc" => _("Check to see if PHP is compiled with gettext for fast translations."),
 		"func" => "check_gettext",
 		"fail-gettext" => sprintf(_("Your PHP does not have gettext support.  To include gettext support, you need to recompile PHP.  For more information see %s.  However, multilanguage support is still available in Gallery without gettext, but the pages may take slightly longer to load."),
-			'<a href="http://www.php.net/manual/en/ref.gettext.php">http://www.php.net/manual/en/ref.gettext.php</a>'),
-			),
+			'<a href="http://www.php.net/manual/en/ref.gettext.php">http://www.php.net/manual/en/ref.gettext.php</a>')
+	),
 	"gallery-locale" => array (
 		"optional" => 1,
 		"desc" => _("Check to see what languages are available"),
@@ -149,17 +149,17 @@ $checklist = array(
 $features = array(
 	"zip" => array("zipinfo", "unzip"),
 	"rewrite" => array("GALLERY_REWRITE_OK"),
-	"mirror" => array("mirrorSites"),
+	"mirror" => array("mirrorSites")
 );
 
-$constants = array_merge(
-    array(
+$constants =  array_merge(
+  array(
 	"galleryTitle" => array(
 		"prompt" => _("Gallery Title"),
 		"desc" => _("The name of your gallery.  Eg. <i>My Cool Photos</i>"),
 		"value" => _("Gallery"),
 		"type" => "text",
-		"attrs" => array("size" => 50),
+		"attrs" => array("size" => 50)
 	),
 	"editPassword" => array(
 		"prompt" => _("Admin password"),
@@ -168,13 +168,17 @@ $constants = array_merge(
 		"type" => "text",
 		"dont-write" => 1,
 		"value" => "",
-		"attrs" => array("size" => 50),
+		"attrs" => array("size" => 50)
+	),
+	"separator_1" => array (
+		"type" => "separator",
+		"title" => _("Toolkits / image processing")
 	),
 	"graphics" => array(
 		"prompt" => _("Graphics suite to use?"),
 		"desc" => _("This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."),
 		"choices" => array("NetPBM" => "NetPBM", "ImageMagick" => "ImageMagick"),
-		"value" => default_graphics(),
+		"value" => default_graphics()
 	),
 	"pnmDir" => array(
 		"optional" => 1,
@@ -192,13 +196,13 @@ $constants = array_merge(
 		"attrs" => array("size" => 50),
 		"no-trailing-slash" => 1,
 		"type" => "text",
-		"verify-func-takes-graphics-type" => true,
+		"verify-func-takes-graphics-type" => true
 	),
 	"pnmtojpeg" => array(
 		"prompt" => _("PNM to JPEG converter"),
 		"desc" => _("This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."),
 		"choices" => array("pnmtojpeg" => "pnmtojpeg", "ppmtojpeg" => "ppmtojpeg"),
-		"value" => "pnmtojpeg",
+		"value" => "pnmtojpeg"
 	),
 	"ImPath" => array(
 		"optional" => 1,
@@ -212,14 +216,27 @@ $constants = array_merge(
 		"attrs" => array("size" => 50),
 		"no-trailing-slash" => 1,
 		"type" => "text",
-		"verify-func-takes-graphics-type" => true,
+		"verify-func-takes-graphics-type" => true
 	),
-	"highlight_size" => array(
-		"prompt" => _("Highlight size"),
-		"desc" => _("The target size (in pixels) of thumbnails shown in the gallery page (highlight images)"),
- 		"value" => 200,
-		"type" => "text",
-		"attrs" => array("size" => 5),
+	"autorotate" => array(
+                "prompt" => _("Auto-rotate images"),
+		"desc" => _("Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.  Requires Jhead EXIF parser v.1.9 or greater (see above)."),
+                "choices" => array("yes" => _("yes"), "no" => _("no")),
+                "value" => "yes"
+        ),
+
+	"jpegImageQuality" => array(
+		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("JPEG Quality"),
+		"desc" => _("The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."),
+		"choices" => array(50 => 50, 55 => 55, 60 => 60, 65 => 65,
+				   70 => 70, 75 => 75, 80 => 80, 85 => 85,
+				   90 => 90, 95 => 95, 100 => 100),
+		"value" => 95
+	),
+
+	"separator2" => array (
+		"type" => "separator",
+		"title" => _("Optional tools")
 	),
 	"zipinfo" => array(
 		"prompt" => "Zipinfo",
@@ -230,7 +247,7 @@ $constants = array_merge(
 		"optional" => 1,
 		"filename" => 1,
 		"type" => "text",
-		"attrs" => array("size" => 50),
+		"attrs" => array("size" => 50)
 	),
 	"unzip" => array(
 		"prompt" => "Unzip",
@@ -241,7 +258,7 @@ $constants = array_merge(
 		"optional" => 1,
 		"filename" => 1,
 		"type" => "text",
-		"attrs" => array("size" => 50),
+		"attrs" => array("size" => 50)
 	),
 	"use_exif" => array(
 		"prompt" => "EXIF",
@@ -253,7 +270,13 @@ $constants = array_merge(
 		"optional" => 1,
 		"filename" => 1,
 		"type" => "text",
-		"attrs" => array("size" => 50),
+		"attrs" => array("size" => 50)
+	),
+	"cacheExif" => array(
+		"prompt" => "<b>(" . _("Advanced") . ")</b> ". _("Cache EXIF data"),
+		"desc" => _("The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow.  Set to <b>no</b> by default."),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no"
 	),
 	"use_jpegtran" => array (
 		"prompt" => "Jpegtran",
@@ -266,14 +289,18 @@ $constants = array_merge(
 		"optional" => 1,
 		"filename" => 1,
 		"type" => "text",
-		"attrs" => array ("size" => 50),
+		"attrs" => array ("size" => 50)
 	),		
+	"separator3" => array (
+		"type" => "separator",
+		"title" => _("Locations and URLs")
+	),
 	"movieThumbnail" => array(
 		"prompt" => _("Thumbnail image"),
 		"desc" => sprintf(_("The filesystem path to the thumbnail image to show for movies.  Eg. %s"), "/home/foo/thumbnail.jpg"),
 		"value" => $GALLERY_DIR . "/images/movie.thumb.jpg",
 		"type" => "text",
-		"attrs" => array("size" => 50),
+		"attrs" => array("size" => 50)
 	),
 	"albumDir" => array(
 		"prompt" => _("Album directory"),
@@ -283,7 +310,7 @@ $constants = array_merge(
 		"require-write-dir" => 1,
 		"filename" => 1,
 		"type" => "text",
-		"attrs" => array("size" => 50),
+		"attrs" => array("size" => 50)
 	),
 	"tmpDir" => array(
 		"prompt" => _("Temporary directory"),
@@ -294,7 +321,7 @@ $constants = array_merge(
 		"filename" => 1,
 		"require-write-dir" => 1,
 		"type" => "text",
-		"attrs" => array("size" => 50),
+		"attrs" => array("size" => 50)
 	),
 	"photoAlbumURL" => array(
 		"prompt" => "Gallery URL",
@@ -304,7 +331,7 @@ $constants = array_merge(
 		"no-trailing-slash" => 1,
 		"must-be-url" => 1,
 		"type" => "text",
-		"attrs" => array("size" => 50),
+		"attrs" => array("size" => 50)
 	),
 	"albumDirURL" => array(
 		"prompt" => _("Albums") ." URL",
@@ -314,7 +341,7 @@ $constants = array_merge(
 		"no-trailing-slash" => 1,
 		"must-be-url" => 1,
 		"type" => "text",
-		"attrs" => array("size" => 50),
+		"attrs" => array("size" => 50)
 	),
 	"mirrorSites" => array(
 		"prompt" => _("Mirror sites"),
@@ -325,7 +352,11 @@ $constants = array_merge(
 		"optional" => 1,
 		"type" => "textarea",
 		"value" => NULL,
-		"attrs" => array("cols" => 50, "rows" => 5),
+		"attrs" => array("cols" => 50, "rows" => 5)
+	),
+	"separator4" => array (
+		"type" => "separator",
+		"title" => _("Appearance")
 	),
 	"showAlbumTree" => array(
 		"prompt" => _("Show the album tree"),
@@ -333,12 +364,18 @@ $constants = array_merge(
 		"choices" => array("yes" => _("yes"), "no" => _("no")), 
 		"value" => "no"
 	),
-	"autorotate" => array(
-                "prompt" => _("Auto-rotate images"),
-		"desc" => _("Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.  Requires Jhead EXIF parser v.1.9 or greater (see above)."),
-                "choices" => array("yes" => _("yes"), "no" => _("no")),
-                "value" => "yes"
-        ),
+	"highlight_size" => array(
+		"prompt" => _("Highlight size"),
+		"desc" => _("The target size (in pixels) of thumbnails shown in the gallery page (highlight images)"),
+ 		"value" => 200,
+		"type" => "text",
+		"attrs" => array("size" => 5)
+	),
+
+	"separator5" => array (
+		"type" => "separator",
+		"title" => _("Languages and locales"),
+	),
 	"default_language" => array(
 		"prompt" => _("Which language do you want as your default language"), 
 		"optional" => 1, 
@@ -374,23 +411,41 @@ $constants = array_merge(
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 	),
-	"cacheExif" => array(
-		"prompt" => "<b>(" . _("Advanced") . ")</b> ". _("Cache EXIF data"),
-		"desc" => _("The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow.  Set to <b>no</b> by default."),
-		"choices" => array("yes" => _("yes"), "no" => _("no")),
-		"value" => "no"
+	"dateString" => array(
+		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Format to use for date strings."),
+		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
+			_("date without time"), Gallery(), "<b>%x</b>",
+			"<a href=\"http://uk.php.net/manual/en/function.strftime.php\">http://uk.php.net/manual/en/function.strftime.php</a>.") .
+			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>" . "<p>" .
+			sprintf(_("For example, %s will display date like this: %s."), "<b>%b %d, %Y</b>", "<b>" . strftime("%b %d, %Y") . "</b>"), 
+		"value" => "%x",
+		"type" => "text",
+		"attrs" => array("size" => 20)
+	),
+	"dateTimeString" => array(
+		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Format to use for date/time strings."),
+		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
+			_("date with time"), Gallery(), "<b>%c</b>",
+			"<a href=\"http://uk.php.net/manual/en/function.strftime.php\">http://uk.php.net/manual/en/function.strftime.php</a>.") .
+			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>" ."<p>" .
+			sprintf(_("For example, %s will display date and time like this: %s."), "<b>%H:%M, %b %d, %Y</b>", "<b>" . strftime("%H:%M, %b %d, %Y") . "</b>"), 
+		"value" => "%c",
+		"type" => "text",
+		"attrs" => array("size" => 20)
+	)
+   ),
+	config_maybe_locales()
+);
+// Continue constants ...
+$constants = array_merge($constants,
+  array(
+	"separator6" => array (
+		"type" => "separator",
+		"title" => _("Advanced"),
 	),
 
-	"jpegImageQuality" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("JPEG Quality"),
-		"desc" => _("The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."),
-		"choices" => array(50 => 50, 55 => 55, 60 => 60, 65 => 65,
-				   70 => 70, 75 => 75, 80 => 80, 85 => 85,
-				   90 => 90, 95 => 95, 100 => 100),
-		"value" => 95,
-	),
         "timeLimit" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Time Limit"),
+		"prompt" => _("Time Limit"),
 		"desc" => _("The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."),
 		"type" => "text",
 		"must-be-number" => 1,
@@ -399,51 +454,30 @@ $constants = array_merge(
 		"attrs" => array("size" => 5),
 	),
 	"debug" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b> Debug mode",
+		"prompt" => _("Debug mode"),
 		"desc" => _("Turn debug mode on so that you can diagnose problems?"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
 	"use_flock" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b> " . sprintf(_("Use %s?"), " flock()"),
+		"prompt" => sprintf(_("Use %s?"), " flock()"),
 		"desc" => _("Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes"),
 	"expectedExecStatus" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Status code"),
+		"prompt" => _("Status code"),
 		"desc" => _("The status code Gallery expects to see after a successful exec() call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."),
 		"value" => detect_exec_status(),
 		"type" => "text",
 		"attrs" => array("size" => 5),
 	),
 	"sessionVar" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Session variable"),
+		"prompt" => _("Session variable"),
 		"desc" => _("This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."),
 		"value" => "gallery_session",
 		"type" => "text",
 		"attrs" => array("size" => 20),
 	),
-	"dateString" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Format to use for date strings."),
-		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at <a href=\"http://uk.php.net/manual/en/function.strftime.php\">http://uk.php.net/manual/en/function.strftime.php</a>."),
-			_("date without time"), Gallery(), "<b>%x</b>") .
-			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>" . "<p>" .
-			sprintf(_("For example, %s will display date like this: %s."), "<b>%b %d, %Y</b>", "<b>" . strftime("%b %d, %Y") . "</b>"), 
-		"value" => "%x",
-		"type" => "text",
-		"attrs" => array("size" => 20),
-	),
-	"dateTimeString" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Format to use for date/time strings."),
-		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at <a href=\"http://uk.php.net/manual/en/function.strftime.php\">http://uk.php.net/manual/en/function.strftime.php</a>."),
-			_("date with time"), Gallery(), "<b>%c</b>") . 
-			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>" ."<p>" .
-			sprintf(_("For example, %s will display date and time like this: %s."), "<b>%H:%M, %b %d, %Y</b>", "<b>" . strftime("%H:%M, %b %d, %Y") . "</b>"), 
-		"value" => "%c",
-		"type" => "text",
-		"attrs" => array("size" => 20),
-	),
-
 
 	/* Keep this one at the end of the list because it's hidden */
 	"userDir" => array(
@@ -452,10 +486,9 @@ $constants = array_merge(
 		"type" => "hidden",
 		"value" => "",
 		"eval" => '"$albumDir/.users"',
-		"filename" => 1,
-	),
-    ),
-    config_maybe_locales()
+		"filename" => 1
+	)
+    )
 );
 
 $defaults = array(
