@@ -40,7 +40,7 @@ foreach ($constants as $key => $val) {
 		if (isset($val["type"]) && ($val["type"] === "block_end" )) {
 			echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 			echo "\n<tr><td colspan=\"2\"> &nbsp; </td></tr>";
-			echo "\n</table><!-- .inc blockend -->";
+			echo "\n</table>";
 			continue;
 		}
 
@@ -67,7 +67,7 @@ foreach ($constants as $key => $val) {
 			list($f1, $f2) = make_fields($key, $val);
 			echo $f2;
 		} else {
-			echo "\n<!-- Element Start --><table width=\"100%\" class=\"inner\">";
+			echo "\n<table width=\"100%\" class=\"inner\">";
 			/* Support $app-> for backwards compatibility */
 			if (isset($app->$key)) {
 				$val["value"] = $app->$key;
@@ -116,7 +116,7 @@ foreach ($constants as $key => $val) {
 	if (isset($val["type"]) && ($val["type"] === "hidden")) {
 		// aasd
 	} else {
-		echo "\n</table><!-- Element Ende -->";
+		echo "\n</table>";
 	}
 }
 ?>
