@@ -448,83 +448,120 @@ class Album {
 		$this->save();
 
 		if (!strcmp($sort,"upload")) {
-			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
-			$func .= "\$timeA = \$objA->getUploadDate(); ";
-			$func .= "\$timeB = \$objB->getUploadDate(); ";
-			$func .= "if (\$timeA == \$timeB) return 0; ";
-
-			if (!$order) {
-				$func .= "if (\$timeA < \$timeB) return -1; else return 1;";
-			} else {
-				$func .= "if (\$timeA > \$timeB) return -1; else return 1;";
-			}
+			$func = "sortByUpload";
 		} else if (!strcmp($sort,"itemCapture")) {
-			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
-			$func .= "\$arrayTimeA = \$objA->getItemCaptureDate(); ";
-			$func .= "\$arrayTimeB = \$objB->getItemCaptureDate(); ";
-			$func .= "\$timeA = \"\${arrayTimeA['year']}\${arrayTimeA['mon']}\${arrayTimeA['mday']}\${arrayTimeA['hours']}\${arrayTimeA['minutes']}\${arrayTimeA['seconds']}\";";
-			$func .= "\$timeB = \"\${arrayTimeB['year']}\${arrayTimeB['mon']}\${arrayTimeB['mday']}\${arrayTimeB['hours']}\${arrayTimeB['minutes']}\${arrayTimeB['seconds']}\";";
-			//$func .= "print \"\$timeA \$timeB<br>\";";
-			$func .= "if (\$timeA == \$timeB) return 0; ";
-			if (!$order) {
-				$func .= "if (\$timeA < \$timeB) return -1; else return 1;";
-			} else {
-				$func .= "if (\$timeA > \$timeB) return -1; else return 1;";
-			}    
+			$func = "sortByItemCapture";
 		} else if (!strcmp($sort, "filename")) {
-			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
-			$func .= "if (\$objA->isAlbum()) { ";
-			$func .= "	\$filenameA = \$objA->getAlbumName(); ";
-			$func .= "} else { ";
-			$func .= "	\$filenameA = \$objA->image->name; ";
-			$func .= "} ";
-			$func .= "if (\$objB->isAlbum()) { ";
-			$func .= "	\$filenameB = \$objB->getAlbumName(); ";
-			$func .= "} else { ";
-			$func .= "	\$filenameB = \$objB->image->name; ";
-			$func .= "} ";
-			//$func .= "print \$filenameA \$filenameB; ";
-			if (!$order) {
-				$func .= "return (strnatcmp(\$filenameA, \$filenameB)); ";
-			} else {
-				$func .= "return (strnatcmp(\$filenameB, \$filenameA)); ";
-			}
+			$func = "sortByFilename";
 		} else if (!strcmp($sort, "click")) {
-			// sort album by number of clicks
-			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
-			$func .= "\$aClick = \$objA->getItemClicks(); ";
-			$func .= "\$bClick = \$objB->getItemClicks(); ";
-			$func .= "if (\$aClick == \$bClick) return 0; ";
-			if (!$order) {
-				$func .= "if (\$aClick < \$bClick) return -1; else return 1;";
-			} else {
-				$func .= "if (\$aClick > \$bClick) return -1; else return 1;";
-			}
-		
+			$func = "sortByClick";
 		} else if (!strcmp($sort, "caption")) {
-			// sort album alphabetically by caption
-			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
-			$func .= "\$captionA = \$objA->getCaption(); ";	
-			$func .= "\$captionB = \$objB->getCaption(); ";
-			if (!$order) {
-				$func .= "return (strnatcmp(\$captionA, \$captionB)); ";
-			} else {
-				$func .= "return (strnatcmp(\$captionB, \$captionA)); ";
-			}
+			$func = "sortByCaption";
 		}  else if (!strcmp($sort, "comment")) {
-			// sort by number of comments
-			$func = "\$objA = (object)\$a; \$objB = (object)\$b; ";
-			$func .= "\$numCommentsA = \$objA->numComments(); ";
-			$func .= "\$numCommentsB = \$objB->numComments(); ";
-			$func .= "if (\$numCommentsA == \$numCommentsB) return 0; ";
-			if (!$order) {
-				$func .= "if (\$numCommentsA < \$numCommentsB) return -1; else return 1;";
-			} else {
-				$func .= "if (\$numCommentsA > \$numCommentsB) return -1; else return 1;";
-			}
+			$func = "sortByComment";
+		}
+		usort($this->photos, array('Album', $func));
+		if ($order) {
+			$this->photos = array_reverse($this->photos);
+		}
+	}
+
+	/*
+	 *  Globalize the sort functions from sortPhotos()
+	 */
+	
+	function sortByUpload($a, $b) {
+		$objA = (object)$a; 
+		$objB = (object)$b;
+		$timeA = $objA->getUploadDate();
+		$timeB = $objB->getUploadDate();
+		if ($timeA == $timeB) {
+			return 0;
 		}
 		
-		usort($this->photos, create_function('$a,$b', $func));
+		if ($timeA < $timeB) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
+	
+	function sortByItemCapture($a, $b) {
+		$objA = (object)$a;
+		$objB = (object)$b;
+		$arrayTimeA = $objA->getItemCaptureDate();
+		$arrayTimeB = $objB->getItemCaptureDate();
+		$timeA = "${arrayTimeA['year']}${arrayTimeA['mon']}${arrayTimeA['mday']}${arrayTimeA['hours']}${arrayTimeA['minutes']}${arrayTimeA['seconds']}";
+		$timeB = "${arrayTimeB['year']}${arrayTimeB['mon']}${arrayTimeB['mday']}${arrayTimeB['hours']}${arrayTimeB['minutes']}${arrayTimeB['seconds']}";
+		//print "$timeA $timeB<br>";
+	
+		if ($timeA == $timeB) {
+			return 0;
+		}
+		
+		if ($timeA < $timeB) {
+			return -1; 
+		} else {
+			return 1;
+		}
+	}
+	
+	function sortByFileName($a, $b) {
+		$objA = (object)$a;
+		$objB = (object)$b;
+		if ($objA->isAlbum()) {
+			$filenameA = $objA->getAlbumName();
+		} else {
+			$filenameA = $objA->image->name;
+		}
+		
+		if ($objB->isAlbum()) {
+			$filenameB = $objB->getAlbumName();
+		} else {
+			$filenameB = $objB->image->name;
+		}
+	
+		//print $filenameA $filenameB;
+		return (strnatcmp($filenameA, $filenameB));
+	}
+	
+	function sortByClick($a, $b) {
+		$objA = (object)$a;
+		$objB = (object)$b;
+		$aClick = $objA->getItemClicks();
+		$bClick = $objB->getItemClicks();
+		if ($aClick == $bClick) {
+			return 0;
+		}
+		
+		if ($aClick < $bClick) {
+			return -1; 
+		} else {
+			return 1;
+		}
+	}
+	
+	function sortByCaption($a, $b) {
+		// sort album alphabetically by caption
+		$objA = (object)$a;
+		$objB = (object)$b;
+		$captionA = $objA->getCaption();	
+		$captionB = $objB->getCaption();
+		return (strnatcmp($captionA, $captionB));
+	}
+	
+	function sortByComment($a, $b) {
+		// sort by number of comments
+		$objA = (object)$a;
+		$objB = (object)$b;
+		$numCommentsA = $objA->numComments();
+		$numCommentsB = $objB->numComments();
+		if ($numCommentsA == $numCommentsB) return 0;
+		if ($numCommentsA < $numCommentsB) {
+			return -1; 
+		} else {
+			return 1;
+		}
 	}
 
 	function getThumbDimensions($index, $size=0) {
