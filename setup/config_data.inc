@@ -221,7 +221,7 @@ $defaults = array(
 	),
 	"use_shutterfly" => array(
 		"desc" => "Offer visitors ability to order prints on Shutterfly",
-		"value" => "no",
+		"value" => "yes",
 		"choices" => array("yes", "no")
 	),
 	"returnto" => array(
