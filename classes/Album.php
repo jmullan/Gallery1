@@ -1234,6 +1234,9 @@ class Album {
 		}
 		else {
 			$count = 0;
+			if (!sizeof($this->photos)) {
+				return $count;
+			}
 			foreach ($this->photos as $photo) {
 				if ($photo->isAlbum() || ($photo->isHidden() && !$show_hidden)) {
 					continue;
