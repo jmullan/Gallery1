@@ -231,17 +231,17 @@ class AlbumItem {
 	}
 
 
-	function getThumbnailTag($dir, $attrs="") {
+	function getThumbnailTag($dir, $size=0, $attrs="") {
 		if ($this->thumbnail) {
-			return $this->thumbnail->getTag($dir, 0, $attrs);
+			return $this->thumbnail->getTag($dir, 0, $size, $attrs);
 		} else {
 			return "<i>No thumbnail</i>";
 		}
 	}
 
-	function getHighlightTag($dir, $attrs) {
+	function getHighlightTag($dir, $size=0, $attrs) {
 		if (is_object($this->highlightImage)) {
-			return $this->highlightImage->getTag($dir, 0, $attrs);
+			return $this->highlightImage->getTag($dir, 0, $size, $attrs);
 		} else {
 			return "<i>No highlight</i>";
 		}

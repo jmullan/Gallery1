@@ -294,20 +294,20 @@ class Album {
 		return $this->fields["nextname"]++;
 	}
 
-	function getThumbnailTag($index, $attrs="") {
+	function getThumbnailTag($index, $size=0, $attrs="") {
 		$photo = $this->getPhoto($index);
 		if ($photo->isAlbumName) {
 			$myAlbum = $this->getNestedAlbum($index);
-			return $myAlbum->getHighlightTag($myAlbum->getAlbumDirURL(), $attrs);
+			return $myAlbum->getHighlightTag($size, $attrs);
 		} else {	
-			return $photo->getThumbnailTag($this->getAlbumDirURL(), $attrs);
+			return $photo->getThumbnailTag($this->getAlbumDirURL(), $size, $attrs);
 		}
 	}
 
-	function getHighlightTag($attrs="") {
+	function getHighlightTag($size=0, $attrs="") {
 		if ($this->numPhotos(1)) {	
 			$photo = $this->getPhoto($this->getHighlight());
-			return $photo->getHighlightTag($this->getAlbumDirURL(), $attrs);
+			return $photo->getHighlightTag($this->getAlbumDirURL(), $size, $attrs);
 		} else {
 			return "No Highlight";
 		}

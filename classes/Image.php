@@ -76,13 +76,27 @@ class Image {
 		unlink("$dir/$this->name.$this->type");
 	}
 
-	function getTag($dir, $full=0, $attrs="") {
+	function getTag($dir, $full=0, $size=0, $attrs="") {
 		global $gallery;
 
 		$name = $this->getName($dir);
 		
 		$attrs .= " border=0";
-		
+	    if ($size) {
+			if ($this->width > $this->height) {
+				$width = $size;
+				$height = $size * ($this->height / $this->width);
+			} else {
+				$width = $size * ($this->width / $this->height);
+				$height = $size;
+			}
+			$size_val = "width=$width height=$height";
+		} else if ($this->width && $this->height) {
+			$size_val = "width=$this->width height=$this->height";
+		} else {
+			$size_val = "";
+		}
+
 		if ($this->resizedName) {
 			if ($full) {
 				return "<img src=$dir/$this->name.$this->type $attrs>";
@@ -90,7 +104,7 @@ class Image {
 				return "<img src=$dir/$this->resizedName.$this->type $attrs>";
 			}
 		} else {
-			return "<img src=$dir/$this->name.$this->type width=$this->width height=$this->height $attrs>";
+			return "<img src=$dir/$this->name.$this->type $size_val $attrs>";
 		}
 	}
 
