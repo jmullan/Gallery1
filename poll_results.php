@@ -28,12 +28,12 @@ require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
-	header("Location: " . makeAlbumUrl());
+	header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
 
 if (!$gallery->album->isLoaded()) {
-	header("Location: " . makeAlbumUrl());
+	header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
 

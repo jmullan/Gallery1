@@ -26,7 +26,7 @@ require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
-    header("Location: " . makeAlbumUrl());
+    header("Location: " . makeAlbumHeaderUrl());
     return;
 }
 
@@ -81,7 +81,7 @@ if (isset($save) || isset($next) || isset($prev)) {
 }
 
 if (isset($cancel) || isset($save)) {
-    header("Location: " . makeGalleryUrl("view_album.php"));
+    header("Location: " . makeGalleryHeaderUrl("view_album.php"));
     return;
 }
 

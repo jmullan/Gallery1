@@ -98,7 +98,7 @@ if (isset($create)) {
 		exit;
        	}
 } else if (isset($cancel) || isset($dismiss)) {
-	header("Location: " . makeGalleryUrl("manage_users.php"));
+	header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
 }
 doctype();
 ?>

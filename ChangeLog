@@ -1,3 +1,18 @@
+2004-05-03  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b88
+
+	* Change: Remove independant htmlspecialchars() calls and move
+	  it to a central location in makeGalleryUrl().  The only reason
+	  htmlspecialchars() should be called is if make*Url() is not
+	  appropriate.
+
+	* Change: Add makeGalleryHeaderUrl() and makeAlbumHeaderUrl()
+	  These functions decode the htmlspecialchars() which makeGalleryUrl()
+	  calls, since html entities aren't valid in HTTP headers.  It's a
+	  somewhat redundant operation, but necessary for code usability.
+
+	* Change: Update all Location: headers to use the make*HeaderUrl()
+	  functions.
+
 2004-05-03  Don Willingham <donwillingham@users.sf.net>  1.4.4-cvs-b87
 
 	* Change: Add frame test page that allows the user to preview

@@ -80,7 +80,7 @@ if (isset($$sessionVar)) {
 	if (false) {
 	    if (strcmp($gallery->session->version, $gallery->version)) {
 		session_destroy();
-		header("Location: " . makeGalleryUrl("index.php"));
+		header("Location: " . makeGalleryHeaderUrl("index.php"));
 		exit;
 	    }
 	}

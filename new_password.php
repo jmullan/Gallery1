@@ -71,7 +71,7 @@ if ( isset($save)) {
 
 		// Switch over to the new username in the session
 	       	$gallery->session->username = $uname;
-	       	header("Location: " . makeAlbumUrl());
+	       	header("Location: " . makeAlbumHeaderUrl());
        	}
 }
 

@@ -30,18 +30,18 @@ if (!$gallery->user->isAdmin()) {
 }
 
 if (isset($create)) {
-	header("Location: " . makeGalleryUrl("create_user.php"));
+	header("Location: " . makeGalleryHeaderUrl("create_user.php"));
 }
 if (isset($bulk_create)) {
-	header("Location: " . makeGalleryUrl("multi_create_user.php"));
+	header("Location: " . makeGalleryHeaderUrl("multi_create_user.php"));
 }
 
 if ( (isset($modify) || isset($delete)) && ! isset($uname)) {
 	$error=_("Please select a user");
 } elseif (isset($modify)) {
-	header("Location: " . makeGalleryUrl("modify_user.php", array("uname" => $uname)));
+	header("Location: " . makeGalleryHeaderUrl("modify_user.php", array("uname" => $uname)));
 } elseif (isset($delete)) {
-	header("Location: " . makeGalleryUrl("delete_user.php", array("uname" => $uname)));
+	header("Location: " . makeGalleryHeaderUrl("delete_user.php", array("uname" => $uname)));
 }
 
 $displayUsers = array();

@@ -33,7 +33,7 @@ if (isset($delete)) {
 	$gallery->userDB->deleteUserByUsername($uname);
 }
 if (isset($delete) || isset($cancel)) {
-	header("Location: " . makeGalleryUrl("manage_users.php"));
+	header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
 }
 
 doctype();

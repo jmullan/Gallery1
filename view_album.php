@@ -26,18 +26,18 @@ require(dirname(__FILE__) . '/init.php');
 
 //Prevent error
 if (!$gallery->session->albumName) {
-	header("Location: " . makeAlbumUrl());
+	header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
 
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
-	header("Location: " . makeAlbumUrl());
+	header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
 
 if (!$gallery->album->isLoaded()) {
-	header("Location: " . makeAlbumUrl());
+	header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
 
@@ -261,7 +261,7 @@ function showChoice($label, $target, $args, $class="popup") {
     if (empty($args['set_albumName'])) {
 	$args['set_albumName'] = $gallery->session->albumName;
     }
-    echo "<option class=\"$class\" value='" . htmlspecialchars(makeGalleryUrl($target, $args)) . "'>$label</option>";
+    echo "<option class=\"$class\" value='" . makeGalleryUrl($target, $args) . "'>$label</option>";
 }
 
 $adminText = "<span class=\"admin\">";

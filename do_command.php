@@ -60,7 +60,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 } else if (!strcmp($cmd, "logout")) {
 	$gallery->session->username = "";
 	$gallery->session->language = "";
-	header("Location: $return");
+	header("Location: " . makeGalleryHeaderUrl($return));
 } else if (!strcmp($cmd, "hide")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$gallery->album->hidePhoto($index);
@@ -116,9 +116,9 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 
 		$url = addUrlArg($return, "set_albumName=" .
 				 $gallery->session->albumName);
-		header("Location: $url");
+		header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
 	} else {
-	        header("Location: " . makeAlbumUrl());
+	        header("Location: " . makeAlbumHeaderUrl());
 	}
 } else if (!strcmp($cmd, "reset-album-clicks")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
@@ -126,7 +126,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		// this is a popup do dismiss and reload!
 		dismissAndReload();
 	} else {
-	        header("Location: " . makeAlbumUrl());
+	        header("Location: " . makeAlbumHeaderUrl());
 	}
 
 } else if (!strcmp($cmd, "delete-comment")) {
@@ -140,7 +140,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 						$gallery->album->getPhotoId($index))));
 		dismissAndReload();
 	} else {
-	        header("Location: " . makeAlbumUrl());
+	        header("Location: " . makeAlbumHeaderUrl());
 	}
 
 } else if (!empty($return)) {

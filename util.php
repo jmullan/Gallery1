@@ -160,8 +160,11 @@ function build_popup_url($url, $url_is_complete=0) {
 	if (!$url_is_complete) {
 		$url = makeGalleryUrl($target, $args);
 	}
+	else {
+		$url = htmlspecialchars($url);
+	}
 
-	return htmlspecialchars($url);
+	return $url;
 }
 
 function popup($url, $url_is_complete=0, $height=500,$width=500) {
@@ -1337,7 +1340,12 @@ function makeGalleryUrl($target, $args=array()) {
 			$url .= "$key=$value";
 		}
 	}
-	return $url;
+	return htmlspecialchars($url);
+}
+
+function makeGalleryHeaderUrl($target, $args=array()) {
+	$url = makeGalleryUrl($target, $args);
+	return strtr($url, array_flip(get_html_translation_table(HTML_SPECIALCHARS)));
 }
 
 /*
@@ -1375,6 +1383,11 @@ function makeAlbumUrl($albumName="", $photoId="", $args=array()) {
 
 	}
 	return makeGalleryUrl($target, $args);
+}
+
+function makeAlbumHeaderUrl($albumName="", $photoId="", $args=array()) {
+	$url = makeAlbumUrl($albumName, $photoId, $args);
+	return strtr($url, array_flip(get_html_translation_table(HTML_SPECIALCHARS)));
 }
 
 function gallerySanityCheck() {
@@ -1768,7 +1781,7 @@ function doCommand($command, $args=array(), $returnTarget="", $returnArgs=array(
 		$args["return"] = urlencode(makeGalleryUrl($returnTarget, $returnArgs));
 	}
 	$args["cmd"] = $command;
-	return htmlspecialchars(makeGalleryUrl("do_command.php", $args));
+	return makeGalleryUrl("do_command.php", $args);
 }
 
 function breakString($buf, $desired_len=40, $space_char=' ', $overflow=5) {

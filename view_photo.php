@@ -26,11 +26,11 @@ require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
-        header("Location: " . makeAlbumUrl());
+        header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
 if (isset($full) && !$gallery->user->canViewFullImages($gallery->album)) {
-	header("Location: " . makeAlbumUrl($gallery->session->albumName, $id));
+	header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName, $id));
 	return;
 }
 if (!isset($full)) {
@@ -45,7 +45,7 @@ if (isset($id)) {
 	$index = $gallery->album->getPhotoIndex($id);
 	if ($index == -1) {
 		// That photo no longer exists.
-	        header("Location: " . makeAlbumUrl($gallery->session->albumName));
+	        header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
 		return;
 	}
 } else {
@@ -82,7 +82,7 @@ if (!empty($votes))
 // is photo hidden?  should user see it anyway?
 if (($gallery->album->isHidden($index))
     && (!$gallery->user->canWriteToAlbum($gallery->album))){
-    header("Location: " . makeAlbumUrl($gallery->session->albumName));
+    header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
     return;
 }
 
@@ -243,24 +243,24 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   	}
   	if ($navigator['allIds'][0] != $id) {
       		if ($navigator['allIds'][0] != 'unknown') { ?>
-   <link rel="first" href="<?php echo htmlspecialchars(makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0])) ?>" >
+   <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0]) ?>" >
 <?php		}
       		if ($navigator['allIds'][$navpage-1] != 'unknown') { ?>
-   <link rel="prev" href="<?php echo htmlspecialchars(makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage-1])) ?>" >
+   <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage-1]) ?>" >
 <?php 		}
   	}
   	if ($navigator['allIds'][$navcount - 1] != $id) {
       		if ($navigator['allIds'][$navpage+1] != 'unknown') { ?>
-  <link rel="next" href="<?php echo htmlspecialchars(makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage+1])) ?>" >
+  <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage+1]) ?>" >
  <?php 		}
       		if ($navigator['allIds'][$navcount-1] != 'unknown') { ?>
-  <link rel="last" href="<?php echo htmlspecialchars(makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1])) ?>" >
+  <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1]) ?>" >
 <?php 		}
   	} ?>
-  <link rel="up" href="<?php echo htmlspecialchars(makeAlbumUrl($gallery->session->albumName)) ?>">
+  <link rel="up" href="<?php echo makeAlbumUrl($gallery->session->albumName) ?>">
 <?php 	if ($gallery->album->isRoot() && 
 		(!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
-  <link rel="top" href="<?php echo htmlspecialchars(makeGalleryUrl('albums.php', array('set_albumListPage' => 1))) ?>">	 
+  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">	 
 <?php 	}
 	$metakeywords = ereg_replace("[[:space:]]+",' ',$gallery->album->getKeywords($index)); ?>
   <meta name="Keywords" content="<?php echo $metakeywords; ?>">
@@ -310,7 +310,7 @@ if ($fitToWindow) {
 $adminCommands = '';
 if (!$gallery->album->isMovie($id)) {
 	print "<a id=\"photo_url\" href=\"$photoURL\" ></a>\n";
-	$page_url=htmlspecialchars(makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0)));
+	$page_url=makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0));
 	print '<a id="page_url" href="'. $page_url .'"></a>'."\n";
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$adminCommands .= popup_link("[" . _("resize photo") ."]", 
@@ -690,7 +690,7 @@ includeHtmlWrap("photo.footer");
       * the message off at 80 characters. */
      $imbkprnt = $gallery->album->getCaption($index);
      if (empty($imbkprnt)) {
-        $imbkprnt = htmlspecialchars(makeAlbumUrl($gallery->session->albumName, $id));
+        $imbkprnt = makeAlbumUrl($gallery->session->albumName, $id);
      }
   ?>
   <input type=hidden name=imbkprnta-1 value="<?php echo strip_tags($imbkprnt) ?>">
@@ -715,7 +715,7 @@ if (isset($printEZPrintsForm)) { ?>
       * then print the URL to this page. */
      $imbkprnt = $gallery->album->getCaption($index);
      if (empty($imbkprnt)) {
-        $imbkprnt = htmlspecialchars(makeAlbumUrl($gallery->session->albumName, $id));
+        $imbkprnt = makeAlbumUrl($gallery->session->albumName, $id);
      }
   ?>
   <input type="hidden" name="count" value="1">
