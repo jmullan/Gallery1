@@ -803,7 +803,7 @@ if ($numPhotos) {
 				echo("<td width=\"$imageCellWidth\" align=\"center\" valign=\"middle\">");
 				$photo    = $gallery->album->getPhoto($i);
 				$image    = $photo->image;
-				if (!empty($image)) {
+				if (!empty($image) && !$photo->isMovie()) {
 					$viewFull = $gallery->user->canViewFullImages($gallery->album);
 					$fullOnly = (isset($gallery->session->fullOnly) &&
 						!strcmp($gallery->session->fullOnly, 'on') &&
