@@ -64,6 +64,7 @@ if (!function_exists('array_search')) {
 }
 
 
+
 if (!empty($votes))
 {
        if (!isset($votes[$id]) && $gallery->album->getPollScale() == 1 && $gallery->album->getPollType() == "critique")
@@ -208,6 +209,21 @@ if (!$title) {
 	$title=$index;
 }
 
+if (isset($comment_text)) {
+	if (!empty($commenter_name) && !empty($comment_text)) {
+		$comment_text = removeTags($comment_text);
+		$commenter_name = removeTags($commenter_name);
+		$IPNumber = $HTTP_SERVER_VARS['REMOTE_ADDR'];
+		$gallery->album->addComment($id, stripslashes($comment_text), $IPNumber, $commenter_name);
+		$gallery->album->save();
+		emailComments($id, $comment_text, $commenter_name);
+        } else {
+		$comment_error= _("Name and comment are both required to save a new comment!");
+        }
+}
+
+
+
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype(); ?>
 <html> 
@@ -294,9 +310,8 @@ if ($fitToWindow) {
 $adminCommands = '';
 if (!$gallery->album->isMovie($id)) {
 	print "<a id=\"photo_url\" href=\"$photoURL\" ></a>\n";
-	print '<a id="page_url" href="'. 
-		htmlspecialchars(makeAlbumUrl($gallery->session->albumName, $id, 
-			array("full" => 1))) . '"></a>'."\n";
+	$page_url=htmlspecialchars(makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0)));
+	print '<a id="page_url" href="'. $page_url .'"></a>'."\n";
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$adminCommands .= popup_link("[" . _("resize photo") ."]", 
 			"resize_photo.php?index=$index", false, true, 500, 500, 'admin');
@@ -590,20 +605,19 @@ if ($gallery->album->getPollShowResults()) {
 	echo "\n</p>";
 }
 
+echo "\n<!-- Comments -->";
+if (isset($comment_error)) {
+	echo gallery_error($comment_error);
+}
+ 
+if ($gallery->user->canViewComments($gallery->album) && $gallery->app->comments_enabled == 'yes') {
+		echo viewComments($index, $gallery->user->canAddComments($gallery->album), $page_url);
+}
 
 echo "\n\n<!-- Custom Fields -->";
 displayPhotoFields($index, $extra_fields, true, in_array('EXIF', $extra_fields), $full);
 
-?>
-
-<!-- Comments -->
-<?php 
-	if ($gallery->user->canViewComments($gallery->album)
-		 && $gallery->app->comments_enabled == 'yes') {
-			echo "\n". '<table align="center" border="0">';
-			echo viewComments($index, $gallery->user->canAddComments($gallery->album));
-			echo "\n</table>";
-	}
+echo "<br>";
 
 includeHtmlWrap("inline_photo.footer");
 ?>

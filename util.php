@@ -66,7 +66,7 @@ function editCaption($album, $index) {
 	return $buf;
 }
 
-function viewComments($index, $addComments) {
+function viewComments($index, $addComments, $page_url) {
         global $gallery;
 	global $commentdraw;
 	global $i;
@@ -85,17 +85,56 @@ function viewComments($index, $addComments) {
 		$commentdraw["bordercolor"] = $borderColor;
 		includeLayout('commentdraw.inc');
 	}
+	
+	if ($addComments) {
+		if ($gallery->app->comments_addInside == "popup") {
+			$id = $gallery->album->getPhotoId($index);
+		       	$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
+	       		echo "\n" .'<div align="center" class="editlink">' .
+				popup_link('[' . _("add comment") . ']', $url, 0) .
+				'</div><br>';
+		}
+		else {
+			if ($gallery->user->isLoggedIn() ) { 
+				if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
+					$commenter_name=user_name_string($gallery->user->getUID(), $gallery->app->comments_display_name);
+	        		}
+			} else {
+				$commenter_name='';
+			}
 
-	if ($addComments)
-       	{
-		$id = $gallery->album->getPhotoId($index);
-	       	$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
-	       	$buf  = "\n<tr>".
-			"\n". '<td colspan="3" align="center"><span class="editlink">' .
-			popup_link('[' . _("add comment") . ']', $url, 0) .
-			"</span><br><br></td>\n</tr>";
-	       	echo $buf;
+			echo "\n" .'<form name="theform" method="post" action="'. $page_url .'">';
+			echo "\n" .'<table class="commentbox" cellpadding="0" cellspacing="0">';
+			echo "\n<tr>";
+			echo "\n\t" .'<td colspan="2" class="commentboxhead">'. _("Add your comment") .'</td>';
+			echo "\n</tr>";
+			echo "\n<tr>";
+			echo "\n\t". '<td class="commentboxhead">'. _("Commenter:") .'</td>';
+			echo "\n\t". '<td class="commentboxhead">';
+			if (!$gallery->user->isLoggedIn() ) {
+				echo "<input name=\"commenter_name\" value=\"". $commenter_name ."\" size=\"30\">";
+			} else {
+				if ($gallery->app->comments_anonymous == 'yes') {
+					echo '<input name="commenter_name" value="'.$commenter_name.'" size="30">';
+				} else {
+					echo $commenter_name;
+					echo '<input type="hidden" name="commenter_name" value="" size="30">';
+				}
+			}
+			echo "\n\t</td>";
+			echo "\n</tr>";
+			echo "\n<tr>";
+			echo "\n\t" .'<td class="commentlabel" valign="top">'. _("Message") . '</td>';
+			echo "\n\t" .'<td><textarea name="comment_text" cols="50" rows="5"></textarea></td>';
+			echo "\n</tr>";
+			echo "\n<tr>";
+			echo "\n\t" .'<td colspan="2" class="commentboxfooter" align="right"><input name="post" type="submit" value="'. _("Post") . '"></td>';
+			echo "\n</tr>";
+			echo "\n</table>";
+			echo "\n</form>";
+		}
        	}
+
 }
 
 function gallery_error($message) {
@@ -3014,6 +3053,28 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
         	}
 	        echo "\n</tr>";
 		echo "\n</table>";
+	}
+}
+
+function emailComments($id, $comment_text, $commenter_name) {
+	global $gallery;
+
+	$to = implode(", ", $gallery->album->getEmailMeList('comments', $id));
+	if (strlen($to) > 0) {
+		$text="";
+		$text.= sprintf("A comment has been added to %s by %s in album %s.",
+			makeAlbumUrl($gallery->session->albumName, $id),
+			$commenter_name,
+			makeAlbumUrl($gallery->session->albumName));
+		$text.= "\n\n"."****BEGIN COMMENT****"."\n";
+		$text.= str_replace("\r", "\n", str_replace("\r\n", "\n", $comment_text));
+		$text.= "\n"."****END COMMENT****"."\n\n";
+		$text .= "If you no longer wish to receive emails about this image, follow the links above and ensure that \"Email me when comments are added\" is unchecked in both the photo and album page (You'll need to login first).";
+		$subject=sprintf("New comment for %s", $id);
+		$logmsg=sprintf("New comment for %s.", makeAlbumUrl($gallery->session->albumName, $id));
+		gallery_mail($to, $subject, $text, $logmsg, true);
+	} else if (isDebugging()) {
+		print _("No email sent as no valid email addresses were found");
 	}
 }
 

@@ -812,10 +812,15 @@ $constants = array_merge($constants,
 			),
 	"comments_display_name" => array(
 			"prompt" => _("Format for commenter names"),
-			"desc" => _("Commenter names of logged in users can be displayed in a variety of different ways") .
-				newIn("1.4.2"),
+			"desc" => _("Commenter names of logged in users can be displayed in a variety of different ways"),
 			"choices" => displayNameOptions(), 
 			"value" => "!!FULLNAME!! (!!USERNAME!!)",
+			),
+	"comments_addInside" => array(
+			"prompt"	=> _("Add Comments inside"),
+			"desc"		=> _("Do you want to have the possibility to add comments inside the view photo page, or do you prefer a link to a popup"),
+			"choices"	=> array ("popup" => _("Popup"), "inside" => _("Inside")),
+			"value"		=> "inside"
 			),
 	"group_comments_end" => array (
 		"type"          => "group_end",

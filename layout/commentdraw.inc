@@ -14,28 +14,32 @@ $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" 
 
 ?>
 <!-- Begin Comment -->
+<table width="50%" align="center" border="0" class="commentbox" cellpadding="0" cellspacing="0">
 <tr>
-	<td width="15%"></td>
-	<td width="70%" class="modcaption">
-	<br><?php echo _("From:") ?> <b><?php echo $commentdraw["name"] ?></b> &nbsp;
+	<td class="commentboxhead"><?php echo _("From:") ?></td> 
+	<td class="commentboxhead"><b><?php echo $commentdraw["name"] ?></b>
 <?php
-  if ($gallery->user->isAdmin()) {
-      echo "@ &nbsp;";
-      echo $commentdraw["IPNumber"];
-      echo "&nbsp;";
-  }
-?>
-        (<?php echo $commentdraw["datePosted"] ?>)
-	<br><?php echo $commentdraw["comment"] ?>
+if ($gallery->user->isAdmin()) {
+	echo "@ &nbsp;";
+	echo $commentdraw["IPNumber"];
+}
+?>	</td>
+	<td class="commentboxhead">(<?php echo $commentdraw["datePosted"] ?>)</td>
+</tr>
+<tr>
+	<td colspan="3"><?php echo $commentdraw["comment"] ?></td>
+</tr>
+
 <?php
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
+	echo "\n<tr>";
+	echo "\n\t". '<td colspan="3" align="center" class="commentboxfooter">';
 	$url = "do_command.php?cmd=delete-comment&index=$index&comment_index=$i";
-	$buf = '<a href="#" onClick="javascript:' . popup($url) . '">['. _("delete comment") . ']</a>';
-	echo "$buf";
+	echo '<a href="#" onClick="javascript:' . popup($url) . '">['. _("delete comment") . ']</a>';
+	echo "\n\t</td>";
+	echo "\n</tr>";
 }
 ?>
-	<br><br>
-	</td>
-	<td width="15%"></td>
-</tr>
+</table>
+<br>
 <!-- End Comment -->

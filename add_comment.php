@@ -30,30 +30,6 @@ if (!$gallery->user->canAddComments($gallery->album)) {
 	echo _("You are no allowed to perform this action !");
         exit;
 }
-function emailComments($id, $comment_text, $commenter_name) {
-	global $gallery;
-	$to = implode(", ", $gallery->album->getEmailMeList('comments', $id));
-       	if (strlen($to) > 0) {
-
-
-		$text="";
-		$text.= sprintf("A comment has been added to %s by %s in album %s.",
-			makeAlbumUrl($gallery->session->albumName, $id),
-			$commenter_name,
-			makeAlbumUrl($gallery->session->albumName));
-		$text.= "\n\n"."****BEGIN COMMENT****"."\n";
-		$text.= str_replace("\r", "\n", str_replace("\r\n", "\n", $comment_text));
-		$text.= "\n"."****END COMMENT****"."\n\n";
-	       	$text .= "If you no longer wish to receive emails about this image, follow the links above and ensure that \"Email me when comments are added\" is unchecked in both the photo and album page (You'll need to login first).";
-	       	$subject=sprintf("New comment for %s", $id);
-		$logmsg=sprintf("New comment for %s.", 
-			makeAlbumUrl($gallery->session->albumName, $id));
-		gallery_mail($to, $subject, $text, $logmsg, true);
-
-       	} else if (isDebugging()) {
-		print _("No email sent as no valid email addresses were found");
-	}
-}
 
 $error_text = "";
 if ($gallery->user->isLoggedIn() ) {
