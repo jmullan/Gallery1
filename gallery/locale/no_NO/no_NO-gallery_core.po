@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_4
+# Version: 1_4_4-u1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -28,9 +28,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-08-03 14:45+0200\n"
-"PO-Revision-Date: 2004-07-29 12:51+0100\n"
-"Last-Translator: Håvard Mork <havarmor@stud.ntnu.no>\n"
+"POT-Creation-Date: 2004-08-13 14:30+0200\n"
+"PO-Revision-Date: 2004-08-03 12:51+0100\n"
+"Last-Translator: Sverre M. Vikan <sverre AT urven DOT net>\n"
 "Language-Team: Sverre M. Vikan <sverre AT urven DOT net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -169,7 +169,7 @@ msgstr "Lagre"
 #: ../upgrade_album.php:64 ../upgrade_album.php:72 ../upgrade_users.php:64
 #: ../view_photo_properties.php:135
 msgid "Done"
-msgstr "Fullfør"
+msgstr "Fullført"
 
 #: ../albums.php:110 ../html_wrap/search.header.default:28 ../search.php:40
 msgid "Search"
@@ -184,7 +184,7 @@ msgstr[1] "%d album"
 
 #: ../albums.php:123
 msgid "no albums"
-msgstr "Ingen album"
+msgstr "ingen album"
 
 #: ../albums.php:125
 #, php-format
@@ -271,7 +271,7 @@ msgstr "behandle brukere"
 
 #: ../albums.php:182
 msgid "preferences"
-msgstr "brukerinnstillinger"
+msgstr "innstillinger"
 
 #: ../albums.php:188 ../view_album.php:486
 msgid "logout"
@@ -299,14 +299,14 @@ msgid "Please move it/them out of the albums directory."
 msgstr "Vennligst flytt det/dem ut av albumkatalogen."
 
 #: ../albums.php:235
-#, fuzzy, php-format
+#, php-format
 msgid "%s has detected that %d of your albums are out of date."
-msgstr "%s har oppdaget at %d av albumene dine er utgått på dato"
+msgstr "%s har oppdaget at %d av albumene dine er utdaterte."
 
 #: ../albums.php:239
 #, php-format
 msgid "Please %s."
-msgstr "Vennligst %s"
+msgstr "Vennligst %s."
 
 #: ../albums.php:239
 msgid "upgrade those albums"
@@ -331,7 +331,7 @@ msgstr "Hei!"
 #: ../albums.php:352
 #, php-format
 msgid "%s so that the URL is not so generic!"
-msgstr "%s slik at URL-en ikke er så generisk!"
+msgstr "%s slik at URL'en ikke er så generisk!"
 
 #: ../albums.php:353
 msgid "Rename this album"
@@ -383,7 +383,7 @@ msgstr "Tittelforfatter"
 
 #: ../captionator.php:169
 msgid "Multiple Caption Editor."
-msgstr "Redigerer for flere bildetekster."
+msgstr "Multieditor for Bildetekster."
 
 #: ../captionator.php:171
 msgid "1 photo in this album"
@@ -401,7 +401,7 @@ msgstr "på"
 #, php-format
 msgid "one page"
 msgid_plural "%d pages"
-msgstr[0] "1 side"
+msgstr[0] "en side"
 msgstr[1] "%d sider"
 
 #: ../captionator.php:204 ../captionator.php:312
@@ -460,7 +460,7 @@ msgstr "Album oppdatert."
 
 #: ../classes/Album.php:239
 msgid "Upgrading album properties..."
-msgstr "Oppgraderer album ..."
+msgstr "Oppgraderer albumalternativer..."
 
 #: ../classes/Album.php:382
 #, php-format
@@ -474,7 +474,7 @@ msgstr "fullført"
 #: ../classes/Album.php:441
 #, php-format
 msgid "Upgrading item %d of %d . . . "
-msgstr "Oppgraderer %d av %d ..."
+msgstr "Oppgraderer objekt %d av %d . . . "
 
 #: ../classes/Album.php:857
 msgid "msg should be an array!"
@@ -482,7 +482,7 @@ msgstr "msg bør være en elementrekke!"
 
 #: ../classes/Album.php:878 ../util.php:3188
 msgid "No email sent as no valid email addresses were found"
-msgstr "Klarte ikke å sende e-post, fordi ingen gyldige e-postadresser ble funnet"
+msgstr "E-post ble ikke sendt fordi ingen gyldige e-postadresser ble funnet"
 
 #: ../classes/Album.php:975
 msgid "Resizing/compressing original image"
@@ -499,14 +499,14 @@ msgstr "Endrer størrelse på %s"
 
 #: ../classes/Album.php:1068
 msgid "Photo auto-rotated/transformed"
-msgstr "Bildet er automatisk rotert/transformert"
+msgstr "Bildet er auto-rotert/transformert"
 
 #: ../classes/Album.php:1077
 msgid "Watermarking Image"
-msgstr "Setter vannmerke på bilde"
+msgstr "Vannmerker bilde"
 
 #: ../classes/Album.php:1223 ../classes/Album.php:1233
-#: ../classes/AlbumItem.php:627
+#: ../classes/AlbumItem.php:630
 msgid "No highlight"
 msgstr "Uten forsidebilde"
 
@@ -530,23 +530,23 @@ msgstr "#%d"
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "E-postproblem: hopper over %s (UID %s) fordi e-postadresse %s er ugyldig"
 
-#: ../classes/AlbumItem.php:526
+#: ../classes/AlbumItem.php:529
 msgid "Invalid image"
 msgstr "Ugyldig bilde"
 
-#: ../classes/AlbumItem.php:584
+#: ../classes/AlbumItem.php:587
 msgid "Unable to make thumbnail"
-msgstr "Klarte ikke å opprette miniatyrbilde"
+msgstr "Kunne ikke opprette miniatyrbilde"
 
-#: ../classes/AlbumItem.php:595
+#: ../classes/AlbumItem.php:598
 msgid "No preview"
 msgstr "Uten forhåndsvisning"
 
-#: ../classes/AlbumItem.php:605 ../util.php:61
+#: ../classes/AlbumItem.php:608 ../util.php:61
 msgid "No Caption"
 msgstr "Ingen tittel"
 
-#: ../classes/AlbumItem.php:614
+#: ../classes/AlbumItem.php:617
 msgid "No thumbnail"
 msgstr "Uten miniatyrbilde"
 
@@ -560,7 +560,7 @@ msgstr "Ingen"
 
 #: ../classes/gallery/UserDB.php:44
 msgid "Unable to create dir"
-msgstr "Klarte ikke å opprette katalog"
+msgstr "Kunne ikke opprette katalog"
 
 #: ../classes/gallery/UserDB.php:49
 #, php-format
@@ -570,7 +570,7 @@ msgstr "%s eksisterer, men er ikke en katalog!"
 #: ../classes/gallery/UserDB.php:271
 #, php-format
 msgid "Illegal username %s: must at least 2 characters"
-msgstr "Ugyldig brukernavn %s: må være mist to karakterer"
+msgstr "Ugyldig brukernavn %s: må være minst to karakterer"
 
 #: ../classes/gallery/UserDB.php:276
 #, php-format
@@ -590,7 +590,7 @@ msgstr "%s er reservert og kan ikke brukes."
 #: ../classes/gallery/UserDB.php:295
 #, php-format
 msgid "A user with the username of %s already exists"
-msgstr "En bruker med brukernavnet %s eksisterer allerede"
+msgstr "En bruker med brukernavnet %s finnes allerede"
 
 #: ../classes/gallery/UserDB.php:304
 msgid "Password must be at least 3 characters"
@@ -608,7 +608,7 @@ msgstr "hoppet over"
 #: ../classes/gallery/UserDB.php:386
 #, php-format
 msgid "Problem adding %s:"
-msgstr "Klarte ikke å legge til %s:"
+msgstr "Kunne ikke legge til %s:"
 
 #: ../copy_photo.php:39 ../copy_photo.php:44
 msgid "Copy Photo"
@@ -622,7 +622,7 @@ msgstr "Ugyldig album valgt: %s"
 #: ../copy_photo.php:58 ../copy_photo.php:127
 #, php-format
 msgid "Can't copy album #%d"
-msgstr "Klarte ikke å kopiere albumet #%d"
+msgstr "Kan ikke kopiere album #%d"
 
 #: ../copy_photo.php:65
 #, php-format
@@ -650,7 +650,7 @@ msgstr "Kopier en samling bilder til et nytt album:"
 
 #: ../copy_photo.php:134
 msgid "To copy just one photo, make First and Last the same"
-msgstr "For å kopiere bare ett bilde, gjør første og siste til det samme"
+msgstr "For å kopiere bare ett bilde, sett Første og Siste likt"
 
 #: ../copy_photo.php:135 ../move_photo.php:273
 msgid "Nested albums in this range will be ignored"
@@ -790,7 +790,7 @@ msgstr "Brukere kan ha særegne rettigheter i hvert album."
 
 #: ../delete_user.php:63
 msgid "If you delete this user, any such permissions go away."
-msgstr "Hvis du sletter denne brukeren, kan slike rettigheter forsvinne."
+msgstr "Hvis du sletter denne brukeren, forsvinner slike rettigheter."
 
 #: ../delete_user.php:64
 msgid "Users cannot be recreated."
@@ -893,7 +893,7 @@ msgstr "Maksimum filstørrelse for JPEG/PNG-bilder i full størrelse i kilobytes (
 
 #: ../edit_appearance.php:172
 msgid "Show <i>Return to</i> link"
-msgstr "Vis <i>Returner til</i>-link"
+msgstr "Vis <i>Returner til</i>-lenke"
 
 #: ../edit_appearance.php:179
 msgid "Rows"
@@ -981,11 +981,11 @@ msgstr "Legg til nye elementer i begynnelsen av album"
 
 #: ../edit_appearance.php:332
 msgid "Display clickable image dimensions"
-msgstr "Vis trykkbare bildedimensjoner"
+msgstr "Vis klikkbare bildedimensjoner"
 
 #: ../edit_appearance.php:341
 msgid "Apply values to nested Albums (except Album Title and Summary)."
-msgstr "Legg til verdier til under-album (bortsett fra tittel og oppsummering)."
+msgstr "Legg verdier til under-album (bortsett fra Tittel og Oppsummering)."
 
 #: ../edit_appearance.php:344 ../extra_fields.php:175
 #: ../poll_properties.php:140
@@ -1075,7 +1075,7 @@ msgstr "Du har ikke tillatelse til å utføre denne handlingen."
 
 #: ../edit_watermark.php:39
 msgid "Watermarking photo."
-msgstr "Setter vannmerke på bilde."
+msgstr "Vannmerker bilde."
 
 #: ../edit_watermark.php:39 ../watermark_album.php:44
 msgid "this may take a while"
@@ -1092,7 +1092,7 @@ msgstr "Vennligst velg en justering."
 #: ../edit_watermark.php:69 ../edit_watermark.php:75 ../view_album.php:986
 #: ../view_album.php:1022
 msgid "Edit Watermark"
-msgstr "Rediger Vannmerke"
+msgstr "Rediger vannmerke"
 
 #: ../edit_watermark.php:103 ../watermark_album.php:116
 msgid "Preview"
@@ -1108,7 +1108,7 @@ msgstr "Konfigurer egendefinerte felt"
 
 #: ../extra_fields.php:122 ../lib/lang.php:654
 msgid "Alt Text / onMouseOver"
-msgstr ""
+msgstr "Alt-tekst / onMouseOver"
 
 #: ../extra_fields.php:132
 msgid "Number of user defined custom fields"
@@ -1140,17 +1140,17 @@ msgstr " på Gallerys hjemmeside."
 
 #: ../includes/add_photos/add_applet.inc:24
 msgid "Use the Gallery Remote Applet to upload pictures. It will take a short while to download."
-msgstr "Bruke Gallery Remote Applet for å laste opp bilder. Det vil ta litt tid å laste ned."
+msgstr "Bruk Gallery Remote Applet for å laste opp bilder. Det vil ta litt tid å laste ned."
 
 #: ../includes/add_photos/add_applet.inc:25
 #: ../includes/add_photos/add_applet_mini.inc:25
 msgid "If you don't have the Java Plugin 1.4 or later, you can use one of the other methods."
-msgstr "Hvis du ikke har Java Plugin 1.4 eller nyere, kan du bruke av de andre metodene."
+msgstr "Hvis du ikke har Java Plugin 1.4 eller nyere, kan du bruke en av de andre metodene."
 
 #: ../includes/add_photos/add_applet.inc:44
 #: ../includes/add_photos/add_applet_mini.inc:41
 msgid "Your browser doesn't support applets; you should use one of the other upload methods."
-msgstr "Din nettleser støtter ikke applets; du bør bruke en av de andre opplastingsmetodene."
+msgstr "Nettleseren din støtter ikke applets; du bør bruke en av de andre opplastingsmetodene."
 
 #: ../includes/add_photos/add_applet_mini.inc:24
 msgid "Use the Gallery Remote Mini Applet to upload pictures. It will take a short while to download."
@@ -1258,7 +1258,7 @@ msgstr "Last opp bilder via FTP til din server og legg til stien her!"
 
 #: ../includes/add_photos/add_url.inc:45
 msgid "Set photo captions with original filenames."
-msgstr "Sett bildetekst med originale filnavn."
+msgstr "Sett bildetekst med de originale filnavn."
 
 #: ../includes/add_photos/add_url.inc:47
 msgid "Set photo captions with file creation times."
@@ -1280,7 +1280,7 @@ msgstr "Fremvisning for album :: %s"
 
 #: ../includes/slideshow/applet.inc:47
 msgid "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions."
-msgstr "Om du ikke har Java Plugin 1.4 eller nyere, eller du ikke ønsker å vente på at appleten skal laste ned, kan du bruke en av versjonene som ikke er i fullskerm."
+msgstr "Om du ikke har Java Plugin 1.4 eller nyere, eller ikke ønsker å vente på at appleten skal laste ned, kan du bruke en av versjonene som ikke er i fullskjerm."
 
 #: ../includes/slideshow/applet.inc:80
 msgid "Your browser doesn't support applets; you should use one of the other slideshow methods."
@@ -1330,7 +1330,7 @@ msgstr "Vindmølle"
 
 #: ../includes/slideshow/high.inc:247
 msgid "Pixelate"
-msgstr "Pixellert"
+msgstr "Piksellert"
 
 #: ../includes/slideshow/high.inc:249
 msgid "Radial"
@@ -1366,7 +1366,7 @@ msgstr "avspill"
 
 #: ../includes/slideshow/high.inc:318 ../includes/slideshow/low.inc:170
 msgid "The slide show is stopped, Click [play] to resume."
-msgstr "Fremvisningen er stoppet. Trykk på [avspill] for å fortsette."
+msgstr "Fremvisningen er stoppet. Trykk [avspill] for å fortsette."
 
 #: ../includes/slideshow/high.inc:324 ../includes/slideshow/high.inc:503
 #: ../includes/slideshow/low.inc:298
@@ -1384,7 +1384,7 @@ msgstr "normal størrelse"
 
 #: ../includes/slideshow/high.inc:334
 msgid "The slide is showing full sized images, Click [normal size] to view resized images."
-msgstr "Denne fremvisningen viser bilder i full størrelse, trykk (normal størrelse) for å se bilder med endret størrelse."
+msgstr "Denne fremvisningen viser bilder i full størrelse, trykk [normal størrelse] for å se bilder med endret størrelse."
 
 #: ../includes/slideshow/high.inc:338 ../includes/slideshow/high.inc:507
 #: ../includes/slideshow/low.inc:317
@@ -1393,7 +1393,7 @@ msgstr "full størrelse"
 
 #: ../includes/slideshow/high.inc:341
 msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
-msgstr "Denne fremvisningen viser bilder i normal størrelse, trykk (full størrelse) for å se bilder i full størrelse."
+msgstr "Denne fremvisningen viser bilder i normal størrelse, trykk [full størrelse] for å se bilder i full størrelse."
 
 #: ../includes/slideshow/high.inc:347 ../includes/slideshow/low.inc:306
 msgid "forward direction"
@@ -1488,7 +1488,7 @@ msgstr "E-postadresse"
 
 #: ../html/userData.inc:79
 msgid "Gallery language"
-msgstr "Gallery's språk"
+msgstr "Galleriets språk"
 
 #: ../html/userData.inc:113
 msgid "User can create albums"
@@ -1546,7 +1546,7 @@ msgstr "rettigheter"
 
 #: ../layout/adminAlbumCommands.inc:34 ../view_album.php:479
 msgid "view&nbsp;comments"
-msgstr "se&nbsp;kommentarer"
+msgstr "les&nbsp;kommentarer"
 
 #: ../layout/adminAlbumCommands.inc:39
 msgid "watermark&nbsp;album"
@@ -1586,7 +1586,7 @@ msgstr "vis kommentarer for dette under-albumet"
 
 #: ../layout/commentboxtop.inc:28
 msgid "Album contains no comments"
-msgstr "Album inneholder ingen kommentarer"
+msgstr "Albumet inneholder ingen kommentarer"
 
 #: ../layout/navigator.inc:32
 msgid "First Page"
@@ -1685,11 +1685,11 @@ msgstr "Nedre&nbsp;Høyre"
 
 #: ../layout/watermarkform.inc:140
 msgid "Preview Size"
-msgstr ""
+msgstr "Forhåndsvis størrelse"
 
 #: ../layout/watermarkform.inc:143
 msgid "Resized"
-msgstr "Endret bildestørrelse"
+msgstr "Endret størrelse"
 
 #: ../layout/watermarkform.inc:145
 msgid "Full"
@@ -1750,15 +1750,15 @@ msgstr "Album: %s"
 #, php-format
 msgid "1 voter"
 msgid_plural "%d voters"
-msgstr[0] "1 stemme"
-msgstr[1] "%d stemmer"
+msgstr[0] "1 stemmer"
+msgstr[1] "%d stemmere"
 
 #: ../lib/voting.php:315
 #, php-format
 msgid "Result from one voter"
 msgid_plural "Result of %d voters"
-msgstr[0] "Resultat av 1 stemme."
-msgstr[1] "Resultat av %d stemmer."
+msgstr[0] "Resultat fra 1 stemmer."
+msgstr[1] "Resultat fra %d stemmere."
 
 #: ../lib/voting.php:324
 #, php-format
@@ -1796,7 +1796,7 @@ msgstr "%s: %s"
 #, php-format
 msgid "one vote"
 msgid_plural "%d votes"
-msgstr[0] "1 stemme"
+msgstr[0] "en stemme"
 msgstr[1] "%d stemmer"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:54 ../publish_xp.php:97
@@ -1839,17 +1839,17 @@ msgstr "Siste forespørsel etter passord var mindre enn %d minutter siden.  Vennl
 
 #: ../login.php:145
 msgid "New password request"
-msgstr "Nytt passord ønsket"
+msgstr "Forespørsel om nytt passord"
 
 #: ../login.php:146
 #, php-format
 msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "
-msgstr "Noen forespurte om nytt passord for bruker %s fra Gallery '%s' på %s. Du kan opprette passord ved å trykke på linken nedenfor. Hvis du ikke spurte etter passord, vennligst se bort fra denne e-posten."
+msgstr "Noen forespurte om nytt passord for bruker %s fra galleri '%s' på %s. Du kan opprette passord ved å trykke på linken nedenfor. Hvis du ikke spurte etter passord, vennligst se bort fra denne e-posten."
 
 #: ../login.php:147
 #, php-format
 msgid "Click to reset your password: %s"
-msgstr "Trykk for å nullstille passord: %s"
+msgstr "Klikk for å nullstille passordet ditt: %s"
 
 #: ../login.php:149
 #, php-format
@@ -1864,7 +1864,7 @@ msgstr "En e-post ble sendt til adressen for %s.  Følg instruksjonene for å endr
 #: ../login.php:157
 #, php-format
 msgid "Email could not be sent.  Please contact %s administrators for a new password"
-msgstr "E-post kunne ikke sendes.  Vennligst kontakt %s for nytt passord"
+msgstr "E-post kunne ikke sendes.  Vennligst kontakt administratorene av %s for nytt passord"
 
 #: ../login.php:161
 #, php-format
@@ -1921,7 +1921,7 @@ msgstr "Flytt Album"
 
 #: ../move_album.php:95
 msgid "Select the new location of album"
-msgstr "Velg ny plassering for album"
+msgstr "Velg ny plassering av album"
 
 #: ../move_album.php:116 ../move_photo.php:253
 msgid "Move it!"
@@ -1929,7 +1929,7 @@ msgstr "Flytt!"
 
 #: ../move_album.php:124
 msgid "Nest within another Album:"
-msgstr "Plasser inni et annet album:"
+msgstr "Plasser i et annet album:"
 
 #: ../move_album.php:136 ../move_photo.php:339
 msgid "Move to Album!"
@@ -1945,11 +1945,11 @@ msgstr "Sorter bilde"
 
 #: ../move_photo.php:42
 msgid "Move Photo"
-msgstr "Flytt Bilde"
+msgstr "Flytt bilde"
 
 #: ../move_photo.php:69
 msgid "You can't move photos into the album they already exist in."
-msgstr "Du kan ikke flytte bilder inn i albumet hvor de allerede er."
+msgstr "Du kan ikke flytte bilder inn i albumet de allerede er i."
 
 #: ../move_photo.php:74
 #, php-format
@@ -1975,7 +1975,7 @@ msgstr "Sorter dette bildet innad i albumet igjen:"
 #: ../move_photo.php:234
 #, php-format
 msgid "Current Location is %s"
-msgstr "Gjeldene Plassering er %s"
+msgstr "Gjeldene plassering er %s"
 
 #: ../move_photo.php:238
 msgid "Select the new location:"
@@ -2027,12 +2027,12 @@ msgstr "legger til %s"
 #: ../multi_create_user.php:84
 #, php-format
 msgid "Send email to %s"
-msgstr "Send e-post til %s."
+msgstr "Send e-post til %s"
 
 #: ../multi_create_user.php:100
 #, php-format
 msgid "Problem with email to %s"
-msgstr "Problem med e-post til %s."
+msgstr "Problem med e-post til %s"
 
 #: ../multi_create_user.php:112
 #, php-format
@@ -2044,11 +2044,11 @@ msgstr "%s lagt til, %s hoppet over"
 msgid "1 user"
 msgid_plural "%d users"
 msgstr[0] "1 bruker"
-msgstr[1] "%d bruker"
+msgstr[1] "%d brukere"
 
 #: ../multi_create_user.php:138
 msgid "Create Users"
-msgstr "Opprett Brukere"
+msgstr "Opprett brukere"
 
 #: ../multi_create_user.php:141
 msgid "Create multiple new users from a file."
@@ -2060,7 +2060,7 @@ msgstr "Obs:"
 
 #: ../multi_create_user.php:173
 msgid "The members file should be one user per line, and the fields should be space separated.  Each line is of the form:<br> <i>username emailaddress fullname</i>.<br>  Only username is required. Everything after the email address is the full name, so there can be spaces in it.<p>"
-msgstr "Medlemsfilen bør være ett medlem per linje, og det bær vær mellomrom mellom hvert felt.  Hver linje er i formen:<br> <i>brukernavn e-postadresse fulltanvn</i>.<br>  Bare brukernavn er nødvendig. Alt etter e-postadresse er det fulle navnet, så det kan være mellomrom i det.<p>"
+msgstr "Medlemsfilen bør være ett medlem per linje, og det bær være mellomrom mellom hvert felt.  Hver linje er i formen:<br> <i>brukernavn e-postadresse fulltanvn</i>.<br>  Bare brukernavn er nødvendig. Alt etter e-postadresse er det fulle navnet, så det kan være mellomrom i det.<p>"
 
 #: ../multi_create_user.php:178
 msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked)."
@@ -2080,7 +2080,7 @@ msgstr "Du må oppgi ditt nye passord."
 
 #: ../new_password.php:90 ../new_password.php:96
 msgid "Make New Password"
-msgstr "Opprett Nytt Passord"
+msgstr "Opprett nytt passord"
 
 #: ../new_password.php:102
 msgid "Enter the Gallery"
@@ -2096,7 +2096,7 @@ msgstr "Du må skrive det nye passordet to ganger."
 
 #: ../photo_owner.php:76 ../photo_owner.php:82 ../view_album.php:1082
 msgid "Change Owner"
-msgstr "Endre Eier"
+msgstr "Endre eier"
 
 #: ../photo_owner.php:93
 msgid "Owner"
@@ -2165,7 +2165,7 @@ msgstr "Avstemningshint"
 
 #: ../poll_properties.php:120
 msgid "Displayed Value"
-msgstr "Vist Verdi"
+msgstr "Vist verdi"
 
 #: ../poll_properties.php:137
 msgid "Apply values to nested Albums."
@@ -2182,11 +2182,11 @@ msgstr "Returner til  %s"
 
 #: ../poll_results.php:121
 msgid "Results Breakdown"
-msgstr "Resultater Forkortet"
+msgstr "Resultater forkortet"
 
 #: ../progress_uploading.php:35
 msgid "Uploading Photos"
-msgstr "Laster Opp Bilder"
+msgstr "Laster opp bilder"
 
 #: ../progress_uploading.php:41
 msgid "File upload in progress!"
@@ -2227,7 +2227,7 @@ msgstr "Bruk filnavn som bildetekster"
 
 #: ../publish_xp.php:155 ../publish_xp.php:269
 msgid "Create New Album"
-msgstr "Opprett Nytt Album"
+msgstr "Opprett nytt album"
 
 #: ../publish_xp.php:200 ../publish_xp.php:233
 msgid "Not Logged In!"
@@ -2273,7 +2273,7 @@ msgstr "NYTT ALBUM PÅ TOPP-NIVÅ"
 
 #: ../publish_xp.php:338
 msgid "User cannot add to album"
-msgstr "Brukeren kan ikke legge til i album"
+msgstr "Bruker kan ikke legge til i album"
 
 #: ../publish_xp.php:342
 msgid "No file specified"
@@ -2281,7 +2281,7 @@ msgstr "ingen fil valgt"
 
 #: ../publish_xp.php:439
 msgid "Photo Upload"
-msgstr "Opplasting av Bilde"
+msgstr "Opplasting av bilde"
 
 #: ../publish_xp.php:439
 msgid "Upload Photos to"
@@ -2336,7 +2336,7 @@ msgstr "Du vil bli spurt om du vil importere disse verdiene til registeret."
 
 #: ../publish_xp_docs.php:57
 msgid "Click &quot;ok&quot;."
-msgstr "Trykk &quot;ok&quot;."
+msgstr "Klikk &quot;ok&quot;."
 
 #: ../publish_xp_docs.php:58
 msgid "It will tell you that the files were imported successfully."
@@ -2344,7 +2344,7 @@ msgstr "Du vil bli fortalt at filene ble importert med suksess."
 
 #: ../publish_xp_docs.php:59
 msgid "Click &quot;ok&quot; again."
-msgstr "Trykk &quot;ok&quot; again."
+msgstr "Klikk &quot;ok&quot; again."
 
 #: ../publish_xp_docs.php:63
 msgid "Step 2"
@@ -2356,11 +2356,11 @@ msgstr "Åpne Utforsker og let deg fram til en katalog som inneholder bilder med 
 
 #: ../publish_xp_docs.php:66
 msgid "Select the image(s) or a folder and there should be a link on the left that says &quot;Publish this file to the web...&quot;"
-msgstr "Velg bildet eller bildene (eller en mappe). Da vil det i Utforsker være en lenke på venstresiden med teksten &quot;Publish this file to the web ...&quot;"
+msgstr "Velg bilde(r) eller en mappe og det vil i Utforsker være en lenke på venstresiden med teksten &quot;Publish this file to the web...&quot;"
 
 #: ../publish_xp_docs.php:67
 msgid "Click this link and then follow the instructions to log into your Gallery, select an album and publish the image."
-msgstr "Trykk på denne linken og følg instruksjonene for å logge inn på Gallery, velg et album og publiser bildet."
+msgstr "Klikk denne linken og følg instruksjonene for å logge inn på ditt galleri, velg et album og publiser bildet."
 
 #: ../publish_xp_docs.php:72
 msgid "Return to Add Photos"
@@ -2381,7 +2381,7 @@ msgstr "Du må angi et navn"
 
 #: ../register.php:79
 msgid "You must specify a valid email address."
-msgstr "Du må angi en e-postadresse"
+msgstr "Du må angi en gyldig e-postadresse."
 
 #: ../register.php:101
 #, php-format
@@ -2411,11 +2411,11 @@ msgstr "Din kontoinformasjon vil bli sendt til den e-postadressen du oppgir."
 
 #: ../rename_album.php:29
 msgid "You are not allowed to perform this action !"
-msgstr "Du har ikke tillatelse til å utføre denne handlingen."
+msgstr "Du har ikke tillatelse til å utføre denne handlingen !"
 
 #: ../rename_album.php:37 ../rename_album.php:42 ../view_album.php:1008
 msgid "Rename Album"
-msgstr "Omdøp Album"
+msgstr "Omdøp album"
 
 #: ../rename_album.php:94
 msgid "There is already an album with that name!"
@@ -2447,7 +2447,7 @@ msgstr "Omdøp"
 
 #: ../reset_votes.php:50 ../reset_votes.php:56
 msgid "Reset Voting"
-msgstr "Nullstill Valg"
+msgstr "Nullstill valg"
 
 #: ../reset_votes.php:59
 #, php-format
@@ -2456,11 +2456,11 @@ msgstr "Ønsker du virkelig å fjerne alle stemmene i %s?"
 
 #: ../reset_votes.php:63
 msgid "Remove Votes"
-msgstr "Fjern Stemmer"
+msgstr "Fjern stemmer"
 
 #: ../resize_photo.php:37
 msgid "Resize Photo"
-msgstr "Endre Bildestørrelse"
+msgstr "Endre bildestørrelse"
 
 #: ../resize_photo.php:52
 #, php-format
@@ -2481,15 +2481,15 @@ msgstr "Endrer bildestørrelser"
 
 #: ../resize_photo.php:76
 msgid "This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."
-msgstr "Dette vil endre størrelsen på mediumstørrelses-bildene slik at den lengste siden av bildet er like stor som størrelsen du ønsker nedenfor og filstørrelsen er nær valgte størrelse."
+msgstr "Dette vil endre størrelsen på bildene i mellomstørrelse slik at den lengste siden av bildet er like stor som størrelsen du ønsker nedenfor, og filstørrelsen er nær valgte størrelse."
 
 #: ../resize_photo.php:81
 msgid "What is the target size for all the intermediate photos in this album?"
-msgstr "Hvilken størrelse ønsker du for alle medium-størrelsebilder i dette albumet?"
+msgstr "Hvilken størrelse ønsker du for alle bilder i mellomstørrelse i dette albumet?"
 
 #: ../resize_photo.php:81
 msgid "What is the target size for the intermediate version of this photo?"
-msgstr "Hvilken størrelse ønsker du for medium-størrelseversjonen av dette bildet?"
+msgstr "Hvilken størrelse ønsker du for mellomstørrelsesversjonen av dette bildet?"
 
 #: ../resize_photo.php:92
 msgid "Target filesize"
@@ -2533,7 +2533,7 @@ msgstr "Endre igjen?"
 
 #: ../rotate_photo.php:65
 msgid "How do you want to manipulate this photo?"
-msgstr "Hvordan ønsker du å manipulere dette bildet?"
+msgstr "Hvordan ønsker du å endre dette bildet?"
 
 #: ../rotate_photo.php:70
 msgid "Rotate"
@@ -2557,7 +2557,7 @@ msgstr "Bearbeider og lagrer bilder"
 
 #: ../save_photos.php:62
 msgid "Fetching Urls..."
-msgstr "Henter URL-er ..."
+msgstr "Henter URL'er..."
 
 #: ../save_photos.php:79
 #, php-format
@@ -2567,7 +2567,7 @@ msgstr "Behandler %s som en lokal katalog."
 #: ../save_photos.php:148
 #, php-format
 msgid "Could not open url: %s"
-msgstr "Klarte ikke å åpne URL-en: %s"
+msgstr "Kunne ikke åpne URL'en: %s"
 
 #: ../save_photos.php:175
 #, php-format
@@ -2650,7 +2650,7 @@ msgstr "oppgrader alle album"
 
 #: ../search.php:276
 msgid "Search the Gallery's Album and Photo<br> titles, descriptions and comments"
-msgstr "Søk i Gallery's album- og bilde-<br> titler, beskrivelser og kommentarer"
+msgstr "Søk i galleriets album- og bilde-<br> titler, beskrivelser og kommentarer"
 
 #: ../search.php:282
 msgid "Go"
@@ -2730,7 +2730,7 @@ msgstr "Foreldreløse album"
 
 #: ../tools/find_orphans.php:124
 msgid "Orphans will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
-msgstr "Foreldreløse bilder vil bli lenket fast til deres album, hvis det er mulig. Hvis det tilhørende albumet mangler, vil det foreldreløse bildet bli lenket fast til Gallery-rota, og det kan da bli flyttet til en ny plass derfra."
+msgstr "Foreldreløse bilder vil bli lenket fast til deres over-album, hvis det er mulig. Hvis det tilhørende albumet mangler, vil det foreldreløse bildet bli lenket fast til galleri-rota, og det kan da bli flyttet til en ny plass derfra."
 
 #: ../tools/find_orphans.php:126
 msgid "Orphaned Album"
@@ -2738,11 +2738,11 @@ msgstr "Foreldreløse album"
 
 #: ../tools/find_orphans.php:126
 msgid "Parent Album"
-msgstr "Velg over-album"
+msgstr "Over-album"
 
 #: ../tools/find_orphans.php:130
 msgid "Gallery Root"
-msgstr "Gallery-rot"
+msgstr "Galleri-rot"
 
 #: ../tools/find_orphans.php:136
 msgid "Correct Them!"
@@ -2782,7 +2782,7 @@ msgstr "Ingen av dine bilder vil bli rammet på noen måte under denne prosessen."
 
 #: ../upgrade_album.php:134 ../upgrade_users.php:48
 msgid "Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future."
-msgstr "Vi forsikrer om, at hvis denne prosessen tar lang tid nå, vil det gjøre galleriet ditt mer effektivt i fremtiden."
+msgstr "Vi forsikrer om at hvis denne prosessen tar lang tid nå, vil det gjøre galleriet ditt mer effektivt i fremtiden."
 
 #: ../upgrade_album.php:160
 msgid "All albums are up to date."
@@ -2807,7 +2807,7 @@ msgstr "elementer"
 
 #: ../upgrade_users.php:35 ../upgrade_users.php:41
 msgid "Upgrading Users"
-msgstr "Oppgraderer Brukere"
+msgstr "Oppgraderer brukere"
 
 #: ../upgrade_users.php:44
 msgid "The user database in your gallery was created with an older version of the software and is out of date."
@@ -2928,7 +2928,7 @@ msgstr "Du har ingen grafikkpakke konfigurert for bruk!"
 
 #: ../util.php:383 ../util.php:402
 msgid "Not closing this window because debug mode is on"
-msgstr "Lukker ikke dette vinduet fordi debug modus er på"
+msgstr "Lukker ikke dette vinduet fordi debug-modus er på"
 
 #: ../util.php:447
 msgid "No resizing required"
@@ -2947,7 +2947,7 @@ msgstr "-> filstørrelse %d kbytes"
 #: ../util.php:481
 #, php-format
 msgid "trying quality %d%%"
-msgstr "forsøker størrelse %d%%"
+msgstr "forsøker kvalitet %d%%"
 
 #: ../util.php:511
 msgid "Done."
@@ -3006,7 +3006,7 @@ msgstr "seg selv"
 #: ../util.php:1857
 #, php-format
 msgid "IN UTIL ITEMCAPTUREDATE = %s"
-msgstr ""
+msgstr "I UTIL ITEMCAPTUREDATE = %s"
 
 #: ../util.php:1901
 #, php-format
@@ -3164,7 +3164,7 @@ msgstr "galleriets URL"
 
 #: ../util.php:2701
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
-msgstr "<dt>Ingen</dt><dd>Det originale utseendet </dd>"
+msgstr "<dt>Ingen</dt><dd>Det originale utseendet. </dd>"
 
 #: ../util.php:2748 ../util.php:2753
 msgid "Dots"
@@ -3299,7 +3299,7 @@ msgstr "vis kommentarer"
 
 #: ../view_album.php:393
 msgid "watermark album"
-msgstr "vannmerk Album"
+msgstr "vannmerk album"
 
 #: ../view_album.php:458
 msgid "admin options"
@@ -3315,7 +3315,7 @@ msgstr "Dine valg så langt er"
 
 #: ../view_album.php:600
 msgid "See full poll results"
-msgstr "Se valgresultater"
+msgstr "Se fulle valgresultater"
 
 #: ../view_album.php:622
 msgid ", "
@@ -3328,12 +3328,12 @@ msgstr " eller"
 #: ../view_album.php:629
 #, php-format
 msgid "To vote for an image, click on %s."
-msgstr "For å stemme på et bilde, trykk på %s."
+msgstr "For å stemme på et bilde, klikk %s."
 
 #: ../view_album.php:630
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
-msgstr "Du MÅ trykke %s for at din stemme skal registreres."
+msgstr "Du MÅ klikke %s for at din stemme skal registreres."
 
 #: ../view_album.php:635
 #, php-format
@@ -3381,11 +3381,11 @@ msgstr "Vist:"
 
 #: ../view_album.php:957
 msgid "Movie"
-msgstr "film"
+msgstr "Film"
 
 #: ../view_album.php:961
 msgid "Photo"
-msgstr "bilde"
+msgstr "Pilde"
 
 #: ../view_album.php:983 ../view_album.php:1019
 msgid "Edit Thumbnail"
@@ -3426,7 +3426,7 @@ msgstr "Flytt %s"
 #: ../view_album.php:1039
 #, php-format
 msgid "Reorder %s"
-msgstr "Sortere %s"
+msgstr "Sorter %s"
 
 #: ../view_album.php:1041
 #, php-format
@@ -3449,7 +3449,7 @@ msgstr "Rettigheter"
 
 #: ../view_album.php:1072 ../watermark_album.php:77 ../watermark_album.php:83
 msgid "Watermark Album"
-msgstr "Vannmerk Album"
+msgstr "Vannmerk album"
 
 #: ../view_album.php:1077
 msgid "View Comments"
@@ -3530,18 +3530,12 @@ msgstr "Last inn EXIF-data på nytt fra fil"
 
 #: ../view_photo_properties.php:126
 msgid "(if the data is current, this will not appear to do anything)"
-msgstr "(dersom data er oppdatert, vil dette ikke se ut til å gjøre noe"
+msgstr "(dersom data er oppdatert, vil dette ikke se ut til å gjøre noe)"
 
 #: ../watermark_album.php:44
 msgid "Watermarking album."
-msgstr "Setter vannmerke på album."
+msgstr "Vannmerker album."
 
 #: ../watermark_album.php:87
 msgid "No items to watermark."
-msgstr "Ingen elementer å sette vannmerke på."
-
-#~ msgid "with donation"
-#~ msgstr "med donasjon"
-
-#~ msgid "without donation"
-#~ msgstr "uten donasjon"
+msgstr "Ingen elementer vannmerke."
