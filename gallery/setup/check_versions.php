@@ -20,7 +20,7 @@ if (!function_exists('fs_is_readable')) {
 // No translation yet, as we may not release this in 1.4.1
 function checkVersions() {
 	global $GALLERY_BASEDIR, $gallery;
-	$manifest=$GALLERY_BASEDIR."setup/manifest.inc";
+	$manifest=$GALLERY_BASEDIR."manifest.inc";
 	$errors=array();
 	if (!fs_file_exists($manifest)) {
 	       	$errors[$manifest]="File missing or unreadable.  Please install then re-run this test.";

@@ -204,7 +204,7 @@ $setup = array(	"setup/.htaccess",
 	       	"setup/session_test.php",
 	       	"setup/write.inc");
 
-$outfile="setup/manifest.inc";
+$outfile="manifest.inc";
 copy("setup/gpl.txt", $outfile);
 $fd=fopen($outfile, "a");
 
