@@ -18,6 +18,16 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
+<?
+if ($GALLERY_INIT != 1) {
+	if (file_exists("config.php")) {
+		require("config.php");
+	}
+	require("util.php");
+	gallerySanityCheck();
+}
+?>
+
 <? if (file_exists("config.php")) { ?>
 
 <?
