@@ -4,16 +4,17 @@
 #
 # Copyright (C) 2003 Free Software Foundation, Inc.
 #
-# Rimvydas Zilinskas <aladdin@antakalnis.lt>, 2003, 2004.
-# Vilius Ðumskas <vilius@lnk.lt>, 2003.
-# 
+# Rimvydas Zilinskas <aladdin AT antakalnis DOT lt>, 2003, 2004.
+# Vilius Ðumskas <vilius AT lnk DOT lt>, 2003.
+# Suktas <suktas_ AT users DOT sourceforge DOT net>, 2004
+
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
 "POT-Creation-Date: 2004-11-28 18:40+0100\n"
 "PO-Revision-Date: 2004-09-18 23:43+0200\n"
-"Last-Translator: Rimvydas Zilinskas <aladdin AT antakalnis DOT lt>\n"
+"Last-Translator: Suktas <suktas_ AT users DOT sourceforge DOT net>\n"
 "Language-Team: Vilius Ðumskas <vilius AT lnk DOT lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-13\n"
@@ -455,11 +456,11 @@ msgstr "Tikrinu ar nepasenus %s %s versija."
 
 #: ../setup/config_data.inc:93
 msgid "Check to see if you are running PHP 4.1.0 or greater."
-msgstr ""
+msgstr "Patikrinkite, ar pas jus veikia PHP 4.1.0 arba vëlesnis."
 
 #: ../setup/config_data.inc:93
 msgid "Since Gallery 1.4.5 Gallery needs at least PHP 4.1.0, this is due to that some versions of PHP have bugs that cause Gallery to fail and that older Version does not have required functionality."
-msgstr ""
+msgstr "Kadangi Galerijai 1.4.5 reikia bent PHP 4.1.0, kadangi senesnës PHP versijos gali turëti trûkumø ir funkcionalumo, dël kuriø gali Galerija neveikti."
 
 #: ../setup/config_data.inc:95
 #, php-format
@@ -481,11 +482,11 @@ msgstr "Atrodo, kad Jûsø PHP turi problemø su __FILE__. Praðome atnaujinti á nau
 
 #: ../setup/config_data.inc:106
 msgid "Gallery highly recommends that the PHP option 'register_globals' be turned off, for security purposes.  Some software, notably the 'Geeklog' CMS, requires that 'register_globals' be enabled."
-msgstr ""
+msgstr "Galerija grieþtai rekomenduoja, kad PHP parinktis 'register_globals' bûtø iðjungtos, dël saugumo. Kai kurie programiniai paketai, ypaè 'Geeklog' CMS, reikalauja, kad 'register_globals' bûtø ájungti."
 
 #: ../setup/config_data.inc:108
 msgid "The PHP option 'register_globals' is enabled on your server. Gallery highly recommends that you disable 'register_globals' unless it is required by software on your site.  Gallery does not officially support 'register_globals' being enabled, and will attempt to disable it internally."
-msgstr ""
+msgstr "PHP parinktis 'register_globals' yra ájungti jûsø serveryje. Galerija grieþtai rekomenduoja, kad jûs iðjungtumëte 'register_globals', nebent jo reikëtø kitiems programiniams paketams. Galerija oficialiai nepalaiko 'register_globals' ájungimo, ir bandys apeiti ið vidaus."
 
 #: ../setup/config_data.inc:113
 msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
@@ -628,7 +629,7 @@ msgstr "Pasirinkite savo Galerijos iðvaizdà ið ðiø pavyzdþiø. Dabar turite tikra
 
 #: ../setup/config_data.inc:252
 msgid "Here you can get a more Gallery Skins by Drazan"
-msgstr ""
+msgstr "Èia galite rasti daugiau Galerijai Drazan'o Odø (Skins)"
 
 #: ../setup/config_data.inc:258
 msgid "Default upload method"
@@ -684,7 +685,7 @@ msgstr "Kelias iki laikino katalogo. Pvz. %s arba %s. Jeigu jûsø sistemoje yra á
 #: ../setup/config_data.inc:303
 #, php-format
 msgid "The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
-msgstr ""
+msgstr "Pilnas URL iki Galerijos tinklo aplikacijos (e.g. %s) Galerija gali veikti ir su reliatyviais URL'ais, taèiau kai kurie ypatybës, pvz.: spausdinimas, gali veikti neteisingai."
 
 #: ../setup/config_data.inc:312
 msgid "Albums URL"
@@ -693,7 +694,7 @@ msgstr "Albumø URL"
 #: ../setup/config_data.inc:314
 #, php-format
 msgid "The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
-msgstr ""
+msgstr "Pilnas URL iki albumø jûsø web serveryje (e.g. %s). Galerija gali veikti ir su reliatyviais URL'ais, taèiau kai kurie ypatybës, pvz.: spausdinimas, gali veikti neteisingai."
 
 #: ../setup/config_data.inc:323
 msgid "Watermark directory"
@@ -711,11 +712,11 @@ msgstr "Vandens þenklø katalogas"
 
 #: ../setup/config_data.inc:335
 msgid "The default selected images to watermark."
-msgstr ""
+msgstr "Pagal nutylëjimà parinkti paveikliukai paþymëti vandens þenklais."
 
 #: ../setup/config_data.inc:340
 msgid "Watermark both resized an full images"
-msgstr ""
+msgstr "Paþymëti vandens þenklais ir pakeisto dydþio, ir pilnus paveikslus."
 
 #: ../setup/config_data.inc:341
 #, fuzzy
@@ -769,7 +770,7 @@ msgstr "Pilnas kelias iki katalogo, kuriame yra NetPBM. Jeigu NetPBM failus atsi
 #: ../setup/config_data.inc:388 ../setup/config_data.inc:411
 #, php-format
 msgid "This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."
-msgstr ""
+msgstr "Ðis kelias reikalingas, jeigu aukèiau parinkote %s. Prieðingu atveju galite palikti kaip yra, arba tuðèià."
 
 #: ../setup/config_data.inc:391
 msgid "I can't find NetPBM at the location you provided."
@@ -803,7 +804,7 @@ msgstr "Rasti %d ið %d ImageMagick failø."
 #: ../setup/config_data.inc:425
 #, php-format
 msgid "This setting is only required when using the ImageMagick graphics package.  Due to changes in the ImageMagick commandline parameters, we need to know which version is being used so that we can accurately tell it what to do. If you are not sure which version you are using, you can run the %sCheck ImageMagick%s diagnostic."
-msgstr ""
+msgstr "Ðis nustatymas reikalingas jeigu naudojate ImageMagick grafiná paketà. Dël ImageMagick komandø eilutës parametrø skirtumo, mes turime þinoti, kurià versijà naudoti, kad galëtume tiksliai pasakyti jam kà daryti. Jei neþinote kurià ImageMagick versijà naudojate, galite paleisti %sCheck ImageMagick%s diagnostikà."
 
 #: ../setup/config_data.inc:430
 msgid "Auto-rotate images"
@@ -885,7 +886,7 @@ msgstr "Áeiti á Galerijà"
 
 #: ../setup/config_data.inc:453
 msgid "Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."
-msgstr ""
+msgstr "Galerija automatiðkai nustato, ar ji áterpta á vienà ið palaikomø CMS aplinkø, taèiau kaikurios aplinkos gali turëti specialias parinktis, kurias reikia nustatyti. Visos parinktys, kurios nëra automatiðkai aptiktos, turi bûti áraðomos ðiame lange."
 
 #: ../setup/config_data.inc:456
 msgid "GeekLog Dir"
@@ -1214,23 +1215,23 @@ msgstr "Siøsti identiðkà laiðkà"
 
 #: ../setup/config_data.inc:782
 msgid "Use non-local SMTP server."
-msgstr ""
+msgstr "Naudokite ne vietiná SMTP serverá."
 
 #: ../setup/config_data.inc:783
 msgid "Use a smtp server running on a different machine (ie: Your ISPs mail server) to process outgoing gallery email."
-msgstr ""
+msgstr "Naudokite SMTP serverá, kuris veikia kitame serveryje (pvz.: Jûsø IPT paðto serverá) iðsiøsti galerijos e-paðtui."
 
 #: ../setup/config_data.inc:790
 msgid "SMTP Server"
-msgstr ""
+msgstr "SMTP serveris"
 
 #: ../setup/config_data.inc:791
 msgid "The name or IP address of the SMTP Server you want to use."
-msgstr ""
+msgstr "SMTP serverio vardas arba IP adresas, kurá norite naudoti."
 
 #: ../setup/config_data.inc:799
 msgid "Local Host Name"
-msgstr ""
+msgstr "Lokalus vardas (local hostname)"
 
 #: ../setup/config_data.inc:800
 msgid "The local hostname of the server as a reverse DNS lookup of the IP would show. If you are behind a NAT, this would be the DNS name of your router. If you don't know what to do here, 'localhost' is probably ok in most situations."
@@ -1238,19 +1239,19 @@ msgstr ""
 
 #: ../setup/config_data.inc:808
 msgid "SMTP Port"
-msgstr ""
+msgstr "SMTP portas"
 
 #: ../setup/config_data.inc:809
 msgid "The port on the SMTP server you are connecting to."
-msgstr ""
+msgstr "Portas, prie kurio bandote prisijungti prie SMTP serverio."
 
 #: ../setup/config_data.inc:817
 msgid "SMTP account name"
-msgstr ""
+msgstr "SMTP vartotojo vardas"
 
 #: ../setup/config_data.inc:818
 msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
-msgstr ""
+msgstr "Jeigu jûsø IPT reikalauja vartotojo vardo iðsiunèiamiems laiðkams, áveskite èia, prieðingu atveju palikite tuðèià."
 
 #: ../setup/config_data.inc:826
 #, fuzzy
@@ -1259,7 +1260,7 @@ msgstr "Administratoriaus slaptaþodis"
 
 #: ../setup/config_data.inc:827
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
-msgstr ""
+msgstr "Slaptaþodis iðsiunciamiems e-laiðkams per SMTP serverá. PASTABA: slaptaþodis yra iðsaugomas paprastu tekstu faile 'config.php'. Ásitikinkite, kad leidimai nustatyti taip, kad kiti negalëtø matyti."
 
 #: ../setup/config_data.inc:842
 msgid "Gallery wide slideshow"
@@ -1445,7 +1446,7 @@ msgstr "Ar norite leisti visiems matyti pilnà Albumo Komentarø apþvalgà? Jei pas
 
 #: ../setup/config_data.inc:967
 msgid "Statistics"
-msgstr ""
+msgstr "Statistika"
 
 #: ../setup/config_data.inc:968
 msgid "Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information."
@@ -1453,7 +1454,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:969
 msgid "There's a different cache for each stats type supported with the exception of random."
-msgstr ""
+msgstr "Yra skirtingi keðavimo tipai kiekvienai statistikai."
 
 #: ../setup/config_data.inc:970
 msgid "The caches can be refreshed by reloading the stats page and specifying the url variable 'refreshcache'."
@@ -1461,121 +1462,117 @@ msgstr ""
 
 #: ../setup/config_data.inc:971
 msgid "Caches will also refresh themselves after they have expired."
-msgstr ""
+msgstr "Keðai taip pat automatiðkai atsinaujins, kai jie pasens."
 
 #: ../setup/config_data.inc:972
 msgid "The expire time in seconds is specified for each cache below."
-msgstr ""
+msgstr "Keðo galiojimo laikas kiekvienam tipui uþraðomos þemiau."
 
 #: ../setup/config_data.inc:973
 msgid "If the expire time is set to -1 then the cache will not auto refresh."
-msgstr ""
+msgstr "Jeigu galiojimo laikas nustatytas -1, tai keðas automatiðkai neatsinaujins."
 
 #: ../setup/config_data.inc:977
 msgid "View cache"
-msgstr ""
+msgstr "Perþiûrëti keðà"
 
 #: ../setup/config_data.inc:978
 msgid "Enable caching for views"
-msgstr ""
+msgstr "Ájungti keðà þiûrëjimui"
 
 #: ../setup/config_data.inc:979 ../setup/config_data.inc:992
 #: ../setup/config_data.inc:1005 ../setup/config_data.inc:1018
 #: ../setup/config_data.inc:1031 ../setup/config_data.inc:1044
 msgid "On"
-msgstr ""
+msgstr "Ájungta"
 
 #: ../setup/config_data.inc:983
 msgid "View cache expiration"
-msgstr ""
+msgstr "Þiûrëti keðo galiojimo laiko pasibaigimà."
 
 #: ../setup/config_data.inc:984
 msgid "If caching for views is enabled, how long should the cache last ?"
-msgstr ""
+msgstr "Jeigu perþiûrai ájungtas keðavimas, tai kiek laiko keðas turëtø trukti?"
 
 #: ../setup/config_data.inc:990
-#, fuzzy
 msgid "Comment cache"
-msgstr "Komentarai"
+msgstr "Komentarø keðas"
 
 #: ../setup/config_data.inc:991
-#, fuzzy
 msgid "Enable caching for comments"
-msgstr "Ájungti komentarø sistemà"
+msgstr "Ájungti komentarø keðavimà"
 
 #: ../setup/config_data.inc:996
 msgid "Comment cache expiration"
-msgstr ""
+msgstr "Komentarø keðo galiojimo laikas"
 
 #: ../setup/config_data.inc:997
 msgid "If caching for comments is enabled, how long should the cache last ?"
-msgstr ""
+msgstr "Jeigu komentarams ájungtas keðavimas, tai kiek laiko turëtø keðas trukti?"
 
 #: ../setup/config_data.inc:1003
 msgid "Date cache"
-msgstr ""
+msgstr "Datos keðas"
 
 #: ../setup/config_data.inc:1004
 msgid "Enable caching for dates"
-msgstr ""
+msgstr "Ájungti datø keðavimà"
 
 #: ../setup/config_data.inc:1009
 msgid "Date cache expiration"
-msgstr ""
+msgstr "Datos keðo galiojimo laikas"
 
 #: ../setup/config_data.inc:1010
 msgid "If caching for dates is enabled, how long should the cache last ?"
-msgstr ""
+msgstr "Jei datos keðavimas ájungtas, tai kiek laiko turëtø keðas trukti?"
 
 #: ../setup/config_data.inc:1016
-#, fuzzy
 msgid "Vote cache"
-msgstr "Balsuotojo klasë"
+msgstr "Balsavimo keðas"
 
 #: ../setup/config_data.inc:1017
 msgid "Enable caching for votes"
-msgstr ""
+msgstr "Ájungti keðavimà balsavimams"
 
 #: ../setup/config_data.inc:1022
 msgid "Vote cache expiration"
-msgstr ""
+msgstr "Balsavimo keðo galiojimo laikas"
 
 #: ../setup/config_data.inc:1023
 msgid "If caching for votes is enabled, how long should the cache last ?"
-msgstr ""
+msgstr "Jei balsavimo keðavimas ájungtas, tai kiek laiko turëtø keðas trukti?"
 
 #: ../setup/config_data.inc:1029
 msgid "Rating cache"
-msgstr ""
+msgstr "Reitingø keðas"
 
 #: ../setup/config_data.inc:1030
-#, fuzzy
 msgid "Enable caching for ratings"
-msgstr "Ájungti komentarø sistemà"
+msgstr "Ájungti reitingø keðavimà"
 
 #: ../setup/config_data.inc:1035
 msgid "Rating cache expiration"
-msgstr ""
+msgstr "Reitingø keðavimo galiojimo laikas"
 
 #: ../setup/config_data.inc:1036
 msgid "If caching for ratings is enabled, how long should the cache last ?"
-msgstr ""
+msgstr "Jei reitingø keðavimas ájungtas, tai kiek laiko keðas turëtø trukti?"
 
 #: ../setup/config_data.inc:1042
 msgid "Capturedate cache"
-msgstr ""
+msgstr "Fotografavimo datos keðas"
 
 #: ../setup/config_data.inc:1043
 msgid "Enable caching for capture dates"
-msgstr ""
+msgstr "Ájungti fotografavimo datø keðavimà"
 
 #: ../setup/config_data.inc:1048
 msgid "Capturedate cache expiration"
-msgstr ""
+msgstr "Fotografavimo datø keðavimo galiojimo laikas"
 
 #: ../setup/config_data.inc:1049
 msgid "If caching for capture dates is enabled, how long should the cache last ?"
-msgstr ""
+msgstr "Jeigu ájuntas fotografavimo datø keðavimas, tai kiek laiko keðas turëtø trukti?"
 
 #: ../setup/config_data.inc:1061
 msgid "Technical"
@@ -3019,7 +3016,7 @@ msgstr "Privalote prisijungti kaip administratorius, jei norite paredaguoti ðio 
 #: ../setup/login.inc:84
 #, php-format
 msgid "If you have forgotten the password to your admin account, you can reset it by creating a blank file named '%s' in your %s directory and then refreshing and following the instructions on this page."
-msgstr ""
+msgstr "Jeigu pamirðote administratoriaus slaptaþodá, galite já vël nustatyti taip: sukurkite tuðèià failà pavadinimu '%s' savo %s kataloge ir tada atnaujinkite ir tæskite instrukcijas ðitame puslapyje."
 
 #: ../setup/login.inc:97
 msgid "Password"
@@ -3205,8 +3202,3 @@ msgstr "Medinis Rëmelis"
 msgid "A textured wooden frame"
 msgstr "Tekstûrinis medinis rëmelis"
 
-#~ msgid "The full URL to the Gallery web application.  E.g. %s"
-#~ msgstr "Pilnas Galerijos URL adresas. Pvz. %s"
-
-#~ msgid "The full URL to your album directory (specified above) on your web server.  E.g. %s"
-#~ msgstr "Pilnas albumø katalogo URL adresas. Pvz. %s."
