@@ -1,8 +1,6 @@
 <?php /* $Id$ */ ?>
 <?php 
-if (!isset($GALLERY_BASEDIR)) {
 	$GALLERY_BASEDIR = '../';
-}
 
 	require ($GALLERY_BASEDIR . 'util.php');
 	require ('./init.php');
