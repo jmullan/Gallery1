@@ -245,17 +245,11 @@ if ($numPhotos) {
 
 			echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
 			echo("<tr bgcolor=$bordercolor>"); 
-			echo("<td height=$borderwidth width=$borderwidth><img src=images/pixel_trans.gif></td>");
-			echo("<td height=$borderwidth><img src=images/pixel_trans.gif></td>");
-			echo("<td height=$borderwidth width=$borderwidth><img src=images/pixel_trans.gif></td>");
-			echo("</tr>");
-			echo("<tr>");
+			echo("<td colspan=3 height=$borderwidth><img src=images/pixel_trans.gif></td>");
+			echo("</tr><tr>");
 			echo("<td bgcolor=$bordercolor width=$borderwidth>");
-			for ($k=0; $k<$borderwidth; $k++) {
-				echo("<img src=images/pixel_trans.gif>");
-			}
-			echo("</td>");
-			echo("<td>");
+			echo("<img src=images/pixel_trans.gif width=$borderwidth height=1>");
+			echo("</td><td>");
 
 			if ($album->isMovie($i)) {
 				echo("<a href=" . $album->getPhotoPath($i) . " target=other>" . 
@@ -268,15 +262,11 @@ if ($numPhotos) {
 			}
 			echo("</td>");
 			echo("<td bgcolor=$bordercolor width=$borderwidth>");
-			for ($k=0; $k<$borderwidth; $k++) {
-				echo("<img src=images/pixel_trans.gif>");
-			}
+			echo("<img src=images/pixel_trans.gif width=$borderwidth height=1>");
 			echo("</td>");
 			echo("</tr>");	
 			echo("<tr bgcolor=$bordercolor>"); 
-			echo("<td height=$borderwidth width=$borderwidth><img src=images/pixel_trans.gif></td>");
-			echo("<td height=$borderwidth><img src=images/pixel_trans.gif></td>");
-			echo("<td height=$borderwidth width=$borderwidth><img src=images/pixel_trans.gif></td>");
+			echo("<td colspan=3 height=$borderwidth><img src=images/pixel_trans.gif></td>");
 			echo("</tr>");
 			echo("</table>");
 

@@ -299,21 +299,14 @@ includeHtmlWrap("inline_photo.header");
 
 <!-- image -->
 
-
+<table width=1% border=0 cellspacing=0 cellpadding=0>
 <?
-echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
 echo("<tr bgcolor=$bordercolor>");
-echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
-echo("<td height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
-echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
-echo("</tr>");
-echo("<tr>");
+echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+echo("</tr><tr>");
 echo("<td bgcolor=$bordercolor width=$borderwidth>");
-for ($k=0; $k<$borderwidth; $k++) {
-	echo("<img src=$top/images/pixel_trans.gif>");
-}
-echo("</td>");
-echo("<td>");
+echo("<img src=$top/images/pixel_trans.gif width=$borderwidth height=1>");
+echo("</td><td>");
 echo "<center>";
 
 $photoTag = $album->getPhotoTag($index, $full);
@@ -353,18 +346,14 @@ if ($openAnchor) {
 
 echo("</td>");
 echo("<td bgcolor=$bordercolor width=$borderwidth>");
-for ($k=0; $k<$borderwidth; $k++) {
-	echo("<img src=$top/images/pixel_trans.gif>");
-}
+echo("<img src=$top/images/pixel_trans.gif width=$borderwidth height=1>");
 echo("</td>");
 echo("</tr>");
 echo("<tr bgcolor=$bordercolor>");
-echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
-echo("<td height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
-echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
-echo("</tr>");
-echo("</table>");
+echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
 ?>
+</tr>
+</table>
 
 <table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
 <!-- caption -->
