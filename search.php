@@ -144,7 +144,7 @@ if ($searchstring) {
 				for ($k = 1; $k <= $searchAlbum->numComments($j); $k++) {
 					// check to see if there are any comment matches
 					$comment = $searchAlbum->getComment($j, $k);
-					$searchComment = $comment->getCommentText();
+					$searchComment = $comment->getName().": ".$comment->getCommentText();
 					if (eregi($searchstring, $searchComment)) {
 						if (!$commentMatch) {
 							$commentText = "Matching Comments:<br>";
@@ -193,7 +193,7 @@ if ($searchstring) {
 }
 else {
 ?>
-<br>Search the Gallery's Album and Photo<br> titles and descriptions:<br>
+<br>Search the Gallery's Album and Photo<br> titles, descriptions and comments:<br>
 	<table width=100% border=0 cellspacing=0>
 	<tr><?php echo makeFormIntro("search.php"); ?>
 	<td valign="middle" align="left">
