@@ -1,3 +1,12 @@
+2004-10-17  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b231
+
+	* Bug 1048609: Escape "&" in navigator URLs
+
+	* Fix: Modify getParentAlbums() so that array_reverse() isn't used -
+	  it caused failures when any of the album names contained only
+	  numbers - it would reset them to a zero-based incremental,
+	  thinking that they were array refs, not strings.
+
 2004-10-17  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b230
 
 	* Change: Update opendir() calls to fs_opendir()

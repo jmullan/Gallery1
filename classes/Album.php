@@ -222,11 +222,9 @@ class Album {
 
 		while (($parentAlbum = $parentAlbum->getParentAlbum(FALSE)) && 
 				$depth < $gallery->app->maximumAlbumDepth) {
-			$parentNameArray[$parentAlbum->fields['name']] = $parentAlbum->fields['title'];
+			$parentNameArray = array($parentAlbum->fields['name'] => $parentAlbum->fields['title']) + $parentNameArray;
 			$depth++;
 		}
-
-		$parentNameArray = array_reverse($parentNameArray);
 
 		return $parentNameArray;
 	}

@@ -27,7 +27,7 @@ if(!includeTemplate('navigator.tpl')) {
 		$url .= "?";
 	}
 	else {
-		$url .= "&";
+		$url .= "&amp;";
 	}
 
 	$fpAltText= _("First Page");
