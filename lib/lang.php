@@ -220,6 +220,9 @@ function initLanguage() {
 				} elseif (isset($gallery->session->language)) {
 					//maybe we already have a language
 					$gallery->language=$gallery->session->language;
+				} elseif (isset($gallery->app->default_language)) {
+					// Maybe we have a defaultlanguage set in config.php
+		                        $gallery->language = $gallery->app->default_language;
 				}
 				break;
 			default:
