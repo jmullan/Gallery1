@@ -319,18 +319,16 @@ class Image {
 			$name = $this->name;
 			$type = $this->type;
 
-                	exec("$app->pnmDir/anytopnm $dir/$name.$type | " .
-                        	"$app->pnmDir/pnmscale -xysize $target $target | ".
-                        	"$app->pnmDir/ppmtojpeg > $dir/tmp.jpg");
-
+			$ret = resize_image("$dir/$name.$type",
+					     "$dir/$name.sized.jpg",
+					     $target);
+			
 			#-- resized image is always a jpeg ---
-			if (file_exists("$dir/tmp.jpg") && filesize("$dir/tmp.jpg") > 0) {
-				copy("$dir/tmp.jpg", "$dir/$name.sized.jpg");
-                        	unlink("$dir/tmp.jpg");
+			if ($ret) {
 				$this->resizedName = "$name.sized";
-
-				$this->height = $new_height;
-				$this->width = $new_width;
+				$img = loadImage($dir, "$name.sized", "jpg");
+				$this->height = ImageSY($img);
+				$this->width = ImageSX($img);
 			}
 		}	
 	}
@@ -420,29 +418,18 @@ class AlbumItem {
 		$name = $this->image->name;
 		$tag = $this->image->type;
 		if ($this->highlight) {
-                        $img = loadImage($dir, $name, $tag);
-			$orig_width = imagesx($img);
-			$orig_height = imagesy($img);
+			$ret = resize_image("$dir/$name.$tag",
+					     "$dir/$name.highlight.jpg",
+					     $app->highlight_size);
 
-			$target = $app->highlight_size;
-			$aspect = $orig_width / $orig_height;
-			if ($aspect > 1) {
-				$new_width = $target;
-				$new_height = ceil($new_width / $aspect);
-			} else {
-				$new_height = $target;
-				$new_width = ceil($new_height * $aspect);
+			if ($ret) {
+				$img = loadImage($dir, "$name.highlight", "jpg");
+
+				$high = new Image;
+				$high->setFile($dir, "$name.highlight", "jpg");
+				$high->setDimensions(ImageSX($img), ImageSY($img));
+				$this->highlightImage = $high;
 			}
-
-			$highImg = ImageCreate($new_width, $new_height);
-			ImageCopyResized($highImg, $img, 0, 0, 0, 0, 
-					 $new_width, $new_height, 
-					 $orig_width, $orig_height);
-			ImageJpeg($highImg, "$dir/$name.highlight.jpg");
-
-			$this->highlightImage = new Image;
-			$this->highlightImage->setFile($dir, "$name.highlight", "jpg");
-			$this->highlightImage->setDimensions($new_width, $new_height);
 		}
 		else {
 			if (file_exists("$dir/$name.highlight.jpg")) {
@@ -521,8 +508,10 @@ class AlbumItem {
 		} 
 
 		/* Set our image */
+		$img = loadImage("$dir", "$name", "$tag");
 		$this->image = new Image;
 		$this->image->setFile($dir, $name, $tag);
+		$this->image->setDimensions(ImageSX($img), ImageSY($img));
 
 		if (!strcmp($tag, "avi") || !strcmp($tag, "mpg")) {
 			/* Use a preset thumbnail */
@@ -531,37 +520,19 @@ class AlbumItem {
 			$this->thumbnail->setFile($dir, "$name.thumb", "jpg");
 
 			$img = loadImage($dir, "$name.thumb", "jpg");
-			$this->thumbnail->setDimensions(imagesx($img), imagesy($img));
+			$this->thumbnail->setDimensions(ImageSX($img), ImageSY($img));
 		} else {
 			/* Make thumbnail */
-			$img = loadImage($dir, $name, $tag);
+			$ret = resize_image("$dir/$name.$tag",
+					     "$dir/$name.thumb.jpg",
+					     $thumb_size);
 
-			if ($img) {
-				/* Calc the thumbnail h/w keeping the aspect ratio */
-				$orig_width = imagesx($img);
-				$orig_height = imagesy($img);
-
-				$target = $thumb_size;
-				$aspect = $orig_width / $orig_height;
-				if ($aspect > 1) {
-					$new_width = $target;
-					$new_height = ceil($new_width / $aspect);
-				} else {
-					$new_height = $target;
-					$new_width = ceil($new_height * $aspect);
-				}
-	
-				$thumbImg = ImageCreate($new_width, $new_height);
-				ImageCopyResized($thumbImg, $img, 0, 0, 0, 0, 
-						 $new_width, $new_height, 
-						 $orig_width, $orig_height);
-				ImageJpeg($thumbImg, "$dir/$name.thumb.jpg");
-	
+			if ($ret) { 
 				$this->thumbnail = new Image;
 				$this->thumbnail->setFile($dir, "$name.thumb", "jpg");
 	
-				$this->image->setDimensions($orig_width, $orig_height);
-				$this->thumbnail->setDimensions($new_width, $new_height);
+				$img = loadImage("$dir", "$name.thumb", "jpg");
+				$this->thumbnail->setDimensions(ImageSX($img), ImageSY($img));
 			}
 		}
 	}
@@ -575,7 +546,7 @@ class AlbumItem {
 	}
 
 	function getHighlightTag($dir, $attrs) {
-		if ($this->highlightImage) {
+		if (is_object($this->highlightImage)) {
 			return $this->highlightImage->getTag($dir, 0, $attrs);
 		} else {
 			return "<i>No highlight</i>";
