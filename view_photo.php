@@ -31,7 +31,7 @@ if (empty($gallery->album) || !$gallery->user->canReadAlbum($gallery->album)) {
         header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
-if (isset($full) && !$gallery->user->canViewFullImages($gallery->album)) {
+if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
 	header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName, $id));
 	return;
 }
