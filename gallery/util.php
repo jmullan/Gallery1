@@ -1399,7 +1399,8 @@ function makeGalleryUrl($target, $args=array()) {
 				** E.g. the Upload Framwork does not work then
 				** So we need to put necessary infos of Mambo into session.
 				*/
-				if (isset($args['type']) && $args['type'] == 'popup') {
+				if ((isset($args['type']) && $args['type'] == 'popup') ||
+					(isset($args['gallery_popup']) && $args['gallery_popup'] == 'true')) {
 					$target= $gallery->app->photoAlbumURL . "/index.php";
 
 					if(!isset($gallery->session->mambo)) {
