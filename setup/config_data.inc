@@ -477,7 +477,7 @@ $defaults = array(
 		"prompt" => _("Resized images file size"),
 		"desc" => _("The default target size (in kilobyte) of resized JPEG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to \"0\" for no target size.").
 			  "<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
-		"value" => 100,
+		"value" => 0,
 		"optional" => 1,
 		"type" => "text"
 	),
