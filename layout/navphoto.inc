@@ -30,7 +30,7 @@ $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"0\" 
 if ($navpage == 0) {
 ?>
     <td align="center" width="27" height="18">&nbsp;</td> 
-    <td width="0" height="28"><?php echo $pixelImage ?></td>
+    <td width="0" height="18"><?php echo $pixelImage ?></td>
 <?php
 } else {
 	$firstPage = $navigator["allIds"][0];
