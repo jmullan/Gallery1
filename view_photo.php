@@ -697,7 +697,7 @@ if (isset($printShutterflyForm)) { ?>
         $imbkprnt = makeAlbumUrl($gallery->session->albumName, $id);
      }
   ?>
-  <input type=hidden name=imbkprnta-1 value="<?php echo strip_tags($imbkprnt) ?>">
+  <input type=hidden name=imbkprnta-1 value="<?php echo htmlentities(strip_tags($imbkprnt)) ?>">
 </form>
 <?php }
 if (isset($printFotoserveForm)) { ?>
@@ -732,7 +732,7 @@ if (isset($printEZPrintsForm)) { ?>
      }
   ?>
   <input type="hidden" name="count" value="1">
-  <input type="hidden" name="title0" value="<?php echo strip_tags($imbkprnt) ?>">
+  <input type="hidden" name="title0" value="<?php echo htmlentities(strip_tags($imbkprnt)) ?>">
   <input type="hidden" name="lo_res_url0" value="<?php echo $thumbImage ?>">
   <input type="hidden" name="hi_res_url0" value="<?php echo $rawImage ?>">
   <input type="hidden" name="returnpage" value="this-gets-set-by-javascript-in-onClick">
