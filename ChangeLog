@@ -1,3 +1,9 @@
+2004-01-24  Bharat Mediratta  <bharat@menalto.com> 1.4.3-cvs-b4
+
+	* Fixed remote security exploit in init.php and setup/init.php where
+	  one extract() call can be used to overwrite the input for a
+	  subsequent extract() call letting users overwrite GALLERY_BASEDIR
+
 2004-01-23 Jens Tkotz <jens@peino.de> 1.4.3-cvs-b3
 
 	* New: added contrib folder with subfolder phpBB2 with documentation
