@@ -45,6 +45,15 @@ if ($id) {
 } else {
 	$id = $gallery->album->getPhotoId($index);
 }
+
+// is photo hidden?  should user see it anyway?
+if (($gallery->album->isHidden($index))
+    && (!$gallery->user->canWriteToAlbum($gallery->album))){
+    header("Location: " . makeAlbumUrl($gallery->session->albumName));
+    return;
+}
+
+
 $albumName = $gallery->session->albumName;
 if (!$gallery->session->viewedItem[$gallery->session->albumName][$id]) {
 	$gallery->session->viewedItem[$albumName][$id] = 1;
