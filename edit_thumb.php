@@ -111,7 +111,7 @@ if (isset($action)) {
 <?php echo _("Choose which part of the image will compose your thumbnail:") ?>
 </span>
 
-<APPLET CODE="ImageCrop" WIDTH=460 HEIGHT=430 CODEBASE="<?php echo $GALLERY_BASEDIR ?>java" ARCHIVE="ImageTools.jar">
+<APPLET CODE="ImageCrop" WIDTH=460 HEIGHT=430 CODEBASE="<?php echo $gallery->app->photoAlbumURL ?>java" ARCHIVE="ImageTools.jar">
   <PARAM NAME="type"   VALUE="application/x-java-applet;version=1.1.2">
   <PARAM NAME=bgcolor  VALUE="<?php echo $bgcolor ?>">
   <PARAM NAME=image    VALUE="<?php echo $photoURL ?>">

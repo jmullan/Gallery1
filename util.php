@@ -2937,8 +2937,7 @@ Gallery @ %s Administrator.");
 
 function available_skins($description_only=false) {
 
-	global $GALLERY_BASEDIR;
-	if ($GALLERY_BASEDIR == "") $GALLERY_BASEDIR = '..';
+	global $gallery;
 
 	$dir = dirname(__FILE__) . '/skins';
 	$opts['none'] = 'None';
@@ -2960,9 +2959,9 @@ function available_skins($description_only=false) {
 			       	}
 				$opts[$file]=$name;
 				if (fs_file_exists("$dir/$file/images/screenshot.jpg")) {
-					$screenshot="$GALLERY_BASEDIR/skins/$file/images/screenshot.jpg";
+					$screenshot=$gallery->app->photoAlbumURL. "/skins/$file/images/screenshot.jpg";
 				} else if (fs_file_exists("$dir/$file/images/screenshot.gif")) {
-					$screenshot="$GALLERY_BASEDIR/skins/$file/images/screenshot.gif";
+					$screenshot=$gallery->app->photoAlbumURL ."/skins/$file/images/screenshot.gif";
 				} else {
 					$screenshot="";
 				}

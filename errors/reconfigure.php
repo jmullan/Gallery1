@@ -28,7 +28,7 @@
 <p>
 <?php 
 	echo sprintf(_("Then launch the %sConfiguration Wizard%s."),
-		'<a href="'. $GALLERY_BASEDIR . 'setup/index.php">', '</a>') . ' ';
+		'<a href="'. GALLERY_URL . 'setup/index.php">', '</a>') . ' ';
 	
 	include(dirname(__FILE__) . "/configure_help.php"); ?>
 </p>
