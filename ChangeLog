@@ -1,3 +1,11 @@
+2004-05-10  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.4-cvs-b102
+
+	* Fixed alt="..." attribute in <img> tags to strip out HTML and then
+	  convert double quotes to HTML entities. Previously, displaying image
+	  captions with HTML or double quotes would output malformed HTML.
+	  (Introduced in 1.4.4-cvs-b72 when we added the caption text to the
+	  alt attribute.)
+
 2004-05-10  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b101
 
 	* Change:  Use unhtmlentities() instead of strtr() - this allows
