@@ -41,7 +41,7 @@ if ($save) {
 	$album->fields["cols"] = $cols;
 	$album->fields["fit_to_window"] = $fit_to_window;
 	$album->fields["use_fullOnly"] = $use_fullOnly;
-	$album->fields["use_shutterfly"] = $use_shutterfly;
+	$album->fields["print_photos"] = $print_photos;
 	$album->save();
 
 	reload();
@@ -130,8 +130,8 @@ Album Properties
 <td><select name="use_fullOnly"><?= selectOptions($album, "use_fullOnly", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td>Offer visitors ability to order<br>prints of photos at Shutterfly.com</td>
-<td><select name="use_shutterfly"><?= selectOptions($album, "use_shutterfly", array("yes", "no")) ?></select></td>
+<td>Which photo printing service<br>do you want to let visitors use?</td>
+<td><select name="print_photos"><?= selectOptions($album, "print_photos", array("none", "shutterfly")) ?></select></td>
 </tr>
 </table>
 

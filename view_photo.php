@@ -357,7 +357,7 @@ if ($fitToWindow) {
 <!-- caption -->
 <tr>
 <?
-if (!strcmp($album->fields["use_shutterfly"],"no")) {
+if (!strcmp($album->fields["print_photos"],"none")) {
 ?>
 <td colspan=3 align=center>
 <span class="caption"><?= editCaption($album, $index, $edit) ?></span>

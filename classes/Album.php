@@ -43,7 +43,7 @@ class Album {
 		$this->fields["cols"] = $app->default["cols"];
 		$this->fields["fit_to_window"] = $app->default["fit_to_window"];
 		$this->fields["use_fullOnly"] = $app->default["use_fullOnly"];
-		$this->fields["use_shutterfly"] = $app->default["use_shutterfly"];
+		$this->fields["print_photos"] = $app->default["print_photos"];
 
 		$everybody = $userDB->getEverybody();
 		$this->setPerm("canRead", $everybody->getUid(), 1);
@@ -54,7 +54,7 @@ class Album {
 
 		$changed = 0;
 		$check = array("thumb_size", "resize_size", "rows", "cols",
-		               "fit_to_window", "use_fullOnly", "use_shutterfly");
+		               "fit_to_window", "use_fullOnly", "print_photos");
 		foreach ($check as $field) {
 			if (!$this->fields[$field]) {
 				$this->fields[$field] = $app->default[$field];
