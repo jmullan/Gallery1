@@ -2411,6 +2411,20 @@ class Album {
 		return $myAlbum;
 	}
 
+	function getSubAlbums() {
+		$subAlbums = array();
+		$index = 0;
+		foreach ($this->photos as $photo) {
+			$index++;
+			if ($photo->isAlbum()) {
+				$subAlbum = new Album();
+				$subAlbum->load($this->getAlbumName($index));
+				array_push($subAlbums, $subAlbum);
+			}
+		}
+		return ($subAlbums);
+	}
+
 	//values for type "comment" and "other"
 	function getEmailMe($type, $user, $id=null) {
 		$uid = $user->getUid();

@@ -318,6 +318,15 @@ class AlbumDB {
 		}
 		return array($numPhotos, $numAlbums, $numTopAlbums);
 	}
+
+	function getAlbumsByRoot($rootAlbumName, $user) {
+		$namedAlbum = $this->getAlbumByName($rootAlbumName);
+		if ($namedAlbum) {
+			$arr = $namedAlbum->getSubAlbums();
+			array_push($arr, $namedAlbum);
+			return ($arr);
+		}
+	}
 }
 
 ?>

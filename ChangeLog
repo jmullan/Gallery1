@@ -1,3 +1,15 @@
+2004-12-28  Christian Mohn <h0bbel@p0ggel.org> 1.5-cvs-b319
+	*New: Added per-album RSS patch (RFE #1020449) by
+	      Don Willingham <donwillingham@users.sf.net>
+
+	* New: RSS's alternate link tag added to view_album.php.
+	* New: Added getSubAlbums to Album.php.
+	* New: Added getAlbumsByRoot to AlbumDB.php.
+	* Change: RSS link on bottom of album has ?set_albumName={albumname} 
+	  appended.
+	* Change: rss.php now obeys ?set_albumName, if set only items of named album
+	  and children albums are generated.
+
 2004-12-28  Chris Kelly <ckdake@users.sf.net> 1.5-cvs-b318
 
 	* Fix: Bug 848309, moved JavaScript blur() to prevent

@@ -37,6 +37,7 @@ if (!isset($gallery->app->rssEnabled)) {
 if ($gallery->app->rssEnabled == "no") {
 	header("Location: " . makeAlbumHeaderUrl());
 }
+list($set_albumName) = getRequestVar(array('set_albumName'));
 
 $gallery->session->offlineAlbums["albums.php"] = true;
 
@@ -111,14 +112,29 @@ $gallery->session->albumName = "";
 $page = 1;
 
 $albumList = array();
-list($numPhotos, $numAlbums,) = $albumDB->numAccessibleItems($gallery->user);
+/* Initialize album and photo counts */
+$numAlbums = 0;
+$numPhotos = 0;
+if (isset($set_albumName))
+{
+	$rssAlbumList = $albumDB->getAlbumsByRoot($set_albumName);
+}
+else
+{
+	$rssAlbumList = $albumDB->albumList;
+}
 
-foreach ($albumDB->albumList as $album) {
+foreach ($rssAlbumList as $album) {
 
 	// Save time later.. if we can't read it, don't add it.
 	if (!$gallery->user->canReadAlbum($album)) {
 		continue;
 	}
+
+	// Increment counters
+	$numAlbums++;
+	$album->load($album->fields['name']);
+	$numPhotos += $album->numPhotos(0, 1);
 
 	$albumInfo = array(
 		"!name" => $album->fields["name"],

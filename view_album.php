@@ -126,7 +126,11 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
   <?php common_header();
-
+  /* RSS */
+  if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) { ?>
+  <link rel="alternate" title="<?php echo sprintf(_("%s RSS"), $gallery->app->galleryTitle . " :: " . $gallery->album->fields["title"]) ?>" href="<?php echo $gallery->app->photoAlbumURL . "/rss.php?set_albumName=" . $gallery->album->fields["name"] ?>" type="application/rss+xml">
+  <?php
+  }
   /* prefetching/navigation */
   if (!isset($first)) { ?>
   <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => 1)) ?>" >
