@@ -4,7 +4,7 @@ CONTENTS
  3. Upgrading from pre-v1.1 to v1.1
  4. Upgrading from v1.1 to v1.2
  5. Upgrading from v1.2.2
- 6. Upgrading from v1.2.3, v1.2.4, v1.2.5 or v1.3
+ 6. Upgrading from v1.2.3, v1.2.4, v1.2.5 or v1.3.x
 
 1. HOW TO UPGRADE GALLERY
 
@@ -144,15 +144,15 @@ upgrade you won't need to modify index.php any more.
 
 Also, when you upgrade to v1.2.2 you'll have to re-run the config
 wizard and then upgrade all of your albums.  The first time an album
-is viewed, it'll be automatically upgraded.  However, it can be
-tedious to have to click to every single album as part of the upgrade
-process.  However, it's possible to upgrade all your albums at once!
-Log on as the admin user and then on the main page you'll see a link
-(in red) next to every album that requires an upgrade.  Click this
-link and it will take you to the "upgrade_album.php" page which will
-allow you to upgrade any individual album, or all albums at once.  If
-you can't find the link, you can browse to this page directly by
-entering it into your browser manually.
+is viewed, it'll be automatically upgraded.  It can be tedious to have
+to click to every single album as part of the upgrade process.
+However, it's possible to upgrade all your albums at once!  Log on as
+the admin user and then on the main page you'll see a link (in red)
+next to every album that requires an upgrade.  Click this link and it
+will take you to the "upgrade_album.php" page which will allow you to
+upgrade any individual album, or all albums at once.  If you can't
+find the link, you can browse to this page directly by entering it
+into your browser manually.
 
 6. UPGRADING FROM v1.2.2
 
@@ -171,9 +171,23 @@ trying to include.  You'll need to edit index.php and add this file
 to the list of _approved_ files that can be included.  There are 
 instructions in index.php for doing this.
 
-7. UPGRADING FROM v1.2.3, v1.2.4, v1.2.5 or v1.3
+7. UPGRADING FROM v1.2.3, v1.2.4, v1.2.5 or v1.3.x
 
-There are no special notes regarding upgrading from these platforms.
 Gallery may tell you that your configuration is out of date and may
 ask you to re-run the config wizard.  Gallery may also want to upgrade
 your albums.  See section 5 for more information about this.
+
+Gallery no longer requires usage of php_short_tags.  If you have
+short_tag support enabled only for Gallery, you can change
+
+       short_open_tag = On
+
+to:
+
+       short_open_tag = Off
+
+in your php.ini file to disable PHP's usage of short tags.  Note that
+you will almost certainly need to re-run the Gallery configuration
+wizard after doing this, since the automatically generated config.php
+file will still have short tags.  Also note that this may break other
+applications you have on your site that use short tags.
