@@ -1,12 +1,11 @@
 <?
 session_start();
-if ($destroy) {
+if ($HTTP_GET_VARS['destroy']) {
     session_destroy();
     header("Location: session_test.php");
     exit;
 }
-session_register("count");
-$count++;
+$HTTP_SESSION_VARS['count']++;
 ?>
 
   <html>
@@ -44,7 +43,7 @@ $count++;
 	    Page views in this session
 	  </td>
 	  <td>
-	    <?=$count?>
+	    <?=$HTTP_SESSION_VARS['count']?>
 	  </td>
 	</tr>
       </table>
