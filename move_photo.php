@@ -149,7 +149,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
                 $sel = "selected";
         }
 		$j = $i - 1;
-        echo "<option value=j $sel> $i</option>";
+        echo "<option value=$j $sel> $i</option>";
 }
 ?>
 </select>
