@@ -28,6 +28,7 @@ $page = 1;
 
 /* If there are albums in our list, display them in the table */
 $numAlbums = $albumDB->numAlbums($gallery->user);
+$numPhotos = $albumDB->numPhotos($gallery->user);
 
 if (!$gallery->session->albumListPage) {
 	$gallery->session->albumListPage = 1;
@@ -85,6 +86,7 @@ if (!strcmp($gallery->app->default["showSearchEngine"], "yes")) {
 <? 
 $adminText = "<span class=\"admin\">";
 $adminText .= pluralize($numAlbums, "album", "no");
+$adminText .= ",&nbsp;" . pluralize($numPhotos, "photo", "no");
 if ($maxPages > 1) {
 	$adminText .= " on " . pluralize($maxPages, "page", "no") . "&nbsp;";
 }
