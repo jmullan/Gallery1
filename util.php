@@ -3105,4 +3105,67 @@ function user_name_string($uid) {
 function i18n($buf) {
        	return $buf;
 }
+
+// Returns the CVS version as a string, NULL if file can't be read, or "" 
+// if version can't be found.
+
+function getCVSVersion($file) {
+	global $GALLERY_BASEDIR;
+	$path=$GALLERY_BASEDIR.$file;
+	if (!fs_file_exists($path)) {
+		return NULL;
+	} 
+	if (!fs_is_readable($path)) {
+	       	return NULL;
+       	}
+	$contents=file($path);
+	foreach ($contents as $line) {
+		if (ereg('\$Id$$', trim($line), $matches) ||
+		    ereg('\$Id$ ', trim($line), $matches)) {
+			if ($matches[1]) {
+			       	return $matches[1];
+			}
+	       	}
+
+	}
+	return "";
+}
+
+// No translation yet, as we don't want may not release this in 1.4.1
+function checkVersions() {
+	global $GALLERY_BASEDIR;
+	include $GALLERY_BASEDIR."manifest.inc";
+	$errors=array();
+	foreach ($versions as $file => $version) {
+		$found_version=getCVSVersion($file);
+		if ($found_version === NULL) {
+		       	if (isDebugging()) {
+			       	print sprintf("Cannot read file %s.", $file);
+			       	print "<br>\n";
+			}
+			$errors[]=$file;
+			continue;
+		} else if ($found_version === "") {
+		       	if (isDebugging()) {
+			       	print sprintf("Version information not found in %s.  File must be old version or corrupted.", $file);
+			       	print "<br>\n";
+		       	}
+		       	$errors[]=$file;
+		       	continue;
+	       	} else if ($found_version < $version) {
+		       	if (isDebugging()) {
+			       	print sprintf("Problem with %s.  Expected version %s (or greater) but found %s.", $file, $version, $found_version);
+			       	print "<br>\n";
+		       	}
+		       	$errors[]=$file;
+	       	}
+	}
+	if  ($errors) {
+		print sprintf("The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version.", Gallery());
+		print "<br>\n";
+		foreach ($errors as $error) {
+			print "\t$error<br>\n";
+		}
+	}
+}
 ?>

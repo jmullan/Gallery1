@@ -60,6 +60,12 @@ function fs_is_file($filename) {
 	return @is_file($filename);
 }
 
+function fs_is_readable($filename) {
+	$filename = fs_import_filename($filename, 0);
+	return @is_readable($filename);
+}
+
+
 function fs_opendir($path) {
 	$path = fs_import_filename($path, 0);
 	return opendir($path);

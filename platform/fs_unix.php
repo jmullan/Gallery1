@@ -63,6 +63,10 @@ function fs_is_file($filename) {
 	return @is_file($filename);
 }
 
+function fs_is_readable($filename) {
+	return @is_readable($filename);
+}
+
 function fs_opendir($path) {
 	return opendir($path);
 }
