@@ -9,7 +9,7 @@
 //echo "<br> cwd " . getcwd();
 //echo "<br>path ". $gallery->path;
 
-	$filename = $gallery->path . "ML_files/ML_config.php";
+	$ML_config_filename = $gallery->path . "ML_files/ML_config.php";
 	if ($_POST) {
 /*
 		echo "POST-Daten:<br>";
@@ -18,8 +18,8 @@
 		echo "</pre>";
 */
 
-		if (!$handle = fopen($filename, "w+")) {
-			echo _("Unable to open ") . $filename ;
+		if (!$handle = fopen($ML_config_filename, "w+")) {
+			echo _("Unable to open ") . $ML_config_filename ;
 			exit;
 		}
 		
@@ -98,10 +98,10 @@
 	}
 
 
-	if (! file_exists($filename)) {
+	if (! file_exists($ML_config_filename)) {
 		$gallery->ML->error= _("Your ML_config.php does not exist, please create it in the ML_files folder.");
 	}
-	elseif (! is_writable($filename)) {
+	elseif (! is_writable($ML_config_filename)) {
 		$gallery->ML->error= _("Your ML_config.php is not writeable, please go into the ML_files folder and chmod it 777");
 	}
 	
