@@ -20,7 +20,7 @@
 ?>
 <?
 function fs_copy($source, $dest) {
-	$umask = umask(0133);
+	$umask = umask(0113);
 	$results = copy($source, $dest);
 	umask($umask);
 }
