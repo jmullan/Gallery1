@@ -712,11 +712,14 @@ $constants = array_merge($constants,
 		"type" => "hidden",
 		"persistent" => 1,
 		"value" => "no"
-		)
-
-
-
-
+		),
+	"maximumAlbumDepth" => array(
+		"desc" => "Stops the breadcrumb code infinitely recursing.",
+		"prompt" => "Maximum album depth",
+		"type" => "hidden",
+		"persistent" => 1,
+		"value" => 50
+		),
 	)
 );
 

@@ -183,10 +183,12 @@ $breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($gallery->se
       "\">" . $gallery->album->fields['title'] . "</a>";
 $breadCount++;
 $pAlbum = $gallery->album;
+$depth = 0;
 do {
   if (!strcmp($pAlbum->fields["returnto"], "no")) {
     break;
   }
+  $depth++;
   $pAlbumName = $pAlbum->fields['parentAlbumName'];
   if ($pAlbumName && (!$gallery->session->offline
           || $gallery->session->offlineAlbums[$pAlbumName])) {
@@ -201,7 +203,7 @@ do {
       "\">" . $gallery->app->galleryTitle . "</a>";
   }
   $breadCount++;
-} while ($pAlbumName);
+} while ($pAlbumName && $depth < $gallery->app->maximumAlbumDepth);
 
 //-- we built the array backwards, so reverse it now ---
 for ($i = count($breadtext) - 1; $i >= 0; $i--) {

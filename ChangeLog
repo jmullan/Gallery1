@@ -1,3 +1,15 @@
+2003-10-17 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b172
+
+	* Fixed (hopefully) the white space in frame bug.  Image size 
+	  parameters were not being rounded, so could be fractional.
+
+	* Centered "add comment".
+
+	* Added test to stop breadcrumb looping indefinitely in case of 
+	  "inter-nested" albums.  Use hidden config option 
+	  gallery->app->maximumAlbumDepth to allow people with deeply 
+	  nested albums to still display all parent albums.
+
 2003-10-18 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b171
 
 	* Language: - Update german (de_DE). 
@@ -6,13 +18,11 @@
 
 2003-10-17 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b170
 
-	* Roll back to b168.  The problem had nothing to do with email 
-	  changes.
+	* Roll back to b168.  
 
 2003-10-17 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b169
 
-	* Problem with processes not ending.  So email when changed
-	  off until bugs sorted out.
+	* (Edited) Fix for non-existant bug.
 
 2003-10-17 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b168
 

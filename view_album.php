@@ -131,10 +131,12 @@ $fullWidth = $navigator["fullWidth"] . $navigator["widthUnits"];
 $breadCount = 0;
 $breadtext = array();
 $pAlbum = $gallery->album;
+$depth=0;
 do {
   if (!strcmp($pAlbum->fields["returnto"], "no")) {
     break;
   }
+  $depth++;
   $pAlbumName = $pAlbum->fields['parentAlbumName'];
   if ($pAlbumName && (!$gallery->session->offline 
      || isset($gallery->session->offlineAlbums[$pAlbumName]))) {
@@ -153,7 +155,7 @@ do {
   }
 
   $breadCount++;
-} while ($pAlbumName);
+} while ($pAlbumName && $depth < $gallery->app->maximumAlbumDepth);
 
 //-- we built the array backwards, so reverse it now ---
 for ($i = count($breadtext) - 1; $i >= 0; $i--) {

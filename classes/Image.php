@@ -152,9 +152,9 @@ class Image {
 		if ($size) {
 			if ($this->width > $this->height) {
 				$width = $size;
-				$height = $size * ($this->height / $this->width);
+				$height = round($size * ($this->height / $this->width));
 			} else {
-				$width = $size * ($this->width / $this->height);
+				$width = round($size * ($this->width / $this->height));
 				$height = $size;
 			}
 			$size_val = "width=\"$width\" height=\"$height\"";
