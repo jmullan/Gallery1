@@ -81,7 +81,7 @@ default: // use frames directory
               <img src="<?php echo "$base/$imageTTL" ?>" border="0" width="<?php echo $widthTTL ?>" height="<?php echo $heightTTL ?>" alt="FRAME">
             </td> 
             <td>
-              <img src="<?php echo "$base/$imageTT" ?>" border="0" width="<?php echo $imageWidth - $widthTTL - $widthTTR + $borderWidth*2 ?>" height="<?php echo $heightTT ?>" alt="FRAME">
+              <img src="<?php echo "$base/$imageTT" ?>" border="0" width="<?php echo $imageWidth - $widthTTL - $widthTTR ?>" height="<?php echo $heightTT ?>" alt="FRAME">
             </td> 
             <td>
               <img src="<?php echo "$base/$imageTTR" ?>" border="0" width="<?php echo $widthTTR ?>" height="<?php echo $heightTTR ?>" alt="FRAME">
@@ -102,7 +102,7 @@ default: // use frames directory
             </td> 
           </tr>
           <tr>
-            <td width="<?php echo $widthLL ?>" height="<?php echo $imageHeight - $heightLLT - $heightLLB + $borderWidth*2 ?>" style="background-image:url(<?php echo "$base/$imageLL" ?>)">
+            <td width="<?php echo $widthLL ?>" height="<?php echo $imageHeight - $heightLLT - $heightLLB ?>" style="background-image:url(<?php echo "$base/$imageLL" ?>)">
               <img src="<?php echo $pixelImage ?>" border="0" width="1" height="1" alt="FRAME">
             </td>
           </tr>
@@ -113,8 +113,8 @@ default: // use frames directory
           </tr>
         </table>
       </td>
-      <td bgcolor="<?php echo $borderColor ?>" width="1" height="1">
-        <table cellspacing="0" cellpadding="<?php echo $borderWidth ?>">
+      <td>
+        <table cellspacing="0" cellpadding="0">
           <tr>
             <td align="center" width="<?php echo $imageWidth ?>" height="<?php echo $imageHeight ?>">
               <?php echo $href_tag ?>
@@ -130,7 +130,7 @@ default: // use frames directory
             </td> 
           </tr>
           <tr>
-            <td width="<?php echo $widthRR ?>" height="<?php echo $imageHeight - $heightRRT - $heightRRB + $borderWidth*2 ?>" style="background-image:url(<?php echo "$base/$imageRR" ?>)">
+            <td width="<?php echo $widthRR ?>" height="<?php echo $imageHeight - $heightRRT - $heightRRB ?>" style="background-image:url(<?php echo "$base/$imageRR" ?>)">
               <img src="<?php echo $pixelImage ?>" border="0" width="1" height="1" alt="FRAME">
             </td>
           </tr>
@@ -153,7 +153,7 @@ default: // use frames directory
               <img src="<?php echo "$base/$imageBBL" ?>" border="0" width="<?php echo $widthBBL ?>" height="<?php echo $heightBBL ?>" alt="FRAME">
             </td> 
             <td>
-              <img src="<?php echo "$base/$imageBB" ?>" border="0" width="<?php echo $imageWidth - $widthBBL - $widthBBR + $borderWidth*2 ?>" height="<?php echo $heightBB ?>" alt="FRAME">
+              <img src="<?php echo "$base/$imageBB" ?>" border="0" width="<?php echo $imageWidth - $widthBBL - $widthBBR ?>" height="<?php echo $heightBB ?>" alt="FRAME">
             </td> 
             <td>
               <img src="<?php echo "$base/$imageBBR" ?>" border="0" width="<?php echo $widthBBR ?>" height="<?php echo $heightBBR ?>" alt="FRAME">

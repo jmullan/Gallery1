@@ -64,7 +64,7 @@ $gallery->html_wrap['borderWidth'] = 0;
 $gallery->html_wrap['imageWidth'] = 300;
 $gallery->html_wrap['imageHeight'] = 200;
 $gallery->html_wrap['imageHref'] = null;
-$gallery->html_wrap['imageTag'] = null;
+$gallery->html_wrap['imageTag'] = '<img src="../../images/bar.gif" width="300" height="200">';
 error_reporting(E_ALL);
 ?> 
 <br><br><br>
