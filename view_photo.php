@@ -200,7 +200,7 @@ do {
 for ($i = count($breadtext) - 1; $i >= 0; $i--) {
     $breadcrumb["text"][] = $breadtext[$i];
 }
-$extra_fields=$gallery->album->getExtraFields();
+$extra_fields=$gallery->album->getExtraFields(false);
 $title=NULL;
 if (in_array("Title", $extra_fields))
 {

@@ -93,8 +93,7 @@ $translateableFields=translateableFields();
 
 foreach ($gallery->album->getExtraFields() as $field)
 {
-	if (in_array($field, array_keys(automaticFieldsList())))
-	{
+	if (in_array($field, array_keys(automaticFieldsList()))) {
 		continue;
 	}
         $value=$gallery->album->getExtraField($index, $field);
@@ -136,6 +135,7 @@ $year = $itemCaptureDate["year"];
 // start capture date table
 ?>
 
+<br>
 <table border="0">
   <tr>
 	<td colspan="6" align="center" class="popup"><?php echo _("Photo Capture Date") ?></td>

@@ -1875,9 +1875,20 @@ class Album {
 		global $gallery;
 		return $gallery->userDB->getUserByUid($this->fields["owner"]);
 	}
-	function getExtraFields() {
-		return $this->fields["extra_fields"];
+	function getExtraFields($all=true) {
+		if ($all) {
+			return $this->fields["extra_fields"];
+		} else {
+			$return=array();
+			foreach($this->fields["extra_fields"] as $value) {
+				if ($value != 'AltText') {
+					$return[]=$value;
+				}
+			}
+			return $return;
+		}
 	}
+
 	function setExtraFields($extra_fields) {
 		$this->fields["extra_fields"]=$extra_fields;
 	}

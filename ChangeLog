@@ -1,3 +1,15 @@
+2004-04-29 Jens Tkotz <jens@peino.de> 1.4.4-cvs-b72
+
+	* New: Added extra field for Alttext/title/onMouseover.
+
+	* Change: Added optional paramter to getExtraFields in Album.php.
+		  If set to false not all extra Fields are returned.
+
+	* New: Added getAlttext to AlbumItem.php. 
+	       This method return the value of the new extra field, the caption or "No Caption".
+
+	* Change: Tweaked getThumbnailTag, getHighlightTag and getPhotoTag to work with alttext.
+
 2004-04-28  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b71
 
 	* Change: Renamed get_GalleryPathes() to getGalleryPaths() 

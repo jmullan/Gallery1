@@ -546,18 +546,33 @@ class AlbumItem {
 		return 0;
 	}
 
+	function getAlttext() {
+		if (!empty($this->extraFields['AltText'])) {
+			return $this->extraFields['AltText'];
+		} elseif (!empty($this->caption)) {
+			return $this->caption;
+		} else {
+			return _("No Caption");
+		}
+	}
 
 	function getThumbnailTag($dir, $size=0, $attrs="") {
+
 		if ($this->thumbnail) {
-			return $this->thumbnail->getTag($dir, 0, $size, $attrs);
+			return $this->thumbnail->getTag($dir, 0, $size, $attrs, $this->getAlttext());
 		} else {
 			return "<i>". _("No thumbnail") ."</i>";
 		}
 	}
 
-	function getHighlightTag($dir, $size=0, $attrs="",$alttext="") {
+	function getHighlightTag($dir, $size=0, $attrs='', $alttext='') {
+
 		if (is_object($this->highlightImage)) {
-			return $this->highlightImage->getTag($dir, 0, $size, $attrs,$alttext);
+			if (!isset($alttext)) {
+				$alltext=$this->getAlttext();
+			}
+			
+			return $this->highlightImage->getTag($dir, 0, $size, $attrs, $alttext);
 		} else {
 			return "<i>". _("No highlight") ."</i>";
 		}
@@ -565,7 +580,7 @@ class AlbumItem {
 
 	function getPhotoTag($dir, $full=0) {
 		if ($this->image) {
-			return $this->image->getTag($dir, $full);
+			return $this->image->getTag($dir, $full, '', '', $this->getAlttext());
 		} else {
 			return "about:blank";
 		}
@@ -608,6 +623,8 @@ class AlbumItem {
 	function getCaption() {
 		return $this->caption;
 	}
+
+
 
 	function isAlbum() {
 		return ($this->isAlbumName !== NULL) ? true : false;

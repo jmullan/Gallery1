@@ -491,7 +491,9 @@ function automaticFieldsList() {
 function translateableFields() {
 	return array(
 		'Title'		=> _("Title"),
-		'Description'	=> _("Description"));
+		'Description'	=> _("Description"),
+		'AltText'	=> _("Alt Text / onMouseOver")
+	);
 }
 
 ?>

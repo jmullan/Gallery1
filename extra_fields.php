@@ -105,8 +105,9 @@ $extra_fields=$gallery->album->getExtraFields();
 ?>
 <tr>
 	<td><?php echo _("Title") ?></td>
-	<td align="right"><input type="checkbox" name="extra_fields[]" value="Title" 
-		<?php print in_array("Title", $extra_fields) ?  "checked" : ""; ?> ></td>
+	<td align="right">
+	<input type="checkbox" name="extra_fields[]" value="Title" <?php print in_array("Title", $extra_fields) ?  "checked" : ""; ?>>
+	</td>
 </tr>
 <?php
 foreach (automaticFieldsList() as $automatic => $printable_automatic) {
@@ -114,21 +115,32 @@ foreach (automaticFieldsList() as $automatic => $printable_automatic) {
 		continue;
 	}
 ?>
-	<tr><td><?php print $printable_automatic ?></td>
-	<td align="right"><input type="checkbox" name="extra_fields[]" value="<?php print $automatic ?>"
-	<?php print in_array($automatic, $extra_fields) ?  "checked" : ""; 
-	?> > </td></tr>
+<tr>
+	<td><?php print $printable_automatic ?></td>
+	<td align="right">
+	<input type="checkbox" name="extra_fields[]" value="<?php print $automatic ?>" <?php print in_array($automatic, $extra_fields) ?  "checked" : ""; ?>>
+	</td>
+</tr>
 <?php
 }
 ?>
-<tr><td colspan="2">&nbsp;</td></tr>
+<tr>
+	<td><?php echo _("Alt Text / onMouseOver"); ?></td>
+	<td align="right">
+	<input type="checkbox" name="extra_fields[]" value="AltText" <?php print in_array("AltText", $extra_fields) ?  "checked" : ""; ?>>
+	</td>
+</tr>
+<tr>
+	<td colspan="2">&nbsp;</td>
+</tr>
 <tr>
 	<td colspan="2">
 	<?php echo _("Number of user defined custom fields") ?> 
 	<input type="text" size="4" name="num_user_fields" value="<?php echo $num_user_fields ?>">
 	</td>
 </tr>
-<tr><td colspan="2">&nbsp;</td></tr>
+<tr>
+	<td colspan="2">&nbsp;</td></tr>
 <?php
 $i=0;
 
@@ -136,7 +148,7 @@ foreach ($extra_fields as $value)
 {
 	if (in_array($value, array_keys(automaticFieldsList())))
 		continue;
-	if (!strcmp($value, "Title"))
+	if (!strcmp($value, "Title") or !strcmp($value, "AltText"))
 		continue;
 	print "\n<tr>";
 	print "\n\t<td>". _("Field").($i+1).": </td>";
@@ -153,7 +165,7 @@ function num_special_fields($extra_fields)
 		if (in_array($special_field, $extra_fields))
 			$num_special_fields++;
 	}
-	if (in_array("Title", $extra_fields)) {
+	if (in_array("Title", $extra_fields) || in_array("AltText", $extra_fields)) {
 		$num_special_fields++;
 	}
 
