@@ -52,10 +52,10 @@ if (empty ($cmd)) {
 header("Content-type: text/plain");
 
 /*
- * Gallery remote protocol version 2.7
+ * Gallery remote protocol version 2.9
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 8;
+$GR_VER['MIN'] = 9;
 
 
 /*
@@ -138,6 +138,7 @@ $response->setProperty( "debug_album", $gallery->album->fields["name"]);
 if ($gallery->user) {
 	$response->setProperty( "debug_user", $gallery->user->getUsername());
 	$response->setProperty( "debug_user_type", get_class($gallery->user));
+	$response->setProperty( "debug_user_already_logged_in", $gallery->user->isLoggedIn());
 } else {
 	$response->setProperty( "debug_user", "NO_USER");
 }
@@ -345,10 +346,24 @@ if (!strcmp($cmd, "login")) {
 	foreach($gallery->album->photos as $albumItemObj) {
 		if(empty($albumItemObj->isAlbumName)) { //Make sure this object is a picture, not an album
 			$tmpImageNum++;
+			
 			$response->setProperty( 'image.name.'.$tmpImageNum, $albumItemObj->image->name.'.'.$albumItemObj->image->type );
-			$response->setProperty( 'image.raw_width.'.$tmpImageNum, $albumItemObj->image->raw_width );
-			$response->setProperty( 'image.raw_height.'.$tmpImageNum, $albumItemObj->image->raw_height );
-			$response->setProperty( 'image.resizedName.'.$tmpImageNum, $albumItemObj->image->resizedName.'.'.$albumItemObj->image->type );
+			$fullSize = $albumItemObj->getDimensions(1);
+			$response->setProperty( 'image.raw_width.'.$tmpImageNum, $fullSize[0] );
+			$response->setProperty( 'image.raw_height.'.$tmpImageNum, $fullSize[1] );
+
+			if ($albumItemObj->isResized()) {
+				$response->setProperty( 'image.resizedName.'.$tmpImageNum, $albumItemObj->image->resizedName.'.'.$albumItemObj->image->type );
+				$resizedSize = $albumItemObj->getDimensions(0);
+				$response->setProperty( 'image.resized_width.'.$tmpImageNum, $resizedSize[0] );
+				$response->setProperty( 'image.resized_height.'.$tmpImageNum, $resizedSize[1] );
+			}
+
+			$response->setProperty( 'image.thumbName.'.$tmpImageNum, $albumItemObj->thumbnail->name.'.'.$albumItemObj->image->type );
+			$thumbnailSize = $albumItemObj->getThumbDimensions();
+			$response->setProperty( 'image.thumb_width.'.$tmpImageNum, $thumbnailSize[0] );
+			$response->setProperty( 'image.thumb_height.'.$tmpImageNum, $thumbnailSize[1] );
+
 			$response->setProperty( 'image.raw_filesize.'.$tmpImageNum, $albumItemObj->getFileSize(1) );
 			$response->setProperty( 'image.caption.'.$tmpImageNum, $albumItemObj->caption );
 			if(count($albumItemObj->extraFields)) { //if there are extra fields for this image
@@ -559,7 +574,8 @@ function add_album( &$myAlbum, &$album_index, $parent_index, &$response ){
 	$response->setProperty( "album.summary.$album_index", $myAlbum->fields['summary'] );
 	$response->setProperty( "album.parent.$album_index", $parent_index );
 	$response->setProperty( "album.resize_size.$album_index", $myAlbum->fields['resize_size'] );
-	
+	$response->setProperty( "album.thumb_size.$album_index", $myAlbum->fields['thumb_size'] );
+
 	// write permissions
 	$can_add = $gallery->user->canAddToAlbum($myAlbum) ? "true" : "false";
 	$can_write = $gallery->user->canWriteToAlbum($myAlbum) ? "true" : "false";
