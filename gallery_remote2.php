@@ -454,6 +454,7 @@ function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 							$tmpImageNum++;
 
 							$response->setProperty( 'album.name.'.$tmpImageNum, $albumItemObj->getAlbumName() );
+							$response->setProperty( 'album.hidden.'.$tmpImageNum, $myAlbum->isHiddenRecurse()?'yes':'no' );
 						}
 					}
 				}
@@ -468,6 +469,8 @@ function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 				    $tmpImageNum++;
 		 
 					$response->setProperty( 'album.name.'.$tmpImageNum, $myAlbum->fields['name'] );
+					// root albums can't be hidden
+					$response->setProperty( 'album.hidden.'.$tmpImageNum, 'no' );
 				}
 			}
 		}
