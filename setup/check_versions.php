@@ -36,13 +36,13 @@ list($oks, $errors, $warnings)=checkVersions(false);
 if  ($errors) { ?>
 	<p>
 	<span class="errorlong">
-       	<?php print sprintf(_("%s older than expected."), 
+       	<?php print sprintf(_("%s missing, corrupt or older than expected."), 
 			pluralize_n(count($errors), _("1 file"), 
 				_("files"), _("No files"))); ?>
 	</span>
 	<?php if ($show_details) { ?>
 		<p>
-	       	<?php print sprintf(_("The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version."), Gallery()); ?>
+	       	<?php print sprintf(_("There are problems with the following files.  Please correct them before configuring %s."), Gallery()); ?>
 	       	<br>
 		<?php
 	       	foreach ($errors as $file => $error) {
