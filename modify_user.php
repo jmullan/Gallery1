@@ -74,7 +74,7 @@ if (!$tmpUser) {
 $fullname = $tmpUser->getFullname();
 $email = $tmpUser->getEmail();
 
-$canCreateChoices = array(1 => "true", 0 => "false");
+$canCreateChoices = array(1 => "yes", 0 => "no");
 $canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;
 
 ?>
