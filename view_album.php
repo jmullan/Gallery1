@@ -88,6 +88,7 @@ $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
 
 $breadCount = 0;
+$breadtext = array();
 $pAlbum = $gallery->album;
 do {
   if (!strcmp($pAlbum->fields["returnto"], "no")) {
