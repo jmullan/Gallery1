@@ -529,3 +529,11 @@ function isDebugging() {
 	global $app;
 	return !strcmp($app->debug, "yes");
 }
+
+function addUrlArg($url, $arg) {
+	if (strchr($url, "?")) {
+		return "$url&$arg";
+	} else {
+		return "$url?$arg";
+	}
+}
