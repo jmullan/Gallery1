@@ -38,7 +38,10 @@ class PostNuke_User extends Abstract_User {
 		 * the uid is numeric.
 		 */
 	        if (ereg("[^0-9]", $uid)) {
-			$this = new NobodyUser();
+			$newuser = new NobodyUser();
+			foreach ($newuser as $k => $v) {
+				$this->$k = $v;
+			}
 			return;
 		}
 
