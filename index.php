@@ -33,6 +33,11 @@ global $name;
 global $option;
 global $MOS_GALLERY_PARAMS;
 
+// Mambo calls index.php directly for popups - we need to make
+// sure that the option var has been extracted into the environment
+// otherwise it just won't work.
+$option = getRequestVar('option');
+
 /* Detect PHP-Nuke, Postnuke, phpBB2 or Mambo and react accordingly.
  * Gallery can run embedded in GeekLog too, but to catch this we need
  * config.php * Therefore we have to detect GeeLog in init.php.
