@@ -81,13 +81,14 @@ if [ $1 = "-all" ] ; then
 		echo "$tab No valid .po files found"
 		exit 0
 	}
-	all_po=$(find ../locale -iname ??_*-*.po)
+	all_po=$(find ../locale -iname "??_*-*.po")
 else
 #just use the one the user gave as parameter
 	echo "only $2"
-	all_po=$(find ../locale/$2 -iname ??_*-*.po)
+	all_po=$(find ../locale/$2 -iname "??_*-*.po")
 fi
 
+echo $2
 for po_file in $all_po ; do
 	echo 
 	echo "Found : $po_file"

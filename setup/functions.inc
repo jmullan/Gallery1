@@ -538,7 +538,7 @@ function check_gettext()
 	$fail = array();
 	$success = array();
 	$warn = array();
-	if (gettext_installed() {
+	if (gettext_installed()) {
 		$success[] = _("PHP has <b>GNU gettext</b> support.");
 	} else {
 		$fail["fail-gettext"] = 1;
@@ -735,6 +735,14 @@ function check_locale() {
 		} else {
 			$unavailable_locales[]=$locale;
 		}
+	}
+
+
+	// Set locale correct back      
+	if (isset($gallery->locale)) {
+		setlocale(LC_ALL,$gallery->locale);  
+	} else {
+		setlocale(LC_ALL,"");
 	}
 
 	return array(
