@@ -2354,6 +2354,18 @@ function galleryDocs($class='') {
 	return NULL;
 }
 
+function getImVersion() {
+        global $gallery;
+        $version = array();
+
+        exec($gallery->app->ImPath .'/convert -version', $results);
+
+        $pieces = explode(' ', $results[0]);
+        $version = $pieces[2];
+
+        return $version;
+}
+
 function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 	global $gallery;
 
@@ -2379,15 +2391,30 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 				}
 			}
 			break;
+
 		case "ImageMagick":
+			/* we just need the first digit = major version */
+			$ImVersion = floor(getImVersion());
+			// Set the keepProfiles parameter based on the version
+			// of ImageMagick being used.  6.0.0 changed the
+			// parameters again.
+			if ($ImVersion == '5' && $keepProfiles) {
+				$keepProfiles = ' +profile \'*\' ';
+			} elseif ($ImVersion == '6' && $keepProfiles) {
+				$keepProfiles = ' -strip ';
+			} else {
+				$keepProfiles = '';
+			}
+
 			/* Preserve comment, EXIF data if a JPEG if $keepProfiles is set. */
 			$err = exec_wrapper(ImCmd('convert', "-quality $quality "
 					. ($target ? "-size ${target}x${target} " : '')
-					. ($keepProfiles ? ' ' : ' +profile \'*\' ')					
+					. $keepProfiles
 					. $srcFile
 					. ($target ? " -geometry ${target}x${target} " : ' ')
 					. $outFile));
 			break;
+
 		default:
 			if (isDebugging())
 				echo "<br>" . _("You have no graphics package configured for use!")."<br>";
