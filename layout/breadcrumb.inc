@@ -9,15 +9,14 @@ if ($breadcrumb["bordercolor"]) {
 }
 $pixelImage = '<img src="' . getImagePath('pixel_trans.gif') .'" width="1" height="1" alt="transpixel">';
 
-?>
+$style="border-color: $borderIn; border-width:1px; border-style: solid;";
 
-<?php 
 if (!isset($navigator)) {
 	$navigator["fullWidth"] = 100;
 	$navigator["widthUnits"] = "%";
 }
 ?>
-<table width="<?php echo $navigator["fullWidth"] . $navigator["widthUnits"] ?>" border="0" cellspacing="0" cellpadding="0" class="modnavboxmid">
+<table style="<?php echo $style; ?>" width="<?php echo $navigator["fullWidth"] . $navigator["widthUnits"] ?>" border="0" cellspacing="0" cellpadding="0" class="modnavboxmid">
 <tr> 
 <?php
 	if ($gallery->user->isLoggedIn()) {
@@ -25,14 +24,14 @@ if (!isset($navigator)) {
 		if (!$name) {
 			$name = $gallery->user->getUsername();
 		}
-		echo "\n\t". '<td style="padding-left:5px;" class="bread" height="18">'. _("Logged in as:") .' '. $name .'</td>';
+		echo "\t". '<td style="padding-left:5px;" class="bread" height="18">'. _("Logged in as:") .' '. $name .'</td>';
 	}
 ?>
+	
 	<td class="bread" height="18" align="right">
 <?php
-
 for ($i = 0; isset($breadcrumb["text"][$i]); $i++) {
-	echo "&nbsp;".$breadcrumb["text"][$i]."&nbsp;";
+	echo "\t\t&nbsp;".$breadcrumb["text"][$i]."&nbsp;\n";
 }
 ?>
 	</td> 
