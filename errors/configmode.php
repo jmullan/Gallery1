@@ -31,3 +31,5 @@ Then just reload this page and all should be well.
 <? include("errors/configure_help.php"); ?>
 
 </table>
+</body>
+</html>

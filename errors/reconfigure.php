@@ -21,3 +21,5 @@ Then launch the <a href="<?=$GALLERY_BASEDIR?>setup/index.php">configuration wiz
 <? include("errors/configure_help.php"); ?>
 
 </table>
+</body>
+</html>
