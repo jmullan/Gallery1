@@ -63,7 +63,7 @@ if ($gallery->session->albumName && isset($index)) {
 			$old_parent=$gallery->album->fields['parentAlbumName'];
 			$gallery->album->fields['parentAlbumName'] = $newAlbum;
 			if ($old_parent== 0) {
-				$old_parent="ROOT";
+				$old_parent=".root";
 			}
 			$gallery->album->save(array(i18n("Album moved from %s to %s"),
 						$old_parent,

@@ -1548,7 +1548,7 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $r
 	// create a ROOT option for the user to move the 
 	// album to the main display
 	if ($gallery->user->canCreateAlbums() && $rootDisplay && !$readOnly) {
-		echo "<option value=ROOT>". _("Top Level") ."</option>";
+		echo "<option value=\".root\">". _("Top Level") ."</option>";
 	}
 
 	// display all albums that the user can move album to
