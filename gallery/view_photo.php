@@ -532,7 +532,7 @@ if (!$gallery->album->isMovie($id)) {
 		}
 		switch (input) {
 		case 'ezprints':
-			document.ezPrintsForm.AlbumURL.value=document.location;
+			document.ezPrintsForm.returnpage.value=document.location;
 			document.ezPrintsForm.submit();
 			break;
 		case 'fotokasten':
@@ -814,10 +814,7 @@ echo viewComments($index, $gallery->user->canAddComments($gallery->album)) ?>
 </form>
 <?php } ?> 
 <?php if (isset($printEZPrintsForm)) { ?>
-<form method="post" name="ezPrintsForm" action="http://gallery.mye-pix.com/ecomm/default.asp">
-  <input type="hidden" name="EntryType" value="SingleImage" >
-  <input type="hidden" name="PartnerID" value="440" >
-  <input type="hidden" name="PartnerPassword" value="Gallery1" >
+<form method="post" name="ezPrintsForm" action="http://gallery.mye-pix.com/partner.asp">
   <?php
      /* Print the caption on back of photo. If no caption,
       * then print the URL to this page. */
@@ -826,12 +823,14 @@ echo viewComments($index, $gallery->user->canAddComments($gallery->album)) ?>
         $imbkprnt = makeAlbumUrl($gallery->session->albumName, $id);
      }
   ?>
-  <input type="hidden" name="Title" value="<?php echo strip_tags($imbkprnt) ?>" >
-  <input type="hidden" name="Thumb" value="<?php echo $thumbImage ?>" >
-  <input type="hidden" name="Photo" value="<?php echo $rawImage ?>" >
-  <input type="hidden" name="AlbumURL" value="this-gets-set-by-javascript-in-onClick" >
-  <input type="hidden" name="ImageX" value="<?php echo $imageWidth ?>" >
-  <input type="hidden" name="ImageY" value="<?php echo $imageHeight ?>" >
+  <input type="hidden" name="count" value="1">
+  <input type="hidden" name="title0" value="<?php echo strip_tags($imbkprnt) ?>">
+  <input type="hidden" name="lo_res_url0" value="<?php echo $thumbImage ?>">
+  <input type="hidden" name="hi_res_url0" value="<?php echo $rawImage ?>">
+  <input type="hidden" name="returnpage" value="this-gets-set-by-javascript-in-onClick">
+  <input type="hidden" name="width0" value="<?php echo $imageWidth ?>">
+  <input type="hidden" name="height0" value="<?php echo $imageHeight ?>">
+  <input type="hidden" name="startwith" value="cart">
 </form>
 </td></tr>
 <?php } ?> 
