@@ -414,10 +414,10 @@ if (!$gallery->album->isMovie($id)) {
 				case 'shutterfly':
 					$printShutterflyForm = true;
 					break;
-				default:
-					break;
 				case 'fotoserve':
 					$printFotoserveForm = true;
+					break;
+				default:
 					break;
 				}
 				$selectCommand .= "<option value=\"$name\">${fullName[$name]}</option>";
@@ -437,10 +437,10 @@ if (!$gallery->album->isMovie($id)) {
 			case 'shutterfly':
 				$printShutterflyForm = true;
 				break;
-			default:
-				break;
 			case 'fotoserve':
 				$printFotoserveForm = true;
+				break;
+			default:
 				break;
 			}
 			if (!empty($name)) {
@@ -471,7 +471,7 @@ if (!$gallery->album->isMovie($id)) {
 			break;
 
 		case 'mpush':
-			window.open('http://mpush.msolutions.cc/req.php?account=<?php echo $gallery->app->defaults['mPUSHAccount'] ?>&image=<?php echo $rawImage ?>&caption=<?php echo urlencode($gallery->album->getCaption($index)) ?>','_MPUSH','width=640,height=420,titlebar=1,resizable=1,scrollbars=1');
+			window.open('http://mpush.msolutions.cc/req.php?account=<?php echo $gallery->app->default['mPUSHAccount'] ?>&image=<?php echo $rawImage ?>&caption=<?php echo urlencode($gallery->album->getCaption($index)) ?>','_MPUSH','width=640,height=420,titlebar=1,resizable=1,scrollbars=1');
 			break;
 		case 'fotoserve':
 			document.fotoserve.redirect.value=document.location;
