@@ -1759,7 +1759,6 @@ function getItemCaptureDate($file) {
 		$exifData = $return[1];
 		switch($exifSupported) {
                 	case 'exiftags':
-				echo "step1";
 				if (isset($exifData['Image Created'])) {
 					$tempDate = split(" ", $exifData['Image Created'], 2);
 				}
@@ -1771,21 +1770,18 @@ function getItemCaptureDate($file) {
         	                break;
         	}
 		if (isset($tempDate)) {
-			echo "2y";
 			$tempDay = strtr($tempDate[0], ':', '-');
 			$tempTime = $tempDate[1];
 
 			$itemCaptureTimeStamp = strtotime("$tempDay $tempTime");
 
 			if ($itemCaptureTimeStamp != 0) {
-				echo "step2yy";
 				$success = true;
 			}
 		}
 	}
 
 	if (!$success) { // we were not able to get the capture date from exif... use file creation time
-		echo "3n";
 		$itemCaptureTimeStamp = filemtime($file);
 	}
 
