@@ -1306,10 +1306,12 @@ function safe_serialize($obj, $file) {
 	} while (fs_file_exists($tmpfile));
 
 	if ($fd = fs_fopen($tmpfile, "wb")) {
-		fwrite($fd, serialize($obj));
+	        $buf = serialize($obj);
+		$bufsize = strlen($buf);
+		$count = fwrite($fd, $buf);
 		fclose($fd);
 
-		if (fs_filesize($tmpfile) == 0) {
+		if ($count != $bufsize || fs_filesize($tmpfile) != $bufsize) {
 			/* Something went wrong! */
 			$success = 0;
 		} else {

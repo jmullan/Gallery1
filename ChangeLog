@@ -1,3 +1,15 @@
+2003-06-15  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b21
+
+	* In session.php, attempt to force cookie support on if the server
+	  has turned it off.
+
+	* Added new <IfModule> lines to setup/.htaccess to cover the new sapi
+	  approach to installing PHP on Win32
+
+	* Improve safe_serialize() to actually pay attention to the number of
+	  bytes written and abort if we wrote the wrong count.  This will
+	  prevent data corruption when you run out of disk space.
+
 2003-06-12  Bharat Mediratta <bharat@menalto.com> 1.3.5-cvs-b20
 
 	* Yet another change to fix the Win32 unserialization problem.  The

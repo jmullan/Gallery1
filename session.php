@@ -35,6 +35,12 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
  */
 class GallerySession {}
 
+/*
+ * Turn on cookie support, if possible.  Don't complain on errors, in case
+ * safe mode has disabled this call.
+ */
+@ini_set('session.use_cookies', 1);
+
 if (session_id()) {
 	/* 
 	 * The session is being created externally.  This means that if
