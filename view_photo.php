@@ -66,13 +66,8 @@ if ($album->fields["textcolor"]) {
 }
 if ($album->fields["linkcolor"]) {
         $bodyAttrs .= " link={$album->fields[linkcolor]}";
+}
 
-if (!strcmp($album->fields["resize_size"], "off")) {
-        $mainWidth = 0;
-} else {
-	$mainWidth = $album->fields["resize_size"];
-}
-}
 #-- if borders are off, just make them the bgcolor ----
 if (!strcmp($album->fields["border"], "off")) {
         $bordercolor = $album->fields["bgcolor"];
@@ -82,6 +77,21 @@ if (!strcmp($album->fields["border"], "off")) {
         $borderwidth = $album->fields["border"];
 }
 
+if (!strcmp($album->fields["resize_size"], "off")) {
+        $mainWidth = 0;
+} else {
+	$mainWidth = $album->fields["resize_size"] + ($borderwidth*2);
+
+
+}
+
+#-- breadcrumb text ---
+if (strcmp($album->fields["returnto"], "no")) {
+	$breadtext[0] = "Gallery: <a href=../albums.php>The Gallery</a>";
+	$breadtext[1] = "Album: <a href=../view_album.php>".$album->fields["title"]."</a>";
+} else {
+	$breadtext[0] = "Album: <a href=../view_album.php>".$album->fields["title"]."</a>";
+}
 ?>
 
 <body <?=$bodyAttrs?>>
@@ -90,50 +100,45 @@ if (!strcmp($album->fields["border"], "off")) {
 
 <center>
 <!-- Top Nav Bar -->
-<table border=0 width=<?=$mainWidth?>>
+<table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
 <tr>
-<td width=<?=$mainWidth/3?> align=left>
-<font size=+0 face=<?=$album->fields["font"]?>>
+<td>
 <?
-if ($first) {
-        echo "<< <a href=../view_album.php>back to index</a>";
-} else {
-        echo "<a href=".$album->getPhotoId($prev)."$fullTag><< previous</a>";
-}      
+$breadcrumb["text"] = $breadtext;
+$breadcrumb["bordercolor"] = $bordercolor;
+$breadcrumb["top"] = true;
+
+include("layout/breadcrumb.inc");
 ?>
 </td>
-<td width=<?=$mainWidth/3?> align=center>
-<font size=+0 face=<?=$album->fields["font"]?>>
-<?=$index?> of <?=$numPhotos?>
-
-
-<?
-if (!$album->isMovie($index)) {
-	if ($album->isResized($index)) {
-		if ($full) {
-			echo("(<a href=$id?full=0>show scaled</a>)");
-		} else {
-			echo("(<a href=$id?full=1>show full size</a>)");
-		}
-	}      
-} 
-?>
-
-</td>
-<td width=<?=$mainWidth/3?> align=right>
-<font size=+0 face=<?=$album->fields["font"]?>>
-<?
-if ($last) {
-        echo "<a href=../view_album.php>back to index</a> >>";
-} else {
-	echo "<a href=".$album->getPhotoId($next)."$fullTag>next >></a>";
-}      
-?>
-</td>
-
 </tr>
+<tr>
+<td>
+<?
+$navigator["page"] = $index;
+$navigator["pageVar"] = "index";
+$navigator["maxPages"] = $numPhotos;
+$navigator["fullWidth"] = "100";
+$navigator["widthUnits"] = "%";
+$navigator["url"] = ".";
+#if ($full) {
+#	$navigator["url"] .= "?full=0";
+#} else {
+#	$navigator["url"] .= "?full=1";
+#}
+$navigator["spread"] = 5;
+$navigator["bordercolor"] = $bordercolor;
+$navigator["noIndivPages"] = true; 
+
+include("layout/navphoto.inc");
+?>
+<br>
+</td>
+</tr>
+
+
 </table>
-<table border=0 width=<?=$mainWidth?>>
+<table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
 <!-- image row -->
 <tr>
 <td colspan=3 align=center>
@@ -194,6 +199,19 @@ if ($openAnchor) {
 <tr>
 <td colspan=3 align=center>
 <?= editCaption($album, $index, $edit) ?>
+<br>
+<br>
+</td>
+</tr>
+</table>
+<table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
+<tr>
+<td>
+<?
+include("layout/navphoto.inc");
+$breadcrumb["top"] = false;
+include("layout/breadcrumb.inc");
+?>
 </td>
 </tr>
 </table>
@@ -213,19 +231,4 @@ Admin: <a href=<?= popup("../resize_photo.php?index=$index") ?>>[resize photo]</
 <? 
 } 
 ?>
-
-<tr>
-<td colspan=3 align=left>
-<font size=+0 face=<?=$album->fields["font"]?>>
-<< <a href=../view_album.php>back to <b><?= $album->fields["title"] ?></b> index</a>
-</td>
-</tr>
-
-<tr>
-<td colspan=3 align=left>
-<font size=+0 face=<?=$album->fields["font"]?>>
-<< <a href=../albums.php>back to <b>The Gallery</b></a>
-</td>
-</tr>
-
 </table>
