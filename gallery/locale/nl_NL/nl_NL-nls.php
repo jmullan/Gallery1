@@ -19,9 +19,10 @@
  *
  * $Id$
  *
- * Version: 1.4.4-pl2
+ * Version: 1.4.4-pl2-u1
  */
-/**
+ 
+/*
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
@@ -32,27 +33,33 @@
  */
 
 
-/**
- ** Native languagename
- **/
+/*
+** Native languagename
+*/
 	$nls['language']['nl_NL'] = 		'Nederlands';
 
-/**
- ** Alias for languages with different browser and gettext codes
- **/
+/*
+** Alias for languages with different browser and gettext codes
+**/
 
 	$nls['alias']['nl'] = 			'nl_NL';
 
-/**
- ** Alias for languages which we substitte or send by NUKE
- **/
+/*
+** Alias for languages which we substitte or send by NUKE
+*/
 	$nls['alias']['dutch'] = 		'nl_NL' ;
+	$nls['alias']['nld'] =                  'nl_NL' ;
 	$nls['alias']['nl_BE'] = 		'nl_NL' ;
 	$nls['alias']['nl_NL.ISO8859-1'] =	'nl_NL' ;
 	
-/**
- ** phpNuke
- **/
+/*
+** phpNuke
+*/
 	$nls['phpnuke']['nl_NL'] = 		'dutch';
 
+/*
+** postNuke
+*/
+
+	$nls['postnuke']['nl_NL'] =             'nld';
 ?>
