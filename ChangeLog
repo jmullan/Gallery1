@@ -1,3 +1,30 @@
+2001-06-27  Bharat Mediratta  <bharat@menalto.com>
+
+	* Completely change the way that we handle session variables.  In
+	  the past we allowed them to be globals, but unfortunately there
+	  were conflicts in the global namespace with applications such as
+	  PHP-nuke.  Instead I've taken all global/session variables and
+	  put them inside a global stdClass called $gallery.  Let us all
+	  pray that no major PHP project uses that variable (if they do,
+	  we can rename it but it will be painful).  The upshot: Gallery
+	  is now one giant step closer to working with PHP-nuke
+
+	* Created the UPGRADING doc.  It needs more content.
+
+	* Separated the .htaccess and mod_rewrite code in the config
+	  wizard.  If you don't have the appropriate overrides set in
+	  Apache, you may get a 403 when you first try to run the wizard.
+	  You can fix this by removing the php_value lines from the
+	  setup/.htaccess file.  In the past, the wizard would *still* put
+	  php_value lines in the top level .htaccess file causing gallery
+	  to continue to malfunction.  Now it won't do that.
+
+	* Integrated Jared (hogalot)'s patch that allows you to upload
+	  files from a local directory.  I had to hack it up so that it
+	  presents you with a list of the images that it has found, so
+	  that you can pick and choose the ones that you want.  It's very,
+	  very fast! 
+
 2001-06-25  Chris Smith <chris@jacko.com>
 
 	* Added the option to see jpeg image EXIF data. This excellent
