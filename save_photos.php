@@ -32,6 +32,7 @@ if ($url) {
 	$id = fopen($url, "r");
 	$od = fopen($urlFile, "w");
 	echo ("Downloading<br>$url<br>"); flush(); 
+	$msgcount++;
 	if ($id && $od) {
 		while (!feof($id)) {
 			fwrite($od, fread($id, 65536));
@@ -42,14 +43,14 @@ if ($url) {
 	}
 
 	/* Tack it onto userfile */
-	$userfile[] = $file;
-	$userfile[] = "";
+	$userfile_name[] = $file;
 	$userfile[] = $urlFile;
 }
 
 ?>
 <br>
 Processing files...
+</center>
 <ul>
 <?
 
@@ -61,6 +62,11 @@ while (sizeof($userfile)) {
 	$tag = strtolower($tag);
 
 	if (!strcmp($tag, "zip")) {
+		if (!$app->feature["zip_support"]) {
+			echo "<li> Skipping $name (ZIP support not enabled)";
+			$msgcount++;
+			continue;
+		}
 		/* Figure out what files we can handle */
 		exec("$app->zipinfo -1 $file", $files);
 		foreach ($files as $pic_path) {
@@ -70,13 +76,14 @@ while (sizeof($userfile)) {
 
 			if (acceptableFormat($tag)) {
 				exec("$app->unzip -j -o $file '$pic_path' -d $app->tmpDir");
-				process("$app->tmpDir/$pic", $tag);
+				process("$app->tmpDir/$pic", $tag, $pic);
 				unlink("$app->tmpDir/$pic");
 			}
 		}
 	} else {
 		if ($name) {
-			process($file, $tag);
+			process($file, $tag, $name);
+			$msgcount++;
 		}
 	}
 }
@@ -86,12 +93,11 @@ if ($urlFile) {
 	unlink($urlFile);
 }
 
-function process($file, $tag) {
+function process($file, $tag, $name) {
 	global $album;
 
 	set_time_limit(30);
 	if (acceptableFormat($tag)) {
-		$name = basename($file);
 		echo "<li> Adding $name";
 		$album->addPhoto($file, $tag);
 	} else {
@@ -101,5 +107,15 @@ function process($file, $tag) {
 }
 
 $album->save();
-dismissAndReload();
+if (!$msgcount) {
+	dismissAndReload();
+} else {
+	reload();
+?>
+	<center>
+	<form>
+	<input type=submit value="Dismiss" onclick='parent.close()'>
+	</form>
+<?
+}
 ?>
