@@ -226,7 +226,7 @@ if ($searchstring) {
 	echo "</table>";
 	
 	if (sizeof($skip) > 0) {
-		echo error_format(_("Some albums not searched as they require upgrading to the latest version of gallery first"));
+		echo error_format(sprintf(_("Some albums not searched as they require upgrading to the latest version of %s first"),Gallery()));
 		if ($gallery->user->isAdmin()) {
 			print ":<br>";
 			echo popup_link(_("upgrade all albums"), "upgrade_album.php");

@@ -514,7 +514,7 @@ function check_gallery_languages()
 		$fail["fail-gallery-languages"] = _("No languages found."); // should never occur!
 	} else if (sizeof($languages) < sizeof($nls['languages'])) {
 		$fail["fail-gallery-languages"] 
-			= sprintf(_("Only %d of %d languages are available.  If you want other languages, download a fresh copy of %s from %s."),
+			= sprintf(_("Only %d of possible %d languages are available.  If you want the missing languages, download a fresh copy of %s from %s.""),
 					sizeof($languages),
 					sizeof($nls['languages']),
 					Gallery(),
