@@ -101,7 +101,7 @@ if (isset($allowChange["default_language"]) && $allowChange["default_language"])
 		$hidden[]=array('defaultLanguage', $gallery->app->default_language);
 	}
 }
-if ($allowChange["create_albums"] === true) { ?>
+if (isset($allowChange["create_albums"]) && $allowChange["create_albums"] === true) { ?>
 <tr>
 	<td><?php echo _("User can create albums") ?></td>
 	<td><?php echo drawSelect("canCreate", $canCreateChoices, $canCreate, 1); ?></td>
