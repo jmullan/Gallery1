@@ -28,7 +28,7 @@ if (!isset($gallery->version)) {
 
 // Security check
 if (!$gallery->user->isAdmin()) {
-	header("Location: " . makeGalleryHeaderUrl());
+	header("Location: " . makeAlbumHeaderUrl());
 	exit;
 }
 
@@ -72,7 +72,7 @@ function findOrphans() {
 	
 		$parent = $album->getParentAlbum();
 	
-		if (!isset($parent)) {
+		if (!isset($parent) || !isset($parent->fields['name'])) {
 			// Orphaned, but the parent album is missing - link it to root
 			$orphaned[$album->fields['name']] = 0;
 			continue;
@@ -111,35 +111,35 @@ doctype();
 <?php  
         includeHtmlWrap("gallery.header");
 ?>
-<p align="center" class="popuphead"><?php echo _("Orphan Elements") ?></p>
+<p align="center" class="popuphead"><?php echo _("Orphaned Albums") ?></p>
 
 <?php
 $orphans = findOrphans();
 
 if (!empty($orphans)) {
 	if (!isset($update)) { ?>
-	<table>
-	<tr><th><?php echo _("Orphaned Album") ?></th><th>&nbsp;</th><th><?php echo _("Parent Album") ?></th></tr>
+		<table>
+		<tr><th><?php echo _("Orphaned Album") ?></th><th>&nbsp;</th><th><?php echo _("Parent Album") ?></th></tr>
 <?php
 		foreach ($orphans as $childname => $parentname) {
 			echo "\t<tr><td>" . $childname . "</td><td>=&gt;</td><td>" . 
 			     ($parentname ? $parentname : _("Gallery Root")) . "</td></tr>\n";
 		}
 ?>
-	</table>
-<?php echo makeFormIntro("tools/find_orphans.php", array("method" => "GET")); ?>
-	<input type="hidden" name="update" value="1">
-	<input type="submit" value="<?php echo _("Correct Them!") ?>">
-	</form>	
+		</table>
+		<?php echo makeFormIntro("tools/find_orphans.php", array("method" => "GET")); ?>
+		<input type="hidden" name="update" value="1">
+		<input type="submit" value="<?php echo _("Correct Them!") ?>">
+		</form>	
 <?php 
-} // !isset(update) 
+	} // !isset(update) 
 	else { 
 		attachOrphans($orphans);
 		echo '<a href="' . makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>';
 	}
 } else {
 	// No Orphans
-	echo "\n<p align=\"center\">". _("There are no orphan Elements.") . "</p>";
+	echo "\n<p align=\"center\">". _("There are no orphaned albums in this Gallery.") . "</p>";
 }
 ?>
 <hr>
