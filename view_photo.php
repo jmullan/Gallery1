@@ -135,7 +135,7 @@ $top = $gallery->app->photoAlbumURL;
 
 $bordercolor = $gallery->album->fields["bordercolor"];
 $borderwidth = $gallery->album->fields["border"];
-if (!strcmp($borderwidth, "off")) {
+if ($borderwidth == 0) {
 	$borderwidth = 1;
 }
 
@@ -501,7 +501,7 @@ includeLayout('navphoto.inc');
 includeLayout('navtableend.inc');
 
 #-- if borders are off, just make them the bgcolor ----
-if (!strcmp($gallery->album->fields["border"], "off")) {
+if ($gallery->album->fields["border"] == 0) {
 	$bordercolor = $gallery->album->fields["bgcolor"];
 }
 if ($bordercolor) {

@@ -67,24 +67,21 @@ if (!empty($albumName)) {
 if (empty($albumName)) {
 	$album = null;
 	$recursive = true;
-	$number = (int)$gallery->app->gallery_slideshow_length;
-	$random = ($gallery->app->gallery_slideshow_type == "random");
-	$loop = ($gallery->app->gallery_slideshow_loop == "yes");
-	$borderColor = $gallery->app->default["bordercolor"];
-	$borderwidth = 1;
+	$number		= (int)$gallery->app->gallery_slideshow_length;
+	$random		= ($gallery->app->gallery_slideshow_type == "random");
+	$loop		= ($gallery->app->gallery_slideshow_loop == "yes");
+	$borderColor	= $gallery->app->default["bordercolor"];
+	$borderwidth	= $gallery->app->default["border"];
 } else {
-	$recursive = ($album->fields["slideshow_recursive"] == "yes");
-	$loop = ($album->fields["slideshow_loop"] == "yes");
-	$random = ($album->fields["slideshow_type"] == "random");
-	$number = (int)$album->fields["slideshow_length"];
-
-	$borderColor = $gallery->album->fields["bordercolor"];
-	$borderwidth = $gallery->album->fields["border"];
-	if (!strcmp($borderwidth, "off")) {
-		$borderwidth = 1;
-	}
-	$bgcolor = $gallery->album->fields['bgcolor'];
+	$recursive	= ($album->fields["slideshow_recursive"] == "yes");
+	$loop		= ($album->fields["slideshow_loop"] == "yes");
+	$random		= ($album->fields["slideshow_type"] == "random");
+	$number		= (int)$album->fields["slideshow_length"];
+	$borderColor	= $gallery->album->fields["bordercolor"];
+	$borderwidth	= $gallery->album->fields["border"];
+	$bgcolor	= $gallery->album->fields['bgcolor'];
 }
+
 
 // in offline mode, only high is available, because it's the only
 // one where the photos can be spidered...

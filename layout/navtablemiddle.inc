@@ -1,5 +1,5 @@
 <?php /* $Id$ */ ?>
-    </td>
-  </tr>
-  <tr>
-    <td class="navtableborderend">
+	</td>
+</tr>
+<tr>
+	<td class="navtableborderend">

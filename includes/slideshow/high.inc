@@ -26,7 +26,7 @@ function slideshow_initialize()
 	global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
 			$album, $recursive, $number, $random, $loop, $borderColor, $borderwidth, $bgcolor,
 			$url, $full_urls, $urls, $caption, $captions, $photo_count, $title;
-			
+
     // default settings ---
     $defaultLoop = 0;
     $defaultTransition = 0;
@@ -491,13 +491,13 @@ function slideshow_controlPanel()
         ?>
 <form name="TopForm">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="modnavboxmid">
-  <tr>
-    <td colspan="3"><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td height="25" width="1"><?php echo $pixelImage ?></td>
-    <td align="left" valign="middle">
-    <span class=admin>
+<tr>
+	<td colspan="3"><?php echo $pixelImage ?></td>
+</tr>
+<tr>
+	<td height="25" width="1"><?php echo $pixelImage ?></td>
+	<td align="left" valign="middle">
+	<span class=admin>
 
 <?php
         echo "&nbsp;<a class=\"admin\" href='#' onClick='stopOrStart(); return false;'>[<span id='stopOrStartText'>" . _("stop") . "</span>]</a>";
@@ -548,13 +548,13 @@ function slideshow_controlPanel()
     <?php } 
 
         ?>
-    </span>
-    </td>
-    <td width="1"><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td colspan="3"><?php echo $pixelImage ?></td>
-  </tr>
+	</span>
+	</td>
+	<td width="1"><?php echo $pixelImage ?></td>
+</tr>
+<tr>
+	<td colspan="3"><?php echo $pixelImage ?></td>
+</tr>
 </table>
 </form>
 <?php
@@ -571,23 +571,15 @@ function slideshow_controlPanel()
 
             ?>
 
-<table width=1% border=0 cellspacing=0 cellpadding=0>
-  <tr bgcolor="<?php echo $borderColor ?>">
-    <td colspan=3 height=<?php echo $borderwidth ?>><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderwidth ?>><?php echo $pixelImage ?></td>
-    <script language="JavaScript">
-    firstPhotoURL = document.getElementById("photo_urls_" + 1).href;
-    document.write("<td><img border=0 src=\"");
-    document.write(firstPhotoURL);
-    document.write("\" name=slide></td>");
-    </script>
-    <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderwidth ?>><?php echo $pixelImage ?></td>
-  </tr>
-  <tr bgcolor="<?php echo $borderColor ?>">
-    <td colspan=3 height=<?php echo $borderwidth ?>><?php echo $pixelImage ?></td>
-  </tr>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td><script language="JavaScript">
+		firstPhotoURL = document.getElementById("photo_urls_" + 1).href;
+		document.write("<img border=<?php echo $borderwidth ?> bgcolor=<?php echo $borderColor ?> src=\"");
+		document.write(firstPhotoURL);
+		document.write("\" name=slide>");
+	</script></td>
+</tr>
 </table>
 <br>
 

@@ -389,7 +389,7 @@ foreach ($defaults as $key => $val) {
 	}
 	if (isset($val["type"]) && $val["type"] == "separator") continue;
 
-	if (!$$key && !isset($defaults[$key]["optional"])) {
+	if (!isset($$key) && !isset($defaults[$key]["optional"])) {
 		$view .= error_missing($defaults[$key]["prompt"], $key);
 		$error++;
 	} else {

@@ -186,7 +186,7 @@ $album_title=$gallery->album->fields["title"];
 <tr>
 	<td class="popup"><?php echo _("Borders") ?></td>
 	<td>
-	<select name="border"><?php echo selectOptions($gallery->album, "border", array("off" => _("off"), 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 10 => 10, 15 => 15, 20 => 20)) ?>
+	<select name="border"><?php echo selectOptions($gallery->album, "border", array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 10 => 10, 15 => 15, 20 => 20)) ?>
 	</select>
 	</td>
 </tr>

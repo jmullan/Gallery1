@@ -364,21 +364,15 @@ function slideshow_image() {
 if ($photo_count > 0) {
 ?>
 
-<table width=1% border=0 cellspacing=0 cellpadding=0>
-  <tr bgcolor="<?php echo $borderColor ?>">
-    <td colspan=3 height=<?php echo $borderwidth ?>><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderwidth ?>><?php echo $pixelImage ?></td>
-    <script language="JavaScript">
-    document.write("<td><img border=0 src="+photo_urls[<?php echo $slide_index ?>]+" name=slide></td>");
-    </script>
-    <td bgcolor="<?php echo $borderColor ?>" width=<?php echo $borderwidth ?>><?php echo $pixelImage ?></td>
-  </tr>
-  <tr bgcolor="<?php echo $borderColor ?>">
-    <td colspan=3 height=<?php echo $borderwidth ?>><?php echo $pixelImage ?></td>
-  </tr>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td>
+	<script language="JavaScript">
+	    document.write("<img border==<?php echo $borderwidth ?> bgcolor=<?php echo $borderColor ?> src="+photo_urls[<?php echo $slide_index ?>]+" name=slide>");
+	</script>
+</tr>
 </table>
+
 <br>
 
 <script language="Javascript">

@@ -1016,7 +1016,7 @@ $defaults = array(
         ),
 	"bordercolor" => array(
 		"prompt" => _("Border color"),
- 		"desc" => sprintf(_("Default color of image borders. You can learn about %scolors%s here."),    
+ 		"desc" => sprintf(_("Default color of (image) borders. You can learn about %scolors%s here."),    
 			   '<a href="http://www.permadi.com/tutorial/websafecolor/" target="_blank">',
 			   '</a>'),
 			   // '  <a href="http://gotomy.com/color.html">' . 
@@ -1028,9 +1028,9 @@ $defaults = array(
 	),
 	"border" => array(
 		"prompt" => _("Border width"),
-		"desc" => _("Default width of image borders."),
+		"desc" => _("Default width of (image) borders."),
 		"value" => 1,
-		"choices" => array("off" => _("off"), 1 => 1, 2 => 2, 3 => 3)
+		"choices" => array(0 => 0, 1 => 1, 2 => 2, 3 => 3)
 	),
 	"font" => array(
 		"prompt" => _("Default Font"),

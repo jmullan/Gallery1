@@ -383,6 +383,12 @@ class Album {
 			$changed = 1;
 		}
 
+		if ($this->version <30) {
+			if ($this->fields["border"] == 'off') {
+				$this->fields["border"] = 0;
+			}
+		}
+
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
 			if ($gallery->app->use_exif) {

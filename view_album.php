@@ -520,7 +520,7 @@ if (!empty($adminOptionHTML)) {
 
 #-- if borders are off, just make them the bgcolor ----
 $borderwidth = $gallery->album->fields["border"];
-if (!strcmp($borderwidth, "off")) {
+if ($borderwidth == 0) {
 	$bordercolor = $gallery->album->fields["bgcolor"];
 	$borderwidth = 1;
 }
