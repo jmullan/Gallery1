@@ -95,7 +95,8 @@ while (sizeof($userfile)) {
 		}
 		/* Figure out what files we can handle */
 		list($files, $status) = exec_internal("$app->zipinfo -1 $file");
-		foreach (sort($files, SORT_NUMERIC) as $pic_path) {
+		sort($files, SORT_NUMERIC);
+		foreach ($files as $pic_path) {
 			$pic = basename($pic_path);
 			$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
 			$tag = strtolower($tag);
@@ -132,13 +133,13 @@ function process($file, $tag, $name) {
 		if (!$err) {
 			/* resize the photo if needed */
 			if ($album->fields["resize_size"] > 0 && isImage($tag)) {
-				my_flush();
 				$index = $album->numPhotos(1);
 				$photo = $album->getPhoto($index);
 				list($w, $h) = $photo->getDimensions();
 				if ($w > $album->fields["resize_size"] ||
 				    $h > $album->fields["resize_size"]) {
 					msg("- Resizing $name"); 
+					my_flush();
 					$album->resizePhoto($index, $album->fields["resize_size"]);
 				}
 			}
