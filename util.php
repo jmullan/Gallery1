@@ -53,7 +53,11 @@ function editCaption($album, $index, $edit) {
 }
 
 function error($message) {
-	echo "<span class=error>Error: $message<span>";
+	echo error_format($message);
+}
+
+function error_format($message) {
+	return "<span class=error>Error: $message<span>";
 }
 
 function popup($url) {
