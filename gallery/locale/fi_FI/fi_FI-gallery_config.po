@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-07-15 23:41+0200\n"
+"POT-Creation-Date: 2004-07-16 12:00+0200\n"
 "PO-Revision-Date: 2004-04-07 09:49+0200\n"
 "Last-Translator: Olli Salo <salo AT orssi DOT jyu DOT fi>\n"
 "Language-Team: Finnish <salo AT orssi DOT jyu DOT fi>\n"
@@ -50,9 +50,9 @@ msgid "Your Gallery settings were configured with an older version of Gallery, a
 msgstr "Galleriasi asetukset on tehty k&auml;ytt&auml;m&auml;ll&auml; Galleria-ohjelman vanhemman version asennusvelhoa. Asetukset eiv&auml;t n&auml;in ollen ole ajan tasalla. Ole hyv&auml; ja aja asennusvelho uudelleen! Ohjeet:"
 
 #: ../errors/reconfigure.php:24
-#, fuzzy, php-format
+#, php-format
 msgid "Launch the %sConfiguration Wizard%s."
-msgstr "K&auml;ynnist&auml; sitten %sasennusvelho%s"
+msgstr "K&auml;ynnist&auml; %sasennuswelho%s"
 
 #: ../errors/unconfigured.php:10
 msgid "Gallery Configuration Error"
@@ -69,15 +69,15 @@ msgstr "Sinun t&auml;ytyy korjata ne ennen kuin voit jatkaa eteenp&auml;in."
 
 #: ../errors/unconfigured.php:25
 msgid "1."
-msgstr ""
+msgstr "1."
 
 #: ../errors/unconfigured.php:26
 msgid "Create an empty file .htaccess and an empty file config.php"
-msgstr ""
+msgstr "Luo tyhj‰ .htaccess- ja tyhj‰ config.php-tiedosto"
 
 #: ../errors/unconfigured.php:28
 msgid "2."
-msgstr ""
+msgstr "2."
 
 #: ../errors/unconfigured.php:29
 msgid "Create an albums folder for your pictures and movies."
@@ -163,9 +163,8 @@ msgstr "Asennuksesi onnistui mutkitta! Jatka eteenp&auml;in!"
 
 #: ../setup/check.inc:168 ../setup/constants.inc:45 ../setup/constants.inc:155
 #: ../setup/defaults.inc:46 ../setup/defaults.inc:134
-#, fuzzy
 msgid "Next Step"
-msgstr "Seuraava sivu"
+msgstr "Seuraava askel"
 
 #: ../setup/check_imagemagick.php:30
 msgid "Gallery ImageMagick Check"
@@ -392,9 +391,8 @@ msgstr[0] "%s uudempi kuin mit‰ oli odotettavissa."
 msgstr[1] "%s uudempi kuin mit‰ oli odotettavissa."
 
 #: ../setup/check_versions.php:73 ../setup/check_versions.php:104
-#, fuzzy
 msgid "All files okay."
-msgstr "Kaikki %d testatut tiedostot ovat ajan tasalla."
+msgstr "Kaikki tiedostot ajan tasalla."
 
 #: ../setup/check_versions.php:80
 #, php-format
@@ -421,9 +419,8 @@ msgstr[0] "Kaikki %d testatut tiedostot ovat ajan tasalla."
 msgstr[1] "Kaikki %d testatut tiedostot ovat ajan tasalla."
 
 #: ../setup/check_versions.php:132
-#, fuzzy
 msgid "No files are up-to-date."
-msgstr "Seuraavat tiedostot ovat ajan tasalla."
+msgstr "Yksik‰‰n tiedosto ei ole ajan tasalla."
 
 #: ../setup/check_versions.php:138
 msgid "The following files are up-to-date."
@@ -613,9 +610,8 @@ msgid "Checking to see if you have the latest versions of all Gallery files."
 msgstr "Tarkistetaan, ett‰ sinulla on uusimmat versiot kaikista Gallerian tiedostoista."
 
 #: ../setup/config_data.inc:236
-#, fuzzy
 msgid "General settings"
-msgstr "Tarkastele asetuksia"
+msgstr "Yleiset asetukset"
 
 #: ../setup/config_data.inc:239
 msgid "Gallery Title"
@@ -639,9 +635,8 @@ msgid "Select a skin to use for Gallery. You now have a wide choice of &quot;ski
 msgstr "Valitse Galleriassa k‰ytett‰v‰ ulkoasu. Voit valita laajasta joukosta &quot;ulkoasuja&quot; jotka vaikuttavat jokaisen sivun ulkoasuun galleriassasi.  Voit pit‰‰ hauskaa kokeilemalla erilaisia ulkoasuja.  Valitse &quot;None&quot; k‰ytt‰‰ksesi version 1.4 ulkoasua."
 
 #: ../setup/config_data.inc:253
-#, fuzzy
 msgid "Default upload method"
-msgstr "Oletusfontti"
+msgstr "Oletustapa tiedostojen kopioimiselle palvelimeen"
 
 #: ../setup/config_data.inc:254
 msgid "Which method of uploading photos should be defaulted to for users who don't specify?"
@@ -649,19 +644,19 @@ msgstr ""
 
 #: ../setup/config_data.inc:255
 msgid "Form-based Upload"
-msgstr ""
+msgstr "Lomakepohjainen tiedostojen kopiointi"
 
 #: ../setup/config_data.inc:256
 msgid "Mini-Applet"
-msgstr ""
+msgstr "Mini-appletti"
 
 #: ../setup/config_data.inc:257
 msgid "Full-Applet"
-msgstr ""
+msgstr "T‰ys-appletti"
 
 #: ../setup/config_data.inc:258
 msgid "URL"
-msgstr ""
+msgstr "URL-osoite"
 
 #: ../setup/config_data.inc:268
 msgid "Locations and URLs"
@@ -935,9 +930,9 @@ msgid "Optional tools"
 msgstr "Valinnaiset tyˆkalut"
 
 #: ../setup/config_data.inc:505 ../setup/config_data.inc:517
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
-msgstr "Tiedostoj&auml;rjestelm&auml;n polku <b>unzip</b>-bin&auml;&auml;riin. T&auml;m&auml; tieto on valinnainen, joten jos sinulla ei ole ko. ohjelmaa, &auml;l&auml; huolehti t&auml;st&auml; turhaan."
+msgstr "Tiedostoj&auml;rjestelm&auml;n polku <b>%s</b>-bin&auml;&auml;riin. Esimerkiksi %s tai %s. T&auml;m&auml; tieto on valinnainen, joten jos sinulla ei ole ko. ohjelmaa, &auml;l&auml; huolehti t&auml;st&auml; turhaan."
 
 #: ../setup/config_data.inc:529
 #, fuzzy, php-format
@@ -1159,7 +1154,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:724
 msgid "Admin comment email"
-msgstr ""
+msgstr "Admin kommentointiosoite"
 
 #: ../setup/config_data.inc:729
 msgid "This is allows the &quot;admin&quot; account to get email whenever a change is made to any album"
@@ -1251,9 +1246,8 @@ msgid "This option will allow visitors to have your slideshows repeat until they
 msgstr "T‰m‰ asetus sallii vieralijoiden luupata diaesityst‰ kunnes he sulkevat sivun tai menev‰t toiselle sivulle. Valitse %s jos haluat s‰‰st‰‰ internetyhteyden kaistaa."
 
 #: ../setup/config_data.inc:788
-#, fuzzy
 msgid "Slideshow Mode"
-msgstr "Diaesityksen tyyppi"
+msgstr "Diaesitys-tila"
 
 #: ../setup/config_data.inc:789
 msgid "This allows you to set the default mode for the slideshow.  &quot;Java Applet&quot; requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. &quot;JavaScript&quot; is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."
@@ -1261,11 +1255,11 @@ msgstr ""
 
 #: ../setup/config_data.inc:790
 msgid "Java Applet"
-msgstr ""
+msgstr "Java-appletti"
 
 #: ../setup/config_data.inc:790
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
 #: ../setup/config_data.inc:800
 msgid "Comments"
@@ -1277,7 +1271,7 @@ msgstr "Valtuuta kommenttien j‰ttˆ"
 
 #: ../setup/config_data.inc:804
 msgid "This option will enable or disbale the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
-msgstr ""
+msgstr "T‰m‰ vaihtoehto antaa k‰ytt‰jillesi mahdollisuuden j‰tt‰‰ kommentteja. Jos asetat t‰m‰n arvon %quot;EI%quot; -arvoon, kaikki kommentointitoiminnot menev‰t pois p‰‰lt‰."
 
 #: ../setup/config_data.inc:812
 msgid "Indicate if there are comments available"
@@ -1347,11 +1341,11 @@ msgstr ""
 
 #: ../setup/config_data.inc:853
 msgid "Popup"
-msgstr ""
+msgstr "Ponnahdusikkuna"
 
 #: ../setup/config_data.inc:853
 msgid "Inside"
-msgstr ""
+msgstr "Sis‰puolella"
 
 #: ../setup/config_data.inc:857
 msgid "Maximum length of Comments"
@@ -1395,23 +1389,23 @@ msgstr ""
 
 #: ../setup/config_data.inc:893
 msgid "24 Hours"
-msgstr ""
+msgstr "24 tuntia"
 
 #: ../setup/config_data.inc:893
 msgid "12 Hours"
-msgstr ""
+msgstr "12 tuntia"
 
 #: ../setup/config_data.inc:893
 msgid "6 Hours"
-msgstr ""
+msgstr "6 tuntia"
 
 #: ../setup/config_data.inc:893
 msgid "1 Hour"
-msgstr ""
+msgstr "1 tunti"
 
 #: ../setup/config_data.inc:894
 msgid "30 Minutes"
-msgstr ""
+msgstr "30 minuuttia"
 
 #: ../setup/config_data.inc:897
 msgid "Debug mode"
@@ -1427,16 +1421,15 @@ msgstr ""
 
 #: ../setup/config_data.inc:903
 msgid "Developer Mode"
-msgstr ""
+msgstr "Kehitt‰j‰-tila"
 
 #: ../setup/config_data.inc:904
 msgid "Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."
 msgstr ""
 
 #: ../setup/config_data.inc:909
-#, fuzzy
 msgid "Use Syslog"
-msgstr "K‰yt‰ %s"
+msgstr "K‰yt‰ Syslogia"
 
 #: ../setup/config_data.inc:910
 msgid "Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"
@@ -1485,19 +1478,17 @@ msgstr ""
 
 #: ../setup/config_data.inc:947 ../setup/config_data.inc:988
 #: ../setup/config_data.inc:996 ../setup/config_data.inc:1004
-#, fuzzy
 msgid "Yes"
-msgstr "kyll&auml;"
+msgstr "kyll‰"
 
 #: ../setup/config_data.inc:948 ../setup/config_data.inc:989
 #: ../setup/config_data.inc:997 ../setup/config_data.inc:1005
-#, fuzzy
 msgid "No"
-msgstr "Huomio"
+msgstr "Ei"
 
 #: ../setup/config_data.inc:952
 msgid "RSS Content"
-msgstr ""
+msgstr "RSS-sis‰ltˆ"
 
 #: ../setup/config_data.inc:953
 msgid "Specifies which information is to be included in your RSS feed."
@@ -1505,33 +1496,31 @@ msgstr ""
 
 #: ../setup/config_data.inc:955
 msgid "Basic information only"
-msgstr ""
+msgstr "Vain perustiedot"
 
 #: ../setup/config_data.inc:956
-#, fuzzy
 msgid "Album highlight"
-msgstr "Albumin diaesitys"
+msgstr "Albumin kansikuva"
 
 #: ../setup/config_data.inc:957
 msgid "All image thumbnails"
-msgstr ""
+msgstr "Kaikki valokuvien esikatselukuvat"
 
 #: ../setup/config_data.inc:958
 msgid "All image thumbnails and captions"
-msgstr ""
+msgstr "Kaikki valokuvien esikatselukuvat ja kuvatekstit"
 
 #: ../setup/config_data.inc:962
-#, fuzzy
 msgid "RSS Highlight"
-msgstr "Esikatselukuvan koko"
+msgstr "RSS:n esikatselukuva"
 
 #: ../setup/config_data.inc:963
 msgid "Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."
-msgstr ""
+msgstr "M‰‰rit‰, mik‰ albumi n‰ytet‰‰n kaikkien syˆttˆjen ikonina: tyhj‰ kentt‰ tarkoittaa, ettei ole olemassa oletusarvoista kansikuvaa. '*'  k‰ytt‰‰ viimeisimm‰ksi p‰ivitetty‰ albumin kansikuvaa. Jos m‰‰rit‰t albuminimen, Galleria k‰ytt‰‰ ko. albumin kansikuvaa."
 
 #: ../setup/config_data.inc:969
 msgid "Maximum Albums Returned"
-msgstr ""
+msgstr "Palautettavien albumien maksimim‰‰r‰"
 
 #: ../setup/config_data.inc:970
 msgid "This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."
@@ -1550,9 +1539,8 @@ msgid "Display Visible Albums Only"
 msgstr ""
 
 #: ../setup/config_data.inc:981
-#, fuzzy
 msgid "Display Hidden Albums"
-msgstr "N&auml;yt&auml; hiiren klikkaukset albumeissa?"
+msgstr "N&auml;yt&auml; piilotetut albumit"
 
 #: ../setup/config_data.inc:985
 msgid "Use dc:date"
@@ -1751,9 +1739,8 @@ msgid "Display a link navigation from your album to the top level Gallery link w
 msgstr "N&auml;yt&auml; ylimm&auml;n tason Gallerialinkki albumissa? Jos k&auml;&auml;nn&auml;t t&auml;m&auml;n toiminnon pois p&auml;&auml;lt&auml;, k&auml;ytt&auml;j&auml; ei voi navigoida ulos albumista. T&auml;m&auml; on k&auml;yt&auml;nn&ouml;llist&auml; vain, jos haluat upottaa albumin webbisivuun, etk&auml; halua antaa k&auml;ytt&auml;j&auml;lle helppoa tapaa n&auml;hd&auml; muita Gallerian albumeita."
 
 #: ../setup/config_data.inc:1203
-#, fuzzy
 msgid "Default Album Permissions"
-msgstr "Oletuspalstat"
+msgstr "Albumin oletusoikeudet"
 
 #: ../setup/config_data.inc:1204
 msgid "Defines the default set of permissions for an album.  Specifically, who can see the album, and view its photos."
@@ -1766,7 +1753,7 @@ msgstr "Kaikille"
 
 #: ../setup/config_data.inc:1205
 msgid "Logged-In Users"
-msgstr ""
+msgstr "Kirjautuneet k‰ytt‰j‰t"
 
 #: ../setup/config_data.inc:1215
 msgid "Data displayed"
@@ -2147,7 +2134,7 @@ msgstr "Tallenna konfiguraatio"
 
 #: ../setup/confirm.inc:458 ../setup/login.inc:68
 msgid "Refresh"
-msgstr ""
+msgstr "P‰ivit‰"
 
 #: ../setup/confirm.inc:460
 #, fuzzy, php-format
@@ -2157,14 +2144,12 @@ msgstr[0] "Yksi virhe"
 msgstr[1] "Yksi virhe"
 
 #: ../setup/confirm.inc:460
-#, fuzzy
 msgid "No errors."
-msgstr "0 virhett‰"
+msgstr "Ei virheit‰."
 
 #: ../setup/confirm.inc:461
-#, fuzzy
 msgid "See Details below."
-msgstr "%s.  Lis‰tietoja alhaalla."
+msgstr "Lue lis‰tiedot alapuolelta."
 
 #: ../setup/confirm.inc:476
 msgid "There are errors in your configuration."
@@ -2184,20 +2169,18 @@ msgstr ""
 
 #: ../setup/constants.inc:42 ../setup/constants.inc:152
 #: ../setup/defaults.inc:43 ../setup/defaults.inc:131
-#, fuzzy
 msgid "Previous Step"
-msgstr "Edellinen sivu"
+msgstr "Edellinen askel"
 
 #: ../setup/constants.inc:43 ../setup/constants.inc:153
 #: ../setup/defaults.inc:44 ../setup/defaults.inc:132
-#, fuzzy
 msgid "Previous Tab"
-msgstr "Edellinen sivu"
+msgstr "Edellinen Tab"
 
 #: ../setup/constants.inc:44 ../setup/constants.inc:154
 #: ../setup/defaults.inc:45 ../setup/defaults.inc:133
 msgid "Next Tab"
-msgstr ""
+msgstr "Seuraava Tab"
 
 #: ../setup/constants.inc:46 ../setup/constants.inc:156
 #: ../setup/defaults.inc:47 ../setup/defaults.inc:135
@@ -2317,19 +2300,16 @@ msgid "Gallery Configuration"
 msgstr "Gallerian konfiguraatio"
 
 #: ../setup/frame_test.php:59
-#, fuzzy
 msgid "None"
-msgstr "Huomio"
+msgstr "Ei yht‰‰n"
 
 #: ../setup/frame_test.php:60
-#, fuzzy
 msgid "No frames"
-msgstr "Ei tiedostoja"
+msgstr "Ei kehyksi‰"
 
 #: ../setup/frame_test.php:61
-#, fuzzy
 msgid "Dots"
-msgstr "Valokuvat"
+msgstr "Pisteit‰"
 
 #: ../setup/frame_test.php:62
 msgid "Just a simple dashed border around the thumb."
@@ -2337,25 +2317,25 @@ msgstr ""
 
 #: ../setup/frame_test.php:63
 msgid "Solid"
-msgstr ""
+msgstr "Kiinte‰"
 
 #: ../setup/frame_test.php:64
 msgid "Just a simple solid border around the thumb."
-msgstr ""
+msgstr "Vain yksinkertainen, kiinte‰ reunus esikatselukuvan ymp‰rill‰."
 
 #: ../setup/frame_test.php:87
 #, php-format
 msgid "Skipping %s."
-msgstr ""
+msgstr "Ohitetaan %s."
 
 #: ../setup/frame_test.php:93
-#, fuzzy, php-format
+#, php-format
 msgid "Can't open %s"
-msgstr "En l&ouml;yd&auml; %s:&auml;&auml;!"
+msgstr "En voi avata %s"
 
 #: ../setup/frame_test.php:171
 msgid "Close Window"
-msgstr ""
+msgstr "Sulje ikkuna"
 
 #: ../setup/functions.inc:135
 msgid "Please retype your password here"
@@ -2411,9 +2391,9 @@ msgid "Without pnmcomp gallery will not be able to watermark images, except you 
 msgstr ""
 
 #: ../setup/functions.inc:505 ../setup/functions.inc:578
-#, fuzzy, php-format
+#, php-format
 msgid "Missing optional binary %s. %s"
-msgstr "Valinnainen bin‰‰ri %s puuttuu"
+msgstr "Valinnainen bin‰‰ri %s puuttuu. %s"
 
 #: ../setup/functions.inc:509 ../setup/functions.inc:581
 #, php-format
@@ -2619,9 +2599,9 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d tiedostoa ovat tuoreempia kuin mit‰ odotettiin.  T‰m‰ on ok jos k‰yt‰t esijulkaisua, beta-versiota, CVS-versiota tai muokattua koodia."
 
 #: ../setup/functions.inc:1331
-#, fuzzy, php-format
+#, php-format
 msgid "All tested files up-to-date."
-msgstr "Kaikki %d testatut tiedostot ovat ajan tasalla."
+msgstr "Kaikki testatut tiedostot ovat ajan tasalla."
 
 #: ../setup/functions.inc:1333
 #, php-format
@@ -2765,22 +2745,21 @@ msgid "Security violation"
 msgstr "Turvallisuusrike"
 
 #: ../setup/login.inc:34
-#, fuzzy
 msgid "Please enter username and password."
-msgstr "Anna salasana uudestaan t‰h‰n"
+msgstr "Ole hyv‰ ja anna k‰ytt‰j‰tunnus sek‰ salasana."
 
 #: ../setup/login.inc:52
 msgid "Invalid username or password"
-msgstr ""
+msgstr "Ep‰kelpo k‰ytt‰j‰tunnus tai salasana"
 
 #: ../setup/login.inc:57
 msgid "User is not an admin - access denied"
-msgstr ""
+msgstr "K‰ytt‰j‰ ei ole p‰‰k‰ytt‰j‰ - p‰‰sy kielletty"
 
 #: ../setup/login.inc:65
 #, php-format
 msgid "Reset %s Password"
-msgstr ""
+msgstr "Resetoi %s salasana"
 
 #: ../setup/login.inc:66
 #, php-format
@@ -2788,31 +2767,29 @@ msgid "To continue the password reset process, you must edit the file &quot;%s&q
 msgstr ""
 
 #: ../setup/login.inc:79
-#, fuzzy, php-format
+#, php-format
 msgid "%s configuration"
-msgstr "ƒ‰nestyksen asetukset"
+msgstr "%s asetukset"
 
 #: ../setup/login.inc:80
 msgid "You must log in as an administrator to edit this server's configuration."
 msgstr ""
 
 #: ../setup/login.inc:93
-#, fuzzy
 msgid "Password"
-msgstr "P&auml;&auml;k&auml;ytt&auml;j&auml;n salasana"
+msgstr "Salasana"
 
 #: ../setup/login.inc:99
-#, fuzzy
 msgid "Login"
-msgstr "Kirjautuneille"
+msgstr "Kirjaudu"
 
 #: ../setup/login.inc:100
 msgid "Reset"
-msgstr ""
+msgstr "Resetoi"
 
 #: ../setup/login.inc:101
 msgid "Cancel"
-msgstr ""
+msgstr "Peruuta"
 
 #: ../setup/session_test.php:47
 msgid "Gallery Session Test"
@@ -2935,7 +2912,7 @@ msgstr ""
 
 #: ../html_wrap/frames/shadows/frame.def:3
 msgid "Shadows"
-msgstr ""
+msgstr "Varjot"
 
 #: ../html_wrap/frames/shadows/frame.def:4
 msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
@@ -2943,7 +2920,7 @@ msgstr ""
 
 #: ../html_wrap/frames/polaroid/frame.def:3
 msgid "Polaroid"
-msgstr ""
+msgstr "Polaroid"
 
 #: ../html_wrap/frames/polaroid/frame.def:4
 msgid "A photo with a large white frame, extra wide at the bottom edge"
@@ -2951,93 +2928,33 @@ msgstr ""
 
 #: ../html_wrap/frames/polaroids/frame.def:3
 msgid "Polaroids"
-msgstr ""
+msgstr "Polaroid-reunukset"
 
 #: ../html_wrap/frames/polaroids/frame.def:4
 msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
 msgstr ""
 
 #: ../html_wrap/frames/golden/frame.def:4
-#, fuzzy
 msgid "Gold Frame"
-msgstr "Ei tiedostoja"
+msgstr "Kultainen kehys"
 
 #: ../html_wrap/frames/golden/frame.def:5
 msgid "A fancy golden frame"
-msgstr ""
+msgstr "Upea kultainen kehys"
 
 #: ../html_wrap/frames/simple_book/frame.def:3
 msgid "Original Style"
-msgstr ""
+msgstr "Alkuper‰inen tyyli"
 
 #: ../html_wrap/frames/simple_book/frame.def:4
 #, php-format
 msgid "The original %s album frame style."
-msgstr ""
+msgstr "Alkuper‰inen %s albumin kehystyyli."
 
 #: ../html_wrap/frames/wooden/frame.def:4
-#, fuzzy
 msgid "Wood Frame"
-msgstr "Ei tiedostoja"
+msgstr "Puinen kehys"
 
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
-msgstr ""
-
-#~ msgid "The filesystem path to the <b>zipinfo</b> binary.  This is optional so if you don't have it, don't worry about it too much."
-#~ msgstr "Tiedostoj&auml;rjestelm&auml;n polku <b>zipinfo</b>-bin&auml;&auml;riin. T&auml;m&auml; tieto on valinnainen, joten jos sinulla ei ole ko. ohjelmaa, &auml;l&auml; huolehti t&auml;st&auml; turhaan."
-
-#~ msgid "Gallery in Configuration Mode"
-#~ msgstr "Galleria on asennustilassa"
-
-#~ msgid "Gallery: Configuration Mode"
-#~ msgstr "Galleria: asennustila"
-
-#~ msgid "To configure gallery, run the %sConfiguration Wizard%s."
-#~ msgstr "Muokataksesi Gallerian asetuksia, %sK&auml;ynnist&auml; asennusvelho%s"
-
-#~ msgid "If you've finished your configuration but you're still seeing this page, that's because for safety's sake we don't let you run Gallery in an insecure mode."
-#~ msgstr "Jos n&auml;et t&auml;m&auml;n sivun (vaikka olet lopettanut asentamisen), syyn&auml; on se, ett&auml; turvallisuuden nimiss&auml; Galleriaa ei voi ajaa suojaamattomassa tilassa."
-
-#~ msgid "You need to switch to secure mode before you can use it.  Here's how:"
-#~ msgstr "Sinun tulee vaihtaa suojattuun tilaan ennen kuin voit k&auml;ytt&auml;&auml; Galleriaa. Tee n&auml;in: "
-
-#~ msgid "Then just reload this page and all should be well."
-#~ msgstr "Sen j&auml;lkeen sinun tulee vain ladata t&auml;m&auml; www-sivu uudelleen, ja kaiken pit&auml;isi olla kunnossa."
-
-#~ msgid "%s with shell access"
-#~ msgstr "%s shell-yhteydell&auml;"
-
-#~ msgid "/path/to/your/gallery"
-#~ msgstr "/hakemisto/polku/sinun/galleriaasi"
-
-#~ msgid "%s with FTP access"
-#~ msgstr "%s FTP-yhteydell&auml;"
-
-#~ msgid "Gallery must be configured before you can use it. First, you must put Gallery in Configuration Mode. Here's how:"
-#~ msgstr "Gallerian asetukset tulee m&auml;&auml;ritt&auml;&auml; ennen kuin voit k&auml;ytt&auml;&auml; sit&auml;. Ensiksi, sinun t&auml;ytyy laittaa galleria asennustilaan. Ohjeet:"
-
-#~ msgid "Don't forget to run this to make your Gallery secure!"
-#~ msgstr "&Auml;l&auml; unohda ajaa t‰t‰ tehd&auml;ksesi Galleriasta turvatun!"
-
-#~ msgid "Gallery won't run if it is not in secure mode."
-#~ msgstr "Galleria ei toimi, ellei se on turvatussa tilassa."
-
-#~ msgid "1 file"
-#~ msgstr "1 tiedosto"
-
-#~ msgid "files"
-#~ msgstr "tiedostoa"
-
-#~ msgid "No files"
-#~ msgstr "Ei tiedostoja"
-
-#~ msgid "%s up-to-date."
-#~ msgstr "%s ajan tasalla."
-
-#~ msgid "errors"
-#~ msgstr "virhett‰"
-
-#, fuzzy
-#~ msgid "Gallery Configuration :: Frames"
-#~ msgstr "Gallerian konfiguraatio"
+msgstr "Teksturoitu puukehys"
