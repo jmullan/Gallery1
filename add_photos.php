@@ -96,6 +96,7 @@ can either be a URL or a directory on the server.
 <span class="admin">
 &nbsp;&nbsp;Tip: FTP images to a directory on your server then provide that path here!
 </span>
+<br>
 
 <input type="text" name="urls[]" size=40>
 <br><br>
