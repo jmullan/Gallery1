@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Swedish translation of Gallery 1.3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-17 01:43+0200\n"
-"PO-Revision-Date: 2003-08-13 23:11+0100\n"
-"Last-Translator: Christian Wallin <crille@swipnet.se>\n"
+"POT-Creation-Date: 2003-08-19 02:58+0200\n"
+"PO-Revision-Date: 2003-08-18 22:44+0100\n"
+"Last-Translator: Mikael Gustafsson <mikael@escacena.se>\n"
 "Language-Team: SWEDISH <crille@swipnet.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -201,23 +201,21 @@ msgstr "Användare som kan se foton i orginalstorlek."
 msgid "Done"
 msgstr "Klart"
 
-#: ../albums.php:100 ../search.php:43
+#: ../albums.php:100 ../search.php:43 ../html_wrap/search.header.default:20
 msgid "Search"
 msgstr "Sök"
 
 #: ../albums.php:112
-#, fuzzy
 msgid "top-level album"
-msgstr "flytta album"
+msgstr "toppnivå album"
 
 #: ../albums.php:112
 msgid "album"
 msgstr "album"
 
 #: ../albums.php:112
-#, fuzzy
 msgid "top-level albums"
-msgstr "flytta album"
+msgstr "toppnivå album"
 
 #: ../albums.php:112
 msgid "albums"
@@ -440,14 +438,14 @@ msgid "Save and Exit"
 msgstr "Spara och avsluta"
 
 #: ../captionator.php:213 ../captionator.php:323
-#, fuzzy, php-format
+#, php-format
 msgid "Save and Edit Next %d"
-msgstr "Spara och editera nästa"
+msgstr "Spara och editera nästa %d"
 
 #: ../captionator.php:217 ../captionator.php:327
-#, fuzzy, php-format
+#, php-format
 msgid "Save and Edit Previous %d"
-msgstr "Spara och editera föregående"
+msgstr "Spara och editera föregående %d"
 
 #: ../captionator.php:220 ../captionator.php:330
 msgid "Exit"
@@ -1032,9 +1030,8 @@ msgid "Email Address"
 msgstr "Epostadress"
 
 #: ../html/userData.inc:85
-#, fuzzy
 msgid "Gallery language"
-msgstr "Gallery rubrik"
+msgstr "Gallery språk"
 
 #: ../html/userData.inc:114
 msgid "User can create albums"
@@ -1279,9 +1276,8 @@ msgid "WARNING: Some of the albums need to be upgraded to the current version of
 msgstr "VARNING: Vissa album måste uppgraderas till den nuvarande versionen av Gallery."
 
 #: ../move_photo.php:306
-#, fuzzy
 msgid "Upgrade now"
-msgstr "uppgradera"
+msgstr "Uppgradera nu"
 
 #: ../progress_uploading.php:44
 msgid "Uploading Photos"
@@ -1551,11 +1547,11 @@ msgstr "Vilken storlek önskar du på"
 
 #: ../resize_photo.php:85
 msgid "Target filesize"
-msgstr ""
+msgstr "Målstorlek på fil"
 
 #: ../resize_photo.php:88
 msgid "Maximum side length in pixels"
-msgstr ""
+msgstr "Maximalt antal pixlar i sidled"
 
 #: ../resize_photo.php:91
 msgid "Original Size"
@@ -1615,9 +1611,9 @@ msgid "Processing %s as a local directory."
 msgstr "Behandlar %s som en lokal katalog."
 
 #: ../save_photos.php:138
-#, fuzzy, php-format
+#, php-format
 msgid "Could not open url: %s"
-msgstr "Kunde inte öpnna URL: "
+msgstr "Kunde inte öppna URL: %s"
 
 #: ../save_photos.php:165
 #, fuzzy, php-format
@@ -1729,9 +1725,8 @@ msgid "Gallery Diagnostics Page"
 msgstr "Gallery Diagnostiksida"
 
 #: ../setup/check.inc:17
-#, fuzzy
 msgid "Gallery Help Page"
-msgstr "Gallery rubrik"
+msgstr "Gallery hjälpsidor"
 
 #: ../setup/check.inc:20
 #, fuzzy, php-format
@@ -2071,7 +2066,7 @@ msgstr "Kontrollera vilka språk som är tillgängliga"
 
 #: ../setup/config_data.inc:143
 msgid "Testing to see if which locales are absent"
-msgstr ""
+msgstr "Testar vilka nationella inställningar som inte finns tillgängliga"
 
 #: ../setup/config_data.inc:157
 msgid "Gallery Title"
@@ -2143,23 +2138,34 @@ msgstr "Storlek för albumsymbol"
 msgid "The target size (in pixels) of thumbnails shown in the gallery page (highlight images)"
 msgstr ""
 
+# Sista meningen e lite småsvår.
+# "This is optional" - översatte jag med "Denna funktion är valbar" /Crille
 #: ../setup/config_data.inc:225
+#, fuzzy
 msgid "The filesystem path to the 'zipinfo' binary.  This is optional so if you don't have it, don't worry about it too much."
-msgstr ""
+msgstr "Filsystemets sökväg till 'zipinfo' binären. Denna funktion är valbar så om du inte har den behöver du inte oroa dig för mycket."
 
+# Sista meningen e lite småsvår.
+# "This is optional" - översatte jag med "Denna funktion är valbar" /Crille
 #: ../setup/config_data.inc:236
+#, fuzzy
 msgid "The filesystem path to the 'unzip' binary.  This is optional so if you don't have it, don't worry about it too much."
-msgstr ""
+msgstr "Filsystemets sökväg till 'unzip' binären. Denna funktion är valbar så om du inte har den behöver du inte oroa dig för mycket."
 
+# Sista meningen e lite småsvår.
+# "This is optional" - översatte jag med "Denna funktion är valbar" /Crille
 #: ../setup/config_data.inc:247
-#, php-format
+#, fuzzy, php-format
 msgid "The filesystem path to the 'jhead' exif parser.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."
-msgstr ""
+msgstr "Filsystemets sökväg till 'jhead' exifläsaren. Denna funktion är valbar så om du inte har den behöver du inte oroa dig för mycket. D.v.s %s eller %s"
 
+# Utility? Tillbehör, funktion?
+# Sista meningen e lite småsvår.
+# "This is optional" - översatte jag med "Denna funktion är valbar" /Crille
 #: ../setup/config_data.inc:259
-#, php-format
+#, fuzzy, php-format
 msgid "The filesystem path to the 'jpegtran' utility.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."
-msgstr ""
+msgstr "Filsystemets sökväg till 'jpegtran' binären. Denna funktion är valbar så om du inte har den behöver du inte oroa dig för mycket. D.v.s. %s eller %s."
 
 #: ../setup/config_data.inc:262 ../setup/config_data.inc:353
 #: ../setup/config_data.inc:366 ../setup/config_data.inc:486
@@ -2176,7 +2182,7 @@ msgstr "Ikonstorlek"
 #: ../setup/config_data.inc:273
 #, php-format
 msgid "The filesystem path to the thumbnail image to show for movies.  Eg. %s"
-msgstr ""
+msgstr "Filsystemets sökväg till ikonen som visas för filmer. D.v.s. %s"
 
 #: ../setup/config_data.inc:279
 msgid "Album directory"
@@ -2185,42 +2191,39 @@ msgstr "Albumkatalog"
 #: ../setup/config_data.inc:280
 #, php-format
 msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty -- Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s.)"
-msgstr ""
+msgstr "Den fulla sökvägen på din hårddisk där foton kommer att sparas. Denna katalog bör vara tom från början -- Gallery kommer att fylla den. Notera att den användare (i ditt fall är det användaren %s.) som kör webbservern behöver ha skrivrättigheter i denna katalog."
 
 #: ../setup/config_data.inc:289
-#, fuzzy
 msgid "Temporary directory"
-msgstr "kör bildspel frammåt"
+msgstr "Temporär (temp) katalog"
 
 #: ../setup/config_data.inc:291
 #, php-format
 msgid "The filesystem path to a temporary directory.  Eg. %s or %s.  Note that if you have open_basedir configured on your system, then this temporary directory must be inside the open_basedir path!  In that case you may need to create the tmp directory yourself and make sure that it's writable by the webserver process."
-msgstr ""
+msgstr "Filsystemets sökväg till en temporär katalog. D.v.s. %s eller %s. Notera att om du har open_basedir konfigurerat på ditt system, så måste denna temporära katalog finnas inuti open_basedir sökvägen. I detta fall behöver du eventuellt skapa temp katalogen själv och se till att den är skrivbar av webbserver processen."
 
 #: ../setup/config_data.inc:301
 #, php-format
 msgid "The full URL to the Gallery web application.  Eg. %s."
-msgstr ""
+msgstr "Den fulla URL:en till Gallery applikationen. D.v.s. %s"
 
 #: ../setup/config_data.inc:310
-#, fuzzy
 msgid "Albums"
 msgstr "Album"
 
 #: ../setup/config_data.inc:311
 #, php-format
 msgid "The full URL to your album directory (specified above) on your web server.  Eg. %s."
-msgstr ""
+msgstr "Den fulla URL:en till din album katalog (specificerad ovanför) på din webbserver. D.v.s. %s."
 
 #: ../setup/config_data.inc:320
-#, fuzzy
 msgid "Mirror sites"
-msgstr "Felmeddelande"
+msgstr "Speglingar"
 
 #: ../setup/config_data.inc:321
 #, php-format
 msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  Eg.%s."
-msgstr ""
+msgstr "En lista på URL:er som innehåller en spegling utav din album katalog. Specificera en URL per rad med den mest pålitliga högst upp. D.v.s. %s"
 
 #: ../setup/config_data.inc:331
 msgid "Show the album tree"
@@ -2228,7 +2231,7 @@ msgstr "Visa albumträd"
 
 #: ../setup/config_data.inc:332
 msgid "If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page).  Set to <b>no</b> by default."
-msgstr ""
+msgstr "Om du sätter på denna funktion kommer du att se en komplett lista över alla underkataloger när du surfar till toppnivån i ditt Gallery. Detta kommer köra det enklare att navigera ibland underkataloger (men det kan okså köra det plottrigt på Gallerys toppsida). Är satt till <b>no</b> från början."
 
 #: ../setup/config_data.inc:337
 msgid "Auto-rotate images"
@@ -2268,9 +2271,8 @@ msgid "The User can choose the language via select Box."
 msgstr ""
 
 #: ../setup/config_data.inc:362
-#, fuzzy
 msgid "Available languages in mode 3 and user preferences"
-msgstr "Tillgängliga språk i läge 3"
+msgstr "Tillgängliga språk i läge 3 och användarinställningar"
 
 #: ../setup/config_data.inc:365
 msgid "These languages will be available as user choices in a drop down menu, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3."
@@ -2404,7 +2406,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:498
 msgid "Visitor size prefs"
-msgstr ""
+msgstr "Storleksinställning för besökare"
 
 #: ../setup/config_data.inc:499
 msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediary size.  This setting only lasts for the visitor's session."
@@ -2437,7 +2439,7 @@ msgstr "Visa ägare"
 
 #: ../setup/config_data.inc:522
 msgid "Show album owner's name on the top level Gallery page?"
-msgstr ""
+msgstr "Visa namn på albumnets ägare på Gallerys huvudsida?"
 
 #: ../setup/config_data.inc:527
 msgid "Albums per page"
@@ -2445,7 +2447,7 @@ msgstr "Album per sida"
 
 #: ../setup/config_data.inc:528
 msgid "How many albums should be displayed per Gallery page?"
-msgstr ""
+msgstr "Hur många album skall visas per Gallery-sida?"
 
 #: ../setup/config_data.inc:534
 msgid "Search Engine"
@@ -2453,7 +2455,7 @@ msgstr "Sökmotor"
 
 #: ../setup/config_data.inc:535
 msgid "Display search engine on main Gallery page?"
-msgstr ""
+msgstr "Visa sökmotor på Gallerys huvudsida?"
 
 #: ../setup/config_data.inc:540
 msgid "Preserve Names"
@@ -2464,8 +2466,9 @@ msgid "When uploading images to Gallery, should we preserve the original names? 
 msgstr ""
 
 #: ../setup/config_data.inc:546
+#, fuzzy
 msgid "Click counts"
-msgstr ""
+msgstr "Klick räknas"
 
 #: ../setup/config_data.inc:547
 msgid "Display click counts within Albums?"
@@ -2493,12 +2496,11 @@ msgstr ""
 
 #: ../setup/config_data.inc:567
 msgid "Allow photo owners to edit and rotate/flip their own photos?"
-msgstr ""
+msgstr "Tillåt ägaren att redigera och rotera/spegelvända deras egna foton?"
 
 #: ../setup/config_data.inc:573
-#, fuzzy
 msgid "Photo owner deletion"
-msgstr "Invertera val"
+msgstr "Radera fotoägare"
 
 #: ../setup/config_data.inc:574
 #, fuzzy
@@ -2520,7 +2522,7 @@ msgstr "Lägg till i början"
 
 #: ../setup/config_data.inc:588
 msgid "New images added to beginning rather than end of albums"
-msgstr ""
+msgstr "Nya bilder läggs till i början istället för från slutet av albumet."
 
 #: ../setup/confirm.inc:3
 msgid "Gallery Setup: Step 4"
@@ -2535,29 +2537,25 @@ msgid "missing"
 msgstr "saknas"
 
 #: ../setup/confirm.inc:53
-#, fuzzy
 msgid "it's optional"
-msgstr "Editera objekttext"
+msgstr "detta är valbart"
 
-#: ../setup/confirm.inc:70 ../util.php:2042
-#, fuzzy
+#: ../setup/confirm.inc:70 ../util.php:2047
 msgid "documentation"
-msgstr "Nuvarande plats är "
+msgstr "dokumentation"
 
 #: ../setup/confirm.inc:72
-#, fuzzy
 msgid "Warning:"
-msgstr "Varning"
+msgstr "Varning:"
 
 #: ../setup/confirm.inc:72
 #, php-format
 msgid "You must create empty file %s and chmod it 777 before proceeding.  See %s for more details."
-msgstr ""
+msgstr "Du måste skapa tom fil %s och ändra rättigheterna (chmod) till 777 innan du fortsätter.  Se %s för mer detaljer."
 
 #: ../setup/confirm.inc:136 ../setup/confirm.inc:137
-#, fuzzy
 msgid "optional"
-msgstr "Ingen objekttext"
+msgstr "valbart"
 
 #: ../setup/confirm.inc:155
 #, fuzzy, php-format
@@ -2577,12 +2575,12 @@ msgstr "finns, men är inte en katalog!"
 #: ../setup/confirm.inc:184
 #, php-format
 msgid "%s: <b>%s</b> must not be zero"
-msgstr ""
+msgstr "%s: <b>%s</b> får inte vara noll"
 
 #: ../setup/confirm.inc:194
 #, php-format
 msgid "%s: <b>%s</b> must be an executable file!"
-msgstr ""
+msgstr "%s: <b>%s</b> måste vara en exekverbar fil!"
 
 #: ../setup/confirm.inc:203
 #, php-format
@@ -2595,14 +2593,14 @@ msgid "%s exists but is not a directory.  Please fix this."
 msgstr "finns, men är inte en katalog!"
 
 #: ../setup/confirm.inc:216
-#, php-format
+#, fuzzy, php-format
 msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
-msgstr ""
+msgstr "%s: %s finns, men webserverns användare kan inte skriva till den.  Försök: %s eller om det inte fungerar: %s.  Observera också att om du har en  %s restriktion så måste denna tmp-katalog finnas under %s sökväg."
 
 #: ../setup/confirm.inc:283
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
-msgstr ""
+msgstr "Kunde inte finna %s.  Kontrollera i NetPBM katalog vilken  PNG->JPEG konverterare du har (eller försök bara använda %s istället).  Var vänlig och kontrollera din konfiguration (eller använd ImageMagick)."
 
 #: ../setup/confirm.inc:295
 msgid "You must specify one of <i>pnmDir</i> or <i>ImPath</i> for Gallery to function!!"
@@ -2660,17 +2658,16 @@ msgstr "Förvalda värden för album"
 
 #: ../setup/constants.inc:13 ../setup/constants.inc:106
 #: ../setup/defaults.inc:13 ../setup/defaults.inc:81
-#, fuzzy
 msgid "Use Defaults"
-msgstr "Använd förvalda värden"
+msgstr "Använd de förvalda värdena"
 
 #: ../setup/diagnostics.php:15
 msgid "Gallery Diagnostics"
-msgstr "Gallery Diagnostik"
+msgstr "Gallery diagnostik"
 
 #: ../setup/diagnostics.php:18
 msgid "This page is designed to provide some diagnostics about your server to help you find issues that may prevent Gallery from functioning properly."
-msgstr ""
+msgstr "Denna sida är skapad för att ge serverdiagnostik så att du kan upptäcka eventuella problem som kan få Gallery att fungera sämre."
 
 #: ../setup/diagnostics.php:19
 msgid "The config wizard tries all kinds of diagnostics to try to find and work around any issues that it finds on your system, but there may be other problems that we have not thought of."
@@ -2839,30 +2836,30 @@ msgstr "%d språk funna"
 #: ../setup/functions.inc:543
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
-msgstr ""
+msgstr "Du finner de senaste versionerna på %s."
 
 #: ../setup/functions.inc:545
 #, php-format
 msgid "This version of %s was released on %s."
-msgstr ""
+msgstr "Denna version av %s släpptes ut %s."
 
 #: ../setup/functions.inc:547
 #, php-format
 msgid "This is a beta version of %s that was released on %s."
-msgstr ""
+msgstr "Detta är en beta-version av %s som släpptes ut %s."
 
 #: ../setup/functions.inc:556
 msgid "Please check regularly for updates."
-msgstr ""
+msgstr "Kontrollera regelbundet om det finns nya uppdateringar."
 
 #: ../setup/functions.inc:574
 msgid "All gallery locales are available on this host"
-msgstr ""
+msgstr "Alla Gallerys nationella inställningar finns tillgängliga på denna server."
 
 #: ../setup/functions.inc:577
 #, php-format
 msgid "We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."
-msgstr ""
+msgstr "Vi kunde inte hitta några nationella inställningar. Din server är konfigurerad med %s restriktionen så det kan "
 
 #: ../setup/functions.inc:580
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
@@ -3003,7 +3000,7 @@ msgstr "Kan inte skriva till %s."
 #: ../setup/write.inc:126
 #, php-format
 msgid "You are missing either %s or %s."
-msgstr ""
+msgstr "Du saknar antingen %s eller %s."
 
 #: ../setup/write.inc:130
 #, fuzzy
@@ -3274,7 +3271,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "PHPs getimagesize() kunde inte bestämma dimensioner."
 
 # Osäker på var denna text återfinns. Om den bara visas för admin så kan det vara bättre att använda det engelska uttrycket "package". Det svenska ordet paket används sällan i detta sammanhang. / mikgus
-#: ../util.php:226 ../util.php:529 ../util.php:575 ../util.php:2070
+#: ../util.php:226 ../util.php:529 ../util.php:575 ../util.php:2075
 msgid "You have no graphics package configured for use!"
 msgstr "Du har inga grafikprogram  konfigurerade för att användas!"
 
@@ -3299,17 +3296,17 @@ msgstr "Stänger inte detta fönster eftersom debugläget är påslaget"
 #: ../util.php:398
 #, php-format
 msgid "target file size %d kbytes"
-msgstr ""
+msgstr "målfilens storlek %d kbytes"
 
 #: ../util.php:404 ../util.php:435
 #, php-format
 msgid "- file size %d kbytes"
-msgstr ""
+msgstr "- filstorlek %d kbytes"
 
 #: ../util.php:405
 #, php-format
 msgid "trying quality %d%%"
-msgstr ""
+msgstr "försöker med kvalité %d%%"
 
 #: ../util.php:436
 #, fuzzy
@@ -3322,19 +3319,19 @@ msgid "There was an unknown failure in the %s call!"
 msgstr "Ett okänt fel har uppstått i valid_image() anropet!"
 
 #: ../util.php:632 ../util.php:655
-#, fuzzy, php-format
+#, php-format
 msgid "Unknown file type: %s"
-msgstr "Okänd filtyp"
+msgstr "Okänd filtyp: %s"
 
 #: ../util.php:1068
-#, fuzzy, php-format
+#, php-format
 msgid "Can't write to %s."
-msgstr "Kan inte skriva till"
+msgstr "Kan inte skriva till %s."
 
 #: ../util.php:1075
-#, fuzzy, php-format
+#, php-format
 msgid "Can't read %s."
-msgstr "Kan inte läsa"
+msgstr "Kan inte läsa %s."
 
 #: ../util.php:1167
 msgid "Select Album"
@@ -3345,9 +3342,8 @@ msgid "Top Level"
 msgstr "Toppnivå"
 
 #: ../util.php:1194 ../util.php:1241
-#, fuzzy
 msgid "current location"
-msgstr "Nuvarande plats är "
+msgstr "nuvarande placering"
 
 #: ../util.php:1243
 msgid "self"
@@ -3385,9 +3381,9 @@ msgid "Skipping %s (ZIP support not enabled)"
 msgstr "(ZIP stöd är inte aktiverat)"
 
 #: ../util.php:1607
-#, fuzzy, php-format
+#, php-format
 msgid "Adding %s"
-msgstr "Lägger till"
+msgstr "Lägger till %s"
 
 #: ../util.php:1627
 #, fuzzy, php-format
@@ -3400,9 +3396,9 @@ msgid "Photo auto-rotated %s&deg;"
 msgstr "Fotografiets datum"
 
 #: ../util.php:1666
-#, fuzzy, php-format
+#, php-format
 msgid "Error: %s!"
-msgstr "Fel"
+msgstr "Fel: %s!"
 
 #: ../util.php:1668
 #, fuzzy, php-format
@@ -3414,12 +3410,12 @@ msgstr "Behöver du hjälp? Titta i "
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Hoppar över %s (accepterar inte %s format)"
 
-#: ../util.php:2080
+#: ../util.php:2085
 #, php-format
 msgid "Generated by %s v%s"
 msgstr ""
 
-#: ../util.php:2082
+#: ../util.php:2087
 #, php-format
 msgid "Powered by %s v%s"
 msgstr ""
@@ -3435,9 +3431,8 @@ msgid "sub-albums"
 msgstr "underalbum"
 
 #: ../view_album.php:252
-#, fuzzy
 msgid "no images"
-msgstr "inga sidor"
+msgstr "inga bilder"
 
 #: ../view_album.php:253
 msgid "0 pages"
@@ -3464,23 +3459,22 @@ msgid "%s in this album"
 msgstr "objekt i detta album"
 
 #: ../view_album.php:272
-#, fuzzy, php-format
+#, php-format
 msgid "%s are hidden"
-msgstr "gömd"
+msgstr "%s är gömda"
 
 #: ../view_album.php:274
-#, fuzzy, php-format
+#, php-format
 msgid "%s is hidden"
-msgstr "gömd"
+msgstr "%s är gömd"
 
 #: ../view_album.php:284
 msgid "add photos"
 msgstr "lägg till foton"
 
 #: ../view_album.php:289
-#, fuzzy
 msgid "add photo"
-msgstr "lägg till foton"
+msgstr "lägg till foto"
 
 #: ../view_album.php:305
 msgid "new nested album"
@@ -3521,12 +3515,10 @@ msgid "slideshow"
 msgstr "bildspel"
 
 #: ../view_album.php:523
-#, fuzzy
 msgid "Changed: "
-msgstr "Ändrat: "
+msgstr "Ändrad: "
 
 #: ../view_album.php:524
-#, fuzzy
 msgid "Contains: "
 msgstr "Innehåller: "
 
@@ -3535,9 +3527,8 @@ msgid "0 items"
 msgstr "0 objekt"
 
 #: ../view_album.php:526 ../view_album.php:541
-#, fuzzy
 msgid "Viewed:"
-msgstr "Visat:"
+msgstr "Visad:"
 
 #: ../view_album.php:548
 msgid "Movie"
@@ -3565,14 +3556,12 @@ msgid "Edit Thumbnail"
 msgstr "Redigera ikon"
 
 #: ../view_album.php:605
-#, fuzzy
 msgid "Rotate/Flip"
-msgstr "Rotera foto"
+msgstr "Rotera/spegelvänd"
 
 #: ../view_album.php:608
-#, fuzzy
 msgid "Highlight"
-msgstr "Välj som huvud"
+msgstr "Välj som symbol"
 
 #: ../view_album.php:613
 msgid "Reset Counter"
@@ -3643,9 +3632,9 @@ msgid "photo properties"
 msgstr "fotoegenskaper"
 
 #: ../view_photo.php:433 ../view_photo.php:436 ../view_photo.php:438
-#, fuzzy, php-format
+#, php-format
 msgid "print this photo on %s"
-msgstr "detta fotografi"
+msgstr "Skriv ut detta foto på %s"
 
 #: ../view_photo_properties.php:39 ../view_photo_properties.php:49
 msgid "Photo Properties"
@@ -3658,7 +3647,7 @@ msgstr "Filuppladdningsdatum"
 #: ../view_photo_properties.php:137
 #, fuzzy
 msgid "Item Capture Date"
-msgstr "Objektlagringsdatum:"
+msgstr "Fotograferingsdatum"
 
 #: ../view_photo_properties.php:157
 msgid "Reload EXIF Data From File"
