@@ -24,6 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($sort, $order) = getRequestVar(array('sort', 'order'));
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
@@ -40,7 +42,7 @@ doctype();
 
 <?php
 if ($gallery->session->albumName) {
-	if (isset($confirm) && $confirm) {
+	if (getRequestVar('confirm')) {
 		if (!strcmp($sort,"random")) {
 			$gallery->album->shufflePhotos();
 			$gallery->album->save(array(i18n("Album resorted")));

@@ -24,6 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+$index=getRequestVar('index');
+
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
         print _("Security violation") ."\n";

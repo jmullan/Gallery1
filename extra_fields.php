@@ -26,7 +26,7 @@
 
 require(dirname(__FILE__) . '/init.php');
 
-list($apply, $extra_fields) = getRequestVar(array('apply', 'extra_fields'));
+list($apply, $extra_fields, $num_user_fields) = getRequestVar(array('apply', 'extra_fields', 'num_user_fields'));
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
