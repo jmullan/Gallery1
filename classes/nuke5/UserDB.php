@@ -34,7 +34,7 @@ class Nuke5_UserDB extends Abstract_UserDB {
 		$uidList = array();
 		$db = $this->db;
 
-		$results = $db->query("select uid from " . $db->prefix("users"));
+		$results = $db->query("select uid from " . $this->prefix . "users");
 		while ($row = $db->fetch_row($results)) {
 			array_push($uidList, $row[0]);
 		}

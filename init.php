@@ -166,7 +166,12 @@ if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
 			$GLOBALS['dbuname'],
 			$GLOBALS['dbpass'],
 			$GLOBALS['dbname']);
-	    $gallery->database{"nuke"}->setTablePrefix($GLOBALS['prefix'] . "_");
+	    if (isset($GLOBALS['user_prefix'])) {
+		$gallery->database{"user_prefix"} = $GLOBALS['user_prefix'] . '_';
+	    } else {
+		$gallery->database{"user_prefix"} = $GLOBALS['prefix'] . '_';
+	    }
+	    $gallery->database{"prefix"} = $GLOBALS['prefix'] . '_';
 
 	    /* Load our user database (and user object) */
 	    $gallery->userDB = new Nuke5_UserDB;

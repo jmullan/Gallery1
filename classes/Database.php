@@ -20,16 +20,7 @@
 ?>
 <?php
 class Abstract_Database {
-	var $tablePrefix;
-
-	function setTablePrefix($prefix) {
-		$this->tablePrefix = $prefix;
-	}
-
-	function prefix($tablename) {
-		return $this->tablePrefix . $tablename;
-	}
-
+    
 	function query($sql) {
 		print "Error: query() should be overridden by a subclass!";
 	}

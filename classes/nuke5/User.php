@@ -21,15 +21,17 @@
 <?php
 class Nuke5_User extends Abstract_User {
 	var $db;
+	var $prefix;
 
 	function Nuke5_User() {
 		global $gallery;
 		$this->db = $gallery->database{"nuke"};
+		$this->prefix = $gallery->database{"user_prefix"};
 	}
 
 	function loadByUid($uid) {
 		$results = $this->db->query("select uname, name, email from " .
-					$this->db->prefix("users") . " " .
+					$this->prefix . "users " .
 					"where uid='$uid'");
 		$row = $this->db->fetch_row($results);
 		$this->username = $row[0];
@@ -42,7 +44,7 @@ class Nuke5_User extends Abstract_User {
 
 	function loadByUserName($uname) {
 		$results = $this->db->query("select uid, name, email from " .
-					$this->db->prefix("users") . " " .
+					$this->prefix . "users " .
 					"where uname='$uname'");
 		$row = $this->db->fetch_row($results);
 		$this->uid = $row[0];

@@ -21,10 +21,12 @@
 <?php
 class Nuke5_AdminUser extends Abstract_User {
 	var $db;
+	var $prefix;
 
 	function Nuke5_AdminUser($admin) {
 		global $gallery;
 		$this->db = $gallery->database{"nuke"};
+		$this->prefix = $gallery->database{"prefix"};
 
 		if(!is_array($admin)) {
 			$admin = base64_decode($admin);
@@ -35,7 +37,7 @@ class Nuke5_AdminUser extends Abstract_User {
 		}
 
 		$results = $this->db->query("select name, email from " .
-				$this->db->prefix("authors") . " " .
+				$this->prefix . "authors " .
 				"where aid='$aid'");
 		$row = $this->db->fetch_row($results);
 		$this->username = $aid;
