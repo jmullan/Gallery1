@@ -12,9 +12,7 @@
       </center>
 
 	<?php echo _("This page is designed to provide some diagnostics about your server to help you find issues that may prevent Gallery from functioning properly.") ?>
-	<br>
 	<?php echo _("The config wizard tries all kinds of diagnostics to try to find and work around any issues that it finds on your system, but there may be other problems that we have not thought of.") ?>
-	<br>
 	<?php echo _("You can use these tools to find out more about your setup") ?>:
 
       <p></p>
@@ -43,7 +41,7 @@
 	    <td>
 	      <?php echo _("This page provides information about your NetPBM binaries.") ?> 
 		<?php echo _("You can only use this page after you have successfully complete the configuration wizard") ?> 
- 		( <?php echo _("as it expects that you've already located and configured Gallery with the right path to NetPBM") ?>).
+ 		(<?php echo _("as it expects that you've already located and configured Gallery with the right path to NetPBM") ?>).
 	    </td>
 	  </tr>
 
