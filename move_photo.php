@@ -44,7 +44,7 @@ if ($gallery->session->albumName && isset($index)) {
 	// and resized images already exist in the original directory, but the current method is an easy
 	// way to make sure all thumbnails and resized images are the correct size.
 
-        if (isset($newAlbum)) {	// we are moving from one album to another
+        if ($newAlbum) {	// we are moving from one album to another
             	$postAlbum = $albumDB->getAlbumbyName($newAlbum);
 	    	if ($gallery->album != $postAlbum) {
 			//$startPhoto=$index;
