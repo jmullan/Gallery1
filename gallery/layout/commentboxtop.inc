@@ -19,7 +19,8 @@
     {
         echo "  (". _("hidden") .")";
     } ?>
-    <?php if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum)) { ?>
+    <?php if ((!$gallery->album->isHidden($i) || $gallery->user->isAdmin() ||
+                        $gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->user->isOwnerOfAlbum($myAlbum))) { ?>
       <span class="admin">
        <?php if ($myAlbum->lastCommentDate("no") != -1) { ?>
        <br><a href="<?php echo makeGalleryUrl("view_comments.php", array("set_albumName" => $myAlbumName)) ?>">[<?php echo _("view comments for this nested album") ?>]</a>

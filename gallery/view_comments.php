@@ -41,7 +41,7 @@ if (!$gallery->album->isLoaded()) {
 
 $albumName = $gallery->session->albumName;
 
-if (!$gallery->session->viewedAlbum[$albumName] && 
+if (empty($gallery->session->viewedAlbum[$albumName]) && 
 	!$gallery->session->offline) {
 	$gallery->session->viewedAlbum[$albumName] = 1;
 	$gallery->album->incrementClicks();
