@@ -446,7 +446,6 @@ if ($numPhotos) {
 						array("albumName" => $albumName,
 							"cmd" => "reset-album-clicks",
 							"return" => urlencode(makeGalleryUrl("view_album.php"))));
-					showChoice("Highlight $label", "highlight_photo.php", array("index" => $i));
 				}
 				showChoice("Move $label", "move_photo.php", array("index" => $i));
 				if ($gallery->album->isHidden($i)) {
