@@ -84,9 +84,8 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
 $breadcrumb["bordercolor"] = $bordercolor;
 $breadcrumb["top"] = true;
 $breadcrumb["bottom"] = true;
-?>
 
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
@@ -120,6 +119,7 @@ if ($gallery->album->fields["textcolor"]) {
 <body dir="<?php echo $gallery->direction ?>">
 <span class="popup">
 <?php } 
+
 includeHtmlWrap("album.header");
 $adminText = "<span class=\"admin\">". _("Comments for this Album") ."</span>";
 $adminCommands = "<span class=\"admin\">";
