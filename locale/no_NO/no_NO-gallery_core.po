@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-03-31 23:08+0200\n"
-"PO-Revision-Date: 2004-03-01 12:35+0100\n"
+"POT-Creation-Date: 2004-04-06 16:07+0200\n"
+"PO-Revision-Date: 2004-04-06 12:35+0100\n"
 "Last-Translator: Sverre M. Vikan <sverre@urven.net>\n"
 "Language-Team: Sverre M. Vikan <sverre@urven.net>\n"
 "MIME-Version: 1.0\n"
@@ -78,7 +78,7 @@ msgstr "Navn eller epost:"
 #: ../add_comment.php:151 ../album_permissions.php:344 ../edit_caption.php:190
 #: ../edit_field.php:66 ../edit_field.php:77 ../edit_watermark.php:81
 #: ../modify_user.php:158 ../new_password.php:135 ../photo_owner.php:109
-#: ../user_preferences.php:125 ../watermark_album.php:88
+#: ../user_preferences.php:125 ../watermark_album.php:87
 msgid "Save"
 msgstr "Lagre"
 
@@ -89,10 +89,10 @@ msgstr "Lagre"
 #: ../includes/add_photos/add_form_one.inc:72
 #: ../includes/add_photos/add_url.inc:52 ../login.php:132
 #: ../modify_user.php:159 ../move_album.php:111 ../move_album.php:131
-#: ../move_photo.php:238 ../move_photo.php:325 ../multi_create_user.php:173
-#: ../new_password.php:136 ../register.php:147 ../rename_album.php:122
-#: ../reset_votes.php:70 ../resize_photo.php:125 ../sort_album.php:122
-#: ../user_preferences.php:126 ../watermark_album.php:89
+#: ../move_photo.php:238 ../multi_create_user.php:173 ../new_password.php:136
+#: ../register.php:147 ../rename_album.php:122 ../reset_votes.php:70
+#: ../resize_photo.php:125 ../sort_album.php:122 ../user_preferences.php:126
+#: ../watermark_album.php:88
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -302,7 +302,7 @@ msgstr "Vennligst flytt det/dem ut av albumkatalogen."
 msgid "Highlight for Album: "
 msgstr "Forsidebilde for album"
 
-#: ../albums.php:301 ../view_album.php:930
+#: ../albums.php:301 ../view_album.php:933
 msgid "title"
 msgstr "tittel"
 
@@ -358,15 +358,15 @@ msgstr "ingen objekter"
 msgid "This album has been viewed %s since %s."
 msgstr "Dette albumet har blitt vist %s siden %s."
 
-#: ../albums.php:374 ../view_album.php:862 ../view_album.php:877
+#: ../albums.php:374 ../view_album.php:863 ../view_album.php:880
 msgid "1 time"
 msgstr "1 gang"
 
-#: ../albums.php:374 ../view_album.php:862 ../view_album.php:877
+#: ../albums.php:374 ../view_album.php:863 ../view_album.php:880
 msgid "times"
 msgstr "ganger"
 
-#: ../albums.php:374 ../view_album.php:862 ../view_album.php:877
+#: ../albums.php:374 ../view_album.php:863 ../view_album.php:880
 msgid "0 times"
 msgstr "0 ganger"
 
@@ -374,7 +374,7 @@ msgstr "0 ganger"
 msgid "reset counter"
 msgstr "nullstill teller"
 
-#: ../albums.php:409 ../view_album.php:1068
+#: ../albums.php:409 ../view_album.php:1071
 msgid "Comments available for this item."
 msgstr "Kommentarer er tilgjengelig for dette objektet."
 
@@ -497,12 +497,12 @@ msgstr "Intet forsidebilde"
 #: ../classes/Album.php:1269
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
-msgstr ""
+msgstr "Forespurt indeks [%d] er utenfor grensene [%d]"
 
 #: ../classes/Album.php:1561
 #, php-format
 msgid "Error %s getting EXIF data"
-msgstr ""
+msgstr "Feil %s ved mottak av EXIF-data"
 
 #: ../classes/Album.php:2027
 #, php-format
@@ -644,12 +644,12 @@ msgstr "Siste"
 msgid "New Album"
 msgstr "Nytt Album"
 
-#: ../copy_photo.php:200 ../move_photo.php:319
+#: ../copy_photo.php:200
 #, php-format
 msgid "WARNING: Some of the albums need to be upgraded to the current version of %s."
 msgstr "ADVARSEL: Noen album må oppgraderes til gjeldende versjon av %s."
 
-#: ../copy_photo.php:201 ../move_photo.php:320
+#: ../copy_photo.php:201
 msgid "Upgrade now"
 msgstr "Oppgrader nå"
 
@@ -658,8 +658,8 @@ msgid "Copy to Album!"
 msgstr "Kopièr til album!"
 
 #: ../copy_photo.php:210 ../delete_photo.php:141 ../edit_thumb.php:139
-#: ../move_album.php:137 ../move_photo.php:331 ../resize_photo.php:138
-#: ../rotate_photo.php:103 ../view_photo_properties.php:178
+#: ../move_album.php:137 ../resize_photo.php:138 ../rotate_photo.php:103
+#: ../view_photo_properties.php:178
 msgid "no album / index specified"
 msgstr "ingen album / indeks spesifisert"
 
@@ -732,8 +732,8 @@ msgid "Do you really want to delete this album?"
 msgstr "Vil du virkelig slette dette albumet?"
 
 #: ../delete_album.php:68 ../delete_photo.php:110 ../delete_photo.php:133
-#: ../delete_user.php:81 ../manage_users.php:116 ../view_album.php:992
-#: ../view_album.php:997
+#: ../delete_user.php:81 ../manage_users.php:116 ../view_album.php:995
+#: ../view_album.php:1000
 msgid "Delete"
 msgstr "Slett"
 
@@ -992,7 +992,7 @@ msgstr "Lukk"
 msgid "Year must be between 1000 and 3000"
 msgstr "År må være mellom 1000 og 3000"
 
-#: ../edit_caption.php:79 ../view_album.php:948
+#: ../edit_caption.php:79 ../view_album.php:951
 msgid "Edit Text"
 msgstr "Rediger Tekst"
 
@@ -1051,33 +1051,29 @@ msgid "Choose which part of the image will compose your thumbnail:"
 msgstr "Velg hvilken del av bildet som skal bli ditt ikon:"
 
 #: ../edit_watermark.php:28
-#, fuzzy
 msgid "You are not allowed to perform this action."
-msgstr "Du har ingen stemmer registrert for dette valget."
+msgstr "Du har ikke tillatelse til å utføre dette valget."
 
 #: ../edit_watermark.php:38
 msgid "Watermarking photo."
-msgstr ""
+msgstr "Vannmerker foto."
 
 #: ../edit_watermark.php:38 ../watermark_album.php:51
-#, fuzzy
 msgid "this may take a while"
-msgstr "(dette kan ta en stund)"
+msgstr "dette kan ta en stund"
 
 #: ../edit_watermark.php:48 ../watermark_album.php:60
-#, fuzzy
 msgid "Please select a watermark."
-msgstr "Vennligst velg en bruker"
+msgstr "Vennligst velg et vannmerke."
 
 #: ../edit_watermark.php:51 ../watermark_album.php:63
-#, fuzzy
 msgid "Please select an alignment."
-msgstr "Vennligst velg en bruker"
+msgstr "Vennligst velg en justering."
 
-#: ../edit_watermark.php:57 ../edit_watermark.php:63 ../view_album.php:918
-#: ../view_album.php:956
+#: ../edit_watermark.php:57 ../edit_watermark.php:63 ../view_album.php:921
+#: ../view_album.php:959
 msgid "Edit Watermark"
-msgstr ""
+msgstr "Rediger Vannmerke"
 
 #: ../extra_fields.php:89 ../extra_fields.php:95
 msgid "Configure Custom Fields"
@@ -1142,26 +1138,23 @@ msgstr "Støttede filtyper"
 #: ../includes/add_photos/add_form.inc:39
 #: ../includes/add_photos/add_url.inc:31
 msgid "Tip:"
-msgstr ""
+msgstr "Tips:"
 
 #: ../includes/add_photos/add_form.inc:40
-#, fuzzy
 msgid "Upload a ZIP file full of photos and movies!"
-msgstr "Tips:  Last opp en ZIP-fil med bilder og filmer!"
+msgstr " Last opp en ZIP-fil med bilder og filmer!"
 
 #: ../includes/add_photos/add_form.inc:50
 msgid "1. Select the number of files you want to upload:"
 msgstr "1. Velg antall bilder du vil laste opp:"
 
 #: ../includes/add_photos/add_form.inc:62
-#, fuzzy
 msgid "Optional:"
-msgstr "Bildetekst"
+msgstr "Valgfritt:"
 
 #: ../includes/add_photos/add_form.inc:63
-#, fuzzy
 msgid "Select the number of meta data files you want to upload:"
-msgstr "1. Velg antall bilder du vil laste opp:"
+msgstr "Velg det antall metadata-filer du ønsker å laste opp:"
 
 #: ../includes/add_photos/add_form.inc:86
 msgid "2. Use the Browse button to find the photos on your computer"
@@ -1174,15 +1167,13 @@ msgid "File"
 msgstr "Fil"
 
 #: ../includes/add_photos/add_form.inc:100
-#, fuzzy
 msgid "3. Use the Browse button to find the meta data files on your computer"
-msgstr "2. Bruk Let-knappen for å finne bilder på din maskin"
+msgstr "3. Bruk Let-knappen for å finne metadata-filene på din maskin"
 
 #: ../includes/add_photos/add_form.inc:112
 #: ../includes/add_photos/add_url.inc:43
-#, fuzzy
 msgid "Leave blank if no caption is specified."
-msgstr "Bruk filnavn som bildetekst om ingen bildetekst er gitt."
+msgstr "Forlat tom om ingen bildetekst er gitt."
 
 #: ../includes/add_photos/add_form.inc:114
 #: ../includes/add_photos/add_form_one.inc:68
@@ -1190,9 +1181,8 @@ msgid "Use filename as caption if no caption is specified."
 msgstr "Bruk filnavn som bildetekst om ingen bildetekst er gitt."
 
 #: ../includes/add_photos/add_form.inc:116
-#, fuzzy
 msgid "Use file creation date stamp as caption if no caption is specified."
-msgstr "Bruk filnavn som bildetekst om ingen bildetekst er gitt."
+msgstr "Bruk filens opprettelsedato som bildetekst om ingen bildetekst er gitt."
 
 #: ../includes/add_photos/add_form.inc:119
 #: ../includes/add_photos/add_form_one.inc:71
@@ -1212,9 +1202,8 @@ msgid "Other methods"
 msgstr "Andre metoder"
 
 #: ../includes/add_photos/add_other.inc:33
-#, fuzzy
 msgid "See a couple of other Methods for adding pictures to your Gallery on Gallerys Website."
-msgstr "Metoder for å legge til bilder i ditt galleri"
+msgstr "See et par andre metoder for å legge til bilder til ditt galleri på Gallerys websted."
 
 #: ../includes/add_photos/add_other.inc:37
 msgid "Windows XP Publishing Agent"
@@ -1225,28 +1214,24 @@ msgid "<i>Note:</i> this feature is still experimental!"
 msgstr "<i>Obs:</i> denne funksjonen er ennå eksperimentell!"
 
 #: ../includes/add_photos/add_url.inc:26
-#, fuzzy
 msgid "Upload any images found at this location."
-msgstr "Eller last opp alle bilder funnet ved denne plasseringen."
+msgstr "Last opp alle bilder funnet ved denne plasseringen."
 
 #: ../includes/add_photos/add_url.inc:27
-#, fuzzy
 msgid "The location can either be a URL or a local directory on the server."
-msgstr "Ålasseringen kan være enten en URL eller en katalog på serveren."
+msgstr "Plasseringen kan være enten en URL eller en katalog på serveren."
 
 #: ../includes/add_photos/add_url.inc:32
-#, fuzzy
 msgid "FTP images to a directory on your server then provide that path here!"
-msgstr "Tips: Last opp bilder via FTP til din server og legg til stien her!"
+msgstr "Last opp bilder via FTP til din server og legg til stien her!"
 
 #: ../includes/add_photos/add_url.inc:45
 msgid "Set photo captions with original filenames."
 msgstr "Sett bildetekst med originale filnavn."
 
 #: ../includes/add_photos/add_url.inc:47
-#, fuzzy
 msgid "Set photo captions with file creation times."
-msgstr "Sett bildetekst med originale filnavn."
+msgstr "Sett bildetekst til filens opprettelsestider."
 
 #: ../includes/add_photos/add_url.inc:51
 msgid "Submit URL or directory"
@@ -1526,9 +1511,9 @@ msgstr "rettigheter"
 msgid "view&nbsp;comments"
 msgstr "se&nbsp;kommentarer"
 
-#: ../layout/adminAlbumCommands.inc:38 ../view_album.php:1008
+#: ../layout/adminAlbumCommands.inc:38
 msgid "watermark&nbsp;album"
-msgstr ""
+msgstr "vannmerk&nbsp;album"
 
 #: ../layout/commentbox.inc:7 ../layout/commentdraw.inc:20
 msgid "From:"
@@ -1543,7 +1528,7 @@ msgid "add comment"
 msgstr "legg til kommentar"
 
 #: ../layout/commentboxtop.inc:17 ../slideshow.php:180 ../slideshow.php:194
-#: ../upgrade_album.php:97 ../view_album.php:147 ../view_album.php:893
+#: ../upgrade_album.php:97 ../view_album.php:147 ../view_album.php:896
 #: ../view_comments.php:75 ../view_photo.php:183 ../view_photo.php:199
 msgid "Album"
 msgstr "Album"
@@ -1596,68 +1581,67 @@ msgstr "Siste Bilde"
 
 #: ../layout/watermarkform.inc:64
 msgid "Watermark"
-msgstr ""
+msgstr "Vannmerke"
 
 #: ../layout/watermarkform.inc:77
 #, php-format
-msgid "Error: No files matching %s found in %s"
-msgstr ""
+msgid "No files matching %s found in %s"
+msgstr "Ingen filer som passer med %s funnet i %s"
 
 #: ../layout/watermarkform.inc:85
-#, fuzzy, php-format
+#, php-format
 msgid "Could not open directory %s"
-msgstr "Kunne ikke åpne url: %s"
+msgstr "Kunne ikke åpne katalogen %s"
 
 #: ../layout/watermarkform.inc:91
 msgid "Alignment"
-msgstr ""
+msgstr "Justering"
 
 #: ../layout/watermarkform.inc:95
 msgid "Upper&nbsp;Left"
-msgstr ""
+msgstr "Øvre&nbsp;Venstre"
 
 #: ../layout/watermarkform.inc:97
 msgid "Top"
-msgstr ""
+msgstr "Topp"
 
 #: ../layout/watermarkform.inc:99
 msgid "Upper&nbsp;Right"
-msgstr ""
+msgstr "Øvre&nbsp;Høyre"
 
 #: ../layout/watermarkform.inc:103
 msgid "Left"
-msgstr ""
+msgstr "Venstre"
 
 #: ../layout/watermarkform.inc:105
-#, fuzzy
 msgid "Center"
-msgstr "Opprett"
+msgstr "Sentrert"
 
 #: ../layout/watermarkform.inc:107
 msgid "Right"
-msgstr ""
+msgstr "Høyre"
 
 #: ../layout/watermarkform.inc:111
 msgid "Lower&nbsp;Left"
-msgstr ""
+msgstr "Nedre&nbsp;Venstre"
 
 #: ../layout/watermarkform.inc:113
 msgid "Bottom"
-msgstr ""
+msgstr "Bunn"
 
 #: ../layout/watermarkform.inc:115
 msgid "Lower&nbsp;Right"
-msgstr ""
+msgstr "Nedre&nbsp;Høyre"
 
-#: ../lib/Form.php:58
+#: ../lib/Form.php:56
 msgid "Check All"
 msgstr "Kryss av alle"
 
-#: ../lib/Form.php:60
+#: ../lib/Form.php:58
 msgid "Clear All"
 msgstr "Fjern alle"
 
-#: ../lib/Form.php:62
+#: ../lib/Form.php:60
 msgid "Invert Selection"
 msgstr "Inverter valget"
 
@@ -1674,9 +1658,8 @@ msgid "Additional EXIF Data"
 msgstr "Ytterligere EXIF-data"
 
 #: ../lib/lang.php:480
-#, fuzzy
 msgid "Description"
-msgstr "beskrivelse"
+msgstr "Beskrivelse"
 
 #: ../login.php:48 ../login.php:54 ../publish_xp.php:64 ../publish_xp.php:108
 #, php-format
@@ -1810,7 +1793,7 @@ msgstr "Flytt!"
 msgid "Nest within another Album:"
 msgstr "Plasser inni et annet album:"
 
-#: ../move_album.php:130 ../move_photo.php:324
+#: ../move_album.php:130
 msgid "Move to Album!"
 msgstr "Flytt til album!"
 
@@ -1825,7 +1808,7 @@ msgstr "Flytt Bilde"
 #: ../move_photo.php:69
 #, php-format
 msgid "You do not have the required permissions to write to %s!"
-msgstr ""
+msgstr "Du har ikke de nødvendige rettighter for å skrive til %s!"
 
 #: ../move_photo.php:117
 msgid "Moving photo #"
@@ -1836,9 +1819,8 @@ msgid "- Creating New Album Highlight"
 msgstr "- Lager Nytt Forsidebilde"
 
 #: ../move_photo.php:214
-#, fuzzy
 msgid "Reorder this album within the album:"
-msgstr "Flytt dette albumet innad i albumet:"
+msgstr "Reorganiser dette albumet innad i albumet:"
 
 #: ../move_photo.php:216
 msgid "Reorder this photo within the album:"
@@ -1971,7 +1953,7 @@ msgstr "Du kan endre din brukerinformasjon her."
 msgid "You must enter the new password twice."
 msgstr "Du må skrive det nye passordet to ganger."
 
-#: ../photo_owner.php:86 ../photo_owner.php:92 ../view_album.php:1013
+#: ../photo_owner.php:86 ../photo_owner.php:92 ../view_album.php:1016
 msgid "Change Owner"
 msgstr "Endre Eier"
 
@@ -2300,7 +2282,7 @@ msgstr "Epost kunne ikke sendes.  Vennligst kontakt galleriadministratoren for å
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Din kontoinformasjon vil bli sendt til den epostadressen du spesifiserer."
 
-#: ../rename_album.php:46 ../rename_album.php:51 ../view_album.php:942
+#: ../rename_album.php:46 ../rename_album.php:51 ../view_album.php:945
 msgid "Rename Album"
 msgstr "Omdøp Album"
 
@@ -2473,7 +2455,7 @@ msgstr "Ingen bilder lastet opp!"
 #: ../save_photos.php:410
 #, php-format
 msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
-msgstr ""
+msgstr "%d metafil(er) funnet.  Disse filene inneholder informasjon om bildene, slik som titler og beskrivelser."
 
 #: ../save_photos.php:437
 msgid "Add Files"
@@ -2785,9 +2767,8 @@ msgid "Done."
 msgstr "Utført."
 
 #: ../util.php:558
-#, fuzzy
 msgid "No watermark name specified!"
-msgstr "Intet album spesifisert!"
+msgstr "Intet vannmerkenavn spesifisert!"
 
 #: ../util.php:850
 #, php-format
@@ -2862,7 +2843,7 @@ msgid "Sub-albums"
 msgstr "Under-album"
 
 #: ../util.php:2213 ../view_album.php:602 ../view_album.php:632
-#: ../view_album.php:1078
+#: ../view_album.php:1081
 msgid "Vote"
 msgstr "Stemme"
 
@@ -3252,7 +3233,7 @@ msgstr "%dkB"
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
-#: ../view_album.php:854
+#: ../view_album.php:853
 msgid "Changed: "
 msgstr "Endret:"
 
@@ -3264,91 +3245,96 @@ msgstr "Inneholder:"
 msgid "0 items"
 msgstr "0 objekter"
 
-#: ../view_album.php:862 ../view_album.php:877
+#: ../view_album.php:863 ../view_album.php:880
 msgid "Viewed:"
 msgstr "Vist:"
 
-#: ../view_album.php:891
+#: ../view_album.php:894
 msgid "Movie"
 msgstr "Film"
 
-#: ../view_album.php:895
+#: ../view_album.php:898
 msgid "Photo"
 msgstr "Bilde"
 
-#: ../view_album.php:902
+#: ../view_album.php:905
 msgid "Edit"
 msgstr "Rediger"
 
-#: ../view_album.php:931
+#: ../view_album.php:934
 msgid "Edit Title"
 msgstr "Rediger tittel"
 
-#: ../view_album.php:935
+#: ../view_album.php:938
 msgid "description"
 msgstr "beskrivelse"
 
-#: ../view_album.php:936
+#: ../view_album.php:939
 msgid "Edit Description"
 msgstr "Rediger beskrivelse"
 
-#: ../view_album.php:953
+#: ../view_album.php:956
 msgid "Edit Thumbnail"
 msgstr "Rediger ikon"
 
-#: ../view_album.php:954
+#: ../view_album.php:957
 msgid "Rotate/Flip"
 msgstr "Rotér/Vend"
 
-#: ../view_album.php:963
+#: ../view_album.php:966
 msgid "Highlight"
 msgstr "Forsidebilde"
 
-#: ../view_album.php:969
+#: ../view_album.php:972
 msgid "Reset Counter"
 msgstr "Nullstill teller"
 
-#: ../view_album.php:974
+#: ../view_album.php:977
 msgid "Move "
 msgstr "Flytt "
 
-#: ../view_album.php:975
+#: ../view_album.php:978
 msgid "Reorder "
 msgstr "sortere igjen"
 
-#: ../view_album.php:977
+#: ../view_album.php:980
 msgid "Copy "
 msgstr "Kopiér "
 
-#: ../view_album.php:984
+#: ../view_album.php:987
 msgid "Show"
 msgstr "Vis"
 
-#: ../view_album.php:986
+#: ../view_album.php:989
 msgid "Hide"
 msgstr "Skjul"
 
-#: ../view_album.php:1003
+#: ../view_album.php:1006
 msgid "Permissions"
 msgstr "Rettigheter"
 
-#: ../view_album.php:1055
+#: ../view_album.php:1011 ../watermark_album.php:69 ../watermark_album.php:74
+#, fuzzy
+msgid "Watermark Album"
+msgstr "Fra album"
+
+#: ../view_album.php:1058
 msgid "Hey! Add some photos."
 msgstr "Hei! Legg til bilder."
 
-#: ../view_album.php:1057
+#: ../view_album.php:1060
 msgid "This album is empty."
 msgstr "Dette albumet er tomt."
 
-#: ../view_album.php:1104 ../view_photo.php:793
+#: ../view_album.php:1107 ../view_photo.php:793
 msgid "Email me when:"
 msgstr "Send epost til meg når:"
 
-#: ../view_album.php:1105 ../view_photo.php:794
+#: ../view_album.php:1108 ../view_photo.php:794
 msgid "Comments are added"
 msgstr "Kommentarer er lagt til"
 
-#: ../view_album.php:1108 ../view_photo.php:798
+#: ../view_album.php:1111 ../view_photo.php:798
 msgid "Other changes are made"
 msgstr "Andre endringer er gjort"
 
@@ -3415,21 +3401,4 @@ msgstr "(dersom data er oppdatert, vil dette ikke se ut til å gjøre noe"
 
 #: ../watermark_album.php:51
 msgid "Watermarking album."
-msgstr ""
-
-#: ../watermark_album.php:69 ../watermark_album.php:74
-#, fuzzy
-msgid "Watermark Album"
-msgstr "Fra album"
-
-#~ msgid "Error"
-#~ msgstr "Feil"
-
-#~ msgid "Error: %s!"
-#~ msgstr "Feil: %s!"
-
-#~ msgid "no image"
-#~ msgstr "ingen bilder"
-
-#~ msgid "Skipping album %d..."
-#~ msgstr "Hopper over album %d..."
+msgstr "Vannmerker album."
