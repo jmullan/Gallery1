@@ -52,6 +52,7 @@ if ($submit) {
 			$tmpUser->setFullname($fullname);
 			$tmpUser->setEmail($email);
 			$tmpUser->setCanCreateAlbums($canCreate);
+			$tmpUser->setIsAdmin($isAdmin);
 
 			// If a new password was entered, use it.  Otherwise leave
 			// it the same.
@@ -73,11 +74,22 @@ if (!$tmpUser) {
 	exit;
 }
 
+if ($tmpUser->isAdmin()) {
+	$dontChange["create-albums"] = 1;
+}
+
+if (!strcmp($tmpUser->getUsername(), $gallery->user->getUsername())) {
+	$dontChange["admin"] = 1;
+}
+
 $fullname = $tmpUser->getFullname();
 $email = $tmpUser->getEmail();
 
 $canCreateChoices = array(1 => "yes", 0 => "no");
 $canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;
+
+$isAdminChoices = array(1 => "yes", 0 => "no");
+$isAdmin = $tmpUser->isAdmin() ? 1 : 0;
 
 ?>
 <html>
