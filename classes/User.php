@@ -28,7 +28,7 @@ class Abstract_User {
 	var $canCreateAlbums;
 	var $uid;
 
-	function User() {
+	function Abstract_User() {
 		$this->setIsAdmin(false);
 		$this->setCanCreateAlbums(false);
 		$this->uid = time() . ":" . mt_rand();
