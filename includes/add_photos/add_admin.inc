@@ -23,12 +23,11 @@
  * $Id$
  */
 ?>
-
 <p>
 <?php echo _("Admin help") ?>
 </p>
 
-<p>
+<p class="aptext">
 <?php echo _("To install or upgrade the Gallery Remote Applets, please refer to ") .
 "<a href=\"http://gallery.menalto.com/modules.php?op=modload&name=GalleryDocs&file=index&page=gallery1-install.remote-applets.php\" target=\"other\">" .
 _("the documentation page") . "</a>" . _(" on the Gallery web site.") ?>

@@ -48,7 +48,7 @@ if (!isset($metaboxes)) {
 
 	<table>
 	<tr>
-		<td><?php echo _("1. Select the number of files you want to upload:") ?></td>
+		<td class=aptext><?php echo _("1. Select the number of files you want to upload:") ?></td>
 		<td><select name="boxes" onChange="javascript:document.count_form.submit(); return false;">
 <?php 
 	for ($i = 1; $i <= 10;  $i++) {
@@ -60,9 +60,11 @@ if (!isset($metaboxes)) {
 		</td>
 	</tr>
 	<tr>
-		<td><?php 
+		<td><?php
+	    echo '<span class=aptext>'; 
 		echo '<b>'. _("Optional:") .'</b> ';
-		echo _("Select the number of meta data files you want to upload:"); ?>
+		echo _("Select the number of meta data files you want to upload:");
+		echo '</span>'; ?>
 		</td>
 		<td><select name="metaboxes" onChange="javascript:document.count_form.submit(); return false;">
 <?php 
@@ -84,20 +86,20 @@ if (!isset($metaboxes)) {
 
 	<table>
 	<tr>
-		<td colspan="2"><?php echo _("2. Use the Browse button to find the photos on your computer") ?></td>
+		<td class="aptext" colspan="2"><?php echo _("2. Use the Browse button to find the photos on your computer") ?></td>
 	</tr>
 	<?php for ($i = 0; $i < $boxes;  $i++) { ?>
 	<tr>
-		<td><?php echo _("File") ?></td>
+		<td class="aptext"><?php echo _("File") ?></td>
 		<td><input name="userfile[]" type="file" size="40"></td>
 	</tr>
 	<tr>
-		<td><?php echo _("Caption") ?></td>
+		<td class="aptext"><?php echo _("Caption") ?></td>
 		<td><input name="usercaption[]" type="text" size="40"><br><br></td>
 	</tr>
 <?php }
 	if ($metaboxes >0) {
-		echo '<tr><td colspan="2">' . _("3. Use the Browse button to find the meta data files on your computer") . '</td></tr>';
+		echo '<tr><td class="aptext" colspan="2">' . _("3. Use the Browse button to find the meta data files on your computer") . '</td></tr>';
 		for ($i = 0; $i < $metaboxes;  $i++) {
 			echo "\n<tr>";
 			echo "\n\t<td>" . _("File") .'</td>';

@@ -53,8 +53,17 @@ doctype();
   <?php common_header(); ?>
 <style type="text/css">
 <!--
+.aptext
+	{
+	  color: #000000;
+	}
+.aptext a:link, a:visited, a:active
+	{
+	   color: #707070;
+	}
 #container
 	{
+
 		padding: 2px;
 	}
 
@@ -161,7 +170,6 @@ foreach ($modes as $m => $mt) {
 <?php
 include (dirname(__FILE__) . "/includes/add_photos/add_$mode.inc");
 ?>
-
 	</div>
 </div>
 </body>
