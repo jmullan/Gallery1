@@ -70,6 +70,8 @@ can now be found in the $gallery object.  Take a look at the tips in
 the html_wrap/xxx.default files to see what the new variable names
 are.  
 
+  HTML_WRAP CHANGES
+ 
 PHP-Nuke 5.0 integration is new in v1.1 and in order to make Gallery a
 seamless Nuke 5.0 module, we had to make some changes to the
 html_wrap/ default files.  If you look at the new
@@ -82,5 +84,22 @@ If you have problems with your customized look and feel after moving
 to v1.1, I suggest that you move your customized gallery.header and
 gallery.footer files out of the way and start again with the default
 ones in the html_wrap directory.
+
+  CSS CHANGES
+
+In order to make sure that Gallery's style doesn't override
+PHP-Nuke's, we've separated gallery_style.css into two files,
+embedded_style and standalone_style.  When Gallery is embedded, it
+will use the embedded_style, so be careful of what you put in there
+(since it can affect Nuke, also).
+
+When Gallery is running in standalone mode, it will use both the
+embedded_style and the standalone_style (in that order).  This gives
+you the freedom to customize the same gallery to run in both modes. 
+
+If you're upgrading from pre v1.0 and you've customized your
+gallery_style.css file, you'll need to pull the relevant changes out
+of your gallery_style.css and put them into either embedded_style
+or standalone_style, as appropriate. 
 
 
