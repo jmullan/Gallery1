@@ -2500,7 +2500,7 @@ function getOS () {
 
 function gallery_validate_email($email, $multiples=false)
 {
-       	if (eregi('^([a-z0-9_]|\-|\.)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,4}$', $email)) {
+       	if (eregi('^([a-z0-9_]|\-|\.|+)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,4}$', $email)) {
 	       	return $email;
        	} else if (!$multiples) {
 	       	return false;
