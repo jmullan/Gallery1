@@ -1,3 +1,23 @@
+2001-03-24  Bharat Mediratta  <bharat@menalto.com>
+
+	* Released version 1.0b9
+
+	* Disallow PHP 4.0.2 in the setup wizard because it has a bug in
+	  its unserialization engine.  I also added explanations for the
+	  disallowed versions.
+
+	* Fixed the show/hide bug where you'd see unpredictable results
+	  when showing/hiding photos.
+
+	* Fixed a bug where we were printing out jpegtopnm debug info only
+	  when debug was *off*.
+
+	* Fixed zipfile-sorting bug.  I was using SORT_NUMERIC inappropriately.
+
+	* Added code to check to see if the version of PHP being used has
+	  the deserialization bug (early versions of PHP4 have it), and
+	  then present an appropriate error message.
+
 2001-03-17  Bharat Mediratta  <bharat@menalto.com>
 
 	* Released version 1.0b8
