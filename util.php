@@ -74,12 +74,42 @@ function loadJpeg ($imgname) {
 	return $im;
 }
 
-function loadImage($dir, $name, $tag) {
-	if (!strcmp($tag, "jpg")) {
-		$img = loadJpeg("$dir/$name.$tag");
-	} elseif (!strcmp($tag, "png")) {
-		$img = ImageCreateFromPng("$dir/$name.$tag");
+function getDimensions($file) {
+	global $app;				
+
+	/* We might eventually want to do it the NetPBM way:
+	 * 
+	exec("$app->pnmDir/anytopnm $src | " .
+	     "$app->pnmDir/pnmfile",
+	     $lines,
+	     $status);
+
+	if ($status == 0) {
+		foreach ($lines as $line) {
+			if (ereg("([0-9]+) by ([0-9]+)", $line, $regs)) {
+				return array($regs[0], $regs[1]);
+			}
+		}
 	}
+	 *
+	 * But for now there's no advantage.
+	 */
+
+	$img = loadImage($file);
+	if ($img) {
+		return array(ImageSX($img), ImageSY($img));
+	} else {
+		return array(0, 0);
+	}
+}
+
+function loadImage($file) {
+	$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $file);
+	if (!strcmp($tag, "jpg")) {
+		$img = loadJpeg($file);
+	} elseif (!strcmp($tag, "png")) {
+		$img = @ImageCreateFromPng($file);
+  	}
 	return $img;
 } 
 
@@ -149,6 +179,10 @@ function dismissAndLoad($url) {
 	echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
 }
 
+function my_flush() {
+	print str_repeat(" ", 4096);	// force a flush
+}
+
 function resize_image($src, $dest, $target) {
 	global $app;				
 
@@ -162,3 +196,19 @@ function resize_image($src, $dest, $target) {
 		return 0;
 	}
 }
+
+function valid_image($file) {
+	global $app;
+	
+	exec("$app->pnmDir/anytopnm $file |" .
+	     "$app->pnmDir/pnmfile",
+	     $results,
+	     $status);
+
+	if ($status == 0) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+	
