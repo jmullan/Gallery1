@@ -1776,6 +1776,9 @@ if (isset($GALLERY_EMBEDDED_INSIDE) && isset($HTTP_COOKIE_VARS['lang'])) {
 			} else {
 				$gallery->language = $gallery->app->default_language;
 			}	
+		} elseif (isset($gallery->session)) {
+			//maybe we already have a language
+			$gallery->language=$gallery->session->language;
 		}
 		break;
 	}
