@@ -550,7 +550,7 @@ function drawSelect($name, $array, $selected, $size, $attrList=array()) {
 	return $buf;
 }
 
-function correctPseudoUsers(&$array) {
+function correctPseudoUsers(&$array, $ownerUid) {
 	global $gallery;
 
 	/*
@@ -580,10 +580,15 @@ function correctPseudoUsers(&$array) {
 	}
 
 	/*
-	 * If the list has no entries, insert the NOBODY user.
+	 * If the list has no entries, insert the NOBODY user *unless* the
+	 * owner is the EVERYBODY user, in which case specify EVERYBODY.
 	 */
 	if (count($array) == 0) {
-		$array[$nobody->getUid()] = $nobody->getUsername();
+		if (!strcmp($ownerUid, $everybody->getUid())) {
+		        $array = array($everybody->getUid() => $everybody->getUsername());
+		} else {
+			$array[$nobody->getUid()] = $nobody->getUsername();
+		}
 	}
 }
 
