@@ -1,3 +1,13 @@
+2001-01-01  Bharat Mediratta  <bharat@sinia.com>
+
+	* Switched from using system("mv") to using rename() for greater
+	  portability (thanks Andreas Fuchs [fox@tcnet.ch])
+
+	* Added a wrapper around anytopnm so that it will work properly on
+	  webservers that don't have the NetPBM binary directory in the
+	  path.  This should ease the pain on most standard Linux
+	  configurations. 
+
 2000-12-29  Bharat Mediratta  <bharat@sinia.com>
 
 	* Fixed several small bugs involving uploading movies.  
