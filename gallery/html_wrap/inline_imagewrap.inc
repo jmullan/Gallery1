@@ -84,7 +84,7 @@ default: // use frames directory
 	    </tr>
 	    <?php } ?>
 	    <tr>
-		<td width="<?php echo $widthLL ?>" style="background-image:url(<?php echo "$base/$imageLL" ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1" alt="FRAME"></td>
+		<td width="<?php echo $widthLL ?>" style="background-image:url(<?php echo "$base/$imageLL" ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="<?php echo ($imageHeight - $heightLLT - $heightLLB) ?>" alt="FRAME"></td>
 	    </tr>
 	    <?php if ($heightLLB > 0) { ?>
 	    <tr>
@@ -104,7 +104,7 @@ default: // use frames directory
 	    </tr>
 	    <?php } ?>
 	    <tr>
-		<td width="<?php echo $widthRR ?>" style="background-image:url(<?php echo "$base/$imageRR" ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1" alt="FRAME"></td>
+		<td width="<?php echo $widthRR ?>" style="background-image:url(<?php echo "$base/$imageRR" ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="<?php echo ($imageHeight - $heightRRT - $heightRRB) ?>" alt="FRAME"></td>
 	    </tr>
 	    <?php if ($heightRRB > 0) { ?>
 	    <tr>
