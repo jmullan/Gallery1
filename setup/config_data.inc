@@ -114,7 +114,7 @@ $checklist = array(
 	),
 	"jpegtran" => array (
 		"optional" => 1,
-		"desc" => _("Check to see if jpegtran is installed so that Gallery can perform lossless rotations"),
+		"desc" => _("Check to see if jpegtran is installed so that Gallery can perform lossless rotations (only works on JPEG images)"),
 		"func" => "check_jpegtran",
 		"fail-jpegtran" => sprintf(_("I can't find jpegtran.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jpegtran by hand on the following page.  If it's not installed, you can install it yourself.  jpegtran is a freely distributable tool distributed by the Independent JPEG Group as part of libjpeg.  Source may be found at %sthe IJG homepage%s.  Binaries may be found at %sthe JPEG club website%s or in the libjpeg package of Linux distributions."),
 			'<a href="http://www.ijg.org"/>', '</a>',
