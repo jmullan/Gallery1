@@ -194,8 +194,6 @@ function popup_js($url, $window, $attrs) {
 }
 
 function popup_status($url, $height=150, $width=350) {
-	global $gallery;
-
 	$attrs = "height=$height,width=$width,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
 	return "open('" . unhtmlentities(makeGalleryUrl($url)) . "','Status','$attrs');";
 }
