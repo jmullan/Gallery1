@@ -181,10 +181,10 @@ function check_exif($location="")
 	$fail = array();
 	$success = array();
 
-	$bin = "jhead";
+	$bin = fs_executable("jhead");
 
 	if ($location) {
-		$d = locateDir(bin, $location);
+		$d = locateDir($bin, $location);
 	} else {
 		$d = locateDir($bin, $gallery->app ? $gallery->app->pnmDir : "");
 	}
