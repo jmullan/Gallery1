@@ -81,7 +81,13 @@ to the setup URL.
 
 <br><br><br><br>
 
-<img src="http://www.menalto.com/projects/gallery/images/gallery-tag.png">
+<font size=+1>
+Help Gallery become a better product!  Fill out the <a href=http://gallery.sourceforge.net?action=survey>Gallery Survey</a>.
+</font>
+
+<br><br>
+
+<img src="../images/gallery-tag.png">
 </center>
 
 </td></tr></table>
