@@ -2302,11 +2302,22 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 			}
 			break;
 		case "ImageMagick":
+			// Set the keepProfiles parameter based on the version
+			// of ImageMagick being used.  6.1.0 changed the
+			// parameters again.
+			if ($gallery->app->ImVersion == '600' && $keepProfiles) {
+				$keepProfiles = ' +profile \'*\' ';
+			} elseif ($gallery->app->ImVersion == '610' && $keepProfiles) {
+				$keepProfiles = ' -strip ';
+			} else {
+				$keepProfiles = '';
+			}
+
 			/* Preserve comment, EXIF data if a JPEG if $keepProfiles is set. */
 			exec_wrapper(ImCmd('convert',
 					  "-quality $quality "
 					. ($target ? "-size ${target}x${target} " : '')
-					. ($keepProfiles ? ' ' : ' +profile \'*\' ')
+					. $keepProfiles
 					. ' -coalesce ' /* Better support for animated GIFs */
 					. $srcFile
 					. ($target ? " -geometry ${target}x${target} " : ' ')
