@@ -594,9 +594,9 @@ class AlbumItem {
 		}
 	}
 
-	function getPhotoId($dir) {
+	function getPhotoId() {
 		if ($this->image) {
-			return $this->image->getId($dir);
+			return $this->image->getId();
 		} else {
 			return "unknown";
 		}

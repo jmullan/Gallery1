@@ -1164,7 +1164,7 @@ class Album {
 
 	function getPhotoId($index) {
 		$photo = $this->getPhoto($index);
-		return $photo->getPhotoId($this->getAlbumDirURL("full"));
+		return $photo->getPhotoId();
 	}
 
 	function getAlbumDir() {
@@ -1256,7 +1256,7 @@ class Album {
 	function getIds($show_hidden=0) {
 		foreach ($this->photos as $photo) {
 			if ((!$photo->isHidden() || $show_hidden) && !$photo->getAlbumName()) {
-				$ids[] = $photo->getPhotoId($this->getAlbumDir());
+				$ids[] = $photo->getPhotoId();
 			}
 		}
 		return $ids;
@@ -1273,7 +1273,7 @@ class Album {
 	function getPhotoIndex($id) {
 		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			$photo = $this->getPhoto($i);
-			if (!strcmp($photo->getPhotoId($this->getAlbumDir()), $id)) {
+			if (!strcmp($photo->getPhotoId(), $id) {
 				return $i;
 			}
 		}

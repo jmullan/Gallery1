@@ -195,7 +195,7 @@ class Image {
 		}
 	}
 
-	function getId($dir) {
+	function getId() {
 		return $this->name;
 	}
 	
