@@ -181,7 +181,11 @@ if ($searchstring) {
 				for ($k = 1; $k <= $searchAlbum->numComments($j); $k++) {
 					// check to see if there are any comment matches
 					$comment = $searchAlbum->getComment($j, $k);
-					$searchComment = $comment->getName().": ".$comment->getCommentText();
+					$searchComment = $comment->getName();
+					if ($gallery->user->isAdmin()) {
+						$searchComment .= " @ ".$comment->getIPNumber();
+					}
+					$searchComment .= ": ".$comment->getCommentText();
 					if (eregi($searchstring, $searchComment)) {
 						if (!$commentMatch) {
 							$commentText = _("Matching Comments").":<br>";
