@@ -1,3 +1,11 @@
+2004-07-19  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b40
+
+	* Change: Since we no longer do shutterfly donations, 
+	  $gallery->app->default["print_photos"] can end up being ""
+	  which causes the key() in view_photo to fail.  This prevents
+	  the error message from key() and prevents printing of a blank
+	  print href.
+
 2004-07-19 JoEllen Drazan <skins@pownuke.com> 1.4.5-cvs-b39
 
 	* Change: New variable to pull the thumsize to create a 
