@@ -216,7 +216,7 @@ $adminText .="</span>";
 $adminCommands = "<span class =\"admin\">";
 
 if ($gallery->user->canAddToAlbum($gallery->album)) {
-	$adminCommands .= '<a href="#" onClick="'.popup("add_photos.php?albumName=" .
+	$adminCommands .= '<a href="#" onClick="'.popup("add_photos.php?set_albumName=" .
 				$gallery->session->albumName).'">[add photos]</a>&nbsp;';
 }
 if ($gallery->user->canCreateSubAlbum($gallery->album)) {
@@ -236,17 +236,17 @@ if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
 
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	if ($gallery->album->numPhotos(1)) {
-	        $adminCommands .= '<a href="#" onClick="'.popup("sort_album.php?albumName=" .
+	        $adminCommands .= '<a href="#" onClick="'.popup("sort_album.php?set_albumName=" .
 				$gallery->session->albumName).
 				'">[sort]</a>&nbsp;';
-	        $adminCommands .= '<a href="#" onClick="'.popup("resize_photo.php?albumName=" .
+	        $adminCommands .= '<a href="#" onClick="'.popup("resize_photo.php?set_albumName=" .
 				$gallery->session->albumName . "&index=all").
 				'">[resize all]</a>&nbsp;';
-	        $adminCommands .= '<a href="#" onClick="'.popup("do_command.php?cmd=remake-thumbnail&albumName=" .
+	        $adminCommands .= '<a href="#" onClick="'.popup("do_command.php?cmd=remake-thumbnail&set_albumName=" .
 				$gallery->session->albumName . "&index=all").
 				'">[rebuild thumbs]</a>&nbsp;&nbsp;<br>'; 
 	}
-        $adminCommands .= '<a href="#" onClick="'.popup("edit_appearance.php?albumName=" .
+        $adminCommands .= '<a href="#" onClick="'.popup("edit_appearance.php?set_albumName=" .
 			$gallery->session->albumName).
 			'">[properties]</a>&nbsp;';
 }
