@@ -394,11 +394,11 @@ drawSelect("time", array(1 => "1 second",
                          30 => "30 second",
                          45 => "45 second",
                          60 => "60 second"),
-           $defaultPause, // default value
+           $slide_pause, // default value
            1, // select size
            array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
 ?>
-    &nbsp;Loop:<input type="checkbox" name="loopCheck" <?= ($defaultLoop) ? "checked" : "" ?> onclick='toggleLoop();'>
+    &nbsp;Loop:<input type="checkbox" name="loopCheck" <?= ($slide_loop) ? "checked" : "" ?> onclick='toggleLoop();'>
     </span>
     </td>
     <td width="1" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
