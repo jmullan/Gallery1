@@ -667,10 +667,6 @@ if (canVote())
 <?php }
 }
 ?>
-</td>
-</tr>
-<tr>
-<td valign="top">
 <!-- image grid table -->
 <table border="0" cellspacing="5" cellpadding="0" width="100%" class="vatable" align="center">
 <?php

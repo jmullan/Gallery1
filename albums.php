@@ -299,7 +299,7 @@ for ($i = $start; $i <= $end; $i++) {
   </tr>
   <tr>
   <!-- Begin Image Cell -->
-  <td align="center" valign="middle">
+  <td align="center" valign="top">
 
 <?php
       $gallery->html_wrap['borderColor'] = $borderColor;
