@@ -12,6 +12,7 @@ $imageHeight = $gallery->html_wrap['imageHeight'];
 $href = $gallery->html_wrap['imageHref'];
 $tag = $gallery->html_wrap['imageTag'];
 $frame = $gallery->html_wrap['frame'];
+$attr=isset($gallery->html_wrap['attr']) ? $gallery->html_wrap['attr'] : "";
 
 if (isset($gallery->html_wrap['base'])) {
 	$base = $gallery->html_wrap['base'];
@@ -22,9 +23,9 @@ if (isset($gallery->html_wrap['base'])) {
 }
 
 if (!empty($href) ) {
-  $href_tag= "<a href=\"$href\">$tag</a>";
+  $href_tag= "<a href=\"$href\" ". $attr .">$tag</a>";
 } else {
-  $href_tag=$tag;
+  $href_tag= '<a '. $attr .">$tag</a>";
 }
 
 switch ($frame) {

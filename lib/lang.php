@@ -295,7 +295,6 @@ function initLanguage($noHeader=false) {
 	// Override NUKEs locale :)))	
 	$locale=$gallery->locale;
 
-
 	// Check defaults :
 	$checklist=array('direction', 'charset', 'alignment') ;
 

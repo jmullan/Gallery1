@@ -140,6 +140,7 @@ class Album {
 	}
 
 	function itemLastCommentDate($i) {
+		global $gallery;
 	       	$photo = $this->getPhoto($i);
 			if ($photo->isAlbum()) {
 		       	$album = $this->getNestedAlbum($i);

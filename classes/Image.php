@@ -156,7 +156,7 @@ class Image {
 		global $gallery;
 
 		$name = $this->getName($dir);
-		$alttext = htmlentities(strip_tags($alttext));
+		$alttext = unhtmlentities(strip_tags($alttext));
 
 		$attrs .= ' border="0"';
 		if ($size) {

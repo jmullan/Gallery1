@@ -70,10 +70,33 @@ function calculateNewSize(){
 		newheight = height - marginTop;
 		newwidth = newheight * imageratio;
 	}
-	
+
+	setReducedSize();
+}
+
+function setReducedSize() {
 	document.photo_j.height = newheight;
 	document.photo_j.width = newwidth;
-
 }
-//-->
+
+function sizeChange() {
+
+	this.full = false;
+
+	this.toggle = function toggle() {
+		if (this.full == true) {
+			this.full = false;
+			setReducedSize();
+		} else {
+			document.photo_j.height = imageheight;
+			document.photo_j.width = imagewidth;
+
+			this.full = true;
+		}
+	}
+}
+
+sizeChange = new sizeChange();
+
+// -->
 </script>
