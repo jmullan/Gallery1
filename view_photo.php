@@ -435,10 +435,14 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 <br><br>
 </td>
 </tr>
-<!-- comments -->
 <? if (!strcmp($gallery->album->fields["public_comments"], "yes")) { ?>
+<tr>
+<td colspan=3 align=center>
+<!-- comments -->
 <span class="caption"><?= viewComments($index) ?></span>
 <br><br>
+</td>
+</tr>
 <? } ?>
 <?
 if (!strcmp($gallery->album->fields["print_photos"],"none") ||
@@ -472,10 +476,10 @@ list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
 <?
 }
 ?>
-</tr>
 
 <?
 
+echo("<tr><td colspan=3 align=center>");
 includeHtmlWrap("inline_photo.footer");
 echo("</td></tr>");
 ?>
