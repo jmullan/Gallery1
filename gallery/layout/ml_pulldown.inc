@@ -22,7 +22,7 @@
 */
 ?>
 
-<?php
+<?php 
 
 $gallery_languages = gallery_languages();
 if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery->app->available_lang) > 1) {
@@ -98,7 +98,7 @@ if($gallery->app->show_flags !='yes') {
 			echo "\n\t\t<a href=\"". makeGalleryUrl( $urlTemp, $args) . "\">";
 			if ($gallery->language == $value) $style="style=\"margin:7px\""; else $style="";
 
-			echo "<img $style src=\"". getImagePath("flags/$flagname.gif") . "\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a>";
+			echo "<img $style src=\"" .$GALLERY_BASEDIR ."locale/$flagname/flagimage/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a>";
 
 			if ($count > $half && $half >10) {
 				echo "<br>";

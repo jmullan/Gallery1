@@ -40,12 +40,14 @@
  * If you add a new language please use alphatical order by name.
  */
 function getNLS () {
-	$nls['language']['zh_CN'] = '&#31616;&#20307;&#20013;&#25991;'; // Simplified Chinese
+	$nls['language']['zh_CN'] = '&#31616;&#20307;&#20013;&#25991;';	// Simplified Chinese
 	$nls['language']['zh_TW'] = '&#32321;&#39636;&#20013;&#25991;'; // Traditional Chinese
 	$nls['language']['zh_TW.utf8'] = '&#32321;&#39636;&#20013;&#25991; (UTF-8)'; // Traditional Chinese (UTF-8)
 	$nls['language']['bg_BG'] = '&#x0411;&#x044a;&#x043b;&#x0433;&#x0430;&#x0440;&#x0441;&#x043a;&#x0438;'; // Bulgarian
 	$nls['language']['ca_ES'] = 'Catal&#xe0;'; // Catalan
-	$nls['language']['cs_CZ.iso'] = '&#x010c;esky'; // Czech
+	$nls['language']['cs_CZ'] = '&#x010c;esky'; // Czech
+	$nls['language']['cs_CZ.cp1250'] = '&#x010c;esky CP'; // Czech
+	$nls['language']['cs_CZ.iso'] = '&#x010c;esky ISO'; // Czech
 	$nls['language']['da_DK'] = 'Dansk'; // Danish
 	$nls['language']['de_DE'] = 'Deutsch'; // German
 	$nls['language']['en_GB'] = 'English (UK)';

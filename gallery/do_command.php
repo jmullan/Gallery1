@@ -97,7 +97,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	dismissAndReload();
 } else if (!strcmp($cmd, "highlight")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		$gallery->album->setHighlight($index);		      
+		$gallery->album->setHighlight($index);
 		$gallery->album->save();
 	}
 	//-- this is expected to be loaded in a popup, so dismiss ---

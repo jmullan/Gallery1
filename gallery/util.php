@@ -2458,7 +2458,7 @@ function initLanguage() {
 	if (gettext_installed()) {
 		$bindtextdomain=bindtextdomain($gallery->language. "-gallery_". where_i_am(), $GALLERY_BASEDIR."locale");
 		textdomain($gallery->language. "-gallery_". where_i_am());
-		    
+
 	}  else {
 		emulate_gettext();
 	}
@@ -2467,7 +2467,7 @@ function initLanguage() {
 function emulate_gettext() {
 	global $translation;
 	global $GALLERY_BASEDIR, $gallery;
-	
+
 	if (in_array($gallery->language,gallery_languages())) {
 		$filename=$GALLERY_BASEDIR ."locale/". $gallery->language ."/". $gallery->language ."-gallery_". where_i_am();
 		$lines=file($filename);

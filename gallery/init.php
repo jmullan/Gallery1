@@ -146,7 +146,6 @@ if ($gallerySanity != NULL) {
 	exit;
 }
 
-
 if (isset($GALLERY_EMBEDDED_INSIDE) &&
 	!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
         include($GALLERY_BASEDIR . "classes/Database.php");

@@ -42,10 +42,11 @@ if [ $1 = "-all" ] ; then
 
 	for all_po in $(ls ??_*-*.po) ; do
 		echo -e "\nFound : $all_po"
-
+		
 		lang=${all_po%-*}
 		module1=${all_po##*_}
 		module=${module1/.po}
+
 		echo "$tab Language = $lang"
 		echo "$tab Module = $module"
 
