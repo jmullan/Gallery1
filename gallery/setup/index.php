@@ -8,6 +8,7 @@
 	require ($GALLERY_BASEDIR . 'setup/functions.inc');
 	require ($GALLERY_BASEDIR . 'Version.php');
 ?>
+<?php echo doctype(); ?>
 <html>
 <head>
 	<title><?php echo _("Gallery Configuration") ?></title>
@@ -72,7 +73,7 @@ foreach (array_keys($preserve) as $key) {
 
 ?>
 
-<form method="POST">
+<form method="post" action="index.php">
 
 <?php
 $legit = array("check", "constants", "defaults", "confirm", "write");

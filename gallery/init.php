@@ -97,6 +97,7 @@ if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
 }
 if (isset($gallery->app->devMode) && 
 		$gallery->app->devMode == "yes") {
+       	ini_set("display_errors", "1");
        	error_reporting(E_ALL);
 } else {
        	error_reporting(E_ALL & ~E_NOTICE);

@@ -64,7 +64,4 @@ if (imageheight > Hoehe-randhoehe) {
 	imagewidth = imageheight*imageratio;
 }
 //-->
-document.photo_j.height=imageheight;
-document.photo_j.width=imagewidth;
-
 </script>

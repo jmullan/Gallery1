@@ -20,26 +20,30 @@
 <input type=submit name="go_defaults" value="<?php echo _("Use Defaults") ?>">
 </p>
 
-<table width="100%">
-
-
 <?php
 $i = 0;
 foreach ($defaults as $key => $val) {
+
+	if( isset($val["type"]) && ($val["type"] === "separator")) {
+		echo '<table width="100%">';
+		echo make_separator($key, $val);
+		echo "\n</table>";
+		continue;
+        }
+
+	echo "\n<table width=\"100%\" class=\"inner\">";
+
 	if (isset($val["type"]) && ($val["type"] === "block_start" )) {
 		echo evenOdd_row(make_fields($key, $val), $i % 2);
+		echo "\n</table>";
 		continue;
 	}
 	if (isset($val["type"]) && ($val["type"] === "block_end" )) {
 		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 		echo "\n<tr><td colspan=\"2\"> &nbsp; </td></tr>";
+		echo "\n</table>";
 		continue;
 	}
-
-	if( isset($val["type"]) && ($val["type"] === "separator")) {
-		echo make_separator($key, $val);
-		continue;
-        }
 
 	/* Support $app-> for backwards compatibility */
 	if (isset($app->default[$key])) {
@@ -80,16 +84,15 @@ foreach ($defaults as $key => $val) {
 	} else {
 		echo evenOdd_row(make_fields($key, $val),
 				$i++ % 2);
-		if (!isset($val["type"]) || ($val["type"] !== "block_element" )) {
-			echo "<tr><td colspan=2> &nbsp; </td></tr>";
-		}
 	}
 
 	$onThisPage[$key] = 1;
 	$preserve[$key] = 1;
+	
+	echo "\n</table>";
 }
 ?>
-</table>
+
 <p align="center">
 	<input type=submit name="go_back" value="<- <?php echo _("Previous Page") ?>">
 	<input type=submit name="go_next" value="<?php echo _("Next Page") ?> ->">

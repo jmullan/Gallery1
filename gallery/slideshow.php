@@ -90,7 +90,7 @@ function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album=NULL, $rec
     
     if (!$album) {
 	    // Top level
-	    $albumDB = new AlbumDB();
+	    $albumDB = new AlbumDB(false);
 	    $numAlbums = $albumDB->numAlbums($gallery->user);
 
 	    for ($i=1; $i <= $numAlbums; $i++) {

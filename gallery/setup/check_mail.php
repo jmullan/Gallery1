@@ -39,17 +39,21 @@ if (isset($submit)) {
 	echo '<div class="sitedesc">';
 	print sprintf(_("This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"));
 	echo '</div>';
-	if (! ini_get("sendmail_path")) {
-		$warning[] = sprintf(_("Error! %s not set."), "sendmail_path");
-	}
-
-	if (! ini_get("SMTP") && getOS()==OS_WINDOWS) {
-		$warning[] = sprintf(_("Error! %s not set."), "SMTP");
+	if (getOS() != OS_WINDOWS) {
+	       	if (! ini_get("sendmail_path")) {
+		       	$warning[] = sprintf(_("%s not set."), 
+					"sendmail_path");
+	       	}
+	} else { 
+		if (!ini_get("SMTP")) {
+		       	$warning[] = sprintf(_("%s not set."), "SMTP");
+		}
 	}
 	if (isset($warning)) {
 		echo '<table class="inner" width="100%">';
 		foreach ($warning as $value) {
-			echo '<tr><td class="warningpct">' . $value .'</td></tr>';
+			echo '<tr><td class="warningpct">' . _("Warning") . 
+				": " .  $value .'</td></tr>';
 		}
 //		echo '<td class="desc">' . _("Please fix this before you continue!") .'</td>';
 		echo '</table>';

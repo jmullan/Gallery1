@@ -1,3 +1,7 @@
+2003-11-28 Jens Tkotz <jens@peino.de> 1.4.2-phpBB2-cvs-j12
+
+	* Change: Synced against HEAD
+
 2003-11-26 Jens Tkotz <jens@peino.de> 1.4.2-phpBB2-cvs-j11
 
 	* New: Gallery now uses phpBB2's language (only this).
@@ -52,6 +56,60 @@
 	* SNew: Start phpBB2 branch (again)
 
 ****************************************************************************
+
+2003-11-28  Bharat Mediratta  <bharat@menalto.com> 1.4.2-cvs-b40
+
+	* Update php_value template to use php_value on Apache2 and
+	  php_flag on Apache1 to get around a bug in Apache2.
+
+2003-11-27  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.2-cvs-b39
+
+	* Poll properties can now be applied recursively.
+
+2003-11-27 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b38
+
+	* Change: Wording in configdata.
+
+2003-11-27  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.2-cvs-b37
+
+	* Turn on error display (if off) in devMode.
+
+	* Fixed incorrect warning in check_mail.php under windows.
+
+	* Colour of font changed in redmarble skin.
+
+2003-11-26 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b36
+
+	* Change: Removed debug code.
+
+2003-11-26 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b35
+
+	* Bugfix: "get rid of resized" didnt work if translated button label
+		  contained htmlentities.
+
+2003-11-25 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b34
+
+	* Bugfix: Multilanguage was not disabled when in Linux, with gettext and
+		  found locales were not suitable.
+
+	* Change: Wording to make sure we are talking about <b>system<b> locales.
+
+2003-11-24  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.2-cvs-b33
+
+	* Fixed bug where site wide slide show ran out of memory.
+
+2003-11-24 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b32
+
+	* Bugfix: remove '' around popup url as we use now "".
+		  (Bug was introduced in b31)
+
+2003-11-24 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b31
+
+	* Change: Layout of check_versions.
+
+	* Change: Layout of Config step 2 and 3.
+
+	* "Bugfix": Corrected a lot HTML errors. Added quotes etc.
 
 2003-11-22  Chris Schwerdt  <muti@afterglo.ws> 1.4.2-cvs-b30
 
@@ -109,6 +167,7 @@
 	  Note: This also fixes a Bug where fs_win32.php was loaded when in win32.
 		This also fixes a Bug when PHP has no gettext and diagnostics were called.
 
+>>>>>>> 1.758
 2003-11-17  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.2-cvs-b22
 
 	* Fix from Bharat to reduce time limit errors in large galleries.

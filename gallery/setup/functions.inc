@@ -8,19 +8,21 @@ function evenOdd_row($fields, $evenOdd) {
 	if ($fields[3] == "block_element") {
 		$buf .= "\n<tr><td class=\"shortdesc\">$f0</td><td class=\"shortdesc\">".$fields[1]."</td></tr>";
 	} else if ($fields[3] == "block_start") {
-		$buf .= "\n<tr><td class=\"shortdesc\" colspan=2 valign=top align=left><table>";
+		$buf .= "\n<tr><td class=\"shortdesc\" colspan=\"2\" valign=\"top\" align=\"left\">";
+		$buf .= "\n<!-- Block Start --><table><tr>";
 		$buf .= "\n\t<td class=\"content\" align=\"left\" valign=\"top\">$f0<p>";
 		$buf .= "\n\t".$fields[2]."</td>";
-		$buf .= "\n<td><table >";
+		$buf .= "\n</tr></table >";
 	} else if ($fields[3] == "block_end") {
-		$buf .= "\n</table></td></table></td></tr>";
+		$buf .= "<!-- Block Ende -->";
+		$buf .= "\n</td></tr>";
 	} else {
 		$buf .= "\n<tr>";
-		$buf .= "\n\t<td class=\"shortdesc\" valign=top align=left>$f0</td>";
-		$buf .= "\n\t<td class=\"shortdesc\" width=90% valign=top>$fields[1]</td>";
+		$buf .= "\n\t<td class=\"shortdesc\" valign=\"top\" align=\"left\">$f0</td>";
+		$buf .= "\n\t<td class=\"shortdesc\" width=\"90%\" valign=\"top\">$fields[1]</td>";
 		$buf .= "\n</tr>";
 		$buf .= "\n<tr>";
-		$buf .= "\n\t<td class=\"desc\" colspan=2 valign=top align=left>$fields[2]</td>";
+		$buf .= "\n\t<td class=\"desc\" colspan=\"2\" valign=\"top\" align=\"left\">$fields[2]</td>";
 		$buf .= "\n</tr>\n";
 	}
 
@@ -76,12 +78,12 @@ function make_fields($key, $arr) {
 
 function form_textarea($key, $arr) {
 	$attrs = make_attrs($arr["attrs"]);
-	return "<textarea name=$key $attrs>$arr[value]</textarea>";
+	return "<textarea name=\"$key\" $attrs>$arr[value]</textarea>";
 }
 
 function form_input($key, $arr) {
 	if ($arr["type"]) {
-		$type = "type=$arr[type]";
+		$type = "type=\"$arr[type]\"";
 	}
 	if (isset($arr["attrs"])) {
 		$attrs = make_attrs($arr["attrs"]);
@@ -89,7 +91,7 @@ function form_input($key, $arr) {
 		$attrs = '';
 	}
 
-	return "<input $type name=$key value=\"$arr[value]\" $attrs>";
+	return "<input $type name=\"$key\" value=\"$arr[value]\" $attrs>";
 }
 
 function form_password($key, $arr) {
@@ -102,12 +104,12 @@ function form_password($key, $arr) {
 	if (empty($arr['value'])) {
 	    $arr['value'] = array('', '', '', '');
 	}
-	return "<input type=\"password\" name=${key}[0] value=\"{$arr['value'][0]}\" $attrs> "
+	return "<input type=\"password\" name=\"${key}[0]\" value=\"{$arr['value'][0]}\" $attrs> "
 		. '<br>'
-		. "<input type=\"password\" name=${key}[1] value=\"{$arr['value'][1]}\" $attrs> "
+		. "<input type=\"password\" name=\"${key}[1]\" value=\"{$arr['value'][1]}\" $attrs> "
 		. _('Please retype your password here')
-		. "\n<input type=\"hidden\" name=${key}[2] value=\"{$arr['value'][2]}\">"
-		. "\n<input type=\"hidden\" name=${key}[3] value=\"{$arr['value'][3]}\">";
+		. "\n<input type=\"hidden\" name=\"${key}[2]\" value=\"{$arr['value'][2]}\">"
+		. "\n<input type=\"hidden\" name=\"${key}[3]\" value=\"{$arr['value'][3]}\">";
 }
 
 function form_nv_pairs($key, $arr) {
@@ -117,12 +119,18 @@ function form_nv_pairs($key, $arr) {
 		$attrs = '';
 	}
 	$x=0;
-	$buf="\n<table><tr><td><b>"._("Name")."</b></td><td><b>"._("Value")."</b></td></tr>";
+	$buf="\n<table>"
+		. "<tr>"
+		. "<td><b>". _("Name") . "</b></td>"
+		. "<td><b>". _("Value") ."</b></td>"
+		. "</tr>";
 	foreach ($arr["value"] as $result) {
 		$name=$result["name"];
 		$value=$result["value"];
-		$buf .= '<tr><td><input type="text" name="' . $key ."[$x][name]\" value=\"$name\" $attrs></td>\n";
-		$buf .= '<td><input type="text" name="' . $key . "[$x][value]\" value=\"$value\" $attrs></td></tr>\n";
+		$buf .= '<tr>'
+			. '<td><input type="text" name="' . $key ."[$x][name] \" value=\"$name\" $attrs></td>\n";
+		$buf .= '<td><input type="text" name="' . $key  ."[$x][value]\" value=\"$value\" $attrs></td>"
+			. "</tr>\n";
 		$x++;
 		if ($x >= $arr["size"]) {
 			break;
@@ -752,6 +760,11 @@ function check_locale() {
 		setlocale(LC_ALL,"");
 	}
 
+	/* DAMN, there are no suitable locales, we use Linux and our PHP uses gettext*/
+        if( sizeof($available_locales) == 0 && getOS() == OS_LINUX && gettext_installed()) {
+                return NULL;
+        }
+
 	return array(
 		"available_locales" => $available_locales,
 		"maybe_locales" => $maybe_locales,
@@ -797,8 +810,8 @@ function config_maybe_locales() {
 			$block_start_done=true;
 			$results[] = array (
 					"type" => "block_start", 
-					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("Locale Selection required")),
-					"desc" => _("There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
+					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("<b>System</b> locale selection required")),
+					"desc" => _("There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
 					"<p></p>" .
 					_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
 					);
@@ -870,8 +883,8 @@ function config_maybe_locales() {
 			$block_start_done=true;
 			$results[] = array (
 					"type" => "block_start", 
-					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("Locale problems")),
-						"desc" => _("There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
+					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("<b>System</b> locale problems")),
+						"desc" => _("There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
 							"<p></p>" .
 							_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
 							);
@@ -1062,11 +1075,11 @@ function inOpenBasedir($dir) {
 }
 
 function make_separator($key, $arr)  {
-		$buf="\n<tr><td class=\"separator\" colspan=\"2\"><b>". $arr["title"] ."</b></td></tr>";
+		$buf = "\n<tr><td>&nbsp;</td></tr>";
+		$buf .="\n<tr><td class=\"separator\" colspan=\"2\"><b>". $arr["title"] ."</b></td></tr>";
 		if( isset($arr["desc"])) {
 			$buf .= "\n<tr><td class=\"desc\" colspan=\"2\">". $arr["desc"] ."</td></tr>";
 		}
-		$buf .= "\n<tr><td>&nbsp;</td></tr>";
 		return $buf;
 }
 

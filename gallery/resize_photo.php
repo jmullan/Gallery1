@@ -53,7 +53,9 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 <?php
 $all = !strcmp($index, "all");
 if ($gallery->session->albumName && isset($index)) {
-	if (isset($manual) && $manual >0) $resize=$manual;
+	if (isset($manual) && $manual >0) {
+		$resize=$manual;
+	}
 	if (! empty($resize)) {
 		if (!strcmp($index, "all")) {
 			$np = $gallery->album->numPhotos(1);
@@ -73,6 +75,7 @@ if ($gallery->session->albumName && isset($index)) {
 		}
 		$gallery->album->save(array(i18n("Images resized to %s pixels, %s kbytes"),
 					$resize, $resize_file_size));
+
 		dismissAndReload();
 		return;
 	} else {
@@ -94,8 +97,8 @@ if ($gallery->session->albumName && isset($index)) {
 <p>
 
 <input type="hidden" name="index" value="<?php echo $index ?>">
-	<input type="submit" name="resize" value="<?php echo _("Get rid of resized") ?>">
-		<?php echo _("(Use only the original picture)"); ?>
+<input type="submit" name="resize" value="<?php echo _("Get rid of resized") ?>">
+<?php echo _("(Use only the original picture)"); ?>
 
 <p>
 <table border="0">
