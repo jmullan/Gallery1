@@ -76,25 +76,44 @@ foreach ($constants as $key => $val) {
 			$$key = preg_replace("/\/$/", "", $$key);
 		}
 
+		if ($constants[$key]["must-be-file"]) {
+			if (!is_file($$key)) {
+				$view .= row_wrap(error_format("$key: <b>" . $$key . 
+					"</b> must be a valid file (not a directory)!"));
+				$error = 1;
+				continue;
+			}
+		}
+
+		if ($constants[$key]["must-be-executable"]) {
+			if (!is_executable($$key)) {
+				$view .= row_wrap(error_format("$key: <b>" . $$key . 
+					"</b> must be an executable file!"));
+				$error = 1;
+				continue;
+			}
+		}
+
 		if ($constants[$key]["require-write-dir"]) {
 			$dir = $$key;
 			if (!file_exists($dir)) {
-				$view .= error("Directory <b>$dir</b> does not exist.  Please create it.");
+				$view .= row_wrap(error_format("Directory <b>$dir</b> does not exist.  " .
+						"Please create it."));
 				$error = 1;
 				continue;
 			}
 
 			if (!is_dir($dir)) {
-				$view .= error("<b>$dir</b> exists but is not a directory.  " .
-						"Please fix this.");
+				$view .= row_wrap(error_format("<b>$dir</b> exists but is not a directory.  " .
+						"Please fix this."));
 				$error = 1;
 				continue;
 			}
 
 			if (!is_writeable($dir)) {
-				$view .= error("$dir exists, but is not writeable by the " .
+				$view .= row_wrap(error_format("$dir exists, but is not writeable by the " .
 						"webserver user.  Try:<br><center><b><code>" .
-						"chown -R " . $webserver_user . " $dir</code>");
+						"chown -R " . $webserver_user . " $dir</code>"));
 				$error = 1;
 				continue;
 			}
