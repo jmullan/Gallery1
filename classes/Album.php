@@ -159,7 +159,7 @@ class Album {
 			$changed = 1;
 		    }
 		}
-		if ($this->version < 9) {
+		if ($this->version < 10) {
 		    if (empty($this->fields['summary'])) {
 		    		$this->fields['summary']='';
 			$changed = 1;

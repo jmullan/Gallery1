@@ -38,8 +38,11 @@ class AlbumItem {
 	var $version;
 
 	function AlbumItem() {
+	        global $gallery;
 		$this->version = $gallery->album_version;
+		$this->extraFields = array();
 	}
+	
 	function setUploadDate($uploadDate="") { //upload date should only be set at file upload time.
 		global $gallery;
 
@@ -135,7 +138,7 @@ class AlbumItem {
 		if (!isset($this->version)) {
 			$this->version=0;
 		}
-		if ($this->version < 9) {
+		if ($this->version < 10) {
 			if (!isset($this->extraFields) or !is_array($this->extraFields)) {
 				$this->extraFields=array();
 			}
