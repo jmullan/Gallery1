@@ -568,7 +568,7 @@ class Album {
 	function getThumbnailTag($index, $size=0, $attrs="") {
 		$photo = $this->getPhoto($index);
 		if ($photo->isAlbumName) {
-			$myAlbum = $myAlbum->getNestedAlbum($index);
+			$myAlbum = $this->getNestedAlbum($index);
 			return $myAlbum->getHighlightAsThumbnailTag($size, $attrs);
 		} else {
 			return $photo->getThumbnailTag($this->getAlbumDirURL("thumb"), $size, $attrs);
