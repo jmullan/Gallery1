@@ -20,11 +20,11 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 #
-# <fpana@ono.com>, 2002.
-# jact <jachavar@terra.es>, 2003-2004.
+# <fpana AT ono DOT com>, 2002.
+# jact <jachavar AT terra DOT es>, 2003-2004.
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.4.4\n"
+"Project-Id-Version: Gallery 1.4.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
 "POT-Creation-Date: 2004-09-02 00:05+0200\n"
 "PO-Revision-Date: 2004-08-28 17:18+0100\n"
@@ -468,11 +468,11 @@ msgstr "Revisando la antigüedad de la versión %s de %s."
 
 #: ../setup/config_data.inc:93
 msgid "Check to see if you are running PHP 4.1.0 or greater."
-msgstr ""
+msgstr "Verificando si está ejecutando una versión 4.1.0 o superior de PHP."
 
 #: ../setup/config_data.inc:93
 msgid "Since Gallery 1.4.5 Gallery needs at least PHP 4.1.0, this is due to that some versions of PHP have bugs that cause Gallery to fail and that older Version does not have required functionality."
-msgstr ""
+msgstr "Desde que Gallery 1.4.5 necesita al menos la versión 4.1.0 de PHP, puede ocurrir que algunas versiones de PHP tengan errores que causen que Gallery falle y que versiones más antiguas no tengan las funcionalidades requeridas."
 
 #: ../setup/config_data.inc:95
 #, php-format
@@ -633,7 +633,7 @@ msgstr "Seleccione una &quot;skin&quot; para Gallery. Ahora tiene una amplia gam
 
 #: ../setup/config_data.inc:244
 msgid "Here you can get a more Gallery Skins by Drazan"
-msgstr ""
+msgstr "Aquí puede obtener más skins para Gallery realizados por Drazan"
 
 #: ../setup/config_data.inc:250
 msgid "Default upload method"
@@ -740,9 +740,8 @@ msgid "GeekLog Dir"
 msgstr "Directorio GeekLog"
 
 #: ../setup/config_data.inc:358
-#, fuzzy
 msgid "If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"
-msgstr "Si ha elegido GeekLog arriba, introduzca la ubicación del directorio public_html de GeekLog."
+msgstr "Si usa GeekLog, introduzca la ubicación del directorio public_html de GeekLog. Por ejemplo '/ruta/a/geeklog/public_html'"
 
 #: ../setup/config_data.inc:370
 msgid "Toolkits / image processing"
@@ -803,7 +802,6 @@ msgid "Selecting this option has Gallery automatically attempt to rotate images 
 msgstr "Seleccionando esta opción, Gallery intenta rotar las imágenes automáticamente en la subida al servidor, basándose en la información sobre orientación almacenada en los datos EXIF del JPEG que ponen algunas cámaras digitales. Esto requiere la versión 1.9 del analizador jhead o posterior (vea arriba)."
 
 #: ../setup/config_data.inc:425
-#, fuzzy
 msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
 msgstr "Requiere el parser de Jhead EXIF versión 1.9 o superior (Vea las herramientas opcionales)."
 
@@ -1184,7 +1182,7 @@ msgstr "Enviar correo duplicado"
 
 #: ../setup/config_data.inc:745
 msgid "Use non-local SMTP server."
-msgstr ""
+msgstr "Usar un servidor SMTP remoto."
 
 #: ../setup/config_data.inc:746
 msgid "Use a smtp server running on a different machine (ie: Your ISPs mail server) to process outgoing gallery email."
@@ -1192,15 +1190,15 @@ msgstr ""
 
 #: ../setup/config_data.inc:753
 msgid "SMTP Server"
-msgstr ""
+msgstr "Servidor SMTP"
 
 #: ../setup/config_data.inc:754
 msgid "The name or IP address of the SMTP Server you want to use."
-msgstr ""
+msgstr "El nombre o la dirección IP del servidor SMTP que quiera utilizar."
 
 #: ../setup/config_data.inc:762
 msgid "Local Host Name"
-msgstr ""
+msgstr "Nombre de la máquina local"
 
 #: ../setup/config_data.inc:763
 msgid "The local hostname of the server as a reverse DNS lookup of the IP would show. If you are behind a NAT, this would be the DNS name of your router. If you don't know what to do here, 'localhost' is probably ok in most situations."
@@ -1208,24 +1206,23 @@ msgstr ""
 
 #: ../setup/config_data.inc:771
 msgid "SMTP Port"
-msgstr ""
+msgstr "Puerto SMTP"
 
 #: ../setup/config_data.inc:772
 msgid "The port on the SMTP server you are connecting to."
-msgstr ""
+msgstr "El puerto del servidor SMTP al que se conecta."
 
 #: ../setup/config_data.inc:780
 msgid "SMTP account name"
-msgstr ""
+msgstr "Nombre de la cuenta SMTP"
 
 #: ../setup/config_data.inc:781
 msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
 msgstr ""
 
 #: ../setup/config_data.inc:789
-#, fuzzy
 msgid "SMTP password"
-msgstr "Contraseña"
+msgstr "Contraseña SMTP"
 
 #: ../setup/config_data.inc:790
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
@@ -1317,7 +1314,6 @@ msgid "Enable commenting"
 msgstr "Habilitar comentarios"
 
 #: ../setup/config_data.inc:856
-#, fuzzy
 msgid "This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
 msgstr "Esta opción habilitará o deshabilitará la posibilidad que tienen los usuarios de hacer comentarios. Si la establece a &quot;no&quot; la funcionalidad de los comentarios será deshabilitada."
 
@@ -2583,12 +2579,11 @@ msgstr "En %s, para el nombre %s (fila %d) el valor %s debería ser un número ent
 
 #: ../setup/functions.inc:1081
 msgid "The PHP option 'register_globals' is enabled on your server. Gallery is not compatible with this option."
-msgstr ""
+msgstr "La opción 'register_globals' de PHP está activada en su servidor. Gallery no es compatible con esta opción."
 
 #: ../setup/functions.inc:1084
-#, fuzzy
 msgid "<b>register_globals</b> is off."
-msgstr "El modo seguro (<b>safe_mode</b>) está desactivado."
+msgstr "<b>register_globals</b> está desactivado."
 
 #: ../setup/functions.inc:1253
 msgid "Your admin passwords do not match!"
@@ -3005,17 +3000,3 @@ msgstr "Marco de madera"
 msgid "A textured wooden frame"
 msgstr "Un marco con textura de madera"
 
-#~ msgid "Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP 4.0.0 uses a different file upload protocol, and versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can. <p>"
-#~ msgstr "Verificando si está ejecutando PHP 4. Algunas versiones de PHP tienen fallos que pueden causar que Gallery falle en su funcionamiento. PHP 4.0.0 usa un protocolo diferente para las subidas al servidor. Las versiones 4.0.3 y 4.0.3pl1 tienen un fallo en el código de deserialización que puede causar que Gallery sea incapaz de leer su propia base de datos. Actualice PHP al menos a la versión 4.0.4pl1 si le es posible."
-
-#~ msgid "Use this section to set options to configure gallery to be embedded in another web application."
-#~ msgstr "Utilice esta sección para establecer las opciones para configurar la galería para que sea embebida en otra aplicación web."
-
-#~ msgid "Embed Gallery"
-#~ msgstr "Embeber Gallery"
-
-#~ msgid "If you would like to run %s in another web application (such as *Nuke, phpBB2 or GeekLog) you have to choose the environment here."
-#~ msgstr "Si quiere ejecutar %s en otra aplicación web (como *Nuke, phpBB2 o GeekLog) tiene que seleccionar aquí el entorno."
-
-#~ msgid "Standalone Gallery"
-#~ msgstr "Gallery no embebida"
