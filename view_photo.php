@@ -526,9 +526,6 @@ if (!$gallery->album->isMovie($id)) {
 
 $photoTag="";
 $frame= $gallery->album->fields['image_frame'];
-if ($fitToWindow) {
-	$frame="solid"; // no frame with fitToWindow (maybe we can fix this later)
-}
 $photoTag .= $gallery->album->getPhotoTag($index, $full);
 
 list($width, $height) = $photo->getDimensions($full);
