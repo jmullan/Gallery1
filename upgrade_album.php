@@ -18,44 +18,141 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
+<?
+/*
+ * This page is designed to work in standalone mode AND to be included
+ * from init.php, so be certain not to require init.php twice.  We
+ * can't use require_once() here because some older versions of PHP4
+ * barf on require_once() with a variable parameter.
+ *
+ * Since init.php will also include this file under some circumstances, 
+ * we want to keep track to see  if we're in an include loop.  If so, return.
+ */
+$UPGRADE_LOOP++;
+if ($UPGRADE_LOOP == 2) {
+	return;
+}
+
+if (!$gallery->version) { require($GALLERY_BASEDIR . "init.php"); }
+?>
+<?
+// Hack check
+if (!$gallery->user->isAdmin()) {
+        exit;
+}
+
+function close_button() {
+	print "<center>";
+	print "<form>";
+	print "<input type=submit value=\"Done\" onclick='opener.location.reload(); parent.close()'>";
+	print "</form>";
+	print "</center>";
+}
+
+function reload_button() {
+	print "<center>";
+	print "<form>";
+	print "<input type=submit value=\"Done\" onclick='location.reload()'>";
+	print "</form>";
+	print "</center>";
+}
+
+function end_file() {
+	print "</body>";
+	print "</html>";
+}
+
+function process($arr) {
+	print "<br>";
+	print "<b>Progress:</b>";
+	print "<ul>";
+	foreach ($arr as $album) {
+		print "<b>Album: " . $album->fields["title"] . "</b><br>";
+		if ($album->integrityCheck()) {
+			$album->save(0);
+		}
+		print "<br>";
+	}
+	print "</ul>";
+}
+$albumDB = new AlbumDB();
+?>
+
 <html>
 <head>
-  <title>Album Upgrade in Progress</title>
+  <title>Upgrade Albums</title>
   <?= getStyleSheetLink() ?>
 </head>
 <body>
 <center>
 <span class="title">
-Album Upgrade in Progress
+Upgrade Albums
 </span>
 </center>
 <p>
+The following albums in your Gallery were created with an older
+version of the software and are out of date.  This is not a problem!
+We can upgrade them.  This may take some time for large albums but
+we'll try to keep you informed as we proceed.  None of your photos
+will be harmed in any way by this process.  Rest assured, that if this
+process takes a long time now, it's going to make your Gallery run
+more efficiently in the future.
 
-The album you're viewing was created with an older version of Gallery
-and is out of date.  This is not a problem!  Please be patient while
-we upgrade it to work with the current version of Gallery.  This may
-take some time if the album is very large, but we'll try to keep you 
-informed.  None of your photos will be harmed in any way by this 
-process.
 <p>
-Rest assured, that if this process takes a long time now, it's going
-to make your Gallery run more efficiently in the future.
-<br>
-<br>
-<b>Progress:</b>
+
+<?
+if ($upgrade_albumname) {
+	$album = new Album();
+	$album->load($upgrade_albumname);
+}
+
+if ($album && $album->versionOutOfDate()) {
+	process(array($album));
+	reload_button();
+	end_file();
+	exit;
+}
+
+$numAlbums = $albumDB->numAlbums($gallery->user);
+for ($i = 1; $i <= $numAlbums; $i++) {
+	$album = $albumDB->getAlbum($gallery->user, $i);
+	if ($album->versionOutOfDate()) {
+		$ood[] = $album;
+	}
+}
+
+if ($upgradeall && sizeof($ood)) {
+	process($ood);
+	reload_button();
+	end_file();
+	exit;
+}
+	
+if (!$ood) {
+	print "<center>";
+	print "<b>All albums are up to date.</b>";
+	print "</center>";
+	close_button();
+} else {
+?>
+The following albums need to be upgraded.  You can process them
+individually by clicking the upgrade link next to the album that
+you desire, or you can just
+<a href=upgrade_album.php?upgradeall=1>upgrade them all at once</a>.
 <ul>
 <?
-if ($gallery->album->integrityCheck()) {
-	$gallery->album->save(0);
+	foreach ($ood as $album) {
+		print "<a href=upgrade_album.php?upgrade_albumname=" .
+			$album->fields["name"] .
+			">[upgrade]</a> ";
+		print "<b>" . $album->fields["title"] . "</b>";
+		print " (" . $album->numPhotos(1) . " items)";
+		print "<br>";
+	}
+	close_button();
 }
 ?>
 </ul>
-Upgrade complete.  To view the gallery, click the <b>Done</b> button below
-or simply reload the page.
-</span>
-
-<form>
-<input type=submit value="Done" onClick='document.location.reload()'>
-</form>
-</body>
-</html>
+<?
+end_file();
+?>
