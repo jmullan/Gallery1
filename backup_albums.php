@@ -47,31 +47,26 @@ if (!strcmp($submit, "Backup"))
 			if (!fs_file_exists($zip_path))
 			{
 				$error_text .= "Zip file \"$zip_path\" does not exist or is not readable.<br>";
-				$zip_path="";
 				break;
 			}
 		case "tgz":
 			if (!fs_file_exists($gzip_path))
 			{
 				$error_text .= "Gzip file \"$gzip_path\" does not exist or is not readable.<br>";
-				$gzip_path="";
 				break;
 			}
 			if (!fs_file_exists($tar_path))
 			{
 				$error_text .= "Tar file \"$tar_path\" does not exist or is not readable.<br>";
-				$tar_path="";
 				break;
 			}
 			if (!strcmp($target_files, "dat")) { 
 				if (!fs_file_exists($find_path)) {
 					$error_text .= "Find file \"$find_path\" does not exist or is not readable.<br>";
-					$find_path="";
 					break;
 				}
 				if (!fs_file_exists($xargs_path)) {
 					$error_text .= "Xargs file \"$xargs_path\" does not exist or is not readable.<br>";
-					$xargs_path="";
 					break;
 				}
 			}
@@ -91,15 +86,11 @@ if (!strcmp($submit, "Backup"))
 <body>
 
 <span class="popuphead">Backup album data</span>
-<center>
-Choose archiving option and which files you wish to archive.
-<br><br>
+<p>
 <?php
 if ($error_text) {
 ?>
-<br><br>
 <span class=error><?php echo $error_text?></span>
-<br><br>
 <?php
 }
 ?>
@@ -113,6 +104,8 @@ if (!isset($xargs_path)) { $xargs_path="/usr/bin/xargs";}
 if (!isset($gzip_path)) { $gzip_path="/usr/bin/gzip";}
 if (!isset($zip_path)) { $zip_path="/usr/bin/zip";}
 ?>
+<center>
+Choose archiving option and which files you wish to archive.
 <?php echo makeFormIntro("backup_albums.php", array("name" => "theform", "method" => "POST")); ?>
 <table>
 
@@ -139,8 +132,8 @@ if (!isset($zip_path)) { $zip_path="/usr/bin/zip";}
 </center>
 <ol>
 <li> On Linux/Unix systems, tar/gzip is recommended.
-<li> On windows system, choose zip backup, and ensure the path for the zip.exe is correct.
-<li> Zip file backup requires enough space in the temporary directory to create a zip file of entire backup before downloading.
+<li> On Windows system, choose zip backup, and ensure the path for the zip.exe is correct.
+<li> Zip file backup requires enough space in the temporary directory to create a zip file of entire backup.
 <li> Data files backup will <b>not</b> backup your images, and is recommended before upgrade.
 <li> If you choose a tar/gzip backup of data files only, you need to have correct paths for <b>xargs</b> and <b>find</b>, otherwise these are not needed.
 <li> This will take a while, please be patient. Hit "Backup" to begin, and when download is complete, hit "Cancel"
