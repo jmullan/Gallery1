@@ -1,3 +1,16 @@
+2004-05-04  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b92
+
+	* Change: Don't use makeGalleryHeaderUrl in do_command "logout"
+	  if it's a full url.  (Checking for "^http")
+
+	* Change: Remove extraneous htmlspecialchars() from inline_imagewrap
+
+	* Change: Use doCommand() and add "full" param to popup() in 
+	  commentbox.inc and commentdraw.inc to prevent a refresh from
+	  occuring, which can cause an issue using the new inline comments.
+	  (Post a comment, immediately delete it,  it would attempt to re-post
+	  the comment - fixed)
+
 2004-05-04  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b91
 
 	* Change: Add an isset() to inline_imagewrap.inc

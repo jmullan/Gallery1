@@ -60,7 +60,10 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 } else if (!strcmp($cmd, "logout")) {
 	$gallery->session->username = "";
 	$gallery->session->language = "";
-	header("Location: " . makeGalleryHeaderUrl($return));
+	if (!ereg("^http", $return)) {
+		$return = makeGalleryHeaderUrl($return);
+	}
+	header("Location: $return");
 } else if (!strcmp($cmd, "hide")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$gallery->album->hidePhoto($index);
@@ -114,8 +117,6 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		}
 		createNewAlbum($parentName);
 
-		$url = addUrlArg($return, "set_albumName=" .
-				 $gallery->session->albumName);
 		header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
 	} else {
 	        header("Location: " . makeAlbumHeaderUrl());
