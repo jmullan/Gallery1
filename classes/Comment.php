@@ -30,10 +30,10 @@ class Comment {
 
 	function Comment($commentText, $IPNumber, $name, $UID="") {
 
-		$this->commentText = wordwrap($commentText, 100, " ", 1);
+		$this->commentText = substr(wordwrap($commentText, 100, " ", 1), 0, 1000);
 		$this->datePosted = time();
 		$this->IPNumber = $IPNumber;
-		$this->name = $name;
+		$this->name = substr($name, 0, 100);
 		$this->UID = $UID;
 	}
 
