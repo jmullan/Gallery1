@@ -181,17 +181,28 @@ foreach ($rssAlbumList as $album) {
 			$height = $highlight->thumbnail->height;
 
 			if ($gallery->app->rssBigPhoto == "no") {
+				$ratio = 1;
 				if ($width > 144) {
+					$ratio = 144 / $width;
 					$width = 144;
 				}
 			
-				if ($height > 400) {
-					$height = 400;
+				if ($height > 400 || $ratio != 1) {
+					if (($height * $ratio) > 400) {
+						$ratio = 400 / ($height * $ratio);
+						$height = 400;
+						$width = $width * $ratio;
+					} else {
+						$height = $height * $ratio;
+					}
 				}
+				$height = floor($height);
+				$width = floor($width);
 			}
 
-		$albumInfo["pb:thumb"] = array($highlight->thumbnail->getPath($base),
-		array("height" => $height, "width" => $width));
+		$albumInfo['pb:thumb'] = $highlight->thumbnail->getPath($base);
+		$albumInfo['pb:height'] = $height;
+		$albumInfo['pb:width'] = $width;
 		}
 	}
 
@@ -206,14 +217,14 @@ foreach ($rssAlbumList as $album) {
 			$album->load($album->fields["name"], TRUE);
 		}
 		
-		$albumInfo["description"]  = $album->fields["description"] . '<p />';
+		$albumInfo["description"]  = $album->fields["description"] . '<p>';
 		$albumInfo["description"] .= getThumbs($album);
 	} elseif ($gallery->app->rssMode == "thumbs-with-captions") {
 		if (!$album->transient->photosloaded) {
 			$album->load($album->fields["name"], TRUE);
 		}
 
-		$albumInfo["description"]  = $album->fields["description"] . '<p />';
+		$albumInfo["description"]  = $album->fields["description"] . '<p>';
 		$albumInfo["description"] .= getThumbsAndCaptions($album);
 	} elseif ($gallery->app->rssMode == "highlight" && isset($highlight)) {
 		$url = makeAlbumUrl($album->fields["name"]);
@@ -244,9 +255,9 @@ if (isset($gallery->app->rssHighlight) && $gallery->app->rssHighlight != "*") {
 }
 
 if (isset($ha)) {
-	$channel_image = $ha["pb:thumb"][0];
-	$channel_image_width = $ha["pb:thumb"][1]["width"];
-	$channel_image_height = $ha["pb:thumb"][1]["height"];
+	$channel_image = $ha["pb:thumb"];
+	$channel_image_width = $ha["pb:width"];
+	$channel_image_height = $ha["pb:height"];
 }
 
 $total_str = pluralize_n2(ngettext(_("1 album"), _("%s albums"), $numAlbums), $numAlbums, _("no albums"));
