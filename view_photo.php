@@ -395,6 +395,9 @@ if (!$gallery->album->isMovie($id)) {
 	if ($gallery->user->canDeleteFromAlbum($gallery->album) || 
 	    ($gallery->album->getItemOwnerDelete() && $gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
 		$nextId = ($index >= $numPhotos ? $index - 1 : $index);
+		if($gallery->album->isAlbumName($nextId+1)) {
+			$nextId="";
+		}
 		$adminCommands .= popup_link("[" . _("delete photo") ."]", 
 			"delete_photo.php?id=$id&id2=$nextId");
 	}
