@@ -22,7 +22,7 @@ $checklist = array(
 	"php4" => array(
 		"desc" => "Check to see if you are running PHP 4.  Note that some versions of PHP ".
 			  "have bugs that cause Gallery to fail.  PHP4.0.0 uses a different file " .
-			  "upload protocol, versions 4.0.2, 4.0.3 and 4.0.3pl1 have a bug in the " .
+			  "upload protocol, versions 4.0.3 and 4.0.3pl1 have a bug in the " .
 			  "unserialization code that cause Gallery to be unable to read its own " .
 			  "database.  Upgrade to at least PHP 4.0.4pl1 if you can.",
 	     	"func" => "check_php",
@@ -117,7 +117,7 @@ $checklist = array(
 
 $features = array(
 	"zip" => array("zipinfo", "unzip"),
-	"rewrite" => array("GALLERY_REWRITE"),
+	"rewrite" => array("GALLERY_REWRITE_OK"),
 );
 
 $constants = array(
@@ -213,9 +213,9 @@ $constants = array(
 	"sessionVar" => array(
 		desc => "(Advanced) The session variable used to " .
 			"contain all Gallery session information. " .
-			"Change this if there is a conflict between
+			"Change this if there is a conflict between " .
 			"Gallery and another PHP app on your website.",
-		value => "x_gallery_x",
+		value => "gallery_session",
 	),
 );
 
