@@ -397,6 +397,12 @@ function rotate_image($src, $dest, $target) {
 		}
 		break;
 	case "ImageMagick":
+	        if (!strcmp($target, "90")) {
+		    $target = "-90";
+		} else if (!strcmp($target, "-90")) {
+		    $target = "90";
+		}
+	  
 		$src = fs_import_filename($src);
 		$out = fs_import_filename($out);
 		$err = exec_wrapper(ImCmd("convert", "-rotate $target $src $out"));
