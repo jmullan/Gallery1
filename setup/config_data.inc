@@ -209,6 +209,11 @@ $defaults = array(
 		"value" => "no",
 		"choices" => array("yes", "no")
 	),
+	"use_fullOnly" => array(
+		"desc" => "Offer visitors ability to specify preference for full-size or resized images",
+		"value" => "no",
+		"choices" => array("yes", "no")
+	),
 	"returnto" => array(
 		"desc" => "Display the 'Return to Album List' link",
 		"value" => "yes",
