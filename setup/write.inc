@@ -40,7 +40,7 @@ $outfile = GALLERY_CONFDIR . '/config.php';
 @copy("gpl.txt", $outfile);
 
 if ($fd = @fs_fopen($outfile, "a")) {
-	$data = urldecode($data);
+	$data = urldecode(getRequestVar('data'));
 
 	fwrite($fd, $data);
 	fclose($fd);

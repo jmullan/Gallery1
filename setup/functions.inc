@@ -201,7 +201,7 @@ function form_multiple_choice($key, $arr) {
 		$count++;
 		$column++;
 		$selected = "";
-		if ($arr["value"] && in_array($item, $arr["value"])) {
+		if (is_array($arr["value"]) && in_array($item, $arr["value"])) {
 			$selected = "CHECKED";
 		}
 		$buf .= "\n\t<br><input name=\"${key}[]\" value=\"$item\" type=\"checkbox\" $selected>" . $value ;

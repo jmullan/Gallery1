@@ -79,7 +79,7 @@ foreach ($features as $feature => $dependents) {
 	$use = 1;
 	$cause = "";
 	foreach ($dependents as $dep) {
-		if (!$$dep) {
+		if (!isset($$dep)) {
 			$use = 0;
 			if ($cause) {
 				$cause .= ", ";
@@ -136,9 +136,11 @@ foreach ($constants as $key => $val) {
 		$newKey=$$subKey;
 		key_strip_slashes ($newKey);
 		$real = $newKey[$subValue];
-	} else {
+	} elseif (isset($$key)) {
 		$real = $$key;
-	}
+	} else {
+		$real = "";
+        }
 
 	if (get_magic_quotes_gpc()) {
 		$real = array_stripslashes($real);
@@ -437,7 +439,7 @@ $footer = "?" . ">\n";
 ?>
 <div class="sitedesc">
 <?php 
-if (!$error) { 
+if (!$error) {
 	echo _("Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it.");
 } else {
 	echo _("Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings.");
