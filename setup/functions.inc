@@ -142,6 +142,7 @@ function check_graphics()
 		"pnmtopng", 
 		"pnmscale", 
 		"pnmfile",
+		"ppmquant",
 		"pnmrotate",
 	);
 
