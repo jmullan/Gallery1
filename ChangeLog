@@ -1,8 +1,14 @@
-2002-01-18    <bharat@fusionone.com> 1.2.6-cvs-b4
+2002-01-18    <bharat@menalto.com> 1.2.6-cvs-b4
 
-	* Change the "Upload Progress" dialog box to use a single animated GIF
+	* Fix for bug #505234: Gallery with PHP-Nuke (5.4) include error
+	  In PHP-Nuke 5.4 they changed the $op variable to $mop	
+	
+	* Fix for bug #505120: "File upload in progress" bogs down server
+	  Change the "Upload Progress" dialog box to use a single animated GIF
 	  instead of the javascript solution.  This can reduce server load
 	  considerably if the browser has very conservative caching settings.
+
+	* Fix for bug #502543: Private album name leak
 
 2002-01-08  Bharat Mediratta  <bharat@menalto.com> 1.2.6-cvs-b3
 
