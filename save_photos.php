@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2001 Bharat Mediratta
@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -27,8 +27,8 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
@@ -63,12 +63,12 @@ function msg($buf) {
 </head>
 <body onLoad='opener.hideProgressAndReload();'>
 
-<?
+<?php
 if ($urls) {
 ?>
 <span class=title>Fetching Urls...</span>
 <br>
-<?
+<?php
 	/* Process all urls first */
 	$temp_files = array();
 	
@@ -226,7 +226,7 @@ if ($urls) {
 <span class=title>Processing status...</span>
 <br>
 
-<?
+<?php
 while (sizeof($userfile)) {
 	$name = array_shift($userfile_name);
 	$file = array_shift($userfile);
@@ -339,7 +339,7 @@ if ($temp_files) {
 }
 ?>
 
-<?
+<?php
 if (!$msgcount) {
 	print "No images uploaded!";
 }
@@ -348,17 +348,18 @@ if (!$msgcount) {
 <form>
 <input type=submit value="Dismiss" onclick='parent.close()'>
 </form>
-<?
+<?php
 /* Prompt for additional files if we found links in the HTML slurpage */
 if (count($image_tags)) {
 ?>
 
-<?php $uploadURLFormName = "uploadurl_form"; ?>
+<?php $uploadUrlFormName = "uploadurl_form"; ?>
 
+<?php /* Note: the w3c-suggested "text/javascript" doesn't work with Navigator 4 */ ?>
 <script language="javascript">
-<!-- 
-function SetCheck(val) {
-	ufne=document.<?php echo $uploadURLFormName; ?>;
+// <!-- 
+function setCheck(val) {
+	ufne=document.<?php echo $uploadUrlFormName; ?>;
 	len = ufne.elements.length;
 	for(i = 0 ; i < len ; i++) {
 		if (ufne.elements[i].name=='urls[]') {
@@ -366,8 +367,8 @@ function SetCheck(val) {
 		}
 	}
 }
-function InvertCheck() {
-	ufne=document.<?php echo $uploadURLFormName; ?>;
+function invertCheck() {
+	ufne=document.<?php echo $uploadUrlFormName; ?>;
 	len = ufne.elements.length;
 	for(i = 0 ; i < len ; i++) {
 		if (ufne.elements[i].name=='urls[]') {
@@ -375,23 +376,23 @@ function InvertCheck() {
 		}
 	}
 }
-//-->
+// -->
 </script>
 
 <p><span class="fineprint">
-<a href="javascript:SetCheck(1)">Check&nbsp;All</a>
+<a href="javascript:setCheck(1)">Check&nbsp;All</a>
 -
-<a href="javascript:SetCheck(0)">Clear&nbsp;All</a>
+<a href="javascript:setCheck(0)">Clear&nbsp;All</a>
 -
-<a href="javascript:InvertCheck()">Invert Selection</a>
+<a href="javascript:invertCheck()">Invert Selection</a>
 </span></p>
 
 <table><tr><td>
 <?= makeFormIntro("save_photos.php", 
-		array("name" => $uploadURLFormName, 
+		array("name" => $uploadUrlFormName, 
 			"enctype" => "multipart/form-data", 
 			"method" => "POST")); ?>
-<?
+<?php
 	/* Allow user to select which files to grab - only show url right now ( no image previews ) */
 	sort($image_tags);
 	foreach ( $image_tags as $image_src) {
@@ -404,11 +405,11 @@ function InvertCheck() {
   into util.php at some time - maybe added functionality to the makeFormIntro? */ ?>
 
 <p><span class="fineprint">
-<a href="javascript:SetCheck(1)">Check&nbsp;All</a>
+<a href="javascript:setCheck(1)">Check&nbsp;All</a>
 -
-<a href="javascript:SetCheck(0)">Clear&nbsp;All</a>
+<a href="javascript:setCheck(0)">Clear&nbsp;All</a>
 -
-<a href="javascript:InvertCheck()">Invert Selection</a>
+<a href="javascript:invertCheck()">Invert Selection</a>
 </span></p>
 
 <p>
@@ -418,6 +419,6 @@ function InvertCheck() {
 
 </form>
 </center>
-<? } /* End if links slurped */ ?>
+<?php } /* End if links slurped */ ?>
 </body>
 </html>
