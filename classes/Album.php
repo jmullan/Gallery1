@@ -1424,15 +1424,27 @@ class Album {
 		$this->save(array(), $resetModDate);
         }
 
-	function watermarkAlbum($wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY) {
+	function watermarkAlbum($wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $recursive=0) {
 		$this->updateSerial = 1;
 	       	$count = $this->numPhotos(1);
 		for ($index = 1; $index <= $count; $index++) {
 			$photo = &$this->getPhoto($index);
-			$retval = $photo->watermark($this->getAlbumDir(),
+			if ($photo->isAlbum()) {
+				if ($recursive) {
+					$subAlbumName = $this->getAlbumName($index);
+					$subAlbum = new Album();
+					$subAlbum->load($subAlbumName);
+					$subAlbum->watermarkAlbum($wmName, $wmAlphaName,
+						$wmAlign, $wmAlignX, $wmAlignY, $recursive);
+				}
+			} else if ($photo->isMovie()) {
+				// Watermarking of movies not supported
+			} else {
+				$photo->watermark($this->getAlbumDir(),
 						$wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY);
-		}
-	}
+			}
+		} // next $index
+	} // end of function
 
 	function makeThumbnail($index) {
 		$this->updateSerial = 1;

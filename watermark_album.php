@@ -34,6 +34,9 @@ if (empty($index)) {
 	$index='';
 }
 
+if (!isset($recursive)) {
+	$recursive = 1;
+}
 
 $err = "";	
 if (isset($save)) {
@@ -44,7 +47,8 @@ if (isset($save)) {
 
         	        my_flush();
                 	set_time_limit($gallery->app->timeLimit);
-	                $gallery->album->watermarkAlbum($wmName, "", $wmAlign, $wmAlignX, $wmAlignY);
+	                $gallery->album->watermarkAlbum($wmName, "",
+				$wmAlign, $wmAlignX, $wmAlignY, $recursive);
         	        $gallery->album->save();
                 	dismissAndReload();
 	                return;
@@ -74,6 +78,7 @@ if (!empty($err)) {
    echo makeFormIntro("watermark_album.php",
                       array("name" => "theform",
                             "method" => "POST"));
+   $askRecursive = 1;
    include (dirname(__FILE__). '/layout/watermarkform.inc') ;
 ?>
 

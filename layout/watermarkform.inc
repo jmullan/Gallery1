@@ -35,7 +35,7 @@
     $wmName = "";
   }
   if (!isset($wmAlign)) {
-	$wmAlign=0;
+    $wmAlign=0;
   }
 ?>
 <p>
@@ -61,7 +61,7 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 			$found++;
 			if ($found == 1) {
 				// Start select form element on first matching file
-				print "<b>" . _("Watermark") . ":</b>";
+				print "<b>" . _("Watermark") . ":</b>&nbsp;";
 				print "<select name=\"wmName\">\n";
 			}
 			print "\t<option ";
@@ -124,3 +124,8 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 </tr>
 </table>
 <br>
+<?php if (isset($askRecursive)) {
+  print '<input type="checkbox" name="recursive"';
+  if (isset($recursive)) echo " checked";
+  print ">" . _("Watermark subalbums") . "</input><br><br>";
+} ?>
