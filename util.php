@@ -88,7 +88,7 @@ function viewComments($index) {
         $buf = "<span class=editlink>";
         $buf .= popup_link('[' . _("add comment") . ']', $url, 0);
         $buf .= "</span>";
-        echo "<tr align=center><td colspan=3>$buf<br><br></td></tr>";
+        echo "<tr align=\"center\"><td colspan=\"3\">$buf<br><br></td></tr>";
 }
 
 function center($message) {
@@ -100,7 +100,7 @@ function gallery_error($message) {
 }
 
 function error_format($message) {
-	return "<span class=error>". _("Error:") . " $message</span>";
+	return "<span class=\"error\">". _("Error:") . " $message</span>";
 }
 
 function build_popup_url($url, $url_is_complete=0) {
@@ -721,7 +721,13 @@ function includeHtmlWrap($name) {
 
 function getStyleSheetLink() {
 	global $GALLERY_EMBEDDED_INSIDE;
+	global $GALLERY_OK;
 
+	if (isset($GALLERY_OK)) {
+		if ($GALLERY_OK == false) {
+			return _getStyleSheetLink("config");
+		}
+	}
 	if ($GALLERY_EMBEDDED_INSIDE) {
 		return _getStyleSheetLink("embedded_style");
 	} else {
@@ -1001,10 +1007,12 @@ function makeAlbumUrl($albumName="", $photoId="", $args=array()) {
 function gallerySanityCheck() {
 	global $gallery;
 	global $GALLERY_BASEDIR;
+	global $GALLERY_OK;
 
 	if (!fs_file_exists($GALLERY_BASEDIR . "config.php") ||
                 broken_link($GALLERY_BASEDIR . "config.php") ||
                 !$gallery->app) {
+		$GALLERY_OK=false;
 		include($GALLERY_BASEDIR . "errors/unconfigured.php");
 		exit;
 	}
@@ -1023,12 +1031,14 @@ function gallerySanityCheck() {
 		 */
 		$perms = sprintf("%o", fileperms($GALLERY_BASEDIR . "setup"));
 		if (strstr($perms, "755")) {
+			$GALLERY_OK=false;
 			include($GALLERY_BASEDIR . "errors/configmode.php");
 			exit;
 		}
 	}
 
 	if ($gallery->app->config_version != $gallery->config_version) {
+		$GALLERY_OK=false;
 		include($GALLERY_BASEDIR . "errors/reconfigure.php");
 		exit;
 	}

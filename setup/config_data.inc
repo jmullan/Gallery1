@@ -184,7 +184,7 @@ $constants =  array_merge(
 		"attrs" => array("size" => 50)
 	),
 
-	"separator3" => array (
+	"separator1" => array (
 		"type" => "separator",
 		"title" => _("Locations and URLs")
 	),
@@ -247,7 +247,7 @@ $constants =  array_merge(
 		"value" => NULL,
 		"attrs" => array("cols" => 50, "rows" => 5)
 	),
-	"separator_1" => array (
+	"separator2" => array (
 		"type" => "separator",
 		"title" => _("Toolkits / image processing")
 	),
@@ -310,10 +310,44 @@ $constants =  array_merge(
 				   90 => 90, 95 => 95, 100 => 100),
 		"value" => 95
 	),
+	"separator3" => array (
+		"type" => "separator",
+		"title" => _("Gallery top page"),
+	),
+	"showAlbumTree" => array(
+		"prompt" => _("Show the album tree"),
+		"desc" => _("If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page).  Set to <b>no</b> by default."),
+		"choices" => array("yes" => _("yes"), "no" => _("no")), 
+		"value" => "no"
+	),
+	"highlight_size" => array(
+		"prompt" => _("Highlight size"),
+		"desc" => _("The target size (in pixels) of thumbnails shown in the gallery page (highlight images)"),
+ 		"value" => 200,
+		"type" => "text",
+		"attrs" => array("size" => 5)
+	),
+	"showOwners" => array(
+		"prompt" => _("Show Owner"),
+		"desc" => _("Show album owner's name on the top level Gallery page?"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no",
+	),
+	"albumsPerPage" => array(
+		"prompt" => _("Albums per page"),
+		"desc" => _("How many albums should be displayed per Gallery page?"),
+		"value" => "5",
+		"attrs" => array("size" => 10),
+		"type" => "text"
+	),
+	"showSearchEngine" => array(
+		"prompt" => _("Search Engine"),
+		"desc" => _("Display search engine on main Gallery page?"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "yes",
+	),
 
-
-
-	"separator2" => array (
+	"separator4" => array (
 		"type" => "separator",
 		"title" => _("Optional tools")
 	),
@@ -371,25 +405,6 @@ $constants =  array_merge(
 		"type" => "text",
 		"attrs" => array ("size" => 50)
 	),		
-
-	"separator4" => array (
-		"type" => "separator",
-		"title" => _("Appearance")
-	),
-	"showAlbumTree" => array(
-		"prompt" => _("Show the album tree"),
-		"desc" => _("If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page).  Set to <b>no</b> by default."),
-		"choices" => array("yes" => _("yes"), "no" => _("no")), 
-		"value" => "no"
-	),
-	"highlight_size" => array(
-		"prompt" => _("Highlight size"),
-		"desc" => _("The target size (in pixels) of thumbnails shown in the gallery page (highlight images)"),
- 		"value" => 200,
-		"type" => "text",
-		"attrs" => array("size" => 5)
-	),
-
 	"separator5" => array (
 		"type" => "separator",
 		"title" => _("Languages and locales"),
@@ -430,7 +445,8 @@ $constants =  array_merge(
 		"desc" => _("In Mode 3 you can choose if you want to display a small pulldown menu or flags for the available languages. Set to <b>no</b> per default as its only an eye catcher.") .
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
-		"value" => "no"
+		"value" => "no",
+		"enabled" => $elawisyl
 	),
 	"dateString" => array(
 		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Format to use for date strings."),
@@ -453,7 +469,8 @@ $constants =  array_merge(
 		"value" => "%c",
 		"type" => "text",
 		"attrs" => array("size" => 20)
-	)
+	),
+
    ),
 	config_maybe_locales()
 );
@@ -513,6 +530,10 @@ $constants = array_merge($constants,
 );
 
 $defaults = array(
+	"separator1" => array (
+               	"type" => "separator",
+		"title" => _("Appearance")
+        ),
 	"bordercolor" => array(
 		"prompt" => _("Border color"),
  		"desc" => sprintf(_("Default color of image borders. You can learn about %scolors%s here."),    
@@ -538,6 +559,10 @@ $defaults = array(
 		"attrs" => array("size" => 10),
 		"type" => "text"
 	),
+	"separator2" => array (
+               	"type" => "separator",
+		"title" => _("Layout")
+        ),
 	"cols" => array(
 		"prompt" => _("Default Columns"),
 		"desc" => _("The default number of columns in an album"),
@@ -550,6 +575,10 @@ $defaults = array(
 		"value" => 3,
 		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9),
 	),
+	"separator3" => array (
+               	"type" => "separator",
+		"title" => _("Image Processing and Display")
+        ),
 	"thumb_size" => array(
 		"prompt" => _("Thumbnail size"),
 		"desc" => _("The default target size (in pixels) of album thumbnails."),
@@ -571,6 +600,19 @@ $defaults = array(
 		"optional" => 1,
 		"type" => "text"
 	),
+	"useOriginalFileNames" => array(
+		"prompt" => _("Preserve Names"),
+                "desc" => _("When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."),
+                "choices" => array("yes" => _("yes"), "no" => _("no")),
+                "value" => "yes",
+	),
+	"add_to_beginning" => array(
+		"prompt" => _("Add to beginning"),
+		"desc" => _("New images added to beginning rather than end of albums") .
+			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4") .")</b></font>",
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no",
+	),
 	"fit_to_window" => array(
 		"prompt" => _("Fit-to-window"),
 		"desc" => _("When viewing photos which don't have an intermediary version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke"),
@@ -583,6 +625,10 @@ $defaults = array(
 		"value" => "no",
 		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),
+	"separator4" => array (
+               	"type" => "separator",
+		"title" => _("Optionales")
+        ),
 	"print_photos" => array(
 		"prompt" => _("Printing Service"),
 		"desc" => _("Allow visitors to print photos directly from the album.  If you choose shutterfly, Gallery will charge an extra 2 cents (US) for every photo printed (a 4x6 print normally costs 49 cents US) and 1.8 cents of that will get donated back to the Gallery project.  This is one great way for you to help support this free software."),
@@ -600,31 +646,10 @@ $defaults = array(
 		"value" => "yes",
 		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),
-	"showOwners" => array(
-		"prompt" => _("Show Owner"),
-		"desc" => _("Show album owner's name on the top level Gallery page?"),
-		"choices" => array("yes" => _("yes"), "no" => _("no")),
-		"value" => "no",
-	),
-	"albumsPerPage" => array(
-		"prompt" => _("Albums per page"),
-		"desc" => _("How many albums should be displayed per Gallery page?"),
-		"value" => "5",
-		"attrs" => array("size" => 10),
-		"type" => "text"
-	),
-	"showSearchEngine" => array(
-		"prompt" => _("Search Engine"),
-		"desc" => _("Display search engine on main Gallery page?"),
-		"choices" => array("yes" => _("yes"), "no" => _("no")),
-		"value" => "yes",
-	),
-	"useOriginalFileNames" => array(
-		"prompt" => _("Preserve Names"),
-                "desc" => _("When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."),
-                "choices" => array("yes" => _("yes"), "no" => _("no")),
-                "value" => "yes",
-	),
+	"separator5" => array (
+               	"type" => "separator",
+		"title" => _("Data displayed")
+        ),
 	"display_clicks" => array(
 		"prompt" => _("Click counts"),
 		"desc" => _("Display click counts within Albums?"),
@@ -645,6 +670,10 @@ $defaults = array(
 		"type" => "text",
 		"value" => "Description"
 	),
+	"separator6" => array (
+               	"type" => "separator",
+		"title" => _("Item Owner")
+        ),
 	"item_owner_modify" => array(
 		"prompt" => _("Photo owner modification"),
 		"desc" => _("Allow photo owners to edit and rotate/flip their own photos?") .
@@ -665,14 +694,8 @@ $defaults = array(
 			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4") .")</b></font>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
-	),
-	"add_to_beginning" => array(
-		"prompt" => _("Add to beginning"),
-		"desc" => _("New images added to beginning rather than end of albums") .
-			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4") .")</b></font>",
-		"choices" => array("yes" => _("yes"), "no" => _("no")),
-		"value" => "no",
-	),
+	)
+
 );
 
 ?>

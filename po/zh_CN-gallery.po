@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-28 16:28+0200\n"
-"PO-Revision-Date: 2003-08-27 18:13+0800\n"
+"POT-Creation-Date: 2003-08-31 19:52+0200\n"
+"PO-Revision-Date: 2003-08-31 11:06+0800\n"
 "Last-Translator: Jiang Le <naoki@cmfans.cn>\n"
 "Language-Team: Simplified Chinese <naoki@cmfans.cn>\n"
 "MIME-Version: 1.0\n"
@@ -27,10 +27,10 @@ msgstr ""
 #: ../move_photo.php:28 ../photo_owner.php:30 ../progress_uploading.php:28
 #: ../publish_xp.php:28 ../publish_xp_docs.php:28 ../rename_album.php:28
 #: ../resize_photo.php:28 ../rotate_photo.php:28 ../save_photos.php:28
-#: ../search.php:28 ../setup/index.php:87 ../slideshow.php:28
+#: ../search.php:28 ../setup/index.php:84 ../slideshow.php:28
 #: ../slideshow_low.php:28 ../sort_album.php:28 ../upgrade_album.php:28
 #: ../upgrade_users.php:28 ../user_preferences.php:28 ../util.php:28
-#: ../view_album.php:28 ../view_comments.php:31 ../view_photo.php:28
+#: ../view_album.php:27 ../view_comments.php:31 ../view_photo.php:28
 #: ../view_photo_properties.php:28
 msgid "Security violation"
 msgstr "°²È«·Áº¦"
@@ -52,7 +52,7 @@ msgid "Name or email:"
 msgstr "ĞÕÃû»òÕßµçÓÊ£º"
 
 #: ../add_comment.php:98 ../album_permissions.php:288 ../edit_caption.php:173
-#: ../edit_field.php:60 ../edit_field.php:71 ../modify_user.php:142
+#: ../edit_field.php:63 ../edit_field.php:74 ../modify_user.php:142
 #: ../photo_owner.php:104 ../user_preferences.php:125
 msgid "Save"
 msgstr "´¢´æ"
@@ -60,7 +60,7 @@ msgstr "´¢´æ"
 #: ../add_comment.php:99 ../add_photo.php:142 ../add_photos.php:114
 #: ../add_photos.php:135 ../create_user.php:102 ../delete_album.php:67
 #: ../delete_photo.php:112 ../delete_photo.php:132 ../delete_user.php:83
-#: ../edit_caption.php:174 ../edit_field.php:72 ../login.php:131
+#: ../edit_caption.php:174 ../edit_field.php:75 ../login.php:131
 #: ../modify_user.php:143 ../move_album.php:93 ../move_album.php:119
 #: ../move_photo.php:227 ../move_photo.php:311 ../rename_album.php:121
 #: ../resize_photo.php:120 ../sort_album.php:116 ../user_preferences.php:126
@@ -216,7 +216,7 @@ msgstr "¸ö¶¥²ãÏà²¾"
 msgid "albums"
 msgstr "¸öÏà²¾"
 
-#: ../albums.php:114 ../view_album.php:252
+#: ../albums.php:114 ../view_album.php:297
 msgid "No albums"
 msgstr "ÉĞÎŞÏà²¾"
 
@@ -225,11 +225,11 @@ msgstr "ÉĞÎŞÏà²¾"
 msgid "%d total"
 msgstr "È«²¿ÓĞ %d ¸öÏà²¾"
 
-#: ../albums.php:116 ../view_album.php:253
+#: ../albums.php:116 ../view_album.php:299
 msgid "image"
 msgstr "·İÎÄ¼ş"
 
-#: ../albums.php:116 ../view_album.php:253
+#: ../albums.php:116 ../view_album.php:299
 msgid "images"
 msgstr "·İÎÄ¼ş"
 
@@ -237,11 +237,11 @@ msgstr "·İÎÄ¼ş"
 msgid "no image"
 msgstr "Ã»ÓĞÎÄ¼ş"
 
-#: ../albums.php:117 ../captionator.php:181 ../view_album.php:254
+#: ../albums.php:117 ../captionator.php:181 ../view_album.php:300
 msgid "page"
 msgstr "Ò³"
 
-#: ../albums.php:117 ../captionator.php:181 ../view_album.php:254
+#: ../albums.php:117 ../captionator.php:181 ../view_album.php:300
 msgid "pages"
 msgstr "Ò³"
 
@@ -286,11 +286,11 @@ msgstr "ÓÃ»§¹ÜÀí"
 msgid "preferences"
 msgstr "¸öÈËÉè¶¨"
 
-#: ../albums.php:166 ../view_album.php:357
+#: ../albums.php:166 ../view_album.php:406
 msgid "logout"
 msgstr "ÍË³ö"
 
-#: ../albums.php:170 ../view_album.php:360
+#: ../albums.php:170 ../view_album.php:412
 msgid "login"
 msgstr "µÇÂ¼"
 
@@ -312,12 +312,12 @@ msgid "Highlight for Album: "
 msgstr "·âÃæÕÕÆ¬"
 
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../albums.php:271 ../view_album.php:582
+#: ../albums.php:271
 msgid "title"
 msgstr "±êÌâ"
 
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../albums.php:276 ../view_album.php:587
+#: ../albums.php:276
 msgid "description"
 msgstr "ÃèÊö"
 
@@ -329,7 +329,7 @@ msgstr "É¾³ıÏà²¾"
 msgid "move album"
 msgstr "°áÒÆÏà²¾"
 
-#: ../albums.php:305 ../view_album.php:296
+#: ../albums.php:305 ../view_album.php:342
 msgid "rename album"
 msgstr "¸ü¸ÄÃû³Æ"
 
@@ -337,13 +337,17 @@ msgstr "¸ü¸ÄÃû³Æ"
 msgid "edit captions"
 msgstr "ĞŞ¸ÄËµÃ÷"
 
-#: ../albums.php:318 ../view_album.php:340
+#: ../albums.php:318 ../view_album.php:385
 msgid "permissions"
 msgstr "È¨ÏŞÉè¶¨"
 
 #: ../albums.php:320
 msgid "view&nbsp;comments"
-msgstr "¼ìÊÓÆÀÂÛ"
+msgstr "ä¯ÀÀÆÀÂÛ"
+
+#: ../albums.php:324
+msgid "url:"
+msgstr ""
 
 #: ../albums.php:336
 msgid "Hey!"
@@ -376,11 +380,11 @@ msgstr "ÉÏ´Î¸üĞÂ£º%s. "
 msgid "This album contains %s."
 msgstr "<br>%sÔÚÕâ¸öÏà²¾ÀïÃæ. "
 
-#: ../albums.php:355 ../view_album.php:525
+#: ../albums.php:355 ../view_album.php:585
 msgid "item"
 msgstr "·İÎÄ¼ş"
 
-#: ../albums.php:355 ../upgrade_album.php:192 ../view_album.php:525
+#: ../albums.php:355 ../upgrade_album.php:192 ../view_album.php:585
 msgid "items"
 msgstr "·İÎÄ¼ş"
 
@@ -393,15 +397,15 @@ msgstr "Ã»ÓĞ¶«¶«"
 msgid "This album has been viewed %s since %s."
 msgstr "ÈËÆø£º%s (´Ó %s ¿ªÊ¼¼ÆËã)"
 
-#: ../albums.php:360 ../view_album.php:527 ../view_album.php:542
+#: ../albums.php:360 ../view_album.php:590 ../view_album.php:609
 msgid "time"
 msgstr "¶È"
 
-#: ../albums.php:360 ../view_album.php:527 ../view_album.php:542
+#: ../albums.php:360 ../view_album.php:590 ../view_album.php:609
 msgid "times"
 msgstr "¶È"
 
-#: ../albums.php:360 ../view_album.php:527 ../view_album.php:542
+#: ../albums.php:360 ../view_album.php:590 ../view_album.php:609
 msgid "0 times"
 msgstr "0 ¶È"
 
@@ -472,7 +476,7 @@ msgstr "Ã»ÓĞÏàÆ¬! "
 msgid "Untitled"
 msgstr "ÎŞ±êÌâ"
 
-#: ../classes/Album.php:43 ../view_album.php:517
+#: ../classes/Album.php:43 ../view_album.php:573
 msgid "No description"
 msgstr "ÎŞÃèÊö"
 
@@ -606,8 +610,8 @@ msgid "Do you really want to delete this album?"
 msgstr "ÄúÈ·¶¨ÒªÉ¾³ı¸ÃÏà²¾? "
 
 #: ../delete_album.php:66 ../delete_photo.php:111 ../delete_photo.php:131
-#: ../delete_user.php:78 ../manage_users.php:109 ../view_album.php:629
-#: ../view_album.php:634
+#: ../delete_user.php:78 ../manage_users.php:109 ../view_album.php:649
+#: ../view_album.php:710 ../view_album.php:715
 msgid "Delete"
 msgstr "É¾³ı"
 
@@ -821,7 +825,7 @@ msgstr "¹Ø±Õ"
 msgid "Year must be between 1000 and 3000"
 msgstr "Äê·İ±ØĞëÔÚ 1000 Óë 3000 Ö®¼ä"
 
-#: ../edit_caption.php:72 ../view_album.php:600
+#: ../edit_caption.php:72 ../view_album.php:630 ../view_album.php:670
 msgid "Edit Text"
 msgstr "ĞŞ¸ÄÎÄ×Ö"
 
@@ -853,12 +857,12 @@ msgstr "·Ö"
 msgid "Seconds"
 msgstr "Ãë"
 
-#: ../edit_field.php:53
+#: ../edit_field.php:56
 #, php-format
 msgid "Edit %s"
 msgstr "ĞŞ¸Ä %s"
 
-#: ../edit_field.php:59
+#: ../edit_field.php:62
 #, php-format
 msgid "Edit the %s and click %s when you're done"
 msgstr "µ±Äú¸ÄºÃ %s Ö®ºóÇë°´ %s Å¥"
@@ -883,20 +887,20 @@ msgstr "Galley Éè¶¨Ä£Ê½"
 msgid "Gallery: Configuration Mode"
 msgstr "Gallery: Éè¶¨Ä£Ê½"
 
-#: ../errors/configmode.php:26
+#: ../errors/configmode.php:25
 #, php-format
 msgid "To configure gallery, %sStart the configuration wizard%s"
 msgstr "ÒªÉè¶¨ gallery, Çë¿ªÊ¼%sÉèÖÃÏòµ¼%s"
 
-#: ../errors/configmode.php:32
+#: ../errors/configmode.php:31
 msgid "If you've finished your configuration but you're still seeing this page, that's because for safety's sake we don't let you run Gallery in an insecure mode."
 msgstr "Èç¹ûÄúÒÑ¾­Íê³ÉÉè¶¨, È´»¹ÊÇ¿´µ½ÕâÒ»¸öÍøÒ³, ÊÇÒòÎªÄúµÄ gallery ÔÚ insecure Ä£Ê½"
 
-#: ../errors/configmode.php:33
+#: ../errors/configmode.php:32
 msgid "You need to switch to secure mode before you can use it.  Here's how:"
 msgstr "ÔÚÄúÊ¹ÓÃÖ®Ç°ĞèÒªÇĞ»»µ½ secure Ä£Ê½, ÒÔÏÂÎª·½·¨£º"
 
-#: ../errors/configmode.php:39
+#: ../errors/configmode.php:38
 msgid "Then just reload this page and all should be well."
 msgstr "È»ºóÖØĞÂÔØÈëÕâ¸öÍøÒ³¾Í¿ÉÒÔÁË. "
 
@@ -927,15 +931,15 @@ msgstr "Gallery Ã»ÓĞÕıÈ·Éè¶¨"
 msgid "Uh oh!"
 msgstr "àŞÅ·! "
 
-#: ../errors/needinit.php:24
+#: ../errors/needinit.php:23
 msgid "Gallery is not configured correctly.  There could be a variety of reasons for this.  The easiest way to fix this problem is to re-run the configuration wizard."
 msgstr "Gallery Ã»ÓĞÕıÈ·µÄÉè¶¨ºÃ, ²úÉúµÄÔ­ÒòÓĞºÜ¶à, ×î¼òµ¥µÄ·½Ê½¾ÍÊÇÖØĞÂÖ´ĞĞÉèÖÃÏòµ¼. "
 
-#: ../errors/needinit.php:25
+#: ../errors/needinit.php:24
 msgid "First, put Gallery in configuration mode:"
 msgstr "Ê×ÏÈ, ÈÃ Gallery ½øÈëÉè¶¨Ä£Ê½£º"
 
-#: ../errors/needinit.php:29 ../errors/reconfigure.php:31
+#: ../errors/needinit.php:28 ../errors/reconfigure.php:30
 #, php-format
 msgid "Then launch the %sconfiguration wizard%s"
 msgstr "È»ºóÖ´ĞĞ %sÉèÖÃÏòµ¼%s"
@@ -944,11 +948,11 @@ msgstr "È»ºóÖ´ĞĞ %sÉèÖÃÏòµ¼%s"
 msgid "Gallery needs Reconfiguration"
 msgstr "Gallery ĞèÒªÖØĞÂÉè¶¨"
 
-#: ../errors/reconfigure.php:26
+#: ../errors/reconfigure.php:25
 msgid "Your Gallery configuration was created using the config wizard from an older version of Gallery.  It is out of date.  Please re-run the configuration wizard!"
 msgstr "ÄúµÄÉè¶¨µµÊÇÓÉ¾ÉµÄ gallery ÉèÖÃÏòµ¼Ëù½¨Á¢. ÕâÒÑ¾­¹ıÆÚÁË, ÇëÖØĞÂÖ´ĞĞÉèÖÃÏòµ¼! "
 
-#: ../errors/reconfigure.php:27
+#: ../errors/reconfigure.php:26
 msgid "In a shell do this"
 msgstr "ÔÚ shell ÏÂÕâÕâÑù×ö"
 
@@ -1059,13 +1063,13 @@ msgstr "ĞÂÔöÆÀÂÛ"
 
 #: ../layout/commentboxtop.inc:16 ../slideshow.php:458 ../slideshow.php:472
 #: ../slideshow_low.php:358 ../slideshow_low.php:370 ../upgrade_album.php:97
-#: ../view_album.php:125 ../view_album.php:516 ../view_album.php:551
+#: ../view_album.php:128 ../view_album.php:571 ../view_album.php:617
 #: ../view_comments.php:74 ../view_photo.php:167 ../view_photo.php:181
 msgid "Album"
 msgstr "Ïà²¾"
 
 #: ../layout/commentboxtop.inc:19 ../layout/commentboxtop.inc:41
-#: ../view_album.php:509
+#: ../view_album.php:565
 msgid "hidden"
 msgstr "Òş²Ø"
 
@@ -1117,7 +1121,7 @@ msgstr "µÇÂ¼ %s"
 
 #: ../login.php:83
 msgid "Logging in gives you greater permission to view, create, modify and delete albums."
-msgstr "µÇÂ¼Ö®ºó²Å¿ÉÒÔÓĞ¸ü¶àÈ¨ÏŞ¼ìÊÓ¡¢½¨Á¢¡¢ĞŞ¸ÄÒÔ¼°É¾³ıÏà²¾. "
+msgstr "µÇÂ¼Ö®ºó²Å¿ÉÒÔÓĞ¸ü¶àÈ¨ÏŞä¯ÀÀ¡¢½¨Á¢¡¢ĞŞ¸ÄÒÔ¼°É¾³ıÏà²¾. "
 
 #: ../login.php:89
 msgid "Invalid username or password"
@@ -1281,7 +1285,7 @@ msgstr "¾¯¸æ: ÓĞĞ©Ïà²¾µÄ×ÊÁÏĞèÒª¸üĞÂµ½Ä¿Ç°Ê¹ÓÃµÄ gallery °æ±¾. "
 msgid "Upgrade now"
 msgstr "¿ªÊ¼ÉÏ´«"
 
-#: ../photo_owner.php:80 ../photo_owner.php:86 ../view_album.php:646
+#: ../photo_owner.php:80 ../photo_owner.php:86 ../view_album.php:730
 msgid "Change Owner"
 msgstr "¸ü¸ÄËùÓĞÕß"
 
@@ -1475,7 +1479,7 @@ msgstr "µãÑ¡Õâ¸öÁ¬½á²¢ÇÒÕÕ×ÅÆÁÄ»ÉÏµÄÖ¸Ê¾µÇÂ¼ÄúµÄ Gallery, Ñ¡ÔñÏà²¾²¢·¢±íÄúµÄÓ°Ïñ
 msgid "Return to Add Photos"
 msgstr "»Øµ½Ôö¼Ó¶àÕÅÏàÆ¬"
 
-#: ../rename_album.php:45 ../view_album.php:594
+#: ../rename_album.php:45 ../view_album.php:665
 msgid "Rename Album"
 msgstr "¸ü¸ÄÏà²¾Ãû³Æ"
 
@@ -1657,7 +1661,7 @@ msgid "Search Again"
 msgstr "ÔÙÕÒÒ»±é"
 
 #: ../search.php:77 ../search.php:269 ../setup/config_data.inc:173
-#: ../slideshow.php:476 ../slideshow_low.php:374 ../view_album.php:129
+#: ../slideshow.php:476 ../slideshow_low.php:374 ../view_album.php:135
 #: ../view_photo.php:185
 msgid "Gallery"
 msgstr "Gallery"
@@ -1709,73 +1713,76 @@ msgstr "ÔÚ Gallery µÄÏà²¾ÒÔ¼°ÏàÆ¬ÖĞµÄ±êÌâ¡¢ÃèÊöÓëÆÀÂÛÖĞÑ°ÕÒ"
 msgid "Go"
 msgstr "¿ªÊ¼Ñ°ÕÒ"
 
-#: ../setup/check.inc:3
-msgid "Gallery Setup: Step 1"
-msgstr "Gallery Éè¶¨£ºµÚÒ»²½"
+#: ../setup/check.inc:6 ../setup/confirm.inc:6 ../setup/constants.inc:7
+#: ../setup/defaults.inc:7
+#, fuzzy, php-format
+msgid "Gallery Setup: Step %d"
+msgstr "Gallery Éè¶¨£ºµÚÈı²½"
 
-#: ../setup/check.inc:7
+#: ../setup/check.inc:10
 msgid "This is the Gallery system check page."
 msgstr "ÕâÊÇ Gallery ÏµÍ³¼ì²éÍøÒ³. "
 
-#: ../setup/check.inc:8
+#: ../setup/check.inc:11
 msgid "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably."
 msgstr "ÔÚÕâÀïÎÒÃÇ½«¼ì²éÄúµÄ°²×°ÊÇ·ñÕıÈ·, ÒÔ±ãÈ·±£ËùÓĞÔª¼şÒÔ¼°È¨ÏŞ¶¼ÒÑ¾­ÕıÈ·µÄÉè¶¨Íê³É"
 
-#: ../setup/check.inc:14 ../setup/diagnostics.php:11
+#: ../setup/check.inc:15 ../setup/diagnostics.php:11
 msgid "Gallery Diagnostics Page"
 msgstr "Gallery ¼ì²âÍøÒ³"
 
-#: ../setup/check.inc:15
+#: ../setup/check.inc:16
 msgid "Gallery Help Page"
 msgstr "Gallery Help Page"
 
-#: ../setup/check.inc:18
+#: ../setup/check.inc:20
 #, php-format
 msgid "Having problems?  Try the %s, %s and %s."
 msgstr "ÓĞÈÎºÎÒÉÎÊÂğ? Çë¿´ %s¡¢%s ÒÔ¼° %s. "
 
-#: ../setup/check.inc:21
+#: ../setup/check.inc:23
 #, php-format
 msgid "Having problems?  Try the %s and %s."
 msgstr "ÓĞÈÎºÎÒÉÎÊÂğ? Çë¿´ %s ÒÔ¼° %s. "
 
-#: ../setup/check.inc:50 ../setup/check.inc:52
+#: ../setup/check.inc:49
 msgid "Success"
 msgstr "Ã»ÎÊÌâ"
 
-#: ../setup/check.inc:62
+#: ../setup/check.inc:61
 msgid "Serious Warning"
 msgstr "ÑÏÖØ¾¯¸æ"
 
-#: ../setup/check.inc:65
+#: ../setup/check.inc:64
 msgid "Warning"
 msgstr "¾¯¸æ"
 
-#: ../setup/check.inc:74
+#: ../setup/check.inc:73
 msgid "Failed!"
 msgstr "Ê§°Ü! "
 
-#: ../setup/check.inc:106
+#: ../setup/check.inc:111
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr "ÄúµÄÉè¶¨´íÎó, Gallery ½«ÎŞ·¨Õı³£Ö´ĞĞ"
 
-#: ../setup/check.inc:108
+#: ../setup/check.inc:113
 msgid "You must fix them before you can continue."
 msgstr "Äú±ØĞëĞŞÕıÕâĞ©´íÎó²ÅÄÜ½øĞĞÏÂÒ»²½. "
 
-#: ../setup/check.inc:112
-msgid "Your installation has <b>serious warnings</b>!  Continue at your own risk..."
+#: ../setup/check.inc:118
+#, fuzzy
+msgid "Your installation has <b>serious warnings</b>!<br>Continue at your own risk..."
 msgstr "ÄúµÄ°²×°³ÌĞòÓĞ <b>ÑÏÖØ¾¯¸æ</b>!  Èç¹ûÄúÒª¼ÌĞøºó¹û×Ô¸º..."
 
-#: ../setup/check.inc:114
+#: ../setup/check.inc:121
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr "ÄúµÄ°²×°³ÌĞòÓĞ ¾¯¸æ, Í¨³£¿ÉÒÔÂÔ¹ıÃ»ÓĞ¹ØÏµ. ¼ÌĞøÏÂÒ»²½°É! "
 
-#: ../setup/check.inc:117
+#: ../setup/check.inc:125
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "ÄúÍê³ÉÁË¼¯³Éflying colorsµÄ°²×°! Go go go!"
 
-#: ../setup/check.inc:120
+#: ../setup/check.inc:128
 msgid "Configure Gallery"
 msgstr "Éè¶¨ Gallery"
 
@@ -2035,7 +2042,7 @@ msgstr "ÕÒ²»µ½ ImageMagick. Èç¹ûÄúÒÑ¾­°²×°¶øÍøÒ³·şÎñÆ÷ÕÒ²»µ½, Äú¿ÉÒÔÔÚÏÂÒ»Ò³Ö¸¶¨
 
 #: ../setup/config_data.inc:125
 msgid "Check to see if jhead is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
-msgstr "¼ì²éÊÇ·ñ°²×° jhead, Èç´ËÒ»À´ Gallery ¿ÉÒÔ¼ìÊÓ´ó²¿·ÖÓÉÊıÎ»Ïà»úĞ´ÔÚÓ°ÏñÀïÃæµÄ EXIF µµÍ·ĞÅÏ¢. "
+msgstr "¼ì²éÊÇ·ñ°²×° jhead, Èç´ËÒ»À´ Gallery ¿ÉÒÔ²ì¿´´ó²¿·ÖÓÉÊıÎ»Ïà»úĞ´ÔÚÓ°ÏñÀïÃæµÄ EXIF µµÍ·ĞÅÏ¢. "
 
 #: ../setup/config_data.inc:127
 #, php-format
@@ -2180,7 +2187,7 @@ msgstr "ÔÚÄúÌá¹©µÄÄ¿Â¼ÖĞÕÒ²»µ½ NetPBM Ò®. "
 
 #: ../setup/config_data.inc:279
 msgid "PNM to JPEG converter"
-msgstr "PNM to JPEG converter"
+msgstr "PNM µ½ JPEG ×ª»»³ÌĞò"
 
 #: ../setup/config_data.inc:280
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
@@ -2208,8 +2215,8 @@ msgstr "¿ªÆôÕâ¸öÑ¡ÏîµÄ»°, Gallery »áÔÚÄãÉÏ´«ÓÉÏàÆ¬ÖĞµÄ JPEG EXIF ×ÊÁÏ¾ö¶¨ÊÇ·ñÒªĞ
 
 #: ../setup/config_data.inc:306 ../setup/config_data.inc:355
 #: ../setup/config_data.inc:436 ../setup/config_data.inc:447
-#: ../setup/config_data.inc:465 ../setup/functions.inc:689
-#: ../setup/functions.inc:730
+#: ../setup/config_data.inc:465 ../setup/functions.inc:699
+#: ../setup/functions.inc:740
 msgid "Advanced"
 msgstr "½ø½×"
 
@@ -2219,10 +2226,9 @@ msgstr "JPEG Æ·ÖÊ"
 
 #: ../setup/config_data.inc:307
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
-msgstr "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
+msgstr "JPEGÊÇÒ»ÖÖÒÔÒÔÍ¼Æ¬ÖÊÁ¿»»È¡ÎÄ¼ş´óĞ¡µÄÎÄ¼ş¸ñÊ½¡£ Gallery ÄÜ¹»¿ØÖÆÄú¸Ä±äÍ¼Æ¬³ß´ç¡¢Ğı×ª»òÕßÖÆ×÷Í¼Æ¬ËõÍ¼Ê±²úÉúµÄJPEGµÄÖÊÁ¿¡£¸ßÖÊÁ¿µÄÍ¼Æ¬ÎÄ¼ş±ÈµÍÖÊÁ¿µÄÍ¼Æ¬ÎÄ¼şÒª´ó£¬²»¹ıÓĞĞ©Ê±ºòÌá¸ßÍ¼Æ¬ÖÊÁ¿²¢²»ÄÜÊ¹Í¼Æ¬¿´ÆğÀ´ÓĞÃ÷ÏÔ¸Ä¹Û¡£Èç¹ûÄú·¢ÏÖËõÍ¼»òÕß¸Ä±ä´óĞ¡ºóµÄÍ¼Æ¬±ÈÔ­Í¼´ó£¬Äú¿ÉÒÔ³¢ÊÔ½µµÍÕâ¸öÊıÖµ¡£<b>×¢Òâ</b> ¸Ä±äÕâ¸öÊıÖµÖ»»áÓ°Ïì<i>ÒÔºó</i>µÄÍ¼Æ¬±ä»¯¡£"
 
 #: ../setup/config_data.inc:318
-#, fuzzy
 msgid "Optional tools"
 msgstr "¿ÉÑ¡¹¤¾ß"
 
@@ -2245,7 +2251,7 @@ msgstr "¿ìÈ¡ EXIF ×ÊÁÏ"
 
 #: ../setup/config_data.inc:356
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow.  Set to <b>no</b> by default."
-msgstr "µ±µÚÒ»´ÎÓÉ JPEG ÎÄ¼ş¶ÁÈ¡ EXIF ×ÊÁÏÊ±½«×ÊÁÏ¶ªÈë cache ÖĞ. µ«Èç´ËÒ»À´ÄúµÄÏà²¾×ÊÁÏµµÓĞ¿ÉÄÜ»á¹ı´óµ¼ÖÂä¯ÀÀËÙ¶È»ºÂı, ¿ÉÊÇÃ»ÓĞ cache µÄ»°, ÓÃ»§Ã¿´Î¼ìÊÓÏàÆ¬µÄÊôĞÔÊ±Ò²»áºÜÂı. Ô¤ÉèÊÇ <b>no</b>"
+msgstr "µ±µÚÒ»´ÎÓÉ JPEG ÎÄ¼ş¶ÁÈ¡ EXIF ×ÊÁÏÊ±½«×ÊÁÏ¶ªÈë cache ÖĞ. µ«Èç´ËÒ»À´ÄúµÄÏà²¾×ÊÁÏµµÓĞ¿ÉÄÜ»á¹ı´óµ¼ÖÂä¯ÀÀËÙ¶È»ºÂı, ¿ÉÊÇÃ»ÓĞ cache µÄ»°, ÓÃ»§Ã¿´Î²ì¿´ÏàÆ¬µÄÊôĞÔÊ±Ò²»áºÜÂı. Ô¤ÉèÊÇ <b>no</b>"
 
 #: ../setup/config_data.inc:362
 #, php-format
@@ -2253,7 +2259,6 @@ msgid "The filesystem path to the 'jpegtran' utility.  This is optional so if yo
 msgstr "'jhead' Ö´ĞĞµµËùÔÚµÄÂ·¾¶, ÕâÊÇ·Ç±ØÒªÑ¡Ïî, ËùÒÔ¼´Ê¹ÄúÃ»ÓĞÒ²Ã»¹ØÏµ. ±ÈÈç %s »ò %s"
 
 #: ../setup/config_data.inc:377
-#, fuzzy
 msgid "Appearance"
 msgstr "Íâ¹Û"
 
@@ -2389,11 +2394,11 @@ msgstr "µ± exec() ºô½Ğ³É¹¦´«»ØÊ± Gallery Ï£ÍûµÃµ½µÄ status code. Gallery »á×ÔĞĞÉ
 
 #: ../setup/config_data.inc:496
 msgid "Session variable"
-msgstr "Session variable"
+msgstr "Session ±äÁ¿"
 
 #: ../setup/config_data.inc:497
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
-msgstr "ÓÃÀ´°üº¬ Gallery session ĞÅÏ¢µÄ session variable Ãû³Æ, Èç¹ûÓĞ¸úÆäËû PHP Ó¦ÓÃ³ÌĞòÆğ³åÍ»Çë¸ü¸Ä. "
+msgstr "ÓÃÀ´°üº¬ Gallery session ĞÅÏ¢µÄ session ±äÁ¿ Ãû³Æ, Èç¹ûÓĞ¸úÆäËû PHP Ó¦ÓÃ³ÌĞòÆğ³åÍ»Çë¸ü¸Ä. "
 
 #: ../setup/config_data.inc:518
 #, php-format
@@ -2454,7 +2459,7 @@ msgstr "Ô¤Éè JPEG Ó°ÏñÖØĞÂµ÷ÕûµÄ´óĞ¡ (µ¥Î»£ºKB). Éè¶¨Ö®ºóÒ²Ğí»á½µµÍÉÏ´«ËÙ¶È, ²»¹
 
 #: ../setup/config_data.inc:575
 msgid "Fit-to-window"
-msgstr "Fit-to-window"
+msgstr "×Ô¶¯ÊÊÓ¦´°¿Ú"
 
 #: ../setup/config_data.inc:576
 msgid "When viewing photos which don't have an intermediary version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke"
@@ -2577,15 +2582,11 @@ msgstr "ĞÂÔöÎÄ¼ş·ÅÔÚ×îÇ°Ãæ"
 msgid "New images added to beginning rather than end of albums"
 msgstr "ĞÂ¼ÓÈëµÄÎÄ¼ş»á·ÅÔÚ×îÇ°Ãæ¶ø²»ÊÇ×îºóÃæ"
 
-#: ../setup/confirm.inc:3
-msgid "Gallery Setup: Step 4"
-msgstr "Gallery Éè¶¨£ºµÚËÄ²½"
-
-#: ../setup/confirm.inc:7
+#: ../setup/confirm.inc:10
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can probably safely ignore it  (unless you see stuff in red which indicates an error)"
 msgstr "È·¶¨ÄúÖ®Ç°µÄÉè¶¨Ã»ÓĞÎÊÌâ, ³ı·ÇÄú·¢ÏÖÓĞºìÉ«µÄĞÅÏ¢, ·ñÔòÒ»Ğ©Ææ¹Ö¿´²»¶®µÄĞÅÏ¢Äú¿ÉÒÔÂÔ¹ıÃ»¹ØÏµ"
 
-#: ../setup/confirm.inc:53 ../setup/confirm.inc:140 ../setup/confirm.inc:141
+#: ../setup/confirm.inc:53 ../setup/confirm.inc:141 ../setup/confirm.inc:142
 msgid "missing"
 msgstr "È±ÉÙ"
 
@@ -2601,132 +2602,124 @@ msgstr "ËµÃ÷ÎÄ¼ş"
 msgid "Warning:"
 msgstr "¾¯¸æ£º"
 
-#: ../setup/confirm.inc:72
+#: ../setup/confirm.inc:73
 #, php-format
 msgid "You must create empty file %s and chmod it 777 before proceeding.  See %s for more details."
 msgstr "ÔÚÄú¼ÌĞøÖ®Ç°±ØĞë½¨Á¢Ò»·İ¿ÕÎÄ¼ş %s ²¢ÇÒ chmod Îª 777, Ïê¼û %s. "
 
-#: ../setup/confirm.inc:140 ../setup/confirm.inc:141
+#: ../setup/confirm.inc:141 ../setup/confirm.inc:142
 msgid "optional"
 msgstr "Ñ¡ÔñĞÔÑ¡Ïî"
 
-#: ../setup/confirm.inc:159
+#: ../setup/confirm.inc:160
 #, php-format
 msgid "%s: <b>%s</b> must be an absolute URL!"
 msgstr "%s: <b>%s</b> ±ØĞëÎª¾ø¶ÔµÄ URL! "
 
-#: ../setup/confirm.inc:171
+#: ../setup/confirm.inc:172
 #, php-format
 msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
 msgstr "%s: <b>%s</b> ±ØĞëÊÇºÏ·¨µÄÎÄ¼ş (¶ø·ÇÄ¿Â¼)! "
 
-#: ../setup/confirm.inc:180
+#: ../setup/confirm.inc:181
 #, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>&quot;%s&quot;</b> ±ØĞëÎªÕıÊı"
 
-#: ../setup/confirm.inc:188
+#: ../setup/confirm.inc:189
 #, php-format
 msgid "%s: <b>%s</b> must not be zero"
 msgstr "%s: <b>%s</b> ²»µÃÎªÁã"
 
-#: ../setup/confirm.inc:198
+#: ../setup/confirm.inc:199
 #, php-format
 msgid "%s: <b>%s</b> must be an executable file!"
 msgstr "%s: <b>%s</b> ±ØĞëÊÇ¿ÉÖ´ĞĞµµ! "
 
-#: ../setup/confirm.inc:207
+#: ../setup/confirm.inc:208
 #, php-format
 msgid "Directory %s does not exist.  Please create it."
 msgstr "Ä¿Â¼ %s ²¢²»´æÔÚ, Çë½¨Á¢. "
 
-#: ../setup/confirm.inc:213
+#: ../setup/confirm.inc:214
 #, php-format
 msgid "%s exists but is not a directory.  Please fix this."
 msgstr "%s ÒÑ¾­´æÔÚµ«²¢·ÇÄ¿Â¼, ÇëĞŞÕı. "
 
-#: ../setup/confirm.inc:220
+#: ../setup/confirm.inc:221
 #, php-format
 msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
 msgstr "%s: %s ´æÔÚ, µ«ÍøÒ³·şÎñÆ÷ÎŞ·¨Ğ´Èë. ÇëÊÔÊÔ¿´£º%s Èç¹û²»ĞĞÇëÓÃ %s. ²¢È·¶¨Èç¹ûÄúµÄ·şÎñÆ÷ÓĞ %s µÄÏŞÖÆ, ÇëÈ·¶¨ÄúµÄÔİ´æÄ¿Â¼ÔÚ %s Â·¾¶Ö®ÏÂ"
 
-#: ../setup/confirm.inc:287
+#: ../setup/confirm.inc:288
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "ÕÒ²»µ½ %s. Çë¼ì²éÄúµÄ NetPBM Ä¿Â¼¿´¿´ÄúËùÊ¹ÓÃµÄ PNG->JPEG ×ª»»³ÌĞòÊÇÄÄÒ»¸ö (»òÕßÓÃ %s È¡´ú). Çë¼ì²éÄúµÄÉè¶¨ (»òÕßÊ¹ÓÃ ImageMagick)"
 
-#: ../setup/confirm.inc:299
+#: ../setup/confirm.inc:300
 msgid "You must specify one of <i>pnmDir</i> or <i>ImPath</i> for Gallery to function!!"
 msgstr "ÄúÒ»¶¨ÒªÖ¸¶¨ <i>pnmDir</i> »òÕß <i>ImPath</i>! "
 
-#: ../setup/confirm.inc:302 ../setup/confirm.inc:305
+#: ../setup/confirm.inc:303 ../setup/confirm.inc:306
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr "%s Í¼ĞÎÌ×¼şÃ»ÓĞÕıÈ·µÄÉè¶¨ºÃ, ÇëÔÚµÚ¶ş²½¼ì²éÄúµÄ %s ¿ÉÖ´ĞĞµµÄ¿Â¼"
 
-#: ../setup/confirm.inc:310
+#: ../setup/confirm.inc:311
 msgid "Note:"
 msgstr "×¢Òâ£º"
 
-#: ../setup/confirm.inc:311
+#: ../setup/confirm.inc:312
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr "ÄúµÄ·şÎñÆ÷ÓĞ PHP open_basedir µÄÏŞÖÆ, ¶øÄúµÄÄ³¸öÂ·¾¶Éè¶¨²¢²»ÔÙÏŞÖÆÂ·¾¶ÁĞ±íÖ®ÖĞ"
 
-#: ../setup/confirm.inc:313
+#: ../setup/confirm.inc:314
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
 msgstr "Õâ²¢²»±íÊ¾Ëü½«ÎŞ·¨Õı³£ÔË×÷, ¶øÊÇÎÒÃÇÎŞ·¨ÕıÈ·µÄ¼ì²éÂ·¾¶. Èç¹ûÄúÎŞ·¨ÕıÈ·µÄÉÏ´«ÎÄ¼ş, Çë¼û FAQ ÒÔ¼° %s¼ì²â%s À´½â¾öÕâ¸öÎÊÌâ. "
 
-#: ../setup/confirm.inc:362 ../setup/confirm.inc:377
+#: ../setup/confirm.inc:364 ../setup/confirm.inc:379
 msgid "Edit Config"
 msgstr "ĞŞ¸ÄÉè¶¨"
 
-#: ../setup/confirm.inc:364 ../setup/confirm.inc:379
+#: ../setup/confirm.inc:366 ../setup/confirm.inc:381
 msgid "Save Config"
 msgstr "´¢´æÉè¶¨"
 
-#: ../setup/confirm.inc:382
+#: ../setup/confirm.inc:384
 msgid "There are errors in your configuration."
 msgstr "ÄúÔÚÉè¶¨ÉÏÓĞĞ©Ğí´íÎó. "
 
-#: ../setup/confirm.inc:384
+#: ../setup/confirm.inc:385
 msgid "Please go back and fix them!"
 msgstr "Çë»Øµ½ÉÏÒ»²½ĞŞÕıÕâĞ©ÎÊÌâ! "
 
-#: ../setup/constants.inc:3
-msgid "Gallery Setup: Step 2"
-msgstr "Gallery Éè¶¨£ºµÚ¶ş²½"
-
-#: ../setup/constants.inc:7
+#: ../setup/constants.inc:11
 msgid "In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much."
 msgstr "ÔÚÕâ¸ö²½ÖèÖĞÄú¿ÉÒÔ×Ô¶© Gallery µÄĞí¶àÉè¶¨, Èç¹ûÕâÊÇÄúµÚÒ»´ÎÉè¶¨ Gallery, Äú»á×¢Òâµ½ÎÒÃÇÒÑ¾­¾¡Á¿ÊÔ×Å°ïÄúÑ¡Ôñ×îºÏÊÊµÄÖµ. ¾¡¹ÜÈç´Ë, ÄúÒ²ĞíĞèÒªµ÷ÕûÒ»Ğ©Ğ¡Ï¸½Ú. Èç¹ûÄúÒÑ¾­Éè¶¨¹ı Gallery, Äú¿ÉÒÔ·¢ÏÖÕâÒ»Ò³ÒÑ¾­°üº¬ÄúÖ®Ç°µÄÉè¶¨Öµ, Òò´ËÄú¿ÉÒÔ²»ÓÃ×÷Ì«¶à¸ü¶¯. "
 
-#: ../setup/constants.inc:11 ../setup/constants.inc:114
+#: ../setup/constants.inc:16 ../setup/constants.inc:118
 msgid "System Check Page"
 msgstr "ÏµÍ³¼ì²éÍøÒ³"
 
-#: ../setup/constants.inc:12 ../setup/constants.inc:115
+#: ../setup/constants.inc:17 ../setup/constants.inc:119
 msgid "Album Defaults"
 msgstr "Ïà²¾Ô¤Éè"
 
-#: ../setup/constants.inc:13 ../setup/constants.inc:116
-#: ../setup/defaults.inc:13 ../setup/defaults.inc:81
+#: ../setup/constants.inc:18 ../setup/constants.inc:120
+#: ../setup/defaults.inc:18 ../setup/defaults.inc:84
 msgid "Use Defaults"
 msgstr "Ê¹ÓÃÔ¤Éè"
 
-#: ../setup/defaults.inc:3
-msgid "Gallery Setup: Step 3"
-msgstr "Gallery Éè¶¨£ºµÚÈı²½"
-
-#: ../setup/defaults.inc:7
+#: ../setup/defaults.inc:11
 msgid "Here you can customize the default values for new albums that you create.  Note that these are not <b>master switches</b> (ie, if you turn a setting on here, you can still turn it off in a given album).  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much."
 msgstr "ÔÚÕâÀïÄú¿ÉÒÔ×Ô¶©ĞÂÔöÏà²¾Ê±µÄÔ¤ÉèÖµ. ×¢ÒâÕâĞ©²¢·Ç <b>Ö÷ÒªÉè¶¨</b> (Äú¿ÉÄÜÔÚÕâ±ß½«Ä³¸ö¹¦ÄÜ´ò¿ª, µ«Äú»¹ÊÇ¿ÉÒÔÔÚÆäËûµØ·½½«Ä³Ğ©¹¦ÄÜ¹Ø±Õ) Èç¹ûÕâÊÇÄúµÚÒ»´ÎÊ¹ÓÃ, Äú¿ÉÒÔ·¢ÏÖÎÒÃÇÒÑ¾­ÓĞÒ»×éÔ¤ÉèÖµ¸øÄú. Èç¹ûÄúÏÈÇ°ÓĞÉè¶¨¹ı, ÄÇÃ´ÄúµÄÉè¶¨Öµ½«»á³öÏÖÔÚÏÂÃæµÄÀ¸Î»Ö®ÖĞ, ÒÔ·½±ãÄúµÄĞŞ¸Ä. "
 
-#: ../setup/defaults.inc:11 ../setup/defaults.inc:79
+#: ../setup/defaults.inc:16 ../setup/defaults.inc:82
 msgid "Gallery Settings"
 msgstr "Gallery Éè¶¨"
 
-#: ../setup/defaults.inc:12 ../setup/defaults.inc:80
+#: ../setup/defaults.inc:17 ../setup/defaults.inc:83
 msgid "Save Settings"
 msgstr "´¢´æÉè¶¨"
 
@@ -2806,147 +2799,147 @@ msgstr "Missing value"
 msgid "I can read your .htaccess file"
 msgstr "¿ÉÒÔ¶ÁÈ¡ÄúµÄ .htaccess ÎÄ¼ş"
 
-#: ../setup/functions.inc:230 ../setup/functions.inc:250
+#: ../setup/functions.inc:230 ../setup/functions.inc:249
 #, php-format
 msgid "PHP v%s is OK"
 msgstr "PHP %s OK"
 
-#: ../setup/functions.inc:262
+#: ../setup/functions.inc:261
 msgid "mod_rewrite is enabled"
 msgstr "mod_rewrite ¿ªÆô"
 
-#: ../setup/functions.inc:285
+#: ../setup/functions.inc:284
 msgid "Could not locate jhead"
 msgstr "ÎŞ·¨ÕÒµ½ jhead"
 
-#: ../setup/functions.inc:287
+#: ../setup/functions.inc:286
 msgid "jhead binary located"
 msgstr "ÕÒµ½ jhead ¿ÉÖ´ĞĞµµ"
 
-#: ../setup/functions.inc:300
+#: ../setup/functions.inc:299
 msgid "NetPBM not being used in this installation"
 msgstr "°²×°¹ı³ÌÖĞÃ»ÓĞÊ¹ÓÃ NetPBM"
 
-#: ../setup/functions.inc:305 ../setup/functions.inc:390
+#: ../setup/functions.inc:304 ../setup/functions.inc:389
 msgid "Cannot verify this path (it's not in your open_basedir list)"
 msgstr "ÎŞ·¨¼ì²é¸ÃÂ·¾¶ (²»ÔÚÄúµÄ open_basedir ÁĞ±íÖĞ)"
 
-#: ../setup/functions.inc:354 ../setup/functions.inc:409
+#: ../setup/functions.inc:353 ../setup/functions.inc:408
 #, php-format
 msgid "Can't find %s!"
 msgstr "ÕÒ²»µ½ %s! "
 
-#: ../setup/functions.inc:359 ../setup/functions.inc:414
+#: ../setup/functions.inc:358 ../setup/functions.inc:413
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s ²»ÄÜÖ´ĞĞ! "
 
-#: ../setup/functions.inc:370
+#: ../setup/functions.inc:369
 #, php-format
 msgid "All %d NetPBM binaries located"
 msgstr "ÕÒµ½ %d ¸ö NetPBM ¿ÉÖ´ĞĞµµ"
 
-#: ../setup/functions.inc:425
+#: ../setup/functions.inc:424
 #, php-format
 msgid "All %d ImageMagick binaries located"
 msgstr "ÕÒµ½ %d ¸ö ImageMagick ¿ÉÖ´ĞĞµµ"
 
-#: ../setup/functions.inc:447
+#: ../setup/functions.inc:446
 msgid "Could not locate jpegtran"
 msgstr "ÕÒ²»µ½ jpegtran"
 
-#: ../setup/functions.inc:449
+#: ../setup/functions.inc:448
 msgid "jpegtran binary located"
 msgstr "ÕÒµ½ jpegtran"
 
-#: ../setup/functions.inc:460
+#: ../setup/functions.inc:459
 msgid "gettext installed"
 msgstr "gettext ÒÑ°²×°"
 
-#: ../setup/functions.inc:477
+#: ../setup/functions.inc:476
 msgid "No languages found."
 msgstr "Ã»ÓĞÕÒµ½ÈÎºÎÓïÑÔ. "
 
-#: ../setup/functions.inc:480
+#: ../setup/functions.inc:479
 #, php-format
 msgid "Only %d of %d possible languages are available.  If you want the missing languages, download a fresh copy of %s from %s."
 msgstr "Ö»ÓĞ %d ·ÖÖ® %d ÖÖÓïÑÔ´æÔÚ, Èç¹ûÄúÏëÒªÊ¹ÓÃÆäËûÓïÑÔ, ÇëÔÚ %s ÏÂÔØ %s. "
 
-#: ../setup/functions.inc:486
+#: ../setup/functions.inc:485
 #, php-format
 msgid "All %d languages found"
 msgstr "¹²ÓĞ %s ÓïÑÔÕÒµ½"
 
-#: ../setup/functions.inc:506
+#: ../setup/functions.inc:505
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr "Äú¿ÉÒÔµãÑ¡ %s ²ì¿´ÊÇ·ñÓĞ¸üĞÂµÄ°æ±¾. "
 
-#: ../setup/functions.inc:508
+#: ../setup/functions.inc:507
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr "Õâ¸ö°æ±¾µÄ %s ÊÇÔÚ %s ÊÍ·Å³öÀ´µÄ. "
 
-#: ../setup/functions.inc:510
+#: ../setup/functions.inc:509
 #, php-format
 msgid "This is a beta version of %s that was released on %s."
 msgstr "Õâ¸ö beta °æµÄ %s ÊÇÔÚ %s ÊÍ·Å³öÀ´µÄ. "
 
-#: ../setup/functions.inc:519
+#: ../setup/functions.inc:518
 msgid "Please check regularly for updates."
 msgstr "Çë¶¨ÆÚ¼ì²éÊÇ·ñÓĞ¸üĞÂµµ. "
 
-#: ../setup/functions.inc:536
+#: ../setup/functions.inc:535
 msgid "All gallery locales are available on this host"
 msgstr "·şÎñÆ÷Ö§³ÖËùÓĞ gallery µÄ locales"
 
-#: ../setup/functions.inc:539
+#: ../setup/functions.inc:538
 #, php-format
 msgid "We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."
 msgstr "ÎÒÃÇÎŞ·¨¼ì²âµ½ÈÎºÎµÄ locales, ¿öÇÒÄúµÄ·şÎñÆ÷ÓĞ %s µÄÏŞÖÆÓĞ¿ÉÄÜµ¼ÖÂÕâ¸öÇéĞÎ²úÉú. Õâ´ú±íÄúµÄÈÕÆÚ¸ñÊ½½«²»»áËæ×ÅÓïÑÔµÄ²»Í¬¶øÓĞËù¸Ä±ä, ²»¹ıÄú»¹ÊÇ¿ÉÒÔ¼ÌĞøÏÂÒ»²½. "
 
-#: ../setup/functions.inc:543
+#: ../setup/functions.inc:542
 #, fuzzy, php-format
 msgid "We were unable to detect any system locales. Multilanguage functions will be disabled. Please install the corresponding locales or ask your Provider to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s"
 msgstr "ÎÒÃÇÎŞ·¨¼ì²âµ½ÈÎºÎÏµÍ³ locale¡£ ¶àÓïÑÔ¹¦ÄÜ½«»á±»½ûÓÃ¡£Çë°²×°ÕıÈ·µÄlocale»òÕßÒªÄãµÄISPÕâÃ´×ö¡£ÕâÊÇÒ»¸ö %s ÏµÍ³ÖĞµÄÒÑÖªÎÊÌâ¡£ Çë²ì¿´ %sDebian locale HowTo%s"
 
-#: ../setup/functions.inc:545
+#: ../setup/functions.inc:544
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "ÔÚÕâÌ¨»úÆ÷ÉÏÖ»ÓĞÔ¤ÉèµÄ locale ´æÔÚ, ËùÒÔÈÕÆÚ¸ñÊ½½«²»»áËæ×ÅÓïÑÔµÄ²»Í¬¶øÓĞËù¸Ä±ä. "
 
-#: ../setup/functions.inc:549
+#: ../setup/functions.inc:548
 msgid "Dates in these languages may not be formatted properly, because the corresponding locales are missing:"
 msgstr "ÔÚÕâĞ©ÓïÑÔÖĞÈÕÆÚÎŞ·¨ÕıÈ·µÄ¸ñÊ½»¯, ÒòÎªÏÂÁĞ locales ²»´æÔÚ£º"
 
-#: ../setup/functions.inc:689
+#: ../setup/functions.inc:699
 msgid "Locale Selection required"
 msgstr "Locale Ñ¡Ôñ"
 
-#: ../setup/functions.inc:690
+#: ../setup/functions.inc:700
 msgid "There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable"
 msgstr "ÏÂÁĞÓïÑÔÔÚÄúµÄ»úÆ÷ÉÏÓĞÒ»¸öÒÔÉÏµÄ locales ¿ÉÒÔÑ¡Ôñ, ÇëÑ¡Ò»¸öÔñÄãÈÏÎª×îÊÊºÏµÄ. "
 
-#: ../setup/functions.inc:730
+#: ../setup/functions.inc:740
 msgid "Locale problems"
 msgstr "Locale ÎÊÌâ"
 
-#: ../setup/functions.inc:731
+#: ../setup/functions.inc:741
 msgid "There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "ÔÚÄúµÄ»úÆ÷ÉÏËÆºõÃ»ÓĞÏÂÁĞÓïÑÔÊÊºÏµÄ locales, ÇëÑ¡ÔñÒ»¸öÄúÈÏÎª×îÊÊºÏµÄ. "
 
-#: ../setup/functions.inc:773
+#: ../setup/functions.inc:783
 msgid "safe mode is off"
 msgstr "safe mode ¹Ø±Õ"
 
-#: ../setup/functions.inc:785
+#: ../setup/functions.inc:795
 msgid "magic quotes are off"
 msgstr "magic quotes ¹Ø±Õ"
 
-#: ../setup/index.php:20
+#: ../setup/index.php:25
 msgid "Gallery Configuration"
 msgstr "Gallery Éè¶¨"
 
-#: ../setup/index.php:44
+#: ../setup/index.php:41
 msgid "unknown"
 msgstr "Î´Öª"
 
@@ -3241,36 +3234,32 @@ msgid "upgrade"
 msgstr "¸üĞÂ"
 
 #: ../upgrade_users.php:41 ../upgrade_users.php:47
-#, fuzzy
 msgid "Upgrading Users"
-msgstr "¹ÜÀíÓÃ»§"
+msgstr "ÕıÔÚÉı¼¶ÓÃ»§ĞÅÏ¢"
 
 #: ../upgrade_users.php:50
-#, fuzzy
 msgid "The user database in your Gallery was created with an older version of the software and is out of date."
 msgstr "ÄúËùÔÚµÄÏà²¾Îª½Ï¾É°æ±¾µÄ Gallery ËùÊ¹ÓÃ, µ«ÄúÄ¿Ç°ËùÊ¹ÓÃµÄ Gallery ÎªĞÂ°æ. "
 
 #: ../upgrade_users.php:52
-#, fuzzy
 msgid "We will upgrade it.  This may take some time."
 msgstr "ÎÒÃÇ½«ÎªÄú½øĞĞ×ÊÁÏµÄ×ª»», ¶ÔÓÚ½Ï´óµÄ×ÊÁÏ»á»¨¾ÃÒ»µãµÄÊ±¼ä, "
 
 #: ../upgrade_users.php:53
-#, fuzzy
 msgid "Your data will not be harmed in any way by this process."
 msgstr "ÔÚÕâ¹ı³ÌÖ®ÖĞÄúµÄ×ÊÁÏ½«²»»áËğ»µ. "
 
 #: ../upgrade_users.php:62
 msgid "There was a problem upgrading users.  Please check messages above, and try again"
-msgstr ""
+msgstr "Éı¼¶ÓÃ»§³ö´í¡£ Çë²ì¿´ÒÔÉÏĞÅÏ¢£¬ÔÙÊÔÒ»´Î¡£"
 
 #: ../upgrade_users.php:63
 msgid "Retry"
-msgstr ""
+msgstr "ÖØÊÔ"
 
 #: ../upgrade_users.php:67
 msgid "Users upgraded successfully."
-msgstr ""
+msgstr "ÓÃ»§Éı¼¶³É¹¦"
 
 #: ../user_preferences.php:50
 msgid "Incorrect password"
@@ -3477,173 +3466,174 @@ msgstr "Generated by %s v%s"
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../view_album.php:252
+#: ../view_album.php:297
 msgid "sub-album"
 msgstr "¸ö×ÓÏà²¾"
 
-#: ../view_album.php:252
+#: ../view_album.php:297
 msgid "sub-albums"
 msgstr "¸ö×ÓÏà²¾"
 
-#: ../view_album.php:253
+#: ../view_album.php:299
 msgid "no images"
 msgstr "Ã»ÓĞÎÄ¼ş"
 
-#: ../view_album.php:254
+#: ../view_album.php:300
 msgid "0 pages"
 msgstr "0 Ò³"
 
-#: ../view_album.php:257
+#: ../view_album.php:303
 #, php-format
 msgid "%s and %s in this album on %s"
 msgstr "%s, %s ÔÚÕâ¸öÏà²¾ÖĞ, ¹² %s"
 
-#: ../view_album.php:260
+#: ../view_album.php:306
 #, php-format
 msgid "%s and %s in this album"
 msgstr "%s, %s ÔÚÕâ¸öÏà²¾ÖĞ"
 
-#: ../view_album.php:263
+#: ../view_album.php:309
 #, php-format
 msgid "%s in this album on %s"
 msgstr "%s ÔÚ¸öÕâÏà²¾ÖĞ, ¹² %s"
 
-#: ../view_album.php:266
+#: ../view_album.php:312
 #, php-format
 msgid "%s in this album"
 msgstr "%s ÔÚÕâ¸öÏà²¾ÖĞ"
 
-#: ../view_album.php:273
+#: ../view_album.php:319
 #, php-format
 msgid "%s are hidden"
 msgstr "%s ·İÒş²Ø"
 
-#: ../view_album.php:275
+#: ../view_album.php:321
 #, php-format
 msgid "%s is hidden"
 msgstr "%s ·İÒş²Ø"
 
-#: ../view_album.php:285
+#: ../view_album.php:332
 msgid "add photos"
 msgstr "¼ÓÈë¶à¸öÎÄ¼ş"
 
-#: ../view_album.php:290
+#: ../view_album.php:336
 msgid "add photo"
 msgstr "¼ÓÈëÎÄ¼ş"
 
-#: ../view_album.php:306
+#: ../view_album.php:352
 msgid "new nested album"
 msgstr "ĞÂÔöÏà²¾"
 
-#: ../view_album.php:312
+#: ../view_album.php:358
 msgid "custom fields"
 msgstr "×Ô¶©À¸Î»"
 
-#: ../view_album.php:319
+#: ../view_album.php:364
 msgid "captions"
 msgstr "ĞŞ¸ÄËµÃ÷"
 
-#: ../view_album.php:325
+#: ../view_album.php:369
 msgid "sort"
 msgstr "ÅÅĞò"
 
-#: ../view_album.php:327
+#: ../view_album.php:371
 msgid "resize all"
 msgstr "ĞŞ¸ÄÎÄ¼ş´óĞ¡"
 
-#: ../view_album.php:330
+#: ../view_album.php:374
 msgid "rebuild thumbs"
 msgstr "ÖØ½¨ËõÍ¼"
 
-#: ../view_album.php:334
+#: ../view_album.php:378
 msgid "properties"
 msgstr "Ïà²¾ÊôĞÔ"
 
-#: ../view_album.php:346
+#: ../view_album.php:395
 msgid "view&nbsp;all&nbsp;comments"
-msgstr "¼ìÊÓËùÓĞÆÀÂÛ"
+msgstr "ä¯ÀÀËùÓĞÆÀÂÛ"
 
-#: ../view_album.php:351
+#: ../view_album.php:400
 msgid "slideshow"
 msgstr "²¥·Å"
 
-#: ../view_album.php:524
+#: ../view_album.php:580
 msgid "Changed: "
 msgstr "¸üĞÂ£º "
 
-#: ../view_album.php:525
+#: ../view_album.php:582
 msgid "Contains: "
 msgstr "ÄÚÈİ£º "
 
-#: ../view_album.php:525
+#: ../view_album.php:585
 msgid "0 items"
 msgstr "Ã»ÓĞÎÄ¼ş"
 
-#: ../view_album.php:527 ../view_album.php:542
-msgid "Viewed:"
+#: ../view_album.php:589 ../view_album.php:607
+#, fuzzy
+msgid "Viewed: "
 msgstr "ÈËÆø£º"
 
-#: ../view_album.php:549
+#: ../view_album.php:615
 msgid "Movie"
 msgstr "ÕÕÆ¬"
 
-#: ../view_album.php:553
+#: ../view_album.php:619
 msgid "Photo"
 msgstr "Í¼Æ¬"
 
-#: ../view_album.php:557
+#: ../view_album.php:623
 msgid "Edit"
 msgstr "ĞŞ¸Ä"
 
-#: ../view_album.php:583
-msgid "Edit Title"
-msgstr "ĞŞ¸Ä±êÌâ"
-
-#: ../view_album.php:588
-msgid "Edit Description"
-msgstr "ĞŞ¸ÄËµÃ÷"
-
-#: ../view_album.php:605
+#: ../view_album.php:639 ../view_album.php:678
 msgid "Edit Thumbnail"
 msgstr "ĞŞ¸ÄËõÍ¼"
 
-#: ../view_album.php:606
+#: ../view_album.php:641 ../view_album.php:680
 msgid "Rotate/Flip"
 msgstr "Ğı×ª"
 
-#: ../view_album.php:609
+#: ../view_album.php:655
+msgid "Edit Title"
+msgstr "ĞŞ¸Ä±êÌâ"
+
+#: ../view_album.php:658
+msgid "Edit Description"
+msgstr "ĞŞ¸ÄËµÃ÷"
+
+#: ../view_album.php:684
 msgid "Highlight"
 msgstr "·âÃæÕÕÆ¬"
 
-#: ../view_album.php:614
+#: ../view_album.php:689
 msgid "Reset Counter"
 msgstr "ÈËÆø¹éÁã"
 
-#: ../view_album.php:619
+#: ../view_album.php:696
 msgid "Move "
 msgstr "ÒÆ¶¯ "
 
-#: ../view_album.php:621
+#: ../view_album.php:700
 msgid "Show"
 msgstr "ÏÔÊ¾"
 
-#: ../view_album.php:623
+#: ../view_album.php:703
 msgid "Hide"
 msgstr "Òş²Ø"
 
-#: ../view_album.php:640
+#: ../view_album.php:724
 msgid "Permissions"
 msgstr "È¨ÏŞ"
 
-#: ../view_album.php:679
+#: ../view_album.php:761
 msgid "Hey! Add some photos."
 msgstr "ºÙ! ·ÅĞ©¶«Î÷°É¡«"
 
-#: ../view_album.php:681
+#: ../view_album.php:763
 msgid "This album is empty."
 msgstr "Õâ¸öÏà²¾¿Õ¿ÕÈçÒ²"
 
-#: ../view_album.php:692
+#: ../view_album.php:775
 msgid "Comments available for this item."
 msgstr "´ú±íÓĞÆÀÂÛà¸. "
 
@@ -3669,7 +3659,7 @@ msgstr "É¾³ıÎÄ¼ş"
 
 #: ../view_photo.php:399
 msgid "View Images"
-msgstr "¼ìÊÓÓ°Ïñ"
+msgstr "²ì¿´ÕÕÆ¬"
 
 #: ../view_photo.php:402 ../view_photo.php:404
 msgid "normal"
@@ -3707,3 +3697,12 @@ msgstr "ÖØĞÂÔØÈë EXIF ×ÊÁÏ"
 #: ../view_photo_properties.php:164
 msgid "(if the data is current, this will not appear to do anything)"
 msgstr "(Èç¹û×ÊÁÏÏàÍ¬, ½«²»»á¸üĞÂ)"
+
+#~ msgid "Gallery Setup: Step 1"
+#~ msgstr "Gallery Éè¶¨£ºµÚÒ»²½"
+
+#~ msgid "Gallery Setup: Step 4"
+#~ msgstr "Gallery Éè¶¨£ºµÚËÄ²½"
+
+#~ msgid "Gallery Setup: Step 2"
+#~ msgstr "Gallery Éè¶¨£ºµÚ¶ş²½"

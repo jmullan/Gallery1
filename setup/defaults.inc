@@ -24,6 +24,15 @@
 <?php
 $i = 0;
 foreach ($defaults as $key => $val) {
+
+	if( isset($val["type"]) && ($val["type"] === "separator")) {
+                echo "\n<tr><td class=\"separator\" colspan=\"2\"><b>". $val["title"] ."</b></td><tr>";
+                if( isset($val["descripion"])) {
+                        echo "\n<tr><td class=\"separator\" colspan=\"2\">". $val["description"] ."</td><tr>";
+                }
+                echo "\n<tr><td>&nbsp;</td></tr>";
+        } else {
+
 	/* Support $app-> for backwards compatibility */
 	if (isset($app->default[$key])) {
 		$val["value"] = $app->default[$key];
@@ -75,6 +84,7 @@ foreach ($defaults as $key => $val) {
 
 	$onThisPage[$key] = 1;
 	$preserve[$key] = 1;
+	}
 }
 ?>
 </table>
