@@ -1148,7 +1148,7 @@ function errorRow($key) {
 }
 
 function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $configFile, $errorMsg) {
-	global $gallery;
+	global $gallery, $GALLERY_EMBEDDED_INSIDE;
 	$cookieInfo = session_get_cookie_params();
 
 	if (file_exists($configFile)) {
@@ -1161,6 +1161,8 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 			$overrides = array_merge($overrides, $configOverrides);
 		}
 	}
+
+	$defaults['uiLocale'] = $gallery->language;
 ?>
 	<object
 		classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
@@ -1173,6 +1175,9 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 	<param name="progressbar" value="true">
 	<param name="boxmessage" value="Downloading the Gallery Remote Applet">
 	<param name="gr_url" value="<?php echo $gallery->app->photoAlbumURL ?>">
+<?php if( isset($GALLERY_EMBEDDED_INSIDE)) { ?>
+	<param name="gr_url_full" value="<?php echo makeGalleryUrl('gallery_remote2.php') ?>">
+<?php } ?>
 	<param name="gr_cookie_name" value="<?php echo session_name() ?>">
 	<param name="gr_cookie_value" value="<?php echo session_id() ?>">
 	<param name="gr_cookie_domain" value="<?php echo $cookieInfo['domain'] ?>">
@@ -1200,6 +1205,9 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 				boxmessage="Downloading the Gallery Remote Applet"
 				pluginspage="http://java.sun.com/j2se/1.4.2/download.html"
 				gr_url="<?php echo $gallery->app->photoAlbumURL ?>"
+<?php if( isset($GALLERY_EMBEDDED_INSIDE)) { ?>
+				gr_url_full="<?php echo makeGalleryUrl('gallery_remote2.php') ?>"
+<?php } ?>
 				gr_cookie_name="<?php echo session_name() ?>"
 				gr_cookie_value="<?php echo session_id() ?>"
 				gr_cookie_domain"<?php echo $cookieInfo['domain'] ?>"
