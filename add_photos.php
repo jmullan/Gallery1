@@ -54,7 +54,7 @@ PNG, AVI, MPG)
 <form enctype="multipart/form-data" action="add_photos.php" method=post name="count_form">
 1. Select the number of files you want to upload:
 <select name="boxes" onChange='reloadPage()'>
-<? for ($i = 1; $i < 10;  $i++) {
+<? for ($i = 1; $i <= 10;  $i++) {
 	echo "<option ";
         if ($i == $boxes) {
 		echo "selected ";
