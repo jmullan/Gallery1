@@ -58,12 +58,10 @@ default: // use frames directory
 
   $base = $gallery->app->photoAlbumURL . "/html_wrap/frames/$frame";
   include (dirname(__FILE__) . "/frames/$frame/frame.def");
-  $hLL = $hRR = 1;
-  if (preg_match('/safari|opera/i', $HTTP_SERVER_VARS['HTTP_USER_AGENT']) || $gallery->session->offline) {
-    //Safari/Opera ignore height="100%" for table
-    $hLL = $imageHeight - $heightLLT - $heightLLB;
-    $hRR = $imageHeight - $heightRRT - $heightRRB;
-  }
+  // Safari/Opera ignore height="100%" for table, but this ensures HTML
+  // standards, so do it for all browsers
+  $hLL = $imageHeight - $heightLLT - $heightLLB;
+  $hRR = $imageHeight - $heightRRT - $heightRRB;
   ?>
 
   <table align="center" width="1" border="0" cellspacing="0" cellpadding="0">
@@ -83,7 +81,7 @@ default: // use frames directory
 	<td><img src="<?php echo "$base/$imageTR" ?>" border="0" width="<?php echo $widthTR ?>" height="<?php echo $heightTR ?>" alt="FRAME"></td>
   </tr>
   <tr>
-	<td height="100%"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+	<td height="100%"><table border="0" cellspacing="0" cellpadding="0">
 	    <?php if ($heightLLT > 0) { ?>
 	    <tr>
 		<td height="<?php echo $heightLLT ?>"><img src="<?php echo "$base/$imageLLT" ?>" border="0" width="<?php echo $widthLLT ?>" height="<?php echo $heightLLT ?>" alt="FRAME"></td>
@@ -103,7 +101,7 @@ default: // use frames directory
 		<td align="center"><?php echo $href_tag ?></td>
 	     </tr>
 	    </table></td>
-	<td height="100%"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+	<td height="100%"><table border="0" cellspacing="0" cellpadding="0">
 	    <?php if ($heightRRT > 0) { ?>
 	    <tr>
 		<td height="<?php echo $heightRRT ?>"><img src="<?php echo "$base/$imageRRT" ?>" border="0" width="<?php echo $widthRRT ?>" height="<?php echo $heightRRT ?>" alt="FRAME"></td>
