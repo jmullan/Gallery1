@@ -511,7 +511,7 @@ includeHtmlWrap("inline_photo.header");
 
 $href="";
 if (!$gallery->album->isMovie($id)) {
-	if ($gallery->album->isResized($index) && !$do_fullOnly) { 
+	if (!$do_fullOnly && ($full || $fitToWindow || $gallery->album->isResized($index))) {
 		if ($full) { 
 			$href= makeAlbumUrl($gallery->session->albumName, $id);
 	 	} else if ($gallery->user->canViewFullImages($gallery->album)) {
