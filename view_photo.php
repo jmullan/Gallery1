@@ -146,7 +146,7 @@ if ($index > $gallery->album->numPhotos(1)) {
 $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
 $perPage = $rows * $cols;
-$page = ceil($index / ($rows * $cols));
+$page = (int)(ceil($index / ($rows * $cols)));
 
 $gallery->session->albumPage[$gallery->album->fields['name']] = $page;
 

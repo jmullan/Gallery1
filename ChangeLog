@@ -1,3 +1,10 @@
+2003-11-03  Bharat Mediratta  <bharat@menalto.com> 1.4.1-cvs-b206
+
+	* Work around a PHP bug on OpenBSD where if you store the results of 
+	  ceil() in a session variable, it goes in as a float (eg "1.0000")
+	  instead of an int, triggering OpenBSD's you-can't-serialize-a-float
+	  serialization bug.
+
 2003-11-03  Bharat Mediratta  <bharat@menalto.com> 1.4.1-cvs-b205
 
 	* Fixed a bug where we were comparing old style uids (as would be found
