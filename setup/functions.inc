@@ -334,12 +334,12 @@ function error_row_wrap($buf) {
 }
 
 function check_exec() {
-	$disabled = ini_get("disable_functions");
+	$disabled = "" . ini_get("disable_functions");
 
 	$success = array();
 	$fail = array();
 	$warn = array();
-	if (eregi($disabled, "exec")) {
+	if (!empty($disabled) && eregi($disabled, "exec")) {
 		$fail["fail-exec"] = 1;
 	}
 	else {
