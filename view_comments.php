@@ -134,6 +134,7 @@ else
     $i = 1;
     while($i <= $numPhotos)
     {
+	set_time_limit($gallery->app->timeLimit);
         $id = $gallery->album->getPhotoId($i);
         $index = $gallery->album->getPhotoIndex($id);
         if($gallery->album->isAlbumName($i))
