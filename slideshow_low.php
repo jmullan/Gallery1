@@ -37,9 +37,10 @@ if ($gallery->session->albumName == "") {
 }
 
 // default settings ---
-$defaultLoop = 1;
+$defaultLoop = 0;
 $defaultPause = 3;
 $defaultFull = 0;
+$defaultDir = 1;
 
 if (!$slide_index) {
     $slide_index = 1;
@@ -53,15 +54,19 @@ if (!$slide_loop) {
 if (!$slide_full) {
     $slide_full = $defaultFull;
 }
+if (!$slide_dir) {
+    $slide_dir = $defaultDir;
+}
 
-function makeSlideLowUrl($index, $loop, $pause, $full) {
+function makeSlideLowUrl($index, $loop, $pause, $full, $dir) {
 
     return makeGalleryUrl('slideshow_low.php',
 	array('set_albumName' => $gallery->session->albumName,
 	      'slide_index' => $index,
 	      'slide_loop' => $loop,
 	      'slide_pause' => $pause,
-	      'slide_full' => $full));
+	      'slide_full' => $full,
+	      'slide_dir' => $dir));
 }
 
 $borderColor = $gallery->album->fields["bordercolor"];
@@ -118,6 +123,7 @@ var photo_urls = new Array;
 var photo_captions = new Array;
 var loop = <?= $slide_loop ?>;
 var full = <?= $slide_full ?>;
+var direction = <?= $slide_dir ?>;
 <?php
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
@@ -229,7 +235,8 @@ function go_to_next_page() {
 				array('set_albumName' => $gallery->session->albumName)); ?>";
 
     document.location = slideShowUrl + "&slide_index=" + next_location + "&slide_full=" + full
-	+ "&slide_loop=" + loop + "&slide_pause=" + (timeout_value / 1000);
+	+ "&slide_loop=" + loop + "&slide_pause=" + (timeout_value / 1000) 
+	+ "&slide_dir=" + direction;
     return 0;
 }
 
@@ -251,7 +258,7 @@ function go_to_next_photo() {
 function preload_next_photo() {
     
     /* Calculate the new next location */
-    next_location = parseInt(current_location) + 1;
+    next_location = (parseInt(current_location) + parseInt(direction));
     if (next_location > photo_count) {
 	next_location = 1;
 	if (!loop) {
@@ -354,6 +361,27 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
     <td height="25" width="1" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
     <td width="5000" align="left" valign="middle">
     <span class=admin>
+    &nbsp;<a href="#" onClick='stop(); return false;'>[stop]</a>
+    <a href="#" onClick='play(); return false;'>[play]</a>
+<?
+if ($slide_full) {
+    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0, $slide_dir) 
+	. "\">[normal size]</a>";
+} else {
+    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1, $slide_dir)
+        . "\">[full size]</a>";
+}
+?>
+<?
+if ($slide_dir == 1) {
+    echo "&nbsp;<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, -1) 
+	. "\">[reverse direction]</a>";
+} else {
+    echo "&nbsp;<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, 1)
+        . "\">[forward direction]</a>";
+}
+?>
+    &nbsp;&nbsp;||
     &nbsp;Delay:
 <?=
 drawSelect("time", array(1 => "1 second",
@@ -371,17 +399,6 @@ drawSelect("time", array(1 => "1 second",
            array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
 ?>
     &nbsp;Loop:<input type="checkbox" name="loopCheck" <?= ($defaultLoop) ? "checked" : "" ?> onclick='toggleLoop();'>
-    &nbsp;<a href="#" onClick='stop(); return false;'>[stop]</a>
-    <a href="#" onClick='play(); return false;'>[play]</a>
-<?
-if ($slide_full) {
-    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0) 
-	. "\">[normal size]</a>";
-} else {
-    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1)
-        . "\">[full size]</a>";
-}
-?>
     </span>
     </td>
     <td width="1" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>

@@ -97,6 +97,7 @@ var current_location = 1;
 var next_location = 1; 
 var pics_loaded = 0;
 var onoff = 0;
+var direction = 1;
 var timeout_value;
 var images = new Array;
 var photo_urls = new Array;
@@ -182,7 +183,7 @@ $transitions[] = 'progid:DXImageTransform.Microsoft.Spiral(Duration=1,gridSizeX=
 $transitionNames[] = 'Stretch';
 $transitions[] = 'progid:DXImageTransform.Microsoft.Stretch(Duration=1,stretchStyle=push)';
 
-$transitionNames[] = '!! RANDOM !!';
+$transitionNames[] = 'RANDOM!';
 $transitions[] = 'special case';
 
 $transitionCount = sizeof($transitions) - 1;
@@ -228,9 +229,13 @@ function toggleLoop() {
     }
 }
 
+function changeElementText(id, newText) {
+    element = document.getElementById(id);
+    element.innerHTML = newText;
+}
+
 function stop() {
-    stopOrStartBlock = document.getElementById("stopOrStartText");
-    stopOrStartBlock.innerHTML = "play";
+    changeElementText("stopOrStartText", "play");
 
     onoff = 0;
     status = "The slide show is stopped, Click [play] to resume.";
@@ -239,12 +244,23 @@ function stop() {
 }
 
 function play() {
-    stopOrStartBlock = document.getElementById("stopOrStartText");
-    stopOrStartBlock.innerHTML = "stop";
+    changeElementText("stopOrStartText", "stop");
 
     onoff = 1;
     status = "Slide show is running...";
     go_to_next_photo();
+}
+
+function changeDirection() {
+    if (direction == 1) {
+	direction = -1;
+	changeElementText("changeDirText", "forward");
+    } else {
+	direction = 1;
+	changeElementText("changeDirText", "reverse");
+    }
+    preload_next_photo();
+
 }
 
 function change_transition() {
@@ -300,9 +316,15 @@ function go_to_next_photo() {
 function preload_next_photo() {
     
     /* Calculate the new next location */
-    next_location = parseInt(current_location) + 1;
+    next_location = (parseInt(current_location) + parseInt(direction));
     if (next_location > photo_count) {
 	next_location = 1;
+	if (!loop) {
+	    stop();
+	}
+    }
+    if (next_location == 0) {
+        next_location = photo_count;
 	if (!loop) {
 	    stop();
 	}
@@ -359,8 +381,7 @@ function preload_photo(index) {
 }
 
 function setCaption(text) {
-    captionBlock = document.getElementById("caption");
-    captionBlock.innerHTML = "[" + current_location + " of " + photo_count + "] " + text;
+    changeElementText("caption", "[" + current_location + " of " + photo_count + "] " + text);
 }
 
 </Script>
@@ -409,7 +430,11 @@ $breadcrumb["top"] = true;
 include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 
 
-$adminbox["commands"] = "";
+$adminbox["commands"] = "<span class=\"admin\">";
+$adminbox["commands"] .= "&nbsp;<a href=\"" . makeGalleryUrl("slideshow_low.php",
+        array("set_albumName" => $gallery->session->albumName)) . 
+	"\">[not working for you? try the low-tech]</a>";
+$adminbox["commands"] .= "</span>";
 $adminbox["text"] = "Slide Show";
 $adminbox["bordercolor"] = $borderColor;
 $adminbox["top"] = true;
@@ -425,6 +450,21 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
     <td height="25" width="1" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
     <td align="left" valign="middle">
     <span class=admin>
+
+<?
+echo "&nbsp;<a href='#' onClick='stopOrStart(); return false;'>[<span id='stopOrStartText'>stop</span>]</a>";
+echo "&nbsp;<a href='#' onClick='changeDirection(); return false;'>[<span id='changeDirText'>reverse</span> direction]</a>";
+if ($slide_full) {
+    echo "&nbsp;<a href=\"" . makeGalleryUrl("slideshow.php",
+        array("set_albumName" => $gallery->session->albumName)) . "\">[normal size]</a>";
+} else {
+    echo "&nbsp;<a href=\"" . makeGalleryUrl("slideshow.php",
+        array("set_albumName" => $gallery->session->albumName, "slide_full" => 1))
+        . "\">[full size]</a>";
+}
+echo "&nbsp;&nbsp;||";
+?>
+
     &nbsp;Delay: 
 <?=
 drawSelect("time", array(1 => "1 second",
@@ -455,19 +495,6 @@ drawSelect("time", array(1 => "1 second",
     
     </script>
     &nbsp;Loop:<input type="checkbox" name="loopCheck" <?= ($defaultLoop) ? "checked" : "" ?> onclick='toggleLoop();'>
-    &nbsp;<a href="#" onClick='stopOrStart(); return false;'>[<span id="stopOrStartText">stop</span>]</a>
-<?
-if ($slide_full) {
-    echo "<a href=\"" . makeGalleryUrl("slideshow.php",
-        array("set_albumName" => $gallery->session->albumName)) . "\">[normal size]</a>";
-} else {
-    echo "<a href=\"" . makeGalleryUrl("slideshow.php",
-        array("set_albumName" => $gallery->session->albumName, "slide_full" => 1))
-        . "\">[full size]</a>";
-}
-?>
-    <a href="<? echo makeGalleryUrl("slideshow_low.php",
-        array("set_albumName" => $gallery->session->albumName)) ?>">[not working? try low-tech]</a>
     </span>
     </td>
     <td width="1" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
