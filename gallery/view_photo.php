@@ -540,6 +540,10 @@ if (!$gallery->album->isMovie($id)) {
 
 $photoTag="";
 $frame= $gallery->album->fields['image_frame'];
+if ($fitToWindow && stristr($HTTP_SERVER_VARS['HTTP_USER_AGENT'], 'safari')) {
+	//Safari can't render dynamically sized image frame
+	$frame = 'none';
+}
 $photoTag .= $gallery->album->getPhotoTag($index, $full);
 
 list($width, $height) = $photo->getDimensions($full);
