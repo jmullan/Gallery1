@@ -3295,10 +3295,15 @@ global $_CONF;				/* Needed for GeekLog */
 		break;
 		
 		default:
+			// Try to use full name, fall back to user name
+			$name = $owner->getFullName();
+			if (!$name) {
+				$name = $owner->getUsername();
+			}
 			if (!$owner->getEmail()) {
-				return $owner->getFullName();
+				return $name;
 			} else {
-				return '<a href="mailto:' . $owner->getEmail() . '">' . $owner->getFullName() . '</a>';
+				return '<a href="mailto:' . $owner->getEmail() . '">' . $name . '</a>';
 			}
 		break;
 	}
