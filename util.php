@@ -1825,7 +1825,7 @@ function getItemCaptureDate($file) {
 function doCommand($command, $args=array(), $returnTarget="", $returnArgs=array()) {
 
 	if ($returnTarget) {
-		$args["return"] = urlencode(makeGalleryUrl($returnTarget, $returnArgs));
+		$args["return"] = urlencode(makeGalleryHeaderUrl($returnTarget, $returnArgs));
 	}
 	$args["cmd"] = $command;
 	return makeGalleryUrl("do_command.php", $args);

@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($page,$votes, $Vote) = getRequestVar(array('page','votes','Vote'));
+list($page,$votes, $Vote) = getRequestVar(array('page', 'votes', 'Vote'));
 
 // Hack check and prevent errors
 if (empty($gallery->session->albumName) || !$gallery->user->canReadAlbum($gallery->album) || !$gallery->album->isLoaded()) {
@@ -451,7 +451,7 @@ if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 		$iconText = getIconText('exit.gif', _("logout"));
 		$iconElements[] = '<a href="'. 
 		  doCommand("logout", array(), "view_album.php", 
-		    array("page" => $page)) .'">'. $iconText .'</a>';
+		    array("page" => $page, 'set_albumName' => $albumName)) .'">'. $iconText .'</a>';
 	} else {
 		$iconText = getIconText('identity.gif', _("login"));
 		$iconElements[] = popup_link($iconText, "login.php", false, true, 500, 500);

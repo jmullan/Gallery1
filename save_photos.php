@@ -77,7 +77,8 @@ if (!empty($urls)) {
 	** code from Jared (hogalot))
 	*/
 	if (fs_is_dir($url)) {
-		processingMsg(sprintf(_("Processing %s as a local directory."), "<i>$url</i>"));
+		processingMsg(sprintf(_("Processing %s as a local directory."), 
+			'<i>' . htmlspecialchars(removeTags(urldecode($url))) . '</i>'));
 		$handle = fs_opendir($url);
 		while (($file = readdir($handle)) != false) {
 			if ($file != "." && $file != "..") {
@@ -114,6 +115,8 @@ if (!empty($urls)) {
 		/* If the URI doesn't start with a scheme, prepend 'http://' */
 		if (!empty($url) && !fs_is_file($url)) {
 			if (!ereg("^(http|ftp)", $url)) {
+				processingMsg(sprintf(_('Unable to find %s locally - trying %s.'), 
+					htmlspecialchars(removeTags(urldecode($url))), 'http'));
 				$url = "http://$url";
 			}
 
@@ -358,7 +361,7 @@ if (!empty($temp_files)) {
 
 <div align="center">
 <?php
-if (empty($msgcount)) {
+if (empty($image_count)) {
 	print _("No images uploaded!");
 }
 ?>

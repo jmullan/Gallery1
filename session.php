@@ -55,7 +55,7 @@ if (!function_exists('session_regenerate_id')) {
 			$z += 2147483562;
 		}
 		return $z * 4.656613e-10;
-       }
+	}
 
 	function session_regenerate_id() {
 		$tv = gettimeofday();
