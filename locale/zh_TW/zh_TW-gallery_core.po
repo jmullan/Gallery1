@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-06-10 19:18+0200\n"
+"POT-Creation-Date: 2004-06-30 14:49+0200\n"
 "PO-Revision-Date: 2004-01-08 13:57+0800\n"
 "Last-Translator: Chia-Ming Lee <chip@turtle.ee.ncku.edu.tw>\n"
 "Language-Team: Traditional Chinese <gallery-translations@lists.sourceforge.net>\n"
@@ -68,14 +68,14 @@ msgid "Enter your comment for this picture in the text box below."
 msgstr "請在下面的框框中輸入您的評論. "
 
 #: ../add_comment.php:99 ../copy_photo.php:194 ../create_user.php:146
-#: ../delete_album.php:60 ../delete_photo.php:106 ../delete_photo.php:131
+#: ../delete_album.php:63 ../delete_photo.php:115 ../delete_photo.php:140
 #: ../delete_user.php:73 ../edit_caption.php:183 ../edit_field.php:68
 #: ../edit_watermark.php:104 ../includes/add_photos/add_form.inc:128
 #: ../includes/add_photos/add_form_one.inc:72
 #: ../includes/add_photos/add_url.inc:60 ../login.php:123
 #: ../modify_user.php:149 ../move_album.php:117 ../move_album.php:137
 #: ../move_photo.php:254 ../move_photo.php:340 ../multi_create_user.php:164
-#: ../new_password.php:126 ../register.php:137 ../rename_album.php:118
+#: ../new_password.php:126 ../register.php:138 ../rename_album.php:127
 #: ../reset_votes.php:64 ../resize_photo.php:126 ../sort_album.php:114
 #: ../user_preferences.php:126 ../watermark_album.php:118
 msgid "Cancel"
@@ -122,7 +122,7 @@ msgstr "相簿權限"
 msgid "Changing permissions for %s"
 msgstr "更改 %s 的權限："
 
-#: ../album_permissions.php:180 ../albums.php:324
+#: ../album_permissions.php:180 ../albums.php:334
 msgid "Owner:"
 msgstr "擁有者："
 
@@ -208,18 +208,18 @@ msgstr "個頂層相簿"
 msgid "%d total"
 msgstr "全部有 %d 個相簿"
 
-#: ../albums.php:129 ../view_album.php:267
+#: ../albums.php:129 ../view_album.php:268
 #, fuzzy, php-format
 msgid "1 image"
 msgid_plural "%d images"
 msgstr[0] "1 份檔案"
 msgstr[1] "1 份檔案"
 
-#: ../albums.php:129 ../view_album.php:267
+#: ../albums.php:129 ../view_album.php:268
 msgid "no images"
 msgstr "沒有檔案"
 
-#: ../albums.php:130 ../view_album.php:268
+#: ../albums.php:130 ../view_album.php:269
 #, fuzzy, php-format
 msgid "1 page"
 msgid_plural "%d pages"
@@ -255,13 +255,13 @@ msgstr "%s, %s"
 msgid "Welcome, %s"
 msgstr "歡迎光臨, %s"
 
-#: ../albums.php:154 ../view_album.php:467
+#: ../albums.php:154 ../view_album.php:468
 msgid "slideshow"
 msgstr "幻燈片輪播"
 
 #: ../albums.php:162
 #, fuzzy
-msgid "Configuration Wizard"
+msgid "configuration wizard"
 msgstr "自訂欄位"
 
 #: ../albums.php:166
@@ -276,11 +276,11 @@ msgstr "使用者管理"
 msgid "preferences"
 msgstr "個人設定"
 
-#: ../albums.php:187 ../view_album.php:473
+#: ../albums.php:187 ../view_album.php:486
 msgid "logout"
 msgstr "登出"
 
-#: ../albums.php:191 ../view_album.php:475
+#: ../albums.php:191 ../view_album.php:488
 msgid "login"
 msgstr "登入"
 
@@ -292,84 +292,92 @@ msgstr "註冊"
 msgid "Attention Gallery Administrator!"
 msgstr "管理者請注意!"
 
-#: ../albums.php:223
+#: ../albums.php:224
 #, fuzzy, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "%s 發現以下目錄 %s 在您的 (%s) 相簿中"
 
-#: ../albums.php:229
+#: ../albums.php:230
 #, fuzzy
 msgid "Please move it/them out of the albums directory."
 msgstr "這些都不是有效的相簿, 請儘速移除. "
 
-#: ../albums.php:280 ../view_album.php:741
+#: ../albums.php:234
+#, php-format
+msgid "%s has detected that %d of your album are out of Date"
+msgstr ""
+
+#: ../albums.php:238
+#, fuzzy, php-format
+msgid "Please %s."
+msgstr "請耐心等候.."
+
+#: ../albums.php:238
+#, fuzzy
+msgid "upgrade those albums"
+msgstr "更新所有的相簿"
+
+#: ../albums.php:290 ../view_album.php:755
 #, fuzzy
 msgid "Highlight for Album:"
 msgstr "封面相簿: "
 
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../albums.php:297
+#: ../albums.php:307
 msgid "title"
 msgstr "標題"
 
-#: ../albums.php:329
+#: ../albums.php:339
 msgid "url:"
 msgstr "url:"
 
-#: ../albums.php:340
+#: ../albums.php:350
 msgid "Hey!"
 msgstr "嘿! "
 
-#: ../albums.php:341
-#, php-format
-msgid "%s this album so that the URL is not so generic!"
+#: ../albums.php:351
+#, fuzzy, php-format
+msgid "%s so that the URL is not so generic!"
 msgstr "%s 該相簿, 換個好記一點的名稱吧! "
 
-#: ../albums.php:342 ../rename_album.php:117
-msgid "Rename"
-msgstr "更名"
+#: ../albums.php:352
+#, fuzzy
+msgid "Rename this album"
+msgstr "更改相簿目錄名"
 
-#: ../albums.php:350
-msgid "Note:  This album is out of date!"
-msgstr "注意：這個相簿已經過期! "
-
-#: ../albums.php:350
-msgid "upgrade album"
-msgstr "更新相簿"
-
-#: ../albums.php:360
+#: ../albums.php:363
 #, php-format
 msgid "Last changed on %s."
 msgstr "上次更新：%s. "
 
-#: ../albums.php:363
+#: ../albums.php:366
 #, fuzzy, php-format
 msgid "This album contains one item"
 msgid_plural "This album contains %d items"
 msgstr[0] "%s在這個相簿裡面. "
 msgstr[1] "%s在這個相簿裡面. "
 
-#: ../albums.php:368
+#: ../albums.php:371
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "點閱：%s (從 %s 開始計算)"
 
-#: ../albums.php:369 ../view_album.php:879 ../view_album.php:902
+#: ../albums.php:372 ../view_album.php:897 ../view_album.php:920
 #, fuzzy, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "1 次"
 msgstr[1] "1 次"
 
-#: ../albums.php:369
+#: ../albums.php:372
 msgid "0 times"
 msgstr "0 次"
 
-#: ../albums.php:375
+#: ../albums.php:378
 msgid "reset counter"
 msgstr "計數器歸零"
 
-#: ../albums.php:409 ../view_album.php:1096
+#: ../albums.php:412 ../view_album.php:1118
 msgid "Comments available for this item."
 msgstr "代表有評論喔. "
 
@@ -438,7 +446,7 @@ msgstr "沒有說明"
 msgid "Photo Caption"
 msgstr "沒有說明"
 
-#: ../captionator.php:272 ../extra_fields.php:101 ../lib/lang.php:609
+#: ../captionator.php:272 ../extra_fields.php:101 ../lib/lang.php:648
 msgid "Title"
 msgstr "標題"
 
@@ -446,7 +454,7 @@ msgstr "標題"
 msgid "Keywords"
 msgstr "關鍵字"
 
-#: ../captionator.php:293 ../lib/lang.php:599
+#: ../captionator.php:293 ../lib/lang.php:638
 msgid "Capture Date"
 msgstr "建立日期"
 
@@ -458,100 +466,100 @@ msgstr "沒有相片! "
 msgid "Untitled"
 msgstr "無標題"
 
-#: ../classes/Album.php:217
+#: ../classes/Album.php:230
 msgid "Album up to date."
 msgstr "相簿已經更新. "
 
-#: ../classes/Album.php:221
+#: ../classes/Album.php:234
 msgid "Upgrading album properties..."
 msgstr "更新相簿屬性..."
 
-#: ../classes/Album.php:364
+#: ../classes/Album.php:377
 #, fuzzy, php-format
 msgid "Renaming album from %s to %s..."
 msgstr "更改名稱"
 
-#: ../classes/Album.php:402 ../classes/Album.php:419
+#: ../classes/Album.php:421 ../classes/Album.php:438
 msgid "done"
 msgstr "完成"
 
-#: ../classes/Album.php:410
+#: ../classes/Album.php:429
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "更新檔案 %d 之 %d . . . "
 
-#: ../classes/Album.php:825
+#: ../classes/Album.php:845
 msgid "msg should be an array!"
 msgstr "msg必須要是陣列!"
 
-#: ../classes/Album.php:846 ../util.php:3159
+#: ../classes/Album.php:866 ../util.php:3191
 msgid "No email sent as no valid email addresses were found"
 msgstr "無效的電子信箱位址"
 
-#: ../classes/Album.php:943
+#: ../classes/Album.php:963
 msgid "Resizing/compressing original image"
 msgstr "重設大小/壓縮原始影像"
 
-#: ../classes/Album.php:947
+#: ../classes/Album.php:967
 msgid "Cannot resize/compress this filetype"
 msgstr "無法重設大小/壓縮這種類型檔案"
 
-#: ../classes/Album.php:995
+#: ../classes/Album.php:1015
 #, php-format
 msgid "Resizing %s"
 msgstr "重設 %s 的大小"
 
-#: ../classes/Album.php:1036
+#: ../classes/Album.php:1056
 msgid "Photo auto-rotated/transformed"
 msgstr "影像已自動旋轉/轉換"
 
-#: ../classes/Album.php:1045
+#: ../classes/Album.php:1065
 #, fuzzy
 msgid "Watermarking Image"
 msgstr "從相簿"
 
-#: ../classes/Album.php:1191 ../classes/Album.php:1201
-#: ../classes/AlbumItem.php:622
+#: ../classes/Album.php:1211 ../classes/Album.php:1221
+#: ../classes/AlbumItem.php:627
 msgid "No highlight"
 msgstr "沒有封面相片"
 
-#: ../classes/Album.php:1340
+#: ../classes/Album.php:1375
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr ""
 
-#: ../classes/Album.php:1645
+#: ../classes/Album.php:1685
 #, php-format
 msgid "Error %s getting EXIF data"
 msgstr ""
 
-#: ../classes/Album.php:2147
+#: ../classes/Album.php:2190
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2285
+#: ../classes/Album.php:2328
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Email問題: 略過 %s (UID %s), 由於信箱 %s 不是合法的位址."
 
-#: ../classes/AlbumItem.php:521
+#: ../classes/AlbumItem.php:526
 msgid "Invalid image"
 msgstr "不正確的檔案"
 
-#: ../classes/AlbumItem.php:579
+#: ../classes/AlbumItem.php:584
 msgid "Unable to make thumbnail"
 msgstr "無法製作縮圖"
 
-#: ../classes/AlbumItem.php:590
+#: ../classes/AlbumItem.php:595
 msgid "No preview"
 msgstr ""
 
-#: ../classes/AlbumItem.php:600 ../util.php:54
+#: ../classes/AlbumItem.php:605 ../util.php:61
 msgid "No Caption"
 msgstr "沒有說明"
 
-#: ../classes/AlbumItem.php:609
+#: ../classes/AlbumItem.php:614
 msgid "No thumbnail"
 msgstr "沒有縮圖"
 
@@ -645,7 +653,7 @@ msgstr "略過相簿 #%d"
 
 #: ../copy_photo.php:119 ../create_user.php:97 ../do_command.php:161
 #: ../login.php:154 ../multi_create_user.php:117 ../register.php:45
-#: ../register.php:118 ../save_photos.php:360
+#: ../register.php:119 ../save_photos.php:360
 msgid "Dismiss"
 msgstr "關閉視窗"
 
@@ -686,7 +694,7 @@ msgstr "開始上傳"
 msgid "Copy to Album!"
 msgstr "拷貝到該相簿"
 
-#: ../copy_photo.php:198 ../delete_photo.php:137 ../edit_thumb.php:131
+#: ../copy_photo.php:198 ../delete_photo.php:146 ../edit_thumb.php:131
 #: ../move_album.php:145 ../move_photo.php:346 ../resize_photo.php:133
 #: ../rotate_photo.php:94 ../view_photo_properties.php:130
 msgid "no album / index specified"
@@ -720,24 +728,24 @@ msgstr "Gallery 註冊"
 msgid "Email sent to %s."
 msgstr "信件已寄出."
 
-#: ../create_user.php:118 ../edit_appearance.php:226
-#: ../edit_appearance.php:247 ../edit_appearance.php:254
-#: ../edit_appearance.php:313 ../edit_appearance.php:320
-#: ../edit_appearance.php:355 ../edit_appearance.php:365
-#: ../edit_appearance.php:372 ../edit_appearance.php:379
-#: ../edit_appearance.php:386 ../edit_appearance.php:393
-#: ../edit_appearance.php:400 ../modify_user.php:114 ../modify_user.php:117
+#: ../create_user.php:118 ../edit_appearance.php:185
+#: ../edit_appearance.php:206 ../edit_appearance.php:213
+#: ../edit_appearance.php:272 ../edit_appearance.php:279
+#: ../edit_appearance.php:314 ../edit_appearance.php:324
+#: ../edit_appearance.php:331 ../edit_appearance.php:338
+#: ../edit_appearance.php:345 ../edit_appearance.php:352
+#: ../edit_appearance.php:359 ../modify_user.php:114 ../modify_user.php:117
 #: ../multi_create_user.php:156 ../poll_properties.php:96
 msgid "yes"
 msgstr "是"
 
-#: ../create_user.php:118 ../edit_appearance.php:226
-#: ../edit_appearance.php:247 ../edit_appearance.php:254
-#: ../edit_appearance.php:313 ../edit_appearance.php:320
-#: ../edit_appearance.php:355 ../edit_appearance.php:365
-#: ../edit_appearance.php:372 ../edit_appearance.php:379
-#: ../edit_appearance.php:386 ../edit_appearance.php:393
-#: ../edit_appearance.php:400 ../modify_user.php:114 ../modify_user.php:117
+#: ../create_user.php:118 ../edit_appearance.php:185
+#: ../edit_appearance.php:206 ../edit_appearance.php:213
+#: ../edit_appearance.php:272 ../edit_appearance.php:279
+#: ../edit_appearance.php:314 ../edit_appearance.php:324
+#: ../edit_appearance.php:331 ../edit_appearance.php:338
+#: ../edit_appearance.php:345 ../edit_appearance.php:352
+#: ../edit_appearance.php:359 ../modify_user.php:114 ../modify_user.php:117
 #: ../multi_create_user.php:156 ../poll_properties.php:96
 msgid "no"
 msgstr "否"
@@ -747,37 +755,37 @@ msgid "Create a new user here."
 msgstr "在這裡建立新的使用者. "
 
 #: ../create_user.php:145 ../manage_users.php:99 ../multi_create_user.php:163
-#: ../register.php:136
+#: ../register.php:137
 msgid "Create"
 msgstr "建立"
 
-#: ../delete_album.php:45 ../delete_album.php:51 ../delete_photo.php:70
-#: ../delete_photo.php:81
+#: ../delete_album.php:47 ../delete_album.php:53 ../delete_photo.php:79
+#: ../delete_photo.php:90
 msgid "Delete Album"
 msgstr "刪除相簿"
 
-#: ../delete_album.php:54
+#: ../delete_album.php:56
 msgid "Do you really want to delete this album?"
 msgstr "您確定要刪除該相簿? "
 
-#: ../delete_album.php:59 ../delete_photo.php:105 ../delete_photo.php:130
+#: ../delete_album.php:62 ../delete_photo.php:114 ../delete_photo.php:139
 #: ../delete_user.php:68 ../manage_users.php:105
 msgid "Delete"
 msgstr "刪除"
 
-#: ../delete_album.php:68 ../sort_album.php:119
+#: ../delete_album.php:71 ../sort_album.php:119
 msgid "no album specified"
 msgstr "沒有指定相簿"
 
-#: ../delete_photo.php:70 ../delete_photo.php:114
+#: ../delete_photo.php:79 ../delete_photo.php:123
 msgid "Delete Photo"
 msgstr "刪除檔案"
 
-#: ../delete_photo.php:84
+#: ../delete_photo.php:93
 msgid "Do you really want to delete this Album?"
 msgstr "您確定要刪除這個相簿嗎? "
 
-#: ../delete_photo.php:116
+#: ../delete_photo.php:125
 msgid "Do you really want to delete this photo?"
 msgstr "您確定要刪除這個檔案嗎? "
 
@@ -839,179 +847,178 @@ msgstr "相簿摘要"
 msgid "Album Title"
 msgstr "相簿標題"
 
-#: ../edit_appearance.php:167
+#: ../edit_appearance.php:126
 msgid "Background Color"
 msgstr "背景顏色"
 
-#: ../edit_appearance.php:171
+#: ../edit_appearance.php:130
 msgid "Text Color"
 msgstr "文字顏色"
 
-#: ../edit_appearance.php:175
+#: ../edit_appearance.php:134
 msgid "Link Color"
 msgstr "連結顏色"
 
-#: ../edit_appearance.php:179
+#: ../edit_appearance.php:138
 msgid "Background Image"
 msgstr "背景影像"
 
-#: ../edit_appearance.php:183
+#: ../edit_appearance.php:142
 msgid "Font"
 msgstr "字型"
 
-#: ../edit_appearance.php:187
+#: ../edit_appearance.php:146
 msgid "Borders"
 msgstr "邊框"
 
-#: ../edit_appearance.php:189 ../edit_appearance.php:204
-#: ../edit_appearance.php:215
-msgid "off"
-msgstr "關閉"
-
-#: ../edit_appearance.php:194
+#: ../edit_appearance.php:153
 msgid "Border color"
 msgstr "邊框顏色"
 
-#: ../edit_appearance.php:198
+#: ../edit_appearance.php:157
 msgid "Thumbnail size"
 msgstr "縮圖大小"
 
-#: ../edit_appearance.php:202
+#: ../edit_appearance.php:161
 msgid "Maximum dimensions of intermediate sized images"
 msgstr "中間檔案的最大尺寸"
 
-#: ../edit_appearance.php:209
+#: ../edit_appearance.php:163 ../edit_appearance.php:174
+msgid "off"
+msgstr "關閉"
+
+#: ../edit_appearance.php:168
 msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "中間檔案的最大長度 Kbytes (0 或者空白代表沒有限制)"
 
-#: ../edit_appearance.php:213
+#: ../edit_appearance.php:172
 msgid "Maximum dimensions of full sized images"
 msgstr "原始相片的最大尺寸"
 
-#: ../edit_appearance.php:215
+#: ../edit_appearance.php:174
 #, php-format
 msgid "%d (%d MPix)"
 msgstr "%d (%d 百萬畫素)"
 
-#: ../edit_appearance.php:220
+#: ../edit_appearance.php:179
 msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "自動調整檔案大小 kilobytes (0 或者空白代表沒有限制)"
 
-#: ../edit_appearance.php:224
+#: ../edit_appearance.php:183
 msgid "Show <i>Return to</i> link"
 msgstr "顯示 <i>返回</i> 的連結"
 
-#: ../edit_appearance.php:231
+#: ../edit_appearance.php:190
 msgid "Rows"
 msgstr "列數(橫)"
 
-#: ../edit_appearance.php:238
+#: ../edit_appearance.php:197
 msgid "Columns"
 msgstr "行數(直)"
 
-#: ../edit_appearance.php:245
+#: ../edit_appearance.php:204
 msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr "影像自動符合目前視窗大小<br>但不另外建立一份調整過的影像"
 
-#: ../edit_appearance.php:252
+#: ../edit_appearance.php:211
 msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
 msgstr "提供訪客設定要看<br>完整或是調整過尺寸的影像"
 
-#: ../edit_appearance.php:259
+#: ../edit_appearance.php:218
 msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "您想要讓訪客使用何種網路列印服務呢? "
 
-#: ../edit_appearance.php:270
+#: ../edit_appearance.php:229
 msgid "with donation"
 msgstr "有贊助版本"
 
-#: ../edit_appearance.php:271
+#: ../edit_appearance.php:230
 msgid "without donation"
 msgstr "無贊助版本"
 
-#: ../edit_appearance.php:304
+#: ../edit_appearance.php:263
 msgid "Slideshow Type"
 msgstr "幻燈片輪播形式"
 
-#: ../edit_appearance.php:306
+#: ../edit_appearance.php:265
 msgid "Off"
 msgstr "關閉"
 
-#: ../edit_appearance.php:306
+#: ../edit_appearance.php:265
 msgid "Ordered"
 msgstr "依序"
 
-#: ../edit_appearance.php:306
+#: ../edit_appearance.php:265
 msgid "Random"
 msgstr "隨機"
 
-#: ../edit_appearance.php:311
+#: ../edit_appearance.php:270
 msgid "Include sub-albums in slideshow"
 msgstr ""
 
-#: ../edit_appearance.php:318
+#: ../edit_appearance.php:277
 msgid "Allow slideshow to loop"
 msgstr "允許幻燈片重複播放"
 
-#: ../edit_appearance.php:325
+#: ../edit_appearance.php:284
 msgid "Slideshow Length"
 msgstr "幻燈片輪播長度"
 
-#: ../edit_appearance.php:329
+#: ../edit_appearance.php:288
 msgid "Album Frame"
 msgstr "相簿外框"
 
-#: ../edit_appearance.php:336
+#: ../edit_appearance.php:295
 msgid "Thumb Frame"
 msgstr "縮圖外框"
 
-#: ../edit_appearance.php:343
+#: ../edit_appearance.php:302
 msgid "Image Frame"
 msgstr "相片外框"
 
-#: ../edit_appearance.php:353
+#: ../edit_appearance.php:312
 msgid "Display EXIF data?"
 msgstr "顯示 EXIF 資料? "
 
-#: ../edit_appearance.php:363
+#: ../edit_appearance.php:322
 msgid "Display click counter for this album?"
 msgstr "在這個相簿顯示點閱數? "
 
-#: ../edit_appearance.php:370
+#: ../edit_appearance.php:329
 msgid "Display owners name with caption"
 msgstr "在說明中顯示擁有者名稱"
 
-#: ../edit_appearance.php:377
+#: ../edit_appearance.php:336
 msgid "Allow item owners to modify their images"
 msgstr "允許檔案擁有者修改檔案"
 
-#: ../edit_appearance.php:384
+#: ../edit_appearance.php:343
 msgid "Allow item owners to delete their images"
 msgstr "允許檔案擁有者刪除檔案"
 
-#: ../edit_appearance.php:391
+#: ../edit_appearance.php:350
 msgid "Add new items at beginning of album"
 msgstr "將新加入的檔案放在相簿的開頭"
 
-#: ../edit_appearance.php:398
+#: ../edit_appearance.php:357
 msgid "Display clickable image dimensions"
 msgstr "顯示可以點擊的影像尺寸"
 
-#: ../edit_appearance.php:407
+#: ../edit_appearance.php:366
 msgid "Apply values to nested Albums (except Album Title and Summary)."
 msgstr "套用到同一層的相簿中 (除了標題跟摘要). "
 
-#: ../edit_appearance.php:410 ../extra_fields.php:175
+#: ../edit_appearance.php:369 ../extra_fields.php:175
 #: ../poll_properties.php:140
 msgid "Apply"
 msgstr "套用"
 
-#: ../edit_appearance.php:411 ../extra_fields.php:176
+#: ../edit_appearance.php:370 ../extra_fields.php:176
 #: ../poll_properties.php:141
 msgid "Undo"
 msgstr "重來"
 
-#: ../edit_appearance.php:412 ../extra_fields.php:177
+#: ../edit_appearance.php:371 ../extra_fields.php:177
 #: ../poll_properties.php:142 ../rotate_photo.php:86
 msgid "Close"
 msgstr "關閉"
@@ -1020,7 +1027,7 @@ msgstr "關閉"
 msgid "Year must be between 1000 and 3000"
 msgstr "年份必須在 1000 與 3000 之間"
 
-#: ../edit_caption.php:71 ../view_album.php:974
+#: ../edit_caption.php:71 ../view_album.php:993
 msgid "Edit Text"
 msgstr "修改文字"
 
@@ -1062,7 +1069,7 @@ msgstr "分"
 msgid "Seconds"
 msgstr "秒"
 
-#: ../edit_field.php:47 ../edit_field.php:53 ../view_album.php:930
+#: ../edit_field.php:47 ../edit_field.php:53 ../view_album.php:949
 #, php-format
 msgid "Edit %s"
 msgstr "修改 %s"
@@ -1108,8 +1115,8 @@ msgstr "請選使用者"
 msgid "Please select an alignment."
 msgstr "請選使用者"
 
-#: ../edit_watermark.php:69 ../edit_watermark.php:75 ../view_album.php:946
-#: ../view_album.php:982
+#: ../edit_watermark.php:69 ../edit_watermark.php:75 ../view_album.php:965
+#: ../view_album.php:1001
 msgid "Edit Watermark"
 msgstr ""
 
@@ -1127,7 +1134,7 @@ msgstr "無標題"
 msgid "Configure Custom Fields"
 msgstr "自訂欄位"
 
-#: ../extra_fields.php:122 ../lib/lang.php:611
+#: ../extra_fields.php:122 ../lib/lang.php:650
 msgid "Alt Text / onMouseOver"
 msgstr ""
 
@@ -1449,7 +1456,7 @@ msgid "Picture is loading..."
 msgstr "載入圖片中.."
 
 #: ../includes/slideshow/high.inc:380 ../includes/slideshow/high.inc:478
-#: ../includes/slideshow/low.inc:205 ../includes/slideshow/low.inc:386
+#: ../includes/slideshow/low.inc:205 ../includes/slideshow/low.inc:380
 msgid "of"
 msgstr "之"
 
@@ -1486,11 +1493,11 @@ msgstr "效果："
 msgid "Loop"
 msgstr "循環"
 
-#: ../includes/slideshow/high.inc:612 ../includes/slideshow/low.inc:397
+#: ../includes/slideshow/high.inc:604 ../includes/slideshow/low.inc:391
 msgid "This album has no photos to show in a slide show."
 msgstr "此相簿沒有相片可供輪播. "
 
-#: ../includes/slideshow/high.inc:616 ../includes/slideshow/low.inc:401
+#: ../includes/slideshow/high.inc:608 ../includes/slideshow/low.inc:395
 msgid "back to album"
 msgstr "返回相簿"
 
@@ -1571,19 +1578,19 @@ msgstr "搬移相簿"
 msgid "reorder album"
 msgstr "更改名稱"
 
-#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:305
+#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:306
 msgid "rename album"
 msgstr "更改名稱"
 
-#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:325
+#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:326
 msgid "edit captions"
 msgstr "修改說明"
 
-#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:360
+#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:361
 msgid "permissions"
 msgstr "權限設定"
 
-#: ../layout/adminAlbumCommands.inc:34
+#: ../layout/adminAlbumCommands.inc:34 ../view_album.php:479
 msgid "view&nbsp;comments"
 msgstr "檢視&nbsp;評論"
 
@@ -1591,7 +1598,7 @@ msgstr "檢視&nbsp;評論"
 msgid "watermark&nbsp;album"
 msgstr ""
 
-#: ../layout/breadcrumb.inc:31
+#: ../layout/breadcrumb.inc:34
 #, fuzzy
 msgid "Logged in as:"
 msgstr "已登入"
@@ -1604,18 +1611,18 @@ msgstr "來自："
 msgid "delete comment"
 msgstr "刪除評論"
 
-#: ../layout/commentboxbottom.inc:12 ../util.php:100
+#: ../layout/commentboxbottom.inc:12 ../util.php:105
 msgid "add comment"
 msgstr "新增評論"
 
-#: ../layout/commentboxtop.inc:17 ../slideshow.php:182 ../slideshow.php:196
-#: ../upgrade_album.php:87 ../view_album.php:135 ../view_album.php:919
-#: ../view_comments.php:64 ../view_photo.php:158 ../view_photo.php:174
+#: ../layout/commentboxtop.inc:17 ../slideshow.php:179 ../slideshow.php:193
+#: ../upgrade_album.php:87 ../view_album.php:136 ../view_album.php:938
+#: ../view_comments.php:65 ../view_photo.php:158 ../view_photo.php:174
 msgid "Album"
 msgstr "相簿"
 
 #: ../layout/commentboxtop.inc:20 ../layout/commentboxtop.inc:46
-#: ../view_album.php:848
+#: ../view_album.php:865
 msgid "hidden"
 msgstr "隱藏"
 
@@ -1669,7 +1676,7 @@ msgstr "%d 之 %d"
 msgid "Watermark"
 msgstr ""
 
-#: ../layout/watermarkform.inc:76 ../util.php:2710 ../util.php:2715
+#: ../layout/watermarkform.inc:76 ../util.php:2742 ../util.php:2747
 msgid "None"
 msgstr "None"
 
@@ -1755,26 +1762,26 @@ msgstr "全取消"
 msgid "Invert Selection"
 msgstr "反向選擇"
 
-#: ../lib/lang.php:598
+#: ../lib/lang.php:637
 msgid "Upload Date"
 msgstr "上傳日期"
 
-#: ../lib/lang.php:600
+#: ../lib/lang.php:639
 msgid "Image Size"
 msgstr "檔案大小"
 
-#: ../lib/lang.php:601 ../util.php:3108
+#: ../lib/lang.php:640
 msgid "Additional EXIF Data"
 msgstr "詳細的 EXIF 資料"
 
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../lib/lang.php:610
+#: ../lib/lang.php:649
 #, fuzzy
 msgid "Description"
 msgstr "描述"
 
-#: ../lib/voting.php:215 ../view_album.php:617 ../view_album.php:646
-#: ../view_album.php:1102
+#: ../lib/voting.php:215 ../view_album.php:631 ../view_album.php:660
+#: ../view_album.php:1124
 msgid "Vote"
 msgstr "評比"
 
@@ -1786,8 +1793,8 @@ msgstr "總分是"
 msgid "Average points in brackets"
 msgstr "平均分是"
 
-#: ../lib/voting.php:275 ../poll_results.php:149 ../view_album.php:559
-#: ../view_album.php:853
+#: ../lib/voting.php:275 ../poll_results.php:149 ../view_album.php:573
+#: ../view_album.php:870
 #, php-format
 msgid "Album: %s"
 msgstr "相簿: %s"
@@ -2145,7 +2152,7 @@ msgstr "您可以在這邊更改個人資訊. "
 msgid "You must enter the new password twice."
 msgstr "請輸入新密碼兩次"
 
-#: ../photo_owner.php:76 ../photo_owner.php:82 ../view_album.php:1042
+#: ../photo_owner.php:76 ../photo_owner.php:82 ../view_album.php:1061
 msgid "Change Owner"
 msgstr "更改擁有者"
 
@@ -2437,29 +2444,29 @@ msgstr "您一定要輸入帳號"
 msgid "You must specify a valid email address."
 msgstr "您一定要輸入有效的電子信箱位址"
 
-#: ../register.php:100
+#: ../register.php:101
 #, php-format
 msgid "%s has registered.  Email has been sent to %s."
 msgstr "%s 已經註冊, 信件將傳送到 %s。"
 
-#: ../register.php:108
+#: ../register.php:109
 msgid "Gallery Self Registration"
 msgstr "自動申請 Gallery 帳號"
 
-#: ../register.php:110
+#: ../register.php:111
 #, php-format
 msgid "An email has been sent to %s."
 msgstr "信件已傳送到 %s. "
 
-#: ../register.php:112
+#: ../register.php:113
 msgid "Your account information is contained within the email."
 msgstr "您的帳號資訊已經註明在電子信件內。"
 
-#: ../register.php:114
+#: ../register.php:115
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
 msgstr "電子信件無法傳送，請聯絡 Gallery 管理員以便在本站註冊"
 
-#: ../register.php:134
+#: ../register.php:135
 msgid "Your account information will be sent to the email address you provide."
 msgstr "您的帳號資訊將以電子信件傳送到你提供的信箱位址"
 
@@ -2468,33 +2475,37 @@ msgstr "您的帳號資訊將以電子信件傳送到你提供的信箱位址"
 msgid "You are not allowed to perform this action !"
 msgstr "在您尚未在本次評比中留下記錄. "
 
-#: ../rename_album.php:37 ../rename_album.php:42 ../view_album.php:968
+#: ../rename_album.php:37 ../rename_album.php:42 ../view_album.php:987
 msgid "Rename Album"
 msgstr "更改相簿目錄名"
 
-#: ../rename_album.php:97
+#: ../rename_album.php:94
 msgid "There is already an album with that name!"
 msgstr "已經存在一份同名的相簿了喔! "
 
-#: ../rename_album.php:105
+#: ../rename_album.php:114
 msgid "What do you want to name this album?"
 msgstr "請問您想更換的名稱? "
 
-#: ../rename_album.php:107
+#: ../rename_album.php:116
 msgid "The name cannot contain any of the following characters"
 msgstr "其中不可包含下列字元："
 
-#: ../rename_album.php:108
+#: ../rename_album.php:117
 msgid "or"
 msgstr "或者"
 
-#: ../rename_album.php:108
+#: ../rename_album.php:117
 msgid "spaces"
 msgstr "空白"
 
-#: ../rename_album.php:109
+#: ../rename_album.php:118
 msgid "Those characters will be ignored in your new album name."
 msgstr "這些字元將會被系統忽略. "
+
+#: ../rename_album.php:126
+msgid "Rename"
+msgstr "更名"
 
 #: ../reset_votes.php:50 ../reset_votes.php:56
 msgid "Reset Voting"
@@ -2654,8 +2665,8 @@ msgstr "新增檔案"
 msgid "Search Again"
 msgstr "再找一遍"
 
-#: ../search.php:70 ../search.php:290 ../slideshow.php:200
-#: ../slideshow.php:215 ../view_album.php:139 ../view_photo.php:178
+#: ../search.php:70 ../search.php:290 ../slideshow.php:197
+#: ../slideshow.php:212 ../view_album.php:140 ../view_photo.php:178
 msgid "Gallery"
 msgstr "Gallery"
 
@@ -2711,19 +2722,19 @@ msgstr "在 Gallery 的相簿以及相片中的標題、描述與評論中尋找"
 msgid "Go"
 msgstr "開始尋找"
 
-#: ../slideshow.php:94
+#: ../slideshow.php:91
 msgid "Fullscreen applet"
 msgstr ""
 
-#: ../slideshow.php:97
+#: ../slideshow.php:94
 msgid "Modern browsers"
 msgstr ""
 
-#: ../slideshow.php:100
+#: ../slideshow.php:97
 msgid "Compatible but limited"
 msgstr ""
 
-#: ../slideshow.php:239
+#: ../slideshow.php:236
 msgid "Slide Show"
 msgstr "幻燈片輪播"
 
@@ -2927,283 +2938,283 @@ msgstr "空的"
 msgid "edit %s"
 msgstr "修改 %s"
 
-#: ../util.php:63
+#: ../util.php:65
 msgid "edit"
 msgstr "修改"
 
-#: ../util.php:117
+#: ../util.php:122
 #, fuzzy
 msgid "Add your comment"
 msgstr "新增評論"
 
-#: ../util.php:120
+#: ../util.php:125
 #, fuzzy
 msgid "Commenter:"
 msgstr "建立"
 
-#: ../util.php:137
+#: ../util.php:142
 #, fuzzy
 msgid "Message:"
 msgstr "訊息"
 
-#: ../util.php:141
+#: ../util.php:146
 #, fuzzy
 msgid "Post"
 msgstr "圖片"
 
-#: ../util.php:148
+#: ../util.php:153
 msgid "Error:"
 msgstr "錯誤："
 
-#: ../util.php:228
+#: ../util.php:233
 msgid "Executing:"
 msgstr "執行:"
 
-#: ../util.php:235
+#: ../util.php:240
 msgid "Results:"
 msgstr "結果："
 
-#: ../util.php:239
+#: ../util.php:244
 msgid "none"
 msgstr "不提供"
 
-#: ../util.php:244
+#: ../util.php:249
 #, fuzzy
 msgid "Debug messages:"
 msgstr "錯誤訊息："
 
-#: ../util.php:255
+#: ../util.php:260
 #, php-format
 msgid "Status: %s (expected %s)"
 msgstr "狀態: %s (應為 %s)"
 
-#: ../util.php:267
+#: ../util.php:272
 #, fuzzy, php-format
 msgid "The file %s does not exist ?!"
 msgstr "檔案 %s 並不存在. "
 
-#: ../util.php:277
+#: ../util.php:282
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP 的 %s 無法決定 dimensions. "
 
-#: ../util.php:297 ../util.php:595 ../util.php:850 ../util.php:896
-#: ../util.php:2358
+#: ../util.php:302 ../util.php:604 ../util.php:859 ../util.php:905
+#: ../util.php:2389
 msgid "You have no graphics package configured for use!"
 msgstr "您沒有設定可使用的圖形套件程式! "
 
-#: ../util.php:378 ../util.php:397
+#: ../util.php:383 ../util.php:402
 msgid "Not closing this window because debug mode is on"
 msgstr "由於除錯模式開啟所以無法關閉視窗"
 
-#: ../util.php:442
+#: ../util.php:447
 msgid "No resizing required"
 msgstr "不需要重設大小"
 
-#: ../util.php:465
+#: ../util.php:474
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "目標檔案大小 %d kbytes"
 
-#: ../util.php:471 ../util.php:501
+#: ../util.php:480 ../util.php:510
 #, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> 檔案大小 %d kbytes"
 
-#: ../util.php:472
+#: ../util.php:481
 #, php-format
 msgid "trying quality %d%%"
 msgstr "嘗試品質 %d%%"
 
-#: ../util.php:502
+#: ../util.php:511
 msgid "Done."
 msgstr "完成"
 
-#: ../util.php:599
+#: ../util.php:608
 #, fuzzy
 msgid "No watermark name specified!"
 msgstr "沒有指定相簿! "
 
-#: ../util.php:915
+#: ../util.php:924
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "呼叫 %s 無法在 %s 中使用檔案 %s."
 
-#: ../util.php:921
+#: ../util.php:930
 #, php-format
 msgid "File %s type %d."
 msgstr "檔案 %s 類型 %d."
 
-#: ../util.php:936
+#: ../util.php:945
 #, php-format
 msgid "There was an unknown failure in the %s call!"
 msgstr "%s 呼叫產生不明原因的失敗! "
 
-#: ../util.php:960 ../util.php:983
+#: ../util.php:969 ../util.php:992
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "未知的檔案格式：%s"
 
-#: ../util.php:1524
+#: ../util.php:1555
 #, php-format
 msgid "Can't write to %s."
 msgstr "無法寫入 %s. "
 
-#: ../util.php:1531
+#: ../util.php:1562
 #, php-format
 msgid "Can't read %s."
 msgstr "無法讀取 %s. "
 
-#: ../util.php:1644
+#: ../util.php:1675
 msgid "Select Album"
 msgstr "選擇相簿"
 
-#: ../util.php:1650
+#: ../util.php:1681
 msgid "Top Level"
 msgstr "頂層"
 
-#: ../util.php:1671 ../util.php:1722
+#: ../util.php:1702 ../util.php:1753
 msgid "current location"
 msgstr "目前位置"
 
-#: ../util.php:1725
+#: ../util.php:1756
 msgid "self"
 msgstr "自己"
 
-#: ../util.php:1821
+#: ../util.php:1852
 #, php-format
 msgid "IN UTIL ITEMCAPTUREDATE = %s"
 msgstr ""
 
-#: ../util.php:1865
+#: ../util.php:1896
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "無法開啟這個鎖定檔 (%s)! "
 
-#: ../util.php:1870
+#: ../util.php:1901
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "無法要求鎖定 (%s)! "
 
-#: ../util.php:1954
+#: ../util.php:1985
 #, fuzzy, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "1 次"
 msgstr[1] "1 次"
 
-#: ../util.php:1959
+#: ../util.php:1990
 msgid "Sub-albums"
 msgstr "子相簿"
 
-#: ../util.php:1998
+#: ../util.php:2029
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "略過 %s (尚未開啟 ZIP 壓縮支援)"
 
-#: ../util.php:2143
+#: ../util.php:2174
 #, php-format
 msgid "Adding %s"
 msgstr "正在加入 %s"
 
-#: ../util.php:2161
+#: ../util.php:2192
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "需要幫忙嗎? 請看 %s%s FAQ%s"
 
-#: ../util.php:2167
+#: ../util.php:2198
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "略過 %s (無法處理 %s 格式)"
 
-#: ../util.php:2317
+#: ../util.php:2348
 msgid "documentation"
 msgstr "說明文件"
 
-#: ../util.php:2343
+#: ../util.php:2374
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "無法保留EXIF資料 (沒有安裝jhead)"
 
-#: ../util.php:2368
+#: ../util.php:2399
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generated by %s v%s"
 
-#: ../util.php:2370
+#: ../util.php:2401
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2420
+#: ../util.php:2451
 #, fuzzy, php-format
 msgid "Skipping invalid email address %s"
 msgstr "忽略無效的電子信箱位址"
 
-#: ../util.php:2486
+#: ../util.php:2517
 #, fuzzy, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "注意: 這是一封由 %s 網站自動發送的電子信件，如果您不知道為何收到本信件，可以直接忽略它. "
 
-#: ../util.php:2488
+#: ../util.php:2519
 #, php-format
 msgid "Report abuse to %s"
 msgstr "回報錯誤狀況給 %s"
 
-#: ../util.php:2504
+#: ../util.php:2535
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "電子信件無法傳送，因為 gallery 取消此功能"
 
-#: ../util.php:2508
+#: ../util.php:2539
 #, php-format
 msgid "Email not sent as no address provided"
 msgstr "電子信件無法傳送，因為沒有提供地址"
 
-#: ../util.php:2513
+#: ../util.php:2544
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "電子信件無法傳送到 %s，因為地址不正確"
 
-#: ../util.php:2528
+#: ../util.php:2559
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "寄信人地址 %s 不合法, 使用 %s"
 
-#: ../util.php:2552 ../util.php:2557
+#: ../util.php:2584 ../util.php:2589
 msgid "not shown"
 msgstr "不顯示"
 
-#: ../util.php:2561
+#: ../util.php:2593
 msgid "Message"
 msgstr "訊息"
 
-#: ../util.php:2565
+#: ../util.php:2597
 msgid "Email sent"
 msgstr "信件已寄出"
 
-#: ../util.php:2567
+#: ../util.php:2599
 msgid "Email not sent"
 msgstr "信件沒有寄出"
 
-#: ../util.php:2581
+#: ../util.php:2613
 #, php-format
 msgid "Last comment %s."
 msgstr "上次評論 %s."
 
-#: ../util.php:2593
+#: ../util.php:2625
 msgid "FAILED"
 msgstr "FAILED"
 
-#: ../util.php:2602
+#: ../util.php:2634
 msgid "Email activity"
 msgstr "Email activity"
 
 # php-format
-#: ../util.php:2620
+#: ../util.php:2652
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "無法開啟記錄檔檔: %s"
 
-#: ../util.php:2627
+#: ../util.php:2659
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3222,338 +3233,343 @@ msgstr ""
 "\n"
 "Gallery @ %s 管理員."
 
-#: ../util.php:2636 ../util.php:2638
+#: ../util.php:2668 ../util.php:2670
 msgid "gallery title"
 msgstr "Gallery 標題"
 
-#: ../util.php:2637
+#: ../util.php:2669
 #, fuzzy
 msgid "gallery URL"
 msgstr "Gallery 連結"
 
-#: ../util.php:2664
+#: ../util.php:2696
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>None</dt><dd>原始的布景主題.</dd>"
 
-#: ../util.php:2711 ../util.php:2716
+#: ../util.php:2743 ../util.php:2748
 #, fuzzy
 msgid "Dots"
 msgstr "票"
 
-#: ../util.php:2712 ../util.php:2717
+#: ../util.php:2744 ../util.php:2749
 msgid "Solid"
 msgstr ""
 
-#: ../util.php:2715
+#: ../util.php:2747
 msgid "No frames"
 msgstr "無外框"
 
-#: ../util.php:2716
+#: ../util.php:2748
 msgid "Just a simple dashed border around the thumb."
 msgstr "圍繞在縮圖外的簡單虛線"
 
-#: ../util.php:2717
+#: ../util.php:2749
 msgid "Just a simple solid border around the thumb."
 msgstr "圍繞在縮圖外的簡單實線"
 
-#: ../util.php:2738
+#: ../util.php:2770
 #, php-format
 msgid "Skipping %s."
 msgstr "略過相簿 %s."
 
-#: ../util.php:2744
+#: ../util.php:2776
 #, php-format
 msgid "Can't open %s"
 msgstr "無法開啟 %s"
 
-#: ../util.php:2845 ../util.php:2864
+#: ../util.php:2877 ../util.php:2896
 #, fuzzy
 msgid "Not valid yet"
 msgstr "使用者名稱不合法"
 
-#: ../view_album.php:124 ../view_photo.php:156
+#: ../util.php:3140
+#, fuzzy
+msgid "EXIF Data"
+msgstr "詳細的 EXIF 資料"
+
+#: ../view_album.php:125 ../view_photo.php:156
 msgid "navigate UP"
 msgstr "向上瀏覽"
 
-#: ../view_album.php:266
+#: ../view_album.php:267
 #, fuzzy, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
 msgstr[0] "1 個子相簿"
 msgstr[1] "1 個子相簿"
 
-#: ../view_album.php:266
+#: ../view_album.php:267
 msgid "No albums"
 msgstr "尚無相簿"
 
-#: ../view_album.php:268
+#: ../view_album.php:269
 msgid "0 pages"
 msgstr "0 頁"
 
-#: ../view_album.php:271
+#: ../view_album.php:272
 #, php-format
 msgid "%s and %s in this album on %s"
 msgstr "%s, %s 在此相簿中, 共 %s"
 
-#: ../view_album.php:274
+#: ../view_album.php:275
 #, php-format
 msgid "%s and %s in this album"
 msgstr "%s, %s 在此相簿中"
 
-#: ../view_album.php:277
+#: ../view_album.php:278
 #, php-format
 msgid "%s in this album on %s"
 msgstr "%s 在此相簿中, 共 %s"
 
-#: ../view_album.php:280
+#: ../view_album.php:281
 #, php-format
 msgid "%s in this album"
 msgstr "%s 在此相簿中"
 
-#: ../view_album.php:287
+#: ../view_album.php:288
 #, php-format
 msgid "%s are hidden"
 msgstr "%s 份隱藏"
 
-#: ../view_album.php:289
+#: ../view_album.php:290
 #, php-format
 msgid "%s is hidden"
 msgstr "%s 份隱藏"
 
-#: ../view_album.php:299
+#: ../view_album.php:300
 msgid "add photos"
 msgstr "加入多個檔案"
 
-#: ../view_album.php:312
+#: ../view_album.php:313
 msgid "new nested album"
 msgstr "新增相簿"
 
-#: ../view_album.php:318
+#: ../view_album.php:319
 msgid "custom fields"
 msgstr "自訂欄位"
 
-#: ../view_album.php:332
+#: ../view_album.php:333
 msgid "sort items"
 msgstr "檔案排序"
 
-#: ../view_album.php:339
+#: ../view_album.php:340
 msgid "resize all"
 msgstr "修改全部檔案的大小"
 
-#: ../view_album.php:347
+#: ../view_album.php:348
 msgid "rebuild thumbs"
 msgstr "重建縮圖"
 
-#: ../view_album.php:354
+#: ../view_album.php:355
 msgid "properties"
 msgstr "相簿屬性"
 
-#: ../view_album.php:366
+#: ../view_album.php:367
 msgid "poll properties"
 msgstr "評比屬性"
 
-#: ../view_album.php:372
+#: ../view_album.php:373
 msgid "poll results"
 msgstr "評比結果"
 
-#: ../view_album.php:378
+#: ../view_album.php:379
 msgid "poll reset"
 msgstr "評比歸零"
 
-#: ../view_album.php:384
+#: ../view_album.php:385
 msgid "view comments"
 msgstr "檢視評論"
 
-#: ../view_album.php:392
+#: ../view_album.php:393
 #, fuzzy
 msgid "watermark album"
 msgstr "從相簿"
 
-#: ../view_album.php:457
+#: ../view_album.php:458
 msgid "admin options"
 msgstr "管理選項"
 
-#: ../view_album.php:538
+#: ../view_album.php:552
 msgid "You have no votes recorded for this poll."
 msgstr "在您尚未在本次評比中留下記錄. "
 
-#: ../view_album.php:544
+#: ../view_album.php:558
 msgid "Your current choices are"
 msgstr "您目前的選擇是"
 
-#: ../view_album.php:586
+#: ../view_album.php:600
 msgid "See full poll results"
 msgstr "觀看完整評比結果"
 
-#: ../view_album.php:608
+#: ../view_album.php:622
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:610
+#: ../view_album.php:624
 msgid " or "
 msgstr "或者"
 
-#: ../view_album.php:615
+#: ../view_album.php:629
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "要對影像進行評比, 請點選 %s. "
 
-#: ../view_album.php:616
+#: ../view_album.php:630
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "您必須點選 %s 才能將您的評比送出. "
 
-#: ../view_album.php:621
+#: ../view_album.php:635
 #, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr "您總共有 %s 而且隨時可以更改您的選擇. "
 
-#: ../view_album.php:622
+#: ../view_album.php:636
 #, fuzzy, php-format
 msgid "1 vote"
 msgid_plural "%d votes"
 msgstr[0] "1 票"
 msgstr[1] "1 票"
 
-#: ../view_album.php:627
+#: ../view_album.php:641
 msgid "You can change your choices if you wish."
 msgstr "您可以更改您的選擇. "
 
-#: ../view_album.php:781 ../view_album.php:782
+#: ../view_album.php:795 ../view_album.php:796
 #, php-format
 msgid "%dkB"
 msgstr ""
 
-#: ../view_album.php:854
+#: ../view_album.php:871
 msgid "No description"
 msgstr "無描述"
 
-#: ../view_album.php:862
+#: ../view_album.php:879
 msgid "Changed: "
 msgstr "更新： "
 
-#: ../view_album.php:865
+#: ../view_album.php:882
 msgid "Contains: "
 msgstr "內容： "
 
-#: ../view_album.php:865
+#: ../view_album.php:882
 #, fuzzy, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "1 份檔案"
 msgstr[1] "1 份檔案"
 
-#: ../view_album.php:879 ../view_album.php:902
+#: ../view_album.php:897 ../view_album.php:920
 msgid "Viewed:"
 msgstr "點閱： "
 
-#: ../view_album.php:917
+#: ../view_album.php:936
 msgid "Movie"
 msgstr "影片"
 
-#: ../view_album.php:921
+#: ../view_album.php:940
 msgid "Photo"
 msgstr "圖片"
 
-#: ../view_album.php:943 ../view_album.php:979
+#: ../view_album.php:962 ../view_album.php:998
 msgid "Edit Thumbnail"
 msgstr "修改縮圖"
 
-#: ../view_album.php:944 ../view_album.php:980
+#: ../view_album.php:963 ../view_album.php:999
 #, fuzzy, php-format
 msgid "Rotate/Flip %s"
 msgstr "旋轉"
 
-#: ../view_album.php:953 ../view_album.php:1016 ../view_album.php:1021
+#: ../view_album.php:972 ../view_album.php:1035 ../view_album.php:1040
 #, fuzzy, php-format
 msgid "Delete %s"
 msgstr "刪除"
 
-#: ../view_album.php:958
+#: ../view_album.php:977
 msgid "Edit Title"
 msgstr "修改標題"
 
-#: ../view_album.php:962
+#: ../view_album.php:981
 msgid "Edit Description"
 msgstr "修改說明"
 
-#: ../view_album.php:989
+#: ../view_album.php:1008
 #, fuzzy, php-format
 msgid "Highlight %s"
 msgstr "做為封面"
 
-#: ../view_album.php:993
+#: ../view_album.php:1012
 msgid "Reset Counter"
 msgstr "計數器歸零"
 
-#: ../view_album.php:998
+#: ../view_album.php:1017
 #, fuzzy, php-format
 msgid "Move %s"
 msgstr "移動 "
 
-#: ../view_album.php:999
+#: ../view_album.php:1018
 #, fuzzy, php-format
 msgid "Reorder %s"
 msgstr "重排 "
 
-#: ../view_album.php:1001
+#: ../view_album.php:1020
 #, fuzzy, php-format
 msgid "Copy %s"
 msgstr "拷貝"
 
-#: ../view_album.php:1008
+#: ../view_album.php:1027
 #, fuzzy, php-format
 msgid "Show %s"
 msgstr "顯示"
 
-#: ../view_album.php:1010
+#: ../view_album.php:1029
 #, fuzzy, php-format
 msgid "Hide %s"
 msgstr "隱藏"
 
-#: ../view_album.php:1027
+#: ../view_album.php:1046
 msgid "Permissions"
 msgstr "權限"
 
-#: ../view_album.php:1032 ../watermark_album.php:77 ../watermark_album.php:83
+#: ../view_album.php:1051 ../watermark_album.php:77 ../watermark_album.php:83
 #, fuzzy
 msgid "Watermark Album"
 msgstr "從相簿"
 
-#: ../view_album.php:1037
+#: ../view_album.php:1056
 #, fuzzy
 msgid "View Comments"
 msgstr "檢視評論"
 
-#: ../view_album.php:1083
+#: ../view_album.php:1105
 msgid "Hey! Add some photos."
 msgstr "嘿! 加些檔案吧."
 
-#: ../view_album.php:1085
+#: ../view_album.php:1107
 msgid "This album is empty."
 msgstr "這是一個空相簿"
 
-#: ../view_album.php:1127 ../view_photo.php:645
+#: ../view_album.php:1149 ../view_photo.php:645
 msgid "Email me when:"
 msgstr "寄信給我,當:"
 
-#: ../view_album.php:1128 ../view_photo.php:646
+#: ../view_album.php:1150 ../view_photo.php:646
 msgid "Comments are added"
 msgstr "評論已加入"
 
-#: ../view_album.php:1131
+#: ../view_album.php:1153
 msgid "Other changes are made"
 msgstr "其他的更動已執行"
 
-#: ../view_comments.php:114
+#: ../view_comments.php:115
 msgid "Comments for this Album"
 msgstr "此相簿的所有評論"
 
-#: ../view_comments.php:116
+#: ../view_comments.php:117
 msgid "return to album"
 msgstr "返回相簿"
 
-#: ../view_comments.php:130
+#: ../view_comments.php:131
 msgid "Sorry.  This album does not allow comments."
 msgstr "抱歉, 此相簿不允許評論."
 
@@ -3611,6 +3627,18 @@ msgstr ""
 #, fuzzy
 msgid "No items to watermark."
 msgstr "目前沒有任何評比. "
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "<br>No email sent as no valid email addresses were found"
+#~ msgstr "無效的電子信箱位址"
+
+#~ msgid "Note:  This album is out of date!"
+#~ msgstr "注意：這個相簿已經過期! "
+
+#~ msgid "upgrade album"
+#~ msgstr "更新相簿"
 
 #~ msgid "Login Incorrect"
 #~ msgstr "登入錯誤"

@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-06-10 19:18+0200\n"
+"POT-Creation-Date: 2004-06-30 14:49+0200\n"
 "PO-Revision-Date: 2004-03-09 21:27+0200\n"
 "Last-Translator: Shai <gallery@shaibn.com>\n"
 "Language-Team: HEBREW <imac2@walla.co.il>\n"
@@ -67,14 +67,14 @@ msgid "Enter your comment for this picture in the text box below."
 msgstr "הוסף הערה לתמונה בתיבת הטקסט מתחת"
 
 #: ../add_comment.php:99 ../copy_photo.php:194 ../create_user.php:146
-#: ../delete_album.php:60 ../delete_photo.php:106 ../delete_photo.php:131
+#: ../delete_album.php:63 ../delete_photo.php:115 ../delete_photo.php:140
 #: ../delete_user.php:73 ../edit_caption.php:183 ../edit_field.php:68
 #: ../edit_watermark.php:104 ../includes/add_photos/add_form.inc:128
 #: ../includes/add_photos/add_form_one.inc:72
 #: ../includes/add_photos/add_url.inc:60 ../login.php:123
 #: ../modify_user.php:149 ../move_album.php:117 ../move_album.php:137
 #: ../move_photo.php:254 ../move_photo.php:340 ../multi_create_user.php:164
-#: ../new_password.php:126 ../register.php:137 ../rename_album.php:118
+#: ../new_password.php:126 ../register.php:138 ../rename_album.php:127
 #: ../reset_votes.php:64 ../resize_photo.php:126 ../sort_album.php:114
 #: ../user_preferences.php:126 ../watermark_album.php:118
 msgid "Cancel"
@@ -120,7 +120,7 @@ msgstr "הרשאות אלבום"
 msgid "Changing permissions for %s"
 msgstr "שינוי הרשאות ל-%s"
 
-#: ../album_permissions.php:180 ../albums.php:324
+#: ../album_permissions.php:180 ../albums.php:334
 msgid "Owner:"
 msgstr "שייך ל:"
 
@@ -206,18 +206,18 @@ msgstr "אלבומי רמה עליונה"
 msgid "%d total"
 msgstr "סה\"כ %d"
 
-#: ../albums.php:129 ../view_album.php:267
+#: ../albums.php:129 ../view_album.php:268
 #, fuzzy, php-format
 msgid "1 image"
 msgid_plural "%d images"
 msgstr[0] "תמונה יחידה"
 msgstr[1] "תמונה יחידה"
 
-#: ../albums.php:129 ../view_album.php:267
+#: ../albums.php:129 ../view_album.php:268
 msgid "no images"
 msgstr "אין תמונות"
 
-#: ../albums.php:130 ../view_album.php:268
+#: ../albums.php:130 ../view_album.php:269
 #, fuzzy, php-format
 msgid "1 page"
 msgid_plural "%d pages"
@@ -253,13 +253,13 @@ msgstr "%s, %s"
 msgid "Welcome, %s"
 msgstr "שלום %s"
 
-#: ../albums.php:154 ../view_album.php:467
+#: ../albums.php:154 ../view_album.php:468
 msgid "slideshow"
 msgstr "מצגת שקופיות"
 
 #: ../albums.php:162
 #, fuzzy
-msgid "Configuration Wizard"
+msgid "configuration wizard"
 msgstr "הגדר שדות"
 
 #: ../albums.php:166
@@ -274,11 +274,11 @@ msgstr "ניהול משתמשים"
 msgid "preferences"
 msgstr "העדפות"
 
-#: ../albums.php:187 ../view_album.php:473
+#: ../albums.php:187 ../view_album.php:486
 msgid "logout"
 msgstr "יציאה מהמערכת"
 
-#: ../albums.php:191 ../view_album.php:475
+#: ../albums.php:191 ../view_album.php:488
 msgid "login"
 msgstr "כניסה למערכת"
 
@@ -290,83 +290,91 @@ msgstr "הירשם"
 msgid "Attention Gallery Administrator!"
 msgstr "לתשומת לב מנהל Gallery!"
 
-#: ../albums.php:223
+#: ../albums.php:224
 #, fuzzy, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "%s זיהה את הספריות הבאות: %s בספריית האלבומים שלך (%s)."
 
-#: ../albums.php:229
+#: ../albums.php:230
 #, fuzzy
 msgid "Please move it/them out of the albums directory."
 msgstr "אלה אינם אלבומים תקפים. יש להוציא אותם מספריית האלבומים"
 
-#: ../albums.php:280 ../view_album.php:741
+#: ../albums.php:234
+#, php-format
+msgid "%s has detected that %d of your album are out of Date"
+msgstr ""
+
+#: ../albums.php:238
+#, fuzzy, php-format
+msgid "Please %s."
+msgstr "אנא המתן..."
+
+#: ../albums.php:238
+#, fuzzy
+msgid "upgrade those albums"
+msgstr "שדרג את כל האלבומים"
+
+#: ../albums.php:290 ../view_album.php:755
 #, fuzzy
 msgid "Highlight for Album:"
 msgstr "הדגש לאלבום:"
 
-#: ../albums.php:297
+#: ../albums.php:307
 msgid "title"
 msgstr "כותרת"
 
-#: ../albums.php:329
+#: ../albums.php:339
 msgid "url:"
 msgstr "כתובת:"
 
-#: ../albums.php:340
+#: ../albums.php:350
 msgid "Hey!"
 msgstr "היי!"
 
-#: ../albums.php:341
-#, php-format
-msgid "%s this album so that the URL is not so generic!"
+#: ../albums.php:351
+#, fuzzy, php-format
+msgid "%s so that the URL is not so generic!"
 msgstr "%s האלבום הזה כדי שהכתובת שלו לא תהיה כל-כך כללית!"
 
-#: ../albums.php:342 ../rename_album.php:117
-msgid "Rename"
-msgstr "שנה את שם"
+#: ../albums.php:352
+#, fuzzy
+msgid "Rename this album"
+msgstr "שנה את שם האלבום"
 
-#: ../albums.php:350
-msgid "Note:  This album is out of date!"
-msgstr "שים לב: אלבום זה אינו מעודכן!"
-
-#: ../albums.php:350
-msgid "upgrade album"
-msgstr "שדרג אלבום"
-
-#: ../albums.php:360
+#: ../albums.php:363
 #, php-format
 msgid "Last changed on %s."
 msgstr "שונה לאחרונה ב-%s."
 
-#: ../albums.php:363
+#: ../albums.php:366
 #, fuzzy, php-format
 msgid "This album contains one item"
 msgid_plural "This album contains %d items"
 msgstr[0] "אלבום זה מכיל %s."
 msgstr[1] "אלבום זה מכיל %s."
 
-#: ../albums.php:368
+#: ../albums.php:371
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "אלבום זה נצפה %s מאז %s."
 
-#: ../albums.php:369 ../view_album.php:879 ../view_album.php:902
+#: ../albums.php:372 ../view_album.php:897 ../view_album.php:920
 #, fuzzy, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "פעם יחידה"
 msgstr[1] "פעם יחידה"
 
-#: ../albums.php:369
+#: ../albums.php:372
 msgid "0 times"
 msgstr "0 פעמים"
 
-#: ../albums.php:375
+#: ../albums.php:378
 msgid "reset counter"
 msgstr "אפס מונה"
 
-#: ../albums.php:409 ../view_album.php:1096
+#: ../albums.php:412 ../view_album.php:1118
 msgid "Comments available for this item."
 msgstr "יש הערות לפריט זה."
 
@@ -434,7 +442,7 @@ msgstr "ללא כותרת"
 msgid "Photo Caption"
 msgstr "ללא כותרת"
 
-#: ../captionator.php:272 ../extra_fields.php:101 ../lib/lang.php:609
+#: ../captionator.php:272 ../extra_fields.php:101 ../lib/lang.php:648
 msgid "Title"
 msgstr "כותרת"
 
@@ -442,7 +450,7 @@ msgstr "כותרת"
 msgid "Keywords"
 msgstr "מלות מפתח"
 
-#: ../captionator.php:293 ../lib/lang.php:599
+#: ../captionator.php:293 ../lib/lang.php:638
 msgid "Capture Date"
 msgstr "תאריך הצילום"
 
@@ -454,101 +462,101 @@ msgstr "אין תמונות!"
 msgid "Untitled"
 msgstr "ללא כותרת"
 
-#: ../classes/Album.php:217
+#: ../classes/Album.php:230
 msgid "Album up to date."
 msgstr "עד לתאריך"
 
-#: ../classes/Album.php:221
+#: ../classes/Album.php:234
 msgid "Upgrading album properties..."
 msgstr "מאפייני  עידכון האלבום"
 
-#: ../classes/Album.php:364
+#: ../classes/Album.php:377
 #, fuzzy, php-format
 msgid "Renaming album from %s to %s..."
 msgstr "מאפייני  עידכון האלבום"
 
-#: ../classes/Album.php:402 ../classes/Album.php:419
+#: ../classes/Album.php:421 ../classes/Album.php:438
 msgid "done"
 msgstr "הסתיים"
 
-#: ../classes/Album.php:410
+#: ../classes/Album.php:429
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "מעדכן פריט %d מתוך %d..."
 
-#: ../classes/Album.php:825
+#: ../classes/Album.php:845
 msgid "msg should be an array!"
 msgstr "הודעה צריכה להיות מערך!"
 
-#: ../classes/Album.php:846 ../util.php:3159
+#: ../classes/Album.php:866 ../util.php:3191
 #, fuzzy
 msgid "No email sent as no valid email addresses were found"
 msgstr "עליך להכניס שם משתמש"
 
-#: ../classes/Album.php:943
+#: ../classes/Album.php:963
 msgid "Resizing/compressing original image"
 msgstr "משנה את תכונות התמונה המקורית"
 
-#: ../classes/Album.php:947
+#: ../classes/Album.php:967
 msgid "Cannot resize/compress this filetype"
 msgstr "לא ניתן לשנות את תכונות הקובץ הזה בשל סוגו"
 
-#: ../classes/Album.php:995
+#: ../classes/Album.php:1015
 #, php-format
 msgid "Resizing %s"
 msgstr "משנה גודל %s"
 
-#: ../classes/Album.php:1036
+#: ../classes/Album.php:1056
 msgid "Photo auto-rotated/transformed"
 msgstr "התמונה עובדה אוטומטית"
 
-#: ../classes/Album.php:1045
+#: ../classes/Album.php:1065
 #, fuzzy
 msgid "Watermarking Image"
 msgstr "מאלבום"
 
-#: ../classes/Album.php:1191 ../classes/Album.php:1201
-#: ../classes/AlbumItem.php:622
+#: ../classes/Album.php:1211 ../classes/Album.php:1221
+#: ../classes/AlbumItem.php:627
 msgid "No highlight"
 msgstr "אין דגשים"
 
-#: ../classes/Album.php:1340
+#: ../classes/Album.php:1375
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr ""
 
-#: ../classes/Album.php:1645
+#: ../classes/Album.php:1685
 #, php-format
 msgid "Error %s getting EXIF data"
 msgstr ""
 
-#: ../classes/Album.php:2147
+#: ../classes/Album.php:2190
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2285
+#: ../classes/Album.php:2328
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "בעיית אימייל: מדלג %s (UID %s) בפני שהכתובת דואר %s אינה חוקית"
 
-#: ../classes/AlbumItem.php:521
+#: ../classes/AlbumItem.php:526
 msgid "Invalid image"
 msgstr "תמונה לא תקפה"
 
-#: ../classes/AlbumItem.php:579
+#: ../classes/AlbumItem.php:584
 msgid "Unable to make thumbnail"
 msgstr "לא מצליח ליצור שקופית"
 
-#: ../classes/AlbumItem.php:590
+#: ../classes/AlbumItem.php:595
 msgid "No preview"
 msgstr ""
 
-#: ../classes/AlbumItem.php:600 ../util.php:54
+#: ../classes/AlbumItem.php:605 ../util.php:61
 msgid "No Caption"
 msgstr "ללא כותרת"
 
-#: ../classes/AlbumItem.php:609
+#: ../classes/AlbumItem.php:614
 msgid "No thumbnail"
 msgstr "אין שקופית"
 
@@ -642,7 +650,7 @@ msgstr "מדלג על אלבום %d"
 
 #: ../copy_photo.php:119 ../create_user.php:97 ../do_command.php:161
 #: ../login.php:154 ../multi_create_user.php:117 ../register.php:45
-#: ../register.php:118 ../save_photos.php:360
+#: ../register.php:119 ../save_photos.php:360
 msgid "Dismiss"
 msgstr "סגור"
 
@@ -683,7 +691,7 @@ msgstr "שדרג כעת"
 msgid "Copy to Album!"
 msgstr "העתק לאלבום!"
 
-#: ../copy_photo.php:198 ../delete_photo.php:137 ../edit_thumb.php:131
+#: ../copy_photo.php:198 ../delete_photo.php:146 ../edit_thumb.php:131
 #: ../move_album.php:145 ../move_photo.php:346 ../resize_photo.php:133
 #: ../rotate_photo.php:94 ../view_photo_properties.php:130
 msgid "no album / index specified"
@@ -717,24 +725,24 @@ msgstr "הרשמה לגלרייה"
 msgid "Email sent to %s."
 msgstr "אימייל נשלח אל %s."
 
-#: ../create_user.php:118 ../edit_appearance.php:226
-#: ../edit_appearance.php:247 ../edit_appearance.php:254
-#: ../edit_appearance.php:313 ../edit_appearance.php:320
-#: ../edit_appearance.php:355 ../edit_appearance.php:365
-#: ../edit_appearance.php:372 ../edit_appearance.php:379
-#: ../edit_appearance.php:386 ../edit_appearance.php:393
-#: ../edit_appearance.php:400 ../modify_user.php:114 ../modify_user.php:117
+#: ../create_user.php:118 ../edit_appearance.php:185
+#: ../edit_appearance.php:206 ../edit_appearance.php:213
+#: ../edit_appearance.php:272 ../edit_appearance.php:279
+#: ../edit_appearance.php:314 ../edit_appearance.php:324
+#: ../edit_appearance.php:331 ../edit_appearance.php:338
+#: ../edit_appearance.php:345 ../edit_appearance.php:352
+#: ../edit_appearance.php:359 ../modify_user.php:114 ../modify_user.php:117
 #: ../multi_create_user.php:156 ../poll_properties.php:96
 msgid "yes"
 msgstr "כן"
 
-#: ../create_user.php:118 ../edit_appearance.php:226
-#: ../edit_appearance.php:247 ../edit_appearance.php:254
-#: ../edit_appearance.php:313 ../edit_appearance.php:320
-#: ../edit_appearance.php:355 ../edit_appearance.php:365
-#: ../edit_appearance.php:372 ../edit_appearance.php:379
-#: ../edit_appearance.php:386 ../edit_appearance.php:393
-#: ../edit_appearance.php:400 ../modify_user.php:114 ../modify_user.php:117
+#: ../create_user.php:118 ../edit_appearance.php:185
+#: ../edit_appearance.php:206 ../edit_appearance.php:213
+#: ../edit_appearance.php:272 ../edit_appearance.php:279
+#: ../edit_appearance.php:314 ../edit_appearance.php:324
+#: ../edit_appearance.php:331 ../edit_appearance.php:338
+#: ../edit_appearance.php:345 ../edit_appearance.php:352
+#: ../edit_appearance.php:359 ../modify_user.php:114 ../modify_user.php:117
 #: ../multi_create_user.php:156 ../poll_properties.php:96
 msgid "no"
 msgstr "לא"
@@ -744,37 +752,37 @@ msgid "Create a new user here."
 msgstr "צור משתמש חדש כאן"
 
 #: ../create_user.php:145 ../manage_users.php:99 ../multi_create_user.php:163
-#: ../register.php:136
+#: ../register.php:137
 msgid "Create"
 msgstr "צור"
 
-#: ../delete_album.php:45 ../delete_album.php:51 ../delete_photo.php:70
-#: ../delete_photo.php:81
+#: ../delete_album.php:47 ../delete_album.php:53 ../delete_photo.php:79
+#: ../delete_photo.php:90
 msgid "Delete Album"
 msgstr "מחק אלבום"
 
-#: ../delete_album.php:54
+#: ../delete_album.php:56
 msgid "Do you really want to delete this album?"
 msgstr "האם אתה בטוח כי ברצונך למחוק אלבום זה?"
 
-#: ../delete_album.php:59 ../delete_photo.php:105 ../delete_photo.php:130
+#: ../delete_album.php:62 ../delete_photo.php:114 ../delete_photo.php:139
 #: ../delete_user.php:68 ../manage_users.php:105
 msgid "Delete"
 msgstr "מחק"
 
-#: ../delete_album.php:68 ../sort_album.php:119
+#: ../delete_album.php:71 ../sort_album.php:119
 msgid "no album specified"
 msgstr "לא נבחר אלבום"
 
-#: ../delete_photo.php:70 ../delete_photo.php:114
+#: ../delete_photo.php:79 ../delete_photo.php:123
 msgid "Delete Photo"
 msgstr "מחק תמונה"
 
-#: ../delete_photo.php:84
+#: ../delete_photo.php:93
 msgid "Do you really want to delete this Album?"
 msgstr "האם אתה בטוח כי ברצונך למחוק אלבום זה ?"
 
-#: ../delete_photo.php:116
+#: ../delete_photo.php:125
 msgid "Do you really want to delete this photo?"
 msgstr "האם אתה בטוח כי ברצונך למחוק תמונה זו ?"
 
@@ -836,187 +844,186 @@ msgstr "סיכום אלבום"
 msgid "Album Title"
 msgstr "שם האלבום"
 
-#: ../edit_appearance.php:167
+#: ../edit_appearance.php:126
 msgid "Background Color"
 msgstr "צבע הרקע"
 
-#: ../edit_appearance.php:171
+#: ../edit_appearance.php:130
 msgid "Text Color"
 msgstr "צבע הטקסט"
 
-#: ../edit_appearance.php:175
+#: ../edit_appearance.php:134
 msgid "Link Color"
 msgstr "צבע הקישור"
 
-#: ../edit_appearance.php:179
+#: ../edit_appearance.php:138
 msgid "Background Image"
 msgstr "תמונת רקע"
 
-#: ../edit_appearance.php:183
+#: ../edit_appearance.php:142
 msgid "Font"
 msgstr "גופן"
 
-#: ../edit_appearance.php:187
+#: ../edit_appearance.php:146
 msgid "Borders"
 msgstr "גבולות"
 
-#: ../edit_appearance.php:189 ../edit_appearance.php:204
-#: ../edit_appearance.php:215
-msgid "off"
-msgstr "כבוי"
-
-#: ../edit_appearance.php:194
+#: ../edit_appearance.php:153
 msgid "Border color"
 msgstr "צבע הגבול"
 
-#: ../edit_appearance.php:198
+#: ../edit_appearance.php:157
 msgid "Thumbnail size"
 msgstr "גודל השקופית"
 
-#: ../edit_appearance.php:202
+#: ../edit_appearance.php:161
 msgid "Maximum dimensions of intermediate sized images"
 msgstr "ממדים מירביים של תמונות מעבר"
 
-#: ../edit_appearance.php:209
+#: ../edit_appearance.php:163 ../edit_appearance.php:174
+msgid "off"
+msgstr "כבוי"
+
+#: ../edit_appearance.php:168
 #, fuzzy
 msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "גודל הקבצים בשינוי גודל התמונה בקילו בייטים (0 או ריק אם אין מידה)"
 
-#: ../edit_appearance.php:213
+#: ../edit_appearance.php:172
 msgid "Maximum dimensions of full sized images"
 msgstr "ממדים מירביים של תמונות בגודל מלא"
 
-#: ../edit_appearance.php:215
+#: ../edit_appearance.php:174
 #, php-format
 msgid "%d (%d MPix)"
 msgstr ""
 
-#: ../edit_appearance.php:220
+#: ../edit_appearance.php:179
 #, fuzzy
 msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "גודל הקבצים בשינוי גודל התמונה בקילו בייטים (0 או ריק אם אין מידה)"
 
-#: ../edit_appearance.php:224
+#: ../edit_appearance.php:183
 msgid "Show <i>Return to</i> link"
 msgstr "הראה קישור <i>חזור</i>"
 
-#: ../edit_appearance.php:231
+#: ../edit_appearance.php:190
 msgid "Rows"
 msgstr "שורות"
 
-#: ../edit_appearance.php:238
+#: ../edit_appearance.php:197
 msgid "Columns"
 msgstr "עמודות"
 
-#: ../edit_appearance.php:245
+#: ../edit_appearance.php:204
 msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr "התאמה אוטומטית לגודל החלון<br>לתמונות ללא שקופיות"
 
-#: ../edit_appearance.php:252
+#: ../edit_appearance.php:211
 msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
 msgstr "אפשר לגולשים לבחור העדפות<br> לתמונות בגודל מלא ושקופיות"
 
-#: ../edit_appearance.php:259
+#: ../edit_appearance.php:218
 #, fuzzy
 msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "באיזו אפשרות הדפסת תמונות<br> ברצונך לאפשר לגולשים להשתמש?"
 
-#: ../edit_appearance.php:270
+#: ../edit_appearance.php:229
 #, fuzzy
 msgid "with donation"
 msgstr "%s ללא תרומה"
 
-#: ../edit_appearance.php:271
+#: ../edit_appearance.php:230
 #, fuzzy
 msgid "without donation"
 msgstr "%s ללא תרומה"
 
-#: ../edit_appearance.php:304
+#: ../edit_appearance.php:263
 msgid "Slideshow Type"
 msgstr "סגנון המצגת תמונות"
 
-#: ../edit_appearance.php:306
+#: ../edit_appearance.php:265
 msgid "Off"
 msgstr "כבוי"
 
-#: ../edit_appearance.php:306
+#: ../edit_appearance.php:265
 msgid "Ordered"
 msgstr "ממוין"
 
-#: ../edit_appearance.php:306
+#: ../edit_appearance.php:265
 msgid "Random"
 msgstr "אקראי"
 
-#: ../edit_appearance.php:311
+#: ../edit_appearance.php:270
 msgid "Include sub-albums in slideshow"
 msgstr ""
 
-#: ../edit_appearance.php:318
+#: ../edit_appearance.php:277
 msgid "Allow slideshow to loop"
 msgstr "אפשר לולאה למצגת תמונות"
 
-#: ../edit_appearance.php:325
+#: ../edit_appearance.php:284
 msgid "Slideshow Length"
 msgstr "אורך המצגת תמונות"
 
-#: ../edit_appearance.php:329
+#: ../edit_appearance.php:288
 #, fuzzy
 msgid "Album Frame"
 msgstr "מאפייני האלבום"
 
-#: ../edit_appearance.php:336
+#: ../edit_appearance.php:295
 #, fuzzy
 msgid "Thumb Frame"
 msgstr "גודל השקופית"
 
-#: ../edit_appearance.php:343
+#: ../edit_appearance.php:302
 #, fuzzy
 msgid "Image Frame"
 msgstr "גודל תמונה"
 
-#: ../edit_appearance.php:353
+#: ../edit_appearance.php:312
 msgid "Display EXIF data?"
 msgstr "?הצג נתוני EXIF"
 
-#: ../edit_appearance.php:363
+#: ../edit_appearance.php:322
 msgid "Display click counter for this album?"
 msgstr "הצג מונה לחיצות לאלבום זה?"
 
-#: ../edit_appearance.php:370
+#: ../edit_appearance.php:329
 msgid "Display owners name with caption"
 msgstr "הצג את שם הבעלים עם התמונה"
 
-#: ../edit_appearance.php:377
+#: ../edit_appearance.php:336
 msgid "Allow item owners to modify their images"
 msgstr "הרשה לבעלי התמונות לערוך את התמונות שלהם"
 
-#: ../edit_appearance.php:384
+#: ../edit_appearance.php:343
 msgid "Allow item owners to delete their images"
 msgstr "הרשה לבעלי התמונות למחוק את התמונות שלהם"
 
-#: ../edit_appearance.php:391
+#: ../edit_appearance.php:350
 msgid "Add new items at beginning of album"
 msgstr "הוסף פריטים חדשים בתחילת האלבום"
 
-#: ../edit_appearance.php:398
+#: ../edit_appearance.php:357
 msgid "Display clickable image dimensions"
 msgstr "הצג נתוני תמונה ע\"ג לינקים"
 
-#: ../edit_appearance.php:407
+#: ../edit_appearance.php:366
 msgid "Apply values to nested Albums (except Album Title and Summary)."
 msgstr "החל מאפיינים אלה על תתי האלבומים (למעט שם האלבום והתקציר)"
 
-#: ../edit_appearance.php:410 ../extra_fields.php:175
+#: ../edit_appearance.php:369 ../extra_fields.php:175
 #: ../poll_properties.php:140
 msgid "Apply"
 msgstr "החל"
 
-#: ../edit_appearance.php:411 ../extra_fields.php:176
+#: ../edit_appearance.php:370 ../extra_fields.php:176
 #: ../poll_properties.php:141
 msgid "Undo"
 msgstr "בטל"
 
-#: ../edit_appearance.php:412 ../extra_fields.php:177
+#: ../edit_appearance.php:371 ../extra_fields.php:177
 #: ../poll_properties.php:142 ../rotate_photo.php:86
 msgid "Close"
 msgstr "סגור"
@@ -1025,7 +1032,7 @@ msgstr "סגור"
 msgid "Year must be between 1000 and 3000"
 msgstr "השנה חייבת להיות בין 1000 ו- 3000"
 
-#: ../edit_caption.php:71 ../view_album.php:974
+#: ../edit_caption.php:71 ../view_album.php:993
 msgid "Edit Text"
 msgstr "ערוך טקסט"
 
@@ -1067,7 +1074,7 @@ msgstr "דקות"
 msgid "Seconds"
 msgstr "שניות"
 
-#: ../edit_field.php:47 ../edit_field.php:53 ../view_album.php:930
+#: ../edit_field.php:47 ../edit_field.php:53 ../view_album.php:949
 #, php-format
 msgid "Edit %s"
 msgstr "ערוך %s"
@@ -1112,8 +1119,8 @@ msgstr "אנא בחר משתמש"
 msgid "Please select an alignment."
 msgstr "אנא בחר משתמש"
 
-#: ../edit_watermark.php:69 ../edit_watermark.php:75 ../view_album.php:946
-#: ../view_album.php:982
+#: ../edit_watermark.php:69 ../edit_watermark.php:75 ../view_album.php:965
+#: ../view_album.php:1001
 msgid "Edit Watermark"
 msgstr ""
 
@@ -1131,7 +1138,7 @@ msgstr "ללא כותרת"
 msgid "Configure Custom Fields"
 msgstr "הגדר שדות"
 
-#: ../extra_fields.php:122 ../lib/lang.php:611
+#: ../extra_fields.php:122 ../lib/lang.php:650
 msgid "Alt Text / onMouseOver"
 msgstr ""
 
@@ -1454,7 +1461,7 @@ msgid "Picture is loading..."
 msgstr "התמונה נטענת"
 
 #: ../includes/slideshow/high.inc:380 ../includes/slideshow/high.inc:478
-#: ../includes/slideshow/low.inc:205 ../includes/slideshow/low.inc:386
+#: ../includes/slideshow/low.inc:205 ../includes/slideshow/low.inc:380
 msgid "of"
 msgstr "מתוך-"
 
@@ -1491,11 +1498,11 @@ msgstr "מעבר:"
 msgid "Loop"
 msgstr "לולאה"
 
-#: ../includes/slideshow/high.inc:612 ../includes/slideshow/low.inc:397
+#: ../includes/slideshow/high.inc:604 ../includes/slideshow/low.inc:391
 msgid "This album has no photos to show in a slide show."
 msgstr "אין באלבום זה תמונות להצגה במצגת השקופיות."
 
-#: ../includes/slideshow/high.inc:616 ../includes/slideshow/low.inc:401
+#: ../includes/slideshow/high.inc:608 ../includes/slideshow/low.inc:395
 msgid "back to album"
 msgstr "בחזרה לאלבום"
 
@@ -1577,19 +1584,19 @@ msgstr "העבר אלבום"
 msgid "reorder album"
 msgstr "סדר מחדש את האלבום"
 
-#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:305
+#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:306
 msgid "rename album"
 msgstr "שנה את שם האלבום"
 
-#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:325
+#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:326
 msgid "edit captions"
 msgstr "ערוך את כותרות התמונות"
 
-#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:360
+#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:361
 msgid "permissions"
 msgstr "הרשאות"
 
-#: ../layout/adminAlbumCommands.inc:34
+#: ../layout/adminAlbumCommands.inc:34 ../view_album.php:479
 msgid "view&nbsp;comments"
 msgstr "ראה&nbsp;הערות"
 
@@ -1597,7 +1604,7 @@ msgstr "ראה&nbsp;הערות"
 msgid "watermark&nbsp;album"
 msgstr ""
 
-#: ../layout/breadcrumb.inc:31
+#: ../layout/breadcrumb.inc:34
 #, fuzzy
 msgid "Logged in as:"
 msgstr "התחבר למערכת"
@@ -1610,18 +1617,18 @@ msgstr "מאת:"
 msgid "delete comment"
 msgstr "מחק הערה"
 
-#: ../layout/commentboxbottom.inc:12 ../util.php:100
+#: ../layout/commentboxbottom.inc:12 ../util.php:105
 msgid "add comment"
 msgstr "הוסף הערה"
 
-#: ../layout/commentboxtop.inc:17 ../slideshow.php:182 ../slideshow.php:196
-#: ../upgrade_album.php:87 ../view_album.php:135 ../view_album.php:919
-#: ../view_comments.php:64 ../view_photo.php:158 ../view_photo.php:174
+#: ../layout/commentboxtop.inc:17 ../slideshow.php:179 ../slideshow.php:193
+#: ../upgrade_album.php:87 ../view_album.php:136 ../view_album.php:938
+#: ../view_comments.php:65 ../view_photo.php:158 ../view_photo.php:174
 msgid "Album"
 msgstr "אלבום"
 
 #: ../layout/commentboxtop.inc:20 ../layout/commentboxtop.inc:46
-#: ../view_album.php:848
+#: ../view_album.php:865
 msgid "hidden"
 msgstr "מוסתר"
 
@@ -1675,7 +1682,7 @@ msgstr "%d מתוך %d"
 msgid "Watermark"
 msgstr ""
 
-#: ../layout/watermarkform.inc:76 ../util.php:2710 ../util.php:2715
+#: ../layout/watermarkform.inc:76 ../util.php:2742 ../util.php:2747
 msgid "None"
 msgstr "כלום"
 
@@ -1761,24 +1768,24 @@ msgstr "מחק הכול"
 msgid "Invert Selection"
 msgstr "הפוך בחירה"
 
-#: ../lib/lang.php:598
+#: ../lib/lang.php:637
 msgid "Upload Date"
 msgstr "תאריך העלאה"
 
-#: ../lib/lang.php:600
+#: ../lib/lang.php:639
 msgid "Image Size"
 msgstr "גודל תמונה"
 
-#: ../lib/lang.php:601 ../util.php:3108
+#: ../lib/lang.php:640
 msgid "Additional EXIF Data"
 msgstr "מידע EXIF נוסף"
 
-#: ../lib/lang.php:610
+#: ../lib/lang.php:649
 msgid "Description"
 msgstr "תיאור"
 
-#: ../lib/voting.php:215 ../view_album.php:617 ../view_album.php:646
-#: ../view_album.php:1102
+#: ../lib/voting.php:215 ../view_album.php:631 ../view_album.php:660
+#: ../view_album.php:1124
 msgid "Vote"
 msgstr "הצבעה"
 
@@ -1790,8 +1797,8 @@ msgstr ""
 msgid "Average points in brackets"
 msgstr ""
 
-#: ../lib/voting.php:275 ../poll_results.php:149 ../view_album.php:559
-#: ../view_album.php:853
+#: ../lib/voting.php:275 ../poll_results.php:149 ../view_album.php:573
+#: ../view_album.php:870
 #, php-format
 msgid "Album: %s"
 msgstr "אלבום: %s"
@@ -2162,7 +2169,7 @@ msgstr "ניתן לשנות את פרופיל המשתמש שלך כאן."
 msgid "You must enter the new password twice."
 msgstr "עליך להכניס סיסמה"
 
-#: ../photo_owner.php:76 ../photo_owner.php:82 ../view_album.php:1042
+#: ../photo_owner.php:76 ../photo_owner.php:82 ../view_album.php:1061
 msgid "Change Owner"
 msgstr "שנה בעלים לתמונה"
 
@@ -2463,30 +2470,30 @@ msgstr "עליך להכניס שם משתמש"
 msgid "You must specify a valid email address."
 msgstr "עליך להכניס שם משתמש"
 
-#: ../register.php:100
+#: ../register.php:101
 #, php-format
 msgid "%s has registered.  Email has been sent to %s."
 msgstr ""
 
-#: ../register.php:108
+#: ../register.php:109
 #, fuzzy
 msgid "Gallery Self Registration"
 msgstr "הגדרות Gallery"
 
-#: ../register.php:110
+#: ../register.php:111
 #, php-format
 msgid "An email has been sent to %s."
 msgstr ""
 
-#: ../register.php:112
+#: ../register.php:113
 msgid "Your account information is contained within the email."
 msgstr ""
 
-#: ../register.php:114
+#: ../register.php:115
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
 msgstr ""
 
-#: ../register.php:134
+#: ../register.php:135
 msgid "Your account information will be sent to the email address you provide."
 msgstr ""
 
@@ -2494,33 +2501,37 @@ msgstr ""
 msgid "You are not allowed to perform this action !"
 msgstr ""
 
-#: ../rename_album.php:37 ../rename_album.php:42 ../view_album.php:968
+#: ../rename_album.php:37 ../rename_album.php:42 ../view_album.php:987
 msgid "Rename Album"
 msgstr "שנה את שם האלבום"
 
-#: ../rename_album.php:97
+#: ../rename_album.php:94
 msgid "There is already an album with that name!"
 msgstr "קיים אלבום בשם זה!"
 
-#: ../rename_album.php:105
+#: ../rename_album.php:114
 msgid "What do you want to name this album?"
 msgstr "איך ברצונך לקרוא לאלבום זה?"
 
-#: ../rename_album.php:107
+#: ../rename_album.php:116
 msgid "The name cannot contain any of the following characters"
 msgstr "השם אינו יכול להכיל את התוים הבאים"
 
-#: ../rename_album.php:108
+#: ../rename_album.php:117
 msgid "or"
 msgstr "או"
 
-#: ../rename_album.php:108
+#: ../rename_album.php:117
 msgid "spaces"
 msgstr "רווחים"
 
-#: ../rename_album.php:109
+#: ../rename_album.php:118
 msgid "Those characters will be ignored in your new album name."
 msgstr "סימנים אלה לא יופיעו בשם האלבום"
+
+#: ../rename_album.php:126
+msgid "Rename"
+msgstr "שנה את שם"
 
 #: ../reset_votes.php:50 ../reset_votes.php:56
 #, fuzzy
@@ -2682,8 +2693,8 @@ msgstr "הוסף קבצים"
 msgid "Search Again"
 msgstr "חפש שוב"
 
-#: ../search.php:70 ../search.php:290 ../slideshow.php:200
-#: ../slideshow.php:215 ../view_album.php:139 ../view_photo.php:178
+#: ../search.php:70 ../search.php:290 ../slideshow.php:197
+#: ../slideshow.php:212 ../view_album.php:140 ../view_photo.php:178
 msgid "Gallery"
 msgstr "גלריה"
 
@@ -2739,19 +2750,19 @@ msgstr "חפש בשמות ותיאורי האלבומים והתמונות"
 msgid "Go"
 msgstr "חפש"
 
-#: ../slideshow.php:94
+#: ../slideshow.php:91
 msgid "Fullscreen applet"
 msgstr ""
 
-#: ../slideshow.php:97
+#: ../slideshow.php:94
 msgid "Modern browsers"
 msgstr ""
 
-#: ../slideshow.php:100
+#: ../slideshow.php:97
 msgid "Compatible but limited"
 msgstr ""
 
-#: ../slideshow.php:239
+#: ../slideshow.php:236
 msgid "Slide Show"
 msgstr "המצגת"
 
@@ -2956,282 +2967,282 @@ msgstr "ריק"
 msgid "edit %s"
 msgstr "ערוך %s"
 
-#: ../util.php:63
+#: ../util.php:65
 msgid "edit"
 msgstr "ערוך"
 
-#: ../util.php:117
+#: ../util.php:122
 #, fuzzy
 msgid "Add your comment"
 msgstr "הוסף הערה"
 
-#: ../util.php:120
+#: ../util.php:125
 #, fuzzy
 msgid "Commenter:"
 msgstr "צור"
 
-#: ../util.php:137
+#: ../util.php:142
 #, fuzzy
 msgid "Message:"
 msgstr "הודעות שגיאה:"
 
-#: ../util.php:141
+#: ../util.php:146
 #, fuzzy
 msgid "Post"
 msgstr "תמונה"
 
-#: ../util.php:148
+#: ../util.php:153
 msgid "Error:"
 msgstr "שגיאה:"
 
-#: ../util.php:228
+#: ../util.php:233
 msgid "Executing:"
 msgstr ""
 
-#: ../util.php:235
+#: ../util.php:240
 msgid "Results:"
 msgstr "תוצאות:"
 
-#: ../util.php:239
+#: ../util.php:244
 msgid "none"
 msgstr "כלום"
 
-#: ../util.php:244
+#: ../util.php:249
 #, fuzzy
 msgid "Debug messages:"
 msgstr "הודעות שגיאה:"
 
-#: ../util.php:255
+#: ../util.php:260
 #, php-format
 msgid "Status: %s (expected %s)"
 msgstr "סטטוס: %s (צפוי %s)"
 
-#: ../util.php:267
+#: ../util.php:272
 #, fuzzy, php-format
 msgid "The file %s does not exist ?!"
 msgstr "הקובץ %s אינו קיים."
 
-#: ../util.php:277
+#: ../util.php:282
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
 msgstr "%s של PHP לא הצליח לקבוע את מידות התמונה."
 
-#: ../util.php:297 ../util.php:595 ../util.php:850 ../util.php:896
-#: ../util.php:2358
+#: ../util.php:302 ../util.php:604 ../util.php:859 ../util.php:905
+#: ../util.php:2389
 msgid "You have no graphics package configured for use!"
 msgstr "אין לך חבילה גרפית מוגדרת לשימוש!"
 
-#: ../util.php:378 ../util.php:397
+#: ../util.php:383 ../util.php:402
 msgid "Not closing this window because debug mode is on"
 msgstr "אין אפשרות לסגור חלון זה מכיוון שה- debug mode פעיל"
 
-#: ../util.php:442
+#: ../util.php:447
 msgid "No resizing required"
 msgstr ""
 
-#: ../util.php:465
+#: ../util.php:474
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "גודל קובץ צפוי %d kbytes"
 
-#: ../util.php:471 ../util.php:501
+#: ../util.php:480 ../util.php:510
 #, fuzzy, php-format
 msgid "-> file size %d kbytes"
 msgstr "מטרת גודל הקובץ %d kbytes"
 
-#: ../util.php:472
+#: ../util.php:481
 #, php-format
 msgid "trying quality %d%%"
 msgstr "מנסה איכות %d%%"
 
-#: ../util.php:502
+#: ../util.php:511
 msgid "Done."
 msgstr "הסתיים."
 
-#: ../util.php:599
+#: ../util.php:608
 #, fuzzy
 msgid "No watermark name specified!"
 msgstr "לא נבחר אלבום!"
 
-#: ../util.php:915
+#: ../util.php:924
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr ""
 
-#: ../util.php:921
+#: ../util.php:930
 #, php-format
 msgid "File %s type %d."
 msgstr ""
 
-#: ../util.php:936
+#: ../util.php:945
 #, php-format
 msgid "There was an unknown failure in the %s call!"
 msgstr ""
 
-#: ../util.php:960 ../util.php:983
+#: ../util.php:969 ../util.php:992
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "סוג קובץ לא ידוע : %s"
 
-#: ../util.php:1524
+#: ../util.php:1555
 #, php-format
 msgid "Can't write to %s."
 msgstr "לא ניתן לכתוב ל-%s."
 
-#: ../util.php:1531
+#: ../util.php:1562
 #, php-format
 msgid "Can't read %s."
 msgstr "לא ניתן לקרוא את %s."
 
-#: ../util.php:1644
+#: ../util.php:1675
 msgid "Select Album"
 msgstr "בחר אלבום"
 
-#: ../util.php:1650
+#: ../util.php:1681
 msgid "Top Level"
 msgstr "רמה עליונה"
 
-#: ../util.php:1671 ../util.php:1722
+#: ../util.php:1702 ../util.php:1753
 msgid "current location"
 msgstr "מיקום נוכחי "
 
-#: ../util.php:1725
+#: ../util.php:1756
 msgid "self"
 msgstr "עצמי"
 
-#: ../util.php:1821
+#: ../util.php:1852
 #, php-format
 msgid "IN UTIL ITEMCAPTUREDATE = %s"
 msgstr ""
 
-#: ../util.php:1865
+#: ../util.php:1896
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "לא ניתן לפתוח את קובץ הנעילה (%s)!"
 
-#: ../util.php:1870
+#: ../util.php:1901
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "לא ניתן להשיג נעילה (%s)!"
 
-#: ../util.php:1954
+#: ../util.php:1985
 #, fuzzy, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "צפייה בודדת"
 msgstr[1] "צפייה בודדת"
 
-#: ../util.php:1959
+#: ../util.php:1990
 msgid "Sub-albums"
 msgstr "תתי-אלבומים"
 
-#: ../util.php:1998
+#: ../util.php:2029
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "מדלג על %s (אין תמיכה ב-ZIP)"
 
-#: ../util.php:2143
+#: ../util.php:2174
 #, php-format
 msgid "Adding %s"
 msgstr "מוסיף %s"
 
-#: ../util.php:2161
+#: ../util.php:2192
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "צריך עזרה? חפש ב-%s%s FAQ%s"
 
-#: ../util.php:2167
+#: ../util.php:2198
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "מדלג %s (לא יכול לטפל בפורמט %s)"
 
-#: ../util.php:2317
+#: ../util.php:2348
 msgid "documentation"
 msgstr "תיעוד"
 
-#: ../util.php:2343
+#: ../util.php:2374
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr ""
 
-#: ../util.php:2368
+#: ../util.php:2399
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "נוצר על-ידי %s גירסה %s"
 
-#: ../util.php:2370
+#: ../util.php:2401
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "פועל על %s גירסה %s"
 
-#: ../util.php:2420
+#: ../util.php:2451
 #, fuzzy, php-format
 msgid "Skipping invalid email address %s"
 msgstr "עליך להכניס שם משתמש"
 
-#: ../util.php:2486
+#: ../util.php:2517
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr ""
 
-#: ../util.php:2488
+#: ../util.php:2519
 #, php-format
 msgid "Report abuse to %s"
 msgstr ""
 
-#: ../util.php:2504
+#: ../util.php:2535
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "אימייל לא נשלח בפני שהאופציה חסומה לגלרייה זו"
 
-#: ../util.php:2508
+#: ../util.php:2539
 #, php-format
 msgid "Email not sent as no address provided"
 msgstr ""
 
-#: ../util.php:2513
+#: ../util.php:2544
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr ""
 
-#: ../util.php:2528
+#: ../util.php:2559
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr ""
 
-#: ../util.php:2552 ../util.php:2557
+#: ../util.php:2584 ../util.php:2589
 msgid "not shown"
 msgstr ""
 
-#: ../util.php:2561
+#: ../util.php:2593
 msgid "Message"
 msgstr ""
 
-#: ../util.php:2565
+#: ../util.php:2597
 msgid "Email sent"
 msgstr "אימייל נשלח"
 
-#: ../util.php:2567
+#: ../util.php:2599
 msgid "Email not sent"
 msgstr "אימייל לא נשלח"
 
-#: ../util.php:2581
+#: ../util.php:2613
 #, php-format
 msgid "Last comment %s."
 msgstr ""
 
-#: ../util.php:2593
+#: ../util.php:2625
 msgid "FAILED"
 msgstr ""
 
-#: ../util.php:2602
+#: ../util.php:2634
 msgid "Email activity"
 msgstr ""
 
-#: ../util.php:2620
+#: ../util.php:2652
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "לא ניתן לפתוח את הלוג: %s"
 
-#: ../util.php:2627
+#: ../util.php:2659
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3243,336 +3254,341 @@ msgid ""
 "Gallery @ %s Administrator."
 msgstr ""
 
-#: ../util.php:2636 ../util.php:2638
+#: ../util.php:2668 ../util.php:2670
 msgid "gallery title"
 msgstr "כותרת הגלרייה"
 
-#: ../util.php:2637
+#: ../util.php:2669
 msgid "gallery URL"
 msgstr "קישור לגלרייה"
 
-#: ../util.php:2664
+#: ../util.php:2696
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr ""
 
-#: ../util.php:2711 ../util.php:2716
+#: ../util.php:2743 ../util.php:2748
 msgid "Dots"
 msgstr ""
 
-#: ../util.php:2712 ../util.php:2717
+#: ../util.php:2744 ../util.php:2749
 msgid "Solid"
 msgstr ""
 
-#: ../util.php:2715
+#: ../util.php:2747
 msgid "No frames"
 msgstr "ללא מסגרות"
 
-#: ../util.php:2716
+#: ../util.php:2748
 msgid "Just a simple dashed border around the thumb."
 msgstr ""
 
-#: ../util.php:2717
+#: ../util.php:2749
 msgid "Just a simple solid border around the thumb."
 msgstr ""
 
-#: ../util.php:2738
+#: ../util.php:2770
 #, fuzzy, php-format
 msgid "Skipping %s."
 msgstr "מדלג על אלבום %d..."
 
-#: ../util.php:2744
+#: ../util.php:2776
 #, php-format
 msgid "Can't open %s"
 msgstr "לא ניתן לפתוח את %s"
 
-#: ../util.php:2845 ../util.php:2864
+#: ../util.php:2877 ../util.php:2896
 #, fuzzy
 msgid "Not valid yet"
 msgstr "משתמש לא תקף"
 
-#: ../view_album.php:124 ../view_photo.php:156
+#: ../util.php:3140
+#, fuzzy
+msgid "EXIF Data"
+msgstr "מידע EXIF נוסף"
+
+#: ../view_album.php:125 ../view_photo.php:156
 msgid "navigate UP"
 msgstr ""
 
-#: ../view_album.php:266
+#: ../view_album.php:267
 #, fuzzy, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
 msgstr[0] "תת אלבום יחיד"
 msgstr[1] "תת אלבום יחיד"
 
-#: ../view_album.php:266
+#: ../view_album.php:267
 msgid "No albums"
 msgstr "אין אלבומים"
 
-#: ../view_album.php:268
+#: ../view_album.php:269
 msgid "0 pages"
 msgstr "0 דפים"
 
-#: ../view_album.php:271
+#: ../view_album.php:272
 #, php-format
 msgid "%s and %s in this album on %s"
 msgstr "%s ו-%s באלבום זה ב-%s"
 
-#: ../view_album.php:274
+#: ../view_album.php:275
 #, php-format
 msgid "%s and %s in this album"
 msgstr "%s ו-%s באלבום זה"
 
-#: ../view_album.php:277
+#: ../view_album.php:278
 #, php-format
 msgid "%s in this album on %s"
 msgstr "%s באלבום זה ב-%s"
 
-#: ../view_album.php:280
+#: ../view_album.php:281
 #, php-format
 msgid "%s in this album"
 msgstr "%s באלבום זה"
 
-#: ../view_album.php:287
+#: ../view_album.php:288
 #, php-format
 msgid "%s are hidden"
 msgstr "%s מוסתרים"
 
-#: ../view_album.php:289
+#: ../view_album.php:290
 #, php-format
 msgid "%s is hidden"
 msgstr "%s מוסתר"
 
-#: ../view_album.php:299
+#: ../view_album.php:300
 msgid "add photos"
 msgstr "הוסף תמונות"
 
-#: ../view_album.php:312
+#: ../view_album.php:313
 msgid "new nested album"
 msgstr "תת-אלבום חדש"
 
-#: ../view_album.php:318
+#: ../view_album.php:319
 msgid "custom fields"
 msgstr "שדות משתמש"
 
-#: ../view_album.php:332
+#: ../view_album.php:333
 msgid "sort items"
 msgstr "סדר פריטים"
 
-#: ../view_album.php:339
+#: ../view_album.php:340
 msgid "resize all"
 msgstr "שנה גודל לכולם"
 
-#: ../view_album.php:347
+#: ../view_album.php:348
 msgid "rebuild thumbs"
 msgstr "בנה שקופיות מחדש"
 
-#: ../view_album.php:354
+#: ../view_album.php:355
 msgid "properties"
 msgstr "מאפיינים"
 
-#: ../view_album.php:366
+#: ../view_album.php:367
 msgid "poll properties"
 msgstr "אפשרויות הצבעה"
 
-#: ../view_album.php:372
+#: ../view_album.php:373
 msgid "poll results"
 msgstr "תוצאות הצבעה"
 
-#: ../view_album.php:378
+#: ../view_album.php:379
 msgid "poll reset"
 msgstr "איפוס הצבעה"
 
-#: ../view_album.php:384
+#: ../view_album.php:385
 msgid "view comments"
 msgstr "ראה הערות"
 
-#: ../view_album.php:392
+#: ../view_album.php:393
 #, fuzzy
 msgid "watermark album"
 msgstr "מאלבום"
 
-#: ../view_album.php:457
+#: ../view_album.php:458
 msgid "admin options"
 msgstr "כלים למנהל"
 
-#: ../view_album.php:538
+#: ../view_album.php:552
 msgid "You have no votes recorded for this poll."
 msgstr ""
 
-#: ../view_album.php:544
+#: ../view_album.php:558
 msgid "Your current choices are"
 msgstr ""
 
-#: ../view_album.php:586
+#: ../view_album.php:600
 msgid "See full poll results"
 msgstr "ראה תוצאות הצבעה מלאות"
 
-#: ../view_album.php:608
+#: ../view_album.php:622
 msgid ", "
 msgstr ""
 
-#: ../view_album.php:610
+#: ../view_album.php:624
 msgid " or "
 msgstr "או"
 
-#: ../view_album.php:615
+#: ../view_album.php:629
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr ""
 
-#: ../view_album.php:616
+#: ../view_album.php:630
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr ""
 
-#: ../view_album.php:621
+#: ../view_album.php:635
 #, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr ""
 
-#: ../view_album.php:622
+#: ../view_album.php:636
 #, fuzzy, php-format
 msgid "1 vote"
 msgid_plural "%d votes"
 msgstr[0] "בצבעה יחידה"
 msgstr[1] "בצבעה יחידה"
 
-#: ../view_album.php:627
+#: ../view_album.php:641
 msgid "You can change your choices if you wish."
 msgstr "תוכל לשנות את בחירתך אם תרצה."
 
-#: ../view_album.php:781 ../view_album.php:782
+#: ../view_album.php:795 ../view_album.php:796
 #, php-format
 msgid "%dkB"
 msgstr ""
 
-#: ../view_album.php:854
+#: ../view_album.php:871
 msgid "No description"
 msgstr "ללא תיאור"
 
-#: ../view_album.php:862
+#: ../view_album.php:879
 msgid "Changed: "
 msgstr "שונה: "
 
-#: ../view_album.php:865
+#: ../view_album.php:882
 msgid "Contains: "
 msgstr "מכיל : "
 
-#: ../view_album.php:865
+#: ../view_album.php:882
 #, fuzzy, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "פריט יחיד"
 msgstr[1] "פריט יחיד"
 
-#: ../view_album.php:879 ../view_album.php:902
+#: ../view_album.php:897 ../view_album.php:920
 msgid "Viewed:"
 msgstr "נצפה :"
 
-#: ../view_album.php:917
+#: ../view_album.php:936
 msgid "Movie"
 msgstr "סרטון"
 
-#: ../view_album.php:921
+#: ../view_album.php:940
 msgid "Photo"
 msgstr "תמונה"
 
-#: ../view_album.php:943 ../view_album.php:979
+#: ../view_album.php:962 ../view_album.php:998
 msgid "Edit Thumbnail"
 msgstr "ערוך תמונה ממוזערת"
 
-#: ../view_album.php:944 ../view_album.php:980
+#: ../view_album.php:963 ../view_album.php:999
 #, fuzzy, php-format
 msgid "Rotate/Flip %s"
 msgstr "סובב"
 
-#: ../view_album.php:953 ../view_album.php:1016 ../view_album.php:1021
+#: ../view_album.php:972 ../view_album.php:1035 ../view_album.php:1040
 #, fuzzy, php-format
 msgid "Delete %s"
 msgstr "מחק"
 
-#: ../view_album.php:958
+#: ../view_album.php:977
 msgid "Edit Title"
 msgstr "ערוך כותרת"
 
-#: ../view_album.php:962
+#: ../view_album.php:981
 msgid "Edit Description"
 msgstr "ערוך תיאור"
 
-#: ../view_album.php:989
+#: ../view_album.php:1008
 #, fuzzy, php-format
 msgid "Highlight %s"
 msgstr "הדגש"
 
-#: ../view_album.php:993
+#: ../view_album.php:1012
 msgid "Reset Counter"
 msgstr "אפס מונה"
 
-#: ../view_album.php:998
+#: ../view_album.php:1017
 #, fuzzy, php-format
 msgid "Move %s"
 msgstr "העבר "
 
-#: ../view_album.php:999
+#: ../view_album.php:1018
 #, fuzzy, php-format
 msgid "Reorder %s"
 msgstr " סידור "
 
-#: ../view_album.php:1001
+#: ../view_album.php:1020
 #, fuzzy, php-format
 msgid "Copy %s"
 msgstr "העתק "
 
-#: ../view_album.php:1008
+#: ../view_album.php:1027
 #, fuzzy, php-format
 msgid "Show %s"
 msgstr "הצג"
 
-#: ../view_album.php:1010
+#: ../view_album.php:1029
 #, fuzzy, php-format
 msgid "Hide %s"
 msgstr "הסתר "
 
-#: ../view_album.php:1027
+#: ../view_album.php:1046
 msgid "Permissions"
 msgstr "הרשאות"
 
-#: ../view_album.php:1032 ../watermark_album.php:77 ../watermark_album.php:83
+#: ../view_album.php:1051 ../watermark_album.php:77 ../watermark_album.php:83
 #, fuzzy
 msgid "Watermark Album"
 msgstr "מאלבום"
 
-#: ../view_album.php:1037
+#: ../view_album.php:1056
 #, fuzzy
 msgid "View Comments"
 msgstr "ראה הערות"
 
-#: ../view_album.php:1083
+#: ../view_album.php:1105
 msgid "Hey! Add some photos."
 msgstr "היי! הוסף כמה תמונות"
 
-#: ../view_album.php:1085
+#: ../view_album.php:1107
 msgid "This album is empty."
 msgstr "אלבום זה ריק."
 
-#: ../view_album.php:1127 ../view_photo.php:645
+#: ../view_album.php:1149 ../view_photo.php:645
 msgid "Email me when:"
 msgstr "שלח אלי מייל כאשר:"
 
-#: ../view_album.php:1128 ../view_photo.php:646
+#: ../view_album.php:1150 ../view_photo.php:646
 msgid "Comments are added"
 msgstr ""
 
-#: ../view_album.php:1131
+#: ../view_album.php:1153
 msgid "Other changes are made"
 msgstr ""
 
-#: ../view_comments.php:114
+#: ../view_comments.php:115
 msgid "Comments for this Album"
 msgstr "יש הערות לאלבום זה"
 
-#: ../view_comments.php:116
+#: ../view_comments.php:117
 msgid "return to album"
 msgstr "חזור לאלבום"
 
-#: ../view_comments.php:130
+#: ../view_comments.php:131
 msgid "Sorry.  This album does not allow comments."
 msgstr "סליחה, אך אלבום זה אינו מאפשר הערות."
 
@@ -3630,6 +3646,18 @@ msgstr ""
 #, fuzzy
 msgid "No items to watermark."
 msgstr "אנא בחר משתמש"
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "<br>No email sent as no valid email addresses were found"
+#~ msgstr "עליך להכניס שם משתמש"
+
+#~ msgid "Note:  This album is out of date!"
+#~ msgstr "שים לב: אלבום זה אינו מעודכן!"
+
+#~ msgid "upgrade album"
+#~ msgstr "שדרג אלבום"
 
 #~ msgid "Login Incorrect"
 #~ msgstr "חיבור שגוי"
