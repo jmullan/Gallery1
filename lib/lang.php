@@ -38,14 +38,21 @@ function pluralize_n($amt, $one, $more, $none) {
 }
 
 function getBrowserLanguage() {
-       // Detect Browser Language
+	/* Detect the first Language of users Browser
+	** Some Browser only send 2 digits like he or de.
+	** The we generate he_HE, de_DE and so on. if this is wrong, 
+	** like he_HE, this is catched later with the aliases
+	*/
 
-       if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
+	global $HTTP_SERVER_VARS;
+
+	if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
 		$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
 		$spos=strpos($lang[0],";");
 		if ($spos >0) {
 			$lang[0]=substr($lang[0],0,$spos);
 		}
+		
 		$lang_pieces=explode ("-",$lang[0]);
 
 		if (strlen($lang[0]) ==2) {
@@ -56,16 +63,15 @@ function getBrowserLanguage() {
 	}
 }
 
-
-/*
-** Set Gallery Default:
-** - language
-** - charset
-** - direction
-** - alignment
-*/
-
 function setLangDefaults($nls) {
+	/*
+	** Set Gallery Default:
+	** - language
+	** - charset
+	** - direction
+	** - alignment
+	*/
+
 	global $gallery;
 
 	$gallery->language 	= 'en_US';
@@ -233,9 +239,8 @@ function initLanguage() {
 
 				$gallery->browser_language=getBrowserLanguage();
 
-				if (!empty($gallery->user) && 
-						$gallery->user->getDefaultLanguage() != "") {
-					$gallery->language = $gallery->user->getDefaultLanguage();
+				if (!empty($gallery->user) && $gallery->user->getDefaultLanguage() != "") {
+						$gallery->language = $gallery->user->getDefaultLanguage();
 				} elseif (isset($gallery->browser_language)) {
 					$gallery->language=$gallery->browser_language;
 				}
