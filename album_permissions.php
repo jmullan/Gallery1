@@ -24,8 +24,18 @@
 
 require(dirname(__FILE__) . '/init.php');
 
-list($allUid, $submit_read, $readUid, $submit_text, $textUid, $submit_add, $submit_write) =
-	getRequestVar(array('allUid', 'submit_read', 'readUid', 'submit_text', 'textUid', 'submit_add', 'submit_write'));
+list($allUid, $submit_read, $readUid, $submit_text, $textUid, $submit_add, $addUid) =
+	getRequestVar(array('allUid', 'submit_read', 'readUid', 'submit_text', 'textUid', 'submit_add', 'addUid'));
+
+list($submit_write, $writeUid, $submit_delete, $deleteUid, $submit_createSub, $createSubUid) =
+	getRequestVar(array('submit_write', 'writeUid', 'submit_delete', 'deleteUid', 'submit_createSub', 'createSubUid'));
+
+list($submit_viewFullImages, $viewFullImagesUid, $submit_addComments, $addCommentsUid) =
+	getRequestVar(array('submit_viewFullImages', 'viewFullImagesUid', 'submit_addComments', 'addCommentsUid'));
+
+
+list($submit_viewComments, $viewCommentsUid, $save, $ownerUid) =
+	getRequestVar(array('submit_viewComments', 'viewCommentsUid', 'save', 'ownerUid'));
 
 // Hack check
 if (!$gallery->user->isAdmin() && 

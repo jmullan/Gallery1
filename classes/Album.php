@@ -1302,7 +1302,7 @@ class Album {
 		 * image.  Highlights are also typically pretty small.  So,
 		 * if this is for a highlight, don't mirror it.
 		 */
-		if ($gallery->app->feature["mirror"] &&
+		if (isset($gallery->app->feature["mirror"]) && isset($gallery->app->mirrorSites) && 
 		    strcmp($type, "highlight")) {
 			foreach(split("[[:space:]]+", $gallery->app->mirrorSites) as $base_url) {
 				$base_url .= $albumPath;
