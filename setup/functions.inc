@@ -572,7 +572,7 @@ function gallery_languages() {
 	}
 	$returnlocales=array();
 	foreach ($nls['languages'] as $key => $value) {
-		if($locales[$key]) $returnlocales[$key]=$locales[$key];
+		if(isset($locales[$key])) $returnlocales[$key]=$locales[$key];
 	}
 	return $returnlocales;
 }
