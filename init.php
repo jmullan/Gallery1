@@ -83,6 +83,7 @@ require($GALLERY_BASEDIR . "classes/AlbumDB.php");
 require($GALLERY_BASEDIR . "classes/User.php");
 require($GALLERY_BASEDIR . "classes/EverybodyUser.php");
 require($GALLERY_BASEDIR . "classes/NobodyUser.php");
+require($GALLERY_BASEDIR . "classes/LoggedInUser.php");
 require($GALLERY_BASEDIR . "classes/UserDB.php");
 require($GALLERY_BASEDIR . "classes/Comment.php");
 require($GALLERY_BASEDIR . "session.php");
