@@ -20,7 +20,6 @@
  * $Id$
  */
 ?>
-
 <?php
 function slideshow_initialize()
 {
@@ -482,9 +481,7 @@ changeElementText("caption", "[" + current_location + " <?php echo _("of") ?> " 
 </Script>
 <?php
 }
-?>
 
-<?php
 function slideshow_controlPanel()
 {
 	global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
@@ -563,9 +560,7 @@ function slideshow_controlPanel()
 <?php
     } 
 
-    ?>
 
-<?php
     function slideshow_image() {
 	global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
 			$album, $recursive, $number, $random, $loop, $borderColor, $borderwidth, $bgcolor,

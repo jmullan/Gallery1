@@ -277,9 +277,7 @@ function preload_photo(index) {
 
 <?php
 }
-?>
 
-<?php
 function slideshow_controlPanel() {
 	global $defaultLoop, $defaultPause, $defaultFull, $defaultDir,
 			$slide_index, $slide_pause, $slide_loop, $slide_full,
@@ -351,9 +349,7 @@ drawSelect("time", array(1 => "1 ". _("second"),
 </form>
 <?php
 }
-?>
 
-<?php
 function slideshow_image() {
 	global $defaultLoop, $defaultPause, $defaultFull, $defaultDir,
 			$slide_index, $slide_pause, $slide_loop, $slide_full,

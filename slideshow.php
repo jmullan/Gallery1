@@ -34,9 +34,7 @@ if (isset($mode)) {
 	    $mode = $modeCookie;
 	}
 }
-?>
 
-<?php
 // Hack check
 if (empty($gallery->session->albumName) &&
 	   $gallery->app->gallery_slideshow_type == "off") {
@@ -87,9 +85,7 @@ if (empty($albumName)) {
 	}
 	$bgcolor = $gallery->album->fields['bgcolor'];
 }
-?>
 
-<?php
 // in offline mode, only high is available, because it's the only
 // one where the photos can be spidered...
 if (file_exists("java/GalleryRemoteAppletMini.jar") &&
@@ -111,9 +107,8 @@ if (!isset($mode) || !isset($modes[$mode])) {
 include(dirname(__FILE__) . "/includes/slideshow/$mode.inc");
 
 slideshow_initialize();
-?>
 
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html>
 <head>
   <title><?php echo $title; ?></title>
@@ -149,9 +144,9 @@ if ($albumName) {
 
 <body dir="<?php echo $gallery->direction ?>">
 
-<?php } ?>
+<?php }
 
-<?php includeHtmlWrap("slideshow.header"); ?>
+includeHtmlWrap("slideshow.header"); ?>
 
 <script language="JavaScript" SRC="<?php echo $gallery->app->photoAlbumURL ?>/js/client_sniff.js"></script>
 <script language="JavaScript">
