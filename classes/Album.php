@@ -377,12 +377,8 @@ class Album {
 		/* Don't save transient data */
 		$transient_save = $this->transient;
 		unset($this->transient);
-	
-		if ($fd = fs_fopen("$dir/album.dat.new", "w")) {
-			fwrite($fd, serialize($this));
-			fclose($fd);
-			fs_rename("$dir/album.dat.new", "$dir/album.dat");
-		}
+
+		$success = safe_serialize($this, "$dir/album.dat");
 
 		/* Restore transient data after saving */
 		$this->transient = $transient_save;
@@ -403,6 +399,8 @@ class Album {
 			}
 			$this->updateSerial = 0;
 		}
+
+		return $success;
 	}
 
 	function delete() {

@@ -182,15 +182,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 			$this->userMap[$uid] = $username;
 		}
 
-		$success = 0;
-		$tmpfile = tempnam($userDir, "userdb.dat");
-		if ($fd = fs_fopen($tmpfile, "w")) {
-			fwrite($fd, serialize($this));
-			fclose($fd);
-			$success = fs_rename($tmpfile, "$userDir/userdb.dat");
-		}
-
-		return $success;
+		return safe_serialize($this, "$userDir/userdb.dat");
 	}
 
 	function getUidList() {

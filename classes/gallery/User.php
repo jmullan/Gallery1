@@ -46,15 +46,7 @@ class Gallery_User extends Abstract_User {
 		$success = 0;
 
 		$dir = $gallery->app->userDir;
-		$tmpfile = tempnam($dir, $this->uid);
-
-		if ($fd = fs_fopen($tmpfile, "w")) {
-			fwrite($fd, serialize($this));
-			fclose($fd);
-			$success = fs_rename($tmpfile, "$dir/$this->uid");
-		}
-
-		return $success;
+		return safe_serialize($this, "$dir/$this->uid");
 	}
 }
 

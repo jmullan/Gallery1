@@ -201,13 +201,7 @@ class AlbumDB {
 		$success = 0;
 
 		$dir = $gallery->app->albumDir;
-		if ($fd = fs_fopen("$dir/albumdb.dat.new", "w")) {
-			fwrite($fd, serialize($this->albumOrder));
-			fclose($fd);
-			$success = fs_rename("$dir/albumdb.dat.new", "$dir/albumdb.dat");
-		}
-
-		return $success;
+		return safe_serialize($this->albumOrder, "$dir/albumdb.dat");
 	}
 }
 
