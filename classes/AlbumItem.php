@@ -503,7 +503,7 @@ class AlbumItem {
                         	$retval = watermark_image("$dir/$name.sized.$type", "$dir/$name.sized.$type",
                                                   $gallery->app->watermarkDir."/$wmName",
                                                   $gallery->app->watermarkDir."/$wmAlphaName",
-                                                  $wmAlign, $wmAlignX, $wmAlignY);
+						  $wmAlign, $wmAlignX, $wmAlignY);
                     	    }
                         }
                 }

@@ -2208,7 +2208,11 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 	$gallery->session->albumName = $albumDB->newAlbumName($newAlbumName);
 
         $gallery->album = new Album();
-        $gallery->album->fields["name"] = $gallery->session->albumName;
+	$gallery->album->fields["name"] = $gallery->session->albumName;
+
+	// guid is not created during new Album() as a performance optimization
+	// it only needs to be created when an album is created or modified by adding or deleting photos
+	$gallery->album->fields['guid'] = md5(uniqid(rand(), true));    
 
         // set title and description
         if ($newAlbumTitle) {

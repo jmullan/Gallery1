@@ -54,6 +54,7 @@ if (isset($confirm) && isset($id)) {
 	}
 
 	$gallery->album->deletePhoto($index);
+	$gallery->album->fields['guid'] = md5(uniqid(rand(), true));    // Update guid to reflect change in album contents
 	$gallery->album->save(array(i18n("%s removed"), $id));
 
 	if (isset($nextId) && !empty($nextId)) {

@@ -160,7 +160,7 @@ class AlbumDB {
                         } else if ($user->canReadAlbum($album)) {
                                 $numPhotos += $album->numPhotos(0);
                         }
-                }
+		}
 
 		return $numPhotos;
 	}
@@ -297,7 +297,9 @@ class AlbumDB {
 				if ($album->isRoot()) {
 					$numTopAlbums++;
 				}
-				$numPhotos += $album->fields["cached_photo_count"];
+				// $numPhotos += $album->fields["cached_photo_count"];
+				$album->load($album->fields['name']);
+				$numPhotos += $album->numPhotos(1,1);
 			}
 		}
 		return array($numPhotos, $numAlbums, $numTopAlbums);
