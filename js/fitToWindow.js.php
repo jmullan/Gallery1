@@ -77,6 +77,10 @@ function calculateNewSize(){
 function setReducedSize() {
 	document.photo_j.height = newheight;
 	document.photo_j.width = newwidth;
+	if (document.frameRR) {
+		document.frameRR.height = newheight;
+		document.frameLL.height = newheight;
+	}
 }
 
 function sizeChange() {
