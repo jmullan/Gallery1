@@ -54,7 +54,7 @@ doctype();
 
 <?php echo makeFormIntro("delete_user.php", array(
                                 "name" => "deleteuser_form"));
-//				"onsubmit" => "deleteuser_form.delete.disabled='true'"));
+//				"onsubmit" => "deleteuser_form.deleteButton.disabled='true'"));
 
 foreach ($unames as $user) {
 	if (!strcmp($gallery->user->getUsername(), $user)) {
@@ -77,7 +77,7 @@ if (! isset($error)) {
 	}
 ?>
 <br><br>
-<input type="submit" name="delete" value="<?php echo _("Delete") ?>" onclick="deleteuser_form.action.value='delete'">
+<input type="submit" name="deleteButton" value="<?php echo _("Delete") ?>" onclick="deleteuser_form.action.value='delete'">
 <?php
 }
 ?>
