@@ -34,9 +34,13 @@ $checklist = array(
 			"operations.",
 		"func" => "check_netpbm",
 		"why" => "I can't find NetPBM.  If it's installed, it's not in " .
-			"your path (or at least that of your webserver user). If not " .
-			"you'll need to install it.  You can get it from " .
-			"<a href=http://sourceforge.net/projects/netpbm>SourceForge</a>"
+			  "the path of user <b>" . getenv("USER") . 
+			  "</b> who's path is<UL><LI>" .
+			  implode("<LI>", explode(":", getenv("PATH"))) .
+			  "</UL>If it's not there, " .
+			  "you'll need to install it.  You can get it from " .
+			  "<a href=http://sourceforge.net/projects/netpbm>SourceForge</a>.  " .
+			  "Gallery detects NetPBM by looking for the <i>anytopnm</i> script."
 	),
 );
 
