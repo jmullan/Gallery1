@@ -30,8 +30,8 @@ $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" 
       <?php echo $commentdraw["comment"] ?> 
 <?php
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
-	$url = "do_command.php?cmd=delete-comment&index=$index&comment_index=$i";
-	$buf = '<a href="#" onClick="javascript:' . popup($url) . '">['. _("delete comment") . ']</a>';
+	$url = "'http://dev.p0ggel.org/gallery/do_command.php?cmd=delete-comment&index=$index&comment_index=$i'";
+	$buf = '<a href="#" onClick="javascript:' . $url . '">['. _("delete comment") . ']</a>';
 	echo "$buf";
 }
 ?>

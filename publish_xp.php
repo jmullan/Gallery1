@@ -171,7 +171,7 @@ if (!strcmp($cmd, "fetch-albums")) {
     $WIZARD_BUTTONS="true,true,true";
 }
 
-function appendNestedAlbums($level, $permission, $albumName, $albumString, $albumCompare) {
+function appendNestedAlbums($level, $permission, $albumName, $albumString, $albumCompare = "") {
     global $gallery;
  
     $myAlbum = new Album();
@@ -336,7 +336,7 @@ if (!strcmp($cmd, "new-album")) {
         } else {
                 echo "<form id='folder'>\n";
                 echo "<input type=\"hidden\" name=\"album\" value=\"" . $gallery->album->fields[name] . "\">\n";
-		echo "<input type=\"hidden\" name=\"cmd value=\"fetch-albums\">\n";
+		echo "<input type=\"hidden\" name=\"cmd\" value=\"fetch-albums\">\n";
                 echo "</form>\n";
 		
 		if ($success) {	
