@@ -46,7 +46,7 @@ if (empty($index)) {
 $err = "";	
 if (isset($save)) {
 	if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12)) {
-		if (isset($wmName) && strlen($wmName)) {
+		if (isset($wmName) && !empty($wmName)) {
 			print "<html><body>\n";
 	                echo "<center> ". _("Watermarking album.")."<br>(". _("this may take a while"). ")</center>\n";
 

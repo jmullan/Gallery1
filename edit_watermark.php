@@ -33,7 +33,7 @@ $err = "";
 if (isset($save)) {
         if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12))
         {
-		if (isset($wmName) && strlen($wmName)) {
+		if (isset($wmName) && !empty($wmName)) {
 		
 	                echo "<center> ". _("Watermarking photo.")."<br/>(". _("this may take a while"). ")</center>\n";
 	                my_flush();
