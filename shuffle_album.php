@@ -52,7 +52,11 @@ Do you really want to shuffle all the photos in this album?  This can't be undon
 <br>
 
 <p>
-<?= $album->getThumbnailTag($album->getHighlight()) ?>
+<?
+if ($album->getHighlight()) {
+	print $album->getThumbnailTag($album->getHighlight());
+}
+?>
 <br>
 <?= $album->fields["caption"] ?>
 
