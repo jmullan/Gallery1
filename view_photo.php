@@ -382,9 +382,6 @@ if (!$gallery->album->isMovie($id)) {
 			$thumbImage .= $photo->image->name . "." . $photo->image->type;
 		}
 		list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
-		if (strlen($adminCommands) > 0) {
-			$adminCommands .="<br>";
-		}
 		
 		/* display photo printing services */
 		$printServices = $gallery->album->fields['print_photos'];
@@ -485,18 +482,25 @@ if (!$gallery->album->isMovie($id)) {
 <?php
 	}
 }
-includeLayout('navtablebegin.inc');
-if ($adminCommands) {
 
-	$adminCommands = "<span class=\"admin\">$adminCommands</span>";
-       	$adminbox["commands"] = $adminCommands;
-       	$adminbox["text"] = "&nbsp;";
-
-	$adminbox["bordercolor"] = $bordercolor;
-       	$adminbox["top"] = true;
-       	includeLayout('adminbox.inc');
-       	includeLayout('navtablemiddle.inc');
+$userCommands = "";
+if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
+	if ($gallery->user->isLoggedIn()) {
+		$userCommands .= "&nbsp;&nbsp;&nbsp;<a class=\"admin\" href=\"" .
+				doCommand("logout", array(), "view_album.php", array("page" => $page)) .
+					"\">[" . _("logout") . "]</a>\n";
+	} else {
+		$userCommands .= "&nbsp;&nbsp;&nbsp;" . popup_link("[". _("login") ."]", "login.php", false, true, 500, 500, 'admin') . "\n";
+        }
 }
+includeLayout('navtablebegin.inc');
+	
+$adminbox["text"] = "";
+$adminbox["commands"] = $adminCommands . $userCommands;
+$adminbox["bordercolor"] = $bordercolor;
+$adminbox["top"] = true;
+includeLayout('adminbox.inc');
+includeLayout('navtablemiddle.inc');
 
 $breadcrumb["bordercolor"] = $bordercolor;
 $breadcrumb["top"] = true;

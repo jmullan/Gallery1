@@ -147,7 +147,9 @@ include(dirname(__FILE__) . '/html/userData.inc');
 document.usercreate_form.uname.focus();
 //--> 
 </script>
-<?php print gallery_validation_link("register.php"); ?>
 </div>
+
+<?php print gallery_validation_link("register.php"); ?>
+
 </body>
 </html>

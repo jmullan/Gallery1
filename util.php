@@ -171,10 +171,9 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 		** addType given through function call overrides default.
 		*/
 		if (empty($addType)) {
-			$addtype = (isset($gallery->app->comments_addType) ? $gallery->app->comments_addType : "popup");
+			$addType = (isset($gallery->app->comments_addType) ? $gallery->app->comments_addType : "popup");
 		}
-		if ( 
-		     ($addType == 'inside')) {
+		if ($addType == 'inside') {
 			echo '<form name="theform" method="post" action="'. $page_url .'">';
 			drawCommentAddForm($commenter_name);
 			echo "</form>";
@@ -2422,7 +2421,7 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 
 function poweredBy () {
 	global $gallery;
-	$link = '<a href="'.$gallery->url.'">'.Gallery().'</a>';
+	$link = '<a href="'.$gallery->url.'" target="_blank">'.Gallery().'</a>';
 	if (isDebugging() || $gallery->app->devMode == "yes" || $gallery->user->isAdmin()) {
 		$version = $gallery->version;
 	} else {

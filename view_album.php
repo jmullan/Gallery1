@@ -449,17 +449,16 @@ if ( ($gallery->app->comments_enabled == 'yes' && $gallery->album->lastCommentDa
 
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 	if ($gallery->user->isLoggedIn()) {
-	        $userCommands .= "\t<a class=\"admin\" href=\"" .
+	        $userCommands .= "\t&nbsp;&nbsp;&nbsp;<a class=\"admin\" href=\"" .
 					doCommand("logout", array(), "view_album.php", array("page" => $page)) .
 				  "\">[" . _("logout") . "]</a>\n";
 	} else {
-		$userCommands .= "\t" . popup_link("[". _("login") ."]", "login.php", false, true, 500, 500, 'admin') . "\n";
+		$userCommands .= "\t&nbsp;&nbsp;&nbsp;" . popup_link("[". _("login") ."]", "login.php", false, true, 500, 500, 'admin') . "\n";
 	} 
 }
 
 $adminbox["text"] = $adminText;
-$adminbox["commands"] =	"<span class =\"admin\">" .  $adminCommands . 
-			$userCommands .  "\t</span>\n";
+$adminbox["commands"] =	$adminCommands . $userCommands;
 $adminbox["bordercolor"] = $bordercolor;
 $adminbox["top"] = true;
 

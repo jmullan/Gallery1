@@ -60,8 +60,8 @@ $statsVersion = "2.03j";
 $debug = 0;
 //$album="album01";
 
-list ($type, $sca, $sal, $sde, $sco, $scd, $sud, $svi, $sac, $svo, $sav, $sao, $stm, $rev, $tsz ,$ppp, $total, $sgr, $rows, $cols) =
-	getRequestVar(array('type', 'sca', 'sal', 'sde', 'sco', 'scd', 'sud', 'svi', 'sac', 'svo', 'sav', 'sao', 'stm', 'rev', 'tsz' ,'ppp', 'total', 'sgr', 'rows', 'cols'));
+list ($type, $sca, $sal, $sde, $sco, $scd, $sud, $svi, $sac, $svo, $sav, $sao, $stm, $rev, $tsz ,$ppp, $total, $sgr, $rows, $cols, $addLinksPos) =
+	getRequestVar(array('type', 'sca', 'sal', 'sde', 'sco', 'scd', 'sud', 'svi', 'sac', 'svo', 'sav', 'sao', 'stm', 'rev', 'tsz' ,'ppp', 'total', 'sgr', 'rows', 'cols', 'addLinksPos'));
 
 list ($ty, $tm, $td) = getRequestVar(array('ty', 'tm', 'td'));
 
