@@ -42,16 +42,15 @@
  **/
 
 	$nls['alias']['he_HE'] = 		'he_IL' ;
-	$nls['alias']['he_IL.ISO8859-8'] =	'he_IL' ;
+	$nls['alias']['he_IL.utf-8'] =	'he_IL' ;
 	$nls['alias']['hebrew'] = 		'he_IL' ;
 
 /**
  ** Charset
- **
  **/	
 	
-	$nls['charset']['he_IL'] = 		'windows-1255';
-	
+	$nls['charset']['he_IL'] = 		'UTF-8';
+
 /**
  ** Direction
  **/
