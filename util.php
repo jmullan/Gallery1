@@ -2046,6 +2046,9 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
 		/* Get rid of extra underscores */
 		$mangledFilename = ereg_replace("_+", "_", $mangledFilename);
 		$mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
+		if (empty($mangledFilename)) {
+			$mangledFilename = $gallery->album->newPhotoName();
+		}
 	
 		/* 
 		need to prevent users from using original filenames that are purely numeric.

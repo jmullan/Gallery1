@@ -508,7 +508,7 @@ class Album {
 		// if we are going to use sort, we need to set the historic dates.
 		// the get Date functions set any null dates for us, so that's what
 		// this for loop does for us...
-		for ($i=1; $i<=$this->numPhotos(1); $i++) {
+		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			$this->getItemCaptureDate($i);
 			$this->getUploadDate($i);
 		}
@@ -516,15 +516,15 @@ class Album {
 
 		if (!strcmp($sort,"upload")) {
 			$func = "sortByUpload";
-		} else if (!strcmp($sort,"itemCapture")) {
+		} elseif (!strcmp($sort,"itemCapture")) {
 			$func = "sortByItemCapture";
-		} else if (!strcmp($sort, "filename")) {
+		} elseif (!strcmp($sort, "filename")) {
 			$func = "sortByFilename";
-		} else if (!strcmp($sort, "click")) {
+		} elseif (!strcmp($sort, "click")) {
 			$func = "sortByClick";
-		} else if (!strcmp($sort, "caption")) {
+		} elseif (!strcmp($sort, "caption")) {
 			$func = "sortByCaption";
-		}  else if (!strcmp($sort, "comment")) {
+		} elseif (!strcmp($sort, "comment")) {
 			$func = "sortByComment";
 		}
 		usort($this->photos, array('Album', $func));
@@ -544,9 +544,7 @@ class Album {
 		$timeB = $objB->getUploadDate();
 		if ($timeA == $timeB) {
 			return 0;
-		}
-		
-		if ($timeA < $timeB) {
+		} elseif ($timeA < $timeB) {
 			return -1;
 		} else {
 			return 1;
@@ -562,9 +560,7 @@ class Album {
 	
 		if ($timeA == $timeB) {
 			return 0;
-		}
-		
-		if ($timeA < $timeB) {
+		} elseif ($timeA < $timeB) {
 			return -1; 
 		} else {
 			return 1;
@@ -597,9 +593,7 @@ class Album {
 		$bClick = $objB->getItemClicks();
 		if ($aClick == $bClick) {
 			return 0;
-		}
-		
-		if ($aClick < $bClick) {
+		} elseif ($aClick < $bClick) {
 			return -1; 
 		} else {
 			return 1;
@@ -637,8 +631,9 @@ class Album {
 		$objB = (object)$b;
 		$numCommentsA = $objA->numComments();
 		$numCommentsB = $objB->numComments();
-		if ($numCommentsA == $numCommentsB) return 0;
-		if ($numCommentsA < $numCommentsB) {
+		if ($numCommentsA == $numCommentsB) {
+			return 0;
+		} elseif ($numCommentsA < $numCommentsB) {
 			return -1; 
 		} else {
 			return 1;
