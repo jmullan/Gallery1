@@ -239,25 +239,24 @@ function acceptableFormatRegexp() {
 	return "(" . join("|", acceptableFormatList()) . ")";
 }
 
+function acceptableMovieList() {
+    return array('avi', 'mpg', 'mpeg', 'wmv', 'mov', 'swf');
+}
+
+function acceptableImageList() {
+    return array('jpg', 'gif', 'png');
+}
+
 function acceptableFormatList() {
-	return array("jpg", "gif", "png", "avi", "mpg", "mpeg","wmv", "mov");
+    return array_merge(acceptableImageList(), acceptableMovieList());
 }
 
 function isImage($tag) {
-	global $gallery; 
-
-	return (!strcmp($tag, "jpg") ||
-		!strcmp($tag, "jpeg") ||
-		!strcmp($tag, "gif") ||
-		!strcmp($tag, "png"));
+    return in_array($tag, acceptableImageList());
 }
 
 function isMovie($tag) {
-	return (!strcmp($tag, "avi") ||
-		!strcmp($tag, "mpg") ||
-		!strcmp($tag, "mpeg") ||
-		!strcmp($tag, "mov") ||
-		!strcmp($tag, "wmv"));
+    return in_array($tag, acceptableMovieList());
 }
 
 function getFile($fname) {
@@ -1222,7 +1221,7 @@ function safe_serialize($obj, $file) {
 }
 
 function removeTags($msg) {
-    $msg = eregi_replace("<([^>]*)>", "", $msg);
+    $msg = strip_tags($msg);
     return $msg;
 }
 
