@@ -177,7 +177,7 @@ $checklist = array(
 	"missing-locales" => array (
 		"optional" => 1,
 		"enabled" => (sizeof(gallery_languages()) > 1) ? "yes" :"no",
-		"desc" => _("Testing to see which <b>system</b> locales (if any) are absent.  ") . "<br>".
+		"desc" => _("Testing to see which <b>system</b> locales (if any) are absent.") . "<br>".
 				_("These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext suport. They are also needed to show date and time in the according format to the language."),
 		"func" => "check_absent_locales",
 		"serious" => ( $elawisyl == "no" ) ? 1 : 0 ,

@@ -314,6 +314,8 @@ for ($i = $start; $i <= $end; $i++) {
     </table>
 
   <?php 
+	include(dirname(__FILE__) . '/layout/adminAlbumCommands.inc');
+
 	$description=editField($gallery->album, "description") ;
 	if ($description != "") {
 		echo "\n<div class=\"desc\">";
@@ -332,61 +334,34 @@ for ($i = $start; $i <= $end; $i++) {
 		echo '</div>';
 	}
 
-  if ($gallery->user->canDeleteAlbum($gallery->album)) {
-	echo "\n<span class=\"admin\">";
-	echo popup_link("[". _("delete album") ."]", "delete_album.php?set_albumName={$tmpAlbumName}");
-	echo "\n</span>";
-  }
+	if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) {
+		echo _("url:") . '<a href="'. $albumURL . '">';
+		if (!$gallery->session->offline) {
+			echo breakString($albumURL, 60, '&', 5);
+		} else {
+			echo $tmpAlbumName;
+		}
+		echo '</a>';
 
-  if ($gallery->user->canWriteToAlbum($gallery->album)) {
-	echo "\n<span class=\"admin\">";
-	echo popup_link("[". _("move album") ."]", "move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=0");
-	echo popup_link("[". _("reorder album") ."]",  "move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=1");
-	echo popup_link("[" . _("rename album") ."]", "rename_album.php?set_albumName={$tmpAlbumName}&index=$i");
-	echo "\n</span>";
-  }
+		if (ereg("album[[:digit:]]+$", $albumURL)) {
+			if (!$gallery->session->offline) {
+				echo '<br><span class="error">' .
+				_("Hey!") .
+				sprintf(_("%s this album so that the URL is not so generic!"), 
+					popup_link(_("Rename"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i"));
+				echo '</span>';
+			}
+		}
 
-  if ($gallery->user->canChangeTextOfAlbum($gallery->album) && !$gallery->session->offline) { ?>
-    <span class="admin">
-    <a href="<?php echo makeGalleryUrl("captionator.php", array("set_albumName" => $tmpAlbumName)) ?>">[<?php echo _("edit captions") ?>]</a>
-   </span>
-  <?php } ?>
-
-  <?php if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) { ?>
-   <span class="admin">
-    <?php echo popup_link("[" . _("permissions") ."]", "album_permissions.php?set_albumName={$tmpAlbumName}"); ?>
-   <?php if ($gallery->user->canViewComments($gallery->album)) { ?>
-    <a href="<?php echo makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName)) ?>">[<?php echo _("view&nbsp;comments") ?>]</a>
-   <?php } ?>
-   </span>
-  <br>
-  <?php echo _("url:") ?> <a href="<?php echo $albumURL ?>">
-  	<?php if (!$gallery->session->offline) {
-		echo breakString($albumURL, 60, '&', 5);
-	} else {
-		echo $tmpAlbumName;
-	}
+		if ($gallery->album->versionOutOfDate()) {
+			if ($gallery->user->isAdmin()) { ?>
+  				echo '<br><span class="error">';
+				echo _("Note:  This album is out of date!") ?> <?php echo popup_link("[" . _("upgrade album") ."]", "upgrade_album.php");
+				echo '</span>';
+			}
+		}
+	} 
 	?>
-	</a>
-   <?php if (ereg("album[[:digit:]]+$", $albumURL)) { ?>
-	<?php if (!$gallery->session->offline) { ?>
-	<br>
-        <span class="error">
-         <?php echo _("Hey!") ?>
-	 <?php echo sprintf(_("%s this album so that the URL is not so generic!"),
-			 popup_link(_("Rename"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i")) ?>
-        </span>
-   	<?php } ?>
-   <?php } ?>
-   <?php if ($gallery->album->versionOutOfDate()) { ?>
-    <?php if ($gallery->user->isAdmin()) { ?>
-  <br>
-  <span class="error">
-   <?php echo _("Note:  This album is out of date!") ?> <?php echo popup_link("[" . _("upgrade album") ."]", "upgrade_album.php") ?>
-  </span>
-    <?php } ?>
-   <?php } ?>
-  <?php } ?>
 
   <br>
   <span class="fineprint">
