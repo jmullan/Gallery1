@@ -1,21 +1,64 @@
 
 <?
-function row_text($key, $arr) {
-	if (strcmp($arr["type"], "hidden")) {
-		$buf = "<tr><td width=75% valign=top align=right>$arr[desc]</td><td valign=top>";
+
+function evenOdd_row($fields, $evenOdd) {
+	if ($evenOdd) {
+		$bgColor = "#88cccc";
 	} else {
-		$buf = "<tr><td width=75% valign=top align=right>&nbsp;</td><td valign=top>";
+		$bgColor = "#88cccc";
 	}
-	if ($arr["type"]) {
-		$type = "type=$arr[type]";
-	}
-	$buf .= "<input $type name=$key value=\"$arr[value]\" size=40>";
-	$buf .= "</td></tr>";
+	$f0 = str_replace(" ", "&nbsp;", $fields[0]);
+	$buf .= "<tr>";
+	$buf .= "<td bgcolor=$bgColor valign=top align=left>$f0</td>";
+	$buf .= "<td bgColor=$bgColor width=90% valign=top>$fields[1]</td>";
+	$buf .= "</tr>";
+	$buf .= "<tr>";
+	$buf .= "<td bgcolor=$bgColor colspan=2 valign=top align=left>$fields[2]</td>";
+	$buf .= "</tr>";
+
 	return $buf;
 }
 
-function row_choice($key, $arr) {
-	$buf = "<tr><td valign=top align=right>$arr[desc]</td><td valign=top>";
+function make_attrs($attrList) {
+	if ($attrList) {
+		if (!$attrList["size"]) {
+			$attrList["size"] = 40;
+		}
+		foreach ($attrList as $attrKey => $attrVal) {
+			$attrs .= "$attrKey=$attrVal ";
+		}
+	}
+	return $attrs;
+}
+
+function make_fields($key, $arr) {
+	$col1 = $arr["prompt"];
+	if ($arr["choices"]) {
+		$col2 = form_choice($key, $arr);
+	} else if (!strcmp($arr["type"], "textarea")) {
+		$col2 = form_textarea($key, $arr);
+	} else {
+		$col2 = form_input($key, $arr);
+	}
+	$col3 = $arr["desc"];
+	return array($col1, $col2, $col3);
+}
+
+function form_textarea($key, $arr) {
+	$attrs = make_attrs($arr["attrs"]);
+	return "<textarea name=$key $attrs>$arr[value]</textarea>";
+}
+
+function form_input($key, $arr) {
+	if ($arr["type"]) {
+		$type = "type=$arr[type]";
+	}
+	$attrs = make_attrs($arr["attrs"]);
+
+	return "<input $type name=$key value=\"$arr[value]\" $attrs>";
+}
+
+function form_choice($key, $arr) {
 	$buf .= "<select name=$key>";
 	foreach ($arr["choices"] as $choice) {
 		$selected = "";
@@ -25,14 +68,17 @@ function row_choice($key, $arr) {
 		$buf .= "<option $selected> $choice";
 	}
 	$buf .= "</select>";
-	$buf .= "</td></tr>";
 	return $buf;
 }
 
-function locateDir($filename, $extraDir="") {
+function locateDir($filename, $extraDir="", $ignorePath=0) {
 
 	if (fs_file_exists("$extraDir/$filename")) {
 		return $extraDir;
+	}
+
+	if ($ignorePath) {
+		return;
 	}
 
 	foreach (explode(":", getenv("PATH")) as $path) {
@@ -137,7 +183,7 @@ function check_exif($location="")
 
 	$bin = "jhead";
 
-    if ($location) {
+	if ($location) {
 		$d = locateDir(bin, $location);
 	} else {
 		$d = locateDir($bin, $gallery->app ? $gallery->app->pnmDir : "");
@@ -177,7 +223,7 @@ function check_graphics($location="")
 
 	foreach ($netpbm as $bin) {
 		if ($location) {
-			$d = locateDir($bin, $location);
+			$d = locateDir($bin, $location, 1);
 		} else {
 			$d = locateDir($bin, $gallery->app ? $gallery->app->pnmDir : "");
 		}
