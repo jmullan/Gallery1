@@ -109,7 +109,7 @@ function find_albums(&$results, $album="") {
 		$count = $album->numPhotos(1);
 		for ($j = 1; $j <= $count; $j++) {
 			$name = $album->isAlbumName($j);
-			if ($name) {
+			if ($name && $albumDB->getAlbumByName($name)) {
 				find_albums($results, $albumDB->getAlbumByName($name));
 			}
 		}
@@ -117,7 +117,9 @@ function find_albums(&$results, $album="") {
 		$numAlbums = $albumDB->numAlbums($gallery->user);
 		for ($i = 1; $i <= $numAlbums; $i++) {
 			$album = $albumDB->getAlbum($gallery->user, $i);
-			find_albums($results, $album);
+			if ($album) {
+				find_albums($results, $album);
+			}
 		}
 	} 
 }
