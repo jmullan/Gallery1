@@ -9,7 +9,7 @@ if (!$gallery) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = "1.2";
+$gallery->version = "1.2.1-cvs";
 $gallery->config_version = 23;
 $gallery->album_version = 3;
 $gallery->url = "http://gallery.sourceforge.net";
