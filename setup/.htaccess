@@ -1,7 +1,7 @@
 php_value auto_prepend_file	php_value_ok.php
 php_flag magic_quotes_gpc off
 
-Options FollowSymLinks
+Options +FollowSymLinks
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule ^(index.php)$			index.php?init_mod_rewrite=1&ampersandbroken=    [QSA]
