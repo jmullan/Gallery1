@@ -83,6 +83,11 @@ $constants = array(
 			"have NetPBM, Gallery won't work at all.",
 		"value" => locateDir("anytopnm")
 	),
+	"highlight_size" => array(
+		"desc" => "The target size (in pixels) of thumbnails " .
+			  "shown in the gallery page (highlight images)",
+ 		"value" => 200
+	),
 	"zipinfo" => array(
 		"desc" => "The path to the 'zipinfo' binary",
 		"value" => locateFile("zipinfo")
@@ -142,11 +147,6 @@ $defaults = array(
 	"thumb_size" => array(
 		"desc" => "The target size (in pixels) of thumbnails " .
 			"shown in the albums",
-		"value" => 150 
-	),
-	"highlight_size" => array(
-		"desc" => "The target size (in pixels) of highlight " .
-			"photos shown in the album list",
 		"value" => 150 
 	),
 	"resize_size" => array(
