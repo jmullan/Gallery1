@@ -26,7 +26,7 @@ if (!$album->isLoaded()) {
 
 $numPhotos = $album->numPhotos(editMode());
 $perPage = $rows * $cols;
-$maxPages = ceil($numPhotos / $perPage);
+$maxPages = max(ceil($numPhotos / $perPage), 1);
 
 if ($page > $maxPages) {
 	$page = $maxPages;
@@ -71,6 +71,11 @@ if (!strcmp($album->fields["border"], "off")) {
 
 $imageCellWidth = floor(100 / $cols) . "%";
 $fullWidth = $cols * $album->fields["thumb_size"]; 
+
+$navigator["page"] = $page;
+$navigator["maxPages"] = $maxPages;
+$navigator["fullWidth"] = $fullWidth;
+$navigator["spread"] = 6;
 ?>
 
 <body <?=$bodyAttrs?>>
@@ -86,7 +91,7 @@ $fullWidth = $cols * $album->fields["thumb_size"];
 <? if ($numPhotos == 1) { ?> 
 There is 1 photo in this album
 <? } else { ?>
-There are <?= $numPhotos ?> photos in this album
+There are <?= $numPhotos ?> photos in this album on <?= $maxPages ?> pages.
 <? } ?>
 <?
 if (editMode()) {
@@ -114,36 +119,9 @@ if (editMode()) {
 </table>
 
 <!-- top nav -->
-<table border=0 width=<?=$fullWidth?>>
-<tr width=<?=$fullWidth/4?>>
-<td>
-<font size=+0 face=<?=$album->fields["font"]?>>
 <?
-if ($first) {
-	echo "&nbsp;";
-} else {
-	echo "<a href=view_album.php?set_page=".$previousPage."><< previous page</a>";
-}
+include("layout/navigator.inc");
 ?>
-
-</td>
-<td width=<?=$fullWidth/2?> align=center>
-<font size=+0 face=<?=$album->fields["font"]?>>
-page <?=$page?> of <?=$maxPages?> (click a photo to enlarge) 
-</td>
-<td width=<?=$fullWidth/4?> align=right>
-<font size=+0 face=<?=$album->fields["font"]?>>
-<?
-if ($last) {
-        echo "&nbsp;";
-} else {
-	echo "<a href=view_album.php?set_page=".$nextPage.">next page >></a>";
-}
-?>
-</td>
-
-</tr>
-</table>
 
 
 <!-- image grid table -->
@@ -274,36 +252,9 @@ if ($numPhotos) {
 </table>
 
 <!-- bottom nav -->
-<table border=0 width=<?=$fullWidth?>>
-<tr>
-<td>
-<font size=+0 face=<?=$album->fields["font"]?>>
-<?
-if ($first) {
-	echo "&nbsp;";
-} else {
-	echo "<a href=view_album.php?set_page=".$previousPage."><< previous page</a>";
-}
+<? 
+include("layout/navigator.inc");
 ?>
-
-</td>
-<td align=center>
-<font size=+0 face=<?=$album->fields["font"]?>>
-&nbsp;
-</td>
-<td align=right>
-<font size=+0 face=<?=$album->fields["font"]?>>
-<?
-if ($last) {
-        echo "&nbsp;";
-} else {
-	echo "<a href=view_album.php?set_page=".$nextPage.">next page >></a>";
-}
-?>
-</td>
-
-</tr>
-</table>
 
 <!--  -->
 <? if (strcmp($album->fields["returnto"], "no")) { ?>
