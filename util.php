@@ -3597,7 +3597,7 @@ function getIconText($iconName='', $altText='') {
 		}
 		if(file_exists(dirname(__FILE__) .'/images/icons/'. $iconName)) {
 			$imgSrc = $gallery->app->photoAlbumURL .'/images/icons/'. $iconName;
-			$linkText = '<img src="'. $imgSrc .'" title="'. $altText .'" alt="'. $altText. '">';
+			$linkText = '<img src="'. $imgSrc .'" title="'. $altText .'" alt="'. $altText. '" style="border: none;">';
 
 			if ($gallery->app->useIcons == "both") {
 				$linkText .= "<br>$text";
