@@ -510,7 +510,7 @@ function drawSelect($name, $array, $selected, $size) {
 	return $buf;
 }
 
-function correctNobody($array) {
+function correctNobody(&$array) {
 	global $gallery;
 	$nobody = $gallery->userDB->getNobody();
 
@@ -523,7 +523,7 @@ function correctNobody($array) {
 	}
 }
 
-function correctEverybody($array) {
+function correctEverybody(&$array) {
 	global $gallery;
 	$everybody = $gallery->userDB->getEverybody();
 
