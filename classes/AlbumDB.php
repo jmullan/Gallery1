@@ -178,7 +178,7 @@ class AlbumDB {
 
 		/* Look for a match that is case insensitive */
 		foreach ($this->albumList as $album) {
-			if (strcasecmp($album->fields["name"], $name)) {
+			if (!strcasecmp($album->fields["name"], $name)) {
 				if (!$album->transient->photosloaded) {
 					$album->loadPhotos($gallery->app->albumDir . "/$name");
 				}
