@@ -433,7 +433,7 @@ if (!$gallery->album->isMovie($id)) {
 			$adminCommands .= '[' . sprintf(_('print this photo with %s'), $selectCommand) . ']';
 		/* just print out text if only one option */
 		} elseif ($numServices == 1) {
-			$name = key($printServices);
+			$name = @key($printServices);
 			switch ($name) {
 			case 'ezprints':
 				$printEZPrintsForm = true;
@@ -445,7 +445,9 @@ if (!$gallery->album->isMovie($id)) {
 				$printShutterflyForm = true;
 				break;
 			}
-			$adminCommands .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" . sprintf(_('print this photo with %s'), $fullName[$name]) . ']</a>';
+			if (!empty($name)) {
+				$adminCommands .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" . sprintf(_('print this photo with %s'), $fullName[$name]) . ']</a>';
+			}
 		}
 	}
 ?>
