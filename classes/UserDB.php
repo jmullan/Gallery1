@@ -19,217 +19,21 @@
  */
 ?>
 <?
-class UserDB {
-	var $userMap;
-	var $nobody;
-	var $everybody;
-	
-	function UserDB() {
-		global $gallery;
-		$userDir = $gallery->app->userDir;
+class Abstract_UserDB {
 
-		$this->userMap = array();
-
-		if (!fs_file_exists($userDir)) {
-			if (!mkdir($userDir, 0777)) {
-				error("Unable to create dir: $userDir");
-				return;
-			}
-		} else {
-			if (!fs_is_dir($userDir)) {
-				error("$userDir exists, but is not a directory!");
-				return;
-			}
-		}
-
-		if (!fs_file_exists("$userDir/.htaccess")) {
-			$fd = fs_fopen("$userDir/.htaccess", "w");
-			fwrite($fd, "Order deny, allow\nDeny from all\n");
-			fclose($fd);
-		}
-
-		if (fs_file_exists("$userDir/userdb.dat")) {
-			$tmp = getFile("$userDir/userdb.dat");
-			$this = unserialize($tmp);
-		}
-
-		if (!$this->nobody) {
-			$this->nobody = new NobodyUser();
-		}
-
-		if (!$this->everybody) {
-			$this->everybody = new EverybodyUser();
-		}
+	/* By default, UserDB can't create a user */	
+	function canCreateUser() {
+		return false;
 	}
 
-	function getUserByUsername($username, $level=0) {
-		global $gallery;
-
-		if ($level > 1) {
-			// We've recursed too many times.  Abort;
-			return;
-		}
-
-		if (!strcmp($username, $this->nobody->getUsername())) {
-			return $this->nobody;
-		} else if (!strcmp($username, $this->everybody->getUsername())) {
-			return $this->everybody;
-		}
-
-		$uid = $this->userMap[$username];
-		if (!$uid) {
-			$this->rebuildUserMap();
-			$uid = $this->userMap[$username];
-			if (!$uid) {
-				return;
-			}
-		}
-
-		$user = $this->getUserByUid($uid);
-		if (!$user || strcmp($user->getUsername(), $username)) {
-			// We either got no uid for this name, or we got a uid
-			// but that uid has a different username.  Either way
-			// this means our map is out of date.
-			$this->rebuildUserMap();
-			return $this->getUserByUsername($username, ++$level);
-		} else {
-			return $user;
-		}
-		
+	/* By default, UserDB can't modify a user */	
+	function canModifyUser() {
+		return false;
 	}
 
-	function getUserByUid($uid) {
-		global $gallery;
-		$userDir = $gallery->app->userDir;
-
-		if (!$uid || !strcmp($uid, $this->nobody->getUid())) {
-			return $this->nobody;
-		} else if (!strcmp($uid, $this->everybody->getUid())) {
-			return $this->everybody;
-		}
-
-		if (fs_file_exists("$userDir/$uid")) {
-			$user = new User();
-			$user->load($uid);
-			return $user;
-		}
-
-		return $this->nobody;
-	}
-
-	function getOrCreateUser($username) {
-		$user = $this->getUserByUsername($username);
-		if (!$user) {
-			$user = new User();
-			$user->setUsername($username);
-		}
-		return $user;
-	}
-
-	function getUsername($uid) {
-		return $this->userMap[$uid];
-	}
-
-	function getUid($username) {
-		return $this->userMap[$username];
-	}
-
-	function deleteUserByUsername($username) {
-		global $gallery;
-		$userDir = $gallery->app->userDir;
-
-		$user = $this->getUserByUsername($username);
-		if ($user) {
-			$uid = $user->getUid();
-			if (fs_file_exists("$userDir/$uid")) {
-				return fs_unlink("$userDir/$uid");
-			}
-		}
-		$this->rebuildUserMap();
-
-		return 0;
-	}
-
-	function rebuildUserMap() {
-		global $gallery;
-		$userDir = $gallery->app->userDir;
-
-		foreach ($this->getUidList() as $uid) {
-			$tmpUser = $this->getUserByUid($uid);
-			$username = $tmpUser->getUsername();
-			$this->userMap[$username] = $uid;
-			$this->userMap[$uid] = $username;
-		}
-
-		$success = 0;
-		$tmpfile = tempnam($userDir, "userdb.dat");
-		if ($fd = fs_fopen($tmpfile, "w")) {
-			fwrite($fd, serialize($this));
-			fclose($fd);
-			$success = fs_rename($tmpfile, "$userDir/userdb.dat");
-		}
-
-		return $success;
-	}
-
-	function getUidList() {
-		global $gallery;
-		
-		$uidList = array();
-		if ($fd = fs_opendir($gallery->app->userDir)) {
-			while ($file = readdir($fd)) {
-				if (!ereg("^[0-9].*[0-9]$", $file)) {
-					continue;
-				}
-
-				if (fs_is_dir($file)) {
-					continue;
-				}
-
-				array_push($uidList, $file);
-			}
-		}
-
-		array_push($uidList, $this->nobody->getUid());
-		array_push($uidList, $this->everybody->getUid());
-
-		sort($uidList);
-		return $uidList;
-	}
-
-	function validNewUsername($username) {
-
-		if (strlen($username) < 2) {
-			return "Username must be at least 2 characters";
-		}
-
-		if (strlen($username) > 15) {
-			return "Username must be at most 15 characters";
-		}
-
-		if (preg_match("/[^A-Za-z0-9]/", $username)) {
-			return "Username must contain only letters or digits";
-		}
-
-		if (!strcmp($username, $this->nobody->getUsername()) ||
-		    !strcmp($username, $this->everybody->getUsername())) {
-			return "<i>$username</i> is reserved and cannot be used.";
-		}
-
-		$user = $this->getUserByUsername($username);
-		if ($user) {
-			return "A user with the username of <i>$username</i> already exists";
-		}
-
-		return null;
-	}
-
-	function validPassword($password) {
-		if (strlen($password) < 3) {
-			return "Password must be at least 3 characters";
-		}
-
-		return null;
+	/* By default, UserDB can't delete a user */	
+	function canDeleteUser() {
+		return false;
 	}
 
 	function getNobody() {
@@ -239,6 +43,17 @@ class UserDB {
 	function getEverybody() {
 		return $this->everybody;
 	}
-}
 
+	function getUidList() {
+		print "Error: getUidList() should be overridden by a subclass!";
+	}
+
+	function getUserByUsername($username, $level=0) {
+		print "Error: getUserByUsername() should be overridden by a subclass!";
+	}
+
+	function getUserByUid($uid) {
+		print "Error: getUserByUid() should be overridden by a subclass!";
+	}
+}
 ?>
