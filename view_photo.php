@@ -193,7 +193,7 @@ if (in_array("Title", $extra_fields)) {
 	$title=$gallery->album->getExtraField($index, "Title");
 }
 if (!$title) {
-	$title=$index;
+	$title=$photo->image->name;
 }
 
 if (isset($gallery->app->comments_length)) {
