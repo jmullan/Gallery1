@@ -1205,7 +1205,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 		if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnuke') {
 			$cookie_name = 'user';
 			$cookie_value = $HTTP_COOKIE_VARS[$cookie_name];
-		} else if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'geeklog') {
+		} else if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'GeekLog') {
 			$cookie_name = $_CONF['cookie_session'];
 			$cookie_value = $HTTP_COOKIE_VARS[$cookie_name];
 		}
