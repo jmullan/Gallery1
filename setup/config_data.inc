@@ -50,6 +50,18 @@ $checklist = array(
 		"fail-too-old" => sprintf(_("You're running PHP version %s.  You need to upgrade to PHP %s."), phpversion(), $MIN_PHP_MAJOR_VERSION),
 		"fail-incompatible" => sprintf(_("You're running PHP version %s which has known bugs that cause Gallery to fail."),  phpversion()),
 	),
+	"php" => array(
+		"desc" => _("Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP 4.0.0 uses a different file upload protocol, and versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can. <p>") ,
+	     	"func" => "check_php",
+		"fail-too-old" => sprintf(_("You're running PHP version %s.  You need to upgrade to PHP %s."), phpversion(), $MIN_PHP_MAJOR_VERSION),
+		"fail-incompatible" => sprintf(_("You're running PHP version %s which has known bugs that cause Gallery to fail."),  phpversion()),
+	),
+	"buggy_php" => array(
+		"desc" => _("Were are using a predefined Variable and the output it buggy in some PHP Version."),
+	     	"func" => "check_filedirective",
+		"buggy__FILE__" => _("It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"),
+		"serious" => 1
+	),
 	"safe_mode" => array(
 		"desc" => _("Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."),
 		"func" => "check_safe_mode",

@@ -1354,4 +1354,20 @@ function displayNameOptions() {
 		     );
 }
 
+function check_filedirective() {
+	$success = array();
+	$fail = array();
+	$warn = array();
+
+	if (strstr(__FILE__, 'setup/functions.inc') ||
+		strstr(__FILE__, 'setup\\functions.inc')) {
+		$success[]=_("Predefined Variable works fine");
+	} else {
+		$fail['buggy__FILE__']=1;
+	}
+
+return array($success, $fail, $warn);
+}
+
+
 ?>
