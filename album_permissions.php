@@ -347,9 +347,6 @@ echo makeFormIntro("album_permissions.php",
 
 </div>
 </center>
-<?php if ($gallery->user->isAdmin() || $gallery->app->devMode == "yes") {
-       	print "<p>";
-       	print gallery_validation_link("album_permissions.php");
-} ?>
+<?php print gallery_validation_link("album_permissions.php"); ?>
 </body>
 </html>

@@ -19,13 +19,10 @@
     <?php print poweredBy() ?>
     </span>
     </td>
-<?php if ($gallery->user->isAdmin() || $gallery->app->devMode == "yes") {
-       	if (! isset($GALLERY_EMBEDDED_INSIDE)) {
+<?php if (! isset($GALLERY_EMBEDDED_INSIDE)) {
 	       	print '<td align="right">';
-	       	print gallery_validation_link("albums.php");
-	       	print "Not valid yet.";
+	       	print gallery_validation_link("albums.php", false);
 		print "</td>";
-       	} 
 }?>
     </tr>
     </table>

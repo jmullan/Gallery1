@@ -17,13 +17,11 @@
 	    <?php print poweredBy() ?>
             </span>
           <!-- PayPal donation block -->
-	  <?php if ($gallery->user->isAdmin() || $gallery->app->devMode == 'yes') { 
-		  if (! isset($GALLERY_EMBEDDED_INSIDE)) {
-			  print "<br><br>";
-			  print album_validation_link($gallery->session->albumName);                      
-			  print "Not valid yet.";
+		  <?php if (! isset($GALLERY_EMBEDDED_INSIDE)) {
+			  print album_validation_link($gallery->session->albumName, NULL, false);                      
 		  } ?>
 		  </td>        
+	  <?php if ($gallery->user->isAdmin() ) { ?>
 
           <td width=300 align=right>
             <span class="fineprint">
