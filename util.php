@@ -180,7 +180,7 @@ function exec_internal($cmd) {
 
 	$debugfile = "";
 	if (isDebugging()) {
-		print "<p><b>Executing:<ul>$cmd</ul></b>";
+		print "<p><b>". _("Executing:") ."<ul>$cmd</ul></b>";
 		$debugfile = tempnam($gallery->app->tmpDir, "dbg");
 	}
 

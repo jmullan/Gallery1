@@ -798,13 +798,13 @@ $defaults = array(
 	),
 	'max_size' => array(
 		'prompt' => _('Maximum image size'),
-		'desc' => _("You can optionally limit the dimensions your images on upload to Gallery.") . "<span style=\"color: red; font-weight:bold\">"  . _("Warning") . ':</span>'. _("Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2).") . newIn("1.4.1"),
+		'desc' => _("You can optionally limit the dimensions your images on upload to Gallery.") . "<br><span style=\"color: red; font-weight:bold\">"  . _("Warning") . ':</span> '. _("Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2).") . newIn("1.4.1"),
 		'value' => 'off',
 		'choices' => array('off' => _('off'), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3))
 	),
 	'max_file_size' => array(
 		'prompt' => _('Maximum JPEG/PNG image file size'),
-		'desc' => _("You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery.") . "<span style=\"color: red; font-weight:bold\">" . _("Warning") . ':</span>' . _("Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize.") . newIn("1.4.1"),
+		'desc' => _("You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery.") . "<br><span style=\"color: red; font-weight:bold\">" . _("Warning") . ':</span> ' . _("Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize.") . newIn("1.4.1"),
 		'value' => 0,
 		'optional' => 1,
 		'type' => 'text'
