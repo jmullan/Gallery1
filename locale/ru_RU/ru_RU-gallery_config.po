@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.3\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-03-04 02:18+0100\n"
+"POT-Creation-Date: 2004-03-09 13:38+0100\n"
 "PO-Revision-Date: 2004-02-20 12:34+0600\n"
 "Last-Translator: Yuri Gural <yurigural@inbox.ru>\n"
 "Language-Team: Yuri Gural <yurigural@inbox.ru>\n"
@@ -181,7 +181,6 @@ msgstr "Неудачно!"
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr "Многоязычный режим"
 
-#
 #: ../setup/check.inc:154
 msgid "You must fix them before you can continue."
 msgstr ""
@@ -194,7 +193,6 @@ msgstr ""
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr "При установке обнаружены предостережения, но это нормально. Продолжайте!"
 
-#
 #: ../setup/check.inc:166
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr ""
@@ -205,9 +203,11 @@ msgstr ""
 msgid "Next Page"
 msgstr "Следующая страница"
 
+#
 #: ../setup/check_imagemagick.php:30
+#, fuzzy
 msgid "Gallery ImageMagick Check"
-msgstr ""
+msgstr "Проверка NetPBM галереи"
 
 #
 #: ../setup/check_imagemagick.php:36 ../setup/check_netpbm.php:36
@@ -330,15 +330,15 @@ msgstr "Файл %s не существует."
 msgid "Expected status: %s, but actually received status %s."
 msgstr ""
 
-#
 #: ../setup/check_imagemagick.php:241 ../setup/check_netpbm.php:275
 msgid "can't detect version on Windows"
 msgstr ""
 
+#
 #: ../setup/check_imagemagick.php:252 ../setup/check_netpbm.php:301
-#, php-format
+#, fuzzy, php-format
 msgid "OK!  Version: %s"
-msgstr ""
+msgstr "Проверка версий"
 
 #
 #: ../setup/check_mail.php:31 ../setup/check_mail.php:36
@@ -436,9 +436,9 @@ msgid "%sClick here%s to see more details"
 msgstr "%sЩелкните здесь%s чтобы увидеть подробности "
 
 #: ../setup/check_versions.php:69
-#, php-format
+#, fuzzy, php-format
 msgid "%s missing, corrupt or older than expected."
-msgstr ""
+msgstr "%s новее чем ожидалось."
 
 #: ../setup/check_versions.php:70 ../setup/check_versions.php:98
 #: ../setup/check_versions.php:122
@@ -452,8 +452,9 @@ msgstr "файлов"
 
 #: ../setup/check_versions.php:71 ../setup/check_versions.php:98
 #: ../setup/check_versions.php:123
+#, fuzzy
 msgid "No files"
-msgstr ""
+msgstr "файлов"
 
 #: ../setup/check_versions.php:76
 #, php-format
@@ -590,8 +591,9 @@ msgid "I can't find NetPBM.  If it's installed and not in the path of the webser
 msgstr "Я не могу найти NetPBM. Если он был установлен, но не в пользовательском каталоге вебсервера&#8212;на следующей странице вы можете указать путь к NetPBM вручную. Если же он не установлен, у вас есть два варианта: "
 
 #: ../setup/config_data.inc:135
+#, fuzzy
 msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page."
-msgstr ""
+msgstr "Я не могу найти NetPBM. Если он был установлен, но не в пользовательском каталоге вебсервера&#8212;на следующей странице вы можете указать путь к NetPBM вручную. Если же он не установлен, у вас есть два варианта: "
 
 #: ../setup/config_data.inc:141
 msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."
@@ -778,7 +780,6 @@ msgstr "Путь к NetPBM"
 msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
 msgstr "Путь к каталогу, в вашей системе, содержащего NetPBM. Если вы загрузили NetPBM со страницы загрузки галереи, не забывайте делать файлы исполняемыми. Например: %s или %s"
 
-#
 #: ../setup/config_data.inc:320
 msgid "I can't find NetPBM at the location you provided."
 msgstr ""
@@ -802,7 +803,6 @@ msgstr "Путь к ImageMagick"
 msgid "The path to the directory containing ImageMagick on your system."
 msgstr "Путь к каталогу содержащего ImageMagick в вашей системе."
 
-#
 #: ../setup/config_data.inc:341
 msgid "I can't find ImageMagick at the location you provided."
 msgstr ""
@@ -861,7 +861,6 @@ msgstr "да"
 msgid "no"
 msgstr "нет"
 
-#
 #: ../setup/config_data.inc:358 ../setup/config_data.inc:454
 #: ../setup/config_data.inc:519 ../setup/config_data.inc:529
 #: ../setup/functions.inc:832 ../setup/functions.inc:905
@@ -1353,7 +1352,6 @@ msgstr ""
 msgid "Debug mode"
 msgstr "Режим отладки"
 
-#
 #: ../setup/config_data.inc:736
 msgid "Turn debug mode on so that you can diagnose problems?"
 msgstr ""
@@ -1440,8 +1438,9 @@ msgstr ""
 
 #
 #: ../setup/config_data.inc:841
+#, fuzzy
 msgid "Default Rows"
-msgstr ""
+msgstr "Шрифт по умолчанию"
 
 #: ../setup/config_data.inc:842
 msgid "The default number of rows in an album."
@@ -1458,12 +1457,10 @@ msgstr "Обработка и сохранение фотографий"
 msgid "Thumbnail size"
 msgstr "Размер макета"
 
-#
 #: ../setup/config_data.inc:852
 msgid "The default target size (in pixels) of album thumbnails."
 msgstr ""
 
-#
 #: ../setup/config_data.inc:858
 msgid "Resized image size"
 msgstr ""
@@ -1509,7 +1506,6 @@ msgstr ""
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
 msgstr ""
 
-#
 #: ../setup/config_data.inc:885
 msgid "Preserve Names"
 msgstr ""
@@ -1526,7 +1522,6 @@ msgstr ""
 msgid "New images added to beginning rather than end of albums."
 msgstr ""
 
-#
 #: ../setup/config_data.inc:897
 msgid "Fit-to-window"
 msgstr ""
@@ -1535,7 +1530,6 @@ msgstr ""
 msgid "When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
 msgstr ""
 
-#
 #: ../setup/config_data.inc:903
 msgid "Visitor size prefs"
 msgstr ""
@@ -1564,9 +1558,11 @@ msgstr ""
 msgid "with donation"
 msgstr "редактировать заголовки"
 
+#
 #: ../setup/config_data.inc:925
+#, fuzzy
 msgid "without donation"
-msgstr ""
+msgstr "редактировать заголовки"
 
 #
 #: ../setup/config_data.inc:949
@@ -1581,7 +1577,6 @@ msgstr ""
 msgid "Data displayed"
 msgstr ""
 
-#
 #: ../setup/config_data.inc:959
 msgid "Click counts"
 msgstr ""
@@ -1614,18 +1609,23 @@ msgstr ""
 msgid "Item Owner"
 msgstr "Владелец"
 
+#
 #: ../setup/config_data.inc:983
+#, fuzzy
 msgid "Photo owner modification"
-msgstr ""
+msgstr "Показывать владельца фотографии"
 
+#
 #: ../setup/config_data.inc:984
+#, fuzzy
 msgid "Allow photo owners to edit and rotate/flip their own photos?"
-msgstr ""
+msgstr "Разрешить владельцам фотографий удалять их собственные фотографии?"
 
 #
 #: ../setup/config_data.inc:989
+#, fuzzy
 msgid "Photo owner deletion"
-msgstr ""
+msgstr "Показывать владельца фотографии"
 
 #
 #: ../setup/config_data.inc:990
@@ -1661,10 +1661,12 @@ msgstr ""
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr ""
 
+#
 #: ../setup/config_data.inc:1010 ../setup/config_data.inc:1013
 #: ../setup/config_data.inc:1034 ../setup/config_data.inc:1039
+#, fuzzy
 msgid "Rank"
-msgstr ""
+msgstr " беспорядочно"
 
 #: ../setup/config_data.inc:1011 ../setup/config_data.inc:1012
 #: ../setup/config_data.inc:1036 ../setup/config_data.inc:1040
@@ -1794,9 +1796,11 @@ msgstr ""
 msgid "Excellent"
 msgstr ""
 
+#
 #: ../setup/config_data.inc:1084
+#, fuzzy
 msgid "Very Good"
-msgstr ""
+msgstr "Вперед"
 
 #
 #: ../setup/config_data.inc:1085
@@ -1838,9 +1842,9 @@ msgid "Set to %s if you want to include images in sub albums as part of the slid
 msgstr ""
 
 #: ../setup/config_data.inc:1121
-#, php-format
+#, fuzzy, php-format
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
-msgstr ""
+msgstr "Эта опция разрешает посетителям повторять показ слайдов, пока они не закроют окно или не перейдут на другую страницу. Установите %s, если вы хотите сохранить производительность."
 
 #
 #: ../setup/config_data.inc:1135
@@ -1848,9 +1852,9 @@ msgid "Frames"
 msgstr "Рамки"
 
 #: ../setup/config_data.inc:1136
-#, php-format
+#, fuzzy, php-format
 msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"
-msgstr ""
+msgstr "На главной странице, изображение которое представляет альбом, имеет вокруг него рамку. Доступны следющие стили:"
 
 #
 #: ../setup/config_data.inc:1140
@@ -1868,8 +1872,9 @@ msgid "Frame around thumbs"
 msgstr "Рамка вокруг макетов"
 
 #: ../setup/config_data.inc:1147
+#, fuzzy
 msgid "This frame will appear around the thumbnail image representing a photo or movie."
-msgstr ""
+msgstr "Путь к макету для показа фильмов. Напимер: %s"
 
 #
 #: ../setup/config_data.inc:1153
@@ -1902,13 +1907,15 @@ msgstr "отсутствует"
 
 #
 #: ../setup/confirm.inc:87
+#, fuzzy
 msgid "it's optional"
-msgstr ""
+msgstr "редактировать заголовки"
 
 #
 #: ../setup/confirm.inc:181 ../setup/confirm.inc:182
+#, fuzzy
 msgid "optional"
-msgstr ""
+msgstr "Горизонтально"
 
 #
 #: ../setup/confirm.inc:201
@@ -1928,15 +1935,17 @@ msgstr "%s: <b>%s</b> должно быть правильное имя файла (не каталог)!"
 msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>\"%s\"</b> должен быть положительным числом"
 
+#
 #: ../setup/confirm.inc:230
-#, php-format
+#, fuzzy, php-format
 msgid "%s: <b>%s</b> must not be zero"
-msgstr ""
+msgstr "%s: <b>%s</b> должен быть абсолютный URL!"
 
+#
 #: ../setup/confirm.inc:240
-#, php-format
+#, fuzzy, php-format
 msgid "%s: <b>%s</b> must be an executable file!"
-msgstr ""
+msgstr "%s: <b>%s</b> должен быть абсолютный URL!"
 
 #: ../setup/confirm.inc:249
 #, php-format
@@ -1975,7 +1984,6 @@ msgstr ""
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr ""
 
-#
 #: ../setup/confirm.inc:372
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr ""
@@ -2000,33 +2008,38 @@ msgstr "Редактировать конфигурацию"
 
 #
 #: ../setup/confirm.inc:456 ../setup/confirm.inc:471
+#, fuzzy
 msgid "Save Config"
-msgstr ""
+msgstr "Редактировать конфигурацию"
 
 #: ../setup/confirm.inc:459
 #, php-format
 msgid "%s.  Details below."
 msgstr ""
 
+#
 #: ../setup/confirm.inc:459
+#, fuzzy
 msgid "One error"
-msgstr ""
+msgstr "ошибки"
 
 #
 #: ../setup/confirm.inc:459
 msgid "errors"
 msgstr "ошибки"
 
+#
 #: ../setup/confirm.inc:459
+#, fuzzy
 msgid "no errors"
-msgstr ""
+msgstr "ошибки"
 
 #
 #: ../setup/confirm.inc:474
+#, fuzzy
 msgid "There are errors in your configuration."
-msgstr ""
+msgstr "Эта страница выполняет очень простой тест с вашей настройкой сессий в PHP."
 
-#
 #: ../setup/confirm.inc:475
 msgid "Please go back and fix them!"
 msgstr ""
@@ -2095,7 +2108,6 @@ msgstr "Инструмент"
 msgid "Description"
 msgstr "Описание"
 
-#
 #: ../setup/diagnostics.php:52
 msgid "PHP Info"
 msgstr ""
@@ -2226,7 +2238,6 @@ msgstr ""
 msgid "Can't find %s!"
 msgstr "Не могу найти %s!"
 
-#
 #: ../setup/functions.inc:477 ../setup/functions.inc:533
 #, php-format
 msgid "%s is not executable!"
@@ -2251,16 +2262,18 @@ msgid "<b>jpegtran</b> binary located."
 msgstr ""
 
 #: ../setup/functions.inc:581
+#, fuzzy
 msgid "PHP has <b>GNU gettext</b> support."
-msgstr ""
+msgstr "PHP не поддерживает <b>GNU gettext</b>."
 
 #: ../setup/functions.inc:583
 msgid "PHP does not have <b>GNU gettext</b> support."
 msgstr "PHP не поддерживает <b>GNU gettext</b>."
 
 #: ../setup/functions.inc:598
+#, fuzzy
 msgid "No languages found."
-msgstr ""
+msgstr "Многоязычный режим"
 
 #: ../setup/functions.inc:600
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
@@ -2277,9 +2290,9 @@ msgid "You can check for more recent versions by visiting %s."
 msgstr "Вы можете проверить наличие последних версий посетив %s."
 
 #: ../setup/functions.inc:629
-#, php-format
+#, fuzzy, php-format
 msgid "This version of %s was released on %s."
-msgstr ""
+msgstr "Данная разработка под названием %s, выпущена %s."
 
 #: ../setup/functions.inc:631
 #, php-format
@@ -2336,12 +2349,14 @@ msgid "System locale"
 msgstr ""
 
 #: ../setup/functions.inc:905
+#, fuzzy
 msgid "<b>System</b> locale problems"
-msgstr ""
+msgstr "Требуется выбор <b>системной</b> локализации"
 
 #: ../setup/functions.inc:906
+#, fuzzy
 msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
-msgstr ""
+msgstr "Имеется больше одной подходящей <b>системной</b> локализации, установленной на вашем компьютере для следующих языков. Пожалуйста, выберите один, наиболее подходящий на ваш взгляд."
 
 #: ../setup/functions.inc:951
 msgid "<b>safe_mode</b> is off."
@@ -2370,9 +2385,11 @@ msgstr ""
 msgid "Your admin passwords do not match!"
 msgstr ""
 
+#
 #: ../setup/functions.inc:1184
+#, fuzzy
 msgid "Valid admin email address given."
-msgstr ""
+msgstr "Email адрес администратора"
 
 #
 #: ../setup/functions.inc:1191
@@ -2380,14 +2397,17 @@ msgstr ""
 msgid "You must specify valid admin email addresses"
 msgstr "Вы должны указать пароль"
 
+#
 #: ../setup/functions.inc:1199
-#, php-format
+#, fuzzy, php-format
 msgid "%s is not a valid email address."
-msgstr ""
+msgstr "Вы должны использовать правильные e-mail адреса"
 
+#
 #: ../setup/functions.inc:1208
+#, fuzzy
 msgid "Valid sender email address given."
-msgstr ""
+msgstr "Email адрес отправителя"
 
 #
 #: ../setup/functions.inc:1210
@@ -2425,9 +2445,9 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d файлов новее чем ожидалось. Это нормально, если вы используете pre-release, beta, CVS или измененный код."
 
 #: ../setup/functions.inc:1253
-#, php-format
+#, fuzzy, php-format
 msgid "All %d tested files up-to-date."
-msgstr ""
+msgstr "%s соответсвуют версии."
 
 #: ../setup/functions.inc:1261
 #, php-format
@@ -2573,7 +2593,6 @@ msgstr ""
 msgid "Gallery Configuration"
 msgstr "Конфигурация галереи"
 
-#
 #: ../setup/index.php:55
 msgid "unknown"
 msgstr ""
@@ -2646,11 +2665,12 @@ msgstr ""
 msgid "An account called %s has been created for you with the password you specified."
 msgstr ""
 
-#: ../setup/write.inc:194
-msgid "Success!"
-msgstr ""
-
 #
+#: ../setup/write.inc:194
+#, fuzzy
+msgid "Success!"
+msgstr "Успешно"
+
 #: ../setup/write.inc:197
 msgid "Your configuration has been successfully saved!"
 msgstr ""
@@ -2670,8 +2690,9 @@ msgstr ""
 
 #
 #: ../setup/write.inc:218
+#, fuzzy
 msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
-msgstr ""
+msgstr "И затем запустите %sмастер конфигурации%s"
 
 #: ../setup/write.inc:220
 msgid "It will save your data so you won't have to enter it all again!"
@@ -2684,8 +2705,9 @@ msgstr ""
 
 #
 #: ../setup/write.inc:230
+#, fuzzy
 msgid "Enter the Gallery"
-msgstr ""
+msgstr "Галерея"
 
 #
 #: ../setup/write.inc:240

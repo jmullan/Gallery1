@@ -33,6 +33,11 @@ if(substr(PHP_OS, 0, 3) == 'WIN') {
 
 include (dirname(dirname(__FILE__)) . '/util.php');
 
+/*
+ * Turn down the error reporting to just critical errors for now.
+ */
+error_reporting(E_ALL & ~E_NOTICE);
+
 $poFiles = findPoFiles(dirname(dirname(__FILE__)) . '/locale');
 list ($reportData, $total_percentDone) = parsePoFiles($poFiles);
 require(dirname(__FILE__) . '/include/main.inc');

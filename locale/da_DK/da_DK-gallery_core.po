@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-03-04 17:08+0100\n"
+"POT-Creation-Date: 2004-03-09 13:38+0100\n"
 "PO-Revision-Date: 2003-12-11 14:41+0100\n"
 "Last-Translator: Niels Elgaard Larsen <elgaard@agol.dk>\n"
 "Language-Team: Niels Elgaard Larsen <elgaard@agol.dk>\n"
@@ -54,7 +54,7 @@ msgid "Security violation"
 msgstr "Sikkerhedssvigt"
 
 #
-#: ../add_comment.php:64 ../classes/Album.php:798
+#: ../add_comment.php:64 ../classes/Album.php:804
 msgid "No email sent as no valid email addresses were found"
 msgstr "Ingen email sendt da ingen gyldig emailadresse blev fundet"
 
@@ -75,7 +75,7 @@ msgstr "Skriv din kommentar til dette billede i feltet nedenunder."
 msgid "Name or email:"
 msgstr "Navn eller e-post:"
 
-#: ../add_comment.php:150 ../album_permissions.php:344 ../edit_caption.php:181
+#: ../add_comment.php:150 ../album_permissions.php:344 ../edit_caption.php:184
 #: ../edit_field.php:66 ../edit_field.php:77 ../modify_user.php:158
 #: ../new_password.php:135 ../photo_owner.php:109 ../user_preferences.php:125
 msgid "Save"
@@ -83,7 +83,7 @@ msgstr "Gem"
 
 #: ../add_comment.php:151 ../copy_photo.php:206 ../create_user.php:156
 #: ../delete_album.php:69 ../delete_photo.php:111 ../delete_photo.php:132
-#: ../delete_user.php:85 ../edit_caption.php:182 ../edit_field.php:78
+#: ../delete_user.php:85 ../edit_caption.php:185 ../edit_field.php:78
 #: ../includes/add_photos/add_form.inc:79
 #: ../includes/add_photos/add_form_one.inc:72
 #: ../includes/add_photos/add_url.inc:42 ../login.php:132
@@ -368,6 +368,11 @@ msgstr "Omdøb"
 
 #
 #: ../albums.php:359
+msgid "Note:  This album is out of date!"
+msgstr "Obs:  Dette album er forældet!"
+
+#
+#: ../albums.php:359
 msgid "upgrade album"
 msgstr "opgrader album"
 
@@ -477,19 +482,19 @@ msgstr "Afslut"
 msgid "Album Caption:"
 msgstr "Albumbeskrivelse:"
 
-#: ../captionator.php:270 ../edit_caption.php:87
+#: ../captionator.php:270 ../edit_caption.php:90
 #: ../includes/add_photos/add_form.inc:71
 #: ../includes/add_photos/add_form_one.inc:45
 msgid "Caption"
 msgstr "Billedtekst"
 
 #
-#: ../captionator.php:281 ../edit_caption.php:105 ../extra_fields.php:116
+#: ../captionator.php:281 ../edit_caption.php:108 ../extra_fields.php:116
 msgid "Title"
 msgstr "Titel"
 
 #
-#: ../captionator.php:290 ../edit_caption.php:117
+#: ../captionator.php:290 ../edit_caption.php:120
 msgid "Keywords"
 msgstr "Nøgleord"
 
@@ -509,82 +514,82 @@ msgid "Untitled"
 msgstr "Uden navn"
 
 #
-#: ../classes/Album.php:211
+#: ../classes/Album.php:219
 msgid "Album up to date."
 msgstr "Album opdateret."
 
 #
-#: ../classes/Album.php:215
+#: ../classes/Album.php:223
 msgid "Upgrading album properties..."
 msgstr "Opgraderer albumegenskaper..."
 
 #
-#: ../classes/Album.php:358
+#: ../classes/Album.php:366
 #, fuzzy, php-format
 msgid "Renaming album from %s to %s..."
 msgstr "omdøb album"
 
 #
-#: ../classes/Album.php:391 ../classes/Album.php:408
+#: ../classes/Album.php:399 ../classes/Album.php:416
 msgid "done"
 msgstr "udført"
 
 #
-#: ../classes/Album.php:399
+#: ../classes/Album.php:407
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "Opgraderer %d af %d . . ."
 
-#: ../classes/Album.php:777
+#: ../classes/Album.php:783
 msgid "msg should be an array!"
 msgstr "besked skal være en tabel!"
 
-#: ../classes/Album.php:893
+#: ../classes/Album.php:899
 msgid "Resizing/compressing original image"
 msgstr "Ændrer størrelse på/komprimerer originalbilledet"
 
-#: ../classes/Album.php:897
+#: ../classes/Album.php:903
 msgid "Cannot resize/compress this filetype"
 msgstr "Kan ikke ændre størrelsen/komprimere denne filtype"
 
 #
-#: ../classes/Album.php:945
+#: ../classes/Album.php:951
 #, php-format
 msgid "Resizing %s"
 msgstr "Ændrer størrelse på %s"
 
-#: ../classes/Album.php:985
+#: ../classes/Album.php:991
 msgid "Photo auto-rotated/transformed"
 msgstr "Billede autoroteret/tranformeret"
 
 #
-#: ../classes/Album.php:1091 ../classes/Album.php:1101
-#: ../classes/AlbumItem.php:514
+#: ../classes/Album.php:1097 ../classes/Album.php:1107
+#: ../classes/AlbumItem.php:528
 msgid "No highlight"
 msgstr "Intet forsidebillede"
 
-#: ../classes/Album.php:1953
+#: ../classes/Album.php:1965
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2091
+#: ../classes/Album.php:2103
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Emailproblem: Springer %s (UID %s) over fordi email adressen %s ikke er gyldig."
 
 #
-#: ../classes/AlbumItem.php:436
+#: ../classes/AlbumItem.php:450
 msgid "Invalid image"
 msgstr "Ugyldig billede"
 
 #
-#: ../classes/AlbumItem.php:494
+#: ../classes/AlbumItem.php:508
 msgid "Unable to make thumbnail"
 msgstr "Kan ikke lave ikon"
 
 #
-#: ../classes/AlbumItem.php:506
+#: ../classes/AlbumItem.php:520
 msgid "No thumbnail"
 msgstr "Intet ikon"
 
@@ -1124,53 +1129,53 @@ msgid "Close"
 msgstr "Luk"
 
 #
-#: ../edit_caption.php:70
+#: ../edit_caption.php:73
 msgid "Year must be between 1000 and 3000"
 msgstr "Året skal være mellem 1000 og 3000"
 
 #
-#: ../edit_caption.php:76 ../view_album.php:943
+#: ../edit_caption.php:79 ../view_album.php:943
 msgid "Edit Text"
 msgstr "Ret tekst"
 
 #
-#: ../edit_caption.php:82
+#: ../edit_caption.php:85
 #, fuzzy
 msgid "Edit Caption"
 msgstr "ret billedtekst"
 
 #
-#: ../edit_caption.php:141
+#: ../edit_caption.php:144
 msgid "Photo Capture Date"
 msgstr "billed taget dato"
 
 #
-#: ../edit_caption.php:144
+#: ../edit_caption.php:147
 msgid "Month"
 msgstr "Måned"
 
 #
-#: ../edit_caption.php:145
+#: ../edit_caption.php:148
 msgid "Day"
 msgstr "Dag"
 
 #
-#: ../edit_caption.php:146
+#: ../edit_caption.php:149
 msgid "Year"
 msgstr "År"
 
 #
-#: ../edit_caption.php:147
+#: ../edit_caption.php:150
 msgid "Hours"
 msgstr "Timer"
 
 #
-#: ../edit_caption.php:148
+#: ../edit_caption.php:151
 msgid "Minutes"
 msgstr "Minutter"
 
 #
-#: ../edit_caption.php:149
+#: ../edit_caption.php:152
 msgid "Seconds"
 msgstr "Sekunder"
 
@@ -1446,7 +1451,7 @@ msgid "RANDOM!"
 msgstr ""
 
 #
-#: ../includes/slideshow/high.inc:316 ../includes/slideshow/low.inc:315
+#: ../includes/slideshow/high.inc:316 ../includes/slideshow/low.inc:295
 msgid "play"
 msgstr "afspil"
 
@@ -1457,7 +1462,7 @@ msgstr "Fremvisningen er stoppet, Klik på [afspil] for at fortsætte."
 
 #
 #: ../includes/slideshow/high.inc:325 ../includes/slideshow/high.inc:506
-#: ../includes/slideshow/low.inc:314
+#: ../includes/slideshow/low.inc:294
 msgid "stop"
 msgstr "stop"
 
@@ -1468,7 +1473,7 @@ msgid "Slide show is running..."
 msgstr "Fremvisning i gang..."
 
 #
-#: ../includes/slideshow/high.inc:333 ../includes/slideshow/low.inc:330
+#: ../includes/slideshow/high.inc:333 ../includes/slideshow/low.inc:310
 msgid "normal size"
 msgstr "normal størrelse"
 
@@ -1479,7 +1484,7 @@ msgstr "Der fremvises billeder i fuld størrelse, Tryk [normal størrelse] for at 
 
 #
 #: ../includes/slideshow/high.inc:339 ../includes/slideshow/high.inc:510
-#: ../includes/slideshow/low.inc:333
+#: ../includes/slideshow/low.inc:313
 msgid "full size"
 msgstr "fuld størrelse"
 
@@ -1488,40 +1493,40 @@ msgid "The slide is showing normal sized images, Click [full size] to view full 
 msgstr "Der fremvises biller i norman størrelse, Tryk [fuld størrelse] for at se billederne i fuld størrelse"
 
 #
-#: ../includes/slideshow/high.inc:348 ../includes/slideshow/low.inc:322
+#: ../includes/slideshow/high.inc:348 ../includes/slideshow/low.inc:302
 msgid "forward direction"
 msgstr "frem"
 
 #
 #: ../includes/slideshow/high.inc:351 ../includes/slideshow/high.inc:507
-#: ../includes/slideshow/low.inc:319
+#: ../includes/slideshow/low.inc:299
 msgid "reverse direction"
 msgstr "modsat retning"
 
 #
-#: ../includes/slideshow/high.inc:381 ../includes/slideshow/low.inc:202
+#: ../includes/slideshow/high.inc:381 ../includes/slideshow/low.inc:199
 msgid "Picture is loading..."
 msgstr "Henter billede..."
 
 #
 #: ../includes/slideshow/high.inc:381 ../includes/slideshow/high.inc:479
-#: ../includes/slideshow/low.inc:202 ../includes/slideshow/low.inc:404
+#: ../includes/slideshow/low.inc:199 ../includes/slideshow/low.inc:384
 msgid "of"
 msgstr "af"
 
 #
-#: ../includes/slideshow/high.inc:382 ../includes/slideshow/low.inc:203
+#: ../includes/slideshow/high.inc:382 ../includes/slideshow/low.inc:200
 #: ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "vent..."
 
 #
-#: ../includes/slideshow/high.inc:516 ../includes/slideshow/low.inc:338
+#: ../includes/slideshow/high.inc:516 ../includes/slideshow/low.inc:318
 msgid "Delay:"
 msgstr "Pause:"
 
 #
-#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:340
+#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:320
 msgid "second"
 msgstr "sekund"
 
@@ -1530,11 +1535,11 @@ msgstr "sekund"
 #: ../includes/slideshow/high.inc:521 ../includes/slideshow/high.inc:522
 #: ../includes/slideshow/high.inc:523 ../includes/slideshow/high.inc:524
 #: ../includes/slideshow/high.inc:525 ../includes/slideshow/high.inc:526
-#: ../includes/slideshow/high.inc:527 ../includes/slideshow/low.inc:341
-#: ../includes/slideshow/low.inc:342 ../includes/slideshow/low.inc:343
-#: ../includes/slideshow/low.inc:344 ../includes/slideshow/low.inc:345
-#: ../includes/slideshow/low.inc:346 ../includes/slideshow/low.inc:347
-#: ../includes/slideshow/low.inc:348 ../includes/slideshow/low.inc:349
+#: ../includes/slideshow/high.inc:527 ../includes/slideshow/low.inc:321
+#: ../includes/slideshow/low.inc:322 ../includes/slideshow/low.inc:323
+#: ../includes/slideshow/low.inc:324 ../includes/slideshow/low.inc:325
+#: ../includes/slideshow/low.inc:326 ../includes/slideshow/low.inc:327
+#: ../includes/slideshow/low.inc:328 ../includes/slideshow/low.inc:329
 msgid "seconds"
 msgstr "sekunder"
 
@@ -1544,17 +1549,17 @@ msgid "Transition:"
 msgstr "Overgang:"
 
 #
-#: ../includes/slideshow/high.inc:550 ../includes/slideshow/low.inc:355
+#: ../includes/slideshow/high.inc:550 ../includes/slideshow/low.inc:335
 msgid "Loop"
 msgstr "Sløjfe"
 
 #
-#: ../includes/slideshow/high.inc:617 ../includes/slideshow/low.inc:418
+#: ../includes/slideshow/high.inc:617 ../includes/slideshow/low.inc:395
 msgid "This album has no photos to show in a slide show."
 msgstr "Dette album har ingen billeder til fremvisning."
 
 #
-#: ../includes/slideshow/high.inc:621 ../includes/slideshow/low.inc:422
+#: ../includes/slideshow/high.inc:621 ../includes/slideshow/low.inc:399
 msgid "back to album"
 msgstr "tilbage til album"
 
@@ -2157,13 +2162,13 @@ msgstr "Vend tilbage til %s"
 msgid "Results Breakdown"
 msgstr "Opgørelse af resultater"
 
-#: ../poll_results.php:157 ../util.php:2072 ../view_album.php:543
+#: ../poll_results.php:157 ../util.php:2071 ../view_album.php:543
 #: ../view_album.php:843
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: ../poll_results.php:172 ../util.php:2139
+#: ../poll_results.php:172 ../util.php:2138
 msgid "No votes so far."
 msgstr "Ingen stemmer foreløbigt"
 
@@ -2956,7 +2961,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP's %s kan ikke afgøre dimensionerne"
 
 #
-#: ../util.php:253 ../util.php:590 ../util.php:636 ../util.php:2460
+#: ../util.php:253 ../util.php:590 ../util.php:636 ../util.php:2459
 msgid "You have no graphics package configured for use!"
 msgstr "Du har ikke en brugbar konfigureret grafikpakke!"
 
@@ -3096,180 +3101,180 @@ msgstr "Total antal point i kantede paranteser"
 msgid "Average points in brackets"
 msgstr "Gennemsnitligt antal point i kantede paranteser"
 
-#: ../util.php:2100 ../util.php:2115
+#: ../util.php:2099 ../util.php:2114
 msgid "1 voter"
 msgstr "1 stemmeafgiver"
 
-#: ../util.php:2101 ../util.php:2115
+#: ../util.php:2100 ../util.php:2114
 msgid "voters"
 msgstr "stemmeafgivere"
 
-#: ../util.php:2102 ../util.php:2116
+#: ../util.php:2101 ../util.php:2115
 msgid "0 voters"
 msgstr "0 stemmeafgivere"
 
-#: ../util.php:2113
+#: ../util.php:2112
 #, php-format
 msgid "Results from %s."
 msgstr "Resultater fra %s."
 
-#: ../util.php:2126
+#: ../util.php:2125
 #, php-format
 msgid "%s: %s points; "
 msgstr "%s: %s punkter; "
 
-#: ../util.php:2132
+#: ../util.php:2131
 #, php-format
 msgid "Key - %s"
 msgstr "Nøgle - %s"
 
-#: ../util.php:2163
+#: ../util.php:2162
 msgid "Poll results:"
 msgstr "Afstemningsresultater:"
 
 #
-#: ../util.php:2166
+#: ../util.php:2165
 msgid "No votes"
 msgstr "Ingen stemmer"
 
-#: ../util.php:2170
+#: ../util.php:2169
 #, php-format
 msgid "Number %d overall."
 msgstr "Nummer %d i alt"
 
-#: ../util.php:2175
+#: ../util.php:2174
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: ../util.php:2176 ../view_album.php:606
+#: ../util.php:2175 ../view_album.php:606
 msgid "1 vote"
 msgstr "1 stemme"
 
-#: ../util.php:2176 ../view_album.php:606
+#: ../util.php:2175 ../view_album.php:606
 msgid "votes"
 msgstr "stemmer"
 
-#: ../util.php:2176
+#: ../util.php:2175
 msgid "0 votes"
 msgstr "0 stemmer"
 
 #
-#: ../util.php:2187
+#: ../util.php:2186
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Springer over %s (ZIP-understøttelse ikke slået til)"
 
 #
-#: ../util.php:2261
+#: ../util.php:2260
 #, php-format
 msgid "Adding %s"
 msgstr "Tilføjer %s"
 
 #
-#: ../util.php:2272
+#: ../util.php:2271
 #, php-format
 msgid "Error: %s!"
 msgstr "Fejl: %s!"
 
 #
-#: ../util.php:2274
+#: ../util.php:2273
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Har du brug for hjælp?  Se i  %s%s FAQ%s"
 
-#: ../util.php:2280
+#: ../util.php:2279
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Springer %s over (Kan ikke håndtere %s formatet)"
 
-#: ../util.php:2419
+#: ../util.php:2418
 msgid "documentation"
 msgstr "dokumentation"
 
-#: ../util.php:2445
+#: ../util.php:2444
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Kunne ikke bevare EXIF data (jhead er ikke installeret)"
 
-#: ../util.php:2470
+#: ../util.php:2469
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Genereret af %s v%s"
 
-#: ../util.php:2472
+#: ../util.php:2471
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2522
+#: ../util.php:2521
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Springer ugyldig emailadresse, %s, over"
 
-#: ../util.php:2588
+#: ../util.php:2587
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Bemærk: Dette er en automatisk genereret emailbesked sendt fra websiden %s. Hvis du motager denne ved en fejl, så ignorer den venligst"
 
-#: ../util.php:2590
+#: ../util.php:2589
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Meld misbrug til %s."
 
-#: ../util.php:2606
+#: ../util.php:2605
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Ingen email sendt, da det er slået fra i dette galleri"
 
-#: ../util.php:2610
+#: ../util.php:2609
 msgid "Email not sent as no address provided"
 msgstr "Email ikke sendt, da ingen emailadresse blev angive."
 
-#: ../util.php:2615
+#: ../util.php:2614
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Email ikke sendt til %s, da det ikke er en gyldig adresse"
 
-#: ../util.php:2630
+#: ../util.php:2629
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Afsenderadressen %s er ugyldig, bruger %s"
 
-#: ../util.php:2654 ../util.php:2659
+#: ../util.php:2653 ../util.php:2658
 msgid "not shown"
 msgstr "ikke vist"
 
-#: ../util.php:2663
+#: ../util.php:2662
 msgid "Message"
 msgstr "Besked"
 
 #
-#: ../util.php:2667
+#: ../util.php:2666
 msgid "Email sent"
 msgstr "Email sendt"
 
-#: ../util.php:2669
+#: ../util.php:2668
 msgid "Email not sent"
 msgstr "Email ikke sendt"
 
-#: ../util.php:2683
+#: ../util.php:2682
 #, php-format
 msgid "Last comment %s."
 msgstr "Sidste kommentar %s."
 
-#: ../util.php:2694
+#: ../util.php:2693
 msgid "FAILED"
 msgstr "FEJLET"
 
-#: ../util.php:2703
+#: ../util.php:2702
 msgid "Email activity"
 msgstr "Emailaktivitet"
 
-#: ../util.php:2721
+#: ../util.php:2720
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kunne ikke åbne logfil (%s)!"
 
-#: ../util.php:2728
+#: ../util.php:2727
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3282,54 +3287,54 @@ msgid ""
 msgstr ""
 
 #
-#: ../util.php:2737 ../util.php:2739
+#: ../util.php:2736 ../util.php:2738
 msgid "gallery title"
 msgstr "Galleriets titel"
 
-#: ../util.php:2738
+#: ../util.php:2737
 msgid "gallery URL"
 msgstr "Gallery link"
 
-#: ../util.php:2759
+#: ../util.php:2758
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>Ingen</dt><dd>Det originale look and feel.</dd>"
 
-#: ../util.php:2805 ../util.php:2810
+#: ../util.php:2804 ../util.php:2809
 msgid "None"
 msgstr "Ingen"
 
-#: ../util.php:2806 ../util.php:2811
+#: ../util.php:2805 ../util.php:2810
 msgid "Dots"
 msgstr "Prikker"
 
-#: ../util.php:2807 ../util.php:2812
+#: ../util.php:2806 ../util.php:2811
 msgid "Solid"
 msgstr "Solid"
 
-#: ../util.php:2810
+#: ../util.php:2809
 msgid "No frames"
 msgstr "Ingen rammer"
 
-#: ../util.php:2811
+#: ../util.php:2810
 msgid "Just a simple dashed border around the thumb."
 msgstr "Kun en enkel afbrudt kant omkring ikonet"
 
-#: ../util.php:2812
+#: ../util.php:2811
 msgid "Just a simple solid border around the thumb."
 msgstr "Kun en simpel ubrudt kant omkring ikonet"
 
-#: ../util.php:2833
+#: ../util.php:2832
 #, fuzzy, php-format
 msgid "Skipping %s."
 msgstr "Springer %d over"
 
-#: ../util.php:2839
+#: ../util.php:2838
 #, php-format
 msgid "Can't open %s"
 msgstr "Kunne ikke åbne %s."
 
 #
-#: ../util.php:2927 ../util.php:2946
+#: ../util.php:2926 ../util.php:2945
 #, fuzzy
 msgid "Not valid yet"
 msgstr "Ugyldig bruger"
@@ -3634,15 +3639,15 @@ msgid "This album is empty."
 msgstr "Dette album er tomt."
 
 #
-#: ../view_album.php:1091 ../view_photo.php:767
+#: ../view_album.php:1091 ../view_photo.php:764
 msgid "Email me when:"
 msgstr "Send email til mig når:"
 
-#: ../view_album.php:1092 ../view_photo.php:768
+#: ../view_album.php:1092 ../view_photo.php:765
 msgid "Comments are added"
 msgstr "Kommentarer tilføjet"
 
-#: ../view_album.php:1095 ../view_photo.php:772
+#: ../view_album.php:1095 ../view_photo.php:769
 msgid "Other changes are made"
 msgstr "Der er lavet andre ændringer"
 
@@ -3736,10 +3741,6 @@ msgstr "(hvis data er aktuelt, vil dette ikke have en synlig effekt)"
 #
 #~ msgid "view&nbsp;comments"
 #~ msgstr "vis&nbsp;kommentarer"
-
-#
-#~ msgid "Note:  This album is out of date!"
-#~ msgstr "Obs:  Dette album er forældet!"
 
 #
 #~ msgid "Skipping album %d..."

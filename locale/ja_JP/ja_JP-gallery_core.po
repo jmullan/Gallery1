@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.3\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-03-04 17:08+0100\n"
+"POT-Creation-Date: 2004-03-09 13:38+0100\n"
 "PO-Revision-Date: 2004-02-15 22:01+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m@yahoo.co.jp>\n"
 "Language-Team: Japanese <ken_w3m@yahoo.co.jp>\n"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Security violation"
 msgstr "セキュリティ侵害"
 
-#: ../add_comment.php:64 ../classes/Album.php:798
+#: ../add_comment.php:64 ../classes/Album.php:804
 msgid "No email sent as no valid email addresses were found"
 msgstr "有効なメールアドレスがみつからなかったため、メールは送信されませんでした。"
 
@@ -73,7 +73,7 @@ msgstr "この画像に対するコメントを下のテキストボックスに入力してください。"
 msgid "Name or email:"
 msgstr "名前かメールアドレス:"
 
-#: ../add_comment.php:150 ../album_permissions.php:344 ../edit_caption.php:181
+#: ../add_comment.php:150 ../album_permissions.php:344 ../edit_caption.php:184
 #: ../edit_field.php:66 ../edit_field.php:77 ../modify_user.php:158
 #: ../new_password.php:135 ../photo_owner.php:109 ../user_preferences.php:125
 msgid "Save"
@@ -81,7 +81,7 @@ msgstr "保存"
 
 #: ../add_comment.php:151 ../copy_photo.php:206 ../create_user.php:156
 #: ../delete_album.php:69 ../delete_photo.php:111 ../delete_photo.php:132
-#: ../delete_user.php:85 ../edit_caption.php:182 ../edit_field.php:78
+#: ../delete_user.php:85 ../edit_caption.php:185 ../edit_field.php:78
 #: ../includes/add_photos/add_form.inc:79
 #: ../includes/add_photos/add_form_one.inc:72
 #: ../includes/add_photos/add_url.inc:42 ../login.php:132
@@ -326,6 +326,10 @@ msgid "Rename"
 msgstr "名前変更"
 
 #: ../albums.php:359
+msgid "Note:  This album is out of date!"
+msgstr "注意: このアルバムは古い形式です。"
+
+#: ../albums.php:359
 msgid "upgrade album"
 msgstr "アルバムアップグレード"
 
@@ -418,17 +422,17 @@ msgstr "終了"
 msgid "Album Caption:"
 msgstr "アルバム説明:"
 
-#: ../captionator.php:270 ../edit_caption.php:87
+#: ../captionator.php:270 ../edit_caption.php:90
 #: ../includes/add_photos/add_form.inc:71
 #: ../includes/add_photos/add_form_one.inc:45
 msgid "Caption"
 msgstr "説明"
 
-#: ../captionator.php:281 ../edit_caption.php:105 ../extra_fields.php:116
+#: ../captionator.php:281 ../edit_caption.php:108 ../extra_fields.php:116
 msgid "Title"
 msgstr "タイトル"
 
-#: ../captionator.php:290 ../edit_caption.php:117
+#: ../captionator.php:290 ../edit_caption.php:120
 msgid "Keywords"
 msgstr "キーワード"
 
@@ -444,73 +448,73 @@ msgstr "画像がありません!"
 msgid "Untitled"
 msgstr "タイトルなし"
 
-#: ../classes/Album.php:211
+#: ../classes/Album.php:219
 msgid "Album up to date."
 msgstr "最新アルバム"
 
-#: ../classes/Album.php:215
+#: ../classes/Album.php:223
 msgid "Upgrading album properties..."
 msgstr "アルバムのプロパティを更新中..."
 
-#: ../classes/Album.php:358
+#: ../classes/Album.php:366
 #, fuzzy, php-format
 msgid "Renaming album from %s to %s..."
 msgstr "アルバム名変更"
 
-#: ../classes/Album.php:391 ../classes/Album.php:408
+#: ../classes/Album.php:399 ../classes/Album.php:416
 msgid "done"
 msgstr "完了"
 
-#: ../classes/Album.php:399
+#: ../classes/Album.php:407
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "アイテム %d / %d をアップグレード . . . "
 
-#: ../classes/Album.php:777
+#: ../classes/Album.php:783
 msgid "msg should be an array!"
 msgstr "msg 配列であるべきです"
 
-#: ../classes/Album.php:893
+#: ../classes/Album.php:899
 msgid "Resizing/compressing original image"
 msgstr "元の画像のリサイズ/圧縮"
 
-#: ../classes/Album.php:897
+#: ../classes/Album.php:903
 msgid "Cannot resize/compress this filetype"
 msgstr "このファイルタイプはリサイズ/圧縮ができません。"
 
-#: ../classes/Album.php:945
+#: ../classes/Album.php:951
 #, php-format
 msgid "Resizing %s"
 msgstr "リサイズ %s"
 
-#: ../classes/Album.php:985
+#: ../classes/Album.php:991
 msgid "Photo auto-rotated/transformed"
 msgstr "自動回転/変換済 画像"
 
-#: ../classes/Album.php:1091 ../classes/Album.php:1101
-#: ../classes/AlbumItem.php:514
+#: ../classes/Album.php:1097 ../classes/Album.php:1107
+#: ../classes/AlbumItem.php:528
 msgid "No highlight"
 msgstr "ハイライトなし"
 
-#: ../classes/Album.php:1953
+#: ../classes/Album.php:1965
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2091
+#: ../classes/Album.php:2103
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "メールの問題: メールアドレス %3$s は無効なため、%1$s (UID %2$s) をスキップ。"
 
-#: ../classes/AlbumItem.php:436
+#: ../classes/AlbumItem.php:450
 msgid "Invalid image"
 msgstr "無効な画像"
 
-#: ../classes/AlbumItem.php:494
+#: ../classes/AlbumItem.php:508
 msgid "Unable to make thumbnail"
 msgstr "サムネイルが作成できません"
 
-#: ../classes/AlbumItem.php:506
+#: ../classes/AlbumItem.php:520
 msgid "No thumbnail"
 msgstr "サムネイルなし"
 
@@ -980,44 +984,44 @@ msgstr "やり直し"
 msgid "Close"
 msgstr "閉じる"
 
-#: ../edit_caption.php:70
+#: ../edit_caption.php:73
 msgid "Year must be between 1000 and 3000"
 msgstr "西暦は 1000 から 3000 の間でなければなりません"
 
-#: ../edit_caption.php:76 ../view_album.php:943
+#: ../edit_caption.php:79 ../view_album.php:943
 msgid "Edit Text"
 msgstr "テキスト編集"
 
-#: ../edit_caption.php:82
+#: ../edit_caption.php:85
 #, fuzzy
 msgid "Edit Caption"
 msgstr "説明変更"
 
-#: ../edit_caption.php:141
+#: ../edit_caption.php:144
 msgid "Photo Capture Date"
 msgstr "撮影日"
 
-#: ../edit_caption.php:144
+#: ../edit_caption.php:147
 msgid "Month"
 msgstr "月"
 
-#: ../edit_caption.php:145
+#: ../edit_caption.php:148
 msgid "Day"
 msgstr "日"
 
-#: ../edit_caption.php:146
+#: ../edit_caption.php:149
 msgid "Year"
 msgstr "年"
 
-#: ../edit_caption.php:147
+#: ../edit_caption.php:150
 msgid "Hours"
 msgstr "時間"
 
-#: ../edit_caption.php:148
+#: ../edit_caption.php:151
 msgid "Minutes"
 msgstr "分"
 
-#: ../edit_caption.php:149
+#: ../edit_caption.php:152
 msgid "Seconds"
 msgstr "秒"
 
@@ -1274,7 +1278,7 @@ msgstr "検索"
 msgid "RANDOM!"
 msgstr ""
 
-#: ../includes/slideshow/high.inc:316 ../includes/slideshow/low.inc:315
+#: ../includes/slideshow/high.inc:316 ../includes/slideshow/low.inc:295
 msgid "play"
 msgstr "再生"
 
@@ -1283,7 +1287,7 @@ msgid "The slide show is stopped, Click [play] to resume."
 msgstr "スライドショーは停止しました。[再生]を押して再開してください。"
 
 #: ../includes/slideshow/high.inc:325 ../includes/slideshow/high.inc:506
-#: ../includes/slideshow/low.inc:314
+#: ../includes/slideshow/low.inc:294
 msgid "stop"
 msgstr "停止"
 
@@ -1292,7 +1296,7 @@ msgstr "停止"
 msgid "Slide show is running..."
 msgstr "スライドショーは実行中です..."
 
-#: ../includes/slideshow/high.inc:333 ../includes/slideshow/low.inc:330
+#: ../includes/slideshow/high.inc:333 ../includes/slideshow/low.inc:310
 msgid "normal size"
 msgstr "通常のサイズ"
 
@@ -1301,7 +1305,7 @@ msgid "The slide is showing full sized images, Click [normal size] to view resiz
 msgstr "このスライドはフルサイズの画像を表示しています。[通常のサイズ]をクリックしてリサイズされた画像に切り替えられます。"
 
 #: ../includes/slideshow/high.inc:339 ../includes/slideshow/high.inc:510
-#: ../includes/slideshow/low.inc:333
+#: ../includes/slideshow/low.inc:313
 msgid "full size"
 msgstr "フルサイズ"
 
@@ -1309,34 +1313,34 @@ msgstr "フルサイズ"
 msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
 msgstr "スライドは通常の画像サイズで表示されています。[フルサイズ]をクリックしてフルサイズの画像をみてください。"
 
-#: ../includes/slideshow/high.inc:348 ../includes/slideshow/low.inc:322
+#: ../includes/slideshow/high.inc:348 ../includes/slideshow/low.inc:302
 msgid "forward direction"
 msgstr "順方向"
 
 #: ../includes/slideshow/high.inc:351 ../includes/slideshow/high.inc:507
-#: ../includes/slideshow/low.inc:319
+#: ../includes/slideshow/low.inc:299
 msgid "reverse direction"
 msgstr "逆方向"
 
-#: ../includes/slideshow/high.inc:381 ../includes/slideshow/low.inc:202
+#: ../includes/slideshow/high.inc:381 ../includes/slideshow/low.inc:199
 msgid "Picture is loading..."
 msgstr "画像読み込み中..."
 
 #: ../includes/slideshow/high.inc:381 ../includes/slideshow/high.inc:479
-#: ../includes/slideshow/low.inc:202 ../includes/slideshow/low.inc:404
+#: ../includes/slideshow/low.inc:199 ../includes/slideshow/low.inc:384
 msgid "of"
 msgstr "/"
 
-#: ../includes/slideshow/high.inc:382 ../includes/slideshow/low.inc:203
+#: ../includes/slideshow/high.inc:382 ../includes/slideshow/low.inc:200
 #: ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "待ってね..."
 
-#: ../includes/slideshow/high.inc:516 ../includes/slideshow/low.inc:338
+#: ../includes/slideshow/high.inc:516 ../includes/slideshow/low.inc:318
 msgid "Delay:"
 msgstr "ディレイ:"
 
-#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:340
+#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:320
 msgid "second"
 msgstr "秒"
 
@@ -1344,11 +1348,11 @@ msgstr "秒"
 #: ../includes/slideshow/high.inc:521 ../includes/slideshow/high.inc:522
 #: ../includes/slideshow/high.inc:523 ../includes/slideshow/high.inc:524
 #: ../includes/slideshow/high.inc:525 ../includes/slideshow/high.inc:526
-#: ../includes/slideshow/high.inc:527 ../includes/slideshow/low.inc:341
-#: ../includes/slideshow/low.inc:342 ../includes/slideshow/low.inc:343
-#: ../includes/slideshow/low.inc:344 ../includes/slideshow/low.inc:345
-#: ../includes/slideshow/low.inc:346 ../includes/slideshow/low.inc:347
-#: ../includes/slideshow/low.inc:348 ../includes/slideshow/low.inc:349
+#: ../includes/slideshow/high.inc:527 ../includes/slideshow/low.inc:321
+#: ../includes/slideshow/low.inc:322 ../includes/slideshow/low.inc:323
+#: ../includes/slideshow/low.inc:324 ../includes/slideshow/low.inc:325
+#: ../includes/slideshow/low.inc:326 ../includes/slideshow/low.inc:327
+#: ../includes/slideshow/low.inc:328 ../includes/slideshow/low.inc:329
 msgid "seconds"
 msgstr "秒"
 
@@ -1356,15 +1360,15 @@ msgstr "秒"
 msgid "Transition:"
 msgstr "移行:"
 
-#: ../includes/slideshow/high.inc:550 ../includes/slideshow/low.inc:355
+#: ../includes/slideshow/high.inc:550 ../includes/slideshow/low.inc:335
 msgid "Loop"
 msgstr "ループ"
 
-#: ../includes/slideshow/high.inc:617 ../includes/slideshow/low.inc:418
+#: ../includes/slideshow/high.inc:617 ../includes/slideshow/low.inc:395
 msgid "This album has no photos to show in a slide show."
 msgstr "このアルバムはスライドショーできる画像がありません"
 
-#: ../includes/slideshow/high.inc:621 ../includes/slideshow/low.inc:422
+#: ../includes/slideshow/high.inc:621 ../includes/slideshow/low.inc:399
 msgid "back to album"
 msgstr "アルバムへ戻る"
 
@@ -1894,13 +1898,13 @@ msgstr "%s に戻る"
 msgid "Results Breakdown"
 msgstr "結果の内訳"
 
-#: ../poll_results.php:157 ../util.php:2072 ../view_album.php:543
+#: ../poll_results.php:157 ../util.php:2071 ../view_album.php:543
 #: ../view_album.php:843
 #, php-format
 msgid "Album: %s"
 msgstr "アルバム: %s"
 
-#: ../poll_results.php:172 ../util.php:2139
+#: ../poll_results.php:172 ../util.php:2138
 msgid "No votes so far."
 msgstr "今のところ投票はありません。"
 
@@ -2577,7 +2581,7 @@ msgstr "ファイル%sは存在しません"
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHPの%sは容量を測定できません。"
 
-#: ../util.php:253 ../util.php:590 ../util.php:636 ../util.php:2460
+#: ../util.php:253 ../util.php:590 ../util.php:636 ../util.php:2459
 msgid "You have no graphics package configured for use!"
 msgstr "使用するグラフィックパッケージが設定されていません。"
 
@@ -2705,174 +2709,174 @@ msgstr "ブラケット内に総得点"
 msgid "Average points in brackets"
 msgstr "括弧内に平均得点"
 
-#: ../util.php:2100 ../util.php:2115
+#: ../util.php:2099 ../util.php:2114
 msgid "1 voter"
 msgstr "1人の投票者"
 
-#: ../util.php:2101 ../util.php:2115
+#: ../util.php:2100 ../util.php:2114
 msgid "voters"
 msgstr "人の投票者"
 
-#: ../util.php:2102 ../util.php:2116
+#: ../util.php:2101 ../util.php:2115
 msgid "0 voters"
 msgstr "投票者なし"
 
-#: ../util.php:2113
+#: ../util.php:2112
 #, php-format
 msgid "Results from %s."
 msgstr "%s からの結果"
 
-#: ../util.php:2126
+#: ../util.php:2125
 #, php-format
 msgid "%s: %s points; "
 msgstr "%s: %s 点"
 
-#: ../util.php:2132
+#: ../util.php:2131
 #, php-format
 msgid "Key - %s"
 msgstr "キー - %s"
 
-#: ../util.php:2163
+#: ../util.php:2162
 msgid "Poll results:"
 msgstr "投票結果:"
 
-#: ../util.php:2166
+#: ../util.php:2165
 msgid "No votes"
 msgstr "投票なし"
 
-#: ../util.php:2170
+#: ../util.php:2169
 #, php-format
 msgid "Number %d overall."
 msgstr "全体で %d 位"
 
-#: ../util.php:2175
+#: ../util.php:2174
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: ../util.php:2176 ../view_album.php:606
+#: ../util.php:2175 ../view_album.php:606
 msgid "1 vote"
 msgstr "1票"
 
-#: ../util.php:2176 ../view_album.php:606
+#: ../util.php:2175 ../view_album.php:606
 msgid "votes"
 msgstr "票"
 
-#: ../util.php:2176
+#: ../util.php:2175
 msgid "0 votes"
 msgstr "0票"
 
-#: ../util.php:2187
+#: ../util.php:2186
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "スキップ %s (ZIPはサポートが有効ではありません)"
 
-#: ../util.php:2261
+#: ../util.php:2260
 #, php-format
 msgid "Adding %s"
 msgstr "追加 %s"
 
-#: ../util.php:2272
+#: ../util.php:2271
 #, php-format
 msgid "Error: %s!"
 msgstr "エラー: %s!"
 
-#: ../util.php:2274
+#: ../util.php:2273
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "困ったら %s%s FAQ%sを見てください"
 
-#: ../util.php:2280
+#: ../util.php:2279
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "スキップ %s (%s フォーマットは取り扱えません)"
 
-#: ../util.php:2419
+#: ../util.php:2418
 msgid "documentation"
 msgstr "ドキュメント"
 
-#: ../util.php:2445
+#: ../util.php:2444
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "EXIFデータを保存することができません。(jheadがインストールされていません)"
 
-#: ../util.php:2470
+#: ../util.php:2469
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generated by %s v%s"
 
-#: ../util.php:2472
+#: ../util.php:2471
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2522
+#: ../util.php:2521
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "無効なメールアドレスのスキップ %s"
 
-#: ../util.php:2588
+#: ../util.php:2587
 #, fuzzy, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "注意: これはウェブサイト%sから自動的に生成されて送られたメールです。エラーを受け取ったら、これを無視してください。"
 
-#: ../util.php:2590
+#: ../util.php:2589
 #, php-format
 msgid "Report abuse to %s"
 msgstr "%sに不正使用報告する"
 
-#: ../util.php:2606
+#: ../util.php:2605
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "このGalleryではメール機能は無効ですので、メールは送信されませんでした。"
 
-#: ../util.php:2610
+#: ../util.php:2609
 msgid "Email not sent as no address provided"
 msgstr "アドレスが指定されなかったのでメールは送信されませんでした。"
 
-#: ../util.php:2615
+#: ../util.php:2614
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "メールアドレスが正しくなかったので、%s にメールは送信されませんでした。"
 
-#: ../util.php:2630
+#: ../util.php:2629
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "送信者アドレス %s は無効です。%s を使ってください"
 
-#: ../util.php:2654 ../util.php:2659
+#: ../util.php:2653 ../util.php:2658
 msgid "not shown"
 msgstr "非表示"
 
-#: ../util.php:2663
+#: ../util.php:2662
 msgid "Message"
 msgstr "メッセージ"
 
-#: ../util.php:2667
+#: ../util.php:2666
 msgid "Email sent"
 msgstr "メールを送りました"
 
-#: ../util.php:2669
+#: ../util.php:2668
 msgid "Email not sent"
 msgstr "メールは送信されませんでした。"
 
-#: ../util.php:2683
+#: ../util.php:2682
 #, php-format
 msgid "Last comment %s."
 msgstr "最後のコメント %s"
 
-#: ../util.php:2694
+#: ../util.php:2693
 msgid "FAILED"
 msgstr "失敗"
 
-#: ../util.php:2703
+#: ../util.php:2702
 msgid "Email activity"
 msgstr "メールの動作"
 
-#: ../util.php:2721
+#: ../util.php:2720
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "ログファイルを開けません: %s"
 
-#: ../util.php:2728
+#: ../util.php:2727
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -2892,53 +2896,53 @@ msgstr ""
 "\n"
 "Gallery @ %s 管理者"
 
-#: ../util.php:2737 ../util.php:2739
+#: ../util.php:2736 ../util.php:2738
 msgid "gallery title"
 msgstr "gallery タイトル"
 
-#: ../util.php:2738
+#: ../util.php:2737
 msgid "gallery URL"
 msgstr "gallery リンク"
 
-#: ../util.php:2759
+#: ../util.php:2758
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>None</dt><dd>オリジナルのルック&amp;フィール</dd>"
 
-#: ../util.php:2805 ../util.php:2810
+#: ../util.php:2804 ../util.php:2809
 msgid "None"
 msgstr "なし"
 
-#: ../util.php:2806 ../util.php:2811
+#: ../util.php:2805 ../util.php:2810
 msgid "Dots"
 msgstr "ドット"
 
-#: ../util.php:2807 ../util.php:2812
+#: ../util.php:2806 ../util.php:2811
 msgid "Solid"
 msgstr "ソリッド"
 
-#: ../util.php:2810
+#: ../util.php:2809
 msgid "No frames"
 msgstr "フレームなし"
 
-#: ../util.php:2811
+#: ../util.php:2810
 msgid "Just a simple dashed border around the thumb."
 msgstr "サムネイルの回りに単にダッシュの枠線を描きます。"
 
-#: ../util.php:2812
+#: ../util.php:2811
 msgid "Just a simple solid border around the thumb."
 msgstr "サムネイルの回りに単にダッシュの枠線を描きます。"
 
-#: ../util.php:2833
+#: ../util.php:2832
 #, php-format
 msgid "Skipping %s."
 msgstr "%sをスキップ"
 
-#: ../util.php:2839
+#: ../util.php:2838
 #, php-format
 msgid "Can't open %s"
 msgstr "%sが開けません"
 
-#: ../util.php:2927 ../util.php:2946
+#: ../util.php:2926 ../util.php:2945
 msgid "Not valid yet"
 msgstr "未検証"
 
@@ -3193,15 +3197,15 @@ msgstr "何か画像を追加してください。"
 msgid "This album is empty."
 msgstr "このアルバムは空です。"
 
-#: ../view_album.php:1091 ../view_photo.php:767
+#: ../view_album.php:1091 ../view_photo.php:764
 msgid "Email me when:"
 msgstr "このときにメールを送る:"
 
-#: ../view_album.php:1092 ../view_photo.php:768
+#: ../view_album.php:1092 ../view_photo.php:765
 msgid "Comments are added"
 msgstr "コメントされました"
 
-#: ../view_album.php:1095 ../view_photo.php:772
+#: ../view_album.php:1095 ../view_photo.php:769
 msgid "Other changes are made"
 msgstr "他の変更がなされました"
 
@@ -3277,9 +3281,6 @@ msgstr "(もしデータが最新のものであれば、ここにはすべきことは何も現れません。)"
 
 #~ msgid "view&nbsp;comments"
 #~ msgstr "コメントを見る"
-
-#~ msgid "Note:  This album is out of date!"
-#~ msgstr "注意: このアルバムは古い形式です。"
 
 #~ msgid "Skipping album %d..."
 #~ msgstr "%d アルバムをスキップ..."

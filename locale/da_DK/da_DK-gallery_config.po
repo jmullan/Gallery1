@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-03-04 02:18+0100\n"
+"POT-Creation-Date: 2004-03-09 13:38+0100\n"
 "PO-Revision-Date: 2003-08-21 07:04+0200\n"
 "Last-Translator: Niels Elgaard Larsen <elgaard@agol.dk>\n"
 "Language-Team: Niels Elgaard Larsen <elgaard@agol.dk>\n"
@@ -188,9 +188,11 @@ msgstr "Din installation bestod med kryds og slange!  Gå gå gå!"
 msgid "Next Page"
 msgstr "næste side"
 
+#
 #: ../setup/check_imagemagick.php:30
+#, fuzzy
 msgid "Gallery ImageMagick Check"
-msgstr ""
+msgstr "Galleriets titel"
 
 #
 #: ../setup/check_imagemagick.php:36 ../setup/check_netpbm.php:36
@@ -622,9 +624,9 @@ msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform 
 msgstr "Check at jpegtran er installeret så Gallery kan rotere billeder uden tab af information (virker kun med JPEG billeder)"
 
 #: ../setup/config_data.inc:160
-#, php-format
+#, fuzzy, php-format
 msgid "I can't find <b>jpegtran</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."
-msgstr ""
+msgstr "Jeg kan ikke finde NetPBM. Hvis den er installeret og ikke er i webserverbrugerens sti så er det OK--Du kan angive stien til NetPBM i hånden på næste side. Hvis den ikke er installeret, har du to muligheder:"
 
 #: ../setup/config_data.inc:167
 #, fuzzy
@@ -1084,8 +1086,9 @@ msgid "Format for date/time strings."
 msgstr ""
 
 #: ../setup/config_data.inc:531
+#, fuzzy
 msgid "date with time"
-msgstr ""
+msgstr "%s uden donation"
 
 #: ../setup/config_data.inc:533
 #, php-format
@@ -1220,17 +1223,21 @@ msgstr ""
 msgid "You can keep a record of every email that is sent by Gallery."
 msgstr ""
 
+#
 #: ../setup/config_data.inc:631
+#, fuzzy
 msgid "Send summary email"
-msgstr ""
+msgstr "Afkryds alle"
 
 #: ../setup/config_data.inc:632
 msgid "Log to a file"
 msgstr ""
 
+#
 #: ../setup/config_data.inc:633
+#, fuzzy
 msgid "Send duplicate email"
-msgstr ""
+msgstr "Afkryds alle"
 
 #
 #: ../setup/config_data.inc:639
@@ -1726,10 +1733,12 @@ msgstr ""
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr ""
 
+#
 #: ../setup/config_data.inc:1010 ../setup/config_data.inc:1013
 #: ../setup/config_data.inc:1034 ../setup/config_data.inc:1039
+#, fuzzy
 msgid "Rank"
-msgstr ""
+msgstr "Tilfældigt"
 
 #: ../setup/config_data.inc:1011 ../setup/config_data.inc:1012
 #: ../setup/config_data.inc:1036 ../setup/config_data.inc:1040
@@ -1859,9 +1868,11 @@ msgstr ""
 msgid "Excellent"
 msgstr ""
 
+#
 #: ../setup/config_data.inc:1084
+#, fuzzy
 msgid "Very Good"
-msgstr ""
+msgstr "Kør"
 
 #
 #: ../setup/config_data.inc:1085
@@ -1925,8 +1936,9 @@ msgid "Subalbum frames"
 msgstr "Underalbum"
 
 #: ../setup/config_data.inc:1141
+#, fuzzy
 msgid "This frame will appear around the thumbnail image representing a subalbum."
-msgstr ""
+msgstr "Filsystemets sti til ikonet som vises for filmer. F.eks. %s"
 
 #
 #: ../setup/config_data.inc:1146
@@ -1946,8 +1958,9 @@ msgid "Frame around images"
 msgstr "Fandt %d billeder"
 
 #: ../setup/config_data.inc:1154
+#, fuzzy
 msgid "This frame will appear around fulled sized and resized photos."
-msgstr ""
+msgstr "Filsystemets sti til ikonet som vises for filmer. F.eks. %s"
 
 #
 #: ../setup/confirm.inc:43
@@ -2030,7 +2043,6 @@ msgstr "%s: <b>%s</b> skal være en udførbar fil!"
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "Kunne ikke finde %s. Undersøg dit NetPBM katalog for at se hvilke PNG->JPEG omdanne, du har (eller prøv at bruge %s i stedet), Undersøg din konfiguration (eller brug ImageMagick)"
 
-#
 #: ../setup/confirm.inc:360
 #, php-format
 msgid "You must specify a path for %s or %s for Gallery to function!!"
@@ -2076,9 +2088,11 @@ msgstr "Gem konfiguration"
 msgid "%s.  Details below."
 msgstr ""
 
+#
 #: ../setup/confirm.inc:459
+#, fuzzy
 msgid "One error"
-msgstr ""
+msgstr "Fejl"
 
 #
 #: ../setup/confirm.inc:459
@@ -2086,9 +2100,11 @@ msgstr ""
 msgid "errors"
 msgstr "Fejl"
 
+#
 #: ../setup/confirm.inc:459
+#, fuzzy
 msgid "no errors"
-msgstr ""
+msgstr "Fejl"
 
 #
 #: ../setup/confirm.inc:474
@@ -2464,9 +2480,11 @@ msgstr ""
 msgid "Your admin passwords do not match!"
 msgstr ""
 
+#
 #: ../setup/functions.inc:1184
+#, fuzzy
 msgid "Valid admin email address given."
-msgstr ""
+msgstr "E-post-adresse"
 
 #
 #: ../setup/functions.inc:1191
@@ -2474,14 +2492,17 @@ msgstr ""
 msgid "You must specify valid admin email addresses"
 msgstr "Du skal angive en adgangskode"
 
+#
 #: ../setup/functions.inc:1199
-#, php-format
+#, fuzzy, php-format
 msgid "%s is not a valid email address."
-msgstr ""
+msgstr "Du skal angive et brugernavn"
 
+#
 #: ../setup/functions.inc:1208
+#, fuzzy
 msgid "Valid sender email address given."
-msgstr ""
+msgstr "Server IP adresse"
 
 #
 #: ../setup/functions.inc:1210
@@ -2509,9 +2530,9 @@ msgid "This should be fixed before proceeding"
 msgstr ""
 
 #: ../setup/functions.inc:1245 ../setup/functions.inc:1249
-#, php-format
+#, fuzzy, php-format
 msgid "Look at %sCheck Versions%s for more details."
-msgstr ""
+msgstr "%sTryk her%s for at skjule detaljerne"
 
 #: ../setup/functions.inc:1248
 #, php-format
@@ -2528,7 +2549,6 @@ msgstr ""
 msgid "this is new in version %s"
 msgstr "dette er nyt i version %s"
 
-#
 #: ../setup/functions.inc:1266
 #, php-format
 msgid "Return to %s."
