@@ -25,8 +25,19 @@ $all = !strcmp($index, "all");
 if ($albumName && isset($index)) {
 	if ($resize) {
 		if (!strcmp($index, "all")) {
-			$album->resizeAllPhotos($resize);
+			$np = $album->numPhotos();
+			echo("<br> Resizing $np photos...");
+			print str_repeat(" ", 4096);
+			for ($i = 1; $i <= $np; $i++) {
+				echo("<br> Processing image $i...");
+				print str_repeat(" ", 4096);	// force a flush
+				set_time_limit(90);
+				$album->resizePhoto($i, $resize);
+			}
 		} else {
+			echo("<br> Resizing 1 photo...");
+			print str_repeat(" ", 4096);
+			set_time_limit(90);
 			$album->resizePhoto($index, $resize);
 		}
 		$album->save();
