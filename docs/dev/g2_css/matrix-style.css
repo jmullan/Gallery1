@@ -29,14 +29,12 @@ body {
 #gsHeader { border-bottom: 1px solid #ddd; }
 
 #gsFooter {
-	padding: 8px;
 	border-top: 1px solid #ddd;
 	font-size: 0.8em;
 	color: #bbb;
 }
 
 #gsSidebar {
-	padding: 0 12px;
 	background-color: #FFFFFF;
 	border-left: 1px solid #ddd;
 }
@@ -45,7 +43,6 @@ body {
 }
 
 #gsComments {
-	padding: 8px;
 	border-top: 1px solid #bbb;
 }
 
@@ -56,17 +53,18 @@ body {
 }
 
 #gsAdminSidebar {
-	padding: 0 4px;
 	border-right: 1px solid #ddd;
 }
 
 #gsStatus {
-	padding: 10px;
 	text-align: center;
-	margin-top: 4px;
-	margin-bottom: 4px;
 }
 
+#gsItemImages {
+}
+
+#gsAlbumImages {
+}
 
 /* ***************** BOXES ******************************* */
 /*   Category 3: box definitions                           */
@@ -76,10 +74,7 @@ body {
 
 /* GLOBALS *********************** */
 
-.gbDataEntry {
-	margin: 6 0px;
-}
-
+.gbDataEntry { }
 
 /*	spacers neeed for expanding layouts	*/
 .guSpacer, .gpSpacer, .gsSpacer, .gbSpacer, .giSpacer { }
@@ -128,8 +123,6 @@ body {
 
 .gbMenu { 
 	border-bottom: 1px solid #ddd;
-	padding: 16px 0;
-	margin: 16px 0;
 }
 
 .gbMenu .giTitle { 
@@ -163,8 +156,6 @@ body {
 
 /* The title banner is the light grey 'search' at the very top */
 #gsHeader .gbTitleBanner {
-	padding-top: 6px;
-	padding-bottom: 6px;
 	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
 }
@@ -177,7 +168,7 @@ body {
 }
 
 /* horizontal history links - 'trail of breadcrumbs' */
-#gsHeader .gbBreadCrumb { padding: 8px; }
+#gsHeader .gbBreadCrumb { }
 
 /* horizontal link divider */
 #gsHeader .gbBreadCrumb span + span:before { content: '\00BB \ '; }
@@ -186,20 +177,15 @@ body {
 
 #gsAlbumContents .gbTopFlag,
 #gsAdminContents .gbTopFlag  {
-	display: block;
 	background-color: #eee;
-	padding: 6px;
 	border: 1 solid #FFFFFF;
 }
 
 #gsAlbumContents .gbTitleBanner {
 	border: 0;
-	padding: 8px 0;
 }
 
 #gsAlbumContents .gbItemAlbum {
-	margin: 8px 8px 0 0;
-	padding: 8px;
 	background-color: #eee;
 	border: 0px solid #bbb;
 }
@@ -207,15 +193,12 @@ body {
 #gsAlbumContents .gbItemImage, 
 #gsAlbumContents .gbItemMovie, 
 #gsAlbumContents .gbItemOther {
-	margin: 8px 8px 0 0;
-	padding: 8px;
 	background-color: #fff;
 }
 
 #gsAlbumContents .gbExif { }
 
 #gsAlbumContents .gbBottomFlag {
-	padding: 8px;
 	background-color: #eee;
 }
 
@@ -229,14 +212,11 @@ body {
 
 #gsComments .gbComment {
 	border-bottom: 1px solid #ddd;
-	padding: 8px 0 16px 0;
 }
 
 /* #gsFooter ********************* */
 
-#gsFooter .gbMiniBanner {
-	margin-right: 8px;
-}
+#gsFooter .gbMiniBanner { }
 
 /* #gsSidebar ******************** */
 
@@ -261,8 +241,6 @@ body {
 /* ********* #gsAdminContents *********** */
 
 #gsAdminContents .gbAdmin {
-	margin: 0px 8px 0 0;
-	padding: 8px;
 	border-bottom: 1px solid #bbb;
 	background-color: #fff;
 }
@@ -270,7 +248,6 @@ body {
 /* for tabular data */
 #gsAdminContents .gbDataTable {
 	border-width: 0;
-	margin: 4px;
 	font-size: 10px;
 }
 
@@ -399,7 +376,6 @@ span.giCount { }
 .gbComment .giComment { padding-bottom: 8px; }
 
 #gsComments .gbComment div.giHorizontalLinks {
-	float: none;
 	padding: 0;
 }
 

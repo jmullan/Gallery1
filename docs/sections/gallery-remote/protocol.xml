@@ -383,7 +383,8 @@ albums_too=<replaceable>yes/no</replaceable> <productnumber>[since 2.13]</produc
         |image.capturedate.mday.<replaceable>ref_num</replaceable>=<replaceable>date of capture of the image (day of the month)</replaceable>
         |image.capturedate.hours.<replaceable>ref_num</replaceable>=<replaceable>date of capture of the image (hour)</replaceable>
         |image.capturedate.minutes.<replaceable>ref_num</replaceable>=<replaceable>date of capture of the image (minute)</replaceable>
-        \image.capturedate.seconds.<replaceable>ref_num</replaceable>=<replaceable>date of capture of the image (second)</replaceable>
+        |image.capturedate.seconds.<replaceable>ref_num</replaceable>=<replaceable>date of capture of the image (second)</replaceable>
+        \image.hidden.<replaceable>ref_num</replaceable>=<replaceable>yes/no</replaceable> <productnumber>[since 2.14]</productnumber>
   OR     album.name.<replaceable>ref_num</replaceable>=<replaceable>name of the album</replaceable> <productnumber>[since 2.13]</productnumber>
          image_count=<replaceable>total number of images in the album</replaceable>
          baseurl=<replaceable>URL of the album</replaceable></programlisting>
@@ -392,6 +393,7 @@ albums_too=<replaceable>yes/no</replaceable> <productnumber>[since 2.13]</produc
         <para>The name and resizedName include the type (extension), but do not include any path information.</para>
         <para>Multiple <varname>extrafield</varname> lines with different <varname><replaceable>fieldname</replaceable></varname> values can be used.</para>
         <para>If <varname>albums_too</varname> is <replaceable>yes</replaceable>, the list of results can contain album references. In this case, none of the <varname>image.<replaceable>*.ref_num</replaceable></varname> fields will be present. Instead, <varname>album.name.<replaceable>ref_num</replaceable></varname> will provide the reference to the sub-album. This allows reursive getting of all images in an album hierarchy.</para>
+		<para>Starting with <productnumber>2.14</productnumber>, the protocol will honor access control and will not return full-size information if the album is set to refuse full-size and will not return non-readable albums.</para>
       </sect4>
     </sect3>
     <sect3 id="gallery-remote.protocol.cmd.move-album">
