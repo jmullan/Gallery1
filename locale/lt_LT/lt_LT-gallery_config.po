@@ -11,13 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-06-09 13:36+0200\n"
-"PO-Revision-Date: 2004-01-09 14:52+0200\n"
+"POT-Creation-Date: 2004-06-16 17:04+0200\n"
+"PO-Revision-Date: 2004-05-06 14:52+0200\n"
 "Last-Translator: Rimvydas Zilinskas <aladdin@antakalnis.lt>\n"
 "Language-Team: Vilius Ðumskas <vilius@lnk.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-13\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3;     plural=n%10==1 && n%100!=11 ? 0 :            n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../errors/configure_help.php:2
 #, fuzzy, php-format
@@ -29,9 +30,8 @@ msgid "Gallery needs Reconfiguration"
 msgstr "Reikia perkonfigûruoti galerijà"
 
 #: ../errors/reconfigure.php:19
-#, fuzzy
 msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!"
-msgstr "Konfigûracijos failas buvo sukurtas senesne Gallery versija. Perkonfigûruokite galerijà taip:"
+msgstr "Konfigûracijos failas buvo sukurtas senesne Gallery versija."
 
 #: ../errors/reconfigure.php:24
 #, fuzzy, php-format
@@ -117,7 +117,7 @@ msgid "Serious Warning"
 msgstr "Rimtas perspëjimas"
 
 #: ../setup/check.inc:83 ../setup/check.inc:123 ../setup/check_mail.php:76
-#: ../setup/config_data.inc:1088 ../setup/config_data.inc:1094
+#: ../setup/config_data.inc:1095 ../setup/config_data.inc:1101
 msgid "Warning"
 msgstr "Perspëjimas"
 
@@ -375,7 +375,8 @@ msgstr "%sSpragtelëkite ðià nuorodà%s jei pageidaujate detalios ataskaitos"
 msgid "One file is missing, corrupt or older than expected."
 msgid_plural "%d files are missing, corrupt or older than expected."
 msgstr[0] "%s neegzistuoja, sugadinta(-os) arba senesnë(-ës) negu tikëtasi."
-msgstr[1] "%s neegzistuoja, sugadinta(-os) arba senesnë(-ës) negu tikëtasi."
+msgstr[1] ""
+msgstr[2] ""
 
 #: ../setup/check_versions.php:73 ../setup/check_versions.php:104
 #, fuzzy
@@ -392,7 +393,8 @@ msgstr "Yra problemø su ðiomis bylomis.  Praðome jas pataisyti prieð tæsiant %s.
 msgid "One file is more recent than expected."
 msgid_plural "%d files are more recent than expected."
 msgstr[0] "%s þymiai naujesnë(-ës) negu tikëtasi."
-msgstr[1] "%s þymiai naujesnë(-ës) negu tikëtasi."
+msgstr[1] ""
+msgstr[2] ""
 
 #: ../setup/check_versions.php:112
 #, php-format
@@ -404,7 +406,8 @@ msgstr "Keletas bylø yra þymiai naujesnës negu reikia %s versijai.  Jei Jûs naud
 msgid "One file is up-to-date."
 msgid_plural "%d files are up-to-date."
 msgstr[0] "Visi %d failai tvarkingi."
-msgstr[1] "Visi %d failai tvarkingi."
+msgstr[1] ""
+msgstr[2] ""
 
 #: ../setup/check_versions.php:132
 #, fuzzy
@@ -474,11 +477,11 @@ msgstr "Jûs naudojate %s PHP versijà, kurioje yra klaidø, dël to Galerija negali
 
 #: ../setup/config_data.inc:105
 msgid "We are using predefined variables which some older version of PHP have problems with."
-msgstr ""
+msgstr "Mes naudojame apibrëþtus kintamuosius, su kuriais kai kurios senos PHP versijos gali turëti problemø."
 
 #: ../setup/config_data.inc:107
 msgid "It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"
-msgstr ""
+msgstr "Atrodo, kad Jûsø PHP turi problemø su __FILE__. Praðome atnaujinti á naujausià versijà"
 
 #: ../setup/config_data.inc:111
 msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
@@ -578,7 +581,7 @@ msgstr "Testuoju kuriø lokaliø trûksta."
 
 #: ../setup/config_data.inc:205
 msgid "These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext support. They are also needed to show date and time in the according format to the language."
-msgstr ""
+msgstr "Ðios lokalës yra pivalomos naudoti Gallery daugiakalbes savybes, kai Jûs turite PHP su ájungtu gettext palaikymu. Jos taip pat yra reikalingos parodyti datà ir laikà, priklausomai nuo kalbos formato."
 
 #: ../setup/config_data.inc:210
 #, fuzzy
@@ -713,7 +716,7 @@ msgstr "Áeiti á Galerijà"
 
 #: ../setup/config_data.inc:344
 msgid "Use this section to set options to configure gallery to be embedded in another web application."
-msgstr ""
+msgstr "Naudokite ðià sekcijà norëdami nustatyti galerijos savybes, jei ji bus integruota kitoje web aplikacijoje."
 
 #: ../setup/config_data.inc:348
 #, fuzzy
@@ -723,19 +726,19 @@ msgstr "Galerija"
 #: ../setup/config_data.inc:349
 #, php-format
 msgid "If you would like to run %s in another web application (such as *Nuke, phpBB2 or GeekLog) you have to choose the environment here."
-msgstr ""
+msgstr "Jei norite leisti %s kitoje web aplikacijoje (kaip antai *Nuke, phpBB2 arba GeekLog) privalote èia pasirinkti aplinkà."
 
 #: ../setup/config_data.inc:350
 msgid "Standalone Gallery"
-msgstr ""
+msgstr "Savarankiðka Gallery"
 
 #: ../setup/config_data.inc:361
 msgid "GeekLog Dir"
-msgstr ""
+msgstr "GeekLog Katalogas"
 
 #: ../setup/config_data.inc:363
 msgid "If you chose Geeklog above, please enter the location of the GeekLog public_html directory."
-msgstr ""
+msgstr "Jei pasirinksite Geeklog, taip pat turësite suvesti kelià iki GeekLog public_html katalogo."
 
 #: ../setup/config_data.inc:375
 msgid "Toolkits / image processing"
@@ -793,7 +796,7 @@ msgstr "Pagal JPEG EXIF informacijà, Galerija automatiðkai gali apsukti nuotrauk
 
 #: ../setup/config_data.inc:424
 msgid "Requires Jhead EXIF parser v.1.9 or greater (see below)."
-msgstr ""
+msgstr "Reikalauja Jhead EXIF v.1.9 versijos arba aukðtesnës (þiûr. þemiau):"
 
 #: ../setup/config_data.inc:425 ../setup/config_data.inc:449
 #: ../setup/config_data.inc:462 ../setup/config_data.inc:475
@@ -802,16 +805,17 @@ msgstr ""
 #: ../setup/config_data.inc:706 ../setup/config_data.inc:712
 #: ../setup/config_data.inc:764 ../setup/config_data.inc:786
 #: ../setup/config_data.inc:814 ../setup/config_data.inc:820
-#: ../setup/config_data.inc:821 ../setup/config_data.inc:865
-#: ../setup/config_data.inc:871 ../setup/config_data.inc:877
-#: ../setup/config_data.inc:883 ../setup/config_data.inc:1102
-#: ../setup/config_data.inc:1108 ../setup/config_data.inc:1115
-#: ../setup/config_data.inc:1121 ../setup/config_data.inc:1172
-#: ../setup/config_data.inc:1186 ../setup/config_data.inc:1200
-#: ../setup/config_data.inc:1215 ../setup/config_data.inc:1221
-#: ../setup/config_data.inc:1227 ../setup/config_data.inc:1296
-#: ../setup/config_data.inc:1303 ../setup/config_data.inc:1355
-#: ../setup/config_data.inc:1356 ../setup/config_data.inc:1362
+#: ../setup/config_data.inc:821 ../setup/config_data.inc:847
+#: ../setup/config_data.inc:872 ../setup/config_data.inc:878
+#: ../setup/config_data.inc:884 ../setup/config_data.inc:890
+#: ../setup/config_data.inc:1109 ../setup/config_data.inc:1115
+#: ../setup/config_data.inc:1122 ../setup/config_data.inc:1128
+#: ../setup/config_data.inc:1179 ../setup/config_data.inc:1193
+#: ../setup/config_data.inc:1207 ../setup/config_data.inc:1222
+#: ../setup/config_data.inc:1228 ../setup/config_data.inc:1234
+#: ../setup/config_data.inc:1303 ../setup/config_data.inc:1310
+#: ../setup/config_data.inc:1362 ../setup/config_data.inc:1363
+#: ../setup/config_data.inc:1369
 msgid "yes"
 msgstr "taip"
 
@@ -823,16 +827,16 @@ msgstr "taip"
 #: ../setup/config_data.inc:712 ../setup/config_data.inc:763
 #: ../setup/config_data.inc:764 ../setup/config_data.inc:787
 #: ../setup/config_data.inc:814 ../setup/config_data.inc:821
-#: ../setup/config_data.inc:865 ../setup/config_data.inc:871
-#: ../setup/config_data.inc:877 ../setup/config_data.inc:883
-#: ../setup/config_data.inc:1102 ../setup/config_data.inc:1108
-#: ../setup/config_data.inc:1115 ../setup/config_data.inc:1121
-#: ../setup/config_data.inc:1172 ../setup/config_data.inc:1186
-#: ../setup/config_data.inc:1200 ../setup/config_data.inc:1215
-#: ../setup/config_data.inc:1221 ../setup/config_data.inc:1227
-#: ../setup/config_data.inc:1295 ../setup/config_data.inc:1296
-#: ../setup/config_data.inc:1356 ../setup/config_data.inc:1361
-#: ../setup/config_data.inc:1362
+#: ../setup/config_data.inc:847 ../setup/config_data.inc:872
+#: ../setup/config_data.inc:878 ../setup/config_data.inc:884
+#: ../setup/config_data.inc:890 ../setup/config_data.inc:1109
+#: ../setup/config_data.inc:1115 ../setup/config_data.inc:1122
+#: ../setup/config_data.inc:1128 ../setup/config_data.inc:1179
+#: ../setup/config_data.inc:1193 ../setup/config_data.inc:1207
+#: ../setup/config_data.inc:1222 ../setup/config_data.inc:1228
+#: ../setup/config_data.inc:1234 ../setup/config_data.inc:1302
+#: ../setup/config_data.inc:1303 ../setup/config_data.inc:1363
+#: ../setup/config_data.inc:1368 ../setup/config_data.inc:1369
 msgid "no"
 msgstr "ne"
 
@@ -1042,11 +1046,11 @@ msgstr "Ájungia paðto sistemà. Jeigu nustatysite %s, tai kiti parametrai ðioje s
 
 #: ../setup/config_data.inc:644
 msgid "If you enable these settings you give your users the opportunity to let Gallery send them their lost password via email."
-msgstr ""
+msgstr "Jei ájungsite ðiuos nustatymus, vartotojai turës galimybæ leisti Gallery iðsiøsti jiems e-paðtu slaptaþodþius, kuriuos jie pamirðo."
 
 #: ../setup/config_data.inc:645
 msgid "You need to enable this setting if you want to enable Self Registration."
-msgstr ""
+msgstr "Privalote ájungti ðá nustatymà, jei norite kad vartotojai galëtø registruotis patys."
 
 #: ../setup/config_data.inc:650
 msgid "Admin email address"
@@ -1106,7 +1110,7 @@ msgstr "Ðis parametras leis lankytojams patiems kurti vartotojo vardus."
 
 #: ../setup/config_data.inc:697
 msgid "This option requires the Email feature to be enabled."
-msgstr ""
+msgstr "Ðis pasirinkimas reikalauja ájungto e-paðto palaikymo."
 
 #: ../setup/config_data.inc:700
 #, fuzzy
@@ -1126,7 +1130,6 @@ msgid "Enable bulk account creation"
 msgstr "Ájungti masiná vartotojø kûrimà"
 
 #: ../setup/config_data.inc:710
-#, fuzzy
 msgid "This option allows you to create many new user accounts at one time by creating a file of new users."
 msgstr "Ðis parametras leis ið failo sukurti daug vartotojø vienu metu."
 
@@ -1158,7 +1161,7 @@ msgstr "Visos Galerijos nuotraukø perþiûra"
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
 msgstr "Prideda nuotraukø perþiûros nuorodà pagrindiniame galerijos puslapyje.   Atminkite, didelëse galerijose ðis procesas gali veikti labai lëtai ir gali reikalauti daug sistemos resursø."
 
-#: ../setup/config_data.inc:734 ../setup/config_data.inc:1334
+#: ../setup/config_data.inc:734 ../setup/config_data.inc:1341
 msgid "These settings do not apply to the low tech slideshow."
 msgstr "Ðie nustatymai nebus pritaikyti prastos kokybës nuotraukø perþiûrai."
 
@@ -1168,41 +1171,41 @@ msgstr "Nuotraukø perþiûros nustatymai"
 
 #: ../setup/config_data.inc:739 ../setup/config_data.inc:747
 #: ../setup/config_data.inc:794 ../setup/config_data.inc:804
-#: ../setup/config_data.inc:1339 ../setup/config_data.inc:1347
+#: ../setup/config_data.inc:1346 ../setup/config_data.inc:1354
 msgid "Off"
 msgstr "Iðjungta"
 
-#: ../setup/config_data.inc:740 ../setup/config_data.inc:1340
+#: ../setup/config_data.inc:740 ../setup/config_data.inc:1347
 msgid "No slideshow link will appear."
 msgstr "Nuotraukø perþiûra iðjungta."
 
 #: ../setup/config_data.inc:741 ../setup/config_data.inc:748
-#: ../setup/config_data.inc:1341 ../setup/config_data.inc:1348
+#: ../setup/config_data.inc:1348 ../setup/config_data.inc:1355
 msgid "Ordered"
 msgstr "Surûðiuota"
 
-#: ../setup/config_data.inc:742 ../setup/config_data.inc:1342
+#: ../setup/config_data.inc:742 ../setup/config_data.inc:1349
 msgid "Images will display in the same order as they appear in the Gallery."
 msgstr "Paveikslëliai bus rodomi tokia tvarka kaip ir paèioje Galerijoje."
 
 #: ../setup/config_data.inc:743 ../setup/config_data.inc:749
-#: ../setup/config_data.inc:1343 ../setup/config_data.inc:1349
+#: ../setup/config_data.inc:1350 ../setup/config_data.inc:1356
 msgid "Random"
 msgstr "Atsitiktine tvarka"
 
-#: ../setup/config_data.inc:744 ../setup/config_data.inc:1344
+#: ../setup/config_data.inc:744 ../setup/config_data.inc:1351
 msgid "Images will appear in a random order."
 msgstr "Paveikslëliai bus rodomi atsitiktine tvarka."
 
-#: ../setup/config_data.inc:754 ../setup/config_data.inc:1366
+#: ../setup/config_data.inc:754 ../setup/config_data.inc:1373
 msgid "Slideshow length"
 msgstr "Nuotraukø perþiûros dydis"
 
-#: ../setup/config_data.inc:755 ../setup/config_data.inc:1367
+#: ../setup/config_data.inc:755 ../setup/config_data.inc:1374
 msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
 msgstr "Kiek nuotraukø rodyti nuotraukø perþiûroje. 0 arba tuðèia vieta þymi visas nuotraukas."
 
-#: ../setup/config_data.inc:762 ../setup/config_data.inc:1360
+#: ../setup/config_data.inc:762 ../setup/config_data.inc:1367
 msgid "Allow slideshow to loop"
 msgstr "Leisti nuotraukø perþiûrai kartotis"
 
@@ -1218,15 +1221,15 @@ msgstr "Nuotraukø perþiûros tipas"
 
 #: ../setup/config_data.inc:769
 msgid "This allows you to set the default mode for the slideshow.  &quot;Java Applet&quot; requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. &quot;JavaScript&quot; is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."
-msgstr ""
+msgstr "Ðis pasirinkimas leidþia nustatyti nuotraukø perþiûros reþimà pagal nutylëjimà. Nors &quot;Java Applet&quot; reikalauja, kad vartotojas savo narðyklëje turëtø suinstaliuotà Java Runtime Environment, uþtat leidþia pilnaekranæ perþiûrà. &quot;JavaScript&quot; yra palaikomas visø dabartiniø narðykliø, be papildomø priedø, bet yra labiau apribotas negu Java Applet."
 
 #: ../setup/config_data.inc:770
 msgid "Java Applet"
-msgstr ""
+msgstr "Java Applet"
 
 #: ../setup/config_data.inc:770
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
 #: ../setup/config_data.inc:780
 msgid "Comments"
@@ -1239,7 +1242,7 @@ msgstr "Ájungti paðto sistemà"
 
 #: ../setup/config_data.inc:784
 msgid "This option will enable or disbale the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
-msgstr ""
+msgstr "Ðis pasirinkimas leidþia ájungti arba iðjungti galimybæ leisti vartotojams raðyti komentarus. Jei nustatysite &quot;ne&quot; visas komentarø palaikymas bus iðjungtas."
 
 #: ../setup/config_data.inc:792
 msgid "Indicate if there are comments available"
@@ -1301,636 +1304,644 @@ msgstr "Prisijungusiø vartotojø paliekamuose komentaruose rodomi vardai gali bût
 
 #: ../setup/config_data.inc:831
 msgid "Add Comments inside the photo page"
-msgstr ""
+msgstr "Pridëti Komentarus foto puslapio viduje"
 
 #: ../setup/config_data.inc:832
 msgid "Do you want to have the possibility to add comments inside the view photo page, or do you prefer a link to a popup"
-msgstr ""
+msgstr "Ar norite turëti galimybæ pridëti komentarus foto puslapio viduje, ar norite iððokanèio lango su komentarais"
 
 #: ../setup/config_data.inc:833
 msgid "Popup"
-msgstr ""
+msgstr "Iððokantis langas"
 
 #: ../setup/config_data.inc:833
 msgid "Inside"
-msgstr ""
+msgstr "Viduje"
 
 #: ../setup/config_data.inc:837
 msgid "Maximum length of Comments"
-msgstr ""
+msgstr "Maksimalus Komentarø ilgis"
 
 #: ../setup/config_data.inc:838
 msgid "Enter a suitable value for the maximum length of comments to prevent abuse."
+msgstr "Áveskite protingà maksimalø komentarø ilgá, jei norite iðvengti piktnaudþiavimø."
+
+#: ../setup/config_data.inc:844
+msgid "Can everybody see a Comments overview"
 msgstr ""
 
-#: ../setup/config_data.inc:850
+#: ../setup/config_data.inc:845
+msgid "Do you want to allow everybody to see a complete overview of all Comments of an Album. Set this to &quot;no&quot; if only admin and owners can use this feature."
+msgstr ""
+
+#: ../setup/config_data.inc:857
 msgid "Technical"
 msgstr "Techniniai nustatymai"
 
-#: ../setup/config_data.inc:851
+#: ../setup/config_data.inc:858
 msgid "You usually don't need to change anything in this section."
 msgstr "Daþniausiai jums nieko nereikia keisti ðioje sekcijoje."
 
-#: ../setup/config_data.inc:854
+#: ../setup/config_data.inc:861
 msgid "Time Limit"
 msgstr "Laiko limitas"
 
-#: ../setup/config_data.inc:855
+#: ../setup/config_data.inc:862
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr "Vienos operacijos laiko limitas. Jeigu Galerija rodo daug <b>Maximum execution time exceeded</b> klaidø, pabandykite padidinti ðià reikðmæ. Ásidëmëkite, kad jeigu ði reikðmë bus per didelë, <b>galite</b> sukurti procesà, kuris vyksta labai ilgà laiko tarpà ir nedaro nieko. Pradinë reikðmë (30) turi tikti daugumai platformø."
 
-#: ../setup/config_data.inc:863
+#: ../setup/config_data.inc:870
 msgid "Debug mode"
 msgstr "Detalus klaidø reþimas"
 
-#: ../setup/config_data.inc:864
+#: ../setup/config_data.inc:871
 msgid "Turn debug mode on so that you can diagnose problems?"
 msgstr "Ájungti detalø klaidø praneðimo reþimà, kad galëtumëte spræsti iðkilusias problemas?"
 
-#: ../setup/config_data.inc:869
+#: ../setup/config_data.inc:876
 msgid "Developer Mode"
 msgstr ""
 
-#: ../setup/config_data.inc:870
+#: ../setup/config_data.inc:877
 msgid "Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."
 msgstr ""
 
-#: ../setup/config_data.inc:875
+#: ../setup/config_data.inc:882
 #, fuzzy
 msgid "Use Syslog"
 msgstr "Naudoti %s"
 
-#: ../setup/config_data.inc:876
+#: ../setup/config_data.inc:883
 msgid "Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"
 msgstr ""
 
-#: ../setup/config_data.inc:881
+#: ../setup/config_data.inc:888
 #, php-format
 msgid "Use %s"
 msgstr "Naudoti %s"
 
-#: ../setup/config_data.inc:882
+#: ../setup/config_data.inc:889
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
 msgstr "Duomenø saugumui, Galerija naudoja flock() failø uþrakinimo sistemà. Ðià galimybæ turi ne visos platformos. Jeigu matote tokias klaidas kaip <i>Could not acquire lock</i>, iðjunkite ðá parametrà."
 
-#: ../setup/config_data.inc:886
+#: ../setup/config_data.inc:893
 msgid "Status code"
 msgstr "Bûklës kodas"
 
-#: ../setup/config_data.inc:887
+#: ../setup/config_data.inc:894
 msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr "Bûklës kodas, kurá Galerija matys po kiekvieno <i>exec()</i> funkcijos ávykdymo. Daþniausiai ðià reikðmæ Galerija nustato automatiðkai, todël jà keiskite tik jeigu turite kokiø nors problemø."
 
-#: ../setup/config_data.inc:893
+#: ../setup/config_data.inc:900
 msgid "Session variable"
 msgstr "Sesijos kintamasis"
 
-#: ../setup/config_data.inc:894
+#: ../setup/config_data.inc:901
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr "Ðis sesijos kintamasis saugo visà Galerijos sesijos informacijà. Jeigu Galerija serveryje konfliktuoja su kita PHP aplikacija, pakeiskite ðià reikðmæ."
 
-#: ../setup/config_data.inc:906
+#: ../setup/config_data.inc:913
 msgid "RSS Publisher"
 msgstr ""
 
-#: ../setup/config_data.inc:907
+#: ../setup/config_data.inc:914
 msgid "Options for the Gallery RSS Publisher"
 msgstr ""
 
-#: ../setup/config_data.inc:910
+#: ../setup/config_data.inc:917
 msgid "Enable RSS Generator"
 msgstr ""
 
-#: ../setup/config_data.inc:911
+#: ../setup/config_data.inc:918
 msgid "Enable or Disable the Gallery RSS Generator"
 msgstr ""
 
-#: ../setup/config_data.inc:913 ../setup/config_data.inc:946
-#: ../setup/config_data.inc:954 ../setup/config_data.inc:962
+#: ../setup/config_data.inc:920 ../setup/config_data.inc:953
+#: ../setup/config_data.inc:961 ../setup/config_data.inc:969
 #, fuzzy
 msgid "Yes"
 msgstr "taip"
 
-#: ../setup/config_data.inc:914 ../setup/config_data.inc:947
-#: ../setup/config_data.inc:955 ../setup/config_data.inc:963
+#: ../setup/config_data.inc:921 ../setup/config_data.inc:954
+#: ../setup/config_data.inc:962 ../setup/config_data.inc:970
 #, fuzzy
 msgid "No"
 msgstr "Pastaba"
 
-#: ../setup/config_data.inc:918
+#: ../setup/config_data.inc:925
 msgid "RSS Content"
 msgstr ""
 
-#: ../setup/config_data.inc:919
+#: ../setup/config_data.inc:926
 msgid "Specifies which information is to be included in your RSS feed."
 msgstr ""
 
-#: ../setup/config_data.inc:921
+#: ../setup/config_data.inc:928
 msgid "Basic information only"
 msgstr ""
 
-#: ../setup/config_data.inc:922
+#: ../setup/config_data.inc:929
 #, fuzzy
 msgid "Album highlight"
 msgstr "Nuotraukø perþiûra"
 
-#: ../setup/config_data.inc:923
+#: ../setup/config_data.inc:930
 msgid "All image thumbnails"
 msgstr ""
 
-#: ../setup/config_data.inc:924
+#: ../setup/config_data.inc:931
 msgid "All image thumbnails and captions"
 msgstr ""
 
-#: ../setup/config_data.inc:928
+#: ../setup/config_data.inc:935
 #, fuzzy
 msgid "RSS Highlight"
 msgstr "Titulinës nuotraukos dydis"
 
-#: ../setup/config_data.inc:929
+#: ../setup/config_data.inc:936
 msgid "Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."
 msgstr ""
 
-#: ../setup/config_data.inc:935
+#: ../setup/config_data.inc:942
 msgid "Visible Albums Only"
 msgstr ""
 
-#: ../setup/config_data.inc:936
+#: ../setup/config_data.inc:943
 msgid "Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."
 msgstr ""
 
-#: ../setup/config_data.inc:938
+#: ../setup/config_data.inc:945
 msgid "Display Visible Albums Only"
 msgstr ""
 
-#: ../setup/config_data.inc:939
+#: ../setup/config_data.inc:946
 #, fuzzy
 msgid "Display Hidden Albums"
 msgstr "Ar skaièiuoti apsilankymus kiekviename albume?"
 
-#: ../setup/config_data.inc:943
+#: ../setup/config_data.inc:950
 msgid "Use dc:date"
 msgstr ""
 
-#: ../setup/config_data.inc:944
+#: ../setup/config_data.inc:951
 msgid "(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."
 msgstr ""
 
-#: ../setup/config_data.inc:951
+#: ../setup/config_data.inc:958
 msgid "Use Big Photo"
 msgstr ""
 
-#: ../setup/config_data.inc:952
+#: ../setup/config_data.inc:959
 msgid "(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."
 msgstr ""
 
-#: ../setup/config_data.inc:959
+#: ../setup/config_data.inc:966
 msgid "Use Photo Tag"
 msgstr ""
 
-#: ../setup/config_data.inc:960
+#: ../setup/config_data.inc:967
 msgid "(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
 msgstr ""
 
-#: ../setup/config_data.inc:1008
+#: ../setup/config_data.inc:1015
 msgid "Appearance"
 msgstr "Iðvaizda"
 
-#: ../setup/config_data.inc:1011
+#: ../setup/config_data.inc:1018
 msgid "Border color"
 msgstr "Rëmeliø spalva"
 
-#: ../setup/config_data.inc:1012
-#, php-format
-msgid "Default color of image borders. You can learn about %scolors%s here."
+#: ../setup/config_data.inc:1019
+#, fuzzy, php-format
+msgid "Default color of (image) borders. You can learn about %scolors%s here."
 msgstr "Pradinë nuotraukø rëmeliø spalva. Daugiau apie spalvas galite suþinoti %sèia%s."
 
-#: ../setup/config_data.inc:1023
+#: ../setup/config_data.inc:1030
 msgid "Border width"
 msgstr "Rëmeliø storis"
 
-#: ../setup/config_data.inc:1024
-msgid "Default width of image borders."
+#: ../setup/config_data.inc:1031
+#, fuzzy
+msgid "Default width of (image) borders."
 msgstr "Pradinis nuotraukø rëmeliø plotis."
 
-#: ../setup/config_data.inc:1026 ../setup/config_data.inc:1076
-#: ../setup/config_data.inc:1090
-msgid "off"
-msgstr "iðjungta"
-
-#: ../setup/config_data.inc:1029
+#: ../setup/config_data.inc:1036
 msgid "Default Font"
 msgstr "Pagrindinis ðriftas"
 
-#: ../setup/config_data.inc:1030
+#: ../setup/config_data.inc:1037
 msgid "Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"
 msgstr "Pagrindinis Galerijos teksto ðriftas. Pvz. <i>arial</i> arba <i>trebuchet</i>"
 
-#: ../setup/config_data.inc:1042
+#: ../setup/config_data.inc:1049
 msgid "Layout"
 msgstr "Iðdëstymas"
 
-#: ../setup/config_data.inc:1045
+#: ../setup/config_data.inc:1052
 msgid "Default Columns"
 msgstr "Stulpeliø skaièius"
 
-#: ../setup/config_data.inc:1046
+#: ../setup/config_data.inc:1053
 msgid "The default number of columns in an album."
 msgstr "Pradinis nuotraukø stulpeliø skaièius albume."
 
-#: ../setup/config_data.inc:1051
+#: ../setup/config_data.inc:1058
 msgid "Default Rows"
 msgstr "Eiluèiø skaièius"
 
-#: ../setup/config_data.inc:1052
+#: ../setup/config_data.inc:1059
 msgid "The default number of rows in an album."
 msgstr "Pradinis nuotraukø eiluèiø skaièius albume."
 
-#: ../setup/config_data.inc:1063
+#: ../setup/config_data.inc:1070
 msgid "Image Processing and Display"
 msgstr "Nuotraukø apdorojimas ir rodymas"
 
-#: ../setup/config_data.inc:1066
+#: ../setup/config_data.inc:1073
 msgid "Thumbnail size"
 msgstr "Sumaþintos nuotraukos dydis"
 
-#: ../setup/config_data.inc:1067
+#: ../setup/config_data.inc:1074
 msgid "The default target size (in pixels) of album thumbnails."
 msgstr "Sumaþintos nuotraukos dydis (pikseliais)."
 
-#: ../setup/config_data.inc:1073
+#: ../setup/config_data.inc:1080
 msgid "Resized image size"
 msgstr "Vidutinës nuotraukos dydis"
 
-#: ../setup/config_data.inc:1074
+#: ../setup/config_data.inc:1081
 msgid "When large images are added to an album, an intermediate version will automatically be generated at this size."
 msgstr "Kai ákelsite naujas nuotraukas, bus sukuriama vidutinë nuotrauka, kurios dydis ir bus ðis parametras."
 
-#: ../setup/config_data.inc:1079
+#: ../setup/config_data.inc:1083 ../setup/config_data.inc:1097
+msgid "off"
+msgstr "iðjungta"
+
+#: ../setup/config_data.inc:1086
 msgid "Resized JPEG/PNG images file size"
 msgstr "Vidutinës JPEG/PNG nuotraukos failo dydis"
 
-#: ../setup/config_data.inc:1080
+#: ../setup/config_data.inc:1087
 msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
 msgstr "Vidutinës JPEG/PNG nuotraukos failo dydis (kilobaitais). Tai gali sulëtinti nuotraukø ádëjimà á serverá, taèiau pagreitins vidutiniø nuotraukø perþiûrà (ypaè vartotojams su modeminiu ryðiu). Pagal nutylëjimà parametras iðjungtas (0)."
 
-#: ../setup/config_data.inc:1087
+#: ../setup/config_data.inc:1094
 msgid "Maximum image size"
 msgstr "Originalios nuotraukos dydis"
 
-#: ../setup/config_data.inc:1088
+#: ../setup/config_data.inc:1095
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
 msgstr "Ðiuo parametru galite apriboti originaliø nuotraukø dydá."
 
-#: ../setup/config_data.inc:1088
+#: ../setup/config_data.inc:1095
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
 msgstr "Ájungdami ðià funkcijà liksite <b>be originalaus dyþio</b> nuotraukø, bet tai leidþia taupyti apribotà kietojo disko vietà. Galerija pabandys iðsaugoti JPEG failø EXIF duomenis, taèiau tam reikalingos <b>ImageMagick</b> arba <b>jhead</b> programos (þiûrëti 2-à þingsná)."
 
-#: ../setup/config_data.inc:1090
+#: ../setup/config_data.inc:1097
 #, php-format
 msgid "%d (%d MPix)"
 msgstr "%d (%d MPiks.)"
 
-#: ../setup/config_data.inc:1093
+#: ../setup/config_data.inc:1100
 msgid "Maximum JPEG/PNG image file size"
 msgstr "Originalios JPEG/PNG nuotraukos failo dydis"
 
-#: ../setup/config_data.inc:1094
+#: ../setup/config_data.inc:1101
 msgid "You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery."
 msgstr "Tai ppat galite apriboti originaliø JPEG/PNG nuotraukø failø dydá."
 
-#: ../setup/config_data.inc:1094
+#: ../setup/config_data.inc:1101
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
 msgstr "Ájungdami ðià funkcijà liksite <b>be originalios kokybës</b> nuotraukø. Tai gali sulëtinti nuotraukø ádëjimà á serverá, taèiau pagreitins vidutiniø nuotraukø perþiûrà (ypaè vartotojams su modeminiu ryðiu). Pagal nutylëjimà parametras iðjungtas (0)."
 
-#: ../setup/config_data.inc:1100
+#: ../setup/config_data.inc:1107
 msgid "Preserve Names"
 msgstr "Iðsaugoti pavadinimus"
 
-#: ../setup/config_data.inc:1101
+#: ../setup/config_data.inc:1108
 msgid "When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."
 msgstr "Ar ádedant failus á Galerijà iðsaugoti originalius failø pavadinimus? Jeigu parametrà <i>iðjungsite</i>, Galerija pati priskirs pavadinimà kiekvienam naujos nuotraukos failui."
 
-#: ../setup/config_data.inc:1106
+#: ../setup/config_data.inc:1113
 msgid "Add to beginning"
 msgstr "Kelti á pradþià"
 
-#: ../setup/config_data.inc:1107
+#: ../setup/config_data.inc:1114
 msgid "New images added to beginning rather than end of albums."
 msgstr "Naujos nuotraukos bus keliamos á albumo pradþià."
 
-#: ../setup/config_data.inc:1112
+#: ../setup/config_data.inc:1119
 msgid "Fit-to-window"
 msgstr "Talpinti á langà"
 
-#: ../setup/config_data.inc:1113
+#: ../setup/config_data.inc:1120
 msgid "When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
 msgstr "Kai perþiûrite nuoraukas, kurios neturi vidutinës savo versijos, Galerija gali automatiðkai sumaþinti jas (panaudojant JavaScript) iki tokio dydþio, kad tilptø á narðyklës langà. Tai gali neveikti tokiose aplinkose kaip Nuke."
 
-#: ../setup/config_data.inc:1118
+#: ../setup/config_data.inc:1125
 msgid "Visitor size prefs"
 msgstr "Leisti vartotojams nustatyti nuotraukø dydþius"
 
-#: ../setup/config_data.inc:1119
+#: ../setup/config_data.inc:1126
 msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."
 msgstr "Leisti vartotojams pasirinkti, kokià nuotraukos versijà rodyti: originalià ar vidutinæ. Ðis parametras iðsaugomas tik lankytojo sesijos metu."
 
-#: ../setup/config_data.inc:1130
+#: ../setup/config_data.inc:1137
 msgid "Options"
 msgstr "Kiti nustatymai"
 
-#: ../setup/config_data.inc:1133
+#: ../setup/config_data.inc:1140
 msgid "Printing Services"
 msgstr "Spausdinimo servisai"
 
-#: ../setup/config_data.inc:1134
+#: ../setup/config_data.inc:1141
 msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. If you choose Shutterfly's &quot;with donation&quot; option, Gallery will charge an extra 2 cents (US) for every photo printed, and 1.8 cents of that will get donated back to the Gallery project. EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation. Using these services is a great way for you to help support this free software."
 msgstr "Leisti lankytojams spausdinti nuotraukas tiesiai ið albumo. Fotokasten yra spausdinimo servisas Vokietijoje ir yra patogus europieèiams. EZ Prints, PhotoAccess ir Shutterfly yra Jungtinëse Amerikos Valstijose. Kiekvienas servisas Galerijos projektui neða pelnà uþ kiekvienà jûsø atspausdintà nuotraukà. Jeigu pasirinksite &quot;mokamà&quot; Shutterfly spausdinimo servisà, uþ kiekvienà nuotraukà turësite sumokëti po 2 amerikietiðkus centus ir 1.8 cento nuo ðios sumos bus graþinta Galerijos projektui. EZ Prints, PhotoAccess ir Fotokasten neima papildomø mokesèiø. Naudodami ðiuo servisus remiate ðià nemokamà árangà."
 
-#: ../setup/config_data.inc:1144
+#: ../setup/config_data.inc:1151
 msgid "with donation"
 msgstr "mokamas"
 
-#: ../setup/config_data.inc:1145
+#: ../setup/config_data.inc:1152
 msgid "without donation"
 msgstr "nemokamas"
 
-#: ../setup/config_data.inc:1169
+#: ../setup/config_data.inc:1176
 msgid "Gallery Link"
 msgstr "Rodyti Galerijos nuoroda"
 
-#: ../setup/config_data.inc:1170
+#: ../setup/config_data.inc:1177
 #, fuzzy
 msgid "Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
 msgstr "Ar rodyti nuorodà á pagrindiná Galerijos puslapá? Jeigu parametras iðjungtas, vartotojai negalës matyti aukðtesniø albumø. Tai naudinga aplinkose, kuriose nenorite, kad vartotojai matytø kitus albumus."
 
-#: ../setup/config_data.inc:1181
+#: ../setup/config_data.inc:1188
 msgid "Data displayed"
 msgstr "Duomenø atvaizdavimas"
 
-#: ../setup/config_data.inc:1184
+#: ../setup/config_data.inc:1191
 msgid "Click counts"
 msgstr "Ájungti skaitliukus"
 
-#: ../setup/config_data.inc:1185
+#: ../setup/config_data.inc:1192
 msgid "Display click counts within Albums?"
 msgstr "Ar skaièiuoti apsilankymus kiekviename albume?"
 
-#: ../setup/config_data.inc:1190
+#: ../setup/config_data.inc:1197
 msgid "Custom Fields"
 msgstr "Papildomi laukai"
 
-#: ../setup/config_data.inc:1192
+#: ../setup/config_data.inc:1199
 msgid "Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"
 msgstr "Kiekvienà nuotraukà galite apibûdinti papildomais laukais. Jie atskiriami kableliais. Pvz. <i>Apraðymas, Vieta, Tipas</i>"
 
-#: ../setup/config_data.inc:1198
+#: ../setup/config_data.inc:1205
 msgid "Display clickable image dimensions"
 msgstr "Rodyti skirtingø dydþiø nuotraukø nuorodas"
 
-#: ../setup/config_data.inc:1199
+#: ../setup/config_data.inc:1206
 msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
 msgstr "Parametras nusako, ar rodyti skirtingø dydþiø nuotraukø nuorodas po kiekvienu sumaþintu paveikslëliu. Priklausomai nuo vartotojo teisiø, ið pradþiø bus rodoma nuoroda á vidutinio dydþio nuotraukà, paskui á originalà."
 
-#: ../setup/config_data.inc:1210
+#: ../setup/config_data.inc:1217
 msgid "Item Owner"
 msgstr "Elementø savininkai"
 
-#: ../setup/config_data.inc:1213
+#: ../setup/config_data.inc:1220
 msgid "Photo owner modification"
 msgstr "Savininkai gali modifikuoti"
 
-#: ../setup/config_data.inc:1214
+#: ../setup/config_data.inc:1221
 msgid "Allow photo owners to edit and rotate/flip their own photos?"
 msgstr "Leisti nuotraukø savininkams pasukti/apsukti ir kitaip keisti savo nuotraukas?"
 
-#: ../setup/config_data.inc:1219
+#: ../setup/config_data.inc:1226
 msgid "Photo owner deletion"
 msgstr "Savininkai gali trinti"
 
-#: ../setup/config_data.inc:1220
+#: ../setup/config_data.inc:1227
 msgid "Allow photo owners to delete their own photos?"
 msgstr "Leisti nuotraukø savininkams trinti savo nuotraukas?"
 
-#: ../setup/config_data.inc:1225
+#: ../setup/config_data.inc:1232
 msgid "Photo owner display"
 msgstr "Rodyti savininkø vardus"
 
-#: ../setup/config_data.inc:1226
+#: ../setup/config_data.inc:1233
 msgid "Display the name of photo owners with the caption?"
 msgstr "Rodyti savininkø vardus prie nuotraukø apraðymo?"
 
-#: ../setup/config_data.inc:1237
+#: ../setup/config_data.inc:1244
 msgid "Polling configuration"
 msgstr "Balsavimo nustatymai"
 
-#: ../setup/config_data.inc:1239
+#: ../setup/config_data.inc:1246
 #, php-format
 msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."
 msgstr "Tai leidþia lankytojams balsuoti arba ávertinti nuotraukas. Ðie nustatymai bus standartiniai visiems naujiems albumams, bei albumams kurie bus atnaujinti á versijà %s."
 
-#: ../setup/config_data.inc:1242
+#: ../setup/config_data.inc:1249
 msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
 msgstr "Balsavimas kiekviename albume gali bûti iðjungtas, apribotas tik prisijungusiems vartotojams arba atviras visiems lankytojams."
 
-#: ../setup/config_data.inc:1244
+#: ../setup/config_data.inc:1251
 #, php-format
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr "Yra du balsavimø tipai: %s, kuris leidþia lankytojams savo mëgemiausias nuotraukas ávertinti kaip pirmà, antrà, treèià ir t.t., ir %s, kur balsuotojai gali vertinti nuotraukas be apribojimø. %s yra lyg filmo ávertinimas kur kiekviena nuotrauka gali turëti (pavyzdþiui) 5 taðkus, tuo tarpu %s yra naudingas balsavimo varþybose."
 
-#: ../setup/config_data.inc:1245 ../setup/config_data.inc:1248
-#: ../setup/config_data.inc:1269 ../setup/config_data.inc:1274
+#: ../setup/config_data.inc:1252 ../setup/config_data.inc:1255
+#: ../setup/config_data.inc:1276 ../setup/config_data.inc:1281
 msgid "Rank"
 msgstr "Kategorija"
 
-#: ../setup/config_data.inc:1246 ../setup/config_data.inc:1247
-#: ../setup/config_data.inc:1271 ../setup/config_data.inc:1275
+#: ../setup/config_data.inc:1253 ../setup/config_data.inc:1254
+#: ../setup/config_data.inc:1278 ../setup/config_data.inc:1282
 msgid "Critique"
 msgstr "Kritika"
 
-#: ../setup/config_data.inc:1251
+#: ../setup/config_data.inc:1258
 msgid "Voter class"
 msgstr "Balsuotojo klasë"
 
-#: ../setup/config_data.inc:1252
+#: ../setup/config_data.inc:1259
 msgid "Voting is available to:"
 msgstr "Balsavimas galimas:"
 
-#: ../setup/config_data.inc:1254 ../setup/config_data.inc:1261
+#: ../setup/config_data.inc:1261 ../setup/config_data.inc:1268
 msgid "Nobody"
 msgstr "Niekas"
 
-#: ../setup/config_data.inc:1255
+#: ../setup/config_data.inc:1262
 msgid "Voting is off."
 msgstr "Balsavimas iðjungtas."
 
-#: ../setup/config_data.inc:1256 ../setup/config_data.inc:1262
+#: ../setup/config_data.inc:1263 ../setup/config_data.inc:1269
 msgid "Everybody"
 msgstr "Visiems"
 
-#: ../setup/config_data.inc:1257
+#: ../setup/config_data.inc:1264
 msgid "Anyone can vote.  Votes are recorded against session ID."
 msgstr "Balsuoti gali visi. Balsai nustatomi pagal sesijos ID."
 
-#: ../setup/config_data.inc:1258 ../setup/config_data.inc:1263
+#: ../setup/config_data.inc:1265 ../setup/config_data.inc:1270
 msgid "Logged in"
 msgstr "Prisijungti"
 
-#: ../setup/config_data.inc:1259
+#: ../setup/config_data.inc:1266
 msgid "Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices."
 msgstr "Balsuoti gali tik prisijungæ vartotojai. Balsai skaièiuojami pagal vartotojo ID, todël balsuotojai gali gráþti ir pakeisti savo pasirinkimà."
 
-#: ../setup/config_data.inc:1266
+#: ../setup/config_data.inc:1273
 msgid "Poll type"
 msgstr "Balsavimo tipas"
 
-#: ../setup/config_data.inc:1267
+#: ../setup/config_data.inc:1274
 msgid "Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation."
 msgstr "Galerija siûlo du balsavimo tipus. Platesná apraðymà galite rasti aukðèiau."
 
-#: ../setup/config_data.inc:1270
+#: ../setup/config_data.inc:1277
 msgid "Users have a set of votes which they can allocate to the images."
 msgstr "Vartotojai gali pasirinkti tik keletà paveikslëliø, kuriems nori duoti balsus."
 
-#: ../setup/config_data.inc:1272
+#: ../setup/config_data.inc:1279
 msgid "Enables users to give all images points without restriction."
 msgstr "Vartotojai gali balsuoti be apribojimø."
 
-#: ../setup/config_data.inc:1279
+#: ../setup/config_data.inc:1286
 msgid "Number of choices"
 msgstr "Pasirinkimø skaièius"
 
-#: ../setup/config_data.inc:1280
+#: ../setup/config_data.inc:1287
 msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu."
 msgstr "Balsavimo punktø skaièius, kuriuos matys balsuotojai."
 
-#: ../setup/config_data.inc:1285
+#: ../setup/config_data.inc:1292
 msgid "Vote hint"
 msgstr "Kvietimas balsuoti"
 
-#: ../setup/config_data.inc:1286
+#: ../setup/config_data.inc:1293
 msgid "This is displayed above the voting options under each image."
 msgstr "Ðis tekstas bus rodomas virð balsavimo prie kiekvieno paveikslëlio."
 
-#: ../setup/config_data.inc:1288
+#: ../setup/config_data.inc:1295
 msgid "Vote for this image"
 msgstr "Ávertink!"
 
-#: ../setup/config_data.inc:1293 ../setup/config_data.inc:1302
+#: ../setup/config_data.inc:1300 ../setup/config_data.inc:1309
 msgid "Show vote results"
 msgstr "Rodyti balsavimo rezultatus"
 
-#: ../setup/config_data.inc:1294
+#: ../setup/config_data.inc:1301
 #, php-format
 msgid "Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."
 msgstr "Rodyti diagramà, kurioje bus atvaizduojami balsavimo rezultatai ir nuoroda á pilnus rezultatus. Jeigu ðis parametras nustatymas kaip %s, balsavimo rezultatus matys tik administratoriai ir albumø savininkai."
 
-#: ../setup/config_data.inc:1300
+#: ../setup/config_data.inc:1307
 msgid "Number of results displayed"
 msgstr "Rodomø rezultatø skaièius"
 
-#: ../setup/config_data.inc:1301
+#: ../setup/config_data.inc:1308
 #, php-format
 msgid "If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"
 msgstr "Jeigu %s yra %s, tai bus rodomi tiek pirmø balsavimo rezultatø. (Pilni rezultatai bus prieinami per nuorodà tame paèiame puslapyje.)"
 
-#: ../setup/config_data.inc:1308
+#: ../setup/config_data.inc:1315
 msgid "Orientation of vote choices?"
 msgstr "Kaip bus iðdëstyti balsavimo punktai?"
 
-#: ../setup/config_data.inc:1309
+#: ../setup/config_data.inc:1316
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr "Rinkimø balsavimø rezultatai gali bûti iðdëstyti horizontaliai arba vertikaliai. Ðis parametras neturi jokio efekto, kai ájungtas kritikos balsavimo tipas."
 
-#: ../setup/config_data.inc:1312
+#: ../setup/config_data.inc:1319
 msgid "Horizontal"
 msgstr "Horizontaliai"
 
-#: ../setup/config_data.inc:1313
+#: ../setup/config_data.inc:1320
 msgid "Vertical"
 msgstr "Vertikaliai"
 
-#: ../setup/config_data.inc:1315 ../setup/functions.inc:1021
+#: ../setup/config_data.inc:1322 ../setup/functions.inc:1021
 #: ../setup/functions.inc:1030 ../setup/functions.inc:1035
 msgid "Vote words and values"
 msgstr "Balsavimo punktai ir reikðmës"
 
-#: ../setup/config_data.inc:1316
+#: ../setup/config_data.inc:1323
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "Ðis parametras leidþia nustatyti pasirinkimø tekstà ir skaièiø kiekvienai reikðmei."
 
-#: ../setup/config_data.inc:1318
+#: ../setup/config_data.inc:1325
 msgid "Excellent"
 msgstr "Puiku"
 
-#: ../setup/config_data.inc:1319
+#: ../setup/config_data.inc:1326
 msgid "Very Good"
 msgstr "Labai gerai"
 
-#: ../setup/config_data.inc:1320
+#: ../setup/config_data.inc:1327
 msgid "Good"
 msgstr "Gerai"
 
-#: ../setup/config_data.inc:1321
+#: ../setup/config_data.inc:1328
 msgid "Average"
 msgstr "Vidutiniðkai"
 
-#: ../setup/config_data.inc:1322
+#: ../setup/config_data.inc:1329
 msgid "Poor"
 msgstr "Blogai"
 
-#: ../setup/config_data.inc:1333
+#: ../setup/config_data.inc:1340
 msgid "Album Slideshow"
 msgstr "Nuotraukø perþiûra"
 
-#: ../setup/config_data.inc:1337
+#: ../setup/config_data.inc:1344
 msgid "Slideshow Type"
 msgstr "Nuotraukø perþiûros tipas"
 
-#: ../setup/config_data.inc:1354
+#: ../setup/config_data.inc:1361
 msgid "Recursive slideshow"
 msgstr "Rekursinë perþiûra"
 
-#: ../setup/config_data.inc:1355
+#: ../setup/config_data.inc:1362
 #, php-format
 msgid "Set to %s if you want to include images in sub albums as part of the slideshow."
 msgstr "Jeigu norite á perþiûrà átraukti nuotraukas ið vidiniø albumø, nustatykite ðità parametrà á %s."
 
-#: ../setup/config_data.inc:1361
+#: ../setup/config_data.inc:1368
 #, php-format
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "Ðis parametras leidþia lankytojams kartoti perþiûrà tol, kol uþdaro langà arba iðeina á kità puslapá. Jeigu norite sutaupyti linijos apkrovimà, nustatykite ðá parametrà á %s."
 
-#: ../setup/config_data.inc:1380 ../setup/frame_test.php:29
+#: ../setup/config_data.inc:1387 ../setup/frame_test.php:29
 msgid "Frames"
 msgstr "Rëmeliai"
 
-#: ../setup/config_data.inc:1381
+#: ../setup/config_data.inc:1388
 #, php-format
 msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"
 msgstr "Kiekvienas %s paveikslëlis (sumaþintas, vidutinio arba originalaus dydþio) gali turëti rëmelá. Galimi ðie stiliai:"
 
-#: ../setup/config_data.inc:1385
+#: ../setup/config_data.inc:1392
 msgid "Subalbum frames"
 msgstr "Vidiniø-albumø rëmeliai"
 
-#: ../setup/config_data.inc:1386
+#: ../setup/config_data.inc:1393
 msgid "This frame will appear around the thumbnail image representing a subalbum."
 msgstr "Ðis rëmelis bus rodomas aplink vidiniø-albumø paveikslëlá."
 
-#: ../setup/config_data.inc:1391
+#: ../setup/config_data.inc:1398
 msgid "Frame around thumbs"
 msgstr "Sumaþintos nuotraukos rëmelis"
 
-#: ../setup/config_data.inc:1392
+#: ../setup/config_data.inc:1399
 msgid "This frame will appear around the thumbnail image representing a photo or movie."
 msgstr "Ðis rëmelis bus rodomas aplink sumaþintà nuotraukà arba video klipukà."
 
-#: ../setup/config_data.inc:1398
+#: ../setup/config_data.inc:1405
 msgid "Frame around images"
 msgstr "Nuotraukø rëmeliai"
 
-#: ../setup/config_data.inc:1399
+#: ../setup/config_data.inc:1406
 msgid "This frame will appear around fulled sized and resized photos."
 msgstr "Ðis rëmelis bus rodomas aplink vidutinio ir originalaus dydþio nuotraukas."
 
@@ -2050,7 +2061,8 @@ msgstr "Iðsaugoti nustatymus"
 msgid "One error."
 msgid_plural "%d errors."
 msgstr[0] "Viena klaida"
-msgstr[1] "Viena klaida"
+msgstr[1] ""
+msgstr[2] ""
 
 #: ../setup/confirm.inc:459
 #, fuzzy
@@ -2103,11 +2115,11 @@ msgstr "Naudoti pradines reikðmes"
 
 #: ../setup/defaults.inc:31
 msgid "Here you can customize the default values for <b>new albums</b> that you create. These settings have no effect on existing albums!"
-msgstr ""
+msgstr "Èia galite modifikuoti reikðmes pagal nutylëjimà <b>naujiems albumams</b>, kuriuos sukursite. Ðie nustatymai neturi átakos jokiems jau sukurtiems albumams!"
 
 #: ../setup/defaults.inc:33
 msgid "Note that these are <b>not master switches</b>. This means you can change those settings for each separately."
-msgstr ""
+msgstr "Atminkite, kad tai nëra <b>pagrindiniai pasirinkimai</b>. Tai reiðkia, kad galësite keisti ðiuos pasirinkimus kiekvienam albumui atskirai."
 
 #: ../setup/defaults.inc:34
 #, fuzzy
@@ -2230,20 +2242,20 @@ msgstr "Nuotraukos"
 
 #: ../setup/frame_test.php:62
 msgid "Just a simple dashed border around the thumb."
-msgstr ""
+msgstr "Paprasèiausiai rëmelis ið brûkðneliø aplink sumaþintà paveikslëlá."
 
 #: ../setup/frame_test.php:63
 msgid "Solid"
-msgstr ""
+msgstr "Vientisas"
 
 #: ../setup/frame_test.php:64
 msgid "Just a simple solid border around the thumb."
-msgstr ""
+msgstr "Paprasèiausiai vientisas rëmelis aplink sumaþintà paveikslëlá."
 
 #: ../setup/frame_test.php:87
 #, php-format
 msgid "Skipping %s."
-msgstr ""
+msgstr "Praleidþiame %s."
 
 #: ../setup/frame_test.php:93
 #, fuzzy, php-format
@@ -2252,7 +2264,7 @@ msgstr "Negaliu rasti %s!"
 
 #: ../setup/frame_test.php:171
 msgid "Close Window"
-msgstr ""
+msgstr "Uþdaryti langà"
 
 #: ../setup/functions.inc:135
 msgid "Please retype your password here"
@@ -2301,12 +2313,12 @@ msgstr "Negaliu patvirtinti ðio kelio (jo nëra open_basedir sàraðe)."
 
 #: ../setup/functions.inc:456
 msgid "Without pnmcomp gallery will not be able to watermark images, except you use ImageMagick and have the composite binary installed."
-msgstr ""
+msgstr "Be pnmcomp gallery negalës ið nuotraukø daryti vandenþenklius, nebent naudosite ImageMagick ir turësite ádiegtà composite programà."
 
 #: ../setup/functions.inc:484 ../setup/functions.inc:557
 #, php-format
 msgid "Missing optional binary %s. %s"
-msgstr ""
+msgstr "Trûksta neprivalomø binariniø bylø %s. %s"
 
 #: ../setup/functions.inc:488 ../setup/functions.inc:560
 #, php-format
@@ -2325,7 +2337,7 @@ msgstr "Rasti %d ið %d NetPBM failø."
 
 #: ../setup/functions.inc:544
 msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
-msgstr ""
+msgstr "Be composite gallery negalës ið nuotraukø padaryti vandenþenklius, nebent turësite ádiegtas NetPBM ir pnmcomp programas."
 
 #: ../setup/functions.inc:573 ../setup/functions.inc:580
 #, php-format
@@ -2590,35 +2602,35 @@ msgstr "e-paðto adresas"
 
 #: ../setup/functions.inc:1423
 msgid "Your version of PHP handles this issue properly."
-msgstr ""
+msgstr "Esama PHP versija teisingai palaiko ðià problemà."
 
 #: ../setup/functions.inc:1440
 msgid "File missing or unreadable.  Please install then re-run this test."
-msgstr ""
+msgstr "Byla nerasta arba neperskaitoma. Praðome ádiegti ir paskui dar kartà paleisti ðá testà."
 
 #: ../setup/functions.inc:1444
 #, php-format
 msgid "Please ensure that %s is the latest version."
-msgstr ""
+msgstr "Praðome ásitikinti kad %s yra naujausios versijos."
 
 #: ../setup/functions.inc:1449
 #, php-format
 msgid "Testing status of %d files."
-msgstr ""
+msgstr "Testuojame %d bylos(-ø) bûklæ.."
 
 #: ../setup/functions.inc:1456
 #, php-format
 msgid "Cannot read file %s."
-msgstr ""
+msgstr "Negaliu perskaityti %s bylos(-ø)."
 
 #: ../setup/functions.inc:1458
 msgid "File missing or unreadable."
-msgstr ""
+msgstr "Byla nerasta arba neperskaitoma."
 
 #: ../setup/functions.inc:1463
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
-msgstr ""
+msgstr "Informacija apie versijà nerasta bylai %s. Byla matyt yra labai senos versijos arba sugadinta."
 
 #: ../setup/functions.inc:1465
 #, fuzzy
@@ -2628,32 +2640,32 @@ msgstr "Reikðmë nenurodyta"
 #: ../setup/functions.inc:1472
 #, php-format
 msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-msgstr ""
+msgstr "Problema su %s.  Tikimasi %s versijos (arba aukðtesnës) bet rasta %s."
 
 #: ../setup/functions.inc:1474
 #, php-format
 msgid "Expected version %s (or greater) but found %s."
-msgstr ""
+msgstr "Tikimasi %s versijos (arba aukðtesnës) bet rasta %s."
 
 #: ../setup/functions.inc:1478
 #, php-format
 msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-msgstr ""
+msgstr "%s OK.  Dabartine (%s) versija þymiai aukðtesnë negu (%s), kurios buvo tikëtasi"
 
 #: ../setup/functions.inc:1480
 #, php-format
 msgid "Expected version %s but found %s."
-msgstr ""
+msgstr "Tikëtasi %s versijos bet rasta %s."
 
 #: ../setup/functions.inc:1484
 #, php-format
 msgid "%s OK"
-msgstr ""
+msgstr "%s OK"
 
 #: ../setup/functions.inc:1486
 #, php-format
 msgid "Found expected version %s."
-msgstr ""
+msgstr "Rasta %s versija, kurios ir buvo tikëtasi."
 
 #: ../setup/index.php:136
 msgid "Security violation"
