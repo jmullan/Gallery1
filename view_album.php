@@ -651,7 +651,7 @@ if ($page == 1)
 
 <!-- image grid table -->
 <br>
-<table width="<?php echo $fullWidth ?>" border=0 cellspacing=0 cellpadding=7>
+<table width="<?php echo $fullWidth ?>" border="0" cellspacing="0" cellpadding="7">
 <?php
 $numPhotos = $gallery->album->numPhotos(1);
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
@@ -1008,7 +1008,7 @@ if ($numPhotos) {
 } else {
 ?>
 
-	<td colspan=$rows align=center class="headbox">
+	<td colspan="<?php echo $rows ?>" align="center" class="headbox">
 <?php if ($gallery->user->canAddToAlbum($gallery->album) && !$gallery->session->offline) { ?>
 	<span class="head"><?php echo _("Hey! Add some photos.") ?></span>
 <?php } else { ?>
@@ -1023,7 +1023,7 @@ if ($numPhotos) {
 </table>
 
 <?php if ($displayCommentLegend) { //display legend for comments ?>
-<span class=error>*</span><span class=fineprint> <?php echo _("Comments available for this item.") ?></span>
+<span class="error">*</span><span class="fineprint"> <?php echo _("Comments available for this item.") ?></span>
 <br><br>
 <?php } ?>
 
@@ -1031,8 +1031,8 @@ if ($numPhotos) {
 if (canVote())
 {
 ?>
-	<table width="100%"><tr><td align=center>
- 	<input type=submit name="Vote" value="<?php print _("Vote") ?>">
+	<table width="100%"><tr><td align="center">
+ 	<input type="submit" name="Vote" value="<?php print _("Vote") ?>">
 	</td></tr></table>
 
 <?php

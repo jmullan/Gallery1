@@ -31,15 +31,16 @@
  */
 
 /**
- **
+ ** Defaults
  **/
 
 	$nls['language']['en_US'] =	'English (US)';
-	$nls['postnuke']['en_US'] = 	'eng';
-	$nls['phpnuke']['en_US']  =	'english';
-/**
- ** Defaults
- **/	
+
+	$nls['postnuke']['en_US'] =     'eng';
+	$nls['alias']['eng'] =          'en_US';
+
+	$nls['phpnuke']['en_US']  =     'english';
+	$nls['alias']['english']  =     'en_US';
 
 /** 
  ** Charset
