@@ -295,7 +295,7 @@ function gr_album_properties( &$gallery, &$response ) {
 	if ($max_dimension == 'off') {
 		$max_dimension = 0;
 	}
-	print_r($gallery->album);
+
 	$response->setProperty( 'auto_resize', $max_dimension );
 	$response->setProperty( 'extra_fields', $gallery->album->getExtraFields() );
 	$response->setProperty( 'add_to_beginning', $gallery->album->fields['add_to_beginning'] );
