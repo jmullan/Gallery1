@@ -108,7 +108,8 @@ if ($gallery->session->albumName && isset($index)) {
 								$newphoto->hide();
 							}
 							$postAlbum->setPhoto($newphoto,$newPhotoIndex);
-							$postAlbum->save();
+							_("An image has been copied into this album.");
+							$postAlbum->save(array("An image has been copied into this album."));
 						} else {
 							echo "<font color=red>". _("Error") . ": "."$err!</font>";
 							return;

@@ -76,8 +76,11 @@ if ($gallery->session->albumName && isset($index)) {
 					$myAlbum = $gallery->album->getNestedAlbum($index);
 					$myAlbum->fields['parentAlbumName'] = 0;
 					$gallery->album->deletePhoto($index, 0, 0); 
-					$myAlbum->save();
-					$gallery->album->save();
+					_("Moved to ROOT");
+					$myAlbum->save(array("Moved to ROOT"));
+					_("Subalbum %s moved to ROOT");
+					$gallery->album->save(array("Subalbum %s moved to ROOT",
+								myAlbum->fields['name']));
 				} else { // moving "album" to another album
 					$myAlbum = $gallery->album->getNestedAlbum($index);
 					if ($postAlbum != $myAlbum) { // we don't ever want to point an album back at itself!!!
@@ -89,9 +92,18 @@ if ($gallery->session->albumName && isset($index)) {
 
 						// delete "album" from original album
 						$gallery->album->deletePhoto($index, 0, 0);
-						$postAlbum->save();
-						$gallery->album->save();
-						$myAlbum->save();
+						_("New subalbum %s from %s");
+						$postAlbum->save(array("New subalbum %s from %s",
+									$myAlbum->fields['name'], 
+									$gallery->album->fields['name']));
+						_("Moved subalbum %s to %s"); 
+						$gallery->album->save(array("Moved subalbum %s to %s", 
+									$myAlbum->fields['name'], 
+									$postAlbum->fields['name']));
+					       	_("Moved from %s to %s");
+					       	$myAlbum->save(array("Moved from %s to %s",
+								       	$gallery->album->fields['name'],
+								       	$postAlbum->fields['name']));
 					}
 				}
 			} else { // moving "picture" to another album
@@ -144,7 +156,9 @@ if ($gallery->session->albumName && isset($index)) {
 							}
 							$postAlbum->setPhoto($newphoto,$newPhotoIndex);
 
-							$postAlbum->save();
+							_("New images from album %s"); 
+							$postAlbum->save(array("New images from album %s", 
+								       	$gallery->album->fields['name']));
 							if ($startPhoto == $endPhoto) {
 								if (!$gallery->album->hasHighlight()) {
 									$resetHighlight = 1;
@@ -157,7 +171,9 @@ if ($gallery->session->albumName && isset($index)) {
 								$resetHighlight = -1;
 								$gallery->album->deletePhoto($index,$resetHighlight);
 							}
-							$gallery->album->save();
+						       	_("Images moved to %s");
+						       	$gallery->album->save(array("Images moved to %s", 
+										$postAlbum->fields['name']));
 						} else {
 							echo "<font color=red>". _("Error") . ": "."$err!</font>";
 							return;
@@ -180,7 +196,8 @@ if ($gallery->session->albumName && isset($index)) {
 
         if (isset($newIndex)) {
 		$gallery->album->movePhoto($index, $newIndex);
-		$gallery->album->save();
+		_("Images rearranged");
+		$gallery->album->save(array("Images rearranged");
 		dismissAndReload();
 		return;
 	} else {

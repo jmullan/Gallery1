@@ -40,6 +40,7 @@ class AlbumItem {
 	var $extraFields;
 	var $rank;
 	var $version;
+	var $emailMe;
 
 	function AlbumItem() {
 	        global $gallery;
@@ -166,6 +167,9 @@ class AlbumItem {
 		}
 		if ($this->version < 16) {
 			$this->setRank(0);
+		}
+		if ($this->version < 24) {
+			$this->emailMe=array();
 		}
 		if ($this->image) {
 			if ($this->image->integrityCheck($dir)) {
@@ -575,6 +579,35 @@ class AlbumItem {
 		$comment=$this->getComment($this->numComments());
 		return $comment->datePosted; // returns the time()
        	}
+	function getEmailMe($type, $user) {
+		$uid=$user->getUid();
+		if (isset ($this->emailMe[$type])) {
+			return isset($this->emailMe[$type][$uid]);
+		} else {
+			return false;
+		}
+	}
+	function getEmailMeListUid ($type) {
+		if (isset( $this->emailMe[$type])) {
+			return array_keys($this->emailMe[$type]);
+		} else {
+			return array();
+		}
+	}
+	function setEmailMe($type, $user) {
+		if ($this->getEmailMe($type, $user)) {
+		       	return;
+		}
+		$uid=$user->getUid();
+		$this->emailMe[$type][$uid]=true;
+	}
+	function unsetEmailMe($type, $user) {
+		if (!$this->getEmailMe($type, $user)) {
+		       	return;
+		}
+		$uid=$user->getUid();
+		unset($this->emailMe[$type][$uid]);
+	}
 }
 
 ?>

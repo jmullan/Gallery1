@@ -642,8 +642,7 @@ if (canVote())
 if ($page == 1)
 {
         print $gallery->album->fields["summary"];
-}
-?>
+} ?>
 
 <!-- image grid table -->
 <br>
@@ -1036,6 +1035,34 @@ if (canVote())
 
 ?>
 	</form>
+<?php if ($gallery->user->isLoggedIn() &&  
+		$gallery->user->getEmail() &&
+		!$gallery->session->offline &&
+		$gallery->app->emailOn == "yes") {
+	if (isset($submitEmailMe)) {
+		if (isset($comments)) {
+			$gallery->album->setEmailMe('comments', $gallery->user);
+		} else {
+			$gallery->album->unsetEmailMe('comments', $gallery->user);
+		}
+		if (isset($other)) {
+			$gallery->album->setEmailMe('other', $gallery->user);
+		} else {
+			$gallery->album->unsetEmailMe('other', $gallery->user);
+		}
+	}
+	echo makeFormIntro("view_album.php",
+	       	array("name" => "email_me", "method" => "POST"));
+       	print _("Email me when:")."  ";
+       	print _("Comments are added"); ?>
+	<input type="checkbox" name="comments" <?php echo ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ?>
+	       	onclick="document.email_me.submit()" >
+		<?php print _("Other changes are made") ?>
+		<input type="checkbox" name="other" <?php echo ($gallery->album->getEmailMe('other', $gallery->user)) ? "checked" : "" ?>
+		        onclick="document.email_me.submit()" >
+	       	<input type="hidden" name="submitEmailMe">
+		</form>
+<?php } ?>
 <!-- bottom nav -->
 <?php 
 includeLayout('navigator.inc');

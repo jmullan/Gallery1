@@ -239,6 +239,7 @@ if (!empty($urls)) {
 <br>
 
 <?php
+$image_count=0;
 while (isset($userfile) && sizeof($userfile)) {
 	$name = array_shift($userfile_name);
 	$file = array_shift($userfile);
@@ -257,10 +258,12 @@ while (isset($userfile) && sizeof($userfile)) {
 
 	if ($name) {
 		processNewImage($file, $tag, $name, $caption, $setCaption);
+		$image_count++;
 	}
 }
 
-$gallery->album->save();
+_("%d files uploaded");
+$gallery->album->save(array("%d files uploaded", $image_count));
 
 if ($temp_files) {
 	/* Clean up the temporary url file */

@@ -59,7 +59,9 @@ if ($action == "doit") {
 		$photo->image->setThumbRectangle($crop_x, $crop_y, $crop_w, $crop_h);
 		$photo->makeThumbnail($gallery->album->getAlbumDir(), $gallery->album->fields["thumb_size"]);
 		$gallery->album->setPhoto($photo, $index);
-		$gallery->album->save();
+		_("Thumbnail modified for %s"); 
+		$gallery->album->save(array("Thumbnail modified for %s", 
+					$gallery->album->getPhotoId($index)));
 	}	
 	
 	#-- close and reload parent ---

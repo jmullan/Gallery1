@@ -77,7 +77,8 @@ if (!empty($save)) {
 	{
 		$gallery->album->setNestedExtraFields();
 	}
-	$gallery->album->save();
+	_("Custom fields modified");
+	$gallery->album->save(array("Custom fields modified"));
 
 	reload();
 }

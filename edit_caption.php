@@ -57,7 +57,8 @@ if (isset($save)) {
 			}
 			$gallery->album->setExtraField($index, $field, trim($value));
 		}
-		$gallery->album->save();
+		_("Captions and/or custom fields modified");
+		$gallery->album->save(array("Captions and/or custom fields modified"));
 		dismissAndReload();
 		if (!isDebugging()) {
 			return;

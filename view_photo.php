@@ -53,7 +53,7 @@ if (!isset($openAnchor)) {
 }
 
 
-if ($id) {
+if (isset($id)) {
 	$index = $gallery->album->getPhotoIndex($id);
 	if ($index == -1) {
 		// That photo no longer exists.
@@ -839,6 +839,37 @@ echo("</td></tr>");
 ?>
 
 </table>
+
+<?php if ($gallery->user->isLoggedIn() &&  
+		$gallery->user->getEmail() &&
+		!$gallery->session->offline &&
+		$gallery->app->emailOn == "yes") {
+	if (isset($submitEmailMe)) {
+		if (isset($comments)) {
+			$gallery->album->setEmailMe('comments', $gallery->user, $id);
+		} else {
+			$gallery->album->unsetEmailMe('comments', $gallery->user, $id);
+		}
+		/* if (isset($other)) {
+			$gallery->album->setEmailMe('other', $gallery->user, $id);
+		} else {
+			$gallery->album->unsetEmailMe('other', $gallery->user, $id);
+		} */
+	}
+	echo makeFormIntro("view_photo.php",
+		       	array("name" => "email_me", "method" => "POST"));
+       	print "<input type=hidden name=id value=$id>";
+       	print _("Email me when:") . "  ";
+       	print _("Comments are added");
+       	?>
+	<input type="checkbox" name="comments" <?php echo ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? "checked" : "" ?>
+		        onclick="document.email_me.submit()" >
+		<!-- <?php print _("Other changes are made") ?>
+		<input type="checkbox" name="other" <?php echo ($gallery->album->getEmailMe('other', $gallery->user, $id)) ? "checked" : "" ?>
+		        onclick="document.email_me.submit()" > -->
+	       	<input type="hidden" name="submitEmailMe">
+		</form>
+<?php } ?>
 <table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
 <tr>
 <td>

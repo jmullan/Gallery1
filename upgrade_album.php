@@ -96,7 +96,7 @@ function process($arr) {
 	foreach ($arr as $album) {
 		print "<b>". _("Album") . ": " . $album->fields["title"] . "</b><br>";
 		if ($album->integrityCheck()) {
-			$album->save(0);
+			$album->save(array(), 0);
 		}
 		print "<br>";
 	}

@@ -369,7 +369,8 @@ if (!strcmp($cmd, "add-item")) {
     			processNewImage($userfile, $tag, $userfile_name,"",$setCaption);
 		}
 
-		$gallery->album->save();
+		_("Image added");
+		$gallery->album->save(array("Image added"));
 
 		if ($temp_files) {
     		/* Clean up the temporary url file */

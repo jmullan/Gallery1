@@ -504,6 +504,16 @@ $constants = array_merge($constants,
 		"attrs" => array("size" => 50),
 		"optional" => 1
 	),
+	"emailSubjPrefix" => array(
+		"prompt" => _("Email subject prefix"),
+		"desc" => _("All gallery emails will have this as the first part of their subject.") . 
+			newIn("1.4.1"),
+		"type" => "text",
+		"attrs" => array("size" => 50),
+		"value" => (!empty( $gallery->app->galleryTitle)) ?
+	     		"[" . $gallery->app->galleryTitle . "]"	:
+	     		"[" . Gallery() . "]"
+	),
 	"emailGreeting" => array(
 		"prompt" => _("Welcome email message text"),
 	       	"desc" => _("This email will be sent when new accounts are created.") . "<p>" .
@@ -753,7 +763,7 @@ $defaults = array(
 	),
 	"resize_size" => array(
 		"prompt" => _("Resized image size"),
-		"desc" => _("When large images are added to an album, an intermediary version will automatically be generated at this size."),
+		"desc" => _("When large images are added to an album, an intermediate version will automatically be generated at this size."),
 		"value" => 640,
 		"choices" => array("off" => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024)
 	),
@@ -792,13 +802,13 @@ $defaults = array(
 	),
 	"fit_to_window" => array(
 		"prompt" => _("Fit-to-window"),
-		"desc" => _("When viewing photos which don't have an intermediary version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."),
+		"desc" => _("When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."),
 		"value" => "no",
 		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),
 	"use_fullOnly" => array(
 		"prompt" => _("Visitor size prefs"),
-		"desc" => _("Offer visitors the choice of always viewing the full sized version of an image instead of the intermediary size.  This setting only lasts for the visitor's session."),
+		"desc" => _("Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."),
 		"value" => "no",
 		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),

@@ -94,7 +94,8 @@ function viewComments($index, $addComments) {
 
 	if ($addComments)
        	{
-	       	$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&index=$index";
+		$id = $gallery->album->getPhotoId($index);
+	       	$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
 	       	$buf = "<tr><td><span class=editlink>";
 	       	$buf .= popup_link('[' . _("add comment") . ']', $url, 0);
 	       	$buf .= "</span></td></tr>";
@@ -1778,7 +1779,8 @@ function saveResults($votes)
 		}
 		
 	}
-	$gallery->album->save();
+	_("New vote recorded");
+	$gallery->album->save(array("New vote recorded"));
 }
 
 function getVotingID()
@@ -2231,6 +2233,7 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 		$gallery->album->fields['slideshow_type']  = $parentAlbum->fields['slideshow_type'];
 		$gallery->album->fields['slideshow_recursive'] = $parentAlbum->fields['slideshow_recursive'];
 		$gallery->album->fields['slideshow_length'] = $parentAlbum->fields['slideshow_length'];
+		$gallery->album->fields['slideshow_loop'] = $parentAlbum->fields['slideshow_loop'];
 		$gallery->album->fields['album_frame']    = $parentAlbum->fields['album_frame'];
 		$gallery->album->fields['thumb_frame']    = $parentAlbum->fields['thumb_frame'];
 		$gallery->album->fields['image_frame']    = $parentAlbum->fields['image_frame'];
@@ -2240,7 +2243,6 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 		$gallery->album->fields["item_owner_modify"]  = $parentAlbum->fields["item_owner_modify"];
 		$gallery->album->fields["item_owner_delete"]  = $parentAlbum->fields["item_owner_delete"];
 		$gallery->album->fields["add_to_beginning"]   = $parentAlbum->fields["add_to_beginning"];
-                $gallery->album->fields["public_comments"] = $parentAlbum->fields["public_comments"];
 		$gallery->album->fields['showDimensions']  = $parentAlbum->fields['showDimensions'];
 		
                 $returnVal = $gallery->album->save();
@@ -2609,13 +2611,36 @@ function getOS () {
 	}
 }
 
-function validate_email($email)
+// if $multiples is true, look to see if it's a list of comma separated addresses.
+function validate_email($email, $multiples=false)
 {
-       	if (eregi('^([a-z0-9_]|\-|\.)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,4}$', $email)) {
-	       	return true;
-       	} else {
+       	if (eregi('^([a-z0-9_]|\-|\.)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,4}$', 
+				$email)) {
+	       	return $email;
+       	} else if (!$multiples) {
 	       	return false;
-       	}
+	} else {
+		$email = ereg_replace('([[:space:]]+)', '', $email);
+		$emails = array_filter(explode(',', $email));
+		$size  = sizeof($emails);
+		if ($size < 1) {
+			return false;
+		} else {
+			$email="";
+			$join="";
+		       	foreach ($emails as $email) {
+			       	if (validate_email($email)) {
+				       	$email .= "$join$email";
+				       	$join=", ";
+			       	} else {
+					if (isDebugging()) {
+						print sprintf(_("Skipping invalid email address %s"), $email);
+					}
+			       	}
+		       	}
+			return $email;
+	       	}
+	}
 }
 
 function generate_password($len = 10)
@@ -2689,7 +2714,8 @@ function emailDisclaimer() {
 
 
 
-function gallery_mail($to, $subject, $msg, $logmsg, $from = NULL) {
+function gallery_mail($to, $subject, $msg, $logmsg, 
+		$hide_recipients = false, $from = NULL) {
 	global $gallery;
 	if ($gallery->app->emailOn == "no") {
 	       	gallery_error(_("Email not sent as it is disabled for this gallery"));
@@ -2700,40 +2726,63 @@ function gallery_mail($to, $subject, $msg, $logmsg, $from = NULL) {
 				       	"<i>" . $to . "</i>"));
 		return false;
 	}
-       	if (!validate_email($to)) {
+       	if (!validate_email($to, true)) {
 	       	gallery_error(sprintf(_("Email not sent to %s as it is not a valid address"),
 				       	"<i>" . $to . "</i>"));
 		return false;
 	}
+	if ($hide_recipients) {
+		$bcc=$to;
+		$to="";
+		$join=",";
+	} else {
+		$bcc="";
+		$join="";
+	}
 	global $gallery, $HTTP_SERVER_VARS;
 	if (!validate_email($from)) {
+		if (isDebugging() && $from) {
+			gallery_error( sprintf(_("Sender address %s is invalid, using %s."),
+				       	$from, $gallery->app->senderEmail));
+	       	}
 		$from = $gallery->app->senderEmail;
 		$reply_to = $gallery->app->adminEmail;
 	} else {
 		$reply_to = $from;
 	}
-	$additional_headers = "From: $from\r\nReply-To: $reply_to\r\n";
-	$additional_headers .= "X-GalleryRequestIP: " . $HTTP_SERVER_VARS['REMOTE_ADDR'] . "\r\n";
 	if (isset($gallery->app->email_notification) &&
 			in_array("bcc", $gallery->app->email_notification)) {
-		$additional_headers .= "Bcc: " . $gallery->app->adminEmail . "\r\n";
+		$bcc .= $join.$gallery->app->adminEmail;
 	}
-	$result=mail($to, $subject, emailDisclaimer().$msg, $additional_headers);
-	if (isDebugging() && $result) {
+	$additional_headers = "From: $from\r\nReply-To: $reply_to\r\n";
+	$additional_headers .= "X-GalleryRequestIP: " . $HTTP_SERVER_VARS['REMOTE_ADDR'] . "\r\n";
+	if ($bcc) {
+		$additional_headers .= "Bcc: " . $bcc. "\r\n";
+	}
+	if (get_magic_quotes_gpc() ) {
+		$msg = stripslashes($msg);
+	}
+	$result=mail($to, $gallery->app->emailSubjPrefix." ".$subject, emailDisclaimer().$msg, $additional_headers);
+	if (isDebugging()) {
 		print "<table>";
-		print "<tr><td colspan=\"2\">" . _("Email sent") . "</td></tr>";
-		print "<tr><td>To:</td><td> $to</td></tr>";
-		print "<tr><td>Subject:</td><td> $subject</td></tr>";
-		print "<tr><td>";
-		print str_replace(":", ":</td><td>", 
-				str_replace("\n", "</td></tr><tr><td>",
+		print "<tr><td valign=\"top\">To:</td><td valign=\"top\">&lt;" .
+			_("not shown") . "&gt;</td></tr>";
+		print "<tr><td valign=\"top\">Subject:</td><td valign=\"top\">$subject</td></tr>";
+		print "<tr><td valign=\"top\">";
+		print str_replace(":", ":</td><td valign=\"top\">", 
+				ereg_replace(":[^:\n]*\n", ":&lt;" . 
+					_("not shown") . 
+					"&gt;</td></tr><tr><td valign=\"top\">",
 					$additional_headers));
 		print "</td></tr>";
-		print "<br>";
-		print "</td></tr></table>";
-		print "<p>";
-	} else if (isDebugging() && !$result) {
-		print "Error.  Email not sent<br>";
+		print '<tr><td valign="top">' . _("Message") . 
+			':</td><td valign="top">'. str_replace("\n", "<br>", $msg). '</td></tr>';
+		print "</table>";
+	       	if ($result) {
+			print _("Email sent")."<br>";
+		} else {
+		       	gallery_error(_("Email not sent"));
+	       	}
 	}
 	emailLogMessage($logmsg, $result);
 	return $result;
@@ -3046,14 +3095,16 @@ function where_i_am() {
 function commenter_name_string($uid) {
        	global $gallery;
        	$user=$gallery->userDB->getUserByUid($uid);
-       	if (!$user || $user == $gallery->userDB->getNobody())  {
+       	if (!$user || $user->isPseudo()) {
 	       	return "";
        	} else if ($user->getFullName()) {
-	       	return sprintf("%s (%s)",
+	       	$string= sprintf("%s (%s)",
 				$user->getFullName(),
 			       	$user->getUsername()); 
        	} else {
-	       	return $user->getUsername();
+	       	$string = $user->getUsername();
        	}
+	return $string;
 }
+
 ?>

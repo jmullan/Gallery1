@@ -128,10 +128,11 @@ class Album {
 	       $this->fields["thumb_frame"]=$gallery->app->default["thumb_frame"];
 	       $this->fields["image_frame"]=$gallery->app->default["image_frame"];
 	       $this->fields["showDimensions"] = $gallery->app->default["showDimensions"];
+	       $this->fields["email_me"] = array();
 
-		// Seed new albums with the appropriate version.
-		$this->version = $gallery->album_version;
-	}
+	       // Seed new albums with the appropriate version.
+	       $this->version = $gallery->album_version;
+       	}
 
 	function isRoot() {
 		if ($this->fields["parentAlbumName"]) return 0;
@@ -320,6 +321,9 @@ class Album {
 			       	$this->setPerm("canViewComments", $nobody->getUid(), 1);
 			       	$this->setPerm("canAddComments", $nobody->getUid(), 1);
 			}
+		}
+		if ($this->version < 24) {
+			$this->fields['email_me'] = array();
 		}
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
@@ -624,7 +628,12 @@ class Album {
 		return ($photo->isResized());
 	}
 
-	function save($resetModDate=1) {
+	/*  The parameter $msg should be an array ready to pass to sprintf.  
+	    This is so we can translate into appropriate languages for each 
+	    recipient.  You will note that we don't currently translate these 
+	    messages.
+	 */
+	function save($msg=array(), $resetModDate=1) {
 		global $gallery;
 		$dir = $this->getAlbumDir();
 		$success = FALSE;
@@ -693,7 +702,29 @@ class Album {
 			$this->updateSerial = 0;
 		    }
 		}
+		if ($success && $msg) { // send email
+			if (!is_array($msg)) {
+				gallery_error(_("msg should be an array!"));
+				vd($msg);
+				return $success;
+			}
+		       	$to = implode(", ", $gallery->album->getEmailMeList('other', $id));
+			$msg_str=call_user_func_array('sprintf', $msg);
+		       	if (strlen($to) > 0) {
+			       	$text = sprintf("A change has been made to %s\n  The change is: %s.",
+					       	makeAlbumUrl($this->fields['name']),
+					       	$msg_str);
+			       	$text .= "\n\n". "If you no longer wish to receive emails about this image, follow the links above and ensure that \"Email me when other changes are made\" is unchecked (You'll need to login first).";
+			       	$subject=sprintf("Changes to %s", $this->fields['name']);
+			       	$logmsg=sprintf("Change to %s: %s.",
+						       	makeAlbumUrl($this->fields['name']),
+						       	$msg_str);
+			       	gallery_mail($to, $subject, $text, $logmsg, true);
 
+			} else if (isDebugging()) {
+			       	print _("No email sent as no valid email addresses were found");
+		       	}
+		}
 		return $success;
 	}
 
@@ -953,6 +984,9 @@ class Album {
 			return $photo->getThumbnailTag($this->getAlbumDirURL("thumb"), $size, $attrs);
 		}
 	}
+	function getThumbnailTagById($id, $size=0, $attrs="") {
+		return $this->getThumbnailTag($this->getPhotoIndex($id), $size, $attrs); 
+	}
 
 	function getHighlightedItem() {
 		$index = $this->getHighlight();
@@ -1186,9 +1220,10 @@ class Album {
 		return $photo->getComment($commentIndex);
 	}
 
-	function addComment($index, $comment, $IPNumber, $name) {
-            $photo = &$this->getPhoto($index);
-            $photo->addComment($comment, $IPNumber, $name);
+	function addComment($id, $comment, $IPNumber, $name) {
+	       	$index=$this->getPhotoIndex($id);
+	       	$photo = &$this->getPhoto($index);
+	       	$photo->addComment($comment, $IPNumber, $name);
 	}
 
 	function deleteComment($index, $comment_index) {
@@ -1399,6 +1434,7 @@ class Album {
 				$nestedAlbum->fields['slideshow_type']  = $this->fields['slideshow_type'];
 				$nestedAlbum->fields['slideshow_recursive'] = $this->fields['slideshow_recursive'];
 				$nestedAlbum->fields['slideshow_length'] = $this->fields['slideshow_length'];
+				$nestedAlbum->fields['slideshow_loop'] = $this->fields['slideshow_loop'];
 				$nestedAlbum->fields['album_frame']    = $this->fields['album_frame'];
 				$nestedAlbum->fields['thumb_frame']    = $this->fields['thumb_frame'];
 				$nestedAlbum->fields['image_frame']    = $this->fields['image_frame'];
@@ -1409,6 +1445,7 @@ class Album {
 				$nestedAlbum->fields["item_owner_delete"] = $this->fields["item_owner_delete"];
 				$nestedAlbum->fields["add_to_beginning"] = $this->fields["add_to_beginning"];
 				$nestedAlbum->fields["showDimensions"] = $this->fields["showDimensions"];
+				$nestedAlbum->fields["email_me"] = array();
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedProperties();
 			}
@@ -1856,6 +1893,77 @@ class Album {
 		$myAlbum = new Album();
 		$myAlbum->load($this->isAlbumName($index));
 		return $myAlbum;
+	}
+
+	//values for type "comment" and "other"
+	function getEmailMe($type, $user, $id=null) {
+		$uid=$user->getUid();
+	       	if ($id) {
+		       	$index = $this->getPhotoIndex($id);
+		       	$photo = $this->getPhoto($index);
+			return $photo->getEmailMe($type, $user);
+	       	} else if (isset($this->fields['email_me'][$type]) && 
+				isset($this->fields['email_me'][$type][$uid])) {
+		       	return true;
+	       	} else {
+			return false;
+		}
+	}
+	function getEmailMeList($type, $id=null) {
+		global $gallery;
+		if (isset($this->fields['email_me'][$type])) {
+			$uids=array_keys($this->fields['email_me'][$type]);
+		} else {
+			$uids=array();
+		}
+		if ($id) {
+			$index=$this->getPhotoIndex($id);
+			$photo=$this->getPhoto($index);
+			if ($photo) {
+			       	$uids=array_merge($uids,
+					$photo->getEmailMeListUid($type));
+			}
+		}
+		$result=array();
+	       	foreach ($uids as $uid) {
+		       	$user=$gallery->userDB->getUserByUid($uid);
+		       	if (validate_email($user->getEmail())) {
+			       	$result[]=$user->getEmail();
+		       	} else if (isDebugging()) {
+			       	gallery_error( sprintf(_("Email problem: skipping %s (UID %s) because email address %s is not valid."), 
+							$user->getUsername(), $uid, $user->getEmail()));
+		       	}
+	       	}
+		return array_unique($result);
+	}
+	
+	function setEmailMe($type, $user, $id=null) {
+		$uid=$user->getUid();
+	       	if ($this->getEmailMe($type, $user, $id)) {
+			// already set
+			return;
+		} else if ($id) {
+		       	$index = $this->getPhotoIndex($id);
+		       	$photo = &$this->getPhoto($index);
+			$photo->setEmailMe($type, $user);
+		} else {
+		       	$this->fields['email_me'][$type][$uid]=true;
+		}
+		$this->save();
+	}
+	function unsetEmailMe($type, $user, $id=null) {
+		$uid=$user->getUid();
+	       	if (!$this->getEmailMe($type, $user, $id)) {
+			// not set
+			return;
+		} else if ($id) {
+		       	$index = $this->getPhotoIndex($id);
+		       	$photo = &$this->getPhoto($index);
+			$photo->unsetEmailMe($type, $user);
+		} else {
+		       	unset($this->fields['email_me'][$type][$uid]);
+		}
+		$this->save();
 	}
 }
 ?>

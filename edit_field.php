@@ -44,7 +44,8 @@ if (isset($save)) {
 		$data = removeTags($data);
 	}
 	$gallery->album->fields[$field] = stripslashes($data);
-	$gallery->album->save();
+	_("%s modified");
+	$gallery->album->save(array("%s modified", $field));
 	dismissAndReload();
 	return;
 }

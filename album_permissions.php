@@ -120,7 +120,8 @@ if ( isset($save) && $ownerUid) {
 }
 
 if ($changed) {
-	$gallery->album->save();
+	_("Permissions have been changed");
+	$gallery->album->save(array("Permissions have been changed"));
 }
 
 // Start with a default owner of nobody -- if there is an

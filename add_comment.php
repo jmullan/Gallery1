@@ -39,6 +39,30 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 if (!$gallery->user->canAddComments($gallery->album)) {
         exit;
 }
+function emailComments($id, $comment_text, $commenter_name) {
+	global $gallery;
+	$to = implode(", ", $gallery->album->getEmailMeList('comments', $id));
+       	if (strlen($to) > 0) {
+
+
+		$text="";
+		$text.= sprintf("A comment has been added to %s by %s in album %s.",
+			makeAlbumUrl($gallery->session->albumName, $id),
+			$commenter_name,
+			makeAlbumUrl($gallery->session->albumName));
+		$text.= "\n\n"."****BEGIN COMMENT****"."\n";
+		$text.= str_replace("\r", "\n", str_replace("\r\n", "\n", $comment_text));
+		$text.= "\n"."****END COMMENT****"."\n\n";
+	       	$text .= "If you no longer wish to receive emails about this image, follow the links above and ensure that \"Email me when comments are added\" is unchecked in both the photo and album page (You'll need to login first).";
+	       	$subject=sprintf("New comment for %s", $id);
+		$logmsg=sprintf("New comment for %s.", 
+			makeAlbumUrl($gallery->session->albumName, $id));
+		gallery_mail($to, $subject, $text, $logmsg, true);
+
+       	} else if (isDebugging()) {
+		print _("No email sent as no valid email addresses were found");
+	}
+}
 
 $error_text = "";
 
@@ -47,8 +71,9 @@ if (isset($save)) {
 	       	$comment_text = removeTags($comment_text);
 	       	$commenter_name = removeTags($commenter_name);
 	       	$IPNumber = $HTTP_SERVER_VARS['REMOTE_ADDR'];
-	       	$gallery->album->addComment($index, stripslashes($comment_text), $IPNumber, $commenter_name);
+	       	$gallery->album->addComment($id, stripslashes($comment_text), $IPNumber, $commenter_name);
 	       	$gallery->album->save();
+		emailComments($id, $comment_text, $commenter_name);
 	       	dismissAndReload();
 	       	return;
        	} else {
@@ -68,7 +93,7 @@ if (isset($save)) {
 <?php echo _("Enter your comment for this picture in the text box below.") ?>
 <br><br>
 </span>
-<?php echo $gallery->album->getThumbnailTag($index) ?>
+<?php echo $gallery->album->getThumbnailTagById($id) ?>
 <?php
 if (isset($error_text)) {
 ?>
@@ -83,7 +108,7 @@ if (isset($error_text)) {
 	"name" => "theform", 
 	"method" => "POST")); 
 ?>
-<input type="hidden" name="index" value="<?php echo $index ?>">
+<input type="hidden" name="id" value="<?php echo $id ?>">
 <table border=0 cellpadding=5>
 <tr>
    <td class="popup"><?php echo _("Name or email:") ?></td>

@@ -79,7 +79,8 @@ if (isset($save)) {
 	$gallery->album->fields["thumb_frame"] = $thumb_frame;
 	$gallery->album->fields["image_frame"] = $image_frame;
 	$gallery->album->fields["showDimensions"] = $showDimensions;
-	$gallery->album->save();
+	_("Properties changed");
+	$gallery->album->save(array("Properties changed"));
 
 	if (isset($setNested)) {
 	
@@ -154,19 +155,19 @@ if (isset($save)) {
 <td><input type=text name="thumb_size" value="<?php echo $gallery->album->fields["thumb_size"] ?>"></td>
 </tr>
 <tr>
-<td class="popup"><?php echo _("Auto-Resize 'sized' image dimensions") ?></td>
+<td class="popup"><?php echo _("Maximum dimensions of intermediate sized images") ?></td>
 <td><select name="resize_size"><?php echo selectOptions($gallery->album, "resize_size", array("off" => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024)) ?></select></td>
 </tr>
 <tr>
-<td class="popup"><?php echo _("Auto-Resize JPEG/PNG 'sized' file size kilobytes (0 or blank for no size restriction)") ?></td>
+<td class="popup"><?php echo _("Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)") ?></td>
 <td><input type=text name="resize_file_size" value="<?php echo $gallery->album->fields["resize_file_size"] ?>"></td>
 </tr>
 <tr>
-<td class="popup"><?php echo _('Max Image Size') ?></td>
+<td class="popup"><?php echo _("Maximum dimensions of full sized images") ?></td>
 <td><select name="max_size"><?php echo selectOptions($gallery->album, 'max_size', array('off' => _('off'), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3))) ?></select></td>
 </tr>
 <tr>
-<td class="popup"><?php echo _('Max JPEG/PNG file size kilobytes (0 or blank for no size restriction)') ?></td>
+<td class="popup"><?php echo _("Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)") ?></td>
 <td><input type=text name="max_file_size" value="<?php echo $gallery->album->fields['max_file_size'] ?>"></td>
 </tr>
 <tr>

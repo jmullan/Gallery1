@@ -83,8 +83,8 @@ class Abstract_User {
 	}
 
 	function getUsername() {
-		return $this->username;
-	}
+	       	return $this->username;
+       	}
 
 	function setEmail($email) {
 		$this->email = $email;
@@ -99,7 +99,11 @@ class Abstract_User {
 	}
 
 	function getFullName() {
-		return $this->fullname;
+	       	if (get_magic_quotes_gpc()) {
+		       	return stripslashes($this->fullname);
+	       	} else {
+		       	return $this->fullname;
+	       	}
 	}
 
 	function isAdmin() {
