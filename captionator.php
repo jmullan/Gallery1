@@ -255,6 +255,9 @@ if ($numPhotos) {
 		} else {
 			echo $gallery->album->getThumbnailTag($i,$thumbSize);
 		}
+                if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
+                        echo "<br>(" . _("hidden") .")<br>";
+                }
 ?>	
 	</td>
 	<td height="1"><?php echo $pixelImage ?></td>
