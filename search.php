@@ -125,6 +125,10 @@ if ($searchstring) {
        		if ($matchTitle || $matchDescription || $matchSummary) {
 			$uid = $gallery->user->getUid();
 			if ($searchAlbum->canRead($uid) || $gallery->user->isAdmin()) {
+				if (!$gallery->user->isAdmin() && $searchAlbum->isHiddenRecurse()) {
+					// One of the parents of this album is hidden - do not show it to users
+					continue;
+				}
            		$albumMatch = 1;
 			$searchTitle = eregi_replace("($searchstring)", "<b>\\1</b>", $searchTitle); // cause search word to be bolded
 			$searchDescription = eregi_replace("($searchstring)", "<b>\\1</b>", $searchDescription); // cause search word to be bolded
@@ -168,6 +172,9 @@ if ($searchstring) {
 		if ($searchAlbum->canRead($uid) || $gallery->user->isAdmin()) {
 			$numPhotos = $searchAlbum->numPhotos(1);
 			for ($j = 1; $j <= $numPhotos; $j++) {
+				if ($searchAlbum->isHidden($j)) {
+					continue;
+				}
 				$searchCaption = _("Caption:") . $searchAlbum->getCaption($j);
 				$searchCaption .= $searchAlbum->getCaptionName($j);
 				$searchKeywords = $searchAlbum->getKeywords($j);
@@ -209,6 +216,10 @@ if ($searchstring) {
 					if (!$searchAlbum->isHidden($j) || 
 				    	$searchAlbum->isOwner($uid) || 
 			    	    	$gallery->user->isAdmin()) {
+						if ($searchAlbum->isHiddenRecurse()) {
+							// One of the parents of this item is hidden do not show it to users
+							continue;
+						}
 						$photoMatch = 1;
 						$id = $searchAlbum->getPhotoId($j);
 						// cause search word to be bolded

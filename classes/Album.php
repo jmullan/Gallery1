@@ -1063,6 +1063,33 @@ class Album {
 		return $photo->isHidden();
 	}
 
+	function isHiddenRecurse($index=0) {
+		if ($index && $this->isHidden($index)) {
+			return true;
+		}
+		elseif ($this->isRoot()) {
+			// Root albums can't be hidden
+			return false;
+		}
+
+		$parent = $this->getParentAlbum();
+		$numphotos = $parent->numPhotos(1);	
+		for ($i = 1; $i <= $numphotos; $i++) {
+			if ($parent->isAlbum($i) && ($parent->getAlbumName($i) == $this->fields['name'])) {
+				if ($parent->isHidden($i)) {
+					// This item is hidden
+					return true;
+				}
+				else {
+					// This item is not hidden - check the parent
+					return $parent->isHiddenRecurse();
+				}
+			}
+		}
+		// This should never happen
+		return false;
+	}
+
 	function deletePhoto($index, $forceResetHighlight="0", $recursive=1) {
 		$this->updateSerial = 1;
 		$photo = array_splice($this->photos, $index-1, 1);

@@ -1,3 +1,10 @@
+2004-05-23  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b138
+
+	* Change: Items which are children of hidden parents can not be located
+	  using search.php.  I extensively debugged and profiled this to ensure that
+	  it is being called as few times as possible.  Recursion is only called on 
+	  matching objects.
+
 2004-05-22  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b137
 
 	* Change: Create watermark preview files with an incrementing number.
