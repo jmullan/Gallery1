@@ -18,7 +18,6 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?php require($GALLERY_BASEDIR . "init.php"); ?>
 <?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
@@ -28,6 +27,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
 
 <html>
 <head>
