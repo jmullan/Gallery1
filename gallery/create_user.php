@@ -31,7 +31,7 @@ if (!$gallery->user->isAdmin()) {
 ?>
 <?php
 $errorCount=0;
-if (!empty($create_user)) {
+if (!empty($create_user) && !isset($cancel)) {
 	$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 	if ($gErrors["uname"]) {
 		$errorCount++;

@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
  */
 
 /*
@@ -28,6 +30,17 @@
  * contains.  For all subsequent attempts we use that cache file.  This means
  * that if you change your albums around it may take a day before this block
  * starts (or stops) displaying them.
+ *
+ * If your Gallery is embedded and you call it via an URL, 
+ * make sure you are giving the needed paramters.
+ *
+ * *Nuke:
+ * http://<URL to your Nuke>/modules.php?op=modload&name=gallery&file=index&include=block-random.php
+ *
+ * Mambo:
+ * http://<URL to Mambo>/index.php?option=com_gallery&Itemid=XXX
+
+ 
  */
 
 require(dirname(__FILE__) . "/init.php");

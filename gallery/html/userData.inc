@@ -80,13 +80,20 @@ if (isset($allowChange["default_language"]) && $allowChange["default_language"])
 	<td><select name="defaultLanguage" size="1">
 <?php
 		$nls = getNLS();
+		$selectedSet = false;
 		foreach ($gallery->app->available_lang as $value) {
 			// Only use language from config.php if its 
 			// defined in nls.php
 			if (!isset($nls['language'][$value])) continue;
 		
-			if ( isset($defaultLanguage) && $defaultLanguage == $value) {
-				$selected="selected";
+			if ( $selectedSet == false) {
+				if (
+				(isset($defaultLanguage) && $defaultLanguage == $value) ||
+				(isset($gallery->app->default_language) && 
+					$gallery->app->default_language == $value)) {
+					$selected="selected";
+					$selectedSet = true;
+				}
 			} else {
 				$selected="";
 			}
