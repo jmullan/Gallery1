@@ -364,6 +364,14 @@ class Album {
 			$changed = 1;
 		}
 
+		/* Rebuild highlight */
+		if ($this->version < 27) {
+			$index = $this->getHighlight();
+			if (isset($index)) {
+				$this->setHighlight($index);
+			}
+		}
+
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
 			if ($gallery->app->use_exif) {
@@ -572,7 +580,7 @@ class Album {
 		$parent = $this->fields['parentAlbumName'];
 		if ($parent) {
 			$pAlbum = new Album();
-			$pAlbum->load($parent);
+			$pAlbum->load($parent, FALSE);
 			$size = $pAlbum->fields["thumb_size"];
 		} else {
 			$size = $gallery->app->highlight_size;
