@@ -142,7 +142,7 @@ class Album {
 		$count = $this->numPhotos(1);
 		for ($i = 1; $i <= $count; $i++) {
 			set_time_limit(30);
-			print "Upgrading photo $i of $count...";
+			print "Upgrading item $i of $count...";
 			my_flush();
 
 			$photo = $this->getPhoto($i);
