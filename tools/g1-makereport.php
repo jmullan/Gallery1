@@ -52,58 +52,49 @@ function my_usort_function ($a, $b) {
 
 uasort ($report, 'my_usort_function');
 
-?>
+$filename="./g1-report.xml";
 
-<html>
-<body>
-<head>
-	   <link rel="stylesheet" type="text/css" href="g1-report.css">
-</head>
-<h2>Localization Status Report for Gallery 1</h2>
-<h2>Build : <?php echo $gallery->version ?></h2>
-<table align="center" border="0" cellspacing="0" cellpadding="0">
-<tr>
-	<th>&nbsp;</th>
-	<th>Language</th>
-	<th>Locale</th>
-	<th>Status</th>
-	<th valign="bottom" style="width: 30px;">T<br/>r<br/>a<br/>n<br/>s<br/>l<br/>a<br/>t<br/>e<br/>d</th>
-	<th valign="bottom" style="width: 30px;">F<br/>u<br/>z<br/>z<br/>y</th>
-	<th valign="bottom" style="width: 30px;">U<br/>n<br/>t<br/>r<br/>a<br/>n<br/>s<br/>l<br/>a<br/>t<br/>e<br/>d</th>
-	<th valign="bottom" style="width: 30px;">O<br/>b<br/>s<br/>o<br/>l<br/>e<br/>t<br/>e</th>
-</tr>
+if (!$handle = fopen($filename, "w+")) {
+	echo _("Unable to open ") . $filename ;
+	exit;
+}
 
-<?php
+setlocale(LC_ALL,"de_DE");
+fwrite($handle,"<report date=\"".strftime("%x",time()). "\" time=\"".strftime("%X",time()). "\" build=\"$gallery->version\">");
+
 $i=0;
 $j=0;
 foreach ($report as $key => $value) {
+
 	$i++;
 	if ($i%2==0) {
-		$color="#ffffff";
-		$nr=1;
+		$scheme="light";
 	} else {
-		$color="#CECECE";
-		$nr=2;
+		$scheme="dark";
 	}
 
-	echo "\n<tr>";
 	if ($report[$key][1] != $report[$last_key][1]) { 
-		$lfd_nr++;	
-		echo "\n\t<td style=\"background-color:$color\">$lfd_nr.)</td>";
+		$lfd_nr++;
+		$line=$lfd_nr;	
 	} else {
-		echo "\n\t<td style=\"background-color:$color\">&nbsp;</td>";
+		$line="";
 	}
-	echo "\n\t<td style=\"background-color:$color\">". $nls['language'][$key] . "</td>";
-	echo "\n\t<td style=\"background-color:$color\">". $key ."</td>";
-	echo "\n\t<td style=\"background-color:#". $value[0] . "\">". $value[1] ."% done</td>";
-	echo "\n\t<td class=\"translated$nr\">". $value[2] ."</td>";
-	echo "\n\t<td class=\"fuzzy$nr\">". $value [3] . "</td>";
-	echo "\n\t<td class=\"untranslated$nr\">". $value[4] ."</td>";
-	echo "\n\t<td class=\"obsolete$nr\">". $value[5] ."</td>";
-	echo "\t</tr>";
-	$last_key=$key;
+
+	fwrite($handle,"\n\t<locale id=\"$key\" scheme=\"$scheme\">");
+	fwrite($handle,"\n\t\t<nr scheme=\"$scheme\">$line</nr>");
+	fwrite($handle,"\n\t\t<language scheme=\"$scheme\">". $nls['language'][$key] ."</language>");
+	fwrite($handle,"\n\t\t<percent_done style=\"background-color:#". $value[0] ."\">$value[1] %</percent_done>");
+	fwrite($handle,"\n\t\t<translated scheme=\"translated_$scheme\">$value[2]</translated>");
+	fwrite($handle,"\n\t\t<fuzzy scheme=\"fuzzy_$scheme\">$value[3]</fuzzy>");
+	fwrite($handle,"\n\t\t<untranslated scheme=\"untranslated_$scheme\">$value[4]</untranslated>");
+	fwrite($handle,"\n\t\t<obsolete scheme=\"obsolete_$scheme\">$value[5]</obsolete>");
+	fwrite($handle,"\n\t</locale>");
+
+
+	$last_key=$key;	
 }
+fwrite($handle,"\n</report>");
+fclose($handle);
+
+exec("/usr/bin/xsltproc g1-report.xslt g1-report.xml > g1-report.html");
 ?>
-</table>
-</body>
-</html>
