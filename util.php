@@ -87,7 +87,7 @@ function viewComments($index, $addComments, $page_url) {
 	}
 	
 	if ($addComments) {
-		if ($gallery->app->comments_addInside == "popup") {
+		if (isset($gallery->app->comments_addInside) && $gallery->app->comments_addInside == "popup") {
 			$id = $gallery->album->getPhotoId($index);
 		       	$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
 	       		echo "\n" .'<div align="center" class="editlink">' .
