@@ -1,5 +1,5 @@
 <center>
-<font size=+2> Gallery Setup: Step 3 </font>
+<font size=+2> Gallery Setup: Step 4 </font>
 <br>
 <table width=80%><tr><td>
 Confirm that the settings you entered came through correctly.
@@ -80,7 +80,7 @@ foreach ($constants as $key => $val) {
 			$data .= "// optional <i>$key</i> missing\n";
 			$view .= row_wrap("// optional <i>$key</i> missing");
 		} else {
-			$view .= row_wrap(error_missing($constants[$key]["desc"]));
+			$view .= row_wrap(error_missing($constants[$key]["prompt"]));
 			$error = 1;
 		}
 	} else {
@@ -181,7 +181,7 @@ echo $view;
 </pre>
 </table>
 
-<input type=hidden name=back_page value="form">
+<input type=hidden name=back_page value="defaults">
 <input type=hidden name=next_page value="write">
 <p>
 <input type=submit name="go_back" value="<- Edit Config">
