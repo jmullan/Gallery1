@@ -853,7 +853,10 @@ function getExif($file) {
 
         $return = array();
         $path = $gallery->app->use_exif;
-        fs_exec("$path $file", $return, $status);
+        list($return, $status) = exec_internal(fs_import_filename($path, 1) .
+						" " .
+						fs_import_filename($file, 1));
+
         while (list($key,$value) = each ($return)) {
             $explodeReturn = explode(':', $value, 2);
             $myExif[trim($explodeReturn[0])] = trim($explodeReturn[1]);
