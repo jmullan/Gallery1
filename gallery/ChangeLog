@@ -1,3 +1,12 @@
+2003-11-18 Jens Tkotz <jens@peino.de> 1.4.1-RC4-cvs-b17
+
+	* Bugfix: In Windows in some diagnostic files fs_win32.php 
+		  was called twice.
+
+	* Bugfix: Disabled one little translation, because at that time _()
+		  is undefined when PHP has no gettext. To really fix this a
+		  bigger change were needed.
+
 2003-11-17  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-RC4-cvs-b16
 
 	* Fixed CSS file so text is readable with bluemod skin.

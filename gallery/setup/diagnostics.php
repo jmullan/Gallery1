@@ -1,22 +1,14 @@
 <?php /* $Id$ */ ?>
 <?php 
 
-$GALLERY_BASEDIR="../";
-require($GALLERY_BASEDIR . "util.php");
-require('./init.php');
-require('./functions.inc');
-@include($GALLERY_BASEDIR . "config.php"); 
-$GALLERY_OK = false;
+	$GALLERY_BASEDIR="../";
+	require($GALLERY_BASEDIR . "util.php");
+	require('./init.php');
+	require('./functions.inc');
+	@include($GALLERY_BASEDIR . "config.php"); 
+	$GALLERY_OK = false;
 
-if (getOS() == OS_WINDOWS) {
-    include($GALLERY_BASEDIR . "platform/fs_win32.php");
-    if (fs_file_exists("SECURE")) {
-       print "You cannot access this file while gallery is in secure mode.";
-       exit;
-    }
-}
-
-initLanguage();
+	initLanguage();
 ?>
 <html>
 <head>
@@ -25,8 +17,16 @@ initLanguage();
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
-
 <div class="header"><?php echo _("Gallery Diagnostics") ?></div>
+<?php
+	if (getOS() == OS_WINDOWS) {
+		if (fs_file_exists("SECURE")) {
+		echo _("You cannot access this file while gallery is in secure mode.");
+		echo "</body></html>";
+		exit;
+	}
+}
+?>
 <p></p>
 <div class="sitedesc">
 <?php echo _("This page is designed to provide some diagnostics about your server to help you find issues that may prevent Gallery from functioning properly.") ?>

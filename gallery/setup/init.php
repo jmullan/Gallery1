@@ -15,7 +15,7 @@ extract($HTTP_COOKIE_VARS);
 if (getOS() == OS_WINDOWS) {
 	include("../platform/fs_win32.php");
 	if (fs_file_exists("SECURE")) {
-		echo _("Gallery is in secure mode and cannot be configured. If you want to configure it, you must run the <b>configure.bat</b> script in the gallery directory then reload this page.");
+		echo "Gallery is in secure mode and cannot be configured. If you want to configure it, you must run the <b>configure.bat</b> script in the gallery directory then reload this page.";
 		exit;
 	}
 } else {
