@@ -27,6 +27,7 @@ if ($save) {
 	$album->fields["bordercolor"] = $bordercolor;
 	$album->fields["border"] = $border;
 	$album->fields["background"] = $background;
+	$album->fields["thumb_size"] = $thumb_size;
 	$album->fields["resize_size"] = $resize_size;
 	$album->fields["returnto"] = $returnto;
 	$album->save();
@@ -68,6 +69,11 @@ You can modify the appearance of your photo album here.
 <td><select name="border"><?= selectOptions($album, "border", array("off", 1, 2, 3, 4)) ?></select></td>
 </tr>
 <tr>
+<tr>
+<td>Thumbnail size</td>
+<td><input type=text name="thumb_size" value="<?=$album->fields["thumb_size"]?>"></td>
+</tr>
+<tr>
 <td>Auto-Resize</td>
 <td><select name="resize_size"><?= selectOptions($album, "resize_size", array("off", 400, 500, 600, 700, 800)) ?></select></td>
 </tr>
@@ -89,5 +95,3 @@ You can modify the appearance of your photo album here.
 <input type=submit name="submit" value="Close" onclick='parent.close()'>
 
 </form>
-
-
