@@ -666,6 +666,8 @@ function check_locale() {
 		$se_locale=shell_exec("locale -a");
 		if ($se_locale != NULL) {
 			$tmp=explode("\n", $se_locale);
+		} else {
+			$tmp=array();
 		}
 		if(count($tmp) >3) {
 			$system_locales=$tmp;
@@ -1225,7 +1227,7 @@ function check_admins() {
 
 	if (empty($admins)) {
 		$result=array(
-			'desc' => sprintf(_('You must enter a password for the %s account.'), '<b>admin</b>') . newIn('1.4.1')
+			'desc' => sprintf(_('You must enter a password for the %s account.'), '<b>admin</b>')
 		);
 	}
 	else if (! in_array("admin",$admins)) {

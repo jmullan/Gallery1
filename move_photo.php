@@ -74,7 +74,7 @@ if ($gallery->session->albumName && isset($index)) {
 			if ($gallery->album->isAlbumName($index)) { // moving "album" to another location
 				if ($newAlbum == "ROOT") { // moving "album" to ROOT location
 					$myAlbum = $gallery->album->getNestedAlbum($index);
-					$myAlbum->fields[parentAlbumName] = 0;
+					$myAlbum->fields['parentAlbumName'] = 0;
 					$gallery->album->deletePhoto($index, 0, 0); 
 					$myAlbum->save();
 					$gallery->album->save();

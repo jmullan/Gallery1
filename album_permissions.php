@@ -41,58 +41,59 @@ if (!$gallery->user->isAdmin() &&
 }
 ?>
 <?php
-if (isset($allUid) && strchr($submit_read, ">")) {
+$changed=0;
+if (isset($allUid) && isset($submit_read) && strchr($submit_read, ">")) {
 	$gallery->album->setRead($allUid, 1);
 	$changed++;
-} else if (isset($readUid) && strchr($submit_read, "<")) {
+} else if (isset($readUid) && isset($submit_read) && strchr($submit_read, "<")) {
 	$gallery->album->setRead($readUid, 0);
 	$changed++;
 }
 
-if (isset($allUid) && strchr($submit_text, ">")) {
+if (isset($allUid) && isset($submit_text) && strchr($submit_text, ">")) {
 	$gallery->album->setChangeText($allUid, 1);
 	$changed++;
-} else if (isset($textUid) && strchr($submit_text, "<")) {
+} else if (isset($textUid) && isset($submit_text) && strchr($submit_text, "<")) {
 	$gallery->album->setChangeText($textUid, 0);
 	$changed++;
 }
 
-if (isset($allUid) && strchr($submit_add, ">")) {
+if (isset($allUid) && isset($submit_add) && strchr($submit_add, ">")) {
 	$gallery->album->setAddTo($allUid, 1);
 	$changed++;
-} else if (isset($addUid) && strchr($submit_add, "<")) {
+} else if (isset($addUid) && isset($submit_add) && strchr($submit_add, "<")) {
 	$gallery->album->setAddTo($addUid, 0);
 	$changed++;
 }
 
-if (isset($allUid) && strchr($submit_write, ">")) {
+if (isset($allUid) && isset($submit_write) && strchr($submit_write, ">")) {
 	$gallery->album->setWrite($allUid, 1);
 	$changed++;
-} else if (isset($writeUid) && strchr($submit_write, "<")) {
+} else if (isset($writeUid) && isset($submit_write) && strchr($submit_write, "<")) {
 	$gallery->album->setWrite($writeUid, 0);
 	$changed++;
 }
 
-if (isset($allUid) && strchr($submit_delete, ">")) {
+if (isset($allUid) && isset($submit_delete) && strchr($submit_delete, ">")) {
 	$gallery->album->setDeleteFrom($allUid, 1);
 	$changed++;
-} else if (isset($deleteUid) && strchr($submit_delete, "<")) {
+} else if (isset($deleteUid) && isset($submit_delete) && strchr($submit_delete, "<")) {
 	$gallery->album->setDeleteFrom($deleteUid, 0);
 	$changed++;
 }
 
-if (isset($allUid) && strchr($submit_createSub, ">")) {
+if (isset($allUid) && isset($submit_createSub) && strchr($submit_createSub, ">")) {
 	$gallery->album->setCreateSubAlbum($allUid, 1);
 	$changed++;
-} else if (isset($createSubUid) && strchr($submit_createSub, "<")) {
+} else if (isset($createSubUid) && isset($submit_createSub) && strchr($submit_createSub, "<")) {
 	$gallery->album->setCreateSubAlbum($createSubUid, 0);
 	$changed++;
 }
 
-if (isset($allUid) && strchr($submit_viewFullImages, ">")) {
+if (isset($allUid) && isset($submit_viewFullImages) && strchr($submit_viewFullImages, ">")) {
 	$gallery->album->setViewFullImages($allUid, 1);
 	$changed++;
-} else if (isset($viewFullImagesUid) && strchr($submit_viewFullImages, "<")) {
+} else if (isset($viewFullImagesUid) && isset($submit_viewFullImages) && strchr($submit_viewFullImages, "<")) {
 	$gallery->album->setViewFullImages($viewFullImagesUid, 0);
 	$changed++;
 }
@@ -169,7 +170,7 @@ echo makeFormIntro("album_permissions.php",
 <table border="0" cellspacing="0" cellpadding="0">
  <tr>
   <td align="center">
-   <?php echo drawSelect("allUid", $uAll, $allUid, 28); ?>
+   <?php echo drawSelect("allUid", $uAll, isset($allUid) ? $allUid : array(), 28); ?>
   </td>
 
   <td> &nbsp; </td>
@@ -187,7 +188,7 @@ echo makeFormIntro("album_permissions.php",
       <br> <input type="submit" name="submit_read" value="<--">
      </td>
      <td align="left">
-      <?php echo drawSelect("readUid", $uRead, $readUid, 3); ?>
+      <?php echo drawSelect("readUid", $uRead, isset($readUid) ? $readUid : array(), 3); ?>
      </td>
     </tr>
 
@@ -202,7 +203,7 @@ echo makeFormIntro("album_permissions.php",
       <br> <input type="submit" name="submit_text" value="<--">
      </td>
      <td>
-      <?php echo drawSelect("textUid", $uText, $textUid, 3); ?>
+      <?php echo drawSelect("textUid", $uText, isset($textUid) ? $textUid : array(), 3); ?>
      </td>
     </tr>
 
@@ -217,7 +218,7 @@ echo makeFormIntro("album_permissions.php",
       <br> <input type="submit" name="submit_add" value="<--">
      </td>
      <td>
-      <?php echo drawSelect("addUid", $uAdd, $addUid, 3); ?>
+      <?php echo drawSelect("addUid", $uAdd, isset($addUid) ? $addUid : array(), 3); ?>
      </td>
     </tr>
 
@@ -232,7 +233,7 @@ echo makeFormIntro("album_permissions.php",
       <br> <input type="submit" name="submit_write" value="<--">
      </td>
      <td>
-      <?php echo drawSelect("writeUid", $uWrite, $writeUid, 3); ?>
+      <?php echo drawSelect("writeUid", $uWrite, isset($writeUid) ? $writeUid : array(), 3); ?>
      </td>
     </tr>
 
@@ -247,7 +248,7 @@ echo makeFormIntro("album_permissions.php",
       <br> <input type="submit" name="submit_delete" value="<--">
      </td>
      <td>
-      <?php echo drawSelect("deleteUid", $uDelete, $deleteUid, 3); ?>
+      <?php echo drawSelect("deleteUid", $uDelete, isset($deleteUid) ? $deleteUid : array(), 3); ?>
      </td>
     </tr>
 
@@ -262,7 +263,7 @@ echo makeFormIntro("album_permissions.php",
       <br> <input type="submit" name="submit_createSub" value="<--">
      </td>
      <td>
-      <?php echo drawSelect("createSubUid", $uCreateSub, $createSubUid, 3); ?>
+      <?php echo drawSelect("createSubUid", $uCreateSub, isset($createSubUid) ? $createSubUid : array(), 3); ?>
      </td>
     </tr>
 
@@ -277,7 +278,7 @@ echo makeFormIntro("album_permissions.php",
       <br> <input type="submit" name="submit_viewFullImages" value="<--">
      </td>
      <td>
-      <?php echo drawSelect("viewFullImagesUid", $uViewFullImages, $viewFullImagesUid, 3); ?>
+      <?php echo drawSelect("viewFullImagesUid", $uViewFullImages, isset($viewFullImagesUid) ? $viewFullImagesUid : array(), 3); ?>
      </td>
     </tr>
 

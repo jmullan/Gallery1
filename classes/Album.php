@@ -926,6 +926,9 @@ class Album {
 	}
 
 	function getThumbnailTag($index, $size=0, $attrs="") {
+		if ($index === null) {
+			return "";
+		}
 		$photo = $this->getPhoto($index);
 		if ($photo->isAlbumName) {
 			$myAlbum = $this->getNestedAlbum($index);

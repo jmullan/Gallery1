@@ -105,6 +105,17 @@ if ($searchstring) {
 	echo "<br>";
 	echo "<table width=\"".$navigator["fullWidth"] . $navigator["widthUnits"]."\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
 	for ($i = 0; $i<$numAlbums; $i++) {
+		// initialize values
+		$searchdraw["bordercolor"]="";
+	       	$searchdraw["bordercolor"]="";
+	       	$searchdraw["photoURL"]="";
+	       	$searchdraw["photolink"]="";
+	       	$searchdraw["Text1"]="";
+	       	$searchdraw["Text2"]="";
+	       	$searchdraw["Text3"]="";
+	       	$searchdraw["Text4"]="";
+	       	$searchdraw["Text5"]="";
+
 		$searchAlbum = $list[$i];
 		if ($searchAlbum->versionOutOfDate()) {
 			$skip[] = $searchAlbum;

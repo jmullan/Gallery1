@@ -35,7 +35,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
 // Hack check
-if (!$gallery->user->canWriteToAlbum($gallery->album)) {
+if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 ?>

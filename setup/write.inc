@@ -179,10 +179,16 @@ if (isset($message)) {
 </div>
 <br>
 <font size=+1>
-<?php echo _("Gallery won't run if it is not in secure mode") ?></font>.
+<?php echo _("Gallery won't run if it is not in secure mode.") ?></font>
 <?php echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.") ?>  
 <?php echo _("It will save your data so you won't have to enter it all again!") ?>
 
+<br>
+<font size=+1>
+<?php echo sprintf(_("Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),  
+		'<a href="http://lists.sourceforge.net/lists/listinfo/gallery-announce" class="namedurl">gallery-announce</a>', 
+	       Gallery()) ?>
+</font>
 <p>
 <center>
 <font size=+2>

@@ -947,7 +947,7 @@ function correctPseudoUsers(&$array, $ownerUid) {
 	 * If EVERYBODY is in the list, reduce it to just that entry.
 	 */
 	$everybody = $gallery->userDB->getEverybody();
-	if ($array[$everybody->getUid()]) {
+	if (!empty($array[$everybody->getUid()])) {
 	        $array = array($everybody->getUid() => $everybody->getUsername());
 		return;
 	}
@@ -956,7 +956,7 @@ function correctPseudoUsers(&$array, $ownerUid) {
 	 * If LOGGEDIN is in the list, reduce it to just that entry.
 	 */
 	$loggedIn = $gallery->userDB->getLoggedIn();
-	if ($array[$loggedIn->getUid()]) {
+	if (!empty($array[$loggedIn->getUid()])) {
 		$array = array($loggedIn->getUid() => $loggedIn->getUsername());
 		return;
 	}
