@@ -72,9 +72,9 @@ switch ($cmd) {
 <?php
 			}
 			else {
-				if (!strcmp($rebuild_type, "single")) {
+				if ($rebuild_type == "single") {
 					if ($gallery->session->albumName && isset($index)) {
-						if (!strcmp($index, "all")) {
+						if ($index == "all") {
 							$np = $gallery->album->numPhotos(1);
 							echo ("<br> " . sprintf(_("Rebuilding %d thumbnails..."), $np));
 							my_flush();
@@ -94,7 +94,7 @@ switch ($cmd) {
 						//-- this is expected to be loaded in a popup, so dismiss ---
 						dismissAndReload();
 					}
-				} else if (!strcmp($rebuild_type, "recursive")) {
+				} else if ($rebuild_type == "recursive") {
 					if ($gallery->session->albumName && isset($index)) {
 						$gallery->album->makeThumbnailRecursive($index);
 						$gallery->album->save();
