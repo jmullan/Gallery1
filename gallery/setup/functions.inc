@@ -228,6 +228,9 @@ function row_wrap($buf) {
 	return "<code>$buf</code><br>";
 }
 
+function error_row_wrap($buf) {
+	return "</pre>$buf</pre><br>";
+}
 function check_htaccess()
 {
 	global $GALLERY_PHP_VALUE_OK; 
@@ -626,13 +629,13 @@ function check_locale() {
 	if (getOS() != OS_WINDOWS) { 
 		# Unix / Linux
 		# Check which locales are installed
-		$tmp=split("\n", shell_exec("locale -a"));
+		$tmp=explode("\n", shell_exec("locale -a"));
 		if(count($tmp) >3) {
 			$system_locales=$tmp;
 		} elseif (@is_readable("/etc/locale.gen")) {
-			$system_locales=split("\n",shell_exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1'));
+			$system_locales=explode("\n",shell_exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1'));
 			if (@is_readable("/usr/share/locale/")) {
-				$system_locales=array_merge($system_locales, split("\n",shell_exec('ls /usr/share/locale/')));
+				$system_locales=array_merge($system_locales, explode("\n",shell_exec('ls /usr/share/locale/')));
 			}
 		}
 	}
@@ -837,6 +840,40 @@ function check_magic_quotes()
 	return array($success, $fail);
 }
 
+function check_poll_nv_pairs($var) {
+	$fail = array();
+	$success = array();
+	$finished = false;
+	$rownum=0;
+	foreach ($var as $element) {
+		$rownum++;
+		if (!$element["name"]) {
+			$finished=true;
+			if ($element["value"]) {
+				$fail[]=sprintf(_("In %s, missing %s in row %d with %s %s."),
+					_("Vote words and values"), 
+					_("Name"), $rownum, _("Value"), 
+					$element["value"]);
+				break;
+			}
+			continue;
+		} else {
+			if ($finished) {
+				$fail[]=sprintf(_("In %s, blank in row %d."),
+					_("Vote words and values"), 
+					$rownum-1); 
+				break;
+			} else if (!ereg("^[1-9][0-9]*$", $element["value"])) {
+				$fail[]=sprintf(_("In %s, %s (row %d) %s should be a positive whole number"), 
+					_("Vote words and values"), 
+					$element["name"], 
+					$rownum, $element["value"]);
+				break;
+			}
+		}
+	}
+	return array($success, $fail);
+}
 function detect_exec_status() 
 {
 	global $gallery;
@@ -928,9 +965,9 @@ function inOpenBasedir($dir) {
 }
 
 function make_separator($key, $arr)  {
-		$buf="\n<tr><td class=\"separator\" colspan=\"2\"><b>". $arr["title"] ."</b></td><tr>";
-		if( isset($arr["descripion"])) {
-			$buf .= "\n<tr><td class=\"separator\" colspan=\"2\">". $arr["description"] ."</td><tr>";
+		$buf="\n<tr><td class=\"separator\" colspan=\"2\"><b>". $arr["title"] ."</b></td></tr>";
+		if( isset($arr["desc"])) {
+			$buf .= "\n<tr><td class=\"desc\" colspan=\"2\">". $arr["desc"] ."</td></tr>";
 		}
 		$buf .= "\n<tr><td>&nbsp;</td></tr>";
 		return $buf;
@@ -961,5 +998,12 @@ function array_str_replace($search, $replace, $subject) {
 		$ret[$key]=array_str_replace($search, $replace, $value);
 	}
 	return $ret;
+}
+
+function newIn($version) {
+	$buf = "\n\t<br><font color=blue><b>(";
+	$buf .= sprintf(_("this is new in version %s"), $version);
+	$buf .= ")</b></font>";
+	return $buf;
 }
 ?>

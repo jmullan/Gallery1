@@ -229,7 +229,37 @@ if (isset($GALLERY_EMBEDDED_INSIDE) &&
 			 $gallery->userDB->getUserByUsername($gallery->session->username);
 	    }
 	}
-} else {
+}
+elseif ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2') {
+		include($GALLERY_BASEDIR . "classes/Database.php");
+		include($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
+		include($GALLERY_BASEDIR . "classes/phpbb/UserDB.php");
+		include($GALLERY_BASEDIR . "classes/phpbb/User.php");
+ 
+		$gallery->database{"phpbb"} = new MySQL_Database(
+			$GLOBALS['dbhost'],
+			$GLOBALS['dbuser'],
+			$GLOBALS['dbpasswd'],
+			$GLOBALS['dbname']
+		);
+
+//		$gallery->database{"phpbb"}->setTablePrefix($GLOBALS['table_prefix']);
+		$gallery->database{"prefix"} = $GLOBALS['table_prefix'];
+ 
+		/* Load our user database (and user object) */
+		$gallery->userDB = new phpbb_UserDB;
+
+		if (isset($GLOBALS['userdata']) && isset($GLOBALS['userdata']['username'])) {
+			$gallery->session->username = $GLOBALS['userdata']['username']; 
+			$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
+		}
+		elseif ($gallery->session->username) {
+			$gallery->user = 
+				$gallery->userDB->getUserByUsername($gallery->session->username);
+		}
+
+}
+else {
 	include($GALLERY_BASEDIR . "classes/gallery/UserDB.php");
 	include($GALLERY_BASEDIR . "classes/gallery/User.php");
 

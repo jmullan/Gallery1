@@ -32,27 +32,36 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <?php
 global $GALLERY_BASEDIR;
 global $GALLERY_EMBEDDED_INSIDE;
+global $GALLERY_EMBEDDED_INSIDE_TYPE;
 global $GALLERY_MODULENAME;
 global $op;
 global $mop;
 global $include;
 global $name;
 
-/* Detect PHP-Nuke and react accordingly */
+/* Detect phpNuke, postnuke or phpBB2 and react accordingly */
 if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 
 	/* 
 	 * Change this variable if your Gallery module has a different
-	 * name in the Nuke modules directory.
+	 * name in the Nuke or phpBB2 modules directory.
 	 */
 	$GALLERY_MODULENAME = $name;
 	$GALLERY_BASEDIR = "modules/$GALLERY_MODULENAME/";
-	$GALLERY_EMBEDDED_INSIDE='nuke';
 
-	if (isset($GLOBALS['pnconfig']) && function_exists("authorised")) {
-		$GALLERY_EMBEDDED_INSIDE_TYPE = "postnuke"; 
-	} else {
-		$GALLERY_EMBEDDED_INSIDE_TYPE = "phpnuke"; 
+
+	if (isset($GLOBALS['phpbb_root_path'])) {
+		$GALLERY_EMBEDDED_INSIDE='phpBB2';
+		$GALLERY_EMBEDDED_INSIDE_TYPE = 'phpBB2'; 
+	}	
+	elseif (isset($GLOBALS['pnconfig']) && function_exists('authorised')) {
+		$GALLERY_EMBEDDED_INSIDE='nuke';
+		$GALLERY_EMBEDDED_INSIDE_TYPE = 'postnuke'; 
+
+	}
+	else {
+		$GALLERY_EMBEDDED_INSIDE='nuke';
+		$GALLERY_EMBEDDED_INSIDE_TYPE = 'phpnuke'; 
 	}
 
 	if (!$include) {
@@ -67,6 +76,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 	 */
 	$safe_to_include =
 		 array(
+
 		       "add_comment.php",
 		       "add_photo.php",
 		       "add_photos.php",
@@ -92,10 +102,14 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 		       "modify_user.php",
 		       "move_album.php",
 		       "move_photo.php",
+		       "photo_owner.php",
+		       "poll_properties.php",
+		       "poll_results.php",
 		       "progress_uploading.php",
 		       "publish_xp.php",
 		       "publish_xp_docs.php",
 		       "rename_album.php",
+		       "reset_votes.php",
 		       "resize_photo.php",
 		       "rotate_photo.php",
 		       "save_photos.php",
@@ -104,11 +118,13 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 		       "slideshow_low.php",
 		       "sort_album.php",
 		       "upgrade_album.php",
+		       "upgrade_users.php",
 		       "user_preferences.php",
 		       "view_album.php",
 		       "view_comments.php",
 		       "view_photo.php",
 		       "view_photo_properties.php"
+
 		       );
 	
 	if (!in_array($include, $safe_to_include)) {

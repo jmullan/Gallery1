@@ -140,23 +140,25 @@ if ($gallery->session->albumName && isset($index)) {
 							$postAlbum->setPhoto($newphoto,$newPhotoIndex);
 
 							/* resize the photo if needed */
-							if ($postAlbum->fields["resize_size"] > 0  || $postAlbum->fields["resize_file_size"] > 0) {
-								$photo = $postAlbum->getPhoto($newPhotoIndex);
-								list($w, $h) = $photo->image->getRawDimensions();
-								$size = ($photo->image->getRawFilesize() / 1000);
-								if ($w > $postAlbum->fields["resize_size"] ||
-								    $h > $postAlbum->fields["resize_size"] ||
-								    $size > $postAlbum->fields["resize_file_size"]) {
-									if (($postAlbum->fields["resize_size"] == $gallery->album->fields["resize_size"]) &&
-									    ($postAlbum->fields["resize_file_size"] == $gallery->album->fields["resize_file_size"]) &&
-									   ($myresized)) {
-										$pathToResized="$mydir/$myresized.$mytype";
-									} else {
-										$pathToResized="";
-										echo "- " . _("Resizing photo") ."<br>";
-										my_flush();
+							if ($postAlbum->fields["resize_size"] != 'off') {
+								if ($postAlbum->fields["resize_size"] > 0  || $postAlbum->fields["resize_file_size"] > 0) {
+									$photo = $postAlbum->getPhoto($newPhotoIndex);
+									list($w, $h) = $photo->image->getRawDimensions();
+									$size = ($photo->image->rawFilesize($postAlbum->getAlbumDir()) / 1000);
+									if ($w > $postAlbum->fields["resize_size"] ||
+									    $h > $postAlbum->fields["resize_size"] ||
+									    $size > $postAlbum->fields["resize_file_size"]) {
+										if (($postAlbum->fields["resize_size"] == $gallery->album->fields["resize_size"]) &&
+										    ($postAlbum->fields["resize_file_size"] == $gallery->album->fields["resize_file_size"]) &&
+										   ($myresized)) {
+											$pathToResized="$mydir/$myresized.$mytype";
+										} else {
+											$pathToResized="";
+											echo "- " . _("Resizing photo") ."<br>";
+											my_flush();
+										}
+										$postAlbum->resizePhoto($newPhotoIndex, $postAlbum->fields["resize_size"], $postAlbum->fields["resize_file_size"], $pathToResized);
 									}
-									$postAlbum->resizePhoto($newPhotoIndex, $postAlbum->fields["resize_size"], $postAlbum->fields["resize_file_size"], $pathToResized);
 								}
 							}
 							
@@ -305,9 +307,9 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <?php
 	if (sizeof($gallery->album->fields["votes"]> 0)) {
 		if ($gallery->album->fields["poll_type"] == "rank") {
-			echo "<font color=red>". _("Note: images that have votes will lose these votes when moved to another album") . "</font>"; // can't move rank votes, doesn't  make sense.
+			echo "<font color=red>". _("Note: items that have votes will lose these votes when moved to another album") . "</font>"; // can't move rank votes, doesn't  make sense.
 		} else {
-			echo "<font color=red>". _("Note: images that have votes may lose these votes when moved to another album") . "</font>";
+			echo "<font color=red>". _("Note: items that have votes will lose these votes if moved to an album with in compatible polling implemented.") . "</font>";
 		}
 	}
 

@@ -73,7 +73,7 @@ $thumbSize = $gallery->app->default["thumb_size"];
   <title><?php echo $gallery->app->galleryTitle ?> :: Advanced Search</title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir="<?php echo gallery->direction; ?>">
+<body dir="<?php echo $gallery->direction; ?>">
 <?php } ?>
 
 <!-- search.header begin -->
@@ -174,7 +174,8 @@ if (isset($go)) {
 	    else {
 		print _("search albums here") . "<p>";
 	    }
-	    echo "<tr><td valign=top><span class=desc>".pluralize($albumMatch, "Album Match", "No", "Album Matches").".</span></td></tr>";
+	    echo "<tr><td valign=top><span class=desc>".
+		    pluralize_n($albumMatch, _("Album Match"), _("Album Matches"), _("No Album Matches")).".</span></td></tr>";
 	    echo "</table><br>";
     }
     if ($searchstring || $item_owners) {
@@ -237,7 +238,10 @@ if (isset($go)) {
 	else {
 		print _("search photos here") . "<p>";
 	}
-	    echo "<tr><td valign=top><span class=desc>".pluralize($photoMatch, "Photo Match", "No", "Photo Matches").".</span></td></tr>";
+	    echo "<tr><td valign=top><span class=desc>".pluralize_n($photoMatch,
+			    _("Photo Match"), _("Photo Matches"), 
+			    _("No Photo Matches")).".
+		    </span></td></tr>";
 	    echo "</table><br>";
 	}
     if ($searchstring || $commenters) {
@@ -311,7 +315,8 @@ if (isset($go)) {
 	else {
 		print _("search comments here") . "<p>";
 	}
-	    echo "<tr><td valign=top><span class=desc>".pluralize($commentMatch, "Comment Match", "No", "Comment Matches").".</span></td></tr>";
+	    echo "<tr><td valign=top><span class=desc>".pluralize_n($commentMatch, _("Comment Match"), _("Comment Matches"), _("No Comment Matches")) .
+		    "</span></td></tr>";
 	    echo "</table><br>";
 	}
   print $search_again;

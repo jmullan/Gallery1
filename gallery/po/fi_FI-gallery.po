@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-09-02 20:35+0200\n"
+"POT-Creation-Date: 2003-09-05 16:24+0200\n"
 "PO-Revision-Date: 2003-09-03 20:35+0200\n"
 "Last-Translator: Olli Salo <oasalo@st.jyu.fi>\n"
 "Language-Team: Finnish <oasalo@st.jyu.fi>\n"
@@ -25,10 +25,11 @@ msgstr ""
 #: ../errors/unconfigured.php:7 ../extra_fields.php:30
 #: ../highlight_photo.php:28 ../login.php:28 ../manage_users.php:28
 #: ../modify_user.php:28 ../move_album.php:28 ../move_photo.php:28
-#: ../photo_owner.php:30 ../progress_uploading.php:28 ../publish_xp.php:28
-#: ../publish_xp_docs.php:28 ../rename_album.php:28 ../resize_photo.php:28
+#: ../photo_owner.php:30 ../poll_properties.php:28 ../poll_results.php:28
+#: ../progress_uploading.php:28 ../publish_xp.php:28 ../publish_xp_docs.php:28
+#: ../rename_album.php:28 ../reset_votes.php:28 ../resize_photo.php:28
 #: ../rotate_photo.php:28 ../save_photos.php:28 ../search.php:28
-#: ../setup/index.php:81 ../slideshow.php:28 ../slideshow_low.php:28
+#: ../setup/index.php:80 ../slideshow.php:28 ../slideshow_low.php:28
 #: ../sort_album.php:28 ../upgrade_album.php:28 ../upgrade_users.php:28
 #: ../user_preferences.php:28 ../util.php:28 ../view_album.php:28
 #: ../view_comments.php:31 ../view_photo.php:28
@@ -63,8 +64,9 @@ msgstr "Tallenna"
 #: ../delete_photo.php:112 ../delete_photo.php:132 ../delete_user.php:83
 #: ../edit_caption.php:174 ../edit_field.php:75 ../login.php:131
 #: ../modify_user.php:143 ../move_album.php:93 ../move_album.php:119
-#: ../move_photo.php:230 ../move_photo.php:322 ../rename_album.php:121
-#: ../resize_photo.php:120 ../sort_album.php:116 ../user_preferences.php:126
+#: ../move_photo.php:232 ../move_photo.php:324 ../rename_album.php:121
+#: ../reset_votes.php:64 ../resize_photo.php:120 ../sort_album.php:116
+#: ../user_preferences.php:126
 msgid "Cancel"
 msgstr "Peruuta"
 
@@ -312,11 +314,11 @@ msgstr "N‰m‰ eiv‰t ole kelvollisia albumeita. Ole hyv‰ ja siirr‰ ne pois albumei
 msgid "Highlight for Album: "
 msgstr "Esittelykuva"
 
-#: ../albums.php:271 ../view_album.php:784
+#: ../albums.php:271 ../view_album.php:791
 msgid "title"
 msgstr "otsikko"
 
-#: ../albums.php:276 ../view_album.php:789
+#: ../albums.php:276 ../view_album.php:796
 msgid "description"
 msgstr "kuvaus"
 
@@ -379,11 +381,11 @@ msgstr "Muokattu viimeksi %s."
 msgid "This album contains %s."
 msgstr "T‰m‰ albumi sis‰lt‰‰ %s."
 
-#: ../albums.php:359 ../view_album.php:721
+#: ../albums.php:359 ../view_album.php:724
 msgid "item"
 msgstr "kohde"
 
-#: ../albums.php:359 ../upgrade_album.php:192 ../view_album.php:721
+#: ../albums.php:359 ../upgrade_album.php:192 ../view_album.php:724
 msgid "items"
 msgstr "kohdetta"
 
@@ -396,15 +398,15 @@ msgstr "0 kohdetta"
 msgid "This album has been viewed %s since %s."
 msgstr "T‰t‰ albumia on katseltu %s %s l‰htien."
 
-#: ../albums.php:364 ../view_album.php:723 ../view_album.php:738
+#: ../albums.php:364 ../view_album.php:726 ../view_album.php:746
 msgid "time"
 msgstr "yhden kerran"
 
-#: ../albums.php:364 ../view_album.php:723 ../view_album.php:738
+#: ../albums.php:364 ../view_album.php:726 ../view_album.php:746
 msgid "times"
 msgstr "kertaa"
 
-#: ../albums.php:364 ../view_album.php:723 ../view_album.php:738
+#: ../albums.php:364 ../view_album.php:726 ../view_album.php:746
 msgid "0 times"
 msgstr "0 kertaa"
 
@@ -482,21 +484,21 @@ msgstr "Albumi on ajan tasalla."
 msgid "Upgrading album properties..."
 msgstr "P‰ivitet‰‰n albumin ominaisuuksia..."
 
-#: ../classes/Album.php:241 ../classes/Album.php:258
+#: ../classes/Album.php:246 ../classes/Album.php:263
 msgid "done"
 msgstr "valmis"
 
-#: ../classes/Album.php:249
+#: ../classes/Album.php:254
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "P‰ivitet‰‰n kuvaa %d %d kuvasta..."
 
-#: ../classes/Album.php:807 ../classes/Album.php:816
+#: ../classes/Album.php:815 ../classes/Album.php:824
 #: ../classes/AlbumItem.php:490
 msgid "No highlight"
 msgstr "Ei esittelykuvaa"
 
-#: ../classes/Album.php:1565
+#: ../classes/Album.php:1574
 #, php-format
 msgid "#%d"
 msgstr ""
@@ -517,8 +519,8 @@ msgstr "Ei esikatselukuvaa"
 msgid "Anonymous User"
 msgstr "Anonyymik‰ytt‰j‰"
 
-#: ../classes/NobodyUser.php:27 ../setup/config_data.inc:705
-#: ../setup/config_data.inc:713
+#: ../classes/NobodyUser.php:27 ../poll_properties.php:102
+#: ../setup/config_data.inc:716 ../setup/config_data.inc:724
 msgid "Nobody"
 msgstr "Nobody-k‰ytt‰j‰"
 
@@ -562,30 +564,32 @@ msgid "Passwords do not match!"
 msgstr "Salasanat eiv‰t t‰sm‰‰!"
 
 #: ../create_user.php:73 ../edit_appearance.php:155 ../modify_user.php:109
-#: ../modify_user.php:112 ../setup/config_data.inc:301
-#: ../setup/config_data.inc:320 ../setup/config_data.inc:333
-#: ../setup/config_data.inc:346 ../setup/config_data.inc:391
-#: ../setup/config_data.inc:447 ../setup/config_data.inc:497
-#: ../setup/config_data.inc:503 ../setup/config_data.inc:606
-#: ../setup/config_data.inc:613 ../setup/config_data.inc:620
-#: ../setup/config_data.inc:626 ../setup/config_data.inc:647
-#: ../setup/config_data.inc:656 ../setup/config_data.inc:662
-#: ../setup/config_data.inc:681 ../setup/config_data.inc:688
-#: ../setup/config_data.inc:695 ../setup/config_data.inc:748
+#: ../modify_user.php:112 ../poll_properties.php:94
+#: ../setup/config_data.inc:301 ../setup/config_data.inc:320
+#: ../setup/config_data.inc:333 ../setup/config_data.inc:346
+#: ../setup/config_data.inc:391 ../setup/config_data.inc:447
+#: ../setup/config_data.inc:497 ../setup/config_data.inc:503
+#: ../setup/config_data.inc:606 ../setup/config_data.inc:613
+#: ../setup/config_data.inc:620 ../setup/config_data.inc:626
+#: ../setup/config_data.inc:647 ../setup/config_data.inc:656
+#: ../setup/config_data.inc:662 ../setup/config_data.inc:681
+#: ../setup/config_data.inc:688 ../setup/config_data.inc:695
+#: ../setup/config_data.inc:761 ../setup/config_data.inc:768
 msgid "yes"
 msgstr "kyll‰"
 
 #: ../create_user.php:73 ../edit_appearance.php:155 ../modify_user.php:109
-#: ../modify_user.php:112 ../setup/config_data.inc:301
-#: ../setup/config_data.inc:320 ../setup/config_data.inc:333
-#: ../setup/config_data.inc:346 ../setup/config_data.inc:391
-#: ../setup/config_data.inc:447 ../setup/config_data.inc:497
-#: ../setup/config_data.inc:503 ../setup/config_data.inc:606
-#: ../setup/config_data.inc:613 ../setup/config_data.inc:620
-#: ../setup/config_data.inc:626 ../setup/config_data.inc:647
-#: ../setup/config_data.inc:656 ../setup/config_data.inc:662
-#: ../setup/config_data.inc:681 ../setup/config_data.inc:688
-#: ../setup/config_data.inc:695 ../setup/config_data.inc:748
+#: ../modify_user.php:112 ../poll_properties.php:94
+#: ../setup/config_data.inc:301 ../setup/config_data.inc:320
+#: ../setup/config_data.inc:333 ../setup/config_data.inc:346
+#: ../setup/config_data.inc:391 ../setup/config_data.inc:447
+#: ../setup/config_data.inc:497 ../setup/config_data.inc:503
+#: ../setup/config_data.inc:606 ../setup/config_data.inc:613
+#: ../setup/config_data.inc:620 ../setup/config_data.inc:626
+#: ../setup/config_data.inc:647 ../setup/config_data.inc:656
+#: ../setup/config_data.inc:662 ../setup/config_data.inc:681
+#: ../setup/config_data.inc:688 ../setup/config_data.inc:695
+#: ../setup/config_data.inc:759 ../setup/config_data.inc:761
 msgid "no"
 msgstr "ei"
 
@@ -610,8 +614,8 @@ msgid "Do you really want to delete this album?"
 msgstr "Haluatko varmasti poistaa t‰m‰n albumin?"
 
 #: ../delete_album.php:66 ../delete_photo.php:111 ../delete_photo.php:131
-#: ../delete_user.php:78 ../manage_users.php:109 ../view_album.php:831
-#: ../view_album.php:836
+#: ../delete_user.php:78 ../manage_users.php:109 ../view_album.php:838
+#: ../view_album.php:843
 msgid "Delete"
 msgstr "Poista"
 
@@ -631,8 +635,8 @@ msgstr "Haluatko varmasti poistaa t‰m‰n albumin?"
 msgid "Do you really want to delete this photo?"
 msgstr "Haluatko varmasti poistaa t‰m‰n valokuvan?"
 
-#: ../delete_photo.php:139 ../edit_thumb.php:135 ../move_album.php:124
-#: ../move_photo.php:327 ../resize_photo.php:133 ../rotate_photo.php:99
+#: ../delete_photo.php:139 ../edit_thumb.php:138 ../move_album.php:124
+#: ../move_photo.php:329 ../resize_photo.php:133 ../rotate_photo.php:99
 #: ../view_photo_properties.php:168
 msgid "no album / index specified"
 msgstr "albumia / hakemistoa ei ole m‰‰ritetty"
@@ -810,14 +814,17 @@ msgid "Apply values to nested Albums (except Album Title and Summary)."
 msgstr "K‰yt‰ valintaa sis‰kk‰isille kuva-albumeille (paitsi albumin otsikkoon ja yhteenvetoon)."
 
 #: ../edit_appearance.php:227 ../extra_fields.php:165
+#: ../poll_properties.php:136
 msgid "Apply"
 msgstr "Toteuta muutokset"
 
 #: ../edit_appearance.php:228 ../extra_fields.php:166
+#: ../poll_properties.php:137
 msgid "Undo"
 msgstr "Kumoa"
 
-#: ../edit_appearance.php:229 ../extra_fields.php:167 ../rotate_photo.php:91
+#: ../edit_appearance.php:229 ../extra_fields.php:167
+#: ../poll_properties.php:138 ../rotate_photo.php:91
 msgid "Close"
 msgstr "Sulje"
 
@@ -825,7 +832,7 @@ msgstr "Sulje"
 msgid "Year must be between 1000 and 3000"
 msgstr "Vuoden tulee olla v‰lill‰ 1000 ja 3000"
 
-#: ../edit_caption.php:72 ../view_album.php:802
+#: ../edit_caption.php:72 ../view_album.php:809
 msgid "Edit Text"
 msgstr "Muokkaa teksti‰"
 
@@ -867,15 +874,15 @@ msgstr "Muokkaa %s"
 msgid "Edit the %s and click %s when you're done"
 msgstr "Muokkaa %s:‰‰ ja klikkaa %s kun olet valmis"
 
-#: ../edit_thumb.php:44 ../edit_thumb.php:73
+#: ../edit_thumb.php:47 ../edit_thumb.php:76
 msgid "Custom Thumbnail"
 msgstr "Erillinen esikatselukuva"
 
-#: ../edit_thumb.php:52
+#: ../edit_thumb.php:55
 msgid "Remaking the Thumbnail..."
 msgstr "Luodaan uudelleen esikatselukuva..."
 
-#: ../edit_thumb.php:115
+#: ../edit_thumb.php:118
 msgid "Choose which part of the image will compose your thumbnail:"
 msgstr "Valitse, mik‰ kohta kuvasta muodostaa esikatselukuvan:"
 
@@ -1047,13 +1054,13 @@ msgstr "lis‰‰ kommentti"
 
 #: ../layout/commentboxtop.inc:16 ../slideshow.php:458 ../slideshow.php:472
 #: ../slideshow_low.php:358 ../slideshow_low.php:370 ../upgrade_album.php:97
-#: ../view_album.php:160 ../view_album.php:710 ../view_album.php:753
-#: ../view_comments.php:74 ../view_photo.php:180 ../view_photo.php:194
+#: ../view_album.php:159 ../view_album.php:760 ../view_comments.php:74
+#: ../view_photo.php:181 ../view_photo.php:195
 msgid "Album"
 msgstr "albumi"
 
 #: ../layout/commentboxtop.inc:19 ../layout/commentboxtop.inc:41
-#: ../view_album.php:703
+#: ../view_album.php:706
 msgid "hidden"
 msgstr "piilotettu"
 
@@ -1171,11 +1178,11 @@ msgstr "Siirr‰ albumi"
 msgid "Select the new location of album"
 msgstr "Valitse albumin uusi paikka"
 
-#: ../move_album.php:92 ../move_photo.php:229
+#: ../move_album.php:92 ../move_photo.php:231
 msgid "Move it!"
 msgstr "Siirr‰!"
 
-#: ../move_album.php:104 ../move_photo.php:234
+#: ../move_album.php:104 ../move_photo.php:236
 msgid "OR"
 msgstr "TAI"
 
@@ -1183,7 +1190,7 @@ msgstr "TAI"
 msgid "Nest within another Album:"
 msgstr "Sis‰llyt‰ toiseen albumiin:"
 
-#: ../move_album.php:118 ../move_photo.php:321
+#: ../move_album.php:118 ../move_photo.php:323
 msgid "Move to Album!"
 msgstr "Siirr‰ albumiin!"
 
@@ -1199,92 +1206,189 @@ msgstr "Siirret‰‰n valokuvaa #"
 msgid "Creating Thumbnail"
 msgstr "Luodaan esikatselukuva"
 
-#: ../move_photo.php:156
+#: ../move_photo.php:157
 msgid "Resizing photo"
 msgstr "Muutetaan kuvan koko"
 
-#: ../move_photo.php:168
+#: ../move_photo.php:170
 msgid "- Creating New Album Highlight"
 msgstr "- Luodaan uusi albumin kansikuva"
 
-#: ../move_photo.php:178
+#: ../move_photo.php:180
 msgid "Error"
 msgstr "Virhe"
 
-#: ../move_photo.php:182
+#: ../move_photo.php:184
 #, php-format
 msgid "Skipping Album #%d"
 msgstr "Ohitetaan albumi #%d"
 
-#: ../move_photo.php:205
+#: ../move_photo.php:207
 msgid "Move this album within the album:"
 msgstr "Siirr‰ t‰m‰ albumi albumin sis‰ll‰:"
 
-#: ../move_photo.php:207
+#: ../move_photo.php:209
 msgid "Move this photo within the album:"
 msgstr "Siirr‰ t‰m‰ kuva albumin sis‰ll‰:"
 
-#: ../move_photo.php:209
+#: ../move_photo.php:211
 #, php-format
 msgid "Current Location is %s"
 msgstr "Nykyinen sijainti on %s"
 
-#: ../move_photo.php:214
+#: ../move_photo.php:216
 msgid "Select the new location:"
 msgstr "Valitse uusi sijainti:"
 
-#: ../move_photo.php:243
+#: ../move_photo.php:245
 msgid "Move the album to a new album:"
 msgstr "Siirr‰ albumi uuteen albumiin:"
 
-#: ../move_photo.php:254
+#: ../move_photo.php:256
 msgid "Move a range of photos to a new album:"
 msgstr "Siirr‰ joukko valokuvia uuteen albumiin:"
 
-#: ../move_photo.php:255
+#: ../move_photo.php:257
 msgid "To move just one photo, make First and Last the same"
 msgstr "Siirt‰‰seksi vain yhden kuvan, m‰‰rit‰ ensimm‰inen ja viimeinen kuva samoiksi"
 
-#: ../move_photo.php:256
+#: ../move_photo.php:258
 msgid "Nested albums in this range will be ignored"
 msgstr "Sis‰kk‰iset albumit joukon sis‰ll‰ ohitetaan"
 
-#: ../move_photo.php:265
+#: ../move_photo.php:267
 msgid "First"
 msgstr "Ensimm‰inen"
 
-#: ../move_photo.php:266
+#: ../move_photo.php:268
 msgid "Last"
 msgstr "Viimeinen"
 
-#: ../move_photo.php:267
+#: ../move_photo.php:269
 msgid "New Album"
 msgstr "Uusi kuva-albumi"
 
-#: ../move_photo.php:308
+#: ../move_photo.php:310
 msgid "Note: images that have votes will lose these votes when moved to another album"
 msgstr ""
 
-#: ../move_photo.php:310
-msgid "Note: images that have votes may lose these votes when moved to another album"
+#: ../move_photo.php:312
+msgid "Note: images that have votes will lose these votes if moved to an album with in compatible polling implemented."
 msgstr ""
 
-#: ../move_photo.php:316
+#: ../move_photo.php:318
 #, fuzzy, php-format
 msgid "WARNING: Some of the albums need to be upgraded to the current version of %s."
 msgstr "VAROITUS: jotkin albumeista on p‰ivitett‰v‰ gallerian uudempaan versioon."
 
-#: ../move_photo.php:317
+#: ../move_photo.php:319
 msgid "Upgrade now"
 msgstr "P‰ivit‰ nyt"
 
-#: ../photo_owner.php:80 ../photo_owner.php:86 ../view_album.php:848
+#: ../photo_owner.php:80 ../photo_owner.php:86 ../view_album.php:855
 msgid "Change Owner"
 msgstr "Vaihda omistaja"
 
 #: ../photo_owner.php:100
 msgid "Owner"
 msgstr "Omistaja"
+
+#: ../poll_properties.php:54
+#, php-format
+msgid "Warning: you have changed voters from %s to %s.  It is advisable to reset the poll to remove all previous votes."
+msgstr ""
+
+#: ../poll_properties.php:55 ../poll_properties.php:102
+#: ../setup/config_data.inc:718 ../setup/config_data.inc:725
+msgid "Everybody"
+msgstr ""
+
+#: ../poll_properties.php:56 ../poll_properties.php:102
+#: ../setup/config_data.inc:720 ../setup/config_data.inc:726
+#, fuzzy
+msgid "Logged in"
+msgstr "Kirjaudu"
+
+#: ../poll_properties.php:71
+#, fuzzy
+msgid "Poll Properties"
+msgstr "kuvan ominaisuudet"
+
+#: ../poll_properties.php:85
+#, fuzzy
+msgid "Type of poll for this album"
+msgstr "1 kuva t‰ss‰ albumissa"
+
+#: ../poll_properties.php:86 ../setup/config_data.inc:708
+#: ../setup/config_data.inc:711 ../setup/config_data.inc:731
+#: ../setup/config_data.inc:737
+msgid "Rank"
+msgstr ""
+
+#: ../poll_properties.php:86 ../setup/config_data.inc:709
+#: ../setup/config_data.inc:710 ../setup/config_data.inc:733
+#: ../setup/config_data.inc:738
+msgid "Critique"
+msgstr ""
+
+#: ../poll_properties.php:89
+#, fuzzy
+msgid "Number of voting options"
+msgstr "Kommenttien m‰‰r‰n mukaan"
+
+#: ../poll_properties.php:93
+msgid "Show results of voting to all visitors?"
+msgstr ""
+
+#: ../poll_properties.php:97
+msgid "Number of lines of results graph to display on the album page"
+msgstr ""
+
+#: ../poll_properties.php:101
+#, fuzzy
+msgid "Who can vote"
+msgstr "Huomio"
+
+#: ../poll_properties.php:105
+msgid "Orientation of vote choices"
+msgstr ""
+
+#: ../poll_properties.php:106 ../rotate_photo.php:86
+#: ../setup/config_data.inc:779
+msgid "Horizontal"
+msgstr "Vaakasuunta"
+
+#: ../poll_properties.php:106 ../rotate_photo.php:89
+#: ../setup/config_data.inc:780
+msgid "Vertical"
+msgstr "Pystysuunta"
+
+#: ../poll_properties.php:109 ../setup/config_data.inc:749
+msgid "Vote hint"
+msgstr ""
+
+#: ../poll_properties.php:115
+msgid "Displayed Value"
+msgstr ""
+
+#: ../poll_results.php:72
+#, fuzzy
+msgid "Poll Results"
+msgstr "Tulos:"
+
+#: ../poll_results.php:105
+#, fuzzy, php-format
+msgid "Return to  %s"
+msgstr "Palaa takaisin lis‰‰m‰‰n kuvia"
+
+#: ../poll_results.php:132
+msgid "Results Breakdown"
+msgstr ""
+
+#: ../poll_results.php:158 ../util.php:1839 ../view_album.php:713
+#, fuzzy, php-format
+msgid "Album: %s"
+msgstr "Albumit"
 
 #: ../progress_uploading.php:44
 msgid "Uploading Photos"
@@ -1472,7 +1576,7 @@ msgstr "Klikkaa t‰t‰ linkki‰ ja seuraa ohjeita kirjautuaksesi Galleriaan, valits
 msgid "Return to Add Photos"
 msgstr "Palaa takaisin lis‰‰m‰‰n kuvia"
 
-#: ../rename_album.php:45 ../view_album.php:796
+#: ../rename_album.php:45 ../view_album.php:803
 msgid "Rename Album"
 msgstr "Nime‰ kuva-albumi uudelleen"
 
@@ -1499,6 +1603,21 @@ msgstr "v‰lilyˆntej‰"
 #: ../rename_album.php:112
 msgid "Those characters will be ignored in your new album name."
 msgstr "Em. merkit ohitetaan albuminimess‰."
+
+#: ../reset_votes.php:53
+#, fuzzy
+msgid "Reset Voting"
+msgstr "Nollaa laskuri"
+
+#: ../reset_votes.php:59
+#, fuzzy, php-format
+msgid "Do you really want to remove all votes in %s?"
+msgstr "Haluatko varmasti poistaa k‰ytt‰j‰n"
+
+#: ../reset_votes.php:63
+#, fuzzy
+msgid "Remove Votes"
+msgstr "Huomio"
 
 #: ../resize_photo.php:46
 msgid "Resize Photo"
@@ -1590,14 +1709,6 @@ msgstr "Myˆt‰p‰iv‰‰n"
 msgid "Flip"
 msgstr "Peilaa"
 
-#: ../rotate_photo.php:86 ../setup/config_data.inc:764
-msgid "Horizontal"
-msgstr "Vaakasuunta"
-
-#: ../rotate_photo.php:89 ../setup/config_data.inc:765
-msgid "Vertical"
-msgstr "Pystysuunta"
-
 #: ../save_photos.php:54
 msgid "Processing and Saving Photos"
 msgstr "Prosessoidaan ja tallennetaan kuvat"
@@ -1655,8 +1766,8 @@ msgid "Search Again"
 msgstr "Etsi uudelleen"
 
 #: ../search.php:77 ../search.php:269 ../setup/config_data.inc:173
-#: ../slideshow.php:476 ../slideshow_low.php:374 ../view_album.php:164
-#: ../view_photo.php:198
+#: ../slideshow.php:476 ../slideshow_low.php:374 ../view_album.php:163
+#: ../view_photo.php:199
 msgid "Gallery"
 msgstr "Galleria"
 
@@ -2058,10 +2169,10 @@ msgstr "En lˆyd‰ jpegtran:ia. Jos se on asennettu, mutta se ei sijatise webbipal
 #: ../setup/config_data.inc:467 ../setup/config_data.inc:598
 #: ../setup/config_data.inc:612 ../setup/config_data.inc:680
 #: ../setup/config_data.inc:687 ../setup/config_data.inc:694
-#: ../setup/config_data.inc:712 ../setup/config_data.inc:725
-#: ../setup/config_data.inc:732 ../setup/config_data.inc:739
-#: ../setup/config_data.inc:747 ../setup/config_data.inc:754
-#: ../setup/config_data.inc:761
+#: ../setup/config_data.inc:723 ../setup/config_data.inc:736
+#: ../setup/config_data.inc:744 ../setup/config_data.inc:751
+#: ../setup/config_data.inc:760 ../setup/config_data.inc:769
+#: ../setup/config_data.inc:776
 #, php-format
 msgid "this is new in version %s"
 msgstr "t‰m‰ on uutta versiossa %s"
@@ -2213,8 +2324,8 @@ msgstr "T‰m‰n vaihtoehdon valitseminen saa Gallerian yritt‰m‰‰n JPEG-kuvien auto
 
 #: ../setup/config_data.inc:306 ../setup/config_data.inc:389
 #: ../setup/config_data.inc:452 ../setup/config_data.inc:463
-#: ../setup/config_data.inc:482 ../setup/functions.inc:736
-#: ../setup/functions.inc:777
+#: ../setup/config_data.inc:482 ../setup/functions.inc:739
+#: ../setup/functions.inc:780
 msgid "Advanced"
 msgstr "Kehittynyt"
 
@@ -2366,6 +2477,10 @@ msgstr ""
 #, fuzzy
 msgid "date without time"
 msgstr "%s ilman lahjoitusta"
+
+#: ../setup/config_data.inc:455 ../setup/config_data.inc:466
+msgid "http://www.php.net/manual/en/function.strftime.php"
+msgstr ""
 
 #: ../setup/config_data.inc:457
 #, php-format
@@ -2617,125 +2732,136 @@ msgstr "N‰yt‰ kuvan omistajan nimi kuvatekstin ohessa?"
 msgid "Polling configuration"
 msgstr "Gallerian konfiguraatio"
 
-#: ../setup/config_data.inc:703
+#: ../setup/config_data.inc:701
+#, php-format
+msgid "Polling is a new feature in %s.  It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."
+msgstr ""
+
+#: ../setup/config_data.inc:705
+msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
+msgstr ""
+
+#: ../setup/config_data.inc:707
+#, php-format
+msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc; and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
+msgstr ""
+
+#: ../setup/config_data.inc:714
 msgid "Voter class"
 msgstr ""
 
-#: ../setup/config_data.inc:704
+#: ../setup/config_data.inc:715
 msgid "Voting is available to:"
 msgstr ""
 
-#: ../setup/config_data.inc:706
+#: ../setup/config_data.inc:717
 msgid "Voting is off."
 msgstr ""
 
-#: ../setup/config_data.inc:707 ../setup/config_data.inc:714
-msgid "Everybody"
-msgstr ""
-
-#: ../setup/config_data.inc:708
+#: ../setup/config_data.inc:719
 msgid "Anyone can vote.  Votes are recorded against session id."
 msgstr ""
 
-#: ../setup/config_data.inc:709 ../setup/config_data.inc:715
-#, fuzzy
-msgid "Logged in"
-msgstr "Kirjaudu"
-
-#: ../setup/config_data.inc:710
+#: ../setup/config_data.inc:721
 msgid "Registered users can vote.  Votes are recorded against UserID, and voters can come back and change their choices."
 msgstr ""
 
-#: ../setup/config_data.inc:718
+#: ../setup/config_data.inc:729
 msgid "Poll type"
 msgstr ""
 
-#: ../setup/config_data.inc:719
-msgid "Gallery offers two sorts of polls for voting for images."
+#: ../setup/config_data.inc:730
+msgid "Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation."
 msgstr ""
 
-#: ../setup/config_data.inc:720 ../setup/config_data.inc:726
-msgid "Rank"
+#: ../setup/config_data.inc:732
+msgid "Users have a set of votes than can allocate to the images."
 msgstr ""
 
-#: ../setup/config_data.inc:721
-msgid "Allows users to vote for one image as their favourite, another image as  their second choice, etc etc.  Only one image can be number 1."
+#: ../setup/config_data.inc:734
+msgid "Enables users to give all images points without restriction."
 msgstr ""
 
-#: ../setup/config_data.inc:722 ../setup/config_data.inc:727
-msgid "Critique"
+#: ../setup/config_data.inc:742
+#, fuzzy
+msgid "Number of choices"
+msgstr "Katselukertojen m‰‰r‰n mukaan"
+
+#: ../setup/config_data.inc:743
+msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu"
 msgstr ""
 
-#: ../setup/config_data.inc:723
-msgid "Enables users to give all images points.  In this mode, users can give all images 10 points if desired"
+#: ../setup/config_data.inc:750
+msgid "This is displayed above the voting options under each image."
 msgstr ""
 
-#: ../setup/config_data.inc:731
-msgid "Number of choices to offer voters"
-msgstr ""
-
-#: ../setup/config_data.inc:737
-msgid "Vote hint"
-msgstr ""
-
-#: ../setup/config_data.inc:738
-msgid "This is displayed above the voting options for each image."
-msgstr ""
-
-#: ../setup/config_data.inc:741
+#: ../setup/config_data.inc:753
 #, fuzzy
 msgid "Vote for this image"
 msgstr "T‰h‰n albumiin j‰tetyt kommentit"
 
-#: ../setup/config_data.inc:745
+#: ../setup/config_data.inc:757 ../setup/config_data.inc:767
 msgid "Show vote results"
 msgstr ""
 
-#: ../setup/config_data.inc:746
-msgid "A summary results graph and breakdown will be displayed on the album page and a link to full results if this is yes."
+#: ../setup/config_data.inc:758
+#, php-format
+msgid "Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."
 msgstr ""
 
-#: ../setup/config_data.inc:752
-msgid "Number of lines of graph to show on the album page"
+#: ../setup/config_data.inc:765
+msgid "Number of results displayed"
 msgstr ""
 
-#: ../setup/config_data.inc:753
-msgid "How many results you want to display on the actual thumbnail page when results are shown."
+#: ../setup/config_data.inc:766
+#, php-format
+msgid "If %s is %s, display this many top images on the thumbnail page.  (Full results will be available on a linked page.)"
 msgstr ""
 
-#: ../setup/config_data.inc:759
+#: ../setup/config_data.inc:774
 msgid "Orientation of vote choices?"
 msgstr ""
 
-#: ../setup/config_data.inc:760
+#: ../setup/config_data.inc:775
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr ""
 
-#: ../setup/config_data.inc:767
+#: ../setup/config_data.inc:782 ../setup/functions.inc:854
+#: ../setup/functions.inc:863 ../setup/functions.inc:868
 msgid "Vote words and values"
 msgstr ""
 
-#: ../setup/config_data.inc:768
+#: ../setup/config_data.inc:783
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr ""
 
-#: ../setup/config_data.inc:770
-msgid "1st"
+#: ../setup/config_data.inc:785
+msgid "Excellent"
 msgstr ""
 
-#: ../setup/config_data.inc:771
-msgid "2nd"
+#: ../setup/config_data.inc:786
+msgid "Very Good"
 msgstr ""
 
-#: ../setup/config_data.inc:772
-msgid "3rd"
+#: ../setup/config_data.inc:787
+#, fuzzy
+msgid "Good"
+msgstr "Anna menn‰!"
+
+#: ../setup/config_data.inc:788
+msgid "Average"
 msgstr ""
+
+#: ../setup/config_data.inc:789
+#, fuzzy
+msgid "Poor"
+msgstr "Valokuva"
 
 #: ../setup/confirm.inc:10
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can probably safely ignore it  (unless you see stuff in red which indicates an error)"
 msgstr "Varmista, ett‰ antamasi arvot ovat oikein. Jos t‰m‰ sivu aikaansaa sinulle harmaita hiuksia, voit mit‰ todenn‰kˆisimmin yksinkertaisesti ohittaa sen (jollet sitten n‰e asioita punaisella kirjasimella kirjoitettuna => t‰m‰ on merkki virheist‰ kokoonpanossa)"
 
-#: ../setup/confirm.inc:53 ../setup/confirm.inc:143 ../setup/confirm.inc:144
+#: ../setup/confirm.inc:53 ../setup/confirm.inc:132 ../setup/confirm.inc:133
 msgid "missing"
 msgstr "puuttuu"
 
@@ -2743,7 +2869,7 @@ msgstr "puuttuu"
 msgid "it's optional"
 msgstr "on vaihtoehtoinen"
 
-#: ../setup/confirm.inc:70 ../util.php:2479
+#: ../setup/confirm.inc:70 ../util.php:2482
 msgid "documentation"
 msgstr "dokumentaatio"
 
@@ -2756,90 +2882,90 @@ msgstr "Varoitus:"
 msgid "You must create empty file %s and chmod it 777 before proceeding.  See %s for more details."
 msgstr "Sinun t‰ytyy luoda tyhj‰ tiedosto %s and muuttaa sen oikeudet (chmod 777) ennen jatkamista. Lue %s, jos tarvitset yksityiskohtaisia tietoja aiheesta."
 
-#: ../setup/confirm.inc:143 ../setup/confirm.inc:144
+#: ../setup/confirm.inc:132 ../setup/confirm.inc:133
 msgid "optional"
 msgstr "vaihtoehtoinen"
 
-#: ../setup/confirm.inc:162
+#: ../setup/confirm.inc:152
 #, php-format
 msgid "%s: <b>%s</b> must be an absolute URL!"
 msgstr "%s: <b>%s</b> t‰ytyy olla absoluuttinen URL!"
 
-#: ../setup/confirm.inc:174
+#: ../setup/confirm.inc:164
 #, php-format
 msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
 msgstr "%s: <b>%s</b> t‰ytyy olla kelvollinen tiedosto (ei saa olla hakemisto)!"
 
-#: ../setup/confirm.inc:183
+#: ../setup/confirm.inc:173
 #, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>&quot;%s&quot;</b> t‰ytyy olla positiivinen numero"
 
-#: ../setup/confirm.inc:191
+#: ../setup/confirm.inc:181
 #, php-format
 msgid "%s: <b>%s</b> must not be zero"
 msgstr "%s: <b>%s</b>ei saa olla nolla"
 
-#: ../setup/confirm.inc:201
+#: ../setup/confirm.inc:191
 #, php-format
 msgid "%s: <b>%s</b> must be an executable file!"
 msgstr "%s: <b>%s</b> t‰ytyy olla ajettava tiedosto!"
 
-#: ../setup/confirm.inc:210
+#: ../setup/confirm.inc:200
 #, php-format
 msgid "Directory %s does not exist.  Please create it."
 msgstr "Hakemistoa %s ei lˆydy. Luo se uudelleen."
 
-#: ../setup/confirm.inc:216
+#: ../setup/confirm.inc:206
 #, php-format
 msgid "%s exists but is not a directory.  Please fix this."
 msgstr "%s on olemassa, mutta se ei ole hakemisto. Korjaa t‰m‰ ongelma."
 
-#: ../setup/confirm.inc:223
+#: ../setup/confirm.inc:213
 #, php-format
 msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
 msgstr "%s: %s on olemassa, mutta ei ole www-palvelink‰ytt‰j‰lle kirjoituskelpoinen . Kokeile: %s tai jos se ei toimi: %s. Varmista myˆs, ett‰ jos palvelimella on %s rajoitteita, t‰m‰ tmp-hakemisto pit‰isi olla %s-polun alapuolella"
 
-#: ../setup/confirm.inc:290
+#: ../setup/confirm.inc:280
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "Galleria ei lˆyt‰nyt %s. Tarkasta NetPBM-hakemisto n‰hd‰ksesi, mik‰ PNG-JPEG-konvertteri sinne on asennettu (tai yrit‰ kokeilla k‰ytt‰‰ %s nykyisen sijasta). Ole hyv‰ ja tarkista asetukset (tai k‰yt‰ ImageMagickia)."
 
-#: ../setup/confirm.inc:302
+#: ../setup/confirm.inc:292
 msgid "You must specify one of <i>pnmDir</i> or <i>ImPath</i> for Gallery to function!!"
 msgstr "Sinun tulee m‰‰ritt‰‰‰ yksi <i>pnmDir</i> tai <i>ImPath</i>, jotta Galleria voisi toimia!!"
 
-#: ../setup/confirm.inc:305 ../setup/confirm.inc:308
+#: ../setup/confirm.inc:295 ../setup/confirm.inc:298
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr "%s ei ole konfiguroitu oikein, jotta sit‰ voitaisiin k‰ytt‰‰ grafiikkapakettina. Varmista ett‰ olet antanut polun %s -bin‰‰reihin kohdassa 2."
 
-#: ../setup/confirm.inc:313
+#: ../setup/confirm.inc:303
 msgid "Note:"
 msgstr "Huomaa:"
 
-#: ../setup/confirm.inc:314
+#: ../setup/confirm.inc:304
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr "Palvelimessasi on PHP:n open_basedir -rajoite asetettuna, ja jotkin poluistasi eiv‰t ole rajoitettujen polkujen listalla"
 
-#: ../setup/confirm.inc:316
+#: ../setup/confirm.inc:306
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
 msgstr "T‰m‰ ei tarkoita ett‰ ne eiv‰t toimisi. T‰m‰ kuitenkin tarkoittaa, ett‰ Galleria ei voi tarkastaa polkujen toimivuutta. Jos et pysty kopioimaan kuvia palvelimelle onnistuneesti, ole hyv‰ ja tutki FAQ-tiedostoa tai %sdiagnostiikka%s-sivua ratkaistaksesi ongelmat."
 
-#: ../setup/confirm.inc:387 ../setup/confirm.inc:400
+#: ../setup/confirm.inc:371 ../setup/confirm.inc:384
 msgid "Edit Config"
 msgstr "Muokkaa konfiguraatiota"
 
-#: ../setup/confirm.inc:389 ../setup/confirm.inc:402
+#: ../setup/confirm.inc:373 ../setup/confirm.inc:386
 msgid "Save Config"
 msgstr "Tallenna konfiguraatio"
 
-#: ../setup/confirm.inc:405
+#: ../setup/confirm.inc:389
 msgid "There are errors in your configuration."
 msgstr "Asennuskokoonpanossasi on virheit‰"
 
-#: ../setup/confirm.inc:406
+#: ../setup/confirm.inc:390
 msgid "Please go back and fix them!"
 msgstr "Ole hyv‰ ja palaa korjaamaan ne!"
 
@@ -2856,7 +2982,7 @@ msgid "Album Defaults"
 msgstr "Albumin oletukset"
 
 #: ../setup/constants.inc:18 ../setup/constants.inc:115
-#: ../setup/defaults.inc:18 ../setup/defaults.inc:101
+#: ../setup/defaults.inc:18 ../setup/defaults.inc:94
 msgid "Use Defaults"
 msgstr "K‰yt‰ oletuksia"
 
@@ -2864,11 +2990,11 @@ msgstr "K‰yt‰ oletuksia"
 msgid "Here you can customize the default values for new albums that you create.  Note that these are not <b>master switches</b> (ie, if you turn a setting on here, you can still turn it off in a given album).  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much."
 msgstr "T‰ss‰ voit m‰‰ritt‰‰ omat asetuksesi niiden oletusarvojen kohdalle, jotka m‰‰ritt‰v‰t luotavien albumien ominaisuudet. Huomaa, ett‰ n‰m‰ arvot eiv‰t ole <b>supervalitsimia</b> (toisin sanoen: jos m‰‰rit‰t toiminnon x p‰‰lle t‰‰ll‰, voit silti k‰‰nt‰‰ sen pois p‰‰lt‰ tietyss‰ albumissa). Jos t‰m‰ on ensimm‰inen kerta, kun teet omia asetuksia Galleriaan, huomaat pian, ett‰ Galleria on valinnut j‰rkev‰t asetukset valmiiksi. Jos olet muokannut asetuksia jo aiemmin, huomaat, ett‰ tekem‰si muutokset ovat tallessa, eik‰ sinun tarvitse koskea niihin ollenkaan."
 
-#: ../setup/defaults.inc:16 ../setup/defaults.inc:99
+#: ../setup/defaults.inc:16 ../setup/defaults.inc:92
 msgid "Gallery Settings"
 msgstr "Gallerian asetukset"
 
-#: ../setup/defaults.inc:17 ../setup/defaults.inc:100
+#: ../setup/defaults.inc:17 ../setup/defaults.inc:93
 msgid "Save Settings"
 msgstr "Tallenna asetukset"
 
@@ -2940,12 +3066,12 @@ msgstr "T‰m‰ sivu suorittaa yksinkertaisen PHP-sessioiden asetusten testin."
 msgid "Gallery requires that your PHP installation is configured with proper session support."
 msgstr "Gallerian toiminnan vaatimuksena on, ett‰ PHP:n konfiguraatiossa on istuntojen tuki asennettuna."
 
-#: ../setup/functions.inc:98
+#: ../setup/functions.inc:98 ../setup/functions.inc:855
 #, fuzzy
 msgid "Name"
 msgstr "Koko nimi"
 
-#: ../setup/functions.inc:98
+#: ../setup/functions.inc:98 ../setup/functions.inc:855
 #, fuzzy
 msgid "Value"
 msgstr "Virhetila"
@@ -2954,151 +3080,166 @@ msgstr "Virhetila"
 msgid "Missing value"
 msgstr "Arvo puuttuu"
 
-#: ../setup/functions.inc:243
+#: ../setup/functions.inc:246
 msgid "I can read your .htaccess file"
 msgstr "Kykenen lukemaan .htaccess-tiedostoasi"
 
-#: ../setup/functions.inc:267 ../setup/functions.inc:286
+#: ../setup/functions.inc:270 ../setup/functions.inc:289
 #, php-format
 msgid "PHP v%s is OK"
 msgstr "PHP v%s OK"
 
-#: ../setup/functions.inc:298
+#: ../setup/functions.inc:301
 msgid "mod_rewrite is enabled"
 msgstr "mod_rewrite p‰‰ll‰"
 
-#: ../setup/functions.inc:321
+#: ../setup/functions.inc:324
 msgid "Could not locate jhead"
 msgstr "jhead:ia ei kyetty paikallistamaan"
 
-#: ../setup/functions.inc:323
+#: ../setup/functions.inc:326
 msgid "jhead binary located"
 msgstr "jhead paikallistettu"
 
-#: ../setup/functions.inc:336
+#: ../setup/functions.inc:339
 msgid "NetPBM not being used in this installation"
 msgstr "NetPBM:‰‰ ei k‰ytet‰ t‰ss‰ asennuksessa"
 
-#: ../setup/functions.inc:341 ../setup/functions.inc:426
+#: ../setup/functions.inc:344 ../setup/functions.inc:429
 msgid "Cannot verify this path (it's not in your open_basedir list)"
 msgstr "En pysty tarkastamaan t‰t‰ polkua (se ei ole open_basedir -listallasi)"
 
-#: ../setup/functions.inc:390 ../setup/functions.inc:445
+#: ../setup/functions.inc:393 ../setup/functions.inc:448
 #, php-format
 msgid "Can't find %s!"
 msgstr "En lˆyd‰ %s:‰‰!"
 
-#: ../setup/functions.inc:395 ../setup/functions.inc:450
+#: ../setup/functions.inc:398 ../setup/functions.inc:453
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s ei ole k‰ynnistett‰v‰ tiedosto!"
 
-#: ../setup/functions.inc:406
+#: ../setup/functions.inc:409
 #, php-format
 msgid "All %d NetPBM binaries located"
 msgstr "Kaikki %d NetPBM-bin‰‰rit paikallistettu"
 
-#: ../setup/functions.inc:461
+#: ../setup/functions.inc:464
 #, php-format
 msgid "All %d ImageMagick binaries located"
 msgstr "Kaikki %d ImageMagick bin‰‰rit paikallistettu"
 
-#: ../setup/functions.inc:483
+#: ../setup/functions.inc:486
 msgid "Could not locate jpegtran"
 msgstr "jpegtran:ia ei kyetty paikallistamaan"
 
-#: ../setup/functions.inc:485
+#: ../setup/functions.inc:488
 msgid "jpegtran binary located"
 msgstr "jpegtran bin‰‰rit paikallistettu"
 
-#: ../setup/functions.inc:496
+#: ../setup/functions.inc:499
 msgid "gettext installed"
 msgstr "gettext asennettu"
 
-#: ../setup/functions.inc:513
+#: ../setup/functions.inc:516
 msgid "No languages found."
 msgstr "Kieli‰ ei ole lˆytynyt."
 
-#: ../setup/functions.inc:516
+#: ../setup/functions.inc:519
 #, php-format
 msgid "Only %d of %d possible languages are available.  If you want the missing languages, download a fresh copy of %s from %s."
 msgstr "Ainoastaan %d / %d kielt‰ on k‰ytett‰viss‰. Jos haluat k‰ytt‰‰ puuttuvia kieli‰, imuroi %s %s:sta."
 
-#: ../setup/functions.inc:522
+#: ../setup/functions.inc:525
 #, php-format
 msgid "All %d languages found"
 msgstr "Kaikki %d kielet lˆydetty"
 
-#: ../setup/functions.inc:542
+#: ../setup/functions.inc:545
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr "Voit tarkastaa uudet versiot vierailemalla %s:ssa."
 
-#: ../setup/functions.inc:544
+#: ../setup/functions.inc:547
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr "T‰m‰ %s versio julkaistiin %s."
 
-#: ../setup/functions.inc:546
+#: ../setup/functions.inc:549
 #, php-format
 msgid "This is a beta version of %s that was released on %s."
 msgstr "T‰m‰ on beetaversio %s:sta. Se julkaistiin %s."
 
-#: ../setup/functions.inc:555
+#: ../setup/functions.inc:558
 msgid "Please check regularly for updates."
 msgstr "Tarkasta s‰‰nnˆllisesti mahdolliset p‰ivitykset."
 
-#: ../setup/functions.inc:572
+#: ../setup/functions.inc:575
 msgid "All gallery locales are available on this host"
 msgstr "Kaikki Gallerian localet k‰ytett‰viss‰ t‰ll‰ palvelimella"
 
-#: ../setup/functions.inc:575
+#: ../setup/functions.inc:578
 #, php-format
 msgid "We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."
 msgstr "Galleria ei lˆyt‰nyt yht‰‰n localea. Palvelimesi on konfiguroitu %s-rajoitteen kanssa, josta johtuen locale-tiedostojen lˆyt‰minen voi olla mahdotonta. Ik‰v‰ kyll‰ t‰m‰ tarkoittaa sit‰, ett‰ p‰iv‰m‰‰r‰formaatti ei muutu k‰ytett‰ess‰ eri kielipaketteja. Kaikesta johtumatta Galleria toimii ja voit jatkaa eteenp‰in."
 
-#: ../setup/functions.inc:579
+#: ../setup/functions.inc:582
 #, php-format
 msgid "We were unable to detect any system locales. Multilanguage functions will be disabled. Please install the corresponding locales or ask your Provider to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s"
 msgstr "Galleria ei lˆyt‰nyt j‰rjestelm‰localeja. Monikielisyystoiminnot ovat t‰m‰n vuoksi pois p‰‰lt‰. Asenna vastaavat localet tai pyyd‰ palveluntarjoajaasi tekem‰‰n t‰m‰ puolestasi. T‰m‰ ongelma on tunnettu %s j‰rjestelmiss‰. T‰ss‰ tapauksessa tutustu t‰h‰n %Debian locale HOWTO%s-tiedostoon."
 
-#: ../setup/functions.inc:581
+#: ../setup/functions.inc:584
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "Ainoastaan oletuslocale on k‰ytett‰viss‰, josta johtuen p‰iv‰m‰‰r‰tiedot eiv‰t vaihdu toivotulla tavalla tiettyjen kielten osalta."
 
-#: ../setup/functions.inc:585
+#: ../setup/functions.inc:588
 msgid "Dates in these languages may not be formatted properly, because the corresponding locales are missing:"
 msgstr "N‰iss‰ kieliss‰ p‰iv‰m‰‰r‰asetukset eiv‰t ehk‰ n‰y oikein, koska soveltuvat localet puuttuvat:"
 
-#: ../setup/functions.inc:736
+#: ../setup/functions.inc:739
 msgid "Locale Selection required"
 msgstr "Locale-valinta pakollinen"
 
-#: ../setup/functions.inc:737
+#: ../setup/functions.inc:740
 msgid "There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable"
 msgstr "Seuraaville kielille on asennettuna yksi tai useampi sopiva locale. Ole hyv‰ ja valitse mielest‰si sopivin locale k‰yttˆˆsi"
 
-#: ../setup/functions.inc:777
+#: ../setup/functions.inc:780
 msgid "Locale problems"
 msgstr "Locale-ongelma"
 
-#: ../setup/functions.inc:778
+#: ../setup/functions.inc:781
 msgid "There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "Seuraaville kielille ei ole asennettu ilmeisen sopivia localeja. Ole hyv‰ ja valitse yksi, jonka luulet sopivimmaksi."
 
-#: ../setup/functions.inc:820
+#: ../setup/functions.inc:823
 msgid "safe mode is off"
 msgstr "suojattu tila on pois p‰‰lt‰"
 
-#: ../setup/functions.inc:832
+#: ../setup/functions.inc:835
 msgid "magic quotes are off"
 msgstr "magic quotet ovat pois p‰‰lt‰"
 
-#: ../setup/index.php:22
+#: ../setup/functions.inc:853
+#, php-format
+msgid "In %s, missing %s in row %d with %s %s."
+msgstr ""
+
+#: ../setup/functions.inc:862
+#, php-format
+msgid "In %s, blank in row %d."
+msgstr ""
+
+#: ../setup/functions.inc:867
+#, php-format
+msgid "In %s, %s (row %d) %s should be a positive whole number"
+msgstr ""
+
+#: ../setup/index.php:21
 msgid "Gallery Configuration"
 msgstr "Gallerian konfiguraatio"
 
-#: ../setup/index.php:38
+#: ../setup/index.php:37
 msgid "unknown"
 msgstr "tuntematon"
 
@@ -3359,7 +3500,8 @@ msgid "Upgrade Albums"
 msgstr "P‰ivit‰ albumit"
 
 #: ../upgrade_album.php:144
-msgid "The following albums in your Gallery were created with an older version of the software and are out of date."
+#, fuzzy
+msgid "The following albums in your gallery were created with an older version of the software and are out of date."
 msgstr "Seuraavat albumit Galleriassasi on luodu vanhemmalla Gallerian versiolla ja ne ovat n‰in ollen vanhentuneet."
 
 #: ../upgrade_album.php:145 ../upgrade_users.php:51
@@ -3375,7 +3517,8 @@ msgid "None of your photos will be harmed in any way by this process."
 msgstr "Kuvillasi ei ole h‰t‰‰ t‰m‰n prosessin aikana."
 
 #: ../upgrade_album.php:148 ../upgrade_users.php:54
-msgid "Rest assured, that if this process takes a long time now, it's going to make your Gallery run more efficiently in the future."
+#, fuzzy
+msgid "Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future."
 msgstr "Ole huoleti: vaikka t‰m‰ vie nyt paljon aikaa, se tekee Gallerian k‰ytˆn jouhevammaksi tulevaisuudessa."
 
 #: ../upgrade_album.php:177
@@ -3396,7 +3539,8 @@ msgid "Upgrading Users"
 msgstr "P‰ivitet‰‰n k‰ytt‰ji‰"
 
 #: ../upgrade_users.php:50
-msgid "The user database in your Gallery was created with an older version of the software and is out of date."
+#, fuzzy
+msgid "The user database in your gallery was created with an older version of the software and is out of date."
 msgstr "K‰ytt‰j‰tietokanta Galleriassasi on luodu vanhemmalla Gallerian versiolla ja on n‰in ollen vanhentunut."
 
 #: ../upgrade_users.php:52
@@ -3478,7 +3622,7 @@ msgstr "Tila: %s (odotettu %s)"
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP:n %s ei onnistunut m‰‰ritt‰m‰‰n mittasuhteita."
 
-#: ../util.php:232 ../util.php:535 ../util.php:581 ../util.php:2507
+#: ../util.php:232 ../util.php:535 ../util.php:581 ../util.php:2510
 msgid "You have no graphics package configured for use!"
 msgstr "Sinulla ei ole asennettuna / konfiguroituna grafiikkapakettia!"
 
@@ -3537,84 +3681,84 @@ msgstr "Tapahtui odottamaton virhetilanne %s kutsussa!"
 msgid "Unknown file type: %s"
 msgstr "Tuntematon tiedostotyyppi: %s"
 
-#: ../util.php:1097
+#: ../util.php:1085
 #, php-format
 msgid "Can't write to %s."
 msgstr "%s:‰‰n ei voida kirjoittaa."
 
-#: ../util.php:1104
+#: ../util.php:1092
 #, php-format
 msgid "Can't read %s."
 msgstr "%s:‰‰ ei voida lukea."
 
-#: ../util.php:1196
+#: ../util.php:1184
 msgid "Select Album"
 msgstr "Valitse albumi"
 
-#: ../util.php:1202
+#: ../util.php:1190
 msgid "Top Level"
 msgstr "Ylin taso"
 
-#: ../util.php:1223 ../util.php:1270
+#: ../util.php:1211 ../util.php:1258
 msgid "current location"
 msgstr "nykyinen sijainti"
 
-#: ../util.php:1272
+#: ../util.php:1260
 msgid "self"
 msgstr "itse"
 
-#: ../util.php:1440
+#: ../util.php:1428
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Ei voi avata lukkotiedostoa (%s)!"
 
-#: ../util.php:1445
+#: ../util.php:1433
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Ei saatu lukkoa (%s)!"
 
-#: ../util.php:1528
+#: ../util.php:1516
 msgid "hit"
 msgstr "k‰ynti"
 
-#: ../util.php:1528
+#: ../util.php:1516
 msgid "hits"
 msgstr "k‰ynti‰"
 
-#: ../util.php:1528
+#: ../util.php:1516
 msgid "0 hits"
 msgstr "0 k‰ynti‰"
 
-#: ../util.php:1533
+#: ../util.php:1521
 msgid "Sub-albums"
 msgstr "Alialbumit"
 
-#: ../util.php:1871
+#: ../util.php:1873
 #, php-format
 msgid "Results from %s."
 msgstr ""
 
-#: ../util.php:1873
+#: ../util.php:1875
 #, fuzzy
 msgid "voter"
 msgstr "Huomio"
 
-#: ../util.php:1873
+#: ../util.php:1875
 #, fuzzy
 msgid "voters"
 msgstr "Reunukset"
 
-#: ../util.php:1874
+#: ../util.php:1876
 #, fuzzy
 msgid "0 voters"
 msgstr "0 kohdetta"
 
-#: ../util.php:1883
+#: ../util.php:1886
 #, fuzzy, php-format
-msgid "%s: %s; "
+msgid "%s: %s points; "
 msgstr "%s, %s"
 
-#: ../util.php:1890
+#: ../util.php:1892
 #, php-format
 msgid "Key - %s"
 msgstr ""
@@ -3623,82 +3767,82 @@ msgstr ""
 msgid "No votes so far."
 msgstr ""
 
-#: ../util.php:1922
+#: ../util.php:1923
 #, fuzzy
 msgid "Poll results:"
 msgstr "Tulos:"
 
-#: ../util.php:1925
+#: ../util.php:1926
 #, fuzzy
 msgid "No votes"
 msgstr "Huomio"
 
-#: ../util.php:1928
+#: ../util.php:1930
 #, php-format
 msgid "Number %d overall."
 msgstr ""
 
-#: ../util.php:1933
+#: ../util.php:1935
 #, fuzzy, php-format
 msgid "%s: %s"
 msgstr "%s, %s"
 
-#: ../util.php:1934
+#: ../util.php:1936 ../view_album.php:547
 #, fuzzy
 msgid "vote"
 msgstr "Huomio"
 
-#: ../util.php:1934
+#: ../util.php:1936 ../view_album.php:547
 #, fuzzy
 msgid "votes"
 msgstr "Huomio"
 
-#: ../util.php:1934
+#: ../util.php:1936
 #, fuzzy
 msgid "0 votes"
 msgstr "0 kertaa"
 
-#: ../util.php:1944
+#: ../util.php:1947
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Ohitetaan %s (ZIP-tuki ei ole p‰‰ll‰)"
 
-#: ../util.php:2018
+#: ../util.php:2021
 #, php-format
 msgid "Adding %s"
 msgstr "Lis‰t‰‰n %s"
 
-#: ../util.php:2038
+#: ../util.php:2041
 #, php-format
 msgid "Resizing %s"
 msgstr "Muutetaan %s:n koko"
 
-#: ../util.php:2066
+#: ../util.php:2069
 #, php-format
 msgid "Photo auto-rotated %s&deg;"
 msgstr "Kuva on k‰‰nnetty automaattisesti %s&deg;"
 
-#: ../util.php:2077
+#: ../util.php:2080
 #, php-format
 msgid "Error: %s!"
 msgstr "Virhe: %s!"
 
-#: ../util.php:2079
+#: ../util.php:2082
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Tarvitsetko apua? Katso %s%s FAQ%s"
 
-#: ../util.php:2085
+#: ../util.php:2088
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Ohitetaan %s (Galleria ei kykene k‰sittelem‰‰n %s tiedostomuotoa)"
 
-#: ../util.php:2517
+#: ../util.php:2520
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Loi %s v%s"
 
-#: ../util.php:2519
+#: ../util.php:2522
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Moottorina %s v%s"
@@ -3828,121 +3972,126 @@ msgstr ""
 msgid "Your current choices are"
 msgstr ""
 
-#: ../view_album.php:532
+#: ../view_album.php:533
 msgid ", "
 msgstr ""
 
-#: ../view_album.php:534
+#: ../view_album.php:535
 #, fuzzy
 msgid " or "
 msgstr "tai"
 
-#: ../view_album.php:539
+#: ../view_album.php:540
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr ""
 
-#: ../view_album.php:540
+#: ../view_album.php:541
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr ""
 
-#: ../view_album.php:541 ../view_album.php:573 ../view_album.php:903
+#: ../view_album.php:542 ../view_album.php:576 ../view_album.php:910
 #, fuzzy
 msgid "Vote"
 msgstr "Huomio"
 
-#: ../view_album.php:544
+#: ../view_album.php:545
 #, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr ""
 
-#: ../view_album.php:550
+#: ../view_album.php:548
+#, fuzzy
+msgid "no votes"
+msgstr "Huomio"
+
+#: ../view_album.php:553
 #, fuzzy
 msgid "You can change your choices if you wish."
 msgstr "Voit vaihtaa omat tietosi t‰‰ll‰."
 
-#: ../view_album.php:711
+#: ../view_album.php:714
 msgid "No description"
 msgstr "Ei kuvausta"
 
-#: ../view_album.php:720
+#: ../view_album.php:723
 msgid "Changed: "
 msgstr "Muutettu:"
 
-#: ../view_album.php:721
+#: ../view_album.php:724
 msgid "Contains: "
 msgstr "Sis‰lt‰‰:"
 
-#: ../view_album.php:721
+#: ../view_album.php:724
 msgid "0 items"
 msgstr "0 kohdetta"
 
-#: ../view_album.php:723 ../view_album.php:738
+#: ../view_album.php:726 ../view_album.php:746
 msgid "Viewed:"
 msgstr "Katsottu:"
 
-#: ../view_album.php:751
+#: ../view_album.php:758
 msgid "Movie"
 msgstr "Video"
 
-#: ../view_album.php:755
+#: ../view_album.php:762
 msgid "Photo"
 msgstr "Valokuva"
 
-#: ../view_album.php:759
+#: ../view_album.php:766
 msgid "Edit"
 msgstr "Muokkaa"
 
-#: ../view_album.php:785
+#: ../view_album.php:792
 msgid "Edit Title"
 msgstr "Muokkaa nime‰"
 
-#: ../view_album.php:790
+#: ../view_album.php:797
 msgid "Edit Description"
 msgstr "Muokkaa kuvausta"
 
-#: ../view_album.php:807
+#: ../view_album.php:814
 msgid "Edit Thumbnail"
 msgstr "Muokkaa esikatselukuvaa"
 
-#: ../view_album.php:808
+#: ../view_album.php:815
 msgid "Rotate/Flip"
 msgstr "Kierr‰ / peilaa"
 
-#: ../view_album.php:811
+#: ../view_album.php:818
 msgid "Highlight"
 msgstr "Kansikuva"
 
-#: ../view_album.php:816
+#: ../view_album.php:823
 msgid "Reset Counter"
 msgstr "Nollaa laskuri"
 
-#: ../view_album.php:821
+#: ../view_album.php:828
 msgid "Move "
 msgstr "Siirr‰"
 
-#: ../view_album.php:823
+#: ../view_album.php:830
 msgid "Show"
 msgstr "N‰yt‰"
 
-#: ../view_album.php:825
+#: ../view_album.php:832
 msgid "Hide"
 msgstr "Piilota"
 
-#: ../view_album.php:842
+#: ../view_album.php:849
 msgid "Permissions"
 msgstr "Oikeudet"
 
-#: ../view_album.php:881
+#: ../view_album.php:888
 msgid "Hey! Add some photos."
 msgstr "Hei! Lis‰‰ kuvia albumiisi."
 
-#: ../view_album.php:883
+#: ../view_album.php:890
 msgid "This album is empty."
 msgstr "T‰m‰ albumi on tyhj‰."
 
-#: ../view_album.php:894
+#: ../view_album.php:901
 msgid "Comments available for this item."
 msgstr "Palautteet, jotka j‰tetty t‰lle kohteelle."
 
@@ -3958,31 +4107,31 @@ msgstr "palaa albumiin"
 msgid "Sorry.  This album does not allow public comments."
 msgstr "Ik‰v‰ kyll‰ t‰h‰n albumiin ei voi j‰tt‰‰ julkisia kommentteja."
 
-#: ../view_photo.php:385
+#: ../view_photo.php:386
 msgid "resize photo"
 msgstr "muuta kuvan kokoa"
 
-#: ../view_photo.php:392
+#: ../view_photo.php:393
 msgid "delete photo"
 msgstr "poista kuva"
 
-#: ../view_photo.php:414
+#: ../view_photo.php:415
 msgid "View Images"
 msgstr "N‰yt‰ valokuvat"
 
-#: ../view_photo.php:417 ../view_photo.php:419
+#: ../view_photo.php:418 ../view_photo.php:420
 msgid "normal"
 msgstr "normaali"
 
-#: ../view_photo.php:417 ../view_photo.php:419
+#: ../view_photo.php:418 ../view_photo.php:420
 msgid "full"
 msgstr "t‰ysi"
 
-#: ../view_photo.php:431
+#: ../view_photo.php:432
 msgid "photo properties"
 msgstr "kuvan ominaisuudet"
 
-#: ../view_photo.php:456 ../view_photo.php:459 ../view_photo.php:461
+#: ../view_photo.php:457 ../view_photo.php:460 ../view_photo.php:462
 #, php-format
 msgid "print this photo on %s"
 msgstr "tulosta t‰m‰ kuva %s:kin"
@@ -4006,36 +4155,3 @@ msgstr "Lataa EXIF-data uudelleen tiedostosta"
 #: ../view_photo_properties.php:164
 msgid "(if the data is current, this will not appear to do anything)"
 msgstr "(jos tiedot ovat ajan tasalla, t‰m‰ toiminto ei n‰y k‰ytt‰j‰lle)"
-
-#~ msgid "Gallery is misconfigured"
-#~ msgstr "Gallerian asetukset on tehty v‰‰rin"
-
-#~ msgid "Uh oh!"
-#~ msgstr "Uups! "
-
-#~ msgid "Gallery is not configured correctly.  There could be a variety of reasons for this.  The easiest way to fix this problem is to re-run the configuration wizard."
-#~ msgstr "Galleriaa ei ole asennettu oikein. T‰m‰ voi johtua useista syist‰. Helpoin tapa korja ongelma on ajaa asennusvelho uudelleen."
-
-#~ msgid "First, put Gallery in configuration mode:"
-#~ msgstr "Ensiksi, aseta Galleria asennustilaan:"
-
-#~ msgid "Original Size"
-#~ msgstr "Alkuper‰inen koko"
-
-#~ msgid "Gallery Setup: Step 1"
-#~ msgstr "Gallerian asennus: Vaihe 1"
-
-#~ msgid "Gallery Setup: Step 4"
-#~ msgstr "Gallerian asennus: Vaihe 4"
-
-#~ msgid "Gallery Setup: Step 2"
-#~ msgstr "Gallerian asennus: Vaihe 2"
-
-#~ msgid "forward"
-#~ msgstr "eteenp‰in"
-
-#~ msgid "reverse"
-#~ msgstr "taaksep‰in"
-
-#~ msgid "direction"
-#~ msgstr "suunta"

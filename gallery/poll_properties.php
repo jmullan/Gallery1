@@ -29,8 +29,12 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<?php require($GALLERY_BASEDIR . "init.php"); ?>
-<?php
+<?php 
+if (!isset($GALLERY_BASEDIR)) {
+       	$GALLERY_BASEDIR = './';
+}
+require($GALLERY_BASEDIR . "init.php"); 
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
@@ -38,7 +42,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	
 $error="";
 if ($apply) {
-	for ($i=1; $i<=$gallery->album->getPollScale() ; $i++)
+	for ($i=0; $i<$gallery->album->getPollScale() ; $i++)
 	{
 		//convert values to numbers
 		$nv_pairs[$i]["value"]=0+$nv_pairs[$i]["value"];
@@ -82,8 +86,8 @@ Poll Properties
 				"method" => "POST")); ?>
 <table>
 <tr>
-<td><?php echo _("Active poll for this album?") ?></td>
-<td><select name="poll_type"><?php selectOptions($gallery->album, "poll_type", array("rank" => _("rank"), "critique" => _("critique"))) ?></select></td>
+<td><?php echo _("Type of poll for this album") ?></td>
+<td><select name="poll_type"><?php selectOptions($gallery->album, "poll_type", array("rank" => _("Rank"), "critique" => _("Critique"))) ?></select></td>
 </tr>
 <tr>
 <td><?php echo _("Number of voting options") ?></td>
@@ -98,21 +102,15 @@ Poll Properties
 <td><input type=text name="poll_num_results" value="<?php echo $gallery->album->getPollNumResults() ?>"></td>
 </tr>
 <tr>
-<td><?php echo _("Who can vote?") ?></td>
-<?php 
-	/*just to get the strings to translators */
-	_("Logged in");
-	_("Everybody");
-	_("Nobody");
-?>
+<td><?php echo _("Who can vote") ?></td>
 <td><select name="voter_class"><?php selectOptions($gallery->album, "voter_class", array("Logged in" => _("Logged in"), "Everybody" => _("Everybody"), "Nobody" => _("Nobody"))) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Orientation of vote choices?") ?></td>
+<td><?php echo _("Orientation of vote choices") ?></td>
 <td><select name="poll_orientation"><?php selectOptions($gallery->album, "poll_orientation", array("horizontal" => _("Horizontal"), "vertical" => _("Vertical"))) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Vote hint text") ?></td>
+<td><?php echo _("Vote hint") ?></td>
 <td><input type=text name="poll_hint" value="<?php echo $gallery->album->getPollHint() ?>"></td>
 </tr>
 </table>

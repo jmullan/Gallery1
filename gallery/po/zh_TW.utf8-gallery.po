@@ -5,9 +5,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.4.1\n"
+"Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-09-02 20:27+0200\n"
+"POT-Creation-Date: 2003-09-05 16:24+0200\n"
 "PO-Revision-Date: 2003-09-01 13:57+0800\n"
 "Last-Translator: Jian-Zhou Huang <qq@turtle.ee.ncku.edu.tw>\n"
 "Language-Team: Traditional Chinese <qq@turtle.ee.ncku.edu.tw>\n"
@@ -24,10 +24,11 @@ msgstr ""
 #: ../errors/unconfigured.php:7 ../extra_fields.php:30
 #: ../highlight_photo.php:28 ../login.php:28 ../manage_users.php:28
 #: ../modify_user.php:28 ../move_album.php:28 ../move_photo.php:28
-#: ../photo_owner.php:30 ../progress_uploading.php:28 ../publish_xp.php:28
-#: ../publish_xp_docs.php:28 ../rename_album.php:28 ../resize_photo.php:28
+#: ../photo_owner.php:30 ../poll_properties.php:28 ../poll_results.php:28
+#: ../progress_uploading.php:28 ../publish_xp.php:28 ../publish_xp_docs.php:28
+#: ../rename_album.php:28 ../reset_votes.php:28 ../resize_photo.php:28
 #: ../rotate_photo.php:28 ../save_photos.php:28 ../search.php:28
-#: ../setup/index.php:81 ../slideshow.php:28 ../slideshow_low.php:28
+#: ../setup/index.php:80 ../slideshow.php:28 ../slideshow_low.php:28
 #: ../sort_album.php:28 ../upgrade_album.php:28 ../upgrade_users.php:28
 #: ../user_preferences.php:28 ../util.php:28 ../view_album.php:28
 #: ../view_comments.php:31 ../view_photo.php:28
@@ -62,8 +63,9 @@ msgstr "儲存"
 #: ../delete_photo.php:112 ../delete_photo.php:132 ../delete_user.php:83
 #: ../edit_caption.php:174 ../edit_field.php:75 ../login.php:131
 #: ../modify_user.php:143 ../move_album.php:93 ../move_album.php:119
-#: ../move_photo.php:230 ../move_photo.php:322 ../rename_album.php:121
-#: ../resize_photo.php:120 ../sort_album.php:116 ../user_preferences.php:126
+#: ../move_photo.php:232 ../move_photo.php:324 ../rename_album.php:121
+#: ../reset_votes.php:64 ../resize_photo.php:120 ../sort_album.php:116
+#: ../user_preferences.php:126
 msgid "Cancel"
 msgstr "取消"
 
@@ -312,12 +314,12 @@ msgid "Highlight for Album: "
 msgstr "Highlight 相簿: "
 
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../albums.php:271 ../view_album.php:784
+#: ../albums.php:271 ../view_album.php:791
 msgid "title"
 msgstr "標題"
 
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../albums.php:276 ../view_album.php:789
+#: ../albums.php:276 ../view_album.php:796
 msgid "description"
 msgstr "描述"
 
@@ -380,11 +382,11 @@ msgstr "上次更新：%s. "
 msgid "This album contains %s."
 msgstr "<br>%s在這個相簿裡面. "
 
-#: ../albums.php:359 ../view_album.php:721
+#: ../albums.php:359 ../view_album.php:724
 msgid "item"
 msgstr "份檔案"
 
-#: ../albums.php:359 ../upgrade_album.php:192 ../view_album.php:721
+#: ../albums.php:359 ../upgrade_album.php:192 ../view_album.php:724
 msgid "items"
 msgstr "份檔案"
 
@@ -397,15 +399,15 @@ msgstr "沒有咚咚"
 msgid "This album has been viewed %s since %s."
 msgstr "點閱：%s (從 %s 開始計算)"
 
-#: ../albums.php:364 ../view_album.php:723 ../view_album.php:738
+#: ../albums.php:364 ../view_album.php:726 ../view_album.php:746
 msgid "time"
 msgstr "次"
 
-#: ../albums.php:364 ../view_album.php:723 ../view_album.php:738
+#: ../albums.php:364 ../view_album.php:726 ../view_album.php:746
 msgid "times"
 msgstr "次"
 
-#: ../albums.php:364 ../view_album.php:723 ../view_album.php:738
+#: ../albums.php:364 ../view_album.php:726 ../view_album.php:746
 msgid "0 times"
 msgstr "0 次"
 
@@ -484,21 +486,21 @@ msgstr "相簿已經更新. "
 msgid "Upgrading album properties..."
 msgstr "更新相簿屬性..."
 
-#: ../classes/Album.php:241 ../classes/Album.php:258
+#: ../classes/Album.php:246 ../classes/Album.php:263
 msgid "done"
 msgstr "完成"
 
-#: ../classes/Album.php:249
+#: ../classes/Album.php:254
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "更新檔案 %d 之 %d . . . "
 
-#: ../classes/Album.php:807 ../classes/Album.php:816
+#: ../classes/Album.php:815 ../classes/Album.php:824
 #: ../classes/AlbumItem.php:490
 msgid "No highlight"
 msgstr "沒有封面"
 
-#: ../classes/Album.php:1565
+#: ../classes/Album.php:1574
 #, php-format
 msgid "#%d"
 msgstr ""
@@ -519,8 +521,8 @@ msgstr "沒有縮圖"
 msgid "Anonymous User"
 msgstr "匿名使用者"
 
-#: ../classes/NobodyUser.php:27 ../setup/config_data.inc:705
-#: ../setup/config_data.inc:713
+#: ../classes/NobodyUser.php:27 ../poll_properties.php:102
+#: ../setup/config_data.inc:716 ../setup/config_data.inc:724
 msgid "Nobody"
 msgstr "Nobody"
 
@@ -564,30 +566,32 @@ msgid "Passwords do not match!"
 msgstr "密碼不符! "
 
 #: ../create_user.php:73 ../edit_appearance.php:155 ../modify_user.php:109
-#: ../modify_user.php:112 ../setup/config_data.inc:301
-#: ../setup/config_data.inc:320 ../setup/config_data.inc:333
-#: ../setup/config_data.inc:346 ../setup/config_data.inc:391
-#: ../setup/config_data.inc:447 ../setup/config_data.inc:497
-#: ../setup/config_data.inc:503 ../setup/config_data.inc:606
-#: ../setup/config_data.inc:613 ../setup/config_data.inc:620
-#: ../setup/config_data.inc:626 ../setup/config_data.inc:647
-#: ../setup/config_data.inc:656 ../setup/config_data.inc:662
-#: ../setup/config_data.inc:681 ../setup/config_data.inc:688
-#: ../setup/config_data.inc:695 ../setup/config_data.inc:748
+#: ../modify_user.php:112 ../poll_properties.php:94
+#: ../setup/config_data.inc:301 ../setup/config_data.inc:320
+#: ../setup/config_data.inc:333 ../setup/config_data.inc:346
+#: ../setup/config_data.inc:391 ../setup/config_data.inc:447
+#: ../setup/config_data.inc:497 ../setup/config_data.inc:503
+#: ../setup/config_data.inc:606 ../setup/config_data.inc:613
+#: ../setup/config_data.inc:620 ../setup/config_data.inc:626
+#: ../setup/config_data.inc:647 ../setup/config_data.inc:656
+#: ../setup/config_data.inc:662 ../setup/config_data.inc:681
+#: ../setup/config_data.inc:688 ../setup/config_data.inc:695
+#: ../setup/config_data.inc:761 ../setup/config_data.inc:768
 msgid "yes"
 msgstr "是"
 
 #: ../create_user.php:73 ../edit_appearance.php:155 ../modify_user.php:109
-#: ../modify_user.php:112 ../setup/config_data.inc:301
-#: ../setup/config_data.inc:320 ../setup/config_data.inc:333
-#: ../setup/config_data.inc:346 ../setup/config_data.inc:391
-#: ../setup/config_data.inc:447 ../setup/config_data.inc:497
-#: ../setup/config_data.inc:503 ../setup/config_data.inc:606
-#: ../setup/config_data.inc:613 ../setup/config_data.inc:620
-#: ../setup/config_data.inc:626 ../setup/config_data.inc:647
-#: ../setup/config_data.inc:656 ../setup/config_data.inc:662
-#: ../setup/config_data.inc:681 ../setup/config_data.inc:688
-#: ../setup/config_data.inc:695 ../setup/config_data.inc:748
+#: ../modify_user.php:112 ../poll_properties.php:94
+#: ../setup/config_data.inc:301 ../setup/config_data.inc:320
+#: ../setup/config_data.inc:333 ../setup/config_data.inc:346
+#: ../setup/config_data.inc:391 ../setup/config_data.inc:447
+#: ../setup/config_data.inc:497 ../setup/config_data.inc:503
+#: ../setup/config_data.inc:606 ../setup/config_data.inc:613
+#: ../setup/config_data.inc:620 ../setup/config_data.inc:626
+#: ../setup/config_data.inc:647 ../setup/config_data.inc:656
+#: ../setup/config_data.inc:662 ../setup/config_data.inc:681
+#: ../setup/config_data.inc:688 ../setup/config_data.inc:695
+#: ../setup/config_data.inc:759 ../setup/config_data.inc:761
 msgid "no"
 msgstr "否"
 
@@ -612,8 +616,8 @@ msgid "Do you really want to delete this album?"
 msgstr "您確定要刪除該相簿? "
 
 #: ../delete_album.php:66 ../delete_photo.php:111 ../delete_photo.php:131
-#: ../delete_user.php:78 ../manage_users.php:109 ../view_album.php:831
-#: ../view_album.php:836
+#: ../delete_user.php:78 ../manage_users.php:109 ../view_album.php:838
+#: ../view_album.php:843
 msgid "Delete"
 msgstr "刪除"
 
@@ -633,8 +637,8 @@ msgstr "您確定要刪除這個相簿嗎? "
 msgid "Do you really want to delete this photo?"
 msgstr "您確定要刪除這個檔案嗎? "
 
-#: ../delete_photo.php:139 ../edit_thumb.php:135 ../move_album.php:124
-#: ../move_photo.php:327 ../resize_photo.php:133 ../rotate_photo.php:99
+#: ../delete_photo.php:139 ../edit_thumb.php:138 ../move_album.php:124
+#: ../move_photo.php:329 ../resize_photo.php:133 ../rotate_photo.php:99
 #: ../view_photo_properties.php:168
 msgid "no album / index specified"
 msgstr "沒有指定相簿 / 索引"
@@ -812,14 +816,17 @@ msgid "Apply values to nested Albums (except Album Title and Summary)."
 msgstr "套用到同一層的相簿中 (除了標題跟摘要). "
 
 #: ../edit_appearance.php:227 ../extra_fields.php:165
+#: ../poll_properties.php:136
 msgid "Apply"
 msgstr "套用"
 
 #: ../edit_appearance.php:228 ../extra_fields.php:166
+#: ../poll_properties.php:137
 msgid "Undo"
 msgstr "重來"
 
-#: ../edit_appearance.php:229 ../extra_fields.php:167 ../rotate_photo.php:91
+#: ../edit_appearance.php:229 ../extra_fields.php:167
+#: ../poll_properties.php:138 ../rotate_photo.php:91
 msgid "Close"
 msgstr "關閉"
 
@@ -827,7 +834,7 @@ msgstr "關閉"
 msgid "Year must be between 1000 and 3000"
 msgstr "年份必須在 1000 與 3000 之間"
 
-#: ../edit_caption.php:72 ../view_album.php:802
+#: ../edit_caption.php:72 ../view_album.php:809
 msgid "Edit Text"
 msgstr "修改文字"
 
@@ -869,15 +876,15 @@ msgstr "修改 %s"
 msgid "Edit the %s and click %s when you're done"
 msgstr "當您改好 %s 之後請按 %s 鈕"
 
-#: ../edit_thumb.php:44 ../edit_thumb.php:73
+#: ../edit_thumb.php:47 ../edit_thumb.php:76
 msgid "Custom Thumbnail"
 msgstr "自訂縮圖"
 
-#: ../edit_thumb.php:52
+#: ../edit_thumb.php:55
 msgid "Remaking the Thumbnail..."
 msgstr "重新製作縮圖..."
 
-#: ../edit_thumb.php:115
+#: ../edit_thumb.php:118
 msgid "Choose which part of the image will compose your thumbnail:"
 msgstr "選擇影像的一部份作為您的縮圖："
 
@@ -1049,13 +1056,13 @@ msgstr "新增評論"
 
 #: ../layout/commentboxtop.inc:16 ../slideshow.php:458 ../slideshow.php:472
 #: ../slideshow_low.php:358 ../slideshow_low.php:370 ../upgrade_album.php:97
-#: ../view_album.php:160 ../view_album.php:710 ../view_album.php:753
-#: ../view_comments.php:74 ../view_photo.php:180 ../view_photo.php:194
+#: ../view_album.php:159 ../view_album.php:760 ../view_comments.php:74
+#: ../view_photo.php:181 ../view_photo.php:195
 msgid "Album"
 msgstr "相簿"
 
 #: ../layout/commentboxtop.inc:19 ../layout/commentboxtop.inc:41
-#: ../view_album.php:703
+#: ../view_album.php:706
 msgid "hidden"
 msgstr "隱藏"
 
@@ -1173,11 +1180,11 @@ msgstr "搬移相簿"
 msgid "Select the new location of album"
 msgstr "選擇這個相簿的新存放位置"
 
-#: ../move_album.php:92 ../move_photo.php:229
+#: ../move_album.php:92 ../move_photo.php:231
 msgid "Move it!"
 msgstr "搬移"
 
-#: ../move_album.php:104 ../move_photo.php:234
+#: ../move_album.php:104 ../move_photo.php:236
 msgid "OR"
 msgstr "或者是"
 
@@ -1185,7 +1192,7 @@ msgstr "或者是"
 msgid "Nest within another Album:"
 msgstr "移入另一份相簿中："
 
-#: ../move_album.php:118 ../move_photo.php:321
+#: ../move_album.php:118 ../move_photo.php:323
 msgid "Move to Album!"
 msgstr "搬移到該相簿"
 
@@ -1201,92 +1208,190 @@ msgstr "移動相片 #"
 msgid "Creating Thumbnail"
 msgstr "建立縮圖中"
 
-#: ../move_photo.php:156
+#: ../move_photo.php:157
 msgid "Resizing photo"
 msgstr "重新調整相片"
 
-#: ../move_photo.php:168
+#: ../move_photo.php:170
 msgid "- Creating New Album Highlight"
 msgstr "- 建立新相簿的 Highlight"
 
-#: ../move_photo.php:178
+#: ../move_photo.php:180
 msgid "Error"
 msgstr "錯誤"
 
-#: ../move_photo.php:182
+#: ../move_photo.php:184
 #, php-format
 msgid "Skipping Album #%d"
 msgstr "略過相簿 #%d"
 
-#: ../move_photo.php:205
+#: ../move_photo.php:207
 msgid "Move this album within the album:"
 msgstr "在這相簿中選擇新的位置："
 
-#: ../move_photo.php:207
+#: ../move_photo.php:209
 msgid "Move this photo within the album:"
 msgstr "在這相簿中選擇新的位置："
 
-#: ../move_photo.php:209
+#: ../move_photo.php:211
 #, php-format
 msgid "Current Location is %s"
 msgstr "目前位置在 %s"
 
-#: ../move_photo.php:214
+#: ../move_photo.php:216
 msgid "Select the new location:"
 msgstr "選擇新的位置："
 
-#: ../move_photo.php:243
+#: ../move_photo.php:245
 msgid "Move the album to a new album:"
 msgstr "移動到其他相簿中："
 
-#: ../move_photo.php:254
+#: ../move_photo.php:256
 msgid "Move a range of photos to a new album:"
 msgstr "移動某些檔案到其他相簿中："
 
-#: ../move_photo.php:255
+#: ../move_photo.php:257
 msgid "To move just one photo, make First and Last the same"
 msgstr "如果只移動一份檔案, 把頭跟尾的數字設為一樣即可"
 
-#: ../move_photo.php:256
+#: ../move_photo.php:258
 msgid "Nested albums in this range will be ignored"
 msgstr "不會移動範圍內的其他相簿"
 
-#: ../move_photo.php:265
+#: ../move_photo.php:267
 msgid "First"
 msgstr "頭"
 
-#: ../move_photo.php:266
+#: ../move_photo.php:268
 msgid "Last"
 msgstr "尾"
 
-#: ../move_photo.php:267
+#: ../move_photo.php:269
 msgid "New Album"
 msgstr "新的相簿"
 
-#: ../move_photo.php:308
+#: ../move_photo.php:310
 msgid "Note: images that have votes will lose these votes when moved to another album"
 msgstr ""
 
-#: ../move_photo.php:310
-msgid "Note: images that have votes may lose these votes when moved to another album"
+#: ../move_photo.php:312
+msgid "Note: images that have votes will lose these votes if moved to an album with in compatible polling implemented."
 msgstr ""
 
-#: ../move_photo.php:316
+#: ../move_photo.php:318
 #, fuzzy, php-format
 msgid "WARNING: Some of the albums need to be upgraded to the current version of %s."
 msgstr "警告: 有些相簿的資料需要更新到目前使用的 gallery 版本. "
 
-#: ../move_photo.php:317
+#: ../move_photo.php:319
 msgid "Upgrade now"
 msgstr "開始上傳"
 
-#: ../photo_owner.php:80 ../photo_owner.php:86 ../view_album.php:848
+#: ../photo_owner.php:80 ../photo_owner.php:86 ../view_album.php:855
 msgid "Change Owner"
 msgstr "更改所有者"
 
 #: ../photo_owner.php:100
 msgid "Owner"
 msgstr "所有者"
+
+#: ../poll_properties.php:54
+#, php-format
+msgid "Warning: you have changed voters from %s to %s.  It is advisable to reset the poll to remove all previous votes."
+msgstr ""
+
+#: ../poll_properties.php:55 ../poll_properties.php:102
+#: ../setup/config_data.inc:718 ../setup/config_data.inc:725
+msgid "Everybody"
+msgstr ""
+
+#: ../poll_properties.php:56 ../poll_properties.php:102
+#: ../setup/config_data.inc:720 ../setup/config_data.inc:726
+#, fuzzy
+msgid "Logged in"
+msgstr "登入"
+
+#: ../poll_properties.php:71
+#, fuzzy
+msgid "Poll Properties"
+msgstr "檔案屬性"
+
+#: ../poll_properties.php:85
+#, fuzzy
+msgid "Type of poll for this album"
+msgstr "1 份檔案在此相簿中"
+
+#: ../poll_properties.php:86 ../setup/config_data.inc:708
+#: ../setup/config_data.inc:711 ../setup/config_data.inc:731
+#: ../setup/config_data.inc:737
+msgid "Rank"
+msgstr ""
+
+#: ../poll_properties.php:86 ../setup/config_data.inc:709
+#: ../setup/config_data.inc:710 ../setup/config_data.inc:733
+#: ../setup/config_data.inc:738
+msgid "Critique"
+msgstr ""
+
+#: ../poll_properties.php:89
+#, fuzzy
+msgid "Number of voting options"
+msgstr "根據評論數量"
+
+#: ../poll_properties.php:93
+msgid "Show results of voting to all visitors?"
+msgstr ""
+
+#: ../poll_properties.php:97
+msgid "Number of lines of results graph to display on the album page"
+msgstr ""
+
+#: ../poll_properties.php:101
+#, fuzzy
+msgid "Who can vote"
+msgstr "注意"
+
+#: ../poll_properties.php:105
+msgid "Orientation of vote choices"
+msgstr ""
+
+#: ../poll_properties.php:106 ../rotate_photo.php:86
+#: ../setup/config_data.inc:779
+msgid "Horizontal"
+msgstr "水平"
+
+#: ../poll_properties.php:106 ../rotate_photo.php:89
+#: ../setup/config_data.inc:780
+msgid "Vertical"
+msgstr "垂直"
+
+#: ../poll_properties.php:109 ../setup/config_data.inc:749
+msgid "Vote hint"
+msgstr ""
+
+#: ../poll_properties.php:115
+#, fuzzy
+msgid "Displayed Value"
+msgstr "日期顯示"
+
+#: ../poll_results.php:72
+#, fuzzy
+msgid "Poll Results"
+msgstr "結果："
+
+#: ../poll_results.php:105
+#, fuzzy, php-format
+msgid "Return to  %s"
+msgstr "回到增加多張相片"
+
+#: ../poll_results.php:132
+msgid "Results Breakdown"
+msgstr ""
+
+#: ../poll_results.php:158 ../util.php:1839 ../view_album.php:713
+#, fuzzy, php-format
+msgid "Album: %s"
+msgstr "相簿"
 
 #: ../progress_uploading.php:44
 msgid "Uploading Photos"
@@ -1474,7 +1579,7 @@ msgstr "點選這個連結並且照著螢幕上的指示登入您的 Gallery, �
 msgid "Return to Add Photos"
 msgstr "回到增加多張相片"
 
-#: ../rename_album.php:45 ../view_album.php:796
+#: ../rename_album.php:45 ../view_album.php:803
 msgid "Rename Album"
 msgstr "更改相簿名稱"
 
@@ -1501,6 +1606,21 @@ msgstr "空白"
 #: ../rename_album.php:112
 msgid "Those characters will be ignored in your new album name."
 msgstr "這些字元將會被系統忽略. "
+
+#: ../reset_votes.php:53
+#, fuzzy
+msgid "Reset Voting"
+msgstr "計數器歸零"
+
+#: ../reset_votes.php:59
+#, fuzzy, php-format
+msgid "Do you really want to remove all votes in %s?"
+msgstr "您確定要刪除使用者 "
+
+#: ../reset_votes.php:63
+#, fuzzy
+msgid "Remove Votes"
+msgstr "注意"
 
 #: ../resize_photo.php:46
 msgid "Resize Photo"
@@ -1591,14 +1711,6 @@ msgstr "順時針轉"
 msgid "Flip"
 msgstr "翻轉"
 
-#: ../rotate_photo.php:86 ../setup/config_data.inc:764
-msgid "Horizontal"
-msgstr "水平"
-
-#: ../rotate_photo.php:89 ../setup/config_data.inc:765
-msgid "Vertical"
-msgstr "垂直"
-
 #: ../save_photos.php:54
 msgid "Processing and Saving Photos"
 msgstr "處理並儲存檔案"
@@ -1656,8 +1768,8 @@ msgid "Search Again"
 msgstr "再找一遍"
 
 #: ../search.php:77 ../search.php:269 ../setup/config_data.inc:173
-#: ../slideshow.php:476 ../slideshow_low.php:374 ../view_album.php:164
-#: ../view_photo.php:198
+#: ../slideshow.php:476 ../slideshow_low.php:374 ../view_album.php:163
+#: ../view_photo.php:199
 msgid "Gallery"
 msgstr "Gallery"
 
@@ -2058,10 +2170,10 @@ msgstr "找不到 jhead. 如果您已經安裝而網頁伺服器找不到, 您�
 #: ../setup/config_data.inc:467 ../setup/config_data.inc:598
 #: ../setup/config_data.inc:612 ../setup/config_data.inc:680
 #: ../setup/config_data.inc:687 ../setup/config_data.inc:694
-#: ../setup/config_data.inc:712 ../setup/config_data.inc:725
-#: ../setup/config_data.inc:732 ../setup/config_data.inc:739
-#: ../setup/config_data.inc:747 ../setup/config_data.inc:754
-#: ../setup/config_data.inc:761
+#: ../setup/config_data.inc:723 ../setup/config_data.inc:736
+#: ../setup/config_data.inc:744 ../setup/config_data.inc:751
+#: ../setup/config_data.inc:760 ../setup/config_data.inc:769
+#: ../setup/config_data.inc:776
 #, php-format
 msgid "this is new in version %s"
 msgstr "這是版本 %s 的新功能"
@@ -2213,8 +2325,8 @@ msgstr "開啟這個選項的話, Gallery 會在你上傳由相片中的 JPEG EX
 
 #: ../setup/config_data.inc:306 ../setup/config_data.inc:389
 #: ../setup/config_data.inc:452 ../setup/config_data.inc:463
-#: ../setup/config_data.inc:482 ../setup/functions.inc:736
-#: ../setup/functions.inc:777
+#: ../setup/config_data.inc:482 ../setup/functions.inc:739
+#: ../setup/functions.inc:780
 msgid "Advanced"
 msgstr "進階"
 
@@ -2361,6 +2473,10 @@ msgstr "這個字串格式將用來顯示 %s 為 %s. 建議使用 %s, 這樣子�
 #: ../setup/config_data.inc:454
 msgid "date without time"
 msgstr "只顯示日期"
+
+#: ../setup/config_data.inc:455 ../setup/config_data.inc:466
+msgid "http://www.php.net/manual/en/function.strftime.php"
+msgstr ""
 
 #: ../setup/config_data.inc:457
 #, php-format
@@ -2609,125 +2725,136 @@ msgstr "在說明中顯示相片的所有者? "
 msgid "Polling configuration"
 msgstr "Gallery 設定"
 
-#: ../setup/config_data.inc:703
+#: ../setup/config_data.inc:701
+#, php-format
+msgid "Polling is a new feature in %s.  It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."
+msgstr ""
+
+#: ../setup/config_data.inc:705
+msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
+msgstr ""
+
+#: ../setup/config_data.inc:707
+#, php-format
+msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc; and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
+msgstr ""
+
+#: ../setup/config_data.inc:714
 msgid "Voter class"
 msgstr ""
 
-#: ../setup/config_data.inc:704
+#: ../setup/config_data.inc:715
 msgid "Voting is available to:"
 msgstr ""
 
-#: ../setup/config_data.inc:706
+#: ../setup/config_data.inc:717
 msgid "Voting is off."
 msgstr ""
 
-#: ../setup/config_data.inc:707 ../setup/config_data.inc:714
-msgid "Everybody"
-msgstr ""
-
-#: ../setup/config_data.inc:708
+#: ../setup/config_data.inc:719
 msgid "Anyone can vote.  Votes are recorded against session id."
 msgstr ""
 
-#: ../setup/config_data.inc:709 ../setup/config_data.inc:715
-#, fuzzy
-msgid "Logged in"
-msgstr "登入"
-
-#: ../setup/config_data.inc:710
+#: ../setup/config_data.inc:721
 msgid "Registered users can vote.  Votes are recorded against UserID, and voters can come back and change their choices."
 msgstr ""
 
-#: ../setup/config_data.inc:718
+#: ../setup/config_data.inc:729
 msgid "Poll type"
 msgstr ""
 
-#: ../setup/config_data.inc:719
-msgid "Gallery offers two sorts of polls for voting for images."
+#: ../setup/config_data.inc:730
+msgid "Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation."
 msgstr ""
 
-#: ../setup/config_data.inc:720 ../setup/config_data.inc:726
-msgid "Rank"
+#: ../setup/config_data.inc:732
+msgid "Users have a set of votes than can allocate to the images."
 msgstr ""
 
-#: ../setup/config_data.inc:721
-msgid "Allows users to vote for one image as their favourite, another image as  their second choice, etc etc.  Only one image can be number 1."
+#: ../setup/config_data.inc:734
+msgid "Enables users to give all images points without restriction."
 msgstr ""
 
-#: ../setup/config_data.inc:722 ../setup/config_data.inc:727
-msgid "Critique"
+#: ../setup/config_data.inc:742
+#, fuzzy
+msgid "Number of choices"
+msgstr "根據點閱數"
+
+#: ../setup/config_data.inc:743
+msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu"
 msgstr ""
 
-#: ../setup/config_data.inc:723
-msgid "Enables users to give all images points.  In this mode, users can give all images 10 points if desired"
+#: ../setup/config_data.inc:750
+msgid "This is displayed above the voting options under each image."
 msgstr ""
 
-#: ../setup/config_data.inc:731
-msgid "Number of choices to offer voters"
-msgstr ""
-
-#: ../setup/config_data.inc:737
-msgid "Vote hint"
-msgstr ""
-
-#: ../setup/config_data.inc:738
-msgid "This is displayed above the voting options for each image."
-msgstr ""
-
-#: ../setup/config_data.inc:741
+#: ../setup/config_data.inc:753
 #, fuzzy
 msgid "Vote for this image"
 msgstr "在相簿下的所有評論"
 
-#: ../setup/config_data.inc:745
+#: ../setup/config_data.inc:757 ../setup/config_data.inc:767
 msgid "Show vote results"
 msgstr ""
 
-#: ../setup/config_data.inc:746
-msgid "A summary results graph and breakdown will be displayed on the album page and a link to full results if this is yes."
+#: ../setup/config_data.inc:758
+#, php-format
+msgid "Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."
 msgstr ""
 
-#: ../setup/config_data.inc:752
-msgid "Number of lines of graph to show on the album page"
+#: ../setup/config_data.inc:765
+msgid "Number of results displayed"
 msgstr ""
 
-#: ../setup/config_data.inc:753
-msgid "How many results you want to display on the actual thumbnail page when results are shown."
+#: ../setup/config_data.inc:766
+#, php-format
+msgid "If %s is %s, display this many top images on the thumbnail page.  (Full results will be available on a linked page.)"
 msgstr ""
 
-#: ../setup/config_data.inc:759
+#: ../setup/config_data.inc:774
 msgid "Orientation of vote choices?"
 msgstr ""
 
-#: ../setup/config_data.inc:760
+#: ../setup/config_data.inc:775
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr ""
 
-#: ../setup/config_data.inc:767
+#: ../setup/config_data.inc:782 ../setup/functions.inc:854
+#: ../setup/functions.inc:863 ../setup/functions.inc:868
 msgid "Vote words and values"
 msgstr ""
 
-#: ../setup/config_data.inc:768
+#: ../setup/config_data.inc:783
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr ""
 
-#: ../setup/config_data.inc:770
-msgid "1st"
+#: ../setup/config_data.inc:785
+msgid "Excellent"
 msgstr ""
 
-#: ../setup/config_data.inc:771
-msgid "2nd"
+#: ../setup/config_data.inc:786
+msgid "Very Good"
 msgstr ""
 
-#: ../setup/config_data.inc:772
-msgid "3rd"
+#: ../setup/config_data.inc:787
+#, fuzzy
+msgid "Good"
+msgstr "開始尋找"
+
+#: ../setup/config_data.inc:788
+msgid "Average"
 msgstr ""
+
+#: ../setup/config_data.inc:789
+#, fuzzy
+msgid "Poor"
+msgstr "圖片"
 
 #: ../setup/confirm.inc:10
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can probably safely ignore it  (unless you see stuff in red which indicates an error)"
 msgstr "確定您之前的設定沒有問題, 除非您發現有紅色的訊息, 否則一些奇怪看不懂的訊息您可以略過沒關係"
 
-#: ../setup/confirm.inc:53 ../setup/confirm.inc:143 ../setup/confirm.inc:144
+#: ../setup/confirm.inc:53 ../setup/confirm.inc:132 ../setup/confirm.inc:133
 msgid "missing"
 msgstr "缺少"
 
@@ -2735,7 +2862,7 @@ msgstr "缺少"
 msgid "it's optional"
 msgstr "這是非必要選項"
 
-#: ../setup/confirm.inc:70 ../util.php:2479
+#: ../setup/confirm.inc:70 ../util.php:2482
 msgid "documentation"
 msgstr "說明文件"
 
@@ -2748,90 +2875,90 @@ msgstr "警告："
 msgid "You must create empty file %s and chmod it 777 before proceeding.  See %s for more details."
 msgstr "在您繼續之前必須建立一份空檔案 %s 並且 chmod 為 777, 詳見 %s. "
 
-#: ../setup/confirm.inc:143 ../setup/confirm.inc:144
+#: ../setup/confirm.inc:132 ../setup/confirm.inc:133
 msgid "optional"
 msgstr "選擇性選項"
 
-#: ../setup/confirm.inc:162
+#: ../setup/confirm.inc:152
 #, php-format
 msgid "%s: <b>%s</b> must be an absolute URL!"
 msgstr "%s: <b>%s</b> 必須為絕對的 URL! "
 
-#: ../setup/confirm.inc:174
+#: ../setup/confirm.inc:164
 #, php-format
 msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
 msgstr "%s: <b>%s</b> 必須是合法的檔案 (而非目錄)! "
 
-#: ../setup/confirm.inc:183
+#: ../setup/confirm.inc:173
 #, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>&quot;%s&quot;</b> 必須為正數"
 
-#: ../setup/confirm.inc:191
+#: ../setup/confirm.inc:181
 #, php-format
 msgid "%s: <b>%s</b> must not be zero"
 msgstr "%s: <b>%s</b> 不得為零"
 
-#: ../setup/confirm.inc:201
+#: ../setup/confirm.inc:191
 #, php-format
 msgid "%s: <b>%s</b> must be an executable file!"
 msgstr "%s: <b>%s</b> 必須是可執行檔! "
 
-#: ../setup/confirm.inc:210
+#: ../setup/confirm.inc:200
 #, php-format
 msgid "Directory %s does not exist.  Please create it."
 msgstr "目錄 %s 並不存在, 請建立. "
 
-#: ../setup/confirm.inc:216
+#: ../setup/confirm.inc:206
 #, php-format
 msgid "%s exists but is not a directory.  Please fix this."
 msgstr "%s 已經存在但並非目錄, 請修正. "
 
-#: ../setup/confirm.inc:223
+#: ../setup/confirm.inc:213
 #, php-format
 msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
 msgstr "%s: %s 存在, 但網頁伺服器無法寫入. 請試試看：%s 如果不行請用 %s. 並確定如果您的伺服器有 %s 的限制, 請確定您的暫存目錄在 %s 路徑之下"
 
-#: ../setup/confirm.inc:290
+#: ../setup/confirm.inc:280
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "找不到 %s. 請檢查您的 NetPBM 目錄看看您所使用的 PNG->JPEG 轉換程式是哪一個 (或者用 %s 取代). 請檢查您的設定 (或者使用 ImageMagick)"
 
-#: ../setup/confirm.inc:302
+#: ../setup/confirm.inc:292
 msgid "You must specify one of <i>pnmDir</i> or <i>ImPath</i> for Gallery to function!!"
 msgstr "您一定要指定 <i>pnmDir</i> 或者 <i>ImPath</i>! "
 
-#: ../setup/confirm.inc:305 ../setup/confirm.inc:308
+#: ../setup/confirm.inc:295 ../setup/confirm.inc:298
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr "%s 圖形套件沒有正確的設定好, 請在第二步檢查您的 %s 可執行檔目錄"
 
-#: ../setup/confirm.inc:313
+#: ../setup/confirm.inc:303
 msgid "Note:"
 msgstr "注意："
 
-#: ../setup/confirm.inc:314
+#: ../setup/confirm.inc:304
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr "您的伺服器有 PHP open_basedir 的限制, 而您的某個路徑設定並不再限制路徑列表之中"
 
-#: ../setup/confirm.inc:316
+#: ../setup/confirm.inc:306
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
 msgstr "這並不表示它將無法正常運作, 而是我們無法正確的檢查路徑. 如果您無法正確的上傳檔案, 請見 FAQ 以及 %s檢測%s 來解決這個問題. "
 
-#: ../setup/confirm.inc:387 ../setup/confirm.inc:400
+#: ../setup/confirm.inc:371 ../setup/confirm.inc:384
 msgid "Edit Config"
 msgstr "修改設定"
 
-#: ../setup/confirm.inc:389 ../setup/confirm.inc:402
+#: ../setup/confirm.inc:373 ../setup/confirm.inc:386
 msgid "Save Config"
 msgstr "儲存設定"
 
-#: ../setup/confirm.inc:405
+#: ../setup/confirm.inc:389
 msgid "There are errors in your configuration."
 msgstr "您在設定上有些許錯誤. "
 
-#: ../setup/confirm.inc:406
+#: ../setup/confirm.inc:390
 msgid "Please go back and fix them!"
 msgstr "請回到上一步修正這些問題! "
 
@@ -2848,7 +2975,7 @@ msgid "Album Defaults"
 msgstr "相簿預設"
 
 #: ../setup/constants.inc:18 ../setup/constants.inc:115
-#: ../setup/defaults.inc:18 ../setup/defaults.inc:101
+#: ../setup/defaults.inc:18 ../setup/defaults.inc:94
 msgid "Use Defaults"
 msgstr "使用預設"
 
@@ -2856,11 +2983,11 @@ msgstr "使用預設"
 msgid "Here you can customize the default values for new albums that you create.  Note that these are not <b>master switches</b> (ie, if you turn a setting on here, you can still turn it off in a given album).  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much."
 msgstr "在這裡您可以自訂新增相簿時的預設值. 注意這些並非 <b>主要設定</b> (您可能在這邊將某個功能打開, 但您還是可以在其他地方將某些功能關閉) 如果這是您第一次使用, 您可以發現我們已經有一組預設值給您. 如果您先前有設定過, 那麼您的設定值將會出現在下面的欄位之中, 以方便您的修改. "
 
-#: ../setup/defaults.inc:16 ../setup/defaults.inc:99
+#: ../setup/defaults.inc:16 ../setup/defaults.inc:92
 msgid "Gallery Settings"
 msgstr "Gallery 設定"
 
-#: ../setup/defaults.inc:17 ../setup/defaults.inc:100
+#: ../setup/defaults.inc:17 ../setup/defaults.inc:93
 msgid "Save Settings"
 msgstr "儲存設定"
 
@@ -2932,12 +3059,12 @@ msgstr "這一份網頁執行一些簡單的 PHP session 功能測試. "
 msgid "Gallery requires that your PHP installation is configured with proper session support."
 msgstr "Gallery 需要您的 PHP 有正確的 session 支援. "
 
-#: ../setup/functions.inc:98
+#: ../setup/functions.inc:98 ../setup/functions.inc:855
 #, fuzzy
 msgid "Name"
 msgstr "全名"
 
-#: ../setup/functions.inc:98
+#: ../setup/functions.inc:98 ../setup/functions.inc:855
 #, fuzzy
 msgid "Value"
 msgstr "失敗"
@@ -2946,151 +3073,166 @@ msgstr "失敗"
 msgid "Missing value"
 msgstr "Missing value"
 
-#: ../setup/functions.inc:243
+#: ../setup/functions.inc:246
 msgid "I can read your .htaccess file"
 msgstr "可以讀取您的 .htaccess 檔案"
 
-#: ../setup/functions.inc:267 ../setup/functions.inc:286
+#: ../setup/functions.inc:270 ../setup/functions.inc:289
 #, php-format
 msgid "PHP v%s is OK"
 msgstr "PHP %s OK"
 
-#: ../setup/functions.inc:298
+#: ../setup/functions.inc:301
 msgid "mod_rewrite is enabled"
 msgstr "mod_rewrite 開啟"
 
-#: ../setup/functions.inc:321
+#: ../setup/functions.inc:324
 msgid "Could not locate jhead"
 msgstr "無法找到 jhead"
 
-#: ../setup/functions.inc:323
+#: ../setup/functions.inc:326
 msgid "jhead binary located"
 msgstr "找到 jhead 可執行檔"
 
-#: ../setup/functions.inc:336
+#: ../setup/functions.inc:339
 msgid "NetPBM not being used in this installation"
 msgstr "安裝過程中沒有使用 NetPBM"
 
-#: ../setup/functions.inc:341 ../setup/functions.inc:426
+#: ../setup/functions.inc:344 ../setup/functions.inc:429
 msgid "Cannot verify this path (it's not in your open_basedir list)"
 msgstr "無法檢查該路徑 (不在您的 open_basedir 列表中)"
 
-#: ../setup/functions.inc:390 ../setup/functions.inc:445
+#: ../setup/functions.inc:393 ../setup/functions.inc:448
 #, php-format
 msgid "Can't find %s!"
 msgstr "找不到 %s! "
 
-#: ../setup/functions.inc:395 ../setup/functions.inc:450
+#: ../setup/functions.inc:398 ../setup/functions.inc:453
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s 不能執行! "
 
-#: ../setup/functions.inc:406
+#: ../setup/functions.inc:409
 #, php-format
 msgid "All %d NetPBM binaries located"
 msgstr "找到 %d 個 NetPBM 可執行檔"
 
-#: ../setup/functions.inc:461
+#: ../setup/functions.inc:464
 #, php-format
 msgid "All %d ImageMagick binaries located"
 msgstr "找到 %d 個 ImageMagick 可執行檔"
 
-#: ../setup/functions.inc:483
+#: ../setup/functions.inc:486
 msgid "Could not locate jpegtran"
 msgstr "找不到 jpegtran"
 
-#: ../setup/functions.inc:485
+#: ../setup/functions.inc:488
 msgid "jpegtran binary located"
 msgstr "找到 jpegtran"
 
-#: ../setup/functions.inc:496
+#: ../setup/functions.inc:499
 msgid "gettext installed"
 msgstr "gettext 已安裝"
 
-#: ../setup/functions.inc:513
+#: ../setup/functions.inc:516
 msgid "No languages found."
 msgstr "沒有找到任何語言. "
 
-#: ../setup/functions.inc:516
+#: ../setup/functions.inc:519
 #, php-format
 msgid "Only %d of %d possible languages are available.  If you want the missing languages, download a fresh copy of %s from %s."
 msgstr "只有 %d 分之 %d 種語言存在, 如果您想要使用其他語言, 請在 %s 下載 %s. "
 
-#: ../setup/functions.inc:522
+#: ../setup/functions.inc:525
 #, fuzzy, php-format
 msgid "All %d languages found"
 msgstr "共有 %s 語言找到"
 
-#: ../setup/functions.inc:542
+#: ../setup/functions.inc:545
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr "您可以點選 %s 察看是否有更新的版本. "
 
-#: ../setup/functions.inc:544
+#: ../setup/functions.inc:547
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr "這個版本的 %s 是在 %s 釋放出來的. "
 
-#: ../setup/functions.inc:546
+#: ../setup/functions.inc:549
 #, php-format
 msgid "This is a beta version of %s that was released on %s."
 msgstr "這個 beta 版的 %s 是在 %s 釋放出來的. "
 
-#: ../setup/functions.inc:555
+#: ../setup/functions.inc:558
 msgid "Please check regularly for updates."
 msgstr "請定期檢查是否有更新檔. "
 
-#: ../setup/functions.inc:572
+#: ../setup/functions.inc:575
 msgid "All gallery locales are available on this host"
 msgstr "伺服器支援所有 gallery 的 locales"
 
-#: ../setup/functions.inc:575
+#: ../setup/functions.inc:578
 #, php-format
 msgid "We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."
 msgstr "我們無法偵測到任何的 locales, 況且您的伺服器有 %s 的限制有可能導致這個情形產生. 這代表您的日期格式將不會隨著語言的不同而有所改變, 不過您還是可以繼續下一步. "
 
-#: ../setup/functions.inc:579
+#: ../setup/functions.inc:582
 #, php-format
 msgid "We were unable to detect any system locales. Multilanguage functions will be disabled. Please install the corresponding locales or ask your Provider to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s"
 msgstr "無法偵測到任何系統的地區設定. 多國語系的功能將停用. 請安裝相關的地區設定或者詢問您的網站提供者. 在 %s 系統上是已知的問題, 如果您使用該系統, 請看一下 %sDebian locale HowTo%s"
 
-#: ../setup/functions.inc:581
+#: ../setup/functions.inc:584
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "在這台機器上只有預設的 locale 存在, 所以日期格式將不會隨著語言的不同而有所改變. "
 
-#: ../setup/functions.inc:585
+#: ../setup/functions.inc:588
 msgid "Dates in these languages may not be formatted properly, because the corresponding locales are missing:"
 msgstr "在這些語言中日期無法正確的格式化, 因為下列 locales 不存在："
 
-#: ../setup/functions.inc:736
+#: ../setup/functions.inc:739
 msgid "Locale Selection required"
 msgstr "Locale 選擇"
 
-#: ../setup/functions.inc:737
+#: ../setup/functions.inc:740
 msgid "There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable"
 msgstr "下列語言在您的機器上有一個以上的 locales 可以選擇, 請選一個擇你認為最適合的. "
 
-#: ../setup/functions.inc:777
+#: ../setup/functions.inc:780
 msgid "Locale problems"
 msgstr "Locale 問題"
 
-#: ../setup/functions.inc:778
+#: ../setup/functions.inc:781
 msgid "There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "在您的機器上似乎沒有下列語言適合的 locales, 請選擇一個您認為最適合的. "
 
-#: ../setup/functions.inc:820
+#: ../setup/functions.inc:823
 msgid "safe mode is off"
 msgstr "safe mode 關閉"
 
-#: ../setup/functions.inc:832
+#: ../setup/functions.inc:835
 msgid "magic quotes are off"
 msgstr "magic quotes 關閉"
 
-#: ../setup/index.php:22
+#: ../setup/functions.inc:853
+#, php-format
+msgid "In %s, missing %s in row %d with %s %s."
+msgstr ""
+
+#: ../setup/functions.inc:862
+#, php-format
+msgid "In %s, blank in row %d."
+msgstr ""
+
+#: ../setup/functions.inc:867
+#, php-format
+msgid "In %s, %s (row %d) %s should be a positive whole number"
+msgstr ""
+
+#: ../setup/index.php:21
 msgid "Gallery Configuration"
 msgstr "Gallery 設定"
 
-#: ../setup/index.php:38
+#: ../setup/index.php:37
 msgid "unknown"
 msgstr "未知"
 
@@ -3352,7 +3494,8 @@ msgid "Upgrade Albums"
 msgstr "相簿更新"
 
 #: ../upgrade_album.php:144
-msgid "The following albums in your Gallery were created with an older version of the software and are out of date."
+#, fuzzy
+msgid "The following albums in your gallery were created with an older version of the software and are out of date."
 msgstr "您所在的相簿為較舊版本的 Gallery 所使用, 但您目前所使用的 Gallery 為新版. "
 
 #: ../upgrade_album.php:145 ../upgrade_users.php:51
@@ -3368,7 +3511,8 @@ msgid "None of your photos will be harmed in any way by this process."
 msgstr "在這過程之中您的資料將不會損壞. "
 
 #: ../upgrade_album.php:148 ../upgrade_users.php:54
-msgid "Rest assured, that if this process takes a long time now, it's going to make your Gallery run more efficiently in the future."
+#, fuzzy
+msgid "Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future."
 msgstr "如果這個程序花太久時間, 那麼休息一下吧, 這將會讓你的 Gallery 運作的更有效率"
 
 #: ../upgrade_album.php:177
@@ -3389,7 +3533,8 @@ msgid "Upgrading Users"
 msgstr "更新使用者資料"
 
 #: ../upgrade_users.php:50
-msgid "The user database in your Gallery was created with an older version of the software and is out of date."
+#, fuzzy
+msgid "The user database in your gallery was created with an older version of the software and is out of date."
 msgstr "您的 Gallery 使用者資料庫是由舊版的軟體所建立. "
 
 #: ../upgrade_users.php:52
@@ -3471,7 +3616,7 @@ msgstr "Status: %s (希望收到 %s)"
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP 的 %s 無法決定 dimensions. "
 
-#: ../util.php:232 ../util.php:535 ../util.php:581 ../util.php:2507
+#: ../util.php:232 ../util.php:535 ../util.php:581 ../util.php:2510
 msgid "You have no graphics package configured for use!"
 msgstr "您沒有設定圖形套件! "
 
@@ -3530,84 +3675,84 @@ msgstr "%s call 產生不明原因的失敗! "
 msgid "Unknown file type: %s"
 msgstr "未知的檔案格式：%s"
 
-#: ../util.php:1097
+#: ../util.php:1085
 #, php-format
 msgid "Can't write to %s."
 msgstr "無法寫入 %s. "
 
-#: ../util.php:1104
+#: ../util.php:1092
 #, php-format
 msgid "Can't read %s."
 msgstr "無法讀取 %s. "
 
-#: ../util.php:1196
+#: ../util.php:1184
 msgid "Select Album"
 msgstr "選擇相簿"
 
-#: ../util.php:1202
+#: ../util.php:1190
 msgid "Top Level"
 msgstr "頂層"
 
-#: ../util.php:1223 ../util.php:1270
+#: ../util.php:1211 ../util.php:1258
 msgid "current location"
 msgstr "目前位置"
 
-#: ../util.php:1272
+#: ../util.php:1260
 msgid "self"
 msgstr "自己"
 
-#: ../util.php:1440
+#: ../util.php:1428
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "無法開啟 lock file (%s)! "
 
-#: ../util.php:1445
+#: ../util.php:1433
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "無法獲得 lock (%s)! "
 
-#: ../util.php:1528
+#: ../util.php:1516
 msgid "hit"
 msgstr "hit"
 
-#: ../util.php:1528
+#: ../util.php:1516
 msgid "hits"
 msgstr "hits"
 
-#: ../util.php:1528
+#: ../util.php:1516
 msgid "0 hits"
 msgstr "0 hits"
 
-#: ../util.php:1533
+#: ../util.php:1521
 msgid "Sub-albums"
 msgstr "子相簿"
 
-#: ../util.php:1871
+#: ../util.php:1873
 #, php-format
 msgid "Results from %s."
 msgstr ""
 
-#: ../util.php:1873
+#: ../util.php:1875
 #, fuzzy
 msgid "voter"
 msgstr "注意"
 
-#: ../util.php:1873
+#: ../util.php:1875
 #, fuzzy
 msgid "voters"
 msgstr "表框大小"
 
-#: ../util.php:1874
+#: ../util.php:1876
 #, fuzzy
 msgid "0 voters"
 msgstr "沒有檔案"
 
-#: ../util.php:1883
+#: ../util.php:1886
 #, fuzzy, php-format
-msgid "%s: %s; "
+msgid "%s: %s points; "
 msgstr "%s, %s"
 
-#: ../util.php:1890
+#: ../util.php:1892
 #, php-format
 msgid "Key - %s"
 msgstr ""
@@ -3616,82 +3761,82 @@ msgstr ""
 msgid "No votes so far."
 msgstr ""
 
-#: ../util.php:1922
+#: ../util.php:1923
 #, fuzzy
 msgid "Poll results:"
 msgstr "結果："
 
-#: ../util.php:1925
+#: ../util.php:1926
 #, fuzzy
 msgid "No votes"
 msgstr "注意"
 
-#: ../util.php:1928
+#: ../util.php:1930
 #, php-format
 msgid "Number %d overall."
 msgstr ""
 
-#: ../util.php:1933
+#: ../util.php:1935
 #, fuzzy, php-format
 msgid "%s: %s"
 msgstr "%s, %s"
 
-#: ../util.php:1934
+#: ../util.php:1936 ../view_album.php:547
 #, fuzzy
 msgid "vote"
 msgstr "注意"
 
-#: ../util.php:1934
+#: ../util.php:1936 ../view_album.php:547
 #, fuzzy
 msgid "votes"
 msgstr "注意"
 
-#: ../util.php:1934
+#: ../util.php:1936
 #, fuzzy
 msgid "0 votes"
 msgstr "0 次"
 
-#: ../util.php:1944
+#: ../util.php:1947
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "略過 %s (ZIP 尚未支援)"
 
-#: ../util.php:2018
+#: ../util.php:2021
 #, php-format
 msgid "Adding %s"
 msgstr "正在加入 %s"
 
-#: ../util.php:2038
+#: ../util.php:2041
 #, php-format
 msgid "Resizing %s"
 msgstr "修改 %s 的大小"
 
-#: ../util.php:2066
+#: ../util.php:2069
 #, php-format
 msgid "Photo auto-rotated %s&deg;"
 msgstr "相片自動旋轉 %s&deg;"
 
-#: ../util.php:2077
+#: ../util.php:2080
 #, php-format
 msgid "Error: %s!"
 msgstr "錯誤：%s! "
 
-#: ../util.php:2079
+#: ../util.php:2082
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "需要幫忙嗎? 請看 %s%s FAQ%s"
 
-#: ../util.php:2085
+#: ../util.php:2088
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "略過 %s (無法處理 %s 格式)"
 
-#: ../util.php:2517
+#: ../util.php:2520
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generated by %s v%s"
 
-#: ../util.php:2519
+#: ../util.php:2522
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
@@ -3821,122 +3966,127 @@ msgstr ""
 msgid "Your current choices are"
 msgstr ""
 
-#: ../view_album.php:532
+#: ../view_album.php:533
 msgid ", "
 msgstr ""
 
-#: ../view_album.php:534
+#: ../view_album.php:535
 #, fuzzy
 msgid " or "
 msgstr "或者"
 
-#: ../view_album.php:539
+#: ../view_album.php:540
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr ""
 
-#: ../view_album.php:540
+#: ../view_album.php:541
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr ""
 
-#: ../view_album.php:541 ../view_album.php:573 ../view_album.php:903
+#: ../view_album.php:542 ../view_album.php:576 ../view_album.php:910
 #, fuzzy
 msgid "Vote"
 msgstr "注意"
 
-#: ../view_album.php:544
+#: ../view_album.php:545
 #, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr ""
 
-#: ../view_album.php:550
+#: ../view_album.php:548
+#, fuzzy
+msgid "no votes"
+msgstr "注意"
+
+#: ../view_album.php:553
 #, fuzzy
 msgid "You can change your choices if you wish."
 msgstr "您可以在這邊更改個人資訊. "
 
-#: ../view_album.php:711
+#: ../view_album.php:714
 msgid "No description"
 msgstr "無描述"
 
-#: ../view_album.php:720
+#: ../view_album.php:723
 msgid "Changed: "
 msgstr "更新： "
 
-#: ../view_album.php:721
+#: ../view_album.php:724
 msgid "Contains: "
 msgstr "內容： "
 
-#: ../view_album.php:721
+#: ../view_album.php:724
 msgid "0 items"
 msgstr "沒有檔案"
 
-#: ../view_album.php:723 ../view_album.php:738
+#: ../view_album.php:726 ../view_album.php:746
 #, fuzzy
 msgid "Viewed:"
 msgstr "點閱： "
 
-#: ../view_album.php:751
+#: ../view_album.php:758
 msgid "Movie"
 msgstr "影片"
 
-#: ../view_album.php:755
+#: ../view_album.php:762
 msgid "Photo"
 msgstr "圖片"
 
-#: ../view_album.php:759
+#: ../view_album.php:766
 msgid "Edit"
 msgstr "修改"
 
-#: ../view_album.php:785
+#: ../view_album.php:792
 msgid "Edit Title"
 msgstr "修改標題"
 
-#: ../view_album.php:790
+#: ../view_album.php:797
 msgid "Edit Description"
 msgstr "修改說明"
 
-#: ../view_album.php:807
+#: ../view_album.php:814
 msgid "Edit Thumbnail"
 msgstr "修改縮圖"
 
-#: ../view_album.php:808
+#: ../view_album.php:815
 msgid "Rotate/Flip"
 msgstr "旋轉"
 
-#: ../view_album.php:811
+#: ../view_album.php:818
 msgid "Highlight"
 msgstr "Highlight"
 
-#: ../view_album.php:816
+#: ../view_album.php:823
 msgid "Reset Counter"
 msgstr "計數器歸零"
 
-#: ../view_album.php:821
+#: ../view_album.php:828
 msgid "Move "
 msgstr "移動 "
 
-#: ../view_album.php:823
+#: ../view_album.php:830
 msgid "Show"
 msgstr "顯示"
 
-#: ../view_album.php:825
+#: ../view_album.php:832
 msgid "Hide"
 msgstr "隱藏"
 
-#: ../view_album.php:842
+#: ../view_album.php:849
 msgid "Permissions"
 msgstr "權限"
 
-#: ../view_album.php:881
+#: ../view_album.php:888
 msgid "Hey! Add some photos."
 msgstr "嘿! 放些東西吧～"
 
-#: ../view_album.php:883
+#: ../view_album.php:890
 msgid "This album is empty."
 msgstr "這個相簿空空如也"
 
-#: ../view_album.php:894
+#: ../view_album.php:901
 msgid "Comments available for this item."
 msgstr "代表有評論喔. "
 
@@ -3952,31 +4102,31 @@ msgstr "回到相簿"
 msgid "Sorry.  This album does not allow public comments."
 msgstr "抱歉, 這個相簿不允許匿名評論喔. "
 
-#: ../view_photo.php:385
+#: ../view_photo.php:386
 msgid "resize photo"
 msgstr "修改大小"
 
-#: ../view_photo.php:392
+#: ../view_photo.php:393
 msgid "delete photo"
 msgstr "刪除檔案"
 
-#: ../view_photo.php:414
+#: ../view_photo.php:415
 msgid "View Images"
 msgstr "檢視影像"
 
-#: ../view_photo.php:417 ../view_photo.php:419
+#: ../view_photo.php:418 ../view_photo.php:420
 msgid "normal"
 msgstr "一般"
 
-#: ../view_photo.php:417 ../view_photo.php:419
+#: ../view_photo.php:418 ../view_photo.php:420
 msgid "full"
 msgstr "原始"
 
-#: ../view_photo.php:431
+#: ../view_photo.php:432
 msgid "photo properties"
 msgstr "檔案屬性"
 
-#: ../view_photo.php:456 ../view_photo.php:459 ../view_photo.php:461
+#: ../view_photo.php:457 ../view_photo.php:460 ../view_photo.php:462
 #, php-format
 msgid "print this photo on %s"
 msgstr "在 %s 上列印"

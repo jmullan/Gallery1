@@ -47,11 +47,11 @@ if (!$gallery->version) { exit; }
 <?php echo _("Upgrading Users") ?>
 </span>
 </center>
-<?php echo _("The user database in your Gallery was created with an older version of the software and is out of date.") ?>  
+<?php echo _("The user database in your gallery was created with an older version of the software and is out of date.") ?>  
 <?php echo _("This is not a problem!") ?>  
 <?php echo _("We will upgrade it.  This may take some time.") ?>  
 <?php echo _("Your data will not be harmed in any way by this process.") ?>  
-<?php echo _("Rest assured, that if this process takes a long time now, it's going to make your Gallery run more efficiently in the future.") ?>  
+<?php echo _("Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future.") ?>  
 <p>
 <?php processingMsg(_("Please Wait...")); ?>
 
