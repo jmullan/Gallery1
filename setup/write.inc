@@ -84,9 +84,6 @@ if ($fd = @fs_fopen($outfile, "w")) {
 	fwrite($fd, "# Note: still under development, so format may change.\n");
 	fwrite($fd, "# If you edit this file, make a backup before runnng the Config. Wizard.\n\n");
 	fclose($fd);
-} else {
-	fail($outfile);	
-	return;
 }
 
 /*
@@ -103,9 +100,6 @@ if (isset($GALLERY_PHP_VALUE_OK)) {
 			}
 		}
 		fclose($fd);
-	} else {
-		fail($outfile);	
-		return;
 	}
 }
 
@@ -127,9 +121,6 @@ if ($GALLERY_REWRITE_OK) {
 			}
 		}
 		fclose($fd);
-	} else {
-		fail($outfile);
-		return;
 	}
 }
 
@@ -140,9 +131,6 @@ if ($GALLERY_REWRITE_OK) {
 if ($fd = @fs_fopen($outfile, "a")) {
        	fwrite($fd, "$end_string\n");
        	fclose($fd);
-} else {
-       	fail($outfile);	
-	return;
 }
 
 /*
@@ -154,9 +142,6 @@ if ($fd = @fs_fopen($outfile, "a")) {
 	       	fwrite($fd, $line);
        	}
        	fclose($fd);
-} else {
-       	fail($outfile);	
-	return;
 }
 /*
  * Don't require UserDB before we've written and included config.php or it will

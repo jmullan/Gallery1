@@ -217,7 +217,7 @@ $checklist = array(
 
 $features = array(
 	"zip" => array("zipinfo", "unzip"),
-	"rewrite" => array("GALLERY_REWRITE_OK"),
+	"rewrite" => array("GALLERY_REWRITE_OK", "htaccess_file"),
 	"mirror" => array("mirrorSites")
 );
 
