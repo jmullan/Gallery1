@@ -48,6 +48,9 @@ class UserDB {
 
 		if (!$this->nobody) {
 			$this->nobody = new NobodyUser();
+		}
+
+		if (!$this->everybody) {
 			$this->everybody = new EverybodyUser();
 		}
 	}
