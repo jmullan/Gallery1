@@ -55,8 +55,9 @@ case "solid":
   break;
 default: // use frames directory
 
-  $base = $gallery->app->photoAlbumURL . "/skins/default/html_wrap/frames/$frame";
-  includeHtmlWrap("frames/$frame/frame.def");
+  $base = $gallery->app->photoAlbumURL . "/html_wrap/frames/$frame";
+  include($GALLERY_BASEDIR .  "html_wrap/frames/$frame/frame.def");
+  #includeHtmlWrap("frames/$frame/frame.def");
   ?>
 
   <table width="1" border="0" cellspacing="0" cellpadding="0">

@@ -2866,7 +2866,7 @@ function available_frames($description_only=false) {
 		"<dt>"._("None")."</dt><dd>"._("No frames")."</dd>" .
 		"<dt>"._("Dots")."</dt><dd>"._("Just a simple dashed border around the thumb.")."</dd>" .
 		"<dt>"._("Solid")."</dt><dd>"._("Just a simple solid border around the thumb.")."</dd>" ;
-	$dir = "$GALLERY_BASEDIR/skins/default/html_wrap/frames";
+	$dir = "$GALLERY_BASEDIR/html_wrap/frames";
        	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
 	       	while ($file = readdir($fd)) {
 			$subdir="$dir/$file";
