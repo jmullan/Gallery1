@@ -1122,6 +1122,7 @@ function makeGalleryUrl($target, $args=array()) {
 
         	        case 'phpnuke':
                 	case 'postnuke':
+			case 'nsnnuke':
 				$args["op"] = "modload";
 				$args["name"] = "$GALLERY_MODULENAME";
 				$args["file"] = "index";

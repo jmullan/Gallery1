@@ -75,6 +75,10 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option)) {
 		$GALLERY_EMBEDDED_INSIDE='nuke';
 		$GALLERY_EMBEDDED_INSIDE_TYPE = 'postnuke';
 	}
+	elseif ($GLOBALS['user_prefix'] == "nukea") {
+		$GALLERY_EMBEDDED_INSIDE='nuke';
+		$GALLERY_EMBEDDED_INSIDE_TYPE = 'nsnnuke';
+	}
 	else {
 		$GALLERY_EMBEDDED_INSIDE='nuke';
 		$GALLERY_EMBEDDED_INSIDE_TYPE = 'phpnuke';

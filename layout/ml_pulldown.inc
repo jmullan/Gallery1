@@ -57,7 +57,7 @@ if($gallery->app->show_flags !='yes') {
 
 		$count++;
 		$args = isset($HTTP_GET_VARS) ? $HTTP_GET_VARS : array();
-		if (isset($GALLERY_EMBEDDED_INSIDE)) {
+		if (isset($GALLERY_EMBEDDED_INSIDE) && $GALLERY_EMBEDDED_INSIDE=='nuke') {
 			if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
 				/* postnuke */
 				if (! isset($nls['postnuke'][$value])) continue;

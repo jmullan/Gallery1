@@ -139,6 +139,7 @@ function initLanguage() {
 				}
 
 			case 'phpnuke':
+			case 'nsnnuke':
 				if (isset($HTTP_COOKIE_VARS['lang'])) {
 					$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
 				}

@@ -219,10 +219,10 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$GLOBALS['dbname']);
 	    
 			if (isset($GLOBALS['user_prefix'])) {
-				$gallery->database{"user_prefix"} = $GLOBALS['user_prefix'] . '_';
+				$gallery->database{"user_prefix"} = 'nuke_';
 			}
 			else {
-				$gallery->database{"user_prefix"} = $GLOBALS['prefix'] . '_';
+				$gallery->database{"user_prefix"} = 'nuke_';
 			}
 			$gallery->database{"prefix"} = $GLOBALS['prefix'] . '_';
 
@@ -253,6 +253,53 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				include($GALLERY_BASEDIR . "classes/nuke5/AdminUser.php");
 				
 				$gallery->user = new Nuke5_AdminUser($GLOBALS['admin']);
+				$gallery->session->username = $gallery->user->getUsername();
+	    		} 
+			else if (is_user($GLOBALS['user'])) {
+				$user_info = getusrinfo($GLOBALS['user']);
+				$gallery->session->username = $user_info[$gallery->database{'fields'}{'uname'}]; 
+				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
+			}
+		break;
+		case 'nsnnuke':
+			/* we're in nsnnuke */
+			include($GALLERY_BASEDIR . "classes/Database.php");
+			include($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
+			include($GALLERY_BASEDIR . "classes/nsnnuke/UserDB.php");
+			include($GALLERY_BASEDIR . "classes/nsnnuke/User.php");
+
+	   		 $gallery->database{"nsnnuke"} = new MySQL_Database(
+				$GLOBALS['dbhost'],
+				$GLOBALS['dbuname'],
+				$GLOBALS['dbpass'],
+				$GLOBALS['dbname']);
+	    
+			if (isset($GLOBALS['user_prefix'])) {
+				$gallery->database{"user_prefix"} = 'nukea_';
+			}
+			else {
+				$gallery->database{"user_prefix"} = 'nukea_';
+			}
+			$gallery->database{"prefix"} = $GLOBALS['prefix'] . '_';
+			$gallery->database{"admin_prefix"} = $GLOBALS['prefix'] . 'b_';
+
+			/* Select the appropriate field names */
+				$gallery->database{'fields'} =
+					array ('name'  => 'realname',
+			       			'uname' => 'username',
+						'email' => 'user_email',
+			       			'uid'   => 'user_id');
+	    
+	   		/* Load our user database (and user object) */
+			$gallery->userDB = new NsnNuke_UserDB;
+	    		if ($GLOBALS['user']) {
+				$gallery->session->username = $GLOBALS['user']; 
+			}
+	    
+			if (isset($GLOBALS['admin']) && is_admin($GLOBALS['admin'])) {
+				include($GALLERY_BASEDIR . "classes/nsnnuke/AdminUser.php");
+				
+				$gallery->user = new NsnNuke_AdminUser($GLOBALS['admin']);
 				$gallery->session->username = $gallery->user->getUsername();
 	    		} 
 			else if (is_user($GLOBALS['user'])) {

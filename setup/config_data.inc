@@ -282,7 +282,8 @@ $constants =  array_merge(
 					'phpNuke'  => 'phpNuke',
 					'postNuke' => 'postNuke',
 					'phpBB2'   => 'phpBB2',
-					'GeekLog'  => 'GeekLog'),
+					'GeekLog'  => 'GeekLog',
+					'nsnNuke'  => 'nsnNuke'),
 		"value"  => NULL,
 		"allow_empty" => true
 	),

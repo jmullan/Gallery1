@@ -12,6 +12,7 @@ if(isset($GALLERY_EMBEDDED_INSIDE)) {
 	if (
 		($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke' && !defined("LOADED_AS_MODULE")) ||
 		($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnuke' && !eregi("modules.php", $PHP_SELF)) ||
+		($GALLERY_EMBEDDED_INSIDE_TYPE == 'nsnnuke' && !eregi("modules.php", $PHP_SELF)) ||
 		($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2' && !defined("LOADED_AS_MODULE"))
 	) {
 			die ("You can't access this file directly...");
