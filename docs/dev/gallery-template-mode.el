@@ -1,6 +1,6 @@
 ;;; gallery-template-mode-el -- Major mode for editing Gallery Template files
 
-;; Copyright (C) 2003 Bharat Mediratta <bharat@menalto.com>
+;; Copyright (C) 2003-2004 Bharat Mediratta <bharat@menalto.com>
 ;; Portions Copyright (C) 2000 Scott Andrew Borton <scott@pp.htv.fi>
 
 ;; This program is free software; you can redistribute it and/or
