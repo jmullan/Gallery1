@@ -122,6 +122,11 @@ function acceptableFormat($tag) {
 	return (isImage($tag) || isMovie($tag));
 }
 
+function acceptableFormatRegexp() {
+	return "(jpg|gif|png|mpg|avi|wmv)";
+}
+
+
 function isImage($tag) {
 	global $app; 
 
