@@ -175,6 +175,7 @@ function build_popup_url($url, $url_is_complete=0) {
 	}
 
 	/* Parse the query string arguments */
+	$args=array();
 	parse_str($arglist, $args);
 	$args['gallery_popup'] = 'true';
 	
@@ -1153,11 +1154,9 @@ function _getStyleSheetLink($filename, $skinname='') {
 	if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
 		$url = "$base/$sheetname";
 	} elseif (fs_file_exists($sheetdefaultpath) && !broken_link($sheetdefaultpath)) {
-		$url = "$base/$sheetdefaultpath";
+		$url = "$base/$sheetdefaultname";
 	} elseif (fs_file_exists($sheetdefaultdomainname) && !broken_link($sheetdefaultdomainname)) {
 		$url = "$base/$sheetdefaultdomainname";
-	} elseif (fs_file_exists($sheetdefaultname) && !broken_link($sheetdefaultname)) {
-		$url = "$base/$sheetdefaultname";
 	} else {
 		$url = "$base/${sheetdefaultname}.default";
 	}

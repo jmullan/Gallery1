@@ -461,7 +461,7 @@ if (!empty($adminOptionHTML)) {
 }
 
 $userCommands = '';
-if ($gallery->album->fields["slideshow_type"] != "off" && $numPhotos !=0) {
+if ($gallery->album->fields["slideshow_type"] != "off" && ($numPhotos != 0 || ($numVisibleItems != 0 && $gallery->album->fields['slideshow_recursive'] == "yes"))) {
        	$userCommands .= "<a class=\"admin\" href=\"" . 
 	       	makeGalleryUrl("slideshow.php",
 			       	array("set_albumName" => $albumName)) .

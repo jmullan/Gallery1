@@ -21,8 +21,28 @@
  */
 ?>
 <?php
-
 require(dirname(__FILE__) . '/init.php');
+
+if (empty($gallery->session->username)) {
+    /* Get the cached version if possible */
+    if (!empty($HTTP_GET_VAR['gallery_nocache'])) {
+	$cache_file = "cache.html";
+	$cache_now = time();
+	$cache_stat = @stat("cache.html");
+	if ($cache_now - $cache_stat[9] < (20 * 60)) {
+	    if ($fp = fopen("cache.html", "rb")) {
+		while (!feof($fp)) {
+		    print fread($fp, 4096);
+		}
+		fclose($fp);
+
+		printf("<!-- From cache, created at %s -->",
+		    strftime("%D %T", $cache_stat[9]));
+		return;
+	    }
+	}
+    }
+}
 
 $gallery->session->offlineAlbums["albums.php"]=true;
 

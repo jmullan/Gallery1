@@ -428,7 +428,7 @@ if (!$gallery->album->isMovie($id)) {
 			$selectCommand .= '</select>';
 			$adminCommands .= '[' . sprintf(_('print this photo with %s'), $selectCommand) . ']';
 		/* just print out text if only one option */
-		} elseif ($numServices == 1) {
+		} elseif ($numServices == 1 && isset($printServices[@key($printServices)]['checked'])) {
 			$name = @key($printServices);
 			switch ($name) {
 			case 'ezprints':

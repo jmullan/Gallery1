@@ -129,8 +129,8 @@ if ($warnings) {
 	<td class="successlong" colspan="2">
 		<?php echo pluralize_n2(ngettext("One file is up-to-date.",
 					"%d files are up-to-date.", count($oks)),
-					count($oks),  _("No files are up-to-date."));
-		ß?>
+					count($oks),  _("All files are up-to-date."));
+		?>
 	</td>
 </tr><?php 
 if ($show_details && $oks) {

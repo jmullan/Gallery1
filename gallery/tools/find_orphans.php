@@ -145,6 +145,8 @@ if (!empty($orphans)) {
 	// No Orphans
 	echo "\n<p align=\"center\">". _("There are no orphaned albums in this Gallery.") . "</p>";
 }
+
+	echo "\n<p align=\"center\"><a href=\"" . makeAlbumUrl() . "\">"._("Return to Gallery")."</a></p>";
 ?>
 <hr>
 <?php 
