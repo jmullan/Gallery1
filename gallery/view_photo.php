@@ -269,7 +269,7 @@ if ($gallery->album->fields["linkcolor"]) {
 if ($gallery->album->fields["bgcolor"]) {
         echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
 }       
-if (isset($gallery->album->fields["background"])) {
+if (isset($gallery->album->fields["background"]) && $gallery->album->fields["background"]) {
         echo "BODY { background-image:url(".$gallery->album->fields['background']."); } ";
 } 
 if ($gallery->album->fields["textcolor"]) {
@@ -627,19 +627,19 @@ $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 
 includeHtmlWrap("inline_photo.frame");
 ?>
-<table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
+<br><br>
+<table border="0" bordercolor="red" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
 <!-- caption -->
 <tr>
 <td colspan=3 align=center>
 <span class="modcaption"><?php echo editCaption($gallery->album, $index) ?>
-</span>
-<span class="modcaption">
 <?php
 if ( canVote() )
 {
        echo makeFormIntro("view_photo.php", array("name" => "vote_form",
                                        "method" => "POST"));
    ?>
+   <!-- voting ->
    <script language="javascript1.2" type="text/JavaScript">
  function chooseOnlyOne(i, form_pos, scale)
  {     
@@ -665,7 +665,6 @@ if ($gallery->album->getPollShowResults())
        print "<p>\n";
 }
 ?>
-
 <br><br>
 <?php
 
@@ -753,6 +752,7 @@ if ($table) {
 	print "<table>$table</table>\n";
 }
 ?>
+</span>
 </td>
 </tr>
 <?php if (!strcmp($gallery->album->fields["public_comments"], "yes")) { ?>

@@ -1,5 +1,5 @@
 <?php /* $Id$ */ ?>
-<?php global $commentdraw, $i;
+<?php global $commentdraw, $i, $index;
 // If the border color is not passed in, we do a black/white combo
 if ($commentdraw["bordercolor"]) {
         $borderIn = $commentdraw["bordercolor"];
@@ -11,7 +11,6 @@ $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" 
 
 ?>
   <tr>
-    <td></td>
     <td>
       <span class=modcaption>
       <br>
@@ -36,5 +35,4 @@ if ($gallery->user->canWriteToAlbum($gallery->album)) {
       <br><br>
       </span>
     </td>
-    <td><?php echo $pixelImage ?></td>
   </tr>

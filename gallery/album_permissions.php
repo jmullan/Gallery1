@@ -177,7 +177,7 @@ echo makeFormIntro("album_permissions.php",
   <td valign=top>
    <table border="0" cellspacing="3" cellpadding="0">
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
       <?php echo _("Users who can see the album") ?>
      </td>
     </tr>
@@ -192,7 +192,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
       <?php echo _("Users who can change album text.") ?>
      </td>
     </tr>
@@ -207,7 +207,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
       <?php echo _("Users who can add photos.") ?>
      </td>
     </tr>
@@ -222,7 +222,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
 	<?php echo _("Users who can modify photos.") ?>
      </td>
     </tr>
@@ -237,7 +237,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
 	<?php echo _("Users who can delete photos.") ?>
      </td>
     </tr>
@@ -252,7 +252,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
 	<?php echo _("Users who can create sub albums.") ?>
      </td>
     </tr>
@@ -267,7 +267,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
       <?php echo _("Users who can view full (original) images.") ?>
      </td>
     </tr>
