@@ -80,8 +80,8 @@ if (!empty($urls)) {
 			$handle = fs_opendir($url);
 			while (($file = readdir($handle)) != false) {
 				if ($file != "." && $file != "..") {
-					$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $file);
-					$tag = strtolower($tag);
+					$tag = pathinfo($file);
+					$tag = strtolower(isset($tag['extension']) ? $tag['extension'] : '');
 					if (acceptableFormat($tag)) {
 						/* Tack it onto userfile */
 						if (substr($url,-1) == "/") {
@@ -106,8 +106,9 @@ if (!empty($urls)) {
 		/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
 		$url = eregi_replace("^[[:space:]]+", "", $url);
 
-		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $url);
-		$tag = strtolower($tag);
+		$tag = parse_url($url);
+		$tag = pathinfo($tag['path']);
+		$tag = isset($tag['extension']) ? strtolower($tag['extension']) : '';
 
 		/* If the URI doesn't start with a scheme, prepend 'http://' */
 		if (!empty($url) && !fs_is_file($url)) {
@@ -148,21 +149,10 @@ if (!empty($urls)) {
 			continue;
 		} 
 
-		// Ensure that the file we've retrieved is in an acceptable image/movie format
-		if (!acceptableFormat($tag)) {
-			echo gallery_error(sprintf(_("Invalid file type; %s !"), $tag));
-			continue;
-		}
-
-		// Prevent overly long temp names from an external source
-		if(strlen($name) > 20) {
-			$name = substr($name, strlen($name) - 20);
-		}
-
 		/* copy file locally 
-		   use fopen instead of fs_fopen to prevent directory
+		   use fopen instead of fs_fopen to prevent directory and filename
 		   disclosure */
-		$file = $gallery->app->tmpDir . "/photo.$name";
+		$file = $gallery->app->tmpDir . "/upload." . genGUID();
 		$od = @fopen($file, "wb");
 		if ($id && $od) {
 			while (!feof($id)) {

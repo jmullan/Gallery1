@@ -25,7 +25,7 @@
 require(dirname(__FILE__) . '/init.php');
 
 // Hack check
-if (!$gallery->user->canReadAlbum($gallery->album)) {
+if (empty($gallery->album) || !$gallery->user->canReadAlbum($gallery->album)) {
         header("Location: " . makeAlbumHeaderUrl());
 	return;
 }

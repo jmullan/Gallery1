@@ -2289,7 +2289,7 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 
 	// guid is not created during new Album() as a performance optimization
 	// it only needs to be created when an album is created or modified by adding or deleting photos
-	$gallery->album->fields['guid'] = md5(uniqid(mt_rand(), true));    
+	$gallery->album->fields['guid'] = genGUID();
 
         // set title and description
         if ($newAlbumTitle) {
@@ -3415,6 +3415,10 @@ function includeTemplate($tplName, $skinname='') {
 	} else {
 		return false;
 	}
+}
+
+function genGUID() {
+	return md5(uniqid(mt_rand(), true));
 }
 	
 require (dirname(__FILE__) . '/lib/lang.php');

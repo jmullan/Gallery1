@@ -399,7 +399,7 @@ class Album {
 		}
 
 		if ($this->version < 29) {
-			$this->fields['guid'] = md5(uniqid(mt_rand(), true));
+			$this->fields['guid'] = genGUID();
 			$changed = 1;
 		}
 
@@ -580,11 +580,27 @@ class Album {
 	}
 	
 	function sortByCaption($a, $b) {
+                global $albumDB;
+                if (empty($albumDB)) {
+                        $albumDB = new AlbumDB(false);
+                }       
 		// sort album alphabetically by caption
 		$objA = (object)$a;
 		$objB = (object)$b;
-		$captionA = $objA->getCaption();	
-		$captionB = $objB->getCaption();
+		if ($objA->isAlbum()) {
+			$albumA = $albumDB->getAlbumByName($objA->getAlbumName(), false);
+			$captionA = $albumA->fields['title'];
+		} else {
+			$captionA = $objA->getCaption();
+		}
+
+		if ($objB->isAlbum()) {
+                        $albumB = $albumDB->getAlbumByName($objB->getAlbumName(), false);
+                        $captionB = $albumB->fields['title'];
+		} else {
+			$captionB = $objB->getCaption();
+		}
+
 		return (strnatcasecmp($captionA, $captionB));
 	}
 	
@@ -1082,7 +1098,7 @@ class Album {
 				$wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, 0, 0); 
 		}
 
-		$this->fields['guid'] = md5(uniqid(mt_rand(), true));
+		$this->fields['guid'] = genGUID();
 
 		return 0;
 	}
