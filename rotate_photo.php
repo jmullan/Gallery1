@@ -54,7 +54,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isIt
 <span class="popup">
 <?php
 if ($gallery->session->albumName && isset($index)) {
-	if ($rotate) {
+	if (isset($rotate) && !empty($rotate)) {
 ?>
 	 <?php echo _("Rotating/Flipping photo.") ?>
 	<br>
