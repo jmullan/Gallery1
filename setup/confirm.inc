@@ -20,7 +20,7 @@ foreach ($features as $feature => $dependents) {
 			if ($cause) {
 				$cause .= ", ";
 			}
-			$cause .= "missing $dep";
+			$cause .= "missing <i>$dep</i>";
 		}
 	}
 
@@ -39,8 +39,13 @@ $data .= "/* Constants */\n";
 $view .= row_wrap("/* Constants */\n");
 foreach ($constants as $key => $val) {
 	if (!$$key) {
-		$view .= row_wrap(error_missing($constants[$key]["desc"]));
-		$error = 1;
+		if ($constants[$key]["optional"]) {
+			$data .= "// optional <i>$key</i> missing\n";
+			$view .= row_wrap("// optional <i>$key</i> missing");
+		} else {
+			$view .= row_wrap(error_missing($constants[$key]["desc"]));
+			$error = 1;
+		}
 	} else {
 		if ($constants[$key]["require-write-dir"]) {
 			$dir = $$key;
