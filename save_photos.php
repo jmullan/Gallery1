@@ -320,6 +320,8 @@ function process($file, $tag, $name, $setCaption="") {
 				}
 			} else {
 				msg("<font color=red>Error: $err!</font>");
+				msg("<b>Need help?  Look in the " .
+				    "<a href=http://gallery.sourceforge.net/faq.php target=_new>Gallery FAQ</a></b>");
 			}
 		} else {
 			msg("Skipping $name (can't handle '$tag' format)");
