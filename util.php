@@ -528,10 +528,14 @@ function errorRow($key) {
 	}
 }
 
-function drawSelect($name, $array, $selected, $size) {
+function drawSelect($name, $array, $selected, $size, $attrList=array()) {
+
+    	foreach ($attrList as $key => $value) {
+		$attrs .= " $key=\"$value\"";
+	}
 
 	$buf = "";
-	$buf .= "<select name=\"$name\" size=$size>\n";
+	$buf .= "<select name=\"$name\" size=$size $attrs>\n";
 	foreach ($array as $uid => $username) {
 		$sel = "";
 		if (!strcmp($uid, $selected)) {
