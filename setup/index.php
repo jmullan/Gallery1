@@ -1,3 +1,5 @@
+<? require('init.php'); ?>
+
 <html>
 <head>
   <title>Gallery Configuration</title>
