@@ -151,94 +151,121 @@ if ($gallerySanity != NULL) {
 	exit;
 }
 
-if (isset($GALLERY_EMBEDDED_INSIDE) &&
-	!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
-        include($GALLERY_BASEDIR . "classes/Database.php");
-
-	if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
-	/* We're in embedded in Postnuke */
-
-	    if (!function_exists("pnUserGetVar")) {
-		/* pre 0.7.1 */
-		include($GALLERY_BASEDIR . "classes/postnuke/UserDB.php");
-		include($GALLERY_BASEDIR . "classes/postnuke/User.php");
+if (isset($GALLERY_EMBEDDED_INSIDE)) {
+	/* Okay, we are embedded */
+	switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
+		case 'postnuke':
+			/* We're in embedded in Postnuke */
+			include($GALLERY_BASEDIR . "classes/Database.php");
+			if (!function_exists("pnUserGetVar")) {
+				/* pre 0.7.1 */
+				include($GALLERY_BASEDIR . "classes/postnuke/UserDB.php");
+				include($GALLERY_BASEDIR . "classes/postnuke/User.php");
 		
-		$gallery->database{"db"} = $GLOBALS['dbconn'];
-		$gallery->database{"prefix"} = $GLOBALS['pnconfig']['prefix'] . "_";
-	    } else {
-		/* 0.7.1 and beyond */
-		include($GALLERY_BASEDIR . "classes/postnuke0.7.1/UserDB.php");
-		include($GALLERY_BASEDIR . "classes/postnuke0.7.1/User.php");
-	    }
+				$gallery->database{"db"} = $GLOBALS['dbconn'];
+				$gallery->database{"prefix"} = $GLOBALS['pnconfig']['prefix'] . "_";
+			} 
+			else {
+				/* 0.7.1 and beyond */
+				include($GALLERY_BASEDIR . "classes/postnuke0.7.1/UserDB.php");
+				include($GALLERY_BASEDIR . "classes/postnuke0.7.1/User.php");
+	    		}
 
-	    /* Load our user database (and user object) */
-	    $gallery->userDB = new PostNuke_UserDB;
+			/* Load our user database (and user object) */
+	    		$gallery->userDB = new PostNuke_UserDB;
 
-	    if (isset($GLOBALS['user'])) {
-		$gallery->session->username = $GLOBALS['user']; 
-	    }
+	    		if (isset($GLOBALS['user'])) {
+				$gallery->session->username = $GLOBALS['user']; 
+			}
 	    
-	    if (isset($GLOBALS['user']) && is_user($GLOBALS['user'])) {
-		$user_info = getusrinfo($GLOBALS['user']);
-		$gallery->session->username = $user_info["uname"]; 
-		$gallery->user = 
-		    $gallery->userDB->getUserByUsername($gallery->session->username);
-	    }
-	} else {
-	/* we're in phpnuke */
-	    include($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
-	    include($GALLERY_BASEDIR . "classes/nuke5/UserDB.php");
-	    include($GALLERY_BASEDIR . "classes/nuke5/User.php");
+			if (isset($GLOBALS['user']) && is_user($GLOBALS['user'])) {
+				$user_info = getusrinfo($GLOBALS['user']);
+				$gallery->session->username = $user_info["uname"]; 
+				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
+			}
+		break;
+		case 'phpnuke':
+			/* we're in phpnuke */
+			include($GALLERY_BASEDIR . "classes/Database.php");
+			include($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
+			include($GALLERY_BASEDIR . "classes/nuke5/UserDB.php");
+			include($GALLERY_BASEDIR . "classes/nuke5/User.php");
 
-	    $gallery->database{"nuke"} = new MySQL_Database(
-			$GLOBALS['dbhost'],
-			$GLOBALS['dbuname'],
-			$GLOBALS['dbpass'],
-			$GLOBALS['dbname']);
-	    if (isset($GLOBALS['user_prefix'])) {
-		$gallery->database{"user_prefix"} = $GLOBALS['user_prefix'] . '_';
-	    } else {
-		$gallery->database{"user_prefix"} = $GLOBALS['prefix'] . '_';
-	    }
-	    $gallery->database{"prefix"} = $GLOBALS['prefix'] . '_';
+	   		 $gallery->database{"nuke"} = new MySQL_Database(
+				$GLOBALS['dbhost'],
+				$GLOBALS['dbuname'],
+				$GLOBALS['dbpass'],
+				$GLOBALS['dbname']);
+	    
+			if (isset($GLOBALS['user_prefix'])) {
+				$gallery->database{"user_prefix"} = $GLOBALS['user_prefix'] . '_';
+			}
+			else {
+				$gallery->database{"user_prefix"} = $GLOBALS['prefix'] . '_';
+			}
+			$gallery->database{"prefix"} = $GLOBALS['prefix'] . '_';
 
-            /* PHP-Nuke changed its "users" table field names in v.6.5 */
-	    /* Select the appropriate field names */
-	    if (isset($Version_Num) && $Version_Num >= 6.5) {
-		$gallery->database{'fields'} =
-			array ('name'  => 'name',
-			       'uname' => 'username',
-			       'email' => 'user_email',
-			       'uid'   => 'user_id');
-	    }
-	    else {
-		$gallery->database{'fields'} =
-			array ('name'  => 'name',
-			       'uname' => 'uname',
-			       'email' => 'email',
-			       'uid'   => 'uid');
-	    }
+			/* PHP-Nuke changed its "users" table field names in v.6.5 */
+			/* Select the appropriate field names */
+			if (isset($Version_Num) && $Version_Num >= 6.5) {
+				$gallery->database{'fields'} =
+					array ('name'  => 'name',
+			       			'uname' => 'username',
+						'email' => 'user_email',
+			       			'uid'   => 'user_id');
+			}
+			else {
+				$gallery->database{'fields'} =
+				array ('name'  => 'name',
+				       'uname' => 'uname',
+				       'email' => 'email',
+				       'uid'   => 'uid');
+			}
 	    
-	    /* Load our user database (and user object) */
-	    $gallery->userDB = new Nuke5_UserDB;
-	    if ($GLOBALS['user']) {
-		$gallery->session->username = $GLOBALS['user']; 
-	    }
+	   		/* Load our user database (and user object) */
+			$gallery->userDB = new Nuke5_UserDB;
+	    		if ($GLOBALS['user']) {
+				$gallery->session->username = $GLOBALS['user']; 
+			}
 	    
-	    if (isset($GLOBALS['admin']) && is_admin($GLOBALS['admin'])) {
-		include($GALLERY_BASEDIR . "classes/nuke5/AdminUser.php");
-		
-		$gallery->user = new Nuke5_AdminUser($GLOBALS['admin']);
-		$gallery->session->username = $gallery->user->getUsername();
-	    } else if (is_user($GLOBALS['user'])) {
-		$user_info = getusrinfo($GLOBALS['user']);
-		$gallery->session->username =
-			$user_info[$gallery->database{'fields'}{'uname'}]; 
-		$gallery->user = 
-			 $gallery->userDB->getUserByUsername($gallery->session->username);
-	    }
+			if (isset($GLOBALS['admin']) && is_admin($GLOBALS['admin'])) {
+				include($GALLERY_BASEDIR . "classes/nuke5/AdminUser.php");
+				
+				$gallery->user = new Nuke5_AdminUser($GLOBALS['admin']);
+				$gallery->session->username = $gallery->user->getUsername();
+	    		} 
+			else if (is_user($GLOBALS['user'])) {
+				$user_info = getusrinfo($GLOBALS['user']);
+				$gallery->session->username = $user_info[$gallery->database{'fields'}{'uname'}]; 
+				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
+			}
+		break;
+		case 'phpBB2':
+			include($GALLERY_BASEDIR . "classes/Database.php");
+			include($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
+			include($GALLERY_BASEDIR . "classes/phpbb/UserDB.php");
+			include($GALLERY_BASEDIR . "classes/phpbb/User.php");
+ 			$gallery->database{"phpbb"} = new MySQL_Database(			
+							$GLOBALS['dbhost'],			
+							$GLOBALS['dbuser'],			
+							$GLOBALS['dbpasswd'],			
+							$GLOBALS['dbname']);
+			//		$gallery->database{"phpbb"}->setTablePrefix($GLOBALS['table_prefix']);		
+			$gallery->database{"prefix"} = $GLOBALS['table_prefix']; 		
+			/* Load our user database (and user object) */		
+			$gallery->userDB = new phpbb_UserDB;		
+			if (isset($GLOBALS['userdata']) && isset($GLOBALS['userdata']['username'])) {
+				$gallery->session->username = $GLOBALS['userdata']['username'];
+				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
+			}
+			elseif ($gallery->session->username) {
+				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);		
+			}
+		break;
 	}
-} else {
+} 
+else {
+	/* Standalone */
 	include($GALLERY_BASEDIR . "classes/gallery/UserDB.php");
 	include($GALLERY_BASEDIR . "classes/gallery/User.php");
 
@@ -247,8 +274,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE) &&
 
 	/* Load their user object with their username as the key */
 	if (isset($gallery->session->username)) {
-		$gallery->user = 
-			$gallery->userDB->getUserByUsername($gallery->session->username);
+		$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 	}
 }
 
