@@ -1,4 +1,5 @@
 <?php
+// $Id$
 // Note that this box is assumed to be attached to a navigator and uses the navigator's
 // width parameters .
 

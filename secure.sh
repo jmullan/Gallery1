@@ -1,4 +1,6 @@
 #!/bin/sh
+# $Id$
+
 chmod 0 setup
 
 if [ -f config.php ]; then
