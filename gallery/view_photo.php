@@ -622,6 +622,7 @@ foreach ($extra_fields as $field)
 }
 if ($do_exif) {
 	$myExif = $gallery->album->getExif($index, $forceRefresh);
+	array_shift($myExif); // get rid of exposed filename path
 	foreach ($myExif as $field => $value) {
 		print "<tr><td valign=top align=right><b>$field:<b></td><td>".
 			str_replace("\n", "<p>", $value).
