@@ -833,14 +833,11 @@ function printNestedVals($level, $albumName, $val, $movePhoto) {
 			$nestedAlbum = new Album();
 			$nestedAlbum->load($myName);
 			if ($gallery->user->canWriteToAlbum($nestedAlbum)) {
-				#$val2 = $val . " -> " . $nestedAlbum->fields[title];
-				$val2 = "";
-				for ($j=0; $j<=$level; $j++) {
-					$val2 = $val2 . "-- ";
-				}
+				$val2 = str_repeat("-- ", $level+1);
 				$val2 = $val2 . $nestedAlbum->fields[title];
-				if (($nestedAlbum != $gallery->album) && 
-				   ($nestedAlbum != $gallery->album->getNestedAlbum($index))) {
+				if ($nestedAlbum != $gallery->album &&
+				    $gallery->album->numPhotos(1) <= $index ||
+				    $nestedAlbum != $gallery->album->getNestedAlbum($index)) {
 					echo "<option value=\"$myName\"> $val2</option>\n";
 					printNestedVals($level + 1, $myName, $val2, $movePhoto);
 				} elseif ($movePhoto) {
