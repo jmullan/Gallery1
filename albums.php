@@ -25,10 +25,7 @@
 /* load the gallery header layout */ 
 $header = "layout/gallery.header";
 if (file_exists($header)) {
-	$fp = fopen("layout/gallery.header", "r");
-	$text = fread($fp, filesize($header));
-	fclose($fp);
-	echo("$text");
+	include($header);
 } else {
 	echo("<body><p>no gallery.header file found.<p>");
 }
@@ -153,12 +150,9 @@ And then go <a href=setup>here</a>
 <!-- gallery.footer begin -->
 <?
 /* load the gallery footer layout */    
-$footer = "layout/gallery.footer"; 
+$footer = "layout/gallery.footer";
 if (file_exists($footer)) {
-        $fp = fopen("layout/gallery.footer", "r");
-        $text = fread($fp, filesize($footer));
-        fclose($fp);
-        echo("$text");
+	include($footer);
 } else {
 	echo("<p>no gallery.footer file found<br></body>");
 }
