@@ -1210,6 +1210,11 @@ function preprocessImage($dir, $file) {
 
 function isDebugging() {
 	global $gallery;
+	if (!isset($gallery) || 
+	    !isset($gallery->app) || 
+	    !isset($gallery->app->debug)) {
+		return false;
+	}
 	return !strcmp($gallery->app->debug, "yes");
 }
 

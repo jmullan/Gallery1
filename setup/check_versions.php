@@ -12,7 +12,7 @@ if (getOS() == OS_WINDOWS) {
 	       	exit;
        	}
 }
-if (!function_exists(fs_is_readable)) {
+if (!function_exists('fs_is_readable')) {
        	function fs_is_readable($filename) {
 	       	return @is_readable($filename);
        	}
