@@ -139,7 +139,7 @@ function getDimensions($file) {
 	list($lines, $status) = 
 		exec_internal(toPnmCmd($file) . 
 			" | " .
-			NetPBM("pnmfile" /*, "--allimages" */ )); 
+			NetPBM("pnmfile", "--allimages")); 
 
 	if ($status == $gallery->app->expectedExecStatus) {
 		foreach ($lines as $line) {
@@ -248,7 +248,7 @@ function resize_image($src, $dest, $target) {
 	$err = exec_wrapper(toPnmCmd($src) .
 		     " | " . 
 		     NetPBM("pnmscale", 
-				(isDebugging() ? " --quiet" : " ") .
+				(!isDebugging() ? " --quiet" : " ") .
 				" -xysize $target $target") .
 		     " | " . fromPnmCmd($out));
 
@@ -330,7 +330,7 @@ function valid_image($file) {
 	list($results, $status) = 
 		exec_internal(toPnmCmd($file) . 
 			" | " .
-			NetPBM("pnmfile" /*, "--allimages" */));
+			NetPBM("pnmfile", "--allimages"));
 
 	if ($status == $gallery->app->expectedExecStatus) {
 		return 1;
