@@ -937,7 +937,7 @@ $defaults = array(
 		"title" => _("Polling configuration"),
 		"desc"  => 
 			sprintf(_("It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."),
-				"1.4.1") .
+				">=1.4.1") .
 			"<p>" .
 			_("In each album, voting can be switched off, restricted to logged in users or open to all visitors.") 
 			. "<p>" .

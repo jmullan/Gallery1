@@ -1286,14 +1286,14 @@ function check_admins() {
 		}
 		$desc_text .= "  " . sprintf (_("You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."), '<b>admin</b>');
 		$result=array(
-			"desc" => $desc_text . newIn('1.4.1'),
+			"desc" => $desc_text,
 			"optional" => 1,
 			"remove_empty" => true
 		);
 	}
 	else {
 		$result=array(
-			"desc" => sprintf(_("It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."), '<b>admin</b>', '<b>admin</b>') . newIn("1.4.1"),
+			"desc" => sprintf(_("It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."), '<b>admin</b>', '<b>admin</b>'),
 			"optional" => 1,
 			"remove_empty" => true
 		);
