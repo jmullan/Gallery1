@@ -413,14 +413,13 @@ if (!$gallery->album->isMovie($id)) {
                                       "on" : "off"))); 
               	}
 
-		$adminCommands .= "<nobr>". _("View Images") .": [ ";
+		$adminCommands .= _('View Images') .':&nbsp;[&nbsp;';
 		if (strcmp($gallery->session->fullOnly,"on"))
 		{
-			$adminCommands .= _("normal") ." | <a href=\"$link\">" . _("full") ."</a> ]";
+			$adminCommands .= _('normal') . "&nbsp;|&nbsp;<a href=\"$link\">" . _('full') .'</a>&nbsp;]';
 		} else {
-			$adminCommands .= "<a href=\"$link\">" . _("normal") .'</a> | '. _("full") ." ]";
+			$adminCommands .= "<a href=\"$link\">" . _("normal") .'</a>&nbsp;|&nbsp;'. _('full') .'&nbsp;]';
 		}
-		$adminCommands .= "</nobr>";
 	} 
 	
 	$field="EXIF";
@@ -800,7 +799,7 @@ if ($table) {
 </form>
 <?php } ?> 
 <?php if (isset($printEZPrintsForm)) { ?>
-<form <?php /* illegal in 4.01 type="response" */ ?> method="post" name="ezPrintsForm" action="http://gallery.mye-pix.com/ecomm/default.asp">
+<form method="post" name="ezPrintsForm" action="http://gallery.mye-pix.com/ecomm/default.asp">
   <input type="hidden" name="EntryType" value="SingleImage" >
   <input type="hidden" name="PartnerID" value="440" >
   <input type="hidden" name="PartnerPassword" value="Gallery1" >

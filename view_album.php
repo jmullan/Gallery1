@@ -411,7 +411,10 @@ if (!$gallery->session->offline) {
 	$adminOptionHTML .= "\t\t<option value=\"$key\">${data['name']}</option>\n";
 	$adminJavaScript .= "adminOptions.$key = new Object;\n";
 	$adminJavaScript .= "adminOptions.$key.action = \"${data['action']}\";\n";
-	$adminJavaScript .= "adminOptions.$key.value = \"${data['value']}\";\n";
+	/* We need to pass un-html-entityified URLs to the JavaScript
+	 * This line effectively reverses htmlentities() */
+	$decodeHtml = strtr($data['value'], array_flip(get_html_translation_table(HTML_SPECIALCHARS)));
+	$adminJavaScript .= "adminOptions.$key.value = \"${decodeHtml}\";\n";
     }
   }
 }
@@ -661,10 +664,13 @@ if ($numPhotos) {
 
 	while ($rowCount < $rows) {
 		/* Do the inline_albumthumb header row */
-		echo("<tr>");
 		$i = $rowStart;
 		$j = 1;
-
+		$printTableRow = false;
+		if ($j <= $cols && $i <= $numPhotos) {
+			$printTableRow = true;
+			echo('<tr>');
+		}
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td>");
 			includeHtmlWrap("inline_albumthumb.header");
@@ -672,12 +678,16 @@ if ($numPhotos) {
 			$j++; 
 			$i = getNextPhoto($i);
 		}
-		echo("</tr>");
+		if ($printTableRow) {
+			echo('</tr>');
+		}
 
 		/* Do the picture row */
-		echo("<tr>");
 		$i = $rowStart;
 		$j = 1;
+		if ($printTableRow) {
+			echo('<tr>');
+		}
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td width=\"$imageCellWidth\" align=\"center\" valign=\"middle\">");
 
@@ -743,15 +753,15 @@ if ($numPhotos) {
 					}
 					echo "<br >\n";
 					if (($photo->isResized() && !$fullOnly) || !$viewFull) {
-						echo '<a href='.
+						echo '<a href="'.
 							makeAlbumUrl($gallery->session->albumName, $id) .
-								">[${wr}x{$hr}${fsr}]</a>&nbsp;";
+								"\">[${wr}x{$hr}${fsr}]</a>&nbsp;";
 					}
 					if ($viewFull) {
-						echo '<a href='.
+						echo '<a href="'.
 							makeAlbumUrl($gallery->session->albumName,
 							$id, array('full' => 1)) .
-							">[${wf}x${hf}${fsf}]</a>";
+							"\">[${wf}x${hf}${fsf}]</a>";
 					}
 				}
 			}
@@ -760,12 +770,16 @@ if ($numPhotos) {
 			$j++; 
 			$i = getNextPhoto($i);
 		}
-		echo("</tr>");
+		if ($printTableRow) {
+			echo('</tr>');
+		}
 	
 		/* Now do the caption row */
-		echo("<tr>");
 		$i = $rowStart;
 		$j = 1;
+		if ($printTableRow) {
+		    echo('<tr>');
+		}
 		while ($j <= $cols && $i <= $numPhotos) {
 			
 			if ($gallery->album->isAlbumName($i)) {
@@ -961,13 +975,16 @@ if ($numPhotos) {
 			$j++;
 			$i = getNextPhoto($i);
 		}
-		echo "</tr>";
-
+		if ($printTableRow) {
+			echo('</tr>');
+		}
 
 		/* Now do the inline_albumthumb footer row */
-		echo("<tr>");
 		$i = $rowStart;
 		$j = 1;
+		if ($printTableRow) {
+			echo('<tr>');
+		}
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td>");
 			includeHtmlWrap("inline_albumthumb.footer");
@@ -975,7 +992,9 @@ if ($numPhotos) {
 			$j++;
 			$i = getNextPhoto($i);
 		}
-		echo("</tr>");
+		if ($printTableRow) {
+			echo('</tr>');
+		}
 		$rowCount++;
 		$rowStart = $i;
 	}
