@@ -386,7 +386,7 @@ if (count($image_tags)) {
 	<td>
 <?php echo makeFormIntro("save_photos.php", 
 		array("name" => 'uploadurl_form',
-			"method" => "POST")); 
+			"method" => "POST"), array('type' => 'popup')); 
 
 	/* Allow user to select which files to grab - only show url right now ( no image previews ) */
 	sort($image_tags);
