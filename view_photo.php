@@ -19,6 +19,12 @@
  */
 ?>
 <?
+// Hack check
+if (!$user->canReadAlbum($album)) {
+	header("Location: albums.php");
+	return;
+}
+
 if ($id) {
 	$index = $album->getPhotoIndex($id);
 	if ($index == -1) {
@@ -32,7 +38,7 @@ if ($full) {
 	$fullTag = "?full=1";
 }
 
-$numPhotos = $album->numPhotos(editMode());
+$numPhotos = $album->numPhotos($user->canWriteToAlbum($album));
 $next = $index+1;
 if ($next > $numPhotos) {
 	//$next = 1;
@@ -118,6 +124,8 @@ if ($album->fields["background"]) {
 } 
 if ($album->fields["textcolor"]) {
         echo "BODY, TD {color:".$album->fields[textcolor]."; }";
+	echo ".head {color:".$album->fields[textcolor]."; }";
+	echo ".headbox {background-color:".$album->fields[bgcolor]."; }";
 }       
 ?> 
   </style> 
@@ -134,13 +142,21 @@ includeHtmlWrap("photo.header");
 <tr>
 <td>
 <?
-if (!$album->isMovie($index) && isCorrectPassword($edit)) {
-	$adminCommands = "<span class=\"admin\">";
-	$adminCommands .= "<a href=".popup("../resize_photo.php?index=$index").">[resize photo]</a>";
-	$adminCommands .= "<a href=".popup("../delete_photo.php?index=$index").">[delete photo]</a>";
-	$adminCommands .= "</span>";
+if (!$album->isMovie($index)) {
+	if ($user->canWriteToAlbum($album)) {
+		$adminCommands .= "<a href=".popup("../resize_photo.php?index=$index").">[resize photo]</a>";
+	}
+
+	if ($user->canDeleteFromAlbum($album)) {
+		$adminCommands .= "<a href=".popup("../delete_photo.php?index=$index").">[delete photo]</a>";
+	}
+
 	$adminbox["text"] = "&nbsp;";
-	$adminbox["commands"] = $adminCommands;
+	if ($adminCommands) {
+		$adminCommands = "<span class=\"admin\">$adminCommands</span>";
+		$adminbox["commands"] = $adminCommands;
+	}
+
 	$adminbox["bordercolor"] = $bordercolor;
 	$adminbox["top"] = true;
 	include ("layout/adminbox.inc");
@@ -244,7 +260,7 @@ include("layout/breadcrumb.inc");
 </td>
 </tr>
 </table>
-
+</center>
 <?
 includeHtmlWrap("photo.footer");
 ?>

@@ -23,10 +23,14 @@
 /* Load defaults */
 require('version.php');
 require('config.php');
-require('class_Album.php');
-require('class_Image.php');
-require('class_AlbumItem.php');
-require('class_AlbumDB.php');
+require('classes/Album.php');
+require('classes/Image.php');
+require('classes/AlbumItem.php');
+require('classes/AlbumDB.php');
+require('classes/User.php');
+require('classes/EverybodyUser.php');
+require('classes/NobodyUser.php');
+require('classes/UserDB.php');
 require('util.php');
 require('session.php');
 
@@ -93,6 +97,17 @@ if ($app->config_version != $gallery->config_version) {
 	exit;
 }
 
+/* Load our user database (and user object) */
+$userDB = new UserDB;
+if ($username) {
+	$user = $userDB->getUserByUsername($username);
+}
+
+if (!$user) {
+	$user = $userDB->getEverybody();
+	$username = "";
+}
+
 /* Load the correct album object */
 $album = new Album;
 if ($albumName) {
@@ -101,4 +116,5 @@ if ($albumName) {
 		$album->save();
 	}
 }
+
 ?>

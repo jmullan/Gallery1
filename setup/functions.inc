@@ -58,9 +58,6 @@ function no_feature($feature, $cause) {
 function error_missing($desc) {
 	return error("Missing value: <b>$desc</b>!");
 }
-function error($msg) {
-	return "<tr><td><font color=red>$msg</font></td></tr>";
-}
 function row_wrap($buf) {
 	return "<tr><td><code>$buf</td></tr>";
 }

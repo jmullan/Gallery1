@@ -1,3 +1,19 @@
+2001-01-09  Bharat Mediratta  <bharat@sinia.com>
+
+	* User support is in!  The config wizard will now create an
+	  account by the name of "admin" with the password you provide in
+	  the wizard.  Using the admin account you can create as many user
+	  accounts as you want.  Each album has a set of permissions that
+	  you can use to restrict who can see albums, and what they can do
+	  with them when they can see them.  An album has an owner who has
+	  full permissions for that album.  The ability to create albums
+	  is controlled on a per-user basis.
+
+	  This is a large change, but it should be fully backwards
+	  compatible with the old gallery data.  When you start a gallery
+	  with this new setup, all albums will by default be visible to
+	  the public, but modifiable only by the admin account.  
+
 2001-01-06  Bharat Mediratta  <bharat@sinia.com>
 
 	* Fixed bug in the setup code that generates the anytopnm wrapper.

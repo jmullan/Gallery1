@@ -19,6 +19,11 @@
  */
 ?>
 <?
+// Hack check
+if (!$user->canChangeTextOfAlbum($album)) {
+	exit;
+}
+	
 if ($save) {
 	$album->setCaption($index, stripslashes($data));
 	$album->save();

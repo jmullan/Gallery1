@@ -25,7 +25,7 @@ class Album {
 	var $dir;
 
 	function Album() {
-		global $app;
+		global $app, $userDB;
 
 		$this->fields["title"] = "Untitled";
 		$this->fields["description"] = "No description";
@@ -39,6 +39,9 @@ class Album {
 		$this->fields["returnto"] = $app->default["returnto"];
 		$this->fields["thumb_size"] = $app->default["thumb_size"];
 		$this->fields["resize_size"] = $app->default["resize_size"];
+
+		$everybody = $userDB->getEverybody();
+		$this->setPerm("canRead", $everybody->getUid(), 1);
 	}
 
 	function integrityCheck() {
@@ -333,6 +336,117 @@ class Album {
 		}
 
 		return date("M d, Y", $time);
+	}
+
+	function getPerm($permName, $uid) {
+		$perm = $this->fields["perms"][$permName];
+		if ($perm[$uid]) {
+			return true;
+		}
+
+		global $userDB;
+		$everybody = $userDB->getEverybody();
+		if ($perm[$everybody->getUid()]) {
+			return true;
+		}
+
+		return false;
+	}
+
+	function setPerm($permName, $uid, $bool) {
+		if ($bool) {
+			$this->fields["perms"][$permName][$uid] = 1;
+		} else {
+			unset($this->fields["perms"][$permName][$uid]);
+		}
+	}
+
+	// ------------- 
+	function canRead($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+
+		// In the default case where there are no permissions for the album,
+		// let everybody see it.
+		if (!isset($this->fields["perms"])) {
+			return 1;			
+		}
+
+		return $this->getPerm("canRead", $uid);
+	}
+
+	function setRead($uid, $bool) {
+		$this->setPerm("canRead", $uid, $bool);
+	}
+
+	// ------------- 
+	function canWrite($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+		return $this->getPerm("canWrite", $uid);
+	}
+
+	function setWrite($uid, $bool) {
+		$this->setPerm("canWrite", $uid, $bool);
+	}
+
+	// ------------- 
+	function canDelete($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+		return $this->getPerm("canDelete", $uid);
+	}
+
+	function setDelete($uid, $bool) {
+		$this->setPerm("canDelete", $uid, $bool);
+	}
+
+	// ------------- 
+	function canDeleteFrom($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+		return $this->getPerm("canDeleteFrom", $uid);
+	}
+
+	function setDeleteFrom($uid, $bool) {
+		$this->setPerm("canDeleteFrom", $uid, $bool);
+	}
+
+	// ------------- 
+	function canAddTo($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+		return $this->getPerm("canAddTo", $uid);
+	}
+
+	function setAddTo($uid, $bool) {
+		$this->setPerm("canAddTo", $uid, $bool);
+	}
+
+	// ------------- 
+	function canChangeText($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+		return $this->getPerm("canChangeText", $uid);
+	}
+
+	function setChangeText($uid, $bool) {
+		$this->setPerm("canChangeText", $uid, $bool);
+	}
+
+	// ------------- 
+	function isOwner($uid) {
+		return (!strcmp($uid, $this->fields["owner"]));
+	}
+
+	function setOwner($uid) {
+		$this->fields["owner"] = $uid;
 	}
 }
 

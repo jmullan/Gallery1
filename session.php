@@ -22,12 +22,19 @@
 session_register_and_set("cols");
 session_register_and_set("rows");
 session_register_and_set("page");
-session_register_and_set("edit");
 session_register_and_set("albumName");
 session_register_and_set("albumListPage");
+session_register_and_set("username", 1);
 
-function session_register_and_set($name) {
+function session_register_and_set($name, $protected=0) {
 	session_register($name);
+
+	// If this is a protected session variable, don't allow it
+	// to be changed by data from POST or GET requests.
+	if ($protected) {
+		return;
+	}
+
 	$setname = "set_$name";
 	global $$name;
 	global $$setname;

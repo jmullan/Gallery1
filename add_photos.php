@@ -19,11 +19,15 @@
  */
 ?>
 <?
-
+// Hack check
+if (!$user->canAddToAlbum($album)) {
+	exit;
+}
+	
 if (!$boxes) {
 	$boxes = 5;
 }
-	
+
 ?>
 
 <html>

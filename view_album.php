@@ -19,12 +19,18 @@
  */
 ?>
 <? 
+// Hack check
+if (!$user->canReadAlbum($album)) {
+	header("Location: albums.php");
+	return;
+}
+
 if (!$album->isLoaded()) {
 	header("Location: albums.php");
 	return;
 }
 
-$numPhotos = $album->numPhotos(editMode());
+$numPhotos = $album->numPhotos($user->canWriteToAlbum($album));
 $perPage = $rows * $cols;
 $maxPages = max(ceil($numPhotos / $perPage), 1);
 
@@ -115,7 +121,7 @@ if ($numPhotos == 1) {
 	$adminText .= "$numPhotos photos in this album on $maxPages pages";
 }
 
-if (editMode()) {
+if ($user->canWriteToAlbum($album)) {
 	$hidden = $album->numHidden();
 	$verb = "are";
 	if ($hidden == 1) {
@@ -127,15 +133,23 @@ if (editMode()) {
 } 
 $adminText .="</span>";
 $adminCommands = "<span class =\"admin\">";
-if (!isCorrectPassword($edit)) {
-	$adminCommands .= "<a href=".popup("edit_mode.php").">[Admin]</a>";
-} else {
+if ($user->canAddToAlbum($album)) {
 	$adminCommands .= "<a href=".popup("add_photos.php?albumName=$albumName").">[Add]</a>&nbsp;";
+}
+
+if ($user->canWriteToAlbum($album)) {
         $adminCommands .= "<a href=".popup("shuffle_album.php?albumName=$albumName").">[Shuffle]</a>&nbsp;";
         $adminCommands .= "<a href=".popup("resize_photo.php?albumName=$albumName&index=all").">[Resize]</a>&nbsp;";
-        //$adminCommands .= "<a href=".popup("do_command.php?cmd=remake-thumbnail&albumName=$albumName&index=all").">[Rebuild Thumbs]</a>&nbsp;"; 
+        // $adminCommands .= "<a href=".popup("do_command.php?cmd=remake-thumbnail&albumName=$albumName&index=all").">[Rebuild Thumbs]</a>&nbsp;"; 
         $adminCommands .= "<a href=".popup("edit_appearance.php?albumName=$albumName").">[Properties]</a>&nbsp;";
-        $adminCommands .= "<a href=do_command.php?cmd=leave-edit&return=view_album.php>[Leave admin mode]</a>";
+        $adminCommands .= "<a href=".popup("album_permissions.php?set_albumName=$albumName").">[Permissions]</a>&nbsp;";
+}
+
+
+if ($user->isLoggedIn()) {
+        $adminCommands .= "<a href=do_command.php?cmd=logout&return=view_album.php>[Logout]</a>";
+} else {
+	$adminCommands .= "<a href=".popup("login.php").">[Login]</a>";
 } 
 $adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
@@ -169,7 +183,7 @@ if ($numPhotos) {
 		$i = $start + $rowCount * $cols;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
-			if (!editMode() && $album->isHidden($i)) {
+			if (!$user->canWriteToAlbum($album) && $album->isHidden($i)) {
 				$i++;
 				if ($i >= $numPhotos) {
 					break;
@@ -228,7 +242,7 @@ if ($numPhotos) {
 		$i = $start + $rowCount * $cols;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
-			if (!editMode() && $album->isHidden($i)) {
+			if (!$user->canWriteToAlbum($album) && $album->isHidden($i)) {
 				$i++;
 				if ($i >= $numPhotos) {
 					break;
@@ -239,7 +253,7 @@ if ($numPhotos) {
 			echo "<center><span class=\"caption\">";
 			echo(editCaption($album, $i, $edit));
 			echo "</span>";
-			if (isCorrectPassword($edit)) {
+			if ($user->canDeleteFromAlbum($album)) {
 				echo("<a href=");
 				echo(popup("delete_photo.php?index=$i"));
 				echo("><br><img src=\"images/admin_delete.gif\" width=11 height=11 border=0 alt=\"Delete Photo\"></a>");
@@ -251,6 +265,9 @@ if ($numPhotos) {
 					//echo(popup("do_command.php?cmd=remake-thumbnail&index=$i"));
 					//echo(">[Thumbnail]/a>");
 				}
+			}
+
+			if ($user->canWriteToAlbum($album)) {
 				echo(" <a href=");
 				echo(popup("move_photo.php?index=$i"));
 				echo("><img src=\"images/admin_move.gif\" width=11 height=11 border=0 alt=\"Move Photo\"></a>");
@@ -263,8 +280,6 @@ if ($numPhotos) {
 					echo("<a href=do_command.php?cmd=hide&index=$i&return=view_album.php><img src=\"images/admin_hide.gif\" width=11 height=11 border=0 alt=\"Hide Photo\"></a>");
 				}
 			}
-			#echo("<hr size=1>");
-			#echo("<hr size=1>");
 			echo("</td>");
 			$j++; $i++;
 		}
@@ -275,7 +290,7 @@ if ($numPhotos) {
 ?>
 
 	<td colspan=$rows align=center class="headbox">
-<? if (isCorrectPassword($edit)) { ?>
+<? if ($user->canAddToAlbum($album)) { ?>
 	<span class="head">Hey! Add some photos.</span> 
 <? } else { ?>
 	<span class="head">This album is empty.</span> 

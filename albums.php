@@ -27,7 +27,7 @@ $albumName = "";
 $page = 1;
 
 /* If there are albums in our list, display them in the table */
-$numAlbums = $albumDB->numAlbums();
+$numAlbums = $albumDB->numAlbums($user);
 
 if (!$albumListPage) {
 	$albumListPage = 1;
@@ -67,14 +67,29 @@ includeHtmlWrap("gallery.header");
 <!-- admin section begin -->
 <? 
 $adminText = "<span class=\"admin\">";
-$adminText .= "There are $numAlbums albums in this gallery on $maxPages pages&nbsp;";
+$adminText .= "There " . ($numAlbums == 1 ? "is " : "are ");
+$adminText .= pluralize($numAlbums, "album", "no") . " in this gallery ";
+$adminText .= " on " . pluralize($maxPages, "page", "no") . "&nbsp;";
 $adminText .= "</span>";
 $adminCommands = "<span class=\"admin\">";
-if (isCorrectPassword($edit)) { 
+
+if ($user->isLoggedIn()) {
+	$adminCommands .= "Welcome, " . $user->getFullname();
+}
+
+if ($user->isAdmin()) {
+	$adminCommands .= "<a href=".popup("manage_users.php").">[Manage Users]</a>&nbsp;";
+}
+
+if ($user->canCreateAlbums()) { 
 	$adminCommands .= "<a href=do_command.php?cmd=new-album&return=view_album.php>[Create a New Album]</a>&nbsp;";
-	$adminCommands .= "<a href=do_command.php?cmd=leave-edit&return=albums.php>[Leave admin mode]</a>";
+}
+
+if ($user->isLoggedIn()) {
+	$adminCommands .= "<a href=".popup("user_preferences").">[Preferences]</a>";
+	$adminCommands .= "<a href=do_command.php?cmd=logout&return=albums.php>[Logout]</a>";
 } else {
-	$adminCommands .= "<a href=".popup("edit_mode.php").">[Admin]</a>";
+	$adminCommands .= "<a href=".popup("login.php").">[Login]</a>";
 }
 $adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
@@ -98,7 +113,7 @@ $start = ($albumListPage - 1) * $perPage + 1;
 $end = min($start + $perPage - 1, $numAlbums);
 
 for ($i = $start; $i <= $end; $i++) {
-        $album = $albumDB->getAlbum($i);
+        $album = $albumDB->getAlbum($user, $i);
         $tmpAlbumName = $album->fields["name"];
         $albumURL = $app->photoAlbumURL . "/" . $tmpAlbumName;
 
@@ -131,24 +146,37 @@ for ($i = $start; $i <= $end; $i++) {
   <?= editField($album, "description", $edit) ?>
   </span>
   <br>
-  <span class="admin">
-  <? if (isCorrectPassword($edit)) { ?>
-  <a href=<?= popup("delete_album.php?set_albumName={$tmpAlbumName}")?>>[delete album]</a>
-  :
-  <a href=<?= popup("move_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>[move album]</a>
-  :
-  <a href=<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>[rename album]</a>
+
+  <? if ($user->canDeleteAlbum($album)) { ?>
+   <span class="admin">
+    <a href=<?= popup("delete_album.php?set_albumName={$tmpAlbumName}")?>>[delete album]</a>
+   </span>
+  <? } ?>
+
+  <? if ($user->canWriteToAlbum($album)) { ?>
+   <span class="admin">
+    <a href=<?= popup("move_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>[move album]</a>
+    <a href=<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>[rename album]</a>
+   </span>
+  <? } ?>
+
+  <? if ($user->isAdmin() || $user->isOwnerOfAlbum($album)) { ?>
+   <span class="admin">
+    <a href=<?= popup("album_permissions.php?set_albumName={$tmpAlbumName}")?>>[permissions]</a>
+   </span>
+
   <br>
   url: <a href=<?=$albumURL?>><?=$albumURL?></a>
    <? if (preg_match("/album\d+$/", $albumURL)) { ?>
- 	<br>
-         <span class="error">
-          Hey!
-          <a href=<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>Rename</a> 
-          this album so that the URL is not so generic!
-         </span>
+	<br>
+        <span class="error">
+         Hey!
+         <a href=<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>Rename</a> 
+         this album so that the URL is not so generic!
+        </span>
    <? } ?>
   <? } ?>
+
   <br>
   </span>
   <span class="fineprint">

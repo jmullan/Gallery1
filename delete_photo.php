@@ -19,6 +19,11 @@
  */
 ?>
 <?
+// Hack check
+if (!$user->canDeleteFromAlbum($album)) {
+	exit;
+}
+	
 if ($confirm && isset($index)) {
 	$album->deletePhoto($index);
 	$album->save();

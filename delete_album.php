@@ -19,12 +19,16 @@
  */
 ?>
 <?
+// Hack check
+if (!$user->canDeleteAlbum($album)) {
+	exit;
+}
+
 if ($confirm) {
 	$album->delete();
 	dismissAndReload();
 	return;
 }
-
 
 if ($album) {
 ?>

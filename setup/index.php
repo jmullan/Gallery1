@@ -6,6 +6,7 @@
 <body>
 
 <?
+require("../util.php");
 require("functions.inc");
 
 if (file_exists("../config.php")) {

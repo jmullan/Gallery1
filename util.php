@@ -21,13 +21,13 @@
 <?
 
 function editField($album, $field, $edit) {
-	global $app;
+	global $app, $user;
 
 	$buf = $album->fields[$field];
 	if (!strcmp($buf, "")) {
 		$buf = "<i>&lt;Empty&gt;</i>";
 	}
-	if (isCorrectPassword($edit)) {
+	if ($user->canChangeTextOfAlbum($album)) {
 		$url = "$app->photoAlbumURL/edit_field.php?set_albumName={$album->fields[name]}&field=$field";
 		$buf .= "<span class=editlink>";
 		$buf .= "<a href=" . popup($url) . ">[edit $field]</a>";
@@ -37,10 +37,10 @@ function editField($album, $field, $edit) {
 }
 
 function editCaption($album, $index, $edit) {
-	global $app;
+	global $app, $user;
 
 	$buf = $album->getCaption($index);
-	if (isCorrectPassword($edit)) {
+	if ($user->canChangeTextOfAlbum($album)) {
 		if (!strcmp($buf, "")) {
 			$buf = "<i>&lt;No Caption&gt;</i>";
 		}
@@ -53,7 +53,7 @@ function editCaption($album, $index, $edit) {
 }
 
 function error($message) {
-	echo "<H1>Error: $message</H1>";
+	echo "<span class=error>Error: $message<span>";
 }
 
 function popup($url) {
@@ -106,17 +106,6 @@ function isMovie($tag) {
 		!strcmp($tag, "mpg"));
 }
 
-function isCorrectPassword($pass) {
-	global $app;
-
-	return (!strcmp($app->editPassword, $pass));
-}
-
-function editMode() {
-	global $edit;
-	return (isCorrectPassword($edit));
-}
-
 function getFile($fname) {
 	$tmp = "";
 
@@ -145,6 +134,10 @@ function dismissAndLoad($url) {
 	echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
 }
 
+function dismiss() {
+	echo("<BODY onLoad='parent.close()'>");
+}
+
 function my_flush() {
 	print str_repeat(" ", 4096);	// force a flush
 }
@@ -152,7 +145,7 @@ function my_flush() {
 function resize_image($src, $dest, $target) {
 	global $app;				
 
-	exec_wrapper(getAnyToPnmCmd($src,
+	$err = exec_wrapper(getAnyToPnmCmd($src,
 		     "| $app->pnmDir/pnmscale -xysize $target $target ".
 		     "| $app->pnmDir/ppmtojpeg > $dest"));
 
@@ -180,7 +173,7 @@ function valid_image($file) {
 function getAnyToPnmCmd($file, $args) {
 	global $app;
 
-	return sprintf($app->anytopnm, 
+	return sprintf($app->anytopnm,
 			$file . 
 			// " >&/dev/null " . 
 			$args);
@@ -189,7 +182,7 @@ function getAnyToPnmCmd($file, $args) {
 function exec_wrapper($cmd) {
 	global $app;
 
-	// echo "<p><b> About to exec [$cmd]</b>";
+	// print "<p><b> About to exec [$cmd]</b>";
 	exec($cmd, $results, $status);
 
 	// print "<br> Results: <pre>" . join("\n", $results);
@@ -206,7 +199,7 @@ function exec_wrapper($cmd) {
 }
 function includeHtmlWrap($name) {
 	// define these globals to make them available to custom text
-        global $app, $gallery, $album, $edit;
+        global $app, $gallery, $album, $user;
 	$fullname = "html_wrap/$name";
 
 	if (file_exists($fullname)) {
@@ -242,3 +235,51 @@ function pluralize($amt, $noun, $none="") {
 
 	return "$amt ${noun}s";
 }
+
+function errorRow($key) {
+	global $gErrors;
+
+	$error = $gErrors[$key];
+	if ($error) {	
+		include("html/errorRow.inc");
+	}
+}
+
+function drawSelect($name, $array, $selected, $size) {
+
+	$buf = "";
+	$buf .= "<select name=\"$name\" size=$size>\n";
+	foreach ($array as $uid => $username) {
+		$sel = "";
+		if (!strcmp($uid, $selected)) {
+			$sel = "selected";
+		} 
+		$buf .= "<option value=$uid $sel> $username\n";
+	}
+	$buf .= "</select>\n";
+
+	return $buf;
+}
+
+function correctNobody($array) {
+	global $userDB;
+	$nobody = $userDB->getNobody();
+
+	if (count($array) > 1) {
+		unset($array[$nobody->getUid()]);
+	}
+
+	if (count($array) == 0) {
+		$array[$nobody->getUid()] = $nobody->getUsername();
+	}
+}
+
+function correctEverybody($array) {
+	global $userDB;
+	$everybody = $userDB->getEverybody();
+
+	if ($array[$everybody->getUid()]) {
+		$array = array($everybody->getUid() => $everybody->getUsername());
+	}
+}
+

@@ -19,49 +19,22 @@
  */
 ?>
 <?
-// Hack check
-if (!$user->canWriteToAlbum($album)) {
-	exit;
-}
-?>
-
-<html>
-<head>
-  <title>Rotate Photo</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
-</head>
-<body>
-
-<?
-if ($albumName && isset($index)) {
-	if ($rotate) {
-		$album->rotatePhoto($index, $rotate);
-		$album->save();
-		dismissAndReload();
-		return;
-	} else {
-?>
-
-<center>
-How do you want to rotate this photo?
-<br>
-<a href=rotate_photo.php?rotate=90&albumName=<?= $album->fields["name"] ?>&index=<?= $index ?>>Counter-Clockwise</a>
-/
-<a href=rotate_photo.php?rotate=-90&albumName=<?= $album->fields["name"] ?>&index=<?= $index ?>>Clockwise</a>
-/
-<a href="javascript:void(parent.close())">Cancel</a>
-<br>
-
-<p>
-<?= $album->getThumbnailTag($index) ?>
-
-<?
+class EverybodyUser extends User {
+	function EverybodyUser() {
+		$this->username = "EVERYBODY";
+		$this->fullname = "Anonymous User";
+		$this->setIsAdmin(false);
+		$this->setCanCreateAlbums(false);
+		$this->uid = "everybody";
 	}
-} else {
-	error("no album / index specified");
+
+	function isLoggedIn() {
+		return false;
+	}
+
+	function isPseudo() {
+		return true;
+	}
 }
+
 ?>
-
-</body>
-</html>
-

@@ -55,8 +55,9 @@ $constants = array(
 		"value" => "Gallery"
 	),
 	"editPassword" => array(
-		"desc" => "The edit password",
-		"type" => "password"
+		"desc" => "The password for the <i>admin</i> account",
+		"type" => "password",
+		"dont-write" => 1,
 	),
 	"tmpDir" => array(
 		"desc" => "The location of a temp directory",
@@ -106,6 +107,12 @@ $constants = array(
 			$webserver_user . "</b>)",
 		"value" => getenv("DOCUMENT_ROOT") . "/albums",
 			"require-write-dir" => 1
+	),
+	"userDir" => array(
+		"desc" => "Location of user information",
+		"type" => "hidden",
+		"value" => "",
+		"eval" => '"$albumDir/.users"',
 	),
 	"photoAlbumURL" => array(
 		"desc" => "The full URL to the Gallery web app",

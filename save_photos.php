@@ -18,6 +18,12 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
+<?
+// Hack check
+if (!$user->canWriteToAlbum($album)) {
+	exit;
+}
+?>
 <html>
 <head>
   <title>Processing and Saving Photos</title>

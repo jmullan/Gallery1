@@ -19,49 +19,44 @@
  */
 ?>
 <?
-// Hack check
-if (!$user->canWriteToAlbum($album)) {
-	exit;
+if (!$user->isAdmin()) {
+	exit;	
 }
-?>
 
+if ($submit) {
+	if (!strcmp($submit, "Delete")) {
+		$userDB->deleteUserByUsername($uname);
+		header("Location: manage_users.php");
+	} else if (!strcmp($submit, "Cancel")) {
+		header("Location: manage_users.php");
+	}
+}
+
+?>
 <html>
 <head>
-  <title>Rotate Photo</title>
+  <title>Delete User</title>
   <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
 </head>
 <body>
 
-<?
-if ($albumName && isset($index)) {
-	if ($rotate) {
-		$album->rotatePhoto($index, $rotate);
-		$album->save();
-		dismissAndReload();
-		return;
-	} else {
-?>
-
 <center>
-How do you want to rotate this photo?
+<span class="popuphead">Delete User</span>
 <br>
-<a href=rotate_photo.php?rotate=90&albumName=<?= $album->fields["name"] ?>&index=<?= $index ?>>Counter-Clockwise</a>
-/
-<a href=rotate_photo.php?rotate=-90&albumName=<?= $album->fields["name"] ?>&index=<?= $index ?>>Clockwise</a>
-/
-<a href="javascript:void(parent.close())">Cancel</a>
 <br>
-
+Users can have special permissions in each album.  If you delete
+this user, any such permissions go away.  Users cannot be recreated.
+Even if this user is recreated, those permissions are gone.  
+Do you really want to delete user <b><?=$uname?></b>?
 <p>
-<?= $album->getThumbnailTag($index) ?>
 
-<?
-	}
-} else {
-	error("no album / index specified");
-}
-?>
+<form name=userdelete_form method=GET>
+<input type=hidden name=uname value=<?=$uname?>>
+<p>
+
+<input type=submit name="submit" value="Delete">
+<input type=submit name="submit" value="Cancel">
+</form>
 
 </body>
 </html>
-

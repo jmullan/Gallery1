@@ -20,6 +20,7 @@
 ?>
 <?
 if (!strcmp($cmd, "remake-thumbnail")) {
+	if ($user->canWriteToAlbum($album)) {
 ?>
 <html>
 <head>
@@ -28,51 +29,61 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 </head>
 <body>
 <?
-	if ($albumName && isset($index)) {
-		if (!strcmp($index, "all")) {
-			$np = $album->numPhotos();
-			echo ("<br> Rebuilding $np thumbnails...");
-			my_flush();
-			for ($i = 1; $i <= $np; $i++) {
-				echo("<br> Processing image $i...");
+		if ($albumName && isset($index)) {
+			if (!strcmp($index, "all")) {
+				$np = $album->numPhotos();
+				echo ("<br> Rebuilding $np thumbnails...");
+				my_flush();
+				for ($i = 1; $i <= $np; $i++) {
+					echo("<br> Processing image $i...");
+					my_flush();
+					set_time_limit(90);
+					$album->makeThumbnail($i);
+				}
+			} else {
+				echo ("<br> Rebuilding 1 thumbnail...");
 				my_flush();
 				set_time_limit(90);
-				$album->makeThumbnail($i);
+				$album->makeThumbnail($index);
 			}
-		} else {
-			echo ("<br> Rebuilding 1 thumbnail...");
-			my_flush();
-			set_time_limit(90);
-			$album->makeThumbnail($index);
+			$album->save();
+			dismissAndReload();
 		}
-		$album->save();
-		dismissAndReload();
 	}
-} else if (!strcmp($cmd, "leave-edit")) {
-	$edit = "";
+} else if (!strcmp($cmd, "logout")) {
+	$username = "";
 	header("Location: $return");	
 } else if (!strcmp($cmd, "hide")) {
-	$album->hidePhoto($index);
-	$album->save();
+	if ($user->canWriteToAlbum($album)) {
+		$album->hidePhoto($index);
+		$album->save();
+	}
 	header("Location: $return");	
 } else if (!strcmp($cmd, "show")) {
-	$album->unhidePhoto($index);
-	$album->save();
+	if ($user->canWriteToAlbum($album)) {
+		$album->unhidePhoto($index);
+		$album->save();
+	}
 	header("Location: $return");	
 } else if (!strcmp($cmd, "new-album")) {
-	$albumDB = new AlbumDB();
-	$albumName = $albumDB->newAlbumName();
-	$album = new Album();
-	$album->fields["name"] = $albumName;
-	$album->save();
+	if ($user->canCreateAlbums()) {
+		$albumDB = new AlbumDB();
+		$albumName = $albumDB->newAlbumName();
+		$album = new Album();
+		$album->fields["name"] = $albumName;
+		$album->setOwner($user->getUid());
+		$album->save();
+	
+	        /* move the album to the top */ 
+		$albumDB = new AlbumDB();
+	        $numAlbums = $albumDB->numAlbums($user);
+	        $albumDB->moveAlbum($user, $numAlbums, 1);
+	        $albumDB->save();
 
-        /* move the album to the top */ 
-	$albumDB = new AlbumDB();
-        $numAlbums = $albumDB->numAlbums();
-        $albumDB->moveAlbum($numAlbums, 1);
-        $albumDB->save();
-
-	header("Location: $return?set_albumName=$albumName");
+		header("Location: $return?set_albumName=$albumName");
+	} else {
+		header("Location: albums.php");
+	}
 }
 ?>
 

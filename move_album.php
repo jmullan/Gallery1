@@ -18,6 +18,12 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
+<?
+// Hack check
+if (!$user->canWriteToAlbum($album)) {
+	exit;
+}
+?>
 
 <html>
 <head>
@@ -32,12 +38,12 @@ $albumDB = new AlbumDB();
 
 if ($albumName && isset($index)) {
 	if (isset($newIndex)) {
-		$albumDB->moveAlbum($index, $newIndex);
+		$albumDB->moveAlbum($user, $index, $newIndex);
 		$albumDB->save();
 		dismissAndReload();
 		return;
 	} else {
-		$numAlbums = $albumDB->numAlbums();
+		$numAlbums = $albumDB->numAlbums($user);
 ?>
 
 <center>

@@ -187,6 +187,8 @@ class AlbumItem {
 	
 				list($w, $h) = getDimensions("$dir/$name.thumb.jpg");
 				$this->thumbnail->setDimensions($w, $h);
+			} else {
+				return "Unable to make thumbnail ($ret)";
 			}
 		}
 

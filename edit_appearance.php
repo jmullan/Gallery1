@@ -19,6 +19,11 @@
  */
 ?>
 <?
+// Hack check
+if (!$user->canWriteToAlbum($album)) {
+	exit;
+}
+	
 if ($save) {
 	$album->fields["title"] = $title;
 	$album->fields["bgcolor"] = $bgcolor;
