@@ -29,7 +29,7 @@ set_magic_quotes_runtime(0);
 /*
  * Init prepend file for setup directory.
  */
-$GALLERY_DIR = dirname(dirname(__FILE));
+$GALLERY_DIR = dirname(dirname(__FILE__));
 
 $tmp = $HTTP_SERVER_VARS["PHP_SELF"];
 if (!$tmp) {
