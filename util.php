@@ -360,3 +360,58 @@ function gallerySanityCheck() {
 		exit;
 	}
 }
+
+function preprocessImage($dir, $file) {
+
+	if (!file_exists("$dir/$file")) {
+		return 0;
+	}
+
+	/*
+	 * Check to see if it starts with a mime-type header, eg:
+	 *
+	 * 	Content-Type: image/pjpeg\n\n
+	 *
+	 * If so, remove everything up to and including the last 
+	 * newline
+	 */
+
+	if ($fd = fopen("$dir/$file", "r")) {
+		// Read the first line
+		$line = fgets($fd, 4096);
+
+		// Does it look like a content-type string?
+		if (!strstr($tmp, "Content-Type:")) {
+			// Skip till we find a line by itself.
+			do {
+				$line = fgets($fd, 4096);
+			} while (!feof($fd) && ord($line) != 13 && ord($line) != 10);
+
+			// Dump the rest to a file
+			$tempfile = tempnam($dir, $file);
+			if ($newfd = fopen($tempfile, "w", 0777)) {
+				while (!feof($fd)) {
+					/*
+					 * Copy the rest of the file.  Specify a length
+					 * to fwrite so that we ignore magic_quotes.
+					 */
+					fwrite($newfd, fread($fd, 64*1024), 64*1024+1);
+				}
+				fclose($newfd);
+				$success = rename($tempfile, "$dir/$file");
+				if (!$success) {
+					error("Couldn't move $tempfile -> $dir/$file");
+					unlink($tempfile);
+				}
+			} else {
+				error("Can't write to $tempfile");
+			}
+			chmod("$dir/$file", 0644);
+		}
+		fclose($fd);
+	} else {
+		error("Can't read $dir/$file");
+	}
+
+	return 1;
+}
