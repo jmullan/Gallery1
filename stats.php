@@ -205,7 +205,7 @@ if (!empty( $td )) {
 
 
 
-if ( isset($showGrid)) {
+if ( 0 && isset($showGrid)) {
 	// In grid mode photos per page is controlled by the number of rows and columns.
 	$photosPerPage = $numCols * $numRows;
 }

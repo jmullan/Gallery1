@@ -448,7 +448,7 @@ $constants =  array_merge(
 		'name' => "group_embedded",
 		'default' => "none",
 	       	'title' => _("Embedded Gallery"),
-		'desc' => _("Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."),
+		'desc' => _("Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen.") . ' <b>' . _("If your ISP or CMS requires register_globals to be enabled, you may be required to enable the 'Disable register_globals check' option under the Technical tab.") . '</b>',
 	),
 	'geeklog_dir' => array(
 		'prompt' => _("GeekLog Dir"),
