@@ -316,10 +316,19 @@ if (!$gallery->album->isMovie($id)) {
 	if ($gallery->user->canDeleteFromAlbum($gallery->album) || 
 	    ($gallery->album->getItemOwnerDelete() && $gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
 		// determine index of next item (after deletion)
-		// (we move to previous image if we're at the end)
-		$nextIndex = ($index >= $numPhotos ? $index-1 : $index);
+		// we move to previous image if we're at the end
+		// and move forward if we're not
+		if ($index >= $numPhotos && $index > 1) {
+			$nextIndex = $index - 1;
+		}
+		elseif ($index + 1 <= $numPhotos) {
+			$nextIndex = $index + 1;
+		}
+		else {
+			$nextIndex = $index;
+		}
 		// make sure that the "next" item isn't an album
-		if ($gallery->album->getAlbumName($index >= $numPhotos ? $nextIndex : $nextIndex+1)) {
+		if ($gallery->album->isAlbum($nextIndex)) {
 			$nextId='';
 		} else {
 			$nextId = $gallery->album->getPhotoId($nextIndex);
