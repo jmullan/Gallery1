@@ -33,14 +33,14 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
 #-- 'first' button cell ---
 if ($navigator["page"] == 1) {
 ?>
-    <td align="center" width="27" height="18"><font face=arial>&nbsp;</font></td> 
+    <td align="center" width="27" height="18">&nbsp;</td> 
     <td width="1" height="1"><?=$pixelImage?></td>
 <?
 } else {
 ?>
-    <td align="center" width="27" height="18"><font face=arial> 
+    <td align="center" width="27" height="18"><span class="nav"> 
       <a href=<?=$navigator[url]?>?set_<?=$navigator[pageVar]?>=1><img src="<?=$imageDir?>/nav_first.gif" border="0" width="18" height="11" alt="First Page"></a>
-      </font></td>
+      </span></td>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
 <?
 } 
@@ -50,14 +50,14 @@ if ($navigator["page"] == 1) {
 $prevPage = $navigator["page"] - 1;
 if ($prevPage >= 1) {
 ?>
-    <td align="center" width="72" height="18"><font face=arial>
+    <td align="center" width="72" height="18"><span class="nav">
       <a href=<?=$navigator[url]?>?set_<?=$navigator[pageVar]?>=<?=$prevPage?>><img src="<?=$imageDir?>/nav_prev.gif" border="0" width="18" height="11" alt="Previous Page"></a>
-      </font></td>
+      </span></td>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
 <?
 } else {
 ?>
-    <td align="center" width="72" height="18"><font face=arial>&nbsp;</font></td>
+    <td align="center" width="72" height="18">&nbsp;</td>
     <td width="1" height="1"><?=$pixelImage?></td>
 <?
 }
@@ -66,6 +66,7 @@ if ($prevPage >= 1) {
 <?
 #-- 'page numbers' cell ---                  
 $current = $navigator["page"];
+echo "<span class=\"nav\">";
 for ($i = $begin; $i <= $end; $i++) {
 	if ($i == $current) {
 		$number = "<b>$i</b>";
@@ -80,10 +81,9 @@ for ($i = $begin; $i <= $end; $i++) {
 	}
 
 	echo "&nbsp;$leftdot&nbsp;";
-	echo "<font face=" . $album->fields["font"] . ">";
 	echo "$number";
-	echo "</font>";
 }
+echo "</span>";
 if ($end == $current) {
 	$rightdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\">";
 } else {
@@ -98,13 +98,13 @@ $nextPage = $navigator["page"] + 1;
 if ($nextPage <= $navigator["maxPages"]) {
 ?>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
-    <td align="center" width="72" height="18"><font face=arial>
+    <td align="center" width="72" height="18"><span class="nav">
       <a href=<?=$navigator[url]?>?set_<?=$navigator[pageVar]?>=<?=$nextPage?>><img src="<?=$imageDir?>/nav_next.gif" border="0" width="18" height="11" alt="Next Page"></a>
-      </font></td>
+      </span></td>
 <?
 } else {   
 ?>
-    <td align="center" width="72" height="18"><font face=arial>&nbsp;</font></td>
+    <td align="center" width="72" height="18">&nbsp;</td>
     <td width="1" height="1"><?=$pixelImage?></td>
 <?
 } 
@@ -114,14 +114,14 @@ if ($nextPage <= $navigator["maxPages"]) {
 if ($navigator["page"] == $navigator["maxPages"]) {
 ?>
     <td width="1" height="1"><?=$pixelImage?></td>
-    <td align="center" width="27" height="18"><font face=arial>&nbsp;</font></td>
+    <td align="center" width="27" height="18">&nbsp;</td>
 <?
 } else {        
 ?>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><img src="<?=$imageDir?>/pixel_trans.gif" width="1" height="1"></td>
-    <td align="center" width="27" height="18"><font face=arial>
+    <td align="center" width="27" height="18"><span class="nav">
       <a href=<?=$navigator[url]?>?set_<?=$navigator[pageVar]?>=<?=$navigator[maxPages]?>><img src="<?=$imageDir?>/nav_last.gif" border="0" width="18" height="11" alt="Last Page"></a>
-      </font></td>
+      </span></td>
 <?
 } 
 ?>

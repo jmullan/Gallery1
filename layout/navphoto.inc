@@ -25,15 +25,15 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
 #-- 'first' button cell ---
 if ($navigator["page"] == 1) {
 ?>
-    <td align="center" width="27" height="18"><font face=arial>&nbsp;</font></td> 
+    <td align="center" width="27" height="18">&nbsp;</td> 
     <td width="1" height="1"><?=$pixelImage?></td>
 <?
 } else {
 	$firstPage = $album->getPhotoId(1);
 ?>
-    <td align="center" width="27" height="18"><font face=arial> 
+    <td align="center" width="27" height="18"> 
       <a href="<?=$navigator[url]?>/<?=$firstPage?>"><img src="<?=$imageDir?>/nav_first.gif" border="0" width="18" height="11" alt="First Photo"></a>
-      </font></td>
+      </td>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
 <?
 } 
@@ -44,14 +44,14 @@ $prevPage = $navigator["page"] - 1;
 if ($prevPage >= 1) {
 	$prevPage = $album->getPhotoId($prevPage);
 ?>
-    <td align="center" width="72" height="18"><font face=arial>
+    <td align="center" width="72" height="18">
       <a href="<?=$navigator[url]?>/<?=$prevPage?>"><img src="<?=$imageDir?>/nav_prev.gif" border="0" width="18" height="11" alt="Previous Photo"></a>
-      </font></td>
+      </td>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
 <?
 } else {
 ?>
-    <td align="center" width="72" height="18"><font face=arial>&nbsp;</font></td>
+    <td align="center" width="72" height="18">&nbsp;</td>
     <td width="1" height="1"><?=$pixelImage?></td>
 <?
 }
@@ -59,8 +59,10 @@ if ($prevPage >= 1) {
     <td align="center" height="18">   
 <?
 #-- 'page numbers' cell ---                  
+echo "<span class=\"nav\">";
 $current = $navigator["page"];
 echo "$current (of $end)";
+echo "</span>";
 ?>
     </td>
 <?
@@ -70,13 +72,13 @@ if ($nextPage <= $navigator["maxPages"]) {
 	$nextPage = $album->getPhotoId($nextPage);
 ?>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
-    <td align="center" width="72" height="18"><font face=arial>
+    <td align="center" width="72" height="18">
       <a href="<?=$navigator[url]?>/<?=$nextPage?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="18" height="11" alt="Next Photo"></a>
-      </font></td>
+      </td>
 <?
 } else {   
 ?>
-    <td align="center" width="72" height="18"><font face=arial>&nbsp;</font></td>
+    <td align="center" width="72" height="18">&nbsp;</td>
     <td width="1" height="1"><?=$pixelImage?></td>
 <?
 } 
@@ -86,15 +88,15 @@ if ($nextPage <= $navigator["maxPages"]) {
 if ($navigator["page"] == $navigator["maxPages"]) {
 ?>
     <td width="1" height="1"><?=$pixelImage?></td>
-    <td align="center" width="27" height="18"><font face=arial>&nbsp;</font></td>
+    <td align="center" width="27" height="18">&nbsp;</td>
 <?
 } else {        
 	$lastPage = $album->getPhotoId($navigator["maxPages"]);
 ?>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
-    <td align="center" width="27" height="18"><font face=arial>
+    <td align="center" width="27" height="18">
       <a href="<?=$navigator[url]?>/<?=$lastPage?>"><img src="<?=$imageDir?>/nav_last.gif" border="0" width="18" height="11" alt="Last Photo"></a>
-      </font></td>
+    </td>
 <?
 } 
 ?>
