@@ -23,6 +23,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 	var $userMap;
 	var $nobody;
 	var $everybody;
+	var $loggedIn;
 	
 	function Gallery_UserDB() {
 		global $gallery;
@@ -69,6 +70,10 @@ class Gallery_UserDB extends Abstract_UserDB {
 		if (!$this->everybody) {
 			$this->everybody = new EverybodyUser();
 		}
+
+		if (!$this->loggedIn) {
+			$this->loggedIn = new LoggedInUser();
+		}
 	}
 
 	function canCreateUser() {
@@ -95,6 +100,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 			return $this->nobody;
 		} else if (!strcmp($username, $this->everybody->getUsername())) {
 			return $this->everybody;
+		} else if (!strcmp($username, $this->loggedIn->getUsername())) {
+			return $this->loggedIn;
 		}
 
 		$uid = $this->userMap[$username];
@@ -127,6 +134,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 			return $this->nobody;
 		} else if (!strcmp($uid, $this->everybody->getUid())) {
 			return $this->everybody;
+		} else if (!strcmp($uid, $this->loggedIn->getUid())) {
+			return $this->loggedIn;
 		}
 
 		if (fs_file_exists("$userDir/$uid")) {
@@ -209,6 +218,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		array_push($uidList, $this->nobody->getUid());
 		array_push($uidList, $this->everybody->getUid());
+		array_push($uidList, $this->loggedIn->getUid());
 
 		sort($uidList);
 		return $uidList;
@@ -229,7 +239,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 		}
 
 		if (!strcmp($username, $this->nobody->getUsername()) ||
-		    !strcmp($username, $this->everybody->getUsername())) {
+		    !strcmp($username, $this->everybody->getUsername()) ||
+		    !strcmp($username, $this->loggedIn->getUsername())) {
 			return "<i>$username</i> is reserved and cannot be used.";
 		}
 
