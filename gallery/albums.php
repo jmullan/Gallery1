@@ -32,10 +32,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <?php if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = '';
 }
-
-require($GALLERY_BASEDIR . 'init.php');
-?>
-
+require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
 $gallery->session->offlineAlbums["albums.php"]=true;
 
@@ -89,24 +86,18 @@ $navigator["bordercolor"] = $borderColor;
       <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>" />
   <?php } ?>
 </head>
-
 <body dir=<?php echo $gallery->direction ?>>
-
 <?php } ?>
-<?php
-//	require ($gallery->path ."ML_files/ML_info_addon.inc");
-?>
 <?php
 includeHtmlWrap("gallery.header");
 ?>
 <?php
 if (!$gallery->session->offline && !strcmp($gallery->app->default["showSearchEngine"], "yes")) {
 ?>
-
 <table width=100% border=0 cellspacing=0>
 <tr><?php echo makeFormIntro("search.php"); ?>
 <td valign="middle" align="right">
-<span class="admin"> <?php echo _("Search") ?> : </span>
+<span class="admin"> <?php echo _("Search") ?>: </span>
 <input style="font-size=10px;" type="text" name="searchstring" value="" size="25">
 </td>
 </form>
@@ -123,9 +114,8 @@ if ($numAccess != $numAlbums) {
     $adminText .= " ($numAccess ". _("total") .")";
 }
 $adminText .= ",&nbsp;" . pluralize_n($numPhotos, _("image"), _("images"), _("no image"));
-
 if ($maxPages > 1) {
-	 $adminText .= _(" on ") . pluralize_n($maxPages, _("page"), _("pages"), _("no pages")) . "&nbsp;";
+	$adminText .= _(" on ") . pluralize_n($maxPages, _("page"), _("pages"), _("no pages")) . "&nbsp;";
 }
 $adminText .= "</span>";
 $adminCommands = "<span class=\"admin\">";
@@ -135,7 +125,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	if (empty($displayName)) {
 		$displayName = $gallery->user->getUsername();
 	}
-	$adminCommands .= _("Welcome") .", " . $displayName . "&nbsp;&nbsp;<br>";
+	$adminCommands .= _("Welcome") . ", " . $displayName . "&nbsp;&nbsp;<br>";
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
@@ -162,7 +152,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	}
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
-	        $adminCommands .= popup_link("[" . _("login") . "]", "login.php",0 ,true,250,500);
+	        $adminCommands .= popup_link("[" . _("login") . "]", "login.php", 0);
 	}
 }
 
@@ -172,7 +162,6 @@ $adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $borderColor;
 $adminbox["top"] = true;
 include ($GALLERY_BASEDIR . "layout/adminbox.inc");
-
 ?>
 
 <!-- top nav -->
@@ -198,7 +187,7 @@ if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
 	print "$tmpAlbumName<br>";
     }
     print "</center>";
-    print "<br>". _("in your albums directory") ."(" . $gallery->app->albumDir . ").<br>" ;
+    print "<br>". _("in your albums directory") ." (" . $gallery->app->albumDir . ").<br>" ;
     print _("These are not valid albums.  Please move them out of the albums directory.") ;
     print "</td></tr></table>";
     print "</td>";
@@ -258,7 +247,7 @@ for ($i = $start; $i <= $end; $i++) {
   </td>
   <!-- End Image Cell -->
   <!-- Begin Text Cell -->
-  <td align=<?php echo $gallery->align ?> valign=top>
+  <td align=left valign=top>
   <span class="title">
   <a href=<?php echo $albumURL ?>>
   <?php echo editField($gallery->album, "title") ?></a>
@@ -327,7 +316,7 @@ for ($i = $start; $i <= $end; $i++) {
     <?php if ($gallery->user->isAdmin()) { ?>
   <br>
   <span class="error">
-   <?php echo  _("Note:  This album is out of date!") ?><?php echo popup_link("[" . _("upgrade album") ."]", "upgrade_album.php") ?>
+   <?php echo _("Note:  This album is out of date!") ?> <?php echo popup_link("[" . _("upgrade album") ."]", "upgrade_album.php") ?>
   </span>
     <?php } ?>
    <?php } ?>
@@ -345,7 +334,6 @@ if (!($gallery->album->fields["display_clicks"] == "no") &&
 	<?php echo pluralize_n($gallery->album->getClicks(), _("time"), _("times") , _("0 times")) ?>
 	<?php echo _("since") ?>
 	<?php echo $gallery->album->getClicksDate() ?>.
-
 <?php
 }
 $albumName=$gallery->album->fields["name"];
@@ -389,3 +377,4 @@ includeHtmlWrap("gallery.footer");
 </body>
 </html>
 <?php } ?>
+
