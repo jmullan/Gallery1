@@ -663,7 +663,7 @@ class Album {
 			fs_mkdir($dir, 0775);
 		}
 
-		if (isset($this->updateSerial)) {
+		if (!empty($this->updateSerial)) {
 			/* Remove the old serial file, if it exists */
 			$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
 			if (fs_file_exists($serial)) {
