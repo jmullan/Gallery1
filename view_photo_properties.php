@@ -28,7 +28,7 @@
 <body>
 
 <?
-if ($gallery->session->albumName && !$index) {
+if ($gallery->session->albumName && $index) {
 ?>
 
 <center>
@@ -38,7 +38,7 @@ Photo Properties<br>
 <?= $gallery->album->getThumbnailTag($index) ?>
 <br>
 <?= $gallery->album->getCaption($index) ?>
-<br>
+<br><br>
 
 <?
 /* 
