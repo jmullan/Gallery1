@@ -1,3 +1,9 @@
+2004-08-15  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b112
+
+	* Fix: bharat's cache code - Use getRequestVar() instead of 
+	  HTTP_GET_VARS and move the return inside the fopen, so that 
+	  if it fails for any reason we don't return a blank page
+
 2004-08-16  Bharat Mediratta  <bharat@menalto.com>  1.4.5-cvs-b111
 
 	* Modified block-random.php to put the part that retrieves a 

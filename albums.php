@@ -25,7 +25,7 @@ require(dirname(__FILE__) . '/init.php');
 
 if (empty($gallery->session->username)) {
     /* Get the cached version if possible */
-    if (!$HTTP_GET_VARS['gallery_nocache']) {
+    if (!getRequestVar('gallery_nocache')) {
 	$cache_file = "cache.html";
 	$cache_now = time();
 	$cache_stat = @stat("cache.html");
@@ -35,11 +35,11 @@ if (empty($gallery->session->username)) {
 		    print fread($fp, 4096);
 		}
 		fclose($fp);
-	    }
 
-	    printf("<!-- From cache, created at %s -->",
-		   strftime("%D %T", $cache_stat[9]));
-	    return;
+		printf("<!-- From cache, created at %s -->",
+		    strftime("%D %T", $cache_stat[9]));
+		return;
+	    }
 	}
     }
 }
