@@ -460,7 +460,7 @@ function gallerySanityCheck() {
 	}
 
 	if (file_exists("setup") && is_readable("setup")) {
-		header("Location: setup/index.php");
+		include("errors/configmode.php");
 		exit;
 	}
 
