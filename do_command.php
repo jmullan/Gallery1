@@ -23,7 +23,7 @@
 <?php
 require(dirname(__FILE__) . '/init.php');
 
-list($index, $cmd, $return) = getRequestVar(array('index', 'cmd', 'return'));
+list($index, $cmd, $return, $parentName) = getRequestVar(array('index', 'cmd', 'return', 'parentName'));
 
 if (!strcmp($cmd, "remake-thumbnail")) {
         if ($gallery->user->canWriteToAlbum($gallery->album)) {

@@ -1088,7 +1088,28 @@ $constants = array_merge($constants,
 );
 
 $defaults = array(
-	"group1" => array (
+	"group_layout" => array (
+		"type" => 'group_start',
+		"name" => 'group_layout',
+		"default" => 'inline',
+		"title" => _("Layout")
+	),
+	"cols" => array(
+		"prompt" => _("Default Columns"),
+		"desc" => _("The default number of columns in an album."),
+		"value" => 3,
+		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9),
+	),
+	"rows" => array(
+		"prompt" => _("Default Rows"),
+		"desc" => _("The default number of rows in an album."),
+		"value" => 3,
+		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
+	),
+	"group_layout_end" => array (
+               	"type" => 'group_end',
+	),
+	"group_appearance" => array (
 		"type" => 'group_start',
 		"name" => 'group_appearance',
 		"default" => 'none',
@@ -1119,30 +1140,10 @@ $defaults = array(
 		"attrs" => array("size" => 10),
 		"type" => "text"
 	),
-	"group1_end" => array (
+	"group_appearance_end" => array (
 		"type" => 'group_end',
 	),
-	"group2" => array (
-		"type" => 'group_start',
-		"name" => 'group_layout',
-		"default" => 'inline',
-		"title" => _("Layout")
-	),
-	"cols" => array(
-		"prompt" => _("Default Columns"),
-		"desc" => _("The default number of columns in an album."),
-		"value" => 3,
-		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9),
-	),
-	"rows" => array(
-		"prompt" => _("Default Rows"),
-		"desc" => _("The default number of rows in an album."),
-		"value" => 3,
-		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
-	),
-	"group2_end" => array (
-               	"type" => 'group_end',
-	),
+
 	"group3" => array (
 		"type" => 'group_start',
 		"name" => 'group_display',
