@@ -34,6 +34,7 @@ $albumDB = new AlbumDB();
 
 if ($newName) {
 	$newName = str_replace("'", "", $newName);
+	$newName = str_replace("`", "", $newName);
 	$newName = strtr($newName, "\\/*?\"<>|& ", "----------");
 	$newName = ereg_replace("\-+", "-", $newName);
 	$newName = ereg_replace("\-+$", "", $newName);
