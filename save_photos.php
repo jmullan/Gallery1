@@ -24,29 +24,8 @@
 
 require(dirname(__FILE__) . '/init.php');
 
-list($userfile, $urls, $meta, $usercaption, $setCaption) = getRequestVar(array('userfile', 'urls', 'meta', 'usercaption','setCaption'));
+list($urls, $meta, $usercaption, $setCaption) = getRequestVar(array('urls', 'meta', 'usercaption','setCaption'));
 list($wmName, $wmAlign, $wmAlignX, $wmAlignY) = getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY'));
-
-/* Note from Jens Tkotz, 09.09.2004
-** This is really ugly code in my eyes.
-** It seems to be needed when register globals is off
-** The concept of using those arrays with those appendix should be changed.
-*/
-foreach (array('userfile', 'metafile') as $filekey) {
-	if (!empty($_FILES[$filekey])) {
-		foreach($_FILES[$filekey] as $key => $subkey) {
-			foreach($subkey as $value) {
-				if (!empty($value)) {
-					if ($key !='tmp_name') {
-						${$filekey ."_". $key}[] = $value;
-					} else {
-						${$filekey}[] = $value;
-					}
-				}
-			}
-		}
-	}
-}
 
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
@@ -54,9 +33,9 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
 
-if (!empty($userfile_name)) {
+if (!empty($_FILES['userfile']['name'])) {
 	$file_count = 0;
-	foreach ($userfile_name as $file) {
+	foreach ($_FILES['userfile']['name'] as $file) {
 		if ($file) {
 			$file_count++;
 		}
@@ -195,8 +174,8 @@ if (!empty($urls)) {
 		/* If this is an image or movie - add it to the processor array */
 		if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
 			/* Tack it onto userfile */
-			$userfile_name[] = $name;
-			$userfile[] = $file;
+			$_FILES['userfile']['name'][] = $name;
+			$_FILES['userfile']['tmp_name'][] = $file;
 		} else {
 			/* Slurp the file */
 			processingMsg(sprintf(_("Parsing %s for images..."),
@@ -283,9 +262,9 @@ if (isset($meta)) {
 		$image_info = array_merge($image_info, parse_csv(fs_export_filename($data),";"));
 	}
 }
-while (isset($metafile) && sizeof($metafile)) {
-	$name = array_shift($metafile_name);
-	$file = array_shift($metafile);
+while (isset($_FILES['metafile']['tmp_name']) && sizeof($_FILES['metafile']['tmp_name'])) {
+	$name = array_shift($_FILES['metafile']['name']);
+	$file = array_shift($_FILES['metafile']['tmp_name']);
 	$image_info = array_merge($image_info, parse_csv(fs_export_filename($file),";"));
 }
 if ($gallery->app->debug == "yes") {
@@ -312,9 +291,9 @@ if ($gallery->app->debug == "yes") {
 // $captionMetaFields will store the names (in order of priority to set caption to)
 $captionMetaFields = array("Caption", "Title", "Description", "Persons");
 
-while (isset($userfile) && sizeof($userfile)) {
-	$name = array_shift($userfile_name);
-	$file = array_shift($userfile);
+while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp_name'])) {
+	$name = array_shift($_FILES['userfile']['name']);
+	$file = array_shift($_FILES['userfile']['tmp_name']);
 	if (!empty($usercaption) && is_array($usercaption)) {
 	    $caption = removeTags(array_shift($usercaption));
 	} else {
