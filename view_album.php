@@ -334,7 +334,7 @@ if ($numPhotos) {
 		$i = $rowStart;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
-			echo("<td width=$imageCellWidth align=left valign=middle>");
+			echo("<td width=$imageCellWidth align=center valign=middle>");
 
 			//-- put some parameters for the wrap files in the global object ---
 			$gallery->html_wrap['borderColor'] = $bordercolor;
@@ -357,11 +357,7 @@ if ($numPhotos) {
 				$gallery->html_wrap['thumbTag'] = $myAlbum->getHighlightAsThumbnailTag();
 				$gallery->html_wrap['thumbHref'] = makeAlbumUrl($myAlbumName);
 				$higlightIndex = $myAlbum->getHighlight();
-				if ($myAlbum->getHighlight()) {
-				    list($iWidth, $iHeight) = $myAlbum->getThumbDimensions($myAlbum->getHighlight());
-				} else {
-				    list($iWidth, $iHeight) = array(150, 50);
-				}
+				list($iWidth, $iHeight) = array($gallery->album->fields['thumb_size'], 50);
 				$gallery->html_wrap['thumbWidth'] = $iWidth;
 				$gallery->html_wrap['thumbHeight'] = $iHeight;
 				includeHtmlWrap('inline_albumthumb.frame');
@@ -383,7 +379,13 @@ if ($numPhotos) {
 		$i = $rowStart;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
-			echo("<td width=$imageCellWidth valign=top align=left>");
+			
+			if ($gallery->album->isAlbumName($i)) {
+			    $iWidth = $gallery->album->fields['thumb_size'];
+			} else {
+			    list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i);
+			}
+			echo("<td width=$imageCellWidth valign=top align=center>");
 
 			// put form outside caption to compress lines
 
@@ -399,7 +401,7 @@ if ($numPhotos) {
 				echo makeFormIntro("view_album.php", array("name" => "image_form_$i")); 
 			}
 
-			echo "<span class=\"caption\">";
+			echo "<table width=$iWidth border=0 cellpadding=0 cellspacing=4><tr><td><span class=\"caption\">";
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isHidden($i)) {
 				echo "(hidden)<br>";
@@ -437,7 +439,7 @@ if ($numPhotos) {
 					echo("Viewed: ".pluralize($gallery->album->getItemClicks($i), "time", "0").".<br>");
 				}
 			}
-			echo "</span>";
+			echo "</span></td></tr></table>";
 
 			if ($showAdminForm) {
 				if ($gallery->album->isMovie($id)) {
