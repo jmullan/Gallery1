@@ -131,9 +131,12 @@ function acceptableFormat($tag) {
 }
 
 function acceptableFormatRegexp() {
-	return "(jpg|jpeg|gif|png|mpg|avi|wmv|mov)";
+	return "(" . array_join("|", formatList()) . ")";
 }
 
+function acceptableFormatList() {
+	return array("jpg", "gif", "png", "avi", "mpg", "wmv", "mov");
+}
 
 function isImage($tag) {
 	global $gallery; 
