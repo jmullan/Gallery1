@@ -36,7 +36,7 @@ if ($prev <= 0) {
  *  so recalculate the 'page' variable
  */
 $perPage = $rows * $cols;
-$page = ceil(($index + 1) / ($rows * $cols));
+$page = ceil($index / ($rows * $cols));
 
 if ($album->fields["background"]) {
         $bodyAttrs .= "background={$album->fields[background]}";
