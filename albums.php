@@ -44,7 +44,7 @@ $borderColor = $gallery->app->default["bordercolor"];
 
 $navigator["page"] = $gallery->session->albumListPage;
 $navigator["pageVar"] = "set_albumListPage";
-$navigator["url"] = makeGalleryUrl("");
+$navigator["url"] = makeGalleryUrl("albums.php");
 $navigator["maxPages"] = $maxPages;
 $navigator["spread"] = 6;
 $navigator["fullWidth"] = 100;
@@ -71,7 +71,7 @@ includeHtmlWrap("gallery.header");
 if (!strcmp($gallery->app->default["showSearchEngine"], "yes")) {
 ?>
 <table width=100% border=0 cellspacing=0>
-<tr><?= makeSearchFormIntro(); ?>
+<tr><?= makeFormIntro("search.php"); ?>
 <td valign="middle" align="right">
 <span class="admin"> Search: </span>
 <input style="font-size=10px;" type="text" name="searchstring" value="" size="25">
@@ -98,22 +98,31 @@ if ($gallery->user->isLoggedIn()) {
 }
 
 if ($gallery->user->canCreateAlbums()) { 
-	$adminCommands .= "<a href=" . doCommand("new-album", "", "view_album.php") . ">[new album]</a>&nbsp;";
+	$adminCommands .= "<a href=" . doCommand("new-album", array(), "view_album.php") . ">[new album]</a>&nbsp;";
 }
 
 if ($gallery->user->isAdmin()) {
-	$adminCommands .= '<a href="#" onClick="'.popup("manage_users.php").'">[manage users]</a>&nbsp;';
+	if ($gallery->userDB->canModifyUser() ||
+	    $gallery->userDB->canCreateUser() ||
+	    $gallery->userDB->canDeleteUser()) {
+		$adminCommands .= '<a href="#" onClick="'.popup("manage_users.php").'">[manage users]</a>&nbsp;';
+	}
 }
 
 if ($gallery->user->isLoggedIn()) {
-	$adminCommands .= '<a href="#" onClick="'.popup("user_preferences.php").'">[preferences]</a>&nbsp;';
-	$adminCommands .= "<a href=". doCommand("logout", "", "albums.php"). ">[logout]</a>";
+	if ($gallery->userDB->canModifyUser()) {
+		$adminCommands .= '<a href="#" onClick="'.popup("user_preferences.php").'">[preferences]</a>&nbsp;';
+	}
+	
+	if (!$GALLERY_EMBEDDED_INSIDE) {
+		$adminCommands .= "<a href=". doCommand("logout", array(), "albums.php"). ">[logout]</a>";
+	}
 } else {
-	$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[login]</a>';
+	if (!$GALLERY_EMBEDDED_INSIDE) {
+		$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[login]</a>';
+	}
 }
-/*
-$adminCommands .= '<a href="#" onClick="'.popup_help("commands", "gallery").'"><img src="images/question_mark.gif" border=0></a>';
-*/
+
 $adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands;
@@ -131,7 +140,6 @@ include($GALLERY_BASEDIR . "layout/navigator.inc");
 <!-- album table begin -->
 <table width=100% border=0 cellspacing=7>
 
-
 <?
 $start = ($gallery->session->albumListPage - 1) * $perPage + 1;
 $end = min($start + $perPage - 1, $numAlbums);
@@ -141,7 +149,7 @@ for ($i = $start; $i <= $end; $i++) {
 	if($isRoot) {
 		$owner = $gallery->album->getOwner();
         	$tmpAlbumName = $gallery->album->fields["name"];
-        	$albumURL = makeGalleryUrl($tmpAlbumName);
+        	$albumURL = makeAlbumUrl($tmpAlbumName);
 ?>     
 
   <!-- Begin Album Column Block -->
@@ -195,7 +203,7 @@ for ($i = $start; $i <= $end; $i++) {
    </span>
 
   <br>
-  url: <a href=<?=$albumURL?>><?=$albumURL?></a>
+  url: <a href=<?=$albumURL?>><?=breakString($albumURL, 60, '&', 5)?></a>
    <? if (ereg("album[[:digit:]]+$", $albumURL)) { ?>
 	<br>
         <span class="error">
@@ -225,7 +233,7 @@ if (!($gallery->album->fields["display_clicks"] == "no")) {
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	$albumName=$gallery->album->fields["name"];
 ?>
-<a href="#" onClick="<?=popup("do_command.php?cmd=reset-album-clicks&albumName=$albumName&return=albums.php")?>">[reset counter]</a>
+<a href="#" onClick="<?=popup("'" . doCommand("reset-album-clicks", array("albumName" => $albumName), "albums.php") . "'" , 1)?>">[reset counter]</a>
 <?
 }
 ?>
