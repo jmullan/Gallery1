@@ -51,12 +51,12 @@ doctype();
 <?php  
         includeHtmlWrap("gallery.header");
 ?>
-<span class="admin"> [<a href=".."><?php print _("gallery") ?> </a>] </span>
+<span class="admin"> [<a href="<?php print makeGalleryUrl('albums.php'); ?>"><?php print _("gallery") ?> </a>] </span>
 <p align="center" class="popuphead"><H1><?php echo _("Find and remove comment spam") ?></H1></p>
 
 <?php
 offerOptions();
-switch($_REQUEST['mode']) {
+switch($_REQUEST['g1_mode']) {
 case 'deleteComments':
     deleteComments();
     break;
@@ -137,14 +137,16 @@ function findBlacklistedComments() {
 		    'photos' => 0,
 		    'comments' => 0);
     foreach ($albumDB->albumList as $album) {
-	$totals['albums']++;
 	set_time_limit(30);
+	$totals['albums']++;
 	$numPhotos = $album->numPhotos(1);
 	for ($i = 1; $i <= $numPhotos; $i++) {
+	    set_time_limit(30);
 	    $photo = $album->getPhoto($i);
 	    $numComments = $album->numComments($i);
 	    if ($numComments > 0) {
 		for ($j = 1; $j <= $numComments; $j++) {
+		    set_time_limit(30);
 		    $comment = $album->getComment($i, $j);
 		    $totalComments++;
 		    if (isBlacklistedComment($comment)) {
@@ -198,7 +200,7 @@ function findBlacklistedComments() {
 	    print "</td>";
 	    print "</tr>";
 	}
-	print("<input type=\"hidden\" name=\"mode\" value=\"deleteComments\"/>");
+	print("<input type=\"hidden\" name=\"g1_mode\" value=\"deleteComments\"/>");
 	print "</table>";
 	printf("<input type=\"submit\" value=\"%s\"/>", _("Delete Checked Comments"));
 	print "</form>";
@@ -334,7 +336,7 @@ function viewBlacklist() {
 	    print "</tr>\n";
 	}
 	print "</table>";
-	print("<input type=\"hidden\" name=\"mode\" value=\"editBlacklist\"/>");
+	print("<input type=\"hidden\" name=\"g1_mode\" value=\"editBlacklist\"/>");
 	printf("<input type=\"submit\" value=\"%s\"/>", _("Update Blacklist"));
 	print "</form>";
     }
@@ -351,7 +353,7 @@ function showAddBox() {
     print _("You can just cut and paste these blacklists into the text box, or add new entries of your own.");
     print "<textarea rows=\"10\" cols=\"80\" name=\"newBlacklistEntries\"></textarea>";
     print "<br />";
-    print("<input type=\"hidden\" name=\"mode\" value=\"updateBlacklist\"/>");
+    print("<input type=\"hidden\" name=\"g1_mode\" value=\"updateBlacklist\"/>");
     printf("<input type=\"submit\" value=\"%s\"/>", _("Update Blacklist"));
     print "</form>";
 }
@@ -384,7 +386,9 @@ function offerOptions() {
 		   "addBlacklistEntries" => _("Add blacklist entries"),
 		   )
 	     as $key => $text) {
-	printf("<li> <a href=\"?mode=%s\">%s</a> </li>", $key, $text);
+	printf("<li> <a href=\"%s\">%s</a> </li>",
+	       makeGalleryUrl('tools/despam-comments.php', array('g1_mode' => $key)),
+	       $text);
     }
     print "</ol>";
 }

@@ -65,30 +65,34 @@ if ($rebuild) {
 	readCache();
 }
 
-$album = chooseAlbum();
+doPhoto();
 
-if (!empty($album)) {
-	$index = choosePhoto($album);
-}
+function doPhoto() {
+	$album = chooseAlbum();
 
-if (!empty($index)) {
-	$id = $album->getPhotoId($index);
-	echo ""
-		. "<center><a href=\"" . makeAlbumUrl($album->fields["name"], $id) . "\">"
-		. $album->getThumbnailTag($index)
-		. "</a></center>";
-
-	$caption = $album->getCaption($index);
-	if ($caption) {
-		echo "<br><center>$caption</center>";
+	if (!empty($album)) {
+		$index = choosePhoto($album);
 	}
 
-	echo "<br><center>From: "
-		."<a href=\"" .makeAlbumUrl($album->fields["name"]) ."\">"
-		.$album->fields["title"]
-		."</a></center>";
-} else {
-	print "<center>No photo chosen.</center>";
+	if (!empty($index)) {
+		$id = $album->getPhotoId($index);
+		echo ""
+			. "<center><a href=\"" . makeAlbumUrl($album->fields["name"], $id) . "\">"
+			. $album->getThumbnailTag($index)
+			. "</a></center>";
+
+		$caption = $album->getCaption($index);
+		if ($caption) {
+			echo "<br><center>$caption</center>";
+		}
+
+		echo "<br><center>From: "
+			."<a href=\"" .makeAlbumUrl($album->fields["name"]) ."\">"
+			.$album->fields["title"]
+			."</a></center>";
+	} else {
+		print "<center>No photo chosen.</center>";
+	}
 }
 
 /*
