@@ -866,7 +866,7 @@ function _getStyleSheetLink($filename, $skinname='') {
 	} elseif (stristr($HTTP_SERVER_VARS['REQUEST_URI'],"setup")) {
 		$base = "..";
 	} else {
-		$base = ".";
+		$base = $GALLERY_BASEDIR;
 	}
 
 	if (fs_file_exists($sheetdomainpath) && !broken_link($sheetdomainpath)) {
@@ -883,9 +883,7 @@ function _getStyleSheetLink($filename, $skinname='') {
 	    }
 	}
 
-	return '  <link rel="stylesheet" type="text/css" href="' .
-		$url .
-		'">';
+	return '  <link rel="stylesheet" type="text/css" href="' .$url . '">';
 }
 
 function pluralize_n($amt, $one, $more, $none) {
@@ -1046,21 +1044,29 @@ function makeFormIntro($target, $attrList=array()) {
 function makeGalleryUrl($target, $args=array()) {
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
+	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $GALLERY_MODULENAME;
 
-	if(stristr($GALLERY_EMBEDDED_INSIDE,"nuke")) {
-			$args["op"] = "modload";
-			$args["name"] = "$GALLERY_MODULENAME";
-			$args["file"] = "index";
+	if( isset($GALLERY_EMBEDDED_INSIDE)) {
+                switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
+	                case 'phpBB2':
+        	        case 'phpnuke':
+                	case 'postnuke':
+				$args["op"] = "modload";
+				$args["name"] = "$GALLERY_MODULENAME";
+				$args["file"] = "index";
 
-			/*
-			 * include *must* be last so that the JavaScript code in 
-			 * view_album.php can append a filename to the resulting URL.
-			 */
-			$args["include"] = $target;
-			$target = "modules.php";
-	} else {
-			$target = $gallery->app->photoAlbumURL . "/" . $target;
+				/*
+				 * include *must* be last so that the JavaScript code in 
+				 * view_album.php can append a filename to the resulting URL.
+				 */
+				$args["include"] = $target;
+				$target = "modules.php";
+			break;
+			
+			default:
+				$target = $gallery->app->photoAlbumURL . "/" . $target;
+		}
 	}
 
 	$url = $target;

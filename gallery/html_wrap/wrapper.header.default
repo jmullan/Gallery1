@@ -9,57 +9,86 @@ global $GALLERY_EMBEDDED_INSIDE_TYPE;
 if(isset($GALLERY_EMBEDDED_INSIDE)) {
 	global $PHP_SELF;
 
-	if (($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke' && !defined("LOADED_AS_MODULE")) ||
-		($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnuke' && !eregi("modules.php", $PHP_SELF))) {
+	if (
+		($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke' && !defined("LOADED_AS_MODULE")) ||
+		($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnuke' && !eregi("modules.php", $PHP_SELF)) ||
+		($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2' && !defined("LOADED_AS_MODULE"))
+	) {
 			die ("You can't access this file directly...");
 	}
 
 
-	/*
-	 * Nuke owns the <head> tag and doesn't share.  So, if we want to get our
-	 * style sheet in place we've got to intercept Nuke's header and modify it 
-	 * to insert a few lines of our own in place.  We could speed this process 
-	 * up greatly if we cached the results and saved it somewhere handy (like
-	 * the session) but then we'd be vulnerable to attack by somebody who has
-	 * write permissions in the directory that the session files live.  They
-	 * could create a bogus session file, set that ID into their cookie and 
-	 * then pass their own code into our eval() below.
-	 */
-	$header = "";
-	if ($fd = fopen("header.php", "r")) {
-		while (!feof($fd)) {
-			$line = fgets($fd, 1024);
-			$line = str_replace('<?php', '', $line);
-			$line = str_replace(' ?>', '', $line);
-			$header .= $line;
-			if (strstr($line, "<head")) {
-				$links = getStyleSheetLink();
-				$links = str_replace('"', '\"', $links);
-				$header .= 'echo "' . $links . '\n";' . "\n";
+	switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
+
+	case 'phpnuke':
+	case 'postnuke':
+
+		/*
+		 * Nuke owns the <head> tag and doesn't share.  So, if we want to get our
+		 * style sheet in place we've got to intercept Nuke's header and modify it 
+		 * to insert a few lines of our own in place.  We could speed this process 
+		 * up greatly if we cached the results and saved it somewhere handy (like
+		 * the session) but then we'd be vulnerable to attack by somebody who has
+		 * write permissions in the directory that the session files live.  They
+		 * could create a bogus session file, set that ID into their cookie and 
+		 * then pass their own code into our eval() below.
+		 */
+		$header = "";
+		if ($fd = fopen("header.php", "r")) {
+			while (!feof($fd)) {
+				$line = fgets($fd, 1024);
+				$line = str_replace('<?php', '', $line);
+				$line = str_replace(' ?>', '', $line);
+				$header .= $line;
+				if (strstr($line, "<head")) {
+					$links = getStyleSheetLink();
+					$links = str_replace('"', '\"', $links);
+					$header .= 'echo "' . $links . '\n";' . "\n";
+				}
 			}
 		}
+
+		/*
+		 * We can control whether we see the right side blocks
+		 * by setting the value of the $index variable.  To
+		 * see the blocks, set $index to 1.  To hide them set
+		 * $index to 0.  We default to 0 to leave more room for
+		 * the photos.  If you change this value, you should
+		 * also change it in wrapper.footer
+		 *
+		 * Note that we save the current value of $index in
+		 * $tmp_index and restore it when we're done.  If we
+		 * don't do this, navigation won't work!
+		 */
+		global $index;
+		$tmp_index = $index;
+		$index = 0;
+
+		eval($header);
+
+		OpenTable();
+
+		$index = $tmp_index;
+	break;
+
+	case 'phpBB2':
+		/*
+		 * PhpBB2 uses a templating system and also owns the HEAD tags. The 
+		 * easiest way at the moment to tackle this issue is therefore to 
+		 * simply make sure we don't call this function if phpBB2 is being used
+		 * and put the style sheet link into the template manually
+		 */
+		
+		global  $phpbb_root_path, $template, $db, $theme, $lang, $board_config, $phpEx, 
+			$userdata, $u_login_logout, $s_privmsg_new, $l_privmsgs_text_unread,
+			$l_privmsgs_text, $page_title, $s_last_visit, $l_online_users, 
+			$nav_links_html;
+			
+		// Sort out the page title
+		$page_title .= $gallery->app->galleryTitle;
+
+		include ($phpbb_root_path . "includes/page_header.php");
+	break;
 	}
-
-	/*
-	 * We can control whether we see the right side blocks
-	 * by setting the value of the $index variable.  To
-	 * see the blocks, set $index to 1.  To hide them set
-	 * $index to 0.  We default to 0 to leave more room for
-	 * the photos.  If you change this value, you should
-	 * also change it in wrapper.footer
-	 *
-	 * Note that we save the current value of $index in
-	 * $tmp_index and restore it when we're done.  If we
-	 * don't do this, navigation won't work!
-	 */
-	global $index;
-	$tmp_index = $index;
-	$index = 0;
-
-	eval($header);
-
-	OpenTable();
-
-	$index = $tmp_index;
 }
 ?>
