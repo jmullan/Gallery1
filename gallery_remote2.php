@@ -54,7 +54,9 @@ header("Content-type: text/plain");
 /*
  * Start buffering output
  */
-@ob_start();
+if($gallery->app->debug == "no") {
+	@ob_start();
+}
 
 /*
  * Gallery remote protocol version 2.10
