@@ -196,7 +196,7 @@ class Album {
 			$func .= "\$arrayTimeB = \$objB->getItemCaptureDate(); ";
 			$func .= "\$timeA = \"\$arrayTimeA[year]\$arrayTimeA[mon]\$arrayTimeA[mday]\$arrayTimeA[hours]\$arrayTimeA[minutes]\$arrayTimeA[seconds]\";";
 			$func .= "\$timeB = \"\$arrayTimeB[year]\$arrayTimeB[mon]\$arrayTimeB[mday]\$arrayTimeB[hours]\$arrayTimeB[minutes]\$arrayTimeB[seconds]\";";
-			$func .= "print \"\$timeA \$timeB<br>\";";
+			//$func .= "print \"\$timeA \$timeB<br>\";";
 			$func .= "if (\$timeA == \$timeB) return 0; ";
 			if (!$order) {
 				$func .= "if (\$timeA < \$timeB) return -1; else return 1;";
