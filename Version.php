@@ -45,7 +45,7 @@ $gallery->last_change=strtotime(substr('$Date$', 7, -1));
 $modversion['name'] = 'Gallery'; // Module name
 $modversion['version'] = $gallery->version; // Version Number
 $modversion['description'] = 'Photo and Movie gallery'; // Module Description
-$modversion['credits'] = ''; // Credits File
+$modversion['credits'] = 'AUTHORS'; // Credits File
 $modversion['help'] = 'README'; // Help File
 $modversion['changelog'] = 'ChangeLog'; //Change Log File
 $modversion['license'] = 'LICENSE.txt'; // License File
@@ -54,7 +54,7 @@ $modversion['author'] = 'Bharat Mediratta'; // Author
 $modversion['contact'] = $gallery->url; // The Authors Website or Contact Email Address
 $modversion['admin'] = 0; // Leave at 0
 if (!isset($modname) && isset($name)) {
-    $modname = $name;
+	$modname = $name;
 } else {
 	$modname = '';
 }
