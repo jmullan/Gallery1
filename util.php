@@ -946,21 +946,21 @@ function makeAlbumUrl($albumName="", $photoId="", $args=array()) {
 
 	if (!$GALLERY_EMBEDDED_INSIDE && $gallery->app->feature["rewrite"]) {
 		if ($albumName) {
-			$target = "$albumName";
+			$target = urlencode ($albumName);
 
 			// Can't have photo without album
 			if ($photoId) {
-				$target .= "/$photoId";
+				$target .= "/".urlencode ($photoId);
 			} 
 		} else {
 			$target = "albums.php";
 		}
 	} else {
 		if ($albumName) {
-			$args["set_albumName"] = "$albumName";
+			$args["set_albumName"] = urlencode ($albumName);
 			if ($photoId) {
 				$target = "view_photo.php";
-				$args["id"] = "$photoId";
+				$args["id"] = urlencode ($photoId);
 			} else {
 				$target = "view_album.php";
 			}

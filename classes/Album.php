@@ -805,7 +805,7 @@ class Album {
 			return $this->transient->mirrorUrl;
 		}
 
-		$albumPath = "/{$this->fields['name']}";
+		$albumPath = "/".urlencode ($this->fields['name']);
 
 		/* 
 		 * Highlights are typically shown for many albums at once,

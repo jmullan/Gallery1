@@ -149,7 +149,7 @@ class Image {
 		global $gallery;
 
 		$name = $this->getName($dir);
-		
+
 		$attrs .= " border=0";
 		if ($size) {
 			if ($this->width > $this->height) {
