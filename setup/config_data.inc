@@ -45,12 +45,10 @@ $checklist = array(
 	     	"func" => "check_gallery_version"
 	),
 	"php" => array(
-		"desc" => _("Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP 4.0.0 uses a different file upload protocol, and versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can. <p>") .
-			_("Gallery can be viewed in multiple languages. To use Gallery in languages other than English, PHP 4.1 or newer is required."),
+		"desc" => _("Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP 4.0.0 uses a different file upload protocol, and versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can. <p>") ,
 	     	"func" => "check_php",
 		"fail-too-old" => sprintf(_("You're running PHP version %s.  You need to upgrade to PHP %s."), phpversion(), $MIN_PHP_MAJOR_VERSION),
 		"fail-incompatible" => sprintf(_("You're running PHP version %s which has known bugs that cause Gallery to fail."),  phpversion()),
-		"warn-too-old-ml" => sprintf(_("You're running version %s.  You need to upgrade to at least PHP 4.1 if you want to use Gallery in languages other than English.") ,phpversion())
 	),
 	"safe_mode" => array(
 		"desc" => _("Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."),
@@ -333,9 +331,9 @@ $constants =  array_merge(
 	),
 	"skinname" => array(
 		"prompt" => _("Skin Name"),
-		"desc" => _("Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your gallery.  You can have fun experimenting with the available skins. Choose &quot;default&quot; to use the look from v1.4.") . available_skins(true).newIn("1.4.1"),
+		"desc" => _("Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4.") . available_skins(true).newIn("1.4.1"),
 		"choices" => available_skins(),
-		"value" => "default"
+		"value" => "none"
 	),
 	"gallery_thumb_frame_style" => array(
 		"prompt" => "Frame around albums",

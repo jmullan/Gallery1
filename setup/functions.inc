@@ -314,7 +314,6 @@ function check_php()
 	global $MIN_PHP_MAJOR_VERSION;
 
 	$version = phpversion();
-        $version_ml = explode(".", $version);
 	$success = array();
 	$fail = array();
 	$warn = array();
@@ -327,8 +326,6 @@ function check_php()
 		$fail["fail-incompatible"] = 1;
 	} else if (!strncmp($version, "4.0.3", 5)) {
 		$fail["fail-incompatible"] = 1;
-        } elseif ($version_ml[0] == 4 && $version_ml[1] < 1) {
-		$warn["warn-too-old-ml"] = 1;
         } else {
 		$success[] = sprintf(_("PHP v%s is OK."), phpversion());
 	}
