@@ -123,7 +123,8 @@ $checklist = array(
 		"func" => "check_jpegtran",
 		"fail-jpegtran" => sprintf(_("I can't find jpegtran.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jpegtran by hand on the following page.  If it's not installed, you can install it yourself.  jpegtran is a freely distributable tool distributed by the Independent JPEG Group as part of libjpeg.  Source may be found at %sthe IJG homepage%s.  Binaries may be found at %sthe JPEG club website%s or in the libjpeg package of Linux distributions."),
 			'<a href="http://www.ijg.org">', '</a>',
-			'<a href="http://jpegclub.org/">', '</a>'),
+			'<a href="http://jpegclub.org/">', '</a>'). 
+			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
 		"open-basedir-note" => $common_messages["open-basedir-active"],
 	),	
 	"gettext" => array (
@@ -258,8 +259,7 @@ $constants = array_merge(
 		"prompt" => "Jpegtran",
 		"desc" => sprintf(_("The filesystem path to the 'jpegtran' utility.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."), 
 			'<i>/usr/local/bin/jpegtran</i>', 
-			'<i>c:\\bin\\jpegtran.exe</i>') .
-			"<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
+			'<i>c:\\bin\\jpegtran.exe</i>'),
 		"value" => locateFile("jpegtran"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
@@ -355,17 +355,24 @@ $constants = array_merge(
 		"choices" => array(
 				1 => "1: " . _("Gallery is only displayed in one language"), 
 				2 => "2: " . _("Gallery is displayed in the language the browser sends"), 
-				3 => "3: " . _("The User can choose the language via select Box.")),
+				3 => "3: " . _("The User can choose the language via select box or flags.")),
 		"value" => (sizeof(gallery_languages()) > 1) ? 3 : 1
 	),
 	"available_lang" => array(
 		"prompt" => _("Available languages in mode 3 and user preferences"), 
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
-		"desc" => _("These languages will be available as user choices in a drop down menu, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3.") .
+		"desc" => _("These languages will be available as user choices in a drop down menu or flags, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3.") .
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
 		"multiple_choices" => gallery_languages(),
 		"value" => array_keys(gallery_languages())
+	),
+	"show_flags" => array(
+		"prompt" => _("Show flags?"),
+		"desc" => _("In Mode 3 you can choose if you want to display a small pulldown menu or flags for the available languages. Set to <b>no</b> per default as its only an eye catcher.") .
+			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>",
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no"
 	),
 	"cacheExif" => array(
 		"prompt" => "<b>(" . _("Advanced") . ")</b> ". _("Cache EXIF data"),
@@ -373,6 +380,7 @@ $constants = array_merge(
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 	),
+
 	"jpegImageQuality" => array(
 		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("JPEG Quality"),
 		"desc" => _("The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."),
