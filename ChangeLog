@@ -1,3 +1,20 @@
+2003-09-24  Jens Tkotz <jens@peino.de> 1.4.1-cvs-b94
+
+	* Modified code around locale alias
+	  - Changed behaviour for "optional" back to behaviour <= 1.4.1-cvs-b80
+	  - Improved locales alias handling for:
+		o Systems without gettext
+		o Systems where we cant detect system locales
+		o Systems where are some system locales missing, some not
+	  - Added "remove_empty" and "allow_empty" for constants
+	  - removed function test_locale() from setup/functions.inc
+
+	* Added function gettext_installed() in util.php which returns true or false
+
+	* Use "allow_empty" for slideshow length
+
+	* Fixed somes typos
+
 2003-09-24 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b93
 
 	* Set border="0" for images in frame, so they do not get highlighted.

@@ -565,31 +565,37 @@ function check_absent_locales()
 	$success = array();
 	$warn = array();
 
-	$locales=$locale_check;
+	$available=$locale_check["available_locales"];
+	$maybe=$locale_check["maybe_locales"];
+	$unavailable=$locale_check["unavailable_locales"];
+	$useable=sizeof($available)+sizeof($maybe) ;
 
-	if($locales != NULL && sizeof($locales["unavailable_locales"]) ==0) {
+	if($locale_check != NULL && sizeof($unavailable) ==0) {
 		$success[] = _("All gallery locales are available on this host");
-	} else if(sizeof($locales["available_locales"]) == 0) {
+	} else if($maybe+$unavailable >0) {
+		if ($maybe >0) {
+			$msg = sprintf(_("There are %d locales where Gallery was able to identify them correct. You need to choose manually the correct value."),sizeof($maybe));
+		}
+
+		if ($unavailable >0) {
+			if(isset($maybe)) $msg.="<p></p>";
+
+			$msg .= sprintf(_("Dates in %d languages may not be formatted properly, because the corresponding locales are missing. But you can choose another locale for those."),sizeof($unavailable));
+		}
+		$fail[] = $msg;
+	} else {
 		if (ini_get('open_basedir') && getOS() != OS_LINUX) {
 			$fail[] = sprintf(_("We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."),
 				'<a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir">open_basedir</a>');
-	    } else {
+		} else {
 			if (getOS() == OS_LINUX) {
 				$fail[] = sprintf(_("We were unable to detect any system locales. Multilanguage functions will be disabled. Please install the corresponding locales or ask your Provider to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s"),"Debian", '<a href="http://people.debian.org/~schultmc/locales.html">', "</a>");
 			} else {
 				$fail[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
-	    }
+			}
 		}
-	} else {
-		$msg = _("Dates in these languages may not be formatted properly, because the corresponding locales are missing:") . "<br>";
-		$nls=getNLS();
-		foreach ($locales["unavailable_locales"] as $value) {
-			$msg .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-			$msg .= $nls['language'][$value];
-			$msg .= " ($value)<br>";
-		}
-		$fail[] = $msg;
 	}
+	
 	return array($success, $fail, $warn);
 }
 
@@ -606,12 +612,6 @@ function gallery_languages() {
 	return $locales;
 }
 
-function test_locale($locale) {
-	if (setlocale(LC_ALL, $locale === 'null' ? '' : $locale)) {
-		return true;
-	}
-	return false;
-}
 function check_locale() {
 	$nls=getNLS();
 	$gallery_languages=gallery_languages();
@@ -652,7 +652,7 @@ function check_locale() {
 		$aliases=array();
 		
 		/* Found an supported one, put it in availables */
-		if ( (in_array($locale, $system_locales)) || (setlocale(LC_ALL, $locale === 'null' ? '' : $locale))) {
+		if ( (in_array($locale, $system_locales)) || (setlocale(LC_ALL, $locale))) {
 			$available_locales[$locale]=$locale;
 			continue;
 		}
@@ -680,7 +680,7 @@ function check_locale() {
 
 		if ($aliases) {
 			foreach ($aliases as $test) {
-				if (setlocale(LC_ALL,$test === 'null' ? '' : $test)) {
+				if (setlocale(LC_ALL,$test)) {
 					$maybe_locales[$locale][]=$test;
 				}
 			}
@@ -710,12 +710,15 @@ function config_maybe_locales() {
 	$maybe=$locales["maybe_locales"];
 	$unavailable=$locales["unavailable_locales"];
 
+	// If we are in Linux, our PHP has gettext, 
+	// but we could not find any locale we skip the whole aliasing part.
 	if($locales == NULL) return;
 
 	$nls=getNLS();
 
 	$block_start_done=false;
 	
+	$nr=0;
         foreach ($maybe as $key => $aliases) {
 		if (sizeof($aliases) < 1) {
 			$unavailable[]=$key;
@@ -730,12 +733,16 @@ function config_maybe_locales() {
 					);
 			continue;
 		}
+		$nr++;
 		if (!$block_start_done) {
 			$block_start_done=true;
 			$results[] = array (
 					"type" => "block_start", 
 					"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Locale Selection required")),
-					"desc" => _("There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable"));
+					"desc" => _("There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
+					"<p></p>" .
+					_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
+					);
 		}
 		$index = $nls['language'][$key] ;
 		$choices=array();
@@ -743,13 +750,15 @@ function config_maybe_locales() {
 			$choices[$value]=$value;
 		}
 		$results["locale_alias['$key']"] = array (
-			"prompt" => $nls['language'][$key],
+			"prompt" => $nr .".) ". $nls['language'][$key],
 			"optional" => 1,
 			"name" => "locale_alias",
 			"key" => $key,
 			"type" => "block_element",
 			"choices" => $choices,
-			"value" => current($choices));
+			"value" => current($choices),
+			"remove_empty" => true
+			);
 
 			
         }
@@ -757,46 +766,69 @@ function config_maybe_locales() {
 		$results[] = array ("type" => "block_end");
 	}
 	$block_start_done=false;
+
 	$choices=array();
+	if (sizeof($available) > 0) {
 	foreach ($available as $choice => $value) { 
 		$choices[$choice]=$nls['language'][$value];
 	}
 
 	$avail_keys=array_keys($available);
+	} elseif (sizeof($maybe) > 0) {
+		if (getOS() != OS_LINUX) $choices=array("" => _("System locale"));
+		foreach ($maybe as $key => $aliases) {
+			foreach ($aliases as $choice) {
+				$choices[$choice]=$choice;
+			}
+		}
+
+		$avail_keys=array_keys($choices);
+	} else {
+		if (getOS() != OS_LINUX) {
+			$choices=array("" => _("System locale"));
+			$array_keys=$choices;
+		} else {
+			$skip=true;
+		}
+	}
+	
+	if (! isset ($skip)) {
         foreach ($unavailable as $key) {
-		if (sizeof($available) <= 1) {
-		        $value = !empty($avail_keys[0]) ? $avail_keys[0] : 'null';
+				if (sizeof($choices) == 1) {
 			$results["locale_alias['$key']"] = array (
 				"type" => "hidden", 
-				"value" => $value,
+					"value" => $avail_keys[0],
 				"desc" => "locale_alias[$key]",
 				"prompt" => "locale_alias[$key]"
 					);
 			continue;
 		}
+
 		if (!$block_start_done) {
 			$block_start_done=true;
 			$results[] = array (
 					"type" => "block_start", 
 					"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Locale problems")),
-					"desc" => _("There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."));
+						"desc" => _("There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
+							"<p></p>" .
+							_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
+							);
 		}
 		$index = $nls['language'][$key] ;
 		$results["locale_alias['$key']"] = array (
 			"prompt" => $nls['language'][$key],
-			"optional" => 1,
 			"name" => "locale_alias",
 			"key" => $key,
 			"type" => "block_element",
 			"choices" => $choices,
-			"value" => current($choices));
-
-			
+				"value" => "",
+				"allow_empty" => true
+				);
         }
 	if ($block_start_done) {
 		$results[] = array ("type" => "block_end");
 	}
-
+	}
 
 	return $results;
 }

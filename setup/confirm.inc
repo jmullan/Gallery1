@@ -117,7 +117,16 @@ foreach ($constants as $key => $val) {
 		$graphtool = $real;
 	}
 	
-	if ($real === '') {
+	if ($real === "") {
+		if (isset($constants[$key]["remove_empty"])) {
+			continue;
+		}
+		if (isset($constants[$key]["allow_empty"])) {
+			$line = one_constant($key, $real);
+			$data .= $line;
+			$view .= row_wrap($line);
+			continue;
+		}
 		if (!strcmp($key, "pnmDir")) {
 		        $graphtest['pnmDir'] = 1;
 		}

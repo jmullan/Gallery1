@@ -2383,7 +2383,7 @@ function initLanguage() {
 	putenv("LANGUAGE=". $gallery->language);
 
 	// Set Locale
-	setlocale(LC_ALL,$gallery->locale === 'null' ? '' : $gallery->locale);
+	setlocale(LC_ALL,$gallery->locale);
 
 	// Set Charset
 	// Only when we're not in nuke, because headers might be sent already.
@@ -2769,5 +2769,14 @@ Gallery @ %s Administrator.");
 		return $gallery->app->emailGreeting;
 	}
 
+}
+
+function gettext_installed() {
+	if (in_array("gettext", get_loaded_extensions()) && function_exists('gettext')) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 ?>

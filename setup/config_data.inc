@@ -432,7 +432,7 @@ $constants =  array_merge(
 	),
 	"show_flags" => array(
 		"prompt" => _("Show flags?"),
-		"desc" => _("In Mode 3 you can choose to display flags instead of a small pulldown menua small pulldown menu for the available languages.") .
+		"desc" => _("In Mode 3 you can choose to display flags instead of a small pulldown menu for the available languages.") .
 			newIn("1.4.1"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
@@ -576,7 +576,8 @@ $constants = array_merge($constants,
 			newIn("1.4.1"),
 		"type" => "text",
 		"value" => "20",
-		"attrs" => array("size" => 5)
+		"attrs" => array("size" => 5),
+		"allow_empty" => true
 	),
        	"separator_comments" => array (
 		       	"type" => "separator",
@@ -892,7 +893,7 @@ $defaults = array(
 			), 
 	"poll_num_results" => array(
 		"prompt" => _("Number of results displayed"),
-		"desc" => sprintf(_("If %s is %s, display a graph showing the this many top results.  (Full results will be available on a linked page.)"),
+		"desc" => sprintf(_("If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"),
 			'"'. _("Show vote results").'"' ,
 			'"'. _("yes").'"') .
 			newIn("1.4.1"),
