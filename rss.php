@@ -170,7 +170,12 @@ foreach ($albumDB->albumList as $album) {
 
 		if($highlight) {
 			# makeAlbumURL is for the pretty page, getAlbumDirURL is for the image itself
-			$base = $album->getAlbumDirURL("highlight");
+			if ($album->fields['name'] != $subalbum->fields['name']) {
+				$base = $subalbum->getAlbumDirURL("highlight");
+			}
+			else {
+				$base = $album->getAlbumDirURL("highlight");
+			}
 			$albumInfo["photo:imgsrc"] = $highlight->thumbnail->getPath($base);
 			$albumInfo["photo:thumbnail"] = $highlight->getPhotoPath($base);
 			
