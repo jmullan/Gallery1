@@ -159,13 +159,11 @@ class Album {
 			$changed = 1;
 		    }
 		}
-print "here I am";
 		if ($this->version < 8) {
 		    if (empty($this->fields['summary'])) {
 		    		$this->fields['summary']='';
 			$changed = 1;
 		    }
-		    var_dump($this->fields['extra_fields']);
 		    if (empty($this->fields['extra_fields']) || !is_array($this->fields['extra_fields'])) {
 		    	$this->fields['extra_fields']=array();
 			$changed = 1;
