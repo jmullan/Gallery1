@@ -36,14 +36,18 @@ class AlbumDB {
 		}
 
 		$this->albumList = array();
+		$this->brokenAlbums = array();
 		$i = 0;
 		$changed = 0;
 		while ($i < sizeof($this->albumOrder)) {
 			$name = $this->albumOrder[$i];
 			if (fs_is_dir("$dir/$name")) {
 				$album = new Album;
-				$album->load($name);
-				array_push($this->albumList, $album);
+				if ($album->load($name)) {
+					array_push($this->albumList, $album);
+				} else {
+					array_push($this->brokenAlbums, $name);
+				}
 				$i++;
 			} else {
 				/* Couldn't find the album -- delete it from order */
