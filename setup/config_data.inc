@@ -268,6 +268,21 @@ $constants = array(
 				   90, 95),
 		"value" => 95,
 	),
+        "timeLimit" => array(
+		"prompt" => "<b>(Advanced)</b> Time Limit",
+		"desc" => "The maximum amount of time in seconds any single operation should " .
+			"take.  If you find that you are getting the <b>Maximum " .
+			"execution time exceeded</b> error message, you can try making " .
+			"this a larger number.  Be warned that if you make this too " .
+			"large you <i>might</i> have a process that is stuck for a " .
+			"very long time without doing anything.  The default value " .
+			"is 30 which is pretty reasonable.",
+		"type" => text,
+		"must-be-number" => 1,
+		"must-not-be-zero" => 1,
+		"value" => 30,
+		"attrs" => array("size" => 5),
+	),
 	"debug" => array(
 		"prompt" => "<b>(Advanced)</b> Debug mode",
 		"desc" => "Turn debug mode on so that you can diagnose problems?",
