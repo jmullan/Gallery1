@@ -87,7 +87,7 @@ if (!strcmp($gallery->app->default["showSearchEngine"], "yes")) {
 </td>
 </form>
 </tr>
-<tr><td height=2><img src=<?= $GALLERY_BASEDIR ?>images/pixel_trans.gif></td></tr></table>
+<tr><td height=2><img src=<?= $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif></td></tr></table>
 <?
 }
 ?>

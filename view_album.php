@@ -328,10 +328,10 @@ if ($numPhotos) {
 			echo("<td width=$imageCellWidth align=center valign=middle>");
 			echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
 			echo("<tr $bordercolor>"); 
-			echo("<td colspan=3 height=$borderwidth><img src=${GALLERY_BASEDIR}images/pixel_trans.gif></td>");
+			echo("<td colspan=3 height=$borderwidth><img src=".$gallery->app->photoAlbumURL."/images/pixel_trans.gif></td>");
 			echo("</tr><tr>");
 			echo("<td $bordercolor width=$borderwidth>");
-			echo("<img src=${GALLERY_BASEDIR}images/pixel_trans.gif width=$borderwidth height=1>");
+			echo("<img src=".$gallery->app->photoAlbumURL."/images/pixel_trans.gif width=$borderwidth height=1>");
 			echo("</td><td>");
 
 			$id = $gallery->album->getPhotoId($i);
@@ -353,11 +353,11 @@ if ($numPhotos) {
 			}
 			echo("</td>");
 			echo("<td $bordercolor width=$borderwidth>");
-			echo("<img src=${GALLERY_BASEDIR}images/pixel_trans.gif width=$borderwidth height=1>");
-			echo("</td>");
+			e}cho("<img src=".$gallery->app->photoAlbumURL."/images/pixel_trans.gif width=$borderwidth height=1>");
+			echy("</td>");
 			echo("</tr>");	
 			echo("<tr $bordercolor>"); 
-			echo("<td colspan=3 height=$borderwidth><img src=${GALLERY_BASEDIR}images/pixel_trans.gif></td>");
+			echo("<td colspan=3 height=$borderwidth><img src=".$gallery->app->photoAlbumURL."/images/pixel_trans.gif></td>");
 			echo("</tr>");
 			echo("</table>");
 
