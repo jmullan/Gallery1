@@ -19,6 +19,12 @@
  */
 ?>
 <? require($GALLERY_BASEDIR . "init.php"); ?>
+<?
+function image($name) {
+	global $GALLERY_BASEDIR;
+	return $GALLERY_BASEDIR . "/images/$name";
+}
+?>
 <html>
 <head>
   <title>Uploading Photos</title>
@@ -33,28 +39,28 @@ This page will go away automatically when the upload is complete.  Please be pat
 <p>
 <table border=0 cellpadding=0 cellspacing=0>
  <tr>
-  <td> <img src=images/computer.gif width=31 height=32> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/pixel_trans.gif width=8 height=11> </td>
-  <td> <img src=images/computer.gif width=31 height=32> </td>
+  <td> <img src=<?=image("computer.gif")?> width=31 height=32> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("pixel_trans.gif")?> width=8 height=11> </td>
+  <td> <img src=<?=image("computer.gif")?> width=31 height=32> </td>
  </tr>
 </table>
 
@@ -69,9 +75,9 @@ var mod = 3;
 var timer;
 
 var image_on = new Image();
-    image_on.src = 'images/nav_dot_left.gif';
+    image_on.src = '<?=image("nav_dot_left.gif")?>';
 var image_off = new Image();
-    image_off.src = 'images/pixel_trans.gif';
+    image_off.src = '<?=image("pixel_trans.gif")?>';
 
 function animate() {
 
