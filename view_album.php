@@ -107,9 +107,25 @@ if ($album->fields["textcolor"]) {
 }
 ?>
   </style>
+  <script language="javascript1.2">
+  // <!--
+  var statusWin;
+  function showProgress() {
+	statusWin = <?=popup_status("progress_uploading.php");?>
+  }
+
+  function hideProgress() {
+	if (statusWin != undefined) {
+		statusWin.close();
+		statusWin = null;
+	}
+  }
+
+  // --> 
+  </script>
 </head>
 
-<body> 
+<body onUnload='hideProgress()'> 
 
 <? 
 includeHtmlWrap("album.header");
@@ -315,4 +331,5 @@ includeHtmlWrap("album.footer");
 ?>
 </body>
 </html>
+
 
