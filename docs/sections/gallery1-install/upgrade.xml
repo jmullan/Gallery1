@@ -111,5 +111,47 @@
    </listitem>
   </orderedlist>
  </sect2>
+ 
+ <sect2 id="gallery1-install.upgrade.modified">
+  <title>Upgrading a modified Gallery</title>
+  
+  <para>
+   Upgrading a Gallery installation you have modified can be difficult.  By modified,
+   we mean modifying the actual PHP code Gallery runs on.  If you just made changes
+   in the <filename>html_wrap/</filename> or <filename>css/</filename> directories, 
+   you should have no worries (you should have removed the .default extension from
+   the files before modifying them, so that they won't get overridden when upgrading) and
+   can proceed upgrading Gallery using one of the guides above.
+  </para>
+  <para>
+   If you indeed have modified some of the PHP code that Gallery uses, upgrading will
+   be more difficult, but not totally impossible.  It will be, however, extremely hard
+   or impossible to upgrade a modified Gallery without shell access to the server.  Keep
+   this in mind.  First, you'll need to download the original non-modified Gallery version
+   that corresponds to the version you are currently using (i.e. if you modified Gallery 1.3.4,
+   re-download an unmodified Gallery 1.3.4).  Unpack it in the same directory that your modified
+   Gallery is in, but name is something like <filename>orig_gallery/</filename>.  You should now
+   have two directories, <filename>gallery/</filename> (or whatever your modified Gallery's directory
+   name is) and <filename>orig_gallery/</filename>.  Next, run this command:
+   <screen>
+    diff -r -C 3 orig_gallery gallery &gt; changes.txt
+   </screen>
+  </para>
+  <para>
+   You now have a patch file containing the changes you made.  Next, download the newest version
+   of Gallery (the one you want to upgrade to).  "cd" to the parent directory of the new unpacked
+   Gallery.  Run this command:
+   <screen>
+    patch &lt; changes.txt
+   </screen>
+  </para>
+  <warning>
+   <para>
+    The odds are that this won't completely work, because we may have made changes to the same
+    line you changed, causing <command>patch</command> to get confused.  However, it's worth
+    a try.
+   </para>
+  </warning>
+ </sect2>
       
 </sect1>

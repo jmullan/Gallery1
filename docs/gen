@@ -106,6 +106,26 @@ case $1 in
 
 		;;                
 
+	htmlhelp)
+		echo "Generating HTML Help Docs...";
+
+		if [ ! -d $DIST/htmlhelp ]; then
+			mkdir -p $DIST/htmlhelp;
+		fi
+
+		gendate
+
+		cd $DIST/htmlhelp
+       		cp ../../css/*.css .
+                
+		xsltproc --param prettyhtml 0 --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../docbook-xsl/htmlhelp/htmlhelp.xsl ../../manual.xml || exit 1
+
+
+		cp -Rf ../../images .
+		rm -rf images/CVS
+
+		;;                
+
 
 	pdf)
 		echo "Generating PDF Manual...";
@@ -135,18 +155,19 @@ case $1 in
 		xsltproc ../../misc-xsl/autofaq.xsl ../../manual.xml > autofaq_data.txt || exit 1
 		;;
 		
-	test-saxon) 
+	test-xmllint)
+		if [ ! -d $DIST ]; then
+			mkdir $DIST;
+		fi
+	
+		gendate
+
 		echo "Testing documentation (if you see no errors, everything is good)..."
 
-		java -classpath ./docbook-xsl/extensions/saxon651.jar sax.SAXCount manual.xml
-		;;
-		
-	test-xmllint)
-		echo "Testing documentation (if you see no errors, everything is good)..."
+		gendate
 
 		xmllint --valid --noout manual.xml
-		;;		
-
+		;;	
 	help)
 		echo "Gallery Documentation Generation Script";
 		echo "---------------------------------------";
@@ -159,8 +180,8 @@ case $1 in
 		echo "galleryweb    Generate docs fitted for the Gallery Website";
 		echo "g1package     Generate only G1 docs";
 		echo "prettyhtml    Generate nice looking docs";
+		echo "htmlhelp      Generate Windows help docs (experimental)";
 		echo "dist          Generate all types";
-		echo "test-saxon    Test for XML errors using saxon";
 		echo "test-xmllint  Test for XML errors using xmllint";
 		echo "clean         Remove all generated manuals (created by html, bightml, etc..)";
 		echo "help          Display this help page"
@@ -172,6 +193,7 @@ case $1 in
 #		$0 pdf
 		$0 galleryweb
                 $0 prettyhtml
+		$0 htmlhelp
 		;;
 
 	clean)
