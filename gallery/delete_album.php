@@ -57,8 +57,8 @@ if ($gallery->album) {
 <br>
 <b><?php echo $gallery->album->fields["title"] ?></b>
 <p>
-<?php echo makeFormIntro("delete_album.php", array('name' => 'deletealbum_form', 'onsubmit' => 'deletealbum_form.delete.disabled
-= true;')); ?>
+<?php echo makeFormIntro("delete_album.php", array('name' => 'deletealbum_form', 
+						'onsubmit' => 'deletealbum_form.delete.disabled = true;')); ?>
 <input type="hidden" name="guid" value="<?php echo $gallery->album->fields['guid']; ?>">
 <input type="hidden" name="action" value="">
 <input type="submit" name="delete" value="<?php echo _("Delete") ?>" onclick="deletealbum_form.action.value='delete'">
