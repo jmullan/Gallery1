@@ -92,12 +92,16 @@ foreach ($constants as $key => $val) {
 	if (isset($val["type"]) && ($val["type"] == "block_start" || $val["type"] == "block_end")) { 
 		continue;
 	}
-	if (ereg("^(..*)\[(.*)\]$", $key, $matches)) {
-		$line='$real = $'. $matches[1] . '["' . $matches[2] . '"];';
-		eval($line);
+	$bracketStart = strpos($key, '[');
+	$bracketEnd = strpos($key, ']');
+	if ($bracketStart > 0 && $bracketEnd > 0) {
+	        $line='$real = $'. substr($key, 0, $bracketStart) . '["' .
+		    substr($key, $bracketStart+1, $bracketEnd - $bracketStart - 1) . '"];';
+                eval($line);
 	} else {
 		$real = $$key;
 	}
+
         if (get_magic_quotes_gpc()) {
 		if (is_array($real)) {
 			if (function_exists('array_map')) {
@@ -148,9 +152,10 @@ foreach ($constants as $key => $val) {
 		}
 
 		if (isset($constants[$key]["no-trailing-slash"])) {
-			$real = ereg_replace("\/$", "", $real);
-			/* Catch windows paths too. */
-			$real = ereg_replace("\\$", "", $real);
+			$lastChar = $real[strlen($real)-1];
+			if ($lastChar == '/' || $lastChar == '\\') {
+				$real = substr($real, 0, -1);
+			}
 		}
 
 		if (isset($constants[$key]["must-be-url"])) {

@@ -28,7 +28,7 @@ initLanguage();
 <?php
 
 if (function_exists("posix_getpwuid")) {
-	$rec = posix_getpwuid(posix_getuid());
+	$rec = @posix_getpwuid(posix_getuid());
 	$webserver_user = $rec["name"];
 } else {
 	$whoami = locateFile("whoami");
@@ -56,7 +56,7 @@ if (!isset($setup_page)) {
 
 /* Array-ize the preserve list */
 if (isset($preserve)) {
-	$tmp = split(" ", urldecode($preserve));
+	$tmp = explode(" ", urldecode($preserve));
 	$preserve = array();
 	foreach ($tmp as $key) {
 		$preserve[$key] = 1;
@@ -90,10 +90,6 @@ function embed_hidden($key) {
 
 	$buf = "";
 	$real = $$key;
-	if (ereg("^(..*)\[.*\]$", $key, $matches)) {
-		$line='global $'.$matches[1].'; $real = $'.$key . ';';
-		eval($line);
-	}
 	if (is_array($real)) {
 		foreach ($real as $real_key => $value) {
 			$buf .= "<input type=hidden name=${key}[$real_key] value=\"";
