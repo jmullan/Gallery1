@@ -2422,7 +2422,7 @@ function getImVersion() {
 	$pieces = explode(' ', $results[0]);
 	$version = $pieces[2];
 
-	return $version;
+	return $version[0];  // Only the first character
 }
 function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 	global $gallery;

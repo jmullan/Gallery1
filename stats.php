@@ -598,10 +598,9 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 }
 ?>
-
-<!-- stats.header begin -->
 <?php 
 
+// <!-- stats.header begin -->
 includeHtmlWrap("stats.header");
 
 $navigator["fullWidth"] = 100;
