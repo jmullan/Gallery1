@@ -1,3 +1,8 @@
+2001-02-11  Bharat Mediratta  <bharat@sinia.com>
+
+	* Removed the executable bit from chmod commands in configure.sh
+	  and secure.sh
+
 2001-02-10  Bharat Mediratta  <bharat@sinia.com>
 
 	* It appears that certain flavors of PHP4 prepend "Content-Type"
@@ -10,6 +15,17 @@
 
 	  I fixed this by preprocessing upload images and looking for
 	  the Content-Type string and removing it.
+
+2001-02-09  Bharat Mediratta  <bharat@sinia.com>
+
+	* Fixed a bug in the UserDB code where we were not forcibly
+	  creating an Everybody user.  This was causing users to get 
+	  errors like this:
+
+		Fatal error: Call to a member function on a non-object in
+	  		     albums.php on line 76 
+
+	* Made the magic_quotes check optional.
 
 2001-02-08  Bharat Mediratta  <bharat@sinia.com>
 
