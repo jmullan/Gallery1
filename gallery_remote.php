@@ -43,8 +43,8 @@ if (empty ($cmd)) {
 
 //---------------------------------------------------------
 //-- check version --
-if (strcmp($protocal_version, $gallery->remote_protocol_version)) {
-	echo "Protocol out of Date. $protocal_version < $gallery->remote_protocol_version."; 
+if (strcmp($protocal_version, "1")) {
+	echo "Protocol out of Date. $protocal_version < 1.";
 	exit;
 }
 

@@ -56,7 +56,7 @@ header("Content-type: text/plain");
  * Gallery remote protocol version 2.3
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 3;
+$GR_VER['MIN'] = 4;
 
 
 /*
@@ -324,6 +324,42 @@ if (!strcmp($cmd, "login")) {
 		$response->setProperty( "status", $GR_STAT['NO_CREATE_ALBUM_PERMISSION'] );
 		$response->setProperty( "status_text", "A new album could not be created because the user does not have permission to do so." );
 	}
+} else if (!strcmp($cmd, 'fetch-album-images')) {
+	//---------------------------------------------------------
+	//-- fetch-album-images --
+
+	$tmpURL = $gallery->app->albumDirURL;
+	$tmpImageNum = 0;
+	foreach($gallery->album->photos as $albumItemObj) {
+		if(empty($albumItemObj->isAlbumName)) { //Make sure this object is a picture, not an album
+			$tmpImageNum++;
+			$response->setProperty( 'image.name.'.$tmpImageNum, $albumItemObj->image->name.'.'.$albumItemObj->image->type );
+			$response->setProperty( 'image.raw_width.'.$tmpImageNum, $albumItemObj->image->raw_width );
+			$response->setProperty( 'image.raw_height.'.$tmpImageNum, $albumItemObj->image->raw_height );
+			$response->setProperty( 'image.resizedName.'.$tmpImageNum, $albumItemObj->image->resizedName.'.'.$albumItemObj->image->type );
+			$response->setProperty( 'image.raw_filesize.'.$tmpImageNum, $albumItemObj->image->raw_filesize );
+			$response->setProperty( 'image.caption.'.$tmpImageNum, $albumItemObj->caption );
+			if(count($albumItemObj->extraFields)) { //if there are extra fields for this image
+				foreach($albumItemObj->extraFields as $extraFieldKey => $extraFieldName) {
+					if(strlen($extraFieldName)) {
+						$response->setProperty( 'image.extrafield.'.$extraFieldKey.'.'.$tmpImageNum, $extraFieldName );
+					}
+				}
+			}
+			$response->setProperty( 'image.clicks.'.$tmpImageNum, $albumItemObj->clicks );
+			$response->setProperty( 'image.capturedate.year.'.$tmpImageNum, $albumItemObj->itemCaptureDate['year'] );
+			$response->setProperty( 'image.capturedate.mon.'.$tmpImageNum, $albumItemObj->itemCaptureDate['mon'] );
+			$response->setProperty( 'image.capturedate.mday.'.$tmpImageNum, $albumItemObj->itemCaptureDate['mday'] );
+			$response->setProperty( 'image.capturedate.hours.'.$tmpImageNum, $albumItemObj->itemCaptureDate['hours'] );
+			$response->setProperty( 'image.capturedate.minutes.'.$tmpImageNum, $albumItemObj->itemCaptureDate['minutes'] );
+			$response->setProperty( 'image.capturedate.seconds.'.$tmpImageNum, $albumItemObj->itemCaptureDate['seconds'] );
+		}
+	}
+	$response->setProperty( 'image_count', $tmpImageNum );
+	$response->setProperty( 'baseurl', $tmpURL.'/'.$gallery->session->albumName.'/' );
+
+	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+	$response->setProperty( 'status_text', 'Fetch images successful.' );
 } else {
 	// if the command hasn't been handled yet, we don't recognize it
 	$response->setProperty( "status", $GR_STAT['UNKNOWN_COMMAND'] );
@@ -489,6 +525,16 @@ function processFile($file, $tag, $name, $setCaption="") {
 				global $HTTP_POST_VARS;
 				//$fieldname = "extrafield_$field";
 				//echo "Looking for extra field $fieldname\n";
+
+				// The way it should be done now
+				$value = $HTTP_POST_VARS[("extrafield.".$field)];
+				//echo "Got extra field $field = $value\n";
+				if ($value) {
+					//echo "Setting field $field\n";
+					$myExtraFields[$field] = $value;
+				}
+
+				// Deprecated
 				$value = $HTTP_POST_VARS[("extrafield_".$field)];
 				//echo "Got extra field $field = $value\n";
 				if ($value) {

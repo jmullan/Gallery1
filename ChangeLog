@@ -1,3 +1,15 @@
+2003-09-10  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.4.1-cvs-b70
+
+	* Integrated a patch by Chris S that adds a new command to gallery_remote2.php:
+	  fetch-album-images gets the list of images and their filenames, which
+	  allows client applications (mainly Chris' screensaver) to iterate album
+	  images without having to hack the album.dat files. GR 1.2 will use
+	  that same method to display the list of images already on the server.
+
+	* removed $gallery->remote_protocol_version from Version.php to cut
+	  down on possible confusion in that file, since that variable
+	  was never getting updated (it was only used by gallery_remote.php)
+
 2003-09-07  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b69
 
 	* Reworking of slideshow.php.  Note, no changes to slideshow_low.php.
@@ -42,7 +54,7 @@
 	* Fixed typo in "slideshow_recursive" param name in config wizard
 
 	* Changed "beta version" to "devolpment build" in config wizard
-	
+
 2003-09-07  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b65
 
 	* Fix for bug #801580, where polling did not work correctly
@@ -67,16 +79,15 @@
 
 2003-09-05  Jens Tkotz <jens@peino.de> 1.4.1-cvs-b64
 
-        * Again some corrections. Synced .mo against these
+	* Again some corrections. Synced .mo against these
 
-        * New Language: Czech (cs_CZ), Ukrainian (uk_UA)
+	* New Language: Czech (cs_CZ), Ukrainian (uk_UA)
 
-        * Language updates: German (de_DE), Polish (pl_PL), Simplified Chinese (zh_CN)
+	* Language updates: German (de_DE), Polish (pl_PL), Simplified Chinese (zh_CN)
 
-        * Corrected po files
+	* Corrected po files
 
 	* Synced language files against latest changes and additions
-
 
 2003-09-05  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b63
 
@@ -122,7 +133,7 @@
 
 	* This is Bharat Mediratta's change: 1.4-RC3-cvs-b11
 
-        * Replace regular expression logic with standard string functions in
+	* Replace regular expression logic with standard string functions in
 	  the config wizard to work around bugs in RedHat 7.2 / PHP 4.1.2 where
 	  the regexp libraries tend to crash and burn.
 
@@ -149,8 +160,8 @@
 
 2003-09-04  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b57
 
-        * Fixed bug in voting where votes were not recorded if there is only 
-          one choice.
+	* Fixed bug in voting where votes were not recorded if there is only
+	  one choice.
 
 2003-09-04  Jens Tkotz <jens@peino.de> 1.4.1-cvs-b56
 
@@ -159,7 +170,7 @@
 	* Language update: German (de_DE), Finnish (fi_FI)
 	  Note: The German Update is also a Bugfix
 
-        * Fixed incorrect language names (zh_TW), (fi_FI)
+	* Fixed incorrect language names (zh_TW), (fi_FI)
 
 2003-09-03 Bharat Mediratta <bharat@menalto.com> 1.4.1-cvs-b55
 
@@ -205,9 +216,9 @@
 
 	* Synced all languages against latest changes
 
-        * Language update: German (de_DE), Spanish (es_ES), Traditional Chinese (zh_TW)
+	* Language update: German (de_DE), Spanish (es_ES), Traditional Chinese (zh_TW)
 
-        * dos2unix'ed po files and removed obsolete lines
+	* dos2unix'ed po files and removed obsolete lines
 
 	* "New" Language: Traditional Chinese (zh_TW.utf8)
 
@@ -268,8 +279,8 @@
 
 2003-09-01  Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.1-cvs-b47
 
-        * Remove UPGRADING file, in favor of using the README to point
-          users to the new documentation.
+	* Remove UPGRADING file, in favor of using the README to point
+	  users to the new documentation.
 
 2003-08-31  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b46
 
@@ -312,7 +323,7 @@
 
 	* Tweaked ml_pulldown.inc (removed unnecessary table for flags).
 
-        * Language Update: Italian (it_IT) , Simplified Chinese (zh_CN)
+	* Language Update: Italian (it_IT) , Simplified Chinese (zh_CN)
 
 2003-08-30  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b43
 
@@ -373,15 +384,15 @@
 
 2003-08-28 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b35
 
-        * Added upgrade_users.php to po/filelist
+	* Added upgrade_users.php to po/filelist
 
-        * Language update: German (de_DE), Italian (it_IT), Turkish (tr_TR)
+	* Language update: German (de_DE), Italian (it_IT), Turkish (tr_TR)
 
-        * Added missing locales (zh_CN), added missing .po (fi_FI)
+	* Added missing locales (zh_CN), added missing .po (fi_FI)
 
-        * Synced all languages against latest changes.
+	* Synced all languages against latest changes.
 
-        * Bumped Config Version
+	* Bumped Config Version
 
 	* "Valid HTML" Image/Link only visible for admins
 
@@ -407,7 +418,7 @@
 	
 2003-08-26 Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.1-cvs-b32
 
-        * Corrected typo where the login button text would never be printed.
+	* Corrected typo where the login button text would never be printed.
 
 2003-08-26 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b31
 
@@ -486,10 +497,10 @@
 
 2003-08-23 Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.1-cvs-b26
 
-        * Fixed bug where the clicks date would never get displayed because
+	* Fixed bug where the clicks date would never get displayed because
 	  $gallery wasn't globalized.
-          
-        * Fixed a missing quote in the thumbnail tag generation code.
+
+	* Fixed a missing quote in the thumbnail tag generation code.
 
 2003-08-23  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b25
 
@@ -527,8 +538,8 @@
 
 2003-08-23 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b20
 
-	 * Edited view_photo.php.
-	   We now don't show the full system path to the file.
+	* Edited view_photo.php.
+	  We now don't show the full system path to the file.
 
 2003-08-22 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b19
 
@@ -554,7 +565,7 @@
 
 2003-08-21 Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.1-cvs-b14
 
-        * Quote attributes that HTML requires to be quoted (i.e. non-numeric
+	* Quote attributes that HTML requires to be quoted (i.e. non-numeric
 	  things like links and image sources).  Hopefully caught all of them!
 
 2003-08-21 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b13
@@ -622,8 +633,8 @@
 
 2003-08-18  Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.1-cvs-b6
 
-        * Fix bug in URL upload code where, if you had images like 1.gif
-          and 11.gif, only the former would be detected.
+	* Fix bug in URL upload code where, if you had images like 1.gif
+	  and 11.gif, only the former would be detected.
 
 2003-08-18 Jens Tkotz  <jens@peino.de> 1.4.1-cvs-b5
 
@@ -646,8 +657,8 @@
 
 2003-08-17  Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.1-cvs-b3
 
-        * Fixed bug in Nuke integration where the language was never saved.
-          (Thanks Warren).
+	* Fixed bug in Nuke integration where the language was never saved.
+	  (Thanks Warren).
 
 2003-08-17  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b2
 
@@ -738,7 +749,7 @@
 
 2003-08-13  Bharat Mediratta  <bharat@menalto.com> 1.4.1-cvs-b1
 
-        * This is the beginning of development on v1.4.1.
+	* This is the beginning of development on v1.4.1.
 
 ===============================================================================
     v1.4 release branch created (1.3.5 was renamed to 1.4 before release)
@@ -746,12 +757,12 @@
 	
 2003-08-13 Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b123
 
-        * Cleaned up all language files. No more obsolete entries, no "# "
-	  lines, etc.
+	* Cleaned up all language files. No more obsolete entries, no "# "
+  lines, etc.
 
-        * Updated German (de_DE) and Hebrew (he_IL).
+	* Updated German (de_DE) and Hebrew (he_IL).
 
-        * Replaced word "Gallery" with Gallery() in search.php.
+	* Replaced word "Gallery" with Gallery() in search.php.
 
 2003-08-13  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b122
 
@@ -783,9 +794,9 @@
 
 2003-08-12  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b117
 
-        * Wipe out the README file.  Basically, the README file now just
-          "redirects" people to the docs/ directory, where the docs will
-          be distributed with Gallery.
+	* Wipe out the README file.  Basically, the README file now just
+	  "redirects" people to the docs/ directory, where the docs will
+	  be distributed with Gallery.
 
 2003-08-12  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b116
 
@@ -855,7 +866,7 @@
 
 2003-08-10  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b112
 
-        * Fixed problems with international characters.  While *Gallery*
+	* Fixed problems with international characters.  While *Gallery*
 	  supported international chars fine, some browsers didn't like that
 	  they were not URL encoded.  So, all album and photo names are now URL
 	  encoded.  This has been tested and verified to work on IE, Mozilla,
@@ -926,23 +937,23 @@
 
 2003-08-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b107
 
-        * Updated all 1.3.5 refs to 1.4, except for the version number.
+	* Updated all 1.3.5 refs to 1.4, except for the version number.
 
-        * Added filesize restriction for resize, and bumped album version to
+	* Added filesize restriction for resize, and bumped album version to
 	  store this value for each album.  If this value is set, the compress
 	  function will be called repeatedly to get as close as possible to
 	  this size.
           
 	* Changes to move_photo.php resizing.
 
-        * Stop language initialization in embedded galleries.
+	* Stop language initialization in embedded galleries.
 
-        * Fixed bug that printed statement in move_photo.php.
-        
-        * Fixed bug in displaying number of hidden albums in view_album.php.
-	  (Thanks to Eelco Brolman)
+	* Fixed bug that printed statement in move_photo.php.
 
-        * Changed "Configurations Wizard" to "Configuration Wizard".
+	* Fixed bug in displaying number of hidden albums in view_album.php.
+  (Thanks to Eelco Brolman)
+
+	* Changed "Configurations Wizard" to "Configuration Wizard".
 
 2003-08-08  Joan McGalliard  <gallery@joanhenge.plus.com> 1.3.5-cvs-b106
 	
