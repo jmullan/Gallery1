@@ -133,7 +133,13 @@ if ($albumName && isset($index)) {
 ?>
 
 <center>
-Move this photo/album within this album:<br>
+<?
+if ($album->isAlbumName($index)) {
+?>
+Move this album within the album:<br>
+<? } else { ?>
+Move this photo within the album:<br>
+<? } ?>
 <i>(Current Location is <?=$index?>)</i>
 <p>
 <?= $album->getThumbnailTag($index) ?>
@@ -161,17 +167,31 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <hr size=1>
 <b>OR</b>
 <hr size=1>
-Move a range of photos/albums to a new album:<br>
-<i>(To move just one photo/album, make First and Last the same)</i><p>
-<form name=move_to_album_form>
-<input type=hidden name="index" value="<?=$index?>">
+
+
+
+
 <?
 if ($album->isAlbumName($index)) {
 ?>
+Move the album to a new album:<br>
+<form name=move_to_album_form>
+<input type=hidden name="index" value="<?=$index?>">
 <select name="newAlbum">
 <?
 	printAlbumOptionList(1,0,0);
+?>
+</select>
+<?
 } else {  
+?>
+Move a range of photos to a new album:<br>
+<i>(To move just one photo, make First and Last the same)</i><br>
+<i>(Nested albums in this range will be ignored)</i><p>
+<form name=move_to_album_form>
+<input type=hidden name="index" value="<?=$index?>">
+
+<?
 // Display album list for a photo and display num photos to move
 ?>
 <table>
