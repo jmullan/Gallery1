@@ -33,12 +33,14 @@
 <div class="sitedesc">
 <?php 
 	echo _("In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
+	echo '<br>';
+	echo _("Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step.");
 ?>
 </div>
 
 <p align="center">
-	<input type="submit" name="go_back" value="<- <?php echo _("Previous Page") ?>">
-	<input type="submit" name="go_next" value="<?php echo _("Next Page") ?> ->">
+	<input type="submit" name="go_back" value="<- <?php echo _("Previous Step") ?>">
+	<input type="submit" name="go_next" value="<?php echo _("Next Step") ?> ->">
 	<input type="submit" name="go_defaults" value="<?php echo _("Use Defaults") ?>">
 
 </p>
@@ -151,7 +153,7 @@ foreach ($constants as $key => $val) {
 }
 ?>
 <p align="center">
-	<input type=submit name="go_back" value="<- <?php echo _("Previous Page") ?>">
-	<input type=submit name="go_next" value="<?php echo _("Next Page") ?> ->">
+	<input type=submit name="go_back" value="<- <?php echo _("Previous Step") ?>">
+	<input type=submit name="go_next" value="<?php echo _("Next Step") ?> ->">
 	<input type=submit name="go_defaults" value="<?php echo _("Use Defaults") ?>">
 </p>

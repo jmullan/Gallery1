@@ -78,4 +78,76 @@ function selectOptions($album, $field, $opts) {
 	echo "\n";
 }
 
+
+function drawSelect($name, $array, $selected, $size, $attrList=array()) {
+	$attrs = "";
+	if (!empty($attrList)) {
+		foreach ($attrList as $key => $value) {
+			if ($value == NULL) {
+				$attrs .= " $key";
+			}
+			else {
+				$attrs .= " $key=\"$value\"";
+			}
+		}
+	}
+
+	$buf = "";
+	$buf .= "<select name=\"$name\" size=$size $attrs>\n";
+	foreach ($array as $uid => $username) {
+		$sel = "";
+		if (is_array($selected)) {
+			if (in_array($uid, $selected)) {
+				$sel = "selected";
+			}
+		}
+		else if (!strcmp($uid, $selected)) {
+			$sel = "selected";
+                }
+		$buf .= "<option value=$uid $sel>". $username ."</option>\n";
+	}
+	$buf .= "</select>\n";
+
+	return $buf;
+}
+
+/*
+ * makeFormIntro() is a wrapper around makeGalleryUrl() that will generate
+ * a <form> tag suitable for usage in either standalone or embedded mode.
+ * You can specify the additional attributes you want in the optional second
+ * argument.  Eg:
+ *
+ * makeFormIntro("add_photos.php",
+ *                      array("name" => "count_form",
+ *                              "enctype" => "multipart/form-data",
+ *                              "method" => "POST"));
+ */
+function makeFormIntro($target, $attrList=array()) {
+	$url = makeGalleryUrl($target);
+	$result = split("\?", $url);
+	$target = $result[0];
+	if (sizeof($result) > 1) {
+		$tmp = $result[1];
+	} else {
+		$tmp = "";
+	}
+
+	$attrs = '';
+	foreach ($attrList as $key => $value) {
+		$attrs .= " $key=\"$value\"";
+	}
+
+	$form = "<form action=\"$target\" $attrs>\n";
+
+	$args = split("&", $tmp);
+	foreach ($args as $arg) {
+		if (strlen($arg) == 0) {
+			continue;
+		}
+		list($key, $val) = split("=", $arg);
+		$form .= "<input type=\"hidden\" name=\"$key\" value=\"$val\">\n";
+	}
+	return $form;
+}
+
 ?>

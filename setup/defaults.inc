@@ -30,17 +30,19 @@
 <div class="sitedesc">
 <?php
 	echo _("Here you can customize the default values for <b>new albums</b> that you create. These settings have no effect on existing albums!");
-	echo '<br>';
+	echo "\n<br>";
 	echo _("Note that these are <b>not master switches</b>. This means you can change those settings for each separately.");
 	echo _("If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
-	echo '<br><br><span class="attention">' . _('Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully.') .'</span>';
+	echo "\n<br>";
+	echo _("Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step.");
+	echo "\n<br><br>". '<div class="attention">' . _('Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully.') .'</div>';
 
 ?>
 </div>
 
 <p align="center">
-<input type=submit name="go_back" value="<- <?php echo _("Previous Page") ?>">
-<input type=submit name="go_next" value="<?php echo _("Next Page") ?> ->">
+<input type=submit name="go_back" value="<- <?php echo _("Previous Step") ?>">
+<input type=submit name="go_next" value="<?php echo _("Next Step") ?> ->">
 <input type=submit name="go_defaults" value="<?php echo _("Use Defaults") ?>">
 </p>
 
@@ -126,7 +128,7 @@ foreach ($defaults as $key => $val) {
 ?>
 
 <p align="center">
-	<input type=submit name="go_back" value="<- <?php echo _("Previous Page") ?>">
-	<input type=submit name="go_next" value="<?php echo _("Next Page") ?> ->">
+	<input type=submit name="go_back" value="<- <?php echo _("Previous Step") ?>">
+	<input type=submit name="go_next" value="<?php echo _("Next Step") ?> ->">
 	<input type=submit name="go_defaults" value="<?php echo _("Use Defaults") ?>">
 </p>
