@@ -27,12 +27,19 @@ class AlbumDB {
 
 	function AlbumDB($loadphotos=TRUE) {
 		global $gallery;
+		$changed = 0;
 
 		$dir = $gallery->app->albumDir;
 
 		$tmp = getFile("$dir/albumdb.dat");
 		if (strcmp($tmp, "")) {
 			$this->albumOrder = unserialize($tmp);
+
+			// albumdb.dat is corrupt, rebuild it
+			if (empty($this->albumOrder)) {
+				$this->albumOrder = array();
+			}
+			$changed = 1;
 		} else {
 			$this->albumOrder = array();
 		}
@@ -41,7 +48,6 @@ class AlbumDB {
 		$this->brokenAlbums = array();
 		$this->outOfDateAlbums = array();
 		$i = 0;
-		$changed = 0;
 		while ($i < sizeof($this->albumOrder)) {
 			$name = $this->albumOrder[$i];
 		       	if (ereg("^\.", $name)) { // how did this get here??
