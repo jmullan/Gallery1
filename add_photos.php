@@ -146,7 +146,7 @@ foreach ($modes as $m => $mt) {
 </ul>
 
 <?php
-include "includes/add_photos/add_$mode.inc";
+include ($GALLERY_BASEDIR . "includes/add_photos/add_$mode.inc");
 ?>
 
 </div>
