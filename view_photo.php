@@ -21,7 +21,7 @@
 <?
 $numPhotos = $album->numPhotos(editMode());
 $next = $index+1;
-if ($next >= $numPhotos) $next = 1;
+if ($next > $numPhotos) $next = 1;
 $prev = $index-1;
 if ($prev <= 0) $prev = $numPhotos;
 
