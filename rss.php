@@ -138,7 +138,7 @@ if (method_exists($albumDB, "getCachedNumPhotos")) {
 }
 
 foreach ($albumDB->albumList as $album) {
-	if ($gallery->app->rssVisibleOnly) {
+	if (isset($gallery->app->rssVisibleOnly)) {
 		if($album->isHiddenRecurse()) {
 			continue;
 		}
@@ -157,7 +157,7 @@ foreach ($albumDB->albumList as $album) {
 		"!date" => bestDate($album),
 		"title" => htmlspecialchars(removeUnprintable($album->fields["title"])));
 
-	# DATE TAGS
+	// DATE TAGS
 
 	$unixDate = $albumInfo["!date"];
 	if (IsSet($unixDate)) {
@@ -167,7 +167,7 @@ foreach ($albumDB->albumList as $album) {
 		}
 	}
 
-	# COMMENTS TAG
+	// COMMENTS TAG
 
 	if (method_exists($album, "canViewComments") 
 	   && $album->canViewComments($gallery->user->uid)) {
@@ -175,7 +175,7 @@ foreach ($albumDB->albumList as $album) {
 		  array("set_albumName" => $album->fields["name"]));
 	}
 
-	# PHEED AND PHOTO TAGS
+	// PHEED AND PHOTO TAGS
 
 	if (!$noPhotoTag) {
 		if (!$album->transient->photosloaded) {
@@ -208,7 +208,11 @@ foreach ($albumDB->albumList as $album) {
 		}
 	}
 
-	# INSET HTML IMAGES
+	// INSET HTML IMAGES
+
+	if (!isset($gallery->app->rssMode)) {
+		$gallery->app->rssMode="basic";
+	}
 
 	if ($gallery->app->rssMode == "thumbs") {
 		if (!$album->transient->photosloaded) {

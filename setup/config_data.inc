@@ -907,17 +907,14 @@ $constants = array_merge($constants,
 	),
 	"rssHighlight" => array(
 		"prompt" => _("RSS Highlight"),
-		"desc" => _("Specify which album will be displayed as the icon for all feed entries: An empty field means that
-there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that
-album's highlight image/"),
+		"desc" => _("Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."),
 		"type" => "text",
 		"attrs" => array("size" => 30),
 		"optional" => 1,
 	),
 	"rssVisibleOnly" => array(
 		"prompt" => _("Visible Albums Only"),
-		"desc" => _("Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you
-are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."),
+		"desc" => _("Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."),
 		"choices" => array(
 			"yes" => _("Display Visible Albums Only"),
 			"no" => _("Display Hidden Albums")),
