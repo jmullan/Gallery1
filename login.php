@@ -29,6 +29,12 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 ?>
 <?php require($GALLERY_BASEDIR . "init.php"); ?>
 
+<?php
+// Security check.
+$uname = removeTags($uname);
+$gallerypassword = removeTags($gallerypassword);
+?>
+
 <html>
 <head>
   <title>Login to <?php echo $gallery->app->galleryTitle?></title>
