@@ -22,7 +22,7 @@
 <?
 function image($name) {
 	global $GALLERY_BASEDIR;
-	return $GALLERY_BASEDIR . "/images/$name";
+	return $GALLERY_BASEDIR . "images/$name";
 }
 ?>
 <html>
