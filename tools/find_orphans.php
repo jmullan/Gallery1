@@ -106,7 +106,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <head>
 <title><?php echo $gallery->app->galleryTitle ?></title>
 <?php 
-	common_header() ;
+	common_header();
 ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
@@ -145,6 +145,8 @@ if (!empty($orphans)) {
 	// No Orphans
 	echo "\n<p align=\"center\">". _("There are no orphaned albums in this Gallery.") . "</p>";
 }
+
+	echo "\n<p align=\"center\"><a href=\"../\">"._("Return to Gallery.")."</a></p>";
 ?>
 <hr>
 <?php 
