@@ -2,8 +2,6 @@
 // $Id$
 ?>
 <?php 
-
-	require(dirname(__FILE__) . "/configure_instructions.php") ;
 	if (! defined("GALLERY_URL")) define ("GALLERY_URL","");
 	doctype();
 ?>
