@@ -53,6 +53,8 @@ if (!$gallery->version) { exit; }
 <?php echo _("Your data will not be harmed in any way by this process.") ?>  
 <?php echo _("Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future.") ?>  
 <p>
+<?php echo _("If you get an error, and only some users are upgraded, try refreshing the page to upgrade remaining users.") ?>  
+<p>
 <?php processingMsg(_("Please Wait...")); ?>
 
 

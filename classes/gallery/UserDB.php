@@ -308,11 +308,15 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$everybody = $this->everybody->getUsername();
 		$loggedin = $this->loggedIn->getUsername();
 		processingMsg("");
+		$count=1;
+		$total=sizeof($this->getUidList());
 		foreach ($this->getUidList() as $uid) {
+			processingMsg (sprintf(_("Checking user %d of %d . . . . "), $count++, $total));
 			$user=$this->getUserByUid($uid);
 			if ($user->username == $nobody ||
 			    $user->username == $everybody ||
 			    $user->username == $loggedin) {
+				print _("skipped");
 				continue;
 			}
 			if (!$user->integrityCheck()) {

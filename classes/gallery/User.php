@@ -77,6 +77,7 @@ class Gallery_User extends Abstract_User {
 			$this->version == "0";
 		}
 		if (!strcmp($this->version, $gallery->user_version)) {
+			print _("up to date");
 			return true;
 		}
 
@@ -97,8 +98,10 @@ class Gallery_User extends Abstract_User {
 		$this->version = $gallery->user_version;
 		if ($this->save()) {
 			$success=true;
+			print _("upgraded");
 		} else {
 			$success = false;
+			print _("failed");
 		}
 
 		return $success;
