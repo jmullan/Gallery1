@@ -1418,9 +1418,14 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 					     " -j -o " .
 					     fs_import_filename($file, 1) .
 					     " \"" .
-					     fs_import_filename($cmd_pic_path, 1) .
+					     fs_import_filename($cmd_pic_path) .
 					     "\" -d " .
 					     fs_import_filename($gallery->app->tmpDir, 1));
+					     
+					     /*
+					      Don't use the second argument for $cmd_pic_path, because it is
+					      already quoted.
+					     */
 				processNewImage($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption);
 				fs_unlink($gallery->app->tmpDir . "/$pic");
 			}

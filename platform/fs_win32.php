@@ -158,7 +158,7 @@ function fs_export_filename($filename) {
 function fs_exec($cmd, &$results, &$status, $debugfile) {
 
 	// We can't redirect stderr with Windows.  Hope that we won't need to.
-	return exec("cmd.exe /c $cmd", $results, $status);
+	return exec("cmd.exe /c \"$cmd\"", $results, $status);
 }
 
 function fs_tempdir() {
