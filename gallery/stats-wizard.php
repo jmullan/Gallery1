@@ -98,7 +98,7 @@ doctype();
 	$stats_title = " - " . _("Wizard");
         includeHtmlWrap("stats.header");
 ?>
-<div style="text-align:right"><a href="<?php echo makeAlbumUrl(); ?>"><?php echo _("Return to Gallery"); ?></a></div>
+<div style="text-align:right">[<a href="<?php echo makeAlbumUrl(); ?>"><?php echo _("return to gallery"); ?></a>]</div>
 
 <?php
 	echo makeFormIntro("stats.php", array("name" => "stats_form", 

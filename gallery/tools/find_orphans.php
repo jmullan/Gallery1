@@ -210,16 +210,18 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <div class="popuphead"><?php echo _("Find Orphans") ?></div>
 <?php
 
-$adminCommands = '[<a href="'. makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>] ';
+$adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
+$adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
 
 $adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
 includeLayout('adminbox.inc');
 includeLayout('ml_pulldown.inc');
 
+echo '<div class="popup">';
 if (empty($action)) { 
 	if (!empty($orphanAlbums)) { ?>
-		<p class="popup"><?php echo _("Orphaned Albums:") . " " . sizeof($orphanAlbums) ?></p>
+		<p><?php echo _("Orphaned Albums:") . " " . sizeof($orphanAlbums) ?></p>
 		<p><?php echo _("Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there.") ?></p>
 		<center>
 		<table>
@@ -248,14 +250,13 @@ if (empty($action)) {
 		<?php echo makeFormIntro("tools/find_orphans.php", array("method" => "GET")); ?>
 		<input type="hidden" name="action" value="albums">
 		<input type="submit" value="<?php echo _("Re-Attach Orphaned Albums!") ?>">
-		</form>	
+		</form>
 		</center>
 <?php
 	} elseif (!empty($orphanImages)) {
 ?>
 
-		<p class="popup"><?php echo _("Orphaned Files:") . " " . recursiveCount($orphanImages) ?></p>
-
+		<p><?php echo _("Orphaned Files:") . " " . recursiveCount($orphanImages) ?></p>
 		<p><?php echo _("Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information.") ?></p>
 		<center>
 		<table>
@@ -318,6 +319,7 @@ else {
 	includeHtmlWrap("gallery.footer"); 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
+</div>
 </body>
 </html>
 <?php } ?>

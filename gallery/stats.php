@@ -50,7 +50,6 @@
 require_once(dirname(__FILE__) . '/init.php');
 require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
-$statsVersion = "2.03j-3";
 $debug = 0;
 //$album="album01";
 
@@ -205,7 +204,7 @@ if (!empty( $td )) {
 
 
 
-if ( isset($showGrid)) {
+if ( 0 && isset($showGrid)) {
 	// In grid mode photos per page is controlled by the number of rows and columns.
 	$photosPerPage = $numCols * $numRows;
 }
@@ -632,7 +631,7 @@ $adminbox["commands"] = '';
 if ($gallery->user->isAdmin()) {
 	$adminbox["commands"] = '[<a href="'. makeGalleryURL('stats-wizard.php') .'">'. _("Back to stats-wizard") .'</a>] ';
 }
-$adminbox["commands"] .= '[<a href="'. makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>]';
+$adminbox["commands"] .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>]';
 
 
 if (!empty($gallery->app->stats_foruser)) {
@@ -1436,7 +1435,7 @@ if ( $showAlbumLink ) {
 <?php
 $owner_var = '';
 if ( $showAlbumOwner == 1 ) {
-	$owner_var = showOwner($statsAlbum->getOwner());
+	$owner_var = '<br>' . _("Owned by:") . ' ' . showOwner($statsAlbum->getOwner());
 }
 
 echo '<a href="'. makeAlbumUrl($statsAlbum->fields['name']) .'">'. $statsAlbum->fields['title'] .'</a>'. $owner_var;

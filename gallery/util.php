@@ -1307,6 +1307,9 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 		} elseif ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2') {
 			$cookie_name = $board_config['cookie_name'] . '_sid';
 			$cookie_value = $_COOKIE[$cookie_name];
+		 } elseif ($GALLERY_EMBEDDED_INSIDE_TYPE == 'mambo') {
+			$cookie1_name = 'sessioncookie';
+			$cookie1_value = $_COOKIE[$cookie1_name];
 		}
 	}
 
@@ -1330,6 +1333,10 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 	<param name="gr_cookie_value" value="<?php echo $cookie_value ?>">
 	<param name="gr_cookie_domain" value="<?php echo $cookie_domain ?>">
 	<param name="gr_cookie_path" value="<?php echo $cookie_path ?>">
+<?php if (isset($cookie1_name)) { ?>
+	<param name="gr_cookie1_name" value="<?php echo $cookie1_name ?>">
+	<param name="gr_cookie1_value" value="<?php echo $cookie1_value ?>">
+<?php } ?>
 	<param name="gr_album" value="<?php echo $album ?>">
 <?php
 	foreach ($defaults as $key => $value) {
@@ -1360,6 +1367,10 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 				gr_cookie_value="<?php echo $cookie_value ?>"
 				gr_cookie_domain="<?php echo $cookie_domain ?>"
 				gr_cookie_path="<?php echo $cookie_path ?>"
+<?php if (isset($cookie1_name)) { ?>
+				gr_cookie1_name="<?php echo $cookie1_name ?>"
+				gr_cookie1_value="<?php echo $cookie1_value ?>"
+<?php } ?>
 				gr_album="<?php echo $album ?>"
 <?php
 	foreach ($defaults as $key => $value) {

@@ -55,7 +55,8 @@ doctype();
 <p align="center" class="popuphead"><?php echo _("Find and remove comment spam") ?></p>
 <?php
 
-$adminCommands = '[<a href="'. makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>] ';
+$adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
+$adminCommands = '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
 
 $adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
@@ -63,7 +64,7 @@ includeLayout('adminbox.inc');
 includeLayout('ml_pulldown.inc');
 
 ?>
-<table width="100%">
+<table width="100%" class="albumdesc">
 <tr>
 <?php
 echo '<td style="vertical-align:top; white-space:nowrap; width:280px;">';
