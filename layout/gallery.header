@@ -1,4 +1,4 @@
-<title>Photo Gallery </title>
+<title>Jacko's Dev Photo Gallery </title>
 
 <body bgcolor=#000000 text=#AAAAAA link=#FFFFFF vlink=#CCCCCC alink=#CCCCCC>
 
@@ -6,19 +6,18 @@
 
 <table width=100%><tr><td align=left>
 <font size=+3 face=arial>
-Photo Gallery
+Jacko's Dev Photo Gallery
 </font>
 <br>
-<font size=-1>
-<a href=<?= $gallery->url ?>>Gallery v<?= $gallery->version ?></a>
-</font>
-<p>
-<hr size=1>
-<font size=+1 face=arial>
-There are <?=$numAlbums?> albums in this gallery on <?=$maxPages?> pages.
+<font size=-1 face=arial>
+There are <?=$numAlbums?> albums in this gallery on <?=$maxPages?> pages
+<? if (!isCorrectPassword($edit)) { ?>
+&nbsp;<a href=<?= popup("edit_mode.php")?>>[Admin]</a>
+<? } ?>
 <br>
 Click on an album below to view it.
 </font>
+<br>
 <br>
 </td></tr></table>
 
