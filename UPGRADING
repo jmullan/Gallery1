@@ -4,6 +4,7 @@ CONTENTS
  3. Notes on upgrading from pre-v1.1 to v1.1
  4. Notes on upgrading from v1.1 to v1.2
  5. Notes on upgrading to v1.2.2
+ 6. Notes on upgrading to v1.2.3
 
 1. HOW TO UPGRADE GALLERY
 
@@ -142,4 +143,19 @@ allow you to upgrade any individual album, or all albums at once.  If
 you can't find the link, you can browse to this page directly by
 entering it into your browser manually.
 
+6. NOTES ON UPGRADING TO V1.2.3
 
+Due to a security fix, you now have to modify index.php if you want
+to use the Gallery random photo block for Nuke.  After upgrading, if
+you're using this block, instead of seeing the actual photo you'll
+now see a message like this:
+
+	Security error!  The file you tried to include
+	is not on the approved file list.  To include
+	this file you must edit Gallery's index.php
+	and add XXX to the $safe_to_include array
+
+except that instead of XXX above it will specify the file that you're
+trying to include.  You'll need to edit index.php and add this file
+to the list of _approved_ files that can be included.  There are 
+instructions in index.php for doing this.
