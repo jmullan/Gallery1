@@ -2925,8 +2925,6 @@ function available_skins($description_only=false) {
 			       	$descriptions.="<dt>$name</dt><dd>$description</dd>";
 			}
 		}
-	} else {
-		gallery_error(sprintf(_("Can't open %s"), $dir));
 	}
 	if ($description_only) {
 		return $descriptions;
