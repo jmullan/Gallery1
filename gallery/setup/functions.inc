@@ -244,13 +244,13 @@ function check_php4_1()
 	$success = array();
 	$fail = array();
 
-        $version = explode(".", phpversion());
-        // $version = explode(".", "4.0.4");
-        if ($version[0] < 4) {
+	$version = explode(".", phpversion());
+	// $version = explode(".", "4.0.4");
+	if ($version[0] < 4) {
 		$fail["fail-too-old"]= 1;
-        } elseif ($version[1] <1) {
+	} elseif ($version[1] <1) {
 		$fail["fail-too-old"] = 1;
-        } else{
+	} else{
 		$success[] = sprintf(_("PHP v%s is OK"), phpversion());
 	}
 
@@ -302,7 +302,7 @@ function check_graphics($location="", $graphtool = "")
 	$success = array();
 	if (!strcmp($graphtool, "ImageMagick")) {
 		$success[] = _("NetPBM not being used in this installation");
-	    	return array($success, $fail);
+		return array($success, $fail);
 	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
@@ -387,7 +387,7 @@ function check_graphics_im($location="", $graphtool="")
 
 	if (!strcmp($graphtool, "NetPBM")) {
 		$success[] = "ImageMagick not being used in this installation";
-	    	return array($success, $fail);
+		return array($success, $fail);
 	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
@@ -467,39 +467,6 @@ function check_gettext()
 	}
 	return array($success, $fail);
 }
-/*
-function check_locale()
-{
-
-	$fail = array();
-	$success = array();
-
-	if (strncasecmp(PHP_OS,"win", 3)) {
-		# Unix / Linux / Mac OS X
-		# Check which locales are installed
-		if (is_readable("/etc/locale.gen")) {
-			$list=split("\n",shell_exec('cat /etc/locale.gen | cut -d " " -f 1'));
-		}
-		if (sizeof($list) == 0 && is_readable("/usr/share/locale/")) {
-			$list=split("\n",shell_exec('ls /usr/share/locale/'));
-		}
-		if (sizeof($list) == 0) {
-			$list=split("\n", shell_exec("locale -a")) ;
-		}
-		if (sizeof($list) > 0) {
-			$success[] = _("locale support found");
-		} else {
-			$fail["fail-locale"] = _("locale support not found");
-		}
-	}
-	else {
-		# Windows
-		$fail["warning-locale"] = _("Locale support not determined");
-		
-	}
-	return array($success, $fail);
-}
-*/
 
 function check_gallery_languages()
 {
@@ -563,26 +530,29 @@ function check_gallery_version()
 function check_absent_locales()
 {
 	global $GALLERY_BASEDIR;
+	global $locale_check;
 	$fail = array();
 	$success = array();
 
-	$missing_locales=unavailable_locales();
-	$avail_locales=available_locales();
-	sort($missing_locales);
-	sort($avail_locales);
-	if (sizeof($missing_locales) == 0 ) {
+	$locales=$locale_check;
+
+	if($locales != NULL && sizeof($locales["unavailable_locales"]) ==0) {
 		$success[] = _("All gallery locales are available on this host");
-	} else if (sizeof($avail_locales) <= 1 || $missing_locales == $avail_locales) {
-	    if (ini_get('open_basedir')) {
-		$fail[] = sprintf(_("We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."),
+	} else if(sizeof($locales["available_locales"]) == 0) {
+		if (ini_get('open_basedir')) {
+			$fail[] = sprintf(_("We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."),
 				'<a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir">open_basedir</a>');
-	    } else {
-		$fail[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
-	    }
+		} else {
+			if (PHP_OS == "Linux") {
+				$fail[] = sprintf(_("We were unable to detect any system locales. Multilanguage functions will be disabled. Please install the corresponding locales or ask your Provider to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s"),"Debian", '<a href="http://people.debian.org/~schultmc/locales.html">', "</a>");
+			} else {
+				$fail[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
+			}
+		}
 	} else {
 		$msg = _("Dates in these languages may not be formatted properly, because the corresponding locales are missing:") . "<br>";
 		$nls=getNLS();
-		foreach ($missing_locales as $value) {
+		foreach ($locales["unavailable_locales"] as $value) {
 			$msg .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 			$msg .= $nls['language'][$value];
 			$msg .= " ($value)<br>";
@@ -611,98 +581,90 @@ function test_locale($locale) {
 	}
 	return false;
 }
-function all_locales ($set) {
-	$list = array();
+function check_locale() {
 	$nls=getNLS();
 	$gallery_languages=gallery_languages();
+	$system_locales=array();
+
 	$available_locales=array();
 	$maybe_locales=array();
-	$non_available_locales=array();
+	$unavailable_locales=array();
 
-	$current_locale=setlocale(LC_ALL, 0);
-	$available_locales['en_US']=$nls['language']['en_US'];
-
-	if (strncasecmp(PHP_OS,"win", 3)) {
+	/* Lets see which system locales are installed. */
+	if (! stristr(PHP_OS,"win")) {
 		# Unix / Linux
 		# Check which locales are installed
-		if (@is_readable("/etc/locale.gen")) {
-			$list=array_merge($list, split("\n",shell_exec('cat /etc/locale.gen | cut -d " " -f 1')));
+		$tmp=split("\n", shell_exec("locale -a"));
+		if(count($tmp) >3) {
+			$system_locales=$tmp;
+		} elseif (@is_readable("/etc/locale.gen")) {
+			$system_locales=split("\n",shell_exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1'));
+			if (@is_readable("/usr/share/locale/")) {
+				$system_locales=array_merge($system_locales, split("\n",shell_exec('ls /usr/share/locale/')));
+			}
 		}
-		if (@is_readable("/usr/share/locale/")) {
-			$list=array_merge($list, split("\n",shell_exec('ls /usr/share/locale/')));
-		}
-		$list=array_merge($list, split("\n", shell_exec("locale -a")) );
 	}
+
+	/* DAMN, there are none */
+	if(sizeof($system_locales) == 0) {
+		return NULL;
+	}
+
+	/* There were at least one system locale
+	** Now lets test if our languages are supported by the system
+	*/
 	foreach ($gallery_languages as $locale => $locale_name) {
-		if (in_array($locale,$nls['alias'])) {
-                        $keylist=array_keys($nls['alias'],$locale);
-                        $aliases = preg_grep ("/^(". substr($locale,0,2) 
-						."|" . implode ("|", $keylist) 
-						.")/",$list);
-                } else {
-                        $aliases =
-				preg_grep ("/^". substr($locale,0,2) ."/",$list);
+		$aliases=array();
+		
+		/* Found an supported one, put it in availables */
+		if (in_array($locale, $system_locales)) {
+			$available_locales[$locale]=$locale;
+			continue;
 		}
+		
+		/* we use the first 2 letter to build an alias list
+		**  e.G. nl to find nl_BE or nl_NL
+		*/
 		if (in_array($locale,$nls['alias'])) {
-                        $keylist=array_keys($nls['alias'],$locale);
-			foreach($keylist as $item) {
-				if (setlocale(LC_ALL, $item)) {
-					$aliases[]=$item;
-				}
-			}
-                } 
-		// $aliases=array_filter(array_unique($aliases), "test_locale");
-		$tmp=array();
-		foreach ($aliases as $alias) {
-			if (test_locale($alias)) {
-					$tmp[]=$alias;
-			}
-		}
-		$aliases=$tmp;
-		if (setlocale(LC_ALL, $locale)) {
-			$available_locales[$locale]=$locale_name;
-		} else if ($aliases) {
-			$available_locales[$locale]=$locale_name;
-			$maybe_locales[$locale]=$aliases;
+			$keylist=array_keys($nls['alias'],$locale);
+			$aliases = preg_grep ("/^(". substr($locale,0,2) ."|" . implode ("|", $keylist) .")/",$system_locales);
 		} else {
-			$non_available_locales[]=$locale;
+			$aliases = preg_grep ("/^". substr($locale,0,2) ."/",$system_locales);
+		}
+
+		/* if there were aliass we put them in maybes */
+		if ($aliases) {
+				$maybe_locales[$locale]=$aliases;
+		} else {
+				$unavailable_locales[]=$locale;
 		}
 	}
-	setlocale(LC_ALL, $current_locale);
-	switch ($set) {
-		case 0:
-			return $available_locales;
-			break;
-		case 1:
-			return $maybe_locales;
-			break;
-		case 2:
-			return $non_available_locales;
-			break;
-	}
+
+	return array(
+		"available_locales" => $available_locales,
+		"maybe_locales" => $maybe_locales,
+		"unavailable_locales" => $unavailable_locales
+	);
+
 }
 
-function available_locales () {
-	return all_locales(0);
-}
-
-function maybe_locales () {
-	return all_locales(1);
-}
-
-function unavailable_locales () {
-	return all_locales(2);
-}
 
 function config_maybe_locales() {
+	global $locale_check;
+
 	$results=array();
-	$maybe=maybe_locales();
-	$unavailable=unavailable_locales();
-	$available=available_locales();
+	$locales=$locale_check;
+	$available=$locales["available_locales"];
+	$maybe=$locales["maybe_locales"];
+	$unavailable=$locales["unavailable_locales"];
+
+	if($locales == NULL) return;
+
 	$nls=getNLS();
 
 	$block_start_done=false;
-        foreach ($maybe as $key => $aliases) {
+	
+	foreach ($maybe as $key => $aliases) {
 		if (sizeof($aliases) < 1) {
 			$unavailable[]=$key;
 			continue;
@@ -738,7 +700,7 @@ function config_maybe_locales() {
 			"value" => current($choices));
 
 			
-        }
+	}
 	if ($block_start_done) {
 		$results[] = array ("type" => "block_end");
 	}
@@ -747,7 +709,7 @@ function config_maybe_locales() {
 	foreach ($available as $choice => $value) { 
 		$choices[$choice]=$value;
 	}
-        foreach ($unavailable as $key) {
+	foreach ($unavailable as $key) {
 		if (sizeof($available) == 1) {
 			$results["locale_alias['$key']"] = array (
 				"type" => "hidden", 
@@ -775,7 +737,7 @@ function config_maybe_locales() {
 			"value" => current($choices));
 
 			
-        }
+	}
 	if ($block_start_done) {
 		$results[] = array ("type" => "block_end");
 	}
@@ -787,7 +749,7 @@ function config_maybe_locales() {
 function default_graphics()
 {
 	list ($imageMagick,) = check_graphics_im();
-        
+	
 	if (count ($imageMagick)) {
 		return "ImageMagick";
 	} else {

@@ -38,6 +38,7 @@ if ($docs_page) {
 <?php
 $warning =0;
 foreach ($checklist as $check) {
+	if( isset($check["enabled"]) && $check["enabled"] == "no") continue;
 ?> 
 	<tr>
 	<td width=50% valign=top><?php echo $check["desc"] ?></td>
@@ -58,7 +59,7 @@ foreach ($checklist as $check) {
 	$openBasedir = ini_get('open_basedir');
 	foreach ($fail as $key => $val) {
 		if ($check["optional"]) {
-			if (isset($check["serious"])) {
+			if (isset($check["serious"]) && $check["serious"] == 1) {
 				$serious_warning++;
 				$text = _("Serious Warning");
 				$color = "red";

@@ -21,6 +21,8 @@ echo _("In this step you'll customize various settings for Gallery.  If this is 
 <?php
 $i = 0;
 foreach ($constants as $key => $val) {
+	if( isset($val["enabbled"]) && $val["enabled"] == "no") continue;
+
 	if (isset($val["type"]) && ($val["type"] === "block_start" )) {
 		echo evenOdd_row(make_fields($key, $val),
 				$i % 2);

@@ -1,6 +1,14 @@
 <?php /* $Id$ */ ?>
 <?php
 
+$locale_check=check_locale();
+/* $elawisyl <=> Enable LAnguages WIthout SYstem Locales
+** is set to "no" when we have no system locales and are in linux
+** "no" disables all language settings 
+*/
+
+if ( ($locale_check == NULL) && (stristr(PHP_OS,"linux")) ) $elawisyl = "no";
+
 $common_messages["getting-netpbm"] = 
 			sprintf(_("Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from %sGallery on SourceForge%s.  Or, you can compile and install the entire NetPBM package from %sNetPBM on SourceForge%s."), 
 				 "<a href=http://sourceforge.net/projects/gallery>",
@@ -141,7 +149,9 @@ $checklist = array(
 	"missing-locales" => array (
 		"optional" => 1,
 		"desc" => _("Testing to see if which locales are absent"),
-		"func" => "check_absent_locales"
+		"func" => "check_absent_locales",
+		"serious" => ( $elawisyl == "no" ) ? 1 : 0 ,
+		"enabled" => (stristr(PHP_OS,"win")) ? "no" : "yes" 
 	)
 );
 
@@ -345,7 +355,8 @@ $constants = array_merge(
 		"desc" => sprintf(_("This is what you will see as %s, and what users will see if no other preference is set."), 'admin'),
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"choices" => gallery_languages(),
-		"value" => $gallery->language
+		"value" => $gallery->language,
+		"enabled" => $elawisyl
 	),
 	"ML_mode" => array(
 		"prompt" => _("Multi language mode"), 
@@ -356,7 +367,8 @@ $constants = array_merge(
 				1 => "1: " . _("Gallery is only displayed in one language"), 
 				2 => "2: " . _("Gallery is displayed in the language the browser sends"), 
 				3 => "3: " . _("The User can choose the language via select Box.")),
-		"value" => (sizeof(gallery_languages()) > 1) ? 3 : 1
+		"value" => (sizeof(gallery_languages()) > 1) ? 3 : 1,
+		"enabled" => $elawisyl
 	),
 	"available_lang" => array(
 		"prompt" => _("Available languages in mode 3 and user preferences"), 
@@ -365,7 +377,8 @@ $constants = array_merge(
 		"desc" => _("These languages will be available as user choices in a drop down menu, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3.") .
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
 		"multiple_choices" => gallery_languages(),
-		"value" => array_keys(gallery_languages())
+		"value" => array_keys(gallery_languages()),
+		"enabled" => $elawisyl
 	),
 	"cacheExif" => array(
 		"prompt" => "<b>(" . _("Advanced") . ")</b> ". _("Cache EXIF data"),

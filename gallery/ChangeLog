@@ -1,3 +1,20 @@
+2003-08-26 Jens Tkotz  <jens@peino.de> 1.4-RC2-b6
+
+	* nearly a complete rewrite of locale tests in setup/functions.inc
+          This fixes 2 bugs:
+          1.) when gallery runs in this environment:
+              Linux / PHP with gettext / NO system locales.
+              In this case gallery doesnt have ML capabilities, but in older version this wasnt fetched.
+
+          2.) when gallery runs in windows there were unneccessay (confusing) warnings.
+
+        * Added new languages: Simplified Chinese (zh_CN) ; Finnish (fi_FI).
+
+        * Synced all languages.
+
+        * Language Updates: Italian (it_IT), German (de_DE).
+
+
 2003-08-24 Jens Tkotz  <jens@peino.de> 1.4-RC2-b5
 
 	* Bugfix of resize photo

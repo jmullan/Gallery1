@@ -86,6 +86,9 @@ $graphpath = "";
 $graphtest = array();
 
 foreach ($constants as $key => $val) {
+
+	if (isset($val["enabled"]) && $val["enabled"] == "no") continue;
+
 	if (isset($val["type"]) && ($val["type"] == "block_start" || $val["type"] == "block_end")) { 
 		continue;
 	}
