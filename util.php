@@ -628,11 +628,11 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 				fromPnmCmd($out));
 		break;
 	case "ImageMagick":
-		$src = fs_import_filename($src);
-		$out = fs_import_filename($out);
+		$psrc = fs_import_filename($src);
+		$pout = fs_import_filename($out);
 		$err = exec_wrapper(ImCmd("convert", "-crop " .
 				$width ."x". $height ."+". $x ."+". $y .
-				" $src $out"));
+				" $psrc $pout"));
 		break;
 	default:
 		if (isDebugging())
