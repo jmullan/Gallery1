@@ -31,7 +31,7 @@ if (!$gallery->user->isAdmin()) {
 ?>
 <?php
 $errorCount=0;
-if (isset($create)) {
+if (!empty($create_user)) {
 	$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 	if ($gErrors["uname"]) {
 		$errorCount++;
@@ -143,6 +143,7 @@ $allowChange["member_file"] = false;
 
 <br>
 
+<input type="hidden" name="create_user" value="1">
 <input type="submit" name="create" value="<?php echo _("Create") ?>">
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
 </form>
