@@ -3401,7 +3401,7 @@ function includeTemplate($tplName, $skinname='') {
 		$skinname = $gallery->app->skinname;
 	}
 
-	$filename = dirname(__FILE__) . "/skins/$skinname/wrap/$tplName";
+	$filename = dirname(__FILE__) . "/skins/$skinname/tpl/$tplName";
 	if (fs_is_readable($filename)) {
 		include($filename);
 		return true;

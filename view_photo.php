@@ -560,7 +560,7 @@ $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 
 includeHtmlWrap("inline_photo.frame");
 ?>
-
+<div class="pview" align="center">
 <!-- caption -->
 <p align="center" class="modcaption"><?php echo editCaption($gallery->album, $index) ?>
 
@@ -649,6 +649,7 @@ includeHtmlWrap("inline_photo.footer");
 	<input type="hidden" name="submitEmailMe">
 		</form>
 <?php }
+echo "</div>";
 includeLayout('navtablebegin.inc');
 includeLayout('navphoto.inc');
 $breadcrumb["top"] = false;
