@@ -175,7 +175,7 @@ if ($album->fields["textcolor"]) {
 	}
 
 	if (changed) {
-		img = document.images.photo;
+		var img = document.images.photo;
 		if (document.all) {
 			// We're in IE where we can just resize the image.
 			img.height = imageHeight;
