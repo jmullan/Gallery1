@@ -110,7 +110,7 @@ if (isset($allUid) && isset($submit_viewComments) && strchr($submit_viewComments
         $gallery->album->setViewComments($allUid, 1);
         $changed++;
 } else if (isset($viewCommentsUid) && isset($submit_viewComments) && strchr($submit_viewComments, "<")) {
-        $gallery->album->setViewComments($addCommentsUid, 0);
+        $gallery->album->setViewComments($viewCommentsUid, 0);
         $changed++;
 }
 
