@@ -186,10 +186,10 @@ class Image {
 	}
 	
 	function getPath($dir, $full=0) {
-		if (!$full) {
-		    $name = $this->resizedName;
-		} else {
+		if ($full || !$this->resizedName) {
 		    $name = $this->name;
+		} else {
+		    $name = $this->resizedName;
 		}
 		return "$dir/$name.$this->type";
 	}
