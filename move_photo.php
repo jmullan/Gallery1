@@ -97,7 +97,7 @@ if ($gallery->session->albumName && isset($index)) {
 						$myresized = $myphoto->image->resizedName;
 						$mytype=$myphoto->image->type;
 						$myfile="$mydir/$myname.$mytype";
-						$myhidden="$myphoto->isHidden();
+						$myhidden=$myphoto->isHidden();
 						//print "mydir=".$mydir."<br>";
 						//print "myphoto=".$myphoto."<br>";
 						//print "myname=".$myname."<br>";
