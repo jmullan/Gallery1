@@ -988,7 +988,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 				scriptable="false"
 				progressbar="true"
 				boxmessage="Downloading the Gallery Remote Applet"
-				pluginspage="http://java.sun.com/j2se/1.4.1/download.html"
+				pluginspage="http://java.sun.com/j2se/1.4.2/download.html"
 				gr_url="<?php echo $gallery->app->photoAlbumURL ?>"
 				gr_cookie_name="<?php echo session_name() ?>"
 				gr_cookie_value="<?php echo session_id() ?>"
