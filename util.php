@@ -1104,13 +1104,17 @@ function printChildren($albumName,$depth=0) {
 			$nestedAlbum->load($myName);
 			if ($gallery->user->canReadAlbum($nestedAlbum)) {
 				$val2 = $nestedAlbum->fields['title'];
-				$val3 = pluralize($nestedAlbum->getClicks(), "hit", "0");
+				if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')) {
+				    $val3 = "(" . pluralize($nestedAlbum->getClicks(), "hit", "0") . ")";
+				} else {
+				    $val3 = "";
+				}
 				if ($depth==0 && !$printedHeader++) {
 					echo "<strong>Child albums:</strong>";
 				}
 				echo "<div style=\"margin: 0px 0px 0px 20px\">";
 				echo "<span class=fineprint>";
-				echo "<a href=\"$myName\">$val2 ($val3)</a>\n";
+				echo "<a href=\"$myName\">$val2 $val3</a>\n";
 				printChildren($myName,$depth+1);
 				echo "</span>";
 				echo "</div>";
