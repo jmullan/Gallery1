@@ -27,7 +27,7 @@ if ($albumName && isset($index)) {
 		$album->movePhoto($index, $newIndex);
 		$album->save();
 		dismissAndReload();
-		exit;
+		return;
 	} else {
 ?>
 

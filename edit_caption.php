@@ -23,7 +23,7 @@ if ($save) {
 	$album->setCaption($index, $data);
 	$album->save();
 	dismissAndReload();
-	exit;
+	return;
 }
 ?>
 

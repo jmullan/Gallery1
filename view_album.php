@@ -21,7 +21,7 @@
 <? 
 if (!$album->isLoaded()) {
 	header("Location: albums.php");
-	exit;
+	return;
 }
 
 $numPhotos = $album->numPhotos(editMode());

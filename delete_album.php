@@ -22,7 +22,7 @@
 if ($confirm) {
 	$album->delete();
 	dismissAndReload();
-	exit;
+	return;
 }
 
 require('style.php');

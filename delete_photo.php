@@ -23,7 +23,7 @@ if ($confirm && isset($index)) {
 	$album->deletePhoto($index);
 	$album->save();
 	dismissAndReload();
-	exit;
+	return;
 }
 
 require('style.php');

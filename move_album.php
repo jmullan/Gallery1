@@ -29,7 +29,7 @@ if ($albumName && isset($index)) {
 		$albumDB->moveAlbum($index, $newIndex);
 		$albumDB->save();
 		dismissAndReload();
-		exit;
+		return;
 	} else {
 		$numAlbums = $albumDB->numAlbums();
 ?>
