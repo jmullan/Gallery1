@@ -834,7 +834,7 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 	}
 
 	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
-		if ($useTemp) {
+		if (isset($useTemp)) {
 			fs_copy($out, $dest);
 			fs_unlink($out);
 		}

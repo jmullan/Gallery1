@@ -613,11 +613,13 @@ class AlbumItem {
 	}
 
 	function isMovie() {
-		return isMovie($this->image->type);
+		if (isset($this->image)) {
+			return isMovie($this->image->type);
+		}
 	}
 
 	function resize($dir, $target, $filesize, $pathToResized) {
-		if ($this->image) {
+		if (isset($this->image)) {
 			$this->image->resize($dir, $target, $filesize, $pathToResized);
 		}
 	}

@@ -178,7 +178,7 @@ class AlbumDB {
 	function getAlbum($user, $index) {
 		global $gallery;
 		$list = $this->getVisibleAlbums($user);
-		if (!$list[$index-1]->transient->photosloaded) {
+		if (!isset($list[$index-1]->transient) || !$list[$index-1]->transient->photosloaded) {
 			$list[$index-1]->loadPhotos($gallery->app->albumDir . "/" . $list[$index-1]->fields["name"]);
 		}
 		return $list[$index-1];
@@ -190,7 +190,7 @@ class AlbumDB {
 		foreach ($this->albumList as $album) {
 		        set_time_limit($gallery->app->timeLimit);
 			if ($album->fields["name"] == $name) {
-				if (!$album->transient->photosloaded && $load) {
+				if ((!isset($album->transient) || !$album->transient->photosloaded) && $load) {
 					$album->loadPhotos($gallery->app->albumDir . "/$name");
 				}
 				return $album;
