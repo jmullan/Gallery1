@@ -79,7 +79,7 @@
 
  <?= errorRow("email") ?>
 
-<? if ($user->isAdmin()) { ?>
+<? if ($user->isAdmin() && isset($canCreate)) { ?>
  <tr>
   <td>
    User can create albums
