@@ -146,10 +146,12 @@ class Album {
 		 * the album version is older than the feature.
 		 */
 		if ($this->version < 5) {
+		    if (!empty($this->fields['perms']['canRead'])) {
 			foreach ($this->fields['perms']['canRead'] as $uid => $p) {
 				$this->fields['perms']['canViewFullImages'][$uid] = $p;
 			}
 			$changed = 1;
+		    }
 		}
 
 		/* Special case for EXIF :-( */
