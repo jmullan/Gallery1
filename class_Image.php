@@ -77,9 +77,7 @@ class Image {
 
 		$name = $this->getName($dir);
 		
-		if (!strcmp($app->default["imageborders"], "no")) {
-			$attrs .= " border=0";
-		}
+		$attrs .= " border=0";
 		
 		if ($this->resizedName) {
 			if ($full) {
