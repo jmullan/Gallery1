@@ -173,7 +173,7 @@ if ($gallery->album->fields["textcolor"]) {
 
 </head>
 
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 <?php } ?>
 <?php includeHtmlWrap("slideshow.header"); ?>
 

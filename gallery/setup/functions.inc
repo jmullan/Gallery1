@@ -629,12 +629,20 @@ function check_locale() {
 		if (in_array($locale,$nls['alias'])) {
                         $keylist = array_keys($nls['alias'],$locale);
                         if (getOS() != OS_WINDOWS) {
-                                $aliases = preg_grep ("/^(". substr($locale,0,2) ."|" . implode ("|", $keylist) .")/",$system_locales);
+			    foreach ($system_locales as $key => $value) {
+				if (ereg('^(' . substr($locale,0,2) . '|' . implode('|', $keylist) . ')', $value)) {
+				    $aliases[$key] = $value;
+				}
+			    }
                         } else {
                                 $aliases=$keylist;
                         }
                 } else {
-                        $aliases = preg_grep ("/^". substr($locale,0,2) ."/",$system_locales);
+		    foreach ($system_locales as $key => $value) {
+			if (ereg('^' . substr($locale,0,2), $value)) {
+			    $aliases[$key] = $value;
+			}
+		    }
                 }
 
 		if ($aliases) {

@@ -1,3 +1,11 @@
+2003-08-29  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4-RC2-cvs-b12
+
+	* Replaced preg_grep() functions in favour of ereg() in
+	  setup/functions.inc to support PHP pre-4.2.0.
+
+	* Re-ordered include of util.php in setup. Previous change had
+	  broken check_netpbm.php and check_imagemagick.php.
+		
 2003-08-28  Jens <jens@peino.de> 1.4-RC2-cvs-b11
 
 	* Added upgrade_users.php to po/filelist
@@ -12,11 +20,13 @@
 
 2003-08-28  Jens <jens@peino.de> 1.4-RC2-cvs-b10
 
-	* Fixed bug which caused gallery to use alias as maybe which are actual unavailable
+	* Fixed bug which caused Gallery to use locale aliases which are
+	  actually unavailable.
 
-2003-08-28  Jens <jens@peino.de> & Joan <gallery@joanhenge.plus.com> 1.4-RC2-cvs-b9
-
-	* Modified locale code so it behaves correctly on Mac and Windows 
+2003-08-28  Joan <gallery@joanhenge.plus.com> 1.4-RC2-cvs-b9
+            Jens <jens@peino.de>
+	    	
+	* Modified locale code so it behaves correctly on Mac and Windows
 	  systems.
 
 	* Cosmetic change to upgrade_users.php.
