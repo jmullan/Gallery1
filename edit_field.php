@@ -70,7 +70,7 @@ if (isset($save)) {
 		"method" => "POST")); 
 ?>
 <input type="hidden" name="field" value="<?php echo $field ?>">
-<textarea name="data" rows="5" cols="40">
+<textarea name="data" rows="8" cols="55">
 <?php echo $gallery->album->fields[$field] ?>
 </textarea>
 <p>
