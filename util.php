@@ -1007,6 +1007,7 @@ function getNextPhoto($idx) {
 
 function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 	global $gallery, $albumDB, $index;
+	$uptodate=true;
 	
 	$mynumalbums = $albumDB->numAlbums($gallery->user);
 
@@ -1021,7 +1022,12 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 	for ($i=1; $i<=$mynumalbums; $i++) {
 		$myAlbum=$albumDB->getAlbum($gallery->user, $i);
 		if ($gallery->user->canWriteToAlbum($myAlbum) && 
-			($rootAlbumName != $myAlbum->fields['name'] || !$moveRootAlbum) ) {
+		    ($rootAlbumName != $myAlbum->fields['name'] || !$moveRootAlbum) ) {
+			if ($myAlbum->versionOutOfDate()) {
+				print "problem with $myAlbum";
+				$uptodate=false;
+				continue;
+			}
 			$albumName = $myAlbum->fields['name'];
 			$albumTitle = $myAlbum->fields['title'];
 			if ($myAlbum != $gallery->album) {
@@ -1030,6 +1036,7 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 			printNestedVals(1, $albumName, $albumTitle, $movePhoto);
 		}
 	}
+	return $uptodate;
 }
 
 
@@ -1522,6 +1529,7 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
                 $gallery->album->fields["use_exif"]        = $parentAlbum->fields["use_exif"];
                 $gallery->album->fields["display_clicks"]  = $parentAlbum->fields["display_clicks"];
                 $gallery->album->fields["public_comments"] = $parentAlbum->fields["public_comments"];
+		$gallery->album->fields["extra_fields"]    = $parentAlbum->fields["extra_fields"];
 
                 $returnVal = $gallery->album->save();
         } else {
@@ -1539,4 +1547,17 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 
         return $returnVal;
 }
+function stripQuotes($string)
+{
+	if (!$string)
+		return $string;
+	return ereg_replace('"', "&quot;", $string);
+}
+function restoreQuotes($string)
+{
+	if (!$string)
+		return $string;
+	return ereg_replace("&quot;", '"', $string);
+}
+
 ?>

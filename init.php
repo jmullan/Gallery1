@@ -236,7 +236,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE) &&
 }
 
 /* If there's no specific user, they are the special Everybody user */
-if (!$gallery->user) {
+if (!isset($gallery->user)) {
 	$gallery->user = $gallery->userDB->getEverybody();
 	$gallery->session->username = "";
 }

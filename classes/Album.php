@@ -70,7 +70,11 @@ class Album {
 		$this->fields["display_clicks"] = $gallery->app->default["display_clicks"];
 		$this->fields["public_comments"] = $gallery->app->default["public_comments"];
 		$this->fields["serial_number"] = 0;
-
+		$extra_field_string=
+			"\$this->fields[\"extra_fields\"] = array(".  
+				restoreQuotes(
+					$gallery->app->default["extra_fields"]) .");";
+		eval($extra_field_string);
 		$this->fields["cached_photo_count"] = 0;
 		$this->fields["photos_separate"] = FALSE;
 		$this->transient->photosloaded = TRUE;
@@ -155,6 +159,14 @@ class Album {
 			$changed = 1;
 		    }
 		}
+
+		if ($this->version < 7) {
+		    if (!empty($this->fields['summary'])) {
+		    		$this->fields['summary']='';
+			$changed = 1;
+		    }
+		}
+
 
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
@@ -570,7 +582,7 @@ class Album {
 		}
 	}
 
-	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="") {
+	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array() ) {
 		global $gallery;
 
 		$this->updateSerial = 1;
@@ -617,6 +629,10 @@ class Album {
 			$now = time();
 			$item->setItemCaptureDate($originalItemCaptureDate);
 			$item->setUploadDate($now);
+			foreach ($extraFields as $field => $value)
+			{
+				$item->setExtraField($field, $value);
+			}
 		}
 		$this->photos[] = $item;
 
@@ -1094,6 +1110,17 @@ class Album {
 			}
 		}
 	}
+	function setNestedExtraFields() {
+		for ($i=1; $i <= $this->numPhotos(1); $i++) {
+			if ($this->isAlbumName($i)) {
+				$nestedAlbum = new Album();
+				$nestedAlbum->load($this->isAlbumName($i));
+				$nestedAlbum->fields["extra_fields"] = $this->fields["extra_fields"];
+				$nestedAlbum->save();
+				$nestedAlbum->setNestedExtraFields();
+			}
+		}
+	}
 
 	function getPerm($permName, $uid) {
 		$perm = $this->fields["perms"][$permName];
@@ -1259,6 +1286,22 @@ class Album {
 	function getOwner() {
 		global $gallery;
 		return $gallery->userDB->getUserByUid($this->fields["owner"]);
+	}
+	function getExtraFields() {
+		return $this->fields["extra_fields"];
+	}
+	function setExtraFields($extra_fields) {
+		$this->fields["extra_fields"]=$extra_fields;
+	}
+	function getExtraField($index, $field)
+	{
+		$photo = $this->getPhoto($index);
+		return $photo->getExtraField($field);
+	}
+	function setExtraField($index, $field, $value)
+	{
+		$photo = &$this->getPhoto($index);
+		$photo->setExtraField($field, $value);
 	}
 }
 

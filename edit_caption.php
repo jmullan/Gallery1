@@ -48,6 +48,10 @@ if (!strcmp($submit, "Save")) {
 		$dateArray["minutes"] = $capture_minutes;
 		$dateArray["seconds"] = $capture_seconds;
 		$gallery->album->setItemCaptureDate($index, $dateArray );
+		foreach ($extra_fields as $field => $value)
+		{
+			$gallery->album->setExtraField($index, $field, trim(strip_tags($value)));
+		}
 		$gallery->album->save();
 		dismissAndReload();
 		if (!isDebugging()) {
@@ -60,33 +64,51 @@ if (!strcmp($submit, "Save")) {
 ?>
 <html>
 <head>
-  <title>Edit Caption</title>
+  <title>Edit Text</title>
   <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
 <center>
-Enter a caption for this picture in the text
-box below.
-<br><br>
 <?php echo $gallery->album->getThumbnailTag($index) ?>
+</center>
 
+<table>
+<tr><td valign=top><b>Caption:</b></td>
 <?php echo makeFormIntro("edit_caption.php", 
 			array("name" => "theform", 
 				"method" => "POST")); ?>
 <input type=hidden name="index" value="<?php echo $index ?>">
-<textarea name="data" rows=5 cols=40>
+<td><textarea name="data" rows=4 cols=40>
 <?php echo $gallery->album->getCaption($index) ?>
-</textarea>
-<br><br>
-Enter "keywords" for this photo in the text box below.
-<br><br>
-<textarea name="keywords" rows=1 cols=40>
+</textarea></td></tr>
+<?php
+foreach ($gallery->album->getExtraFields() as $field)
+{
+	if ($field == "Capture Date" || $field == "Upload Date")
+	{
+		continue;
+	}
+        $value=$gallery->album->getExtraField($index, $field);
+	print "<tr><td valign=top><b>$field:<b></td><td>";
+	if ($field == "Title")
+	{
+		print "<input type=text name=\"extra_fields[$field]\" value=\"$value\" size=\"40\">";
+	}
+	else
+	{
+		print "<textarea name=\"extra_fields[$field]\" rows=4 cols=40>";
+		print "$value</textarea>";
+	}
+	print "</td></tr>";
+}
+?>
+<tr><td valign=top><b>Keywords:</b></td>
+<td><textarea name="keywords" rows=1 cols=40>
 <?php echo $gallery->album->getKeywords($index) ?>
-</textarea>
+</textarea></td></tr>
 
-<br>
-
+</table>
 <?php
 // get the itemCaptureDate
 echo "<span class=error>$err</span><br><br>";

@@ -23,6 +23,7 @@ won't need to do much.
 $i = 0;
 foreach ($defaults as $key => $val) {
 
+	$$key=stripQuotes($$key);
 	/* Support $app-> for backwards compatibility */
 	if ($app->default[$key]) {
 		$val["value"] = $app->default[$key];

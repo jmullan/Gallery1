@@ -103,7 +103,7 @@ update_session_var("fullOnly");
 update_session_var("username", 1);
 update_session_var("offline");
 update_session_var("offlineAlbums");
-if ($gallery->session->offlineAlbums == null)
+if (!isset($gallery->session->offlineAlbums) || $gallery->session->offlineAlbums == null)
 {
       $gallery->session->offlineAlbums=array();
 }

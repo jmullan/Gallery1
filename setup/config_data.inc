@@ -569,6 +569,17 @@ $defaults = array(
 		"desc" => "Allow the public to add comments to your photos?",
 		"choices" => array("yes", "no"),
 		"value" => "yes",
+	),
+	"extra_fields" => array(
+		"prompt" => "Extra Fields",
+		"optional" => 1,
+		"verify-func" => "check_generate_array",
+		"desc" => "Extra fields that are available to describe each image.  ".
+			  "Quoted and comma separated ".
+			  "Eg. <i>\"Description\", \"Location\", \"Film Type\"<i>".
+			  "<br><font color=blue><b>(this is new in version 1.3.4)</b></font>",
+		"attrs" => array("size" => 80),
+		"value" => "&quot;Description&quot;"
 	)
 );
 

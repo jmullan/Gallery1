@@ -257,6 +257,9 @@ if ($gallery->user->canAddToAlbum($gallery->album)) {
 	$adminCommands .= popup_link("[add photos]", 
 		"add_photos.php?set_albumName=" .
 		$gallery->session->albumName);
+	$adminCommands .= popup_link("[add photo]", 
+		"add_photo.php?set_albumName=" .
+		$gallery->session->albumName);
 }
 if ($gallery->user->canCreateSubAlbum($gallery->album) 
 	&& !$gallery->session->offline) {
@@ -269,15 +272,18 @@ if ($gallery->user->canCreateSubAlbum($gallery->album)
 if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	if (!$gallery->session->offline)
 	{
+		$adminCommands .= popup_link("[extra fields]", 
+			"extra_fields.php?set_albumName=" .
+			$gallery->session->albumName);
 		$adminCommands .= '<a href=' . makeGalleryUrl("captionator.php", 
 			array("set_albumName" => $gallery->session->albumName, 
 				"page" => $page, 
 				"perPage" => $perPage)) .
 			'>[captions]</a>&nbsp;';
+		$adminCommands .= popup_link("[edit summary]", 
+			"edit_field.php?set_albumName=" .
+			$gallery->session->albumName."&field=summary");
 	}
-	$adminCommands .= popup_link("[edit summary]", 
-		"edit_field.php?set_albumName=" .
-		$gallery->session->albumName."&field=summary");
 }
 
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
@@ -531,7 +537,7 @@ if ($numPhotos) {
 							      "index" => $i));
 					}
 				} else {
-					showChoice("Edit Caption", "edit_caption.php", array("index" => $i));
+					showChoice("Edit Text", "edit_caption.php", array("index" => $i));
 				}
 			}
 			if ($gallery->user->canWriteToAlbum($gallery->album)) {

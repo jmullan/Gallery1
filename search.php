@@ -154,9 +154,20 @@ if ($searchstring) {
 						$commentText .= $searchComment . "<br><br>";
 					}
 				}
+				$extraFieldsText = "";
+				$extraFieldsMatch = 0;
+				foreach ($searchAlbum->getExtraFields() as $field)
+				{
+					$fieldValue=$searchAlbum->getExtraField($j, $field);
+					if (eregi($searchstring, $fieldValue)) {
+						$fieldValue = eregi_replace("($searchstring)", "<b>\\1</b>", $fieldValue);
+						$extraFieldsText .= "<b>$field:</b> $fieldValue<br><br>";
+						$extraFieldsMatch = 1;
+					}
+				}
 				$captionMatch = eregi($searchstring, $searchCaption);
 				$keywordMatch = eregi($searchstring, $searchKeywords);
-				if ($captionMatch || $keywordMatch || $commentMatch) {
+				if ($captionMatch || $keywordMatch || $commentMatch || $extraFieldsMatch) {
 					if (!$searchAlbum->isHidden($j) || 
 				    	$searchAlbum->isOwner($uid) || 
 			    	    	$gallery->user->isAdmin()) {
@@ -178,7 +189,8 @@ if ($searchstring) {
 						} else {
 							$searchdraw["Text3"] = "";
 						}
-						$searchdraw["Text4"] = $commentText;
+						$searchdraw["Text5"] = $commentText;
+						$searchdraw["Text4"] = $extraFieldsText;
 						include($GALLERY_BASEDIR . "layout/searchdraw.inc");
 					}
 				}

@@ -34,7 +34,12 @@ class AlbumItem {
 	var $itemCaptureDate;	// associative array of date the item was captured 
 				// not in EPOCH so we can support dates < 1970
 	var $exifData;
+	var $extraFields;
+	var $version;
 
+	function AlbumItem() {
+		$this->version = $gallery->album_version;
+	}
 	function setUploadDate($uploadDate="") { //upload date should only be set at file upload time.
 		global $gallery;
 
@@ -124,8 +129,17 @@ class AlbumItem {
 	}
 
 	function integrityCheck($dir) {
+		global $gallery;
 		$changed = 0;
 
+		if (!isset($this->version)) {
+			$this->version=0;
+		}
+		if ($this->version < 7) {
+			if (!isset($this->extraFields) or !is_array($this->extraFields)) {
+				$this->extraFields=array();
+			}
+		}
 		if ($this->image) {
 			if ($this->image->integrityCheck($dir)) {
 				$changed = 1;
@@ -143,6 +157,10 @@ class AlbumItem {
 				}
 			}
 		}
+                if (strcmp($this->version, $gallery->album_version)) {
+                        $this->version = $gallery->album_version;
+                        $changed = 1;
+                }
 		return $changed;
 	}
 
@@ -476,6 +494,17 @@ class AlbumItem {
 		if ($this->image) {
 			$this->image->resize($dir, $target, $pathToResized);
 		}
+	}
+	function setExtraField($name, $value)
+	{
+		$this->extraFields[$name]=$value;
+	}
+	function getExtraField($name)
+	{
+		if (isset($this->extraFields[$name])) {
+			return $this->extraFields[$name];
+		}
+		return null;
 	}
 }
 

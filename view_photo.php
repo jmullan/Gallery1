@@ -175,11 +175,21 @@ do {
 for ($i = count($breadtext) - 1; $i >= 0; $i--) {
     $breadcrumb["text"][] = $breadtext[$i];
 }
+$extra_fields=$gallery->album->getExtraFields();
+$title=NULL;
+if (in_array("Title", $extra_fields))
+{
+	$title=$gallery->album->getExtraField($index, "Title");
+}
+if (!$title) {
+	$title=$index;
+}
+
 ?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: <?php echo $index ?></title>
+  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: <?php echo $title ?></title>
   <?php echo getStyleSheetLink() ?>
   <?php /* prefetch/navigation */
   $navcount = sizeof($navigator['allIds']);
@@ -520,6 +530,52 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 <td colspan=3 align=center>
 <span class="caption"><?php echo editCaption($gallery->album, $index) ?></span>
 <br><br>
+<table>
+<?php
+
+$field="Upload Date";
+$key=array_search($field, $extra_fields);
+if (is_int($key))
+{
+	print "<tr><td valign=top><b>$field:<b></td><td>".
+		date("m-d-Y H:i:s" , $gallery->album->getUploadDate($index)).
+		"</td></tr>";
+	unSet($extra_fields[$key]);
+}
+
+$field="Capture Date";
+$key=array_search($field, $extra_fields);
+if (is_int($key))
+{
+	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
+	print "<tr><td valign=top><b>$field:<b></td><td>".
+	       $itemCaptureDate[mon] . "-" . $itemCaptureDate[mday] . "-" . 
+	       $itemCaptureDate[year] . " ".  $itemCaptureDate[hours] . ":" . 
+	       $itemCaptureDate[minutes] . ":" . $itemCaptureDate[seconds].
+	       "</td></tr>";
+	unSet($extra_fields[$key]);
+}
+
+// skip title - only for header display
+$field="Title";
+$key=array_search($field, $extra_fields);
+if (is_int($key))
+{
+	unSet($extra_fields[$key]);
+}
+
+foreach ($extra_fields as $field)
+{
+	$value=$gallery->album->getExtraField($index, $field);
+	if ($value)
+	{
+		print "<tr><td valign=top><b>$field:<b></td><td>".
+			str_replace("\n", "<p>", $value).
+			"</td></tr>";
+	}
+}
+?>
+</table>
 </td>
 </tr>
 <?php if (!strcmp($gallery->album->fields["public_comments"], "yes")) { ?>

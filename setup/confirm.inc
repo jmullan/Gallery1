@@ -290,14 +290,30 @@ $view .= row_wrap("&nbsp;");
 $data .= "/* Defaults */\n";
 $view .= row_wrap("/* Defaults */\n");
 foreach ($defaults as $key => $val) {
-	if (!$$key) {
+	if (!$$key && !$defaults[$key]["optional"]) {
 		$view .= error_missing($defaults[$key]["desc"]);
 		$error = 1;
 	} else {
+		$$key = stripQuotes($$key);
 		$data .= defaults($key, $$key);
 		$view .= row_wrap(defaults($key, $$key));
+		if ($defaults[$key]["verify-func"]) {
+			$func = $defaults[$key]["verify-func"];
+			list($success, $fail) = $func($$key);
+			foreach ($fail as $fkey => $fval) {
+				if (is_array($fval)) {
+					foreach ($fval as $msg) {
+						if ($val) {
+							$view .= row_wrap(error_format($msg));
+						}
+					}
+				}
+				$error = 1;
+			}
+		}
 	}
 	echo "<input type=hidden name=$key value=\"{$$key}\">";
+
 }
 $data .= "?" . ">\n";
 

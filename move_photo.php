@@ -58,7 +58,7 @@ if ($gallery->session->albumName && isset($index)) {
 
         if ($newAlbum) {	// we are moving from one album to another
             	$postAlbum = $albumDB->getAlbumbyName($newAlbum);
-	    	if ($gallery->album->fields[name] != $postAlbum->fields[name]) {
+	    	if ($gallery->album->fields['name'] != $postAlbum->fields['name']) {
 			//$startPhoto=$index;
 			//$endPhoto=$startPhoto+max($numPhotosToMove,1);
 
@@ -114,7 +114,9 @@ if ($gallery->session->albumName && isset($index)) {
 							echo "- Creating Thumbnail<br>";
 							my_flush();
 						}
-						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, $gallery->album->getCaption($index), $pathToThumb);
+						$photo=$gallery->album->getPhoto($index);
+
+						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, $gallery->album->getCaption($index), $pathToThumb, $photo->extraFields);
 						if (!$err) {
 							$newPhotoIndex = $postAlbum->numPhotos(1);
 
@@ -235,7 +237,7 @@ Move the album to a new album:<br>
 <input type=hidden name="index" value="<?php echo $index?>">
 <select name="newAlbum">
 <?php
-	printAlbumOptionList(1,0,0);
+	$uptodate=printAlbumOptionList(1,0,0);
 ?>
 </select>
 <?php
@@ -286,7 +288,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <td>
 <select name="newAlbum">
 <?php
-printAlbumOptionList(0,0,1); 
+	$uptodate= printAlbumOptionList(0,0,1); 
 ?>
 </select>
 </td>
@@ -294,6 +296,11 @@ printAlbumOptionList(0,0,1);
 </table>
 <?php
 } // end else
+if (!$uptodate) {
+	print '<span class="error"> <br>WARNING: Some of the albums need to be upgraded '.		
+	      'to the current version of gallery.</span>  <a href='.  
+	      makeGalleryUrl("upgrade_album.php").'><br>Upgrade now</a>.<p>';
+}
 ?>
 <br>
 <input type=submit value="Move to Album!">

@@ -121,7 +121,7 @@ function locateFile($filename) {
 }
 
 function one_constant($key, $value) {
-	return "\$gallery->app->$key = \"$value\";\n";
+	return "\$gallery->app->$key = \"{$value}\";\n";
 }
 
 function defaults($key, $value) {
@@ -218,6 +218,18 @@ function check_exif($location="")
 		$success[] = "jhead binary located";
 	}
 
+	return array($success, $fail);
+}
+
+function check_generate_array($string)
+{
+	$fail = array();
+	$success = array();
+	eval ("\$array=array(".restoreQuotes($string).");");
+	if (!is_array($array))
+	{
+		$fail[]=array("<i>$string</i> is not of the form <i>\"field one\", \"field two\", \"field three\"");
+	}
 	return array($success, $fail);
 }
 

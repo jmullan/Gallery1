@@ -70,6 +70,13 @@ if ($save || $next || $prev) {
       } else {
         $gallery->album->setCaption($i, stripslashes(${"new_captions_" . $i}));
         $gallery->album->setKeywords($i, stripslashes(${"new_keywords_" . $i}));
+	if ($extra_fields)
+	{
+		foreach ($extra_fields[$i] as $field => $value)
+		{
+			$gallery->album->setExtraField($i, $field, trim(strip_tags($value)));
+		}
+	}
       }
 
       $i++;
@@ -255,19 +262,35 @@ if ($numPhotos) {
 ?>
       <span class="admin">Caption:</span><br>
       <textarea name="new_captions_<?php echo $i?>" rows=3 cols=60><?php echo $oldCaption ?></textarea><br>
-      <span class="admin">Keywords:</span><br>
-      <input type=text name="new_keywords_<?php echo $i?>" size=65 value="<?php echo $oldKeywords ?>">
       <br>
-      <span class="admin">Capture Date:</span>
 <?php
-$itemCaptureDate = $gallery->album->getItemCaptureDate($i);
-$hours = $itemCaptureDate["hours"];
-$minutes = $itemCaptureDate["minutes"];
-$seconds = $itemCaptureDate["seconds"];
-$mon = $itemCaptureDate["mon"];
-$mday = $itemCaptureDate["mday"];
-$year = $itemCaptureDate["year"];
-       print "$mon/$mday/$year $hours:$minutes:$seconds"; 
+	foreach ($gallery->album->getExtraFields() as $field) { 
+		if ($field == "Capture Date" || $field == "Upload Date")
+		{
+			continue;
+		}
+		$value=$gallery->album->getExtraField($i, $field);
+		print "<br><span class=\"admin\">$field:</span><br>";
+        	if ($field == "Title") {
+                	print "<input type=text name=\"extra_fields[$i][$field]\" value=\"$value\" size=\"40\">";
+        	}
+		else {
+			print "<textarea name=\"extra_fields[$i][$field]\" rows=2 cols=60>$value</textarea>";
+		}
+	}
+?>
+      	<span class="admin"><br>Keywords:</span><br>
+      	<input type=text name="new_keywords_<?php echo $i?>" size=65 value="<?php echo $oldKeywords ?>">
+       	<span class="admin"><br>Capture Date:</span>
+<?php
+	$itemCaptureDate = $gallery->album->getItemCaptureDate($i);
+	$hours = $itemCaptureDate["hours"];
+	$minutes = $itemCaptureDate["minutes"];
+	$seconds = $itemCaptureDate["seconds"];
+	$mon = $itemCaptureDate["mon"];
+	$mday = $itemCaptureDate["mday"];
+	$year = $itemCaptureDate["year"];
+       	print "$mon/$mday/$year $hours:$minutes:$seconds"; 
     }
 ?>
       </td>
