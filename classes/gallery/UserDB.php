@@ -251,7 +251,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 				}
 				
 				$user = unserialize($tmp);
-				if (!strcmp(get_class($user), "gallery_user")) {
+				if (!strcasecmp(get_class($user), "gallery_user")) {
 					array_push($uidList, $user->uid);
 				}
 			}
