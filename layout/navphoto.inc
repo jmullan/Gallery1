@@ -55,8 +55,8 @@ if ($navpage > 0) {
 
 	$pClass='borderright';
 } else {
-	$fpContent='&nbsp';
-	$ppContent='&nbsp';
+	$fpContent='&nbsp;';
+	$ppContent='&nbsp;';
 
 	$pClass='';
 }
@@ -78,8 +78,8 @@ if ($navpage < $navcount-1) {
 
 	$nClass='borderleft';
 } else {   
-        $npContent='&nbsp';
-        $lpContent='&nbsp';
+	$npContent='&nbsp;';
+	$lpContent='&nbsp;';
 
         $nClass='';
 } 

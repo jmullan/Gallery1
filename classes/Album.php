@@ -903,16 +903,18 @@ class Album {
 			$name = $originalFilename;
 			// check to see if a file by that name already exists
 			// or thumbnail conflict between movie and jpeg
-			if (file_exists("$dir/$name.$tag") ||
-			    ((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
-				// append a 3 digit number to the end of the filename if it exists already
-				if (!ereg("_[[:digit:]]{3}$", $name)) {
-					$name = $name . "_001";
-				}
-				// increment the 3 digits until we get a unique filename
-				while (file_exists("$dir/$name.$tag") ||
-				       ((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
-					$name++;
+			foreach (acceptableFormatList() as $ext) {
+				if (file_exists("$dir/$name.$ext") ||
+				    ((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
+					// append a 3 digit number to the end of the filename if it exists already
+					if (!ereg("_[[:digit:]]{3}$", $name)) {
+						$name = $name . "_001";
+					}
+					// increment the 3 digits until we get a unique filename
+					while ((file_exists("$dir/$name.$ext") || file_exists("$dir/$name.$tag")) ||
+					       ((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
+						$name++;
+					}
 				}
 			}
 		} else {

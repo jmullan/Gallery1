@@ -64,8 +64,8 @@ if ($navigator["page"] != 1) {
 	$pClass='borderright';
 
 } else {
-	$fpContent='&nbsp';
-	$ppContent='&nbsp';
+	$fpContent='&nbsp;';
+	$ppContent='&nbsp;';
 
 	$pClass='';
 } 
@@ -115,8 +115,8 @@ if ($current < $maxPages) {
 
 	$nClass='borderleft';
 } else {
-	$npContent='&nbsp';
-	$lpContent='&nbsp';
+	$npContent='&nbsp;';
+	$lpContent='&nbsp;';
 
         $nClass ='';
 }
