@@ -2898,7 +2898,8 @@ function available_skins($description_only=false) {
 					$description .=
 						" (" .
 						popup_link(_("screenshot"), 
-								$screenshot, 1, false) .
+								$screenshot, 1, false,
+								500, 800) .
 					       ")";	
 				}
 				if ($description) {

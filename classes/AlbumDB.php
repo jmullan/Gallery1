@@ -43,7 +43,10 @@ class AlbumDB {
 		$changed = 0;
 		while ($i < sizeof($this->albumOrder)) {
 			$name = $this->albumOrder[$i];
-			if (fs_is_dir("$dir/$name")) {
+		       	if (ereg("^\.", $name)) { // how did this get here??
+				array_splice($this->albumOrder, $i, 1);
+				$changed = 1;
+			} else if (fs_is_dir("$dir/$name")) {
 				$album = new Album;
 				if ($album->load($name,$loadphotos)) {
 					array_push($this->albumList, $album);
