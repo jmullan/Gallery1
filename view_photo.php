@@ -538,7 +538,7 @@ $field="Upload Date";
 $key=array_search($field, $extra_fields);
 if (is_int($key))
 {
-	print "<tr><td valign=top><b>$field:<b></td><td>".
+	print "<tr><td valign=top><b>Upload Date:<b></td><td>".
 		date("m-d-Y H:i:s" , $gallery->album->getUploadDate($index)).
 		"</td></tr>";
 	unSet($extra_fields[$key]);
@@ -549,7 +549,7 @@ $key=array_search($field, $extra_fields);
 if (is_int($key))
 {
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-	print "<tr><td valign=top><b>$field:<b></td><td>".
+	print "<tr><td valign=top><b>Capture Date:<b></td><td>".
 	       $itemCaptureDate[mon] . "-" . $itemCaptureDate[mday] . "-" . 
 	       $itemCaptureDate[year] . " ".  $itemCaptureDate[hours] . ":" . 
 	       $itemCaptureDate[minutes] . ":" . $itemCaptureDate[seconds].
