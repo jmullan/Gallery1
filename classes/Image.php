@@ -36,9 +36,11 @@ class Image {
 		$this->name = $name;
 		$this->type = $type;
 
-		list($w, $h) = getDimensions("$dir/$this->name.$this->type");
-		$this->raw_width = $w;
-		$this->raw_height = $h;
+		if (!isMovie($this->type)) {
+			list($w, $h) = getDimensions("$dir/$this->name.$this->type");
+			$this->raw_width = $w;
+			$this->raw_height = $h;
+		}
 	}
 
 	function integrityCheck($dir) {
