@@ -1,0 +1,102 @@
+/* This is the default style sheet used by the Gallery. 
+
+   If you would like to customize the styles please create 
+   copy of this file called 
+
+     "gallery_style.css" (same name without ".default")
+
+   If that file is found in this directory it will be 
+   used instead of this one.
+
+   Some of the styles below are overriden by specific 
+   album properties. These are noted 
+*/ 
+
+
+/* 
+   link colors - overridden by the album 'linkcolor' property.
+*/
+A:link, A:visited, A:active 
+	{ color: #996600; }
+A:hover 
+	{ color: #ff6600; }
+
+/* 
+   default text styles - background and colors overriden by
+   album 'bgcolor', 'background', and 'textcolor' properties.
+*/
+BODY  
+	{ 
+	  background-color: #CCCCCC;
+	  color: #000000;
+          font-family: Verdana, Arial, Helvetica, sans-serif;
+	  font-size: 10pt; 
+	}
+TD, P 
+	{ 
+	  color: #000000;
+	  font-family: Verdana, Arial, Helvetica, sans-serif;
+	  font-size: 10pt; 
+	}
+
+/* 
+   text styles 
+*/
+.title                          /* album titles on main page */
+	{ 
+	  font-size: 14px; 
+	  font-weight: bold; 
+	}
+.desc                           /* album descriptions on main page */
+	{ 
+	  font-size: 12px; 
+	}
+.caption                        /* photo captions on all pages */
+	{ 
+	  font-size: 10px; 
+	}
+.error                          /* all error text */
+	{ 
+	  color: red; 
+	  font-size: 12px; 
+	}
+
+.headbox			/* box around the page headers */
+	{
+	}
+
+.head                           /* page headers */
+	{ 
+	  font-size: 16px; 
+	  font-weight: bold; 
+	}
+.bread                          /* used in breadcrumb bars */
+	{ 
+	  font-size: 10px; 
+	}
+.nav                            /* used in navigation bars */
+	{ 
+	  font-size: 12px; 
+	}
+.admin                          /* used in admin bars */
+	{ 
+	  font-size: 10px; 
+	  font-weight: bold; 
+	}
+.fineprint                      /* used for fine print */
+	{ 
+	  font-size: 10px; 
+	}
+.popuphead
+	{
+	  font-size: 16px;
+	  font-weight: bold
+	}
+.popup
+	{
+	  font-size: 12px;
+	}
+.editlink			/* Used for the [edit] tags */
+	{
+	  font-size: 10px;
+	}

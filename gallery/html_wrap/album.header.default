@@ -1,0 +1,20 @@
+<?
+// This is the default album header (for the gallery
+// page: view_album.php). It's companion is album.footer.default.
+//
+// To override this header, create a file called album.header
+// in this directory. 
+// 
+// NOTE: This header gets inserted below the <body> tag.
+// 
+// Some tips:
+// * Some application variables:
+//      - Gallery Title: $app->galleryTitle    
+//      - Album Title: $album->fields["title"]    
+//      
+?>
+
+<span class="head">
+<?= $album->fields["title"] ?>
+</span>
+<br><br>
