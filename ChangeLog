@@ -1,3 +1,25 @@
+2001-03-04  Bharat Mediratta  <bharat@menalto.com>
+
+	* When adding items to an album that has an auto_resize specified:
+		* don't resize movies
+		* don't expand images (only shrink them)
+
+	* Added docs to the README about uploading large images.  If your
+	  .htaccess support is working you won't need this.
+
+	* Sort the contents of ZIP files before adding them to the
+	  gallery.  This helps when you're sending a lot of images from a
+	  digital camera (which automatically creates them in
+	  alphabetical/numerical order).  Thanks to Axel Suppantschitsch
+	  [as@suit.at] for the necessary kick in the ass to do this.
+
+	* Turned on the --quiet flag for jpegtopnm so you'll see less crap
+	  in the error log.
+
+	* Added support for WMV movie types.
+
+	* Added a link to the Gallery survey at the end of the config wizard.
+
 2001-02-27  Bharat Mediratta  <bharat@menalto.com>
 
 	* Rolled in a patch from Phil Hord to escape file names when
