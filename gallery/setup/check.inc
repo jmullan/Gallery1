@@ -33,7 +33,7 @@
 ?>
 <p>
 <?php 
-	$diagUrl=makeGalleryUrl('setup/diagnostics.php');
+	$diagUrl="diagnostics.php";
         $diagnostics_page='<a href="'. $diagUrl .'">' . _("Gallery Diagnostics Page").'</a>';
 	$help_page='<a href="http://gallery.sourceforge.net/help.php">'. _("Gallery Help Page"). '</a>';
 	$docs_page = galleryDocs();

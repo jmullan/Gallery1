@@ -2721,7 +2721,12 @@ function galleryDocs($class='') {
 	global $gallery;
 
 	if (fs_file_exists(dirname(__FILE__) .'/docs/index.html')) {
-		$url=$gallery->app->photoAlbumURL . '/docs/index.html';
+		if (isset($gallery->app->photoAlbumURL)) {
+			$url=$gallery->app->photoAlbumURL . '/docs/index.html';
+		}
+		else { // When first config and $gallery is not filled
+			$url='../docs/index.html';
+		}
 		return "<a class=\"$class\" href=\"$url\">[" .  _("documentation").']</a>';
 	} else {
 	        return NULL;
