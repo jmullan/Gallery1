@@ -165,7 +165,7 @@ if ($numPhotos == 1) {
 } else {
         $adminText .= "$numPhotos ". _("items in this album") ;
     if ($maxPages > 1) {
-        $adminText .= " " . _("on") . " " . pluralize_n2(ngettextt("one page", "%d pages", $maxPages), $maxPages);
+        $adminText .= " " . _("on") . " " . pluralize_n2(ngettext("one page", "%d pages", $maxPages), $maxPages);
     }
 }
 
