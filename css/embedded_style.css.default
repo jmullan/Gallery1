@@ -1,9 +1,11 @@
-/* This is the default style sheet used by the Gallery. 
+/* This is the style sheet used when Gallery is embedded into
+   another product, like PHP-Nuke, and when it's running 
+   standalone.
 
    If you would like to customize the styles please create 
    copy of this file called 
 
-     "gallery_style.css" (same name without ".default")
+     "embedded_style.css" (same name without ".default")
 
    If that file is found in this directory it will be 
    used instead of this one.
@@ -14,27 +16,16 @@
 
 
 /* 
-   link colors - overridden by the album 'linkcolor' property.
-*/
-A:link, A:visited, A:active 
-	{ color: #996600; }
-A:hover 
-	{ color: #ff6600; }
-
-/* 
    default text styles - background and colors overriden by
    album 'bgcolor', 'background', and 'textcolor' properties.
 */
 BODY  
 	{ 
-	  background-color: #CCCCCC;
-	  color: #000000;
           font-family: Verdana, Arial, Helvetica, sans-serif;
 	  font-size: 10pt; 
 	}
 TD, P 
 	{ 
-	  color: #000000;
 	  font-family: Verdana, Arial, Helvetica, sans-serif;
 	  font-size: 10pt; 
 	}
