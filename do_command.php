@@ -20,8 +20,24 @@
 ?>
 <?
 if (!strcmp($cmd, "remake-thumbnail")) {
+	require('style.php');
 	if ($albumName && isset($index)) {
-		$album->makeThumbnail($index);
+		if (!strcmp($index, "all")) {
+			$np = $album->numPhotos();
+			echo ("<br> Rebuilding $np thumbnails...");
+			print str_repeat(" ", 4096);	// force a flush
+			for ($i = 1; $i <= $np; $i++) {
+				echo("<br> Processing image $i...");
+				print str_repeat(" ", 4096);	// force a flush
+				set_time_limit(90);
+				$album->makeThumbnail($i);
+			}
+		} else {
+			echo ("<br> Rebuilding 1 thumbnail...");
+			print str_repeat(" ", 4096);	// force a flush
+			set_time_limit(90);
+			$album->makeThumbnail($index);
+		}
 		$album->save();
 		dismissAndReload();
 	}
@@ -52,3 +68,8 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	header("Location: $return?set_albumName=$albumName");
 }
 ?>
+
+<center>
+<form>
+<input type=submit value="Dismiss" onclick='parent.close()'>
+</form>
