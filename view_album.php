@@ -146,7 +146,7 @@ $breadcrumb["bordercolor"] = $bordercolor;
   	(!$gallery->session->offline || 
 	 $gallery->session->offlineAlbums["albums.php"])) { ?>
   <link rel="up" href="<?php echo makeAlbumUrl();?>" />
-      <?
+      <?php
       } else if (!$gallery->session->offline || 
 	 $gallery->session->offlineAlbums[$pAlbum->fields['parentAlbumName']]) {?>
   <link rel="up" href="<?php echo makeAlbumUrl($gallery->album->fields['parentAlbumName']); ?>" />

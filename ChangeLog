@@ -1,3 +1,10 @@
+2003-05-21  Bharat Mediratta  <bharat@menalto.com> 1.3.4-cvs-b34
+
+	* Fixed an incorrect short PHP tag in view_album.php 
+
+	* Fixed a minor bug in add_photo.php where the fields were getting
+	  seeded with invalid data.
+
 2003-05-20  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b33
 
 	* Added 2 new file names to index.php.
@@ -5,32 +12,35 @@
 	* Added album summary search
 
 2003-05-20  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b32
+
 	* Removed diagnostic statements left by bug fix.
+
 2003-05-20  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b31
-	*BUGFIX.  Upgrading of albums did not add extra field defaults
+	
+	* BUGFIX.  Upgrading of albums did not add extra field defaults
 
 2003-05-20  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b30
 
 	* "Extra fields" added.
 		
-		* Configurable from Captionator and edit caption
-		  (now called "Edit text" in the pull down menu)
+	* Configurable from Captionator and edit caption
+	  (now called "Edit text" in the pull down menu)
 
-		* Are searchable.
+	* Are searchable.
 
-		* new upload popup add_photo.php adds only one photo,
-		  but lets you enter extra field data.
+	* new upload popup add_photo.php adds only one photo,
+	  but lets you enter extra field data.
 
-		* extra_fields.php, to configure extra fields for an album
+	* extra_fields.php, to configure extra fields for an album
 
-		* <TITLE> of photo page can be defined via extra
-		  fields, and the fields are displayed under the
-		  photo and above the caption.
+	* <TITLE> of photo page can be defined via extra
+	  fields, and the fields are displayed under the
+	  photo and above the caption.
 
-		* list of default extra fields added to config.php
+	* list of default extra fields added to config.php
 
-		* changed setup: you can now have optional album
-		  defaults, added a verify function to albums defaults,
+	* changed setup: you can now have optional album
+	  defaults, added a verify function to albums defaults,
 
 	* printAlbumOptionList changed so that move_photo.php will
 	  only let you move to an upgraded albums, and warns you about
