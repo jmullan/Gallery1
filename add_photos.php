@@ -108,7 +108,6 @@ Click the <b>Browse</b> button to locate a photo to upload.
 
 <?= makeFormIntro("save_photos.php",
 			array("name" => "uploadurl_form",
-				"enctype" => "multipart/form-data",
 				"method" => "POST")); ?>
 Or, upload any images found at this location.  The location
 can either be a URL or a directory on the server.
