@@ -552,7 +552,7 @@ if ($gallery->album->getPollShowResults()) {
 	echo '<div align="left" class="vapoll">';
 	list($buf, $results)=showResultsGraph( $gallery->album->getPollNumResults());
 	print $buf;
-	if ($results) {
+	if ($results && testRequirement('isAdminOrAlbumOwner')) {
 		print "\n". '<a href="' . makeGalleryUrl("poll_results.php",
 		array("set_albumName" => $gallery->session->albumName)).
 		      	'">' ._("See full poll results") . '</a><br>';
