@@ -1116,7 +1116,7 @@ if ($numPhotos) {
 			echo('</tr>');
 		}
 		$rowCount++;
-		$rowStart = $i;
+		$rowStart = $visibleItemIndex;
 	}
 } else {
 ?>
