@@ -319,7 +319,7 @@ $adminOptions = array(
 						 'action' => 'popup',
 						 'value' => doCommand('remake-thumbnail',
 								      array('set_albumName' => $gallery->session->albumName,
-									'index' => 'all', 'type' => 'popup')),
+									'index' => 'all', 'type' => 'popup'))),
 		      'properties'      => array('name' => _('properties'),
 						 'requirements' => array('canWriteToAlbum'),
 						 'action' => 'popup',
