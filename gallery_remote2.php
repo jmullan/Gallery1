@@ -200,6 +200,8 @@ function gr_fetch_albums( &$gallery, &$response ) {
 	// add album count
 	$response->setProperty( 'album_count', $album_index );
 
+	$response->setProperty( 'can_create_root', $gallery->user->canCreateAlbums() ? 'yes' : 'no' );
+
 	// add status and repond
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Fetch albums successful.' );
@@ -224,6 +226,8 @@ function gr_fetch_albums_prune( &$gallery, &$response ) {
 
 	// add album count
 	$response->setProperty( "album_count", $album_count );
+
+	$response->setProperty( 'can_create_root', $gallery->user->canCreateAlbums() ? 'yes' : 'no' );
 
 	// add status and repond
 	$response->setProperty( "status", $GR_STAT['SUCCESS'] );
