@@ -1,11 +1,11 @@
 
 <?
 function row_text($key, $arr) {
-	$buf = "<tr><td width=50% valign=top align=right>$arr[desc]</td><td valign=top>";
+	$buf = "<tr><td width=75% valign=top align=right>$arr[desc]</td><td valign=top>";
 	if ($arr["type"]) {
 		$type = "type=$arr[type]";
 	}
-	$buf .= "<input $type name=$key value='$arr[value]' size=40>";
+	$buf .= "<input $type name=$key value=\"$arr[value]\" size=40>";
 	$buf .= "</td></tr>";
 	return $buf;
 }
@@ -110,5 +110,6 @@ function makePathWrapper($app)
 		getenv("PATH") . 
 		":$path ; $app %s)&#039;";
 }
+
 ?>
 
