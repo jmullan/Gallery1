@@ -165,10 +165,11 @@ if ($urls) {
 			}
 
 			$things = array();
-			foreach (split("[[:space:]\=\"\'\<\>\?]", $contents) as $value) {
-				if (eregi("\." . acceptableFormatRegexp(), $value, $regs)) {
-					$things[$value]++;
-				}
+			while ($cnt = eregi('(src|href)="?([^" >]+\.' . acceptableFormatRegexp() . ')[" >]',
+					    $contents, 
+					    $results)) {
+				$things[$results[2]]++;
+				$contents = str_replace($results[2], "", $contents);
 			}
 
 			/* Add each unique link to an array we scan later */
