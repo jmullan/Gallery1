@@ -99,17 +99,6 @@ if (isset ($go_defaults)) {
 	$setup_page = $back_page;
 }	
 
-/* Cache passwords in order to prevent them from being erased.
- * Otherwise, we'll lose the passwords if someone revisits Step 2
- * and forgets to re-enter them. */
-
-if (isset($editPassword) && (!empty($editPassword[0]) || !empty($editPassword[1]))) {
-	$editPassword[2] = $editPassword[0];
-	$editPassword[3] = $editPassword[1];
-	// write back into RequestVar, because its not longer global ;)
-        $_REQUEST['editPassword'] = $editPassword;
-}
-
 /* Array-ize the preserve list */
 if (!empty($preserve)) {
 	$tmp = explode(" ", urldecode($preserve));
@@ -126,6 +115,15 @@ foreach (array_keys($preserve) as $key) {
 		continue;
 	}
 	$$key = array_urldecode(getRequestVar($key));
+}
+
+/* Cache passwords in order to prevent them from being erased.
+ * Otherwise, we'll lose the passwords if someone revisits Step 2
+ * and forgets to re-enter them. */
+if (isset($editPassword) && (!empty($editPassword[0]) || !empty($editPassword[1]))) {
+	$editPassword[2] = $editPassword[0];
+	$editPassword[3] = $editPassword[1];
+	$_REQUEST['editPassword'] = $editPassword;
 }
 
 ?>
