@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-02 04:04+0200\n"
+"POT-Creation-Date: 2004-05-04 20:04+0200\n"
 "PO-Revision-Date: 2004-04-16 15:18+0100\n"
 "Last-Translator: Bjorn Graabek <bjorn@graabek.com>\n"
 "Language-Team: Niels Elgaard Larsen, Bjorn Graabek <elgaard@agol.dk>\n"
@@ -49,30 +49,24 @@ msgstr ""
 msgid "You are no allowed to perform this action !"
 msgstr "Du har ikke rettigheder til at udføre denne handling."
 
-#: ../add_comment.php:57 ../view_photo.php:221
+#: ../add_comment.php:56 ../view_photo.php:208
 msgid "Name and comment are both required to save a new comment!"
 msgstr "Både Navn og Kommentar kræves for at gemme en ny kommentar!"
 
-#: ../add_comment.php:64 ../add_comment.php:70
+#: ../add_comment.php:58 ../view_photo.php:210
+#, php-format
+msgid "Your comment is too long, the admin set maximum length to %d chars"
+msgstr ""
+
+#: ../add_comment.php:74 ../add_comment.php:80
 msgid "Add Comment"
 msgstr "Tilføj kommentar"
 
-#: ../add_comment.php:71
+#: ../add_comment.php:81
 msgid "Enter your comment for this picture in the text box below."
 msgstr "Skriv din kommentar til dette billede i feltet nedenunder."
 
-#: ../add_comment.php:87
-msgid "Name or email:"
-msgstr "Navn eller email:"
-
-#: ../add_comment.php:112 ../album_permissions.php:334 ../edit_caption.php:182
-#: ../edit_field.php:56 ../edit_field.php:67 ../edit_watermark.php:82
-#: ../modify_user.php:148 ../new_password.php:125 ../photo_owner.php:100
-#: ../user_preferences.php:125 ../watermark_album.php:82
-msgid "Save"
-msgstr "Gem"
-
-#: ../add_comment.php:113 ../copy_photo.php:194 ../create_user.php:145
+#: ../add_comment.php:99 ../copy_photo.php:194 ../create_user.php:145
 #: ../delete_album.php:60 ../delete_photo.php:105 ../delete_photo.php:130
 #: ../delete_user.php:73 ../edit_caption.php:183 ../edit_field.php:68
 #: ../edit_watermark.php:83 ../includes/add_photos/add_form.inc:120
@@ -163,13 +157,20 @@ msgstr "Brugere som kan filføje kommentarer."
 msgid "Users who can view comments."
 msgstr "Brugere som kan se kommentarer."
 
+#: ../album_permissions.php:334 ../edit_caption.php:182 ../edit_field.php:56
+#: ../edit_field.php:67 ../edit_watermark.php:82 ../modify_user.php:148
+#: ../new_password.php:125 ../photo_owner.php:100 ../user_preferences.php:125
+#: ../watermark_album.php:82
+msgid "Save"
+msgstr "Gem"
+
 #: ../album_permissions.php:335 ../manage_users.php:106 ../photo_owner.php:101
 #: ../upgrade_album.php:64 ../upgrade_album.php:72 ../upgrade_users.php:64
 #: ../view_photo_properties.php:135
 msgid "Done"
 msgstr "Udført"
 
-#: ../albums.php:110 ../search.php:40
+#: ../albums.php:110 ../html_wrap/search.header.default:27 ../search.php:40
 msgid "Search"
 msgstr "Søg"
 
@@ -189,7 +190,7 @@ msgstr "topniveau-albummer"
 msgid "albums"
 msgstr "albummer"
 
-#: ../albums.php:122 ../view_album.php:262
+#: ../albums.php:122 ../view_album.php:267
 msgid "No albums"
 msgstr "Ingen albummer"
 
@@ -198,23 +199,23 @@ msgstr "Ingen albummer"
 msgid "%d total"
 msgstr "%d totalt"
 
-#: ../albums.php:124 ../view_album.php:263
+#: ../albums.php:124 ../view_album.php:268
 msgid "1 image"
 msgstr "1 billede"
 
-#: ../albums.php:124 ../view_album.php:263
+#: ../albums.php:124 ../view_album.php:268
 msgid "images"
 msgstr "billeder"
 
-#: ../albums.php:124 ../view_album.php:263
+#: ../albums.php:124 ../view_album.php:268
 msgid "no images"
 msgstr "ingen billeder"
 
-#: ../albums.php:125 ../captionator.php:168 ../view_album.php:264
+#: ../albums.php:125 ../captionator.php:168 ../view_album.php:269
 msgid "1 page"
 msgstr "1 side"
 
-#: ../albums.php:125 ../captionator.php:168 ../view_album.php:264
+#: ../albums.php:125 ../captionator.php:168 ../view_album.php:269
 msgid "pages"
 msgstr "sider"
 
@@ -247,7 +248,7 @@ msgstr "%s, %s"
 msgid "Welcome, %s"
 msgstr "Velkommen, %s"
 
-#: ../albums.php:149 ../view_album.php:452
+#: ../albums.php:149 ../view_album.php:458
 msgid "slideshow"
 msgstr "fremvisning"
 
@@ -263,11 +264,11 @@ msgstr "håndter brugere"
 msgid "preferences"
 msgstr "indstillinger"
 
-#: ../albums.php:179 ../view_album.php:458
+#: ../albums.php:179 ../view_album.php:464
 msgid "logout"
 msgstr "log ud"
 
-#: ../albums.php:183 ../view_album.php:460
+#: ../albums.php:183 ../view_album.php:466
 msgid "login"
 msgstr "log ind"
 
@@ -288,11 +289,11 @@ msgstr "%s har fundet følgende %d ugyldige katalog(er) i dit albumkatalog<br>(%s
 msgid "Please move it/them out of the albums directory."
 msgstr "Fjern dem venligst fra album kataloget."
 
-#: ../albums.php:272 ../view_album.php:729
+#: ../albums.php:272 ../view_album.php:733
 msgid "Highlight for Album: "
 msgstr "Gør dette til forsidebillede for albummet:"
 
-#: ../albums.php:289 ../view_album.php:931
+#: ../albums.php:289 ../view_album.php:937
 msgid "title"
 msgstr "titel"
 
@@ -331,11 +332,11 @@ msgstr "Sidst ændret %s."
 msgid "This album contains %s."
 msgstr "Dette album indeholder %s."
 
-#: ../albums.php:353 ../view_album.php:853
+#: ../albums.php:353 ../view_album.php:857
 msgid "1 item"
 msgstr "1 objekt"
 
-#: ../albums.php:353 ../upgrade_album.php:184 ../view_album.php:853
+#: ../albums.php:353 ../upgrade_album.php:184 ../view_album.php:857
 msgid "items"
 msgstr "objekter"
 
@@ -348,15 +349,15 @@ msgstr "ingen objekter"
 msgid "This album has been viewed %s since %s."
 msgstr "Dette album er blevet set %s siden %s."
 
-#: ../albums.php:357 ../view_album.php:861 ../view_album.php:878
+#: ../albums.php:357 ../view_album.php:865 ../view_album.php:882
 msgid "1 time"
 msgstr "1 gang"
 
-#: ../albums.php:357 ../view_album.php:861 ../view_album.php:878
+#: ../albums.php:357 ../view_album.php:865 ../view_album.php:882
 msgid "times"
 msgstr "gange"
 
-#: ../albums.php:357 ../view_album.php:861 ../view_album.php:878
+#: ../albums.php:357 ../view_album.php:865 ../view_album.php:882
 msgid "0 times"
 msgstr "0 gange"
 
@@ -364,7 +365,7 @@ msgstr "0 gange"
 msgid "reset counter"
 msgstr "nulstil tæller"
 
-#: ../albums.php:393 ../view_album.php:1067
+#: ../albums.php:393 ../view_album.php:1077
 msgid "Comments available for this item."
 msgstr "Kommentarer for dette objekt."
 
@@ -467,7 +468,7 @@ msgstr "Opgraderer %d af %d . . ."
 msgid "msg should be an array!"
 msgstr "besked skal være en tabel!"
 
-#: ../classes/Album.php:843 ../util.php:3077
+#: ../classes/Album.php:843 ../util.php:3097
 msgid "No email sent as no valid email addresses were found"
 msgstr "Ingen email sendt da ingen gyldig emailadresse blev fundet"
 
@@ -537,54 +538,54 @@ msgstr "Anonym bruger"
 msgid "Nobody"
 msgstr "Ingen"
 
-#: ../classes/gallery/UserDB.php:40
+#: ../classes/gallery/UserDB.php:44
 msgid "Unable to create dir"
 msgstr "Kan ikke oprette katalog"
 
-#: ../classes/gallery/UserDB.php:45
+#: ../classes/gallery/UserDB.php:49
 #, php-format
 msgid "%s exists, but is not a directory!"
 msgstr "%s eksisterer, men er ikke et katalog!"
 
-#: ../classes/gallery/UserDB.php:264
+#: ../classes/gallery/UserDB.php:268
 #, php-format
 msgid "Illegal username %s: must at least 2 characters"
 msgstr "Ugyldigt brugernavn, %s: det skal være på mindst to tegn"
 
-#: ../classes/gallery/UserDB.php:269
+#: ../classes/gallery/UserDB.php:273
 #, php-format
 msgid "Illegal username %s: must at most 15 characters"
 msgstr "Ugyldigt brugernavn %s: det må maksimalt være på 15 tegn"
 
-#: ../classes/gallery/UserDB.php:275
+#: ../classes/gallery/UserDB.php:279
 #, php-format
 msgid "Illegal username %s: must contain only letters or digits"
 msgstr "Ugyldigt brugernavn %s, Det må kun bestå af bogstaver og tal"
 
-#: ../classes/gallery/UserDB.php:282
+#: ../classes/gallery/UserDB.php:286
 #, php-format
 msgid "%s is reserved and cannot be used."
 msgstr "%s er reserveret og kan ikke benyttes."
 
-#: ../classes/gallery/UserDB.php:288
+#: ../classes/gallery/UserDB.php:292
 #, php-format
 msgid "A user with the username of %s already exists"
 msgstr "En bruger med brugernavn %s eksisterer allerede"
 
-#: ../classes/gallery/UserDB.php:297
+#: ../classes/gallery/UserDB.php:301
 msgid "Password must be at least 3 characters"
 msgstr "Adgangskoden skal være på mindst 3 tegn"
 
-#: ../classes/gallery/UserDB.php:328
+#: ../classes/gallery/UserDB.php:332
 #, php-format
 msgid "Checking user %d of %d . . . . "
 msgstr "Undersøger bruger %d af %d . . ."
 
-#: ../classes/gallery/UserDB.php:333
+#: ../classes/gallery/UserDB.php:337
 msgid "skipped"
 msgstr "sprunget over"
 
-#: ../classes/gallery/UserDB.php:379
+#: ../classes/gallery/UserDB.php:383
 #, php-format
 msgid "Problem adding %s:"
 msgstr "Problem med at tilføje %s:"
@@ -618,7 +619,7 @@ msgid "Skipping Album #%d"
 msgstr "Springer over album #%d"
 
 # ændres
-#: ../copy_photo.php:119 ../create_user.php:96 ../do_command.php:154
+#: ../copy_photo.php:119 ../create_user.php:96 ../do_command.php:155
 #: ../login.php:152 ../multi_create_user.php:117 ../register.php:45
 #: ../register.php:118 ../save_photos.php:355
 msgid "Dismiss"
@@ -736,8 +737,8 @@ msgid "Do you really want to delete this album?"
 msgstr "Vil du virkelig slette dette album?"
 
 #: ../delete_album.php:59 ../delete_photo.php:104 ../delete_photo.php:129
-#: ../delete_user.php:68 ../manage_users.php:104 ../view_album.php:991
-#: ../view_album.php:996
+#: ../delete_user.php:68 ../manage_users.php:104 ../view_album.php:997
+#: ../view_album.php:1002
 msgid "Delete"
 msgstr "Slet"
 
@@ -996,7 +997,7 @@ msgstr "Luk"
 msgid "Year must be between 1000 and 3000"
 msgstr "Årstal skal være mellem 1000 og 3000"
 
-#: ../edit_caption.php:71 ../view_album.php:949
+#: ../edit_caption.php:71 ../view_album.php:955
 msgid "Edit Text"
 msgstr "Ret tekst"
 
@@ -1079,8 +1080,8 @@ msgstr "Vælg et vandmærke."
 msgid "Please select an alignment."
 msgstr "Angiv venligst en placering."
 
-#: ../edit_watermark.php:59 ../edit_watermark.php:65 ../view_album.php:919
-#: ../view_album.php:957
+#: ../edit_watermark.php:59 ../edit_watermark.php:65 ../view_album.php:925
+#: ../view_album.php:963
 msgid "Edit Watermark"
 msgstr "Ændr vandmærke"
 
@@ -1518,27 +1519,27 @@ msgstr "flyt album"
 msgid "reorder album"
 msgstr "Sorter album"
 
-#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:301
+#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:306
 msgid "rename album"
 msgstr "omdøb album"
 
-#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:321
+#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:326
 msgid "edit captions"
 msgstr "ret billedtekst"
 
-#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:356
+#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:361
 msgid "permissions"
 msgstr "rettigheder"
 
-#: ../layout/adminAlbumCommands.inc:33
+#: ../layout/adminAlbumCommands.inc:34
 msgid "view&nbsp;comments"
 msgstr "vis&nbsp;kommentarer"
 
-#: ../layout/adminAlbumCommands.inc:38
+#: ../layout/adminAlbumCommands.inc:39
 msgid "watermark&nbsp;album"
 msgstr "vandmærke&nbsp;album"
 
-#: ../layout/breadcrumb.inc:28
+#: ../layout/breadcrumb.inc:31
 #, fuzzy
 msgid "Logged in as:"
 msgstr "Logget ind"
@@ -1551,61 +1552,66 @@ msgstr "Fra:"
 msgid "delete comment"
 msgstr "slet kommentar"
 
-#: ../layout/commentboxbottom.inc:12 ../util.php:94
+#: ../layout/commentboxbottom.inc:12 ../util.php:100
 msgid "add comment"
 msgstr "tilføj kommentar"
 
 #: ../layout/commentboxtop.inc:17 ../slideshow.php:182 ../slideshow.php:196
-#: ../upgrade_album.php:87 ../view_album.php:136 ../view_album.php:894
-#: ../view_comments.php:64 ../view_photo.php:172 ../view_photo.php:188
+#: ../upgrade_album.php:87 ../view_album.php:136 ../view_album.php:899
+#: ../view_comments.php:64 ../view_photo.php:159 ../view_photo.php:175
 msgid "Album"
 msgstr "Album"
 
-#: ../layout/commentboxtop.inc:20 ../layout/commentboxtop.inc:42
-#: ../view_album.php:837
+#: ../layout/commentboxtop.inc:20 ../layout/commentboxtop.inc:46
+#: ../view_album.php:841
 msgid "hidden"
 msgstr "skjult"
 
-#: ../layout/commentboxtop.inc:24
+#: ../layout/commentboxtop.inc:25
 msgid "view comments for this nested album"
 msgstr "vis kommentarer for dette under-album"
 
-#: ../layout/navigator.inc:47
+#: ../layout/commentboxtop.inc:27
+#, fuzzy
+msgid "Album contains no comments"
+msgstr "Albummer som indeholder %s"
+
+#: ../layout/navigator.inc:32
 msgid "First Page"
 msgstr "Første side"
 
-#: ../layout/navigator.inc:59
+#: ../layout/navigator.inc:33
 msgid "Previous Page"
 msgstr "Forrige side"
 
-#: ../layout/navigator.inc:106
+#: ../layout/navigator.inc:34
 msgid "Next Page"
 msgstr "Næste side"
 
-#: ../layout/navigator.inc:121
+#: ../layout/navigator.inc:35
 msgid "Last Page"
 msgstr "Sidste side"
 
-#: ../layout/navphoto.inc:44
+#: ../layout/navphoto.inc:24
 msgid "First Photo"
 msgstr "Første billede"
 
-#: ../layout/navphoto.inc:58
+#: ../layout/navphoto.inc:25
 msgid "Previous Photo"
 msgstr "Forrige billede"
 
-#: ../layout/navphoto.inc:73
-#, php-format
-msgid "%d of %d"
-msgstr "%d af %d"
-
-#: ../layout/navphoto.inc:85
+#: ../layout/navphoto.inc:26
 msgid "Next Photo"
 msgstr "Næste billede"
 
-#: ../layout/navphoto.inc:108
+#: ../layout/navphoto.inc:27
 msgid "Last Photo"
 msgstr "Sidste billede"
+
+#: ../layout/navphoto.inc:65
+#, php-format
+msgid "%d of %d"
+msgstr "%d af %d"
 
 #: ../layout/watermarkform.inc:64
 msgid "Watermark"
@@ -1674,6 +1680,11 @@ msgstr "Fjern alle"
 msgid "Invert Selection"
 msgstr "Vend valg om"
 
+#: ../lib/Form.php:195
+#, php-format
+msgid "%s is not allowed to be empty."
+msgstr ""
+
 #: ../lib/lang.php:481
 msgid "Upload Date"
 msgstr "Dato for overførsel"
@@ -1682,7 +1693,7 @@ msgstr "Dato for overførsel"
 msgid "Image Size"
 msgstr "billedstørrelse"
 
-#: ../lib/lang.php:484 ../util.php:3026
+#: ../lib/lang.php:484 ../util.php:3046
 msgid "Additional EXIF Data"
 msgstr "Ekstra EXIF data"
 
@@ -1690,83 +1701,83 @@ msgstr "Ekstra EXIF data"
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: ../lib/voting.php:214 ../view_album.php:602 ../view_album.php:632
-#: ../view_album.php:1077
+#: ../lib/voting.php:215 ../view_album.php:608 ../view_album.php:638
+#: ../view_album.php:1083
 msgid "Vote"
 msgstr "Stem"
 
-#: ../lib/voting.php:252
+#: ../lib/voting.php:253
 msgid "Total points in brackets"
 msgstr "Total antal point i kantede parenteser"
 
-#: ../lib/voting.php:256
+#: ../lib/voting.php:257
 msgid "Average points in brackets"
 msgstr "Gennemsnitligt antal point i kantede parenteser"
 
-#: ../lib/voting.php:274 ../poll_results.php:149 ../view_album.php:544
-#: ../view_album.php:842
+#: ../lib/voting.php:275 ../poll_results.php:149 ../view_album.php:550
+#: ../view_album.php:846
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: ../lib/voting.php:302 ../lib/voting.php:317
+#: ../lib/voting.php:303 ../lib/voting.php:319
 msgid "1 voter"
 msgstr "1 stemmeafgiver"
 
-#: ../lib/voting.php:303 ../lib/voting.php:317
+#: ../lib/voting.php:304 ../lib/voting.php:319
 msgid "voters"
 msgstr "stemmeafgivere"
 
-#: ../lib/voting.php:304 ../lib/voting.php:318
+#: ../lib/voting.php:305 ../lib/voting.php:320
 msgid "0 voters"
 msgstr "0 stemmeafgivere"
 
-#: ../lib/voting.php:315
+#: ../lib/voting.php:317
 #, php-format
 msgid "Results from %s."
 msgstr "Resultater fra %s."
 
-#: ../lib/voting.php:326
+#: ../lib/voting.php:328
 #, php-format
 msgid "%s: %s points; "
 msgstr "%s: %s punkter; "
 
-#: ../lib/voting.php:331
+#: ../lib/voting.php:333
 #, php-format
 msgid "Key - %s"
 msgstr "Nøgle - %s"
 
-#: ../lib/voting.php:337 ../poll_results.php:164
+#: ../lib/voting.php:339 ../poll_results.php:164
 msgid "No votes so far."
 msgstr "Ingen stemmer foreløbigt"
 
-#: ../lib/voting.php:358
+#: ../lib/voting.php:360
 msgid "Poll results:"
 msgstr "Afstemningsresultater:"
 
-#: ../lib/voting.php:361
+#: ../lib/voting.php:363
 msgid "No votes"
 msgstr "Ingen stemmer"
 
-#: ../lib/voting.php:365
+#: ../lib/voting.php:367
 #, php-format
 msgid "Number %d overall."
 msgstr "Nummer %d i alt"
 
-#: ../lib/voting.php:369
+#: ../lib/voting.php:371
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: ../lib/voting.php:370 ../view_album.php:607
+#: ../lib/voting.php:372 ../view_album.php:613
 msgid "1 vote"
 msgstr "1 stemme"
 
-#: ../lib/voting.php:370 ../view_album.php:607
+#: ../lib/voting.php:372 ../view_album.php:613
 msgid "votes"
 msgstr "stemmer"
 
-#: ../lib/voting.php:370
+#: ../lib/voting.php:372
 msgid "0 votes"
 msgstr "0 stemmer"
 
@@ -2072,7 +2083,7 @@ msgstr "Du kan ændre information om dig selv her."
 msgid "You must enter the new password twice."
 msgstr "Du skal indtaste din adgangskode to gange"
 
-#: ../photo_owner.php:76 ../photo_owner.php:82 ../view_album.php:1012
+#: ../photo_owner.php:76 ../photo_owner.php:82 ../view_album.php:1023
 msgid "Change Owner"
 msgstr "Skift ejer"
 
@@ -2396,7 +2407,7 @@ msgstr "Dine kontoinformationer vil blive sendt til den emailadresse, du angiver
 msgid "You are not allowed to perform this action !"
 msgstr "Du har ikke rettigheder til at udføre denne handling."
 
-#: ../rename_album.php:37 ../rename_album.php:42 ../view_album.php:943
+#: ../rename_album.php:37 ../rename_album.php:42 ../view_album.php:949
 msgid "Rename Album"
 msgstr "Omdøb album"
 
@@ -2579,55 +2590,60 @@ msgstr "%d meta fil(er) fundet. Disse filer indeholder information om billederne
 msgid "Add Files"
 msgstr "Tilføj filer"
 
-#: ../search.php:61
+#: ../search.php:60
 msgid "Search Again"
 msgstr "Søg igen"
 
-#: ../search.php:74 ../search.php:282 ../slideshow.php:200
-#: ../slideshow.php:215 ../view_album.php:140 ../view_photo.php:192
+#: ../search.php:73 ../search.php:282 ../slideshow.php:200
+#: ../slideshow.php:215 ../view_album.php:140 ../view_photo.php:179
 msgid "Gallery"
 msgstr "Gallery"
 
-#: ../search.php:98
+#: ../search.php:97
 #, php-format
 msgid "Albums containing %s"
 msgstr "Albummer som indeholder %s"
 
-#: ../search.php:149
+#: ../search.php:148
 msgid "No Album Matches"
 msgstr "Ingen album opfylder dette"
 
-#: ../search.php:156
+#: ../search.php:155
 #, php-format
 msgid "Photos containing %s"
 msgstr "Billeder som indeholder %s"
 
-#: ../search.php:188
+#: ../search.php:171
+#, fuzzy
+msgid "Caption:"
+msgstr "Billedtekst"
+
+#: ../search.php:187
 msgid "Matching Comments"
 msgstr "Tilhørende kommentarer"
 
-#: ../search.php:223
+#: ../search.php:221
 msgid "From Album"
 msgstr "Fra album"
 
-#: ../search.php:227 ../view_photo_properties.php:112
+#: ../search.php:226 ../view_photo_properties.php:112
 msgid "KEYWORDS"
 msgstr "NØGLEORD"
 
-#: ../search.php:240
+#: ../search.php:239
 msgid "No Photo Matches"
 msgstr "Ingen billeder passer"
 
-#: ../search.php:245
+#: ../search.php:244
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
 msgstr "ADVARSEL: Enkelte album blev ikke søgt i da de først skal opgraderes til den nyeste version af %s"
 
-#: ../search.php:248
+#: ../search.php:247
 msgid "upgrade all albums"
 msgstr "opgrader alle albummer"
 
-#: ../search.php:269
+#: ../search.php:268
 msgid "Search the Gallery's Album and Photo<br> titles, descriptions and comments"
 msgstr "Søg i Gallery's album og billede<br> titler, beskrivelser og kommentarer"
 
@@ -2814,272 +2830,272 @@ msgstr "ret %s"
 msgid "edit"
 msgstr "ret"
 
-#: ../util.php:109
+#: ../util.php:117
 #, fuzzy
 msgid "Add your comment"
 msgstr "tilføj kommentar"
 
 # kommer an på sammenhængen, men skal der muligvis stå: midten
-#: ../util.php:112
+#: ../util.php:120
 #, fuzzy
 msgid "Commenter:"
 msgstr "Center"
 
-#: ../util.php:127 ../util.php:2492
+#: ../util.php:137 ../util.php:2509
 msgid "Message"
 msgstr "Besked"
 
-#: ../util.php:131
+#: ../util.php:141
 #, fuzzy
 msgid "Post"
 msgstr "Billede"
 
-#: ../util.php:141
+#: ../util.php:148
 msgid "Error:"
 msgstr "Fejl:"
 
-#: ../util.php:212
+#: ../util.php:219
 msgid "Executing:"
 msgstr "Udfører:"
 
-#: ../util.php:219
+#: ../util.php:226
 msgid "Results:"
 msgstr "Resultater:"
 
-#: ../util.php:223
+#: ../util.php:230
 msgid "none"
 msgstr "ingen"
 
-#: ../util.php:228
+#: ../util.php:235
 msgid "Error messages:"
 msgstr "Fejlmeldinger:"
 
-#: ../util.php:239
+#: ../util.php:246
 #, php-format
 msgid "Status: %s (expected %s)"
 msgstr "Status: %s (forventede %s)"
 
-#: ../util.php:251
+#: ../util.php:258
 #, php-format
 msgid "The file %s does not exist ?!"
 msgstr "Filen %s eksisterer ikke?!"
 
-#: ../util.php:261
+#: ../util.php:268
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP's %s kan ikke afgøre dimensionerne."
 
-#: ../util.php:281 ../util.php:577 ../util.php:811 ../util.php:857
-#: ../util.php:2289
+#: ../util.php:288 ../util.php:584 ../util.php:818 ../util.php:864
+#: ../util.php:2306
 msgid "You have no graphics package configured for use!"
 msgstr "Du har ikke en brugbar grafikpakke konfigureret!"
 
-#: ../util.php:362 ../util.php:380
+#: ../util.php:369 ../util.php:387
 msgid "Not closing this window because debug mode is on"
 msgstr "Lukker ikke dette vindue fordi debug tilstand er sat til"
 
-#: ../util.php:425
+#: ../util.php:432
 msgid "No resizing required"
 msgstr "Ikke nødvendigt at ændre størrelse"
 
-#: ../util.php:448
+#: ../util.php:455
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "mål filstørrelse %d kbyte"
 
-#: ../util.php:454 ../util.php:484
+#: ../util.php:461 ../util.php:491
 #, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> filstørrelse %d kbyte"
 
-#: ../util.php:455
+#: ../util.php:462
 #, php-format
 msgid "trying quality %d%%"
 msgstr "Prøver kvalitet %d%%"
 
-#: ../util.php:485
+#: ../util.php:492
 msgid "Done."
 msgstr "Udført."
 
-#: ../util.php:581
+#: ../util.php:588
 #, fuzzy
 msgid "No watermark name specified!"
 msgstr "Fejl: Et vandmærke navn er ikke blevet angivet!"
 
-#: ../util.php:876
+#: ../util.php:883
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "Kald af %s mislykkedes i %s for filen %s!"
 
-#: ../util.php:882
+#: ../util.php:889
 #, php-format
 msgid "File %s type %d."
 msgstr "Fil %s type %d."
 
-#: ../util.php:897
+#: ../util.php:904
 #, php-format
 msgid "There was an unknown failure in the %s call!"
 msgstr "Der var en ukendt fejl i %s kaldet!"
 
-#: ../util.php:921 ../util.php:944
+#: ../util.php:928 ../util.php:951
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Ukendt filtype: %s"
 
-#: ../util.php:1466
+#: ../util.php:1483
 #, php-format
 msgid "Can't write to %s."
 msgstr "Kan ikke skrive til %s."
 
-#: ../util.php:1473
+#: ../util.php:1490
 #, php-format
 msgid "Can't read %s."
 msgstr "Kan ikke læse %s."
 
-#: ../util.php:1583
+#: ../util.php:1600
 msgid "Select Album"
 msgstr "Vælg album"
 
-#: ../util.php:1589
+#: ../util.php:1606
 msgid "Top Level"
 msgstr "Øverste niveau"
 
-#: ../util.php:1610 ../util.php:1661
+#: ../util.php:1627 ../util.php:1678
 msgid "current location"
 msgstr "nuværende placering"
 
-#: ../util.php:1664
+#: ../util.php:1681
 msgid "self"
 msgstr "selv"
 
-#: ../util.php:1804
+#: ../util.php:1821
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Kunne ikke åbne \"lock\" fil (%s)!"
 
-#: ../util.php:1809
+#: ../util.php:1826
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Kunne ikke låse (%s)!"
 
-#: ../util.php:1893
+#: ../util.php:1910
 msgid "1 hit"
 msgstr "1 træf"
 
-#: ../util.php:1893
+#: ../util.php:1910
 msgid "hits"
 msgstr "træffere"
 
-#: ../util.php:1893
+#: ../util.php:1910
 msgid "0 hits"
 msgstr "0 træffere"
 
-#: ../util.php:1898
+#: ../util.php:1915
 msgid "Sub-albums"
 msgstr "Underalbum"
 
-#: ../util.php:1938
+#: ../util.php:1955
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Springer over %s (ZIP-understøttelse ikke slået til)"
 
-#: ../util.php:2083
+#: ../util.php:2100
 #, php-format
 msgid "Adding %s"
 msgstr "Tilføjer %s"
 
-#: ../util.php:2101
+#: ../util.php:2118
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Har du brug for hjælp?  Se i  %s%s FAQ%s"
 
-#: ../util.php:2107
+#: ../util.php:2124
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Springer %s over (Kan ikke håndtere %s formatet)"
 
-#: ../util.php:2248
+#: ../util.php:2265
 msgid "documentation"
 msgstr "dokumentation"
 
-#: ../util.php:2274
+#: ../util.php:2291
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Kunne ikke bevare EXIF data (jhead er ikke installeret)"
 
-#: ../util.php:2299
+#: ../util.php:2316
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Fremstillet af %s v%s"
 
-#: ../util.php:2301
+#: ../util.php:2318
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2351
+#: ../util.php:2368
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Springer ugyldig emailadresse, %s, over"
 
-#: ../util.php:2417
+#: ../util.php:2434
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Bemærk: Dette er en automatisk emailbesked sendt fra websiden %s. Hvis du har modtaget denne ved en fejl, så ignorer den venligst"
 
-#: ../util.php:2419
+#: ../util.php:2436
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Meld misbrug til %s."
 
-#: ../util.php:2435
+#: ../util.php:2452
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Ingen email sendt, da det er slået fra i dette galleri"
 
-#: ../util.php:2439
+#: ../util.php:2456
 msgid "Email not sent as no address provided"
 msgstr "Email ikke sendt, da ingen emailadresse blev angivet."
 
-#: ../util.php:2444
+#: ../util.php:2461
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Email ikke sendt til %s, da det ikke er en gyldig adresse"
 
-#: ../util.php:2459
+#: ../util.php:2476
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Afsenderadressen %s er ugyldig, benytter %s"
 
-#: ../util.php:2483 ../util.php:2488
+#: ../util.php:2500 ../util.php:2505
 msgid "not shown"
 msgstr "ikke vist"
 
-#: ../util.php:2496
+#: ../util.php:2513
 msgid "Email sent"
 msgstr "Email sendt"
 
-#: ../util.php:2498
+#: ../util.php:2515
 msgid "Email not sent"
 msgstr "Email ikke sendt"
 
-#: ../util.php:2512
+#: ../util.php:2529
 #, php-format
 msgid "Last comment %s."
 msgstr "Sidste kommentar %s."
 
-#: ../util.php:2524
+#: ../util.php:2541
 msgid "FAILED"
 msgstr "MISLYKKEDES"
 
-#: ../util.php:2533
+#: ../util.php:2550
 msgid "Email activity"
 msgstr "Email aktivitet"
 
-#: ../util.php:2551
+#: ../util.php:2568
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kan ikke åbne logfil (%s)!"
 
-#: ../util.php:2558
+#: ../util.php:2575
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3098,309 +3114,314 @@ msgstr ""
 "\n"
 "Gallery @ %s Administratoren."
 
-#: ../util.php:2567 ../util.php:2569
+#: ../util.php:2584 ../util.php:2586
 msgid "gallery title"
 msgstr "Galleriets titel"
 
-#: ../util.php:2568
+#: ../util.php:2585
 msgid "gallery URL"
 msgstr "gallery URL"
 
-#: ../util.php:2588
+#: ../util.php:2605
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>Ingen</dt><dd>Det originale \"look and feel\".</dd>"
 
-#: ../util.php:2634 ../util.php:2639
+#: ../util.php:2651 ../util.php:2656
 msgid "None"
 msgstr "Ingen"
 
-#: ../util.php:2635 ../util.php:2640
+#: ../util.php:2652 ../util.php:2657
 msgid "Dots"
 msgstr "Prikker"
 
-#: ../util.php:2636 ../util.php:2641
+#: ../util.php:2653 ../util.php:2658
 msgid "Solid"
 msgstr "Solid"
 
-#: ../util.php:2639
+#: ../util.php:2656
 msgid "No frames"
 msgstr "Ingen rammer"
 
-#: ../util.php:2640
+#: ../util.php:2657
 msgid "Just a simple dashed border around the thumb."
 msgstr "Kun en enkel afbrudt kant omkring ikonet"
 
-#: ../util.php:2641
+#: ../util.php:2658
 msgid "Just a simple solid border around the thumb."
 msgstr "Kun en simpel ubrudt kant omkring ikonet"
 
-#: ../util.php:2662
+#: ../util.php:2679
 #, php-format
 msgid "Skipping %s."
 msgstr "Springer %s over"
 
-#: ../util.php:2668
+#: ../util.php:2685
 #, php-format
 msgid "Can't open %s"
 msgstr "Kunne ikke åbne %s."
 
-#: ../util.php:2763 ../util.php:2782
+#: ../util.php:2783 ../util.php:2802
 msgid "Not valid yet"
 msgstr "Endnu ikke gyldigt"
 
-#: ../util.php:3013
+#: ../util.php:3033
 #, fuzzy
 msgid "Custom Fields"
 msgstr "selvvalgte felter"
 
-#: ../view_album.php:124 ../view_album.php:125 ../view_photo.php:169
-#: ../view_photo.php:170
+#: ../view_album.php:124 ../view_album.php:125 ../view_photo.php:156
+#: ../view_photo.php:157
 msgid "navigate UP"
 msgstr "naviger OP"
 
-#: ../view_album.php:262
+#: ../view_album.php:267
 msgid "1 sub-album"
 msgstr "1 underalbum"
 
-#: ../view_album.php:262
+#: ../view_album.php:267
 msgid "sub-albums"
 msgstr "underalbummer"
 
-#: ../view_album.php:264
+#: ../view_album.php:269
 msgid "0 pages"
 msgstr "0 sider"
 
-#: ../view_album.php:267
+#: ../view_album.php:272
 #, php-format
 msgid "%s and %s in this album on %s"
 msgstr "%s og %s i dette album på %s"
 
-#: ../view_album.php:270
+#: ../view_album.php:275
 #, php-format
 msgid "%s and %s in this album"
 msgstr "%s og %s i dette album"
 
-#: ../view_album.php:273
+#: ../view_album.php:278
 #, php-format
 msgid "%s in this album on %s"
 msgstr "%s i dette album på %s"
 
-#: ../view_album.php:276
+#: ../view_album.php:281
 #, php-format
 msgid "%s in this album"
 msgstr "%s i dette album"
 
-#: ../view_album.php:283
+#: ../view_album.php:288
 #, php-format
 msgid "%s are hidden"
 msgstr "%s er skjult"
 
-#: ../view_album.php:285
+#: ../view_album.php:290
 #, php-format
 msgid "%s is hidden"
 msgstr "%s er skjult"
 
-#: ../view_album.php:295
+#: ../view_album.php:300
 msgid "add photos"
 msgstr "tilføj billeder"
 
-#: ../view_album.php:308
+#: ../view_album.php:313
 msgid "new nested album"
 msgstr "nyt under-album"
 
-#: ../view_album.php:314
+#: ../view_album.php:319
 msgid "custom fields"
 msgstr "selvvalgte felter"
 
-#: ../view_album.php:328
+#: ../view_album.php:333
 msgid "sort items"
 msgstr "sorter objekter"
 
-#: ../view_album.php:335
+#: ../view_album.php:340
 msgid "resize all"
 msgstr "ændr størrelse på alle"
 
-#: ../view_album.php:343
+#: ../view_album.php:348
 msgid "rebuild thumbs"
 msgstr "gendan ikoner"
 
-#: ../view_album.php:350
+#: ../view_album.php:355
 msgid "properties"
 msgstr "egenskaber"
 
-#: ../view_album.php:362
+#: ../view_album.php:367
 msgid "poll properties"
 msgstr "afstemnings-egenskaber "
 
-#: ../view_album.php:368
+#: ../view_album.php:373
 msgid "poll results"
 msgstr "afstemingsresultater:"
 
-#: ../view_album.php:374
+#: ../view_album.php:379
 msgid "poll reset"
 msgstr "afsteming nulstillet:"
 
-#: ../view_album.php:380
+#: ../view_album.php:385
 msgid "view comments"
 msgstr "vis kommentarer"
 
-#: ../view_album.php:442
+#: ../view_album.php:448
 msgid "admin options"
 msgstr "administrator indstillinger"
 
-#: ../view_album.php:523
+#: ../view_album.php:529
 msgid "You have no votes recorded for this poll."
 msgstr "Du har ikke nogen stemmer regristreret i denne afstemning"
 
-#: ../view_album.php:529
+#: ../view_album.php:535
 msgid "Your current choices are"
 msgstr "Dine aktulle valgmuligheder er"
 
-#: ../view_album.php:571
+#: ../view_album.php:577
 msgid "See full poll results"
 msgstr "Se fulde afstemingsresultater"
 
-#: ../view_album.php:593
+#: ../view_album.php:599
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:595
+#: ../view_album.php:601
 msgid " or "
 msgstr "eller"
 
-#: ../view_album.php:600
+#: ../view_album.php:606
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "Tryk på %s for at stemme på et billede"
 
-#: ../view_album.php:601
+#: ../view_album.php:607
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "Du SKAL trykke på %s for at din stemme kan blive registreret"
 
-#: ../view_album.php:605
+#: ../view_album.php:611
 #, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Du har en total på %s og kan ændre dem, hvis du ønsker det."
 
-#: ../view_album.php:608
+#: ../view_album.php:614
 msgid "no votes"
 msgstr "ingen stemmer"
 
-#: ../view_album.php:613
+#: ../view_album.php:619
 msgid "You can change your choices if you wish."
 msgstr "Du kan ændre dine valg, hvis du ønsker det."
 
-#: ../view_album.php:769 ../view_album.php:770
+#: ../view_album.php:773 ../view_album.php:774
 #, php-format
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:843
+#: ../view_album.php:847
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
-#: ../view_album.php:851
+#: ../view_album.php:855
 msgid "Changed: "
 msgstr "Ændret:"
 
-#: ../view_album.php:853
+#: ../view_album.php:857
 msgid "Contains: "
 msgstr "Indeholder:"
 
-#: ../view_album.php:853
+#: ../view_album.php:857
 msgid "0 items"
 msgstr "0 objekter"
 
-#: ../view_album.php:861 ../view_album.php:878
+#: ../view_album.php:865 ../view_album.php:882
 msgid "Viewed:"
 msgstr "Vist:"
 
-#: ../view_album.php:892
+#: ../view_album.php:897
 msgid "Movie"
 msgstr "Film"
 
-#: ../view_album.php:896
+#: ../view_album.php:901
 msgid "Photo"
 msgstr "Billede"
 
-#: ../view_album.php:903
+#: ../view_album.php:909
 msgid "Edit"
 msgstr "Ret"
 
-#: ../view_album.php:932
+#: ../view_album.php:938
 msgid "Edit Title"
 msgstr "Ret titel"
 
-#: ../view_album.php:936
+#: ../view_album.php:942
 msgid "description"
 msgstr "beskrivelse"
 
-#: ../view_album.php:937
+#: ../view_album.php:943
 msgid "Edit Description"
 msgstr "Ret beskrivelse"
 
-#: ../view_album.php:954
+#: ../view_album.php:960
 msgid "Edit Thumbnail"
 msgstr "Ret ikon"
 
-#: ../view_album.php:955
+#: ../view_album.php:961
 msgid "Rotate/Flip"
 msgstr "Rotér/Vend"
 
-#: ../view_album.php:964
+#: ../view_album.php:970
 msgid "Highlight"
 msgstr "Fremhæv"
 
-#: ../view_album.php:968
+#: ../view_album.php:974
 msgid "Reset Counter"
 msgstr "Nulstill tæller"
 
-#: ../view_album.php:973
+#: ../view_album.php:979
 msgid "Move "
 msgstr "Flyt "
 
-#: ../view_album.php:974
+#: ../view_album.php:980
 msgid "Reorder "
 msgstr "Sorter igen"
 
-#: ../view_album.php:976
+#: ../view_album.php:982
 msgid "Copy "
 msgstr "Kopier"
 
-#: ../view_album.php:983
+#: ../view_album.php:989
 msgid "Show"
 msgstr "Vis"
 
-#: ../view_album.php:985
+#: ../view_album.php:991
 msgid "Hide"
 msgstr "Skjul"
 
-#: ../view_album.php:1002
+#: ../view_album.php:1008
 msgid "Permissions"
 msgstr "Rettigheder"
 
-#: ../view_album.php:1007 ../watermark_album.php:62 ../watermark_album.php:68
+#: ../view_album.php:1013 ../watermark_album.php:62 ../watermark_album.php:68
 msgid "Watermark Album"
 msgstr "Vandmærke album"
 
-#: ../view_album.php:1054
+#: ../view_album.php:1018
+#, fuzzy
+msgid "View Comments"
+msgstr "vis kommentarer"
+
+#: ../view_album.php:1064
 msgid "Hey! Add some photos."
 msgstr "Hov! Tilføj nogle billeder."
 
-#: ../view_album.php:1056
+#: ../view_album.php:1066
 msgid "This album is empty."
 msgstr "Dette album er tomt."
 
-#: ../view_album.php:1103 ../view_photo.php:644
+#: ../view_album.php:1108 ../view_photo.php:640
 msgid "Email me when:"
 msgstr "Send email til mig når:"
 
-#: ../view_album.php:1104 ../view_photo.php:645
+#: ../view_album.php:1109 ../view_photo.php:641
 msgid "Comments are added"
 msgstr "Kommentarer tilføjet"
 
-#: ../view_album.php:1107
+#: ../view_album.php:1112
 msgid "Other changes are made"
 msgstr "Der er lavet andre ændringer"
 
@@ -3416,31 +3437,31 @@ msgstr "gå tilbage til album"
 msgid "Sorry.  This album does not allow comments."
 msgstr "Beklager.  Dette album tillader ikke kommentarer."
 
-#: ../view_photo.php:316
+#: ../view_photo.php:312
 msgid "resize photo"
 msgstr "ændr størrelse på billedet"
 
-#: ../view_photo.php:340
+#: ../view_photo.php:336
 msgid "delete photo"
 msgstr "slet billede"
 
-#: ../view_photo.php:355
+#: ../view_photo.php:351
 msgid "View Images"
 msgstr "Vis billeder"
 
-#: ../view_photo.php:359 ../view_photo.php:361
+#: ../view_photo.php:355 ../view_photo.php:357
 msgid "normal"
 msgstr "normal"
 
-#: ../view_photo.php:359 ../view_photo.php:361
+#: ../view_photo.php:355 ../view_photo.php:357
 msgid "full"
 msgstr "fuld"
 
-#: ../view_photo.php:372
+#: ../view_photo.php:368
 msgid "photo properties"
 msgstr "oplysninger om billedet"
 
-#: ../view_photo.php:440 ../view_photo.php:455
+#: ../view_photo.php:436 ../view_photo.php:451
 #, php-format
 msgid "print this photo with %s"
 msgstr "udskriv dette billede på %s"
@@ -3460,6 +3481,9 @@ msgstr "(hvis data er aktuelle, vil dette ikke have en synlig effekt)"
 #: ../watermark_album.php:43
 msgid "Watermarking album."
 msgstr "Sætter vandmærke på albummets indhold."
+
+#~ msgid "Name or email:"
+#~ msgstr "Navn eller email:"
 
 #~ msgid "File Upload Date"
 #~ msgstr "dato for filoverførsel"
