@@ -11,6 +11,7 @@ $Id$
                 version="1.0">
 
  <xsl:import href="../docbook-xsl/html/chunkfast.xsl"/>
+ <xsl:import href="common.xsl"/>
 
  <xsl:param name="html.ext" select="'.php'"/>
 
@@ -208,12 +209,7 @@ $Id$
 
 </xsl:template>
 
-<xsl:template match="*" mode="galleryweb.title.nochapter">
- <xsl:call-template name="substitute-markup">
-  <xsl:with-param name="allow-anchors" select="0"/>
-  <xsl:with-param name="template" select="'%t'"/>
- </xsl:call-template>
-</xsl:template>
+
 
 <xsl:template name="href.target.uri">
   <xsl:param name="object" select="."/>
