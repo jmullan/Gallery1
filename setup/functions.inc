@@ -782,7 +782,7 @@ function check_locale() {
                                         if (ereg($sub, $value)) {
                                                 $aliases[] = $value;
                                         }
-					elseif (ereg("^" . substr($locale,0,2))) {
+					elseif (ereg('^' . substr($locale,0,2),$value)) {
 						$aliases[] = $value;
 					}
                                 }
