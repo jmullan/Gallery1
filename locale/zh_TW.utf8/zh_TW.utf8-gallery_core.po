@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-10-27 12:11+0100\n"
+"POT-Creation-Date: 2003-10-29 17:13+0100\n"
 "PO-Revision-Date: 2003-09-01 13:57+0800\n"
 "Last-Translator: Jian-Zhou Huang <qq@turtle.ee.ncku.edu.tw>\n"
 "Language-Team: Traditional Chinese <qq@turtle.ee.ncku.edu.tw>\n"
@@ -524,7 +524,7 @@ msgstr "離開"
 msgid "Album Caption:"
 msgstr "相簿說明："
 
-#: ../captionator.php:279 ../edit_caption.php:103 ../extra_fields.php:114
+#: ../captionator.php:279 ../edit_caption.php:103 ../extra_fields.php:115
 msgid "Title"
 msgstr "標題"
 
@@ -1072,17 +1072,17 @@ msgstr ""
 msgid "Apply values to nested Albums (except Album Title and Summary)."
 msgstr "套用到同一層的相簿中 (除了標題跟摘要). "
 
-#: ../edit_appearance.php:314 ../extra_fields.php:165
+#: ../edit_appearance.php:314 ../extra_fields.php:176
 #: ../poll_properties.php:142
 msgid "Apply"
 msgstr "套用"
 
-#: ../edit_appearance.php:315 ../extra_fields.php:166
+#: ../edit_appearance.php:315 ../extra_fields.php:177
 #: ../poll_properties.php:143
 msgid "Undo"
 msgstr "重來"
 
-#: ../edit_appearance.php:316 ../extra_fields.php:167
+#: ../edit_appearance.php:316 ../extra_fields.php:178
 #: ../poll_properties.php:144 ../rotate_photo.php:93
 msgid "Close"
 msgstr "關閉"
@@ -1149,15 +1149,15 @@ msgstr "選擇影像的一部份作為您的縮圖："
 msgid "Configure Custom Fields"
 msgstr "自訂欄位"
 
-#: ../extra_fields.php:103
+#: ../extra_fields.php:135
 msgid "Number of user defined custom fields"
 msgstr "使用者可以自訂的欄位數量"
 
-#: ../extra_fields.php:141
+#: ../extra_fields.php:150
 msgid "Field"
 msgstr "欄位"
 
-#: ../extra_fields.php:163
+#: ../extra_fields.php:173
 msgid "Apply to nested Albums"
 msgstr "套用在同一層的相簿中"
 
@@ -1592,7 +1592,7 @@ msgstr "所有人"
 msgid "Logged in"
 msgstr "已登入"
 
-#: ../poll_properties.php:77
+#: ../poll_properties.php:77 ../poll_properties.php:83
 msgid "Poll Properties"
 msgstr "評比系統"
 
@@ -1657,11 +1657,15 @@ msgstr "返回 %s"
 msgid "Results Breakdown"
 msgstr "結果分析"
 
-#: ../poll_results.php:160 ../util.php:1962 ../view_album.php:552
+#: ../poll_results.php:162 ../util.php:1956 ../view_album.php:552
 #: ../view_album.php:822
 #, php-format
 msgid "Album: %s"
 msgstr "相簿: %s"
+
+#: ../poll_results.php:177 ../util.php:2019
+msgid "No votes so far."
+msgstr "目前沒有任何評比. "
 
 #: ../progress_uploading.php:44
 msgid "Uploading Photos"
@@ -2449,7 +2453,7 @@ msgstr "狀態: %s (應為 %s)"
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP 的 %s 無法決定 dimensions. "
 
-#: ../util.php:245 ../util.php:586 ../util.php:632 ../util.php:2581
+#: ../util.php:245 ../util.php:585 ../util.php:631 ../util.php:2575
 msgid "You have no graphics package configured for use!"
 msgstr "您沒有設定可使用的圖形套件程式! "
 
@@ -2469,14 +2473,18 @@ msgstr "詳細的 EXIF 資料"
 msgid "Not closing this window because debug mode is on"
 msgstr "由於除錯模式開啟所以無法關閉視窗"
 
+#: ../util.php:410
+msgid "No resizing required"
+msgstr ""
+
 #: ../util.php:426
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "目標檔案大小 %d kbytes"
 
-#: ../util.php:432 ../util.php:463
-#, php-format
-msgid "- file size %d kbytes"
+#: ../util.php:432 ../util.php:462
+#, fuzzy, php-format
+msgid "-> file size %d kbytes"
 msgstr "- 檔案大小 %d kbytes"
 
 #: ../util.php:433
@@ -2484,272 +2492,268 @@ msgstr "- 檔案大小 %d kbytes"
 msgid "trying quality %d%%"
 msgstr "嘗試品質 %d%%"
 
-#: ../util.php:464
+#: ../util.php:463
 msgid "Done."
 msgstr "完成"
 
-#: ../util.php:651
+#: ../util.php:650
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "呼叫 %s 無法在 %s 中使用檔案 %s."
 
-#: ../util.php:657
+#: ../util.php:656
 #, php-format
 msgid "File %s type %d."
 msgstr "檔案 %s 類型 %d."
 
-#: ../util.php:672
+#: ../util.php:671
 #, php-format
 msgid "There was an unknown failure in the %s call!"
 msgstr "%s 呼叫產生不明原因的失敗! "
 
-#: ../util.php:696 ../util.php:719
+#: ../util.php:695 ../util.php:718
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "未知的檔案格式：%s"
 
-#: ../util.php:1199
+#: ../util.php:1198
 #, php-format
 msgid "Can't write to %s."
 msgstr "無法寫入 %s. "
 
-#: ../util.php:1206
+#: ../util.php:1205
 #, php-format
 msgid "Can't read %s."
 msgstr "無法讀取 %s. "
 
-#: ../util.php:1302
+#: ../util.php:1301
 msgid "Select Album"
 msgstr "選擇相簿"
 
-#: ../util.php:1308
+#: ../util.php:1307
 msgid "Top Level"
 msgstr "頂層"
 
-#: ../util.php:1329 ../util.php:1379
+#: ../util.php:1328 ../util.php:1378
 msgid "current location"
 msgstr "目前位置"
 
-#: ../util.php:1381
+#: ../util.php:1380
 msgid "self"
 msgstr "自己"
 
-#: ../util.php:1548
+#: ../util.php:1547
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "無法開啟這個鎖定檔 (%s)! "
 
-#: ../util.php:1553
+#: ../util.php:1552
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "無法要求鎖定 (%s)! "
 
-#: ../util.php:1636
+#: ../util.php:1635
 #, fuzzy
 msgid "1 hit"
 msgstr "次"
 
-#: ../util.php:1636
+#: ../util.php:1635
 msgid "hits"
 msgstr "次"
 
-#: ../util.php:1636
+#: ../util.php:1635
 msgid "0 hits"
 msgstr "0 次"
 
-#: ../util.php:1641
+#: ../util.php:1640
 msgid "Sub-albums"
 msgstr "子相簿"
 
-#: ../util.php:1895 ../view_album.php:610 ../view_album.php:640
+#: ../util.php:1889 ../view_album.php:610 ../view_album.php:640
 #: ../view_album.php:1035
 msgid "Vote"
 msgstr "評比"
 
-#: ../util.php:1936
+#: ../util.php:1930
 msgid "Total points in brackets"
 msgstr ""
 
-#: ../util.php:1941
+#: ../util.php:1935
 msgid "Average points in brackets"
 msgstr ""
 
-#: ../util.php:1999
+#: ../util.php:1993
 #, php-format
 msgid "Results from %s."
 msgstr "由 %s 產生的結果. "
 
-#: ../util.php:2001
+#: ../util.php:1995
 #, fuzzy
 msgid "1 voter"
 msgstr "位評比者"
 
-#: ../util.php:2001
+#: ../util.php:1995
 msgid "voters"
 msgstr "位評比者"
 
-#: ../util.php:2002
+#: ../util.php:1996
 msgid "0 voters"
 msgstr "0 位評比者"
 
-#: ../util.php:2012
+#: ../util.php:2006
 #, php-format
 msgid "%s: %s points; "
 msgstr "%s: %s 分; "
 
-#: ../util.php:2018
+#: ../util.php:2012
 #, php-format
 msgid "Key - %s"
 msgstr "Key - %s"
 
-#: ../util.php:2025
-msgid "No votes so far."
-msgstr "目前沒有任何評比. "
-
-#: ../util.php:2049
+#: ../util.php:2043
 msgid "Poll results:"
 msgstr "評比結果: "
 
-#: ../util.php:2052
+#: ../util.php:2046
 msgid "No votes"
 msgstr "尚未有評比"
 
-#: ../util.php:2056
+#: ../util.php:2050
 #, php-format
 msgid "Number %d overall."
 msgstr "第 %d 名. "
 
-#: ../util.php:2061
+#: ../util.php:2055
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: ../util.php:2062 ../view_album.php:615
+#: ../util.php:2056 ../view_album.php:615
 #, fuzzy
 msgid "1 vote"
 msgstr "票"
 
-#: ../util.php:2062 ../view_album.php:615
+#: ../util.php:2056 ../view_album.php:615
 msgid "votes"
 msgstr "票"
 
-#: ../util.php:2062
+#: ../util.php:2056
 msgid "0 votes"
 msgstr "0 票"
 
-#: ../util.php:2073
+#: ../util.php:2067
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "略過 %s (尚未開啟 ZIP 壓縮支援)"
 
-#: ../util.php:2147
+#: ../util.php:2141
 #, php-format
 msgid "Adding %s"
 msgstr "正在加入 %s"
 
-#: ../util.php:2158
+#: ../util.php:2152
 #, php-format
 msgid "Error: %s!"
 msgstr "錯誤：%s! "
 
-#: ../util.php:2160
+#: ../util.php:2154
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "需要幫忙嗎? 請看 %s%s FAQ%s"
 
-#: ../util.php:2166
+#: ../util.php:2160
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "略過 %s (無法處理 %s 格式)"
 
-#: ../util.php:2539
+#: ../util.php:2533
 msgid "documentation"
 msgstr "說明文件"
 
-#: ../util.php:2564
+#: ../util.php:2558
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr ""
 
-#: ../util.php:2591
+#: ../util.php:2585
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generated by %s v%s"
 
-#: ../util.php:2593
+#: ../util.php:2587
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2637
+#: ../util.php:2631
 #, fuzzy, php-format
 msgid "Skipping invalid email address %s"
 msgstr "您一定要輸入帳號"
 
-#: ../util.php:2703
+#: ../util.php:2697
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message."
 msgstr ""
 
-#: ../util.php:2705
+#: ../util.php:2699
 #, fuzzy, php-format
 msgid "Report abuse to %s."
 msgstr "返回 %s"
 
-#: ../util.php:2721
+#: ../util.php:2715
 msgid "Email not sent as it is disabled for this gallery"
 msgstr ""
 
-#: ../util.php:2725
+#: ../util.php:2719
 msgid "Email not sent as no address provided"
 msgstr ""
 
-#: ../util.php:2730
+#: ../util.php:2724
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr ""
 
-#: ../util.php:2745
+#: ../util.php:2739
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr ""
 
-#: ../util.php:2769 ../util.php:2774
+#: ../util.php:2763 ../util.php:2768
 msgid "not shown"
 msgstr ""
 
-#: ../util.php:2778
+#: ../util.php:2772
 msgid "Message"
 msgstr ""
 
-#: ../util.php:2782
+#: ../util.php:2776
 #, fuzzy
 msgid "Email sent"
 msgstr "電子信箱"
 
-#: ../util.php:2784
+#: ../util.php:2778
 #, fuzzy
 msgid "Email not sent"
 msgstr "電子信箱"
 
-#: ../util.php:2798
+#: ../util.php:2792
 #, php-format
 msgid "Last comment %s."
 msgstr "上次評論 %s."
 
-#: ../util.php:2809
+#: ../util.php:2803
 msgid "FAILED"
 msgstr ""
 
-#: ../util.php:2818
+#: ../util.php:2812
 msgid "Email activity"
 msgstr ""
 
-#: ../util.php:2836
+#: ../util.php:2830
 #, fuzzy, php-format
 msgid "Cannot open logfile: %s"
 msgstr "無法開啟這個鎖定檔 (%s)! "
 
-#: ../util.php:2843
+#: ../util.php:2837
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -2761,53 +2765,53 @@ msgid ""
 "Gallery @ %s Administrator."
 msgstr ""
 
-#: ../util.php:2852 ../util.php:2854
+#: ../util.php:2846 ../util.php:2848
 #, fuzzy
 msgid "gallery title"
 msgstr "Gallery 標題"
 
-#: ../util.php:2853
+#: ../util.php:2847
 #, fuzzy
 msgid "gallery URL"
 msgstr "Gallery 連結"
 
-#: ../util.php:2906
+#: ../util.php:2900
 msgid "screenshot"
 msgstr ""
 
-#: ../util.php:2916 ../util.php:2963
+#: ../util.php:2910 ../util.php:2957
 #, fuzzy, php-format
 msgid "Can't open %s"
 msgstr "無法讀取 %s. "
 
-#: ../util.php:2929 ../util.php:2934
+#: ../util.php:2923 ../util.php:2928
 #, fuzzy
 msgid "None"
 msgstr "完成"
 
-#: ../util.php:2930 ../util.php:2935
+#: ../util.php:2924 ../util.php:2929
 #, fuzzy
 msgid "Dots"
 msgstr "票"
 
-#: ../util.php:2931 ../util.php:2936
+#: ../util.php:2925 ../util.php:2930
 msgid "Solid"
 msgstr ""
 
-#: ../util.php:2934
+#: ../util.php:2928
 #, fuzzy
 msgid "No frames"
 msgstr "尚無相簿"
 
-#: ../util.php:2935
+#: ../util.php:2929
 msgid "Just a simple dashed border around the thumb."
 msgstr ""
 
-#: ../util.php:2936
+#: ../util.php:2930
 msgid "Just a simple solid border around the thumb."
 msgstr ""
 
-#: ../util.php:2957
+#: ../util.php:2951
 #, fuzzy, php-format
 msgid "Skipping %s."
 msgstr "略過相簿 %d..."
@@ -2923,7 +2927,7 @@ msgstr "在您尚未在本次評比中留下記錄. "
 msgid "Your current choices are"
 msgstr "您目前的選擇是"
 
-#: ../view_album.php:580
+#: ../view_album.php:579
 #, fuzzy
 msgid "See full poll results"
 msgstr "評比結果"

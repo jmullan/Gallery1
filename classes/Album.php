@@ -816,7 +816,7 @@ class Album {
 		preprocessImage($dir, "$name.$tag");
 
 		/* Resize original image if necessary */
-		processingMsg(_('Resizing/compressing original image') . "\n");
+		processingMsg("&nbsp;&nbsp;&nbsp;". _('Resizing/compressing original image') . "\n");
 		if (isImage($tag)) {
 		    resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true);
 		} else {

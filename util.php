@@ -407,7 +407,7 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 		if ($useTemp == false) {
 			fs_copy($src, $dest);
 		}
-		processingMsg("No resizing required");
+		processingMsg("&nbsp;&nbsp;&nbsp;". _("No resizing required"));
 		return 1;
 	}
 	$target=min($target, max($regs[0],$regs[1]));
@@ -423,14 +423,14 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 		if (!isset($quality)) {
 			$quality=$gallery->album->fields['last_quality'];
 		}
-		processingMsg(sprintf(_("target file size %d kbytes"), 
+		processingMsg("&nbsp;&nbsp;&nbsp;". sprintf(_("target file size %d kbytes"), 
 					$target_fs)."\n");
 
 		do {
 			compress_image($src, $out, $target, $quality, $keepProfiles);
 			$prev_quality=$quality;
-			printf(_("- file size %d kbytes"), round($filesize));
-			processingMsg(sprintf(_("trying quality %d%%"), 
+			printf(_("-> file size %d kbytes"), round($filesize));
+			processingMsg("&nbsp;&nbsp;&nbsp;" . sprintf(_("trying quality %d%%"), 
 						$quality));
 			clearstatcache();
 			$filesize= (int) fs_filesize($out) >> 10;
@@ -458,9 +458,8 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 		} while ($max_quality-$min_quality > 2 && 
 				abs(($filesize-$target_fs)/$target_fs) > .02 );
 
-		print "<br>";
 		$gallery->album->fields['last_quality']=$prev_quality;
-		printf(_("- file size %d kbytes"), round($filesize));
+		printf(_("-> file size %d kbytes"), round($filesize));
 		processingMsg(_("Done."));
 	}
 	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
@@ -2139,7 +2138,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				$temp_files[$newFile]=1;
 			}
 		    
-			processingMsg("- ". sprintf(_("Adding %s"),$name));
+			processingMsg("<p>- ". sprintf(_("Adding %s"),$name));
 			if ($setCaption and $caption == "") {
 				$caption = strtr($originalFilename, '_', ' ');
 			}

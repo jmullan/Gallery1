@@ -60,7 +60,7 @@ if ($gallery->session->albumName && isset($index)) {
 			echo("<br> ". sprintf(_("Resizing %d photos..."),$np));
 			my_flush();
 			for ($i = 1; $i <= $np; $i++) {
-				echo("<br> ". _("Processing image") . " $i...");
+				echo("<p> ". _("Processing image") . " $i...");
 				my_flush();
 				set_time_limit($gallery->app->timeLimit);
 				$gallery->album->resizePhoto($i, $resize, $resize_file_size);

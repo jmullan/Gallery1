@@ -80,7 +80,7 @@ if (isset($apply) && $apply) {
 <body>
 
 <center>
-Poll Properties
+<?php echo _("Poll Properties"); ?>
 
 <span class="error"><?php echo $error; ?></span>
 <?php echo makeFormIntro("poll_properties.php", 
