@@ -156,24 +156,24 @@ if ($user->canWriteToAlbum($album)) {
 $adminText .="</span>";
 $adminCommands = "<span class =\"admin\">";
 if ($user->canAddToAlbum($album)) {
-	$adminCommands .= "<a href=".popup("add_photos.php?albumName=$albumName").">[Add Photos]</a>&nbsp;";
+	$adminCommands .= '<a href="#" onClick="'.popup("add_photos.php?albumName=$albumName").'">[Add Photos]</a>&nbsp;';
 }
 
 if ($user->canWriteToAlbum($album)) {
 	if ($album->numPhotos(1)) {
-	        $adminCommands .= "<a href=".popup("shuffle_album.php?albumName=$albumName").">[Shuffle]</a>&nbsp;";
-	        $adminCommands .= "<a href=".popup("resize_photo.php?albumName=$albumName&index=all").">[Resize All]</a>&nbsp;";
-	        $adminCommands .= "<a href=".popup("do_command.php?cmd=remake-thumbnail&albumName=$albumName&index=all").">[Rebuild Thumbs]</a>&nbsp;&nbsp;<br>"; 
+	        $adminCommands .= '<a href="#" onClick="'.popup("shuffle_album.php?albumName=$albumName").'">[Shuffle]</a>&nbsp;';
+	        $adminCommands .= '<a href="#" onClick="'.popup("resize_photo.php?albumName=$albumName&index=all").'">[Resize All]</a>&nbsp;';
+	        $adminCommands .= '<a href="#" onClick="'.popup("do_command.php?cmd=remake-thumbnail&albumName=$albumName&index=all").'">[Rebuild Thumbs]</a>&nbsp;&nbsp;<br>'; 
 	}
-        $adminCommands .= "<a href=".popup("edit_appearance.php?albumName=$albumName").">[Properties]</a>&nbsp;";
-        $adminCommands .= "<a href=".popup("album_permissions.php?set_albumName=$albumName").">[Permissions]</a>&nbsp;";
+        $adminCommands .= '<a href="#" onClick="'.popup("edit_appearance.php?albumName=$albumName").'">[Properties]</a>&nbsp;';
+        $adminCommands .= '<a href="#" onClick="'.popup("album_permissions.php?set_albumName=$albumName").'">[Permissions]</a>&nbsp;';
 }
 
 
 if ($user->isLoggedIn()) {
         $adminCommands .= "<a href=do_command.php?cmd=logout&return=view_album.php>[Logout]</a>";
 } else {
-	$adminCommands .= "<a href=".popup("login.php").">[Login]</a>";
+	$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[Login]</a>';
 } 
 $adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
@@ -288,27 +288,27 @@ if ($numPhotos) {
 			echo(editCaption($album, $i, $edit));
 			echo "</span>";
 			if ($user->canDeleteFromAlbum($album)) {
-				echo("<a href=");
+				echo('<a href="#" onClick="');
 				echo(popup("delete_photo.php?index=$i"));
-				echo("><br><img src=\"images/admin_delete.gif\" width=11 height=11 border=0 alt=\"Delete Photo\"></a>");
+				echo('"><br><img src="images/admin_delete.gif" width=11 height=11 border=0 alt="Delete Photo"></a>');
 				if (!$album->isMovie($i)) {
-					//echo(" <a href=");
+					//echo(' <a href="#" onClick="');
 					//echo(popup("do_command.php?cmd=remake-thumbnail&index=$i"));
-					//echo(">[Thumbnail]/a>");
+					//echo('">[Thumbnail]/a>');
 				}
 			}
 
 			if ($user->canWriteToAlbum($album)) {
-				echo(" <a href=");
+				echo(' <a href="#" onClick="');
 				echo(popup("move_photo.php?index=$i"));
-				echo("><img src=\"images/admin_move.gif\" width=11 height=11 border=0 alt=\"Move Photo\"></a>");
+				echo('"><img src="images/admin_move.gif" width=11 height=11 border=0 alt="Move Photo"></a>');
 				if (!$album->isMovie($i)) {
-					echo(" <a href=");
+					echo(' <a href="#" onClick="');
 					echo(popup("rotate_photo.php?index=$i"));
-					echo("><img src=\"images/admin_rotate.gif\" width=11 height=11 border=0 alt=\"Rotate Photo\"></a>");
-					echo(" <a href=");
+					echo('"><img src="images/admin_rotate.gif" width=11 height=11 border=0 alt="Rotate Photo"></a>');
+					echo(' <a href="#" onClick="');
 					echo(popup("highlight_photo.php?index=$i"));
-					echo("><img src=\"images/admin_highlight.gif\" width=11 height=11 border=0 alt=\"Highlight Photo\"></a>");
+					echo('"><img src="images/admin_highlight.gif" width=11 height=11 border=0 alt="Highlight Photo"></a>');
 				}
 				if ($album->isHidden($i)) {
 					echo("<a href=do_command.php?cmd=show&index=$i&return=view_album.php><img src=\"images/admin_unhide.gif\" width=11 height=11 border=0 alt=\"Show Photo\"></a>");

@@ -83,17 +83,17 @@ if ($user->canCreateAlbums()) {
 }
 
 if ($user->isAdmin()) {
-	$adminCommands .= "<a href=".popup("manage_users.php").">[Manage Users]</a>&nbsp;";
+	$adminCommands .= '<a href="#" onClick="'.popup("manage_users.php").'">[Manage Users]</a>&nbsp;';
 }
 
 if ($user->isLoggedIn()) {
-	$adminCommands .= "<a href=".popup("user_preferences.php").">[Preferences]</a>&nbsp;";
+	$adminCommands .= '<a href="#" onClick="'.popup("user_preferences.php").'">[Preferences]</a>&nbsp;';
 	$adminCommands .= "<a href=do_command.php?cmd=logout&return=albums.php>[Logout]</a>";
 } else {
-	$adminCommands .= "<a href=".popup("login.php").">[Login]</a>";
+	$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[Login]</a>';
 }
 /*
-$adminCommands .= "<a href=".popup_help("commands", "gallery")."><img src='images/question_mark.gif' border=0></a>";
+$adminCommands .= '<a href="#" onClick="'.popup_help("commands", "gallery").'"><img src="images/question_mark.gif" border=0></a>';
 */
 $adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
@@ -158,20 +158,20 @@ for ($i = $start; $i <= $end; $i++) {
 
   <? if ($user->canDeleteAlbum($album)) { ?>
    <span class="admin">
-    <a href=<?= popup("delete_album.php?set_albumName={$tmpAlbumName}")?>>[delete album]</a>
+    <a href="#" onClick="<?= popup("delete_album.php?set_albumName={$tmpAlbumName}")?>">[delete album]</a>
    </span>
   <? } ?>
 
   <? if ($user->canWriteToAlbum($album)) { ?>
    <span class="admin">
-    <a href=<?= popup("move_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>[move album]</a>
-    <a href=<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>[rename album]</a>
+    <a href="#" onClick="<?= popup("move_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">[move album]</a>
+    <a href="#" onClick="<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">[rename album]</a>
    </span>
   <? } ?>
 
   <? if ($user->isAdmin() || $user->isOwnerOfAlbum($album)) { ?>
    <span class="admin">
-    <a href=<?= popup("album_permissions.php?set_albumName={$tmpAlbumName}")?>>[permissions]</a>
+    <a href="#" onClick="<?= popup("album_permissions.php?set_albumName={$tmpAlbumName}")?>">[permissions]</a>
    </span>
 
   <br>
@@ -180,7 +180,7 @@ for ($i = $start; $i <= $end; $i++) {
 	<br>
         <span class="error">
          Hey!
-         <a href=<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>Rename</a> 
+         <a href="#" onClick="<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>">Rename</a> 
          this album so that the URL is not so generic!
         </span>
    <? } ?>

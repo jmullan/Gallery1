@@ -30,7 +30,7 @@ function editField($album, $field, $edit) {
 	if ($user->canChangeTextOfAlbum($album)) {
 		$url = "$app->photoAlbumURL/edit_field.php?set_albumName={$album->fields[name]}&field=$field";
 		$buf .= "<span class=editlink>";
-		$buf .= "<a href=" . popup($url) . ">[edit $field]</a>";
+		$buf .= '<a href="#" onClick="' . popup($url) . "\">[edit $field]</a>";
 		$buf .= "</span>";
 	}
 	return $buf;
@@ -46,7 +46,7 @@ function editCaption($album, $index, $edit) {
 		}
 		$url = "$app->photoAlbumURL/edit_caption.php?set_albumName={$album->fields[name]}&index=$index";
 		$buf .= "<span class=editlink>";
-		$buf .= "<a href=" . popup($url) . ">[edit]</a>";
+		$buf .= '<a href="#" onClick="' . popup($url) . '">[edit]</a>';
 		$buf .= "</span>";
 	}
 	return $buf;
@@ -62,7 +62,7 @@ function error_format($message) {
 
 function popup($url) {
 	$attrs = "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes";
-	return "javascript:void(open('$url','Edit','$attrs'))";
+	return "javascript:nw=window.open('$url','Edit','$attrs');nw.opener=self;return false;";
 }
 
 function popup_status($url) {
@@ -72,7 +72,7 @@ function popup_status($url) {
 
 function popup_help($entry, $group) {
 	$attrs = "height=500,width=400,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
-	return "javascript:void(open('http://www.menalto.com/projects/gallery/help?group=$group&entry=$entry','Help','$attrs'));";
+	return "javascript: nw=windown.open('http://www.menalto.com/projects/gallery/help?group=$group&entry=$entry','Help','$attrs'); nw.opener=self; return false;";
 }
 
 function exec_internal($cmd) {
