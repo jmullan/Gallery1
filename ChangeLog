@@ -1,4 +1,14 @@
-2003-01-14 Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.2-cvs-b75
+2004-01-20 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b76
+
+	* Bugfix: If we are in PHP > 4.1.0 we can use 3rd Parameter for htmlentities().
+	  This fixes a Problem when editing Album titles. 
+	  E.g. in chinese BIG5 or UTF8 they are now displayed correct.
+
+	* Little Skin change. Makes it better with white backgrounds.
+
+	* Removed a unnecessary linebreak for lang pulldown.
+
+2004-01-14 Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.2-cvs-b75
 
 	* Fixed bug #865603.  We now ignore CVS directories in the album
 	  directory, so they are not listed as invalid.

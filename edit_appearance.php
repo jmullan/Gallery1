@@ -118,7 +118,23 @@ if (isset($save)) {
 </tr>
 <tr>
 <td class="popup"><?php echo _("Album Title") ?></td>
-<td><input type=text name="title" value="<?php echo htmlentities($gallery->album->fields["title"]) ?>"></td>
+<?php 
+	/* 
+	** Check if we are using PHP >= 4.1.0
+	** If yes, we can use 3rd Parameter so e.g. titles in chinese BIG5 or UTF8 are displayed correct.
+	** Otherwise they are messed.
+	*/
+
+	if (function_exists('version_compare')) {
+		$album_title=htmlentities($gallery->album->fields["title"],ENT_COMPAT, $gallery->charset);
+		echo"yes";
+	}
+	else {
+		$album_title=htmlentities($gallery->album->fields["title"]);
+		echo "no";
+	}
+?>
+<td><input type="text" name="title" value="<?php echo $album_title; ?>"></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Background Color") ?></td>
