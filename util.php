@@ -29,9 +29,9 @@ function editField($album, $field, $edit) {
 	}
 	if (isCorrectPassword($edit)) {
 		$url = "$app->photoAlbumURL/edit_field.php?set_albumName={$album->fields[name]}&field=$field";
-		$buf .= "<font size=1>";
+		$buf .= "<span class=editlink>";
 		$buf .= "<a href=" . popup($url) . ">[edit $field]</a>";
-		$buf .= "</font>";
+		$buf .= "</span>";
 	}
 	return $buf;
 }
@@ -45,9 +45,9 @@ function editCaption($album, $index, $edit) {
 			$buf = "<i>&lt;No Caption&gt;</i>";
 		}
 		$url = "$app->photoAlbumURL/edit_caption.php?set_albumName={$album->fields[name]}&index=$index";
-		$buf .= "<font size=1>";
+		$buf .= "<span class=editlink>";
 		$buf .= "<a href=" . popup($url) . ">[edit]</a>";
-		$buf .= "</font>";
+		$buf .= "</span>";
 	}
 	return $buf;
 }
@@ -219,8 +219,7 @@ function includeHtmlWrap($name) {
 }
 
 function getGalleryStyleSheetName() {
-        global $app;
-        $sheetname = $app->photoAlbumURL."/css/gallery_style.css";
+        $sheetname = "css/gallery_style.css";
 
 	if (file_exists($sheetname)) {
 		return ($sheetname);
