@@ -250,14 +250,14 @@ if ($gallery->user->canWriteToAlbum($gallery->album) &&
 }
 if (!strcmp($gallery->album->fields["public_comments"],"yes")) {
 ?>
-  <br><a href="<?= $GALLERY_BASEDIR ?>view_comments.php?set_albumName=<?= $gallery->album->fields["name"]?>">View All Comments</a>
+  <br><a href=<?=makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName))?>>View All Comments</a>
 <?}?>
   </span>
   </td>
 <? if (!strcmp($gallery->app->showAlbumTree, "yes")) { ?>
   <td valign=top>
    <hr size=1>
-   <?= printChildren($gallery->album->fields["name"]); ?>
+   <?= printChildren($albumName); ?>
   </td>
 <? } ?>
   </tr>
