@@ -39,7 +39,7 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
   <title><?php echo _("Publishing with Windows XP") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <center>
 <span class="title">
 <?php echo _("Using the Windows XP <i>Publish To the Web</i> feature") ?>

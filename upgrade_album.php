@@ -134,7 +134,7 @@ function find_albums(&$results, $album="") {
   <title><?php echo _("Upgrade Albums") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <center>
 <span class="title">
 <?php echo _("Upgrade Albums") ?>

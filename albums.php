@@ -87,7 +87,7 @@ $navigator["bordercolor"] = $borderColor;
       <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>" />
   <?php } ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <?php } ?>
 <?php
 includeHtmlWrap("gallery.header");
@@ -104,7 +104,7 @@ if (!$gallery->session->offline && !strcmp($gallery->app->default["showSearchEng
 </form>
 </td>
 </tr>
-<tr><td height=2><img src="<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" alt="pixel_trans"></td></tr></table>
+<tr><td height="2"><img src="<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" alt="pixel_trans"></td></tr></table>
 <?php
 }
 ?>
@@ -194,8 +194,8 @@ include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 /* Display warnings about broken albums */
 if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
     print "<tr>";
-    print "<td colspan=3 align=center>";
-    print "<table bordercolor=red border=2 cellpadding=2 cellspacing=2><tr><td>";
+    print "<td colspan=\"3\" align=\"center\">";
+    print "<table bordercolor=\"red\" border=\"2\" cellpadding=\"2\" cellspacing=\"2\"><tr><td>";
     print "<center><b><u>". _("Attention Gallery Administrator!") ."</u></b></center><br>";
     $broken_albums = '';
     foreach ($albumDB->brokenAlbums as $tmpAlbumName) {
@@ -321,7 +321,7 @@ for ($i = $start; $i <= $end; $i++) {
    <?php } ?>
    </span>
   <br>
-  url: <a href="<?php echo $albumURL ?>">
+  <?php echo _("url:") ?> <a href="<?php echo $albumURL ?>">
   	<?php if (!$gallery->session->offline) {
 		echo breakString($albumURL, 60, '&', 5);
 	} else {
@@ -372,7 +372,7 @@ if ($gallery->user->canWriteToAlbum($gallery->album) &&
   </span>
   </td>
 <?php if (!strcmp($gallery->app->showAlbumTree, "yes")) { ?>
-  <td valign=top>
+  <td valign="top">
    <?php echo printChildren($albumName); ?>
   </td>
 <?php } ?>

@@ -50,6 +50,7 @@ function getNLS () {
 	$nls['language']['it_IT'] = 'Italiano';
 	$nls['language']['he_IL'] = 'Hebrew';
 	$nls['language']['is_IS'] = '&#205;slenska';
+	$nls['language']['ja_JP'] = '&#x65e5;&#x672c;&#x8a9e; (EUC-JP)';
 	$nls['language']['lt_LT'] = 'Lietuvi&#x0173;';
 	$nls['language']['nl_NL'] = 'Nederlands';
 	$nls['language']['no_NO'] = 'Norsk bokm&#229;l';
@@ -73,6 +74,7 @@ function getNLS () {
 	$nls['alias']['fr'] = 'fr_FR';
 	$nls['alias']['is'] = 'is_IS';
 	$nls['alias']['it'] = 'it_IT';
+	$nls['alias']['ja'] = 'ja_JP';
 	$nls['alias']['lt'] = 'lt_LT';
 	$nls['alias']['nl'] = 'nl_NL';
 	$nls['alias']['no'] = 'no_NO';
@@ -117,7 +119,11 @@ function getNLS () {
 
 	$nls['alias']['finnish'] =		'fi_FI' ;
 	$nls['alias']['fi_FI.ISO8859-1'] =	'fi_FI' ;
-	
+
+	$nls['alias']['he_HE'] = 		'he_IL' ;
+	$nls['alias']['hebrew'] =		'he_IL' ;
+	$nls['alias']['he_IL.ISO8859-8'] =	'he_IL' ;
+
 	$nls['alias']['icelandic']=		'is_IS' ;
 	$nls['alias']['isl']=			'is_IS' ;
 	$nls['alias']['is_IS.ISO8859-1'] =	'is_IS' ;
@@ -125,10 +131,8 @@ function getNLS () {
 	$nls['alias']['italian'] =		'it_IT' ;
 	$nls['alias']['ita']=			'it_IT' ;
 	$nls['alias']['it_IT.ISO8859-1'] =	'it_IT' ;
-	
-	$nls['alias']['he_HE'] = 		'he_IL' ;
-	$nls['alias']['hebrew'] =		'he_IL' ;
-	$nls['alias']['he_IL.ISO8859-8'] =	'he_IL' ;
+
+	$nls['alias']['ja_JP.EUC-JP'] =		'ja_JP' ;	
 	
 	$nls['alias']['lt_LT.ISO8859-4'] =	'lt_LT' ;
 	$nls['alias']['lt_LT.ISO8859-13'] =	'lt_LT' ;
@@ -178,42 +182,44 @@ function getNLS () {
  **
  **/	
 	
-	$nls['default']['charset'] = 'ISO-8859-1';
+	$nls['default']['charset'] = 		'ISO-8859-1';
 	
-	$nls['charset']['he_IL'] = 'windows-1255';
-	$nls['charset']['lt_LT'] = 'windows-1257';
-	$nls['charset']['pl_PL'] = 'ISO-8859-2';
-	$nls['charset']['ru_RU'] = 'windows-1251';
-	$nls['charset']['ru_RU.KOI8-R'] = 'KOI8-R';
-	$nls['charset']['sl_SI'] = 'ISO-8859-2';
-	$nls['charset']['tr_TR'] = 'ISO-8859-9';
-	$nls['charset']['zh_CN'] = 'GB2312';
-	$nls['charset']['zh_TW'] = 'BIG5';	
+	$nls['charset']['he_IL'] = 		'windows-1255';
+	$nls['charset']['ja_JP'] = 		'EUC-JP';
+	$nls['charset']['lt_LT'] = 		'windows-1257';
+	$nls['charset']['pl_PL'] = 		'ISO-8859-2';
+	$nls['charset']['ru_RU'] = 		'windows-1251';
+	$nls['charset']['ru_RU.KOI8-R'] =	'KOI8-R';
+	$nls['charset']['sl_SI'] = 		'ISO-8859-2';
+	$nls['charset']['tr_TR'] = 		'ISO-8859-9';
+	$nls['charset']['zh_CN'] = 		'GB2312';
+	$nls['charset']['zh_TW'] = 		'BIG5';	
 
-	//$nls['charset']['de_DE']='de_DE.ISO-8859-15@euro' ;
-	//$nls['charset']['lt_LT'] = 'ISO-8859-13';
+	//$nls['charset']['de_DE'] =		'de_DE.ISO-8859-15@euro' ;
+	//$nls['charset']['lt_LT'] = 		'ISO-8859-13';
 	
 /**
  ** Multibyte charsets
  **/
 
-	$nls['multibyte']['BIG5'] = true;
+	$nls['multibyte']['BIG5'] = 	true;
+	$nls['multibyte']['EUC-JP'] =   true;
 	$nls['multibyte']['GB2312'] =   true;
-	$nls['multibyte']['UTF-8'] = true;	
+	$nls['multibyte']['UTF-8'] = 	true;	
 
 /**
  ** Direction
  **/
 	
-	$nls['default']['direction'] = 'ltr';
-	$nls['direction']['he_IL'] = 'rtl' ;
+	$nls['default']['direction'] =	'ltr';
+	$nls['direction']['he_IL'] = 	'rtl' ;
 
 /**
  ** Alignment
  **/
 	
-	$nls['default']['alignment'] = 'left';
-	$nls['alignment']['he_IL'] = 'right' ;
+	$nls['default']['alignment'] =	'left';
+	$nls['alignment']['he_IL'] = 	'right' ;
 
 /**
  ** phpNuke

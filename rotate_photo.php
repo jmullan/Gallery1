@@ -47,7 +47,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isIt
   <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
   <META HTTP-EQUIV="expires" CONTENT="0"> 
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <?php
 if ($gallery->session->albumName && isset($index)) {

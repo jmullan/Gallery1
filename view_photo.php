@@ -344,9 +344,9 @@ if ($fitToWindow) {
 </head>
 
 <?php if ($fitToWindow) { ?>
-	<body dir=<?php echo $gallery->direction ?> onResize='doResize()'>
+	<body dir="<?php echo $gallery->direction ?>" onResize='doResize()'>
 <?php } else { ?>
-	<body dir=<?php echo $gallery->direction ?>>
+	<body dir="<?php echo $gallery->direction ?>">
 <?php } ?>
 <?php } # if not embedded ?>
 <?php

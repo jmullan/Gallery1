@@ -41,7 +41,7 @@ if (!$gallery->version) { exit; }
   <title><?php echo _("Upgrading Users") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <center>
 <span class="title">
 <?php echo _("Upgrading Users") ?>
@@ -71,8 +71,8 @@ else {
 
 	<center>
 	<form>
-	<input type=submit value="<?php echo $button ?>" onclick='location.reload()'>
+	<input type="submit" value="<?php echo $button ?>" onclick='location.reload()'>
 	</form>
 	</center>
-	</body>
-	</html>
+</body>
+</html>

@@ -5,7 +5,7 @@ require($GALLERY_BASEDIR . "util.php");
 initLanguage();
 ?>
 <html>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <?php $app_name='NetPBM' ?>
 
 <h1> <?php echo sprintf(_("Check %s"), $app_name) ?> </h1>

@@ -45,7 +45,7 @@ function image($name) {
   <?php echo getStyleSheetLink() ?>
 </head>
 
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <center>
 <span class="title"><?php echo _("File upload in progress!") ?></span>
 <p>

@@ -29,7 +29,7 @@ $count++;
     <head>
       <title><?php echo _("Gallery Session Test") ?></title>
     </head>
-    <body dir=<?php echo $gallery->direction ?>>
+    <body dir="<?php echo $gallery->direction ?>">
       <H1><?php echo _("Session Test") ?></H1>
 
 	<?php echo _("If sessions are configured properly in your PHP installation, then you should see a session id below.") ?>  

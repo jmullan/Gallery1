@@ -68,7 +68,7 @@ if ($action == "doit") {
 } else {
 	#-- show the applet ---
 ?>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <span class="popuphead"><?php echo _("Custom Thumbnail") ?></span>
 <br>

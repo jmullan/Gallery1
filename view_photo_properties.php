@@ -39,7 +39,7 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
   <title><?php echo _("Photo Properties") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <?php
 if ($gallery->session->albumName && $index) {

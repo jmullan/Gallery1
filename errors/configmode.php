@@ -16,13 +16,12 @@ require($GALLERY_BASEDIR . "errors/configure_instructions.php");
   <title><?php echo _("Gallery in Configuration Mode") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <center>
 <span class="title"> <?php echo _("Gallery: Configuration Mode") ?> </span>
 <p>
-<table width=80%><tr><td>
+<table width="80%"><tr><td>
 <br>
-<center>
 <?php echo sprintf(_("To configure gallery, %sStart the configuration wizard%s"),
 		'<font size=+1> <a href="' . $GALLERY_BASEDIR . 'setup/index.php">', 
 		'</a></font>') ?>
@@ -33,7 +32,7 @@ require($GALLERY_BASEDIR . "errors/configure_instructions.php");
 	echo _("You need to switch to secure mode before you can use it.  Here's how:")
 ?>
 
-<p><center>
+<p>
 <?php echo configure("secure"); ?>
 <p>
 <?php echo _("Then just reload this page and all should be well.") ?>
@@ -41,5 +40,6 @@ require($GALLERY_BASEDIR . "errors/configure_instructions.php");
 <?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 
 </table>
+</center>
 </body>
 </html>

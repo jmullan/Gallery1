@@ -6,7 +6,7 @@ initLanguage();
 ?>
 
 <html>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <?php $app_name='ImageMagick' ?>
 
 <h1> <?php echo sprintf(_("Check %s"), $app_name) ?> </h1>

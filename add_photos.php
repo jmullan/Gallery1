@@ -59,7 +59,7 @@ if (!isset($boxes)) {
 // -->
 </script>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <span class="popuphead"><?php echo _("Add Photos") ?></span>
 <br>
@@ -128,7 +128,7 @@ if (!isset($boxes)) {
 
 <input type="text" name="urls[]" size=40>
 <br>
-<input type=checkbox name=setCaption checked value="1"><?php echo _("Set photo captions with original filenames.") ?>
+<input type="checkbox" name="setCaption" checked value="1"><?php echo _("Set photo captions with original filenames.") ?>
 <br>
 <center>
 <input type="button" value="<?php echo _("Submit URL or directory") ?>" onClick='opener.showProgress(); document.uploadurl_form.submit()'>

@@ -195,7 +195,7 @@ if ($gallery->album->fields["textcolor"]) {
   </style>
 </head>
 
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <?php } ?>
 <?php includeHtmlWrap("album.header"); ?>
 

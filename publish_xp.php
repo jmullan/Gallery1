@@ -63,7 +63,7 @@ if(empty($cmd)){
   <title><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?> </title>
   <?php echo getStyleSheetLink() ?>
   </head>
-<body>
+<body dir="<?php echo $gallery->direction ?>">
 <?php
 //---------------------------------------------------------
 //-- check version --

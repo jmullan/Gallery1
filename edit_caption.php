@@ -72,7 +72,7 @@ if (isset($save)) {
   <title><?php echo _("Edit Text") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <center>
 <?php echo $gallery->album->getThumbnailTag($index) ?>

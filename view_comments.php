@@ -117,7 +117,7 @@ if ($gallery->album->fields["textcolor"]) {
   </style>
 </head>
 
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 <?php } 
 includeHtmlWrap("album.header");
 $adminText = "<span class=\"admin\">". _("Comments for this Album") ."</span>";

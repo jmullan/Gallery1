@@ -87,7 +87,7 @@ if (isset($save)) {
   <title><?php echo _("Album Properties") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ?>>
+<body dir="<?php echo $gallery->direction ?>">
 
 <center>
 <?php echo _("Album Properties") ?>
@@ -95,7 +95,7 @@ if (isset($save)) {
 <?php echo makeFormIntro("edit_appearance.php", 
 			array("name" => "theform", 
 				"method" => "POST")); ?>
-<input type=hidden name="save" value=1>
+<input type=hidden name="save" value="1">
 <table>
 <tr>
 <td colspan="2"><?php echo _("Album Summary") ?></td>
