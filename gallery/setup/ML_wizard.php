@@ -65,8 +65,8 @@
 <h2 align="center"><?php echo _("ML Config Wizard"); ?></h2>
 <p align="center">
 <?php
-	echo _("This is the Configuration Wizard for the multilanguage Version of the gallery") ; 
-	echo "\n<br>" . _("Fist we do some check if the ML works at all");
+	echo _("This is the Configuration Wizard for the multilanguage Version of Gallery") ; 
+	echo "\n<br>" . _("First we do some check if the ML works at all");
 ?>
 </p>
 <?php 
