@@ -45,17 +45,27 @@ if ($submit) {
 <span class="popuphead">Delete User</span>
 <br>
 <br>
+<?= makeFormIntro("delete_user.php"); ?>
+<input type=hidden name=uname value=<?=$uname?>>
+
+<?
+if (!strcmp($gallery->user->getUsername(), $uname)) {
+	print center(error("You can't delete your own account!"));
+	print "<p>";
+} else {
+?>
 Users can have special permissions in each album.  If you delete
 this user, any such permissions go away.  Users cannot be recreated.
 Even if this user is recreated, those permissions are gone.  
 Do you really want to delete user <b><?=$uname?></b>?
 <p>
-
-<?= makeFormIntro("delete_user.php"); ?>
-<input type=hidden name=uname value=<?=$uname?>>
 <p>
 
 <input type=submit name="submit" value="Delete">
+<?
+}
+?>
+
 <input type=submit name="submit" value="Cancel">
 </form>
 
