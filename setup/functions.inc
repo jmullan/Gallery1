@@ -332,6 +332,23 @@ function row_wrap($buf) {
 function error_row_wrap($buf) {
 	return "</pre>$buf</pre><br>";
 }
+
+function check_exec() {
+	$disabled = ini_get("disable_functions");
+
+	$success = array();
+	$fail = array();
+	$warn = array();
+	if (eregi($disabled, "exec")) {
+		$fail["fail-exec"] = 1;
+	}
+	else {
+		$success[] = _("<b>exec()</b> is not disabled on this server.");
+	}
+
+	return array($success, $fail, $warn);
+}
+
 function check_htaccess()
 {
 	global $GALLERY_PHP_VALUE_OK; 

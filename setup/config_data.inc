@@ -122,6 +122,13 @@ $checklist = array(
 		"optional" => 1,
 		"serious" => 1
 	),
+	"exec" => array(
+		"desc" => _("The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and
+jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."),
+		"func" => "check_exec",
+		"fail-exec" => _("The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."),
+		"serious" => 1,
+	),
 	"htaccess" => array(
 		"desc" => _("Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."),
 		"func" => "check_htaccess",
