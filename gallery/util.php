@@ -2014,7 +2014,7 @@ function Gallery() {
 function galleryDocs() {
 	global $GALLERY_BASEDIR;
 	if (fs_file_exists($GALLERY_BASEDIR."docs/index.html")) {
-		return "<a href=\"${GALLERY_BASEDIR}docs/index.html\">" .  _("Documentation").'</a>';
+		return "<a href=\"${GALLERY_BASEDIR}docs/index.html\">" .  _("documentation").'</a>';
 	}
 	return NULL;
 }
