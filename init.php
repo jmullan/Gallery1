@@ -393,9 +393,6 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 				
 				/* We were loaded correctly through Mambo, so we dont need/want "old" session infos */
-				if (isset($gallery->session->mambo)) {
-					unset ($gallery->session->mambo);
-				}
 			} elseif (!empty($gallery->session->username) && empty($my)) {
 				/* This happens, when we are in a Popup */
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
