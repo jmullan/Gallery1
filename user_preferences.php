@@ -59,7 +59,7 @@ if (!strcmp($submit, "Save")) {
 		$user->setFullname($fullname);
 		$user->setEmail($email);
 		// If a new password was entered, use it.  Otherwise leave it the same.
-		if ($password) {
+		if ($new_password1) {
 			$user->setPassword($new_password1);
 		}
 		$user->save();
