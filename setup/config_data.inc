@@ -123,12 +123,13 @@ $checklist = array(
 		"serious" => 1
 	),
 	"htaccess" => array(
-		"desc" => _("Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files) and you may not be able to use <b>mod_rewrite</b> (see below)."),
-	     	"func" => "check_htaccess",
-		"fail-htaccess" => _("Apache is not obeying your <b>.htaccess</b> file.  Try entering the following into your web server's <b>httpd.conf</b> file:") ."<br><pre>" .
-			 "&lt;Directory " . GALLERY_BASE .
-			 "&gt;\n\tAllowOverride Options FileInfo\n" .
-			 "&lt;/Directory&gt;",
+		"desc" => _("Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."),
+		"func" => "check_htaccess",
+		"fail-htaccess" => _("Apache is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:") ."<br><pre>" .
+			 "&lt;Directory " . GALLERY_BASE . "&gt;\n" .
+			 "\tAllowOverride Options FileInfo\n" .
+			 "&lt;/Directory&gt;</pre>\n" .
+			 _("If you are running PHP in CGI mode, this message is unavoidable."),
 		"optional" => 1
 	),
 	"magic-quotes" => array(
