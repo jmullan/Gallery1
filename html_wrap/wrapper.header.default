@@ -1,0 +1,17 @@
+<?
+// This header file detects whether Gallery is embedded in any 
+// known PHP applications and then decorates Gallery appropriately.
+
+global $GALLERY_EMBEDDED_INSIDE;
+switch($GALLERY_EMBEDDED_INSIDE) {
+	case "nuke":
+		global $PHP_SELF;
+		if (!eregi("modules.php", $PHP_SELF)) {
+			die ("You can't access this file directly...");
+		}
+
+		include("header.php");
+		OpenTable();
+		break;
+}
+?>

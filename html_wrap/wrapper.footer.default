@@ -1,0 +1,12 @@
+<?
+// This header file detects whether Gallery is embedded in any 
+// known PHP applications and then decorates Gallery appropriately.
+
+global $GALLERY_EMBEDDED_INSIDE;
+switch($GALLERY_EMBEDDED_INSIDE) {
+	case "nuke":
+		CloseTable();
+		include('footer.php');
+		break;
+}
+?>
