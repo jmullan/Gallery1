@@ -550,25 +550,40 @@ function drawSelect($name, $array, $selected, $size, $attrList=array()) {
 	return $buf;
 }
 
-function correctNobody(&$array) {
+function correctPseudoUsers(&$array) {
 	global $gallery;
-	$nobody = $gallery->userDB->getNobody();
 
+	/*
+	 * If EVERYBODY is in the list, reduce it to just that entry.
+	 */
+	$everybody = $gallery->userDB->getEverybody();
+	if ($array[$everybody->getUid()]) {
+	        $array = array($everybody->getUid() => $everybody->getUsername());
+		return;
+	}
+
+	/*
+	 * If LOGGEDIN is in the list, reduce it to just that entry.
+	 */
+	$loggedIn = $gallery->userDB->getLoggedIn();
+	if ($array[$loggedIn->getUid()]) {
+		$array = array($loggedIn->getUid() => $loggedIn->getUsername());
+		return;
+	}
+
+	/*
+	 * If the list has more than one entry, remove the NOBODY user.
+	 */
+	$nobody = $gallery->userDB->getNobody();
 	if (count($array) > 1) {
 		unset($array[$nobody->getUid()]);
 	}
 
+	/*
+	 * If the list has no entries, insert the NOBODY user.
+	 */
 	if (count($array) == 0) {
 		$array[$nobody->getUid()] = $nobody->getUsername();
-	}
-}
-
-function correctEverybody(&$array) {
-	global $gallery;
-	$everybody = $gallery->userDB->getEverybody();
-
-	if ($array[$everybody->getUid()]) {
-		$array = array($everybody->getUid() => $everybody->getUsername());
 	}
 }
 
