@@ -139,11 +139,7 @@ if ($borderwidth == 0) {
 	$borderwidth = 1;
 }
 
-if (!strcmp($gallery->album->fields["resize_size"], "off")) {
-        $mainWidth = 0;
-} else {
-	$mainWidth = "100%"; 
-}
+$mainWidth = "100%"; 
 
 $navigator["id"] = $id;
 $navigator["allIds"] = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));

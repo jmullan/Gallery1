@@ -1,3 +1,12 @@
+2004-08-17  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b117
+
+        * Fix: Navigation bar width was dependant on whether images were resized or not...
+          this caused albums where resize_size was off to have the table width set to 0.
+
+        * Fix: Extra-long filename prevention in save_photos.php, as well as verifying
+          that the uploaded file is a valid image format before saving to the temp
+          directory
+
 2004-08-16  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b116
 
 	* Fix: Enable slideshow in albums containing only sub-albums when
