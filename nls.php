@@ -22,7 +22,7 @@
 /**
  * NLS (National Language System) array.
  *
- * This array was taken from then Horde Framework (http://horde.org)
+ * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist and it was 
  * maintained by Jan Schneider (mail@janschneider.de)
  * The modifications to fit it for Gallery were made by Jens Tkotz 
@@ -43,6 +43,7 @@ function getNLS () {
 	$nls['language']['zh_CN'] = 'Simplified Chinese (&#31616;&#20307;&#20013;&#25991;)';
         $nls['language']['zh_TW'] = 'Traditional Chinese (&#32321;&#39636;&#20013;&#25991;)';
 	$nls['language']['zh_TW.utf8'] = 'Traditional Chinese (&#32321;&#39636;&#20013;&#25991;) (UTF-8)';
+	$nls['language']['cs_CZ'] = '&#x010c;esky';
 	$nls['language']['da_DK'] = 'Dansk';
 	$nls['language']['de_DE'] = 'Deutsch';
 	$nls['language']['en_GB'] = 'English (UK)';
@@ -64,11 +65,13 @@ function getNLS () {
 	$nls['language']['fi_FI'] = 'Suomi';
 	$nls['language']['sv_SE'] = 'Svenska';
 	$nls['language']['tr_TR'] = 'T&#252;rk&#231;e';
+	$nls['language']['uk_UA'] = '&#x0423;&#x043a;&#x0440;&#x0430;&#x0457;&#x043d;&#x0441;&#x044c;&#x043a;&#x0430;';
 
 /**
  ** Aliases for languages with different browser and gettext codes
  **/
-	
+
+	$nls['alias']['cs'] = 'cs_CZ';	
 	$nls['alias']['da'] = 'da_DK';
 	$nls['alias']['de'] = 'de_DE';
 	$nls['alias']['en'] = 'en_US';
@@ -88,10 +91,14 @@ function getNLS () {
 	$nls['alias']['sl'] = 'sl_SI';
 	$nls['alias']['sv'] = 'sv_SE';
 	$nls['alias']['tr'] = 'tr_TR';
+	$nls['alias']['uk'] = 'uk_UA';
 
 /**
  ** Aliases for languages which we substitte or send by NUKE
  **/
+
+	$nls['alias']['czech'] =                'cs_CZ' ;
+	$nls['alias']['cs_CZ.ISO8859-1'] =      'cs_CZ' ;
 
 	$nls['alias']['danish'] =               'da_DK' ;
         $nls['alias']['da_DK.ISO8859-1'] =      'da_DK' ;
@@ -176,6 +183,9 @@ function getNLS () {
 	$nls['alias']['turkish'] =		'tr_TR' ;	
 	$nls['alias']['tr_TR.ISO8859-9'] =	'tr_TR' ;
 
+	$nls['alias']['ukrainian'] =            'uk_UA' ;
+	$nls['alias']['uk_UA.KOI8-U'] =         'uk_UA' ;
+
 	$nls['alias']['zh_TW.GB2312'] =         'zh_CN' ;
 
 	$nls['alias']['zh_TW.Big5']      =	'zh_TW' ;
@@ -190,6 +200,7 @@ function getNLS () {
 	
 	$nls['default']['charset'] = 		'ISO-8859-1';
 	
+	$nls['charset']['cs_CZ'] =              'ISO-8859-2';
 	$nls['charset']['he_IL'] = 		'windows-1255';
 	$nls['charset']['ja_JP'] = 		'EUC-JP';
 	$nls['charset']['lt_LT'] = 		'windows-1257';
@@ -198,6 +209,7 @@ function getNLS () {
 	$nls['charset']['ru_RU.KOI8-R'] =	'KOI8-R';
 	$nls['charset']['sl_SI'] = 		'ISO-8859-2';
 	$nls['charset']['tr_TR'] = 		'ISO-8859-9';
+	$nls['charset']['uk_UA'] =              'KOI8-U';
 	$nls['charset']['zh_CN'] = 		'GB2312';
 	$nls['charset']['zh_TW'] = 		'BIG5';	
 	$nls['charset']['zh_TW.utf8'] = 	'UTF-8';	
@@ -232,6 +244,7 @@ function getNLS () {
  ** phpNuke
  **/
 	$nls['phpnuke']['zh_TW'] = 'chinese' ;
+	$nls['phpnuke']['cs_CZ'] = 'czech' ;
 	$nls['phpnuke']['da_DK'] = 'danish';
 	$nls['phpnuke']['de_DE'] = 'german';
 	$nls['phpnuke']['en_US'] = 'english';
@@ -248,6 +261,7 @@ function getNLS () {
 	$nls['phpnuke']['sv_SE'] = 'swedish';
 	$nls['phpnuke']['sl_SI'] = 'slovenian';
 	$nls['phpnuke']['tr_TR'] = 'turkish';
+	$nls['phpnuke']['uk_UA'] = 'ukrainian';
 
 /**
  ** postNuke
