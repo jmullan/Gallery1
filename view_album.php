@@ -176,7 +176,7 @@ $adminText .="</span>";
 $adminCommands = "<span class =\"admin\">";
 if ($user->canAddToAlbum($album)) {
 	$adminCommands .= '<a href="#" onClick="'.popup("add_photos.php?albumName=$albumName").'">[Add Photos]</a>&nbsp;';
-	$adminCommands .= '<a href=do_command.php?cmd=new-album&parentName=' . $albumName . '&return=view_album.php?page=1>[New Nested Album]</a>&nbsp;&nbsp;<br>';
+	$adminCommands .= '<a href=do_command.php?cmd=new-album&parentName=' . $albumName . '&return=view_album.php?page=1>[New Nested Album]</a>&nbsp;';
 }
 
 if ($user->canWriteToAlbum($album)) {
@@ -361,6 +361,8 @@ if ($numPhotos) {
 				if (!$album->isMovie($id) && !$album->isAlbumName($i)) {
 					echo("<option value='edit_thumb.php?index=$i'>Edit Thumbnail</option>");
 					echo("<option value='rotate_photo.php?index=$i'>Rotate $label</option>");
+				}
+				if (!$album->isMovie($id)) {
 					echo("<option value='highlight_photo.php?index=$i'>Highlight $label</option>");
 				}
 				echo("<option value='move_photo.php?index=$i'>Move $label</option>");
