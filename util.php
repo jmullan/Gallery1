@@ -28,8 +28,7 @@ function editField($album, $field, $edit) {
 		$buf = "<i>&lt;Empty&gt;</i>";
 	}
 	if ($gallery->user->canChangeTextOfAlbum($album)) {
-		$url = $gallery->app->photoAlbumURL . 
-			"/edit_field.php?set_albumName={$album->fields[name]}&field=$field";
+		$url = "edit_field.php?set_albumName={$album->fields[name]}&field=$field";
 		$buf .= "<span class=editlink>";
 		$buf .= '<a href="#" onClick="' . popup($url) . "\">[edit $field]</a>";
 		$buf .= "</span>";
@@ -45,8 +44,7 @@ function editCaption($album, $index, $edit) {
 		if (!strcmp($buf, "")) {
 			$buf = "<i>&lt;No Caption&gt;</i>";
 		}
-		$url = $gallery->app->photoAlbumURL . 
-			"/edit_caption.php?set_albumName={$album->fields[name]}&index=$index";
+		$url = "edit_caption.php?set_albumName={$album->fields[name]}&index=$index";
 		$buf .= "<span class=editlink>";
 		$buf .= '<a href="#" onClick="' . popup($url) . '">[edit]</a>';
 		$buf .= "</span>";
@@ -63,8 +61,10 @@ function error_format($message) {
 }
 
 function popup($url, $no_expand_url=0) {
+	global $GALLERY_BASEDIR;
+
 	if (!$no_expand_url) {
-		$url = "'$url'";
+		$url = "'$GALLERY_BASEDIR$url'";
 	}
 	$attrs = "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes";
 	return "javascript:nw=window.open($url,'Edit','$attrs');nw.opener=self;return false;";
@@ -360,9 +360,11 @@ function exec_wrapper($cmd) {
 	}
 }
 function includeHtmlWrap($name) {
+	global $GALLERY_BASEDIR;
+
 	// define these globals to make them available to custom text
         global $gallery;
-	$fullname = "html_wrap/$name";
+	$fullname = $GALLERY_BASEDIR . "html_wrap/$name";
 
 	if (file_exists($fullname)) {
 		include ($fullname);
@@ -409,7 +411,7 @@ function errorRow($key) {
 
 	$error = $gErrors[$key];
 	if ($error) {	
-		include("html/errorRow.inc");
+		include($GALLERY_BASEDIR . "html/errorRow.inc");
 	}
 }
 
@@ -451,39 +453,57 @@ function correctEverybody($array) {
 	}
 }
 
-function makeGalleryUrl($albumName, $photoId="", $extra="") {
+function makeGalleryUrl($albumName="", $photoId="", $extra="") {
 	global $gallery;
+	global $GALLERY_EMBEDDED_INSIDE;
 
-	$url = $gallery->app->photoAlbumURL;
-
-	$args = array();
-	if ($gallery->app->feature["rewrite"]) {
-		if ($albumName) {
-			$url .= "/$albumName";
-
-			// Can't have photo without album
+	switch ($GALLERY_EMBEDDED_INSIDE) {
+		case "nuke":
+			$url = "modules.php?op=modload&name=gallery&file=index";
+			if ($albumName) {
+				$inc = "&include=view_album.php";
+				$url .= "&set_albumName=$albumName";
+			}
 			if ($photoId) {
-				$url .= "/$photoId";
-			} 
-		}
-	} else {
-		if ($albumName) {
-			$url = $gallery->app->photoAlbumURL . "/view_album.php";
-			array_push($args, "set_albumName=$albumName");
-		}
+				$inc = "&include=view_photo.php";
+				$url .= "&id=$photoId";
+			}
+			$url .= $inc;
+			$url .= $extra;
+			break;
 
-		if ($photoId) {
-			$url = $gallery->app->photoAlbumURL . "/view_photo.php";
-			array_push($args, "id=$photoId");
-		}
-	}
+		default:
+			$url = $gallery->app->photoAlbumURL;
 
-	if ($extra) {
-		array_push($args, $extra);
-	}
+			$args = array();
+			if ($gallery->app->feature["rewrite"]) {
+				if ($albumName) {
+					$url .= "/$albumName";
+		
+					// Can't have photo without album
+					if ($photoId) {
+						$url .= "/$photoId";
+					} 
+				}
+			} else {
+				if ($albumName) {
+					$url = $gallery->app->photoAlbumURL . "/view_album.php";
+					array_push($args, "set_albumName=$albumName");
+				}
+		
+				if ($photoId) {
+					$url = $gallery->app->photoAlbumURL . "/view_photo.php";
+					array_push($args, "id=$photoId");
+				}
+			}
 
-	if (count($args)) {
-		$url .= "?" . join("&", $args);
+			if ($extra) {
+				array_push($args, $extra);
+			}
+		
+			if (count($args)) {
+				$url .= "?" . join("&", $args);
+			}
 	}
 
 	return $url;
@@ -491,26 +511,28 @@ function makeGalleryUrl($albumName, $photoId="", $extra="") {
 
 function gallerySanityCheck() {
 	global $gallery;
+	global $GALLERY_BASEDIR;
 
-	if (!file_exists("config.php") || !$gallery->app) {
-		include("errors/unconfigured.php");
+	if (!file_exists($GALLERY_BASEDIR . "config.php") || !$gallery->app) {
+		include($GALLERY_BASEDIR . "errors/unconfigured.php");
 		exit;
 	}
 
-	if (file_exists("setup") && is_readable("setup")) {
+	if (file_exists($GALLERY_BASEDIR . "setup") && 
+		is_readable($GALLERY_BASEDIR . "setup")) {
 		/* 
 		 * on some systems, PHP's is_readable returns false
 		 * positives.  Make extra sure.
 		 */
-		$perms = sprintf("%o", fileperms("setup"));
+		$perms = sprintf("%o", fileperms($GALLERY_BASEDIR . "setup"));
 		if (strstr($perms, "755")) {
-			include("errors/configmode.php");
+			include($GALLERY_BASEDIR . "errors/configmode.php");
 			exit;
 		}
 	}
 
 	if ($gallery->app->config_version != $gallery->config_version) {
-		include("errors/reconfigure.php");
+		include($GALLERY_BASEDIR . "errors/reconfigure.php");
 		exit;
 	}
 }
@@ -655,6 +677,39 @@ function printNestedVals($level, $albumName, $val, $movePhoto) {
 			}
 		}
 	}
+}
+
+function doCommand($command, $args="", $returnFile="", $returnArgs="") {
+	global $GALLERY_EMBEDDED_INSIDE;
+	switch ($GALLERY_EMBEDDED_INSIDE) {
+		case "nuke":
+			$url = "modules.php?op=modload&name=gallery&file=index" .
+				"&include=do_command.php&cmd=$command";
+
+			if ($returnFile) {
+				$returnFile = "modules.php?op=modload&name=gallery&file=index" .
+				"&include=$returnFile&$returnArgs";
+			}
+			break;
+
+		default:
+			$url = "do_command.php?cmd=$command";
+			if ($returnFile && $returnArgs) {
+				$returnFile = $returnFile . "?" . $returnArgs;
+			}
+
+			break;
+	}
+
+	if ($args) {
+		$url .= "&$args";
+	}
+
+	if ($returnFile) {
+		$url .= "&return=" . urlencode($returnFile);
+	}
+
+	return $url;
 }
 
 function formVar($name) {
