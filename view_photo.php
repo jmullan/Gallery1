@@ -318,13 +318,9 @@ if (!$gallery->album->isMovie($id)) {
 	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes") &&
 			!$gallery->session->offline  &&
 			$gallery->user->canViewFullImages($gallery->album)) {
-		$link = doCommand("", 
-			array("set_fullOnly" => 
-				(!isset($gallery->session->fullOnly) ||
-				 strcmp($gallery->session->fullOnly,"on") 
-				? "on" : "off")),
-			"view_photo.php", 
-			array("id" => $id));
+
+		$lparams['set_fullOnly'] = (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) ? "on" : "off";
+		$link = makeAlbumURL($gallery->session->albumName, $id, $lparams);
 
 		$adminCommands .= '&nbsp;' . _('View Images') .':&nbsp;[&nbsp;';
 		if (!isset($gallery->session->fullOnly) ||
