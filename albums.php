@@ -115,7 +115,7 @@ $end = min($start + $perPage - 1, $numAlbums);
 for ($i = $start; $i <= $end; $i++) {
         $album = $albumDB->getAlbum($user, $i);
         $tmpAlbumName = $album->fields["name"];
-        $albumURL = $app->photoAlbumURL . "/" . $tmpAlbumName;
+        $albumURL = makeGalleryUrl($tmpAlbumName);
 
 ?>     
 
