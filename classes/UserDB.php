@@ -28,8 +28,6 @@ class UserDB {
 		global $app;
 
 		$this->userMap = array();
-		$this->nobody = new NobodyUser();
-		$this->everybody = new EverybodyUser();
 
 		if (!file_exists($app->userDir)) {
 			if (!mkdir($app->userDir, 0777)) {
@@ -46,6 +44,11 @@ class UserDB {
 		if (file_exists("$app->userDir/userdb.dat")) {
 			$tmp = getFile("$app->userDir/userdb.dat");
 			$this = unserialize($tmp);
+		}
+
+		if (!$this->nobody) {
+			$this->nobody = new NobodyUser();
+			$this->everybody = new EverybodyUser();
 		}
 	}
 
@@ -194,10 +197,8 @@ class UserDB {
 			return "Username must contain only letters or digits";
 		}
 
-		$nobody = $this->getNobody();
-		$everybody = $this->getEverybody();
-		if (!strcmp($username, $nobody->getUsername()) ||
-		    !strcmp($username, $everybody->getUsername())) {
+		if (!strcmp($username, $this->nobody->getUsername()) ||
+		    !strcmp($username, $this->everybody->getUsername())) {
 			return "<i>$username</i> is reserved and cannot be used.";
 		}
 
