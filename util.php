@@ -314,7 +314,9 @@ function dismissAndReload() {
 }
 
 function reload() {
-	echo "<BODY onLoad='opener.location.reload()'>";
+	echo '<script language="javascript1.2">';
+	echo 'opener.location.reload()';
+	echo '</script>';
 }
 
 function dismissAndLoad($url) {
