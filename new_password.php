@@ -35,10 +35,9 @@ if (empty($uname) ) {
        	$error_string .= _("Not a valid username") . "<br>";
 } else {
        	$tmpUser = $gallery->userDB->getUserByUsername($uname);
-       	if (!$tmpUser) {
+       	if (empty($tmpUser)) {
 	       	$error_string .= _("Not a valid username") . "<br>";
-       	}
-       	if (!$tmpUser->checkRecoverPasswordHash($hash)) {
+       	} else if (!$tmpUser->checkRecoverPasswordHash($hash)) {
 	       	$error_string .= _("The recovery password is not the expected value, please try again") . "<br>";
 	}
 }

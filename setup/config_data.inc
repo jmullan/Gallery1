@@ -1442,7 +1442,8 @@ $defaults = array(
 	),
 	'mPUSHAccount' => array(
 		'prompt' => _("Account for the mPUSH service"),
-		'desc' => _("If you so choose, you can create your own account to use with the mPUSH cellular photo service.  If you do not use your own account, please leave this set to 'gallery'."),
+		'desc' => sprintf(_("If you so choose, you can %screate your own account%s to use with the mPUSH cellular photo
+service.  If you do not use your own account, please leave this set to 'gallery'."), '<a href="http://mpush.msolutions.cc/safe.php?p=Register&ref=gallery" target="_blank">', '</a>'),
 		'value' => 'gallery',
 		'type' => 'text',
 	),
