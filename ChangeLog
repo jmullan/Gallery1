@@ -1,3 +1,8 @@
+2001-07-22  Bharat Mediratta  <bharat@menalto.com>
+
+	* Fixed bug #443479 "invalid PHP function in functions.inc"
+	  fs_is_executable() was missing from platform/ files.
+
 2001-07-21  John Kirkland  <jpk@bl.org>
 	
 	* Added ability to statically sort photos by name via the
@@ -27,7 +32,6 @@
 	
 	* Fixed SF bug #439790.  "Add photos and nested albums."
 
-
 2001-07-19  Bharat Mediratta  <bharat@menalto.com>
 
 	* Added Album upgrade code.  If you upgrade Gallery to a newer
@@ -36,6 +40,7 @@
 	  dialog that will walk you through a mostly automated process. 
 
 2001-07-19  John Kirkland  <jpk@bl.org>
+	
 	* Replaced album shuffle with album sorting.  This feature
 	  will allow album owners to sort their albums according to
 	  the file upload date or the Picture-Taken date.  The 
