@@ -78,9 +78,11 @@ if ($navigator["page"] == $navigator["maxPages"]) {
 ?>
   </td>
  </tr>
+<? if ($end > $begin) { ?>
  <tr>
   <td align=center colspan=5>
    <font size=-2>(Click here to switch to a new page)</font>
   </td>
  </tr>
+<? } ?>
 </table>
