@@ -302,7 +302,7 @@ $constants =  array_merge(
         ),
 
 	"jpegImageQuality" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("JPEG Quality"),
+		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("JPEG Quality"),
 		"desc" => _("The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."),
 		"choices" => array(50 => 50, 55 => 55, 60 => 60, 65 => 65,
 				   70 => 70, 75 => 75, 80 => 80, 85 => 85,
@@ -385,7 +385,7 @@ $constants =  array_merge(
 		"attrs" => array("size" => 50)
 	),
 	"cacheExif" => array(
-		"prompt" => "<b>(" . _("Advanced") . ")</b> ". _("Cache EXIF data"),
+		"prompt" => "<b>(" . _("Advanced") . ")</b><br> ". _("Cache EXIF data"),
 		"desc" => _("The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow.  Set to <b>no</b> by default."),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
@@ -419,13 +419,12 @@ $constants =  array_merge(
 	"ML_mode" => array(
 		"prompt" => _("Multi language mode"), 
 		"desc" => _("Gallery has three multi language modes.  These affect the language that a user will see when visiting the site"),
-		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
+		"type" => ( (sizeof(gallery_languages()) > 1) && ($elawisyl == 'yes') ) ? "choices" : "hidden",
 		"choices" => array(
 				1 => "1: " . _("Gallery is only displayed in one language"), 
 				2 => "2: " . _("Gallery is displayed in the language the browser sends"), 
 				3 => "3: " . _("The User can choose the language via pulldown menu or flags.")),
-		"value" => (sizeof(gallery_languages()) > 1) ? 3 : 1,
-		"enabled" => $elawisyl
+		"value" => ( (sizeof(gallery_languages()) > 1) && ($elawisyl == 'yes') ) ? 3 : 0,
 	),
 	"available_lang" => array(
 		"prompt" => _("Available languages in mode 3 and user preferences"), 
@@ -445,7 +444,7 @@ $constants =  array_merge(
 		"enabled" => $elawisyl
 	),
 	"dateString" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Format to use for date strings."),
+		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("Format to use for date strings."),
 		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
 			_("date without time"), Gallery(), "<b>%x</b>",
 			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '">'._("http://www.php.net/manual/en/function.strftime.php").'</a>') .
@@ -456,7 +455,7 @@ $constants =  array_merge(
 		"attrs" => array("size" => 20)
 	),
 	"dateTimeString" => array(
-		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Format to use for date/time strings."),
+		"prompt" => "<b>(" . _("Advanced") .")</b><br> ". _("Format to use for date/time strings."),
 		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
 			_("date with time"), Gallery(), "<b>%c</b>",
 			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '">'._("http://www.php.net/manual/en/function.strftime.php").'</a>') .
@@ -476,10 +475,8 @@ $constants = array_merge($constants,
        	"separator6" => array (
 		       	"type" => "separator",
 		       	"title" => _("Gallery wide slideshow"),
-			"desc" => newIn("1.4.1") . "  " .
-				_("Adds a slide show link on the main page of the gallery.") .
-				"  " .
-				_("Note for large galleries this may run very slowly and use a lot of system resources.")
+			"desc" => newIn("1.4.1") . "<br>" .
+				_("Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources.")
 			),
 	"gallery_slideshow_type" => array(
 		       	"prompt" => _("Slideshow preferences"),

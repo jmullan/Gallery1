@@ -30,6 +30,7 @@ if($gallery->app->show_flags !='yes') {
 	$nls = getNLS();
 
 	$count=0;
+	$half=sizeof($gallery->app->available_lang)/2;
 	foreach ($gallery->app->available_lang as $value) {
 
 		// Only use language from config.php if its defined in nls.php
@@ -68,6 +69,10 @@ if($gallery->app->show_flags !='yes') {
 				$flagname=$value;
 			}
 			echo "\n\t\t<a href=\"". makeGalleryUrl( $urlTemp, $args) . "\"><img src=\"". $gallery->app->photoAlbumURL ."/images/flags/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a>";
+			if ($count > $half && half >10) {
+				echo "<br>";
+				$count=0;
+			}
 		}
 	}
 

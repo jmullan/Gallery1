@@ -2254,6 +2254,19 @@ function initLanguage() {
 	// $locale is *NUKEs locale var
 	global $locale ;
 
+       $nls = getNLS();
+
+	// before we do any tests or settings test if we are in mode 0
+	// If so, we skip language settings at all
+       
+	if (isset($gallery->app->ML_mode)) {
+		if($gallery->app->ML_mode == 0) {
+			$gallery->direction=$nls['default']['direction'];
+			$gallery->align=$nls['default']['alignment'];
+			return;
+		}
+	}
+
 	// Detect Browser Language
 
 	if (isset($HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"])) {
@@ -2268,9 +2281,6 @@ function initLanguage() {
 				"_".strtoupper($lang_pieces[1]) ;
 		}
 	}
-
-
-	$nls = getNLS();
 
 	// Does the user wants a new lanuage ?
 	if (isset($HTTP_GET_VARS['newlang'])) {
@@ -2425,7 +2435,7 @@ function initLanguage() {
 
 	$check=(in_array("gettext", get_loaded_extensions()) && 
 			function_exists('gettext'));
-	if ($check) {
+	if (! $check) {
 		$bindtextdomain=bindtextdomain("gallery", $GALLERY_BASEDIR."locale");
 		textdomain("gallery");
 	}  else {
@@ -2441,11 +2451,12 @@ function emulate_gettext() {
 		$lines=file($filename);
 
 		foreach ($lines as $key => $value) {
-			if (stristr($value, "msgid")) {
+			if (stristr($value, "msgid") && ! stristr($lines[$key-1],"fuzzy")) {
 				$new_key=substr($value, 7,-2);
 				$translation[$new_key]=substr($lines[$key+1],8,-2);
 			}
 		}
+		print_r($translation);
 		// Substitute _() gettext function
 		function _($search) {
 			if (! empty($GLOBALS['translation'][$search])) {

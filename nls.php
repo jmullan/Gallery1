@@ -43,6 +43,7 @@ function getNLS () {
 	$nls['language']['zh_CN'] = 'Simplified Chinese (&#31616;&#20307;&#20013;&#25991;)';
         $nls['language']['zh_TW'] = 'Traditional Chinese (&#32321;&#39636;&#20013;&#25991;)';
 	$nls['language']['zh_TW.utf8'] = 'Traditional Chinese (&#32321;&#39636;&#20013;&#25991;) (UTF-8)';
+	$nls['language']['bg_BG'] = '&#x0411;&#x044a;&#x043b;&#x0433;&#x0430;&#x0440;&#x0441;&#x043a;&#x0438;';
 	$nls['language']['cs_CZ'] = '&#x010c;esky';
 	$nls['language']['da_DK'] = 'Dansk';
 	$nls['language']['de_DE'] = 'Deutsch';
@@ -59,6 +60,7 @@ function getNLS () {
 	$nls['language']['no_NO'] = 'Norsk bokm&#229;l';
 	$nls['language']['pl_PL'] = 'Polski';
 	$nls['language']['pt_PT'] = 'Portugu&#234;s';
+	$nls['language']['pt_BR'] = 'Portugu&ecirc;s Brasileiro';
 	$nls['language']['ru_RU'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)';
 	$nls['language']['ru_RU.koi8r'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (KOI8-R)';
 	$nls['language']['sl_SI'] = 'Sloven&#x0161;&#x010d;ina';
@@ -104,12 +106,12 @@ function getNLS () {
 	$nls['alias']['danish'] =               'da_DK' ;
         $nls['alias']['da_DK.ISO8859-1'] =      'da_DK' ;
 
+	$nls['alias']['german'] =		'de_DE' ;
+	$nls['alias']['deu'] =			'de_DE' ;
 	$nls['alias']['de_LI'] = 		'de_DE' ;
 	$nls['alias']['de_LU'] = 		'de_DE' ;
 	$nls['alias']['de_CH'] = 		'de_DE' ;
 	$nls['alias']['de_AT'] = 		'de_DE' ;
-	$nls['alias']['german'] =		'de_DE' ;
-	$nls['alias']['deu'] =			'de_DE' ;
 	$nls['alias']['de_DE.ISO8859-1'] =	'de_DE' ;
 	
 	$nls['alias']['spanish'] =		'es_ES' ;
@@ -123,19 +125,19 @@ function getNLS () {
 	$nls['alias']['eng'] =			'en_US' ;
 	$nls['alias']['en_US.ISO8859-1'] =	'en_US' ;
 	
+	$nls['alias']['french'] =		'fr_FR' ;
+	$nls['alias']['fra'] =			'fr_FR' ;
 	$nls['alias']['fr_BE'] = 		'fr_FR' ;
 	$nls['alias']['fr_CA'] = 		'fr_FR' ;
 	$nls['alias']['fr_LU'] = 		'fr_FR' ;
 	$nls['alias']['fr_CH'] = 		'fr_FR' ;
-	$nls['alias']['french'] =		'fr_FR' ;
-	$nls['alias']['fra'] =			'fr_FR' ;
 	$nls['alias']['fr_FR.ISO8859-1'] =	'fr_FR' ;
 
 	$nls['alias']['finnish'] =		'fi_FI' ;
 	$nls['alias']['fi_FI.ISO8859-1'] =	'fi_FI' ;
 
-	$nls['alias']['he_HE'] = 		'he_IL' ;
 	$nls['alias']['hebrew'] =		'he_IL' ;
+	$nls['alias']['he_HE'] = 		'he_IL' ;
 	$nls['alias']['he_IL.ISO8859-8'] =	'he_IL' ;
 
 	$nls['alias']['icelandic']=		'is_IS' ;
@@ -163,9 +165,13 @@ function getNLS () {
 	$nls['alias']['polish'] =		'pl_PL' ;
 	$nls['alias']['pl_PL.ISO8859-2'] =	'pl_PL' ;
 
+	$nls['alias']['brazilian'] =            'pt_BR' ;
+	$nls['alias']['pt_BR.ISO8859-1'] =      'pt_BR' ;
+	$nls['alias']['pt_BR.ISO8859-15'] =	'pt_BR' ;
+
 	$nls['alias']['portuguese'] =		'pt_PT' ;
-	$nls['alias']['pt_PT.ISO8859-2'] =	'pt_PT' ;
 	$nls['alias']['pt_PT.ISO8859-1'] =	'pt_PT' ;
+	$nls['alias']['pt_PT.ISO8859-15'] =	'pt_PT' ;
 	
 	$nls['alias']['russian'] =		'ru_RU';
 	$nls['alias']['rus'] =			'ru_RU';
@@ -177,8 +183,8 @@ function getNLS () {
 	$nls['alias']['slovenian'] =    	'sl_SI' ;
 	$nls['alias']['sl_SI.ISO8859-2'] =	'sl_SI' ;
 	
-	$nls['alias']['sv_SV'] = 		'sv_SE' ;
 	$nls['alias']['swedish'] =		'sv_SE' ;
+	$nls['alias']['sv_SV'] = 		'sv_SE' ;
 	$nls['alias']['swe'] =			'sv_SE' ;
 	$nls['alias']['sv_SE.ISO8859-1'] =	'sv_SE' ;
 
@@ -190,10 +196,10 @@ function getNLS () {
 
 	$nls['alias']['zh_CN.EUC'] =            'zh_CN' ;
 
+	$nls['alias']['chinese'] = 		'zh_TW' ;
 	$nls['alias']['zh_TW.GB2312'] =         'zh_TW' ;
 	$nls['alias']['zh_TW.Big5']      =	'zh_TW' ;
-	$nls['alias']['chinese'] = 		'zh_TW' ;
-	
+
 /**
  ** Charsets
  **
@@ -203,6 +209,7 @@ function getNLS () {
 	
 	$nls['default']['charset'] = 		'ISO-8859-1';
 	
+	$nls['charset']['bg_BG'] =              'windows-1251';
 	$nls['charset']['cs_CZ'] =              'ISO-8859-2';
 	$nls['charset']['he_IL'] = 		'windows-1255';
 	$nls['charset']['ja_JP'] = 		'EUC-JP';
@@ -246,6 +253,7 @@ function getNLS () {
 /**
  ** phpNuke
  **/
+	$nls['phpnuke']['pt_BR'] = 'brazilian' ;
 	$nls['phpnuke']['zh_TW'] = 'chinese' ;
 	$nls['phpnuke']['cs_CZ'] = 'czech' ;
 	$nls['phpnuke']['da_DK'] = 'danish';

@@ -133,7 +133,7 @@ function form_multiple_choice($key, $arr) {
 	$buf= '<table><tr><td valign="top">';
 	$count=0;
 	foreach ($arr["multiple_choices"] as $item => $value) {
-		if ($count%10 ==0) {
+		if ($count%15 ==0) {
 			$buf .= "</td>\n<td valign=\"top\">";
 		}
 		$count++;
@@ -574,14 +574,14 @@ function check_absent_locales()
 	if($locales != NULL && sizeof($locales["unavailable_locales"]) ==0) {
 		$success[] = _("All gallery locales are available on this host");
 	} else if(sizeof($locales["available_locales"]) == 0) {
-	    if (ini_get('open_basedir')) {
-		$fail[] = sprintf(_("We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."),
+		if (ini_get('open_basedir') && getOS() != OS_LINUX) {
+			$fail[] = sprintf(_("We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."),
 				'<a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir">open_basedir</a>');
 	    } else {
 			if (getOS() == OS_LINUX) {
 				$fail[] = sprintf(_("We were unable to detect any system locales. Multilanguage functions will be disabled. Please install the corresponding locales or ask your Provider to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s"),"Debian", '<a href="http://people.debian.org/~schultmc/locales.html">', "</a>");
 			} else {
-		$fail[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
+				$fail[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
 	    }
 		}
 	} else {
@@ -634,14 +634,17 @@ function check_locale() {
 			$system_locales=$tmp;
 		} elseif (@is_readable("/etc/locale.gen")) {
 			$system_locales=explode("\n",shell_exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1'));
-			if (@is_readable("/usr/share/locale/")) {
-				$system_locales=array_merge($system_locales, explode("\n",shell_exec('ls /usr/share/locale/')));
-			}
+		} elseif (@is_readable("/usr/share/locale/")) {
+			$system_locales=array_merge($system_locales, explode("\n",shell_exec('ls /usr/share/locale/')));
 		}
 	}
 
-	/* DAMN, there are none */
-	if( (sizeof($system_locales) == 0) && (getOS() == OS_LINUX )) {
+
+	/* DAMN, there are none we use Linux and our PHP uses gettext*/
+	if(     (sizeof($system_locales) == 0 ) &&
+		(getOS() == OS_LINUX ) &&
+		(in_array("gettext", get_loaded_extensions() ) && function_exists('gettext') )
+	) {
 		return NULL;
 	}
 
@@ -762,11 +765,13 @@ function config_maybe_locales() {
 	foreach ($available as $choice => $value) { 
 		$choices[$choice]=$nls['language'][$value];
 	}
+
+	$avail_keys=array_keys($available);
         foreach ($unavailable as $key) {
 		if (sizeof($available) <= 1) {
 			$results["locale_alias['$key']"] = array (
 				"type" => "hidden", 
-				"value" => 0,
+				"value" => $avail_keys[0],
 				"desc" => "locale_alias[$key]",
 				"prompt" => "locale_alias[$key]"
 					);

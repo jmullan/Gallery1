@@ -286,7 +286,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
         if ($i == $index) {
                 $sel = "selected";
         }
-        echo "<option value=$i $sel> $i</option>";
+        echo "<option value=\"$i\" $sel> $i</option>";
 }
 ?>
 </select>
@@ -299,7 +299,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
         if ($i == $index) {
                 $sel = "selected";
         }
-        echo "<option value=$i $sel> $i</option>";
+        echo "<option value=\"$i\" $sel> $i</option>";
 }
 ?>
 </select>
@@ -320,7 +320,7 @@ if (sizeof($gallery->album->fields["votes"])> 0) {
        	if ($gallery->album->fields["poll_type"] == "rank") {
 	       	echo "<font color=red>". _("Note: items that have votes will lose these votes when moved to another album") . "</font>"; // can't move rank votes, doesn't  make sense.
       	} else {
-	       	echo "<font color=red>". sprintf(_("Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an \"%s\"."), "*") . "</font>";
+	       	echo "<font color=red>". sprintf(_("Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."), "*") . "</font>";
        	}
 }
 
