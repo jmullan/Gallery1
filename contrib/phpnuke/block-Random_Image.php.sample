@@ -21,5 +21,7 @@
  */
 ?>
 <?php
+	ob_start();
 	include("http://your.site.com/modules.php?name=gallery&op=modload&file=index&include=block-random.php");
+	$content = ob_get_clean();
 ?>

@@ -47,7 +47,7 @@ $include = isset($_REQUEST['include']) ? $_REQUEST['include'] : null;
  * Gallery can run embedded in GeekLog too, but to catch this we need
  * config.php * Therefore we have to detect GeeLog in init.php.
  */
-if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option)) {
+if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option) || isset($name)) {
 
 	/* 
 	 * Change this variable if your Gallery module has a different
