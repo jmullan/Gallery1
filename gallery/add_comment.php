@@ -65,9 +65,11 @@ function emailComments($id, $comment_text, $commenter_name) {
 }
 
 $error_text = "";
-if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
-       	$commenter_name=user_name_string($gallery->user->getUID(), 
-			$gallery->app->comments_display_name);
+if ($gallery->user->isLoggedIn()) {
+	if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
+       		$commenter_name=user_name_string($gallery->user->getUID(), 
+				$gallery->app->comments_display_name);
+	}
 }
 if (empty($comment_text)) {
 	$comment_text='';
