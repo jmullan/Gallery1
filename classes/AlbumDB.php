@@ -109,13 +109,14 @@ class AlbumDB {
 	
 	function numPhotos($user) {
 		$numPhotos = 0;
-		for ($i = 0; $i < sizeof($this->albumList); $i++) {
-			if ($this->albumList[$i]->canWrite($user->getUid())) {
-				$numPhotos += $this->albumList[$i]->numPhotos(1);
-			} else if ($this->albumList[$i]->canRead($user->getUid())) {
-				$numPhotos += $this->albumList[$i]->numPhotos(0);
-			}
-		}
+		foreach ($this->albumList as $album) {
+			if ($user->canWriteToAlbum($album)) {
+				$numPhotos += $album->numPhotos(1);
+                        } else if ($user->canReadAlbum($album)) {
+                                $numPhotos += $album->numPhotos(0);
+                        }
+                }
+
 		return $numPhotos;
 	}
 
