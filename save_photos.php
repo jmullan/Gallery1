@@ -237,7 +237,19 @@ function process($file, $tag, $name, $setCaption="") {
 	// parse out original filename without extension
 	$originalFilenameArray = preg_split ( "/.$tag\$/i" , $name);
 	// replace multiple non-word characters with a single "_"
-	$originalFilename = preg_replace("/\W+/", "_", $originalFilenameArray[0]);	
+	$originalFilename = preg_replace("/\W+/", "_", $originalFilenameArray[0]);
+
+	/* 
+	need to prevent users from using original filenames that are purely numeric.
+	Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
+	specifically:
+	RewriteRule ^([^\.\?/]+)/([0-9]+)$	/~jpk/gallery/view_photo.php?set_albumName=$1&index=$2	[QSA]
+	*/
+
+	if (ereg("^([0-9]+)$", $originalFilename)) {
+		$originalFilename = $originalFilename . "_G";
+	}
+
 	set_time_limit(30);
 	if (acceptableFormat($tag)) {
 		msg("- Adding $name");

@@ -1,3 +1,11 @@
+2001-07-13  John Kirkland  <jpk@bl.org>
+	* Fixed SF bug#441249.  If a user was using the new "keep 
+	  original filenames" feature and they uploaded a file with
+	  a purely numeric filename, this would cause issues if they
+	  were also using mod_rewrite!  So... now... if a user 
+	  uploads a numeric filename and they wish to keep original
+	  filenames, I add a "_G" (for Gallery) to the end of the filename.
+
 2001-07-12  John Kirkland  <jpk@bl.org>
 	* 2 minor keyword changes per Chris' request (SF#440303):
 	  a.  Put keywords in photo-properties popup
