@@ -79,6 +79,7 @@ if (isset($_SESSION[$gSessionVar])) {
 
 	/* Tag this session with the gallery version */
 	$gallery->session->version = $gallery->version;
+	$gallery->session->sessionStart = time();
 }
 
 update_session_var("albumName");

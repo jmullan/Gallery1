@@ -357,22 +357,19 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$mosConfig_db		= $gallery->session->mambo->mosConfig_db;
 				$mosConfig_dbprefix	= $gallery->session->mambo->mosConfig_dbprefix;
 				$MOS_GALLERY_PARAMS	= $gallery->session->mambo->MOS_GALLERY_PARAMS;
-			}
-			elseif (!empty($mosConfig_db)) {
+			} elseif (!empty($mosConfig_db)) {
 				$gallery->session->mambo->mosRoot = dirname($_SERVER['PHP_SELF']);
 				if (substr($gallery->session->mambo->mosRoot, -1) != '/') {
 					$gallery->session->mambo->mosRoot .= '/';
 				}
-				$gallery->session->mambo->mosConfig_host=$mosConfig_host;
-				$gallery->session->mambo->mosConfig_user=$mosConfig_user;
-				$gallery->session->mambo->mosConfig_password=$mosConfig_password;
-				$gallery->session->mambo->mosConfig_db=$mosConfig_db;
-				$gallery->session->mambo->mosConfig_dbprefix=$mosConfig_dbprefix;
+				$gallery->session->mambo->mosConfig_host     = $mosConfig_host;
+				$gallery->session->mambo->mosConfig_user     = $mosConfig_user;
+				$gallery->session->mambo->mosConfig_password = $mosConfig_password;
+				$gallery->session->mambo->mosConfig_db       = $mosConfig_db;
+				$gallery->session->mambo->mosConfig_dbprefix = $mosConfig_dbprefix;
 				$gallery->session->mambo->MOS_GALLERY_PARAMS = $MOS_GALLERY_PARAMS;
-			}
-
-			if(empty($mosConfig_db)) {
-				echo _("Gallery seems to be inside Mambo, but we couldn't get the necessary info.");
+			} else {
+				echo 'init.php: ' . _("Gallery seems to be inside Mambo, but we couldn't get the necessary info.");
 				exit;
 			}
 
