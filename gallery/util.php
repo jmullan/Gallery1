@@ -1137,9 +1137,9 @@ function _getStyleSheetLink($filename, $skinname='') {
         $sheetname = "skins/$skinname/css/$filename.css";
 	$sheetpath = dirname(__FILE__) . "/$sheetname";
 
-	$sheetdefaultdomainname = "css/$HTTP_SERVER_VARS[HTTP_HOST]/$filename.css";
+	$sheetdefaultdomainname = 'css/'. $HTTP_SERVER_VARS['HTTP_HOST'] ."/$filename.css";
 	$sheetdefaultname = "css/$filename.css";
-	$sheetdefaultpath = $sheetname;
+	$sheetdefaultpath = dirname(__FILE__) . '/' . $sheetdefaultname;
 
 	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
 		$base = $gallery->app->photoAlbumURL;
