@@ -770,7 +770,7 @@ class Album {
 		}
 
 		if ($this->transient->photosloaded) {
-			$this->fields["cached_photo_count"] = $this->numPhotos(1);
+			$this->fields["cached_photo_count"] = $this->numPhotos(1,1);
 		}
 
 		$transient_photos = $this->photos;
@@ -1224,11 +1224,25 @@ class Album {
 		return $cnt;
 	}
 
-	function numPhotos($show_hidden=0) {
-		if ($show_hidden) {
-			return sizeof($this->photos);
-		} else {
-			return sizeof($this->photos) - $this->numHidden();
+	function numPhotos($show_hidden=0, $strict_count=0) {
+		if (!$strict_count) {
+			if ($show_hidden) {
+				return sizeof($this->photos);
+			} else {
+				return sizeof($this->photos) - $this->numHidden();
+			}
+		}
+		else {
+			$count = 0;
+			foreach ($this->photos as $photo) {
+				if ($photo->isAlbum() || ($photo->isHidden() && !$show_hidden)) {
+					continue;
+				}
+				else {
+					$count++;
+				}
+			}
+			return $count;
 		}
 	}
 

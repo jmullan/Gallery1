@@ -1,3 +1,13 @@
+2004-05-12  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b107
+
+	* Change: Add an optional flag to Album::numPhotos() to do strict
+	  counting of photos - this prevents albums from being counted as
+	  images for the "total" on albums.php
+
+	* Change: Another _SERVER -> HTTP_SERVER_VARS
+
+	* Change: ChangeLog beautification by the compulsive developer
+
 2004-05-12 Jens Tkotz <jens@peino.de>  1.4.4-cvs-b106
 
 	* Fix: Use of $HTTP_SERVER_VARS instead $_SERVER
@@ -40,8 +50,8 @@
 
 2004-05-06  Jens Tkotz <jens@peino.de>  1.4.4-cvs-b99
 
-        * Fix: Links to docs and diagnostics(!) didnt work with empty config.php
-               ($gallery->app->photoAlbumURL is not set)
+	* Fix: Links to docs and diagnostics(!) didnt work with empty config.php
+	  ($gallery->app->photoAlbumURL is not set)
 
 2004-05-05  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b98
 
@@ -231,7 +241,7 @@
 2004-04-30  Andrew Lindeman <joyoflinux@yahoo.com> 1.4.4-cvs-75
 	
 	* Change: Use strnatcasecmp instead of strnatcmp in sorting by filename
-          and caption (Tracker #945228)
+	  and caption (Tracker #945228)
 
 2004-04-29  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b74
 
@@ -396,8 +406,8 @@
 
 	* Fix: Removed warning in devmode when no watermark dir is set.
 
-        * Fix: Removed empty lines between ?> and <?php in applet.inc.   .
-               This caused warnings when Gallery is embedded and the Applet is installled.
+	* Fix: Removed empty lines between ?> and <?php in applet.inc.   .
+	       This caused warnings when Gallery is embedded and the Applet is installled.
 
 2004-04-22  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b50
 
@@ -547,10 +557,10 @@
 
 2004-04-09  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b25
 
-        * Fix: JavaScript error on edit_watermark.php
-          "data" was not a valid form member.  We are now defaulting to
-          the cancel button for focus to prevent accidental application
-          of watermarks.
+	* Fix: JavaScript error on edit_watermark.php
+	  "data" was not a valid form member.  We are now defaulting to
+	  the cancel button for focus to prevent accidental application
+	  of watermarks.
 
 2004-04-08  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b24
 
@@ -604,7 +614,7 @@
 2004-04-06 Jens Tkotz <jens@peino.de> 1.4.4-cvs-b15
 
 	* Bugfix: When Gallery runs on PHP >=4.3.0 slideshow for modern Browser were broken
-                  in several languages, due to unsupported Charset in html_entity_decode().
+		  in several languages, due to unsupported Charset in html_entity_decode().
 
 2004-04-06  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b14
 
@@ -652,14 +662,14 @@
 
 2004-03-31 Jens Tkotz <jens@peino.de> 1.4.4-cvs-b7
 
-        * Bugfix: Added missing quotes around a defined check.
+	* Bugfix: Added missing quotes around a defined check.
 
 	* Change: Replaced all error_format() with gallery_error().
 		  Added echo to all former gallery_error();
 
 	* Change: Little Changes for phpBB2. No major changes.
 
-        * Change: Trivial add of Mambo to list of Environments in Config Wizard.
+	* Change: Trivial add of Mambo to list of Environments in Config Wizard.
 
 	* Change: removed unused center() function.
 
@@ -673,7 +683,7 @@
 
 2004-03-30  Christian Mohn <ch-moh@online.no> 1.4.4-cvs-b4
 
-        * Fix: Removed max_file_size limit for form data in add_form.inc
+	* Fix: Removed max_file_size limit for form data in add_form.inc
 
 2004-03-30  Don Willingham <donwillingham@users.sf.net> 1.4.4-cvs-b3
 
@@ -810,7 +820,7 @@
 
 2004-03-21 Christian Mohn <ch-moh@online.no> 1.4.3-cvs-b131
 
-        * Change: Added LimitRequestBody setting for Apache2 in
+	* Change: Added LimitRequestBody setting for Apache2 in
 		  setup/php_value.template (sapi_apache2.c module)
 		  This is patch #920442 - Thanks to Niels Basjes
 		  for submitting
@@ -975,8 +985,8 @@
 2004-03-04  Jay Rossiter <cryptographite@users.sf.net> 1.4.3-cvs-b105
 
 	* Change: Stage 1 of a fix for bug 903936 -
-          1. Changing all calls to isAlbumName() into getAlbumName()
-          2. Addition of the isAlbum() function to the Album class
+	  1. Changing all calls to isAlbumName() into getAlbumName()
+	  2. Addition of the isAlbum() function to the Album class
 
 2004-03-04  Alan Harder  <alan.harder@sun.com> 1.4.3-cvs-b104
 
@@ -1003,9 +1013,9 @@
 	  feature is off (-b94).. moved the closing } up a few lines.
 
 2004-03-04  Michael Schultheiss <schultmc@debian.org> 1.4.3-cvs-b100
-                                                                                
-        * util.php: escape the + in the validate_email regexp update 
-          from b99 
+
+	* util.php: escape the + in the validate_email regexp update 
+	  from b99 
 
 2004-03-04  Michael Schultheiss <schultmc@debian.org> 1.4.3-cvs-b99
 
@@ -1315,7 +1325,7 @@
 	* Fix: _() was not used correct in delete_photo
 
 	* Change: Switched back to former .sh scripts as the 
-	          Debian Package Maintainer uses his own version.
+		  Debian Package Maintainer uses his own version.
 
 2004-02-24  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.4.3-cvs-b55
 
@@ -1405,7 +1415,7 @@
 
 2004-02-21  Christian Mohn  <ch-moh@online.no> 1.4.3-cvs-b45
 
-    * Fixed bug #818376: Bad-rewrite rule in setup/write.inc when
+	* Fixed bug #818376: Bad-rewrite rule in setup/write.inc when
 	  Gallery installed in webroot folder. 
 	  Thanks to sgartner for the fixed code.
 
@@ -1413,8 +1423,8 @@
 
 2004-02-21  Christian Mohn  <ch-moh@online.no> 1.4.3-cvs-b44
 
-    * Changed wrong image height in navphoto.inc
-      The table cell height was set to 28, and not 18. This only
+	* Changed wrong image height in navphoto.inc
+	  The table cell height was set to 28, and not 18. This only
 	  affected the first photo page in an album.
 	  Reported by autobulb in the forums.
 
@@ -1427,7 +1437,7 @@
 
 2004-02-18  Christian Mohn  <ch-moh@online.no> 1.4.3-cvs-b42
 
-    * Added missing GALLERY_CONFDIR="." in configure.sh
+	* Added missing GALLERY_CONFDIR="." in configure.sh
 	  Thanks to Luka Kladric for reporting
 
 2004-02-18  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.3-cvs-b41
@@ -1569,18 +1579,18 @@
 
 2004-02-02  Christian Mohn <ch-moh@online.no> 1.4.3-cvs-b20
 
-        * Removed cmd.exe call in platform/fs_win32.php as PHP itself calls
-          this when executing binaries in Win32. 
-          This caused two cmd.exe processes running every time a binary 
-          was called on that platform.
-        
-        * Added VBS as a valid executable extension in platform/fs_win32.php
-          VBScript files are valid executables in Windows. :)
+	* Removed cmd.exe call in platform/fs_win32.php as PHP itself calls
+	  this when executing binaries in Win32. 
+	  This caused two cmd.exe processes running every time a binary 
+	  was called on that platform.
 
-        * Changed the temp dir from using the system %temp% variable in
-          fs_win32, to use the Gallery temp dir instead. You may not have
-          allowed PHP access to %TEMP%. This could cause permissions related
-          problems.
+	* Added VBS as a valid executable extension in platform/fs_win32.php
+	  VBScript files are valid executables in Windows. :)
+
+	* Changed the temp dir from using the system %temp% variable in
+	  fs_win32, to use the Gallery temp dir instead. You may not have
+	  allowed PHP access to %TEMP%. This could cause permissions related
+	  problems.
 
 
 2004-02-01  Bharat Mediratta  <bharat@menalto.com> 1.4.3-cvs-b19
@@ -1681,9 +1691,9 @@
 	* Change: Renamed and moved fitToWindow in js folder. Added documentation.
 
 	* Bugfix: Fixed Bug introduced in 1.4.2-cvs-b11 (by me).
-                  Changed doctype back to be more undetailed.
-                  The detailed doctype caused the fitToWindow script not to work when
-                  using IE and Gallery was standalone.
+		  Changed doctype back to be more undetailed.
+		  The detailed doctype caused the fitToWindow script not to work when
+		  using IE and Gallery was standalone.
 
 2004-01-26  Bharat Mediratta  <bharat@menalto.com> 1.4.3-cvs-b8
 
