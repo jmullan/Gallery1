@@ -155,11 +155,6 @@ if ($urls) {
 			msg("Found " . count($image_tags) . " Images.");
 		}
 	}
-
-	/* Clean up the temporary url file */
-	foreach ($temp_files as $tf => $junk) {
-		unlink($tf);
-	}
 } /* if ($urls) */
 ?>
 
@@ -236,6 +231,13 @@ function process($file, $tag, $name) {
 }
 
 $album->save();
+
+if ($temp_files) {
+	/* Clean up the temporary url file */
+	foreach ($temp_files as $tf => $junk) {
+		unlink($tf);
+	}
+}
 ?>
 
 <?
