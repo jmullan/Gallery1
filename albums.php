@@ -116,6 +116,7 @@ $end = min($start + $perPage - 1, $numAlbums);
 
 for ($i = $start; $i <= $end; $i++) {
         $album = $albumDB->getAlbum($user, $i);
+	$owner = $album->getOwner();
         $tmpAlbumName = $album->fields["name"];
         $albumURL = makeGalleryUrl($tmpAlbumName);
 
@@ -146,6 +147,12 @@ for ($i = $start; $i <= $end; $i++) {
   <?= editField($album, "description", $edit) ?>
   </span>
   <br>
+  <? if ($app->default["showOwners"]) { ?>
+  <span class="desc">
+  Owner: <a href=mailto:<?=$owner->getEmail()?>><?=$owner->getFullName()?></a>
+  </span>
+  <br>
+  <? } ?>
 
   <? if ($user->canDeleteAlbum($album)) { ?>
    <span class="admin">
