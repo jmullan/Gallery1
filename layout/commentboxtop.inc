@@ -8,8 +8,7 @@
 	<td colspan="2"><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="1" alt=""></td>
 </tr>
 <tr>
-<?php if ($embeddedAlbum == 1)
-{
+<?php if ($embeddedAlbum == 1) {
 	?>
 	<td width="150" valign="top" ><a href="<?php echo makeAlbumUrl($myAlbumName) ?>"><?php echo $myHighlightTag ?></a></td>
 	<td width="20">&nbsp;</td>

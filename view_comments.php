@@ -142,18 +142,14 @@ includeLayout('adminbox.inc');
 includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
-?><br><?php
 
 if (!$gallery->album->fields["perms"]['canAddComments']) {
-    ?></span><br><b>
-	<span class="error"><?php echo _("Sorry.  This album does not allow comments.") ?></span>
-	<span class="popup"><br><br></b><?php
+	echo "<p>". gallery_error(_("Sorry.  This album does not allow comments.")) ."</p>";
 } else {
     $numPhotos = $gallery->album->numPhotos(1);
     $commentbox["bordercolor"] = $bordercolor;
     $i = 1;
-    while($i <= $numPhotos)
-    {
+    while($i <= $numPhotos) {
 	set_time_limit($gallery->app->timeLimit);
         $id = $gallery->album->getPhotoId($i);
         $index = $gallery->album->getPhotoIndex($id);
@@ -161,9 +157,11 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
 		$myAlbumName = $gallery->album->getAlbumName($i);
 		$myAlbum = new Album();
 		$myAlbum->load($myAlbumName);
-		if (((!$gallery->album->isHidden($i) && $gallery->user->canReadAlbum($myAlbum)) || $gallery->user->isAdmin() || 
-			$gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->user->isOwnerOfAlbum($myAlbum)))
-		{
+		if ( $myAlbum->lastCommentDate("no") != -1 && 
+			((!$gallery->album->isHidden($i) && $gallery->user->canReadAlbum($myAlbum)) || 
+			$gallery->user->isAdmin() || 
+			$gallery->user->isOwnerOfAlbum($gallery->album) || 
+			$gallery->user->isOwnerOfAlbum($myAlbum))) {
 			$embeddedAlbum = 1;
 			$myHighlightTag = $myAlbum->getHighlightTag();
 			includeLayout('commentboxtop.inc');
@@ -171,15 +169,11 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
 	        }
 	}
         elseif (!$gallery->album->isHidden($i) || $gallery->user->isAdmin() ||  
-		$gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->album->isItemOwner($i))
-        {
-            $comments = $gallery->album->numComments($i);
-            if($comments > 0)
-            {
-		includeLayout('commentboxtop.inc');
-
-                for($j = 1; $j <= $comments; $j++)
-                {
+		$gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->album->isItemOwner($i)) {
+		$comments = $gallery->album->numComments($i);
+		if($comments > 0) {
+			includeLayout('commentboxtop.inc');
+			for($j = 1; $j <= $comments; $j++) {
                     $comment = $gallery->album->getComment($index, $j);
 		    includeLayout('commentbox.inc');
                 }
@@ -197,7 +191,9 @@ includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
 
 includeLayout('ml_pulldown.inc');
-includeHtmlWrap("album.footer");
+$validation_file = 'view_comments.php';
+$validation_args = array('set_albumName' => $gallery->session->albumName);
+includeHtmlWrap("general.footer");
 ?>
 
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>

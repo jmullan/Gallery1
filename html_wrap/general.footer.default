@@ -18,6 +18,7 @@
 <?php
 includeTemplate('general.footer.tpl');
 global $validation_file;
+global $validation_args;
 ?>
       <table width="100%" cellspacing="0" cellpadding="0" class="modfooter">
         <tr>
@@ -29,7 +30,7 @@ global $validation_file;
 <?php 
 global $GALLERY_EMBEDDED_INSIDE;
        	if (! isset($GALLERY_EMBEDDED_INSIDE) && isset($validation_file)) {
-	       	print gallery_validation_link($validation_file);
+	       	print gallery_validation_link($validation_file, true, $validation_args);
        	} ?>
           </td>
 <?php if (!$gallery->session->offline && (!isset($gallery->app->rssEnabled) || $gallery->app->rssEnabled == "yes")) { ?>
