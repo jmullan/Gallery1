@@ -73,7 +73,7 @@ if ($gallery->session->albumName && isset($index)) {
 			printf(_("You do not have the required permissions to write to %s!"), $newAlbum);
 			exit;
 		}
-	       	if (isset($postAlbum->fields['name']) && ($gallery->album->fields['name'] != $postAlbum->fields['name'])) {
+	       	if ((isset($postAlbum->fields['name']) || $newAlbum == "ROOT") && ($gallery->album->fields['name'] != $postAlbum->fields['name'])) {
 			$votes_transferable = $gallery->album->pollsCompatible($postAlbum);
 			$vote_id=$gallery->album->getVotingIdByIndex($index);
 
