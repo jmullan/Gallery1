@@ -1553,53 +1553,56 @@ function addUrlArg($url, $arg) {
 
 function getNextPhoto($idx, $album=NULL) {
 	global $gallery;
+
 	if (!$album) {
-		$album=$gallery->album;
+		$album = $gallery->album;
 	}
 
-	$numPhotos = $album->numPhotos(1);	
+	$numPhotos = $album->numPhotos(1);
 	$idx++;
 
 	if ($idx > $numPhotos) {
 		return $idx;
 	}
 
-	if ($gallery->user->canWriteToAlbum($album)) {
-		// even though a user can write to an album, they may
-		// not have read authority over a specific nested album.
-		if ($idx <= $numPhotos && $album->isAlbum($idx)) {
-			$myAlbum =& $album->getNestedAlbum($idx);
-			if (!$gallery->user->canReadAlbum($myAlbum)) {
-				$idx = getNextPhoto($idx, $album);
-			}
-		}
+	// If it's not an album or hidden, or the user is an admin, show it to them.
+	if ((!$album->isAlbum($idx) && !$album->isHidden($idx)) || $gallery->user->isAdmin()) {
 		return $idx;
 	}
 
-	while ($idx <= $numPhotos && $album->isHidden($idx)) {
-		if ($album->isAlbum($idx)) {
-			$myAlbum =& $album->getNestedAlbum($idx);
-			if ($gallery->user->isOwnerOfAlbum($myAlbum)) {
-				return $idx;
-			}
-		}
-		if (isset($gallery->album) && $gallery->album->getItemOwnerModify() &&
-		    $gallery->album->isItemOwner($gallery->user->getUid(), $idx)) { 
+	// Check rights to album
+	if ($album->isAlbum($idx)) {
+		$myAlbum =& $album->getNestedAlbum($idx);
+
+		// Owners can always see their own content
+		if ($gallery->user->isOwnerOfAlbum($myAlbum)) {
 			return $idx;
 		}
-		$idx++;
-	}
 
-	if ($idx <= $numPhotos && $album->isAlbum($idx)) {
-		// do not display a nested album if the user doesn't
-		// have permission to view it.
-		$myAlbum =& $album->getNestedAlbum($idx);
+		// No rights?  getNextPhoto
 		if (!$gallery->user->canReadAlbum($myAlbum)) {
-			$idx = getNextPhoto($idx, $album);
+			return getNextPhoto($idx, $album);
 		}
 	}
 
-	return $idx;
+	// Visible Album or Hidden Photo/Album
+	if (!$album->isHidden($idx)) {
+		// Visible album - allow all
+		return $idx;
+	} else {
+		if ($gallery->user->isOwnerOfAlbum($album)) {
+			// Does the user own the current album?
+			// Owners can always see at least the first level of sub-content
+			return $idx;
+		} elseif ($album->getItemOwnerModify() && $album->isItemOwner($gallery->user->getUid(), $idx)) {
+			// Hidden photo - allow the owner to see it (hidden sub-albums are covered 
+			// in the album rights block by isOwnerOfAlbum)
+			return $idx;
+		} else {
+			// Hidden photo or album - disallow all others
+			return getNextPhoto($idx, $album);
+		}
+	}
 }
 
 // The following 2 functions, printAlbumOptionList and printNestedVals provide
