@@ -175,7 +175,7 @@ class UserDB {
 		$uidList = array();
 		if ($fd = opendir($app->userDir)) {
 			while ($file = readdir($fd)) {
-				if (!strcmp($file, "userdb.dat")) {
+				if (!strchr($file, ":")) {
 					continue;
 				}
 
