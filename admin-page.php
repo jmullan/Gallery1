@@ -56,13 +56,13 @@ if ($gallery->user->isAdmin()) {
 
 	$adminOptions[] = array( 'text' => _("statistics"), 
 				 'url' => makeGalleryUrl('stats-wizard.php'),
-				 'longtext' => _("View some statistics about your Gallery. Such as most viewd pictures, or best rated photos etc."));
+				 'longtext' => _("View some statistics about your Gallery. Such as most viewed pictures, or best rated photos etc."));
 	$adminOptions[] = array( 'text' => _("configuration wizard"),
 				 'url' => $gallery->app->photoAlbumURL . '/setup/index.php',
 				 'longtext' => _("Use the config wizard to reconfigure or tweak your Gallery"));
 	$adminOptions[] = array( 'text' => _("find orphans"),
 				 'url' => makeGalleryUrl('tools/find_orphans.php'),
-				 'longtext' => _("Find, remove or readd orphaned elements."));
+				 'longtext' => _("Find, remove or re-attach orphaned elements."));
 	$adminOptions[] = array( 'text' => _("find comment spam"),
 				 'url' => makeGalleryUrl('tools/despam-comments.php'),
 				 'longtext' => _("Find and remove comments that contains spam."));
