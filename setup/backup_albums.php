@@ -36,11 +36,7 @@ if (!isset($GALLERY_BASEDIR)) {
 }
 require($GALLERY_BASEDIR . 'init.php');
 
-if (!$gallery->user->isAdmin()) {
-    print _("You must be logged on as a Gallery admin to use this feature.");
-    exit;
-}
-set_time_limit(0);
+set_time_limit(600);
 $showForce = false;
 if (!empty($backup) || !empty($force))
 {
@@ -170,12 +166,14 @@ if (!isset($zip_path)) { $zip_path="C:\bin\zip.exe";}
 <hr>
 <span class=title><?php echo _("Notes") ?></span>
 <ol>
+<li> <?php echo _("To use this feature, copy this file from gallery/setup/ to gallery/backup_albums.php.") ?>
 <li> <?php echo _("On Linux/Unix systems, tar/gzip is recommended.") ?>
 <li> <?php echo _("On Windows system, choose zip backup, and ensure the path for the zip.exe is correct.") ?>
 <li> <?php echo _("Zip file backup requires enough space in the temporary directory to create a zip file of entire backup.") ?>
 <li> <?php echo _("Data files backup will <b>not</b> backup your images, and is recommended before upgrade.") ?>
 <li> <?php echo _("If you choose a tar/gzip backup of data files only, you need to have correct paths for <b>xargs</b> and <b>find</b>, otherwise these are not needed.") ?>
 <li> <?php echo _("This will take a while, please be patient. Hit \"Backup\" to begin, and when download is complete, hit \"Cancel\"") ?>
+<li> <?php echo _("After you have finished backing up your Gallery, please <b>remove this file</b> from the gallery/ directory, to prevent visitors to your site from copying your entire gallery.") ?>
 </ol>
 </body>
 </html>
