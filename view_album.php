@@ -963,7 +963,7 @@ if ($numPhotos) {
 					showChoice(_("Copy ") . $label, "copy_photo.php", array("index" => $i));
 				}
 			}
-			if ($gallery->user->isAdmin() || ($gallery->user->isOwnerOfAlbum($myAlbum) || 
+			if ($gallery->user->isAdmin() || ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) || 
 				$gallery->album->isItemOwner($gallery->user->getUid(), $i)) && 
 				$showAdminForm) {
 				if ($gallery->album->isHidden($i)) {
