@@ -77,7 +77,7 @@ if (!empty($album)) {
 if (!empty($index)) {
 	$id = $album->getPhotoId($index);
 	echo ""
-		. "<center><a href=" . makeAlbumUrl($album->fields["name"], $id) . ">"
+		. "<center><a href=\"" . makeAlbumUrl($album->fields["name"], $id) . "\">"
 		. $album->getThumbnailTag($index)
 		. "</a></center>";
 
@@ -87,7 +87,7 @@ if (!empty($index)) {
 	}
 
 	echo "<br><center>From: "
-		."<a href=" .makeAlbumUrl($album->fields["name"]) .">"
+		."<a href=\"" .makeAlbumUrl($album->fields["name"]) ."\">"
 		.$album->fields["title"]
 		."</a></center>";
 } else {
