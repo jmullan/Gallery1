@@ -283,7 +283,7 @@ includeHtmlWrap("photo.header");
 
 if ($fitToWindow) {
 	/* Include Javascript */
-	include("js/fitToWindow.js.php");
+	include(dirname(__FILE__) .'/js/fitToWindow.js.php');
 }
 ?>
 <!-- Top Nav Bar -->
