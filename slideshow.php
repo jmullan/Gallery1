@@ -36,6 +36,17 @@ if ($gallery->session->albumName == "") {
         return;
 }
 
+if (!$gallery->user->canReadAlbum($gallery->album)) {
+	header("Location: " . makeAlbumUrl());
+	return;
+}
+
+if (!$gallery->album->isLoaded()) {
+	header("Location: " . makeAlbumUrl());
+	return;
+}
+
+
 // default settings ---
 $defaultLoop = 0;
 $defaultTransition = 0;
