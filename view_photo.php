@@ -55,19 +55,6 @@ if ($index > $numPhotos) {
 $perPage = $rows * $cols;
 $page = ceil($index / ($rows * $cols));
 
-if ($album->fields["background"]) {
-        $bodyAttrs .= "background={$album->fields[background]}";
-} elseif ($album->fields["bgcolor"]) {
-        $bodyAttrs .= "bgcolor={$album->fields[bgcolor]}";
-}
-
-if ($album->fields["textcolor"]) {
-        $bodyAttrs .= " text={$album->fields[textcolor]}";
-}
-if ($album->fields["linkcolor"]) {
-        $bodyAttrs .= " link={$album->fields[linkcolor]}";
-}
-
 #-- if borders are off, just make them the bgcolor ----
 if (!strcmp($album->fields["border"], "off")) {
         $bordercolor = $album->fields["bgcolor"];
@@ -85,36 +72,6 @@ if (!strcmp($album->fields["resize_size"], "off")) {
 
 }
 
-#-- breadcrumb text ---
-if (strcmp($album->fields["returnto"], "no")) {
-	$breadtext[0] = "Gallery: <a href=../albums.php>The Gallery</a>";
-	$breadtext[1] = "Album: <a href=../view_album.php>".$album->fields["title"]."</a>";
-} else {
-	$breadtext[0] = "Album: <a href=../view_album.php>".$album->fields["title"]."</a>";
-}
-?>
-
-<body <?=$bodyAttrs?>>
-
-
-
-<center>
-<!-- Top Nav Bar -->
-<table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
-<tr>
-<td>
-<?
-$breadcrumb["text"] = $breadtext;
-$breadcrumb["bordercolor"] = $bordercolor;
-$breadcrumb["top"] = true;
-
-include("layout/breadcrumb.inc");
-?>
-</td>
-</tr>
-<tr>
-<td>
-<?
 $navigator["page"] = $index;
 $navigator["pageVar"] = "index";
 $navigator["maxPages"] = $numPhotos;
@@ -130,6 +87,77 @@ $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
 $navigator["noIndivPages"] = true; 
 
+#-- breadcrumb text ---
+if (strcmp($album->fields["returnto"], "no")) {
+	$breadtext[0] = "Gallery: <a href=../albums.php>".$app->galleryTitle."</a>";
+	$breadtext[1] = "Album: <a href=../view_album.php>".$album->fields["title"]."</a>";
+} else {
+	$breadtext[0] = "Album: <a href=../view_album.php>".$album->fields["title"]."</a>";
+}
+?>
+
+<head>
+  <title><?= $app->galleryTitle ?> :: <?= $album->fields["title"] ?> :: <?= $index ?></title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+  <style type="text/css">
+<?
+// the link colors have to be done here to override the style sheet
+if ($album->fields["linkcolor"]) {
+?>      
+    A:link, A:visited, A:active
+      { color: <?= $album->fields[linkcolor] ?>; }
+    A:hover
+      { color: #ff6600; }
+<? 
+}       
+if ($album->fields["bgcolor"]) {
+        echo "BODY { background-color:".$album->fields[bgcolor]."; }";
+}       
+if ($album->fields["background"]) {
+        echo "BODY { background-image:".$album->fields[background]."; } ";
+} 
+if ($album->fields["textcolor"]) {
+        echo "BODY, TD {color:".$album->fields[textcolor]."; }";
+}       
+?> 
+  </style> 
+</head>
+
+<body>
+
+<?
+includeHtmlWrap("photo.header");
+?>
+
+<!-- Top Nav Bar -->
+<table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
+<tr>
+<td>
+<?
+if (!$album->isMovie($index) && isCorrectPassword($edit)) {
+	$adminCommands = "<span class=\"admin\">";
+	$adminCommands .= "<a href=".popup("../resize_photo.php?index=$index").">[resize photo]</a>";
+	$adminCommands .= "<a href=".popup("../delete_photo.php?index=$index").">[delete photo]</a>";
+	$adminCommands .= "</span>";
+	$adminbox["text"] = "&nbsp;";
+	$adminbox["commands"] = $adminCommands;
+	$adminbox["bordercolor"] = $bordercolor;
+	$adminbox["top"] = true;
+	include ("layout/adminbox.inc");
+}
+
+$breadcrumb["text"] = $breadtext;
+$breadcrumb["bordercolor"] = $bordercolor;
+$breadcrumb["top"] = true;
+
+include("layout/breadcrumb.inc");
+?>
+</td>
+</tr>
+<tr>
+<td>
+<?
+
 include("layout/navphoto.inc");
 ?>
 <br>
@@ -142,7 +170,6 @@ include("layout/navphoto.inc");
 <!-- image row -->
 <tr>
 <td colspan=3 align=center>
-<font face=<?=$album->fields["font"]?>>
 <?
 
 
@@ -198,7 +225,9 @@ if ($openAnchor) {
 </tr>
 <tr>
 <td colspan=3 align=center>
+<span class="caption">
 <?= editCaption($album, $index, $edit) ?>
+</span>
 <br>
 <br>
 </td>
@@ -216,19 +245,9 @@ include("layout/breadcrumb.inc");
 </tr>
 </table>
 
-<!-- bottom nav bar -->
-<table border=0 width=<?=$mainWidth?>>
-<? 
-if (!$album->isMovie($index) && isCorrectPassword($edit)) {
+<?
+includeHtmlWrap("photo.footer");
 ?>
-<tr>
-<td colspan=3 align=left>
-Admin: <a href=<?= popup("../resize_photo.php?index=$index") ?>>[resize photo]</a>
-<a href=<?= popup("../delete_photo.php?index=$index") ?>>[delete photo]</a>
-<br>
-</td>
-</tr>
-<? 
-} 
-?>
-</table>
+
+</body>
+</html>

@@ -44,22 +44,45 @@ $navigator["pageVar"] = "albumListPage";
 $navigator["url"] = "albums.php";
 $navigator["maxPages"] = $maxPages;
 $navigator["spread"] = 6;
-$navigator["fullWidth"] = 90;
+$navigator["fullWidth"] = 100;
 $navigator["widthUnits"] = "%";
 $navigator["bordercolor"] = "#DDDDDD";
+
 ?>
+
+
+<html>
+<head>
+<title><?= $app->galleryTitle ?></title>
+<link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+
 
 <!-- gallery.header begin -->
 <?
-/* load the gallery header layout */ 
-$header = "layout/gallery.header";
-if (file_exists($header)) {
-	include($header);
-} else {
-	echo("<body><p>no gallery.header file found.<p>");
-}
+includeHtmlWrap("gallery.header");
 ?>
 <!-- gallery.header end -->
+
+<!-- admin section begin -->
+<? 
+$adminText = "<span class=\"admin\">";
+$adminText .= "There are $numAlbums albums in this gallery on $maxPages pages&nbsp;";
+$adminText .= "</span>";
+$adminCommands = "<span class=\"admin\">";
+if (isCorrectPassword($edit)) { 
+	$adminCommands .= "<a href=do_command.php?cmd=new-album&return=view_album.php>[Create a New Album]</a>&nbsp;";
+	$adminCommands .= "<a href=do_command.php?cmd=leave-edit&return=albums.php>[Leave admin mode]</a>";
+} else {
+	$adminCommands .= "<a href=".popup("edit_mode.php").">[Admin]</a>";
+}
+$adminCommands .= "</span>";
+$adminbox["text"] = $adminText;
+$adminbox["commands"] = $adminCommands;
+$adminbox["bordercolor"] = "#DDDDDD";
+$adminbox["top"] = true;
+include ("layout/adminbox.inc");
+?>
 
 <!-- top nav -->
 <?
@@ -67,7 +90,7 @@ include("layout/navigator.inc");
 ?>
 
 <!-- album table begin -->
-<table width=90% border=0 cellspacing=7>
+<table width=100% border=0 cellspacing=7>
 
 
 <?
@@ -90,7 +113,7 @@ for ($i = $start; $i <= $end; $i++) {
         if ($album->numPhotos()) {
                 echo $album->getHighlightTag();
         } else {
-                echo "<font size=+3> Empty! </font>";
+                echo "<span class=title>Empty!</span>";
         }
   ?>   
   </a>
@@ -99,16 +122,16 @@ for ($i = $start; $i <= $end; $i++) {
   <!-- Begin Text Cell -->
   <td align=left valign=top>
   <hr size=1>
-  <font size=+1 face=arial>
+  <span class="title">
   <a href=<?=$albumURL?>>
   <?= editField($album, "title", $edit) ?></a>
-  </font>
+  </span>
   <br>
-  <font size=+0 face=arial>
+  <span class="desc">
   <?= editField($album, "description", $edit) ?>
-  </font>
+  </span>
   <br>
-  <font size=1 face=arial>
+  <span class="admin">
   <? if (isCorrectPassword($edit)) { ?>
   <a href=<?= popup("delete_album.php?set_albumName={$tmpAlbumName}")?>>[delete album]</a>
   :
@@ -119,15 +142,15 @@ for ($i = $start; $i <= $end; $i++) {
   url: <a href=<?=$albumURL?>><?=$albumURL?></a>
    <? if (preg_match("/album\d+$/", $albumURL)) { ?>
  	<br>
-         <font size=+1 face=arial color=red>
+         <span class="error">
           Hey!
           <a href=<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>Rename</a> 
           this album so that the URL is not so generic!
-         </font>
+         </span>
    <? } ?>
   <? } ?>
   <br>
-  </font>
+  </span>
   </td>
   </tr>
   <!-- End Text Cell -->
@@ -142,17 +165,6 @@ for ($i = $start; $i <= $end; $i++) {
 <?
 include("layout/navigator.inc");
 ?>
-<p>
-<!-- admin section begin -->
-<? if (isCorrectPassword($edit)) { ?>
-<hr size=1>
-Admin:
-<font size=+0 face=arial>
-<a href=do_command.php?cmd=new-album&return=view_album.php>[Create a New Album]</a>
-&nbsp;
-<a href=do_command.php?cmd=leave-edit&return=albums.php>[Leave edit mode]</a>
-</font>
-<? } ?>
 
 <?
 } 
@@ -163,12 +175,18 @@ else {
 		return;
 	}
 
-	require("style.php");
 ?>
-<center>
-<font size=+2>Gallery has not been configured!</font>
+
+<<html>
+<head>
+  <title>Gallery Configuration Error</title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+</head>
+<body>
+center>
+<span class="error">
+Gallery has not been configured!
 <p>
-Your installation of Gallery has not yet been configured.
 To configure it, type:
 	<table><tr><td>
 		<code>
@@ -178,21 +196,15 @@ To configure it, type:
 	</td></tr></table>
 <p>
 And then go <a href=setup>here</a>
+</span>
+</body>
+</html>
 <?
 } 
 ?>
 
-</font>
-<!-- admin section end -->
-
 <!-- gallery.footer begin -->
 <?
-/* load the gallery footer layout */    
-$footer = "layout/gallery.footer";
-if (file_exists($footer)) {
-	include($footer);
-} else {
-	echo("<p>no gallery.footer file found<br></body>");
-}
+includeHtmlWrap("gallery.footer");
 ?>
 <!-- gallery.footer end -->

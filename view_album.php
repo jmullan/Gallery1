@@ -47,19 +47,6 @@ if ($previousPage == 0) {
 	$first = 1;
 }
 
-if ($album->fields["background"]) {
-	$bodyAttrs .= "background={$album->fields[background]}";
-} elseif ($album->fields["bgcolor"]) {
-	$bodyAttrs .= "bgcolor={$album->fields[bgcolor]}";
-}
-
-if ($album->fields["textcolor"]) {
-	$bodyAttrs .= " text={$album->fields[textcolor]}";
-}
-if ($album->fields["linkcolor"]) {
-	$bodyAttrs .= " link={$album->fields[linkcolor]}";
-}
-
 #-- if borders are off, just make them the bgcolor ----
 if (!strcmp($album->fields["border"], "off")) {
 	$bordercolor = $album->fields["bgcolor"];
@@ -83,48 +70,79 @@ $navigator["url"] = "view_album.php";
 $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
 
-$breadcrumb["text"][0] = "Gallery: <a href=albums.php>The Gallery</a>";
+$breadcrumb["text"][0] = "Gallery: <a href=albums.php>".$app->galleryTitle."</a>";
 $breadcrumb["bordercolor"] = $bordercolor;
 ?>
 
-<body <?=$bodyAttrs?>>
-<font face=<?=$album->fields["font"]?>>
-
-<center>
-<!-- title table -->
-<table border=0 width=<?=$fullWidth?>>
-<tr>
-<td align=left>
-<font size=+2> <?= editField($album, "title", $edit)?> </font>
-<br>
-<font size=-1>
-<? if ($numPhotos == 1) { ?> 
-1 photo in this album
-<? } else { ?>
-<?= $numPhotos ?> photos in this album on <?= $maxPages ?> pages
-<? } ?>
-<? if (!isCorrectPassword($edit)) { ?>
-&nbsp;<a href=<?= popup("edit_mode.php")?>>[Admin]</a>
-<? } ?>
-</font>
+<head>
+  <title><?= $app->galleryTitle ?> :: <?= $album->fields["title"] ?></title>
+  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">  
+  <style type="text/css">
 <?
+// the link colors have to be done here to override the style sheet 
+if ($album->fields["linkcolor"]) {
+?>
+    A:link, A:visited, A:active
+      { color: <?= $album->fields[linkcolor] ?>; }
+    A:hover
+      { color: #ff6600; }
+<?
+}
+if ($album->fields["bgcolor"]) {
+	echo "BODY { background-color:".$album->fields[bgcolor]."; }";
+}
+if ($album->fields["background"]) {
+	echo "BODY { background-image:".$album->fields[background]."; } ";
+}
+if ($album->fields["textcolor"]) {
+	echo "BODY, TD {color:".$album->fields[textcolor]."; }";
+}
+?>
+  </style>
+</head>
+
+<body> 
+
+<? 
+includeHtmlWrap("album.header");
+
+$adminText = "<span class=\"admin\">";
+if ($numPhotos == 1) {  
+	$adminText .= "1 photo in this album";
+} else {
+	$adminText .= "$numPhotos photos in this album on $maxPages pages";
+}
+
 if (editMode()) {
 	$hidden = $album->numHidden();
 	$verb = "are";
 	if ($hidden == 1) {
 		$verb = "is";
 	}
-		
 	if ($hidden) {
-		echo "($hidden $verb hidden)";
+		$adminText .= " ($hidden $verb hidden)";
 	}
 } 
+$adminText .="</span>";
+$adminCommands = "<span class =\"admin\">";
+if (!isCorrectPassword($edit)) {
+	$adminCommands .= "<a href=".popup("edit_mode.php").">[Admin]</a>";
+} else {
+	$adminCommands .= "<a href=".popup("add_photos.php?albumName=$albumName").">[Add]</a>&nbsp;";
+        $adminCommands .= "<a href=".popup("shuffle_album.php?albumName=$albumName").">[Shuffle]</a>&nbsp;";
+        $adminCommands .= "<a href=".popup("resize_photo.php?albumName=$albumName&index=all").">[Resize]</a>&nbsp;";
+        //$adminCommands .= "<a href=".popup("do_command.php?cmd=remake-thumbnail&albumName=$albumName&index=all").">[Rebuild Thumbs]</a>&nbsp;"; 
+        $adminCommands .= "<a href=".popup("edit_appearance.php?albumName=$albumName").">[Properties]</a>&nbsp;";
+        $adminCommands .= "<a href=do_command.php?cmd=leave-edit&return=view_album.php>[Leave admin mode]</a>";
+} 
+$adminCommands .= "</span>";
+$adminbox["text"] = $adminText;
+$adminbox["commands"] = $adminCommands;
+$adminbox["bordercolor"] = $bordercolor;
+$adminbox["top"] = true;
+include ("layout/adminbox.inc");
 ?>
 
-</td>
-</tr>
-</table>
-<br>
 <!-- top nav -->
 <?
 $breadcrumb["top"] = true;
@@ -216,10 +234,10 @@ if ($numPhotos) {
 			}
 
 			echo("<td width=$imageCellWidth valign=top align=center>");
-			echo "<center><font face={$album->fields[font]}>";
+			echo "<center><span class=\"caption\">";
 			echo(editCaption($album, $i, $edit));
+			echo "</span>";
 			if (isCorrectPassword($edit)) {
-				echo("<font size=2>");
 				echo("<a href=");
 				echo(popup("delete_photo.php?index=$i"));
 				echo("><br><img src=\"images/admin_delete.gif\" width=11 height=11 border=0 alt=\"Delete Photo\"></a>");
@@ -255,7 +273,7 @@ if ($numPhotos) {
 ?>
 	<tr bgcolor=#333333>
 	<td colspan=$rows align=center>
-	<font size=+2 color=#FFFFFF>Hey! Add some photos.</font> 
+	<span class="head">Hey! Add some photos.</span> 
 	</td>
 	</tr>
 <?
@@ -272,25 +290,10 @@ if (strcmp($album->fields["returnto"], "no")) {
 	$breadcrumb["top"] = false;
 	include("layout/breadcrumb.inc");
 }
-?>
 
 
-</center>
-<? 
-if (isCorrectPassword($edit)) { 
+includeHtmlWrap("album.footer");
 ?>
-<br>
-<hr size=1>
-<font size=+0 face=arial>
-Admin:
-<a href=<?= popup("add_photos.php?albumName=$albumName") ?>>[Add Photos] </a>
-<a href=<?= popup("shuffle_album.php?albumName=$albumName") ?>>[Shuffle Photos] </a>
-<a href=<?= popup("resize_photo.php?albumName=$albumName&index=all") ?>>[Resize All] </a>
-<a href=<?= popup("do_command.php?cmd=remake-thumbnail&albumName=$albumName&index=all") ?>>[Rebuild Thumbs]</a>
-<a href=<?= popup("edit_appearance.php?albumName=$albumName") ?>>[Edit Appearance] </a>
-<a href=do_command.php?cmd=leave-edit&return=view_album.php>[Leave edit mode]</a>
-</font>
-<?
-}  else { 
-} 
-?>
+</body>
+</html>
+
