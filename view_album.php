@@ -30,7 +30,6 @@ if (!$gallery->album->isLoaded()) {
 	header("Location: albums.php");
 	return;
 }
-
 if (!$page) {
 	$page = 1;
 }
@@ -40,8 +39,6 @@ if (!$viewedAlbum[$albumName]) {
 	setcookie("viewedAlbum[$albumName]","1");
 	$gallery->album->incrementClicks();
 } 
-
-$albumDB = new albumDB();
 
 $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
@@ -83,7 +80,8 @@ $navigator["bordercolor"] = $bordercolor;
 
 if ($gallery->album->fields[parentAlbumName]) {
 	$top = $gallery->app->photoAlbumURL;
-	$myAlbum=$albumDB->getAlbumbyName($gallery->album->fields[parentAlbumName]);
+	$myAlbum= new Album();
+	$myAlbum->load($gallery->album->fields[parentAlbumName]);
 	$breadtext[0] = "Gallery: <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
 	$breadtext[1] = "Album: <a href=". makeAlbumUrl($gallery->album->fields[parentAlbumName]).">".$myAlbum->fields["title"]."</a>";
 } else {
@@ -309,7 +307,8 @@ if ($numPhotos) {
 					"</a>");
 			} elseif ($gallery->album->isAlbumName($i)) {
 				$myAlbumName = $gallery->album->isAlbumName($i);
-				$myAlbum = $albumDB->getAlbumbyName($myAlbumName);
+				$myAlbum = new Album();
+				$myAlbum->load($myAlbumName);
 				if ($myAlbum->numPhotos(1)) {
 					$myHighlightTag = $myAlbum->getThumbnailTag($myAlbum->getHighlight());
 				} else {
@@ -355,7 +354,8 @@ if ($numPhotos) {
 				echo "(hidden)<br>";
 			}
 			if ($gallery->album->isAlbumName($i)) {
-				$myAlbum = $albumDB->getAlbumbyName($gallery->album->isAlbumName($i));
+				$myAlbum = new Album();
+				$myAlbum->load($gallery->album->isAlbumName($i));
 				$myDescription = $myAlbum->fields[description];
 				$buf = "";
 				$buf = $buf."<b>Album: ".$myAlbum->fields[title]."</b>";

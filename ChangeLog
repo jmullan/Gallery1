@@ -1,3 +1,10 @@
+2001-08-01  John Kirkland  <jpk@bl.org>
+
+	* Optimization... fewer uses of $albumDB = new AlbumDB();
+	  i.e.  Only load the required albums instead of all of them
+	  in view_album.php.  Should speed up album access in large
+	  galleries.
+
 2001-07-31  John Kirkland  <jpk@bl.org>
 
 	* Added 3 new sorting methods.  

@@ -69,19 +69,18 @@ class Album {
 	}
 
 	function getNestedAlbum($index) {
-		global $albumDB;
 		
-		if (!$albumDB) $albumDB = new AlbumDB();
 		$albumName = $this->isAlbumName($index);
-        	$album = $albumDB->getAlbumbyName($albumName);
+		$album = new Album();
+		$album->load($albumName);
 		return $album;	
 	}
 
 	function getRootAlbumName() {
-		global $albumDB;
 
 		if ($this->fields[parentAlbumName]) {
-			$parentAlbum = $albumDB->getAlbumbyName($this->fields[parentAlbumName]);
+			$parentAlbum = new Album();
+			$parentAlbum->load($this->fields[parentAlbumName]);
 			$returnValue = $parentAlbum->getRootAlbumName();
 		} else {
 			$returnValue = $this->fields[name];
@@ -480,9 +479,9 @@ class Album {
 		$photo = array_splice($this->photos, $index-1, 1);
 		// need to check for nested albums and delete them ...
 		if ($photo->isAlbumName) {
-			$albumDB = new AlbumDB;
 			$albumName = $photo->isAlbumName;
-			$album = $albumDB->getAlbumbyName($albumName);
+			$album = new Album();
+			$album->load($albumName);
 			$album->delete();
 		}
                 /* are we deleteing the highlight? pick a new one */

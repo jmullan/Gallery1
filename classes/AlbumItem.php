@@ -187,8 +187,8 @@ class AlbumItem {
 
 		if ($this->highlight) {
 			if ($this->isAlbumName) {
-				$albumDB = new AlbumDB();
-				$nestedAlbum = $albumDB->getAlbumByName($this->isAlbumName);
+				$nestedAlbum = new Album();
+				$nestedAlbum->load($this->isAlbumName);
 				$dir = $nestedAlbum->getAlbumDir();
 				$nestedHighlightIndex = $nestedAlbum->getHighlight();
 				$nestedHighlight = $nestedAlbum->getPhoto($nestedHighlightIndex);

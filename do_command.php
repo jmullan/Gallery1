@@ -110,8 +110,8 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		header("Location: albums.php");
 	}
 } else if (!strcmp($cmd, "reset-album-clicks")) {
-		$albumDB = new AlbumDB();
-		$myAlbum=$albumDB->getAlbumByName($albumName);
+		$myAlbum = new Album();
+		$myAlbum->load($albumName);
 	if ($gallery->user->canWriteToAlbum($myAlbum)) {
 		$myAlbum->resetAllClicks();
 		// this is a popup do dismiss and reload!
