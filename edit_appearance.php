@@ -215,6 +215,10 @@ $services = array(
 		'name'    => 'Shutterfly',
 		'url'     => 'http://www.shutterfly.com/',
 	),
+	'fotoserve'  => array(
+		'name'    => 'Fotoserve.com',
+		'url'     => 'http://www.fotoserve.com/',
+	),
 	'fotokasten'  => array(
 		'name'    => 'Fotokasten',
 		'url'     => 'http://www.fotokasten.de/'),

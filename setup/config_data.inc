@@ -1259,7 +1259,7 @@ $defaults = array(
 	),
 	'print_photos' => array(
 		'prompt' => _("Printing Services"),
- 		'desc' => _("Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."),
+ 		'desc' => _("Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."),
 		'type' => 'print_services',
 		'services' => array(
 			'photoaccess' => array(
@@ -1268,6 +1268,10 @@ $defaults = array(
 			'shutterfly'  => array(
 				'name'    => 'Shutterfly',
 				'url'     => 'http://www.shutterfly.com/',
+			),
+			'fotoserve'  => array(
+				'name'    => 'Fotoserve.com',
+				'url'     => 'http://www.fotoserve.com/',
 			),
 			'fotokasten'  => array(
 				'name'    => 'Fotokasten',
@@ -1289,6 +1293,8 @@ a friend's, cellphone for a small fee."),),
 			'photoaccess' => array(
 				'checked' => true),
 			'shutterfly' => array(
+				'checked' => true),
+			'fotoserve' => array(
 				'checked' => true),
 			'mpush' => array(
 				'checked' => true,

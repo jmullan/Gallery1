@@ -392,6 +392,7 @@ if (!$gallery->album->isMovie($id)) {
 			'fotokasten'  => 'Fotokasten',
 			'photoaccess' => 'PhotoAccess',
 			'shutterfly'  => 'Shutterfly',
+			'fotoserve'   => 'Fotoserve',
 			'mpush'       => 'mPUSH'
 		);
 		/* display a <select> menu if more than one option */
@@ -415,6 +416,9 @@ if (!$gallery->album->isMovie($id)) {
 					break;
 				default:
 					break;
+				case 'fotoserve':
+					$printFotoserveForm = true;
+					break;
 				}
 				$selectCommand .= "<option value=\"$name\">${fullName[$name]}</option>";
 			}
@@ -434,6 +438,9 @@ if (!$gallery->album->isMovie($id)) {
 				$printShutterflyForm = true;
 				break;
 			default:
+				break;
+			case 'fotoserve':
+				$printFotoserveForm = true;
 				break;
 			}
 			if (!empty($name)) {
@@ -464,7 +471,11 @@ if (!$gallery->album->isMovie($id)) {
 			break;
 
 		case 'mpush':
-			window.open('http://mpush.msolutions.cc/req.php?account=<?php echo $gallery->app->default["mPUSHAccount"] ?>&image=<?php echo $rawImage ?>&caption=<?php echo urlencode($gallery->album->getCaption($index)) ?>','_MPUSH','width=640,height=420,titlebar=1,resizable=1,scrollbars=1');
+			window.open('http://mpush.msolutions.cc/req.php?account=<?php echo $gallery->app->defaults['mPUSHAccount'] ?>&image=<?php echo $rawImage ?>&caption=<?php echo urlencode($gallery->album->getCaption($index)) ?>','_MPUSH','width=640,height=420,titlebar=1,resizable=1,scrollbars=1');
+			break;
+		case 'fotoserve':
+			document.fotoserve.redirect.value=document.location;
+			document.fotoserve.submit();
 			break;
 		}
 	}
@@ -685,6 +696,15 @@ if (isset($printShutterflyForm)) { ?>
      }
   ?>
   <input type=hidden name=imbkprnta-1 value="<?php echo strip_tags($imbkprnt) ?>">
+</form>
+<?php }
+if (isset($printFotoserveForm)) { ?>
+<form name="fotoserve" 
+action="http://www.fotoserve.com/menalto/build.html" method="post">
+  <input type="hidden" name="image" value="<?php echo $rawImage ?>">
+  <input type="hidden" name="thumb" value="<?php echo $thumbImage ?>">
+  <input type="hidden" name="redirect" value="this-gets-set-by-javascript-in-onClick">
+  <input type="hidden" name="name" value="<?php echo $photo->image->name . '.' . $photo->image->type; ?>">
 </form>
 <?php }
 if (isset($printPhotoAccessForm)) { ?>
