@@ -1953,6 +1953,7 @@ function initLanguage() {
 // If theres an error switch to Mode 2
 //
         putenv("LANG=". $gallery->language);
+        putenv("LANGUAGE=". $gallery->language);
 
 // Set Local
 	setlocale(LC_ALL,$gallery->locale);
