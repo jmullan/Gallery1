@@ -157,7 +157,7 @@ if (isset($save)) {
 <tr>
 <td class="popup"><?php echo _("Borders") ?></td>
 <?php _("off") ?>
-<td><select name="border"><?php echo selectOptions($gallery->album, "border", array("off" => _("off"), 1 => 1, 2 => 2, 3 => 3, 4 => 4)) ?></select></td>
+<td><select name="border"><?php echo selectOptions($gallery->album, "border", array("off" => _("off"), 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 10 => 10, 15 => 15, 20 => 20)) ?></select></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Border color") ?></td>
@@ -169,7 +169,7 @@ if (isset($save)) {
 </tr>
 <tr>
 <td class="popup"><?php echo _("Maximum dimensions of intermediate sized images") ?></td>
-<td><select name="resize_size"><?php echo selectOptions($gallery->album, "resize_size", array("off" => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024)) ?></select></td>
+<td><select name="resize_size"><?php echo selectOptions($gallery->album, "resize_size", array("off" => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => 1280)) ?></select></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)") ?></td>
@@ -191,7 +191,7 @@ if (isset($save)) {
 <td class="popup"><?php echo _("Rows") ?></td>
 <td>
  <select name="rows">
-  <?php echo selectOptions($gallery->album, "rows", array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)) ?>
+  <?php echo selectOptions($gallery->album, "rows", array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10)) ?>
  </select>
 </td>
 </tr>
@@ -199,7 +199,7 @@ if (isset($save)) {
 <td class="popup"><?php echo _("Columns") ?></td>
 <td>
  <select name="cols">
-  <?php echo selectOptions($gallery->album, "cols", array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)) ?>
+  <?php echo selectOptions($gallery->album, "cols", array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10)) ?>
  </select>
 </td>
 </tr>
