@@ -1,7 +1,7 @@
 #!/bin/bash
 # $Id$
 
-NEW_VERSION="1.5-RC2"
+NEW_VERSION="1.5"
 
 esc=`echo -en "\033"`
 tab="${esc}[5G"

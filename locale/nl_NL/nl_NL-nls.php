@@ -19,7 +19,7 @@
  *
  * $Id$
  *
- * Version: 1.5-RC2
+ * Version: 1.5
  */
  
 /*

@@ -348,11 +348,11 @@ echo makeFormIntro("album_permissions.php",
  </tr>
 </table>
 
+<label for="setNested"><?php echo _("Apply permissions to all sub-albums"); ?></label>
+<input type="checkbox" id="setNested" name="setNested" value="setNested" <?php if (getRequestVar('setNested')) echo 'CHECKED'; ?>>
+<br><br>
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
 <input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
-<br>
-<label for="setNested">Apply permissions to all sub-albums</label>
-<input type="checkbox" id="setNested" name="setNested" value="setNested" <?php if (getRequestVar('setNested')) echo 'CHECKED'; ?>>
 </form>
 </div>
 <?php print gallery_validation_link("album_permissions.php"); ?>

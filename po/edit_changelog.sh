@@ -47,11 +47,11 @@ for all_CF in $Cfiles ; do
 
 	echo "$tab Updating ..."
 	echo "" >> $all_CF
-#	echo "===============================================================================" >> $all_CF
-	echo "2005-02-21 Jens Tkotz <jens@peino.de> 1.5-RC2-cvs-b13" >> $all_CF
+	echo "===============================================================================" >> $all_CF
+	echo "2005-03-10 Jens Tkotz <jens AT peino DOT de>" >> $all_CF
 	echo "" >> $all_CF
-	echo " * Sync code" >> $all_CF
-#	echo "===============================================================================" >> $all_CF
+	echo " * Release of Gallery 1.5-RC2 langpack" >> $all_CF
+	echo "===============================================================================" >> $all_CF
 	echo "" >> $all_CF
 #read trash
 done
