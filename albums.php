@@ -157,7 +157,9 @@ for ($i = $start; $i <= $end; $i++) {
         $gallery->album = $albumDB->getAlbum($gallery->user, $i);
 	$isRoot = $gallery->album->isRoot(); // Only display album if it is a root album
 	if($isRoot) {
-		$owner = $gallery->album->getOwner();
+		if (strcmp($gallery->app->default["showOwners"], "no")) {
+			$owner = $gallery->album->getOwner();
+		}
         	$tmpAlbumName = $gallery->album->fields["name"];
         	$albumURL = makeAlbumUrl($tmpAlbumName);
 ?>     
