@@ -90,6 +90,9 @@ if ($user->isLoggedIn()) {
 } else {
 	$adminCommands .= "<a href=".popup("login.php").">[Login]</a>";
 }
+/*
+$adminCommands .= "<a href=".popup_help("commands", "gallery")."><img src='images/question_mark.gif' border=0></a>";
+*/
 $adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands;
@@ -129,9 +132,7 @@ for ($i = $start; $i <= $end; $i++) {
         } else {
                 echo "<span class=title>Empty!</span>";
         }
-  ?>   
-  </a>
-  </td>
+  ?></a> </td>
   <!-- End Image Cell -->
   <!-- Begin Text Cell -->
   <td align=left valign=top>
@@ -202,7 +203,7 @@ include("layout/navigator.inc");
 
 else {
 	if (file_exists("setup") && is_readable("setup")) {
-		header("Location: setup/");
+		header("Location: setup/index.php");
 		return;
 	}
 
@@ -226,7 +227,7 @@ To configure it, type:
 		% sh ./configure.sh
 	</td></tr></table>
 <p>
-And then go <a href=setup>here</a>
+And then go <a href="setup/index.php">here</a>
 </span>
 </body>
 </html>
