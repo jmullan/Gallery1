@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="guide-standards.basics">
+ <title>Basics</title>
+ 
+ <para>
+  Welcome to the new Gallery documentation repository.  Documentation for
+  Gallery has been disorganized and uncoordinated for a long time.  Though
+  many good things have been created, like the User Guide and FAQ, it was
+  decided to have a new documentation repository with real standards so that
+  it would be easy to coordinate and easy for authors to contribute.
+ </para>
+ <para>
+  The documentation is created using DocBook, which is the de-facto standard
+  for large documentation projects in the Open Source Community.  DocBook is
+  XML and very easy to learn.  There is an Open Source book available online
+  at <ulink url="http://www.docbook.org">http://www.docbook.org</ulink> that
+  explains most everything you need to know about DocBook.
+ </para>
+ <para>
+  This documentation is stored on a CVS server.  Anyone can check out the
+  documentation source anonymously by using CVS.  This is how to check it out
+  anonymously.
+  <screen>
+   cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/gallery co docs
+  </screen>
+ </para>
+ <para>
+  If you have gotten access from a developer (probably Bharat), you check out
+  the documentation in a slightly different way.
+  <screen>
+   export CVS_RSH=ssh
+   cvs -d:ext:[yourusername]@cvs.sourceforge.net:/cvsroot/gallery co docs
+   <emphasis>CVS will ask you for your password here and the docs will
+   be checked out.</emphasis>
+  </screen>
+  You can now make changes to the documentation, as described in the next
+  sections.
+ </para>
+</sect1>  

@@ -1,0 +1,18 @@
+# $Id$
+
+Options -Indexes +FollowSymLinks
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase $GALLERY_URL/
+
+# Ensure that the requested gallery is not a valid directory
+# This can cause an infinite redirection loop
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.\?/]+)/([0-9]+)$	$GALLERY_URL/view_photo.php?set_albumName=$1${GALLERY_REWRITE_SEPARATOR}index=$2	[QSA]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.\?/]+)/([A-Za-z_0-9\-]+)$	$GALLERY_URL/view_photo.php?set_albumName=$1${GALLERY_REWRITE_SEPARATOR}id=$2	[QSA]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.\?/]+)/$	$GALLERY_URL/$1	[R]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.\?/]+)$	$GALLERY_URL/view_album.php?set_albumName=$1	[QSA]
+</IfModule>

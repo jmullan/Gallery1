@@ -1,0 +1,382 @@
+{\rtf1\ansi\ansicpg1252\uc1\deff0\stshfdbch0\stshfloch0\stshfhich0\stshfbi0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f1\fswiss\fcharset0\fprq2{\*\panose 020b0604020202020204}Arial;}
+{\f36\froman\fcharset238\fprq2 Times New Roman CE;}{\f37\froman\fcharset204\fprq2 Times New Roman Cyr;}{\f39\froman\fcharset161\fprq2 Times New Roman Greek;}{\f40\froman\fcharset162\fprq2 Times New Roman Tur;}
+{\f41\froman\fcharset177\fprq2 Times New Roman (Hebrew);}{\f42\froman\fcharset178\fprq2 Times New Roman (Arabic);}{\f43\froman\fcharset186\fprq2 Times New Roman Baltic;}{\f44\froman\fcharset163\fprq2 Times New Roman (Vietnamese);}
+{\f46\fswiss\fcharset238\fprq2 Arial CE;}{\f47\fswiss\fcharset204\fprq2 Arial Cyr;}{\f49\fswiss\fcharset161\fprq2 Arial Greek;}{\f50\fswiss\fcharset162\fprq2 Arial Tur;}{\f51\fswiss\fcharset177\fprq2 Arial (Hebrew);}
+{\f52\fswiss\fcharset178\fprq2 Arial (Arabic);}{\f53\fswiss\fcharset186\fprq2 Arial Baltic;}{\f54\fswiss\fcharset163\fprq2 Arial (Vietnamese);}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;
+\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;
+\red192\green192\blue192;}{\stylesheet{\ql \li0\ri0\widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 \snext0 Normal;}{\*\cs10 \additive \ssemihidden Default Paragraph Font;}{\*
+\ts11\tsrowd\trftsWidthB3\trpaddl108\trpaddr108\trpaddfl3\trpaddft3\trpaddfb3\trpaddfr3\trcbpat1\trcfpat1\tscellwidthfts0\tsvertalt\tsbrdrt\tsbrdrl\tsbrdrb\tsbrdrr\tsbrdrdgl\tsbrdrdgr\tsbrdrh\tsbrdrv 
+\ql \li0\ri0\widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \fs20\lang1024\langfe1024\cgrid\langnp1024\langfenp1024 \snext11 \ssemihidden Normal Table;}}{\*\rsidtbl \rsid1508965\rsid2185469\rsid2971766\rsid4273325\rsid4351186\rsid5662065
+\rsid5784194\rsid7749195\rsid8522812\rsid14186628\rsid14384950\rsid14773640}{\*\generator Microsoft Word 10.0.4219;}{\info{\author jon}{\operator jon}{\creatim\yr2004\mo3\dy24\hr22\min32}{\revtim\yr2004\mo3\dy27\hr7\min42}{\version13}{\edmins424}
+{\nofpages7}{\nofwords1620}{\nofchars9235}{\nofcharsws10834}{\vern16469}}\widowctrl\ftnbj\aenddoc\noxlattoyen\expshrtn\noultrlspc\dntblnsbdb\nospaceforul\hyphcaps0\horzdoc\dghspace120\dgvspace120\dghorigin1701\dgvorigin1984\dghshow0\dgvshow3
+\jcompress\viewkind4\viewscale100\nolnhtadjtbl\rsidroot5662065 \fet0\sectd \linex0\sectdefaultcl\sftnbj {\*\pnseclvl1\pnucrm\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl3
+\pndec\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang {\pntxta )}}{\*\pnseclvl5\pndec\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}
+{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl8\pnlcltr\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}\pard\plain 
+\ql \li0\ri0\nowidctlpar\faauto\rin0\lin0\itap0 \fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\f1\fs20\insrsid5784194 
+\par 1.0\tab INTRODUCTION
+\par 
+\par 
+\par 1.1\tab GOALS
+\par 
+\par 
+\par \tab 3. Interchangeability. Ideally, a given template file will work smoothly 
+\par \tab with any combination of Layout and Style CSS files with little or no
+\par \tab additional work. There are a lot of shortcuts you can use when 
+\par \tab designing a theme, but most of them--in particular the use of in-line 
+\par \tab elements--will cut down on this compatibility. 
+\par 
+\par 1.2\tab TERMINOLOGY
+\par 
+\par \tab Document - the page / view the end user sees.
+\par \tab Template - the top level of the theme system. This is implemented 
+\par \tab seperately from the CSS documents covered in this schema, though
+\par \tab the template determines which defined style classes afftect which parts 
+\par \tab of the document.
+\par \tab Layout CSS - the first of 2 CSS files in the theme system. Mainly 
+\par \tab responsible for the positioning of various sections.
+\par \tab Style CSS - the second of 2 CSS files in the theme system. It is 
+\par \tab responsible for all non-positional elements and class definitions.
+\par \tab ID - an ID is a CSS class that can only be instantiated once per page.
+\par \tab a pound sign (#) precedes its class name.
+\par 
+\par \tab category 1 - gallery\tab #gallery
+\par \tab category 2 - users\tab #guXxxx
+\par \tab category 3 - sections\tab #gsXxxx or .gsXxxx
+\par \tab category 4 - boxes\tab .gbXxxx
+\par \tab category 5 - items\tab .giXxxx
+\par 
+\par 
+\par 2.0\tab SCHEMA
+\par 
+\par \tab The 
+\par 
+\par 
+\par 
+\par \tab category 1 - gallery\tab #gallery
+\par \tab category 2 - users\tab #guXxxx
+\par \tab category 3 - sections\tab #gsXxxx or .gsXxxx
+\par \tab category 4 - boxes\tab .gbXxxx
+\par \tab category 5 - items\tab .giXxxx
+\par \tab 
+\par 
+\par \tab -names
+\par \tab -template
+\par \tab -purpose
+\par \tab -use: requirements
+\par \tab -use: recommendations
+\par \tab -examples
+\par 
+\par 
+\par 2.1\tab CATEGORY 1: GALLERY
+\par \tab 
+\par \tab #gallery
+\par 
+\par \tab This is a global tag that surrounds every gallery page. In a stand-alone 
+\par \tab installation's template, this ID should be associated with the <body> 
+\par \tab attribute. In an embedded installation, the appropriate div should be
+\par \tab placed around the Gallery segment in order to seperate out its 
+\par \tab namespace from the rest of the document. e.g. <div id="gallery>
+\par 
+\par \tab This class is to seperate out gallery style elements in an embedded
+\par \tab installation.
+\par 
+\par \tab For full compatibility, all classes ought to be defined as subclesses of 
+\par \tab #gallery, though in this remainder of this document we'll not bother 
+\par \tab writing 
+\par \tab \tab #gallery .gsClassName \{\}
+\par \tab as opposed to the shorter
+\par \tab \tab .gsClassName \{\}
+\par 
+\par 
+\par 2.2\tab CATEGORY 2: USERS
+\par \tab 
+\par \tab #guAdmin
+\par \tab #guMember
+\par \tab #guGuest
+\par 
+\par \tab The user tag should be associated with  a <div> element immediately 
+\par \tab inside the #gallery tag. There is only one user tag per document-view.
+\par 
+\par \tab These three classes are to allow different views to users with different 
+\par \tab levels of access to a particular gallery.
+\par 
+\par \tab Most theme implementations should not need to use these tags; 
+\par \tab please avoid using them as much as possible. Even in themes where it 
+\par \tab is used in, it will not be defined directly but should be used to specify 
+\par \tab styles for nested classes. 
+\par 
+\par \tab  For example, the  following CSS code would make hyperlinks black 
+\par \tab for the Admin but blue for everyone else.
+\par 
+\par \tab \tab A \{ color:blue \}
+\par \tab \tab #guAdmin A \{ color:black \}
+\par 
+\par 
+\par 2.3\tab CATEGORY 3: SECTIONS
+\par 
+\par \tab /* generic physical layout */
+\par \tab #gsHeader 
+\par \tab #gsFooter 
+\par \tab #gsSidebar 
+\par 
+\par \tab /* main page contents */
+\par \tab #gsAlbumContents 
+\par \tab #gsAdminContents
+\par \tab #gsSearchContents
+\par \tab #gsImageContents
+\par 
+\par \tab /* special purpose */
+\par \tab #gsAdminSidebar 
+\par }{\f1\fs20\insrsid4273325 \tab #gsComments}{\f1\fs20\insrsid5784194 
+\par \tab #gsStatus /* for status messages */
+\par 
+\par \tab /* spacer */
+\par \tab .gsSpacer 
+\par 
+\par \tab /* explicit default section */
+\par \tab .gsOtherContents
+\par \tab 
+\par \tab /* implict default section */
+\par \tab #guAdmin > div, #guAdmin > div, #guAdmin > div, \{
+\par \tab \tab /* default definitions here */
+\par \tab \}
+\par 
+\par \tab Sections are unique, with a few exceptions. All unique sections are 
+\par \tab IDs, and are attached to either DIV or TABLE  elements in the 
+\par \tab template file. 
+\par 
+\par \tab A section may be the child of another section, but must be the child of
+\par \tab a category 2 user class. It can never be the child of a category 4 or 5
+\par \tab class.
+\par \tab 
+\par \tab Sections are responsible for grouping elements and defining where 
+\par \tab they should be positioned on the page. Defining section layouts 
+\par \tab should be the bulk of any layout CSS, though the same sections will 
+\par \tab also be defined for style in the style CSS. Positioning may be done 
+\par \tab in either absolute or relative terms.
+\par 
+\par \tab Section styles should not be defined in relation to other sections. 
+\par \tab Doing so will lead to brittle definitions that will break on different 
+\par \tab template definitions.
+\par 
+\par \tab If you are programming the default templates for a module that is 
+\par \tab sufficiently different as to require its own style, first consider whether 
+\par \tab it will be sufficient to use the defined "default" style class, 
+\par \tab .gsOtherSection. In the vast majority of cases, this will be more than
+\par \tab adequate. If not, go ahead and specify an appropriate section class of 
+\par \tab the format gsXxxxx. Most appropriately defined themes should apply
+\par \tab a default styling, and you can contact the G2 theme team to have your
+\par \tab style eventually added to the offically sanctioned set. See section on 
+\par \tab defaults for more information.
+\par \tab 
+\par 
+\par 2.4\tab CATEGORY 4: BOXES
+\par 
+\par \tab .gbTitleBanner \{\}\tab /* title box */
+\par \tab .gbBreadCrumb \{\} \tab /* Breadcrumb: horizontal history links */
+\par 
+\par \tab .gbTopFlag \{\}\tab \tab /* local section header */
+\par \tab .gbBottomFlag \{\}\tab /* local section footer */
+\par 
+\par \tab /* thumbnail/info groups */
+\par \tab .gbItemAlbum \{\}\tab \tab /* Album item in a gallery */
+\par \tab .gbItemImage \{\}\tab \tab /* Image item */
+\par \tab .gbItemMovie \{\}\tab \tab /* Movie item */
+\par \tab .gbItemOther \{\}\tab \tab /* Other, unknown items */
+\par 
+\par \tab .gbAdmin \{\} }{\f1\fs20\insrsid14773640 \tab }{\f1\fs20\insrsid5784194 \tab /* admin data section */
+\par 
+\par \tab .gbComment \{\}\tab \tab /* Comment box */
+\par 
+\par \tab .gbExif \{\}\tab \tab /* EXIF data box */
+\par 
+\par }{\f1\fs20\insrsid2971766 \tab .gb}{\f1\fs20\insrsid5784194 Menu \{\}}{\f1\fs20\insrsid2971766 \tab \tab /* menus */}{\f1\fs20\insrsid5784194 
+\par 
+\par \tab .gbMiniBanner\{\}\tab }{\f1\fs20\insrsid2971766 \tab }{\f1\fs20\insrsid5784194 /* placed around G2 buttons */
+\par 
+\par \tab .gbSpacer\{\} \tab }{\f1\fs20\insrsid2971766 \tab }{\f1\fs20\insrsid5784194 /* box spacer */
+\par 
+\par \tab .gbDataTable\{\}}{\f1\fs20\insrsid2971766 \tab }{\f1\fs20\insrsid5784194 \tab /* block of data */
+\par }{\f1\fs20\insrsid14384950 
+\par \tab .gbDataEntry\{\}\tab \tab /* grouping of form element related stuff */}{\f1\fs20\insrsid5784194 
+\par }{\f1\fs20\insrsid14384950 
+\par }{\f1\fs20\insrsid5784194 \tab .gbEven \{\}}{\f1\fs20\insrsid2971766 \tab }{\f1\fs20\insrsid5784194 \tab /* Even rows }{\f1\fs20\insrsid1508965 of anything}{\f1\fs20\insrsid5784194 */
+\par \tab .gbOdd \{\}}{\f1\fs20\insrsid2971766 \tab }{\f1\fs20\insrsid5784194 \tab /* Odd rows}{\f1\fs20\insrsid1508965  of anything}{\f1\fs20\insrsid5784194 */
+\par 
+\par \tab .gbTabBar \tab \tab /* container for tabbed boxes */
+\par 
+\par 
+\par \tab In the template, box classes are associated with either <div> 
+\par \tab }{\f1\fs20\insrsid2185469 E}{\f1\fs20\insrsid5784194 lements}{\f1\fs20\insrsid2185469 ,}{\f1\fs20\insrsid5784194  sub-table e}{\f1\fs20\insrsid2185469 lements like <td> <th> or <tr>, or lists like <ol> 
+\par }\pard \ql \fi720\li0\ri0\nowidctlpar\faauto\rin0\lin0\itap0\pararsid2185469 {\f1\fs20\insrsid2185469 And <ul>.}{\f1\fs20\insrsid5784194 
+\par }\pard \ql \li0\ri0\nowidctlpar\faauto\rin0\lin0\itap0 {\f1\fs20\insrsid5784194 
+\par \tab Boxes are the smallest of the "container" categories. They're intended 
+\par \tab to be used to contain small groups logically of related element and to
+\par \tab also provide styling such as borders, spacing, etc.
+\par 
+\par \tab Boxes themselves may be nested inside each other, but all boxes are
+\par \tab children of category 3 sections and not children of category 5 items.
+\par \tab When refering to a box-level class definition in a non-global manner, 
+\par \tab define it with respect to the categories above it rather than through its 
+\par \tab relationships to other boxes or items.
+\par 
+\par \tab When giving the boxes positioning, it's better to use relative
+\par \tab positions and let the sections determine the flow of the page. As
+\par \tab many boxes are defined in terms of what section they are in, it would 
+\par \tab be confusing to have a box that is logically contained in a section but
+\par \tab physically outside it.\tab 
+\par 
+\par \tab Since boxes are used for so many different purposes, it is difficult to
+\par \tab make one generic default. Instead, thoughtful theme designers should 
+\par \tab define defaults based on the section the box appears in. For example:
+\par 
+\par \tab \tab #gsHeader div \{ /* default box in header section */ \}
+\par \tab \tab #gsFooter div \{ /* default box in footer section */ \}
+\par 
+\par 
+\par 2.5\tab CATEGORY 5: ITEMS
+\par 
+\par \tab /* text items */
+\par \tab .giTitle \{\}
+\par }{\f1\fs20\insrsid7749195 \tab .giSubtitle \{\}
+\par }{\f1\fs20\insrsid5784194 \tab .giDescription \{\}
+\par \tab .giInfo \{\}
+\par \tab .giSelected \{\}    /* selected elements */
+\par 
+\par \tab /* Thumbnail Images */
+\par \tab .giThumbImage \{\}
+\par \tab .giThumbMovie \{\}
+\par \tab .giThumbOther \{\}
+\par 
+\par \tab /* pull-down action menu */
+\par \tab .giActionSelect \{\}
+\par 
+\par }{\f1\fs20\insrsid4351186 \tab /* form elements */
+\par }\pard \ql \fi720\li0\ri0\widctlpar\faauto\rin0\lin0\itap0\pararsid4351186 {\f1\fs20\insrsid4351186 
+\par }{\f1\fs20\insrsid4351186\charrsid4351186 .giFormTextarea}{\f1\fs20\insrsid4351186  \{\}
+\par }{\f1\fs20\insrsid4351186\charrsid4351186 .giFormCheckbox}{\f1\fs20\insrsid4351186  \{\}}{\f1\fs20\insrsid4351186\charrsid4351186 
+\par .giFormRadio}{\f1\fs20\insrsid4351186  \{\}}{\f1\fs20\insrsid4351186\charrsid4351186 
+\par .giFormSelect}{\f1\fs20\insrsid4351186  \{\}}{\f1\fs20\insrsid4351186\charrsid4351186 
+\par .giFormFile}{\f1\fs20\insrsid4351186  \{\}}{\f1\fs20\insrsid4351186\charrsid4351186 
+\par .giFormText}{\f1\fs20\insrsid4351186  \{\}}{\f1\fs20\insrsid4351186\charrsid4351186 
+\par }{\f1\fs20\insrsid4351186 .giFormButton \{\}}{\f1\fs20\insrsid4351186\charrsid4351186 
+\par }\pard \ql \li0\ri0\nowidctlpar\faauto\rin0\lin0\itap0\pararsid4351186 {\f1\fs20\insrsid4351186 
+\par }\pard \ql \li0\ri0\nowidctlpar\faauto\rin0\lin0\itap0 {\f1\fs20\insrsid5784194 \tab /* status messages */
+\par \tab .giError \{\}
+\par \tab .giStatus \{\}
+\par \tab .giWarning \{\}
+\par 
+\par \tab /* a comment */
+\par \tab .giComment \{\}
+\par 
+\par \tab /* groups of links */
+\par \tab .giHorizontalLinks \{\}
+\par \tab .giVerticalLinks \{\}
+\par 
+\par \tab /* page number */
+\par \tab .giPageNumber \{\}
+\par 
+\par \tab /* selected tab */
+\par \tab .giSelectedTab 
+\par 
+\par \tab /* spacer */
+\par \tab .giSpacer
+\par 
+\par \tab In the templates, category 5 Items can be associated with most tags.
+\par \tab Common ones are <div>, <p>, <img>, form elements, and so forth.
+\par \tab 
+\par \tab Generally speaking, Items are discrete elements that do not contain
+\par \tab other elements within them. This rule can be broken, but it's best to
+\par \tab avoid doing so when possible. In any case, Items must be children of
+\par \tab either Sections or Boxes and definately shouldn't contain anything but
+\par \tab other Items (or preferably, <spans>) inside themselves.
+\par \tab 
+\par \tab Likewise, Item classes should refer to boes and sections. Items tend 
+\par \tab to be the most generic classes, and a class like giTitle will have many
+\par \tab different context-sensitive styles.
+\par \tab 
+\par \tab Defaults should be declared in the same style used for Box defaults.
+\par 
+\par 2.6\tab UNUSUAL CLASSES
+\par 
+\par 
+\par 2.6.1\tab SPANS
+\par 
+\par \tab /* Ross, I don't really understand SPANs, heh. you want to write this
+\par \tab part? */
+\par 
+\par \tab .giDescription span \{display: block;\}
+\par \tab span.giDate \{\}
+\par \tab span.giOwner \{\}
+\par \tab span.giCount \{\}
+\par 
+\par 2.6.2\tab SPACERS
+\par 
+\par \tab .gsSpacer \{\}
+\par \tab .gbSpacer \{\}
+\par \tab .giSpacer \{\}
+\par 
+\par \tab For each of the bottom three categories of organization there is a 
+\par \tab "Spacer" element. The intent of this is to be a more flexible alternative
+\par \tab to <BR> when using relative layout flows. In a template, a spacer 
+\par \tab element is defined exactly like this:
+\par 
+\par \tab \tab <div class="gbSpacer">&nbsp;</div>
+\par 
+\par \tab Most themes will work with the following definition:
+\par \tab 
+\par \tab \tab .gsSpacer, .gbSpacer, .giSpacer \{ clear:both; \}
+\par 
+\par 
+\par 2.6.3\tab A NOTE ON DEFAULTS
+\par 
+\par \tab There are two kinds of defaults in use. The simpler default is a simple
+\par \tab class that follows the format 'gxXxxOtherXxx.' These defaults are used 
+\par \tab when the template designer accepts a generic format as acceptable,
+\par \tab in the case of gsOther; or when there is a need for a common default, 
+\par \tab as in the case of giThumbOther.
+\par 
+\par \tab Any theme should make sure to define these defaults.
+\par 
+\par \tab The second kind of default is used to define *undefined* <div> 
+\par \tab elements. This is done by used the CSS selectors. For example,
+\par \tab a default section can be defined:
+\par 
+\par \tab \tab #guAdmin > div, #guAdmin > div, #guAdmin > div, \{
+\par \tab \tab \tab /* default definitions here */
+\par \tab \tab \}
+\par 
+\par \tab This causes all undefined <div> elements that are direct children of
+\par \tab a category 2 User to follow this default behavior. Here is one benifit of
+\par \tab using this hierarchical structure of classes--since the div is a childe of
+\par \tab a category 2 User, we can assume it is a yet-undefined category 3 
+\par \tab Section. Similarly, the following definition is for a default box in the 
+\par \tab header or footer sections:
+\par 
+\par \tab \tab #gsHeader > div, #gsFooter div \{
+\par \tab \tab \tab /* default definitions here */
+\par \tab \tab \}
+\par 
+\par \tab Theme designers are asked to at least provide a default Section and 
+\par \tab Box element. A good theme should recognize when sections are 
+\par \tab sufficiently different to require a differently formatted box, and to 
+\par \tab define appropriate contextual defaults.
+\par 
+\par \tab In most cases, the second type of default shouldn't be needed. 
+\par \tab However, defining them anyway adds flexibily for using ill-defined or 
+\par \tab adventurously extended templates. In particular, defining a default 
+\par \tab section allows for old templates to offer some support to new G2 
+\par \tab modules.
+\par 
+\par 3.0\tab RULES
+\par 
+\par 
+\par \tab - design universal set, then carefully consider exceptions using inheritance.
+\par \tab - when using inheritance, don't inherit from the same category as the current class.
+\par \tab 
+\par 
+\par 
+\par 3.2\tab Browser Compatibility
+\par 
+\par 
+\par }}

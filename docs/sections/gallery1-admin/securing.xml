@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-admin.securing">
+ <title>Securing Gallery</title>
+ 
+ <sect2 id="gallery1-admin.securing.basic-auth">
+  <title>Basic Authentication</title>
+  
+  <para>
+   Basic HTTP Authentication allows you to add a second layer of security to
+   your Gallery.  It also prevents people being able to "hotlink" albums directly
+   from your albums directory.  The disadvantage is that basic HTTP authentication
+   isn't compatible with Gallery authentication.  This means that if you want to
+   give user permissions with the Gallery authentication system (e.g. to add
+   pictures) they will have to login <emphasis>twice</emphasis>.  As such, this
+   may not be the best solution for everyone, though it is the most secure.
+   <mediaobject>
+    <imageobject>
+     <imagedata fileref="images/basic-auth.gif" format="GIF" />
+    </imageobject>  
+    <caption>  
+     <para>  
+      Example of Basic HTTP Authentication (Mozilla)
+     </para>
+    </caption>  
+   </mediaobject>
+  </para>
+  <para>
+   Setting up basic authentication is relatively simple.  It can get a little
+   complex or annoying if you don't do certain things, however.  For instance,
+   I recommend putting your albums directory <emphasis>inside</emphasis> your
+   main Gallery directory, as a sub-directory.  This makes it easier to protect.
+   If it's not already there, it's easy to move, just move it and rerun the
+   <link linkend="gallery1-install.config-wizard">configuration wizard</link>.
+  </para>
+  <para>
+   Now that you have the preliminaries, edit the &htaccess; file in your gallery
+   directory.  Add the following
+   <screen>
+    AuthName "My Gallery"
+    AuthUserFile /path/to/gallery/directory/.htpasswd
+    AuthType Basic
+    require valid-user
+   </screen>
+  </para>
+  <para>
+   Now you need to create the <filename>.htpasswd</filename> file which will contain
+   usernames and passwords.  If you have shell access, use the <command>htpasswd</command>
+   command, e.g. <command>htpasswd -c /path/to/gallery/directory/.htpasswd [username]</command>
+   After you add one username, run the same command for the next user, without the -c flag.
+  </para>
+  <para>
+   If you don't have shell access, you'll have to create the .htpasswd file manually.
+   There are some web-based pages that will help you, for instance
+   <ulink url="http://www.xs4all.nl/~remcovz/htpasswd.html">this page</ulink>.  Enter
+   the username and password, and add it to the .htpasswd file in your Gallery directory.
+   Each username and password crypt should be on a separate line.
+  </para>
+  <para>
+   After you have that setup, basic authentication should work!
+  </para>
+  <note>
+   <para>
+    Because you edited your &htaccess; file in your Gallery directory, you will
+    have to re-add these lines if you re-run the configuration wizard.
+   </para>
+  </note>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.securing.additional">
+  <title>Additional Album Security</title>
+  
+  <para>
+   Because of Gallery 1.x's design, the albums directory must be in a publicly
+   accessible directory.  So, some people who want extra privacy will want
+   to prevent spiders, search servers, and hotlinkers from stealing the images
+   and bandwidth, but still grant regular users access.
+  </para>
+  <para>
+   To do this, we will use Apache's mod_rewrite module.  Your server
+   must have this module installed to do this.  See the Apache
+   documentation for more information.  Additionally, if when you
+   installed Gallery the config wizard instructed you to add lines to
+   your httpd.conf to allow .htaccess files to work, then you should
+   review those lines and add something similar to httpd.conf for your
+   albums directory.  Otherwise, your changes to .htaccess may not
+   have any effect.
+  </para>
+  <para>
+   Basically, what we'll do is only allow Apache to serve the images to people
+   who are coming from <emphasis>your</emphasis> site.  To do this, we'll check
+   the referrer (misspelled in the HTTP RFC as "referer").  To do this, add the
+   following lines to a &htaccess; file in your <emphasis>albums</emphasis> directory
+   <emphasis>NOT YOUR GALLERY DIRECTORY</emphasis> (you will have to create the
+   &htaccess; file in your albums directory, unless you've added something before).
+   <screen>
+<![CDATA[
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteCond %{HTTP_REFERER} !^http://www.example.com/gallery.*$ [NC]
+        RewriteCond %{REMOTE_HOST} ^.*\.shutterfly.com$  [NC]
+	RewriteRule ^/albums/.*\.(jpg|gif|avi|png)$  -  [F]
+</IfModule>
+]]>
+   </screen>
+   Obviously, change <literal>http://www.example.com/gallery</literal> to
+   the real address of your <emphasis>gallery</emphasis> directory.
+   <literal>^/albums/.*\.(jpg|gif|avi|png)$</literal> is the pattern to
+   your albums directory.  It uses regular expressions.  You can find more
+   information about regular expressions by searching Google or buying a book.
+   The line regarding shutterfly.com exempts addresses coming from
+   shutterfly.com from the ban.  This allows users to still be able to use
+   ShutterFly.
+  </para>
+ </sect2>
+   
+       
+</sect1>
