@@ -24,11 +24,11 @@
 
 require(dirname(__FILE__) . '/init.php');
 
-// Security check.
-if (!isset($username)) {
-	$username="";
-}
-$username = removeTags($username);
+// Get Vars
+$username = removeTags(getRequestVar('username'));
+$gallerypassword = getRequestVar('gallerypassword');
+$forgot = getRequestVar('forgot');
+
 doctype();
 ?>
 
@@ -92,7 +92,7 @@ if (isset($username) && isset($gallerypassword)) {
   </td>
  </tr>
 
-<?php if (isset($error) && !isset($username)) { ?>
+<?php if (empty($username) && !empty($gallerypassword)) { ?>
  <tr>
   <td colspan=2 align=center>
    <?php echo gallery_error(_("You must specify a username")); ?>
@@ -109,7 +109,7 @@ if (isset($username) && isset($gallerypassword)) {
   </td>
  </tr>
 
-<?php if (isset($error) && !isset($gallerypassword)) { ?>
+<?php if (!empty($username) && empty($gallerypassword)) { ?>
  <tr>
   <td colspan=2 align=center>
    <?php echo gallery_error(_("You must specify a password")); ?>
@@ -132,7 +132,7 @@ echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST
 <br>
 <br>
 <?php
-if (isset($forgot)) {
+if (!empty($forgot)) {
        	$tmpUser = $gallery->userDB->getUserByUsername($username);
        	if ($tmpUser) {
 		$wait_time=15;
