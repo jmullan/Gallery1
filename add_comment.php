@@ -87,7 +87,7 @@ if ($error_text) {
 </table>
 <br>
 <input type=submit name="submit" value="Save">
-<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+<input type=button value="Cancel" onclick='parent.close()'>
 
 </form>
 
