@@ -116,7 +116,7 @@ if ($gallery->session->albumName && isset($index)) {
 							/* resize the photo if needed */
 							if ($postAlbum->fields["resize_size"] > 0 ) {
 								$photo = $postAlbum->getPhoto($newPhotoIndex);
-								list($w, $h) = $photo->getDimensions();
+								list($w, $h) = $photo->image->getRawDimensions();
 								if ($w > $postAlbum->fields["resize_size"] ||
 								    $h > $postAlbum->fields["resize_size"]) {
 									if (($postAlbum->fields["resize_size"] == $gallery->album->fields["resize_size"]) &&

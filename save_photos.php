@@ -284,7 +284,7 @@ function process($file, $tag, $name, $setCaption="") {
 				if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
 					$index = $gallery->album->numPhotos(1);
 					$photo = $gallery->album->getPhoto($index);
-					list($w, $h) = $photo->getDimensions();
+					list($w, $h) = $photo->image->getRawDimensions();
 					if ($w > $gallery->album->fields["resize_size"] ||
 					    $h > $gallery->album->fields["resize_size"]) {
 						msg("- Resizing $name"); 
