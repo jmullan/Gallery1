@@ -102,10 +102,9 @@ function check_gd()
 
 function makePathWrapper($path, $app)
 {
-	$path = locateDir($app);
-	return "/bin/csh -c &#039;(setenv PATH " . 
+	return "/bin/csh -c &#039;(setenv PATH $path:" . 
 		getenv("PATH") . 
-		":$path ; $app %s)&#039;";
+		" ; $app %s)&#039;";
 }
 
 ?>
