@@ -42,6 +42,7 @@
 function getNLS () {
 	$nls['language']['zh_CN'] = 'Simplified Chinese (&#31616;&#20307;&#20013;&#25991;)';
 	$nls['language']['zh_TW'] = 'Traditional Chinese (&#32321;&#39636;&#20013;&#25991;)';
+	$nls['language']['da_DK'] = 'Dansk';
 	$nls['language']['de_DE'] = 'Deutsch';
 	$nls['language']['en_GB'] = 'English (UK)';
 	$nls['language']['en_US'] = 'English (US)';
@@ -68,6 +69,7 @@ function getNLS () {
  **/
 	
 	$nls['alias']['de'] = 'de_DE';
+	$nls['alias']['da'] = 'da_DK';
 	$nls['alias']['en'] = 'en_US';
 	$nls['alias']['es'] = 'es_ES';
 	$nls['alias']['fi'] = 'fi_FI';
@@ -89,6 +91,9 @@ function getNLS () {
 /**
  ** Aliases for languages which we substitte or send by NUKE
  **/
+
+	$nls['alias']['danish'] =		'da_DK' ;
+	$nls['alias']['da_DK.ISO8859-1'] =	'da_DK' ;
 
 	$nls['alias']['de_LI'] = 		'de_DE' ;
 	$nls['alias']['de_LU'] = 		'de_DE' ;
@@ -217,6 +222,7 @@ function getNLS () {
  **/
 	$nls['nuke']['zh_TW'] = 'chinese' ;
 	$nls['nuke']['de_DE'] = 'german';
+	$nls['nuke']['da_DK'] = 'danish';
 	$nls['nuke']['en_US'] = 'english';
 	$nls['nuke']['es_ES'] = 'spanish';
 	$nls['nuke']['fr_FR'] = 'french';
