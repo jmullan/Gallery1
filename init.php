@@ -19,17 +19,6 @@
  */
 ?>
 <?
-/*
- * Some folks have taken to installing newer versions of Gallery inside
- * existing Gallery directories.  This means that it's possible that at
- * some level above this one we have a .htaccess file that is auto_prepending
- * this init.php file.  This will lead to multiple require('init.php') calls
- * which leads to problems.  Don't allow this file to be evaluated twice.
- */
-if ($GALLERY_INIT) {
-	return;
-}
-
 /* Load bootstrap code */
 require('version.php');
 if (file_exists('config.php')) {
@@ -38,7 +27,6 @@ if (file_exists('config.php')) {
 require('util.php');
 
 /* Make sure that Gallery is set up properly */
-galleryInit();
 gallerySanityCheck();
 
 /* Load classes and session information */

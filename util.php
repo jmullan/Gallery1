@@ -376,13 +376,8 @@ function makeGalleryUrl($albumName, $photoId="", $extra="") {
 	return $url;
 }
 
-function galleryInit() {
-	global $GALLERY_INIT;
-	$GALLERY_INIT = 1;
-}
-
 function gallerySanityCheck() {
-	global $GALLERY_INIT, $app, $gallery;
+	global $app, $gallery;
 
 	if (!file_exists("config.php") || !$app) {
 		include("errors/unconfigured.php");
