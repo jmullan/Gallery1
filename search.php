@@ -46,6 +46,7 @@ $thumbSize = $gallery->app->default["thumb_size"];
 includeHtmlWrap("search.header");
 ?>
 <?
+$searchString = removeTags($searchstring);
 if ($searchstring) {
 ?>
 <table width=100% border=0 cellspacing=0>

@@ -39,6 +39,8 @@ $error_text = "";
 
 if ($save) {
 	if ($commenter_name && $comment_text) {
+	        $comment_text = removeTags($comment_text);
+	        $commenter_name = removeTags($commenter_name);
 		$gallery->album->addComment($index, stripslashes($comment_text), $IPNumber, $commenter_name);
 		$gallery->album->save();
 		dismissAndReload();
