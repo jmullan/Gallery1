@@ -1881,6 +1881,7 @@ $nls = getNLS();
 	emulate_gettext();
 }
 function emulate_gettext() {
+	global $translation, $GALLERY_BASEDIR;
 	$check=(in_array("gettext", get_loaded_extensions()) && 
 			function_exists('gettext'));
 	if ($check) {
@@ -1889,7 +1890,6 @@ function emulate_gettext() {
 		textdomain("gallery");
 		return;
 	} 
-	global $translation;
 	$filename=po_filename();
 	if ($filename) {
 		$lines=file($filename);
