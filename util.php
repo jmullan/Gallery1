@@ -1833,7 +1833,7 @@ function initLanguage() {
 					if ($nls['languages'][$newlang]) {
 						$gallery->language=$newlang;
 					}
-				} elseif (isset($gallery->session->session)) {
+				} elseif (isset($gallery->session->language)) {
 					//maybe we already have a language
 					$gallery->language=$gallery->session->language;
 				}
