@@ -19,6 +19,33 @@
  */
 ?>
 <?
+if (file_exists("setup") && is_readable("setup")) {
+	require("style.php");
+?>
+	<center>
+	<font size=+2 color=red> Uh oh! </font>
+	</center>
+	<p>
+	<font size=+1>
+	Gallery is still in configuration mode which means it's
+	anybody out there can mess with it.  For safety's sake we
+	don't let you run the app in this mode.  You need to put it
+	in secure mode before you can use it.  Put it in secure mode
+	by doing this:
+	<p><center>
+	<table><tr><td>
+		<code>
+		% cd <?=dirname(getenv("SCRIPT_FILENAME"))?>
+		<br>
+		% sh ./secure.sh
+	</td></tr></table>
+	<p>
+	When you've done this, just reload this page and all should
+	be well.
+<?
+	return;
+}
+
 /* Load defaults */
 require('config.php');
 require('classes.php');
