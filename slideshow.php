@@ -195,7 +195,7 @@ download, you can use the") . " <a class=\"admin\" href=\"" . makeGalleryUrl("sl
 <object
 		classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
 		codebase="http://java.sun.com/products/plugin/autodl/jinstall-1_4-windows-i586.cab#Version=1,4,0,0"
-		width="300" height="400">
+		width="300" height="430">
 	<param name="code" value="com.gallery.GalleryRemote.GRAppletSlideshow">
 	<param name="archive" value="java/GalleryRemoteAppletMini.jar,java/GalleryRemoteHTTPClient.jar,java/applet_img.jar">
 	<param name="type" value="application/x-java-applet;version=1.4">
@@ -218,7 +218,7 @@ download, you can use the") . " <a class=\"admin\" href=\"" . makeGalleryUrl("sl
 				code="com.gallery.GalleryRemote.GRAppletSlideshow"
 				archive="java/GalleryRemoteAppletMini.jar,java/GalleryRemoteHTTPClient.jar,java/applet_img.jar"
 				width="300"
-				height="400"
+				height="430"
 				scriptable="false"
 				progressbar="true"
 				boxmessage="Downloading the Gallery Remote Applet"
