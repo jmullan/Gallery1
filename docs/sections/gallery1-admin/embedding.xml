@@ -68,4 +68,153 @@
   </note>
      
  </sect2>
+ <sect2 id="gallery1-admin.embedding.mambo">
+  <title>Mambo</title>
+  
+  <para>
+   Gallery is in fact a Mambo component right out of the box! If you have an existing Mambo version 4.5 or newer
+   installation, you'll have Gallery up and running embedded in your
+   Mambo site in a jiffy. Gallery will even integrate seamlessly with
+   your existing Mambo user information.
+  </para>
+  <orderedlist>
+   <listitem>
+    <para>
+     First, grab the latest version of Gallery from the <ulink
+     url="http://gallery.menalto.com/modules.php?op=modload&amp;name=phpWiki&amp;file=index&amp;pagename=Download">Download
+     Page</ulink>.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Install Gallery just as if you were doing a non-Mambo
+     installation, all on its own. See one of the following guides for
+     further help here:
+     <link linkend="gallery1-install.unix-shell">Unix with Shell Access</link>,
+     <link linkend="gallery1-install.unix-ftp">Unix with FTP Access</link>,
+     <link linkend="gallery1-install.windows">Windows on Apache</link>,
+     <link linkend="gallery1-install.windows-iis">Windows on IIS</link>.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Make sure you have completed the Gallery setup all the way
+     through. Don't worry too much about the look and feel out of the
+     box just yet, because it will look slightly different once embedded into
+     Mambo.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Now log into your Mambo administrator console and install Gallery as
+     a component. The easiest method is to select <varname>Install/Uninstall</varname>
+     from the <varname>Components</varname> menu.
+	 <mediaobject>
+	  <imageobject>
+       <imagedata fileref="images/gallery1-admin/component_menu.png" format="PNG" />
+      </imageobject>
+      <caption>
+       <para>
+	    The <varname>Components</varname> Menu in the Mambo administrator console
+       </para>
+      </caption>
+     </mediaobject>
+	 Since you already have Gallery
+     installed (you did step 1, right?!), you'll want to choose "Install
+     from directory". For "Install directory", enter the full
+     path on disk to your <filename>gallery/contrib/mambo</filename>
+     directory. It might look something like
+     <filename>/home/www/mysite.com/htdocs/gallery/contrib/mambo</filename>. The
+     Gallery setup Step 2 "Locations and URLs" tab has some full paths
+     specified which might help here. Then click the <varname>Install</varname>
+     button.
+	 <mediaobject>
+	  <imageobject>
+       <imagedata fileref="images/gallery1-admin/install_from_directory.png" format="PNG" />
+      </imageobject>
+      <caption>
+       <para>
+	    Specify the full path to your <filename>gallery/contrib/mambo</filename> directory
+       </para>
+      </caption>
+     </mediaobject>
+	 If it was successful, click <varname>Continue</varname>. Otherwise, it's
+     likely you didn't enter the correct install path, so go back and
+     double check it.
+	 <mediaobject>
+	  <imageobject>
+       <imagedata fileref="images/gallery1-admin/install_success.png" format="PNG" />
+      </imageobject>
+      <caption>
+       <para>
+        If you see this, you've added Gallery successfully
+       </para>
+      </caption>
+     </mediaobject>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+	 Now, you should be able to select "Gallery" from the <varname>Components</varname> menu.
+     You should then be at the Gallery component configuration page
+     inside the Mambo admin page. There are three Mambo-specific
+     settings for Gallery.
+	 <mediaobject>
+	  <imageobject>
+       <imagedata fileref="images/gallery1-admin/gallery_setup.png" format="PNG" />
+      </imageobject>
+      <caption>
+       <para>
+	    The Gallery component setup page
+       </para>
+      </caption>
+     </mediaobject>
+	 The path to Gallery is the same path as you
+     entered earlier, only without the
+     <filename>/contrib/mambo</filename> part at the end. This tells
+     Mambo where to find your actual installation. The "Admin Level"
+     sets the lowest-privilege user level allowed to have admin access
+     to Gallery. Admin access allows the user to view, create, or
+     delete any or all items in Gallery. In Mambo terminology,
+     "Backend" users have a higher privilege level than "Frontend"
+     users. The final setting on this page asks whether you'd like
+     Gallery to suppress the right-hand module bar. This gives Gallery
+     a little extra space in the browser window. Remember... you can
+     return to this configuration page at any time to make changes
+     later on. All other Gallery configuration can be done via the
+     Gallery setup page you saw earlier.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     You'll probably want to add Gallery to your main menu. From the
+     Mambo admin page, go to the <varname>Menu</varname> menu and select "Menu
+     Manager". For this example, we'll add Gallery to the main
+     menu. Click the configuration button for the main menu Menu
+     Items. You'll be presented with the existing menu contents. Click
+     <varname>New</varname> from the top toolbar. Gallery is a Mambo Component, so
+     select that. Give your menu item a display name and select
+     Gallery from the component list. Set the rest of the options as
+     you see fit and click Save from the toolbar. If all went well,
+     you'll now have a link to your Gallery in your main menu from
+     your Mambo page. If you're logged in as the administrator, click
+     <varname>[new album]</varname> and get Gallerying!
+	 <mediaobject>
+	  <imageobject>
+       <imagedata fileref="images/gallery1-admin/main_menu.png" format="PNG" />
+      </imageobject>
+      <caption>
+       <para>
+	    Link to your embedded Gallery in the main menu
+       </para>
+      </caption>
+     </mediaobject>
+    </para>
+   </listitem>
+  </orderedlist>
+  <para>
+   If you get stuck at any point, remember that there's always help
+   available on the Gallery website and in the forums.
+  </para>
+ </sect2>
 </sect1>
