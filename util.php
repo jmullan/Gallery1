@@ -381,9 +381,22 @@ function includeHtmlWrap($name) {
 	return 1;
 }
 
-function getGalleryStyleSheetName() {
+function getStyleSheetLink() {
+	global $GALLERY_EMBEDDED_INSIDE;
+
+	if ($GALLERY_EMBEDDED_INSIDE) {
+		return _getStyleSheetLink("embedded_style");
+	} else {
+		return _getStyleSheetLink("embedded_style") . 
+			"\n" .
+		       _getStyleSheetLink("standalone_style");
+	}
+}
+
+function _getStyleSheetLink($filename) {
 	global $gallery;
-        $sheetname = "css/gallery_style.css";
+
+        $sheetname = "css/$filename.css";
 
 	if ($gallery->app) {
 		$base = $gallery->app->photoAlbumURL;
@@ -392,10 +405,14 @@ function getGalleryStyleSheetName() {
 	}
 
 	if (file_exists($sheetname)) {
-		return ("$base/$sheetname");
+		$url = "$base/$sheetname";
 	} else {
-		return ("$base/$sheetname.default");
+		$url = "$base/$sheetname.default";
 	}
+
+	return '<link rel="stylesheet" type="text/css" href="' .
+		$url .
+		'">';
 
 	return 1;
 }
