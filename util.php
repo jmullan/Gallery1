@@ -57,7 +57,7 @@ function error($message) {
 }
 
 function popup($url) {
-	$attrs = "height=450,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes";
+	$attrs = "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes";
 	return "javascript:void(open('$url','Edit','$attrs'))";
 }
 
