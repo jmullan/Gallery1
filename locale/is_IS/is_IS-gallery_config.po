@@ -3,7 +3,7 @@
 # Version: 1.5-RC2
 #
 # Gallery - a web based photo album viewer and editor
-# Copyright (C) 2000-2004 Bharat Mediratta
+# Copyright (C) 2000-2005 Bharat Mediratta
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,22 +22,23 @@
 # Johann S. Jonsson <johann AT nenni DOT net>, 2003
 # Gunnlaugur Þór Briem <gthb AT hi DOT is>, 2004
 # Kristinn Örn Sigurðsson <kiddi AT pentagon DOT ms>, 2004
+# Johann S. Jonsson <johann AT nenni DOT net>, 2005
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-02-21 15:48+0100\n"
-"PO-Revision-Date: 2004-10-12 13:21+0100\n"
-"Last-Translator: Kristinn Örn Sigurðsson <kiddi AT pentagon DOT ms>\n"
-"Language-Team:\n"
+"POT-Creation-Date: 2005-02-28 16:21+0100\n"
+"PO-Revision-Date: 2005-02-23 22:07+0100\n"
+"Last-Translator: Johann S. Jonsson <johann AT nenni DOT net>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
 #: ../errors/configure_help.php:2
-#, fuzzy, php-format
+#, php-format
 msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
 msgstr "Ef þú lendir í vandræðum, þá getur þú leitað hjálpar á %s hjálparsíðu Gallery%s."
 
@@ -56,7 +57,7 @@ msgstr "Ræstu síðan %sUppsetningarferlið%s."
 
 #: ../errors/unconfigured.php:10
 msgid "Gallery Configuration Error"
-msgstr "Gallery: Villur í uppsetningu"
+msgstr "Gallery, villur í uppsetningu"
 
 #: ../errors/unconfigured.php:16
 msgid "Gallery has not been configured!"
@@ -68,23 +69,23 @@ msgstr "Þú verður að setja Gallery upp áður en þú getur notað það."
 
 #: ../errors/unconfigured.php:25
 msgid "1."
-msgstr ""
+msgstr "1."
 
 #: ../errors/unconfigured.php:26
 msgid "Create an empty file .htaccess and an empty file config.php"
-msgstr ""
+msgstr "Gerið tóma .htaccess skrá og einnig tóma config.php"
 
 #: ../errors/unconfigured.php:28
 msgid "2."
-msgstr ""
+msgstr "2."
 
 #: ../errors/unconfigured.php:29
 msgid "Create an albums folder for your pictures and movies."
-msgstr ""
+msgstr "Setjið upp möppu fyrir myndir og videó"
 
 #: ../errors/unconfigured.php:32
 msgid "Make sure that both files and the folder are read and writeable for your webserver !"
-msgstr ""
+msgstr "Gangið úr skugga um að vefþjónnin get lesið og skrifað  bæði skrár og möppur!"
 
 #: ../errors/unconfigured.php:37
 #, php-format
@@ -343,7 +344,7 @@ msgstr "Þetta gerir þér kleift að staðfesta að tölvupóstur virki rétt á kerfi þí
 #: ../setup/check_mail.php:65 ../setup/check_mail.php:70
 #, php-format
 msgid "%s not set."
-msgstr "Villa! %s"
+msgstr "%s ekki skilgreint."
 
 #: ../setup/check_mail.php:90
 msgid "Your email address:"
@@ -394,7 +395,7 @@ msgstr[1] "%d skrár eru týndar, spilltar eða eldri en búist var við."
 
 #: ../setup/check_versions.php:73 ../setup/check_versions.php:104
 msgid "All files okay."
-msgstr "Allar skrárnar eru í lagi."
+msgstr "Allar skrár eru í lagi."
 
 #: ../setup/check_versions.php:80
 #, php-format
@@ -441,7 +442,7 @@ msgstr "Gallery vill helst NetPBM-útgáfur 9.9 og uppúr.  Þú getur sett upp bara 
 #: ../setup/config_data.inc:89 ../setup/config_data.inc:130
 #: ../setup/config_data.inc:700 ../setup/confirm.inc:396
 msgid "Note:"
-msgstr "Ath.:"
+msgstr "Ath:"
 
 #: ../setup/config_data.inc:76
 msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead."
@@ -449,7 +450,7 @@ msgstr "Þú getur sett upp forritin frá Gallery vefsvæðinu jafnvel þótt þú hafir 
 
 #: ../setup/config_data.inc:79
 msgid "I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date."
-msgstr "Ég fann hluta af NetPBM, en einhverja nauðsynlega hluta vantaði (sjá neðar).  Mögulega er útgáfa þín af NetPBM úrelt."
+msgstr "Fann hluta af NetPBM, en einhverja nauðsynlega hluta vantaði (sjá neðar).  Mögulega er útgáfa þín af NetPBM úrelt."
 
 #: ../setup/config_data.inc:83
 #, php-format
@@ -461,9 +462,9 @@ msgid "The site also has binaries available for assorted operating systems.  If 
 msgstr "Vefsvæðið er einnig með þýdd forrit fyrir hin og þessi stýrikerfi.  Ef þú færð þetta ekki til að virka, prófaðu þá að láta ImageMagick slóðina vera tóma og nota NetPBM í staðinn."
 
 #: ../setup/config_data.inc:90
-#, fuzzy, php-format
+#, php-format
 msgid "Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."
-msgstr "<b>Ath:</b> PHP-uppsetning þín er stillt með %s-takmörkuninni. Þetta gæti torveldað Gallery að ganga úr skugga um að forritin þín séu í lagi, jafnvel þótt þú hafir þegar áður notað Uppsetningarferilinn vandræðalaust. Ekki hafa of miklar áhyggjur ef þessi síða gefur aðvaranir; stillingar þínar vistast samt rétt."
+msgstr "PHP-uppsetning þín er stillt með %s-takmörkuninni. Þetta gæti torveldað Gallery að ganga úr skugga um að forritin þín séu í lagi, jafnvel þótt þú hafir þegar áður notað Uppsetningarferilinn vandræðalaust. Ekki hafa of miklar áhyggjur ef þessi síða gefur aðvaranir; stillingar þínar vistast samt rétt."
 
 #: ../setup/config_data.inc:96
 #, php-format
@@ -472,11 +473,11 @@ msgstr "Athuga hversu gömul %s-útgáfa %s er."
 
 #: ../setup/config_data.inc:102
 msgid "Check to see if you are running PHP 4.1.0 or greater."
-msgstr ""
+msgstr "Athuga hvort að þú keyrir PHP 4.1.0 eða nýrri."
 
 #: ../setup/config_data.inc:102
 msgid "Since Gallery 1.4.5 Gallery needs at least PHP 4.1.0, this is due to that some versions of PHP have bugs that cause Gallery to fail and that older Version does not have required functionality."
-msgstr ""
+msgstr "Frá Gallery 1.4.5 þá er útgáfa 4.1.0 af PHP nauðsynleg, vega þess að fyrri útgáfur af PHP hafa ýmsa galla sem vilja skaða Gallery, ásamt að ýmsa eignileika vantar i PHP."
 
 #: ../setup/config_data.inc:104
 #, php-format
@@ -486,7 +487,7 @@ msgstr "Þú ert að keyra PHP-útgáfu %s.  Þú þarft að uppfæra í PHP %s."
 #: ../setup/config_data.inc:105
 #, php-format
 msgid "You're running PHP version %s which has known bugs that cause Gallery to fail."
-msgstr "Þú ert að keyra PHP-útgáfu %s sem inniheldur þekktar villur sem láta Gallery bila."
+msgstr "Þú ert að keyra PHP-útgáfu %s sem inniheldur þekktar villur, Gallery mun bila"
 
 #: ../setup/config_data.inc:109
 msgid "We are using predefined variables which some older version of PHP have problems with."
@@ -514,9 +515,9 @@ msgid "<b>safe_mode</b> is enabled on this server.  You must disable it before y
 msgstr "<b>safe_mode</b> er virkt á þessum þjóni.  Þú verður að slökkva á því áður en þú getur notað Gallery.  Leitaðu þér hjálpar í FAQ, á spjallkorkunum, og á hjálparsíðunum á %sGallery-vefsvæðinu%s og %sPHP-vefsvæðinu%s."
 
 #: ../setup/config_data.inc:131
-#, fuzzy, php-format
+#, php-format
 msgid "In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."
-msgstr "<b>Ath</b>: við sumar sjaldgæfar kringumstæður heldur Gallery að Safe Mode sé virkt, þegar svo er í raun ekki. Þú getur aðgætt þetta með því að gá í <i>Local</i> dálkinn í <i>safe_mode</i> línunni á %sPHP Info%s-síðunni.  Ef þar stendur 'Off' eða '0' eða 'undefined', þá er mögulegt að Gallery hafi rangt fyrir sér og þú getir haldið áfram.  Ef ekki, þá verður að lagfæra þetta vandamál áður en þú getur notað Gallery."
+msgstr "Við sumar sjaldgæfar kringumstæður heldur Gallery að Safe Mode sé virkt, þegar svo er í raun ekki. Þú getur aðgætt þetta með því að gá í <i>Local</i> dálkinn í <i>safe_mode</i> línunni á %sPHP Info%s-síðunni.  Ef þar stendur 'Off' eða '0' eða 'undefined', þá er mögulegt að Gallery hafi rangt fyrir sér og þú getir haldið áfram.  Ef ekki, þá verður að lagfæra þetta vandamál áður en þú getur notað Gallery."
 
 #: ../setup/config_data.inc:138
 msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
@@ -562,7 +563,7 @@ msgstr "Athuga hvort NetPBM er sett upp svo að Gallery geti meðhöndlað myndir (s
 
 #: ../setup/config_data.inc:173
 msgid "I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: "
-msgstr "Ég finn ekki NetPBM.  Ef það er sett upp og ekki í skipanaslóð vefþjónsnotandans, þá er það í lagi&#8212; þú getur gefið upp slóðina á NetPBM á næstu síðu.  Ef það er ekki sett upp, þá hefurðu um tvo kosti að velja: "
+msgstr "Finn ekki NetPBM.  Ef það er sett upp og ekki í skipanaslóð vefþjónsnotandans, þá er það í lagi&#8212; þú getur gefið upp slóðina á NetPBM á næstu síðu.  Ef það er ekki sett upp, þá hefurðu um tvo kosti að velja: "
 
 #: ../setup/config_data.inc:178
 msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page."
@@ -574,7 +575,7 @@ msgstr "Athuga hvort ImageMagick er sett upp, svo að Gallery geti meðhöndlað myn
 
 #: ../setup/config_data.inc:186
 msgid "I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  "
-msgstr "Ég finn ekki ImageMagick.  Ef það er sett upp og ekki í skipanaslóð vefþjónsnotandans, þá er það í lagi&#8212; þú getur gefið upp slóðina á ImageMagick á næstu síðu.  Ef það er ekki sett upp, þá verður þú að setja það upp.  "
+msgstr "Finn ekki ImageMagick.  Ef það er sett upp og ekki í skipanaslóð vefþjónsnotandans, þá er það í lagi&#8212; þú getur gefið upp slóðina á ImageMagick á næstu síðu.  Ef það er ekki sett upp, þá verður þú að setja það upp.  "
 
 #: ../setup/config_data.inc:192
 msgid "Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
@@ -583,7 +584,7 @@ msgstr "Athuga hvort <b>jhead</b> er sett upp, svo að Gallery geti skoðað EXIF-h
 #: ../setup/config_data.inc:194
 #, php-format
 msgid "I can't find <b>jhead</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."
-msgstr "Ég finn ekki <b>jhead</b>.  Ef það er sett upp og ekki í skipanaslóð vefþjónsnotandans, þá er það í lagi&#8212; þú getur gefið upp slóðina á næstu síðu.  Ef það er ekki sett upp, þá getur þú sett það upp sjálf(ur). Jhead er forrit til að lesa EXIF-hausa.  Forritskóði, þýdd linux-forrit og windows-forrit er að finna á %sjhead-heimasíðunni%s."
+msgstr "Finn ekki <b>jhead</b>.  Ef það er sett upp og ekki í skipanaslóð vefþjónsnotandans, þá er það í lagi&#8212; þú getur gefið upp slóðina á næstu síðu.  Ef það er ekki sett upp, þá getur þú sett það upp sjálf(ur). Jhead er forrit til að lesa EXIF-hausa.  Forritskóði, þýdd linux-forrit og windows-forrit er að finna á %sjhead-heimasíðunni%s."
 
 #: ../setup/config_data.inc:201
 msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."
@@ -592,7 +593,7 @@ msgstr "Athuga hvort <b>jpegtran</b> er sett upp, svo að Gallery geti snúið JPEG
 #: ../setup/config_data.inc:203
 #, php-format
 msgid "I can't find <b>jpegtran</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."
-msgstr "Ég finn ekki <b>jtran</b>.  Ef það er sett upp og það er ekki í flýtivísi (e. path) vefþjónsnotandans, þá er það í lagi&#8212;þú getur gefið upp slóðina á næstu síðu.  Ef það er ekki sett upp þá getur þú sett það sjálf(ur) upp.  Jpegtran er ókeypis forrit dreift af Sjálfstæðum JPEG hóp sem partur af <i>libjpeg</i>.  Kóða forritsins er hægt að finna á %sheimasíðu IJG%s.  Hægt er að finna vistþýdda útgáfu af forritinu á %svefsíðu JPEG klúbbsins%s eða í <i>libjpeg</i> pakkanum sem fylgir Linux dreifingum."
+msgstr "Finn ekki <b>jtran</b>.  Ef það er sett upp og það er ekki í flýtivísi (e. path) vefþjónsnotandans, þá er það í lagi&#8212;þú getur gefið upp slóðina á næstu síðu.  Ef það er ekki sett upp þá getur þú sett það sjálf(ur) upp.  Jpegtran er ókeypis forrit dreift af Sjálfstæðum JPEG hóp sem partur af <i>libjpeg</i>.  Kóða forritsins er hægt að finna á %sheimasíðu IJG%s.  Hægt er að finna vistþýdda útgáfu af forritinu á %svefsíðu JPEG klúbbsins%s eða í <i>libjpeg</i> pakkanum sem fylgir Linux dreifingum."
 
 #: ../setup/config_data.inc:210
 msgid "Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."
@@ -637,7 +638,7 @@ msgstr "Myndasafn"
 
 #: ../setup/config_data.inc:260
 msgid "Use Icons ?"
-msgstr ""
+msgstr "Nota íkon?"
 
 #: ../setup/config_data.inc:261
 msgid "You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."
@@ -645,15 +646,15 @@ msgstr ""
 
 #: ../setup/config_data.inc:262
 msgid "Icons and text"
-msgstr ""
+msgstr "Íkon og texta"
 
 #: ../setup/config_data.inc:263
 msgid "Text only"
-msgstr ""
+msgstr "Bara text"
 
 #: ../setup/config_data.inc:264
 msgid "Icons only"
-msgstr ""
+msgstr "Bara íkon"
 
 #: ../setup/config_data.inc:269
 msgid "Skin Name"
@@ -665,10 +666,9 @@ msgstr "Veldu útlitspakka (e. skin) til þess að nota á Galleríið. Þú getur nú va
 
 #: ../setup/config_data.inc:271
 msgid "Here you can get a more Gallery Skins by Drazan"
-msgstr ""
+msgstr "Héðan er hægt að sækja fleiri útlit frá Drazan"
 
 #: ../setup/config_data.inc:277
-#, fuzzy
 msgid "Default upload method"
 msgstr "Sjálfvalin upphalsaðferð"
 
@@ -794,7 +794,6 @@ msgid "PNM Composite (Overlay)"
 msgstr ""
 
 #: ../setup/config_data.inc:407
-#, fuzzy
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "Þetta gildi skiptir aðeins máli ef þú notar NetPBM.  NetPBM notar hjálparforrit til að umbreyta innra myndsniði sínu yfir í JPEG.  Þetta hjálparforrit heitir ýmist <i>ppmtojpeg</i> eða <i>pnmtojpeg</i> eftir því hvaða útgáfu af NetPBM þú hefur sett up.  Gáðu í NetPBM-möppuna þína til að sjá hvort forritið þú ert með, og tilgreindu það hér.  Ef þú ert ekki viss, giskaðu þá bara og við reynum að staðfesta það fyrir þig."
 
@@ -808,20 +807,19 @@ msgstr "Skráaslóðin á möppuna sem inniheldur ImageMagick á kerfinu þínu."
 
 #: ../setup/config_data.inc:418
 msgid "I can't find ImageMagick at the location you provided."
-msgstr "Ég finn ekki ImageMagick á staðnum sem þú tilgreindir."
+msgstr "Finn ekki ImageMagick á staðnum sem þú tilgreindir."
 
 #: ../setup/config_data.inc:428
 msgid "Auto-rotate images"
 msgstr "Snúa myndum sjálfvirkt"
 
 #: ../setup/config_data.inc:429
-#, fuzzy
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras."
-msgstr "Ef þetta er valið reynir Gallery að snúa myndum sjálfkrafa þegar þær eru settar inn, eftir upplýsingum um hvernig myndavélin sneri, sem sumar nýrri stafrænar myndavélar geyma í JPEG-EXIF-gögnunum.  Þarfnast Jhead EXIF-forritsins, útgáfu 1.9 eða hærri (sjá hér á eftir)."
+msgstr "Ef þetta er valið reynir Gallery að snúa myndum sjálfkrafa þegar þær eru settar inn, eftir upplýsingum um hvernig myndavélin sneri, sem sumar nýrri stafrænar myndavélar geyma í JPEG-EXIF-gögnunum."
 
 #: ../setup/config_data.inc:430
 msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
-msgstr ""
+msgstr "Þarfnast Jhead EXIF forrits ´´utgáfu 1.9 eða nýrri (Sjá önnur tæki)"
 
 #: ../setup/config_data.inc:431 ../setup/config_data.inc:493
 #: ../setup/config_data.inc:507 ../setup/config_data.inc:513
@@ -884,9 +882,8 @@ msgid "The JPEG file format trades off size versus quality.  Gallery can control
 msgstr "JPEG-skráasniðið gerir fórnarskipti (tradeoff) á milli skráarstærðar og myndgæða.  Gallery getur stýrt gæðastuðli JPEG-þjöppunarinnar í skrám sem það býr til þegar JPEG-myndir eru stækkaðar/smækkaðar, þeim snúið eða smámyndir búnar til.  Hins vegar er oft tilgangslaust að auka þennan gæðastuðul umfram eitthvert mark, því að það stækkar aðeins skrárnar án þess að hafa nein sjáanleg áhrif á gæði myndarinnar.  Ekki er mælt með því að setja þetta gildi á &quot;100&quot;.  Ef þú verður var/vör við að smámyndir þínar og smækkaðar myndir séu stærri (í bætum talið) en frummyndirnar og þér fellur það ekki, þá geturðu prófað að lækka þetta gildi.  <b>Ath.</b> að breytingar á þessu gildi hafa aðeins áhrif á myndir sem Gallery býr til eða breytir <i>framvegis</i>."
 
 #: ../setup/config_data.inc:450
-#, fuzzy
 msgid "Embedded Gallery"
-msgstr "Opna Gallery"
+msgstr "Innbygt Gallery"
 
 #: ../setup/config_data.inc:451
 msgid "Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."
@@ -894,7 +891,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:454
 msgid "GeekLog Dir"
-msgstr ""
+msgstr "GeekLog mappa"
 
 #: ../setup/config_data.inc:456
 msgid "If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"
@@ -905,19 +902,16 @@ msgid "Main Gallery page"
 msgstr "Forsíða myndasafns"
 
 #: ../setup/config_data.inc:471
-#, fuzzy
 msgid "Show the album tree ?"
-msgstr "Sýna albúm í tré formi"
+msgstr "Sýna albúm í tré formi?"
 
 #: ../setup/config_data.inc:472
-#, fuzzy
 msgid "If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."
 msgstr "Ef þú virkjar þessa stillingu, þá sést listi af öllum undiralbúmum þegar efsta lag myndasafnsins er skoðað.  Þetta gerir það mun auðveldara að vafra á tiltekið undiralbúm (en það getur gert forsíðu myndasafnsins verulega sóðalega)."
 
 #: ../setup/config_data.inc:473
-#, fuzzy
 msgid "No tree"
-msgstr "Athugið"
+msgstr "Ekki tré"
 
 #: ../setup/config_data.inc:474
 #, php-format
@@ -933,7 +927,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:480
 msgid "Complete Tree"
-msgstr ""
+msgstr "Allt tréð"
 
 #: ../setup/config_data.inc:484
 msgid "Highlight size"
@@ -953,7 +947,7 @@ msgstr "Sýna eiganda hvers albúms við hlið albúmsins?"
 
 #: ../setup/config_data.inc:498
 msgid "Albums per page"
-msgstr "Albúm á síðu"
+msgstr "Fjöldi Albúma á  hverri síðu"
 
 #: ../setup/config_data.inc:499
 msgid "How many albums should be displayed per Gallery page?"
@@ -969,19 +963,17 @@ msgstr "Birta leitarvél á forsíðu myndasafnsins?"
 
 #: ../setup/config_data.inc:511
 msgid "Accurate Photo Count"
-msgstr ""
+msgstr "Nákvæm talning mynda"
 
 #: ../setup/config_data.inc:512
 msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
 msgstr ""
 
 #: ../setup/config_data.inc:517
-#, fuzzy
 msgid "Frame around albums"
-msgstr "Rammi utan um smámyndir"
+msgstr "Rammi utan um albúm"
 
 #: ../setup/config_data.inc:518
-#, fuzzy
 msgid "On the main page, the image representing each album has a frame around it.  The following styles are available:"
 msgstr "Á forsíðunni birtist rammi utan um forsíðumynd hvers albúms.  Eftirfarandi rammagerðir eru til:"
 
@@ -991,19 +983,19 @@ msgstr "Önnur tæki"
 
 #: ../setup/config_data.inc:535 ../setup/config_data.inc:547
 #: ../setup/config_data.inc:559
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
-msgstr "Skráaslóðin á <b>unzip</b>-forritið.  Þetta er ekki nauðsynlegt, svo að ef þú ert ekki með það, hafðu þá ekki of miklar áhyggjur af því."
+msgstr "Skráarslóðin á <b>%s</b>-forritið.  T.d. %s eða %s. Þetta er ekki nauðsynlegt, svo að ef þú ert ekki með það, hafðu þá ekki of miklar áhyggjur af því."
 
 #: ../setup/config_data.inc:571 ../setup/config_data.inc:583
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
-msgstr "Skráaslóðin á <b>jhead</b>-forritið fyrir EXIF-lestur.  Þetta er ekki nauðsynlegt, svo að ef þú ert ekki með það, hafðu þá ekki of miklar áhyggjur af því."
+msgstr "Skráarslóðin á <b>%s</b>-forritið fyrir EXIF-lestur.  T.d.. %s ea %s. Þetta er ekki nauðsynlegt, svo að ef þú ert ekki með það, hafðu þá ekki of miklar áhyggjur af því."
 
 #: ../setup/config_data.inc:595
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the <b>jpegtran</b> utility.  E.g. %s or %s.  This is optional so if you don't have it, don't worry about it too much."
-msgstr "Skráaslóðin á <b>jpegtran</b>-hjálparforritið.  Þetta er ekki nauðsynlegt, svo að ef þú ert ekki með það, hafðu þá ekki of miklar áhyggjur af því.  T.d. %s eða %s"
+msgstr "Skráarslóðin á <b>jpegtran</b>-hjálparforritið, T.d. %s eða %s. Þetta er ekki nauðsynlegt, svo að ef þú ert ekki með það, hafðu þá ekki of miklar áhyggjur af því.  "
 
 #: ../setup/config_data.inc:620
 msgid "Languages and locales"
@@ -1035,7 +1027,6 @@ msgid "Gallery is displayed in the language the browser sends"
 msgstr "Myndasafnið er birt á því tungumáli sem vafri notandans gefur upp"
 
 #: ../setup/config_data.inc:638
-#, fuzzy
 msgid "The User can choose the language via pulldown menu or national flags."
 msgstr "Notandinn getur valið tungumálið úr lista eða með því að smella á þjóðfána."
 
@@ -1044,18 +1035,16 @@ msgid "Available languages"
 msgstr "Tungumál í boði"
 
 #: ../setup/config_data.inc:645
-#, fuzzy
 msgid "These languages will be available as user choices in a pulldown menu or national flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."
 msgstr "Þessi tungumál munu verða í boði fyrir notandann að velja úr lista eða með því að smella á þjóðfána, ef þú hefur valið tungumálaham 3, og skráðir notendur geta stillt þau sem sjálfvalin tungumál þeirra í tungumálaham 2 eða 3."
 
 #: ../setup/config_data.inc:651
 msgid "Show flags?"
-msgstr "Sýna fána?"
+msgstr "Birta fána?"
 
 #: ../setup/config_data.inc:653
-#, fuzzy
 msgid "In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."
-msgstr "Í tungumálaham 3 getur þú kosið að sýna þjóðfána í stað lítillar listavalmyndar."
+msgstr "Í tungumálaham 3 getur þú kosið að birta þjóðfána í stað lítillar listavalmyndar."
 
 #: ../setup/config_data.inc:659
 msgid "Format for date strings."
@@ -1068,7 +1057,7 @@ msgstr "Þessi sniðstrengur (format string) verður notaður til að birta %s í %s. 
 
 #: ../setup/config_data.inc:661
 msgid "date without time"
-msgstr "dagsetning án tíma dags"
+msgstr "dagsetning án klukku"
 
 #: ../setup/config_data.inc:662 ../setup/config_data.inc:672
 msgid "http://www.php.net/manual/en/function.strftime.php"
@@ -1085,7 +1074,7 @@ msgstr "Framsetning dagsetninga ásamt tíma dags."
 
 #: ../setup/config_data.inc:671
 msgid "date with time"
-msgstr "dagsetning ásamt tíma dags"
+msgstr "dagsetning ásamt klukkuslætti"
 
 #: ../setup/config_data.inc:673
 #, php-format
@@ -1107,10 +1096,10 @@ msgstr "Prófa tölvupóst"
 
 #: ../setup/config_data.inc:697
 msgid "Enable email"
-msgstr "Virkja tölvupóst:"
+msgstr "Virkja tölvupóst"
 
 #: ../setup/config_data.inc:699
-#, fuzzy, php-format
+#, php-format
 msgid "Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."
 msgstr "Virkjar tölvupóst fyrir allt myndasafnið.  Ef þú stillir þetta á %s, þá gildir ekkert af stillingunum sem eftir eru í þessum kafla."
 
@@ -1143,7 +1132,6 @@ msgid "Email subject prefix"
 msgstr "Forskeyti í efnislínu tölvupósta"
 
 #: ../setup/config_data.inc:726
-#, fuzzy
 msgid "All Gallery emails will have this as the first part of their subject."
 msgstr "Öll tölvuskeyti sem Gallery sendir munu hafa þetta forskeyti fremst í efnislínunni (subject)."
 
@@ -1174,7 +1162,6 @@ msgid "Allow visitors to self register."
 msgstr "Leyfa gestum að skrá sig sjálfir sem nýja notendur."
 
 #: ../setup/config_data.inc:753
-#, fuzzy
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
 msgstr "Ef þetta er virkjað geta gestir þínir sjálfir búið til nýjar notendaskráningar fyrir sig."
 
@@ -1183,9 +1170,8 @@ msgid "This option requires the Email feature to be enabled."
 msgstr ""
 
 #: ../setup/config_data.inc:757
-#, fuzzy
 msgid "Email"
-msgstr "Senda tölvupóst"
+msgstr "Tölvupóstur"
 
 #: ../setup/config_data.inc:760
 msgid "Self registered users can create albums."
@@ -1200,7 +1186,6 @@ msgid "Enable bulk account creation"
 msgstr "Virkja skráningu margra notenda í einu"
 
 #: ../setup/config_data.inc:767
-#, fuzzy
 msgid "This option allows you to create many new user accounts at one time by creating a file of new users."
 msgstr "Þessi valkostur gerir þér kleift að búa til marga nýja notendur í einu, með því að lista þá upp í skrá."
 
@@ -1250,7 +1235,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:804
 msgid "SMTP Server"
-msgstr ""
+msgstr "SMTP Þjónn"
 
 #: ../setup/config_data.inc:805
 msgid "The name or IP address of the SMTP Server you want to use."
@@ -1266,7 +1251,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:821
 msgid "SMTP Port"
-msgstr ""
+msgstr "SMTP Port"
 
 #: ../setup/config_data.inc:822
 msgid "The port on the SMTP server you are connecting to."
@@ -1274,16 +1259,15 @@ msgstr ""
 
 #: ../setup/config_data.inc:830
 msgid "SMTP account name"
-msgstr ""
+msgstr "SMTP Notendanafn"
 
 #: ../setup/config_data.inc:831
 msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
 msgstr ""
 
 #: ../setup/config_data.inc:839
-#, fuzzy
 msgid "SMTP password"
-msgstr "Lykilorð Stjórnanda"
+msgstr "SMTP Lykilorð"
 
 #: ../setup/config_data.inc:840
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
@@ -1354,7 +1338,6 @@ msgid "This option will allow visitors to have your slideshows repeat until they
 msgstr "Þessi valkostur leyfir gestum að láta myndasýninguna ganga þar til þeir loka glugganum eða fara á aðra síðu.  Stilltu þetta á %s ef þú vilt spara bandvídd."
 
 #: ../setup/config_data.inc:891
-#, fuzzy
 msgid "Slideshow Mode"
 msgstr "Gerð myndasýningar"
 
@@ -1375,9 +1358,8 @@ msgid "Comments"
 msgstr "Athugasemdir"
 
 #: ../setup/config_data.inc:906
-#, fuzzy
 msgid "Enable commenting"
-msgstr "Virkja tölvupóst:"
+msgstr "Virkja athugasemdir"
 
 #: ../setup/config_data.inc:907
 msgid "This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
@@ -1409,7 +1391,7 @@ msgstr "Albúm og undiralbúm með athugasemdurm verða merkt til að gefa það til ky
 
 #: ../setup/config_data.inc:920 ../setup/config_data.inc:927
 msgid "Both"
-msgstr "Hvort tveggja"
+msgstr "Bæði"
 
 #: ../setup/config_data.inc:921
 msgid "Images and albums that have comments will be marked."
@@ -1434,9 +1416,8 @@ msgid "When logged in, comments will automatically use format described below, u
 msgstr ""
 
 #: ../setup/config_data.inc:945
-#, fuzzy
 msgid "Format for commenter names"
-msgstr "Framsetning dagsetninga."
+msgstr "Framsetning höfunda athugasemda"
 
 #: ../setup/config_data.inc:946
 msgid "Commenter names of logged in users can be displayed in a variety of different ways"
@@ -1475,26 +1456,23 @@ msgid "Do you want to allow everybody to see a complete overview of all Comments
 msgstr ""
 
 #: ../setup/config_data.inc:977
-#, fuzzy
 msgid "Watermarking"
-msgstr "Tímabundin geymsla (temp)"
+msgstr "Vatnsmerking"
 
 #: ../setup/config_data.inc:979
 msgid "Choose wether you want to enable or disable watermarking. And set the defaults"
 msgstr ""
 
 #: ../setup/config_data.inc:980
-#, fuzzy
 msgid "Watermarking is not possible in this installation !"
-msgstr "NetPBM er ekki í notkun í þessari uppsetningu."
+msgstr "Vatnsmerking er ekki möguleg á þessum þjóni!"
 
 #: ../setup/config_data.inc:983
-#, fuzzy
 msgid "Watermark directory"
-msgstr "Tímabundin geymsla (temp)"
+msgstr "Mappa fyrir vatnsmerki"
 
 #: ../setup/config_data.inc:984
-#, fuzzy, php-format
+#, php-format
 msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
 msgstr "Full skráaslóð á skráakerfinu fyrir möppuna þar sem myndir þínar verða geymdar.  Þessi mappa ætti að vera tóm í byrjun&#8212;Gallery mun fylla hana.  Ath. að þessi mappa þarf að vera skrifanleg fyrir notandann sem keyrir vefþjóninn (í þínu tilfelli er sá notandi %s)."
 
@@ -1507,19 +1485,16 @@ msgid "Here you can choose which of the images should be watermarked per default
 msgstr ""
 
 #: ../setup/config_data.inc:1000
-#, fuzzy
 msgid "Watermark both resized and full images"
-msgstr "Tímabundin geymsla (temp)"
+msgstr "Vatnsmerkja bæði smækkaðar og upphaflegu myndir"
 
 #: ../setup/config_data.inc:1001
-#, fuzzy
 msgid "Watermark resized image only"
-msgstr "Tímabundin geymsla (temp)"
+msgstr "Vatnsmerkja einungis breyttar myndir"
 
 #: ../setup/config_data.inc:1002
-#, fuzzy
 msgid "Watermark full sized image only"
-msgstr "Tímabundin geymsla (temp)"
+msgstr "Vatnsmerkja einungis upphaflegu mynd"
 
 #: ../setup/config_data.inc:1012
 msgid "Statistics"
@@ -1555,7 +1530,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:1023
 msgid "Gallery can give a lot of statistics for admins, however you can enable some of them to normal users."
-msgstr ""
+msgstr "Gallery getur birt ýmsar tölfræðilegar upplýsingar fyrir stjórnanda, Það er einnig hægt að virkja sumar hverjar fyrir venjulega notendur"
 
 #: ../setup/config_data.inc:1024
 #, php-format
@@ -1570,7 +1545,7 @@ msgstr ""
 #: ../setup/config_data.inc:1052 ../setup/config_data.inc:1063
 #: ../setup/config_data.inc:1074 ../setup/config_data.inc:1085
 msgid "On"
-msgstr ""
+msgstr "Virkt"
 
 #: ../setup/config_data.inc:1034
 msgid "View cache expiration"
@@ -1594,9 +1569,8 @@ msgid "Date cache expiration"
 msgstr ""
 
 #: ../setup/config_data.inc:1062
-#, fuzzy
 msgid "Vote cache"
-msgstr "Hverjir geta greitt atkvæði"
+msgstr "Atkvæða cache"
 
 #: ../setup/config_data.inc:1067
 msgid "Vote cache expiration"
@@ -1624,7 +1598,7 @@ msgstr "Tæknilegt"
 
 #: ../setup/config_data.inc:1102
 msgid "The settings in this section are intended for advanced users only."
-msgstr ""
+msgstr "Stillingar í þessum kafla eru  aðeins ætlaðar lengra komnum."
 
 #: ../setup/config_data.inc:1104
 msgid "Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk."
@@ -1644,7 +1618,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:1113
 msgid "Disable register_globals check"
-msgstr ""
+msgstr "Slá af register_global sjékki"
 
 #: ../setup/config_data.inc:1114
 #, php-format
@@ -1669,23 +1643,23 @@ msgstr ""
 
 #: ../setup/config_data.inc:1132
 msgid "24 Hours"
-msgstr ""
+msgstr "24 tímar"
 
 #: ../setup/config_data.inc:1133
 msgid "12 Hours"
-msgstr ""
+msgstr "12 tímar"
 
 #: ../setup/config_data.inc:1134
 msgid "6 Hours"
-msgstr ""
+msgstr "6 tímar"
 
 #: ../setup/config_data.inc:1135
 msgid "1 Hour"
-msgstr ""
+msgstr "1 tími"
 
 #: ../setup/config_data.inc:1136
 msgid "30 Minutes"
-msgstr ""
+msgstr "30 mínútur"
 
 #: ../setup/config_data.inc:1140
 msgid "Random Block Retrieval Attempts"
@@ -1705,16 +1679,15 @@ msgstr "EXIF-gögnin sem lesin eru úr JPEG-skrám er hægt að flýtivista eftir að s
 
 #: ../setup/config_data.inc:1155
 msgid "Developer Mode"
-msgstr ""
+msgstr "Forritarahamur"
 
 #: ../setup/config_data.inc:1156
 msgid "Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."
-msgstr ""
+msgstr "Virkja Forritaraham til að sjá PHP upplýsingar.  Mælum ekki með virkjun á þessum ham fyrir venjulega notendur."
 
 #: ../setup/config_data.inc:1161
-#, fuzzy
 msgid "Use Syslog"
-msgstr "Nota %s"
+msgstr "Nota Syslog"
 
 #: ../setup/config_data.inc:1162
 msgid "Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"
@@ -1747,61 +1720,57 @@ msgstr "Þetta er setubreytan (&quot;session variable&quot;) sem inniheldur allar
 
 #: ../setup/config_data.inc:1192
 msgid "RSS Publisher"
-msgstr ""
+msgstr "RSS Þjónn"
 
 #: ../setup/config_data.inc:1193
 msgid "Options for the Gallery RSS Publisher"
-msgstr ""
+msgstr "Stillingar fyrir RSS Þjón"
 
 #: ../setup/config_data.inc:1196
 msgid "Enable RSS Generator"
-msgstr ""
+msgstr "Virkja RSS Þjón"
 
 #: ../setup/config_data.inc:1197
 msgid "Enable or Disable the Gallery RSS Generator"
-msgstr ""
+msgstr "Slá af eða Virkja Gallery RSS þjónustuna"
 
 #: ../setup/config_data.inc:1199 ../setup/config_data.inc:1240
 #: ../setup/config_data.inc:1248 ../setup/config_data.inc:1256
-#, fuzzy
 msgid "Yes"
-msgstr "já"
+msgstr "Já"
 
 #: ../setup/config_data.inc:1200 ../setup/config_data.inc:1241
 #: ../setup/config_data.inc:1249 ../setup/config_data.inc:1257
-#, fuzzy
 msgid "No"
-msgstr "Athugið"
+msgstr "Nei"
 
 #: ../setup/config_data.inc:1204
 msgid "RSS Content"
-msgstr ""
+msgstr "Innihald RSS"
 
 #: ../setup/config_data.inc:1205
 msgid "Specifies which information is to be included in your RSS feed."
-msgstr ""
+msgstr "Velja hvaða upplýsingar RSS flaumur mun innihalda."
 
 #: ../setup/config_data.inc:1207
 msgid "Basic information only"
-msgstr ""
+msgstr "Aðeins grunnupplýsingar"
 
 #: ../setup/config_data.inc:1208
-#, fuzzy
 msgid "Album highlight"
-msgstr "Myndasýning albúms"
+msgstr "Forsíðumynd albúms"
 
 #: ../setup/config_data.inc:1209
 msgid "All image thumbnails"
-msgstr ""
+msgstr "Allar smámyndir"
 
 #: ../setup/config_data.inc:1210
 msgid "All image thumbnails and captions"
-msgstr ""
+msgstr "Alar smámyndir og fyrirsagnir"
 
 #: ../setup/config_data.inc:1214
-#, fuzzy
 msgid "RSS Highlight"
-msgstr "Stærð forsíðumyndar albúma"
+msgstr "Forsíðumynd RSS"
 
 #: ../setup/config_data.inc:1215
 msgid "Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."
@@ -1817,7 +1786,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:1229
 msgid "Visible Albums Only"
-msgstr ""
+msgstr "Einungis sýnileg albúm"
 
 #: ../setup/config_data.inc:1230
 msgid "Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."
@@ -1825,16 +1794,15 @@ msgstr ""
 
 #: ../setup/config_data.inc:1232
 msgid "Display Visible Albums Only"
-msgstr ""
+msgstr "Sýna einungis ófalinn albúm"
 
 #: ../setup/config_data.inc:1233
-#, fuzzy
 msgid "Display Hidden Albums"
-msgstr "Sýna teljara innan hvers albúms?"
+msgstr "Sýna falin albúm"
 
 #: ../setup/config_data.inc:1237
 msgid "Use dc:date"
-msgstr ""
+msgstr "Nota dc:date"
 
 #: ../setup/config_data.inc:1238
 msgid "(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."
@@ -1842,7 +1810,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:1245
 msgid "Use Big Photo"
-msgstr ""
+msgstr "Nota stóra mynd"
 
 #: ../setup/config_data.inc:1246
 msgid "(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."
@@ -1885,16 +1853,15 @@ msgid "Border color"
 msgstr "Litur ramma"
 
 #: ../setup/config_data.inc:1307
-#, fuzzy, php-format
+#, php-format
 msgid "Default color of (image) borders. You can learn about %scolors%s here."
-msgstr "Sjálfvalinn litur myndramma.  Þú getur lært um %sliti%s þarna."
+msgstr "Sjálfvalinn litur myndramma.  Þú getur lesið meira um %sliti%s hér.."
 
 #: ../setup/config_data.inc:1318
 msgid "Border width"
 msgstr "Breidd ramma"
 
 #: ../setup/config_data.inc:1319
-#, fuzzy
 msgid "Default width of (image) borders."
 msgstr "Sjálfvalin breidd myndramma."
 
@@ -1947,9 +1914,8 @@ msgid "You can optionally limit the dimensions your images on upload to Gallery.
 msgstr "Þú getur, ef þú vilt, takmarkað stærð mynda þinna þegar þú hleður þeim inn í Gallery."
 
 #: ../setup/config_data.inc:1364 ../setup/config_data.inc:1372
-#, fuzzy
 msgid "Warning:"
-msgstr "Aðvörun"
+msgstr "Aðvörun:"
 
 #: ../setup/config_data.inc:1365
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
@@ -2013,7 +1979,6 @@ msgid "Printing Services"
 msgstr "Prentþjónusta"
 
 #: ../setup/config_data.inc:1413
-#, fuzzy
 msgid "Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so they are good for the European market. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
 msgstr "Leyfa notendum að prenta myndir beint úr albúminu.  Fotokasten er prentþjónusta staðsett í Þýskalandi, svo að hún hentar evrópska markaðnum. EZ Prints, PhotoAccess og Shutterfly eru staðsettar í Bandaríkjunum.  Allir þessir þjónustuaðilar gefa Gallery-verkefninu dálítið fé fyrir hverja útprentun sem þú framkvæmir.  Ef þú velur Shutterfly &quot;með peningagjöf&quot;-valkostinn, þá rukkar Gallery 2 cent í viðbót fyrir hverja mynd sem þú prentar út, og 1.8 cent af þessu verður gefið aftur til Gallery-verkefnisins. EZ Prints, PhotoAccess og Fotokasten rukka ekki aukalega fyrir Gallery-gjöfina. Að nota þessa þjónustuaðila er góð leið fyrir þig að hjélpa til við að styðja þennan frjálsa hugbúnað."
 
@@ -2035,14 +2000,12 @@ msgid "Gallery Link"
 msgstr "Tengill myndasafns"
 
 #: ../setup/config_data.inc:1464
-#, fuzzy
 msgid "Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
 msgstr "Birta tengil á forsíðu myndasafnsins innan hvers albúms?  Ef þú slekkur á þessum valkosti, þá getur notandinn ekki vafrað út úr albúminu.  Þetta er aðeins nytsamlegt þegar þú vilt fella albúm inn í vefkerfi og ekki leyfa notendum (auðveldlega) að skoða hin albúmin í myndasafninu."
 
 #: ../setup/config_data.inc:1469
-#, fuzzy
 msgid "Default Album Permissions"
-msgstr "Fjöldi dálka"
+msgstr "Sjálfgefinar heimildir albúma"
 
 #: ../setup/config_data.inc:1470
 msgid "Defines the default set of permissions for an album.  Specifically, who can see the album, and view its photos."
@@ -2055,7 +2018,7 @@ msgstr "Allir"
 
 #: ../setup/config_data.inc:1471
 msgid "Logged-In Users"
-msgstr ""
+msgstr "Innskráðir notendur"
 
 #: ../setup/config_data.inc:1481
 msgid "Data displayed"
@@ -2324,19 +2287,19 @@ msgid "This frame will appear around fulled sized and resized photos."
 msgstr "Þessi rammi mun birtast utan um ljósmyndir í fullri stærð og smækkaðar ljósmyndir."
 
 #: ../setup/confirm.inc:44
-#, fuzzy, php-format
+#, php-format
 msgid "You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."
 msgstr "Þú verður að búa til tómu skrána %s og breyta aðgangsheimildum á hana í 777 (chmod 777).  Sjá nánar í %s."
 
 #: ../setup/confirm.inc:52
-#, fuzzy, php-format
+#, php-format
 msgid "File %s is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."
-msgstr "Þú verður að búa til tómu skrána %s og breyta aðgangsheimildum á hana í 777 (chmod 777).  Sjá nánar í %s."
+msgstr ""
 
 #: ../setup/confirm.inc:56
-#, fuzzy, php-format
+#, php-format
 msgid "File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."
-msgstr "Þú verður að búa til tómu skrána %s og breyta aðgangsheimildum á hana í 777 (chmod 777).  Sjá nánar í %s."
+msgstr "Skráinn %s er ekki skrifanleg, breytið aðgangsheimildum á henni í 777 (chmod 777).  Sjá nánar í %s."
 
 #: ../setup/confirm.inc:89 ../setup/confirm.inc:183
 msgid "missing"
@@ -2366,9 +2329,9 @@ msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>&quot;%s&quot;</b> verður að vera jákvæð tala"
 
 #: ../setup/confirm.inc:235
-#, fuzzy, php-format
+#, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a number"
-msgstr "%s: <b>&quot;%s&quot;</b> verður að vera jákvæð tala"
+msgstr "%s: <b>&quot;%s&quot;</b> verður að vera tala"
 
 #: ../setup/confirm.inc:243
 #, php-format
@@ -2396,9 +2359,9 @@ msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if
 msgstr "%s: %s er til, en er ekki skrifanlegt af vefþjónsnotandanum.  Reyndu: %s eða ef það virkar ekki: %s.  Gakktu einnig úr skugga um að ef þú ert með %s takmörkun, þá sé þessi &quot;tmp&quot;-mappa undir skráaslóðinni %s"
 
 #: ../setup/confirm.inc:340
-#, fuzzy, php-format
+#, php-format
 msgid "%s: <b>%s</b> must be an enabled for this feature to function!"
-msgstr "%s: <b>%s</b> verður að vera keyranleg skrá!"
+msgstr "%s: <b>%s</b> verður að vera virkt til að þetta virki!"
 
 #: ../setup/confirm.inc:365
 #, php-format
@@ -2406,9 +2369,9 @@ msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG co
 msgstr "Fann ekki %s.  Rannsakaðu NetPBM-möppuna þína til að sjá hvaða PNG->JPEG-breyti þú ert með (eða reyndu bara að nota %s í staðinn).  Skoðaðu vinsamlegast uppsetninguna þína (eða notaðu ImageMagick)."
 
 #: ../setup/confirm.inc:373
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
-msgstr "Fann ekki %s.  Rannsakaðu NetPBM-möppuna þína til að sjá hvaða PNG->JPEG-breyti þú ert með (eða reyndu bara að nota %s í staðinn).  Skoðaðu vinsamlegast uppsetninguna þína (eða notaðu ImageMagick)."
+msgstr "Fann ekki %s.  Skoðaðu NetPBM-möppuna þína til að sjá hvaða PNG->JPEG-breyti þú ert með (eða reyndu bara að nota %s í staðinn).  Skoðaðu vinsamlegast uppsetninguna þína (eða notaðu ImageMagick)."
 
 #: ../setup/confirm.inc:385
 #, php-format
@@ -2450,21 +2413,19 @@ msgid "Refresh"
 msgstr ""
 
 #: ../setup/confirm.inc:482
-#, fuzzy, php-format
+#, php-format
 msgid "One error."
 msgid_plural "%d errors."
-msgstr[0] "Ein villa"
-msgstr[1] "Ein villa"
+msgstr[0] "Ein villa."
+msgstr[1] "%d villur."
 
 #: ../setup/confirm.inc:482
-#, fuzzy
 msgid "No errors."
-msgstr "engar villur"
+msgstr "Engar villur."
 
 #: ../setup/confirm.inc:484
-#, fuzzy
 msgid "See Details below."
-msgstr "%s.  Nánar um þetta neðar."
+msgstr "Sjá nánar um þetta hér fyrir neðan."
 
 #: ../setup/confirm.inc:500
 msgid "There are errors in your configuration."
@@ -2484,21 +2445,18 @@ msgstr ""
 
 #: ../setup/constants.inc:41 ../setup/constants.inc:156
 #: ../setup/defaults.inc:43 ../setup/defaults.inc:131
-#, fuzzy
 msgid "Previous Step"
-msgstr "Fyrri síða"
+msgstr "Fyrra skref"
 
 #: ../setup/constants.inc:42 ../setup/constants.inc:157
 #: ../setup/defaults.inc:44 ../setup/defaults.inc:132
-#, fuzzy
 msgid "Previous Tab"
-msgstr "Fyrri síða"
+msgstr "Fyrri kafli"
 
 #: ../setup/constants.inc:43 ../setup/constants.inc:158
 #: ../setup/defaults.inc:45 ../setup/defaults.inc:133
-#, fuzzy
 msgid "Next Tab"
-msgstr "Næsta Síða"
+msgstr "Næsti kafli"
 
 #: ../setup/constants.inc:45 ../setup/constants.inc:160
 #: ../setup/defaults.inc:47 ../setup/defaults.inc:135
@@ -2514,9 +2472,8 @@ msgid "Note that these are <b>not master switches</b>. This means you can change
 msgstr ""
 
 #: ../setup/defaults.inc:34
-#, fuzzy
 msgid "If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
-msgstr "Í þessu skrefi muntu sérsníða hinar og þessar stillingar í Gallery.  Ef þetta er fyrsta skiptið sem þú sérsníður Gallery, þá muntu taka eftir að við höfum reynt að velja skynsamleg sjálfvalin gildi fyrir þig.  En þrátt fyrir það muntu líklega þurfa að gera einhverjar minniháttar breytingar.  Ef þú hefur þegar sett upp Gallery áður, þá muntu sjá að þessi síða er nú þegar frumstillt með stillingum þínum, svo að þú munt líklega ekki þurfa að gera mikið."
+msgstr "Ef þetta er fyrsta skiptið sem þú sérsníður Gallery, þá muntu taka eftir að við höfum reynt að velja skynsamleg sjálfvalin gildi fyrir þig.  En þrátt fyrir það muntu líklega þurfa að gera einhverjar minniháttar breytingar.  Ef þú hefur þegar sett upp Gallery áður, þá muntu sjá að þessi síða er nú þegar frumstillt með stillingum þínum, svo að þú munt líklega ekki þurfa að gera mikið."
 
 #: ../setup/defaults.inc:37
 msgid "Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully."
@@ -2601,9 +2558,8 @@ msgid "This allows you to see if you can use the email functions in %s."
 msgstr ""
 
 #: ../setup/diagnostics.php:102
-#, fuzzy
 msgid "Check versions"
-msgstr "Skoðaðu %s"
+msgstr "Skoða útgáfur"
 
 #: ../setup/diagnostics.php:105
 #, php-format
@@ -2611,28 +2567,25 @@ msgid "This page is for %s upgrades that have problems."
 msgstr ""
 
 #: ../setup/diagnostics.php:106
-#, fuzzy, php-format
+#, php-format
 msgid "This allows you to check you have the correct version of all your %s files."
-msgstr "Athuga hvort þú ert með nýjustu útgáfur af öllum Gallery-skrám."
+msgstr "Athuga hvort að nýjustu útgáfur af öllum %s Gallery-skrám eru til staðar"
 
 #: ../setup/frame_test.php:29 ../setup/index.php:42
 msgid "Gallery Configuration"
 msgstr "Uppsetning Gallery"
 
 #: ../setup/frame_test.php:59
-#, fuzzy
 msgid "None"
-msgstr "Athugið"
+msgstr "Engin"
 
 #: ../setup/frame_test.php:60
-#, fuzzy
 msgid "No frames"
-msgstr "Rammar"
+msgstr "Án ramma"
 
 #: ../setup/frame_test.php:61
-#, fuzzy
 msgid "Dots"
-msgstr "Ljósmyndir"
+msgstr "Punktar"
 
 #: ../setup/frame_test.php:62
 msgid "Just a simple dashed border around the thumb."
@@ -2644,21 +2597,21 @@ msgstr ""
 
 #: ../setup/frame_test.php:64
 msgid "Just a simple solid border around the thumb."
-msgstr ""
+msgstr "Heill einfaldur rammi utan um smámyndir"
 
 #: ../setup/frame_test.php:87
 #, php-format
 msgid "Skipping %s."
-msgstr ""
+msgstr "Sleppi %s."
 
 #: ../setup/frame_test.php:93
-#, fuzzy, php-format
+#, php-format
 msgid "Can't open %s"
-msgstr "Finn ekki %s!"
+msgstr "Finn ekki %s"
 
 #: ../setup/frame_test.php:171
 msgid "Close Window"
-msgstr ""
+msgstr "Loka glugga"
 
 #: ../setup/functions.inc:144
 msgid "Please retype your password here"
@@ -2678,7 +2631,7 @@ msgstr "Gildi vantar"
 
 #: ../setup/functions.inc:351
 msgid "<b>exec()</b> is not disabled on this server."
-msgstr ""
+msgstr "<b>exec()</b> er ekki óvirkt á þessum þjóni"
 
 #: ../setup/functions.inc:369
 msgid "I can read your <b>.htaccess</b> file."
@@ -2716,7 +2669,7 @@ msgstr ""
 #: ../setup/functions.inc:500 ../setup/functions.inc:572
 #, php-format
 msgid "Missing optional binary %s. %s"
-msgstr ""
+msgstr "Finn ekki auka hjálparforrit %s. %s"
 
 #: ../setup/functions.inc:504 ../setup/functions.inc:575
 #, php-format
@@ -2726,7 +2679,7 @@ msgstr "Finn ekki %s!"
 #: ../setup/functions.inc:509 ../setup/functions.inc:581
 #, php-format
 msgid "%s is not executable!"
-msgstr "Hef ekki aðgangsheimild til að keyra %s!"
+msgstr "Hef ekki heimild til að keyra %s!"
 
 #: ../setup/functions.inc:518 ../setup/functions.inc:525
 #, php-format
@@ -2734,9 +2687,8 @@ msgid "%d of %d NetPBM binaries located."
 msgstr "%d af %d NetPBM-forritum fundin."
 
 #: ../setup/functions.inc:540
-#, fuzzy
 msgid "ImageMagick not being used in this installation."
-msgstr "NetPBM er ekki í notkun í þessari uppsetningu."
+msgstr "ImageMagick er ekki í notkun í þessari uppsetningu."
 
 #: ../setup/functions.inc:559
 msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
@@ -2841,9 +2793,9 @@ msgid "System locale"
 msgstr "Kerfisstaðfærsla"
 
 #: ../setup/functions.inc:964
-#, fuzzy, php-format
+#, php-format
 msgid "<b>System</b> locale problems"
-msgstr "Kerfisstaðfærsla"
+msgstr "Staðbundin <b>kerfisvilla</b>"
 
 #: ../setup/functions.inc:965
 msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
@@ -2873,12 +2825,10 @@ msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "Í %s, fyrir nafn %s (línu %d) ætti gildið %s að vera jákvæð heiltala"
 
 #: ../setup/functions.inc:1074
-#, fuzzy
 msgid "<b>register_globals</b> is off."
-msgstr "<b>safe mode</b> er óvirkt."
+msgstr "<b>register_globals</b> er óvirkt."
 
 #: ../setup/functions.inc:1242
-#, fuzzy
 msgid "Your passwords do not match!"
 msgstr "Umsjónarlykilorðin þín passa ekki saman!"
 
@@ -2925,7 +2875,7 @@ msgstr "Þetta ætti að laga áður en lengra er haldið."
 #: ../setup/functions.inc:1319 ../setup/functions.inc:1323
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
-msgstr "Líttu á %sCheck Versions%s til að fá nánari upplýsingar."
+msgstr "Líttu á %sSkoða úgáfu%s til að fá nánari upplýsingar."
 
 #: ../setup/functions.inc:1322
 #, php-format
@@ -2933,9 +2883,9 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d skrár eru nýrri en búist var við.  Það er í lagi ef þú ert að nota forútgáfu, beta-útgáfu, CVS-smíði eða breyttan kóða."
 
 #: ../setup/functions.inc:1327
-#, fuzzy, php-format
+#, php-format
 msgid "All tested files up-to-date."
-msgstr "Allar %d skrárnar sem ég prófaði reyndust nógu nýjar."
+msgstr "Allar skrár reyndust uppfærðar"
 
 #: ../setup/functions.inc:1329
 #, php-format
@@ -2987,117 +2937,113 @@ msgstr "Lykilorð Stjórnanda"
 
 #: ../setup/functions.inc:1434 ../setup/functions.inc:1436
 #: ../setup/functions.inc:1438 ../setup/functions.inc:1446
-#, fuzzy
 msgid "Full Name"
-msgstr "Nafn"
+msgstr "Fullt Nafn"
 
 #: ../setup/functions.inc:1434 ../setup/functions.inc:1436
 #: ../setup/functions.inc:1440 ../setup/functions.inc:1448
 #: ../setup/login.inc:93
 msgid "Username"
-msgstr ""
+msgstr "Notandi"
 
 #: ../setup/functions.inc:1442
 msgid "Full name that you can click on to send email (mailto:)"
-msgstr ""
+msgstr "Fullt nafn sem þú getur smellt á til að senda tölvupóst til (mailto:)"
 
 #: ../setup/functions.inc:1444
 msgid "Username that you can click on to send email (mailto:)"
-msgstr ""
+msgstr "Notendanafn sem þú getur smellt á til að senda tölvupóst til (mailto:)"
 
 #: ../setup/functions.inc:1446 ../setup/functions.inc:1448
-#, fuzzy
 msgid "email address"
-msgstr "Netþjóns IP addressa"
+msgstr "Tölvupóstfang"
 
 #: ../setup/functions.inc:1459
 msgid "Your version of PHP handles this issue properly."
-msgstr ""
+msgstr "Þín útgáfa af PHP virkar vel undir þesum kringumstæðum."
 
 #: ../setup/functions.inc:1476
 msgid "File missing or unreadable.  Please install then re-run this test."
-msgstr ""
+msgstr "Skrá vantar eða ekki lesanleg. Vinsamlegast setjið inn og keyroð aftur þetta test."
 
 #: ../setup/functions.inc:1480
 #, php-format
 msgid "Please ensure that %s is the latest version."
-msgstr ""
+msgstr "gangið úr skugga um að %s sé nýjasta útgáfa."
 
 #: ../setup/functions.inc:1485
 #, php-format
 msgid "Testing status of %d files."
-msgstr ""
+msgstr "Athuga stöðu %d skráa"
 
 #: ../setup/functions.inc:1492
 #, php-format
 msgid "Cannot read file %s."
-msgstr ""
+msgstr "Get ekki lesið skrá %s."
 
 #: ../setup/functions.inc:1494
 msgid "File missing or unreadable."
-msgstr ""
+msgstr "Skrá vantar eða er ólæsileg."
 
 #: ../setup/functions.inc:1499
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
-msgstr ""
+msgstr "Útgáfu upplýsingar fyrir %s fundust ekki, Forritið er annað hvort of gamalt eða gallað."
 
 #: ../setup/functions.inc:1501
-#, fuzzy
 msgid "Missing version"
-msgstr "Gildi vantar"
+msgstr "Röng útgáfa"
 
 #: ../setup/functions.inc:1508
 #, php-format
 msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-msgstr ""
+msgstr "Vandamál með %s. vonaðist eftir útgáfu %s (eða nýrri) en fann %s."
 
 #: ../setup/functions.inc:1510
 #, php-format
 msgid "Expected version %s (or greater) but found %s."
-msgstr ""
+msgstr "Vænti að finna útgáfu %s (eða nýrri) en fann einungis %s"
 
 #: ../setup/functions.inc:1514
 #, php-format
 msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-msgstr ""
+msgstr "%s er í lagi.  Útgáfa forrits (%s) er nýrri útgáfa en vonast var til (%s)"
 
 #: ../setup/functions.inc:1516
 #, php-format
 msgid "Expected version %s but found %s."
-msgstr ""
+msgstr "Óskaði eftir útgáfu %s en fann %s."
 
 #: ../setup/functions.inc:1520
 #, php-format
 msgid "%s OK"
-msgstr ""
+msgstr "%s Í lagi"
 
 #: ../setup/functions.inc:1522
 #, php-format
 msgid "Found expected version %s."
-msgstr ""
+msgstr "Fann óskaða útgafu %s."
 
 #: ../setup/index.php:144
 msgid "Security violation"
 msgstr "Öryggisbrot"
 
 #: ../setup/login.inc:38
-#, fuzzy
 msgid "Please enter username and password."
-msgstr "Vinsamlegast stimplaðu aftur inn lykilorðið þitt hér"
+msgstr "Vinsamlegast settu inn notendanafn og lykilorð"
 
 #: ../setup/login.inc:55
 msgid "Invalid username or password"
-msgstr ""
+msgstr "Rangt notendanafn eða lykilorð"
 
 #: ../setup/login.inc:60
 msgid "User is not an admin - access denied"
-msgstr ""
+msgstr "Notandi er ekki stjórnandi, aðgangur ekki leyfður"
 
 #: ../setup/login.inc:68
 #, php-format
 msgid "Reset %s Password"
-msgstr ""
+msgstr "Endursetja lykilorð %s"
 
 #: ../setup/login.inc:69
 #, php-format
@@ -3105,36 +3051,34 @@ msgid "To continue the password reset process, you must edit the file &quot;%s&q
 msgstr ""
 
 #: ../setup/login.inc:82
-#, fuzzy, php-format
+#, php-format
 msgid "%s configuration"
-msgstr "Uppsetning atkvæðagreiðslu"
+msgstr "%s uppsetningu"
 
 #: ../setup/login.inc:83
 msgid "You must log in as an administrator to edit this server's configuration."
-msgstr ""
+msgstr "Þú verður að skrá þig inn sem stjórnandi til að breyta uppsettningu Gallery."
 
 #: ../setup/login.inc:84
 #, php-format
 msgid "If you have forgotten the password to your admin account, you can reset it by creating a blank file named '%s' in your %s directory and then refreshing and following the instructions on this page."
-msgstr ""
+msgstr "Hafir þú gleymt lykilorði stjórnanda (admin) þá getur þú endursett það með því að búa til tóma skrá '%s' í þinni %s möppu og síðan uppfæra (refresh) og fylgja leiðbeningum á þessari síðu."
 
 #: ../setup/login.inc:97
-#, fuzzy
 msgid "Password"
-msgstr "Lykilorð Stjórnanda"
+msgstr "Lykilorð"
 
 #: ../setup/login.inc:103
-#, fuzzy
 msgid "Login"
 msgstr "Innskráðir"
 
 #: ../setup/login.inc:104
 msgid "Reset"
-msgstr ""
+msgstr "Endurstilla"
 
 #: ../setup/login.inc:105
 msgid "Cancel"
-msgstr ""
+msgstr "Hætta"
 
 #: ../setup/session_test.php:47
 msgid "Gallery Session Test"
@@ -3201,7 +3145,7 @@ msgstr "Uppsetning vistuð, án vandkvæða!"
 
 #: ../setup/write.inc:186
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
-msgstr ""
+msgstr "við mælum með að þú keyrir 'secure.sh' eða chmod .htaccess og config.php til 644 til að auka öryggið."
 
 #: ../setup/write.inc:193
 msgid "Note"
@@ -3210,7 +3154,7 @@ msgstr "Athugið"
 #: ../setup/write.inc:195
 #, php-format
 msgid "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"
-msgstr ""
+msgstr "Þú verður að fjarlægja skránna '%s' frá setup möppunni til að gera Gallery uppsettningu örugga."
 
 #: ../setup/write.inc:208
 msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
@@ -3249,15 +3193,15 @@ msgstr "Skoða uppsetningu"
 
 #: ../html_wrap/frames/notebook/frame.def:5
 msgid "Spiral Notebook"
-msgstr ""
+msgstr "Gormabók"
 
 #: ../html_wrap/frames/notebook/frame.def:6
 msgid "A white shadowed frame with spiral notebook binding on the left side"
-msgstr ""
+msgstr "Hvítur skygður rammi í gormabók, með gorminn á vinstrihlið."
 
 #: ../html_wrap/frames/shadows/frame.def:3
 msgid "Shadows"
-msgstr ""
+msgstr "Skuggar"
 
 #: ../html_wrap/frames/shadows/frame.def:4
 msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
@@ -3280,49 +3224,26 @@ msgid "A stack of photos with a large white frame, extra wide at the bottom edge
 msgstr ""
 
 #: ../html_wrap/frames/golden/frame.def:4
-#, fuzzy
 msgid "Gold Frame"
-msgstr "Rammar"
+msgstr "Gyltur rammi"
 
 #: ../html_wrap/frames/golden/frame.def:5
 msgid "A fancy golden frame"
-msgstr ""
+msgstr "Flottur gyltur rammi"
 
 #: ../html_wrap/frames/simple_book/frame.def:3
 msgid "Original Style"
-msgstr ""
+msgstr "Upphafleg gerð"
 
 #: ../html_wrap/frames/simple_book/frame.def:4
 #, php-format
 msgid "The original %s album frame style."
-msgstr ""
+msgstr "Upphaflegur %s rammi albúms"
 
 #: ../html_wrap/frames/wooden/frame.def:4
-#, fuzzy
 msgid "Wood Frame"
-msgstr "Rammar"
+msgstr "Viðar rammi"
 
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr ""
-
-#~ msgid "You usually don't need to change anything in this section."
-#~ msgstr "Þú þarft venjulega ekki að breyta neinu í þessum kafla."
-
-#, fuzzy
-#~ msgid "Version of ImageMagick being used"
-#~ msgstr "%d af %d ImageMagick-forritum fundin."
-
-#, fuzzy
-#~ msgid "Enable caching for comments"
-#~ msgstr "Virkja tölvupóst:"
-
-#, fuzzy
-#~ msgid "Enable caching for ratings"
-#~ msgstr "Virkja tölvupóst:"
-
-#~ msgid "The full URL to the Gallery web application.  E.g. %s"
-#~ msgstr "Full vefslóð á Gallery-vefforritið.  T.d. %s"
-
-#~ msgid "The full URL to your album directory (specified above) on your web server.  E.g. %s"
-#~ msgstr "Full vefslóð á albúmamöppuna þína (tilgreind hér á undan) á vefþjóninum.  T.d. %s"
