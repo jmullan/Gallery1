@@ -158,6 +158,9 @@ class Album {
 
 		/* Get the file */
 		copy($file, "$dir/$name.$tag");
+
+		/* Do any preprocessing necessary on the image file */
+		preprocessImage($dir, "$name.$tag");
 		
 		/* Add the photo to the photo list */
 		$item = new AlbumItem();
