@@ -25,3 +25,6 @@
 - improved behaviour with magic quotes
 
 - more robust behaviour when disk space is exceeded
+
+- download of a single album using wget/httrack should now work!
+
