@@ -2350,9 +2350,11 @@ function galleryDocs($class='') {
 }
 
 function getImVersion() {
+	global $gallery;
 	$version = array();
 
-	exec($gallery->app->ImPath .' -version', $results);
+	exec($gallery->app->ImPath .'/convert -version', $results);
+
 	$pieces = explode(' ', $results[0]);
 	$version = $pieces[2];
 
