@@ -74,7 +74,7 @@ function getNLS () {
 	$nls['alias']['fr'] = 'fr_FR';
 	$nls['alias']['is'] = 'is_IS';
 	$nls['alias']['it'] = 'it_IT';
-	$nls['alias']['ja'] = 'ja_JP'
+	$nls['alias']['ja'] = 'ja_JP';
 	$nls['alias']['lt'] = 'lt_LT';
 	$nls['alias']['nl'] = 'nl_NL';
 	$nls['alias']['no'] = 'no_NO';
