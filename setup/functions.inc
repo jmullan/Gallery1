@@ -71,8 +71,27 @@ function form_choice($key, $arr) {
 	return $buf;
 }
 
-function locateDir($filename, $extraDir="", $ignorePath=0) {
+function getPath() {
 
+    /* Start with the server user's path */
+    $path = explode(":", getenv("PATH"));
+
+    /* Add in a few relatively obvious locations */
+    $path[] = "/usr/local/gallery/bin";
+    $path[] = "/usr/local/bin/netpbm";
+    $path[] = "/usr/local/bin/jhead";
+    $path[] = "/usr/local/netpbm";
+    $path[] = "/usr/local/netpbm/bin";
+    $path[] = "/usr/local/jhead";
+    $path[] = "/usr/local/jhead/bin";
+    $path[] = "/usr/local/bin";
+    $path[] = "/usr/bin";
+
+    return $path;
+}
+
+function locateDir($filename, $extraDir="", $ignorePath=0) {
+    
 	if (fs_file_exists("$extraDir/$filename")) {
 		return $extraDir;
 	}
@@ -81,7 +100,7 @@ function locateDir($filename, $extraDir="", $ignorePath=0) {
 		return;
 	}
 
-	foreach (explode(":", getenv("PATH")) as $path) {
+	foreach (getPath() as $path) {
 		if (fs_file_exists("$path/$filename")) {
 			return $path;
 		}
@@ -89,7 +108,7 @@ function locateDir($filename, $extraDir="", $ignorePath=0) {
 }
 
 function locateFile($filename) {
-	foreach (explode(":", getenv("PATH")) as $path) {
+	foreach (getPath() as $path) {
 		if (fs_file_exists("$path/$filename")) {
 			return "$path/$filename";
 		}
