@@ -67,10 +67,8 @@ if (isset($save)) {
 <body dir="<?php echo $gallery->direction ?>">
 
 <center>
-<span class="popuphead">
 <?php echo _("Enter your comment for this picture in the text box below.") ?>
 <br><br>
-</span>
 <?php echo $gallery->album->getThumbnailTag($index) ?>
 <?php
 if (isset($error_text)) {
@@ -89,7 +87,7 @@ if (isset($error_text)) {
 <input type="hidden" name="index" value="<?php echo $index ?>">
 <table border=0 cellpadding=5>
 <tr>
-  <td class="popup"><?php echo _("Name or email:") ?></td>
+  <td><?php echo _("Name or email:") ?></td>
   <td><input name="commenter_name" value="<?php echo $commenter_name ?>" size="30"></td>
 </tr>
 <tr>

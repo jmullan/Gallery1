@@ -43,7 +43,6 @@ if (!strcmp($cmd, "remake-thumbnail")) {
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<span class="popup">
 <?php
 		if ($gallery->session->albumName && isset($index)) {
 			if (!strcmp($index, "all")) {
@@ -95,13 +94,6 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	}
 	//-- this is expected to be loaded in a popup, so dismiss ---
 	dismissAndReload();
-} else if (!strcmp($cmd, "highlight")) {
-	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		$gallery->album->setHighlight($index);
-		$gallery->album->save();
-	}
-	//-- this is expected to be loaded in a popup, so dismiss ---
-	dismissAndReload();
 } else if (!strcmp($cmd, "new-album")) {
 	if ($gallery->user->canCreateAlbums() ||
 	    $gallery->user->canCreateSubAlbum($gallery->album)) {
@@ -144,7 +136,5 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 <form>
 <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
 </form>
-
-</span>
 </body>
 </html>

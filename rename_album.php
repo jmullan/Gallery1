@@ -48,7 +48,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 <body dir="<?php echo $gallery->direction ?>">
 
 <center>
-<span class="popup">
+
 <?php
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
@@ -127,7 +127,5 @@ if (!empty($newName)) {
 document.theform.newName.focus();
 //-->
 </script>
-
-</span>
 </body>
 </html>

@@ -46,17 +46,15 @@ if ($gallery->session->albumName && $index) {
 ?>
 
 <center>
-<span class="popuphead">
 <?php echo _("Photo Properties") ?><br>
-</span>
 <br>
-<span class="popup">
+
 <?php echo $gallery->album->getThumbnailTag($index) ?>
 <br>
 <?php echo $gallery->album->getCaption($index) ?>
 <?php echo $gallery->album->getCaptionName($index) ?>
 <br><br>
-</span>
+
 <?php
 /* 
 Here is the EXIF parsing code...
@@ -119,7 +117,7 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 		$sizeOfTable = $sizeOfExif / 2;
 		$i = 1;
 		$column = 1;
-		echo ("<table width=\"100%\" class=\"popup\">\n");
+		echo ("<table width=\"100%\">\n");
 		echo ("<tr valign=top>\n");
 		echo ("<td>\n");
 		while (list($key, $value) = each ($myExif)) {
@@ -131,7 +129,7 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 			}
     		$i++;
 		}
-		echo ("</td>\n</table><br><span class=\"popup\">");
+		echo ("</td>\n</table><br>");
 	}
 
 	echo _("File Upload Date") .":&nbsp;&nbsp; " . 
@@ -161,8 +159,8 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 						"set_albumName" => $gallery->session->albumName,
 						"index" => $index)) .
 			"\">[". _("Reload EXIF Data From File") ."]</a>";
-		echo "<br></span>";
-		echo "<span class=popup>";
+		echo "<br>";
+		echo "<span class=fineprint>";
 		echo _("(if the data is current, this will not appear to do anything)");
 		echo "</span>";
 	}

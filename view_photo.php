@@ -269,7 +269,7 @@ if ($gallery->album->fields["linkcolor"]) {
 if ($gallery->album->fields["bgcolor"]) {
         echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
 }       
-if (isset($gallery->album->fields["background"]) && $gallery->album->fields["background"]) {
+if (isset($gallery->album->fields["background"])) {
         echo "BODY { background-image:url(".$gallery->album->fields['background']."); } ";
 } 
 if ($gallery->album->fields["textcolor"]) {
@@ -543,21 +543,21 @@ if (!$gallery->album->isMovie($id)) {
 
 		$adminbox["bordercolor"] = $bordercolor;
 		$adminbox["top"] = true;
-		includeLayout('adminbox.inc');
+		include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 	}
 }
 
 $breadcrumb["bordercolor"] = $bordercolor;
 $breadcrumb["top"] = true;
 $breadcrumb['bottom'] = false;
-includeLayout('breadcrumb.inc');
+include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?>
 </td>
 </tr>
 <tr>
 <td>
 <?php
-includeLayout('navphoto.inc');
+include($GALLERY_BASEDIR . "layout/navphoto.inc");
 
 #-- if borders are off, just make them the bgcolor ----
 if (!strcmp($gallery->album->fields["border"], "off")) {
@@ -622,16 +622,16 @@ $gallery->html_wrap['imageWidth'] = $width;
 $gallery->html_wrap['imageHeight'] = $height;
 $gallery->html_wrap['imageHref'] = $href;
 $gallery->html_wrap['imageTag'] = $photoTag;
-$gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
+$gallery->html_wrap['pixelImage'] = $imageDir . "/pixel_trans.gif";
 
 includeHtmlWrap("inline_photo.frame");
 ?>
-<br><br>
 <table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
 <!-- caption -->
 <tr>
 <td colspan=3 align=center>
-<span class="modcaption"><?php echo editCaption($gallery->album, $index) ?>
+<span class="caption"><?php echo editCaption($gallery->album, $index) ?>
+</span>
 <?php
 if ( canVote() )
 {
@@ -702,7 +702,7 @@ if (is_int($key))
 
 	$dimensions=$photo->getDimensions($full);
 	$table .= "<tr><td valign=top align=right><b>".$automaticFields[$field].":</b></td><td>".
-	$dimensions[0]." x ".$dimensions[1]." (". ((int) $photo->getFileSize($full) >> 10 )."k)</td></tr>";
+	$dimensions[0]." x ".$dimensions[1]." (". (int) $photo->getFileSize($full) >> 10 ."k)</td></tr>";
 	unSet($extra_fields[$key]);
 }
 
@@ -832,16 +832,16 @@ echo("</td></tr>");
 <tr>
 <td>
 <?php
-includeLayout('navphoto.inc');
+include($GALLERY_BASEDIR . "layout/navphoto.inc");
 $breadcrumb["top"] = false;
-includeLayout('breadcrumb.inc');
+include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?>
 </td>
 </tr>
 </table>
 
 <?php
-includeLayout('ml_pulldown.inc');
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 includeHtmlWrap("photo.footer");
 ?>
 

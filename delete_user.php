@@ -58,7 +58,6 @@ if (isset($cancel)) {
 <span class="popuphead"><?php echo _("Delete User") ?></span>
 <br>
 <br>
-<span class="popup">
 <?php echo makeFormIntro("delete_user.php"); ?>
 <input type="hidden" name="uname" value="<?php echo $uname ?>">
 
@@ -84,6 +83,5 @@ if (!strcmp($gallery->user->getUsername(), $uname)) {
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
 </form> 
 
-</span>
 </body>
 </html>

@@ -134,7 +134,6 @@ $allowChange["default_language"] = true;
 $allowChange["member_file"] = false;
 
 ?>
-<span class="popup">
 <?php echo _("Create a new user here.") ?>
 <p>
 
@@ -159,6 +158,5 @@ document.usercreate_form.uname.focus();
 //--> 
 </script>
 
-</span>
 </body>
 </html>

@@ -475,7 +475,7 @@ if (!empty($adminOptionHTML)) {
     print "<form name=\"admin_options_form\" action=\"view_album.php\">\n";
 }
 
-includeLayout('adminbox.inc');
+include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 ?>
 
 <!-- top nav -->
@@ -484,9 +484,9 @@ $breadcrumb["top"] = true;
 $breadcrumb['bottom'] = false;
 if (strcmp($gallery->album->fields["returnto"], "no") 
    || ($gallery->album->fields["parentAlbumName"])) {
-	includeLayout('breadcrumb.inc');
+	include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 }
-includeLayout('navigator.inc');
+include($GALLERY_BASEDIR . "layout/navigator.inc");
 
 if (!empty($adminOptionHTML)) {
     print "</form>\n";
@@ -694,7 +694,7 @@ if ($numPhotos) {
 			//-- put some parameters for the wrap files in the global object ---
 			$gallery->html_wrap['borderColor'] = $bordercolor;
 			$gallery->html_wrap['borderWidth'] = $borderwidth;
-			$gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
+			$gallery->html_wrap['pixelImage'] = $imageDir . "/pixel_trans.gif";
 			if ($gallery->album->isAlbumName($i)) {
 				$scaleTo = $gallery->album->fields["thumb_size"];
 			} else {
@@ -803,7 +803,7 @@ if ($numPhotos) {
 			} else { 
 				$showAdminForm = 0;
 			}
-			echo "<table width=$iWidth border=0 cellpadding=0 cellspacing=4><tr><td><span class=\"modcaption\">";
+			echo "<table width=$iWidth border=0 cellpadding=0 cellspacing=4><tr><td><span class=\"caption\">";
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 				echo "(" . _("hidden") .")<br>";
@@ -921,7 +921,7 @@ if ($numPhotos) {
 					showChoice(_("Rotate/Flip") ." $label", "rotate_photo.php", array("index" => $i));
 				}
 				if (!$gallery->album->isMovie($id)) {
-			                showChoice(_("Highlight") . " $label", "do_command.php", array("cmd" => "highlight", "index" => $i));
+					showChoice(_("Highlight") . " $label", "highlight_photo.php", array("index" => $i));
 				}
 				if ($gallery->album->isAlbumName($i)) {
 				        $myAlbumName = $gallery->album->isAlbumName($i);
@@ -1035,13 +1035,13 @@ if (canVote())
 	</form>
 <!-- bottom nav -->
 <?php 
-includeLayout('navigator.inc');
+include($GALLERY_BASEDIR . "layout/navigator.inc");
 if (strcmp($gallery->album->fields["returnto"], "no")) {
 	$breadcrumb["top"] = false;
-	includeLayout('breadcrumb.inc');
+	include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 }
 
-includeLayout('ml_pulldown.inc');
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 includeHtmlWrap("album.footer");
 ?>
 

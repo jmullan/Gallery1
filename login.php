@@ -78,7 +78,7 @@ if (isset($uname) && isset($gallerypassword)) {
        	}
 }
 ?>
-<span class="popup">
+
 <?php echo makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
 <?php echo _("Logging in gives you greater permission to view, create, modify and delete albums.") ?>
 <p>
@@ -92,7 +92,7 @@ if (isset($uname) && isset($gallerypassword)) {
 <?php } ?>
 
  <tr>
-  <td class="popup">
+  <td>
    <?php echo _("Username") ?>
   </td>
   <td>
@@ -109,7 +109,7 @@ if (isset($uname) && isset($gallerypassword)) {
 <?php } ?>
 
  <tr>
-  <td class="popup">
+  <td>
 	<?php echo _("Password") ?>
   </td>
   <td>
@@ -195,6 +195,5 @@ document.login_form.uname.focus();
 //--> 
 </script>
 
-</span>
 </body>
 </html>

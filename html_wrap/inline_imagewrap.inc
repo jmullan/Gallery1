@@ -66,7 +66,7 @@ default: // use frames directory
   include "${GALLERY_BASEDIR}html_wrap/frames/$frame/frame.def";
   ?>
 
-  <table align="center" width="1" border="0" cellspacing="0" cellpadding="0">
+  <table width="1" border="0" cellspacing="0" cellpadding="0">
   <tr>
 	<td width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>"><img src="<?php echo "$base/$imageTL" ?>" border="0" width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>" alt="FRAME"></td>
 	<td><table width="1" border="0" cellspacing="0" cellpadding="0">

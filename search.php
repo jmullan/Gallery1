@@ -66,7 +66,7 @@ if ($searchstring) {
 </td>
 </form>   
 </tr>
-<tr><td height=2><img src="<?php echo getImagePath('pixel_trans.gif') ?>"></td></tr>
+<tr><td height=2><img src="<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif"></td></tr>
 </table> 
 <?php
 }
@@ -79,7 +79,7 @@ $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;
 $breadcrumb["bottom"] = true;
-includeLayout('breadcrumb.inc');
+include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?>
 <!-- end Top Nav -->
 <?php
@@ -101,7 +101,7 @@ if ($searchstring) {
 	$adminbox["text"] = "<span class=\"admin\">". sprintf(_("Albums containing %s"), "\"$origstr\"") . "</span>";
 	$adminbox["bordercolor"] = $borderColor; 
 	$adminbox["top"] = false;
-	includeLayout('adminbox.inc');
+	include($GALLERY_BASEDIR . "layout/adminbox.inc");
 	echo "<br>";
 	echo "<table width=\"".$navigator["fullWidth"] . $navigator["widthUnits"]."\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
 	for ($i = 0; $i<$numAlbums; $i++) {
@@ -133,7 +133,7 @@ if ($searchstring) {
 			if ($matchSummary)  { // only print summary if it matches
 				$searchdraw["Text3"] = "<span class=desc>$searchSummary</span>";
 			}
-			includeLayout('searchdraw.inc');
+			include($GALLERY_BASEDIR . "layout/searchdraw.inc");
 			}
 		}
 	
@@ -145,11 +145,11 @@ if ($searchstring) {
 
 	$breadtext[0] = "";
 	$breadcrumb["text"] = $breadtext;
-	includeLayout('breadcrumb.inc');
+	include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 	$adminbox["text"] = "<span class=\"admin\">" . sprintf(_("Photos containing %s"), "\"$origstr\"") . "</span>";
    	$adminbox["bordercolor"] = $borderColor; 
 	$adminbox["top"] = false;
-	includeLayout('adminbox.inc');
+	include($GALLERY_BASEDIR . "layout/adminbox.inc");
 	echo "<br>";
 	echo "<table width=\"".$navigator["fullWidth"] . $navigator["widthUnits"]."\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
 	
@@ -217,7 +217,7 @@ if ($searchstring) {
 						}
 						$searchdraw["Text5"] = $commentText;
 						$searchdraw["Text4"] = $extraFieldsText;
-						includeLayout('searchdraw.inc');
+						include($GALLERY_BASEDIR . "layout/searchdraw.inc");
 					}
 				}
 			}
@@ -271,10 +271,10 @@ $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;
 $breadcrumb["bottom"] = true;
-includeLayout('breadcrumb.inc');
+include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?>
 <?php 
-includeLayout('ml_pulldown.inc');
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 includeHtmlWrap("search.footer");
 ?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>

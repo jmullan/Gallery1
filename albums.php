@@ -56,7 +56,8 @@ if ($gallery->session->albumListPage > $maxPages) {
 	$gallery->session->albumListPage = $maxPages;
 }
 
-$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"pixel_trans\">";
+$imageDir = $gallery->app->photoAlbumURL . '/images';
+$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\" alt=\"pixel_trans\">";
 $borderColor = $gallery->app->default["bordercolor"];
 
 $navigator["page"] = $gallery->session->albumListPage;
@@ -99,12 +100,12 @@ if (!$gallery->session->offline && !strcmp($gallery->app->showSearchEngine, "yes
 <tr>
 <td valign="middle" align="right">
 <?php echo makeFormIntro("search.php"); ?>
-<span class="search"> <?php echo _("Search") ?>: </span>
+<span class="admin"> <?php echo _("Search") ?>: </span>
 <input style="font-size=10px;" type="text" name="searchstring" value="" size="25">
 </form>
 </td>
 </tr>
-<tr><td height="2"><img src="<?php echo getImagePath('pixel_trans.gif')?>" alt="pixel_trans"></td></tr></table>
+<tr><td height="2"><img src="<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" alt="pixel_trans"></td></tr></table>
 <?php
 }
 ?>
@@ -185,18 +186,18 @@ $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $borderColor;
 $adminbox["top"] = true;
-includeLayout('adminbox.inc');
+include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 ?>
 
 <!-- top nav -->
 <?php
-includeLayout('navigator.inc');
-includeLayout('ml_pulldown.inc');
+include($GALLERY_BASEDIR . "layout/navigator.inc");
+include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 ?>
 
 
 <!-- album table begin -->
-<table width="100%" border="0" cellpadding=0 cellspacing=7>
+<table width="100%" border=0 cellpadding=0 cellspacing=7>
 
 <?php
 /* Display warnings about broken albums */
@@ -238,11 +239,11 @@ for ($i = $start; $i <= $end; $i++) {
   <!-- Begin Album Column Block -->
   <tr>
   <td height="1"><?php echo $pixelImage ?></td>
-  <td height="1"><?php echo $pixelImage ?></td>
+  <td bgcolor="<?php echo $borderColor ?>" height="1"><?php echo $pixelImage ?></td>
 <?php
   if (!strcmp($gallery->app->showAlbumTree, "yes")) {
 ?>
-  <td height="1"><?php echo $pixelImage ?></td>
+  <td bgcolor="<?php echo $borderColor ?>" height="1"><?php echo $pixelImage ?></td>
 
 <?php
   }
@@ -255,7 +256,7 @@ for ($i = $start; $i <= $end; $i++) {
 <?php
       $gallery->html_wrap['borderColor'] = $borderColor;
       $gallery->html_wrap['borderWidth'] = 1;
-      $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
+      $gallery->html_wrap['pixelImage'] = $imageDir . "/pixel_trans.gif";
       $scaleTo = $gallery->app->highlight_size;
       $highlightIndex = $gallery->album->getHighlight();
       if (isset($highlightIndex)) {
@@ -274,30 +275,11 @@ for ($i = $start; $i <= $end; $i++) {
   </td>
   <!-- End Image Cell -->
   <!-- Begin Text Cell -->
-  <td align="<?php echo $gallery->alignment ?>" valign="top" class="albumdesc">
-    <table cellpadding="0" cellspacing="0" width="100%" border="0" align="center" class="mod_title">
-      <tr valign="middle">
-        <td class="leftspacer">
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" class="mod_title_bg">
-            <tr>
-              <td class="mod_title_left" align="right"></td>
-              <td nowrap class="title" align="left">
-                <?php _("title") ?>
-                <?php echo editField($gallery->album, "title", $albumURL) ?>
-              </td>
-              <td class="mod_title_right" align="left"></td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
-    <table width="100%" cellpadding="0" cellspacing="0" border="0">
-      <tr>
-        <td class="mod_titleunder_hl"></td>
-      </tr>
-    </table>
-
+  <td align="<?php echo $gallery->alignment ?>" valign="top">
+  <span class="title">
+  <?php _("title") ?>
+  <?php echo editField($gallery->album, "title", $albumURL) ?>
+  </span>
   <br>
   <span class="desc">
   <?php _("description") ?>
@@ -408,7 +390,7 @@ print lastCommentString($lastCommentDate, $displayCommentLegend);
   </span>
   </td>
 <?php if (!strcmp($gallery->app->showAlbumTree, "yes")) { ?>
-  <td align=left valign=top class="albumdesc">
+  <td valign="top">
    <?php echo printChildren($albumName); ?>
   </td>
 <?php } ?>
@@ -428,7 +410,7 @@ print lastCommentString($lastCommentDate, $displayCommentLegend);
 <?php } ?>
 <!-- bottom nav -->
 <?php
-includeLayout('navigator.inc');
+include($GALLERY_BASEDIR . "layout/navigator.inc");
 ?>
 
 <!-- gallery.footer begin -->

@@ -34,33 +34,51 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
-function image($name) {
-	global $GALLERY_BASEDIR;
-	return $GALLERY_BASEDIR . "images/$name";
+// Hack check
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
+	exit;
 }
 ?>
+
 <html>
 <head>
-  <title><?php echo _("Uploading Photos") ?></title>
+  <title><?php echo _("Highlight Photo") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-
 <body dir="<?php echo $gallery->direction ?>">
+
+<?php
+if ($gallery->session->albumName && isset($index)) {
+	if ($confirm) {
+		$gallery->album->setHighlight($index);
+		$gallery->album->save();
+		dismissAndReload();
+		return;
+	} else {
+?>
+
 <center>
-<span class="title"><?php echo _("File upload in progress!") ?></span>
-<p>
-<?php echo _("This page will go away automatically when the upload is complete.  Please be patient!") ?>
-<p>
-<table border=0 cellpadding=0 cellspacing=0>
- <tr>
-  <td> <img src="<?php echo image("computer.gif") ?>" width="31" height="32"> </td>
-  <td> <img src="<?php echo image("uploading.gif") ?>" width="160" height="11"> </td>
-  <td> <img src="<?php echo image("computer.gif") ?>" width="31" height="32"> </td>
- </tr>
-</table>
+<?php echo _("Do you want this photo to be the one that shows up on the gallery page, representing this album?") ?>
+<br>
+<br>
 
-</center>
+<?php echo $gallery->album->getThumbnailTag($index) ?>
+<br>
+<?php echo $gallery->album->getCaption($index) ?>
+<br>
+<?php echo makeFormIntro("highlight_photo.php"); ?>
+<input type="hidden" name="index" value="<?php echo $index ?>">
+<input type="submit" name="confirm" value="<?php echo _("Yes") ?>">
+<input type="button" name ="no" value="<?php echo _("No") ?>" onclick='parent.close()'>
+</form>
 
-</script>
+<?php
+	}
+} else {
+	gallery_error("no album / index specified");
+}
+?>
+
 </body>
 </html>
+

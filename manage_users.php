@@ -80,7 +80,7 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 		echo "<span style=\"color:red\">". _("Error:") . $error ."</span>";
 	}
 ?>
-<span class="popup">	
+	
 <?php echo makeFormIntro("manage_users.php", array(
 			"name" => "manageusers_form", 
 			"method" => "POST"));
@@ -117,6 +117,5 @@ if (!$displayUsers) {
 <input type="button" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
 
-</span>
 </body>
 </html>

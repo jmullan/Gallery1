@@ -49,7 +49,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<span class="popup">
+
 <?php
 $all = !strcmp($index, "all");
 if ($gallery->session->albumName && isset($index)) {
@@ -135,7 +135,5 @@ if (!$all) {
 ?>
 
 </center>
-
-</span>
 </body>
 </html>

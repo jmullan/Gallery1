@@ -88,7 +88,6 @@ if ($gallery->album && isset($id)) {
 <span class="popuphead"><?php echo _("Delete Album") ?></span>
 <br>
 <br>
-<span class="popup">
 <?php echo _("Do you really want to delete this Album?") ?>
 <br>
 <br>
@@ -141,6 +140,5 @@ $myAlbum->load($id);
 }
 ?>
 
-</span>
 </body>
 </html>

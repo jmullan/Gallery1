@@ -41,11 +41,11 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <center>
-<span class="popuphead">
+<span class="title">
 <?php echo _("Using the Windows XP <i>Publish To the Web</i> feature") ?>
 </span>
 </center>
-<span class="popup">
+
 <?php echo sprintf(_("Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.  %s <b>has experimental</b> support for this feature."), Gallery()) ?>
 <?php echo _("It's relatively easy to configure.") ?>  
 
@@ -80,8 +80,5 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 <a href="<?php echo makeGalleryUrl("add_photos.php") ?>"><?php echo _("Return to Add Photos") ?></a>
 <center>
 
-</span>
-</body>
-</html>
 <?php
 ?>

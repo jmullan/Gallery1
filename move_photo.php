@@ -48,7 +48,7 @@ $albumDB = new AlbumDB(FALSE); // read album database
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<span class="popup">
+
 <?php
 if ($gallery->session->albumName && isset($index)) {
 	$numPhotos = $gallery->album->numPhotos(1);
@@ -320,8 +320,6 @@ if (!$uptodate) {
 document.theform.newIndex.focus();
 //-->
 </script>
-
-</span>
 </body>
 </html>
 

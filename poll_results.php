@@ -106,7 +106,7 @@ $breadcrumb["text"][] = sprintf(_("Return to  %s"),
 		"<a href=\"" .  makeAlbumUrl($gallery->session->albumName) .
       		"\">" . $pAlbum->fields['title'] . "</a>");
 
-includeLayout('breadcrumb.inc');
+include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 
 $navigator["page"] = 1;
 $navigator["pageVar"] = "page";
@@ -115,7 +115,7 @@ $navigator["fullWidth"] = $fullWidth;
 $navigator["url"] = makeAlbumUrl($gallery->session->albumName);
 $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
-includeLayout('navigator.inc');
+include($GALLERY_BASEDIR . "layout/navigator.inc");
 
 ?>
 

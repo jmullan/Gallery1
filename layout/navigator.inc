@@ -1,6 +1,5 @@
 <?php /* $Id$ */ ?>
 <?php
-global $navigator;
 // Calculate the beginning and ending of the navigator range
 $begin = max($navigator["page"] - $navigator["spread"], 1);
 $end = min($navigator["page"] + $navigator["spread"], $navigator["maxPages"]);
@@ -18,7 +17,7 @@ if ($end == $navigator["maxPages"]) {
 if ($navigator["bordercolor"]) {
 	$borderIn = $navigator["bordercolor"];
 } else {
-	$borderIn = "";
+	$borderIn = "#FFFFFF";
 }
 
 $url = $navigator["url"];
@@ -29,24 +28,29 @@ else {
 	$url .= "&";
 }
 
-$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"0\" height=\"0\" alt=\"pixel_trans\">";
+$imageDir = $gallery->app->photoAlbumURL."/images";
+$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\" alt=\"\">";
 ?>
 
-<table width="<?php echo $navigator["fullWidth"] . $navigator["widthUnits"] ?>" border="0" cellspacing="0" cellpadding="0" class="modnavbox">
+<table width="<?php echo $navigator["fullWidth"] . $navigator["widthUnits"] ?>" border="0" cellspacing="0" cellpadding="0">
   <tr> 
+    <td colspan="11" bgcolor="<?php echo $borderIn ?>" height="1"><?php echo $pixelImage ?></td>
+  </tr>
+  <tr> 
+    <td bgcolor="<?php echo $borderIn ?>" width="1" height="1"><?php echo $pixelImage ?></td>
 <?php      
 #-- 'first' button cell ---
 if ($navigator["page"] == 1) {
 ?>
-    <td align="center" width="27" height="14">&nbsp;</td> 
-    <td width="0" height="14"><?php echo $pixelImage ?></td>
+    <td align="center" width="27" height="18">&nbsp;</td> 
+    <td width="1" height="1"><?php echo $pixelImage ?></td>
 <?php
 } else {
 ?>
-    <td align="center" width="27" height="14" class="borderright"><span class="nav"> 
-      <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=1"><img src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_first.gif') : getImagePath('nav_last.gif') ?>" border="0" width="27" height="11" alt="<?php echo _("First Page") ?>" title="<?php echo _("First Page") ?>"></a>
+    <td align="center" width="27" height="18"><span class="nav"> 
+      <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=1"><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_first.gif" : "nav_last.gif" ?>" border="0" width="27" height="11" alt="<?php echo _("First Page") ?>" title="<?php echo _("First Page") ?>"></a>
       </span></td>
-    <td width="1" height="1"><?php echo $pixelImage ?></td>
+    <td bgcolor="<?php echo $borderIn ?>" width="1" height="1"><?php echo $pixelImage ?></td>
 <?php
 } 
 ?>
@@ -55,16 +59,19 @@ if ($navigator["page"] == 1) {
 $prevPage = $navigator["page"] - 1;
 if ($prevPage >= 1) {
 ?>
-    <td align="center" width="72" height="14" class="borderright"><span class="nav">
-      <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $prevPage ?>"><img valign="absmiddle" src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_prev.gif') : getImagePath('nav_next.gif') ?>" border="0" width="72" height="11" alt="<?php echo _("Previous Page") ?>" title="<?php echo _("Previous Page") ?>"></a>
+    <td align="center" width="72" height="18"><span class="nav">
+      <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $prevPage ?>"><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_prev.gif" : "nav_next.gif" ?>" border="0" width="72" height="11" alt="<?php echo _("Previous Page") ?>" title="<?php echo _("Previous Page") ?>"></a>
       </span></td>
-    <td width="0" height="14"><?php echo $pixelImage ?></td>
+    <td bgcolor="<?php echo $borderIn ?>" width="1" height="1"><?php echo $pixelImage ?></td>
 <?php
 } else {
-
+?>
+    <td align="center" width="72" height="18">&nbsp;</td>
+    <td width="1" height="1"><?php echo $pixelImage ?></td>
+<?php
 }
 ?>
-    <td align="center" width="3000" height="14">   
+    <td align="center" width="3000" height="18">   
 <?php
 #-- 'page numbers' cell ---                  
 if ($begin != $end) {
@@ -73,13 +80,13 @@ if ($begin != $end) {
 	for ($i = $begin; $i <= $end; $i++) {
 		if ($i == $current) {
 			$number = "<b>$i</b>";
-			$leftdot = "<img valign=\"absmiddle\" src=\"" . getImagePath('nav_dot_left.gif') . "\">";
+			$leftdot = "<img src=\"$imageDir/nav_dot_left.gif\" width=\"8\" height=\"11\" alt=\"left\">";
 		} else {
 			$number = "<a href=\"".$url.$navigator['pageVar']."=$i\">$i</a>";
 			if (($i-1) == $navigator["page"]) {
-				$leftdot = "<img valign=\"absmiddle\" src=\"" . getImagePath('nav_dot_right.gif') . "\">";
+				$leftdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\" alt=\"right\">";
 			} else {
-				$leftdot = "<img valign=\"absmiddle\" src=\"" . getImagePath('nav_dot.gif') . "\">";
+				$leftdot = "<img src=\"$imageDir/nav_dot.gif\" width=\"8\" height=\"11\" alt=\"dot\">";
 			}
 		}
 	
@@ -88,9 +95,9 @@ if ($begin != $end) {
 	}
 	echo "</span>";
 	if ($end == $current) {
-		$rightdot = "<img valign=\"absmiddle\" src=\"" . getImagePath('nav_dot_right.gif') . "\">";
+		$rightdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\" alt=\"\">";
 	} else {
-		$rightdot = "<img valign=\"absmiddle\" src=\"" . getImagePath('nav_dot.gif') . "\">";
+		$rightdot = "<img src=\"$imageDir/nav_dot.gif\" width=\"8\" height=\"11\" alt=\"right\">";
 	}
 	echo "&nbsp;$rightdot&nbsp;";
 }
@@ -101,27 +108,37 @@ if ($begin != $end) {
 $nextPage = $navigator["page"] + 1;
 if ($nextPage <= $navigator["maxPages"]) {
 ?>
-    <td width="0" height="14"><?php echo $pixelImage ?></td>
-    <td align="center" width="72" height="14" class="borderleft"><span class="nav">
-      <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $nextPage ?>"><img valign="absmiddle" src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_next.gif') : getImagePath('nav_prev.gif') ?>" border="0" alt="<?php echo _("Next Page") ?>" title="<?php echo _("Next Page") ?>"></a>
+    <td bgcolor="<?php echo $borderIn ?>" width="1" height="1"><?php echo $pixelImage ?></td>
+    <td align="center" width="72" height="18"><span class="nav">
+      <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $nextPage ?>"><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_next.gif" : "nav_prev.gif" ?>" border="0" width="72" height="11" alt="<?php echo _("Next Page") ?>" title="<?php echo _("Next Page") ?>"></a>
       </span></td>
 <?php
 } else {   
-
+?>
+    <td align="center" width="72" height="18">&nbsp;</td>
+    <td width="1" height="1"><?php echo $pixelImage ?></td>
+<?php
 } 
 ?>
 <?php
 #-- 'last' button ---
 if ($navigator["page"] == $navigator["maxPages"]) {
-
+?>
+    <td width="1" height="1"><?php echo $pixelImage ?></td>
+    <td align="center" width="27" height="18">&nbsp;</td>
+<?php
 } else {        
 ?>
-    <td width="0" height="14"><img valign="absmiddle" src="<?php echo getImagePath('pixel_trans.gif')?>" width="0" height="0"></td>
-    <td align="center" width="27" height="14" class="borderleft"><span class="nav">
-      <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $navigator['maxPages'] ?>"><img valign="absmiddle" src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_last.gif') : getImagePath('nav_first.gif') ?>" border="0" alt="<?php echo _("Last Page") ?>" title="<?php echo _("Last Page") ?>"></a>
+    <td bgcolor="<?php echo $borderIn ?>" width="1" height="1"><img src="<?php echo $imageDir ?>/pixel_trans.gif" width="1" height="1" alt=""></td>
+    <td align="center" width="27" height="18"><span class="nav">
+      <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $navigator['maxPages'] ?>"><img src="<?php echo $imageDir ?>/<?php echo ($gallery->direction == "ltr") ? "nav_last.gif" : "nav_first.gif" ?>" border="0" width="27" height="11" alt="<?php echo _("Last Page") ?>" title="<?php echo _("Last Page") ?>"></a>
       </span></td>
 <?php
 } 
 ?>
+    <td align="right" bgcolor="<?php echo $borderIn ?>" width="1" height="1"><?php echo $pixelImage ?></td>
+  </tr>
+  <tr> 
+    <td colspan="11" bgcolor="<?php echo $borderIn ?>"><?php echo $pixelImage ?></td>
   </tr>
 </table>

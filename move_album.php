@@ -74,7 +74,6 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <center>
-<span class="popup">
 <?php echo _("Select the new location of album") ?> <?php echo $gallery->album->fields["title"] ?>:
 
 <?php
@@ -134,6 +133,5 @@ document.theform.newIndex.focus();
 //-->
 </script>
 
-</span>
 </body>
 </html>

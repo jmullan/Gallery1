@@ -545,7 +545,7 @@ function check_gallery_languages()
 	if (sizeof($languages) == 0) {
 		$fail["fail-gallery-languages"] = _("No languages found."); // should never occur!
 	} else if (sizeof($languages) == 1 ) {
-		$warn['only_english']= _("It seems you did not download any additional languages. This is not a problem! Gallery will appear in English.");
+		$warn['only_english']= _("It seems you did not download any additional language. This is no problem ! Gallery will appear in english");
 	}
 	else {
 		$success[] = sprintf(_("%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
