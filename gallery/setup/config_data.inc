@@ -482,7 +482,12 @@ $constants =  array_merge(
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes"
 	),
-
+	"slowPhotoCount" => array(
+		"prompt" => _("Accurate Photo Count"),
+		"desc" => _("Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no",
+	),
 	"gallery_thumb_frame_style" => array(
 		"prompt" => _("Frame around albums"),
 		"desc" => _("On the main page, the image representing each album has a frame around it.  The following styles are available:") .
