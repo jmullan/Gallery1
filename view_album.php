@@ -26,8 +26,6 @@ require_once(dirname(__FILE__) . '/init.php');
 
 list($page,$votes, $Vote) = getRequestVar(array('page','votes','Vote'));
 
-print_r($votes);
-
 // Hack check and prevent errors
 if (empty($gallery->session->albumName) || !$gallery->user->canReadAlbum($gallery->album) || !$gallery->album->isLoaded()) {
 	header("Location: " . makeAlbumHeaderUrl('', '', array('gRedir' => 1)));
