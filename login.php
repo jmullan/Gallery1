@@ -32,7 +32,6 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <?php
 // Security check.
 $uname = removeTags($uname);
-$gallerypassword = removeTags($gallerypassword);
 ?>
 
 <html>
@@ -99,7 +98,7 @@ view, create, modify and delete albums.
    Password
   </td>
   <td>
-   <input type=password name="gallerypassword" value=<?php echo $gallerypassword?>>
+   <input type=password name="gallerypassword">
   </td>
  </tr>
 
