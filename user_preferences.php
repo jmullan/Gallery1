@@ -123,7 +123,7 @@ $defaultLanguage = $gallery->user->getDefaultLanguage();
 <p>
 
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
 </form>
 
 <script language="javascript1.2">
