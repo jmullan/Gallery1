@@ -60,7 +60,7 @@ function getNLS () {
 	$nls['language']['no_NO'] = 'Norsk bokm&#229;l';
 	$nls['language']['pl_PL'] = 'Polski';
 	$nls['language']['pt_PT'] = 'Portugu&#234;s';
-	$nls['language']['pt_BR'] = 'Portugu&ecirc;s Brasileiro';
+	$nls['language']['pt_BR'] = 'Portugu&#234;s Brasileiro';
 	$nls['language']['ru_RU'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)';
 	$nls['language']['ru_RU.koi8r'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (KOI8-R)';
 	$nls['language']['sl_SI'] = 'Sloven&#x0161;&#x010d;ina';
