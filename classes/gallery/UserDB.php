@@ -199,7 +199,11 @@ class Gallery_UserDB extends Abstract_UserDB {
 					continue;
 				}
 
-				array_push($uidList, $file);
+				$tmp = getFile($gallery->app->userDir . "/" . $file);
+				$user = unserialize($tmp);
+				if (!strcmp(get_class($user), "gallery_user")) {
+					array_push($uidList, $user->uid);
+				}
 			}
 		}
 
