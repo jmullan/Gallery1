@@ -2653,6 +2653,9 @@ function emailDisclaimer() {
 function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $from = NULL) {
 	global $gallery;
 
+	$headers ='';	
+	$additional_headers = '';
+
 	if ($gallery->app->emailOn == "no") {
 		echo "\n<br>". gallery_error(_("Email not sent as it is disabled for this gallery"));
 		return false;
@@ -2695,8 +2698,13 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 		$bcc .= $join . $gallery->app->adminEmail;
 	}
 
-	$additional_headers  = "From: {$gallery->app->galleryTitle} " . _("Administrator") . " <$from>\r\n";
-	$additional_headers .= "Reply-To: <$reply_to>\r\n";
+	/* Minimum Headers according to RFC 822 A.3.1. */
+	$headers  = "Date: ". date("r") ."\r\n";
+	$headers  = "From: {$gallery->app->galleryTitle} " . _("Administrator") . " <$from>\r\n";
+	$headers  = "To: {to}\r\n";
+	
+	/* Additional headers */
+	$additional_headers = "Reply-To: <$reply_to>\r\n";
 	$additional_headers .= "X-GalleryRequestIP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
 	$additional_headers .= "MIME-Version: 1.0\r\n";
 	$additional_headers .= "Content-type: text/plain; charset=\"". $gallery->charset ."\"\r\n";
@@ -2717,9 +2725,9 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	$msg = preg_replace("/([^\r])?\n|\r([^\n])?/", "\\1\r\n\\2", $msg);
 
 	if ($gallery->app->useOtherSMTP != "yes") {
-		$result = mail($to, $subject, emailDisclaimer() . $msg, $additional_headers);
+		$result = mail($to, $subject, emailDisclaimer() . $msg, $headers . $additional_headers);
 	} else {
-		$result = gallery_smtp($to, $bcc, $subject, $msg, $additional_headers);
+		$result = gallery_smtp($to, $bcc, $subject, $msg, $headers . $additional_headers);
 	}
 
 	// Commented to prevent accidental disclosure of passwords via debug screens
