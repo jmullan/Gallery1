@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-10-24 03:08+0200\n"
+"POT-Creation-Date: 2003-10-25 02:54+0200\n"
 "PO-Revision-Date: 2003-06-14 12:30+0300\n"
 "Last-Translator: A.L.T <leanh@airland.kiev.ua>\n"
 "Language-Team: AIRLAND <admin@airland.kiev.ua>\n"
@@ -54,9 +54,8 @@ msgid "Security violation"
 msgstr "Xâm phạm an toàn"
 
 #: ../add_comment.php:63 ../classes/Album.php:728
-#, fuzzy
 msgid "No email sent as no valid email addresses were found"
-msgstr "Bạn phải ghi một địa chỉ email hợp lệ."
+msgstr "Không email nào được gửi vì không thấy địa chỉ email nào chính xác"
 
 #: ../add_comment.php:80
 msgid "Name and comment are both required to save a new comment!"
@@ -431,15 +430,15 @@ msgstr "Album này bao gồm %s."
 
 #: ../albums.php:391 ../view_album.php:833
 msgid "1 item"
-msgstr "1 mục"
+msgstr "1 ảnh"
 
 #: ../albums.php:391 ../upgrade_album.php:194 ../view_album.php:833
 msgid "items"
-msgstr "mục"
+msgstr "ảnh"
 
 #: ../albums.php:391
 msgid "no items"
-msgstr "không có mục nào"
+msgstr "không có ảnh nào"
 
 #: ../albums.php:395
 #, php-format
@@ -464,7 +463,7 @@ msgstr "xóa bộ đếm"
 
 #: ../albums.php:429 ../view_album.php:1026
 msgid "Comments available for this item."
-msgstr "Có thể ghi bình luận cho mục này."
+msgstr "Có thể ghi bình luận cho ảnh này."
 
 #: ../captionator.php:131
 msgid "Captionator"
@@ -480,7 +479,7 @@ msgstr "1 ảnh trong album này"
 
 #: ../captionator.php:179
 msgid "items in this album"
-msgstr "mục trong album này"
+msgstr "ảnh trong album này"
 
 #: ../captionator.php:181
 msgid "on"
@@ -543,11 +542,11 @@ msgstr "kết thúc"
 #: ../classes/Album.php:352
 #, php-format
 msgid "Upgrading item %d of %d . . . "
-msgstr "Đang nâng cấp mục %d của %d . . . "
+msgstr "Đang nâng cấp ảnh %d của %d . . . "
 
 #: ../classes/Album.php:708
 msgid "msg should be an array!"
-msgstr ""
+msgstr "tin phải trên một hàng!"
 
 #: ../classes/Album.php:819
 msgid "Resizing/compressing original image"
@@ -579,7 +578,7 @@ msgstr "#%d"
 #: ../classes/Album.php:1946
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
-msgstr ""
+msgstr "Vấn đề về Email: bỏ qua %s (UID %s) bởi vì địa chỉ email %s là không hợp lệ."
 
 #: ../classes/AlbumItem.php:417
 msgid "Invalid image"
@@ -920,16 +919,15 @@ msgstr "Cỡ thumbnail"
 
 #: ../edit_appearance.php:157
 msgid "Maximum dimensions of intermediate sized images"
-msgstr ""
+msgstr "Kích thước lớn nhất của ảnh cỡ trung gian"
 
 #: ../edit_appearance.php:161
-#, fuzzy
 msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-msgstr "Dung lượng kilobytes lớn nhất của file (ghi 0 hoặc để trống để không chỉnh)"
+msgstr "Dung lượng kilobytes lớn nhất của ảnh JPEG/PNG cỡ trung gian (ghi 0 hoặc để trống để không chỉnh)"
 
 #: ../edit_appearance.php:165
 msgid "Maximum dimensions of full sized images"
-msgstr ""
+msgstr "Kích thước lớn nhất của ảnh cỡ đầy đủ"
 
 #: ../edit_appearance.php:166
 #, php-format
@@ -937,9 +935,8 @@ msgid "%d (%d MPix)"
 msgstr "%d (%d MêgaPixel)"
 
 #: ../edit_appearance.php:169
-#, fuzzy
 msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-msgstr "Dung lượng kilobytes lớn nhất của file (ghi 0 hoặc để trống để không chỉnh)"
+msgstr "Dung lượng kilobytes lớn nhất của ảnh JPEG/PNG cỡ đầy đủ (ghi 0 hoặc để trống để không chỉnh)"
 
 #: ../edit_appearance.php:173
 msgid "Show <i>Return to</i> link"
@@ -1027,15 +1024,15 @@ msgstr "Hiển thị tên người sở hữu với chú thích"
 
 #: ../edit_appearance.php:293
 msgid "Allow item owners to modify their images"
-msgstr "Cho phép người sở hữu mục được sửa ảnh của họ"
+msgstr "Cho phép người sở hữu ảnh được sửa ảnh của họ"
 
 #: ../edit_appearance.php:297
 msgid "Allow item owners to delete their images"
-msgstr "Cho phép người sở hữu mục được xóa ảnh của họ"
+msgstr "Cho phép người sở hữu ảnh được xóa ảnh của họ"
 
 #: ../edit_appearance.php:301
 msgid "Add new items at beginning of album"
-msgstr "Các mục mới sẽ được thêm vào từ đầu album"
+msgstr "Các ảnh mới sẽ được thêm vào từ đầu album"
 
 #: ../edit_appearance.php:305
 msgid "Display clickable image dimensions"
@@ -1192,7 +1189,7 @@ msgstr "Quyên góp tặng cho Thư viện ảnh!!"
 
 #: ../layout/breadcrumb.inc:31 ../layout/breadcrumb.inc:37
 msgid "navigate UP"
-msgstr ""
+msgstr "hướng UP"
 
 #: ../layout/commentbox.inc:7 ../layout/commentdraw.inc:20
 msgid "From:"
@@ -1442,12 +1439,12 @@ msgstr "Để chuyển 1 ảnh, hãy tạo Đầu và Cuối giống nhau"
 
 #: ../move_photo.php:304
 msgid "Note: items that have votes will lose these votes when moved to another album"
-msgstr "Chú ý: những mục đã được bình chọn sẽ mất bình chọn khi chuyển qua một album khác"
+msgstr "Chú ý: những ảnh đã được bình chọn sẽ mất bình chọn khi chuyển qua một album khác"
 
 #: ../move_photo.php:306
 #, php-format
 msgid "Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."
-msgstr "Chú ý: những mục đã được bình chọn sẽ mất bình chọn nếu được chuyển tới một album không có chức năng bình chọn tương thích.  Những album tương thích được đánh dấu bằng một &quot;%s&quot;."
+msgstr "Chú ý: những ảnh đã được bình chọn sẽ mất bình chọn nếu được chuyển tới một album không có chức năng bình chọn tương thích.  Những album tương thích được đánh dấu bằng một &quot;%s&quot;."
 
 #: ../multi_create_user.php:50 ../multi_create_user.php:132
 msgid "Create Mulitple Users"
@@ -1959,6 +1956,10 @@ msgstr "Đang xoay/lật ảnh."
 msgid "(this may take a while)"
 msgstr "(có thể phải đợi 1 chút)"
 
+#: ../rotate_photo.php:68
+msgid "Manipulate again?"
+msgstr ""
+
 #: ../rotate_photo.php:73
 msgid "How do you want to manipulate this photo?"
 msgstr "Bạn muốn sử lý ảnh này thế nào?"
@@ -2374,7 +2375,7 @@ msgstr "soạn"
 
 #: ../util.php:183
 msgid "Executing:"
-msgstr ""
+msgstr "Thực hiện:"
 
 #: ../util.php:190
 msgid "Results:"
@@ -2627,9 +2628,9 @@ msgid "Powered by %s v%s"
 msgstr ""
 
 #: ../util.php:2637
-#, fuzzy, php-format
+#, php-format
 msgid "Skipping invalid email address %s"
-msgstr "Bạn phải ghi một địa chỉ email hợp lệ."
+msgstr "Bỏ qua địa chỉ email không hợp lệ %s"
 
 #: ../util.php:2703
 #, php-format
@@ -2657,24 +2658,23 @@ msgstr "Email không được gửi tới %s vì đó là địa chỉ không h�
 #: ../util.php:2745
 #, php-format
 msgid "Sender address %s is invalid, using %s."
-msgstr ""
+msgstr "Địa chỉ người gửi %s không hợp lệ, sử dụng %s."
 
 #: ../util.php:2769 ../util.php:2774
 msgid "not shown"
-msgstr ""
+msgstr "không hiển thị"
 
 #: ../util.php:2778
 msgid "Message"
-msgstr ""
+msgstr "Thông điệp"
 
 #: ../util.php:2782
 msgid "Email sent"
 msgstr "Email đã được gửi"
 
 #: ../util.php:2784
-#, fuzzy
 msgid "Email not sent"
-msgstr "Email đã được gửi"
+msgstr "Email không được gửi"
 
 #: ../util.php:2798
 #, php-format
@@ -2823,7 +2823,7 @@ msgstr "mẫu theo ý"
 
 #: ../view_album.php:343
 msgid "sort items"
-msgstr "sắp xếp mục"
+msgstr "sắp xếp ảnh"
 
 #: ../view_album.php:349
 msgid "resize all"
@@ -2919,7 +2919,7 @@ msgstr "Bao gồm: "
 
 #: ../view_album.php:833
 msgid "0 items"
-msgstr "0 mục"
+msgstr "0 ảnh"
 
 #: ../view_album.php:840 ../view_album.php:854
 msgid "Viewed:"
@@ -2994,17 +2994,16 @@ msgid "This album is empty."
 msgstr "Album này không có gì"
 
 #: ../view_album.php:1061 ../view_photo.php:863
-#, fuzzy
 msgid "Email me when:"
-msgstr "Email đã được gửi"
+msgstr "Email cho tôi khi:"
 
 #: ../view_album.php:1062 ../view_photo.php:864
 msgid "Comments are added"
-msgstr ""
+msgstr "Lời bình đã được thêm"
 
 #: ../view_album.php:1065 ../view_photo.php:868
 msgid "Other changes are made"
-msgstr ""
+msgstr "Những thay đổi khác đã được tạo"
 
 #: ../view_comments.php:124
 msgid "Comments for this Album"
@@ -3057,7 +3056,7 @@ msgstr "Ngày gửi ảnh lên"
 
 #: ../view_photo_properties.php:142
 msgid "Item Capture Date"
-msgstr "Ngày nắm giữ mục"
+msgstr "Ngày tạo ra ảnh"
 
 #: ../view_photo_properties.php:163
 msgid "Reload EXIF Data From File"

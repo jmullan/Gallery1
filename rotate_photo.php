@@ -65,7 +65,7 @@ if ($gallery->session->albumName && isset($index)) {
 				       	makeAlbumURL($gallery->album->fields["name"], 
 						$gallery->album->getPhotoId($index))));
 		reload();
-		print "<p>Manipulate again?";
+		print "<p>" . _("Manipulate again?");
 	} else {
 ?>
 
