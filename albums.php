@@ -20,6 +20,34 @@
 ?>
 <? if (file_exists("config.php")) { ?>
 
+<?
+/* Read the album list */
+$albumDB = new AlbumDB();
+$albumName = "";
+$page = 1;
+
+/* If there are albums in our list, display them in the table */
+$numAlbums = $albumDB->numAlbums();
+
+if (!$albumListPage) {
+	$albumListPage = 1;
+}
+$perPage = 2;
+$maxPages = max(ceil($numAlbums / $perPage), 1);
+
+if ($albumListPage > $maxPages) {
+	$albumListPage = $maxPages;
+}
+
+$navigator["page"] = $albumListPage;
+$navigator["pageVar"] = "albumListPage";
+$navigator["url"] = "albums.php";
+$navigator["maxPages"] = $maxPages;
+$navigator["spread"] = 6;
+$navigator["fullWidth"] = 90;
+$navigator["widthUnits"] = "%";
+?>
+
 <!-- gallery.header begin -->
 <?
 /* load the gallery header layout */ 
@@ -32,18 +60,20 @@ if (file_exists($header)) {
 ?>
 <!-- gallery.header end -->
 
+<!-- top nav -->
+<?
+include("layout/navigator.inc");
+?>
+
 <!-- album table begin -->
 <table width=90% border=0 cellspacing=7>
 
-<?
-/* Read the album list */
-$albumDB = new AlbumDB();
-$albumName = "";
-$page = 0;
 
-/* If there are albums in our list, display them in the table */
-$numAlbums = $albumDB->numAlbums();
-for ($i = 0; $i < $numAlbums; $i++) {
+<?
+$start = ($albumListPage - 1) * $perPage + 1;
+$end = min($start + $perPage - 1, $numAlbums);
+
+for ($i = $start; $i <= $end; $i++) {
         $album = $albumDB->getAlbum($i);
         $tmpAlbumName = $album->fields["name"];
         $albumURL = $app->photoAlbumURL . "/" . $tmpAlbumName;
