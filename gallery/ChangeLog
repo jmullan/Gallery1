@@ -1,3 +1,13 @@
+2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC1-cvs-b3
+
+	* Change: Move PhotoWorks/PhotoAccess down in the list, to preemptively
+	  resolve some issues.
+
+	* Fix: Make some changes to the logic surrounding when EXIF info is displayed
+	  with images.  (If use_exif is set in the album, display it under the photo.
+	  If use_exif is disabled, but exiftags or jhead is present, display the
+	  "photo properties" link instead)
+
 2005-02-15  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC1-cvs-b2
 
 	* Fix: ML_mode 0 caused error when gettext wasn't installed

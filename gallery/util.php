@@ -2690,7 +2690,7 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 
 	// Ensure that there are no bare linefeeds by replacing "\r" or "\n"
 	// (but not the individual components of "\r\n") with "\r\n"
-	$msg = ereg_replace("([^\r])?\n|\r([^\n])?", "\\1\r\n\\2", $msg);
+	$msg = preg_replace("/([^\r])?\n|\r([^\n])?/", "\\1\r\n\\2", $msg);
 
 	if ($gallery->app->useOtherSMTP != "yes") {
 		$result = mail($to, $subject, emailDisclaimer() . $msg, $additional_headers);
@@ -3410,7 +3410,8 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 	}
 
 	
-	if ($withExif && (isset($gallery->app->use_exif) && (eregi("jpe?g\$", $photo->image->type)))) {
+	if ($withExif && (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) && 
+			(eregi("jpe?g\$", $photo->image->type))) {
 		$myExif = $gallery->album->getExif($index, isset($forceRefresh));
 		if (!empty($myExif) && !isset($myExif['Error'])) {
 			// following line commented out because we were losing

@@ -347,12 +347,9 @@ if (!$gallery->album->isMovie($id)) {
 	}
     } 
 	
-    $field="EXIF";
-    $key=array_search($field, $extra_fields);
-    if (!is_int($key) &&
-	!strcmp($gallery->album->fields["use_exif"],"yes") &&
+    if ($gallery->album->fields["use_exif"] != "yes" &&
 	(eregi("jpe?g\$", $photo->image->type)) &&
-	isset($gallery->app->use_exif)) {
+	(isset($gallery->app->use_exif) || isset($gallery->app->exiftags))) {
 	
 	$albumName = $gallery->session->albumName;
 	$iconText = getIconText('frame_query.gif', _("photo properties"));
@@ -395,10 +392,6 @@ if (!$gallery->album->isMovie($id)) {
 	    case 'ezprints':
 		$printEZPrintsForm = true;
 	    break;
-			
-	    case 'photoaccess':
-		$printPhotoAccessForm = true;
-	    break;
                                 
 	    case 'shutterfly':
 		$printShutterflyForm = true;
@@ -406,6 +399,10 @@ if (!$gallery->album->isMovie($id)) {
                                 
 	    case 'fotoserve':
 		$printFotoserveForm = true;
+	    break;
+			
+	    case 'photoaccess':
+		$printPhotoAccessForm = true;
 	    break;
                                 
 	    default:
@@ -422,8 +419,8 @@ if (!$gallery->album->isMovie($id)) {
 	    'ezprints'    => 'EZ Prints',
 	    'fotokasten'  => 'Fotokasten',
 	    'fotoserve'   => 'Fotoserve',
+	    'shutterfly'  => 'Shutterfly',
 	    'photoaccess' => 'PhotoWorks',
-	    'shutterfly'  => 'Shutterfly'
 	),
 	'Mobile Service' => array('mpush' => 'mPUSH (mobile service)')
     );
@@ -608,7 +605,7 @@ includeHtmlWrap("inline_photo.frame");
 
 <!-- Custom Fields -->
 <?php
-	displayPhotoFields($index, $extra_fields, true, in_array('EXIF', $extra_fields), $full);
+	displayPhotoFields($index, $extra_fields, true, ($gallery->album->fields["use_exif"] == "yes"), $full);
 ?>
 </p>
 
