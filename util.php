@@ -1185,67 +1185,72 @@ function includeHtmlWrap($name, $skinname='', $adds='') {
 	return 1;
 }
 
+function getGalleryBase() {
+    global $gallery;
+
+    if (! defined("GALLERY_URL")) define ("GALLERY_URL","");
+	
+    if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
+	$base = $gallery->app->photoAlbumURL;
+    } elseif (stristr($_SERVER['REQUEST_URI'],"setup")) {
+	$base = '..';
+    } elseif (GALLERY_URL== "") {
+	$base = '.';
+    } else {
+	$base = GALLERY_URL;
+    }
+
+    return $base;
+}
+
 function getStyleSheetLink() {
 	global $GALLERY_EMBEDDED_INSIDE;
 	global $GALLERY_OK;
 
-	if (isset($GALLERY_OK)) {
-		if ($GALLERY_OK == false) {
-			return _getStyleSheetLink("config");
-		}
+	$styleSheetLinks = '';
+	if (isset($GALLERY_OK) && $GALLERY_OK == false) {
+		return _getStyleSheetLink("config");
 	}
+
+	$styleSheetLinks = _getStyleSheetLink("base");
+
 	if ($GALLERY_EMBEDDED_INSIDE) {
-		return _getStyleSheetLink("embedded_style");
+		$styleSheetLinks .= "\n" . _getStyleSheetLink("embedded_style");
 	} else {
-		return _getStyleSheetLink("embedded_style") . 
-			"\n" .
-		       _getStyleSheetLink("standalone_style").
-			"\n";
+		$styleSheetLinks .= "\n". _getStyleSheetLink("screen");
 	}
+
+	return $styleSheetLinks;
 }
 
 function _getStyleSheetLink($filename, $skinname='') {
-	global $gallery;
-	global $GALLERY_EMBEDDED_INSIDE;
+    global $gallery;
+    global $GALLERY_EMBEDDED_INSIDE;
 
-	if (! defined("GALLERY_URL")) define ("GALLERY_URL","");
+    if (!$skinname && isset($gallery->app) && isset($gallery->app->skinname) && !$GALLERY_EMBEDDED_INSIDE) {
+	$skinname = $gallery->app->skinname;
+    }
 
-	if (!$skinname) {
-		if (isset($gallery->app) && isset($gallery->app->skinname) && !$GALLERY_EMBEDDED_INSIDE) {
-			$skinname = $gallery->app->skinname;
-		} else {
-			$skinname = 'none';
-		}
-	}
+    $sheetname = "skins/$skinname/css/$filename.css";
+    $sheetpath = dirname(__FILE__) . "/$sheetname";
 
-        $sheetname = "skins/$skinname/css/$filename.css";
-	$sheetpath = dirname(__FILE__) . "/$sheetname";
+    $sheetdefaultdomainname = 'css/'. $_SERVER['HTTP_HOST'] ."/$filename.css";
+    $sheetdefaultname = "css/$filename.css";
+    $sheetdefaultpath = dirname(__FILE__) . '/' . $sheetdefaultname;
 
-	$sheetdefaultdomainname = 'css/'. $_SERVER['HTTP_HOST'] ."/$filename.css";
-	$sheetdefaultname = "css/$filename.css";
-	$sheetdefaultpath = dirname(__FILE__) . '/' . $sheetdefaultname;
+    $base = getGalleryBase();
 
-	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
-		$base = $gallery->app->photoAlbumURL;
-	} elseif (stristr($_SERVER['REQUEST_URI'],"setup")) {
-		$base = '..';
-	} elseif (GALLERY_URL== "") {
-		$base = '.';
-	} else {
-		$base = GALLERY_URL;
-	}
+    if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
+	$url = "$base/$sheetname";
+    } elseif (fs_file_exists($sheetdefaultpath) && !broken_link($sheetdefaultpath)) {
+	$url = "$base/$sheetdefaultname";
+    } elseif (fs_file_exists($sheetdefaultdomainname) && !broken_link($sheetdefaultdomainname)) {
+	$url = "$base/$sheetdefaultdomainname";
+    } else {
+	$url = "$base/${sheetdefaultname}.default";
+    }
 
-	if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
-		$url = "$base/$sheetname";
-	} elseif (fs_file_exists($sheetdefaultpath) && !broken_link($sheetdefaultpath)) {
-		$url = "$base/$sheetdefaultname";
-	} elseif (fs_file_exists($sheetdefaultdomainname) && !broken_link($sheetdefaultdomainname)) {
-		$url = "$base/$sheetdefaultdomainname";
-	} else {
-		$url = "$base/${sheetdefaultname}.default";
-	}
-
-	return '  <link rel="stylesheet" type="text/css" href="' .$url . '">';
+    return '  <link rel="stylesheet" type="text/css" href="' .$url . '">';
 }
 
 function errorRow($key) {
@@ -2902,74 +2907,89 @@ Gallery @ %s Administrator.");
 
 function available_skins($description_only=false) {
 
-	global $gallery;
-	$version="";
-	$last_update="";
+    global $gallery;
+    $version ='';
+    $last_update ='';
+    $possibleSkins = array();
 
-	if (isset($gallery->app->photoAlbumURL)) {
-		$base_url = $gallery->app->photoAlbumURL;
+    if (isset($gallery->app->photoAlbumURL)) {
+        $base_url = $gallery->app->photoAlbumURL;
+    }
+    else {
+	$base_url = "..";
+    }
+
+    $dir = dirname(__FILE__) . '/skins';
+    $opts['none'] = 'No Skin';
+    $descriptions="<dl>";
+    $name = "<a href \"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". _("No Skin") ."</a>";
+    $descriptions .= sprintf (_('<dt>%s</dt><dd>The original look and feel.</dd>'), $name);
+    $skincount = 0;
+
+    if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
+ 	while ($file = readdir($fd)) {
+	    $subdir="$dir/$file/css";
+	    $skincss="$subdir/embedded_style.css";
+	    if (fs_is_dir($subdir) && fs_file_exists($skincss)) {
+		$possibleSkins[] = $file;
+	    }
 	}
-	else {
-		$base_url = "..";
+	
+	sort($possibleSkins);
+	foreach($possibleSkins as $file) {
+	    $subdir="$dir/$file/css";
+	    $skininc="$dir/$file/style.def";
+	    $name="";
+	    $description="";
+	    $skincss="$subdir/embedded_style.css";
+	    $skincount++;
+			
+	    if (fs_file_exists($skininc)) {
+		require($skininc);
+	    }
+	
+	    if (empty($name)) {
+		$name = $file;
+	    }
+				
+	    $opts[$file]=$name;
+	    if (fs_file_exists("$dir/$file/images/screenshot.jpg")) {
+		$screenshot = $base_url . "/skins/$file/images/screenshot.jpg";
+	    } elseif (fs_file_exists("$dir/$file/images/screenshot.gif")) {
+		$screenshot = $base_url . "/skins/$file/images/screenshot.gif";
+	    } else {
+		$screenshot = "";
+	    }
+				
+	    if ($screenshot) {
+		$name = popup_link($name, $screenshot, 1, false,
+			500, 800, '', 'document.config.skinname.options['. $skincount. '].selected=true; ');
+	    }
+
+	    $descriptions.="\n<dt style=\"margin-top:5px;\">$name";
+	    if (!isset ($version)) {
+		$version = _("unknown");
+	    }
+				
+	    if (!isset($last_update)) {
+		$last_update = _("unknown");
+	    }
+				
+	    $descriptions .= '<span style="margin-left:10px; font-size:x-small">';
+	    $descriptions .= _("Version") .": $version";
+	    $descriptions .= "&nbsp;&nbsp;&nbsp;";
+	    $descriptions .= _("Last Update") . ": $last_update</span></dt>";
+	    $descriptions .= "<dd style=\"font-weight:bold; background-color:white;\">$description<br></dd>";
 	}
 
-	$dir = dirname(__FILE__) . '/skins';
-	$opts['none'] = 'No Skin';
-	$descriptions="<dl>";
-	$name = "<a href \"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". _("No Skin") ."</a>";
-	$descriptions .= sprintf (_('<dt>%s</dt><dd>The original look and feel.</dd>'), $name);
-	$skincount=0;
-	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
-                while ($file = readdir($fd)) {
-			$subdir="$dir/$file/css";
-			$skininc="$dir/$file/style.def";
-		       	$name="";
-			$description="";
-			$skincss="$subdir/embedded_style.css";
-			if (fs_is_dir($subdir) && fs_file_exists($skincss)) {
-				$skincount++;
-				if (fs_file_exists($skininc)) {
-				       	require($skininc);
-			       	}
-			       	if (empty($name )) {
-				       	$name=$file;
-			       	}
-				$opts[$file]=$name;
-				if (fs_file_exists("$dir/$file/images/screenshot.jpg")) {
-					$screenshot=$base_url . "/skins/$file/images/screenshot.jpg";
-				} elseif (fs_file_exists("$dir/$file/images/screenshot.gif")) {
-					$screenshot=$base_url . "/skins/$file/images/screenshot.gif";
-				} else {
-					$screenshot="";
-				}
-				if ($screenshot) {
-					$name = popup_link($name,
-							$screenshot, 1, false,
-							500, 800, '', 'document.config.skinname.options['. $skincount. '].selected=true; ');
-				}
-
-				$descriptions.="\n<dt style=\"margin-top:5px;\">$name";
-				if (!isset ($version)) {
-					$version= _("unknown");
-				}
-				if (!isset($last_update)) {
-					$last_update=_("unknown");
-				}
-				$descriptions .= '<span style="margin-left:10px; font-size:x-small">';
-				$descriptions .= _("Version") .": $version";
-				$descriptions .= "&nbsp;&nbsp;&nbsp;";
-				$descriptions .= _("Last Update") . ": $last_update</span></dt>";
-				$descriptions .= "<dd style=\"font-weight:bold; background-color:white;\">$description<br></dd>";
-			}
-		}
-	}
 	$descriptions .="\n</dl>";
  
 	if ($description_only) {
-		return $descriptions;
+	    return $descriptions;
 	} else {
-	       	return $opts;
+	    return $opts;
 	}
+    }
 }
 
 function available_frames($description_only=false) {
@@ -3580,19 +3600,27 @@ function getIconText($iconName='', $altText='') {
 	}
 
 	if (empty($linkText)) {
-		$linkText = ' ['. $text . '] ';
+		$linkText = '['. $text . ']';
 	}
 
 	return $linkText;
 }
 
-function makeIconMenu($iconElements) {
-	$html = "\n". '<table border="0" id="menu"><tr>';
-	foreach($iconElements as $element) {
-		$html .= "\n\t". '<td>'.  $element .'</td>';
+function makeIconMenu($iconElements, $closeTable = true) {
+    $html = "\n". '<table id="menu"><tr>';
+    foreach($iconElements as $element) {
+	if (stristr($element,'</a>')) {
+	    $html .= "\n\t". '<td>'.  $element .'</td>';
+	} else {
+	    $html .= "\n\t". '<td class="noLink">'. $element .'</td>';
 	}
+    }
+
+    if ($closeTable == true) {
 	$html .= "</tr></table>";
-	return $html;
+    }
+
+    return $html;
 }
 
 require_once(dirname(__FILE__) . '/lib/lang.php');

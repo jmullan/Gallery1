@@ -115,12 +115,10 @@ $albumList = array();
 /* Initialize album and photo counts */
 $numAlbums = 0;
 $numPhotos = 0;
-if (isset($set_albumName))
-{
+if (isset($set_albumName)) {
 	$rssAlbumList = $albumDB->getAlbumsByRoot($set_albumName);
 }
-else
-{
+else {
 	$rssAlbumList = $albumDB->albumList;
 }
 

@@ -1,3 +1,28 @@
+2005-01-25  Jens A. Tkotz <jens@peino.de>  1.5-cvs-b328
+
+    * Change: Way of css.
+              css/base.css is loaded EVERYTIME.
+	      css/screen.css is loaded in standalone, no skin.
+	      css/embeddeded.css is loaded when embedded.
+	      <skin>/css/screen.css is loaed when standalone with skin.
+    
+      - css/embedded_style.css.default is now EMPTY per default
+      - removed css/standalone_style.css.default.
+      - modified getStyleSheetLink(), _getStyleSheetLink().
+      - outsourced/created getGalleryBase().
+      - adjust jenskin.
+
+      TODO: adjust other skins.
+
+    * Change: Iconified Slideshow(s)
+
+    * Change: refactored available_skins(), output is now sorted.
+
+    * Fix: set margin:0px for all forms via css, because IE render them bad.
+
+    * Fix: Translations in slideshow where to much english.
+    
+
 2005-01-23  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-b327
 
     * Change: PhotoAccess changed its name to PhotoWorks - all of the backend

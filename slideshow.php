@@ -84,6 +84,14 @@ if (empty($albumName)) {
 	$bgcolor	= $gallery->album->fields['bgcolor'];
 }
 
+$playIconText = getIconText('1rightarrow.gif', _("play"));
+$stopIconText = getIconText('2downarrow.gif', _("stop"));
+$normalSizeIconText = getIconText('window_nofullscreen.gif', _("normal size"));
+$fullSizeIconText = getIconText('window_fullscreen.gif', _("full size"));
+$forwardIconText = getIconText('1rightarrow.gif', _("forward direction"));
+$backwardIconText = getIconText('1leftarrow.gif', _("reverse direction"));
+$delayIconText = getIcontext('history.gif', _("Delay"));
+$loopIconText =  getIcontext('reload.gif', _("Loop"));
 
 // in offline mode, only high is available, because it's the only
 // one where the photos can be spidered...
@@ -104,6 +112,7 @@ if (!isset($mode) || !isset($modes[$mode])) {
 }
 
 include(dirname(__FILE__) . "/includes/slideshow/$mode.inc");
+
 
 slideshow_initialize();
 

@@ -166,7 +166,7 @@ function generateStatsLinks() {
 
 	if (!empty($gallery->app->stats_foruser)) {
 		foreach ($gallery->app->stats_foruser as $key) {
-                	$links .= '<a class="admin" href="'. defaultStatsUrl($key) .'">[' . $stats['types'][$key]['linktext'] .']</a> ';
+                	$links .= "\n\t". '<a class="admin" href="'. defaultStatsUrl($key) .'">[' . $stats['types'][$key]['linktext'] .']</a> ';
 		}
         }
 

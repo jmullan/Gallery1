@@ -281,70 +281,59 @@ function preload_photo(index) {
 }
 
 function slideshow_controlPanel() {
-	global $defaultLoop, $defaultPause, $defaultFull, $defaultDir,
-			$slide_index, $slide_pause, $slide_loop, $slide_full,
-			$slide_dir, $borderColor, $borderwidth, $loop,
-			$bgcolor, $title, $gallery, $numPhotos, $numDisplayed,
-			$index, $photo_count, $photo, $image, $thumbImage,
-			$photoURL, $caption, $imageDir, $pixelImage;
+    global $defaultLoop, $defaultPause, $defaultFull, $defaultDir,
+		$slide_index, $slide_pause, $slide_loop, $slide_full,
+		$slide_dir, $borderColor, $borderwidth, $loop,
+		$bgcolor, $title, $gallery, $numPhotos, $numDisplayed,
+		$index, $photo_count, $photo, $image, $thumbImage,
+		$photoURL, $caption, $imageDir, $pixelImage;
+     global $playIconText,$stopIconText,$delayIconText, $forwardIconText, 
+		$backwardIconText, $normalSizeIconText, $fullSizeIconText,
+		$loopIconText;
 ?>
-<form name="TopForm">
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="modnavboxmid">
-  <tr>
-    <td colspan="3"><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td height="25" width="1"><?php echo $pixelImage ?></td>
-    <td width="5000" align="left" valign="middle" style="font-size:10px">&nbsp;
-    <a href="#" onClick='stop(); return false;'>[<?php echo _("stop") ?>]</a>
-    <a href="#" onClick='play(); return false;'>[<?php echo _("play") ?>]</a>
+<form name="TopForm" style="margin:0px">
 <?php
-if ($slide_dir == 1) {
-    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, -1) 
-	. "\">[". _("reverse direction") ."]</a>";
-} else {
-    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, 1)
-        . "\">[". _("forward direction") ."]</a>";
-}
-?>
+    $iconElements[] = '<a href="#" onClick="stop(); return false;">'. $stopIconText .'</a>';
+    $iconElements[] = '<a href="#" onClick="play(); return false;">'. $playIconText .'</a>';
 
-<?php
+if ($slide_dir == 1) {
+    $iconElements[] = '<a href="'. makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, -1) .'">'. $forwardIconText .'</a>';
+} else {
+    $iconElements[] = '<a href="'. makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, 1) .'">'. $backwardIconText .'</a>';
+}
+
 if ($gallery->user->canViewFullImages($gallery->album)) {
     if ($slide_full) {
-	    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0, $slide_dir) 
-	   . "\">[". _("normal size") ."]</a>";
+        $iconElements[] = '<a href="'. makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0, $slide_dir) .'">'. $normalSizeIconText .'</a>';
     } else {
-		echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1, $slide_dir)
-	            . "\">[". _("full size") ."]</a>";
+	$iconElements[] = '<a href="'. makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1, $slide_dir) .'">'. $fullSizeIconText .'</a>';
     }
 }
 
-echo '&nbsp;&nbsp;||&nbsp;'. _('Delay:') . '&nbsp;';
-echo drawSelect("time", array(1 => "1 ". _("second"),
-		       	2 => "2 ". _("seconds"),
-		       	3 => "3 ". _("seconds"),
-		       	4 => "4 ". _("seconds"),
-		       	5 => "5 ". _("seconds"),
-		       	10 => "10 ". _("seconds"),
-		       	15 => "15 ". _("seconds"),
-		       	30 => "30 ". _("seconds"),
-		       	45 => "45 ". _("seconds"),
-		       	60 => "60 ". _("seconds")),
-	       	$slide_pause, // default value
-	       	1, // select size
-	       	array('onchange' => 'reset_timer()', 'class' => 'adminform' ));
+    $iconElements[] = $delayIconText .":";
+    $iconElements[] = drawSelect("time", array(1 => _("1 second"),
+				2 => _("2 seconds"),
+				3 => _("3 seconds"),
+				5 => _("5 seconds"),
+				10 => _("10 seconds"),
+				15 => _("15 seconds"),
+				30 => _("30 seconds"),
+				45 => _("45 seconds"),
+				60 => _("1 Minute")),
+				$defaultPause, // default value
+				1, // select size
+				array('onchange' => 'reset_timer()', 'class' => 'adminform')
+			);
+
+
+if ($loop) {
+    $checked = ($defaultLoop) ? "checked" : "";
+    $iconElements[] = $loopIconText.':';
+    $iconElements[] = '<input type="checkbox" name="loopCheck"'. $checked .'onclick="toggleLoop();">';
+}
+
+    echo makeIconMenu($iconElements);
 ?>
-    <?php if ($loop) { ?>
-    &nbsp;<?php echo _('Loop') ?>:&nbsp;<input type="checkbox" name="loopCheck" <?php echo ($slide_loop) ? "checked" : "" ?> onclick='toggleLoop();'>
-    <?php } ?>
-    </span>
-    </td>
-    <td width="1"><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td colspan="3"><?php echo $pixelImage ?></td>
-  </tr>
-</table>
 </form>
 <?php
 }

@@ -1,0 +1,396 @@
+/* This is the style sheet used when Gallery is embedded into
+   another product, like PHP-Nuke, and when it's running 
+   standalone.
+
+   If you would like to customize the styles please create 
+   copy of this file called 
+
+     "embedded_style.css" (same name without ".default")
+
+   If that file is found in this directory it will be 
+   used instead of this one.
+
+   Some of the styles below are overriden by specific 
+   album properties. These are noted 
+
+   $Id$
+*/ 
+
+
+/* 
+   default text styles - background and colors overriden by
+   album 'bgcolor', 'background', and 'textcolor' properties.
+*/
+
+body {
+    font-family: Geneva,Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    background-color: #749BFB;
+    color: #FFFFFF;
+}
+
+img {
+    border: none;
+}
+
+td,p { 
+	  font-family: Verdana, Arial, Helvetica, sans-serif;
+	  font-size: 10px; 
+}
+
+a {
+    font-family: Verdana,Helvetica,sans-serif;
+    text-decoration: none;
+    color: #4E2192;
+}
+
+a:hover {
+    font-family: Verdana,Helvetica,sans-serif;
+    text-decoration: underline;
+    color: yellow;
+}
+
+textarea:focus, input:focus, select:focus {
+	background-color: #FFFFDA;
+}
+
+/* 
+   text styles 
+*/
+.title                          /* album titles on main page */
+	{ 
+	  font-size: 14px; 
+	  font-weight: bold; 
+	}
+.mod_title			/* album title -- Text is controlled by .title */
+	{
+	  border:1px solid #000000;
+	  border-right-width:0px;
+	  border-bottom-width:0px;
+	  border-left-width:0px;
+	}
+.mod_title_bg   /* album title hightlight Text is controled by .title */
+	{
+	}
+.mod_title_right  /* album title hightlight  Text is controled by .title*/
+	{
+	}
+.mod_title_left  /* album title hightlight  Text is controled by .title */
+	{
+	}
+.albumdesc  /*album description includes all text and background*/
+	{
+	}
+.desc                           /* album descriptions on main page */
+	{ 
+	  font-size: 12px; 
+	}
+.caption                        /* photo captions on all pages */
+	{ 
+	  font-size: 10px; 
+	}
+.modcaption  /* modifies background for caption text to reside - view_album */
+	{
+	  font-size: 10px; 
+	}
+.pcaption  /* modifies background for caption text to reside - view_photo*/
+	{
+	  font-size: 10px; 
+	}
+
+.vafloat /* float for view album - text */
+ 	{
+ 	   float: none;
+ 	}
+ 
+.vafloat2 /* float for view album - images */
+ 	{
+ 	 float: none;
+	}
+ 
+.vasummary /* controls the view of Album summary */
+	{
+        font-weight:bold;
+        padding:2px;
+        margin-top:10px;
+        width:80%;
+	}
+.commentIndication 
+	{
+	   color: red;
+	   font-size: 12px;
+	}
+.error                          /* all error text */
+	{ 
+	  color: red; 
+	  font-size: 12px; 
+	}
+
+.attention                          /* so far, just for voting instructions*/
+        {
+          font-family: Verdana, Arial, Helvetica, sans-serif;
+          font-weight: normal;
+          color: #FBFF7F;
+          font-size: 12px;
+        }
+
+.headbox			/* box around the page headers */
+	{
+	}
+
+.head                           /* page headers */
+	{ 
+	  font-size: 16px; 
+	  font-weight: bold; 
+	}
+.mod_headliner  /* Gallery & Album titles. Text is controled by .head */
+	{
+	}
+.mod_toplight_bg  /* Gallery & Album titles. Text is controled by .head */
+	{
+	}
+.mod_toplight_right  /* Gallery & Album titles. Text is controled by .head*/
+	{
+	}
+.mod_toplight_left  /* Gallery & Album titles. Text is controled by .head */
+	{
+	}
+.bread                          /* used in breadcrumb bars */
+	{ 
+	  font-size: 10px; 
+	}
+.nav                            /* used in navigation bars */
+	{ 
+	  font-size: 12px; 
+	}
+.navtableborderbegin
+	{
+	  border:1px solid #000000;
+	}
+.navtableborderend
+	{
+	  border:1px solid #000000;
+	  border-top-width:0px;
+	}
+.bordertop
+	{
+	  border:1px solid #000000;
+	  border-right-width:0px;
+	  border-bottom-width:0px;
+	  border-left-width:0px;
+	}
+.borderright
+	{
+	  border:1px solid #000000;
+	  border-top-width:0px;
+	  border-bottom-width:0px;
+	  border-left-width:0px;
+	}
+.borderleft
+	{
+	  border:1px solid #000000;
+	  border-top-width:0px;
+	  border-bottom-width:0px;
+	  border-right-width:0px;
+	}
+.fineprint                      /* used for fine print */
+	{
+	  font-size: 10px;
+	}
+
+.viewcounter 
+	{
+	  font-size: 10px;
+	}
+
+.editlink                       /* Used for the [edit] tags */
+	{
+	  font-size: 10px;
+	}
+.modnavbox  /* main navigation bar next and previous */
+	{
+	}
+.admin                          /* used in admin bars */
+	{ 
+	  font-size: 10px; 
+	  font-weight: bold; 
+	}
+
+.adminform /* defines form for drop down menu */
+	{ 
+	  font-size: 10px; 
+	  font-weight: bold; 
+	}
+.search                          /* used in search text */
+	{ 
+	  font-size: 10px; 
+	  font-weight: bold; 
+	}
+.searchform /* defines form for search */
+	{
+	  font-size: 10px; 
+	  font-weight: bold; 
+	}
+.leftspacer  /* amount of space to the left of the header and titles */
+	{
+	  width: 0px;
+	}
+.modnavboxtop  /*navagation bar top of screen where admin buttons show*/
+	{
+	background-color: #5E72CC;
+ 
+     }
+.modnavboxmid  /*navagation bar middle where the link for the albums show*/
+	{
+
+	}
+.modfooter /*footer where the Gallery version is located*/
+	{
+	}
+
+
+.popupbody  /* controls the background of popup. */ 
+	 {
+	   color: #000;
+	 }
+	
+.popuphead  /* controls the title and background */ 
+	 {
+	   text-align:center;
+	   font-size: 14px;
+	   font-weight: bold;
+	   line-height: 150%;
+	   color: #FFF;
+	   padding-left: 5px;
+	   border-top: 1px solid #FFF;
+	   border-left: 1px solid #FFF;
+	   border-right: 1px solid #FFF;
+	   background-color: #6274CB;
+ 	}
+
+.popup /* controls the main text and message body */
+	 {
+	   text-align:center;
+	   font-size: 12px;
+	   font-weight: none;
+	   color: #202020;
+	   padding: 5px;
+	   border: 1px solid #FFF;
+	   background-color: #F0F0F0;
+	   margin-bottom: 10px;  
+	 }
+
+.popupform /* controls form textarea */
+	 {
+	   font-size: 12px;
+	   font-weight: none;
+	   line-height: 120%;
+	   color: #202020;
+	   padding: 2px;
+	   border: 1px solid #FFF;
+	   background-color: #C0C0C0;
+	 }
+
+/* CSS ID for the add photos popup */
+
+#container
+	{
+		padding: 2px;
+	}
+
+#tabnav
+	{
+		height: 20px;
+		margin: 0;
+		padding-left: 5px;
+		background: url(images/tab_bottom.gif) repeat-x bottom;
+	}
+
+#tabnav li
+	{
+		margin: 0; 
+		padding: 0;
+  		display: inline;
+  		list-style-type: none;
+  	}
+	
+#tabnav a:link, #tabnav a:visited
+	{
+		float: left;
+		font-size: 11px;
+		line-height: 14px;
+		font-weight: bold;
+		padding: 2px 5px 2px 5px;
+		margin-right: 4px;
+		text-decoration: none;
+		color: #666;
+	        border-width:1px;
+	        border-style: solid; border-color: #000000;
+		-Moz-Border-Radius-TopLeft: 20px;
+		-Moz-Border-Radius-TopRight: 20px;
+	}
+
+#tabnav a:link.active, #tabnav a:visited.active
+	{
+	  background-color: #FCFCF3 ; padding:2px 5px 2px 5px; font-size:12px;
+	  margin-right: 4px;
+	  border-style: solid; border-color: #000000;
+	  -Moz-Border-Radius-TopLeft: 20px;
+	  -Moz-Border-Radius-TopRight: 20px;
+	  color:#000000;
+	}
+
+#tabnav a:hover {
+	color: #444
+}
+
+
+#adminbox {
+    background-color: #6274CB; 
+    color: #FFFFFF;
+}
+
+#adminbox td {
+    font-size: 10px; font-weight: bold;
+    padding:2px;
+}
+
+#adminbox a {
+	color: #DBFFFF;
+}
+
+#adminbox a:hover {
+	color: yellow;
+}
+
+
+#menu {
+}
+
+#menu td {
+}
+
+#menu a {
+   display: block;
+   font-family: Verdana,Helvetica,sans-serif;
+   font-size: 10px;
+   text-decoration: none;
+   color: #FFFFFF;
+   white-space: nowrap;
+/* uncomment this and the below to have a nice hover effect.
+   padding: 2px;
+   -moz-border-radius: 3px;
+*/
+}
+
+#menu a:hover {
+   color: yellow;
+   white-space: nowrap;
+/*
+   border-bottom: 1px solid #66A;
+   border-right: 1px solid #66A;
+   border-top: 1px solid #224;
+   border-left: 1px solid #224;
+   padding: 1px;
+*/
+}

@@ -169,7 +169,7 @@ else if ($numAccess != $numAlbums) {
 }
 
 if (!empty($gallery->app->stats_foruser)) {
-	$adminText .= "\n<br>&nbsp;". generateStatsLinks();
+	$adminText .= "\n<br>". generateStatsLinks();
 }
 
 /* Admin Text (right side) */
@@ -183,21 +183,20 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 }
 
 if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
-	$iconText = getIconText('display.gif', _("slideshow"));
-	$iconElements[] = "\n". '<a href="'. makeGalleryUrl("slideshow.php",array("set_albumName" => null)) . 
-		'">'. $iconText .'</a>';
+    $iconText = getIconText('display.gif', _("slideshow"));
+    $iconElements[] = '<a href="'. makeGalleryUrl("slideshow.php",array("set_albumName" => null)) .'">'. $iconText .'</a>';
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
-	$iconText = getIconText('folder_new.gif', _("new album"));
-	$iconElements[] = '<a href="' . doCommand("new-album", array(), "view_album.php") .'">'. $iconText .'</a> ';
+    $iconText = getIconText('folder_new.gif', _("new album"));
+    $iconElements[] = '<a href="' . doCommand("new-album", array(), "view_album.php") .'">'. $iconText .'</a>';
 }
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
-	if ($gallery->userDB->canModifyUser()) {
-		$iconText = getIconText('yast_sysadmin.gif', _("preferences"));
-		$iconElements[] = popup_link($iconText, "user_preferences.php", false, true, 500, 500);
-	}
+    if ($gallery->userDB->canModifyUser()) {
+	$iconText = getIconText('yast_sysadmin.gif', _("preferences"));
+	$iconElements[] = popup_link($iconText, "user_preferences.php", false, true, 500, 500);
+    }
 
 	if ($gallery->user->isAdmin() ||
 	        $gallery->userDB->canCreateUser() ||

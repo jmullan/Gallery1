@@ -28,11 +28,11 @@ if (isset($navigator["fullWidth"]) && isset($navigator["widthUnits"])) {
 }
 
 ?>
-<table<?php echo $width; ?> border="0" cellspacing="0" cellpadding="2" id="adminbox">
+<table<?php echo $width; ?> cellspacing="0" cellpadding="0" id="adminbox">
   <tr> 
-    <td align="left">&nbsp;<?php echo $adminbox["text"] ?></td>
+    <td align="left"><?php echo $adminbox["text"] ?></td>
     <td align="right">
-	<form name="admin_options_form" action="view_album.php" style="margin-bottom: 0px;">
+	<form name="admin_options_form" action="view_album.php">
 	<?php echo $adminbox["commands"] ?>
 	</form>
     </td>

@@ -22,14 +22,14 @@
 ?>
 <?php
 function slideshow_initialize() {
-	global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
+    global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
 			$album, $recursive, $number, $random, $loop, $borderColor, $borderwidth, $bgcolor,
 			$url, $full_urls, $urls, $caption, $captions, $photo_count, $title;
 
     // default settings ---
     $defaultLoop = 0;
     $defaultTransition = 0;
-    $defaultPause = 3;
+    $defaultPause = 3; 
 
     $full_option = false;
     
@@ -185,12 +185,13 @@ function printSlideshowPhotos($full_urls, $urls, $captions, $what, $photo_count)
 } 
 
 function slideshow_body() {
-	global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
+    global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
 			$album, $recursive, $number, $random, $loop, $borderColor, $borderwidth, $bgcolor,
 			$url, $full_urls, $urls, $caption, $captions, $photo_count, $title, $transitionNames,
 			$transitionCount, $pixelImage;
-	
-	$photo_count = $number;
+
+    global $playIconText, $stopIconText, $normalSizeIconText, $fullSizeIconText, $forwardIconText, $backwardIconText;
+    $photo_count = $number;
 
 /* Here are the URLs of the images written down as links.
 ** This is to make wget able to convert these links.
@@ -309,7 +310,7 @@ function changeElementText(id, newText) {
 }
 
 function stop() {
-	changeElementText("stopOrStartText", "<?php echo _("play") ?>");
+	changeElementText("stopOrStartText", '<?php echo $playIconText; ?>');
 
 	onoff = 0;
 	status = "<?php echo unhtmlentities(_("The slide show is stopped, Click [play] to resume.")) ?>";
@@ -318,21 +319,20 @@ function stop() {
 }
 
 function play() {
-	changeElementText("stopOrStartText", "<?php echo _("stop") ?>");
-
+	changeElementText("stopOrStartText", '<?php echo $stopIconText; ?>');
 	onoff = 1;
 	status = "<?php echo unhtmlentities(_("Slide show is running...")) ?>";
 	go_to_next_photo();
 }
 
 function full() {
-	changeElementText("fullOrNormalText", "<?php echo _("normal size") ?>");
+	changeElementText("fullOrNormalText", '<?php echo $normalSizeIconText; ?>');
 	fullsized = 1;
 	status = "<?php echo unhtmlentities(_("The slide is showing full sized images, Click [normal size] to view resized images.")) ?>";
 }
 
 function normal() {
-	changeElementText("fullOrNormalText", "<?php echo _("full size") ?>");
+	changeElementText("fullOrNormalText", '<?php echo $fullSizeIconText; ?>');
 
 	fullsized = 0;
 	status = "<?php echo unhtmlentities(_("The slide is showing normal sized images, Click [full size] to view full sized images.")) ?>";
@@ -341,10 +341,10 @@ function normal() {
 function changeDirection() {
 	if (direction == 1) {
 		direction = -1;
-		changeElementText("changeDirText", "<?php echo _("forward direction") ?>");
+		changeElementText("changeDirText", '<?php echo $forwardIconText; ?>');
 	} else {
 		direction = 1;
-		changeElementText("changeDirText", "<?php echo _("reverse direction") ?>");
+		changeElementText("changeDirText", '<?php echo $backwardIconText; ?>');
 	}
 	preload_next_photo();
 }
@@ -480,68 +480,57 @@ function slideshow_controlPanel() {
 			$album, $recursive, $number, $random, $loop, $borderColor, $borderwidth, $bgcolor,
 			$url, $full_urls, $urls, $caption, $captions, $photo_count, $title, $transitionNames,
 			$transitionCount, $pixelImage;
+
+	global $delayIconText, $loopIconText;
         ?>
 <form name="TopForm" action="#">
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="modnavboxmid">
-<tr>
-	<td colspan="3"><?php echo $pixelImage ?></td>
-</tr>
-<tr>
-	<td height="25" width="1"><?php echo $pixelImage ?></td>
-	<td align="left" valign="middle" style="font-size:10px">
 <?php
-        echo "&nbsp;<a href='#' onClick='stopOrStart(); return false;'>[<span id='stopOrStartText'>" . _("stop") . "</span>]</a>";
-        echo "&nbsp;<a href='#' onClick='changeDirection(); return false;'>[<span id='changeDirText'>" . _("reverse direction") . "</span>]</a>";
+	/* First this is set to "stop" */
+	$startStopIconText = $stopIconText;
+        $iconElements[] = '<a href="#" onClick="stopOrStart(); return false;" style="display: block"><span id="stopOrStartText">'. $startStopIconText . '</span></a>';
+
+	$directionIconText =  getIconText('1leftarrow.gif', _("reverse direction"));
+        $iconElements[] = '<a href="#" onClick="changeDirection(); return false;" style="display: block"><span id="changeDirText">'. $directionIconText .'</span></a>';
 
         if ($full_option) {
-            echo "&nbsp;<a href='#' onClick='fullOrNormal(); return false;'>[<span id='fullOrNormalText'>" . _("full size") . "</span>]</a>";
-        } 
-        echo "&nbsp;&nbsp;||&nbsp;". _("Delay") .":&nbsp;";
-	
-	echo drawSelect("time", array(1 => "1 " . _("second"),
-                2 => "2 " . _("seconds"),
-                3 => "3 " . _("seconds"),
-                4 => "4 " . _("seconds"),
-                5 => "5 " . _("seconds"),
-                10 => "10 " . _("seconds"),
-                15 => "15 " . _("seconds"),
-                30 => "30 " . _("seconds"),
-                45 => "45 " . _("seconds"),
-                60 => "60 " . _("seconds")),
-            $defaultPause, // default value
-            1, // select size
-            array('onchange' => 'reset_timer()', 'class' => 'adminform'));
+		$fullIconText = getIcontext('window_fullscreen.gif',_("full size"));
+		$iconElements[] = '<a href="#" onClick="fullOrNormal(); return false;" style="display: block"><span id="fullOrNormalText">'. $fullIconText .'</span></a>';
+        }
 
-        ?>
-    <script type="text/javascript">
+        $iconElements[] = $delayIconText .':';
+	$iconElements[] = drawSelect("time", array(1 => _("1 second"),
+				2 => _("2 seconds"),
+				3 => _("3 seconds"),
+				5 => _("5 seconds"),
+				10 => _("10 seconds"),
+				15 => _("15 seconds"),
+				30 => _("30 seconds"),
+				45 => _("45 seconds"),
+				60 => _("1 Minute")),
+				$defaultPause, // default value
+				1, // select size
+				array('onchange' => 'reset_timer()', 'class' => 'adminform')
+			);
+
+	if ($loop) {
+		$checked = ($defaultLoop) ? "checked" : "";
+		$iconElements[] = $loopIconText .':';
+		$iconElements[] = '<input type="checkbox" name="loopCheck"'. $checked .'onclick="toggleLoop();">';
+	} 
+
+	echo makeIconMenu($iconElements, false);
+?>
+    <td class="noLink"><script type="text/javascript">
     /* show the blend select if appropriate */
     if (browserCanBlend) {
-	document.write('&nbsp;<?php echo _("Transition:") ?><?php
-       	echo drawSelect("transitionType",
-                $transitionNames,
-                $defaultTransition,
-                1,
-                array('onchange' => 'change_transition()', 'class' => 'adminform'));
-
-        ?>');
+	document.write('<?php echo _("Transition:"); ?></td>');
+	document.write('<td><?php echo str_replace("\n", "", drawSelect("transitionType",
+                  $transitionNames,
+                  $defaultTransition,
+                  1,
+                 array('onchange' => 'change_transition()', 'class' => 'adminform'))); ?>');
     }
-
-    </script>
-    <?php if ($loop) {
-
-            ?>
-    &nbsp;<?php echo _("Loop") ?>:&nbsp;<input type="checkbox" name="loopCheck" <?php echo ($defaultLoop) ? "checked" : "" ?> onclick='toggleLoop();'>
-    <?php } 
-
-        ?>
-	</span>
-	</td>
-	<td width="1"><?php echo $pixelImage ?></td>
-</tr>
-<tr>
-	<td colspan="3"><?php echo $pixelImage ?></td>
-</tr>
-</table>
+    </script></td></tr></table>
 </form>
 <?php
     } 
