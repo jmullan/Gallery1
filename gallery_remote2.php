@@ -53,7 +53,7 @@ header("Content-type: text/plain");
 
 
 /*
- * Gallery remote protocol version 2.3
+ * Gallery remote protocol version 2.5
  */
 $GR_VER['MAJ'] = 2;
 $GR_VER['MIN'] = 6;
@@ -136,6 +136,13 @@ check_proto_version( $response );
 //$response->setProperty( "debug_session_albumName", $gallery->session->albumName);
 $response->setProperty( "debug_album", $gallery->album->fields["name"]);
 
+if ($gallery->user) {
+	$response->setProperty( "debug_user", $gallery->user->getUsername());
+	$response->setProperty( "debug_user_type", get_class($gallery->user));
+} else {
+	$response->setProperty( "debug_user", "NO_USER");
+}
+
 // -- Handle request --
 
 if (!strcmp($cmd, "login")) {
@@ -148,9 +155,6 @@ if (!strcmp($cmd, "login")) {
 
 		if ($gallery->user->isLoggedIn()) {
 			// we're embedded and the user is authenticated
-
-			$response->setProperty( "debug_user", $gallery->user->getUsername());
-			$response->setProperty( "debug_user_type", get_class($gallery->user));
 
 			$response->setProperty( "server_version", $GR_VER['MAJ'].".".$GR_VER['MIN'] );
 			$response->setProperty( "status", $GR_STAT['SUCCESS'] );
@@ -190,16 +194,7 @@ if (!strcmp($cmd, "login")) {
 	//-- fetch-albums --
 
 	$albumDB = new AlbumDB(FALSE);
-
-		//$list = array();
-		foreach ($albumDB->albumList as $album) {
-			echo $album->fields[name];
-		}
-
-		//return $list;
-
     $mynumalbums = $albumDB->numAlbums($gallery->user);
-
 	$album_index = 0;
 
     // display all albums that the user can move album to
@@ -255,7 +250,7 @@ if (!strcmp($cmd, "login")) {
 		$response->setProperty( "status", $GR_STAT['NO_FILENAME'] );
 		$response->setProperty( "status_text", "Filename not specified." );
 	} else {
-		if(isset($autoRotate)) {
+		if(isset($auto_rotate)) {
 			if($autoRotate == 'yes') {
 				$gallery->app->autorotate = 'yes';
 			} else {
@@ -308,6 +303,7 @@ if (!strcmp($cmd, "login")) {
 
 	$response->setProperty( "status", $GR_STAT['SUCCESS'] );
 	$response->setProperty( "status_text", "Album properties retrieved successfully." );
+
 } else if (!strcmp($cmd, "new-album")) {
 	//---------------------------------------------------------
 	//-- new-album --
@@ -340,6 +336,7 @@ if (!strcmp($cmd, "login")) {
 		$response->setProperty( "status", $GR_STAT['NO_CREATE_ALBUM_PERMISSION'] );
 		$response->setProperty( "status_text", "A new album could not be created because the user does not have permission to do so." );
 	}
+
 } else if (!strcmp($cmd, 'fetch-album-images')) {
 	//---------------------------------------------------------
 	//-- fetch-album-images --
@@ -376,7 +373,11 @@ if (!strcmp($cmd, "login")) {
 
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Fetch images successful.' );
+
 } else if (!strcmp($cmd, 'move-item')) {
+	//---------------------------------------------------------
+	//-- move-item --
+
 	// This is NOT complete, has not been tested and should NOT be used
 	if($gallery->user->canWriteToAlbum($gallery->album)) {
 		if(isset($set_destalbumName)) {
@@ -619,7 +620,7 @@ function mark_and_sweep(&$albumDB) {
 }
 
 function sweep(&$albumDB, &$myAlbum) {
-global $myMark;
+	global $myMark;
 	// echo "sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
 	if (! $myMark[$myAlbum->fields["name"]]) {
 		// echo "sweep: ".$myAlbum->fields["name"]." is not marked: marking\n";
