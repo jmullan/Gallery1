@@ -195,8 +195,6 @@ class AlbumItem {
 		// Use TimeStamp for capture Date instead of assoziative Array
 
 		if ($this->version < 32) {
-		echo "\n<br>";
-		print_r($this->itemCaptureDate);
 		if (isset($this->itemCaptureDate)) {
                                 $this->itemCaptureDate = mktime(
                                         $this->itemCaptureDate['hours'],
