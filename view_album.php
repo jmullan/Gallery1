@@ -367,7 +367,7 @@ if ($numPhotos) {
 			} elseif ($gallery->album->isAlbumName($i)) {
 				$myAlbumName = $gallery->album->isAlbumName($i);
 				$myAlbum = new Album();
-				$myAlbum->load($myAlbumName);
+				$myAlbum->load($myAlbumName, FALSE);
 
 				$gallery->html_wrap['thumbTag'] = $myAlbum->getHighlightAsThumbnailTag($scaleTo);
 				$gallery->html_wrap['thumbHref'] = makeAlbumUrl($myAlbumName);
