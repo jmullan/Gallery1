@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
- * $Id$
+ * x$Id$
  */
 
 // Hack prevention.
@@ -26,6 +26,10 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
 	print "Security violation\n"; 
 	exit;
+}
+
+if (!isset($GALLERY_BASEDIR)) {
+	$GALLERY_BASEDIR = '';
 }
 
 require($GALLERY_BASEDIR . "init.php");
@@ -521,25 +525,25 @@ function mark_and_sweep(&$albumDB) {
 	global $gallery, $myMark;
 
 	foreach ($albumDB->albumList as $myAlbum) {
-		echo "mark_and_sweep: ".$myAlbum->fields["name"]."\n";
+		// echo "mark_and_sweep: ".$myAlbum->fields["name"]."\n";
 		if ($gallery->user->canAddToAlbum($myAlbum)) {
 			sweep($albumDB, $myAlbum);
-			echo "mark_and_sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
+			// echo "mark_and_sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
 		}
 	}
 }
 
 function sweep(&$albumDB, &$myAlbum) {
 global $myMark;
-	echo "sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
+	// echo "sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
 	if (! $myMark[$myAlbum->fields["name"]]) {
-		echo "sweep: ".$myAlbum->fields["name"]." is not marked: marking\n";
+		// echo "sweep: ".$myAlbum->fields["name"]." is not marked: marking\n";
 		$myMark[$myAlbum->fields["name"]] = TRUE;
-		echo "sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
+		// echo "sweep: ".$myMark[$myAlbum->fields["name"]]."\n";
 
 		$parentName = $myAlbum->fields["parentAlbumName"];
 		if ($parentName) {
-			echo "sweep: got parent ".$parentName."\n";
+			// echo "sweep: got parent ".$parentName."\n";
 			$parentAlbum = $albumDB->getAlbumByName($parentName, FALSE);
 
 			sweep($albumDB, $parentAlbum);
