@@ -36,7 +36,7 @@
     <?
     }
     ?>
-    <br><a href="<?= $GALLERY_BASEDIR ?>view_comments.php?set_albumName=<?= $myAlbumName ?>">View All Comments</a>
+    <br><a href=<?=makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName))?>>View All Comments</a>
     </span>
 
     </td>

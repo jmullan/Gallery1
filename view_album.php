@@ -405,7 +405,7 @@ if ($numPhotos) {
 <?
 			        if (!strcmp($myAlbum->fields["public_comments"],"yes")) {
 ?>
-                                        <br><a href="<?= $GALLERY_BASEDIR ?>view_comments.php?set_albumName=<?= $gallery->album->fields["name"]?>">View All Comments</a><br>
+                                        <br><a href=<?=makeGalleryUrl("view_comments.php", array("set_albumName" => $myAlbum->fields["name"]))?>>View All Comments</a><br>
 <?
                                 }
 			} else {
