@@ -138,8 +138,7 @@ class AlbumItem {
 		/*
 	 	 * Sanity: make sure we can handle the file first.
 		 */
-		if (!strcmp($tag, "avi") &&
-		    !strcmp($tag, "mpg") && 
+		if (!isMovie($tag) &&
 		    !valid_image("$dir/$name.$tag")) {
 			return "Invalid image: $name.$tag";
 		}
