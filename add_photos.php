@@ -72,7 +72,6 @@ Click the <b>Browse</b> button to locate a photo to upload.
 <br><br>
 <?= makeFormIntro("add_photos.php",
 			array("name" => "count_form",
-				"enctype" => "multipart/form-data",
 				"method" => "POST")); ?>
 1. Select the number of files you want to upload:
 <select name="boxes" onChange='reloadPage()'>
