@@ -290,7 +290,13 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 		case 'GeekLog':
 			// Cheat, and grab USER information from the global session variables.
 			// Hey, it's faster and easier than reading them out of the database.
-     
+
+			// Verify that the geeklog_dir isn't overwritten with a remote exploit
+		        if (!realpath($gallery->app->geeklog_dir)) {
+				print _("Security violation") ."\n";
+				exit;
+			}
+
 			require_once($gallery->app->geeklog_dir . '/lib-common.php');
 			global $_USER;
 
