@@ -1,3 +1,11 @@
+2005-03-30  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b22
+
+	* Fix: Logged in users now no longer use the stats cache - this will
+	  prevent issues when using stats filters (which only logged-in users can see)
+	  and should alleviate a possible caching-permissions/exposure bug.
+
+	* Change: Removed some dead, commented code.
+
 2005-03-29  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b21
 
 	* Fix: check_mail.php now uses gallery_mail() instead of calling mail()
