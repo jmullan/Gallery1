@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-10-16 15:10+0200\n"
+"POT-Creation-Date: 2003-10-17 23:03+0200\n"
 "PO-Revision-Date: 2003-08-22 23:46+0100\n"
 "Last-Translator: Marjan Laznik <marjan@slo-foto.com>\n"
 "Language-Team: Slovanian <marjan@slo-foto.com>\n"
@@ -56,37 +56,42 @@ msgstr ""
 msgid "Security violation"
 msgstr "Kr¹itev varnosti"
 
-#: ../add_comment.php:55
+#: ../add_comment.php:63 ../classes/Album.php:728
+#, fuzzy
+msgid "No email sent as no valid email addresses were found"
+msgstr "Vpi¹i uporabni¹ko ime"
+
+#: ../add_comment.php:80
 msgid "Name and comment are both required to save a new comment!"
 msgstr "Ime in komentar morata biti vpisana!"
 
-#: ../add_comment.php:61
+#: ../add_comment.php:86
 msgid "Add Comment"
 msgstr "Dodaj komentar"
 
-#: ../add_comment.php:68
+#: ../add_comment.php:93
 msgid "Enter your comment for this picture in the text box below."
 msgstr "Vpi¹i komentar za to fotko v spodnje okno."
 
-#: ../add_comment.php:89
+#: ../add_comment.php:114
 msgid "Name or email:"
 msgstr "Ime ali naslov el.po¹te:"
 
-#: ../add_comment.php:119 ../album_permissions.php:344 ../edit_caption.php:173
+#: ../add_comment.php:144 ../album_permissions.php:344 ../edit_caption.php:176
 #: ../edit_field.php:64 ../edit_field.php:75 ../modify_user.php:157
-#: ../new_password.php:134 ../photo_owner.php:104 ../user_preferences.php:135
+#: ../new_password.php:134 ../photo_owner.php:109 ../user_preferences.php:135
 msgid "Save"
 msgstr "Shrani"
 
-#: ../add_comment.php:120 ../add_photo.php:153 ../add_photos.php:113
+#: ../add_comment.php:145 ../add_photo.php:153 ../add_photos.php:113
 #: ../add_photos.php:133 ../copy_photo.php:204 ../create_user.php:152
-#: ../delete_album.php:68 ../delete_photo.php:113 ../delete_photo.php:133
-#: ../delete_user.php:84 ../edit_caption.php:174 ../edit_field.php:76
-#: ../login.php:132 ../modify_user.php:158 ../move_album.php:100
-#: ../move_album.php:120 ../move_photo.php:219 ../move_photo.php:306
+#: ../delete_album.php:68 ../delete_photo.php:114 ../delete_photo.php:134
+#: ../delete_user.php:84 ../edit_caption.php:177 ../edit_field.php:76
+#: ../login.php:132 ../modify_user.php:158 ../move_album.php:108
+#: ../move_album.php:128 ../move_photo.php:230 ../move_photo.php:317
 #: ../multi_create_user.php:165 ../new_password.php:135 ../register.php:151
-#: ../rename_album.php:121 ../reset_votes.php:69 ../resize_photo.php:120
-#: ../sort_album.php:118 ../user_preferences.php:136
+#: ../rename_album.php:121 ../reset_votes.php:69 ../resize_photo.php:121
+#: ../sort_album.php:121 ../user_preferences.php:136
 msgid "Cancel"
 msgstr "Prekini"
 
@@ -95,8 +100,8 @@ msgid "Add Photo"
 msgstr "Dodaj fotko"
 
 #: ../add_photo.php:83 ../copy_photo.php:124 ../create_user.php:101
-#: ../do_command.php:145 ../login.php:163 ../multi_create_user.php:120
-#: ../register.php:55 ../register.php:132 ../save_photos.php:281
+#: ../do_command.php:150 ../login.php:163 ../multi_create_user.php:120
+#: ../register.php:55 ../register.php:132 ../save_photos.php:286
 msgid "Dismiss"
 msgstr "Razveljavi"
 
@@ -118,7 +123,7 @@ msgid "File"
 msgstr "Datoteka"
 
 #: ../add_photo.php:126 ../add_photos.php:105 ../captionator.php:268
-#: ../edit_caption.php:82
+#: ../edit_caption.php:85
 msgid "Caption"
 msgstr "Naslov"
 
@@ -229,7 +234,7 @@ msgstr "Uporabnik, ki lahko dodaja fotografije."
 msgid "Users who can view comments."
 msgstr "Uporabnik, ki lahko dodaja fotografije."
 
-#: ../album_permissions.php:345 ../manage_users.php:117 ../photo_owner.php:105
+#: ../album_permissions.php:345 ../manage_users.php:117 ../photo_owner.php:110
 #: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:70
 #: ../view_photo_properties.php:175
 msgid "Done"
@@ -363,11 +368,11 @@ msgstr "Tole ni (pravi) album. Prosim premakni ga iz mape albumov."
 msgid "Highlight for Album: "
 msgstr "Zaznamek"
 
-#: ../albums.php:286 ../view_album.php:900
+#: ../albums.php:286 ../view_album.php:899
 msgid "title"
 msgstr "naslov"
 
-#: ../albums.php:303 ../view_album.php:905
+#: ../albums.php:303 ../view_album.php:904
 msgid "description"
 msgstr "opis"
 
@@ -435,12 +440,12 @@ msgstr "Zadnja sprememba %s."
 msgid "This album contains %s."
 msgstr "Ta album vsebuje %s."
 
-#: ../albums.php:388 ../view_album.php:829
+#: ../albums.php:388 ../view_album.php:828
 #, fuzzy
 msgid "1 item"
 msgstr "pod-album ali fotografijo"
 
-#: ../albums.php:388 ../upgrade_album.php:194 ../view_album.php:829
+#: ../albums.php:388 ../upgrade_album.php:194 ../view_album.php:828
 msgid "items"
 msgstr "pod-albumov ali fotografij"
 
@@ -453,16 +458,16 @@ msgstr "ni podalbumov ali fotografij"
 msgid "This album has been viewed %s since %s."
 msgstr "Album je bil obiskan %s  od %s."
 
-#: ../albums.php:393 ../view_album.php:836 ../view_album.php:850
+#: ../albums.php:393 ../view_album.php:835 ../view_album.php:849
 #, fuzzy
 msgid "1 time"
 msgstr "krat"
 
-#: ../albums.php:393 ../view_album.php:836 ../view_album.php:850
+#: ../albums.php:393 ../view_album.php:835 ../view_album.php:849
 msgid "times"
 msgstr "krat"
 
-#: ../albums.php:393 ../view_album.php:836 ../view_album.php:850
+#: ../albums.php:393 ../view_album.php:835 ../view_album.php:849
 msgid "0 times"
 msgstr "0 krat"
 
@@ -470,7 +475,7 @@ msgstr "0 krat"
 msgid "reset counter"
 msgstr "razveljavi ¹tevec"
 
-#: ../albums.php:426 ../view_album.php:1022
+#: ../albums.php:426 ../view_album.php:1021
 msgid "Comments available for this item."
 msgstr "Razpolo¾ljivi komentarji."
 
@@ -516,15 +521,15 @@ msgstr "Izhod"
 msgid "Album Caption:"
 msgstr "Naslov albuma:"
 
-#: ../captionator.php:279 ../edit_caption.php:100 ../extra_fields.php:114
+#: ../captionator.php:279 ../edit_caption.php:103 ../extra_fields.php:114
 msgid "Title"
 msgstr "Naslov"
 
-#: ../captionator.php:288 ../edit_caption.php:112
+#: ../captionator.php:288 ../edit_caption.php:115
 msgid "Keywords"
 msgstr "Kategorija"
 
-#: ../captionator.php:291 ../util.php:312
+#: ../captionator.php:291 ../util.php:314
 msgid "Capture Date"
 msgstr "Datum/èas posnetka"
 
@@ -536,59 +541,68 @@ msgstr "NI FOTOGRAFIJ!"
 msgid "Untitled"
 msgstr "Brez naslova"
 
-#: ../classes/Album.php:210
+#: ../classes/Album.php:211
 msgid "Album up to date."
 msgstr "Album je ok."
 
-#: ../classes/Album.php:214
+#: ../classes/Album.php:215
 msgid "Upgrading album properties..."
 msgstr "Nadgradnja lastnosti albuma ..."
 
-#: ../classes/Album.php:340 ../classes/Album.php:357
+#: ../classes/Album.php:344 ../classes/Album.php:361
 msgid "done"
 msgstr "konèano"
 
-#: ../classes/Album.php:348
+#: ../classes/Album.php:352
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "Nadgradnja %d predmetov od %d . . . "
 
-#: ../classes/Album.php:785
+#: ../classes/Album.php:708
+msgid "msg should be an array!"
+msgstr ""
+
+#: ../classes/Album.php:819
 msgid "Resizing/compressing original image"
 msgstr ""
 
-#: ../classes/Album.php:789
+#: ../classes/Album.php:823
 msgid "Cannot resize/compress this filetype"
 msgstr ""
 
-#: ../classes/Album.php:837
+#: ../classes/Album.php:871
 #, php-format
 msgid "Resizing %s"
 msgstr "Ponastavljam %s"
 
-#: ../classes/Album.php:877
+#: ../classes/Album.php:911
 msgid "Photo auto-rotated/transformed"
 msgstr ""
 
-#: ../classes/Album.php:980 ../classes/Album.php:989
-#: ../classes/AlbumItem.php:491
+#: ../classes/Album.php:1017 ../classes/Album.php:1026
+#: ../classes/AlbumItem.php:495
 msgid "No highlight"
 msgstr "Ni povdarjeno"
 
-#: ../classes/Album.php:1771
+#: ../classes/Album.php:1811
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/AlbumItem.php:413
+#: ../classes/Album.php:1946
+#, php-format
+msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
+msgstr ""
+
+#: ../classes/AlbumItem.php:417
 msgid "Invalid image"
 msgstr "Napaka v sliki"
 
-#: ../classes/AlbumItem.php:471
+#: ../classes/AlbumItem.php:475
 msgid "Unable to make thumbnail"
 msgstr "Ne morem kreirati slièic"
 
-#: ../classes/AlbumItem.php:483
+#: ../classes/AlbumItem.php:487
 msgid "No thumbnail"
 msgstr "Ni slièic"
 
@@ -672,15 +686,15 @@ msgstr ""
 msgid "Copying photo #%d"
 msgstr ""
 
-#: ../copy_photo.php:83 ../move_photo.php:117
+#: ../copy_photo.php:83 ../move_photo.php:123
 msgid "Creating Thumbnail"
 msgstr "Kreiraj slièice"
 
-#: ../copy_photo.php:113 ../move_photo.php:162
+#: ../copy_photo.php:113 ../move_photo.php:173
 msgid "Error"
 msgstr "Napaka"
 
-#: ../copy_photo.php:117 ../move_photo.php:166
+#: ../copy_photo.php:117 ../move_photo.php:177
 #, php-format
 msgid "Skipping Album #%d"
 msgstr "Preskakujem album #%d"
@@ -695,28 +709,28 @@ msgstr "Premakni odsek fotografij v nov album:"
 msgid "To copy just one photo, make First and Last the same"
 msgstr "Za premik samo ene fotografije nastavi za prvo in zadnjo isto fotografijo"
 
-#: ../copy_photo.php:145 ../move_photo.php:239
+#: ../copy_photo.php:145 ../move_photo.php:250
 msgid "Nested albums in this range will be ignored"
 msgstr ""
 
-#: ../copy_photo.php:154 ../move_photo.php:248
+#: ../copy_photo.php:154 ../move_photo.php:259
 msgid "First"
 msgstr "Prva"
 
-#: ../copy_photo.php:155 ../move_photo.php:249
+#: ../copy_photo.php:155 ../move_photo.php:260
 msgid "Last"
 msgstr "Zadnja"
 
-#: ../copy_photo.php:156 ../move_photo.php:250
+#: ../copy_photo.php:156 ../move_photo.php:261
 msgid "New Album"
 msgstr "Nov album"
 
-#: ../copy_photo.php:198 ../move_photo.php:300
+#: ../copy_photo.php:198 ../move_photo.php:311
 #, php-format
 msgid "WARNING: Some of the albums need to be upgraded to the current version of %s."
 msgstr ""
 
-#: ../copy_photo.php:199 ../move_photo.php:301
+#: ../copy_photo.php:199 ../move_photo.php:312
 msgid "Upgrade now"
 msgstr "Nadgradnja zdaj"
 
@@ -725,9 +739,9 @@ msgstr "Nadgradnja zdaj"
 msgid "Copy to Album!"
 msgstr "Premakni v album!"
 
-#: ../copy_photo.php:208 ../delete_photo.php:140 ../edit_thumb.php:138
-#: ../move_album.php:126 ../move_photo.php:312 ../resize_photo.php:133
-#: ../rotate_photo.php:99 ../view_photo_properties.php:170
+#: ../copy_photo.php:208 ../delete_photo.php:141 ../edit_thumb.php:139
+#: ../move_album.php:134 ../move_photo.php:323 ../resize_photo.php:134
+#: ../rotate_photo.php:101 ../view_photo_properties.php:170
 msgid "no album / index specified"
 msgstr "album / index ni oznaèen"
 
@@ -792,7 +806,7 @@ msgstr "Ustvari novega uporabnika."
 msgid "Create"
 msgstr "Ustvari"
 
-#: ../delete_album.php:53 ../delete_album.php:59 ../delete_photo.php:88
+#: ../delete_album.php:53 ../delete_album.php:59 ../delete_photo.php:89
 msgid "Delete Album"
 msgstr "Bri¹i album"
 
@@ -800,25 +814,25 @@ msgstr "Bri¹i album"
 msgid "Do you really want to delete this album?"
 msgstr "Res bri¹em ta album?"
 
-#: ../delete_album.php:67 ../delete_photo.php:112 ../delete_photo.php:132
-#: ../delete_user.php:79 ../manage_users.php:115 ../view_album.php:951
-#: ../view_album.php:956
+#: ../delete_album.php:67 ../delete_photo.php:113 ../delete_photo.php:133
+#: ../delete_user.php:79 ../manage_users.php:115 ../view_album.php:950
+#: ../view_album.php:955
 msgid "Delete"
 msgstr "Brisanje"
 
-#: ../delete_album.php:76 ../sort_album.php:123
+#: ../delete_album.php:76 ../sort_album.php:126
 msgid "no album specified"
 msgstr "noben album oznaèen"
 
-#: ../delete_photo.php:76
+#: ../delete_photo.php:77
 msgid "Delete Photo"
 msgstr "Bri¹i fotko"
 
-#: ../delete_photo.php:92
+#: ../delete_photo.php:93
 msgid "Do you really want to delete this Album?"
 msgstr "Res ¾eli¹ brisati ta album?"
 
-#: ../delete_photo.php:122
+#: ../delete_photo.php:123
 msgid "Do you really want to delete this photo?"
 msgstr "Res ¾eli¹ brisati to fotko?"
 
@@ -923,18 +937,17 @@ msgid "Thumbnail size"
 msgstr "Velikost slièice"
 
 #: ../edit_appearance.php:157
-msgid "Auto-Resize 'sized' image dimensions"
+msgid "Maximum dimensions of intermediate sized images"
 msgstr ""
 
 #: ../edit_appearance.php:161
 #, fuzzy
-msgid "Auto-Resize JPEG/PNG 'sized' file size kilobytes (0 or blank for no size restriction)"
+msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "Avtomatièna ponastavitev v velikosti KB (0 ali prazno za brez omejitve velikosti)"
 
 #: ../edit_appearance.php:165
-#, fuzzy
-msgid "Max Image Size"
-msgstr "Velikost datoteke"
+msgid "Maximum dimensions of full sized images"
+msgstr ""
 
 #: ../edit_appearance.php:166
 #, php-format
@@ -943,7 +956,7 @@ msgstr ""
 
 #: ../edit_appearance.php:169
 #, fuzzy
-msgid "Max JPEG/PNG file size kilobytes (0 or blank for no size restriction)"
+msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "Avtomatièna ponastavitev v velikosti KB (0 ali prazno za brez omejitve velikosti)"
 
 #: ../edit_appearance.php:173
@@ -1070,43 +1083,43 @@ msgid "Undo"
 msgstr "Prekini"
 
 #: ../edit_appearance.php:316 ../extra_fields.php:167
-#: ../poll_properties.php:142 ../rotate_photo.php:91
+#: ../poll_properties.php:142 ../rotate_photo.php:93
 msgid "Close"
 msgstr "Zapri"
 
-#: ../edit_caption.php:66
+#: ../edit_caption.php:69
 msgid "Year must be between 1000 and 3000"
 msgstr "Leto mora biti med 1000 in 3000"
 
-#: ../edit_caption.php:72 ../view_album.php:918
+#: ../edit_caption.php:75 ../view_album.php:917
 msgid "Edit Text"
 msgstr "Uredi tekst"
 
-#: ../edit_caption.php:133
+#: ../edit_caption.php:136
 msgid "Photo Capture Date"
 msgstr "Datum nastanka fotke"
 
-#: ../edit_caption.php:136
+#: ../edit_caption.php:139
 msgid "Month"
 msgstr "Mesec"
 
-#: ../edit_caption.php:137
+#: ../edit_caption.php:140
 msgid "Day"
 msgstr "Dan"
 
-#: ../edit_caption.php:138
+#: ../edit_caption.php:141
 msgid "Year"
 msgstr "Leto"
 
-#: ../edit_caption.php:139
+#: ../edit_caption.php:142
 msgid "Hours"
 msgstr "Ura"
 
-#: ../edit_caption.php:140
+#: ../edit_caption.php:143
 msgid "Minutes"
 msgstr "Minuta"
 
-#: ../edit_caption.php:141
+#: ../edit_caption.php:144
 msgid "Seconds"
 msgstr "Sekunde"
 
@@ -1120,7 +1133,7 @@ msgstr "Uredi %s"
 msgid "Edit the %s and click %s when you're done"
 msgstr "Uredi %s in klikni %s ko konca¹"
 
-#: ../edit_thumb.php:47 ../edit_thumb.php:76
+#: ../edit_thumb.php:47 ../edit_thumb.php:77
 msgid "Custom Thumbnail"
 msgstr "Uredi slièice"
 
@@ -1128,7 +1141,7 @@ msgstr "Uredi slièice"
 msgid "Remaking the Thumbnail..."
 msgstr "Ponastavitev slièic ..."
 
-#: ../edit_thumb.php:118
+#: ../edit_thumb.php:119
 msgid "Choose which part of the image will compose your thumbnail:"
 msgstr "Izberi kateri del slike naj kreira slièice:"
 
@@ -1213,19 +1226,19 @@ msgstr "Od:"
 msgid "delete comment"
 msgstr "bri¹i komentar"
 
-#: ../layout/commentboxbottom.inc:12 ../util.php:99
+#: ../layout/commentboxbottom.inc:12 ../util.php:101
 msgid "add comment"
 msgstr "dodaj komentar"
 
 #: ../layout/commentboxtop.inc:17 ../slideshow.php:596 ../slideshow.php:610
 #: ../slideshow_low.php:358 ../slideshow_low.php:370 ../upgrade_album.php:97
-#: ../view_album.php:143 ../view_album.php:866 ../view_comments.php:74
+#: ../view_album.php:143 ../view_album.php:865 ../view_comments.php:74
 #: ../view_photo.php:182 ../view_photo.php:196
 msgid "Album"
 msgstr "Album"
 
 #: ../layout/commentboxtop.inc:20 ../layout/commentboxtop.inc:42
-#: ../view_album.php:811
+#: ../view_album.php:810
 msgid "hidden"
 msgstr "skrito"
 
@@ -1361,7 +1374,7 @@ msgstr ""
 msgid "Manage Users"
 msgstr "Urejanje uporabnikov"
 
-#: ../manage_users.php:80 ../util.php:114
+#: ../manage_users.php:80 ../util.php:116
 msgid "Error:"
 msgstr "Napaka:"
 
@@ -1398,19 +1411,19 @@ msgstr "Z uporabo te forme lahko spremeni¹ informacije o uporabniku."
 msgid "Move Album"
 msgstr "Premakni album"
 
-#: ../move_album.php:78
+#: ../move_album.php:86
 msgid "Select the new location of album"
 msgstr "Izberi novo lokacijo albuma"
 
-#: ../move_album.php:99 ../move_photo.php:218
+#: ../move_album.php:107 ../move_photo.php:229
 msgid "Move it!"
 msgstr "Premakni!"
 
-#: ../move_album.php:108
+#: ../move_album.php:116
 msgid "Nest within another Album:"
 msgstr "Premakni v drug album:"
 
-#: ../move_album.php:119 ../move_photo.php:305
+#: ../move_album.php:127 ../move_photo.php:316
 msgid "Move to Album!"
 msgstr "Premakni v album!"
 
@@ -1418,48 +1431,48 @@ msgstr "Premakni v album!"
 msgid "Move Photo"
 msgstr "Premakni fotko"
 
-#: ../move_photo.php:103
+#: ../move_photo.php:109
 msgid "Moving photo #"
 msgstr "Premikam fotko #"
 
-#: ../move_photo.php:152
+#: ../move_photo.php:161
 msgid "- Creating New Album Highlight"
 msgstr ""
 
-#: ../move_photo.php:195
+#: ../move_photo.php:206
 msgid "Move this album within the album:"
 msgstr "Premakni ta album v album:"
 
-#: ../move_photo.php:197
+#: ../move_photo.php:208
 msgid "Move this photo within the album:"
 msgstr "Premakni to fotko v album:"
 
-#: ../move_photo.php:199
+#: ../move_photo.php:210
 #, php-format
 msgid "Current Location is %s"
 msgstr "Trenutna lokacija %s"
 
-#: ../move_photo.php:203
+#: ../move_photo.php:214
 msgid "Select the new location:"
 msgstr "Izberi novo lokacijo:"
 
-#: ../move_photo.php:226
+#: ../move_photo.php:237
 msgid "Move the album to a new album:"
 msgstr "Premakni album v nov album:"
 
-#: ../move_photo.php:237
+#: ../move_photo.php:248
 msgid "Move a range of photos to a new album:"
 msgstr "Premakni odsek fotografij v nov album:"
 
-#: ../move_photo.php:238
+#: ../move_photo.php:249
 msgid "To move just one photo, make First and Last the same"
 msgstr "Za premik samo ene fotografije nastavi za prvo in zadnjo isto fotografijo"
 
-#: ../move_photo.php:293
+#: ../move_photo.php:304
 msgid "Note: items that have votes will lose these votes when moved to another album"
 msgstr ""
 
-#: ../move_photo.php:295
+#: ../move_photo.php:306
 #, php-format
 msgid "Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."
 msgstr ""
@@ -1553,11 +1566,11 @@ msgstr "Tukaj lahko spremeni¹ svoje uporabni¹ke nastavitve."
 msgid "You must enter the new password twice."
 msgstr "Vpi¹i geslo"
 
-#: ../photo_owner.php:80 ../photo_owner.php:86 ../view_album.php:967
+#: ../photo_owner.php:85 ../photo_owner.php:91 ../view_album.php:966
 msgid "Change Owner"
 msgstr "Spremeni lastnika"
 
-#: ../photo_owner.php:100
+#: ../photo_owner.php:105
 msgid "Owner"
 msgstr "Lastnik"
 
@@ -1615,11 +1628,11 @@ msgstr "ni podalbumov ali fotografij"
 msgid "Orientation of vote choices"
 msgstr ""
 
-#: ../poll_properties.php:110 ../rotate_photo.php:86
+#: ../poll_properties.php:110 ../rotate_photo.php:88
 msgid "Horizontal"
 msgstr "Vodoravno"
 
-#: ../poll_properties.php:110 ../rotate_photo.php:89
+#: ../poll_properties.php:110 ../rotate_photo.php:91
 msgid "Vertical"
 msgstr "Navpièno"
 
@@ -1645,8 +1658,8 @@ msgstr ""
 msgid "Results Breakdown"
 msgstr ""
 
-#: ../poll_results.php:158 ../util.php:1960 ../view_album.php:547
-#: ../view_album.php:818
+#: ../poll_results.php:158 ../util.php:1962 ../view_album.php:547
+#: ../view_album.php:817
 #, php-format
 msgid "Album: %s"
 msgstr ""
@@ -1883,7 +1896,7 @@ msgstr ""
 msgid "Your account information will be sent to the email address you provide."
 msgstr ""
 
-#: ../rename_album.php:45 ../view_album.php:912
+#: ../rename_album.php:45 ../view_album.php:911
 msgid "Rename Album"
 msgstr "Preimenuj album"
 
@@ -1943,43 +1956,43 @@ msgstr ""
 msgid "Resizing 1 photo..."
 msgstr "Ponastavljam 1 fotko ..."
 
-#: ../resize_photo.php:81
+#: ../resize_photo.php:82
 msgid "Resizing photos"
 msgstr "Ponastavljam fotke"
 
-#: ../resize_photo.php:83
+#: ../resize_photo.php:84
 msgid "This will resize your photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size. "
 msgstr ""
 
-#: ../resize_photo.php:85
+#: ../resize_photo.php:86
 msgid "What is the target size for all the photos in this album?"
 msgstr ""
 
-#: ../resize_photo.php:85
+#: ../resize_photo.php:86
 msgid "What is the target size for this photo?"
 msgstr ""
 
-#: ../resize_photo.php:89
+#: ../resize_photo.php:90
 msgid "Target filesize"
 msgstr ""
 
-#: ../resize_photo.php:92
+#: ../resize_photo.php:93
 msgid "Maximum side length in pixels"
 msgstr ""
 
-#: ../resize_photo.php:96
+#: ../resize_photo.php:97
 msgid "Get rid of resized"
 msgstr ""
 
-#: ../resize_photo.php:97
+#: ../resize_photo.php:98
 msgid "(Use only the original picture)"
 msgstr ""
 
-#: ../resize_photo.php:114
+#: ../resize_photo.php:115
 msgid "(manual value)"
 msgstr ""
 
-#: ../resize_photo.php:119
+#: ../resize_photo.php:120
 #, fuzzy
 msgid "Change Size"
 msgstr "Velikost datoteke"
@@ -1996,23 +2009,23 @@ msgstr "Obraèam fotko."
 msgid "(this may take a while)"
 msgstr "(to lahko traja nekaj èasa)"
 
-#: ../rotate_photo.php:71
+#: ../rotate_photo.php:73
 msgid "How do you want to manipulate this photo?"
 msgstr "Kaj hoèe¹ narediti s to fotko?"
 
-#: ../rotate_photo.php:75
+#: ../rotate_photo.php:77
 msgid "Rotate"
 msgstr "Obraèanje"
 
-#: ../rotate_photo.php:77
+#: ../rotate_photo.php:79
 msgid "Counter-Clockwise"
 msgstr ""
 
-#: ../rotate_photo.php:83
+#: ../rotate_photo.php:85
 msgid "Clockwise"
 msgstr ""
 
-#: ../rotate_photo.php:84
+#: ../rotate_photo.php:86
 msgid "Flip"
 msgstr ""
 
@@ -2048,23 +2061,23 @@ msgstr "Najdeno %d slik"
 msgid "Processing status..."
 msgstr "Stanje obdelave ..."
 
-#: ../save_photos.php:276
+#: ../save_photos.php:281
 msgid "No images uploaded!"
 msgstr "Slike niso nalo¾ene!"
 
-#: ../save_photos.php:315 ../save_photos.php:339
+#: ../save_photos.php:320 ../save_photos.php:344
 msgid "Check All"
 msgstr "Oznaèi vse"
 
-#: ../save_photos.php:317 ../save_photos.php:341
+#: ../save_photos.php:322 ../save_photos.php:346
 msgid "Clear All"
 msgstr "Odznaèi vse"
 
-#: ../save_photos.php:319 ../save_photos.php:343
+#: ../save_photos.php:324 ../save_photos.php:348
 msgid "Invert Selection"
 msgstr "Preobrni izbor"
 
-#: ../save_photos.php:348
+#: ../save_photos.php:353
 msgid "Add Files"
 msgstr "Dodaj datoteke"
 
@@ -2256,43 +2269,43 @@ msgstr "Izberi naèin razvr¹èanja za album"
 msgid "Warning:  This operation can't be undone."
 msgstr "Opozorilo: Te operacije ni mogoèe preklicati."
 
-#: ../sort_album.php:87
+#: ../sort_album.php:90
 msgid "By Upload Date"
 msgstr "Po datumu nalaganja"
 
-#: ../sort_album.php:90
+#: ../sort_album.php:93
 msgid "By Picture-Taken Date"
 msgstr "Po datumu nastanka fotke"
 
-#: ../sort_album.php:93
+#: ../sort_album.php:96
 msgid "By Filename"
 msgstr "Po imenu datoteke"
 
-#: ../sort_album.php:96
+#: ../sort_album.php:99
 msgid "By Number of Clicks"
 msgstr "Po ¹tevilu klikov"
 
-#: ../sort_album.php:99
+#: ../sort_album.php:102
 msgid "By Caption"
 msgstr "Po naslovu"
 
-#: ../sort_album.php:102
+#: ../sort_album.php:105
 msgid "By Number of Comments"
 msgstr "Po ¹tevilu komentarjev"
 
-#: ../sort_album.php:105
+#: ../sort_album.php:108
 msgid "Randomly"
 msgstr "Nakljuèno"
 
-#: ../sort_album.php:110
+#: ../sort_album.php:113
 msgid "Ascending"
 msgstr "Vzpenjajoèe"
 
-#: ../sort_album.php:111
+#: ../sort_album.php:114
 msgid "Descending"
 msgstr "Padajoèe"
 
-#: ../sort_album.php:117
+#: ../sort_album.php:120
 msgid "Sort"
 msgstr "Razvrsti"
 
@@ -2412,313 +2425,336 @@ msgstr "Ni naslova"
 msgid "edit"
 msgstr "uredi"
 
-#: ../util.php:188
+#: ../util.php:190
 msgid "Results:"
 msgstr "Rezultat:"
 
-#: ../util.php:192
+#: ../util.php:194
 msgid "none"
 msgstr ""
 
-#: ../util.php:197
+#: ../util.php:199
 msgid "Error messages:"
 msgstr "Napaka:"
 
-#: ../util.php:208
+#: ../util.php:210
 #, php-format
 msgid "Status: %s (expected %s)"
 msgstr "Stanje: %s (narejeno %s)"
 
-#: ../util.php:223
+#: ../util.php:225
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
 msgstr ""
 
-#: ../util.php:243 ../util.php:584 ../util.php:630 ../util.php:2579
+#: ../util.php:245 ../util.php:586 ../util.php:632 ../util.php:2581
 msgid "You have no graphics package configured for use!"
 msgstr ""
 
-#: ../util.php:311
+#: ../util.php:313
 msgid "Upload Date"
 msgstr "Datum nalaganja"
 
-#: ../util.php:313
+#: ../util.php:315
 msgid "Image Size"
 msgstr "Velikost datoteke"
 
-#: ../util.php:314
+#: ../util.php:316
 msgid "Additional EXIF Data"
 msgstr ""
 
-#: ../util.php:350 ../util.php:366
+#: ../util.php:352 ../util.php:368
 msgid "Not closing this window because debug mode is on"
 msgstr ""
 
-#: ../util.php:424
+#: ../util.php:426
 #, php-format
 msgid "target file size %d kbytes"
 msgstr ""
 
-#: ../util.php:430 ../util.php:461
+#: ../util.php:432 ../util.php:463
 #, php-format
 msgid "- file size %d kbytes"
 msgstr ""
 
-#: ../util.php:431
+#: ../util.php:433
 #, php-format
 msgid "trying quality %d%%"
 msgstr ""
 
-#: ../util.php:462
+#: ../util.php:464
 msgid "Done."
 msgstr "Zakljuèeno."
 
-#: ../util.php:649
+#: ../util.php:651
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr ""
 
-#: ../util.php:655
+#: ../util.php:657
 #, php-format
 msgid "File %s type %d."
 msgstr ""
 
-#: ../util.php:670
+#: ../util.php:672
 #, php-format
 msgid "There was an unknown failure in the %s call!"
 msgstr "Neznana napaka v klicu %s !"
 
-#: ../util.php:694 ../util.php:717
+#: ../util.php:696 ../util.php:719
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Neznan format datoteke: %s"
 
-#: ../util.php:1197
+#: ../util.php:1199
 #, php-format
 msgid "Can't write to %s."
 msgstr "Ne morem pisati v %s."
 
-#: ../util.php:1204
+#: ../util.php:1206
 #, php-format
 msgid "Can't read %s."
 msgstr "Ne morem brati %s."
 
-#: ../util.php:1300
+#: ../util.php:1302
 msgid "Select Album"
 msgstr "Izberi album"
 
-#: ../util.php:1306
+#: ../util.php:1308
 msgid "Top Level"
 msgstr ""
 
-#: ../util.php:1327 ../util.php:1377
+#: ../util.php:1329 ../util.php:1379
 msgid "current location"
 msgstr "sedanja lokacija"
 
-#: ../util.php:1379
+#: ../util.php:1381
 msgid "self"
 msgstr "samostojno"
 
-#: ../util.php:1546
+#: ../util.php:1548
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Ne morem odpreti zaklenjene datoteke  (%s)!"
 
-#: ../util.php:1551
+#: ../util.php:1553
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Ne morem zakleniti (%s)!"
 
-#: ../util.php:1634
+#: ../util.php:1636
 #, fuzzy
 msgid "1 hit"
 msgstr "klik"
 
-#: ../util.php:1634
+#: ../util.php:1636
 msgid "hits"
 msgstr "klikov"
 
-#: ../util.php:1634
+#: ../util.php:1636
 msgid "0 hits"
 msgstr "0 klikov"
 
-#: ../util.php:1639
+#: ../util.php:1641
 msgid "Sub-albums"
 msgstr "Pod-album"
 
-#: ../util.php:1893 ../view_album.php:605 ../view_album.php:635
-#: ../view_album.php:1031
+#: ../util.php:1895 ../view_album.php:605 ../view_album.php:635
+#: ../view_album.php:1030
 #, fuzzy
 msgid "Vote"
 msgstr "Obraèanje"
 
-#: ../util.php:1934
+#: ../util.php:1936
 msgid "Total points in brackets"
 msgstr ""
 
-#: ../util.php:1939
+#: ../util.php:1941
 msgid "Average points in brackets"
 msgstr ""
 
-#: ../util.php:1997
+#: ../util.php:1999
 #, php-format
 msgid "Results from %s."
 msgstr ""
 
-#: ../util.php:1999
+#: ../util.php:2001
 #, fuzzy
 msgid "1 voter"
 msgstr "0 datotek"
 
-#: ../util.php:1999
+#: ../util.php:2001
 #, fuzzy
 msgid "voters"
 msgstr "Okvirji"
 
-#: ../util.php:2000
+#: ../util.php:2002
 #, fuzzy
 msgid "0 voters"
 msgstr "0 datotek"
 
-#: ../util.php:2010
+#: ../util.php:2012
 #, fuzzy, php-format
 msgid "%s: %s points; "
 msgstr "%s, %s"
 
-#: ../util.php:2016
+#: ../util.php:2018
 #, php-format
 msgid "Key - %s"
 msgstr ""
 
-#: ../util.php:2023
+#: ../util.php:2025
 msgid "No votes so far."
 msgstr ""
 
-#: ../util.php:2047
+#: ../util.php:2049
 #, fuzzy
 msgid "Poll results:"
 msgstr "Rezultat:"
 
-#: ../util.php:2050
+#: ../util.php:2052
 #, fuzzy
 msgid "No votes"
 msgstr "ni podalbumov ali fotografij"
 
-#: ../util.php:2054
+#: ../util.php:2056
 #, php-format
 msgid "Number %d overall."
 msgstr ""
 
-#: ../util.php:2059
+#: ../util.php:2061
 #, fuzzy, php-format
 msgid "%s: %s"
 msgstr "%s, %s"
 
-#: ../util.php:2060 ../view_album.php:610
+#: ../util.php:2062 ../view_album.php:610
 #, fuzzy
 msgid "1 vote"
 msgstr "Obraèanje"
 
-#: ../util.php:2060 ../view_album.php:610
+#: ../util.php:2062 ../view_album.php:610
 #, fuzzy
 msgid "votes"
 msgstr "ni podalbumov ali fotografij"
 
-#: ../util.php:2060
+#: ../util.php:2062
 #, fuzzy
 msgid "0 votes"
 msgstr "0 krat"
 
-#: ../util.php:2071
+#: ../util.php:2073
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Preskakujem %s (ZIP format ni podprt)"
 
-#: ../util.php:2145
+#: ../util.php:2147
 #, php-format
 msgid "Adding %s"
 msgstr "Nalagam %s"
 
-#: ../util.php:2156
+#: ../util.php:2158
 #, php-format
 msgid "Error: %s!"
 msgstr "Napaka: %s!"
 
-#: ../util.php:2158
+#: ../util.php:2160
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Potrebuje¹ pomoè?  Poglej v  %s%s FAQ%s"
 
-#: ../util.php:2164
+#: ../util.php:2166
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Preskok %s (neznan fotmat %s )"
 
-#: ../util.php:2537
+#: ../util.php:2539
 msgid "documentation"
 msgstr "dokumentacija"
 
-#: ../util.php:2562
+#: ../util.php:2564
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr ""
 
-#: ../util.php:2589
+#: ../util.php:2591
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Proizvedeno z %s v%s"
 
-#: ../util.php:2591
+#: ../util.php:2593
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "V lasti %s v%s"
 
-#: ../util.php:2678
+#: ../util.php:2637
+#, fuzzy, php-format
+msgid "Skipping invalid email address %s"
+msgstr "Vpi¹i uporabni¹ko ime"
+
+#: ../util.php:2703
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message."
 msgstr ""
 
-#: ../util.php:2680
+#: ../util.php:2705
 #, php-format
 msgid "Report abuse to %s."
 msgstr ""
 
-#: ../util.php:2695
+#: ../util.php:2721
 msgid "Email not sent as it is disabled for this gallery"
 msgstr ""
 
-#: ../util.php:2699
+#: ../util.php:2725
 msgid "Email not sent as no address provided"
 msgstr ""
 
-#: ../util.php:2704
+#: ../util.php:2730
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr ""
 
-#: ../util.php:2724
+#: ../util.php:2745
+#, php-format
+msgid "Sender address %s is invalid, using %s."
+msgstr ""
+
+#: ../util.php:2769 ../util.php:2774
+msgid "not shown"
+msgstr ""
+
+#: ../util.php:2778
+msgid "Message"
+msgstr ""
+
+#: ../util.php:2782
 #, fuzzy
 msgid "Email sent"
 msgstr "Email naslov"
 
-#: ../util.php:2749
+#: ../util.php:2784
+#, fuzzy
+msgid "Email not sent"
+msgstr "Email naslov"
+
+#: ../util.php:2798
 #, fuzzy, php-format
 msgid "Last comment %s."
 msgstr "Zadnja sprememba %s."
 
-#: ../util.php:2760
+#: ../util.php:2809
 msgid "FAILED"
 msgstr ""
 
-#: ../util.php:2769
+#: ../util.php:2818
 msgid "Email activity"
 msgstr ""
 
-#: ../util.php:2787
+#: ../util.php:2836
 #, fuzzy, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Ne morem odpreti zaklenjene datoteke  (%s)!"
 
-#: ../util.php:2794
+#: ../util.php:2843
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -2730,53 +2766,53 @@ msgid ""
 "Gallery @ %s Administrator."
 msgstr ""
 
-#: ../util.php:2803 ../util.php:2805
+#: ../util.php:2852 ../util.php:2854
 #, fuzzy
 msgid "gallery title"
 msgstr "Naslov galerije"
 
-#: ../util.php:2804
+#: ../util.php:2853
 #, fuzzy
 msgid "gallery URL"
 msgstr "Galerija"
 
-#: ../util.php:2857
+#: ../util.php:2906
 msgid "screenshot"
 msgstr ""
 
-#: ../util.php:2867 ../util.php:2914
+#: ../util.php:2916 ../util.php:2963
 #, fuzzy, php-format
 msgid "Can't open %s"
 msgstr "Ne morem brati %s."
 
-#: ../util.php:2880 ../util.php:2885
+#: ../util.php:2929 ../util.php:2934
 #, fuzzy
 msgid "None"
 msgstr "Zakljuèi"
 
-#: ../util.php:2881 ../util.php:2886
+#: ../util.php:2930 ../util.php:2935
 #, fuzzy
 msgid "Dots"
 msgstr "ni podalbumov ali fotografij"
 
-#: ../util.php:2882 ../util.php:2887
+#: ../util.php:2931 ../util.php:2936
 msgid "Solid"
 msgstr ""
 
-#: ../util.php:2885
+#: ../util.php:2934
 #, fuzzy
 msgid "No frames"
 msgstr "Ni albumov"
 
-#: ../util.php:2886
+#: ../util.php:2935
 msgid "Just a simple dashed border around the thumb."
 msgstr ""
 
-#: ../util.php:2887
+#: ../util.php:2936
 msgid "Just a simple solid border around the thumb."
 msgstr ""
 
-#: ../util.php:2908
+#: ../util.php:2957
 #, fuzzy, php-format
 msgid "Skipping %s."
 msgstr "Preskok album %d ..."
@@ -2933,99 +2969,112 @@ msgstr "ni podalbumov ali fotografij"
 msgid "You can change your choices if you wish."
 msgstr "Tukaj lahko spremeni¹ svoje uporabni¹ke nastavitve."
 
-#: ../view_album.php:749 ../view_album.php:750
+#: ../view_album.php:748 ../view_album.php:749
 #, php-format
 msgid "%dkB"
 msgstr ""
 
-#: ../view_album.php:819
+#: ../view_album.php:818
 msgid "No description"
 msgstr "Brez opisa"
 
-#: ../view_album.php:828
+#: ../view_album.php:827
 msgid "Changed: "
 msgstr "Spremenjeno:"
 
-#: ../view_album.php:829
+#: ../view_album.php:828
 msgid "Contains: "
 msgstr "Vsebuje:"
 
-#: ../view_album.php:829
+#: ../view_album.php:828
 msgid "0 items"
 msgstr "0 datotek"
 
-#: ../view_album.php:836 ../view_album.php:850
+#: ../view_album.php:835 ../view_album.php:849
 msgid "Viewed:"
 msgstr "Pogledov:"
 
-#: ../view_album.php:864
+#: ../view_album.php:863
 msgid "Movie"
 msgstr "Film"
 
-#: ../view_album.php:868
+#: ../view_album.php:867
 msgid "Photo"
 msgstr "Fotka"
 
-#: ../view_album.php:875
+#: ../view_album.php:874
 msgid "Edit"
 msgstr "Uredi"
 
-#: ../view_album.php:901
+#: ../view_album.php:900
 msgid "Edit Title"
 msgstr "Uredi naslov"
 
-#: ../view_album.php:906
+#: ../view_album.php:905
 msgid "Edit Description"
 msgstr "Uredi zaznamek"
 
-#: ../view_album.php:923
+#: ../view_album.php:922
 msgid "Edit Thumbnail"
 msgstr "Uredi slièice"
 
-#: ../view_album.php:924
+#: ../view_album.php:923
 msgid "Rotate/Flip"
 msgstr "Obrni"
 
-#: ../view_album.php:927
+#: ../view_album.php:926
 msgid "Highlight"
 msgstr "Zaznamek"
 
-#: ../view_album.php:932
+#: ../view_album.php:931
 msgid "Reset Counter"
 msgstr "Razveljavi ¹tevec"
 
-#: ../view_album.php:937
+#: ../view_album.php:936
 msgid "Move "
 msgstr "Premakni"
 
-#: ../view_album.php:938
+#: ../view_album.php:937
 #, fuzzy
 msgid "Reorder "
 msgstr "Okvirji"
 
-#: ../view_album.php:940
+#: ../view_album.php:939
 msgid "Copy "
 msgstr ""
 
-#: ../view_album.php:943
+#: ../view_album.php:942
 msgid "Show"
 msgstr "Prika¾i"
 
-#: ../view_album.php:945
+#: ../view_album.php:944
 msgid "Hide"
 msgstr "Skrij"
 
-#: ../view_album.php:962
+#: ../view_album.php:961
 msgid "Permissions"
 msgstr "Dovoljenja"
 
-#: ../view_album.php:1009
+#: ../view_album.php:1008
 msgid "Hey! Add some photos."
 msgstr "Hej. Dodaj kak¹no fotografijo."
 
-#: ../view_album.php:1011
+#: ../view_album.php:1010
 msgid "This album is empty."
 msgstr "Ta album je prazen."
+
+#: ../view_album.php:1056 ../view_photo.php:862
+#, fuzzy
+msgid "Email me when:"
+msgstr "Email naslov"
+
+#: ../view_album.php:1057 ../view_photo.php:863
+msgid "Comments are added"
+msgstr ""
+
+#: ../view_album.php:1060 ../view_photo.php:867
+msgid "Other changes are made"
+msgstr ""
 
 #: ../view_comments.php:124
 msgid "Comments for this Album"

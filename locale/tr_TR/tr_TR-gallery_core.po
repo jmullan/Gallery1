@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-10-16 15:10+0200\n"
+"POT-Creation-Date: 2003-10-17 23:03+0200\n"
 "PO-Revision-Date: 2003-09-15 05:47+0200\n"
 "Last-Translator: Göker IÞIK <admin@ansolon.com>\n"
 "Language-Team: Türkçe <admin@ansolon.com>\n"
@@ -56,37 +56,42 @@ msgstr ""
 msgid "Security violation"
 msgstr "Güvenlik Ýhlali"
 
-#: ../add_comment.php:55
+#: ../add_comment.php:63 ../classes/Album.php:728
+#, fuzzy
+msgid "No email sent as no valid email addresses were found"
+msgstr "Kullanýcý adý girmelisiniz"
+
+#: ../add_comment.php:80
 msgid "Name and comment are both required to save a new comment!"
 msgstr "Yeni yorum için isim ve yorum bölümlerinin doldurulmasý zorunludur."
 
-#: ../add_comment.php:61
+#: ../add_comment.php:86
 msgid "Add Comment"
 msgstr "Yorum Ekle"
 
-#: ../add_comment.php:68
+#: ../add_comment.php:93
 msgid "Enter your comment for this picture in the text box below."
 msgstr "Bu resim hakkýndaki yorumlarýnýzý aþaðýda bulunan kutuya giriniz."
 
-#: ../add_comment.php:89
+#: ../add_comment.php:114
 msgid "Name or email:"
 msgstr "Ýsim ya da Email:"
 
-#: ../add_comment.php:119 ../album_permissions.php:344 ../edit_caption.php:173
+#: ../add_comment.php:144 ../album_permissions.php:344 ../edit_caption.php:176
 #: ../edit_field.php:64 ../edit_field.php:75 ../modify_user.php:157
-#: ../new_password.php:134 ../photo_owner.php:104 ../user_preferences.php:135
+#: ../new_password.php:134 ../photo_owner.php:109 ../user_preferences.php:135
 msgid "Save"
 msgstr "Kaydet"
 
-#: ../add_comment.php:120 ../add_photo.php:153 ../add_photos.php:113
+#: ../add_comment.php:145 ../add_photo.php:153 ../add_photos.php:113
 #: ../add_photos.php:133 ../copy_photo.php:204 ../create_user.php:152
-#: ../delete_album.php:68 ../delete_photo.php:113 ../delete_photo.php:133
-#: ../delete_user.php:84 ../edit_caption.php:174 ../edit_field.php:76
-#: ../login.php:132 ../modify_user.php:158 ../move_album.php:100
-#: ../move_album.php:120 ../move_photo.php:219 ../move_photo.php:306
+#: ../delete_album.php:68 ../delete_photo.php:114 ../delete_photo.php:134
+#: ../delete_user.php:84 ../edit_caption.php:177 ../edit_field.php:76
+#: ../login.php:132 ../modify_user.php:158 ../move_album.php:108
+#: ../move_album.php:128 ../move_photo.php:230 ../move_photo.php:317
 #: ../multi_create_user.php:165 ../new_password.php:135 ../register.php:151
-#: ../rename_album.php:121 ../reset_votes.php:69 ../resize_photo.php:120
-#: ../sort_album.php:118 ../user_preferences.php:136
+#: ../rename_album.php:121 ../reset_votes.php:69 ../resize_photo.php:121
+#: ../sort_album.php:121 ../user_preferences.php:136
 msgid "Cancel"
 msgstr "Ýptal"
 
@@ -95,8 +100,8 @@ msgid "Add Photo"
 msgstr "Resim Ekle"
 
 #: ../add_photo.php:83 ../copy_photo.php:124 ../create_user.php:101
-#: ../do_command.php:145 ../login.php:163 ../multi_create_user.php:120
-#: ../register.php:55 ../register.php:132 ../save_photos.php:281
+#: ../do_command.php:150 ../login.php:163 ../multi_create_user.php:120
+#: ../register.php:55 ../register.php:132 ../save_photos.php:286
 msgid "Dismiss"
 msgstr "Kapat"
 
@@ -118,7 +123,7 @@ msgid "File"
 msgstr "Dosya"
 
 #: ../add_photo.php:126 ../add_photos.php:105 ../captionator.php:268
-#: ../edit_caption.php:82
+#: ../edit_caption.php:85
 msgid "Caption"
 msgstr "Baþlýk"
 
@@ -229,7 +234,7 @@ msgstr "Resim ekleyebilecek kullanýclar"
 msgid "Users who can view comments."
 msgstr "Resim ekleyebilecek kullanýclar"
 
-#: ../album_permissions.php:345 ../manage_users.php:117 ../photo_owner.php:105
+#: ../album_permissions.php:345 ../manage_users.php:117 ../photo_owner.php:110
 #: ../upgrade_album.php:74 ../upgrade_album.php:82 ../upgrade_users.php:70
 #: ../view_photo_properties.php:175
 msgid "Done"
@@ -361,11 +366,11 @@ msgstr "Bunlar geçerli albümler deðil. Lütfen bunlarý albüm klasörü dýþýna taþýy
 msgid "Highlight for Album: "
 msgstr "Temsili Resim"
 
-#: ../albums.php:286 ../view_album.php:900
+#: ../albums.php:286 ../view_album.php:899
 msgid "title"
 msgstr "baþlýk"
 
-#: ../albums.php:303 ../view_album.php:905
+#: ../albums.php:303 ../view_album.php:904
 msgid "description"
 msgstr "açýklama"
 
@@ -433,11 +438,11 @@ msgstr "Son Güncelleme %s."
 msgid "This album contains %s."
 msgstr "Bu albüm %s içeriyor"
 
-#: ../albums.php:388 ../view_album.php:829
+#: ../albums.php:388 ../view_album.php:828
 msgid "1 item"
 msgstr "1 öge"
 
-#: ../albums.php:388 ../upgrade_album.php:194 ../view_album.php:829
+#: ../albums.php:388 ../upgrade_album.php:194 ../view_album.php:828
 msgid "items"
 msgstr "öge"
 
@@ -450,16 +455,16 @@ msgstr "0 albüm/resim"
 msgid "This album has been viewed %s since %s."
 msgstr "Bu albüm %s ziyaret edildi,  Baþlangýç: %s "
 
-#: ../albums.php:393 ../view_album.php:836 ../view_album.php:850
+#: ../albums.php:393 ../view_album.php:835 ../view_album.php:849
 #, fuzzy
 msgid "1 time"
 msgstr "kez"
 
-#: ../albums.php:393 ../view_album.php:836 ../view_album.php:850
+#: ../albums.php:393 ../view_album.php:835 ../view_album.php:849
 msgid "times"
 msgstr "kez"
 
-#: ../albums.php:393 ../view_album.php:836 ../view_album.php:850
+#: ../albums.php:393 ../view_album.php:835 ../view_album.php:849
 msgid "0 times"
 msgstr "0 kez"
 
@@ -467,7 +472,7 @@ msgstr "0 kez"
 msgid "reset counter"
 msgstr "sayaci sifirla"
 
-#: ../albums.php:426 ../view_album.php:1022
+#: ../albums.php:426 ../view_album.php:1021
 msgid "Comments available for this item."
 msgstr "Bu öge için yorumlar mevcut"
 
@@ -513,15 +518,15 @@ msgstr "Çýkýþ"
 msgid "Album Caption:"
 msgstr "Albüm Baþlýðý:"
 
-#: ../captionator.php:279 ../edit_caption.php:100 ../extra_fields.php:114
+#: ../captionator.php:279 ../edit_caption.php:103 ../extra_fields.php:114
 msgid "Title"
 msgstr "Baþlýk"
 
-#: ../captionator.php:288 ../edit_caption.php:112
+#: ../captionator.php:288 ../edit_caption.php:115
 msgid "Keywords"
 msgstr "Anahtarsözcükler"
 
-#: ../captionator.php:291 ../util.php:312
+#: ../captionator.php:291 ../util.php:314
 msgid "Capture Date"
 msgstr "Yakalama Tarihi"
 
@@ -533,59 +538,68 @@ msgstr "RESÝM YOK!"
 msgid "Untitled"
 msgstr "Baþlýksýz"
 
-#: ../classes/Album.php:210
+#: ../classes/Album.php:211
 msgid "Album up to date."
 msgstr "Albüm güncel."
 
-#: ../classes/Album.php:214
+#: ../classes/Album.php:215
 msgid "Upgrading album properties..."
 msgstr "Albüm seçenekleri güncelleniyor..."
 
-#: ../classes/Album.php:340 ../classes/Album.php:357
+#: ../classes/Album.php:344 ../classes/Album.php:361
 msgid "done"
 msgstr "tamamlandý"
 
-#: ../classes/Album.php:348
+#: ../classes/Album.php:352
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr ""
 
-#: ../classes/Album.php:785
+#: ../classes/Album.php:708
+msgid "msg should be an array!"
+msgstr ""
+
+#: ../classes/Album.php:819
 msgid "Resizing/compressing original image"
 msgstr ""
 
-#: ../classes/Album.php:789
+#: ../classes/Album.php:823
 msgid "Cannot resize/compress this filetype"
 msgstr ""
 
-#: ../classes/Album.php:837
+#: ../classes/Album.php:871
 #, php-format
 msgid "Resizing %s"
 msgstr "Boyut Yenileniyor %s"
 
-#: ../classes/Album.php:877
+#: ../classes/Album.php:911
 msgid "Photo auto-rotated/transformed"
 msgstr ""
 
-#: ../classes/Album.php:980 ../classes/Album.php:989
-#: ../classes/AlbumItem.php:491
+#: ../classes/Album.php:1017 ../classes/Album.php:1026
+#: ../classes/AlbumItem.php:495
 msgid "No highlight"
 msgstr "TemsiliResim yok"
 
-#: ../classes/Album.php:1771
+#: ../classes/Album.php:1811
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/AlbumItem.php:413
+#: ../classes/Album.php:1946
+#, php-format
+msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
+msgstr ""
+
+#: ../classes/AlbumItem.php:417
 msgid "Invalid image"
 msgstr "Geçersiz resim"
 
-#: ../classes/AlbumItem.php:471
+#: ../classes/AlbumItem.php:475
 msgid "Unable to make thumbnail"
 msgstr "Thumbnail yaratýlamýyor"
 
-#: ../classes/AlbumItem.php:483
+#: ../classes/AlbumItem.php:487
 msgid "No thumbnail"
 msgstr "Thumbnail yok"
 
@@ -669,15 +683,15 @@ msgstr ""
 msgid "Copying photo #%d"
 msgstr ""
 
-#: ../copy_photo.php:83 ../move_photo.php:117
+#: ../copy_photo.php:83 ../move_photo.php:123
 msgid "Creating Thumbnail"
 msgstr "Thumbnail yaratiliyor"
 
-#: ../copy_photo.php:113 ../move_photo.php:162
+#: ../copy_photo.php:113 ../move_photo.php:173
 msgid "Error"
 msgstr "Hata"
 
-#: ../copy_photo.php:117 ../move_photo.php:166
+#: ../copy_photo.php:117 ../move_photo.php:177
 #, php-format
 msgid "Skipping Album #%d"
 msgstr "Albüm Geçiliyor #%d"
@@ -692,28 +706,28 @@ msgstr "Resimleri yeni albüme taþý:"
 msgid "To copy just one photo, make First and Last the same"
 msgstr "Sadece tek resim taþý, Birinci ve Sonuncuyu ayný yap"
 
-#: ../copy_photo.php:145 ../move_photo.php:239
+#: ../copy_photo.php:145 ../move_photo.php:250
 msgid "Nested albums in this range will be ignored"
 msgstr ""
 
-#: ../copy_photo.php:154 ../move_photo.php:248
+#: ../copy_photo.php:154 ../move_photo.php:259
 msgid "First"
 msgstr "Ýlk"
 
-#: ../copy_photo.php:155 ../move_photo.php:249
+#: ../copy_photo.php:155 ../move_photo.php:260
 msgid "Last"
 msgstr "Son"
 
-#: ../copy_photo.php:156 ../move_photo.php:250
+#: ../copy_photo.php:156 ../move_photo.php:261
 msgid "New Album"
 msgstr "Yeni Albüm"
 
-#: ../copy_photo.php:198 ../move_photo.php:300
+#: ../copy_photo.php:198 ../move_photo.php:311
 #, php-format
 msgid "WARNING: Some of the albums need to be upgraded to the current version of %s."
 msgstr ""
 
-#: ../copy_photo.php:199 ../move_photo.php:301
+#: ../copy_photo.php:199 ../move_photo.php:312
 msgid "Upgrade now"
 msgstr "Þimdi güncelle"
 
@@ -722,9 +736,9 @@ msgstr "Þimdi güncelle"
 msgid "Copy to Album!"
 msgstr "Albümü Taþý!"
 
-#: ../copy_photo.php:208 ../delete_photo.php:140 ../edit_thumb.php:138
-#: ../move_album.php:126 ../move_photo.php:312 ../resize_photo.php:133
-#: ../rotate_photo.php:99 ../view_photo_properties.php:170
+#: ../copy_photo.php:208 ../delete_photo.php:141 ../edit_thumb.php:139
+#: ../move_album.php:134 ../move_photo.php:323 ../resize_photo.php:134
+#: ../rotate_photo.php:101 ../view_photo_properties.php:170
 msgid "no album / index specified"
 msgstr ""
 
@@ -789,7 +803,7 @@ msgstr "Burada yeni kullanýcý yarat"
 msgid "Create"
 msgstr "Yarat"
 
-#: ../delete_album.php:53 ../delete_album.php:59 ../delete_photo.php:88
+#: ../delete_album.php:53 ../delete_album.php:59 ../delete_photo.php:89
 msgid "Delete Album"
 msgstr "Albümü Sil"
 
@@ -797,25 +811,25 @@ msgstr "Albümü Sil"
 msgid "Do you really want to delete this album?"
 msgstr "Bu albümü silmek istediginizden eminmisiniz?"
 
-#: ../delete_album.php:67 ../delete_photo.php:112 ../delete_photo.php:132
-#: ../delete_user.php:79 ../manage_users.php:115 ../view_album.php:951
-#: ../view_album.php:956
+#: ../delete_album.php:67 ../delete_photo.php:113 ../delete_photo.php:133
+#: ../delete_user.php:79 ../manage_users.php:115 ../view_album.php:950
+#: ../view_album.php:955
 msgid "Delete"
 msgstr "Sil"
 
-#: ../delete_album.php:76 ../sort_album.php:123
+#: ../delete_album.php:76 ../sort_album.php:126
 msgid "no album specified"
 msgstr ""
 
-#: ../delete_photo.php:76
+#: ../delete_photo.php:77
 msgid "Delete Photo"
 msgstr "Resmi Sil"
 
-#: ../delete_photo.php:92
+#: ../delete_photo.php:93
 msgid "Do you really want to delete this Album?"
 msgstr "Bu albümü silmek istediginizden Eminmisiniz?"
 
-#: ../delete_photo.php:122
+#: ../delete_photo.php:123
 msgid "Do you really want to delete this photo?"
 msgstr "Bu resmi silmek istediginizden eminmisiniz?"
 
@@ -920,19 +934,17 @@ msgid "Thumbnail size"
 msgstr "Thumbnail boyutu"
 
 #: ../edit_appearance.php:157
-#, fuzzy
-msgid "Auto-Resize 'sized' image dimensions"
-msgstr "Yeniden boyutlandýrlan resim dosya boyutu"
+msgid "Maximum dimensions of intermediate sized images"
+msgstr ""
 
 #: ../edit_appearance.php:161
 #, fuzzy
-msgid "Auto-Resize JPEG/PNG 'sized' file size kilobytes (0 or blank for no size restriction)"
+msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "Dosya Boyutunu Kilobyte cinsiden yeniden belirle (0 yada boþ býraktýðýnýzda boyut sýnýrlamasý olmayacak)"
 
 #: ../edit_appearance.php:165
-#, fuzzy
-msgid "Max Image Size"
-msgstr "Resim Boyutu"
+msgid "Maximum dimensions of full sized images"
+msgstr ""
 
 #: ../edit_appearance.php:166
 #, php-format
@@ -941,7 +953,7 @@ msgstr ""
 
 #: ../edit_appearance.php:169
 #, fuzzy
-msgid "Max JPEG/PNG file size kilobytes (0 or blank for no size restriction)"
+msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "Dosya Boyutunu Kilobyte cinsiden yeniden belirle (0 yada boþ býraktýðýnýzda boyut sýnýrlamasý olmayacak)"
 
 #: ../edit_appearance.php:173
@@ -1070,43 +1082,43 @@ msgid "Undo"
 msgstr "Geri al"
 
 #: ../edit_appearance.php:316 ../extra_fields.php:167
-#: ../poll_properties.php:142 ../rotate_photo.php:91
+#: ../poll_properties.php:142 ../rotate_photo.php:93
 msgid "Close"
 msgstr "Kapat"
 
-#: ../edit_caption.php:66
+#: ../edit_caption.php:69
 msgid "Year must be between 1000 and 3000"
 msgstr "Yýl 1000 ve 3000 arasýnda olmak zorunda"
 
-#: ../edit_caption.php:72 ../view_album.php:918
+#: ../edit_caption.php:75 ../view_album.php:917
 msgid "Edit Text"
 msgstr "Yazýyý Düzenle"
 
-#: ../edit_caption.php:133
+#: ../edit_caption.php:136
 msgid "Photo Capture Date"
 msgstr "Resim Yakalama Tarihi"
 
-#: ../edit_caption.php:136
+#: ../edit_caption.php:139
 msgid "Month"
 msgstr "Ay"
 
-#: ../edit_caption.php:137
+#: ../edit_caption.php:140
 msgid "Day"
 msgstr "Gün"
 
-#: ../edit_caption.php:138
+#: ../edit_caption.php:141
 msgid "Year"
 msgstr "Yýl"
 
-#: ../edit_caption.php:139
+#: ../edit_caption.php:142
 msgid "Hours"
 msgstr "Saat"
 
-#: ../edit_caption.php:140
+#: ../edit_caption.php:143
 msgid "Minutes"
 msgstr "Dakika"
 
-#: ../edit_caption.php:141
+#: ../edit_caption.php:144
 msgid "Seconds"
 msgstr "Saniye"
 
@@ -1120,7 +1132,7 @@ msgstr "%s Düzenle"
 msgid "Edit the %s and click %s when you're done"
 msgstr ""
 
-#: ../edit_thumb.php:47 ../edit_thumb.php:76
+#: ../edit_thumb.php:47 ../edit_thumb.php:77
 msgid "Custom Thumbnail"
 msgstr "Ýsteðe baðlý Thumbnail"
 
@@ -1128,7 +1140,7 @@ msgstr "Ýsteðe baðlý Thumbnail"
 msgid "Remaking the Thumbnail..."
 msgstr "Thumbnaillar yeniden yapýlýyor..."
 
-#: ../edit_thumb.php:118
+#: ../edit_thumb.php:119
 msgid "Choose which part of the image will compose your thumbnail:"
 msgstr ""
 
@@ -1214,19 +1226,19 @@ msgstr "Kimden:"
 msgid "delete comment"
 msgstr "yorum sil"
 
-#: ../layout/commentboxbottom.inc:12 ../util.php:99
+#: ../layout/commentboxbottom.inc:12 ../util.php:101
 msgid "add comment"
 msgstr "yorum ekle"
 
 #: ../layout/commentboxtop.inc:17 ../slideshow.php:596 ../slideshow.php:610
 #: ../slideshow_low.php:358 ../slideshow_low.php:370 ../upgrade_album.php:97
-#: ../view_album.php:143 ../view_album.php:866 ../view_comments.php:74
+#: ../view_album.php:143 ../view_album.php:865 ../view_comments.php:74
 #: ../view_photo.php:182 ../view_photo.php:196
 msgid "Album"
 msgstr "Albüm"
 
 #: ../layout/commentboxtop.inc:20 ../layout/commentboxtop.inc:42
-#: ../view_album.php:811
+#: ../view_album.php:810
 msgid "hidden"
 msgstr "saklý"
 
@@ -1362,7 +1374,7 @@ msgstr "Lütfen kullanýcý seçiniz"
 msgid "Manage Users"
 msgstr "Kullanýcý Düzenle"
 
-#: ../manage_users.php:80 ../util.php:114
+#: ../manage_users.php:80 ../util.php:116
 msgid "Error:"
 msgstr "Hata:"
 
@@ -1399,19 +1411,19 @@ msgstr "Kullanýcý hakkýndaki bütün bilgileri bu formu kullanarak deðiþtirebilirs
 msgid "Move Album"
 msgstr "Albümü Taþý"
 
-#: ../move_album.php:78
+#: ../move_album.php:86
 msgid "Select the new location of album"
 msgstr "Albüm için yenir yer seçin"
 
-#: ../move_album.php:99 ../move_photo.php:218
+#: ../move_album.php:107 ../move_photo.php:229
 msgid "Move it!"
 msgstr "Taþý!"
 
-#: ../move_album.php:108
+#: ../move_album.php:116
 msgid "Nest within another Album:"
 msgstr "Diðer bir albümün Alt-Albümü yap:"
 
-#: ../move_album.php:119 ../move_photo.php:305
+#: ../move_album.php:127 ../move_photo.php:316
 msgid "Move to Album!"
 msgstr "Albümü Taþý!"
 
@@ -1419,48 +1431,48 @@ msgstr "Albümü Taþý!"
 msgid "Move Photo"
 msgstr "Resmi Taþý"
 
-#: ../move_photo.php:103
+#: ../move_photo.php:109
 msgid "Moving photo #"
 msgstr "Taþýnan Resim #"
 
-#: ../move_photo.php:152
+#: ../move_photo.php:161
 msgid "- Creating New Album Highlight"
 msgstr "- Yeni Albüm TemsilResmi Yaratýlýyor"
 
-#: ../move_photo.php:195
+#: ../move_photo.php:206
 msgid "Move this album within the album:"
 msgstr "Bu albümü, albüm içine taþý:"
 
-#: ../move_photo.php:197
+#: ../move_photo.php:208
 msgid "Move this photo within the album:"
 msgstr "Bu resmi albüm içine taþý:"
 
-#: ../move_photo.php:199
+#: ../move_photo.php:210
 #, php-format
 msgid "Current Location is %s"
 msgstr "Þimdiki Yeri %s"
 
-#: ../move_photo.php:203
+#: ../move_photo.php:214
 msgid "Select the new location:"
 msgstr "Yeni yerini seçiniz:"
 
-#: ../move_photo.php:226
+#: ../move_photo.php:237
 msgid "Move the album to a new album:"
 msgstr "Bu albümü yeni bir albüme taþý:"
 
-#: ../move_photo.php:237
+#: ../move_photo.php:248
 msgid "Move a range of photos to a new album:"
 msgstr "Resimleri yeni albüme taþý:"
 
-#: ../move_photo.php:238
+#: ../move_photo.php:249
 msgid "To move just one photo, make First and Last the same"
 msgstr "Sadece tek resim taþý, Birinci ve Sonuncuyu ayný yap"
 
-#: ../move_photo.php:293
+#: ../move_photo.php:304
 msgid "Note: items that have votes will lose these votes when moved to another album"
 msgstr ""
 
-#: ../move_photo.php:295
+#: ../move_photo.php:306
 #, php-format
 msgid "Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."
 msgstr ""
@@ -1553,11 +1565,11 @@ msgstr "Kullanýcý bilgilerinizi buradan deðiþtirebilirsiniz."
 msgid "You must enter the new password twice."
 msgstr "Þifre girmelisiniz"
 
-#: ../photo_owner.php:80 ../photo_owner.php:86 ../view_album.php:967
+#: ../photo_owner.php:85 ../photo_owner.php:91 ../view_album.php:966
 msgid "Change Owner"
 msgstr "Sahibi Deðiþtir"
 
-#: ../photo_owner.php:100
+#: ../photo_owner.php:105
 msgid "Owner"
 msgstr "Sahip"
 
@@ -1615,11 +1627,11 @@ msgstr "Not"
 msgid "Orientation of vote choices"
 msgstr ""
 
-#: ../poll_properties.php:110 ../rotate_photo.php:86
+#: ../poll_properties.php:110 ../rotate_photo.php:88
 msgid "Horizontal"
 msgstr "Yatay"
 
-#: ../poll_properties.php:110 ../rotate_photo.php:89
+#: ../poll_properties.php:110 ../rotate_photo.php:91
 msgid "Vertical"
 msgstr "Dikey"
 
@@ -1645,8 +1657,8 @@ msgstr ""
 msgid "Results Breakdown"
 msgstr ""
 
-#: ../poll_results.php:158 ../util.php:1960 ../view_album.php:547
-#: ../view_album.php:818
+#: ../poll_results.php:158 ../util.php:1962 ../view_album.php:547
+#: ../view_album.php:817
 #, php-format
 msgid "Album: %s"
 msgstr ""
@@ -1883,7 +1895,7 @@ msgstr ""
 msgid "Your account information will be sent to the email address you provide."
 msgstr ""
 
-#: ../rename_album.php:45 ../view_album.php:912
+#: ../rename_album.php:45 ../view_album.php:911
 msgid "Rename Album"
 msgstr "Albümü Yeniden Adlandýr"
 
@@ -1943,43 +1955,43 @@ msgstr ""
 msgid "Resizing 1 photo..."
 msgstr "1 resim yeniden boyutlandýrýlýyor..."
 
-#: ../resize_photo.php:81
+#: ../resize_photo.php:82
 msgid "Resizing photos"
 msgstr "Resimler yeniden boyutlandýrýlýyor"
 
-#: ../resize_photo.php:83
+#: ../resize_photo.php:84
 msgid "This will resize your photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size. "
 msgstr "Resimlerin yeniden boyutlandýrýlacak böylece resmin en uzun bölümü aþaðýda bulunan hedef boyutla ayný olacak ve dosya boyutu seçilmiþ dosya boyutuna en yakýn konuma gelecek."
 
-#: ../resize_photo.php:85
+#: ../resize_photo.php:86
 msgid "What is the target size for all the photos in this album?"
 msgstr "Albümünüzdeki tüm resimlerin hedef boyutu nedir?"
 
-#: ../resize_photo.php:85
+#: ../resize_photo.php:86
 msgid "What is the target size for this photo?"
 msgstr "Bu resim için hedef boyut nedir?"
 
-#: ../resize_photo.php:89
+#: ../resize_photo.php:90
 msgid "Target filesize"
 msgstr "Hedef dosya boyutu"
 
-#: ../resize_photo.php:92
+#: ../resize_photo.php:93
 msgid "Maximum side length in pixels"
 msgstr "Piksel olarak maksimum kenar boyu"
 
-#: ../resize_photo.php:96
+#: ../resize_photo.php:97
 msgid "Get rid of resized"
 msgstr ""
 
-#: ../resize_photo.php:97
+#: ../resize_photo.php:98
 msgid "(Use only the original picture)"
 msgstr ""
 
-#: ../resize_photo.php:114
+#: ../resize_photo.php:115
 msgid "(manual value)"
 msgstr ""
 
-#: ../resize_photo.php:119
+#: ../resize_photo.php:120
 #, fuzzy
 msgid "Change Size"
 msgstr "Resim Boyutu"
@@ -1996,23 +2008,23 @@ msgstr "Resim Döndürülüyor/Deðiþtiriliyor."
 msgid "(this may take a while)"
 msgstr "(bu iþlem zaman alabilir)"
 
-#: ../rotate_photo.php:71
+#: ../rotate_photo.php:73
 msgid "How do you want to manipulate this photo?"
 msgstr ""
 
-#: ../rotate_photo.php:75
+#: ../rotate_photo.php:77
 msgid "Rotate"
 msgstr "Döndür"
 
-#: ../rotate_photo.php:77
+#: ../rotate_photo.php:79
 msgid "Counter-Clockwise"
 msgstr "Sayaç-Yelkovanyönü"
 
-#: ../rotate_photo.php:83
+#: ../rotate_photo.php:85
 msgid "Clockwise"
 msgstr "Yelkovanyönü"
 
-#: ../rotate_photo.php:84
+#: ../rotate_photo.php:86
 msgid "Flip"
 msgstr "Deðiþtir"
 
@@ -2048,23 +2060,23 @@ msgstr "%d Resim bulundu"
 msgid "Processing status..."
 msgstr "Ýþlem durumu..."
 
-#: ../save_photos.php:276
+#: ../save_photos.php:281
 msgid "No images uploaded!"
 msgstr "Hiçbir resim yüklenmedi!"
 
-#: ../save_photos.php:315 ../save_photos.php:339
+#: ../save_photos.php:320 ../save_photos.php:344
 msgid "Check All"
 msgstr "Hepsini Seç"
 
-#: ../save_photos.php:317 ../save_photos.php:341
+#: ../save_photos.php:322 ../save_photos.php:346
 msgid "Clear All"
 msgstr "Hepsini Temizle"
 
-#: ../save_photos.php:319 ../save_photos.php:343
+#: ../save_photos.php:324 ../save_photos.php:348
 msgid "Invert Selection"
 msgstr "Seçimi Ters Çevir"
 
-#: ../save_photos.php:348
+#: ../save_photos.php:353
 msgid "Add Files"
 msgstr "Dosya Ekle"
 
@@ -2256,43 +2268,43 @@ msgstr "Lütfen aþaðýdan bu albüm için istediðiniz sýralama kriterini seçiniz."
 msgid "Warning:  This operation can't be undone."
 msgstr "Uyarý: Bu iþlem geri alýnamaz."
 
-#: ../sort_album.php:87
+#: ../sort_album.php:90
 msgid "By Upload Date"
 msgstr "Eklenme Tarihi ile"
 
-#: ../sort_album.php:90
+#: ../sort_album.php:93
 msgid "By Picture-Taken Date"
 msgstr "Resim çekilme Tarihi"
 
-#: ../sort_album.php:93
+#: ../sort_album.php:96
 msgid "By Filename"
 msgstr "Dosya Adý ile"
 
-#: ../sort_album.php:96
+#: ../sort_album.php:99
 msgid "By Number of Clicks"
 msgstr "Týklanma Sayýsý ile"
 
-#: ../sort_album.php:99
+#: ../sort_album.php:102
 msgid "By Caption"
 msgstr "Baþlýk ile"
 
-#: ../sort_album.php:102
+#: ../sort_album.php:105
 msgid "By Number of Comments"
 msgstr "Yorum Sayýsý ile"
 
-#: ../sort_album.php:105
+#: ../sort_album.php:108
 msgid "Randomly"
 msgstr "Rastgele"
 
-#: ../sort_album.php:110
+#: ../sort_album.php:113
 msgid "Ascending"
 msgstr "Artalan"
 
-#: ../sort_album.php:111
+#: ../sort_album.php:114
 msgid "Descending"
 msgstr "Azalan"
 
-#: ../sort_album.php:117
+#: ../sort_album.php:120
 msgid "Sort"
 msgstr "Sýrala"
 
@@ -2416,312 +2428,335 @@ msgstr "Baþlýk Yok"
 msgid "edit"
 msgstr "düzenle"
 
-#: ../util.php:188
+#: ../util.php:190
 msgid "Results:"
 msgstr "Sonuçlar:"
 
-#: ../util.php:192
+#: ../util.php:194
 msgid "none"
 msgstr "hiç"
 
-#: ../util.php:197
+#: ../util.php:199
 msgid "Error messages:"
 msgstr "Hata mesajlarý:"
 
-#: ../util.php:208
+#: ../util.php:210
 #, php-format
 msgid "Status: %s (expected %s)"
 msgstr "Durum: %s (beklenen %s)"
 
-#: ../util.php:223
+#: ../util.php:225
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
 msgstr ""
 
-#: ../util.php:243 ../util.php:584 ../util.php:630 ../util.php:2579
+#: ../util.php:245 ../util.php:586 ../util.php:632 ../util.php:2581
 msgid "You have no graphics package configured for use!"
 msgstr "Kullanýlmak üzere grafik paketi konfigure edilmedi!"
 
-#: ../util.php:311
+#: ../util.php:313
 msgid "Upload Date"
 msgstr "Eklenme Tarihi"
 
-#: ../util.php:313
+#: ../util.php:315
 msgid "Image Size"
 msgstr "Resim Boyutu"
 
-#: ../util.php:314
+#: ../util.php:316
 msgid "Additional EXIF Data"
 msgstr "Ýlave EXIF Verisi"
 
-#: ../util.php:350 ../util.php:366
+#: ../util.php:352 ../util.php:368
 msgid "Not closing this window because debug mode is on"
 msgstr "Bu pencere kapatýlmýyor çünkü debug modu açýk"
 
-#: ../util.php:424
+#: ../util.php:426
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "hedef dosya boyutu %d kbytes"
 
-#: ../util.php:430 ../util.php:461
+#: ../util.php:432 ../util.php:463
 #, php-format
 msgid "- file size %d kbytes"
 msgstr "- dosya boyutu %d kbytes"
 
-#: ../util.php:431
+#: ../util.php:433
 #, php-format
 msgid "trying quality %d%%"
 msgstr "kalite deneniyor %d%%"
 
-#: ../util.php:462
+#: ../util.php:464
 msgid "Done."
 msgstr "Tamamlandý."
 
-#: ../util.php:649
+#: ../util.php:651
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr ""
 
-#: ../util.php:655
+#: ../util.php:657
 #, php-format
 msgid "File %s type %d."
 msgstr ""
 
-#: ../util.php:670
+#: ../util.php:672
 #, php-format
 msgid "There was an unknown failure in the %s call!"
 msgstr ""
 
-#: ../util.php:694 ../util.php:717
+#: ../util.php:696 ../util.php:719
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Bilinmeyen dosya biçimi: %s"
 
-#: ../util.php:1197
+#: ../util.php:1199
 #, php-format
 msgid "Can't write to %s."
 msgstr "Yazýlamýyor %s."
 
-#: ../util.php:1204
+#: ../util.php:1206
 #, php-format
 msgid "Can't read %s."
 msgstr "Okunamýyor %s."
 
-#: ../util.php:1300
+#: ../util.php:1302
 msgid "Select Album"
 msgstr "Albüm Seç"
 
-#: ../util.php:1306
+#: ../util.php:1308
 msgid "Top Level"
 msgstr "Üst Seviye"
 
-#: ../util.php:1327 ../util.php:1377
+#: ../util.php:1329 ../util.php:1379
 msgid "current location"
 msgstr "þu andaki yeri"
 
-#: ../util.php:1379
+#: ../util.php:1381
 msgid "self"
 msgstr ""
 
-#: ../util.php:1546
+#: ../util.php:1548
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Kilitli dosya açýlamýyor (%s)!"
 
-#: ../util.php:1551
+#: ../util.php:1553
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr ""
 
-#: ../util.php:1634
+#: ../util.php:1636
 msgid "1 hit"
 msgstr "1 hit"
 
-#: ../util.php:1634
+#: ../util.php:1636
 msgid "hits"
 msgstr "hit"
 
-#: ../util.php:1634
+#: ../util.php:1636
 msgid "0 hits"
 msgstr "0 hit"
 
-#: ../util.php:1639
+#: ../util.php:1641
 msgid "Sub-albums"
 msgstr "Alt-albümler"
 
-#: ../util.php:1893 ../view_album.php:605 ../view_album.php:635
-#: ../view_album.php:1031
+#: ../util.php:1895 ../view_album.php:605 ../view_album.php:635
+#: ../view_album.php:1030
 #, fuzzy
 msgid "Vote"
 msgstr "Not"
 
-#: ../util.php:1934
+#: ../util.php:1936
 msgid "Total points in brackets"
 msgstr ""
 
-#: ../util.php:1939
+#: ../util.php:1941
 msgid "Average points in brackets"
 msgstr ""
 
-#: ../util.php:1997
+#: ../util.php:1999
 #, php-format
 msgid "Results from %s."
 msgstr ""
 
-#: ../util.php:1999
+#: ../util.php:2001
 #, fuzzy
 msgid "1 voter"
 msgstr "Not"
 
-#: ../util.php:1999
+#: ../util.php:2001
 #, fuzzy
 msgid "voters"
 msgstr "Borders"
 
-#: ../util.php:2000
+#: ../util.php:2002
 #, fuzzy
 msgid "0 voters"
 msgstr "o öge"
 
-#: ../util.php:2010
+#: ../util.php:2012
 #, fuzzy, php-format
 msgid "%s: %s points; "
 msgstr "%s, %s"
 
-#: ../util.php:2016
+#: ../util.php:2018
 #, php-format
 msgid "Key - %s"
 msgstr ""
 
-#: ../util.php:2023
+#: ../util.php:2025
 msgid "No votes so far."
 msgstr ""
 
-#: ../util.php:2047
+#: ../util.php:2049
 #, fuzzy
 msgid "Poll results:"
 msgstr "Sonuçlar:"
 
-#: ../util.php:2050
+#: ../util.php:2052
 #, fuzzy
 msgid "No votes"
 msgstr "Not"
 
-#: ../util.php:2054
+#: ../util.php:2056
 #, php-format
 msgid "Number %d overall."
 msgstr ""
 
-#: ../util.php:2059
+#: ../util.php:2061
 #, fuzzy, php-format
 msgid "%s: %s"
 msgstr "%s, %s"
 
-#: ../util.php:2060 ../view_album.php:610
+#: ../util.php:2062 ../view_album.php:610
 #, fuzzy
 msgid "1 vote"
 msgstr "Not"
 
-#: ../util.php:2060 ../view_album.php:610
+#: ../util.php:2062 ../view_album.php:610
 #, fuzzy
 msgid "votes"
 msgstr "Not"
 
-#: ../util.php:2060
+#: ../util.php:2062
 #, fuzzy
 msgid "0 votes"
 msgstr "0 kez"
 
-#: ../util.php:2071
+#: ../util.php:2073
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "%s Geçiyor (ZIP desteði açýk deðil)"
 
-#: ../util.php:2145
+#: ../util.php:2147
 #, php-format
 msgid "Adding %s"
 msgstr "Ekleniyor %s"
 
-#: ../util.php:2156
+#: ../util.php:2158
 #, php-format
 msgid "Error: %s!"
 msgstr "Hata: %s!"
 
-#: ../util.php:2158
+#: ../util.php:2160
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Yardýmamý ihtiyacýnýz var? %s%s SSS%s 'ye bakýnýz"
 
-#: ../util.php:2164
+#: ../util.php:2166
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "%s  geçiyor (%s biçimi anlaþýlamadý)"
 
-#: ../util.php:2537
+#: ../util.php:2539
 msgid "documentation"
 msgstr "dökümantasyon"
 
-#: ../util.php:2562
+#: ../util.php:2564
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr ""
 
-#: ../util.php:2589
+#: ../util.php:2591
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "%s v%s tarafýndan üretildi"
 
-#: ../util.php:2591
+#: ../util.php:2593
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2678
+#: ../util.php:2637
+#, fuzzy, php-format
+msgid "Skipping invalid email address %s"
+msgstr "Kullanýcý adý girmelisiniz"
+
+#: ../util.php:2703
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the website %s.  If you have received this in error, please ignore this message."
 msgstr ""
 
-#: ../util.php:2680
+#: ../util.php:2705
 #, php-format
 msgid "Report abuse to %s."
 msgstr ""
 
-#: ../util.php:2695
+#: ../util.php:2721
 msgid "Email not sent as it is disabled for this gallery"
 msgstr ""
 
-#: ../util.php:2699
+#: ../util.php:2725
 msgid "Email not sent as no address provided"
 msgstr ""
 
-#: ../util.php:2704
+#: ../util.php:2730
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr ""
 
-#: ../util.php:2724
+#: ../util.php:2745
+#, php-format
+msgid "Sender address %s is invalid, using %s."
+msgstr ""
+
+#: ../util.php:2769 ../util.php:2774
+msgid "not shown"
+msgstr ""
+
+#: ../util.php:2778
+msgid "Message"
+msgstr ""
+
+#: ../util.php:2782
 #, fuzzy
 msgid "Email sent"
 msgstr "Email Adres"
 
-#: ../util.php:2749
+#: ../util.php:2784
+#, fuzzy
+msgid "Email not sent"
+msgstr "Email Adres"
+
+#: ../util.php:2798
 #, fuzzy, php-format
 msgid "Last comment %s."
 msgstr "Son Deðiþtirme %s."
 
-#: ../util.php:2760
+#: ../util.php:2809
 msgid "FAILED"
 msgstr ""
 
-#: ../util.php:2769
+#: ../util.php:2818
 msgid "Email activity"
 msgstr ""
 
-#: ../util.php:2787
+#: ../util.php:2836
 #, fuzzy, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kilitli dosya açýlamýyor (%s)!"
 
-#: ../util.php:2794
+#: ../util.php:2843
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -2733,53 +2768,53 @@ msgid ""
 "Gallery @ %s Administrator."
 msgstr ""
 
-#: ../util.php:2803 ../util.php:2805
+#: ../util.php:2852 ../util.php:2854
 #, fuzzy
 msgid "gallery title"
 msgstr "Galeri Baþlýðý"
 
-#: ../util.php:2804
+#: ../util.php:2853
 #, fuzzy
 msgid "gallery URL"
 msgstr "Galeri Link"
 
-#: ../util.php:2857
+#: ../util.php:2906
 msgid "screenshot"
 msgstr ""
 
-#: ../util.php:2867 ../util.php:2914
+#: ../util.php:2916 ../util.php:2963
 #, fuzzy, php-format
 msgid "Can't open %s"
 msgstr "Okunamýyor %s."
 
-#: ../util.php:2880 ../util.php:2885
+#: ../util.php:2929 ../util.php:2934
 #, fuzzy
 msgid "None"
 msgstr "Tamamlandý"
 
-#: ../util.php:2881 ../util.php:2886
+#: ../util.php:2930 ../util.php:2935
 #, fuzzy
 msgid "Dots"
 msgstr "Not"
 
-#: ../util.php:2882 ../util.php:2887
+#: ../util.php:2931 ../util.php:2936
 msgid "Solid"
 msgstr ""
 
-#: ../util.php:2885
+#: ../util.php:2934
 #, fuzzy
 msgid "No frames"
 msgstr "Albüm yok"
 
-#: ../util.php:2886
+#: ../util.php:2935
 msgid "Just a simple dashed border around the thumb."
 msgstr ""
 
-#: ../util.php:2887
+#: ../util.php:2936
 msgid "Just a simple solid border around the thumb."
 msgstr ""
 
-#: ../util.php:2908
+#: ../util.php:2957
 #, fuzzy, php-format
 msgid "Skipping %s."
 msgstr "Albümü geçiyor %d..."
@@ -2935,99 +2970,112 @@ msgstr "Not"
 msgid "You can change your choices if you wish."
 msgstr "Kullanýcý bilgilerinizi buradan deðiþtirebilirsiniz."
 
-#: ../view_album.php:749 ../view_album.php:750
+#: ../view_album.php:748 ../view_album.php:749
 #, php-format
 msgid "%dkB"
 msgstr ""
 
-#: ../view_album.php:819
+#: ../view_album.php:818
 msgid "No description"
 msgstr "Açýklama yok"
 
-#: ../view_album.php:828
+#: ../view_album.php:827
 msgid "Changed: "
 msgstr "Deðiþtirildi:"
 
-#: ../view_album.php:829
+#: ../view_album.php:828
 msgid "Contains: "
 msgstr "Ýçeriyor:"
 
-#: ../view_album.php:829
+#: ../view_album.php:828
 msgid "0 items"
 msgstr "o öge"
 
-#: ../view_album.php:836 ../view_album.php:850
+#: ../view_album.php:835 ../view_album.php:849
 msgid "Viewed:"
 msgstr "Týklama:"
 
-#: ../view_album.php:864
+#: ../view_album.php:863
 msgid "Movie"
 msgstr "Film"
 
-#: ../view_album.php:868
+#: ../view_album.php:867
 msgid "Photo"
 msgstr "Resim"
 
-#: ../view_album.php:875
+#: ../view_album.php:874
 msgid "Edit"
 msgstr "Düzenle"
 
-#: ../view_album.php:901
+#: ../view_album.php:900
 msgid "Edit Title"
 msgstr "Baþlýk Düzenle"
 
-#: ../view_album.php:906
+#: ../view_album.php:905
 msgid "Edit Description"
 msgstr "Açýklama Düzenle"
 
-#: ../view_album.php:923
+#: ../view_album.php:922
 msgid "Edit Thumbnail"
 msgstr "Thumbnail Düzenle"
 
-#: ../view_album.php:924
+#: ../view_album.php:923
 msgid "Rotate/Flip"
 msgstr "Döndür/Deðiþtir"
 
-#: ../view_album.php:927
+#: ../view_album.php:926
 msgid "Highlight"
 msgstr "TemsiliResim"
 
-#: ../view_album.php:932
+#: ../view_album.php:931
 msgid "Reset Counter"
 msgstr "Sayacý Sýfýrla"
 
-#: ../view_album.php:937
+#: ../view_album.php:936
 msgid "Move "
 msgstr "Taþý"
 
-#: ../view_album.php:938
+#: ../view_album.php:937
 #, fuzzy
 msgid "Reorder "
 msgstr "Dýþ Çizgi"
 
-#: ../view_album.php:940
+#: ../view_album.php:939
 msgid "Copy "
 msgstr ""
 
-#: ../view_album.php:943
+#: ../view_album.php:942
 msgid "Show"
 msgstr "Göster"
 
-#: ../view_album.php:945
+#: ../view_album.php:944
 msgid "Hide"
 msgstr "Sakla"
 
-#: ../view_album.php:962
+#: ../view_album.php:961
 msgid "Permissions"
 msgstr "Ýzinler"
 
-#: ../view_album.php:1009
+#: ../view_album.php:1008
 msgid "Hey! Add some photos."
 msgstr "Hey! Biraz resim ekleyin."
 
-#: ../view_album.php:1011
+#: ../view_album.php:1010
 msgid "This album is empty."
 msgstr "Bu albüm boþ"
+
+#: ../view_album.php:1056 ../view_photo.php:862
+#, fuzzy
+msgid "Email me when:"
+msgstr "Email Adres"
+
+#: ../view_album.php:1057 ../view_photo.php:863
+msgid "Comments are added"
+msgstr ""
+
+#: ../view_album.php:1060 ../view_photo.php:867
+msgid "Other changes are made"
+msgstr ""
 
 #: ../view_comments.php:124
 msgid "Comments for this Album"
