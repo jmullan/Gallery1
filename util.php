@@ -698,16 +698,37 @@ function addUrlArg($url, $arg) {
 }
 
 function getNextPhoto($idx) {
-	global $gallery;
+	global $gallery, $albumDB;
 
 	$idx++;
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		// even though a user can write to an album, they may
+		// not have read authority over a specific nested album.
+		if ($gallery->album->isAlbumName($idx)) {
+			$myAlbumName = $gallery->album->isAlbumName($idx);
+			$myAlbum = $albumDB->getAlbumbyName($myAlbumName);
+			if (!$gallery->user->canReadAlbum($myAlbum)) {
+				$idx = getNextPhoto($idx);
+			}
+		}
 		return $idx;
 	}
 
 	$numPhotos = $gallery->album->numPhotos(1);
 	while ($idx <= $numPhotos && $gallery->album->isHidden($idx)) {
 		$idx++;
+	}
+
+	if ($gallery->album->isAlbumName($idx)) {
+		// do not display a nexted album if the user doesn't
+		// have permission to view it.
+		if ($gallery->album->isAlbumName($idx)) {
+			$myAlbumName = $gallery->album->isAlbumName($idx);
+			$myAlbum = $albumDB->getAlbumbyName($myAlbumName);
+			if (!$gallery->user->canReadAlbum($myAlbum)) {
+				$idx = getNextPhoto($idx);
+			}
+		}
 	}
 
 	return $idx;

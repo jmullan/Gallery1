@@ -278,18 +278,6 @@ if ($numPhotos) {
 		echo("<tr>");
 		$i = $rowStart;
 		$j = 1;
-		// need to skip displaying nested albums if we do not have permission
-		// to view them!
-		if ($gallery->album->isAlbumName($i)) {
-			$myAlbumName = $gallery->album->isAlbumName($i);
-			$myAlbum = $albumDB->getAlbumbyName($myAlbumName);
-			if (!$gallery->user->canReadAlbum($myAlbum)) {
-				$rowStart++;
-				continue;	
-			}
-				
-		}
-
 
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td>");
