@@ -186,15 +186,15 @@ if ($gallery->app->use_exif) {
 </tr>
 <tr>
 <td>Display owners name with caption</td>
-<td><select name="item_owner_display"><?=selectOptions($gallery->album, "item_owner_display", array("yes", "no")) ?></select></td>
+<td><select name="item_owner_display"><?php echo selectOptions($gallery->album, "item_owner_display", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Allow item owners to modify their images</td>
-<td><select name="item_owner_modify"><?=selectOptions($gallery->album, "item_owner_modify", array("yes", "no")) ?></select></td>
+<td><select name="item_owner_modify"><?php echo selectOptions($gallery->album, "item_owner_modify", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Allow item owners to delete their images</td>
-<td><select name="item_owner_delete"><?=selectOptions($gallery->album, "item_owner_delete", array("yes", "no")) ?></select></td>
+<td><select name="item_owner_delete"><?php echo selectOptions($gallery->album, "item_owner_delete", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Allow public commenting for photos in this album?</td>

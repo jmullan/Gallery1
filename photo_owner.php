@@ -22,7 +22,7 @@
  * $Id$
  */
 ?>
-<?
+<?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -31,15 +31,15 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 ?>
-<? require($GALLERY_BASEDIR . "init.php"); ?>
-<?
+<?php require($GALLERY_BASEDIR . "init.php"); ?>
+<?php
 // Hack check
 if (!$gallery->user->isAdmin() && 
     !$gallery->user->isOwnerOfAlbum($gallery->album)) {
 	exit;
 }
 ?>
-<?
+<?php
 
 if (!strcmp($submit, "Save") && $owner) {
 	$gallery->album->setItemOwnerById($id, $owner);
@@ -75,29 +75,29 @@ asort($uAll);
 <html>
 <head>
   <title>Change Owner</title>
-  <?= getStyleSheetLink() ?>
+  <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
 <center>
 <span class="popuphead"> Change owner </span>
 <br>
-<? $index=$gallery->album->getPhotoIndex($id) ?>
+<?php $index=$gallery->album->getPhotoIndex($id) ?>
 <br>
 <br>
-<?= $gallery->album->getThumbnailTag($index) ?>
+<?php echo $gallery->album->getThumbnailTag($index) ?>
 <br>
-<?= $gallery->album->getCaption($index) ?>
+<?php $gallery->album->getCaption($index) ?>
 <br>
 
-<?= makeFormIntro("photo_owner.php", 
+<?php echo makeFormIntro("photo_owner.php", 
 			array("name" => "photoowner_form")) ?>
 
-<? if ($gallery->user->isAdmin) { ?>
-Owner: <?= drawSelect("owner", $uAll, $owner, 1); ?>
-<? } ?><p>
+<?php if ($gallery->user->isAdmin) { ?>
+Owner: <?php echo drawSelect("owner", $uAll, $owner, 1); ?>
+<?php } ?><p>
 
-<input type=hidden name="id" value="<? echo $id ?>">
+<input type=hidden name="id" value="<?php echo $id ?>">
 <input type=submit name="submit" value="Save">
 <input type=submit name="submit" value="Done" onclick='parent.close()'>
 </form>
