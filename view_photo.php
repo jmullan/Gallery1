@@ -92,7 +92,26 @@ if ($last) {
 <!-- image row --><tr>
 <td colspan=3 align=center>
 <font face=<?=$album->fields["font"]?>>
+<?
+if (!$album->isMovie($index)) {
+	if ($album->isResized($index)) { 
+		if ($full) { 
+			echo "<a href=$index?full=0>";
+	 	} else {
+			echo "<a href=$index?full=1>";
+		}
+		$openAnchor = 1;
+	}
+}
+?>
 <?=$album->getPhotoTag($index, $full)?>
+<?
+if ($openAnchor) {
+	echo "</a>";
+ 	$openAnchor = 0;
+}
+?>
+
 </td>
 </tr>
 <tr>
