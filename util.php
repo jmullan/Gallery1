@@ -1099,7 +1099,7 @@ function printChildren($albumName,$depth=0) {
 	$numPhotos = $myAlbum->numPhotos(1);
 	for ($i=1; $i <= $numPhotos; $i++) {
 		$myName = $myAlbum->isAlbumName($i);
-		if ($myName) {
+		if ($myName && !$myAlbum->isHidden($i)) {
 		        $nestedAlbum = new Album();
 			$nestedAlbum->load($myName);
 			if ($gallery->user->canReadAlbum($nestedAlbum)) {
