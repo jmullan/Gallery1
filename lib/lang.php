@@ -600,6 +600,10 @@ function gallery_htmlentities($string) {
 function unhtmlentities ($string) {
 	global $gallery;
 
+	if (empty($string)) {
+		return "";
+	}
+
 	if (function_exists('html_entity_decode')) {
 		$nls=getNLS();
 		if (isset ($nls['charset'][$gallery->language])) {

@@ -452,7 +452,7 @@ if (!$gallery->album->isMovie($id)) {
 			break;
 
 		case 'mpush':
-			window.open('http://mpush.msolutions.cc/req.php?account=gallery&image=<?php echo $rawImage ?>&caption=<?php echo urlencode($gallery->album->getCaption($index)) ?>','_MPUSH','width=640,height=420,titlebar=1,resizable=1,scrollbars=1');
+			window.open('http://mpush.msolutions.cc/req.php?account=<?php echo $gallery->app->mPUSHAccount ?>&image=<?php echo $rawImage ?>&caption=<?php echo urlencode($gallery->album->getCaption($index)) ?>','_MPUSH','width=640,height=420,titlebar=1,resizable=1,scrollbars=1');
 			break;
 		}
 	}
