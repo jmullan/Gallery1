@@ -1,5 +1,9 @@
 <?php /* $Id$ */ ?>
-<?php require("../config.php") ?>
+<?php 
+require("../config.php"); 
+require("../util.php");
+emulate_gettext();
+?>
 <html>
 <body dir=<?php echo $gallery->direction ?>>
 <?php $app_name='NetPBM' ?>

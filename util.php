@@ -1878,15 +1878,17 @@ $nls = getNLS();
  ** if yes, do some gettext settings.
  ** if not emulate _() function
  **/
-	$check=(in_array("gettext", get_loaded_extensions()) && function_exists('gettext'));
-	if ($check) {
-		$bindtextdomain=bindtextdomain("gallery", $GALLERY_BASEDIR."locale");
-		textdomain("gallery");
-	} else {
-		emulate_gettext();
-	}
+	emulate_gettext();
 }
 function emulate_gettext() {
+	$check=(in_array("gettext", get_loaded_extensions()) && 
+			function_exists('gettext'));
+	if ($check) {
+		$bindtextdomain=bindtextdomain("gallery", 
+				$GALLERY_BASEDIR."locale");
+		textdomain("gallery");
+		return;
+	} 
 	global $translation;
 	$filename=po_filename();
 	if ($filename) {

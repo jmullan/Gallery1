@@ -1,7 +1,9 @@
 <?php /* $Id$ */ ?>
 <?php
 
-require ("../config.php") ;
+require("../config.php"); 
+require("../util.php");
+emulate_gettext();
 // Pull the $destroy variable into the global namespace
 extract($HTTP_GET_VARS);
 
