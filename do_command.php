@@ -89,7 +89,8 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	//-- this is expected to be loaded in a popup, so dismiss ---
 	dismissAndReload();
 } else if (!strcmp($cmd, "new-album")) {
-	if ($gallery->user->canCreateAlbums()) {
+	if ($gallery->user->canCreateAlbums() ||
+	    $gallery->user->canCreateSubAlbum($gallery->album)) {
 		$albumDB = new AlbumDB();
 		$gallery->session->albumName = $albumDB->newAlbumName();
 		$gallery->album = new Album();

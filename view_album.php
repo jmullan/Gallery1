@@ -218,7 +218,7 @@ if ($gallery->user->canAddToAlbum($gallery->album)) {
 	$adminCommands .= '<a href="#" onClick="'.popup("add_photos.php?albumName=" .
 				$gallery->session->albumName).'">[add photos]</a>&nbsp;';
 }
-if ($gallery->user->canCreateAlbums()) {
+if ($gallery->user->canCreateSubAlbum($gallery->album)) {
 	$adminCommands .= '<a href="' . doCommand("new-album", 
 						array("parentName" => $gallery->session->albumName),
 						 "view_album.php") .
