@@ -378,7 +378,7 @@ if (!$gallery->album->isMovie($id)) {
 		$prependURL = '';
 		if (!ereg('^https?://', $photoPath)) {
 		    $prependURL = 'http';
-		    if  (stristr($HTTP_SERVER_VARS['HTTPS'], "on")) {
+		    if  (isset($HTTP_SERVER_VARS['HTTPS']) && stristr($HTTP_SERVER_VARS['HTTPS'], "on")) {
 			$prependURL .= 's';
 		    }
 		    $prependURL .= '://'. $HTTP_SERVER_VARS['HTTP_HOST'];
@@ -401,10 +401,6 @@ if (!$gallery->album->isMovie($id)) {
 		/* display photo printing services */
 		$printServices = $gallery->album->fields['print_photos'];
 		$numServices = count($printServices);
-		if (!isset($printServices['shutterfly']['checked'])
-		    && isset($printServices['shutterfly']['donation'])) {
-			$numServices--;
-		}
 		$fullName = array(
 			'ezprints'    => 'EZ Prints',
 			'fotokasten'  => 'Fotokasten',
@@ -669,13 +665,8 @@ if (isset($printShutterflyForm)) { ?>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value="1">
   <input type=hidden name=protocol value="SFP,100">
-<?php if ($gallery->album->fields['print_photos']['shutterfly']['donation'] === 'no') { ?>
-  <input type=hidden name=pid value="C4P">
-  <input type=hidden name=psid value="AFFL">
-<?php } else { ?>
   <input type=hidden name=pid value="C4PP">
   <input type=hidden name=psid value="GALL">
-<?php } ?>
   <input type=hidden name=referid value="gallery">
   <input type=hidden name=returl value="this-gets-set-by-javascript-in-onClick">
   <input type=hidden name=imraw-1 value="<?php echo $rawImage ?>">
