@@ -7,8 +7,12 @@ switch($GALLERY_EMBEDDED_INSIDE) {
 	case "nuke":
 
 		/*
-		 * Specify that we want to see the right side blocks
-		 * also.  To hide them, set $index to 0
+		 * We can control whether we see the right side blocks
+		 * by setting the value of the $index variable.  To
+		 * see the blocks, set $index to 1.  To hide them set
+		 * $index to 0.  We default to 0 to leave more room for
+		 * the photos.  If you change this value, you should
+		 * also change it in wrapper.header
 		 */
 		global $index;
 		$index = 0;

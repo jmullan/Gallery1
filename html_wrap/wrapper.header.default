@@ -35,9 +35,28 @@ switch($GALLERY_EMBEDDED_INSIDE) {
 				}
 			}
 		}
+
+		/*
+		 * We can control whether we see the right side blocks
+		 * by setting the value of the $index variable.  To
+		 * see the blocks, set $index to 1.  To hide them set
+		 * $index to 0.  We default to 0 to leave more room for
+		 * the photos.  If you change this value, you should
+		 * also change it in wrapper.footer
+		 *
+		 * Note that we save the current value of $index in
+		 * $tmp_index and restore it when we're done.  If we
+		 * don't do this, navigation won't work!
+		 */
+		global $index;
+		$tmp_index = $index;
+		$index = 0;
+
 		eval($header);
 
 		OpenTable();
+
+		$index = $tmp_index;
 		break;
 }
 ?>
