@@ -140,7 +140,7 @@ $constants = array(
 	"tmpDir" => array(
 		"prompt" => "Temporary directory",
 		"desc" => "The filesystem path to a temp directory.  Eg. <i>/tmp</i> or " .
-			"<i>c:\windows\temp</i>",
+			"<i>c:\\windows\\temp</i>",
 		"value" => getenv("TMP"),
 		"filename" => 1,
 		"require-write-dir" => 1,
