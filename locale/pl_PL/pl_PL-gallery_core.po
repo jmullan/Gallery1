@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-11-19 20:54+0100\n"
+"POT-Creation-Date: 2004-11-28 18:40+0100\n"
 "PO-Revision-Date: 2004-04-21 20:45+0100\n"
 "Last-Translator: Krzysztof Jankowski [kaYtek] <kaytek AT daw DOT pl>\n"
 "Language-Team: nocnyMark <kaytek AT daw DOT pl>\n"
@@ -59,15 +59,19 @@ msgstr "Pole nazwy i komentarz musza byæ wype³nione by dodaæ nowy komentarz!!"
 msgid "Your comment is too long, the admin set maximum length to %d chars"
 msgstr ""
 
-#: ../add_comment.php:76 ../add_comment.php:80
+#: ../add_comment.php:62 ../view_photo.php:198
+msgid "Your Comment contains forbidden words. It will not be added."
+msgstr ""
+
+#: ../add_comment.php:78 ../add_comment.php:82
 msgid "Add Comment"
 msgstr "Dodaj komentarz"
 
-#: ../add_comment.php:82
+#: ../add_comment.php:84
 msgid "Enter your comment for this picture in the text box below."
 msgstr "Wpisz swój komentarz dla tego obrazka w polu poni¿ej."
 
-#: ../add_comment.php:100 ../copy_photo.php:197 ../create_user.php:149
+#: ../add_comment.php:102 ../copy_photo.php:197 ../create_user.php:149
 #: ../delete_album.php:66 ../delete_photo.php:140 ../delete_user.php:84
 #: ../edit_caption.php:189 ../edit_field.php:66 ../edit_watermark.php:109
 #: ../includes/add_photos/add_form.inc:126
@@ -108,6 +112,61 @@ msgstr "Inny"
 msgid "Admin"
 msgstr "Admin"
 
+#: ../admin-page.php:50 ../tools/find_orphans.php:294
+#: ../tools/despam-comments.php:55
+#, fuzzy
+msgid "Return to Gallery"
+msgstr "Wej¶cie do Twojej Galerii"
+
+#: ../admin-page.php:52
+#, fuzzy
+msgid "Admin options"
+msgstr "opcje admina"
+
+#: ../admin-page.php:57
+msgid "statistics"
+msgstr ""
+
+#: ../admin-page.php:59
+msgid "View some statistics about your Gallery. Such as most viewd pictures, or best rated photos etc."
+msgstr ""
+
+#: ../admin-page.php:60
+#, fuzzy
+msgid "configuration wizard"
+msgstr "Konfiguracja pól u¿ytkownika"
+
+#: ../admin-page.php:62
+msgid "Use the config wizard to reconfigure or tweak your Gallery"
+msgstr ""
+
+#: ../admin-page.php:63
+msgid "find orphans"
+msgstr ""
+
+#: ../admin-page.php:65
+msgid "Find, remove or readd orphaned elements."
+msgstr ""
+
+#: ../admin-page.php:66
+#, fuzzy
+msgid "find comment spam"
+msgstr "przegl±daj komentarze"
+
+#: ../admin-page.php:68
+#, fuzzy
+msgid "Find and remove comments that contains spam."
+msgstr "przegl±daj komentarze"
+
+#: ../admin-page.php:75
+msgid "manage users"
+msgstr "u¿ytkownicy"
+
+#: ../admin-page.php:77
+#, fuzzy
+msgid "Manage your users."
+msgstr "Zarz±dzaj u¿ytkownikami"
+
 #: ../album_permissions.php:183 ../album_permissions.php:187
 msgid "Album Permissions"
 msgstr "Prawa do albumu"
@@ -117,7 +176,7 @@ msgstr "Prawa do albumu"
 msgid "Changing permissions for %s"
 msgstr "Zmiana praw dla %s"
 
-#: ../album_permissions.php:197 ../albums.php:361
+#: ../album_permissions.php:197 ../albums.php:355
 msgid "Owner:"
 msgstr "W³a¶ciciel:"
 
@@ -263,105 +322,92 @@ msgstr "Witaj %s"
 msgid "slideshow"
 msgstr "slideshow"
 
-#: ../albums.php:187
-#, fuzzy
-msgid "configuration wizard"
-msgstr "Konfiguracja pól u¿ytkownika"
-
-#: ../albums.php:188
-msgid "find orphans"
-msgstr ""
-
-#: ../albums.php:189
-#, fuzzy
-msgid "find comment spam"
-msgstr "przegl±daj komentarze"
-
-#: ../albums.php:193
+#: ../albums.php:183
 msgid "new album"
 msgstr "nowy album"
 
-#: ../albums.php:200
-msgid "manage users"
-msgstr "u¿ytkownicy"
-
-#: ../albums.php:208
+#: ../albums.php:190
 msgid "preferences"
 msgstr "ustawienia"
 
-#: ../albums.php:214 ../view_album.php:465
+#: ../albums.php:205
+#, fuzzy
+msgid "admin page"
+msgstr "brak stron"
+
+#: ../albums.php:208 ../view_album.php:465
 msgid "logout"
 msgstr "wyloguj"
 
-#: ../albums.php:218 ../view_album.php:467
+#: ../albums.php:212 ../view_album.php:467
 msgid "login"
 msgstr "zaloguj"
 
-#: ../albums.php:222
+#: ../albums.php:216
 msgid "register"
 msgstr "rejestracja"
 
-#: ../albums.php:248
+#: ../albums.php:242
 msgid "Attention Gallery Administrator!"
 msgstr "UWAGA Administratorze!"
 
-#: ../albums.php:251
+#: ../albums.php:245
 #, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "%s wykry³ nastepuj±ce %d nieprawidlowe albumy w Twoim katalogu albumów<br>(%s)."
 
-#: ../albums.php:257
+#: ../albums.php:251
 msgid "Please move it/them out of the albums directory."
 msgstr "Zaleca siê usuniêcie ich z katalogu albumów."
 
-#: ../albums.php:261
+#: ../albums.php:255
 #, php-format
 msgid "%s has detected that %d of your albums are out of date."
 msgstr ""
 
-#: ../albums.php:265
+#: ../albums.php:259
 #, fuzzy, php-format
 msgid "Please %s."
 msgstr "Prosze poczekaj..."
 
-#: ../albums.php:265
+#: ../albums.php:259
 #, fuzzy
 msgid "upgrade those albums"
 msgstr "aktualizuj wszystkie albumy"
 
-#: ../albums.php:317 ../view_album.php:737
+#: ../albums.php:311 ../view_album.php:737
 #, fuzzy
 msgid "Highlight for Album:"
 msgstr "Ok³adka Albumu: "
 
-#: ../albums.php:334
+#: ../albums.php:328
 msgid "title"
 msgstr "tytu³"
 
-#: ../albums.php:366
+#: ../albums.php:360
 msgid "url:"
 msgstr "url:"
 
-#: ../albums.php:377
+#: ../albums.php:371
 msgid "Hey!"
 msgstr "Hej!"
 
-#: ../albums.php:378
+#: ../albums.php:372
 #, fuzzy, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s temu albumowi aby URL nie by³ taki typowy!"
 
-#: ../albums.php:379
+#: ../albums.php:373
 #, fuzzy
 msgid "Rename this album"
 msgstr "Zmieñ nazwê albumu"
 
-#: ../albums.php:390
+#: ../albums.php:384
 #, php-format
 msgid "Last changed on %s."
 msgstr "Ostatnia zmiana %s."
 
-#: ../albums.php:393
+#: ../albums.php:387
 #, fuzzy, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
@@ -369,12 +415,12 @@ msgstr[0] "Ten album zawiera %s."
 msgstr[1] "Ten album zawiera %s."
 msgstr[2] ""
 
-#: ../albums.php:398
+#: ../albums.php:392
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Ten album przegl±dano %s od %s."
 
-#: ../albums.php:399 ../view_album.php:881 ../view_album.php:905
+#: ../albums.php:393 ../view_album.php:881 ../view_album.php:905
 #, fuzzy, php-format
 msgid "1 time"
 msgid_plural "%d times"
@@ -382,15 +428,15 @@ msgstr[0] "1 raz"
 msgstr[1] "1 raz"
 msgstr[2] ""
 
-#: ../albums.php:399
+#: ../albums.php:393
 msgid "0 times"
 msgstr "0 razy"
 
-#: ../albums.php:405
+#: ../albums.php:399
 msgid "reset counter"
 msgstr "resetuj licznik"
 
-#: ../albums.php:439 ../view_album.php:1101
+#: ../albums.php:433 ../view_album.php:1101
 msgid "Comments available for this item."
 msgstr "Komentarze dostêpne dla tej pozycji"
 
@@ -518,7 +564,7 @@ msgstr "Aktualizacja pozycji %d z %d . . ."
 msgid "msg should be an array!"
 msgstr "msg powinno byæ tablic±!"
 
-#: ../classes/Album.php:919 ../util.php:3297
+#: ../classes/Album.php:919 ../util.php:3364
 msgid "No email sent as no valid email addresses were found"
 msgstr "Email nie zosta³ wys³any gdy¿ nie znaleziono ¿adnych prawid³owych adresów"
 
@@ -819,7 +865,7 @@ msgstr "Czy na pewno chcesz usun±æ ten album?"
 
 #: ../delete_album.php:65 ../delete_photo.php:139 ../delete_user.php:79
 #: ../layout/commentbox.inc:17 ../manage_users.php:103
-#: ../tools/despam-comments.php:195 ../tools/despam-comments.php:346
+#: ../tools/despam-comments.php:195 ../tools/despam-comments.php:329
 msgid "Delete"
 msgstr "Kasuj"
 
@@ -1627,7 +1673,7 @@ msgstr "Zalogowani"
 msgid "From:"
 msgstr "Od: "
 
-#: ../layout/commentboxbottom.inc:11 ../util.php:163
+#: ../layout/commentboxbottom.inc:11 ../util.php:179
 msgid "add comment"
 msgstr "dodaj komentarz"
 
@@ -1651,7 +1697,7 @@ msgstr "przegladaj komentarze dla tego pod-albumu"
 msgid "Album contains no comments"
 msgstr "Albumów zawieraj±cych %s"
 
-#: ../layout/commentdraw.inc:38
+#: ../layout/commentdraw.inc:39
 msgid "delete comment"
 msgstr "skasuj komentarz"
 
@@ -1696,7 +1742,7 @@ msgstr "%d z %d"
 msgid "Watermark"
 msgstr "Oznakowanie"
 
-#: ../layout/watermarkform.inc:79 ../util.php:2844 ../util.php:2849
+#: ../layout/watermarkform.inc:79 ../util.php:2906 ../util.php:2911
 msgid "None"
 msgstr "¯aden"
 
@@ -2916,11 +2962,6 @@ msgstr "Album"
 msgid "Files"
 msgstr "Plik"
 
-#: ../tools/find_orphans.php:294 ../tools/despam-comments.php:55
-#, fuzzy
-msgid "Return to Gallery"
-msgstr "Wej¶cie do Twojej Galerii"
-
 #: ../tools/despam-comments.php:54
 #, fuzzy
 msgid "Find and remove comment spam"
@@ -2931,8 +2972,8 @@ msgstr "przegl±daj komentarze"
 msgid "Delete Comments"
 msgstr "skasuj komentarz"
 
-#: ../tools/despam-comments.php:110 ../tools/despam-comments.php:250
-#: ../tools/despam-comments.php:261 ../tools/despam-comments.php:333
+#: ../tools/despam-comments.php:110 ../tools/despam-comments.php:238
+#: ../tools/despam-comments.php:249 ../tools/despam-comments.php:316
 #, fuzzy
 msgid "No action taken!"
 msgstr "Brak Podpisu"
@@ -2977,66 +3018,66 @@ msgstr "Scentrowaæ"
 msgid "Delete Checked Comments"
 msgstr "skasuj komentarz"
 
-#: ../tools/despam-comments.php:248
+#: ../tools/despam-comments.php:236
 msgid "Delete from blacklist"
 msgstr ""
 
-#: ../tools/despam-comments.php:265 ../tools/despam-comments.php:312
+#: ../tools/despam-comments.php:253 ../tools/despam-comments.php:295
 msgid "Error saving blacklist!"
 msgstr ""
 
-#: ../tools/despam-comments.php:267
+#: ../tools/despam-comments.php:255
 msgid "Removed from blacklist"
 msgstr ""
 
-#: ../tools/despam-comments.php:315
+#: ../tools/despam-comments.php:298
 msgid "Added to blacklist"
 msgstr ""
 
-#: ../tools/despam-comments.php:324
+#: ../tools/despam-comments.php:307
 msgid "Duplicates (not added)"
 msgstr ""
 
-#: ../tools/despam-comments.php:340
+#: ../tools/despam-comments.php:323
 #, fuzzy
 msgid "Current blacklist"
 msgstr "aktualna lokacja"
 
-#: ../tools/despam-comments.php:342
+#: ../tools/despam-comments.php:325
 msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
 msgstr ""
 
-#: ../tools/despam-comments.php:357 ../tools/despam-comments.php:374
+#: ../tools/despam-comments.php:340 ../tools/despam-comments.php:357
 msgid "Update Blacklist"
 msgstr ""
 
-#: ../tools/despam-comments.php:364
+#: ../tools/despam-comments.php:347
 msgid "Enter new blacklist entries"
 msgstr ""
 
-#: ../tools/despam-comments.php:365
+#: ../tools/despam-comments.php:348
 #, fuzzy
 msgid "Useful blacklists: "
 msgstr "aktualna lokacja"
 
-#: ../tools/despam-comments.php:370
+#: ../tools/despam-comments.php:353
 msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
 msgstr ""
 
-#: ../tools/despam-comments.php:397
+#: ../tools/despam-comments.php:363
 #, fuzzy
 msgid "Find blacklisted comments"
 msgstr "skasuj komentarz"
 
-#: ../tools/despam-comments.php:398
+#: ../tools/despam-comments.php:364
 msgid "View/Edit blacklist"
 msgstr ""
 
-#: ../tools/despam-comments.php:399
+#: ../tools/despam-comments.php:365
 msgid "Add blacklist entries"
 msgstr ""
 
-#: ../tools/despam-comments.php:402
+#: ../tools/despam-comments.php:368
 #, fuzzy
 msgid "Options"
 msgstr "Alternatywny:"
@@ -3164,156 +3205,156 @@ msgstr "Brak Podpisu"
 msgid "edit"
 msgstr "edytuj"
 
-#: ../util.php:180
+#: ../util.php:196
 #, fuzzy
 msgid "Add your comment"
 msgstr "dodaj komentarz"
 
-#: ../util.php:183
+#: ../util.php:199
 #, fuzzy
 msgid "Commenter:"
 msgstr "Scentrowaæ"
 
-#: ../util.php:200
+#: ../util.php:216
 #, fuzzy
 msgid "Message:"
 msgstr "Wiadomo¶æ"
 
-#: ../util.php:204
+#: ../util.php:220
 #, fuzzy
 msgid "Post"
 msgstr "Zdjêcie"
 
-#: ../util.php:211
+#: ../util.php:271
 msgid "Error:"
 msgstr "B³±d:"
 
-#: ../util.php:232
+#: ../util.php:292
 msgid "Executing:"
 msgstr "Wykonywanie:"
 
-#: ../util.php:239
+#: ../util.php:299
 msgid "Results:"
 msgstr "Wyniki:"
 
-#: ../util.php:243
+#: ../util.php:303
 msgid "none"
 msgstr "¿aden"
 
-#: ../util.php:248
+#: ../util.php:308
 #, fuzzy
 msgid "Debug messages:"
 msgstr "B³êdy:"
 
-#: ../util.php:259
+#: ../util.php:319
 #, php-format
 msgid "Status: %s (expected %s)"
 msgstr "Status: %s (oczekiwane %s)"
 
-#: ../util.php:286
+#: ../util.php:346
 #, php-format
 msgid "The file %s does not exist ?!"
 msgstr "Plik %s nie istnieje ?!"
 
-#: ../util.php:298
+#: ../util.php:358
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP %s nie mo¿e okre¶liæ wymiarów."
 
-#: ../util.php:318 ../util.php:632 ../util.php:884 ../util.php:930
-#: ../util.php:2334
+#: ../util.php:378 ../util.php:692 ../util.php:944 ../util.php:990
+#: ../util.php:2396
 msgid "You have no graphics package configured for use!"
 msgstr "Nie masz ¿adnego pakietu graficznego skonfigurowanego do u¿ytku!"
 
-#: ../util.php:405 ../util.php:424
+#: ../util.php:465 ../util.php:484
 msgid "Not closing this window because debug mode is on"
 msgstr "Nie zamykam tego okna poniewa¿ tryb debugowania jest w³±czony"
 
-#: ../util.php:470
+#: ../util.php:530
 msgid "No resizing required"
 msgstr "Skalowanie nie potrzebne"
 
-#: ../util.php:500
+#: ../util.php:560
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "docelowa wielko¶æ pliku %d kbytes"
 
-#: ../util.php:506 ../util.php:536
+#: ../util.php:566 ../util.php:596
 #, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> wielko¶æ pliku %d kbytes"
 
-#: ../util.php:507
+#: ../util.php:567
 #, php-format
 msgid "trying quality %d%%"
 msgstr "próba jako¶æi %d%%"
 
-#: ../util.php:537
+#: ../util.php:597
 msgid "Done."
 msgstr "Zrobione."
 
-#: ../util.php:636
+#: ../util.php:696
 #, fuzzy
 msgid "No watermark name specified!"
 msgstr "B³±d: Nazwa oznakowania nie podana!"
 
-#: ../util.php:949
+#: ../util.php:1009
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "Wywo³anie do %s nie udane w %s dla pliku %s!"
 
-#: ../util.php:955
+#: ../util.php:1015
 #, php-format
 msgid "File %s type %d."
 msgstr "Plik %s typ %d."
 
-#: ../util.php:998 ../util.php:1021
+#: ../util.php:1058 ../util.php:1081
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Nieznany typ pliku: %s"
 
-#: ../util.php:1408
+#: ../util.php:1470
 #, php-format
 msgid "Can't write to %s."
 msgstr "Nie mogê zapisaæ do %s"
 
-#: ../util.php:1415
+#: ../util.php:1477
 #, php-format
 msgid "Can't read %s."
 msgstr "Nie mogê czytaæ %s"
 
-#: ../util.php:1519
+#: ../util.php:1581
 msgid "Select Album"
 msgstr "Wybierz album"
 
-#: ../util.php:1525
+#: ../util.php:1587
 msgid "Top Level"
 msgstr "G³ówny"
 
-#: ../util.php:1546 ../util.php:1597
+#: ../util.php:1608 ../util.php:1659
 msgid "current location"
 msgstr "aktualna lokacja"
 
-#: ../util.php:1600
+#: ../util.php:1662
 msgid "self"
 msgstr "ja"
 
-#: ../util.php:1665
+#: ../util.php:1727
 #, php-format
 msgid "IN UTIL ITEMCAPTUREDATE = %s"
 msgstr ""
 
-#: ../util.php:1710
+#: ../util.php:1772
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Nie mogê otworzyæ %s! "
 
-#: ../util.php:1715
+#: ../util.php:1777
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Nie mog³em osi±gn±æ lokowania danych (%s)!"
 
-#: ../util.php:1804
+#: ../util.php:1866
 #, fuzzy, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
@@ -3321,121 +3362,121 @@ msgstr[0] "1 trafienie"
 msgstr[1] "1 trafienie"
 msgstr[2] ""
 
-#: ../util.php:1809
+#: ../util.php:1871
 msgid "Sub-albums"
 msgstr "Pod-albumy"
 
-#: ../util.php:1975
+#: ../util.php:2037
 #, fuzzy, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Pomijanie %s (Obs³uga ZIP nie w³±czona)"
 
-#: ../util.php:2088
+#: ../util.php:2150
 #, php-format
 msgid "Adding %s"
 msgstr "Dodajê %s"
 
-#: ../util.php:2122
+#: ../util.php:2184
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Potrzebujesz pomocy? Zobacz w %s%s FAQ%s"
 
-#: ../util.php:2128
+#: ../util.php:2190
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Pomijanie %s (nieznany %s format)"
 
-#: ../util.php:2277
+#: ../util.php:2339
 msgid "documentation"
 msgstr "dokumentacja"
 
-#: ../util.php:2304
+#: ../util.php:2366
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Nie mogê odczytaæ danych EXIF (jhead nie zainstalowany)"
 
-#: ../util.php:2351
+#: ../util.php:2413
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Wygenerowane przez %s v%s"
 
-#: ../util.php:2353
+#: ../util.php:2415
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Dostarczone przez: %s v%s"
 
-#: ../util.php:2403
+#: ../util.php:2465
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Pomijanie nieprawid³owego adresu email %s"
 
-#: ../util.php:2468
+#: ../util.php:2530
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Notka: To jest automatycznie wygenerowana wiadomo¶æ email wys³ana ze strony %s. Je¿eli dosta³e¶ j± przez pomy³ke, zignoruj j±."
 
-#: ../util.php:2470
+#: ../util.php:2532
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Zg³aszaj nadu¿ycia do %s"
 
-#: ../util.php:2486
+#: ../util.php:2548
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Email nie wys³any gdy¿ jest wy³±czony dla tej galerii"
 
-#: ../util.php:2491
+#: ../util.php:2553
 #, php-format
 msgid "Email not sent as no address provided"
 msgstr "Email nie wys³any gdy¿ adres zosta³ nie podany"
 
-#: ../util.php:2497
+#: ../util.php:2559
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Email nie wys³any do %s gdy¿ nie jest to poprawny adres"
 
-#: ../util.php:2513
+#: ../util.php:2575
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Adres wysy³aj±cego %s jest nieprawid³owy, u¿yje %s."
 
-#: ../util.php:2527
+#: ../util.php:2589
 msgid "Administrator"
 msgstr ""
 
-#: ../util.php:2669 ../util.php:2674
+#: ../util.php:2731 ../util.php:2736
 msgid "not shown"
 msgstr "nie pokazane"
 
-#: ../util.php:2678
+#: ../util.php:2740
 msgid "Message"
 msgstr "Wiadomo¶æ"
 
-#: ../util.php:2682
+#: ../util.php:2744
 msgid "Email sent"
 msgstr "Email wys³any"
 
-#: ../util.php:2684
+#: ../util.php:2746
 msgid "Email not sent"
 msgstr "Email nie wys³any"
 
-#: ../util.php:2698
+#: ../util.php:2760
 #, php-format
 msgid "Last comment %s."
 msgstr "Ostatni komentarz %s."
 
-#: ../util.php:2710
+#: ../util.php:2772
 msgid "FAILED"
 msgstr "NIE UDANE"
 
-#: ../util.php:2719
+#: ../util.php:2781
 msgid "Email activity"
 msgstr "Aktywno¶æ email"
 
-#: ../util.php:2737
+#: ../util.php:2799
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Nie mogê otworzyæ pliku z logiem: %s"
 
-#: ../util.php:2744
+#: ../util.php:2806
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3454,72 +3495,72 @@ msgstr ""
 "\n"
 "Gallery @ %s Administrator."
 
-#: ../util.php:2753 ../util.php:2755
+#: ../util.php:2815 ../util.php:2817
 msgid "gallery title"
 msgstr "tytu³ galerii"
 
-#: ../util.php:2754
+#: ../util.php:2816
 msgid "gallery URL"
 msgstr "URL galerii"
 
-#: ../util.php:2783
+#: ../util.php:2845
 msgid "No Skin"
 msgstr ""
 
-#: ../util.php:2784
+#: ../util.php:2846
 #, fuzzy, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>¯aden</dt><dd>Orygina³ w porz±dku.</dd>"
 
-#: ../util.php:2817 ../util.php:2820
+#: ../util.php:2879 ../util.php:2882
 msgid "unknown"
 msgstr ""
 
-#: ../util.php:2823
+#: ../util.php:2885
 #, fuzzy
 msgid "Version"
 msgstr "Prawa"
 
-#: ../util.php:2825
+#: ../util.php:2887
 #, fuzzy
 msgid "Last Update"
 msgstr "Ostatnia strona"
 
-#: ../util.php:2845 ../util.php:2850
+#: ../util.php:2907 ../util.php:2912
 msgid "Dots"
 msgstr "Kropki"
 
-#: ../util.php:2846 ../util.php:2851
+#: ../util.php:2908 ../util.php:2913
 msgid "Solid"
 msgstr "Pe³ny"
 
-#: ../util.php:2849
+#: ../util.php:2911
 msgid "No frames"
 msgstr "¯adnych ramek"
 
-#: ../util.php:2850
+#: ../util.php:2912
 msgid "Just a simple dashed border around the thumb."
 msgstr "Prosta, kreskowana krawêd¼ na oko³o miniatury."
 
-#: ../util.php:2851
+#: ../util.php:2913
 msgid "Just a simple solid border around the thumb."
 msgstr "Prosta, pe³na krawêd¼ na oko³o miniatury."
 
-#: ../util.php:2872
+#: ../util.php:2934
 #, php-format
 msgid "Skipping %s."
 msgstr "Pomijam %s."
 
-#: ../util.php:2878
+#: ../util.php:2940
 #, php-format
 msgid "Can't open %s"
 msgstr "Nie mogê otworzyæ %s"
 
-#: ../util.php:2993 ../util.php:3012
+#: ../util.php:3060 ../util.php:3079
 msgid "Not valid yet"
 msgstr "Nieprawid³owy"
 
-#: ../util.php:3254
+#: ../util.php:3321
 #, fuzzy
 msgid "EXIF Data"
 msgstr "Dodatkowe dane EXIF"
@@ -3789,11 +3830,11 @@ msgstr "Hej! Dodaj jakie¶ zdjêcia :)"
 msgid "This album is empty."
 msgstr "Ten album jest pusty"
 
-#: ../view_album.php:1132 ../view_photo.php:653
+#: ../view_album.php:1132 ../view_photo.php:655
 msgid "Email me when:"
 msgstr "Powiadom email'em gdy:"
 
-#: ../view_album.php:1133 ../view_photo.php:654
+#: ../view_album.php:1133 ../view_photo.php:656
 msgid "Comments are added"
 msgstr "Komentarze zostan± dodane"
 
@@ -3818,36 +3859,36 @@ msgstr "wróæ do albumu"
 msgid "Sorry.  This album does not allow comments."
 msgstr "Przepraszamy, ale ten album nie pozwala na komentarze."
 
-#: ../view_photo.php:303
+#: ../view_photo.php:305
 msgid "resize photo"
 msgstr "skaluj zdjêcie"
 
-#: ../view_photo.php:327
+#: ../view_photo.php:329
 msgid "delete photo"
 msgstr "kasuj zdjêcie"
 
-#: ../view_photo.php:338
+#: ../view_photo.php:340
 msgid "View Images"
 msgstr "Przegl±daj obrazki"
 
-#: ../view_photo.php:342 ../view_photo.php:344
+#: ../view_photo.php:344 ../view_photo.php:346
 msgid "normal"
 msgstr "normalny"
 
-#: ../view_photo.php:342 ../view_photo.php:344
+#: ../view_photo.php:344 ../view_photo.php:346
 msgid "full"
 msgstr "pe³ny"
 
-#: ../view_photo.php:355
+#: ../view_photo.php:357
 msgid "photo properties"
 msgstr "w³a¶ciwo¶ci zdjêcia"
 
-#: ../view_photo.php:401
+#: ../view_photo.php:403
 #, fuzzy
 msgid "Select service"
 msgstr "Kasuj u¿ytkownika"
 
-#: ../view_photo.php:426 ../view_photo.php:447
+#: ../view_photo.php:428 ../view_photo.php:449
 #, php-format
 msgid "print this photo with %s"
 msgstr "wydrukuj to zdjêcie na %s"

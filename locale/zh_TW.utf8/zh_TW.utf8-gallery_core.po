@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-11-19 20:54+0100\n"
+"POT-Creation-Date: 2004-11-28 18:40+0100\n"
 "PO-Revision-Date: 2003-09-01 13:57+0800\n"
 "Last-Translator: Jian-Zhou Huang <qq AT turtle DOT ee DOT ncku DOT edu DOT tw>\n"
 "Language-Team: Traditional Chinese <qq AT turtle DOT ee DOT ncku DOT edu DOT tw>\n"
@@ -57,15 +57,19 @@ msgstr "您必須填入姓名及評論才可以送出資料 !"
 msgid "Your comment is too long, the admin set maximum length to %d chars"
 msgstr ""
 
-#: ../add_comment.php:76 ../add_comment.php:80
+#: ../add_comment.php:62 ../view_photo.php:198
+msgid "Your Comment contains forbidden words. It will not be added."
+msgstr ""
+
+#: ../add_comment.php:78 ../add_comment.php:82
 msgid "Add Comment"
 msgstr "新增評論"
 
-#: ../add_comment.php:82
+#: ../add_comment.php:84
 msgid "Enter your comment for this picture in the text box below."
 msgstr "請在下面的框框中輸入您的評論. "
 
-#: ../add_comment.php:100 ../copy_photo.php:197 ../create_user.php:149
+#: ../add_comment.php:102 ../copy_photo.php:197 ../create_user.php:149
 #: ../delete_album.php:66 ../delete_photo.php:140 ../delete_user.php:84
 #: ../edit_caption.php:189 ../edit_field.php:66 ../edit_watermark.php:109
 #: ../includes/add_photos/add_form.inc:126
@@ -110,6 +114,61 @@ msgstr "擁有者"
 msgid "Admin"
 msgstr ""
 
+#: ../admin-page.php:50 ../tools/find_orphans.php:294
+#: ../tools/despam-comments.php:55
+#, fuzzy
+msgid "Return to Gallery"
+msgstr "進入 Gallery"
+
+#: ../admin-page.php:52
+#, fuzzy
+msgid "Admin options"
+msgstr "修改說明"
+
+#: ../admin-page.php:57
+msgid "statistics"
+msgstr ""
+
+#: ../admin-page.php:59
+msgid "View some statistics about your Gallery. Such as most viewd pictures, or best rated photos etc."
+msgstr ""
+
+#: ../admin-page.php:60
+#, fuzzy
+msgid "configuration wizard"
+msgstr "自訂欄位"
+
+#: ../admin-page.php:62
+msgid "Use the config wizard to reconfigure or tweak your Gallery"
+msgstr ""
+
+#: ../admin-page.php:63
+msgid "find orphans"
+msgstr ""
+
+#: ../admin-page.php:65
+msgid "Find, remove or readd orphaned elements."
+msgstr ""
+
+#: ../admin-page.php:66
+#, fuzzy
+msgid "find comment spam"
+msgstr "檢視&nbsp;評論"
+
+#: ../admin-page.php:68
+#, fuzzy
+msgid "Find and remove comments that contains spam."
+msgstr "檢視&nbsp;評論"
+
+#: ../admin-page.php:75
+msgid "manage users"
+msgstr "使用者管理"
+
+#: ../admin-page.php:77
+#, fuzzy
+msgid "Manage your users."
+msgstr "管理使用者"
+
 #: ../album_permissions.php:183 ../album_permissions.php:187
 msgid "Album Permissions"
 msgstr "相簿權限"
@@ -119,7 +178,7 @@ msgstr "相簿權限"
 msgid "Changing permissions for %s"
 msgstr "更改 %s 的權限："
 
-#: ../album_permissions.php:197 ../albums.php:361
+#: ../album_permissions.php:197 ../albums.php:355
 msgid "Owner:"
 msgstr "擁有者："
 
@@ -263,134 +322,121 @@ msgstr "歡迎光臨, %s"
 msgid "slideshow"
 msgstr "幻燈片輪播"
 
-#: ../albums.php:187
-#, fuzzy
-msgid "configuration wizard"
-msgstr "自訂欄位"
-
-#: ../albums.php:188
-msgid "find orphans"
-msgstr ""
-
-#: ../albums.php:189
-#, fuzzy
-msgid "find comment spam"
-msgstr "檢視&nbsp;評論"
-
-#: ../albums.php:193
+#: ../albums.php:183
 msgid "new album"
 msgstr "新增相簿"
 
-#: ../albums.php:200
-msgid "manage users"
-msgstr "使用者管理"
-
-#: ../albums.php:208
+#: ../albums.php:190
 msgid "preferences"
 msgstr "個人設定"
 
-#: ../albums.php:214 ../view_album.php:465
+#: ../albums.php:205
+#, fuzzy
+msgid "admin page"
+msgstr "0 頁"
+
+#: ../albums.php:208 ../view_album.php:465
 msgid "logout"
 msgstr "登出"
 
-#: ../albums.php:218 ../view_album.php:467
+#: ../albums.php:212 ../view_album.php:467
 msgid "login"
 msgstr "登入"
 
-#: ../albums.php:222
+#: ../albums.php:216
 msgid "register"
 msgstr ""
 
-#: ../albums.php:248
+#: ../albums.php:242
 msgid "Attention Gallery Administrator!"
 msgstr "管理者請注意!"
 
-#: ../albums.php:251
+#: ../albums.php:245
 #, fuzzy, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "%s 發現以下目錄 %s 在您的 (%s) 相簿中"
 
-#: ../albums.php:257
+#: ../albums.php:251
 #, fuzzy
 msgid "Please move it/them out of the albums directory."
 msgstr "這些都不是有效的相簿, 請儘速移除. "
 
-#: ../albums.php:261
+#: ../albums.php:255
 #, php-format
 msgid "%s has detected that %d of your albums are out of date."
 msgstr ""
 
-#: ../albums.php:265
+#: ../albums.php:259
 #, fuzzy, php-format
 msgid "Please %s."
 msgstr "請耐心等候.."
 
-#: ../albums.php:265
+#: ../albums.php:259
 #, fuzzy
 msgid "upgrade those albums"
 msgstr "更新所有的相簿"
 
-#: ../albums.php:317 ../view_album.php:737
+#: ../albums.php:311 ../view_album.php:737
 #, fuzzy
 msgid "Highlight for Album:"
 msgstr "封面相簿: "
 
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../albums.php:334
+#: ../albums.php:328
 msgid "title"
 msgstr "標題"
 
-#: ../albums.php:366
+#: ../albums.php:360
 msgid "url:"
 msgstr "url:"
 
-#: ../albums.php:377
+#: ../albums.php:371
 msgid "Hey!"
 msgstr "嘿! "
 
-#: ../albums.php:378
+#: ../albums.php:372
 #, fuzzy, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s 該相簿, 換個好記一點的名稱吧! "
 
-#: ../albums.php:379
+#: ../albums.php:373
 #, fuzzy
 msgid "Rename this album"
 msgstr "更改相簿名稱"
 
-#: ../albums.php:390
+#: ../albums.php:384
 #, php-format
 msgid "Last changed on %s."
 msgstr "上次更新：%s. "
 
-#: ../albums.php:393
+#: ../albums.php:387
 #, fuzzy, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "%s在這個相簿裡面. "
 msgstr[1] "%s在這個相簿裡面. "
 
-#: ../albums.php:398
+#: ../albums.php:392
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "點閱：%s (從 %s 開始計算)"
 
-#: ../albums.php:399 ../view_album.php:881 ../view_album.php:905
+#: ../albums.php:393 ../view_album.php:881 ../view_album.php:905
 #, fuzzy, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "次"
 msgstr[1] "次"
 
-#: ../albums.php:399
+#: ../albums.php:393
 msgid "0 times"
 msgstr "0 次"
 
-#: ../albums.php:405
+#: ../albums.php:399
 msgid "reset counter"
 msgstr "計數器歸零"
 
-#: ../albums.php:439 ../view_album.php:1101
+#: ../albums.php:433 ../view_album.php:1101
 msgid "Comments available for this item."
 msgstr "代表有評論喔. "
 
@@ -518,7 +564,7 @@ msgstr "更新檔案 %d 之 %d . . . "
 msgid "msg should be an array!"
 msgstr ""
 
-#: ../classes/Album.php:919 ../util.php:3297
+#: ../classes/Album.php:919 ../util.php:3364
 #, fuzzy
 msgid "No email sent as no valid email addresses were found"
 msgstr "您一定要輸入帳號"
@@ -824,7 +870,7 @@ msgstr "您確定要刪除該相簿? "
 
 #: ../delete_album.php:65 ../delete_photo.php:139 ../delete_user.php:79
 #: ../layout/commentbox.inc:17 ../manage_users.php:103
-#: ../tools/despam-comments.php:195 ../tools/despam-comments.php:346
+#: ../tools/despam-comments.php:195 ../tools/despam-comments.php:329
 msgid "Delete"
 msgstr "刪除"
 
@@ -1658,7 +1704,7 @@ msgstr "已登入"
 msgid "From:"
 msgstr "來自："
 
-#: ../layout/commentboxbottom.inc:11 ../util.php:163
+#: ../layout/commentboxbottom.inc:11 ../util.php:179
 msgid "add comment"
 msgstr "新增評論"
 
@@ -1682,7 +1728,7 @@ msgstr "觀看這個相簿的所有評論"
 msgid "Album contains no comments"
 msgstr "相簿包含 %s"
 
-#: ../layout/commentdraw.inc:38
+#: ../layout/commentdraw.inc:39
 msgid "delete comment"
 msgstr "刪除評論"
 
@@ -1727,7 +1773,7 @@ msgstr "%d 之 %d"
 msgid "Watermark"
 msgstr ""
 
-#: ../layout/watermarkform.inc:79 ../util.php:2844 ../util.php:2849
+#: ../layout/watermarkform.inc:79 ../util.php:2906 ../util.php:2911
 #, fuzzy
 msgid "None"
 msgstr "完成"
@@ -2969,11 +3015,6 @@ msgstr "相簿"
 msgid "Files"
 msgstr "檔案"
 
-#: ../tools/find_orphans.php:294 ../tools/despam-comments.php:55
-#, fuzzy
-msgid "Return to Gallery"
-msgstr "進入 Gallery"
-
 #: ../tools/despam-comments.php:54
 #, fuzzy
 msgid "Find and remove comment spam"
@@ -2984,8 +3025,8 @@ msgstr "檢視&nbsp;評論"
 msgid "Delete Comments"
 msgstr "刪除評論"
 
-#: ../tools/despam-comments.php:110 ../tools/despam-comments.php:250
-#: ../tools/despam-comments.php:261 ../tools/despam-comments.php:333
+#: ../tools/despam-comments.php:110 ../tools/despam-comments.php:238
+#: ../tools/despam-comments.php:249 ../tools/despam-comments.php:316
 #, fuzzy
 msgid "No action taken!"
 msgstr "沒有說明"
@@ -3030,66 +3071,66 @@ msgstr "建立"
 msgid "Delete Checked Comments"
 msgstr "刪除評論"
 
-#: ../tools/despam-comments.php:248
+#: ../tools/despam-comments.php:236
 msgid "Delete from blacklist"
 msgstr ""
 
-#: ../tools/despam-comments.php:265 ../tools/despam-comments.php:312
+#: ../tools/despam-comments.php:253 ../tools/despam-comments.php:295
 msgid "Error saving blacklist!"
 msgstr ""
 
-#: ../tools/despam-comments.php:267
+#: ../tools/despam-comments.php:255
 msgid "Removed from blacklist"
 msgstr ""
 
-#: ../tools/despam-comments.php:315
+#: ../tools/despam-comments.php:298
 msgid "Added to blacklist"
 msgstr ""
 
-#: ../tools/despam-comments.php:324
+#: ../tools/despam-comments.php:307
 msgid "Duplicates (not added)"
 msgstr ""
 
-#: ../tools/despam-comments.php:340
+#: ../tools/despam-comments.php:323
 #, fuzzy
 msgid "Current blacklist"
 msgstr "目前位置"
 
-#: ../tools/despam-comments.php:342
+#: ../tools/despam-comments.php:325
 msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
 msgstr ""
 
-#: ../tools/despam-comments.php:357 ../tools/despam-comments.php:374
+#: ../tools/despam-comments.php:340 ../tools/despam-comments.php:357
 msgid "Update Blacklist"
 msgstr ""
 
-#: ../tools/despam-comments.php:364
+#: ../tools/despam-comments.php:347
 msgid "Enter new blacklist entries"
 msgstr ""
 
-#: ../tools/despam-comments.php:365
+#: ../tools/despam-comments.php:348
 #, fuzzy
 msgid "Useful blacklists: "
 msgstr "目前位置"
 
-#: ../tools/despam-comments.php:370
+#: ../tools/despam-comments.php:353
 msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
 msgstr ""
 
-#: ../tools/despam-comments.php:397
+#: ../tools/despam-comments.php:363
 #, fuzzy
 msgid "Find blacklisted comments"
 msgstr "刪除評論"
 
-#: ../tools/despam-comments.php:398
+#: ../tools/despam-comments.php:364
 msgid "View/Edit blacklist"
 msgstr ""
 
-#: ../tools/despam-comments.php:399
+#: ../tools/despam-comments.php:365
 msgid "Add blacklist entries"
 msgstr ""
 
-#: ../tools/despam-comments.php:402
+#: ../tools/despam-comments.php:368
 #, fuzzy
 msgid "Options"
 msgstr "說明"
@@ -3217,279 +3258,279 @@ msgstr "沒有說明"
 msgid "edit"
 msgstr "修改"
 
-#: ../util.php:180
+#: ../util.php:196
 #, fuzzy
 msgid "Add your comment"
 msgstr "新增評論"
 
-#: ../util.php:183
+#: ../util.php:199
 #, fuzzy
 msgid "Commenter:"
 msgstr "建立"
 
-#: ../util.php:200
+#: ../util.php:216
 #, fuzzy
 msgid "Message:"
 msgstr "錯誤訊息："
 
-#: ../util.php:204
+#: ../util.php:220
 #, fuzzy
 msgid "Post"
 msgstr "圖片"
 
-#: ../util.php:211
+#: ../util.php:271
 msgid "Error:"
 msgstr "錯誤："
 
-#: ../util.php:232
+#: ../util.php:292
 msgid "Executing:"
 msgstr ""
 
-#: ../util.php:239
+#: ../util.php:299
 msgid "Results:"
 msgstr "結果："
 
-#: ../util.php:243
+#: ../util.php:303
 msgid "none"
 msgstr "不提供"
 
-#: ../util.php:248
+#: ../util.php:308
 #, fuzzy
 msgid "Debug messages:"
 msgstr "錯誤訊息："
 
-#: ../util.php:259
+#: ../util.php:319
 #, php-format
 msgid "Status: %s (expected %s)"
 msgstr "狀態: %s (應為 %s)"
 
-#: ../util.php:286
+#: ../util.php:346
 #, fuzzy, php-format
 msgid "The file %s does not exist ?!"
 msgstr "檔案 %s 並不存在. "
 
-#: ../util.php:298
+#: ../util.php:358
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP 的 %s 無法決定 dimensions. "
 
-#: ../util.php:318 ../util.php:632 ../util.php:884 ../util.php:930
-#: ../util.php:2334
+#: ../util.php:378 ../util.php:692 ../util.php:944 ../util.php:990
+#: ../util.php:2396
 msgid "You have no graphics package configured for use!"
 msgstr "您沒有設定可使用的圖形套件程式! "
 
-#: ../util.php:405 ../util.php:424
+#: ../util.php:465 ../util.php:484
 msgid "Not closing this window because debug mode is on"
 msgstr "由於除錯模式開啟所以無法關閉視窗"
 
-#: ../util.php:470
+#: ../util.php:530
 msgid "No resizing required"
 msgstr ""
 
-#: ../util.php:500
+#: ../util.php:560
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "目標檔案大小 %d kbytes"
 
-#: ../util.php:506 ../util.php:536
+#: ../util.php:566 ../util.php:596
 #, fuzzy, php-format
 msgid "-> file size %d kbytes"
 msgstr "- 檔案大小 %d kbytes"
 
-#: ../util.php:507
+#: ../util.php:567
 #, php-format
 msgid "trying quality %d%%"
 msgstr "嘗試品質 %d%%"
 
-#: ../util.php:537
+#: ../util.php:597
 msgid "Done."
 msgstr "完成"
 
-#: ../util.php:636
+#: ../util.php:696
 #, fuzzy
 msgid "No watermark name specified!"
 msgstr "沒有指定相簿! "
 
-#: ../util.php:949
+#: ../util.php:1009
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "呼叫 %s 無法在 %s 中使用檔案 %s."
 
-#: ../util.php:955
+#: ../util.php:1015
 #, php-format
 msgid "File %s type %d."
 msgstr "檔案 %s 類型 %d."
 
-#: ../util.php:998 ../util.php:1021
+#: ../util.php:1058 ../util.php:1081
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "未知的檔案格式：%s"
 
-#: ../util.php:1408
+#: ../util.php:1470
 #, php-format
 msgid "Can't write to %s."
 msgstr "無法寫入 %s. "
 
-#: ../util.php:1415
+#: ../util.php:1477
 #, php-format
 msgid "Can't read %s."
 msgstr "無法讀取 %s. "
 
-#: ../util.php:1519
+#: ../util.php:1581
 msgid "Select Album"
 msgstr "選擇相簿"
 
-#: ../util.php:1525
+#: ../util.php:1587
 msgid "Top Level"
 msgstr "頂層"
 
-#: ../util.php:1546 ../util.php:1597
+#: ../util.php:1608 ../util.php:1659
 msgid "current location"
 msgstr "目前位置"
 
-#: ../util.php:1600
+#: ../util.php:1662
 msgid "self"
 msgstr "自己"
 
-#: ../util.php:1665
+#: ../util.php:1727
 #, php-format
 msgid "IN UTIL ITEMCAPTUREDATE = %s"
 msgstr ""
 
-#: ../util.php:1710
+#: ../util.php:1772
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "無法開啟這個鎖定檔 (%s)! "
 
-#: ../util.php:1715
+#: ../util.php:1777
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "無法要求鎖定 (%s)! "
 
-#: ../util.php:1804
+#: ../util.php:1866
 #, fuzzy, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "次"
 msgstr[1] "次"
 
-#: ../util.php:1809
+#: ../util.php:1871
 msgid "Sub-albums"
 msgstr "子相簿"
 
-#: ../util.php:1975
+#: ../util.php:2037
 #, fuzzy, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "略過 %s (尚未開啟 ZIP 壓縮支援)"
 
-#: ../util.php:2088
+#: ../util.php:2150
 #, php-format
 msgid "Adding %s"
 msgstr "正在加入 %s"
 
-#: ../util.php:2122
+#: ../util.php:2184
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "需要幫忙嗎? 請看 %s%s FAQ%s"
 
-#: ../util.php:2128
+#: ../util.php:2190
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "略過 %s (無法處理 %s 格式)"
 
-#: ../util.php:2277
+#: ../util.php:2339
 msgid "documentation"
 msgstr "說明文件"
 
-#: ../util.php:2304
+#: ../util.php:2366
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr ""
 
-#: ../util.php:2351
+#: ../util.php:2413
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generated by %s v%s"
 
-#: ../util.php:2353
+#: ../util.php:2415
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2403
+#: ../util.php:2465
 #, fuzzy, php-format
 msgid "Skipping invalid email address %s"
 msgstr "您一定要輸入帳號"
 
-#: ../util.php:2468
+#: ../util.php:2530
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr ""
 
-#: ../util.php:2470
+#: ../util.php:2532
 #, fuzzy, php-format
 msgid "Report abuse to %s"
 msgstr "返回 %s"
 
-#: ../util.php:2486
+#: ../util.php:2548
 msgid "Email not sent as it is disabled for this gallery"
 msgstr ""
 
-#: ../util.php:2491
+#: ../util.php:2553
 #, fuzzy, php-format
 msgid "Email not sent as no address provided"
 msgstr "您一定要輸入帳號"
 
-#: ../util.php:2497
+#: ../util.php:2559
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr ""
 
-#: ../util.php:2513
+#: ../util.php:2575
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr ""
 
-#: ../util.php:2527
+#: ../util.php:2589
 msgid "Administrator"
 msgstr ""
 
-#: ../util.php:2669 ../util.php:2674
+#: ../util.php:2731 ../util.php:2736
 msgid "not shown"
 msgstr ""
 
-#: ../util.php:2678
+#: ../util.php:2740
 msgid "Message"
 msgstr ""
 
-#: ../util.php:2682
+#: ../util.php:2744
 #, fuzzy
 msgid "Email sent"
 msgstr "電子信箱"
 
-#: ../util.php:2684
+#: ../util.php:2746
 #, fuzzy
 msgid "Email not sent"
 msgstr "電子信箱"
 
-#: ../util.php:2698
+#: ../util.php:2760
 #, php-format
 msgid "Last comment %s."
 msgstr "上次評論 %s."
 
-#: ../util.php:2710
+#: ../util.php:2772
 msgid "FAILED"
 msgstr ""
 
-#: ../util.php:2719
+#: ../util.php:2781
 msgid "Email activity"
 msgstr ""
 
-#: ../util.php:2737
+#: ../util.php:2799
 #, fuzzy, php-format
 msgid "Cannot open logfile: %s"
 msgstr "無法開啟這個鎖定檔 (%s)! "
 
-#: ../util.php:2744
+#: ../util.php:2806
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3501,77 +3542,77 @@ msgid ""
 "Gallery @ %s Administrator."
 msgstr ""
 
-#: ../util.php:2753 ../util.php:2755
+#: ../util.php:2815 ../util.php:2817
 #, fuzzy
 msgid "gallery title"
 msgstr "Gallery 標題"
 
-#: ../util.php:2754
+#: ../util.php:2816
 #, fuzzy
 msgid "gallery URL"
 msgstr "Gallery 連結"
 
-#: ../util.php:2783
+#: ../util.php:2845
 msgid "No Skin"
 msgstr ""
 
-#: ../util.php:2784
+#: ../util.php:2846
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr ""
 
-#: ../util.php:2817 ../util.php:2820
+#: ../util.php:2879 ../util.php:2882
 msgid "unknown"
 msgstr ""
 
-#: ../util.php:2823
+#: ../util.php:2885
 #, fuzzy
 msgid "Version"
 msgstr "權限"
 
-#: ../util.php:2825
+#: ../util.php:2887
 #, fuzzy
 msgid "Last Update"
 msgstr "最後一頁"
 
-#: ../util.php:2845 ../util.php:2850
+#: ../util.php:2907 ../util.php:2912
 #, fuzzy
 msgid "Dots"
 msgstr "票"
 
-#: ../util.php:2846 ../util.php:2851
+#: ../util.php:2908 ../util.php:2913
 msgid "Solid"
 msgstr ""
 
-#: ../util.php:2849
+#: ../util.php:2911
 #, fuzzy
 msgid "No frames"
 msgstr "尚無相簿"
 
-#: ../util.php:2850
+#: ../util.php:2912
 msgid "Just a simple dashed border around the thumb."
 msgstr ""
 
-#: ../util.php:2851
+#: ../util.php:2913
 msgid "Just a simple solid border around the thumb."
 msgstr ""
 
-#: ../util.php:2872
+#: ../util.php:2934
 #, fuzzy, php-format
 msgid "Skipping %s."
 msgstr "略過相簿 %d..."
 
-#: ../util.php:2878
+#: ../util.php:2940
 #, fuzzy, php-format
 msgid "Can't open %s"
 msgstr "無法讀取 %s. "
 
-#: ../util.php:2993 ../util.php:3012
+#: ../util.php:3060 ../util.php:3079
 #, fuzzy
 msgid "Not valid yet"
 msgstr "不合法的使用者"
 
-#: ../util.php:3254
+#: ../util.php:3321
 #, fuzzy
 msgid "EXIF Data"
 msgstr "詳細的 EXIF 資料"
@@ -3844,12 +3885,12 @@ msgstr "嘿! 加些檔案吧."
 msgid "This album is empty."
 msgstr "這是一個空相簿"
 
-#: ../view_album.php:1132 ../view_photo.php:653
+#: ../view_album.php:1132 ../view_photo.php:655
 #, fuzzy
 msgid "Email me when:"
 msgstr "電子信箱"
 
-#: ../view_album.php:1133 ../view_photo.php:654
+#: ../view_album.php:1133 ../view_photo.php:656
 msgid "Comments are added"
 msgstr ""
 
@@ -3875,36 +3916,36 @@ msgstr "返回相簿"
 msgid "Sorry.  This album does not allow comments."
 msgstr "抱歉, 此相簿不允許匿名評論. "
 
-#: ../view_photo.php:303
+#: ../view_photo.php:305
 msgid "resize photo"
 msgstr "修改大小"
 
-#: ../view_photo.php:327
+#: ../view_photo.php:329
 msgid "delete photo"
 msgstr "刪除檔案"
 
-#: ../view_photo.php:338
+#: ../view_photo.php:340
 msgid "View Images"
 msgstr "檢視影像"
 
-#: ../view_photo.php:342 ../view_photo.php:344
+#: ../view_photo.php:344 ../view_photo.php:346
 msgid "normal"
 msgstr "一般"
 
-#: ../view_photo.php:342 ../view_photo.php:344
+#: ../view_photo.php:344 ../view_photo.php:346
 msgid "full"
 msgstr "原始"
 
-#: ../view_photo.php:355
+#: ../view_photo.php:357
 msgid "photo properties"
 msgstr "檔案屬性"
 
-#: ../view_photo.php:401
+#: ../view_photo.php:403
 #, fuzzy
 msgid "Select service"
 msgstr "刪除使用者"
 
-#: ../view_photo.php:426 ../view_photo.php:447
+#: ../view_photo.php:428 ../view_photo.php:449
 #, fuzzy, php-format
 msgid "print this photo with %s"
 msgstr "在 %s 上列印"
