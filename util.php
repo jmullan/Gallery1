@@ -858,7 +858,10 @@ function getItemCaptureDate($file) {
 	if (strlen($itemCaptureDate["seconds"]) == 1) {
 		$itemCaptureDate["seconds"] = "0" . $itemCaptureDate["seconds"];
 	}
-	print "IN UTIL ITEMCAPTUREDATE = $itemCaptureDate[year]<br>";
+
+	if (isDebugging()) {
+		print "IN UTIL ITEMCAPTUREDATE = $itemCaptureDate[year]<br>";
+	}
 	return $itemCaptureDate;
 }
 
