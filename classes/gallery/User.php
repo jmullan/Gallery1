@@ -35,7 +35,12 @@ class Gallery_User extends Abstract_User {
 		global $gallery;
 		Abstract_User::Abstract_User();
 		$this->setDefaultLanguage("");
-		$this->version = $gallery->user_version;
+
+
+		// assuming revision 4 ensures that if the user_version is 
+		// not properly read from file due to the file format changes
+		// that we perform the necessary upgrade.
+		$this->version = 4;
 	}
 
 	function load($uid) {

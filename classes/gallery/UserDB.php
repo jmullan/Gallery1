@@ -31,7 +31,11 @@ class Gallery_UserDB extends Abstract_UserDB {
 	function Gallery_UserDB() {
 		global $gallery;
 		$userDir = $gallery->app->userDir;
-		$this->version = $gallery->user_version;
+
+		// assuming revision 4 ensures that if the user_version is 
+		// not properly read from file due to the file format changes
+		// that we perform the necessary upgrade.
+		$this->version = 4;
 
 		$this->userMap = array();
 
