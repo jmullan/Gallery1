@@ -1,0 +1,74 @@
+# 
+#-----[ OPEN templates/subSilver/overall_header.tpl]------------------------------------------ 
+#
+
+#-----[ FIND ]------------------------------------------ 
+#
+ 
+<img src="templates/subSilver/images/icon_mini_groups.gif" width="12" height="13" border="0" alt="{L_USERGROUPS}" hspace="3" />{L_USERGROUPS}</a>&nbsp; 
+
+ 
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+ 
+&nbsp;<a href="{U_GALLERY}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_profile.gif" width="12" height="13" border="0" alt="{L_GALLERY}" hspace="3" />{L_GALLERY}</a>&nbsp;
+
+
+
+
+
+# 
+#-----[ OPEN includes/page_header.php]------------------------------------------ 
+#
+
+#-----[ FIND ]------------------------------------------ 
+# 
+ 
+ 	'L_WHOSONLINE_MOD' => sprintf($lang['Mod_online_color'], '<span style="color:#' . $theme['fontcolor2'] . '">', '</span>'),
+
+ 
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+ 
+	'L_GALLERY' => $lang['Gallery'],
+
+
+#-----[ FIND ]------------------------------------------ 
+#
+ 
+  	'U_GROUP_CP' => append_sid('groupcp.'.$phpEx),
+
+ 
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+ 
+	'U_GALLERY' => append_sid('modules.'.$phpEx.'?op=modload&name=gallery&file=index'),
+
+
+
+# 
+#-----[ OPEN includes/sessions.php]------------------------------------------ 
+#
+
+#-----[ FIND ]------------------------------------------ 
+#
+ 
+		$session_id = ( isset($HTTP_GET_VARS['sid']) ) ? $HTTP_GET_VARS['sid'] : '';
+
+ 
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+ 
+		// MOD
+		if(!isset($HTTP_GET_VARS['sid'])) {
+			$session_id = ( isset($HTTP_POST_VARS['sid']) ) ? $HTTP_POST_VARS['sid'] : '';
+		}
+		// MOD end
+
+
+# --- [ REPEAT!! (2 copies of code to edit) ] -------------------------------------
+

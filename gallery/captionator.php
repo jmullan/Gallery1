@@ -124,7 +124,6 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
 
 $bordercolor = $gallery->album->fields["bordercolor"];
 ?>
-
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
@@ -157,9 +156,8 @@ if ($gallery->album->fields["textcolor"]) {
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
-<?php } ?>
+<?php }
 
-<?php 
 includeHtmlWrap("album.header");
 
 #-- if borders are off, just make them the bgcolor ----
