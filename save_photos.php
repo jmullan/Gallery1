@@ -412,7 +412,6 @@ function invertCheck() {
 <table><tr><td>
 <?= makeFormIntro("save_photos.php", 
 		array("name" => $uploadUrlFormName, 
-			"enctype" => "multipart/form-data", 
 			"method" => "POST")); ?>
 <?php
 	/* Allow user to select which files to grab - only show url right now ( no image previews ) */
