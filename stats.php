@@ -512,7 +512,7 @@ $startPhoto = ($page - 1) * $photosPerPage;
 // Use fuz factor to avoid rounding up when result is 0.5
 $lastpage = round( ($totalPhotosToDisplay / $photosPerPage) - 0.500001) + 1;
 if ($debug) {
-	echo "Total ". $totalPhotosToDisplay . " Start ". $startPhoto . " Last Page ". $lastpage . "<br>";
+	echo sprintf(_("Total: %s ; Start: %s ; Last Page: %s"), $totalPhotosToDisplay, $startPhoto, $lastpage) . "<br>";
 }
 
 $borderColor = $gallery->app->default["bordercolor"];
@@ -1111,7 +1111,7 @@ function readCache( $cacheFilename, $start, $numPhotos ) {
 				$data = fgetcsv($fd,$size,'|');
 				if ( $data ) {
 					if ( $debug > 1 ) {
-						echo "Album name = ". $data[0]. " index = ". $data[1]."<br>";
+						echo sprintf(_("Album name : %s ; index: %s"), $data[0], $data[1]) ."<br>";
 					}
 					$arrPhotos[$start+$i] = array("albumName" => $data[0],
 					"photoId" => $data[1],
@@ -1123,7 +1123,7 @@ function readCache( $cacheFilename, $start, $numPhotos ) {
 		}
 		else {
 			if ( $debug > 1 ) {
-				echo "Read cache lock failed.<br>";
+				echo _("Read cache lock failed."). "<br>";
 			}
 		}
 		fclose($fd);
@@ -1164,7 +1164,7 @@ function writeCache( $cacheFilename ) {
 		}
 		else {
 			if ( $debug > 1 ) {
-				echo "Read cache lock failed.<br>";
+				echo _("Read cache lock failed.") ."<br>";
 			}
 		}
 		fclose($fd);
@@ -1320,7 +1320,7 @@ function showAddCommentLink( $photoId ) {
 
 	$url = "add_comment.php?set_albumName={$statsAlbum->fields['name']}&id=$photoId";
 	echo  '<span class="fineprint">' .
-	popup_link('[' . "add comment" . ']', $url, 0) .
+	popup_link('[' . _("add comment") . ']', $url, 0) .
 	"</span>";
 }
 
@@ -1333,7 +1333,7 @@ function showAddVoteLink( $photoId, $page ) {
 	$urlargs['url'] = urlencode(makeStatsUrl( $page ));
 	echo '<span class="fineprint">';
 	echo "<a href=\"" . makeGalleryUrl("vote.php", $urlargs) . "\">";
-	echo "[add vote]";
+	echo "[". _("add vote") ."]";
 	echo "</a></span>";
 }
 
@@ -1515,23 +1515,26 @@ if ( $showViews &&
 !($statsAlbum->fields["display_clicks"] == "no") &&
 !$gallery->session->offline) {
 
-	echo "<tr><td width=\"105\"><span class=\"fineprint\">Views:</span></td>";
-	echo "<td><span class=\"fineprint\">";
+	echo "\n<tr>";
+	echo "\n\t". '<td width="105" class="fineprint">'. _("Views:") .'</td>';
+	echo "\n\t". '<td class="fineprint">';
 	echo pluralize_n2($statsAlbum->getItemClicks($photoIndex), "1 time", "times" , "0 times");
-	echo "</span></td></tr>";
+	echo "</td>";
+	echo "\n</tr>";
 }
 
 if ( $showVotes ) {
-	echo "<tr><td width=\"105\"><span class=\"fineprint\">Votes:</span></td>";
-	echo "<td><span class=\"fineprint\">".$statsAlbum->getItemSVotes($photoIndex);
-	echo "</span></td></tr>";
+	echo "\n<tr>";
+	echo "\n\t". '<td width="105" class="fineprint">' . _("Votes:") .'</td>';
+	echo "\n\t". '<td class="fineprint">'. $statsAlbum->getItemSVotes($photoIndex) .'/td';
+	echo "\n</tr>";
 }
 
 if ( $showRatings ) {
 	switch ($rating) {
 		case -2:
 		$photoRateCounts = '';
-		$photoRate = 'not rated';
+		$photoRate = _("not rated");
 		break;
 		case -1:
 		$photoRateCounts = '';

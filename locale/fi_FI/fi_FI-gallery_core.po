@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-01-11 15:46+0100\n"
+"POT-Creation-Date: 2005-01-18 01:02+0100\n"
 "PO-Revision-Date: 2004-04-07 09:29+0200\n"
 "Last-Translator: Olli Salo <salo AT norssi dot jyu dot fi>\n"
 "Language-Team: Olli Salo <salo AT norssi dot jyu dot fi>\n"
@@ -160,7 +160,7 @@ msgstr "Hallitse k&auml;ytt&auml;ji&auml;"
 msgid "Admin options"
 msgstr "yll‰pitotoiminnot"
 
-#: ../admin-page.php:88 ../tools/find_orphans.php:213
+#: ../admin-page.php:88 ../stats.php:636 ../tools/find_orphans.php:213
 #: ../tools/despam-comments.php:58
 msgid "Return to Gallery"
 msgstr "Palaa Galleriaan"
@@ -1477,70 +1477,70 @@ msgstr "toista"
 msgid "The slide show is stopped, Click [play] to resume."
 msgstr "Diashow on pys&auml;htynyt. Klikkaa [toista] jatkaaksesi."
 
-#: ../includes/slideshow/high.inc:321 ../includes/slideshow/high.inc:493
+#: ../includes/slideshow/high.inc:321 ../includes/slideshow/high.inc:485
 #: ../includes/slideshow/low.inc:299
 msgid "stop"
 msgstr "pys&auml;yt&auml;"
 
-#: ../includes/slideshow/high.inc:324 ../includes/slideshow/high.inc:381
+#: ../includes/slideshow/high.inc:323 ../includes/slideshow/high.inc:380
 #: ../includes/slideshow/low.inc:178
 msgid "Slide show is running..."
 msgstr "Diashow meneill&auml;&auml;n..."
 
-#: ../includes/slideshow/high.inc:329 ../includes/slideshow/low.inc:315
+#: ../includes/slideshow/high.inc:328 ../includes/slideshow/low.inc:315
 msgid "normal size"
 msgstr "normaalikoko"
 
-#: ../includes/slideshow/high.inc:331
+#: ../includes/slideshow/high.inc:330
 msgid "The slide is showing full sized images, Click [normal size] to view resized images."
 msgstr "Diashow n‰ytt‰‰ t‰ysikokoisia kuvia. Jos haluat n‰yd‰ venytettyj‰ kuvia, klikkaa [normal size]."
 
-#: ../includes/slideshow/high.inc:335 ../includes/slideshow/high.inc:497
+#: ../includes/slideshow/high.inc:334 ../includes/slideshow/high.inc:491
 #: ../includes/slideshow/low.inc:318
 msgid "full size"
 msgstr "t&auml;yskoko"
 
-#: ../includes/slideshow/high.inc:338
+#: ../includes/slideshow/high.inc:337
 msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
 msgstr "Diaesitys n‰ytt‰‰ normaalikokoisia kuvia, klikkaa [full size] n‰hd‰ksesi alkuper‰iset koot kuvista."
 
-#: ../includes/slideshow/high.inc:344 ../includes/slideshow/low.inc:307
+#: ../includes/slideshow/high.inc:343 ../includes/slideshow/low.inc:307
 msgid "forward direction"
 msgstr "my&ouml;t&auml;p&auml;iv&auml;&auml;n"
 
-#: ../includes/slideshow/high.inc:347 ../includes/slideshow/high.inc:494
+#: ../includes/slideshow/high.inc:346 ../includes/slideshow/high.inc:487
 #: ../includes/slideshow/low.inc:304
 msgid "reverse direction"
 msgstr "vastap&auml;iv&auml;&auml;n"
 
-#: ../includes/slideshow/high.inc:376 ../includes/slideshow/low.inc:207
+#: ../includes/slideshow/high.inc:375 ../includes/slideshow/low.inc:207
 msgid "Picture is loading..."
 msgstr "Kuva latautuu..."
 
-#: ../includes/slideshow/high.inc:376 ../includes/slideshow/high.inc:471
+#: ../includes/slideshow/high.inc:375 ../includes/slideshow/high.inc:470
 #: ../includes/slideshow/low.inc:207 ../includes/slideshow/low.inc:379
 msgid "of"
 msgstr "/"
 
-#: ../includes/slideshow/high.inc:376 ../includes/slideshow/low.inc:208
+#: ../includes/slideshow/high.inc:375 ../includes/slideshow/low.inc:208
 #: ../upgrade_users.php:49
 msgid "Please Wait..."
 msgstr "Ole hyv&auml; ja odota..."
 
-#: ../includes/slideshow/high.inc:499
+#: ../includes/slideshow/high.inc:495
 #, fuzzy
 msgid "Delay"
 msgstr "Viive:"
 
-#: ../includes/slideshow/high.inc:501 ../includes/slideshow/low.inc:323
+#: ../includes/slideshow/high.inc:498 ../includes/slideshow/low.inc:323
 msgid "second"
 msgstr "sekunti"
 
-#: ../includes/slideshow/high.inc:502 ../includes/slideshow/high.inc:503
-#: ../includes/slideshow/high.inc:504 ../includes/slideshow/high.inc:505
-#: ../includes/slideshow/high.inc:506 ../includes/slideshow/high.inc:507
-#: ../includes/slideshow/high.inc:508 ../includes/slideshow/high.inc:509
-#: ../includes/slideshow/high.inc:510 ../includes/slideshow/low.inc:324
+#: ../includes/slideshow/high.inc:499 ../includes/slideshow/high.inc:500
+#: ../includes/slideshow/high.inc:501 ../includes/slideshow/high.inc:502
+#: ../includes/slideshow/high.inc:503 ../includes/slideshow/high.inc:504
+#: ../includes/slideshow/high.inc:505 ../includes/slideshow/high.inc:506
+#: ../includes/slideshow/high.inc:507 ../includes/slideshow/low.inc:324
 #: ../includes/slideshow/low.inc:325 ../includes/slideshow/low.inc:326
 #: ../includes/slideshow/low.inc:327 ../includes/slideshow/low.inc:328
 #: ../includes/slideshow/low.inc:329 ../includes/slideshow/low.inc:330
@@ -1552,15 +1552,15 @@ msgstr "sekuntia"
 msgid "Transition:"
 msgstr "Siirtym&auml;:"
 
-#: ../includes/slideshow/high.inc:533 ../includes/slideshow/low.inc:338
+#: ../includes/slideshow/high.inc:531 ../includes/slideshow/low.inc:338
 msgid "Loop"
 msgstr "Silmukka"
 
-#: ../includes/slideshow/high.inc:590 ../includes/slideshow/low.inc:390
+#: ../includes/slideshow/high.inc:580 ../includes/slideshow/low.inc:390
 msgid "This album has no photos to show in a slide show."
 msgstr "T&auml;ss&auml; albumissa ei ole kuvia n&auml;ytett&auml;v&auml;ksi diaesityst&auml; ajatellen."
 
-#: ../includes/slideshow/high.inc:594 ../includes/slideshow/low.inc:394
+#: ../includes/slideshow/high.inc:584 ../includes/slideshow/low.inc:394
 msgid "back to album"
 msgstr "takaisin albumiin"
 
@@ -1678,7 +1678,7 @@ msgstr "Kirjautunut sis‰lle nimell‰:"
 msgid "From:"
 msgstr "Kommentoija:"
 
-#: ../layout/commentboxbottom.inc:11 ../util.php:187
+#: ../layout/commentboxbottom.inc:11 ../stats.php:1323 ../util.php:187
 msgid "add comment"
 msgstr "lis&auml;&auml; kommentti"
 
@@ -2882,6 +2882,257 @@ msgstr "Laskeva j&auml;rjestys"
 #: ../sort_album.php:113
 msgid "Sort"
 msgstr "Lajittele"
+
+#: ../stats.php:227
+#, php-format
+msgid "Number Albums = %s"
+msgstr ""
+
+#: ../stats.php:239
+#, php-format
+msgid "Cache filename = %s ; enabled = %s ; expires = %s"
+msgstr ""
+
+#: ../stats.php:252
+#, php-format
+msgid "Time now = %s ; Cache time = %s"
+msgstr ""
+
+#: ../stats.php:269
+msgid "Using cache"
+msgstr ""
+
+#: ../stats.php:272
+msgid "Not using cache"
+msgstr ""
+
+#: ../stats.php:275
+msgid "Cache to be rebuilt"
+msgstr ""
+
+#: ../stats.php:298
+msgid "Version out of date."
+msgstr ""
+
+#: ../stats.php:332
+#, fuzzy, php-format
+msgid "Checking album: %s"
+msgstr "Hyp‰t‰‰n albumin #%d yli"
+
+#: ../stats.php:343
+#, php-format
+msgid "Reading info for photo index = %d , id = %d"
+msgstr ""
+
+#: ../stats.php:359
+msgid "Getting SVotes"
+msgstr ""
+
+#: ../stats.php:367
+msgid "Getting Item Clicks"
+msgstr ""
+
+#: ../stats.php:372
+#, fuzzy
+msgid "Getting Item Capture Date"
+msgstr "Kuvanottop&auml;iv&auml;m&auml;&auml;r&auml;"
+
+#: ../stats.php:390
+#, fuzzy
+msgid "Getting Number of Comments"
+msgstr "Kommenttien m&auml;&auml;r&auml;n mukaan"
+
+#: ../stats.php:394
+#, fuzzy
+msgid "Getting Comments"
+msgstr "T&auml;sm&auml;&auml;v&auml;t kommentit"
+
+#: ../stats.php:405
+msgid "Getting Ratings"
+msgstr ""
+
+#: ../stats.php:440
+#, php-format
+msgid "Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"
+msgstr ""
+
+#: ../stats.php:515
+#, php-format
+msgid "Total: %s ; Start: %s ; Last Page: %s"
+msgstr ""
+
+#: ../stats.php:529
+msgid " - Images with the most votes"
+msgstr ""
+
+#: ../stats.php:532
+msgid " - Images with the least votes"
+msgstr ""
+
+#: ../stats.php:538
+msgid " - Top rated images"
+msgstr ""
+
+#: ../stats.php:541
+msgid " - Bottom rated images"
+msgstr ""
+
+#: ../stats.php:547
+msgid " - Latest added images"
+msgstr ""
+
+#: ../stats.php:550
+msgid " - Oldest images first"
+msgstr ""
+
+#: ../stats.php:556
+#, fuzzy
+msgid " - Latest Capture Date"
+msgstr "Kuvanottop&auml;iv&auml;m&auml;&auml;r&auml;"
+
+#: ../stats.php:559
+#, fuzzy
+msgid " - Oldest Capture Date"
+msgstr "Kuvanottop&auml;iv&auml;m&auml;&auml;r&auml;"
+
+#: ../stats.php:565
+#, fuzzy
+msgid " - Latest Comments"
+msgstr "Viimeisin kommentti %s."
+
+#: ../stats.php:568
+#, fuzzy
+msgid " - Oldest Comments"
+msgstr "poista kommentti"
+
+#: ../stats.php:573
+#, fuzzy
+msgid " - Random Images"
+msgstr "%s satunnaista kuvaa %s:lt‰"
+
+#: ../stats.php:579
+msgid " - Images with the most views"
+msgstr ""
+
+#: ../stats.php:582
+msgid " - Images with the least views"
+msgstr ""
+
+#: ../stats.php:615
+#, fuzzy, php-format
+msgid "%d images with comments in album: %s"
+msgstr "%d satunnaista kuvaa albumista :: %s"
+
+#: ../stats.php:617
+#, fuzzy, php-format
+msgid "%d images in album: %s"
+msgstr "%d satunnaista kuvaa albumista :: %s"
+
+#: ../stats.php:620
+#, php-format
+msgid "Given albumname: '%s' is invalid !"
+msgstr ""
+
+#: ../stats.php:625
+#, fuzzy, php-format
+msgid "%d images with comments in this Gallery"
+msgstr "T‰ss‰ Galleriassa ei ole orpoja albumeja."
+
+#: ../stats.php:628
+#, fuzzy, php-format
+msgid "%d images this Gallery"
+msgstr "Astu Galleriaan"
+
+#: ../stats.php:634
+msgid "Back to stats-wizard"
+msgstr ""
+
+#: ../stats.php:670
+#, php-format
+msgid "Data load time %d seconds"
+msgstr ""
+
+#: ../stats.php:803
+#, fuzzy
+msgid "Highlight for Album: "
+msgstr "Esikatselukuva albumille:"
+
+#: ../stats.php:984
+#, php-format
+msgid "Finished in %d seconds"
+msgstr ""
+
+#: ../stats.php:991
+msgid "Cache update required. "
+msgstr ""
+
+#: ../stats.php:995
+#, fuzzy, php-format
+msgid "Some albums not searched as they require upgrading to the latest version of %s first"
+msgstr "Joitakin albumeja ei etsitty koska ne tulee ensin p&auml;ivitt&auml;&auml; uusimaan %s versioon"
+
+#: ../stats.php:998
+#, fuzzy
+msgid "upgrade all albums"
+msgstr "p&auml;ivit&auml; kaikki albumit"
+
+#: ../stats.php:1045
+#, fuzzy, php-format
+msgid "Recursing album: %s"
+msgstr "Muutetaan %s:n koko"
+
+#: ../stats.php:1085
+msgid "Read cache num photos lock failed."
+msgstr ""
+
+#: ../stats.php:1100
+#, php-format
+msgid "File open, size = %s"
+msgstr ""
+
+#: ../stats.php:1114
+#, php-format
+msgid "Album name : %s ; index: %s"
+msgstr ""
+
+#: ../stats.php:1126 ../stats.php:1167
+msgid "Read cache lock failed."
+msgstr ""
+
+#: ../stats.php:1336
+#, fuzzy
+msgid "add vote"
+msgstr "yksi ‰‰ni"
+
+#: ../stats.php:1440
+#, fuzzy
+msgid "From album"
+msgstr "Albumista"
+
+#: ../stats.php:1500
+#, fuzzy
+msgid "Capture Date:"
+msgstr "Kuvanottop&auml;iv&auml;m&auml;&auml;r&auml;"
+
+#: ../stats.php:1509
+#, fuzzy
+msgid "Upload Date:"
+msgstr "Palvelimelle kopioinnin p&auml;iv&auml;m&auml;&auml;r&auml;"
+
+#: ../stats.php:1519
+#, fuzzy
+msgid "Views:"
+msgstr "Katsottu:"
+
+#: ../stats.php:1528
+#, fuzzy
+msgid "Votes:"
+msgstr "Ohjeita:"
+
+#: ../stats.php:1537
+#, fuzzy
+msgid "not rated"
+msgstr "K&auml;&auml;nn&auml;"
 
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 #, fuzzy

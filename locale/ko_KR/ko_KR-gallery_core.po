@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-01-11 15:46+0100\n"
+"POT-Creation-Date: 2005-01-18 01:02+0100\n"
 "PO-Revision-Date: 2003-10-12 17:59+0900\n"
 "Last-Translator: The Darkness <xgate32 AT hotmail DOT com>\n"
 "Language-Team: Gallery Korean Translation <xgate32 AT hotmail DOT com>\n"
@@ -164,7 +164,7 @@ msgstr "회원관리"
 msgid "Admin options"
 msgstr "관리자 옵션"
 
-#: ../admin-page.php:88 ../tools/find_orphans.php:213
+#: ../admin-page.php:88 ../stats.php:636 ../tools/find_orphans.php:213
 #: ../tools/despam-comments.php:58
 #, fuzzy
 msgid "Return to Gallery"
@@ -1507,70 +1507,70 @@ msgstr "시작"
 msgid "The slide show is stopped, Click [play] to resume."
 msgstr "슬라이드쇼가 멈췄습니다. 다시시작하려면 [시작]를 클릭하세요."
 
-#: ../includes/slideshow/high.inc:321 ../includes/slideshow/high.inc:493
+#: ../includes/slideshow/high.inc:321 ../includes/slideshow/high.inc:485
 #: ../includes/slideshow/low.inc:299
 msgid "stop"
 msgstr "정지"
 
-#: ../includes/slideshow/high.inc:324 ../includes/slideshow/high.inc:381
+#: ../includes/slideshow/high.inc:323 ../includes/slideshow/high.inc:380
 #: ../includes/slideshow/low.inc:178
 msgid "Slide show is running..."
 msgstr "슬라이드쇼 실행중..."
 
-#: ../includes/slideshow/high.inc:329 ../includes/slideshow/low.inc:315
+#: ../includes/slideshow/high.inc:328 ../includes/slideshow/low.inc:315
 msgid "normal size"
 msgstr "보통크기"
 
-#: ../includes/slideshow/high.inc:331
+#: ../includes/slideshow/high.inc:330
 msgid "The slide is showing full sized images, Click [normal size] to view resized images."
 msgstr "슬라이드가 전체 크기로 보여지고 있습니다. 재조정된 이미지를 보시려면 [보통 크기]를 클릭하세요."
 
-#: ../includes/slideshow/high.inc:335 ../includes/slideshow/high.inc:497
+#: ../includes/slideshow/high.inc:334 ../includes/slideshow/high.inc:491
 #: ../includes/slideshow/low.inc:318
 msgid "full size"
 msgstr "최대크기"
 
-#: ../includes/slideshow/high.inc:338
+#: ../includes/slideshow/high.inc:337
 msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
 msgstr "슬라이드가 보통 크기로 보여지고 있습니다. 전체 크기로 이미지를 보시려면 [전체 크기]를 클릭하세요."
 
-#: ../includes/slideshow/high.inc:344 ../includes/slideshow/low.inc:307
+#: ../includes/slideshow/high.inc:343 ../includes/slideshow/low.inc:307
 msgid "forward direction"
 msgstr "순방향"
 
-#: ../includes/slideshow/high.inc:347 ../includes/slideshow/high.inc:494
+#: ../includes/slideshow/high.inc:346 ../includes/slideshow/high.inc:487
 #: ../includes/slideshow/low.inc:304
 msgid "reverse direction"
 msgstr "역방향"
 
-#: ../includes/slideshow/high.inc:376 ../includes/slideshow/low.inc:207
+#: ../includes/slideshow/high.inc:375 ../includes/slideshow/low.inc:207
 msgid "Picture is loading..."
 msgstr "그림 로딩중..."
 
-#: ../includes/slideshow/high.inc:376 ../includes/slideshow/high.inc:471
+#: ../includes/slideshow/high.inc:375 ../includes/slideshow/high.inc:470
 #: ../includes/slideshow/low.inc:207 ../includes/slideshow/low.inc:379
 msgid "of"
 msgstr "of"
 
-#: ../includes/slideshow/high.inc:376 ../includes/slideshow/low.inc:208
+#: ../includes/slideshow/high.inc:375 ../includes/slideshow/low.inc:208
 #: ../upgrade_users.php:49
 msgid "Please Wait..."
 msgstr "잠시 기다리세요..."
 
-#: ../includes/slideshow/high.inc:499
+#: ../includes/slideshow/high.inc:495
 #, fuzzy
 msgid "Delay"
 msgstr "지연:"
 
-#: ../includes/slideshow/high.inc:501 ../includes/slideshow/low.inc:323
+#: ../includes/slideshow/high.inc:498 ../includes/slideshow/low.inc:323
 msgid "second"
 msgstr "초"
 
-#: ../includes/slideshow/high.inc:502 ../includes/slideshow/high.inc:503
-#: ../includes/slideshow/high.inc:504 ../includes/slideshow/high.inc:505
-#: ../includes/slideshow/high.inc:506 ../includes/slideshow/high.inc:507
-#: ../includes/slideshow/high.inc:508 ../includes/slideshow/high.inc:509
-#: ../includes/slideshow/high.inc:510 ../includes/slideshow/low.inc:324
+#: ../includes/slideshow/high.inc:499 ../includes/slideshow/high.inc:500
+#: ../includes/slideshow/high.inc:501 ../includes/slideshow/high.inc:502
+#: ../includes/slideshow/high.inc:503 ../includes/slideshow/high.inc:504
+#: ../includes/slideshow/high.inc:505 ../includes/slideshow/high.inc:506
+#: ../includes/slideshow/high.inc:507 ../includes/slideshow/low.inc:324
 #: ../includes/slideshow/low.inc:325 ../includes/slideshow/low.inc:326
 #: ../includes/slideshow/low.inc:327 ../includes/slideshow/low.inc:328
 #: ../includes/slideshow/low.inc:329 ../includes/slideshow/low.inc:330
@@ -1582,15 +1582,15 @@ msgstr "초"
 msgid "Transition:"
 msgstr "전환효과"
 
-#: ../includes/slideshow/high.inc:533 ../includes/slideshow/low.inc:338
+#: ../includes/slideshow/high.inc:531 ../includes/slideshow/low.inc:338
 msgid "Loop"
 msgstr "반복"
 
-#: ../includes/slideshow/high.inc:590 ../includes/slideshow/low.inc:390
+#: ../includes/slideshow/high.inc:580 ../includes/slideshow/low.inc:390
 msgid "This album has no photos to show in a slide show."
 msgstr "이 앨범을 슬라이드쇼에서 보여 줄 사진이 없습니다."
 
-#: ../includes/slideshow/high.inc:594 ../includes/slideshow/low.inc:394
+#: ../includes/slideshow/high.inc:584 ../includes/slideshow/low.inc:394
 msgid "back to album"
 msgstr "앨범으로 돌아가기"
 
@@ -1711,7 +1711,7 @@ msgstr "로그인"
 msgid "From:"
 msgstr "또는"
 
-#: ../layout/commentboxbottom.inc:11 ../util.php:187
+#: ../layout/commentboxbottom.inc:11 ../stats.php:1323 ../util.php:187
 msgid "add comment"
 msgstr "코멘트 추가"
 
@@ -2932,6 +2932,257 @@ msgstr "내림차순"
 msgid "Sort"
 msgstr "정렬"
 
+#: ../stats.php:227
+#, php-format
+msgid "Number Albums = %s"
+msgstr ""
+
+#: ../stats.php:239
+#, php-format
+msgid "Cache filename = %s ; enabled = %s ; expires = %s"
+msgstr ""
+
+#: ../stats.php:252
+#, php-format
+msgid "Time now = %s ; Cache time = %s"
+msgstr ""
+
+#: ../stats.php:269
+msgid "Using cache"
+msgstr ""
+
+#: ../stats.php:272
+msgid "Not using cache"
+msgstr ""
+
+#: ../stats.php:275
+msgid "Cache to be rebuilt"
+msgstr ""
+
+#: ../stats.php:298
+msgid "Version out of date."
+msgstr ""
+
+#: ../stats.php:332
+#, fuzzy, php-format
+msgid "Checking album: %s"
+msgstr "앨범 %d 건너뛰기중..."
+
+#: ../stats.php:343
+#, php-format
+msgid "Reading info for photo index = %d , id = %d"
+msgstr ""
+
+#: ../stats.php:359
+msgid "Getting SVotes"
+msgstr ""
+
+#: ../stats.php:367
+msgid "Getting Item Clicks"
+msgstr ""
+
+#: ../stats.php:372
+#, fuzzy
+msgid "Getting Item Capture Date"
+msgstr "아이템 캡쳐 일자"
+
+#: ../stats.php:390
+#, fuzzy
+msgid "Getting Number of Comments"
+msgstr "코멘트순"
+
+#: ../stats.php:394
+#, fuzzy
+msgid "Getting Comments"
+msgstr "일치하는 코멘트"
+
+#: ../stats.php:405
+msgid "Getting Ratings"
+msgstr ""
+
+#: ../stats.php:440
+#, php-format
+msgid "Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"
+msgstr ""
+
+#: ../stats.php:515
+#, php-format
+msgid "Total: %s ; Start: %s ; Last Page: %s"
+msgstr ""
+
+#: ../stats.php:529
+msgid " - Images with the most votes"
+msgstr ""
+
+#: ../stats.php:532
+msgid " - Images with the least votes"
+msgstr ""
+
+#: ../stats.php:538
+msgid " - Top rated images"
+msgstr ""
+
+#: ../stats.php:541
+msgid " - Bottom rated images"
+msgstr ""
+
+#: ../stats.php:547
+msgid " - Latest added images"
+msgstr ""
+
+#: ../stats.php:550
+msgid " - Oldest images first"
+msgstr ""
+
+#: ../stats.php:556
+#, fuzzy
+msgid " - Latest Capture Date"
+msgstr "캡쳐일자"
+
+#: ../stats.php:559
+#, fuzzy
+msgid " - Oldest Capture Date"
+msgstr "캡쳐일자"
+
+#: ../stats.php:565
+#, fuzzy
+msgid " - Latest Comments"
+msgstr "마지막 코멘트 %s."
+
+#: ../stats.php:568
+#, fuzzy
+msgid " - Oldest Comments"
+msgstr "코멘트 삭제"
+
+#: ../stats.php:573
+#, fuzzy
+msgid " - Random Images"
+msgstr "%2$s에서 %1$s 무작위 이미지"
+
+#: ../stats.php:579
+msgid " - Images with the most views"
+msgstr ""
+
+#: ../stats.php:582
+msgid " - Images with the least views"
+msgstr ""
+
+#: ../stats.php:615
+#, fuzzy, php-format
+msgid "%d images with comments in album: %s"
+msgstr "앨범 %s에서 %d 무작위 이미지"
+
+#: ../stats.php:617
+#, fuzzy, php-format
+msgid "%d images in album: %s"
+msgstr "앨범 %s에서 %d 무작위 이미지"
+
+#: ../stats.php:620
+#, php-format
+msgid "Given albumname: '%s' is invalid !"
+msgstr ""
+
+#: ../stats.php:625
+#, fuzzy, php-format
+msgid "%d images with comments in this Gallery"
+msgstr "%s 호출에서 알 수 없는 실패가 있습니다!"
+
+#: ../stats.php:628
+#, fuzzy, php-format
+msgid "%d images this Gallery"
+msgstr "갤러리 들어가기"
+
+#: ../stats.php:634
+msgid "Back to stats-wizard"
+msgstr ""
+
+#: ../stats.php:670
+#, php-format
+msgid "Data load time %d seconds"
+msgstr ""
+
+#: ../stats.php:803
+#, fuzzy
+msgid "Highlight for Album: "
+msgstr "앨범 하이라이트:"
+
+#: ../stats.php:984
+#, php-format
+msgid "Finished in %d seconds"
+msgstr ""
+
+#: ../stats.php:991
+msgid "Cache update required. "
+msgstr ""
+
+#: ../stats.php:995
+#, fuzzy, php-format
+msgid "Some albums not searched as they require upgrading to the latest version of %s first"
+msgstr "일부 앨범이 %s의 최근 버전으로 업그레이가 되지 않아 검색이 되지 않습니다. 먼저 업그레이드 하세요."
+
+#: ../stats.php:998
+#, fuzzy
+msgid "upgrade all albums"
+msgstr "모든 앨범 업그레이드"
+
+#: ../stats.php:1045
+#, fuzzy, php-format
+msgid "Recursing album: %s"
+msgstr "크기 조정중 %s"
+
+#: ../stats.php:1085
+msgid "Read cache num photos lock failed."
+msgstr ""
+
+#: ../stats.php:1100
+#, php-format
+msgid "File open, size = %s"
+msgstr ""
+
+#: ../stats.php:1114
+#, php-format
+msgid "Album name : %s ; index: %s"
+msgstr ""
+
+#: ../stats.php:1126 ../stats.php:1167
+msgid "Read cache lock failed."
+msgstr ""
+
+#: ../stats.php:1336
+#, fuzzy
+msgid "add vote"
+msgstr "1 투표"
+
+#: ../stats.php:1440
+#, fuzzy
+msgid "From album"
+msgstr "앨범명"
+
+#: ../stats.php:1500
+#, fuzzy
+msgid "Capture Date:"
+msgstr "캡쳐일자"
+
+#: ../stats.php:1509
+#, fuzzy
+msgid "Upload Date:"
+msgstr "업로드 날짜"
+
+#: ../stats.php:1519
+#, fuzzy
+msgid "Views:"
+msgstr "조회:"
+
+#: ../stats.php:1528
+#, fuzzy
+msgid "Votes:"
+msgstr "투표"
+
+#: ../stats.php:1537
+#, fuzzy
+msgid "not rated"
+msgstr "회전"
+
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
 msgstr ""
@@ -4121,10 +4372,6 @@ msgstr "투표 없음."
 #~ msgid "Keywords:"
 #~ msgstr "키워드"
 
-#, fuzzy
-#~ msgid "Capture Date:"
-#~ msgstr "캡쳐일자"
-
 #~ msgid "Error"
 #~ msgstr "에러"
 
@@ -4133,9 +4380,6 @@ msgstr "투표 없음."
 
 #~ msgid "no image"
 #~ msgstr "이미지 없음"
-
-#~ msgid "Skipping album %d..."
-#~ msgstr "앨범 %d 건너뛰기중..."
 
 #, fuzzy
 #~ msgid " to "
