@@ -38,35 +38,53 @@
 	$wmAlign=0;
   }
 ?>
-<p><b><?php echo _("Watermark") ?>:</b>
-<select name="wmName">
-	<option <?php if ($wmName == "") echo 'selected' ?> label="None" value=""><?php echo _("None") ?></option>
+<p>
 <?php
-  // get a list of watermarks
-  $wmDir = opendir($gallery->app->watermarkDir);
-  $i = 0;
-  $extensions = array ("png", "gif", "tif");
-  while ($wmFile = readdir($wmDir))
-  {
-    $matches_ext = 0;
-    foreach ($extensions as $ext) {
-       if (eregi("(.*)\\.$ext$", $wmFile, $regs))
-       {
-          $matches_ext = 1;
-       }
-    }
-    if ($matches_ext)
-    {
-      print "\t<option ";
-      if ($wmName == $regs[1])
-      {
-        print "selected ";
+   if (!isset($wmAlign)) {
+      $wmAlign = 0;
+   }
+   // get a list of watermarks
+   if ($wmDir = opendir($gallery->app->watermarkDir)) { 
+      $found = 0;
+      $extensions = array ("png", "gif", "tif");
+      $extensions_string = "png, gif, tif";
+      while ($wmFile = readdir($wmDir)) {
+         $matches_ext = 0;
+         foreach ($extensions as $ext) {
+            if (eregi("\\.$ext$", $wmFile, $regs)) {
+               $matches_ext = 1;
+            }
+         }
+         if ($matches_ext) {
+            $found++;
+            if ($found == 1) {
+               // Start select form element on first matching file
+               print "<b>" . _("Watermark") . ":</b>";
+               print "<select name=\"wmName\">\n";
+            }
+            print "\t<option ";
+            if ($wmName == $wmFile) {
+               print "selected ";
+            }
+            print "label=\"".$wmFile."\" value=\"".$wmFile."\">".$wmFile."</option>\n";
+         } // end if ($matches_ext)
+      } // end while ($wmFile
+      closedir($wmDir);
+      if ($found == 0) {
+         print "<span class=\"error\">\n";
+         printf(_("Error: No files matching %s found in %s"),
+                "<b>" . $extensions_string . "</b>",
+                "<b>" . $gallery->app->watermarkDir . "</b>");
+         print "</span>\n";
+      } else {
+         print "</select>\n";
       }
-      print "label=\"".$wmFile."\" value=\"".$wmFile."\">".$wmFile."</option>\n";
-    }
-  }
+   } else {
+      print "<span class=\"error\">\n";
+      printf (_("Could not open directory %s"), $gallery->app->watermarkDir);
+      print "</span>\n";
+   }
 ?>
-</select>
 </p>
 
 <b><?php echo _("Alignment") ?>:</b><br>
