@@ -88,6 +88,7 @@ $bgcolor = $gallery->album->fields['bgcolor'];
 $title = $gallery->album->fields["title"];
 ?>
 <? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<html> 
 <head>
   <title>Slide Show for album :: <?= $gallery->album->fields["title"] ?></title>
   <?= getStyleSheetLink() ?>

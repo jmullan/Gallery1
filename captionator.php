@@ -111,6 +111,7 @@ $bordercolor = $gallery->album->fields["bordercolor"];
 ?>
 
 <? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<html> 
 <head>
   <title><?= $gallery->app->galleryTitle ?> :: <?= $gallery->album->fields["title"] ?> :: Captionator</title>
   <?= getStyleSheetLink() ?>

@@ -116,3 +116,5 @@ Those characters will be ignored in your new album name.
 document.theform.newName.focus();
 //-->
 </script>
+</body>
+</html>

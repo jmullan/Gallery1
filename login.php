@@ -42,14 +42,14 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <br>
 <?
 if ($submit) {
-	if ($uname && $password) {
+	if ($uname && $gallerypassword) {
 		$tmpUser = $gallery->userDB->getUserByUsername($uname);
-		if ($tmpUser && $tmpUser->isCorrectPassword($password)) {
+		if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword)) {
 			$gallery->session->username = $uname;
 			dismissAndReload();
 		} else {
 			$invalid = 1;
-			$password = null;
+			$gallerypassword = null;
 		}
 	} else {
 		$error = 1;
@@ -93,11 +93,11 @@ view, create, modify and delete albums.
    Password
   </td>
   <td>
-   <input type=password name="password" value=<?=$password?>>
+   <input type=password name="gallerypassword" value=<?=$gallerypassword?>>
   </td>
  </tr>
 
-<? if ($error && !$password) { ?>
+<? if ($error && !$gallerypassword) { ?>
  <tr>
   <td colspan=2 align=center>
    <?= error("You must specify a password"); ?>

@@ -164,6 +164,7 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
 ?>
 
 <? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<html> 
 <head>
   <title><?= $gallery->app->galleryTitle ?> :: <?= $gallery->album->fields["title"] ?> :: <?= $index ?></title>
   <?= getStyleSheetLink() ?>

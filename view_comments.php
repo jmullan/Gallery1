@@ -80,6 +80,7 @@ $breadcrumb["bottom"] = true;
 ?>
 
 <? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<html> 
 <head>
   <title><?= $gallery->app->galleryTitle ?> :: <?= $gallery->album->fields["title"] ?></title>
   <?= getStyleSheetLink() ?>

@@ -168,3 +168,5 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 <form>
 <input type=submit value="Dismiss" onclick='parent.close()'>
 </form>
+</body>
+</html>
