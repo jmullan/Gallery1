@@ -626,13 +626,13 @@ function check_locale() {
 	if (getOS() != OS_WINDOWS) { 
 		# Unix / Linux
 		# Check which locales are installed
-		$tmp=split("\n", shell_exec("locale -a"));
+		$tmp=explode("\n", shell_exec("locale -a"));
 		if(count($tmp) >3) {
 			$system_locales=$tmp;
 		} elseif (@is_readable("/etc/locale.gen")) {
-			$system_locales=split("\n",shell_exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1'));
+			$system_locales=explode("\n",shell_exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1'));
 			if (@is_readable("/usr/share/locale/")) {
-				$system_locales=array_merge($system_locales, split("\n",shell_exec('ls /usr/share/locale/')));
+				$system_locales=array_merge($system_locales, explode("\n",shell_exec('ls /usr/share/locale/')));
 			}
 		}
 	}
