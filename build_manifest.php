@@ -22,6 +22,7 @@
  */
 ?>
 <?php
+$GALLERY_BASEDIR="./";
 include 'util.php';
 include($GALLERY_BASEDIR . "platform/fs_unix.php");
 if (php_sapi_name() != "cli") {
@@ -35,7 +36,6 @@ if (!fs_is_readable("setup")) {
 	print "\n";
 	exit -1;
 }
-$GALLERY_BASEDIR="./";
 $files=array(	"AUTHORS",
 	       	"LICENSE.txt",
 	       	"README",
