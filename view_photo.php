@@ -160,9 +160,11 @@ if ($fitToWindow) {
 	var aspect = imageHeight / imageWidth;
 
 	// Get the window dimensions height.  IE and Nav use different techniques.
-	var windowWidth = window.innerWidth;
-	var windowHeight = window.innerHeight;
-	if (windowWidth == undefined) {
+	var windowWidth, windowHeight;
+	if (typeof(window.innerWidth) == "number") {
+		windowWidth = window.innerWidth;
+		windowHeight = window.innerHeight;
+	} else {
 		windowWidth = document.body.clientWidth;
 		windowHeight = document.body.clientHeight;
 	}

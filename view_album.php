@@ -126,9 +126,9 @@ if ($album->fields["textcolor"]) {
   }
 
   function hideProgress() {
-	if (statusWin != undefined) {
+	if (typeof(statusWin) != "undefined") {
 		statusWin.close();
-		statusWin = null;
+		statusWin = void(0);
 	}
   }
 
