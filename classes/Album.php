@@ -331,6 +331,15 @@ class Album {
 
 		$dir = $gallery->app->albumDir . "/$name";
 		$tmp = getFile("$dir/album.dat");
+
+		/*
+		 * v1.2.1 and prior had a bug where high volume albums
+		 * would lose album.dat files.  Deal with that by loading
+		 * the backup file silently.
+		 */
+		if (!$tmp) {
+			$tmp = getFile("$dir/album.dat.bak");
+		}
 		if ($tmp) {
 			$this = unserialize($tmp);
 			$this->fields["name"] = $name;
