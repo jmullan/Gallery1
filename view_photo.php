@@ -225,11 +225,13 @@ includeHtmlWrap("photo.header");
 
 if (!$album->isMovie($index)) {
 	if ($user->canWriteToAlbum($album)) {
-		$adminCommands .= '<a href="#" onClick="'.popup("$top/resize_photo.php?index=$index").'">[resize photo]</a>';
+		$adminCommands .= '<a href="#" onClick="'.
+			popup("$top/resize_photo.php?index=$index").'">[resize photo]</a>';
 	}
 
 	if ($user->canDeleteFromAlbum($album)) {
-		$adminCommands .= '<a href="#" onClick="'.popup("$top/delete_photo.php?index=$index").'">[delete photo]</a>';
+		$adminCommands .= '<a href="#" onClick="'.
+			popup("$top/delete_photo.php?index=$index").'">[delete photo]</a>';
 	}
 
 	if (!strcmp($album->fields["use_fullOnly"], "yes")) {
@@ -245,15 +247,15 @@ if (!$album->isMovie($index)) {
 		}
 	}
 
-	$adminbox["text"] = "&nbsp;";
 	if ($adminCommands) {
 		$adminCommands = "<span class=\"admin\">$adminCommands</span>";
 		$adminbox["commands"] = $adminCommands;
-	}
+		$adminbox["text"] = "&nbsp;";
 
-	$adminbox["bordercolor"] = $bordercolor;
-	$adminbox["top"] = true;
-	include ("layout/adminbox.inc");
+		$adminbox["bordercolor"] = $bordercolor;
+		$adminbox["top"] = true;
+		include ("layout/adminbox.inc");
+	}
 }
 
 $breadcrumb["text"] = $breadtext;
@@ -354,13 +356,52 @@ if ($fitToWindow) {
 <table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
 <!-- caption -->
 <tr>
+<?
+if (!strcmp($album->fields["use_shutterfly"],"no")) {
+?>
 <td colspan=3 align=center>
-<span class="caption">
-<?= editCaption($album, $index, $edit) ?>
-</span>
-<br>
+<span class="caption"><?= editCaption($album, $index, $edit) ?></span>
 <br>
 </td>
+<?
+} else {
+$hostname = $GLOBALS["SERVER_NAME"];
+$protocal = "http";
+$photo = $album->getPhoto($GLOBALS["index"]);
+$photoPath = $protocal . "://" . $hostname . $album->getAlbumDirURL();
+$rawImage = $photoPath . "/" . $photo->image->name . "." . $photo->image->type;
+
+$thumbImage= $photoPath . "/";
+if ($photo->image->resizedName) {
+	$thumbImage .= $photo->image->resizedName . "." . $photo->image->type;
+} else {
+	$thumbImage .= $photo->image->name . "." . $photo->image->type;
+}
+list($imageWidth, $imageHeight) = $photo->image->getRawDimensions($album->getAlbumDir());
+?>
+<td colspan=2 align=left>
+<span class="caption"><?= editCaption($album, $index, $edit) ?></span>
+<br><br>
+</td>
+<td align=right>
+<span class="caption"><a href=# onClick="document.sflyc4p.submit();">Order a Print of this Photo on Shutterfly</a></span>
+<form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
+  <input type=hidden name=addim value=1>
+  <input type=hidden name=protocol value="SFP,100">
+  <input type=hidden name=pid value=C4P>
+  <input type=hidden name=psid value=AFFL>
+  <input type=hidden name=referid value=jackodog>
+  <input type=hidden name=returl value="<?= $app->photoAlbumURL."/view_album.php" ?>">
+  <input type=hidden name=imraw-1 value="<?= $rawImage ?>">
+  <input type=hidden name=imrawheight-1 value="<?= $imageHeight ?>">
+  <input type=hidden name=imrawwidth-1 value="<?= $imageWidth ?>">
+  <input type=hidden name=imthumb-1 value="<?= $thumbImage ?>">
+  <input type=hidden name=imbkprntb-1 value="Hi">
+</form>
+</td>
+<?
+}
+?>
 </tr>
 
 <?
