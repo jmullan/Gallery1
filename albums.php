@@ -179,30 +179,11 @@ if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
 	       	'">['._("slideshow") . ']</a> ';
 }
 
-if ($gallery->user->isAdmin()) {
-	$doc = galleryDocs('admin');
-	if ($doc) {
-		$adminCommands .= "$doc ";
-	}
-	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . $gallery->app->photoAlbumURL . '/setup/index.php">[' . _("configuration wizard") .']</a> ';
-	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . makeGalleryUrl('tools/find_orphans.php') . '">[' . _("find orphans") .']</a> ';
-	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . makeGalleryUrl('tools/despam-comments.php') . '">[' . _("find comment spam") .']</a> ';
-	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . makeGalleryUrl('stats-wizard.php') . '">[' . _("statistics") .']</a> ';
-}
-
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
 	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . doCommand("new-album", array(), "view_album.php") . '">[' . _("new album") . ']</a> ';
 }
 
-if ($gallery->user->isAdmin()) {
-	if ($gallery->userDB->canModifyUser() ||
-	    $gallery->userDB->canCreateUser() ||
-	    $gallery->userDB->canDeleteUser()) {
-		$adminCommands .= popup_link("[" . _("manage users") . "]", 
-			"manage_users.php", false, true, 500, 500, 'admin')
-			. ' ';
-	}
-}
+
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	if ($gallery->userDB->canModifyUser()) {
@@ -210,7 +191,19 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 			"user_preferences.php", false, true, 500, 500, 'admin')
 			. ' ';
 	}
-	
+
+	$adminCommands .="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	if ($gallery->user->isAdmin() ||
+		$gallery->userDB->canModifyUser() ||
+	        $gallery->userDB->canCreateUser() ||
+        	$gallery->userDB->canDeleteUser()) {
+		
+		$doc = galleryDocs('admin');
+	        if ($doc) {
+        	        $adminCommands .= "$doc ";
+	        }
+	        $adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . makeGalleryUrl('admin-page.php') . '">[' . _("admin page") .']</a> ';
+	}	
 	if (!$GALLERY_EMBEDDED_INSIDE) {
 		$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . doCommand("logout", array(), "albums.php"). '">[' . _("logout") .']</a>';
 	}

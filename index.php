@@ -98,6 +98,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option) || iss
 		       "add_comment.php",
 		       "add_photos.php",
 		       "add_photos_frame.php",
+		       "admin-page.php",
 		       "album_permissions.php",
 		       "albums.php",
 		       "block-random.php",
