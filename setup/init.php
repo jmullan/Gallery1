@@ -1,6 +1,6 @@
 <?
 if (substr(PHP_OS, 0, 3) == 'WIN') {
-	require("../platform/fs_win32.php");
+	include("../platform/fs_win32.php");
 	if (fs_file_exists("SECURE")) {
 ?>
 Gallery is in secure mode and cannot be configured.
@@ -10,7 +10,7 @@ script in the gallery directory then reload this page.
 		exit;
 	}
 } else {
-	require("../platform/fs_unix.php");
+	include("../platform/fs_unix.php");
 }
 
 /* 
