@@ -314,6 +314,16 @@ foreach ($constants as $key => $val) {
 				$graphpath  = $real;
 			}
 		}
+
+		if (isset($constants[$key]["requires-features"])) {
+			$reqFeatures = $constants[$key]["requires-features"];
+			foreach ($reqFeatures as $func => $desc) {
+				if ($constants[$func]["value"] == "no") {
+					$view .= error_row_wrap(error_format(sprintf(_("%s: <b>%s</b> must be an enabled for this feature to function!"), $key, $desc)));
+                                	$error++;
+				}
+			}
+		}
 	}
 }
 

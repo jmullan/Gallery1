@@ -1328,13 +1328,21 @@ function getNextPhoto($idx, $album=NULL) {
 
 	$numPhotos = $album->numPhotos(1);	
 	$idx++;
+
+	if ($idx > $numPhotos) {
+		return $idx;
+	}
+
+	$myAlbumName = $album->isAlbumName($idx);
+	if ($myAlbumName) {
+		$myAlbum = new Album();
+		$myAlbum->load($myAlbumName);
+	}
+
 	if ($gallery->user->canWriteToAlbum($album)) {
 		// even though a user can write to an album, they may
 		// not have read authority over a specific nested album.
-		if ($idx <= $numPhotos && $album->isAlbumName($idx)) {
-			$myAlbumName = $album->isAlbumName($idx);
-			$myAlbum = new Album();
-			$myAlbum->load($myAlbumName);
+		if ($idx <= $numPhotos && isset($myAlbum)) {
 			if (!$gallery->user->canReadAlbum($myAlbum)) {
 				$idx = getNextPhoto($idx, $album);
 			}
@@ -1343,16 +1351,19 @@ function getNextPhoto($idx, $album=NULL) {
 	}
 
 	while ($idx <= $numPhotos && $album->isHidden($idx)) {
+		if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
+		    ($gallery->album->getItemOwnerModify() &&
+		     $gallery->album->isItemOwner($gallery->user->getUid(), $idx))
+		   ) { 
+			return $idx;
+		}
 		$idx++;
 	}
 
 	if ($idx <= $numPhotos && $album->isAlbumName($idx)) {
 		// do not display a nexted album if the user doesn't
 		// have permission to view it.
-		if ($album->isAlbumName($idx)) {
-			$myAlbumName = $album->isAlbumName($idx);
-			$myAlbum = new Album();
-			$myAlbum->load($myAlbumName);
+		if (isset($myAlbum)) {
 			if (!$gallery->user->canReadAlbum($myAlbum)) {
 				$idx = getNextPhoto($idx, $album);
 			}

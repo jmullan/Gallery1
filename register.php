@@ -48,7 +48,7 @@ require($GALLERY_BASEDIR . 'init.php');
 <span class="popuphead"><?php echo sprintf(_("Create User for %s."), $gallery->app->galleryTitle) ?></span>
 <br>
 <br>
-<?php if ($gallery->app->selfReg != 'yes') { ?>
+<?php if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 <p>
 <?php echo _("This Gallery does not support self-registration by visitors.") ?>
 <br><br>

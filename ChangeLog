@@ -1,3 +1,21 @@
+2004-03-01  Jay Rossiter <cryptographite@users.sf.net> 1.4.3-cvs-b76
+
+	* Bug 884488 - Allow owners to hide and unhide their own albums, provided
+	  that ownerCanModify or ownerCanDelete is allowed on the parent album.  This
+	  also allows users to see their own hidden albums even if they don't own the
+	  parent.
+
+	* Bug 837132 - Temporary fix to prevent directory names which weren't submitted
+	  with a trailing slash from being dropped completely during the filename 
+	  generation process.  Applies only to URLs.
+
+	* Bug 904957 - Prevents self-registration if the email feature is not enabled.
+	  Also adds a new check to the config wizard which can detect and issue warnings 
+	  if features are enabled without enabling their requirements.
+
+	* Bug 905384 - Corrects error where $allowChange["default_language"] is
+	  referenced without having been set first.
+
 2004-02-28  Alan Harder  <alan.harder@sun.com> 1.4.3-cvs-b75
 
 	* Completed bugfix in -b73 (first got right link text, now right url)

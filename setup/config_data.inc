@@ -547,7 +547,7 @@ $constants = array_merge($constants,
 	"emailOn" => array(
 		"prompt" => _("Enable email"),
 		"verify-func" => "verify_email",
-	       	"desc" => sprintf(_("Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."),
+	       	"desc" => sprintf(_("Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply. (Required for Self Registration)"),
 			"<i>" . _("no") . "</i>" ),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
@@ -599,10 +599,11 @@ $constants = array_merge($constants,
 		"attrs" => array("cols" => 50, "rows" => 11)),
 	"selfReg" => array(
 		"prompt" => _("Allow visitors to self register."),
-		"desc" => _("Enabling this will allow visitors to your site to create their own login accounts.") .
+		"desc" => _("Enabling this will allow visitors to your site to create their own login accounts. This option requires the Email feature to be enabled.") .
 		"<br>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
-		"value" => "no"
+		"value" => "no",
+		"requires-features" => array("emailOn" => _("Email"))
 	),
 	"selfRegCreate" => array(
 		"prompt" => _("Self registered users can create albums."),

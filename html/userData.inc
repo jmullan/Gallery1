@@ -108,7 +108,7 @@
 
  <?php } ?>
 
-<?php if ($allowChange["default_language"] === true) {  ?>
+<?php if (isset($allowChange["default_language"]) && $allowChange["default_language"]) {  ?>
 	<?php if (!$GALLERY_EMBEDDED_INSIDE && 
 			$gallery->app->ML_mode > 1 &&
 			sizeof($gallery->app->available_lang) > 1) { ?>

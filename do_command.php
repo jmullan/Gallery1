@@ -85,6 +85,18 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$gallery->album->hidePhoto($index);
 		$gallery->album->save();
+	} else {
+		$myAlbumName = $gallery->album->isAlbumName($index);
+		if ($myAlbumName) {
+			$myAlbum = new Album;
+			$myAlbum->load($myAlbumName);
+		}
+
+		if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) || 
+		    $gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
+			$gallery->album->hidePhoto($index);
+			$gallery->album->save();
+		}
 	}
 	//-- this is expected to be loaded in a popup, so dismiss ---
 	dismissAndReload();
@@ -92,6 +104,18 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$gallery->album->unhidePhoto($index);
 		$gallery->album->save();
+	} else {
+                $myAlbumName = $gallery->album->isAlbumName($index);
+                if ($myAlbumName) {
+                        $myAlbum = new Album;
+                        $myAlbum->load($myAlbumName);
+                }       
+                        
+                if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
+		    $gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
+			$gallery->album->unhidePhoto($index);
+			$gallery->album->save();
+		}
 	}
 	//-- this is expected to be loaded in a popup, so dismiss ---
 	dismissAndReload();

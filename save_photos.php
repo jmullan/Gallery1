@@ -180,8 +180,13 @@ if (!empty($urls)) {
 			  $base_url .= ':' . $url_stuff["port"];
 			}
 	
-			/* Hack to account for broken dirname */
-			if (ereg("/$", $url_stuff["path"])) {
+			/* Hack to account for broken dirname 
+			 * This has to make the ugly assumption that the URL is either a
+			 * directory (with or without trailing /), or a filename containing a "."
+			 * This prevents a directory without a trailing / from being inadvertantly
+			 * dropped from resulting URLs.
+			 */
+			if (ereg("/$", $url_stuff["path"]) || !ereg("\.", $name)) {
 				$base_dir = $url_stuff["path"];
 			} else {
 				$base_dir = dirname($url_stuff["path"]);

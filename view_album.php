@@ -799,7 +799,12 @@ if ($numPhotos) {
 		    echo('<tr>');
 		}
 		while ($j <= $cols && $i <= $numPhotos) {
-			
+	                $myAlbumName = $gallery->album->isAlbumName($i);
+			if ($myAlbumName) {
+				$myAlbum = new Album;
+				$myAlbum->load($myAlbumName);
+			}       
+                        
 			if ($gallery->album->isAlbumName($i)) {
 			    $iWidth = $gallery->album->fields['thumb_size'];
 			} else {
@@ -808,15 +813,14 @@ if ($numPhotos) {
 			echo("<td width=\"$imageCellWidth\" valign=\"top\" align=\"center\">");
 
 			// put form outside caption to compress lines
-
-
-                        if (!$gallery->session->offline &&
-				(($gallery->user->canDeleteFromAlbum($gallery->album)) ||
-                                    ($gallery->user->canWriteToAlbum($gallery->album)) ||
-                                    ($gallery->user->canChangeTextOfAlbum($gallery->album)) ||
-				    (($gallery->album->getItemOwnerModify() || 
-				    $gallery->album->getItemOwnerDelete()) && 
-				     $gallery->album->isItemOwner($gallery->user->getUid(), $i)))) {
+			if (!$gallery->session->offline &&
+			   (($gallery->user->canDeleteFromAlbum($gallery->album)) ||  
+			   ($gallery->user->canWriteToAlbum($gallery->album)) || 
+			   ($gallery->user->canChangeTextOfAlbum($gallery->album)) ||
+			   (($gallery->album->getItemOwnerModify() || $gallery->album->getItemOwnerDelete()) &&
+			   ($gallery->album->isItemOwner($gallery->user->getUid(), $i) || 
+			   (isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum))))))
+			{
 				$showAdminForm = 1;
 			} else { 
 				$showAdminForm = 0;
@@ -827,9 +831,7 @@ if ($numPhotos) {
 			if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 				echo "(" . _("hidden") .")<br>";
 			}
-			if ($gallery->album->isAlbumName($i)) {
-				$myAlbum = new Album();
-				$myAlbum->load($gallery->album->isAlbumName($i));
+			if (isset($myAlbum)) {
 				$myDescription = $myAlbum->fields['description'];
 				$buf = "";
 				$buf = $buf."<b>". sprintf(_("Album: %s"), $myAlbum->fields['title'])."</b>";
@@ -912,7 +914,7 @@ if ($numPhotos) {
 				showChoice("Delete $label", "delete_photo.php", array("id" => $id));
 			}
 			if ($gallery->user->canChangeTextOfAlbum($gallery->album) && $showAdminForm) {
-				if ($gallery->album->isAlbumName($i)) {
+				if (isset($myAlbum)) {
 					if ($gallery->user->canChangeTextOfAlbum($myAlbum)) {	
 						_("title");
 						showChoice(_("Edit Title"),
@@ -960,10 +962,14 @@ if ($numPhotos) {
 				if (!$gallery->album->isAlbumName($i)) {
 					showChoice(_("Copy ") . $label, "copy_photo.php", array("index" => $i));
 				}
+			}
+			if ($gallery->user->isAdmin() || ($gallery->user->isOwnerOfAlbum($myAlbum) || 
+				$gallery->album->isItemOwner($gallery->user->getUid(), $i)) && 
+				$showAdminForm) {
 				if ($gallery->album->isHidden($i)) {
  					showChoice(_("Show") . " $label", "do_command.php", array("cmd" => "show", "index" => $i));
-			             } else {
-			                showChoice(_("Hide") . " $label", "do_command.php", array("cmd" => "hide", "index" => $i));
+				} else {
+					showChoice(_("Hide") . " $label", "do_command.php", array("cmd" => "hide", "index" => $i));
 				}
 			}
 			if ($gallery->user->canDeleteFromAlbum($gallery->album) && $showAdminForm) {
