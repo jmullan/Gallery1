@@ -74,6 +74,9 @@ if ($urls) {
 	
 	foreach ($urls as $url) {
 
+	        /* Get rid of any extra white space */
+	        $url = trim($url);
+		
 		/*
 		 * Check to see if the URL is a local directory (inspired by
 		 * code from Jared (hogalot)
