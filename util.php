@@ -1170,7 +1170,8 @@ function errorRow($key) {
 }
 
 function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $configFile, $errorMsg) {
-	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
+	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE, $HTTP_COOKIE_VARS;
+	global $_CONF; // for geeklog
 
 	if (file_exists($configFile)) {
 		include($configFile);
@@ -1194,7 +1195,10 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 	if (isset($GALLERY_EMBEDDED_INSIDE)) {
 		if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnuke') {
 			$cookie_name = 'user';
-			$cookie_value = $_COOKIE[$cookie_name];
+			$cookie_value = $HTTP_COOKIE_VARS[$cookie_name];
+		} else if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'geeklog') {
+			$cookie_name = $_CONF['cookie_session'];
+			$cookie_value = $HTTP_COOKIE_VARS[$cookie_name];
 		}
 	}
 
