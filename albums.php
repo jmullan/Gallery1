@@ -151,6 +151,28 @@ include($GALLERY_BASEDIR . "layout/navigator.inc");
 <table width=100% border=0 cellpadding=0 cellspacing=7>
 
 <?
+/* Display warnings about broken albums */
+if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
+    print "<tr>";
+    print "<td colspan=3 align=center>";
+    print "<table bordercolor=red border=2 cellpadding=2 cellspacing=2><tr><td>";
+    print "<center><b><u>Attention Gallery Administrator!</u></b></center><br>";
+    print "Gallery has detected the following directories:<br><br>";
+    print "<center>";
+    
+    foreach ($albumDB->brokenAlbums as $tmpAlbumName) {
+	print "$tmpAlbumName<br>";
+    }
+    print "</center>";
+    print "<br>in your albums directory (" . $gallery->app->albumDir . ").<br>These ";
+    print "are not valid albums.  Please move them out of the albums directory.";
+    print "</td></tr></table>";
+    print "</td>";
+    print "</tr>";
+}
+?>
+
+<?
 $start = ($gallery->session->albumListPage - 1) * $perPage + 1;
 $end = min($start + $perPage - 1, $numAlbums);
 for ($i = $start; $i <= $end; $i++) {
