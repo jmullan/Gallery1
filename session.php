@@ -22,6 +22,7 @@
 session_register_and_set("page");
 session_register_and_set("albumName");
 session_register_and_set("albumListPage");
+session_register_and_set("fullOnly");
 session_register_and_set("username", 1);
 
 function session_register_and_set($name, $protected=0) {
