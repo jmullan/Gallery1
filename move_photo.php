@@ -43,9 +43,10 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 		$sel = "selected";
 	} 
 	$j = $i - 1;
-	echo "<option value=$j $sel> $i";
+	echo "<option value=$j $sel> $i</option>";
 }
 ?>
+</select>
 <input type=submit value="Move it!">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>
 </form>
