@@ -31,10 +31,13 @@ if ($id) {
 	if ($index == -1) {
 		// That photo no longer exists.
 		header("Location: $app->photoAlbumURL/$albumName");
+		return;
 	}
 } else {
 	$id = $album->getPhotoId($index);
 }
+$photo = $album->getPhoto($index);
+list($imageWidth, $imageHeight) = $photo->image->getDimensions();
 
 if ($full) {
 	$fullTag = "?full=1";
@@ -139,16 +142,64 @@ if ($album->fields["textcolor"]) {
   <script language="javascript1.2">
   // <!--
 
-  function addSize(a) {
-	a.href += (a.href.indexOf("?") < 0) ? "?" : "&";
-	a.href += "ww=" + window.innerWidth + "&wh=" + window.innerHeight;
+  function fitToWindow() {
+	var changed = 0;
+	var heightMargin = 225;
+	var widthMargin = 40;
+	var photo = document.images.photo;
+	var imageHeight = <?=$imageHeight?>;
+	var imageWidth = <?=$imageWidth?>;
+	var aspect = imageHeight / imageWidth;
+
+	// Get the window dimensions height.  IE and Nav use different techniques.
+	var windowWidth = window.innerWidth;
+	var windowHeight = window.innerHeight;
+	if (windowWidth == undefined) {
+		windowWidth = document.body.clientWidth;
+		windowHeight = document.body.clientHeight;
+	}
+
+	// Leave a gutter around the edges
+	windowWidth = windowWidth - widthMargin;
+	windowHeight = windowHeight - heightMargin;
+
+	if (windowHeight > windowWidth) {
+		if (imageWidth > windowWidth) {
+			imageWidth = windowWidth;
+			imageHeight = aspect * imageWidth;
+			changed = 1;
+		} else if (imageHeight > windowHeight) {
+			imageHeight = windowHeight;
+			imageWidth = imageHeight / aspect;
+			changed = 1;
+		}
+	} else {
+		if (imageHeight > windowHeight) {
+			imageHeight = windowHeight;
+			imageWidth = imageHeight / aspect;
+			changed = 1;
+		} else if (imageWidth > windowWidth) {
+			imageWidth = windowWidth;
+			imageHeight = aspect * imageWidth;
+			changed = 1;
+		}
+	}
+
+	if (changed) {
+		photo.height = imageHeight;
+		photo.width = imageWidth;
+	}
   }
 
   // -->
   </script>
 </head>
 
+<? if (!strcmp($album->fields["fit_to_window"], "yes") && !$full) { ?>
+<body onLoad='fitToWindow()' onResize='fitToWindow()'>
+<? } else { ?>
 <body>
+<? } ?>
 
 <?
 includeHtmlWrap("photo.header");
@@ -210,23 +261,19 @@ includeHtmlWrap("inline_photo.header");
 
 <!-- image -->
 <?
-/* Fit-to-window doesn't work when image is inside a <table>, so removed
- * table around image.. this also means the image has NO border.
- * mindless 23-Feb-2001
-                        echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
-                        echo("<tr bgcolor=$bordercolor>");
-                        echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
-                        echo("<td height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
-                        echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
-                        echo("</tr>");
-                        echo("<tr>");
-			echo("<td bgcolor=$bordercolor width=$borderwidth>");
-			for ($k=0; $k<$borderwidth; $k++) {
-				echo("<img src=$top/images/pixel_trans.gif>");
-			}
-                        echo("</td>");
-                        echo("<td>");
- */
+echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
+echo("<tr bgcolor=$bordercolor>");
+echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+echo("<td height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+echo("</tr>");
+echo("<tr>");
+echo("<td bgcolor=$bordercolor width=$borderwidth>");
+for ($k=0; $k<$borderwidth; $k++) {
+	echo("<img src=$top/images/pixel_trans.gif>");
+}
+echo("</td>");
+echo("<td>");
 echo "<center>";
 
 $photoTag = $album->getPhotoTag($index, $full);
@@ -239,27 +286,18 @@ if (!$album->isMovie($index)) {
 			echo "<a href=" . makeGalleryUrl($albumName, $id, "full=1") . ">";
 		}
 		$openAnchor = 1;
-	} else if (strcmp($album->fields["fit_to_window"], "no")
-		   && !$full && $ww > 0 && $wh > 0) {
-		# Fit to browser window:
-		$photo = $album->getPhoto($index);
-		list($iw, $ih) = $photo->image->getDimensions();
-		$diffx = $ww - $iw - 5;
-		$diffy = $wh - $ih - 80;
-
-		if ($diffx < 0 || $diffy < 0)
-		{
-			echo "<a href=" . makeGalleryUrl($albumName, $id, "full=1") . ">";
-			$openAnchor = 1;
-			$photoTag = "<img src=" . $album->getAlbumDirURL() . "/" . $photo->image->name . "." . $photo->image->type . " border=0 ";
-
-			if ($diffx < $diffy)
-			{
-				$photoTag .= "width=\"100%\">";
-			} else {
-				$photoTag .= "height=\"88%\">";
-			}
-		}
+	} else if (!$full) {
+		echo "<a href=" . makeGalleryUrl($albumName, $id, "full=1") . ">";
+		$openAnchor = 1;
+		$photoTag = "<img name=photo " .
+			    "src=" . $album->getAlbumDirURL() . "/" . $photo->image->name . 
+					"." . $photo->image->type . " " .
+			    "border=0 " .
+			    "width=$imageWidth height=$imageHeight" .
+			    ">";
+	} else if (!strcmp($album->fields["fit_to_window"], "yes")) {
+		echo "<a href=" . makeGalleryUrl($albumName, $id) . ">";
+		$openAnchor = 1;
 	}
 } else {
 	echo "<a href=" . $album->getPhotoPath($index) . " target=other>";
@@ -273,22 +311,19 @@ if ($openAnchor) {
  	$openAnchor = 0;
 }
 
-/* Removed table around image (NO border now):
-			echo("</td>");
-			echo("<td bgcolor=$bordercolor width=$borderwidth>");
-			for ($k=0; $k<$borderwidth; $k++) {
-				echo("<img src=$top/images/pixel_trans.gif>");
-			}
-                        echo("</td>");
-			echo("</tr>");
-                        echo("<tr bgcolor=$bordercolor>");
-                        echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
-                        echo("<td height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
-                        echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
-                        echo("</tr>");
-                        echo("</table>");
- */
-echo "</center><br>";
+echo("</td>");
+echo("<td bgcolor=$bordercolor width=$borderwidth>");
+for ($k=0; $k<$borderwidth; $k++) {
+	echo("<img src=$top/images/pixel_trans.gif>");
+}
+echo("</td>");
+echo("</tr>");
+echo("<tr bgcolor=$bordercolor>");
+echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+echo("<td height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
+echo("</tr>");
+echo("</table>");
 ?>
 
 <table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
