@@ -135,7 +135,7 @@ if ($searchstring) {
 			$searchdraw["top"] = true;
 			$searchdraw["photolink"] = $searchAlbum->getHighlightTag($thumbSize);
 			$searchdraw["photoURL"] = $photoURL;
-			$searchdraw["Text1"] = '<span class="title"><a href="'. $photoURL .'">'. $searchTitle .'</a></span>';
+			$searchdraw["Text1"] = '<span class="albumdesc"><table cellpadding="0" cellspacing="0" width="100%" border="0" align="center" class="mod_title"><tr valign="middle"><td class="leftspacer"></td><td><table cellspacing="0" cellpadding="0" border="0" class="mod_title_bg"><tr><td class="mod_title_left"></td><td nowrap class="title"><a href="'. $photoURL .'">'. $searchTitle .'</a></td><td class="mod_title_right"></td></tr></table></td></tr></table></span>';
 			$searchdraw["Text2"] = '<span class="desc">'. $searchDescription . '</span>';
 			if ($matchSummary)  { // only print summary if it matches
 				$searchdraw["Text3"] = '<span class="desc">'. $searchSummary .'</span>';

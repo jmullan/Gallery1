@@ -253,11 +253,11 @@ includeLayout('navtablemiddle.inc');
 ?>
 
 <br>
-
+<div align="center" class="pview">
 <?php
 slideshow_image();
 ?>
-
+</div>
 <?php
 includeLayout('ml_pulldown.inc');
 includeHtmlWrap("slideshow.footer"); ?>
