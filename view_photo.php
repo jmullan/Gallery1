@@ -473,11 +473,11 @@ if ($photo->image->resizedName) {
 list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
 ?>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
-  <input type=hidden name=addim value=1>
+  <input type=hidden name=addim value="1">
   <input type=hidden name=protocol value="SFP,100">
-  <input type=hidden name=pid value=C4P>
-  <input type=hidden name=psid value=AFFL>
-  <input type=hidden name=referid value=jackodog>
+  <input type=hidden name=pid value="C4P">
+  <input type=hidden name=psid value="GALL">
+  <input type=hidden name=referid value="gallery">
   <input type=hidden name=returl value="this-gets-set-by-javascript-in-onClick">
   <input type=hidden name=imraw-1 value="<?php echo $rawImage ?>">
   <input type=hidden name=imrawheight-1 value="<?php echo $imageHeight ?>">

@@ -441,13 +441,13 @@ $defaults = array(
 		"prompt" => "Default Columns",
 		"desc" => "The default number of columns in an album",
 		"value" => 3,
-		"attrs" => array("size" => 10),
+		"choices" => array(1, 2, 3, 4, 5, 6, 7, 8, 9),
 	),
 	"rows" => array(
 		"prompt" => "Default Rows",
 		"desc" => "The default number of rows in an album",
 		"value" => 3,
-		"attrs" => array("size" => 10),
+		"choices" => array(1, 2, 3, 4, 5, 6, 7, 8, 9),
 	),
 	"thumb_size" => array(
 		"prompt" => "Thumbnail size",
