@@ -184,9 +184,8 @@ function resize_image($src, $dest, $target) {
 function valid_image($file) {
 	global $app;
 	
-	exec(toPnmCmd($file) . "| $app->pnmDir/pnmfile",
-	     $results,
-	     $status);
+	list($results, $status) = 
+		exec_internal(toPnmCmd($file) . "| $app->pnmDir/pnmfile");
 
 	if ($status == 0) {
 		return 1;
