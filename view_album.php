@@ -733,10 +733,6 @@ if ($numPhotos) {
 			    $iHeight = 100;
 			}
 			
-			// This is needed to keep smaller images centered
-			$padding=round(($divImage-$iHeight)/2,0);
-			$divCellHeight=$divImage-$padding*2+$divCellAdd;
-
 			$gallery->html_wrap['imageWidth'] = $iWidth;
 			$gallery->html_wrap['imageHeight'] = $iHeight;
 
@@ -749,7 +745,7 @@ if ($numPhotos) {
 				       	$gallery->html_wrap['thumbTag']	= $gallery->html_wrap['imageTag'];
 				       	$gallery->html_wrap['thumbHref'] = $gallery->html_wrap['imageHref'];
 				/*end backwards compatibility*/
-				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderWidth);
+				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth);
 				echo "<div style=\"padding-top: {$padding}px; padding-bottom:{$padding}px; width: {$divCellWidth}px; height: {$divCellHeight}px;\" align=\"center\" class=\"vafloat2\">\n";
 
 				includeHtmlWrap('inline_moviethumb.frame');
@@ -766,7 +762,7 @@ if ($numPhotos) {
 				       	$gallery->html_wrap['thumbHref'] = $gallery->html_wrap['imageHref'];
 			       	/*end backwards compatibility*/
 
-				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderWidth);
+				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth);
 				echo "<div style=\"padding-top: {$padding}px; padding-bottom:{$padding}px; width: {$divCellWidth}px; height: {$divCellHeight}px;\" align=\"center\" class=\"vafloat2\">\n";      
 				includeHtmlWrap('inline_albumthumb.frame');
 			} else {
@@ -778,7 +774,7 @@ if ($numPhotos) {
 					$gallery->html_wrap['thumbHref'] = $gallery->html_wrap['imageHref'];
 			       	/*end backwards compatibility*/
 
-				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderWidth);
+				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth);
 				echo "<div style=\"padding-top: {$padding}px; padding-bottom:{$padding}px; width: {$divCellWidth}px; height: {$divCellHeight}px;\" align=\"center\" class=\"vafloat2\">\n";
 				includeHtmlWrap('inline_photothumb.frame');
 			}
