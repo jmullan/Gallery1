@@ -153,7 +153,7 @@ class AlbumItem {
 		if ($this->version < 12) {
 		    	$nobody = $gallery->userDB->getNobody();
 			$nobodyUid = $nobody->getUid();
-			if (!strcmp($this->owner, $nobodyUid) && 
+			if ((!strcmp($this->owner, $nobodyUid) || empty($this->owner)) && 
 			    strcmp($gallery->album->fields["owner"], $nobodyUid)) {
 				$this->owner = $gallery->album->fields["owner"];
 				$changed = 1;
