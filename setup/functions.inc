@@ -360,6 +360,18 @@ function check_graphics_im($location="")
 	return array($success, $fail);
 }
 
+function default_graphics()
+{
+	list ($netPBM,) = check_graphics();
+	list ($imageMagick,) = check_graphics_im();
+        
+	if (count ($imageMagick)) {
+		return "ImageMagick";
+	} else {
+		return "NetPBM";
+	}
+}
+
 function check_safe_mode()
 {
 	$fail = array();

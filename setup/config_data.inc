@@ -238,7 +238,7 @@ $constants = array(
 		"prompt" => "Graphics suite to use?",
 		"desc" => "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error.",
 		"choices" => array("NetPBM", "ImageMagick"),
-		"value" => "NetPBM",
+		"value" => default_graphics(),
 	),
 	"highlight_size" => array(
 		"prompt" => "Highlight size",
