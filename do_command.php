@@ -85,10 +85,8 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	} else {
 		header("Location: albums.php");
 	}
-} else if (!strcmp($cmd, "set_fullOnly")) {
-	if (!empty($value)) {
-		$fullOnly = $value;
-	}
+} else if (!empty($return)) {
+	// No command; Can be used to set a session variable and return..
 	header("Location: $return");
 }
 ?>

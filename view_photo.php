@@ -236,7 +236,7 @@ if (!$album->isMovie($index)) {
 	}
 
 	if (!strcmp($album->fields["use_fullOnly"], "yes")) {
-		$link = "$top/do_command.php?cmd=set_fullOnly&value=" .
+		$link = "$top/do_command.php?set_fullOnly=" .
 		        (strcmp($fullOnly,"on") ? "on" : "off") .
 		        "&return=" . urlencode($REQUEST_URI);
 		$adminCommands .= " View Images: [ ";
