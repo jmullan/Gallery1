@@ -2239,19 +2239,29 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 			}
 		    
 			processingMsg("<p>- ". sprintf(_("Adding %s"),$name));
+
+			/* What should the caption be, if no caption was given by user ?
+			** See captionOptions.inc.php for options
+			*/
+			
+			if (isset($gallery->app->dateTimeString)) {
+				$dateTimeFormat = $gallery->app->dateTimeString;
+			} else {
+				$dateTimeFormat = "%D %T";
+			}
 			if ($caption == "") {
 				switch ($setCaption) {
-				case 1:
-					$caption = strtr($originalFilename, '_', ' ');
-					break;
-				case 2:
-					if (isset($gallery->app->dateTimeString)) {
-						$dateTimeFormat = $gallery->app->dateTimeString;
-					} else {
-						$dateTimeFormat = "F d Y H:i:s.";
-					}
-					$caption = date($dateTimeFormat, filectime($file));
-					break;
+					case 1:
+					/* Use filename */
+						$caption = strtr($originalFilename, '_', ' ');
+						break;
+					case 2:
+					/* Use file cration date */
+						$caption = strftime($dateTimeFormat, filectime($file));
+						break;
+					case 3:
+					/* Use capture date */
+						break;
 				}
 			}
 	
