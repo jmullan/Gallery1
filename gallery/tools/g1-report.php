@@ -117,6 +117,7 @@ function parsePoFiles($poFiles) {
 	$lastLineWasEmptyMsgStr = 0;
 	$lastLineWasEmptyMsgId = 0;
 	foreach (file($poFile) as $line) {
+	echo "...";
 	    /*
 	     * Scan for:
 	     *   msgid "foo bar"
