@@ -50,12 +50,12 @@ function fs_fopen($filename, $mode, $use_include_path=0) {
 
 function fs_is_dir($filename) {
 	$filename = fs_import_filename($filename, 0);
-	return is_dir($filename);
+	return @is_dir($filename);
 }
 
 function fs_is_file($filename) {
 	$filename = fs_import_filename($filename, 0);
-	return is_file($filename);
+	return @is_file($filename);
 }
 
 function fs_opendir($path) {
