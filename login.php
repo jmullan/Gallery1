@@ -189,6 +189,7 @@ if (isset($forgot)) {
  <p>
 <input type="submit" name="forgot" value="<?php echo _("Send me my password") ?>">
 </form>
+<?php } /* End if-email-on */ ?>
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--
@@ -199,9 +200,6 @@ document.login_form.username.focus();
 
 </div>
 </center>
-<?php 
-}
-	print gallery_validation_link("login.php"); 
-?>
+<?php print gallery_validation_link("login.php"); ?>
 </body>
 </html>
