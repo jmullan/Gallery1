@@ -324,9 +324,10 @@ function initLanguage($sendHeader=true) {
 
 	// When all is done do the settings
 	//
-	if (getOS() != OS_SUNOS) {
-		putenv("LANG=". $gallery->language);
-	}
+	
+	// There was previously a != SUNOS check around the LANG= line.  We've determined that it was
+	// probably a bogus bug report, since all documentation says this is fine.
+	putenv("LANG=". $gallery->language);
 	putenv("LANGUAGE=". $gallery->language);
 
 	// Set Locale
