@@ -94,7 +94,7 @@ class UserDB {
 	function getUserByUid($uid) {
 		global $app;
 
-		if (!strcmp($uid, $this->nobody->getUid())) {
+		if (!$uid || !strcmp($uid, $this->nobody->getUid())) {
 			return $this->nobody;
 		} else if (!strcmp($uid, $this->everybody->getUid())) {
 			return $this->everybody;
@@ -105,6 +105,8 @@ class UserDB {
 			$user->load($uid);
 			return $user;
 		}
+
+		return $this->nobody;
 	}
 
 	function getOrCreateUser($username) {
