@@ -89,7 +89,7 @@ for ($i = 1; $i <= $numAlbums; $i++) {
 }
 ?>
 </select>
-<input type="submit" name="move" value="<?php _("Move it!") ?>">
+<input type="submit" name="move" value="<?php echo _("Move it!") ?>">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 

@@ -14,19 +14,16 @@ if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
 }
 
 initLanguage();
+
+$css_filename=$GALLERY_BASEDIR ."css/config.css";
+if (! file_exists($css_filename)) {
+	$css_filename .= ".default";
+}
 ?>
 <html>
 <head>
-<title><?php echo _("Gallery Configuration") ?></title>
-<style type="text/css">
-	body		{ background-color: #BDCCF1; color:#000000}
-	.content	{ background-color: #9999FF; }
-	.error		{ color: red; }
-	.success	{ font-weight:bold; color:green   ; }
-	.warning	{ font-weight:bold; color:#FFFF33; }
-	.failed		{ font-weight:bold; color;#FF0000; }
-	.separator 	{ background-color: #000099; color:#FFFFFF; text-align:center; }
-</style>
+	<title><?php echo _("Gallery Configuration") ?></title>
+	<link href="<?php echo $css_filename ?>" rel="stylesheet" type="text/css" />
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">

@@ -6,9 +6,9 @@ function evenOdd_row($fields, $evenOdd) {
 
 	$f0 = str_replace(" ", "&nbsp;", $fields[0]);
 	if ($fields[3] == "block_element") {
-		$buf .= "\n<tr><td class=\"content\">$f0</td><td class=\"content\">".$fields[1]."</td></tr>";
+		$buf .= "\n<tr><td class=\"shortdesc\">$f0</td><td class=\"shortdesc\">".$fields[1]."</td></tr>";
 	} else if ($fields[3] == "block_start") {
-		$buf .= "\n<tr><td class=\"content\" colspan=2 valign=top align=left><table>";
+		$buf .= "\n<tr><td class=\"shortdesc\" colspan=2 valign=top align=left><table>";
 		$buf .= "\n\t<td class=\"content\" align=\"left\" valign=\"top\">$f0<p>";
 		$buf .= "\n\t".$fields[2]."</td>";
 		$buf .= "\n<td><table >";
@@ -16,11 +16,11 @@ function evenOdd_row($fields, $evenOdd) {
 		$buf .= "\n</table></td></table></td></tr>";
 	} else {
 		$buf .= "\n<tr>";
-		$buf .= "\n\t<td class=\"content\" valign=top align=left>$f0</td>";
-		$buf .= "\n\t<td class=\"content\" width=90% valign=top>$fields[1]</td>";
+		$buf .= "\n\t<td class=\"shortdesc\" valign=top align=left>$f0</td>";
+		$buf .= "\n\t<td class=\"shortdesc\" width=90% valign=top>$fields[1]</td>";
 		$buf .= "\n</tr>";
 		$buf .= "\n<tr>";
-		$buf .= "\n\t<td class=\"content\" colspan=2 valign=top align=left>$fields[2]</td>";
+		$buf .= "\n\t<td class=\"desc\" colspan=2 valign=top align=left>$fields[2]</td>";
 		$buf .= "\n</tr>\n";
 	}
 

@@ -1,27 +1,32 @@
 <?php /* $Id$ */ ?>
-<center>
-<font size="+2"><?php echo _("Gallery Setup: Step 2") ?></font>
-<table width="80%"><tr><td>
 
-<?php 
-echo _("In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much.");
-?>
-
-</td></tr></table>
-<input type="submit" name="go_back" value="<- <?php echo _("System Check Page") ?>">
-<input type="submit" name="go_next" value="<?php echo _("Album Defaults") ?> ->">
-<input type="submit" name="go_defaults" value="<?php echo _("Use Defaults") ?>">
-<p>
-
-<table border="0" cellspacing="0" cellpadding="0">
 <input type="hidden" name="this_page" value="constants">
 <input type="hidden" name="next_page" value="defaults">
 <input type="hidden" name="back_page" value="check">
+
+<div class="header"><?php echo sprintf (_("Gallery Setup: Step %d"),2); ?></div>
+
+<div class="sitedesc">
+<?php 
+	echo _("In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much.");
+?>
+</div>
+
+<p align="center">
+	<input type="submit" name="go_back" value="<- <?php echo _("System Check Page") ?>">
+	<input type="submit" name="go_next" value="<?php echo _("Album Defaults") ?> ->">
+	<input type="submit" name="go_defaults" value="<?php echo _("Use Defaults") ?>">
+
+</p>
+
+
+<table width="100%">
 
 <?php
 $i = 0;
 foreach ($constants as $key => $val) {
 	if( isset($val["enabbled"]) && $val["enabled"] == "no") continue;
+	
 	if( isset($val["type"]) && ($val["type"] === "separator")) {
 		echo "\n<tr><td class=\"separator\" colspan=\"2\"><b>". $val["title"] ."</b></td><tr>";
 		if( isset($val["descripion"])) {
@@ -29,7 +34,6 @@ foreach ($constants as $key => $val) {
 		}
 		echo "\n<tr><td>&nbsp;</td></tr>";
 	} else {
-
 
 		if (isset($val["type"]) && ($val["type"] === "block_start" )) {
 			echo evenOdd_row(make_fields($key, $val), $i % 2);
@@ -110,7 +114,8 @@ foreach ($constants as $key => $val) {
 }
 ?>
 </table>
-<p>
-<input type=submit name="go_back" value="<- <?php echo _("System Check Page") ?>">
-<input type=submit name="go_next" value="<?php echo _("Album Defaults") ?> ->">
-<input type=submit name="go_defaults" value="<?php echo _("Use Defaults") ?>">
+<p align="center">
+	<input type=submit name="go_back" value="<- <?php echo _("System Check Page") ?>">
+	<input type=submit name="go_next" value="<?php echo _("Album Defaults") ?> ->">
+	<input type=submit name="go_defaults" value="<?php echo _("Use Defaults") ?>">
+</p>
