@@ -113,7 +113,7 @@ function findOrphanedImages() {
 		// Get the album name, build the album path, open the directory
 		$albumName = $album->fields['name'];
 		$albumDir = $gallery->app->albumDir . "/" . $albumName;
-		$dirhandle = opendir($albumDir);
+		$dirhandle = fs_opendir($albumDir);
 
 		// Storage array
 		$albumFiles = array();

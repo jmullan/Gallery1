@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($index, $manual, $resize, $resize_file_size) = getRequestVar(array('index', 'manual', 'resize', 'resize_file_size'));
+list($index, $manual, $resize, $resize_file_size, $remove_resized) = getRequestVar(array('index', 'manual', 'resize', 'resize_file_size', 'remove_resized'));
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
@@ -45,10 +45,13 @@ doctype();
 <?php
 $all = !strcmp($index, "all");
 if ($gallery->session->albumName && isset($index)) {
-	if (isset($manual) && $manual >0) {
-		$resize=$manual;
+	if (isset($manual) && $manual > 0) {
+		$resize = $manual;
 	}
-	if (! empty($resize)) {
+	if (!empty($remove_resized)) {
+		$resize = 'orig';
+	}
+	if (!empty($resize)) {
 		if (!strcmp($index, "all")) {
 			$np = $gallery->album->numPhotos(1);
 			echo("<br> ". sprintf(_("Resizing %d photos..."),$np));
@@ -118,7 +121,7 @@ if ($gallery->session->albumName && isset($index)) {
 
 <p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
-	<input type="submit" name="resize" value="<?php echo _("Get rid of resized") ?>">
+	<input type="submit" name="remove_resized" value="<?php echo _("Get rid of resized") ?>">
 	<?php echo _("(Use only the original picture)"); ?>
 
 </p>

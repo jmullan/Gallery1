@@ -363,10 +363,12 @@ function acceptableFormatList() {
 }
 
 function isImage($tag) {
+    $tag = strtolower($tag);
     return in_array($tag, acceptableImageList());
 }
 
 function isMovie($tag) {
+    $tag = strtolower($tag);
     return in_array($tag, acceptableMovieList());
 }
 
@@ -3258,7 +3260,7 @@ if (!function_exists('glob')) {
 	function glob($pattern) {
 		$path_parts = pathinfo($pattern);
 		$pattern = '^' . str_replace(array('*',  '?'), array('(.+)', '(.)'), $path_parts['basename'] . '$');
-		$dir = opendir($path_parts['dirname']);
+		$dir = fs_opendir($path_parts['dirname']);
 		while ($file = readdir($dir)) {
 			if (ereg($pattern, $file)) {
 				$result[] = "{$path_parts['dirname']}/$file";
