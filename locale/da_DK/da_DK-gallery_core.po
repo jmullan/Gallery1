@@ -25,15 +25,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-02-24 12:02+0100\n"
-"PO-Revision-Date: 2005-02-24 12:00+0100\n"
+"POT-Creation-Date: 2005-02-28 12:07+0100\n"
+"PO-Revision-Date: 2005-02-27 12:00+0100\n"
 "Last-Translator: Allan Beaufour <allan@beaufour.dk>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: KBabel 1.9\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #: ../add_comment.php:30 ../add_photos.php:31 ../album_permissions.php:43
 #: ../copy_photo.php:29 ../create_user.php:33 ../delete_album.php:31
@@ -51,7 +51,7 @@ msgstr "Du har ikke rettigheder til at udføre denne handling!"
 
 #: ../add_comment.php:58 ../view_photo.php:194
 msgid "Name and comment are both required to save a new comment!"
-msgstr "Både Navn og Kommentar kræves for at gemme en ny kommentar!"
+msgstr "Både navn og kommentar kræves for at gemme en ny kommentar!"
 
 #: ../add_comment.php:60 ../view_photo.php:196
 #, php-format
@@ -580,11 +580,11 @@ msgstr "Behandler billede %d..."
 
 #: ../classes/Album.php:1007
 msgid "Doing the naming"
-msgstr ""
+msgstr "Navngiver"
 
 #: ../classes/Album.php:1042
 msgid "Image Preprocessing"
-msgstr ""
+msgstr "Præprocesserer billede"
 
 #: ../classes/Album.php:1048
 msgid "Resizing/compressing original image"
@@ -596,7 +596,7 @@ msgstr "Kan ikke ændre størrelsen/komprimere denne filtype"
 
 #: ../classes/Album.php:1056
 msgid "Adding Photo to the photo list"
-msgstr ""
+msgstr "Tilføjer billede til billedlisten"
 
 #: ../classes/Album.php:1110
 #, php-format
@@ -646,9 +646,8 @@ msgid "Invalid image"
 msgstr "Ugyldigt billede"
 
 #: ../classes/AlbumItem.php:585
-#, fuzzy
 msgid "Generating thumbnail."
-msgstr "Opretter ikon"
+msgstr "Opretter ikon."
 
 #: ../classes/AlbumItem.php:628
 msgid "Unable to make thumbnail"
@@ -762,7 +761,7 @@ msgstr "Springer over album #%d"
 # ændres
 #: ../copy_photo.php:119 ../create_user.php:104 ../do_command.php:226
 #: ../login.php:129 ../multi_create_user.php:127 ../register.php:47
-#: ../register.php:122 ../save_photos.php:366
+#: ../register.php:122 ../save_photos.php:369
 msgid "Dismiss"
 msgstr "Færdig"
 
@@ -932,7 +931,7 @@ msgstr[1] "Vil du virkelig slette disse brugere"
 
 #: ../do_command.php:38
 msgid "Attempted security breach."
-msgstr ""
+msgstr "Sikkerheden forsøgt brudt."
 
 #: ../do_command.php:49
 msgid "Rebuilding Thumbnails"
@@ -1515,49 +1514,40 @@ msgid "full size"
 msgstr "fuld størrelse"
 
 #: ../includes/slideshow/high.inc:501 ../includes/slideshow/low.inc:314
-#, fuzzy
 msgid "1 second"
-msgstr "sekund"
+msgstr "1 sekund"
 
 #: ../includes/slideshow/high.inc:502 ../includes/slideshow/low.inc:315
-#, fuzzy
 msgid "2 seconds"
-msgstr "sekunder"
+msgstr "2 sekunder"
 
 #: ../includes/slideshow/high.inc:503 ../includes/slideshow/low.inc:316
-#, fuzzy
 msgid "3 seconds"
-msgstr "sekunder"
+msgstr "3 sekunder"
 
 #: ../includes/slideshow/high.inc:504 ../includes/slideshow/low.inc:317
-#, fuzzy
 msgid "5 seconds"
-msgstr "sekunder"
+msgstr "5 sekunder"
 
 #: ../includes/slideshow/high.inc:505 ../includes/slideshow/low.inc:318
-#, fuzzy
 msgid "10 seconds"
-msgstr "sekunder"
+msgstr "10 sekunder"
 
 #: ../includes/slideshow/high.inc:506 ../includes/slideshow/low.inc:319
-#, fuzzy
 msgid "15 seconds"
-msgstr "sekunder"
+msgstr "15 sekunder"
 
 #: ../includes/slideshow/high.inc:507 ../includes/slideshow/low.inc:320
-#, fuzzy
 msgid "30 seconds"
-msgstr "sekunder"
+msgstr "30 sekunder"
 
 #: ../includes/slideshow/high.inc:508 ../includes/slideshow/low.inc:321
-#, fuzzy
 msgid "45 seconds"
-msgstr "sekunder"
+msgstr "45 sekunder"
 
 #: ../includes/slideshow/high.inc:509 ../includes/slideshow/low.inc:322
-#, fuzzy
 msgid "1 Minute"
-msgstr "Minutter"
+msgstr "1 minut"
 
 #: ../includes/slideshow/high.inc:526
 msgid "Transition:"
@@ -2711,36 +2701,41 @@ msgstr "Henter URL..."
 msgid "Processing %s as a local directory."
 msgstr "Behandler %s som et lokalt katalog."
 
-#: ../save_photos.php:148
+#: ../save_photos.php:118
+#, php-format
+msgid "Unable to find %s locally - trying %s."
+msgstr ""
+
+#: ../save_photos.php:151
 #, php-format
 msgid "Could not open url: %s"
 msgstr "Kunne ikke åbne URL: %s"
 
-#: ../save_photos.php:176
+#: ../save_photos.php:179
 #, php-format
 msgid "Parsing %s for images..."
 msgstr "Søger i %s efter billeder..."
 
-#: ../save_photos.php:242
+#: ../save_photos.php:245
 #, php-format
 msgid "Found %d images"
 msgstr "Fandt %d billeder"
 
 # beaufour: Er denne korrekt?
-#: ../save_photos.php:249
+#: ../save_photos.php:252
 msgid "Processing status..."
 msgstr "Status for bearbejdningen..."
 
-#: ../save_photos.php:362
+#: ../save_photos.php:365
 msgid "No images uploaded!"
 msgstr "Ingen billeder overført!"
 
-#: ../save_photos.php:412
+#: ../save_photos.php:415
 #, php-format
 msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
 msgstr "%d metafil(er) fundet. Disse filer indeholder information om billederne, såsom titler og beskrivelser."
 
-#: ../save_photos.php:444
+#: ../save_photos.php:447
 msgid "Add Files"
 msgstr "Tilføj filer"
 
@@ -3074,9 +3069,8 @@ msgid "Finished in %d seconds"
 msgstr "Udført på %d sekunder"
 
 #: ../stats.php:989
-#, fuzzy
 msgid "Update"
-msgstr "Dato for overførsel"
+msgstr "Opdater"
 
 #: ../stats.php:990
 msgid "Cache update required. "
@@ -3135,12 +3129,11 @@ msgstr "Stemmer:"
 
 #: ../stats.php:1532
 msgid "not rated"
-msgstr "ingen karakter"
+msgstr "ingen karakterer"
 
 #: ../stats.php:1547 ../stats.php:1558
-#, fuzzy
 msgid "Rating:"
-msgstr "Regn"
+msgstr "Karakter:"
 
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
@@ -3515,7 +3508,7 @@ msgstr "Status: %s (forventede %s)"
 #: ../util.php:353
 #, php-format
 msgid "Getting Dimension of file: %s"
-msgstr ""
+msgstr "Henter billedstørrelse for filen: %s"
 
 #: ../util.php:358
 msgid "The file does not exist ?!"
@@ -3532,18 +3525,17 @@ msgid "You have no graphics package configured for use!"
 msgstr "Du har ikke en brugbar grafikpakke konfigureret!"
 
 #: ../util.php:411
-#, fuzzy
 msgid "Unable to determine image dimensions!"
-msgstr "PHP's %s kan ikke afgøre dimensionerne."
+msgstr "Kan ikke afgøre billedestørrelsen!"
 
 #: ../util.php:477 ../util.php:496
 msgid "Not closing this window because debug mode is on"
 msgstr "Lukker ikke dette vindue fordi fejlfindingstilstand er slået til"
 
 #: ../util.php:513
-#, fuzzy, php-format
+#, php-format
 msgid "Resizing Image: %s"
-msgstr "Ændrer størrelse på %s"
+msgstr "Ændrer størrelse på: %s"
 
 #: ../util.php:545
 msgid "No resizing required"
@@ -4036,7 +4028,7 @@ msgstr "Ret beskrivelse"
 #: ../view_album.php:963
 #, php-format
 msgid "Highlight %s"
-msgstr "Gør til forside%s"
+msgstr "Fremhæv %s"
 
 #: ../view_album.php:967
 msgid "Reset Counter"
@@ -4141,13 +4133,12 @@ msgid "photo properties"
 msgstr "oplysninger om billedet"
 
 #: ../view_photo.php:442
-#, fuzzy
 msgid "Send photo to..."
-msgstr "Ændrer størrelse på 1 billede..."
+msgstr "Send billede til..."
 
 #: ../view_photo.php:444
 msgid "Print photo with..."
-msgstr ""
+msgstr "Udskriv billede med..."
 
 #: ../view_photo.php:476
 #, php-format
@@ -4177,3 +4168,4 @@ msgstr "Sætter vandmærke på albummets indhold."
 #: ../watermark_album.php:103
 msgid "No items to watermark."
 msgstr "Ingen objekter at vandmærke."
+
