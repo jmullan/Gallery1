@@ -1,5 +1,6 @@
 php_value auto_prepend_file	php_value_ok.php
-php_value magic_quotes_gpc Off
+php_flag magic_quotes_gpc off
+php_flag register_globals on
 
 Options FollowSymLinks
 <IfModule mod_rewrite.c>
