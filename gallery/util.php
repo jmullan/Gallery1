@@ -2840,7 +2840,9 @@ function gettext_installed() {
 function available_skins() {
 	global $GALLERY_BASEDIR;
 
-	$dir = "$GALLERY_BASEDIR/skins";
+	$dir = "${GALLERY_BASEDIR}skins";
+	print $dir;
+	$opts['default'] = 'default';
 	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
                 while ($file = readdir($fd)) {
 			$subdir="$dir/$file/css";

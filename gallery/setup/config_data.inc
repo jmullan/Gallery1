@@ -332,7 +332,7 @@ $constants =  array_merge(
 	),
 	"skinname" => array(
 		"prompt" => _("Skin Name"),
-		"desc" => _("Select a skin to use for Gallery."),
+		"desc" => _("Select a skin to use for Gallery. You now have a wide choice of \"skins\" that affect the look of every page of your gallery.  You can have fun experimenting with the available skins. Choose \"default\" to use the look from v1.4.") . newIn("1.4.1"),
 		"choices" => available_skins(),
 		"value" => "default"
 	),
