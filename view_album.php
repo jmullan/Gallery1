@@ -113,7 +113,7 @@ if ($numPhotos) {
 	while ($rowCount < $rows) {
 		/* Do the picture row */
 		echo("<tr>");
-		$i = $start + $rowCount * $rows;
+		$i = $start + $rowCount * $cols;
 		$j = 0;
 		while ($j < $cols && $i < $numPhotos) {
 			if (!editMode() && $album->isHidden($i)) {
