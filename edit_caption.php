@@ -18,9 +18,10 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
+data = <?= $data ?><br>
 <?
 if ($save) {
-	$album->setCaption($index, $data);
+	$album->setCaption($index, stripslashes($data));
 	$album->save();
 	dismissAndReload();
 	return;
@@ -28,7 +29,7 @@ if ($save) {
 ?>
 
 <? require('style.php'); ?>
-
+<!-- hi 2 -->
 <center>
 Enter a caption for this picture in the text
 box below.

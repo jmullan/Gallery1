@@ -20,7 +20,7 @@
 ?>
 <?
 if ($save) {
-	$album->fields[$field] = $data;
+	$album->fields[$field] = stripslashes($data);
 	$album->save();
 	dismissAndReload();
 	return;
