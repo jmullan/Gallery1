@@ -348,7 +348,6 @@ echo makeFormIntro("album_permissions.php",
  </tr>
 </table>
 
-<input type="hidden" name="gallery_popup" value ="true">
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
 <input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 <br>
