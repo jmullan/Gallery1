@@ -86,7 +86,7 @@ foreach ($constants as $key => $val) {
 				isset($gallery->app->$key)) {
 			$val["value"] = $gallery->app->$key;
 		}
-		else if (is_array($val["value"])) {
+		elseif (is_array($val["value"])) {
 			$key=$key."[]";
 			$val["value"]=$val["value"][0];
 		}
@@ -112,8 +112,8 @@ foreach ($constants as $key => $val) {
 
 		if (!isset($go_defaults)) {
 			if (ereg("^(..*)\[.*\]$", $key, $matches)) {
-				if (isset ($$key)) {
-					$val['value'] = $$key;
+				if (isset ($gallery->session->configForm->$key)) {
+					$val['value'] = $gallery->session->configForm->$key;
 				}
 
 				unset($preserve[$key]);
@@ -121,8 +121,8 @@ foreach ($constants as $key => $val) {
 				unset($onThisPage[$key]);
 				$onThisPage[$matches[1]] = 1;
 			}
-			else if( isset($$key)) {
-				$val["value"] = $$key;
+			else if(isset($gallery->session->configForm->$key)) {
+				$val["value"] = $gallery->session->configForm->$key;
 	
 			}
 			if (get_magic_quotes_gpc()) {

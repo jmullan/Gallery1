@@ -99,7 +99,8 @@ function makeGalleryUrl($target, $args=array()) {
 		}
 	}
 	else {
-		$target = $gallery->app->photoAlbumURL . "/" . $target;
+		$prefix = isset($gallery->app->photoAlbumURL) ? $gallery->app->photoAlbumURL . "/" : "";
+		$target = $prefix . $target;
 	}
        
 	$url = $target;

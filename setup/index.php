@@ -93,7 +93,6 @@ configLogin(basename(__FILE__));
 
 if (isset($go_defaults) || isset($refresh)) {
 	$setup_page = $this_page;
-	echo "<!-- setup_page = $this_page -->";
 } else if (isset($go_next)) {
 	$setup_page = $next_page;
 } else if (isset($go_back)) {
@@ -106,31 +105,28 @@ if (!empty($preserve)) {
 	$preserve = array();
 	foreach ($tmp as $key) {
 		$preserve[$key] = 1;
+		if (($gallery->session->configForm->$key = getRequestVar($key)) === NULL) {
+			$gallery->session->configForm->$key = "";
+			continue;
+		}
 	}
+        $preserve = array();
 } else {
-	$preserve=array();
-}
-
-foreach (array_keys($preserve) as $key) {
-	if (getRequestVar($key) === NULL) {
-		$$key = "";
-		continue;
-	}
-	$$key = array_urldecode(getRequestVar($key));
+	$preserve = array();
 }
 
 /* Cache passwords in order to prevent them from being erased.
  * Otherwise, we'll lose the passwords if someone revisits Step 2
  * and forgets to re-enter them. */
-if (isset($editPassword) && (!empty($editPassword[0]) || !empty($editPassword[1]))) {
-	$editPassword[2] = $editPassword[0];
-	$editPassword[3] = $editPassword[1];
-	$_REQUEST['editPassword'] = $editPassword;
+if (isset($gallery->session->configForm->editPassword) && (!empty($gallery->session->configForm->editPassword[0]) || !empty($gallery->session->configForm->editPassword[1]))) {
+	$gallery->session->configForm->editPassword[2] = $gallery->session->configForm->editPassword[0];
+	$gallery->session->configForm->editPassword[3] = $gallery->session->configForm->editPassword[1];
+	$_REQUEST['editPassword'] = $gallery->session->configForm->editPassword;
 }
-if (isset($smtpPassword) && (!empty($smtpPassword[0]) || !empty($smtpPassword[1]))) {
-        $smtpPassword[2] = $smtpPassword[0];
-        $smtpPassword[3] = $smtpPassword[1];
-        $_REQUEST['smtpPassword'] = $smtpPassword;
+if (isset($gallery->session->configForm->smtpPassword) && (!empty($gallery->session->configForm->smtpPassword[0]) || !empty($gallery->session->configForm->smtpPassword[1]))) {
+	$gallery->session->configForm->smtpPassword[2] = $gallery->session->configForm->smtpPassword[0];
+	$gallery->session->configForm->smtpPassword[3] = $gallery->session->configForm->smtpPassword[1];
+	$_REQUEST['smtpPassword'] = $gallery->session->configForm->smtpPassword;
 }
 
 ?>
@@ -184,7 +180,7 @@ function embed_hidden($key) {
 
 foreach ($preserve as $key => $val) {
 	if ($key && !isset($onThisPage[$key])) {
-		print embed_hidden($key);
+		$gallery->session->configForm->$key = $$key;
 	}
 }
 

@@ -58,7 +58,7 @@ if (function_exists("posix_getpwuid")) {
 }
 
 
-$common_messages["getting-netpbm"] = 
+$common_messages["getting-netpbm"] =
 			sprintf(_("Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."), 
 				 "<a href=\"http://sourceforge.net/projects/gallery\">",
 				 "</a>",
@@ -77,7 +77,7 @@ $common_messages["getting-imagemagick"] =
 			'<br><span class="emphasis">' . _("Note:"). '</span> ' .
 			_("The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
 
-$common_messages["open-basedir-active"] = 
+$common_messages["open-basedir-active"] =
 	sprintf(_("<b>Note:</b> Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."),
 			"<b><a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\" target=\"_blank\">open_basedir</a></b>" );
 			
@@ -151,8 +151,8 @@ $checklist = array(
 	),
 	'mod-rewrite' => array(
 		'desc' => _("Check to see if your webserver is compiled with <b>mod_rewrite</b>.  This Apache module allows Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."),
-	     	'func' => "check_mod_rewrite",
-		'fail-mod-rewrite' => _("Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: ") . 
+		'func' => "check_mod_rewrite",
+		'fail-mod-rewrite' => _("Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: ") .
 			"<pre>\t--enable-module=rewrite</pre>",
 		'optional' => 1
 	),
@@ -164,7 +164,7 @@ $checklist = array(
 			$common_messages["getting-netpbm"],
 
 		'fail-netpbm-partial' => 
-			$common_messages["fail-netpbm-partial"] . 
+			$common_messages["fail-netpbm-partial"] .
 			"<p><b> " . _("If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page.") ." </b>",
 
 		'open-basedir-note' => $common_messages["open-basedir-active"]
@@ -709,7 +709,7 @@ $constants = array_merge($constants,
 		'type' => "text",
 		'attrs' => array('size' => 50),
 		'value' => (!empty( $gallery->app->galleryTitle)) ?
-	     		"[" . $gallery->app->galleryTitle . "]"	:
+			"[" . $gallery->app->galleryTitle . "]"	:
 	     		"[" . Gallery() . "]"
 	),
 	'emailGreeting' => array(
@@ -1108,7 +1108,7 @@ $constants = array_merge($constants,
 		'prompt' => ".users directory",
 		'type' => "hidden",
 		'value' => "",
-		'eval' => '"$albumDir/.users"',
+		'eval' => '"{$gallery->session->configForm->albumDir}/.users"',
 		'persistent' => 1,
 		'filename' => 1
 		),

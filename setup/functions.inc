@@ -354,7 +354,7 @@ function check_exec() {
 
 function check_htaccess()
 {
-	global $GALLERY_PHP_VALUE_OK; 
+	global $GALLERY_PHP_VALUE_OK;
 
 	/*
 	 * the .htaccess file in the parent directory tries to
@@ -705,19 +705,19 @@ function check_absent_locales()
 	$warn = array();
 	$msg = '';
 
-	$available=$locale_check["available_locales"];
-	$maybe=$locale_check["maybe_locales"];
-	$unavailable=$locale_check["unavailable_locales"];
+	$available = $locale_check["available_locales"];
+	$maybe = $locale_check["maybe_locales"];
+	$unavailable = $locale_check["unavailable_locales"];
 
 	if($locale_check != NULL && sizeof($unavailable) ==0) {
 		$success[] = _("All gallery locales are available on this host.");
-	} else if( (sizeof($maybe) + sizeof($unavailable)) >0) {
-		if (sizeof($maybe) >0) {
+	} else if( (sizeof($maybe) + sizeof($unavailable)) > 0) {
+		if (sizeof($maybe) > 0) {
 			$msg = sprintf(_("There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "),sizeof($maybe));
 		}
 
-		if (sizeof($unavailable) >0) {
-			if(sizeof($maybe) >0) $msg.="<p></p>";
+		if (sizeof($unavailable) > 0) {
+			if(sizeof($maybe) > 0) $msg .= "<p></p>";
 
 			$msg .= sprintf(_("Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."),sizeof($unavailable));
 		}
@@ -738,23 +738,23 @@ function check_absent_locales()
 }
 
 function check_locale() {
-	$nls=getNLS();
-	$gallery_languages=array_keys(gallery_languages());
-	$system_locales=array();
+	$nls = getNLS();
+	$gallery_languages = array_keys(gallery_languages());
+	$system_locales = array();
 	
-	$available_locales=array();
-	$maybe_locales=array();
-	$unavailable_locales=array();
+	$available_locales = array();
+	$maybe_locales = array();
+	$unavailable_locales = array();
 
 	/* Lets see which system locales are installed. */
 	if (getOS() != OS_WINDOWS) { 
 		# Unix / Linux
 		# Check which locales are installed
 
-		exec("locale -a",$results,$status);
+		exec("locale -a", $results, $status);
 
 		if(count($results) >2) {
-			$system_locales=$results;
+			$system_locales = $results;
 		} elseif (@is_readable("/etc/locale.gen")) {
 			exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1', $system_locales);
 		} elseif (@is_readable("/usr/share/locale")) {
@@ -851,24 +851,24 @@ function check_locale() {
 
 
 function config_maybe_locales() {
-	global $locale_check;
+	global $locale_check, $locales;
 
-	$results=array();
-	$locales=$locale_check;
-	$available=$locales["available_locales"];
-	$maybe=$locales["maybe_locales"];
-	$unavailable=$locales["unavailable_locales"];
+	$results = array();
+	$locales = $locale_check;
+	$available = $locales["available_locales"];
+	$maybe = $locales["maybe_locales"];
+	$unavailable = $locales["unavailable_locales"];
 
 	// If we are in Linux, our PHP has gettext, 
 	// but we could not find any locale we skip the whole aliasing part.
 	if($locales == NULL) return;
 
-	$nls=getNLS();
+	$nls = getNLS();
 
-	$block_start_done=false;
+	$block_start_done = false;
 	
 	$nr=0;
-        foreach ($maybe as $key => $aliases) {
+	foreach ($maybe as $key => $aliases) {
 		if (sizeof($aliases) < 1) {
 			$unavailable[]=$key;
 			continue;
@@ -1258,7 +1258,8 @@ function verify_password($passwords) {
 
 function verify_email($emailMaster)
 {
-	global $adminEmail, $senderEmail, $emailGreeting;
+	global $gallery;
+
 	$fail = array();
 	$success = array();
        	if ($emailMaster == "no") {
@@ -1266,11 +1267,11 @@ function verify_email($emailMaster)
 	       	return array($success, $fail);
 	}
 
-	if (gallery_validate_email($adminEmail)) {
+	if (gallery_validate_email($gallery->session->configForm->adminEmail)) {
 		$success[] = _("Valid admin email address given.");
 	} else {
-		$adminEmail = ereg_replace('([[:space:]]+)', '', $adminEmail);
-		$emails = array_filter1(explode(',', $adminEmail));
+		$adminEmail = ereg_replace('([[:space:]]+)', '', $gallery->session->configForm->adminEmail);
+		$emails = array_filter1(explode(',', $gallery->session->configForm->adminEmail));
 		$size  = sizeof($emails);
 
 		if ($size < 1) {
@@ -1290,17 +1291,17 @@ function verify_email($emailMaster)
 		       	}
 	       	}
 	}
-	if (gallery_validate_email($senderEmail)) {
+	if (gallery_validate_email($gallery->session->configForm->senderEmail)) {
 	       	$success[] = _("Valid sender email address given.");
        	} else {
 	       	$fail[]= _("You must specify a valid sender email address");
        	}
-       	if (!empty($emailGreeting) && !strstr($emailGreeting, "!!USERNAME!!")) {
+	if (!empty($gallery->session->configForm->emailGreeting) && !strstr($gallery->session->configForm->emailGreeting, "!!USERNAME!!")) {
 	       	$fail[]= sprintf(_("You must include %s in your welcome email"), "<b>!!USERNAME!!</b>");
        	}
        	if (!empty($emailGreeting) && 
-			!strstr($emailGreeting, "!!PASSWORD!!" ) && 
-			!strstr($emailGreeting, "!!NEWPASSWORDLINK!!" )) {
+			!strstr($gallery->session->configForm->emailGreeting, "!!PASSWORD!!" ) &&
+			!strstr($gallery->session->configForm->emailGreeting, "!!NEWPASSWORDLINK!!" )) {
 	       	$fail[]= sprintf(_("You must include %s or %s in your welcome email"), 
 				"<b>!!PASSWORD!!</b>",
 				"<b>!!NEWPASSWORDLINK!!</b>");
@@ -1620,7 +1621,7 @@ function makeSectionTabs($array) {
 }
 
 function configLogin($target) {
-	global $gallery, $gallerypassword, $username;
+	global $gallery;
 	
 	if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
 		$resetFile = getFile(GALLERY_SETUPDIR . "/resetadmin");

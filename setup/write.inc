@@ -40,7 +40,7 @@ $outfile = GALLERY_CONFDIR . '/config.php';
 @copy("gpl.txt", $outfile);
 
 if ($fd = @fs_fopen($outfile, "a")) {
-	$data = urldecode(getRequestVar('data'));
+	$data = $gallery->session->configData;
 
 	fwrite($fd, $data);
 	fclose($fd);
@@ -134,7 +134,7 @@ if ($fd = @fs_fopen($outfile, "a")) {
 }
 
 /*
- * Write the preserved data back to the .htaccess file 
+ * Write the preserved data back to the .htaccess file
  */
 
 if ($fd = @fs_fopen($outfile, "a")) {
@@ -155,11 +155,11 @@ $userDB = new Gallery_UserDB();
 $userDB->version = $gallery->user_version;
 $admin = $userDB->getOrCreateUser("admin");
 
-if (strlen($editPassword[2]) > 0) {
+if (strlen($gallery->session->configForm->editPassword[2]) > 0) {
 	$message = sprintf(_("The password for user %s was changed."), '<b>admin</b>');
-	$admin->setPassword($editPassword[2]);
-	
-	if (! $admin->isAdmin()) {
+	$admin->setPassword($gallery->session->configForm->editPassword[2]);
+
+	if (!$admin->isAdmin()) {
 		$message = sprintf(_("An account called %s has been created for you with the password you specified."),"<b>admin</b>");
 		$admin->setIsAdmin(true);
 		if (!$admin->getFullName()) {
@@ -209,7 +209,7 @@ if (isset($message)) {
 <?php 
 	echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.");
 	echo '<br>';
-	echo _("It will save your data so you won't have to enter it all again!"); 
+	echo _("It will save your data so you won't have to enter it all again!");
 	echo '<br>';
 	echo '<span class="emphasis">';
 	echo sprintf(_("Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),  
@@ -227,6 +227,10 @@ if (isset($message)) {
 </html>
 
 <?php
+// Clear the session config data
+unset($gallery->session->configForm);
+unset($gallery->session->configData);
+
 function fail($file) {
 ?>
 	<title><?php echo _("Failure") ?>!</title>

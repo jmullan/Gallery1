@@ -100,8 +100,8 @@ foreach ($defaults as $key => $val) {
 	    $val["value"] = trim($val["value"], " ,");
 	}
 
-	if (!isset($go_defaults) && isset($$key)) {
-		$val["value"] = $$key;
+	if (!isset($go_defaults) && isset($gallery->session->configForm->$key)) {
+		$val["value"] = $gallery->session->configForm->$key;
 		
 		if (get_magic_quotes_gpc()) {
 			$val["value"] = array_stripslashes($val["value"]);
