@@ -803,30 +803,34 @@ if ($numPhotos) {
 				echo("<td width=\"$imageCellWidth\" align=\"center\" valign=\"middle\">");
 				$photo    = $gallery->album->getPhoto($i);
 				$image    = $photo->image;
-				$viewFull = $gallery->user->canViewFullImages($gallery->album);
-				$fullOnly = (isset($gallery->session->fullOnly) &&
-					!strcmp($gallery->session->fullOnly, 'on') &&
-					!strcmp($gallery->album->fields['use_fullOnly'], 'yes'));
-				list($wr, $hr) = $image->getDimensions();
-				list($wf, $hf) = $image->getRawDimensions();
-				/* display file sizes if dimensions are identical */
-				if ($wr == $wf && $hr == $hf && $viewFull && $photo->isResized()) {
-				    $fsr = ' ' . sprintf(_('%dkB'), (int) $photo->getFileSize(0) >> 10);
-				    $fsf = ' ' . sprintf(_('%dkB'), (int) $photo->getFileSize(1) >> 10);
+				if (!empty($image)) {
+					$viewFull = $gallery->user->canViewFullImages($gallery->album);
+					$fullOnly = (isset($gallery->session->fullOnly) &&
+						!strcmp($gallery->session->fullOnly, 'on') &&
+						!strcmp($gallery->album->fields['use_fullOnly'], 'yes'));
+					list($wr, $hr) = $image->getDimensions();
+					list($wf, $hf) = $image->getRawDimensions();
+					/* display file sizes if dimensions are identical */
+					if ($wr == $wf && $hr == $hf && $viewFull && $photo->isResized()) {
+					    $fsr = ' ' . sprintf(_('%dkB'), (int) $photo->getFileSize(0) >> 10);
+					    $fsf = ' ' . sprintf(_('%dkB'), (int) $photo->getFileSize(1) >> 10);
+					} else {
+					    $fsr = '';
+					    $fsf = '';
+					}
+					if (($photo->isResized() && !$fullOnly) || !$viewFull) {
+						echo '<a href="'.
+							makeAlbumUrl($gallery->session->albumName, $image->name) .
+								"\">[${wr}x{$hr}${fsr}]</a>&nbsp;";
+					}
+					if ($viewFull) {
+						echo '<a href="'.
+							makeAlbumUrl($gallery->session->albumName,
+							$image->name, array('full' => 1)) .
+							"\">[${wf}x${hf}${fsf}]</a>";
+					}
 				} else {
-				    $fsr = '';
-				    $fsf = '';
-				}
-				if (($photo->isResized() && !$fullOnly) || !$viewFull) {
-					echo '<a href="'.
-						makeAlbumUrl($gallery->session->albumName, $image->name) .
-							"\">[${wr}x{$hr}${fsr}]</a>&nbsp;";
-				}
-				if ($viewFull) {
-					echo '<a href="'.
-						makeAlbumUrl($gallery->session->albumName,
-						$image->name, array('full' => 1)) .
-						"\">[${wf}x${hf}${fsf}]</a>";
+					echo "&nbsp;";
 				}
 				echo("</td>");
 				$j++; 
