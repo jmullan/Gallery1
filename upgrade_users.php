@@ -55,11 +55,15 @@ if (!$gallery->version) { exit; }
 <p>
 
 <?php 
-$button= _("Done");
 if (!$gallery->userDB->integrityCheck() ) {
 	print "<p>";
 	print error_format(_("There was a problem upgrading users.  Please check messages above, and try again"));
 	$button = _("Retry");
+}
+else {
+	print '<p>';
+	print _("Users upgraded successfully.");
+	$button= _("Done");
 }
 ?>
 

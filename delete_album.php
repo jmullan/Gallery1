@@ -39,7 +39,7 @@ if (!$gallery->user->canDeleteAlbum($gallery->album)) {
 	exit;
 }
 
-if ($confirm) {
+if ($delete) {
 	$gallery->album->delete();
 	dismissAndReload();
 	return;

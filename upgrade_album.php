@@ -71,7 +71,7 @@ $albumDB = new AlbumDB(FALSE);
 function close_button() {
 	print "<center>";
 	print "<form>";
-	print "<input type=\"button\" value=\"" . _("Done") ."\" onclick='opener.location.reload(); parent.close()'>";
+	print "<input type=\"button\" name=\"close\" value=\"" . _("Done") ."\" onclick='opener.location.reload(); parent.close()'>";
 	print "</form>";
 	print "</center>";
 }
@@ -79,7 +79,7 @@ function close_button() {
 function reload_button() {
 	print "<center>";
 	print "<form>";
-	print "<input type=\"button\" value=\"" . _("Done") ."\" onclick='location.reload()'>";
+	print "<input type=\"button\" name=\"done\" value=\"" . _("Done") ."\" onclick='location.reload()'>";
 	print "</form>";
 	print "</center>";
 }

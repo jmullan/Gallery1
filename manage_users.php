@@ -91,7 +91,7 @@ if (!$displayUsers) {
 } else {
 ?>
 
-<select name="uname" size="15" onDblClick='my_submit("Modify")'>
+<select name="uname" size="15">
 
 <?php
 	foreach ($displayUsers as $name) {
