@@ -47,6 +47,12 @@ if (file_exists(dirname(__FILE__) . "/lib/devel.php")) {
 error_reporting(E_ALL & ~E_NOTICE);
 
 /*
+ *  Seed the randomization pool once, instead of doing it every place 
+ *  that we use rand() or mt_rand()
+ */
+mt_srand((double) microtime() * 1000000);
+
+/*
  * Figure out if register_globals is on or off and save that info
  * for later
  */

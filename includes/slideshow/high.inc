@@ -50,7 +50,6 @@ function slideshow_initialize()
         if ($random) {
             $random_full_urls = array();
             $random_photos = array();
-            srand ((float) microtime() * 10000000);
             $rand_keys = array_rand ($urls, $number);
             if ($number == 1) {
                 $rand_keys = array($rand_keys);

@@ -1626,7 +1626,6 @@ function mosFormatDate( $date, $format=_DATE_FORMAT_LC ){
 }
 
 function mosCreateGUID(){
-	mt_srand((double)microtime()*1000000);
 	$r = mt_rand();
 	$u = uniqid(getmypid() . $r . (double)microtime()*1000000,1);
 	$m = md5($u);

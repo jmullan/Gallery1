@@ -31,7 +31,6 @@ class Abstract_User {
 	var $uid;
 
 	function Abstract_User() {
-		mt_srand((double) microtime() * 1000000);
 		$this->setIsAdmin(false);
 		$this->setCanCreateAlbums(false);
 		$this->uid = time() . "_" . mt_rand();
@@ -46,7 +45,6 @@ class Abstract_User {
 
 	function salt($len = 4)
 	{
-	       	mt_srand ((float) microtime() * 10000000); // for php v < 4.2
 		$salt = '';
 		for($i = 0; $i < $len; $i++)
 		{

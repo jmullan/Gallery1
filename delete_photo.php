@@ -61,7 +61,6 @@ if (isset($action) && $action == 'delete' && isset($id)) {
 	// Prevent a user from pressing delete twice out of impatience and
 	// deleting two albums by mistake
 	if (!isset($albumDelete) || isset($albumMatch)) {
-		mt_srand((double) microtime() * 1000000);
 		$gallery->album->deletePhoto($index);
 		$gallery->album->fields['guid'] = md5(uniqid(mt_rand(), true));    // Update guid to reflect change in album contents
 		$gallery->album->save(array(i18n("%s removed"), $id));

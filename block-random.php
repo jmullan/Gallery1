@@ -45,9 +45,6 @@
 
 require(dirname(__FILE__) . "/init.php");
 
-/* Initializing the seed */
-mt_srand((double) microtime() * 1000000);
-
 define('CACHE_FILE', $gallery->app->albumDir . "/block-random.dat");
 define('CACHE_EXPIRED', $gallery->app->blockRandomCache);
 
