@@ -32,6 +32,12 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php 
+//Prevent error
+if (!$gallery->session->albumName) {
+	header("Location: " . makeAlbumUrl());
+	return;
+}
+
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
 	header("Location: " . makeAlbumUrl());

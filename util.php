@@ -262,7 +262,7 @@ function acceptableFormatRegexp() {
 }
 
 function acceptableMovieList() {
-    return array('avi', 'mpg', 'mpeg', 'wmv', 'mov', 'swf');
+    return array('avi', 'mpg', 'mpeg', 'wmv', 'mov', 'swf', 'mp4');
 }
 
 function acceptableImageList() {

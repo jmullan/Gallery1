@@ -120,19 +120,7 @@ function printSlideshowPhotos($slide_full, $what = PHOTO_ALL) {
 	if ( ($what & PHOTO_CAPTION) != 0 ) {
 	    // Now lets get the captions
 	    $caption = $gallery->album->getCaption($index);
-
-	    /*
-	     * Remove unwanted Characters from the comments,
-	     * We don't use the array based form of str_replace
-	     * because it's not supported on older versions of PHP
-	     */
-	    $caption = str_replace(";", " ", $caption);
 	    $caption = str_replace("\"", " ", $caption);
-	    $caption = str_replace("\n", " ", $caption);
-	    $caption = str_replace("\r", " ", $caption);
-	    
-	    // strip_tags takes out the html tags
-	    $caption = strip_tags($caption);
 	    
 	    // Print out the entry for this image as Javascript
 	    print "photo_captions[$photo_count] = \"$caption\";\n";
