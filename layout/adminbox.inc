@@ -25,8 +25,8 @@ if ($adminbox["top"]) {
 ?>
   <tr> 
     <td bgcolor="<?=$borderIn?>" width="1" height="18"><?=$pixelImage?></td>
-    <td align="left" valign="middle" height="18">&nbsp;<?=$adminbox["text"]?></td>
-    <td align="right" valign="middle" height="18">&nbsp;<?=$adminbox["commands"]?>&nbsp;</td>
+    <td align="left" valign="middle" width="3000" height="18">&nbsp;<?=$adminbox["text"]?></td>
+    <td align="right" valign="middle" width="3000" height="18">&nbsp;<?=$adminbox["commands"]?>&nbsp;</td>
     <td bgcolor="<?=$borderIn?>" width="1" height="18"><?=$pixelImage?></td>
   </tr>
 <?
