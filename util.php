@@ -1267,4 +1267,12 @@ function printChildren($albumName,$depth=0) {
 	}
 }
 
+function mostRecentComment($album, $i)
+{
+        $id=$album->getPhotoId($i); 
+        $index = $album->getPhotoIndex($id); 
+        $recentcomment = $album->getComment($index, $album->numComments($i));
+        return $recentcomment->getDatePosted();
+}
+
 ?>

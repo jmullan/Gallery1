@@ -235,17 +235,18 @@ if ($urls) {
 while (sizeof($userfile)) {
 	$name = array_shift($userfile_name);
 	$file = array_shift($userfile);
+	$caption = removeTags(array_shift($usercaption));
 
 	$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);
 	$tag = strtolower($tag);
 
 	if ($name) {
-		process($file, $tag, $name, $setCaption);
+		process($file, $tag, $name, $caption, $setCaption);
 	}
 }
 
 
-function process($file, $tag, $name, $setCaption="") {
+function process($file, $tag, $name, $caption, $setCaption="") {
 	global $gallery;
 	global $temp_files;
 
@@ -275,7 +276,7 @@ function process($file, $tag, $name, $setCaption="") {
 					     fs_import_filename($cmd_pic_path, 1) .
 					     "\" -d " .
 					     fs_import_filename($gallery->app->tmpDir, 1));
-				process($gallery->app->tmpDir . "/$pic", $tag, $pic, $setCaption);
+				process($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption);
 				fs_unlink($gallery->app->tmpDir . "/$pic");
 			}
 		}
@@ -321,11 +322,9 @@ function process($file, $tag, $name, $setCaption="") {
 			}
 		    
 			msg("- Adding $name");
-			if ($setCaption) {
+			if ($setCaption and $caption == "") {
 				$caption = $originalFilename;
-			} else {
-				$caption = "";
-			}	
+			}
 	
 			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption);
 			if (!$err) {

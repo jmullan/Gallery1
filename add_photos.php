@@ -93,11 +93,16 @@ Click the <b>Browse</b> button to locate a photo to upload.
 				"method" => "POST")); ?>
 2. Use the Browse button to find the photos on your computer
 <input type="hidden" name="max_file_size" value="10000000">
+<table>
 <?php for ($i = 0; $i < $boxes;  $i++) { ?>
-<br> <input name="userfile[]" type="file" size=40>
+<tr><td>
+File</td>
+<td><input name="userfile[]" type="file" size=40></td></tr>
+<td>Caption</td><td> <input name="usercaption[]" type="text" size=40></td></tr>
+<tr><td></td></tr> 
 <?php } ?>
-<br>
-<input type=checkbox name=setCaption checked value="1">Set photo captions with original filenames.
+</table>
+<input type=checkbox name=setCaption checked value="1">Use filename as caption if no caption is specified.
 <br>
 <center>
 <input type="button" value="Upload Now" onClick='opener.showProgress(); document.upload_form.submit()'>
