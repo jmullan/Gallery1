@@ -265,7 +265,7 @@ function showChoice($label, $target, $args) {
     if (empty($args['set_albumName'])) {
 	$args['set_albumName'] = $gallery->session->albumName;
     }
-	echo "<option value='" . makeGalleryUrl($target, $args) . "'>$label</option>";
+	echo "<option value='" . htmlspecialchars(makeGalleryUrl($target, $args)) . "'>$label</option>";
 }
 
 $adminText = "<span class=\"admin\">";
