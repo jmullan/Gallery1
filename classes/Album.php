@@ -1967,7 +1967,7 @@ class Album {
 		}
 
 		$fullName=$user->getFullname();	
-		if (empty($fullName) {
+		if (empty($fullName)) {
 			return ' - '. $user->getUsername();
 		} else {
 			return ' - '. $user->getFullname() .' ('. $user->getUsername() .')';
