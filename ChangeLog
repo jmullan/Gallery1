@@ -1,3 +1,14 @@
+2004-06-27  Jens Tkotz <jens@peino.de> 1.4.4-cvs-b223
+
+	* Fix: Mambo (Form) Photo-Upload was broken, because we loaded the popup without be called
+	       through Mambo. So Mambo-Information were lost.
+	       Infos are now stored in session when calling makeGalleryUrl with option popup.
+	       Those infos are erased when Gallery is loaded "normal" the next time.
+
+	* Fix: Gallery didnt recognized logout from Mambo.
+
+	* New: Add Text in configwizard to remind user to switch off Debug Mode
+
 2004-06-26  Andrew Lindeman <joyoflinux@yahoo.com> 1.4.4-cvs-b222
 
 	* Change: Don't have gallery_mail() print out the email even when

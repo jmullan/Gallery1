@@ -388,6 +388,23 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			global $mosConfig_dbprefix;
 			global $my;
 
+			/* Session infos about Mambo are available when we open a Popup from Mambo, 
+			** but content isnt parsed through Mambo
+			*/
+			if (isset($gallery->session->mambo)) {
+				$mosConfig_host		= $gallery->session->mambo->mosConfig_host;
+				$mosConfig_user		= $gallery->session->mambo->mosConfig_user;
+				$mosConfig_password	= $gallery->session->mambo->mosConfig_password;
+				$mosConfig_db		= $gallery->session->mambo->mosConfig_db;
+				$mosConfig_dbprefix	= $gallery->session->mambo->mosConfig_dbprefix;
+				$MOS_GALLERY_PARAMS	= $gallery->session->mambo->MOS_GALLERY_PARAMS;
+			}
+
+			if(empty($mosConfig_db)) {
+				echo _("Gallery seems to be inside Mambo, but we couldnt get necessary infos.");
+				exit;
+			}
+
 			$gallery->database{'mambo'} = new MySQL_Database($mosConfig_host, $mosConfig_user, $mosConfig_password, $mosConfig_db);
 			$gallery->database{'user_prefix'} = $mosConfig_dbprefix;
 			$gallery->database{'fields'} =
@@ -398,11 +415,25 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			       'gid'   => 'gid');
 
 			$gallery->userDB = new Mambo_UserDB;
+
+			/* Check if user is logged in, else explicit log him/her out */
 			if (isset($my->username) && !empty($my->username)) {
 				$gallery->session->username = $my->username;
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
+				
+				/* We were loaded correctly through Mambo, so we dont need/want "old" session infos */
+				if (isset($gallery->session->mambo)) {
+					unset ($gallery->session->mambo);
+				}
+			} elseif (isset($gallery->session->username) && !isset($my)) {
+				/* This happens, when we are in a Popup */
+				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
+			} else {
+				/* logout */
+				unset($gallery->session->username);
+				unset($gallery->session->language);
 			}
-
+	
 			/* For proper Mambo breadcrumb functionality, we need
 			 * to know the Item ID of the Gallery component's menu
 			 * item. +2 DB calls. <sigh> */

@@ -1338,16 +1338,25 @@ function correctPseudoUsers(&$array, $ownerUid) {
  *        (eg, array("index" => 1, "set_albumName" => "foo"))
  */
 function makeGalleryUrl($target, $args=array()) {
+
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $GALLERY_MODULENAME;
-	global $MOS_GALLERY_PARAMS;
+
 
 	/* Needed for phpBB2 */
 	global $userdata;
 	global $board_config;
 	global $HTTP_COOKIE_VARS;
+
+	/*needed for Mambo */
+	global $MOS_GALLERY_PARAMS;
+	global $mosConfig_host;
+	global $mosConfig_user;
+	global $mosConfig_password;
+	global $mosConfig_db;
+	global $mosConfig_dbprefix;
 
 	if( isset($GALLERY_EMBEDDED_INSIDE)) {
                 switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
@@ -1382,8 +1391,21 @@ function makeGalleryUrl($target, $args=array()) {
 				$args['Itemid'] = $MOS_GALLERY_PARAMS['itemid'];
 				$args['include'] = $target;
 
+				/* We cant/wantTo load the complete Mambo Environment into the pop up
+				** E.g. the Upload Framwork does not work then
+				** So we need to put necessary infos of Mambo into session.
+				*/
 				if (isset($args['type']) && $args['type'] == 'popup') {
-					$target = $gallery->app->photoAlbumURL . "/" . $target;
+					$target= $gallery->app->photoAlbumURL . "/index.php";
+
+					if(!isset($gallery->session->mambo)) {
+						$gallery->session->mambo->mosConfig_host=$mosConfig_host;
+		                	        $gallery->session->mambo->mosConfig_user=$mosConfig_user;
+	        	        	        $gallery->session->mambo->mosConfig_password=$mosConfig_password;
+	                		        $gallery->session->mambo->mosConfig_db=$mosConfig_db;
+	                		        $gallery->session->mambo->mosConfig_dbprefix=$mosConfig_dbprefix;
+		                	        $gallery->session->mambo->MOS_GALLERY_PARAMS = $MOS_GALLERY_PARAMS;
+					}
 				} else {
 					$target = 'index.php';
 				}
