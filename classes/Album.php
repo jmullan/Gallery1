@@ -1057,6 +1057,8 @@ class Album {
 	}
 
 	function getClicksDate() {
+		global $gallery;
+
                 $time = $this->fields["clicks_date"];
 
                 // albums may not have this field.
