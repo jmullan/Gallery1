@@ -171,7 +171,7 @@ if ($gallery->album->fields["textcolor"]) {
 
   function hideProgressAndReload() {
 	hideProgress();
-	window.location.reload();
+	history.go(0);
   }
 
   function imageEditChoice(selected_select) {
