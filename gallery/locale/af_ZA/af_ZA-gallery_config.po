@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-22 11:47+0100\n"
+"POT-Creation-Date: 2003-12-03 16:21+0100\n"
 "PO-Revision-Date: 2003-09-18 00:39+0100\n"
 "Last-Translator: Gerrit Hoekstra <gerrit_hoekstra@hotmail.com>\n"
 "Language-Team: Afrikaans <gerrit_hoekstra@hotmail.com>\n"
@@ -128,7 +128,7 @@ msgstr "Dit is die Gallery Sisteem Kontrole blad."
 msgid "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably."
 msgstr "Hierdie blad sal jou installasie valideer om seker te maak dat jy alle nodige komponente en permissies op die bediener het en dat alles korrek gekonfigureer is."
 
-#: ../setup/check.inc:15 ../setup/diagnostics.php:23
+#: ../setup/check.inc:15 ../setup/diagnostics.php:15
 msgid "Gallery Diagnostics Page"
 msgstr "<u>Gallery</u> Diagnostiese blad"
 
@@ -154,8 +154,8 @@ msgstr "Sukses"
 msgid "Serious Warning"
 msgstr "Belangrike Waarskuwing"
 
-#: ../setup/check.inc:64 ../setup/check.inc:97 ../setup/config_data.inc:799
-#: ../setup/config_data.inc:805
+#: ../setup/check.inc:64 ../setup/check.inc:99 ../setup/config_data.inc:805
+#: ../setup/config_data.inc:811
 msgid "Warning"
 msgstr "Waarskuwing"
 
@@ -163,28 +163,28 @@ msgstr "Waarskuwing"
 msgid "Failed!"
 msgstr "Misluk!"
 
-#: ../setup/check.inc:129
+#: ../setup/check.inc:131
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr "Daar is foute in jou Konfigurasie wat sal veroorsaak dat <u>Gallery</u> nie korrek sal werk nie."
 
-#: ../setup/check.inc:131
+#: ../setup/check.inc:133
 msgid "You must fix them before you can continue."
 msgstr "Jy moet dit regmaak voordat jy verder kan gaan."
 
-#: ../setup/check.inc:136
+#: ../setup/check.inc:138
 msgid "Your installation has <b>serious warnings</b>!<br>Continue at your own risk..."
 msgstr "Jou installasie het <b>Ernstige Waarskuwings</b>!<br>Gaan verder op jou eie risiko..."
 
-#: ../setup/check.inc:139
+#: ../setup/check.inc:141
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr "Jou installasie het waarskuwings opgelewer, maar hulle is in die algemeen geen probleem nie. Gaan maar gerus verder!"
 
-#: ../setup/check.inc:143
+#: ../setup/check.inc:145
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "Jou installasie het met 'n onderskyding geslaag! Gaan dadelik verder!"
 
-#: ../setup/check.inc:146 ../setup/constants.inc:17 ../setup/constants.inc:119
-#: ../setup/defaults.inc:19 ../setup/defaults.inc:95
+#: ../setup/check.inc:148 ../setup/constants.inc:17 ../setup/constants.inc:119
+#: ../setup/defaults.inc:18 ../setup/defaults.inc:94
 msgid "Next Page"
 msgstr "Volgende blad"
 
@@ -316,64 +316,64 @@ msgstr "kan versie nie in Windows vasstel nie"
 msgid "OK!  Version: %s"
 msgstr "OK! Versie: %s"
 
-#: ../setup/check_mail.php:12 ../setup/check_versions.php:10
-#: ../setup/session_test.php:17
-msgid "You cannot access this file while gallery is in secure mode."
-msgstr "Jy het nie tot hierdie lêr toegang terwyl <i>Gallery</i> in sekure modus is nie."
-
-#: ../setup/check_mail.php:25 ../setup/check_mail.php:30
+#: ../setup/check_mail.php:17 ../setup/check_mail.php:22
 msgid "Check Mail"
 msgstr "Toets e-pos"
 
-#: ../setup/check_mail.php:37
+#: ../setup/check_mail.php:26 ../setup/check_versions.php:10
+#: ../setup/diagnostics.php:24 ../setup/session_test.php:45
+msgid "You cannot access this file while gallery is in secure mode."
+msgstr "Jy het nie tot hierdie lêr toegang terwyl <i>Gallery</i> in sekure modus is nie."
+
+#: ../setup/check_mail.php:38
 #, php-format
 msgid "Test email from %s"
 msgstr "Toets e-pos van %s"
 
-#: ../setup/check_mail.php:38
+#: ../setup/check_mail.php:39
 msgid "This email was automatically generated."
 msgstr "Hierdie e-pos is outomaties gegenereer."
 
-#: ../setup/check_mail.php:39
+#: ../setup/check_mail.php:40
 msgid "If you recevied this in error, then please disregard, as you should not receive any similar emails."
 msgstr "As jy hierdie e-pos as gevolg van 'n fout ontvang het, ignoreer dit asseblief. Jy behoort nie verdere sulke e-posse te ontvang nie."
 
-#: ../setup/check_mail.php:40
+#: ../setup/check_mail.php:41
 #, php-format
 msgid "If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."
 msgstr "As jy 'n e-pos van die %s installasie verwag het, veels geluk! E-pos werk en jy kan die %s e-pos funksies ontsper."
 
-#: ../setup/check_mail.php:44
+#: ../setup/check_mail.php:45
 msgid "SUCCESS!"
 msgstr "SUKSES!"
 
-#: ../setup/check_mail.php:45
+#: ../setup/check_mail.php:46
 #, php-format
 msgid "Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
 msgstr "Toets e-pos is na <b>%s</b> gestuur, en behoort binnekort te te arriveer. As jy dit nie ontvang nie, maak seker dat die e-pos adres wat jy ingevoer het korrek is. As jy e-pos nie kan ontvang nie, dan moet dit vir hierdie bediener gesper word, en %s e-pos funksies kan nie gebruik word totdat dit reggemaak is nie."
 
-#: ../setup/check_mail.php:47
+#: ../setup/check_mail.php:48
 msgid "You must use a valid email address"
 msgstr "Jy moet 'n korrekte e-pos adres gebruik"
 
-#: ../setup/check_mail.php:48
+#: ../setup/check_mail.php:49
 msgid "Try again?"
 msgstr "Probeer weer?"
 
-#: ../setup/check_mail.php:54
+#: ../setup/check_mail.php:55
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "Hiermee kan jy toets of e-pos korrek op jou sisteem werk. Gee jou e-pos adress hieronder aan, en 'n e-pos sal aan jou gestuur word. As jy dit ontvang, dan sal jy weet dat e-pos op jou sisteem werk."
 
-#: ../setup/check_mail.php:57 ../setup/check_mail.php:61
+#: ../setup/check_mail.php:58 ../setup/check_mail.php:62
 #, php-format
 msgid "Error! %s not set."
 msgstr "Fout! %s is nie gestel nie"
 
-#: ../setup/check_mail.php:79
+#: ../setup/check_mail.php:80
 msgid "Your email address:"
 msgstr "Jou e-pos adress:"
 
-#: ../setup/check_mail.php:81
+#: ../setup/check_mail.php:82
 msgid "Send Email"
 msgstr "Stuur E-pos"
 
@@ -381,7 +381,7 @@ msgstr "Stuur E-pos"
 msgid "Gallery NetPBM Check"
 msgstr "Gallery NetPRM Toets"
 
-#: ../setup/check_netpbm.php:131 ../setup/check_versions.php:95
+#: ../setup/check_netpbm.php:131 ../setup/check_versions.php:41
 #, php-format
 msgid "%sClick here%s to hide the details"
 msgstr "%sKliek hier%s om die details te verberg"
@@ -391,83 +391,26 @@ msgstr "%sKliek hier%s om die details te verberg"
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "As jy foute sien, kan jy %shier kliek%s om meer details te sien"
 
-#: ../setup/check_versions.php:28
-msgid "File missing or unreadable.  Please install then re-run this test."
-msgstr "Lêr ontbreek of is onleesbaar. Installer asseblief weer en laat hierdie toets weer loop."
-
-#: ../setup/check_versions.php:32
-#, php-format
-msgid "Please ensure that %s is the latest version."
-msgstr "Maak asseblief seker dat %s die laatste versie is."
-
-#: ../setup/check_versions.php:36
-#, php-format
-msgid "Testing status of %d files."
-msgstr "Toets status van %d lêërs."
-
-#: ../setup/check_versions.php:42
-#, php-format
-msgid "Cannot read file %s."
-msgstr "Kan nie lêr %s lees nie."
-
-#: ../setup/check_versions.php:44
-msgid "File missing or unreadable."
-msgstr "Lêr ontbreek of is onleesbaar."
-
-#: ../setup/check_versions.php:49
-#, php-format
-msgid "Version information not found in %s.  File must be old version or corrupted."
-msgstr "Kan nie versie informasie in %s vind nie. Lêr moet 'n ou versie wees of gekorrupteer wees."
-
-#: ../setup/check_versions.php:51
-msgid "Missing version"
-msgstr "Ontbrekende versie"
-
-#: ../setup/check_versions.php:56
-#, php-format
-msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-msgstr "Probleem met %s. Het versie %s (of hoër) verwag, maar het versie %s gevind."
-
-#: ../setup/check_versions.php:58
-#, php-format
-msgid "Expected version %s (or greater) but found %s."
-msgstr "Het versie %s (of hoër) verwag, maar het versie %s gevind."
-
-#: ../setup/check_versions.php:62
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-msgstr "%s OK. Huidige versie (%s) is meer onlangs as die verwagte versie (%s)"
-
-#: ../setup/check_versions.php:64
-#, php-format
-msgid "%s is a more recent version than expected.  Expected version %s but found %s."
-msgstr "%s is 'n meer onlnagse versie as wat verwag was. Het versie %s verwag maar het versie %s gevind."
-
-#: ../setup/check_versions.php:68
-#, php-format
-msgid "%s OK"
-msgstr "%s OK"
-
-#: ../setup/check_versions.php:86 ../setup/check_versions.php:91
+#: ../setup/check_versions.php:29 ../setup/check_versions.php:34
 msgid "Check Versions"
 msgstr "Kontrolleer versies"
 
-#: ../setup/check_versions.php:98
+#: ../setup/check_versions.php:44
 #, php-format
 msgid "%sClick here%s to see more details"
 msgstr "%sKliek hier%s om meer besonderhede te sien"
 
-#: ../setup/check_versions.php:110
+#: ../setup/check_versions.php:53
 #, php-format
 msgid "The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version."
 msgstr "Die volgende lêërs ontbreek of is nie die korrekte versie vir hierdie versie van %s. Verplaas hulle asseblief met die korrekte versie."
 
-#: ../setup/check_versions.php:120
-#, php-format
-msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is expected."
+#: ../setup/check_versions.php:63
+#, fuzzy, php-format
+msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
 msgstr "Die volgende lêërs is meer op datum as wat vir hierdie versie van %s verwag is. As jy <i>pre-release</i> kode gebruik, is dit te verwagte."
 
-#: ../setup/check_versions.php:128
+#: ../setup/check_versions.php:71
 #, php-format
 msgid "%d files up-to-date."
 msgstr "%d lêërs is op datum."
@@ -613,1058 +556,1067 @@ msgstr "Kyk watter tale beskikbaar is."
 msgid "Testing to see which locales (if any) are absent."
 msgstr "Toets om te sien watter lokaliteitsinstellings (indien enige) ontbreek."
 
-#: ../setup/config_data.inc:162
+#: ../setup/config_data.inc:152
+#, fuzzy
+msgid "Checking to see if you have the latest versions of all gallery files."
+msgstr "Hiermee kan jy toets of jy die korrekte versie van al jou %s lêërs het."
+
+#: ../setup/config_data.inc:168
 msgid "Gallery Title"
 msgstr "Galery Titel"
 
-#: ../setup/config_data.inc:163
+#: ../setup/config_data.inc:169
 msgid "The name of your gallery.  E.g. <i>My Cool Photos</i>"
 msgstr "Die naam van jou galery, bv. <i>My Oulike Prentjies</i>"
 
-#: ../setup/config_data.inc:164
+#: ../setup/config_data.inc:170
 msgid "Gallery"
 msgstr "Galery"
 
-#: ../setup/config_data.inc:172
+#: ../setup/config_data.inc:178
 msgid "Locations and URLs"
 msgstr "Vindplekke en URL's"
 
-#: ../setup/config_data.inc:175
+#: ../setup/config_data.inc:181
 msgid "Album directory"
 msgstr "Album lêrgids"
 
-#: ../setup/config_data.inc:176
+#: ../setup/config_data.inc:182
 #, php-format
 msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."
 msgstr "Die volle pad op die fisise hardeskyf na die lêrgids waar jou fotos gestoor sal word. Hierdie lêrgids behoort leeg te wees en Gallery sal dit opvul. Let op dat hierdie lêrgids skryf-toegang vir dir webbediener gebruiker benodig (in hierdie geval is dit %s)."
 
-#: ../setup/config_data.inc:185
+#: ../setup/config_data.inc:191
 msgid "Temporary directory"
 msgstr "Lêrgids vir tydelike lêërs"
 
-#: ../setup/config_data.inc:186
+#: ../setup/config_data.inc:192
 msgid "REQUIRED"
 msgstr "BENODIG"
 
-#: ../setup/config_data.inc:187
+#: ../setup/config_data.inc:193
 #, php-format
 msgid "The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."
 msgstr "Die lêrsisteem pad na 'n tydelike lêrgids, bv. %s of %s. Let op dat as <b>open_basedir</b> gekonfigureer is, dan moet die tydelike lêrgids binne die <b>open_basedir</b> pad wees. In daardie geval mag dit dalk nodig wees om die lêrgids self te kreëer en seker te maak dat dit skryftoegang het."
 
-#: ../setup/config_data.inc:197
+#: ../setup/config_data.inc:203
 #, php-format
 msgid "The full URL to the Gallery web application.  E.g. %s"
 msgstr "Die URL vir die <u>Gallery</u> web toepassing, bv. %s"
 
-#: ../setup/config_data.inc:206 ../setup/config_data.inc:616
-#: ../setup/config_data.inc:625
+#: ../setup/config_data.inc:212 ../setup/config_data.inc:622
+#: ../setup/config_data.inc:631
 msgid "Albums"
 msgstr "Albums"
 
-#: ../setup/config_data.inc:207
+#: ../setup/config_data.inc:213
 #, php-format
 msgid "The full URL to your album directory (specified above) on your web server.  E.g. %s"
 msgstr "Die volle URL na jou album lêrgids (bo aangedui) op jou webbediener, bv. %s"
 
-#: ../setup/config_data.inc:216
+#: ../setup/config_data.inc:222
 msgid "Thumbnail image"
 msgstr "Voorbeeldfoto"
 
-#: ../setup/config_data.inc:217
+#: ../setup/config_data.inc:223
 #, php-format
 msgid "The filesystem path to the thumbnail image to show for movies. E.g. %s"
 msgstr "The lêrsisteem pad na die voorbeeldfoto vir flieks/videos, bv. %s"
 
-#: ../setup/config_data.inc:223
+#: ../setup/config_data.inc:229
 msgid "Mirror sites"
 msgstr "Spieël webwerve"
 
-#: ../setup/config_data.inc:224
+#: ../setup/config_data.inc:230
 #, php-format
 msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  E.g. %s"
 msgstr "'n Lys URL's wat spieël webwerf-adresse van jou albums bevat. Dui een URL per lyn aan, en skik hulle met die beste ene bo, bv. %s"
 
-#: ../setup/config_data.inc:235
+#: ../setup/config_data.inc:241
 msgid "Toolkits / image processing"
 msgstr "Gereedskaps-programme / Beeld verwerking"
 
-#: ../setup/config_data.inc:238
+#: ../setup/config_data.inc:244
 msgid "Graphics suite to use"
 msgstr "Watter grafiese program wil jy gebruik?"
 
-#: ../setup/config_data.inc:239
+#: ../setup/config_data.inc:245
 msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
 msgstr "Hierdie instelling sê vir <u>Gallery</u> watter grafise programme jy verkies. As <u>Gallery</u> sê dat albei programme in orde is (op die eerste blad) dan is dit 'n gebruikers keuse. Anders gebruik jy die ene wat <u>Gallery</u> sonder foute kon vind."
 
-#: ../setup/config_data.inc:245
+#: ../setup/config_data.inc:251
 msgid "Path to NetPBM"
 msgstr "Pad na NetPBM"
 
-#: ../setup/config_data.inc:246
+#: ../setup/config_data.inc:252
 #, php-format
 msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
 msgstr "Die pad na die lêrgids wat NetPBM bevat op jou systeem. As jy NetPBM vanaf die <u>Gallery</u> aflaai blad afgelaai het, onthou om die lêërs uitvoerbaar te maak, bv. %s of %s of %s"
 
-#: ../setup/config_data.inc:252
+#: ../setup/config_data.inc:258
 msgid "I can't find NetPBM at the location you provided."
 msgstr "Kan NetPBM nie op die aangegewe vindplek vind nie."
 
-#: ../setup/config_data.inc:262
+#: ../setup/config_data.inc:268
 msgid "PNM to JPEG converter"
 msgstr "PNM na JPEG konverteerder"
 
-#: ../setup/config_data.inc:263
+#: ../setup/config_data.inc:269
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "Die waarde is net van belang as jy NetPBM gebruik. NetPBM gebruik 'n progammetjie om die integrale beeld na JPEG te inkodeer. Hierdie programmetjie heet óf <u>ppmtojpeg</u> óf <u>pnmtojpeg</u>, afhangende van die versie van NetPBM wat jy geïnstalleer het. Kyk in jou NetPBM lêrgids watter ene om hier aan te gee. As jy nie seker is nie, raai maar en dan sal ons dit probeer bevestig."
 
-#: ../setup/config_data.inc:269
+#: ../setup/config_data.inc:275
 msgid "Path to ImageMagick"
 msgstr "Pad na ImageMagick"
 
-#: ../setup/config_data.inc:270
+#: ../setup/config_data.inc:276
 msgid "The path to the directory containing ImageMagick on your system."
 msgstr "Die pad op jou sisteem na die lêrgids wat ImageMagick bevat."
 
-#: ../setup/config_data.inc:273
+#: ../setup/config_data.inc:279
 msgid "I can't find ImageMagick at the location you provided."
 msgstr "Ek kan ImageMagick nie op die aangegewe vindplek vind nie."
 
-#: ../setup/config_data.inc:282
+#: ../setup/config_data.inc:288
 msgid "Auto-rotate images"
 msgstr "Outo-roteer beelde"
 
-#: ../setup/config_data.inc:283
+#: ../setup/config_data.inc:289
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.  Requires Jhead EXIF parser v.1.9 or greater (see below)."
 msgstr "As jy hierdie opsie kies, sal <u>Gallery</u> outomaties probeer om beelde te roteer, gebaseer op die orienterings information wat deur sommige digitale kamera in die JPEG EXIF data gestoor word. Benodig JHead EXIF parseerder V.1.9 of hoër (sien hieronder)."
 
-#: ../setup/config_data.inc:284 ../setup/config_data.inc:303
-#: ../setup/config_data.inc:316 ../setup/config_data.inc:329
-#: ../setup/config_data.inc:388 ../setup/config_data.inc:441
-#: ../setup/config_data.inc:486 ../setup/config_data.inc:540
-#: ../setup/config_data.inc:547 ../setup/config_data.inc:553
-#: ../setup/config_data.inc:602 ../setup/config_data.inc:634
-#: ../setup/config_data.inc:640 ../setup/config_data.inc:642
-#: ../setup/config_data.inc:663 ../setup/config_data.inc:669
-#: ../setup/config_data.inc:813 ../setup/config_data.inc:819
-#: ../setup/config_data.inc:826 ../setup/config_data.inc:832
-#: ../setup/config_data.inc:878 ../setup/config_data.inc:887
-#: ../setup/config_data.inc:901 ../setup/config_data.inc:911
-#: ../setup/config_data.inc:917 ../setup/config_data.inc:923
-#: ../setup/config_data.inc:990 ../setup/config_data.inc:997
-#: ../setup/config_data.inc:1046 ../setup/config_data.inc:1048
-#: ../setup/config_data.inc:1055
+#: ../setup/config_data.inc:290 ../setup/config_data.inc:309
+#: ../setup/config_data.inc:322 ../setup/config_data.inc:335
+#: ../setup/config_data.inc:394 ../setup/config_data.inc:447
+#: ../setup/config_data.inc:492 ../setup/config_data.inc:546
+#: ../setup/config_data.inc:553 ../setup/config_data.inc:559
+#: ../setup/config_data.inc:608 ../setup/config_data.inc:640
+#: ../setup/config_data.inc:646 ../setup/config_data.inc:648
+#: ../setup/config_data.inc:669 ../setup/config_data.inc:675
+#: ../setup/config_data.inc:819 ../setup/config_data.inc:825
+#: ../setup/config_data.inc:832 ../setup/config_data.inc:838
+#: ../setup/config_data.inc:884 ../setup/config_data.inc:893
+#: ../setup/config_data.inc:907 ../setup/config_data.inc:917
+#: ../setup/config_data.inc:923 ../setup/config_data.inc:929
+#: ../setup/config_data.inc:998 ../setup/config_data.inc:1005
+#: ../setup/config_data.inc:1054 ../setup/config_data.inc:1056
+#: ../setup/config_data.inc:1063
 msgid "yes"
 msgstr "Ja"
 
-#: ../setup/config_data.inc:284 ../setup/config_data.inc:303
-#: ../setup/config_data.inc:316 ../setup/config_data.inc:329
-#: ../setup/config_data.inc:388 ../setup/config_data.inc:441
-#: ../setup/config_data.inc:485 ../setup/config_data.inc:486
-#: ../setup/config_data.inc:540 ../setup/config_data.inc:547
-#: ../setup/config_data.inc:553 ../setup/config_data.inc:600
-#: ../setup/config_data.inc:602 ../setup/config_data.inc:634
-#: ../setup/config_data.inc:642 ../setup/config_data.inc:663
-#: ../setup/config_data.inc:669 ../setup/config_data.inc:813
-#: ../setup/config_data.inc:819 ../setup/config_data.inc:826
-#: ../setup/config_data.inc:832 ../setup/config_data.inc:878
-#: ../setup/config_data.inc:887 ../setup/config_data.inc:901
-#: ../setup/config_data.inc:911 ../setup/config_data.inc:917
-#: ../setup/config_data.inc:923 ../setup/config_data.inc:988
-#: ../setup/config_data.inc:990 ../setup/config_data.inc:1048
-#: ../setup/config_data.inc:1053 ../setup/config_data.inc:1055
+#: ../setup/config_data.inc:290 ../setup/config_data.inc:309
+#: ../setup/config_data.inc:322 ../setup/config_data.inc:335
+#: ../setup/config_data.inc:394 ../setup/config_data.inc:447
+#: ../setup/config_data.inc:491 ../setup/config_data.inc:492
+#: ../setup/config_data.inc:546 ../setup/config_data.inc:553
+#: ../setup/config_data.inc:559 ../setup/config_data.inc:606
+#: ../setup/config_data.inc:608 ../setup/config_data.inc:640
+#: ../setup/config_data.inc:648 ../setup/config_data.inc:669
+#: ../setup/config_data.inc:675 ../setup/config_data.inc:819
+#: ../setup/config_data.inc:825 ../setup/config_data.inc:832
+#: ../setup/config_data.inc:838 ../setup/config_data.inc:884
+#: ../setup/config_data.inc:893 ../setup/config_data.inc:907
+#: ../setup/config_data.inc:917 ../setup/config_data.inc:923
+#: ../setup/config_data.inc:929 ../setup/config_data.inc:996
+#: ../setup/config_data.inc:998 ../setup/config_data.inc:1056
+#: ../setup/config_data.inc:1061 ../setup/config_data.inc:1063
 msgid "no"
 msgstr "Nee"
 
-#: ../setup/config_data.inc:289 ../setup/config_data.inc:386
-#: ../setup/config_data.inc:446 ../setup/config_data.inc:457
+#: ../setup/config_data.inc:295 ../setup/config_data.inc:392
+#: ../setup/config_data.inc:452 ../setup/config_data.inc:463
 #: ../setup/functions.inc:800 ../setup/functions.inc:873
 msgid "Advanced"
 msgstr "Gevorderd"
 
-#: ../setup/config_data.inc:289
+#: ../setup/config_data.inc:295
 msgid "JPEG Quality"
 msgstr "JPEG kwaliteit"
 
-#: ../setup/config_data.inc:290
+#: ../setup/config_data.inc:296
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
 msgstr "Die JPEG lêr formaat weeg grootte teenoor kwaliteit op.  <u>Gallery</u> beheer die kwalitet van die JPEGS wat produseer word wanneer jy beelde verskaal, roteer of duimnaelsketse van JPEG beelde maak. Hoër kwaliteit beelde het 'n groter lêr grootte as laer kwaliteit beelde. Daar is punt waar dit nie effektief is om die kwaliteit verder te probeer verbeter nie. Dus word jy aangeraai om nie hierdie waarde op 100 te stel nie. Let op dat as jy die waarde nou verander, sal dit net beelde affekteer wat toekomstig verander word."
 
-#: ../setup/config_data.inc:298
+#: ../setup/config_data.inc:304
 msgid "Main Gallery page"
 msgstr "Gallery Hulp blad"
 
-#: ../setup/config_data.inc:301
+#: ../setup/config_data.inc:307
 msgid "Show the album tree"
 msgstr "Toon die album boom"
 
-#: ../setup/config_data.inc:302
+#: ../setup/config_data.inc:308
 msgid "If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page)."
 msgstr "As jy hierdie opsie aanskakel, sal jy 'n komplete lys van sub-albums sien wanneer jy in die top-vlak van jou galery is. Dit sal die navigeer na ander albums vergemaklik (maak kan onnetjies op jou andersins puik voorblad lyk)"
 
-#: ../setup/config_data.inc:307
+#: ../setup/config_data.inc:313
 msgid "Highlight size"
 msgstr "Grootte-formaat van voorbeeldfoto"
 
-#: ../setup/config_data.inc:308
+#: ../setup/config_data.inc:314
 msgid "The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."
 msgstr "Grootte (in pixels) van voorbeeldbeelde op die <u>Gallery</u> blad"
 
-#: ../setup/config_data.inc:314
+#: ../setup/config_data.inc:320
 msgid "Show Owner"
 msgstr "Toon eienaar"
 
-#: ../setup/config_data.inc:315
+#: ../setup/config_data.inc:321
 msgid "Show album owner's name next to each album?"
 msgstr "Toon album eienaar se naam langs elke album aan?"
 
-#: ../setup/config_data.inc:320
+#: ../setup/config_data.inc:326
 msgid "Albums per page"
 msgstr "Albums per blad"
 
-#: ../setup/config_data.inc:321
+#: ../setup/config_data.inc:327
 msgid "How many albums should be displayed per Gallery page?"
 msgstr "Hoeveel albums wil jy op elke <u>Gallery</u> blad aantoon?"
 
-#: ../setup/config_data.inc:327
+#: ../setup/config_data.inc:333
 msgid "Search Engine"
 msgstr "Soek-engin"
 
-#: ../setup/config_data.inc:328
+#: ../setup/config_data.inc:334
 msgid "Display search engine on main Gallery page?"
 msgstr "Toon soek-engin op hoof <u>Gallery</u> blad?"
 
-#: ../setup/config_data.inc:333
+#: ../setup/config_data.inc:339
 msgid "Skin Name"
 msgstr "Vel naam"
 
-#: ../setup/config_data.inc:334
+#: ../setup/config_data.inc:340
 msgid "Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4."
 msgstr "Kies 'n vel om in <u>Gallery</u> te gebruik. Jy het 'n wye keuse tot jou beskikking en jy kan eers 'n bietjie eksperimenteer. Kies ene om op elke blad in jou galery toe te pas:"
 
-#: ../setup/config_data.inc:340
+#: ../setup/config_data.inc:346
 msgid "On the main page, the image representing each album has a frame arount it.  The following styles are available:"
 msgstr "Op die hoofblad het die beeld wat elke album representeer 'n raam om. Die volgende style is beskikbaar:"
 
-#: ../setup/config_data.inc:349
+#: ../setup/config_data.inc:355
 msgid "Optional tools"
 msgstr "Optionele programme"
 
-#: ../setup/config_data.inc:353
+#: ../setup/config_data.inc:359
 msgid "The filesystem path to the <b>zipinfo</b> binary.  This is optional so if you don't have it, don't worry about it too much."
 msgstr "Die lêrsisteem pad na die <b>zipinfo</b> program. Dit is optioneel, so as jy dit nie het nie is dit nie 'n problem nie:"
 
-#: ../setup/config_data.inc:364
+#: ../setup/config_data.inc:370
 msgid "The filesystem path to the <b>unzip</b> binary.  This is optional so if you don't have it, don't worry about it too much."
 msgstr "Die lêrsisteem pad na die <b>unzip</b> program. Dit is optioneel, so as jy dit nie het nie is dit nie 'n problem nie:"
 
-#: ../setup/config_data.inc:375
+#: ../setup/config_data.inc:381
 #, php-format
 msgid "The filesystem path to the <b>jhead</b> EXIF parser.  This is optional so if you don't have it, don't worry about it too much.  E.g. %s or %s"
 msgstr "Die lêrsisteem pad na die <b>jhead</b> EXIF parseerder, bv. %s of %s. Dit is optioneel, so as jy dit nie het nie is dit nie 'n problem nie:"
 
-#: ../setup/config_data.inc:386
+#: ../setup/config_data.inc:392
 msgid "Cache EXIF data"
 msgstr "Kasseer EXIF data"
 
-#: ../setup/config_data.inc:387
+#: ../setup/config_data.inc:393
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
 msgstr "Die EXIF data uit die JPEG foto's kan gekasseer word nadat dit vir die eerste keer geleesis. Die nadeel is dat dit moontlik is dat jou album data lêërs nogal groot kan word, wat die besigtiging van jou albums kan vertraag. Aan die ander kant, as jy nie die data kasseer nie, dan moet dit elke keer uit die foto herroep word as 'n gebruiker die tegniese eienskappe van 'n foto wil sien."
 
-#: ../setup/config_data.inc:393
+#: ../setup/config_data.inc:399
 #, php-format
 msgid "The filesystem path to the <b>jpegtran</b> utility.  This is optional so if you don't have it, don't worry about it too much.  E.g. %s or %s"
 msgstr "Die lêrsisteem pad na die <b>jpegtran</b> program, bv. %s of %s. Dit is optioneel, so as jy dit nie het nie is dit nie 'n problem nie:"
 
-#: ../setup/config_data.inc:406
+#: ../setup/config_data.inc:412
 msgid "Languages and locales"
 msgstr "Tale en Lokaliteitsinstellings"
 
-#: ../setup/config_data.inc:409
+#: ../setup/config_data.inc:415
 msgid "Default language"
 msgstr "Verstek taal"
 
-#: ../setup/config_data.inc:411
+#: ../setup/config_data.inc:417
 #, php-format
 msgid "This is the language you will see as %s, and what users will see if no other preference is set."
 msgstr "Dit is die taal wat jy sal sien wanneer %s, en wat gebruikers sal sien as geen ander opsies gestel is nie."
 
-#: ../setup/config_data.inc:418
+#: ../setup/config_data.inc:424
 msgid "Multi language mode"
 msgstr "Multi-taal modus"
 
-#: ../setup/config_data.inc:419
+#: ../setup/config_data.inc:425
 msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site."
 msgstr "<u>Gallery</u> het drie multi-taal modusse. Dit sal die taal bepaal wat gebruikers sal sien as hulle die webwerf besoek."
 
-#: ../setup/config_data.inc:422
+#: ../setup/config_data.inc:428
 msgid "Gallery is only displayed in one language"
 msgstr "<u>Gallery</u> word net in een taal vertoon"
 
-#: ../setup/config_data.inc:423
+#: ../setup/config_data.inc:429
 msgid "Gallery is displayed in the language the browser sends"
 msgstr "<u>Gallery</u> word in die taal vertoon wat die bruiser stuur"
 
-#: ../setup/config_data.inc:424
+#: ../setup/config_data.inc:430
 msgid "The User can choose the language via pulldown menu or flags."
 msgstr "Die gebruiker kan die taal m.b.v. 'n aftreklys of flaggie ikone kies"
 
-#: ../setup/config_data.inc:428
+#: ../setup/config_data.inc:434
 msgid "Available languages"
 msgstr "Beskikbare tale"
 
-#: ../setup/config_data.inc:431
+#: ../setup/config_data.inc:437
 msgid "These languages will be available as user choices in a pulldown menu or flags, if you have chosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."
 msgstr "Hierdie tale sal as gebruikerkeuses beskikbaar wees m.b.v. 'n aftreklys of flaggie ikone, as jy Taal Modus 3 gekies het, en sal aan geregistreerde gebruikers as verstektaal in Modus 2 of 3 beskikbaar wees."
 
-#: ../setup/config_data.inc:437
+#: ../setup/config_data.inc:443
 msgid "Show flags?"
 msgstr "Wys flaggie ikone?"
 
-#: ../setup/config_data.inc:439
+#: ../setup/config_data.inc:445
 msgid "In Mode 3 you can choose to display flags instead of a small pulldown menu for the available languages."
 msgstr "Jy kan in Modus 3 kies om vir dit beskikbare tale net flaggie ikone te wys in plaas van 'n aftreklys."
 
-#: ../setup/config_data.inc:446
+#: ../setup/config_data.inc:452
 msgid "Format for date strings."
 msgstr "Datum formaat"
 
-#: ../setup/config_data.inc:447 ../setup/config_data.inc:458
+#: ../setup/config_data.inc:453 ../setup/config_data.inc:464
 #, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
 msgstr "Hierdie formaat string sal gebruik word om %s in %s te vertoon. Dit word aanbeveel om %s te gebruik, wat die formaat sal verander afhangende van die taal keuse. Tog, as jy verkies om die string te verander, lees asseblief eers die %PHP dokumentasie%s."
 
-#: ../setup/config_data.inc:448
+#: ../setup/config_data.inc:454
 msgid "date without time"
 msgstr "datum sonder tyd"
 
-#: ../setup/config_data.inc:449 ../setup/config_data.inc:460
+#: ../setup/config_data.inc:455 ../setup/config_data.inc:466
 msgid "http://www.php.net/manual/en/function.strftime.php"
 msgstr ""
 
-#: ../setup/config_data.inc:451
+#: ../setup/config_data.inc:457
 #, php-format
 msgid "For example, %s will display date like this: %s."
 msgstr "By voorbeeld, %s sal die datum só vertoon: %s."
 
-#: ../setup/config_data.inc:457
+#: ../setup/config_data.inc:463
 msgid "Format for date/time strings."
 msgstr "Formaat vir datum/tyd."
 
-#: ../setup/config_data.inc:459
+#: ../setup/config_data.inc:465
 msgid "date with time"
 msgstr "datum met tyd"
 
-#: ../setup/config_data.inc:462
+#: ../setup/config_data.inc:468
 #, php-format
 msgid "For example, %s will display date and time like this: %s."
 msgstr "By voorbeeld, %s sal die datum en tyd só vertoon: %s."
 
-#: ../setup/config_data.inc:476
+#: ../setup/config_data.inc:482
 msgid "Email and Registration"
 msgstr "E-pos en registrasie"
 
-#: ../setup/config_data.inc:477
+#: ../setup/config_data.inc:483
 #, php-format
 msgid "If you are having problems with email, please run the %s diagnostic."
 msgstr "As jy probleme met e-pos het, laat asseblief die %s diagnostiese program loop."
 
-#: ../setup/config_data.inc:478 ../setup/diagnostics.php:84
+#: ../setup/config_data.inc:484 ../setup/diagnostics.php:84
 msgid "Check Email"
 msgstr "Kontrolleer E-pos"
 
-#: ../setup/config_data.inc:482
+#: ../setup/config_data.inc:488
 msgid "Enable email"
 msgstr "Ontsper e-pos"
 
-#: ../setup/config_data.inc:484
+#: ../setup/config_data.inc:490
 #, php-format
 msgid "Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."
 msgstr "Ontsper e-pos vir die hele <u>Gallery</u>. As jy dit na %s stel, sal die volgende instellings nie gebruik word nie."
 
-#: ../setup/config_data.inc:490
+#: ../setup/config_data.inc:496
 msgid "Admin email address"
 msgstr "Administrateur e-pos adres"
 
-#: ../setup/config_data.inc:491
+#: ../setup/config_data.inc:497
 msgid "Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know whom to reach in case of problems. You may specify more than one address by separating them with commas."
 msgstr "Stel die waarde na 'n geldige e-pos adres om e-pos kennisgewings oor sekere gebruikers-aksies te ontvang, en ook sodat gebruikers weet met wie in verbinding te tree in geval van probleme. Jy mag meer as een adres invoer en hulle met komma's skei."
 
-#: ../setup/config_data.inc:499
+#: ../setup/config_data.inc:505
 msgid "Sender email address"
 msgstr "Stuurder e-pos adres"
 
-#: ../setup/config_data.inc:500
+#: ../setup/config_data.inc:506
 msgid "Set this value to a valid working email address.  Emails that are automatically sent by Gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients."
 msgstr "Stel die waarde na 'n geldig e-pos adres. E-posse wat outomatise deur <u>Gallery</u> gestuur word sal dit as dit retoer adres agebruik. Jy behoort hierdie e-pos adres te monitor vir ge-'bounce'-de boodskappe en terugvoer van ontvangers."
 
-#: ../setup/config_data.inc:508
+#: ../setup/config_data.inc:514
 msgid "Email subject prefix"
 msgstr "E-pos onderwerp voorvoegsel"
 
-#: ../setup/config_data.inc:509
+#: ../setup/config_data.inc:515
 msgid "All gallery emails will have this as the first part of their subject."
 msgstr "Alle <u>Gallery</u> e-posse sal dit as die eerste deel van hul onderwerp hê."
 
-#: ../setup/config_data.inc:518
+#: ../setup/config_data.inc:524
 msgid "Welcome email message text"
 msgstr "Verwelkomings e-pos teks"
 
-#: ../setup/config_data.inc:519
+#: ../setup/config_data.inc:525
 msgid "This email will be sent when new accounts are created."
 msgstr "Hierdie e-pos sal gestuur word wanneer nuwe rekening kreëer word."
 
-#: ../setup/config_data.inc:520
+#: ../setup/config_data.inc:526
 #, php-format
 msgid "%s, %s and %s will be replaced by the fullname, user name and password of the newly created user."
 msgstr "%s, %s en %s sal met die volle naam, gebruikersnaam en wagwoord van 'n nuwe gebruiker vervang word"
 
-#: ../setup/config_data.inc:524
+#: ../setup/config_data.inc:530
 #, php-format
 msgid "%s will be replaced by a link the new user can click on to create a new password"
 msgstr "%s sal met 'n skakel vervang word, waarmee die nuwe gebruiker 'n nuwe wagwoord kan kreëer"
 
-#: ../setup/config_data.inc:526
+#: ../setup/config_data.inc:532
 msgid "Leave this field blank to get the default message that can be translated into other languages.  The default message is:"
 msgstr "Laat hierdie veld blanko om die verstek boodskap, wat in enige taal vertaal kan word, te gebruik. Die verstek boodskap is:"
 
-#: ../setup/config_data.inc:537
+#: ../setup/config_data.inc:543
 msgid "Allow visitors to self register."
 msgstr "Laat besoekers toe om self te registreer."
 
-#: ../setup/config_data.inc:538
+#: ../setup/config_data.inc:544
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
 msgstr "Deur dit te ontsper, kan besoekers aan jou webwerf hulle eie rekening kreëer."
 
-#: ../setup/config_data.inc:544
+#: ../setup/config_data.inc:550
 msgid "Self registered users can create albums."
 msgstr "Self-registreerde gebruikers mag albums kreëer."
 
-#: ../setup/config_data.inc:545
+#: ../setup/config_data.inc:551
 msgid "Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled."
 msgstr "Deur dit te ontsper, kan besoekers aan jou webwerf hulle eie albums te kreëer sodra hulle geregistreer is. As dit gesper is sal jy induvidueel aan elke een toegang moet gee om hulle eie albums te kreëer of enige galery inhoud te wysig. Hierdie stelling word geïgnoreer as self-registrasie gesper is."
 
-#: ../setup/config_data.inc:550
+#: ../setup/config_data.inc:556
 msgid "Enable bulk account creation"
 msgstr "Ontsper massa rekening kreëering"
 
-#: ../setup/config_data.inc:551
+#: ../setup/config_data.inc:557
 msgid "This option allows your to create many new user accounts at one time by creating a file of new users."
 msgstr "Hiermee kan jy baie nuwe gebruikers op een slag kreëer m.b.v. 'n lêr van name."
 
-#: ../setup/config_data.inc:557
+#: ../setup/config_data.inc:563
 msgid "Admin notification of email activity"
 msgstr "Administratiewe notifikasie van e-pos aktiviteit"
 
-#: ../setup/config_data.inc:558
+#: ../setup/config_data.inc:564
 msgid "You can keep a record of every email that is sent by Gallery."
 msgstr "Jy kan rekord van elke e-pos wat deur <u>Gallery</u> gestuur is, hou."
 
-#: ../setup/config_data.inc:560
+#: ../setup/config_data.inc:566
 msgid "Send summary email"
 msgstr "Stuur opsommings e-pos"
 
-#: ../setup/config_data.inc:561
+#: ../setup/config_data.inc:567
 msgid "Log to a file"
 msgstr "Log na lêr"
 
-#: ../setup/config_data.inc:562
+#: ../setup/config_data.inc:568
 msgid "Send duplicate email"
 msgstr "Stuur duplikate e-pos"
 
-#: ../setup/config_data.inc:568
+#: ../setup/config_data.inc:574
 msgid "Gallery wide slideshow"
 msgstr "Galery-wye Skyfievertoning"
 
-#: ../setup/config_data.inc:570
+#: ../setup/config_data.inc:576
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
 msgstr "Vertoon 'n skuifievertonings-skakel op die hoofblad van jou galery. Let op dat dit op groot galerye stadig kan loop."
 
-#: ../setup/config_data.inc:573
+#: ../setup/config_data.inc:579
 msgid "Slideshow preferences"
 msgstr "Skyfievertoonings-opsies"
 
-#: ../setup/config_data.inc:574 ../setup/config_data.inc:583
-#: ../setup/config_data.inc:612 ../setup/config_data.inc:623
-#: ../setup/config_data.inc:1028 ../setup/config_data.inc:1038
+#: ../setup/config_data.inc:580 ../setup/config_data.inc:589
+#: ../setup/config_data.inc:618 ../setup/config_data.inc:629
+#: ../setup/config_data.inc:1036 ../setup/config_data.inc:1046
 msgid "Off"
 msgstr "Af"
 
-#: ../setup/config_data.inc:575 ../setup/config_data.inc:1029
+#: ../setup/config_data.inc:581 ../setup/config_data.inc:1037
 msgid "No slideshow link will appear."
 msgstr "Geen skyfievertoonings-skakel sal vertoon word nie."
 
-#: ../setup/config_data.inc:576 ../setup/config_data.inc:584
-#: ../setup/config_data.inc:1030 ../setup/config_data.inc:1039
+#: ../setup/config_data.inc:582 ../setup/config_data.inc:590
+#: ../setup/config_data.inc:1038 ../setup/config_data.inc:1047
 msgid "Ordered"
 msgstr "Gesorteer"
 
-#: ../setup/config_data.inc:577 ../setup/config_data.inc:1031
+#: ../setup/config_data.inc:583 ../setup/config_data.inc:1039
 msgid "Images will display in the same order as they appear in the Gallery."
 msgstr "Beelde sal in dieselfde orde vertoon word as in die galery self."
 
-#: ../setup/config_data.inc:578 ../setup/config_data.inc:585
-#: ../setup/config_data.inc:1032 ../setup/config_data.inc:1040
+#: ../setup/config_data.inc:584 ../setup/config_data.inc:591
+#: ../setup/config_data.inc:1040 ../setup/config_data.inc:1048
 msgid "Random"
 msgstr "Willekeurig"
 
-#: ../setup/config_data.inc:579 ../setup/config_data.inc:1033
+#: ../setup/config_data.inc:585 ../setup/config_data.inc:1041
 msgid "Images will appear in a random order."
 msgstr "Beelde sal in willkeurige orde vertoon word."
 
-#: ../setup/config_data.inc:590 ../setup/config_data.inc:1059
+#: ../setup/config_data.inc:596 ../setup/config_data.inc:1067
 msgid "Slideshow length"
 msgstr "Skyfievertonings lengte"
 
-#: ../setup/config_data.inc:591 ../setup/config_data.inc:1060
+#: ../setup/config_data.inc:597 ../setup/config_data.inc:1068
 msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
 msgstr "Aantal beelde om in 'n skyfievertooning te vertoon. Stel dit na 0 om al die beelde te vertoon. Stel dit na 'n nommer as die skyfievertooning willekeurig is en jy net 'n seleksie van beelde wil vertoon."
 
-#: ../setup/config_data.inc:599 ../setup/config_data.inc:1052
+#: ../setup/config_data.inc:605 ../setup/config_data.inc:1060
 msgid "Allow slideshow to loop"
 msgstr "Laat skyfievertooning herhaal"
 
-#: ../setup/config_data.inc:600
+#: ../setup/config_data.inc:606
 #, php-format
 msgid "This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "Skyfievertoonings sal herhaal word totdat die venster gesluit word of 'n besoeker na 'n ander blad gaan. Stel dit na %s as jy bandbreedte wil bespaar."
 
-#: ../setup/config_data.inc:607
+#: ../setup/config_data.inc:613
 msgid "Comments"
 msgstr "Kommentaar"
 
-#: ../setup/config_data.inc:611
+#: ../setup/config_data.inc:617
 msgid "Indicate if there are comments available"
 msgstr "Dui aan as daar kommentaar beskikbaar is"
 
-#: ../setup/config_data.inc:613
+#: ../setup/config_data.inc:619
 msgid "No indication that an item has comments."
 msgstr "Geen aanduiding dat 'n item kommentaar het nie."
 
-#: ../setup/config_data.inc:614 ../setup/config_data.inc:624
+#: ../setup/config_data.inc:620 ../setup/config_data.inc:630
 msgid "Photos"
 msgstr "Foto's"
 
-#: ../setup/config_data.inc:615
+#: ../setup/config_data.inc:621
 msgid "Images that have comments will be marked."
 msgstr "Beelde wat kommentaar het sal gemerk word"
 
-#: ../setup/config_data.inc:617
+#: ../setup/config_data.inc:623
 msgid "Albums and sub-albums that have comments will be marked."
 msgstr "Albums en sub-albums wat kommentaar het sal gemerk word."
 
-#: ../setup/config_data.inc:618 ../setup/config_data.inc:626
+#: ../setup/config_data.inc:624 ../setup/config_data.inc:632
 msgid "Both"
 msgstr "Albei"
 
-#: ../setup/config_data.inc:619
+#: ../setup/config_data.inc:625
 msgid "Images and albums that have comments will be marked."
 msgstr "Beelde en albums wat kommentaar het sal gemerk word."
 
-#: ../setup/config_data.inc:631
+#: ../setup/config_data.inc:637
 msgid "Display date of last comment?"
 msgstr "Vertoon datum van laaste kommentaar?"
 
-#: ../setup/config_data.inc:632
+#: ../setup/config_data.inc:638
 #, php-format
 msgid "If an item has comments, display date of last comment, rather than a %s."
 msgstr "As 'n item kommentaar het, vertoon datum van laaste kommentaar, in plaas van 'n %s."
 
-#: ../setup/config_data.inc:638
+#: ../setup/config_data.inc:644
 msgid "Anonymous comments from known users?"
 msgstr "Anonieme kommentaar vir bekende gebruikers?"
 
-#: ../setup/config_data.inc:639
+#: ../setup/config_data.inc:645
 #, php-format
 msgid "When logged in, comments will automatically use fullname and username, unless this is set to %s."
 msgstr "As 'n gebruiker ingelog is sal kommentaar outomaties die volle naam en gebruikersnaam gebruik, behalwe was dit na %s gestel is."
 
-#: ../setup/config_data.inc:647
+#: ../setup/config_data.inc:653
 msgid "Technical"
 msgstr "Tegnies"
 
-#: ../setup/config_data.inc:648
+#: ../setup/config_data.inc:654
 msgid "You usually don't need to change anything in this section."
 msgstr "Gewoonlik hoef jy nie enigiets in hierdie seksie te verander nie."
 
-#: ../setup/config_data.inc:652
+#: ../setup/config_data.inc:658
 msgid "Time Limit"
 msgstr "Tydbeperking"
 
-#: ../setup/config_data.inc:653
+#: ../setup/config_data.inc:659
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr "Die maksimum tyd in sekondes wat 'n enkele operasie behoort te neem. As jy vind dat jy die <i>Maksimum uitvoertyd oorskrei</i> fout kry, kan jy dit grooter maak. Wees gewaarsku dat as jy dit te groot maak, <i>mag</i> jy dalk 'n proses hê wat 'n baie lang tyd kan vassit sonder om enigiets te doen. Die verstek waarde is 30 sekondes, wat redelik is."
 
-#: ../setup/config_data.inc:661
+#: ../setup/config_data.inc:667
 msgid "Debug mode"
 msgstr "Ontfout modus"
 
-#: ../setup/config_data.inc:662
+#: ../setup/config_data.inc:668
 msgid "Turn debug mode on so that you can diagnose problems?"
 msgstr "Skakel Ontfout modus aan om probleme te kan diagnoseer?"
 
-#: ../setup/config_data.inc:667
+#: ../setup/config_data.inc:673
 #, php-format
 msgid "Use %s"
 msgstr "Gebruik %s"
 
-#: ../setup/config_data.inc:668
+#: ../setup/config_data.inc:674
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
 msgstr "<u>Gallery</u> gebruik 'n slotmeganisme namens <u>flock()</u> vir additionele beskerming teen data korrupsie. Dit word nie op alle platforms ondersteun nie. As jy foute soos <i>Kon nie slot kry nie</i> teekom, stel die waarde na <i>Nee</i>."
 
-#: ../setup/config_data.inc:672
+#: ../setup/config_data.inc:678
 msgid "Status code"
 msgstr "Status kode"
 
-#: ../setup/config_data.inc:673
+#: ../setup/config_data.inc:679
 msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr "Die status kode wat <u>Gallery</u> na 'n suksesvolle <i>exec()</i> roep verwag. <u>Gallery</u> sal hierdie waarde self uitwerk, dus jy hoef nie hierdie waarde te verander behalwe as jy probleme het nie."
 
-#: ../setup/config_data.inc:679
+#: ../setup/config_data.inc:685
 msgid "Session variable"
 msgstr "Sessie variabel"
 
-#: ../setup/config_data.inc:680
+#: ../setup/config_data.inc:686
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr "Dit is the sessie variable wat gebruik word om alle <u>Gallery</u> sessie informasie te hou. Verander dit as daar 'n konflik tussen <u>Gallery</u> en 'n ander PHP toepassing op jou webwerf is."
 
-#: ../setup/config_data.inc:729
+#: ../setup/config_data.inc:735
 msgid "Appearance"
 msgstr "Verskyning"
 
-#: ../setup/config_data.inc:732
+#: ../setup/config_data.inc:738
 msgid "Border color"
 msgstr "Rand Kleur"
 
-#: ../setup/config_data.inc:733
+#: ../setup/config_data.inc:739
 #, php-format
 msgid "Default color of image borders. You can learn about %scolors%s here."
 msgstr "Verstek kleur vir die rand van afbeeldings. Hier kan jy meer omtrent %kleure% leer."
 
-#: ../setup/config_data.inc:744
+#: ../setup/config_data.inc:750
 msgid "Border width"
 msgstr "Rand lyndikte"
 
-#: ../setup/config_data.inc:745
+#: ../setup/config_data.inc:751
 msgid "Default width of image borders."
 msgstr "Verstek dikte van die rand om afbeeldings"
 
-#: ../setup/config_data.inc:747 ../setup/config_data.inc:787
-#: ../setup/config_data.inc:801
+#: ../setup/config_data.inc:753 ../setup/config_data.inc:793
+#: ../setup/config_data.inc:807
 msgid "off"
 msgstr "af"
 
-#: ../setup/config_data.inc:750
+#: ../setup/config_data.inc:756
 msgid "Default Font"
 msgstr "Verstek font"
 
-#: ../setup/config_data.inc:751
+#: ../setup/config_data.inc:757
 msgid "Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"
 msgstr "Verstek font, bv. <i>arial</i> of <i>trebuchet</i>"
 
-#: ../setup/config_data.inc:758
+#: ../setup/config_data.inc:764
 msgid "Layout"
 msgstr "Uitleg"
 
-#: ../setup/config_data.inc:761
+#: ../setup/config_data.inc:767
 msgid "Default Columns"
 msgstr "Verstek Kolomme"
 
-#: ../setup/config_data.inc:762
+#: ../setup/config_data.inc:768
 msgid "The default number of columns in an album."
 msgstr "Verstek aantal kolomme in 'n album"
 
-#: ../setup/config_data.inc:767
+#: ../setup/config_data.inc:773
 msgid "Default Rows"
 msgstr "Verstek aantal rye"
 
-#: ../setup/config_data.inc:768
+#: ../setup/config_data.inc:774
 msgid "The default number of rows in an album."
 msgstr "Verstek aantal rye in 'n album"
 
-#: ../setup/config_data.inc:774
+#: ../setup/config_data.inc:780
 msgid "Image Processing and Display"
 msgstr "Beeldverwerking en Vertoon"
 
-#: ../setup/config_data.inc:777
+#: ../setup/config_data.inc:783
 msgid "Thumbnail size"
 msgstr "Duimnaelskets formaat"
 
-#: ../setup/config_data.inc:778
+#: ../setup/config_data.inc:784
 msgid "The default target size (in pixels) of album thumbnails."
 msgstr "Verstek album duimnaelskets-grootte (in pixels)"
 
-#: ../setup/config_data.inc:784
+#: ../setup/config_data.inc:790
 msgid "Resized image size"
 msgstr "Vergroote/verkleinde beeldgrootte"
 
-#: ../setup/config_data.inc:785
+#: ../setup/config_data.inc:791
 msgid "When large images are added to an album, an intermediate version will automatically be generated at this size."
 msgstr "Wanneer groot afbeeldings by 'n album gevoeg word, sal 'n middlematig-grootte versie outomaties gegenereer word."
 
-#: ../setup/config_data.inc:790
+#: ../setup/config_data.inc:796
 msgid "Resized JPEG/PNG images file size"
 msgstr "Vergrote/verkleinde JPEG/PNG beeld lêrgrootte"
 
-#: ../setup/config_data.inc:791
+#: ../setup/config_data.inc:797
 msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
 msgstr "Verstek lêrgrootte van vergrote/verkleinde JPEG/PNG beeld. As jy 'n waarde invoer, sal die oplaai van foto's stadiger wees, maar die aflaai (m.a.w. besigtiging) sal vinniger wees, wat veral van toepassing is vir gebruikers wat per telefoon met die internet verbind."
 
-#: ../setup/config_data.inc:798
+#: ../setup/config_data.inc:804
 msgid "Maximum image size"
 msgstr "Maksimum beeldgrootte"
 
-#: ../setup/config_data.inc:799
+#: ../setup/config_data.inc:805
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
 msgstr "Jy kan die dimensies van die foto's wat jy na <u>Gallery</u> laai beperk."
 
-#: ../setup/config_data.inc:799
+#: ../setup/config_data.inc:805
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
 msgstr "As jy dit ontsper, sal jy nie die oorspronklike groote foto in jou galery behou nie, maar jy sal natuurlik spasie op jou hardeskyf bespaar. <u>Gallery</u> sal probeer om  JPEG kommentaar en EXIF data op jou verkleinerde foto te behou, maar daarvoor benodig jy óf die <u>ImageMagick</u> óf die <u>jhead</u> program (sien Stap 2)."
 
-#: ../setup/config_data.inc:801
+#: ../setup/config_data.inc:807
 #, php-format
 msgid "%d (%d MPix)"
 msgstr ""
 
-#: ../setup/config_data.inc:804
+#: ../setup/config_data.inc:810
 msgid "Maximum JPEG/PNG image file size"
 msgstr "Maksimum JPEG/PNG beeld lêrgrootte"
 
-#: ../setup/config_data.inc:805
+#: ../setup/config_data.inc:811
 msgid "You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery."
 msgstr "Jy kan die lêrgrootte van die foto's wat jy na <u>Gallery</u> laai beperk."
 
-#: ../setup/config_data.inc:805
+#: ../setup/config_data.inc:811
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
 msgstr "As jy dit ontsper, sal jy nie die oorspronklike groote foto in jou galery behou nie. Gee die verstek lêrgrootte in kilogrepe aan. As jy 'n waarde invoer mag dit dalk die oplaai van fotos vertraag, maar die aflaai (m.a.w. besigtiging) sal vinniger wees, wat veral van toepassing is vir gebruikers wat per telefoon met die internet verbind. Stel die waarde na 0 as jy nie die lêrgrootte wil beperk nie."
 
-#: ../setup/config_data.inc:811
+#: ../setup/config_data.inc:817
 msgid "Preserve Names"
 msgstr "Behou lêrname"
 
-#: ../setup/config_data.inc:812
+#: ../setup/config_data.inc:818
 msgid "When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."
 msgstr "Kies <i>Ja</i> as <u>Gallery</u> nie die oorspronklike lêrnaam moet verander nie."
 
-#: ../setup/config_data.inc:817
+#: ../setup/config_data.inc:823
 msgid "Add to beginning"
 msgstr "Voeg van die begin af by"
 
-#: ../setup/config_data.inc:818
+#: ../setup/config_data.inc:824
 msgid "New images added to beginning rather than end of albums."
 msgstr "Nuwe fotos word aan die begin, in plaas van die einde van 'n album bygevoeg."
 
-#: ../setup/config_data.inc:823
+#: ../setup/config_data.inc:829
 msgid "Fit-to-window"
 msgstr "Pas-in-Venster"
 
-#: ../setup/config_data.inc:824
+#: ../setup/config_data.inc:830
 msgid "When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
 msgstr "Wanneer jy foto's bekyk wat nie in die standaard grootte bestaan nie, kan <u>Gallery</u> outomaties hierdie foto's vergroot/verklein sodat hulle in die venster van die browser pas (met behulp van JavaScript). Dit mag dalk nie in ingebedde omgewings soos Nuke werk nie."
 
-#: ../setup/config_data.inc:829
+#: ../setup/config_data.inc:835
 msgid "Visitor size prefs"
 msgstr "Besoeker grootte voorkeure"
 
-#: ../setup/config_data.inc:830
+#: ../setup/config_data.inc:836
 msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."
 msgstr "Gee besoekers die keuse om altyd die groot versie van 'n afbeelding te bekyk in plaas van die standaard groote. Hierdie instelling duur net vir die durasie van die besoeker se sessie."
 
-#: ../setup/config_data.inc:836
+#: ../setup/config_data.inc:842
 msgid "Options"
 msgstr "Opsies"
 
-#: ../setup/config_data.inc:839
+#: ../setup/config_data.inc:845
 msgid "Printing Services"
 msgstr "Afdruk Dienste"
 
-#: ../setup/config_data.inc:840
+#: ../setup/config_data.inc:846
 msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. If you choose Shutterfly's &quot;with donation&quot; option, Gallery will charge an extra 2 cents (US) for every photo printed, and 1.8 cents of that will get donated back to the Gallery project. EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation. Using these services is a great way for you to help support this free software."
 msgstr "Laat besoekers toe om foto's direk uit die album te druk. <u>Fotokasten</u> is 'n drukdiens wat in Duitsland gebaseer is, en dus goed vir die Europeese mark is. PhotoAccess en Shutterfly is in the VSA gebaseer. Alle dienste sal 'n klein donasie aan die <u>Gallery</u> projek skenk vir elke afdruk wat jy bestel. As jy Shutterfly se <i>Met Donasie</i> opsie kies, sal <u>Gallery</u> jou 'n ekstra 2 sent (VSA) vir elke afdruk vorder, en 1.8 sent daarvan sal terug na die <u>Gally</u> projek gaan. EZ Prints, PhotoAccess en Fotokasten vorder nie ekstra vir die <u>Gallery</u> donasie nie. Hierdie tipe van dienste is 'n wonderlike manier om hierdie gratis sagteware te ondersteun."
 
-#: ../setup/config_data.inc:856
+#: ../setup/config_data.inc:862
 msgid "with donation"
 msgstr "%s met donasie"
 
-#: ../setup/config_data.inc:857
+#: ../setup/config_data.inc:863
 msgid "without donation"
 msgstr "%s sonder donasie"
 
-#: ../setup/config_data.inc:875
+#: ../setup/config_data.inc:881
 msgid "Gallery Link"
 msgstr "Gallery Skakel"
 
-#: ../setup/config_data.inc:876
+#: ../setup/config_data.inc:882
 msgid "Display the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
 msgstr "Vertoon die hoogste vlak skakel binne die album? As jy dit afskakel, sal die gebruiker nie uit die album kan navigeer nie. Dit is net hulpsaam as jy die album binne in 'n ander webwerf wil inbed en nie wil hê dat gebruikers (maklik) ander albums van daar af kan bekyk nie."
 
-#: ../setup/config_data.inc:882
+#: ../setup/config_data.inc:888
 msgid "Data displayed"
 msgstr "Date vertoon"
 
-#: ../setup/config_data.inc:885
+#: ../setup/config_data.inc:891
 msgid "Click counts"
 msgstr "Kliek teller"
 
-#: ../setup/config_data.inc:886
+#: ../setup/config_data.inc:892
 msgid "Display click counts within Albums?"
 msgstr "Veroon kliek teller in albums?"
 
-#: ../setup/config_data.inc:891
+#: ../setup/config_data.inc:897
 msgid "Custom Fields"
 msgstr "Aangepaste velde"
 
-#: ../setup/config_data.inc:893
+#: ../setup/config_data.inc:899
 msgid "Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"
 msgstr "Optionele velde wat beskikbaar is om afbeeldings te beskryf. Hulle moet geskei word deur komma's. bv. <i>Beskrywing, Vindplek, Film Tipe</i>"
 
-#: ../setup/config_data.inc:899
+#: ../setup/config_data.inc:905
 msgid "Display clickable image dimensions"
 msgstr "Vertoon kliekbare beelddimensies"
 
-#: ../setup/config_data.inc:900
+#: ../setup/config_data.inc:906
 msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
 msgstr "Vertoon kliekbare beelddimensies on duimnaelsketse. Sal dimensies vir geskaleerde beelde eers vertoon (indien enige), en dan vir die volle beeld, afhangende van die album gebruikers instellings. Jy kan op die dimensie beskrywings kliek óf die geskaleerde óf die volle beeld te vertoon."
 
-#: ../setup/config_data.inc:906
+#: ../setup/config_data.inc:912
 msgid "Item Owner"
 msgstr "Item eienaar"
 
-#: ../setup/config_data.inc:909
+#: ../setup/config_data.inc:915
 msgid "Photo owner modification"
 msgstr "Foto eienaar wysiging"
 
-#: ../setup/config_data.inc:910
+#: ../setup/config_data.inc:916
 msgid "Allow photo owners to edit and rotate/flip their own photos?"
 msgstr "Laat foto-eienaars toe om hulle eie foto's te bewerk, roteer en weerspieël?"
 
-#: ../setup/config_data.inc:915
+#: ../setup/config_data.inc:921
 msgid "Photo owner deletion"
 msgstr "Foto eienaar verwydering"
 
-#: ../setup/config_data.inc:916
+#: ../setup/config_data.inc:922
 msgid "Allow photo owners to delete their own photos?"
 msgstr "Laat foto eienaar toe om sy eie foto's te verwyder?"
 
-#: ../setup/config_data.inc:921
+#: ../setup/config_data.inc:927
 msgid "Photo owner display"
 msgstr "Vertoon foto eienaar"
 
-#: ../setup/config_data.inc:922
+#: ../setup/config_data.inc:928
 msgid "Display the name of photo owners with the caption?"
 msgstr "Vertoon die naam van die foto eienaar met die onderskrif?"
 
-#: ../setup/config_data.inc:928
+#: ../setup/config_data.inc:934
 msgid "Polling configuration"
 msgstr "Meningspeilings Konfigurasie"
 
-#: ../setup/config_data.inc:930
+#: ../setup/config_data.inc:936
 #, php-format
 msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."
 msgstr "Dit laat besoekers toe om vir die inhoud van jou album te stem. Die verstek instellings wat jy hier maak sal net op nuwe albums toegepas word, en dan net op alle bestaande albums wanneer jy na <u>Gallery</u> versie %s opgradeer."
 
-#: ../setup/config_data.inc:933
+#: ../setup/config_data.inc:939
 msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
 msgstr "Die meningspeiling stellings kan in elke album afgeskakel, of beperk word tot ingelogde gebruikers."
 
-#: ../setup/config_data.inc:935
+#: ../setup/config_data.inc:941
 #, php-format
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr "Daar is twee soorte van meningspeilings: %s, waarmee stemmers hulle geliefkoosde items as eerste, tweede, derde ens. te rang, en %s, waarmee stemmers items in enige orde kan punte gee. %s is soos 'n ****, terwyl %s soos 'n punte kompetisie is."
 
-#: ../setup/config_data.inc:936 ../setup/config_data.inc:939
-#: ../setup/config_data.inc:959 ../setup/config_data.inc:965
+#: ../setup/config_data.inc:942 ../setup/config_data.inc:945
+#: ../setup/config_data.inc:967 ../setup/config_data.inc:973
 msgid "Rank"
 msgstr "Rang"
 
-#: ../setup/config_data.inc:937 ../setup/config_data.inc:938
-#: ../setup/config_data.inc:961 ../setup/config_data.inc:966
+#: ../setup/config_data.inc:943 ../setup/config_data.inc:944
+#: ../setup/config_data.inc:969 ../setup/config_data.inc:974
 msgid "Critique"
 msgstr "Kritiek"
 
-#: ../setup/config_data.inc:942
+#: ../setup/config_data.inc:948
+msgid "<b>ATTENTION Upgrade users</b>: ONLY change these settings from the default if you want voting on in all your existing albums.  It is recommended that you leave these values as they are and turn voting on in individual albums as required."
+msgstr ""
+
+#: ../setup/config_data.inc:950
 msgid "Voter class"
 msgstr "Stemmer klas"
 
-#: ../setup/config_data.inc:943
+#: ../setup/config_data.inc:951
 msgid "Voting is available to:"
 msgstr "Die volgende gebruikers mag stem:"
 
-#: ../setup/config_data.inc:944 ../setup/config_data.inc:952
+#: ../setup/config_data.inc:952 ../setup/config_data.inc:960
 msgid "Nobody"
 msgstr "Niemand"
 
-#: ../setup/config_data.inc:945
+#: ../setup/config_data.inc:953
 msgid "Voting is off."
 msgstr "Meningspeiling is afgeskakel."
 
-#: ../setup/config_data.inc:946 ../setup/config_data.inc:953
+#: ../setup/config_data.inc:954 ../setup/config_data.inc:961
 msgid "Everybody"
 msgstr "Almal"
 
-#: ../setup/config_data.inc:947
+#: ../setup/config_data.inc:955
 msgid "Anyone can vote.  Votes are recorded against session ID."
 msgstr "Enige iemand kan stem. Stemme word per sessie ID gestoor."
 
-#: ../setup/config_data.inc:948 ../setup/config_data.inc:954
+#: ../setup/config_data.inc:956 ../setup/config_data.inc:962
 msgid "Logged in"
 msgstr "Ingelog"
 
-#: ../setup/config_data.inc:949
+#: ../setup/config_data.inc:957
 msgid "Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices."
 msgstr "Registreerde gebuikers kan stem. Stemme word per gebruikers ID gestoor, en stemmers kan terug kom en huller keuses verander."
 
-#: ../setup/config_data.inc:957
+#: ../setup/config_data.inc:965
 msgid "Poll type"
 msgstr "Meningspeiling tipe"
 
-#: ../setup/config_data.inc:958
+#: ../setup/config_data.inc:966
 msgid "Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation."
 msgstr "<u>Gallery</u> bied twee soorte van meningspeilings aan om vir foto's te stem. Sien hierbo vir 'n detaileerde verduideliking."
 
-#: ../setup/config_data.inc:960
+#: ../setup/config_data.inc:968
 msgid "Users have a set of votes which they can allocate to the images."
 msgstr "Gebruikers het 'n aantal stemme wat hulle aan foto's kan uitdeel."
 
-#: ../setup/config_data.inc:962
+#: ../setup/config_data.inc:970
 msgid "Enables users to give all images points without restriction."
 msgstr "Laat gebruikers toe om aan enige item punte toe te ken sonder enige beperkings."
 
-#: ../setup/config_data.inc:970
+#: ../setup/config_data.inc:978
 msgid "Number of choices"
 msgstr "Aantal opsies"
 
-#: ../setup/config_data.inc:971
+#: ../setup/config_data.inc:979
 msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu."
 msgstr "Aantal opsies wat aan stemmers beskikbaar sal wees as radio-knoppies of in 'n aftreklys."
 
-#: ../setup/config_data.inc:977
+#: ../setup/config_data.inc:985
 msgid "Vote hint"
 msgstr "Stem tippie"
 
-#: ../setup/config_data.inc:978
+#: ../setup/config_data.inc:986
 msgid "This is displayed above the voting options under each image."
 msgstr "Dit word reg voor die stem opsies onder elke foto vertoon."
 
-#: ../setup/config_data.inc:981
+#: ../setup/config_data.inc:989
 msgid "Vote for this image"
 msgstr "Stem vir hierdie beeld"
 
-#: ../setup/config_data.inc:986 ../setup/config_data.inc:996
+#: ../setup/config_data.inc:994 ../setup/config_data.inc:1004
 msgid "Show vote results"
 msgstr "Vertoon meningspeiling uitslag"
 
-#: ../setup/config_data.inc:987
+#: ../setup/config_data.inc:995
 #, php-format
 msgid "Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."
 msgstr "Vertoon 'n opsomming en grafiek op die album blad van beeld wat die meeste stemme gekry het, en 'n skakel wat na die volledige uitslae. As die option %s is, sal meningspeiling-uitslae net aan administrateurs en album eienaars beskikbaar wees."
 
-#: ../setup/config_data.inc:994
+#: ../setup/config_data.inc:1002
 msgid "Number of results displayed"
 msgstr "Aantal uitslae om te vertoon"
 
-#: ../setup/config_data.inc:995
+#: ../setup/config_data.inc:1003
 #, php-format
 msgid "If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"
 msgstr "As %s %s is, vertoon 'n grafiek wat soveel top uitslae wys. (Volledige uitslae sal op 'n ingeskakelde blad beskikbaar wees.)"
 
-#: ../setup/config_data.inc:1003
+#: ../setup/config_data.inc:1011
 msgid "Orientation of vote choices?"
 msgstr "Orientering van stem keuses?"
 
-#: ../setup/config_data.inc:1004
+#: ../setup/config_data.inc:1012
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr "Rang keuses kan langs mekaar vertoon word (horisontaal), of onder mekaar (vertikaal). Dit affekteer nie die Kritiek meningspeiling-tipe nie, wat 'n aftreklys het."
 
-#: ../setup/config_data.inc:1008
+#: ../setup/config_data.inc:1016
 msgid "Horizontal"
 msgstr "Horizontaal"
 
-#: ../setup/config_data.inc:1009
+#: ../setup/config_data.inc:1017
 msgid "Vertical"
 msgstr "Vertikaal"
 
-#: ../setup/config_data.inc:1011 ../setup/functions.inc:951
+#: ../setup/config_data.inc:1019 ../setup/functions.inc:951
 #: ../setup/functions.inc:960 ../setup/functions.inc:965
 msgid "Vote words and values"
 msgstr "Stem woorde en waardes"
 
-#: ../setup/config_data.inc:1012
+#: ../setup/config_data.inc:1020
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "Hiermee kan jy die woorde en die waardes vir elke stem-keuse konfigureer."
 
-#: ../setup/config_data.inc:1014
+#: ../setup/config_data.inc:1022
 msgid "Excellent"
 msgstr "Uitmuntend"
 
-#: ../setup/config_data.inc:1015
+#: ../setup/config_data.inc:1023
 msgid "Very Good"
 msgstr "Baie Goed"
 
-#: ../setup/config_data.inc:1016
+#: ../setup/config_data.inc:1024
 msgid "Good"
 msgstr "Goed"
 
-#: ../setup/config_data.inc:1017
+#: ../setup/config_data.inc:1025
 msgid "Average"
 msgstr "Nie te kak nie"
 
-#: ../setup/config_data.inc:1018
+#: ../setup/config_data.inc:1026
 msgid "Poor"
 msgstr "Pover"
 
-#: ../setup/config_data.inc:1024
+#: ../setup/config_data.inc:1032
 msgid "Album Slideshow"
 msgstr "Album Skyfievertooning"
 
-#: ../setup/config_data.inc:1027
+#: ../setup/config_data.inc:1035
 msgid "Slideshow Type"
 msgstr "Skyfievertooning Tipe"
 
-#: ../setup/config_data.inc:1045
+#: ../setup/config_data.inc:1053
 msgid "Recursive slideshow"
 msgstr "Rekursieve skyfievertooning"
 
-#: ../setup/config_data.inc:1046
+#: ../setup/config_data.inc:1054
 #, php-format
 msgid "Set to %s if you want to include images in sub albums as part of the slideshow."
 msgstr "Stel na %s as jy foto's van sub-albums ook in jou skyfievertooning wil insluit."
 
-#: ../setup/config_data.inc:1053
+#: ../setup/config_data.inc:1061
 #, php-format
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "Besoekers kan jou skyfievertooning herhalend sien totdat hulle hul venster gesluit het of na 'n ander blad gegaan het. Stel dit na %s om bandbreedte te bespaar."
 
-#: ../setup/config_data.inc:1069
+#: ../setup/config_data.inc:1077
 msgid "Frames"
 msgstr "Fotorame"
 
-#: ../setup/config_data.inc:1070
+#: ../setup/config_data.inc:1078
 #, php-format
 msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"
 msgstr "Elke beeld (duimnaelskets, verklein en volle grootte) in % kan 'n raam hê. Die volgende style is beskikbaar:"
 
-#: ../setup/config_data.inc:1075
+#: ../setup/config_data.inc:1083
 msgid "Subalbum frames"
 msgstr "Rame om Sub-Albums"
 
-#: ../setup/config_data.inc:1076
+#: ../setup/config_data.inc:1084
 msgid "This frame will appear around the thumbnail image representing a subalbum."
 msgstr "Die raam sal om die sub-album se voorbeeld duimnaelskets verskyn."
 
-#: ../setup/config_data.inc:1082
+#: ../setup/config_data.inc:1090
 msgid "Frame around thumbs"
 msgstr "Rame om duimnaelsketse"
 
-#: ../setup/config_data.inc:1083
+#: ../setup/config_data.inc:1091
 msgid "This frame will appear around the thumbnail image representing a photo or movie."
 msgstr "Hierdie raam sal om die duimnaelskets wat jou foto's or fliek representeer, verskyn"
 
-#: ../setup/config_data.inc:1090
+#: ../setup/config_data.inc:1098
 msgid "Frame around images"
 msgstr "Rame om foto's"
 
-#: ../setup/config_data.inc:1091
+#: ../setup/config_data.inc:1099
 msgid "This frame will appear around fulled sized and resized photos."
 msgstr "Hierdie raam sal om volle en verkleinde foto's verskyn."
 
@@ -1759,7 +1711,7 @@ msgstr "Jou bediener het die PHP <i>open_basedir</i> beperking aangeskakel, en s
 #: ../setup/confirm.inc:315
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
-msgstr "Dit beteken nie dat hulle nie sal werk nie, maar dit beteken wel dat paaie nie as korrek bevestig kan word nie. As dit nie moontlik is foto's korrek op te laai nie, lees die FAQ en die %diagnostiese blad% om die probleem op te los." 
+msgstr "Dit beteken nie dat hulle nie sal werk nie, maar dit beteken wel dat paaie nie as korrek bevestig kan word nie. As dit nie moontlik is foto's korrek op te laai nie, lees die FAQ en die %diagnostiese blad% om die probleem op te los."
 
 #: ../setup/confirm.inc:388
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it."
@@ -1824,7 +1776,7 @@ msgstr "Hier kan jy die verstek waardes vir nuwe albums wat jy kreër aanpas. Wa
 msgid "Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully."
 msgstr "Nota aan gebruikers wat van 'n ouere version opgradeer: instellings van jou ou versie sal op al die albums toegepas word. As jy hulle later wil verander, doen dit een vir een in elke album gedoen word. Kies hierdie verstek waardes versigtig."
 
-#: ../setup/diagnostics.php:29
+#: ../setup/diagnostics.php:20
 msgid "Gallery Diagnostics"
 msgstr "<u>Gallery</u> Diagnose"
 
@@ -1900,20 +1852,6 @@ msgstr "Hierdie blad sal 'n toets e-pos stuur."
 #, php-format
 msgid "This allows you to see if you can use the email functions in %s."
 msgstr "Dit laat jou sien of jy e-pos funksies in %s kan gebruik."
-
-#: ../setup/diagnostics.php:94
-msgid "Check versions"
-msgstr "Kontrolleer versies"
-
-#: ../setup/diagnostics.php:97
-#, php-format
-msgid "This page is for %s upgrades that have problems."
-msgstr "Hierdie blad is vir %s opgradeerings wat probleme het."
-
-#: ../setup/diagnostics.php:98
-#, php-format
-msgid "This allows you to check you have the correct version of all your %s files."
-msgstr "Hiermee kan jy toets of jy die korrekte versie van al jou %s lêërs het."
 
 #: ../setup/functions.inc:108
 msgid "Please retype your password here"
@@ -2139,46 +2077,60 @@ msgstr "Jy moet %s in jou verwelkomings e-pos insluit"
 msgid "You must include %s or %s in your welcome email"
 msgstr "Jy moet %s of %s in jou verwelkomings e-pos insluit"
 
-#: ../setup/functions.inc:1191
+#: ../setup/functions.inc:1194
+#, php-format
+msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
+msgstr ""
+
+#: ../setup/functions.inc:1196
+msgid "This should be fixed before proceeding"
+msgstr ""
+
+#: ../setup/functions.inc:1197 ../setup/functions.inc:1201
+#, fuzzy, php-format
+msgid "Look at %sCheck Versions%s for more details."
+msgstr "%sKliek hier%s om meer besonderhede te sien"
+
+#: ../setup/functions.inc:1200
+#, fuzzy, php-format
+msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
+msgstr "Die volgende lêërs is meer op datum as wat vir hierdie versie van %s verwag is. As jy <i>pre-release</i> kode gebruik, is dit te verwagte."
+
+#: ../setup/functions.inc:1205
+#, fuzzy, php-format
+msgid "All %d tested files up-to-date."
+msgstr "%d lêërs is op datum."
+
+#: ../setup/functions.inc:1213
 #, php-format
 msgid "this is new in version %s"
 msgstr "hierdie is nuut in versie %s"
 
-#: ../setup/functions.inc:1196
+#: ../setup/functions.inc:1218
 #, php-format
 msgid "Return to %s."
 msgstr "Gaan terug na %s."
 
-#: ../setup/functions.inc:1197
+#: ../setup/functions.inc:1219
 msgid "Configuration Wizard"
 msgstr "Konfigurasie-Towenaar"
 
-#: ../setup/functions.inc:1248
+#: ../setup/functions.inc:1270
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr "Jy moet 'n wagwoord vir die %s rekening invoer."
 
-#: ../setup/functions.inc:1253
+#: ../setup/functions.inc:1275
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr "Dit lyk asof jy alreeds <u>Gallery</u> gekonfureer het, omdat daar alreeds %d administrateur rekening(s) bestaan, maar nie 'n gebruiker onder die naam van %s. Jy hoef nie 'n wag in te tik nie. Maar as jy dit wel doen, sal <i>Gallery</i> 'n administrateur rekening met die naam van %s kreëer, en daardie wagwoord gebruik."
 
-#: ../setup/functions.inc:1256
-#, php-format
-msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-msgstr "Dit lyk asof jy alreeds <u>Gallery</u> gekonfureer het, omdat daar alreeds %d administrateur rekening(s) bestaan"
-
-#: ../setup/functions.inc:1258
-#, php-format
-msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "Jy moet 'n wagwoord invoer. Maar as jy did doen, sal <u>Gallery</u> 'n administratuer rekening kreëer met daardie wagwoord."
-
-#: ../setup/functions.inc:1267
+#: ../setup/functions.inc:1282
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr "Dit lyk asof jy alreeds <u>Gallery</u> gekonfureer het, omdat gebruiker %s bestaan. Jy hoef nie 'n wagwoord in te tik nie. Maar as jy dit wel doen, sal <u>Gallery</u> die wagwoord vir gebruiker %s verander."
 
-#: ../setup/functions.inc:1274
+#: ../setup/functions.inc:1289
 msgid "Admin password"
 msgstr "Administrateur wagwoord"
 
@@ -2190,11 +2142,11 @@ msgstr "Gallery Konfigurasie"
 msgid "unknown"
 msgstr "onbekend"
 
-#: ../setup/session_test.php:44
+#: ../setup/session_test.php:36
 msgid "Gallery Session Test"
 msgstr "Gallery sessie toets"
 
-#: ../setup/session_test.php:49
+#: ../setup/session_test.php:41
 msgid "Session Test"
 msgstr "Sessie Toets"
 
@@ -2299,3 +2251,51 @@ msgstr "Jy vermis óf %s óf %s."
 #: ../setup/write.inc:215
 msgid "Review Settings"
 msgstr "Hersien Instellings"
+
+#~ msgid "File missing or unreadable.  Please install then re-run this test."
+#~ msgstr "Lêr ontbreek of is onleesbaar. Installer asseblief weer en laat hierdie toets weer loop."
+
+#~ msgid "Please ensure that %s is the latest version."
+#~ msgstr "Maak asseblief seker dat %s die laatste versie is."
+
+#~ msgid "Testing status of %d files."
+#~ msgstr "Toets status van %d lêërs."
+
+#~ msgid "Cannot read file %s."
+#~ msgstr "Kan nie lêr %s lees nie."
+
+#~ msgid "File missing or unreadable."
+#~ msgstr "Lêr ontbreek of is onleesbaar."
+
+#~ msgid "Version information not found in %s.  File must be old version or corrupted."
+#~ msgstr "Kan nie versie informasie in %s vind nie. Lêr moet 'n ou versie wees of gekorrupteer wees."
+
+#~ msgid "Missing version"
+#~ msgstr "Ontbrekende versie"
+
+#~ msgid "Problem with %s.  Expected version %s (or greater) but found %s."
+#~ msgstr "Probleem met %s. Het versie %s (of hoër) verwag, maar het versie %s gevind."
+
+#~ msgid "Expected version %s (or greater) but found %s."
+#~ msgstr "Het versie %s (of hoër) verwag, maar het versie %s gevind."
+
+#~ msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+#~ msgstr "%s OK. Huidige versie (%s) is meer onlangs as die verwagte versie (%s)"
+
+#~ msgid "%s is a more recent version than expected.  Expected version %s but found %s."
+#~ msgstr "%s is 'n meer onlnagse versie as wat verwag was. Het versie %s verwag maar het versie %s gevind."
+
+#~ msgid "%s OK"
+#~ msgstr "%s OK"
+
+#~ msgid "Check versions"
+#~ msgstr "Kontrolleer versies"
+
+#~ msgid "This page is for %s upgrades that have problems."
+#~ msgstr "Hierdie blad is vir %s opgradeerings wat probleme het."
+
+#~ msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
+#~ msgstr "Dit lyk asof jy alreeds <u>Gallery</u> gekonfureer het, omdat daar alreeds %d administrateur rekening(s) bestaan"
+
+#~ msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+#~ msgstr "Jy moet 'n wagwoord invoer. Maar as jy did doen, sal <u>Gallery</u> 'n administratuer rekening kreëer met daardie wagwoord."
