@@ -125,7 +125,7 @@ if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
 	file_exists(dirname(__FILE__) . "/java/GalleryRemoteHTTPClient.jar")) {
     $modes["applet_mini"] = _("Applet");
 	
-	if (file_exists("java/GalleryRemoteApplet.jar")) {
+	if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteApplet.jar")) {
 	    $modes["applet"] = _("Applet (big)");
 	}
 }
