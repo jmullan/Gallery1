@@ -132,7 +132,7 @@ if ($album->fields["bgcolor"]) {
         echo "BODY { background-color:".$album->fields[bgcolor]."; }";
 }       
 if ($album->fields["background"]) {
-        echo "BODY { background-image:".$album->fields[background]."; } ";
+        echo "BODY { background-image:url(".$album->fields[background]."); } ";
 } 
 if ($album->fields["textcolor"]) {
         echo "BODY, TD {color:".$album->fields[textcolor]."; }";
