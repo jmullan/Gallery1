@@ -23,6 +23,7 @@
  */
 ?>
 <?php
+exit();
 $tests = array ();
 
 // First element is the test, second is if it's fatal or not

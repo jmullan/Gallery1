@@ -1722,7 +1722,7 @@ function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",
 		$string_to_return .= "\n\t<tr>"
 			. "\n\t<td>(". ++$counter .")</td>"
 			. "\n\t<td>$name ($value)</td>"
-			. "\n\t<td><img src=\"". $GALLERY_BASEDIR . "images/bar.gif\" bodre=\"1\""
+			. "\n\t<td><img src=\"". $GALLERY_BASEDIR . "images/bar.gif\" border=\"1\""
 			. " width=\"$bar_width\" height=\"10\" alt=\"BAR\"></td>"
 			. "\n\t</tr>";
 	}
