@@ -132,8 +132,8 @@ if (isset($action)) {
 	} 
 } 
 ?>
-<?php print gallery_validation_link("edit_thumb.php"); ?>
 </div>
+<?php print gallery_validation_link("edit_thumb.php"); ?>
 </body>
 </html>
 

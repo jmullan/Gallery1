@@ -133,7 +133,10 @@ if ($gallery->session->albumName && isset($index)) {
 <?php echo _("Copy a range of photos to a new album:") ?><br>
 <i>(<?php echo _("To copy just one photo, make First and Last the same.") ?>)</i><br>
 <i>(<?php echo _("Nested albums in this range will be ignored.") ?>)</i>
-<?php echo makeFormIntro("copy_photo.php", array("name" => "copy_to_album_form")); ?>
+<?php echo makeFormIntro("copy_photo.php", 
+	array("name" => "copy_to_album_form"),
+	array("type" => "popup"));
+?>
 <input type=hidden name="index" value="<?php echo $index ?>">
 
 <?php
@@ -198,7 +201,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 	echo gallery_error(_("no album / index specified"));
 }
 ?>
-<?php print gallery_validation_link("copy_photo.php", true, array('index' => $index)); ?>
 </div>
+<?php print gallery_validation_link("copy_photo.php", true, array('index' => $index)); ?>
 </body>
 </html>

@@ -94,8 +94,9 @@ doctype();
 <div class="popuphead"><?php echo _("Album Properties") ?></div>
 <div class="popup" align="center">
 <?php echo makeFormIntro("edit_appearance.php", 
-			array("name" => "theform", 
-				"method" => "POST")); ?>
+		array("name" => "theform", "method" => "POST"),
+		array("type" => "popup"));
+?>
 <input type="hidden" name="save" value="1">
 <table>
 <tr>
@@ -355,8 +356,8 @@ if ($gallery->app->use_exif) {
 document.theform.title.focus();
 //-->
 </script>
-
-<?php print gallery_validation_link("edit_appearance.php"); ?>
 </div>
+<?php print gallery_validation_link("edit_appearance.php"); ?>
+
 </body>
 </html>

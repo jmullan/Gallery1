@@ -75,7 +75,10 @@ if ($gallery->session->albumName && isset($index)) {
 <p><?php echo _("This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."); ?>
 </p>
 
-<?php echo makeFormIntro("resize_photo.php"); ?>
+<?php echo makeFormIntro("resize_photo.php", 
+			array("name" => "resize_photo"),
+			array("type" => "popup"));
+?>
 
 <h3><?php echo $all ? _("What is the target size for all the intermediate photos in this album?") : _("What is the target size for the intermediate version of this photo?");?></h3>
 <?php
@@ -132,8 +135,7 @@ if ($gallery->session->albumName && isset($index)) {
 	echo gallery_error(_("no album / index specified"));
 }
 ?>
-
-<?php print gallery_validation_link("resize_photo.php", true, array('index' => $index)); ?>
 </div>
+<?php print gallery_validation_link("resize_photo.php", true, array('index' => $index)); ?>
 </body>
 </html>

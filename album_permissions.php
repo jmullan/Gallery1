@@ -189,7 +189,9 @@ correctPseudoUsers($uAdd, $ownerUid);
 <?php echo sprintf(_("Changing permissions for %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
 
 echo makeFormIntro("album_permissions.php", 
-			array("name" => "albumperms_form")) ?>
+			array("name" => "albumperms_form"),
+			array("type" => "popup"));
+?>
 
 <?php if ($gallery->user->isAdmin) { ?>
 <?php echo _("Owner:") ?> <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
@@ -346,13 +348,14 @@ echo makeFormIntro("album_permissions.php",
  </tr>
 </table>
 
+<input type="hidden" name="gallery_popup" value ="true">
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
 <input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 <br>
-<label for="setNested">Apply permissions to all sub-albums</label><input type="checkbox" id="setNested" name="setNested"
-value="setNested" <?php if (getRequestVar('setNested')) echo 'CHECKED'; ?>>
+<label for="setNested">Apply permissions to all sub-albums</label>
+<input type="checkbox" id="setNested" name="setNested" value="setNested" <?php if (getRequestVar('setNested')) echo 'CHECKED'; ?>>
 </form>
-<?php print gallery_validation_link("album_permissions.php"); ?>
 </div>
+<?php print gallery_validation_link("album_permissions.php"); ?>
 </body>
 </html>

@@ -83,8 +83,9 @@ if (isset($save)) {
 	<?php echo $gallery->album->getThumbnailTag($index) ?>
 
 <?php echo makeFormIntro("edit_caption.php", 
-			array("name" => "theform", 
-				"method" => "POST")); ?>
+		array("name" => "theform", "method" => "POST"),
+		array("type" => "popup"));
+?>
 
 <input type=hidden name="index" value="<?php echo $index ?>">
 <table>
@@ -196,8 +197,7 @@ echo "</td>";
 document.theform.data.focus();
 //-->
 </script>
-
-<?php print gallery_validation_link("edit_caption.php", true, array('index' => $index)); ?>
 </div>
+<?php print gallery_validation_link("edit_caption.php", true, array('index' => $index)); ?>
 </body>
 </html>

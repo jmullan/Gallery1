@@ -119,7 +119,10 @@ if (!empty($newName)) {
 <p><?php echo _("Those characters will be ignored in your new album name.") ?></p>
 
 <br>
-<?php echo makeFormIntro("rename_album.php", array("name" => "theform")); ?>
+<?php echo makeFormIntro("rename_album.php", 
+	array("name" => "theform"),
+	array("type" => "popup"));
+?>
 <input type="text" name="newName" value="<?php echo $newName?>">
 <input type="hidden" name="oldName" value="<?php echo $gallery->session->albumName?>">
 <input type="hidden" name="useLoad" value="<?php echo $useLoad?>">    
@@ -134,8 +137,8 @@ if (!empty($newName)) {
 document.theform.newName.focus();
 //-->
 </script>
+</div>
 
 <?php print gallery_validation_link("rename_album.php",true); ?>
-</div>
 </body>
 </html>

@@ -90,9 +90,9 @@ echo "<br><br>";
 
 
 
-echo makeFormIntro("add_comment.php", array(
-	"name" => "theform", 
-	"method" => "POST")); 
+echo makeFormIntro("add_comment.php", 
+	array("name" => "theform", "method" => "POST"),
+	array('type' => 'popup')); 
 
 drawCommentAddForm($commenter_name, 35);
 ?>
@@ -107,6 +107,7 @@ drawCommentAddForm($commenter_name, 35);
 document.theform.commenter_name.focus();
 //-->
 </script>
+</div>
 <?php print gallery_validation_link("add_comment.php", true, array('id' => $id)); ?>
 </body>
 </html>

@@ -55,9 +55,9 @@ if (isset($save)) {
 <?php 
 	echo sprintf(_("Edit the %s and click %s when you're done"), _($field), '<b>' . _("Save") . '</b>');
 
-	echo makeFormIntro("edit_field.php", array(
-		"name" => "theform",
-		"method" => "POST")); 
+	echo makeFormIntro("edit_field.php", 
+		array("name" => "theform", "method" => "POST"),
+		array("type" => "popup")); 
 ?>
 	<input type="hidden" name="field" value="<?php echo $field ?>">
 	<textarea name="data" rows="8" cols="50"><?php echo $gallery->album->fields[$field] ?></textarea>

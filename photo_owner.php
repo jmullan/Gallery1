@@ -89,7 +89,9 @@ asort($uAll);
 
 <p>
 <?php 
-	echo makeFormIntro("photo_owner.php", array("name" => "photoowner_form"));
+	echo makeFormIntro("photo_owner.php", 
+		array("name" => "photoowner_form"),
+		array("type" => "popup"));
 	if ($gallery->user->isAdmin) {
 		echo _("Owner") .": ";
 		echo drawSelect("owner", $uAll, $owner, 1);
@@ -102,9 +104,7 @@ asort($uAll);
 	<input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </p>
 </form>
-</center>
-
-<?php print gallery_validation_link("photo_owner.php", true, array('id' => $id)); ?>
 </div>
+<?php print gallery_validation_link("photo_owner.php", true, array('id' => $id)); ?>
 </body>
 </html>
