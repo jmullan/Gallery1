@@ -597,7 +597,7 @@ function gallery_languages() {
 }
 
 function test_locale($locale) {
-	if (setlocale(LC_ALL, $locale)) {
+	if (setlocale(LC_ALL, $locale === 'null' ? '' : $locale)) {
 		return true;
 	}
 	return false;
@@ -642,7 +642,7 @@ function check_locale() {
 		$aliases=array();
 		
 		/* Found an supported one, put it in availables */
-		if ( (in_array($locale, $system_locales)) || (setlocale(LC_ALL, $locale))) {
+		if ( (in_array($locale, $system_locales)) || (setlocale(LC_ALL, $locale === 'null' ? '' : $locale))) {
 			$available_locales[$locale]=$locale;
 			continue;
 		}
@@ -670,7 +670,7 @@ function check_locale() {
 
 		if ($aliases) {
 			foreach ($aliases as $test) {
-				if (setlocale(LC_ALL,$test)) {
+				if (setlocale(LC_ALL,$test === 'null' ? '' : $test)) {
 					$maybe_locales[$locale][]=$test;
 				}
 			}
@@ -755,9 +755,10 @@ function config_maybe_locales() {
 	$avail_keys=array_keys($available);
         foreach ($unavailable as $key) {
 		if (sizeof($available) <= 1) {
+			$value = $avail_keys[0] ? $avail_keys[0] : 'null';
 			$results["locale_alias['$key']"] = array (
 				"type" => "hidden", 
-				"value" => $avail_keys[0],
+				"value" => $value,
 				"desc" => "locale_alias[$key]",
 				"prompt" => "locale_alias[$key]"
 					);

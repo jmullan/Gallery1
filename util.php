@@ -2422,7 +2422,7 @@ function initLanguage() {
 	putenv("LANGUAGE=". $gallery->language);
 
 	// Set Locale
-	setlocale(LC_ALL,$gallery->locale);
+	setlocale(LC_ALL,$gallery->locale === 'null' ? '' : $gallery->locale);
 
 	// Set Charset
 	// Only when we're not in nuke, because headers might be sent already.
