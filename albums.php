@@ -275,10 +275,8 @@ for ($i = $start; $i <= $end; $i++) {
       $gallery->html_wrap['borderWidth'] = 1;
       $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
       $scaleTo = $gallery->app->highlight_size;
-      $highlightIndex = $gallery->album->getHighlight();
-      if (isset($highlightIndex)) {
-	  list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($highlightIndex, $scaleTo);
-      } else {
+      list($iWidth, $iHeight) = $gallery->album->getHighlightDimensions($scaleTo);
+      if (!$iWidth) {
 	  $iWidth = $gallery->app->highlight_size;
 	  $iHeight = 100;
       }

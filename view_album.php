@@ -696,13 +696,14 @@ if ($numPhotos) {
 			$gallery->html_wrap['borderWidth'] = $borderwidth;
 			$gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 			if ($gallery->album->isAlbumName($i)) {
-				$scaleTo = $gallery->album->fields["thumb_size"];
+				$scaleTo = 0; //$gallery->album->fields["thumb_size"];
+				$album = $gallery->album->getNestedAlbum($i);
+				list($iWidth, $iHeight) = $album->getHighlightDimensions($scaleTo);
 			} else {
 				$scaleTo=0;  // thumbs already the right 
 					    //	size for this album
+				list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i, $scaleTo);
 			}
-
-			list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i, $scaleTo);
 			if ($iWidth == 0) {
 			    $iWidth = $gallery->album->fields["thumb_size"];
 			}
@@ -729,7 +730,7 @@ if ($numPhotos) {
 				$myAlbum = new Album();
 				$myAlbum->load($myAlbumName);
 
-				$gallery->html_wrap['imageTag'] = $myAlbum->getHighlightAsThumbnailTag($scaleTo);
+				$gallery->html_wrap['imageTag'] = $myAlbum->getHighlightTag($scaleTo,'',_("Highlight for Album: ").$myAlbum->fields['title']);
 				$gallery->html_wrap['imageHref'] = makeAlbumUrl($myAlbumName);
 				$gallery->html_wrap['frame'] = $gallery->album->fields['album_frame'];
 			       	/*begin backwards compatibility */

@@ -70,7 +70,7 @@ if ($gallery->album) {
 <p>
 <?php
 	if ($gallery->album->numPhotos(1)) {
-		echo $gallery->album->getThumbnailTag($gallery->album->getHighlight());
+		echo $gallery->album->getHighlightTag();
 	}
 } else {
 	gallery_error(_("no album specified"));

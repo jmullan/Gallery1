@@ -153,7 +153,7 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
             $myAlbumName = $gallery->album->isAlbumName($i);
             $myAlbum = new Album();
             $myAlbum->load($myAlbumName);
-            $myHighlightTag = $myAlbum->getHighlightAsThumbnailTag();
+            $myHighlightTag = $myAlbum->getHighlightTag();
 	    includeLayout('commentboxtop.inc');
 	    includeLayout('commentboxbottom.inc');
         }

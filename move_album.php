@@ -86,9 +86,7 @@ if ($gallery->session->albumName && isset($index)) {
 <?php echo _("Select the new location of album") ?> <?php echo $gallery->album->fields["title"] ?>:
 
 <?php
-    echo '<br><br>'.
-         $gallery->album->getThumbnailTag($gallery->album->getHighlight()) .
-         '<br><br>';
+    echo '<br><br>' .  $gallery->album->getHighlightTag() . '<br><br>';
 ?>
 <?php if ($reorder) { // Reorder, intra-album move ?>
 <?php echo makeFormIntro("move_album.php", array("name" => "theform")); ?>

@@ -291,10 +291,11 @@ class AlbumItem {
 		return $this->hidden;
 	}
 
-	function setHighlight($dir, $bool) {
+	function setHighlight($dir, $bool, $size=0) {
 		global $gallery;
 		
 		$this->highlight = $bool;
+		if (!$size) $size = $gallery->app->highlight_size;
 		
 		/*
 		 * if it is now the highlight make sure it has a highlight
@@ -304,52 +305,37 @@ class AlbumItem {
 		$tag = $this->image->type;
 
 		if ($this->highlight) {
+			$srcdir = $dir;
+			$srcitem = $this;
 			if ($this->isAlbumName) {
-				$nestedName = $this->isAlbumName;
-				do {
-					$nestedAlbum = new Album();
-					$nestedAlbum->load($nestedName);
-					$dir = $nestedAlbum->getAlbumDir();
-					$nestedHighlightIndex = $nestedAlbum->getHighlight();
-					$nestedHighlight = $nestedAlbum->getPhoto($nestedHighlightIndex);
-					$nestedName = $nestedHighlight->isAlbumName;
-				} while ($nestedName);
+				$name = $this->isAlbumName;
+				$nestedAlbum = new Album();
+				$nestedAlbum->load($name);
+				list ($srcalbum, $srcitem) = $nestedAlbum->getHighlightedItem();
+				$srcdir = $srcalbum->getAlbumDir();
+				$tag = $srcitem->image->type;
+			}
 
-				$name = $nestedHighlight->image->name;
-				$tag  = $nestedHighlight->image->type;
-				$ret = 1;
-			} else {
+			if ($srcitem->image->thumb_width > 0) {
+				// Crop it first
+				$ret = cut_image("$srcdir/".$srcitem->image->name.".$tag",
+						"$dir/$name.tmp.$tag",
+						$srcitem->image->thumb_x,
+						$srcitem->image->thumb_y,
+						$srcitem->image->thumb_width,
+						$srcitem->image->thumb_height);
 
-				if ($this->image->thumb_width > 0) {
-					// Crop it first
-					if ($this->isAlbumName) {
-						$ret = cut_image("$dir/$name.$tag",
-                	                                 	"$dir/$name.tmp.$tag",
-                        	                         	$nestedHighlight->image->thumb_x,
-                                	                 	$nestedHighlight->image->thumb_y,
-                                        	         	$nestedHighlight->image->thumb_width,
-                                                	 	$nestedHighlight->image->thumb_height);
-					} else {
-						$ret = cut_image("$dir/$name.$tag", 
-							 	"$dir/$name.tmp.$tag", 
-							 	$this->image->thumb_x, 
-							 	$this->image->thumb_y,
-							 	$this->image->thumb_width, 
-						 		$this->image->thumb_height);
-					}
-	
-					// Then resize it down
-					if ($ret) {
-						$ret = resize_image("$dir/$name.tmp.$tag", 
-								    "$dir/$name.highlight.$tag",
-								    $gallery->app->highlight_size);
-					}
-					fs_unlink("$dir/$name.tmp.$tag");
-				} else {
-					$ret = resize_image("$dir/$name.$tag", 
+				// Then resize it down
+				if ($ret) {
+					$ret = resize_image("$dir/$name.tmp.$tag", 
 							    "$dir/$name.highlight.$tag",
-							    $gallery->app->highlight_size);
+							    $size);
 				}
+				fs_unlink("$dir/$name.tmp.$tag");
+			} else {
+				$ret = resize_image("$srcdir/".$srcitem->image->name.".$tag",
+						    "$dir/$name.highlight.$tag",
+						    $size);
 			}
 
 			if ($ret) {
@@ -361,10 +347,11 @@ class AlbumItem {
 				$this->highlightImage = $high;
 			}
 		} else {
-			if (fs_file_exists("$dir/$name.highlight.$tag")) {
-				fs_unlink("$dir/$name.highlight.$tag");
+			if (is_object($this->highlightImage)) {
+				$this->highlightImage->delete($dir);
+				$this->highlightImage = null;
 			}
-		}	
+		}
 	}
 
 	function isHighlight() {
@@ -374,6 +361,14 @@ class AlbumItem {
 	function getThumbDimensions($size=0) {
 		if ($this->thumbnail) {
 			return $this->thumbnail->getDimensions($size);
+		} else {
+			return array(0, 0);
+		}
+	}
+
+	function getHighlightDimensions($size=0) {
+		if (is_object($this->highlightImage)) {
+			return $this->highlightImage->getDimensions($size);
 		} else {
 			return array(0, 0);
 		}
@@ -541,6 +536,10 @@ class AlbumItem {
 	}
 
 	function delete($dir) {
+		if (is_object($this->highlightImage)) {
+			$this->highlightImage->delete($dir);
+		}
+
 		if ($this->image) {
 			$this->image->delete($dir);
 		}

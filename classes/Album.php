@@ -529,6 +529,15 @@ class Album {
 		return $photo->getThumbDimensions($size);
 	}
 
+	function getHighlightDimensions($size=0) {
+		$index = $this->getHighlight();
+		if (!isset($index)) {
+			return array(0, 0);
+		}
+		$photo = $this->getPhoto($index);
+		return $photo->getHighlightDimensions($size);
+	}
+
 	function hasHighlight() {
 		if ($this->numPhotos(1) == 0) {
 			return 0;
@@ -560,9 +569,18 @@ class Album {
 	function setHighlight($index) {
 		$this->updateSerial = 1;
 
+		$parent = $this->fields['parentAlbumName'];
+		if ($parent) {
+			$pAlbum = new Album();
+			$pAlbum->load($parent);
+			$size = $pAlbum->fields["thumb_size"];
+		} else {
+			$size = $gallery->app->highlight_size;
+		}
+
 		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			$photo = &$this->getPhoto($i);
-			$photo->setHighlight($this->getAlbumDir(), $i == $index);
+			$photo->setHighlight($this->getAlbumDir(), $i == $index, $size);
 		}
 	}
 
@@ -1059,9 +1077,10 @@ class Album {
 	}
 
 	function getHighlightTag($size=0, $attrs="",$alttext="") {
-		list ($album, $photo) = $this->getHighlightedItem();
-		if ($photo) {
-			return $photo->getHighlightTag($album->getAlbumDirURL("highlight"), $size, $attrs, $alttext);
+		$index = $this->getHighlight();
+		if (isset($index)) {
+			$photo = $this->getPhoto($index);
+			return $photo->getHighlightTag($this->getAlbumDirURL("highlight"), $size, $attrs, $alttext);
 		} else {
 			return "<span class=title>". _("No highlight") ."!</span>";
 		}
@@ -1294,7 +1313,7 @@ class Album {
 
 		/* Are we rotating the highlight?  If so, rebuild the highlight. */
 		if ($photo->isHighlight()) {
-			$photo->setHighlight($this->getAlbumDir(), 1);
+			$this->setHighlight($index);
 		}
 	}
 
