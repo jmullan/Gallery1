@@ -70,6 +70,10 @@ $navigator["bordercolor"] = $borderColor;
 
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page 
 
+/*
+** when direction is ltr(left to right) everything is fine)
+** when rtl(right to left), like in hebrew, we have to switch the alignment at some places.
+*/
 if ($gallery->direction == 'ltr') {
 	$left="left";
 	$right="right";
