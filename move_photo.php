@@ -118,7 +118,7 @@ if ($gallery->session->albumName && isset($index)) {
 						}
 						$photo=$gallery->album->getPhoto($index);
 
-						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, $gallery->album->getCaption($index), $pathToThumb, $photo->extraFields);
+						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, $gallery->album->getCaption($index), $pathToThumb, $photo->extraFields, $gallery->album->getItemOwner($index));
 						if (!$err) {
 							$newPhotoIndex = $postAlbum->numPhotos(1);
 

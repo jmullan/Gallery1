@@ -35,7 +35,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
 // Hack check
-if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
+if (!$gallery->user->canChangeTextOfAlbum($gallery->album) && !($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
 	exit;
 }
 $err = "";	

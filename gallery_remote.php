@@ -243,7 +243,7 @@ function process($file, $tag, $name, $setCaption="") {
 		}
 	    }
 
-            $err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption);
+            $err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, array(), $gallery->user->getUid());
             if (!$err) {
                 /* resize the photo if needed */
                 if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {

@@ -352,7 +352,8 @@ if (!$gallery->album->isMovie($id)) {
 			"resize_photo.php?index=$index");
 	}
 
-	if ($gallery->user->canDeleteFromAlbum($gallery->album)) {
+	if ($gallery->user->canDeleteFromAlbum($gallery->album) || 
+	    ($gallery->album->getItemOwnerDelete() && $gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
 		$nextId = ($index >= $numPhotos ? $index - 1 : $index);
 		$adminCommands .= popup_link("[delete photo]", 
 			"delete_photo.php?id=$id&id2=$nextId");

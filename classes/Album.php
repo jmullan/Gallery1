@@ -79,7 +79,12 @@ class Album {
 		}
 		$this->fields["cached_photo_count"] = 0;
 		$this->fields["photos_separate"] = FALSE;
-		$this->transient->photosloaded = TRUE;
+		$this->transient->photosloaded = TRUE; 
+		
+		$this->fields["item_owner_display"] = $gallery->app->default["item_owner_display"];
+		$this->fields["item_owner_modify"] = $gallery->app->default["item_owner_modify"];
+		$this->fields["item_owner_delete"] = $gallery->app->default["item_owner_delete"];
+
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
 	}
@@ -141,7 +146,10 @@ class Album {
 				"use_fullOnly", 
 				"print_photos",
 				"display_clicks",
-				"public_comments");
+				"public_comments", 
+				"item_owner_display",
+				"item_owner_modify",
+				"item_owner_delete");
 		foreach ($check as $field) {
 			if (!$this->fields[$field]) {
 				$this->fields[$field] = $gallery->app->default[$field];
@@ -596,7 +604,7 @@ class Album {
 		}
 	}
 
-	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array() ) {
+	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="") {
 		global $gallery;
 
 		$this->updateSerial = 1;
@@ -647,6 +655,11 @@ class Album {
 			{
 				$item->setExtraField($field, $value);
 			}
+			if (!strcmp($owner, "")) {
+				$nobody = $gallery->userDB->getNobody();
+				$owner = $nobody->getUid();
+			}
+			$item->setOwner($owner);
 		}
 		$this->photos[] = $item;
 
@@ -882,6 +895,16 @@ class Album {
 		$photo->setCaption($caption);
 	}
 
+	function getItemOwner($index) {
+		$photo = $this->getPhoto($index);
+		return $photo->getOwner();
+	}
+
+	function setItemOwner($index, $owner) {
+		$photo = &$this->getPhoto($index);
+		$photo->setOwner($owner);
+	}
+
 	function getUploadDate($index) {
 		$photo = $this->getPhoto($index);
 		$uploadDate = $photo->getUploadDate();
@@ -976,6 +999,19 @@ class Album {
 		return $photo->isMovie();
 	}
 
+	function isItemOwner($uid, $index)
+	{
+		global $gallery;
+		$nobody = $gallery->userDB->getNobody();
+		$nobodyUid = $nobody->getUid();
+		$everybody = $gallery->userDB->getEverybody();
+		$everybodyUid = $everybody->getUid();
+
+		if ($uid == $nobodyUid || $uid == $everybodyUid) {
+			return false;
+		}
+		return ($uid == $this->getItemOwner($index));
+	}
 	function isAlbumName($index) {
 		$photo = $this->getPhoto($index);
 		return $photo->isAlbumName;
@@ -1119,6 +1155,9 @@ class Album {
 				$nestedAlbum->fields["use_exif"] = $this->fields["use_exif"];
 				$nestedAlbum->fields["display_clicks"] = $this->fields["display_clicks"];
 				$nestedAlbum->fields["public_comments"] = $this->fields["public_comments"];
+				$nestedAlbum->fields["item_owner_display"] = $this->fields["item_owner_display"];
+				$nestedAlbum->fields["item_owner_modify"] = $this->fields["item_owner_modify"];
+				$nestedAlbum->fields["item_owner_delete"] = $this->fields["item_owner_delete"];
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedProperties();
 			}
@@ -1317,6 +1356,63 @@ class Album {
 		$photo = &$this->getPhoto($index);
 		$photo->setExtraField($field, $value);
 	}
+	function getItemOwnerById($id) 
+	{ 
+		return $this->getItemOwner($this->getPhotoIndex($id)); 
+	}
+
+	function setItemOwnerById($id, $owner) {
+		$index=$this->getPhotoIndex($id);
+		$this->setItemOwner($index, $owner);
+	}
+	function getItemOwnerDisplay() {
+		if (isset($this->fields["item_owner_display"])) {
+			if (strcmp($this->fields["item_owner_display"], "yes"))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	function getItemOwnerModify() {
+		if (isset($this->fields["item_owner_modify"])) {
+			if (strcmp($this->fields["item_owner_modify"], "yes"))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	function getItemOwnerDelete() {
+		if (isset($this->fields["item_owner_delete"])) {
+			if (strcmp($this->fields["item_owner_delete"], "yes"))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	function getCaptionName($index) {
+                global $gallery;
+		if (!$this->getItemOwnerDisplay()) {
+			return "";
+		}
+		$nobody = $gallery->userDB->getNobody();
+		$nobodyUid = $nobody->getUid();
+		$everybody = $gallery->userDB->getEverybody();
+		$everybodyUid = $everybody->getUid();
+
+		if (!strcmp($this->getItemOwner($index), $nobodyUid) || !strcmp($this->getItemOwner($index), $everybodyUid)) {
+			return "";
+		}
+                $user=$gallery->userDB->getUserByUid($this->getItemOwner($index));
+		if (!$user) {
+			return "";
+		}
+		return " - ".$user->getFullname()." (". $user->getUsername().")";
+        }
+
+
 }
 
 ?>

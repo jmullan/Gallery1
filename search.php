@@ -152,6 +152,7 @@ if ($searchstring) {
 			$numPhotos = $searchAlbum->numPhotos(1);
 			for ($j = 1; $j <= $numPhotos; $j++) {
 				$searchCaption = $searchAlbum->getCaption($j);
+				$searchCaption .= $searchAlbum->getCaptionName($j);
 				$searchKeywords = $searchAlbum->getKeywords($j);
 				$commentMatch = 0;
 				$commentText = "";

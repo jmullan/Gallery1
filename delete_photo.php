@@ -34,13 +34,16 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
-// Hack check
-if (!$gallery->user->canDeleteFromAlbum($gallery->album)) {
-	exit;
-}
 
 if (isset($id)) {
         $index = $gallery->album->getPhotoIndex($id);
+}
+
+// Hack check
+if (!$gallery->user->canDeleteFromAlbum($gallery->album) 
+	&& (!$gallery->album->getItemOwnerDelete()
+	|| !$gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
+	exit;
 }
 
 if ($confirm && isset($id)) {

@@ -143,6 +143,7 @@ function printSlideshowPhotos($slide_full, $what = PHOTO_ALL) {
 	if ( ($what & PHOTO_CAPTION) != 0 ) {
 	    // Now lets get the captions
 	    $caption = $gallery->album->getCaption($index);
+	    $caption .= $gallery->album->getCaptionName($index);
 	    $caption = str_replace("\"", " ", $caption);
 	    $caption = str_replace("\n", " ", $caption);
 	    $caption = str_replace("\r", " ", $caption);

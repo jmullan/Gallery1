@@ -52,6 +52,7 @@ Photo Properties<br>
 <?php echo $gallery->album->getThumbnailTag($index) ?>
 <br>
 <?php echo $gallery->album->getCaption($index) ?>
+<?php echo $gallery->album->getCaptionName($index) ?>
 <br><br>
 
 <?php
