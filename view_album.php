@@ -532,6 +532,7 @@ if ($page == 1 && !empty($gallery->album->fields["summary"])) {
 
 if (($gallery->album->getPollType() == "rank") && canVote())
 {
+   echo '<div align="left" class="vapoll">';
         $my_choices=array();
         if ( $gallery->album->fields["votes"])
 	{
@@ -591,11 +592,12 @@ if (($gallery->album->getPollType() == "rank") && canVote())
                 }
                 print "</table>\n";
         }
-
+   echo '</div>';
 }
 $results=1;
 if ($gallery->album->getPollShowResults())
 {
+   echo '<div align="left" class="vapoll">';
         list($buf, $results)=showResultsGraph( $gallery->album->getPollNumResults());
 	print $buf;
        	if ($results)
@@ -604,12 +606,14 @@ if ($gallery->album->getPollShowResults())
 	       	array("set_albumName" => $gallery->session->albumName)).
 		      	'">' ._("See full poll results") . '</a><br>';
        	}
+  echo '</div>';
 }
 
 echo makeFormIntro("view_album.php",
 	       	array("name" => "vote_form", "method" => "POST"));
 if (canVote())
 { 
+ echo '<div align="left" class="vapoll">';
  		$nv_pairs=$gallery->album->getVoteNVPairs();
  		if ($gallery->album->getPollScale()==1)
  		{
@@ -660,6 +664,9 @@ if (canVote())
      }
  }
    </script>
+
+   </div>
+
 <?php if (canVote()) { ?>
 	<div align="center">
  		<input type=submit name="Vote" value="<?php print _("Vote") ?>">
@@ -781,6 +788,13 @@ if ($numPhotos) {
 
 		echo "\n";
 		echo "</div>\n";
+
+		if (canVote()){
+		    if ($gallery->album->fields["poll_type"] == 'rank' && $divCellWidth < 200) {
+		        $divCellWidth=200;
+		    }
+		}
+
 		echo "<div style=\"width: {$divCellWidth}px;\"  align=\"center\" class=\"vafloat\">\n";
 		/* Do the clickable-dimensions row */
 		if (!strcmp($gallery->album->fields['showDimensions'], 'yes')) {
