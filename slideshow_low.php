@@ -225,7 +225,6 @@ function wait_for_current_photo() {
 
 function go_to_next_page() {
 
-    alert("going");
     var slideShowUrl = "<?= makeGalleryUrl('slideshow_low.php',
 				array('set_albumName' => $gallery->session->albumName)); ?>";
 
