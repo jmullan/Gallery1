@@ -52,6 +52,7 @@ if (isset($username) && isset($gallerypassword)) {
 		$tmpUser->log("login");
 		$tmpUser->save();
 	       	$gallery->session->username = $username;
+		gallery_syslog("Successful login for $username from " . $_SERVER['REMOTE_ADDR']);
 	       	if ($tmpUser->getDefaultLanguage() != "") {
 		       	$gallery->session->language = 
 				$tmpUser->getDefaultLanguage();
@@ -65,6 +66,7 @@ if (isset($username) && isset($gallerypassword)) {
        	} else {
 	       	$invalid = 1;
 	       	$gallerypassword = null;
+		gallery_syslog("Failed login for $username from " . $_SERVER['REMOTE_ADDR']);
        	}
 }
 ?>

@@ -148,6 +148,15 @@ function gallery_error($message) {
 	return '<span class="error">'. _("Error:") . $message .'</span>';
 }
 
+function gallery_syslog($message) {
+	global $gallery;
+	if (isset($gallery->app->useSyslog) && $gallery->app->useSyslog == "yes") {
+		define_syslog_variables();
+		openlog("gallery", LOG_NDELAY | LOG_PID, LOG_USER);
+		syslog(LOG_NOTICE, "(" . $gallery->app->photoAlbumURL . " [" . $gallery->version . "]) " . $message);
+		closelog();
+	}
+}
 
 function build_popup_url($url, $url_is_complete=0) {
 

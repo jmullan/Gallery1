@@ -431,7 +431,6 @@ function i18n($buf) {
 
 /*
 ** Convert all HTML entities to their applicable characters
-** This is used primary in Slideshow for the Statusbar
 */
 
 function unhtmlentities ($string) {

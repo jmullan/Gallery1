@@ -854,6 +854,12 @@ $constants = array_merge($constants,
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
+	"useSyslog" => array(
+		"prompt" => _("Use Syslog"),
+		"desc" => _("Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no",
+	),
 	"use_flock" => array(
 		"prompt" => sprintf(_("Use %s"), " flock()"),
 		"desc" => _("Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."),
