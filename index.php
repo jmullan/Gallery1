@@ -50,6 +50,15 @@ if (!strcmp($op, "modload")) {
 		$include = "albums.php";
 	}
 
+	/*
+	 * Only allow one of the following files to be included:
+	 */
+	$safe_to_include = array("albums.php", "view_photo.php", "view_album.php");
+	if (!in_array($include, $safe_to_include)) {
+	    print "Security error";
+	    exit;
+	}
+
 	include(${GALLERY_BASEDIR} . $include);
 } else {
 	include("albums.php");
