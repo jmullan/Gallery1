@@ -60,7 +60,7 @@ if($gallery->app->show_flags !='yes') {
 					$urlTemp,
 					$args)."\" $selected>" . $nls['language'][$value] ."</option>";
 		} else {
-			echo "\n\t\t<td><a href=\"". makeGalleryUrl( $urlTemp, $args) . "\"><img src=\"$GALLERY_BASEDIR/images/flags/$value.gif\" border=\"0\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a></td>";
+			echo "\n\t\t<td><a href=\"". makeGalleryUrl( $urlTemp, $args) . "\"><img src=\"". $gallery->app->photoAlbumURL ."/images/flags/$value.gif\" border=\"0\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a></td>";
 		}
 	}
 
