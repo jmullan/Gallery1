@@ -701,7 +701,7 @@ if (is_int($key))
 
 	$dimensions=$photo->getDimensions($full);
 	$table .= "<tr><td valign=top align=right><b>".$automaticFields[$field].":</b></td><td>".
-	$dimensions[0]." x ".$dimensions[1]." (". (int) $photo->getFileSize($full) >> 10 ."k)</td></tr>";
+	$dimensions[0]." x ".$dimensions[1]." (". ((int) $photo->getFileSize($full) >> 10 )."k)</td></tr>";
 	unSet($extra_fields[$key]);
 }
 
