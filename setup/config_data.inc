@@ -511,7 +511,7 @@ $defaults = array(
 			  "that will get donated back to the Gallery project.  This is one great way " .
 			  "for you to help support this free software. ",
 		"value" => "shutterfly",
-		"choices" => array("none", "shutterfly", "shutterfly without donation")
+		"choices" => array("none", "shutterfly", "shutterfly without donation, fotokasten")
 	),
 	"returnto" => array(
 		"prompt" => "Gallery Link",

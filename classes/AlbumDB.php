@@ -107,8 +107,24 @@ class AlbumDB {
 
 		$name = "album01";
 		$albumDir = $gallery->app->albumDir;
+		$name = "album98";
 		while (fs_file_exists("$albumDir/$name")) {
-			$name++;
+			switch($name) {
+				case 'album99':
+					$name = 'album100';
+					break;
+
+				case 'album999':
+					$name = 'album1000';
+					break;
+
+				case 'album9999':
+					$name = 'album10000';
+					break;
+
+				default:
+					$name++;
+			}
 		}
 		return $name;
 	}

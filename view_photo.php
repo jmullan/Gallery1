@@ -327,11 +327,36 @@ if (!$gallery->album->isMovie($id)) {
 	}
 
 
-	if (strcmp($gallery->album->fields["print_photos"],"none")) {
+	if (strcmp($gallery->album->fields["print_photos"],"none") &&
+		!$gallery->album->isMovie($id)){
+
+		$photo = $gallery->album->getPhoto($GLOBALS["index"]);
+		$photoPath = $gallery->album->getAlbumDirURL("full");
+		$rawImage = $photoPath . "/" . $photo->image->name . "." . $photo->image->type;
+
+		$thumbImage= $photoPath . "/";
+		if ($photo->thumbnail) {
+			$thumbImage .= $photo->image->name . "." . "thumb" . "." . $photo->image->type;
+		} else if ($photo->image->resizedName) {
+			$thumbImage .= $photo->image->name . "." . "sized" . "." . $photo->image->type;
+		} else {
+			$thumbImage .= $photo->image->name . "." . $photo->image->type;
+		}
+		list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
 		if (strlen($adminCommands) > 0) {
 			$adminCommands .="<br>";
 		}
-		$adminCommands .= "<a href=# onClick=\"document.sflyc4p.returl.value=document.location; document.sflyc4p.submit();return false\">[print this photo on Shutterfly]</a>";
+		$printService = $gallery->album->fields["print_photos"];
+		if (!strncmp($printService, "shutterfly", 10)) {
+		    $adminCommands .= "<a href=# onClick=\"document.sflyc4p.returl.value=document.location; document.sflyc4p.submit();return false\">[print this photo on Shutterfly]</a>";
+		    $printShutterflyForm = 1;
+		} else if (!strncmp($printService, "fotokasten", 10)) {
+		    $adminCommands .= "<a href=# onClick=\"" .
+			popup("http://1012.partner.fotokasten.de/affiliateapi/standard.php?add=". 
+				$rawImage ."&thumbnail=" . $thumbImage . "&height=" . 
+				$imageHeight ."&width=" . $imageWidth, 1) . 
+			"\">[print this photo on Fotokasten]</a>";
+		}
 	}
 
 
@@ -454,22 +479,7 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 </td>
 </tr>
 <?php } ?>
-<?php
-if (!strcmp($gallery->album->fields["print_photos"],"none") ||
-    $gallery->album->isMovie($id)) {
-} else {
-$photo = $gallery->album->getPhoto($GLOBALS["index"]);
-$photoPath = $gallery->album->getAlbumDirURL("full");
-$rawImage = $photoPath . "/" . $photo->image->name . "." . $photo->image->type;
-
-$thumbImage= $photoPath . "/";
-if ($photo->image->resizedName) {
-	$thumbImage .= $photo->image->resizedName . "." . $photo->image->type;
-} else {
-	$thumbImage .= $photo->image->name . "." . $photo->image->type;
-}
-list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
-?>
+<?php if ($printShutterflyForm) { ?>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value="1">
   <input type=hidden name=protocol value="SFP,100">
@@ -488,10 +498,7 @@ list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
   <input type=hidden name=imthumb-1 value="<?php echo $thumbImage ?>">
   <input type=hidden name=imbkprntb-1 value="Hi">
 </form>
-<?php
-}
-?>
-
+<?php } ?>
 <?php
 
 echo("<tr><td colspan=3 align=center>");
