@@ -48,7 +48,7 @@ if ($searchstring) {
 </td>
 </form>   
 </tr>
-<tr><td height=2><img src=<?= $GALLERY_BASEDIR ?>images/pixel_trans.gif></td></tr></table>
+<tr><td height=2><img src=<?= $GALLERY_BASEDIR ?>images/pixel_trans.gif></td></tr>
 </table> 
 <?
 }
