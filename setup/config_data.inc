@@ -219,6 +219,11 @@ $defaults = array(
 		"value" => "no",
 		"choices" => array("yes", "no")
 	),
+	"use_shutterfly" => array(
+		"desc" => "Offer visitors ability to order prints on Shutterfly",
+		"value" => "no",
+		"choices" => array("yes", "no")
+	),
 	"returnto" => array(
 		"desc" => "Display the 'Return to Album List' link",
 		"value" => "yes",
