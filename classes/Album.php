@@ -916,7 +916,7 @@ class Album {
 	}
 
 	function setNestedProperties() {
-		for ($i=1; $i < $this->numPhotos(1); $i++) {
+		for ($i=1; $i <= $this->numPhotos(1); $i++) {
 			if ($this->isAlbumName($i)) {
 				$nestedAlbum = new Album();
 				$nestedAlbum->load($this->isAlbumName($i));
