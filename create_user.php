@@ -24,8 +24,10 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($formaction, $uname, $new_password1, $new_password2, $fullname, $canCreate, $email, $defaultLanguage) = 
-	getRequestVar(array('formaction', 'uname', 'new_password1', 'new_password2', 'fullname', 'canCreate', 'email', 'defaultLanguage'));
+list($formaction, $uname, $new_password1, $new_password2, $fullname, $canCreate, 
+     $email, $defaultLanguage, $send_email) = 
+	getRequestVar(array('formaction', 'uname', 'new_password1', 'new_password2', 'fullname', 
+			    'canCreate', 'email', 'defaultLanguage', 'send_email'));
 
 if (!$gallery->user->isAdmin()) {
 	echo _("You are not allowed to perform this action!");
