@@ -287,7 +287,7 @@ foreach ($constants as $key => $val) {
 		if (isset($constants[$key]["verify-func"])) {
 			$func = $constants[$key]["verify-func"];
 			if (isset($constants[$key]["verify-func-takes-graphics-type"])) {
-			    list($success, $fail) = $func($real, $graphtool);
+			    list($success, $fail, $warn) = $func($real, $graphtool);
 			} else {
 			    list($success, $fail) = $func($real);
 			}

@@ -446,6 +446,11 @@ function check_graphics($location="", $graphtool = "")
 		fs_executable("pnmtojpeg") => fs_executable("ppmtojpeg")
 	);
 
+	$optional = array(
+		fs_executable("pnmcomp") => 1,
+	);
+	$missing_optional = 0;
+
 	foreach ($netpbm as $bin) {
 		if ($location) {
 			$d = locateDir($bin, $location, 1);
@@ -469,19 +474,28 @@ function check_graphics($location="", $graphtool = "")
 			}
 		}
 
-		if (!$d) {
-			$missing[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
-		}
+		if (!$d && isset($optional[$bin])) {
+			$warn[] = sprintf(_("Missing optional binary %s"), $bin);
+			$missing_optional++;
+		} else {
+			if (!$d) {
+				$missing[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
+			}
 
-		if (!empty($d) && inOpenBasedir($d)) {
-		    if (!fs_is_executable("$d/$bin")) {
-			$missing[$bin] = sprintf(_("%s is not executable!"),
-					"<i>$bin</i> "); 
-		    }
+			if (!empty($d) && inOpenBasedir($d)) {
+			    if (!fs_is_executable("$d/$bin")) {
+				$missing[$bin] = sprintf(_("%s is not executable!"),
+						"<i>$bin</i> "); 
+			    }
+			}
 		}
 	}
-	
-	if (count($missing) == count($netpbm)) {
+
+	if ($missing_optional) {
+		// $warn[] is already set
+		$warn[] = sprintf(_("%d of %d NetPBM binaries located."),
+				count($netpbm) - $missing_optional, count($netpbm) );
+	} else if (count($missing) == count($netpbm)) {
 		$fail["fail-netpbm"] = 1;
 	} else if (count($missing)) {
 		$fail["fail-netpbm-partial"] = array_values($missing);
@@ -519,6 +533,11 @@ function check_graphics_im($location="", $graphtool="")
 		fs_executable("composite"),
 	);
 
+	$optional = array(
+		fs_executable("composite") => 1,
+	);
+	$missing_optional = 0;
+
 	foreach ($imagick as $bin) {
 		if ($location) {
 			$d = locateDir($bin, $location, 1);
@@ -527,7 +546,12 @@ function check_graphics_im($location="", $graphtool="")
 		}
 
 		if (!$d) {
-			$missing[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
+			if ($optional[$bin]) {
+				$warn[$bin] = sprintf(_("Missing optional binary %s"), $bin);
+				$missing_optional++;
+			} else {
+				$missing[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
+			}
 		}
 
 		if (!empty($d) && inOpenBasedir($d)) {
@@ -538,7 +562,10 @@ function check_graphics_im($location="", $graphtool="")
 		}
 	}
 	
-	if (count($missing) == count($imagick)) {
+	if ($missing_optional) {
+		$warn[] = sprintf(_("%d of %d ImageMagick binaries located."),
+				count($imagick) - $missing_optional, count($imagick));
+	} else if (count($missing) == count($imagick)) {
 		$fail["fail-imagemagick"] = 1;
 	} else if (count($missing)) {
 		$fail["fail-imagemagick"] = array_values($missing);
