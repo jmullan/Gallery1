@@ -1847,7 +1847,7 @@ function initLanguage() {
 // Check if we already have a language
 // Use this only if user dont want Browserlanguage only
 
-	if ($gallery->language and $gallery->app->ML_mode > 1) {
+	if ($gallery->app->ML_mode > 1) {
 		$gallery->language=$gallery->session->language;
 	}
 
@@ -1978,4 +1978,9 @@ if (in_array("gettext", get_loaded_extensions())) {
 	
 
 }
+function vd($x, $string="") {
+	print "<pre>\n$string: ";
+	var_dump($x);
+	print "</pre>\n";
+}       
 ?>

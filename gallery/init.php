@@ -95,7 +95,6 @@ if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
         global $gallery;
 	include($GALLERY_BASEDIR . "config.php");
 }
-initLanguage();
 
 /*
  * Detect if we're running under SSL and adjust the URL accordingly.
@@ -119,8 +118,6 @@ if (isset($HTTP_SERVER_VARS["HTTPS"]) &&
  */
 set_magic_quotes_runtime(0);
 
-/* Make sure that Gallery is set up properly */
-gallerySanityCheck();
 
 /* Load classes and session information */
 require($GALLERY_BASEDIR . "classes/Album.php");
@@ -137,6 +134,9 @@ require($GALLERY_BASEDIR . "classes/Comment.php");
 if (!isset($GALLERY_NO_SESSIONS)) {
     require($GALLERY_BASEDIR . "session.php");
 }
+initLanguage();
+/* Make sure that Gallery is set up properly */
+gallerySanityCheck();
 
 
 if (isset($GALLERY_EMBEDDED_INSIDE) &&
