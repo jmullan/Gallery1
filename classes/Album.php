@@ -1139,6 +1139,18 @@ class Album {
 	}
 
 	// ------------- 
+	function canCreateSubAlbum($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+		return $this->getPerm("canCreateSubAlbum", $uid);
+	}
+
+	function setCreateSubAlbum($uid, $bool) {
+		$this->setPerm("canCreateSubAlbum", $uid, $bool);
+	}
+
+	// ------------- 
 	function isOwner($uid) {
 		return (!strcmp($uid, $this->fields["owner"]));
 	}

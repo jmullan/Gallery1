@@ -76,6 +76,14 @@ if (isset($allUid) && strchr($submit_delete, ">")) {
 	$changed++;
 }
 
+if (isset($allUid) && strchr($submit_createSub, ">")) {
+	$gallery->album->setCreateSubAlbum($allUid, 1);
+	$changed++;
+} else if (isset($createSubUid) && strchr($submit_createSub, "<")) {
+	$gallery->album->setCreateSubAlbum($createSubUid, 0);
+	$changed++;
+}
+
 if (!strcmp($submit, "Save") && $ownerUid) {
 	$gallery->album->setOwner($ownerUid);
 	$changed++;
@@ -95,6 +103,7 @@ $uText = $gallery->album->getPermUids("canChangeText");
 $uAdd = $gallery->album->getPermUids("canAddTo");
 $uWrite = $gallery->album->getPermUids("canWrite");
 $uDelete = $gallery->album->getPermUids("canDeleteFrom");
+$uCreateSub = $gallery->album->getPermUids("canCreateSubAlbum");
 
 foreach ($gallery->userDB->getUidList() as $uid) {
 	$tmpUser = $gallery->userDB->getUserByUid($uid);
@@ -109,14 +118,16 @@ asort($uRead);
 asort($uText);
 asort($uWrite);
 asort($uDelete);
+asort($uCreateSub);
 asort($uAdd);
 asort($uAll);
 
-correctPseudoUsers($uRead);
-correctPseudoUsers($uText);
-correctPseudoUsers($uWrite);
-correctPseudoUsers($uDelete);
-correctPseudoUsers($uAdd);
+correctPseudoUsers($uRead, $ownerUid);
+correctPseudoUsers($uText, $ownerUid);
+correctPseudoUsers($uWrite, $ownerUid);
+correctPseudoUsers($uDelete, $ownerUid);
+correctPseudoUsers($uCreateSub, $ownerUid);
+correctPseudoUsers($uAdd, $ownerUid);
 
 ?>
 <html>
@@ -141,7 +152,7 @@ Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
 <table border=0 cellspacing=0 cellpadding=0>
  <tr>
   <td align=center>
-   <?= drawSelect("allUid", $uAll, $allUid, 23); ?>
+   <?= drawSelect("allUid", $uAll, $allUid, 28); ?>
   </td>
 
   <td> &nbsp; </td>
@@ -223,7 +234,22 @@ Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
      </td>
     </tr>
 
-   </table
+    <tr>
+     <td colspan=2>
+      Users who can create sub albums.
+     </td>
+    </tr>
+    <tr>
+     <td>   
+           <input type=submit name="submit_createSub" value="-->">
+      <br> <input type=submit name="submit_createSub" value="<--">
+     </td>
+     <td>
+      <?= drawSelect("createSubUid", $uCreateSub, $createSubUid, 3); ?>
+     </td>
+    </tr>
+
+     </table
   </td>
  </tr>
 </table>

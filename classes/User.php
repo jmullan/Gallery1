@@ -147,6 +147,18 @@ class Abstract_User {
 		return false;
 	}
 
+	function canCreateSubAlbum($album) {
+		if ($this->isAdmin()) {
+			return true;
+		}
+
+		if ($album->canCreateSubAlbum($this->uid)) {
+			return true;
+		}
+
+		return false;
+	}
+	
 	function canCreateAlbums() {
 		if ($this->isAdmin()) {
 			return true;
