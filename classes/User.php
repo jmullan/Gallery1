@@ -86,6 +86,16 @@ class Abstract_User {
 	       	return $this->username;
        	}
 
+       	function printableName() {
+	       	if ($this->getFullName()) {
+		       	return sprintf("%s (%s)",
+				       	$this->getFullName(),
+				       	$this->getUsername()); 
+		} else {
+		       	return $this->getUsername();
+	       	}
+	}
+
 	function setEmail($email) {
 		$this->email = $email;
 	}

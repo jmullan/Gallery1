@@ -703,6 +703,7 @@ class Album {
 		    }
 		}
 		if ($success && $msg) { // send email
+			global $HTTP_SERVER_VARS;
 			if (!is_array($msg)) {
 				gallery_error(_("msg should be an array!"));
 				vd($msg);
@@ -714,8 +715,10 @@ class Album {
 		       	$to = implode(", ", $this->getEmailMeList('other', $id));
 			$msg_str=call_user_func_array('sprintf', $msg);
 		       	if (strlen($to) > 0) {
-			       	$text = sprintf("A change has been made to %s\n  The change is: %s.",
+			       	$text = sprintf("A change has been made to %s by %s (IP %s).  The change is: %s.",
 					       	makeAlbumUrl($this->fields['name']),
+						user_name_string($gallery->user->getUID()),
+						$HTTP_SERVER_VARS['REMOTE_ADDR'],
 					       	$msg_str);
 			       	$text .= "\n\n". "If you no longer wish to receive emails about this image, follow the links above and ensure that \"Email me when other changes are made\" is unchecked (You'll need to login first).";
 			       	$subject=sprintf("Changes to %s", $this->fields['name']);

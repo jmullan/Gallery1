@@ -55,7 +55,7 @@ class Comment {
 		global$gallery;
 		$name="";
 		if  ($gallery->app->comments_anonymous == "no") {
-			$name=commenter_name_string($this->UID);
+			$name=user_name_string($this->UID);
 		}
 		if (!$name) {
 			$name=$this->name;

@@ -124,7 +124,7 @@ if (!$gallery->user->isLoggedIn() ) {
     echo "<input name=\"commenter_name\" value=\"".$commenter_name."\" size=\"30\">";
 } else {
 	if (empty($commenter_name)) {
-		$commenter_name=commenter_name_string($gallery->user->getUID());
+		$commenter_name=user_name_string($gallery->user->getUID());
        	}
        	if ($gallery->app->comments_anonymous == 'yes') {
 	       	echo '<input name="commenter_name" value="'.$commenter_name.'" size="30">';

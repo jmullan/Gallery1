@@ -3092,19 +3092,14 @@ function where_i_am() {
 	}
 
 }
-function commenter_name_string($uid) {
+function user_name_string($uid) {
        	global $gallery;
        	$user=$gallery->userDB->getUserByUid($uid);
        	if (!$user || $user->isPseudo()) {
 	       	return "";
-       	} else if ($user->getFullName()) {
-	       	$string= sprintf("%s (%s)",
-				$user->getFullName(),
-			       	$user->getUsername()); 
        	} else {
-	       	$string = $user->getUsername();
-       	}
-	return $string;
+		return $user->printableName();
+	}
 }
 
 ?>
