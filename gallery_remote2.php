@@ -49,14 +49,13 @@ if (empty ($cmd)) {
 /*
  * Set content type
  */
-header("Content-type: text/plain");
-
+//header("Content-type: text/plain");
 
 /*
- * Gallery remote protocol version 2.5
+ * Gallery remote protocol version 2.7
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 6;
+$GR_VER['MIN'] = 7;
 
 
 /*
@@ -374,44 +373,77 @@ if (!strcmp($cmd, "login")) {
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Fetch images successful.' );
 
-} else if (!strcmp($cmd, 'move-item')) {
-	//---------------------------------------------------------
-	//-- move-item --
-
-	// This is NOT complete, has not been tested and should NOT be used
-	if($gallery->user->canWriteToAlbum($gallery->album)) {
-		if(isset($set_destalbumName)) {
-			if($set_destalbumName == $gallery->session->albumName) {
-
-				$gallery->album->movePhoto($index,$newIndex-1);
-				$gallery->album->save(array(i18n("Moved photo from %d to %d"), 
-							$index, $newIndex));
-				$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
-				$response->setProperty( 'status_text', 'Change image index successful.' );
-			}
-			$albumDB = new AlbumDB(FALSE);
-			$postAlbum = $albumDB->getAlbumbyName($set_destalbumName);
-			if ($gallery->album->fields['name'] != $postAlbum->fields['name']) { //if not moving to same album
-				
-			}
-			print_r($postAlbum);
-			echo "\n\n";
-			print_r($gallery);
-		} else {
-			if(!$gallery->album->isAlbumName($index)) { //make sure not moving an album
-		                $gallery->album->movePhoto($index, $newIndex-1);
-				$gallery->album->save(array(i18n("Moved photo from %d to %d"), 
-							$index, $newIndex));
-				$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
-				$response->setProperty( 'status_text', 'Change image index successful.' );
-			} else {
-				$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
-				$response->setProperty( 'status_text', 'Cannot move album index yet.' );
-			}
+} else if (!strcmp($cmd, 'move-album')) {
+	if(isset($set_destalbumName)) { //moving album to different album
+		$destAlbum = new Album();
+		if($set_destalbumName != '0') { //destalbum can be 0 when moving to root
+			$destAlbum->load($set_destalbumName);
 		}
-	} else {
-		$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
-		$response->setProperty( 'status_text', 'User does not have permission to write to album.' );
+		if($set_destalbumName != $gallery->album->fields['name']) {
+			if($gallery->album->isRoot()) {
+				if(checkIfNestedAlbum($gallery->album,$destAlbum)) {
+					$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
+					$response->setProperty( 'status_text', 'Cannot move album into a sub-album of itself.' );
+				} else {
+					if($gallery->user->canWriteToAlbum($gallery->album) && $gallery->user->canWriteToAlbum($destAlbum)) {
+						$gallery->album->fields['parentAlbumName'] = $set_destalbumName;
+						$gallery->album->save();
+						$destAlbum->addNestedAlbum($gallery->album->fields['name']);
+						$destAlbum->save();
+						$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+						$response->setProperty( 'status_text', 'Move album successful.' );
+					} else {
+						$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
+						$response->setProperty( 'status_text', 'No write permission to album or destination.' );
+					}
+				}
+			} else {
+				if(checkIfNestedAlbum($gallery->album,$destAlbum)) {
+					$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
+					$response->setProperty( 'status_text', 'Cannot move album into a sub-album of itself.' );
+				} else {
+					if($gallery->album->fields['parentAlbumName'] == $set_destalbumName) {
+						$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
+						$response->setProperty( 'status_text', 'Album is already in specified destination album.' );
+					} else {
+						if($set_destalbumName == '0') {
+							$parentAlbum = new Album();
+							$parentAlbum->load($gallery->album->fields['parentAlbumName']);
+							if($gallery->user->canWriteToAlbum($parentAlbum) && $gallery->user->canCreateAlbums()) {
+								$gallery->album->fields['parentAlbumName'] = 0;
+								$parentAlbum->deletePhoto($parentAlbum->getAlbumIndex($gallery->album->fields['name']),0,0);
+								$parentAlbum->save();
+								$gallery->album->save();
+								$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+								$response->setProperty( 'status_text', 'success' );
+							} else {
+								$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
+								$response->setProperty( 'status_text', 'No write permission to album or destination.' );
+							}
+						} else {
+							if($gallery->user->canWriteToAlbum($gallery->album) && $gallery->user->canWriteToAlbum($destAlbum)) {
+								$parentAlbum = new Album();
+								$parentAlbum->load($gallery->album->fields['parentAlbumName']);
+								$destAlbum->addNestedAlbum($gallery->album->fields['name']); //add album to new
+								$gallery->album->fields['parentAlbumName'] = $destAlbum->fields['name'];
+								$parentAlbum->deletePhoto($parentAlbum->getAlbumIndex($gallery->album->fields['name']),0,0); //delete album from old
+								$parentAlbum->save();
+								$destAlbum->save();
+								$gallery->album->save();
+								$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+								$response->setProperty( 'status_text', 'success' );
+							} else {
+								$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
+								$response->setProperty( 'status_text', 'No write permission to album or destination.' );
+							}
+						}
+					}
+				}
+			}
+		} else {
+			$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
+			$response->setProperty( 'status_text', 'Album and destination album cannot be the same.' );
+		}
 	}
 } else {
 	// if the command hasn't been handled yet, we don't recognize it
@@ -421,7 +453,27 @@ if (!strcmp($cmd, "login")) {
 
 echo $response->listprops();
 
-
+function checkIfNestedAlbum(&$startAlbum,&$possibleSub) {
+	if(count($startAlbum->photos) < 1) {
+		return FALSE;
+	}
+	foreach($startAlbum->photos as $subItem) {
+		if(!empty($subItem->isAlbumName)) { //if it's an album
+			if($subItem->isAlbumName == $possibleSub->fields['name']) {
+				return TRUE; //possible sub was found to be a sub of startalbum
+			} else {
+				$subAlbum = new Album();
+				$subAlbum->load($subItem->isAlbumName);
+				if(checkIfNestedAlbum($subAlbum,$possibleSub)) {
+					return TRUE;
+				}
+			}
+			//check if $possiblesub equals this subitem
+			//checkifnetstedalbum($subitem,$possibleSub)
+		}
+	}
+	return FALSE;
+}
 //------------------------------------------------
 //-- FUNCTIONS
 //--
