@@ -24,6 +24,7 @@ class Album {
 	var $photos;
 	var $dir;
 	var $version;
+	var $tsilb = "TSILB\n";
 
 	/* 
 	 * This variable contains data that is useful for the lifetime
@@ -419,7 +420,7 @@ class Album {
 			$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
 			if ($fd = fs_fopen($serial, "w")) {
 				/* This space intentionally left blank */
-				fwrite($fd, "TSILB\n");
+				fwrite($fd, $this->tsilb);
 				fclose($fd);
 			}
 
@@ -685,9 +686,14 @@ class Album {
 			foreach(split("[[:space:]]+", $gallery->app->mirrorSites) as $base_url) {
 				$base_url .= $albumPath;
 				$serial = $base_url . "/serial.{$this->fields[serial_number]}.dat";
+
+				/* Don't use fs_fopen here since we're opening a url */
 				if ($fd = @fopen($serial, "r")) {
-					$this->transient->mirrorUrl = $base_url;
-					return $this->transient->mirrorUrl;
+					$serialContents = fgets($fd,5);
+					if (!strcmp($serialContents,$this->tsilb)) {
+						$this->transient->mirrorUrl = $base_url;
+						return $this->transient->mirrorUrl;
+					}
 				} 
 			}
 
