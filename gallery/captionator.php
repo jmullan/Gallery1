@@ -41,18 +41,18 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 }
 
 
-if (!$page) {
+if (!isset($page)) {
     $page = 1;
 }
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 
-if (!$perPage) {
+if (!isset($perPage)) {
     $perPage = 5;
 }
 
 #-- save the captions from the previous page ---
-if ($save || $next || $prev) {
+if (isset($save) || isset($next) || isset($prev)) {
 
     $i = 0;
     $start = ($page - 1) * $perPage + 1;
@@ -92,15 +92,15 @@ if ($save || $next || $prev) {
 
 }
 
-if ($cancel || $save) {
+if (isset($cancel) || isset($save)) {
     header("Location: " . makeGalleryUrl("view_album.php"));
     return;
 }
 
 #-- did they hit next? ---
-if ($next) {
+if (isset($next)) {
     $page++;
-} else if ($prev) {
+} else if (isset($prev)) {
     $page--;
 }
 
@@ -209,7 +209,7 @@ includeLayout('adminbox.inc');
 <td colspan="3" align="right">
 <input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">
 
-<?php if (!$last) { ?>
+<?php if (!isset($last)) { ?>
     <input type="submit" name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
 <?php } ?>
 
@@ -319,7 +319,7 @@ if ($numPhotos) {
 <td colspan="3" align="right">
 <input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">
 
-<?php if (!$last) { ?>
+<?php if (!isset($last)) { ?>
     <input type="submit" name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
 <?php } ?>
 

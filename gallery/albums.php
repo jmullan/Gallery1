@@ -71,7 +71,7 @@ $navigator["bordercolor"] = $borderColor;
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page 
 ?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<?php doctype() ?>
 <html>
 <head>
   <title><?php echo $gallery->app->galleryTitle ?></title>

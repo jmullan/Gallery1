@@ -158,7 +158,7 @@ $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
 </form>
 
-<script language="javascript1.2">
+<script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
 document.usermodify_form.uname.focus();

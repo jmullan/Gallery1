@@ -41,9 +41,9 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 
-if ($save) {
+if (!empty($save)) {
 	$count=0;
-	if (!$extra_fields)
+	if (!isset($extra_fields))
 	{
 		$extra_fields = array();
 	}
@@ -73,7 +73,7 @@ if ($save) {
 			array_slice($gallery->album->getExtraFields(), 
 			0, $num_fields));
 	}
-	if ($setNested) 
+	if (!empty($setNested)) 
 	{
 		$gallery->album->setNestedExtraFields();
 	}

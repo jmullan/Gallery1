@@ -98,7 +98,9 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 } else if (!strcmp($cmd, "new-album")) {
 	if ($gallery->user->canCreateAlbums() ||
 	    $gallery->user->canCreateSubAlbum($gallery->album)) {
-
+		if (!isset($parentName)) {
+			$parentName=null;
+		}
 		createNewAlbum($parentName);
 
 		$url = addUrlArg($return, "set_albumName=" .

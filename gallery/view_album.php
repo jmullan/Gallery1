@@ -161,30 +161,31 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
 $breadcrumb["bordercolor"] = $bordercolor;
 ?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php doctype() ?>
 <html> 
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
   <?php echo getStyleSheetLink() ?>
   <?php /* prefetching/navigation */
   if (!isset($first)) { ?>
-      <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => 1)) ?>" />
-      <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $previousPage)) ?>" />
+      <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => 1)) ?>" >
+      <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $previousPage)) ?>" >
   <?php }
   if (!isset($last)) { ?>
-      <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $nextPage)) ?>" />
-      <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $maxPages)) ?>" />
+      <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $nextPage)) ?>" >
+      <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $maxPages)) ?>" >
   <?php } if ($gallery->album->isRoot() && 
   	(!$gallery->session->offline || 
 	 isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
-  <link rel="up" href="<?php echo makeAlbumUrl(); ?>" />
+  <link rel="up" href="<?php echo makeAlbumUrl(); ?>" >
       <?php
       } else if (!$gallery->session->offline || 
 	 isset($gallery->session->offlineAlbums[$pAlbum->fields['parentAlbumName']])) { ?>
-  <link rel="up" href="<?php echo makeAlbumUrl($gallery->album->fields['parentAlbumName']); ?>" />
+  <link rel="up" href="<?php echo makeAlbumUrl($gallery->album->fields['parentAlbumName']); ?>" >
   <?php } 
   	if (!$gallery->session->offline || 
 	 isset($gallery->session->offlineAlbums["albums.php"])) { ?>
-  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" />
+  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" >
   <?php } ?>
   <style type="text/css">
 <?php
@@ -200,7 +201,7 @@ if ($gallery->album->fields["linkcolor"]) {
 if ($gallery->album->fields["bgcolor"]) {
 	echo "BODY { background-color:".$gallery->album->fields['bgcolor']."; }";
 }
-if (isset($gallery->album->fields["background"])) {
+if (isset($gallery->album->fields['background'])) {
 	echo "BODY { background-image:url(".$gallery->album->fields['background']."); } ";
 }
 if ($gallery->album->fields["textcolor"]) {
@@ -218,7 +219,7 @@ if ($gallery->album->fields["textcolor"]) {
 
 <?php if (!$gallery->session->offline) { ?>
 
-  <script language="javascript1.2">
+  <script language="javascript1.2" type="text/JavaScript">
   // <!--
   var statusWin;
   function showProgress() {
@@ -397,7 +398,8 @@ reset($adminOptions);
 $adminOptionHTML = '';
 $adminJavaScript = '';
 /* determine which options to include in admin drop-down menu */
-foreach ($adminOptions as $key => $data) {
+if (!$gallery->session->offline) {
+  foreach ($adminOptions as $key => $data) {
     $enabled = true;
     while ($enabled && $test = array_shift($data['requirements'])) {
 	$success = testRequirement($test);
@@ -411,13 +413,14 @@ foreach ($adminOptions as $key => $data) {
 	$adminJavaScript .= "adminOptions.$key.action = \"${data['action']}\";\n";
 	$adminJavaScript .= "adminOptions.$key.value = \"${data['value']}\";\n";
     }
+  }
 }
 
 $adminCommands = '';
 $adminJSFrame = '';
 /* build up drop-down menu and related javascript */
 if (!empty($adminOptionHTML)) {
-    $adminJSFrame .= "<script language=\"javascript1.2\">\n"
+    $adminJSFrame .= "<script language=\"javascript1.2\" type=\"text/JavaScript\">\n"
 	    . "adminOptions = new Object;\n"
 	    . $adminJavaScript
 	    . "\nfunction execAdminOption() {\n"
@@ -466,7 +469,7 @@ $adminbox["top"] = true;
 
 if (!empty($adminOptionHTML)) {
     print $adminJSFrame;
-    print "<form name=\"admin_options_form\">\n";
+    print "<form name=\"admin_options_form\" action=\"view_album.php\">\n";
 }
 
 includeLayout('adminbox.inc');
@@ -563,9 +566,9 @@ if ($gallery->album->getPollShowResults())
 }
 if ($gallery->album->getPollShowResults() && $results)
 {
-	print '<a href=' . makeGalleryUrl("poll_results.php",
+	print '<a href="' . makeGalleryUrl("poll_results.php",
 		array("set_albumName" => $gallery->session->albumName)).
-		'>See full poll results</a><br>';
+		'">' ._("See full poll results") . '</a><br>';
 }
 
 echo makeFormIntro("view_album.php",
@@ -611,7 +614,7 @@ if (canVote())
  		}
 
  ?>
-   <script language="javascript1.2">
+   <script language="javascript1.2" type="text/JavaScript">
  function chooseOnlyOne(i, form_pos, scale)
  {
    for(var j=0;j<scale;j++)
@@ -623,7 +626,7 @@ if (canVote())
      }
  }
    </script>
- 		<table width=100%><tr><td align=center>
+ 		<table width="100%"><tr><td align=center>
                 <?php if (canVote()) { ?>
  		<input type=submit name="Vote" value="<?php print _("Vote") ?>">
                 <?php } ?>
@@ -640,7 +643,7 @@ if ($page == 1)
 
 <!-- image grid table -->
 <br>
-<table width=<?php echo $fullWidth ?> border=0 cellspacing=0 cellpadding=7>
+<table width="<?php echo $fullWidth ?>" border=0 cellspacing=0 cellpadding=7>
 <?php
 $numPhotos = $gallery->album->numPhotos(1);
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
@@ -676,7 +679,7 @@ if ($numPhotos) {
 		$i = $rowStart;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
-			echo("<td width=$imageCellWidth align=center valign=middle>");
+			echo("<td width=\"$imageCellWidth\" align=\"center\" valign=\"middle\">");
 
 			//-- put some parameters for the wrap files in the global object ---
 			$gallery->html_wrap['borderColor'] = $bordercolor;
@@ -738,7 +741,7 @@ if ($numPhotos) {
 					    $fsr = '';
 					    $fsf = '';
 					}
-					echo "<br />\n";
+					echo "<br >\n";
 					if (($photo->isResized() && !$fullOnly) || !$viewFull) {
 						echo '<a href='.
 							makeAlbumUrl($gallery->session->albumName, $id) .
@@ -770,7 +773,7 @@ if ($numPhotos) {
 			} else {
 			    list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i);
 			}
-			echo("<td width=$imageCellWidth valign=top align=center>");
+			echo("<td width=\"$imageCellWidth\" valign=\"top\" align=\"center\">");
 
 			// put form outside caption to compress lines
 
@@ -833,7 +836,7 @@ if ($numPhotos) {
 			}
 		       	echo "</span></td></tr></table>";
 		       	if (canVote()) {
-				print '<table><tr><td alighn="left">';
+				print '<table><tr><td align="left">';
 			       	addPolling($gallery->album->getVotingIdByIndex($i),
 					       	$form_pos, false);
 			       	$form_pos++;
@@ -848,7 +851,7 @@ if ($numPhotos) {
 					$label = _("Photo");
 				}
 			       	if (canVote()) {
-				       	print '</td></tr><tr><td alighn="left">';
+				       	print '</td></tr><tr><td align="left">';
 				}
 				echo("<select style='FONT-SIZE: 10px;' name='s$i' ".
 					"onChange='imageEditChoice(document.vote_form.s$i)'>");
@@ -946,6 +949,10 @@ if ($numPhotos) {
                        if ($gallery->user->isAdmin() && !$gallery->album->isAlbumName($i)) {
                                showChoice(_("Change Owner"), "photo_owner.php", array("id" => $id));
                        }
+
+		       if ($showAdminForm) {
+			       echo "</select>\n";
+		       }
 		       if (canVote()) {
 			       print '</td></tr></table>';
 		       }
@@ -998,7 +1005,7 @@ if ($numPhotos) {
 if (canVote())
 {
 ?>
-	<table width=100%><tr><td align=center>
+	<table width="100%"><tr><td align=center>
  	<input type=submit name="Vote" value="<?php print _("Vote") ?>">
 	</td></tr></table>
 

@@ -316,7 +316,7 @@ if ($gallery->app->use_exif) {
 
 </form>
 
-<script language="javascript1.2">
+<script language="javascript1.2" type="text/JavaScript">
 <!--   
 // position cursor in top form field
 document.theform.title.focus();

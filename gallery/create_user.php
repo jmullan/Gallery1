@@ -152,7 +152,7 @@ $allowChange["member_file"] = false;
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
 </form>
 
-<script language="javascript1.2">
+<script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
 document.usercreate_form.uname.focus();

@@ -188,7 +188,7 @@ if (isset($forgot)) {
  <p>
 <input type="submit" name="forgot" value="<?php echo _("Send me my password") ?>">
 
-<script language="javascript1.2">
+<script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
 document.login_form.uname.focus();
