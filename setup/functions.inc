@@ -264,6 +264,10 @@ function getPath() {
     $path[] = "/usr/bin/gallery";
     $path[] = "/usr/bin/gallery/jhead";
     $path[] = "/usr/bin/gallery/netpbm";
+    $path[] = GALLERY_BASE . "/netpbm";
+    $path[] = GALLERY_BASE . "/bin";
+    $path[] = GALLERY_BASE . "/bin/netpbm";
+    $path[] = GALLERY_BASE . "/bin/jhead";
 
     return $path;
 }
@@ -279,7 +283,7 @@ function locateDir($filename, $extraDir="", $ignorePath=0) {
 	}
 
 	foreach (getPath() as $path) {
-		if (fs_file_exists("$path/$filename")) {
+		if (fs_file_exists("$path/$filename") && !empty($path)) {
 			return $path;
 		}
 	}
@@ -287,7 +291,7 @@ function locateDir($filename, $extraDir="", $ignorePath=0) {
 
 function locateFile($filename) {
 	foreach (getPath() as $path) {
-		if (fs_file_exists("$path/$filename")) {
+		if (fs_file_exists("$path/$filename") && !empty($path)) {
 			return "$path/$filename";
 		}
 	}
@@ -366,8 +370,8 @@ function check_php()
 		$fail["fail-incompatible"] = 1;
 	} else if (!strncmp($version, "4.0.3", 5)) {
 		$fail["fail-incompatible"] = 1;
-        } else {
-		$success[] = sprintf(_("PHP v%s is OK."), phpversion());
+	} else {
+		$success[] = sprintf(_("PHP v%s is OK."), $version);
 	}
 
 	return array($success, $fail, $warn);
@@ -1056,6 +1060,7 @@ function check_poll_nv_pairs($var) {
 	}
 	return array($success, $fail);
 }
+
 function detect_exec_status() 
 {
 	global $gallery;
@@ -1249,7 +1254,7 @@ function verify_email($emailMaster)
 		       	foreach ($emails as $email) {
 			       	$adminEmail .= "$join$email";
 			       	$join=",";
-			       	if (! gallery_validate_email($email)) {
+				if (! gallery_validate_email($email)) {
 				       	$fail[] = sprintf(_("%s is not a valid email address."), 
 							$email);
 			       	} else {
@@ -1258,7 +1263,7 @@ function verify_email($emailMaster)
 		       	}
 	       	}
 	}
-       	if (gallery_validate_email($senderEmail)) {
+	if (gallery_validate_email($senderEmail)) {
 	       	$success[] = _("Valid sender email address given.");
        	} else {
 	       	$fail[]= _("You must specify a valid sender email address");
@@ -1287,6 +1292,7 @@ function check_ecards($num)
     }
 	return array($success, $fail);
 }
+
 function check_gallery_versions()  {
 	$fail = array();
 	$success = array();
@@ -1396,15 +1402,16 @@ function check_admins() {
 		);
 	}
 
-$result=array_merge($result,array(
-	"prompt" => _("Admin password"),
-	"type" => "password",
-	"dont-write" => 1,
-	'verify-func' => 'verify_password',
-	"value" => "",
-	"attrs" => array("size" => 20)
-));
-return $result;
+	$result = array_merge($result,array(
+		"prompt" => _("Admin password"),
+		"type" => "password",
+		"dont-write" => 1,
+		'verify-func' => 'verify_password',
+		"value" => "",
+		"attrs" => array("size" => 20)
+	));
+	
+	return $result;
 }
 
 function displayNameOptions() {
