@@ -21,33 +21,39 @@
 <?
 class PostNuke_User extends Abstract_User {
 	var $db;
+	var $prefix;
 
 	function PostNuke_User() {
 		global $gallery;
-		$this->db = $gallery->database{"nuke"};
+		$this->db = $gallery->database{"db"};
+		$this->prefix = $gallery->database{"prefix"};
 	}
 
 	function loadByUid($uid) {
-		$results = $this->db->query("select uname, name, email from " .
-					$this->db->prefix("users") . " " .
-					"where uid='$uid'");
-		$row = $this->db->fetch_row($results);
-		$this->username = $row[0];
-		$this->fullname = $row[1];
-		$this->email = $row[2];
+	        $result = $this->db->Execute("select uname, name, email from " .
+					     $this->prefix . "users" . " " .
+					     "where uid='$uid'");
+		list($this->username,
+		     $this->fullname,
+		     $this->email) = $result->fields;
+
+		$result->Close();
+		
 		$this->isAdmin = (authorised(0, '::', '::', ACCESS_ADMIN));
 		$this->canCreateAlbums = 0;
 		$this->uid = $uid;
 	}
 
 	function loadByUserName($uname) {
-		$results = $this->db->query("select uid, name, email from " .
-					$this->db->prefix("users") . " " .
-					"where uname='$uname'");
-		$row = $this->db->fetch_row($results);
-		$this->uid = $row[0];
-		$this->fullname = $row[1];
-		$this->email = $row[2];
+	        $result = $this->db->Execute("select uid, name, email from " .
+					     $this->prefix . "users" . " " .
+					     "where uname='$uname'");
+		list($this->uid,
+		     $this->fullname,
+		     $this->email) = $result->fields;
+
+		$result->Close();
+		
 		$this->isAdmin = (authorised(0, '::', '::', ACCESS_ADMIN));
 		$this->canCreateAlbums = 0;
 		$this->username = $uname;

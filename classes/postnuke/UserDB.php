@@ -21,22 +21,29 @@
 <?
 class PostNuke_UserDB extends Abstract_UserDB {
 	var $db;
+	var $prefix;
 
 	function PostNuke_UserDB() {
 		global $gallery;
-		$this->db = $gallery->database{"nuke"};
+		$this->db = $gallery->database{"db"};
+		$this->prefix = $gallery->database{"prefix"};
 		$this->nobody = new NobodyUser();
 		$this->everybody = new EverybodyUser();
 	}
 
 	function getUidList() {
+	        global $gallery;
 		$uidList = array();
 		$db = $this->db;
 
-		$results = $db->query("select uid from " . $db->prefix("users"));
-		while ($row = $db->fetch_row($results)) {
-			array_push($uidList, $row[0]);
+		$result = $db->Execute("SELECT uid from " .
+				       $gallery->database{"prefix"} . "users");
+		while (list($uid) = $result->fields) {
+			array_push($uidList, $uid);
+			$result->MoveNext();
 		}
+		$result->Close();
+		
 		array_push($uidList, $this->nobody->getUid());
 		array_push($uidList, $this->everybody->getUid());
 
