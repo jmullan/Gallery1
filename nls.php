@@ -35,6 +35,8 @@
  **/
 
 	$nls['language']['en_US'] =	'English (US)';
+	$nls['postnuke']['en_US'] = 	'eng';
+	$nls['phpnuke']['en_US']  =	'english';
 /**
  ** Defaults
  **/	

@@ -23,6 +23,7 @@
 ?>
 
 <?php 
+global $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
 $gallery_languages = gallery_languages();
 if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery->app->available_lang) > 1) {
@@ -45,8 +46,6 @@ function ML_reload() {
 if($gallery->app->show_flags !='yes') {
 	echo '<select style="font-size:8pt;" name="newlang" onChange="ML_reload()" size="1">';
 }
-
-	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
 	// we have 2+1 ways: phpnuke, postnuke or standalone
 	if (!empty($GALLERY_EMBEDDED_INSIDE)) {
