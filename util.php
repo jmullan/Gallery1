@@ -390,7 +390,7 @@ function resize_image($src, $dest, $target) {
 			$gallery->app->jpegImageQuality . 
 			" -size ". $target ."x". $target ." $src".
 			" -geometry ". $target ."x" . $target .
-			" +profile '\*' $out"));
+			" +profile icm +profile iptc $out"));
 		break;
 	default:
 		if (isDebugging())
