@@ -229,7 +229,7 @@ var slideShowLow = "<?php echo makeGalleryUrl('slideshow_low.php',
 
 // Browser capabilities detection ---
 // - assume only IE4+ and NAV6+ can do image resizing, others redirect to low 
-if (is_ie4up || is_nav6up) {
+if (is_ie4up || is_opera5up || is_nav6up) {
     //-- it's all good ---
 } else {
     //-- any other browser we go low-tech ---

@@ -142,7 +142,9 @@ if (!strcmp($cmd, "fetch-albums")) {
         appendNestedAlbums(0, $albumName, $albumString);
     }
 
-	echo "</select></form></center>";
+    echo "</select><br>";
+    echo "<input id='setCaption' type=checkbox name=setCaption checked value=\"1\">Use filenames as caption ";
+    echo "</form></center>";
    $ONNEXT_SCRIPT="DOIT();"; 
    $WIZARD_BUTTONS="true,true,true";
 }
@@ -353,6 +355,12 @@ dataTag.setAttribute("name", "cmd");
 dataTag.text = "add-item";
 postTag.appendChild(dataTag);
 
+if (folder.setCaption.checked == true){
+var dataTag = xml.createNode(1, "formdata", "");
+dataTag.setAttribute("name", "setCaption");
+dataTag.text = folder.setCaption;
+postTag.appendChild(dataTag);
+}
 var dataTag = xml.createNode(1, "formdata", "");
 dataTag.setAttribute("name", "userfile_name");
 dataTag.text = files[i].getAttribute("destination");

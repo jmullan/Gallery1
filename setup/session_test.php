@@ -56,6 +56,14 @@ $count++;
 	    <?php echo $count?>
 	  </td>
 	</tr>
+	<tr>
+	  <td>
+	    Server IP address
+	  </td>
+	  <td>
+	    <?php echo $_ENV["SERVER_ADDR"]?>
+	  </td>
+	</tr>
       </table>
 
       <a href="session_test.php?destroy=1">Start over</a>
