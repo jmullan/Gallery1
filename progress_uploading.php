@@ -40,7 +40,7 @@ function image($name) {
   <?= getStyleSheetLink() ?>
 </head>
 
-<body onload='start_animation()'>
+<body>
 <center>
 <span class="title">File upload in progress!</span>
 <p>
