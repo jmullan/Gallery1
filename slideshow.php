@@ -98,7 +98,6 @@ $numVisible = 0;
 $index = getNextPhoto(0);
 $photo_count = 0;
 while ($index <= $numPhotos) {
-    $photo_count++;
     $photo = $gallery->album->getPhoto($index);
 
     // Skip movies and nested albums
@@ -107,6 +106,7 @@ while ($index <= $numPhotos) {
 	continue;
     }
 
+    $photo_count++;
     $numVisible++;
 
     $image = $photo->image;
@@ -133,7 +133,7 @@ while ($index <= $numPhotos) {
     // strip_tags takes out the html tags
     $caption = strip_tags($caption);
 
-    // Print out the entry for this  image
+    // Print out the entry for this image as Javascript
     print "photo_urls[$photo_count] = \"$photoURL\";\n";
     print "photo_captions[$photo_count] = \"$caption\";\n";
 
@@ -143,32 +143,54 @@ while ($index <= $numPhotos) {
 ?>
 var photo_count = <?=$photo_count?>; 
 
+// Browser capabilities detection ---
+// - ie and ns6 can do the caption as a div.
+// - ie6 can do the blending transition.
+// - opera masquerades as IE5 but can't do either
+var browserCanBlend = false;
+var browserCanDivCaption = false;
+if (navigator.appVersion.charAt(0) == "4") {
+    if (navigator.appName.indexOf("Explorer") >= 0) {
+	// ie
+	browserCanDivCaption = true;
+	if (navigator.appVersion.indexOf("MSIE 6") >= 0) {
+	    // ie6
+	    browserCanBlend = true;
+	}
+    }
+    else {
+	// ns4
+    }
+}
+else if (navigator.appVersion.charAt(0) > "4") {
+    // ns6 or mozilla
+    browserCanDivCaption = true;
+}
+// opera
+if (window.opera) {
+    browserCanDivCaption = false;
+    browserCanBlend = false;
+}
+
 function stop() {
     onoff = 0;
-	status = "The slide show is stopped, click Start to resume.";
-	document.TopForm.buttonForward.disabled = false;
-	document.TopForm.buttonReverse.disabled = false;
-	document.TopForm.buttonStop.disabled = true;
+	status = "The slide show is stopped, Click Fwd or Rev to resume.";
 	clearTimeout(timer);
 }
 
 function change_direction(newDir) {
     onoff = 1;
     direction = newDir;
-    document.TopForm.buttonStop.disabled = false;
-    document.TopForm.buttonForward.disabled = true;
-    document.TopForm.buttonReverse.disabled = true;
     go_to_next_photo();
 }
 
 function skip_to() {
     clearTimeout(timer);
-    next_location = document.TopForm.currentPhoto.value;
+    next_location = document.TopForm.currentPhoto.selectedIndex+1;
     go_to_next_photo();
 }
 
 function preload_complete() {
-    status = "Picture Loaded waiting for timer...";
 }
 
 function reset_timer() {
@@ -186,18 +208,15 @@ function wait_for_current_photo() {
 	 * The current photo isn't loaded yet.  Set a short timer just to wait
 	 * until the current photo is loaded.
 	 */
-	status = "Picture " + current_location + " of " + photo_count +
-		" is Loading.  Please Wait." ;
+	status = "Picture is loading...(" + current_location + " of " + photo_count +
+		").  Please Wait..." ;
 	clearTimeout(timer);
 	timer = setTimeout('wait_for_current_photo()', 500);
 	return 0;
     } else {
 	preload_next_photo();
-
 	if (onoff) {
 	    reset_timer();
-	} else {
-	    status = "The slide show is stopped, click Start to resume.";
 	}
     }
 }
@@ -233,26 +252,29 @@ function preload_next_photo() {
 
 function show_current_photo() {
 
-    /* Update our current location in the dropdown */
-    document.TopForm.currentPhoto.selectedIndex = current_location-1;
-
     /*
      * If the current photo is not completely loaded don't display it.
      */
-    if (images[current_location] == undefined || !images[current_location].complete) {
+    if (!images[current_location] || !images[current_location].complete) {
 	preload_photo(current_location);
 	return 0;
     }
     
+    status = "Slide show running...(" + current_location + " of " + photo_count + ")...";
+
+    /* Update our current location in the dropdown */
+    document.TopForm.currentPhoto.selectedIndex = current_location-1;
+
     /* transistion effects */
-    if (document.all){
+    if (browserCanBlend){
 	document.images.slide.style.filter="blendTrans(duration=2)"
 	document.images.slide.style.filter="blendTrans(duration=crossFadeDuration)"
 	document.images.slide.filters.blendTrans.Apply()      
     }
     document.slide.src = images[current_location].src;
-    document.TopForm.captions.value = photo_captions[current_location];
-    if (document.all) {
+    setCaption(photo_captions[current_location]);
+
+    if (browserCanBlend) {
 	document.images.slide.filters.blendTrans.Play();
     }
 
@@ -266,13 +288,21 @@ function preload_photo(index) {
 
 	/* not all the pics are loaded.  Is the next one loaded? */
 	if (!images[index]) {
-	    status = "Pre-loading Photo " + index + " of " + photo_count ;
 	    images[index] = new Image;
 	    images[index].onLoad = preload_complete();
 	    images[index].src = photo_urls[index];
 	    pics_loaded++;
 	}
     } 
+}
+
+function setCaption(text) {
+    if (browserCanDivCaption) {
+	captionBlock = document.getElementById("caption");
+	captionBlock.innerHTML = text;
+    } else {
+	document.TopForm.captions.value = text;
+    }
 }
 
 </Script>
@@ -361,6 +391,9 @@ drawSelect("time", array(1 => "1 second pause",
 <br>
 <div align="center">
 
+<?
+if ($photo_count > 0) {
+?>
 
 <table width=1% border=0 cellspacing=0 cellpadding=0>
   <tr bgcolor="<?=$borderColor?>">
@@ -377,29 +410,43 @@ drawSelect("time", array(1 => "1 second pause",
     <td colspan=3 height=<?=$borderwidth?>><?=$pixelImage?></td>
   </tr>
 </table>
-
 <br>
-<textarea name="captions" cols="50" rows=3 disabled="true" align="center"></textarea>
-</div>
 
+<script language="Javascript">
+/* show the caption either in a nice div or an ugly form textarea */
+if (browserCanDivCaption) {
+    document.write("<div class='desc' id='caption'></div>");
+} else {
+    document.write("<textarea name='captions' cols='50' rows=3 disabled='true' align='center'></textarea>");
+}
+
+/* Load the first picture */
+setCaption(photo_captions[1]);
+preload_photo(1);
+
+/* Start the show. */
+change_direction(1);
+
+</script>
+
+<?
+} else {
+?>
+
+<br><b>This album has no photos to show in a slide show.</b>
+<br><br>
+<span class="admin">
+<a href="<?=makeGalleryUrl("view_album.php",
+               array("set_albumName" => $gallery->session->albumName))?>">[back to album]</a>
+</span>
+
+<?
+}
+?> 
+
+</div>
 </form>
 
-<script language="JavaScript">
-if (photo_count == 0) {
-    /*
-     * If we don't have any picture to display, alert the user and then
-     * redirect to the calling page.
-     */
-    document.write("This album is empty.");
-} else {
-    /* Load the first picture */
-    document.TopForm.captions.value = photo_captions[1];
-    preload_photo(1);
-
-    /* Start the show. */
-    change_direction(1);
-}
-</script>		  
 
 <? includeHtmlWrap("slideshow.footer"); ?>
 
