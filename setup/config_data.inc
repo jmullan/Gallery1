@@ -19,13 +19,16 @@ $checklist = array(
 	),
 	"mod_rewrite" => array(
 		"desc" => "Check to see if your webserver is compiled with " .
-			"mod_rewrite.  Without mod_rewrite Gallery won't be " .
-			"able to let you use pretty URLs to go directly to " .
-			"an album or a photo.",
+			"mod_rewrite.  Mod_rewrite allows the Gallery to use ".
+			"shorter URLs that are easy to mail around.  It's not ".
+			"essential, however.",
 	     	"func" => "check_mod_rewrite",
-		"why" => "You need to reconfigure Apache with the <ul>" .
+		"why" => "Mod_rewrite appears not to be installed.  We'll use " .
+			"longer URLs in the Gallery.  If you want to turn it on " .
+			"You need to reconfigure Apache with the <ul>" .
 			"<b>--enable-module=rewrite</b> </ul> flag and then " .
-			"reinstall it."
+			"rebuild and reinstall apache.",
+		"optional" => 1,
 	), 
 	"NetPBM" => array(
 		"optional" => 1,
@@ -46,7 +49,8 @@ $checklist = array(
 );
 
 $features = array(
-	"zip_support" => array("zipinfo", "unzip")
+	"zip" => array("zipinfo", "unzip"),
+	"rewrite" => array("GALLERY_REWRITE"),
 );
 
 $constants = array(
