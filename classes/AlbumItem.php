@@ -332,6 +332,9 @@ class AlbumItem {
 							    $size);
 				}
 				fs_unlink("$dir/$name.tmp.$tag");
+			} elseif ($this->isMovie()) {
+				$tag = substr(strrchr($gallery->app->movieThumbnail, '.'), 1);
+				$ret = resize_image($gallery->app->movieThumbnail, "$dir/$name.highlight.$tag", $size);
 			} else {
 				$ret = resize_image("$srcdir/".$srcitem->image->name.".$tag",
 						    "$dir/$name.highlight.$tag",

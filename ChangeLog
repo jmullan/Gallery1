@@ -1,3 +1,25 @@
+2004-03-03  Jay Rossiter <cryptographite@users.sf.net> 1.4.3-cvs-b89
+
+	* Bug 831931: Security check to ensure that user has rights to the target
+	  album before being allows to move photos or albums.  Minor text correction,
+	  and check for uninitialized variables as well.
+
+	* Bug 851148: Fix 'unknown' error which occurs when using left/right navigation
+	  in an album with hidden photos.  This removes albums from the navigation entirely,
+	  since it doesn't make sense for them to be in there.
+
+	* Bug 908732: Fix highlight photo error.  Photos weren't being checked for isMovie()
+	  before we tried to resize/highlight them.
+
+	* Other:  Check for variable initialization in edit_thumb.php
+
+	* Other:  Redirect not-logged-in users to albums.php if they attempt to navigate
+	  to upgrade_albums.php.  Previously, a blank page was displayed.
+
+	* Other:  Variable name change in popup_link() - "$class" (though valid) was causing
+	  errors in at least one PHP IDE due to "class" being a reserved keyword. Changed to 
+	  "$cssclass"
+
 2004-03-02 Jens Tkotz <jens@peino.de> 1.4.3-cvs-b88
 
 	* Change: Gallery now also uses GeekLogs user language.

@@ -1206,7 +1206,7 @@ class Album {
 
 	function getIds($show_hidden=0) {
 		foreach ($this->photos as $photo) {
-			if (!$photo->isHidden() || $show_hidden) {
+			if ((!$photo->isHidden() || $show_hidden) && !$photo->getIsAlbumName()) {
 				$ids[] = $photo->getPhotoId($this->getAlbumDir());
 			}
 		}

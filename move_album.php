@@ -38,6 +38,10 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
+
+if (!isset($reorder)) {
+	$reorder = 0;
+}
 ?>
 
 <html>

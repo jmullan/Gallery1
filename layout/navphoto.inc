@@ -35,21 +35,9 @@ if ($navpage == 0) {
 } else {
 	$firstPage = $navigator["allIds"][0];
 	$firstAlbumName = "";
-	if ($gallery->album->isAlbumName(1)) { // first image is an album
-		$firstAlbumName = $gallery->album->isAlbumName(1);
-	}
 ?>
     <td align="center" width="27" height="18" class="borderright"> 
-<?php
-	if ($firstAlbumName) {
-?>
-      <a href="<?php echo makeAlbumUrl($firstAlbumName) ?>"><img src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_first.gif') : getImagePath('nav_last.gif') ?>" border="0" alt="<?php echo _("First Photo") ?>" title="<?php echo _("First Photo") ?>"></a>
-<?php	} else {
-?>
       <a href="<?php echo makeAlbumUrl($gallery->session->albumName, $firstPage) ?>"><img src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_first.gif') : getImagePath('nav_last.gif') ?>" border="0" alt="<?php echo _("First Photo") ?>" title="<?php echo _("First Photo") ?>"></a>
-<?php
-	}
-?>
       </td>
     <td width="0" height="18"><?php echo $pixelImage ?></td>
 <?php
@@ -61,23 +49,9 @@ $prevPage = $navpage - 1;
 if ($prevPage >= 0) {
 	$prevPage = $navigator["allIds"][$prevPage];
 	$prevAlbumName = "";
-	if ($gallery->album->isAlbumName($navpage)) { // previous page is album
-		$prevAlbumName = $gallery->album->isAlbumName($navpage);
-	}
 ?>
     <td align="center" width="72" height="18" class="borderright">
-<?php
-        if ($prevAlbumName) {
-?>
-      <a href="<?php echo makeAlbumUrl($prevAlbumName) ?>"><img src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_prev.gif') : getImagePath('nav_next.gif') ?>" border="0" alt="<?php echo _("Previous Photo") ?>" title="<?php echo _("Previous Photo") ?>">
-</a>
-<?php
-        } else {
-?>
       <a href="<?php echo makeAlbumUrl($gallery->session->albumName, $prevPage) ?>"><img src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_prev.gif') : getImagePath('nav_next.gif') ?>" border="0" alt="<?php echo _("Previous Photo") ?>" title="<?php echo _("Previous Photo") ?>"></a>
-<?php
-}
-?>
       </td>
     <td width="0" height="18"><?php echo $pixelImage ?></td>
 <?php
@@ -101,24 +75,10 @@ echo "</span>";
 if ($navpage+1 != $navcount) {
 	$nextPage = $navigator["allIds"][$navpage+1];
 	$nextAlbumName = "";
-	if ($gallery->album->isAlbumName($navpage+2)) { //our next page is an album
-		$nextAlbumName = $gallery->album->isAlbumName($navpage+2);
-	} 
 ?>
     <td width="0" height="18"><?php echo $pixelImage ?></td>
     <td align="center" width="72" height="18" class="borderleft">
-<?php 
-	if ($nextAlbumName) {
-?>
-      <a href="<?php echo makeAlbumUrl($nextAlbumName) ?>"><img src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_next.gif') : getImagePath('nav_prev.gif') ?>" border="0" alt="<?php echo _("Next Photo") ?>" title="<?php echo _("Next Photo") ?>"></a>
-<?php
-	} else {
-?>
-      <a href="<?php echo makeAlbumUrl($gallery->session->albumName, $nextPage) ?>"><img src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_next.gif') : getImagePath('nav_prev.gif') ?>" border="0" alt="<?php echo _("Next Photo") ?>" title="<?php echo _("Next Photo") ?>">
-</a>
-<?php
-}
-?>
+	<a href="<?php echo makeAlbumUrl($gallery->session->albumName, $nextPage) ?>"><img src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_next.gif') : getImagePath('nav_prev.gif') ?>" border="0" alt="<?php echo _("Next Photo") ?>" title="<?php echo _("Next Photo") ?>"></a>
       </td>
 <?php
 } else {   
@@ -138,22 +98,10 @@ if ($navpage+1 == $navcount) {
 } else {        
 	$lastPage = $navigator["allIds"][$navcount-1];
 	$lastAlbumName = "";
-	if ($gallery->album->isAlbumName($navcount)) { // out last page is an album
-		$lastAlbumName = $gallery->album->isAlbumName($navcount);
-	}
 ?>
     <td width="0" height="18"><?php echo $pixelImage ?></td>
     <td align="center" width="27" height="18" class="borderleft">
-<?php
-	if ($lastAlbumName) {
-?>
-      <a href="<?php echo makeAlbumUrl($lastAlbumName) ?>"><img src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_last.gif') : getImagePath('nav_first.gif') ?>" border="0" alt="<?php echo _("Last Photo") ?>" title="<?php echo _("Last Photo") ?>"></a>
-<?php 	} else {
-?>
       <a href="<?php echo makeAlbumUrl($gallery->session->albumName, $lastPage) ?>"><img src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_last.gif') : getImagePath('nav_first.gif') ?>" border="0" alt="<?php echo _("Last Photo") ?>" title="<?php echo _("Last Photo") ?>"></a>
-<?php
-}
-?>
     </td>
 <?php
 } 

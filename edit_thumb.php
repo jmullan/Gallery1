@@ -99,7 +99,7 @@ if (isset($action)) {
 		$bgcolor = "#FFFFFF";
 
 		/* Build up the submit URL */
-		if (stristr($HTTP_SERVER_VARS['HTTPS'], "on")) {
+		if (isset($HTTP_SERVER_VARS['HTTPS']) && stristr($HTTP_SERVER_VARS['HTTPS'], "on")) {
 		    $submit = "https://";
 		} else {
 		    $submit = "http://";

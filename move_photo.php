@@ -41,6 +41,9 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 $albumDB = new AlbumDB(FALSE); // read album database
 
+if (!isset($reorder)) {
+	$reorder = 0;
+}
 ?>
 <html>
 <head>
@@ -61,9 +64,12 @@ if ($gallery->session->albumName && isset($index)) {
 
         if (isset($newAlbum)) {	// we are moving from one album to another
             	$postAlbum = $albumDB->getAlbumbyName($newAlbum);
+		if (!$gallery->user->canWriteToAlbum($postAlbum)) {
+			printf(_("You do not have the required permissions to write to %s!"), $newAlbum);
+			exit;
+		}
 	       	if ($gallery->album->fields['name'] != $postAlbum->fields['name']) {
-		       	$votes_transferable=
-			       	$gallery->album->pollsCompatible($postAlbum);
+			$votes_transferable = $gallery->album->pollsCompatible($postAlbum);
 			$vote_id=$gallery->album->getVotingIdByIndex($index);
 
 		       	if (isset($gallery->album->fields["votes"][$vote_id]) && 
@@ -204,7 +210,7 @@ echo '<br>'. $gallery->album->getThumbnailTag($index) .'<br><br>';
 if ($reorder ) { // Reorder, intra-album move
 if ($gallery->album->isAlbumName($index)) {
 ?>
-<?php echo _("Move this album within the album:") ?><br>
+<?php echo _("Reorder this album within the album:") ?><br>
 <?php } else { ?>
 <?php echo _("Reorder this photo within the album:") ?><br>
 <?php } ?>

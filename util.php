@@ -154,21 +154,21 @@ function popup_status($url, $height=150, $width=350) {
 	return "open('" . makeGalleryUrl($url) . "','Status','$attrs');";
 }
 
-function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=500,$width=500, $class='') {
+function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=500,$width=500, $cssclass='') {
     static $popup_counter = 0;
     global $gallery;
 
     if ( !empty($gallery->session->offline) && $online_only ) {
 	return;
     }
-    $class = empty($class) ? '' : "class=\"$class\"";
+	$cssclass = empty($cssclass) ? '' : "class=\"$cssclass\"";
 
     $popup_counter++;
 
     $link_name = "popuplink_".$popup_counter;
     $url = build_popup_url($url, $url_is_complete);
     
-    $a1 = "<a $class id=\"$link_name\" target=\"Edit\" href=$url onClick=\"javascript:".
+	$a1 = "<a $cssclass id=\"$link_name\" target=\"Edit\" href=$url onClick=\"javascript:".
 	popup_js("document.getElementById('$link_name').href", "Edit",
 		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
 	"\">";
