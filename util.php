@@ -1366,7 +1366,7 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 		$myName = $myAlbum->isAlbumName($i);
 		if ($myName) {
 			$nestedAlbum = new Album();
-			$nestedAlbum->load($myName,0);
+			$nestedAlbum->load($myName);
 			if ($gallery->user->canWriteToAlbum($nestedAlbum) ||
 			    ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
 
