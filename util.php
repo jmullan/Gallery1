@@ -2331,7 +2331,7 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
                 $gallery->album->fields['parentAlbumName'] = $parentName;
                 $parentAlbum = $albumDB->getAlbumByName($parentName);
                 $parentAlbum->addNestedAlbum($gallery->session->albumName);
-                $parentAlbum->save();
+                $parentAlbum->save(array(i18n("Album \"{$gallery->album->fields['name']}\" created as a sub-album of \"$parentName\".")));
                 // Set default values in nested album to match settings of parent.
                 $gallery->album->fields["perms"]           = $parentAlbum->fields["perms"];
 		$gallery->album->fields['extra_fields']    = $parentAlbum->fields['extra_fields'];		
