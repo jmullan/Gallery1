@@ -470,8 +470,15 @@ function gallerySanityCheck() {
 	}
 
 	if (file_exists("setup") && is_readable("setup")) {
-		include("errors/configmode.php");
-		exit;
+		/* 
+		 * on some systems, PHP's is_readable returns false
+		 * positives.  Make extra sure.
+		 */
+		$perms = sprintf("%o", fileperms("setup"));
+		if (strstr($perms, "755")) {
+			include("errors/configmode.php");
+			exit;
+		}
 	}
 
 	if ($app->config_version != $gallery->config_version) {
