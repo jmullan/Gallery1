@@ -615,6 +615,11 @@ function gallerySanityCheck() {
 		/* 
 		 * on some systems, PHP's is_readable returns false
 		 * positives.  Make extra sure.
+		 *
+		 * Note: it's not possible for a win32 directory to
+		 *       have 755 perms which is fine, since on win32
+		 *       we don't actually change the permissions of
+		 *       the directory anyway.
 		 */
 		$perms = sprintf("%o", fileperms($GALLERY_BASEDIR . "setup"));
 		if (strstr($perms, "755")) {
