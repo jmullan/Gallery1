@@ -29,7 +29,7 @@ $common_messages["open-basedir-active"] =
 $checklist = array(
 	"gallery_version" => array(
 		"optional" => 1,
-		"desc" => sprintf(_("Check to see how old %s of gallery is."),
+		"desc" => sprintf(_("Check to see how old version %s of gallery is."),
 			"<i>$gallery->version</i>"),
 	     	"func" => "check_gallery_version",
 	),
