@@ -32,7 +32,10 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 
 $GALLERY_BASEDIR = './';
-
+if (!file_exists("${GALLERY_BASEDIR}/util.php")) {
+	print _("You must move this file to the main Gallery directory before running it.");
+	exit;
+}
 $gallery->backup_mode="yes";
 require($GALLERY_BASEDIR . 'init.php');
 
@@ -67,7 +70,7 @@ if (!empty($backup) || !empty($force))
 			}
 	}
 
-	if ($force || strlen($error_text) == 0)
+	if (!empty($force) || strlen($error_text) == 0)
 	{
 		backup();
 		exit;
@@ -90,7 +93,7 @@ if (!empty($backup) || !empty($force))
 <span class="popuphead"><?php echo _("Backup album data") ?></span>
 <p>
 <?php
-if ($error_text) {
+if (!empty($error_text)) {
 ?>
 <span class="error"><?php echo $error_text ?></span>
 <?php

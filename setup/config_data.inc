@@ -567,7 +567,8 @@ $constants = array_merge($constants,
 		       	"type" => "separator",
 		       	"title" => _("Gallery wide slideshow"),
 			"desc" => newIn("1.4.1") . "<br>" .
-				_("Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources.")
+				_("Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources.") . "  " .
+				_("These settings do not apply to the low tech slideshow.")
 			),
 	"gallery_slideshow_type" => array(
 		       	"prompt" => _("Slideshow preferences"),
@@ -1022,6 +1023,7 @@ $defaults = array(
        	"separator8" => array (
 		       	"type" => "separator",
 		       	"title" => _("Album Slideshow"),
+			"desc" => _("These settings do not apply to the low tech slideshow.")
 			),
 	"slideshow_type" => array(
 		       	"prompt" => _("Slideshow Type"),
