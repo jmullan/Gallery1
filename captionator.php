@@ -76,6 +76,9 @@ if ($save || $next || $prev) {
 	{
 		foreach ($extra_fields[$i] as $field => $value)
 		{
+			if (get_magic_quotes_gpc()) {
+				$value=stripslashes($value);
+			}
 			$gallery->album->setExtraField($i, $field, trim(strip_tags($value)));
 		}
 	}

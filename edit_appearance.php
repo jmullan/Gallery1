@@ -40,8 +40,13 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 }
 	
 if (isset($save)) {
-    $gallery->album->fields["summary"] = $summary;
-	$gallery->album->fields["title"] = $title;
+	if (get_magic_quotes_gpc()) {
+		$gallery->album->fields["summary"] = stripslashes($summary);
+		$gallery->album->fields["title"] = stripslashes($title);
+	} else {
+		$gallery->album->fields["summary"] = $summary;
+		$gallery->album->fields["title"] = $title;
+	}
 	$gallery->album->fields["bgcolor"] = $bgcolor;
 	$gallery->album->fields["textcolor"] = $textcolor;
 	$gallery->album->fields["linkcolor"] = $linkcolor;

@@ -58,6 +58,12 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 if ($userfile_name) {
         $tag = ereg_replace(".*\.([^\.]*)$", "\\1", $userfile_name);
         $tag = strtolower($tag); 
+	if (get_magic_quotes_gpc()) {
+		$caption=stripslashes($caption);    
+		foreach ($extra_fields as $key => $value) {
+			$extra_fields[$key] = stripslashes($value);
+		}
+	}
 	processNewImage($userfile, $tag, $userfile_name, $caption, $setCaption, $extra_fields);
 	$gallery->album->save();
 

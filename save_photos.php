@@ -235,6 +235,9 @@ while (sizeof($userfile)) {
 	if (!empty($usercaption) && is_array($usercaption)) {
 	    $caption = removeTags(array_shift($usercaption));
 	}
+	if (get_magic_quotes_gpc()) {
+		$caption=stripslashes($caption);    
+	}
 
 	$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);
 	$tag = strtolower($tag);
