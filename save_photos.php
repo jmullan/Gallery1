@@ -120,7 +120,7 @@ if ($urls) {
 		/*
 		 * Try to open the url in lots of creative ways.
 		 */
- 		$id = @fs_fopen($url, "r");
+ 		$id = @fs_fopen($url, "rb");
 		if (!ereg("http", $url)) {
 			if (!$id) $id = @fs_fopen("http://$url");
 			if (!$id) $id = @fs_fopen("http://$url/");
