@@ -1,4 +1,4 @@
-<title> Gallery Setup: Step 2 </title>
+<title> Gallery Setup: Step 3 </title>
 
 This is what your configuration file will look like:
 <center>
@@ -92,6 +92,7 @@ echo $view;
 </pre>
 </table>
 
+<input type=hidden name=back_page value="form">
 <input type=hidden name=next_page value="write">
 <p>
 <input type=submit name="go_back" value="<- Edit Config">
