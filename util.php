@@ -77,6 +77,9 @@ function viewComments($index) {
         echo "<tr align=center><td colspan=3>$buf<br><br></td></tr>";
 }
 
+function center($message) {
+	return "<center>$message</center>";
+}
 
 function error($message) {
 	echo error_format($message);
@@ -349,15 +352,15 @@ function valid_image($file) {
 function toPnmCmd($file) {
 	global $gallery;
 
-	if (preg_match("/.png/i", $file)) {
+	if (eregi("\.png", $file)) {
 		$cmd = "pngtopnm";
-	} else if (preg_match("/.(jpg|jpeg)/i", $file)) {
+	} else if (eregi("\.(jpg|jpeg)", $file)) {
 		if (isDebugging()) {
 			$cmd = "jpegtopnm";
 		} else {
 			$cmd = "jpegtopnm";
 		}
-	} else if (preg_match("/.gif/i", $file)) {
+	} else if (eregi("\.gif", $file)) {
 		$cmd = "giftopnm";
 	}
 
@@ -378,11 +381,11 @@ function toPnmCmd($file) {
 function fromPnmCmd($file) {
 	global $gallery;
 
-	if (preg_match("/.png/i", $file)) {
+	if (eregi("\.png", $file)) {
 		$cmd = NetPBM("pnmtopng");
-	} else if (preg_match("/.(jpg|jpeg)/i", $file)) {
+	} else if (eregi("\.(jpg|jpeg)", $file)) {
 		$cmd = NetPBM("ppmtojpeg");
-	} else if (preg_match("/.gif/i", $file)) {
+	} else if (eregi(".gif", $file)) {
 		$cmd = NetPBM("ppmquant", "256") . " | " . NetPBM("ppmtogif");
 	}
 
