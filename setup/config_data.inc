@@ -299,12 +299,12 @@ $defaults = array(
                 choices => array("yes", "no"),
                 value => "no",
 	),
-	"display_clicksDefault" => array(
+	"display_clicks" => array(
 		desc => "Display click counts within Albums?",
 		choices => array("yes", "no"),
 		value => "yes",
 	),
-	"photo_commentsDisplay" => array(
+	"public_comments" => array(
 		desc => "Allow public photo commenting?",
 		choices => array("yes", "no"),
 		value => "yes",
