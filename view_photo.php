@@ -56,6 +56,7 @@ if (!strcmp($album->fields["resize_size"], "off")) {
 	$mainWidth = $album->fields["resize_size"];
 }
 }
+$bordercolor = $album->fields["bordercolor"];
 
 ?>
 
@@ -64,35 +65,68 @@ if (!strcmp($album->fields["resize_size"], "off")) {
 
 
 <center>
-<table border=0 width=<?=$mainWidth?>>
 <!-- Top Nav Bar -->
+<table border=0 width=<?=$mainWidth?>>
 <tr>
-<td align=left>
-<font size=+1 face=<?=$album->fields["font"]?>>
+<td width=<?=$mainWidth/3?> align=left>
+<font size=+0 face=<?=$album->fields["font"]?>>
 <?
 if ($first) {
-	echo "< <a href=../view_album.php>Previous</a> | ";
+        echo "<< <a href=../view_album.php>back to index</a>";
 } else {
-	echo "< <a href=".$prev.">Previous</a> | ";
-}
-if ($last) {
-	echo "<a href=../view_album.php>Next</a> >";
-} else {
-	echo "<a href=".$next.">Next</a> >";
-}
+        echo "<a href=".$prev."><< previous</a>";
+}      
 ?>
 </td>
-<td></td>
-<td align=right>
-<font size=+1 face=<?=$album->fields["font"]?>>
+<td width=<?=$mainWidth/3?> align=center>
+<font size=+0 face=<?=$album->fields["font"]?>>
 <?=$index?> of <?=$numPhotos?>
-</td>
-</tr>
 
-<!-- image row --><tr>
+(
+<?
+if (!$album->isMovie($index)) {
+	if ($album->isResized($index)) {
+		if ($full) {
+			echo("<a href=$index?full=0>show scaled</a>");
+		} else {
+			echo("<a href=$index?full=1>show full size</a>");
+		}
+	}      
+} 
+?>
+)
+</td>
+<td width=<?=$mainWidth/3?> align=right>
+<font size=+0 face=<?=$album->fields["font"]?>>
+<?
+if ($last) {
+        echo "<a href=../view_album.php>back to index</a> >>";
+} else {
+	echo "<a href=".$next.">next >></a>";
+}      
+?>
+</td>
+
+</tr>
+</table>
+<table border=0 width=<?=$mainWidth?>>
+<!-- image row -->
+<tr>
 <td colspan=3 align=center>
 <font face=<?=$album->fields["font"]?>>
 <?
+
+
+                        echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
+                        echo("<tr bgcolor=$bordercolor>");
+                        echo("<td height=4 width=4><img src=../images/pixel_trans.gif></td>");
+                        echo("<td height=4><img src=../images/pixel_trans.gif></td>");
+                        echo("<td height=4 width=4><img src=../images/pixel_trans.gif></td>");
+                        echo("</tr>");
+                        echo("<tr>");
+                        echo("<td bgcolor=$bordercolor width=4>&nbsp;</td>");
+                        echo("<td>");
+
 if (!$album->isMovie($index)) {
 	if ($album->isResized($index)) { 
 		if ($full) { 
@@ -110,6 +144,17 @@ if ($openAnchor) {
 	echo "</a>";
  	$openAnchor = 0;
 }
+
+                        echo("</td>");
+                        echo("<td bgcolor=$bordercolor width=4>&nbsp;</td>");
+                        echo("</tr>");
+                        echo("<tr bgcolor=$bordercolor>");
+                        echo("<td height=4 width=4><img src=../images/pixel_trans.gif></td>");
+                        echo("<td height=4><img src=../images/pixel_trans.gif></td>");
+                        echo("<td height=4 width=4><img src=../images/pixel_trans.gif></td>");
+                        echo("</tr>");
+                        echo("</table>");
+
 ?>
 
 </td>
@@ -119,53 +164,34 @@ if ($openAnchor) {
 <?= editCaption($album, $index, $edit) ?>
 </td>
 </tr>
+</table>
 
 <!-- bottom nav bar -->
+<table border=0 width=<?=$mainWidth?>>
+<? 
+if (!$album->isMovie($index) && isCorrectPassword($edit)) {
+?>
 <tr>
-<td align=left>
-<font size=+1 face=<?=$album->fields["font"]?>>
-<?
-if ($first) {
-	echo "< <a href=../view_album.php>Previous</a> | ";
-} else {
-	echo "< <a href=".$prev.">Previous</a> | ";
-}
-if ($last) {
-	echo "<a href=../view_album.php>Next</a> >";
-} else {
-	echo "<a href=".$next.">Next</a> >";
-}
-?>
+<td colspan=3 align=left>
+Admin: <a href=<?= popup("../resize_photo.php?index=$index") ?>>[resize photo]</a>
+<br>
 </td>
-<td></td>
-<td align=right>
+</tr>
+<? 
+} 
+?>
+
+<tr>
+<td colspan=3 align=left>
 <font size=+0 face=<?=$album->fields["font"]?>>
-<?
-if (!$album->isMovie($index)) {
-	if ($album->isResized($index)) { 
-		if ($full) { 
-?>
-<a href=<?=$index?>?full=0>Show Scaled</a>
-<?	 	} else { ?>
-<a href=<?=$index?>?full=1>Show Full Size</a>
-<?
-	}
-}
-?>
-<? } ?>
+<< <a href=../view_album.php>back to <b><?= $album->fields["title"] ?></b> index</a>
 </td>
 </tr>
 
 <tr>
 <td colspan=3 align=left>
-<hr size=1>
-<? if (!$album->isMovie($index) && isCorrectPassword($edit)) { ?>
-Admin: <a href=<?= popup("../resize_photo.php?index=$index") ?>>[resize photo]</a>
-<br>
-<? } ?>
 <font size=+0 face=<?=$album->fields["font"]?>>
-<< <a href=../albums.php> <b>The Gallery</b> </a>
-<< <a href=../view_album.php> <b><?= $album->fields["title"] ?></b> </a>
+<< <a href=../albums.php>back to <b>The Gallery</b></a>
 </td>
 </tr>
 

@@ -65,15 +65,19 @@ if (!strcmp($album->fields["border"], "off")) {
 } else {
 	$border = $album->fields["border"];
 }
+$bordercolor = $album->fields["bordercolor"];
+$borderwidth = 4;
 
-$width = floor(100 / $cols) . "%";
+$imageCellWidth = floor(100 / $cols) . "%";
+$fullWidth = $cols * $album->fields["thumb_size"]; 
 ?>
 
 <body <?=$bodyAttrs?>>
 <font face=<?=$album->fields["font"]?>>
 
 <center>
-<table width=400>
+<!-- title table -->
+<table border=0 width=<?=$fullWidth?>>
 <tr>
 <td align=left>
 <font size=+3> <?= editField($album, "title", $edit)?> </font>
@@ -97,43 +101,52 @@ if (editMode()) {
 } 
 ?>
 
-<br>
-<font size=1>Click on a photo to enlarge it</font>
 </td>
-</tr>
-<tr>
-<td>
-<table width=80% border=<?=$border?> bordercolor=<?=$album->fields["bordercolor"]?> cellspacing=2 cellpadding=1>
-
-<? if ($maxPages > 1) { ?> 
-<tr><td colspan=<?=$cols?>>
-<table width=100%>
-<tr>
-<td align=left>
-<font size=+1>
-<?
-if ($first) {
-	//echo"";
-} else {
-	echo "< <a href=view_album.php?set_page=".$previousPage."><font size=+1 face=".$album->fields["font"].">Previous Page</a> | ";
-}
-
-if ($last) {
-        //echo "";
-} else {
-	echo "<a href=view_album.php?set_page=".$nextPage."><font size=+1 face=".$album->fields["font"].">Next Page</a> >";
-}
-?>
-</td>
-<td></td>
-<td align=right>
-<font=<?=$album->fields["font"]?>><font face=<?=$album->fields["font"]?>>Page <?=$page?> of <?=$maxPages?>
+<td valign=top align=right>
+<!--  -->
+<? if (strcmp($album->fields["returnto"], "no")) { ?>
+<font face=<?= $album->fields["font"]?> size=+0>
+<a href=albums.php><< return to <b>The Gallery</b></a> 
+<? } ?>
 </td>
 </tr>
 </table>
-</td></tr>
-<? } ?> 
 
+<!-- top nav -->
+<table border=0 width=<?=$fullWidth?>>
+<tr width=<?=$fullWidth/4?>>
+<td>
+<font size=+0 face=<?=$album->fields["font"]?>>
+<?
+if ($first) {
+	echo "&nbsp;";
+} else {
+	echo "<a href=view_album.php?set_page=".$previousPage."><< previous page</a>";
+}
+?>
+
+</td>
+<td width=<?=$fullWidth/2?> align=center>
+<font size=+0 face=<?=$album->fields["font"]?>>
+page <?=$page?> of <?=$maxPages?> (click a photo to enlarge) 
+</td>
+<td width=<?=$fullWidth/4?> align=right>
+<font size=+0 face=<?=$album->fields["font"]?>>
+<?
+if ($last) {
+        echo "&nbsp;";
+} else {
+	echo "<a href=view_album.php?set_page=".$nextPage.">next page >></a>";
+}
+?>
+</td>
+
+</tr>
+</table>
+
+
+<!-- image grid table -->
+<table width=400 border=0>
 <?
 $numPhotos = $album->numPhotos(1);
 if ($numPhotos) {
@@ -152,7 +165,18 @@ if ($numPhotos) {
 				}
 			}
 
-			echo("<td width=$width align=center valign=middle>");
+			echo("<td width=$imageCellWidth align=center valign=middle>");
+
+			echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
+			echo("<tr bgcolor=$bordercolor>"); 
+			echo("<td height=$borderwidth width=$borderwidth><img src=images/pixel_trans.gif></td>");
+			echo("<td height=$borderwidth><img src=images/pixel_trans.gif></td>");
+			echo("<td height=$borderwidth width=$borderwidth><img src=images/pixel_trans.gif></td>");
+			echo("</tr>");
+			echo("<tr>");
+			echo("<td bgcolor=$bordercolor width=$borderwidth>&nbsp;</td>");
+			echo("<td>");
+
 			if ($album->isMovie($i)) {
 				echo("<a href=" . $album->getPhotoPath($i) . " target=other>" . 
 					$album->getThumbnailTag($i) .
@@ -162,6 +186,17 @@ if ($numPhotos) {
 					$album->getThumbnailTag($i) .
 					"</a>");
 			}
+			echo("</td>");
+			echo("<td bgcolor=$bordercolor width=$borderwidth>&nbsp;</td>");
+			echo("</tr>");	
+			echo("<tr bgcolor=$bordercolor>"); 
+			echo("<td height=$borderwidth width=$borderwidth><img src=images/pixel_trans.gif></td>");
+			echo("<td height=$borderwidth><img src=images/pixel_trans.gif></td>");
+			echo("<td height=$borderwidth width=$borderwidth><img src=images/pixel_trans.gif></td>");
+			echo("</tr>");
+			echo("</table>");
+
+
 			echo("</td>");
 			$j++; $i++;
 		}
@@ -179,7 +214,7 @@ if ($numPhotos) {
 				}
 			}
 
-			echo("<td width=$width valign=top align=center>");
+			echo("<td width=$imageCellWidth valign=top align=center>");
 			echo "<center><font face={$album->fields[font]}>";
 			echo(editCaption($album, $i, $edit));
 			if (isCorrectPassword($edit)) {
@@ -207,8 +242,8 @@ if ($numPhotos) {
 					echo("<a href=do_command.php?cmd=hide&index=$i&return=view_album.php>[hide]</a>");
 				}
 			}
-			echo("<hr size=1>");
-			echo("<hr size=1>");
+			#echo("<hr size=1>");
+			#echo("<hr size=1>");
 			echo("</td>");
 			$j++; $i++;
 		}
@@ -226,47 +261,53 @@ if ($numPhotos) {
 }
 ?>
 
-<? if ($maxPages > 1) { ?> 
-<tr><td colspan=<?=$cols?>>
-<table width=100%>
+
+</table>
+
+<!-- bottom nav -->
+<table border=0 width=<?=$fullWidth?>>
 <tr>
-<td align=left>
-<font size=+1>
+<td>
+<font size=+0 face=<?=$album->fields["font"]?>>
 <?
 if ($first) {
-        //echo"";
+	echo "&nbsp;";
 } else {
-        echo "< <a href=view_album.php?set_page=".$previousPage."><font size=+1 face=".$album->fields["font"].">Previous Page</a> | ";                         
+	echo "<a href=view_album.php?set_page=".$previousPage."><< previous page</a>";
 }
+?>
 
-if ($last) {   
-        //echo "";                                      
+</td>
+<td align=center>
+<font size=+0 face=<?=$album->fields["font"]?>>
+&nbsp;
+</td>
+<td align=right>
+<font size=+0 face=<?=$album->fields["font"]?>>
+<?
+if ($last) {
+        echo "&nbsp;";
 } else {
-        echo "<a href=view_album.php?set_page=".$nextPage."><font size=+1 face=".$album->fields["font"].">Next Page</a> >";               
-}       
+	echo "<a href=view_album.php?set_page=".$nextPage.">next page >></a>";
+}
 ?>
 </td>
-<td></td>
-<td align=right>
-<font=<?=$album->fields["font"]?>><font face=<?=$album->fields["font"]?>>Page <?=$page?> of <?=$maxPages?>   
-</td>                        
-</tr></table>
-</td></tr>
-<? } ?> 
 
-<? if (isCorrectPassword($edit)) { ?> 
-<? } ?>
-
-</td>
 </tr>
 </table>
 
-<font face=<?= $album->fields["font"]?> size=+0>
+<!--  -->
 <? if (strcmp($album->fields["returnto"], "no")) { ?>
-<< <a href=albums.php>Return to The Gallery </a>
+<table width=<?=$fullWidth?>>
+<tr>
+<td>
+<font face=<?= $album->fields["font"]?> size=+0>
+<a href=albums.php><< return to <b>The Gallery</b></a>
+</td>
+</tr>
+</table>
 <? } ?>
 
-</table>
 </center>
 <br>
 <hr size=1>
