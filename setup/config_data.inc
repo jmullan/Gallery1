@@ -722,7 +722,7 @@ $constants = array_merge($constants,
 	"adminOtherChangesEmail" => array(
 		"desc" => "This is allows the &quot;admin&quot; account to get email whenever a change is made to any album",
 		"prompt" => "Admin Other Changes email",
-		"choices" => array("yes" => _("Yes"), "no" => _("No")),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 		),
 

@@ -68,7 +68,7 @@
 
 		var i = 0;
 		while (buttons[i]) {
-			if (buttons[i].type == "submit") {
+			if (buttons[i].type == "submit" || buttons[i].type == "button") {
 				buttons[i].disabled = false;
 			}
 			i++;

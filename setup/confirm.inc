@@ -451,10 +451,11 @@ if (!$error) {
 ?>
 </div>
 <p align="center">
-	<input type=submit name="go_back" disabled="disabled" value="<- <?php echo _("Edit Config") ?>">
+	<input type=submit name="go_back" disabled="disabled" value="&lt;- <?php echo _("Edit Config") ?>">
 <?php if (!$error) {
-		echo '<input type="submit" name="go_next" disabled="disabled" value="' . _("Save Config") .' ->">';
+		echo '<input type="submit" name="go_next" disabled="disabled" value="' . _("Save Config") .' -&gt;">';
 	} else {
+		echo '<input type="button" name="refresh" disabled="disabled" value="' . _("Refresh") . '" onclick="location.reload()">';
 		echo '<br><div class="error" id="top">';
 		echo pluralize_n2(ngettext("One error.", "%d errors.", $error), $error, _("No errors."));
 		echo _("See Details below.");
@@ -467,9 +468,9 @@ if (!$error) {
 <input type="hidden" name="data" value="<?php echo urlencode($data) ?>">
 
 <p align="center">
-<input type="submit" name="go_back" disabled="disabled" value="<- <?php echo _("Edit Config") ?>">
+<input type="submit" name="go_back" disabled="disabled" value="&lt;- <?php echo _("Edit Config") ?>">
 <?php if (!$error) {
-	echo '<input type="submit" name="go_next" disabled="disabled" value="'. _("Save Config") . '->">';
+	echo '<input type="submit" name="go_next" disabled="disabled" value="'. _("Save Config") . '-&gt;">';
 } else {
 	echo '<p class="error" id="bottom">';
 	echo _("There are errors in your configuration.");
