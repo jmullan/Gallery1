@@ -44,21 +44,21 @@ function getNLS () {
 	$nls['language']['de_DE'] = 'Deutsch';
 	$nls['language']['en_GB'] = 'English (UK)';
 	$nls['language']['en_US'] = 'English (US)';
-	$nls['language']['es_ES'] = 'Espa&ntilde;ol';
-	$nls['language']['fr_FR'] = 'Fran&ccedil;ais';
+	$nls['language']['es_ES'] = 'Espa&#241;ol';
+	$nls['language']['fr_FR'] = 'Fran&#231;ais';
 	$nls['language']['it_IT'] = 'Italiano';
 	$nls['language']['he_IL'] = 'Hebrew';
-	$nls['language']['is_IS'] = '&Iacute;slenska';
+	$nls['language']['is_IS'] = '&#205;slenska';
 	$nls['language']['lt_LT'] = 'Lietuvi&#x0173;';
 	$nls['language']['nl_NL'] = 'Nederlands';
-	$nls['language']['no_NO'] = 'Norsk bokm&aring;l';
+	$nls['language']['no_NO'] = 'Norsk bokm&#229;l';
 	$nls['language']['pl_PL'] = 'Polski';
-	$nls['language']['pt_PT'] = 'Portugu&ecirc;s';
+	$nls['language']['pt_PT'] = 'Portugu&#234;s';
 	$nls['language']['ru_RU'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)';
 	$nls['language']['ru_RU.koi8r'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (KOI8-R)';
 	$nls['language']['sl_SI'] = 'Slovenian (Sloven&#x0161;&#x010d;ina)';
 	$nls['language']['sv_SE'] = 'Svenska';
-	$nls['language']['tr_TR'] = 'T&uuml;rk&ccedil;e';
+	$nls['language']['tr_TR'] = 'T&#252;rk&#231;e';
 
 /**
  ** Aliases for languages with different browser and gettext codes
@@ -85,78 +85,85 @@ function getNLS () {
  ** Aliases for languages which we substitte or send by NUKE
  **/
 	
-	$nls['alias']['chinese'] = 		'zh_TW' ;
+
 
 	$nls['alias']['de_LI'] = 		'de_DE' ;
 	$nls['alias']['de_LU'] = 		'de_DE' ;
 	$nls['alias']['de_CH'] = 		'de_DE' ;
 	$nls['alias']['de_AT'] = 		'de_DE' ;
 	$nls['alias']['german'] =		'de_DE' ;
-	$nls['alias']['de_DE.ISO8859-1'] =    'de_DE' ;
+	$nls['alias']['deu'] =			'de_DE' ;
+	$nls['alias']['de_DE.ISO8859-1'] =	'de_DE' ;
 	
-	$nls['alias']['dutch'] = 		'nl_NL' ;
-	
-	$nls['alias']['english'] = 		'en_US' ;
-	$nls['alias']['en_US.ISO8859-1'] =    'en_US' ;
+	$nls['alias']['spanish'] =		'es_ES' ;
+	$nls['alias']['spa'] =			'es_ES' ;
+	$nls['alias']['es_ES.ISO8859-1'] =	'es_ES' ;
 
 	$nls['alias']['en_EN'] = 		'en_GB' ;
-	$nls['alias']['en_GB.ISO8859-1'] =    'en_GB' ;
+	$nls['alias']['en_GB.ISO8859-1'] =	'en_GB' ;
 
-	$nls['alias']['es_ES.ISO8859-1'] =    'es_ES' ;
+	$nls['alias']['english'] = 		'en_US' ;
+	$nls['alias']['eng'] =			'en_US' ;
+	$nls['alias']['en_US.ISO8859-1'] =	'en_US' ;
 	
 	$nls['alias']['fr_BE'] = 		'fr_FR' ;
 	$nls['alias']['fr_CA'] = 		'fr_FR' ;
 	$nls['alias']['fr_LU'] = 		'fr_FR' ;
 	$nls['alias']['fr_CH'] = 		'fr_FR' ;
 	$nls['alias']['french'] =		'fr_FR' ;
-	$nls['alias']['fr_FR.ISO8859-1'] =    'fr_FR' ;
-	$nls['alias']['fr_FR.ISO8859-1'] =    'fr_FR' ;
+	$nls['alias']['fra'] =			'fr_FR' ;
+	$nls['alias']['fr_FR.ISO8859-1'] =	'fr_FR' ;
 	
 	$nls['alias']['icelandic']=		'is_IS' ;
-	$nls['alias']['is_IS.ISO8859-1'] =    'is_IS' ;
+	$nls['alias']['isl']=			'is_IS' ;
+	$nls['alias']['is_IS.ISO8859-1'] =	'is_IS' ;
 	
 	$nls['alias']['italian'] =		'it_IT' ;
-	$nls['alias']['it_IT.ISO8859-1'] =    'it_IT' ;
+	$nls['alias']['ita']=			'it_IT' ;
+	$nls['alias']['it_IT.ISO8859-1'] =	'it_IT' ;
 	
 	$nls['alias']['he_HE'] = 		'he_IL' ;
 	$nls['alias']['hebrew'] =		'he_IL' ;
-	$nls['alias']['he_IL.ISO8859-8'] =    'he_IL' ;
+	$nls['alias']['he_IL.ISO8859-8'] =	'he_IL' ;
 	
-	//$nls['alias']['lithuanian'] =	'lt_LT' ;
-	$nls['alias']['lt_LT.ISO8859-4'] =    'lt_LT' ;
-	$nls['alias']['lt_LT.ISO8859-13'] =   'lt_LT' ;
+	$nls['alias']['lt_LT.ISO8859-4'] =	'lt_LT' ;
+	$nls['alias']['lt_LT.ISO8859-13'] =	'lt_LT' ;
 	
+	$nls['alias']['dutch'] = 		'nl_NL' ;
 	$nls['alias']['nl_BE'] = 		'nl_NL' ;
-	$nls['alias']['nl_NL.ISO8859-1'] =    'nl_NL' ;
+	$nls['alias']['nl_NL.ISO8859-1'] =	'nl_NL' ;
 	
 	$nls['alias']['norwegian'] = 		'no_NO' ;
-	$nls['alias']['no_NO.ISO8859-1'] =    'no_NO' ;
+	$nls['alias']['nor']=			'no_NO' ;
+	$nls['alias']['no_NO.ISO8859-1'] =	'no_NO' ;
 	
 	$nls['alias']['polish'] =		'pl_PL' ;
-	$nls['alias']['pl_PL.ISO8859-2'] =    'pl_PL' ;
+	$nls['alias']['pl_PL.ISO8859-2'] =	'pl_PL' ;
 
 	$nls['alias']['portuguese'] =		'pt_PT' ;
-	$nls['alias']['pt_PT.ISO8859-2'] =    'pt_PT' ;
-	$nls['alias']['pt_PT.ISO8859-1'] =    'pt_PT' ;
+	$nls['alias']['pt_PT.ISO8859-2'] =	'pt_PT' ;
+	$nls['alias']['pt_PT.ISO8859-1'] =	'pt_PT' ;
 	
 	$nls['alias']['russian'] =		'ru_RU';
+	$nls['alias']['rus'] =			'ru_RU';
 	//$nls['alias']['russian'] =		'ru_RU.koi8r';
-	$nls['alias']['ru_RU.ISO8859-5'] =    'ru_RU' ;
-	$nls['alias']['ru_RU.KOI8-R'] =       'ru_RU.koi8r' ;
+	//$nls['alias']['rus'] =		'ru_RU.koi8r';
+	$nls['alias']['ru_RU.ISO8859-5'] =	'ru_RU' ;
+	$nls['alias']['ru_RU.KOI8-R'] =		'ru_RU.koi8r' ;
 
 	$nls['alias']['slovenian'] =    	'sl_SI' ;
-	$nls['alias']['sl_SI.ISO8859-2'] =    'sl_SI' ;
+	$nls['alias']['sl_SI.ISO8859-2'] =	'sl_SI' ;
 	
 	$nls['alias']['sv_SV'] = 		'sv_SE' ;
 	$nls['alias']['swedish'] =		'sv_SE' ;
-	$nls['alias']['sv_SE.ISO8859-1'] =    'sv_SE' ;
+	$nls['alias']['swe'] =			'sv_SE' ;
+	$nls['alias']['sv_SE.ISO8859-1'] =	'sv_SE' ;
 
 	$nls['alias']['turkish'] =		'tr_TR' ;	
-	$nls['alias']['tr_TR.ISO8859-9'] =    'tr_TR' ;
+	$nls['alias']['tr_TR.ISO8859-9'] =	'tr_TR' ;
 
-	$nls['alias']['spanish'] = 		'es_ES' ;
-
-	$nls['alias']['zh_TW.Big5']      =    'zh_TW' ;
+	$nls['alias']['zh_TW.Big5']      =	'zh_TW' ;
+	$nls['alias']['chinese'] = 		'zh_TW' ;
 	
 /**
  ** Charsets
@@ -203,24 +210,36 @@ function getNLS () {
 	$nls['alignment']['he_IL'] = 'right' ;
 
 /**
- ** Nuke
+ ** phpNuke
  **/
-	$nls['nuke']['zh_TW'] = 'chinese' ;
-	$nls['nuke']['de_DE'] = 'german';
-	$nls['nuke']['en_US'] = 'english';
-	$nls['nuke']['es_ES'] = 'spanish';
-	$nls['nuke']['fr_FR'] = 'french';
-	$nls['nuke']['it_IT'] = 'italian';
-	$nls['nuke']['is_IS'] = 'icelandic';
-	$nls['nuke']['lt_LT'] = 'lithuanian';
-	$nls['nuke']['nl_NL'] = 'dutch';
-	$nls['nuke']['no_NO'] = 'norwegian';
-	$nls['nuke']['pl_PL'] = 'polish';
-	$nls['nuke']['pt_PT'] = 'portuguese';
-	$nls['nuke']['ru_RU'] = 'russian';
-	$nls['nuke']['sv_SE'] = 'swedish';
-	$nls['nuke']['sl_SI'] = 'slovenian';
-	$nls['nuke']['tr_TR'] = 'turkish';
+	$nls['phpnuke']['zh_TW'] = 'chinese' ;
+	$nls['phpnuke']['de_DE'] = 'german';
+	$nls['phpnuke']['en_US'] = 'english';
+	$nls['phpnuke']['es_ES'] = 'spanish';
+	$nls['phpnuke']['fr_FR'] = 'french';
+	$nls['phpnuke']['it_IT'] = 'italian';
+	$nls['phpnuke']['is_IS'] = 'icelandic';
+	$nls['phpnuke']['nl_NL'] = 'dutch';
+	$nls['phpnuke']['no_NO'] = 'norwegian';
+	$nls['phpnuke']['pl_PL'] = 'polish';
+	$nls['phpnuke']['pt_PT'] = 'portuguese';
+	$nls['phpnuke']['ru_RU'] = 'russian';
+	$nls['phpnuke']['sv_SE'] = 'swedish';
+	$nls['phpnuke']['sl_SI'] = 'slovenian';
+	$nls['phpnuke']['tr_TR'] = 'turkish';
+
+/**
+ ** postNuke
+ **/
+	$nls['postnuke']['de_DE'] = 'deu';
+	$nls['postnuke']['en_US'] = 'eng';
+	$nls['postnuke']['es_ES'] = 'spa';
+	$nls['postnuke']['fr_FR'] = 'fra';
+	$nls['postnuke']['it_IT'] = 'ita';
+	$nls['postnuke']['is_IS'] = 'isl';
+	$nls['postnuke']['no_NO'] = 'nor';
+	$nls['postnuke']['ru_RU'] = 'rus';
+	$nls['postnuke']['sv_SE'] = 'swe';
 
 return $nls;
 }

@@ -12,6 +12,7 @@ function ML_reload() {
 <td valign="top" align="right">
     <select style="font-size:8pt;" name="newlang" onChange="ML_reload()" size="1">
 <?php
+	// we have 2+1 ways: phpnuke, postnuke or standalone
 	if ($GALLERY_EMBEDDED_INSIDE) {
 		$urlTemp = ($HTTP_GET_VARS['include'] ? $HTTP_GET_VARS['include'] : '');        
 	} else {
@@ -21,14 +22,25 @@ function ML_reload() {
 	foreach ($gallery->app->available_lang as $value) {
 		// Only use language from config.php if its defined in nls.php
 		if (! isset($nls['language'][$value])) continue;
-		if (isset($GALLERY_EMBEDDED_INSIDE) && ! $nls['nuke'][$value]) continue;
-		
+
 		if (!language_exists($value)) {
 			continue;
 		}
+
 		$args = $HTTP_GET_VARS;
-		if ($GALLERY_EMBEDDED_INSIDE) {
-			$args["newlang"]=$nls['nuke'][$value];
+		if (isset($GALLERY_EMBEDDED_INSIDE)) {
+			if (isset($GLOBALS['pnconfig']) && function_exists("authorised")) {
+				/* postnuke */
+				echo "POSTNUKKE";
+				if (! isset($nls['postnuke'][$value])) continue;
+				$args["newlang"]=$nls['postnuke'][$value];
+			}
+			else {
+				/* phpnuke */ 
+				echo "<br>-->". $nls['phpnuke'][$value];
+				if (! isset($nls['phpnuke'][$value])) continue;
+				$args["newlang"]=$nls['phpnuke'][$value];
+			} 
 		} else {
 			$args["newlang"]=$value;
 		}
