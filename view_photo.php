@@ -248,25 +248,26 @@ includeHtmlWrap("photo.header");
 if (!$gallery->album->isMovie($id)) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$adminCommands .= '<a href="#" onClick="'.
-			popup("$top/resize_photo.php?index=$index").';return false">[resize photo]</a>';
+			popup("resize_photo.php?index=$index").';return false"><nobr>[resize photo]</nobr></a>';
 	}
 
 	if ($gallery->user->canDeleteFromAlbum($gallery->album)) {
 		$adminCommands .= '<a href="#" onClick="'.
-			popup("$top/delete_photo.php?index=$index").';return false">[delete photo]</a>';
+			popup("delete_photo.php?index=$index").';return false"><nobr>[delete photo]</nobr></a>';
 	}
 
 	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes")) {
 		$link = doCommand("", "set_fullOnly=" .
 		        (strcmp($gallery->session->fullOnly,"on") ? "on" : "off"),
 			"view_photo.php", "id=$id");
-		$adminCommands .= " View Images: [ ";
+		$adminCommands .= "<nobr>View Images: [ ";
 		if (strcmp($gallery->session->fullOnly,"on"))
 		{
 			$adminCommands .= "normal | <a href=\"$link\">full</a> ]";
 		} else {
 			$adminCommands .= "<a href=\"$link\">normal</a> | full ]";
 		}
+		$adminCommands .= "</nobr>";
 	}
 
     
