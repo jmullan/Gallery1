@@ -35,6 +35,14 @@ if (!$user->canWriteToAlbum($album)) {
 <?
 if ($albumName && isset($index)) {
 	if ($rotate) {
+?>
+	<center>
+	 Rotating photo.
+	 <br>
+	 (this may take a while)
+	</center>
+<?
+		my_flush();
 		$album->rotatePhoto($index, $rotate);
 		$album->save();
 		dismissAndReload();
