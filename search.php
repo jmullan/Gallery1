@@ -111,7 +111,6 @@ if ($searchstring) {
 	for ($i = 0; $i<$numAlbums; $i++) {
 		// initialize values
 		$searchdraw["bordercolor"]="";
-	       	$searchdraw["bordercolor"]="";
 	       	$searchdraw["photoURL"]="";
 	       	$searchdraw["photolink"]="";
 	       	$searchdraw["Text1"]="";
@@ -182,21 +181,23 @@ if ($searchstring) {
 				$searchKeywords = $searchAlbum->getKeywords($j);
 				$commentMatch = 0;
 				$commentText = "";
-				for ($k = 1; $k <= $searchAlbum->numComments($j); $k++) {
-					// check to see if there are any comment matches
-					$comment = $searchAlbum->getComment($j, $k);
-					$searchComment = $comment->getName();
-					if ($gallery->user->isAdmin()) {
-						$searchComment .= " @ ".$comment->getIPNumber();
-					}
-					$searchComment .= ": ".$comment->getCommentText();
-					if (eregi($searchstring, $searchComment)) {
-						if (!$commentMatch) {
-							$commentText = _("Matching Comments").":<br>";
-							$commentMatch = 1;
-						} 
-						$searchComment = eregi_replace("($searchstring)", "<b>\\1</b>", $searchComment);
-						$commentText .= $searchComment . "<br><br>";
+				if ($searchAlbum->canViewComments($uid) ||  $gallery->user->isAdmin()) {
+					for ($k = 1; $k <= $searchAlbum->numComments($j); $k++) {
+						// check to see if there are any comment matches
+						$comment = $searchAlbum->getComment($j, $k);
+						$searchComment = $comment->getName();
+						if ($gallery->user->isAdmin()) {
+							$searchComment .= " @ ".$comment->getIPNumber();
+						}
+						$searchComment .= ": ".$comment->getCommentText();
+						if (eregi($searchstring, $searchComment)) {
+							if (!$commentMatch) {
+								$commentText = _("Matching Comments").":<br>";
+								$commentMatch = 1;
+							} 
+							$searchComment = eregi_replace("($searchstring)", "<b>\\1</b>", $searchComment);
+							$commentText .= $searchComment . "<br><br>";
+						}
 					}
 				}
 				$extraFieldsText = "";
