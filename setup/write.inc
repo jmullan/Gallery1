@@ -109,14 +109,6 @@ it all again!)
 
 <br><br><br><br>
 
-<font size=+1>
-Help Gallery become a better product!
-<br>
-Fill out the <a href=http://gallery.sourceforge.net?action=survey>Gallery Survey</a>.
-</font>
-
-<br><br>
-
 <img src="../images/gallery-tag.png">
 </center>
 
