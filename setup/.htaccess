@@ -13,4 +13,5 @@ Options +FollowSymLinks
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule ^(index.php)$			index.php?init_mod_rewrite=1&ampersandbroken=    [QSA]
+RewriteRule ^$					index.php?init_mod_rewrite=1&ampersandbroken=    [QSA]
 </IfModule>
