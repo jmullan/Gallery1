@@ -127,6 +127,7 @@ can either be a URL or a directory on the server.
 <input type=submit value="Cancel" onclick='parent.close()'>
 </center>
 </form>
+Download <b><a href="#" onClick="opener.location = 'http://gallery.sourceforge.net/gallery_remote.php?protocol_version=<?= $gallery->remote_protocol_version ?>'; parent.close();">Gallery Remote</a></b>. Upload photos using drag-and-drop from your desktop.
 </span>
 
 <head>
