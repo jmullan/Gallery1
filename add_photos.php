@@ -20,53 +20,79 @@
 ?>
 <?
 require('style.php');
+
 if (!$boxes) {
 	$boxes = 5;
 }
 	
 ?>
 
-<center>
+<script language="Javascript">
+<!--
+	function reloadPage() {
+		document.count_form.submit();
+		return false;
+	}
+	function submitForm() {
+		document.upload_form.submit();
+		return false;
+	}
+// -->
+</script>
+
 
 <b>Add Photos</b>
 <br>
+<font size=+0>
 Click the <b>Browse</b> button to locate a photo to upload.
 <? if ($app->feature["zip_support"]) { ?>
 <br>
 Tip:  Upload a ZIP file full of photos and movies!
 <? } ?>
 <br>
-<font size=+0>(Supported file types: JPG, 
+(Supported file types: JPG, 
 <? if ($app->feature["gif_support"]) { ?>
 GIF, 
 <? } ?>
-PNG, AVI, MPG)</font>
+PNG, AVI, MPG)
 
+<p>
+<form enctype="multipart/form-data" action="add_photos.php" method=post name="count_form">
+1. Select the number of files you want to upload:
+<select name="boxes" onChange='reloadPage()'>
+<? for ($i = 1; $i < 10;  $i++) {
+	echo "<option ";
+        if ($i == $boxes) {
+		echo "selected ";
+	}
+	echo "value=\"$i\">$i\n";
+
+} ?>
+</select>
 <br>
-<form enctype="multipart/form-data" action="save_photos.php" method=post>
+</form>
+
+<form enctype="multipart/form-data" action="save_photos.php" method=post name="upload_form">
+2. Use the Browse button to find the photos on your computer
 <input type="hidden" name="max_file_size" value="10000000">
 <? for ($i = 0; $i < $boxes;  $i++) { ?>
 <br> <input name="userfile[]" type="file" size=50>
 <? } ?>
-<br> URL <input name="url">
-
 <p>
-<input type="submit" value="Send Files">
+<center>
+<input type="submit" value="Upload Now" onclick="return submitForm()">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+</center>
 </form>
 
-<? if ($boxes < 10) { ?>
-<table bordercolor=black cellpadding=0 cellspacing=0 border=1><tr><td>
-<table width=100% bgcolor=#9999CC>
-<tr><td align=center>
-<font face=arial size=+1>
-<a href=add_photos.php?boxes=<?=$boxes+5?>>More boxes, please!</a>
-<br>
-<font size=2>
-Warning! you'll lose what you've already entered
+<form enctype="multipart/form-data" action="save_photos.php" method=post name="uploadurl_form">
+Or, upload all the images from this URL:
+<input name="url">
+<p>
+<center>
+<input type="submit" value="Submit URL">
+<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+</center>
+</form>
 </font>
-</table>
-</td></tr>
-</table>
-<? } ?>
 
