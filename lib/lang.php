@@ -323,6 +323,8 @@ function initLanguage($sendHeader=true) {
 	// probably a bogus bug report, since all documentation says this is fine.
 	putenv("LANG=". $gallery->language);
 	putenv("LANGUAGE=". $gallery->language);
+	// This line was added in 1.4.5-cvs-b190 to fix problems on FreeBSD 4.10
+	putenv("LC_ALL=". $gallery->language);
 
 	// Set Locale
 	setlocale(LC_ALL,$gallery->locale);
