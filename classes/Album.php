@@ -2048,7 +2048,7 @@ class Album {
 			if ($user->isPseudo()) {
 				continue;
 			}
-		       	if (validate_email($user->getEmail())) {
+		       	if (gallery_validate_email($user->getEmail())) {
 			       	$result[]=$user->getEmail();
 		       	} else if (isDebugging()) {
 			       	gallery_error( sprintf(_("Email problem: skipping %s (UID %s) because email address %s is not valid."), 

@@ -64,7 +64,7 @@ function get_BrowserLanguage() {
 ** - alignment
 */
 
-function setLangDefaults() {
+function setLangDefaults($nls) {
 	global $gallery;
 
 	$gallery->language 	= 'en_US';
@@ -84,7 +84,7 @@ function initLanguage() {
 	$nls = getNLS();
 
 	/* Set Defaults, they may be overwritten. */
-	setLangDefaults();
+	setLangDefaults($nls);
 
 	// before we do any tests or settings test if we are in mode 0
 	// If so, we skip language settings at all

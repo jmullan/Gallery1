@@ -2734,9 +2734,8 @@ Gallery @ %s Administrator.");
 }
 
 function available_skins($description_only=false) {
-	global $GALLERY_BASEDIR;
 
-	$dir = "${GALLERY_BASEDIR}skins";
+	$dir = dirname(__FILE__) . '/skins';
 	$opts['none'] = 'None';
 	$descriptions="<dl>";
 	$descriptions .= _('<dt>None</dt><dd>The original look and feel.</dd>');

@@ -1181,7 +1181,7 @@ function verify_email($emailMaster)
 	       	return array($success, $fail);
 	}
 
-	if (validate_email($adminEmail)) {
+	if (gallery_validate_email($adminEmail)) {
 		$success[] = _("Valid admin email address given.");
 	} else {
 		$adminEmail = ereg_replace('([[:space:]]+)', '', $adminEmail);
@@ -1196,7 +1196,7 @@ function verify_email($emailMaster)
 		       	foreach ($emails as $email) {
 			       	$adminEmail .= "$join$email";
 			       	$join=",";
-			       	if (!validate_email($email)) {
+			       	if (! gallery_validate_email($email)) {
 				       	$fail[] = sprintf(_("%s is not a valid email address."), 
 							$email);
 			       	} else {
@@ -1205,7 +1205,7 @@ function verify_email($emailMaster)
 		       	}
 	       	}
 	}
-       	if (validate_email($senderEmail)) {
+       	if (gallery_validate_email($senderEmail)) {
 	       	$success[] = _("Valid sender email address given.");
        	} else {
 	       	$fail[]= _("You must specify a valid sender email address");
