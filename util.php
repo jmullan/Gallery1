@@ -3349,7 +3349,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 	        foreach ($fields as $key => $value) {
         	        $i++;
 			echo "\n<tr>";
-                	echo "\n\t<td valign=\"top\"><b>$key<b></td>";
+                	echo "\n\t<td valign=\"top\"><b>$key</b></td>";
 	                echo "\n\t<td valign=\"top\">:</td>";
         	        echo "\n\t<td>$value</td>";
 	        	echo "\n</tr>";
