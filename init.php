@@ -45,6 +45,8 @@ if (substr(PHP_OS, 0, 3) == 'WIN') {
 } else {
 	include($GALLERY_BASEDIR . "platform/fs_unix.php");
 }
+
+
 if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
 	include($GALLERY_BASEDIR . "config.php");
 }
@@ -86,7 +88,10 @@ require($GALLERY_BASEDIR . "classes/NobodyUser.php");
 require($GALLERY_BASEDIR . "classes/LoggedInUser.php");
 require($GALLERY_BASEDIR . "classes/UserDB.php");
 require($GALLERY_BASEDIR . "classes/Comment.php");
-require($GALLERY_BASEDIR . "session.php");
+
+if (!$GALLERY_NO_SESSIONS) {
+    require($GALLERY_BASEDIR . "session.php");
+}
 
 if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
         include($GALLERY_BASEDIR . "classes/Database.php");
