@@ -41,6 +41,12 @@ class UserDB {
 			}
 		}
 
+		if (!file_exists("$app->userDir/.htaccess")) {
+			$fd = fopen("$app->userDir/.htaccess", "w");
+			fwrite($fd, "Order deny, allow\nDeny from all\n");
+			fclose($fd);
+		}
+
 		if (file_exists("$app->userDir/userdb.dat")) {
 			$tmp = getFile("$app->userDir/userdb.dat");
 			$this = unserialize($tmp);
