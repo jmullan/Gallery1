@@ -111,6 +111,8 @@ class Album {
 		global $app;
 		$dir = $this->getAlbumDir();
 
+		$this->fields["last_mod_time"] = time();
+
 		if (!file_exists($dir)) {
 			mkdir($dir, 0777);
 		}
@@ -316,6 +318,21 @@ class Album {
 	function isMovie($index) {
 		$photo = $this->getPhoto($index);
 		return $photo->isMovie();
+	}
+
+	function getLastModificationDate() {
+		global $app;
+		$dir = $this->getAlbumDir();
+
+		$time = $this->fields["last_mod_time"];
+
+		// Older albums may not have this field.
+		if (!$time) {
+			$stat = stat("$dir/album.dat");
+			$time = $stat[9];
+		}
+
+		return date("M d, Y", $time);
 	}
 }
 
