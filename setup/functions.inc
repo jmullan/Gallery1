@@ -1551,12 +1551,17 @@ function makeSectionTabs($array) {
 	echo "\n</script>\n";
 }
 
-function configLogin($target, $closeForm=false) {
+function configLogin($target) {
 	global $gallery, $gallerypassword, $username;
+	
+	if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
+		$resetFile = getFile(GALLERY_SETUPDIR . "/resetadmin");
+		$resetFile = trim($resetFile);
+	}
 	
 	// The gallery has never been configured, or the admin password has been lost and needs to be reset - ignore login requirement
 	// If the user has already logged in, and is viewing one of the setup pages, they will be logged in automatically by the form
-	if (!isset($gallery->app->userDir) || fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
+	if (!isset($gallery->app->userDir) || (isset($gallery->session->resetAdminGuid) && $gallery->session->resetAdminGuid == $resetFile)) {
 		return;
 	}
 	else {

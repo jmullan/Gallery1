@@ -24,6 +24,11 @@
 if (isset($gallery->session->username) && !empty($gallery->session->username)) {
 	$tmpUser = $gallery->userDB->getUserByUsername($gallery->session->username);
 }
+elseif (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
+	if (!isset($gallery->session->resetAdminGuid)) {
+		$gallery->session->resetAdminGuid = md5(uniqid(rand(), true));
+	}
+}
 elseif (isset($GLOBALS['login'])) {
 	if (empty($username) || empty($gallerypassword)) {
 		$error=_("Please enter username and password.");
@@ -54,8 +59,18 @@ elseif (isset($GLOBALS['login'])) {
 	}
 }
 
-// Not logged in 
-if (!isset($tmpUser) || !$tmpUser->isAdmin()) {
+if (isset($gallery->session->resetAdminGuid)) {
+?>
+<div align="center>
+<div class="header"><?php echo sprintf(_("Reset %s Password"), "admin"); ?></div>
+<div class="desc"><?php echo sprintf(_("To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;.  Once you have done that, press the refresh button below."), GALLERY_SETUPDIR . "/resetadmin", $gallery->session->resetAdminGuid); ?></div>
+<input type="button" onclick="location.reload()" value="<?php echo _("Refresh"); ?>">
+</body>
+</html>
+<?php
+	exit;
+}
+elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in 
 	echo makeFormIntro("setup/" . $target, array("name" => "login_form", "method" => "POST"));
 ?>
 
