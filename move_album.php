@@ -41,10 +41,9 @@ doctype();
   <title><?php echo _("Move Album") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Move Album") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <?php
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
@@ -150,7 +149,6 @@ document.theform.newIndex.focus();
 
 
 <?php print gallery_validation_link("move_album.php", true, array('index' => $index)); ?>
-</div>
 </div>
 </body>
 </html>

@@ -45,7 +45,7 @@ if (!isset($metaboxes)) {
 <?php echo makeFormIntro("add_photos.php", array("name" => "count_form", "method" => "POST")); ?>
 <input type="hidden" name="mode" value="<?php echo $mode ?>"/>
 
-<table class="popuptd">
+<table>
 <tr>
 	<td><?php echo _("1. Select the number of files you want to upload:") ?></td>
 	<td><select name="boxes" onChange="javascript:document.count_form.submit(); return false;">

@@ -78,10 +78,9 @@ asort($uAll);
   <title><?php echo _("Change Owner") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Change Owner") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <?php 
 	$index=$gallery->album->getPhotoIndex($id);
 	echo $gallery->album->getThumbnailTag($index);
@@ -106,7 +105,6 @@ asort($uAll);
 </center>
 
 <?php print gallery_validation_link("photo_owner.php", true, array('id' => $id)); ?>
-</div>
 </div>
 </body>
 </html>

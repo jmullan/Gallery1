@@ -48,10 +48,9 @@ doctype();
   <title><?php echo _("Delete User") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Delete User") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 
 <?php echo makeFormIntro("delete_user.php", array(
                                 "name" => "deleteuser_form"));
@@ -85,10 +84,7 @@ if (! isset($error)) {
 <input type="hidden" name="action" value="">
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick="deleteuser_form.action.value='cancel'">
 </form> 
-
-</div>
 <?php print gallery_validation_link("delete_user.php"); ?>
-</div>
 </div>
 </body>
 </html>

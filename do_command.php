@@ -30,10 +30,9 @@ if (!strcmp($cmd, "remake-thumbnail")) {
   <title><?php echo _("Performing Operation..") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Performing Operation..") ?></div>
-<div class="popupcontent">
+<div class="popup" align="center">
 <?php
 		if ($gallery->session->albumName && isset($index)) {
 			if (!strcmp($index, "all")) {
@@ -160,7 +159,6 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 <form>
 <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
 </form>
-</div>
 </div>
 </div>
 </body>

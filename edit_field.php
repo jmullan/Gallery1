@@ -47,10 +47,9 @@ if (isset($save)) {
   <title><?php echo sprintf(_("Edit %s"), _($field)) ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo sprintf(_("Edit %s"), _($field)) ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <?php 
 	echo sprintf(_("Edit the %s and click %s when you're done"), _($field), '<b>' . _("Save") . '</b>');
 
@@ -75,7 +74,6 @@ document.theform.data.focus();
 </script>
 
 <?php print gallery_validation_link("edit_field.php",true,array('field' => $field)); ?>
-</div>
 </div>
 </body>
 </html>

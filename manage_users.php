@@ -61,10 +61,9 @@ doctype();
   <title><?php echo _("Manage Users") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Manage Users") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <?php 
 if (isset($error)) {
 	echo gallery_error($error);
@@ -105,7 +104,6 @@ if (count($displayUsers)) { ?>
 
 </div>
 <?php print gallery_validation_link("manage_users.php"); ?>
-</div>
 </div>
 </body>
 </html>

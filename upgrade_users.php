@@ -35,10 +35,9 @@ doctype();
   <title><?php echo _("Upgrading Users") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Upgrading Users") ?></div>
-<div class="popupcontent">
+<div class="popup" align="center">
 <?php echo _("The user database in your gallery was created with an older version of the software and is out of date.") ?>  
 <?php echo _("This is not a problem!") ?>  
 <?php echo _("We will upgrade it.  This may take some time.") ?>  
@@ -68,7 +67,6 @@ else {
 	<input type="submit" value="<?php echo $button ?>" onclick='location.reload()'>
 	</form>
 	</center>
-</div>
 </div>
 </body>
 </html>

@@ -47,10 +47,9 @@ if ($gallery->album) {
   <title><?php echo _("Delete Album") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Delete Album") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <?php echo _("Do you really want to delete this album?") ?>
 <br>
 <b><?php echo $gallery->album->fields["title"] ?></b>
@@ -73,7 +72,6 @@ if ($gallery->album) {
 ?>
 
 <?php print gallery_validation_link("delete_album.php"); ?>
-</div>
 </div>
 </body>
 </html>

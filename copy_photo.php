@@ -39,10 +39,9 @@ doctype();
   <title><?php echo _("Copy Photo") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
-<div class="popuphead" align="center"><?php echo _("Copy Photo") ?></div>
-<div class="popupcontent" align="center">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
+<div class="popuphead"><?php echo _("Copy Photo") ?></div>
+<div class="popup" align="center">
 <?php
 if ($gallery->session->albumName && isset($index)) {
 	$numPhotos = $gallery->album->numPhotos(1);

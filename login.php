@@ -40,7 +40,7 @@ doctype();
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></div>
-<div class="popup">
+<div class="popup" align="center">
 <?php
 
 if (!empty($username) && !empty($gallerypassword)) {
@@ -101,7 +101,7 @@ if (!empty($username) && !empty($gallerypassword)) {
 if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
 ?>
 <div class="popuphead"><?php echo _("Forgotten your password?") ?></div>
-<div class="popup">
+<div class="popup" align="center">
 <?php
 	echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST"));
 

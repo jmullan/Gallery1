@@ -36,7 +36,7 @@ doctype();
   <title><?php echo _("Sort Album") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 
 <?php
 if ($gallery->session->albumName) {
@@ -54,9 +54,8 @@ if ($gallery->session->albumName) {
 		}
 	} else {
 ?>
-<div class="popup">
 <div class="popuphead"><?php echo _("Sort Album"); ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <p>
 <?php echo _("Select your sorting criteria for this album below") ?>
 <br>
@@ -79,28 +78,28 @@ echo makeFormIntro("sort_album.php");
 
 <table>
   <tr>
-    <td class="popuptd"><input checked type="radio" name="sort" value="upload"><?php echo _("By Upload Date") ?></td>
+    <td><input checked type="radio" name="sort" value="upload"><?php echo _("By Upload Date") ?></td>
   </tr>
   <tr>
-    <td class="popuptd"><input type="radio" name="sort" value="itemCapture"><?php echo _("By Picture-Taken Date") ?></td>
+    <td><input type="radio" name="sort" value="itemCapture"><?php echo _("By Picture-Taken Date") ?></td>
   </tr>
   <tr>
-    <td class="popuptd"><input type="radio" name="sort" value="filename"><?php echo _("By Filename") ?></td>
+    <td><input type="radio" name="sort" value="filename"><?php echo _("By Filename") ?></td>
   </tr>
   <tr>
-    <td class="popuptd"><input type="radio" name="sort" value="click"><?php echo _("By Number of Clicks") ?></td>
+    <td><input type="radio" name="sort" value="click"><?php echo _("By Number of Clicks") ?></td>
   </tr>
   <tr>
-    <td class="popuptd"><input type="radio" name="sort" value="caption"><?php echo _("By Caption") ?></td>
+    <td><input type="radio" name="sort" value="caption"><?php echo _("By Caption") ?></td>
   </tr>
   <tr>
-    <td class="popuptd"><input type="radio" name="sort" value="comment"><?php echo _("By Number of Comments") ?></td>
+    <td><input type="radio" name="sort" value="comment"><?php echo _("By Number of Comments") ?></td>
   </tr>
   <tr>
-    <td class="popuptd"><input type="radio" name="sort" value="random"> <?php echo _("Randomly") ?></td>
+    <td><input type="radio" name="sort" value="random"> <?php echo _("Randomly") ?></td>
   </tr>
   <tr>
-    <td align="center" class="popuptd">
+    <td align="center">
 <select name="order">
   <option value="0"><?php echo _("Ascending") ?></option>
   <option value="1"><?php echo _("Descending") ?></option>
@@ -119,7 +118,6 @@ echo makeFormIntro("sort_album.php");
 }
 ?>
 <?php print gallery_validation_link("sort_album.php"); ?>
-</div>
 </div>
 </body>
 </html>

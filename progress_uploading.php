@@ -36,10 +36,9 @@ doctype();
   <?php common_header(); ?>
 </head>
 
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("File upload in progress!") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <?php echo _("This page will go away automatically when the upload is complete.  Please be patient!") ?>
 <p>
 <table border=0 cellpadding=0 cellspacing=0>
@@ -50,7 +49,6 @@ doctype();
  </tr>
 </table>
 
-</div>
 </div>
 </body>
 </html>

@@ -37,10 +37,9 @@ doctype();
   <title><?php echo _("Resize Photo") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Resizing photos") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <?php
 $all = !strcmp($index, "all");
 if ($gallery->session->albumName && isset($index)) {
@@ -133,7 +132,6 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <?php print gallery_validation_link("resize_photo.php", true, array('index' => $index)); ?>
-</div>
 </div>
 </body>
 </html>

@@ -113,10 +113,9 @@ doctype();
 // -->
 </script>
 </head>
-<body dir="<?php echo $gallery->direction ?>" onload="window.focus()">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" onload="window.focus()" class="popupbody">
 <div class="popuphead"><?php echo _("Add Photos") ?></div>
-<div class="popupcontent">
+<div class="popup" align="center">
 <?php
 
 if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
@@ -164,7 +163,6 @@ foreach ($modes as $m => $mt) {
 include (dirname(__FILE__) . "/includes/add_photos/add_$mode.inc");
 ?>
 
-</div>
 </div>
 </div>
 </body>

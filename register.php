@@ -32,10 +32,9 @@ doctype();
   <title><?php echo sprintf(_("Create User for %s."), $gallery->app->galleryTitle) ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo sprintf(_("Create User for %s."), $gallery->app->galleryTitle) ?></div>
-<div class="popupcontent">
+<div class="popup" align="center">
 <?php if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 	<p>
 	<?php echo _("This Gallery does not support self-registration by visitors.") ?>
@@ -144,7 +143,6 @@ document.usercreate_form.uname.focus();
 //--> 
 </script>
 <?php print gallery_validation_link("register.php"); ?>
-</div>
 </div>
 </body>
 </html>

@@ -52,15 +52,14 @@ doctype();
   <?php common_header(); ?>
 
 </head>
-<body dir="<?php echo $gallery->direction ?>" onLoad='parent.opener.hideProgressAndReload();'>
+<body dir="<?php echo $gallery->direction ?>" onLoad='parent.opener.hideProgressAndReload();' class="popupbody">
 <?php
 $image_tags = array();
 $info_tags = array();
 if (!empty($urls)) {
 ?>
-<div class="popup">
 <div class="popuphead"><?php echo _("Fetching Urls...") ?></div>
-<div class="popupcontent">
+<div class="popup" align="center">
 <?php
 	/* Process all urls first */
 	$temp_files = array();
@@ -241,13 +240,12 @@ if (!empty($urls)) {
 			processingMsg(sprintf(_("Found %d images"), count($image_tags)));
 		}
 	}
-	echo "</div>\n</div>";
+	echo "</div>\n";
 } /* if ($urls) */
 ?>
 
-<div class="popup">
 <div class="popuphead"><?php echo _("Processing status...") ?></div>
-<div class="popupcontent">
+<div class="popup" align="center">
 
 <?php
 $image_count=0;
@@ -350,13 +348,12 @@ if (!empty($temp_files)) {
 }
 ?>
 
-<div class="popuptd">
+<div align="center">
 <?php
 if (empty($msgcount)) {
 	print _("No images uploaded!");
 }
 ?>
-<div align="center">
 <form>
 <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
 </form>
@@ -378,7 +375,7 @@ if (count($image_tags)) {
 
 <table>
 <tr>
-	<td class="popuptd">
+	<td>
 <?php echo makeFormIntro("save_photos.php", 
 		array("name" => 'uploadurl_form',
 			"method" => "POST")); 
@@ -396,18 +393,18 @@ if (count($image_tags)) {
 <?php /* REVISIT - it'd be nice to have these functions get shoved
   into util.php at some time - maybe added functionality to the makeFormIntro? */ ?>
 
-<p class="popup">
+<p>
 <?php 
 	echo insertFormJSLinks('urls[]'); 
 ?>
 </p>
 <?php if (count($info_tags)) { ?>
-<span class="popuptd">
+<span>
 <?php
 	processingMsg(sprintf(_("%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."), count($info_tags)));
 ?>
 </span>
-<p class="popuptd">
+<p>
 <?php
         echo insertFormJSLinks('meta[]');
 ?>
@@ -424,7 +421,7 @@ if (count($image_tags)) {
 	</td>
 </tr>
 </table>
-<p class="popuptd">
+<p>
 <?php
 	echo insertFormJSLinks('meta[]');
 ?>
@@ -442,7 +439,6 @@ if (count($image_tags)) {
 </div>
 </div>
 <?php } /* End if links slurped */ ?>
-</div>
 </div>
 </body>
 </html>

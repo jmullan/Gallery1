@@ -124,12 +124,9 @@ $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
   <title><?php echo _("Modify User") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-
-<center>
-<p class="popuphead"><?php echo _("Modify User") ?></p>
-
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
+<div class="popuphead"><?php echo _("Modify User") ?></div>
+<div class="popup" align="center">
 <?php echo _("You can change any information about the user using this form.") ?>
 
 <br>
@@ -159,5 +156,6 @@ document.usermodify_form.uname.focus();
 </script>
 
 <?php print gallery_validation_link("modify_user.php"); ?>
+</div>
 </body>
 </html>

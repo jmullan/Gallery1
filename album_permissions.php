@@ -166,10 +166,9 @@ correctPseudoUsers($uAdd, $ownerUid);
   <title><?php echo _("Album Permissions") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup" align="center">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Album Permissions") ?></div>
-<div class="popupcontent">
+<div class="popup" align="center">
 <?php echo sprintf(_("Changing permissions for %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
 
 echo makeFormIntro("album_permissions.php", 
@@ -333,9 +332,7 @@ echo makeFormIntro("album_permissions.php",
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
 <input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
-
-</div>
-</div>
 <?php print gallery_validation_link("album_permissions.php"); ?>
+</div>
 </body>
 </html>

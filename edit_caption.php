@@ -73,10 +73,9 @@ if (isset($save)) {
   <title><?php echo _("Edit Text") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Edit Caption"); ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 	<?php echo $gallery->album->getThumbnailTag($index) ?>
 
 <?php echo makeFormIntro("edit_caption.php", 
@@ -140,15 +139,15 @@ $year 	 = strftime('%Y', $itemCaptureDate);
 <br>
 <table border="0">
   <tr>
-	<td colspan="6" align="center" class="popuptd"><?php echo _("Photo Capture Date") ?></td>
+	<td colspan="6" align="center"><?php echo _("Photo Capture Date") ?></td>
   </tr>
   <tr>
-    <td class="popuptd"><?php echo _("Month") ?></td>
-    <td class="popuptd"><?php echo _("Day") ?></td>
-    <td class="popuptd"><?php echo _("Year") ?></td>
-    <td class="popuptd"><?php echo _("Hours") ?></td>
-    <td class="popuptd"><?php echo _("Minutes") ?></td>
-    <td class="popuptd"><?php echo _("Seconds") ?></td>
+    <td><?php echo _("Month") ?></td>
+    <td><?php echo _("Day") ?></td>
+    <td><?php echo _("Year") ?></td>
+    <td><?php echo _("Hours") ?></td>
+    <td><?php echo _("Minutes") ?></td>
+    <td><?php echo _("Seconds") ?></td>
   </tr>
   <tr>
 <?php
@@ -195,7 +194,6 @@ document.theform.data.focus();
 </script>
 
 <?php print gallery_validation_link("edit_caption.php", true, array('index' => $index)); ?>
-</div>
 </div>
 </body>
 </html>

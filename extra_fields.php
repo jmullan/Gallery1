@@ -77,10 +77,9 @@ doctype();
   <title><?php echo _("Configure Custom Fields") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Configure Custom Fields") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <p>
 <?php echo makeFormIntro("extra_fields.php", array(
 				"name" => "theform", 
@@ -177,7 +176,6 @@ function num_special_fields($extra_fields) {
 </p>
 </form>
 <?php print gallery_validation_link("extra_fields.php"); ?>
-</div>
 </div>
 </body>
 </html>

@@ -23,7 +23,7 @@
 
 <p>
 
-<span class="popup">
+<span>
 <?php echo _("Click the <b>Browse</b> button to locate a photo to upload.") ?>
 </span>
 <span class="admin">

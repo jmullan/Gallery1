@@ -37,10 +37,9 @@ doctype();
   <title><?php echo _("Rename Album") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Rename Album") ?></div>
-<div class="popupcontent">
+<div class="popup" align="center">
 <?php
 
 if (!isset($useLoad)) {
@@ -135,7 +134,6 @@ document.theform.newName.focus();
 </script>
 
 <?php print gallery_validation_link("rename_album.php",true); ?>
-</div>
 </div>
 </body>
 </html>

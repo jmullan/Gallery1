@@ -71,10 +71,9 @@ doctype();
   <title><?php echo _("Poll Properties") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Poll Properties"); ?></div>
-<div class="popupcontent">
+<div class="popup" align="center">
 <?php
 if (! empty($error)) {
 	echo "<\p>". gallery_error($error) . "</p>";
@@ -143,7 +142,6 @@ for ($i=0; $i<$gallery->album->getPollScale() ; $i++) {
 
 </form>
 <?php print gallery_validation_link("poll_properties.php"); ?>
-</div>
 </div>
 </body>
 </html>

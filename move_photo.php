@@ -49,10 +49,9 @@ doctype();
   <title><?php echo $title ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
-<div class="popuphead" align="center"><?php echo $title ?></div>
-<div class="popupcontent" align="center">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
+<div class="popuphead"><?php echo $title ?></div>
+<div class="popup" align="center">
 <?php
 if ($gallery->session->albumName && isset($index)) {
 	$numPhotos = $gallery->album->numPhotos(1);
@@ -359,7 +358,6 @@ if ($reorder) {
 
 </div>
 <?php print gallery_validation_link("move_photo.php", true, array('index' => $index)); ?>
-</div>
 </div>
 </body>
 </html>

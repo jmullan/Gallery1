@@ -74,10 +74,9 @@ doctype();
   <title><?php echo _("Add Comment") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup" align="center">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Add Comment") ?></div>
-<div class="popupcontent">
+<div class="popup" align="center">
 <p><?php echo _("Enter your comment for this picture in the text box below.") ?></p>
 
 <?php 
@@ -100,15 +99,12 @@ drawCommentAddForm($commenter_name, 35);
 
 </form>
 </div>
-</div>
-
 <script language="javascript1.2" type="text/JavaScript">
 <!--   
 // position cursor in top form field
 document.theform.commenter_name.focus();
 //-->
 </script>
-
 <?php print gallery_validation_link("add_comment.php", true, array('id' => $id)); ?>
 </body>
 </html>

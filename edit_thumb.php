@@ -64,10 +64,9 @@ if (isset($action)) {
 } else {
 	#-- show the applet ---
 ?>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Custom Thumbnail") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <?php
 	#-- are we a go? ---
 	if ($gallery->session->albumName && isset($index)) { 
@@ -106,7 +105,7 @@ if (isset($action)) {
 		}
 ?>
 
-<span class="popuptd">
+<span>
 <?php echo _("Choose which part of the image will compose your thumbnail:") ?>
 </span>
 
@@ -132,7 +131,6 @@ if (isset($action)) {
 } 
 ?>
 <?php print gallery_validation_link("edit_thumb.php"); ?>
-</div>
 </div>
 </body>
 </html>

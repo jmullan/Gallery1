@@ -46,10 +46,9 @@ if (isset($save) || isset($preview)) {
   <title><?php echo _("Watermarking album.") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Watermarking album."); ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 (<?php echo _("this may take a while"); ?> )
 <?
         	        	my_flush();
@@ -142,7 +141,6 @@ document.theform.data.focus();
 </script>
 <?php } // end if numPhotos() ?>
 <?php print gallery_validation_link("watermark_album.php"); ?>
-</div>
 </div>
 </body>
 </html>

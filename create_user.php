@@ -110,10 +110,9 @@ doctype();
   <title><?php echo _("Create User") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Create User") ?></div>
-<div class="popupcontent">
+<div class="popup" align="center">
 <?php
 $canCreate = 1;
 $canCreateChoices = array(1 => _("yes"), 0 => _("no"));
@@ -157,7 +156,6 @@ document.usercreate_form.uname.focus();
 </script>
 
 <?php print gallery_validation_link("create_user.php"); ?>
-</div>
 </div>
 </body>
 </html>

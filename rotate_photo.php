@@ -40,10 +40,9 @@ doctype();
   <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
   <META HTTP-EQUIV="expires" CONTENT="0"> 
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Rotate/Flip Photo") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <?php
 if ($gallery->session->albumName && isset($index)) {
 	if (isset($rotate) && !empty($rotate)) {
@@ -94,7 +93,6 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <?php print gallery_validation_link("rotate_photo.php"); ?>
-</div>
 </div>
 </body>
 </html>
