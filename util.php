@@ -283,3 +283,40 @@ function correctEverybody($array) {
 	}
 }
 
+function makeGalleryUrl($albumName, $photoId="", $extra="") {
+	global $app;
+
+	$url = "$app->photoAlbumURL";
+
+	$args = array();
+	if ($app->feature["rewrite"]) {
+		if ($albumName) {
+			$url .= "/$albumName";
+
+			// Can't have photo without album
+			if ($photoId) {
+				$url .= "/$photoId";
+			} 
+		}
+	} else {
+		if ($albumName) {
+			$url = "$app->photoAlbumURL/view_album.php";
+			array_push($args, "set_albumName=$albumName");
+		}
+
+		if ($photoId) {
+			$url = "$app->photoAlbumURL/view_photo.php";
+			array_push($args, "id=$photoId");
+		}
+	}
+
+	if ($extra) {
+		array_push($args, $extra);
+	}
+
+	if (count($args)) {
+		$url .= "?" . join("&", $args);
+	}
+
+	return $url;
+}
