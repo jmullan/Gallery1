@@ -138,7 +138,9 @@ foreach ($constants as $key => $val) {
 			if (!is_writeable($dir)) {
 				$view .= row_wrap(error_format("$dir exists, but is not writeable by the " .
 						"webserver user.  Try:<br><center><b><code>" .
-						"chown -R " . $webserver_user . " $dir</code>"));
+						"chown -R " . $webserver_user . " $dir" .
+						"</b><br><br> or if that doesn't work <br><br><b>" .
+						"chmod -R 777 $dir</code>"));
 				$error = 1;
 				continue;
 			}
