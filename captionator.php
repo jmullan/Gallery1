@@ -21,7 +21,7 @@
 <? require($GALLERY_BASEDIR . "init.php"); ?>
 <? 
 // Hack check
-if (!$gallery->user->canReadAlbum($gallery->album)) {
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
     header("Location: albums.php");
     return;
 }
