@@ -21,36 +21,32 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {
+	echo _("You are not allowed to perform this action !");
 	exit;
 }
-?>
 
+doctype();
+?>
 <html>
 <head>
   <title><?php echo _("Rename Album") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <center>
 <p class="popuphead"><?php echo _("Rename Album") ?></p>
-<span class="popup">
+<div class="popup">
 <?php
+
+if (!isset($useLoad)) {
+	$useLoad="";
+}
+
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
 
@@ -109,8 +105,8 @@ if (!empty($newName)) {
 <?php echo _("What do you want to name this album?") ?>
 <br>
 <?php echo _("The name cannot contain any of the following characters") ?>:
-<br><center><b>\ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # ( )</b><?php echo _("or") ?><b> <?php echo _("spaces") ?></b><br></center>
-<?php echo _("Those characters will be ignored in your new album name.") ?>
+<br><b>\ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # ( )</b><?php echo _("or") ?><b> <?php echo _("spaces") ?></b><br>
+<p><?php echo _("Those characters will be ignored in your new album name.") ?></p>
 
 <br>
 <?php echo makeFormIntro("rename_album.php", array("name" => "theform")); ?>
@@ -129,6 +125,8 @@ document.theform.newName.focus();
 //-->
 </script>
 
-</span>
+</div>
+</center>
+<?php print gallery_validation_link("rename_album.php",true); ?>
 </body>
 </html>

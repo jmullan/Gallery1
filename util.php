@@ -21,13 +21,7 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
+
 require(dirname(__FILE__) . '/nls.php');
 
 function editField($album, $field, $link=null) {
@@ -74,7 +68,6 @@ function editCaption($album, $index) {
 
 function viewComments($index, $addComments) {
         global $gallery;
-	global $GALLERY_BASEDIR;
 	global $commentdraw;
 	global $i;
 
@@ -325,12 +318,15 @@ function getFile($fname, $legacy=false) {
 
 function dismissAndReload() {
 	if (isDebugging()) {
-		echo "<BODY onLoad='opener.location.reload();'>";
-		echo("<center><b>" ._("Not closing this window because debug mode is on") ."</b></center>");
-		echo("<hr>");
+		echo "\n<body onLoad='opener.location.reload();'>\n";
+		echo '<p align="center" class="emphasis">';
+		echo _("Not closing this window because debug mode is on") ;
+		echo "\n<hr>\n</p>";
+		echo "\n</body>";
 	} else {
-		echo "<BODY onLoad='opener.location.reload(); parent.close()'>";
+		echo "<body onLoad='opener.location.reload(); parent.close()'></body>";
 	}
+	echo "\n</html>";
 }
 
 function reload() {
@@ -1898,7 +1894,6 @@ function mostRecentComment($album, $i)
 function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5", 
 	$col_1_head=null, $col_2_head=null) 
 {
-	global $GALLERY_BASEDIR;
 	foreach ($array as $value) 
 	{
 		if ((IsSet($max_value) && ($value > $max_value)) ||
@@ -1933,10 +1928,11 @@ function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",
 	$counter = 0;
 	foreach ($array as $name => $value) {
 		$bar_width = $value * $pixels_per_value;
+		$img_url=makegalleryUrl('images/bar.gif');
 		$string_to_return .= "\n\t<tr>"
 			. "\n\t<td>(". ++$counter .")</td>"
 			. "\n\t<td>$name ($value)</td>"
-			. "\n\t<td><img src=\"". $GALLERY_BASEDIR . "images/bar.gif\" border=\"1\""
+			. "\n\t<td><img src=\"". $img_URL ."\" border=\"1\""
 			. " width=\"$bar_width\" height=\"10\" alt=\"BAR\"></td>"
 			. "\n\t</tr>";
 	}
@@ -3106,12 +3102,16 @@ function metatags() {
 }
 
 // uses makeGalleryURL
-function gallery_validation_link($file, $valid=true) {
+function gallery_validation_link($file, $valid=true, $args='') {
 	global $gallery;
 	if ($gallery->app->devMode == "no") {
 		return "";
 	}
-	$args=array();
+
+	if (!isset($args)) {
+		$args=array();
+	}
+
 	$args['PHPSESSID']=session_id();
 	$link='<a href="http://validator.w3.org/check?uri='.
 		urlencode(eregi_replace("&amp;", "&",

@@ -21,29 +21,19 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
 function image($name) {
-	global $GALLERY_BASEDIR;
 	return getImagePath("$name");
 }
+
+doctype();
 ?>
 <html>
 <head>
   <title><?php echo _("Uploading Photos") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">

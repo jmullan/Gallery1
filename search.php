@@ -21,16 +21,6 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = '';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
@@ -42,11 +32,13 @@ if ($gallery->app->showSearchEngine == 'no' && !$gallery->user->isAdmin()) {
 	return;
 }
 
-if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+if (!$GALLERY_EMBEDDED_INSIDE) { 
+	doctype();
+?>
 <html>
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo _("Search") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php } ?>

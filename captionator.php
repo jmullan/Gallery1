@@ -21,17 +21,6 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-                    !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-                    !empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-    print _("Security violation") ."\n";
-    exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
@@ -40,7 +29,6 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
     header("Location: " . makeAlbumUrl());
     return;
 }
-
 
 if (!isset($page)) {
     $page = 1;
@@ -73,8 +61,7 @@ if (isset($save) || isset($next) || isset($prev)) {
       } else {
         $gallery->album->setCaption($i, stripslashes(${"new_captions_" . $i}));
         $gallery->album->setKeywords($i, stripslashes(${"new_keywords_" . $i}));
-	if ($extra_fields)
-	{
+	if (isset($extra_fields)) {
 		foreach ($extra_fields[$i] as $field => $value)
 		{
 			if (get_magic_quotes_gpc()) {
@@ -121,15 +108,17 @@ if ($nextPage > $maxPages) {
 
 $thumbSize = $gallery->app->default["thumb_size"];
 
-$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"\">";
+$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"spacer\">";
 
 $bordercolor = $gallery->album->fields["bordercolor"];
 
-if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	doctype();
+?>
 <html> 
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: <?php echo _("Captionator") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
   <style type="text/css">
 <?php
 // the link colors have to be done here to override the style sheet 
@@ -162,7 +151,6 @@ if ($gallery->album->fields["textcolor"]) {
 includeHtmlWrap("album.header");
 
 #-- if borders are off, just make them the bgcolor ----
-$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"\">";
 $borderwidth = $gallery->album->fields["border"];
 if (!strcmp($borderwidth, "off")) {
     $bordercolor = $gallery->album->fields["bgcolor"];
@@ -200,139 +188,133 @@ includeLayout('navtableend.inc');
 
 ?>
 
-
-<!-- image grid table -->
-<br>
 <?php echo makeFormIntro("captionator.php", array("method" => "POST")) ?>
 <input type="hidden" name="page" value="<?php echo $page ?>">
 <input type="hidden" name="perPage" value="<?php echo $perPage ?>">
-<table width="100%" border="0" cellspacing="4" cellpadding="0">
-<tr>
-<td colspan="3" align="right">
-<input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">
 
-<?php if (!isset($last)) { ?>
-    <input type="submit" name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
-<?php } ?>
+<div align="right">
+	<input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">
+<?php 
+if (!isset($last)) {
+	echo '<input type="submit" name="next" value="'. sprintf(_("Save and Edit Next %d"),$perPage) .'">';
+}
 
-<?php if ($page != 1) { ?>
-    <input type="submit" name="prev" value="<?php echo sprintf(_("Save and Edit Previous %d"), $perPage) ?>">
-<?php } ?>
-
-<input type="submit" name="cancel" value="<?php echo _("Exit") ?>">
-</td>
-</tr>
-<?php
-if ($numPhotos) {
-
-
-    // Find the correct starting point, accounting for hidden photos
-    $i = 0;
-    while ($i < $start) {
-        $i++;
-    }
-
-    $count = 0;
-    while ($count < $perPage && $i <= $numPhotos) {
-
-
-?>    
-    <tr>
-      <td height="1"><?php echo $pixelImage ?></td>
-      <td height="1"><?php echo $pixelImage ?></td>
-      <td bgcolor="<?php echo $bordercolor ?>" height="1"><?php echo $pixelImage ?></td>
-    </tr>
-    <tr>
-      <td width=<?php echo $thumbSize ?> align=center valign="top">
-      <span class="popup">&nbsp;</span><br>
-      <?php echo $gallery->album->getThumbnailTag($i, $thumbSize); ?>
-      </td width=10>
-      <td height=1>
-      <?php echo $pixelImage ?>
-      </td>
-
-      <td valign=top>
-<?php
-    if ($gallery->album->isAlbum($i)) {
-        $myAlbumName = $gallery->album->getAlbumName($i);
-        $myAlbum = new Album();
-        $myAlbum->load($myAlbumName);
-        $oldCaption = $myAlbum->fields['description'];
-?>
-      <span class="popup"><?php echo _("Album Caption:") ?></span><br>
-      <textarea name="new_captions_<?php echo $i ?>" rows=3 cols=60><?php echo $oldCaption ?></textarea><br>
-
-<?php
-    } else {
-        $oldCaption = $gallery->album->getCaption($i);
-        $oldKeywords = $gallery->album->getKeywords($i);
-?>
-      <span class="popup"><?php echo _("Caption") ?>:</span><br>
-      <textarea name="new_captions_<?php echo $i ?>" rows=3 cols=60><?php echo $oldCaption ?></textarea><br>
-      <br>
-<?php
-	foreach ($gallery->album->getExtraFields() as $field) { 
-		if (in_array($field, array_keys(automaticFieldsList())))
-		{
-			continue;
-		}
-		$value=$gallery->album->getExtraField($i, $field);
-        	if ($field == "Title") {
-			print "<br><span class=\"admin\">" . _("Title") .":</span><br>";
-                	print "<input type=text name=\"extra_fields[$i][$field]\" value=\"$value\" size=\"40\">";
-        	}
-		else {
-			print "<br><span class=\"admin\">$field:</span><br>";
-			print "<textarea name=\"extra_fields[$i][$field]\" rows=2 cols=60>$value</textarea>";
-		}
-	}
-?>
-      	<span class="popup"><br><?php echo _("Keywords") ?>:</span><br>
-      	<input type=text name="new_keywords_<?php echo $i ?>" size=65 value="<?php echo $oldKeywords ?>">
-
-       	<span class="popup"><br><?php echo _("Capture Date") ?>:</span>
-<?php
-	$itemCaptureDate = $gallery->album->getItemCaptureDate($i);
-	$hours = $itemCaptureDate["hours"];
-	$minutes = $itemCaptureDate["minutes"];
-	$seconds = $itemCaptureDate["seconds"];
-	$mon = $itemCaptureDate["mon"];
-	$mday = $itemCaptureDate["mday"];
-	$year = $itemCaptureDate["year"];
-	print strftime($gallery->app->dateTimeString , mktime ($hours,$minutes,$seconds,$mon,$mday,$year));
-    }
-?>
-      </td>
-    </tr>
-<?php
-        $i++;
-        $count++;
-    }
-} else {
-    echo("<tr>");
-    echo("  <td>");
-    echo(_("NO PHOTOS!"));
-    echo("  </td>");
-    echo("</tr>");
+if ($page != 1) {
+	echo '<input type="submit" name="prev" value="'. sprintf(_("Save and Edit Previous %d"), $perPage) .'">';
 }
 ?>
 
+<input type="submit" name="cancel" value="<?php echo _("Exit") ?>">
+</div>
+
+<!-- image grid table -->
+<table width="100%" border="0" cellspacing="4" cellpadding="0">
+<?php
+if ($numPhotos) {
+
+	// Find the correct starting point, accounting for hidden photos
+	$i = 0;
+	while ($i < $start) {
+        	$i++;
+	}
+
+	$count = 0;
+
+	// Go trough the album
+	while ($count < $perPage && $i <= $numPhotos) {
+?>  
+	<!-- Picture #<?php echo $i-1 ?> -->  
 <tr>
-<td colspan="3" align="right">
-<input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">
+	<td height="1" colspan="2"><?php echo $pixelImage ?></td>
+	<td bgcolor="<?php echo $bordercolor ?>" height="1"><?php echo $pixelImage ?></td>
+</tr>
+<tr>
+	<td width="<?php echo $thumbSize ?>" align="center" valign="top"><br>
+		<?php echo $gallery->album->getThumbnailTag($i, $thumbSize); ?>
+	
+	</td>
+	<td height="1"><?php echo $pixelImage ?></td>
+	<td valign="top"><?php
+		if ($gallery->album->isAlbum($i)) {
+			// Found Element is an album
+			$myAlbumName = $gallery->album->getAlbumName($i);
+			$myAlbum = new Album();
+			$myAlbum->load($myAlbumName);
+			$oldCaption = $myAlbum->fields['description'];
 
-<?php if (!isset($last)) { ?>
-    <input type="submit" name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
-<?php } ?>
+			echo "\n\t\t". '<p class="admin">'. _("Album Caption:") ;
+                	echo '<br><textarea name="new_captions_'. $i .'" rows="3" cols="60">'. $oldCaption .'</textarea></p>';
+		} else {
+        		$oldCaption = $gallery->album->getCaption($i);
+	        	$oldKeywords = $gallery->album->getKeywords($i);
 
-<?php if ($page != 1) { ?>
-    <input type="submit" name="prev" value="<?php echo sprintf(_("Save and Edit Previous %d"), $perPage) ?>">
-<?php } ?>
+			if ($gallery->album->photos[$i-1]->isMovie()) {
+				echo "\n\t\t". '<p class="admin">'. _("Movie Caption:") ;
+			} else {
+				echo "\n\t\t". '<p class="admin">'. _("Photo Caption:") ;
+			}
+			echo '<br><textarea name="new_captions_'. $i .'" rows="3" cols="60">'. $oldCaption .'</textarea></p>';
+			foreach ($gallery->album->getExtraFields() as $field) { 
+				if (in_array($field, array_keys(automaticFieldsList())))
+				{
+					continue;
+				}
+				$value=$gallery->album->getExtraField($i, $field);
+	        		if ($field == "Title") {
+					echo "\n\t\t". '<div class="admin">' . _("Title") .':</div>';
+					echo "\n\t\t<input type=\"text\" name=\"extra_fields[$i][$field]\" value=\"$value\" size=\"40\">";
+        			}
+				else {
+					echo "\n\t\t". '<br><span class="admin">'. $field .':</span><br>';
+					echo "\n\t\t<textarea name=\"extra_fields[$i][$field]\" rows=\"2\" cols=\"60\">$value</textarea>";
+				}
+			}
+
+			echo "\n\t\t". '<p class="admin">'. _("Keywords:") .'<br>';
+			echo "\n\t\t". '<input type="text" name="new_keywords_'. $i .'" size="65" value="'. $oldKeywords .'"></p>';
+
+			$itemCaptureDate = $gallery->album->getItemCaptureDate($i);
+			$hours = $itemCaptureDate["hours"];
+			$minutes = $itemCaptureDate["minutes"];
+			$seconds = $itemCaptureDate["seconds"];
+			$mon = $itemCaptureDate["mon"];
+			$mday = $itemCaptureDate["mday"];
+			$year = $itemCaptureDate["year"];
+
+			$capturedate=strftime($gallery->app->dateTimeString , mktime ($hours,$minutes,$seconds,$mon,$mday,$year));
+			echo "\n\t\t". '<p class="admin">'. _("Capture Date:") . ' '. $capturedate. '</p><br>';
+		}
+	echo "\n\t</td>";
+	echo "\n</tr>";
+
+        $i++;
+        $count++;
+	}
+} else {
+	echo("\n<tr>");
+	echo("\n\t<td>");
+	echo(_("NO PHOTOS!"));
+	echo("\n\t</td>");
+	echo("\n</tr>");
+}
+?>
+</table>
+
+<p align="right">
+	<input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">
+<?php 
+if (!isset($last)) {
+	echo '<input type="submit" name="next" value="'. sprintf(_("Save and Edit Next %d"),$perPage) .'">';
+}
+
+if ($page != 1) {
+	echo '<input type="submit" name="prev" value="'. sprintf(_("Save and Edit Previous %d"), $perPage) .'">';
+}
+?>
 
 <input type="submit" name="cancel" value="<?php echo _("Exit") ?>">
-</td>
-</tr>
-</table>
+</p>
+
 </form>
 
 <br>

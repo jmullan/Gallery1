@@ -88,36 +88,36 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 ?>
 </p>
 
-<b><?php echo _("Alignment") ?>:</b><br>
-<table name="watermark_alignment" border="1" width="100%">
+<p><b><?php echo _("Alignment") ?>:</b></p>
+<table border="1" width="100%">
 <tr>
  <td><input <?php if ($wmAlign==1) echo checked ?> type="radio" name="wmAlign" value="1">
-     <?php echo _("Upper&nbsp;Left") ?></input></td>
+     <?php echo _("Upper&nbsp;Left") ?></td>
  <td><input <?php if ($wmAlign==2) echo checked ?> type="radio" name="wmAlign" value="2">
-     <?php echo _("Top") ?></input></td>
+     <?php echo _("Top") ?></td>
  <td><input <?php if ($wmAlign==3) echo checked ?> type="radio" name="wmAlign" value="3">
-     <?php echo _("Upper&nbsp;Right") ?></input></td>
+     <?php echo _("Upper&nbsp;Right") ?></td>
 </tr>
 <tr>
  <td><input <?php if ($wmAlign==4) echo checked ?> type="radio" name="wmAlign" value="4">
-     <?php echo _("Left") ?></input></td>
+     <?php echo _("Left") ?></td>
  <td><input <?php if ($wmAlign==5) echo checked ?> type="radio" name="wmAlign" value="5">
-     <?php echo _("Center") ?></input></td>
+     <?php echo _("Center") ?></td>
  <td><input <?php if ($wmAlign==6) echo checked ?> type="radio" name="wmAlign" value="6">
-     <?php echo _("Right") ?></input></td>
+     <?php echo _("Right") ?></td>
 </tr>
 <tr>
  <td><input <?php if ($wmAlign==7) echo checked ?> type="radio" name="wmAlign" value="7">
-     <?php echo _("Lower&nbsp;Left") ?></input></td>
+     <?php echo _("Lower&nbsp;Left") ?></td>
  <td><input <?php if ($wmAlign==8) echo checked ?> type="radio" name="wmAlign" value="8">
-     <?php echo _("Bottom") ?></input></td>
+     <?php echo _("Bottom") ?></td>
  <td><input <?php if ($wmAlign==9) echo checked ?> type="radio" name="wmAlign" value="9">
-     <?php echo _("Lower&nbsp;Right") ?></input></td>
+     <?php echo _("Lower&nbsp;Right") ?></td>
 </tr>
 <tr>
   <td colspan="3">
     <input <?php if ($wmAlign==10) echo checked ?> type="radio" name="wmAlign" value="10">
-    <?php echo _("Other") ?></input>
+    <?php echo _("Other") ?>
     X=<input type="text" name="wmAlignX" value="<?php echo $wmAlignX ?>">
     Y=<input type="text" name="wmAlignY" value="<?php echo $wmAlignY ?>">
   </td>

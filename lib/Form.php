@@ -70,7 +70,7 @@ return $buf;
 function selectOptions($album, $field, $opts) {
 	foreach ($opts as $key => $value) {
 		$sel = "";
-		if (!strcmp($key, $album->fields[$field])) {
+		if (isset($album->fields[$field]) && !strcmp($key, $album->fields[$field])) {
 			$sel = "selected";
 		}
 		echo "\n\t<option value=\"$key\" $sel>$value</option>";

@@ -5,11 +5,12 @@
 
 	require(dirname(__FILE__) . "/configure_instructions.php") ;
 	if (! defined("GALLERY_URL")) define ("GALLERY_URL","");
+	doctype();
 ?>
 <html>
 <head>
   <title><?php echo _("Gallery needs Reconfiguration") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 

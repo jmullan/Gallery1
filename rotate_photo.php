@@ -21,45 +21,38 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
+	echo _("You are no allowed to perform this action !");
 	exit;
 }
+
+doctype();
 ?>
 
 <html>
 <head>
   <title><?php echo _("Rotate/Flip Photo") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
   <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
   <META HTTP-EQUIV="expires" CONTENT="0"> 
 </head>
 <body dir="<?php echo $gallery->direction ?>">
+
 <center>
 <p class="popuphead"><?php echo _("Rotate/Flip Photo") ?></p>
+
 <span class="popup">
 <?php
 if ($gallery->session->albumName && isset($index)) {
 	if (isset($rotate) && !empty($rotate)) {
-?>
-	 <?php echo _("Rotating/Flipping photo.") ?>
-	<br>
-	 <?php echo _("(this may take a while)") ?>
-<?php
+		echo _("Rotating/Flipping photo.");
+		echo "\n<br>";
+		echo _("(this may take a while)");
+
 		my_flush();
                 set_time_limit($gallery->app->timeLimit);
 		$gallery->album->rotatePhoto($index, $rotate);
@@ -69,11 +62,9 @@ if ($gallery->session->albumName && isset($index)) {
 		reload();
 		print "<p>" . _("Manipulate again?");
 	} else {
+		echo _("How do you want to manipulate this photo?");
+	} 
 ?>
-
-<center>
-	<?php echo _("How do you want to manipulate this photo?") ?>
-<?php } ?>
 <br><br>
 <?php $args = array("albumName" => $gallery->album->fields["name"], "index" => $index); ?>
 <?php echo _("Rotate") ?>: [ 
@@ -105,5 +96,7 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 </span>
+</center>
+<?php print gallery_validation_link("rotate_photo.php"); ?>
 </body>
 </html>

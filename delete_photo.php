@@ -21,17 +21,6 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation"). "\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
@@ -43,8 +32,12 @@ if (isset($id)) {
 if (!$gallery->user->canDeleteFromAlbum($gallery->album) 
 	&& (!$gallery->album->getItemOwnerDelete()
 	|| !$gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
+	echo _("You are no allowed to perform this action !");
 	exit;
 }
+
+doctype();
+echo "\n<html>";
 
 if (isset($confirm) && isset($id)) {
 	if (!empty($albumDelete)) {
@@ -72,31 +65,32 @@ if (isset($confirm) && isset($id)) {
 }
 ?>
 
-<html>
 <head>
   <title><?php echo isset($albumDelete) ? _("Delete Album") : _("Delete Photo") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
+<div align="center">
 <?php
 if ($gallery->album && isset($id)) {
 	if (isset($albumDelete)) {
 ?>
 
-<center>
 <p class="popuphead"><?php echo _("Delete Album") ?></p>
-<span class="popup">
-<?php echo _("Do you really want to delete this Album?") ?>
-<br>
-<br>
+
+<p class="popup">
+	<?php echo _("Do you really want to delete this Album?") ?>
+</p>
+
 <?php
 $myAlbum = new Album();
 $myAlbum->load($id);
 ?>
+<p>
 <?php echo $myAlbum->getHighlightTag() ?>
-<br>
-<br>
+</p>
+
 <b>
 <?php echo $myAlbum->fields['title'] ?>
 </b>
@@ -116,24 +110,25 @@ $myAlbum->load($id);
 	} else {
 ?>
 
-<center>
 <p class="popuphead"><?php echo _("Delete Photo") ?></p>
+
 <?php echo _("Do you really want to delete this photo?") ?>
-<br>
-<br>
-<?php echo $gallery->album->getThumbnailTag($index) ?>
-<br>
-<?php echo $gallery->album->getCaption($index) ?>
-<p>
+
+<p><?php echo $gallery->album->getThumbnailTag($index) ?></p>
+
+<p><?php echo $gallery->album->getCaption($index) ?></p>
+
 <?php echo makeFormIntro("delete_photo.php"); ?>
 <input type="hidden" name="id" value="<?php echo $id?>">
-<?php if (isset($nextId)) { ?>
-<input type="hidden" name="nextId" value="<?php echo $nextId ?>">    
-<?php } ?>
+<?php 
+if (isset($nextId)) {
+	echo "\n". '<input type="hidden" name="nextId" value="'. $nextId .'"> ';
+} 
+?>
+
 <input type="submit" name="confirm" value="<?php echo _("Delete") ?>">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
-</p>
 
 <?php
 	}
@@ -141,7 +136,8 @@ $myAlbum->load($id);
 	echo gallery_error(_("no album / index specified"));
 }
 ?>
+</div>
 
-</span>
+<?php print gallery_validation_link("delete_photo.php", false, array('id' => $id, 'index' => $index)); ?>
 </body>
 </html>

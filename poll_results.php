@@ -23,17 +23,6 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") . "\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-	$GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
@@ -63,11 +52,14 @@ $fullWidth="100%";
 
 $pAlbum = $gallery->album;
 
-if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	doctype();
+?>
+
 <html> 
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] . "::" . _("Poll Results") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
   <style type="text/css">
 <?php
 // the link colors have to be done here to override the style sheet 

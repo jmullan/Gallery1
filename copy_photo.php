@@ -21,36 +21,29 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
+	echo _("You are no allowed to perform this action !");
 	exit;
 }
 
 $albumDB = new AlbumDB(FALSE); // read album database
 
+doctype();
 ?>
 <html>
 <head>
   <title><?php echo _("Copy Photo") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
+
 <p class="popuphead" align="center"><?php echo _("Copy Photo") ?></p>
 
+<center>
 <?php
 if ($gallery->session->albumName && isset($index)) {
 	$numPhotos = $gallery->album->numPhotos(1);
@@ -122,29 +115,24 @@ if ($gallery->session->albumName && isset($index)) {
 	    			} //end for
 			} //end else
 		       	?>
-			<center><form>
+			<form>
 			<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
-			</form></center>
+			</form>
 		       	<?php
 		       	return;
 	       	} //end if ($gallery->album != $postAlbum)
 	} //end if (isset($newAlbum))
 
-?>
-
-<center>
-<?php
-if ($gallery->album->isAlbum($index)) {
-	echo gallery_error(sprintf(_("Can't copy album #%d"),
-			       	$index));
-	return;
-} else {  
-echo $gallery->album->getThumbnailTag($index)
+	if ($gallery->album->isAlbum($index)) {
+		echo gallery_error(sprintf(_("Can't copy album #%d"), $index));
+		return;
+	} else {  
+		echo $gallery->album->getThumbnailTag($index)
 ?>
 <p>
 <?php echo _("Copy a range of photos to a new album:") ?><br>
 <i>(<?php echo _("To copy just one photo, make First and Last the same") ?>)</i><br>
-<i>(<?php echo _("Nested albums in this range will be ignored") ?>)</i><p>
+<i>(<?php echo _("Nested albums in this range will be ignored") ?>)</i>
 <?php echo makeFormIntro("copy_photo.php", array("name" => "copy_to_album_form")); ?>
 <input type=hidden name="index" value="<?php echo $index ?>">
 
@@ -153,53 +141,53 @@ echo $gallery->album->getThumbnailTag($index)
 ?>
 <table>
 <tr>
-<td align="center"><b><?php echo _("First") ?></b></td>
-<td align="center"><b><?php echo _("Last") ?></b></td>
-<td align="center"><b><?php echo _("New Album") ?></b></td>
+	<td align="center"><b><?php echo _("First") ?></b></td>
+	<td align="center"><b><?php echo _("Last") ?></b></td>
+	<td align="center"><b><?php echo _("New Album") ?></b></td>
 </tr>
 <tr>
-<td align="center">
-<select name="startPhoto">
+	<td align="center">
+	<select name="startPhoto">
 <?php
 for ($i = 1; $i <= $numPhotos; $i++) {
         $sel = "";
         if ($i == $index) {
                 $sel = "selected";
         }
-        echo "<option value=\"$i\" $sel> $i</option>";
+        echo "\n\t<option value=\"$i\" $sel> $i</option>";
 }
 ?>
-</select>
-</td>
-<td align="center">
-<select name="endPhoto">
+	</select>
+	</td>
+	<td align="center">
+	<select name="endPhoto">
 <?php
 for ($i = 1; $i <= $numPhotos; $i++) {
         $sel = "";
         if ($i == $index) {
                 $sel = "selected";
         }
-        echo "<option value=\"$i\" $sel> $i</option>";
+        echo "\n\t<option value=\"$i\" $sel> $i</option>";
 }
 ?>
-</select>
-</td>
-<td>
-<select name="newAlbum">
+	</select>
+	</td>
+	<td>
+	<select name="newAlbum">
 <?php
 	$uptodate= printAlbumOptionList(0,0,1); 
 ?>
-</select>
-</td>
+	</select>
+	</td>
 </tr>
 </table>
 <?php
 } // end else
 
-if (!$uptodate) {
-	echo '<span class="error"><br>'. sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>';
-	echo '<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>';
-}
+	if (!$uptodate) {
+		echo '<span class="error"><br>'. sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>';
+		echo '<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>';
+	}
 ?>
 <p>
 <input type="submit" value="<?php echo _("Copy to Album!") ?>">
@@ -210,7 +198,8 @@ if (!$uptodate) {
 	echo gallery_error(_("no album / index specified"));
 }
 ?>
-</font>
+</center>
 
+<?php print gallery_validation_link("copy_photo.php", true, array('index' => $index)); ?>
 </body>
 </html>

@@ -23,22 +23,12 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation")."\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-       	$GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
+	echo _("You are no allowed to perform this action !");
 	exit;
 }
 	
@@ -74,11 +64,12 @@ if (!empty($apply)) {
 	reload();
 }
 
+doctype();
 ?>
 <html>
 <head>
   <title><?php echo _("Poll Properties") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body>
 
@@ -86,71 +77,73 @@ if (!empty($apply)) {
 <p class="popuphead"><?php echo _("Poll Properties"); ?></p>
 <?php
 if (! empty($error)) {
-	echo gallery_error($error);
+	echo "<\p>". gallery_error($error) . "</p>";
 }
 	echo makeFormIntro("poll_properties.php", 
 			array("name" => "theform", 
 				"method" => "POST")); ?>
-<table>
+<table border="0">
 <tr>
-<td><?php echo _("Type of poll for this album") ?></td>
-<td><select name="poll_type"><?php selectOptions($gallery->album, "poll_type", array("rank" => _("Rank"), "critique" => _("Critique"))) ?></select></td>
+	<td><?php echo _("Type of poll for this album") ?></td>
+	<td><select name="poll_type"><?php selectOptions($gallery->album, "poll_type", array("rank" => _("Rank"), "critique" => _("Critique"))) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Number of voting options") ?></td>
-<td><input type=text name="poll_scale" value="<?php echo $gallery->album->getPollScale() ?>"></td>
+	<td><?php echo _("Number of voting options") ?></td>
+	<td><input type="text" name="poll_scale" value="<?php echo $gallery->album->getPollScale() ?>"></td>
 </tr>
 <tr>
-<td><?php echo _("Show results of voting to all visitors?") ?></td>
-<td><select name="poll_show_results"><?php selectOptions($gallery->album, "poll_show_results", array("no" => _("no"), "yes" => _("yes"))) ?></select></td>
+	<td><?php echo _("Show results of voting to all visitors?") ?></td>
+	<td><select name="poll_show_results"><?php selectOptions($gallery->album, "poll_show_results", array("no" => _("no"), "yes" => _("yes"))) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Number of lines of results graph to display on the album page") ?></td>
-<td><input type=text name="poll_num_results" value="<?php echo $gallery->album->getPollNumResults() ?>"></td>
+	<td width="50%"><?php echo _("Number of lines of results graph to display on the album page") ?></td>
+	<td><input type="text" name="poll_num_results" value="<?php echo $gallery->album->getPollNumResults() ?>"></td>
 </tr>
 <tr>
-<td><?php echo _("Who can vote") ?></td>
-<td><select name="voter_class"><?php selectOptions($gallery->album, "voter_class", array("Logged in" => _("Logged in"), "Everybody" => _("Everybody"), "Nobody" => _("Nobody"))) ?></select></td>
+	<td><?php echo _("Who can vote") ?></td>
+	<td><select name="voter_class"><?php selectOptions($gallery->album, "voter_class", array("Logged in" => _("Logged in"), "Everybody" => _("Everybody"), "Nobody" => _("Nobody"))) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Orientation of vote choices") ?></td>
-<td><select name="poll_orientation"><?php selectOptions($gallery->album, "poll_orientation", array("horizontal" => _("Horizontal"), "vertical" => _("Vertical"))) ?></select></td>
+	<td><?php echo _("Orientation of vote choices") ?></td>
+	<td><select name="poll_orientation"><?php selectOptions($gallery->album, "poll_orientation", array("horizontal" => _("Horizontal"), "vertical" => _("Vertical"))) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Vote hint") ?></td>
-<td><input type=text name="poll_hint" value="<?php echo $gallery->album->getPollHint() ?>"></td>
+	<td><?php echo _("Vote hint") ?></td>
+	<td><input type="text" name="poll_hint" value="<?php echo $gallery->album->getPollHint() ?>" size="45"></td>
 </tr>
 </table>
 
-<table>
-<tr><td><?php echo _("Displayed Value") ?></td><td>Points</td></tr>
+<br>
+
+<table border="0">
+<tr>
+	<td><?php echo _("Displayed Value") ?></td>
+	<td>Points</td>
+</tr>
 <?php
 $nv_pairs=$gallery->album->getVoteNVPairs();
-for ($i=0; $i<$gallery->album->getPollScale() ; $i++)
-{
+for ($i=0; $i<$gallery->album->getPollScale() ; $i++) {
 ?>
-	<tr>
-	<td><input type=text name=<?php print "\"nv_pairs[$i][name]\"";
-	print "value=\"".$nv_pairs[$i]["name"]."\"></td>\n";
-	?>
-	<td><input type=text name=<?php print "\"nv_pairs[$i][value]\"";
-	print "value=".$nv_pairs[$i]["value"]."></td>\n";
-	?>
-	</tr>
+<tr>
+	<td><input type="text" name="<?php echo $nv_pairs[$i]["name"] ?>" value="<?php echo $nv_pairs[$i]["name"] ?>"></td>
+	<td><input type=text name="<?php echo $nv_pairs[$i]["value"] ?>" value="<?php echo $nv_pairs[$i]["value"] ?>"></td>
+</tr>
 <?php
 }
 ?>
-<table>
-<br>
-<input type="checkbox" name="setNested" value="1"><span class="popup"><?php echo _("Apply values to nested Albums.") ?></span>
-<br>
-<br>
+</table>
 
-<input type=submit name="apply" value="<?php echo _("Apply") ?>">
-<input type=reset value="<?php echo _("Undo") ?>">
-<input type=submit value="<?php echo _("Close") ?>" onclick='parent.close()'>
+<p>
+<input type="checkbox" name="setNested" value="1" class="popup"><?php echo _("Apply values to nested Albums.") ?>
+</p>
+
+<input type="submit" name="apply" value="<?php echo _("Apply") ?>">
+<input type="reset" value="<?php echo _("Undo") ?>">
+<input type="submit" value="<?php echo _("Close") ?>" onclick='parent.close()'>
 
 </form>
+</center>
+<?php print gallery_validation_link("poll_properties.php"); ?>
 </body>
 </html>
 

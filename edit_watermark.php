@@ -51,18 +51,19 @@ if (isset($save)) {
             $err = _("Please select an alignment.");
         }
 }
+
+doctype();
 ?>
 <html>
 <head>
   <title><?php echo _("Edit Watermark") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
-<center>
+<div align="center">
 <p class="popuphead"><?php echo _("Edit Watermark") ?></p>
 <p><?php echo $gallery->album->getThumbnailTag($index) ?></p>
-</center>
 
 <?php 
 
@@ -76,19 +77,21 @@ echo makeFormIntro("edit_watermark.php",
 
 include (dirname(__FILE__) .'/layout/watermarkform.inc');
 ?>
-<div align="center">
+<p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
 	<input type="submit" name="save" value="<?php echo _("Save") ?>">
 	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</div>
+</p>
 </form>
+</div>
 
-<script language="javascript1.2">
+<script language="javascript1.2" type="text/JavaScript">
 <!--   
 // position cursor in top form field
 document.theform.cancel.focus();
 //-->
 </script>
 
+<?php print gallery_validation_link("edit_watermark.php"); ?>
 </body>
 </html>

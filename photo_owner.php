@@ -23,27 +23,18 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->isAdmin() && 
     !$gallery->user->isOwnerOfAlbum($gallery->album)) {
+	echo _("You are no allowed to perform this action !");
 	exit;
 }
-?>
-<?php
+
+doctype();
+echo "\n<html>";
 
 if ( isset($save) && $owner) {
 	$gallery->album->setItemOwnerById($id, $owner);
@@ -81,10 +72,9 @@ asort($uAll);
 
 
 ?>
-<html>
 <head>
   <title><?php echo _("Change Owner") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
@@ -104,12 +94,15 @@ asort($uAll);
 		echo drawSelect("owner", $uAll, $owner, 1);
 	}
 ?>
+
+<p>
+	<input type="hidden" name="id" value="<?php echo $id ?>">
+	<input type="submit" name="save" value="<?php echo _("Save") ?>">
+	<input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </p>
-<input type="hidden" name="id" value="<?php echo $id ?>">
-<input type="submit" name="save" value="<?php echo _("Save") ?>">
-<input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
 </center>
 
+<?php print gallery_validation_link("photo_owner.php", true, array('id' => $id)); ?>
 </body>
 </html>

@@ -21,27 +21,19 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = '';
-}
-require(dirname(__FILE__) . '/init.php'); ?>
-<?php
+
+require(dirname(__FILE__) . '/init.php');
+
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
+	echo _("You are no allowed to perform this action !");
 	exit;
 }
 
 if (empty($index)) {
 	$index='';
 }
+
 
 $err = "";	
 if (isset($save)) {
@@ -63,14 +55,16 @@ if (isset($save)) {
 		$err = _("Please select an alignment.");
 	}
 }
+doctype();
 ?>
 <html>
 <head>
   <title><?php echo _("Watermark Album") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
+<div align="center">
 <p align="center" class="popuphead"><?php echo _("Watermark Album") ?></p>
 
 <?php
@@ -82,19 +76,22 @@ if (!empty($err)) {
                             "method" => "POST"));
    include (dirname(__FILE__). '/layout/watermarkform.inc') ;
 ?>
-<div align="center">
+
+<p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
 	<input type="submit" name="save" value="<?php echo _("Save") ?>">
 	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</div>
+</p>
 </form>
+</div>
 
-<script language="javascript1.2">
+<script language="javascript1.2" type="text/JavaScript">
 <!--   
 // position cursor in top form field
 document.theform.data.focus();
 //-->
 </script>
 
+<?php print gallery_validation_link("watermark_album.php"); ?>
 </body>
 </html>

@@ -17,8 +17,13 @@ if (!isset($adminbox["commands"])) {
 
 $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"pixel_trans\">";
 
+$width='';
+if (isset($navigator["fullWidth"]) && isset($navigator["widthUnits"])) {
+        $width=' width="'. $navigator["fullWidth"] . $navigator["widthUnits"] .'" ';
+}
+
 ?>
-<table width="<?php echo $navigator["fullWidth"] . $navigator["widthUnits"] ?>" border="0" cellspacing="0" cellpadding="0" class="modnavboxtop">
+<table<?php echo $width; ?> border="0" cellspacing="0" cellpadding="0" class="modnavboxtop">
 <?php
 if ($adminbox["top"]) {
 }

@@ -21,30 +21,21 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
+	echo _("You are no allowed to perform this action !");
 	exit;
 }
+doctype();
 ?>
-
 
 <html>
 <head>
   <title><?php echo _("Custom Thumbnail") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 
 <?php
@@ -75,7 +66,8 @@ if (isset($action)) {
 ?>
 <body dir="<?php echo $gallery->direction ?>">
 
-<p align="center"><span class="popuphead"><?php echo _("Custom Thumbnail") ?></span></p>
+<center>
+<p class="popuphead"><?php echo _("Custom Thumbnail") ?></p>
 
 <?php
 	#-- are we a go? ---
@@ -140,6 +132,8 @@ if (isset($action)) {
 	} 
 } 
 ?>
+</center>
+<?php print gallery_validation_link("edit_thumb.php"); ?>
 </body>
 </html>
 

@@ -32,7 +32,7 @@
 	require (dirname(__FILE__) . '/config_data.inc');
 
 ?>
-<?php echo doctype(); ?>
+<?php doctype(); ?>
 <html>
 <head>
 	<title><?php echo _("Gallery Configuration") ?></title>
@@ -164,6 +164,5 @@ print embed_hidden("preserve");
 ?>
 
 </form>
-
 </body>
 </html>

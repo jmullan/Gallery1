@@ -21,22 +21,12 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
+	echo _("You are no allowed to perform this action !");
 	exit;
 }
 	
@@ -102,11 +92,12 @@ if (isset($save)) {
 	reload();
 }
 
+doctype();
 ?>
 <html>
 <head>
   <title><?php echo _("Album Properties") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
@@ -328,7 +319,6 @@ foreach ($services as $item => $data) {
 	</td>
 </tr>
 <tr>
-<tr>
 	<td class="popup"><?php echo _("Slideshow Length") ?></td>
 	<td><input type="text" name="slideshow_length" value="<?php echo $gallery->album->fields["slideshow_length"] ?>"></td>
 </tr>
@@ -428,5 +418,6 @@ document.theform.title.focus();
 </script>
 
 </div>
+<?php print gallery_validation_link("edit_appearance.php"); ?>
 </body>
 </html>

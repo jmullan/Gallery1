@@ -21,18 +21,6 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-if (!isset($GALLERY_BASEDIR)) {
-	$GALLERY_BASEDIR = "./";
-}
-?>
-<?php
 /*
  * This page is designed to work in standalone mode AND to be included
  * from init.php, so be certain not to require init.php twice.  We
@@ -50,9 +38,10 @@ if ($UPGRADE_LOOP == 2) {
 	return;
 }
 
-if (!isset($gallery->version)) { require(dirname(__FILE__) . '/init.php'); }
-?>
-<?php
+if (!isset($gallery->version)) { 
+	require(dirname(__FILE__) . '/init.php'); 
+}
+
 /*
  * If we're not the admin, we can only upgrade the album that we're
  * looking at.
@@ -63,6 +52,7 @@ if ($gallery->session->albumName) {
 
 // Hack check
 if (!$gallery->user->isAdmin() && !$upgrade_albumname) {
+	echo _("You are no allowed to perform this action !");
 	exit;
 }
 
@@ -134,7 +124,7 @@ function find_albums(&$results, $album="") {
 <html>
 <head>
   <title><?php echo _("Upgrade Albums") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <center>

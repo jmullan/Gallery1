@@ -21,23 +21,13 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") . "\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 
 if (!$gallery->user->canAddComments($gallery->album)) {
+	echo _("You are no allowed to perform this action !");
         exit;
 }
 function emailComments($id, $comment_text, $commenter_name) {
@@ -91,29 +81,24 @@ if (isset($save)) {
 	       	$error_text = _("Name and comment are both required to save a new comment!");
        	}
 }
+doctype();
 ?>
 <html>
 <head>
   <title><?php echo _("Add Comment") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
 <center>
 <p class="popuphead"><?php echo _("Add Comment") ?></p>
-<p>
-<?php echo _("Enter your comment for this picture in the text box below.") ?>
-</p>
-</span>
+<p><?php echo _("Enter your comment for this picture in the text box below.") ?></p>
+
 <?php 
 	echo $gallery->album->getThumbnailTagById($id);
 
 if (!empty($error_text)) {
-?>
-<br><br>
-<span class="error"><?php echo $error_text ?></span>
-<br><br>
-<?php
+	echo "\n<p>". gallery_error($error_text) . "</p>";
 }
 
 echo makeFormIntro("add_comment.php", array(
@@ -152,6 +137,7 @@ if (!$gallery->user->isLoggedIn() ) {
 <input type="button" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 
 </form>
+</center>
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--   
@@ -160,6 +146,6 @@ document.theform.commenter_name.focus();
 //-->
 </script>
 
-<?php print gallery_validation_link("add_comments.php", false); ?>
+<?php print gallery_validation_link("add_comment.php", false, array('id' => $id)); ?>
 </body>
 </html>

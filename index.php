@@ -22,15 +22,7 @@
 ?>
 <?php
 // Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-?>
-<?php
-global $GALLERY_BASEDIR;
+
 global $GALLERY_EMBEDDED_INSIDE;
 global $GALLERY_EMBEDDED_INSIDE_TYPE;
 global $GALLERY_MODULENAME;
@@ -54,12 +46,10 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option)) {
 
 	if (isset($name)) {
 		$GALLERY_MODULENAME = $name;
-		$GALLERY_BASEDIR = "modules/$GALLERY_MODULENAME/";
 		define ('GALLERY_URL',"modules/$GALLERY_MODULENAME/");
 	} elseif (isset($option)) {
 		$GALLERY_MODULENAME = $option;
 		$mamboDir = getcwd();
-		$GALLERY_BASEDIR = $MOS_GALLERY_PARAMS['path'];
 		define ('GALLERY_URL',$MOS_GALLERY_PARAMS['path']);
 	}
 

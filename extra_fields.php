@@ -23,22 +23,12 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation"). "\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
+	echo _("You are no allowed to perform this action !");
 	exit;
 }
 
@@ -83,11 +73,12 @@ if (!empty($save)) {
 	reload();
 }
 
+doctype();
 ?>
 <html>
 <head>
   <title><?php echo _("Configure Custom Fields") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
@@ -179,5 +170,8 @@ function num_special_fields($extra_fields)
 	<input type="button" name="close" value="<?php echo _("Close") ?>" onclick='parent.close()'>
 </p>
 </form>
+</center>
+
+<?php print gallery_validation_link("manage_users.php"); ?>
 </body>
 </html>

@@ -21,19 +21,9 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
-require(dirname(__FILE__) . '/init.php'); ?>
-<?php
+
+require(dirname(__FILE__) . '/init.php');
+
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
         header("Location: " . makeAlbumUrl());
@@ -51,7 +41,6 @@ if (!isset($full)) {
 if (!isset($openAnchor)) {
 	$openAnchor=0;
 }
-
 
 if (isset($id)) {
 	$index = $gallery->album->getPhotoIndex($id);
@@ -825,8 +814,8 @@ includeHtmlWrap("photo.footer");
   <input type="hidden" name="height0" value="<?php echo $imageHeight ?>">
   <input type="hidden" name="startwith" value="cart">
 </form>
-<?php } ?> 
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+<?php }
+	if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
 <?php } ?>

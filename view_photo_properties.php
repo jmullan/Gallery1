@@ -21,17 +21,6 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-        !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-        !empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-    print _("Security violation") ."\n";
-    exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
@@ -40,12 +29,14 @@ if (!$gallery->user->canReadAlbum($gallery->album)) {
         print _("Security violation") ."\n";
 	return;
 }
+
+doctype();
 ?>
 
 <html>
 <head>
   <title><?php echo _("Photo Properties") ?></title>
-  <?php echo getStyleSheetLink() ?>
+  <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
@@ -53,18 +44,18 @@ if (!$gallery->user->canReadAlbum($gallery->album)) {
 if ($gallery->session->albumName && $index) {
 ?>
 
-<center>
-<span class="popuphead">
-<?php echo _("Photo Properties") ?><br>
-</span>
-<br>
+<div align="center">
+<p class="popuphead"><?php echo _("Photo Properties") ?></p>
+
 <span class="popup">
-<?php echo $gallery->album->getThumbnailTag($index) ?>
-<br>
-<?php echo $gallery->album->getCaption($index) ?>
-<?php echo $gallery->album->getCaptionName($index) ?>
-<br><br>
+	<?php echo $gallery->album->getThumbnailTag($index) ?>
+	<br>
+	<?php echo $gallery->album->getCaption($index) ?>
+	<?php echo $gallery->album->getCaptionName($index) ?>
+	<br><br>
 </span>
+
+<table class="popup">
 <?php
 /* 
 Here is the EXIF parsing code...
@@ -118,43 +109,52 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
     $myExif = $gallery->album->getExif($index, $forceRefresh);
 
     if ($myExif) {
+
         // following line commented out because we were losing
         // comments from the Exif array.  This is probably due
         // to differences in versions of jhead.
         // array_pop($myExif); // get rid of empty element at end
         array_shift($myExif); // get rid of file name at beginning
-        $sizeOfExif = sizeof($myExif);
-        $sizeOfTable = $sizeOfExif / 2;
-        $i = 1;
-        $column = 1;
-        echo ("<table class=\"popup\">\n");
-        echo ("<tr valign=top>\n");
-        echo ("<td>\n");
-        while (list($key, $value) = each ($myExif)) {
-            echo "<b>$key</b>:  $value<br>\n";
-            if (($i >= $sizeOfTable) && ($column == 1)) {
-                echo ("</td>\n");
-                echo ("<td>\n");
-                $column = 2;
-            }
-            $i++;
-        }
-        echo ("</td>\n</table><br><span class=\"popup\">");
+
+
+	$i=0;
+	echo "\n<tr>";
+	foreach ($myExif as $key => $value) {
+		$i++;
+		echo "\n\t<td>$key</td><td>:</td><td>$value</td>";
+		if ($i != sizeof($myExif)) {
+			if ($i%2 == 0) {
+				echo "\n</tr>\n<tr>";
+			}
+			else {
+				echo '<td width="5">&nbsp;</td>';
+			}
+		}
+	}
+	echo "\n</tr>";
     }
 
-    echo _("File Upload Date") .":&nbsp;&nbsp; " . 
+
+	echo "\n<tr>";
+	echo "\n\t<td>". _("File Upload Date") ."</td><td>:</td><td>".
         strftime($gallery->app->dateTimeString , 
                 $gallery->album->getUploadDate($index)) 
-        . "<br>";
+        . "\n\t</td>";
+	
+	echo '<td width="5">&nbsp;</td>';
+
     $itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-    echo _("Item Capture Date") . ":&nbsp;&nbsp; " . 
+        echo "\n\t<td>". _("Item Capture Date") . "</td><td>:</td><td>".
         strftime($gallery->app->dateTimeString, 
             mktime($itemCaptureDate['hours'], 
                 $itemCaptureDate['minutes'],
                 $itemCaptureDate['seconds'], 
                 $itemCaptureDate['mon'],
                 $itemCaptureDate['mday'],
-                $itemCaptureDate['year']));
+                $itemCaptureDate['year'])) . "\n\t</td>";
+
+	echo "\n</tr>";
+	echo "\n</table>";
 
     if ($gallery->album->getKeyWords($index)) {
         echo "<br><b>". _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
@@ -179,9 +179,11 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 }
 ?>
 <br><br>
-<form action=#>
+<form action="#">
 <input type=button value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
+</div>
 
+<?php print gallery_validation_link("view_photo_properties.php", true, array('index' => $index)); ?>
 </body>
 </html>

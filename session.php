@@ -21,15 +21,7 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-?>
-<?php
+
 ini_set('session.bug_compat_warn', 'off');
 /*
  * PHP 4.0.1pl2 introduces a bug where you can't unserialize a 

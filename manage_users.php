@@ -21,17 +21,6 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
 
 require(dirname(__FILE__) . '/init.php');
 
@@ -74,9 +63,7 @@ doctype();
 <body dir="<?php echo $gallery->direction ?>">
 
 <center>
-<span class="popuphead"><?php echo _("Manage Users") ?></span>
-<br>
-<br>
+<p class="popuphead"><?php echo _("Manage Users") ?></p>
 <?php 
 	if (isset($error)) {
 		echo gallery_error($error);
