@@ -1,4 +1,10 @@
-2004-08-15  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b112
+2004-08-16  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b113
+
+        * Fix: If 'shutterfly' is set, but not checked, unset it during the
+          album upgrade.  This caused shutterfly to appear even though it wasn't
+          really enabled.
+
+2004-08-16  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b112
 
 	* Fix: bharat's cache code - Use getRequestVar() instead of 
 	  HTTP_GET_VARS and move the return inside the fopen, so that 
