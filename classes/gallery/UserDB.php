@@ -208,7 +208,14 @@ class Gallery_UserDB extends Abstract_UserDB {
 					continue;
 				}
 
+
 				$tmp = getFile($gallery->app->userDir . "/" . $file);
+
+				/* In v1.2 we renamed User to Gallery_User */
+				if (!strcmp(substr($tmp, 0, 10), 'O:4:"user"')) {
+				    $tmp = ereg_replace('O:4:"user"', 'O:12:"gallery_user"', $tmp);
+				}
+				
 				$user = unserialize($tmp);
 				if (!strcmp(get_class($user), "gallery_user")) {
 					array_push($uidList, $user->uid);
