@@ -34,10 +34,13 @@
   {
     $wmName = "";
   }
+  if (!isset($wmAlign)) {
+	$wmAlign=0;
+  }
 ?>
 <p><b><?php echo _("Watermark") ?>:</b>
 <select name="wmName">
-	<option <?php if ($wmName == "") echo selected ?> label="None" value=""><?php echo _("None") ?></option>
+	<option <?php if ($wmName == "") echo 'selected' ?> label="None" value=""><?php echo _("None") ?></option>
 <?php
   // get a list of watermarks
   $wmDir = opendir($gallery->app->watermarkDir);
