@@ -49,9 +49,7 @@ if (session_id()) {
 }
 
 /* Start a new session, or resume our current one */
-if (!isset($GALLERY_EMBEDDED_INSIDE) || $GALLERY_EMBEDDED_INSIDE_TYPE != "postnuke") {
-	session_start();
-}
+@session_start();
 
 /* emulate register_globals for sessions */
 if (!$gallery->register_globals) {
