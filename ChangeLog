@@ -1,3 +1,17 @@
+2003-04-21  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.4-cvs-b21
+
+	* Integrated a patch from Brett Nemeroff and Kurt Bosselman to
+	  support printing on PhotoAccess, an online photo printing
+	  service which will also print photos to gifts (mugs, mousepads,
+	  t-shirts, ...).
+
+	* Fixed bug #718741. Shutterfly code now sends either the caption
+	  or the photo URL as the message to be printed on the back of the
+	  photo.
+
+	* Fixed bug #659299. The search page no longer skips some items in
+	  albums containing hidden photos.
+	
 2003-04-20  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.4-cvs-b20
 
 	* Gallery now handles the small database structure change
@@ -14,7 +28,7 @@
 	* Patch #710428: Added Joan McGalliard's fix for a bug in
 	  slideshow.php and slideshow_low.php introduced in 1.3.4-cvs-b6,
 	  which teminated the slideshow early if there were hidden photos
-	  in the album.
+	  in the album. Also bug #689422.
 
 	* Patch #712159: Added Joan McGalliard's patch to replace the "?&"
 	  in the navigator block URLs with just "?" or "&" as appropriate.

@@ -355,6 +355,9 @@ if (!$gallery->album->isMovie($id)) {
 			      $rawImage ."&thumbnail=" . $thumbImage . "&height=" . 
 			      $imageHeight ."&width=" . $imageWidth . "'", 1) .
 			"\">[print this photo on Fotokasten]</a>";
+		} else if (!strncmp($printService, 'photoaccess', 11)) {
+		    $adminCommands .= "<a href=# onClick=\"document.photoAccess.returnUrl.value=document.location; document.photoAccess.submit(); return false\">[print this photo on PhotoAccess]</a>";
+		    $printPhotoAccessForm = 1;
 		}
 	}
 
@@ -495,9 +498,30 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
   <input type=hidden name=imrawheight-1 value="<?php echo $imageHeight ?>">
   <input type=hidden name=imrawwidth-1 value="<?php echo $imageWidth ?>">
   <input type=hidden name=imthumb-1 value="<?php echo $thumbImage ?>">
-  <input type=hidden name=imbkprntb-1 value="Hi">
+  <?php
+     /* Print the caption on back of photo. If no caption,
+      * then print the URL to this page. Shutterfly cuts
+      * the message off at 80 characters. */
+     $imbkprnt = $gallery->album->getCaption($index);
+     if (empty($imbkprnt)) {
+        $imbkprnt = makeAlbumUrl($gallery->session->albumName, $id);
+     }
+  ?>
+  <input type=hidden name=imbkprnta-1 value="<?php echo $imbkprnt ?>">
 </form>
 <?php } ?>
+<?php if ($printPhotoAccessForm) { ?>
+  <form method="post" name="photoAccess" action="http://www.photoaccess.com/buy/anonCart.jsp">
+  <input type="hidden" name="cb" value="PA">
+  <input type="hidden" name="redir" value="true">
+  <input type="hidden" name="returnUrl" value="this-gets-set-by-javascript-in-onClick">
+  <input type="hidden" name="imageId" value="<?php echo $photo->image->name . '.' . $photo->image->type; ?>">
+  <input type="hidden" name="imageUrl" value="<?php echo $rawImage ?>">
+  <input type="hidden" name="thumbUrl" value="<?php echo $thumbImage ?>">
+  <input type="hidden" name="imgWidth" value="<?php echo $imageWidth ?>">
+  <input type="hidden" name="imgHeight" value="<?php echo $imageHeight ?>">
+</form>
+<?php } ?> 
 <?php
 
 echo("<tr><td colspan=3 align=center>");
