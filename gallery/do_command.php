@@ -24,6 +24,19 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+/* 
+ * Test for relative URL, which we know to be local.  If URL contains ://
+ * assume that it's remote and test it against our local full URLs
+ * to ensure security.  Don't check for http:// or https:// because
+ * for all we know, someone put their album URL on a gopher server...
+ */
+if ($return[0] != '/' && strstr($return, '://') !== false) {
+    if (strncmp($return, $gallery->app->photoAlbumURL, strlen($gallery->app->photoAlbumURL) != 0) &&
+            strncmp($return, $gallery->app->albumDirURL, strlen($gallery->app->albumDirURL) != 0)) {
+        die(_('Attempted security breach.'));
+    }
+}
+
 if (!strcmp($cmd, "remake-thumbnail")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 ?>

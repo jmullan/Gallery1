@@ -47,8 +47,11 @@ includeHtmlWrap("search.header");
 
 if (!isset($searchstring)) {
 	$searchstring="";
+} else {
+    /* urldecode, remove tags, and then encode htmlspecial chars to make string display-safe */
+    $searchstring = htmlspecialchars(removeTags(urldecode($searchstring)));
 }
-$searchstring = removeTags($searchstring);
+
 if ($searchstring) {
 	echo makeFormIntro("search.php");
 ?>

@@ -27,8 +27,11 @@ require(dirname(__FILE__) . '/init.php');
 // Security check.
 if (!isset($username)) {
 	$username="";
+} else {
+    /* decode user data, remove tags, and then re-encode using html entities for safe page display */
+    $username = htmlspecialchars(removeTags(urldecode($username)));
 }
-$username = removeTags($username);
+
 doctype();
 ?>
 
