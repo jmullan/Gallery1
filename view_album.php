@@ -39,9 +39,16 @@ if (!$gallery->album->isLoaded()) {
 	header("Location: albums.php");
 	return;
 }
+
 if (!$page) {
-	$page = 1;
+	$page = $gallery->session->albumPage[$gallery->album->fields["name"]];
+	if (!$page) {
+		$page = 1;
+	}
+} else {
+	$gallery->session->albumPage[$gallery->album->fields["name"]] = $page;
 }
+
 $albumName = $gallery->session->albumName;
 
 if (!$gallery->session->viewedAlbum[$albumName]) {
