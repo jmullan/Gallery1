@@ -34,8 +34,8 @@ if (php_sapi_name() != "cli") {
 	exit;
 }
 
-include (dirname(__FILE__) . '/../util.php');
-include (dirname(__FILE__) . '/../platform/fs_unix.php');
+include (dirname(dirname(__FILE__)) . '/util.php');
+include (dirname(dirname(__FILE__)) . '/platform/fs_unix.php');
 
 if (!fs_is_readable("setup")) {
        	print "Cannot build manifest unless in config mode";

@@ -236,11 +236,11 @@ function isBlacklistedComment(&$comment) {
 function editBlacklist() {
     $blacklist = loadBlacklist();
     printf("<h2>%s</h2>", _("Delete from blacklist"));
-    if (!getRequest('delete')) {
+    if (!getRequestVar('delete')) {
 	printf("<h3>%s</h3>", _("No action taken!"));
     } else {
 	$removed = array();
-	foreach ($_REQUEST['delete'] as $key) {
+	foreach (getRequestVar('delete') as $key) {
 	    if (isset($blacklist['entries'][$key])) {
 		$removed[$blacklist['entries'][$key]] = 1;
 		unset($blacklist['entries'][$key]);
@@ -278,7 +278,7 @@ function updateBlacklist() {
     $blacklist = loadBlacklist();
     $dupes = array();
     $added = array();
-    foreach (preg_split("/[\n\r]+/", $_REQUEST['newBlacklistEntries']) as $line) {
+    foreach (preg_split("/[\n\r]+/", getRequestVar('newBlacklistEntries')) as $line) {
 	$line = preg_replace("/#.*/", "", $line);
 	$line = trim($line);
 	if (empty($line)) {

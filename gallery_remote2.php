@@ -102,34 +102,34 @@ if ($gallery->user) {
 
 // -- Handle request --
 
-switch($cmd === 0 ? '' : $cmd) {
+switch($_REQUEST['cmd'] === 0 ? '' : $_REQUEST['cmd']) {
 	case 'login':
-		gr_login( $gallery, $response, $uname, $password );
+		gr_login( $gallery, $response, $_REQUEST['uname'], $_REQUEST['password'] );
 		break;
 	case 'fetch-albums':
 		gr_fetch_albums( $gallery, $response );
 		break;
 	case 'fetch-albums-prune':
-		gr_fetch_albums_prune( $gallery, $response, $check_writeable );
+		gr_fetch_albums_prune( $gallery, $response, $_REQUEST['check_writeable'] );
 		break;
 	case 'add-item':
-		gr_add_item( $gallery, $response, $userfile, $userfile_name, $caption, $force_filename, $auto_rotate );
+		gr_add_item( $gallery, $response, $_REQUEST['userfile'], $_REQUEST['userfile_name'], $_REQUEST['caption'], $_REQUEST['force_filename'], $_REQUEST['auto_rotate'] );
 		break;
 	case 'album-properties':
 		gr_album_properties( $gallery, $response );
 		break;
 	case 'new-album':
-		gr_new_album( $gallery, $response, $newAlbumName, $newAlbumTitle, $newAlbumDesc );
+		gr_new_album( $gallery, $response, $_REQUEST['newAlbumName'], $_REQUEST['newAlbumTitle'], $_REQUEST['newAlbumDesc'] );
 		break;
 	case 'fetch-album-images':
-		gr_fetch_album_images( $gallery, $response, $albums_too );
+		gr_fetch_album_images( $gallery, $response, $_REQUEST['albums_too'] );
 		break;
 	case 'move-album':
-		gr_move_album( $gallery, $response, $set_destalbumName );
+		gr_move_album( $gallery, $response, $_REQUEST['set_destalbumName'] );
 		break;
 	default:
 		$response->setProperty( 'status', $GR_STAT['UNKNOWN_COMMAND'] );
-		$response->setProperty( 'status_text', "Command '$cmd' unknown." );
+		$response->setProperty( 'status_text', "Command '{$_REQUEST['cmd']}' unknown." );
 		break;
 }
 
