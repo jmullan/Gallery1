@@ -92,44 +92,47 @@ function getEnvLang() {
 	global $mosConfig_locale;			/* Needed for Mambo	*/
 	global $currentlang;				/* Needed for CPGNuke	*/
 
+	$envLang = NULL;
+
 	switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 		case 'postnuke':
 			if (isset($_SESSION['PNSVlang'])) {
-				return $_SESSION['PNSVlang'];
+				$envLang = $_SESSION['PNSVlang'];
 			}
 		break;
 
 		case 'phpnuke':
 		case 'nsnnuke':
 			if (isset($_COOKIE['lang'])) {
-				return $_COOKIE['lang'];
+				$envLang = $_COOKIE['lang'];
 			}
 
 		break;
 
 		case 'phpBB2':
 			if (isset($board_config['default_lang'])) {
-				return $board_config['default_lang'];
+				$envLang = $board_config['default_lang'];
 			}				
 		break;
 
 		case 'GeekLog':
 			/* Note: $_CONF is not a Superglobal ;) */
 			if (isset($_CONF['language'])) {
-				return $_CONF['language'];
+				$envLang = $_CONF['language'];
 			} else if (isset($_CONF['locale'])) {
-				return $_CONF['locale'];
+				$envLang = $_CONF['locale'];
 			}				
 		break;
+
 		case 'mambo':
 			if (isset($mosConfig_locale)){
-				return $mosConfig_locale;
+				$envLang = $mosConfig_locale;
 			}				
 		break;
 
 		case 'cpgnuke':
 			if (isset($currentlang)){
-				return $currentlang;
+				$envLang = $currentlang;
 			}				
 		break;
 
@@ -137,8 +140,9 @@ function getEnvLang() {
 			return NULL;
 		break;
 	}
-}
 
+	return $envLang;
+}
 
 /*
 ** In some Environments we dont want to allow the user
@@ -662,7 +666,5 @@ function translateableFields() {
 		'AltText'	=> _("Alt Text / onMouseOver")
 	);
 }
-
-
 
 ?>

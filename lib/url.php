@@ -90,8 +90,9 @@ function makeGalleryUrl($target, $args=array()) {
 				 * view_album.php can append a filename to the resulting URL.
 				 */
 				$args["include"] = $target;
-				$target = "index.php";
+				$target = $mainindex;
 			break;
+
 			// Maybe something went wrong, then we assume we are like standalone.
 			default:
 				$target = $gallery->app->photoAlbumURL . "/" . $target;
