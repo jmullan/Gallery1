@@ -23,6 +23,8 @@
  */
 ?>
 <?php
+// test is disabled until we perform adequate security checks on windows
+exit();
 
 /*
 desc - A description of the test
