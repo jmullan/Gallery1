@@ -214,13 +214,13 @@ for ($i = 2; $i <= $numPhotos; $i++) {
 <?
 printAlbumOptionList(0,0,1); 
 ?>
+</select>
 </td>
 </tr>
 </table>
 <?
 } // end else
 ?>
-</select>
 <br>
 <input type=submit value="Move to Album!">
 <input type=submit name="submit" value="Cancel" onclick='parent.close()'>
