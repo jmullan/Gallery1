@@ -41,7 +41,7 @@ function configure_dirmode($cmd = "configure") {
 	if (!strcmp($cmd, "configure")) {
 		return 755;
 	} else {
-		return 700;
+		return 400;
 	}
 }
 ?>
