@@ -97,7 +97,7 @@ if ($searchstring) {
 		$searchDescription = $searchAlbum->fields['description'];
        	if (eregi($searchstring, $searchTitle) || eregi($searchstring, $searchDescription)) {
 			$uid = $gallery->user->getUid();
-			if ($searchAlbum->canRead($uid)) {
+			if ($searchAlbum->canRead($uid) || $gallery->user->isAdmin()) {
            		$albumMatch = 1;
            		$searchTitle = eregi_replace($searchstring, "<b>$searchstring</b>",$searchTitle);  // cause search word to be bolded
 				$searchDescription = eregi_replace($searchstring, "<b>$searchstring</b>",$searchDescription);  // cause search word to be bolded
@@ -131,7 +131,7 @@ if ($searchstring) {
 	for ($i = 0; $i<$numAlbums; $i++) {
 		$searchAlbum = $list[$i]; 
 		$uid = $gallery->user->getUid();
-		if ($searchAlbum->canRead($uid)) {
+		if ($searchAlbum->canRead($uid) || $gallery->user->isAdmin()) {
 			$numPhotos = $searchAlbum->numPhotos($gallery->user->canWriteToAlbum($searchAlbum));
 			for ($j = 1; $j <= $numPhotos; $j++) {
 				$searchCaption = $searchAlbum->getCaption($j);
