@@ -21,14 +21,15 @@
 <?
 
 function editField($album, $field, $edit) {
-	global $app, $user;
+	global $gallery;
 
 	$buf = $album->fields[$field];
 	if (!strcmp($buf, "")) {
 		$buf = "<i>&lt;Empty&gt;</i>";
 	}
-	if ($user->canChangeTextOfAlbum($album)) {
-		$url = "$app->photoAlbumURL/edit_field.php?set_albumName={$album->fields[name]}&field=$field";
+	if ($gallery->user->canChangeTextOfAlbum($album)) {
+		$url = $gallery->app->photoAlbumURL . 
+			"/edit_field.php?set_albumName={$album->fields[name]}&field=$field";
 		$buf .= "<span class=editlink>";
 		$buf .= '<a href="#" onClick="' . popup($url) . "\">[edit $field]</a>";
 		$buf .= "</span>";
@@ -37,14 +38,15 @@ function editField($album, $field, $edit) {
 }
 
 function editCaption($album, $index, $edit) {
-	global $app, $user;
+	global $gallery;
 
 	$buf = $album->getCaption($index);
-	if ($user->canChangeTextOfAlbum($album)) {
+	if ($gallery->user->canChangeTextOfAlbum($album)) {
 		if (!strcmp($buf, "")) {
 			$buf = "<i>&lt;No Caption&gt;</i>";
 		}
-		$url = "$app->photoAlbumURL/edit_caption.php?set_albumName={$album->fields[name]}&index=$index";
+		$url = $gallery->app->photoAlbumURL . 
+			"/edit_caption.php?set_albumName={$album->fields[name]}&index=$index";
 		$buf .= "<span class=editlink>";
 		$buf .= '<a href="#" onClick="' . popup($url) . '">[edit]</a>';
 		$buf .= "</span>";
@@ -57,7 +59,7 @@ function error($message) {
 }
 
 function error_format($message) {
-	return "<span class=error>Error: $message<span>";
+	return "<span class=error>Error: $message</span>";
 }
 
 function popup($url, $no_expand_url=0) {
@@ -79,7 +81,7 @@ function popup_help($entry, $group) {
 }
 
 function exec_internal($cmd) {
-	global $app;
+	global $gallery;
 	if (isDebugging()) {
 		print "<p><b> About to exec [$cmd]</b>";
 	}
@@ -88,19 +90,22 @@ function exec_internal($cmd) {
 
 	if (isDebugging()) {
 		print "<br> Results: <pre>" . join("\n", $results);
-		print "<br> Status: $status (expected $app->expectedExecStatus)";
+		print "<br> Status: $status (expected " . $gallery->app->expectedExecStatus . ")";
 	}
 
 	return array($results, $status);
 }
 
 function getDimensions($file) {
-	global $app;				
+	global $gallery;				
 
 	list($lines, $status) = 
-		exec_internal(toPnmCmd($file) . "| $app->pnmDir/pnmfile ");
+		exec_internal(toPnmCmd($file) . 
+			"| " .
+			$gallery->app->pnmDir . 
+			"/pnmfile ");
 
-	if ($status == $app->expectedExecStatus) {
+	if ($status == $gallery->app->expectedExecStatus) {
 		foreach ($lines as $line) {
 			if (ereg("([0-9]+) by ([0-9]+)", $line, $regs)) {
 				return array($regs[1], $regs[2]);
@@ -131,7 +136,7 @@ function acceptableFormatRegexp() {
 
 
 function isImage($tag) {
-	global $app; 
+	global $gallery; 
 
 	return (!strcmp($tag, "jpg") ||
 		!strcmp($tag, "jpeg") ||
@@ -163,7 +168,12 @@ function getFile($fname) {
 }
 
 function dismissAndReload() {
-	echo "<BODY onLoad='opener.location.reload(); parent.close()'>";
+	if (isDebugging()) {
+		echo "<BODY onLoad='opener.location.reload();'>";
+		echo("Not closing this window because debug mode is on");
+	} else {
+		echo "<BODY onLoad='opener.location.reload(); parent.close()'>";
+	}
 }
 
 function reload() {
@@ -171,7 +181,12 @@ function reload() {
 }
 
 function dismissAndLoad($url) {
-	echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
+	if (isDebugging()) {
+		echo("<BODY onLoad='opener.location = \"$url\"; '>");
+		echo("Not closing this window because debug mode is on");
+	} else {
+		echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
+	}
 }
 
 function dismiss() {
@@ -183,7 +198,7 @@ function my_flush() {
 }
 
 function resize_image($src, $dest, $target) {
-	global $app;				
+	global $gallery;				
 	if (!strcmp($src,$dest)) {
 		$useTemp = true;
 		$out = "$dest.tmp";
@@ -192,7 +207,9 @@ function resize_image($src, $dest, $target) {
 		$out = $dest;
 	}
 	$err = exec_wrapper(toPnmCmd($src) .
-		     "| $app->pnmDir/pnmscale --quiet -xysize $target $target".
+		     "| " . 
+		     $gallery->app->pnmDir .
+		     "/pnmscale --quiet -xysize $target $target".
 		     "| " . fromPnmCmd($out));
 
 	if (file_exists("$out") && filesize("$out") > 0) {
@@ -207,7 +224,7 @@ function resize_image($src, $dest, $target) {
 }
 
 function rotate_image($src, $dest, $target) {
-	global $app;				
+	global $gallery;				
 	if (!strcmp($src,$dest)) {
 		$useTemp = true;
 		$out = "$dest.tmp";
@@ -225,7 +242,9 @@ function rotate_image($src, $dest, $target) {
 	}
 
 	$err = exec_wrapper(toPnmCmd($src) .
-		     "| $app->pnmDir/pnmflip $args".
+		     "| " .
+		     $gallery->app->pnmDir .
+		     "/pnmflip $args".
 		     "| " . fromPnmCmd($out));
 
 	if (file_exists("$out") && filesize("$out") > 0) {
@@ -240,7 +259,7 @@ function rotate_image($src, $dest, $target) {
 }
 
 function cut_image($src, $dest, $x, $y, $width, $height) {
-	global $app;				
+	global $gallery;				
 	if (!strcmp($src,$dest)) {
 		$useTemp = true;
 		$out = "$dest.tmp";
@@ -249,7 +268,9 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 		$out = $dest;
 	}
 	$err = exec_wrapper(toPnmCmd($src) .
-		     "| $app->pnmDir/pnmcut $x $y $width $height".
+		     "| " .
+		     $gallery->app->pnmDir .
+		     "/pnmcut $x $y $width $height" .
 		     "| " . fromPnmCmd($out));
 
 	if (file_exists("$out") && filesize("$out") > 0) {
@@ -264,12 +285,15 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 }
 
 function valid_image($file) {
-	global $app;
+	global $gallery;
 	
 	list($results, $status) = 
-		exec_internal(toPnmCmd($file) . "| $app->pnmDir/pnmfile");
+		exec_internal(toPnmCmd($file) . 
+			"| " .
+			$gallery->app->pnmDir .
+			"/pnmfile");
 
-	if ($status == $app->expectedExecStatus) {
+	if ($status == $gallery->app->expectedExecStatus) {
 		return 1;
 	} else {
 		return 0;
@@ -277,7 +301,7 @@ function valid_image($file) {
 }
 
 function toPnmCmd($file) {
-	global $app;
+	global $gallery;
 
 	if (preg_match("/.png/i", $file)) {
 		$cmd = "pngtopnm";
@@ -292,7 +316,7 @@ function toPnmCmd($file) {
 	}
 
 	if ($cmd) {
-		return "$app->pnmDir/$cmd $file";
+		return $gallery->app->pnmDir . "/$cmd $file";
 	} else {
 		error("Unknown file type: $file");
 		return "";
@@ -300,18 +324,18 @@ function toPnmCmd($file) {
 }
 
 function fromPnmCmd($file) {
-	global $app;
+	global $gallery;
 
 	if (preg_match("/.png/i", $file)) {
 		$cmd = "pnmtopng";
 	} else if (preg_match("/.(jpg|jpeg)/i", $file)) {
 		$cmd = "ppmtojpeg";
 	} else if (preg_match("/.gif/i", $file)) {
-		$cmd = "ppmquant 256| $app->pnmDir/ppmtogif";
+		$cmd = "ppmquant 256| " . $gallery->app->pnmDir . "/ppmtogif";
 	}
 
 	if ($cmd) {
-		return "$app->pnmDir/$cmd > $file";
+		return $gallery->app->pnmDir . "/$cmd > $file";
 	} else {
 		error("Unknown file type: $file");
 		return "";
@@ -319,11 +343,11 @@ function fromPnmCmd($file) {
 }
 
 function exec_wrapper($cmd) {
-	global $app;
+	global $gallery;
 
 	list($results, $status) = exec_internal($cmd);
 
-	if ($status == $app->expectedExecStatus) {
+	if ($status == $gallery->app->expectedExecStatus) {
 		return 0;
 	} else {
 		if ($results) {
@@ -334,7 +358,7 @@ function exec_wrapper($cmd) {
 }
 function includeHtmlWrap($name) {
 	// define these globals to make them available to custom text
-        global $app, $gallery, $album, $user;
+        global $gallery;
 	$fullname = "html_wrap/$name";
 
 	if (file_exists($fullname)) {
@@ -347,11 +371,11 @@ function includeHtmlWrap($name) {
 }
 
 function getGalleryStyleSheetName() {
-	global $app;
+	global $gallery;
         $sheetname = "css/gallery_style.css";
 
-	if ($app) {
-		$base = $app->photoAlbumURL;
+	if ($gallery->app) {
+		$base = $gallery->app->photoAlbumURL;
 	} else {
 		$base = ".";
 	}
@@ -403,8 +427,8 @@ function drawSelect($name, $array, $selected, $size) {
 }
 
 function correctNobody($array) {
-	global $userDB;
-	$nobody = $userDB->getNobody();
+	global $gallery;
+	$nobody = $gallery->userDB->getNobody();
 
 	if (count($array) > 1) {
 		unset($array[$nobody->getUid()]);
@@ -416,8 +440,8 @@ function correctNobody($array) {
 }
 
 function correctEverybody($array) {
-	global $userDB;
-	$everybody = $userDB->getEverybody();
+	global $gallery;
+	$everybody = $gallery->userDB->getEverybody();
 
 	if ($array[$everybody->getUid()]) {
 		$array = array($everybody->getUid() => $everybody->getUsername());
@@ -425,12 +449,12 @@ function correctEverybody($array) {
 }
 
 function makeGalleryUrl($albumName, $photoId="", $extra="") {
-	global $app;
+	global $gallery;
 
-	$url = "$app->photoAlbumURL";
+	$url = $gallery->app->photoAlbumURL;
 
 	$args = array();
-	if ($app->feature["rewrite"]) {
+	if ($gallery->app->feature["rewrite"]) {
 		if ($albumName) {
 			$url .= "/$albumName";
 
@@ -441,12 +465,12 @@ function makeGalleryUrl($albumName, $photoId="", $extra="") {
 		}
 	} else {
 		if ($albumName) {
-			$url = "$app->photoAlbumURL/view_album.php";
+			$url = $gallery->app->photoAlbumURL . "/view_album.php";
 			array_push($args, "set_albumName=$albumName");
 		}
 
 		if ($photoId) {
-			$url = "$app->photoAlbumURL/view_photo.php";
+			$url = $gallery->app->photoAlbumURL . "/view_photo.php";
 			array_push($args, "id=$photoId");
 		}
 	}
@@ -463,9 +487,9 @@ function makeGalleryUrl($albumName, $photoId="", $extra="") {
 }
 
 function gallerySanityCheck() {
-	global $app, $gallery;
+	global $gallery;
 
-	if (!file_exists("config.php") || !$app) {
+	if (!file_exists("config.php") || !$gallery->app) {
 		include("errors/unconfigured.php");
 		exit;
 	}
@@ -482,7 +506,7 @@ function gallerySanityCheck() {
 		}
 	}
 
-	if ($app->config_version != $gallery->config_version) {
+	if ($gallery->app->config_version != $gallery->config_version) {
 		include("errors/reconfigure.php");
 		exit;
 	}
@@ -544,8 +568,8 @@ function preprocessImage($dir, $file) {
 }
 
 function isDebugging() {
-	global $app;
-	return !strcmp($app->debug, "yes");
+	global $gallery;
+	return !strcmp($gallery->app->debug, "yes");
 }
 
 function addUrlArg($url, $arg) {
@@ -557,15 +581,15 @@ function addUrlArg($url, $arg) {
 }
 
 function getNextPhoto($idx) {
-	global $user, $album;
+	global $gallery;
 
 	$idx++;
-	if ($user->canWriteToAlbum($album)) {
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		return $idx;
 	}
 
-	$numPhotos = $album->numPhotos(1);
-	while ($idx <= $numPhotos && $album->isHidden($idx)) {
+	$numPhotos = $gallery->album->numPhotos(1);
+	while ($idx <= $numPhotos && $gallery->album->isHidden($idx)) {
 		$idx++;
 	}
 
@@ -573,25 +597,25 @@ function getNextPhoto($idx) {
 }
 
 function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
-	global $user, $album, $albumDB, $index;
+	global $gallery, $albumDB, $index;
 	
-	$mynumalbums = $albumDB->numAlbums($user);
+	$mynumalbums = $albumDB->numAlbums($gallery->user);
 
 	// create a ROOT option for the user to move the 
 	// album to the main display
 	echo "<option value=0 selected> << Select Album >> </option>\n";
-	if ($user->canCreateAlbums() && $rootDisplay) {
+	if ($gallery->user->canCreateAlbums() && $rootDisplay) {
 		echo "<option value=ROOT>Top Level</option>";
 	}
-	$rootAlbumName = $album->getRootAlbumName();	
+	$rootAlbumName = $gallery->album->getRootAlbumName();	
 	// display all albums that the user can move album to
 	for ($i=1; $i<=$mynumalbums; $i++) {
-		$myAlbum=$albumDB->getAlbum($user, $i);
-		if ($user->canWriteToAlbum($myAlbum) && 
+		$myAlbum=$albumDB->getAlbum($gallery->user, $i);
+		if ($gallery->user->canWriteToAlbum($myAlbum) && 
 			($rootAlbumName != $myAlbum->fields[name] || !$moveRootAlbum) ) {
 			$albumName = $myAlbum->fields[name];
 			$albumTitle = $myAlbum->fields[title];
-			if ($myAlbum != $album) {
+			if ($myAlbum != $gallery->album) {
 				echo "<option value=\"$albumName\">-- $albumTitle</option>\n";
 			}
 			printNestedVals(1, $albumName, $albumTitle, $movePhoto);
@@ -601,7 +625,7 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 
 
 function printNestedVals($level, $albumName, $val, $movePhoto) {
-	global $user, $album, $albumDB, $index;
+	global $gallery, $albumDB, $index;
 	
 	$myAlbum = $albumDB->getAlbumbyName($albumName);
 	
@@ -611,15 +635,15 @@ function printNestedVals($level, $albumName, $val, $movePhoto) {
 		$myName = $myAlbum->isAlbumName($i);
 		if ($myName) {
 			$nestedAlbum = $albumDB->getAlbumbyName($myName);
-			if ($user->canWriteToAlbum($nestedAlbum)) {
+			if ($gallery->user->canWriteToAlbum($nestedAlbum)) {
 				#$val2 = $val . " -> " . $nestedAlbum->fields[title];
 				$val2 = "";
 				for ($j=0; $j<=$level; $j++) {
 					$val2 = $val2 . "-- ";
 				}
 				$val2 = $val2 . $nestedAlbum->fields[title];
-				if (($nestedAlbum != $album) && 
-				   ($nestedAlbum != $album->getNestedAlbum($index))) {
+				if (($nestedAlbum != $gallery->album) && 
+				   ($nestedAlbum != $gallery->album->getNestedAlbum($index))) {
 					echo "<option value=\"$myName\"> $val2</option>\n";
 					printNestedVals($level + 1, $myName, $val2, $movePhoto);
 				} elseif ($movePhoto) {
@@ -628,4 +652,24 @@ function printNestedVals($level, $albumName, $val, $movePhoto) {
 			}
 		}
 	}
+}
+
+function formVar($name) {
+	global $HTTP_GET_VARS;
+	global $HTTP_POST_VARS;
+
+	if (!empty($HTTP_GET_VARS[$name])) {
+		return($HTTP_GET_VARS[$name]);
+	}
+
+	if (!empty($HTTP_POST_VARS[$name])) {
+		return($HTTP_POST_VARS[$name]);
+	}
+}
+
+function emptyFormVar($name) {
+	global $HTTP_GET_VARS;
+	global $HTTP_POST_VARS;
+
+	return empty($HTTP_GET_VARS[$name]) && empty($HTTP_POST_VARS[$name]);
 }
