@@ -320,8 +320,8 @@ if ($numPhotos) {
 					$gallery->album->getThumbnailTag($i) .
 					"</a>");
 			} elseif ($gallery->album->isAlbumName($i)) {
-				//$myAlbumName = $gallery->album->isAlbumName($i);
-				//$myAlbum = $albumDB->getAlbumbyName($myAlbumName);
+				$myAlbumName = $gallery->album->isAlbumName($i);
+				$myAlbum = $albumDB->getAlbumbyName($myAlbumName);
 				if ($myAlbum->numPhotos(1)) {
 					$myHighlightTag = $myAlbum->getThumbnailTag($myAlbum->getHighlight());
 				} else {
