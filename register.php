@@ -91,6 +91,7 @@ if (isset($create)) {
 	       	$tmpUser->setEmail($email);
 	       	$tmpUser->origEmail=$email;
 	       	$tmpUser->log("self_register");
+		$tmpUser->setDefaultLanguage($defaultLanguage);
 		$msg = ereg_replace("!!PASSWORD!!", $password,
                                         ereg_replace("!!USERNAME!!", $uname,
 					  ereg_replace("!!FULLNAME!!", $fullname,
