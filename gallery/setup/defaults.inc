@@ -4,11 +4,8 @@
 <table width=80%><tr><td>
 
 <?php echo _("Here you can customize the default values for new albums that you create.") ?>
-<br>
 <?php echo _("Note that these are not <b>master switches</b> (ie, if you turn a setting on here, you can still turn it off in a given album).") ?>
-<br>
 <?php echo _("If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.") ?>
-<br>
 <?php echo _("If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much.") ?>
 
 </td></tr></table>
@@ -69,6 +66,6 @@ foreach ($defaults as $key => $val) {
 ?>
 </table>
 <p>
-<input type=submit name="go_back" value=<?php echo '"<- ' . _("Gallery Settings") .'"' ?>>
-<input type=submit name="go_next" value=<?php echo '"' . _("Save Settings") .' ->"' ?>>
-<input type=submit name="go_defaults" value=<?php echo '"' . _("Use Defaults") . '"' ?>>
+<input type=submit name="go_back" value="<- <?php echo _("Gallery Settings") ?>">
+<input type=submit name="go_next" value="<?php echo _("Save Settings") ?> ->">
+<input type=submit name="go_defaults" value="<?php echo _("Use Defaults") ?>">
