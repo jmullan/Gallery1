@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-11-08 16:59+0100\n"
+"POT-Creation-Date: 2004-11-19 21:00+0100\n"
 "PO-Revision-Date: 2003-10-12 17:58+0900\n"
 "Last-Translator: The Darkness <xgate32 AT hotmail DOT com>\n"
 "Language-Team: Gallery Korean Translation <xgate32 AT hotmail DOT com>\n"
@@ -132,7 +132,7 @@ msgid "Serious Warning"
 msgstr "심각한 경고"
 
 #: ../setup/check.inc:83 ../setup/check.inc:123 ../setup/check_mail.php:76
-#: ../setup/config_data.inc:1210 ../setup/config_data.inc:1216
+#: ../setup/config_data.inc:1216 ../setup/config_data.inc:1222
 msgid "Warning"
 msgstr "경고"
 
@@ -438,7 +438,7 @@ msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the bina
 msgstr "갤러리는 NetPBM 버젼9.9 이상에서 잘 동작합니다. %s갤러리 다운로드 페이지%s에서 갤러리에서 필요한 바이너리 설치하시거나 %sNetPBM 웹사이트%s에서 전체 NetPBM 패키지를 가져와 컴파일하여 설치하실 수 있습니다."
 
 #: ../setup/config_data.inc:67 ../setup/config_data.inc:77
-#: ../setup/config_data.inc:681 ../setup/confirm.inc:373
+#: ../setup/config_data.inc:687 ../setup/confirm.inc:373
 msgid "Note:"
 msgstr "주의:"
 
@@ -825,1338 +825,1344 @@ msgid "I can't find ImageMagick at the location you provided."
 msgstr "지정된 위치에서 ImageMagick을 찾을 수 없습니다."
 
 #: ../setup/config_data.inc:425
+#, fuzzy
+msgid "Version of ImageMagick being used"
+msgstr "%d개의 모든 ImageMagick 바이너리를 찾았습니다"
+
+#: ../setup/config_data.inc:426
+#, php-format
+msgid "This setting is only required when using the ImageMagick graphics package.  Due to changes in the ImageMagick commandline parameters, we need to know which version is being used so that we can accurately tell it what to do. If you are not sure which version you are using, you can run the %sCheck ImageMagick%s diagnostic."
+msgstr ""
+
+#: ../setup/config_data.inc:431
 msgid "Auto-rotate images"
 msgstr "자동-회전 이미지"
 
-#: ../setup/config_data.inc:426
+#: ../setup/config_data.inc:432
 #, fuzzy
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras."
 msgstr "이 옵션을 선택하면 근래에 나온 디지털 카메라가 제공하는 이미지의 JPEG EXIF 데이터에서 방향 정보를 기초로 하여 이미지를 자동으로 회전하게 됩니다. Jhead EXIF parser v.1.9 이상이 요구됩니다.(아래를 보세요)"
 
-#: ../setup/config_data.inc:427
+#: ../setup/config_data.inc:433
 msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
 msgstr ""
 
-#: ../setup/config_data.inc:428 ../setup/config_data.inc:470
-#: ../setup/config_data.inc:483 ../setup/config_data.inc:496
-#: ../setup/config_data.inc:502 ../setup/config_data.inc:573
-#: ../setup/config_data.inc:635 ../setup/config_data.inc:684
-#: ../setup/config_data.inc:736 ../setup/config_data.inc:744
-#: ../setup/config_data.inc:750 ../setup/config_data.inc:756
-#: ../setup/config_data.inc:762 ../setup/config_data.inc:780
-#: ../setup/config_data.inc:869 ../setup/config_data.inc:891
-#: ../setup/config_data.inc:919 ../setup/config_data.inc:925
-#: ../setup/config_data.inc:926 ../setup/config_data.inc:952
-#: ../setup/config_data.inc:992 ../setup/config_data.inc:998
-#: ../setup/config_data.inc:1004 ../setup/config_data.inc:1010
-#: ../setup/config_data.inc:1224 ../setup/config_data.inc:1230
-#: ../setup/config_data.inc:1237 ../setup/config_data.inc:1243
-#: ../setup/config_data.inc:1304 ../setup/config_data.inc:1324
-#: ../setup/config_data.inc:1338 ../setup/config_data.inc:1353
-#: ../setup/config_data.inc:1359 ../setup/config_data.inc:1365
-#: ../setup/config_data.inc:1434 ../setup/config_data.inc:1441
-#: ../setup/config_data.inc:1493 ../setup/config_data.inc:1494
-#: ../setup/config_data.inc:1500
+#: ../setup/config_data.inc:434 ../setup/config_data.inc:476
+#: ../setup/config_data.inc:489 ../setup/config_data.inc:502
+#: ../setup/config_data.inc:508 ../setup/config_data.inc:579
+#: ../setup/config_data.inc:641 ../setup/config_data.inc:690
+#: ../setup/config_data.inc:742 ../setup/config_data.inc:750
+#: ../setup/config_data.inc:756 ../setup/config_data.inc:762
+#: ../setup/config_data.inc:768 ../setup/config_data.inc:786
+#: ../setup/config_data.inc:875 ../setup/config_data.inc:897
+#: ../setup/config_data.inc:925 ../setup/config_data.inc:931
+#: ../setup/config_data.inc:932 ../setup/config_data.inc:958
+#: ../setup/config_data.inc:998 ../setup/config_data.inc:1004
+#: ../setup/config_data.inc:1010 ../setup/config_data.inc:1016
+#: ../setup/config_data.inc:1230 ../setup/config_data.inc:1236
+#: ../setup/config_data.inc:1243 ../setup/config_data.inc:1249
+#: ../setup/config_data.inc:1314 ../setup/config_data.inc:1334
+#: ../setup/config_data.inc:1348 ../setup/config_data.inc:1363
+#: ../setup/config_data.inc:1369 ../setup/config_data.inc:1375
+#: ../setup/config_data.inc:1444 ../setup/config_data.inc:1451
+#: ../setup/config_data.inc:1503 ../setup/config_data.inc:1504
+#: ../setup/config_data.inc:1510
 msgid "yes"
 msgstr "예"
 
-#: ../setup/config_data.inc:428 ../setup/config_data.inc:470
-#: ../setup/config_data.inc:483 ../setup/config_data.inc:496
-#: ../setup/config_data.inc:502 ../setup/config_data.inc:573
-#: ../setup/config_data.inc:635 ../setup/config_data.inc:680
-#: ../setup/config_data.inc:684 ../setup/config_data.inc:736
-#: ../setup/config_data.inc:744 ../setup/config_data.inc:750
-#: ../setup/config_data.inc:756 ../setup/config_data.inc:762
-#: ../setup/config_data.inc:780 ../setup/config_data.inc:868
-#: ../setup/config_data.inc:869 ../setup/config_data.inc:892
-#: ../setup/config_data.inc:919 ../setup/config_data.inc:926
-#: ../setup/config_data.inc:952 ../setup/config_data.inc:992
-#: ../setup/config_data.inc:998 ../setup/config_data.inc:1004
-#: ../setup/config_data.inc:1010 ../setup/config_data.inc:1224
-#: ../setup/config_data.inc:1230 ../setup/config_data.inc:1237
-#: ../setup/config_data.inc:1243 ../setup/config_data.inc:1304
-#: ../setup/config_data.inc:1324 ../setup/config_data.inc:1338
-#: ../setup/config_data.inc:1353 ../setup/config_data.inc:1359
-#: ../setup/config_data.inc:1365 ../setup/config_data.inc:1433
-#: ../setup/config_data.inc:1434 ../setup/config_data.inc:1494
-#: ../setup/config_data.inc:1499 ../setup/config_data.inc:1500
+#: ../setup/config_data.inc:434 ../setup/config_data.inc:476
+#: ../setup/config_data.inc:489 ../setup/config_data.inc:502
+#: ../setup/config_data.inc:508 ../setup/config_data.inc:579
+#: ../setup/config_data.inc:641 ../setup/config_data.inc:686
+#: ../setup/config_data.inc:690 ../setup/config_data.inc:742
+#: ../setup/config_data.inc:750 ../setup/config_data.inc:756
+#: ../setup/config_data.inc:762 ../setup/config_data.inc:768
+#: ../setup/config_data.inc:786 ../setup/config_data.inc:874
+#: ../setup/config_data.inc:875 ../setup/config_data.inc:898
+#: ../setup/config_data.inc:925 ../setup/config_data.inc:932
+#: ../setup/config_data.inc:958 ../setup/config_data.inc:998
+#: ../setup/config_data.inc:1004 ../setup/config_data.inc:1010
+#: ../setup/config_data.inc:1016 ../setup/config_data.inc:1230
+#: ../setup/config_data.inc:1236 ../setup/config_data.inc:1243
+#: ../setup/config_data.inc:1249 ../setup/config_data.inc:1314
+#: ../setup/config_data.inc:1334 ../setup/config_data.inc:1348
+#: ../setup/config_data.inc:1363 ../setup/config_data.inc:1369
+#: ../setup/config_data.inc:1375 ../setup/config_data.inc:1443
+#: ../setup/config_data.inc:1444 ../setup/config_data.inc:1504
+#: ../setup/config_data.inc:1509 ../setup/config_data.inc:1510
 msgid "no"
 msgstr "아니요"
 
-#: ../setup/config_data.inc:433 ../setup/config_data.inc:571
-#: ../setup/config_data.inc:640 ../setup/config_data.inc:650
+#: ../setup/config_data.inc:439 ../setup/config_data.inc:577
+#: ../setup/config_data.inc:646 ../setup/config_data.inc:656
 #: ../setup/functions.inc:892 ../setup/functions.inc:972
 msgid "Advanced"
 msgstr "자세히"
 
-#: ../setup/config_data.inc:433
+#: ../setup/config_data.inc:439
 msgid "JPEG Quality"
 msgstr "JPEG 품질"
 
-#: ../setup/config_data.inc:434
+#: ../setup/config_data.inc:440
 #, fuzzy
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
 msgstr "JPEG 파일 포맷은 크기와 품질 사이에 취사 선택이 필요합니다. 갤러리는 JPEG 원본 이미지를 크기조절, 회전, 썸네일등을 통해 만들어지는 JPEG의 품질을 제어할 수 있습니다. 고품질의 이미지는 저품질 이미지보다 파일 사이즈가 큽니다. 일반적으로 이미지에 큰 영향없는 파일 크기까지 이미지 품질을 올리는 지점이 있습니다. 썸네일이나 크기조절된 이미지가 원본보다 파일크기가 커서 싫다면 이 값을 낮게 조절하시면 됩니다. <b>주의</b>: 이 값을 변경하면 <i>이후에</i> 변경되는 이미지에 대해서만 영향을 미칩니다."
 
-#: ../setup/config_data.inc:447
+#: ../setup/config_data.inc:453
 #, fuzzy
 msgid "Embedded Gallery"
 msgstr "갤러리 들어가기"
 
-#: ../setup/config_data.inc:448
+#: ../setup/config_data.inc:454
 msgid "Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."
 msgstr ""
 
-#: ../setup/config_data.inc:451
+#: ../setup/config_data.inc:457
 msgid "GeekLog Dir"
 msgstr ""
 
-#: ../setup/config_data.inc:453
+#: ../setup/config_data.inc:459
 msgid "If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"
 msgstr ""
 
-#: ../setup/config_data.inc:465
+#: ../setup/config_data.inc:471
 msgid "Main Gallery page"
 msgstr "메인 갤러리 페이지"
 
-#: ../setup/config_data.inc:468
+#: ../setup/config_data.inc:474
 msgid "Show the album tree"
 msgstr "앨범 트리 보이기"
 
-#: ../setup/config_data.inc:469
+#: ../setup/config_data.inc:475
 msgid "If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page)."
 msgstr "이 기능을 사용하면 갤러리의 첫 화면에서 모든 서브 앨범의 목록을 볼 수 있습니다. 이것은 특정 서브 앨범에 대한 접근을 용이하게 합니다. (하지만 갤러리의 첫 페이지를 지저분하게 할 수도 있습니다.)"
 
-#: ../setup/config_data.inc:474
+#: ../setup/config_data.inc:480
 msgid "Highlight size"
 msgstr "하이라이트 크기"
 
-#: ../setup/config_data.inc:475
+#: ../setup/config_data.inc:481
 #, fuzzy
 msgid "The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."
 msgstr "갤러리 페이지의 하이라이트 이미지 미리보기의 크기(픽셀 단위)"
 
-#: ../setup/config_data.inc:481
+#: ../setup/config_data.inc:487
 msgid "Show Owner"
 msgstr "소유자 보이기"
 
-#: ../setup/config_data.inc:482
+#: ../setup/config_data.inc:488
 msgid "Show album owner's name next to each album?"
 msgstr "각 앨범에 앨범 소유자명을 보이시겠습니까?"
 
-#: ../setup/config_data.inc:487
+#: ../setup/config_data.inc:493
 msgid "Albums per page"
 msgstr "페이지당 앨범"
 
-#: ../setup/config_data.inc:488
+#: ../setup/config_data.inc:494
 msgid "How many albums should be displayed per Gallery page?"
 msgstr "갤러리 페이지당 몇 개의 앨범을 보이시겠습니까?"
 
-#: ../setup/config_data.inc:494
+#: ../setup/config_data.inc:500
 msgid "Search Engine"
 msgstr "검색 엔진"
 
-#: ../setup/config_data.inc:495
+#: ../setup/config_data.inc:501
 msgid "Display search engine on main Gallery page?"
 msgstr "메인 갤러리 페이지에 검색엔진을 보이시겠습니까?"
 
-#: ../setup/config_data.inc:500
+#: ../setup/config_data.inc:506
 msgid "Accurate Photo Count"
 msgstr ""
 
-#: ../setup/config_data.inc:501
+#: ../setup/config_data.inc:507
 msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
 msgstr ""
 
-#: ../setup/config_data.inc:506
+#: ../setup/config_data.inc:512
 #, fuzzy
 msgid "Frame around albums"
 msgstr "미리보기 주변 틀"
 
-#: ../setup/config_data.inc:507
+#: ../setup/config_data.inc:513
 msgid "On the main page, the image representing each album has a frame around it.  The following styles are available:"
 msgstr ""
 
-#: ../setup/config_data.inc:520
+#: ../setup/config_data.inc:526
 msgid "Optional tools"
 msgstr "선택가능한 도구"
 
-#: ../setup/config_data.inc:524 ../setup/config_data.inc:536
-#: ../setup/config_data.inc:548
+#: ../setup/config_data.inc:530 ../setup/config_data.inc:542
+#: ../setup/config_data.inc:554
 #, fuzzy, php-format
 msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr "<b>unzip</b>바이너리가 있는 파일시스템 경로. 이것은 선택사항이니 없더라도 걱정할 필요가 없습니다."
 
-#: ../setup/config_data.inc:560
+#: ../setup/config_data.inc:566
 #, fuzzy, php-format
 msgid "The filesystem path to the <b>jhead</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr "<b>jhead</b> EXIF parser가 있는 파일시스템 경로. 이것은 선택사항이니 없더라도 걱정할 필요가 없습니다. 예: %s 또는 %s."
 
-#: ../setup/config_data.inc:571
+#: ../setup/config_data.inc:577
 msgid "Cache EXIF data"
 msgstr "EXIF 데이터 캐시"
 
-#: ../setup/config_data.inc:572
+#: ../setup/config_data.inc:578
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
 msgstr "JPEG 파일에서 EXIF 데이터를 추출하여 캐싱할 수 있어 처음 한번 읽은 후에는 다시 읽어드릴 필요가 없습니다. 캐싱을 하게 되면 앨범 데이터 파일 크기가 매우 커져서 앨범을 볼 때 느려질 수 있습니다. 하지만, 이 데이터를 캐싱하지 않으면 앨범을 보는 사람이 사진의 속성을 보려고 할 때마다 그 정보를 매번 읽어야 하므로 역시 느려질 수 있습니다."
 
-#: ../setup/config_data.inc:578
+#: ../setup/config_data.inc:584
 #, fuzzy, php-format
 msgid "The filesystem path to the <b>jpegtran</b> utility.  E.g. %s or %s.  This is optional so if you don't have it, don't worry about it too much."
 msgstr "<b>jpegtran</b>유틸리티의 파일시스템 경로. 이것은 선택사항이니 없더라도 걱정할 필요가 없습니다. 예: %s 또는 %s."
 
-#: ../setup/config_data.inc:601
+#: ../setup/config_data.inc:607
 msgid "Languages and locales"
 msgstr "언어와 로케일"
 
-#: ../setup/config_data.inc:604
+#: ../setup/config_data.inc:610
 msgid "Default language"
 msgstr "기본 언어"
 
-#: ../setup/config_data.inc:606
+#: ../setup/config_data.inc:612
 #, php-format
 msgid "This is the language you will see as %s, and what users will see if no other preference is set."
 msgstr "이것은 %s 계정에서 보게 될 언어이며, 일반 사용자가 따로 선택하지 않으면 기본으로 보게됩니다."
 
-#: ../setup/config_data.inc:613
+#: ../setup/config_data.inc:619
 msgid "Multi language mode"
 msgstr "다국어 모드"
 
-#: ../setup/config_data.inc:614
+#: ../setup/config_data.inc:620
 msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site."
 msgstr "갤러리는 세가지 다국어 모드가 있습니다. 사용자가 사이트를 방문할 때 보이는 언어에 영향을 줍니다."
 
-#: ../setup/config_data.inc:617
+#: ../setup/config_data.inc:623
 msgid "Gallery is only displayed in one language"
 msgstr "갤러리는 한 개의 언어로만 표현됩니다."
 
-#: ../setup/config_data.inc:618
+#: ../setup/config_data.inc:624
 msgid "Gallery is displayed in the language the browser sends"
 msgstr "브라우저가 보내는 언어를 사용"
 
-#: ../setup/config_data.inc:619
+#: ../setup/config_data.inc:625
 #, fuzzy
 msgid "The User can choose the language via pulldown menu or national flags."
 msgstr "사용자가 풀다운 메뉴나 국기를 선택하여 언어를 지정."
 
-#: ../setup/config_data.inc:623
+#: ../setup/config_data.inc:629
 msgid "Available languages"
 msgstr "사용가능한 언어"
 
-#: ../setup/config_data.inc:626
+#: ../setup/config_data.inc:632
 #, fuzzy
 msgid "These languages will be available as user choices in a pulldown menu or national flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."
 msgstr "다국어 모드 3을 선택할 경우 이 언어들은 풀다운 메뉴나 국기에서 사용자가 선택하게 됩니다. 또한 모드 2나 3에서 등록된 사용자가 기본언어로 사용할 수 있습니다. "
 
-#: ../setup/config_data.inc:632
+#: ../setup/config_data.inc:638
 msgid "Show flags?"
 msgstr "국기 표시?"
 
-#: ../setup/config_data.inc:634
+#: ../setup/config_data.inc:640
 #, fuzzy
 msgid "In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."
 msgstr "모드 3에서 사용가능한 언어를 작은 풀다운메뉴를 대신해 국기표시로 선택할 수 있습니다."
 
-#: ../setup/config_data.inc:640
+#: ../setup/config_data.inc:646
 msgid "Format for date strings."
 msgstr "날짜 형식"
 
-#: ../setup/config_data.inc:641 ../setup/config_data.inc:651
+#: ../setup/config_data.inc:647 ../setup/config_data.inc:657
 #, fuzzy, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
 msgstr "이 스트링 형식은 %1$s 에 %2$s를 표시하는데 사용됩니다. 언어선택에 따라 형식을 변경하도록 %s를 사용하시기를 권장합니다. 그래도, 이 스트링을 변경하시려면 %3$s를 보시기 바랍니다."
 
-#: ../setup/config_data.inc:642
+#: ../setup/config_data.inc:648
 msgid "date without time"
 msgstr "시간표시 없는 날짜"
 
-#: ../setup/config_data.inc:643 ../setup/config_data.inc:653
+#: ../setup/config_data.inc:649 ../setup/config_data.inc:659
 msgid "http://www.php.net/manual/en/function.strftime.php"
 msgstr ""
 
-#: ../setup/config_data.inc:644
+#: ../setup/config_data.inc:650
 #, php-format
 msgid "For example, %s will display date like this: %s."
 msgstr "예를 들어, %s는 다음과 같이 날짜를 표시합니다: %s."
 
-#: ../setup/config_data.inc:650
+#: ../setup/config_data.inc:656
 msgid "Format for date/time strings."
 msgstr "날짜/시간 형식."
 
-#: ../setup/config_data.inc:652
+#: ../setup/config_data.inc:658
 msgid "date with time"
 msgstr "날짜와 시간"
 
-#: ../setup/config_data.inc:654
+#: ../setup/config_data.inc:660
 #, php-format
 msgid "For example, %s will display date and time like this: %s."
 msgstr "예를 들어 %s는 날짜와 시간을 다음과 같이 표시합니다: %s."
 
-#: ../setup/config_data.inc:673
+#: ../setup/config_data.inc:679
 msgid "Email and Registration"
 msgstr "이메일과 회원가입"
 
-#: ../setup/config_data.inc:674
+#: ../setup/config_data.inc:680
 #, php-format
 msgid "If you are having problems with email, please run the %s diagnostic."
 msgstr "이메일에 문제가 있으시면 %s 진단을 실행하세요."
 
-#: ../setup/config_data.inc:675 ../setup/diagnostics.php:92
+#: ../setup/config_data.inc:681 ../setup/diagnostics.php:92
 msgid "Check Email"
 msgstr "이메일 확인"
 
-#: ../setup/config_data.inc:678
+#: ../setup/config_data.inc:684
 msgid "Enable email"
 msgstr "사용가능한 이메일"
 
-#: ../setup/config_data.inc:680
+#: ../setup/config_data.inc:686
 #, fuzzy, php-format
 msgid "Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."
 msgstr "모든 갤러리에 이메일을 가동시킵니다. 만약 %s로 설정하면 이 섹션의 어떠한 것도 적용되지 않습니다."
 
-#: ../setup/config_data.inc:682
+#: ../setup/config_data.inc:688
 msgid "If you enable these settings you give your users the opportunity to let Gallery send them their lost password via email."
 msgstr ""
 
-#: ../setup/config_data.inc:683
+#: ../setup/config_data.inc:689
 msgid "You need to enable this setting if you want to enable Self Registration."
 msgstr ""
 
-#: ../setup/config_data.inc:688
+#: ../setup/config_data.inc:694
 msgid "Admin email address"
 msgstr "관리자 이메일 주소"
 
-#: ../setup/config_data.inc:689
+#: ../setup/config_data.inc:695
 msgid "Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know whom to reach in case of problems. You may specify more than one address by separating them with commas."
 msgstr "회원의 행동이나 문제가 발생한 회원의 이메일 알림을 받으시려면  올바르게 작동하는 이메일 주소를 기입하세요. 한 개 이상의 주소는 쉼표를 이용해 지정할 수 있습니다."
 
-#: ../setup/config_data.inc:697
+#: ../setup/config_data.inc:703
 msgid "Sender email address"
 msgstr "전송자 이메일 주소"
 
-#: ../setup/config_data.inc:698
+#: ../setup/config_data.inc:704
 msgid "Set this value to a valid working email address.  Emails that are automatically sent by Gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients."
 msgstr "올바르게 작동하는 이메일 주소를 기입하세요. 갤러리에 의해 자동전송되는 이메일은 회송주소로 이것을 사용하게 됩니다. 메시지 반송이나 답장을 이 이메일주소로 지켜보실 수 있습니다."
 
-#: ../setup/config_data.inc:706
+#: ../setup/config_data.inc:712
 msgid "Email subject prefix"
 msgstr ""
 
-#: ../setup/config_data.inc:707
+#: ../setup/config_data.inc:713
 msgid "All Gallery emails will have this as the first part of their subject."
 msgstr ""
 
-#: ../setup/config_data.inc:715
+#: ../setup/config_data.inc:721
 msgid "Welcome email message text"
 msgstr "축하 이메일 메세지"
 
-#: ../setup/config_data.inc:716
+#: ../setup/config_data.inc:722
 msgid "This email will be sent when new accounts are created."
 msgstr "이 이메일은 새로운 계정이 생성될 때 전송됩니다."
 
-#: ../setup/config_data.inc:717
+#: ../setup/config_data.inc:723
 #, php-format
 msgid "%s, %s and %s will be replaced by the fullname, user name and password of the newly created user."
 msgstr "%s, %s 와 %s는 새로 가입한 회원의 실제이름, 아이디와 비밀번호입니다."
 
-#: ../setup/config_data.inc:721
+#: ../setup/config_data.inc:727
 #, php-format
 msgid "%s will be replaced by a link the new user can click on to create a new password"
 msgstr ""
 
-#: ../setup/config_data.inc:723
+#: ../setup/config_data.inc:729
 msgid "Leave this field blank to get the default message that can be translated into other languages.  The default message is:"
 msgstr "다른 언어로 번역될수 있는 기본 메세지를 얻으려면 이 필드를 공백으로 나두세요. 기본 메세지는:"
 
-#: ../setup/config_data.inc:733
+#: ../setup/config_data.inc:739
 msgid "Allow visitors to self register."
 msgstr "회원가입 허용"
 
-#: ../setup/config_data.inc:734
+#: ../setup/config_data.inc:740
 #, fuzzy
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
 msgstr "이것은 당신 사이트의 손님이 스스로 로그인계정을 생성하도록 허용하는 것을 가능하게 합니다."
 
-#: ../setup/config_data.inc:735
+#: ../setup/config_data.inc:741
 msgid "This option requires the Email feature to be enabled."
 msgstr ""
 
-#: ../setup/config_data.inc:738
+#: ../setup/config_data.inc:744
 #, fuzzy
 msgid "Email"
 msgstr "이메일 전송"
 
-#: ../setup/config_data.inc:741
+#: ../setup/config_data.inc:747
 msgid "Self registered users can create albums."
 msgstr "회원은 앨범을 생성할 수 있습니다."
 
-#: ../setup/config_data.inc:742
+#: ../setup/config_data.inc:748
 msgid "Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled."
 msgstr "이것은 회원이 가입시부터 자신의 앨범을 생성하는 것을 가능하게 합니다. 그들이 갤러리에 어떠한 내용을 생성하기 전 또는 후에 수동으로 권한을 부여하기 전에는 가능하지 않습니다. 이 설정은 회원가입이 허용되지 않으면 무시됩니다."
 
-#: ../setup/config_data.inc:747
+#: ../setup/config_data.inc:753
 msgid "Enable bulk account creation"
 msgstr "벌크 계정 생성 가능"
 
-#: ../setup/config_data.inc:748
+#: ../setup/config_data.inc:754
 #, fuzzy
 msgid "This option allows you to create many new user accounts at one time by creating a file of new users."
 msgstr "이 옵션은 새 회원파일 생성을 통해 많은 새회원계정을 한번에 생성하도록 허용합니다."
 
-#: ../setup/config_data.inc:754
+#: ../setup/config_data.inc:760
 msgid "This is allows the &quot;admin&quot; account to get email whenever a comment is added to any album"
 msgstr ""
 
-#: ../setup/config_data.inc:755
+#: ../setup/config_data.inc:761
 msgid "Admin comment email"
 msgstr ""
 
-#: ../setup/config_data.inc:760
+#: ../setup/config_data.inc:766
 msgid "This is allows the &quot;admin&quot; account to get email whenever a change is made to any album"
 msgstr ""
 
-#: ../setup/config_data.inc:761
+#: ../setup/config_data.inc:767
 msgid "Admin Other Changes email"
 msgstr ""
 
-#: ../setup/config_data.inc:767
+#: ../setup/config_data.inc:773
 msgid "Admin notification of email activity"
 msgstr "이메일 활동을 관리자에게 알림"
 
-#: ../setup/config_data.inc:768
+#: ../setup/config_data.inc:774
 msgid "You can keep a record of every email that is sent by Gallery."
 msgstr "갤러리에 의해 전송되는 모든 이메일의 기록을 보관할 수 있습니다."
 
-#: ../setup/config_data.inc:770
+#: ../setup/config_data.inc:776
 msgid "Send summary email"
 msgstr "요약 이메일 전송"
 
-#: ../setup/config_data.inc:771
+#: ../setup/config_data.inc:777
 msgid "Log to a file"
 msgstr "파일에 로그기록 남김"
 
-#: ../setup/config_data.inc:772
+#: ../setup/config_data.inc:778
 msgid "Send duplicate email"
 msgstr "복사 이메일 전송"
 
-#: ../setup/config_data.inc:777
+#: ../setup/config_data.inc:783
 msgid "Use non-local SMTP server."
 msgstr ""
 
-#: ../setup/config_data.inc:778
+#: ../setup/config_data.inc:784
 msgid "Use a smtp server running on a different machine (ie: Your ISPs mail server) to process outgoing gallery email."
 msgstr ""
 
-#: ../setup/config_data.inc:785
+#: ../setup/config_data.inc:791
 msgid "SMTP Server"
 msgstr ""
 
-#: ../setup/config_data.inc:786
+#: ../setup/config_data.inc:792
 msgid "The name or IP address of the SMTP Server you want to use."
 msgstr ""
 
-#: ../setup/config_data.inc:794
+#: ../setup/config_data.inc:800
 msgid "Local Host Name"
 msgstr ""
 
-#: ../setup/config_data.inc:795
+#: ../setup/config_data.inc:801
 msgid "The local hostname of the server as a reverse DNS lookup of the IP would show. If you are behind a NAT, this would be the DNS name of your router. If you don't know what to do here, 'localhost' is probably ok in most situations."
 msgstr ""
 
-#: ../setup/config_data.inc:803
+#: ../setup/config_data.inc:809
 msgid "SMTP Port"
 msgstr ""
 
-#: ../setup/config_data.inc:804
+#: ../setup/config_data.inc:810
 msgid "The port on the SMTP server you are connecting to."
 msgstr ""
 
-#: ../setup/config_data.inc:812
+#: ../setup/config_data.inc:818
 msgid "SMTP account name"
 msgstr ""
 
-#: ../setup/config_data.inc:813
+#: ../setup/config_data.inc:819
 msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
 msgstr ""
 
-#: ../setup/config_data.inc:821
+#: ../setup/config_data.inc:827
 #, fuzzy
 msgid "SMTP password"
 msgstr "최고관리자 비밀번호"
 
-#: ../setup/config_data.inc:822
+#: ../setup/config_data.inc:828
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
 msgstr ""
 
-#: ../setup/config_data.inc:837
+#: ../setup/config_data.inc:843
 msgid "Gallery wide slideshow"
 msgstr "갤러리 와이드 슬라이드쇼"
 
-#: ../setup/config_data.inc:838
+#: ../setup/config_data.inc:844
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
 msgstr "갤러리의 메인페이지에서 슬라이드쇼 링크를 추가합니다. 대형 갤러리에서 매우 느리며 시스템자원을 많이 사용하는 것에 주의하시기 바랍니다."
 
-#: ../setup/config_data.inc:839 ../setup/config_data.inc:1472
+#: ../setup/config_data.inc:845 ../setup/config_data.inc:1482
 msgid "These settings do not apply to the low tech slideshow."
 msgstr ""
 
-#: ../setup/config_data.inc:842
+#: ../setup/config_data.inc:848
 msgid "Slideshow preferences"
 msgstr "슬라이드쇼 설정"
 
-#: ../setup/config_data.inc:844 ../setup/config_data.inc:852
-#: ../setup/config_data.inc:899 ../setup/config_data.inc:909
-#: ../setup/config_data.inc:1477 ../setup/config_data.inc:1485
+#: ../setup/config_data.inc:850 ../setup/config_data.inc:858
+#: ../setup/config_data.inc:905 ../setup/config_data.inc:915
+#: ../setup/config_data.inc:1487 ../setup/config_data.inc:1495
 msgid "Off"
 msgstr "끄기"
 
-#: ../setup/config_data.inc:845 ../setup/config_data.inc:1478
+#: ../setup/config_data.inc:851 ../setup/config_data.inc:1488
 msgid "No slideshow link will appear."
 msgstr "나타날 슬라이드쇼 링크 없음"
 
-#: ../setup/config_data.inc:846 ../setup/config_data.inc:853
-#: ../setup/config_data.inc:1479 ../setup/config_data.inc:1486
+#: ../setup/config_data.inc:852 ../setup/config_data.inc:859
+#: ../setup/config_data.inc:1489 ../setup/config_data.inc:1496
 msgid "Ordered"
 msgstr "정렬됨"
 
-#: ../setup/config_data.inc:847 ../setup/config_data.inc:1480
+#: ../setup/config_data.inc:853 ../setup/config_data.inc:1490
 msgid "Images will display in the same order as they appear in the Gallery."
 msgstr "이미지가 갤러리에 나타나는 것처럼 같은 순서로 표시됩니다."
 
-#: ../setup/config_data.inc:848 ../setup/config_data.inc:854
-#: ../setup/config_data.inc:1481 ../setup/config_data.inc:1487
+#: ../setup/config_data.inc:854 ../setup/config_data.inc:860
+#: ../setup/config_data.inc:1491 ../setup/config_data.inc:1497
 msgid "Random"
 msgstr "무작위"
 
-#: ../setup/config_data.inc:849 ../setup/config_data.inc:1482
+#: ../setup/config_data.inc:855 ../setup/config_data.inc:1492
 msgid "Images will appear in a random order."
 msgstr "이미지가 무작위로 나타나게 됩니다."
 
-#: ../setup/config_data.inc:859 ../setup/config_data.inc:1504
+#: ../setup/config_data.inc:865 ../setup/config_data.inc:1514
 msgid "Slideshow length"
 msgstr "슬라이드쇼 길이"
 
-#: ../setup/config_data.inc:860 ../setup/config_data.inc:1505
+#: ../setup/config_data.inc:866 ../setup/config_data.inc:1515
 msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
 msgstr "슬라이드쇼에 보여지는 이미지의 갯수. 0 또는 공백으로 설정하면 모든 이미지를 보여줍니다. 만약 슬라이드쇼를 무작위나 이미지의 범위를 정해 보여주기 원한다면 숫자를 지정하세요."
 
-#: ../setup/config_data.inc:867 ../setup/config_data.inc:1498
+#: ../setup/config_data.inc:873 ../setup/config_data.inc:1508
 msgid "Allow slideshow to loop"
 msgstr ""
 
-#: ../setup/config_data.inc:868
+#: ../setup/config_data.inc:874
 #, php-format
 msgid "This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr ""
 
-#: ../setup/config_data.inc:873
+#: ../setup/config_data.inc:879
 #, fuzzy
 msgid "Slideshow Mode"
 msgstr "슬라이드쇼 형태"
 
-#: ../setup/config_data.inc:874
+#: ../setup/config_data.inc:880
 msgid "This allows you to set the default mode for the slideshow.  &quot;Java Applet&quot; requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. &quot;JavaScript&quot; is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."
 msgstr ""
 
-#: ../setup/config_data.inc:875
+#: ../setup/config_data.inc:881
 msgid "Java Applet"
 msgstr ""
 
-#: ../setup/config_data.inc:875
+#: ../setup/config_data.inc:881
 msgid "JavaScript"
 msgstr ""
 
-#: ../setup/config_data.inc:885
+#: ../setup/config_data.inc:891
 msgid "Comments"
 msgstr "코멘트"
 
-#: ../setup/config_data.inc:888
+#: ../setup/config_data.inc:894
 #, fuzzy
 msgid "Enable commenting"
 msgstr "사용가능한 이메일"
 
-#: ../setup/config_data.inc:889
+#: ../setup/config_data.inc:895
 msgid "This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
 msgstr ""
 
-#: ../setup/config_data.inc:897
+#: ../setup/config_data.inc:903
 msgid "Indicate if there are comments available"
 msgstr "만약 코멘트가 있다면 보이겠습니까?"
 
-#: ../setup/config_data.inc:900
+#: ../setup/config_data.inc:906
 msgid "No indication that an item has comments."
 msgstr "아이템이 코멘트가 있어도 보이지 않음."
 
-#: ../setup/config_data.inc:901 ../setup/config_data.inc:910
+#: ../setup/config_data.inc:907 ../setup/config_data.inc:916
 msgid "Photos"
 msgstr "사진"
 
-#: ../setup/config_data.inc:902
+#: ../setup/config_data.inc:908
 msgid "Images that have comments will be marked."
 msgstr "코멘트가 있는 이미지가 표시됩니다."
 
-#: ../setup/config_data.inc:903 ../setup/config_data.inc:911
+#: ../setup/config_data.inc:909 ../setup/config_data.inc:917
 msgid "Albums"
 msgstr "앨범"
 
-#: ../setup/config_data.inc:904
+#: ../setup/config_data.inc:910
 msgid "Albums and sub-albums that have comments will be marked."
 msgstr "코멘트가 있는 앨범과 하위 앨범이 표시됩니다."
 
-#: ../setup/config_data.inc:905 ../setup/config_data.inc:912
+#: ../setup/config_data.inc:911 ../setup/config_data.inc:918
 msgid "Both"
 msgstr "둘다"
 
-#: ../setup/config_data.inc:906
+#: ../setup/config_data.inc:912
 msgid "Images and albums that have comments will be marked."
 msgstr "코멘트 있는 이미지와 앨범이 표시됩니다."
 
-#: ../setup/config_data.inc:917
+#: ../setup/config_data.inc:923
 msgid "Display date of last comment?"
 msgstr "마지막 코멘트의 날짜 표시?"
 
-#: ../setup/config_data.inc:918
+#: ../setup/config_data.inc:924
 #, php-format
 msgid "If an item has comments, display date of last comment, rather than a %s."
 msgstr ""
 
-#: ../setup/config_data.inc:923
+#: ../setup/config_data.inc:929
 msgid "Anonymous comments from known users?"
 msgstr ""
 
-#: ../setup/config_data.inc:924
+#: ../setup/config_data.inc:930
 #, php-format
 msgid "When logged in, comments will automatically use format described below, unless this is set to %s."
 msgstr ""
 
-#: ../setup/config_data.inc:930
+#: ../setup/config_data.inc:936
 #, fuzzy
 msgid "Format for commenter names"
 msgstr "날짜 형식"
 
-#: ../setup/config_data.inc:931
+#: ../setup/config_data.inc:937
 msgid "Commenter names of logged in users can be displayed in a variety of different ways"
 msgstr ""
 
-#: ../setup/config_data.inc:936
+#: ../setup/config_data.inc:942
 msgid "Add Comments inside the photo page"
 msgstr ""
 
-#: ../setup/config_data.inc:937
+#: ../setup/config_data.inc:943
 msgid "Do you want to have the possibility to add comments inside the view photo page, or do you prefer a link to a popup"
 msgstr ""
 
-#: ../setup/config_data.inc:938
+#: ../setup/config_data.inc:944
 msgid "Popup"
 msgstr ""
 
-#: ../setup/config_data.inc:938
+#: ../setup/config_data.inc:944
 msgid "Inside"
 msgstr ""
 
-#: ../setup/config_data.inc:942
+#: ../setup/config_data.inc:948
 msgid "Maximum length of Comments"
 msgstr ""
 
-#: ../setup/config_data.inc:943
+#: ../setup/config_data.inc:949
 msgid "Enter a suitable value for the maximum length of comments to prevent abuse. Gallery limits comments to no more than 1000 characters.  This value will be used if less than 1000."
 msgstr ""
 
-#: ../setup/config_data.inc:949
+#: ../setup/config_data.inc:955
 msgid "Can everybody see a Comments overview"
 msgstr ""
 
-#: ../setup/config_data.inc:950
+#: ../setup/config_data.inc:956
 msgid "Do you want to allow everybody to see a complete overview of all Comments of an Album. Set this to &quot;no&quot; if only admin and owners can use this feature."
 msgstr ""
 
-#: ../setup/config_data.inc:962
+#: ../setup/config_data.inc:968
 msgid "Technical"
 msgstr "기술적인 면"
 
-#: ../setup/config_data.inc:963
+#: ../setup/config_data.inc:969
 msgid "You usually don't need to change anything in this section."
 msgstr "일반적으로 이 구역의 어떤 것도 변경할 필요가 없습니다."
 
-#: ../setup/config_data.inc:966
+#: ../setup/config_data.inc:972
 msgid "Time Limit"
 msgstr "시간 제한"
 
-#: ../setup/config_data.inc:967
+#: ../setup/config_data.inc:973
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr "단일 오퍼레이션에 주어지는 최대한의 시간(초단위). <b>Maximum execution time exceeded</b> 에러 메시지를 보게 되면 이 값을 좀더 크게 조정할 수 있습니다. 너무 크게 조정한다면 프로세스가 아무 일도 하지 않고 오랫동안 멈출 수도 있으니 유의하십시오. 기본값으로 주어진 30초가 무난합니다."
 
-#: ../setup/config_data.inc:975
+#: ../setup/config_data.inc:981
 msgid "Random Block Cache Time"
 msgstr ""
 
-#: ../setup/config_data.inc:976
+#: ../setup/config_data.inc:982
 msgid "This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."
 msgstr ""
 
-#: ../setup/config_data.inc:978
+#: ../setup/config_data.inc:984
 msgid "24 Hours"
 msgstr ""
 
-#: ../setup/config_data.inc:978
+#: ../setup/config_data.inc:984
 msgid "12 Hours"
 msgstr ""
 
-#: ../setup/config_data.inc:978
+#: ../setup/config_data.inc:984
 msgid "6 Hours"
 msgstr ""
 
-#: ../setup/config_data.inc:978
+#: ../setup/config_data.inc:984
 msgid "1 Hour"
 msgstr ""
 
-#: ../setup/config_data.inc:979
+#: ../setup/config_data.inc:985
 msgid "30 Minutes"
 msgstr ""
 
-#: ../setup/config_data.inc:982
+#: ../setup/config_data.inc:988
 msgid "Random Block Retrieval Attempts"
 msgstr ""
 
-#: ../setup/config_data.inc:983
+#: ../setup/config_data.inc:989
 msgid "This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."
 msgstr ""
 
-#: ../setup/config_data.inc:990
+#: ../setup/config_data.inc:996
 msgid "Debug mode"
 msgstr "디버그 모드"
 
-#: ../setup/config_data.inc:991
+#: ../setup/config_data.inc:997
 msgid "Turn debug mode on so that you can diagnose problems?"
 msgstr "문제를 진단하시려고 디버그모드를 켜셨나요?"
 
-#: ../setup/config_data.inc:991
+#: ../setup/config_data.inc:997
 msgid "Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system then you want!"
 msgstr ""
 
-#: ../setup/config_data.inc:996
+#: ../setup/config_data.inc:1002
 msgid "Developer Mode"
 msgstr ""
 
-#: ../setup/config_data.inc:997
+#: ../setup/config_data.inc:1003
 msgid "Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."
 msgstr ""
 
-#: ../setup/config_data.inc:1002
+#: ../setup/config_data.inc:1008
 #, fuzzy
 msgid "Use Syslog"
 msgstr "%s 사용"
 
-#: ../setup/config_data.inc:1003
+#: ../setup/config_data.inc:1009
 msgid "Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"
 msgstr ""
 
-#: ../setup/config_data.inc:1008
+#: ../setup/config_data.inc:1014
 #, php-format
 msgid "Use %s"
 msgstr "%s 사용"
 
-#: ../setup/config_data.inc:1009
+#: ../setup/config_data.inc:1015
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
 msgstr "데이터 깨짐에 대한 보호책으로 flock() 시스템을 사용합니다. 모든 플랫폼에서 지원하는 것은 아닙니다. <i>Cound not acquire lock</i>과 같은 에러가 발생하면 이 값을 <i>아니오</i>로 하십시오."
 
-#: ../setup/config_data.inc:1013
+#: ../setup/config_data.inc:1019
 msgid "Status code"
 msgstr "상태 코드"
 
-#: ../setup/config_data.inc:1014
+#: ../setup/config_data.inc:1020
 #, fuzzy
 msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr "성공적인 exec() 호출 후에 갤러리가 성공으로 여기는 상태 코드. 특별히 문제가 없으면 변경할 필요가 없습니다."
 
-#: ../setup/config_data.inc:1020
+#: ../setup/config_data.inc:1026
 msgid "Session variable"
 msgstr "세션 변수"
 
-#: ../setup/config_data.inc:1021
+#: ../setup/config_data.inc:1027
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr "갤러리 세션 정보를 담는데 사용되는 세션 변수. 갤러리와 다른 PHP 애플리케이션과 충돌이 발생하면 변경하세요."
 
-#: ../setup/config_data.inc:1033
+#: ../setup/config_data.inc:1039
 msgid "RSS Publisher"
 msgstr ""
 
-#: ../setup/config_data.inc:1034
+#: ../setup/config_data.inc:1040
 msgid "Options for the Gallery RSS Publisher"
 msgstr ""
 
-#: ../setup/config_data.inc:1037
+#: ../setup/config_data.inc:1043
 msgid "Enable RSS Generator"
 msgstr ""
 
-#: ../setup/config_data.inc:1038
+#: ../setup/config_data.inc:1044
 msgid "Enable or Disable the Gallery RSS Generator"
 msgstr ""
 
-#: ../setup/config_data.inc:1040 ../setup/config_data.inc:1081
-#: ../setup/config_data.inc:1089 ../setup/config_data.inc:1097
+#: ../setup/config_data.inc:1046 ../setup/config_data.inc:1087
+#: ../setup/config_data.inc:1095 ../setup/config_data.inc:1103
 #, fuzzy
 msgid "Yes"
 msgstr "예"
 
-#: ../setup/config_data.inc:1041 ../setup/config_data.inc:1082
-#: ../setup/config_data.inc:1090 ../setup/config_data.inc:1098
+#: ../setup/config_data.inc:1047 ../setup/config_data.inc:1088
+#: ../setup/config_data.inc:1096 ../setup/config_data.inc:1104
 #, fuzzy
 msgid "No"
 msgstr "주의"
 
-#: ../setup/config_data.inc:1045
+#: ../setup/config_data.inc:1051
 msgid "RSS Content"
 msgstr ""
 
-#: ../setup/config_data.inc:1046
+#: ../setup/config_data.inc:1052
 msgid "Specifies which information is to be included in your RSS feed."
 msgstr ""
 
-#: ../setup/config_data.inc:1048
+#: ../setup/config_data.inc:1054
 msgid "Basic information only"
-msgstr ""
-
-#: ../setup/config_data.inc:1049
-#, fuzzy
-msgid "Album highlight"
-msgstr "앨범 슬라이드쇼"
-
-#: ../setup/config_data.inc:1050
-msgid "All image thumbnails"
-msgstr ""
-
-#: ../setup/config_data.inc:1051
-msgid "All image thumbnails and captions"
 msgstr ""
 
 #: ../setup/config_data.inc:1055
 #, fuzzy
+msgid "Album highlight"
+msgstr "앨범 슬라이드쇼"
+
+#: ../setup/config_data.inc:1056
+msgid "All image thumbnails"
+msgstr ""
+
+#: ../setup/config_data.inc:1057
+msgid "All image thumbnails and captions"
+msgstr ""
+
+#: ../setup/config_data.inc:1061
+#, fuzzy
 msgid "RSS Highlight"
 msgstr "하이라이트 크기"
 
-#: ../setup/config_data.inc:1056
+#: ../setup/config_data.inc:1062
 msgid "Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."
 msgstr ""
 
-#: ../setup/config_data.inc:1062
+#: ../setup/config_data.inc:1068
 msgid "Maximum Albums Returned"
 msgstr ""
 
-#: ../setup/config_data.inc:1063
+#: ../setup/config_data.inc:1069
 msgid "This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."
 msgstr ""
 
-#: ../setup/config_data.inc:1070
+#: ../setup/config_data.inc:1076
 msgid "Visible Albums Only"
 msgstr ""
 
-#: ../setup/config_data.inc:1071
+#: ../setup/config_data.inc:1077
 msgid "Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."
 msgstr ""
 
-#: ../setup/config_data.inc:1073
+#: ../setup/config_data.inc:1079
 msgid "Display Visible Albums Only"
 msgstr ""
 
-#: ../setup/config_data.inc:1074
+#: ../setup/config_data.inc:1080
 #, fuzzy
 msgid "Display Hidden Albums"
 msgstr "앨범에 조회수를 표시하겠습니까?"
 
-#: ../setup/config_data.inc:1078
+#: ../setup/config_data.inc:1084
 msgid "Use dc:date"
 msgstr ""
 
-#: ../setup/config_data.inc:1079
+#: ../setup/config_data.inc:1085
 msgid "(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."
 msgstr ""
 
-#: ../setup/config_data.inc:1086
+#: ../setup/config_data.inc:1092
 msgid "Use Big Photo"
 msgstr ""
 
-#: ../setup/config_data.inc:1087
+#: ../setup/config_data.inc:1093
 msgid "(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."
 msgstr ""
 
-#: ../setup/config_data.inc:1094
+#: ../setup/config_data.inc:1100
 msgid "Use Photo Tag"
 msgstr ""
 
-#: ../setup/config_data.inc:1095
+#: ../setup/config_data.inc:1101
 msgid "(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
 msgstr ""
 
-#: ../setup/config_data.inc:1129
+#: ../setup/config_data.inc:1135
 msgid "Layout"
 msgstr "레이아웃"
 
-#: ../setup/config_data.inc:1132
+#: ../setup/config_data.inc:1138
 msgid "Default Columns"
 msgstr "기본 열"
 
-#: ../setup/config_data.inc:1133
+#: ../setup/config_data.inc:1139
 msgid "The default number of columns in an album."
 msgstr "앨범의 기본 열 수."
 
-#: ../setup/config_data.inc:1138
+#: ../setup/config_data.inc:1144
 msgid "Default Rows"
 msgstr "기본 행"
 
-#: ../setup/config_data.inc:1139
+#: ../setup/config_data.inc:1145
 msgid "The default number of rows in an album."
 msgstr "앨범의 기본 행 숫자."
 
-#: ../setup/config_data.inc:1150
+#: ../setup/config_data.inc:1156
 msgid "Appearance"
 msgstr "외관"
 
-#: ../setup/config_data.inc:1153
+#: ../setup/config_data.inc:1159
 msgid "Border color"
 msgstr "경계선 색상"
 
-#: ../setup/config_data.inc:1154
+#: ../setup/config_data.inc:1160
 #, fuzzy, php-format
 msgid "Default color of (image) borders. You can learn about %scolors%s here."
 msgstr "기본 이미지 경계 색상.  %s색상%s 에 대해 여기에서 배울 수 있습니다."
 
-#: ../setup/config_data.inc:1165
+#: ../setup/config_data.inc:1171
 msgid "Border width"
 msgstr "경계선 폭"
 
-#: ../setup/config_data.inc:1166
+#: ../setup/config_data.inc:1172
 #, fuzzy
 msgid "Default width of (image) borders."
 msgstr "기본 이미지 경계선 폭."
 
-#: ../setup/config_data.inc:1171
+#: ../setup/config_data.inc:1177
 msgid "Default Font"
 msgstr "기본 글꼴"
 
-#: ../setup/config_data.inc:1172
+#: ../setup/config_data.inc:1178
 msgid "Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"
 msgstr "기본 글꼴. 즉, <i>arial</i> 또는 <i>trebuchet</i>"
 
-#: ../setup/config_data.inc:1185
+#: ../setup/config_data.inc:1191
 msgid "Image Processing and Display"
 msgstr "사진 처리 저장중"
 
-#: ../setup/config_data.inc:1188
+#: ../setup/config_data.inc:1194
 msgid "Thumbnail size"
 msgstr "썸네일 크기"
 
-#: ../setup/config_data.inc:1189
+#: ../setup/config_data.inc:1195
 msgid "The default target size (in pixels) of album thumbnails."
 msgstr "앨범 썸네일의 기본 목표 크기(픽셀)."
 
-#: ../setup/config_data.inc:1195
+#: ../setup/config_data.inc:1201
 msgid "Resized image size"
 msgstr "이미지 크기 재조정"
 
-#: ../setup/config_data.inc:1196
+#: ../setup/config_data.inc:1202
 #, fuzzy
 msgid "When large images are added to an album, an intermediate version will automatically be generated at this size."
 msgstr "큰 이미지가 앨범에 추가될 때 자동으로 생성되는 중간단계 이미지의 크기를 지정합니다."
 
-#: ../setup/config_data.inc:1198 ../setup/config_data.inc:1212
+#: ../setup/config_data.inc:1204 ../setup/config_data.inc:1218
 msgid "off"
 msgstr "끄기"
 
-#: ../setup/config_data.inc:1201
+#: ../setup/config_data.inc:1207
 msgid "Resized JPEG/PNG images file size"
 msgstr "크기 조정된 JPEG/PNG 이미지 파일 크기"
 
-#: ../setup/config_data.inc:1202
+#: ../setup/config_data.inc:1208
 msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
 msgstr "크기조절된 JPEG 이미지의 기본 파일 크기(Kbytes). 이 값을 가지면 파일 업로드가 느려질 수 있지만 다이얼업 접속을 하는 사람들에게는 페이지 보는 속도를 높일 수 있습니다. 0으로 하면 크기 지정을 하지 않습니다."
 
-#: ../setup/config_data.inc:1209
+#: ../setup/config_data.inc:1215
 msgid "Maximum image size"
 msgstr "최대 이미지 크기"
 
-#: ../setup/config_data.inc:1210
+#: ../setup/config_data.inc:1216
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
 msgstr ""
 
-#: ../setup/config_data.inc:1210
+#: ../setup/config_data.inc:1216
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
 msgstr ""
 
-#: ../setup/config_data.inc:1212
+#: ../setup/config_data.inc:1218
 #, php-format
 msgid "%d (%d MPix)"
 msgstr ""
 
-#: ../setup/config_data.inc:1215
+#: ../setup/config_data.inc:1221
 msgid "Maximum JPEG/PNG image file size"
 msgstr "최대 JPEG/PNG 이미지 파일 크기"
 
-#: ../setup/config_data.inc:1216
+#: ../setup/config_data.inc:1222
 msgid "You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery."
 msgstr ""
 
-#: ../setup/config_data.inc:1216
+#: ../setup/config_data.inc:1222
 #, fuzzy
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
 msgstr "크기조절된 JPEG 이미지의 기본 파일 크기(Kbytes). 이 값을 가지면 파일 업로드가 느려질 수 있지만 다이얼업 접속을 하는 사람들에게는 페이지 보는 속도를 높일 수 있습니다. 0으로 하면 크기 지정을 하지 않습니다."
 
-#: ../setup/config_data.inc:1222
+#: ../setup/config_data.inc:1228
 msgid "Preserve Names"
 msgstr "이름 보존"
 
-#: ../setup/config_data.inc:1223
+#: ../setup/config_data.inc:1229
 msgid "When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."
 msgstr "갤러리에 이미지를 업로드할 때 원래 이름을 유지하시겠습니까? <i>아니오</i>를 선택하면 갤러리는 업로드되는 각 사진과 동영상에 새로운 이름을 부여하게 됩니다."
 
-#: ../setup/config_data.inc:1228
+#: ../setup/config_data.inc:1234
 msgid "Add to beginning"
 msgstr "시작에 추가"
 
-#: ../setup/config_data.inc:1229
+#: ../setup/config_data.inc:1235
 msgid "New images added to beginning rather than end of albums."
 msgstr "새 이미지를 앨범의 끝보다는 시작에 새 이미지를 추가합니다."
 
-#: ../setup/config_data.inc:1234
+#: ../setup/config_data.inc:1240
 msgid "Fit-to-window"
 msgstr "창에 맞추기"
 
-#: ../setup/config_data.inc:1235
+#: ../setup/config_data.inc:1241
 #, fuzzy
 msgid "When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
 msgstr "중간단계 이미지가 없는 사진을 볼 때 갤러리는 브라우저 창에 맞춰 이미지 크기를 자동으로 조절할 수 있습니다(JavaScript 이용). 이것은 Nuke와 같은 임베디드 환경에서는 동작하지 않습니다."
 
-#: ../setup/config_data.inc:1240
+#: ../setup/config_data.inc:1246
 msgid "Visitor size prefs"
 msgstr "방문자가 크기조절 가능"
 
-#: ../setup/config_data.inc:1241
+#: ../setup/config_data.inc:1247
 #, fuzzy
 msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."
 msgstr "방문자가 중간단계 크기 대신 전체 크기의 이미지를 볼 수 있는 선택을 할 수 있게 합니다. 이 설정은 방문자의 세션이 끝날 때까지만 지속됩니다."
 
-#: ../setup/config_data.inc:1252
+#: ../setup/config_data.inc:1258
 msgid "Options"
 msgstr "선택"
 
-#: ../setup/config_data.inc:1255
+#: ../setup/config_data.inc:1261
 msgid "Printing Services"
 msgstr "출력 서비스"
 
-#: ../setup/config_data.inc:1256
+#: ../setup/config_data.inc:1262
 #, fuzzy
-msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
+msgid "Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
 msgstr "방문자가 앨범을 보면서 바로 사진을 인화를 할 수 있게 합니다. Fotokasten은 독일에 있는 출력서비스로 유럽시장에 좋습니다. PhotoAccess와 Shutterfly는 미국에 있습니다. PhotoAccess, Fotokasten 와 Shutterfly will all give a small donation to the Gallery project for every print you make.shutterfly를 선택하면 매 인화시마다 추가로 2센트(US)를 더 부과합니다. 이 중 1.8센트는 갤러리 프로젝트의 기부금으로 사용됩니다. PhotoAccess와 Fotokasten do not charge extra for the Gallery donation. 이것을 통해 여러분이 이 무료 소프트웨어를 지원할 수 있습니다."
 
-#: ../setup/config_data.inc:1275
-msgid ""
-"mPUSH is a photo service that adds the ability to send thumbnail images to your, or\n"
-"a friend's, cellphone for a small fee."
+#: ../setup/config_data.inc:1285
+msgid "mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."
 msgstr ""
 
-#: ../setup/config_data.inc:1294
+#: ../setup/config_data.inc:1305
 msgid "Account for the mPUSH service"
 msgstr ""
 
-#: ../setup/config_data.inc:1295
-msgid ""
-"If you so choose, you can create your own account to use with the mPUSH cellular photo service.  If\n"
-"you do not use your own account, please leave this set to 'gallery'."
+#: ../setup/config_data.inc:1306
+msgid "If you so choose, you can create your own account to use with the mPUSH cellular photo service.  If you do not use your own account, please leave this set to 'gallery'."
 msgstr ""
 
-#: ../setup/config_data.inc:1301
+#: ../setup/config_data.inc:1311
 msgid "Gallery Link"
 msgstr "갤러리 링크"
 
-#: ../setup/config_data.inc:1302
+#: ../setup/config_data.inc:1312
 #, fuzzy
 msgid "Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
 msgstr "앨범 내에서 최상위 갤러리 링크를 표시하시겠습니까? 이 기능을 꺼두시면 사용자는 해당 앨범 밖으로 이동할 수 없습니다. 이것은 단지 어떤 앨범을 웹사이트에 넣어두고 사용자가 갤러리의 다른 앨범으로 쉽게 이동하지 못하도록 할 때 유용합니다."
 
-#: ../setup/config_data.inc:1307
+#: ../setup/config_data.inc:1317
 #, fuzzy
 msgid "Default Album Permissions"
 msgstr "기본 열"
 
-#: ../setup/config_data.inc:1308
+#: ../setup/config_data.inc:1318
 msgid "Defines the default set of permissions for an album.  Specifically, who can see the album, and view its photos."
 msgstr ""
 
-#: ../setup/config_data.inc:1309 ../setup/config_data.inc:1394
-#: ../setup/config_data.inc:1400
+#: ../setup/config_data.inc:1319 ../setup/config_data.inc:1404
+#: ../setup/config_data.inc:1410
 msgid "Everybody"
 msgstr ""
 
-#: ../setup/config_data.inc:1309
+#: ../setup/config_data.inc:1319
 msgid "Logged-In Users"
 msgstr ""
 
-#: ../setup/config_data.inc:1319
+#: ../setup/config_data.inc:1329
 msgid "Data displayed"
 msgstr "날짜 표시됨"
 
-#: ../setup/config_data.inc:1322
+#: ../setup/config_data.inc:1332
 msgid "Click counts"
 msgstr "조회수"
 
-#: ../setup/config_data.inc:1323
+#: ../setup/config_data.inc:1333
 msgid "Display click counts within Albums?"
 msgstr "앨범에 조회수를 표시하겠습니까?"
 
-#: ../setup/config_data.inc:1328
+#: ../setup/config_data.inc:1338
 msgid "Custom Fields"
 msgstr "사용자정의 필드"
 
-#: ../setup/config_data.inc:1330
+#: ../setup/config_data.inc:1340
 msgid "Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"
 msgstr "맞춤형 필드는 각 이미지에 대한 추가적인 설명을 위한 것입니다. 쉽표에 의해 구분되어 집니다. 예: <i>설명, 장소, 필름</i>"
 
-#: ../setup/config_data.inc:1336
+#: ../setup/config_data.inc:1346
 msgid "Display clickable image dimensions"
 msgstr ""
 
-#: ../setup/config_data.inc:1337
+#: ../setup/config_data.inc:1347
 msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
 msgstr ""
 
-#: ../setup/config_data.inc:1348
+#: ../setup/config_data.inc:1358
 msgid "Item Owner"
 msgstr "아이템 소유자"
 
-#: ../setup/config_data.inc:1351
+#: ../setup/config_data.inc:1361
 msgid "Photo owner modification"
 msgstr "사진 소유자 변경"
 
-#: ../setup/config_data.inc:1352
+#: ../setup/config_data.inc:1362
 msgid "Allow photo owners to edit and rotate/flip their own photos?"
 msgstr "사진 소유자가 자신의 사진들을 회전/반사, 수정하는 것을 허용하시겠습니까?"
 
-#: ../setup/config_data.inc:1357
+#: ../setup/config_data.inc:1367
 msgid "Photo owner deletion"
 msgstr "사진 소유자 삭제"
 
-#: ../setup/config_data.inc:1358
+#: ../setup/config_data.inc:1368
 msgid "Allow photo owners to delete their own photos?"
 msgstr "사진 소유자가 자신의 사진을 삭제하는 것을 허용하겠습니까?"
 
-#: ../setup/config_data.inc:1363
+#: ../setup/config_data.inc:1373
 msgid "Photo owner display"
 msgstr "사진 소유자 보이기"
 
-#: ../setup/config_data.inc:1364
+#: ../setup/config_data.inc:1374
 msgid "Display the name of photo owners with the caption?"
 msgstr "제목과 함께 사진 소유자의 이름을 표시?"
 
-#: ../setup/config_data.inc:1375
+#: ../setup/config_data.inc:1385
 msgid "Polling configuration"
 msgstr "설문 설정"
 
-#: ../setup/config_data.inc:1377
+#: ../setup/config_data.inc:1387
 #, php-format
 msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."
 msgstr ""
 
-#: ../setup/config_data.inc:1380
+#: ../setup/config_data.inc:1390
 msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
 msgstr "각각의 앨범에서 투표는 꺼지거나, 로그인회원에게 제한되거나 모든 손님에게 열릴 수 있습니다. "
 
-#: ../setup/config_data.inc:1382
+#: ../setup/config_data.inc:1392
 #, fuzzy, php-format
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr "2종류의 설문: %s, 투표자가 1, 2, 3등으로 그들의 순위를 선택하는 것을 허용: %s, 투표자가 제한없이 모든 이미지에 대해 평가하는 것을 허용, %4$s가 순위 경쟁에 유용한 반면, %3$s는 모든 이미지가 5점을 얻을 수 있다는 점에서(예를 들어) 필름리뷰같습니다. "
 
-#: ../setup/config_data.inc:1383 ../setup/config_data.inc:1386
-#: ../setup/config_data.inc:1407 ../setup/config_data.inc:1412
+#: ../setup/config_data.inc:1393 ../setup/config_data.inc:1396
+#: ../setup/config_data.inc:1417 ../setup/config_data.inc:1422
 msgid "Rank"
 msgstr "순위"
 
-#: ../setup/config_data.inc:1384 ../setup/config_data.inc:1385
-#: ../setup/config_data.inc:1409 ../setup/config_data.inc:1413
+#: ../setup/config_data.inc:1394 ../setup/config_data.inc:1395
+#: ../setup/config_data.inc:1419 ../setup/config_data.inc:1423
 msgid "Critique"
 msgstr "평론"
 
-#: ../setup/config_data.inc:1389
+#: ../setup/config_data.inc:1399
 msgid "Voter class"
 msgstr "투표자 구분"
 
-#: ../setup/config_data.inc:1390
+#: ../setup/config_data.inc:1400
 msgid "Voting is available to:"
 msgstr "사용가능한 설문:"
 
-#: ../setup/config_data.inc:1392 ../setup/config_data.inc:1399
+#: ../setup/config_data.inc:1402 ../setup/config_data.inc:1409
 msgid "Nobody"
 msgstr "Nobody"
 
-#: ../setup/config_data.inc:1393
+#: ../setup/config_data.inc:1403
 msgid "Voting is off."
 msgstr "설문 꺼짐."
 
-#: ../setup/config_data.inc:1395
+#: ../setup/config_data.inc:1405
 msgid "Anyone can vote.  Votes are recorded against session ID."
 msgstr "누구나 투표가능합니다. 투표는 세션 ID에 의해 기록됩니다."
 
-#: ../setup/config_data.inc:1396 ../setup/config_data.inc:1401
+#: ../setup/config_data.inc:1406 ../setup/config_data.inc:1411
 msgid "Logged in"
 msgstr ""
 
-#: ../setup/config_data.inc:1397
+#: ../setup/config_data.inc:1407
 msgid "Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices."
 msgstr "회원은 투표할 수 있습니다. 투표는 UserID에 대해 기록되고, 투표자는 돌아와 선택을 변경할 수 있습니다."
 
-#: ../setup/config_data.inc:1404
+#: ../setup/config_data.inc:1414
 msgid "Poll type"
 msgstr "설문 형식"
 
-#: ../setup/config_data.inc:1405
+#: ../setup/config_data.inc:1415
 msgid "Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation."
 msgstr "갤러리는 이미지에 대한 투표양식에 두종류를 제공합니다. 자세한 설명을 위를 보세요."
 
-#: ../setup/config_data.inc:1408
+#: ../setup/config_data.inc:1418
 msgid "Users have a set of votes which they can allocate to the images."
 msgstr "사용자가 이미지에 배분하여 투표할 수 있습니다."
 
-#: ../setup/config_data.inc:1410
+#: ../setup/config_data.inc:1420
 msgid "Enables users to give all images points without restriction."
 msgstr "사용자가 제한없이 모든 이미지에 점수를 주는 것을 가능하게 합니다."
 
-#: ../setup/config_data.inc:1417
+#: ../setup/config_data.inc:1427
 msgid "Number of choices"
 msgstr "선택갯수"
 
-#: ../setup/config_data.inc:1418
+#: ../setup/config_data.inc:1428
 msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu."
 msgstr "투표자에게 가능한 라디오버튼 또는 풀다운메뉴에서의 선택갯수."
 
-#: ../setup/config_data.inc:1423
+#: ../setup/config_data.inc:1433
 msgid "Vote hint"
 msgstr "투표 힌트"
 
-#: ../setup/config_data.inc:1424
+#: ../setup/config_data.inc:1434
 msgid "This is displayed above the voting options under each image."
 msgstr "이것은 각 이미지 아래에 투표 옵션으로 표시됩니다."
 
-#: ../setup/config_data.inc:1426
+#: ../setup/config_data.inc:1436
 msgid "Vote for this image"
 msgstr "이 이미지에 투표"
 
-#: ../setup/config_data.inc:1431 ../setup/config_data.inc:1440
+#: ../setup/config_data.inc:1441 ../setup/config_data.inc:1450
 msgid "Show vote results"
 msgstr "투표 결과 보기"
 
-#: ../setup/config_data.inc:1432
+#: ../setup/config_data.inc:1442
 #, php-format
 msgid "Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."
 msgstr "가장 높은 투표를 받은 이미지의 앨범페이지에 요약과 그래프를 제시하고 모든 결과의 링크를 제공합니다. 만약 이 옵션이 %s이면 투표 결과는 관리자와 앨범소유자에게만 가능하게 됩니다."
 
-#: ../setup/config_data.inc:1438
+#: ../setup/config_data.inc:1448
 msgid "Number of results displayed"
 msgstr "결과값이 표시됩니다."
 
-#: ../setup/config_data.inc:1439
+#: ../setup/config_data.inc:1449
 #, php-format
 msgid "If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"
 msgstr "만약 %s가 %s이면, 상단에 많은 결과를 그래프로 보여줍니다.(모든 결과는 링크된 페이지에서 가능합니다.)"
 
-#: ../setup/config_data.inc:1446
+#: ../setup/config_data.inc:1456
 msgid "Orientation of vote choices?"
 msgstr "투표 선택의 방향?"
 
-#: ../setup/config_data.inc:1447
+#: ../setup/config_data.inc:1457
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr "순위 설문 선택은 각각의 옆(수평) 또는 아래(수직)에 보여집니다. 풀다운메뉴인 평론 투표에서는 효과가 없습니다."
 
-#: ../setup/config_data.inc:1450
+#: ../setup/config_data.inc:1460
 msgid "Horizontal"
 msgstr "수평"
 
-#: ../setup/config_data.inc:1451
+#: ../setup/config_data.inc:1461
 msgid "Vertical"
 msgstr "수직"
 
-#: ../setup/config_data.inc:1453 ../setup/functions.inc:1050
+#: ../setup/config_data.inc:1463 ../setup/functions.inc:1050
 #: ../setup/functions.inc:1059 ../setup/functions.inc:1064
 msgid "Vote words and values"
 msgstr "투표 항목이름과 값"
 
-#: ../setup/config_data.inc:1454
+#: ../setup/config_data.inc:1464
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "이것은 각각의 투표옵션에 보여지는 글과 가치있는 점수를 구분하는 것을 허용합니다."
 
-#: ../setup/config_data.inc:1456
+#: ../setup/config_data.inc:1466
 msgid "Excellent"
 msgstr ""
 
-#: ../setup/config_data.inc:1457
+#: ../setup/config_data.inc:1467
 msgid "Very Good"
 msgstr ""
 
-#: ../setup/config_data.inc:1458
+#: ../setup/config_data.inc:1468
 #, fuzzy
 msgid "Good"
 msgstr "Nobody"
 
-#: ../setup/config_data.inc:1459
+#: ../setup/config_data.inc:1469
 msgid "Average"
 msgstr ""
 
-#: ../setup/config_data.inc:1460
+#: ../setup/config_data.inc:1470
 #, fuzzy
 msgid "Poor"
 msgstr "사진"
 
-#: ../setup/config_data.inc:1471
+#: ../setup/config_data.inc:1481
 msgid "Album Slideshow"
 msgstr "앨범 슬라이드쇼"
 
-#: ../setup/config_data.inc:1475
+#: ../setup/config_data.inc:1485
 msgid "Slideshow Type"
 msgstr "슬라이드쇼 형태"
 
-#: ../setup/config_data.inc:1492
+#: ../setup/config_data.inc:1502
 msgid "Recursive slideshow"
 msgstr "반복 슬라이드쇼"
 
-#: ../setup/config_data.inc:1493
+#: ../setup/config_data.inc:1503
 #, php-format
 msgid "Set to %s if you want to include images in sub albums as part of the slideshow."
 msgstr "슬라이드쇼의 부분으로서 하위앨범의 이미지를 포함하기를 원한다면 %s로 설정하세요."
 
-#: ../setup/config_data.inc:1499
+#: ../setup/config_data.inc:1509
 #, php-format
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr ""
 
-#: ../setup/config_data.inc:1518 ../setup/frame_test.php:29
+#: ../setup/config_data.inc:1528 ../setup/frame_test.php:29
 msgid "Frames"
 msgstr "틀"
 
-#: ../setup/config_data.inc:1519
+#: ../setup/config_data.inc:1529
 #, php-format
 msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"
 msgstr ""
 
-#: ../setup/config_data.inc:1523
+#: ../setup/config_data.inc:1533
 msgid "Subalbum frames"
 msgstr "하위-앨범 틀"
 
-#: ../setup/config_data.inc:1524
+#: ../setup/config_data.inc:1534
 #, fuzzy
 msgid "This frame will appear around the thumbnail image representing a subalbum."
 msgstr "이 틀은 사진 또는 무비를 대표하는 미리보기 이미지주변에 보여지게 됩니다."
 
-#: ../setup/config_data.inc:1529
+#: ../setup/config_data.inc:1539
 msgid "Frame around thumbs"
 msgstr "미리보기 주변 틀"
 
-#: ../setup/config_data.inc:1530
+#: ../setup/config_data.inc:1540
 msgid "This frame will appear around the thumbnail image representing a photo or movie."
 msgstr "이 틀은 사진 또는 무비를 대표하는 미리보기 이미지주변에 보여지게 됩니다."
 
-#: ../setup/config_data.inc:1536
+#: ../setup/config_data.inc:1546
 msgid "Frame around images"
 msgstr "이미지 주변의 틀"
 
-#: ../setup/config_data.inc:1537
+#: ../setup/config_data.inc:1547
 #, fuzzy
 msgid "This frame will appear around fulled sized and resized photos."
 msgstr "이 틀은 사진 또는 무비를 대표하는 미리보기 이미지주변에 보여지게 됩니다."
@@ -3009,69 +3015,69 @@ msgstr "서버 IP 주소"
 msgid "Start over"
 msgstr "다시 시작"
 
-#: ../setup/write.inc:159
+#: ../setup/write.inc:157
 #, php-format
 msgid "The password for user %s was changed."
 msgstr "회원 %s의 비밀번호가 변경되었습니다."
 
-#: ../setup/write.inc:163
+#: ../setup/write.inc:161
 #, php-format
 msgid "An account called %s has been created for you with the password you specified."
 msgstr "%s 계정이 지정된 비밀번호와 함께 생성되었습니다."
 
-#: ../setup/write.inc:177
+#: ../setup/write.inc:175
 msgid "Success!"
 msgstr "성공!"
 
-#: ../setup/write.inc:180
+#: ../setup/write.inc:178
 msgid "Your configuration has been successfully saved!"
 msgstr "당신의 환경설정은 성공적으로 저장되었습니다!"
 
-#: ../setup/write.inc:188
+#: ../setup/write.inc:186
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
 msgstr ""
 
-#: ../setup/write.inc:195
+#: ../setup/write.inc:193
 msgid "Note"
 msgstr "주의"
 
-#: ../setup/write.inc:197
+#: ../setup/write.inc:195
 #, php-format
 msgid "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"
 msgstr ""
 
-#: ../setup/write.inc:210
+#: ../setup/write.inc:208
 msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
 msgstr "이 설정 마법사를 언제든지 다시 실행하여 갤러리 설정을 다시 할 수 있습니다."
 
-#: ../setup/write.inc:212
+#: ../setup/write.inc:210
 msgid "It will save your data so you won't have to enter it all again!"
 msgstr "설정된 데이터는 저장되기 때문에 전부를 다시 입력할 필요가 없습니다."
 
-#: ../setup/write.inc:215
+#: ../setup/write.inc:213
 #, php-format
 msgid "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."
 msgstr ""
 
-#: ../setup/write.inc:222
+#: ../setup/write.inc:220
 msgid "Enter the Gallery"
 msgstr "갤러리 들어가기"
 
-#: ../setup/write.inc:236
+#: ../setup/write.inc:234
 msgid "Failure"
 msgstr "실패"
 
-#: ../setup/write.inc:237
+#: ../setup/write.inc:235
 #, php-format
 msgid "Unable to write to %s."
 msgstr "%s에 쓸 수 없습니다."
 
-#: ../setup/write.inc:240
+#: ../setup/write.inc:238
 #, php-format
 msgid "You are missing either %s or %s."
 msgstr "%s 또는 %s이 빠져 있습니다."
 
-#: ../setup/write.inc:244
+#: ../setup/write.inc:242
 msgid "Review Settings"
 msgstr "리뷰 세팅"
 
