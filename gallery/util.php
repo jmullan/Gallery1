@@ -2090,4 +2090,20 @@ function poweredBy () {
 		return sprintf(_("Powered by %s v%s"), $link, $gallery->version);
 	}
 }
+
+define("OS_WINDOWS", "win");
+define("OS_LINUX", "linux");
+define("OS_OTHER", "other");
+
+function getOS () {
+	if(substr(PHP_OS, 0, 3) == 'WIN') {
+		return OS_WINDOWS;
+	}
+	else if ( stristr(PHP_OS, "linux")) {
+		return OS_LINUX;
+	} else {
+		return OS_OTHER;
+	}
+}
+
 ?>

@@ -13,7 +13,9 @@ extract($HTTP_GET_VARS);
 extract($HTTP_POST_VARS);
 extract($HTTP_COOKIE_VARS);
 
-if (substr(PHP_OS, 0, 3) == 'WIN') {
+require ($GALLERY_BASEDIR . 'util.php');
+
+if (getOS() == OS_WINDOWS) {
 	include("../platform/fs_win32.php");
 	if (fs_file_exists("SECURE")) {
 ?>
