@@ -345,7 +345,7 @@ if ($numPhotos) {
 ?>
 				<br>
 				<span class="fineprint">
-				   Last changed on <?=$myAlbum->getLastModificationDate()?>.  
+				   Last changed on <?=$myAlbum->getLastModificationDate()?>.  <br>
 				   This album contains <?=pluralize($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), "item", "no")?>.
 				</span>
 <?
