@@ -145,15 +145,15 @@ includeLayout('navigator.inc');
 				while ($j <= $cols && $i < $numPhotos) {
 					echo("<td>");
 
-					$index=$gallery->album->getIndexByVotingId($ranks[$i]);
+					$index = $gallery->album->getIndexByVotingId($ranks[$i]);
 					if ($index < 0) {
 						$i++;
 						continue;
 					}
 					$result=true;
-					$albumName=$gallery->album->getAlbumName($index);
-					if ($albumName) {
-						$album=$gallery->album->getSubAlbum($index);
+					if ($gallery->album->isAlbum($index)) {
+						$albumName = $gallery->album->getAlbumName($index);
+						$album = $gallery->album->getSubAlbum($index);
 						print sprintf(_("Album: %s"),$album->fields['title'])."<Br>";
 					} else {
 						print $gallery->album->getCaption($index)."<br>";

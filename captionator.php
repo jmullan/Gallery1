@@ -63,7 +63,7 @@ if (isset($save) || isset($next) || isset($prev)) {
    
     $count = 0;
     while ($count < $perPage && $i <= $numPhotos) {
-      if ($gallery->album->getAlbumName($i)) {
+      if ($gallery->album->isAlbum($i)) {
         $myAlbumName = $gallery->album->getAlbumName($i);
         $myAlbum = new Album();
         $myAlbum->load($myAlbumName);
@@ -253,7 +253,7 @@ if ($numPhotos) {
 
       <td valign=top>
 <?php
-    if ($gallery->album->getAlbumName($i)) {
+    if ($gallery->album->isAlbum($i)) {
         $myAlbumName = $gallery->album->getAlbumName($i);
         $myAlbum = new Album();
         $myAlbum->load($myAlbumName);

@@ -1615,16 +1615,10 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 	$myAlbum->load($albumName);
 	
 	$numPhotos = $myAlbum->numPhotos(1);
-	echo "<!-- level: " . $level . " -->";
-	echo "<!-- albumName: " . $albumName . " -->";
-	echo "<!-- movePhoto: " . $movePhoto . " -->";
-	echo "<!-- readOnly: " . $readOnly . " -->";
-	echo "<!-- numPhotos: " . $numPhotos . " -->";
 
 	for ($i=1; $i <= $numPhotos; $i++) {
-	echo "<!-- i: " . $i . " -->";
-		$myName = $myAlbum->getAlbumName($i);
-		if ($myName) {
+		if ($myAlbum->isAlbum($i)) {
+			$myName = $myAlbum->getAlbumName($i);
 			$nestedAlbum = new Album();
 			$nestedAlbum->load($myName);
 			if ($gallery->user->canWriteToAlbum($nestedAlbum) ||
@@ -1858,8 +1852,8 @@ function printChildren($albumName,$depth=0) {
 	$numPhotos = $myAlbum->numPhotos(1);
 	for ($i=1; $i <= $numPhotos; $i++) {
 		set_time_limit($gallery->app->timeLimit);
-		$myName = $myAlbum->getAlbumName($i);
-		if ($myName && !$myAlbum->isHidden($i)) {
+		if ($myAlbum->isAlbum($i) && !$myAlbum->isHidden($i)) {
+			$myName = $myAlbum->getAlbumName($i);
 		        $nestedAlbum = new Album();
 			$nestedAlbum->load($myName);
 			if ($gallery->user->canReadAlbum($nestedAlbum)) {

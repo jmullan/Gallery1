@@ -83,7 +83,7 @@ if ($gallery->session->albumName && isset($index)) {
 		       	} else {
 			       	$votes=NULL;
 		       	}
-			if ($gallery->album->getAlbumName($index)) { // moving "album" to another location
+			if ($gallery->album->isAlbum($index)) { // moving "album" to another location
 				if ($newAlbum == "ROOT") { // moving "album" to ROOT location
 					$myAlbum = $gallery->album->getNestedAlbum($index);
 					$myAlbum->fields['parentAlbumName'] = 0;
@@ -116,7 +116,7 @@ if ($gallery->session->albumName && isset($index)) {
 				$index = $startPhoto; // set the index to the first photo that we are moving.	
 
 				while ($startPhoto <= $endPhoto) {
-					if (!$gallery->album->getAlbumName($index)) {
+					if (!$gallery->album->isAlbum($index)) {
 					        set_time_limit($gallery->app->timeLimit);
 						echo _("Moving photo #").$startPhoto."<br>";
 						my_flush();
@@ -213,7 +213,7 @@ if ($gallery->session->albumName && isset($index)) {
 <?php
 echo '<br>'. $gallery->album->getThumbnailTag($index) .'<br><br>';
 if ($reorder ) { // Reorder, intra-album move
-if ($gallery->album->getAlbumName($index)) {
+if ($gallery->album->isAlbum($index)) {
 ?>
 <?php echo _("Reorder this album within the album:") ?><br>
 <?php } else { ?>
@@ -244,7 +244,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 
 <?php
 } else if (!$reorder) { // Don't reorder, trans-album move
-if ($gallery->album->getAlbumName($index)) {
+if ($gallery->album->isAlbum($index)) {
 ?>
 <?php echo _("Move the album to a new album:") ?>
 <?php echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>

@@ -61,13 +61,13 @@ if ($gallery->session->albumName && isset($index)) {
 			echo gallery_error(sprintf(_("Invalid album selected: %s"),
 						$newAlbum));
 		} else {
-			if ($gallery->album->getAlbumName($index)) {
+			if ($gallery->album->isAlbum($index)) {
 				echo gallery_error(sprintf(_("Can't copy album #%d"),
 						       $index));
 			} else { // copying "picture" to another album
 
 				for ($index = $startPhoto; $index <= $endPhoto; $index++) {
-					if (!$gallery->album->getAlbumName($index)) {
+					if (!$gallery->album->isAlbum($index)) {
 					        set_time_limit($gallery->app->timeLimit);
 						processingMsg (sprintf(_("Copying photo #%d"),$index));
 						$mydir = $gallery->album->getAlbumDir();
@@ -134,7 +134,7 @@ if ($gallery->session->albumName && isset($index)) {
 
 <center>
 <?php
-if ($gallery->album->getAlbumName($index)) {
+if ($gallery->album->isAlbum($index)) {
 	echo gallery_error(sprintf(_("Can't copy album #%d"),
 			       	$index));
 	return;

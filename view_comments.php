@@ -148,7 +148,7 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
 	set_time_limit($gallery->app->timeLimit);
         $id = $gallery->album->getPhotoId($i);
         $index = $gallery->album->getPhotoIndex($id);
-        if($gallery->album->getAlbumName($i))
+        if($gallery->album->isAlbum($i))
         {
             $embeddedAlbum = 1;
             $myAlbumName = $gallery->album->getAlbumName($i);

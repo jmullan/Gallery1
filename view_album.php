@@ -545,8 +545,8 @@ if (($gallery->album->getPollType() == "rank") && canVote())
                                 $nv_pairs[$key]["name"].
                                 ":</td>\n";
 			$index=$gallery->album->getIndexByVotingId($id);
-			$albumName=$gallery->album->getAlbumName($index);
 			if ($gallery->album->isAlbum($index)) {
+				$albumName = $gallery->album->getAlbumName($index);
                         	print "<td><a href=\n".
 					makeAlbumUrl($albumName). ">\n";
 			       	$myAlbum = new Album();
@@ -733,9 +733,8 @@ if ($numPhotos) {
 			       	/*end backwards compatibility*/
 				includeHtmlWrap('inline_moviethumb.frame');
 			} elseif ($gallery->album->isAlbum($i)) {
-				$myAlbumName = $gallery->album->getAlbumName($i);
 				$myAlbum = new Album();
-				$myAlbum->load($myAlbumName);
+				$myAlbum->load($gallery->album->getAlbumName($i));
 
 				$gallery->html_wrap['imageTag'] = $myAlbum->getHighlightTag($scaleTo,'',_("Highlight for Album: ").htmlentities(removeTags($myAlbum->fields['title']),ENT_COMPAT));
 				$gallery->html_wrap['imageHref'] = makeAlbumUrl($myAlbumName);
@@ -813,10 +812,9 @@ if ($numPhotos) {
 		    echo('<tr>');
 		}
 		while ($j <= $cols && $i <= $numPhotos) {
-	                $myAlbumName = $gallery->album->getAlbumName($i);
 			if ($gallery->album->isAlbum($i)) {
 				$myAlbum = new Album;
-				$myAlbum->load($myAlbumName);
+				$myAlbum->load($gallery->album->getAlbumName($i));
 			}       
 			else {
 				$myAlbum = NULL;
@@ -977,11 +975,9 @@ if ($numPhotos) {
 					}
 				}
 				if ($gallery->album->isAlbum($i)) {
-				        $myAlbumName = $gallery->album->getAlbumName($i);
-
 					showChoice(_("Reset Counter"), "do_command.php",
 						array("cmd" => "reset-album-clicks",
-						      "set_albumName" => $myAlbumName,
+						      "set_albumName" => $gallery->album->getAlbumName($i),
 							"return" => urlencode(makeGalleryUrl("view_album.php"))));
 				}
 				showChoice(_("Move ") . $label, "move_photo.php", array("index" => $i, 'reorder' => 0));
