@@ -61,7 +61,7 @@ $allowChange["send_email"] = false;
 $allowChange["member_file"] = false;
 
 $errorCount=0;
-if (isset($create)) {
+if (isset($createUser) && $createUser =='yes') {
 	// Security check.
 	$uname = removeTags($uname);
 
@@ -128,13 +128,13 @@ if (isset($create)) {
 echo makeFormIntro('register.php', array(
 			'name' => 'usercreate_form',
 			'method' => 'POST',
-			'onsubmit' => 'usercreate_form.create.disabled = true;'));
-
+			'onsubmit' => "usercreate_form.create.disabled = true; usercreate_form.createUser.value ='yes'"));
 include(dirname(__FILE__) . '/html/userData.inc');
 ?>
 <p>
 <?php echo _("Your account information will be sent to the email address you provide.") ?>
 <br><br>
+<input type="hidden" name="createUser" value ="no">
 <input type="submit" name="create" value="<?php echo _("Create") ?>">
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onClick='parent.close()'>
 </form>
