@@ -40,6 +40,11 @@ function fs_file_exists($filename) {
 	return file_exists($filename);
 }
 
+function fs_is_link($filename) {
+	/* if the link is broken it will spew a warning, so ignore it */
+	return @is_link($filename);
+}
+
 function fs_filesize($filename) {
 	return filesize($filename);
 }

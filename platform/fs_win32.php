@@ -33,6 +33,11 @@ function fs_file_exists($filename) {
 	return file_exists($filename);
 }
 
+function fs_is_link($filename) {
+	$filename = fs_import_filename($filename, 0);
+	return is_link($filename);
+}
+
 function fs_filesize($filename) {
 	$filename = fs_import_filename($filename, 0);
 	return filesize($filename);
