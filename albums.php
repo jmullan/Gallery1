@@ -316,50 +316,41 @@ for ($i = $start; $i <= $end; $i++) {
       </tr>
     </table>
 
-  <br>
-  <span class="desc">
-  <?php _("description") ?>
   <?php 
-  $description=editField($gallery->album, "description") ;
-  if ($description != "") {
-	  echo "$description<br>";
+	$description=editField($gallery->album, "description") ;
+	if ($description != "") {
+		echo "\n<div class=\"desc\">";
+		echo "\n\t$description";
+		echo "\n</div>";
+  	}
+
+	if (strcmp($gallery->app->showOwners, "no")) {
+		echo "\n<div class=\"desc\">";
+		echo _("Owner:") . " ";
+		if (!$owner->getEmail()) {
+			echo $owner->getFullName();
+		} else {
+			echo "<a href=\"mailto:" . $owner->getEmail() . "\">" . $owner->getFullName() . "</a>";
+		}
+		echo '</div>';
+	}
+
+  if ($gallery->user->canDeleteAlbum($gallery->album)) {
+	echo "\n<span class=\"admin\">";
+	echo popup_link("[". _("delete album") ."]", "delete_album.php?set_albumName={$tmpAlbumName}");
+	echo "\n</span>";
   }
-  ?>
-  </span>
-  <?php if (strcmp($gallery->app->showOwners, "no")) { ?>
-	  <span class="desc">
-		  <?php 
-		  echo _("Owner:") . " ";
-		  if (!$owner->getEmail()) {
-			  echo $owner->getFullName();
-		  } else {
-			  echo "<a href=\"mailto:" . $owner->getEmail() . "\">" . $owner->getFullName() . "</a>";
-		  }
-		  ?> 
-		  </span>
-		  <br>
-  <?php } ?>
 
-  <?php if ($gallery->user->canDeleteAlbum($gallery->album)) { ?>
-   <span class="admin">
-    <?php echo popup_link("[". _("delete album") ."]", 
-    	"delete_album.php?set_albumName={$tmpAlbumName}"); ?>
-   </span>
-  <?php } ?>
+  if ($gallery->user->canWriteToAlbum($gallery->album)) {
+	echo "\n<span class=\"admin\">";
+	echo popup_link("[". _("move album") ."]", "move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=0");
+	echo popup_link("[". _("reorder album") ."]",  "move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=1");
+	echo popup_link("[" . _("rename album") ."]", "rename_album.php?set_albumName={$tmpAlbumName}&index=$i");
+	echo "\n</span>";
+  }
 
-  <?php if ($gallery->user->canWriteToAlbum($gallery->album)) { ?>
-   <span class="admin">
-    <?php echo popup_link("[". _("move album") ."]", 
-    	"move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=0"); ?>
-    <?php echo popup_link("[". _("reorder album") ."]", 
-    	"move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=1"); ?>
-    <?php echo popup_link("[" . _("rename album") ."]", "rename_album.php?set_albumName={$tmpAlbumName}&index=$i"); ?>
-   </span>
-  <?php } ?>
-
-  <?php if ($gallery->user->canChangeTextOfAlbum($gallery->album) 
-  	&& !$gallery->session->offline) { ?>
-   <span class="admin">
+  if ($gallery->user->canChangeTextOfAlbum($gallery->album) && !$gallery->session->offline) { ?>
+    <span class="admin">
     <a href="<?php echo makeGalleryUrl("captionator.php", array("set_albumName" => $tmpAlbumName)) ?>">[<?php echo _("edit captions") ?>]</a>
    </span>
   <?php } ?>

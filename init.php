@@ -220,7 +220,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 
 			/* PHP-Nuke changed its "users" table field names in v.6.5 */
 			/* Select the appropriate field names */
-			if (isset($Version_Num) && $Version_Num >= 6.5) {
+			if (isset($Version_Num) && $Version_Num >= "6.5") {
 				$gallery->database{'fields'} =
 					array ('name'  => 'name',
 			       			'uname' => 'username',

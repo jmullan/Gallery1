@@ -126,14 +126,14 @@ $myAlbum->load($id);
 <?php echo $gallery->album->getThumbnailTag($index) ?>
 <br>
 <?php echo $gallery->album->getCaption($index) ?>
-<br>
+<p>
 <?php echo makeFormIntro("delete_photo.php"); ?>
 <input type="hidden" name="id" value="<?php echo $id?>">
 <input type="hidden" name="id2" value="<?php echo $id2 ?>">    
 <input type="submit" name="confirm" value="<?php echo _("Delete") ?>">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
-<br>
+</p>
 
 <?php
 	}
