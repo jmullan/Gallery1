@@ -115,6 +115,10 @@ if (fs_file_exists(dirname(__FILE__) . "/config.php")) {
 ** We also include the common lib file as we need it in initLanguage()
 */
 
+if ($gallery->app->geeklog_dir == "/path/to/geeklog/public_html") {
+	$gallery->app->geeklog_dir = "";
+}
+
 // Verify that the geeklog_dir isn't overwritten with a remote exploit
 if (!empty($gallery->app->geeklog_dir) && !realpath($gallery->app->geeklog_dir)) {
 	print _("Security violation") ."\n";

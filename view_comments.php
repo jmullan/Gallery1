@@ -142,7 +142,7 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
 		$myAlbumName = $gallery->album->getAlbumName($i);
 		$myAlbum = new Album();
 		$myAlbum->load($myAlbumName);
-		if ((!$gallery->album->isHidden($i) || $gallery->user->isAdmin() || 
+		if (((!$gallery->album->isHidden($i) && $gallery->user->canReadAlbum($myAlbum)) || $gallery->user->isAdmin() || 
 			$gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->user->isOwnerOfAlbum($myAlbum)))
 		{
 			$embeddedAlbum = 1;
