@@ -113,6 +113,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option)) {
 		       "edit_caption.php",
 		       "edit_field.php",
 		       "edit_thumb.php",
+		       "edit_watermark.php",
 		       "extra_fields.php",
 		       "gallery_remote.php",
 		       "gallery_remote2.php",
@@ -147,6 +148,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option)) {
 		       "view_comments.php",
 		       "view_photo.php",
 		       "view_photo_properties.php",
+		       "watermark_album.php",
 		       );
 	
 	if (!in_array($include, $safe_to_include)) {
