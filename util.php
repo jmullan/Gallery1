@@ -1870,9 +1870,12 @@ function initLanguage() {
 	} else {
 		// We're not in Nuke
 		// If we got a ML_mode from config.php we use it
+		// If not we use Mode 2 (Browserlanguage)
 
 		if (isset($gallery->app->ML_mode)) {
 			$ML_mode=$gallery->app->ML_mode;
+		} else {
+			$ML_mode=2;
 		}
 
 		switch ($ML_mode) {
