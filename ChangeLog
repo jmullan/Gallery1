@@ -1,18 +1,35 @@
+2003-08-31  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b45
+
+	* Fixed problems introduced in -b44. The following Gallery variables
+	  now have new names:
+
+	  $gallery->app->default['showOwners']
+	                          --> $gallery->app->showOwners
+	  $gallery->app->default['albumsPerPage']
+	                          --> $gallery->app->albumsPerPage
+	  $gallery->app->default['showSearchEngine']
+	                          --> $gallery->app->showSearchEngine
+
+	* Bumped the Config. Wizard version because of above change.
+	
+	* Further adjusted layout/ml_pulldown.inc so the language drop-down and
+	  flag bar would render properly on albums.php.
+
 2003-08-31 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b44
 
 	* Fixed bug which cause progressbar not to close in IE
-	  (fixed by vallimar).
+	  (Fixed by Vallimar).
 
-	* Changed order in configwizard (moved things from step 3 to step 2)
+	* Changed order in Config. Wizard (moved things from Step 3 to Step 2).
 
-	* Added separators in step3
+	* Added separators to Step 3 of the Config. Wizard.
 
-	* Added $GALLERY_OK and tweaked getStyleSheetLink() to use config.css when
-	  $GALLERY_OK == false.
+	* Added $GALLERY_OK and tweaked getStyleSheetLink() to use config.css
+	  when $GALLERY_OK == false.
 
-	* error/* files uses new style too.
+	* error/* files now use new style too.
 
-	* tweaked ml_pulldown.inc (removed unnecessary table for flags)
+	* Tweaked ml_pulldown.inc (removed unnecessary table for flags).
 
         * Language Update: Italian (it_IT) , Simplified Chinese (zh_CN)
 

@@ -49,7 +49,7 @@ $numAccess = $albumDB->numAccessibleAlbums($gallery->user);
 if (empty($gallery->session->albumListPage)) {
 	$gallery->session->albumListPage = 1;
 }
-$perPage = $gallery->app->default["albumsPerPage"];
+$perPage = $gallery->app->albumsPerPage;
 $maxPages = max(ceil($numAlbums / $perPage), 1);
 
 if ($gallery->session->albumListPage > $maxPages) {
@@ -93,7 +93,7 @@ $navigator["bordercolor"] = $borderColor;
 includeHtmlWrap("gallery.header");
 ?>
 <?php
-if (!$gallery->session->offline && !strcmp($gallery->app->default["showSearchEngine"], "yes")) {
+if (!$gallery->session->offline && !strcmp($gallery->app->showSearchEngine, "yes")) {
 ?>
 <table width="100%" border=0 cellspacing=0>
 <tr>
@@ -220,7 +220,7 @@ for ($i = $start; $i <= $end; $i++) {
         $gallery->album = $albumDB->getAlbum($gallery->user, $i);
 	$isRoot = $gallery->album->isRoot(); // Only display album if it is a root album
 	if($isRoot) {
-		if (strcmp($gallery->app->default["showOwners"], "no")) {
+		if (strcmp($gallery->app->showOwners, "no")) {
 			$owner = $gallery->album->getOwner();
 		}
         	$tmpAlbumName = $gallery->album->fields["name"];
@@ -277,7 +277,7 @@ for ($i = $start; $i <= $end; $i++) {
   <?php echo editField($gallery->album, "description") ?>
   </span>
   <br>
-  <?php if (strcmp($gallery->app->default["showOwners"], "no")) { ?>
+  <?php if (strcmp($gallery->app->showOwners, "no")) { ?>
 	  <span class="desc">
 		  <?php 
 		  echo _("Owner:") . " ";

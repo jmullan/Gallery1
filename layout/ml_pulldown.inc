@@ -10,8 +10,8 @@ function ML_reload() {
 <?php } ?>
 
 	<form name="MLForm" action="#">
-	<table align="right">
-	<tr><td valign="top" align="right">
+	<table width="100%" cellpadding="0" cellspacing="0">
+	<tr><td valign="top" align="right"><br />
 
 <?php
 
