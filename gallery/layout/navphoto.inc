@@ -96,7 +96,7 @@ if ($navpage+1 == $navcount) {
     <td align="center" width="27" height="18">&nbsp;</td>
 <?
 } else {        
-	$lastPage = $navigator["allIds"][$navpage+1];
+	$lastPage = $navigator["allIds"][$navcount-1];
 ?>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
     <td align="center" width="27" height="18">
