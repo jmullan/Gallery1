@@ -765,7 +765,7 @@ function config_maybe_locales() {
 	$avail_keys=array_keys($available);
         foreach ($unavailable as $key) {
 		if (sizeof($available) <= 1) {
-			$value = $avail_keys[0] ? $avail_keys[0] : 'null';
+		        $value = !empty($avail_keys[0]) ? $avail_keys[0] : 'null';
 			$results["locale_alias['$key']"] = array (
 				"type" => "hidden", 
 				"value" => $value,
