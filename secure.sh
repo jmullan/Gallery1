@@ -11,7 +11,7 @@ fi
 
 cat <<EOF
 
-Your application is now secure and cannot be configured.  If
+Your Gallery is now secure and cannot be configured.  If
 you wish to reconfigure it, run:
 
     % sh configure.sh
