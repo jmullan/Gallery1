@@ -37,15 +37,10 @@ header("Content-type: text/plain");
 
 
 /*
- * Gallery remote protocol version 2.0
+ * Gallery remote protocol version 2.1
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 0;
-
-$oldest_remote_protocol_version_maj = 2; // oldest proto we support (2.0)
-$oldest_remote_protocol_version_min = 0;
-$newest_remote_protocol_version_maj = 2; // newest proto we support (2.0)
-$newest_remote_protocol_version_min = 0;
+$GR_VER['MIN'] = 1;
 
 
 /*
@@ -92,12 +87,7 @@ function check_proto_version( &$response ) {
 				$response->setProperty( "status_text", "Protocol major version invalid." );
 				echo $response->listprops();
 				exit;
-			}/* else if ( $minor_ver > $GR_VER['MIN'] ) {
-				$response->setProperty( "status", $GR_STAT['PROTOCOL_MINOR_VERSION_INVALID'] );
-				$response->setProperty( "status_text", "Protocol minor version invalid." );
-				echo $response->listprops();
-				exit;
-			}*/
+			}
 			// else version compatible, proceed
 		} else {
 			$response->setProperty( "status", $GR_STAT['PROTOCOL_VERSION_FORMAT_INVALID'] );
@@ -320,11 +310,11 @@ function add_album( &$myAlbum, &$album_index, $parent_index, &$response ){
 	global $gallery;
 	
 	// increment index
-    $album_index++;
-    
-    // fetch name & title
-    $albumName = $myAlbum->fields[name];
-    $albumTitle = $myAlbum->fields[title];
+	$album_index++;
+	
+	// fetch name & title
+	$albumName = $myAlbum->fields[name];
+	$albumTitle = $myAlbum->fields[title];
 	
 	// write name, title and parent
 	$response->setProperty( "album.name.$album_index", $albumName );
@@ -467,7 +457,7 @@ function processFile($file, $tag, $name, $setCaption="") {
 function createNewAlbum( $newAlbumName, $newAlbumTitle, $newAlbumDesc, &$response ) {
 	global $gallery;
 	
-    // get parent album name
+	// get parent album name
 	$parentName = $gallery->session->albumName;
 	$albumDB = new AlbumDB(FALSE);
 	
@@ -521,9 +511,9 @@ function createNewAlbum( $newAlbumName, $newAlbumTitle, $newAlbumDesc, &$respons
 		$gallery->album->save();
 	} else {
 		/* move the album to the top if not a nested album*/
-    	$numAlbums = $albumDB->numAlbums($gallery->user);
-    	$albumDB->moveAlbum($gallery->user, $numAlbums, 1);
-    	$albumDB->save();
+		$numAlbums = $albumDB->numAlbums($gallery->user);
+		$albumDB->moveAlbum($gallery->user, $numAlbums, 1);
+		$albumDB->save();
 	}
 	
 	return true;
