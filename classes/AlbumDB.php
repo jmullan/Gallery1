@@ -289,6 +289,19 @@ class AlbumDB {
 		return $numAlbums;
 	}
 
+	function numAccessibleItems($user) {
+		$numPhotos = $numAlbums = $numTopAlbums = 0;
+		foreach ($this->albumList as $album) {
+			if ($user->canReadAlbum($album)) {
+				$numAlbums++;
+				if ($album->isRoot()) {
+					$numTopAlbums++;
+				}
+				$numPhotos += $album->fields["cached_photo_count"];
+			}
+		}
+		return array($numPhotos, $numAlbums, $numTopAlbums);
+	}
 }
 
 ?>

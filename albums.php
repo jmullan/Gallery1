@@ -42,9 +42,7 @@ $gallery->session->albumName = "";
 $page = 1;
 
 /* If there are albums in our list, display them in the table */
-$numAlbums = $albumDB->numAlbums($gallery->user);
-$numPhotos = $albumDB->getCachedNumPhotos($gallery->user);
-$numAccess = $albumDB->numAccessibleAlbums($gallery->user);
+list ($numPhotos, $numAccess, $numAlbums) = $albumDB->numAccessibleItems($gallery->user);
 
 if (empty($gallery->session->albumListPage)) {
 	$gallery->session->albumListPage = 1;
