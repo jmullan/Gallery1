@@ -84,21 +84,16 @@ $page = ceil($index / ($rows * $cols));
  */
 $top = $app->photoAlbumURL;
 
-#-- if borders are off, just make them the bgcolor ----
-if (!strcmp($album->fields["border"], "off")) {
-        $bordercolor = $album->fields["bgcolor"];
-        $borderwidth = 4;
-} else {
-        $bordercolor = $album->fields["bordercolor"];
-        $borderwidth = $album->fields["border"];
+$bordercolor = $album->fields["bordercolor"];
+$borderwidth = $album->fields["border"];
+if (!strcmp($borderwidth, "off")) {
+	$borderwidth = 1;
 }
 
 if (!strcmp($album->fields["resize_size"], "off")) {
         $mainWidth = 0;
 } else {
 	$mainWidth = $album->fields["resize_size"] + ($borderwidth*2);
-
-
 }
 
 $navigator["page"] = $index;
@@ -285,8 +280,15 @@ include("layout/breadcrumb.inc");
 <tr>
 <td>
 <?
-
 include("layout/navphoto.inc");
+
+#-- if borders are off, just make them the bgcolor ----
+if (!strcmp($album->fields["border"], "off")) {
+	$bordercolor = $album->fields["bgcolor"];
+}
+if ($bordercolor) {
+	$bordercolor = "bgcolor=$bordercolor";
+}
 ?>
 <br>
 </td>
@@ -306,10 +308,10 @@ includeHtmlWrap("inline_photo.header");
 
 <table width=1% border=0 cellspacing=0 cellpadding=0>
 <?
-echo("<tr bgcolor=$bordercolor>");
+echo("<tr $bordercolor>");
 echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
 echo("</tr><tr>");
-echo("<td bgcolor=$bordercolor width=$borderwidth>");
+echo("<td $bordercolor width=$borderwidth>");
 echo("<img src=$top/images/pixel_trans.gif width=$borderwidth height=1>");
 echo("</td><td>");
 echo "<center>";
@@ -350,11 +352,11 @@ if ($openAnchor) {
 }
 
 echo("</td>");
-echo("<td bgcolor=$bordercolor width=$borderwidth>");
+echo("<td $bordercolor width=$borderwidth>");
 echo("<img src=$top/images/pixel_trans.gif width=$borderwidth height=1>");
 echo("</td>");
 echo("</tr>");
-echo("<tr bgcolor=$bordercolor>");
+echo("<tr $bordercolor>");
 echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
 ?>
 </tr>

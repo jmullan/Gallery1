@@ -64,14 +64,7 @@ if ($previousPage == 0) {
 	$first = 1;
 }
 
-#-- if borders are off, just make them the bgcolor ----
-if (!strcmp($album->fields["border"], "off")) {
-	$bordercolor = $album->fields["bgcolor"];
-	$borderwidth = 4;
-} else {
-	$bordercolor = $album->fields["bordercolor"];
-	$borderwidth = $album->fields["border"];
-}
+$bordercolor = $album->fields["bordercolor"];
 
 $imageCellWidth = floor(100 / $cols) . "%";
 $fullWidth = $cols * $album->fields["thumb_size"];
@@ -205,6 +198,16 @@ if (strcmp($album->fields["returnto"], "no")) {
 	include("layout/breadcrumb.inc");
 }
 include("layout/navigator.inc");
+
+#-- if borders are off, just make them the bgcolor ----
+$borderwidth = $album->fields["border"];
+if (!strcmp($borderwidth, "off")) {
+	$bordercolor = $album->fields["bgcolor"];
+	$borderwidth = 1;
+}
+if ($bordercolor) {
+	$bordercolor = "bgcolor=$bordercolor";
+}
 ?>
 
 
@@ -244,10 +247,10 @@ if ($numPhotos) {
 			echo("<td width=$imageCellWidth align=center valign=middle>");
 
 			echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
-			echo("<tr bgcolor=$bordercolor>"); 
+			echo("<tr $bordercolor>"); 
 			echo("<td colspan=3 height=$borderwidth><img src=images/pixel_trans.gif></td>");
 			echo("</tr><tr>");
-			echo("<td bgcolor=$bordercolor width=$borderwidth>");
+			echo("<td $bordercolor width=$borderwidth>");
 			echo("<img src=images/pixel_trans.gif width=$borderwidth height=1>");
 			echo("</td><td>");
 
@@ -261,11 +264,11 @@ if ($numPhotos) {
 					"</a>");
 			}
 			echo("</td>");
-			echo("<td bgcolor=$bordercolor width=$borderwidth>");
+			echo("<td $bordercolor width=$borderwidth>");
 			echo("<img src=images/pixel_trans.gif width=$borderwidth height=1>");
 			echo("</td>");
 			echo("</tr>");	
-			echo("<tr bgcolor=$bordercolor>"); 
+			echo("<tr $bordercolor>"); 
 			echo("<td colspan=3 height=$borderwidth><img src=images/pixel_trans.gif></td>");
 			echo("</tr>");
 			echo("</table>");
