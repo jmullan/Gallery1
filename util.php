@@ -2594,16 +2594,16 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 		$hide_recipients = false, $from = NULL) {
 	global $gallery;
 	if ($gallery->app->emailOn == "no") {
-		echo gallery_error(_("Email not sent as it is disabled for this gallery"));
+		echo "\n<br>". gallery_error(_("Email not sent as it is disabled for this gallery"));
 		return false;
 	}
        	if (!$to) {
-		echo gallery_error(sprintf(_("Email not sent as no address provided"),
+		echo "\n<br>". gallery_error(sprintf(_("Email not sent as no address provided"),
 				       	"<i>" . $to . "</i>"));
 		return false;
 	}
        	if (!gallery_validate_email($to, true)) {
-		echo gallery_error(sprintf(_("Email not sent to %s as it is not a valid address"),
+		echo "\n<br>". gallery_error(sprintf(_("Email not sent to %s as it is not a valid address"),
 				       	"<i>" . $to . "</i>"));
 		return false;
 	}
@@ -2618,7 +2618,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 	global $gallery;
 	if (!gallery_validate_email($from)) {
 		if (isDebugging() && $from) {
-			echo gallery_error( sprintf(_("Sender address %s is invalid, using %s."),
+			echo "\n<br>". gallery_error( sprintf(_("Sender address %s is invalid, using %s."),
 				       	$from, $gallery->app->senderEmail));
 	       	}
 		$from = $gallery->app->senderEmail;
@@ -2632,14 +2632,21 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 	}
 	$additional_headers = "From: $from\r\nReply-To: $reply_to\r\n";
 	$additional_headers .= "X-GalleryRequestIP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
+	$additional_headers .= "MIME-Version: 1.0\r\n";
+	$additional_headers .= "Content-type: text/plain; charset=\"". $gallery->charset ."\"\r\n";
+
 	if ($bcc) {
 		$additional_headers .= "Bcc: " . $bcc. "\r\n";
 	}
 	if (get_magic_quotes_gpc() ) {
 		$msg = stripslashes($msg);
 	}
+
+	$msg=unhtmlentities($msg);
+	$subject=unhtmlentities($gallery->app->emailSubjPrefix." ".$subject);
+
 	if ($gallery->app->useOtherSMTP != "yes") {
-		$result=mail($to, $gallery->app->emailSubjPrefix." ".$subject, emailDisclaimer().$msg, $additional_headers);
+		$result=mail($to, $subject, emailDisclaimer().$msg, $additional_headers);
 	} else {
 	        $lb="\r\n";                        //linebreak
 	        $msg_lb="\r\n";                //body linebreak
