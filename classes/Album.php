@@ -60,7 +60,9 @@ class Album {
 		$this->fields["cols"] = $gallery->app->default["cols"];
 		$this->fields["fit_to_window"] = $gallery->app->default["fit_to_window"];
 		$this->fields["use_fullOnly"] = $gallery->app->default["use_fullOnly"];
-		$this->fields["print_photos"] = $gallery->app->default["print_photos"];
+		if (isset($gallery->app->default['print_photos'])) {
+			$this->fields["print_photos"] = $gallery->app->default["print_photos"];
+		}
 		$this->fields["guid"] = 0;
 		if (isset($gallery->app->use_exif)) {
 			$this->fields["use_exif"] = "yes";

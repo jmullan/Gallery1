@@ -32,7 +32,7 @@
 	require (dirname(__FILE__) . '/config_data.inc');
 	require (dirname(dirname(__FILE__)) . '/js/sectionTabs.js.php');
 
-	list('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults') = 
+	list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults) = 
 	  getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults'));
 
 ?>
