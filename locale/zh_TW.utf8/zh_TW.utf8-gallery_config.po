@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-03-21 15:14+0100\n"
+"POT-Creation-Date: 2004-03-25 17:24+0100\n"
 "PO-Revision-Date: 2003-09-01 13:57+0800\n"
 "Last-Translator: Jian-Zhou Huang <qq@turtle.ee.ncku.edu.tw>\n"
 "Language-Team: Traditional Chinese <qq@turtle.ee.ncku.edu.tw>\n"
@@ -151,7 +151,7 @@ msgid "Serious Warning"
 msgstr "嚴重警告"
 
 #: ../setup/check.inc:83 ../setup/check.inc:125 ../setup/check_mail.php:75
-#: ../setup/config_data.inc:887 ../setup/config_data.inc:893
+#: ../setup/config_data.inc:906 ../setup/config_data.inc:912
 msgid "Warning"
 msgstr "警告"
 
@@ -214,7 +214,7 @@ msgid "It seems that you did not configure your GALLERY. Please run and finish t
 msgstr "您的 Gallery 尚未設定完成, 請繼續執行設定精靈. "
 
 #: ../setup/check_imagemagick.php:74 ../setup/check_netpbm.php:74
-#: ../setup/functions.inc:1179
+#: ../setup/functions.inc:1181
 msgid "OK"
 msgstr ""
 
@@ -464,7 +464,7 @@ msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the bina
 msgstr "Gallery 建議使用 NetPBM 9.9 或者更新的版本. 您可以從 %sGallery on SourceForge%s 上下載可執行檔, 或者從 %sNetPBM on SourceForge%s 下載原始檔自行編譯安裝. "
 
 #: ../setup/config_data.inc:57 ../setup/config_data.inc:67
-#: ../setup/config_data.inc:569 ../setup/confirm.inc:371
+#: ../setup/config_data.inc:579 ../setup/confirm.inc:371
 msgid "Note:"
 msgstr "注意："
 
@@ -695,1131 +695,1151 @@ msgid "The full URL to your album directory (specified above) on your web server
 msgstr "相簿(由上一個設定取得)的完整 URL , 比如 %s. "
 
 #: ../setup/config_data.inc:273
+#, fuzzy
+msgid "Watermark directory"
+msgstr "暫存目錄"
+
+#: ../setup/config_data.inc:274
+#, fuzzy, php-format
+msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
+msgstr "在磁碟中儲存相片的完整目錄. 這個目錄一開始應該是空的, Gallery 將會持續存入檔案。請注意此目錄需允許執行網站程式的使用者擁有寫入權限 (您的使用者是 %s)"
+
+#: ../setup/config_data.inc:283
 msgid "Thumbnail image"
 msgstr "影片縮圖"
 
-#: ../setup/config_data.inc:274
+#: ../setup/config_data.inc:284
 #, fuzzy, php-format
 msgid "The filesystem path to the thumbnail image to show for movies. E.g. %s"
 msgstr "影片的縮圖所在路徑, 如 %s"
 
-#: ../setup/config_data.inc:280
+#: ../setup/config_data.inc:290
 msgid "Mirror sites"
 msgstr "備份網站"
 
-#: ../setup/config_data.inc:281
+#: ../setup/config_data.inc:291
 #, fuzzy, php-format
 msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  E.g. %s"
 msgstr "包含相簿目錄的備份網站列表, 在每一行中輸入一個 URL, 通常越上面的越穩定越好. 比如 %s"
 
-#: ../setup/config_data.inc:292
+#: ../setup/config_data.inc:302
 #, fuzzy
 msgid "Embedded Gallery"
 msgstr "進入 Gallery"
 
-#: ../setup/config_data.inc:293
+#: ../setup/config_data.inc:303
 msgid "Use this section to set options to configure gallery to be embedded in another web application."
 msgstr ""
 
-#: ../setup/config_data.inc:296
+#: ../setup/config_data.inc:306
 #, fuzzy
 msgid "Embed Gallery"
 msgstr "Gallery"
 
-#: ../setup/config_data.inc:297
+#: ../setup/config_data.inc:307
 #, php-format
 msgid "If you would like to run %s in another web application (such as *Nuke, phpBB2 or GeekLog) you have to choose the environment here."
 msgstr ""
 
-#: ../setup/config_data.inc:298
+#: ../setup/config_data.inc:308
 msgid "Standalone Gallery"
 msgstr ""
 
-#: ../setup/config_data.inc:308
+#: ../setup/config_data.inc:318
 msgid "GeekLog Dir"
 msgstr ""
 
-#: ../setup/config_data.inc:310
+#: ../setup/config_data.inc:320
 msgid "If you chose Geeklog above, please enter the location of the GeekLog public_html directory."
 msgstr ""
 
-#: ../setup/config_data.inc:317
+#: ../setup/config_data.inc:327
 msgid "Toolkits / image processing"
 msgstr "工具 / 影像處理"
 
-#: ../setup/config_data.inc:320
+#: ../setup/config_data.inc:330
 #, fuzzy
 msgid "Graphics suite to use"
 msgstr "使用哪一種圖形套件? "
 
-#: ../setup/config_data.inc:321
+#: ../setup/config_data.inc:331
 msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
 msgstr "這個設定告訴 Gallery 您希望使用的圖形工具為何, 如果 Gallery 在第一頁回報兩個工具程式都可使用，那這就是簡單的使用者設定, 否則請選擇一個 Gallery 認為沒有問題的設定. "
 
-#: ../setup/config_data.inc:327
+#: ../setup/config_data.inc:337
 msgid "Path to NetPBM"
 msgstr "NetPBM 的路徑"
 
-#: ../setup/config_data.inc:328
+#: ../setup/config_data.inc:338
 #, fuzzy, php-format
 msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
 msgstr "系統中儲存 NetPBM 程式的目錄, 如果您從 Gallery 網站上下載 NetPBM, 別忘了設定執行權限喔.  比如 %s、%s 或者是 %s"
 
-#: ../setup/config_data.inc:334
+#: ../setup/config_data.inc:344
 msgid "I can't find NetPBM at the location you provided."
 msgstr "在您提供的目錄中找不到 NetPBM. "
 
-#: ../setup/config_data.inc:344
+#: ../setup/config_data.inc:354
 msgid "PNM to JPEG converter"
 msgstr "PNM to JPEG 轉換程式"
 
-#: ../setup/config_data.inc:345
+#: ../setup/config_data.inc:355
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "只有當您使用 NetPBM 時才需要設定此項, NetPBM 利用兩種工具程式將內部影像格式轉成 JPEG, 依據您安裝的 NetPBM 版本不同可能為 <i>ppmtojpeg</i> 或 <i>pnmtojpeg</i>. 請檢查您的 NetPBM 目錄並指定其中一種工具程式, 如果您不確定也沒關係, 我們會幫您進行檢查. "
 
-#: ../setup/config_data.inc:351
+#: ../setup/config_data.inc:361
 msgid "Path to ImageMagick"
 msgstr "ImageMagick 的路徑"
 
-#: ../setup/config_data.inc:352
+#: ../setup/config_data.inc:362
 msgid "The path to the directory containing ImageMagick on your system."
 msgstr "系統中 ImageMagick 程式的目錄路徑"
 
-#: ../setup/config_data.inc:355
+#: ../setup/config_data.inc:365
 msgid "I can't find ImageMagick at the location you provided."
 msgstr "在您指定的路徑位置找不到 ImageMagick 程式. "
 
-#: ../setup/config_data.inc:364
+#: ../setup/config_data.inc:374
 msgid "Auto-rotate images"
 msgstr "自動旋轉影像"
 
-#: ../setup/config_data.inc:365
+#: ../setup/config_data.inc:375
 #, fuzzy
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras."
 msgstr "開啟這個選項後 Gallery 在上傳相片時會透過相片檔的 JPEG EXIF 資料自動決定是否要旋轉影像. 本功能同時需要 Jhead EXIF 解析器 1.9 版或更新 (詳見上)"
 
-#: ../setup/config_data.inc:366
+#: ../setup/config_data.inc:376
 msgid "Requires Jhead EXIF parser v.1.9 or greater (see below)."
 msgstr ""
 
-#: ../setup/config_data.inc:367 ../setup/config_data.inc:386
-#: ../setup/config_data.inc:399 ../setup/config_data.inc:412
-#: ../setup/config_data.inc:470 ../setup/config_data.inc:528
-#: ../setup/config_data.inc:572 ../setup/config_data.inc:624
-#: ../setup/config_data.inc:632 ../setup/config_data.inc:638
-#: ../setup/config_data.inc:686 ../setup/config_data.inc:716
-#: ../setup/config_data.inc:722 ../setup/config_data.inc:723
-#: ../setup/config_data.inc:751 ../setup/config_data.inc:757
-#: ../setup/config_data.inc:901 ../setup/config_data.inc:907
-#: ../setup/config_data.inc:914 ../setup/config_data.inc:920
-#: ../setup/config_data.inc:966 ../setup/config_data.inc:975
-#: ../setup/config_data.inc:989 ../setup/config_data.inc:999
-#: ../setup/config_data.inc:1005 ../setup/config_data.inc:1011
-#: ../setup/config_data.inc:1075 ../setup/config_data.inc:1082
-#: ../setup/config_data.inc:1129 ../setup/config_data.inc:1130
-#: ../setup/config_data.inc:1136
+#: ../setup/config_data.inc:377 ../setup/config_data.inc:396
+#: ../setup/config_data.inc:409 ../setup/config_data.inc:422
+#: ../setup/config_data.inc:480 ../setup/config_data.inc:538
+#: ../setup/config_data.inc:582 ../setup/config_data.inc:634
+#: ../setup/config_data.inc:642 ../setup/config_data.inc:648
+#: ../setup/config_data.inc:696 ../setup/config_data.inc:707
+#: ../setup/config_data.inc:735 ../setup/config_data.inc:741
+#: ../setup/config_data.inc:742 ../setup/config_data.inc:770
+#: ../setup/config_data.inc:776 ../setup/config_data.inc:920
+#: ../setup/config_data.inc:926 ../setup/config_data.inc:933
+#: ../setup/config_data.inc:939 ../setup/config_data.inc:985
+#: ../setup/config_data.inc:994 ../setup/config_data.inc:1008
+#: ../setup/config_data.inc:1018 ../setup/config_data.inc:1024
+#: ../setup/config_data.inc:1030 ../setup/config_data.inc:1094
+#: ../setup/config_data.inc:1101 ../setup/config_data.inc:1148
+#: ../setup/config_data.inc:1149 ../setup/config_data.inc:1155
 msgid "yes"
 msgstr "是"
 
-#: ../setup/config_data.inc:367 ../setup/config_data.inc:386
-#: ../setup/config_data.inc:399 ../setup/config_data.inc:412
-#: ../setup/config_data.inc:470 ../setup/config_data.inc:528
-#: ../setup/config_data.inc:568 ../setup/config_data.inc:572
-#: ../setup/config_data.inc:624 ../setup/config_data.inc:632
-#: ../setup/config_data.inc:638 ../setup/config_data.inc:685
-#: ../setup/config_data.inc:686 ../setup/config_data.inc:716
-#: ../setup/config_data.inc:723 ../setup/config_data.inc:751
-#: ../setup/config_data.inc:757 ../setup/config_data.inc:901
-#: ../setup/config_data.inc:907 ../setup/config_data.inc:914
-#: ../setup/config_data.inc:920 ../setup/config_data.inc:966
-#: ../setup/config_data.inc:975 ../setup/config_data.inc:989
-#: ../setup/config_data.inc:999 ../setup/config_data.inc:1005
-#: ../setup/config_data.inc:1011 ../setup/config_data.inc:1074
-#: ../setup/config_data.inc:1075 ../setup/config_data.inc:1130
-#: ../setup/config_data.inc:1135 ../setup/config_data.inc:1136
+#: ../setup/config_data.inc:377 ../setup/config_data.inc:396
+#: ../setup/config_data.inc:409 ../setup/config_data.inc:422
+#: ../setup/config_data.inc:480 ../setup/config_data.inc:538
+#: ../setup/config_data.inc:578 ../setup/config_data.inc:582
+#: ../setup/config_data.inc:634 ../setup/config_data.inc:642
+#: ../setup/config_data.inc:648 ../setup/config_data.inc:695
+#: ../setup/config_data.inc:696 ../setup/config_data.inc:708
+#: ../setup/config_data.inc:735 ../setup/config_data.inc:742
+#: ../setup/config_data.inc:770 ../setup/config_data.inc:776
+#: ../setup/config_data.inc:920 ../setup/config_data.inc:926
+#: ../setup/config_data.inc:933 ../setup/config_data.inc:939
+#: ../setup/config_data.inc:985 ../setup/config_data.inc:994
+#: ../setup/config_data.inc:1008 ../setup/config_data.inc:1018
+#: ../setup/config_data.inc:1024 ../setup/config_data.inc:1030
+#: ../setup/config_data.inc:1093 ../setup/config_data.inc:1094
+#: ../setup/config_data.inc:1149 ../setup/config_data.inc:1154
+#: ../setup/config_data.inc:1155
 msgid "no"
 msgstr "否"
 
-#: ../setup/config_data.inc:372 ../setup/config_data.inc:468
-#: ../setup/config_data.inc:533 ../setup/config_data.inc:543
-#: ../setup/functions.inc:832 ../setup/functions.inc:905
+#: ../setup/config_data.inc:382 ../setup/config_data.inc:478
+#: ../setup/config_data.inc:543 ../setup/config_data.inc:553
+#: ../setup/functions.inc:834 ../setup/functions.inc:907
 msgid "Advanced"
 msgstr "進階"
 
-#: ../setup/config_data.inc:372
+#: ../setup/config_data.inc:382
 msgid "JPEG Quality"
 msgstr "JPEG 畫質"
 
-#: ../setup/config_data.inc:373
+#: ../setup/config_data.inc:383
 #, fuzzy
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
 msgstr "JPEG 格式的檔案大小與畫質交換控制。當您對檔案進行調整尺寸、旋轉、跟製作縮圖時，Gallery 可以控制 JPEG 畫質，高畫質將會比中低畫質佔用較大的檔案大小(file size)，然而許多狀況下一昧提升畫質只是佔用更多的檔案大小，而無法真正改善顯示出來的畫質效果，如果您注意到您的圖檔經過縮圖或調整尺寸後檔案大小卻比原始檔案來得大，而您不喜歡這種情況，您可以試著修改這個值。<b>注意</b> 修改這個值只會對 <i>新檔</i> 產生影響。"
 
-#: ../setup/config_data.inc:381
+#: ../setup/config_data.inc:391
 #, fuzzy
 msgid "Main Gallery page"
 msgstr "Gallery top page"
 
-#: ../setup/config_data.inc:384
+#: ../setup/config_data.inc:394
 msgid "Show the album tree"
 msgstr "顯示相簿樹狀結構"
 
-#: ../setup/config_data.inc:385
+#: ../setup/config_data.inc:395
 #, fuzzy
 msgid "If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page)."
 msgstr "如果您開啟了這個選項, 您將在頂層目錄看到相簿完整的目錄列表. 如此一來要瀏覽每個子目錄會比較方便 (雖然這樣會讓 Gallery 的網頁看起來很亂) 預設是 <b>否</b>. "
 
-#: ../setup/config_data.inc:390
+#: ../setup/config_data.inc:400
 msgid "Highlight size"
 msgstr "封面相片大小"
 
-#: ../setup/config_data.inc:391
+#: ../setup/config_data.inc:401
 #, fuzzy
 msgid "The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."
 msgstr "在 Gallery 網頁中封面影像的縮圖尺寸(thumbnail size) (單位：像素)"
 
-#: ../setup/config_data.inc:397
+#: ../setup/config_data.inc:407
 msgid "Show Owner"
 msgstr "顯示擁有者"
 
-#: ../setup/config_data.inc:398
+#: ../setup/config_data.inc:408
 #, fuzzy
 msgid "Show album owner's name next to each album?"
 msgstr "要在 Gallery 的首頁顯示每個相簿的擁有者嗎? "
 
-#: ../setup/config_data.inc:403
+#: ../setup/config_data.inc:413
 msgid "Albums per page"
 msgstr "相簿數量"
 
-#: ../setup/config_data.inc:404
+#: ../setup/config_data.inc:414
 msgid "How many albums should be displayed per Gallery page?"
 msgstr "每一頁要顯示多少相簿? "
 
-#: ../setup/config_data.inc:410
+#: ../setup/config_data.inc:420
 msgid "Search Engine"
 msgstr "搜尋引擎"
 
-#: ../setup/config_data.inc:411
+#: ../setup/config_data.inc:421
 msgid "Display search engine on main Gallery page?"
 msgstr "在 Gallery 的首頁顯示搜尋引擎嗎? "
 
-#: ../setup/config_data.inc:416
+#: ../setup/config_data.inc:426
 #, fuzzy
 msgid "Skin Name"
 msgstr "名稱"
 
-#: ../setup/config_data.inc:417
+#: ../setup/config_data.inc:427
 msgid "Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4."
 msgstr ""
 
-#: ../setup/config_data.inc:423
+#: ../setup/config_data.inc:433
 msgid "On the main page, the image representing each album has a frame around it.  The following styles are available:"
 msgstr ""
 
-#: ../setup/config_data.inc:431
+#: ../setup/config_data.inc:441
 msgid "Optional tools"
 msgstr "選擇性工具"
 
-#: ../setup/config_data.inc:435
+#: ../setup/config_data.inc:445
 #, fuzzy
 msgid "The filesystem path to the <b>zipinfo</b> binary.  This is optional so if you don't have it, don't worry about it too much."
 msgstr "'zipinfo' 執行檔所在的路徑, 這是非必要選項, 所以即使您沒有也沒關係. "
 
-#: ../setup/config_data.inc:446
+#: ../setup/config_data.inc:456
 #, fuzzy
 msgid "The filesystem path to the <b>unzip</b> binary.  This is optional so if you don't have it, don't worry about it too much."
 msgstr "'unzip' 執行檔所在的路徑, 這是非必要選項, 所以即使您沒有也沒關係. "
 
-#: ../setup/config_data.inc:457
+#: ../setup/config_data.inc:467
 #, fuzzy, php-format
 msgid "The filesystem path to the <b>jhead</b> EXIF parser.  This is optional so if you don't have it, don't worry about it too much.  E.g. %s or %s"
 msgstr "'jhead' 執行檔所在的路徑, 這是非必要選項, 所以即使您沒有也沒關係. 比如 %s 或 %s"
 
-#: ../setup/config_data.inc:468
+#: ../setup/config_data.inc:478
 msgid "Cache EXIF data"
 msgstr "記憶 EXIF 資料"
 
-#: ../setup/config_data.inc:469
+#: ../setup/config_data.inc:479
 #, fuzzy
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
 msgstr "當第一次由 JPEG 檔案讀取 EXIF 資訊時將資料丟入 cache 中. 邊際效應是您的相簿資料檔變大而拖慢瀏覽速度，但若不記憶 EXIF 資訊，則每次瀏覽時就需要點選相片屬性才能接收這個資訊，這樣做其實也會拖慢瀏覽速度。預設值為<b>不開啟</b>. "
 
-#: ../setup/config_data.inc:475
+#: ../setup/config_data.inc:485
 #, fuzzy, php-format
 msgid "The filesystem path to the <b>jpegtran</b> utility.  This is optional so if you don't have it, don't worry about it too much.  E.g. %s or %s"
 msgstr "'jhead' 執行檔所在的路徑, 這是非必要選項, 所以即使您沒有也沒關係. 比如 %s 或 %s"
 
-#: ../setup/config_data.inc:494
+#: ../setup/config_data.inc:504
 msgid "Languages and locales"
 msgstr "語言與地區"
 
-#: ../setup/config_data.inc:497
+#: ../setup/config_data.inc:507
 #, fuzzy
 msgid "Default language"
 msgstr "Gallery 語言"
 
-#: ../setup/config_data.inc:499
+#: ../setup/config_data.inc:509
 #, fuzzy, php-format
 msgid "This is the language you will see as %s, and what users will see if no other preference is set."
 msgstr "這是當你使用 %s 時會用到的語言, 或者是當使用者沒有自訂語言時直接使用它. "
 
-#: ../setup/config_data.inc:506
+#: ../setup/config_data.inc:516
 msgid "Multi language mode"
 msgstr "多國語系模式"
 
-#: ../setup/config_data.inc:507
+#: ../setup/config_data.inc:517
 #, fuzzy
 msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site."
 msgstr "Gallery 有三種語系模式, 這會影響使用者觀看網站時所顯示的語言. "
 
-#: ../setup/config_data.inc:510
+#: ../setup/config_data.inc:520
 msgid "Gallery is only displayed in one language"
 msgstr "Gallery 只顯示某一種語言"
 
-#: ../setup/config_data.inc:511
+#: ../setup/config_data.inc:521
 msgid "Gallery is displayed in the language the browser sends"
 msgstr "Gallery 顯示瀏覽器送出的語言"
 
-#: ../setup/config_data.inc:512
+#: ../setup/config_data.inc:522
 #, fuzzy
 msgid "The User can choose the language via pulldown menu or national flags."
 msgstr "使用者可以由下拉式選單以及國旗選擇自己想用的語言."
 
-#: ../setup/config_data.inc:516
+#: ../setup/config_data.inc:526
 #, fuzzy
 msgid "Available languages"
 msgstr "Gallery 語言"
 
-#: ../setup/config_data.inc:519
+#: ../setup/config_data.inc:529
 #, fuzzy
 msgid "These languages will be available as user choices in a pulldown menu or national flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."
 msgstr "若選擇模式三，這些語言會以下拉式選單或國旗圖樣呈現讓一般使用者自訂，而模式二或三中已註冊使用者亦可以由此選擇預設的語言。"
 
-#: ../setup/config_data.inc:525
+#: ../setup/config_data.inc:535
 msgid "Show flags?"
 msgstr "顯示國旗?"
 
-#: ../setup/config_data.inc:527
+#: ../setup/config_data.inc:537
 #, fuzzy
 msgid "In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."
 msgstr "您可以選擇在第三種模式中使用下拉式選單或者是國旗設定語言."
 
-#: ../setup/config_data.inc:533
+#: ../setup/config_data.inc:543
 #, fuzzy
 msgid "Format for date strings."
 msgstr "日期的使用格式."
 
-#: ../setup/config_data.inc:534 ../setup/config_data.inc:544
+#: ../setup/config_data.inc:544 ../setup/config_data.inc:554
 #, fuzzy, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
 msgstr "這個字串格式將用來顯示 %s 為 %s. 建議使用 %s, 這樣子格式將會自動隨著所選語言而改變.  如果您想要更改這些字串, 請看 %s."
 
-#: ../setup/config_data.inc:535
+#: ../setup/config_data.inc:545
 msgid "date without time"
 msgstr "只顯示日期"
 
-#: ../setup/config_data.inc:536 ../setup/config_data.inc:546
+#: ../setup/config_data.inc:546 ../setup/config_data.inc:556
 msgid "http://www.php.net/manual/en/function.strftime.php"
 msgstr "http://www.php.net/manual/en/function.strftime.php"
 
-#: ../setup/config_data.inc:537
+#: ../setup/config_data.inc:547
 #, php-format
 msgid "For example, %s will display date like this: %s."
 msgstr "舉例來說, %s 會這樣顯示日期: %s."
 
-#: ../setup/config_data.inc:543
+#: ../setup/config_data.inc:553
 #, fuzzy
 msgid "Format for date/time strings."
 msgstr "日期/時間 字串的使用格式"
 
-#: ../setup/config_data.inc:545
+#: ../setup/config_data.inc:555
 msgid "date with time"
 msgstr "顯示日期與時間"
 
-#: ../setup/config_data.inc:547
+#: ../setup/config_data.inc:557
 #, php-format
 msgid "For example, %s will display date and time like this: %s."
 msgstr "舉例來說, %s 會這樣顯示日期與時間: %s."
 
-#: ../setup/config_data.inc:561
+#: ../setup/config_data.inc:571
 msgid "Email and Registration"
 msgstr ""
 
-#: ../setup/config_data.inc:562
+#: ../setup/config_data.inc:572
 #, php-format
 msgid "If you are having problems with email, please run the %s diagnostic."
 msgstr ""
 
-#: ../setup/config_data.inc:563 ../setup/diagnostics.php:92
+#: ../setup/config_data.inc:573 ../setup/diagnostics.php:92
 #, fuzzy
 msgid "Check Email"
 msgstr "全選取"
 
-#: ../setup/config_data.inc:566
+#: ../setup/config_data.inc:576
 #, fuzzy
 msgid "Enable email"
 msgstr "姓名或者電子郵件位址："
 
-#: ../setup/config_data.inc:568
+#: ../setup/config_data.inc:578
 #, php-format
 msgid "Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."
 msgstr ""
 
-#: ../setup/config_data.inc:570
+#: ../setup/config_data.inc:580
 msgid "If you enable these settings you give your users the opportunity to let Gallery send them their lost password via email."
 msgstr ""
 
-#: ../setup/config_data.inc:571
+#: ../setup/config_data.inc:581
 msgid "You need to enable this setting if you want to enable Self Registration."
 msgstr ""
 
-#: ../setup/config_data.inc:576
+#: ../setup/config_data.inc:586
 #, fuzzy
 msgid "Admin email address"
 msgstr "電子信箱"
 
-#: ../setup/config_data.inc:577
+#: ../setup/config_data.inc:587
 msgid "Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know whom to reach in case of problems. You may specify more than one address by separating them with commas."
 msgstr ""
 
-#: ../setup/config_data.inc:585
+#: ../setup/config_data.inc:595
 #, fuzzy
 msgid "Sender email address"
 msgstr "伺服器 IP 位置"
 
-#: ../setup/config_data.inc:586
+#: ../setup/config_data.inc:596
 msgid "Set this value to a valid working email address.  Emails that are automatically sent by Gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients."
 msgstr ""
 
-#: ../setup/config_data.inc:594
+#: ../setup/config_data.inc:604
 msgid "Email subject prefix"
 msgstr ""
 
-#: ../setup/config_data.inc:595
+#: ../setup/config_data.inc:605
 msgid "All Gallery emails will have this as the first part of their subject."
 msgstr ""
 
-#: ../setup/config_data.inc:603
+#: ../setup/config_data.inc:613
 msgid "Welcome email message text"
 msgstr ""
 
-#: ../setup/config_data.inc:604
+#: ../setup/config_data.inc:614
 msgid "This email will be sent when new accounts are created."
 msgstr ""
 
-#: ../setup/config_data.inc:605
+#: ../setup/config_data.inc:615
 #, php-format
 msgid "%s, %s and %s will be replaced by the fullname, user name and password of the newly created user."
 msgstr ""
 
-#: ../setup/config_data.inc:609
+#: ../setup/config_data.inc:619
 #, php-format
 msgid "%s will be replaced by a link the new user can click on to create a new password"
 msgstr ""
 
-#: ../setup/config_data.inc:611
+#: ../setup/config_data.inc:621
 msgid "Leave this field blank to get the default message that can be translated into other languages.  The default message is:"
 msgstr ""
 
-#: ../setup/config_data.inc:621
+#: ../setup/config_data.inc:631
 msgid "Allow visitors to self register."
 msgstr ""
 
-#: ../setup/config_data.inc:622
+#: ../setup/config_data.inc:632
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
 msgstr ""
 
-#: ../setup/config_data.inc:623
+#: ../setup/config_data.inc:633
 msgid "This option requires the Email feature to be enabled."
 msgstr ""
 
-#: ../setup/config_data.inc:626
+#: ../setup/config_data.inc:636
 #, fuzzy
 msgid "Email"
 msgstr "全選取"
 
-#: ../setup/config_data.inc:629
+#: ../setup/config_data.inc:639
 #, fuzzy
 msgid "Self registered users can create albums."
 msgstr "使用者可以建立相簿"
 
-#: ../setup/config_data.inc:630
+#: ../setup/config_data.inc:640
 msgid "Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled."
 msgstr ""
 
-#: ../setup/config_data.inc:635
+#: ../setup/config_data.inc:645
 msgid "Enable bulk account creation"
 msgstr ""
 
-#: ../setup/config_data.inc:636
+#: ../setup/config_data.inc:646
 msgid "This option allows your to create many new user accounts at one time by creating a file of new users."
 msgstr ""
 
-#: ../setup/config_data.inc:642
+#: ../setup/config_data.inc:652
 msgid "Admin notification of email activity"
 msgstr ""
 
-#: ../setup/config_data.inc:643
+#: ../setup/config_data.inc:653
 msgid "You can keep a record of every email that is sent by Gallery."
 msgstr ""
 
-#: ../setup/config_data.inc:645
+#: ../setup/config_data.inc:655
 #, fuzzy
 msgid "Send summary email"
 msgstr "全選取"
 
-#: ../setup/config_data.inc:646
+#: ../setup/config_data.inc:656
 msgid "Log to a file"
 msgstr ""
 
-#: ../setup/config_data.inc:647
+#: ../setup/config_data.inc:657
 #, fuzzy
 msgid "Send duplicate email"
 msgstr "全選取"
 
-#: ../setup/config_data.inc:653
+#: ../setup/config_data.inc:663
 msgid "Gallery wide slideshow"
 msgstr "Gallery 幻燈片輪播"
 
-#: ../setup/config_data.inc:655
+#: ../setup/config_data.inc:665
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
 msgstr "在 Gallery 的首頁顯示幻燈片輪播的連結. 注意較大規模的 Gallery 將會執行的很慢而且消耗不少系統資源. "
 
-#: ../setup/config_data.inc:656 ../setup/config_data.inc:1108
+#: ../setup/config_data.inc:666 ../setup/config_data.inc:1127
 msgid "These settings do not apply to the low tech slideshow."
 msgstr ""
 
-#: ../setup/config_data.inc:659
+#: ../setup/config_data.inc:669
 msgid "Slideshow preferences"
 msgstr "幻燈片輪播設定"
 
-#: ../setup/config_data.inc:661 ../setup/config_data.inc:669
-#: ../setup/config_data.inc:696 ../setup/config_data.inc:706
-#: ../setup/config_data.inc:1113 ../setup/config_data.inc:1121
+#: ../setup/config_data.inc:671 ../setup/config_data.inc:679
+#: ../setup/config_data.inc:715 ../setup/config_data.inc:725
+#: ../setup/config_data.inc:1132 ../setup/config_data.inc:1140
 msgid "Off"
 msgstr "關閉"
 
-#: ../setup/config_data.inc:662 ../setup/config_data.inc:1114
+#: ../setup/config_data.inc:672 ../setup/config_data.inc:1133
 msgid "No slideshow link will appear."
 msgstr "不顯示幻燈片輪播連結. "
 
-#: ../setup/config_data.inc:663 ../setup/config_data.inc:670
-#: ../setup/config_data.inc:1115 ../setup/config_data.inc:1122
+#: ../setup/config_data.inc:673 ../setup/config_data.inc:680
+#: ../setup/config_data.inc:1134 ../setup/config_data.inc:1141
 msgid "Ordered"
 msgstr "依序"
 
-#: ../setup/config_data.inc:664 ../setup/config_data.inc:1116
+#: ../setup/config_data.inc:674 ../setup/config_data.inc:1135
 msgid "Images will display in the same order as they appear in the Gallery."
 msgstr "影像將會以 Gallery 中放置的順序顯示. "
 
-#: ../setup/config_data.inc:665 ../setup/config_data.inc:671
-#: ../setup/config_data.inc:1117 ../setup/config_data.inc:1123
+#: ../setup/config_data.inc:675 ../setup/config_data.inc:681
+#: ../setup/config_data.inc:1136 ../setup/config_data.inc:1142
 msgid "Random"
 msgstr "隨機"
 
-#: ../setup/config_data.inc:666 ../setup/config_data.inc:1118
+#: ../setup/config_data.inc:676 ../setup/config_data.inc:1137
 msgid "Images will appear in a random order."
 msgstr "影像將會隨機顯示. "
 
-#: ../setup/config_data.inc:676 ../setup/config_data.inc:1140
+#: ../setup/config_data.inc:686 ../setup/config_data.inc:1159
 msgid "Slideshow length"
 msgstr "幻燈片輪播長度"
 
-#: ../setup/config_data.inc:677 ../setup/config_data.inc:1141
+#: ../setup/config_data.inc:687 ../setup/config_data.inc:1160
 msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
 msgstr "要在幻燈片輪播中顯示的影像數量. 設定為 0 或者是空白以顯示所有的影像. "
 
-#: ../setup/config_data.inc:684 ../setup/config_data.inc:1134
+#: ../setup/config_data.inc:694 ../setup/config_data.inc:1153
 msgid "Allow slideshow to loop"
 msgstr ""
 
-#: ../setup/config_data.inc:685
+#: ../setup/config_data.inc:695
 #, php-format
 msgid "This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr ""
 
-#: ../setup/config_data.inc:691
+#: ../setup/config_data.inc:701
 msgid "Comments"
 msgstr "評論"
 
-#: ../setup/config_data.inc:694
+#: ../setup/config_data.inc:704
+#, fuzzy
+msgid "Enable commenting"
+msgstr "姓名或者電子郵件位址："
+
+#: ../setup/config_data.inc:705
+msgid "This option will enable or disbale the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
+msgstr ""
+
+#: ../setup/config_data.inc:713
 msgid "Indicate if there are comments available"
 msgstr "如果有評論將指示出來"
 
-#: ../setup/config_data.inc:697
+#: ../setup/config_data.inc:716
 msgid "No indication that an item has comments."
 msgstr "即使檔案有評論也不會指示. "
 
-#: ../setup/config_data.inc:698 ../setup/config_data.inc:707
+#: ../setup/config_data.inc:717 ../setup/config_data.inc:726
 msgid "Photos"
 msgstr "照片"
 
-#: ../setup/config_data.inc:699
+#: ../setup/config_data.inc:718
 msgid "Images that have comments will be marked."
 msgstr "影像如果有評論將做記號. "
 
-#: ../setup/config_data.inc:700 ../setup/config_data.inc:708
+#: ../setup/config_data.inc:719 ../setup/config_data.inc:727
 msgid "Albums"
 msgstr "相簿"
 
-#: ../setup/config_data.inc:701
+#: ../setup/config_data.inc:720
 msgid "Albums and sub-albums that have comments will be marked."
 msgstr "相簿與子相簿如果有評論將做記號. "
 
-#: ../setup/config_data.inc:702 ../setup/config_data.inc:709
+#: ../setup/config_data.inc:721 ../setup/config_data.inc:728
 msgid "Both"
 msgstr "兩者"
 
-#: ../setup/config_data.inc:703
+#: ../setup/config_data.inc:722
 #, fuzzy
 msgid "Images and albums that have comments will be marked."
 msgstr "影像與相簿如果有評論將做記號. "
 
-#: ../setup/config_data.inc:714
+#: ../setup/config_data.inc:733
 msgid "Display date of last comment?"
 msgstr "顯示上次評論的日期? "
 
-#: ../setup/config_data.inc:715
+#: ../setup/config_data.inc:734
 #, php-format
 msgid "If an item has comments, display date of last comment, rather than a %s."
 msgstr "如果檔案有評論, 將會顯示評論的日期而非 %s. "
 
-#: ../setup/config_data.inc:720
+#: ../setup/config_data.inc:739
 msgid "Anonymous comments from known users?"
 msgstr ""
 
-#: ../setup/config_data.inc:721
+#: ../setup/config_data.inc:740
 #, php-format
 msgid "When logged in, comments will automatically use format described below, unless this is set to %s."
 msgstr ""
 
-#: ../setup/config_data.inc:727
+#: ../setup/config_data.inc:746
 #, fuzzy
 msgid "Format for commenter names"
 msgstr "日期的使用格式."
 
-#: ../setup/config_data.inc:728
+#: ../setup/config_data.inc:747
 msgid "Commenter names of logged in users can be displayed in a variety of different ways"
 msgstr ""
 
-#: ../setup/config_data.inc:735
+#: ../setup/config_data.inc:754
 msgid "Technical"
 msgstr ""
 
-#: ../setup/config_data.inc:736
+#: ../setup/config_data.inc:755
 msgid "You usually don't need to change anything in this section."
 msgstr ""
 
-#: ../setup/config_data.inc:740
+#: ../setup/config_data.inc:759
 msgid "Time Limit"
 msgstr "時間上限"
 
-#: ../setup/config_data.inc:741
+#: ../setup/config_data.inc:760
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr "每一個動作所能使用的最多時間 (秒). 如果您有 <b>Maximum execution time exceeded</b> 的問題, 請將數字設大一點. 請注意如果您設太大<i>有可能</i>會導致 process 卡太久, 預設 30 秒是理想值. "
 
-#: ../setup/config_data.inc:749
+#: ../setup/config_data.inc:768
 msgid "Debug mode"
 msgstr "除錯模式"
 
-#: ../setup/config_data.inc:750
+#: ../setup/config_data.inc:769
 msgid "Turn debug mode on so that you can diagnose problems?"
 msgstr "打開除錯模式以便發生問題時檢查除錯訊息? "
 
-#: ../setup/config_data.inc:755
+#: ../setup/config_data.inc:774
 #, fuzzy, php-format
 msgid "Use %s"
 msgstr "使用 %s? "
 
-#: ../setup/config_data.inc:756
+#: ../setup/config_data.inc:775
 #, fuzzy
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
 msgstr "Gallery 使用 flock() 作為 locking system 以保護資料的正確性. 通常不是所有的平台都有支援, 如果您發現有錯誤情形比如 <i>無法要求鎖定</i> 那麼您應該將設定改為 <i>no</i>"
 
-#: ../setup/config_data.inc:760
+#: ../setup/config_data.inc:779
 msgid "Status code"
 msgstr "狀態碼"
 
-#: ../setup/config_data.inc:761
+#: ../setup/config_data.inc:780
 #, fuzzy
 msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr "當 exec() 呼叫成功傳回時 Gallery 的預期狀態碼. Gallery 會自行設定所以除非您碰到問題, 否則通常不需更改. "
 
-#: ../setup/config_data.inc:767
+#: ../setup/config_data.inc:786
 msgid "Session variable"
 msgstr "Session 變數"
 
-#: ../setup/config_data.inc:768
+#: ../setup/config_data.inc:787
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr "用來包含 Gallery session 資訊的 session 變數名稱, 如果有跟其他 PHP 應用程式起衝突再做更改. "
 
-#: ../setup/config_data.inc:817
+#: ../setup/config_data.inc:836
 msgid "Appearance"
 msgstr "外觀"
 
-#: ../setup/config_data.inc:820
+#: ../setup/config_data.inc:839
 msgid "Border color"
 msgstr "邊框顏色"
 
-#: ../setup/config_data.inc:821
+#: ../setup/config_data.inc:840
 #, php-format
 msgid "Default color of image borders. You can learn about %scolors%s here."
 msgstr "影像邊框的預設顏色, 請由%s顏色%s取得更多資訊. "
 
-#: ../setup/config_data.inc:832
+#: ../setup/config_data.inc:851
 msgid "Border width"
 msgstr "邊框寬度"
 
-#: ../setup/config_data.inc:833
+#: ../setup/config_data.inc:852
 #, fuzzy
 msgid "Default width of image borders."
 msgstr "預設影像邊框寬度"
 
-#: ../setup/config_data.inc:835 ../setup/config_data.inc:875
-#: ../setup/config_data.inc:889
+#: ../setup/config_data.inc:854 ../setup/config_data.inc:894
+#: ../setup/config_data.inc:908
 msgid "off"
 msgstr "關閉"
 
-#: ../setup/config_data.inc:838
+#: ../setup/config_data.inc:857
 msgid "Default Font"
 msgstr "預設字形"
 
-#: ../setup/config_data.inc:839
+#: ../setup/config_data.inc:858
 #, fuzzy
 msgid "Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"
 msgstr "預設的字型, 比如 <i>arial</i> 或 <i>trebuchet</i>"
 
-#: ../setup/config_data.inc:846
+#: ../setup/config_data.inc:865
 msgid "Layout"
 msgstr "Layout"
 
-#: ../setup/config_data.inc:849
+#: ../setup/config_data.inc:868
 msgid "Default Columns"
 msgstr "預設行數(直行)"
 
-#: ../setup/config_data.inc:850
+#: ../setup/config_data.inc:869
 #, fuzzy
 msgid "The default number of columns in an album."
 msgstr "設定相簿中一頁有幾行"
 
-#: ../setup/config_data.inc:855
+#: ../setup/config_data.inc:874
 msgid "Default Rows"
 msgstr "預設列數(橫列)"
 
-#: ../setup/config_data.inc:856
+#: ../setup/config_data.inc:875
 #, fuzzy
 msgid "The default number of rows in an album."
 msgstr "設定相簿中一頁有幾列"
 
-#: ../setup/config_data.inc:862
+#: ../setup/config_data.inc:881
 msgid "Image Processing and Display"
 msgstr "影像處理與顯示"
 
-#: ../setup/config_data.inc:865
+#: ../setup/config_data.inc:884
 msgid "Thumbnail size"
 msgstr "縮圖大小"
 
-#: ../setup/config_data.inc:866
+#: ../setup/config_data.inc:885
 msgid "The default target size (in pixels) of album thumbnails."
 msgstr "預設的縮圖尺寸 (單位：像素)"
 
-#: ../setup/config_data.inc:872
+#: ../setup/config_data.inc:891
 msgid "Resized image size"
 msgstr "重新調整的影像尺寸"
 
-#: ../setup/config_data.inc:873
+#: ../setup/config_data.inc:892
 #, fuzzy
 msgid "When large images are added to an album, an intermediate version will automatically be generated at this size."
 msgstr "如果放到相簿的影像尺寸太大時, 會自動產生一份這個尺寸的過渡版本. "
 
-#: ../setup/config_data.inc:878
+#: ../setup/config_data.inc:897
 #, fuzzy
 msgid "Resized JPEG/PNG images file size"
 msgstr "重新調整的影像檔案大小"
 
-#: ../setup/config_data.inc:879
+#: ../setup/config_data.inc:898
 #, fuzzy
 msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
 msgstr "預設重新調整的 JPEG 影像檔案大小(單位：KB). 設定之後也許會拖慢檔案上傳的完成速度, 不過在瀏覽圖片時會比較快速. 設定為 0 代表沒有限制. "
 
-#: ../setup/config_data.inc:886
+#: ../setup/config_data.inc:905
 #, fuzzy
 msgid "Maximum image size"
 msgstr "重新調整的影像尺寸"
 
-#: ../setup/config_data.inc:887
+#: ../setup/config_data.inc:906
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
 msgstr ""
 
-#: ../setup/config_data.inc:887
+#: ../setup/config_data.inc:906
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
 msgstr ""
 
-#: ../setup/config_data.inc:889
+#: ../setup/config_data.inc:908
 #, php-format
 msgid "%d (%d MPix)"
 msgstr ""
 
-#: ../setup/config_data.inc:892
+#: ../setup/config_data.inc:911
 #, fuzzy
 msgid "Maximum JPEG/PNG image file size"
 msgstr "重新調整的影像檔案大小"
 
-#: ../setup/config_data.inc:893
+#: ../setup/config_data.inc:912
 msgid "You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery."
 msgstr ""
 
-#: ../setup/config_data.inc:893
+#: ../setup/config_data.inc:912
 #, fuzzy
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
 msgstr "預設重新調整的 JPEG 影像檔案大小(單位：KB). 設定之後也許會拖慢檔案上傳的完成速度, 不過在瀏覽圖片時會比較快速. 設定為 0 代表沒有限制. "
 
-#: ../setup/config_data.inc:899
+#: ../setup/config_data.inc:918
 msgid "Preserve Names"
 msgstr "保留名稱"
 
-#: ../setup/config_data.inc:900
+#: ../setup/config_data.inc:919
 msgid "When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."
 msgstr "上傳檔案時是否要保留檔案名稱? 如果您選擇 <i>否</i>, Gallery 將會為每一個上傳的相片或影像指定新的名稱. "
 
-#: ../setup/config_data.inc:905
+#: ../setup/config_data.inc:924
 msgid "Add to beginning"
 msgstr "新增檔案放在最前面"
 
-#: ../setup/config_data.inc:906
+#: ../setup/config_data.inc:925
 #, fuzzy
 msgid "New images added to beginning rather than end of albums."
 msgstr "新加入的檔案會放在最前面而不是最後面"
 
-#: ../setup/config_data.inc:911
+#: ../setup/config_data.inc:930
 msgid "Fit-to-window"
 msgstr "符合目前視窗大小"
 
-#: ../setup/config_data.inc:912
+#: ../setup/config_data.inc:931
 #, fuzzy
 msgid "When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
 msgstr "瀏覽相片的時候不使用過渡版本, Gallery 會自動重新調整大小適合瀏覽者的視窗 (利用 JavaScript). 這個功能可能在 Nuke 等嵌入環境下無法使用. "
 
-#: ../setup/config_data.inc:917
+#: ../setup/config_data.inc:936
 msgid "Visitor size prefs"
 msgstr "訪客瀏覽設定"
 
-#: ../setup/config_data.inc:918
+#: ../setup/config_data.inc:937
 #, fuzzy
 msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."
 msgstr "允許訪客能夠一直瀏覽到完整相片而非過渡版本. 這個功能只有在訪客的該 session 中有用. "
 
-#: ../setup/config_data.inc:924
+#: ../setup/config_data.inc:943
 msgid "Options"
 msgstr "選項"
 
-#: ../setup/config_data.inc:927
+#: ../setup/config_data.inc:946
 #, fuzzy
 msgid "Printing Services"
 msgstr "列印服務"
 
-#: ../setup/config_data.inc:928
+#: ../setup/config_data.inc:947
 #, fuzzy
 msgid "Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. If you choose Shutterfly's &quot;with donation&quot; option, Gallery will charge an extra 2 cents (US) for every photo printed, and 1.8 cents of that will get donated back to the Gallery project. EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation. Using these services is a great way for you to help support this free software."
 msgstr "允許訪客由相簿內上列印相片. 如果您選擇 shutterfly, 每一張相片會多收美金 2 cents(通常 4x6 是 49 cents), 其中 1.8 cents 將捐獻給 Gallery 計畫. 這是您贊助本自由軟體的最好途徑. "
 
-#: ../setup/config_data.inc:938
+#: ../setup/config_data.inc:957
 #, fuzzy
 msgid "with donation"
 msgstr "%s 沒有贊助"
 
-#: ../setup/config_data.inc:939
+#: ../setup/config_data.inc:958
 #, fuzzy
 msgid "without donation"
 msgstr "%s 沒有贊助"
 
-#: ../setup/config_data.inc:963
+#: ../setup/config_data.inc:982
 msgid "Gallery Link"
 msgstr "Gallery 連結"
 
-#: ../setup/config_data.inc:964
+#: ../setup/config_data.inc:983
 #, fuzzy
 msgid "Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
 msgstr "要在 Gallery 的頂層目錄顯示相簿的連結嗎? 如果沒有開啟這個功能, 使用者將無法在您的網站上自由瀏覽相簿. 這個功能只有當你想要把相簿嵌入網站中, 卻又不想讓別人輕易瀏覽 Gallery 裡的其他相簿時才要開啟. "
 
-#: ../setup/config_data.inc:970
+#: ../setup/config_data.inc:989
 msgid "Data displayed"
 msgstr "日期顯示"
 
-#: ../setup/config_data.inc:973
+#: ../setup/config_data.inc:992
 msgid "Click counts"
 msgstr "點閱數"
 
-#: ../setup/config_data.inc:974
+#: ../setup/config_data.inc:993
 msgid "Display click counts within Albums?"
 msgstr "要顯示相片的點閱數嗎? "
 
-#: ../setup/config_data.inc:979
+#: ../setup/config_data.inc:998
 msgid "Custom Fields"
 msgstr "自訂欄位"
 
-#: ../setup/config_data.inc:981
+#: ../setup/config_data.inc:1000
 #, fuzzy
 msgid "Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"
 msgstr "自訂欄位可以增加相片的可讀性, 您可以用逗號分隔您自訂的欄位. 比如 <i>Description, Location, Film Type</i>"
 
-#: ../setup/config_data.inc:987
+#: ../setup/config_data.inc:1006
 msgid "Display clickable image dimensions"
 msgstr ""
 
-#: ../setup/config_data.inc:988
+#: ../setup/config_data.inc:1007
 msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
 msgstr ""
 
-#: ../setup/config_data.inc:994
+#: ../setup/config_data.inc:1013
 msgid "Item Owner"
 msgstr "檔案所有者"
 
-#: ../setup/config_data.inc:997
+#: ../setup/config_data.inc:1016
 msgid "Photo owner modification"
 msgstr "相片擁有者可以修改檔案"
 
-#: ../setup/config_data.inc:998
+#: ../setup/config_data.inc:1017
 msgid "Allow photo owners to edit and rotate/flip their own photos?"
 msgstr "允許相片的擁有者修改、旋轉、翻轉他的相片? "
 
-#: ../setup/config_data.inc:1003
+#: ../setup/config_data.inc:1022
 msgid "Photo owner deletion"
 msgstr "相片擁有者可以刪除檔案"
 
-#: ../setup/config_data.inc:1004
+#: ../setup/config_data.inc:1023
 msgid "Allow photo owners to delete their own photos?"
 msgstr "允許相片的擁有者刪除自己的相片? "
 
-#: ../setup/config_data.inc:1009
+#: ../setup/config_data.inc:1028
 msgid "Photo owner display"
 msgstr "顯示相片擁有者"
 
-#: ../setup/config_data.inc:1010
+#: ../setup/config_data.inc:1029
 msgid "Display the name of photo owners with the caption?"
 msgstr "在說明中顯示相片的擁有者? "
 
-#: ../setup/config_data.inc:1016
+#: ../setup/config_data.inc:1035
 msgid "Polling configuration"
 msgstr "評比系統設定"
 
-#: ../setup/config_data.inc:1018
+#: ../setup/config_data.inc:1037
 #, php-format
 msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."
 msgstr "訪客可以對相簿的內容進行投票或者評分. 在此您將設定評比系統的預設值, 它會應用在新增的相簿之中, 同時也會在您第一次更新到版本 %s 時套用在已經存在的相簿裡面. "
 
-#: ../setup/config_data.inc:1021
+#: ../setup/config_data.inc:1040
 msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
 msgstr "在每個相簿裡面, 評比系統可以關閉, 限制給登入的使用者或者是開放給所有訪客使用. "
 
-#: ../setup/config_data.inc:1023
+#: ../setup/config_data.inc:1042
 #, fuzzy, php-format
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr "目前有兩種評比的方式: %s 允許訪客選擇他們最喜愛, 第二, 第三喜愛的影像; %s 允許訪客對影像進行評分. %s 比較像是影像評論, 相片可以獲得 (比如說) 5 分, 而 %s 在分數競賽中比較有用. "
 
-#: ../setup/config_data.inc:1024 ../setup/config_data.inc:1027
-#: ../setup/config_data.inc:1048 ../setup/config_data.inc:1053
+#: ../setup/config_data.inc:1043 ../setup/config_data.inc:1046
+#: ../setup/config_data.inc:1067 ../setup/config_data.inc:1072
 msgid "Rank"
 msgstr "排名"
 
-#: ../setup/config_data.inc:1025 ../setup/config_data.inc:1026
-#: ../setup/config_data.inc:1050 ../setup/config_data.inc:1054
+#: ../setup/config_data.inc:1044 ../setup/config_data.inc:1045
+#: ../setup/config_data.inc:1069 ../setup/config_data.inc:1073
 msgid "Critique"
 msgstr "評論"
 
-#: ../setup/config_data.inc:1030
+#: ../setup/config_data.inc:1049
 msgid "Voter class"
 msgstr "評比者等級"
 
-#: ../setup/config_data.inc:1031
+#: ../setup/config_data.inc:1050
 msgid "Voting is available to:"
 msgstr "可以使用評比系統的: "
 
-#: ../setup/config_data.inc:1033 ../setup/config_data.inc:1040
+#: ../setup/config_data.inc:1052 ../setup/config_data.inc:1059
 msgid "Nobody"
 msgstr "Nobody"
 
-#: ../setup/config_data.inc:1034
+#: ../setup/config_data.inc:1053
 msgid "Voting is off."
 msgstr "關閉評比系統. "
 
-#: ../setup/config_data.inc:1035 ../setup/config_data.inc:1041
+#: ../setup/config_data.inc:1054 ../setup/config_data.inc:1060
 msgid "Everybody"
 msgstr "所有人"
 
-#: ../setup/config_data.inc:1036
+#: ../setup/config_data.inc:1055
 #, fuzzy
 msgid "Anyone can vote.  Votes are recorded against session ID."
 msgstr "任何人皆可使用評比系統. 評比將根據 session id 紀錄. "
 
-#: ../setup/config_data.inc:1037 ../setup/config_data.inc:1042
+#: ../setup/config_data.inc:1056 ../setup/config_data.inc:1061
 msgid "Logged in"
 msgstr "已登入"
 
-#: ../setup/config_data.inc:1038
+#: ../setup/config_data.inc:1057
 #, fuzzy
 msgid "Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices."
 msgstr "已註冊的使用者可以使用評比系統. 評比將根據 UserID 紀錄, 而評比者可以回來更改他們的選擇. "
 
-#: ../setup/config_data.inc:1045
+#: ../setup/config_data.inc:1064
 msgid "Poll type"
 msgstr "評比類型"
 
-#: ../setup/config_data.inc:1046
+#: ../setup/config_data.inc:1065
 msgid "Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation."
 msgstr "Gallery 提供兩種影像評比的方式. 請詳見上面的解釋. "
 
-#: ../setup/config_data.inc:1049
+#: ../setup/config_data.inc:1068
 #, fuzzy
 msgid "Users have a set of votes which they can allocate to the images."
 msgstr "使用者有一組選票分配給影像. "
 
-#: ../setup/config_data.inc:1051
+#: ../setup/config_data.inc:1070
 msgid "Enables users to give all images points without restriction."
 msgstr "讓使用者可以自由的對所有影像進行給分. "
 
-#: ../setup/config_data.inc:1058
+#: ../setup/config_data.inc:1077
 msgid "Number of choices"
 msgstr "選項數量"
 
-#: ../setup/config_data.inc:1059
+#: ../setup/config_data.inc:1078
 #, fuzzy
 msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu."
 msgstr "給評比者在按鈕或下拉式選單中使用的選項數量"
 
-#: ../setup/config_data.inc:1064
+#: ../setup/config_data.inc:1083
 msgid "Vote hint"
 msgstr "評比提示語"
 
-#: ../setup/config_data.inc:1065
+#: ../setup/config_data.inc:1084
 msgid "This is displayed above the voting options under each image."
 msgstr "將會在每個影像中的評比選項上面顯示. "
 
-#: ../setup/config_data.inc:1067
+#: ../setup/config_data.inc:1086
 msgid "Vote for this image"
 msgstr "對影像進行評比"
 
-#: ../setup/config_data.inc:1072 ../setup/config_data.inc:1081
+#: ../setup/config_data.inc:1091 ../setup/config_data.inc:1100
 msgid "Show vote results"
 msgstr "顯示評比結果"
 
-#: ../setup/config_data.inc:1073
+#: ../setup/config_data.inc:1092
 #, php-format
 msgid "Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."
 msgstr "在得分最高的影像所在頁面顯示摘要以及圖示, 並且提供連結到完整的結果. 如果這個選項是 %s, 評比的結果將只有給管理者及相簿所有者能觀看. "
 
-#: ../setup/config_data.inc:1079
+#: ../setup/config_data.inc:1098
 msgid "Number of results displayed"
 msgstr "結果顯示的數量"
 
-#: ../setup/config_data.inc:1080
+#: ../setup/config_data.inc:1099
 #, fuzzy, php-format
 msgid "If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"
 msgstr "如果 %s 為 %s, display this many top images on the thumbnail page.  (Full results will be available on a linked page.)"
 
-#: ../setup/config_data.inc:1087
+#: ../setup/config_data.inc:1106
 msgid "Orientation of vote choices?"
 msgstr "評比選項的方向? "
 
-#: ../setup/config_data.inc:1088
+#: ../setup/config_data.inc:1107
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr "評比排行顯示在每一個旁邊 (水平的) 或者是 每一個下面 (垂直的).  在評論中使用下拉式選單所以沒有影響. "
 
-#: ../setup/config_data.inc:1091
+#: ../setup/config_data.inc:1110
 msgid "Horizontal"
 msgstr "水平"
 
-#: ../setup/config_data.inc:1092
+#: ../setup/config_data.inc:1111
 msgid "Vertical"
 msgstr "垂直"
 
-#: ../setup/config_data.inc:1094 ../setup/functions.inc:983
-#: ../setup/functions.inc:992 ../setup/functions.inc:997
+#: ../setup/config_data.inc:1113 ../setup/functions.inc:985
+#: ../setup/functions.inc:994 ../setup/functions.inc:999
 msgid "Vote words and values"
 msgstr "選項名稱與數值"
 
-#: ../setup/config_data.inc:1095
+#: ../setup/config_data.inc:1114
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "允許您設定每個評比選項的實際顯示文字, 以及每個選項所代表的分數. "
 
-#: ../setup/config_data.inc:1097
+#: ../setup/config_data.inc:1116
 msgid "Excellent"
 msgstr "完美"
 
-#: ../setup/config_data.inc:1098
+#: ../setup/config_data.inc:1117
 msgid "Very Good"
 msgstr "非常好"
 
-#: ../setup/config_data.inc:1099
+#: ../setup/config_data.inc:1118
 msgid "Good"
 msgstr "好"
 
-#: ../setup/config_data.inc:1100
+#: ../setup/config_data.inc:1119
 msgid "Average"
 msgstr "普通"
 
-#: ../setup/config_data.inc:1101
+#: ../setup/config_data.inc:1120
 msgid "Poor"
 msgstr "ㄟ, 有點遜"
 
-#: ../setup/config_data.inc:1107
+#: ../setup/config_data.inc:1126
 msgid "Album Slideshow"
 msgstr "相簿幻燈片輪播"
 
-#: ../setup/config_data.inc:1111
+#: ../setup/config_data.inc:1130
 msgid "Slideshow Type"
 msgstr "幻燈片輪播形式"
 
-#: ../setup/config_data.inc:1128
+#: ../setup/config_data.inc:1147
 msgid "Recursive slideshow"
 msgstr "遞迴幻燈片輪播"
 
-#: ../setup/config_data.inc:1129
+#: ../setup/config_data.inc:1148
 #, php-format
 msgid "Set to %s if you want to include images in sub albums as part of the slideshow."
 msgstr "設定為 %s 如果您想要將子相簿裡的影像包含在幻燈片輪播裡面. "
 
-#: ../setup/config_data.inc:1135
+#: ../setup/config_data.inc:1154
 #, php-format
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr ""
 
-#: ../setup/config_data.inc:1149
+#: ../setup/config_data.inc:1168
 #, fuzzy
 msgid "Frames"
 msgstr "名稱"
 
-#: ../setup/config_data.inc:1150
+#: ../setup/config_data.inc:1169
 #, php-format
 msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"
 msgstr ""
 
-#: ../setup/config_data.inc:1154
+#: ../setup/config_data.inc:1173
 #, fuzzy
 msgid "Subalbum frames"
 msgstr "子相簿"
 
-#: ../setup/config_data.inc:1155
+#: ../setup/config_data.inc:1174
 #, fuzzy
 msgid "This frame will appear around the thumbnail image representing a subalbum."
 msgstr "影片的縮圖所在路徑, 如 %s"
 
-#: ../setup/config_data.inc:1160
+#: ../setup/config_data.inc:1179
 #, fuzzy
 msgid "Frame around thumbs"
 msgstr "重建縮圖"
 
-#: ../setup/config_data.inc:1161
+#: ../setup/config_data.inc:1180
 #, fuzzy
 msgid "This frame will appear around the thumbnail image representing a photo or movie."
 msgstr "影片的縮圖所在路徑, 如 %s"
 
-#: ../setup/config_data.inc:1167
+#: ../setup/config_data.inc:1186
 #, fuzzy
 msgid "Frame around images"
 msgstr "找到 %d 個影像"
 
-#: ../setup/config_data.inc:1168
+#: ../setup/config_data.inc:1187
 #, fuzzy
 msgid "This frame will appear around fulled sized and resized photos."
 msgstr "影片的縮圖所在路徑, 如 %s"
@@ -2092,11 +2112,11 @@ msgstr ""
 msgid "Please retype your password here"
 msgstr ""
 
-#: ../setup/functions.inc:144 ../setup/functions.inc:984
+#: ../setup/functions.inc:144 ../setup/functions.inc:986
 msgid "Name"
 msgstr "名稱"
 
-#: ../setup/functions.inc:145 ../setup/functions.inc:984
+#: ../setup/functions.inc:145 ../setup/functions.inc:986
 msgid "Value"
 msgstr "分數"
 
@@ -2133,360 +2153,360 @@ msgstr "找到 jhead 可執行檔"
 msgid "NetPBM not being used in this installation."
 msgstr "安裝過程中沒有使用 NetPBM"
 
-#: ../setup/functions.inc:423 ../setup/functions.inc:509
+#: ../setup/functions.inc:423 ../setup/functions.inc:510
 #, fuzzy
 msgid "Cannot verify this path (it's not in your open_basedir list)."
 msgstr "無法檢查該路徑 (不在您的 open_basedir 列表中)"
 
-#: ../setup/functions.inc:472 ../setup/functions.inc:528
+#: ../setup/functions.inc:473 ../setup/functions.inc:530
 #, php-format
 msgid "Can't find %s!"
 msgstr "找不到 %s! "
 
-#: ../setup/functions.inc:477 ../setup/functions.inc:533
+#: ../setup/functions.inc:478 ../setup/functions.inc:535
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s 不能執行! "
 
-#: ../setup/functions.inc:488
+#: ../setup/functions.inc:489
 #, fuzzy, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr "找到 %d 個 NetPBM 可執行檔"
 
-#: ../setup/functions.inc:544
+#: ../setup/functions.inc:546
 #, fuzzy, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr "找到 %d 個 ImageMagick 可執行檔"
 
-#: ../setup/functions.inc:567
+#: ../setup/functions.inc:569
 msgid "Can't find <i>jpegtran</i>!"
 msgstr ""
 
-#: ../setup/functions.inc:569
+#: ../setup/functions.inc:571
 #, fuzzy
 msgid "<b>jpegtran</b> binary located."
 msgstr "找到 jpegtran"
 
-#: ../setup/functions.inc:581
+#: ../setup/functions.inc:583
 #, fuzzy
 msgid "PHP has <b>GNU gettext</b> support."
 msgstr "gettext 已安裝"
 
-#: ../setup/functions.inc:583
+#: ../setup/functions.inc:585
 #, fuzzy
 msgid "PHP does not have <b>GNU gettext</b> support."
 msgstr "gettext 已安裝"
 
-#: ../setup/functions.inc:598
+#: ../setup/functions.inc:600
 msgid "No languages found."
 msgstr "沒有找到任何語言. "
 
-#: ../setup/functions.inc:600
+#: ../setup/functions.inc:602
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
 msgstr ""
 
-#: ../setup/functions.inc:604
+#: ../setup/functions.inc:606
 #, fuzzy, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
 msgstr "只有 %d 分之 %d 種語言存在, 如果您想要使用其他語言, 請在 %s 下載 %s. "
 
-#: ../setup/functions.inc:627
+#: ../setup/functions.inc:629
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr "您可以點選 %s 察看是否有更新的版本. "
 
-#: ../setup/functions.inc:629
+#: ../setup/functions.inc:631
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr "這個版本的 %s 由第 %s 版釋出. "
 
-#: ../setup/functions.inc:631
+#: ../setup/functions.inc:633
 #, php-format
 msgid "This is a development build of %s that was released on %s."
 msgstr "這是一個 %s 的發展版本, 由第 %s 版釋出. "
 
-#: ../setup/functions.inc:640
+#: ../setup/functions.inc:642
 msgid "Please check regularly for updates."
 msgstr "請定期檢查是否有更新檔. "
 
-#: ../setup/functions.inc:660
+#: ../setup/functions.inc:662
 #, fuzzy
 msgid "All gallery locales are available on this host."
 msgstr "本伺服器支援所有的語系"
 
-#: ../setup/functions.inc:663
+#: ../setup/functions.inc:665
 #, php-format
 msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
 msgstr ""
 
-#: ../setup/functions.inc:669
+#: ../setup/functions.inc:671
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
 msgstr ""
 
-#: ../setup/functions.inc:674
+#: ../setup/functions.inc:676
 #, fuzzy, php-format
 msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
 msgstr "我們無法偵測到任何的語系支援, 主動偵測語系的原因是您的伺服器有設定 %s 的限制條件. 很不幸地您的日期格式將不會隨著語系設定而有所改變, 不過您還是可以繼續下一步. "
 
-#: ../setup/functions.inc:678
+#: ../setup/functions.inc:680
 #, fuzzy, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
 msgstr "無法偵測到任何系統語系設定. 多國語系的功能將停用. 請安裝相關的語系設定或者洽詢您的網站提供者. 這是一個在 %s 系統的已知問題, 請參閱 %sDebian locale HowTo%s"
 
-#: ../setup/functions.inc:680
+#: ../setup/functions.inc:682
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "在這台機器上只有預設的語系存在, 所以日期格式將不會隨著語言的不同而有所改變. "
 
-#: ../setup/functions.inc:832
+#: ../setup/functions.inc:834
 #, fuzzy
 msgid "<b>System</b> locale selection required"
 msgstr "請選擇語系"
 
-#: ../setup/functions.inc:833
+#: ../setup/functions.inc:835
 #, fuzzy
 msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "您的機器上有一個以上的語系可以選擇, 請設定一個您認為最適合的"
 
-#: ../setup/functions.inc:835 ../setup/functions.inc:908
+#: ../setup/functions.inc:837 ../setup/functions.inc:910
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
 msgstr ""
 
-#: ../setup/functions.inc:863 ../setup/functions.inc:870
-#: ../setup/functions.inc:880
+#: ../setup/functions.inc:865 ../setup/functions.inc:872
+#: ../setup/functions.inc:882
 #, fuzzy
 msgid "System locale"
 msgstr "系統檢查網頁"
 
-#: ../setup/functions.inc:905
+#: ../setup/functions.inc:907
 #, fuzzy
 msgid "<b>System</b> locale problems"
 msgstr "語系問題"
 
-#: ../setup/functions.inc:906
+#: ../setup/functions.inc:908
 #, fuzzy
 msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "在您的機器上沒有適合下列語言的語系, 請設定一個您認為最適合的"
 
-#: ../setup/functions.inc:951
+#: ../setup/functions.inc:953
 #, fuzzy
 msgid "<b>safe_mode</b> is off."
 msgstr "safe mode 關閉"
 
-#: ../setup/functions.inc:964
+#: ../setup/functions.inc:966
 #, fuzzy
 msgid "<b>magic_quotes</b> are off."
 msgstr "magic quotes 關閉"
 
-#: ../setup/functions.inc:982
+#: ../setup/functions.inc:984
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr "在 %s 中, 找不到 %s 在第 %d 列與 %s %s. "
 
-#: ../setup/functions.inc:991
+#: ../setup/functions.inc:993
 #, php-format
 msgid "In %s, blank in row %d."
 msgstr "在 %s 中, 第 %d 列為空白. "
 
-#: ../setup/functions.inc:996
+#: ../setup/functions.inc:998
 #, fuzzy, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "在 %s 中, %s (第 %d 列) %s 應為正整數"
 
-#: ../setup/functions.inc:1168
+#: ../setup/functions.inc:1170
 msgid "Your admin passwords do not match!"
 msgstr ""
 
-#: ../setup/functions.inc:1184
+#: ../setup/functions.inc:1186
 #, fuzzy
 msgid "Valid admin email address given."
 msgstr "電子信箱"
 
-#: ../setup/functions.inc:1191
+#: ../setup/functions.inc:1193
 #, fuzzy
 msgid "You must specify valid admin email addresses"
 msgstr "您一定要輸入密碼"
 
-#: ../setup/functions.inc:1199
+#: ../setup/functions.inc:1201
 #, fuzzy, php-format
 msgid "%s is not a valid email address."
 msgstr "您一定要輸入帳號"
 
-#: ../setup/functions.inc:1208
+#: ../setup/functions.inc:1210
 #, fuzzy
 msgid "Valid sender email address given."
 msgstr "伺服器 IP 位置"
 
-#: ../setup/functions.inc:1210
+#: ../setup/functions.inc:1212
 #, fuzzy
 msgid "You must specify a valid sender email address"
 msgstr "您一定要輸入帳號"
 
-#: ../setup/functions.inc:1213
+#: ../setup/functions.inc:1215
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr ""
 
-#: ../setup/functions.inc:1218
+#: ../setup/functions.inc:1220
 #, php-format
 msgid "You must include %s or %s in your welcome email"
 msgstr ""
 
-#: ../setup/functions.inc:1242
+#: ../setup/functions.inc:1244
 #, php-format
 msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 msgstr ""
 
-#: ../setup/functions.inc:1244
+#: ../setup/functions.inc:1246
 msgid "This should be fixed before proceeding"
 msgstr ""
 
-#: ../setup/functions.inc:1245 ../setup/functions.inc:1249
+#: ../setup/functions.inc:1247 ../setup/functions.inc:1251
 #, fuzzy, php-format
 msgid "Look at %sCheck Versions%s for more details."
 msgstr "%s點選這裡%s 隱藏進階資訊"
 
-#: ../setup/functions.inc:1248
+#: ../setup/functions.inc:1250
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
 msgstr ""
 
-#: ../setup/functions.inc:1253
+#: ../setup/functions.inc:1255
 #, php-format
 msgid "All %d tested files up-to-date."
 msgstr ""
 
-#: ../setup/functions.inc:1261
+#: ../setup/functions.inc:1263
 #, php-format
 msgid "this is new in version %s"
 msgstr "這是版本 %s 的新功能"
 
-#: ../setup/functions.inc:1266
+#: ../setup/functions.inc:1268
 #, fuzzy, php-format
 msgid "Return to %s."
 msgstr "返回 %s"
 
-#: ../setup/functions.inc:1267
+#: ../setup/functions.inc:1269
 #, fuzzy
 msgid "Configuration Wizard"
 msgstr "Gallery: 設定模式"
 
-#: ../setup/functions.inc:1316
+#: ../setup/functions.inc:1318
 #, fuzzy, php-format
 msgid "You must enter a password for the %s account."
 msgstr "您一定要輸入密碼"
 
-#: ../setup/functions.inc:1321
+#: ../setup/functions.inc:1323
 #, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
 msgstr ""
 
-#: ../setup/functions.inc:1324
+#: ../setup/functions.inc:1326
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr ""
 
-#: ../setup/functions.inc:1326
+#: ../setup/functions.inc:1328
 #, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr ""
 
-#: ../setup/functions.inc:1335
+#: ../setup/functions.inc:1337
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr ""
 
-#: ../setup/functions.inc:1342
+#: ../setup/functions.inc:1344
 msgid "Admin password"
 msgstr "管理者密碼"
 
-#: ../setup/functions.inc:1355 ../setup/functions.inc:1357
-#: ../setup/functions.inc:1359 ../setup/functions.inc:1367
+#: ../setup/functions.inc:1357 ../setup/functions.inc:1359
+#: ../setup/functions.inc:1361 ../setup/functions.inc:1369
 #, fuzzy
 msgid "Full Name"
 msgstr "名稱"
 
-#: ../setup/functions.inc:1355 ../setup/functions.inc:1357
-#: ../setup/functions.inc:1361 ../setup/functions.inc:1369
+#: ../setup/functions.inc:1357 ../setup/functions.inc:1359
+#: ../setup/functions.inc:1363 ../setup/functions.inc:1371
 msgid "Username"
 msgstr ""
 
-#: ../setup/functions.inc:1363
+#: ../setup/functions.inc:1365
 msgid "Full name that you can click on to send email (mailto:)"
 msgstr ""
 
-#: ../setup/functions.inc:1365
+#: ../setup/functions.inc:1367
 msgid "Username that you can click on to send email (mailto:)"
 msgstr ""
 
-#: ../setup/functions.inc:1367 ../setup/functions.inc:1369
+#: ../setup/functions.inc:1369 ../setup/functions.inc:1371
 #, fuzzy
 msgid "email address"
 msgstr "伺服器 IP 位置"
 
-#: ../setup/functions.inc:1380
+#: ../setup/functions.inc:1382
 msgid "Your version of PHP handles this issue properly."
 msgstr ""
 
-#: ../setup/functions.inc:1397
+#: ../setup/functions.inc:1399
 msgid "File missing or unreadable.  Please install then re-run this test."
 msgstr ""
 
-#: ../setup/functions.inc:1401
+#: ../setup/functions.inc:1403
 #, php-format
 msgid "Please ensure that %s is the latest version."
 msgstr ""
 
-#: ../setup/functions.inc:1406
+#: ../setup/functions.inc:1408
 #, php-format
 msgid "Testing status of %d files."
 msgstr ""
 
-#: ../setup/functions.inc:1413
+#: ../setup/functions.inc:1415
 #, php-format
 msgid "Cannot read file %s."
 msgstr ""
 
-#: ../setup/functions.inc:1415
+#: ../setup/functions.inc:1417
 msgid "File missing or unreadable."
 msgstr ""
 
-#: ../setup/functions.inc:1420
+#: ../setup/functions.inc:1422
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
 msgstr ""
 
-#: ../setup/functions.inc:1422
+#: ../setup/functions.inc:1424
 #, fuzzy
 msgid "Missing version"
 msgstr "Missing value"
 
-#: ../setup/functions.inc:1429
+#: ../setup/functions.inc:1431
 #, php-format
 msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr ""
 
-#: ../setup/functions.inc:1431
+#: ../setup/functions.inc:1433
 #, php-format
 msgid "Expected version %s (or greater) but found %s."
 msgstr ""
 
-#: ../setup/functions.inc:1435
+#: ../setup/functions.inc:1437
 #, php-format
 msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
 msgstr ""
 
-#: ../setup/functions.inc:1437
+#: ../setup/functions.inc:1439
 #, php-format
 msgid "Expected version %s but found %s."
 msgstr ""
 
-#: ../setup/functions.inc:1441
+#: ../setup/functions.inc:1443
 #, php-format
 msgid "%s OK"
 msgstr ""
 
-#: ../setup/functions.inc:1443
+#: ../setup/functions.inc:1445
 #, php-format
 msgid "Found expected version %s."
 msgstr ""
