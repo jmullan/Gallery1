@@ -19,7 +19,6 @@
  *
  * $Id$
  */
-
 /*
  * This block selects a random photo for display.  It will only display photos
  * from albums that are visible to the public.  It will not display hidden
@@ -39,10 +38,10 @@
  *
  * Mambo:
  * http://<URL to Mambo>/index.php?option=com_gallery&Itemid=XXX
-
- 
  */
 
+// Random block does not require authentication of any sort... don't use sessions
+$GALLERY_NO_SESSIONS = 1;
 require(dirname(__FILE__) . "/init.php");
 
 define('CACHE_FILE', $gallery->app->albumDir . "/block-random.dat");
@@ -65,7 +64,15 @@ if ($rebuild) {
 	readCache();
 }
 
-doPhoto();
+$i = 0;
+do { 
+	$success = doPhoto();
+	$i++;
+} while (empty($success) && $i < $gallery->app->blockRandomAttempts);
+
+if (empty($success)) {
+	echo '<center>No photo chosen.</center>';
+}
 
 function doPhoto() {
 	$album = chooseAlbum();
@@ -77,21 +84,22 @@ function doPhoto() {
 	if (!empty($index)) {
 		$id = $album->getPhotoId($index);
 		echo ""
-			. "<center><a href=\"" . makeAlbumUrl($album->fields["name"], $id) . "\">"
+			. '<center><a href="' . makeAlbumUrl($album->fields['name'], $id) . '">'
 			. $album->getThumbnailTag($index)
-			. "</a></center>";
+			. '</a></center>';
 
 		$caption = $album->getCaption($index);
 		if ($caption) {
-			echo "<br><center>$caption</center>";
+			echo '<br><center>' . $caption . '</center>';
 		}
 
-		echo "<br><center>From: "
-			."<a href=\"" .makeAlbumUrl($album->fields["name"]) ."\">"
-			.$album->fields["title"]
-			."</a></center>";
+		echo '<br><center>From: '
+			. '<a href="' .makeAlbumUrl($album->fields['name']) .'">'
+			. $album->fields['title']
+			. '</a></center>';
+		return 1;
 	} else {
-		print "<center>No photo chosen.</center>";
+		return 0;
 	}
 }
 

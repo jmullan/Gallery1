@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 list($id, $index, $action, $albumDelete, $albumMatch, $nextId) = getRequestVar(array('id', 'index', 'action', 'albumDelete', 'albumMatch', 'nextId'));
 

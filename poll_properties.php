@@ -24,7 +24,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 list($apply, $nv_pairs, $voter_class, $poll_scale, $poll_show_results, $poll_num_results, $poll_orientation, $poll_hint, $poll_type) = getRequestVar(array('apply', 'nv_pairs', 'voter_class', 'poll_scale', 'poll_show_results', 'poll_num_results', 'poll_orientation', 'poll_hint', 'poll_type'));
 

@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {

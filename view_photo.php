@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 list($full, $id, $index, $votes) = getRequestVar(array('full', 'id', 'index', 'votes'));
 list($save, $commenter_name, $comment_text) = getRequestVar(array('save', 'commenter_name', 'comment_text'));

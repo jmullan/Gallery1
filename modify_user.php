@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 if (!$gallery->user->isAdmin()) {
 	echo _("You are not allowed to perform this action!");

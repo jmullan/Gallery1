@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 list($save, $field, $data) = getRequestVar(array('save', 'field', 'data'));
 

@@ -21,7 +21,7 @@
  */
 ?>
 <?php
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 // Set defaults, if RSS has not been setup via config wizard
 if (!isset($gallery->app->rssEnabled)) {

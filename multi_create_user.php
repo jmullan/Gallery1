@@ -25,7 +25,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 if (!$gallery->user->isAdmin() || $gallery->app->multiple_create != "yes") {
 	echo _("You are not allowed to perform this action!");

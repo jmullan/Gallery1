@@ -137,12 +137,17 @@ foreach ($constants as $key => $val) {
 		}
 
 		// Protect quote characters to avoid screwing up HTML forms
-		$val["value"] = str_replace('"', "&quot;", $val["value"]);
+		if (isset($val['value'])) {
+			$val['value'] = str_replace('"', '&quot;', $val['value']);
+		}
+		else {
+			$val['value'] = '';
+                }
 	
 		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 	}
 
-	if (isset($val["type"]) && ($val["type"] === "hidden")) {
+	if (isset($val['type']) && ($val['type'] === 'hidden')) {
 	} else {
 		echo "\n</table>";
 	}

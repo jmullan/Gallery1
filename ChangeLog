@@ -1,3 +1,22 @@
+2004-09-20  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b199
+
+	* Change: Don't play with un-initialized vars in config wiz.
+
+	* Change: Try and use (include|require)_once where applicable - 
+	  the original thought was to try and allow block-random to be able
+	  to be called without using URLs, however I'm beginning to think that
+	  it's not possible.
+
+	* Change: Extra config var so that users can tweak some more random block
+	  settings (number of times we attempt to find an image before giving up -
+	  they can choose performance over 'find an image every time')
+
+	* Change: Add some more extensions to the acceptableMovieFormat list
+
+	* Change: Remove "session.bug_compat_warn off" from the htaccess.template
+
+	* Change: Add "register_globals off" to the htaccess.template
+
 2004-09-19  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b198
 
 	* Change: Mambo updates.  We can't use _() in gallery.php, because

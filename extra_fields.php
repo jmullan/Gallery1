@@ -24,7 +24,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 list($apply, $extra_fields, $num_user_fields) = getRequestVar(array('apply', 'extra_fields', 'num_user_fields'));
 

@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 $username = removeTags(getRequestVar('username'));
 list($gallerypassword, $forgot, $login) = getRequestVar(array('gallerypassword', 'forgot', 'login'));

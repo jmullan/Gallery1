@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 list($save, $old_password, $new_password1, $new_password2) = getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
 list($uname, $email, $fullname, $defaultLanguage) = getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));

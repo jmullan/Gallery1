@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/nls.php');
+require_once(dirname(__FILE__) . '/nls.php');
 
 function getRequestVar($str) {
 	if (!is_array($str)) {
@@ -398,7 +398,7 @@ function acceptableFormatRegexp() {
 }
 
 function acceptableMovieList() {
-    return array('avi', 'mpg', 'mpeg', 'wmv', 'mov', 'swf', 'mp4');
+    return array('asx', 'asf', 'avi', 'mpg', 'mpeg', 'mp2', 'wmv', 'mov', 'qt', 'swf', 'mp4', 'rm', 'ram');
 }
 
 function acceptableImageList() {
@@ -3485,7 +3485,7 @@ function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 	return array ($divCellWidth, $divCellHeight, $padding);
 }
 
-require (dirname(__FILE__) . '/lib/lang.php');
-require (dirname(__FILE__) . '/lib/Form.php');
-require (dirname(__FILE__) . '/lib/voting.php');
+require_once(dirname(__FILE__) . '/lib/lang.php');
+require_once(dirname(__FILE__) . '/lib/Form.php');
+require_once(dirname(__FILE__) . '/lib/voting.php');
 ?>

@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 list($action, $uname, $new_password1, $new_password2, $fullname, $canCreate, $email, $defaultLanguage) = 
 	getRequestVar(array('action', 'uname', 'new_password1', 'new_password2', 'fullname', 'canCreate', 'email', 'defaultLanguage'));

@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 list($action, $index, $crop_x, $crop_y, $crop_w, $crop_h) = getRequestVar(array('action', 'index', 'crop_x', 'crop_y', 'crop_w', 'crop_h'));
 

@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 list($allUid, $submit_read, $readUid, $submit_text, $textUid, $submit_add, $addUid) =
 	getRequestVar(array('allUid', 'submit_read', 'readUid', 'submit_text', 'textUid', 'submit_add', 'addUid'));

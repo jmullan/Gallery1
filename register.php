@@ -24,7 +24,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php'); 
+require_once(dirname(__FILE__) . '/init.php'); 
 
 list($action, $create, $cancel) = getRequestVar(array('action', 'create', 'cancel'));
 list($uname, $old_password, $new_password1, $new_password2) = getRequestVar(array('uname', 'old_password', 'new_password1', 'new_password2'));

@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 list($uname, $password, $langid, $lcid, $cmd) = getRequestVar(array('uname', 'password', 'langid', 'lcid', 'cmd'));
 

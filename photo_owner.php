@@ -24,7 +24,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 list($save, $owner, $id) = getRequestVar(array('save', 'owner', 'id'));
 

@@ -24,7 +24,7 @@
 ?>
 <?php
 
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 list($id, $index, $confirm) = getRequestVar(array('id', 'index', 'confirm'));
 

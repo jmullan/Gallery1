@@ -28,7 +28,7 @@ if (!file_exists(dirname(__FILE__) . '/util.php')) {
 	exit;
 }
 $gallery->backup_mode="yes";
-require(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
 set_time_limit(600);
 $showForce = false;

@@ -953,6 +953,14 @@ $constants = array_merge($constants,
 		"choices" => array(86400 => _("24 Hours"), 43200 => _("12 Hours"), 21600 => _("6 Hours"), 1440 => _("1 Hour"), 720
 => _("30 Minutes")),
 	),
+	"blockRandomAttempts" => array(
+		"prompt" => _("Random Block Retrieval Attempts"),
+		"desc" => _("This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."),
+		"value" => 2,
+		"must-be-number" => 1,
+		"must-not-be-zero" => 1,
+		"type" => "text",
+	),
 	"debug" => array(
 		"prompt" => _("Debug mode"),
 		"desc" => _("Turn debug mode on so that you can diagnose problems?") .'<br><span class="emphasis">'. _("Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system then you want!") . '</span>',

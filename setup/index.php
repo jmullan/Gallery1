@@ -109,6 +109,7 @@ if (!empty($preserve)) {
 } else {
 	$preserve=array();
 }
+
 foreach (array_keys($preserve) as $key) {
 	if (getRequestVar($key) === NULL) {
 		$$key = "";
@@ -128,7 +129,7 @@ if (isset($editPassword) && (!empty($editPassword[0]) || !empty($editPassword[1]
 
 ?>
 
-<form method="post" action="index.php" name="config">
+<form method="post" action="index.php" name="config" enctype="application/x-www-form-urlencoded">
 <?php
 if (!isset($setup_page)) {
 	$setup_page = "check";

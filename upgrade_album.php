@@ -39,7 +39,7 @@ if ($UPGRADE_LOOP == 2) {
 }
 
 if (!isset($gallery->version)) { 
-	require(dirname(__FILE__) . '/init.php'); 
+	require_once(dirname(__FILE__) . '/init.php'); 
 }
 
 list($upgrade_albumname, $upgradeall) = getRequestVar(array('upgrade_albumname', 'upgradeall'));

@@ -23,7 +23,7 @@
 <?php
 
 if (!isset($gallery->version)) {
-        require(dirname(dirname(__FILE__)) . '/init.php');
+        require_once(dirname(dirname(__FILE__)) . '/init.php');
 }
 
 $action = getRequestVar('action');
