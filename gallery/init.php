@@ -490,6 +490,9 @@ else {
 
 /* If there's no specific user, they are the special Everybody user */
 if (!isset($gallery->user) || empty($gallery->user)) {
+	if (empty($gallery->userDB)) {
+		exit("Fatal error: UserDB failed to initialize!");
+	}
 	$gallery->user = $gallery->userDB->getEverybody();
 	$gallery->session->username = "";
 }
