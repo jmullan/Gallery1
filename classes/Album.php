@@ -23,6 +23,7 @@ class Album {
 	var $fields;
 	var $photos;
 	var $dir;
+	var $version;
 
 	function Album() {
 		global $gallery;
@@ -55,8 +56,8 @@ class Album {
 		$this->fields["parentAlbumName"] = 0;
 		$this->fields["clicks"] = 0;
 		$this->fields["clicks_date"] = time();
-		$this->fields["display_clicks"] = $gallery->app->default["display_clicksDefault"];
-		$this->fields["public_comments"] = $gallery->app->default["photo_commentsDisplay"];
+		$this->fields["display_clicks"] = $gallery->app->default["display_clicks"];
+		$this->fields["public_comments"] = $gallery->app->default["public_comments"];
 	}
 
 	function isRoot() {
@@ -84,19 +85,60 @@ class Album {
 		}
 		return $returnValue;
 	}
-				
+			
+	/*
+	 * Whenever you change this code, you should bump the $gallery->album_version
+	 * appropriately.
+	 */	
 	function integrityCheck() {
 		global $gallery;
 
+		if (!strcmp($this->version, $gallery->album_version)) {
+			return 0;
+		}
+
 		$changed = 0;
-		$check = array("thumb_size", "resize_size", "rows", "cols",
-		               "fit_to_window", "use_fullOnly", "print_photos");
+		$check = array("thumb_size", 
+				"resize_size", 
+				"rows", 
+				"cols",
+		                "fit_to_window", 
+				"use_fullOnly", 
+				"print_photos",
+				"display_clicks",
+				"public_comments");
 		foreach ($check as $field) {
 			if (!$this->fields[$field]) {
 				$this->fields[$field] = $gallery->app->default[$field];
 				$changed = 1;
 			}
 		}
+
+		/* Special case for EXIF :-( */
+		if (!$this->fields["use_exif"]) {
+			if ($gallery->app->use_exif) {
+				$this->fields["use_exif"] = "yes";
+			} else {
+				$this->fields["use_exif"] = "no";
+			}
+		}			
+
+		/* 
+		 * Check all items 
+		 */
+		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+			$photo = $this->getPhoto($i);
+			if ($photo->integrityCheck($this->getAlbumDir())) {
+				$this->setPhoto($photo, $i);
+				$changed = 1;
+			}
+		}
+
+		if (strcmp($this->version, $gallery->config_version)) {
+			$this->version = $gallery->config_version;
+			$changed = 1;
+		}
+
 		return $changed;
 	}
 
