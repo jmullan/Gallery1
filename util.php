@@ -126,10 +126,10 @@ function build_popup_url($url, $url_is_complete=0) {
 	$args['gallery_popup'] = 'true';
 	
 	if (!$url_is_complete) {
-		$url = htmlspecialchars(makeGalleryUrl($target, $args));
+		$url = makeGalleryUrl($target, $args);
 	}
 
-	return $url;
+	return htmlspecialchars($url);
 }
 
 function popup($url, $url_is_complete=0, $height=500,$width=500) {

@@ -10,7 +10,7 @@ $pixelImage = isset($gallery->html_wrap['pixelImage']) ?
     dirname(dirname(__FILE__)) . '/images/pixel_trans.gif';
 $imageWidth = $gallery->html_wrap['imageWidth'];
 $imageHeight = $gallery->html_wrap['imageHeight'];
-$href = $gallery->html_wrap['imageHref'];
+$href = htmlspecialchars($gallery->html_wrap['imageHref']);
 $tag = $gallery->html_wrap['imageTag'];
 $frame=$gallery->html_wrap['frame'];
 

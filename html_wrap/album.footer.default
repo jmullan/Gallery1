@@ -18,7 +18,7 @@
             </span>
           <!-- PayPal donation block -->
 		  <?php if (! isset($GALLERY_EMBEDDED_INSIDE)) {
-			  print album_validation_link($gallery->session->albumName, NULL,false);                      
+			  print album_validation_link($gallery->session->albumName, NULL);                      
 		  } ?>
 		  </td>        
 	  <?php if ($gallery->user->isAdmin() ) { ?>
