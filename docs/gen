@@ -22,13 +22,13 @@ case $1 in
 		gendate
 
 		cd $DIST/html
-		xsltproc --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../docbook-xsl/html/chunkfast.xsl ../../manual.xml
+		xsltproc --param prettyhtml 0 --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../docbook-xsl/html/chunkfast.xsl ../../manual.xml || exit 1
 
 
 		cp -Rf ../../images .
 		rm -rf images/CVS
 
-		cp ../../html.css .
+		cp ../../css/*.css .
 		;;
 
 	bightml)
@@ -40,12 +40,12 @@ case $1 in
 
 		gendate
 
-		xsltproc --param galleryweb 0 --param generate.section.toc.level 1 --param toc.section.depth 1 docbook-xsl/html/docbook.xsl manual.xml > $DIST/bightml/index.html
+		xsltproc --param prettyhtml 0 --param galleryweb 0 --param generate.section.toc.level 1 --param toc.section.depth 1 docbook-xsl/html/docbook.xsl manual.xml > $DIST/bightml/index.html || exit 1
 
 		cp -Rf images $DIST/bightml
 		rm -rf $DIST/bightml/CVS
 
-		cp html.css $DIST/bightml
+		cp css/*.css $DIST/bightml
 		;;
 		
 	galleryweb)
@@ -58,13 +58,13 @@ case $1 in
 		gendate
 
 		cd $DIST/galleryweb
-		xsltproc --param galleryweb 1 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../misc-xsl/galleryweb.xsl ../../manual.xml
+		xsltproc --param prettyhtml 0 --param galleryweb 1 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../misc-xsl/galleryweb.xsl ../../manual.xml || exit 1
 
 
 		cp -Rf ../../images .
 		rm -rf images/CVS
 
-		cp ../../html.css .
+		cp ../../css/*.css .
 		;;
 
 	g1package)
@@ -77,33 +77,53 @@ case $1 in
 		gendate
 
 		cd $DIST/g1package
-		xsltproc --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../misc-xsl/g1-package.xsl ../../manual.xml
+		xsltproc --param prettyhtml 0 --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../misc-xsl/g1-package.xsl ../../manual.xml || exit 1
 
 
 		cp -Rf ../../images .
 		rm -rf images/CVS
 
-		cp ../../html.css .
+		cp ../../css/*.css .
 		;;
+                
+	prettyhtml)
+		echo "Generating Pretty HTML Docs...";
+
+		if [ ! -d $DIST/prettyhtml ]; then
+			mkdir -p $DIST/prettyhtml;
+		fi
+
+		gendate
+
+		cd $DIST/prettyhtml
+       		cp ../../css/*.css .
+                
+		xsltproc --param prettyhtml 1 --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../misc-xsl/pretty-html.xsl ../../manual.xml || exit 1
 
 
-#	pdf)
-#		echo "Generating PDF Manual...";
-#
-#		if [ ! -d $DIST/pdf ]; then
-#			mkdir -p $DIST/pdf;
-#		fi
-#
-#		if [ -e $DIST/pdf/manual.pdf ]; then
-#			rm -f $DIST/pdf/manual.pdf;
-#		fi
-#
-#		gendate
-#
-#		fop -q -xsl docbook-xsl/fo/docbook.xsl -xml manual.xml -pdf $DIST/pdf/manual.pdf
-#
-#		rm -f manual.fo
-#		;;
+		cp -Rf ../../images .
+		rm -rf images/CVS
+
+		;;                
+
+
+	pdf)
+		echo "Generating PDF Manual...";
+
+		if [ ! -d $DIST/pdf ]; then
+			mkdir -p $DIST/pdf;
+		fi
+
+		if [ -e $DIST/pdf/manual.pdf ]; then
+			rm -f $DIST/pdf/manual.pdf;
+		fi
+
+		gendate
+
+		fop -q -xsl docbook-xsl/fo/docbook.xsl -xml manual.xml -pdf $DIST/pdf/manual.pdf || exit 1
+
+		rm -f manual.fo
+		;;
 
 	autofaq)
 		if [ ! -d $DIST/autofaq ]; then
@@ -112,7 +132,7 @@ case $1 in
 
 		echo "Generating AutoFAQ data...";
 		cd $DIST/autofaq
-		xsltproc ../../misc-xsl/autofaq.xsl ../../manual.xml > autofaq_data.txt
+		xsltproc ../../misc-xsl/autofaq.xsl ../../manual.xml > autofaq_data.txt || exit 1
 		;;
 		
 	test-saxon) 
@@ -138,6 +158,7 @@ case $1 in
 #		echo "pdf           Generate a PDF (requires fop)";
 		echo "galleryweb    Generate docs fitted for the Gallery Website";
 		echo "g1package     Generate only G1 docs";
+		echo "prettyhtml    Generate nice looking docs";
 		echo "dist          Generate all types";
 		echo "test-saxon    Test for XML errors using saxon";
 		echo "test-xmllint  Test for XML errors using xmllint";
@@ -150,6 +171,7 @@ case $1 in
 		$0 bightml
 #		$0 pdf
 		$0 galleryweb
+                $0 prettyhtml
 		;;
 
 	clean)
@@ -162,4 +184,3 @@ case $1 in
 	*)
 		echo "Invalid Action.  Type './gen help' for help";;
 esac
-
