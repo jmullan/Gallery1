@@ -24,6 +24,9 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($allUid, $submit_read, $readUid, $submit_text, $textUid, $submit_add, $submit_write) =
+	getRequestVar(array('allUid', 'submit_read', 'readUid', 'submit_text', 'textUid', 'submit_add', 'submit_write'));
+
 // Hack check
 if (!$gallery->user->isAdmin() && 
     !$gallery->user->isOwnerOfAlbum($gallery->album)) {

@@ -24,13 +24,13 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+list($create, $bulkcreate, $modify, $delete, $unames) =
+                getRequestVar(array('create', 'bulkcreate', 'modify', 'delete', 'unames'));
+
 if (!$gallery->user->isAdmin()) {
 	echo _("You are not allowed to perform this action!");
 	exit;	
 }
-
-list($create, $bulkcreate, $modify, $delete, $unames) =
-                getRequestVar(array('create', 'bulkcreate', 'modify', 'delete', 'unames'));
 
 if (!empty($create)) {
 	header("Location: " . makeGalleryHeaderUrl("create_user.php"));

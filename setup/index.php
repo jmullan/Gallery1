@@ -106,6 +106,8 @@ if (isset ($go_defaults)) {
 if (isset($editPassword) && (!empty($editPassword[0]) || !empty($editPassword[1]))) {
 	$editPassword[2] = $editPassword[0];
 	$editPassword[3] = $editPassword[1];
+	// write back into RequestVar, because its not longer global ;)
+        $_REQUEST['editPassword'] = $editPassword;
 }
 
 /* Array-ize the preserve list */
