@@ -52,106 +52,115 @@ function msg($buf) {
 </head>
 <body onLoad='opener.location.reload(); '>
 
+<?
+if ($urls) {
+?>
 <span class=title>Fetching Urls...</span>
 <br>
-
 <?
-/* Process all urls first */
-$temp_files = array();
-foreach ($urls as $url) {
-
-	/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
-	$url = eregi_replace("^[[:space:]]+", "", $url);
-
-	/* Parse URL for name and file type */
-	$url_stuff = parse_url($url);
-	$name = basename($url_stuff["path"]);
-	$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $url);
-	$tag = strtolower($tag);
-
-	/* Dont output warning messages if we cant open url */
-	$id = @fopen($url, "r");
-
-	/* Manual check - was the url accessible? */
-	if (!$id) {
-		msg("Could not open url: '$url'");
-		continue;
-	} else {
-		msg("$url");
-	}
-
-	/* copy file locally */
-	$file = "$app->tmpDir/photo.$name";
-	$od = fopen($file, "w");
-	if ($id && $od) {
-		while (!feof($id)) {
-			fwrite($od, fread($id, 65536));
-			set_time_limit(30);
-		}
-		fclose($id);
-		fclose($od);
-	}
-	/* Make sure we delete this file when we're through... */
-	$temp_files[$file]++;
-
-	/* If this is an image or movie - add it to the processor array */
-	if (acceptableFormat($tag)) {
-		/* Tack it onto userfile */
-		$userfile_name[] = $name;
-		$userfile[] = $file;
-	} else {
-		/* Slurp the file */
-		msg("Parsing $url for images...");
-		$fd = fopen ($file, "r");
-		$contents = fread ($fd, filesize ($file));
-		fclose ($fd);
-
-		/* We'll need to add some stuff to relative links */
-		$base_url = $url_stuff["scheme"] . '://' . $url_stuff["host"];
-		$base_dir = '';
-		if ($url_stuff["port"]) {
-		  $base_url .= ':' . $url_stuff["port"];
-		}
-
-		/* Hack to account for broken dirname */
-		if (ereg("/$", $url_stuff["path"])) {
-			$base_dir = $url_stuff["path"];
+	/* Process all urls first */
+	$temp_files = array();
+	
+	foreach ($urls as $url) {
+	
+		/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
+		$url = eregi_replace("^[[:space:]]+", "", $url);
+	
+		/* Parse URL for name and file type */
+		$url_stuff = parse_url($url);
+		$name = basename($url_stuff["path"]);
+		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $url);
+		$tag = strtolower($tag);
+	
+		/* Dont output warning messages if we cant open url */
+		$id = @fopen($url, "r");
+	
+		/* Manual check - was the url accessible? */
+		if (!$id) {
+			msg("Could not open url: '$url'");
+			continue;
 		} else {
-			$base_dir = dirname($url_stuff["path"]);
+			msg("$url");
 		}
-
-		/* Make sure base_dir ends in a / ( accounts for empty base_dir ) */
-		if (!ereg("/$", $base_dir)) {
-			$base_dir .= '/';
+	
+		/* copy file locally */
+		$file = "$app->tmpDir/photo.$name";
+		$od = fopen($file, "w");
+		if ($id && $od) {
+			while (!feof($id)) {
+				fwrite($od, fread($id, 65536));
+				set_time_limit(30);
+			}
+			fclose($id);
+			fclose($od);
 		}
-
-		/* Perl Regex: Find all src= and href= links to valid file types */
-		if(preg_match_all ('/(src|href)="?([^" >]+\.' .
-				acceptableFormatRegexp() .
-				')[" >]/is', $contents, $things, PREG_PATTERN_ORDER)) {
-
-			/* Add each unique link to an array we scan later */
-			foreach (array_unique($things[2]) as $thing) {
-
-				/* Absolute Link ( http://www.foo.com/bar ) */
-				if (substr($thing, 0, 4) == 'http') {
-					$image_tags[] = $thing;
-
-				/* Relative link to the host ( /foo.bar )*/
-				} elseif (substr($thing, 0, 1) == '/') {
-					$image_tags[] = $base_url . $thing;
-
-				/* Relative link to the dir ( foo.bar ) */
-				} else {
-					$image_tags[] = $base_url . $base_dir . $thing;
+		/* Make sure we delete this file when we're through... */
+		$temp_files[$file]++;
+	
+		/* If this is an image or movie - add it to the processor array */
+		if (acceptableFormat($tag)) {
+			/* Tack it onto userfile */
+			$userfile_name[] = $name;
+			$userfile[] = $file;
+		} else {
+			/* Slurp the file */
+			msg("Parsing $url for images...");
+			$fd = fopen ($file, "r");
+			$contents = fread ($fd, filesize ($file));
+			fclose ($fd);
+	
+			/* We'll need to add some stuff to relative links */
+			$base_url = $url_stuff["scheme"] . '://' . $url_stuff["host"];
+			$base_dir = '';
+			if ($url_stuff["port"]) {
+			  $base_url .= ':' . $url_stuff["port"];
+			}
+	
+			/* Hack to account for broken dirname */
+			if (ereg("/$", $url_stuff["path"])) {
+				$base_dir = $url_stuff["path"];
+			} else {
+				$base_dir = dirname($url_stuff["path"]);
+			}
+	
+			/* Make sure base_dir ends in a / ( accounts for empty base_dir ) */
+			if (!ereg("/$", $base_dir)) {
+				$base_dir .= '/';
+			}
+	
+			/* Perl Regex: Find all src= and href= links to valid file types */
+			if(preg_match_all ('/(src|href)="?([^" >]+\.' .
+					acceptableFormatRegexp() .
+					')[" >]/is', $contents, $things, PREG_PATTERN_ORDER)) {
+	
+				/* Add each unique link to an array we scan later */
+				foreach (array_unique($things[2]) as $thing) {
+	
+					/* Absolute Link ( http://www.foo.com/bar ) */
+					if (substr($thing, 0, 4) == 'http') {
+						$image_tags[] = $thing;
+	
+					/* Relative link to the host ( /foo.bar )*/
+					} elseif (substr($thing, 0, 1) == '/') {
+						$image_tags[] = $base_url . $thing;
+	
+					/* Relative link to the dir ( foo.bar ) */
+					} else {
+						$image_tags[] = $base_url . $base_dir . $thing;
+					}
 				}
 			}
+	
+			/* Tell user how many links we found, but delay processing */
+			msg("Found " . count($image_tags) . " Images.");
 		}
-
-		/* Tell user how many links we found, but delay processing */
-		msg("Found " . count($image_tags) . " Images.");
 	}
-}
+
+	/* Clean up the temporary url file */
+	foreach ($temp_files as $tf => $junk) {
+		unlink($tf);
+	}
+} /* if ($urls) */
 ?>
 
 <br>
@@ -194,10 +203,6 @@ while (sizeof($userfile)) {
 	}
 }
 
-/* Clean up the temporary url file */
-foreach ($temp_files as $tf => $junk) {
-	unlink($tf);
-}
 
 function process($file, $tag, $name) {
 	global $album;
