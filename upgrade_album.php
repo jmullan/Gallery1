@@ -97,6 +97,12 @@ function find_albums(&$results, $album="") {
 	global $gallery;
 	global $albumDB;
 
+	foreach ($albumDB->outOfDateAlbums as $albumName) {
+		$results[] = $albumDB->getAlbumByName($albumName, false);
+	}
+
+	// All this recursive calling isn't necessary, since we already have a list (above)
+	/*
 	if ($album) {
 		if ($album->versionOutOfDate()) {
 			$results[] = $album;
@@ -118,6 +124,7 @@ function find_albums(&$results, $album="") {
 			}
 		}
 	} 
+	*/
 }
 doctype();
 ?>
