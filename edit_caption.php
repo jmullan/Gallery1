@@ -113,7 +113,7 @@ echo drawSelect("capture_mday", padded_range_array(1, 31), $mday, 1);
 echo "</td>";
 
 echo "<td>";
-echo "<input type=text name=\"capture_year\" value=$year size=4>";
+echo "<input type=text name=\"capture_year\" value=\"$year\" size=\"4\">";
 echo "</td>";
 
 echo "<td>";
