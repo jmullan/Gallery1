@@ -303,6 +303,9 @@ class Image {
 	}
 
 	function resize($dir, $target) {
+		global $app;
+
+		/* getting rid of the resized image */
 		if (!strcmp($target, "orig")) {
 			$img = loadImage($dir, $this->name, $this->type);
 			$this->width = imagesx($img);
@@ -311,29 +314,21 @@ class Image {
 				unlink("$dir/$this->resizedName.jpg");
 			}
 			$this->resizedName = "";
+		/* doing a resize */
 		} else {
-			$img = loadImage($dir, $this->name, $this->type);
-			if ($img) {
-				/* Calc the new size h/w keeping the aspect ratio */
-				$orig_width = imagesx($img);
-				$orig_height = imagesy($img);
-	
-				$aspect = $orig_width / $orig_height;
-				if ($aspect > 1) {
-					$new_width = $target;
-					$new_height = ceil($new_width / $aspect);
-				} else {
-					$new_height = $target;
-					$new_width = ceil($new_height * $aspect);
-				}
-		
-				$this->resizedName = "$this->name.sized";
-				$newImg = ImageCreate($new_width, $new_height);
-				ImageCopyResized($newImg, $img, 0, 0, 0, 0, 
-						 $new_width, $new_height, 
-						 $orig_width, $orig_height);
-				ImageJpeg($newImg, "$dir/$this->resizedName.jpg");
-	
+			$name = $this->name;
+			$type = $this->type;
+
+                	exec("$app->pnmDir/anytopnm $dir/$name.$type | " .
+                        	"$app->pnmDir/pnmscale -xysize $target $target | ".
+                        	"$app->pnmDir/ppmtojpeg > $dir/tmp.jpg");
+
+			#-- resized image is always a jpeg ---
+			if (file_exists("$dir/tmp.jpg") && filesize("$dir/tmp.jpg") > 0) {
+				copy("$dir/tmp.jpg", "$dir/$name.sized.jpg");
+                        	unlink("$dir/tmp.jpg");
+				$this->resizedName = "$name.sized";
+
 				$this->height = $new_height;
 				$this->width = $new_width;
 			}
@@ -341,8 +336,8 @@ class Image {
 	}
 
 	function delete($dir) {
-		if (file_exists("$dir/$this->resizedName.jpg")) {
-			unlink("$dir/$this->resizedName.jpg");
+		if (file_exists("$dir/$this->resizedName.$this->type")) {
+			unlink("$dir/$this->resizedName.$this->type");
 		}
 		if (file_exists("$dir/$this->name.highlight.jpg")) {
 			unlink("$dir/$this->name.highlight.jpg");
@@ -358,12 +353,12 @@ class Image {
 		if (!strcmp($app->default["imageborders"], "no")) {
 			$attrs .= " border=0";
 		}
-
+		
 		if ($this->resizedName) {
 			if ($full) {
 				return "<img src=$dir/$this->name.$this->type $attrs>";
 			} else {
-				return "<img src=$dir/$this->resizedName.jpg $attrs>";
+				return "<img src=$dir/$this->resizedName.$this->type $attrs>";
 			}
 		} else {
 			return "<img src=$dir/$this->name.$this->type width=$this->width height=$this->height $attrs>";
@@ -376,7 +371,7 @@ class Image {
 	}
 	
 	function getName($dir) {
-		if (file_exists("$dir/$this->resizedName.jpg")) {
+		if (file_exists("$dir/$this->resizedName.$this->type")) {
 			return $this->resizedName;
 		} else {
 			return $this->name;
@@ -561,7 +556,7 @@ class AlbumItem {
 						 $new_width, $new_height, 
 						 $orig_width, $orig_height);
 				ImageJpeg($thumbImg, "$dir/$name.thumb.jpg");
-
+	
 				$this->thumbnail = new Image;
 				$this->thumbnail->setFile($dir, "$name.thumb", "jpg");
 	
