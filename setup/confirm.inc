@@ -147,6 +147,11 @@ foreach ($constants as $key => $val) {
 	if (!strcmp($key, "graphics")) {
 		$graphtool = $real;
 	}
+
+	// Unset an old, invalid value in the geeklog_dir option
+	if ($key == "geeklog_dir" && $real == "/path/to/geeklog/public_html") {
+		$real = "";
+	}
 	
 	if ((is_array($real) && join('', $real) === '') || $real == '') {
 		if (isset($constants[$key]["remove_empty"])) {

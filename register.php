@@ -61,7 +61,7 @@ $allowChange["send_email"] = false;
 $allowChange["member_file"] = false;
 
 $errorCount=0;
-if (empty($action) && $action =='create') {
+if (!empty($action) && $action =='create') {
 	// Security check.
 	$uname = removeTags($uname);
 
