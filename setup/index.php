@@ -70,6 +70,16 @@
 		return eleArray;
 	}
 
+	function nnGetAllLayers(parent, layerArray, nextIndex) {
+		var i, layer;
+		for (i = 0; i < parent.document.layers.length; i++) {
+			layer = parent.document.layers[i];
+			layerArray[nextIndex++] = layer;
+			if (layer.document.layers.length) nextIndex = nnGetAllLayers(layer, layerArray, nextIndex);
+		}
+		return nextIndex;
+	}
+
 	function enableButtons() {
 		var buttons = localGetElementsByTagName("input");
 
