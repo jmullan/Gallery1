@@ -60,19 +60,18 @@ if (!isset($full)) {
 }
 
 
-
-if (!empty($votes))
-{
-       if (!isset($votes[$id]) && $gallery->album->getPollScale() == 1 && $gallery->album->getPollType() == "critique")
-       {
+if (!empty($votes)) {
+    if (!isset($votes[$id]) && 
+	  $gallery->album->getPollScale() == 1 && 
+	  $gallery->album->getPollType() == "critique") {
                $votes[$id]=null;
-       }
-       saveResults($votes);
-       if ($gallery->album->getPollShowResults()) 
-       {
-       		list($buf, $rank)=showResultsGraph(0);
-		print $buf;
-       }
+    }
+       
+    saveResults($votes);
+    if ($gallery->album->getPollShowResults()) {
+	list($buf, $rank)=showResultsGraph(0);
+	print $buf;
+    }
 }
 
 // is photo hidden?  should user see it anyway?
@@ -81,7 +80,6 @@ if (($gallery->album->isHidden($index))
     header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
     return;
 }
-
 
 $albumName = $gallery->session->albumName;
 if (!isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) 
@@ -96,6 +94,7 @@ if ($photo->isMovie()) {
 } else {
 	$image = $photo->image;
 }
+
 $photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $image->name . "." . $image->type;
 list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
@@ -117,6 +116,7 @@ if ($next > $numPhotos) {
 	//$next = 1;
         $last = 1;
 }
+
 $prev = $index-1;
 if ($prev <= 0) {
 	//$prev = $numPhotos;
@@ -300,158 +300,182 @@ $adminText = '';
 $page_url = makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0));
 
 if (!$gallery->album->isMovie($id)) {
-	print "<a id=\"photo_url\" href=\"$photoURL\" ></a>\n";
-	print '<a id="page_url" href="'. $page_url .'"></a>'."\n";
-	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		$iconText = getIconText('window_fullscreen.gif', _("resize photo"));
-		$iconElements[] = popup_link($iconText, "resize_photo.php?index=$index", false, true, 500, 500);
+    print "<a id=\"photo_url\" href=\"$photoURL\" ></a>\n";
+    print '<a id="page_url" href="'. $page_url .'"></a>'."\n";
+    if ($gallery->user->canWriteToAlbum($gallery->album)) {
+	$iconText = getIconText('window_fullscreen.gif', _("resize photo"));
+	$iconElements[] = popup_link($iconText, "resize_photo.php?index=$index", false, true, 500, 500);
+    }
+
+    if ($gallery->user->canDeleteFromAlbum($gallery->album) || 
+	($gallery->album->getItemOwnerDelete() && $gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
+	// determine index of next item (after deletion)
+	// we move to previous image if we're at the end
+	// and move forward if we're not
+	if ($index >= $numPhotos && $index > 1) {
+	    $nextIndex = $index - 1;
+	}
+	elseif ($index + 1 <= $numPhotos) {
+	    $nextIndex = $index + 1;
+	}
+	else {
+	    $nextIndex = $index;
+	}
+	// make sure that the "next" item isn't an album
+	if ($gallery->album->isAlbum($nextIndex)) {
+	    $nextId='';
+	} else {
+	    $nextId = $gallery->album->getPhotoId($nextIndex);
 	}
 
-	if ($gallery->user->canDeleteFromAlbum($gallery->album) || 
-	    ($gallery->album->getItemOwnerDelete() && $gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
-		// determine index of next item (after deletion)
-		// we move to previous image if we're at the end
-		// and move forward if we're not
-		if ($index >= $numPhotos && $index > 1) {
-			$nextIndex = $index - 1;
-		}
-		elseif ($index + 1 <= $numPhotos) {
-			$nextIndex = $index + 1;
-		}
-		else {
-			$nextIndex = $index;
-		}
-		// make sure that the "next" item isn't an album
-		if ($gallery->album->isAlbum($nextIndex)) {
-			$nextId='';
-		} else {
-			$nextId = $gallery->album->getPhotoId($nextIndex);
-		}
+	$iconText = getIconText('delete.gif', _("delete photo"));
+	$iconElements[] = popup_link($iconText, "delete_photo.php?id=$id&nextId=$nextId", false, true, 500, 500);
+    }
 
-		$iconText = getIconText('delete.gif', _("delete photo"));
-		$iconElements[] = popup_link($iconText,
-			"delete_photo.php?id=$id&nextId=$nextId", false, true, 500, 500);
+    if (!strcmp($gallery->album->fields["use_fullOnly"], "yes") &&
+	!$gallery->session->offline  &&
+	 $gallery->user->canViewFullImages($gallery->album)) {
+
+	$lparams['set_fullOnly'] = (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) ? "on" : "off";
+	$link = makeAlbumURL($gallery->session->albumName, $id, $lparams);
+
+	$adminText = '&nbsp;' . _('View Images') .':&nbsp;[&nbsp;';
+	if (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) {
+	    $adminText .= _('normal') . "&nbsp;|&nbsp;<a class=\"admin\" href=\"$link\">" . _('full') .'</a>&nbsp;]';
+	} else {
+	    $adminText .= "<a class=\"admin\" href=\"$link\">" . _("normal") .'</a>&nbsp;|&nbsp;'. _('full') .'&nbsp;]';
 	}
-
-	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes") &&
-			!$gallery->session->offline  &&
-			$gallery->user->canViewFullImages($gallery->album)) {
-
-		$lparams['set_fullOnly'] = (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) ? "on" : "off";
-		$link = makeAlbumURL($gallery->session->albumName, $id, $lparams);
-
-		$adminText = '&nbsp;' . _('View Images') .':&nbsp;[&nbsp;';
-		if (!isset($gallery->session->fullOnly) ||
-				strcmp($gallery->session->fullOnly,"on")) {
-			$adminText .= _('normal') . "&nbsp;|&nbsp;<a class=\"admin\" href=\"$link\">" . _('full') .'</a>&nbsp;]';
-		} else {
-			$adminText .= "<a class=\"admin\" href=\"$link\">" . _("normal") .'</a>&nbsp;|&nbsp;'. _('full') .'&nbsp;]';
-		}
-	} 
+    } 
 	
-	$field="EXIF";
-	$key=array_search($field, $extra_fields);
-	if (!is_int($key) &&
-	    !strcmp($gallery->album->fields["use_exif"],"yes") &&
-	    (eregi("jpe?g\$", $photo->image->type)) &&
-	    isset($gallery->app->use_exif)) {
-		$albumName = $gallery->session->albumName;
-		$iconText = getIconText('frame_query.gif', _("photo properties"));
-		$iconElements[] =  popup_link($iconText, 
-		  "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false, 500, 500);
+    $field="EXIF";
+    $key=array_search($field, $extra_fields);
+    if (!is_int($key) &&
+	!strcmp($gallery->album->fields["use_exif"],"yes") &&
+	(eregi("jpe?g\$", $photo->image->type)) &&
+	isset($gallery->app->use_exif)) {
+	
+	$albumName = $gallery->session->albumName;
+	$iconText = getIconText('frame_query.gif', _("photo properties"));
+	$iconElements[] =  popup_link($iconText, "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false, 500, 500);
+    }
+
+    if (isset($gallery->album->fields["print_photos"]) &&
+	!$gallery->session->offline &&
+	!$gallery->album->isMovie($id)){
+
+	$photo = $gallery->album->getPhoto($GLOBALS["index"]);
+	$photoPath = $gallery->album->getAlbumDirURL("full");
+	$prependURL = '';
+	if (!ereg('^https?://', $photoPath)) {
+	    $prependURL = 'http';
+	    if (isset($_SERVER['HTTPS']) && stristr($_SERVER['HTTPS'], "on")) {
+		$prependURL .= 's';
+	}
+	
+	$prependURL .= '://'. $_SERVER['HTTP_HOST'];
+    }
+		
+    $rawImage = $prependURL . $photoPath . "/" . $photo->image->name . "." . $photo->image->type;
+
+    $thumbImage= $prependURL . $photoPath . "/";
+    if ($photo->thumbnail) {
+	$thumbImage .= $photo->image->name . "." . "thumb" . "." . $photo->image->type;
+    } else if ($photo->image->resizedName) {
+	$thumbImage .= $photo->image->name . "." . "sized" . "." . $photo->image->type;
+    } else {
+	$thumbImage .= $photo->image->name . "." . $photo->image->type;
+    }
+
+    list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
+		
+    function enablePrintForm($name) {
+	global $printEZPrintsForm, $printPhotoAccessForm, $printShutterflyForm, $printFotoserveForm;
+	
+	switch ($name) {
+	    case 'ezprints':
+		$printEZPrintsForm = true;
+	    break;
+			
+	    case 'photoaccess':
+		$printPhotoAccessForm = true;
+	    break;
+                                
+	    case 'shutterfly':
+		$printShutterflyForm = true;
+	    break;
+                                
+	    case 'fotoserve':
+		$printFotoserveForm = true;
+	    break;
+                                
+	    default:
+	    break;
+	}
+    }
+
+    /* display photo printing services */
+    $printServices = $gallery->album->fields['print_photos'];
+    $numServices = count($printServices);
+
+    $fullNames = array(
+	'Print Services' => array(
+	    'ezprints'    => 'EZ Prints',
+	    'fotokasten'  => 'Fotokasten',
+	    'fotoserve'   => 'Fotoserve',
+	    'photoaccess' => 'PhotoWorks',
+	    'shutterfly'  => 'Shutterfly'
+	),
+	'Mobile Service' => array('mpush' => 'mPUSH (mobile service)')
+    );
+
+    /* display a <select> menu if more than one option */
+    if ($numServices > 1) {
+	// Build an array with groups, but only for enabled services
+	foreach ($fullNames as $serviceGroupName => $serviceGroup) {
+	    foreach ($serviceGroup as $name => $fullName) {
+	        if (!isset($printServices[$name]['checked'])) {
+		    continue;
+	        } else {
+		    $serviceGroups[$serviceGroupName][$name] = $fullName;
+		}
+	    }
 	}
 
-	if (isset($gallery->album->fields["print_photos"]) &&
-		!$gallery->session->offline &&
-		!$gallery->album->isMovie($id)){
+	if (isset($serviceGroups['Mobile Service'])) {
+	    $instructionLine = "\n\t". '<option>'. _("Send photo to...") .'</option>';
+	} else {
+	    $instructionLine = "\n\t". '<option>'. _("Print photo with...") .'</option>';	
+	}
 
-		$photo = $gallery->album->getPhoto($GLOBALS["index"]);
-		$photoPath = $gallery->album->getAlbumDirURL("full");
-		$prependURL = '';
-		if (!ereg('^https?://', $photoPath)) {
-		    $prependURL = 'http';
-		    if  (isset($_SERVER['HTTPS']) && stristr($_SERVER['HTTPS'], "on")) {
-			$prependURL .= 's';
-		    }
-		    $prependURL .= '://'. $_SERVER['HTTP_HOST'];
-		}
-		$rawImage = $prependURL . $photoPath . "/" . $photo->image->name . "." . $photo->image->type;
+	$selectCommand = "\n". '<select name="print_services" class="adminform" onChange="doPrintService()">';
+	$selectCommand .= $instructionLine;
 
-		$thumbImage= $prependURL . $photoPath . "/";
-		if ($photo->thumbnail) {
-			$thumbImage .= $photo->image->name . "." . "thumb" . "." . $photo->image->type;
-		} else if ($photo->image->resizedName) {
-			$thumbImage .= $photo->image->name . "." . "sized" . "." . $photo->image->type;
-		} else {
-			$thumbImage .= $photo->image->name . "." . $photo->image->type;
+	$firstGroup = true;
+	// now build the real select options.
+	foreach ($serviceGroups as $serviceGroupName => $serviceGroup) {
+	    if (! $firstGroup) {
+		    $selectCommand .= '<option value="">----------</option>';
 		}
-		list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
+	    $firstGroup = false;
+	    foreach ($serviceGroup as $name => $fullName) {
+		enablePrintForm($name);
+		$selectCommand .= "\n\t". '<option align="center" value="'. $name .'">&nbsp;&nbsp;&nbsp;'. $fullName .'</option>';
+	    }
+	}
+	$selectCommand .= '</select>';
+	$adminText .= $selectCommand;
+	
+	/* just print out text if only one option */
+    } elseif ($numServices == 1 && isset($printServices[@key($printServices)]['checked'])) {
+	$name = @key($printServices);
+
+	enablePrintForm($name);
+	if (!empty($name)) {
+	    $adminText .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" .
+			    sprintf(_('process this photo with %s'), $fullName[$name]) . ']</a>';
+	}
 		
-		/* display photo printing services */
-		$printServices = $gallery->album->fields['print_photos'];
-		$numServices = count($printServices);
-		$fullName = array(
-			'ezprints'    => 'EZ Prints - Photo Printing',
-			'fotokasten'  => 'Fotokasten - Photo Printing',
-			'fotoserve'   => 'Fotoserve - Photo Printing',
-			'mpush'       => 'mPUSH - Send to Mobile',
-			'photoaccess' => 'PhotoWorks - Photo Printing',
-			'shutterfly'  => 'Shutterfly - Photo Printing',
-		);
-		/* display a <select> menu if more than one option */
-		if ($numServices > 1) {
-			ksort($printServices);
-			$selectCommand = '<select name="print_services" class="adminform" onChange="doPrintService()">';
-			$selectCommand .= '<option value="">&laquo; '. _("Select service") .' &raquo;</option>';
-			foreach ($printServices as $name => $data) {
-				/* skip if it's not actually selected */
-				if (!isset($data['checked'])) {
-					continue;
-				}
-				switch ($name) {
-				case 'ezprints':
-					$printEZPrintsForm = true;
-					break;
-				case 'photoaccess':
-					$printPhotoAccessForm = true;
-					break;
-				case 'shutterfly':
-					$printShutterflyForm = true;
-					break;
-				case 'fotoserve':
-					$printFotoserveForm = true;
-					break;
-				default:
-					break;
-				}
-				$selectCommand .= "<option value=\"$name\">${fullName[$name]}</option>";
-			}
-			$selectCommand .= '</select>';
-			$adminText .= '[' . sprintf(_('process this photo with %s'), $selectCommand) . ']';
-		/* just print out text if only one option */
-		} elseif ($numServices == 1 && isset($printServices[@key($printServices)]['checked'])) {
-			$name = @key($printServices);
-			switch ($name) {
-			case 'ezprints':
-				$printEZPrintsForm = true;
-				break;
-			case 'photoaccess':
-				$printPhotoAccessForm = true;
-				break;
-			case 'shutterfly':
-				$printShutterflyForm = true;
-				break;
-			case 'fotoserve':
-				$printFotoserveForm = true;
-				break;
-			default:
-				break;
-			}
-			if (!empty($name)) {
-				$adminText .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" .
-						    sprintf(_('process this photo with %s'), $fullName[$name]) . ']</a>';
-			}
-		}
+    }
 ?>
 <script language="javascript1.2" type="text/JavaScript">
 	 function doPrintService(input) {
@@ -486,7 +510,7 @@ if (!$gallery->album->isMovie($id)) {
 	}
 </script>
 <?php
-	}
+    }
 }
 
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {

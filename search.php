@@ -113,6 +113,14 @@ if ($searchstring) {
 			continue;
 		}
 
+		// Build navigationslinks to the album.
+		$parentNameArray = getParentAlbums($searchAlbum);
+		if(count($parentNameArray) != 0) {
+			$parentURLString = '';
+			foreach($parentNameArray as $pName=>$pTitle) {
+				$parentURLString .= "<a href=\"".makeAlbumUrl($pName)."\">".$pTitle."</a> &raquo; ";
+			}
+		}
 		// initialize values
 		unset($text);
 
@@ -203,7 +211,9 @@ if ($searchstring) {
 				$searchCaption = preg_replace($searchExpr, $searchRepl, $searchCaption);
 				$searchKeywords = preg_replace($searchExpr, $searchRepl, $searchKeywords);
 
-				$text[] = '<div class="desc">'. _("From Album") .":&nbsp;&nbsp;<a href=\"" .
+				$text[] = '<div class="desc">'. _("From Album") .":&nbsp;&nbsp;".
+						$parentURLString .
+						"<a href=\"" .
 		                              	makeAlbumUrl($searchAlbum->fields['name']) . "\">" .
                               			$searchAlbum->fields['title'] . "</a></div>";
 				$text[] = '<div class="desc">'. $searchCaption .'</div>';

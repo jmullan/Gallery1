@@ -281,7 +281,7 @@ if (getRequestVar('gRedir') == 1) {
 ?>
 
 <!-- album table begin -->
-<table width="100%" border="0" cellpadding=0 cellspacing=7>
+<table width="100%" border="0" cellpadding="0" cellspacing="7">
 
 <?php
 $start = ($gallery->session->albumListPage - 1) * $perPage + 1;
@@ -326,7 +326,7 @@ for ($i = $start; $i <= $end; $i++) {
       }
       $gallery->html_wrap['imageWidth'] = $iWidth;
       $gallery->html_wrap['imageHeight'] = $iHeight;
-      $gallery->html_wrap['imageTag'] = $gallery->album->getHighlightTag($scaleTo,'', _("Highlight for Album:"). " ". gallery_htmlentities(removeTags($gallery->album->fields["title"])));
+      $gallery->html_wrap['imageTag'] = $gallery->album->getHighlightTag($scaleTo,'', _("Highlight for Album:") ." ". $gallery->album->fields["title"]);
       $gallery->html_wrap['imageHref'] = $albumURL;
       $gallery->html_wrap['frame'] = $gallery->app->gallery_thumb_frame_style;
       includeHtmlWrap('inline_gallerythumb.frame');

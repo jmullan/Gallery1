@@ -1297,7 +1297,7 @@ class Album {
 		if ($photo) {
 			return $photo->getThumbnailTag($album->getAlbumDirURL("highlight"), $size, $attrs);
 		} else {
-			return "<span class=title>". _("No highlight") ."!</span>";
+			return '<span class="title">'. _("No highlight") .'!</span>';
 		}
 	}
 
@@ -1307,7 +1307,7 @@ class Album {
 			$photo = $this->getPhoto($index);
 			return $photo->getHighlightTag($this->getAlbumDirURL("highlight"), $size, $attrs, $alttext);
 		} else {
-			return "<span class=title>". _("No highlight") ."!</span>";
+			return '<span class="title">'. _("No highlight") .'!</span>';
 		}
 	}
 

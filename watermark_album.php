@@ -95,10 +95,9 @@ doctype();
   <title><?php echo _("Watermark Album") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body class="popupbody" dir="<?php echo $gallery->direction ?>">
 <div class="popuphead"><?php echo _("Watermark Album") ?></div>
-<div class="popupcontent" align="center">
+<div class="popup" align="center">
 <?php
 if (!$gallery->album->numPhotos(1)) {
 	echo "\n<p>". gallery_error(_("No items to watermark.")) . "</p>";

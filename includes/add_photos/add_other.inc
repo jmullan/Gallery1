@@ -20,20 +20,22 @@
  * $Id$
  */
 ?>
-<p class="aptext">
+<p>
 <?php echo _("You can use one of these desktop agents to drag and drop photos from your desktop") ?>:
 <br>
+
 <ul>
-<li class="aptext"><b><a href="#" onClick="parent.opener.location = 'http://gallery.sourceforge.net/gallery_remote.php'; parent.close();">Gallery Remote</a></b></li>
-<dt><?php echo _("A Java application that runs on Mac, Windows and Unix") ?></dt>
+	<li><b><a href="#" onClick="parent.opener.location = 'http://gallery.sourceforge.net/gallery_remote.php'; parent.close();">Gallery Remote</a></b></li>
+	<dt><?php echo _("A Java application that runs on Mac, Windows and Unix") ?></dt>
 
 <br>
-<li class="aptext"><b><a href="#" onClick="parent.opener.location = 'http://gallery.sourceforge.net/wiki.php?page=Other%20methods'; parent.close();"><?php echo _("Other methods") ?></a></b></li>
-<dt><?php echo _("See a couple of other Methods for adding pictures to your Gallery on Gallerys Website.") ?></dt>
+	<li><b><a href="#" onClick="parent.opener.location = 'http://gallery.sourceforge.net/wiki.php?page=Other%20methods'; parent.close();"><?php echo _("Other methods") ?></a></b></li>
+	<dt><?php echo _("See a couple of other Methods for adding pictures to your Gallery on Gallerys Website.") ?></dt>
 
 <?php if (empty($GALLERY_EMBEDDED_INSIDE) || $GALLERY_EMBEDDED_INSIDE_TYPE='GeekLog') { ?>
 <br>
-<li class="aptext"><b><a href="<?php echo makeGalleryUrl("publish_xp_docs.php") ?>"><?php echo _("Windows XP Publishing Agent") ?></a></b></li>
-<dt><?php echo _("<i>Note:</i> this feature is still experimental!") ?></dt>
+	<li><b><a href="<?php echo makeGalleryUrl("publish_xp_docs.php") ?>"><?php echo _("Windows XP Publishing Agent") ?></a></b></li>
+	<dt><?php echo _("<i>Note:</i> this feature is still experimental!") ?></dt>
 <?php } ?>					 
+</ul>
 </p>

@@ -1,7 +1,4 @@
 <?php
-
-/**
- * <?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2004 Bharat Mediratta
@@ -23,12 +20,15 @@
  * $Id$
  */
 ?>
-<p>
-<?php echo _("Admin help") ?>
-</p>
+<?php
+    $grHelpUrl = 'http://gallery.menalto.com/modules.php?op=modload&name=GalleryDocs&file=index&page=gallery1-install.remote-applets.php';
+?>
+<p><?php echo _("Admin help") ?></p>
 
-<p class="aptext">
-<?php echo _("To install or upgrade the Gallery Remote Applets, please refer to ") .
-"<a href=\"http://gallery.menalto.com/modules.php?op=modload&name=GalleryDocs&file=index&page=gallery1-install.remote-applets.php\" target=\"other\">" .
-_("the documentation page") . "</a>" . _(" on the Gallery web site.") ?>
+<p>
+<?php 
+    echo _("To install or upgrade the Gallery Remote Applets, please refer to ") .
+	'<a href="'. $grHelpUrl .'" target="other">'. _("the documentation page") .'</a>' .
+	_(" on the Gallery web site.");
+?>
 </p>

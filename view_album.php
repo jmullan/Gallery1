@@ -1121,7 +1121,6 @@ if (canVote()) { ?>
 includeLayout('navtablebegin.inc');
 includeLayout('navigator.inc');
 if (!empty($breadcrumb["text"])) {
-	$breadcrumb["top"] = false;
 	includeLayout('navtablemiddle.inc');
 	includeLayout('breadcrumb.inc');
 }

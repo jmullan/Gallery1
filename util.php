@@ -2934,7 +2934,7 @@ function available_skins($description_only=false) {
     if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
  	while ($file = readdir($fd)) {
 	    $subdir="$dir/$file/css";
-	    $skincss="$subdir/embedded_style.css";
+	    $skincss="$subdir/screen.css";
 	    if (fs_is_dir($subdir) && fs_file_exists($skincss)) {
 		$possibleSkins[] = $file;
 	    }
@@ -2946,7 +2946,7 @@ function available_skins($description_only=false) {
 	    $skininc="$dir/$file/style.def";
 	    $name="";
 	    $description="";
-	    $skincss="$subdir/embedded_style.css";
+	    $skincss="$subdir/screen.css";
 	    $skincount++;
 			
 	    if (fs_file_exists($skininc)) {
@@ -3612,12 +3612,20 @@ function getIconText($iconName='', $altText='') {
 }
 
 function makeIconMenu($iconElements, $closeTable = true) {
+    global $gallery;
 
     if (empty($iconElements)) {
 	return "";
     }
 
-    $html = "\n". '<table id="menu"><tr>';
+// For rtl/ltr stuff
+    if ($gallery->direction == 'ltr') {
+	$align ='right';
+    } else {
+	$align ='left';
+    }
+
+    $html = "\n". '<table id="menu" align="'. $align .'"><tr>';
     foreach ($iconElements as $element) {
 	if (stristr($element,'</a>')) {
 	    $html .= "\n\t". '<td>'.  $element .'</td>';
