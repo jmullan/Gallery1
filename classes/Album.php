@@ -1841,7 +1841,7 @@ class Album {
 			return true;
 		}
 		elseif ($this->canRead($uid)) {
-			if ($this->isRoot()) {
+			if ($this->isRoot() || empty($this->fields['parentAlbumName'])) {
 				return true;
 			}
 			$parent = $albumDB->getAlbumByName($this->fields['parentAlbumName'], false);
