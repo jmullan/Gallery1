@@ -19,7 +19,7 @@
  */
 ?>
 <?
-class NobodyUser extends User {
+class NobodyUser extends Abstract_User {
 	function NobodyUser() {
 		$this->username = "NOBODY";
 		$this->fullname = "Nobody";
