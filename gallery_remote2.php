@@ -47,10 +47,10 @@ header("Content-type: text/plain");
 
 
 /*
- * Gallery remote protocol version 2.2
+ * Gallery remote protocol version 2.3
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 2;
+$GR_VER['MIN'] = 3;
 
 
 /*
@@ -288,6 +288,8 @@ if (!strcmp($cmd, "login")) {
 	}
 	
 	$response->setProperty( "auto_resize", $max_dimension );
+	$response->setProperty( "extra_fields", $gallery->album->getExtraFields() );
+
 	$response->setProperty( "status", $GR_STAT['SUCCESS'] );
 	$response->setProperty( "status_text", "Album properties retrieved successfully." );
 } else if (!strcmp($cmd, "new-album")) {
@@ -377,6 +379,11 @@ function add_album( &$myAlbum, &$album_index, $parent_index, &$response ){
 	$response->setProperty( "album.perms.del_item.$album_index", $can_delete_from );
 	$response->setProperty( "album.perms.del_alb.$album_index", $can_delete_alb );
 	$response->setProperty( "album.perms.create_sub.$album_index", $can_create_sub );
+
+	$extrafields = $myAlbum->getExtraFields();
+	if ($extrafields) {
+		$response->setProperty( "album.info.extrafields.$album_index", implode(",", $extrafields) );
+	}
 }
 
 //------------------------------------------------
@@ -471,7 +478,22 @@ function processFile($file, $tag, $name, $setCaption="") {
                 $caption = "";
             }
 
-	        $err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption);
+			// add the extra fields
+			$myExtraFields = array();
+			foreach ($gallery->album->getExtraFields() as $field) {
+				global $HTTP_POST_VARS;
+				//$fieldname = "extrafield_$field";
+				//echo "Looking for extra field $fieldname\n";
+				$value = $HTTP_POST_VARS[("extrafield_".$field)];
+				//echo "Got extra field $field = $value\n";
+				if ($value) {
+					//echo "Setting field $field\n";
+					$myExtraFields[$field] = $value;
+				}
+			}
+			//echo "Extra fields ". implode("/", array_keys($myExtraFields)) ." -- ". implode("/", array_values($myExtraFields)) ."\n";
+
+	        $err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $myExtraFields);
 	        if (!$err) {
 	            /* resize the photo if needed */
 	            if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
