@@ -29,9 +29,8 @@ if (!$gallery->user->isLoggedIn()) {
 	exit;	
 }
 
-list($save, $old_password, $new_password1, $new_password2) = getRequestVar(array('save', 'uname',
-'old_password', 'new_password1', 'new_password2', 'defaultLanguage'));
-list($uname, $email, $fullname, $defaultLanguage) = getRequestVar(array('email', 'fullname'));
+list($save, $old_password, $new_password1, $new_password2) = getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
+list($uname, $email, $fullname, $defaultLanguage) = getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
 
 $errorCount=0;
 if (isset($save)) {
