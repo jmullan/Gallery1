@@ -273,9 +273,6 @@ if ($numPhotos) {
 				echo(popup("delete_photo.php?index=$i"));
 				echo("><br><img src=\"images/admin_delete.gif\" width=11 height=11 border=0 alt=\"Delete Photo\"></a>");
 				if (!$album->isMovie($i)) {
-					echo(" <a href=");
-					echo(popup("rotate_photo.php?index=$i"));
-					echo("><img src=\"images/admin_rotate.gif\" width=11 height=11 border=0 alt=\"Rotate Photo\"></a>");
 					//echo(" <a href=");
 					//echo(popup("do_command.php?cmd=remake-thumbnail&index=$i"));
 					//echo(">[Thumbnail]/a>");
@@ -286,6 +283,9 @@ if ($numPhotos) {
 				echo(" <a href=");
 				echo(popup("move_photo.php?index=$i"));
 				echo("><img src=\"images/admin_move.gif\" width=11 height=11 border=0 alt=\"Move Photo\"></a>");
+				echo(" <a href=");
+				echo(popup("rotate_photo.php?index=$i"));
+				echo("><img src=\"images/admin_rotate.gif\" width=11 height=11 border=0 alt=\"Rotate Photo\"></a>");
 				echo(" <a href=");
 				echo(popup("highlight_photo.php?index=$i"));
 				echo("><img src=\"images/admin_highlight.gif\" width=11 height=11 border=0 alt=\"Highlight Photo\"></a>");
