@@ -50,6 +50,11 @@ $view .= row_wrap("&nbsp;");
 $data .= "/* Constants */\n";
 $view .= row_wrap("/* Constants */\n");
 foreach ($constants as $key => $val) {
+	if ($constants[$key]["eval"]) {
+		$tmp = $constants[$key]["eval"];
+		eval("\$$key = $tmp;");
+	}
+
 	if (!$$key) {
 		if ($constants[$key]["optional"]) {
 			$data .= "// optional <i>$key</i> missing\n";
@@ -63,12 +68,14 @@ foreach ($constants as $key => $val) {
 			$dir = $$key;
 			if (!file_exists($dir)) {
 				$view .= error("Directory <b>$dir</b> does not exist.  Please create it.");
+				$error = 1;
 				continue;
 			}
 
 			if (!is_dir($dir)) {
 				$view .= error("<b>$dir</b> exists but is not a directory.  " .
 						"Please fix this.");
+				$error = 1;
 				continue;
 			}
 
@@ -76,12 +83,13 @@ foreach ($constants as $key => $val) {
 				$view .= error("$dir exists, but is not writeable by the " .
 						"webserver user.  Try:<br><center><b><code>" .
 						"chown -R " . $webserver_user . " $dir</code>");
+				$error = 1;
 				continue;
 			}
 		}
 
 		$data .= one_constant($key, $$key);
-		$view .= row_wrap(constant($key, $$key));
+		$view .= row_wrap(one_constant($key, $$key));
 	}
 	echo "<input type=hidden name=$key value=\"{$$key}\">";
 }
