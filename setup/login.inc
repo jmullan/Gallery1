@@ -81,7 +81,7 @@ elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
 <div align="center">
 <div class="header"><?php echo sprintf (_("%s configuration"), gallery()) ?></div>
 <div class="desc"><?php echo _("You must log in as an administrator to edit this server's configuration.") ?></div>
-<div class="desc"><?php sprintf(_("If you have forgotten the password to your admin account, you can reset it by creating a blank file named '%s' in your %s directory and then refreshing and following the instructions on this page."), 'resetadmin', GALLERY_SETUPDIR) ?></div>
+<div class="desc"><?php echo sprintf(_("If you have forgotten the password to your admin account, you can reset it by creating a blank file named '%s' in your %s directory and then refreshing and following the instructions on this page."), 'resetadmin', GALLERY_SETUPDIR) ?></div>
 <p>
 <?php if(isset($error)) {
 	echo gallery_error($error) ."</p>\n<p>";
