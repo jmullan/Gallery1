@@ -116,7 +116,7 @@ for ($i = $start; $i <= $end; $i++) {
   <a href=<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>[rename album]</a>
   <br>
   url: <a href=<?=$albumURL?>><?=$albumURL?></a>
-   <? if (preg_match("/album\d$/", $albumURL)) { ?>
+   <? if (preg_match("/album\d+$/", $albumURL)) { ?>
  	<br>
          <font size=+1 face=arial color=red>
           Hey!
