@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-01-11 15:46+0100\n"
-"PO-Revision-Date: 2004-04-21 12:30+0300\n"
+"POT-Creation-Date: 2005-01-11 23:17+0100\n"
+"PO-Revision-Date: 2005-01-11 12:30+0300\n"
 "Last-Translator: A.L.T <leanh AT airland DOT kiev DOT ua>\n"
 "Language-Team: AIRLAND <admin AT airland DOT kiev DOT ua>\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr "Thư viện ảnh cần cấu hình lại"
 
 #: ../errors/reconfigure.php:19
 msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!"
-msgstr "Thư viện ảnh của bạn đã được cấu hình bằng thuật cấu hình của một phiên bản Thư viện ảnh cũ, và đã quá cũ. Xin hãy chạy lại Thuật cấu hình!"
+msgstr "Thư viện ảnh của bạn đã được cấu hình bằng thuật cấu hình của một phiên bản Thư viện ảnh cũ, và đã quá hạn. Xin hãy chạy lại Thuật cấu hình!"
 
 #: ../errors/reconfigure.php:24
 #, php-format
@@ -333,7 +333,7 @@ msgstr "Thử lại?"
 #: ../setup/check_mail.php:61
 #, php-format
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
-msgstr "Điều này cho phép bạn xác nhận rằng email có làm việc trên hệ thống của bạn.  Ghi địa chỉ email của bạn vào bên dưới, khi đó một email sẽ được gửi tới cho bạn. Nếu bạn nhận được nó, có nghĩa chức năng gửi mail có làm việc"
+msgstr "Điều này cho phép bạn xác nhận rằng email có làm việc trên hệ thống của bạn.  Ghi địa chỉ email của bạn vào bên dưới, khi đó một email sẽ được gửi tới cho bạn. Nếu bạn nhận được nó, có nghĩa chức năng gửi email có làm việc"
 
 #: ../setup/check_mail.php:65 ../setup/check_mail.php:70
 #, php-format
@@ -417,9 +417,8 @@ msgstr[0] "Một file là đúng hạn."
 msgstr[1] "%d file là đúng hạn."
 
 #: ../setup/check_versions.php:132
-#, fuzzy
 msgid "All files are up-to-date."
-msgstr "Không file nào đúng hạn."
+msgstr "Tất cả các file đúng hạn."
 
 #: ../setup/check_versions.php:138
 msgid "The following files are up-to-date."
@@ -468,11 +467,11 @@ msgstr "Kiểm tra xem %s phiên bản %s được bao lâu rồi."
 
 #: ../setup/config_data.inc:100
 msgid "Check to see if you are running PHP 4.1.0 or greater."
-msgstr ""
+msgstr "Hãy kiểm tra xem bạn có PHP 4.1.0 hoặc mới hơn không."
 
 #: ../setup/config_data.inc:100
 msgid "Since Gallery 1.4.5 Gallery needs at least PHP 4.1.0, this is due to that some versions of PHP have bugs that cause Gallery to fail and that older Version does not have required functionality."
-msgstr ""
+msgstr "Thư viện ảnh phiên bản 1.4.5 yêu cầu tối thiểu PHP 4.1.0, bởi vì vài phiên bản PHP có lỗi và gây lỗi cho Thư viện ảnh cho nên với những phiên bản cũ đó không thể cho hoạt động được."
 
 #: ../setup/config_data.inc:102
 #, php-format
@@ -494,11 +493,11 @@ msgstr "Có vẻ như bản PHP của bạn có vấn đề về __FILE__, bạn
 
 #: ../setup/config_data.inc:113
 msgid "Gallery highly recommends that the PHP option 'register_globals' be turned off, for security purposes.  Some software, notably the 'Geeklog' CMS, requires that 'register_globals' be enabled."
-msgstr ""
+msgstr "Thư viện ảnh khuyến cáo cho lựa chọn 'register_globals' của PHP phải được tắt, vì lý do an toàn.  Có vài chương trình, như là 'Geeklog' CMS, lại đòi hỏi 'register_globals' phải được mở."
 
 #: ../setup/config_data.inc:115
 msgid "The PHP option 'register_globals' is enabled on your server. Gallery highly recommends that you disable 'register_globals' unless it is required by software on your site.  Gallery does not officially support 'register_globals' being enabled, and will attempt to disable it internally."
-msgstr ""
+msgstr "Lựa chọn 'register_globals' trên máy chủ của bạn đang mở. Thư viện ảnh khuyến cáo bạn nên tắt 'register_globals' nếu không có chương trình nào trên trang của bạn đòi hỏi nó.  Thư viện ảnh chính thức không trợ giúp cho 'register_globals' được mở, và nó sẽ tự thử tắt đi."
 
 #: ../setup/config_data.inc:120
 msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
@@ -516,21 +515,19 @@ msgstr "<b>Chú ý</b>: Trong vài trường hợp hiếm hoi, Thư viện ảnh
 
 #: ../setup/config_data.inc:135
 msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
-msgstr ""
+msgstr "Chức năng <b>exec()</b> để Thư viện ảnh sử dụng khởi động các ứng dụng như là NetPBM, ImageMagick, và jhead.  Nếu <b>exec()</b> bị tắt trên máy chủ của bạn thì Thư viện ảnh sẽ không thể hoạt động được."
 
 #: ../setup/config_data.inc:137
 msgid "The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."
-msgstr ""
+msgstr "Chức năng <b>exec()</b> trên máy chủ của bạn đang tắt.  Thư viện ảnh sẽ không thể hoạt động với cấu hình này của PHP."
 
 #: ../setup/config_data.inc:141
-#, fuzzy
 msgid "Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."
-msgstr "Cho phép file <b>.htaccess</b> cho Thư viện ảnh để đặt những cấu hình lựa chọn khi sử dụng Thư viện ảnh.  Nó được người sở hữu máy chủ web điều khiển nên có khả năng bạn chưa chắc có thể thay đổi nó.  Điều cơ bản nếu không có cái này là bạn không thể tải lên những file lớn hơn 2MB (VD: file ZIP lớn) và bạn không thể sử dụng <b>mod_rewrite</b> (xem bên dưới)."
+msgstr "Cho phép Thư viện ảnh sử dụng file <b>.htaccess</b> để ghi những cấu hình lựa chọn khi sử dụng Thư viện ảnh.  Nó được người sở hữu máy chủ web điều khiển nên có khả năng bạn chưa chắc có thể thay đổi nó.  Điều cơ bản nếu không có cái này là bạn không thể tải lên những file lớn hơn 2MB (VD: file ZIP lớn hoặc phim)."
 
 #: ../setup/config_data.inc:143
-#, fuzzy
 msgid "Apache is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:"
-msgstr "Apache không thi hành theo file <b>.htaccess</b> của bạn.  Thử vào trong file <b>httpd.conf</b> trên hệ thống máy chủ web của bạn:"
+msgstr "Apache không thi hành theo 'php_value' trong file <b>.htaccess</b> của bạn.  Thử vào trong file <b>httpd.conf</b> trên hệ thống máy chủ web của bạn:"
 
 #: ../setup/config_data.inc:147
 msgid "If you are running PHP in CGI mode, this message is unavoidable."
@@ -548,7 +545,7 @@ msgstr "Magic quotes đang bật.  Người quản trị máy chủ web của b�
 
 #: ../setup/config_data.inc:160
 msgid "Check to see if your webserver is compiled with <b>mod_rewrite</b>.  This Apache module allows Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."
-msgstr "Kiểm tra xem máy chủ web của bạn có được biên dịch với <b>mod_rewrite</b>.  Tính năng này của Apache cho phép Thư viện ảnh sử dụng những liên kết ngắn dễ đọc hơn và trông cũng đẹp hơn khi bạn gửi địa chỉ đó qua mail cho mọi người.  Tuy nhiên đây không phải là chức năng chính."
+msgstr "Kiểm tra xem máy chủ web của bạn có được biên dịch với <b>mod_rewrite</b>.  Tính năng này của Apache cho phép Thư viện ảnh sử dụng những liên kết ngắn dễ đọc hơn và trông cũng đẹp hơn khi bạn gửi địa chỉ đó qua email cho mọi người.  Tuy nhiên đây không phải là chức năng chính."
 
 #: ../setup/config_data.inc:162
 msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: "
@@ -663,7 +660,7 @@ msgstr "Chọn một kiểu dáng cho Thư viện ảnh. Bạn có một lựa c
 
 #: ../setup/config_data.inc:268
 msgid "Here you can get a more Gallery Skins by Drazan"
-msgstr ""
+msgstr "Ở đây bạn có thể lấy thêm kiểu dáng của Drazan cho Thư viện ảnh"
 
 #: ../setup/config_data.inc:274
 msgid "Default upload method"
@@ -719,7 +716,7 @@ msgstr "Đường dẫn tới thư mục tạm trên hệ thống.  VD: %s hoặ
 #: ../setup/config_data.inc:320
 #, php-format
 msgid "The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
-msgstr ""
+msgstr "Địa chỉ URL đầy đủ tới Thư viện ảnh. (VD: %s) Thư viện ảnh có thể hoạt động được với các địa chỉ URL tương đối, tuy nhiên sẽ có vài tính năng, như là in, sẽ không hoạt động chính xác."
 
 #: ../setup/config_data.inc:329
 msgid "Albums URL"
@@ -772,7 +769,7 @@ msgstr "Đường dẫn tới thư mục chứa NetPBM trên hệ thống của 
 #: ../setup/config_data.inc:383 ../setup/config_data.inc:406
 #, php-format
 msgid "This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."
-msgstr ""
+msgstr "Đường dẫn này chỉ yều cầu nếu bạn chọn %s ở trên. Nếu không bạn có thể để như đã có, hoặc để trống."
 
 #: ../setup/config_data.inc:386
 msgid "I can't find NetPBM at the location you provided."
@@ -807,9 +804,8 @@ msgid "Selecting this option has Gallery automatically attempt to rotate images 
 msgstr "Chọn lựa chọn này sẽ để Thư viện ảnh cố xoay ảnh khi tải lên, dựa trên thông tin định hướng được lưu giữ trong các dữ liệu EXIF của ảnh JPEG được viết vào do vài loại máy ảnh KT số mới."
 
 #: ../setup/config_data.inc:421
-#, fuzzy
 msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
-msgstr "Yêu cầu Jhead EXIF parser phiên bản 1.9 hoặc mới hơn (xem bên dưới)."
+msgstr "Yêu cầu Jhead EXIF parser phiên bản 1.9 hoặc mới hơn (xem lựa chọn các công cụ)."
 
 #: ../setup/config_data.inc:422 ../setup/config_data.inc:484
 #: ../setup/config_data.inc:498 ../setup/config_data.inc:504
@@ -876,16 +872,15 @@ msgstr "Thư viện ảnh nhúng"
 
 #: ../setup/config_data.inc:442
 msgid "Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."
-msgstr ""
+msgstr "Thư viện ảnh tự động dò soát khi nó được nhúng vào một trong các CMS được trợ giúp, tuy nhiên có vài ứng dụng đòi hỏi phải có những điều chỉnh đặc biệt.  Bất cứ điều chỉnh nào mà không tự dò ra được sẽ có thể hiển thị trên trang này."
 
 #: ../setup/config_data.inc:445
 msgid "GeekLog Dir"
 msgstr "Thư mục GeekLog"
 
 #: ../setup/config_data.inc:447
-#, fuzzy
 msgid "If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"
-msgstr "Nếu bạn đã chọn Geeklog ở bên trên, hãy ghi vị trí thư mục public_html của GeekLog."
+msgstr "Nếu bạn sử dụng Geeklog, hãy ghi vị trí thư mục public_html của GeekLog. VD: '/đườngdẫn/tới/geeklog/public_html'"
 
 #: ../setup/config_data.inc:459
 msgid "Main Gallery page"
@@ -956,11 +951,11 @@ msgstr "Hiển thị công cụ tìm kiếm trên trang chính của Thư viện
 
 #: ../setup/config_data.inc:502
 msgid "Accurate Photo Count"
-msgstr ""
+msgstr "Thuật đếm ảnh chính xác"
 
 #: ../setup/config_data.inc:503
 msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
-msgstr ""
+msgstr "Hiển thị lượng album và ảnh trên trang chính của Thư viện ảnh bằng thuật đếm chính xác, nhưng chậm, so với phương pháp đếm.  Tính năng này được yêu cầu do vài người, tuy nhiên không được khuyến cáo cho Thư viện ảnh khi mà bạn có một lượng lớn album và ảnh.  Trong vài thử nghiệm đã thấy có thể làm cho thời gian tải trang chính đến 30 giây khi mà lựa chọn này mở."
 
 #: ../setup/config_data.inc:508
 msgid "Frame around albums"
@@ -981,9 +976,9 @@ msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is opti
 msgstr "Đường dẫn tới binary của <b>%s</b> trên hệ thống.  VD: %s hoặc %s. Đây chỉ là tùy chọn nên nếu bạn không có nó, cũng đừng lo quá."
 
 #: ../setup/config_data.inc:562 ../setup/config_data.inc:574
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
-msgstr "Đường dẫn tới EXIF parser của <b>jhead</b> trên hệ thống.  VD: %s hoặc %s. Đây chỉ là tùy chọn nên nếu bạn không có nó, cũng đừng lo quá."
+msgstr "Đường dẫn tới %s parser của <b>jhead</b> trên hệ thống.  VD: %s hoặc %s. Đây chỉ là tùy chọn nên nếu bạn không có nó, cũng đừng lo quá."
 
 #: ../setup/config_data.inc:586
 #, php-format
@@ -1220,52 +1215,51 @@ msgstr "Gửi bản sao email"
 
 #: ../setup/config_data.inc:785
 msgid "Use non-local SMTP server."
-msgstr ""
+msgstr "Sử dụng máy chủ SMTP bên ngoài."
 
 #: ../setup/config_data.inc:786
 msgid "Use a smtp server running on a different machine (ie: Your ISPs mail server) to process outgoing gallery email."
-msgstr ""
+msgstr "Sử dụng một máy chủ smtp trên một hệ thống khác (VD: Máy chủ email của nhà cung cấp của bạn) để gửi email của thư viện ảnh ra ngoài."
 
 #: ../setup/config_data.inc:793
 msgid "SMTP Server"
-msgstr ""
+msgstr "Máy chủ SMTP"
 
 #: ../setup/config_data.inc:794
 msgid "The name or IP address of the SMTP Server you want to use."
-msgstr ""
+msgstr "Tên hoặc địa chỉ IP của máy chủ SMTP mà bạn muốn sử dụng."
 
 #: ../setup/config_data.inc:802
 msgid "Local Host Name"
-msgstr ""
+msgstr "Tên Local Host"
 
 #: ../setup/config_data.inc:803
 msgid "The local hostname of the server as a reverse DNS lookup of the IP would show. If you are behind a NAT, this would be the DNS name of your router. If you don't know what to do here, 'localhost' is probably ok in most situations."
-msgstr ""
+msgstr "Tên local host của máy chủ để có thể tìm DNS của IP. Nếu bạn ở sau một NAT, thì đó sẽ phải là tên DNS router của bạn. Nếu bạn không biết là gì, ghi 'localhost' thường là phù hợp cho đa số các trường hợp."
 
 #: ../setup/config_data.inc:811
 msgid "SMTP Port"
-msgstr ""
+msgstr "Cổng SMTP"
 
 #: ../setup/config_data.inc:812
 msgid "The port on the SMTP server you are connecting to."
-msgstr ""
+msgstr "Cổng trên máy chủ SMTP mà bạn muốn nối tới."
 
 #: ../setup/config_data.inc:820
 msgid "SMTP account name"
-msgstr ""
+msgstr "Tên tài khoản SMTP"
 
 #: ../setup/config_data.inc:821
 msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
-msgstr ""
+msgstr "Nếu nhà cung cấp của bạn yêu cầu tên tài khoản khi gửi email, hãy ghi ở đây, nếu không có thể để trống."
 
 #: ../setup/config_data.inc:829
-#, fuzzy
 msgid "SMTP password"
-msgstr "Mật khẩu"
+msgstr "Mật khẩu SMTP"
 
 #: ../setup/config_data.inc:830
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
-msgstr ""
+msgstr "Mật khẩu để gửi email qua máy chủ smtp. LƯU Ý: Mật khẩu này này sẽ được ghi rõ vào file config.php. Hãy chắc chắn quyền hạn phải được đặt để không ai có thể thấy nó!"
 
 #: ../setup/config_data.inc:845
 msgid "Gallery wide slideshow"
@@ -1356,9 +1350,8 @@ msgid "Enable commenting"
 msgstr "Cho phép bình luận"
 
 #: ../setup/config_data.inc:897
-#, fuzzy
 msgid "This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
-msgstr "Lựa chọn này sẽ bật hoặc tắt khả năng cho mọi người dùng tạo lời bình.  Nếu bạn chọn là &quot;không&quot; khi đó mọi chức năng bình luận sẽ được tắt."
+msgstr "Lựa chọn này sẽ mở hoặc ngưng khả năng cho mọi người dùng tạo lời bình.  Nếu bạn chọn là &quot;không&quot; khi đó mọi chức năng bình luận sẽ được tắt."
 
 #: ../setup/config_data.inc:905
 msgid "Indicate if there are comments available"
@@ -1497,31 +1490,31 @@ msgstr "Thư mục ảnh chèn"
 
 #: ../setup/config_data.inc:1005
 msgid "Statistics"
-msgstr ""
+msgstr "Trạng thái"
 
 #: ../setup/config_data.inc:1006
 msgid "Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information."
-msgstr ""
+msgstr "Chức năng lưu trữ sẽ tăng cường hiệu quả cho thư viện ảnh lớn tránh không thể hiển thị khi quá nhiều các ảnh hoặc quá nhiều các thông tin bình chọn."
 
 #: ../setup/config_data.inc:1007
 msgid "There's a different cache for each stats type supported with the exception of random."
-msgstr ""
+msgstr "Có khác nhau về kiểu lưu trữ cho mỗi hình thức được trợ giúp ngoại trừ hình thức ngẫu nhiên."
 
 #: ../setup/config_data.inc:1008
 msgid "The caches can be refreshed by reloading the stats page and specifying the url variable 'refreshcache'."
-msgstr ""
+msgstr "Lưu trữ có thể được làm sạch khi mở trang trạng thái và nhấn liên kết 'làmsạchlưutrữ'."
 
 #: ../setup/config_data.inc:1009
 msgid "Caches will also refresh themselves after they have expired."
-msgstr ""
+msgstr "Lưu trữ cũng sẽ tự làm sạch sau khi chúng tới hạn."
 
 #: ../setup/config_data.inc:1010
 msgid "The expire time in seconds is specified for each cache below."
-msgstr ""
+msgstr "Thời gian tới hạn tính bằng giây được chỉ định cho mỗi kiểu lưu trữ bên dưới."
 
 #: ../setup/config_data.inc:1011
 msgid "If the expire time is set to -1 then the cache will not auto refresh."
-msgstr ""
+msgstr "Nếu thời gian tới hạn được ghi là -1 có nghĩa lưu trữ đó không bao giờ tự làm sạch."
 
 #: ../setup/config_data.inc:1015
 msgid "Available Stats for 'normal' users"
@@ -1544,53 +1537,51 @@ msgstr ""
 #: ../setup/config_data.inc:1045 ../setup/config_data.inc:1056
 #: ../setup/config_data.inc:1067 ../setup/config_data.inc:1078
 msgid "On"
-msgstr ""
+msgstr "Mở"
 
 #: ../setup/config_data.inc:1027
 msgid "View cache expiration"
-msgstr ""
+msgstr "Thời gian tới hạn lưu trữ xem"
 
 #: ../setup/config_data.inc:1033
-#, fuzzy
 msgid "Comment cache"
-msgstr "Lời bình"
+msgstr "Lưu trữ bình luận"
 
 #: ../setup/config_data.inc:1038
 msgid "Comment cache expiration"
-msgstr ""
+msgstr "Thời gian tới hạn lưu trữ bình luận"
 
 #: ../setup/config_data.inc:1044
 msgid "Date cache"
-msgstr ""
+msgstr "Lưu trữ ngày tháng"
 
 #: ../setup/config_data.inc:1049
 msgid "Date cache expiration"
-msgstr ""
+msgstr "Thời gian tới hạn lưu trữ ngày tháng"
 
 #: ../setup/config_data.inc:1055
-#, fuzzy
 msgid "Vote cache"
-msgstr "Hạng bình chọn"
+msgstr "Lưu trữ bình chọn"
 
 #: ../setup/config_data.inc:1060
 msgid "Vote cache expiration"
-msgstr ""
+msgstr "Thời gian tới hạn lưu trữ bình chọn"
 
 #: ../setup/config_data.inc:1066
 msgid "Rating cache"
-msgstr ""
+msgstr "Lưu trữ đánh giá"
 
 #: ../setup/config_data.inc:1071
 msgid "Rating cache expiration"
-msgstr ""
+msgstr "Thời gian tới hạn lưu trữ đánh giá"
 
 #: ../setup/config_data.inc:1077
 msgid "Capturedate cache"
-msgstr ""
+msgstr "Lưu trữ ngày giữ"
 
 #: ../setup/config_data.inc:1082
 msgid "Capturedate cache expiration"
-msgstr ""
+msgstr "Thời gian tới hạn lưu trữ ngày giữ"
 
 #: ../setup/config_data.inc:1094
 msgid "Technical"
@@ -1622,39 +1613,39 @@ msgstr "Giới hạn thời gian lớn nhất bằng giây trong mỗi quá trì
 
 #: ../setup/config_data.inc:1113
 msgid "Random Block Cache Time"
-msgstr ""
+msgstr "Thời gian lưu trữ khối ảnh ngẫu nhiên"
 
 #: ../setup/config_data.inc:1114
 msgid "This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."
-msgstr ""
+msgstr "Đây là thời gian mà khối ảnh ngẫu nhiên sẽ lưu trữ dữ liệu ảnh và album của bạn, tăng tốc độ tìm kiếm ảnh ngẫu nhiên.  Nếu album của bạn thường xuyên được cập nhật, bạn cần phải ghi giá trị này thấp để các ảnh mới sẽ nhanh chóng được chọn, và đồng thời ngăn ngừa tìm kiếm các ảnh đã bị xóa. Lưu trữ sẽ tự tạo lại khi người dùng xem trang có khối ảnh ngẫu nhiên sau thời gian tới hạn đã hết."
 
 #: ../setup/config_data.inc:1117
 msgid "24 Hours"
-msgstr ""
+msgstr "24 tiếng"
 
 #: ../setup/config_data.inc:1118
 msgid "12 Hours"
-msgstr ""
+msgstr "12 tiếng"
 
 #: ../setup/config_data.inc:1119
 msgid "6 Hours"
-msgstr ""
+msgstr "6 tiếng"
 
 #: ../setup/config_data.inc:1120
 msgid "1 Hour"
-msgstr ""
+msgstr "1 tiếng"
 
 #: ../setup/config_data.inc:1121
 msgid "30 Minutes"
-msgstr ""
+msgstr "30 phút"
 
 #: ../setup/config_data.inc:1125
 msgid "Random Block Retrieval Attempts"
-msgstr ""
+msgstr "Tìm ảnh khối ảnh ngẫu nhiên"
 
 #: ../setup/config_data.inc:1126
 msgid "This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."
-msgstr ""
+msgstr "Giá trị này là số lần mà khối ảnh ngẫu nhiên sẽ tìm ảnh trong Thư viện ảnh.  Giá trị lớn, sẽ ít có 'Không ảnh nào được chọn' bị hiển thị, nhưng sẽ làm tăng thời gian tải cho khối ảnh ngẫu nhiên."
 
 #: ../setup/config_data.inc:1133
 msgid "Cache EXIF data"
@@ -1765,11 +1756,11 @@ msgstr "Chỉ định album nào sẽ hiển thị như là biểu tượng cho 
 
 #: ../setup/config_data.inc:1206
 msgid "Maximum Albums Returned"
-msgstr ""
+msgstr "Số lượng tối đa các album hiển thị"
 
 #: ../setup/config_data.inc:1207
 msgid "This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."
-msgstr ""
+msgstr "Giá trị này là số lượng tối đa các album mà cung cấp RSS sẽ hiển thị cho người dùng. Chỉ các album thường xuyên có thay đổi sẽ được chọn cho giá trị này."
 
 #: ../setup/config_data.inc:1214
 msgid "Visible Albums Only"
@@ -1962,21 +1953,20 @@ msgid "Printing Services"
 msgstr "Dịch vụ in ấn"
 
 #: ../setup/config_data.inc:1394
-#, fuzzy
 msgid "Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
-msgstr "Cho phép người xem thực hiện in ảnh trực tiếp từ trong album.  Fotokasten là một dịch vụ in tại Đức và cũng rất thuận tiện cho thị trường Châu Âu.  EZ Prints, PhotoAccess và Shutterfly nằm tại Mỹ.  Tất cả các dịch vụ này sẽ chuyển tặng một chút cho dự án Thư viện ảnh cho mỗi ảnh bạn in.  Nếu bạn chọn Shutterfly với lựa chọn &quot;có quyên góp&quot;, Thư viện ảnh sẽ trả thêm 2 xu (Mỹ) cho mỗi ảnh được in, và 1.8 xu trong đó sẽ được tặng lại cho dự án của Thư viện ảnh.  EZ Prints, PhotoAccess và Fotokasten không chi trả gì thêm cho Thư viện ảnh.  Sử dụng những dịch vụ này là cách hay nhất để bạn có thể giúp đỡ cho dự án phần mềm miễn phí này."
+msgstr "Cho phép người xem thực hiện in ảnh trực tiếp từ trong album.  Fotoserve nằm ở Anh và Fotokasten là một dịch vụ in tại Đức và cũng rất thuận tiện cho thị trường Châu Âu.  EZ Prints, PhotoAccess và Shutterfly nằm tại Mỹ. mPUSH là một dịch vụ cho phép gửi ảnh tới điện thoại di dộng toàn cầu. Tất cả các dịch vụ này sẽ chuyển tặng một chút cho dự án Thư viện ảnh cho mỗi ảnh bạn in. Sử dụng những dịch vụ này là cách hay nhất để bạn có thể giúp đỡ cho dự án phần mềm miễn phí này."
 
 #: ../setup/config_data.inc:1417
 msgid "mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."
-msgstr ""
+msgstr "mPUSH là một dịch vụ ảnh có thể gửi ảnh thumbnail tới điện thoại của bạn hoặc bạn bè với lệ phí thấp."
 
 #: ../setup/config_data.inc:1437
 msgid "Account for the mPUSH service"
-msgstr ""
+msgstr "Tài khoản dịch vụ mPUSH"
 
 #: ../setup/config_data.inc:1438
 msgid "If you so choose, you can create your own account to use with the mPUSH cellular photo service.  If you do not use your own account, please leave this set to 'gallery'."
-msgstr ""
+msgstr "Nếu bạn chọn, bạn có thể tạo tài khoản của bạn để sử dụng dịch vụ ảnh điện thoại mPUSH.  Nếu bạn không sử dụng tài khoản của bạn, hãy để giá trị là 'gallery'."
 
 #: ../setup/config_data.inc:1443
 msgid "Gallery Link"
@@ -2274,14 +2264,14 @@ msgid "documentation"
 msgstr "tài liệu"
 
 #: ../setup/confirm.inc:44
-#, fuzzy, php-format
+#, php-format
 msgid "You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."
 msgstr "Bạn phải tạo một file trắng có tên %s và thực hiện chmod 777 trước khi sử lý.  Xem %s cho chi tiết."
 
 #: ../setup/confirm.inc:52
-#, fuzzy, php-format
+#, php-format
 msgid "File %s is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."
-msgstr "Bạn phải tạo một file trắng có tên %s và thực hiện chmod 777 trước khi sử lý.  Xem %s cho chi tiết."
+msgstr "File %s là tùy chọn, tuy nhiên vài chức năng %s sẽ không hiệu lực cho đến khi bạn tạo một file trắng có tên %s và thực hiện chmod 777 trước khi sử lý.  Xem %s cho chi tiết."
 
 #: ../setup/confirm.inc:56
 #, php-format
@@ -2316,9 +2306,9 @@ msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>&quot;%s&quot;</b> phải là một số dương"
 
 #: ../setup/confirm.inc:235
-#, fuzzy, php-format
+#, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a number"
-msgstr "%s: <b>&quot;%s&quot;</b> phải là một số dương"
+msgstr "%s: <b>&quot;%s&quot;</b> phải là một số"
 
 #: ../setup/confirm.inc:243
 #, php-format
@@ -2612,7 +2602,7 @@ msgstr "Mất giá trị"
 
 #: ../setup/functions.inc:351
 msgid "<b>exec()</b> is not disabled on this server."
-msgstr ""
+msgstr "<b>exec()</b> không bị tắt trên hệ thống này."
 
 #: ../setup/functions.inc:369
 msgid "I can read your <b>.htaccess</b> file."
@@ -2802,14 +2792,12 @@ msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "Trong %s, cho tên %s (hàng %d) giá trị %s phải là một số dương"
 
 #: ../setup/functions.inc:1073
-#, fuzzy
 msgid "<b>register_globals</b> is off."
-msgstr "<b>safe_mode</b> đang tắt."
+msgstr "<b>register_globals</b> đang tắt."
 
 #: ../setup/functions.inc:1241
-#, fuzzy
 msgid "Your passwords do not match!"
-msgstr "Mật khẩu quản trị của bạn chưa đúng!"
+msgstr "Mật khẩu của bạn chưa đúng!"
 
 #: ../setup/functions.inc:1257
 msgid "Valid admin email address given."
@@ -2859,7 +2847,7 @@ msgstr "Hãy xem %sKiểm tra Phiên bản%s để biết chi tiết hơn."
 #: ../setup/functions.inc:1321
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-msgstr "%d files là mới gần đây hơn so với yêu cầu.  Điều đó tốt khi bạn sử dụng phiên bản giới thiệu trước, beta, CVS hoặc thay đổi mã."
+msgstr "%d files là mới gần đây hơn so với yêu cầu.  Không vấn đề gì khi bạn sử dụng phiên bản giới thiệu trước, beta, CVS hoặc thay đổi mã."
 
 #: ../setup/functions.inc:1326
 #, php-format
@@ -3041,7 +3029,7 @@ msgstr "Bạn phải đăng nhập vào với quyền hạn của quản trị �
 #: ../setup/login.inc:84
 #, php-format
 msgid "If you have forgotten the password to your admin account, you can reset it by creating a blank file named '%s' in your %s directory and then refreshing and following the instructions on this page."
-msgstr ""
+msgstr "Nếu bạn quên mật khẩu quản trị, bạn có thể làm lại khi tạo một file trống có tên '%s' trong thư mục %s của bạn sau đó mở lại trang và theo chỉ dẫn trên trang."
 
 #: ../setup/login.inc:97
 msgid "Password"
@@ -3049,7 +3037,7 @@ msgstr "Mật khẩu"
 
 #: ../setup/login.inc:103
 msgid "Login"
-msgstr "Tên truy cập"
+msgstr "Đăng&nbsp;nhập"
 
 #: ../setup/login.inc:104
 msgid "Reset"
@@ -3124,7 +3112,7 @@ msgstr "Cấu hình của bạn đã được lưu giữ xong!"
 
 #: ../setup/write.inc:186
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
-msgstr ""
+msgstr "Chúng tôi khuyên bạn chạy 'secure.sh', hoặc chmod file .htaccess và config.php là 644 vì lý do an toàn."
 
 #: ../setup/write.inc:193
 msgid "Note"
@@ -3226,42 +3214,3 @@ msgstr "Khung gỗ"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr "Khung quanh ảnh bằng gỗ"
-
-#, fuzzy
-#~ msgid "Version of ImageMagick being used"
-#~ msgstr "%d của %d ImageMagick binaries đã thấy."
-
-#, fuzzy
-#~ msgid "Enable caching for comments"
-#~ msgstr "Cho phép bình luận"
-
-#, fuzzy
-#~ msgid "Enable caching for ratings"
-#~ msgstr "Cho phép bình luận"
-
-#~ msgid "The full URL to the Gallery web application.  E.g. %s"
-#~ msgstr "URL đầy đủ tới ứng dụng web của Thư viện ảnh.  VD: %s"
-
-#~ msgid "The full URL to your album directory (specified above) on your web server.  E.g. %s"
-#~ msgstr "URL đầy đủ tới thư mục album của bạn (chỉ định ở trên) trên webserver của bạn.  VD: %s"
-
-#~ msgid "Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP 4.0.0 uses a different file upload protocol, and versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can. <p>"
-#~ msgstr "Kiểm tra xem nếu bạn đang dùng PHP 4.  Hãy lưu ý rằng vài phiên bản PHP có lỗi có thể gây hỏng Thư viện ảnh.  PHP 4.0.0 sử dụng một giao thức tải file lên khác, phiên bản 4.0.3 và 4.0.3pl1 có lỗi trong mã không thứ tự (unserialization code) mà đó là nguyên nhân làm cho Thư viện ảnh không thể đọc CSDL của chính nó.  Hãy nâng cấp tối thiểu tới PHP 4.0.4pl1 nếu bạn có thể. <p>"
-
-#~ msgid "Use this section to set options to configure gallery to be embedded in another web application."
-#~ msgstr "Trong phần này có thể lựa chọn cấu hình cho thư viện ảnh khi được nhúng trong các ứng dụng web khác."
-
-#~ msgid "Embed Gallery"
-#~ msgstr "Thư viện ảnh nhúng"
-
-#~ msgid "If you would like to run %s in another web application (such as *Nuke, phpBB2 or GeekLog) you have to choose the environment here."
-#~ msgstr "Nếu bạn muốn sử dụng %s trong các ứng dụng web khác (như là *Nuke, phpBB2 hoặc GeekLog) bạn phải chọn môi trường cho nó tại đây."
-
-#~ msgid "Standalone Gallery"
-#~ msgstr "Thư viện ảnh độc lập"
-
-#~ msgid "with donation"
-#~ msgstr "có quyên góp"
-
-#~ msgid "without donation"
-#~ msgstr "không quyên góp"
