@@ -254,13 +254,16 @@ if (!strcmp($cmd, "login")) {
 		$response->setProperty( "status", $GR_STAT['NO_FILENAME'] );
 		$response->setProperty( "status_text", "Filename not specified." );
 	} else {
-		$name = $userfile_name;
-		$file = $userfile;
-		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);
+		if(!empty($force_filename)) {
+			$name = $force_filename;
+		} else {
+			$name = $userfile_name;
+		}
+		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $userfile_name);
 		$tag = strtolower($tag);
-		
+	
 		if ($name) {
-    		$error = processFile($userfile, $tag, $userfile_name, $caption);
+    		$error = processFile($userfile, $tag, $name, $caption);
 		}
 		
 		$gallery->album->save();
@@ -310,11 +313,12 @@ if (!strcmp($cmd, "login")) {
 	if ( $gallery->user->canCreateAlbums()
 			&& $gallery->user->canCreateSubAlbum($gallery->album) ) {
 		// add the album
-		if (createNewAlbum( $gallery->session->albumName,
+		if ($returnVal = createNewAlbum( $gallery->session->albumName,
 				$newAlbumName, $newAlbumTitle, $newAlbumDesc )) {
 			// set status and message
 			$response->setProperty( "status", $GR_STAT['SUCCESS'] );
 			$response->setProperty( "status_text", "New album created successfully." );
+			$response->setProperty( "album_name", $returnVal );
 		} else {
 			// set status and message
 			$response->setProperty( "status", $GR_STAT['CREATE_ALBUM_FAILED'] );
@@ -337,7 +341,7 @@ if (!strcmp($cmd, "login")) {
 			$response->setProperty( 'image.raw_width.'.$tmpImageNum, $albumItemObj->image->raw_width );
 			$response->setProperty( 'image.raw_height.'.$tmpImageNum, $albumItemObj->image->raw_height );
 			$response->setProperty( 'image.resizedName.'.$tmpImageNum, $albumItemObj->image->resizedName.'.'.$albumItemObj->image->type );
-			$response->setProperty( 'image.raw_filesize.'.$tmpImageNum, $albumItemObj->image->raw_filesize );
+			$response->setProperty( 'image.raw_filesize.'.$tmpImageNum, $albumItemObj->getFileSize(1) );
 			$response->setProperty( 'image.caption.'.$tmpImageNum, $albumItemObj->caption );
 			if(count($albumItemObj->extraFields)) { //if there are extra fields for this image
 				foreach($albumItemObj->extraFields as $extraFieldKey => $extraFieldName) {
@@ -360,6 +364,15 @@ if (!strcmp($cmd, "login")) {
 
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Fetch images successful.' );
+} else if (!strcmp($cmd, 'move-item')) {
+//	if(isset($set_destalbumName) {
+//
+//	} else {
+//                $gallery->album->movePhoto($index, $newIndex-1);
+//                $gallery->album->save();
+//		$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+//		$response->setProperty( 'status_text', 'Change Index Successful' );
+//	}
 } else {
 	// if the command hasn't been handled yet, we don't recognize it
 	$response->setProperty( "status", $GR_STAT['UNKNOWN_COMMAND'] );
