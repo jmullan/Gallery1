@@ -88,6 +88,16 @@ initLanguage();
 		<?php echo sprintf(_("This allows you to see if you can use the email functions in %s."), Gallery()) ?>
 	    </td>
 	  </tr>
+
+	  <tr>
+	    <td class="shortdesc" style="padding: 10px;" width="140" align=center valign="top">
+	      <a href="check_versions.php"><?php echo _("Check versions") ?></a>
+	    </td>
+	    <td class="desc" valign="top">
+		<?php echo _("This page is for %s upgrades that have problems.") ?>
+		<?php echo sprintf(_("This allows you to check you have the correct version of all your Gallery files."), Gallery()) ?>
+	    </td>
+	  </tr>
 	</table>
 
 	<p> </p>
