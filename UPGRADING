@@ -8,10 +8,14 @@ CONTENTS
 
 1. HOW TO UPGRADE GALLERY
 
-In general, upgrading is very easy.  
+In general, upgrading is very easy.  You won't lose any data, you
+won't have to rebuild your albums.  If you're running an unmodified
+(ie, you haven't changed the code -- changing html_wrap files don't
+count), relatively recent version of Gallery then the upgrade process
+will take all of about a minute.
 
    1. Make a backup of your old Gallery installation
-   2. Put your Gallery in config mode (ie, sh configure.sh)
+   2. Put your Gallery in config mode (ie, 'sh configure.sh')
 
         ***********************************************
         * MOST PROBLEMS IN THE UPGRADE PROCESS HAPPEN *
@@ -19,10 +23,11 @@ In general, upgrading is very easy.
         ***********************************************
 
    3. Unpack the new Gallery on top of your old one
+   4. Put your Gallery in secure mode (ie, 'sh secure.sh')
 
 If a significant enough change has happened to Gallery, it will force
-you to run through the config wizard again, but it will save all your
-old settings so that should be pretty easy.
+you to go back to config mode and run through the config wizard again,
+but it will save all your old settings so that should be pretty easy.
 
 All your html_wrap/ and css/ changes will be preserved.
 
