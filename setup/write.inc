@@ -3,6 +3,7 @@ require("../classes/User.php");
 require("../classes/gallery/User.php");
 require("../classes/NobodyUser.php");
 require("../classes/EverybodyUser.php");
+require("../errors/configure_instructions.php");
 
 $outfile = "$GALLERY_DIR/config.php";
 copy("gpl.txt", $outfile);
@@ -92,20 +93,13 @@ An account called <i>admin</i> has been created for you with the password you sp
 <font size=+2 color=red>Note!</font>
 <br>
 Don't forget to run:
-<br>
-<code>
-<br> <b>Unix</b>
-<br> % sh secure.sh
-<br>
-<br> <b>Windows</b>
-<br> C:\> secure.bat
-</code>
+<?= configure("secure") ?>
 </center>
 <br>
-in your Gallery directory to make your application secure!  Gallery
-won't run if it is not in secure mode.  You can reconfigure Gallery
-at any time by re-running <code>configure.sh</code> and then returning
-to the setup URL.
+to make your Gallery secure!  <font size=+1>Gallery won't run if it is not in secure
+mode</font>.  You can reconfigure Gallery at any time by re-running this
+configuration wizard (it will save your data so you won't have to enter
+it all again!)
 
 <p>
 <center>
