@@ -189,6 +189,23 @@ if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
 	    }
 	    $gallery->database{"prefix"} = $GLOBALS['prefix'] . '_';
 
+            /* PHP-Nuke changed its "users" table field names in v.6.5 */
+	    /* Select the appropriate field names */
+	    if (isset($Version_Num) && $Version_Num >= 6.5) {
+		$gallery->database{'fields'} =
+			array ('name'  => 'name',
+			       'uname' => 'username',
+			       'email' => 'user_email',
+			       'uid'   => 'user_id');
+	    }
+	    else {
+		$gallery->database{'fields'} =
+			array ('name'  => 'name',
+			       'uname' => 'uname',
+			       'email' => 'email',
+			       'uid'   => 'uid');
+	    }
+	    
 	    /* Load our user database (and user object) */
 	    $gallery->userDB = new Nuke5_UserDB;
 	    if ($GLOBALS['user']) {
@@ -202,7 +219,8 @@ if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
 		$gallery->session->username = $gallery->user->getUsername();
 	    } else if (is_user($GLOBALS['user'])) {
 		$user_info = getusrinfo($GLOBALS['user']);
-		$gallery->session->username = $user_info["uname"]; 
+		$gallery->session->username =
+			$user_info[$gallery->database{'fields'}{'uname'}]; 
 		$gallery->user = 
 			 $gallery->userDB->getUserByUsername($gallery->session->username);
 	    }

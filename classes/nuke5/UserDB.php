@@ -21,7 +21,8 @@
 <?php
 class Nuke5_UserDB extends Abstract_UserDB {
 	var $db;
-
+	var $fields;
+	
 	function Nuke5_UserDB() {
 		global $gallery;
 		$this->db = $gallery->database{"nuke"};
@@ -29,13 +30,15 @@ class Nuke5_UserDB extends Abstract_UserDB {
 		$this->nobody = new NobodyUser();
 		$this->everybody = new EverybodyUser();
 		$this->loggedIn = new LoggedInUser();
+		$this->fields = $gallery->database{'fields'};
 	}
 
 	function getUidList() {
 		$uidList = array();
 		$db = $this->db;
 
-		$results = $db->query("select uid from " . $this->prefix . "users");
+		$results = $db->query('select ' . $this->fields{'uid'} .
+				      ' from ' . $this->prefix . 'users');
 		while ($row = $db->fetch_row($results)) {
 			array_push($uidList, $row[0]);
 		}
