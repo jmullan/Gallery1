@@ -40,9 +40,18 @@ if (isset($id)) {
 
 if ($confirm && isset($id)) {
 	if ($albumDelete) {
-		$myAlbum = $gallery->album->getNestedAlbum($index);
-		$myAlbum->delete();
+		/* Track down the corresponding photo index and remove it */
+		$index = 0;
+		for ($i = 1; $i <= sizeof($gallery->album->photos); $i++) {
+		    $photo = $gallery->album->getPhoto($i);
+		    if (isset($photo->isAlbumName) && !strcmp($photo->isAlbumName, $id)) {
+			/* Found it */
+			$index = $i;
+			break;
+		    }
+		}
 	}
+
 	$gallery->album->deletePhoto($index);
 	$gallery->album->save();
 	dismissAndReload();
@@ -71,7 +80,8 @@ Do you really want to delete this Album?
 <br>
 <br>
 <?
-$myAlbum = $gallery->album->getNestedAlbum($index);
+$myAlbum = new Album();
+$myAlbum->load($id);
 ?>
 <?= $myAlbum->getHighlightTag() ?>
 <br>
