@@ -89,8 +89,8 @@ if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
 	if (is_admin($GLOBALS['admin'])) {
 		require($GALLERY_BASEDIR . "classes/nuke5/AdminUser.php");
 
-		$gallery->session->username = "admin"; 
 		$gallery->user = new Nuke5_AdminUser($GLOBALS['admin']);
+		$gallery->session->username = $gallery->user->getUsername();
 	} else if (is_user($GLOBALS['user'])) {
 		$user_info = getusrinfo($GLOBALS['user']);
 		$gallery->session->username = $user_info["uname"]; 
