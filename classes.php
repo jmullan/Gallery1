@@ -46,17 +46,17 @@ class Album {
 	}
 
 	function getHighlight() {
-		for ($i = 0; $i < $this->numPhotos(1); $i++) {
+		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			$photo = $this->getPhoto($i);
 			if ($photo->isHighlight()) {
 				return $i;
 			}
 		}
-		return 0;
+		return 1;
 	}
 
 	function setHighlight($index) {
-		for ($i = 0; $i < $this->numPhotos(1); $i++) {
+		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			$photo = $this->getPhoto($i);
 			$photo->setHighlight($i == $index);
 			$this->setPhoto($photo, $i);
@@ -126,7 +126,7 @@ class Album {
 	}
 
 	function resizeAllPhotos($target) {
-		for ($i = 0; $i < $this->numPhotos(1); $i++) {
+		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			set_time_limit(30);
 			if (!$this->isMovie($i)) {
 				$this->resizePhoto($i, $target);
@@ -165,7 +165,7 @@ class Album {
 	}
 
 	function deletePhoto($index) {
-		$photo = array_splice($this->photos, $index, 1);
+		$photo = array_splice($this->photos, $index-1, 1);
 		$photo[0]->delete($this->getAlbumDir());
 	}
 
@@ -206,7 +206,7 @@ class Album {
 
 	function numHidden() {
 		$cnt = 0;
-		for ($i = 0; $i < $this->numPhotos(1); $i++) {
+		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			$photo = $this->getPhoto($i);
 			if ($photo->isHidden()) {
 				$cnt++;
@@ -217,18 +217,18 @@ class Album {
 
 	function numPhotos($show_hidden=0) {
 		if ($show_hidden) {
-			return sizeof($this->photos);
+			return sizeof($this->photos) - 1;
 		} else {
-			return sizeof($this->photos) - $this->numHidden();
+			return sizeof($this->photos) - $this->numHidden() - 1;
 		}
 	}
 
 	function getPhoto($index) {
-		return $this->photos[$index];
+		return $this->photos[$index-1];
 	}
 
 	function setPhoto($photo, $index) {
-		$this->photos[$index] = $photo;		
+		$this->photos[$index-1] = $photo;		
 	}
 
 	function getCaption($index) {
@@ -256,7 +256,7 @@ class Album {
 
 	function movePhoto($index, $newIndex) {
 		/* Pull photo out */
-		$photo = array_splice($this->photos, $index, 1);
+		$photo = array_splice($this->photos, $index-1, 1);
 		array_splice($this->photos, $newIndex, 0, $photo);
 	}
 
