@@ -31,6 +31,7 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 
 list($index, $save, $preview, $previewFull) = getRequestVar(array('index', 'save', 'preview', 'previewFull'));
 list($wmName, $wmAlign, $wmAlignX, $wmAlignY) = getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY'));
+list($wmSelect) = getRequestVar(array('wmSelect'));
 
 $err = "";	
 if (isset($save) || isset($preview)) {
@@ -44,7 +45,9 @@ if (isset($save) || isset($preview)) {
 	                	set_time_limit($gallery->app->timeLimit);
 	        	        $gallery->album->watermarkPhoto($index, $wmName, "", $wmAlign,
 	                                               isset($wmAlignX) ? $wmAlignX : 0, 
-	                                               isset($wmAlignY) ? $wmAlignY : 0);
+	                                               isset($wmAlignY) ? $wmAlignY : 0,
+	                                               0, 0, // Not a preview
+	                                               isset($wmSelect) ? $wmSelect : 0);
 	            		$gallery->album->save();
 	               		dismissAndReload();
 	                	return;

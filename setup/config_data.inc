@@ -332,6 +332,18 @@ $constants =  array_merge(
 		"type" => "text",
 		"attrs" => array("size" => 50)
 	),
+	"watermarkSizes" => array(
+	"prompt" => _("Watermark sizes"),
+	"desc" => _("The default selected images to watermark."),
+	"value" => 0,
+	"enabled" => $enablewatermark,
+	"optional" => 1,
+	"choices" => array(
+		0 => _("Watermark both resized an full images"),
+		1 => _("Watermark resized image only"),
+		2 => _("Watermark full sized image only")),
+	"value" => 0,
+	),
 	"movieThumbnail" => array(
 		"prompt" => _("Thumbnail image"),
 		"desc" => sprintf(_('The filesystem path to the thumbnail image to show for movies. E.g. %s'), '<i>/home/foo/thumbnail.jpg</i>'),

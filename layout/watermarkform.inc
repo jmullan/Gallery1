@@ -46,6 +46,9 @@
   if (!isset($previewFull)) {
     $previewFull=0;
   }
+  if (!isset($wmSelect)) {
+    $wmSelect = $gallery->app->watermarkSizes;
+  }
 ?>
 <p>
 <?php
@@ -152,3 +155,9 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
   if (isset($recursive)) echo " checked";
   print ">" . _("Watermark subalbums") . "</input><br><br>";
 } ?>
+<?php echo _("Apply watermark to") ?> <select name="wmSelect">
+  <option value="0"<?php if ($wmSelect <  1) echo " selected"; ?>><?php echo _("All photos");?></option>
+  <option value="1"<?php if ($wmSelect == 1) echo " selected"; ?>><?php echo _("Only sized photos");?></option>
+  <option value="2"<?php if ($wmSelect >  1) echo " selected"; ?>><?php echo _("Only full photos");?></option>
+</select>
+<br>

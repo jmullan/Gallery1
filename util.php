@@ -1958,10 +1958,9 @@ function extractFileFromArchive($archive, $ext, $file) {
 	exec_wrapper($cmd);
 }
 
-function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fields=array(), $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0) {
+function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fields=array(), $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0) {
 	global $gallery;
 	global $temp_files;
-	
 	if (acceptableArchive($ext)) {
 		$tool=canHandleArchive($ext);
 		if (!empty($tool)) {
@@ -2030,7 +2029,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
 				/*
 				** Don't use the second argument for $cmd_pic_path, because it is already quoted.
 				*/
-				processNewImage($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY);
+				processNewImage($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect);
 				fs_unlink($gallery->app->tmpDir . "/$pic");
 			}
 		}
@@ -2106,7 +2105,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
 			if (!$extra_fields) {
 			    $extra_fields=array();
 			}
-			$err = $gallery->album->addPhoto($file, $ext, $mangledFilename, $caption, "", $extra_fields, $gallery->user->uid, NULL, $wmName, $wmAlign, $wmAlignX, $wmAlignY);
+			$err = $gallery->album->addPhoto($file, $ext, $mangledFilename, $caption, "", $extra_fields, $gallery->user->uid, NULL, $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect);
 			if ($err) {
 				processingMsg(gallery_error($err));
 				processingMsg("<b>". sprintf(_("Need help?  Look in the  %s%s FAQ%s"),

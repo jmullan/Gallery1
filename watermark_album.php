@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($index, $save, $preview, $wmAlign, $wmName) = getRequestVar(array('index', 'save', 'preview', 'wmAlign', 'wmName'));
+list($index, $save, $preview, $wmAlign, $wmName, $wmSelect) = getRequestVar(array('index', 'save', 'preview', 'wmAlign', 'wmName', 'wmSelect'));
 list($wmAlignX, $wmAlignY, $recursive, $previewFull) = getRequestVar(array('wmAlignX', 'wmAlignY', 'recursive', 'previewFull'));
 
 // Hack check
@@ -38,7 +38,7 @@ if (empty($index)) {
 }
 $highlightIndex = $gallery->album->getHighlight();
 
-$err = "";	
+$err = "";
 if (isset($save) || isset($preview)) {
 	if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12)) {
 		if (isset($wmName) && !empty($wmName)) {
@@ -57,7 +57,7 @@ if (isset($save) || isset($preview)) {
         	        	my_flush();
                			set_time_limit($gallery->app->timeLimit);
 	                	$gallery->album->watermarkAlbum($wmName, "",
-					$wmAlign, $wmAlignX, $wmAlignY, $recursive);
+					$wmAlign, $wmAlignX, $wmAlignY, $recursive, $wmSelect);
         	        	$gallery->album->save();
 ?>
 </div>

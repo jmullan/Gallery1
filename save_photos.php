@@ -26,6 +26,7 @@ require_once(dirname(__FILE__) . '/init.php');
 
 list($urls, $meta, $usercaption, $setCaption) = getRequestVar(array('urls', 'meta', 'usercaption','setCaption'));
 list($wmName, $wmAlign, $wmAlignX, $wmAlignY) = getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY'));
+list($wmSelect) = getRequestVar(array('wmSelect'));
 
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
@@ -338,7 +339,7 @@ while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp
 		$ext = strtolower($path_parts["extension"]);
 
 		// Add new image
-		processNewImage($file, $ext, $name, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY);
+		processNewImage($file, $ext, $name, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect);
 		$image_count++;
 	}
 }
@@ -439,6 +440,7 @@ if (count($image_tags)) {
 <input type="hidden" name="wmAlign" value="<?php echo $wmAlign ?>">
 <input type="hidden" name="wmAlignX" value="<?php echo $wmAlignX ?>">
 <input type="hidden" name="wmAlignY" value="<?php echo $wmAlignY ?>">
+<input type="hidden" name="wmSelect" value="<?php echo $wmSelect ?>">
 <input type="button" value="<?php echo _("Add Files") ?>" onClick="parent.opener.showProgress(); document.uploadurl_form.submit()">
 </p>
 

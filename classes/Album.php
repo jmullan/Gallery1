@@ -979,7 +979,7 @@ class Album {
 		}
 	}
 
-	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL, $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0) {
+	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL, $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0) {
 	       	global $gallery;
 
 		$this->updateSerial = 1;
@@ -1124,7 +1124,7 @@ class Album {
 		if (isImage($tag) && strlen($wmName)) {
 			processingMsg("- ". _("Watermarking Image"));
 			$photo->watermark($this->getAlbumDir(),
-				$wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, 0, 0); 
+				$wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, 0, 0, $wmSelect); 
 		}
 
 		$this->fields['guid'] = genGUID();
@@ -1571,11 +1571,11 @@ class Album {
 		}
 	}
 
-        function watermarkPhoto($index, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview=0, $previewSize=0) {
+        function watermarkPhoto($index, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview=0, $previewSize=0, $wmSelect=0) {
                 $this->updateSerial = 1;
                 $photo = &$this->getPhoto($index);
                 $retval = $photo->watermark($this->getAlbumDir(),
-                                            $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview,$previewSize);
+                                            $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview,$previewSize, $wmSelect);
                 if (!$retval) {
                         return $retval;
                 }
@@ -1583,7 +1583,7 @@ class Album {
 		$this->save(array(), $resetModDate);
         }
 
-	function watermarkAlbum($wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $recursive=0) {
+	function watermarkAlbum($wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $recursive=0, $wmSelect=0) {
 		$this->updateSerial = 1;
 	       	$count = $this->numPhotos(1);
 		for ($index = 1; $index <= $count; $index++) {
@@ -1594,13 +1594,15 @@ class Album {
 					$subAlbum = new Album();
 					$subAlbum->load($subAlbumName);
 					$subAlbum->watermarkAlbum($wmName, $wmAlphaName,
-						$wmAlign, $wmAlignX, $wmAlignY, $recursive);
+						$wmAlign, $wmAlignX, $wmAlignY, $recursive, $wmSelect);
 				}
 			} else if ($photo->isMovie()) {
 				// Watermarking of movies not supported
 			} else {
 				$photo->watermark($this->getAlbumDir(),
-						$wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY);
+						$wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY,
+						0, 0, // Not a preview
+					 	$wmSelect);
 			}
 		} // next $index
 	} // end of function

@@ -476,13 +476,21 @@ class AlbumItem {
 		return 1;
 	}
 
-        function watermark($dir, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview=0, $previewSize=0) {
+        function watermark($dir, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview=0, $previewSize=0, $wmSelect=0) {
                 global $gallery;
                 $type = $this->image->type;
 		if (isMovie($type))
 		{
 			// currently there is no watermarking support for movies
 			return (0);
+		}
+		if ($wmSelect < 0)
+		{
+			$wmSelect = 0;
+		}
+		else if ($wmSelect > 2)
+		{
+			$wmSelect = 2;
 		}
                 $name = $this->image->name;
 		$oldpreviews = glob($dir . "/$name.preview*.$type");
@@ -511,12 +519,20 @@ class AlbumItem {
                                 $this->preview = $high;
 			}
 		} else {
-                	$retval = watermark_image("$dir/$name.$type", "$dir/$name.$type",
+			// $wmSelect of 0=both Sized and Full
+			if ($wmSelect != 1) { // 1=Only Sized Photos
+                		$retval = watermark_image("$dir/$name.$type", "$dir/$name.$type",
                                           $gallery->app->watermarkDir."/$wmName",
                                           $gallery->app->watermarkDir."/$wmAlphaName",
                                           $wmAlign, $wmAlignX, $wmAlignY);
-                	if ($retval) {
-
+			}
+                	if ($wmSelect != 2) { // 2=Only Full Photos
+                	    if (($wmSelect == 1) && !$this->isResized()) {
+				// If watermarking only resized images, and image is not resized
+				// Call resize as if the full image is resized
+				$pathToResized = $dir . "/" . $this->image->name . "." . $this->image->type;
+				$this->resize($dir, "", 0, $pathToResized);
+			    }
                 	    if ($this->isResized()) {
                         	$retval = watermark_image("$dir/$name.sized.$type", "$dir/$name.sized.$type",
                                                   $gallery->app->watermarkDir."/$wmName",
