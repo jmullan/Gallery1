@@ -44,6 +44,11 @@ class Album {
 		$this->fields["fit_to_window"] = $app->default["fit_to_window"];
 		$this->fields["use_fullOnly"] = $app->default["use_fullOnly"];
 		$this->fields["print_photos"] = $app->default["print_photos"];
+		if ($app->use_exif) {
+			$this->fields["use_exif"] = "yes";
+		} else {
+			$this->fields["use_exif"] = "no";
+		}
 
 		$everybody = $userDB->getEverybody();
 		$this->setPerm("canRead", $everybody->getUid(), 1);
