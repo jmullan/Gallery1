@@ -171,7 +171,7 @@ function embed_hidden($key) {
 					$buf .= "\">\n";
 				}
 			} else {
-				$name = stripWQuotesON(${key} ."[$real_key]");
+				$name = stripWQuotesON("$key" . "[$real_key]");
 				$buf .= '<input type="hidden" name="'. $name .'" value="';
 				$buf .= urlencode($value);
 				$buf .= "\">\n";

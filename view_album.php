@@ -392,8 +392,10 @@ $adminOptions = array(
 );
 
 /* sort the drop-down array by translated name */
-$cmp = create_function('$a, $b', "return strcmp(\$a['name'], \$b['name']);");
-uasort($adminOptions, $cmp);
+function sortJSAdmin($a, $b) {
+	return strcmp($a['name'], $b['name']);
+}
+uasort($adminOptions, "sortJSAdmin");
 reset($adminOptions);
 
 $adminOptionHTML = '';

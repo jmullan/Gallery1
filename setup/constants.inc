@@ -108,12 +108,7 @@ foreach ($constants as $key => $val) {
 		if (isset($gallery->app->$key)) {
 			$val["value"] = $gallery->app->$key;
 		}
-		else {
-			$defn=$gallery->app->$key;
-			if ($defn) {
-				$val["value"] = $gallery->app->$key;
-			}
-		}
+
 		if (!isset($go_defaults)) {
 			if (ereg("^(..*)\[.*\]$", $key, $matches)) {
 				if (isset ($$key)) {
