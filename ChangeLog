@@ -1,3 +1,11 @@
+2003-11-03  Bharat Mediratta  <bharat@menalto.com> 1.4.1-cvs-b205
+
+	* Fixed a bug where we were comparing old style uids (as would be found
+	  in an album created before the uid format change) agains new style
+	  uids.  Fixed it the right way -- we now upgrade the album owner uid,
+	  permission uids, item owner uids and comment owner uids to the new
+	  style.
+
 2003-11-02 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b204
 
 	* Language: - Updated:

@@ -71,5 +71,12 @@ class Abstract_UserDB {
  	function integrityCheck() {
 		return 0;
 	}
+
+	/*
+	 * No conversion is necessary for most user database formats.
+	 */
+	function convertUidToNewFormat($uid) {
+	        return $uid;
+	}
 }
 ?>

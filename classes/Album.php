@@ -325,6 +325,23 @@ class Album {
 		if ($this->version < 24) {
 			$this->fields['email_me'] = array();
 		}
+
+		/* Convert all uids to the new style */
+		if ($this->version < 25) {
+		    // Owner
+		    $this->fields["owner"] = $gallery->userDB->convertUidToNewFormat($this->fields["owner"]);
+
+		    // Permissions
+		    $newPerms = array();
+		    foreach ($this->fields["perms"] as $perm => $uids) {
+			foreach ($uids as $uid => $value) {
+			    $newUid = $gallery->userDB->convertUidToNewFormat($uid);
+			    $newPerms[$perm][$newUid] = 1;
+			}
+		    }
+		    $this->fields["perms"] = $newPerms;
+		}
+		
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
 			if ($gallery->app->use_exif) {

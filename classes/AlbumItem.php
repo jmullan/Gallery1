@@ -171,6 +171,19 @@ class AlbumItem {
 		if ($this->version < 24) {
 			$this->emailMe=array();
 		}
+
+		/* Convert all uids to the new style */
+		if ($this->version < 25) {
+		    // Owner
+		    $this->owner = $gallery->userDB->convertUidToNewFormat($this->owner);
+
+		    // Comments
+		    for ($i = 0; $i < sizeof($this->comments); $i++) {
+			$this->comments[$i]->UID =
+			    $gallery->userDB->convertUidToNewFormat($this->comments[$i]->UID);
+		    }
+		}
+		
 		if ($this->image) {
 			if ($this->image->integrityCheck($dir)) {
 				$changed = 1;
@@ -207,7 +220,6 @@ class AlbumItem {
 		$comment = new Comment($comment, $IPNumber, $name, $UID);
 
 		$this->comments[] = $comment;
-
 		return 0;
 	}
 
