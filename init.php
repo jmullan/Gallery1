@@ -167,11 +167,12 @@ require(dirname(__FILE__) . "/classes/Comment.php");
 if (!isset($GALLERY_NO_SESSIONS)) {
     require(dirname(__FILE__) . "/session.php");
 }
+
 $gallerySanity = gallerySanityCheck();
-initLanguage();
 
 /* Make sure that Gallery is set up properly */
 if ($gallerySanity != NULL) {
+	initLanguage();
 	include_once(dirname(__FILE__) . "/errors/$gallerySanity");
 	exit;
 }
@@ -461,6 +462,11 @@ if (!isset($gallery->user) || empty($gallery->user)) {
 	$gallery->user = $gallery->userDB->getEverybody();
 	$gallery->session->username = "";
 }
+
+/* Now we init the language
+** Its done after initializing the user.
+*/
+initLanguage();
 
 if (!isset($gallery->session->offline)) {
     $gallery->session->offline = FALSE;

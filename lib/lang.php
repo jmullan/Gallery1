@@ -255,7 +255,7 @@ function initLanguage($sendHeader=true) {
 				$gallery->browser_language=getBrowserLanguage();
 
 				if (!empty($gallery->user) && $gallery->user->getDefaultLanguage() != "") {
-						$gallery->language = $gallery->user->getDefaultLanguage();
+					$gallery->language = $gallery->user->getDefaultLanguage();
 				} elseif (isset($gallery->browser_language)) {
 					$gallery->language=$gallery->browser_language;
 				}

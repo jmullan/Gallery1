@@ -1,3 +1,9 @@
+2004-10-13  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b223
+	
+	* Fix: Bug #1023285
+	       Language was initialized before user were set.
+	       Thats to early, because then usersettings are ignored.
+
 2004-10-07  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b222
 
 	* Change: Return "" if string is empty in unhtmlentities (issue with older PHP?)

@@ -32,7 +32,7 @@ doctype();
 
 <html>
 <head>
-	<title><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></title>
+  <title><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
