@@ -3120,8 +3120,8 @@ function getCVSVersion($file) {
        	}
 	$contents=file($path);
 	foreach ($contents as $line) {
-		if (ereg('\$Id$$', trim($line), $matches) ||
-		    ereg('\$Id$ ', trim($line), $matches)) {
+	       	if (ereg("\\\x24\x49\x64: [A-Za-z_.0-9]*,v ([0-9.]*) .*\x24$", trim($line), $matches) ||
+		    ereg("\\\x24\x49\x64: [A-Za-z_.0-9]*,v ([0-9.]*) .*\x24 ", trim($line), $matches)) {
 			if ($matches[1]) {
 			       	return $matches[1];
 			}
