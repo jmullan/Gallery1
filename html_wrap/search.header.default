@@ -11,8 +11,9 @@
 ?>
 <?php
 includeHtmlWrap("wrapper.header");
-?>
 
+if(!includeTemplate('search.header.tpl')) {
+?>
 <!-- search.header begin -->
 <table width="100%" border=0>
   <tr>
@@ -42,3 +43,6 @@ includeHtmlWrap("wrapper.header");
   </tr>
   <tr>
     <td valign="top">
+<?php 
+}
+?>

@@ -3258,6 +3258,22 @@ if (!function_exists('glob')) {
 	} 
 }
 
+function includeTemplate($tplName, $skinname='') {
+	global $gallery;
+
+	if (!$skinname) {
+		$skinname = $gallery->app->skinname;
+	}
+
+	$filename = dirname(__FILE__) . "/skins/$skinname/wrap/$tplName";
+	if (fs_is_readable($filename)) {
+		include($filename);
+		return true;
+	} else {
+		return false;
+	}
+}
+	
 require (dirname(__FILE__) . '/lib/lang.php');
 require (dirname(__FILE__) . '/lib/Form.php');
 require (dirname(__FILE__) . '/lib/voting.php');

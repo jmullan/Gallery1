@@ -23,6 +23,7 @@ else {
         $left="right";
         $right="left";
 }
+if (!includeTemplate('gallery.header.tpl')) {
 ?>
 <table width="100%" border="0">
   <tr>
@@ -52,3 +53,6 @@ else {
   </tr>
   <tr>
     <td valign="top">
+<?php
+}
+?>
