@@ -90,17 +90,21 @@ class Image {
 		}
 	}
 
-	function getPath($dir) {
-		$name = $this->getName($dir);
-		return "$dir/$name.$this->type";
-	}
-	
 	function getName($dir) {
 		if (file_exists("$dir/$this->resizedName.$this->type")) {
 			return $this->resizedName;
 		} else {
 			return $this->name;
 		}
+	}
+
+	function getId($dir) {
+		return $this->name;
+	}
+	
+	function getPath($dir) {
+		$name = $this->getName($dir);
+		return "$dir/$name.$this->type";
 	}
 
 	function isResized() {
