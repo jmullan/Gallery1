@@ -206,7 +206,7 @@ function exec_wrapper($cmd) {
 }
 function includeHtmlWrap($name) {
 	// define these globals to make them available to custom text
-        global $app, $gallery, $album;
+        global $app, $gallery, $album, $edit;
 	$fullname = "html_wrap/$name";
 
 	if (file_exists($fullname)) {
