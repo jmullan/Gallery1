@@ -693,7 +693,9 @@ function doCommand($command, $args="", $returnFile="", $returnArgs="") {
 			break;
 
 		default:
-			$url = "do_command.php?cmd=$command";
+			global $gallery;
+			$url = $gallery->app->photoAlbumURL . 
+				"/do_command.php?cmd=$command";
 			if ($returnFile && $returnArgs) {
 				$returnFile = $returnFile . "?" . $returnArgs;
 			}
