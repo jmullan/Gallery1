@@ -176,6 +176,9 @@ function form_print_services($key, $arr) {
 	    if (isset($arr['value'][$item])) {
 		if (is_array($arr['value'][$item])) {
 			$value = $arr['value'][$item];
+			if (!isset($value['checked'])) {
+				$value['checked'] = false;
+			}
 		} else {
 			$value = array('checked' => true);
 		}

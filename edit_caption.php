@@ -50,12 +50,14 @@ if (isset($save)) {
 		$dateArray["minutes"] = $capture_minutes;
 		$dateArray["seconds"] = $capture_seconds;
 		$gallery->album->setItemCaptureDate($index, $dateArray );
-		foreach ($extra_fields as $field => $value)
-		{
-			if (get_magic_quotes_gpc()) {
-				$value=stripslashes($value);    
+		if (isset($extra_fields)) {
+			foreach ($extra_fields as $field => $value)
+			{
+				if (get_magic_quotes_gpc()) {
+					$value=stripslashes($value);    
+				}
+				$gallery->album->setExtraField($index, $field, trim($value));
 			}
-			$gallery->album->setExtraField($index, $field, trim($value));
 		}
 		_("Captions and/or custom fields modified");
 		$gallery->album->save(array("Captions and/or custom fields modified"));

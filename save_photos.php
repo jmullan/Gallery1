@@ -257,6 +257,9 @@ while (isset($userfile) && sizeof($userfile)) {
 	$tag = strtolower($tag);
 
 	if ($name) {
+		if (!isset($setCaption)) {
+			$setCaption = '';
+		}
 		processNewImage($file, $tag, $name, $caption, $setCaption);
 		$image_count++;
 	}

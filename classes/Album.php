@@ -708,7 +708,10 @@ class Album {
 				vd($msg);
 				return $success;
 			}
-		       	$to = implode(", ", $gallery->album->getEmailMeList('other', $id));
+			if (!isset($id)) {
+			    $id = null;
+			}
+		       	$to = implode(", ", $this->getEmailMeList('other', $id));
 			$msg_str=call_user_func_array('sprintf', $msg);
 		       	if (strlen($to) > 0) {
 			       	$text = sprintf("A change has been made to %s\n  The change is: %s.",
@@ -876,7 +879,7 @@ class Album {
 	       	if (!strcmp($gallery->app->autorotate, 'yes') && $gallery->app->use_exif) {
 		       	$index = $this->numPhotos(1);
 		       	$exifData = $this->getExif($index);
-		       	if ($orientation = trim($exifData['Orientation'])) {
+		       	if (isset($exifData['Orientation']) && $orientation = trim($exifData['Orientation'])) {
 			       	$photo = $this->getPhoto($index);
 			       	switch ($orientation) {
 				       	case "rotate 90":

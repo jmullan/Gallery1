@@ -34,7 +34,7 @@
 /**
  ** Native languagename
  **/
-	$nls['language']['cs_CZ.iso-8859-2'] =	'&#x010c;esky (ISO-8859-2)';
+	$nls['language']['cs_CZ.iso-8859-2'] =	'&#x010c;esky (ISO-8859-2)'; // Czech (ISO-8859-2)
 
 /**
  ** Aliases for languages with different browser and gettext codes

@@ -35,7 +35,7 @@
  ** Native languagename
  **/
 
-	$nls['language']['cs_CZ.cp1250'] =	'&#x010c;esky (windows)';
+	$nls['language']['cs_CZ.cp1250'] =	'&#x010c;esky (Windows)'; // Czech (Windows)
 
 /**
  ** Aliases for languages with different browser and gettext codes

@@ -48,7 +48,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 <?php
 if ($gallery->session->albumName) {
-	if ($confirm) {
+	if (isset($confirm) && $confirm) {
 		if (!strcmp($sort,"random")) {
 			$gallery->album->shufflePhotos();
 			_("Album resorted");
@@ -80,9 +80,12 @@ if ($gallery->album->getHighlight()) {
 }
 ?>
 <br>
-<?php echo $gallery->album->fields["caption"] ?>
-
-<?php echo makeFormIntro("sort_album.php"); ?>
+<?php
+if (isset($gallery->album->fields['caption'])) {
+	echo $gallery->album->fields['caption'];
+}
+echo makeFormIntro("sort_album.php");
+?>
 </span>
 <table>
   <tr>

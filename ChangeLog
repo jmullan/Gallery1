@@ -1,3 +1,7 @@
+2003-10-17  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b165
+
+	* Removed several warnings, notices, typos.
+
 2003-10-16  Bharat Mediratta  <bharat@menalto.com> 1.4.1-cvs-b164
 
 	* Fixed a typo in delete_photo.php
@@ -26,7 +30,7 @@
 	* Change: Adjust all check Pages
 
 	* Language: - Synced against Changes
-		    - Update German (de_DE), Vietnames (vi_VN)
+		    - Update German (de_DE), Vietnamese (vi_VN)
 
 2003-10-16  Bharat Mediratta  <bharat@menalto.com> 1.4.1-cvs-b161
 
@@ -147,9 +151,9 @@
 	* Change: Optimization! 
 	   - Removed function getNLS(). If initLanguage() or load_languages()
 	     was called the info is in $gallery->nls
-
-	   - Removed function gallery_languages(). If initLanguage() or load_languages()
-             was called the info is in $gallery->nls['language']
+	   - Removed function gallery_languages(). If initLanguage() or
+	     load_languages() was called the info is in
+	     $gallery->nls['language']
 
 	* Change: Modified makereport.
 
@@ -204,14 +208,14 @@
 
 2003-10-10 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b143
 
-	* Bugfix: Catch explode on empty explode (NetBSD has no locale commandd)
+	* Bugfix: Catch explode on empty explode (NetBSD has no locale command)
 
 	* Change: Added workaround for non working locales (also NetBSD related)
 
 2003-10-10 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b142
 	
-	* Change: Added title attribute to "up narrow", Changed text from "UP" to
-		  "navigate up" and make it translateable.
+	* Change: Added title attribute to "up narrow", Changed text from "UP"
+		  to "navigate up" and make it translateable.
 
 	* Bugfix: Changed \" to &quot; in configdata.inc
 
@@ -244,7 +248,7 @@
 
 2003-10-08 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b137
 
-	* Change: Splitted nls.php into nls.php for each language
+	* Change: Split nls.php into nls.php for each language
 	
 	Note: We are now ready for language packs, because all language related
 	      information is bundled into one folder per language.

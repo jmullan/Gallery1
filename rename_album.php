@@ -65,8 +65,8 @@ if (!empty($newName)) {
 		$albumDB->save();
 		// need to account for nested albums by updating
 		// the parent album when renaming an album
-	        if ($gallery->album->fields[parentAlbumName]) {
-			$parentName = $gallery->album->fields[parentAlbumName];
+	        if ($gallery->album->fields['parentAlbumName']) {
+			$parentName = $gallery->album->fields['parentAlbumName'];
 			if (isDebugging()) {
 				print "parentName=".$parentName."<br>";
 				print "newName=".$newName."<br>";

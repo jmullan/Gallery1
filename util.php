@@ -2541,7 +2541,7 @@ function galleryDocs() {
 	return NULL;
 }
 
-function compress_image($src, $out, $target, $quality) {
+function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 	global $gallery;
 
 	if ($target === 'off') {

@@ -41,7 +41,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 }
 	
 $error="";
-if ($apply) {
+if (isset($apply) && $apply) {
 	for ($i=0; $i<$gallery->album->getPollScale() ; $i++)
 	{
 		//convert values to numbers

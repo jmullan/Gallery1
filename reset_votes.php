@@ -45,7 +45,7 @@ if (!$gallery->user->canDeleteFromAlbum($gallery->album) && !$gallery->album->is
 	exit;
 }
 
-if ($confirm) {
+if (isset($confirm) && $confirm) {
 	$gallery->album->fields["votes"]=array();
 	_("All votes removed");
 	$gallery->album->save(array("All votes removed"));
@@ -62,7 +62,7 @@ if ($confirm) {
 <body>
 
 <center>
-<?php echo sprintf(_("Do you really want to remove all votes in %s?"), $gallery->album->fields["title"]) ?>
+<?php echo sprintf(_("Do you really want to remove all votes in %s?"), "<b>{$gallery->album->fields['title']}</b>") ?>
 <br>
 <br>
 <?php echo makeFormIntro("reset_votes.php"); ?>
