@@ -67,8 +67,9 @@ if (isset($_SESSION[$gSessionVar])) {
 	/* Get a simple reference to the session container (for convenience) */
 	$gallery->session =& $_SESSION[$gSessionVar];
 
+	/* DISABLED BY THE "0 &&" BELOW */
 	// Allow session-sharing in devMode so that pages can be validated using the W3 validation links
-	if (($gallery->app->devMode != "yes" && !empty($gallery->session->remoteHost)) && $gallery->session->remoteHost != $_SERVER['REMOTE_ADDR']) {
+	if (0 && ($gallery->app->devMode != "yes" && !empty($gallery->session->remoteHost)) && $gallery->session->remoteHost != $_SERVER['REMOTE_ADDR']) {
 		printf('Attempted session access from different IP address. Please <a href="%s">re-login</a>.', $gallery->app->photoAlbumURL . '?PHPSESSID=');
 		exit;
 	}
