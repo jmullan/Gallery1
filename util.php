@@ -3314,8 +3314,8 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 		echo "\n<tr>";
 	        foreach ($fields as $key => $value) {
         	        $i++;
-                	echo "\n\t<td><b>$key<b></td>";
-	                echo "\n\t<td>:</td>";
+                	echo "\n\t<td valign=\"top\"><b>$key<b></td>";
+	                echo "\n\t<td valign=\"top\">:</td>";
         	        echo "\n\t<td>$value</td>";
                 	        if ($i != sizeof($fields)) {
                         	        if ($i%2 == 0) {

@@ -566,8 +566,15 @@ includeHtmlWrap("inline_photo.frame");
 ?>
 
 <!-- caption -->
-<p align="center" class="modcaption"><?php echo editCaption($gallery->album, $index) ?></p>
+<p align="center" class="modcaption"><?php echo editCaption($gallery->album, $index) ?>
 
+<!-- Custom Fields -->
+<?php
+	displayPhotoFields($index, $extra_fields, true, in_array('EXIF', $extra_fields), $full);
+?>
+</p>
+
+<!-- voting -->
 <?php
 
 /*
@@ -608,13 +615,12 @@ echo "\n<!-- Comments -->";
 if (isset($error_text)) {
 	echo gallery_error($error_text) ."<br><br>";
 }
- 
+
 if ($gallery->user->canViewComments($gallery->album) && $gallery->app->comments_enabled == 'yes') {
 		echo viewComments($index, $gallery->user->canAddComments($gallery->album), $page_url);
 }
 
-echo "\n\n<!-- Custom Fields -->";
-displayPhotoFields($index, $extra_fields, true, in_array('EXIF', $extra_fields), $full);
+
 
 echo "<br>";
 

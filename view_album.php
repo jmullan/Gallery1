@@ -525,6 +525,11 @@ if ($borderwidth == 0) {
 	$bordercolor = $gallery->album->fields["bgcolor"];
 	$borderwidth = 1;
 }
+
+if ($page == 1) {
+	echo '<div align="center"><p class="vasummary">'. $gallery->album->fields["summary"] . '</div></p>';
+}
+
 if (($gallery->album->getPollType() == "rank") && canVote())
 {
         $my_choices=array();
@@ -662,11 +667,6 @@ if (canVote())
 <?php }
 }
 ?>
-<?php
-if ($page == 1)
-{
-        print $gallery->album->fields["summary"];
-} ?>
 
 <!-- image grid table -->
 <table border="0" cellspacing="0" cellpadding="0" class="vatable" align="center">
