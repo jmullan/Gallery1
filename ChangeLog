@@ -1,3 +1,11 @@
+2003-06-11  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b17
+
+	* Fixed a case where we were using the two argument form of trim()
+	  that isn't available until PHP 4.1.0
+
+	* Changed util.php's getFile() to expect text files to preserve
+	  compatibility with the pre PHP 4.3.2 syntax for fopen()
+
 2003-06-10  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.5-cvs-b16
 
 	* Added gallery_remote2.php to the $safe_to_include array in index.php

@@ -71,7 +71,7 @@ class Album {
 		$this->fields["public_comments"] = $gallery->app->default["public_comments"];
 		$this->fields["serial_number"] = 0;
 		$this->fields["extra_fields"] =
-		    split(",", trim($gallery->app->default["extra_fields"], " ,"));
+		    split(",", trim($gallery->app->default["extra_fields"]));
 		for ($i = 0; $i < sizeof($this->fields["extra_fields"]); $i++) {
 		    $this->fields["extra_fields"][$i] = trim($this->fields["extra_fields"][$i]);
 		}

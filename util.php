@@ -288,7 +288,7 @@ function getFile($fname) {
 		return $tmp;
 	}
 
-	if ($fd = fs_fopen($fname, "r")) {
+	if ($fd = fs_fopen($fname, "rt")) {
 		while (!feof($fd)) {
 			$tmp .= fread($fd, 65536);
 		}
