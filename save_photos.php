@@ -122,11 +122,12 @@ if ($urls) {
 			fclose($id);
 			fclose($od);
 		}
+
 		/* Make sure we delete this file when we're through... */
 		$temp_files[$file]++;
 	
 		/* If this is an image or movie - add it to the processor array */
-		if (acceptableFormat($tag)) {
+		if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
 			/* Tack it onto userfile */
 			$userfile_name[] = $name;
 			$userfile[] = $file;
@@ -186,6 +187,7 @@ if ($urls) {
 } /* if ($urls) */
 ?>
 
+
 <br>
 <span class=title>Processing status...</span>
 <br>
@@ -197,6 +199,15 @@ while (sizeof($userfile)) {
 
 	$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);
 	$tag = strtolower($tag);
+
+	if ($name) {
+		process($file, $tag, $name, $setCaption);
+	}
+}
+
+
+function process($file, $tag, $name, $setCaption="") {
+	global $gallery;
 
 	if (!strcmp($tag, "zip")) {
 		if (!$gallery->app->feature["zip"]) {
@@ -214,7 +225,7 @@ while (sizeof($userfile)) {
 			$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
 			$tag = strtolower($tag);
 
-			if (acceptableFormat($tag)) {
+			if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
 				$cmd_pic_path = str_replace("[", "\[", $pic_path); 
 				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path); 
 				exec_wrapper(fs_import_filename($gallery->app->unzip) . 
@@ -229,61 +240,52 @@ while (sizeof($userfile)) {
 			}
 		}
 	} else {
-		if ($name) {
-			process($file, $tag, $name, $setCaption);
+		// remove %20 and the like from name
+		$name = urldecode($name);
+		// parse out original filename without extension
+		$originalFilenameArray = preg_split ( "/.$tag\$/i" , $name);
+		// replace multiple non-word characters with a single "_"
+		$originalFilename = preg_replace("/\W+/", "_", $originalFilenameArray[0]);
+	
+		/* 
+		need to prevent users from using original filenames that are purely numeric.
+		Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
+		specifically:
+		RewriteRule ^([^\.\?/]+)/([0-9]+)$	/~jpk/gallery/view_photo.php?set_albumName=$1&index=$2	[QSA]
+		*/
+	
+		if (ereg("^([0-9]+)$", $originalFilename)) {
+			$originalFilename = $originalFilename . "_G";
 		}
-	}
-}
-
-
-function process($file, $tag, $name, $setCaption="") {
-	global $gallery;
-
-	// remove %20 and the like from name
-	$name = urldecode($name);
-	// parse out original filename without extension
-	$originalFilenameArray = preg_split ( "/.$tag\$/i" , $name);
-	// replace multiple non-word characters with a single "_"
-	$originalFilename = preg_replace("/\W+/", "_", $originalFilenameArray[0]);
-
-	/* 
-	need to prevent users from using original filenames that are purely numeric.
-	Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
-	specifically:
-	RewriteRule ^([^\.\?/]+)/([0-9]+)$	/~jpk/gallery/view_photo.php?set_albumName=$1&index=$2	[QSA]
-	*/
-
-	if (ereg("^([0-9]+)$", $originalFilename)) {
-		$originalFilename = $originalFilename . "_G";
-	}
-
-	set_time_limit(30);
-	if (acceptableFormat($tag)) {
-		msg("- Adding $name");
-		if ($setCaption) {
-			$caption = $originalFilenameArray[0];
-		} else {
-			$caption = "";
-		}	
-
-		$err = $gallery->album->addPhoto($file, $tag, $originalFilename, $caption);
-		if (!$err) {
-			/* resize the photo if needed */
-			if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
-				$index = $gallery->album->numPhotos(1);
-				$photo = $gallery->album->getPhoto($index);
-				list($w, $h) = $photo->getDimensions();
-				if ($w > $gallery->album->fields["resize_size"] ||
-				    $h > $gallery->album->fields["resize_size"]) {
-					msg("- Resizing $name"); 
-					$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
+	
+		set_time_limit(30);
+		if (acceptableFormat($tag)) {
+			msg("- Adding $name");
+			if ($setCaption) {
+				$caption = $originalFilenameArray[0];
+			} else {
+				$caption = "";
+			}	
+	
+			$err = $gallery->album->addPhoto($file, $tag, $originalFilename, $caption);
+			if (!$err) {
+				/* resize the photo if needed */
+				if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
+					$index = $gallery->album->numPhotos(1);
+					$photo = $gallery->album->getPhoto($index);
+					list($w, $h) = $photo->getDimensions();
+					if ($w > $gallery->album->fields["resize_size"] ||
+					    $h > $gallery->album->fields["resize_size"]) {
+						msg("- Resizing $name"); 
+						$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
+					}
 				}
+			} else {
+				msg("<font color=red>Error: $err!</font>");
 			}
 		} else {
-			msg("<font color=red>Error: $err!</font>");
+			msg("Skipping $name (can't handle '$tag' format)");
 		}
-	} else {
-		msg("Skipping $name (can't handle '$tag' format)");
 	}
 }
 
