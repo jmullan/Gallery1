@@ -406,8 +406,8 @@ $defaults = array(
 		"prompt" => "Resized image size",
 		"desc" => "When large images are added to an album, an intermediary version " .
 			"will automatically be generated at this size",
-		"value" => 600,
-		"choices" => array("off", 400, 500, 600, 700, 800)
+		"value" => 640,
+		"choices" => array("off", 400, 500, 600, 640, 700, 800, 1024)
 	),
 	"fit_to_window" => array(
 		"prompt" => "Fit-to-window",

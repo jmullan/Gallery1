@@ -120,7 +120,7 @@ Album Properties
 </tr>
 <tr>
 <td>Auto-Resize</td>
-<td><select name="resize_size"><?= selectOptions($gallery->album, "resize_size", array("off", 400, 500, 600, 700, 800)) ?></select></td>
+<td><select name="resize_size"><?= selectOptions($gallery->album, "resize_size", array("off", 400, 500, 600, 640, 700, 800, 1024)) ?></select></td>
 </tr>
 <tr>
 <td>Show <i>Return to</i> link</td>

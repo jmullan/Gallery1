@@ -81,8 +81,10 @@ What is the target size for <?= $all ? "all the photos in this album" : "this ph
 <?= makeFormIntro("resize_photo.php"); ?>
 <input type=hidden name=index value=<?=$index?>>
 <input type=submit name=resize value="Original Size">
+<input type=submit name=resize value="1024">
 <input type=submit name=resize value="800">
 <input type=submit name=resize value="700">
+<input type=submit name=resize value="640">
 <input type=submit name=resize value="600">
 <input type=submit name=resize value="500">
 <input type=submit name=resize value="400">
