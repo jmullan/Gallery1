@@ -33,7 +33,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <? require($GALLERY_BASEDIR . "init.php"); ?>
 <? 
 // Hack check
-if (!$gallery->user->canReadAlbum($gallery->album)) {
+if (!$gallery->user->isAdmin() && !$gallery->user->isOwnerOfAlbum($gallery->album)) {
 	header("Location: albums.php");
 	return;
 }
@@ -115,13 +115,13 @@ if ($gallery->album->fields["textcolor"]) {
 <? } 
 includeHtmlWrap("album.header");
 $adminText = "<span class=\"admin\">Comments for this Album</span>";
-$adminCommands = "<span class=\"admin\"";
+$adminCommands = "<span class=\"admin\">";
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	if ($gallery->user->isLoggedIn()) {
-	        $adminCommands .= "<a href=" .
+	        $adminCommands .= "<a href=\"" .
 					//doCommand("logout", array(), "view_comments.php", array("page" => $page)) .
 					doCommand("logout", array(), "view_comments.php") .
-				  ">[logout]</a>";
+				  "\">[logout]</a>";
 	} else {
 		$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[login]</a>';
 	} 

@@ -413,9 +413,11 @@ if ($numPhotos) {
 				   <? } ?>
 				</span>
 <?
-			        if (!strcmp($myAlbum->fields["public_comments"],"yes")) {
-?>
-                                        <br><a href=<?=makeGalleryUrl("view_comments.php", array("set_albumName" => $myAlbum->fields["name"]))?>>View All Comments</a><br>
+				if (($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) &&
+					!strcmp($myAlbum->fields["public_comments"],"yes")) { ?>
+					<span class="admin">
+                                         <br><a href=<?=makeGalleryUrl("view_comments.php", array("set_albumName" => $myAlbum->fields["name"]))?>>[view&nbsp;comments]</a><br>
+					</span>
 <?
                                 }
 			} else {

@@ -227,8 +227,10 @@ for ($i = $start; $i <= $end; $i++) {
   <? if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) { ?>
    <span class="admin">
     <a href="#" onClick="<?= popup("album_permissions.php?set_albumName={$tmpAlbumName}")?>">[permissions]</a>
+   <? if (!strcmp($gallery->album->fields["public_comments"],"yes")) { ?>
+    <a href=<?=makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName))?>>[view&nbsp;comments]</a>
+   <? } ?>
    </span>
-
   <br>
   url: <a href=<?=$albumURL?>><?=breakString($albumURL, 60, '&', 5)?></a>
    <? if (ereg("album[[:digit:]]+$", $albumURL)) { ?>
@@ -266,10 +268,7 @@ if ($gallery->user->canWriteToAlbum($gallery->album) &&
 <a href="#" onClick="<?=popup("'" . doCommand("reset-album-clicks", array("albumName" => $albumName), "albums.php") . "'" , 1)?>">[reset counter]</a>
 <?
 }
-if (!strcmp($gallery->album->fields["public_comments"],"yes")) {
 ?>
-  <br><a href=<?=makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName))?>>View All Comments</a>
-<?}?>
   </span>
   </td>
 <? if (!strcmp($gallery->app->showAlbumTree, "yes")) { ?>

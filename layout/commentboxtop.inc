@@ -36,8 +36,12 @@
     <?
     }
     ?>
-    <br><a href=<?=makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName))?>>View All Comments</a>
     </span>
+    <? if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum)) { ?>
+      <span class="admin">										    
+       <br><a href=<?=makeGalleryUrl("view_comments.php", array("set_albumName" => $myAlbumName))?>>[view comments]</a>
+      </span>
+    <? } ?>
 
     </td>
     </tr>
