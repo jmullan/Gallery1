@@ -40,14 +40,16 @@ if(empty($cmd)){
   header("Cache-control: private");
   header("Content-Type: application/octet-stream");
   header("Content-Disposition: filename=install_registry.reg");
-?>Windows Registry Editor Version 5.00
 
-[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\<?php echo $gallery->app->galleryTitle?>]
-"displayname"="<?php echo $gallery->app->galleryTitle?>"
-"description"="Publish and Share Your Windows XP Files via <?php echo $gallery->app->galleryTitle?> on the Web."
-"href"="<?php echo $gallery->app->photoAlbumURL?>/publish_xp.php?cmd=publish"
-"icon"="<?php echo $proto?>://<?php echo $HTTP_SERVER_VARS['SERVER_NAME']?>/favicon.ico"
-<?php
+  $lines[] = 'Windows Registry Editor Version 5.00';
+  $lines[] = '';
+  $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\' . $gallery->app->galleryTitle . ']';
+  $lines[] = '"displayname"="' . $gallery->app->galleryTitle . '"';
+  $lines[] = '"description"="Publish and Share Your Windows XP Files via ' . $gallery->app->galleryTitle . ' on the Web."';
+  $lines[] = '"href"="' . $gallery->app->photoAlbumURL . '/publish_xp.php?cmd=publish"';
+  $lines[] = '"icon"="' . $proto . '://' . $HTTP_SERVER_VARS['SERVER_NAME'] . '/favicon.ico"';
+  print join("\r\n", $lines);
+  print "\r\n";
   exit;
 }
 ?>
@@ -98,8 +100,14 @@ if (!strcmp($cmd,"publish") || $returnval == "Login Incorrect") {?>
 <span class="popuphead">Login to <?php echo $gallery->app->galleryTitle?></span>
 <br>
 <?php echo  makeFormIntro("publish_xp.php", array("id" => "login", "method" => "POST")); ?>
-UserID:   <input type='TEXT' name='uname' value=''/><br/>
-Password: <input type='PASSWORD' name='password' value=''/><br/>
+<table>
+ <tr>
+  <td>Username:</td><td><input type='TEXT' name='uname' value=''/></td>
+ </tr>
+ <tr>
+  <td>Password:</td><td><input type='PASSWORD' name='password' value=''/></td>
+ </tr>
+</table>
 <input type=hidden name='lcid' value='<?php echo $lcid; ?>'/>
 <input type=hidden name='langid' value='<?php echo $langid; ?>'/>
 <input type=hidden name='cmd' value='login'/>
