@@ -751,7 +751,7 @@ function _getStyleSheetLink($filename) {
 	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
 		$base = $gallery->app->photoAlbumURL;
 	} else {
-		$base = ".";
+		$base = "..";
 	}
 
 	if (fs_file_exists($sheetdomainpath) && !broken_link($sheetdomainpath)) {
