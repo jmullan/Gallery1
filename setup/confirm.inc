@@ -153,7 +153,7 @@ foreach ($constants as $key => $val) {
 		if ($constants[$key]["must-be-executable"]) {
 			if (!inOpenBasedir($dir)) {
 				$warn_about_open_basedir = 1;
-			} else if (!is_executable($$key)) {
+			} else if (!fs_is_executable($$key)) {
 				$view .= row_wrap(error_format("$key: <b>" . $$key . 
 					"</b> must be an executable file!"));
 				$error = 1;

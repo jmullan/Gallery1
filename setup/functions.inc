@@ -281,7 +281,7 @@ function check_graphics($location="")
 			$missing[$bin] = "Can't find <i>$bin</i>!";
 		}
 
-		if (!@is_executable("$d/$bin")) {
+		if (!fs_is_executable("$d/$bin")) {
 			$missing[$bin] = "<i>$bin</i> is not executable!";
 		}
 	}
@@ -328,7 +328,7 @@ function check_graphics_im($location="")
 			$missing[$bin] = "Can't find <i>$bin</i>!";
 		}
 
-		if (!@is_executable("$d/$bin")) {
+		if (!fs_is_executable("$d/$bin")) {
 			$missing[$bin] = "<i>$bin</i> is not executable!";
 		}
 	}
