@@ -21,6 +21,16 @@ echo _("In this step you'll customize various settings for Gallery.  If this is 
 <?php
 $i = 0;
 foreach ($constants as $key => $val) {
+	if ($val["type"] === "block_start" ) {
+		echo evenOdd_row(make_fields($key, $val),
+				$i % 2);
+		continue;
+	}
+	if ($val["type"] === "block_end") {
+		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
+		echo "<tr><td colspan=2> &nbsp; </td></tr>";
+		continue;
+	}
 	/* Support $app-> for backwards compatibility */
 	if (isset($app->$key)) {
 		$val["value"] = $app->$key;
@@ -72,9 +82,10 @@ foreach ($constants as $key => $val) {
 	} else {
 		echo evenOdd_row(make_fields($key, $val),
 				$i++ % 2);
-		echo "<tr><td colspan=2> &nbsp; </td></tr>";
+		if (!($val["type"] === "block_element")) {
+			echo "<tr><td colspan=2> &nbsp; </td></tr>";
+		}
 	}
-
 }
 ?>
 </table>

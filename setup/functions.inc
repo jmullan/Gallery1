@@ -9,13 +9,24 @@ function evenOdd_row($fields, $evenOdd) {
 		$bgColor = "#88cccc";
 	}
 	$f0 = str_replace(" ", "&nbsp;", $fields[0]);
-	$buf .= "\n<tr>";
-	$buf .= "\n\t<td bgcolor=$bgColor valign=top align=left>$f0</td>";
-	$buf .= "\n\t<td bgColor=$bgColor width=90% valign=top>$fields[1]</td>";
-	$buf .= "\n</tr>";
-	$buf .= "\n<tr>";
-	$buf .= "\n\t<td bgcolor=$bgColor colspan=2 valign=top align=left>$fields[2]</td>";
-	$buf .= "\n</tr>\n";
+	if ($fields[3] == "block_element") {
+		$buf .= "\n<tr><td>$f0</td><td>".$fields[1]."</td></tr>";
+	} else if ($fields[3] == "block_start") {
+		$buf .= "\n<tr><td colspan=2 bgcolor=$bgColor valign=top align=left><table>";
+		$buf .= "\n\t<td align=\"left\" valign=\"top\">$f0<p>";
+		$buf .= "\n\t".$fields[2]."</td>";
+		$buf .= "\n<td><table >";
+	} else if ($fields[3] == "block_end") {
+		$buf .= "\n</table></td></table></td></tr>";
+	} else {
+		$buf .= "\n<tr>";
+		$buf .= "\n\t<td bgcolor=$bgColor valign=top align=left>$f0</td>";
+		$buf .= "\n\t<td bgColor=$bgColor width=90% valign=top>$fields[1]</td>";
+		$buf .= "\n</tr>";
+		$buf .= "\n<tr>";
+		$buf .= "\n\t<td bgcolor=$bgColor colspan=2 valign=top align=left>$fields[2]</td>";
+		$buf .= "\n</tr>\n";
+	}
 
 	return $buf;
 }
@@ -35,9 +46,7 @@ function make_attrs($attrList) {
 
 function make_fields($key, $arr) {
 	$col1 = $arr["prompt"];
-	if (!strcmp($arr["type"], "hidden")) {
-		$col2 = form_input($key, $arr);
-	} else if (isset($arr["choices"])) {
+	if (isset($arr["choices"])) {
 		$col2 = form_choice($key, $arr);
 	} else if (isset($arr["multiple_choices"])) {
 		$col2 = form_multiple_choice($key, $arr);
@@ -47,7 +56,8 @@ function make_fields($key, $arr) {
 		$col2 = form_input($key, $arr);
 	}
 	$col3 = $arr["desc"];
-	return array($col1, $col2, $col3);
+	$col4 = $arr["type"];
+	return array($col1, $col2, $col3,$col4);
 }
 
 function form_textarea($key, $arr) {
@@ -651,6 +661,7 @@ function config_maybe_locales() {
 	$available=available_locales();
 	$nls=getNLS();
 
+	$block_start_done=false;
         foreach ($maybe as $key => $aliases) {
 		if (sizeof($aliases) < 1) {
 			$unavailable[]=$key;
@@ -665,24 +676,33 @@ function config_maybe_locales() {
 					);
 			continue;
 		}
+		if (!$block_start_done) {
+			$block_start_done=true;
+			$results[] = array (
+					"type" => "block_start", 
+					"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Locale Selection required")),
+					"desc" => _("There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable"));
+		}
 		$index = $nls['languages'][$key] ;
 		$choices=array();
 		foreach ($aliases as $value) { 
 			$choices[$value]=$value;
 		}
 		$results["locale_alias['$key']"] = array (
-			"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Possible locale problems with %s."),
-				$nls['languages'][$key]),
-			"desc" => _("This language is available, but there seems to be a locale problem.  Please select a locale for date format style.") .
-				  "\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), " 1.3.5"). ")</b></font>",
+			"prompt" => $nls['languages'][$key],
 			"optional" => 1,
 			"name" => "locale_alias",
 			"key" => $key,
+			"type" => "block_element",
 			"choices" => $choices,
 			"value" => $choices[0]);
 
 			
         }
+	if ($block_start_done) {
+		$results[] = array ("type" => "block_end");
+	}
+	$block_start_done=false;
 	$choices=array();
 	foreach ($available as $choice => $value) { 
 		$choices[$choice]=$value;
@@ -697,20 +717,28 @@ function config_maybe_locales() {
 					);
 			continue;
 		}
+		if (!$block_start_done) {
+			$block_start_done=true;
+			$results[] = array (
+					"type" => "block_start", 
+					"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Locale problems")),
+					"desc" => _("There are no apparently suitable locales installed on your machine for the following languages.  Please chose the one you think is most suitable."));
+		}
 		$index = $nls['languages'][$key] ;
 		$results["locale_alias['$key']"] = array (
-			"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Locale problems with %s."),
-				$nls['languages'][$key]),
-			"desc" => _("This language is available, but we can't identified a suitable locale for it.  Please select a locale for date format style.") .
-				  "\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), " 1.3.5"). ")</b></font>",
+			"prompt" => $nls['languages'][$key],
 			"optional" => 1,
 			"name" => "locale_alias",
 			"key" => $key,
+			"type" => "block_element",
 			"choices" => $choices,
 			"value" => $choices[0]);
 
 			
         }
+	if ($block_start_done) {
+		$results[] = array ("type" => "block_end");
+	}
 
 
 	return $results;
