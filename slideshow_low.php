@@ -124,7 +124,7 @@ if ($gallery->album->fields["textcolor"]) {
 
 <body>
 <?php } ?>
-
+<?php includeHtmlWrap("slideshow.header"); ?>
 
 <script language="JavaScript">
 var timer; 
@@ -323,8 +323,6 @@ function preload_photo(index) {
 
 </Script>
 
-
-<?php includeHtmlWrap("slideshow.header"); ?>
 <?php
 $imageDir = $gallery->app->photoAlbumURL."/images"; 
 $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">";

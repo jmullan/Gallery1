@@ -28,7 +28,6 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 ?>
 <?php require($GALLERY_BASEDIR . "init.php"); ?>
-
 <?php
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
@@ -62,7 +61,6 @@ $navigator["widthUnits"] = "%";
 $navigator["bordercolor"] = $borderColor;
 
 ?>
-
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html>
 <head>
@@ -71,12 +69,9 @@ $navigator["bordercolor"] = $borderColor;
 </head>
 <body>
 <?php } ?>
-
-<!-- gallery.header begin -->
 <?php
 includeHtmlWrap("gallery.header");
 ?>
-<!-- gallery.header end -->
 <?php
 if (!strcmp($gallery->app->default["showSearchEngine"], "yes")) {
 ?>

@@ -121,7 +121,6 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
 }
 $breadcrumb["bordercolor"] = $bordercolor;
 ?>
-
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
@@ -155,6 +154,7 @@ if ($gallery->album->fields["textcolor"]) {
 
 <body> 
 <?php } ?>
+<?php includeHtmlWrap("album.header"); ?>
 
   <script language="javascript1.2">
   // <!--
@@ -186,8 +186,6 @@ if ($gallery->album->fields["textcolor"]) {
   </script>
 
 <?php 
-includeHtmlWrap("album.header");
-
 function showChoice($label, $target, $args) {
     global $gallery;
     

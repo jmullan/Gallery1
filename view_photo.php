@@ -168,7 +168,6 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
     $breadcrumb["text"][] = $breadtext[$i];
 }
 ?>
-
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
@@ -282,7 +281,6 @@ if ($fitToWindow) {
 <body>
 <?php } ?>
 <?php } # if not embedded ?>
-
 <?php
 includeHtmlWrap("photo.header");
 ?>
