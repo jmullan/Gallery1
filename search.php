@@ -132,7 +132,7 @@ if ($searchstring) {
 		$searchAlbum = $list[$i]; 
 		$uid = $gallery->user->getUid();
 		if ($searchAlbum->canRead($uid) || $gallery->user->isAdmin()) {
-			$numPhotos = $searchAlbum->numPhotos($gallery->user->canWriteToAlbum($searchAlbum));
+			$numPhotos = $searchAlbum->numPhotos(1);
 			for ($j = 1; $j <= $numPhotos; $j++) {
 				$searchCaption = $searchAlbum->getCaption($j);
 				$searchKeywords = $searchAlbum->getKeywords($j);
