@@ -42,11 +42,10 @@ Select the new location of album <?=$album->fields["title"]?>:
 <?
 for ($i = 1; $i <= $numAlbums; $i++) {
 	$sel = "";
-	if ($i == $index+1) {
+	if ($i == $index) {
 		$sel = "selected";
 	} 
-	$j = $i - 1;
-	echo "<option value=$j $sel> $i</option>";
+	echo "<option value=$i $sel> $i</option>";
 }
 ?>
 </select>
