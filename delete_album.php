@@ -34,7 +34,9 @@ doctype();
 echo "\n<html>";
 
 if (!empty($delete)) {
-	$gallery->album->delete();
+	if ($guid == $gallery->album->fields['guid']) {
+		$gallery->album->delete();
+	}
 	dismissAndReload();
 	return;
 }
@@ -56,6 +58,7 @@ if ($gallery->album) {
 <b><?php echo $gallery->album->fields["title"] ?></b>
 <p>
 <?php echo makeFormIntro("delete_album.php"); ?>
+<input type="hidden" name="guid" value="<?php echo $gallery->album->fields['guid']; ?>">
 <input type="submit" name="delete" value="<?php echo _("Delete") ?>">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>

@@ -46,16 +46,25 @@ if (isset($confirm) && isset($id)) {
 		for ($i = 1; $i <= sizeof($gallery->album->photos); $i++) {
 		    $photo = $gallery->album->getPhoto($i);
 		    if ($photo->isAlbum() && !strcmp($photo->getAlbumName(), $id)) {
-			/* Found it */
-			$index = $i;
-			break;
+			$myAlbum = new Album();
+			$myAlbum->load($id, false);
+			if ($myAlbum->fields['guid'] == $albumDelete) {
+				/* Found it */
+				$index = $i;
+				$albumMatch = 1;
+				break;
+			}
 		    }
 		}
 	}
 
-	$gallery->album->deletePhoto($index);
-	$gallery->album->fields['guid'] = md5(uniqid(rand(), true));    // Update guid to reflect change in album contents
-	$gallery->album->save(array(i18n("%s removed"), $id));
+	// Prevent a user from pressing delete twice out of impatience and
+	// deleting two albums by mistake
+	if (!isset($albumDelete) || isset($albumMatch)) {
+		$gallery->album->deletePhoto($index);
+		$gallery->album->fields['guid'] = md5(uniqid(rand(), true));    // Update guid to reflect change in album contents
+		$gallery->album->save(array(i18n("%s removed"), $id));
+	}
 
 	if (isset($nextId) && !empty($nextId)) {
 	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName, $nextId));
@@ -101,7 +110,7 @@ $myAlbum->load($id);
 <br>
 <?php echo makeFormIntro("delete_photo.php"); ?>
 <input type="hidden" name="id" value="<?php echo $id ?>">
-<input type="hidden" name="albumDelete" value=<?php echo $albumDelete ?>>
+<input type="hidden" name="albumDelete" value=<?php echo $myAlbum->fields['guid']; ?>>
 <input type="submit" name="confirm" value="<?php echo _("Delete") ?>">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
