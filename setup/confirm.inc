@@ -18,6 +18,18 @@ $error = 0;
 
 $data .= "<" . "?\n";
 
+$data .= "/* \n"
+        ." * Protect against very old versions of 4.0 (like 4.0RC1) which  \n"
+        ." * don't implicitly create a new stdClass() when you use a variable \n"
+        ." * like a class. \n"
+        ." */ \n"
+        ."if (!\$gallery) { \n"
+        ."        \$gallery = new stdClass(); \n"
+        ."}\n"
+        ."if (!\$gallery->app) { \n"
+        ."        \$gallery->app = new stdClass(); \n"
+        ."}\n\n";
+
 $data .= "/* Version  */\n";
 $view .= row_wrap("/* Version  */");
 
