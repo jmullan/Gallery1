@@ -48,14 +48,14 @@ clear
 if [ -z $1 ] ; then
         echo -e "\nusage :"
         echo "sh make_mo_files.sh -all for all .po file"
-        echo -e "or sh make_mo_files.sh -po <language_COUNTRY> for only one. e.g. sh make_mo_files.sh -po de_DE\n"
+        echo -e "or sh make_mo_files.sh -po <language_COUNTRY>-gallery.po for only one. e.g. sh make_mo_files.sh -po de_DE-gallery.po\n"
         exit
 fi
 
-if [ $1 != "-all" ] && [ ! -e "$2-gallery.po" ] ; then
+if [ $1 != "-all" ] && [ ! -e $2 ] ; then
         echo -e "\n$2-gallery.po does not exist or your paramater was wrong"
         echo -e "\nusage :"
-        echo -e "sh make_mo_files.sh -<language_COUNTRY> for only one. e.g. sh update_po_files.sh -po de_DE\n"
+        echo -e "sh make_mo_files.sh -<language_COUNTRY>-gallery.po for only one. e.g. sh update_po_files.sh -po de_DE-gallery.po\n"
         exit
 fi
 
@@ -92,7 +92,7 @@ if [ $1 = "-all" ] ; then
 else
 #just use the one the user gave as parameter
 	echo "only $2"
-	all_po=$2-gallery.po
+	all_po=$2
 fi
 
 for po_file in $all_po ; do

@@ -226,7 +226,11 @@ if (!$title) {
       <?php }
   } ?>
   <link rel="up" href="<?php echo makeAlbumUrl($gallery->session->albumName) ?>">
+	  <?php if ($gallery->album->isRoot() &&
+			  (!$gallery->session->offline ||
+			   $gallery->session->offlineAlbums["albums.php"])) { ?>
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">	 
+	  <?php }?>
   <style type="text/css">
 <?php
 // the link colors have to be done here to override the style sheet

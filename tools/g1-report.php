@@ -93,7 +93,7 @@ foreach ($report as $key => $value) {
 	} else {
 		echo "\n\t<td style=\"background-color:$color\">&nbsp;</td>";
 	}
-	echo "\n\t<td style=\"background-color:$color\">". $nls['languages'][$key] . "</td>";
+	echo "\n\t<td style=\"background-color:$color\">". $nls['language'][$key] . "</td>";
 	echo "\n\t<td style=\"background-color:$color\">". $key ."</td>";
 	echo "\n\t<td style=\"background-color:#". $value[0] . "\">". $value[1] ."% done</td>";
 	echo "\n\t<td class=\"translated$nr\">". $value[2] ."</td>";

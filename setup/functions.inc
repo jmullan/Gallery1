@@ -50,15 +50,15 @@ function make_fields($key, $arr) {
 	} else {
 		$col1 = "";
 	}
-	if (isset($arr["choices"])) {
+	if (isset($arr["type"]) && $arr["type"] == "hidden") {
+		$col2 = form_input($key, $arr);
+	} else if (isset($arr["choices"])) {
 		$col2 = form_choice($key, $arr);
 	} else if (isset($arr["multiple_choices"])) {
 		$col2 = form_multiple_choice($key, $arr);
 	} else if (!strcmp($arr["type"], "textarea")) {
 		$col2 = form_textarea($key, $arr);
 	} else if (isset($arr["type"]) && $arr["type"] == "text") {
-		$col2 = form_input($key, $arr);
-	} else if (isset($arr["type"]) && $arr["type"] == "hidden") {
 		$col2 = form_input($key, $arr);
 	} else {
 		$col2 ="";
@@ -512,11 +512,11 @@ function check_gallery_languages()
 	$languages=gallery_languages();
 	if (sizeof($languages) == 0) {
 		$fail["fail-gallery-languages"] = _("No languages found."); // should never occur!
-	} else if (sizeof($languages) < sizeof($nls['languages'])) {
+	} else if (sizeof($languages) < sizeof($nls['language'])) {
 		$fail["fail-gallery-languages"] 
 			= sprintf(_("Only %d of %d possible languages are available.  If you want the missing languages, download a fresh copy of %s from %s."),
 					sizeof($languages),
-					sizeof($nls['languages']),
+					sizeof($nls['language']),
 					Gallery(),
 					"<a href=\"$gallery->url\">$gallery->url</a>");
 	} else {
@@ -584,7 +584,7 @@ function check_absent_locales()
 		$nls=getNLS();
 		foreach ($missing_locales as $value) {
 			$msg .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-			$msg .= $nls['languages'][$value];
+			$msg .= $nls['language'][$value];
 			$msg .= " ($value)<br>";
 		}
 		$fail[] = $msg;
@@ -596,10 +596,10 @@ function check_absent_locales()
 
 function gallery_languages() {
 	$nls=getNLS();
-	$locales = array('en_US' => $nls['languages']['en_US']);
-	foreach ($nls['languages'] as $key => $value) {
+	$locales = array('en_US' => $nls['language']['en_US']);
+	foreach ($nls['language'] as $key => $value) {
 		if (language_exists($key)) {
-			$locales[$key]=$nls['languages'][$key];
+			$locales[$key]=$nls['language'][$key];
 		}
 	}
 	return $locales;
@@ -620,7 +620,7 @@ function all_locales ($set) {
 	$non_available_locales=array();
 
 	$current_locale=setlocale(LC_ALL, 0);
-	$available_locales['en_US']=$nls['languages']['en_US'];
+	$available_locales['en_US']=$nls['language']['en_US'];
 
 	if (strncasecmp(PHP_OS,"win", 3)) {
 		# Unix / Linux
@@ -634,8 +634,8 @@ function all_locales ($set) {
 		$list=array_merge($list, split("\n", shell_exec("locale -a")) );
 	}
 	foreach ($gallery_languages as $locale => $locale_name) {
-		if (in_array($locale,$nls['aliases'])) {
-                        $keylist=array_keys($nls['aliases'],$locale);
+		if (in_array($locale,$nls['alias'])) {
+                        $keylist=array_keys($nls['alias'],$locale);
                         $aliases = preg_grep ("/^(". substr($locale,0,2) 
 						."|" . implode ("|", $keylist) 
 						.")/",$list);
@@ -643,8 +643,8 @@ function all_locales ($set) {
                         $aliases =
 				preg_grep ("/^". substr($locale,0,2) ."/",$list);
 		}
-		if (in_array($locale,$nls['aliases'])) {
-                        $keylist=array_keys($nls['aliases'],$locale);
+		if (in_array($locale,$nls['alias'])) {
+                        $keylist=array_keys($nls['alias'],$locale);
 			foreach($keylist as $item) {
 				if (setlocale(LC_ALL, $item)) {
 					$aliases[]=$item;
@@ -723,13 +723,13 @@ function config_maybe_locales() {
 					"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Locale Selection required")),
 					"desc" => _("There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable"));
 		}
-		$index = $nls['languages'][$key] ;
+		$index = $nls['language'][$key] ;
 		$choices=array();
 		foreach ($aliases as $value) { 
 			$choices[$value]=$value;
 		}
 		$results["locale_alias['$key']"] = array (
-			"prompt" => $nls['languages'][$key],
+			"prompt" => $nls['language'][$key],
 			"optional" => 1,
 			"name" => "locale_alias",
 			"key" => $key,
@@ -764,9 +764,9 @@ function config_maybe_locales() {
 					"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Locale problems")),
 					"desc" => _("There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."));
 		}
-		$index = $nls['languages'][$key] ;
+		$index = $nls['language'][$key] ;
 		$results["locale_alias['$key']"] = array (
-			"prompt" => $nls['languages'][$key],
+			"prompt" => $nls['language'][$key],
 			"optional" => 1,
 			"name" => "locale_alias",
 			"key" => $key,

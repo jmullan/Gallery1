@@ -31,6 +31,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 	function Gallery_UserDB() {
 		global $gallery;
 		$userDir = $gallery->app->userDir;
+		$this->version = $gallery->user_version;
 
 		$this->userMap = array();
 
@@ -108,15 +109,17 @@ class Gallery_UserDB extends Abstract_UserDB {
 			return $this->loggedIn;
 		}
 
-		$uid = $this->userMap[$username];
-		if (!$uid) {
+		if (!isset($this->userMap[$username])) {
 			$this->rebuildUserMap();
-			$uid = $this->userMap[$username];
-			if (!$uid) {
+			if (!isset($this->userMap[$username])) {
 				return;
+			} else {
+				$uid = $this->userMap[$username];
 			}
-		}
+		} else {
+			$uid = $this->userMap[$username];
 
+		}
 		$user = $this->getUserByUid($uid);
 		if (!$user || strcmp($user->getUsername(), $username)) {
 			// We either got no uid for this name, or we got a uid
@@ -300,6 +303,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$nobody = $this->nobody->getUsername();
 		$everybody = $this->everybody->getUsername();
 		$loggedin = $this->loggedIn->getUsername();
+		processingMsg("");
 		foreach ($this->getUidList() as $uid) {
 			$user=$this->getUserByUid($uid);
 			if ($user->username == $nobody ||

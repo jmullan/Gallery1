@@ -379,39 +379,61 @@ function resize_image($src, $dest, $target, $target_fs=0) {
 		if ($useTemp == false) {
 			fs_copy($src, $dest);
 		}
+		processingMsg("No resizing required");
 		return 1;
 	}
+	$target=min($target, max($regs[0],$regs[1]));
 
-	$max_quality=$gallery->app->jpegImageQuality;
-	$min_quality=5;
-	$quality=$max_quality;
-	if ($target_fs > 0) {
-		processingMsg(sprintf(_("target file size %d kbytes"), $target_fs));
-	}
-	$filesize = fs_filesize($src)/1000;
-	do {
-		compress_image($src, $out, $target, $quality);
-		if ($target_fs > 0) {
-			processingMsg(sprintf(_("file size %d kbytes - trying quality %d%%"), 
-						$filesize, $quality));
+	if ($target_fs == 0) {
+		compress_image($src, $out, $target, $gallery->app->jpegImageQuality);
+	} else {
+		$filesize = fs_filesize($src)/1000;
+		$max_quality=$gallery->app->jpegImageQuality;
+		$min_quality=5;
+		$max_filesize=$filesize;
+		$min_filesize=0;
+		if (!isset($quality)) {
+			$quality=$gallery->album->fields['last_quality'];
+		}
+		processingMsg(sprintf(_("target file size %d kbytes"), 
+					$target_fs)."\n");
+
+		do {
+			compress_image($src, $out, $target, $quality);
+			$prev_quality=$quality;
+			printf(_("- file size %d kbytes"), round($filesize));
+			processingMsg(sprintf(_("trying quality %d%%"), 
+						$quality));
 			clearstatcache();
 			$filesize= fs_filesize($out)/1000;
 			if ($filesize < $target_fs) {
 				$min_quality=$quality;
+				$min_filesize=$filesize;
 			} else if ($filesize > $target_fs){
 				$max_quality=$quality;
+				$max_filesize=$filesize;
 			} else if ($filesize == $target_fs){
 				$min_quality=$quality;
 				$max_quality=$quality;
+				$min_filesize=$filesize;
+				$max_filesize=$filesize;
 			}
-			$quality=round(($max_quality + $min_quality)/2);
-		}
-	} while ($target_fs != 0 && ($max_quality-$min_quality > 2) &&
-			(abs(($filesize-$target_fs)/$target_fs) > .02 ));
+			$quality=($max_quality + $min_quality)/2;
+			$quality=round($quality);
+			if ($quality==$prev_quality) {
+				if ($filesize==$max_filesize) {
+					$quality--;
+				} else {
+					$quality++;
+				}
+			}
+		} while ($max_quality-$min_quality > 2 && 
+				abs(($filesize-$target_fs)/$target_fs) > .02 );
 
-	if ($target_fs > 0) {
-		processingMsg(sprintf(_("Done. file size %.2f kbytes, quality %d%%"),
-					$filesize, $quality));
+		print "<br>";
+		$gallery->album->fields['last_quality']=$prev_quality;
+		printf(_("- file size %d kbytes"), round($filesize));
+		processingMsg(_("Done."));
 	}
 	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
 		if ($useTemp) {
@@ -1593,12 +1615,15 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $extra_fields, $gallery->user->uid);
 			if (!$err) {
 				/* resize the photo if needed */
-				if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
+				if (($gallery->album->fields["resize_size"] > 0 ||
+				     $gallery->album->fields["resize_file_size"] > 0 ) 
+							&& isImage($tag)) {
 					$index = $gallery->album->numPhotos(1);
 					$photo = $gallery->album->getPhoto($index);
 					list($w, $h) = $photo->image->getRawDimensions();
 					if ($w > $gallery->album->fields["resize_size"] ||
-					    $h > $gallery->album->fields["resize_size"]) {
+					    $h > $gallery->album->fields["resize_size"] ||
+					    $gallery->album->fields["resize_file_size"] > 0) {
 						processingMsg("- " . sprintf(_("Resizing %s"), $name));
 						$gallery->album->resizePhoto($index, 
 							$gallery->album->fields["resize_size"],
@@ -1807,7 +1832,7 @@ function initLanguage() {
 			// if not and a language is given by NUKE Cookie use it
 			$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
 		}
-		$gallery->language=$nls['aliases'][$gallery->nuke_language];
+		$gallery->language=$nls['alias'][$gallery->nuke_language];
 	} else {
 		//We're not in Nuke
 		switch ($gallery->app->ML_mode) {
@@ -1831,7 +1856,7 @@ function initLanguage() {
 					if ($nls['alias'][$newlang]) $newlang=$nls['alias'][$newlang] ;
 					// use Language if its okay
 					// Set Language to the User selected language (if this language is defined
-					if ($nls['languages'][$newlang]) {
+					if ($nls['language'][$newlang]) {
 						$gallery->language=$newlang;
 					}
 				} elseif (isset($gallery->session->language)) {
@@ -1858,8 +1883,8 @@ function initLanguage() {
 
 	// if an alias for a language is given, use it
 	//
-	if (isset($nls['aliases'][$gallery->language])) {
-		$gallery->language = $nls['aliases'][$gallery->language] ;
+	if (isset($nls['alias'][$gallery->language])) {
+		$gallery->language = $nls['alias'][$gallery->language] ;
 	}
 
 	// And now set this language into session
@@ -2010,6 +2035,15 @@ function Gallery() {
 	return "Gallery";
 }
 
+/*returns a link to the docs, if present, or NULL */
+function galleryDocs() {
+	global $GALLERY_BASEDIR;
+	if (fs_file_exists($GALLERY_BASEDIR."docs/index.html")) {
+		return "<a href=\"${GALLERY_BASEDIR}docs/index.html\">" .  _("documentation").'</a>';
+	}
+	return NULL;
+}
+
 function compress_image($src, $out, $target, $quality) {
 	global $gallery;
 	switch($gallery->app->graphics)
@@ -2036,6 +2070,16 @@ function compress_image($src, $out, $target, $quality) {
 				echo "<br>" . _("You have no graphics package configured for use!")."<br>";
 			return 0;
 			break;
+	}
+}
+
+function poweredBy () {
+	global $gallery;
+	$link = '<a href="'.$gallery->url.'">'.Gallery().'</a>';
+	if ($gallery->session->offline) {
+		return sprintf(_("Generated by %s v%s"), $link, $gallery->version);
+	} else {
+		return sprintf(_("Powered by %s v%s"), $link, $gallery->version);
 	}
 }
 ?>

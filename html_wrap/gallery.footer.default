@@ -26,7 +26,7 @@
           <td valign=top>
             <!-- The Gallery code version number, linked to the Gallery home page -->
             <span class="fineprint">
-              <?php $gallery->session->offline ? print "Generated" : print "Powered"; ?> by <a href=<?php echo $gallery->url ?>>Gallery v<?php echo $gallery->version ?></a>
+	    <?php print poweredBy() ?>
             </span>
           </td>
           <!-- donation block -->
