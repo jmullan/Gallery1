@@ -27,13 +27,6 @@ $constants = array(
 				array("desc" => "The thumbnail image URL to show for movies",
 					"value" => dirname(getenv("REQUEST_URI")) . 
 						"/images/movie.thumb.jpg"),
-			"photoAlbumURL" => 
-				array("desc" => "The full URL to the gallery",
-					"value" => "http://" . getenv("HTTP_HOST") . 
-							dirname(getenv("REQUEST_URI"))),
-			"albumDirURL" => 
-				array("desc" => "The relative path to the gallery on your web server",
-					"value" => dirname(getenv("REQUEST_URI"))),
 			"albumDir" => 
 				array("desc" => "The full path on physical disk to the directory " .
 						"where your photos will be stored.  This directory " .
@@ -44,6 +37,14 @@ $constants = array(
 						$webserver_user["name"] . "</b>)",
 					"value" => getenv("DOCUMENT_ROOT") . "/albums",
 					"require-write-dir" => 1),
+			"photoAlbumURL" => 
+				array("desc" => "The full URL to the Gallery web app",
+					"value" => "http://" . getenv("SERVER_NAME") . 
+						dirname(dirname(getenv("SCRIPT_NAME")))),
+			"albumDirURL" => 
+				array("desc" => "The relative path to the album directory (specified above) " .
+						"on your web server",
+					"value" => "/albums"),
 		);
 
 $defaults = array(
