@@ -29,7 +29,7 @@ class Album {
 
 		$this->fields["title"] = "Untitled";
 		$this->fields["description"] = "No description";
-		$this->fields["nextname"] = "photo-aaa";
+		$this->fields["nextname"] = "aaa";
         	$this->fields["bgcolor"] = "FFFFFF";
         	$this->fields["textcolor"] = "000000";
         	$this->fields["linkcolor"] = "cc3311";
@@ -229,6 +229,11 @@ class Album {
 		return $photo->getPhotoPath($this->getAlbumDirURL());
 	}
 
+	function getPhotoId($index) {
+		$photo = $this->getPhoto($index);
+		return $photo->getPhotoId($this->getAlbumDirURL());
+	}
+
 	function getAlbumDir() {
 		global $app;
 
@@ -262,6 +267,16 @@ class Album {
 
 	function getPhoto($index) {
 		return $this->photos[$index-1];
+	}
+
+	function getPhotoIndex($id) {
+		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+			$photo = $this->getPhoto($i);
+			if (!strcmp($photo->getPhotoId($this->getAlbumDir()), $id)) {
+				return $i;
+			}
+		}
+		return -1;
 	}
 
 	function setPhoto($photo, $index) {
