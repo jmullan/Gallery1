@@ -1579,6 +1579,11 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 						}
 					}
 				}
+				/*move to the beginning if needed */
+				if ($gallery->album->getAddToBeginning() ) {
+					$gallery->album->movePhoto($gallery->album->numPhotos(1), 0);
+				}
+
 			} else {
 				processingMsg("<font color=red>Error: $err!</font>");
 				processingMsg("<b>Need help?  Look in the " .

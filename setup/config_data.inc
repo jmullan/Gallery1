@@ -303,7 +303,8 @@ $constants = array(
 		"prompt" => "Jpegtran",
 		"desc" => "The filesystem path to the 'jpegtran' utility.  This is optional " .	
 			"so if you don't have it, don't worry about it too much.  Eg. <i> " .
-			"/usr/local/bin/jpegtran</i> or <i>c:\\bin\\jpegtran.exe</i>",
+			"/usr/local/bin/jpegtran</i> or <i>c:\\bin\\jpegtran.exe</i>".
+			"<br><font color=blue><b>(this is new in version 1.3.5)</b></font>",
 		"value" => locateFile("jpegtran"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
@@ -626,6 +627,13 @@ $defaults = array(
 	"item_owner_display" => array(
 		"prompt" => "Photo owner display",
 		"desc" => "Display the name of photo owners with the caption?".
+			  "<br><font color=blue><b>(this is new in version 1.3.5)</b></font>",
+		"choices" => array("yes", "no"),
+		"value" => "no",
+	),
+	"add_to_beginning" => array(
+		"prompt" => "Add to beginning",
+		"desc" => "New images added to beginning rather than end of albums".
 			  "<br><font color=blue><b>(this is new in version 1.3.5)</b></font>",
 		"choices" => array("yes", "no"),
 		"value" => "no",

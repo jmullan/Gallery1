@@ -84,6 +84,7 @@ class Album {
 		$this->fields["item_owner_display"] = $gallery->app->default["item_owner_display"];
 		$this->fields["item_owner_modify"] = $gallery->app->default["item_owner_modify"];
 		$this->fields["item_owner_delete"] = $gallery->app->default["item_owner_delete"];
+		$this->fields["add_to_beginning"] = $gallery->app->default["add_to_beginning"];
 
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
@@ -149,7 +150,8 @@ class Album {
 				"public_comments", 
 				"item_owner_display",
 				"item_owner_modify",
-				"item_owner_delete");
+				"item_owner_delete", 
+				"add_to_beginning");
 		foreach ($check as $field) {
 			if (!$this->fields[$field]) {
 				$this->fields[$field] = $gallery->app->default[$field];
@@ -1158,6 +1160,7 @@ class Album {
 				$nestedAlbum->fields["item_owner_display"] = $this->fields["item_owner_display"];
 				$nestedAlbum->fields["item_owner_modify"] = $this->fields["item_owner_modify"];
 				$nestedAlbum->fields["item_owner_delete"] = $this->fields["item_owner_delete"];
+				$nestedAlbum->fields["add_to_beginning"] = $this->fields["add_to_beginning"];
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedProperties();
 			}
@@ -1391,6 +1394,15 @@ class Album {
 			}
 		}
 		return true;
+	}
+	function getAddToBeginning() {
+		if (isset($this->fields["add_to_beginning"])) {
+			if ($this->fields["add_to_beginning"] === "yes")
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	function getCaptionName($index) {
                 global $gallery;

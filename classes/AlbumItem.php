@@ -144,11 +144,14 @@ class AlbumItem {
 		if ($this->version < 10) {
 			if (!isset($this->extraFields) or !is_array($this->extraFields)) {
 				$this->extraFields=array();
+				$changed=1;
 			}
 		}
 		if ($this->version < 11) { 
-			$this->owner = $gallery->album->fields["owner"];
-			$changed = 1;
+			if (!isset($this->owner)) {
+				$this->owner = $gallery->album->fields["owner"];
+				$changed = 1;
+			}
 		}
 		if ($this->version < 12) {
 		    	$nobody = $gallery->userDB->getNobody();

@@ -63,6 +63,7 @@ if ($save) {
 	$gallery->album->fields["item_owner_modify"] = $item_owner_modify;
 	$gallery->album->fields["item_owner_delete"] = $item_owner_delete;
 	$gallery->album->fields["item_owner_display"] = $item_owner_display;
+	$gallery->album->fields["add_to_beginning"] = $add_to_beginning;
 	$gallery->album->save();
 
 	if ($setNested) {
@@ -195,6 +196,10 @@ if ($gallery->app->use_exif) {
 <tr>
 <td>Allow item owners to delete their images</td>
 <td><select name="item_owner_delete"><?php echo selectOptions($gallery->album, "item_owner_delete", array("yes", "no")) ?></select></td>
+</tr>
+<tr>
+<td>Add new items at beginning of album</td>
+<td><select name="add_to_beginning"><?php echo selectOptions($gallery->album, "add_to_beginning", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Allow public commenting for photos in this album?</td>
