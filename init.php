@@ -47,6 +47,7 @@ if (file_exists("setup") && is_readable("setup")) {
 }
 
 /* Load defaults */
+require('version.php');
 require('config.php');
 require('classes.php');
 require('util.php');
