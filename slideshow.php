@@ -55,20 +55,28 @@ if ($gallery->session->albumName == "" &&
         return;
 }
 
+/*
+** I dont know what this is good for, but it breaks
+** Gallery wide slideshow. So i commented it out.
+** 11.02.2004 / Jens Tkotz
+*/
+
+/*
 if (!$gallery->user->canReadAlbum($gallery->album)) {
 	header("Location: " . makeAlbumUrl());
 	return;
 }
+*/
 
 $albumName = $gallery->session->albumName;
 
 if (!empty($albumName)) {
-    $album = new Album();
-    $album->load($albumName);
-    if ($album->fields["slideshow_type"] == "off") {
-        header("Location: " . makeAlbumUrl($gallery->session->albumName));
-        return;
-    } 
+	$album = new Album();
+	$album->load($albumName);
+	if ($album->fields["slideshow_type"] == "off") {
+        	header("Location: " . makeAlbumUrl($gallery->session->albumName));
+	        return;
+	} 
 
 	if (!$gallery->album->isLoaded()) {
 		header("Location: " . makeAlbumUrl());
@@ -83,10 +91,10 @@ if (!empty($albumName)) {
 if (file_exists("java/GalleryRemoteAppletMini.jar") &&
 	file_exists("java/GalleryRemoteHTTPClient.jar") &&
 	! $gallery->session->offline) {
-    $modes["applet"] = _("Fullscreen applet");
+	$modes["applet"] = _("Fullscreen applet");
 }
 
-$modes["high"] = _("For modern browsers");
+$modes["high"] = _("Modern browsers");
 
 if (!empty($albumName) && !$gallery->session->offline) {
     $modes["low"] = _("Compatible but limited");

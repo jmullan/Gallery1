@@ -63,9 +63,9 @@ function slideshow_image() {
 	global $photo_count, $gallery, $album;
 ?>
 <div align="center">
-
-<?php echo _("<p>If you don't have the Java Plugin 1.3 or later, or you don't want to wait for the applet to
-download, you can use one of the non-fullscreen versions.") ?></p>
+<p>
+<?php echo _("If you don't have the Java Plugin 1.3 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions.") ?>
+</p>
 
 <?php
 	drawApplet(

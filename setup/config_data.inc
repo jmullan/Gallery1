@@ -243,7 +243,7 @@ $constants =  array_merge(
 	),
 	"embedded_inside_type" => array(
 		"prompt" => _("Embed Gallery"),
-		"desc"   => sprintf(_("If you would like to run your %s in into another web application (such as *Nuke, phpBB2 or GeekLog) you have to choose the environment now"),gallery()),
+		"desc"   => sprintf(_("If you would like to run %s in another web application (such as *Nuke, phpBB2 or GeekLog) you have to choose the environment here."),gallery()),
 		"choices" => array(	NULL 	   => _("Standalone Gallery"),
 					'phpNuke'  => 'phpNuke',
 					'postNuke' => 'postNuke',

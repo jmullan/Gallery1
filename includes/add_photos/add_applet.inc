@@ -21,8 +21,8 @@
  */
 ?>
 
-<?php echo _("<p>Use the Gallery Remote Applet to upload pictures. It will take a short while to download.</p>") ?>
-<?php echo _("<p>If you don't have the Java Plugin 1.4 or later, you can use one of the other methods.</p>") ?>
+<p><?php echo _("Use the Gallery Remote Applet to upload pictures. It will take a short while to download.") ?></p>
+<p><?php echo _("If you don't have the Java Plugin 1.4 or later, you can use one of the other methods.") ?></p>
 
 <p>
 
