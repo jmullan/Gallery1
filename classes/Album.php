@@ -68,6 +68,10 @@ class Album {
 	}
 
 	function getHighlight() {
+		if ($this->numPhotos(1) == 0) {
+			return null;
+		}
+
 		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			$photo = $this->getPhoto($i);
 			if ($photo->isHighlight()) {
