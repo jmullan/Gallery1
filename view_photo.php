@@ -704,6 +704,65 @@ if ($table) {
 			echo viewComments($index, $gallery->user->canAddComments($gallery->album));
 	}
 ?>
+<?php
+
+echo("<tr><td colspan=3 align=center>");
+includeHtmlWrap("inline_photo.footer");
+echo("</td></tr>");
+?>
+
+</table>
+
+<?php if ($gallery->user->isLoggedIn() &&  
+		$gallery->user->getEmail() &&
+		!$gallery->session->offline &&
+		$gallery->app->emailOn == "yes") {
+	if (isset($submitEmailMe)) {
+		if (isset($comments)) {
+			$gallery->album->setEmailMe('comments', $gallery->user, $id);
+		} else {
+			$gallery->album->unsetEmailMe('comments', $gallery->user, $id);
+		}
+		/* if (isset($other)) {
+			$gallery->album->setEmailMe('other', $gallery->user, $id);
+		} else {
+			$gallery->album->unsetEmailMe('other', $gallery->user, $id);
+		} */
+	}
+	echo makeFormIntro("view_photo.php",
+		       	array("name" => "email_me", "method" => "POST"));
+       	print "<input type=hidden name=id value=$id>";
+       	print _("Email me when:") . "  ";
+       	print _("Comments are added");
+       	?>
+	<input type="checkbox" name="comments" <?php echo ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? "checked" : "" ?>
+		        onclick="document.email_me.submit()" >
+		<!-- <?php print _("Other changes are made") ?>
+		<input type="checkbox" name="other" <?php echo ($gallery->album->getEmailMe('other', $gallery->user, $id)) ? "checked" : "" ?>
+		        onclick="document.email_me.submit()" > -->
+	       	<input type="hidden" name="submitEmailMe">
+		</form>
+<?php } ?>
+
+<?php
+includeLayout('navtablebegin.inc');
+includeLayout('navphoto.inc');
+$breadcrumb["top"] = false;
+includeLayout('navtablemiddle.inc');
+includeLayout('breadcrumb.inc');
+includeLayout('navtableend.inc');
+includeLayout('ml_pulldown.inc');
+if ($fitToWindow) {
+?>
+<script type="text/javascript">
+<!--
+	calculateNewSize();
+//-->
+</script>
+<?php
+}
+includeHtmlWrap("photo.footer");
+?>
 <?php if (isset($printShutterflyForm)) { ?>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value="1">
@@ -764,67 +823,7 @@ if ($table) {
   <input type="hidden" name="height0" value="<?php echo $imageHeight ?>">
   <input type="hidden" name="startwith" value="cart">
 </form>
-</td></tr>
 <?php } ?> 
-<?php
-
-echo("<tr><td colspan=3 align=center>");
-includeHtmlWrap("inline_photo.footer");
-echo("</td></tr>");
-?>
-
-</table>
-
-<?php if ($gallery->user->isLoggedIn() &&  
-		$gallery->user->getEmail() &&
-		!$gallery->session->offline &&
-		$gallery->app->emailOn == "yes") {
-	if (isset($submitEmailMe)) {
-		if (isset($comments)) {
-			$gallery->album->setEmailMe('comments', $gallery->user, $id);
-		} else {
-			$gallery->album->unsetEmailMe('comments', $gallery->user, $id);
-		}
-		/* if (isset($other)) {
-			$gallery->album->setEmailMe('other', $gallery->user, $id);
-		} else {
-			$gallery->album->unsetEmailMe('other', $gallery->user, $id);
-		} */
-	}
-	echo makeFormIntro("view_photo.php",
-		       	array("name" => "email_me", "method" => "POST"));
-       	print "<input type=hidden name=id value=$id>";
-       	print _("Email me when:") . "  ";
-       	print _("Comments are added");
-       	?>
-	<input type="checkbox" name="comments" <?php echo ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? "checked" : "" ?>
-		        onclick="document.email_me.submit()" >
-		<!-- <?php print _("Other changes are made") ?>
-		<input type="checkbox" name="other" <?php echo ($gallery->album->getEmailMe('other', $gallery->user, $id)) ? "checked" : "" ?>
-		        onclick="document.email_me.submit()" > -->
-	       	<input type="hidden" name="submitEmailMe">
-		</form>
-<?php } ?>
-
-<?php
-includeLayout('navtablebegin.inc');
-includeLayout('navphoto.inc');
-$breadcrumb["top"] = false;
-includeLayout('navtablemiddle.inc');
-includeLayout('breadcrumb.inc');
-includeLayout('navtableend.inc');
-includeLayout('ml_pulldown.inc');
-if ($fitToWindow) {
-?>
-<script type="text/javascript">
-<!--
-	calculateNewSize();
-//-->
-</script>
-<?php
-}
-includeHtmlWrap("photo.footer");
-?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>

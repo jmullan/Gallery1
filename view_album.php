@@ -737,7 +737,7 @@ if ($numPhotos) {
 				$myAlbum->load($gallery->album->getAlbumName($i));
 
 				$gallery->html_wrap['imageTag'] = $myAlbum->getHighlightTag($scaleTo,'',_("Highlight for Album: ").htmlentities(removeTags($myAlbum->fields['title']),ENT_COMPAT));
-				$gallery->html_wrap['imageHref'] = makeAlbumUrl($myAlbumName);
+				$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->album->getAlbumName($i));
 				$gallery->html_wrap['frame'] = $gallery->album->fields['album_frame'];
 			       	/*begin backwards compatibility */
 			       	$gallery->html_wrap['thumbWidth'] = 
