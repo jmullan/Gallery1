@@ -1,5 +1,10 @@
 2001-01-06  Bharat Mediratta  <bharat@sinia.com>
 
+	* Fixed bug in the setup code that generates the anytopnm wrapper.
+	  It was not basing the wrapper on the path the user provided --
+	  it was only basing it on the path that it found.  This will
+	  further help non-FreeBSD users.
+
 	* Changed from using constant() to one_constant() in setup code
 	  'cause "constant" is now a reserved word in PHP 4.0.4
 
