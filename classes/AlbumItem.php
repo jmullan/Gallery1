@@ -348,7 +348,7 @@ class AlbumItem {
 			}
 		} else {
 			if (is_object($this->highlightImage)) {
-				$this->highlightImage->delete($dir);
+				$this->highlightImage->simpleDelete($dir);
 				$this->highlightImage = null;
 			}
 		}

@@ -143,6 +143,12 @@ class Image {
 		fs_unlink("$dir/$this->name.$this->type");
 	}
 
+	function simpleDelete($dir) {
+		if (fs_file_exists("$dir/$this->name.$this->type") {
+			fs_unlink("$dir/$this->name.$this->type");
+		}
+	}
+
 	function getTag($dir, $full=0, $size=0, $attrs="",$alttext="") {
 		global $gallery;
 
