@@ -44,7 +44,7 @@ function editField($album, $field, $link=null) {
 		if (!strcmp($buf, "")) {
 			$buf = "<i>&lt;". _("Empty") . "&gt;</i>";
 		}
-		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field";
+		$url = "edit_field.php?set_albumName={$album->fields['name']}&amp;field=$field";
 		$buf .= " <span class=editlink>";
 		$buf .= popup_link( "[". sprintf(_("edit %s"), _($field)) . "]", $url) ;
 		$buf .= "</span>";
@@ -91,10 +91,10 @@ function viewComments($index) {
 		include($GALLERY_BASEDIR . "layout/commentdraw.inc");
 	}
         $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&index=$index";
-        $buf = "<span class=editlink>";
+        $buf = "<tr><td><span class=editlink>";
         $buf .= popup_link('[' . _("add comment") . ']', $url, 0);
-        $buf .= "</span>";
-        echo "<tr align=\"center\"><td colspan=\"3\">$buf<br><br></td></tr>";
+        $buf .= "</span></td></tr>";
+        echo $buf;
 }
 
 function center($message) {
@@ -350,7 +350,7 @@ function dismissAndReload() {
 }
 
 function reload() {
-	echo '<script language="javascript1.2">';
+	echo '<script language="javascript1.2" type="text/JavaScript">';
 	echo 'opener.location.reload()';
 	echo '</script>';
 }
@@ -1001,7 +1001,7 @@ function makeGalleryUrl($target, $args=array()) {
 		$i = 0;
 		foreach ($args as $key => $value) {
 			if ($i++) {
-				$url .= "&";
+				$url .= "&amp;";  // &
 			} else {
 				$url .= "?";
 			}
@@ -1151,7 +1151,7 @@ function isDebugging() {
 
 function addUrlArg($url, $arg) {
 	if (strchr($url, "?")) {
-		return "$url&$arg";
+		return "$url&amp;$arg";
 	} else {
 		return "$url?$arg";
 	}
@@ -1641,15 +1641,12 @@ function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",
 	$counter = 0;
 	foreach ($array as $name => $value) {
 		$bar_width = $value * $pixels_per_value;
-		$string_to_return .= 
-		 "<tr>
-			<td>".(++$counter)."</td>
-			<td>$name ($value)</td>
-			<td><IMG SRC=\"images/bar.gif\" 
-			     BORDER=1
-			     WIDTH=$bar_width 
-			     HEIGHT=10>
-			</td></tr>";
+		$string_to_return .= "<tr> <td>" .
+		       	(++$counter) .
+		      	"</td> <td>$name ($value)</td> <td>" .
+			"<IMG SRC=\"images/bar.gif\" BORDER=\"1\" " .
+			"WIDTH=\"$bar_width\" HEIGHT=\"10\" alt=\"BAR\">" .
+		       "</td></tr>";
 	}
 	$string_to_return .= "</TABLE>";
 	return($string_to_return);
@@ -1675,7 +1672,9 @@ function saveResults($votes)
 	{
 		foreach ($votes as $vote_key => $vote_value)
 		{
-			if ($vote_value === null || $vote_value == "NULL")
+			if (($vote_value === null || $vote_value == "NULL")
+					&& isset($gallery->album->fields["votes"] 
+					   [$vote_key][getVotingID()]) )
 			{
 				unset($gallery->album->fields["votes"]
 					[$vote_key]
@@ -1917,9 +1916,9 @@ function showResultsGraph($num_rows)
 			continue;
 		}
 		
-	    	$name_string="<a href=";
+	    	$name_string='<a href="';
 		$name_string.= $url;
-		$name_string.= ">";
+		$name_string.= '">';
 		$name_string.= $desc;
 		$name_string.= "</a>";
 		$graph[$name_string]=$count;
@@ -2843,13 +2842,8 @@ function available_frames($description_only=false) {
 	       	return $opts;
 	}
 }
-function validation_link() {
-	/* <a href="albums.php?PHPSESSID=<?php echo session_id()?>">link with session id</a> */
-       	?> <a href="http://validator.w3.org/check/referer">
-	       	<img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>
 
-		<?php
-}
+
 
 /* simplify condition tests */
 function testRequirement($test) {
@@ -2892,6 +2886,12 @@ function testRequirement($test) {
     return false;
 }
 
+function doctype() {
+	?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+	<?php
+}
+
 // uses makeGalleryURL
 function gallery_validation_link($file, $args=array()) {
 	$args['PHPSESSID']=session_id();
@@ -2912,5 +2912,4 @@ function album_validation_link($album, $photo='', $args=array()) {
 		'"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
 	return $link;
 }
-
 ?>

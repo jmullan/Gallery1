@@ -314,7 +314,7 @@ if (!$uptodate) {
 ?>
 </font>
 
-<script language="javascript1.2">
+<script language="javascript1.2" type="text/JavaScript">
 <!--   
 // position cursor in top form field
 document.theform.newIndex.focus();

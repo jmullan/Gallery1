@@ -150,7 +150,7 @@ include($GALLERY_BASEDIR . 'html/userData.inc');
 <input type="submit" name="create" value="<?php echo _("Create") ?>">
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onClick='parent.close()'>
 </form>
-<script language="javascript1.2">
+<script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
 document.usercreate_form.uname.focus();

@@ -75,7 +75,7 @@ if (isset($save)) {
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 
-<script language="javascript1.2">
+<script language="javascript1.2" type="text/JavaScript">
 <!--   
 // position cursor in top form field
 document.theform.data.focus();

@@ -167,10 +167,10 @@ class Image {
 		if ($this->resizedName) {
 			if ($full) {
 				return "<img src=\"$dir/$this->name.$this->type\" " .
-					"width=\"$this->raw_width\" \"height=$this->raw_height $attrs\" alt=\"$alttext\" title=\"$alttext\" />";
+					"width=\"$this->raw_width\" height=\"$this->raw_height $attrs\" alt=\"$alttext\" title=\"$alttext\" />";
 			} else {
 				return "<img src=\"$dir/$this->resizedName.$this->type\" " .
-					"width=\"$this->width\" \"height=$this->height\" " .
+					"width=\"$this->width\" height=\"$this->height\" " .
 					"$attrs alt=\"$alttext\" title=\"$alttext\" />";
 			}
 		} else {
