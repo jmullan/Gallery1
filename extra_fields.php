@@ -153,7 +153,11 @@ function num_special_fields($extra_fields)
 		if (in_array($special_field, $extra_fields))
 			$num_special_fields++;
 	}
-	return $num_special_fields+1;  //extra 1 for title
+	if (in_array("Title", $extra_fields)) {
+		$num_special_fields++;
+	}
+
+	return $num_special_fields;  
 }
 ?>
 </table>
