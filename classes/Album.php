@@ -662,7 +662,7 @@ class Album {
 		}
 	}
 
-	function load($name,$loadphotos=TRUE) {
+	function load($name, $loadphotos=TRUE) {
 		global $gallery;
 
 		$this->transient->photosloaded = FALSE;
@@ -1332,7 +1332,7 @@ class Album {
 			if ($canWrite || !$photo->isHidden()) {
 				if ($photo->isAlbum()) {
 					$album = new Album();
-					$album->load($photo->getAlbumName());
+					$album->load($photo->getAlbumName(), false);
 					if ($user->canReadAlbum($album)) {
 						$numAlbums++;
 					}

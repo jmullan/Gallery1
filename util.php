@@ -1950,7 +1950,7 @@ function printChildren($albumName,$depth=0) {
 		if ($myAlbum->isAlbum($i) && !$myAlbum->isHidden($i)) {
 			$myName = $myAlbum->getAlbumName($i);
 		        $nestedAlbum = new Album();
-			$nestedAlbum->load($myName);
+			$nestedAlbum->load($myName, false);
 			if ($gallery->user->canReadAlbum($nestedAlbum)) {
 				$val2 = $nestedAlbum->fields['title'];
 				if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
@@ -1967,7 +1967,7 @@ function printChildren($albumName,$depth=0) {
 				echo "<a href=\"";
 				echo makeAlbumUrl($myName);
 				echo "\">$val2 $val3</a>\n";
-				printChildren($myName,$depth+1);
+				printChildren($myName, $depth+1);
 				echo "</span>";
 				echo "</div>";
 			}
