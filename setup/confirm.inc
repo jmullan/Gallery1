@@ -153,12 +153,21 @@ foreach ($constants as $key => $val) {
 				continue;
 			}
 
-			if (!is_writeable($dir)) {
-				$view .= row_wrap(error_format("$dir exists, but is not writeable by the " .
-						"webserver user.  Try:<br><center><b><code>" .
+			if (!is_writeable($dir) ||
+			    !test_write_to_dir($dir)) {
+				$view .= row_wrap(error_format("$key: $dir exists, but is not " .
+						"writeable by the webserver user.  Try:" .
+						"<br><b><code>" .
 						"chown -R " . $webserver_user . " $dir" .
-						"</b><br><br> or if that doesn't work <br><br><b>" .
-						"chmod -R 777 $dir</code>"));
+						"</code></b><br><br>" .
+						"or if that doesn't work:" .
+						"<br><b><code>" .
+						"chmod -R 777 $dir</code>" .
+						"</code></b><br><br>" .
+					        "Also make sure that if you have an " .
+					        "<a href=phpinfo.php>open_basedir restriction</a> " .
+						", then this tmp directory " .
+					        "should be under the open_basedir path"));
 				$error = 1;
 				continue;
 			}

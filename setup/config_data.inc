@@ -134,15 +134,6 @@ $constants = array(
 		"dont-write" => 1,
 		"attrs" => array("size" => 50),
 	),
-	"tmpDir" => array(
-		"prompt" => "Temporary directory",
-		"desc" => "The filesystem path to a temporary directory.  Eg. <i>/tmp</i> or " .
-			"<i>c:\\windows\\temp</i>",
-		"value" => getenv("TMP"),
-		"filename" => 1,
-		"require-write-dir" => 1,
-		"attrs" => array("size" => 50),
-	),
 	"pnmDir" => array(
 		"prompt" => "Path to NetPBM",
 		"desc" => "The path to the directory containing NetPBM on your system.  If you " .
@@ -217,6 +208,19 @@ $constants = array(
 		"value" => getenv("DOCUMENT_ROOT") . "/albums",
 		"require-write-dir" => 1,
 		"filename" => 1,
+		"attrs" => array("size" => 50),
+	),
+	"tmpDir" => array(
+		"prompt" => "Temporary directory",
+		"desc" => "The filesystem path to a temporary directory.  Eg. <i>/tmp</i> or " .
+			"<i>c:\\windows\\temp</i>.  Note that if you have open_basedir " .
+			  "configured on your system, then this temporary directory " .
+			  "must be inside the open_basedir path!  In that case you may need " .
+			  "to create the tmp directory yourself and make sure that it's writable " .
+			  "by the webserver process",
+		"value" => getenv("TMP"),
+		"filename" => 1,
+		"require-write-dir" => 1,
 		"attrs" => array("size" => 50),
 	),
 	"photoAlbumURL" => array(

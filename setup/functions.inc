@@ -330,5 +330,20 @@ function detect_exec_status()
 
 	return $status;
 }
+
+/*
+ * Actually try to write to a file inside the directory.  This detects
+ * open_basedir restrictions.
+ */
+function test_write_to_dir($dir) {
+	$tmpfile = tempnam($dir, "dbg");
+	if ($fd = fs_fopen($tmpfile, "w")) {
+		fclose($fd);
+		unlink($tmpfile);
+		return 1;
+	}
+
+	return 0;
+}
 ?>
 
