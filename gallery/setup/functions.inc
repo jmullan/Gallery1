@@ -149,6 +149,7 @@ function check_graphics($location="")
 		"ppmquant",
 		"pnmcut",
 		"pnmrotate",
+		"pnmflip"
 	);
 
 	foreach ($netpbm as $bin) {
