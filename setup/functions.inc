@@ -272,7 +272,7 @@ function check_safe_mode()
 {
 	$fail = array();
 	$success = array();
-	if (get_cfg_var("safe_mode")) {
+	if (ini_get("safe_mode")) {
 		$fail["fail-safe-mode"]++;
 	} else {
 		$success[] = "safe mode is off";
