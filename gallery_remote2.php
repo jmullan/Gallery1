@@ -147,7 +147,7 @@ if (!strcmp($cmd, "fetch-albums")) {
 	$response = new Properties();
 	check_proto_version( $response );
 	
-	$albumDB = new AlbumDB();
+	$albumDB = new AlbumDB(FALSE);
     $mynumalbums = $albumDB->numAlbums($gallery->user);
 	
 	$album_index = 0;

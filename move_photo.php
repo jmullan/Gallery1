@@ -34,7 +34,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 
-$albumDB = new AlbumDB(); // read album database
+$albumDB = new AlbumDB(FALSE); // read album database
 
 ?>
 <html>
@@ -55,7 +55,7 @@ if ($gallery->session->albumName && isset($index)) {
 
         if ($newAlbum) {	// we are moving from one album to another
             	$postAlbum = $albumDB->getAlbumbyName($newAlbum);
-	    	if ($gallery->album != $postAlbum) {
+	    	if ($gallery->album->fields[name] != $postAlbum->fields[name]) {
 			//$startPhoto=$index;
 			//$endPhoto=$startPhoto+max($numPhotosToMove,1);
 

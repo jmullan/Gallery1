@@ -69,6 +69,9 @@ class Album {
 		$this->fields["public_comments"] = $gallery->app->default["public_comments"];
 		$this->fields["serial_number"] = 0;
 
+		$this->fields["cached_photo_count"] = 0;
+		$this->fields["photos_separate"] = FALSE;
+		$this->transient->photosloaded = TRUE;
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
 	}
@@ -348,9 +351,10 @@ class Album {
 		}
 	}
 
-	function load($name) {
+	function load($name,$loadphotos=TRUE) {
 		global $gallery;
 
+		$this->transient->photosloaded = FALSE;
 		$dir = $gallery->app->albumDir . "/$name";
 
 		if (!$this->loadFromFile("$dir/album.dat")) {
@@ -370,21 +374,56 @@ class Album {
 			}
 		}
 
+		if ($this->fields["photos_separate"] && ($this->fields["cached_photo_count"] > 0)) {
+			if ($loadphotos) {
+				$this->loadPhotos($dir);
+			}
+		} else {
+			$this->transient->photosloaded = TRUE;
+		}
 		$this->fields["name"] = $name;
 		$this->updateSerial = 0;
 		return 1;
 	}
 
+
+	function loadPhotos($dir){
+		if (!$this->loadPhotosFromFile("$dir/photos.dat") &&
+			!$this->loadPhotosFromFile("$dir/photos.dat.bak") &&
+		    !$this->loadPhotosFromFile("$dir/photos.bak")) {
+			/* Uh oh */
+			return 0;
+		}
+		$this->transient->photosloaded = TRUE;
+		return 1;
+	}
+
 	function loadFromFile($filename) {
 
-		$data = getFile($filename);
-		$tmp = unserialize($data);
+		$tmp = unserialize(getFile($filename));
 		if (strcasecmp(get_class($tmp), "album")) {
 			/* Dunno what we unserialized .. but it wasn't an album! */
 			return 0;
 		}
 
 		$this = $tmp;
+		return 1;
+	}
+
+	function loadPhotosFromFile($filename) {
+		$tmp = unserialize(getFile($filename));
+		if (!is_Array($tmp)){
+			return 0;
+		}
+		if (count($tmp) > 0) {
+			if (strcasecmp(get_class($tmp[0]), "albumitem")) {
+				/* Dunno what we unserialized .. but it wasn't an album! */
+				return 0;
+			}
+		}
+
+		$this->photos = $tmp;
+
 		return 1;
 	}
 
@@ -404,6 +443,7 @@ class Album {
 	function save($resetModDate=1) {
 		global $gallery;
 		$dir = $this->getAlbumDir();
+		$savephotosuccess = FALSE;
 
 		if ($resetModDate) {
 			$this->fields["last_mod_time"] = time();
@@ -422,14 +462,32 @@ class Album {
 			$this->fields["serial_number"]++;
 		}
 
+		if ($this->transient->photosloaded) {
+			$this->fields["cached_photo_count"] = $this->numPhotos();
+		}
+
+		$transient_photos = $this->photos;
+
+		/* Save photo data separately */
+		if ($this->transient->photosloaded) {
+			$savephotosuccess = (safe_serialize($this->photos, "$dir/photos.dat"));
+			if ($savephotosuccess) {
+				$this->fields["photos_separate"] = TRUE;
+				unset ($this->photos);
+			}
+		} else {
+			$savephotosuccess = TRUE;
+		}
+
 		/* Don't save transient data */
 		$transient_save = $this->transient;
 		unset($this->transient);
 
-		$success = safe_serialize($this, "$dir/album.dat");
+		$success = (safe_serialize($this, "$dir/album.dat") && $savephotosuccess);
 
 		/* Restore transient data after saving */
 		$this->transient = $transient_save;
+		$this->photos = $transient_photos;
 
 		/* Create the new album serial file */
 		if ($this->updateSerial) {

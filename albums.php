@@ -31,13 +31,13 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 
 <?php
 /* Read the album list */
-$albumDB = new AlbumDB();
+$albumDB = new AlbumDB(FALSE);
 $gallery->session->albumName = "";
 $page = 1;
 
 /* If there are albums in our list, display them in the table */
 $numAlbums = $albumDB->numAlbums($gallery->user);
-$numPhotos = $albumDB->numPhotos($gallery->user);
+$numPhotos = $albumDB->getCachedNumPhotos($gallery->user);
 
 if (!$gallery->session->albumListPage) {
 	$gallery->session->albumListPage = 1;
@@ -104,7 +104,11 @@ $adminText .= "</span>";
 $adminCommands = "<span class=\"admin\">";
 
 if ($gallery->user->isLoggedIn()) {
-	$adminCommands .= "Welcome, " . $gallery->user->getFullname() . "&nbsp;&nbsp;<br>";
+	$displayName = $gallery->user->getFullname();
+	if (empty($displayName)) {
+		$displayName = $gallery->user->getUsername();
+	}
+	$adminCommands .= "Welcome, $displayName &nbsp;&nbsp;<br>";
 }
 
 if ($gallery->user->canCreateAlbums()) { 

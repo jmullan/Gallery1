@@ -23,7 +23,7 @@ class AlbumDB {
 	var $albumList;
 	var $albumOrder;
 
-	function AlbumDB() {
+	function AlbumDB($loadphotos=TRUE) {
 		global $gallery;
 
 		$dir = $gallery->app->albumDir;
@@ -43,7 +43,7 @@ class AlbumDB {
 			$name = $this->albumOrder[$i];
 			if (fs_is_dir("$dir/$name")) {
 				$album = new Album;
-				if ($album->load($name)) {
+				if ($album->load($name,$loadphotos)) {
 					array_push($this->albumList, $album);
 				} else {
 					array_push($this->brokenAlbums, $name);
@@ -63,7 +63,7 @@ class AlbumDB {
 				    strcmp($file, "_vti_cnf") &&
 				    !in_array($file, $this->albumOrder)) {
 					$album = new Album;
-					$album->load($file);
+					$album->load($file,$loadphotos);
 					array_push($this->albumList, $album);
 					array_push($this->albumOrder, $file);
 					$changed = 1;
@@ -130,17 +130,33 @@ class AlbumDB {
 		return $numPhotos;
 	}
 
+	function getCachedNumPhotos($user) {
+		$numPhotos = 0;
+		foreach ($this->albumList as $album) {
+			if ($user->canReadAlbum($album)) {
+				$numPhotos += $album->fields["cached_photo_count"];
+			}
+		}
+		return $numPhotos;
+	}
+
 	function getAlbum($user, $index) {
+		global $gallery;
 		$list = $this->getVisibleAlbums($user);
+		if (!$list[$index-1]->transient->photosloaded) {
+			$list[$index-1]->loadPhotos($gallery->app->albumDir . "/" . $list[$index-1]->fields["name"]);
+		}
 		return $list[$index-1];
 	}
 
 	function getAlbumbyName($name) {
-		$list = $this->albumList;
-		$indexLimit = count($list);
-		for ($i=0; $i<$indexLimit; $i++) {
-			if ($list[$i]->fields["name"] == $name) {
-				return $list[$i];
+		global $gallery;
+		foreach ($this->albumList as $album) {
+			if ($album->fields["name"] == $name) {
+				if (!$album->transient->photosloaded) {
+					$album->loadPhotos($gallery->app->albumDir . "/$name");
+				}
+				return $album;
 			}
 		}
 		return 0;
@@ -166,9 +182,9 @@ class AlbumDB {
 
 		// Locate absolute indices of the target and destination
 		for ($i = 0; $i < sizeof($this->albumList); $i++) {
-			if ($this->albumList[$i] == $album1) {
+			if ($this->albumList[$i]->fields[name] == $album1->fields[name]) {
 				$absIndex = $i;
-			} else if ($this->albumList[$i] == $album2) {
+			} else if ($this->albumList[$i]->fields[name] == $album2->fields[name]) {
 				$absNewIndex = $i;
 			}
 		}
@@ -196,6 +212,7 @@ class AlbumDB {
 	}
 
 	function getVisibleAlbums($user) {
+		global $gallery;
 		$list = array();
 		foreach ($this->albumList as $album) {
 			if ($user->canReadAlbum($album) && $album->isRoot()) {

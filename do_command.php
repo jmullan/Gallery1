@@ -91,7 +91,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 } else if (!strcmp($cmd, "new-album")) {
 	if ($gallery->user->canCreateAlbums() ||
 	    $gallery->user->canCreateSubAlbum($gallery->album)) {
-		$albumDB = new AlbumDB();
+		$albumDB = new AlbumDB(FALSE);
 		$gallery->session->albumName = $albumDB->newAlbumName();
 		$gallery->album = new Album();
 		$gallery->album->fields["name"] = $gallery->session->albumName;
@@ -126,7 +126,6 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 			$gallery->album->save();
 		} else {
 			/* move the album to the top if not a nested album*/
-			$albumDB = new AlbumDB();
                 	$numAlbums = $albumDB->numAlbums($gallery->user);
                 	$albumDB->moveAlbum($gallery->user, $numAlbums, 1);
                 	$albumDB->save();

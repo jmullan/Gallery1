@@ -61,7 +61,7 @@ if (!strcmp($cmd, "login")) {
 
 if (!strcmp($cmd, "fetch-albums")) {
 
-	$albumDB = new AlbumDB();
+	$albumDB = new AlbumDB(FALSE);
     $mynumalbums = $albumDB->numAlbums($gallery->user);
 
     // display all albums that the user can move album to

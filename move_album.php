@@ -44,7 +44,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 <?php
 /* Read the album list */
-$albumDB = new AlbumDB();
+$albumDB = new AlbumDB(FALSE);
 
 if ($gallery->session->albumName && isset($index)) {
 

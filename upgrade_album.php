@@ -58,7 +58,7 @@ if (!$gallery->user->isAdmin() && !$upgrade_albumname) {
 	exit;
 }
 
-$albumDB = new AlbumDB();
+$albumDB = new AlbumDB(FALSE);
 
 function close_button() {
 	print "<center>";

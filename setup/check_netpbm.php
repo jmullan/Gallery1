@@ -115,8 +115,6 @@ function checkNetPbm($cmd) {
 	global $show_details;
 	global $debugfile;
 
-	$gallery->app->pnmDir .= 'x';
-
 	$cmd = fs_executable($gallery->app->pnmDir . "/$cmd");
 	print "Checking ". fs_import_filename($cmd) ."\n";
 

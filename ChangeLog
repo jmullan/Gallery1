@@ -1,3 +1,14 @@
+2002-10-31  Bharat Mediratta  <bharat@menalto.com> 1.3.2-cvs-b16
+
+	* Minor tweak: if the full name is empty, display the username in the
+	  "Welcome, xxx" message on albums.php
+
+	* Integrated Jesse Mullan's albumdb refactoring code in a separate
+	  branch.  This code separates out the information about each photo
+	  from the album metadata which allows us to load much less data into
+	  memory when we load an album.  This will speed up cross-album
+	  operations and use less memory (yay Jesse!)
+
 2002-10-18  Bharat Mediratta  <bharat@menalto.com> 1.3.2-cvs-b14
 
 	* Enhanced the config wizard to behave reasonably when open_basedir is
