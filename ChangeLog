@@ -1,3 +1,29 @@
+2001-01-04  chris Smith <chris@jacko.com>
+
+        * Moved 'Edit Album Title' to the Album Properties Popup.
+        
+        * Added app parameter galleryTitle. Because of this bumped the
+          version number.
+
+        * Created a style sheet for the gallery. It can be overriden
+          by a custom style sheet. It controls fonts and colors. 
+          Album parameters override these styles when appropriate.
+
+        * Created a new directory called html_wrap. It contains 
+          wrapper html for the three page types in the gallery:
+            gallery main, album view and photo view.
+          These wrappers can be used to customize the look of the
+          three page types. If custom wrappers are not provided, 
+          the default ones are used.
+          All gallery html is now encapsulated within the navigation
+          bars on these pages (a nice rectangle).
+
+        * Added an 'admin' box to sit over the navigation bars. It
+          contains the admin controls.
+
+        * All popups now use the gallery style sheet and when 
+          appropriate have a default focus. 
+
 2001-01-02  Bharat Mediratta  <bharat@sinia.com>
 
 	* Made the NetPBM check optional since now it doesn't need to be
