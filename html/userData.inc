@@ -175,7 +175,7 @@
   </td>
   <td> 
   <?php if ($allowChange["admin"] === true) { ?>
-	  <? if ($uname=$gallery->user->getUsername() == $uname) { ?>
+	  <?php if ($uname=$gallery->user->getUsername() == $uname) { ?>
 		  <?php echo $isAdminChoices[$isAdmin] ?> <i>(<?php echo _("you can't un-admin yourself") ?>)</i>
 	 <?php } else { ?>
         	<?php echo drawSelect("isAdmin", $isAdminChoices, $isAdmin, 1); ?>

@@ -186,7 +186,7 @@ if (isset($forgot)) {
  </tr>
  </table>
  <p>
-<input type=submit name="forgot" value="<?= _("Send me my password") ?>">
+<input type=submit name="forgot" value="<?php _("Send me my password") ?>">
 
 <script language="javascript1.2">
 <!--
