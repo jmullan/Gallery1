@@ -31,10 +31,16 @@ if (!$boxes) {
 <b>Add Photos</b>
 <br>
 Click the <b>Browse</b> button to locate a photo to upload.
+<? if ($app->feature["zip_support"]) { ?>
 <br>
 Tip:  Upload a ZIP file full of photos and movies!
+<? } ?>
 <br>
-<font size=+0>(Supported file types: JPG, GIF, PNG, AVI, MPG)</font>
+<font size=+0>(Supported file types: JPG, 
+<? if ($app->feature["gif_support"]) { ?>
+GIF, 
+<? } ?>
+PNG, AVI, MPG)</font>
 
 <br>
 <form enctype="multipart/form-data" action="save_photos.php" method=post>
