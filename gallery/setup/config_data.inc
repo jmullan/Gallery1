@@ -156,7 +156,8 @@ $constants = array_merge(
 	),
 	"editPassword" => array(
 		"prompt" => _("Admin password"),
-		"desc" => _("The password for the <i>admin</i> account.  Unfortunately, you're required to re-enter this every time you reconfigure Gallery.  We'll fix this in a future release!"),
+		"desc" => '(<font color=red>' . _('REQUIRED') . '</font>) '.
+		_("The password for the <i>admin</i> account.  Unfortunately, you're required to re-enter this every time you reconfigure Gallery.  We'll fix this in a future release!"),
 		"type" => "text",
 		"dont-write" => 1,
 		"attrs" => array("size" => 50),
