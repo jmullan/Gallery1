@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1.4.4-pl2
+# Version: 1.4.4-pl2-u1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -21,13 +21,13 @@
 #
 #
 # Yuri Gural <yurigural AT inbox DOT ru>, 2003-2004.
-#
+# Max Kosmach <max AT tcen DOTru>, 2004
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-08-23 00:38+0200\n"
-"PO-Revision-Date: 2004-08-04 23:48+0600\n"
+"POT-Creation-Date: 2004-09-27 18:06+0200\n"
+"PO-Revision-Date: 2004-09-27 23:48+0600\n"
 "Last-Translator: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "Language-Team: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr "Поля имя и комментарий должны быть заполнены!"
 #: ../add_comment.php:58 ../view_photo.php:204
 #, php-format
 msgid "Your comment is too long, the admin set maximum length to %d chars"
-msgstr "Ваш комментарий слишком большой, администратором была установлена максимальная длина - %d сомволов"
+msgstr "Ваш комментарий слишком большой, администратором была установлена максимальная длина - %d символов"
 
 #: ../add_comment.php:74 ../add_comment.php:80
 msgid "Add Comment"
@@ -162,7 +162,7 @@ msgstr "Пользователи, которые могут создавать вложенные альбомы."
 #
 #: ../album_permissions.php:285
 msgid "Users who can view full (original) images."
-msgstr "Пользователи, которые могут делать развернутый просмотр (оригиналы) фотографий."
+msgstr "Пользователи, которые могут делать развёрнутый просмотр (оригиналы) фотографий."
 
 #
 #: ../album_permissions.php:301
@@ -206,7 +206,7 @@ msgstr[2] "%d альбомов"
 #
 #: ../albums.php:143
 msgid "no albums"
-msgstr "нет албомов"
+msgstr "нет альбомов"
 
 #: ../albums.php:145
 #, php-format
@@ -330,7 +330,7 @@ msgstr "Внимание Администратор!"
 #: ../albums.php:245
 #, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
-msgstr "%s обнаружены следущие %d неправильный(ых) альбома(ов) в вашем каталоге альбомов<br>(%s):"
+msgstr "%s обнаружены следующие %d неправильный(ых) альбома(ов) в вашем каталоге альбомов<br>(%s):"
 
 #
 #: ../albums.php:251
@@ -338,7 +338,7 @@ msgid "Please move it/them out of the albums directory."
 msgstr "Пожалуйста переместите их из каталога альбомов."
 
 #: ../albums.php:255
-#, fuzzy, php-format
+#, php-format
 msgid "%s has detected that %d of your albums are out of date."
 msgstr "%s обнаружила, что %d ваших альбомов устарели"
 
@@ -349,7 +349,7 @@ msgstr "Пожалуйста %s."
 
 #: ../albums.php:259
 msgid "upgrade those albums"
-msgstr "обновить эти альбомы"
+msgstr "обновите эти альбомы"
 
 #: ../albums.php:311 ../view_album.php:755
 msgid "Highlight for Album:"
@@ -387,7 +387,7 @@ msgstr "Последнее изменение %s."
 
 #
 #: ../albums.php:387
-#, fuzzy, php-format
+#, php-format
 msgid "This album contains 1 item"
 msgid_plural "This album contains %d items"
 msgstr[0] "Этот альбом содержит %d элемент"
@@ -416,7 +416,7 @@ msgstr "0 раз"
 #
 #: ../albums.php:399
 msgid "reset counter"
-msgstr "сбросить счетчик"
+msgstr "сбросить счётчик"
 
 #
 #: ../albums.php:433 ../view_album.php:1139
@@ -527,7 +527,7 @@ msgstr "Неназванный"
 #
 #: ../classes/Album.php:235
 msgid "Album up to date."
-msgstr "Альбом уже обновлен."
+msgstr "Альбом уже обновлён."
 
 #
 #: ../classes/Album.php:239
@@ -740,7 +740,7 @@ msgstr "Пропущен альбом #%d"
 #
 #: ../copy_photo.php:119 ../create_user.php:97 ../do_command.php:161
 #: ../login.php:154 ../multi_create_user.php:117 ../register.php:45
-#: ../register.php:119 ../save_photos.php:362
+#: ../register.php:119 ../save_photos.php:364
 msgid "Dismiss"
 msgstr "Закрыть"
 
@@ -929,7 +929,7 @@ msgstr "Пользователи не могут быть вновь созданы."
 #
 #: ../delete_user.php:65
 msgid "Even if this user is recreated, those permissions are gone."
-msgstr "Даже если этот пользователь создан еще раз, все прошлые полномочия не восстанавливаются."
+msgstr "Даже если этот пользователь создан ещё раз, все прошлые полномочия не восстанавливаются."
 
 #
 #: ../delete_user.php:67
@@ -1027,7 +1027,7 @@ msgstr "Максимальный объем файла промежуточных JPEG/PNG изображений в килобайтах
 
 #: ../edit_appearance.php:161
 msgid "Maximum dimensions of full sized images"
-msgstr "Максимальный размер развернутых изображений"
+msgstr "Максимальный размер развёрнутых изображений"
 
 #: ../edit_appearance.php:163
 #, php-format
@@ -1036,12 +1036,12 @@ msgstr "%d (%d MPix)"
 
 #: ../edit_appearance.php:168
 msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-msgstr "Максимальный объем файла развернутых JPEG/PNG изображений в килобайтах (0 или пробел, чтобы не менять размер)"
+msgstr "Максимальный объем файла развёрнутых JPEG/PNG изображений в килобайтах (0 или пробел, чтобы не менять размер)"
 
 #
 #: ../edit_appearance.php:172
 msgid "Show <i>Return to</i> link"
-msgstr "Показать ссылку <i>Верунться на</i>"
+msgstr "Показать ссылку <i>Вернуться на</i>"
 
 #
 #: ../edit_appearance.php:179
@@ -1061,7 +1061,7 @@ msgstr "Автоматическая подгонка размера изображения<br>без изменения размера коп
 #
 #: ../edit_appearance.php:200
 msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
-msgstr "Предложение посетителям определить возможность<br>демонстрировать полноразмерные или измененные изображения"
+msgstr "Предложение посетителям определить возможность<br>демонстрировать полноразмерные или изменённые изображения"
 
 #
 #: ../edit_appearance.php:207
@@ -1093,7 +1093,7 @@ msgstr "Включить в показ слайдов вложенные альбомы"
 
 #: ../edit_appearance.php:252
 msgid "Allow slideshow to loop"
-msgstr "Разрешить цикличиский показ слайдов"
+msgstr "Разрешить циклический показ слайдов"
 
 #
 #: ../edit_appearance.php:259
@@ -1123,7 +1123,7 @@ msgstr "Показывать данные EXIF?"
 #
 #: ../edit_appearance.php:297
 msgid "Display click counter for this album?"
-msgstr "Отображать счетчик кликов для этого альбома?"
+msgstr "Отображать счётчик кликов для этого альбома?"
 
 #: ../edit_appearance.php:304
 msgid "Display owners name with caption"
@@ -1131,7 +1131,7 @@ msgstr "Показывать имя владельца с заголовком"
 
 #: ../edit_appearance.php:311
 msgid "Allow item owners to modify their images"
-msgstr "Разрешить владельцам редкатировать свои изображения"
+msgstr "Разрешить владельцам редактировать свои изображения"
 
 #: ../edit_appearance.php:318
 msgid "Allow item owners to delete their images"
@@ -1266,7 +1266,7 @@ msgstr "на это может потребоваться какое-то время"
 
 #: ../edit_watermark.php:58 ../watermark_album.php:62
 msgid "Please select a watermark."
-msgstr "Пожалуйста вберите водяной знак."
+msgstr "Пожалуйста выберите водяной знак."
 
 #: ../edit_watermark.php:61 ../watermark_album.php:65
 msgid "Please select an alignment."
@@ -1297,7 +1297,7 @@ msgstr "Текст Alt / onMouseOver"
 
 #: ../extra_fields.php:132
 msgid "Number of user defined custom fields"
-msgstr "Число полей определнных пользователем"
+msgstr "Число полей определённых пользователем"
 
 #
 #: ../extra_fields.php:148
@@ -1328,7 +1328,7 @@ msgstr " на веб сайте Gallery."
 
 #: ../includes/add_photos/add_applet.inc:24
 msgid "Use the Gallery Remote Applet to upload pictures. It will take a short while to download."
-msgstr "Используйте Gallery Remote Applet для загрузки изображений. Это займет мало времени для загрузки."
+msgstr "Используйте Gallery Remote Applet для загрузки изображений. Это займёт мало времени для загрузки."
 
 #: ../includes/add_photos/add_applet.inc:25
 #: ../includes/add_photos/add_applet_mini.inc:25
@@ -1342,7 +1342,7 @@ msgstr "Ваш браузер не поддерживает апплеты; вы должны использовать один из друг
 
 #: ../includes/add_photos/add_applet_mini.inc:24
 msgid "Use the Gallery Remote Mini Applet to upload pictures. It will take a short while to download."
-msgstr "Используйте Gallery Remote Mini Applet для загрузки изображений. Это займет мало времени для загрузки."
+msgstr "Используйте Gallery Remote Mini Applet для загрузки изображений. Это займёт мало времени для загрузки."
 
 #
 #: ../includes/add_photos/add_form.inc:33
@@ -1402,7 +1402,7 @@ msgstr "3. Используя кнопку Обзор найдите файлы мета данных на вашем компьютере"
 #: ../includes/add_photos/add_form.inc:112
 #: ../includes/add_photos/add_url.inc:43
 msgid "Leave blank if no caption is specified."
-msgstr "Оставить не заполненным, если заголовок не определен."
+msgstr "Оставить не заполненным, если заголовок не определён."
 
 #
 #: ../includes/add_photos/add_form.inc:114
@@ -1413,7 +1413,7 @@ msgstr "Установить заголовок фотографии исходным именем файла."
 #
 #: ../includes/add_photos/add_form.inc:116
 msgid "Use file creation date stamp as caption if no caption is specified."
-msgstr "Использовать дату создания файла в качестве заголовка, если заголовок не определен."
+msgstr "Использовать дату создания файла в качестве заголовка, если заголовок не определён."
 
 #
 #: ../includes/add_photos/add_form.inc:127
@@ -1424,7 +1424,7 @@ msgstr "Загрузить"
 #
 #: ../includes/add_photos/add_other.inc:25
 msgid "You can use one of these desktop agents to drag and drop photos from your desktop"
-msgstr "Вы можете использовать одну из этих настольных агентов, чтобы переспределить фотографии с вашего рабочего стола"
+msgstr "Вы можете использовать одну из этих настольных агентов, чтобы перенести фотографии с вашего рабочего стола"
 
 #
 #: ../includes/add_photos/add_other.inc:29
@@ -1602,23 +1602,23 @@ msgstr "Показ слайдов..."
 #
 #: ../includes/slideshow/high.inc:332 ../includes/slideshow/low.inc:314
 msgid "normal size"
-msgstr "обычный рзмер"
+msgstr "обычный размер"
 
 #
 #: ../includes/slideshow/high.inc:334
 msgid "The slide is showing full sized images, Click [normal size] to view resized images."
-msgstr "Показ слайдов полноразмерных изображений, нажмите [обычный рзмер] для просмотра измененных изображений."
+msgstr "Показ слайдов полноразмерных изображений, нажмите [обычный размер] для просмотра изменённых изображений."
 
 #
 #: ../includes/slideshow/high.inc:338 ../includes/slideshow/high.inc:507
 #: ../includes/slideshow/low.inc:317
 msgid "full size"
-msgstr "развернутый размер"
+msgstr "развёрнутый размер"
 
 #
 #: ../includes/slideshow/high.inc:341
 msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
-msgstr "Показ слайдов обычных изображений, нажмите [развернутый рзмер] для просмотра полноразмерных изображений."
+msgstr "Показ слайдов обычных изображений, нажмите [развёрнутый размер] для просмотра полноразмерных изображений."
 
 #
 #: ../includes/slideshow/high.inc:347 ../includes/slideshow/low.inc:306
@@ -1719,7 +1719,7 @@ msgstr "Новый пароль"
 #
 #: ../html/userData.inc:55
 msgid "New Password (again)"
-msgstr "Новый пароль (еще раз)"
+msgstr "Новый пароль (ещё раз)"
 
 #
 #: ../html/userData.inc:62
@@ -1743,7 +1743,7 @@ msgstr "Пользователь может создавать альбомы"
 
 #: ../html/userData.inc:121
 msgid "Send email to user <br>when account is created"
-msgstr "Отправка e-mail пользователю <br>когда учетная запись будет создана"
+msgstr "Отправка e-mail пользователю <br>когда учётная запись будет создана"
 
 #
 #: ../html/userData.inc:130
@@ -1975,7 +1975,7 @@ msgstr "Изменение размера"
 
 #: ../layout/watermarkform.inc:145
 msgid "Full"
-msgstr "Развернутый"
+msgstr "Развёрнутый"
 
 #: ../layout/watermarkform.inc:153
 msgid "Watermark subalbums"
@@ -2108,7 +2108,7 @@ msgstr "Вход в %s"
 #
 #: ../login.php:75
 msgid "Logging in gives you greater permission to view, create, modify and delete albums."
-msgstr "Зарегистрированный вход дает Вам больше полномочий для просмотра, создания, корректировки и удаления альбомов."
+msgstr "Зарегистрированный вход даёт Вам больше полномочий для просмотра, создания, корректировки и удаления альбомов."
 
 #
 #: ../login.php:81
@@ -2143,7 +2143,7 @@ msgstr "Забыли свой пароль?"
 #: ../login.php:141
 #, php-format
 msgid "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."
-msgstr "Последний запрос о пароле был менее чем %d минут тому назад. Пожалуйста проверьте наличие предыдущего e-mail сообщения или подождите еще не много, если это не поможет, сделайте еще одну попытку."
+msgstr "Последний запрос о пароле был менее чем %d минут тому назад. Пожалуйста проверьте наличие предыдущего e-mail сообщения или подождите ещё не много, если это не поможет, сделайте ещё одну попытку."
 
 #
 #: ../login.php:145
@@ -2169,7 +2169,7 @@ msgstr "Запрос нового пароля %s"
 #: ../login.php:152
 #, php-format
 msgid "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."
-msgstr "E-mail отправлен по адресу сохраненному для %s. Последуйте инструкциям для изменения вашего пароля. Если вы не получите этот e-mail, пожалуйста обратитесь к администраторам галереи."
+msgstr "E-mail отправлен по адресу сохранённому для %s. Последуйте инструкциям для изменения вашего пароля. Если вы не получите этот e-mail, пожалуйста обратитесь к администраторам галереи."
 
 #: ../login.php:157
 #, php-format
@@ -2179,7 +2179,7 @@ msgstr "E-mail не отправлен. Пожалуйста обратитесь к администратору %s за новым 
 #: ../login.php:161
 #, php-format
 msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
-msgstr "Неправильный e-mail для этой учетной записи. Пожалуйста обратитесь к администраторам %s за новым паролем"
+msgstr "Неправильный e-mail для этой учётной записи. Пожалуйста обратитесь к администраторам %s за новым паролем"
 
 #
 #: ../login.php:164 ../new_password.php:32 ../new_password.php:36
@@ -2449,7 +2449,7 @@ msgstr "Вы должны дважды ввести новый пароль."
 #
 #: ../photo_owner.php:76 ../photo_owner.php:82 ../view_album.php:1082
 msgid "Change Owner"
-msgstr "Измененить владельца"
+msgstr "Изменить владельца"
 
 #
 #: ../photo_owner.php:93
@@ -2527,7 +2527,7 @@ msgstr "Подсказка для голосования"
 
 #: ../poll_properties.php:120
 msgid "Displayed Value"
-msgstr "Отображаемая ведичина"
+msgstr "Отображаемая величина"
 
 #
 #: ../poll_properties.php:137
@@ -2604,7 +2604,7 @@ msgstr "Создать новый альбом"
 #
 #: ../publish_xp.php:200 ../publish_xp.php:233
 msgid "Not Logged In!"
-msgstr "Не вошел!"
+msgstr "Не вошёл!"
 
 #
 #: ../publish_xp.php:204
@@ -2706,12 +2706,12 @@ msgstr "Загрузите %sфайл конфигурации XP%s"
 #: ../publish_xp_docs.php:52
 #, php-format
 msgid "Save this file on your PC and rename it %s."
-msgstr "Сохраните этот файл на своем компьютере и переименуйте его в %s."
+msgstr "Сохраните этот файл на своём компьютере и переименуйте его в %s."
 
 #
 #: ../publish_xp_docs.php:53
 msgid "If it asks you for confirmation about changing the file type, answer &quot;yes&quot;."
-msgstr "Если возникает запрос на подтвержедение о замене этого файла, отвечайте &quot;да&quot;."
+msgstr "Если возникает запрос на подтверждение о замене этого файла, отвечайте &quot;да&quot;."
 
 #
 #: ../publish_xp_docs.php:54
@@ -2750,9 +2750,8 @@ msgstr "Шаг 2"
 
 #
 #: ../publish_xp_docs.php:65
-#, fuzzy
 msgid "Open your Windows explorer and browse to a folder containing supported images."
-msgstr "Откройте Windows проводник и выберите папку с JPG изображениями."
+msgstr "Откройте проводник Windows и выберите папку с поддерживаемыми типами изображений."
 
 #: ../publish_xp_docs.php:66
 msgid "Select the image(s) or a folder and there should be a link on the left that says &quot;Publish this file to the web...&quot;"
@@ -2802,7 +2801,7 @@ msgstr "E-mail отправлен на %s."
 
 #: ../register.php:113
 msgid "Your account information is contained within the email."
-msgstr "Информация вашей учетной записи содержится в e-mail."
+msgstr "Информация вашей учётной записи содержится в e-mail."
 
 #: ../register.php:115
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
@@ -2810,7 +2809,7 @@ msgstr "Не возможно отправить e-mail. Пожалуйста обратитесь к администратору гал
 
 #: ../register.php:135
 msgid "Your account information will be sent to the email address you provide."
-msgstr "Ваша учетная информация будет отправлена на e-mail адрес, который вы укажите."
+msgstr "Ваша учётная информация будет отправлена на e-mail адрес, который вы укажите."
 
 #: ../rename_album.php:29
 msgid "You are not allowed to perform this action !"
@@ -2907,7 +2906,7 @@ msgstr "Какой размер для этой промежуточной фотографии?"
 
 #: ../resize_photo.php:92
 msgid "Target filesize"
-msgstr "Результируйщий объем файла"
+msgstr "Результирующий объем файла"
 
 #: ../resize_photo.php:96
 msgid "Maximum side length in pixels"
@@ -2915,7 +2914,7 @@ msgstr "Длина наибольшей стороны в пикселях"
 
 #: ../resize_photo.php:110
 msgid "(manual value)"
-msgstr "(свое значение)"
+msgstr "(своё значение)"
 
 #: ../resize_photo.php:119
 msgid "Get rid of resized"
@@ -2978,47 +2977,47 @@ msgid "Processing and Saving Photos"
 msgstr "Обработка и сохранение фотографий"
 
 #
-#: ../save_photos.php:62
+#: ../save_photos.php:64
 msgid "Fetching Urls..."
 msgstr "Выборка Url ссылок..."
 
-#: ../save_photos.php:79
+#: ../save_photos.php:81
 #, php-format
 msgid "Processing %s as a local directory."
 msgstr "Обработка %s как локального каталога."
 
-#: ../save_photos.php:148
+#: ../save_photos.php:150
 #, php-format
 msgid "Could not open url: %s"
 msgstr "Не открывается url: %s"
 
 #
-#: ../save_photos.php:177
+#: ../save_photos.php:179
 #, php-format
 msgid "Parsing %s for images..."
 msgstr "Анализ %s и поиск изображений..."
 
 #
-#: ../save_photos.php:242
+#: ../save_photos.php:244
 #, php-format
 msgid "Found %d images"
 msgstr "Найдено %d изображений"
 
-#: ../save_photos.php:250
+#: ../save_photos.php:252
 msgid "Processing status..."
-msgstr "Идет обработка..."
+msgstr "Идёт обработка..."
 
-#: ../save_photos.php:357
+#: ../save_photos.php:359
 msgid "No images uploaded!"
 msgstr "Ни одной фотографии не загружено!"
 
-#: ../save_photos.php:408
+#: ../save_photos.php:410
 #, php-format
 msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
 msgstr "Найдено %d мета файл(ов). Эти файлы содержат информацию об изображениях, например, заголовки и описания."
 
 #
-#: ../save_photos.php:439
+#: ../save_photos.php:441
 msgid "Add Files"
 msgstr "Добавить файлы"
 
@@ -3090,7 +3089,7 @@ msgstr "Поиск альбомов и фотографий галереи<br> заголовки, описания и комментари
 #
 #: ../search.php:282
 msgid "Go"
-msgstr "Вперед"
+msgstr "Вперёд"
 
 #: ../slideshow.php:91
 msgid "Fullscreen applet"
@@ -3181,7 +3180,7 @@ msgstr "Модернизация альбомов"
 
 #: ../tools/find_orphans.php:124
 msgid "Orphans will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
-msgstr "Сироты будут вложены к их родительским альбомам, если это возможно. Если родительский альбом отсутствует, то сирота будет вложен в корень галереи, и может быть перемещен на новую позицию оттуда."
+msgstr "Сироты будут вложены к их родительским альбомам, если это возможно. Если родительский альбом отсутствует, то сирота будет вложен в корень галереи, и может быть перемещён на новую позицию оттуда."
 
 #: ../tools/find_orphans.php:126
 #, fuzzy
@@ -3189,14 +3188,12 @@ msgid "Orphaned Album"
 msgstr "Модернизация альбомов"
 
 #: ../tools/find_orphans.php:126
-#, fuzzy
 msgid "Parent Album"
-msgstr "Выберите вышестоящий альбом"
+msgstr "Вышестоящий альбом"
 
 #: ../tools/find_orphans.php:130
-#, fuzzy
 msgid "Gallery Root"
-msgstr "Галерея"
+msgstr "Начало галереи"
 
 #: ../tools/find_orphans.php:136
 msgid "Correct Them!"
@@ -3252,7 +3249,7 @@ msgstr "Все альбомы уже обновлены."
 #: ../upgrade_album.php:165
 #, php-format
 msgid "The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %s."
-msgstr "Следующие эльбомы должны быть обновлены. Вы можете обработать каждый альбом индивидуально, нажимая на ссылку рядом с альбомом или %s."
+msgstr "Следующие альбомы должны быть обновлены. Вы можете обработать каждый альбом индивидуально, нажимая на ссылку рядом с альбомом или %s."
 
 #: ../upgrade_album.php:166
 msgid "upgrade them all at once"
@@ -3325,7 +3322,7 @@ msgstr "Если вы хотите изменить пароль, вы должный указать ваш прежний пароль и 
 #
 #: ../user_preferences.php:112
 msgid "You can change your username to any combination of letters and digits."
-msgstr "Вы можете изменить свое имя пользователя на любую комбинацию символов и цифр."
+msgstr "Вы можете изменить своё имя пользователя на любую комбинацию символов и цифр."
 
 #
 #: ../util.php:39
@@ -3405,7 +3402,7 @@ msgstr "У вас нет ни одного графического пакета сконфигурированного для использо
 #
 #: ../util.php:384 ../util.php:403
 msgid "Not closing this window because debug mode is on"
-msgstr "Не закрывайте это окно, т.к. включен режим отладки"
+msgstr "Не закрывайте это окно, т.к. включён режим отладки"
 
 #: ../util.php:448
 msgid "No resizing required"
@@ -3523,7 +3520,7 @@ msgstr "Вложенные&nbsp;альбомы"
 #: ../util.php:2033
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
-msgstr "Пропущен %s (ZIP поддрежка отключена)"
+msgstr "Пропущен %s (ZIP поддержка отключена)"
 
 #
 #: ../util.php:2178
@@ -3575,7 +3572,7 @@ msgstr "Примечание: Это сообщение автоматически сгенерировано на сайте %s и отпр
 #: ../util.php:2523
 #, php-format
 msgid "Report abuse to %s"
-msgstr "Отчет злоупотреблений для %s"
+msgstr "Отчёт злоупотреблений для %s"
 
 #: ../util.php:2539
 msgid "Email not sent as it is disabled for this gallery"
@@ -3648,7 +3645,7 @@ msgid ""
 msgstr ""
 "Привет, !!FULLNAME!!,  \n"
 "\n"
-"Поздравляем.  Вы только что подписались на %s в %s.  Ваше учетное имя !!USERNAME!!.  Пожалуйста посетите галерею и создайте пароль кликнув на эту ссылку:\n"
+"Поздравляем.  Вы только что подписались на %s в %s.  Ваше учётное имя !!USERNAME!!.  Пожалуйста посетите галерею и создайте пароль кликнув на эту ссылку:\n"
 "\n"
 "!!NEWPASSWORDLINK!!\n"
 "\n"
@@ -3704,7 +3701,7 @@ msgstr "Не могу открыть %s"
 
 #: ../util.php:2881 ../util.php:2900
 msgid "Not valid yet"
-msgstr "Еще неправильно"
+msgstr "Ещё неправильно"
 
 #: ../util.php:3144
 msgid "EXIF Data"
@@ -3725,7 +3722,7 @@ msgstr[2] "%d вложенных альбомов"
 
 #: ../view_album.php:267
 msgid "No albums"
-msgstr "Нет албомов"
+msgstr "Нет альбомов"
 
 #
 #: ../view_album.php:269
@@ -3955,7 +3952,7 @@ msgstr "Обложка %s"
 #
 #: ../view_album.php:1033
 msgid "Reset Counter"
-msgstr "Сброс счетчика"
+msgstr "Сброс счётчика"
 
 #: ../view_album.php:1038
 #, php-format
@@ -4055,7 +4052,7 @@ msgstr "обычный"
 #
 #: ../view_photo.php:352 ../view_photo.php:354
 msgid "full"
-msgstr "развернутый"
+msgstr "развёрнутый"
 
 #
 #: ../view_photo.php:365
@@ -4097,9 +4094,9 @@ msgid "No items to watermark."
 msgstr "Голосов пока нет."
 
 #
-#, fuzzy
-#~ msgid "Invalid file type; %s !"
-#~ msgstr "Неизвестный тип файла: %s"
+# Neccessary infact of hardcoded function editField() in util.php
+#~ msgid "description"
+#~ msgstr "описание"
 
 #
 #~ msgid "with donation"
