@@ -32,11 +32,11 @@ if (!$gallery->user->isAdmin() || $gallery->app->multiple_create != "yes") {
 	exit;	
 }
 
-doctype();
 $errorCount=0;
 if (isset($create))
 {
-	?>
+	doctype();
+?>
 <html>
 <head>
   <title><?php echo _("Create Multiple Users") ?></title>
@@ -121,9 +121,10 @@ if (isset($create))
 
 } else if (isset($cancel) || isset($dismiss)) {
 	header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
+} else {
+	doctype();
 } 
 ?>
-
 <html>
 <head>
   <title><?php echo _("Create Multiple Users") ?></title>
