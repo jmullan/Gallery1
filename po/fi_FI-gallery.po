@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-09-16 22:14+0200\n"
+"POT-Creation-Date: 2003-09-19 04:22+0200\n"
 "PO-Revision-Date: 2003-09-17 15:05+0200\n"
 "Last-Translator: OJussi Karppanen <bitti@bitti.eu.org>\n"
 "Language-Team: Finnish <oasalo@st.jyu.fi>\n"
@@ -73,7 +73,7 @@ msgstr "Nimi tai s‰hkˆpostiosoite:"
 msgid "Save"
 msgstr "Tallenna"
 
-#: ../add_comment.php:99 ../add_photo.php:142 ../add_photos.php:114
+#: ../add_comment.php:99 ../add_photo.php:149 ../add_photos.php:114
 #: ../add_photos.php:135 ../create_user.php:102 ../delete_album.php:67
 #: ../delete_photo.php:112 ../delete_photo.php:132 ../delete_user.php:83
 #: ../edit_caption.php:174 ../edit_field.php:75 ../login.php:131
@@ -84,38 +84,43 @@ msgstr "Tallenna"
 msgid "Cancel"
 msgstr "Peruuta"
 
-#: ../add_photo.php:44 ../add_photo.php:95
+#: ../add_photo.php:44 ../add_photo.php:98
 msgid "Add Photo"
 msgstr "Lis‰‰ kuva"
 
-#: ../add_photo.php:78 ../do_command.php:135 ../save_photos.php:272
+#: ../add_photo.php:83 ../do_command.php:135 ../save_photos.php:272
 msgid "Dismiss"
 msgstr "Poistu"
 
-#: ../add_photo.php:98 ../add_photos.php:67
+#: ../add_photo.php:101
+#, fuzzy, php-format
+msgid "The file &quot;%s&quot; does not exist"
+msgstr "Tiedostos %s ei ole olemassa."
+
+#: ../add_photo.php:105 ../add_photos.php:67
 msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr "Klikkaa <b>Selaa</b> painiketta paikallistaaksesi palvelimelle kopioitavan kuvan."
 
-#: ../add_photo.php:101 ../add_photos.php:74
+#: ../add_photo.php:108 ../add_photos.php:74
 msgid "Supported file types"
 msgstr "Tuetut tiedostotyypit"
 
-#: ../add_photo.php:113 ../add_photos.php:104
+#: ../add_photo.php:120 ../add_photos.php:104
 msgid "File"
 msgstr "Tiedosto"
 
-#: ../add_photo.php:115 ../add_photos.php:106 ../captionator.php:268
+#: ../add_photo.php:122 ../add_photos.php:106 ../captionator.php:268
 #: ../edit_caption.php:82
 msgid "Caption"
 msgstr "Kuvateksti"
 
-#: ../add_photo.php:138 ../add_photos.php:110
+#: ../add_photo.php:145 ../add_photos.php:110
 msgid "Use filename as caption if no caption is specified."
- msgstr "K‰yt‰ tiedostonime‰ kuvatekstin‰ jos kuvateksti‰ ei ole m‰‰ritetty."
+msgstr "K‰yt‰ tiedostonime‰ kuvatekstin‰ jos kuvateksti‰ ei ole m‰‰ritetty."
 
-#: ../add_photo.php:141 ../add_photos.php:113
+#: ../add_photo.php:148 ../add_photos.php:113
 msgid "Upload Now"
- msgstr "Kopioi palvelimelle"
+msgstr "Kopioi palvelimelle"
 
 #: ../add_photos.php:50 ../add_photos.php:64
 msgid "Add Photos"
@@ -180,11 +185,11 @@ msgstr "Omistaja:"
 
 #: ../album_permissions.php:180
 msgid "Users who can see the album"
- msgstr "K‰ytt‰j‰t, jotka voivat n‰hd‰ albumin"
+msgstr "K‰ytt‰j‰t, jotka voivat n‰hd‰ albumin"
 
 #: ../album_permissions.php:195
 msgid "Users who can change album text."
- msgstr "K‰ytt‰j‰t, jotka voivat vaihtaa albumin teksti‰."
+msgstr "K‰ytt‰j‰t, jotka voivat vaihtaa albumin teksti‰."
 
 #: ../album_permissions.php:210
 msgid "Users who can add photos."
@@ -232,7 +237,7 @@ msgstr "ylimm‰n tason albumia"
 
 #: ../albums.php:115
 msgid "albums"
- msgstr "albumia"
+msgstr "albumia"
 
 #: ../albums.php:115 ../view_album.php:285
 msgid "No albums"
@@ -282,7 +287,7 @@ msgstr "%s (%s), %s"
 #: ../albums.php:126
 #, php-format
 msgid "%s, %s on %s"
- msgstr "%s, %s %s :ssa"
+msgstr "%s, %s %s :ssa"
 
 #: ../albums.php:128
 #, php-format
@@ -379,7 +384,7 @@ msgstr "Hei!"
 #: ../albums.php:346
 #, php-format
 msgid "%s this album so that the URL is not so generic!"
- msgstr "%s t‰m‰ kuva-albumi jotta sen URL olisi selke‰mpi!"
+msgstr "%s t‰m‰ kuva-albumi jotta sen URL olisi selke‰mpi!"
 
 #: ../albums.php:347 ../rename_album.php:120
 msgid "Rename"
@@ -452,7 +457,7 @@ msgstr "Usean kuvatekstin muokkaus."
 
 #: ../captionator.php:177
 msgid "1 photo in this album"
- msgstr "Yksi kuva t‰ss‰ albumissa"
+msgstr "Yksi kuva t‰ss‰ albumissa"
 
 #: ../captionator.php:179
 msgid "items in this album"
@@ -963,7 +968,7 @@ msgstr "Muokkaa %s"
 #: ../edit_field.php:62
 #, php-format
 msgid "Edit the %s and click %s when you're done"
- msgstr "Muokkaa %s:‰‰ ja klikkaa %s kun olet valmis"
+msgstr "Muokkaa %s:‰‰ ja klikkaa %s kun olet valmis"
 
 #: ../edit_thumb.php:47 ../edit_thumb.php:76
 msgid "Custom Thumbnail"
@@ -1153,7 +1158,7 @@ msgstr "albumi"
 #: ../layout/commentboxtop.inc:19 ../layout/commentboxtop.inc:41
 #: ../view_album.php:714
 msgid "hidden"
- msgstr "piiloitettu"
+msgstr "piiloitettu"
 
 #: ../layout/commentboxtop.inc:23
 msgid "view comments for this nested album"
@@ -1186,7 +1191,7 @@ msgstr "Edellinen valokuva"
 #: ../layout/navphoto.inc:99
 #, php-format
 msgid "%d of %d"
- msgstr "Kuva %d / %d"
+msgstr "Kuva %d / %d"
 
 #: ../layout/navphoto.inc:117 ../layout/navphoto.inc:121
 msgid "Next Photo"
@@ -1199,7 +1204,7 @@ msgstr "Viimeinen valokuva"
 #: ../login.php:47 ../login.php:53 ../publish_xp.php:63 ../publish_xp.php:107
 #, php-format
 msgid "Login to %s"
- msgstr "Kirjaudu %s:hon"
+msgstr "Kirjaudu %s:hon"
 
 #: ../login.php:83
 msgid "Logging in gives you greater permission to view, create, modify and delete albums."
@@ -1341,7 +1346,7 @@ msgstr "Siirr‰ joukko valokuvia uuteen albumiin:"
 
 #: ../move_photo.php:266
 msgid "To move just one photo, make First and Last the same"
- msgstr "Siirt‰‰ksesi vain yhden kuvan, m‰‰rit‰ ensimm‰inen ja viimeinen kuva samoiksi"
+msgstr "Siirt‰‰ksesi vain yhden kuvan, m‰‰rit‰ ensimm‰inen ja viimeinen kuva samoiksi"
 
 #: ../move_photo.php:267
 msgid "Nested albums in this range will be ignored"
@@ -1595,7 +1600,7 @@ msgstr "Julkaisu WinXP:n kanssa"
 
 #: ../publish_xp_docs.php:45
 msgid "Using the Windows XP <i>Publish To the Web</i> feature"
- msgstr "K‰ytt‰m‰ll‰ WinXP:n <i>Julkaise Webiss‰</i> -toimintoa"
+msgstr "K‰ytt‰m‰ll‰ WinXP:n <i>Julkaise Webiss‰</i> -toimintoa"
 
 #: ../publish_xp_docs.php:49
 #, php-format
@@ -1613,7 +1618,7 @@ msgstr "Vaihe 1"
 #: ../publish_xp_docs.php:58
 #, php-format
 msgid "Download the %sXP Configuration File%s"
- msgstr "Kopioi itsellesi %sXP:n asetustiedosto %s"
+msgstr "Kopioi itsellesi %sXP:n asetustiedosto %s"
 
 #: ../publish_xp_docs.php:60
 #, php-format
@@ -1725,7 +1730,7 @@ msgstr "Prosessoidaan kuvaa"
 
 #: ../resize_photo.php:69
 msgid "Resizing 1 photo..."
- msgstr "Muutetaan yhden kuvan kokoa..."
+msgstr "Muutetaan yhden kuvan kokoa..."
 
 #: ../resize_photo.php:81
 msgid "Resizing photos"
@@ -1846,7 +1851,7 @@ msgstr "Vapauta kaikki"
 
 #: ../save_photos.php:310 ../save_photos.php:334
 msgid "Invert Selection"
- msgstr "K‰‰nteinen valinta"
+msgstr "K‰‰nteinen valinta"
 
 #: ../save_photos.php:339
 msgid "Add Files"
@@ -1890,7 +1895,7 @@ msgstr "AVAINSANAT"
 
 #: ../search.php:227
 msgid "No Photo Matches"
- msgstr "Kuvia ei lˆytynyt"
+msgstr "Kuvia ei lˆytynyt"
 
 #: ../search.php:232
 #, php-format
@@ -2054,7 +2059,7 @@ msgstr "Jos tieto ei ole oikein (tai jos tietoa ei ole), aja asennusvelho uudell
 #: ../setup/check_imagemagick.php:83
 #, php-format
 msgid "<b>Note:</b>  Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
- msgstr "<b>Huomaa:</b> %s hakemistosi (%s) ei ole open_basedir listalla (m‰‰ritetty php.ini:ss‰) %s joten emme voi toteuttaa kaikkia perustarkastuksia tiedostoille varmistaaksemme ett‰ ne ovat olemassa ja ett‰ ne ovat suorituskelpoisia."
+msgstr "<b>Huomaa:</b> %s hakemistosi (%s) ei ole open_basedir listalla (m‰‰ritetty php.ini:ss‰) %s joten emme voi toteuttaa kaikkia perustarkastuksia tiedostoille varmistaaksemme ett‰ ne ovat olemassa ja ett‰ ne ovat suorituskelpoisia."
 
 #: ../setup/check_imagemagick.php:94 ../setup/check_netpbm.php:94
 #, php-format
@@ -2118,7 +2123,7 @@ msgstr "Muiden virheilmoitusten osalta tukeudu mahdollisten virheilmoitusten lis
 #: ../setup/check_netpbm.php:82
 #, php-format
 msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
- msgstr "<b>Huomaa:</b>  %s hakemistosi (%s) ei ole open_basedir listalla (m‰‰ritetty php.ini-tiedostossa) %s, joten Galleria ei voi toteuttaa kaikkia perustarkastuksia tiedostoille (mm. tarkastuksia siit‰, ett‰ tiedostot ovat olemassa tai ett‰ ne ovat k‰ynnistettt‰vi‰)."
+msgstr "<b>Huomaa:</b>  %s hakemistosi (%s) ei ole open_basedir listalla (m‰‰ritetty php.ini-tiedostossa) %s, joten Galleria ei voi toteuttaa kaikkia perustarkastuksia tiedostoille (mm. tarkastuksia siit‰, ett‰ tiedostot ovat olemassa tai ett‰ ne ovat k‰ynnistettt‰vi‰)."
 
 #: ../setup/config_data.inc:17
 #, php-format
@@ -2676,7 +2681,7 @@ msgstr "Laita Galleria debuggaus-tilaan vikojen lˆyt‰mist‰ varten?"
 #: ../setup/config_data.inc:554
 #, php-format
 msgid "Use %s?"
- msgstr "K‰yt‰ %:‰‰?"
+msgstr "K‰yt‰ %:‰‰?"
 
 #: ../setup/config_data.inc:555
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>"
@@ -4073,7 +4078,7 @@ msgstr "ala-albumia"
 
 #: ../view_album.php:286
 msgid "no images"
- msgstr "ei kuvia"
+msgstr "ei kuvia"
 
 #: ../view_album.php:287
 msgid "0 pages"
@@ -4092,7 +4097,7 @@ msgstr "%s ja %s t‰ss‰ albumissa"
 #: ../view_album.php:296
 #, php-format
 msgid "%s in this album on %s"
- msgstr "%s %slla t‰ss‰ albumissa"
+msgstr "%s %slla t‰ss‰ albumissa"
 
 #: ../view_album.php:299
 #, php-format
@@ -4249,7 +4254,7 @@ msgstr "Video"
 
 #: ../view_album.php:773
 msgid "Photo"
- msgstr "valokuvaa"
+msgstr "valokuvaa"
 
 #: ../view_album.php:777
 msgid "Edit"
@@ -4273,7 +4278,7 @@ msgstr "Kierr‰ / peilaa"
 
 #: ../view_album.php:829
 msgid "Highlight"
- msgstr "Kansikuva"
+msgstr "Kansikuva"
 
 #: ../view_album.php:834
 msgid "Reset Counter"

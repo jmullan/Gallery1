@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-09-16 22:14+0200\n"
+"POT-Creation-Date: 2003-09-19 04:21+0200\n"
 "PO-Revision-Date: 2003-07-03 16:00+0100\n"
 "Last-Translator: Jens Tkotz <jens@f2h9.de>\n"
 "Language-Team: German <jens@f2h9.de\n"
@@ -73,7 +73,7 @@ msgstr "Name oder Email: "
 msgid "Save"
 msgstr "Speichern"
 
-#: ../add_comment.php:99 ../add_photo.php:142 ../add_photos.php:114
+#: ../add_comment.php:99 ../add_photo.php:149 ../add_photos.php:114
 #: ../add_photos.php:135 ../create_user.php:102 ../delete_album.php:67
 #: ../delete_photo.php:112 ../delete_photo.php:132 ../delete_user.php:83
 #: ../edit_caption.php:174 ../edit_field.php:75 ../login.php:131
@@ -84,36 +84,41 @@ msgstr "Speichern"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../add_photo.php:44 ../add_photo.php:95
+#: ../add_photo.php:44 ../add_photo.php:98
 msgid "Add Photo"
 msgstr "Einzelnes Photo hinzuf&uuml;gen"
 
-#: ../add_photo.php:78 ../do_command.php:135 ../save_photos.php:272
+#: ../add_photo.php:83 ../do_command.php:135 ../save_photos.php:272
 msgid "Dismiss"
 msgstr "Beenden"
 
-#: ../add_photo.php:98 ../add_photos.php:67
+#: ../add_photo.php:101
+#, php-format
+msgid "The file &quot;%s&quot; does not exist"
+msgstr "Die Datei %s existiert nicht."
+
+#: ../add_photo.php:105 ../add_photos.php:67
 msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr "Klicken Sie den <b>Durchsuchen</b> Button, um Photos f&uuml;r den Upload zu finden."
 
-#: ../add_photo.php:101 ../add_photos.php:74
+#: ../add_photo.php:108 ../add_photos.php:74
 msgid "Supported file types"
 msgstr "Unterst&uuml;tzte Dateitypen"
 
-#: ../add_photo.php:113 ../add_photos.php:104
+#: ../add_photo.php:120 ../add_photos.php:104
 msgid "File"
 msgstr "Datei"
 
-#: ../add_photo.php:115 ../add_photos.php:106 ../captionator.php:268
+#: ../add_photo.php:122 ../add_photos.php:106 ../captionator.php:268
 #: ../edit_caption.php:82
 msgid "Caption"
 msgstr "&Uuml;berschrift"
 
-#: ../add_photo.php:138 ../add_photos.php:110
+#: ../add_photo.php:145 ../add_photos.php:110
 msgid "Use filename as caption if no caption is specified."
 msgstr "Benutze den Dateinamen als &Uuml;berschrift, wenn keine angegeben wurde."
 
-#: ../add_photo.php:141 ../add_photos.php:113
+#: ../add_photo.php:148 ../add_photos.php:113
 msgid "Upload Now"
 msgstr "Lade hoch"
 
@@ -1375,7 +1380,7 @@ msgstr "Besitzer/in"
 #: ../poll_properties.php:58
 #, php-format
 msgid "Warning: you have changed voters from %s to %s.  It is advisable to reset the poll to remove all previous votes."
-msgstr ""
+msgstr "Warnung: Sie haben Abstimmungseigenschaften von %s nach %s ver&auml;ndert. Sie sollten die Abstimmung zur&uuml;cksetzen."
 
 #: ../poll_properties.php:59 ../poll_properties.php:106
 #: ../setup/config_data.inc:767 ../setup/config_data.inc:774
@@ -2948,7 +2953,7 @@ msgstr "Abstimmungswerte"
 
 #: ../setup/config_data.inc:832
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
-msgstr ""
+msgstr "Hier k&ouml;nnen Sie die Texte und Werte der Wahlm&ouml;glichkeiten angeben."
 
 #: ../setup/config_data.inc:834
 msgid "Excellent"
@@ -3529,7 +3534,7 @@ msgstr "Volle Gr&ouml;sse"
 
 #: ../slideshow.php:433
 msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
-msgstr ""
+msgstr "Die Bilder werden in der angepassten Gr&ouml;sse gezeigt. Klicken Sie auf [Volle Gr&ouml;sse] um sie in Originalgr&ouml;sse zu betrachten."
 
 #: ../slideshow.php:439 ../slideshow_low.php:425
 msgid "forward direction"
@@ -3934,7 +3939,7 @@ msgstr "Keine Stimmen"
 #: ../util.php:1968
 #, php-format
 msgid "Number %d overall."
-msgstr ""
+msgstr "%d insgesamt."
 
 #: ../util.php:1973
 #, php-format
@@ -4110,7 +4115,7 @@ msgstr "Zeige Abstimmung"
 
 #: ../view_album.php:451
 msgid "Note: To edit images, hide polling.  After you have made your changes you can show polling again."
-msgstr ""
+msgstr "Hinweis: Wenn Sie Bilder bearbeiten m&ouml;chten, m&uuml;ssen Sie die Abstimmung verstecken. Nachdem Sie fertig sind, k&ouml;nnen Sie die Abstimmung wieder aktivieren."
 
 #: ../view_album.php:478
 msgid "You have no votes recorded for this poll."

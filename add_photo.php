@@ -55,8 +55,12 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php
-if ($userfile_name) {
-        $tag = ereg_replace(".*\.([^\.]*)$", "\\1", $userfile_name);
+if ($userfile_name && fs_file_exists($userfile_name)) { ?>
+<script language="Javascript">
+	opener.showProgress();
+</script>
+<?php
+	$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $userfile_name);
         $tag = strtolower($tag); 
 	if (get_magic_quotes_gpc()) {
 		$caption=stripslashes($caption);    
@@ -73,27 +77,30 @@ if ($userfile_name) {
 		    fs_unlink($tf);
 		}
 	}
-	?>
-	<p><center><form>
+?>
+<p align="center">
+<form>
 	<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
-	</form></center>
+</form>
+</p>
 <script language="Javascript">
-<!--
-opener.hideProgressAndReload();
--->
+	opener.hideProgressAndReload();
 </script>
 
 <?php
 	reload();
-}
 
+}
 else
 {
 ?>
 
-
-<span class="popuphead"><?php echo _("Add Photo") ?></span>
-<br>
+<p class="popuphead"><?php echo _("Add Photo") ?></p>
+<?php
+if ($userfile_name && ! fs_file_exists($userfile_name)) {
+	echo "<p>" . gallery_error(sprintf(_("The file &quot;%s&quot; does not exist"),$userfile_name)) . "</p>";
+}
+?>
 <span class="popup">
 <?php echo _("Click the <b>Browse</b> button to locate a photo to upload.") ?>
 <span class="admin">
@@ -135,10 +142,10 @@ foreach ($gallery->album->getExtraFields() as $field) {
 ?>
 
 </table>
-<input type=checkbox name=setCaption checked value="1"><?php echo _("Use filename as caption if no caption is specified.") ?>
+<input type="checkbox" name="setCaption" checked value="1"><?php echo _("Use filename as caption if no caption is specified.") ?>
 <br>
 <center>
-<input type="button" value="<?php echo _("Upload Now") ?>" onClick='opener.showProgress(); document.upload_form.submit()'>
+<input type="submit" value="<?php echo _("Upload Now") ?>">
 <input type="button" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </center>
 </form>
