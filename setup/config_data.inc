@@ -410,8 +410,8 @@ $constants =  array_merge(
 		"prompt" => _("Show context help"),
 		"desc" => _("Show context sensitive help links (little ? links that describe in-depth what each function of Gallery does)?") . newIn ("1.4.2"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
-		"value" => "yes",*/
-	),
+		"value" => "yes"
+	),*/
 	"separator6" => array (
 		"type" => "separator",
 		"title" => _("Languages and locales"),
