@@ -252,7 +252,8 @@ if (!strcmp($cmd, "new-album")) {
 	// can the user create nested albums in the specified album
         } elseif ($createNewAlbum && $set_albumName && $set_albumName != '_xp_wiz_root' && !($gallery->user->canCreateSubAlbum($gallery->album)) ) {
 
-            $error = _("User cannot create nested album in") . " " . $gallery->album->fields[title] . ".<br>\n";
+            $error = sprintf(_("User cannot create nested album in %s."),
+			    $gallery->album->fields[title]) . ".<br>\n";
 
 	} elseif ($createNewAlbum && !$set_albumName) {
 

@@ -340,7 +340,8 @@ function check_graphics($location="", $graphtool = "")
 	} else if (count($missing)) {
 		$fail["fail-netpbm-partial"] = array_values($missing);
 	} else {
-		$success[] = _("All") ." " . count($netpbm) . " " ._("NetPBM binaries located");
+		$success[] = sprintf(_("All %d NetPBM binaries located"),
+				count($netpbm) );
 	}
 
 	return array($success, $fail);
@@ -393,7 +394,8 @@ function check_graphics_im($location="", $graphtool="")
 	} else if (count($missing)) {
 		$fail["fail-imagemagick"] = array_values($missing);
 	} else {
-		$success[] = _("All") . " " . count($imagick) . " " . _("ImageMagick binaries located");
+		$success[] = sprintf(_("All %d ImageMagick binaries located"),
+				count($imagick));
 	}
 
 	return array($success, $fail);
@@ -473,7 +475,7 @@ function check_gallery_locale()
 	$fail = array();
 	$success = array();
 
-	$locales=gallery_locales();
+	$locales=gallery_languages();
 	if (sizeof($locales) == 0) {
 		$fail["fail-gallery-locale"] = _("No languages found."); // should never occur!
 	} else if (sizeof($locales) == 1) {
@@ -497,9 +499,9 @@ function check_absent_locales()
 	if (sizeof($missing_locales) == 0 ) {
 		$success[] = _("All gallery locales are available on this host");
 	} else if (sizeof($avail_locales) <= 1 || $missing_locales == $avail_locales) {
-		$fail[] = "Only the default locale for this machine is available";
+		$fail[] = "Only the default locale for this machine is available, so dates format will not change for different languages.";
 	} else {
-		$msg = _("Unfortunately dates in these languages may not work, because the corresponding locales are missing:") . "<br>";
+		$msg = _("Dates in these languages may be formatted properly, because the corresponding locales are missing:") . "<br>";
 		$nls=getNLS();
 		foreach ($missing_locales as $value) {
 			$msg .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -513,14 +515,15 @@ function check_absent_locales()
 
 //returns all languages in this gallery installation
 
-function gallery_locales() {
+function gallery_languages() {
 	$locale_dir = "../locale/";
-	$locales = array('en_US');
+	$nls=getNLS();
+	$locales = array('en_US' => $nls['languages']['en_US']);
 	if (is_dir($locale_dir)) {
 		if ($dh = opendir($locale_dir)) {
 			while (($file = readdir($dh)) !== false) {
 				if ($file != "CVS" && !ereg("^\.", $file)) {
-					$locales[]=$file;
+					$locales[$file]=$nls['languages'][$file];
 				}
 			}
 			closedir($dh);
@@ -538,7 +541,7 @@ function test_locale($locale) {
 function all_locales ($set) {
 	$list = array();
 	$nls=getNLS();
-	$gallery_locales=gallery_locales();
+	$gallery_languages=gallery_languages();
 	$available_locales=array();
 	$maybe_locales=array();
 	$non_available_locales=array();
@@ -557,7 +560,7 @@ function all_locales ($set) {
 		}
 		$list=array_merge($list, split("\n", shell_exec("locale -a")) );
 	}
-	foreach ($gallery_locales as $locale) {
+	foreach ($gallery_languages as $locale => $locale_name) {
 		if (in_array($locale,$nls['aliases'])) {
                         $keylist=array_keys($nls['aliases'],$locale);
                         $aliases = preg_grep ("/^(". substr($locale,0,2) 
@@ -576,7 +579,6 @@ function all_locales ($set) {
 			}
                 } 
 		$aliases=array_filter(array_unique($aliases), test_locale);
-		$locale_name=$nls['languages'][$locale];
 		if (setlocale(LC_ALL, $locale)) {
 			$available_locales[$locale]=$locale_name;
 		} else if ($aliases) {
@@ -620,10 +622,14 @@ function vd($x, $string="") {
 function config_maybe_locales() {
 	$results=array();
 	$maybe=maybe_locales();
+	$unavailable=unavailable_locales();
+	$available=available_locales();
+	vd($available);
 	$nls=getNLS();
 
         foreach ($maybe as $key => $aliases) {
 		if (sizeof($aliases) < 1) {
+			$unavailable[]=$key;
 			continue;
 		}
 		if (sizeof($aliases) == 1) {
@@ -639,11 +645,10 @@ function config_maybe_locales() {
 			$choices[$value]=$value;
 		}
 		$results["locale_alias[$key]"] = array (
-			"prompt" => _("Possible language problems with") . " " .
-				$nls['languages'][$key] . ".",
-			"desc" => _("This language maybe available, but there seems to be a locale problem.") .
-	     	 		  _("Please select a locale with which you think it might work.") .
-				  "\n\t<br><font color=blue><b>(". _("this is new in version") . " 1.3.5". ")</b></font>",
+			"prompt" => sprintf(_("Possible locale problems with %s."),
+				$nls['languages'][$key]),
+			"desc" => _("This language is available, but there seems to be a locale problem.  Please select a locale for date format style.") .
+				  "\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), " 1.3.5"). ")</b></font>",
 			"optional" => 1,
 			"name" => "locale_alias",
 			"key" => $key,
@@ -652,6 +657,34 @@ function config_maybe_locales() {
 
 			
         }
+        foreach ($unavailable as $key) {
+		if (sizeof($available) == 1) {
+			$results["locale_alias[$key]"] = array (
+				"type" => "hidden", 
+				"value" => 0
+					);
+			continue;
+		}
+		$index = $nls['languages'][$key] ;
+		$choices=array();
+		foreach ($available as $value) { 
+			$choices[$value]=$value;
+		}
+		$results["locale_alias[$key]"] = array (
+			"prompt" => sprintf(_("Locale problems with %s."),
+				$nls['languages'][$key]),
+			"desc" => _("This language is available, but we can't identified a suitable locale for it.  Please select a locale for date format style.") .
+				  "\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), " 1.3.5"). ")</b></font>",
+			"optional" => 1,
+			"name" => "locale_alias",
+			"key" => $key,
+			"choices" => $choices,
+			"value" => $choices[0]);
+
+			
+        }
+
+
 	return $results;
 }
 

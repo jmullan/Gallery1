@@ -1855,11 +1855,12 @@ function initLanguage() {
 // Check in which Mode or Nuke and set language
 //
 	$nls = getNLS();
-	if ($gallery->app->ML_mode == 2 and ! $gallery->language) {
+	if ($gallery->app->ML_mode == 1) {
+		$gallery->language = $gallery->app->default_language;
+	} elseif ($gallery->app->ML_mode == 2 and ! $gallery->language) {
 		// Use Browser Language
 		$gallery->language=$gallery->browser_language;
-	} 
-	elseif ($gallery->app->ML_mode == 3 and ($newlang)) {
+	} elseif ($gallery->app->ML_mode == 3 and ($newlang)) {
 		// Check New language
 		// Use Alias if
 		if ($nls['alias'][$newlang]) $newlang=$nls['alias'][$newlang] ;
@@ -1867,12 +1868,10 @@ function initLanguage() {
 		// Set Language to the User selected language
 		if ($nls['languages'][$newlang] ||$nuke_langname[$newlang]) {
 			$gallery->language=$newlang;
-		}
-		else {
+		} else {
 			$gallery->language = $gallery->app->default_language;
 		}	
-	} 
-	elseif ($GALLERY_EMBEDDED_INSIDE) {
+	} elseif ($GALLERY_EMBEDDED_INSIDE) {
 		// We're in NUKE ... so there should be an alias
 		$gallery->nuke_language=$HTTP_COOKIE_VARS['lang'];
 		$gallery->language=$langalias[$gallery->nuke_language];
@@ -1933,14 +1932,14 @@ function initLanguage() {
 
 // If theres an error switch to Mode 2
 //
-        putenv("LANG=". $gallery->locale);
+        putenv("LANG=". $gallery->language);
 
 // Set Local
 	setlocale(LC_ALL,$gallery->locale);
 
 
 if (in_array("gettext", get_loaded_extensions())) {
-		$bindtextdomain=bindtextdomain("gallery", $gallery->locale_path);
+		$bindtextdomain=bindtextdomain("gallery", $GALLERY_BASEDIR."locale");
 		textdomain("gallery");
 }
 

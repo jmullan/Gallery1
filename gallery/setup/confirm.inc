@@ -264,12 +264,9 @@ if (!strcmp($graphtool, "NetPBM") && empty($graphtest['pnmDir'])) {
 		if (!fs_file_exists(fs_executable($graphpath . "/" . $pnmtojpeg))) {
 			$error = 1;
 			$view .= row_wrap(error_format(
-				_("Could not find") ." <i>$graphpath/$pnmtojpeg</i>.  " . 
-				_("Check your NetPBM directory to see which PNG->JPEG converter you have") .
-				" (or just try using " .
-				($pnmtojpeg == "pnmtojpeg" ? "ppmtojpeg" : "pnmtojpeg") .
-			        " " . _("instead") ."). " .
-				_("Please check your configuration (or use ImageMagick).")));
+				sprintf(_("Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
+					"<i>$graphpath/$pnmtojpeg</i>",
+					($pnmtojpeg == "pnmtojpeg" ? "ppmtojpeg" : "pnmtojpeg"))));
 		}
 	}
 }

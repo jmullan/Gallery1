@@ -58,8 +58,7 @@ $checklist = array(
 	"htaccess" => array(
 		"desc" => _("Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (eg, big ZIP files) and you may not be able to use mod_rewrite (see below)."),
 	     	"func" => "check_htaccess",
-		"fail-htaccess" => _("Apache is not obeying your .htaccess file.") . "  " .
-			_("Try entering the following into your web server's httpd.conf file") .": <br><pre>" .
+		"fail-htaccess" => _("Apache is not obeying your .htaccess file.  Try entering the following into your web server's httpd.conf file") .": <br><pre>" .
 			 "&lt;Directory $GALLERY_DIR" .
 			 "&gt;\n\tAllowOverride Options FileInfo\n" .
 			 "&lt;/Directory&gt;",
@@ -98,9 +97,7 @@ $checklist = array(
 	),
 	"ImageMagick" => array(
 		"optional" => 1,
-		"desc" => _("Check to see if ImageMagick is installed so that Gallery can manipulate images") .
- 			" (" . _("rotate, resize, make thumbnails, etc") .")." . "  " .
-			_("You need to have ImageMagick <b>or</b> NetPBM installed."),
+		"desc" => _("Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc).  You need to have ImageMagick <b>or</b> NetPBM installed."),
 		"func" => "check_graphics_im",
 		"fail-imagemagick" => _("I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  ") .
 			$common_messages["getting-imagemagick"],
@@ -321,15 +318,15 @@ $constants = array_merge(
 	"default_language" => array(
 		"prompt" => _("Which language do you want as your default language"), 
 		"optional" => 1, 
-		"desc" => _("This is what you will see as admin, and what users will see no other preference is set."),
-		"choices" => available_locales(),
+		"desc" => _("This is what you will see as admin, and what users will see if no other preference is set."),
+		"choices" => gallery_languages(),
 		"value" => "en_US"
 	),
 	"ML_mode" => array(
 		"prompt" => _("Multi language mode"), 
 		"desc" => _("Gallery has three multi language modes.  These affect the language that a user will see when visiting the site") .
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.3.5") . ")</b></font>",
-		"choices" => (sizeof(available_locales()) > 1) ? 
+		"choices" => (sizeof(gallery_languages()) > 1) ? 
 			array(
 				1 => "1: " . _("Gallery is only displayed in one language"), 
 				2 => "2: " . _("Gallery is displayed in the language the browser sends"), 
@@ -342,7 +339,7 @@ $constants = array_merge(
 		"optional" => 1, 
 		"desc" => _("These languages will be available as user choices in a drop down menu, if you have chosen language mode 3") .
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.3.5") . ")</b></font>",
-		"multiple_choices" => available_locales(),
+		"multiple_choices" => gallery_languages(),
 		"value" => array('en_US')
 	)),
 	config_maybe_locales(),

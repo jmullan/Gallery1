@@ -8,6 +8,10 @@ if (!isset($GALLERY_BASEDIR)) {
 	require ('init.php');
 	require ('functions.inc');
 	require ($GALLERY_BASEDIR . 'util.php');
+if (fs_file_exists("../config.php")) {
+	include("../config.php");
+}
+
 initLanguage();
 ?>
 <html>
@@ -21,10 +25,6 @@ initLanguage();
 
 <body dir=<?php echo $gallery->direction ?>>
 <?php
-
-if (fs_file_exists("../config.php")) {
-	include("../config.php");
-}
 
 if (!isset($gallery->ML)) {
 	$gallery->ML->mode = 2;

@@ -108,7 +108,7 @@ function checkImageMagick($cmd) {
 	global $debugfile;
 
 	$cmd = fs_executable($gallery->app->ImPath . "/$cmd");
-	print _("Checking"). " ". fs_import_filename($cmd). "\n";
+	print sprintf(_("Checking %s"), fs_import_filename($cmd)) . "\n";
 
 	$ok = 1;
 

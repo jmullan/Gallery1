@@ -125,7 +125,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	if (empty($displayName)) {
 		$displayName = $gallery->user->getUsername();
 	}
-	$adminCommands .= _("Welcome") . ", " . $displayName . "&nbsp;&nbsp;<br>";
+	$adminCommands .= sprintf(_("Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br>";
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
