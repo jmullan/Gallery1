@@ -130,7 +130,7 @@ function findOrphanedImages() {
 		} 
 
 		// Don't bother doing anything if there are no files
-		if (sizeof($albumFiles)) { //  && !empty($album->photos)) {
+		if (sizeof($albumFiles)) {
 			if (!empty($album->photos)) {
 				foreach ($album->photos as $photo) {
 					foreach ($photo as $image) {
