@@ -8,13 +8,13 @@ function evenOdd_row($fields, $evenOdd) {
 		$bgColor = "#88cccc";
 	}
 	$f0 = str_replace(" ", "&nbsp;", $fields[0]);
-	$buf .= "<tr>";
-	$buf .= "<td bgcolor=$bgColor valign=top align=left>$f0</td>";
-	$buf .= "<td bgColor=$bgColor width=90% valign=top>$fields[1]</td>";
-	$buf .= "</tr>";
-	$buf .= "<tr>";
-	$buf .= "<td bgcolor=$bgColor colspan=2 valign=top align=left>$fields[2]</td>";
-	$buf .= "</tr>";
+	$buf .= "\n<tr>";
+	$buf .= "\n\t<td bgcolor=$bgColor valign=top align=left>$f0</td>";
+	$buf .= "\n\t<td bgColor=$bgColor width=90% valign=top>$fields[1]</td>";
+	$buf .= "\n</tr>";
+	$buf .= "\n<tr>";
+	$buf .= "\n\t<td bgcolor=$bgColor colspan=2 valign=top align=left>$fields[2]</td>";
+	$buf .= "\n</tr>\n";
 
 	return $buf;
 }
@@ -60,15 +60,15 @@ function form_input($key, $arr) {
 
 function form_choice($key, $arr) {
 	
-	$buf .= "<select name=$key>";
+	$buf .= "\n\t<select name=$key>";
 	foreach ($arr["choices"] as $choice) {
 		$selected = "";
 		if (!strcmp($choice, $arr["value"])) {
 			$selected = "SELECTED";
 		}
-		$buf .= "<option $selected> $choice";
+		$buf .= "\n\t\t". '<option value="' . $choice . '" ' . $selected . '>'. _($choice) . '</option>';
 	}
-	$buf .= "</select>";
+	$buf .= "\n\t</select>\n";
 	return $buf;
 }
 
@@ -136,7 +136,7 @@ function no_feature($feature, $cause) {
 	return "\$gallery->app->feature[\"$feature\"] = 0; // ($cause)\n";
 }
 function error_missing($desc) {
-	return error_format("Missing value: <b>$desc</b>!");
+	return error_format(_("Missing value").": <b>$desc</b>!");
 }
 function row_wrap($buf) {
 	return "<tr><td><code>$buf</td></tr>";
@@ -154,7 +154,7 @@ function check_htaccess()
 	$success = array();
 	$fail = array();
 	if ($GALLERY_PHP_VALUE_OK) {
-		$success[] = "I can read your .htaccess file";
+		$success[] = _("I can read your .htaccess file");
 	} else {
 		$fail["fail-htaccess"]++;
 	}
@@ -178,7 +178,7 @@ function check_php()
 	} else if (!strncmp($version, "4.0.3", 5)) {
 		$fail["fail-incompatible"]++;
 	} else {
-		$success[] = "PHP v" . phpversion() . " is OK";
+		$success[] = "PHP v" . phpversion() . _(" is OK");
 	}
 
 	return array($success, $fail);
@@ -191,7 +191,7 @@ function check_mod_rewrite()
 	$success = array();
 	$fail = array();
 	if ($GALLERY_REWRITE_OK) {
-		$success[] = "mod_rewrite is enabled";
+		$success[] = _("mod_rewrite is enabled");
 	} else {
 		$fail["fail-mod-rewrite"]++;
 	}
@@ -214,9 +214,9 @@ function check_exif($location="")
 		$d = locateDir($bin, $gallery->app ? dirname($gallery->app->use_exif) : "");
 	}
 	if (!$d) {
-		$fail["fail-exif"] = "Could not locate jhead";
+		$fail["fail-exif"] = _("Could not locate jhead");
 	} else {
-		$success[] = "jhead binary located";
+		$success[] = _("jhead binary located");
 	}
 
 	return array($success, $fail);
@@ -228,14 +228,13 @@ function check_graphics($location="", $graphtool = "")
 
 	$fail = array();
 	$success = array();
-
 	if (!strcmp($graphtool, "ImageMagick")) {
-		$success[] = "NetPBM not being used in this installation";
+		$success[] = _("NetPBM not being used in this installation");
 	    	return array($success, $fail);
 	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
-	    $success[] = "Cannot verify this path (it's not in your open_basedir list)";
+	    $success[] = _("Cannot verify this path (it's not in your open_basedir list)");
 	    return array($success, $fail);
 	}
 
@@ -284,12 +283,12 @@ function check_graphics($location="", $graphtool = "")
 		}
 
 		if (!$d) {
-			$missing[$bin] = "Can't find <i>$bin</i>!";
+			$missing[$bin] = _("Can't find") ." <i>$bin</i>!";
 		}
 
 		if (!empty($d) && inOpenBasedir($d)) {
 		    if (!fs_is_executable("$d/$bin")) {
-			$missing[$bin] = "<i>$bin</i> is not executable!";
+			$missing[$bin] = "<i>$bin</i> ". _("is not executable") ." !";
 		    }
 		}
 	}
@@ -299,7 +298,7 @@ function check_graphics($location="", $graphtool = "")
 	} else if (count($missing)) {
 		$fail["fail-netpbm-partial"] = array_values($missing);
 	} else {
-		$success[] = "All " . count($netpbm) . " NetPBM binaries located";
+		$success[] = _("All") ." " . count($netpbm) . " " ._("NetPBM binaries located");
 	}
 
 	return array($success, $fail);
@@ -318,7 +317,7 @@ function check_graphics_im($location="", $graphtool="")
 	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
-	    $success[] = "Cannot verify this path (it's not in your open_basedir list)";
+	    $success[] = _("Cannot verify this path (it's not in your open_basedir list)");
 	    return array($success, $fail);
 	}
 
@@ -337,12 +336,12 @@ function check_graphics_im($location="", $graphtool="")
 		}
 
 		if (!$d) {
-			$missing[$bin] = "Can't find <i>$bin</i>!";
+			$missing[$bin] = _("Can't find") ." <i>$bin</i>!";
 		}
 
 		if (!empty($d) && inOpenBasedir($d)) {
 		    if (!fs_is_executable("$d/$bin")) {
-			$missing[$bin] = "<i>$bin</i> is not executable!";
+			$missing[$bin] = "<i>$bin</i> ". _("is not executable"). " !";
 		    }
 		}
 	}
@@ -352,7 +351,7 @@ function check_graphics_im($location="", $graphtool="")
 	} else if (count($missing)) {
 		$fail["fail-imagemagick"] = array_values($missing);
 	} else {
-		$success[] = "All " . count($imagick) . " ImageMagick binaries located";
+		$success[] = _("All") . " " . count($imagick) . " " . _("ImageMagick binaries located");
 	}
 
 	return array($success, $fail);
@@ -373,9 +372,9 @@ function check_jpegtran($location="")
 		$d = locateDir($bin, $gallery->app ? $gallery->app->pnmDir : "");
 	}
 	if (!$d) {
-		$fail["fail-jpegtran"] = "Could not locate jpegtran";
+		$fail["fail-jpegtran"] = _("Could not locate jpegtran");
 	} else {
-		$success[] = "jpegtran binary located";
+		$success[] = _("jpegtran binary located");
 	}
 
 	return array($success, $fail);
@@ -401,7 +400,7 @@ function check_safe_mode()
 	    !strcasecmp($safe_mode, "off") ||
 	    !strcasecmp($safe_mode, "0") ||
 	    !strcasecmp($safe_mode, "false")) {
-		$success[] = "safe mode is off";
+		$success[] = _("safe mode is off");
 	} else {
 		$fail["fail-safe-mode"]++;
 	}
@@ -413,7 +412,7 @@ function check_magic_quotes()
 	$fail = array();
 	$success = array();
 	if (!get_magic_quotes_gpc()) {
-		$success[] = "magic quotes are off";
+		$success[] = _("magic quotes are off");
 	} else {
 		$fail["fail-magic-quotes"]++;
 	}

@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -50,21 +50,21 @@ if ($gallery->album) {
 
 <html>
 <head>
-  <title>Delete Album</title>
+  <title><?php echo _("Delete Album") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<span class="popuphead">Delete Album</span>
+<span class="popuphead"><?php echo _("Delete Album") ?></span>
 <br><br>
-Do you really want to delete this album?
+<?php echo _("Do you really want to delete this Album?") ?>
 <br>
 <b><?php echo $gallery->album->fields["title"] ?></b>
 <p>
 <?php echo makeFormIntro("delete_album.php"); ?>
-<input type=submit name=confirm value="Delete">
-<input type=submit value="Cancel" onclick='parent.close()'>
+<input type=submit name=confirm value=<?php echo '"'. _("Delete") .'"' ?>>
+<input type=submit value=<?php echo '"'. _("Cancel") .'"' ?> onclick='parent.close()'>
 </form>
 <p>
 <?php
@@ -72,7 +72,7 @@ Do you really want to delete this album?
 		echo $gallery->album->getThumbnailTag($gallery->album->getHighlight());
 	}
 } else {
-	gallery_error("no album specified");
+	gallery_error(_("no album specified"));
 }
 ?>
 

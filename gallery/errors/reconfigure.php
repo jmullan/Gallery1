@@ -8,26 +8,36 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	            exit;
 		    }
 ?>
-<?php require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
+<?php 
+	if (! (@include($GALLERY_BASEDIR . "ML_files/ML_config.php")) || ! $gallery->ML) {
+                include ($GALLERY_BASEDIR ."setup/ML_wizard.php");
+                exit;
+        }
+
+	require($GALLERY_BASEDIR . "errors/configure_instructions.php") ;
+?>
 <html>
 <head>
-  <title>Gallery needs Reconfiguration</title>
+  <title><?php echo _("Gallery needs Reconfiguration") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>	
+<body dir=<?php echo $gallery->direction ?>>
+<?php
+        include ($gallery->path ."ML_files/ML_info_addon.inc");
+?>
 <center>
-<span class="title"> Gallery needs Reconfiguration </span>
+<span class="title"><?php echo _("Gallery needs Reconfiguration") ?></span>
 <p>
 <center>
 <table width=80%><tr><td>
-Your Gallery configuration was created using the config wizard
-from an older version of Gallery.  It is out of date.  Please
-re-run the configuration wizard!  In a shell do this:
+<?php echo _("Your Gallery configuration was created using the config wizard from an older version of Gallery.") ?>
+<br>
+<?php echo _("It is out of date.  Please re-run the configuration wizard!") ?>
 <p><center>
 <?php configure("configure"); ?>
 <p>
-Then launch the <a href="<?php echo $GALLERY_BASEDIR?>setup/index.php">configuration wizard</a>.
-
+<?php echo _("Then launch the") ?> <a href="<?php echo $GALLERY_BASEDIR ?>setup/index.php"><?php echo _("configuration wizard") ?></a>.
+<br>
 <?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 
 </table>

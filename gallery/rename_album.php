@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -42,10 +42,10 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 <html>
 <head>
-  <title>Rename Album</title>
+  <title><?php echo _("Rename Album") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
 
@@ -95,7 +95,7 @@ if ($newName) {
 		dismissAndReload();
 		return;
 	} else {
-		gallery_error("There is already an album with that name!");
+		gallery_error(_("There is already an album with that name!"));
 	}
 } else {
 	$newName = $gallery->session->albumName;
@@ -103,11 +103,11 @@ if ($newName) {
 
 ?>
 <br>
-What do you want to name this album?
+<?php echo _("What do you want to name this album ?") ?>
 <br>
-The name cannot contain any of
-the following characters:  <br><center><b>\ / * ? " ' &amp; &lt; &gt; | . + # </b>or<b> spaces</b><br></center>
-Those characters will be ignored in your new album name.
+<?php echo _("The name cannot contain any of the following characters") ?>
+<br><center><b>\ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # </b><?php echo _("or") ?><b> <?php echo _("spaces") ?></b><br></center>
+<?php echo _("Those characters will be ignored in your new album name.") ?>
 
 <br>
 <?php echo makeFormIntro("rename_album.php", array("name" => "theform")); ?>
@@ -115,8 +115,8 @@ Those characters will be ignored in your new album name.
 <input type=hidden name="oldName" value=<?php echo $gallery->session->albumName?>>
 <input type=hidden name="useLoad" value=<?php echo $useLoad?>>    
 <p>
-<input type=submit value="Rename">
-<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+<input type=submit value=<?php echo '"' . _("Rename !") . '"' ?>>
+<input type=submit name="submit" value=<?php echo _("Cancel") ?> onclick='parent.close()'>
 </form>
 
 <script language="javascript1.2">

@@ -7,18 +7,18 @@ function configure($cmd="configure") {
   <tr>
    <td>
     <code>
-     <br> <b>Unix</b> with shell access
-     <br> % cd /path/to/your/gallery
-     <br> % sh ./<?php echo $cmd?>.sh
+     <br> <b>Unix</b> <?php echo _("with shell access") ; ?>
+     <br> % cd /<?php echo _("path") .'/'. _("to") .'/'. _("your") .'/'. _("gallery") ; ?>
+     <br> % sh ./<?php echo $cmd ?>.sh
      <br>
-     <br> <b>Unix</b> with FTP access
+     <br> <b>Unix</b> <?php echo _("with FTP access") ; ?>
      <br> ftp> chmod <?php echo configure_filemode($cmd) ?> .htaccess
      <br> ftp> chmod <?php echo configure_filemode($cmd) ?> config.php
      <br> ftp> chmod <?php echo configure_dirmode($cmd) ?> setup
      <br>
      <br> <b>Windows</b>
-     <br> C:\> cd \path\to\your\gallery
-     <br> C:\> <?php echo $cmd?>.bat
+     <br> C:\> cd \<?php echo _("path") .'\\'. _("to") .'\\'. _("your") .'\\'. _("gallery") ; ?>
+     <br> C:\> <?php echo $cmd ?>.bat
      <br>
      <br>
    </td>

@@ -36,12 +36,12 @@ function editField($album, $field) {
 
 	$buf = $album->fields[$field];
 	if (!strcmp($buf, "")) {
-		$buf = "<i>&lt;Empty&gt;</i>";
+		$buf = "<i>&lt;". _("Empty") . "&gt;</i>";
 	}
 	if ($gallery->user->canChangeTextOfAlbum($album)) {
 		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field";
 		$buf .= "<span class=editlink>";
-		$buf .= popup_link( "[edit $field]", $url) ;
+		$buf .= popup_link( "[". _("edit") . " " . _($field)."]", $url) ;
 		$buf .= "</span>";
 	}
 	return $buf;
@@ -57,11 +57,11 @@ function editCaption($album, $index) {
 	         $gallery->album->isItemOwner($gallery->user->getUid(), $index))) 
 		&& !$gallery->session->offline) {
 		if (!strcmp($buf, "")) {
-			$buf = "<i>&lt;No Caption&gt;</i>";
+			$buf = "<i>&lt;". _("No Caption") ."&gt;</i>";
 		}
 		$url = "edit_caption.php?set_albumName={$album->fields['name']}&index=$index";
 		$buf .= "<span class=editlink>";
-		$buf .= popup_link("[edit]", $url);
+		$buf .= popup_link("[". _("edit") ."]", $url);
 		$buf .= "</span>";
 	}
 	return $buf;
@@ -87,7 +87,7 @@ function viewComments($index) {
 	}
         $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&index=$index";
         $buf = "<span class=editlink>";
-        $buf .= popup_link('[add comment]', $url, 0);
+        $buf .= popup_link('[' . _("add comment") . ']', $url, 0);
         $buf .= "</span>";
         echo "<tr align=center><td colspan=3>$buf<br><br></td></tr>";
 }
@@ -101,7 +101,7 @@ function gallery_error($message) {
 }
 
 function error_format($message) {
-	return "<span class=error>Error: $message</span>";
+	return "<span class=error>". _("Error") . ": $message</span>";
 }
 
 function build_popup_url($url, $url_is_complete=0) {
@@ -120,11 +120,11 @@ function build_popup_url($url, $url_is_complete=0) {
 	return $url;
 }
 
-function popup($url, $url_is_complete=0) {
-
+function popup($title,$url,$url_is_complete=0,$height=500,$width=500)
+{
         $url = build_popup_url($url, $url_is_complete);
 	return popup_js($url, "Edit", 
-		"height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
+		"height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
 }
 
 function popup_js($url, $window, $attrs) {
@@ -136,7 +136,8 @@ function popup_status($url) {
 	return "open('" . makeGalleryUrl($url) . "','Status','$attrs');";
 }
 
-function popup_link($title, $url, $url_is_complete=0, $online_only=true) {
+function popup_link($title,$url,$url_is_complete=0,$online_only=TRUE,$height=500,$width=500)
+{
     static $popup_counter = 0;
     global $gallery;
 
@@ -151,7 +152,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true) {
     
     $a1 = "<a id=\"$link_name\" target=\"Edit\" href=$url onClick=\"".
 	popup_js("document.getElementById('$link_name').href", "Edit",
-		 "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
+		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
 	"\">";
     
     return "$a1<nobr>$title</nobr></a> ";
@@ -169,16 +170,16 @@ function exec_internal($cmd) {
 	fs_exec($cmd, $results, $status, $debugfile);
 
 	if (isDebugging()) {
-		print "<br> Results: <pre>";
+		print "<br>" . _("Results") .": <pre>";
 		if ($results) {
 			print join("\n", $results);
 		} else {
-			print "<b>none</b>";
+			print "<b>" ._("none") ."</b>";
 		}
 		print "</pre>";
 
 		if (file_exists($debugfile)) {
-			print "<br> Error messages: <pre>";
+			print "<br> ". _("Error messages") ." : <pre>";
 			if ($fd = fs_fopen($debugfile, "r")) {
 				while (!feof($fd)) {
 					$buf = fgets($fd, 4096);
@@ -189,7 +190,7 @@ function exec_internal($cmd) {
 			unlink($debugfile);
 			print "</pre>";
 		}
-		print "<br> Status: $status (expected " . $gallery->app->expectedExecStatus . ")";
+		print "<br> ". _("Status") .": $status (expected " . $gallery->app->expectedExecStatus . ")";
 	}
 
 	return array($results, $status);
@@ -202,7 +203,7 @@ function getDimensions($file) {
 	if (($regs[0] > 1) && ($regs[1] > 1))
 		return array($regs[0], $regs[1]);
 	else if (isDebugging())
-		echo "<br>PHP's getimagesize() unable to determine dimensions.<br>";
+		echo "<br>" ._("PHP's getimagesize() unable to determine dimensions.") ."<br>";
 		
 
 	/* Just in case php can't determine dimensions. */
@@ -221,7 +222,7 @@ function getDimensions($file) {
 		break;
 	default:
 		if (isDebugging())
-			echo "<br>You have no graphics package configured for use!<br>";
+			echo "<br>" . _("You have no graphics package configured for use!") ."<br>";
 		return array(0, 0);
 		break;
 	}
@@ -254,7 +255,7 @@ function selectOptions($album, $field, $opts) {
 		if (!strcmp($opt, $album->fields[$field])) {
 			$sel = "selected";
 		}
-		echo "<option $sel>$opt";
+		echo "\n<option value=\"$opt\" $sel>" . _($opt) ."</option>";
 	}
 }
 
@@ -285,10 +286,12 @@ function acceptableFormatList() {
  */
 
 function automaticFieldsList() {
-	return array("Upload Date" => "Upload Date", 
-	      "Capture Date" => "Capture Date", 
-	      "Dimensions" => "Image Size",
-	      "EXIF" => "Additional EXIF Data");
+	return array(
+		"Upload Date" => _("Upload Date"),
+		"Capture Date" => _("Capture Date"),
+		"Dimensions" => _("Image Size"),
+		"EXIF" => _("Additional EXIF Data")
+	);
 }
 
 function isImage($tag) {
@@ -324,7 +327,7 @@ function getFile($fname, $legacy=false) {
 function dismissAndReload() {
 	if (isDebugging()) {
 		echo "<BODY onLoad='opener.location.reload();'>";
-		echo("<center><b>Not closing this window because debug mode is on</b></center>");
+		echo("<center><b>" ._("Not closing this window because debug mode is on") ."</b></center>");
 		echo("<hr>");
 	} else {
 		echo "<BODY onLoad='opener.location.reload(); parent.close()'>";
@@ -337,10 +340,14 @@ function reload() {
 	echo '</script>';
 }
 
+function reload_popup() {
+//	echo "<BODY onLoad='self.reload();'>";
+}
+
 function dismissAndLoad($url) {
 	if (isDebugging()) {
 		echo("<BODY onLoad='opener.location = \"$url\"; '>");
-		echo("<center><b>Not closing this window because debug mode is on</b></center>");
+		echo("<center><b>" . _("Not closing this window because debug mode is on") ."</b></center>");
 		echo("<hr>");
 	} else {
 		echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
@@ -394,7 +401,7 @@ function resize_image($src, $dest, $target) {
 		break;
 	default:
 		if (isDebugging())
-			echo "<br>You have no graphics package configured for use!<br>";
+			echo "<br>" . _("You have no graphics package configured for use!")."<br>";
 		return 0;
 		break;
 	}
@@ -492,7 +499,7 @@ function rotate_image($src, $dest, $target) {
 			break;
 		default:
 			if (isDebugging())
-				echo "<br>You have no graphics package configured for use!<br>";
+				echo "<br>". _("You have no graphics package configured for use") ." !<br>";
 			return 0;
 			break;
 		}	
@@ -538,7 +545,7 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 		break;
 	default:
 		if (isDebugging())
-			echo "<br>You have no graphics package configured for use!<br>";
+			echo "<br>" . ("You have no graphics package configured for use!") ."<br>";
 		return 0;
 		break;
 	}
@@ -571,7 +578,7 @@ function valid_image($file) {
     }
 
 	if (isDebugging())
-		echo "<br>There was an unknown failure in the valid_image() call!<br>";
+		echo "<br>". _("There was an unknown failure in the valid_image() call!") ." <br>";
     return 0;
 }
 
@@ -595,7 +602,7 @@ function toPnmCmd($file) {
 		 	" " .
 			fs_import_filename($file);
 	} else {
-		gallery_error("Unknown file type: $file");
+		gallery_error(_("Unknown file type") .": $file");
 		return "";
 	}
 }
@@ -615,7 +622,7 @@ function fromPnmCmd($file) {
 	if ($cmd) {
 		return "$cmd > " . fs_import_filename($file);
 	} else {
-		gallery_error("Unknown file type: $file");
+		gallery_error(_("Unknown file type") .": $file");
 		return "";
 	}
 }
@@ -756,7 +763,7 @@ function drawSelect($name, $array, $selected, $size, $attrList=array()) {
 		if (!strcmp($uid, $selected)) {
 			$sel = "selected";
 		} 
-		$buf .= "<option value=$uid $sel> $username\n";
+		$buf .= "<option value=$uid $sel>". _($username) ."</option>\n";
 	}
 	$buf .= "</select>\n";
 
@@ -1004,13 +1011,13 @@ function preprocessImage($dir, $file) {
 					fs_unlink($tempfile);
 				}
 			} else {
-				gallery_error("Can't write to $tempfile");
+				gallery_error(_("Can't write to") ." $tempfile");
 			}
 			chmod("$dir/$file", 0644);
 		}
 		fclose($fd);
 	} else {
-		gallery_error("Can't read $dir/$file");
+		gallery_error(_("Can't read") ." $dir/$file");
 	}
 
 	return 1;
@@ -1101,12 +1108,12 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 	
 	$mynumalbums = $albumDB->numAlbums($gallery->user);
 
-	echo "<option value=0 selected> << Select Album >> </option>\n";
+	echo "<option value=0 selected> << ". _("Select Album") ." >> </option>\n";
 
 	// create a ROOT option for the user to move the 
 	// album to the main display
 	if ($gallery->user->canCreateAlbums() && $rootDisplay) {
-		echo "<option value=ROOT>Top Level</option>";
+		echo "<option value=ROOT>". _("Top Level") ."</option>";
 	}
 
 	// display all albums that the user can move album to
@@ -1126,7 +1133,7 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 			if ($myAlbum == $gallery->album) {
 				// Don't allow the user to move to the current location with
 				// value=0, but notify them that this is the current location
-				echo "<option value=0>-- $myAlbumTitle (current location)</option>\n";
+				echo "<option value=0>-- $myAlbumTitle (". _("current location"). ")</option>\n";
 			} else {
 				echo "<option value=\"$myAlbumName\">-- $myAlbumTitle</option>\n";
 			}
@@ -1172,9 +1179,9 @@ function printNestedVals($level, $albumName, $val, $movePhoto) {
 				if ($nestedAlbum == $gallery->album) {
 					// don't allow user to move to here (value=0), but
 					// notify them that this is their current location
-					echo "<option value=0> $val2 (current location)</option>\n";
+					echo "<option value=0> $val2 (". _("current location") .")</option>\n";
 				} elseif ($nestedAlbum == $gallery->album->getNestedAlbum($index)) {
-					echo "<option value=0> $val2 (self)</option>\n";
+					echo "<option value=0> $val2 (". _("self"). ")</option>\n";
 				} else {
 					echo "<option value=\"$myName\"> $val2</option>\n";
 				}
@@ -1428,12 +1435,12 @@ function printChildren($albumName,$depth=0) {
 				$val2 = $nestedAlbum->fields['title'];
 				if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
 					&& !$gallery->session->offline) {
-				    $val3 = "(" . pluralize($nestedAlbum->getClicks(), "hit", "0") . ")";
+				    $val3 = "(" . pluralize_n($nestedAlbum->getClicks(), _("hit"), _("hits"), _("0 hits")) . ")";
 				} else {
 				    $val3 = "";
 				}
 				if ($depth==0 && !$printedHeader++) {
-					echo "<strong>Sub-albums:</strong>";
+					echo "<strong>". _("Sub-albums") .":</strong>";
 				}
 				echo "<div style=\"margin: 0px 0px 0px 20px\">";
 				echo "<span class=fineprint>";
@@ -1462,7 +1469,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 
 	if (!strcmp($tag, "zip")) {
 		if (!$gallery->app->feature["zip"]) {
-			processingMsg("Skipping $name (ZIP support not enabled)");
+			processingMsg(_("Skipping") . " : " . $name . _("(ZIP support not enabled)"));
 			continue;
 		}
 		/* Figure out what files we can handle */
@@ -1536,7 +1543,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				$temp_files[$newFile]++;
 			}
 		    
-			processingMsg("- Adding $name");
+			processingMsg("- ". _("Adding") ." : " .$name);
 			if ($setCaption and $caption == "") {
 				$caption = $originalFilename;
 			}
@@ -1553,7 +1560,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 					list($w, $h) = $photo->image->getRawDimensions();
 					if ($w > $gallery->album->fields["resize_size"] ||
 					    $h > $gallery->album->fields["resize_size"]) {
-						processingMsg("- Resizing $name"); 
+						processingMsg("- " . _("Resizing") ." : ". $name);
 						$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
 					}
 				}
@@ -1579,7 +1586,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 						}
 						if ($rotate) {
 							$gallery->album->rotatePhoto($index, $rotate);
-							processingMsg("- Photo auto-rotated ${rotate}&deg;");
+							processingMsg("- ". _("Photo auto-rotated") ." ${rotate}&deg;");
 						}
 					}
 				}
@@ -1589,12 +1596,12 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				}
 
 			} else {
-				processingMsg("<font color=red>Error: $err!</font>");
-				processingMsg("<b>Need help?  Look in the " .
+				processingMsg("<font color=red>" . _("Error") . ": $err!</font>");
+				processingMsg("<b>". _("Need help?  Look in the ") .
 				    "<a href=http://gallery.sourceforge.net/faq.php target=_new>Gallery FAQ</a></b>");
 			}
 		} else {
-			processingMsg("Skipping $name (can't handle '$tag' format)");
+			processingMsg(_("Skipping") . " : " . $name . " (". _("can't handle") ." '$tag' ". _("format") .")");
 		}
 	}
 }
@@ -1702,5 +1709,20 @@ function findInPath($program)
 	}
 	
 	return false;
+}
+
+function pluralize_n($amt, $one, $more, $none) {
+        switch ($amt) {
+                case 0 :
+                        return $none;
+                        break;
+                case 1 :
+                        return "$amt $one";
+                        break;
+
+                default :
+                        return "$amt $more";
+                        break;
+        }
 }
 ?>

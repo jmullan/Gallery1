@@ -23,8 +23,8 @@
 <?php
 class EverybodyUser extends Abstract_User {
 	function EverybodyUser() {
-		$this->username = "EVERYBODY";
-		$this->fullname = "Anonymous User";
+		$this->username = _("EVERYBODY") ;
+		$this->fullname = _("Anonymous User");
 		$this->setIsAdmin(false);
 		$this->setCanCreateAlbums(false);
 		$this->uid = "everybody";

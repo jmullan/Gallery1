@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -47,7 +47,7 @@ if (!$boxes) {
 
 <html>
 <head>
-  <title>Add Photos</title>
+  <title><?php echo _("Add Photos") ?></title>
   <?php echo getStyleSheetLink() ?>
 
 <script language="Javascript">
@@ -59,26 +59,28 @@ if (!$boxes) {
 // -->
 </script>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
-<span class="popuphead">Add Photos</span>
+<center><span class="popuphead"><?php echo _("Add Photos") ?></span></center>
 <br>
 <span class="popup">
-Click the <b>Browse</b> button to locate a photo to upload.
+<?php echo _("Click the <b>Browse</b> button to locate a photo to upload.") ?>
 <span class="admin">
 <?php if ($gallery->app->feature["zip"]) { ?>
 <br>
-&nbsp;&nbsp;Tip:  Upload a ZIP file full of photos and movies!
+&nbsp;&nbsp;
+<?php echo _(" Tip:  Upload a ZIP file full of photos and movies!") ?>
 <?php } ?>
 <br>
-&nbsp;&nbsp;(Supported file types: <?php echo join(", ", acceptableFormatList()) ?>)
+&nbsp;&nbsp;
+<?php echo _("Supported file types") . ": ". join(", ", acceptableFormatList()) ?>
 </span>
 
 <br><br>
 <?php echo makeFormIntro("add_photos.php",
 			array("name" => "count_form",
 				"method" => "POST")); ?>
-1. Select the number of files you want to upload:
+<?php echo _("1. Select the number of files you want to upload: ") ?>
 <select name="boxes" onChange='reloadPage()'>
 <?php for ($i = 1; $i <= 10;  $i++) {
 	echo "<option ";
@@ -96,55 +98,54 @@ Click the <b>Browse</b> button to locate a photo to upload.
 			array("name" => "upload_form",
 				"enctype" => "multipart/form-data",
 				"method" => "POST")); ?>
-2. Use the Browse button to find the photos on your computer
+<?php echo _("2. Use the Browse button to find the photos on your computer") ?>
 <input type="hidden" name="max_file_size" value="10000000">
 <table>
 <?php for ($i = 0; $i < $boxes;  $i++) { ?>
 <tr><td>
-File</td>
+<?php echo _("File") ?></td>
 <td><input name="userfile[]" type="file" size=40></td></tr>
-<td>Caption</td><td> <input name="usercaption[]" type="text" size=40></td></tr>
+<td><?php echo _("Caption") ?></td><td> <input name="usercaption[]" type="text" size=40></td></tr>
 <tr><td></td></tr> 
 <?php } ?>
 </table>
-<input type=checkbox name=setCaption checked value="1">Use filename as caption if no caption is specified.
+<input type=checkbox name=setCaption checked value="1"><?php echo _("Use filename as caption if no caption is specified.") ?>
 <br>
 <center>
-<input type="button" value="Upload Now" onClick='opener.showProgress(); document.upload_form.submit()'>
-<input type=submit value="Cancel" onclick='parent.close()'>
+<input type="button" value=<?php echo '"' ._("Upload Now") .'"' ?> onClick='opener.showProgress(); document.upload_form.submit()'>
+<input type=submit value=<?php echo _("Cancel") ?> onclick='parent.close()'>
 </center>
 </form>
 
 <?php echo makeFormIntro("save_photos.php",
 			array("name" => "uploadurl_form",
 				"method" => "POST")); ?>
-Or, upload any images found at this location.  The location
-can either be a URL or a directory on the server.
+<?php echo _("Or, upload any images found at this location.") ?><br>
+<?php echo _("The location can either be a URL or a directory on the server.") ?>
 <br>
 <span class="admin">
-&nbsp;&nbsp;Tip: FTP images to a directory on your server then provide that path here!
+<?php echo _("  Tip: FTP images to a directory on your server then provide that path here!") ?>
 </span>
 <br>
 
 <input type="text" name="urls[]" size=40>
 <br>
-<input type=checkbox name=setCaption checked value="1">Set photo captions with original filenames.
-<br>
+<input type=checkbox name=setCaption checked value="1"> <?php echo _("Set photo captions with original filenames.") ?>
+<br><br>
 <center>
-<input type="button" value="Submit URL or directory" onClick='opener.showProgress(); document.uploadurl_form.submit()'>
-<input type=submit value="Cancel" onclick='parent.close()'>
+<input type="button" value=<?php echo '"' . _("Submit URL or directory") . '"' ?> onClick='opener.showProgress(); document.uploadurl_form.submit()'>
+<input type=submit value=<?php echo '"' . _("Cancel") . '"' ?>onclick='parent.close()'>
 </center>
 </form>
-Alternatively, you can use one of these desktop agents to drag and drop photos from your desktop:
-<br>
+<?php echo _("Alternatively, you can use one of these desktop agents to drag and drop photos from your desktop") ?>:
+<br><br>
 &nbsp;&nbsp;&nbsp;<b><a href="#" onClick="opener.location = 'http://gallery.sourceforge.net/gallery_remote.php?protocol_version=<?php echo $gallery->remote_protocol_version ?>'; parent.close();">Gallery Remote</a></b>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A Java application that runs on Mac, Windows and Unix
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo _("A Java application that runs on Mac, Windows and Unix") ?>
+<br><br>
+<?php if (empty($GALLERY_EMBEDDED_INSIDE)) { ?> &nbsp;&nbsp;&nbsp;<b><a href="<?php echo makeGalleryUrl("publish_xp_docs.php") ?>">Windows XP Publishing Agent</a></b>
 <br>
-<?php if (empty($GALLERY_EMBEDDED_INSIDE)) { ?>
-&nbsp;&nbsp;&nbsp;<b><a href="<?php echo makeGalleryUrl("publish_xp_docs.php") ?>">Windows XP Publishing Agent</a></b>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note:</i> this feature is still experimental!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><?php echo _("Note") ?>:</i> <?php echo _("this feature is still experimental") ?>!
 <?php } ?>					 
 </span>
 

@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation"). "\n";
 	exit;
 }
 ?>
@@ -39,7 +39,7 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	exit;
 }
 	
-if (!strcmp($submit, "Save")) {
+if (!strcmp($submit, _("Save"))) {
 	$gallery->album->fields[$field] = stripslashes($data);
 	$gallery->album->save();
 	dismissAndReload();
@@ -50,13 +50,12 @@ if (!strcmp($submit, "Save")) {
 
 <html>
 <head>
-  <title>Edit <?php echo $field ?></title>
+  <title><?php echo _("Edit") . " " . _($field) ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
-
+<body dir=<?php echo $gallery->direction ?>>
 <center>
-Edit the <?php echo $field ?> and click <b>Save</b> when you're done.
+<?php echo _("Edit the") . " " . _($field) . " " . _("and click <b>Save</b> when you're done.") ?>
 
 <?php echo makeFormIntro("edit_field.php", array("name" => "theform", "method" => "POST")); ?>
 <input type=hidden name="field" value="<?php echo $field ?>">
@@ -64,8 +63,8 @@ Edit the <?php echo $field ?> and click <b>Save</b> when you're done.
 <?php echo $gallery->album->fields[$field] ?>
 </textarea>
 <p>
-<input type=submit name="submit" value="Save">
-<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+<input type=submit name="submit" value=<?php echo _("Save") ?>>
+<input type=submit name="submit" value=<?php echo _("Cancel") ?> onclick='parent.close()'>
 </form>
 
 <script language="javascript1.2">

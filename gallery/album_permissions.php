@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") . "\n";
 	exit;
 }
 ?>
@@ -97,7 +97,7 @@ if (isset($allUid) && strchr($submit_viewFullImages, ">")) {
 	$changed++;
 }
 
-if (!strcmp($submit, "Save") && $ownerUid) {
+if (!strcmp($submit, _("Save")) && $ownerUid) {
 	$gallery->album->setOwner($ownerUid);
 	$changed++;
 }
@@ -148,22 +148,22 @@ correctPseudoUsers($uAdd, $ownerUid);
 ?>
 <html>
 <head>
-  <title>Album Permissions</title>
+  <title><?php echo _("Album Permissions") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
-
+<body dir=<?php echo $gallery->direction ?>>
 <center>
-<span class="popuphead">Album Permissions</span>
+<span class="popuphead"><?php echo _("Album Permissions") ?></span>
 <br>
-Changing permissions for <b><?php echo $gallery->album->fields["title"]?></b>
+<?php echo _("Changing permissions for ") ?><br><b><?php echo $gallery->album->fields["title"] ?></b>
 
 <?php echo makeFormIntro("album_permissions.php", 
 			array("name" => "albumperms_form")) ?>
-
+<br>
 <?php if ($gallery->user->isAdmin) { ?>
-Owner: <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
+<?php echo _("Owner: ") . drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
 <?php } ?>
+<br><br>
 
 <table border=0 cellspacing=0 cellpadding=0>
  <tr>
@@ -177,7 +177,7 @@ Owner: <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
    <table border=0 cellspacing=3 cellpadding=0>
     <tr>
      <td colspan=2>
-      Users who can see the album
+      <?php echo _("Users who can see the album") ?>
      </td>
     </tr>
     <tr>
@@ -192,7 +192,7 @@ Owner: <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
 
     <tr>
      <td colspan=2>
-      Users who can change album text.
+      <?php echo _("Users who can change album text.") ?>
      </td>
     </tr>
     <tr>
@@ -207,7 +207,7 @@ Owner: <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
 
     <tr>
      <td colspan=2>
-      Users who can add photos.
+      <?php echo _("Users who can add photos.") ?>
      </td>
     </tr>
     <tr>
@@ -222,7 +222,7 @@ Owner: <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
 
     <tr>
      <td colspan=2>
-      Users who can modify photos.
+	<?php echo _("Users who can modify photos.") ?>
      </td>
     </tr>
     <tr>
@@ -237,7 +237,7 @@ Owner: <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
 
     <tr>
      <td colspan=2>
-      Users who can delete photos.
+	<?php echo _("Users who can delete photos.") ?>
      </td>
     </tr>
     <tr>
@@ -252,7 +252,7 @@ Owner: <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
 
     <tr>
      <td colspan=2>
-      Users who can create sub albums.
+	<?php echo _("Users who can create sub albums.") ?>
      </td>
     </tr>
     <tr>
@@ -267,7 +267,7 @@ Owner: <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
 
     <tr>
      <td colspan=2>
-      Users who can view full (original) images.
+      <?php echo _("Users who can view full (original) images.") ?>
      </td>
     </tr>
     <tr>
@@ -280,13 +280,13 @@ Owner: <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
      </td>
     </tr>
 
-     </table
+     </table>
   </td>
  </tr>
 </table>
 
-<input type=submit name="submit" value="Save">
-<input type=submit name="submit" value="Done" onclick='parent.close()'>
+<input type=submit name="submit" value=<?php echo _("Save") ?>>
+<input type=submit name="submit" value=<?php echo _("Done") ?> onclick='parent.close()'>
 </form>
 
 </body>

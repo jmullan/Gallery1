@@ -39,14 +39,14 @@ if (!$gallery->user->isAdmin()) {
 }
 
 if ($submit) {
-	if (!strcmp($submit, "Create")) {
+	if (!strcmp(htmlentities($submit), _("Create"))) {
 		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 		if ($gErrors["uname"]) {
 			$errorCount++;
 		}
 
 		if (strcmp($new_password1, $new_password2)) {
-			$gErrors["new_password2"] = "Passwords do not match!";
+			$gErrors["new_password2"] = _("Passwords do not match!");
 			$errorCount++;
 		} else {
 			$gErrors["new_password1"] = 
@@ -66,27 +66,27 @@ if ($submit) {
 			$tmpUser->save();
 			header("Location: manage_users.php");
 		}
-	} else if (!strcmp($submit, "Cancel")) {
+	} else if (!strcmp($submit, _("Cancel"))) {
 		header("Location: manage_users.php");
 	}
 }
 
-$canCreateChoices = array(1 => "yes", 0 => "no");
+$canCreateChoices = array(1 => _("yes"), 0 => _("no"));
 $canCreate = 1;
 
 ?>
 <html>
 <head>
-  <title>Create User</title>
+  <title><?php echo _("Create User") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<span class="popuphead">Create User</span>
+<span class="popuphead"><?php echo _("Create User") ?></span>
 <br>
 <br>
-Create a new user here.
+<?php echo _("Create a new user here.") ?>
 <p>
 
 
@@ -98,8 +98,8 @@ Create a new user here.
 <?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
 
-<input type=submit name="submit" value="Create">
-<input type=submit name="submit" value="Cancel">
+<input type=submit name="submit" value=<?php echo '"'. _("Create") .'"' ?>>
+<input type=submit name="submit" value=<?php echo '"'. _("Cancel") .'"' ?>>
 </form>
 
 <script language="javascript1.2">

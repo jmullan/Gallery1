@@ -1,19 +1,23 @@
 <?php /* $Id$ */ ?>
-<?php require('init.php'); ?>
+<?php 
 
+	require ('init.php');
+	require ('../ML_files/ML_config.php') ;
+	require("../util.php");
+	require("functions.inc");
+?>
 <html>
 <head>
-  <title>Gallery Configuration</title>
+  <title><?php echo _("Gallery Configuration") ?></title>
   <style type="text/css">
    body { background: #CCCCCC; }
    .error { color: #FF0000; }
   </style>
 </head>
-<body>
 
+<body dir=<?php echo $gallery->direction ?>>
 <?php
-require("../util.php");
-require("functions.inc");
+	include ($gallery->path ."ML_files/ML_info_addon.inc");
 
 if (fs_file_exists("../config.php")) {
 	include("../config.php");
@@ -28,7 +32,7 @@ if (function_exists("posix_getpwuid")) {
 		fs_exec($whoami, $results, $status);
 		$webserver_user = $results[0];
 	} else {
-		$webserver_user = "unknown";
+		$webserver_user = _("unknown");
 	}
 }
 
@@ -68,7 +72,7 @@ $legit = array("check", "constants", "defaults", "confirm", "write");
 if (in_array($setup_page, $legit)) {
   include("$setup_page.inc");
 } else {
-  print "Security violation.\n";
+  print _("Security violation") .".\n";
   exit;
 }
 ?>

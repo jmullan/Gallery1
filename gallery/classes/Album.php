@@ -39,8 +39,8 @@ class Album {
 	function Album() {
 		global $gallery;
 
-		$this->fields["title"] = "Untitled";
-		$this->fields["description"] = "No description";
+		$this->fields["title"] = _("Untitled");
+		$this->fields["description"] = _("No description");
 		$this->fields["summary"]="";
 		$this->fields["nextname"] = "aaa";
 		$this->fields["bgcolor"] = "";
@@ -131,11 +131,11 @@ class Album {
 		global $gallery;
 
 		if (!strcmp($this->version, $gallery->album_version)) {
-			print "Album up to date.<br>";
+			print _("Album up to date.") ." <br>";
 			return 0;
 		}
 
-		print "Upgrading album properties...";
+		print _("Upgrading album properties...");
 		my_flush();
 
 		$changed = 0;
@@ -199,7 +199,7 @@ class Album {
 			$changed = 1;
 		}
 
-		print "done.<br>";
+		print _("done").".<br>";
 
 		/* 
 		* Check all items 
@@ -207,7 +207,7 @@ class Album {
 		$count = $this->numPhotos(1);
 		for ($i = 1; $i <= $count; $i++) {
 			set_time_limit(30);
-			print "Upgrading item $i of $count...";
+			print _("Upgrading item") . " $i ". _("of") . " $count ...";
 			my_flush();
 
 			$photo = &$this->getPhoto($i);
@@ -216,7 +216,7 @@ class Album {
 				$this->updateSerial = 1;
 			}
 
-			print "done.<br>";
+			print _("done").".<br>";
 		}
 
 		if (strcmp($this->version, $gallery->album_version)) {
@@ -758,7 +758,7 @@ class Album {
 		if ($photo) {
 			return $photo->getThumbnailTag($album->getAlbumDirURL("highlight"), $size, $attrs);
 		} else {
-			return "<span class=title>No highlight!</span>";
+			return "<span class=title>". _("No highlight") ."!</span>";
 		}
 	}
 
@@ -767,7 +767,7 @@ class Album {
 		if ($photo) {
 			return $photo->getHighlightTag($album->getAlbumDirURL("highlight"), $size, $attrs);
 		} else {
-			return "<span class=title>No highlight!</span>";
+			return "<span class=title>". _("No highlight") ."!</span>";
 		}
 	}
 
@@ -1058,7 +1058,8 @@ class Album {
 			$time = $this->fields["clicks_date"];
                 }
 
-                return date("M d, Y", $time);
+//                return date("M d, Y", $time);
+		return strftime("%d. %b %Y",$time);
         }
 
 	function incrementClicks() {
@@ -1131,7 +1132,8 @@ class Album {
 			$time = $stat[9];
 		}
 
-		return date("M d, Y", $time);
+//		return date("M d, Y", $time);
+		return strftime("%d. %b %Y",$time);
 	}
 
 	function setNestedProperties() {

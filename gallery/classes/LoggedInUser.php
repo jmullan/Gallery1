@@ -23,8 +23,8 @@
 <?php
 class LoggedinUser extends Abstract_User {
 	function LoggedinUser() {
-		$this->username = "LOGGEDIN";
-		$this->fullname = "Anonymous User";
+		$this->username = _("LOGGEDIN");
+		$this->fullname = _("Anonymous User") ;
 		$this->setIsAdmin(false);
 		$this->setCanCreateAlbums(false);
 		$this->uid = "loggedin";

@@ -36,46 +36,48 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 
 <html>
 <head>
-  <title>Publishing with Windows XP</title>
+  <title><?php echo _("Publishing with Windows XP") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 <center>
 <span class="title">
-Using the Windows XP <i>Publish To the Web</i> feature
+<?php echo _("Using the Windows XP <i>Publish To the Web</i> feature") ?>
 </span>
 </center>
 
-Windows XP comes with a nice feature that allows you to publish content
-from your desktop directly to a web service.  Gallery <b>has experimental</b>
-support for this feature.  It's relatively easy to configure.  
+<br><?php echo _("Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.") ?>
+<br><?php echo _("Gallery <b>has experimental</b> support for this feature.") ?>
+<br><?php echo _("It's relatively easy to configure.") ?>  
 
 <br>
 <br>
 
 <br>
-<b>Step 1</b>
+<b><?php echo _("Step 1") ?></b>
 <br>
-Download the <a href="<?php echo makeGalleryUrl("publish_xp.php")?>">XP Configuration File</a>.
-Save this file on your PC and rename it "install_registry.reg".  If it asks you for
-confirmation about changing the file type, answer "yes".  Right click on this file and
-you should see a menu appear.  Select the <b>Merge</b> option (this should be at the top of the
-menu).  It will ask you if you want to import these values into your registry.  Click "ok".
-It will tell you that the files were imported successfully.  Click "ok" again.
+<?php echo _("Download the") ?> <a href="<?php echo makeGalleryUrl("publish_xp.php") ?>"><?php echo _("XP Configuration File") ?></a>.
+<br><?php echo _("Save this file on your PC and rename it") ?> "install_registry.reg".  
+<br><?php echo _("If it asks you for confirmation about changing the file type, answer &quot;yes&quot;."); ?>
+<br><?php echo _("Right click on this file and you should see a menu appear.") ?> 
+<br><?php echo _("Select the <b>Merge</b> option (this should be at the top of the menu).") ?>
+<br><?php echo _("It will ask you if you want to import these values into your registry.") ?>
+<br><?php echo _("Click &quot;yes&quot;.") ?>
+<br><?php echo _("It will tell you that the files were imported successfully.") ?>
+<br><?php echo _("Click &quot;ok&quot;.") ?>
 <br>
 <br>
 
-<b>Step 2</b>
+<b><?php echo _("Step 2") ?></b>
 <br>
-Open your Windows explorer and browse to a folder containing a JPG image.  Select the
-image and there should be a link on the left that says "Publish this file to the web..."
-Click this link and then follow the instructions to log into your Gallery, select an
- album and publish the image.
+<?php echo _("Open your Windows explorer and browse to a folder containing a JPG image.") ?>
+<br><?php echo _("Select the image and there should be a link on the left that says &quot;Publish this file to the web...&quot;") ?>
+<br><?php echo _("Click this link and then follow the instructions to log into your Gallery, select an album and publish the image.") ?>
 <br>
 <br>
 
 <center>
-<a href="<?php echo makeGalleryUrl("add_photos.php")?>">Return to Add Photos</a>
+<a href="<?php echo makeGalleryUrl("add_photos.php") ?>"><?php echo _("Return to Add Photos") ?></a>
 <center>
 
 <?php

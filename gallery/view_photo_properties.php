@@ -36,17 +36,17 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 
 <html>
 <head>
-  <title>Photo Properties</title>
+  <title><?php echo _("Photo Properties") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <?php
 if ($gallery->session->albumName && $index) {
 ?>
 
 <center>
-Photo Properties<br>
+<?php echo _("Photo Properties") ?><br>
 <br>
 
 <?php echo $gallery->album->getThumbnailTag($index) ?>
@@ -132,13 +132,13 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 		echo ("</td>\n</table><br>");
 	}
 
-	echo ("File Upload Date: &nbsp;&nbsp; " . date("m-d-Y H:i:s" , $gallery->album->getUploadDate($index)) . "<br>");
+	echo _("File Upload Date") .":&nbsp;&nbsp; " . strftime("%d.%m %Y , %H:%M:%S" , $gallery->album->getUploadDate($index)) . "<br>";
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-	echo ("Item Capture Date: &nbsp;&nbsp; " . $itemCaptureDate['mon'] . "-" . $itemCaptureDate['mday'] . "-" . $itemCaptureDate['year'] . "&nbsp;&nbsp;");
-	echo ($itemCaptureDate['hours'] . ":" . $itemCaptureDate['minutes'] . ":" . $itemCaptureDate['seconds'] . "<br>");
+	echo _("Item Capture Date") . ":&nbsp;&nbsp; " . strftime("%d.%m.%Y, %H:%M:%S", mktime($itemCaptureDate['hours'], $itemCaptureDate['minutes'],$itemCaptureDate['seconds'], $itemCaptureDate['mon'],$itemCaptureDate['mday'],$itemCaptureDate['year']));
+	echo "<br>";
 
 	if ($gallery->album->getKeyWords($index)) {
-		echo "<b>KEYWORDS</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
+		echo "<b>". _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
 	}
 
 	if ($gallery->user->canWriteToAlbum($gallery->album) &&
@@ -149,21 +149,20 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 					array("reloadExifFromFile" => 1,
 						"set_albumName" => $gallery->session->albumName,
 						"index" => $index)) .
-			">[Reload EXIF Data From File]</a>";
+			">[". _("Reload EXIF Data From File") ."]</a>";
 		echo "<br>";
 		echo "<span class=fineprint>";
-		echo "(if the data is current, this will not appear to do anything)";
+		echo _("(if the data is current, this will not appear to do anything)");
 		echo "</span>";
 	}
 } else {
-	gallery_error("no album / index specified");
+	gallery_error(_("no album / index specified"));
 }
 ?>
 <br><br>
 <form action=#>
-<input type=submit value="Done" onclick='parent.close()'>
+<input type=submit value=<?php echo _("Done") ?> onclick='parent.close()'>
 </form>
 
 </body>
 </html>
-

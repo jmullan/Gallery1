@@ -26,6 +26,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
 	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -40,10 +41,10 @@ $thumbSize = $gallery->app->default["thumb_size"];
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html>
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?> :: Search</title>
+  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo _("Search") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 <?php } ?>
 
 <!-- search.header begin -->
@@ -58,7 +59,7 @@ if ($searchstring) {
 <tr>
 <?php echo makeFormIntro("search.php"); ?>
 <td valign="middle" align="right">
-<span class="admin"> Search Again: </span>
+<span class="admin"> <?php echo _("Search Again") ?>: </span>
 <input style="font-size=10px;" type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
 </td>
 </form>   
@@ -71,7 +72,7 @@ if ($searchstring) {
 <!-- search.header ends -->
 <!-- Top Nav -->
 <?php
-$breadtext[0] = "Gallery: <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
+$breadtext[0] = _("Gallery") .": <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
 $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;
@@ -94,7 +95,7 @@ if ($searchstring) {
 	$searchstring = escapeEregChars ($searchstring);
 	$searchstring = str_replace ("\\*", ".*", $searchstring);
 
-	$adminbox["text"] = "<span class=\"admin\">Albums containing \"$origstr\"</span>";
+	$adminbox["text"] = "<span class=\"admin\">". _("Albums containing") ."\"$origstr\"</span>";
 	$adminbox["bordercolor"] = $borderColor; 
 	$adminbox["top"] = false;
 	include($GALLERY_BASEDIR . "layout/adminbox.inc");
@@ -131,14 +132,14 @@ if ($searchstring) {
 	
 	}
 	if (!$albumMatch) {
-		echo "<tr><td valign=top><span class=desc>No Album Matches.</span></td></tr>";
+		echo "<tr><td valign=top><span class=desc>". _("No Album Matches") ."</span></td></tr>";
 	}
 	echo "</table><br>";
 
 	$breadtext[0] = "";
 	$breadcrumb["text"] = $breadtext;
 	include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
-	$adminbox["text"] = "<span class=\"admin\">Photos containing \"$origstr\"</span>";
+	$adminbox["text"] = "<span class=\"admin\">" . _("Photos containing"). " \"$origstr\"</span>";
    	$adminbox["bordercolor"] = $borderColor; 
 	$adminbox["top"] = false;
 	include($GALLERY_BASEDIR . "layout/adminbox.inc");
@@ -162,7 +163,7 @@ if ($searchstring) {
 					$searchComment = $comment->getName().": ".$comment->getCommentText();
 					if (eregi($searchstring, $searchComment)) {
 						if (!$commentMatch) {
-							$commentText = "Matching Comments:<br>";
+							$commentText = _("Matching Comments").":<br>";
 							$commentMatch = 1;
 						} 
 						$searchComment = eregi_replace("($searchstring)", "<b>\\1</b>", $searchComment);
@@ -196,11 +197,11 @@ if ($searchstring) {
 						$searchdraw["photolink"] = $searchAlbum->getThumbnailTag($j, $thumbSize);
 						$searchdraw["photoURL"] = makeAlbumUrl($searchAlbum->fields['name'], $id);
 						$searchdraw["Text2"] = "<span class=desc>$searchCaption</span>";
-						$searchdraw["Text1"] = "<span class=fineprint>From Album:&nbsp;&nbsp;<a href=" .
+						$searchdraw["Text1"] = "<span class=fineprint>"._("From Album") .":&nbsp;&nbsp;<a href=" .
                                 			makeAlbumUrl($searchAlbum->fields['name']) . ">" .
                                 			$searchAlbum->fields['title'] . "</a></span>";
 						if ($keywordMatch) { // only display Keywords if there was a keyword match
-							$searchdraw["Text3"] = "<span class=fineprint>KEYWORDS:&nbsp;&nbsp; $searchKeywords</span><br>";
+							$searchdraw["Text3"] = "<span class=fineprint>". _("KEYWORDS") .":&nbsp;&nbsp; $searchKeywords</span><br>";
 						} else {
 							$searchdraw["Text3"] = "";
 						}
@@ -213,19 +214,19 @@ if ($searchstring) {
 		}
 	}
 	if (!$photoMatch) {
-		echo "<tr><td valign=top><span class=desc>No Photo Matches.</span></td></tr>";
+		echo "<tr><td valign=top><span class=desc>" . _("No Photo Matches") .".</span></td></tr>";
 	}
 	echo "</table>";
 	
 }
 else {
 ?>
-<br>Search the Gallery's Album and Photo<br> titles, descriptions and comments:<br>
+<br><?php echo _("Search the Gallery's Album and Photo<br> titles, descriptions and comments") ?>:<br>
 	<table width=100% border=0 cellspacing=0>
 	<tr><?php echo makeFormIntro("search.php"); ?>
 	<td valign="middle" align="left">
 	<input type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
-	<input type="submit" value="Go!">
+	<input type="submit" value=<?php echo '"' . _("Go") .'!"' ?>>
 	</td>
 	</form>  
 	</tr>
@@ -233,7 +234,7 @@ else {
 <?php
 }
 echo "<br>";
-$breadtext[0] = "Gallery: <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
+$breadtext[0] = _("Gallery") .": <a href=". makeGalleryUrl("albums.php") . ">".$gallery->app->galleryTitle."</a>";
 $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;

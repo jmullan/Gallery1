@@ -25,7 +25,7 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print "Security violation\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
@@ -41,13 +41,13 @@ $uname = removeTags($uname);
 
 <html>
 <head>
-  <title>Login to <?php echo $gallery->app->galleryTitle?></title>
+	<title><?php echo _("Login to ") ?><?php echo $gallery->app->galleryTitle ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<span class="popuphead">Login to <?php echo $gallery->app->galleryTitle?></span>
+<span class="popuphead"><?php echo _("Login to ") ?><?php echo $gallery->app->galleryTitle ?></span>
 <br>
 <br>
 <?php
@@ -73,39 +73,39 @@ if ($submit) {
 ?>
 
 <?php echo makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
-Logging in gives you greater permission to
+<?php echo _("Logging in gives you greater permission to") ?>
 <br>
-view, create, modify and delete albums.
+<?php echo _("view, create, modify and delete albums.") ?>
 <p>
 <table>
 <?php if ($invalid) { ?>
  <tr>
   <td colspan=2>
-   <?php echo gallery_error("Invalid username or password"); ?>
+   <?php echo gallery_error(_("Invalid username or password")); ?>
   </td>
  </tr>
 <?php } ?>
 
  <tr>
   <td>
-   Username
+   <?php echo _("Username") ?>
   </td>
   <td>
-   <input type=text name="uname" value=<?php echo $uname?>>
+   <input type=text name="uname" value=<?php echo $uname ?>>
   </td>
  </tr>
 
 <?php if ($error && !$uname) { ?>
  <tr>
   <td colspan=2 align=center>
-   <?php echo gallery_error("You must specify a username"); ?>
+   <?php echo gallery_error(_("You must specify a username")); ?>
   </td>
  </tr>
 <?php } ?>
 
  <tr>
   <td>
-   Password
+	<?php echo _("Password") ?>
   </td>
   <td>
    <input type=password name="gallerypassword">
@@ -115,15 +115,15 @@ view, create, modify and delete albums.
 <?php if ($error && !$gallerypassword) { ?>
  <tr>
   <td colspan=2 align=center>
-   <?php echo gallery_error("You must specify a password"); ?>
+   <?php echo gallery_error(_("You must specify a password")); ?>
   </td>
  </tr>
 <?php } ?>
 
 </table>
 <p>
-<input type=submit name="submit" value="Login">
-<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+<input type=submit name="submit" value=<?php echo '"' . _("Login") . '"' ?>>
+<input type=submit name="submit" value=<?php echo _("Cancel") ?> onclick='parent.close()'>
 </form>
 
 <script language="javascript1.2">

@@ -8,26 +8,43 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	            exit;
 		    }
 ?>
-<?php require($GALLERY_BASEDIR . "errors/configure_instructions.php") ?>
+<?php 
+	if (! (@include($GALLERY_BASEDIR . "ML_files/ML_config.php")) || ! $gallery->ML) {
+                include ($GALLERY_BASEDIR ."setup/ML_wizard.php");
+                exit;
+        }
+	require($GALLERY_BASEDIR . "errors/configure_instructions.php") ;
+?>
 <html>
 <head>
-  <title>Gallery Configuration Error</title>
+  <title><?php echo _("Gallery Configuration Error") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 <center>
 <span class="title">
-Gallery has not been configured!
+<?php echo _("Gallery has not been configured!") ?>
 </span>
+
 <p>
 <center>
-<table width=80%><tr><td>
-Gallery must be configured before you can use it.  First, you must put it
-into configuration mode.  Here's how:
+<table width=60%>
+<tr><td><?php echo _("If you want to reconfigure language settings first, start the"); ?> 
+<a href="<?php echo $GALLERY_BASEDIR ?>setup/ML_wizard.php"><?php echo _("ML Configuration Wizard") ?></a>
+</td></tr>
+<tr><td>
+<?php echo _("Gallery must be configured before you can use it.") ?>
+<p><b>
+<?php echo _("Create or upload an empty config.php and .htaccess file") ?>
+<p></b>
+<?php echo _("Then you must put it into configuration mode.") ?>
+<br>
+<?php echo _("Here's how") ?>:
 <?php echo configure("configure"); ?>
 <p>
-And then start the <a href="<?php echo $GALLERY_BASEDIR?>setup/index.php">Configuration Wizard</a>
 
+<?php echo _("And then start the") ?> <a href="<?php echo $GALLERY_BASEDIR ?>setup/index.php"><?php echo _("Configuration Wizard") ?></a>
+<br>
 <?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 </table>
 </body>

@@ -41,7 +41,7 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 ?>
 <html>
 <head>
-  <title>Add Photo</title>
+  <title><?php echo _("Add Photo") ?></title>
   <?php echo getStyleSheetLink() ?>
 
 <script language="Javascript">
@@ -70,7 +70,7 @@ if ($userfile_name) {
 	reload();
 	?>
 	<p><center><form>
-	<input type=submit value="Dismiss" onclick='parent.close()'>
+	<input type=submit value=<?php echo '"' . _("Dismiss") . '"' ?> onClick='parent.close()'>
 	</form></center>
 <script language="Javascript">
 <!--
@@ -86,13 +86,13 @@ else
 ?>
 
 
-<span class="popuphead">Add Photo</span>
-<br>
+<span class="popuphead"><?php echo _("Add Photo") ?></span>
+<br><br>
 <span class="popup">
-Click the <b>Browse</b> button to locate a photo to upload.
+<?php echo _("Click the <b>Browse</b> button to locate a photo to upload.") ?>
 <span class="admin">
 <br>
-&nbsp;&nbsp;(Supported file types: <?php echo join(", ", acceptableFormatList()) ?>)
+&nbsp;&nbsp;(<?php echo _("Supported file types") ?>: <?php echo join(", ", acceptableFormatList()) ?>)
 </span>
 
 <br><br>
@@ -104,9 +104,9 @@ Click the <b>Browse</b> button to locate a photo to upload.
 <input type="hidden" name="max_file_size" value="10000000">
 <table>
 <tr><td>
-File</td>
+<?php echo _("File") ?></td>
 <td><input name="userfile" type="file" size=40></td></tr>
-<td>Caption</td><td> <textarea name="caption" rows=2 cols=40></textarea></td></tr>
+<td><?php echo _("Caption") ?></td><td> <textarea name="caption" rows=2 cols=40></textarea></td></tr>
 <?php
 foreach ($gallery->album->getExtraFields() as $field) {
         if (in_array($field, array_keys(automaticFieldsList())))
@@ -129,11 +129,11 @@ foreach ($gallery->album->getExtraFields() as $field) {
 ?>
 
 </table>
-<input type=checkbox name=setCaption checked value="1">Use filename as caption if no caption is specified.
+<input type=checkbox name=setCaption checked value="1"><?php echo _("Use filename as caption if no caption is specified.") ?>
 <br>
 <center>
-<input type="button" value="Upload Now" onClick='opener.showProgress(); document.upload_form.submit()'>
-<input type=submit value="Cancel" onclick='parent.close()'>
+<input type="button" value=<?php echo '"' . _("Upload Now") . '"' ?> onClick='opener.showProgress(); document.upload_form.submit()'>
+<input type=submit value=<?php echo '"' . _("Cancel") .'"' ?> onclick='parent.close()'>
 </center>
 </form>
 <?php } ?>

@@ -39,7 +39,7 @@ if (!$gallery->user->isAdmin()) {
 }
 
 if ($submit) {
-	if (!strcmp($submit, "Save")) {
+	if (!strcmp($submit, _("Save"))) {
 		if (strcmp($old_uname, $uname)) {
 			$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 			if ($gErrors["uname"]) {
@@ -49,7 +49,7 @@ if ($submit) {
 
 		if ($new_password1 || $new_password2) {
 			if (strcmp($new_password1, $new_password2)) {
-				$gErrors["new_password2"] = "Passwords do not match!";
+				$gErrors["new_password2"] = _("Passwords do not match!");
 				$errorCount++;
 			} else {
 				$gErrors["new_password1"] = 
@@ -85,14 +85,14 @@ if ($submit) {
 
 			header("Location: manage_users.php");
 		}
-	} else if (!strcmp($submit, "Cancel")) {
+	} else if (!strcmp($submit, _("Cancel"))) {
 		header("Location: manage_users.php");
 	}
 }
 
 $tmpUser = $gallery->userDB->getUserByUsername($uname);
 if (!$tmpUser) {
-	gallery_error("Invalid user <i>$uname</i>");
+	gallery_error(_("Invalid user") ." <i>$uname</i>");
 	exit;
 }
 
@@ -107,32 +107,32 @@ if (!strcmp($tmpUser->getUsername(), $gallery->user->getUsername())) {
 $fullname = $tmpUser->getFullname();
 $email = $tmpUser->getEmail();
 
-$canCreateChoices = array(1 => "yes", 0 => "no");
+$canCreateChoices = array(1 => _("yes"), 0 => _("no"));
 $canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;
 
-$isAdminChoices = array(1 => "yes", 0 => "no");
+$isAdminChoices = array(1 => _("yes"), 0 => _("no"));
 $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
 
 ?>
 <html>
 <head>
-  <title>Modify User</title>
+  <title><?php echo _("Modify User") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body>
+<body dir=<?php echo $gallery->direction ?>>
 
 <center>
-<span class="popuphead">Modify User</span>
+<span class="popuphead"><?php echo _("Modify User") ?></span>
 <br>
 <br>
-You can change any information about the user using this form.
+<?php echo _("You can change any information about the user using this form.") ?>
 <p>
 
 <?php echo makeFormIntro("modify_user.php", 
 				array("name" => "usermodify_form", 
 					"method" => "POST")); ?>
 
-<input type=hidden name=old_uname value=<?php echo $uname?>>
+<input type=hidden name=old_uname value=<?php echo $uname ?>>
 
 <p>
 
@@ -140,8 +140,8 @@ You can change any information about the user using this form.
 <p>
 
 
-<input type=submit name="submit" value="Save">
-<input type=submit name="submit" value="Cancel">
+<input type=submit name="submit" value=<?php echo _("Save") ?>>
+<input type=submit name="submit" value=<?php echo _("Cancel") ?>>
 </form>
 
 <script language="javascript1.2">
