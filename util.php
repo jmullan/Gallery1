@@ -931,8 +931,7 @@ function makeGalleryUrl($target, $args=array()) {
 	global $GALLERY_EMBEDDED_INSIDE;
 	global $GALLERY_MODULENAME;
 
-	switch ($GALLERY_EMBEDDED_INSIDE) {
-		case "nuke":
+	if(stristr($GALLERY_EMBEDDED_INSIDE,"nuke")) {
 			$args["op"] = "modload";
 			$args["name"] = "$GALLERY_MODULENAME";
 			$args["file"] = "index";
@@ -943,11 +942,8 @@ function makeGalleryUrl($target, $args=array()) {
 			 */
 			$args["include"] = $target;
 			$target = "modules.php";
-			break;
-
-		default:
+	} else {
 			$target = $gallery->app->photoAlbumURL . "/" . $target;
-			break;
 	}
 
 	$url = $target;
