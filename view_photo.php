@@ -428,7 +428,7 @@ if ($photo->image->resizedName) {
 } else {
 	$thumbImage .= $photo->image->name . "." . $photo->image->type;
 }
-list($imageWidth, $imageHeight) = $photo->image->getRawDimensions($gallery->album->getAlbumDir());
+list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
 ?>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value=1>

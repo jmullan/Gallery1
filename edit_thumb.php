@@ -77,7 +77,7 @@ if ($action == "doit") {
 		}
 
 		#-- the dimensions of the raw image ---
-		list($image_w, $image_h) = $photo->image->getRawDimensions($gallery->album->getAlbumDir());
+		list($image_w, $image_h) = $photo->image->getRawDimensions();
 		list($t_x, $t_y, $t_w, $t_h) = $photo->image->getThumbRectangle();
 	
 		$bgcolor = "#FFFFFF";

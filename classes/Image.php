@@ -222,7 +222,7 @@ class Image {
 		             $this->thumb_width, $this->thumb_height);
 	}
 
-	function getRawDimensions($dir) {
+	function getRawDimensions() {
 		return array($this->raw_width, $this->raw_height);
 	}
 }	
