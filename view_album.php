@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require_once('init.php'); ?>
+<? require($GALLERY_BASEDIR . "init.php"); ?>
 <? 
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
@@ -74,27 +74,24 @@ $navigator["page"] = $page;
 $navigator["pageVar"] = "page";
 $navigator["maxPages"] = $maxPages;
 $navigator["fullWidth"] = $fullWidth;
-if ($gallery->app->feature["rewrite"]) {
-	$navigator["url"] = $gallery->session->albumName;
-} else {
-	$navigator["url"] = "view_album.php";
-}
+$navigator["url"] = makeGalleryUrl($gallery->session->albumName);
 $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
 
 if ($gallery->album->fields[parentAlbumName]) {
 	$top = $gallery->app->photoAlbumURL;
 	$myAlbum=$albumDB->getAlbumbyName($gallery->album->fields[parentAlbumName]);
-	$breadtext[0] = "Gallery: <a href=albums.php>".$gallery->app->galleryTitle."</a>";
-	$breadtext[1] = "Album: <a href=$top/view_album.php?set_albumName=".$gallery->album->fields[parentAlbumName].">".$myAlbum->fields["title"]."</a>";
+	$breadtext[0] = "Gallery: <a href=". makeGalleryUrl() . ">".$gallery->app->galleryTitle."</a>";
+	$breadtext[1] = "Album: <a href=". makeGalleryUrl($gallery->album->fields[parentAlbumName]).">".$myAlbum->fields["title"]."</a>";
 } else {
-	$breadtext[0] = "Gallery: <a href=albums.php>".$gallery->app->galleryTitle."</a>";
+	$breadtext[0] = "Gallery: <a href=". makeGalleryUrl() .">".$gallery->app->galleryTitle."</a>";
 }
 
 $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $bordercolor;
 ?>
 
+<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <head>
   <title><?= $gallery->app->galleryTitle ?> :: <?= $gallery->album->fields["title"] ?></title>
   <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">  
@@ -122,6 +119,11 @@ if ($gallery->album->fields["textcolor"]) {
 }
 ?>
   </style>
+</head>
+
+<body onUnload='hideProgress()'> 
+<? } ?>
+
   <script language="javascript1.2">
   // <!--
   var statusWin;
@@ -141,13 +143,10 @@ if ($gallery->album->fields["textcolor"]) {
 	  var sel_value = selected_select.options[sel_index].value;
 	  selected_select.options[0].selected = true;
 	  selected_select.blur();
-	  <?= popup(sel_value, 1) ?>
+	  <?= popup("'$GALLERY_BASEDIR' + " . sel_value, 1) ?>
   } 
   // --> 
   </script>
-</head>
-
-<body onUnload='hideProgress()'> 
 
 <? 
 includeHtmlWrap("album.header");
@@ -178,9 +177,10 @@ $adminCommands = "<span class =\"admin\">";
 if ($gallery->user->canAddToAlbum($gallery->album)) {
 	$adminCommands .= '<a href="#" onClick="'.popup("add_photos.php?albumName=" .
 				$gallery->session->albumName).'">[add photos]</a>&nbsp;';
-	$adminCommands .= '<a href=do_command.php?cmd=new-album&parentName=' . 
-				$gallery->session->albumName . 
-				'&return=view_album.php?page=1>[new nested album]</a>&nbsp;<br>';
+	$adminCommands .= '<a href="' . doCommand("new-album", 
+						 "&parentName=" . $gallery->session->albumName,
+						 "view_album.php") .
+						 '">[new nested album]</a>&nbsp;<br>';
 }
 
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
@@ -208,8 +208,8 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
 
 
 if ($gallery->user->isLoggedIn()) {
-        $adminCommands .= "<a href=do_command.php?cmd=logout&return=view_album.php?page=" .
-			  $page .
+        $adminCommands .= "<a href=" .
+				doCommand("logout", "", "view_album.php", "page=$page") .
 			  ">[logout]</a>";
 } else {
 	$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[login]</a>';
@@ -219,16 +219,16 @@ $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $bordercolor;
 $adminbox["top"] = true;
-include ("layout/adminbox.inc");
+include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 ?>
 
 <!-- top nav -->
 <?
 $breadcrumb["top"] = true;
 if (strcmp($gallery->album->fields["returnto"], "no")) {
-	include("layout/breadcrumb.inc");
+	include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 }
-include("layout/navigator.inc");
+include($GALLERY_BASEDIR . "layout/navigator.inc");
 
 #-- if borders are off, just make them the bgcolor ----
 $borderwidth = $gallery->album->fields["border"];
@@ -281,10 +281,10 @@ if ($numPhotos) {
 			echo("<td width=$imageCellWidth align=center valign=middle>");
 			echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
 			echo("<tr $bordercolor>"); 
-			echo("<td colspan=3 height=$borderwidth><img src=images/pixel_trans.gif></td>");
+			echo("<td colspan=3 height=$borderwidth><img src=${GALLERY_BASEDIR}images/pixel_trans.gif></td>");
 			echo("</tr><tr>");
 			echo("<td $bordercolor width=$borderwidth>");
-			echo("<img src=images/pixel_trans.gif width=$borderwidth height=1>");
+			echo("<img src=${GALLERY_BASEDIR}images/pixel_trans.gif width=$borderwidth height=1>");
 			echo("</td><td>");
 
 		$id = $gallery->album->getPhotoId($i);
@@ -309,11 +309,11 @@ if ($numPhotos) {
 			}
 			echo("</td>");
 			echo("<td $bordercolor width=$borderwidth>");
-			echo("<img src=images/pixel_trans.gif width=$borderwidth height=1>");
+			echo("<img src=${GALLERY_BASEDIR}images/pixel_trans.gif width=$borderwidth height=1>");
 			echo("</td>");
 			echo("</tr>");	
 			echo("<tr $bordercolor>"); 
-			echo("<td colspan=3 height=$borderwidth><img src=images/pixel_trans.gif></td>");
+			echo("<td colspan=3 height=$borderwidth><img src=${GALLERY_BASEDIR}images/pixel_trans.gif></td>");
 			echo("</tr>");
 			echo("</table>");
 
@@ -451,14 +451,17 @@ if ($numPhotos) {
 <br>
 <!-- bottom nav -->
 <? 
-include("layout/navigator.inc");
+include($GALLERY_BASEDIR . "layout/navigator.inc");
 if (strcmp($gallery->album->fields["returnto"], "no")) {
 	$breadcrumb["top"] = false;
-	include("layout/breadcrumb.inc");
+	include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 }
 
 
 includeHtmlWrap("album.footer");
 ?>
+
+<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
+<? } ?>
