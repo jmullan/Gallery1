@@ -787,16 +787,15 @@ function getImagePath($name, $skinname='') {
 }
 
 function includeLayout($name, $skinname='') {
-	global $GALLERY_BASEDIR;
-	global $HTTP_SERVER_VARS;
+
 	global $gallery;
 
 	if (!$skinname) {
                 $skinname = $gallery->app->skinname;
         }
 
-	$defaultname = $GALLERY_BASEDIR . "layout/$name";
-	$fullname = $GALLERY_BASEDIR . "skins/$skinname/layout/$name";
+	$defaultname = dirname(__FILE__) . "/layout/$name";
+	$fullname = dirname(__FILE__) . "/skins/$skinname/layout/$name";
 
 	if (fs_file_exists($fullname) && !broken_link($fullname)) {
 		include ($fullname);
@@ -806,13 +805,12 @@ function includeLayout($name, $skinname='') {
 }
 
 function includeHtmlWrap($name, $skinname='') {
-	global $GALLERY_BASEDIR;
 
 	// define these globals to make them available to custom text
         global $gallery;
 
 	global $HTTP_SERVER_VARS;
-	$domainname = $GALLERY_BASEDIR . "html_wrap/" . $HTTP_SERVER_VARS['HTTP_HOST'] . "/$name";
+	$domainname = dirname(__FILE__) . '/html_wrap/' . $HTTP_SERVER_VARS['HTTP_HOST'] . "/$name";
 
 	if (!$skinname) {
 		$skinname = $gallery->app->skinname;
@@ -821,8 +819,8 @@ function includeHtmlWrap($name, $skinname='') {
 	if (fs_file_exists($domainname) && !broken_link($domainname)) {
 	    include ($domainname);
 	} else {
-	    $defaultname = $GALLERY_BASEDIR . "html_wrap/$name";
-	    $fullname = $GALLERY_BASEDIR . "skins/$skinname/html_wrap/$name";
+	    $defaultname = dirname(__FILE__) . "/html_wrap/$name";
+	    $fullname = dirname(__FILE__) . "/skins/$skinname/html_wrap/$name";
 	    
 	    if (fs_file_exists($fullname) && !broken_link($fullname)) {
 		include ($fullname);
@@ -899,7 +897,7 @@ function _getStyleSheetLink($filename, $skinname='') {
 }
 
 function errorRow($key) {
-	global $gErrors, $GALLERY_BASEDIR;
+	global $gErrors;
 
 	if (isset($gErrors[$key])) {
 		$error = $gErrors[$key];
@@ -907,7 +905,7 @@ function errorRow($key) {
 		$error = NULL;
 	}
 	if ($error) {	
-		include($GALLERY_BASEDIR . "html/errorRow.inc");
+		include(dirname(__FILE__) . "/html/errorRow.inc");
 	}
 }
 

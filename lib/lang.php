@@ -56,6 +56,7 @@ function getBrowserLanguage() {
 	}
 }
 
+
 /*
 ** Set Gallery Default:
 ** - language
@@ -165,7 +166,10 @@ function initLanguage() {
 		}
 	}
 
-	// Does the user wants a new lanuage ?
+	/* 
+	** Does the user wants a new lanuage ?
+	** This is used in Standalone and *Nuke
+	*/
 	if (isset($HTTP_GET_VARS['newlang'])) {
 		$newlang=$HTTP_GET_VARS['newlang'];
 	}
@@ -183,7 +187,7 @@ function initLanguage() {
 		forceStaticLang();
 
 		if (!empty($newlang)) {
-			// if there was a new language given.
+			// Set Language to the User selected language.
 			$gallery->language=$newlang;
 		} else {
 			/* No new language.
@@ -211,13 +215,8 @@ function initLanguage() {
 			case 3:
 				// Does the user want a new language ?
 				if (!empty($newlang)) {
-					// Use Alias if
-					if (isset($nls['alias'][$newlang])) $newlang=$nls['alias'][$newlang] ;
-
-					// Set Language to the User selected language (if this language is defined)
-					if (isset($nls['language'][$newlang])) {
-						$gallery->language=$newlang;
-					}
+					// Set Language to the User selected language.
+					$gallery->language=$newlang;
 				} elseif (isset($gallery->session->language)) {
 					//maybe we already have a language
 					$gallery->language=$gallery->session->language;
@@ -239,8 +238,7 @@ function initLanguage() {
 		}
 	}
 
-	// if an alias for a language is given, use it
-	//
+	// if an alias for the (new or Env) language is given, use it
 	if (isset($nls['alias'][$gallery->language])) {
 		$gallery->language = $nls['alias'][$gallery->language] ;
 	}
@@ -280,6 +278,11 @@ function initLanguage() {
 	// Check defaults :
 	$checklist=array('direction', 'charset', 'alignment') ;
 
+	/*
+	** This checks wether the previously defined values are available.
+	** All available values are in $nls
+	** If they are not defined we used the defaults from nls.php
+	*/
 	foreach($checklist as $check) {
 		// if no ... is given, use default
 		if ( !isset($nls[$check][$gallery->language])) {
@@ -299,18 +302,20 @@ function initLanguage() {
 	// Set Locale
 	setlocale(LC_ALL,$gallery->locale);
 
-	// Set Charset
-	// Only when we're not in nuke, because headers might be sent already.
+	/* 
+	** Set Charset header
+	** Only when we're not embedded, because headers might be sent already.
+	*/
 	if (! isset($GALLERY_EMBEDDED_INSIDE)) {
 		header('Content-Type: text/html; charset=' . $gallery->charset);
 	}
 
 
-	/**
-	 ** Test if we're using gettext.
+	/*
+	** Test if we're using gettext.
 	** if yes, do some gettext settings.
-	 ** if not emulate _() function
-	 **/
+	** if not emulate _() function
+	**/
 
 	if (gettext_installed()) {
 		$bindtextdomain=bindtextdomain($gallery->language. "-gallery_". where_i_am(), dirname(dirname(__FILE__)) . '/locale');

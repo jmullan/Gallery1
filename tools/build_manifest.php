@@ -21,22 +21,22 @@
  * $Id$
  */
 
-
 /*
  * This script must be run from command line, in directory gallery/
  * eg php tools/build_manifest.php
  */
 ?>
 <?php
-$GALLERY_BASEDIR="./";
+
 if (php_sapi_name() != "cli") {
 	print _("This page is for development use only.");
 	print "<br>";
 	exit;
 }
 
-include 'util.php';
-include($GALLERY_BASEDIR . "platform/fs_unix.php");
+include (dirname(__FILE__) . '/util.php');
+include (dirname(__FILE__) . '/platform/fs_unix.php');
+
 if (!fs_is_readable("setup")) {
        	print "Cannot build manifest unless in config mode";
 	print "\n";

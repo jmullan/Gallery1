@@ -21,18 +21,7 @@
  */
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-                !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-                !empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-        exit;
-}
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
-require($GALLERY_BASEDIR . 'init.php');
+	require(dirname(__FILE__)  . '/init.php');
 
 $cookieName = $gallery->app->sessionVar."slideshow_mode";
 $modeCookie = isset($HTTP_COOKIE_VARS[$cookieName]) ? $HTTP_COOKIE_VARS[$cookieName] : null;
@@ -119,7 +108,7 @@ if (!isset($mode) || !isset($modes[$mode])) {
 	$mode = key($modes);
 }
 
-include($GALLERY_BASEDIR . "includes/slideshow/$mode.inc");
+include(dirname(__FILE__) . "/includes/slideshow/$mode.inc");
 
 slideshow_initialize();
 ?>

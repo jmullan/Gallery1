@@ -22,7 +22,7 @@
 ?>
 <?php
 // Hack prevention.
-$sensitiveList = array("gallery", "GALLERY_BASEDIR");
+$sensitiveList = array("gallery");
 foreach ($sensitiveList as $sensitive) {
 	if (!empty($HTTP_GET_VARS[$sensitive]) ||
 			!empty($HTTP_POST_VARS[$sensitive]) ||
@@ -62,7 +62,7 @@ if (!$gallery->register_globals) {
 
     /*
      * Prevent hackers from overwriting one HTTP_ global using another one.  For example,
-     * appending "?HTTP_POST_VARS[GALLERY_BASEDIR]=xxx" to the url would cause extract
+     * appending "?HTTP_POST_VARS[gallery]=xxx" to the url would cause extract
      * to overwrite HTTP_POST_VARS when it extracts HTTP_GET_VARS
      */
     $scrubList = array('HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_COOKIE_VARS', 'HTTP_POST_FILES');
@@ -94,18 +94,18 @@ if (!$gallery->register_globals) {
     }
 }
 global $gallery;
-require($GALLERY_BASEDIR . "Version.php");
-require($GALLERY_BASEDIR . "util.php");
+require(dirname(__FILE__) . "/Version.php");
+require(dirname(__FILE__) . "/util.php");
 
 /* Load bootstrap code */
 if (getOS() == OS_WINDOWS) {
-	include($GALLERY_BASEDIR . "platform/fs_win32.php");
+	include(dirname(__FILE__) . "/platform/fs_win32.php");
 } else {
-	include($GALLERY_BASEDIR . "platform/fs_unix.php");
+	include(dirname(__FILE__) . "/platform/fs_unix.php");
 }
 
-if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
-	include($GALLERY_BASEDIR . "config.php");
+if (fs_file_exists(dirname(__FILE__) . "/config.php")) {
+	include(dirname(__FILE__) . "/config.php");
 }
 
 /* 
@@ -158,26 +158,26 @@ if(isset($gallery->app)) {
 set_magic_quotes_runtime(0);
 
 /* Load classes and session information */
-require($GALLERY_BASEDIR . "classes/Album.php");
-require($GALLERY_BASEDIR . "classes/Image.php");
-require($GALLERY_BASEDIR . "classes/AlbumItem.php");
-require($GALLERY_BASEDIR . "classes/AlbumDB.php");
-require($GALLERY_BASEDIR . "classes/User.php");
-require($GALLERY_BASEDIR . "classes/EverybodyUser.php");
-require($GALLERY_BASEDIR . "classes/NobodyUser.php");
-require($GALLERY_BASEDIR . "classes/LoggedInUser.php");
-require($GALLERY_BASEDIR . "classes/UserDB.php");
-require($GALLERY_BASEDIR . "classes/Comment.php");
+require(dirname(__FILE__) . "/classes/Album.php");
+require(dirname(__FILE__) . "/classes/Image.php");
+require(dirname(__FILE__) . "/classes/AlbumItem.php");
+require(dirname(__FILE__) . "/classes/AlbumDB.php");
+require(dirname(__FILE__) . "/classes/User.php");
+require(dirname(__FILE__) . "/classes/EverybodyUser.php");
+require(dirname(__FILE__) . "/classes/NobodyUser.php");
+require(dirname(__FILE__) . "/classes/LoggedInUser.php");
+require(dirname(__FILE__) . "/classes/UserDB.php");
+require(dirname(__FILE__) . "/classes/Comment.php");
 
 if (!isset($GALLERY_NO_SESSIONS)) {
-    require($GALLERY_BASEDIR . "session.php");
+    require(dirname(__FILE__) . "/session.php");
 }
 $gallerySanity = gallerySanityCheck();
 initLanguage();
 
 /* Make sure that Gallery is set up properly */
 if ($gallerySanity != NULL) {
-	include ("${GALLERY_BASEDIR}errors/$gallerySanity");
+	include (dirname(__FILE__) . "/errors/$gallerySanity");
 	exit;
 }
 
@@ -186,19 +186,19 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 	switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
 		case 'postnuke':
 			/* We're in embedded in Postnuke */
-			include($GALLERY_BASEDIR . "classes/Database.php");
+			include(dirname(__FILE__) . "/classes/Database.php");
 			if (!function_exists("pnUserGetVar")) {
 				/* pre 0.7.1 */
-				include($GALLERY_BASEDIR . "classes/postnuke/UserDB.php");
-				include($GALLERY_BASEDIR . "classes/postnuke/User.php");
+				include(dirname(__FILE__) . "/classes/postnuke/UserDB.php");
+				include(dirname(__FILE__) . "/classes/postnuke/User.php");
 		
 				$gallery->database{"db"} = $GLOBALS['dbconn'];
 				$gallery->database{"prefix"} = $GLOBALS['pnconfig']['prefix'] . "_";
 			} 
 			else {
 				/* 0.7.1 and beyond */
-				include($GALLERY_BASEDIR . "classes/postnuke0.7.1/UserDB.php");
-				include($GALLERY_BASEDIR . "classes/postnuke0.7.1/User.php");
+				include(dirname(__FILE__) . "/classes/postnuke0.7.1/UserDB.php");
+				include(dirname(__FILE__) . "/classes/postnuke0.7.1/User.php");
 	    		}
 
 			/* Load our user database (and user object) */
@@ -216,10 +216,10 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 		break;
 		case 'phpnuke':
 			/* we're in phpnuke */
-			include($GALLERY_BASEDIR . "classes/Database.php");
-			include($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
-			include($GALLERY_BASEDIR . "classes/nuke5/UserDB.php");
-			include($GALLERY_BASEDIR . "classes/nuke5/User.php");
+			include(dirname(__FILE__) . "/classes/Database.php");
+			include(dirname(__FILE__) . "/classes/database/mysql/Database.php");
+			include(dirname(__FILE__) . "/classes/nuke5/UserDB.php");
+			include(dirname(__FILE__) . "/classes/nuke5/User.php");
 
 	   		 $gallery->database{"nuke"} = new MySQL_Database(
 				$GLOBALS['dbhost'],
@@ -259,7 +259,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			}
 	    
 			if (isset($GLOBALS['admin']) && is_admin($GLOBALS['admin'])) {
-				include($GALLERY_BASEDIR . "classes/nuke5/AdminUser.php");
+				include(dirname(__FILE__) . "/classes/nuke5/AdminUser.php");
 				
 				$gallery->user = new Nuke5_AdminUser($GLOBALS['admin']);
 				$gallery->session->username = $gallery->user->getUsername();
@@ -272,10 +272,10 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 		break;
 		case 'nsnnuke':
 			/* we're in nsnnuke */
-			include($GALLERY_BASEDIR . "classes/Database.php");
-			include($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
-			include($GALLERY_BASEDIR . "classes/nsnnuke/UserDB.php");
-			include($GALLERY_BASEDIR . "classes/nsnnuke/User.php");
+			include(dirname(__FILE__) . "/classes/Database.php");
+			include(dirname(__FILE__) . "/classes/database/mysql/Database.php");
+			include(dirname(__FILE__) . "/classes/nsnnuke/UserDB.php");
+			include(dirname(__FILE__) . "/classes/nsnnuke/User.php");
 
 	   		 $gallery->database{"nsnnuke"} = new MySQL_Database(
 				$GLOBALS['dbhost'],
@@ -306,7 +306,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			}
 	    
 			if (isset($GLOBALS['admin']) && is_admin($GLOBALS['admin'])) {
-				include($GALLERY_BASEDIR . "classes/nsnnuke/AdminUser.php");
+				include(dirname(__FILE__) . "/classes/nsnnuke/AdminUser.php");
 				
 				$gallery->user = new NsnNuke_AdminUser($GLOBALS['admin']);
 				$gallery->session->username = $gallery->user->getUsername();
@@ -318,10 +318,10 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			}
 		break;
 		case 'phpBB2':
-			include($GALLERY_BASEDIR . "classes/Database.php");
-			include($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
-			include($GALLERY_BASEDIR . "classes/phpbb/UserDB.php");
-			include($GALLERY_BASEDIR . "classes/phpbb/User.php");
+			include(dirname(__FILE__) . "/classes/Database.php");
+			include(dirname(__FILE__) . "/classes/database/mysql/Database.php");
+			include(dirname(__FILE__) . "/classes/phpbb/UserDB.php");
+			include(dirname(__FILE__) . "/classes/phpbb/User.php");
  			$gallery->database{"phpbb"} = new MySQL_Database(			
 							$GLOBALS['dbhost'],			
 							$GLOBALS['dbuser'],			
@@ -340,10 +340,10 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			}
 		break;
 		case 'mambo':
-			include($GALLERY_BASEDIR . 'classes/Database.php');
-			include($GALLERY_BASEDIR . 'classes/database/mysql/Database.php');
-			include($GALLERY_BASEDIR . 'classes/mambo/UserDB.php');
-			include($GALLERY_BASEDIR . 'classes/mambo/User.php');
+			include(dirname(__FILE__) . '/classes/Database.php');
+			include(dirname(__FILE__) . '/classes/database/mysql/Database.php');
+			include(dirname(__FILE__) . '/classes/mambo/UserDB.php');
+			include(dirname(__FILE__) . '/classes/mambo/User.php');
 
 			global $mosConfig_host;
 			global $mosConfig_user;
@@ -391,8 +391,8 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			}
 
 			/* Implement GeekLogUserDB and User class. */
-			require($GALLERY_BASEDIR . "classes/geeklog/UserDB.php");
-			require($GALLERY_BASEDIR . "classes/geeklog/User.php");
+			require(dirname(__FILE__) . "/classes/geeklog/UserDB.php");
+			require(dirname(__FILE__) . "/classes/geeklog/User.php");
 
 			/* Load GeekLog user database (and user object) */
 			
@@ -407,8 +407,8 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 } 
 else {
 	/* Standalone */
-	include($GALLERY_BASEDIR . "classes/gallery/UserDB.php");
-	include($GALLERY_BASEDIR . "classes/gallery/User.php");
+	include(dirname(__FILE__) . "/classes/gallery/UserDB.php");
+	include(dirname(__FILE__) . "/classes/gallery/User.php");
 
 	/* Load our user database (and user object) */
 	$gallery->userDB = new Gallery_UserDB;
@@ -431,7 +431,7 @@ if (!isset($gallery->session->offline)) {
 
 if ($gallery->userDB->versionOutOfDate()) 
 {
-	include($GALLERY_BASEDIR . "upgrade_users.php");
+	include(dirname(__FILE__) . "/upgrade_users.php");
 	exit;
 }
 
@@ -443,7 +443,7 @@ if (!empty($gallery->session->albumName)) {
 		$gallery->session->albumName = "";
 	} else {
 		if ($gallery->album->versionOutOfDate()) {
-			include($GALLERY_BASEDIR . "upgrade_album.php");
+			include(dirname(__FILE__) . "/upgrade_album.php");
 			exit;
 		}
 	}

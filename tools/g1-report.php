@@ -24,17 +24,16 @@
  * Authors: Jens Tkotz, Bharat Mediratta
  */
 
-$GALLERY_BASEDIR="../";
-include ($GALLERY_BASEDIR . "Version.php");
+include (dirname(dirname(__FILE__) . '/Version.php');
 if(substr(PHP_OS, 0, 3) == 'WIN') {
-	include($GALLERY_BASEDIR . "platform/fs_win32.php");
+	include (dirname(dirname(__FILE__) . '/platform/fs_win32.php');
 } else {
-	include($GALLERY_BASEDIR . "platform/fs_unix.php");
+	include(dirname(dirname(__FILE__) . '/platform/fs_unix.php');
 }
 
-include ($GALLERY_BASEDIR . "util.php");
+include (dirname(dirname(__FILE__) . '/util.php');
 
-$poFiles = findPoFiles( $GALLERY_BASEDIR . "locale");
+$poFiles = findPoFiles(dirname(dirname(__FILE__) . '/locale');
 list ($reportData, $total_percentDone) = parsePoFiles($poFiles);
 require(dirname(__FILE__) . '/include/main.inc');
 exit;
