@@ -24,6 +24,21 @@
 
 require(dirname(__FILE__) . '/init.php');
 
+/*
+!!
+!!
+!!
+!!  2004-05-23:   adv_search.php has been broken
+!!  for an unknown amount of time.  Since it has
+!!  no references from outside files, it will 
+!!  automatically redirect to albums.php until
+!!  it can be fixed
+!!
+!!
+!!
+*/
+header("Location: " . makeAlbumHeaderUrl());
+
 function getOwnerString($owners) {
 	global $gallery;
 	$ownersString = "";
