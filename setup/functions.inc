@@ -861,7 +861,7 @@ function config_maybe_locales() {
 
 	// If we are in Linux, our PHP has gettext, 
 	// but we could not find any locale we skip the whole aliasing part.
-	if($locales == NULL) return;
+	if($locales == NULL) return $results; // blank array
 
 	$nls = getNLS();
 
