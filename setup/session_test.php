@@ -62,7 +62,7 @@ $count++;
 	   <?php echo _("Server IP address") ?>
 	  </td>
 	  <td>
-	    <?php echo $_ENV["SERVER_ADDR"] ?>
+	    <?php echo $HTTP_SERVER_VARS["SERVER_ADDR"] ?>
 	  </td>
 	</tr>
       </table>

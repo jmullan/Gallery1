@@ -67,11 +67,11 @@ $debugfile = tempnam($gallery->app->tmpDir, "gallerydbg");
 ?>
 
 <?php
-if (!inOpenBasedir($gallery->app->imDir)) {
+if (!inOpenBasedir($gallery->app->ImPath)) {
 ?>
 <?php echo sprintf(_("<b>Note:</b>  Your %s directory (%s) is not in your open_basedir list (specified in php.ini) %s so we can't perform all of our basic checks on the files to make sure that they exist and they're executable."),
 		$app_name,
-		$gallery->app->imDir,
+		$gallery->app->ImPath,
 		'<ul>'.  join('<br>', explode(':', ini_get('open_basedir'))) .
 		'</ul>') ?>
 <br><br>
@@ -83,7 +83,7 @@ if (!inOpenBasedir($gallery->app->imDir)) {
 <li><?php echo sprintf(_("We are going to test each %s binary individually."), $app_name) ?>
 
 <?php
-if ($show_details) {
+if (!empty($show_details)) {
 	print sprintf(_("%sClick here%s to hide the details"),
 		'<a href="check_imagemagick.php?show_details=0">', '</a>');
 } else {
@@ -183,6 +183,7 @@ function inOpenBasedir($dir) {
 <?php 
 echo sprintf(_("If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."),
 		"<b>$debugfile</b>",
+		'<i>open_basedir</i>',
 		'<i>open_basedir</i>');
 
 echo "  ";

@@ -62,7 +62,7 @@ $GALLERY_URL = ereg_replace("\/$", "", $GALLERY_URL);
 
 $MIN_PHP_MAJOR_VERSION = 4;
 
-if ($init_mod_rewrite) {
+if (!empty($init_mod_rewrite)) {
 	$GALLERY_REWRITE_OK = 1;
 	if (strstr($init_mod_rewrite, "ampersandbroken")) {
 		$GALLERY_REWRITE_SEPARATOR = "\&";

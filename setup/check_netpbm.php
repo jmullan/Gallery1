@@ -84,7 +84,7 @@ if (!inOpenBasedir($gallery->app->pnmDir)) {
 <li><?php echo sprintf(_("We are going to test each %s binary individually."), $app_name) ?>  
 
 <?php
-if ($show_details) {
+if (!empty($show_details)) {
 	print sprintf(_("%sClick here%s to hide the details"), 
 		'<a href="check_netpbm.php?show_details=0">',
 			'</a>');
@@ -168,7 +168,7 @@ function checkNetPbm($cmd) {
 			$linecount++;
 			$buf = fgets($fd, 4096);
 			if ($linecount == 1) {
-			    if (eregi("using libpbm from netpbm version: netpbm (.*)[\n\r]$", 
+			    if (eregi("using lib(pbm|netpbm) from netpbm version: netpbm (.*)[\n\r]$", 
 				      $buf, $regs)) {
 				$version = $regs[1];
 			    } else {
@@ -185,7 +185,7 @@ function checkNetPbm($cmd) {
 	    }
 	}
 
-	if ($ok) {
+	if (!empty($ok)) {
 		print "<font color=green>". sprintf(_("Ok!  Version: %s"), $version).'</font>';
 	} else {
 		print "<font color=red>". sprintf(_("Error! %s"), $error).'</font>';
