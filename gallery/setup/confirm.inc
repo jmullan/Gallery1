@@ -4,9 +4,7 @@
 <br>
 <table width=80%><tr><td>
 <?php 
-echo _("Confirm that the settings you entered came through correctly.") . "  " .
-     _("If you find this page confusing, you can probably safely ignore it") . "  " .
-     "(" . _("unless you see stuff in red which indicates an error") . ")."
+echo _("Confirm that the settings you entered came through correctly.  If you find this page confusing, you can probably safely ignore it  (unless you see stuff in red which indicates an error)")
 ?>
 </td></tr></table>
 
@@ -284,12 +282,10 @@ if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
     $view .= row_wrap(error_format(_("You must specify one of <i>pnmDir</i> or <i>ImPath</i> for Gallery to function!!")));
     $error = 1;
 } else if (!strcmp($graphtool, "ImageMagick") && !empty($graphtest['ImPath'])) {
-    $view .= row_wrap(error_format(_("ImageMagick is not properly configured for use as a graphics package.") . "  " .
-				_("Make sure you entered a path to the ImageMagick binaries in step 2.")));
+    $view .= row_wrap(error_format(_("ImageMagick is not properly configured for use as a graphics package.  Make sure you entered a path to the ImageMagick binaries in step 2.")));
     $error = 1;
 } else if (!strcmp($graphtool, "NetPBM") && !empty($graphtest['pnmDir'])) {
-    $view .= row_wrap(error_format(_("NetPBM is not properly configured for use as a graphics package.") . "  " .
-				_("Make sure you entered a path to the NetPBM binaries in step 2.")));
+    $view .= row_wrap(error_format(_("NetPBM is not properly configured for use as a graphics package.  Make sure you entered a path to the NetPBM binaries in step 2.")));
     $error = 1;
 }
 
@@ -297,10 +293,8 @@ if ($warn_about_open_basedir) {
 	$view .= row_wrap("<hr><b>". _("Note") .":</b> ". 
 			_("Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths") .
 			" (" . ini_get('open_basedir') . ")  " .
-			_("This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.") . "  " .
-			_("If you are unable to upload photos correctly, please refer to the FAQ and to the") .
- 			" <a href=diagnostics.php>" . _("diagnostics") ."</a> ".
-			_("to resolve your problems.") . 
+			sprintf(_("This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."),
+ 			'<a href="diagnostics.php">', '</a>').
 			  "<hr>");
 }
 

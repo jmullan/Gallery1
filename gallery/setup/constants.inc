@@ -4,10 +4,7 @@
 <table width=80%><tr><td>
 
 <?php 
-echo _("In this step you'll customize various settings for Gallery.") . "  " .
-     _("If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.") . "  " .
-     _("Even so, you'll probably have to make at least some minor changes.") . "  " .
-     _("If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much.");
+echo _("In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much.");
 ?>
 
 </td></tr></table>
