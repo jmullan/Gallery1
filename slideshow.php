@@ -88,8 +88,8 @@ if (empty($albumName)) {
 
 // in offline mode, only high is available, because it's the only
 // one where the photos can be spidered...
-if (file_exists("java/GalleryRemoteAppletMini.jar") &&
-	file_exists("java/GalleryRemoteHTTPClient.jar") &&
+if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
+	file_exists(dirname(__FILE__) . "/java/GalleryRemoteHTTPClient.jar") &&
 	! $gallery->session->offline) {
 	$modes["applet"] = _("Fullscreen applet");
 }

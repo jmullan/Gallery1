@@ -125,8 +125,8 @@ if (isset($mode)) {
 
 <?php
 
-if (file_exists("java/GalleryRemoteAppletMini.jar") &&
-	file_exists("java/GalleryRemoteHTTPClient.jar")) {
+if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
+	file_exists(dirname(__FILE__) . "/java/GalleryRemoteHTTPClient.jar")) {
     $modes["applet_mini"] = _("Applet");
 	
 	if (file_exists("java/GalleryRemoteApplet.jar")) {

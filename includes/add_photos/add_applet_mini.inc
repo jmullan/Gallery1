@@ -31,7 +31,9 @@
 		400,
 		300,
 		"com.gallery.GalleryRemote.GRAppletMini",
-		"java/GalleryRemoteAppletMini.jar,java/GalleryRemoteHTTPClient.jar,java/applet_img.jar",
+		$gallery->app->photoAlbumURL . "/java/GalleryRemoteAppletMini.jar," . 
+			$gallery->app->photoAlbumURL . "/java/GalleryRemoteHTTPClient.jar," . 
+			$gallery->app->photoAlbumURL . "/java/applet_img.jar",
 		$gallery->album->fields["name"],
 		array(),
 		array("toSysOut" => "true"),
