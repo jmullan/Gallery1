@@ -148,6 +148,16 @@ class AlbumItem {
 		}
 		if ($this->version < 11) { 
 			$this->owner = $gallery->album->fields["owner"];
+			$changed = 1;
+		}
+		if ($this->version < 12) { 
+			if (!strcmp($this->owner, "nobody" ) &&
+			    strcmp($gallery->album->fields["owner"], "nobody")) {
+			    {
+				$this->owner = $gallery->album->fields["owner"];
+				$changed = 1;
+		}
+			    }
 		}
 		if ($this->image) {
 			if ($this->image->integrityCheck($dir)) {
