@@ -2826,7 +2826,7 @@ function emailLogMessage($logmsg, $result) {
 	}
 	if (isset($gallery->app->email_notification) &&
 			in_array("logfile", $gallery->app->email_notification)) {
-		$logfile=$gallery->app->albumDir."/email.log";
+		$logfile=$gallery->app->userDir."/email.log";
 		logMessage($logmsg, $logfile);
 	}
 	if (isset($gallery->app->email_notification) &&
