@@ -1097,11 +1097,15 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 	if (file_exists($configFile)) {
 		include($configFile);
 
-		$defaults = array_merge($defaults, $configDefaults);
-		$overrides = array_merge($overrides, $configOverrides);
+		if (isset($configDefaults)) {
+			$defaults = array_merge($defaults, $configDefaults);
+		}
+		if (isset($configOverrides)) {
+			$overrides = array_merge($overrides, $configOverrides);
+		}
 	}
 ?>
-<object
+	<object
 		classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
 		codebase="http://java.sun.com/products/plugin/autodl/jinstall-1_4-windows-i586.cab#Version=1,4,0,0"
 		width="<?php echo $width ?>" height="<?php echo $height ?>">

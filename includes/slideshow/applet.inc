@@ -61,7 +61,12 @@ function slideshow_controlPanel() {
 
 <?php
 function slideshow_image() {
-	global $photo_count, $gallery, $album, $albumName, $recursive, $random, $number;
+	global $photo_count;
+	global $gallery;
+	global $albumName;
+	global $recursive;
+	global $random;
+	global $number;
 ?>
 <div align="center">
 
@@ -71,7 +76,7 @@ function slideshow_image() {
 		430,
 		"com.gallery.GalleryRemote.GRAppletSlideshow",
 		"java/GalleryRemoteAppletMini.jar,java/GalleryRemoteHTTPClient.jar,java/applet_img.jar",
-		$gallery->album->fields["name"],
+		isset($gallery->album) ? $gallery->album->fields["name"] : "",
 		array(
 			"slideshowLowRez" => "true",
 			"slideshowRecursive" => $recursive?"true":"false",
