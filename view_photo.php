@@ -289,7 +289,7 @@ if ($fitToWindow) {
 }
 ?>
 <!-- Top Nav Bar -->
-<form name="adminform" action="view_photos.php">
+<form name="admin_form" action="view_photos.php">
 <table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
 
 <tr>
