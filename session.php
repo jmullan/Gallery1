@@ -46,6 +46,8 @@ if (session_id()) {
 	 * oh well.
 	 */
 	$useStdClass = 1;
+} else {
+	$useStdClass = 0;
 }
 
 /* Start a new session, or resume our current one */
@@ -71,7 +73,7 @@ if (isset($_SESSION[$gSessionVar])) {
 	session_register($gSessionVar);
 
 	/* Create a new session container */
-	if (isset($useStdClass)) {
+	if (!empty($useStdClass)) {
 		$_SESSION[$gSessionVar] = new stdClass();
 	} else {
 		$_SESSION[$gSessionVar] = new GallerySession();
