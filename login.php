@@ -29,23 +29,15 @@ list($username, $gallerypassword, $forgot, $login) = getRequestVar(array('userna
 /* decode user data, remove tags, and then re-encode using html entities for safe page display */
 $username = htmlspecialchars(removeTags(urldecode($username)));
 
-doctype();
-?>
-
-<html>
-<head>
-  <title><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></div>
-<div class="popup" align="center">
-<?php
-
 if (!empty($username) && !empty($gallerypassword)) {
 	$tmpUser = $gallery->userDB->getUserByUsername($username);
 	if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword)) {
 
+		// User is successfully logged in, regenerate a new 
+		// session ID to prevent session fixation attacks
+		createGallerySession(true);
+
+		// Perform the login
 		$tmpUser->log("login");
 		$tmpUser->save();
 		$gallery->session->username = $username;
@@ -67,7 +59,18 @@ if (!empty($username) && !empty($gallerypassword)) {
 } elseif (!empty($submitted)) {
 	$error=_("Please enter username and password.");
 }
+
+doctype();
 ?>
+<html>
+<head>
+  <title><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></title>
+  <?php common_header(); ?>
+</head>
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
+<div class="popuphead"><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></div>
+<div class="popup" align="center">
+
 <?php echo makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
 <?php echo _("Logging in gives you greater permission to view, create, modify and delete albums.") ?>
 <p>
