@@ -171,11 +171,11 @@ $userDB->version = $gallery->user_version;
 $admin = $userDB->getOrCreateUser("admin");
 
 if (strlen($editPassword[2]) > 0) {
-	$message=sprintf(_("The password for user %s was changed."), '<b>admin</b>');
+	$message = sprintf(_("The password for user %s was changed."), '<b>admin</b>');
 	$admin->setPassword($editPassword[2]);
 	
 	if (! $admin->isAdmin()) {
-		$message=sprintf(_("An account called %s has been created for you with the password you specified."),"<b>admin</b>");
+		$message = sprintf(_("An account called %s has been created for you with the password you specified."),"<b>admin</b>");
 		$admin->setIsAdmin(true);
 		if (!$admin->getFullName()) {
 			$admin->setFullName("Administrator");
@@ -197,13 +197,15 @@ if (strlen($editPassword[2]) > 0) {
 <?php
 if (getOS() != OS_WINDOWS) {
 	if (!empty($message))
-		$message .="<br><br>";
-	$message.= _("We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security.");
+		$message .= "<br><br>";
+	else
+		$message = "";
+	$message .= _("We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security.");
 }
 
 // Inform the user that their gallery is not secure until they remove the 'resetadmin' file
 if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
-	if (!empty($message)) $message .="<br><br>";
+	if (!empty($message)) $message .= "<br><br>";
 	$message .= '<span class="attention">'
 			. _("Note") 
 			. ':<br>'
