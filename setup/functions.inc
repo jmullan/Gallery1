@@ -545,7 +545,7 @@ function check_gettext()
 	if (gettext_installed()) {
 		$success[] = _("PHP has <b>GNU gettext</b> support.");
 	} else {
-		$warn["fail-gettext"] = 1;
+		$warn["fail-gettext"] = _("PHP does not have GNU gettext support.");
 	}
 	return array($success, $fail, $warn);
 }
