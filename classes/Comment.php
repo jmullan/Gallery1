@@ -42,6 +42,7 @@ class Comment {
 	}
 
 	function getDatePosted() {
+		global $gallery;
 		$time = $this->datePosted;
 		return strftime($gallery->app->dateTimeString, $time);
 	}
