@@ -1631,7 +1631,7 @@ function saveResults($votes)
 	{
 		foreach ($votes as $vote_key => $vote_value)
 		{
-			if ($vote_value == null || $vote_value == "NULL")
+			if ($vote_value === null || $vote_value == "NULL")
 			{
 				unset($gallery->album->fields["votes"]
 					[$vote_key]
@@ -1652,14 +1652,14 @@ function saveResults($votes)
 		{
 			if ($gallery->album->fields["votes"]
 				[$vote_key]
-				[getVotingID()]==$vote_value)
+				[getVotingID()]===$vote_value)
 			{
 				//vote hasn't changed, so skip to next one
 				continue;
 			}
 			foreach ($gallery->album->fields["votes"] as $previous_key => $previous_vote)
 			{
-				if ($previous_vote[getVotingID()] == $vote_value)
+				if ($previous_vote[getVotingID()] === $vote_value)
 				{
 					unset($gallery->album->fields["votes"]
 						[$previous_key]
@@ -1713,7 +1713,7 @@ function addPolling ($id, $form_pos=-1, $immediate=true)
 		return;
 	}
 	$current_vote=$gallery->album->fields["votes"][$id][getVotingID()];
-	if ($current_vote == NULL) { 
+	if ($current_vote === NULL) { 
 		$current_vote = -1;
 	}
 	$nv_pairs=$gallery->album->getVoteNVPairs();
@@ -1736,7 +1736,7 @@ function addPolling ($id, $form_pos=-1, $immediate=true)
 		{
 			print "\n<td align=center><input type=radio name=\"votes[$i]\" value=$id onclick=\"chooseOnlyOne($i, $form_pos,".
 			$gallery->album->getPollScale().")\" ";
-			if ($current_vote == $i)
+			if ($current_vote === $i)
 			{
 				print "checked";
 			}
@@ -1757,7 +1757,7 @@ function addPolling ($id, $form_pos=-1, $immediate=true)
 			print "<tr>";
 			print "\n<td align=center><input type=radio name=\"votes[$i]\" value=$id onclick=\"chooseOnlyOne($i, $form_pos,".
 			$gallery->album->getPollScale().")\" ";
-			if ($current_vote == $i)
+			if ($current_vote === $i)
 			{
 				print "checked";
 			}
@@ -1786,7 +1786,7 @@ function addPolling ($id, $form_pos=-1, $immediate=true)
 		for ($i = 0; $i < $gallery->album->getPollScale() ; $i++)
 		{
 			$sel="";
-			if ($current_vote == $i) {
+			if ($current_vote === $i) {
 				$sel="selected";
 			}
 			print "<option value=$i $sel>".$nv_pairs[$i]["name"]."</option>\n";
@@ -1894,7 +1894,8 @@ function showResultsGraph($num_rows)
                 print $graph;
         }
 	
-	else if ($num_rows > 0)
+	else if ($num_rows > 0 && 
+			$gallery->user->canWriteToAlbum($gallery->album))
 	{
 		print "<span class=\"title\">"._("No votes so far.")."<br></span>";
 	}
@@ -1920,7 +1921,7 @@ function showResults($id)
 	    }
 	}
 	print "<span class=\"admin\">"._("Poll results:")."</span> ";
-	if (sizeof($vote_tally) == 0)
+	if (sizeof($vote_tally) === 0)
 	{
 		print _("No votes")."<br>";
 		return;

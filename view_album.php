@@ -112,8 +112,7 @@ if ($previousPage == 0) {
 }
 
 
-if ($Vote)
-{
+if ($Vote) {
        if ($gallery->album->getPollScale() == 1 && $gallery->album->getPollType() != "rank")
        {
                for ($index=$start; $index < $start+$perPage; $index ++)
