@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-06-15 02:55+0200\n"
+"POT-Creation-Date: 2004-06-15 23:51+0200\n"
 "PO-Revision-Date: 2003-12-16 16:00+0100\n"
 "Last-Translator: Jens Tkotz <jens@f2h9.de>\n"
 "Language-Team: German <jens@f2h9.de\n"
@@ -114,7 +114,7 @@ msgstr "Albumberechtigungen"
 msgid "Changing permissions for %s"
 msgstr "&Auml;ndere Berechtigungen f&uuml;r %s"
 
-#: ../album_permissions.php:180 ../albums.php:324
+#: ../album_permissions.php:180 ../albums.php:334
 msgid "Owner:"
 msgstr "Besitzer/in : "
 
@@ -281,81 +281,86 @@ msgstr "Registrieren"
 msgid "Attention Gallery Administrator!"
 msgstr "Achtung Gallery-Administrator!"
 
-#: ../albums.php:223
+#: ../albums.php:224
 #, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "%s hat die folgenden %d ung&uuml;ltigen Ordner in ihrem Album Ordner <br>(%s) erkannt."
 
-#: ../albums.php:229
+#: ../albums.php:230
 msgid "Please move it/them out of the albums directory."
 msgstr "Bitte entfernen Sie diese aus Ihrem Album Ordner."
 
-#: ../albums.php:280 ../view_album.php:754
+#: ../albums.php:234
+#, php-format
+msgid "%s has detected that %d of your album are out of Date"
+msgstr "%s hat %d Alben gefunden, die veraltet sind."
+
+#: ../albums.php:238
+msgid "Please %s."
+msgstr "Bitte %s."
+
+#: ../albums.php:238
+msgid "upgrade those albums"
+msgstr "aktualisieren Sie dies Alben"
+
+#: ../albums.php:290 ../view_album.php:754
 msgid "Highlight for Album:"
 msgstr "Titelbild des Albums:"
 
-#: ../albums.php:297
+#: ../albums.php:307
 msgid "title"
 msgstr "den Titel"
 
-#: ../albums.php:329
+#: ../albums.php:339
 msgid "url:"
 msgstr "URL:"
 
-#: ../albums.php:340
+#: ../albums.php:350
 msgid "Hey!"
 msgstr "Hey !"
 
-#: ../albums.php:341
+#: ../albums.php:351
 #, php-format
 msgid "%s this album so that the URL is not so generic!"
 msgstr "%s dieses Album um, so dass die URL nicht so k&uuml;nstlich klingt!"
 
-#: ../albums.php:342 ../rename_album.php:117
+#: ../albums.php:352 ../rename_album.php:117
 msgid "Rename"
 msgstr "Benennen Sie"
 
-#: ../albums.php:350
-msgid "Note:  This album is out of date!"
-msgstr "Hinweis : Dieses Album ist veraltet !"
-
-#: ../albums.php:350
-msgid "upgrade album"
-msgstr "Aktualisiere Album"
-
-#: ../albums.php:360
+#: ../albums.php:363
 #, php-format
 msgid "Last changed on %s."
 msgstr "Letzte &Auml;nderung am %s."
 
-#: ../albums.php:363
+#: ../albums.php:366
 #, php-format
 msgid "This album contains one item"
 msgid_plural "This album contains %d items"
 msgstr[0] "Dieses Album enth&auml;lt ein Element."
 msgstr[1] "Dieses Album enth&auml;lt %d Elemente."
 
-#: ../albums.php:368
+#: ../albums.php:371
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Dieses Album wurde %s angeschaut seit dem %s."
 
-#: ../albums.php:369 ../view_album.php:892 ../view_album.php:915
+#: ../albums.php:372 ../view_album.php:892 ../view_album.php:915
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "ein Mal"
 msgstr[1] "%d Mal"
 
-#: ../albums.php:369
+#: ../albums.php:372
 msgid "0 times"
 msgstr "noch nie"
 
-#: ../albums.php:375
+#: ../albums.php:378
 msgid "reset counter"
 msgstr "Z&auml;hler zur&uuml;cksetzen"
 
-#: ../albums.php:409 ../view_album.php:1109
+#: ../albums.php:412 ../view_album.php:1109
 msgid "Comments available for this item."
 msgstr "Es sind Kommentare vorhanden."
 
@@ -3522,3 +3527,9 @@ msgstr "Lege Wasserzeichen auf alle Bilder des Albums."
 #: ../watermark_album.php:87
 msgid "No items to watermark."
 msgstr "Keine Elemente f&uuml;r Wasserzeichen vorhanden."
+
+#~ msgid "Note:  This album is out of date!"
+#~ msgstr "Hinweis : Dieses Album ist veraltet !"
+
+#~ msgid "upgrade album"
+#~ msgstr "Aktualisiere Album"
