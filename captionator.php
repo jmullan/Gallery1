@@ -179,6 +179,7 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 <br>
 <?= makeFormIntro("captionator.php", array("method" => "POST")) ?>
 <input type=hidden name=page value=<?= $page ?>>
+<input type=hidden name=perPage value=<?= $perPage ?>>
 <table width=100% border=0 cellspacing=4 cellpadding=0>
 <tr>
 <td colspan="3" align="right">

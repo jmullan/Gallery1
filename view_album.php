@@ -227,7 +227,8 @@ if ($gallery->user->canCreateSubAlbum($gallery->album)) {
 
 if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	$adminCommands .= '<a href=' . makeGalleryUrl("captionator.php", 
-						array("set_albumName" => $tmpAlbumName)) .
+						array("set_albumName" => $tmpAlbumName, 
+						      "perPage" => $perPage)) .
 			'>[captions]</a>&nbsp;';
 }
 
