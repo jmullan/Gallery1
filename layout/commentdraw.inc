@@ -14,7 +14,7 @@ $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" 
 
 ?>
 <!-- Begin Comment -->
-<table width="50%" align="center" border="0" class="commentbox" cellpadding="0" cellspacing="0">
+<table width="75%" align="center" border="0" class="commentbox" cellpadding="0" cellspacing="0">
 <tr>
 	<td class="commentboxhead"><?php echo _("From:") ?></td> 
 	<td class="commentboxhead"><b><?php echo wordwrap($commentdraw["name"], 50, " ", 1) ?></b>
@@ -34,7 +34,8 @@ if ($gallery->user->isAdmin()) {
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	echo "\n<tr>";
 	echo "\n\t". '<td colspan="3" align="center" class="commentboxfooter">';
-        $url = doCommand("delete-comment", array("index" => $index, "comment_index" => $i), "view_photo.php", array("set_albumName" => $gallery->session->albumName, "id" => $id));
+        $url = doCommand("delete-comment", array("index" => $commentdraw['index'], "comment_index" => $i), '',
+			array("set_albumName" => $gallery->session->albumName, "id" => $id));
 	echo '<a href="#" onclick="javascript:' . popup($url,1) . '">['. _("delete comment") . ']</a>';
 	echo "\n\t</td>";
 	echo "\n</tr>";

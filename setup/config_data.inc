@@ -311,8 +311,7 @@ $constants =  array_merge(
 	'albumDirURL' => array(
 		'prompt' => _("Albums URL"),
 		'desc' => '(<span class="attention">' . _('REQUIRED') . '</span>) ' .
-			sprintf(_("The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with
-relative URLs, however some features, such as printing, may not function correctly."), 
+			sprintf(_("The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."), 
 			'<i>http://www.example.com/albums</i>'),
 		'value' => "http://" . getenv("SERVER_NAME") . "/albums",
 		'no-trailing-slash' => 1,
@@ -948,7 +947,7 @@ $constants = array_merge($constants,
 			'prompt' => _("Maximum length of Comments"),
 			'desc' => _("Enter a suitable value for the maximum length of comments to prevent abuse. Gallery limits comments to no more than 1000 characters.  This value will be used if less than 1000."),
 			'type' => "text",
-			'must-be-number' => 1,
+			'must-be-integer' => 1,
 			'value' => 300
 	),
 	'comments_overview_for_all' => array(
@@ -961,6 +960,100 @@ $constants = array_merge($constants,
 	'group_comments_end' => array (
 		'type' => "group_end",
         ),
+	'group_stats_start' => array(
+		'type'		=> 'group_start',
+		'name'		=> 'group_stats',
+		'default' 	=> 'none',
+		'title'		=> _("Statistics"),
+		'desc'		=> _("Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information.") . "\n<br>".
+				   _("There's a different cache for each stats type supported with the exception of random."). "\n<br>".
+				   _("The caches can be refreshed by reloading the stats page and specifying the url variable 'refreshcache'."). "\n<br>".
+				   _("Caches will also refresh themselves after they have expired."). "\n<br>".
+				   _("The expire time in seconds is specified for each cache below."). "\n<br>".
+				   _("If the expire time is set to -1 then the cache will not auto refresh.")
+		),
+
+	'stats_viewsCacheOn'	=> array(
+				'prompt' => _("View cache"),
+				'desc' => _("Enable caching for views"),
+				'choices' => array(1 => _("On"), 0 => _("Off")),
+				'value' => 0,
+	),
+	'stats_viewsCacheExpireSecs' => array(
+				'prompt' => _("View cache expiration"),
+				'desc' => _("If caching for views is enabled, how long should the cache last ?"),
+				'type' => "text",
+				'must-be-number' => 1,
+				'value' => 60
+	),
+	'stats_commentsCacheOn'	=> array(
+				'prompt' => _("Comment cache"),
+				'desc' => _("Enable caching for comments"),
+				'choices' => array(1 => _("On"), 0 => _("Off")),
+				'value' => 0,
+	),
+	'stats_commentsCacheExpireSecs' => array(
+				'prompt' => _("Comment cache expiration"),
+				'desc' => _("If caching for comments is enabled, how long should the cache last ?"),
+				'type' => "text",
+				'must-be-number' => 1,
+				'value' => 600
+	),
+	'stats_dateCacheOn'	=> array(
+				'prompt' => _("Date cache"),
+				'desc' => _("Enable caching for dates"),
+				'choices' => array(1 => _("On"), 0 => _("Off")),
+				'value' => 0,
+	),
+	'stats_dateCacheExpireSecs' => array(
+				'prompt' => _("Date cache expiration"),
+				'desc' => _("If caching for dates is enabled, how long should the cache last ?"),
+				'type' => "text",
+				'must-be-number' => 1,
+				'value' => -1
+	),
+	'stats_votesCacheOn'	=> array(
+				'prompt' => _("Vote cache"),
+				'desc' => _("Enable caching for votes"),
+				'choices' => array(1 => _("On"), 0 => _("Off")),
+				'value' => 0,
+	),
+	'stats_votesCacheExpireSecs' => array(
+				'prompt' => _("Vote cache expiration"),
+				'desc' => _("If caching for votes is enabled, how long should the cache last ?"),
+				'type' => "text",
+				'must-be-number' => 1,
+				'value' => 3600
+	),
+	'stats_ratingsCacheOn'	=> array(
+				'prompt' => _("Rating cache"),
+				'desc' => _("Enable caching for ratings"),
+				'choices' => array(1 => _("On"), 0 => _("Off")),
+				'value' => 0,
+	),
+	'stats_ratingsCacheExpireSecs' => array(
+				'prompt' => _("Rating cache expiration"),
+				'desc' => _("If caching for ratings is enabled, how long should the cache last ?"),
+				'type' => "text",
+				'must-be-number' => 1,
+				'value' => 3600
+	),
+	'stats_cDateCacheOn'	=> array(
+				'prompt' => _("Capturedate cache"),
+				'desc' => _("Enable caching for capture dates"),
+				'choices' => array(1 => _("On"), 0 => _("Off")),
+				'value' => 0,
+	),
+	'stats_cDateCacheExpireSecs' => array(
+				'prompt' => _("Capturedate cache expiration"),
+				'desc' => _("If caching for capture dates is enabled, how long should the cache last ?"),
+				'type' => "text",
+				'must-be-number' => 1,
+				'value' => -1
+	),
+	'group_stats_end' => array(
+		'type'		=> 'group_end'
+	),
 	'group_technical' => array (
 		'type' => "group_start",
 		'name' => "group_technical",
@@ -972,7 +1065,7 @@ $constants = array_merge($constants,
 		'prompt' => _("Time Limit"),
 		'desc' => _("The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."),
 		'type' => "text",
-		'must-be-number' => 1,
+		'must-be-integer' => 1,
 		'must-not-be-zero' => 1,
 		'value' => 30,
 		'attrs' => array('size' => 5),
@@ -981,14 +1074,19 @@ $constants = array_merge($constants,
 		'prompt' => _("Random Block Cache Time"),
 		'desc' => _("This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."),
 		'value' => 86400,
-		'choices' => array(86400 => _("24 Hours"), 43200 => _("12 Hours"), 21600 => _("6 Hours"), 1440 => _("1 Hour"), 720
-=> _("30 Minutes")),
+		'choices' => array(
+				86400 => _("24 Hours"), 
+				43200 => _("12 Hours"), 
+				21600 => _("6 Hours"), 
+				1440 => _("1 Hour"), 
+				720 => _("30 Minutes")
+				)
 	),
 	'blockRandomAttempts' => array(
 		'prompt' => _("Random Block Retrieval Attempts"),
 		'desc' => _("This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."),
 		'value' => 2,
-		'must-be-number' => 1,
+		'must-be-integer' => 1,
 		'must-not-be-zero' => 1,
 		'type' => "text",
 	),
@@ -1069,7 +1167,7 @@ $constants = array_merge($constants,
 		'desc' => _("This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."),
 		'value' => 25,
 		'type' => "text",
-		'must-be-number' => 1,
+		'must-be-integer' => 1,
 		'must-not-be-zero' => 1,
 	),	
 	'rssVisibleOnly' => array(
@@ -1282,8 +1380,7 @@ $defaults = array(
 			'mpush'       => array(
 				'name'    => 'mPUSH',
 				'url'	  => 'http://www.mpush.cc/',
-				'desc'    => _("mPUSH is a photo service that adds the ability to send thumbnail images to your, or
-a friend's, cellphone for a small fee."),),
+				'desc'    => _("mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."),),
 		),
 		'value' => array(
 			'ezprints' => array(
@@ -1304,8 +1401,7 @@ a friend's, cellphone for a small fee."),),
 	),
 	'mPUSHAccount' => array(
 		'prompt' => _("Account for the mPUSH service"),
-		'desc' => _("If you so choose, you can create your own account to use with the mPUSH cellular photo service.  If
-you do not use your own account, please leave this set to 'gallery'."),
+		'desc' => _("If you so choose, you can create your own account to use with the mPUSH cellular photo service.  If you do not use your own account, please leave this set to 'gallery'."),
 		'value' => 'gallery',
 		'type' => 'text',
 	),

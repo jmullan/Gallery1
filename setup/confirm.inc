@@ -218,9 +218,20 @@ foreach ($constants as $key => $val) {
 			}
 		}
 
+		/* only positive numbers, including zero */
+		if (isset($constants[$key]["must-be-integer"])) {
+			$int_real = intval($real);
+			if (! is_numeric($int_real) || $int_real < 0) {
+				$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s: <b>&quot;%s&quot;</b> must be a positive number"), $key, $real)) . gettype($real));
+				$error++;
+				continue;
+			}
+		}
+
+		/* Either a positive or negative number */
 		if (isset($constants[$key]["must-be-number"])) {
-			if (ereg("[^0-9]",$real)) {
-				$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s: <b>&quot;%s&quot;</b> must be a positive number"), $key, $real)));
+			if (!is_numeric($real)) {
+				$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s: <b>&quot;%s&quot;</b> must be a number"), $key, $real)));
 				$error++;
 				continue;
 			}

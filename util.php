@@ -129,7 +129,7 @@ function editCaption($album, $index) {
 	return $buf;
 }
 
-function viewComments($index, $addComments, $page_url) {
+function viewComments($index, $addComments, $page_url, $newestFirst = false) {
         global $gallery;
 	global $commentdraw;
 	global $i;
@@ -138,16 +138,32 @@ function viewComments($index, $addComments, $page_url) {
 	// get number of comments to use as counter for display loop
 	$numComments = $gallery->album->numComments($index);
 	$borderColor = $gallery->app->default["bordercolor"];
-	for ($i=1; $i <= $numComments; $i++) {
-		// get comments in this loop and then use layout/commentdraw.inc to display
-		$comment = $gallery->album->getComment($index, $i);
-		$commentdraw["comment"] = $comment->getCommentText();
-		$commentdraw["IPNumber"] = $comment->getIPNumber();
-		$commentdraw["datePosted"] = $comment->getDatePosted();
-		$commentdraw["name"] = $comment->getName();
-		$commentdraw["UID"] = $comment->getUID();
-		$commentdraw["bordercolor"] = $borderColor;
-		includeLayout('commentdraw.inc');
+	$commentdraw["bordercolor"] = $borderColor;
+
+	if ($newestFirst) {
+		for ($i = $numComments; $i >0 ; $i--) {
+			// get comments in this loop and then use layout/commentdraw.inc to display
+			$comment = $gallery->album->getComment($index, $i);
+			$commentdraw["comment"] = $comment->getCommentText();
+			$commentdraw["IPNumber"] = $comment->getIPNumber();
+			$commentdraw["datePosted"] = $comment->getDatePosted();
+			$commentdraw["name"] = $comment->getName();
+			$commentdraw["UID"] = $comment->getUID();
+			$commentdraw["index"] = $index;
+			includeLayout('commentdraw.inc');
+		}
+	} else {
+		for ($i =1; $i<= $numComments; $i++) {
+			// get comments in this loop and then use layout/commentdraw.inc to display
+			$comment = $gallery->album->getComment($index, $i);
+			$commentdraw["comment"] = $comment->getCommentText();
+			$commentdraw["IPNumber"] = $comment->getIPNumber();
+			$commentdraw["datePosted"] = $comment->getDatePosted();
+			$commentdraw["name"] = $comment->getName();
+			$commentdraw["UID"] = $comment->getUID();
+			$commentdraw["index"] = $index;
+			includeLayout('commentdraw.inc');
+		}
 	}
 	
 	if ($addComments) {

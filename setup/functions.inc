@@ -1594,7 +1594,7 @@ function makeSectionTabs($array) {
 		}
 		echo '</td>';
 		echo "\n\t<td class=\"tabspacer\">&nbsp;</td>";
-		if ($tabcount %6 ==0) {
+		if ($tabcount %7 ==0) {
 			echo "\n</tr>\n</table>";
 			echo "\n<table width=\"100%\"cellspacing=\"0\" style=\"margin-top:5px;\">\n<tr>";
 		}

@@ -187,6 +187,7 @@ if ($gallery->user->isAdmin()) {
 	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . $gallery->app->photoAlbumURL . '/setup/index.php">[' . _("configuration wizard") .']</a> ';
 	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . makeGalleryUrl('tools/find_orphans.php') . '">[' . _("find orphans") .']</a> ';
 	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . makeGalleryUrl('tools/despam-comments.php') . '">[' . _("find comment spam") .']</a> ';
+	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . makeGalleryUrl('stats-wizard.php') . '">[' . _("statistics") .']</a> ';
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
