@@ -4,7 +4,7 @@
 <br>
 <table width=80%><tr><td>
 
-<?php echo _("This is the Gallery system check page.") ?>
+<?php echo _("This is the Gallery system check page.") . "  "; ?>
 <?php echo _("This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably.") ?>
 
 <p>
