@@ -1833,7 +1833,7 @@ function getNLS () {
 }
 
 function initLanguage() {
-	global $gallery, $GALLERY_BASEDIR, $newlang, $translation;
+	global $gallery, $GALLERY_BASEDIR, $newlang, $translation, $HTTP_SERVER_VARS;
 // Detect Browser Language
 	$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
         $lang_pieces=explode ("-",$lang[0]);
