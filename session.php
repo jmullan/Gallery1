@@ -19,6 +19,13 @@
  */
 ?>
 <?
+/*
+ * PHP 4.0.1pl2 introduces a bug where you can't unserialize a 
+ * stdClass instance correctly.  So create a dummy class to hold all
+ * of our session data.
+ */
+class GallerySession {}
+
 /* Start a new session, or resume our current one */
 session_start();
 
@@ -43,7 +50,7 @@ if (session_is_registered($gallery->app->sessionVar)) {
 	session_register($gallery->app->sessionVar);
 
 	/* Create a new session container */
-	${$gallery->app->sessionVar} = new stdClass();
+	${$gallery->app->sessionVar} = new GallerySession();
 
 	/* Get a simple reference to the session container (for convenience) */
 	$gallery->session =& ${$gallery->app->sessionVar};
