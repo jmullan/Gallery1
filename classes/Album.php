@@ -362,7 +362,7 @@ class Album {
 		}
 
 		if (!fs_file_exists($dir)) {
-			mkdir($dir, 0777);
+			fs_mkdir($dir, 0755);
 		}
 
 		if ($this->updateSerial) {
