@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-admin.backup">
+ <title>Backup and Restore</title>
+ 
+ <para>
+  There are three ways to backup your Gallery.  They are both described here.
+ </para>
+ 
+ <warning>
+  <para>
+   There are some caveats to backing up your albums!  Please read the 
+   <link linkend="gallery1-admin.backup.caveats">caveats section</link>
+   for more information.
+  </para>
+ </warning>
+ 
+ <sect2 id="gallery1-admin.backup.tar">
+  <title>Using <command>tar</command></title>
+  
+  <sect3 id="gallery1-admin.backup.tar.backup">
+   <title>Backup</title>
+   
+   <para>
+    Backup using <command>tar</command> is relatively simple, but you must have
+    shell access.  Run the following command in the parent directory of your
+    albums directory:
+    <screen>
+     tar -czvf albums.tar.gz albums
+    </screen>
+    This will give you a file, <filename>albums.tar.gz</filename> which contains
+    your albums directory.
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-admin.backup.tar.restore">
+   <title>Restore</title>
+   
+   <para>
+    Restoring the albums directory using <command>tar</command> is also easy.
+    Run this command in the parent directory of your albums directory (or where
+    you want your albums directory to be)
+    <screen>
+     tar -xvzf albums.tar.gz
+     chmod -R 777 albums
+    </screen>
+    The second command is as important as the first!
+   </para>
+  </sect3>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.backup.ftp">
+  <title>Using FTP</title>
+  
+  <sect3 id="gallery1-admin.backup.ftp.backup">
+   <title>Backup</title>
+   
+   <para>
+    Basically, to backup your albums using FTP, just download the whole albums
+    directory.  This will give you an exact copy of the directory on your
+    local computer, which you can hold on to in case it's needed
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-admin.backup.ftp.restore">
+   <title>Restore</title>
+   
+   <para>
+    To restore your albums directory using FTP, just re-upload the albums directory
+    that you downloaded to your computer.  The only problem is that the new
+    files <emphasis>MUST BE CHMODDED 0777 RECURSIVELY</emphasis>.  Recursively
+    means <emphasis>every file and every directory</emphasis>.  This can be a
+    pain using FTP, but is necessary or you will recieve errors.
+   </para>
+  </sect3>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.backup.script">
+  <title>Using the backup script (1.3.4 and above)</title>
+  
+  <para>
+   Gallery 1.3.4 is equipped with a new <filename>backup_albums.php</filename>
+   script to backup your albums.  It's located in your <filename>setup/</filename>
+   directory.  To use it, you must copy it out of the <filename>setup/</filename>
+   directory and put it in your base gallery directory.
+  </para>
+  <para>
+   Then navigate to it using your browser, when logged in as an admin.  For example,
+   <filename>http://www.example.com/gallery/backup_albums.php</filename>.  From
+   there you will have a number of options. 
+   <warning>
+    <para>
+     Using the "All Files" option will more than likely give a HUGE file, and may
+     take a while.  We recommend just backing up the data files.
+    </para>
+   </warning>
+  </para>
+  <note>
+   <para>
+    WINDOWS USERS -- It is recommended that you just use WinZip or
+    <link linkend="gallery1-admin.backup.ftp">FTP</link> to backup your files
+    because most Windows servers don't have any of the utilities that the
+    backup script needs.
+   </para>
+  </note>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.backup.caveats">
+  <title>Caveats</title>
+  
+  <itemizedlist>
+   <listitem>
+    <para>
+     When backing up on one platform and trying to restore on another platform,
+     i.e. transmogrify from Windows to UNIX, you will need to eliminate all
+     occuring "\r" (LF) in all the .dat files. Double-Breaks like "\r\n" will
+     have to change to "\n".  Utilities like <command>dos2unix</command> and
+     can help in this realm.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </sect2>
+    
+</sect1>

@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+<sect1 id="gallery-remote.protocol3">
+  <title>Gallery Remote Protocol for G2</title>
+  <sect2 id="gallery-remote.protocol3.introduction">
+    <title>Introduction</title>
+    <para>This document describes version 3 of the Gallery remote application protocol, and its minor revisions.</para>
+   <para>This version is only supported on Gallery 2 (G2) and is based on a Web Services framework.</para>
+   <para>Revision: $Id$</para>
+  </sect2>
+  
+  <sect2 id="gallery-remote.protocol3.guidelines">
+    <title>Design guidelines</title>
+    
+    <sect3>
+      <title>Statelessness</title>
+      <para>Auth is passed with every request</para>
+    </sect3>
+    
+    <sect3>
+      <title>Scalability</title>
+      <para>
+	We want to make it easy to develop simple clients, but also support clients that need fine-grained control.
+      </para>
+      <para>
+	We also need to keep bandwidth under control and not send unnecessary data. Also, we should try to transport 
+	images in compressed format (8-bit), rather than the verbose Base64.
+      </para>
+    </sect3>
+    
+    <sect3>
+      <title>Security</title>
+      <para>
+	We should not expose data that's not supposed to be available based on the auth. 
+	The G1 protocol doesn't comply with that.
+      </para>
+    </sect3>
+    
+    <sect3>
+      <title>Granularity</title>
+      <para>
+	In order to minimize protocol latency and bandwidth, most frequently-used tasks should be implemented as single
+	large requests, rather than a collection of small requests. For example, setting properties on an item
+	should be done in one request rather than as many requests as properties to be set.
+      </para>
+    </sect3>
+    
+    <sect3>
+      <title>Typing</title>
+      <para>
+	For maximum flexibility, the protocol should probably not use a highly typed object model (ala SOAP/XML Schema),
+	but rather a loosely-typed model.
+      </para>
+    </sect3>
+    
+    <sect3>
+      <title>Consistency</title>
+      <para>Token names should be consistent both with G2 naming, and between the different requests.</para>
+    </sect3>
+    
+    <sect3>
+      <title>Robust error management</title>
+      <para>
+	This will probably rely on built-in error support in the chosen protocol.
+      </para>
+    </sect3>
+    
+    <sect3>
+      <title>Concurrent modification management</title>
+      <para>
+	G2 has framework-level support for handling this, we just need to make sure we accurately report errors that
+	arise from concurrent modification, and that we pass serial numbers around.
+      </para>
+    </sect3>
+    
+    <sect3>
+      <title>Compatibility with modules</title>
+      <para>
+	As much as possible, we should make it possible to address not only core features, but also modular features, 
+	such as getting the list of comments, exif, customfield, etc. for an item.
+      </para>
+    </sect3>
+    
+    <sect3>
+      <title>Versioning</title>
+      <para>This will be an evolving protocol; versioning should be supported in the form of protocol version numbers.</para>
+      <para>Additionally, the protocol should support querying for availability of a given feature.</para>
+    </sect3>
+    
+    <sect3>
+      <title>Chained requests</title>
+      <para>SOAP allows more than one request in the same envelope. We should use that to support transactions.</para>
+    </sect3>
+  </sect2>
+  
+  <sect2 id="gallery-remote.protocol3.methods">
+    <title>Methods</title>
+    <para>This section is under active discussion; nothing is set.</para>
+    
+    <sect3 id="gallery-remote.protocol3.methods.getItem">
+      <title>getItem</title>
+      <para>
+	This should return item data. Depending on the request, one or many items can be returned.
+	G2 items are all associated with item ids and all inherit from a basic Entity object, with
+	various extensions. This method can fetch items of any type, with as much or as little
+	information about each item.
+      </para>
+      <para>
+	Although this method is generic, some special handling may be added for some item classes, such
+	as pictures, to add transient data, such as the URL where the image data can be found, etc.
+      </para>
+      
+      <sect4>
+	<title>Input</title>
+        <itemizedlist spacing="compact">
+	  <listitem>
+	    <para><varname>selectionType</varname>: one of the following:</para>
+	      <itemizedlist spacing="compact">
+		<listitem><para><varname>childrenOf</varname>: <varname>selectionData</varname> is a list of ids of parents, will return all children of these parents, as long as the children pass the other filters.</para></listitem>
+		<listitem><para><varname>childrenOfRecursive</varname>: <varname>selectionData</varname> is a list of ids of parents, will return all descendants of these parents, as long as the descendants pass the other filters.</para></listitem>
+		<listitem><para><varname>items</varname>: <varname>selectionData</varname> is a list of ids, will return all these items, as long as they pass the other filters.</para></listitem>
+	      </itemizedlist>
+	  </listitem>
+	  
+	  <listitem>
+	    <para>
+	      <varname>selectionData</varname>: see above.
+	    </para>
+	  </listitem>
+	  
+	  <listitem>
+	    <para>
+	      <varname>permissionList</varname> (optional): a definition of which permissions must be available to the current
+	      user for a given item to be included in the reply. The definition is a list of comma-separated permission
+	      names (like <varname>core.addAlbumItem</varname>). By default, all readable items are returned.
+	    </para>
+	  </listitem>
+	  
+	  <listitem>
+	    <para>
+	      <varname>permissionType</varname> (optional): either <varname>and</varname> or <varname>or</varname>. 
+	      Depending on this, items will be returned if they match all the permissions or any permission. By default,
+	      <varname>or</varname>.
+	    </para>
+	  </listitem>
+	  
+	  <listitem>
+	    <para>
+	      <varname>includeTypes</varname> (optional): a list of item types that items need to be of in order to be included
+	      in the reply. By default, all item types are returned.
+	    </para>
+	  </listitem>
+	  
+	  <listitem>
+	    <para>
+	      <varname>excludeTypes</varname> (optional): a list of item types that items must not be of in order to be included
+	      in the reply. By default, no item types are excluded.
+	    </para>
+	  </listitem>
+	  
+	  <listitem>
+	    <para>
+	      <varname>memberNames</varname> (optional): a list of the names of members/proprties that will be returned. 
+	      For each selected item, only members the names of which appear on this list will be returned. The item <varname>id</varname>
+	      and <varname>serialNumber</varname> are always returned. If this parameter is not present, all members are returned.
+	    </para>
+	    <para>
+	      This parameter serves to restrict the size of the returned data stream.
+	    </para>
+	    <para>
+	      The naming of members should reflect the native G2 naming of the members/properties. However, meta member names will
+	      likely need to be created for transient data (data that is generated at runtime and not available in the
+	      DB) or aggregate data.
+	    </para>
+	  </listitem>
+	  
+	  <listitem>
+	    <para>
+	      <varname>wellFormedTree</varname> (optional): if set to TRUE, parents of selected items will also be
+	      included in the reply, even if they do not match the other query filters (they should still be readable 
+	      by the client). By default, a sparse tree is returned (potentially not well-formed).
+	    </para>
+	  </listitem>
+	  
+	  <listitem>
+	    <para>
+	      <varname>maxItemNumber</varname> (optional): if set, will only return the first n items. This is 
+	      to prevent the protocol from returning huge lists of results. This would be mostly useful when 
+	      getting the list of pictures in an albu, recursively.
+	    </para>
+	  </listitem>
+	  
+	</itemizedlist>
+      </sect4>
+      
+      <sect4>
+	<title>Output</title>
+	
+	<para>
+	  An array of items is returned. Depending on the protocol being used, this can be loosely typed 
+	  (ie: value-pairs) or strongly typed (ie: defining classes for each of the possible return types in WSDL
+	  or a similar system). This is not yet defined.
+	</para>
+      </sect4>
+      
+      <sect4>
+	<title>Examples</title>
+	
+	<sect5>
+	  <title>Java preferences (like G1 protocol)</title>
+	  
+	  <para>This request fetches the list of all albums in which the user can add media.</para>
+	  
+	  <simplesect>
+	    <title>Input</title>
+	    
+	    <para>
+	      HTTP POST request, with the following parameters:
+	    </para>
+	    
+	    <programlisting>
+username=paour
+password=toto
+selectionType=childrenOfRecursive
+selectionData=root
+permissionList=core.addDataItem,core.addAlbumItem
+includeTypes=GalleryAlbumItem
+memberNames=id,serialNumber,parentId,pathComponentdescription,summary,title,orderWeight
+wellFormedTree=TRUE
+	    </programlisting>
+	  </simplesect>
+	  
+	  <simplesect>
+	    <title>Output</title>
+	    
+	    <programlisting>
+itemCount=3
+item.1.id=6
+item.1.serialNumber=6
+item.1.parentId=0
+item.1.pathComponent=
+item.1.description=This is the top of your Gallery
+item.1.summary=
+item.1.title=Gallery
+item.1.orderWeight=0
+item.2.id=9
+item.2.serialNumber=1
+item.2.parentId=6
+item.2.pathComponent=album1
+item.2.description=My first album
+item.2.summary=
+item.2.title=Album1
+item.2.orderWeight=0
+item.3.id=12
+item.3.serialNumber=2
+item.3.parentId=6
+item.3.pathComponent=album2
+item.3.description=I changed this
+item.3.summary=
+item.3.title=My second album
+item.3.orderWeight=1000
+status_code=0
+	    </programlisting>
+	  </simplesect>
+	</sect5>
+	
+	<sect5>
+	  <title>SOAP</title>
+	  
+	  <para>
+	    This request fetches the list of pictures inside an album for a slideshow.
+	  </para>
+	</sect5>
+	
+      </sect4>
+    </sect3>
+    
+    <sect3 id="gallery-remote.protocol3.methods.addMedia">
+      <title>addMedia</title>
+      
+      <para>
+	This should be possible both in SOAP/XML-RPC (Base-64) and HTTP POST (binary). Both versions should be very 
+	simple, with as little data being sent beside the media data and which album to put it in. The reply should 
+	contain the item id of the new media item.
+      </para>
+      
+      <para>
+	G2's addItemToAlbum method requires the media file, name, title, summary, description and mime-type. Do we need
+	to provide all this in this request?
+      </para>
+      
+      <sect4>
+	<title>Input</title>
+	
+        <itemizedlist spacing="compact">
+	  <listitem>
+	    <para>
+	      One of the below:
+	      <itemizedlist spacing="compact">
+		<listitem>
+		  <para>
+		    Image data; depending on the format (SOAP/XML-RPC) or HTTP POST, the data will be Base-64 encoded
+		    or not.
+		  </para>
+		</listitem>
+		
+		<listitem>
+		  <para>
+		    A URL to the image data, which G2 will then retrieve. The advantage is this method doesn't run
+		    afoul of PHP's memory and upload limits, but the data needs to be somewhere where the server
+		    can get at it.
+		  </para>
+		</listitem>
+	      </itemizedlist>
+	    </para>
+	  </listitem>
+
+	  <listitem>
+	    <para>
+	      <varname>parentAlbum</varname>: the id of the album the media should be placed in.
+	    </para>
+	  </listitem>
+	  
+	</itemizedlist>
+      </sect4>
+
+      <sect4>
+	<title>Output</title>
+	
+	<para>
+	  The id of the newly created media.
+	</para>
+      </sect4>
+
+    </sect3>
+
+    <sect3 id="gallery-remote.protocol3.methods.createAlbum">
+      <title>createAlbum</title>
+      
+      <para>
+	Similarly to uploading an image, this should be a simple creation that returns the item id, followed by 
+	another query to set the item's properties.
+      </para>
+      
+      <para>
+	This could also be used to create generic items, if there's a need for it.
+      </para>
+
+      <sect4>
+	<title>Input</title>
+	
+        <para>Optionally, item class. If none is provided, an album is created.</para>
+      </sect4>
+
+      <sect4>
+	<title>Output</title>
+	
+	<para>
+	  The id of the newly created album.
+	</para>
+      </sect4>
+
+    </sect3>
+
+    <sect3 id="gallery-remote.protocol3.methods.setItem">
+      <title>setItem</title>
+      
+      <para>
+	This is the setter corresponding to the <link linkend="gallery-remote.protocol3.methods.getItem">getItem</link>
+	request. In order to maximize backward compatibility and minimize protocol chatter, only members that need to
+	be updated should be passed in the query.
+      </para>
+      
+      <sect4>
+	<title>Input</title>
+	
+        <itemizedlist spacing="compact">
+	  <listitem>
+	    <para><varname>item</varname>: the id of the item to update.</para>
+	  </listitem>
+	  
+	  <listitem>
+	    <para>
+	      a list of name-value pairs for the members to update. In the event we want a typed protocol, an object
+	      with only some fields provided. This means we would have an object model where each field is optional.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </sect4>
+
+      <sect4>
+	<title>Output</title>
+	
+	<para>
+	  No data output.
+	</para>
+      </sect4>
+
+    </sect3>
+
+    <sect3 id="gallery-remote.protocol3.methods.moveItem">
+      <title>moveItem</title>
+      
+      <para>
+	This moves the item from its current parent to a different parent. Probably only useful for children of an album.
+      </para>
+      
+      <sect4>
+	<title>Input</title>
+	
+        <itemizedlist spacing="compact">
+	  <listitem>
+	    <para><varname>item</varname>: the id of the item to move.</para>
+	  </listitem>
+	  
+	  <listitem>
+	    <para><varname>moveTo</varname>: the id of the new parent.</para>
+	  </listitem>
+	</itemizedlist>
+      </sect4>
+
+      <sect4>
+	<title>Output</title>
+	
+	<para>
+	  No data output.
+	</para>
+      </sect4>
+
+    </sect3>
+
+    <sect3 id="gallery-remote.protocol3.methods.aliasItem">
+      <title>aliasItem</title>
+      
+      <para>
+	Similar to moveItem, maybe should be the same method with a flag?
+      </para>
+    </sect3>
+      
+    <sect3 id="gallery-remote.protocol3.methods.copyItem">
+      <title>copyItem</title>
+      
+      <para>
+	Similar to copyItem, maybe should be the same method with a flag?
+      </para>
+    </sect3>
+      
+    <sect3 id="gallery-remote.protocol3.methods.deleteItem">
+      <title>deleteItem</title>
+      
+      <para>
+	This deletes an item. Probably only useful for children of an album.
+      </para>
+      
+      <sect4>
+	<title>Input</title>
+	
+        <itemizedlist spacing="compact">
+	  <listitem>
+	    <para><varname>item</varname>: the id of the item to delete.</para>
+	  </listitem>
+	</itemizedlist>
+      </sect4>
+
+      <sect4>
+	<title>Output</title>
+	
+	<para>
+	  No data output.
+	</para>
+      </sect4>
+
+    </sect3>
+
+    <sect3 id="gallery-remote.protocol3.methods.reorderChildren">
+      <title>reorderChildren</title>
+      
+      <para>
+	This method reorders the items within an album (probably no other uses).
+      </para>
+      
+      <para>
+	Internally, G2 stores orderWeights to determine the order in which items within an album are stored; this allows 
+	an album to be sorted by orderWeight or other parameters dynamically, while retaining the "natural order" (G2 UI calls this "no sort order")
+	of the orderWeights. This method only applies to the orderWeights. Should we expose the orderWeights in the
+	protocol or just expose "natural order" sequence numbers?
+      </para>
+      
+      <para>
+	Caveat: for G2, the orderWeight is a property of the item, whereas order is a property of the container.
+	This is likely to cause ambiguities with permissions.
+      </para>
+      
+      <sect4>
+	<title>Input</title>
+	
+        <itemizedlist spacing="compact">
+	  <listitem>
+	    <para><varname>item</varname>: the id of the item to reorder.</para>
+	  </listitem>
+	  
+	  <listitem>
+	    <para>
+	      <varname>newOrder</varname>: the ordered list of children. The pre-existing order will have been
+	      obtained with a getItem request.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </sect4>
+
+      <sect4>
+	<title>Output</title>
+	
+	<para>
+	  No data output.
+	</para>
+      </sect4>
+
+    </sect3>
+
+    <sect3 id="gallery-remote.protocol3.methods.incrementviewcount">
+      <title>incrementViewCount</title>
+      
+      <para>
+	This method increments the viewCount and updates the viewedSinceTimestamp of a item.
+      </para>
+ 
+      <sect4>
+	<title>Input</title>
+	
+        <itemizedlist spacing="compact">
+	  <listitem>
+	    <para><varname>item</varname>: the id of the item to increment.</para>
+	  </listitem>
+	</itemizedlist>
+      </sect4>
+
+      <sect4>
+	<title>Output</title>
+	
+	<para>
+	  No data output.
+	</para>
+      </sect4>
+
+    </sect3>
+
+    <sect3 id="gallery-remote.protocol3.methods.mediamanipulation">
+      <title>Media manipulation</title>
+      
+      <para>
+	Rotation/resizing of media is outside the scope of the initial version.
+      </para>
+ 
+    </sect3>
+
+    <sect3 id="gallery-remote.protocol3.methods.usermanagement">
+      <title>User management</title>
+      
+      <para>
+	User management is outside the scope of the initial version.
+      </para>
+      
+    </sect3>
+
+  </sect2>
+
+</sect1>

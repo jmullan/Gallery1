@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.windows">
+ <title>Installing on a Windows Server (Apache)</title>
+ 
+ &gallery1.upgrade;
+ 
+ &gallery1.requirements;
+
+ <para>
+  <note>
+   <para>
+    This guide assumes you have administrative access to the Windows machine
+    that will run Gallery.  In almost all cases, this administrative access
+    is required.
+   </para>
+  </note>
+  
+  <orderedlist>
+   <listitem>
+    <para>
+     Unpack your downloaded Gallery files and place them under your webroot.
+    </para>
+    <para>
+     (Standard installation directory is "C:\Program Files\Apache Group\Apache\htdocs").
+     This may vary depending on the location of your Apache
+     installation. Don't worry if the file extension unknown to you,
+     since WinZip and WinRAR both support .tar.gz archives.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Create a directory on your webspace called <filename>albums</filename>.
+    </para>
+    <para>
+     Gallery will use this directory to store the albums you create and the
+     images you upload to those albums.  For ease, create this directory
+     inside your base Gallery directory.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Run the configuration wizard, as described in
+     <link linkend="gallery1-install.config-wizard">this guide</link>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Enjoy your new Gallery!
+    </para>
+   </listitem>
+  </orderedlist>
+ </para>
+</sect1>

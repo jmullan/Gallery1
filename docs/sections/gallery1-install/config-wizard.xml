@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.config-wizard">
+ <title>The Configuration Wizard</title>
+ 
+ <para>
+  The Gallery configuration wizard is a simple tool to help you configure
+  initial settings for your Gallery.  It notifies you of potential errors and
+  makes setting up Gallery easy!
+ </para>
+ 
+ <orderedlist>
+ 
+  <listitem>
+   <para>
+    Put your Gallery into configuration mode.  Doing this is described on each
+    of the individual installation pages.  Pick the one that describes your
+    setup.
+    <itemizedlist>
+     <listitem>
+      <para>
+       <link linkend="gallery1-install.unix-ftp">Unix FTP</link>
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       <link linkend="gallery1-install.unix-shell">Unix Shell</link>
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       <link linkend="gallery1-install.windows">Windows Apache</link>
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       <link linkend="gallery1-install.windows-iis">Windows IIS</link>
+      </para>
+     </listitem>
+    </itemizedlist>
+   </para>
+  </listitem>
+  
+  <listitem>
+   <para>
+    Start the configuration wizard by pointing your browser to:
+    <emphasis>http://www.example.com/gallery/setup/index.php</emphasis>
+   </para>
+  </listitem>
+  
+  <listitem>
+   <para>
+    The first page will check for errors that could block you from installing
+    Gallery.  If you get all green, you're passing with flying colors!  If
+    some tests fail with a warning (i.e. yellow), you're usually OK.  However,
+    if some tests fail with "serious warnings," you need to fix them before
+    proceeding
+   </para>
+  </listitem>
+  
+  <listitem>
+   <para> 
+    Step 2 will guide you through some Gallery-wide settings.  Finally, step 3
+    allows you to set <emphasis role="bold">default</emphasis> settings for
+    new albums (this does <emphasis>not</emphasis> affect already created albums;
+    see <link linkend="gallery1-install.faq.c.34">FAQ C.34</link>).
+   </para>
+  </listitem>
+  
+  <listitem>
+   <para>
+    The last page (step 4) shows you what your &config.php; file will look like
+    after you save it.  It will also prompt you to fix any errors in the previous
+    steps (e.g. bad album path or missing values).  If everything is set correctly,
+    you can click "Save Config."
+   </para>
+  </listitem>
+  
+  <listitem>
+   <para>
+    Once your configuration has been saved, you must secure your Gallery.  Here's
+    how you do it for each OS/setup pair
+    <itemizedlist>
+     <listitem>
+      <para>
+       Unix/Shell - Run the <filename>secure.sh</filename> script, located in your
+       main Gallery directory
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Unix/FTP - Chmod the files listed below:
+       <screen>
+        chmod 644 .htaccess
+	chmod 644 config.php
+	chmod 400 setup
+       </screen>
+        In Gallery 1.4.4, you do not need to chmod the setup directory.
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Windows - Run the <filename>secure.bat</filename> script, located in your
+       main Gallery directory
+      </para>
+      <para>
+       This step can be skipped if using Gallery 1.4.4
+      </para>
+     </listitem>
+    </itemizedlist>
+   </para>
+  </listitem>
+  
+  <listitem>
+   <para>
+    Enjoy your newly installed Gallery!  The default username is <emphasis>admin</emphasis>
+    and the password is what you specified on step 2 of the config wizard.
+   </para>
+  </listitem>
+ </orderedlist>
+ 
+</sect1>

@@ -1,0 +1,1169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Gallery Coding Standards</title>
+    <style type="text/css">
+      // <!--
+      h1   {font-family: "trebuchet ms, arial, verdana"; font-size: 20pt; font-weight: bold}
+      h2   {font-family: "trebuchet ms, arial, verdana"; font-size: 16pt; font-weight: bold}
+      h3   {font-family: "trebuchet ms, arial, verdana"; font-size: 12pt; font-weight: bold}
+      h4   {font-family: "trebuchet ms, arial, verdana"; font-size: 8pt; font-weight: bold}
+      // -->
+    </style>
+  </head>
+
+  <body>
+    <center>
+      <h1>Gallery Coding Standards</h1>
+      <h4>$Id$</h4>
+    </center>
+
+    <a name="Contents"><h1>Contents</h1></a>
+    <ul>
+      <li> <a href="#Introduction">Introduction</a>
+	<ul>
+	  <li> <a href="#WhyhaveCodeConventions">Why have Code Conventions?</a>
+	  <li> <a href="#Acknowledgements">Acknowledgements</a>
+	</ul>
+      <li> <a href="#Indentation">Indentation</a>
+	<ul>
+	  <li> <a href="#LineLength">Line Length</a>
+	  <li> <a href="#WrappingLines">Wrapping Lines</a>
+	  <li> <a href="#LineTermination">Line Termination</a>
+	</ul>
+      <li> <a href="#NamingConvention">Naming Convention</a>
+      <li> <a href="#ClassandFunctionDeclarations">Class and Function Declarations</a>
+      <li> <a href="#Statements">Statements</a>
+	<ul>
+	  <li> <a href="#SimpleStatements">Simple Statements</a>
+	  <li> <a href="#CompoundStatements">Compound Statements</a>
+	  <li> <a href="#returnStatements"><code>return</code> Statements</a>
+	  <li> <a href="#ififelseifelseifelseStatements"><code>if, if-else, if else-if else</code> Statements</a>
+	  <li> <a href="#forStatements"><code>for</code> Statements</a>
+	  <li> <a href="#whileStatements"><code>while</code> Statements</a>
+	  <li> <a href="#dowhileStatements"><code>do-while</code> Statements</a>
+	  <li> <a href="#switchStatements"><code>switch</code> Statements</a>
+	</ul>
+      <li> <a href="#WhiteSpace">White Space</a>
+	<ul>
+	    <li> <a href="#BlankSpaces">Blank Spaces</a>
+	</ul>
+      <li> <a href="#Comments">Comments</a>
+	<ul>
+	  <li> <a href="#ClassComments">Class Comments</a>
+	  <li> <a href="#ModuleComments">Module Comments</a>
+	  <li> <a href="#FunctionComments">Function/Method Comments</a>
+	  <li> <a href="#ClassVariableandIncludeFileComments">Class Variable and Include File Comments</a>
+	  <li> <a href="#DocumentHeader">Document Header</a>
+	  <li> <a href="#SpecialComments">Special Comments</a>
+	</ul>
+      <li> <a href="#PHPSpecificGuidelines">PHP Specific Guidelines</a>
+	<ul>
+	  <li> <a href="#QuotingStrings">Quoting Strings</a>
+	  <li> <a href="#IncludingCode">Including Code</a>
+	  <li> <a href="#PHPCodeTags">PHP Code Tags</a>
+	  <li> <a href="#AssociativeArrayKeys">Associative Array Keys</a>
+	  <li> <a href="#UninitializedVariables">Uninitialized Variables</a>
+	</ul>
+      <li> <a href="#Miscellaneous">Miscellaneous</a>
+	<ul>
+	  <li> <a href="#MagicNumbers">Magic Numbers</a>
+	  <li> <a href="#Shortcutoperators">Shortcut operators</a>
+	  <li> <a href="#OperatorPrecedence">Operator Precedence</a>
+	  <li> <a href="#SQLcodelayout">SQL code layout</a>
+	</ul>
+    </ul>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="Introduction"><h2>Introduction</h2></a>
+
+    The purpose of this document is to lay out a clear set of
+    guidelines for developing code for the Gallery project.  The scope
+    of this document is limited mainly to PHP code, although Gallery
+    will occasionally use SQL and HTML.
+    
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="WhyhaveCodeConventions"><h3>Why have Code Conventions?</h3></a>
+    
+    Code conventions are important to programmers for a number of reasons: 
+    <ul>
+      <li> 80% of the lifetime cost of a piece of software goes to
+	maintenance.
+	
+      <li> Hardly any software is maintained for its whole life by the
+	original author.
+	
+      <li> Code conventions improve the readability of the software,
+	allowing engineers to understand new code more quickly and
+	thoroughly.  If you ship your source code as a product, you need
+	to make sure it is as well packaged and clean as any other
+	product you create.
+    </ul>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="Acknowledgements"><h2>Acknowledgements</h2></a>
+	        
+    This document has been largely created by culling information from
+    the following documents:
+
+    <ul>
+      <li> <a href="http://java.sun.com/docs/codeconv/html/CodeConventions.doc.html">Code Conventions for the JavaTM Programming Language</a>
+      <li> <a href="http://www.php.net/manual/en/pear.standards.php">Pear Coding Standards</a>
+      <li> <a href="http://phpbb.sourceforge.net/codingstandards.html">phpBB Coding Standard Guidelines</a>
+      <li> <a href="http://www.phpdoc.de/doc">PHPDoc</a>
+      <li> <a href="http://www.k-fish.de/krabutzig/phpwebsite/devdoc.html#comments">phpWebSite developer documentation</a>
+    </ul>
+
+    In some places we've copied it verbatim.  Please don't sue us,
+    we've got no money anyway.  If you modify and redistribute this
+    document please maintain the above credits and give us some also.
+
+    It was mostly written by Bharat Mediratta with input from Chris
+    Smith, Matthew McEachen and Jesse Mullan.  Try not to blame us too
+    much for it.
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="Indentation"><h2>Indentation</h2></a>
+	        
+    Four spaces should be used as the unit of indentation. The exact
+    construction of the indentation (spaces vs. tabs) is unspecified.
+    Tabs must be set exactly every 8 spaces (not 4).
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="LineLength"><h3>Line Length</h3></a>
+	        
+    Avoid lines greater than 80 characters.
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="WrappingLines"><h3>Wrapping Lines</h3></a>
+    <ul>
+      <li> Break after a comma. 
+      <li> Break before an operator. 
+      <li> Prefer higher-level breaks to lower-level breaks. 
+      <li> Align the new line with the beginning of the expression
+	at the same level on the previous line.
+      <li> If the above rules lead to confusing code or to code
+	that's squished up against the right margin, just indent 8
+	spaces instead (<b>not</b> 4 spaces).
+    </ul>
+
+    Here are some examples of breaking method calls: 
+
+    <pre>
+      someMethod(longExpression1, longExpression2, longExpression3, 
+          longExpression4, longExpression5);
+ 
+      var = someMethod1(longExpression1,
+          someMethod2(longExpression2,
+              longExpression3)); 
+    </pre>
+
+    Following are two examples of breaking an arithmetic
+    expression. The first is preferred, since the break occurs outside
+    the parenthesized expression, which is at a higher level.
+
+    <pre>
+      longName1 = longName2 * (longName3 + longName4 - longName5)
+              + 4 * longname6; // <b>PREFER</b>
+
+      longName1 = longName2 * (longName3 + longName4
+              - longName5) + 4 * longname6; // <b>AVOID</b>
+    </pre>
+
+    Following are two examples of indenting function declarations. The
+    first is the conventional case. The second would shift the second
+    and third lines to the far right if it used conventional
+    indentation, so instead it indents only 4 spaces.
+
+    <pre>
+      // <b>CONVENTIONAL INDENTATION</b>
+      function someFunction($anArg, $anotherArg, $yetAnotherArg,
+              $andStillAnother) {
+          ...
+      }
+
+      // <b>INDENT 8 SPACES TO AVOID VERY DEEP INDENTS</b>
+      function superExtraHorkingLongMethodName($anArg, $anArg, $anArg,
+              $anotherArg, $yetAnotherArg, $yetMoreArg, $anArg, $anArg
+              $andStillAnother) {
+          ...
+      }
+    </pre>
+
+    Line wrapping for if statements should generally use the 8-space
+    rule, since conventional (4 space) indentation makes seeing the
+    body difficult. For example:
+
+    <pre>
+      // <b>DON'T USE THIS INDENTATION</b>
+      if ((condition1 && condition2)
+          || (condition3 && condition4)
+          ||!(condition5 && condition6)) { // <b>BAD WRAPS</b>
+          doSomethingAboutIt();            // <b>MAKE THIS LINE EASY TO MISS</b>
+      } 
+
+      // <b>USE THIS INDENTATION INSTEAD</b>
+      if ((condition1 && condition2)
+              || (condition3 && condition4)
+              ||!(condition5 && condition6)) {
+          doSomethingAboutIt();
+      } 
+
+      // <b>OR USE THIS</b>
+      if ((condition1 && condition2) || (condition3 && condition4)
+              ||!(condition5 && condition6)) {
+          doSomethingAboutIt();
+      } 
+    </pre>
+
+    Expressions using the ternary operator should be parenthesized.
+    Here are three acceptable ways to format ternary expressions
+
+    <pre>
+      $alpha = (aLongBooleanExpression) ? $beta : $gamma;  
+
+      $alpha = (aLongBooleanExpression) ? $beta
+                                        : $gamma;  
+
+      $alpha = (aLongBooleanExpression)
+               ? $beta 
+               : $gamma;  
+    </pre>
+
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="LineTermination"><h3>Line Termination</h3></a>
+	    
+    Ensure that your editor is saving files in the Unix format. This
+    means lines are terminated with a newline, not with a CR/LF combo
+    as they are on Win32, or whatever the Mac uses. Any decent Win32
+    editor should be able to do this, but it might not always be the
+    default. Know your editor.
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="NamingConvention"><h2>Naming Convention</h2></a>
+	    
+    Naming conventions make programs more understandable by making
+    them easier to read. They can also give information about the
+    function of the identifier-for example, whether it's a constant,
+    package, or class-which can be helpful in understanding the code.
+
+    <br><br>
+
+    In the block below, we'll refer to a capitalization strategy
+    called <b>StudlyCaps</b>.  In this strategy, multiple words are
+    combined into one where the beginning of each internal word is
+    capitalized.  Acronyms are capitalized like regular words.  For
+    example a variable expressing the "maximum cpu speed" would be called
+    $maximumCpuSpeed.
+
+    <br><br>
+
+    <table border=1 width=600>
+	<tr>
+	  <th> Type
+	  <th> Description
+	  <th width=200> Examples
+	</tr>
+	    
+	<tr>
+	  <td>
+	    Files
+	  </td>
+	  <td>
+	    File names are in StudlyCaps with the first letter capitalized.
+	    Try to keep your file names simple and descriptive.
+
+	    <br><br>
+
+	    Files that can be viewed directly by the browser should
+	    terminate in .php or .html.  Files that are only intended
+	    to be included or required, should end in .inc.  This is a
+	    security precaution to prevent code from being run out of
+	    context.  Files that contain a PHP class definition should
+	    end in .class, and should also contain a class of the same
+	    name as the file.
+
+	  </td>
+	  <td>
+	    <code>
+	      Album.php
+	      <br>
+	      CommentDraw.inc
+	    </code>
+	  </td>
+	</tr>
+	
+	<tr>
+	  <td>
+	    Classes
+	  </td>
+	  <td>
+	    Class names are in StudlyCaps and should be nouns.  Try to
+	    keep your class names simple and descriptive. Use whole
+	    words-avoid acronyms and abbreviations (unless the
+	    abbreviation is much more widely used than the long form,
+	    such as URL or HTML).
+	  </td>
+	  <td>
+	    <code>
+	      class GalleryMap
+	      <br>
+	      class UserDatabase
+	      <br>
+	      class UrlGenerator
+	    </code>
+	  </td>
+	</tr>
+	
+	<tr>
+	  <td>
+	    Variables
+	  </td>
+	  <td>
+	    Variables are in StudlyCaps and should have a lowercase
+	    first letter.  Variable names should not start with
+	    underscore (_) or dollar sign ($) characters, even though
+	    both are allowed.
+
+	    <br><br>
+
+	    Variable names should be short yet meaningful. The choice of a
+	    variable name should be mnemonic- that is, designed to indicate to
+	    the casual observer the intent of its use. One-character variable
+	    names should be avoided except for temporary "throwaway" variables
+	    such as loop indices. Common names for temporary variables are i,
+	    j, k, m, and n for integers; c, d, and e for characters.
+	  </td>
+	  <td>
+	    <code>
+	      var $fields;
+	      <br>
+	      var $userInformation;
+	      <br>
+	      var $albumUrl;
+	    </code>
+	  </td>
+	</tr>
+	
+	<tr>
+	  <td>
+	    Functions
+	  </td>
+	  <td>
+	    Functions are in StudlyCaps and should be verbs.
+	    Functions that return boolean values should be in the form
+	    of a question as in "isEnabled".  The noun-verb formation
+	    makes code easier to read, eg "Is the user enabled?" becomes
+	    "if ($user->isEnabled)".
+	  </td>
+	  <td>
+	    <code>
+	      function getField()
+	      <br>
+	      function setField()
+	      <br>
+	      function isEnabled()
+	    </code>
+	  </td>
+	</tr>
+	
+	<tr>
+	  <td>
+	    Constants
+	  </td>
+	  <td>
+	    The names of variables declared class constants and of
+	    ANSI constants should be all uppercase with words
+	    separated by underscores ("_"). (ANSI constants should be
+	    avoided, for ease of debugging.)  Constants used in
+	    localization should begin with an underscore.
+	  </td>
+	  <td>
+	    <code>
+	      $MIN_WIDTH = 4;
+	      <br>
+	      $FULL_ONLY_MODE = 2;
+	    </code>
+	</tr>
+    </table>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="ClassandFunctionDeclarations"><h2>Class and Function Declarations</h2></a>
+	    
+    When coding classes and functions, the following formatting rules should be followed: 
+    <ul>
+      <li> No space between a method name and the parenthesis "("
+      starting its parameter list
+
+      <li> Open brace "{" appears at the end of the same line as the
+      declaration statement
+
+      <li> Closing brace "}" starts a line by itself indented to match
+      its corresponding opening statement, except when it is a null
+      statement the "}" should appear immediately after the "{"
+    </ul>
+
+    The above rules are sometimes referred to as the 
+    <a href="http://www.tuxedo.org/~esr/jargon/html/entry/indent-style.html">K&R</a> 
+    style.
+
+    Example:
+
+    <pre>
+      class Foo {
+          function getBar($a, $b) {
+          }
+      }
+    </pre>
+
+    [<a href=#Contents>contents</a>]
+    <a name="Statements"><h2>Statements</h2></a>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="SimpleStatements"><h3>Simple Statements</h3></a>
+	        
+    Each line should contain at most one statement. Example: 
+
+    <pre>
+      $argv++;                // <b>Correct</b>
+      $argc--;                // <b>Correct</b>
+      $argv++; $argc--;       // <b>AVOID!</b>
+    </pre>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="CompoundStatements"><h3>Compound Statements</h3></a>
+	    
+    Compound statements are statements that contain lists of
+    statements enclosed in braces "{ statements }". 
+
+    <br><br>
+
+    The enclosed statements should be indented one more level than the
+    compound statement.  The opening brace should be at the end of the
+    line that begins the compound statement; the closing brace should
+    begin a line and be indented to the beginning of the compound
+    statement.  Braces are used around all statements, even single
+    statements, when they are part of a control structure, such as a
+    if-else or for statement. This makes it easier to add statements
+    without accidentally introducing bugs due to forgetting to add
+    braces.  
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="returnStatements"><h3>return Statements</h3></a>
+	    
+    A return statement with a value should not use parentheses unless
+    they make the return value more obvious in some way.  Example:
+    
+    <pre>
+      return;
+
+      return myDisk.size();
+
+      return (size ? size : defaultSize);
+    </pre>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="ififelseifelseifelseStatements"><h3>if, if-else, if else-if else Statements</h3></a>
+	    
+    The if-else class of statements should have the following form: 
+
+    <pre>
+      if (condition) {
+          statements;
+      }
+
+      if (condition) {
+          statements;
+      } else {
+          statements;
+      }
+      
+      if (condition) {
+          statements;
+      } else if (condition) {
+          statements;
+      } else {
+          statements;
+      }
+    </pre>
+ 
+    Note: if statements always use braces {}. Avoid the following error-prone form:
+
+    <pre>
+      if (condition) // <b>AVOID! THIS OMITS THE BRACES {}!</b>
+          statement;
+    </pre>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="forStatements"><h3>for Statements</h3></a>
+	    
+    A for statement should have the following form: 
+
+    <pre>
+      for (initialization; condition; update) {
+          statements;
+      }
+    </pre>
+
+    An empty for statement (one in which all the work is done in the
+    initialization, condition, and update clauses) should have the
+    following form:
+
+    <pre>
+      for (initialization; condition; update);
+    </pre>
+
+    When using the comma operator in the initialization or update
+    clause of a for statement, avoid the complexity of using more than
+    three variables. If needed, use separate statements before the for
+    loop (for the initialization clause) or at the end of the loop
+    (for the update clause).
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="whileStatements"><h3>while Statements</h3></a>
+    A while statement should have the following form: 
+
+    <pre>
+      while (condition) {
+          statements;
+      }
+    </pre>
+
+    An empty while statement should have the following form: 
+
+    <pre>
+      while (condition);
+    </pre>
+
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="dowhileStatements"><h3>do-while Statements</h3></a>
+    A do-while statement should have the following form: 
+
+    <pre>
+      do {
+          statements;
+      } while (condition);
+    </pre>
+
+    
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="switchStatements"><h3>switch Statements</h3></a>
+    A switch statement should have the following form: 
+
+    <pre>
+      switch (condition) {
+      case ABC:
+          statements;
+          /* falls through */
+      
+      case DEF:
+          statements;
+          break;
+      
+      case XYZ:
+          statements;
+          break;
+      
+      default:
+          statements;
+          break;
+      }
+    </pre>
+
+    Every time a case falls through (doesn't include a break
+    statement), add a comment where the break statement would normally
+    be. This is shown in the preceding code example with the 
+    <code>/* falls through */</code> comment.
+
+    Every switch statement should include a default case. The break in
+    the default case is redundant, but it prevents a fall-through
+    error if later another case is added.
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="WhiteSpace"><h2>White Space</h2></a>
+	    
+    Blank lines improve readability by setting off sections of code
+    that are logically related.
+
+    Two blank lines should always be used in the following circumstances:
+    <ul>
+      <li> Between sections of a source file 
+      <li> Between class and interface definitions 
+    </ul>
+
+    One blank line should always be used in the following circumstances: 
+    <ul>
+      <li> Between methods 
+      <li> Between the local variables in a method and its first statement 
+      <li> Between logical sections inside a method to improve readability 
+    </ul>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="BlankSpaces"><h3>Blank Spaces</h3></a>
+    Blank spaces should be used in the following circumstances: 
+
+    A keyword followed by a parenthesis should be separated by a space. Example: 
+    <pre>
+      while (true) {
+          ...
+      }
+    </pre>
+
+    Note that a blank space should not be used between a method name
+    and its opening parenthesis. This helps to distinguish keywords
+    from method calls.
+
+    A blank space should appear after commas in argument lists.  All
+    binary operators except . should be separated from their operands
+    by spaces. Blank spaces should never separate unary operators such
+    as unary minus, increment ("++"), and decrement ("--") from their
+    operands. Example:
+
+    <pre>
+      $a += $c + $d;
+      $a = ($a + $b) / ($c * $d);
+      while ($n < $s) {
+          $n++;
+      }
+      print("size is " . $foo . "\n");
+    </pre>
+
+    The expressions in a for statement should be separated by blank
+    spaces.  Example:
+
+    <pre>
+      for (expr1; expr2; expr3)
+    </pre>
+
+    Casts should be followed by a blank space. Examples: 
+
+    <pre>
+      myFunction((int) $a, (int) $b);
+    </pre>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="Comments"><h2>Comments</h2></a>
+
+    If you change code and/or write new code you should add
+    appropriate comments. This applies to whole files (so called
+    modules when we talk about procedural code, or classes when
+    talking OO), function/method definitions, included files and
+    important variables.
+
+    <br><br>
+
+    C style comments (/* */) and standard C++ comments (//) are both
+    fine.  Use of Perl/shell style comments (#) is discouraged.
+    Multiple line C style comments should see the *'s aligned in a
+    column (including the first line).
+
+    <br><br>
+
+    In addition, commenting any tricky, obscure, or otherwise
+    not-immediately-obvious code is clearly something we should be
+    doing. Especially important to document are any assumptions your
+    code makes, or preconditions for its proper operation. Any one of
+    the developers should be able to look at any part of the
+    application and figure out what's going on in a reasonable amount
+    of time.
+
+    <br>
+
+    [<a href=#Contents>contents</a>]
+    <a name="ClassComments"><h3>Class Comments</h3></a>
+
+    These should appear before every class, and help to explain the
+    purpose of the class.  All core Gallery classes should belong to
+    the package GalleryCore.  All feature or implementation based
+    add-on classes modules should belong to a package named XxxFeature
+    or XxxImplementation.  A class comment looks like this:
+
+    <p>
+
+    <pre>
+      /**
+       * Short explanation (1 line!)
+       *
+       * Some more text which explains in more detail
+       * what the file does and who might be interested
+       * in understanding that.
+       *
+       * @version &#36;Id&#36;
+       * @package GalleryCore
+       * @author Bharat Mediratta <bharat@menalto.com>
+       */
+    </pre>
+
+    <ul>
+      <li> The first line should be short but meaningful. 
+
+      <li> The longer explanation may span several lines. Currently
+	HTML markup is not retained, so try to avoid it.
+
+      <li> One @author statement may be present. More than one author
+      may appear in the statement, consisting of his/her name and
+      optionally the email address in &lt; and &gt; signs, individual
+      authors separated by colons. If given, the email address will be
+      converted into a hyperlink automagically.
+
+      <li> The @version statement should be used unchanged.  CVS will
+      magically transform this into the actual version info of the
+      file.
+
+      <li> The @package statement should be set according to the rules
+      listed above.
+    </ul>
+
+    [<a href=#Contents>contents</a>]
+    <a name="ModuleComments"><h3>Module Comments</h3></a>
+
+    A "module" is a PHP file that contains in-line PHP code.  This
+    doesn't apply to code that is in a PHP class (see above for that).
+    The comments for PHP files give the file a name (module) and put
+    the file in a certain group (a module group).  A module comment
+    looks like this:
+
+    <p>
+
+    <pre>
+      /**
+       * Short explanation (1 line!)
+       *
+       * Some more text which explains in more detail
+       * what the file does and who might be interested
+       * in understanding that.
+       *
+       * @version &#36;Id&#36;
+       * @module EditThumbnail
+       * @modulegroup Edit
+       * @package GalleryApplication
+       * @author Bharat Mediratta <bharat@menalto.com>
+       */
+    </pre>
+
+    <ul>
+      <li> The first line should be short but meaningful. 
+
+      <li> The longer explanation may span several lines. Currently
+	HTML markup is not retained, so try to avoid it.
+
+      <li> The @version statement should be used unchanged.  CVS will
+      magically transform this into the actual version info of the
+      file.
+
+      <li>The @module statement gives the file a more meaningful
+      name. Usually it should be the filename in <b>StudlyCaps</b>
+      form without the suffix .php.  Dots are not allowed in the name.
+
+      <li> The @modulegroup should be one of the following. If you
+      think a new group is needed, please email me (better yet the
+      developers mailing list). We will add it if appropriate.
+	<ul>
+	  <li> Layout      - files used by the layout engine
+	  <li> Application - procedural files that form the application
+	  <li> Config      - configuration wizard files
+	  <li> Feature     - feature specific files
+	</ul>
+
+      <li> The @package statement should be set according to the rules
+      listed above.
+
+      <li> One @author statement may be present. More than one author
+      may appear in the statement, consisting of his/her name and
+      optionally the email address in &lt; and &gt; signs, individual
+      authors separated by colons. If given, the email address will be
+      converted into a hyperlink automagically.
+    </ul>
+
+    [<a href=#Contents>contents</a>]
+    <a name="FunctionComments"><h3>Function/Method Comments</h3></a>
+
+    These explain in detail what a function does, what parameters it
+    expects and what is returned by the function. Function comments
+    apply to classes as well, here they magically turn into method
+    comments. Such a comment appears directly above a function
+    definition looks like this:
+
+    <pre>
+      /**
+       * Short explanation (1 line!)
+       *
+       * Some more text which explains in more detail what
+       * the function does and who might be interested
+       * in understanding that.
+       *
+       * @author Name &lt;email address&gt;, Name2 &lt;other email address&gt;
+       * @param type description
+       * @return type description
+       */
+    </pre>
+
+    <ul>
+      <li> The first line should be short but meaningful. 
+
+      <li> The longer explanation may span several lines. Currently
+      HTML markup is not retained, so try to avoid it.
+
+      <li> One or more @param statements describing the arguments the
+      function expects. They must be given in the order in which they
+      appear in the function definition.  A return statement, if the
+      function returns something.
+    </ul>
+
+    [<a href=#Contents>contents</a>]
+    <a name="ClassVariableandIncludeFileComments"><h3>Class Variable and Include File Comments</h3></a>
+
+    These are simple: They just quickly explain what a class varibale
+    is used for, or what an included file does, or why we need
+    it. These comments may be longer, if you have to explain more
+    (e.g. the $dbp variable in the config file). They should appear
+    just above the corresponding variable or include/require
+    statement. They have to be one line and look like this.
+    
+    <pre>
+      /**
+       * Some explanation of the variable or file just below this comment.
+       */
+    </pre>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="DocumentHeader"><h3>Document Header</h3></a>
+	    
+    All files should contain the following text in a form where it
+    will not interfere with the purpose of the file (ie, commented
+    out).  In this example, it's presented in a commented out form for
+    inclusion into PHP files.
+
+    <code>
+    <pre>
+      &lt;?
+       /*
+        * Gallery - a web based photo album viewer and editor
+        * Copyright (C) 2000-2004 Bharat Mediratta
+        *
+        * This program is free software; you can redistribute it and/or modify
+        * it under the terms of the GNU General Public License as published by
+        * the Free Software Foundation; either version 2 of the License, or (at
+        * your option) any later version.
+        *
+        * This program is distributed in the hope that it will be useful, but
+        * WITHOUT ANY WARRANTY; without even the implied warranty of
+        * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+        * General Public License for more details.
+        *
+        * You should have received a copy of the GNU General Public License
+        * along with this program; if not, write to the Free Software
+        * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+        * 
+        * &#36;Id&#36;
+        */
+      ?&gt;
+    </pre>
+    </code>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="SpecialComments"><h3>Special Comments</h3></a>
+
+    Occasionally you wind up checking in code that's not totally
+    satisfactory.  Sometimes this is inevitable.  In order to locate
+    these bits of code so that we find and resolve it later, use the
+    following tags in a comment, above the code in question:
+
+    <ul>
+      <li><b>REVISIT</b> - this is an optimization waiting to happen,
+      or something that could be improved on later.  Optionally.  If
+      we're bored.  And have itchy C-x v v fingers.
+
+      <li><b>TODO</b> - this is missing functionality (so by
+      definition, it's broken) that needs to be addressed at some
+      point.
+
+      <li><b>FIXME</b> - this is stubbed/broken functionality. But I
+      need to commit.  And it can limp for now.
+    </ul>
+
+    <p> </p>
+
+    Keep in mind that you may not get back to this code for a while.
+    You may not even be the one to fix the thing, so the more
+    information that you provide while it's still fresh in your mind,
+    the better. Potential solutions or workarounds are great, and may
+    prove invaluable to whomever gets around to addressing the issue.
+
+    <p> </p>
+
+    If the comment isn't clear it may be ignored and eventually deleted.
+
+    <p> </p>
+
+    At some point in the future this will enable us to dictate the
+    following:
+    <ul>
+      <li> No point release with FIXMEs 
+      <li> No major release with TODOs
+    </ul>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="PHPSpecificGuidelines"><h2>PHP Specific Guidelines</h2></a>
+	    
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="AssociativeArrayKeys"><h3>Associative Array Keys</h3></a>
+	        
+    In PHP, it's legal to use a literal string as a key to an
+    associative array without quoting that string. We don't want to do
+    this -- the string should always be quoted to avoid
+    confusion. Note that this is only when we're using a literal, not
+    when we're using a variable.
+
+    Examples:
+    <pre>
+      /* wrong */
+      $foo = $assoc_array[blah];
+      
+      /* right */
+      $foo = $assoc_array['blah'];
+    </pre>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="QuotingStrings"><h3>Quoting Strings</h3></a>
+	    
+    There are two different ways to quote strings in PHP - either with
+    single quotes or with double quotes. The main difference is that
+    the parser does variable interpolation in double-quoted strings,
+    but not in single quoted strings. Because of this, you should
+    always use single quotes unless you specifically need variable
+    interpolation to be done on that string. This way, we can save the
+    parser the trouble of parsing a bunch of strings where no
+    interpolation needs to be done. Also, if you are using a string
+    variable as part of a function call, you do not need to enclose
+    that variable in quotes. Again, this will just make unnecessary
+    work for the parser. Note, however, that nearly all of the escape
+    sequences that exist for double-quoted strings will not work with
+    single-quoted strings. Be careful, and feel free to break this
+    guideline if it's making your code harder to read.
+
+    Examples:
+
+    <pre>
+      /* wrong */
+      $str = "This is a really long string with no variables for the parser to find.";
+      do_stuff("$str");
+    
+      /* right */
+      $str = 'This is a really long string with no variables for the parser to find.';
+      do_stuff($str);
+    </pre>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="IncludingCode"><h3>Including Code</h3></a>
+	    
+    Anywhere you are unconditionally including a class file, use <a
+    href="http://php.net/require_once">require_once()</a>. Anywhere
+    you are conditionally including a class file (for example, factory
+    methods), use <a
+    href="http://php.net/include_once">include_once()</a>. Either of
+    these will ensure that class files are included only once. They
+    share the same file list, so you don't need to worry about mixing
+    them - a file included with <a
+    href="http://php.net/require_once">require_once()</a> will not be
+    included again by <a
+    href="http://php.net/include_once">include_once()</a>.
+
+    <br><br>
+
+    Note: <a href="http://php.net/include_once">include_once()</a> and
+    <a href="http://php.net/require_once">require_once()</a> are
+    statements, not functions. You don't need parentheses around the
+    filename to be included.
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="PHPCodeTags"><h3>PHP Code Tags</h3></a>
+	    
+    <i>Always</i> use &lt;?php ?&gt; to delimit PHP code, not the
+    &lt;? ?&gt; shorthand. This is the most portable way to include
+    PHP code on differing operating systems and setups.
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="UninitializedVariables"><h3>Uninitialized Variables</h3></a>
+	    
+    Don't use uninitialized variables.  Gallery will use a high level
+    of run-time error reporting. This will mean that the use of an
+    uninitialized variable will be reported as an error. This will
+    come up most often when checking which HTML form variables were
+    passed. These errors can be avoided by using the built-in isset()
+    function to check whether a variable has been set.
+
+    Examples:
+
+    <pre>
+      /* Old way */
+      if ($forum) ...
+
+      /* New way */
+      if (isset($forum)) ...
+    </pre>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="Miscellaneous"><h2>Miscellaneous</h2></a>
+	    
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="MagicNumbers"><h3>Magic Numbers</h3></a>
+	    
+    Don't use them. Use named constants for any literal value other
+    than obvious special cases. Basically, it's OK to check if an
+    array has 0 elements by using the literal 0. It's not OK to assign
+    some special meaning to a number and then use it everywhere as a
+    literal. This hurts readability AND maintainability. Included in
+    this guideline is that we should be using the constants TRUE and
+    FALSE in place of the literals 1 and 0 -- even though they have
+    the same values, it's more obvious what the actual logic is when
+    you use the named constants.
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="Shortcutoperators"><h3>Shortcut operators</h3></a>
+	    
+    The only shortcut operators that cause readability problems are
+    the shortcut increment ($i++) and decrement ($j--)
+    operators. These operators should not be used as part of an
+    expression. They can, however, be used on their own line. Using
+    them in expressions is just not worth the headaches when
+    debugging.
+
+    Examples:
+    <pre>
+      /* wrong */
+      $array[++$i] = $j;
+      $array[$i++] = $k;
+
+      /* right */
+      $i++;
+      $array[$i] = $j;
+    
+      $array[$i] = $k;
+      $i++;
+    </pre>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="OperatorPrecedence"><h3>Operator Precedence</h3></a>
+	        
+    Do you know the exact precedence of all the operators in PHP?
+    Neither do I. Don't guess. Always make it obvious by using
+    brackets to force the precedence of an equation so you know what
+    it does.
+
+    <pre>
+      /* what's the result? who knows. */
+      $bool = ($i < 7 && $j > 8 || $k == 4);
+    
+      /* now you can be certain what I'm doing here. */
+      $bool = (($i < 7) && (($j < 8) || ($k == 4)))
+    </pre>
+
+    <br>
+    [<a href=#Contents>contents</a>]
+    <a name="SQLcodelayout"><h3>SQL code layout</h3></a>
+	    
+    Since we'll all be using different editor settings, don't try to
+    do anything complex like aligning columns in SQL code. Do,
+    however, break statements onto their own lines. Here's a sample of
+    how SQL code should look. Note where the lines break, the
+    capitalization, and the use of brackets.
+
+    Examples:
+    <pre>
+      SELECT field1 AS something, field2, field3
+      FROM table a, table b
+      WHERE (this = that) AND (this2 = that2)
+    </pre>
+
+    <hr>
+    Document History:
+    <font size=-1>
+      <pre>
+$Log$
+Revision 1.8  2004/02/03 05:06:12  beckettmw
+ * Updated copyright to 2000-2004.
+
+Revision 1.7  2001/11/28 06:00:57  bharat
+Having learned much more about PHPDoc by:
+a) trying to PHPDoc my code
+b) pulling some hair out
+e) realizing that they never wrote an actual honest-to-god
+   MANUAL for their damn tag syntax
+b) pulling some more hair out
+c) reading the PHPDoc code
+d) weeping to see that their own code isn't PHPDoc'd very well
+f) putting debug statements in their code
+g) pulling more hair out (running low!)
+h) experimenting, experimenting, experimenting
+
+I now have a better idea of what to put where.  I've revised the doc
+to separate Modules from Classes and to put an example in for each
+one.  The (as yet to be checked in) 2.0 core classes are now doc'd
+pretty nicely.
+
+Revision 1.6  2001/11/26 22:35:34  bharat
+Backed off the line-length to 80 characters max.
+
+Revision 1.5  2001/11/19 22:43:13  bharat
+Miscellaneous small text tweaks in the PHPdocs comment section.
+
+Revision 1.4  2001/11/15 07:31:59  bharat
+Switched the "special comments" section over to using
+the FIXME/REVISIT/TODO system.
+
+Revision 1.3  2001/11/13 08:42:40  bharat
+Fleshed out the comments section to include much more detail on the
+PHPdoc style comment blocks.  No big changes here, just a lot more
+detail.
+
+Revision 1.2  2001/11/11 08:06:17  bharat
+Numerous cosmetic tweaks, no content changes.
+
+Revision 1.1  2001/11/10 03:26:06  bharat
+Draft #1 of the definitive Gallery code style document.
+
+      </pre>
+    </font>
+    <hr>
+    <address><a href="mailto:bharat@menalto.com">Bharat Mediratta</a></address>
+<!-- Created: Fri Nov  9 16:37:09 PST 2001 -->
+<!-- hhmts start -->
+Last modified: Tue Nov 27 21:57:49 PST 2001
+<!-- hhmts end -->
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Creating an Offline Copy</title><meta name="generator" content="DocBook XSL Stylesheets V1.64.1"><link rel="home" href="index.html" title="Gallery Manual"><link rel="up" href="gallery1-admin.html" title="Chapter 2. Gallery 1.x Administration Guide"><link rel="previous" href="gallery1-admin.backup.html" title="Backup and Restore"><link rel="next" href="gallery1-admin.patching.html" title="Patching your Gallery"><link rel="stylesheet" href="html.css"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Creating an Offline Copy</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="gallery1-admin.backup.html">Prev</a> </td><th width="60%" align="center">Chapter 2. Gallery 1.x Administration Guide</th><td width="20%" align="right"> <a accesskey="n" href="gallery1-admin.patching.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gallery1-admin.offline"></a>Creating an Offline Copy</h2></div></div><div></div></div><div class="toc"><dl><dt><span class="sect2"><a href="gallery1-admin.offline.html#gallery1-admin.offline.intro">Introduction</a></span></dt><dt><span class="sect2"><a href="gallery1-admin.offline.html#gallery1-admin.offline.command">Command</a></span></dt><dt><span class="sect2"><a href="gallery1-admin.offline.html#gallery1-admin.offline.examples">Examples</a></span></dt></dl></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gallery1-admin.offline.intro"></a>Introduction</h3></div></div><div></div></div><p>
+   A new feature in Gallery 1.3.4 is offline browsing, designed to assist you
+   when using tools like
+   <a href="http://www.gnu.org/software/wget/wget.html" target="_top">wget</a>
+   or <a href="http://www.httrack.com/" target="_top">httrack</a> to make an offline
+   version of your gallery. This can be for cutting a CD, keeping on your home
+   machine, putting on a site that doesn't have PHP installed or any other
+   purpose for which you might want a static version of your gallery.
+  </p><p>
+   Offline browsing gives you two things: it removes links that don't make
+   sense in a static gallery (like "Login" and "Add Comment"), and does not
+   display links to albums in the tree above the current album, unless that
+   has been visited already in this session. In other words, you can just
+   download an album and it's sub-albums, and not the whole tree if you want.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gallery1-admin.offline.command"></a>Command</h3></div></div><div></div></div><p>
+   To move Gallery into off line mode, simply add <tt class="literal">set_offline=true</tt>
+   to any gallery URL, e.g. <tt class="filename">http://www.example.com/gallery/?set_offline=true</tt>.
+   To stop using offline mode, then use <tt class="literal">set_offline=false</tt>
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gallery1-admin.offline.examples"></a>Examples</h3></div></div><div></div></div><p>
+   To download an entire, non-password protected gallery using wget
+   </p><pre class="screen">
+    wget -r -k --html-extension 'http://www.example.com/gallery/?set_offline=true'
+   </pre><p>
+  </p><p>
+   To download an album from a password protected gallery using httrack
+   </p><pre class="screen">
+    httrack -%F "" -K0 "http://www.example.com/gallery/login.php?uname=admin&amp;gallerypassword=SECRET \
+     &amp;login=Login&amp;set_offline=true" \
+     http://www.example.com/gallery/album04 http://www.example.com/albums
+   </pre><p>
+  </p><p>
+   To download an album from a password protected gallery using wget
+   </p><pre class="screen">
+    wget --proxy=off --cookies=on \
+     'http://www.example.com/login.php?uname=UNAME&amp;gallerypassword=SECRET&amp;login=Login' \
+     'http://www.example.com/backup.php'
+   </pre><p>
+  </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+    You need to give the URL of your gallery directory to httrack, or it won't
+    download images. So add a .htaccess file to prevent directory listing to
+    your albums directory (i.e. "Options -Indexes")
+   </p></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+    The domain you give must be the same as the one you defined during
+    configuration. eg if you put the domain as 
+    <tt class="filename">http://www.example.com/gallery</tt>, then 
+    <tt class="filename">http://example.com/gallery</tt> will not work.
+   </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="gallery1-admin.backup.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gallery1-admin.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="gallery1-admin.patching.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Backup and Restore </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Patching your Gallery</td></tr></table></div></body></html>

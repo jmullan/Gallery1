@@ -1,0 +1,89 @@
+The files in the 'edit' directory are 'edit tabs' that get i
+loaded in the edit.php page.
+
+
+NAMING CONVENTION
+-----------------
+The edit tab files must be named as follows:
+
+  <<TYPE>>_<<COMMANDNAME>>.inc
+
+where <<TYPE>> is (currently) either 'album' or 'item'. Also,
+if an item edit command is specific to a certain kind of item
+name the file:
+
+  item_<<KIND>>_<<COMMANDNAME>>.inc
+
+An example of this is image rotation. This is only performed 
+on items of the 'photo' variety, so it is named: 
+
+  item_photo_rotate.inc
+
+
+HOW THE TABS ARE USED
+---------------------
+The file edit.php is a multi-tabbed interface where the tab 
+content is loaded form these include files. All user flow
+control is handled by edit.php.
+
+These tabs/commands are called upon to either display their options
+or execute their functionality. If the '$doit' flag is set, then
+they should execute. If not they should display their options. 
+
+The flow should look something like this:
+
+if ($doit) {
+
+  (1) Execute the command.
+
+  (2) If the command wants to output status while executing it 
+  echo()'s that here. It is not responsible for setting up the 
+  progress page or finishing it up when it is done executing the
+  command. NOTE: if there is text to be displayed here, the
+  $show_progress flag must be set in the non-$doit section of the
+  file. See below.
+
+  (3) Set $force_return if the edit page should 'close' after 
+  this command executes (for example in the case of deleting 
+  the item).
+
+  (4) return. 
+
+} else {
+
+  (1) Build a string comtaining the HTML content of the 
+  layout the options for the command. The calling file edit.php
+  will setup the submit form. Here is where the inputs specific
+  to the command go. There should be no submits here.
+
+  (2) Set the $show_progress flag here if the command is to emit text
+  during it's $doit. The default is false.
+
+  (3) Finally return the content to be displayed
+
+}
+
+There should be no HTML content outside of this if/else construct.
+
+VALIDATING USER INPUT
+---------------------
+If the command needs to validate the user's input, and then cancel the 
+execution this can be done as follows:
+- In the $doit section, before outputting any text, do whatever
+  validation might be necessary. If there is a problem, set some
+  error flags (whatever).
+- Return (before emiting ANY text). And make sure $force_return is
+  not set.
+- Here, because $force_return is not set, edit.php will call the
+  tab again (in the same page request), this time with $doit NOT set.
+- The error data will be assigned to a variable $tab_error. The non-doit 
+  section can then use the error flags set above to instruct the user 
+  as to the error of their ways.  
+
+JAVASCRIPT
+----------
+- There should be no dependence upon javascript in these files.
+  If you use javascript, make sure the command still functions
+  without it.
+
+

@@ -1,0 +1,113 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Basics</title><meta name="generator" content="DocBook XSL Stylesheets V1.64.1"><link rel="home" href="index.html" title="Gallery Manual"><link rel="up" href="gallery1-admin.html" title="Chapter 2. Gallery 1.x Administration Guide"><link rel="previous" href="gallery1-admin.html" title="Chapter 2. Gallery 1.x Administration Guide"><link rel="next" href="gallery1-admin.users.html" title="Users and Permissions"><link rel="stylesheet" href="html.css"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Basics</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="gallery1-admin.html">Prev</a> </td><th width="60%" align="center">Chapter 2. Gallery 1.x Administration Guide</th><td width="20%" align="right"> <a accesskey="n" href="gallery1-admin.users.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gallery1-admin.basics"></a>Basics</h2></div></div><div></div></div><div class="toc"><dl><dt><span class="sect2"><a href="gallery1-admin.basics.html#gallery1-admin.basics.login">Logging In</a></span></dt><dt><span class="sect2"><a href="gallery1-admin.basics.html#gallery1-admin.basics.creating-albums">Creating Albums</a></span></dt><dt><span class="sect2"><a href="gallery1-admin.basics.html#gallery1-admin.basics.adding-photos">Adding Photos</a></span></dt><dt><span class="sect2"><a href="gallery1-admin.basics.html#gallery1-admin.basics.editing-item-properties">Editing Item Properties</a></span></dt><dt><span class="sect2"><a href="gallery1-admin.basics.html#gallery1-admin.basics.editing-album-properties">Edit Album Properties</a></span></dt></dl></div><p>
+  This section should give you basic information about Gallery and how to
+  manage it.
+ </p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gallery1-admin.basics.login"></a>Logging In</h3></div></div><div></div></div><p>
+   When you ran the <a href="gallery1-install.config-wizard.html" title="The Configuration Wizard">configuration
+   wizard</a>, you specified an admin password.  Now it's time to use it!
+   On the main Gallery page, click "[login]"  Using the username <tt class="literal">admin
+   </tt> and the password you specified during configuration, login to 
+   Gallery!  You now have full admin priviliges
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gallery1-admin.basics.creating-albums"></a>Creating Albums</h3></div></div><div></div></div><p>
+   Creating albums is extremely simple, just click "[new album]".  The new album
+   is created.  You should see the message "Hey! Add some photos"  However, before
+   adding photos, it's usually a good idea to modify some of the album properties,
+   such as title, description, and name.
+  </p><p>
+   Go back to the main Gallery page by clicking the link in the top right by the
+   up arrow.  You should see the new album on the main page.  To edit the title
+   of the new album, click "[edit title]" by the current title (for new albums, it
+   defaults to "Untitled").  To edit the description, do the same thing by clicking
+   on "[edit description]".  Finally, rename the album.  Click on the link in the
+   sentence "Hey! Rename this album so that the URL is not so generic".  Once you've
+   done this, you're ready to add photos.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gallery1-admin.basics.adding-photos"></a>Adding Photos</h3></div></div><div></div></div><p>
+   To add photos in an album, navigate to the album and click "[add photos]".  You
+   can now browse your computer and upload photos, adding an optional caption with each
+   image.  You can also change the number of file upload boxes displayed by using
+   the select box.  Another option is to upload files to your server and then specify
+   the path on the server (<span class="emphasis"><em>the directory must be readable by the webserver user
+   </em></span>).  Finally, you can specify a URL (e.g. http://www.example.com) to "leech"
+   images from.  Note that you cannot specify the direct URL of the image, only a page
+   to a webpage that contains images.  Click "Upload Now" or "Submit URL or directory"
+   and you're on your way.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gallery1-admin.basics.editing-item-properties"></a>Editing Item Properties</h3></div></div><div></div></div><p>
+   Each item (photo or movie) in Gallery has a list of properties that can
+   be edited.
+  </p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="gallery1-admin.basics.editing-item-properties.images"></a>Image Properties</h4></div></div><div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+      Edit Text -- Edits caption, description, keywords, and other custom
+      fields defined for the image
+     </p></li><li><p>
+      Edit Thumbnail -- Uses a java applet to edit which part of the image
+      should be shown as the thumbnail
+     </p></li><li><p>
+      Rotate/Flip Photo -- Self-explanatory, rotates or flips the photo. Rotate
+      can be done in 90 degree increments.
+     </p></li><li><p>
+      Highlight Photo -- Use this photo to represent the album
+     </p></li><li><p>
+      Move Photo -- Move the photo or group of photos (i.e. position in an
+      album or to another album)
+     </p></li><li><p>
+      Hide Photo -- Hides a photo.  Only admins and the album owner can see
+      hidden photos.
+     </p></li><li><p>
+      Delete Photo -- Deletes the photo (no undo)
+     </p></li><li><p>
+      Change Owner -- Changes the owner of the photo (item ownership added in
+      Gallery 1.4.0)
+     </p></li></ul></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="gallery1-admin.basics.editing-item-properties.movies"></a>Movie Properties</h4></div></div><div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+      Edit Text -- Edits caption, description, keywords, and other custom
+      fields defined for the movie
+     </p></li><li><p>
+      Move Movie -- Move the movie or a group of items (i.e. position in the
+      album or to another album)
+     </p></li><li><p>
+      Hide Movie -- Hides the movie.  Only admins and the album owner can see
+      hidden movies.
+     </p></li><li><p>
+      Delete Movie -- Deletes the movie (no undo)
+     </p></li><li><p>
+      Change Owner -- Changes the owner of the movie (item ownership added in
+      Gallery 1.4.0)
+     </p></li></ul></div></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gallery1-admin.basics.editing-album-properties"></a>Edit Album Properties</h3></div></div><div></div></div><p>
+   When you are an admin or album owner, you can edit certain properties about
+   an album.  When you are an in album, there will be a number of links in the
+   top right of the screen.  Each is explained below.
+  </p><div class="itemizedlist"><ul type="disc"><li><p>
+     Add Photos -- Add photos to the album (see the
+     <a href="gallery1-admin.basics.html#gallery1-admin.basics.adding-photos" title="Adding Photos">adding photos section</a>
+     for more information)
+    </p></li><li><p>
+     Add Photo -- Add a single photo, but you can specify all the custom fields during
+     upload
+    </p></li><li><p>
+     Rename Album -- Change the name of the album (i.e. the name in the URL)
+    </p></li><li><p>
+     New Nested Album -- Create a sub-album in this album
+    </p></li><li><p>
+     Custom Fields -- Edit the custom fields defined for this album.
+    </p></li><li><p>
+     Captions -- Edit captions for the images in the album (more efficent that
+     editing each item's caption individually)
+    </p></li><li><p>
+     Sort -- Sort the images by various critiera
+    </p></li><li><p>
+     Resize all -- Resize all the photos in the album to a certain size
+    </p></li><li><p>
+     Rebuild thumbs -- Rebuild all the thumbnails in the album
+    </p></li><li><p>
+     Permissions -- Edit the permissions for the album (see the
+     <a href="gallery1-admin.users.html" title="Users and Permissions">users administration guide</a>
+     for more information)
+    </p></li><li><p>
+     Properties -- Edit various properties of the album, including title, summary,
+     and various properties related to the album's appearance
+    </p></li><li><p>
+     View All Comments -- View all user comments in the album (only seen if commenting
+     is enabled)
+    </p></li><li><p>
+     Slideshow -- (seen by all users) Display a slideshow of all the images in the
+     album
+    </p></li><li><p>
+     Logout -- Log out of Gallery
+    </p></li></ul></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="gallery1-admin.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gallery1-admin.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="gallery1-admin.users.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 2. Gallery 1.x Administration Guide </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Users and Permissions</td></tr></table></div></body></html>

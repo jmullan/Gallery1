@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-admin.mirroring">
+ <title>Mirroring Gallery</title>
+ 
+ <para>
+  Gallery includes some basic mirroring functionality, to ease the load on your master server from all the image loading.
+ </para>
+ 
+ <warning>
+  <para>
+   Mirroring <emphasis>CANNOT</emphasis> be used to save disk space.  See
+   <link linkend="gallery1-install.faq.c.35">FAQ C.35</link> for more information.
+  </para>
+ </warning>
+   
+ 
+ <sect2 id="gallery1-admin.mirroring.quickstart">
+  <title>Quick Start</title>
+
+  <note>
+   <para>
+    Mirroring requires that you have <literal>allow_url_fopen</literal> set to <literal>on</literal> 
+    in <filename>php.ini</filename> or &htaccess;  If your server does not have that directive on in
+    <filename>php.ini</filename>, try adding this line to the bottom of your &htaccess; file
+    <screen>
+     php_flag allow_url_fopen on
+    </screen>
+    If that doesn't work, you'll need to contact your host for further help setting it on globally
+   </para>
+  </note>
+  
+  <orderedlist>
+   <listitem>
+    <para>
+     Copy your albums directory onto a remote web server.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Run the configuration wizard again, and add the address of the albums directory to the list of mirrors.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Test it!
+    </para>
+   </listitem>
+  </orderedlist>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.mirroring.howtomirror">
+  <title>How do I mirror my images automatically?</title>
+  
+  <para>
+   Gallery will not automatically update your mirror sites. However, programs such as rsync can be used
+   with cron to automate the process. Here's a useful shell script to mirror your albums to a remote server
+   over SSH:
+  </para>
+  <programlisting>
+#!/bin/sh
+if lockfile ~/.rsync-album.lock; then
+    rsync -aCz "$@" --delete -e ssh <emphasis>/path/to/local/albums/</emphasis> <emphasis>remote.example.com:/path/to/remote/albums/</emphasis>
+    rm -f ~/.rsync-album.lock
+fi
+  </programlisting>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.mirroring.troubleshooting">
+  <title>Troubleshooting</title>
+  
+  <sect3 id="gallery1-admin.mirroring.troubleshooting.old-host">
+   <title>Heeeelp! My images are still being loaded from the master server!</title>
+   <itemizedlist>
+    <listitem>
+     <para>
+      Are you sure you have specified the path to the remote albums directory correctly in the config wizard?
+      Gallery will fall back to the master server if it can't find its .dat files on the remote server.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Did you modify the album after uploading the albums directory? Each album is pulled from the mirror
+      on an all-or-nothing basis, so when the album is changed, it will be loaded from the master server
+      until the mirror has been updated.
+     </para>
+    </listitem>
+   </itemizedlist>
+  </sect3>
+  
+  <sect3 id="gallery1-admin.mirroring.troubleshooting.highlights">
+   <title>Wait a minute!  Albums are being loaded from the mirrors but the highlight images are not!</title>
+   <para>
+    This is intentional. Since Gallery only maintains state per-album, it would need to check on each album
+    to see if its highlight image is up to date. It was decided that this would be too slow.
+   </para>
+  </sect3>
+  
+ </sect2>
+ 
+</sect1>

@@ -1,0 +1,421 @@
+/*
+	matrix.css - core Gallery 2 css
+	by Ross A. Reyman and Jon Huang
+
+*/
+
+
+/* DEFAULTS *********************** */
+
+
+/* ***************** GALLERY  ********************** */
+/*   Category 1: Gallery                             */
+/*    declare Gallery Module Borders, etc.           */
+
+#gallery { }
+
+/* basic html defs for the stand-alone install */
+body {
+	font-family: Verdana, sans-serif;
+	font-size: 72%;
+}
+
+
+
+/* ***************** SECTIONS ********************** */
+/*   Category 2: section definitions                 */
+/* declare section styles                            */
+
+#gsHeader { border-bottom: 1px solid #ddd; }
+
+#gsFooter {
+	border-top: 1px solid #ddd;
+	font-size: 0.8em;
+	color: #bbb;
+}
+
+#gsSidebar {
+	background-color: #FFFFFF;
+	border-left: 1px solid #ddd;
+}
+
+#gsAlbumContents {
+}
+
+#gsComments {
+	border-top: 1px solid #bbb;
+}
+
+#gsSearchContents { }
+
+#gsAdminContents {
+	background-color: #FFFFFF;
+}
+
+#gsAdminSidebar {
+	border-right: 1px solid #ddd;
+}
+
+#gsStatus {
+	text-align: center;
+}
+
+#gsItemImages {
+}
+
+#gsAlbumImages {
+}
+
+/* ***************** BOXES ******************************* */
+/*   Category 3: box definitions                           */
+/*   This also includes Category 4: items that are defined */
+/*   with respect to sections.
+
+
+/* Defaults / GLOBALS *********************** */
+
+.gbDataEntry { }
+
+/*	spacers neeed for expanding layouts	*/
+#gallery .guSpacer, 
+#gallery .gpSpacer, 
+#gallery .gsSpacer, 
+#gallery .gbSpacer, 
+#gallery .giSpacer { }
+
+#gallery .gbTopFlag  {
+	background-color: #eee;
+	border: 1 solid #FFFFFF;
+}
+
+/* Tabs ******** */
+.gbTabBar {
+	background: #eee url('images/tab_bg.jpg') repeat-x bottom;
+	font-size: 0.9em;
+	line-height: normal;
+}
+
+.gbTabBar ul {
+	margin: 0;
+	padding: 10px 10px 0 0;
+	list-style: none;
+}
+
+.gbTabBar li {
+	background: url('images/tab_left.jpg') no-repeat left top;
+	margin: 0;
+	padding: 0 0 0 8px;
+	list-style: none;
+}
+
+.gbTabBar a {
+	background: url('images/tab_right.jpg') no-repeat right top;
+	padding: 6px 12px 4px 4px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #777;
+	display: block;
+}
+
+
+.gbTabBar a:hover { color: #333; }
+.gbTabBar .giSelectedTab { background-image: url('images/tab_left_on.jpg'); }
+
+.gbTabBar .giSelectedTab a {
+	background-image: url('images/tab_right_on.jpg');
+	color: #333;
+	padding-bottom: 5px;
+}
+
+/* Menus ****** */
+
+.gbMenu { 
+	border-bottom: 1px solid #ddd;
+}
+
+.gbMenu .giTitle { 
+	padding: 2;
+	margin: 2;
+}
+
+/*	icons for admin menu	*/
+.gbMenu li {
+	padding: 6 0 0 0px;
+	font-size: 10px;
+}
+
+.gbMenu ul, .gbMenu ol {
+	margin: 0 0 0 20px;
+	padding: 0 0 0 0;
+}
+
+.gbMenu ul { list-style-type: none; }
+.gbMenu li.comments:before { content: url('images/icon_comments.jpg'); }
+.gbMenu li.general:before { content: url('images/icon_general.jpg'); }
+.gbMenu li.users:before { content: url('images/icon_users.jpg'); }
+.gbMenu li.groups:before { content: url('images/icon_groups.jpg'); }
+.gbMenu li.modules:before { content: url('images/icon_modules.jpg'); }
+.gbMenu li.layouts:before { content: url('images/icon_layouts.jpg'); }
+.gbMenu li.debug:before { content: url('images/icon_debug.jpg'); }
+
+
+
+/* #gsHeader ****************************** */
+
+/* The title banner is the light grey 'search' at the very top */
+#gsHeader .gbTitleBanner {
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+
+/* Text inside the title bar */
+#gsHeader .gbTitleBanner .giTitle {
+	color: #ccc;
+	font-weight: bold;
+	font-size: 11px;
+}
+
+/* horizontal history links - 'trail of breadcrumbs' */
+#gsHeader .gbBreadCrumb { }
+
+/* horizontal link divider */
+#gsHeader .gbBreadCrumb span + span:before { content: '\00BB \ '; }
+
+/* #gsAlbumContents  ************************** */
+
+#gsAlbumContents .gbTitleBanner {
+	border: 0;
+}
+
+#gsAlbumContents .gbItemAlbum {
+	background-color: #eee;
+	border: 0px solid #bbb;
+}
+
+#gsAlbumContents .gbItemImage, 
+#gsAlbumContents .gbItemMovie, 
+#gsAlbumContents .gbItemOther {
+	background-color: #fff;
+}
+
+#gsAlbumContents .gbExif { }
+
+#gsAlbumContents .gbBottomFlag {
+	background-color: #eee;
+}
+
+#gsAlbumContents div.giHorizontalLinks {
+	font-size: 80%;
+	padding: 8px;
+}
+
+
+/* #gsComments ****************** */
+
+#gsComments .gbComment {
+	border-bottom: 1px solid #ddd;
+}
+
+/* #gsFooter ********************* */
+
+#gsFooter .gbMiniBanner { }
+
+/* #gsSidebar ******************** */
+
+
+/* #gsSearchContents ******************** */
+
+/* small grey border around all the thumbnails */
+#gsSearchContents .giThumbImage, 
+#gsSearchContents .giThumbMovie, 
+#gsSearchContents .giThumbOther { border: 2px solid #ccc; }
+
+/* override the normal title clear so as to wrap information
+ on the right of the thumbnail */
+
+#gsSearchContents .gbItemImage .giTitle {
+	border-width: 0;
+	margin: 0;
+	padding: 0;
+	clear: both; 
+}
+
+/* ********* #gsAdminContents *********** */
+
+#gsAdminContents .gbAdmin, 
+#gsAdminContents .gbButtons {
+	border-bottom: 1px solid #bbb;
+	background-color: #fff;
+}
+
+/* for tabular data */
+#gsAdminContents .gbDataTable {
+	border-width: 0;
+	font-size: 10px;
+}
+
+
+/* Status section *********************** */
+
+/* Error inside a gsStatus section */
+#gsStatus .giError {
+	color: #AA4444;
+	font-weight: normal;
+	font-size: 20px;
+}
+
+/* Warning inside a gsStatus section */
+#gsStatus .giWarning {
+	color: #DDDD77;
+	font-weight: normal;
+	font-size: 20px;
+}
+
+/* Status inside a gsStatus section */
+#gsStatus .giStatus {
+	color: #44AA44;
+	font-weight: normal;
+	font-size: 20px;
+}
+
+
+
+/* ***************** ITEMS ******************************* */
+/*   Category 4: item and span definitions                 */
+/* declares styles for items that are defined globally or  */
+/* with respect to boxes. items defined uniquely per       */
+/* section are in the BOXES part of this file.             */
+
+/* Global / Defaults ************* */
+
+#gallery .giTitle { 
+	font-weight: bold;
+	font-size: 11px;
+ }
+
+#gallery .giDescription {
+	font-size: 0.85em;
+	width: 100%;
+}
+#gallery .giDescription span { display: block; }
+
+#gallery .giInfo {
+	display: block;
+	font-size: 80%;
+	color: #888;
+	padding: 8px 0;
+}
+#gallery .giInfo span { display: block; }
+
+span.giDate { }
+span.giOwner { }
+span.giCount { }
+
+/*  thumbnails */
+#gallery .giThumbImage, 
+#gallery .giThumbMovie, 
+#gallery .giThumbOther {
+	float: left;
+	margin: 0 16px 8px 0;
+}
+
+#gallery .giActionSelect {
+	display: block;
+	margin-top: 4px;
+}
+
+/*  .giThumbBorder {}
+    ...giBorders...
+    discused the options of generating a table-based border (ie_test)
+    and alistapart.com http://www.alistapart.com/articles/customcorners/
+    method. Defer until completion of initial theme.
+*/
+
+#gallery .giPageNumber {
+	font-size: 80%;
+	padding: 8px;
+}
+
+#gallery .giSelected {
+	font-weight: bold;
+	list-style-type: disc;
+}
+
+/*  Form elements */
+
+#gallery .giFormButton, 
+#gallery .giFormInput {
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+#gallery .giFormCheckbox {
+	margin: 4px;
+	vertical-align: middle;
+}
+
+#gallery .gbForm,
+#gallery .giFormTextarea,
+#gallery .giFormRadio,
+#gallery .giFormSelect,
+#gallery .giFormFile,
+#gallery .giFormText { }
+
+/* Status class local error */
+
+#gallery .giError {
+	color: #AA4444;
+	font-weight: bold;
+	clear: both;
+}
+
+
+/* .gbTopFlag ************ */
+
+#gallery .gbTopFlag .giTitle {
+	font-weight: 800;
+	font-size: 12px; 
+}
+
+/* .gbComment ************* */
+
+#gallery .gbComment .giComment { padding-bottom: 8px; }
+
+#gsComments .gbComment div.giHorizontalLinks {
+	padding: 0;
+}
+
+#gallery .gbComment span.giDate { }
+#gallery .gbComment span.giOwner { }
+#gallery .gbComment span.giInternetAddress { }
+
+/* .gbBottomFlag ********* */
+
+#gallery .gbBottomFlag .giHorizontalLinks {
+	font-size: 80%;
+	padding: 8px;
+}
+
+/* .gbDataEntry ************ */
+
+#gallery .gbDataEntry .giFormButton {
+	font-size: 10px;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+/* .gbDataTable ************* */
+
+* even and odd rows have different backgrounds */
+/* I count from 0, so the first row is even! */
+#gallery .gbDataTable .gbEven {	background-color: #CDCDCD; }
+#gallery .gbDataTable .gbOdd { background-color: #DCDCDC; }
+
+/* cell padding */
+#gallery .gbDataTable td { padding: 4px; }
+#gallery .gbDataTable th { padding: 4px; }
+
+
+

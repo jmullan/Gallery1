@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="guide-standards.naming-conventions">
+ <title>Naming Conventions</title>
+ 
+ <para>
+  Naming conventions are important in maintaining a documentation system like
+  this.  This section discusses naming conventions for the <parameter>id
+  </parameter> parameters of tags such as &lt;chapter&gt;, &lt;sect1&gt;, 
+  &lt;sect2&gt;, etc and entity names for files...  It is important to maintain
+  consistency in order to be able to link these documentation together
+  efficently.
+ </para>
+ <para>
+  In the <filename>files.ent</filename> file, entities should be named
+  something like this &amp;chapter.<emphasis>chapter-name</emphasis>.
+  <emphasis>brief-section-name</emphasis>.  For example, this section would
+  be named <literal>&amp;chapters.guide-standards.naming-conventions;</literal>
+  The <emphasis>brief-section-name</emphasis> part is left off when referencing
+  the <filename>index.xml</filename> file in each section.  For example, the
+  entity referring to <filename>sections/guide-standards/index.xml</filename>
+  would be named <literal>&amp;chapters.guide-standards;</literal>.
+ </para>
+ <para>
+  Each major section should have an <literal>id</literal> attribute that it
+  can be referenced by.  The <literal>id</literal> attribute allows authors
+  to link the documentation together by referencing the value of this
+  attribute.  The <literal>id</literal> attribute should be exactly the same
+  as the entity in <filename>files.ent</filename>, except without the
+  &amp;chapter.  For example: 
+  <programlisting>
+<![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+ <sect1 id="guide-standards.test-file">
+  <title>Test File</title>
+  
+  <para>
+   I am a paragraph
+  </para>
+  
+  <sect2 id="guide-standards.test-file.another-section">
+   <para>
+    I am a section 2 tag.  My id attribute is derived from my parent's id
+    attribute.
+   </para>
+   <sect3 id="guide-standards.test-file.another-section.yet-another">
+    <para>
+     Just another example, ma'am
+    </para>
+   </sect3>
+  </sect2>
+ </sect1>
+]]>
+  </programlisting>
+ </para>
+ <note>
+  <simpara>
+   &lt;sect2&gt;, &lt;sect3&gt;, etc.. tags don't need to have an entity
+   in <filename>files.ent</filename>, unless they are included in their
+   own file (which is usually not the case).
+  </simpara>
+ </note>
+</sect1>
