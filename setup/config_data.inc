@@ -19,11 +19,24 @@ $checklist = array(
 		"optional" => 1,
 	),
 	"php4" => array(
-		"desc" => "Check to see if you are PHP 4.  Note that Gallery does " .
+		"desc" => "Check to see if you are running PHP 4.  Note that Gallery does " .
 			"not function optimally with either 4.0.3 or 4.0.3pl1",
 	     	"func" => "check_php",
 		"why" => "You're running version " . phpversion() .
 			". You need to upgrade to PHP ${MIN_PHP_MAJOR_VERSION}"
+	),
+	"magic_quotes" => array(
+		"desc" => "Check to see if <a href=" .
+			"http://www.php.net/manual/en/configuration.php#ini.magic-quotes-gpc " .
+			" target=_top>magic quotes</a> are enabled on your PHP server.  If " .
+			"they're on, you may notice strange behaviour if you put ' (single-quote),".
+			" \" (double quote) or \\ (backslash) characters in titles or " .
+			"captions in the gallery.",
+	     	"func" => "check_magic_quotes",
+		"why" => "Magic quotes are on.  Your webserver owner can turn them off" .
+			 "by putting: <pre>\n\t" .
+			 "magic_quotes_gpc = Off" .
+			 "</pre> in your php.ini file",
 	),
 	"mod_rewrite" => array(
 		"desc" => "Check to see if your webserver is compiled with " .
