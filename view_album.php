@@ -388,7 +388,15 @@ $adminOptions = array(
 									 'hasComments'),
 						 'action' => 'url',
 						 'value' => makeGalleryUrl('view_comments.php',
-									   array('set_albumName' => $gallery->session->albumName)))
+									   array('set_albumName' => $gallery->session->albumName))),
+		      'watermark_album'   => array('name' => _('watermark album'),
+						 'requirements' => array('isAdminOrAlbumOwner',
+									 'photosExist',
+									 'watermarkingEnabled'),
+						 'action' => 'popup',
+						 'value' => makeGalleryUrl('watermark_album.php',
+								array('set_albumName' => $gallery->session->albumName,
+									'type' => 'popup'))),
 );
 
 /* sort the drop-down array by translated name */

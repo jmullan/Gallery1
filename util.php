@@ -2793,6 +2793,9 @@ function testRequirement($test) {
     case 'photosExist':
 	return $gallery->album->numPhotos(true);
 	break;
+    case 'watermarkingEnabled':
+	return isset($gallery->app->watermarkDir);
+	break;
     default:
 	return false;
     }
