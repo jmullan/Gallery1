@@ -113,15 +113,18 @@ if ($GALLERY_REWRITE_OK) {
 	$htaccess = file("mod_rewrite.template");
 	if ($fd = @fs_fopen($outfile, "a")) {
 		foreach ($htaccess as $line) {
-			if (!ereg('^#', $line)) {
-				eval("\$line = \"$line\";");
-				fwrite($fd, $line);
+			// If the gallery is in the root directory, then we need to
+			// make sure the .htaccess doesn't end up with "RewriteBase \/".
+			if ($GALLERY_URL === '\\' && ereg('RewriteBase', $line)) {
+			continue;
 			}
+		eval("\$line = \"$line\";");
+		fwrite($fd, $line);
 		}
-		fclose($fd);
-	} else {
-		fail($outfile);	
-		return;
+	fclose($fd);
+		} else {
+			fail($outfile);
+			return;
 	}
 }
 
