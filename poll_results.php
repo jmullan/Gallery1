@@ -27,14 +27,16 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 // Hack check
-if (!$gallery->user->canReadAlbum($gallery->album)) {
+if (!$gallery->album->isLoaded()) {
 	header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
 
-if (!$gallery->album->isLoaded()) {
-	header("Location: " . makeAlbumHeaderUrl());
-	return;
+// Is user allowed to see this page ?
+if (!testRequirement('isAdminOrAlbumOwner')) {
+	echo _("You are not allowed to perform this action!");
+	echo '<p><a href="'. makeAlbumUrl() .'">'. _("Back to Gallery") .'</a></p>';
+	exit;
 }
 
 $albumName = $gallery->session->albumName;
@@ -119,7 +121,7 @@ includeLayout('navigator.inc');
 			<p><span class=pollresults>
 			<?php echo _("Results Breakdown") ?>
 			</span>
-			<table width=<?php print $fullWidth?> border=0 cellspacing=0 cellpadding=7>
+			<table width="<?php print $fullWidth?>" border="0" cellspacing="0" cellpadding="7">
 			<?php
 		
 			$rowStart = 0;
@@ -167,7 +169,8 @@ includeLayout('navigator.inc');
 		</table>
 		
 	<?php
-	includeHtmlWrap("album.footer");
+	$validation_file = basename(__FILE__);
+	includeHtmlWrap("general.footer");
 ?>
 
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>

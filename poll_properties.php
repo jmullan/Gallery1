@@ -26,7 +26,8 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($apply, $nv_pairs, $voter_class, $poll_scale, $poll_show_results, $poll_num_results, $poll_orientation, $poll_hint, $poll_type) = getRequestVar(array('apply', 'nv_pairs', 'voter_class', 'poll_scale', 'poll_show_results', 'poll_num_results', 'poll_orientation', 'poll_hint', 'poll_type'));
+list($apply, $nv_pairs, $voter_class, $poll_scale, $poll_show_results, $poll_num_results, $poll_orientation, $poll_hint, $poll_type) = 
+  getRequestVar(array('apply', 'nv_pairs', 'voter_class', 'poll_scale', 'poll_show_results', 'poll_num_results', 'poll_orientation', 'poll_hint', 'poll_type'));
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
@@ -36,8 +37,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	
 $error="";
 if (!empty($apply)) {
-	for ($i=0; $i<$gallery->album->getPollScale() ; $i++)
-	{
+	for ($i=0; $i<$gallery->album->getPollScale() ; $i++) {
 		//convert values to numbers
 		$nv_pairs[$i]["value"]=0+$nv_pairs[$i]["value"];
 	}
@@ -46,8 +46,7 @@ if (!empty($apply)) {
 	$gallery->album->fields["poll_type"] = $poll_type;
 	if ($voter_class == "Logged in" &&
 	    $gallery->album->fields["voter_class"] == "Everybody" &&
-	    sizeof($gallery->album->fields["votes"]) > 0)
-	{
+	    sizeof($gallery->album->fields["votes"]) > 0) {
 		$error="<br>" .
 			sprintf(_("Warning: you have changed voters from %s to %s.  It is advisable to reset the poll to remove all previous votes."),
 					"<i>". _("Everybody") ."</i>",
@@ -78,7 +77,7 @@ doctype();
 <div class="popup" align="center">
 <?php
 if (! empty($error)) {
-	echo "<\p>". gallery_error($error) . "</p>";
+	echo "<p>". gallery_error($error) . "</p>";
 }
 	echo makeFormIntro("poll_properties.php", 
 			array("name" => "theform", "method" => "POST"),

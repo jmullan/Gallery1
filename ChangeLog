@@ -1,3 +1,16 @@
+2004-12-20  Jens A. Tkotz <jens@peino.de>  1.5-cvs-b315
+
+	* Fix: Voting in view_album.php  was broken (register globals)
+
+	* Fix: HTML 4.01 changes to
+		- poll_properties.php (not yet 100% valid)
+		- view_album.php
+		- poll_results (also added better footer)
+
+	* Fix: Poll result were viewable for everybody. Now only admins or owner can see.
+
+	* Fix: Language init in fresh installations didnt work.
+	
 2004-12-19  Jens A. Tkotz <jens@peino.de>  1.5-cvs-b314
 
 	* Change: Removed debug code.

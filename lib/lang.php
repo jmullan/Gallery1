@@ -185,7 +185,7 @@ function initLanguage($sendHeader=true) {
 	// If so, we skip language settings at all
 
 	// Mode 0 means no Multilanguage at all.
-	if (empty($gallery->app->ML_mode) && !$languages_initialized) {
+	if (isset($gallery->app->ML_mode) && $gallery->app->ML_mode == 0 && !$languages_initialized) {
 		// Maybe PHP has no (n)gettext, then we have to substitute _() and ngettext
 		if (!gettext_installed()) {
 			function _($string) {
@@ -223,7 +223,7 @@ function initLanguage($sendHeader=true) {
 		/* Gallery is embedded
 
 		/* Gallery can set nukes language.
-		** For phpBB2 and GeekLog this is not possible, Gallery will always use their language.
+		** For phpBB2, GeekLog and Mambo this is not possible, Gallery will always use their language.
 		*/
 		forceStaticLang();
 
@@ -238,7 +238,7 @@ function initLanguage($sendHeader=true) {
 			$gallery->language = getEnvLang();
 		}
 	} else {
-		// We're not in Nuke
+		// We're not embedded.
 		// If we got a ML_mode from config.php we use it
 		// If not we use Mode 2 (Browserlanguage)
 
@@ -335,13 +335,12 @@ function initLanguage($sendHeader=true) {
 	}
 
 	// When all is done do the settings
-	//
 	
 	// There was previously a != SUNOS check around the LANG= line.  We've determined that it was
 	// probably a bogus bug report, since all documentation says this is fine.
 	putenv("LANG=". $gallery->language);
 	putenv("LANGUAGE=". $gallery->language);
-	// This line was added in 1.4.5-cvs-b190 to fix problems on FreeBSD 4.10
+	// This line was added in 1.5-cvs-b190 to fix problems on FreeBSD 4.10
 	putenv("LC_ALL=". $gallery->language);
 
 	// Set Locale

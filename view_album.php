@@ -24,7 +24,9 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($page) = getRequestVar(array('page'));
+list($page,$votes, $Vote) = getRequestVar(array('page','votes','Vote'));
+
+print_r($votes);
 
 // Hack check and prevent errors
 if (empty($gallery->session->albumName) || !$gallery->user->canReadAlbum($gallery->album) || !$gallery->album->isLoaded()) {
@@ -78,21 +80,16 @@ if ($previousPage == 0) {
 	$first = 1;
 }
 
-
 if (!empty($Vote)) {
-       if ($gallery->album->getPollScale() == 1 && $gallery->album->getPollType() != "rank")
-       {
-               for ($index=$start; $index < $start+$perPage; $index ++)
-               {
-		       $id=$gallery->album->getPhotoId($index);
-		       if (!$votes[$id])
-                       {
-			       $votes[$id]=null;
-                       }
-
-               }
-       }
-       saveResults($votes);
+	if ($gallery->album->getPollScale() == 1 && $gallery->album->getPollType() != "rank") {
+		for ($index=$start; $index < $start+$perPage; $index ++) {
+			$id=$gallery->album->getPhotoId($index);
+			if (!$votes[$id]) {
+				$votes[$id]=null;
+			}
+		}
+	}
+	saveResults($votes);
 }
 
 $bordercolor = $gallery->album->fields["bordercolor"];
@@ -321,8 +318,8 @@ $adminOptions = array(
 						 'action' => 'popup',
 						 'value' => doCommand('remake-thumbnail',
 								      array('set_albumName' => $gallery->session->albumName,
-'index' => 'all', 'type' => 'popup'),
-								      'view_album.php')),
+									'index' => 'all', 'type' => 'popup'),
+									'view_album.php')),
 		      'properties'      => array('name' => _('properties'),
 						 'requirements' => array('canWriteToAlbum'),
 						 'action' => 'popup',
@@ -492,45 +489,35 @@ if ($page == 1 && !empty($gallery->album->fields["summary"])) {
 	echo '<div align="center"><p class="vasummary">'. $gallery->album->fields["summary"] . '</p></div>';
 }
 
-if (($gallery->album->getPollType() == "rank") && canVote())
-{
-   echo '<div align="left" class="vapoll">';
-        $my_choices=array();
-        if ( $gallery->album->fields["votes"])
-	{
-	    foreach ($gallery->album->fields["votes"] as $id => $image_votes)
-            {
-		$index=$gallery->album->getIndexByVotingId($id);
-		if ($index < 0)
-		{
-			// image has been deleted!
-			unset($gallery->album->fields["votes"][$id]);
-			continue;
+if (($gallery->album->getPollType() == "rank") && canVote()) {
+	echo '<div align="left" class="vapoll">';
+	$my_choices=array();
+	if ( $gallery->album->fields["votes"]) {
+		foreach ($gallery->album->fields["votes"] as $id => $image_votes) {
+			$index=$gallery->album->getIndexByVotingId($id);
+			if ($index < 0) {
+				// image has been deleted!
+				unset($gallery->album->fields["votes"][$id]);
+				continue;
+			}
+			if (isset($image_votes[getVotingID()])) {
+				$my_choices[$image_votes[getVotingID()]] = $id;
+			}
 		}
-
-                if (isset($image_votes[getVotingID()]))
-                {
-			$my_choices[$image_votes[getVotingID()]] = $id;
-                }
-            }
 	}
-        if (sizeof($my_choices) == 0
-		&& $gallery->album->getVoterClass() ==  "Logged in")
-        {
+	if (sizeof($my_choices) == 0
+		&& $gallery->album->getVoterClass() ==  "Logged in") {
 		print _("You have no votes recorded for this poll."). '<br>';
-
-        }
-        else if (sizeof($my_choices) > 0)
-        {
-                ksort($my_choices);
-                print _("Your current choices are");
-                print "<table>\n";
-                $nv_pairs=$gallery->album->getVoteNVPairs();
-		foreach ($my_choices as $key => $id)
-                {
-                        print "<tr><td>".
-                                $nv_pairs[$key]["name"].
-                                ":</td>\n";
+	}
+	else if (sizeof($my_choices) > 0) {
+		ksort($my_choices);
+		print _("Your current choices are");
+		print "<table>\n";
+		$nv_pairs=$gallery->album->getVoteNVPairs();
+		foreach ($my_choices as $key => $id) {
+			print "<tr><td>". 
+				$nv_pairs[$key]["name"].
+				":</td>\n";
 			$index=$gallery->album->getIndexByVotingId($id);
 			if ($gallery->album->isAlbum($index)) {
 				$albumName = $gallery->album->getAlbumName($index);
@@ -551,69 +538,59 @@ if (($gallery->album->getPollType() == "rank") && canVote())
                         	print  $desc;
 			       	print  "</a></td></tr>\n";
 			}
-                }
-                print "</table>\n";
-        }
-   echo '</div>';
+		}
+		print "</table>\n";
+	}
+	echo '</div>';
 }
 $results=1;
-if ($gallery->album->getPollShowResults())
-{
-   echo '<div align="left" class="vapoll">';
-        list($buf, $results)=showResultsGraph( $gallery->album->getPollNumResults());
+if ($gallery->album->getPollShowResults()) {
+	echo '<div align="left" class="vapoll">';
+	list($buf, $results)=showResultsGraph( $gallery->album->getPollNumResults());
 	print $buf;
-       	if ($results)
-       	{
-	       	print "\n". '<a href="' . makeGalleryUrl("poll_results.php",
-	       	array("set_albumName" => $gallery->session->albumName)).
+	if ($results) {
+		print "\n". '<a href="' . makeGalleryUrl("poll_results.php",
+		array("set_albumName" => $gallery->session->albumName)).
 		      	'">' ._("See full poll results") . '</a><br>';
-       	}
-  echo '</div>';
+	}
+	echo '</div>';
 }
 
 echo makeFormIntro("view_album.php",
 	       	array("name" => "vote_form", "method" => "POST", "style" => "margin-bottom: 0px;"));
-if (canVote())
-{ 
- echo '<div align="left" class="vapoll">';
- 		$nv_pairs=$gallery->album->getVoteNVPairs();
- 		if ($gallery->album->getPollScale()==1)
- 		{
- 			$options = $nv_pairs[0]["name"];
- 		}
- 		else
- 		{
-			/* note to translators:
-			   This produces (in English) a list of the form: "a, b, c or d".  Correct translation
-			   of ", " and " or  " should produce a version that makes sense in your language.
-			   */
-			$options = "";
- 			for ($count=0; $count < $gallery->album->getPollScale()-2 ; $count++)
- 			{
- 				$options .= $nv_pairs[$count]["name"]._(", ");
- 			}
- 			$options .= $nv_pairs[$count++]["name"]._(" or ");  
- 			$options .= $nv_pairs[$count]["name"];
- 			
- 		}
-		print '<span class="attention">';
-		print sprintf(_("To vote for an image, click on %s."), $options);
- 		print "  ".sprintf(_("You MUST click on %s for your vote to be recorded."), 
-				"<b>"._("Vote")."</b>");
- 		if ($gallery->album->getPollType() == "rank") {
-			$voteCount=$gallery->album->getPollScale();
-			print "  ".
-				sprintf(_("You have a total of %s and can change them if you wish."), 
-					pluralize_n2(ngettext("1 vote", "%d votes", $voteCount), $voteCount)) .
-				'</span><p>';
- 		}
- 		else
- 		{
- 		    print "  "._("You can change your choices if you wish."). "</span><p>";
- 			
- 		}
-
- ?>
+if (canVote()) { 
+	echo '<div align="left" class="vapoll">';
+ 	$nv_pairs=$gallery->album->getVoteNVPairs();
+ 	if ($gallery->album->getPollScale()==1) {
+		$options = $nv_pairs[0]["name"];
+	}
+ 	else {
+		/* note to translators:
+		** This produces (in English) a list of the form: "a, b, c or d".  Correct translation
+		** of ", " and " or  " should produce a version that makes sense in your language.
+		*/
+		$options = "";
+		for ($count=0; $count < $gallery->album->getPollScale()-2 ; $count++) {
+			$options .= $nv_pairs[$count]["name"]._(", ");
+		}
+		$options .= $nv_pairs[$count++]["name"]._(" or ");  
+		$options .= $nv_pairs[$count]["name"];
+	}
+	print '<span class="attention">';
+	print sprintf(_("To vote for an image, click on %s."), $options);
+	print "  ".sprintf(_("You MUST click on %s for your vote to be recorded."), 
+		"<b>"._("Vote")."</b>");
+	if ($gallery->album->getPollType() == "rank") {
+		$voteCount=$gallery->album->getPollScale();
+		print "  ".
+		sprintf(_("You have a total of %s and can change them if you wish."), 
+			pluralize_n2(ngettext("1 vote", "%d votes", $voteCount), $voteCount));
+	}
+ 	else {
+		print "  "._("You can change your choices if you wish.");
+ 	}
+	echo "</span></p>";
+?>
    <script language="javascript1.2" type="text/JavaScript">
  function chooseOnlyOne(i, form_pos, scale)
  {
@@ -1116,22 +1093,22 @@ if (canVote()) { ?>
 			$gallery->album->unsetEmailMe('other', $gallery->user);
 		}
 	}
-	echo "<ul>";
 	echo makeFormIntro("view_album.php",
 	       	array("name" => "email_me", "method" => "POST", "style" => "margin-bottom: 0px;"));
 	echo _("Email me when one of the following actions are done to this album:")."  ";
 	$checked_com = ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ;
 	$checked_other = ($gallery->album->getEmailMe('other', $gallery->user)) ? "checked" : "";
 	?>
+	<ul>
 	<li><?php echo _("Comments are added"); ?>
 		<input type="checkbox" name="comments" <?php echo $checked_com; ?> onclick="document.email_me.submit()">
 	</li>
 	<li><?php print _("Other changes are made") ?>
 		<input type="checkbox" name="other" <?php echo $checked_other; ?> onclick="document.email_me.submit()">
 	</li>
+	</ul>
 	<input type="hidden" name="submitEmailMe" value="true">
 	</form>
-	</ul>
 <?php } ?>
 <!-- bottom nav -->
 <?php 
