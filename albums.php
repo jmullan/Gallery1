@@ -19,13 +19,111 @@
  */
 ?>
 <? if (file_exists("config.php")) { ?>
-<title> The Photo Gallery </title>
-<frameset rows="*,10" border=0 frameborder="no">
- <frame src="albums_content.php" name=content frameborder=1>
- <frame src="albums_description.php" name=description frameborder=1>
-</frameset>
+
+<!-- gallery.header begin -->
 <?
+/* load the gallery header layout */ 
+$header = "layout/gallery.header";
+if (file_exists($header)) {
+	$fp = fopen("layout/gallery.header", "r");
+	$text = fread($fp, filesize($header));
+	fclose($fp);
+	echo("$text");
 } else {
+	echo("<body><p>no gallery.header file found.<p>");
+}
+?>
+<!-- gallery.header end -->
+
+<!-- album table begin -->
+<table width=90% border=0 cellspacing=7>
+
+<?
+/* Read the album list */
+$albumDB = new AlbumDB();
+$albumName = "";
+$page = 0;
+
+/* If there are albums in our list, display them in the table */
+$numAlbums = $albumDB->numAlbums();
+for ($i = 0; $i < $numAlbums; $i++) {
+        $album = $albumDB->getAlbum($i);
+        $highlight = $album->getHighlight();
+        $tmpAlbumName = $album->fields["name"];
+        $albumURL = $app->photoAlbumURL . "/" . $tmpAlbumName;
+
+?>     
+
+  <!-- Begin Album Column Block -->
+  <tr>
+  <!-- Begin Image Cell -->
+  <td width=<?=$app->thumb_size?> align=center valign=middle>
+  <a href=<?=$albumURL?>>
+  <?   
+        if ($album->numPhotos()) {
+                echo $album->getThumbnailTag($highlight);
+        } else {
+                echo "<font size=+3> Empty! </font>";
+        }
+  ?>   
+  </a>
+  </td>
+  <!-- End Image Cell -->
+  <!-- Begin Text Cell -->
+  <td align=left valign=top>
+  <hr size=1>
+  <font size=+1 face=arial>
+  <a href=view_album.php?set_albumName=<?= $tmpAlbumName?>>
+  <?= editField($album, "title", $edit) ?></a>
+  </font>
+  <br>
+  <font size=+0 face=arial>
+  <?= editField($album, "description", $edit) ?>
+  </font>
+  <br>
+  
+  <font size=1 face=arial>
+  <? if (isCorrectPassword($edit)) { ?>
+  <a href=<?= popup("delete_album.php?set_albumName={$tmpAlbumName}")?>>[delete album]</a>
+  :
+  <a href=<?= popup("move_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>[move album]</a>
+  :
+  <a href=<?= popup("rename_album.php?set_albumName={$tmpAlbumName}&index=$i")?>>[rename album]</a>
+  <? } ?>
+  <br>
+  url: <a href=<?=$albumURL?>><?=$albumURL?></a>
+  <br>
+  </font>
+  </td>
+  </tr>
+  <!-- End Text Cell -->
+  <!-- End Album Column Block -->
+
+<?
+}      
+?>
+</table>
+<!-- album table end -->
+<p>
+<!-- admin section begin -->
+<hr size=1>
+Admin:
+<? if (isCorrectPassword($edit)) { ?>
+<font size=+0 face=arial>
+<a href=do_command.php?cmd=new-album&return=view_album.php>[Create a New Album]</a>
+&nbsp;
+<a href=do_command.php?cmd=leave-edit&return=albums.php>[Leave edit mode]</a>
+</font>
+<? }  else { ?>
+<font size=+0>
+<a href=<?= popup("edit_mode.php")?>>[Enter edit mode]</a>
+</font>
+<? } ?>
+
+<?
+} 
+
+else {
 	if (file_exists("setup") && is_readable("setup")) {
 		header("Location: setup");
 		return;
@@ -49,3 +147,21 @@ And then go <a href=setup>here</a>
 <?
 } 
 ?>
+
+</font>
+<!-- admin section end -->
+
+<!-- gallery.footer begin -->
+<?
+/* load the gallery footer layout */    
+$footer = "layout/gallery.footer"; 
+if (file_exists($footer)) {
+        $fp = fopen("layout/gallery.footer", "r");
+        $text = fread($fp, filesize($footer));
+        fclose($fp);
+        echo("$text");
+} else {
+	echo("<p>no gallery.footer file found<br></body>");
+}
+?>
+<!-- gallery.footer end -->
