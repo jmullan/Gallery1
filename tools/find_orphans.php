@@ -127,7 +127,7 @@ function findOrphans() {
 <?php 
 } // !isset(update) 
 else { 
-	// attachOrphans();
+	attachOrphans();
 	echo "attachOrphans();<br /><br />";
 	echo "<a href='" . makeAlbumUrl() . "'>Return to Gallery</a>";
 }
