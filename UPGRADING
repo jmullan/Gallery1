@@ -1,11 +1,10 @@
 CONTENTS
  1. How to upgrade Gallery
  2. How to upgrade a modified Gallery
- 3. Notes on upgrading from pre-v1.1 to v1.1
- 4. Notes on upgrading from v1.1 to v1.2
- 5. Notes on upgrading to v1.2.2
- 6. Notes on upgrading to v1.2.3
- 7. Notes on upgrading to v1.3
+ 3. Upgrading from pre-v1.1 to v1.1
+ 4. Upgrading from v1.1 to v1.2
+ 5. Upgrading from v1.2.2
+ 6. Upgrading from v1.2.3, v1.2.4 or v1.2.5
 
 1. HOW TO UPGRADE GALLERY
 
@@ -70,7 +69,7 @@ along with a description of what it does so that we can take a look at
 it?  We don't want your work to go to waste and we want to make it
 easy for you to keep upgrading Gallery.
 
-3. NOTES ON UPGRADING FROM PRE-V1.1 TO V1.1
+3. UPGRADING FROM PRE-v1.1
 
 If you've modified files in the html_wrap/ directory, you may
 experience some problems when you upgrade to v1.1.  We've moved some
@@ -112,7 +111,7 @@ gallery_style.css file, you'll need to pull the relevant changes out
 of your gallery_style.css and put them into either embedded_style
 or standalone_style, as appropriate. 
 
-4. NOTES ON UPGRADING FROM V1.1 TO V1.2
+4. UPGRADING FROM v1.1
 
 In v1.2 we've changed the structure of the albums files slightly.  This
 means that you can't have a v1.1 and v1.2 gallery pointing at the same
@@ -130,7 +129,7 @@ versions (for example, we introduced a new <table> tag into
 photo.header.default) so you'll want to to audit your html_wrap files
 after the upgrade is complete.
 
-5. NOTES ON UPGRADING TO V1.2.2
+5. UPGRADING FROM v1.2
 
 We made a change in the Nuke support in v1.2.2.  In the past, if you
 wanted to rename your Gallery module under Nuke, you had to modify the
@@ -150,7 +149,7 @@ allow you to upgrade any individual album, or all albums at once.  If
 you can't find the link, you can browse to this page directly by
 entering it into your browser manually.
 
-6. NOTES ON UPGRADING TO V1.2.3
+6. UPGRADING TO v1.2.2
 
 Due to a security fix, you now have to modify index.php if you want
 to use the Gallery random photo block for Nuke.  After upgrading, if
@@ -167,7 +166,9 @@ trying to include.  You'll need to edit index.php and add this file
 to the list of _approved_ files that can be included.  There are 
 instructions in index.php for doing this.
 
-7. NOTES ON UPGRADING TO V1.3
+7. UPGRADING FROM v1.2.3, v1.2.4 or v1.2.5
 
-There are no special concerns in upgrading to v1.3.  You should just
-follow the upgrade instructions in step 1.
+There are no special notes regarding upgrading from these platforms.
+Gallery may tell you that your configuration is out of date and may
+ask you to re-run the config wizard.  Gallery may also want to upgrade
+your albums.  See section 5 for more information about this.
