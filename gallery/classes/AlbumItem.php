@@ -123,6 +123,7 @@ class AlbumItem {
 				$needToSave = 0;
 			}
 		    }
+		    $this->setItemCaptureDate();
 		}
 		return array($status, $this->exifData, $needToSave);
 	}

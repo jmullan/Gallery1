@@ -583,9 +583,10 @@ $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" 
 
 #-- breadcrumb text ---
 $breadCount = 0;
+$breadtext=array();
 if ($albumName) {
 if (!$gallery->session->offline 
-	|| $gallery->session->offlineAlbums[$gallery->session->albumName]) {
+	|| isset($gallery->session->offlineAlbums[$gallery->session->albumName])) {
 	$breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($gallery->session->albumName) .
       	"\">" . $gallery->album->fields['title'] . "</a>";
 	$breadCount++;
@@ -597,7 +598,7 @@ do {
   }
   $pAlbumName = $pAlbum->fields['parentAlbumName'];
   if ($pAlbumName && (!$gallery->session->offline 
-  	|| $gallery->session->offlineAlbums[$pAlbumName])) {
+  	|| isset($gallery->session->offlineAlbums[$pAlbumName]))) {
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
     $breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($pAlbumName) .
@@ -606,6 +607,8 @@ do {
     //-- we're at the top! ---
     $breadtext[$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>";
+  } else {
+	  break;
   }
   $breadCount++;
 } while ($pAlbumName);

@@ -1,3 +1,67 @@
+2003-10-03 Joan McGalliard  <gallery@joanhenge.plus.com> DEV_1_4_1_skins-cvs-b13
+
+ 	* Fixed bug in offline slideshow.  Identical to 1.3.5-cvs-b18 bug.
+ 
+ 	* Removed more warnings.
+ 
+ 	* Replaced $GALLERY_BASEDIR/ with ${GALLERY_BASEDIR}
+ 
+ 	* Update capture date when refreshing EXIF data.
+ 
+ 	* Removed stray pixel from TR.gif for polaroids.
+
+	* Merge DEV_1_4_1_skins.ChangeLog back into Changelog.  Branch 
+	  changes can be accesses via "cvs update -r DEV_1_4_1_skins Changelog"
+
+	* Updated html_wrap/inline*frame* to match head branch.
+
+2003-10-01  John Kirkland <jpk@bl.org> DEV_1_4_1_skins-cvs-b12
+
+	* Created new default theme that looks like current gallery
+
+	TODO:
+	1.  move links and bg pictures to standalone files in ALL skins
+	2.  add attention to all skins
+	3.  add borderL, R, & T to all skins
+
+2003-10-01  John Kirkland <jpk@bl.org> DEV_1_4_1_skins-cvs-b11
+
+	* Fixed backgrounds getting set incorrectly in :
+		slideshow.php
+		view_album.php
+		view_photo.php
+
+	* Minor layout and skins tweaks
+
+2003-10-01  John Kirkland <jpk@bl.org> DEV_1_4_1_skins-cvs-b10
+
+	* Fixed vertical centering of nav buttons in redmarble and white1 skins.
+
+	* Made [edit title] link non bolded
+
+	* Still left TODO:
+		1.  fix view photo screen
+			a.  "add comment" link off left side
+			b.  adjust background image usage
+		2.  create new default template 
+			a.  make it look like unskinned gallery
+			b.  work out mess with embedded & standalone default files
+		3.  figure out why shadow album frame has extra pixel line in it.
+
+2003-10-01  John Kirkland <jpk@bl.org> DEV_1_4_1_skins-cvs-b9
+
+	* Reformatted css files for all skins.
+
+2003-10-01  John Kirkland <jpk@bl.org> DEV_1_4_1_skins-cvs-b8
+
+	* Reformatted css files for b<color> skins.
+
+	* Fixed white-on-white text in b<color> urls.
+
+2003-10-01  John Kirkland <jpk@bl.org> DEV_1_4_1_skins-cvs-b7
+
+	* Frames are now found within skins.
+
 2003-10-1 Joan McGalliard  <gallery@joanhenge.plus.com> DEV_1_4_1_skins-cvs-b6
 
 	* Some bug fixes, some warning reduction and lots of validation 
@@ -11,6 +75,27 @@
 		- added DOCTYPE
 		- replace "&" with "&amp;"
 
+2003-10-01  John Kirkland <jpk@bl.org> DEV_1_4_1_skins-cvs-b5
+
+	* Moved /skins/default/html_wrap back to /html_wrap
+
+	* Moved /skins/default/layout back to /layout
+
+	* Changed default html_wrap & layout locations in util.php
+          so the files can be found.
+
+2003-09-30  Beckett Madden-Woods  <beckett@beckettmw.com> DEV_1_4_1_skins-cvs-b4
+
+	* Renamed BRANCH_1_4_1_skins to DEV_1_4_1_skins
+
+	* Synced with 1.4.1-cvs-b114
+
+	* Added $Id$ tag to skins/css/standalone_style.css.default
+
+2003-05-22  John Kirkland  <jpk@bl.org> BRANCH_1_4_1_skins-cvs-b{1-3}
+
+	* Initial code commit.
+	
 2003-09-30  Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.1-cvs-b114
 
 	* Reverted back to +profile '*' when using ImageMagick.  The way

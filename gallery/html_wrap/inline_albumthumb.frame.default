@@ -1,4 +1,12 @@
 <?php
 /* $Id$ */
-includeHtmlWrap('inline_imagewrap.inc');
+
+if (!empty($GLOBALS['HTTP_GET_VARS']["GALLERY_BASEDIR"]) ||
+	       	!empty($GLOBALS['HTTP_POST_VARS']["GALLERY_BASEDIR"]) ||
+	       	!empty($GLOBALS['HTTP_COOKIE_VARS']["GALLERY_BASEDIR"])) {
+       	print _("Security violation") ."\n";
+       	exit;
+}
+
+include "${GALLERY_BASEDIR}html_wrap/inline_imagewrap.inc";
 ?>
