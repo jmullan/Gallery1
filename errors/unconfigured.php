@@ -1,3 +1,4 @@
+<? require("errors/configure_instructions.php") ?>
 <html>
 <head>
   <title>Gallery Configuration Error</title>
@@ -5,18 +6,14 @@
 </head>
 <body>
 <center>
-<span class="error">
+<span class="title">
 Gallery has not been configured!
+</span>
 <p>
 To configure it, type:
-	<table><tr><td>
-		<code>
-		% cd <?=dirname(getenv("SCRIPT_FILENAME"))?>
-		<br>
-		% sh ./configure.sh
-	</td></tr></table>
+<?= configure("configure.sh"); ?>
 <p>
-And then go <a href="setup/index.php">here</a>
+And then start the <a href="setup/index.php">Configuration Wizard</a>
 </span>
 </body>
 </html>

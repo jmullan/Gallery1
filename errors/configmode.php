@@ -1,3 +1,4 @@
+<? require("errors/configure_instructions.php") ?>
 <html>
 <head>
   <title>Gallery in Configuration Mode</title>
@@ -5,22 +6,25 @@
 </head>
 <body>	
 <center>
-<span class="error"> Uh oh! </span>
+<span class="title"> Gallery: Configuration Mode </span>
 <p>
 <table width=80%><tr><td>
-Gallery is still in configuration mode which means it's
-anybody out there can mess with it.  
-For safety's sake we don't let you run the app in this mode.
-You need to put it in secure mode before you can use it.  Put
-it in secure mode by doing this:
-	<p><center>
-<table><tr><td>
-	<code>
-	% cd <?=dirname(getenv("SCRIPT_FILENAME"))?>
-	<br>
-	% sh ./secure.sh
-</td></tr></table>
+<br>
+<center>
+To configure gallery, 
+<font size=+1>
+<a href=setup/index.php>Start the configuration wizard</a>
+</font>
+</center>
+<br>
+
+If you've finished your configuration but you're still seeing this
+page, that's because for safety's sake we don't let you run Gallery in
+an insecure mode.  You need to switch to secure mode before you can
+use it.  In a shell do this:
+
+<p><center>
+<?= configure("secure.sh"); ?>
 <p>
-When you've done this, just reload this page and all should
-be well.
+Then just reload this page and all should be well.
 </table>
