@@ -1,3 +1,12 @@
+2003-11-30  Bharat Mediratta  <bharat@menalto.com> 1.4.2-cvs-b45
+
+	* Fix a bug where we cache the EXIF data in AlbumItems even when the
+	  feature is not enabled.  This was triggered by the auto-rotation
+	  code, so there will be plenty of galleries out there that have extra,
+	  unwanted cached EXIF data.  If we notice that EXIF data is cached but
+	  the feature is off, we will now get rid of the cache.  Thanks to
+	  Quentin Smith.
+
 2003-11-29  Bharat Mediratta  <bharat@menalto.com> 1.4.2-cvs-b44
 
 	* Fixed a bug in classes/Album.php where we were incrementing the
