@@ -55,7 +55,7 @@ if (isset($save)) {
 	$gallery->album->fields["cols"] = $cols;
 	$gallery->album->fields["fit_to_window"] = $fit_to_window;
 	$gallery->album->fields["use_fullOnly"] = $use_fullOnly;
-	$gallery->album->fields["print_photos"] = $print_photos;
+	$gallery->album->fields["print_photos"] = empty($print_photos) ? "" : $print_photos;
 	$gallery->album->fields["use_exif"] = $use_exif;
 	$gallery->album->fields["display_clicks"] = $display_clicks;
 	$gallery->album->fields["item_owner_modify"] = $item_owner_modify;
