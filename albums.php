@@ -25,24 +25,30 @@ require_once(dirname(__FILE__) . '/init.php');
 require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
 if (empty($gallery->session->username)) {
-    /* Get the cached version if possible */
+	/* Get the cached version if possible */
 	$cache_file = "cache.html";
-	if (!getRequestVar('gallery_nocache') && fs_file_exists($cache_file)) {
-	$cache_now = time();
-	$cache_stat = @stat("cache.html");
-	if ($cache_now - $cache_stat[9] < (20 * 60)) {
-	    if ($fp = fopen("cache.html", "rb")) {
-		while (!feof($fp)) {
-		    print fread($fp, 4096);
+	if (!getRequestVar('gallery_nocache')) {
+		$cache_now = time();
+		foreach (array(sprintf("cache-%s.html", $_SERVER['HTTP_HOST']), "cache.html")
+			 as $cache_file_basename) {
+ 			$cache_file = dirname(__FILE__) . '/' . $cache_file_basename;
+			if (fs_file_exists($cache_file)) {
+				$cache_stat = @stat($cache_file);
+ 				if ($cache_now - $cache_stat[9] < (20 * 60)) {
+	 				if ($fp = fopen($cache_file, "rb")) {
+		 				while (!feof($fp)) {
+		 					print fread($fp, 4096);
+	 					}
+						fclose($fp);
+						printf("<!-- From %s, created at %s -->",
+	 					       $cache_file_basename,
+						       strftime("%D %T", $cache_stat[9]));
+						return;
+					}
+	 			}
+			}
 		}
-		fclose($fp);
-
-		printf("<!-- From cache, created at %s -->",
-		    strftime("%D %T", $cache_stat[9]));
-		return;
-	    }
 	}
-    }
 }
 
 $gallery->session->offlineAlbums["albums.php"]=true;
