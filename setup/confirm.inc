@@ -89,7 +89,16 @@ foreach ($constants as $key => $val) {
 		}
 
 		if ($constants[$key]["no-trailing-slash"]) {
-			$$key = preg_replace("/\/$/", "", $$key);
+			$$key = ereg_replace("\/$", "", $$key);
+		}
+
+		if ($constants[$key]["must-be-url"]) {
+			if (!ereg("^http", $$key)) {
+				$view .= row_wrap(error_format("$key: <b>" . $$key . 
+					"</b> must be an absolute URL!"));
+				$error = 1;
+				continue;
+			}
 		}
 
 		if ($constants[$key]["must-be-file"]) {
