@@ -143,11 +143,11 @@ initLanguage();
 gallerySanityCheck();
 
 if (isset($GALLERY_EMBEDDED_INSIDE) &&
-    !strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
+	strpos($GALLERY_EMBEDDED_INSIDE, "nuke") >0) {
         include($GALLERY_BASEDIR . "classes/Database.php");
 
-	/* Check for PostNuke */
-	if (isset($GLOBALS['pnconfig']) && function_exists("authorised")) {
+	if ($GALLERY_EMBEDDED_INSIDE == 'postnuke') {
+	/* We're in embedded in Postnuke */
 
 	    if (!function_exists("pnUserGetVar")) {
 		/* pre 0.7.1 */
@@ -176,6 +176,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE) &&
 		    $gallery->userDB->getUserByUsername($gallery->session->username);
 	    }
 	} else {
+	/* we're in phpnuke */
 	    include($GALLERY_BASEDIR . "classes/database/mysql/Database.php");
 	    include($GALLERY_BASEDIR . "classes/nuke5/UserDB.php");
 	    include($GALLERY_BASEDIR . "classes/nuke5/User.php");
