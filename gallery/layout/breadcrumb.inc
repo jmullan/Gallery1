@@ -23,7 +23,7 @@ if ($breadcrumb["top"]) {
 }
 ?>
   <tr> 
-    <td align="right" width="3000" height="18">
+    <td align="right" width="3000" height="18" class="bread">
 <?php
 $i = 0;
 while (isset($breadcrumb["text"][$i])) {

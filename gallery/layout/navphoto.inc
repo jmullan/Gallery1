@@ -29,7 +29,7 @@ $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"0\" 
 #-- 'first' button cell ---
 if ($navpage == 0) {
 ?>
-    <td align="center" width="27" height="22">&nbsp;</td> 
+    <td align="center" width="27" height="18">&nbsp;</td> 
     <td width="0" height="28"><?php echo $pixelImage ?></td>
 <?php
 } else {
@@ -39,7 +39,7 @@ if ($navpage == 0) {
 		$firstAlbumName = $gallery->album->isAlbumName(1);
 	}
 ?>
-    <td align="center" width="27" height="22"> 
+    <td align="center" width="27" height="18" class="borderright"> 
 <?php
 	if ($firstAlbumName) {
 ?>
@@ -51,7 +51,7 @@ if ($navpage == 0) {
 	}
 ?>
       </td>
-    <td width="0" height="22"><?php echo $pixelImage ?></td>
+    <td width="0" height="18"><?php echo $pixelImage ?></td>
 <?php
 } 
 ?>
@@ -65,7 +65,7 @@ if ($prevPage >= 0) {
 		$prevAlbumName = $gallery->album->isAlbumName($navpage);
 	}
 ?>
-    <td align="center" width="72" height="22">
+    <td align="center" width="72" height="18" class="borderright">
 <?php
         if ($prevAlbumName) {
 ?>
@@ -79,16 +79,16 @@ if ($prevPage >= 0) {
 }
 ?>
       </td>
-    <td width="0" height="22"><?php echo $pixelImage ?></td>
+    <td width="0" height="18"><?php echo $pixelImage ?></td>
 <?php
 } else {
 ?>
-    <td align="center" width="72" height="22">&nbsp;</td>
-    <td width="0" height="22"><?php echo $pixelImage ?></td>
+    <td align="center" width="72" height="18">&nbsp;</td>
+    <td width="0" height="18"><?php echo $pixelImage ?></td>
 <?php
 }
 ?>
-    <td align="center" width="3000" height="22">   
+    <td align="center" width="3000" height="18">   
 <?php
 #-- 'page numbers' cell ---                  
 echo "<span class=\"nav\">";
@@ -105,8 +105,8 @@ if ($navpage+1 != $navcount) {
 		$nextAlbumName = $gallery->album->isAlbumName($navpage+2);
 	} 
 ?>
-    <td width="0" height="22"><?php echo $pixelImage ?></td>
-    <td align="center" width="72" height="22">
+    <td width="0" height="18"><?php echo $pixelImage ?></td>
+    <td align="center" width="72" height="18" class="borderleft">
 <?php 
 	if ($nextAlbumName) {
 ?>
@@ -123,8 +123,8 @@ if ($navpage+1 != $navcount) {
 <?php
 } else {   
 ?>
-    <td align="center" width="72" height="22">&nbsp;</td>
-    <td width="0" height="22"><?php echo $pixelImage ?></td>
+    <td align="center" width="72" height="18">&nbsp;</td>
+    <td width="0" height="18"><?php echo $pixelImage ?></td>
 <?php
 } 
 ?>
@@ -132,8 +132,8 @@ if ($navpage+1 != $navcount) {
 #-- 'last' button ---
 if ($navpage+1 == $navcount) {
 ?>
-    <td width="0" height="22"><?php echo $pixelImage ?></td>
-    <td align="center" width="27" height="22">&nbsp;</td>
+    <td width="0" height="18"><?php echo $pixelImage ?></td>
+    <td align="center" width="27" height="18">&nbsp;</td>
 <?php
 } else {        
 	$lastPage = $navigator["allIds"][$navcount-1];
@@ -142,8 +142,8 @@ if ($navpage+1 == $navcount) {
 		$lastAlbumName = $gallery->album->isAlbumName($navcount);
 	}
 ?>
-    <td width="0" height="22"><?php echo $pixelImage ?></td>
-    <td align="center" width="27" height="22">
+    <td width="0" height="18"><?php echo $pixelImage ?></td>
+    <td align="center" width="27" height="18" class="borderleft">
 <?php
 	if ($lastAlbumName) {
 ?>

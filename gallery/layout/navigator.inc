@@ -43,7 +43,7 @@ if ($navigator["page"] == 1) {
 <?php
 } else {
 ?>
-    <td align="center" width="27" height="14"><span class="nav"> 
+    <td align="center" width="27" height="14" class="borderright"><span class="nav"> 
       <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=1"><img src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_first.gif') : getImagePath('nav_last.gif') ?>" border="0" width="27" height="11" alt="<?php echo _("First Page") ?>" title="<?php echo _("First Page") ?>"></a>
       </span></td>
     <td width="1" height="1"><?php echo $pixelImage ?></td>
@@ -55,7 +55,7 @@ if ($navigator["page"] == 1) {
 $prevPage = $navigator["page"] - 1;
 if ($prevPage >= 1) {
 ?>
-    <td align="center" width="72" height="14"><span class="nav">
+    <td align="center" width="72" height="14" class="borderright"><span class="nav">
       <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $prevPage ?>"><img valign="absmiddle" src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_prev.gif') : getImagePath('nav_next.gif') ?>" border="0" width="72" height="11" alt="<?php echo _("Previous Page") ?>" title="<?php echo _("Previous Page") ?>"></a>
       </span></td>
     <td width="0" height="14"><?php echo $pixelImage ?></td>
@@ -102,7 +102,7 @@ $nextPage = $navigator["page"] + 1;
 if ($nextPage <= $navigator["maxPages"]) {
 ?>
     <td width="0" height="14"><?php echo $pixelImage ?></td>
-    <td align="center" width="72" height="14"><span class="nav">
+    <td align="center" width="72" height="14" class="borderleft"><span class="nav">
       <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $nextPage ?>"><img valign="absmiddle" src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_next.gif') : getImagePath('nav_prev.gif') ?>" border="0" alt="<?php echo _("Next Page") ?>" title="<?php echo _("Next Page") ?>"></a>
       </span></td>
 <?php
@@ -117,13 +117,11 @@ if ($navigator["page"] == $navigator["maxPages"]) {
 } else {        
 ?>
     <td width="0" height="14"><img valign="absmiddle" src="<?php echo getImagePath('pixel_trans.gif')?>" width="0" height="0"></td>
-    <td align="center" width="27" height="14"><span class="nav">
+    <td align="center" width="27" height="14" class="borderleft"><span class="nav">
       <a href="<?php echo $url ?><?php echo $navigator['pageVar'] ?>=<?php echo $navigator['maxPages'] ?>"><img valign="absmiddle" src="<?php echo ($gallery->direction == "ltr") ? getImagePath('nav_last.gif') : getImagePath('nav_first.gif') ?>" border="0" alt="<?php echo _("Last Page") ?>" title="<?php echo _("Last Page") ?>"></a>
       </span></td>
 <?php
 } 
 ?>
-  </tr>
-  <tr> 
   </tr>
 </table>

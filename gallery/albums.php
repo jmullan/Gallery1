@@ -277,7 +277,7 @@ for ($i = $start; $i <= $end; $i++) {
   <td align="<?php echo $gallery->alignment ?>" valign="top" class="albumdesc">
     <table cellpadding="0" cellspacing="0" width="100%" border="0" align="center" class="mod_title">
       <tr valign="middle">
-        <td width="50">
+        <td class="leftspacer">
         <td>
           <table cellspacing="0" cellpadding="0" border="0" class="mod_title_bg">
             <tr>

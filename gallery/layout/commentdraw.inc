@@ -11,7 +11,8 @@ $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" 
 
 ?>
   <tr>
-    <td>
+    <td width="15%"></td>
+    <td width="70%" class="bordertop">
       <span class=modcaption>
       <br>
 <?php echo _("From:") ?> <b><?php echo $commentdraw["name"] ?></b> &nbsp;
@@ -35,4 +36,5 @@ if ($gallery->user->canWriteToAlbum($gallery->album)) {
       <br><br>
       </span>
     </td>
+    <td width="15%"></td>
   </tr>
