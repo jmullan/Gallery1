@@ -272,7 +272,7 @@ if ($gallery->user->canCreateSubAlbum($gallery->album)
 if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	if (!$gallery->session->offline)
 	{
-		$adminCommands .= popup_link("[extra fields]", 
+		$adminCommands .= popup_link("[custom fields]", 
 			"extra_fields.php?set_albumName=" .
 			$gallery->session->albumName);
 		$adminCommands .= '<a href=' . makeGalleryUrl("captionator.php", 

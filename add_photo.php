@@ -38,16 +38,6 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 }
 
 
-function msg($buf) {
-	global $msgcount;
-
-	if ($msgcount) {
-		print "<br>";
-	}
-	print $buf;
-	my_flush();
-	$msgcount++;
-}
 function process($file, $tag, $name, $caption, $setCaption="", $extra_fields=array()) {
 	global $gallery;
 	global $temp_files;
@@ -93,7 +83,7 @@ function process($file, $tag, $name, $caption, $setCaption="", $extra_fields=arr
 			$temp_files[$newFile]++;
 		}
 	    
-		msg("- Adding $name");
+		processingMsg("- Adding $name");
 		if ($setCaption and $caption == "") {
 			$caption = $originalFilename;
 		}
@@ -111,17 +101,17 @@ function process($file, $tag, $name, $caption, $setCaption="", $extra_fields=arr
 				list($w, $h) = $photo->image->getRawDimensions();
 				if ($w > $gallery->album->fields["resize_size"] ||
 				    $h > $gallery->album->fields["resize_size"]) {
-					msg("- Resizing $name"); 
+					processingMsg("- Resizing $name"); 
 					$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
 				}
 			}
 		} else {
-			msg("<font color=red>Error: $err!</font>");
-			msg("<b>Need help?  Look in the " .
+			processingMsg("<font color=red>Error: $err!</font>");
+			processingMsg("<b>Need help?  Look in the " .
 			    "<a href=http://gallery.sourceforge.net/faq.php target=_new>Gallery FAQ</a></b>");
 		}
 	} else {
-		msg("Skipping $name (can't handle '$tag' format)");
+		processingMsg("Skipping $name (can't handle '$tag' format)");
 	}
 }
 ?>

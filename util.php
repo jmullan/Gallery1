@@ -1056,7 +1056,6 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 		if ($gallery->user->canWriteToAlbum($myAlbum)) {
 
 			if ($myAlbum->versionOutOfDate()) {
-				print "problem with $myAlbum";
 				$uptodate=false;
 				continue;
 			}

@@ -77,13 +77,13 @@ if ($save) {
 ?>
 <html>
 <head>
-  <title>Configure Extra Fields</title>
+  <title>Configure Custom Fields</title>
   <?php echo getStyleSheetLink() ?>
 </head>
 <body>
 
 <center>
-Configure Extra Fields
+Configure Custom Fields
 
 <p>
 <?php echo makeFormIntro("extra_fields.php", 
@@ -91,7 +91,7 @@ Configure Extra Fields
 				"method" => "POST")); ?>
 <input type=hidden name="save" value=1>
 
-Number of user defined extra fields
+Number of user defined custom fields
 <?php $num_user_fields=sizeof($gallery->album->getExtraFields()) -
 	num_special_fields($gallery->album->getExtraFields()); ?>
 <input type=text size=4 name="num_user_fields" value="<?php echo $num_user_fields ?>">
