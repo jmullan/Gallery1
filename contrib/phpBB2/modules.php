@@ -25,14 +25,14 @@
 /*
 ** This file was written by Martin Smallridge <info@snailsource.com>
 ** Adapted for 2.0.9 by Jens Tkotz
+** Adapted to fit with Register Globals ON for 2.0.9/10 by Jens A. Tkotz
 */
 
 define('MODULES_PATH', './modules/');
 
 
 $op = ( isset($_POST['op']) ) ? $_POST['op'] : (isset($_GET['op']) ? $_GET['op'] : '');
-switch ($op)
-{
+switch ($op) {
     case 'modload':
 	// Added with changes in Security for PhpBB2.
 	define('IN_PHPBB', true);
@@ -51,39 +51,33 @@ switch ($op)
 	//
 	// End session management
 
-	$register_globals = ini_get("register_globals");
-	if (empty($register_globals) || !strcasecmp($register_globals, "off") || !strcasecmp($register_globals, "false")) {
-		$register_globals = 0;
-	} else {
-		$register_globals = 1;
-	}
+	/*
+	 * Regardless which value register_globals has, we extract all HTTP variables into the global
+	 * namespace.
+	 * Note: This is not ready for PHP5 !
+	 */
 
 	/*
-	 * If register_globals is off, then extract all Superglobales into the global namespace.
-	 */
-	if (!$register_globals) {
-		/*
-		** Prevent hackers from overwriting one HTTP_ global using another one.  For example,
-		** appending "?HTTP_POST_VARS[gallery]=xxx" to the url would cause extract
-		** to overwrite HTTP_POST_VARS when it extracts HTTP_GET_VARS
-		*/
-    
-		$scrubList = array('HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_COOKIE_VARS', 'HTTP_POST_FILES');
-		array_push($scrubList, "_GET", "_POST", "_COOKIE", "_FILES", "_REQUEST");
+	** Prevent hackers from overwriting one HTTP_ global using another one.  For example,
+	** appending "?HTTP_POST_VARS[gallery]=xxx" to the url would cause extract
+	** to overwrite HTTP_POST_VARS when it extracts HTTP_GET_VARS
+	*/
 
-		foreach ($scrubList as $outer) {
-			foreach ($scrubList as $inner) {
-				unset(${$outer}[$inner]);
-			}
-		}
+	$scrubList = array('HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_COOKIE_VARS', 'HTTP_POST_FILES');
+	array_push($scrubList, "_GET", "_POST", "_COOKIE", "_FILES", "_REQUEST");
 
-		extract($_REQUEST);
-	        foreach($_FILES as $key => $value) {
-	            ${$key."_name"} = $value["name"];
-	            ${$key."_size"} = $value["size"];
-	            ${$key."_type"} = $value["type"];
-	            ${$key} = $value["tmp_name"];
+	foreach ($scrubList as $outer) {
+		foreach ($scrubList as $inner) {
+			unset(${$outer}[$inner]);
 		}
+	}
+
+	extract($_REQUEST);
+        foreach($_FILES as $key => $value) {
+            ${$key."_name"} = $value["name"];
+            ${$key."_size"} = $value["size"];
+            ${$key."_type"} = $value["type"];
+            ${$key} = $value["tmp_name"];
 	}
 
         // Security fix
