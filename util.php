@@ -971,4 +971,36 @@ function padded_range_array($start, $end) {
 	return $arr;
 }
 
+function safe_serialize($obj, $file) {
+	
+	/*
+	 * Don't use tempnam because it may create a file on a different
+	 * partition which would cause rename() to fail.  Instead, create our own 
+	 * temporary file.
+	 */
+	$i = 0;
+	do {
+		$tmpfile = "$file.$i";
+		$i++;
+	} while (fs_file_exists($tmpfile));
+
+	if ($fd = fs_fopen($tmpfile, "w")) {
+		fwrite($fd, serialize($obj));
+		fclose($fd);
+
+		/* 
+		 * Make the current copy the backup, and then 
+		 * write the new current copy
+		 */
+		if (fs_file_exists($file)) {
+			$success = fs_rename($file, "$file.bak") &&
+				   fs_rename($tmpfile, $file);
+		} else {
+			$success = fs_rename($tmpfile, $file);
+		}
+	}
+
+	return $success;
+}
+
 ?>
