@@ -11,78 +11,124 @@ if ($begin == 1 && $end <= $navigator["maxPages"]) {
 if ($end == $navigator["maxPages"]) {
 	$begin = max(1, $end - 2 * $navigator["spread"]);
 }
+
+// If the border color is not passed in, we do a white one
+if ($navigator["bordercolor"]) {
+	$borderIn = $navigator["bordercolor"];
+} else {
+	$borderIn = "#FFFFFF";
+}
+
+$imageDir = $app->photoAlbumURL."/images";
+$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">";
 ?>
 
-<table border=0 width=<?=$navigator["fullWidth"] . $navigator["widthUnits"]?>>
- <tr>
-  <td valign=bottom width=<?=.124 * $navigator["fullWidth"] . $navigator["widthUnits"]?>>
-   <font size=+0 face=<?=$album->fields["font"]?>>
-<?
+<table width="<?=$navigator["fullWidth"] . $navigator["widthUnits"]?>" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td colspan="11" bgcolor="<?=$borderIn?>" height="1"><?=$pixelImage?></td>
+  </tr>
+  <tr> 
+    <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
+<?      
+#-- 'first' button cell ---
 if ($navigator["page"] == 1) {
-	echo "&nbsp;";
+?>
+    <td align="center" width="27" height="18"><font face=arial>&nbsp;</font></td> 
+    <td width="1" height="1"><?=$pixelImage?></td>
+<?
 } else {
-	echo "<a href=$navigator[url]?set_$navigator[pageVar]=1>[<< first]</a>";
+?>
+    <td align="center" width="27" height="18"><font face=arial> 
+      <a href=<?=$navigator[url]?>?set_<?=$navigator[pageVar]?>=1><img src="<?=$imageDir?>/nav_first.gif" border="0" width="18" height="11" alt="First Page"></a>
+      </font></td>
+    <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
+<?
+} 
+?>
+<?
+#-- 'previous' button cell ---
+$prevPage = $navigator["page"] - 1;
+if ($prevPage >= 1) {
+?>
+    <td align="center" width="72" height="18"><font face=arial>
+      <a href=<?=$navigator[url]?>?set_<?=$navigator[pageVar]?>=<?=$prevPage?>><img src="<?=$imageDir?>/nav_prev.gif" border="0" width="18" height="11" alt="Previous Page"></a>
+      </font></td>
+    <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
+<?
+} else {
+?>
+    <td align="center" width="72" height="18"><font face=arial>&nbsp;</font></td>
+    <td width="1" height="1"><?=$pixelImage?></td>
+<?
 }
-
-if ($end > $begin) {
 ?>
-  </td>
-  <td valign=bottom width=<?=.125 * $navigator["fullWidth"] . $navigator["widthUnits"]?> align=center>
-
+    <td align="center" height="18">   
 <?
-	$prevPage = $navigator["page"] - 1;
-	if ($prevPage >= 1) {
-		echo "<a href=$navigator[url]?set_$navigator[pageVar]=$prevPage>[< back]</a>";
+#-- 'page numbers' cell ---                  
+$current = $navigator["page"];
+for ($i = $begin; $i <= $end; $i++) {
+	if ($i == $current) {
+		$number = "<b>$i</b>";
+		$leftdot = "<img src=\"$imageDir/nav_dot_left.gif\" width=\"8\" height=\"11\">";
 	} else {
-		echo "&nbsp;";
-	}
-?>
-  </td>
-  <td valign=bottom width=<?=.5 * $navigator["fullWidth"] . $navigator["widthUnits"]?> align=center>
-<?
-	for ($i = $begin; $i <= $end; $i++) {
-		if ($i == $navigator["page"]) {
-			$size = "+2";
+		$number = "<a href=".$navigator[url]."?set_".$navigator[pageVar]."=$i>$i</a>";
+		if (($i-1) == $navigator["page"]) {
+			$leftdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\">";
 		} else {
-			$size = "+0";
+			$leftdot = "<img src=\"$imageDir/nav_dot.gif\" width=\"8\" height=\"11\">";
 		}
-	
-		?>
-			<font size=<?=$size?> face=<?=$album->fields["font"]?>>
-			<a href=<?=$navigator[url]?>?set_<?=$navigator[pageVar]?>=<?=$i?>><?=$i?></a>
-			</font>
-		<?
 	}
-?>
-  </td>
-  <td valign=bottom width=<?=.125 * $navigator["fullWidth"] . $navigator["widthUnits"]?> align=center>
-<?  
-	$nextPage = $navigator["page"] + 1;
-	if ($nextPage <= $navigator["maxPages"]) {
-		echo "<a href=$navigator[url]?set_$navigator[pageVar]=$nextPage>[next >]</a>";
-	} else {
-		echo "&nbsp;";
-	}
-}
-?>
 
-  </td>
-  <td valign=bottom width=<?=.125 * $navigator["fullWidth"] . $navigator["widthUnits"]?> align=right>
-   <font size=+0 face=<?=$album->fields["font"]?>>
-<?
-if ($navigator["page"] == $navigator["maxPages"]) {
-        echo "&nbsp;";
-} else {
-	echo "<a href=$navigator[url]?set_$navigator[pageVar]=$navigator[maxPages]>[last >>]</a>";
+	echo "&nbsp;$leftdot&nbsp;";
+	echo "<font face=" . $album->fields["font"] . ">";
+	echo "$number";
+	echo "</font>";
 }
+if ($end == $current) {
+	$rightdot = "<img src=\"$imageDir/nav_dot_right.gif\" width=\"8\" height=\"11\">";
+} else {
+	$rightdot = "<img src=\"$imageDir/nav_dot.gif\" width=\"8\" height=\"11\">";
+}
+echo "&nbsp;$rightdot&nbsp;";
 ?>
-  </td>
- </tr>
-<? if ($end > $begin) { ?>
- <tr>
-  <td align=center colspan=5>
-   <font size=-2>(Click here to switch to a new page)</font>
-  </td>
- </tr>
-<? } ?>
+    </td>
+<?
+#-- 'next' button cell ---
+$nextPage = $navigator["page"] + 1;
+if ($nextPage <= $navigator["maxPages"]) {
+?>
+    <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
+    <td align="center" width="72" height="18"><font face=arial>
+      <a href=<?=$navigator[url]?>?set_<?=$navigator[pageVar]?>=<?=$nextPage?>><img src="<?=$imageDir?>/nav_next.gif" border="0" width="18" height="11" alt="Next Page"></a>
+      </font></td>
+<?
+} else {   
+?>
+    <td align="center" width="72" height="18"><font face=arial>&nbsp;</font></td>
+    <td width="1" height="1"><?=$pixelImage?></td>
+<?
+} 
+?>
+<?
+#-- 'last' button ---
+if ($navigator["page"] == $navigator["maxPages"]) {
+?>
+    <td width="1" height="1"><?=$pixelImage?></td>
+    <td align="center" width="27" height="18"><font face=arial>&nbsp;</font></td>
+<?
+} else {        
+?>
+    <td bgcolor="<?=$borderIn?>" width="1" height="1"><img src="<?=$imageDir?>/pixel_trans.gif" width="1" height="1"></td>
+    <td align="center" width="27" height="18"><font face=arial>
+      <a href=<?=$navigator[url]?>?set_<?=$navigator[pageVar]?>=<?=$navigator[maxPages]?>><img src="<?=$imageDir?>/nav_last.gif" border="0" width="18" height="11" alt="Last Page"></a>
+      </font></td>
+<?
+} 
+?>
+    <td align="right" bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
+  </tr>
+  <tr> 
+    <td colspan="11" bgcolor="<?=$borderIn?>"><?=$pixelImage?></td>
+  </tr>
 </table>
+    
