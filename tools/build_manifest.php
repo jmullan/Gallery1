@@ -58,11 +58,10 @@ foreach ($files as $file => $version) {
     /*
      * There are some exceptions.  We don't want to require these directories
      *   po
-     *   tools
      *
      * because they're not critical to the proper functioning of gallery
      */
-    if (preg_match('{^(po|tools)/}', $file)) {
+    if (preg_match('{^(po)/}', $file)) {
 	continue;
     }
     
