@@ -73,6 +73,8 @@ function getNLS () {
  ** Aliases for languages which we substitte or send by NUKE
  **/
 	
+	$nls['aliases']['chinese'] = 		'zh_TW' ;
+
 	$nls['aliases']['de_LI'] = 		'de_DE' ;
 	$nls['aliases']['de_LU'] = 		'de_DE' ;
 	$nls['aliases']['de_CH'] = 		'de_DE' ;
@@ -174,8 +176,8 @@ function getNLS () {
  ** Alignment
  **/
 	
-	$nls['default']['align'] = 'left';
-	$nls['align']['he_IL'] = 'right' ;
+	$nls['default']['alignment'] = 'left';
+	$nls['alignment']['he_IL'] = 'right' ;
 
 /**
  ** Nuke
