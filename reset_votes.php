@@ -32,7 +32,7 @@ if (isset($id)) {
 
 // Hack check
 if (!$gallery->user->canDeleteFromAlbum($gallery->album) && !$gallery->album->isItemOwner($gallery->user, $index)) {
-	echo _("You are no allowed to perform this action !");
+	echo _("You are not allowed to perform this action!");
 	exit;
 }
 

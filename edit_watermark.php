@@ -25,7 +25,7 @@
 
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action.");
+	echo _("You are not allowed to perform this action!");
 	exit;
 }
 

@@ -32,7 +32,7 @@ if (isset($id)) {
 if (!$gallery->user->canDeleteFromAlbum($gallery->album) 
 	&& (!$gallery->album->getItemOwnerDelete()
 	|| !$gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
-	echo _("You are no allowed to perform this action !");
+	echo _("You are not allowed to perform this action!");
 	exit;
 }
 
@@ -90,7 +90,7 @@ if ($gallery->album && isset($id)) {
 <?php 
         echo makeFormIntro("delete_photo.php", array('name' => 'deletephoto_form',
               'onsubmit' => "deletephoto_form.confirm.disabled = true;"));
-	echo _("Do you really want to delete this Album?") 
+	echo _("Do you really want to delete this album?") 
 ?>
 
 <?php

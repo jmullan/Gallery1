@@ -26,7 +26,7 @@ require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
-	echo _("You are no allowed to perform this action !");
+	echo _("You are not allowed to perform this action!");
 	exit;
 }
 

@@ -52,7 +52,7 @@ if ($gallery->session->albumName) {
 
 // Hack check
 if (!$gallery->user->isAdmin() && empty($upgrade_albumname)) {
-	echo _("You are no allowed to perform this action !");
+	echo _("You are not allowed to perform this action!");
 	exit;
 }
 

@@ -47,14 +47,13 @@ for all_CF in $Cfiles ; do
 
 	echo "$tab Updating ..."
 	echo "" >> $all_CF
-	echo "===============================================================================" >> $all_CF
-	echo "2004-05-15 Jens Tkotz <jens@peino.de> 1.4.4-cvs-b111" >> $all_CF
 #	echo "===============================================================================" >> $all_CF
+	echo "2004-08-03 Jens Tkotz <jens@peino.de> 1.4.5-cvs-b88" >> $all_CF
 	echo "" >> $all_CF
-	echo " * Switch to ngettext !" >> $all_CF
-	echo " * PLURAL DEFINTION MISSING !" >> $all_CF
+	echo " * Merge with updated files from 1.4.4" >> $all_CF
 	echo "" >> $all_CF
-	echo "===============================================================================" >> $all_CF
+	echo " * Sync with 1.4.5 code" >> $all_CF
+#	echo "===============================================================================" >> $all_CF
 	echo "" >> $all_CF
 #read trash
 done

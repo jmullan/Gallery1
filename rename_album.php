@@ -26,7 +26,7 @@ require(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action !");
+	echo _("You are not allowed to perform this action!");
 	exit;
 }
 

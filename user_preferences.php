@@ -25,7 +25,7 @@
 require(dirname(__FILE__) . '/init.php');
 
 if (!$gallery->user->isLoggedIn()) {
-	echo _("You are no allowed to perform this action !");
+	echo _("You are not allowed to perform this action!");
 	exit;	
 }
 

@@ -27,7 +27,7 @@ require(dirname(__FILE__) . '/init.php');
 // Hack check
 
 if (!$gallery->user->canAddComments($gallery->album)) {
-	echo _("You are no allowed to perform this action !");
+	echo _("You are not allowed to perform this action!");
         exit;
 }
 
