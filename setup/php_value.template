@@ -3,5 +3,11 @@
 php_value post_max_size 20971520
 php_value upload_max_filesize 20971520
 php_value magic_quotes_gpc off
-php_flag session.bug_compat_warn off
 
+<IfModule sapi_apache2.c>
+php_value session.bug_compat_warn off
+</IfModule>
+
+<IfModule mod_php4.c>
+php_flag session.bug_compat_warn off
+</IfModule>
