@@ -1,0 +1,52 @@
+
+Image Firewall in Gallery 2.0
+
+[[ XXX - work in progress                                  ]]
+
+======================================================================
+The image firewall is a script that will deliver all image data
+requested by Gallery pages. An album image src will look like this:
+
+  <galleryurl>/image.php?name=aaa.sized.jpg
+  
+Like the pages view_album.php and view_item.php, this page will expect
+either:
+  - an active user session containing the current album, or
+  - the url param: set_albumName
+
+image.php will verify that the user in the session has permission to
+read the album before delivering the image data:
+
+  $user->canReadAlbum($album)
+
+
+Changes to Albums Directory
+======================================================================
+Because image.php will be loading the image data itself, it will now be
+possible to move the albums directory out of the document root. The
+albums directory can be anywhere on the filesystem.
+
+The albumDirURL will go away. We only need albumDir.
+
+One cool thing here is there will no longer be an "absolute URL" 
+requirement for the Gallery URL (photoAlbumUrl).
+
+
+======================================================================
+issues: 
+- This will break the shutterfly support. One way around this is 
+  to not do user validation if the request comes from shutterfly.com.
+
+- This will break the current mirroring functionality. As bharat 
+  has discussed a revamp if the mirring concept, I'm not gonna
+  worry about it just yet.
+
+ideas:
+- because the firewall is where it is in the process it could do other 
+  things like dynamically generating image thumbnails or sized
+  versions of images, on demand. It could manage a cache of such 
+  things...
+- pass the size (sized/thumbnail/highlight/full) as an url 
+  parameter? Is there an reason to doing this? 
+
+  

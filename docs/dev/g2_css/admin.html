@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+	<title>#gpAdmin</title><style type="text/css">
+/* <![CDATA[ */
+ @import url(matrix-layout.css); 
+ @import url(matrix-style.css);  
+/* ]]> */
+</style> 
+</head>
+<body>
+<div id="gallery">
+	<div id="gsHeader">
+		<div class="gbTitleBanner">
+<!-- img banner -->
+		<div class="giTitle">
+			Site Administration 
+		</div>
+
+		</div>
+	</div>
+	<div id="gsAdminSidebar">
+		<div class="gbMenu">
+			<div class="giTitle">Admin Options</div> 
+			<ul>
+				<li class="comments">
+					Comments 
+				</li>
+				<li class="general">
+					General 
+				</li>
+				<li class="users">
+					Users 
+				</li>
+				<li class="groups">
+					Groups 
+				</li>
+				<li class="modules">
+					Modules 
+				</li>
+				<li class="layouts">
+					Layouts 
+				</li>
+				<li class="debug">
+					Debug 
+				</li>
+				<li class="debug">
+					EXIF Parser 
+				</li>
+				<li class="general">
+					Migrate Albums 
+				</li>
+				<li class="debug">
+					NetPBM 
+				</li>
+				<li class="debug">
+					Search 
+				</li>
+			</ul>
+		</div>
+		<div class="gbMenu">
+			<div class="giTitle">Navigation</div> 
+			<ul>
+				<li>
+					Browse gallery 
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="gsAdminContents">
+		<div class="gbTopFlag">
+			<div class="giTitle">General Settings</div>
+		</div>
+					
+		<!-- status report -->
+			
+		<div id="gsStatus">
+			<div class="giError">Hi I'm an error</div>
+			<div class="giStatus">Hi I'm informational</div>
+			<div class="giWarning">Hi I'm a warning!</div>
+		</div>
+		<div
+ class="gbAdmin">
+			<div class="giTitle">
+				Add Items Excuse For Tabs 
+			</div>
+			<div class="giDescription">
+				Gallery can handle files of any format. However, it can only create automatic resizes and thumbnails for certain types of files. 
+			</div>
+			<div class="gbTabBar">
+				<ul>
+					<li>
+						<a href="#">From Web Browser</a> 
+					</li>
+					<li class="giSelectedTab">
+						<a href="#">From Local Server</a> 
+					</li>
+					<li>
+						<a href="#">From Web Page</a> 
+					</li>
+				</ul>
+			</div>
+			<div class="gbSpacer">
+				&nbsp; 
+			</div>
+			<table class="gbDataTable">
+				<tr class="gbEven">
+					<td>
+						Default Sort Order 
+					</td>
+					<td>
+						1 
+					</td>
+					<td>
+						2 
+					</td>
+				</tr>
+				<tr class="gbOdd">
+					<td>
+						Default Layout 
+					</td>
+					<td>
+						2 
+					</td>
+					<td>
+						1 
+					</td>
+				</tr>
+				<tr class="gbEven">
+					<td>
+						Default Theme 
+					</td>
+					<td>
+						4 
+					</td>
+
+					<td>
+						5 
+					</td>
+				</tr>
+			</table>
+			
+			
+      <div class="giError">Hi! I am a Local Error!</div>
+			
+		</div>
+		<div class="gbAdmin">
+			<div class="giTitle">
+				Defaults 
+			</div>
+			<div class="giDescription">
+				These are default values. They can be overridden in each album. 
+			</div>
+			<table class="gbDataTable">
+				<tr class="gbEven">
+					<td>
+						Default Sort Order 
+					</td>
+					<td>
+						1 
+					</td>
+					<td>
+						2 
+					</td>
+			
+	</tr>
+				<tr class="gbOdd">
+					<td>
+						Default Layout 
+					</td>
+					<td>
+						2 
+					</td>
+					<td>
+						1 
+					</td>
+				</tr>
+				<tr class="gbEven">
+					<td>
+						Default Theme 
+					</td>
+					<td>
+						4 
+					</td>
+					<td>
+						5 
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="gbAdmin">
+			<div class="giTitle">
+				Language Settings 
+			</div>
+			<div class="giDescription">
+				Select language defaults for Gallery. Individual users can ov
+erride this setting in their personal preferences. 
+			</div>
+			<table class="gbDataTable">
+				<tr class="gbEven">
+					<td>
+						Default Language 
+					</td>
+					<td>
+						1 
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="gbAdmin">
+			<div class="giTitle">
+				Filesystem Permissions 
+			</div>
+			<div class="giDescription">
+				Specify the default permissions for files and directories that Gallery creates. This doesn't apply to files/directories that Gallery has already 
+created. 
+			</div>
+			<table class="gbDataTable">
+				<tr class="gbEven">
+					<td>
+						New Directories 
+					</td>
+					<td>
+						1 
+					</td>
+				</tr>
+				<tr class="gbOdd">
+					<td>
+						New Files 
+					</td>
+					<td>
+						1 
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="gbAdmin">
+			<div class="giTitle">
+				Local Server Upload Paths 
+			</div>
+			<div class="giDescription">
+				Specify the legal directories on the local server where a user can store fil
+es and then upload them into Gallery using the Upload from Local Server feature. The paths you enter here and all the files and directories under those paths will be available to any Gallery user who has upload privileges, so you should limit this to directories that won't contain sensitive data (eg. /tmp or /usr/ftp/incoming) 
+			</div>
+			<table class="gbDataTable">
+				<tr class="gbEven">
+					<td>
+						Path 
+					</td>
+					<td>
+						Action 
+					</td>
+				</tr>
+				<tr class="gbOdd">
+				
+	<td>
+						1 
+					</td>
+					<td>
+						2 
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="gbAdmin">
+			<div class="giTitle">
+				Session Settings 
+			</div>
+			<div class="giDescription">
+				Specify the lifetime of the session here. 
+			</div>
+			<table class="gbDataTable">
+				<tr class="gbEven">
+					<td>
+						Lifetime 
+					</td>
+					<td>
+						1 
+					</td>
+				</tr>
+				<tr class="gbOdd">
+					<td>
+						Inactivity Timeout 
+					</td>
+					<td>
+						1 
+
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="gbAdmin">
+			<div class="giTitle">
+				URL Style 
+			</div>
+			<div class="giDescription">
+				Gallery has the option to use a compact URL format, however this format is not supported by default on all web servers. It is enabled by default on Apache 1, but not on Apache 2. If you're using Apache 2 and you want this feature, you must use the AcceptPathInfo Directive. Use this test url to find out if short URLs work for you. If the link retu
+rns a webserver error then they don't work for you. 
+			</div>
+			<table class="gbDataTable">
+				<tr class="gbEven">
+					<td>
+						Use short URLs? 
+					</td>
+					<td>
+						no 
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="gbBottomFlag">
+			<div class="giPageNumber">
+				Page 1 
+			</div>
+			<div class="giHorizontalLinks">
+				first | previous | next | last 
+			</div>
+			<div class="giActionSelect">
+				save | cancel 
+			</div>
+		</div>
+	</div>
+	<div id="gsFooter">
+		<img src="images/mini1.gif" alt="" class="gbMiniBanner" /> <img src="images/mini2.gif" alt="" class="gbMiniBanner" /> 
+	</div>
+</div>
+</body>
+</html>

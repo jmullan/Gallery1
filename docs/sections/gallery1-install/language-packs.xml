@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.language-packs">
+ <title>Installing Language Packs</title>
+ 
+ <para>
+  Since version 1.4, Gallery has supported many different languages.  In 1.4, we
+  shipped Gallery with <emphasis>ALL</emphasis> languages in the release.
+  However, in Gallery 1.4.1 and later, we distribute each language
+  individually in a language "pack."  Gallery's native language is English;
+  however, if you'd like to use Gallery in another language, you must download
+  a language pack and install it.  This is advantageous because you can
+  pick which language or languages you want Gallery to be displayed in.
+  This also reduces the size of the general release package.
+ </para>
+ <para>
+  You can download language packs for the most recent release on
+  <ulink url="http://sourceforge.net/project/showfiles.php?group_id=7130">
+  The Gallery SF.net Download Page</ulink>.  Pick the language you want, download
+  it, and untar it.  You will get a directory that looks something like
+  <emphasis>[language]_[COUNTRY]</emphasis>.  Just upload this directory
+  (in BINARY FTP mode) to the <filename>locale/</filename> directory of
+  your Gallery installation.  After that, simply rerun the
+  <link linkend="gallery1-install.config-wizard">configuration wizard</link>
+  to enable the language.
+ </para>
+</sect1>

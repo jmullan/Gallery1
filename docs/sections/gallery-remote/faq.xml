@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery-remote.faq">
+	<title>Frequently Asked Questions</title>
+
+	<qandaset>
+
+		<qandaentry id="gallery-remote.faq.1">
+			<question>
+				<para>
+How do I upgrade Gallery Remote?
+				</para>
+			</question>
+			<answer>
+				<orderedlist>
+					<listitem>
+						<para>
+Download the newest zip patch for Gallery Remote from <ulink url="http://jpmullan.com/galleryupdates/">the nightly site</ulink>.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+Extract the zip file on top of your existing GR install (you need to have previously installed a full
+version of Gallery Remote), and overwrite all files.
+							<emphasis>Remember to stop GR before doing this!</emphasis>
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+Restart Gallery Remote.
+						</para>
+					</listitem>
+				</orderedlist>
+			</answer>
+		</qandaentry>
+
+		<qandaentry id="gallery-remote.faq.2">
+			<question>
+				<para>
+I found a bug, what do I do?
+				</para>
+			</question>
+			<answer>
+				<orderedlist>
+					<listitem>
+						<para>
+<emphasis>Before you report bugs against Gallery Remote, please take some time to verify that what you
+were trying to do in Gallery Remote can be performed using the web interface in Gallery.</emphasis>
+						</para>
+						<para>
+A lot of the bugs reported against GR are actually installation problems that
+affect Gallery even when Gallery Remote is not involved: upload permissions,
+PHP settings, etc.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+With any bug report, you need to provide the following info:
+						</para>
+						<orderedlist>
+							<listitem>
+								<para>
+the version of the Gallery installation you were trying to interact with.
+								</para>
+							</listitem>
+							<listitem>
+								<para>
+the version of the Gallery Remote installation, as well as the VM and OS under
+which Gallery Remote was being used.
+								</para>
+							</listitem>
+							<listitem>
+								<para>
+if the bug is that Gallery Remote doesn't do what's expected: it doesn't log you
+on, images aren't uploaded right, you get wierd error messages, please also attach
+the log or a portion thereof to the bug report.
+								</para>
+							</listitem>
+						</orderedlist>
+					</listitem>
+
+				</orderedlist>
+			</answer>
+		</qandaentry>
+
+		<qandaentry id="gallery-remote.faq.3">
+			<question>
+				<para>
+Log, what log?
+				</para>
+			</question>
+			<answer>
+				<para>
+If you encounter a problem, the logging system may be some help, and we will definitely request it
+if you ask for support.  By default, GR writes most log information to the file <filename>GalleryRemoteLog.txt
+</filename> in the temporary directory for your platform. If you want to see more detailed information
+there, you can set the Log level to "Detailed, very verbose" in the Gallery Remote preferences dialog.
+				</para>
+				<para>
+If you would like to see the log unfold as you use the application rather than having
+it go to a file, you should change the following:
+					<itemizedlist>
+						<listitem>
+							<para>
+In file <filename>GalleryRemote.properties</filename> (this is the preferences file, explained in the
+<link linkend="gallery-remote.using.preferences">Preferences section</link>), set
+								<screen>
+toSysOut=true
+								</screen>
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+In file <filename>Gallery Remote.lax</filename> (in the directory where Gallery Remote was installed),
+set:
+								<screen>
+lax.stdout.redirect=console
+								</screen>
+							</para>
+						</listitem>
+					</itemizedlist>
+				</para>
+				<para>
+Caution: Be careful before posting your log to forums or sending it to anyone: your password is printed in clear text in several places.
+				</para>
+			</answer>
+		</qandaentry>
+
+		<qandaentry id="gallery-remote.faq.4">
+			<question>
+				<para>
+Building thumbnails and displaying preview is slow (Linux, MacOS)
+				</para>
+			</question>
+			<answer>
+				<para>
+Whereas on Windows, ImageMagick and jpegtran are installed by the installer, on other OSes,
+they are not automatically installed, and must be installed by the end-user.
+				</para>
+				<para>
+Please make sure that these products are available in your Unix <varname>PATH</varname> variable: you should be able to run them from a command-line as:
+<literallayout><command>jpegtran</command>
+<command>convert</command></literallayout>
+				</para>
+				<para>
+If the commands above do not work, you should download and install these packages:
+<ulink url="http://jpegclub.org/">http://jpegclub.org/</ulink> and
+<ulink url="http://www.imagemagick.org">http://www.imagemagick.org</ulink>.
+				</para>
+			</answer>
+		</qandaentry>
+
+		<qandaentry id="gallery-remote.faq.5">
+			<question>
+				<para>
+Rotating pictures seems to work (the thumbnails are rotated), but the pictures are uploaded without being rotated
+				</para>
+			</question>
+			<answer>
+				<para>
+Same as <link linkend="gallery-remote.faq.4">above</link>.
+				</para>
+			</answer>
+		</qandaentry>
+
+	</qandaset>
+
+</sect1>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-admin.basics">
+ <title>Basics</title>
+ 
+ <para>
+  This section should give you basic information about Gallery and how to
+  manage it.
+ </para>
+ 
+ <sect2 id="gallery1-admin.basics.login">
+  <title>Logging In</title>
+  
+  <para>
+   When you ran the <link linkend="gallery1-install.config-wizard">configuration
+   wizard</link>, you specified an admin password.  Now it's time to use it!
+   On the main Gallery page, click "[login]"  Using the username <literal>admin
+   </literal> and the password you specified during configuration, login to 
+   Gallery!  You now have full admin priviliges
+  </para>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.basics.creating-albums">
+  <title>Creating Albums</title>
+  
+  <para>
+   Creating albums is extremely simple, just click "[new album]".  The new album
+   is created.  You should see the message "Hey! Add some photos"  However, before
+   adding photos, it's usually a good idea to modify some of the album properties,
+   such as title, description, and name.
+  </para>
+  <para>
+   Go back to the main Gallery page by clicking the link in the top right by the
+   up arrow.  You should see the new album on the main page.  To edit the title
+   of the new album, click "[edit title]" by the current title (for new albums, it
+   defaults to "Untitled").  To edit the description, do the same thing by clicking
+   on "[edit description]".  Finally, rename the album.  Click on the link in the
+   sentence "Hey! Rename this album so that the URL is not so generic".  Once you've
+   done this, you're ready to add photos.
+  </para>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.basics.adding-photos">
+  <title>Adding Photos</title>
+  
+  <para>
+   To add photos in an album, navigate to the album and click "[add photos]".  You
+   can now browse your computer and upload photos, adding an optional caption with each
+   image.  You can also change the number of file upload boxes displayed by using
+   the select box.  Another option is to upload files to your server and then specify
+   the path on the server (<emphasis>the directory must be readable by the webserver user
+   </emphasis>).  Finally, you can specify a URL (e.g. http://www.example.com) to "leech"
+   images from.  Note that you cannot specify the direct URL of the image, only a page
+   to a webpage that contains images.  Click "Upload Now" or "Submit URL or directory"
+   and you're on your way.
+  </para>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.basics.editing-item-properties">
+  <title>Editing Item Properties</title>
+  
+  <para>
+   Each item (photo or movie) in Gallery has a list of properties that can
+   be edited.
+  </para>
+  <sect3 id="gallery1-admin.basics.editing-item-properties.images">
+   <title>Image Properties</title>
+   
+   <itemizedlist>
+    <listitem>
+     <para>
+      Edit Text -- Edits caption, description, keywords, and other custom
+      fields defined for the image
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Edit Thumbnail -- Uses a java applet to edit which part of the image
+      should be shown as the thumbnail
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Rotate/Flip Photo -- Self-explanatory, rotates or flips the photo. Rotate
+      can be done in 90 degree increments.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Highlight Photo -- Use this photo to represent the album
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Move Photo -- Move the photo or group of photos (i.e. position in an
+      album or to another album)
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Hide Photo -- Hides a photo.  Only admins and the album owner can see
+      hidden photos.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Delete Photo -- Deletes the photo (no undo)
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Change Owner -- Changes the owner of the photo (item ownership added in
+      Gallery 1.4.0)
+     </para>
+    </listitem>
+   </itemizedlist>
+  </sect3>
+  
+  <sect3 id="gallery1-admin.basics.editing-item-properties.movies">
+   <title>Movie Properties</title>
+   
+   <itemizedlist>
+    <listitem>
+     <para>
+      Edit Text -- Edits caption, description, keywords, and other custom
+      fields defined for the movie
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Move Movie -- Move the movie or a group of items (i.e. position in the
+      album or to another album)
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Hide Movie -- Hides the movie.  Only admins and the album owner can see
+      hidden movies.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Delete Movie -- Deletes the movie (no undo)
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Change Owner -- Changes the owner of the movie (item ownership added in
+      Gallery 1.4.0)
+     </para>
+    </listitem>
+   </itemizedlist>
+  </sect3>
+ </sect2>
+ 
+ <sect2 id="gallery1-admin.basics.editing-album-properties">
+  <title>Edit Album Properties</title>
+  
+  <para>
+   When you are an admin or album owner, you can edit certain properties about
+   an album.  When you are an in album, there will be a number of links in the
+   top right of the screen.  Each is explained below.
+  </para>
+  <itemizedlist>
+   <listitem>
+    <para>
+     Add Photos -- Add photos to the album (see the
+     <link linkend="gallery1-admin.basics.adding-photos">adding photos section</link>
+     for more information)
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Add Photo -- Add a single photo, but you can specify all the custom fields during
+     upload
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Rename Album -- Change the name of the album (i.e. the name in the URL)
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     New Nested Album -- Create a sub-album in this album
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Custom Fields -- Edit the custom fields defined for this album.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Captions -- Edit captions for the images in the album (more efficent that
+     editing each item's caption individually)
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Sort -- Sort the images by various critiera
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Resize all -- Resize all the photos in the album to a certain size
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Rebuild thumbs -- Rebuild all the thumbnails in the album
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Permissions -- Edit the permissions for the album (see the
+     <link linkend="gallery1-admin.users">users administration guide</link>
+     for more information)
+    </para>
+   </listitem>
+   <listitem> 
+    <para>
+     Properties -- Edit various properties of the album, including title, summary,
+     and various properties related to the album's appearance
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     View All Comments -- View all user comments in the album (only seen if commenting
+     is enabled)
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Slideshow -- (seen by all users) Display a slideshow of all the images in the
+     album
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Logout -- Log out of Gallery
+    </para>
+   </listitem>
+  </itemizedlist>
+ </sect2>
+
+</sect1>

@@ -1,0 +1,231 @@
+<?php
+/*
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2004 Bharat Mediratta
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
+ */
+?>
+<?php
+
+/*
+ * DO NOT EDIT!!!  This file is created by build_manifest.php.
+ * Edit that file and re-run via command line to modify this.
+ */
+
+$versions=array();
+$versions['AUTHORS']='1.23';
+$versions['LICENSE.txt']='1.2';
+$versions['README']='1.28';
+$versions['Version.php']='1.967';
+$versions['add_comment.php']='1.36';
+$versions['add_photos.php']='1.63';
+$versions['add_photos_frame.php']='1.6';
+$versions['adv_search.php']='1.16';
+$versions['album_permissions.php']='1.42';
+$versions['albums.php']='1.156';
+$versions['captionator.php']='1.50';
+$versions['classes/Album.php']='1.201';
+$versions['classes/AlbumDB.php']='1.34';
+$versions['classes/AlbumItem.php']='1.86';
+$versions['classes/Comment.php']='1.17';
+$versions['classes/Database.php']='1.8';
+$versions['classes/EverybodyUser.php']='1.11';
+$versions['classes/Image.php']='1.58';
+$versions['classes/LoggedInUser.php']='1.7';
+$versions['classes/NobodyUser.php']='1.12';
+$versions['classes/User.php']='1.24';
+$versions['classes/UserDB.php']='1.22';
+$versions['classes/database/mysql/Database.php']='1.9';
+$versions['classes/gallery/User.php']='1.20';
+$versions['classes/gallery/UserDB.php']='1.32';
+$versions['classes/mambo/User.php']='1.2';
+$versions['classes/mambo/UserDB.php']='1.2';
+$versions['classes/nsnnuke/AdminUser.php']='1.1';
+$versions['classes/nsnnuke/User.php']='1.1';
+$versions['classes/nsnnuke/UserDB.php']='1.1';
+$versions['classes/nuke5/AdminUser.php']='1.8';
+$versions['classes/nuke5/User.php']='1.9';
+$versions['classes/nuke5/UserDB.php']='1.11';
+$versions['classes/postnuke/User.php']='1.7';
+$versions['classes/postnuke/UserDB.php']='1.9';
+$versions['classes/postnuke0.7.1/User.php']='1.7';
+$versions['classes/postnuke0.7.1/UserDB.php']='1.5';
+$versions['classes/remote/GalleryRemoteProperties.php']='1.6';
+$versions['configure.sh']='1.11';
+$versions['contrib/mambo/admin.gallery.html.php']='1.1';
+$versions['contrib/mambo/admin.gallery.php']='1.1';
+$versions['contrib/mambo/classes/mambo.php']='1.3';
+$versions['contrib/mambo/gallery.php']='1.2';
+$versions['contrib/mambo/gallery.xml']='1.1';
+$versions['contrib/mambo/gallery_popup.tpl.php']='1.1';
+$versions['contrib/mambo/includes/frontend.php']='1.2';
+$versions['contrib/mambo/toolbar.gallery.php']='1.1';
+$versions['copy_photo.php']='1.13';
+$versions['create_user.php']='1.37';
+$versions['css/config.css.default']='1.16';
+$versions['css/embedded_style.css.default']='1.6';
+$versions['css/standalone_style.css.default']='1.6';
+$versions['delete_album.php']='1.34';
+$versions['delete_photo.php']='1.57';
+$versions['delete_user.php']='1.32';
+$versions['do_command.php']='1.63';
+$versions['docs/html.css']='1.3';
+$versions['edit_appearance.php']='1.79';
+$versions['edit_caption.php']='1.53';
+$versions['edit_field.php']='1.37';
+$versions['edit_thumb.php']='1.35';
+$versions['edit_watermark.php']='1.8';
+$versions['errors/configure_help.php']='1.8';
+$versions['errors/reconfigure.php']='1.23';
+$versions['errors/unconfigured.php']='1.24';
+$versions['extra_fields.php']='1.20';
+$versions['gallery_remote.php']='1.24';
+$versions['gallery_remote2.php']='1.62';
+$versions['html/errorRow.inc']='1.6';
+$versions['html/userData.inc']='1.20';
+$versions['html_wrap/album.footer.default']='1.31';
+$versions['html_wrap/album.header.default']='1.16';
+$versions['html_wrap/frames/README.php']='1.7';
+$versions['html_wrap/frames/golden/frame.def']='1.2';
+$versions['html_wrap/frames/notebook/frame.def']='1.3';
+$versions['html_wrap/frames/polaroid/frame.def']='1.8';
+$versions['html_wrap/frames/polaroids/frame.def']='1.7';
+$versions['html_wrap/frames/shadows/frame.def']='1.8';
+$versions['html_wrap/frames/simple_book/frame.def']='1.6';
+$versions['html_wrap/frames/wooden/frame.def']='1.3';
+$versions['html_wrap/gallery.footer.default']='1.38';
+$versions['html_wrap/gallery.header.default']='1.16';
+$versions['html_wrap/inline_albumthumb.footer.default']='1.8';
+$versions['html_wrap/inline_albumthumb.frame.default']='1.17';
+$versions['html_wrap/inline_albumthumb.header.default']='1.8';
+$versions['html_wrap/inline_gallerythumb.frame.default']='1.18';
+$versions['html_wrap/inline_imagewrap.inc']='1.28';
+$versions['html_wrap/inline_moviethumb.frame.default']='1.8';
+$versions['html_wrap/inline_photo.footer.default']='1.7';
+$versions['html_wrap/inline_photo.frame.default']='1.5';
+$versions['html_wrap/inline_photo.header.default']='1.8';
+$versions['html_wrap/inline_photothumb.frame.default']='1.8';
+$versions['html_wrap/photo.footer.default']='1.22';
+$versions['html_wrap/photo.header.default']='1.13';
+$versions['html_wrap/search.footer.default']='1.12';
+$versions['html_wrap/search.header.default']='1.13';
+$versions['html_wrap/slideshow.footer.default']='1.14';
+$versions['html_wrap/slideshow.header.default']='1.10';
+$versions['html_wrap/wrapper.footer.default']='1.11';
+$versions['html_wrap/wrapper.header.default']='1.20';
+$versions['includes/add_photos/add_admin.inc']='1.2';
+$versions['includes/add_photos/add_applet.cfg']='1.1';
+$versions['includes/add_photos/add_applet.inc']='1.6';
+$versions['includes/add_photos/add_applet_mini.cfg']='1.1';
+$versions['includes/add_photos/add_applet_mini.inc']='1.6';
+$versions['includes/add_photos/add_form.inc']='1.11';
+$versions['includes/add_photos/add_form_one.inc']='1.2';
+$versions['includes/add_photos/add_other.inc']='1.8';
+$versions['includes/add_photos/add_url.inc']='1.9';
+$versions['includes/slideshow/applet.cfg']='1.1';
+$versions['includes/slideshow/applet.inc']='1.8';
+$versions['includes/slideshow/high.inc']='1.9';
+$versions['includes/slideshow/low.inc']='1.9';
+$versions['index.php']='1.47';
+$versions['init.php']='1.99';
+$versions['js/client_sniff.js']='1.2';
+$versions['layout/adminbox.inc']='1.18';
+$versions['layout/breadcrumb.inc']='1.23';
+$versions['layout/commentbox.inc']='1.18';
+$versions['layout/commentboxbottom.inc']='1.14';
+$versions['layout/commentboxtop.inc']='1.18';
+$versions['layout/commentdraw.inc']='1.23';
+$versions['layout/ml_pulldown.inc']='1.47';
+$versions['layout/navigator.inc']='1.30';
+$versions['layout/navphoto.inc']='1.35';
+$versions['layout/navtablebegin.inc']='1.3';
+$versions['layout/navtableend.inc']='1.2';
+$versions['layout/navtablemiddle.inc']='1.2';
+$versions['layout/searchdraw.inc']='1.15';
+$versions['layout/watermarkform.inc']='1.12';
+$versions['lib/Form.php']='1.11';
+$versions['lib/lang.php']='1.30';
+$versions['lib/voting.php']='1.3';
+$versions['login.php']='1.51';
+$versions['manage_users.php']='1.34';
+$versions['manifest.inc']='1.7';
+$versions['modify_user.php']='1.35';
+$versions['move_album.php']='1.47';
+$versions['move_photo.php']='1.85';
+$versions['multi_create_user.php']='1.12';
+$versions['new_password.php']='1.9';
+$versions['nls.php']='1.38';
+$versions['photo_owner.php']='1.17';
+$versions['platform/fs_unix.php']='1.21';
+$versions['platform/fs_win32.php']='1.25';
+$versions['poll_properties.php']='1.14';
+$versions['poll_results.php']='1.17';
+$versions['progress_uploading.php']='1.31';
+$versions['publish_xp.php']='1.33';
+$versions['publish_xp_docs.php']='1.21';
+$versions['register.php']='1.20';
+$versions['rename_album.php']='1.51';
+$versions['reset_votes.php']='1.9';
+$versions['resize_photo.php']='1.46';
+$versions['rotate_photo.php']='1.44';
+$versions['rss.php']='1.12';
+$versions['save_photos.php']='1.94';
+$versions['search.php']='1.60';
+$versions['secure.sh']='1.12';
+$versions['session.php']='1.34';
+$versions['setup/.htaccess']='1.16';
+$versions['setup/backup_albums.php']='1.17';
+$versions['setup/check.inc']='1.41';
+$versions['setup/check_imagemagick.php']='1.22';
+$versions['setup/check_mail.php']='1.8';
+$versions['setup/check_netpbm.php']='1.31';
+$versions['setup/check_versions.php']='1.18';
+$versions['setup/config_data.inc']='1.223';
+$versions['setup/confirm.inc']='1.87';
+$versions['setup/constants.inc']='1.41';
+$versions['setup/defaults.inc']='1.30';
+$versions['setup/diagnostics.php']='1.21';
+$versions['setup/frame_test.php']='1.5';
+$versions['setup/functions.inc']='1.187';
+$versions['setup/ghcc.php']='1.8';
+$versions['setup/gpl.txt']='1.6';
+$versions['setup/index.php']='1.61';
+$versions['setup/init.php']='1.44';
+$versions['setup/login.inc']='1.9';
+$versions['setup/mod_rewrite.template']='1.8';
+$versions['setup/php_value.template']='1.10';
+$versions['setup/php_value_ok.php']='1.5';
+$versions['setup/phpinfo.php']='1.9';
+$versions['setup/session_test.php']='1.23';
+$versions['setup/write.inc']='1.59';
+$versions['skins/jenskin/css/embedded_style.css']='1.2';
+$versions['skins/jenskin/css/standalone_style.css']='1.3';
+$versions['slideshow.php']='1.64';
+$versions['sort_album.php']='1.28';
+$versions['tools/build_manifest.php']='1.11';
+$versions['tools/find_orphans.php']='1.7';
+$versions['upgrade_album.php']='1.32';
+$versions['upgrade_users.php']='1.10';
+$versions['user_preferences.php']='1.32';
+$versions['util.php']='1.409';
+$versions['view_album.php']='1.240';
+$versions['view_comments.php']='1.32';
+$versions['view_photo.php']='1.193';
+$versions['view_photo_properties.php']='1.38';
+$versions['watermark_album.php']='1.11';
+?>

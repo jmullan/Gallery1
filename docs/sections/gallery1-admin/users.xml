@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-admin.users">
+ <title>Users and Permissions</title>
+ 
+ <para>
+  Since some of the early release of Gallery, Gallery has supported multiple
+  users.  This allows administrators to give individual and separate users
+  different permissions, based on the administrator's wishes.  Admins can
+  give each user his or her own album, or allow certain users to perform certain
+  operations on a certain set of albums.
+ </para>
+ <para>
+  Managing users in Gallery is extremely simple.  When you are logged in as
+  an administrator, simply click "[manage users]" on the main
+  Gallery screen.  Here you can add new users, edit existing users, and delete
+  users.
+ </para>
+ <para>
+  Once you have created some users, you can give the users permissions.  If you'd
+  like to give a certain user a certain permission on an album, simply click on
+  "[permissions]" by an album (if it's a top level album), navigate into the
+  album and click "[permissions]" (sub-album or top level album), or select
+  "Permissions" from the drop down box underneath an album (sub-album only).
+  This will bring up a permissions dialog, which you can give certain users
+  permissions for the album.
+  <note>
+   <simpara>
+    Gallery's permissions are <emphasis>not</emphasis> inherited.  This means
+    that a parent album's permissions are not taken into account when Gallery
+    decides whether a user has access to an album.  This is different, for
+    instance, than the Unix permission system, which is inherited.
+   </simpara>
+  </note>
+  <itemizedlist>
+   <listitem>
+    <para>
+     Album Owner -- The album owner has all the permissions an administrator has
+     for that album.  The album owner can add and edit everything about the album,
+     as well as edit the permissions for the album.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Users who can see the album -- Self-explanatory.  Anyone in this box can
+     see the album and navigate through it.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Users who can change album text -- Users who can change captions under images, 
+     the album description, the album title, and an item's custom fields.
+    </para>
+   </listitem>
+   <listitem> 
+    <para>
+     Users who can add photos -- Self-explanatory.  Anyone in this box can add photos
+     to the album.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Users who can modify photos -- Users who can move the album (i.e. position), 
+     rename the album, reset the album's click counter, edit thumbnails, rotate/flip
+     photos, change the album highlight, move photos (i.e. position), and hide
+     photos.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Users who can delete photos -- Self-explanatory.  Anyone in this box can
+     delete photos.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Users who can create sub albums -- Self-explanatory.  Anyone in this box can
+     create sub albums within the album.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Users who can view full (original) images -- Anyone in this box can view the
+     full image (<emphasis>not the resized image</emphasis>.  Anyone who can see
+     the album [see above] can see the thumbnail and resized version of the image).
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+      Users who can add comments -- Self-explanatory.  Anyone in this box can add
+      comments to gallery.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+      Users who can view comments -- Self-explanatory.  Anyone is this box can view
+      comments made by other users.  This includes the ability to search for images
+      by comments.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </para> 
+ <para>
+  Also included in the Gallery permissions system, there are 3 psuedo-users that
+  represent groups of users.
+  <itemizedlist>
+   <listitem>
+    <para>
+     EVERYBODY -- Represent every user, logged in or not
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     LOGGEDIN -- Represents every logged in user
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     NOBODY -- Excludes all users, logged in or not
+    </para>
+   </listitem>
+  </itemizedlist>
+  <note>
+   <simpara>
+    Even if certain permissions are set to NOBODY, administrators and album
+    owners will still have access to these functions
+   </simpara>
+  </note>
+ </para>
+</sect1>

@@ -1,0 +1,54 @@
+
+Localization in Gallery 2.0
+
+[[ XXX - work in progress                                  ]]
+
+======================================================================
+The implementation of localization is inspired by phpNuke.
+
+In the gallery directory will be a directory called "language", within 
+are directories for every available language in the Gallery
+installation. Within a language directory is a file called 
+"language.inc". For example, in the case of english there will be a 
+file:
+
+  <gallery dir>/language/eng/language.inc
+
+global.inc contains a a constant definition for every block of text
+that appears in a Gallery page. An example of such a definition:
+
+  define("_EDIT_OPTIONS_SAVE_CONFIRM", "Are you sure?");
+
+All language constants have an underscore prefix and are all-caps. 
+Multiple word constants have words seperated by underscores.
+
+Language constant keywords should use a very specific, declarative
+form. It should be clear from the keyword exactly where this text
+is used. For example, the admin login label on the view_album page
+might be _VIEW_ALBUM_COMMAND_LOGIN.
+
+Layout specific localization
+=====================================================================
+Because the layouts may also display, the application will attempt to
+load language constants from them as well. It will look in the 
+layout's directory for the appropriate language file. In the case of
+english:
+
+  <gallery dir>/layout/<layout name>/language/eng/language.inc
+
+It's up to the layout to use the constants it defines. 
+
+Language configuration
+======================================================================
+In the first pass, language is not user selectable. It is a Gallery-
+wide setting, configured in the configuration wizard. 
+
+the next level of sophistication (given time) is to have a Gallery-wide
+(or album) config parameter: "allow user to choose language". If enabled
+a new command would appear on the Album page "[language]". Clicking
+this would bring up a dialog to allow the user to choose from the 
+available languages. This would be stored in the session, and possibly
+in a cookie.
+
+(2001-11-27 21:24 mrm: when would we *not* want to allow the user to
+choose the language?)
