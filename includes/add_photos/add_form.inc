@@ -80,7 +80,7 @@ if (!isset($metaboxes)) {
 			array("name" => "upload_form",
 				"enctype" => "multipart/form-data",
 				"method" => "POST")); ?>
-<input type="hidden" name="max_file_size" value="10000000">
+
 <table class="popup">
 <tr>
 	<td colspan="2"><?php echo _("2. Use the Browse button to find the photos on your computer") ?></td>
