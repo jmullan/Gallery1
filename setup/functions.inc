@@ -65,7 +65,7 @@ function no_feature($feature, $cause) {
 	return "\$app->feature[\"$feature\"] = 0; // ($cause)\n";
 }
 function error_missing($desc) {
-	return error("Missing value: <b>$desc</b>!");
+	return error_format("Missing value: <b>$desc</b>!");
 }
 function row_wrap($buf) {
 	return "<tr><td><code>$buf</td></tr>";
@@ -128,7 +128,7 @@ function check_mod_rewrite()
 	return array($success, $fail);
 }
 
-function check_graphics()
+function check_graphics($location="")
 {
 	global $app;
 
@@ -151,7 +151,11 @@ function check_graphics()
 	);
 
 	foreach ($netpbm as $bin) {
-		$d = locateDir($bin, $app ? $app->pnmDir : "");
+		if ($location) {
+			$d = locateDir($bin, $location);
+		} else {
+			$d = locateDir($bin, $app ? $app->pnmDir : "");
+		}
 		if (!$d) {
 			$missing[$bin] = "Can't find <i>$bin</i>!";
 		}
@@ -188,5 +192,54 @@ function makePathWrapper($path, $app)
 		" ; $app %s)&#039;";
 }
 
+function detect_exec_status() 
+{
+	global $app;
+
+	if ($app && isset($app->expectedExecStatus)) {
+		return $app->expectedExecStatus;
+	}
+
+	// If PHP is compiled with the --enable-sigchild option, then every 
+	// exec() call returns an error status of -1.  WTF?!?!  Sigh.  So
+	// Let's do some checking on some pretty standard programs and see
+	// what they return.
+	$progs = array(
+		"ls",
+		"echo",
+		"hostname",
+		"pwd",
+		"df",
+		"ps",
+		"sync",
+	);
+
+	foreach ($progs as $prog) {
+		$dir = locateDir($prog);
+		if ($dir) {
+			$file = "$dir/$prog";
+			if (is_executable($file)) {
+				exec($file, $results, $status);
+				$count[$status]++;
+			} 
+		}
+	}
+
+	if (count($count) == 0) {
+		// Nothing!  :-(  Hope for the best.
+		return 0;
+	} else {
+		// Return the one that we see the most of.
+		$max = -1;
+		foreach ($count as $key => $val) {
+			if ($val > $max) {
+				$status = $key;
+				$max = $val;
+			}
+		}
+	}
+
+	return $status;
+}
 ?>
 

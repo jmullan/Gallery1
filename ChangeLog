@@ -1,3 +1,30 @@
+2001-04-06  Bharat Mediratta  <bharat@menalto.com>
+
+	* Released 1.0!
+
+	* If you compile PHP with the --enable-sigchild option, every call to
+	  exec() will return a status of -1.  We now run some tests in the
+	  config wizard to detect this condition and keep track of the
+	  expected error status code.  If we guess wrong, you can always
+	  modify it yourself.
+
+	* Added a verify function to check to see if you provided the
+	  right path to your NetPBM binaries on the confirm page.
+
+2001-04-02  Bharat Mediratta  <bharat@menalto.com>
+
+	* Released 1.0b10
+	
+	* Removed the initial redirect that happens when you don't specify a page. 
+	  This was breaking Konqueror, and it was also messing up our neat short 
+	  urls. 
+	
+	* If rewrite is on, use the short URL for navigation also, instead of  
+	  view_album.php.  This preserves the album name in the URL while browsing. 
+	
+	* Fixed a bug in the table width; we were hardcoding it to 400 pixels instead 
+	  of calculating it from the width of the thumbnails * num of columns.
+
 2001-03-27  Bharat Mediratta  <bharat@menalto.com>
 
 	* Added code to track the version of Gallery used to create a

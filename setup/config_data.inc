@@ -1,4 +1,22 @@
 <?
+
+$common_messages["getting-netpbm"] =
+			"Gallery prefers NetPBM version 9.9 and up.  " .
+			"You can install the entire NetPBM package from " .
+			"<a href=http://sourceforge.net/projects/netpbm>NetPBM on SourceForge</a> " .
+			"or you can install just the binaries Gallery needs from " .
+			"<a href=http://sourceforge.net/projects/gallery>Gallery on SourceForge</a>. ".
+			"<b>Note:</b> You can install the binaries from the Gallery site even ".
+			"if you don't have root access on your box!  If Gallery does not have the ".
+			"specific binaries for your hardware/software combination post a request ".
+			"On the Gallery website and we'll build them for you.";
+			
+$common_messages["fail-netpbm-partial"] =
+			"I've found part of NetPBM, but some critical components " .
+			"are missing (see below).  Perhaps your version of NetPBM is out of date?  " .
+			$common_messages["getting-netpbm"];
+
+
 $checklist = array(
 	"php4" => array(
 		"desc" => "Check to see if you are running PHP 4.  Note that some versions of PHP ".
@@ -69,33 +87,15 @@ $checklist = array(
 		"func" => "check_graphics",
 		"fail-netpbm" => "I can't find NetPBM.  If it's installed, it's not in " .
 			"the path of the webserver user.  If it's not installed, you have " .
-			"two choices.  You can install the entire NetPBM package from " .
-			"<a href=http://sourceforge.net/projects/netpbm>NetPBM on SourceForge</a>. " .
-			"or you can install just the binaries Gallery needs from " .
-			"<a href=http://sourceforge.net/projects/gallery>Gallery on SourceForge</a> ".
-			"<b>Note:</b> You can install the binaries from the Gallery site even ".
-			"if you don't have root access on your box!  If gallery does not have the ".
-			"specific binaries for your hardware/software combination post a request ".
-			"On the Gallery website and we'll build them for you." .
+			"two choices.  " .
+			$common_messages["getting-netpbm"],
+
+		"fail-netpbm-partial" => 
+			$common_messages["fail-netpbm-partial"] . 
 			"<p><b> If NetPBM is installed and Gallery isn't finding it automatically " .
 			"that's OK -- that just means you'll have to specify the path to NetPBM " .
 			"by hand on the following page </b>",
-		"fail-netpbm-partial" => "I've found part of NetPBM, but some critical components " .
-			"are missing (see below).  Perhaps your version of NetPBM is out of date?  " .
-			"Gallery prefers NetPBM version 9.9 and up.  " .
-			"You can install the entire NetPBM package from " .
-			"<a href=http://sourceforge.net/projects/netpbm>NetPBM on SourceForge</a> " .
-			"or you can install just the binaries Gallery needs from " .
-			"<a href=http://sourceforge.net/projects/gallery>Gallery on SourceForge</a>. ".
-			"<b>Note:</b> You can install the binaries from the Gallery site even ".
-			"if you don't have root access on your box!  If gallery does not have the ".
-			"specific binaries for your hardware/software combination post a request ".
-			"On the Gallery website and we'll build them for you." .
-			"<p><b> If NetPBM is installed and Gallery isn't finding it automatically " .
-			"that's OK -- that just means you'll have to specify the path to NetPBM " .
-			"by hand on the following page </b>",
-	
-	),
+	)
 );
 
 $features = array(
@@ -119,7 +119,11 @@ $constants = array(
 	),
 	"pnmDir" => array(
 		"desc" => "The filesystem path to your NetPBM binaries.",
-		"value" => locateDir("jpegtopnm", $app ? $app->pnmDir : "")
+		"value" => locateDir("jpegtopnm", $app ? $app->pnmDir : ""),
+		"verify_func" => "check_graphics",
+		"fail-netpbm" => "I can't find NetPBM at the location you provided.  " .
+			$common_messages["getting-netpbm"],
+		"fail-netpbm-partial" => $common_messages["fail-netpbm-partial"],
 	),
 	"highlight_size" => array(
 		"desc" => "The target size (in pixels) of thumbnails " .
@@ -176,6 +180,11 @@ $constants = array(
 		desc => "Turn debug mode on so that you can diagnose problems?",
 		choices => array("yes", "no"),
 		value => "no",
+	),
+	"expectedExecStatus" => array(
+		desc => "(Advanced) Status code returned by a successful exec() call." .
+			"  You probably won't need to change this value",
+		value => detect_exec_status()
 	),
 );
 

@@ -63,7 +63,7 @@ foreach ($constants as $key => $val) {
 		eval("\$$key = $tmp;");
 	}
 
-	if (!$$key) {
+	if (!strcmp($$key, "")) {
 		if ($constants[$key]["optional"]) {
 			$data .= "// optional <i>$key</i> missing\n";
 			$view .= row_wrap("// optional <i>$key</i> missing");
@@ -122,6 +122,22 @@ foreach ($constants as $key => $val) {
 		if (!$constants[$key]["dont-write"]) {
 			$data .= one_constant($key, $$key);
 			$view .= row_wrap(one_constant($key, $$key));
+		}
+
+		if ($constants[$key]["verify_func"]) {
+			$func = $constants[$key]["verify_func"];
+			list($success, $fail) = $func($$key);
+			foreach ($fail as $fkey => $fval) {
+				$view .= row_wrap(error_format($constants[$key][$fkey]));
+				if (is_array($fval)) {
+					foreach ($fval as $msg) {
+						if ($val) {
+							$view .= row_wrap(error_format($msg));
+						}
+					}
+				}
+				$error = 1;
+			}
 		}
 	}
 }
