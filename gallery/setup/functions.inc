@@ -33,9 +33,9 @@ function make_attrs($attrList) {
 
 function make_fields($key, $arr) {
 	$col1 = $arr["prompt"];
-	if ($arr["choices"]) {
+	if (isset($arr["choices"])) {
 		$col2 = form_choice($key, $arr);
-	} else if ($arr["multiple_choices"]) {
+	} else if (isset($arr["multiple_choices"])) {
 		$col2 = form_multiple_choice($key, $arr);
 	} else if (!strcmp($arr["type"], "textarea")) {
 		$col2 = form_textarea($key, $arr);

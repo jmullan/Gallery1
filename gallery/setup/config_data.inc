@@ -420,7 +420,7 @@ $constants = array_merge(
 			3 => "3: " . _("The User can choose the language via select Box.")),
 		"value" => 1
 	),
-	available_lang => array(
+	"available_lang" => array(
 		"prompt" => _("Available languages in mode 3"), 
 		"optional" => 1, 
 		"desc" => _("These languages will be available as user choices in a drop down menu, if you have chosen ML mode 3") .
