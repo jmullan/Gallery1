@@ -285,6 +285,11 @@ $defaults = array(
 		desc => "Display search engine on main Gallery page?",
 		choices => array("yes", "no"),
 		value => "yes",
+	),
+	"useOriginalFileNames" => array(
+                desc => "Use original files names for gallery storage?",
+                choices => array("yes", "no"),
+                value => "no",
 	)
 );
 ?>

@@ -98,7 +98,7 @@ if ($gallery->session->albumName && isset($index)) {
 							echo "- Creating Thumbnail<br>";
 							my_flush();
 						}
-						$err = $postAlbum->addPhoto($myfile, $mytype, $pathToThumb);
+						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, $pathToThumb);
 						if (!$err) {
 							$newPhotoIndex = $postAlbum->numPhotos(1);
 							// Set the caption of the new photo

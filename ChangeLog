@@ -1,3 +1,11 @@
+2001-07-08  John Kirkland <jpk@bl.org>
+
+	* Added the ability to retain original file names when uploading.  
+	  All non-alpha-numeric characters are converted to underscores.
+	  This feature is a gallery-admin level config.  If dup names are found
+	  during upload, gallery will find a unique name based on the
+	  original.  This is feature #429716 from sf.
+
 2001-07-07  John Kirkland <jpk@bl.org>
 
 	* Added a click counter to photos and albums.  This feature
@@ -6,7 +14,8 @@
 	  gallery will increment a click counter and display the results
 	  in the view_album.php and albums.php screens.  Admin functions
 	  exist at an album level to enable the viewing of click counts 
-	  and to reset click counts back to zero.
+	  and to reset click counts back to zero.  This is feature #424728
+	  from sf.
 
 2001-07-06  John Kirkland <jpk@bl.org>
 

@@ -10,6 +10,6 @@ if (!$gallery) {
 }
 
 $gallery->version = "1.2-cvs";
-$gallery->config_version = 20;
+$gallery->config_version = 21;
 $gallery->url = "http://gallery.sourceforge.net";
 ?>

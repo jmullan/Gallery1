@@ -237,10 +237,31 @@ class Album {
 		}
 	}
 
-	function addPhoto($file, $tag, $pathToThumb="") {
-		$dir = $this->getAlbumDir();
-		$name = $this->newPhotoName();
+	function addPhoto($file, $tag, $originalFilename, $pathToThumb="") {
+		global $gallery;
 
+		$dir = $this->getAlbumDir();
+		if (!strcmp($gallery->app->default["useOriginalFileNames"], "yes")) {
+			$name = $originalFilename;
+			// check to see if a file by that name already exists
+			if (file_exists("$dir/$name.$tag")) {
+				// append a 3 digit number to the end of the filename if it exists already
+				if (!preg_match("/_\d\d\d$/", $name)) {
+					$name = $name . "_001";
+				}
+				// increment the 3 digits until we get a unique filename
+				while (file_exists("$dir/$name.$tag")) {
+					$name++;
+				}
+			}
+		} else {
+			$name = $this->newPhotoName();
+			// do filename checking here, too... users could introduce a duplicate 3 letter
+			// name if they switch original file names on and off.
+			while (file_exists("$dir/$name.$tag")) {
+				$name = $this->newPhotoName();
+			}
+		}
 		/* Get the file */
 		copy($file, "$dir/$name.$tag");
 

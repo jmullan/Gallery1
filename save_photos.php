@@ -232,11 +232,15 @@ while (sizeof($userfile)) {
 function process($file, $tag, $name) {
 	global $gallery;
 
+	// parse out original filename without extension
+	$originalFilenameArray = preg_split ( "/.$tag\$/i" , $name);
+	// replace multiple non-word characters with a single "_"
+	$originalFilename = preg_replace("/\W+/", "_", $originalFilenameArray[0]);	
 	set_time_limit(30);
 	if (acceptableFormat($tag)) {
 		msg("- Adding $name");
 
-		$err = $gallery->album->addPhoto($file, $tag);
+		$err = $gallery->album->addPhoto($file, $tag, $originalFilename);
 		if (!$err) {
 			/* resize the photo if needed */
 			if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
