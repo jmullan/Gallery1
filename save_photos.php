@@ -24,7 +24,7 @@
 
 require(dirname(__FILE__) . '/init.php');
 
-list($userfile, $urls, $meta, $usercaption) = getRequestVar(array('userfile', 'urls', 'meta', 'usercaption'));
+list($userfile, $urls, $meta, $usercaption, $setCaption) = getRequestVar(array('userfile', 'urls', 'meta', 'usercaption','setCaption'));
 list($wmName, $wmAlign, $wmAlignX, $wmAlignY) = getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY'));
 
 /* Note from Jens Tkotz, 09.09.2004
