@@ -1192,7 +1192,7 @@ function _getStyleSheetLink($filename, $skinname='') {
 
 	$sheetdefaultdomainname = 'css/'. $_SERVER['HTTP_HOST'] ."/$filename.css";
 	$sheetdefaultname = "css/$filename.css";
-	$sheetdefaultpath = $sheetname;
+	$sheetdefaultpath = dirname(__FILE__) . '/' . $sheetdefaultname;
 
 	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
 		$base = $gallery->app->photoAlbumURL;
@@ -1207,11 +1207,9 @@ function _getStyleSheetLink($filename, $skinname='') {
 	if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
 		$url = "$base/$sheetname";
 	} elseif (fs_file_exists($sheetdefaultpath) && !broken_link($sheetdefaultpath)) {
-		$url = "$base/$sheetdefaultpath";
+		$url = "$base/$sheetdefaultname";
 	} elseif (fs_file_exists($sheetdefaultdomainname) && !broken_link($sheetdefaultdomainname)) {
 		$url = "$base/$sheetdefaultdomainname";
-	} elseif (fs_file_exists($sheetdefaultname) && !broken_link($sheetdefaultname)) {
-		$url = "$base/$sheetdefaultname";
 	} else {
 		$url = "$base/${sheetdefaultname}.default";
 	}
