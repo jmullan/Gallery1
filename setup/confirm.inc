@@ -128,20 +128,16 @@ foreach ($constants as $key => $val) {
 ** foo[bar]. So the result is, the $key=foo[bar] and $$key seems to fail.
 ** The former solution were to do create a string which is like the value 
 ** of $key and put it in $real via eval().
-** This also seems not to work.
-** May Solution is this:
-** if $key contains [] then we know its an array. What we have to do is
-** to catch the first element.
-** So i get the array name via substr. Infact array could be an associative,
-** i use array_keys to get the keys. 
-** This only works an onedimensional arrays !
-** 02/2004 , Jens Tkotz
+** This also seemed not to work.
+** 02/2004, Jens Tkotz
+** 06/2004, Jens Tkotz 
 */
 	if ($bracketStart > 0 && $bracketEnd > 0) {
 		$subKey=substr($key,0, $bracketStart);
+		$subValue=substr($key, $bracketStart+1, $bracketEnd-($bracketStart+1));
 		$newKey=$$subKey;
-		$arrKeys=(array_keys($newKey));
-		$real=$newKey[$arrKeys[0]];
+		key_strip_slashes ($newKey);
+		$real = $newKey[$subValue];
 	} else {
 		$real = $$key;
 	}
