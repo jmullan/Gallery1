@@ -72,7 +72,10 @@ class AlbumDB {
 
 		$dir = $app->albumDir;
 		if (is_dir("$dir/$oldName")) {
-			rename("$dir/$oldName", "$dir/$newName");
+			$success = rename("$dir/$oldName", "$dir/$newName");
+			if (!$success) {
+				return 0;
+			}
 		}
 
 		for ($i = 0; $i < sizeof($this->albumOrder); $i++) {
@@ -80,6 +83,8 @@ class AlbumDB {
 				$this->albumOrder[$i] = $newName;
 			}
 		}
+
+		return 1;
 	}
 
 	function newAlbumName() {
@@ -109,13 +114,16 @@ class AlbumDB {
 
 	function save() {
 		global $app;
+		$success = 0;
 
 		$dir = $app->albumDir;
 		if ($fd = fopen("$dir/albumdb.dat.new", "w")) {
 			fwrite($fd, serialize($this->albumOrder));
 			fclose($fd);
-			system("$app->mv $dir/albumdb.dat.new $dir/albumdb.dat");
+			$success = rename("$dir/albumdb.dat.new", "$dir/albumdb.dat");
 		}
+
+		return $success;
 	}
 }
 

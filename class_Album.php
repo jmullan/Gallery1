@@ -118,7 +118,7 @@ class Album {
 		if ($fd = fopen("$dir/album.dat.new", "w")) {
 			fwrite($fd, serialize($this));
 			fclose($fd);
-			system("$app->mv $dir/album.dat.new $dir/album.dat");
+			rename("$dir/album.dat.new", "$dir/album.dat");
 		}
 	}
 
