@@ -187,7 +187,12 @@ function wait_for_current_photo() {
 	return 0;
     } else {
 	preload_next_photo();
-	reset_timer();
+
+	if (onoff) {
+	    reset_timer();
+	} else {
+	    status = "The slide show is stopped, click Start to resume.";
+	}
     }
 }
 
@@ -280,7 +285,7 @@ $imageDir = $gallery->app->photoAlbumURL."/images";
 $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"; ?>
     <td bgcolor="000000" width="1" height="18"><?=$pixelImage?></td>
     <td width="30%" valign="bottom" align="left">&nbsp;
-      <Input type="button" name="mode" value=" Start " >
+      <Input type="button" name="mode" value=" Start " onClick='start_stop()'>
 <?=
 drawSelect("direction",
 	   array(1 => "forward", -1 => "reverse"),
