@@ -140,6 +140,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option) || iss
 		       "slideshow_low.php",
 		       "sort_album.php",
 		       "tools/find_orphans.php",
+		       "tools/despam-comments.php",
 		       "upgrade_album.php",
 		       "upgrade_users.php",
 		       "user_preferences.php",
