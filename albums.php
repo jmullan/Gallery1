@@ -177,6 +177,11 @@ for ($i = $start; $i <= $end; $i++) {
   <!-- Begin Text Cell -->
   <td align=left valign=top>
   <hr size=1>
+  <? if (!strcmp($gallery->app->showAlbumTree, "yes")) { ?>
+  <table border=0 cellspacing=0 cellpadding=0>
+   <tr>
+    <td valign=top>
+  <? } ?>
   <span class="title">
   <a href=<?=$albumURL?>>
   <?= editField($gallery->album, "title", $edit) ?></a>
@@ -252,6 +257,14 @@ if (!strcmp($gallery->album->fields["public_comments"],"yes")) {
 ?>
   <br><a href="<?= $GALLERY_BASEDIR ?>view_comments.php?set_albumName=<?= $gallery->album->fields["name"]?>">View All Comments</a>
 <?}?>
+<? if (!strcmp($gallery->app->showAlbumTree, "yes")) { ?>
+    </td>
+    <td valign=top>
+    <?= printChildren($gallery->album->fields["name"]); ?>
+    </td>
+   </tr>
+  </table>
+<? } ?>
   </span>
   </td>
   </tr>

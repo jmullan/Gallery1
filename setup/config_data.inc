@@ -250,6 +250,16 @@ $constants = array(
 		"type" => "textarea",
 		"attrs" => array("cols" => 50, "rows" => 5),
 	),
+	"showAlbumTree" => array(
+		"prompt" => "Show the album tree",
+		"desc" => "If you turn this option on, you'll see a complete list " .
+			"of all sub-albums when you're browsing the top level of " .
+			"your Gallery.  This will make navigating to a specific " .
+			"sub album much easier (although it can severely clutter " .
+			"the appearance of the top Gallery page).  Off by default. ",
+		"choices" => array("yes", "no"),
+		"value" => "no"
+	),
 	"jpegImageQuality" => array(
 		"prompt" => "<b>(Advanced)</b> JPEG Quality",
 		"desc" => "The JPEG file format trades off size versus quality.  " .
