@@ -56,6 +56,7 @@
  **/	
 	
 	$nls['charset']['cs_CZ'] =              'ISO-8859-2';
+	$nls['charset']['cs_CZ.iso-8859-2'] =   'ISO-8859-2';
 
 /**
  ** phpNuke
