@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-01-08 16:06+0100\n"
+"POT-Creation-Date: 2004-01-15 17:02+0100\n"
 "PO-Revision-Date: 2004-01-05 13:21+0100\n"
 "Last-Translator: Gunnlaugur Thor Briem <gthb@hi.is>\n"
 "Language-Team:  <>\n"
@@ -54,7 +54,7 @@ msgstr ""
 #: ../sort_album.php:28 ../upgrade_album.php:28 ../upgrade_users.php:28
 #: ../user_preferences.php:28 ../util.php:28 ../view_album.php:28
 #: ../view_comments.php:31 ../view_photo.php:28
-#: ../view_photo_properties.php:28
+#: ../view_photo_properties.php:28 ../view_photo_properties.php:39
 msgid "Security violation"
 msgstr "Öryggisbrot"
 
@@ -268,7 +268,7 @@ msgstr "Engin albúm"
 msgid "%d total"
 msgstr "%d alls"
 
-#: ../albums.php:116 ../view_album.php:275
+#: ../albums.php:129 ../view_album.php:276
 msgid "1 image"
 msgstr "1 mynd"
 
@@ -667,7 +667,7 @@ msgstr "Afrita mynd"
 #: ../copy_photo.php:59
 #, php-format
 msgid "Invalid album selected: %s"
-msgstr "Ógilt albúm valið"
+msgstr "Ógilt albúm valið: %s"
 
 #: ../copy_photo.php:63 ../copy_photo.php:136
 #, php-format
@@ -974,7 +974,7 @@ msgstr "Hvaða myndaprentþjónustu viltu<br>bjóða gestum þínum að nota?"
 msgid "with donation"
 msgstr "með peningagjöf"
 
-#: ../edit_appearance.php:219
+#: ../edit_appearance.php:213
 msgid "without donation"
 msgstr "án peningagjafar"
 
@@ -2460,6 +2460,7 @@ msgid "target file size %d kbytes"
 msgstr "miða á skráarstærð: %d kílóbæti"
 
 #: ../util.php:433 ../util.php:463
+#, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> skráarstærð %d kílóbæti"
 
@@ -2658,6 +2659,7 @@ msgid "Powered by %s v%s"
 msgstr "Keyrt á %s útgáfu %s"
 
 #: ../util.php:2661
+#, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Sleppi ógilda tölvupóstfanginu %s"
 
@@ -2667,6 +2669,7 @@ msgid "Note: This is an automatically generated email message sent from the %s w
 msgstr ""
 
 #: ../util.php:2729
+#, php-format
 msgid "Report abuse to %s"
 msgstr "Látið vita af misnotkun með því að senda tölvupóst á %s."
 
@@ -2705,6 +2708,7 @@ msgid "Email not sent"
 msgstr "Tölvupóstur ekki sendur"
 
 #: ../util.php:2822
+#, php-format
 msgid "Last comment %s."
 msgstr "Síðasta athugasemd %s."
 
@@ -2717,6 +2721,7 @@ msgid "Email activity"
 msgstr "Tölvupóstvirkni"
 
 #: ../util.php:2860
+#, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Gat ekki opnað log-skrá (%s)!"
 
@@ -2769,10 +2774,12 @@ msgid "Just a simple solid border around the thumb."
 msgstr "Bara einföld heil lína umhverfis smámyndina."
 
 #: ../util.php:2978
+#, php-format
 msgid "Skipping %s."
 msgstr "Sleppi albúmi %s."
 
 #: ../util.php:2984
+#, php-format
 msgid "Can't open %s"
 msgstr "Get ekki opnað %s"
 
@@ -2796,6 +2803,7 @@ msgid "Testing status of %d files."
 msgstr ""
 
 #: ../util.php:3247
+#, php-format
 msgid "Cannot read file %s."
 msgstr "Get ekki lesið skrána %s."
 
@@ -2846,7 +2854,7 @@ msgstr ""
 msgid "1 sub-album"
 msgstr "Eitt undiralbúm"
 
-#: ../view_album.php:274
+#: ../view_album.php:275
 msgid "sub-albums"
 msgstr "undiralbúm"
 
@@ -2908,7 +2916,7 @@ msgstr "sérsniðin svæði"
 msgid "sort items"
 msgstr "raða myndum"
 
-#: ../view_album.php:349
+#: ../view_album.php:350
 msgid "resize all"
 msgstr "breyta stærð allra"
 

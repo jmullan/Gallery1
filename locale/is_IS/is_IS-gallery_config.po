@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-01-08 16:06+0100\n"
+"POT-Creation-Date: 2004-01-15 17:02+0100\n"
 "PO-Revision-Date: 2003-09-09 13:21+0100\n"
 "Last-Translator: Gunnlaugur Þór Briem <gthb@hi.is>\n"
 "Language-Team:  <>\n"
@@ -144,7 +144,7 @@ msgstr "Áttu í vandræðum? %s, %s og %s eru reynandi."
 msgid "Having problems?  Try the %s and %s."
 msgstr "Áttu í vandræðum? %s og %s eru reynandi."
 
-#: ../setup/check.inc:49
+#: ../setup/check.inc:46
 msgid "Success"
 msgstr "Heppnaðist"
 
@@ -259,6 +259,7 @@ msgid "If that is not right (or if it is blank), re-run the configuration wizard
 msgstr "Ef það er ekki rétt (eða er tómt), keyrðu þá uppsetningarferilinn aftur, og settu inn staðsetningu %s."
 
 #: ../setup/check_imagemagick.php:107 ../setup/check_netpbm.php:106
+#, php-format
 msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
 msgstr "<b>Ath:</b> %s-slóð þín (%s) er ekki hluti af open_basedir-lista þínum, %s"
 
@@ -309,6 +310,7 @@ msgid "can't detect version on Windows"
 msgstr "get ekki numið útgáfu á Windows"
 
 #: ../setup/check_imagemagick.php:233 ../setup/check_netpbm.php:281
+#, php-format
 msgid "OK!  Version: %s"
 msgstr "Í lagi!  Útgáfa: %s"
 
@@ -317,6 +319,7 @@ msgid "Check Mail"
 msgstr "Prófa póst"
 
 #: ../setup/check_mail.php:23
+#, php-format
 msgid "Test email from %s"
 msgstr "Prófa tölvupóst frá %s"
 
@@ -355,6 +358,7 @@ msgid "This enables you to confirm that email is working correctly on your syste
 msgstr "Þetta gerir þér kleift að staðfesta að tölvupóstur virki rétt á kerfi þínu.  Gefðu upp tölvupóstfang þitt hér fyrir neðan; tölvupóstur verður sendur á póstfangið. Ef hann berst, þá veistu að tölvupóstur virkar á kerfinu."
 
 #: ../setup/check_mail.php:44 ../setup/check_mail.php:49
+#, php-format
 msgid "%s not set."
 msgstr "Villa! %s"
 
@@ -832,7 +836,7 @@ msgid "The filesystem path to the <b>unzip</b> binary.  This is optional so if y
 msgstr "Skráaslóðin á <b>unzip</b>-forritið.  Þetta er ekki nauðsynlegt, svo að ef þú ert ekki með það, hafðu þá ekki of miklar áhyggjur af því."
 
 #: ../setup/config_data.inc:380
-#, php-format
+#, fuzzy, php-format
 msgid "The filesystem path to the <b>jhead</b> EXIF parser.  This is optional so if you don't have it, don't worry about it too much.  E.g. %s or %s"
 msgstr "Skráaslóðin á <b>jhead</b>-forritið fyrir EXIF-lestur.  Þetta er ekki nauðsynlegt, svo að ef þú ert ekki með það, hafðu þá ekki of miklar áhyggjur af því."
 
@@ -1193,6 +1197,7 @@ msgid "Turn debug mode on so that you can diagnose problems?"
 msgstr "Virkja aflúsunarham svo að þú getir greint vandamál?"
 
 #: ../setup/config_data.inc:676
+#, php-format
 msgid "Use %s"
 msgstr "Nota %s"
 
@@ -1927,6 +1932,7 @@ msgid "I can read your <b>.htaccess</b> file."
 msgstr "Get lesið .htaccess skrána þína"
 
 #: ../setup/functions.inc:337
+#, php-format
 msgid "PHP v%s is OK."
 msgstr "PHP útgáfa %s er í lagi."
 
@@ -1961,10 +1967,12 @@ msgid "%s is not executable!"
 msgstr "Hef ekki aðgangsheimild til að keyra %s!"
 
 #: ../setup/functions.inc:460
+#, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr "%d af %d NetPBM-forritum fundin."
 
 #: ../setup/functions.inc:516
+#, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr "%d af %d ImageMagick-forritum fundin."
 
@@ -1993,6 +2001,7 @@ msgid "It seems you didn't download any additional languages. This is not a prob
 msgstr "Þú virðist ekki hafa náð í nein önnur tungumál.  Það er ekki vandamál!  Gallery mun aðeins birtast á ensku.  Ath.: ef þetta er ekki rétt, aðgættu þá að allar skrár í locale-möppunni séu lesanlegar fyrir vefþjónsnotandann, eða komdu þér í samband við Gallery-hópinn."
 
 #: ../setup/functions.inc:577
+#, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
 msgstr "%d tungumál eru til staðar.  Ef þig vantar þýðingar, farðu þá á %sGallery download-síðuna%s."
 
@@ -2007,6 +2016,7 @@ msgid "This version of %s was released on %s."
 msgstr "Þessi útgáfa af %s var gefin út %s."
 
 #: ../setup/functions.inc:605
+#, php-format
 msgid "This is a development build of %s that was released on %s."
 msgstr "Þetta er þróunarútgáfa af %s sem var gefin út þann %s."
 
@@ -2014,7 +2024,7 @@ msgstr "Þetta er þróunarútgáfa af %s sem var gefin út þann %s."
 msgid "Please check regularly for updates."
 msgstr "Vinsamlegast athugið reglulega hvort uppfærsla finnst."
 
-#: ../setup/functions.inc:628
+#: ../setup/functions.inc:635
 msgid "All gallery locales are available on this host."
 msgstr "Allar Gallery-þýðingar eru til staðar á þessum þjóni."
 
@@ -2155,14 +2165,16 @@ msgid "this is new in version %s"
 msgstr "þetta er nýtt í útgáfu %s"
 
 #: ../setup/functions.inc:1225
+#, php-format
 msgid "Return to %s."
 msgstr "Til baka í %s"
 
-#: ../setup/functions.inc:1219
+#: ../setup/functions.inc:1226
 msgid "Configuration Wizard"
 msgstr "Gallery: Uppsetningarhamur"
 
 #: ../setup/functions.inc:1277
+#, php-format
 msgid "You must enter a password for the %s account."
 msgstr "Þú verður að gefa upp lykilorð fyrir %s-reikninginn."
 
