@@ -326,7 +326,7 @@ if (!$gallery->album->isMovie($id)) {
 			$gallery->user->canViewFullImages($gallery->album)) {
 		$link = doCommand("", 
 			array("set_fullOnly" => 
-				(isset($gallery->session->fullOnly) &&
+				(!isset($gallery->session->fullOnly) ||
 				 strcmp($gallery->session->fullOnly,"on") 
 				? "on" : "off")),
 			"view_photo.php", 
