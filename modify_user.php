@@ -60,8 +60,12 @@ if ($submit) {
 			$tmpUser->setUsername($uname);
 			$tmpUser->setFullname($fullname);
 			$tmpUser->setEmail($email);
-			$tmpUser->setCanCreateAlbums($canCreate);
-			$tmpUser->setIsAdmin($isAdmin);
+			if (isset($canCreate)) {
+				$tmpUser->setCanCreateAlbums($canCreate);
+			}
+			if (isset($isAdmin)) {
+				$tmpUser->setIsAdmin($isAdmin);
+			}
 
 			// If a new password was entered, use it.  Otherwise leave
 			// it the same.
@@ -69,6 +73,10 @@ if ($submit) {
 				$tmpUser->setPassword($new_password1);
 			}
 			$tmpUser->save();
+
+			if (!strcmp($old_uname, $gallery->session->username)) {
+				$gallery->session->username = $uname;
+			}
 
 			header("Location: manage_users.php");
 		}
