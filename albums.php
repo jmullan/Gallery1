@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<? require_once('init.php'); ?>
+<? require($GALLERY_BASEDIR . "init.php"); ?>
 
 <?
 /* Read the album list */
@@ -41,7 +41,7 @@ if ($gallery->session->albumListPage > $maxPages) {
 
 $navigator["page"] = $gallery->session->albumListPage;
 $navigator["pageVar"] = "set_albumListPage";
-$navigator["url"] = "albums.php";
+$navigator["url"] = makeGalleryUrl("");
 $navigator["maxPages"] = $maxPages;
 $navigator["spread"] = 6;
 $navigator["fullWidth"] = 100;
@@ -50,13 +50,14 @@ $navigator["bordercolor"] = "#DDDDDD";
 
 ?>
 
-
+<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html>
 <head>
 <title><?= $gallery->app->galleryTitle ?></title>
 <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
 </head>
 <body>
+<? } ?>
 
 <!-- gallery.header begin -->
 <?
@@ -79,7 +80,7 @@ if ($gallery->user->isLoggedIn()) {
 }
 
 if ($gallery->user->canCreateAlbums()) { 
-	$adminCommands .= "<a href=do_command.php?cmd=new-album&return=view_album.php?page=1>[new album]</a>&nbsp;";
+	$adminCommands .= "<a href=" . doCommand("new-album", "", "view_album.php") . ">[new album]</a>&nbsp;";
 }
 
 if ($gallery->user->isAdmin()) {
@@ -88,7 +89,7 @@ if ($gallery->user->isAdmin()) {
 
 if ($gallery->user->isLoggedIn()) {
 	$adminCommands .= '<a href="#" onClick="'.popup("user_preferences.php").'">[preferences]</a>&nbsp;';
-	$adminCommands .= "<a href=do_command.php?cmd=logout&return=albums.php>[logout]</a>";
+	$adminCommands .= "<a href=". doCommand("logout", "", "albums.php"). ">[logout]</a>";
 } else {
 	$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[login]</a>';
 }
@@ -100,12 +101,12 @@ $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = "#DDDDDD";
 $adminbox["top"] = true;
-include ("layout/adminbox.inc");
+include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 ?>
 
 <!-- top nav -->
 <?
-include("layout/navigator.inc");
+include($GALLERY_BASEDIR . "layout/navigator.inc");
 ?>
 
 <!-- album table begin -->
@@ -204,7 +205,7 @@ for ($i = $start; $i <= $end; $i++) {
 <!-- album table end -->
 <!-- bottom nav -->
 <?
-include("layout/navigator.inc");
+include($GALLERY_BASEDIR . "layout/navigator.inc");
 ?>
 
 <!-- gallery.footer begin -->
@@ -213,5 +214,8 @@ includeHtmlWrap("gallery.footer");
 ?>
 <!-- gallery.footer end -->
 
+<? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
+<? } ?>
+
