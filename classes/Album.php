@@ -69,10 +69,23 @@ class Album {
 		}
 
 		$everybody = $gallery->userDB->getEverybody();
-		$this->setPerm("canRead", $everybody->getUid(), 1);
-		$this->setPerm("canViewFullImages", $everybody->getUid(), 1);
-		$this->setPerm("canViewComments", $everybody->getUid(), 1);
-		$this->setPerm("canAddComments", $everybody->getUid(), 1);
+		$loggedin = $gallery->userDB->getLoggedIn();
+		switch(isset($gallery->app->default['defaultPerms']) ? $gallery->app->default['defaultPerms'] : "everybody") {
+			case 'loggedin':
+				$this->setPerm("canRead", $loggedin->getUid(), 1);
+				$this->setPerm("canViewFullImages", $loggedin->getUid(), 1);
+				$this->setPerm("canViewComments", $loggedin->getUid(), 1);
+				$this->setPerm("canAddComments", $loggedin->getUid(), 1);
+				break;
+
+			default:
+				$this->setPerm("canRead", $everybody->getUid(), 1);
+				$this->setPerm("canViewFullImages", $everybody->getUid(), 1);
+				$this->setPerm("canViewComments", $everybody->getUid(), 1);
+				$this->setPerm("canAddComments", $everybody->getUid(), 1);
+				break;
+		}
+		
 		$this->fields["parentAlbumName"] = 0;
 		$this->fields["clicks"] = 0;
 		$this->fields["clicks_date"] = time();
@@ -319,13 +332,13 @@ class Album {
 		if ($this->version < 23) {
 			if ($this->fields['public_comments'] == 'yes') {
 			       	$everybody = $gallery->userDB->getEverybody();
-			       	$this->setPerm("canViewComments", $everybody->getUid(), 1);
-			       	$this->setPerm("canAddComments", $everybody->getUid(), 1);
+				$this->setPerm("canViewComments", $everybody->getUid(), 1);
+				$this->setPerm("canAddComments", $everybody->getUid(), 1);
 
 			} else {
 			       	$nobody = $gallery->userDB->getNobody();
-			       	$this->setPerm("canViewComments", $nobody->getUid(), 1);
-			       	$this->setPerm("canAddComments", $nobody->getUid(), 1);
+				$this->setPerm("canViewComments", $nobody->getUid(), 1);
+				$this->setPerm("canAddComments", $nobody->getUid(), 1);
 			}
 		}
 		if ($this->version < 24) {
@@ -1821,7 +1834,7 @@ class Album {
 	function setPerm($permName, $uid, $bool) {
 		if ($bool) {
 			$this->fields["perms"][$permName][$uid] = 1;
-		} else {
+		} elseif (isset($this->fields["perms"][$permName][$uid])) {
 			unset($this->fields["perms"][$permName][$uid]);
 		}
 	}
@@ -1951,12 +1964,12 @@ class Album {
         function canAddComments($uid) {
                 if ($this->isOwner($uid)) {
                         return true;
-                }
+		}
                 return $this->getPerm("canAddComments", $uid);
         }
 
         function setAddComments($uid, $bool) {
-                $this->setPerm("canAddComments", $uid, $bool);
+		$this->setPerm("canAddComments", $uid, $bool);
         }
 
         // -------------
@@ -1968,7 +1981,7 @@ class Album {
         }
 
         function setViewComments($uid, $bool) {
-                $this->setPerm("canViewComments", $uid, $bool);
+		$this->setPerm("canViewComments", $uid, $bool);
         }
 
 	// ------------- 

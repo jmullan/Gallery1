@@ -341,7 +341,7 @@ $constants =  array_merge(
 		"name"		=> "group_embedded",
 		"default"	=> "none",
 	       	"title" => _("Embedded Gallery"),
-	       	"desc" => _("Use this section to set options to configure gallery to be embedded in another web application."),
+		"desc" => _("Use this section to set options to configure gallery to be embedded in another web application."),
 	),
 
 	"embedded_inside_type" => array(
@@ -1177,6 +1177,12 @@ $defaults = array(
 		"desc" => _("Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."),
 		"value" => "yes",
 		"choices" => array("yes" => _("yes"), "no" => _("no"))
+	),
+	"defaultPerms" => array(
+		"prompt" => _("Default Album Permissions"),
+		"desc" => _("Defines the default set of permissions for an album.  Specifically, who can see the album, and view its photos."),
+		"choices" => array("everybody" => _("Everybody"), "loggedin" => _("Logged-In Users")),
+		"value" => "everybody",
 	),
 	"group4_end" => array (
 		"type" => 'group_end',
