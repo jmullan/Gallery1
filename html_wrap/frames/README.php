@@ -55,9 +55,8 @@ Eventually this will contain full instructions for building your own files.  In 
 
 To test you frames, just insert the name of your frame were indicated below.
 <?php
-$GALLERY_BASEDIR="../../";
-include "${GALLERY_BASEDIR}config.php";
-include "${GALLERY_BASEDIR}util.php";
+include (dirname(dirname(dirname(__FILE__))) . '/config.php');
+include (dirname(dirname(dirname(__FILE__))) . '/util.php');
 
 $gallery->html_wrap['frame'] = "polaroid"; /*** PUT YOUR FRAME DIR HERE ***/
 $gallery->html_wrap['borderColor'] = "#AAAAFF";
