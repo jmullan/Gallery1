@@ -211,10 +211,10 @@ if ($gallery->album->fields["textcolor"]) {
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
-<?php } ?>
-<?php includeHtmlWrap("album.header"); ?>
+<?php }
+includeHtmlWrap("album.header");
 
-<?php if (!$gallery->session->offline) { ?>
+if (!$gallery->session->offline) { ?>
 
   <script language="javascript1.2" type="text/JavaScript">
   <!-- //
@@ -250,9 +250,8 @@ if ($gallery->album->fields["textcolor"]) {
   } 
   //--> 
   </script>
-<?php } ?>
+<?php }
 
-<?php 
 function showChoice($label, $target, $args, $class="popup") {
     global $gallery, $showAdminForm;
     if (!$showAdminForm)
@@ -573,7 +572,7 @@ if ($gallery->album->getPollShowResults())
 	print $buf;
        	if ($results)
        	{
-	       	print '<a href="' . makeGalleryUrl("poll_results.php",
+	       	print "\n". '<a href="' . makeGalleryUrl("poll_results.php",
 	       	array("set_albumName" => $gallery->session->albumName)).
 		      	'">' ._("See full poll results") . '</a><br>';
        	}
@@ -634,12 +633,11 @@ if (canVote())
      }
  }
    </script>
- 		<table width="100%"><tr><td align=center>
-                <?php if (canVote()) { ?>
+<?php if (canVote()) { ?>
+	<div align="center">
  		<input type=submit name="Vote" value="<?php print _("Vote") ?>">
-                <?php } ?>
- 		</td></tr></table>
-<?php
+	</div>
+<?php }
 }
 ?>
 <?php
@@ -649,7 +647,6 @@ if ($page == 1)
 } ?>
 
 <!-- image grid table -->
-<br>
 <table width="<?php echo $fullWidth ?>" border="0" cellspacing="0" cellpadding="7">
 <?php
 $numPhotos = $gallery->album->numPhotos(1);
@@ -887,8 +884,9 @@ if ($numPhotos) {
 				}
 			}
 		       	echo "</td></tr></table>\n";
+
 		       	if (canVote()) {
-				print '<table><tr><td align="left">';
+				print '<table><tr><td align="center">';
 			       	addPolling($gallery->album->getVotingIdByIndex($i),
 					       	$form_pos, false);
 			       	$form_pos++;
@@ -903,11 +901,12 @@ if ($numPhotos) {
 					$label = _("Photo");
 				}
 			       	if (canVote()) {
-				       	print '</td></tr><tr><td align="left">';
+				       	echo '</td></tr>';
+					echo "\n" . '<tr><td align="center">';
 				}
-				echo("<select style='FONT-SIZE: 10px;' name='s$i' ".
+				echo("\n\t<select style='FONT-SIZE: 10px;' name='s$i' ".
 					"onChange='imageEditChoice(document.vote_form.s$i)'>");
-				echo("<option value=''>&laquo; ". _("Edit") . " $label &raquo;</option>");
+				echo("\n\t\t<option value=''>&laquo; ". _("Edit") . " $label &raquo;</option>");
 			}
 			if ($gallery->album->getItemOwnerModify() && 
 			    $gallery->album->isItemOwner($gallery->user->getUid(), $i) && 
@@ -1076,18 +1075,13 @@ if ($numPhotos) {
 
 <?php if ($displayCommentLegend) { //display legend for comments ?>
 <span class="error">*</span><span class="fineprint"> <?php echo _("Comments available for this item.") ?></span>
-<br><br>
-<?php } ?>
+<br>
+<?php }
 
-<?php
-if (canVote())
-{
-?>
-	<table width="100%">
-	<tr>
-		<td align="center"><input type=submit name="Vote" value="<?php print _("Vote") ?>"></td>
-	</tr>
-	</table>
+if (canVote()) { ?>
+<p align="center">
+	<input type=submit name="Vote" value="<?php print _("Vote") ?>">
+</p>
 <?php
 }
 

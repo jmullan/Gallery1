@@ -15,6 +15,10 @@ $frame = $gallery->html_wrap['frame'];
 
 if (isset($gallery->html_wrap['base'])) {
 	$base = $gallery->html_wrap['base'];
+	if (!realpath($base)) {
+		print _("Security violation") ."\n";
+		exit;
+	}
 }
 
 if (!empty($href) ) {

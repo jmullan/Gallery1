@@ -816,12 +816,19 @@ $constants = array_merge($constants,
 			"choices" => displayNameOptions(), 
 			"value" => "!!FULLNAME!! (!!USERNAME!!)",
 			),
-	"comments_addInside" => array(
+	"comments_addType" => array(
 			"prompt"	=> _("Add Comments inside the photo page"),
 			"desc"		=> _("Do you want to have the possibility to add comments inside the view photo page, or do you prefer a link to a popup"),
 			"choices"	=> array ("popup" => _("Popup"), "inside" => _("Inside")),
 			"value"		=> "popup"
 			),
+	"comments_length" => array(
+			"prompt"	=> _("Maximum length of Comments"),
+			"desc"		=> _("Enter a suitable value for the maximum length of comments to prevent abuse."),
+			"type" 		=> "text",
+			"must-be-number" => 1,
+			"value"		=> 300
+	),
 	"group_comments_end" => array (
 		"type"          => "group_end",
         ),

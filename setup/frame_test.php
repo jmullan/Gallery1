@@ -19,20 +19,16 @@
  *
  * $Id$
  */
-   $GALLERY_BASE=dirname(dirname(__FILE__));
-   include($GALLERY_BASE . "/util.php");
-   /* Load bootstrap code */
-   if (getOS() == OS_WINDOWS) {
-      include($GALLERY_BASE . "/platform/fs_win32.php");
-   } else {
-      include($GALLERY_BASE . "/platform/fs_unix.php");
-   }
-   echo doctype()."\n";
+?>
+<?php
+	include(dirname(__FILE__) . '/init.php');
+	doctype();
 ?>
 <html>
 <head>
-  <title> <?php echo _("Gallery Configuration :: Frames") ?> </title>
-  <?php echo _getStyleSheetLink("config"); ?>
+  <title> <?php echo _("Gallery Configuration") .':: '. _("Frames") ?> </title>
+  <?php common_header(); ?>
+
 	<!--
 		This Javascript and the Tabs are inspired by the Horde Forms code
 	-->
@@ -67,7 +63,7 @@
         $names["solid"] = _("Solid");
         $descriptions["solid"] = _("Just a simple solid border around the thumb.");
 
-        $dir = $GALLERY_BASE . '/html_wrap/frames';
+        $dir = GALLERY_BASE . '/html_wrap/frames';
         if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
                 while ($file = readdir($fd)) {
                         $subdir="$dir/$file";
@@ -99,6 +95,7 @@
         foreach (array_keys($names) as $key) {
   //         print '<option value="' . $key . '">' . $names[$key] . '</option>';
         }
+
 ?>
     <table width="100%" cellspacing="0">
     <tr>
@@ -106,8 +103,8 @@
         $count = 0;
         $col = 0;
         foreach (array_keys($names) as $key) {
-           if (isset($_GET['frame'])) {
-              if ($key != $_GET['frame']) {
+           if (isset($HTTP_GET_VARS['frame'])) {
+              if ($key != $HTTP_GET_VARS['frame']) {
                  $tab = "tab";
               } else {
                  $firstkey = $key;
@@ -156,7 +153,7 @@
    $gallery->html_wrap['borderColor'] = $borderColor;
    $gallery->html_wrap['borderWidth'] = 1;
    $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
-   $gallery->html_wrap['imageTag'] = '<img src="../images/movie.thumb.jpg" alt="">';
+   $gallery->html_wrap['imageTag'] = '<img src="../images/movie.thumb.jpg" alt="movie_thumb">';
    $gallery->html_wrap['base'] = "..";
    foreach (array_keys($names) as $key) {
      $display = "none";
@@ -170,5 +167,8 @@
      print "</div>";
    }
 ?>
+<p align="center">
+	<input type="button" name="close" value="<?php echo _("Close Window") ?>" onClick="window.close()">
+</p>
 </body>
 </html>

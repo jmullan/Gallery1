@@ -1,3 +1,23 @@
+2004-05-04 Jens Tkotz <jens@peino.de> 1.4.4-cvs-b93
+
+	* New: Added config option for maximum length of comments.
+
+	* Change: Rewrite of navigator.inc and navphoto.inc
+
+	* Fix: Images for Voting Result Graph were not found when embedded.
+
+	* Fix: Removed Bigger border around breadcrumb when not on search page. (Introduced in b81)
+
+	* Changes in setup/frame_test.php:
+	  - Corrected use of doctype();
+	  - Use of init.php
+	  - Use of constant GALLERY_BASE
+	  - Use of $HTTP_GET_VARS, because $_GET is only available for PHP >=4.1.0
+	  - Use of common_header()
+
+	* Change: Created function drawCommentAddForm which is used inside and in popup 
+		  for unified Layout.
+
 2004-05-04  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b92
 
 	* Change: Don't use makeGalleryHeaderUrl in do_command "logout"
@@ -53,7 +73,7 @@
 2004-05-03  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b86
 
 	* Change: Use " " instead of "<wbr>" to break comment lines.
-	  (Tim pointed out that wbr isn't 4.01 valid.)
+	  (Jens pointed out that wbr isn't valid html.)
 
 	* Fix: Remove extra " from navphoto.inc
 

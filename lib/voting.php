@@ -31,6 +31,7 @@
  * modified from example in PHP Bible
  */
 function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",  $col_1_head=null, $col_2_head=null) {
+	global $gallery;
 	foreach ($array as $value) {
 		if ((IsSet($max_value) && ($value > $max_value)) || (!IsSet($max_value)))  {
 			$max_value = $value;
@@ -62,7 +63,7 @@ function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",  $c
 	$counter = 0;
 	foreach ($array as $name => $value) {
 		$bar_width = $value * $pixels_per_value;
-		$img_url=makegalleryUrl('images/bar.gif');
+		$img_url= $gallery->app->photoAlbumURL .'/images/bar.gif';
 		$string_to_return .= "\n\t<tr>"
 			. "\n\t<td>(". ++$counter .")</td>"
 			. "\n\t<td>$name ($value)</td>"
@@ -310,8 +311,9 @@ function showResultsGraph($num_rows) {
 	}
 
 	$graph=arrayToBarGraph($graph, 300, "border=0");
+	$buf .="\n<br>";
 	if ($graph) {
-                $buf .= "<span class=\"title\">".
+                $buf .="<span class=\"title\">".
 			sprintf(_("Results from %s."),
 					pluralize_n(sizeof($voters), 
 						_("1 voter"), _("voters"), 

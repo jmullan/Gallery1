@@ -36,7 +36,7 @@
 <html>
 <head>
 	<title><?php echo _("Gallery Configuration") ?></title>
-	<?php echo getStyleSheetLink() ?>
+	<?php common_header(); ?>
 
 	<!--
 		This Javascript and the Tabs are inspired by the Horde Forms code

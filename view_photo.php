@@ -52,19 +52,6 @@ if (isset($id)) {
 	$id = $gallery->album->getPhotoId($index);
 }
 
-if (!function_exists('array_search')) {
-        function array_search($needle, $haystack) {
-                for ($x=0; $x < sizeof($haystack); $x++) {
-                        if ($haystack[$x] == $needle) {
-                                return $x;
-                        }
-                }
-                return NULL;
-        }
-}
-
-
-
 if (!empty($votes))
 {
        if (!isset($votes[$id]) && $gallery->album->getPollScale() == 1 && $gallery->album->getPollType() == "critique")
@@ -209,20 +196,29 @@ if (!$title) {
 	$title=$index;
 }
 
-if (isset($comment_text)) {
-	if (!empty($commenter_name) && !empty($comment_text)) {
+if (isset($gallery->app->comments_length)) {
+	$maxlength=$gallery->app->comments_length;
+} else {
+	$maxlength=0;
+}
+
+
+if (isset($save)) {
+	if ( empty($commenter_name) || empty($comment_text)) {
+		$error_text = _("Name and comment are both required to save a new comment!");
+	} elseif ($maxlength >0 && strlen($comment_text) >$maxlength) {
+		$error_text = sprintf(_("Your comment is too long, the admin set maximum length to %d chars"), $maxlength);
+	} else {
 		$comment_text = removeTags($comment_text);
 		$commenter_name = removeTags($commenter_name);
 		$IPNumber = $HTTP_SERVER_VARS['REMOTE_ADDR'];
 		$gallery->album->addComment($id, stripslashes($comment_text), $IPNumber, $commenter_name);
 		$gallery->album->save();
 		emailComments($id, $comment_text, $commenter_name);
-        } else {
-		$comment_error= _("Name and comment are both required to save a new comment!");
-        }
+
+	}
 }
-
-
+$HTTP_POST_VARS;
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype(); ?>
@@ -308,9 +304,9 @@ if ($fitToWindow) {
 <?php
 
 $adminCommands = '';
+$page_url=makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0));
 if (!$gallery->album->isMovie($id)) {
 	print "<a id=\"photo_url\" href=\"$photoURL\" ></a>\n";
-	$page_url=makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0));
 	print '<a id="page_url" href="'. $page_url .'"></a>'."\n";
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$adminCommands .= popup_link("[" . _("resize photo") ."]", 
@@ -516,6 +512,7 @@ if ($bordercolor) {
 </tr>
 </table>
 </form>
+
 <table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
 <tr><td colspan=3>
 <?php
@@ -589,25 +586,24 @@ if ( canVote()) {
 		document.vote_form.submit("Vote");
 	}
 	</script>
-	<p width="<?php echo $mainWidth; ?>" align="center">
 	<?php
-	       print '<input type="hidden" name="id" value="'. $id .'">' . addPolling("item.$id");
+		echo '<input type="hidden" name="id" value="'. $id .'">';
+		echo addPolling("item.$id");
 	?>
 	</form>
-	</p>
 <?php
 }
 
 if ($gallery->album->getPollShowResults()) {
 	echo "\n<!-- Voting Results -->";
-	echo "\n". '<p width="'. $mainWidth .'" align="center">';
+	echo "\n". '<p align="center">';
 	echo showResults("item.$id");
 	echo "\n</p>";
 }
 
 echo "\n<!-- Comments -->";
-if (isset($comment_error)) {
-	echo gallery_error($comment_error);
+if (isset($error_text)) {
+	echo gallery_error($error_text) ."<br><br>";
 }
  
 if ($gallery->user->canViewComments($gallery->album) && $gallery->app->comments_enabled == 'yes') {

@@ -70,6 +70,7 @@ function viewComments($index, $addComments, $page_url) {
         global $gallery;
 	global $commentdraw;
 	global $i;
+	global $commenter_name;
 
 	// get number of comments to use as counter for display loop
 	$numComments = $gallery->album->numComments($index);
@@ -87,30 +88,38 @@ function viewComments($index, $addComments, $page_url) {
 	}
 	
 	if ($addComments) {
-		if (isset($gallery->app->comments_addInside) && $gallery->app->comments_addInside == "popup") {
+		if (isset($gallery->app->comments_addInside) && $gallery->app->comments_addInside == "inside") {
+			echo '<form name="theform" method="post" action="'. $page_url .'">';
+			drawCommentAddForm($commenter_name);
+			echo "</form>";
+		}
+		else {
 			$id = $gallery->album->getPhotoId($index);
 		       	$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
 	       		echo "\n" .'<div align="center" class="editlink">' .
 				popup_link('[' . _("add comment") . ']', $url, 0) .
 				'</div><br>';
 		}
-		else {
-			if ($gallery->user->isLoggedIn() ) { 
-				if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
-					$commenter_name=user_name_string($gallery->user->getUID(), $gallery->app->comments_display_name);
-	        		}
-			} else {
-				$commenter_name='';
-			}
+       	}
 
-			echo "\n" .'<form name="theform" method="post" action="'. $page_url .'">';
-			echo "\n" .'<table class="commentbox" cellpadding="0" cellspacing="0">';
-			echo "\n<tr>";
-			echo "\n\t" .'<td colspan="2" class="commentboxhead">'. _("Add your comment") .'</td>';
-			echo "\n</tr>";
-			echo "\n<tr>";
-			echo "\n\t". '<td class="commentboxhead">'. _("Commenter:") .'</td>';
-			echo "\n\t". '<td class="commentboxhead">';
+}
+
+function drawCommentAddForm($commenter_name='', $cols=50) {
+	global $gallery;
+	if ($gallery->user->isLoggedIn() ) {
+		if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
+			$commenter_name=user_name_string($gallery->user->getUID(), $gallery->app->comments_display_name);
+		}
+	}
+?>
+<table class="commentbox" cellpadding="0" cellspacing="0">
+<tr>
+	<td colspan="2" class="commentboxhead"><?php echo _("Add your comment") ?></td>
+</tr>
+<tr>
+	<td class="commentboxhead"><?php echo _("Commenter:") ?></td>
+	<td class="commentboxhead">
+<?php
 			if (!$gallery->user->isLoggedIn() ) {
 				echo "<input name=\"commenter_name\" value=\"". $commenter_name ."\" size=\"30\">";
 			} else {
@@ -118,23 +127,21 @@ function viewComments($index, $addComments, $page_url) {
 					echo '<input name="commenter_name" value="'.$commenter_name.'" size="30">';
 				} else {
 					echo $commenter_name;
-					echo '<input type="hidden" name="commenter_name" value="" size="30">';
+					echo '<input type="hidden" name="commenter_name" value="'. $commenter_name .'" size="30">';
 				}
 			}
-			echo "\n\t</td>";
-			echo "\n</tr>";
-			echo "\n<tr>";
-			echo "\n\t" .'<td class="commentlabel" valign="top">'. _("Message") . '</td>';
-			echo "\n\t" .'<td><textarea name="comment_text" cols="50" rows="5"></textarea></td>';
-			echo "\n</tr>";
-			echo "\n<tr>";
-			echo "\n\t" .'<td colspan="2" class="commentboxfooter" align="right"><input name="post" type="submit" value="'. _("Post") . '"></td>';
-			echo "\n</tr>";
-			echo "\n</table>";
-			echo "\n</form>";
-		}
-       	}
-
+?>
+</td>
+</tr>
+<tr>
+	<td class="commentlabel" valign="top"><?php echo _("Message")  ?></td>
+	<td><textarea name="comment_text" cols="<?php echo $cols ?>" rows="5"></textarea></td>
+</tr>
+<tr>
+	<td colspan="2" class="commentboxfooter" align="right"><input name="save" type="submit" value="<?php echo _("Post") ?>"></td>
+</tr>
+</table>
+<?php 
 }
 
 function gallery_error($message) {
@@ -3089,6 +3096,19 @@ function emailComments($id, $comment_text, $commenter_name) {
 	} else if (isDebugging()) {
 		print _("No email sent as no valid email addresses were found");
 	}
+}
+
+// Function array_search is only available in PHP >=4.0.5
+// So we emulate it.
+if (!function_exists('array_search')) {
+        function array_search($needle, $haystack) {
+                for ($x=0; $x < sizeof($haystack); $x++) {
+                        if ($haystack[$x] == $needle) {
+                                return $x;
+                        }
+                }
+                return NULL;
+        }
 }
 
 require (dirname(__FILE__) . '/lib/lang.php');
