@@ -38,7 +38,7 @@ $page = ceil(($index + 1) / ($rows * $cols));
 <tr>
 <td width=33% align=left>
 <font size=+2 face=<?=$album->fields["font"]?>>
-<a href=view_photo?index=<?=$prev?>>Previous Photo</a>
+<a href=view_photo.php?index=<?=$prev?>>Previous Photo</a>
 </td>
 <td width=33% align=center>
 <font size=+1 face=<?=$album->fields["font"]?>>
@@ -46,7 +46,7 @@ $page = ceil(($index + 1) / ($rows * $cols));
 </td>
 <td width=33% align=right>
 <font size=+2 face=<?=$album->fields["font"]?>>
-<a href=view_photo?index=<?=$next?>>Next Photo</a>
+<a href=view_photo.php?index=<?=$next?>>Next Photo</a>
 </td>
 </tr>
 
@@ -65,7 +65,7 @@ $page = ceil(($index + 1) / ($rows * $cols));
 <tr>
 <td align=left>
 <font size=+2 face=<?=$album->fields["font"]?>>
-<a href=view_photo?index=<?=$prev?>>Previous Photo</a>
+<a href=view_photo.php?index=<?=$prev?>>Previous Photo</a>
 </td>
 <td align=center>
 <font size=+2 face=<?=$album->fields["font"]?>>
@@ -74,9 +74,9 @@ if (!$album->isMovie($index)) {
 	if ($album->isResized($index)) { 
 		if ($full) { 
 ?>
-<a href=view_photo?index=<?=$index?>&full=0>Scaled Version</a>
+<a href=view_photo.php?index=<?=$index?>&full=0>Scaled Version</a>
 <?	 	} else { ?>
-<a href=view_photo?index=<?=$index?>&full=1>Full Version</a>
+<a href=view_photo.php?index=<?=$index?>&full=1>Full Version</a>
 <?
 	}
 }
@@ -86,7 +86,7 @@ if (!$album->isMovie($index)) {
 </td>
 <td align=right>
 <font size=+2 face=<?=$album->fields["font"]?>>
-<a href=view_photo?index=<?=$next?>>Next Photo</a>
+<a href=view_photo.php?index=<?=$next?>>Next Photo</a>
 </td>
 </tr>
 
