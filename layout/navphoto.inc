@@ -139,7 +139,7 @@ if ($navpage+1 == $navcount) {
     <td align="center" width="27" height="18">&nbsp;</td>
 <?
 } else {        
-	$lastPage = $navigator["allIds"][$navpage+1];
+	$lastPage = $navigator["allIds"][$navcount-1];
 	$lastAlbumName = "";
 	if ($album->isAlbumName($navcount)) { // out last page is an album
 		$lastAlbumName = $album->isAlbumName($navcount);
