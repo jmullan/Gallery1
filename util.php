@@ -132,7 +132,8 @@ function isImage($tag) {
 
 function isMovie($tag) {
 	return (!strcmp($tag, "avi") ||
-		!strcmp($tag, "mpg"));
+		!strcmp($tag, "mpg") ||
+		!strcmp($tag, "wmv"));
 }
 
 function getFile($fname) {

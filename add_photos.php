@@ -57,7 +57,7 @@ Click the <b>Browse</b> button to locate a photo to upload.
 &nbsp;&nbsp;Tip:  Upload a ZIP file full of photos and movies!
 <? } ?>
 <br>
-&nbsp;&nbsp;(Supported file types: JPG, GIF, PNG, AVI, MPG)
+&nbsp;&nbsp;(Supported file types: JPG, GIF, PNG, AVI, MPG, WMV)
 </span>
 
 <br><br>
