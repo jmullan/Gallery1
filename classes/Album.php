@@ -1460,6 +1460,7 @@ class Album {
 		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);
 		$retval = $photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"], $this);
+		$photo->extraFields['autoRotated'] = true;
 		if (!$retval) {
 			return $retval;
 		}

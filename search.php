@@ -124,7 +124,7 @@ if ($searchstring) {
 		$matchSummary = eregi("$searchstring", $searchSummary);
        		if ($matchTitle || $matchDescription || $matchSummary) {
 			$uid = $gallery->user->getUid();
-			if ($searchAlbum->canRead($uid) || $gallery->user->isAdmin()) {
+			if ($searchAlbum->canReadRecurse($uid) || $gallery->user->isAdmin()) {
 				if (!$gallery->user->isAdmin() && $searchAlbum->isHiddenRecurse()) {
 					// One of the parents of this album is hidden - do not show it to users
 					continue;
@@ -169,7 +169,7 @@ if ($searchstring) {
 			continue;
 		}
 		$uid = $gallery->user->getUid();
-		if ($searchAlbum->canRead($uid) || $gallery->user->isAdmin()) {
+		if ($searchAlbum->canReadRecurse($uid) || $gallery->user->isAdmin()) {
 			$numPhotos = $searchAlbum->numPhotos(1);
 			for ($j = 1; $j <= $numPhotos; $j++) {
 				if ($searchAlbum->isHidden($j)) {

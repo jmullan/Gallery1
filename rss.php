@@ -52,10 +52,11 @@ function albumSort($a, $b) {
 }
 
 function bestDate($album) {
-	if (isset($album->fields["clicks_date"])) {
-		return $album->fields["clicks_date"];
-	} else {
-		return $album->fields["last_mod_time"];
+	if (isset($album->fields['clicks_date']) && strtotime($album->fields["clicks_date"]) > strtotime($album->fields["last_mod_time"])) {
+		return $album->fields['clicks_date'];
+	}
+	else {
+		return $album->fields['last_mod_time'];
 	}
 }
 
@@ -218,7 +219,7 @@ foreach ($albumDB->albumList as $album) {
 	} elseif ($gallery->app->rssMode == "highlight" && isset($highlight)) {
 		$url = makeAlbumUrl($album->fields["name"]);
 		$imgtag = $highlight->thumbnail->getTag($base, 0, 0, 'border=0');
-		$albumInfo["description"]  = "<a href=\"$url\">$imgtag</a> ";
+		$albumInfo["description"]  = "<a href=\"$url\">$imgtag</a><br>";
 		$albumInfo["description"] .= removeUnprintable($album->fields["description"]);      
 	} else { # mode = "basic"
 		$albumInfo["description"] = removeUnprintable($album->fields["description"]);

@@ -1,3 +1,17 @@
+2004-05-28  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b158
+
+	* Change: Better detection of which pubDate to use for RSS feeds
+
+	* Change: Implement canReadRecurse() in search.php - you now
+	  cannot search for any album which you can not directly link to
+	  from an albums page.
+
+	* Change: Flag 'autoRotated' after manual rotation to prevent this:
+	  Use has autorotate disabled.  Uploads a photo.  Manually rotates
+	  it to proper orientation.  Later enables autorotate.  Moves photo.
+	  ... if autoRotate isn't flagged, the move will cause autorotate to
+	  rotate it, even though it was done manually.
+
 2004-05-28  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b157
 
 	* Change: Text fix for RSS option in config_data
