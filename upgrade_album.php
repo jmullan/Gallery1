@@ -167,13 +167,14 @@ if (!$ood) {
 The following albums need to be upgraded.  You can process them
 individually by clicking the upgrade link next to the album that
 you desire, or you can just
-<a href=upgrade_album.php?upgradeall=1>upgrade them all at once</a>.
+<a href="<?=makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1))?>">upgrade them all at once</a>.
 <ul>
 <?
 	foreach ($ood as $album) {
-		print "<a href=upgrade_album.php?upgrade_albumname=" .
-			$album->fields["name"] .
-			">[upgrade]</a> ";
+		print "<a href=\"";
+		print makeGalleryUrl("upgrade_album.php", 
+			array("upgrade_albumname" => $album->fields["name"]));
+		print "\">[upgrade]</a> ";
 		print "<b>" . $album->fields["title"] . "</b>";
 		print " (" . $album->numPhotos(1) . " items)";
 		print "<br>";
