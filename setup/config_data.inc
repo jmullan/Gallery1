@@ -358,9 +358,7 @@ $constants = array_merge(
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.3.5") . ")</b></font>",
 		"multiple_choices" => gallery_languages(),
 		"value" => array_keys(gallery_languages())
-	)),
-	config_maybe_locales(),
-    array(
+	),
 	"cacheExif" => array(
 		"prompt" => "<b>(" . _("Advanced") . ")</b> ". _("Cache EXIF data"),
 		"desc" => _("The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow.  Set to <b>no</b> by default."),
@@ -419,7 +417,8 @@ $constants = array_merge(
 		"eval" => '"$albumDir/.users"',
 		"filename" => 1,
 	),
-    )
+    ),
+    config_maybe_locales()
 );
 
 $defaults = array(

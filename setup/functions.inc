@@ -669,7 +669,7 @@ function config_maybe_locales() {
 			$choices[$value]=$value;
 		}
 		$results["locale_alias['$key']"] = array (
-			"prompt" => sprintf(_("Possible locale problems with %s."),
+			"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Possible locale problems with %s."),
 				$nls['languages'][$key]),
 			"desc" => _("This language is available, but there seems to be a locale problem.  Please select a locale for date format style.") .
 				  "\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), " 1.3.5"). ")</b></font>",
@@ -697,7 +697,7 @@ function config_maybe_locales() {
 		}
 		$index = $nls['languages'][$key] ;
 		$results["locale_alias['$key']"] = array (
-			"prompt" => sprintf(_("Locale problems with %s."),
+			"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Locale problems with %s."),
 				$nls['languages'][$key]),
 			"desc" => _("This language is available, but we can't identified a suitable locale for it.  Please select a locale for date format style.") .
 				  "\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), " 1.3.5"). ")</b></font>",
