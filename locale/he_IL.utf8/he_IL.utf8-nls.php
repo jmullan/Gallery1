@@ -35,30 +35,31 @@
 /**
  ** Native languagename
  **/
-	$nls['language']['he_IL'] = 		'&#1506;&#1489;&#1512;&#1497;&#1514;';
+	$nls['language']['he_IL.utf8'] = 		'&#1506;&#1489;&#1512;&#1497;&#1514; (UTF-8)';
 
 /**
  ** Alias for languages which we substitte or send by NUKE or GeekLog
  **/
 
-	$nls['alias']['he_HE'] = 		'he_IL' ;
-	$nls['alias']['hebrew'] = 		'he_IL' ;
+	$nls['alias']['he_HE'] = 		'he_IL.utf8' ;
+	$nls['alias']['he_IL.utf-8'] =		'he_IL.utf8' ;
+	$nls['alias']['hebrew'] = 		'he_IL.utf8' ;
 
 /**
  ** Charset
  **/	
 	
-	$nls['charset']['he_IL'] = 		'cp1255';
+	$nls['charset']['he_IL.utf8'] = 		'UTF-8';
 
 /**
  ** Direction
  **/
 	
-	$nls['direction']['he_IL'] = 		'rtl' ;
+	$nls['direction']['he_IL.utf8'] = 		'rtl' ;
 
 /**
  ** Alignment
  **/
 	
-	$nls['alignment']['he_IL'] =		'right' ;
+	$nls['alignment']['he_IL.utf8'] =		'right' ;
 ?>
