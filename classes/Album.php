@@ -2539,7 +2539,7 @@ class Album {
 		} else {
 		       	$this->fields['email_me'][$type][$uid]=true;
 		}
-		$this->save();
+		$this->save(array(), false);
 	}
 	function unsetEmailMe($type, $user, $id=null) {
 		$uid=$user->getUid();
@@ -2553,7 +2553,7 @@ class Album {
 		} else {
 		       	unset($this->fields['email_me'][$type][$uid]);
 		}
-		$this->save();
+		$this->save(array(), false);
 	}
 }
 ?>
