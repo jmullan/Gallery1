@@ -39,6 +39,17 @@ class AlbumItem {
 		return $this->comments[$commentIndex-1];
 	}
 
+	function integrityCheck($dir) {
+		$changed = 0;
+
+		if ($this->image) {
+			if ($this->image->integrityCheck($dir)) {
+				$changed = 1;
+			}
+		}
+		return $changed;
+	}
+
 	function addComment($comment, $IPNumber, $name) {
 		global $gallery;
 
