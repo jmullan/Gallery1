@@ -1,3 +1,12 @@
+2005-01-30  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-b333
+
+    * Fix: Ensure that if $album->photos is not empty, we save it to
+      photos.dat - don't simply rely on transient->photosloaded being
+      true, because if the photos somehow got stored in album.dat, this
+      would fail.
+
+    * Fix: Couple more possible unset-varaible issues
+
 2005-01-30  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-b332
 
     * Fix: Several unset variable issues

@@ -739,7 +739,9 @@ class Album {
 			}
 		}
 
-		if ($this->fields["photos_separate"] && ($this->fields["cached_photo_count"] > 0)) {
+		// if $this->photos is not empty, assume that the photos were already incorrectly stored in album.dat
+		// so pretend that we loaded them already to make sure that they get saved to the correct location
+		if ($this->fields["photos_separate"] && ($this->fields["cached_photo_count"] > 0) && empty($this->photos)) {
 			if ($loadphotos) {
 				$this->loadPhotos($dir);
 			}

@@ -1715,12 +1715,18 @@ function getExif($file) {
 
 	switch(getExifDisplayTool()) {
 		case 'exiftags':
+			if (empty($gallery->app->exiftags)) {
+			    break;
+			}
 			$path = $gallery->app->exiftags;
 			list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' -a '.
 			  fs_import_filename($file, 1));
 
 			break;
 		case 'jhead':
+			if (empty($gallery->app->use_exif)) {
+			    break;
+			}
 			$path = $gallery->app->use_exif;
 			list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' '.
 			  fs_import_filename($file, 1));
@@ -3403,7 +3409,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 	}
 
 	
-	if ($withExif && ($gallery->app->use_exif && (eregi("jpe?g\$", $photo->image->type)))) {
+	if ($withExif && (isset($gallery->app->use_exif) && (eregi("jpe?g\$", $photo->image->type)))) {
 		$myExif = $gallery->album->getExif($index, isset($forceRefresh));
 		if (!empty($myExif) && !isset($myExif['Error'])) {
 			// following line commented out because we were losing
