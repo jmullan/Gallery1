@@ -2018,7 +2018,7 @@ function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",
 	$string_to_return = "\n  <table $table_values>";
 	if ($col_1_head || $col_2_head)
 	{
-		$string_to_return.=	"<tr>"\n".
+		$string_to_return .=	"<tr>" .
 					"\n\t<td></td>".
 					"\n\t<td class=\"admin\">$col_1_head</td>".
 					"\n\t<td class=\"admin\">$col_2_head</td>".
