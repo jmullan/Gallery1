@@ -1617,28 +1617,33 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 }
 function stripQuotes($string)
 {
-	if (!$string)
-		return $string;
-	return ereg_replace('"', "&quot;", $string);
+	if (empty($string)) {
+		return '';
+	}
+	if (get_magic_quotes_gpc()) {
+		$string = stripslashes($string);
+	}
+	return str_replace('"', '&quot;', $string);
 }
 function restoreQuotes($string)
 {
-	if (!$string)
-		return $string;
-	return ereg_replace("&quot;", '"', $string);
+	if (empty($string)) {
+		return '';
+	}
+	return str_replace('&quot;', '"', $string);
 }
 
 function escapeEregChars($string)
 {
-	return ereg_replace ('(\.|\\\\|\+|\*|\?|\[|\]|\^|\$|\(|\)|\{|\}|\=|\!|\<|\>|\||\:)', '\\\\1', $string);
+	return ereg_replace('(\.|\\\\|\+|\*|\?|\[|\]|\^|\$|\(|\)|\{|\}|\=|\!|\<|\>|\||\:)', '\\\\1', $string);
 }
 
 function findInPath($program)
 {
-	$path = explode (':', getenv ('PATH'));
+	$path = explode(':', getenv('PATH'));
 	
 	foreach ($path as $dir) {
-		if (fs_file_exists ("$dir/$program")) {
+		if (fs_file_exists("$dir/$program")) {
 			return "$dir/$program";
 		}
 	}

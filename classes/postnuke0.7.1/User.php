@@ -22,6 +22,8 @@
 class PostNuke_User extends Abstract_User {
 
 	function loadByUid($uid) {
+		global $name; /* Gallery PN module name */
+
 		/* 
 		 * Consider the case where we're trying to load a $uid
 		 * that stemmed from a user created by a standalone
@@ -50,7 +52,7 @@ class PostNuke_User extends Abstract_User {
 		 * be an issue, except that it just so happens that it doesn't 
 		 * affect anything we're doing in the app level code.
 		 */
-		$this->isAdmin = (pnSecAuthAction(0, '::', '::', ACCESS_ADMIN));
+		$this->isAdmin = (pnSecAuthAction(0, "$name::", '::', ACCESS_ADMIN));
 	}
 
 	function loadByUserName($uname) {
