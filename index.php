@@ -134,6 +134,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option)) {
 		       "rotate_photo.php",
 		       "save_photos.php",
 		       "search.php",
+			"tools/find_orphans.php",
 		       "slideshow.php",
 		       "slideshow_high.php",
 		       "slideshow_low.php",
