@@ -1,3 +1,18 @@
+2001-02-15  Bharat Mediratta  <bharat@sinia.com>
+
+	* Fixed a bug in preprocessImage() which was causing the function
+	  to fail to do anything.  Doh!
+
+	* Several minor tweaks of visible text for clarity
+
+	* Fixed a bug where if you put the gallery in your document root
+	  (as opposed to a subdir) the config wizard would get confused
+	  and would sometimes put two slashes in a row in some urls
+	  (broken) or leave the slash out (equally broken).
+
+	* Don't show the [shuffle], [resize all], or [remake thumbnails]
+	  commands if there are no photos in the album.
+
 2001-02-14  Bharat Mediratta  <bharat@sinia.com>
 
 	* Added inline_photo headers and footers so that you can customize
