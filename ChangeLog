@@ -1,3 +1,11 @@
+2004-06-24  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b215
+
+	* Change: Suppress non-essential ini_set() error message, if server disallows
+	  ini_set()
+
+	* Change: Only execute start_session() if we're not embedded.
+	  When embedded, this throws an "already started" error message with devMode on.
+
 2004-06-24 Jens Tkotz <jens@peino.de>  1.4.4-cvs-b214
 
 	* Fix: Bug #978297; User-Language was not saved for selfregisterd users.

@@ -22,7 +22,7 @@
 ?>
 <?php
 
-ini_set('session.bug_compat_warn', 'off');
+@ini_set('session.bug_compat_warn', 'off');
 /*
  * PHP 4.0.1pl2 introduces a bug where you can't unserialize a 
  * stdClass instance correctly.  So create a dummy class to hold all
@@ -49,7 +49,9 @@ if (session_id()) {
 }
 
 /* Start a new session, or resume our current one */
-session_start();
+if (!isset($GALLERY_EMBEDDED_INSIDE)) {
+	session_start();
+}
 
 /* emulate register_globals for sessions */
 if (!$gallery->register_globals) {
