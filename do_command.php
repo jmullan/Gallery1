@@ -43,6 +43,12 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	$album->fields["name"] = $albumName;
 	$album->save();
 
+        /* move the album to the top */ 
+	$albumDB = new AlbumDB();
+        $numAlbums = $albumDB->numAlbums();
+        $albumDB->moveAlbum($numAlbums-1, 0);
+        $albumDB->save();
+
 	header("Location: $return?set_albumName=$albumName");
 }
 ?>
