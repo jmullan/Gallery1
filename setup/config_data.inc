@@ -28,19 +28,20 @@ $checklist = array(
 			"reinstall it."
 	), 
 	"NetPBM" => array(
+		"optional" => 1,
 		"desc" => "Check to see if NetPBM is installed so that " .
 			"Gallery can manipulate images (rotate, resize, make " .
 			"thumbnails, etc).  NetPBM is way better than GD for some " .
 			"operations.",
 		"func" => "check_netpbm",
 		"why" => "I can't find NetPBM.  If it's installed, it's not in " .
-			  "the path of user <b>" . getenv("USER") . 
-			  "</b> who's path is<UL><LI>" .
-			  implode("<LI>", explode(":", getenv("PATH"))) .
-			  "</UL>If it's not there, " .
-			  "you'll need to install it.  You can get it from " .
-			  "<a href=http://sourceforge.net/projects/netpbm>SourceForge</a>.  " .
-			  "Gallery detects NetPBM by looking for the <i>anytopnm</i> script."
+			  "the path of the webserver user.  If it's not installed, " .
+			  "you'll need to <a href=http://sourceforge.net/projects/netpbm>install it</a>." .
+			  "Gallery detects NetPBM by looking for the <i>anytopnm</i> script." .
+			  "<p>" .
+			  "<b> If it's installed and Gallery isn't finding it that's OK -- " .
+			  "that just means you'll have to specify the path to NetPBM by hand " .
+			  " on the following page </b>",
 	),
 );
 
