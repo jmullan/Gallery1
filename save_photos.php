@@ -131,11 +131,16 @@ function process($file, $tag, $name) {
 		$err = $album->addPhoto($file, $tag);
 		if (!$err) {
 			/* resize the photo if needed */
-			if ($album->fields["resize_size"] > 0) {
-				msg("- Resizing $name"); 
+			if ($album->fields["resize_size"] > 0 && isImage($tag)) {
 				my_flush();
 				$index = $album->numPhotos(1);
-				$album->resizePhoto($index, $album->fields["resize_size"]);
+				$photo = $album->getPhoto($index);
+				list($w, $h) = $photo->getDimensions();
+				if ($w > $album->fields["resize_size"] ||
+				    $h > $album->fields["resize_size"]) {
+					msg("- Resizing $name"); 
+					$album->resizePhoto($index, $album->fields["resize_size"]);
+				}
 			}
 		} else {
 			print "<font color=red>Error: $err!</font>";
