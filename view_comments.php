@@ -135,7 +135,7 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 ?>
 <table width=100% border="0" cellspacing="0" cellpadding=0>
 <tr>
-<td colspan="6" bgcolor="black"><img src="<?= $GALLERY_BASEDIR ?>/images/pizel_trans.gif" width="1" height="1"></td>
+<td colspan="6" bgcolor="black"><img src="<?= $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" width="1" height="1"></td>
 </tr>
 </table><?
 include($GALLERY_BASEDIR . "layout/breadcrumb.inc");

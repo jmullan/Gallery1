@@ -1,7 +1,7 @@
 <table width=100% border="0" cellspacing="0" cellpadding=0>
 <tr>
-<td colspan="2"><img src="<?= $GALLERY_BASEDIR ?>/images/pixel_trans.gif" width="1" height="1"></td>
-<td colspan="2" bgcolor="<?=$commentbox["bordercolor"] ?>"><img src="<?= $GALLERY_BASEDIR ?>/images/pixel_trans.gif" width="1" height="1"></td>
+<td colspan="2"><img src="<?= $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" width="1" height="1"></td>
+<td colspan="2" bgcolor="<?=$commentbox["bordercolor"] ?>"><img src="<?= $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" width="1" height="1"></td>
 </tr>
 <tr>
 <?if ($embeddedAlbum == 1)
@@ -61,8 +61,8 @@ else
 }?>
 <table width=100% border="0" cellspacing="0" cellpadding=0>
 <tr>
-<td colspan="2"><img src="<?= $GALLERY_BASEDIR ?>/images/pixel_trans.gif" width="1" height="1"></td>
-<td colspan="2" bgcolor="<?=$commentbox["bordercolor"] ?>"><img src="<?= $GALLERY_BASEDIR ?>/images/pixel_trans.gif" width="1" height="1"></td>
+<td colspan="2"><img src="<?= $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" width="1" height="1"></td>
+<td colspan="2" bgcolor="<?=$commentbox["bordercolor"] ?>"><img src="<?= $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" width="1" height="1"></td>
 </tr>
 <tr>
 <td>
