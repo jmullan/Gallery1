@@ -61,7 +61,7 @@ function bestDate($album) {
 }
 
 function removeUnprintable($string) {
-	return preg_replace("/[^[:print:]]/", "", $string);
+	return ereg_replace("[^[:print:]]", "", $string);
 }
 
 function getThumbs($album) {
@@ -261,7 +261,7 @@ echo '<' . '?xml version="1.0" encoding="' . $gallery->locale . '"?' . '>';
 		<link><?php echo $gallery->app->photoAlbumURL ?></link>
 		<description><?php echo htmlspecialchars($description) ?></description>
 <?php if (isset($gallery->app->default_language)) { ?>
-		<language><?php echo preg_replace("/_/", "-", $gallery->app->default_language) ?></language>
+		<language><?php echo ereg_replace("_", "-", $gallery->app->default_language) ?></language>
 <?php } ?>
 		<lastBuildDate><?php echo date("r"); ?></lastBuildDate>
 <?php if (isset($gallery->app->adminEmail)) { ?>

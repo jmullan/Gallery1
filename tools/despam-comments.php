@@ -224,8 +224,8 @@ function getCommentKey(&$comment) {
 function isBlacklistedComment(&$comment) {
     $blacklist = loadBlacklist();
     foreach ($blacklist['entries'] as $key => $entry) {
-	if (preg_match("#$entry#", $comment->getCommentText()) ||
-	    preg_match("#$entry#", $comment->getName())) {
+	if (ereg("#$entry#", $comment->getCommentText()) ||
+	    ereg("#$entry#", $comment->getName())) {
 	    return true;
 	}
     }
@@ -278,8 +278,9 @@ function updateBlacklist() {
     $blacklist = loadBlacklist();
     $dupes = array();
     $added = array();
-    foreach (preg_split("/[\n\r]+/", getRequestVar('newBlacklistEntries')) as $line) {
-	$line = preg_replace("/#.*/", "", $line);
+    $newlines = split("[\n\r]+", getRequestVar('newBlacklistEntries'));
+    foreach ($newlines as $line) {
+	$line = ereg_replace("#.*", "", $line);
 	$line = trim($line);
 	if (empty($line)) {
 	    continue;

@@ -7,7 +7,7 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
@@ -25,6 +25,7 @@
 require(dirname(__FILE__) . '/init.php');
 
 list($full, $id, $index, $votes) = getRequestVar(array('full', 'id', 'index', 'votes'));
+list($save, $commenter_name, $comment_text) = getRequestVar(array('save', 'commenter_name', 'comment_text'));
 
 // Hack check
 if (empty($gallery->album) || !$gallery->user->canReadAlbum($gallery->album)) {
@@ -199,10 +200,10 @@ if (isset($gallery->app->comments_length)) {
 	$maxlength=0;
 }
 
-if (isset($save)) {
+if (!empty($save)) {
 	if ( empty($commenter_name) || empty($comment_text)) {
 		$error_text = _("Name and comment are both required to save a new comment!");
-	} elseif ($maxlength >0 && strlen($comment_text) >$maxlength) {
+	} elseif ($maxlength >0 && strlen($comment_text) > $maxlength) {
 		$error_text = sprintf(_("Your comment is too long, the admin set maximum length to %d chars"), $maxlength);
 	} else {
 		$comment_text = removeTags($comment_text);
@@ -452,7 +453,6 @@ if (!$gallery->album->isMovie($id)) {
 				$adminCommands .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" . sprintf(_('print this photo with %s'), $fullName[$name]) . ']</a>';
 			}
 		}
-	}
 ?>
 <script language="javascript1.2" type="text/JavaScript">
 	 function doPrintService(input) {
@@ -484,6 +484,7 @@ echo urlencode($gallery->album->getCaption($index)) ?>','_MPUSH','width=640,heig
 	}
 </script>
 <?php
+	}
 }
 includeLayout('navtablebegin.inc');
 if ($adminCommands) {
@@ -551,7 +552,7 @@ if (!$gallery->album->isMovie($id)) {
 
 $photoTag="";
 $frame= $gallery->album->fields['image_frame'];
-if ($fitToWindow && (preg_match('/safari|opera/i', $_SERVER['HTTP_USER_AGENT']) || $gallery->session->offline)) {
+if ($fitToWindow && (eregi('safari|opera', $_SERVER['HTTP_USER_AGENT']) || $gallery->session->offline)) {
 	//Safari/Opera can't render dynamically sized image frame
 	$frame = 'none';
 }

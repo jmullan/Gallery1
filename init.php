@@ -129,6 +129,21 @@ if(isset($gallery->app)) {
 		$gallery->app->albumDirURL = 
 			eregi_replace("^https:", "http:", $gallery->app->albumDirURL);
 	}
+
+	/*
+	 * We have a Coral (http://www.scs.cs.nyu.edu/coral/) request coming in, adjust outbound links
+	 */
+	if(strstr($_SERVER['HTTP_USER_AGENT'], 'CoralWebPrx')) {
+		if (ereg("^(http://[^:]+):(\d+)(.*)$", $gallery->app->photoAlbumURL)) {
+			$gallery->app->photoAlbumURL = ereg_replace("^(http://[^:]+):(\d+)(.*)$", "\1.\2\3", $galllery->app->photoAlbumURL);
+		}
+			
+		$gallery->app->photoAlbumURL = ereg_replace("^(http://[^/]+)(.*)$", '\1.nyud.net:8090\2',$gallery->app->photoAlbumURL);
+		if (ereg("^(http://[^:]+):(\d+)(.*)$", $gallery->app->albumDirURL)) {
+			$gallery->app->albumDirURL = ereg_replace("^(http://[^:]+):(\d+)(.*)$", "\1.\2\3", $galllery->app->albumDirURL);
+		}
+		$gallery->app->albumDirURL = ereg_replace("^(http://[^/]+)(.*)$", '\1.nyud.net:8090\2',$gallery->app->albumDirURL);
+	} 
 }
 
 /* 
