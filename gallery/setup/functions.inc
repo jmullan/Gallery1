@@ -1315,4 +1315,26 @@ $result=array_merge($result,array(
 ));
 return $result;
 }
+
+function displayNameOptions() {
+	return array (
+		"!!FULLNAME!! (!!USERNAME!!)" =>
+			sprintf("%s (%s)", _("Full Name"), _("Username")),
+		"!!USERNAME!! (!!FULLNAME!!)" =>
+			sprintf("%s (%s)", _("Username"), _("Full Name")),
+		"!!FULLNAME!!" =>
+			_("Full Name"),
+		"!!USERNAME!!" =>
+			_("Username"),
+		"!!MAILTO_FULLNAME!!" =>
+			_("Full name that you can click on to send email (mailto:)"),
+		"!!MAILTO_USERNAME!!" =>
+			_("Username that you can click on to send email (mailto:)"),
+		"!!FULLNAME!! (!!EMAIL!!)" =>
+			sprintf("%s (%s)", _("Full Name"), _("email address")),
+		"!!USERNAME!! (!!EMAIL!!)" =>
+			sprintf("%s (%s)", _("Username"), _("email address")),
+		     );
+}
+
 ?>
