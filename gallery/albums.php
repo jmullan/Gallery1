@@ -130,7 +130,7 @@ for ($i = $start; $i <= $end; $i++) {
   <td width=<?=$app->highlight_size?> align=center valign=middle>
   <a href=<?=$albumURL?>>
   <?   
-        if ($album->numPhotos()) {
+        if ($album->numPhotos(1)) {
                 echo $album->getHighlightTag();
         } else {
                 echo "<span class=title>Empty!</span>";
