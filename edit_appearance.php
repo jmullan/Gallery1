@@ -47,6 +47,12 @@ if ($save) {
 	$gallery->album->fields["public_comments"] = $public_comments;
 	$gallery->album->save();
 
+	if ($setNested) {
+	
+		$gallery->album->setNestedProperties();
+
+	}
+
 	reload();
 }
 
@@ -160,7 +166,9 @@ if ($gallery->app->use_exif) {
 </table>
 
 <br>
-
+<input type=checkbox name=setNested value="1">Apply values to nested Albums (except Album Title).
+<br>
+<br>
 <input type=submit name="submit" value="Apply">
 <input type=reset value="Undo">
 <input type=submit name="submit" value="Close" onclick='parent.close()'>
