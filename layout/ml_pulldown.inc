@@ -79,7 +79,7 @@ if($gallery->app->show_flags !='yes') {
 			$request_url=substr($request_url,0,$pos-1);
 		}
 	        if (stristr($request_url,"?")) {
-			$url=$request_url ."&newlang=". $new_lang;
+			$url=$request_url ."&amp;newlang=". $new_lang;
 		}
 		else {
 			$url=$request_url ."?newlang=". $new_lang;
