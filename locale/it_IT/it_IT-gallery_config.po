@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1.5-cvs
+# Version: 1.5-RC2
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-01-12 11:29+0100\n"
+"POT-Creation-Date: 2005-02-21 15:48+0100\n"
 "PO-Revision-Date: 2004-10-12 11:56+0200\n"
 "Last-Translator: Ermanno Baschiera <ermannob AT inwind DOT it>\n"
 "Language-Team: italiano <Italian <gallery-devel@lists.sourceforge.net>>\n"
@@ -93,7 +93,7 @@ msgstr "Assicurati che il webserver abbia permessi di lettura e scrittura sia su
 msgid "Then start the %sConfiguration Wizard%s."
 msgstr "Successivamente lancia la %sConfigurazione Guidata%s."
 
-#: ../setup/check.inc:27 ../setup/confirm.inc:28 ../setup/constants.inc:31
+#: ../setup/check.inc:27 ../setup/confirm.inc:28 ../setup/constants.inc:30
 #: ../setup/defaults.inc:27
 #, php-format
 msgid "Gallery Configuration Wizard: Step %d"
@@ -120,6 +120,10 @@ msgstr "Pagina di Aiuto di Gallery"
 msgid "Having problems?  Try the %s, %s and %s."
 msgstr "Problemi? Prova la %s , %s e %s."
 
+#: ../setup/check.inc:43 ../setup/confirm.inc:36
+msgid "documentation"
+msgstr "documentazione"
+
 #: ../setup/check.inc:45
 #, php-format
 msgid "Having problems?  Try the %s and %s."
@@ -134,7 +138,6 @@ msgid "Serious Warning"
 msgstr "Serio Avvertimento"
 
 #: ../setup/check.inc:83 ../setup/check.inc:123 ../setup/check_mail.php:76
-#: ../setup/config_data.inc:1348 ../setup/config_data.inc:1354
 msgid "Warning"
 msgstr "Attenzione"
 
@@ -162,7 +165,7 @@ msgstr "La tua installazione ha dei warning, ma questo &egrave; generalmente OK.
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "La tua installazione ha avuto successo! Prosegui!"
 
-#: ../setup/check.inc:163 ../setup/constants.inc:45 ../setup/constants.inc:160
+#: ../setup/check.inc:163 ../setup/constants.inc:44 ../setup/constants.inc:159
 #: ../setup/defaults.inc:46 ../setup/defaults.inc:134
 msgid "Next Step"
 msgstr "Passo successivo"
@@ -195,7 +198,7 @@ msgid "It seems that you did not configure your GALLERY. Please run and finish t
 msgstr "Sembra che GALLERY non sia stato configurato. Per favore esegui e porta a termina la configurazione guidata."
 
 #: ../setup/check_imagemagick.php:75 ../setup/check_netpbm.php:75
-#: ../setup/functions.inc:1252
+#: ../setup/functions.inc:1253
 msgid "OK"
 msgstr "OK"
 
@@ -257,40 +260,40 @@ msgstr "Il risultato &egrave; che non possiamo eseguire i controlli di base sui 
 msgid "We are going to test each %s binary individually."
 msgstr "Si sta per controllare ogni %s binario singolarmente."
 
-#: ../setup/check_imagemagick.php:158 ../setup/check_netpbm.php:184
+#: ../setup/check_imagemagick.php:158 ../setup/check_netpbm.php:185
 msgid "Checking:"
 msgstr "Controllo in corso:"
 
-#: ../setup/check_imagemagick.php:181 ../setup/check_netpbm.php:214
+#: ../setup/check_imagemagick.php:181 ../setup/check_netpbm.php:215
 #, php-format
 msgid "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."
 msgstr "Se vedi un errore in lettura o scrittura su %s dipende probabilmente da un problema di configurazione dei permessi sul tuo sistema. Se si parla di %s allora il tuo sistema &egrave; stato configurato con %s disabilitato."
 
-#: ../setup/check_imagemagick.php:185 ../setup/check_netpbm.php:218
+#: ../setup/check_imagemagick.php:185 ../setup/check_netpbm.php:219
 #, php-format
 msgid "You should talk to your system administrator about this, or see the %sGallery Help Page%s."
 msgstr "Dovresti notificare questa informazione al tuo Amministratore di Sistema, oppure vedere la %sPagina di Aiuto su Gallery%s."
 
-#: ../setup/check_imagemagick.php:190 ../setup/check_netpbm.php:223
+#: ../setup/check_imagemagick.php:190 ../setup/check_netpbm.php:224
 #, php-format
 msgid "For other errors, please refer to the list of possible responses in %s to get more information."
 msgstr "Per altri tipi di errore, per avere maggiori informazioni fate riferimento alla lista di possibili risposte in %s."
 
-#: ../setup/check_imagemagick.php:218 ../setup/check_netpbm.php:251
+#: ../setup/check_imagemagick.php:218 ../setup/check_netpbm.php:252
 #, php-format
 msgid "File %s does not exist."
 msgstr "Il file %s non esiste."
 
-#: ../setup/check_imagemagick.php:229 ../setup/check_netpbm.php:262
+#: ../setup/check_imagemagick.php:229 ../setup/check_netpbm.php:263
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Stato atteso: %s, in realt&agrave; lo stato risultante &egrave; %s."
 
-#: ../setup/check_imagemagick.php:242 ../setup/check_netpbm.php:276
+#: ../setup/check_imagemagick.php:242 ../setup/check_netpbm.php:277
 msgid "can't detect version on Windows"
 msgstr "non riesco ad identificare la versione di Windows"
 
-#: ../setup/check_imagemagick.php:253 ../setup/check_netpbm.php:302
+#: ../setup/check_imagemagick.php:253 ../setup/check_netpbm.php:303
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK! Versione: %s"
@@ -427,1846 +430,1874 @@ msgstr "Tutti i file sono aggiornati."
 msgid "The following files are up-to-date."
 msgstr "I seguenti file sono aggiornati."
 
-#: ../setup/config_data.inc:63
+#: ../setup/config_data.inc:64
 msgid "unknown"
 msgstr "sconosciuto"
 
-#: ../setup/config_data.inc:69
+#: ../setup/config_data.inc:70
 #, php-format
 msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
 msgstr "Gallery preferisce NetPBM dalla versione 9.9 in poi. Puoi installare solo i binari necessari a Gallery da %sGallery Download Page%s. Oppure, puoi compilare ed installare l'intero package NetPBM da %sNetPBM website%s."
 
-#: ../setup/config_data.inc:74 ../setup/config_data.inc:84
-#: ../setup/config_data.inc:689 ../setup/confirm.inc:385
+#: ../setup/config_data.inc:75 ../setup/config_data.inc:85
+#: ../setup/config_data.inc:89 ../setup/config_data.inc:130
+#: ../setup/config_data.inc:700 ../setup/confirm.inc:396
 msgid "Note:"
 msgstr "Nota:"
 
-#: ../setup/config_data.inc:75
+#: ../setup/config_data.inc:76
 msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead."
 msgstr "Puoi installare i binari dal sito di Gallery anche se non hai i diritti di amministratore della macchina! Se non riesci a farla funzionare, prova a lasciare vuoto il path per NetPBM e ad usare invece ImageMagick."
 
-#: ../setup/config_data.inc:78
+#: ../setup/config_data.inc:79
 msgid "I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date."
 msgstr "Ho trovato parte dell'installazione di NetPBM, ma alcune parti critiche mancano (vedi sotto). Forse la versione installata non e' una versione recente."
 
-#: ../setup/config_data.inc:82
+#: ../setup/config_data.inc:83
 #, php-format
 msgid "Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from the %sImageMagick website%s."
 msgstr "Gallery preferisce ImageMagick dalla versione 5.4.8 in poi. Puoi compilare ed installare l'intero package ImageMagick da %sImageMagick website%s."
 
-#: ../setup/config_data.inc:85
+#: ../setup/config_data.inc:86
 msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead."
 msgstr "Il sito fornisce anche binari per sistemi operativi diversi. Se non riesci a farla funzionare, prova a lasciare il path di ImageMagick vuoto e ad usare invece NetPBM."
 
-#: ../setup/config_data.inc:88
-#, php-format
-msgid "<b>Note:</b> Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."
+#: ../setup/config_data.inc:90
+#, fuzzy, php-format
+msgid "Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."
 msgstr "<b>Nota</b>:  PHP &egrave; configurato con le %s restrizioni. Questo potrebbe rendere dificile per Gallery individuare e verificare i binari anche se hai usato con successo nel passato la Configurazione Guidata. Non preoccuparti troppo degli avvertimenti; i tuoi parametri di configurazione verranno salvati correttamente."
 
-#: ../setup/config_data.inc:94
+#: ../setup/config_data.inc:96
 #, php-format
 msgid "Check to see how old %s version %s is."
 msgstr "Controlla quanto &egrave; vecchia questa versione di %s rispetto alla %s."
 
-#: ../setup/config_data.inc:100
+#: ../setup/config_data.inc:102
 msgid "Check to see if you are running PHP 4.1.0 or greater."
 msgstr "Controlla se stai eseguendo PHP 4.1.0 o una versione maggiore."
 
-#: ../setup/config_data.inc:100
+#: ../setup/config_data.inc:102
 msgid "Since Gallery 1.4.5 Gallery needs at least PHP 4.1.0, this is due to that some versions of PHP have bugs that cause Gallery to fail and that older Version does not have required functionality."
 msgstr "A partire da Gallery 1.4.5 in poi, c'&egrave; bisogno almeno di PHP 4.1.0, questo perch&eacute; alcune versioni di PHP presentano bug che impediscono a Gallery di funzionare e inoltre le vecchie versioni non hanno tutte le funzioni necessarie."
 
-#: ../setup/config_data.inc:102
+#: ../setup/config_data.inc:104
 #, php-format
 msgid "You're running PHP version %s.  You need to upgrade to PHP %s."
 msgstr "Sta girando PHP versione %s. Dovresti fare un aggiornamento a PHP %s."
 
-#: ../setup/config_data.inc:103
+#: ../setup/config_data.inc:105
 #, php-format
 msgid "You're running PHP version %s which has known bugs that cause Gallery to fail."
 msgstr "Sta girarndo PHP versione %s che ha dei bug conosciuti che fanno funzionare male Gallery."
 
-#: ../setup/config_data.inc:107
+#: ../setup/config_data.inc:109
 msgid "We are using predefined variables which some older version of PHP have problems with."
 msgstr "Stiamo usando variabili predefinite che possono creare problemi a vecchie versioni di PHP."
 
-#: ../setup/config_data.inc:109
+#: ../setup/config_data.inc:111
 msgid "It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"
 msgstr "Sembra che il tuo PHP abbia problemi con __FILE__, aggiornalo a una versione pi&ugrave; recente"
 
-#: ../setup/config_data.inc:113
+#: ../setup/config_data.inc:115
 msgid "Gallery highly recommends that the PHP option 'register_globals' be turned off, for security purposes.  Some software, notably the 'Geeklog' CMS, requires that 'register_globals' be enabled."
 msgstr "Gallery raccomanda che l'opzione del PHP 'register_globals' sia disattivata, per ragioni di sicurezza. Alcuni software, tra cui il CMS 'Geeklog', necessitano che 'register_globals' sia attiva."
 
-#: ../setup/config_data.inc:115
+#: ../setup/config_data.inc:117
 msgid "The PHP option 'register_globals' is enabled on your server. Gallery highly recommends that you disable 'register_globals' unless it is required by software on your site.  Gallery does not officially support 'register_globals' being enabled, and will attempt to disable it internally."
 msgstr "L'opzione del PHP 'register_globals' &egrave; attiva sul tuo server. Gallery ti raccomanda di disattivare 'register_globals' a meno che non sia necessaria a qualche software sul tuo sito. Gallery ufficialmente non supporta 'register_globals' attiva, e tenter&agrave; di disattivarla internamente."
 
-#: ../setup/config_data.inc:120
+#: ../setup/config_data.inc:122
 msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
 msgstr "Controlla se PHP sta girando in <b>safe_mode</b>. La Modalit&agrave; Sicura &egrave; una caratteristica di PHP usata generalmente in ambienti condivisi. Gallery non pu&ograve; girare quando &egrave; abilitata la Modalit&agrave; Sicura perch&egrave; vengono imposte troppe restrizioni."
 
-#: ../setup/config_data.inc:122
+#: ../setup/config_data.inc:124
 #, php-format
 msgid "<b>safe_mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."
 msgstr "<b>safe_mode</b> &egrave; abilitata su questo server. Dovresti disabilitarla prima di poter usare Gallery. Fai riferimento alla FAQ, ai forum, e alla pagina di aiuto sul %sSito di Gallery%s e sul %sSito di PHP%s per assistenza."
 
-#: ../setup/config_data.inc:128
-#, php-format
-msgid "<b>Note</b>: In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."
+#: ../setup/config_data.inc:131
+#, fuzzy, php-format
+msgid "In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."
 msgstr "<b>Nota</b>: In alcune rare circonstanze, Gallery pensa che sia attiva la <b>Modalit&agrave; Sicura</b> quando in realt&agrave; &egrave; disabilitata. Puoi verificare da solo guardando la colonna <i>Local</i> della riga <i>safe_mode</i> nella pagina %sPHP Info%s. Se dice 'Off' o '0' o 'undefined' allora &egrave; possibile che Gallery si sia confuso e quindi puoi continuare. Se non &egrave; cos&igrave;, allora devi risolvere il problema prima di poter usare Gallery."
 
-#: ../setup/config_data.inc:135
+#: ../setup/config_data.inc:138
 msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
 msgstr "La funzione <b>exec()</b> &egrave; quella che Gallery usa per lanciare programmi come NetPBM, ImageMagick e jhead. Se <b>exec()</b> &egrave; disabilitata nel tuo server, allora Gallery non sar&agrave; in grado di operare."
 
-#: ../setup/config_data.inc:137
+#: ../setup/config_data.inc:140
 msgid "The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."
 msgstr "La funzione <b>exec()</b> &egrave; disabilitata nel tuo server.  Gallery non potr&agrave; con questa configurazione del PHP."
 
-#: ../setup/config_data.inc:141
+#: ../setup/config_data.inc:144
 msgid "Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."
 msgstr "Permette al file <b>.htaccess</b> di Gallery di impostare delle opzioni di configurazione specifiche per Gallery.  Questo &egrave; controllato dal proprietario del webserver, quindi non sempre &egrave; possibile cambiarlo senza il suo intervento.  Gli svantaggi principali del non poterlo fare sono che potresti non essere in grado di fare l'upload di file > 2MB (ad es. grandi file ZIP)."
 
-#: ../setup/config_data.inc:143
+#: ../setup/config_data.inc:146
 msgid "Apache is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:"
 msgstr "Apache non si attiene alle linee 'php_value' nel file <b>.htaccess</b>. Prova ad inserire quello che segue nel file di configurazione del web server <b>httpd.conf</b>:"
 
-#: ../setup/config_data.inc:147
+#: ../setup/config_data.inc:150
 msgid "If you are running PHP in CGI mode, this message is unavoidable."
 msgstr "Se stai eseguendo PHP in modalit&agrave; CGI, questo messaggio sar&agrave; inevitabile."
 
-#: ../setup/config_data.inc:152
+#: ../setup/config_data.inc:155
 #, php-format
 msgid "Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behavior if you put ' (single-quote), &quot; (double quote) or &#92; (backslash) characters in titles or captions in Gallery."
 msgstr "Controlla se il parametro %smagic quotes%s &egrave; abilitato sul tuo PHP server.  Se lo &egrave;, potrai notare uno strano comportamento se metti i caratteri ' (singolo-apice), &quot; (doppio apice) o &#92; (backslash) in titoli o descrizioni della galleria."
 
-#: ../setup/config_data.inc:156
+#: ../setup/config_data.inc:159
 #, php-format
 msgid "Magic quotes are on.  Your webserver administrator can turn them off by putting %s in your <b>php.ini</b> file."
 msgstr "Magic quotes attivo. L'amministratore del web server pu&ograve; disabilitarle mettendo %s nel file <b>php.ini</b>."
 
-#: ../setup/config_data.inc:160
+#: ../setup/config_data.inc:163
 msgid "Check to see if your webserver is compiled with <b>mod_rewrite</b>.  This Apache module allows Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."
 msgstr "Verifica se il web server &egrave; stato compilato con <b>mod_rewrite</b>. Mod_rewrite permette a Gallery di usare degli URL pi&ugrave; corti che sono pi&ugrave; facili da leggere e hanno un aspetto pi&ugrave; piacevole quando invii via mail ai tuoi parenti l'indirizzo dei tuoi album. Ad ogni modo non &egrave; una caratteristica essenziale."
 
-#: ../setup/config_data.inc:162
+#: ../setup/config_data.inc:165
 msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: "
 msgstr "O <b>mod_rewrite</b> non &egrave; installato o il file <b>.htaccess</b> non &egrave; abilitato (vedi sotto).  In ogni caso, si dovranno usare degli URL pi&ugrave; lunghi in Gallery.  Se vuoi abilitarlo, assicurarti che il file <b>.htaccess</b> funzioni. Se ancora non funziona, dovrai probabilmente riconfigurare e ricompilare Apache con questo flag:"
 
-#: ../setup/config_data.inc:168
+#: ../setup/config_data.inc:171
 msgid "Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."
 msgstr "Verifica se NetPBM &egrave; installato cosicch&eacute; Gallery possa manipolare le immagini (ruotare, ridimensionare, creare anteprime, ecc). &Egrave; necessario installare solamente NetPBM <b>oppure</b> ImageMagick."
 
-#: ../setup/config_data.inc:170
+#: ../setup/config_data.inc:173
 msgid "I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: "
 msgstr "Non trovo NetPBM.  Se &egrave; stato installato ma non nel percorso dell'utente del webserver non &egrave; un problema - puoi specificare il percorso di NetPBM nella pagina seguente.  Se non &egrave; installato, hai due alternative:"
 
-#: ../setup/config_data.inc:175
+#: ../setup/config_data.inc:178
 msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page."
 msgstr "Se NetPBM &egrave; installato e Gallery non lo trova automaticamente non &egrave; un problema - significa che dovrai specificare manualmente il percorso di NetPBM nella pagina seguente."
 
-#: ../setup/config_data.inc:181
+#: ../setup/config_data.inc:184
 msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."
 msgstr "Verifica se ImageMagick &egrave; installato cosicch&eacute; Gallery possa manipolare le immagini (ruotare, ridimensionare, creare anteprime, ecc). &Egrave; necessario installare solamente ImageMagick <b>oppure</b> NetPBM."
 
-#: ../setup/config_data.inc:183
+#: ../setup/config_data.inc:186
 msgid "I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  "
 msgstr "Non trovo ImageMagick.  Se &egrave; stato installato ma non nel percorso dell'utente del webserver non &egrave; un problema - puoi specificare manualmente il percorso di ImageMagick nella pagina seguente.  Se non &egrave; installato, devi installarlo."
 
-#: ../setup/config_data.inc:189
+#: ../setup/config_data.inc:192
 msgid "Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
 msgstr "Verifica se <b>jhead</b> &egrave; installato, in modo che Gallery possa esaminare le informazioni EXIF contenute nelle immagini create con la maggior parte delle macchine fotografiche digitali."
 
-#: ../setup/config_data.inc:191
+#: ../setup/config_data.inc:194
 #, php-format
 msgid "I can't find <b>jhead</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."
 msgstr "Non trovo <b>jhead</b>. Se &egrave; installato e non &egrave; nel percorso del webserver non &egrave; un problema -- puoi specificare manualmente il percorso di jhead nella pagina seguente. Se non &egrave; installato, puoi installarlo da te. Jhead &egrave; un analizzatore EXIF di dominio pubblico. Il sorgente, i binari per Linux e per Windows possono essere trovati alla %shomepage di jhead%s."
 
-#: ../setup/config_data.inc:198
+#: ../setup/config_data.inc:201
 msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."
 msgstr "Verifica se <b>jpegtran</b> &egrave; installato in modo che Gallery possa eseguire delle rotazioni alle immagini JPEG senza perdita di informazione."
 
-#: ../setup/config_data.inc:200
+#: ../setup/config_data.inc:203
 #, php-format
 msgid "I can't find <b>jpegtran</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."
 msgstr "Non trovo <b>jpegtran</b>. Se &egrave; installato e non &egrave; nel percorso del web server non &egrave; un problema -- puoi specificare manualmente il pergorso nella pagina seguente. Se non &egrave; installato, puoi installarlo da te. Jpegtran &egrave; distribuito liberamente da Indipendent JPEG Group come parte della libreria <i>libjpeg</i>. I sorgenti del codice si possono trovare alla %sIJG homepage%s. Gli eseguibili si possono trovare al %sJPEG club website%s o nel package <i>libjpeg</i> di una qualsiasi distribuzione Linux."
 
-#: ../setup/config_data.inc:207
+#: ../setup/config_data.inc:210
 msgid "Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."
 msgstr "Verifica se PHP &egrave; stato compilato con il supporto a <b>GNU gettext</b> per delle traduzioni pi&ugrave; veloci."
 
-#: ../setup/config_data.inc:209
+#: ../setup/config_data.inc:212
 #, php-format
 msgid "Your PHP does not have <b>GNU gettext</b> support installed.  To include it, you'll need to recompile PHP (see the %sPHP docs%s for more information). Multi-language support is still available in Gallery without <b>gettext</b>, but the pages may take slightly longer to load."
 msgstr "Il PHP installato non sembra avere il supporto a <b>GNU gettext</b>. Per includerlo, devi ricompilare il PHP (vedi la %sdocumentazione PHP%s per ulteriori informazioni). Il supporto alla multi-lingua &egrave; ancora disponibile in Gallery anche senza <b>gettext</b>, ma se le pagine potranno essere un po' pi&ugrave; lente nel caricamento."
 
-#: ../setup/config_data.inc:214
+#: ../setup/config_data.inc:217
 msgid "Check to see what languages are available."
 msgstr "Controllo quali lingue sono disponibili."
 
-#: ../setup/config_data.inc:220
+#: ../setup/config_data.inc:223
 msgid "Testing to see which <b>system</b> locales (if any) are absent."
 msgstr "Sto verificando quali <b>system</b> locales (se esistono) sono mancanti."
 
-#: ../setup/config_data.inc:221
+#: ../setup/config_data.inc:224
 msgid "These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext support. They are also needed to show date and time in the according format to the language."
 msgstr "Queste variabili locali sono necessarie per le funzioni multilingua di Gallery, qualora il tuo PHP abbia il supporto per gettext. Sono necessarie anche per visualizzare la data e l'ora in base al formato tipico della lingua."
 
-#: ../setup/config_data.inc:226
+#: ../setup/config_data.inc:229
 msgid "Checking to see if you have the latest versions of all Gallery files."
 msgstr "Sto controllando se hai l'ultima versione di tutti i file di Gallery."
 
-#: ../setup/config_data.inc:245
+#: ../setup/config_data.inc:248
 msgid "General settings"
 msgstr "Configurazione generale"
 
-#: ../setup/config_data.inc:249
+#: ../setup/config_data.inc:252
 msgid "Gallery Title"
 msgstr "Titolo della galleria"
 
-#: ../setup/config_data.inc:250
+#: ../setup/config_data.inc:253
 msgid "The name of your Gallery.  E.g. <i>My Cool Photos</i>"
 msgstr "Il nome della tua galleria. Es. <i>Le mie fantastiche Foto</i>"
 
-#: ../setup/config_data.inc:251
+#: ../setup/config_data.inc:254
 msgid "Gallery"
 msgstr "Galleria"
 
-#: ../setup/config_data.inc:257
+#: ../setup/config_data.inc:260
 msgid "Use Icons ?"
 msgstr ""
 
-#: ../setup/config_data.inc:258
+#: ../setup/config_data.inc:261
 msgid "You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."
 msgstr ""
 
-#: ../setup/config_data.inc:259
+#: ../setup/config_data.inc:262
 msgid "Icons and text"
 msgstr ""
 
-#: ../setup/config_data.inc:260
+#: ../setup/config_data.inc:263
 msgid "Text only"
 msgstr ""
 
-#: ../setup/config_data.inc:261
+#: ../setup/config_data.inc:264
 msgid "Icons only"
 msgstr ""
 
-#: ../setup/config_data.inc:266
+#: ../setup/config_data.inc:269
 msgid "Skin Name"
 msgstr "Nome Skin"
 
-#: ../setup/config_data.inc:267
+#: ../setup/config_data.inc:270
 msgid "Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4."
 msgstr "Seleziona una skin da far usare a Gallery. Adesso hai un'ampia scelta di &quot;skin&quot; che influiscono sull'aspetto di ogni pagina della galleria. Divertiti sperimentando skin diverse. Seleziona &quot;None&quot; per usare l'aspetto tradizionale della versione 1.4."
 
-#: ../setup/config_data.inc:268
+#: ../setup/config_data.inc:271
 msgid "Here you can get a more Gallery Skins by Drazan"
 msgstr "Qui puoi trovare altre skin per Gallery fatte da Drazan"
 
-#: ../setup/config_data.inc:274
+#: ../setup/config_data.inc:277
 msgid "Default upload method"
 msgstr "Modalit&agrave; di upload predefinita"
 
-#: ../setup/config_data.inc:275
+#: ../setup/config_data.inc:278
 msgid "Which method of uploading photos should be defaulted to for users who don't specify?"
 msgstr "Quale metodo di upload vuoi che sia usato dagli utenti che non lo hanno specificato?"
 
-#: ../setup/config_data.inc:276
+#: ../setup/config_data.inc:279
 msgid "Form-based Upload"
 msgstr "Upload con Form"
 
-#: ../setup/config_data.inc:277
+#: ../setup/config_data.inc:280
 msgid "Mini-Applet"
 msgstr "Mini-Applet"
 
-#: ../setup/config_data.inc:278
+#: ../setup/config_data.inc:281
 msgid "Full-Applet"
 msgstr "Full-Applet"
 
-#: ../setup/config_data.inc:279
+#: ../setup/config_data.inc:282
 msgid "URL"
 msgstr "URL"
 
-#: ../setup/config_data.inc:290
+#: ../setup/config_data.inc:293
 msgid "Locations and URLs"
 msgstr "Locazione e URL"
 
-#: ../setup/config_data.inc:294
+#: ../setup/config_data.inc:297
 msgid "Album directory"
 msgstr "Directory degli Album"
 
-#: ../setup/config_data.inc:295 ../setup/config_data.inc:307
-#: ../setup/config_data.inc:319 ../setup/config_data.inc:330
+#: ../setup/config_data.inc:298 ../setup/config_data.inc:310
+#: ../setup/config_data.inc:322 ../setup/config_data.inc:333
 msgid "REQUIRED"
 msgstr "OBBLIGATORIO"
 
-#: ../setup/config_data.inc:296
+#: ../setup/config_data.inc:299
 #, php-format
 msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."
 msgstr "Il percorso completo sul disco della directory che conterr&agrave; le tue foto. Questa directory sar&agrave; inizialmente vuota -- Gallery la riempir&agrave; con le tue foto. Nota che l'utente che sta facendo eseguire il webserver dovr&agrave; avere permessi di scrittura in questa directory (nel tuo caso l'utente &egrave; %s)."
 
-#: ../setup/config_data.inc:306
+#: ../setup/config_data.inc:309
 msgid "Temporary directory"
 msgstr "Directory temporanea"
 
-#: ../setup/config_data.inc:308
+#: ../setup/config_data.inc:311
 #, php-format
 msgid "The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."
 msgstr "Il percorso ad una directory temporanea. Es. %s o %s. Nota che se il tuo sistema &egrave; configurato come <b>open_basedir</b>, allora questa directory temporanea deve risiedere dentro il percorso dell'<b>open_basedir</b>! In questo caso dovrai creare tu la directory temporanea ed assicurarti che sia scrivibile dal processo del webserver."
 
-#: ../setup/config_data.inc:320
+#: ../setup/config_data.inc:323
 #, php-format
 msgid "The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
 msgstr ""
 
-#: ../setup/config_data.inc:329
+#: ../setup/config_data.inc:332
 msgid "Albums URL"
 msgstr "URL Album"
 
-#: ../setup/config_data.inc:331
+#: ../setup/config_data.inc:334
 #, php-format
 msgid "The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
 msgstr ""
 
-#: ../setup/config_data.inc:341
+#: ../setup/config_data.inc:344
 msgid "Thumbnail image"
 msgstr "Immagine di anteprima"
 
-#: ../setup/config_data.inc:342
+#: ../setup/config_data.inc:345
 #, php-format
 msgid "The filesystem path to the thumbnail image to show for movies. E.g. %s"
 msgstr "Il percorso dell'immagine di anteprima da mostrare per i film. Es. %s"
 
-#: ../setup/config_data.inc:348
+#: ../setup/config_data.inc:351
 msgid "Mirror sites"
 msgstr "Siti mirror"
 
-#: ../setup/config_data.inc:349
+#: ../setup/config_data.inc:352
 #, php-format
 msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  E.g. %s"
 msgstr "Una lista di URL che contengono mirror delle directory dei tuoi album. Specifica una URL per linea con quelli pi&ugrave; affidabili a partire dall'alto. Es. %s"
 
-#: ../setup/config_data.inc:366
+#: ../setup/config_data.inc:369
 msgid "Toolkits / image processing"
 msgstr "Toolkits / elaborazione di immagini"
 
-#: ../setup/config_data.inc:370
+#: ../setup/config_data.inc:373
 msgid "Graphics suite to use"
 msgstr "Suite grafica da utilizzare"
 
-#: ../setup/config_data.inc:371
+#: ../setup/config_data.inc:374
 msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
 msgstr "Questi parametri indicano a Gallery quale insieme di strumenti grafici preferisci usare. Se nella prima pagina Gallery ha verificato che sono entrambi ok, allora &egrave; semplicemente una preferenza dell'utente. Altrimenti, seleziona quella che Gallery ha trovato senza errori."
 
-#: ../setup/config_data.inc:378
+#: ../setup/config_data.inc:381
 msgid "Path to NetPBM"
 msgstr "Percorso di NetPBM"
 
-#: ../setup/config_data.inc:379
+#: ../setup/config_data.inc:382
 #, php-format
 msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
 msgstr "Il percorso della directory contenente NetPBM nel tuo sistema. Se hai scaricato NetPBM dal sito di Gallery, non dimenticare di rendere i file eseguibili. Es. %s o %s o %s"
 
-#: ../setup/config_data.inc:383 ../setup/config_data.inc:406
+#: ../setup/config_data.inc:386 ../setup/config_data.inc:415
 #, php-format
 msgid "This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."
 msgstr "Questo percorso &egrave; necessario solo se prima hai selezionato %s. Altrimenti puoi lasciarlo cos&igrave; com'&egrave;, oppure vuoto."
 
-#: ../setup/config_data.inc:386
+#: ../setup/config_data.inc:389
 msgid "I can't find NetPBM at the location you provided."
 msgstr "Non riesco a trovare NetPBM nella posizione indicata."
 
-#: ../setup/config_data.inc:397
+#: ../setup/config_data.inc:400
 msgid "PNM to JPEG converter"
 msgstr "Convertitore da PNM a JPEG"
 
-#: ../setup/config_data.inc:398
+#: ../setup/config_data.inc:401
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "Questo valore &egrave; importante solo se usi NetPBM. NetPBM usa uno strumento per trasformare le immagini dal suo formato interno in JPEG. Questo strumento si chiama <i>ppmtojpeg</i> oppure  <i>pnmtojpeg</i> in funzione della versione di NetPBM che hai installato. Controlla la directory di NetPBM per vedere quale di questi due strumenti &egrave; presente e specificalo qui. Se non sei sicuro, tira a indovinare e noi cercheremo di verificarlo."
 
-#: ../setup/config_data.inc:404
+#: ../setup/config_data.inc:406
+msgid "PNM Composite (Overlay)"
+msgstr ""
+
+#: ../setup/config_data.inc:407
+#, fuzzy
+msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
+msgstr "Questo valore &egrave; importante solo se usi NetPBM. NetPBM usa uno strumento per trasformare le immagini dal suo formato interno in JPEG. Questo strumento si chiama <i>ppmtojpeg</i> oppure  <i>pnmtojpeg</i> in funzione della versione di NetPBM che hai installato. Controlla la directory di NetPBM per vedere quale di questi due strumenti &egrave; presente e specificalo qui. Se non sei sicuro, tira a indovinare e noi cercheremo di verificarlo."
+
+#: ../setup/config_data.inc:413
 msgid "Path to ImageMagick"
 msgstr "Percorso di ImageMagick"
 
-#: ../setup/config_data.inc:405
+#: ../setup/config_data.inc:414
 msgid "The path to the directory containing ImageMagick on your system."
 msgstr "Il percorso della directory contenente ImageMagick nel tuo sistema."
 
-#: ../setup/config_data.inc:409
+#: ../setup/config_data.inc:418
 msgid "I can't find ImageMagick at the location you provided."
 msgstr "Non riesco a trovare ImageMagick alla posizione specificata."
 
-#: ../setup/config_data.inc:419
+#: ../setup/config_data.inc:428
 msgid "Auto-rotate images"
 msgstr "Auto-ruota immagini"
 
-#: ../setup/config_data.inc:420
+#: ../setup/config_data.inc:429
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras."
 msgstr "Selezionando questa opzione Gallery prover&agrave; a ruotare automaticamente le immagini durante l'upload in base alle informazioni di orientamento contenute nei dati JPEG EXIF di alcune macchine digitali di nuova generazione."
 
-#: ../setup/config_data.inc:421
+#: ../setup/config_data.inc:430
 msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
 msgstr "Necessita del parser EXIF Jhead v1.9 o successivo (Vedi Strumenti opzionali)."
 
-#: ../setup/config_data.inc:422 ../setup/config_data.inc:484
-#: ../setup/config_data.inc:498 ../setup/config_data.inc:504
-#: ../setup/config_data.inc:643 ../setup/config_data.inc:692
-#: ../setup/config_data.inc:744 ../setup/config_data.inc:752
-#: ../setup/config_data.inc:758 ../setup/config_data.inc:764
-#: ../setup/config_data.inc:770 ../setup/config_data.inc:788
-#: ../setup/config_data.inc:877 ../setup/config_data.inc:899
-#: ../setup/config_data.inc:927 ../setup/config_data.inc:933
-#: ../setup/config_data.inc:934 ../setup/config_data.inc:960
-#: ../setup/config_data.inc:1100 ../setup/config_data.inc:1135
-#: ../setup/config_data.inc:1142 ../setup/config_data.inc:1148
-#: ../setup/config_data.inc:1154 ../setup/config_data.inc:1362
-#: ../setup/config_data.inc:1368 ../setup/config_data.inc:1375
-#: ../setup/config_data.inc:1381 ../setup/config_data.inc:1446
-#: ../setup/config_data.inc:1466 ../setup/config_data.inc:1480
-#: ../setup/config_data.inc:1495 ../setup/config_data.inc:1501
-#: ../setup/config_data.inc:1507 ../setup/config_data.inc:1576
-#: ../setup/config_data.inc:1583 ../setup/config_data.inc:1635
-#: ../setup/config_data.inc:1636 ../setup/config_data.inc:1642
+#: ../setup/config_data.inc:431 ../setup/config_data.inc:493
+#: ../setup/config_data.inc:507 ../setup/config_data.inc:513
+#: ../setup/config_data.inc:654 ../setup/config_data.inc:703
+#: ../setup/config_data.inc:755 ../setup/config_data.inc:763
+#: ../setup/config_data.inc:769 ../setup/config_data.inc:775
+#: ../setup/config_data.inc:781 ../setup/config_data.inc:799
+#: ../setup/config_data.inc:887 ../setup/config_data.inc:908
+#: ../setup/config_data.inc:934 ../setup/config_data.inc:940
+#: ../setup/config_data.inc:941 ../setup/config_data.inc:967
+#: ../setup/config_data.inc:1109 ../setup/config_data.inc:1115
+#: ../setup/config_data.inc:1150 ../setup/config_data.inc:1157
+#: ../setup/config_data.inc:1163 ../setup/config_data.inc:1169
+#: ../setup/config_data.inc:1381 ../setup/config_data.inc:1387
+#: ../setup/config_data.inc:1394 ../setup/config_data.inc:1400
+#: ../setup/config_data.inc:1466 ../setup/config_data.inc:1486
+#: ../setup/config_data.inc:1500 ../setup/config_data.inc:1515
+#: ../setup/config_data.inc:1521 ../setup/config_data.inc:1527
+#: ../setup/config_data.inc:1596 ../setup/config_data.inc:1603
+#: ../setup/config_data.inc:1655 ../setup/config_data.inc:1656
+#: ../setup/config_data.inc:1662
 msgid "yes"
 msgstr "s&igrave;"
 
-#: ../setup/config_data.inc:422 ../setup/config_data.inc:484
-#: ../setup/config_data.inc:498 ../setup/config_data.inc:504
-#: ../setup/config_data.inc:643 ../setup/config_data.inc:688
-#: ../setup/config_data.inc:692 ../setup/config_data.inc:744
-#: ../setup/config_data.inc:752 ../setup/config_data.inc:758
-#: ../setup/config_data.inc:764 ../setup/config_data.inc:770
-#: ../setup/config_data.inc:788 ../setup/config_data.inc:876
-#: ../setup/config_data.inc:877 ../setup/config_data.inc:900
-#: ../setup/config_data.inc:927 ../setup/config_data.inc:934
-#: ../setup/config_data.inc:960 ../setup/config_data.inc:1100
-#: ../setup/config_data.inc:1135 ../setup/config_data.inc:1142
-#: ../setup/config_data.inc:1148 ../setup/config_data.inc:1154
-#: ../setup/config_data.inc:1362 ../setup/config_data.inc:1368
-#: ../setup/config_data.inc:1375 ../setup/config_data.inc:1381
-#: ../setup/config_data.inc:1446 ../setup/config_data.inc:1466
-#: ../setup/config_data.inc:1480 ../setup/config_data.inc:1495
-#: ../setup/config_data.inc:1501 ../setup/config_data.inc:1507
-#: ../setup/config_data.inc:1575 ../setup/config_data.inc:1576
-#: ../setup/config_data.inc:1636 ../setup/config_data.inc:1641
-#: ../setup/config_data.inc:1642
+#: ../setup/config_data.inc:431 ../setup/config_data.inc:493
+#: ../setup/config_data.inc:507 ../setup/config_data.inc:513
+#: ../setup/config_data.inc:654 ../setup/config_data.inc:699
+#: ../setup/config_data.inc:703 ../setup/config_data.inc:755
+#: ../setup/config_data.inc:763 ../setup/config_data.inc:769
+#: ../setup/config_data.inc:775 ../setup/config_data.inc:781
+#: ../setup/config_data.inc:799 ../setup/config_data.inc:886
+#: ../setup/config_data.inc:887 ../setup/config_data.inc:908
+#: ../setup/config_data.inc:934 ../setup/config_data.inc:941
+#: ../setup/config_data.inc:967 ../setup/config_data.inc:1109
+#: ../setup/config_data.inc:1115 ../setup/config_data.inc:1150
+#: ../setup/config_data.inc:1157 ../setup/config_data.inc:1163
+#: ../setup/config_data.inc:1169 ../setup/config_data.inc:1381
+#: ../setup/config_data.inc:1387 ../setup/config_data.inc:1394
+#: ../setup/config_data.inc:1400 ../setup/config_data.inc:1466
+#: ../setup/config_data.inc:1486 ../setup/config_data.inc:1500
+#: ../setup/config_data.inc:1515 ../setup/config_data.inc:1521
+#: ../setup/config_data.inc:1527 ../setup/config_data.inc:1595
+#: ../setup/config_data.inc:1596 ../setup/config_data.inc:1656
+#: ../setup/config_data.inc:1661 ../setup/config_data.inc:1662
 msgid "no"
 msgstr "no"
 
-#: ../setup/config_data.inc:427 ../setup/config_data.inc:648
-#: ../setup/config_data.inc:658 ../setup/config_data.inc:1133
-#: ../setup/functions.inc:883 ../setup/functions.inc:963
+#: ../setup/config_data.inc:436 ../setup/config_data.inc:659
+#: ../setup/config_data.inc:669 ../setup/config_data.inc:1148
+#: ../setup/functions.inc:884 ../setup/functions.inc:964
 msgid "Advanced"
 msgstr "Avanzato"
 
-#: ../setup/config_data.inc:427
+#: ../setup/config_data.inc:436
 msgid "JPEG Quality"
 msgstr "Qualit&agrave; JPEG"
 
-#: ../setup/config_data.inc:428
+#: ../setup/config_data.inc:437
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
 msgstr "Il formato JPEG diminuisce la dimensione del file a scapito della qualit&agrave;. Gallery pu&ograve; controllare la qualit&agrave; del JPEG prodotto quando ridimensioni, ruoti o prepari delle anteprime dalle immagini JPEG. Immagini di maggior qualit&agrave; hanno delle dimensioni maggiori rispetto a quelle di qualit&agrave; pi&ugrave; bassa. Tuttavia, in molti casi c'&egrave; un punto nel quale l'incremento della qualit&agrave; incrementa la dimensione del file senza un apprezzabile miglioramento visivo. Se noti che le anteprime e le immagini ridimensionate sono pi&ugrave; pesanti degli originali e non vuoi che questo accada, prova allora ad abbassare questo valore. <b>Nota</b> che la modifica di questo valore avr&agrave; effetto solo sulle immagini modificate in <i>futuro</i>."
 
-#: ../setup/config_data.inc:441
+#: ../setup/config_data.inc:450
 msgid "Embedded Gallery"
 msgstr "Gallery integrata"
 
-#: ../setup/config_data.inc:442
+#: ../setup/config_data.inc:451
 msgid "Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."
 msgstr "Gallery rileva automaticamente quando &egrave; integrata in uno dei CMS supportati, tuttavia potrebbero esserci situazioni in cui sia necessario specificare alcune opzioni.  Ogni opzione che non sia stata rilevata automaticamente dovr&agrave; essere specificata in questa schermata."
 
-#: ../setup/config_data.inc:445
+#: ../setup/config_data.inc:454
 msgid "GeekLog Dir"
 msgstr "Directory di GeekLog"
 
-#: ../setup/config_data.inc:447
+#: ../setup/config_data.inc:456
 msgid "If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"
 msgstr "Se usi GeekLog, inserisci il percorso della directory public_html di GeekLog. Ad es. '/path/to/geeklog/public_html'"
 
-#: ../setup/config_data.inc:459
+#: ../setup/config_data.inc:468
 msgid "Main Gallery page"
 msgstr "Pagina Principale di Gallery"
 
-#: ../setup/config_data.inc:462
+#: ../setup/config_data.inc:471
 msgid "Show the album tree ?"
 msgstr "Mostra l'albero degli album?"
 
-#: ../setup/config_data.inc:463
+#: ../setup/config_data.inc:472
 #, fuzzy
 msgid "If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."
 msgstr "Se attivi questa opzione, vedrai una lista completa di tutti i sotto-album quando stai navigando nell'album di primo livello. Questo render&agrave; la navigazione verso un sotto-album specifico molto pi&ugrave; semplice (anche se pu&ograve; rendere confusa la pagina principale di Gallery)."
 
-#: ../setup/config_data.inc:464
+#: ../setup/config_data.inc:473
 #, fuzzy
 msgid "No tree"
 msgstr "Nota"
 
-#: ../setup/config_data.inc:465
+#: ../setup/config_data.inc:474
 #, php-format
 msgid "%d sublevel"
 msgstr ""
 
-#: ../setup/config_data.inc:466 ../setup/config_data.inc:467
-#: ../setup/config_data.inc:468 ../setup/config_data.inc:469
-#: ../setup/config_data.inc:470
+#: ../setup/config_data.inc:475 ../setup/config_data.inc:476
+#: ../setup/config_data.inc:477 ../setup/config_data.inc:478
+#: ../setup/config_data.inc:479
 #, php-format
 msgid "%d sublevels"
 msgstr ""
 
-#: ../setup/config_data.inc:471
+#: ../setup/config_data.inc:480
 msgid "Complete Tree"
 msgstr ""
 
-#: ../setup/config_data.inc:475
+#: ../setup/config_data.inc:484
 msgid "Highlight size"
 msgstr "Dimensione copertina "
 
-#: ../setup/config_data.inc:476
+#: ../setup/config_data.inc:485
 msgid "The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."
 msgstr "La dimensione voluta (in pixel) delle anteprime mostrate nella galleria (immagini copertina)."
 
-#: ../setup/config_data.inc:482
+#: ../setup/config_data.inc:491
 msgid "Show Owner"
 msgstr "Mostra Proprietario"
 
-#: ../setup/config_data.inc:483
+#: ../setup/config_data.inc:492
 msgid "Show album owner's name next to each album?"
 msgstr "Mostrare il nome del proprietario accanto a ogni album?"
 
-#: ../setup/config_data.inc:489
+#: ../setup/config_data.inc:498
 msgid "Albums per page"
 msgstr "Album per pagina"
 
-#: ../setup/config_data.inc:490
+#: ../setup/config_data.inc:499
 msgid "How many albums should be displayed per Gallery page?"
 msgstr "Quanti album devono essere mostrati in ogni pagina di Gallery?"
 
-#: ../setup/config_data.inc:496
+#: ../setup/config_data.inc:505
 msgid "Search Engine"
 msgstr "Motore di ricerca"
 
-#: ../setup/config_data.inc:497
+#: ../setup/config_data.inc:506
 msgid "Display search engine on main Gallery page?"
 msgstr "Mostrare il motore di ricerca nella pagina principale di Gallery?"
 
-#: ../setup/config_data.inc:502
+#: ../setup/config_data.inc:511
 msgid "Accurate Photo Count"
 msgstr "Conteggio Foto Accurato"
 
-#: ../setup/config_data.inc:503
+#: ../setup/config_data.inc:512
 msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
 msgstr "Visualizza il numero di album e foto nella homepage di Gallery utilizzando un sistema di conteggio accurato, ma incredibilmente lento. Questo &egrave; stato aggiunto in seguito alle richieste di numerosi utenti, tuttavia non si raccomanda per gallerie che hanno grandi quantit&agrave; di album e foto. Alcuni esempi hanno dimostrato che il caricamento della pagina index impiega fino a 30 secondi con questa opzione attiva."
 
-#: ../setup/config_data.inc:508
+#: ../setup/config_data.inc:517
 msgid "Frame around albums"
 msgstr "Cornice intorno agli album"
 
-#: ../setup/config_data.inc:509
+#: ../setup/config_data.inc:518
 msgid "On the main page, the image representing each album has a frame around it.  The following styles are available:"
 msgstr "Nella pagina principale, l'immagine che rappresenta ciascun album ha intorno a s&eacute; una cornice. Sono disponibili i seguenti stili:"
 
-#: ../setup/config_data.inc:522
+#: ../setup/config_data.inc:531
 msgid "Optional tools"
 msgstr "Strumenti opzionali"
 
-#: ../setup/config_data.inc:526 ../setup/config_data.inc:538
-#: ../setup/config_data.inc:550
+#: ../setup/config_data.inc:535 ../setup/config_data.inc:547
+#: ../setup/config_data.inc:559
 #, php-format
 msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr "Il percorso al file binario <b>%s</b>.  Ad esempio %s oppure %s. Questo &egrave; opzionale, quindi se non ce l'hai non preoccupartene."
 
-#: ../setup/config_data.inc:562 ../setup/config_data.inc:574
+#: ../setup/config_data.inc:571 ../setup/config_data.inc:583
 #, php-format
 msgid "The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr "Il percorso al parser EXIF <b>%s</b> .  Ad esempio %s oppure %s. Questo &egrave; opzionale, quindi se non ce l'hai non preoccupartene."
 
-#: ../setup/config_data.inc:586
+#: ../setup/config_data.inc:595
 #, php-format
 msgid "The filesystem path to the <b>jpegtran</b> utility.  E.g. %s or %s.  This is optional so if you don't have it, don't worry about it too much."
 msgstr "Il percorso dell'utility <b>jpegtran</b>.  Ad esempio %s oppure %s.  &Egrave; opzionale, quindi se non ce l'hai non preoccupartene."
 
-#: ../setup/config_data.inc:609
+#: ../setup/config_data.inc:620
 msgid "Languages and locales"
 msgstr "Lingue e configurazioni locali"
 
-#: ../setup/config_data.inc:612
+#: ../setup/config_data.inc:623
 msgid "Default language"
 msgstr "Lingua predefinita"
 
-#: ../setup/config_data.inc:614
+#: ../setup/config_data.inc:625
 #, php-format
 msgid "This is the language you will see as %s, and what users will see if no other preference is set."
 msgstr "Questa &egrave; la lingua che vedrai come %s, ed &egrave; ci&ograve; che gli utenti vedranno se non ci saranno altre modifiche alle preferenze."
 
-#: ../setup/config_data.inc:621
+#: ../setup/config_data.inc:632
 msgid "Multi language mode"
 msgstr "Modalit&agrave; multi lingua"
 
-#: ../setup/config_data.inc:622
+#: ../setup/config_data.inc:633
 msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site."
 msgstr "Gallery ha tre modalit&agrave; disponibili per la multi lingua. Queste influiscono sulla lingua che verr&agrave; mostrata ad un navigatore che accede al sito."
 
-#: ../setup/config_data.inc:625
+#: ../setup/config_data.inc:636
 msgid "Gallery is only displayed in one language"
 msgstr "Gallery &egrave; visualizzata in una sola lingua."
 
-#: ../setup/config_data.inc:626
+#: ../setup/config_data.inc:637
 msgid "Gallery is displayed in the language the browser sends"
 msgstr "Gallery viene visualizzata nella lingua selezionata dal browser che naviga"
 
-#: ../setup/config_data.inc:627
+#: ../setup/config_data.inc:638
 msgid "The User can choose the language via pulldown menu or national flags."
 msgstr "L'utente pu&ograve; scegliere la lingua da un men&ugrave; a tendina o da una bandiera."
 
-#: ../setup/config_data.inc:631
+#: ../setup/config_data.inc:642
 msgid "Available languages"
 msgstr "Lingue disponibili"
 
-#: ../setup/config_data.inc:634
+#: ../setup/config_data.inc:645
 msgid "These languages will be available as user choices in a pulldown menu or national flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."
 msgstr "Queste lingue saranno selezionabili dall'utente con un men&ugrave; a discesa o con delle bandiere nazionali, se hai scelto la modalit&agrave; multilingua 3, e saranno disponibili agli utenti registrati come lingua preferita nelle modalit&agrave; 2 o 3. "
 
-#: ../setup/config_data.inc:640
+#: ../setup/config_data.inc:651
 msgid "Show flags?"
 msgstr "Mostrare le bandiere?"
 
-#: ../setup/config_data.inc:642
+#: ../setup/config_data.inc:653
 msgid "In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."
 msgstr "In modalit&agrave; 3 puoi scegliere se mostrare un piccolo men&ugrave; a discesa o delle bandiere per le lingue disponibili."
 
-#: ../setup/config_data.inc:648
+#: ../setup/config_data.inc:659
 msgid "Format for date strings."
 msgstr "Formato per le stringhe contenenti date."
 
-#: ../setup/config_data.inc:649 ../setup/config_data.inc:659
+#: ../setup/config_data.inc:660 ../setup/config_data.inc:670
 #, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
 msgstr "Questa stringa di formattazione verr&agrave; usata per mostrare %s in %s. Si raccomanda di usare %s dato che cambier&agrave; il formato in base alla lingua scelta.  Tuttavia, se vuoi cambiare la stringa, consulta la %sdocumentazione PHP%s."
 
-#: ../setup/config_data.inc:650
+#: ../setup/config_data.inc:661
 msgid "date without time"
 msgstr "data senza ora"
 
-#: ../setup/config_data.inc:651 ../setup/config_data.inc:661
+#: ../setup/config_data.inc:662 ../setup/config_data.inc:672
 msgid "http://www.php.net/manual/en/function.strftime.php"
 msgstr "http://www.php.net/manual/it/function.strftime.php"
 
-#: ../setup/config_data.inc:652
+#: ../setup/config_data.inc:663
 #, php-format
 msgid "For example, %s will display date like this: %s."
 msgstr "Ad esempio, %s mostrer&agrave; le date in questo modo: %s."
 
-#: ../setup/config_data.inc:658
+#: ../setup/config_data.inc:669
 msgid "Format for date/time strings."
 msgstr "Formato per data/ora."
 
-#: ../setup/config_data.inc:660
+#: ../setup/config_data.inc:671
 msgid "date with time"
 msgstr "data con ora"
 
-#: ../setup/config_data.inc:662
+#: ../setup/config_data.inc:673
 #, php-format
 msgid "For example, %s will display date and time like this: %s."
 msgstr "Ad esempio, %s mostrer&agrave; data e ora in questo modo: %s."
 
-#: ../setup/config_data.inc:681
+#: ../setup/config_data.inc:692
 msgid "Email and Registration"
 msgstr "Email e Registrazione"
 
-#: ../setup/config_data.inc:682
+#: ../setup/config_data.inc:693
 #, php-format
 msgid "If you are having problems with email, please run the %s diagnostic."
 msgstr "Se si stanno verificando problemi con l'email, esegui la diagnostica di %s."
 
-#: ../setup/config_data.inc:683 ../setup/diagnostics.php:92
+#: ../setup/config_data.inc:694 ../setup/diagnostics.php:92
 msgid "Check Email"
 msgstr "Controllo Email"
 
-#: ../setup/config_data.inc:686
+#: ../setup/config_data.inc:697
 msgid "Enable email"
 msgstr "Abilita email"
 
-#: ../setup/config_data.inc:688
+#: ../setup/config_data.inc:699
 #, php-format
 msgid "Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."
 msgstr "Attiva l'email per l'intera galleria. Se la imposti a %s allora niente del resto di questa sezione sar&agrave; applicato."
 
-#: ../setup/config_data.inc:690
+#: ../setup/config_data.inc:701
 msgid "If you enable these settings you give your users the opportunity to let Gallery send them their lost password via email."
 msgstr "Se attivi queste impostazioni, dai agli utenti la possibilit&agrave; di ricevere via email da Gallery la password dimenticata."
 
-#: ../setup/config_data.inc:691
+#: ../setup/config_data.inc:702
 msgid "You need to enable this setting if you want to enable Self Registration."
 msgstr "Bisogna attivare queste impostazioni se vuoi attivare la Registrazione Autonoma degli utenti."
 
-#: ../setup/config_data.inc:696
+#: ../setup/config_data.inc:707
 msgid "Admin email address"
 msgstr "Indirizzo email amministratore"
 
-#: ../setup/config_data.inc:697
+#: ../setup/config_data.inc:708
 msgid "Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know whom to reach in case of problems. You may specify more than one address by separating them with commas."
 msgstr "Inserisci un indirizzo email valido per ricevere notizie sulle azioni effettuate da particolari utenti e anche affinch&eacute; gli utenti sappiano a chi rivolgersi in caso di problemi. Puoi fornire pi&ugrave; di un indirizzo email, separandoli con la virgola."
 
-#: ../setup/config_data.inc:705
+#: ../setup/config_data.inc:716
 msgid "Sender email address"
 msgstr "Indirizzo email del mittente"
 
-#: ../setup/config_data.inc:706
+#: ../setup/config_data.inc:717
 msgid "Set this value to a valid working email address.  Emails that are automatically sent by Gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients."
 msgstr "Inserisci un indirizzo email valido. Le email inviate automaticamente da Gallery avranno questo come indirizzo a cui rispondere. Sarebbe meglio tenere sotto controllo questo indirizzo email perch&eacute; potrebbe ricevere risposte dagli utenti."
 
-#: ../setup/config_data.inc:714
+#: ../setup/config_data.inc:725
 msgid "Email subject prefix"
 msgstr "Prefisso per l'oggetto dell'email"
 
-#: ../setup/config_data.inc:715
+#: ../setup/config_data.inc:726
 msgid "All Gallery emails will have this as the first part of their subject."
 msgstr "Tutte le email inviate da Gallery avranno questo come prima parte dell'oggetto."
 
-#: ../setup/config_data.inc:723
+#: ../setup/config_data.inc:734
 msgid "Welcome email message text"
 msgstr "Testo per l'email di benvenuto"
 
-#: ../setup/config_data.inc:724
+#: ../setup/config_data.inc:735
 msgid "This email will be sent when new accounts are created."
 msgstr "Questa email viene inviata quando un nuovo account viene creato."
 
-#: ../setup/config_data.inc:725
+#: ../setup/config_data.inc:736
 #, php-format
 msgid "%s, %s and %s will be replaced by the fullname, user name and password of the newly created user."
 msgstr "%s, %s e %s saranno sostituiti dal nome completo, nome utente e password dei nuovi utenti creati."
 
-#: ../setup/config_data.inc:729
+#: ../setup/config_data.inc:740
 #, php-format
 msgid "%s will be replaced by a link the new user can click on to create a new password"
 msgstr "%s sar&agrave; sostituito da un link che l'utente potr&agrave; cliccare per creare una nuova password"
 
-#: ../setup/config_data.inc:731
+#: ../setup/config_data.inc:742
 msgid "Leave this field blank to get the default message that can be translated into other languages.  The default message is:"
 msgstr "Lascia vuoto questo campo per avere il messaggio predefinito che pu&ograve; essere tradotto in altre lingue. Il messaggio predefinito &egrave;:"
 
-#: ../setup/config_data.inc:741
+#: ../setup/config_data.inc:752
 msgid "Allow visitors to self register."
 msgstr "Permetti ai visitatori di registrarsi."
 
-#: ../setup/config_data.inc:742
+#: ../setup/config_data.inc:753
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
 msgstr "Se attivo, i visitatori potranno creare il proprio account."
 
-#: ../setup/config_data.inc:743
+#: ../setup/config_data.inc:754
 msgid "This option requires the Email feature to be enabled."
 msgstr "Questa opzione necessita dell'attivazione della funzione Email."
 
-#: ../setup/config_data.inc:746
+#: ../setup/config_data.inc:757
 msgid "Email"
 msgstr "Email"
 
-#: ../setup/config_data.inc:749
+#: ../setup/config_data.inc:760
 msgid "Self registered users can create albums."
 msgstr "Gli utenti registrati possono creare album."
 
-#: ../setup/config_data.inc:750
+#: ../setup/config_data.inc:761
 msgid "Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled."
 msgstr "Se attivo, gli utenti registratisi potranno creare il proprio album dopo che si sono registrati. Se non attivo, dovrai essere tu a dare loro l'autorizzazione a creare o alterare il contenuto della galleria. La configurazione &egrave; ignorata se la registrazione &egrave; disabilitata."
 
-#: ../setup/config_data.inc:755
+#: ../setup/config_data.inc:766
 msgid "Enable bulk account creation"
 msgstr "Abilita la creazione multipla di account"
 
-#: ../setup/config_data.inc:756
+#: ../setup/config_data.inc:767
 msgid "This option allows you to create many new user accounts at one time by creating a file of new users."
 msgstr "Questa opzione ti permette di creare tanti account in una volta usando un file contenente i nuovi utenti."
 
-#: ../setup/config_data.inc:762
+#: ../setup/config_data.inc:773
 msgid "This is allows the &quot;admin&quot; account to get email whenever a comment is added to any album"
 msgstr "Questo permette che l'account &quot;admin&quot; riceva un'email ogni qualvolta venga inserito un commento in un album"
 
-#: ../setup/config_data.inc:763
+#: ../setup/config_data.inc:774
 msgid "Admin comment email"
 msgstr "Admin comment email"
 
-#: ../setup/config_data.inc:768
+#: ../setup/config_data.inc:779
 msgid "This is allows the &quot;admin&quot; account to get email whenever a change is made to any album"
 msgstr "Questo permette che l'account &quot;admin&quot; riceva un'email ogni qualvolta venga effettuato un cambiamento in un album"
 
-#: ../setup/config_data.inc:769
+#: ../setup/config_data.inc:780
 msgid "Admin Other Changes email"
 msgstr "Email Altri Cambiamenti Admin"
 
-#: ../setup/config_data.inc:775
+#: ../setup/config_data.inc:786
 msgid "Admin notification of email activity"
 msgstr "Notifica all'amministratore dell'attivit&agrave; dell'email"
 
-#: ../setup/config_data.inc:776
+#: ../setup/config_data.inc:787
 msgid "You can keep a record of every email that is sent by Gallery."
 msgstr "Puoi conservare una copia di ogni email inviata da Gallery."
 
-#: ../setup/config_data.inc:778
+#: ../setup/config_data.inc:789
 msgid "Send summary email"
 msgstr "Invia un'email di riepilogo"
 
-#: ../setup/config_data.inc:779
+#: ../setup/config_data.inc:790
 msgid "Log to a file"
 msgstr "Logga in un file"
 
-#: ../setup/config_data.inc:780
+#: ../setup/config_data.inc:791
 msgid "Send duplicate email"
 msgstr "Invia una copia dell'email"
 
-#: ../setup/config_data.inc:785
+#: ../setup/config_data.inc:796
 msgid "Use non-local SMTP server."
 msgstr "Usa server SMTP non locale."
 
-#: ../setup/config_data.inc:786
+#: ../setup/config_data.inc:797
 msgid "Use a smtp server running on a different machine (ie: Your ISPs mail server) to process outgoing gallery email."
 msgstr "Usa un server smtp che gira su una macchina differente (ad es.: il mail server del tuo ISP) per processare le mail in uscita da gallery."
 
-#: ../setup/config_data.inc:793
+#: ../setup/config_data.inc:804
 msgid "SMTP Server"
 msgstr "SMTP Server"
 
-#: ../setup/config_data.inc:794
+#: ../setup/config_data.inc:805
 msgid "The name or IP address of the SMTP Server you want to use."
 msgstr "Il nome o l'indirizzo IP del server SMTP che vuoi utilizzare."
 
-#: ../setup/config_data.inc:802
-msgid "Local Host Name"
-msgstr "Nome del Host Locale"
+#: ../setup/config_data.inc:813
+msgid "Sender hostname"
+msgstr ""
 
-#: ../setup/config_data.inc:803
-msgid "The local hostname of the server as a reverse DNS lookup of the IP would show. If you are behind a NAT, this would be the DNS name of your router. If you don't know what to do here, 'localhost' is probably ok in most situations."
-msgstr "Dovrebbe comparire il nome del server locale come risultato di un DNS lookup dell'indirizzo IP. Se sei dietro un NAT, questo potrebbe essere il nome del tuo router. Se non sai cosa fare, 'localhost' di solito dovrebbe andare bene."
+#: ../setup/config_data.inc:814
+msgid "The full hostname of the server you are sending the mail from (The Server where your Gallery is installed on). If your Server is behind a NAT, this would be the DNS name of your router."
+msgstr ""
 
-#: ../setup/config_data.inc:811
+#: ../setup/config_data.inc:821
 msgid "SMTP Port"
 msgstr "Porta SMTP"
 
-#: ../setup/config_data.inc:812
+#: ../setup/config_data.inc:822
 msgid "The port on the SMTP server you are connecting to."
 msgstr "La porta sul server SMTP a cui ti vuoi connettere."
 
-#: ../setup/config_data.inc:820
+#: ../setup/config_data.inc:830
 msgid "SMTP account name"
 msgstr "Nome per l'accout SMTP"
 
-#: ../setup/config_data.inc:821
+#: ../setup/config_data.inc:831
 msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
 msgstr "Se il tuo provider richiede un nomeutente per la posta in uscita, usalo qui, oppure lascia vuoto."
 
-#: ../setup/config_data.inc:829
+#: ../setup/config_data.inc:839
 msgid "SMTP password"
 msgstr "Password SMTP"
 
-#: ../setup/config_data.inc:830
+#: ../setup/config_data.inc:840
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
 msgstr "Password per inviare email attraverso un server smtp. NOTA BENE: Questa password &egrave; memorizzata in chiaro in config.php. Ricordati di settare i permessi in modo che gli altri ci stiano alla larga!"
 
-#: ../setup/config_data.inc:845
+#: ../setup/config_data.inc:855
 msgid "Gallery wide slideshow"
 msgstr "Modalit&agrave; Presentazione di Gallery"
 
-#: ../setup/config_data.inc:846
+#: ../setup/config_data.inc:856
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
 msgstr "Aggiunge un link nella pagina principale della galleria alla modalit&agrave; presentazione. Nota che in caso di gallerie molto grandi, la presentazione pu&ograve; risultare molto lenta e richiedere molte risorse al sistema."
 
-#: ../setup/config_data.inc:847 ../setup/config_data.inc:1614
+#: ../setup/config_data.inc:857 ../setup/config_data.inc:1634
 msgid "These settings do not apply to the low tech slideshow."
 msgstr "Queste impostazioni non sono applicate alla presentazione semplificata (low tech)."
 
-#: ../setup/config_data.inc:850
+#: ../setup/config_data.inc:860
 msgid "Slideshow preferences"
 msgstr "Preferenze presentazione"
 
-#: ../setup/config_data.inc:852 ../setup/config_data.inc:860
-#: ../setup/config_data.inc:907 ../setup/config_data.inc:917
-#: ../setup/config_data.inc:1023 ../setup/config_data.inc:1034
-#: ../setup/config_data.inc:1045 ../setup/config_data.inc:1056
-#: ../setup/config_data.inc:1067 ../setup/config_data.inc:1078
-#: ../setup/config_data.inc:1619 ../setup/config_data.inc:1627
+#: ../setup/config_data.inc:862 ../setup/config_data.inc:870
+#: ../setup/config_data.inc:914 ../setup/config_data.inc:924
+#: ../setup/config_data.inc:1030 ../setup/config_data.inc:1041
+#: ../setup/config_data.inc:1052 ../setup/config_data.inc:1063
+#: ../setup/config_data.inc:1074 ../setup/config_data.inc:1085
+#: ../setup/config_data.inc:1639 ../setup/config_data.inc:1647
 msgid "Off"
 msgstr "Inattivo"
 
-#: ../setup/config_data.inc:853 ../setup/config_data.inc:1620
+#: ../setup/config_data.inc:863 ../setup/config_data.inc:1640
 msgid "No slideshow link will appear."
 msgstr "Non comparir&agrave; il link alla presentazione"
 
-#: ../setup/config_data.inc:854 ../setup/config_data.inc:861
-#: ../setup/config_data.inc:1621 ../setup/config_data.inc:1628
+#: ../setup/config_data.inc:864 ../setup/config_data.inc:871
+#: ../setup/config_data.inc:1641 ../setup/config_data.inc:1648
 msgid "Ordered"
 msgstr "Ordinati"
 
-#: ../setup/config_data.inc:855 ../setup/config_data.inc:1622
+#: ../setup/config_data.inc:865 ../setup/config_data.inc:1642
 msgid "Images will display in the same order as they appear in the Gallery."
 msgstr "Le immagini saranno visualizzate nello stesso ordine in cui compaiono nella Galleria."
 
-#: ../setup/config_data.inc:856 ../setup/config_data.inc:862
-#: ../setup/config_data.inc:1623 ../setup/config_data.inc:1629
+#: ../setup/config_data.inc:866 ../setup/config_data.inc:872
+#: ../setup/config_data.inc:1643 ../setup/config_data.inc:1649
 msgid "Random"
 msgstr "Casuale"
 
-#: ../setup/config_data.inc:857 ../setup/config_data.inc:1624
+#: ../setup/config_data.inc:867 ../setup/config_data.inc:1644
 msgid "Images will appear in a random order."
 msgstr "Le immagini saranno visualizzate in ordine casuale."
 
-#: ../setup/config_data.inc:867 ../setup/config_data.inc:1646
+#: ../setup/config_data.inc:877 ../setup/config_data.inc:1666
 msgid "Slideshow length"
 msgstr "Lunghezza presentazione"
 
-#: ../setup/config_data.inc:868 ../setup/config_data.inc:1647
+#: ../setup/config_data.inc:878 ../setup/config_data.inc:1667
 msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
 msgstr "Numero di immagini da mostrare nella presentazione. Imposta a 0 oppure vuoto per mostrare tutte le immagini. Imposta a un numero se la presentazione &egrave; casuale e vuoi mostrare solo una selezione delle immagini."
 
-#: ../setup/config_data.inc:875 ../setup/config_data.inc:1640
+#: ../setup/config_data.inc:885 ../setup/config_data.inc:1660
 msgid "Allow slideshow to loop"
 msgstr "Permetti alla presentazione di ripartire da capo"
 
-#: ../setup/config_data.inc:876
+#: ../setup/config_data.inc:886
 #, php-format
 msgid "This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "Questa opzione permetter&agrave; ai visitatori di vedere le presentazioni ripetute finch&eacute; non chiuderanno la finestra o non andranno in un'altra pagina. Impostalo a %s per risparmiare banda."
 
-#: ../setup/config_data.inc:881
+#: ../setup/config_data.inc:891
 msgid "Slideshow Mode"
 msgstr "Tipo di Presentazione"
 
-#: ../setup/config_data.inc:882
+#: ../setup/config_data.inc:892
 msgid "This allows you to set the default mode for the slideshow.  &quot;Java Applet&quot; requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. &quot;JavaScript&quot; is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."
 msgstr "Questo ti permette si scegliere il tipo di slideshow predefinito. &quot;Applet Java&quot; necessita che l'utente abbia installato nel suo browser il Java Runtime Environment, ma permette la visualizzazione a schermo intero. &quot;JavaScript&quot; &egrave; supportato da tutti i moderni browser senza plugin esterni, ma &egrave; pi&ugrave; limitato rispetto all'Applet Java."
 
-#: ../setup/config_data.inc:883
+#: ../setup/config_data.inc:893
 msgid "Java Applet"
 msgstr "Applet Java"
 
-#: ../setup/config_data.inc:883
+#: ../setup/config_data.inc:893
 msgid "JavaScript"
 msgstr "JavaScript"
 
-#: ../setup/config_data.inc:893
+#: ../setup/config_data.inc:903
 msgid "Comments"
 msgstr "Commenti"
 
-#: ../setup/config_data.inc:896
+#: ../setup/config_data.inc:906
 msgid "Enable commenting"
 msgstr "Abilita i commenti"
 
-#: ../setup/config_data.inc:897
+#: ../setup/config_data.inc:907
 msgid "This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
 msgstr "Questa opzione attiva o disattiva la possibilit&agrave; per gli utenti di scrivere commenti.  Se la imposti a &quot;no&quot; le funzionalit&agrave; dei commenti saranno disattivate."
 
-#: ../setup/config_data.inc:905
+#: ../setup/config_data.inc:912
 msgid "Indicate if there are comments available"
 msgstr "Indica se sono disponibili dei commenti"
 
-#: ../setup/config_data.inc:908
+#: ../setup/config_data.inc:915
 msgid "No indication that an item has comments."
 msgstr "Nessuna indicazione che un oggetto abbia dei commenti."
 
-#: ../setup/config_data.inc:909 ../setup/config_data.inc:918
+#: ../setup/config_data.inc:916 ../setup/config_data.inc:925
 msgid "Photos"
 msgstr "Immagini"
 
-#: ../setup/config_data.inc:910
+#: ../setup/config_data.inc:917
 msgid "Images that have comments will be marked."
 msgstr "Le immagini commentate saranno contrassegnate."
 
-#: ../setup/config_data.inc:911 ../setup/config_data.inc:919
+#: ../setup/config_data.inc:918 ../setup/config_data.inc:926
 msgid "Albums"
 msgstr "Album"
 
-#: ../setup/config_data.inc:912
+#: ../setup/config_data.inc:919
 msgid "Albums and sub-albums that have comments will be marked."
 msgstr "Gli album e i sotto-album commentati saranno contrassegnati."
 
-#: ../setup/config_data.inc:913 ../setup/config_data.inc:920
+#: ../setup/config_data.inc:920 ../setup/config_data.inc:927
 msgid "Both"
 msgstr "Entrambi"
 
-#: ../setup/config_data.inc:914
+#: ../setup/config_data.inc:921
 msgid "Images and albums that have comments will be marked."
 msgstr "Le immagini e gli album commentati saranno contrassegnati."
 
-#: ../setup/config_data.inc:925
+#: ../setup/config_data.inc:932
 msgid "Display date of last comment?"
 msgstr "Mostrare la data dell'ultimo commento?"
 
-#: ../setup/config_data.inc:926
+#: ../setup/config_data.inc:933
 #, php-format
 msgid "If an item has comments, display date of last comment, rather than a %s."
 msgstr "Se un oggetto ha dei commenti, visualizza la data dell'ultimo commento, piuttosto che %s."
 
-#: ../setup/config_data.inc:931
+#: ../setup/config_data.inc:938
 msgid "Anonymous comments from known users?"
 msgstr "Commenti anonimi per utenti conosciuti?"
 
-#: ../setup/config_data.inc:932
+#: ../setup/config_data.inc:939
 #, php-format
 msgid "When logged in, comments will automatically use format described below, unless this is set to %s."
 msgstr "Quando connesso, i commenti avranno automaticamente il formato descritto di seguito, a meno che non sia settato a %s."
 
-#: ../setup/config_data.inc:938
+#: ../setup/config_data.inc:945
 msgid "Format for commenter names"
 msgstr "Formato per i nomi di colo che hanno lasciato commenti"
 
-#: ../setup/config_data.inc:939
+#: ../setup/config_data.inc:946
 msgid "Commenter names of logged in users can be displayed in a variety of different ways"
 msgstr "I nomi degli utenti connessi che hanno commentato possono essere visualizzati in modi differenti"
 
-#: ../setup/config_data.inc:944
+#: ../setup/config_data.inc:951
 msgid "Add Comments inside the photo page"
 msgstr "Aggiungi Commenti nella pagina della foto"
 
-#: ../setup/config_data.inc:945
+#: ../setup/config_data.inc:952
 msgid "Do you want to have the possibility to add comments inside the view photo page, or do you prefer a link to a popup"
 msgstr "Vuoi avere la possibilit&agrave; di aggiungere commenti nella pagina della foto, oppure preferisci un link a un popup"
 
-#: ../setup/config_data.inc:946
+#: ../setup/config_data.inc:953
 msgid "Popup"
 msgstr "Popup"
 
-#: ../setup/config_data.inc:946
+#: ../setup/config_data.inc:953
 msgid "Inside"
 msgstr "All'interno"
 
-#: ../setup/config_data.inc:950
+#: ../setup/config_data.inc:957
 msgid "Maximum length of Comments"
 msgstr "Lunghezza massima dei Commenti"
 
-#: ../setup/config_data.inc:951
+#: ../setup/config_data.inc:958
 msgid "Enter a suitable value for the maximum length of comments to prevent abuse. Gallery limits comments to no more than 1000 characters.  This value will be used if less than 1000."
 msgstr "Inserisci un valore adatto per la lunghezza massima dei commenti, in modo da prevenire gli abusi. Gallery limita i commenti a non pi&ugrave; di 1000 caratteri.  Questo valore sar&agrave; usato se inferiore a 1000."
 
-#: ../setup/config_data.inc:957
+#: ../setup/config_data.inc:964
 msgid "Can everybody see a Comments overview"
 msgstr "Tutti possono vedere un riepilogo dei Commenti"
 
-#: ../setup/config_data.inc:958
+#: ../setup/config_data.inc:965
 msgid "Do you want to allow everybody to see a complete overview of all Comments of an Album. Set this to &quot;no&quot; if only admin and owners can use this feature."
 msgstr "Vuoi permettere a tutti di vedere un riepilogo completo dei Commenti di un Album. Imposta questo a &quot;no&quot; e solo l'admin e i proprietari potranno usare questa funzione."
 
-#: ../setup/config_data.inc:970
+#: ../setup/config_data.inc:977
 #, fuzzy
 msgid "Watermarking"
 msgstr "Directory marchio (watermark)"
 
-#: ../setup/config_data.inc:972
+#: ../setup/config_data.inc:979
 msgid "Choose wether you want to enable or disable watermarking. And set the defaults"
 msgstr ""
 
-#: ../setup/config_data.inc:973
+#: ../setup/config_data.inc:980
 #, fuzzy
 msgid "Watermarking is not possible in this installation !"
 msgstr "NetPBM non &egrave; in uso in questa installazione."
 
-#: ../setup/config_data.inc:976
+#: ../setup/config_data.inc:983
 msgid "Watermark directory"
 msgstr "Directory marchio (watermark)"
 
-#: ../setup/config_data.inc:977
+#: ../setup/config_data.inc:984
 #, php-format
 msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
 msgstr "Il percorso completo sul disco della directory che conterr&agrave; le tue immagini-marchio. Questa directory pu&ograve; contenere immagini .png, .tif e .gif che saranno sovraposte alle foto. Sono supportati questi formati perch&eacute; possono contenere dati sulla trasparenza o canali alpha. <b>Lasciando vuoti questi campi, la marchiatura sar&agrave; disabilitata</b>. Nota che l'utente che sta facendo eseguire il webserver dovr&agrave; avere permessi di scrittura in questa directory (nel tuo caso l'utente &egrave; %s)."
 
-#: ../setup/config_data.inc:987
+#: ../setup/config_data.inc:994
 msgid "Which Imagetype is watermarked"
 msgstr ""
 
-#: ../setup/config_data.inc:988
+#: ../setup/config_data.inc:995
 msgid "Here you can choose which of the images should be watermarked per default."
 msgstr ""
 
-#: ../setup/config_data.inc:993
-msgid "Watermark both resized an full images"
-msgstr ""
+#: ../setup/config_data.inc:1000
+#, fuzzy
+msgid "Watermark both resized and full images"
+msgstr "Directory marchio (watermark)"
 
-#: ../setup/config_data.inc:994
+#: ../setup/config_data.inc:1001
 #, fuzzy
 msgid "Watermark resized image only"
 msgstr "Directory marchio (watermark)"
 
-#: ../setup/config_data.inc:995
+#: ../setup/config_data.inc:1002
 #, fuzzy
 msgid "Watermark full sized image only"
 msgstr "Directory marchio (watermark)"
 
-#: ../setup/config_data.inc:1005
+#: ../setup/config_data.inc:1012
 msgid "Statistics"
 msgstr ""
 
-#: ../setup/config_data.inc:1006
+#: ../setup/config_data.inc:1013
 msgid "Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information."
 msgstr ""
 
-#: ../setup/config_data.inc:1007
+#: ../setup/config_data.inc:1014
 msgid "There's a different cache for each stats type supported with the exception of random."
 msgstr ""
 
-#: ../setup/config_data.inc:1008
+#: ../setup/config_data.inc:1015
 msgid "The caches can be refreshed by reloading the stats page and specifying the url variable 'refreshcache'."
 msgstr ""
 
-#: ../setup/config_data.inc:1009
+#: ../setup/config_data.inc:1016
 msgid "Caches will also refresh themselves after they have expired."
 msgstr ""
 
-#: ../setup/config_data.inc:1010
+#: ../setup/config_data.inc:1017
 msgid "The expire time in seconds is specified for each cache below."
 msgstr ""
 
-#: ../setup/config_data.inc:1011
+#: ../setup/config_data.inc:1018
 msgid "If the expire time is set to -1 then the cache will not auto refresh."
 msgstr ""
 
-#: ../setup/config_data.inc:1015
+#: ../setup/config_data.inc:1022
 msgid "Available Stats for 'normal' users"
 msgstr ""
 
-#: ../setup/config_data.inc:1016
+#: ../setup/config_data.inc:1023
 msgid "Gallery can give a lot of statistics for admins, however you can enable some of them to normal users."
 msgstr ""
 
-#: ../setup/config_data.inc:1017
+#: ../setup/config_data.inc:1024
 #, php-format
 msgid "For every selected item Gallery will create a link on the mainpage. The stats are based on the defaults defined in %s."
 msgstr ""
 
-#: ../setup/config_data.inc:1022
+#: ../setup/config_data.inc:1029
 msgid "View cache"
 msgstr ""
 
-#: ../setup/config_data.inc:1023 ../setup/config_data.inc:1034
-#: ../setup/config_data.inc:1045 ../setup/config_data.inc:1056
-#: ../setup/config_data.inc:1067 ../setup/config_data.inc:1078
+#: ../setup/config_data.inc:1030 ../setup/config_data.inc:1041
+#: ../setup/config_data.inc:1052 ../setup/config_data.inc:1063
+#: ../setup/config_data.inc:1074 ../setup/config_data.inc:1085
 msgid "On"
 msgstr ""
 
-#: ../setup/config_data.inc:1027
+#: ../setup/config_data.inc:1034
 msgid "View cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1033
+#: ../setup/config_data.inc:1040
 #, fuzzy
 msgid "Comment cache"
 msgstr "Commenti"
 
-#: ../setup/config_data.inc:1038
+#: ../setup/config_data.inc:1045
 msgid "Comment cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1044
+#: ../setup/config_data.inc:1051
 msgid "Date cache"
 msgstr ""
 
-#: ../setup/config_data.inc:1049
+#: ../setup/config_data.inc:1056
 msgid "Date cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1055
+#: ../setup/config_data.inc:1062
 #, fuzzy
 msgid "Vote cache"
 msgstr "Classe del votante"
 
-#: ../setup/config_data.inc:1060
+#: ../setup/config_data.inc:1067
 msgid "Vote cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1066
+#: ../setup/config_data.inc:1073
 msgid "Rating cache"
 msgstr ""
 
-#: ../setup/config_data.inc:1071
+#: ../setup/config_data.inc:1078
 msgid "Rating cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1077
+#: ../setup/config_data.inc:1084
 msgid "Capturedate cache"
 msgstr ""
 
-#: ../setup/config_data.inc:1082
+#: ../setup/config_data.inc:1089
 msgid "Capturedate cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1094
+#: ../setup/config_data.inc:1101
 msgid "Technical"
 msgstr "Tecnico"
 
-#: ../setup/config_data.inc:1095
-msgid "You usually don't need to change anything in this section."
-msgstr "Di solito non c'&egrave; bisogno di modificare niente in questa sezione."
+#: ../setup/config_data.inc:1102
+msgid "The settings in this section are intended for advanced users only."
+msgstr ""
 
-#: ../setup/config_data.inc:1098
+#: ../setup/config_data.inc:1104
+msgid "Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk."
+msgstr ""
+
+#: ../setup/config_data.inc:1107
 msgid "Debug mode"
 msgstr "Modo debug"
 
-#: ../setup/config_data.inc:1099
+#: ../setup/config_data.inc:1108
 msgid "Turn debug mode on so that you can diagnose problems?"
 msgstr "Attivo il modo debug in modo da poter analizzare i problemi?"
 
-#: ../setup/config_data.inc:1099
-msgid "Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system then you want!"
+#: ../setup/config_data.inc:1108
+#, fuzzy
+msgid "Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!"
 msgstr "Nota: Non lasciare attivata questa opzione in sistemi di produzione. Altrimenti potresti mostrare agli utenti troppe informazioni su Gallery e sul tuo sistema!"
 
-#: ../setup/config_data.inc:1104
+#: ../setup/config_data.inc:1113
+msgid "Disable register_globals check"
+msgstr ""
+
+#: ../setup/config_data.inc:1114
+#, php-format
+msgid "<b>Be aware that changing this setting potentially decreases the security of your Gallery, and we may or may not support you if you encounter issues that don't occur when this is turned off.</b><br><br>Enabling this causes %s to ignore register_globals being turned on.  %s normally tries to unset all variables created by register_globals to help enforce security.  If a script that you run requires register_globals to be on, and will not cooperate with %s, set this to &quot;yes&quot;."
+msgstr ""
+
+#: ../setup/config_data.inc:1119
 msgid "Time Limit"
 msgstr "Tempo limite"
 
-#: ../setup/config_data.inc:1105
+#: ../setup/config_data.inc:1120
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr "L'ammontare massimo di secondi che ogni singola operazione dovrebbe impiegare per essere eseguita. Se ti capita di vedere diversi messagi di errore del tipo <b>Maximum execution time exceeded</b>, puoi provare ad aumentare questo numero. Attenzione, se configuri questo valore troppo alto <i>potresti</i> avere dei processi bloccati a lungo che non fanno nulla. Il valore predefinito &egrave; 30 ed &egrave; un valore ragionevole."
 
-#: ../setup/config_data.inc:1113
+#: ../setup/config_data.inc:1128
 msgid "Random Block Cache Time"
 msgstr "Random Block Cache Time"
 
-#: ../setup/config_data.inc:1114
+#: ../setup/config_data.inc:1129
 msgid "This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."
 msgstr "Questo &egrave; il periodo di tempo durante il quale Random Block terr&agrave; in cache i dati delle tue foto e degli album, velocizzando le richieste di foto prese a caso.  Pi&ugrave; i tuoi album vengono modificati di frequente, pi&ugrave; questo valore dovrebbe essere tenuto basso, per garantire che le nuove foto vengano scelte rapidamente, e per prevenire che vengano richiamate foto che magari sono state eliminate. La cache viene rigenerata automaticamente quando un utente visualizza il random block dopo che &egrave; stato superato il limite di tempo."
 
-#: ../setup/config_data.inc:1117
+#: ../setup/config_data.inc:1132
 msgid "24 Hours"
 msgstr "24 Ore"
 
-#: ../setup/config_data.inc:1118
+#: ../setup/config_data.inc:1133
 msgid "12 Hours"
 msgstr "12 Ore"
 
-#: ../setup/config_data.inc:1119
+#: ../setup/config_data.inc:1134
 msgid "6 Hours"
 msgstr "6 Ore"
 
-#: ../setup/config_data.inc:1120
+#: ../setup/config_data.inc:1135
 msgid "1 Hour"
 msgstr "1 Ora"
 
-#: ../setup/config_data.inc:1121
+#: ../setup/config_data.inc:1136
 msgid "30 Minutes"
 msgstr "30 Minuti"
 
-#: ../setup/config_data.inc:1125
+#: ../setup/config_data.inc:1140
 msgid "Random Block Retrieval Attempts"
 msgstr "Tentativi di Recupero Blocco Casuale"
 
-#: ../setup/config_data.inc:1126
+#: ../setup/config_data.inc:1141
 msgid "This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."
 msgstr "Questa variabile controlla il numero di volte che il blocco casuale tenter&agrave; di ottenere un'immagine da Gallery. Maggiore il valore, minore il numero di volte in cui sar&agrave; ritornato un 'Nessuna Foto Selezionata', ma incrementer&agrave; il tempo di caricamento del Blocco Casuale."
 
-#: ../setup/config_data.inc:1133
+#: ../setup/config_data.inc:1148
 msgid "Cache EXIF data"
 msgstr "Memorizza in cache i dati EXIF"
 
-#: ../setup/config_data.inc:1134
+#: ../setup/config_data.inc:1149
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
 msgstr "I dati EXIF estratti da un file JPEG possono essere salvati in cache e quindi non estratti ogni volta. Per contro, se attivi la cache di questi dati, pu&ograve; succedere che la dimesione dei file con i dati dell'album diventi piuttosto grande e quindi rallenti la visualizzazione degli album. D'altronde, se non salvi questi dati, allora Gallery dovr&agrave; estrarli ogni volta che un utente guarder&agrave; le propriet&agrave; di una foto, e anche questo pu&ograve; rallentare."
 
-#: ../setup/config_data.inc:1140
+#: ../setup/config_data.inc:1155
 msgid "Developer Mode"
 msgstr "Modalit&agrave; Sviluppatore"
 
-#: ../setup/config_data.inc:1141
+#: ../setup/config_data.inc:1156
 msgid "Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."
 msgstr "Attiva la modalit&agrave; sviluppatore per vedere tutti i warning e gli avvisi di PHP.  L'attivazione non &egrave; raccomandabile agli utenti poco pratici di PHP."
 
-#: ../setup/config_data.inc:1146
+#: ../setup/config_data.inc:1161
 msgid "Use Syslog"
 msgstr "Usa Syslog"
 
-#: ../setup/config_data.inc:1147
+#: ../setup/config_data.inc:1162
 msgid "Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"
 msgstr "Riporta tramite syslog (UNIX) o System Event Manager (Windows) i login e logout degli utenti e gli errori gravi"
 
-#: ../setup/config_data.inc:1152
+#: ../setup/config_data.inc:1167
 #, php-format
 msgid "Use %s"
 msgstr "Usa %s"
 
-#: ../setup/config_data.inc:1153
+#: ../setup/config_data.inc:1168
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
 msgstr "Gallery, per aggiungere protezione contro la corruzione dei dati, usa un sistema di blocco chiamato flock().  Questo sistema non &egrave; supportato da tutte le piattaforme.  Se ottieni dei messaggi di errore come <i>Could not acquire lock</i> allora imposta questo valore a <i>no</i>."
 
-#: ../setup/config_data.inc:1157
+#: ../setup/config_data.inc:1172
 msgid "Status code"
 msgstr "Stato"
 
-#: ../setup/config_data.inc:1158
+#: ../setup/config_data.inc:1173
 msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr "Codice di stato atteso da Gallery dopo una chiamata con successo a <i>exec()</i>. Gallery prover&agrave; a individuare questo valore in modo automatico, cos&igrave; probabilmente non dovrai cambiarlo a meno di problemi."
 
-#: ../setup/config_data.inc:1164
+#: ../setup/config_data.inc:1179
 msgid "Session variable"
 msgstr "Variable di sessione"
 
-#: ../setup/config_data.inc:1165
+#: ../setup/config_data.inc:1180
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr "Questa &egrave; la variable di sessione usata per contenere tutte le informazioni di sessione per Gallery. Cambiala se verifichi un conflitto tra Gallery e altre applicazioni PHP sul webserver."
 
-#: ../setup/config_data.inc:1177
+#: ../setup/config_data.inc:1192
 msgid "RSS Publisher"
 msgstr "RSS Publisher"
 
-#: ../setup/config_data.inc:1178
+#: ../setup/config_data.inc:1193
 msgid "Options for the Gallery RSS Publisher"
 msgstr "Opzioni per il Publisher di RSS di Gallery"
 
-#: ../setup/config_data.inc:1181
+#: ../setup/config_data.inc:1196
 msgid "Enable RSS Generator"
 msgstr "Attiva il Generatore di RSS"
 
-#: ../setup/config_data.inc:1182
+#: ../setup/config_data.inc:1197
 msgid "Enable or Disable the Gallery RSS Generator"
 msgstr "Attiva o disattiva il Generatore di RSS di Gallery"
 
-#: ../setup/config_data.inc:1184 ../setup/config_data.inc:1225
-#: ../setup/config_data.inc:1233 ../setup/config_data.inc:1241
+#: ../setup/config_data.inc:1199 ../setup/config_data.inc:1240
+#: ../setup/config_data.inc:1248 ../setup/config_data.inc:1256
 msgid "Yes"
 msgstr "s&igrave;"
 
-#: ../setup/config_data.inc:1185 ../setup/config_data.inc:1226
-#: ../setup/config_data.inc:1234 ../setup/config_data.inc:1242
+#: ../setup/config_data.inc:1200 ../setup/config_data.inc:1241
+#: ../setup/config_data.inc:1249 ../setup/config_data.inc:1257
 msgid "No"
 msgstr "No"
 
-#: ../setup/config_data.inc:1189
+#: ../setup/config_data.inc:1204
 msgid "RSS Content"
 msgstr "Contenuto dell'RSS"
 
-#: ../setup/config_data.inc:1190
+#: ../setup/config_data.inc:1205
 msgid "Specifies which information is to be included in your RSS feed."
 msgstr "Specifica quali informazioni andranno incluse nel feed RSS."
 
-#: ../setup/config_data.inc:1192
+#: ../setup/config_data.inc:1207
 msgid "Basic information only"
 msgstr "Solo informazioni di base"
 
-#: ../setup/config_data.inc:1193
+#: ../setup/config_data.inc:1208
 msgid "Album highlight"
 msgstr "Copertina dell'Album"
 
-#: ../setup/config_data.inc:1194
+#: ../setup/config_data.inc:1209
 msgid "All image thumbnails"
 msgstr "Anteprime di tutte le immagini"
 
-#: ../setup/config_data.inc:1195
+#: ../setup/config_data.inc:1210
 msgid "All image thumbnails and captions"
 msgstr "Anteprime e didascalie di tutte le immagini"
 
-#: ../setup/config_data.inc:1199
+#: ../setup/config_data.inc:1214
 msgid "RSS Highlight"
 msgstr "Copertina dell'RSS"
 
-#: ../setup/config_data.inc:1200
+#: ../setup/config_data.inc:1215
 msgid "Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."
 msgstr "Specifica quale album sar&agrave; mostrato come icona per tutte le entry del feed: Se il campo &egrave; vuoto, non ci sar&agrave; nessuna copertina predefinita.  '*' usa la copertina dell'album modificato pi&ugrave; di recente.  Specificando il nome di un album verr&agrave; utilizzata la copertina di quell'album."
 
-#: ../setup/config_data.inc:1206
+#: ../setup/config_data.inc:1221
 msgid "Maximum Albums Returned"
 msgstr "Massimi Album Ritornati"
 
-#: ../setup/config_data.inc:1207
+#: ../setup/config_data.inc:1222
 msgid "This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."
 msgstr "Questo valore &egrave; il numero massimo di album che il feed RSS visualizzer&agrave; all'utente. Solo gli album modificati pi&ugrave; di recente sono scelti per questo valore."
 
-#: ../setup/config_data.inc:1214
+#: ../setup/config_data.inc:1229
 msgid "Visible Albums Only"
 msgstr "Solo gli Album Visibili"
 
-#: ../setup/config_data.inc:1215
+#: ../setup/config_data.inc:1230
 msgid "Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."
 msgstr "Specifica se gli album nascosti debbano essere inclusi nel feed RSS.  Questo non &egrave; consigliabile a meno che tu non sia l'unico utente di Gallery.  Gli altri utenti potrebbero arrabbiarsi se le loro immagini nascoste sono visibili al pubblico."
 
-#: ../setup/config_data.inc:1217
+#: ../setup/config_data.inc:1232
 msgid "Display Visible Albums Only"
 msgstr "Visualizza solo gli Album Visibili"
 
-#: ../setup/config_data.inc:1218
+#: ../setup/config_data.inc:1233
 msgid "Display Hidden Albums"
 msgstr "Visualizza gli Album Nascosti"
 
-#: ../setup/config_data.inc:1222
+#: ../setup/config_data.inc:1237
 msgid "Use dc:date"
 msgstr "Usa dc:date"
 
-#: ../setup/config_data.inc:1223
+#: ../setup/config_data.inc:1238
 msgid "(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."
 msgstr "(Per Esperti) Se gli utenti lamentano che i loro RSS readers non riescono a gestire il Fedd RSS, prova ad attivare questa opzione.  Includere dc:date non rispetta lo standard RSS 2.0, ma alcuni reader RSS ne hanno bisogno. Attivando questa opzione, il tuo feed non sar&agrave; un RSS 2.0 valido."
 
-#: ../setup/config_data.inc:1230
+#: ../setup/config_data.inc:1245
 msgid "Use Big Photo"
 msgstr "Usa Foto Grande"
 
-#: ../setup/config_data.inc:1231
+#: ../setup/config_data.inc:1246
 msgid "(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."
 msgstr "(Per Esperti) Se gli utenti lamentano che i loro reader RSS non gestiscono il canale anteprime, puoi provare ad attivare questa funzione. Attivando questa opzione, il tuo feed non sar&agrave; un RSS 2.0 valido."
 
-#: ../setup/config_data.inc:1238
+#: ../setup/config_data.inc:1253
 msgid "Use Photo Tag"
 msgstr "Usa Tag Foto"
 
-#: ../setup/config_data.inc:1239
+#: ../setup/config_data.inc:1254
 msgid "(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
 msgstr "(Per Esperti) La disattivazione di questa funzione far&agrave; in modo che due estensioni RSS, che tengono conto delle immagini rappresentanti di oggetti, vengano rimosse dal feed.  Lasciandola attivata non dovrebbero esserci problemi - disabilitarla &egrave; una scelta personale."
 
-#: ../setup/config_data.inc:1267
+#: ../setup/config_data.inc:1282
 msgid "Layout"
 msgstr "Aspetto"
 
-#: ../setup/config_data.inc:1270
+#: ../setup/config_data.inc:1285
 msgid "Default Columns"
 msgstr "Colonne predefinite"
 
-#: ../setup/config_data.inc:1271
+#: ../setup/config_data.inc:1286
 msgid "The default number of columns in an album."
 msgstr "Il numero predefinito di colonne in un album."
 
-#: ../setup/config_data.inc:1276
+#: ../setup/config_data.inc:1291
 msgid "Default Rows"
 msgstr "Righe predefinite"
 
-#: ../setup/config_data.inc:1277
+#: ../setup/config_data.inc:1292
 msgid "The default number of rows in an album."
 msgstr "Il numero predefinite di righe in un album."
 
-#: ../setup/config_data.inc:1288
+#: ../setup/config_data.inc:1303
 msgid "Appearance"
 msgstr "Veste grafica"
 
-#: ../setup/config_data.inc:1291
+#: ../setup/config_data.inc:1306
 msgid "Border color"
 msgstr "Colore bordo"
 
-#: ../setup/config_data.inc:1292
+#: ../setup/config_data.inc:1307
 #, php-format
 msgid "Default color of (image) borders. You can learn about %scolors%s here."
 msgstr "Colore predefinito per il bordo (delle immagini). Puoi saperne di pi&ugrave; sui colori %s qui%s."
 
-#: ../setup/config_data.inc:1303
+#: ../setup/config_data.inc:1318
 msgid "Border width"
 msgstr "Larghezza bordo"
 
-#: ../setup/config_data.inc:1304
+#: ../setup/config_data.inc:1319
 msgid "Default width of (image) borders."
 msgstr "Larghezza predefinita dei bordi (di una immagine)."
 
-#: ../setup/config_data.inc:1309
+#: ../setup/config_data.inc:1324
 msgid "Default Font"
 msgstr "Font predefinito"
 
-#: ../setup/config_data.inc:1310
+#: ../setup/config_data.inc:1325
 msgid "Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"
 msgstr "Font predefinito. Es. <i>arial</i> o <i>trebuchet</i>"
 
-#: ../setup/config_data.inc:1323
+#: ../setup/config_data.inc:1338
 msgid "Image Processing and Display"
 msgstr "Elaborazione e Visualizzazione Immagini"
 
-#: ../setup/config_data.inc:1326
+#: ../setup/config_data.inc:1341
 msgid "Thumbnail size"
 msgstr "Dimensione anteprima"
 
-#: ../setup/config_data.inc:1327
+#: ../setup/config_data.inc:1342
 msgid "The default target size (in pixels) of album thumbnails."
 msgstr "Valore preimpostato della dimensione voluta (in pixel) delle anteprime degli album."
 
-#: ../setup/config_data.inc:1333
+#: ../setup/config_data.inc:1348
 msgid "Resized image size"
 msgstr "Dimensione immagine ridimensionata"
 
-#: ../setup/config_data.inc:1334
+#: ../setup/config_data.inc:1349
 msgid "When large images are added to an album, an intermediate version will automatically be generated at this size."
 msgstr "Quando immagini molto grandi sono aggiunte ad un album, una immagine intermedia sar&agrave; automaticamente generata usando questa dimensione."
 
-#: ../setup/config_data.inc:1336 ../setup/config_data.inc:1350
+#: ../setup/config_data.inc:1351 ../setup/config_data.inc:1367
 msgid "off"
 msgstr "disattivato"
 
-#: ../setup/config_data.inc:1339
+#: ../setup/config_data.inc:1354
 msgid "Resized JPEG/PNG images file size"
 msgstr "Dimensione dell'immagine JPEG/PNG ridimensionata"
 
-#: ../setup/config_data.inc:1340
+#: ../setup/config_data.inc:1355
 msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
 msgstr "Valore predefinito della dimensione voluta (in kilobyte) per le immagini JPEG/PNG ridimensionate. L'inserimento di un valore potrebbe rallentare l'upload delle immagini sul server, ma velocizzer&agrave; la visualizzazione delle pagine, specialmente per persone con connessione telefonica tradizionale. Imposta a 0 per nessuna dimensione."
 
-#: ../setup/config_data.inc:1347
+#: ../setup/config_data.inc:1362
 msgid "Maximum image size"
 msgstr "Dimensione massima immagine"
 
-#: ../setup/config_data.inc:1348
+#: ../setup/config_data.inc:1363
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
 msgstr "Puoi anche limitare le dimensioni delle immagini da uploadare in Gallery."
 
-#: ../setup/config_data.inc:1348
+#: ../setup/config_data.inc:1364 ../setup/config_data.inc:1372
+#, fuzzy
+msgid "Warning:"
+msgstr "Attenzione"
+
+#: ../setup/config_data.inc:1365
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
 msgstr "Se attivo, non verr&agrave; salvata <b>l'immagine originale a dimensioni reali</b>, ma far&agrave; risparmiare spazio su disco. Gallery tenter&agrave; di salvare i commenti JPEG e i dati EXIF per l'immagine ridimensionata, ma per fare ci&ograve; sar&agrave; necessario <b>ImageMagick</b> oppure <b>jhead</b> (opzionale). (vedi il Passo 2)"
 
-#: ../setup/config_data.inc:1350
+#: ../setup/config_data.inc:1367
 #, php-format
 msgid "%d (%d MPix)"
 msgstr "%d (%d MPix)"
 
-#: ../setup/config_data.inc:1353
+#: ../setup/config_data.inc:1370
 msgid "Maximum JPEG/PNG image file size"
 msgstr "Dimensione massima del file dell'immagine JPEG/PNG"
 
-#: ../setup/config_data.inc:1354
+#: ../setup/config_data.inc:1371
 msgid "You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery."
 msgstr "Puoi anche limitare la dimensione dei file delle immagini JPEG/PNG da uploadare nella galleria."
 
-#: ../setup/config_data.inc:1354
+#: ../setup/config_data.inc:1373
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
 msgstr "Attivando questa opzione Gallery <b>non conserver&agrave; l'immagine con qualit&agrave; originale</b>. Mettendo un valore potrebbe rallentare il caricamento delle immagini sul server, ma velocizzer&agrave; la visualizzazione delle pagine, specialmente per le persone con una connessione telefonica tradizionale. Imposta a 0 per nessuna limitazione alla dimensione."
 
-#: ../setup/config_data.inc:1360
+#: ../setup/config_data.inc:1379
 msgid "Preserve Names"
 msgstr "Preserva Nomi"
 
-#: ../setup/config_data.inc:1361
+#: ../setup/config_data.inc:1380
 msgid "When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."
 msgstr "Quando fai l'upload delle immagini , devono essere preservati i nomi originali? Se selezioni <i>no</i>, Gallery assegner&agrave; un nuovo nome a ogni foto o filmato che saranno caricati."
 
-#: ../setup/config_data.inc:1366
+#: ../setup/config_data.inc:1385
 msgid "Add to beginning"
 msgstr "Aggiungi all'inizio"
 
-#: ../setup/config_data.inc:1367
+#: ../setup/config_data.inc:1386
 msgid "New images added to beginning rather than end of albums."
 msgstr "Le nuove immagini sono aggiunte all'inizio anzich&eacute; alla fine dell'album."
 
-#: ../setup/config_data.inc:1372
+#: ../setup/config_data.inc:1391
 msgid "Fit-to-window"
 msgstr "Adatta alla finestra"
 
-#: ../setup/config_data.inc:1373
+#: ../setup/config_data.inc:1392
 msgid "When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
 msgstr "Quando vedi foto che non hanno una versione intermedia, Gallery pu&ograve; automaticamente ridmensionare le immagini in modo da farle entrare nella finestra del browser (usando JavaScript). Questo per&ograve; non funziona in ambienti integrati come Nuke."
 
-#: ../setup/config_data.inc:1378
+#: ../setup/config_data.inc:1397
 msgid "Visitor size prefs"
 msgstr "Preferenze sulle dimensioni per Visitatori"
 
-#: ../setup/config_data.inc:1379
+#: ../setup/config_data.inc:1398
 msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."
 msgstr "Offre ai visitatori la possibilit&agrave; di scegliere di vedere sempre le immagini a dimensione originale invece di quella intermedia. Questa configurazione rimane attiva solo fino alla disconnessione del visitatore."
 
-#: ../setup/config_data.inc:1390
+#: ../setup/config_data.inc:1409
 msgid "Options"
 msgstr "Opzioni"
 
-#: ../setup/config_data.inc:1393
+#: ../setup/config_data.inc:1412
 msgid "Printing Services"
 msgstr "Servizio Stampa"
 
-#: ../setup/config_data.inc:1394
+#: ../setup/config_data.inc:1413
 #, fuzzy
-msgid "Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
+msgid "Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so they are good for the European market. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
 msgstr "Permette ai visitatori di stampare le foto direttamente dall'album. Fotokasten &egrave; un servizio di stampa con sede in Germania, quindi buono per il mercato europeo. EZ Prints, PhotoAccess e Shutterfly hanno sede negli USA. Tutti questi servizi faranno una piccola donazione al progetto Gallery per ogni stampa eseguita. L'utilizzo di questi servizi &egrave; un modo importante di aiutare il supporto a questo software libero."
 
-#: ../setup/config_data.inc:1417
+#: ../setup/config_data.inc:1436
 msgid "mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."
 msgstr ""
 
-#: ../setup/config_data.inc:1437
+#: ../setup/config_data.inc:1456
 msgid "Account for the mPUSH service"
 msgstr ""
 
-#: ../setup/config_data.inc:1438
-msgid "If you so choose, you can create your own account to use with the mPUSH cellular photo service.  If you do not use your own account, please leave this set to 'gallery'."
+#: ../setup/config_data.inc:1457
+#, php-format
+msgid "If you want to use mPUSH cellular photo service you can either use your own account, or leave this to 'gallery'. Visit this link to %screate your own account%s."
 msgstr ""
 
-#: ../setup/config_data.inc:1443
+#: ../setup/config_data.inc:1463
 msgid "Gallery Link"
 msgstr "Link a Gallery"
 
-#: ../setup/config_data.inc:1444
+#: ../setup/config_data.inc:1464
 msgid "Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
 msgstr "Mostrare negli album il link al livello pi&ugrave; alto della galleria? Se inattivo, l'utente non potr&agrave; navigare fuori dall'album. Ci&ograve; &egrave; utile quando si vuole integrare un album all'interno di un sito e impedire agli utenti di vedere (facilmente) gli altri album della galleria."
 
-#: ../setup/config_data.inc:1449
+#: ../setup/config_data.inc:1469
 msgid "Default Album Permissions"
 msgstr "Permessi predefiniti per gli Album"
 
-#: ../setup/config_data.inc:1450
+#: ../setup/config_data.inc:1470
 msgid "Defines the default set of permissions for an album.  Specifically, who can see the album, and view its photos."
 msgstr "Definisce il set di permessi predefiniti per un album.  Nello specifico, che pu&ograve; vedere l'album, e visualizzarne le foto."
 
-#: ../setup/config_data.inc:1451 ../setup/config_data.inc:1536
-#: ../setup/config_data.inc:1542
+#: ../setup/config_data.inc:1471 ../setup/config_data.inc:1556
+#: ../setup/config_data.inc:1562
 msgid "Everybody"
 msgstr "Tutti"
 
-#: ../setup/config_data.inc:1451
+#: ../setup/config_data.inc:1471
 msgid "Logged-In Users"
 msgstr "Utenti Connessi"
 
-#: ../setup/config_data.inc:1461
+#: ../setup/config_data.inc:1481
 msgid "Data displayed"
 msgstr "Dati visualizzati"
 
-#: ../setup/config_data.inc:1464
+#: ../setup/config_data.inc:1484
 msgid "Click counts"
 msgstr "Conta accessi"
 
-#: ../setup/config_data.inc:1465
+#: ../setup/config_data.inc:1485
 msgid "Display click counts within Albums?"
 msgstr "Mostra il contatore dei click negli Album?"
 
-#: ../setup/config_data.inc:1470
+#: ../setup/config_data.inc:1490
 msgid "Custom Fields"
 msgstr "Campi Personalizzati"
 
-#: ../setup/config_data.inc:1472
+#: ../setup/config_data.inc:1492
 msgid "Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"
 msgstr "Campi personalizzati disponibili per descrivere le immagini. Devono essere separati da virgole. Es.: <i>Descrizione, Luogo, Tipo di Pellicola</i>"
 
-#: ../setup/config_data.inc:1478
+#: ../setup/config_data.inc:1498
 msgid "Display clickable image dimensions"
 msgstr "Visualizza dimensioni immagine cliccabili"
 
-#: ../setup/config_data.inc:1479
+#: ../setup/config_data.inc:1499
 msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
 msgstr "Visualizza dimensioni immagine cliccabili sotto le anteprime. Saranno visualizzate prima le dimensioni delle immagini ridimensionate (se esistono), poi dell'immagine a grandezza originale, a seconda delle impostazioni dell'utente e dell'album. Puoi cliccare su questi link anzich&eacute; sull'anteprima di ciascuna immagine."
 
-#: ../setup/config_data.inc:1490
+#: ../setup/config_data.inc:1510
 msgid "Item Owner"
 msgstr "Proprietario Oggetto"
 
-#: ../setup/config_data.inc:1493
+#: ../setup/config_data.inc:1513
 msgid "Photo owner modification"
 msgstr "Modifica proprie  foto"
 
-#: ../setup/config_data.inc:1494
+#: ../setup/config_data.inc:1514
 msgid "Allow photo owners to edit and rotate/flip their own photos?"
 msgstr "Permettere la modifica come ruota/inverti delle proprie foto?"
 
-#: ../setup/config_data.inc:1499
+#: ../setup/config_data.inc:1519
 msgid "Photo owner deletion"
 msgstr "Cancellazione proprie foto"
 
-#: ../setup/config_data.inc:1500
+#: ../setup/config_data.inc:1520
 msgid "Allow photo owners to delete their own photos?"
 msgstr "Permettere ai proprietari la cancellazione delle proprie foto?"
 
-#: ../setup/config_data.inc:1505
+#: ../setup/config_data.inc:1525
 msgid "Photo owner display"
 msgstr "Mostra proprietario della foto"
 
-#: ../setup/config_data.inc:1506
+#: ../setup/config_data.inc:1526
 msgid "Display the name of photo owners with the caption?"
 msgstr "Mostrare il nome del proprietario delle foto nel titolo?"
 
-#: ../setup/config_data.inc:1517
+#: ../setup/config_data.inc:1537
 msgid "Polling configuration"
 msgstr "Configurazione votazioni"
 
-#: ../setup/config_data.inc:1519
+#: ../setup/config_data.inc:1539
 #, php-format
 msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."
 msgstr "Permette ai visitatori di votare o fare una classifica del contenuto di un album. La configurazione delle votazioni avviene qui, e sar&agrave; applicata ai nuovi album, e a tutti quelli esistenti se prima li aggiorni alla verisone %s."
 
-#: ../setup/config_data.inc:1522
+#: ../setup/config_data.inc:1542
 msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
 msgstr "In ogni album, la votazione pu&ograve; essere bloccata, ristretta agli utenti registrati  oppure aperta a tutti i visitatori."
 
-#: ../setup/config_data.inc:1524
+#: ../setup/config_data.inc:1544
 #, php-format
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr "Ci sono due tipi di votazione: %s, che permette ai votanti di ordinare in una classifica gli oggetti preferiti, e %s, che permette di dare un voto numerico alle immagini (tutte o solo qualcuna) senza restrizioni. La %s &egrave; come una recensione cinematografica, dove tutte le immagini possono riceve (ad es.) 5 punti, mentre la %s &egrave; utile nelle competizioni a punti."
 
-#: ../setup/config_data.inc:1525 ../setup/config_data.inc:1528
-#: ../setup/config_data.inc:1549 ../setup/config_data.inc:1554
+#: ../setup/config_data.inc:1545 ../setup/config_data.inc:1548
+#: ../setup/config_data.inc:1569 ../setup/config_data.inc:1574
 msgid "Rank"
 msgstr "Classifica"
 
-#: ../setup/config_data.inc:1526 ../setup/config_data.inc:1527
-#: ../setup/config_data.inc:1551 ../setup/config_data.inc:1555
+#: ../setup/config_data.inc:1546 ../setup/config_data.inc:1547
+#: ../setup/config_data.inc:1571 ../setup/config_data.inc:1575
 msgid "Critique"
 msgstr "Critica"
 
-#: ../setup/config_data.inc:1531
+#: ../setup/config_data.inc:1551
 msgid "Voter class"
 msgstr "Classe del votante"
 
-#: ../setup/config_data.inc:1532
+#: ../setup/config_data.inc:1552
 msgid "Voting is available to:"
 msgstr "La votazione &egrave; possibile per:"
 
-#: ../setup/config_data.inc:1534 ../setup/config_data.inc:1541
+#: ../setup/config_data.inc:1554 ../setup/config_data.inc:1561
 msgid "Nobody"
 msgstr "Nessuno"
 
-#: ../setup/config_data.inc:1535
+#: ../setup/config_data.inc:1555
 msgid "Voting is off."
 msgstr "La votazione &egrave; bloccata."
 
-#: ../setup/config_data.inc:1537
+#: ../setup/config_data.inc:1557
 msgid "Anyone can vote.  Votes are recorded against session ID."
 msgstr "Chiunque pu&ograve; votare. I voti sono registrati in base al session ID."
 
-#: ../setup/config_data.inc:1538 ../setup/config_data.inc:1543
+#: ../setup/config_data.inc:1558 ../setup/config_data.inc:1563
 msgid "Logged in"
 msgstr "Connesso"
 
-#: ../setup/config_data.inc:1539
+#: ../setup/config_data.inc:1559
 msgid "Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices."
 msgstr "Gli utenti registrati possono votare. I voti sono registrati in base all'username, e i votanti possono ritornare e cambiare le proprie scelte."
 
-#: ../setup/config_data.inc:1546
+#: ../setup/config_data.inc:1566
 msgid "Poll type"
 msgstr "Tipo di votazione"
 
-#: ../setup/config_data.inc:1547
+#: ../setup/config_data.inc:1567
 msgid "Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation."
 msgstr "Gallery offre due tipi di votazione per le immagini. Leggi di seguito per una spiegazione pi&ugrave; dettagliata."
 
-#: ../setup/config_data.inc:1550
+#: ../setup/config_data.inc:1570
 msgid "Users have a set of votes which they can allocate to the images."
 msgstr "Gli utenti dispongono di un set di voti che possono distribuire alle immagini."
 
-#: ../setup/config_data.inc:1552
+#: ../setup/config_data.inc:1572
 msgid "Enables users to give all images points without restriction."
 msgstr "Permette agli utenti di attribuire punti alle immagini senza restrizione."
 
-#: ../setup/config_data.inc:1559
+#: ../setup/config_data.inc:1579
 msgid "Number of choices"
 msgstr "Numero di scelte"
 
-#: ../setup/config_data.inc:1560
+#: ../setup/config_data.inc:1580
 msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu."
 msgstr "Numero di scelte che saranno a disposizione dei votanti come radio button oppure in un menu a discesa."
 
-#: ../setup/config_data.inc:1565
+#: ../setup/config_data.inc:1585
 msgid "Vote hint"
 msgstr "Consiglio per il voto"
 
-#: ../setup/config_data.inc:1566
+#: ../setup/config_data.inc:1586
 msgid "This is displayed above the voting options under each image."
 msgstr "Questo viene visualizzato prima delle opzioni di voto sotto ciascuna immagine."
 
-#: ../setup/config_data.inc:1568
+#: ../setup/config_data.inc:1588
 msgid "Vote for this image"
 msgstr "Vota per questa immagine"
 
-#: ../setup/config_data.inc:1573 ../setup/config_data.inc:1582
+#: ../setup/config_data.inc:1593 ../setup/config_data.inc:1602
 msgid "Show vote results"
 msgstr "Mostra i risultati del voto"
 
-#: ../setup/config_data.inc:1574
+#: ../setup/config_data.inc:1594
 #, php-format
 msgid "Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."
 msgstr "Visualizza nella pagina dell'album un riepilogo e un grafico delle immagini che hanno ricevuto i voti pi&ugrave; alti, e fornisci un link ai risultati completi. Se questa azione &egrave; %s, i risultati della votazione saranno disponibili solo agli amministratori e ai proprietari degli album."
 
-#: ../setup/config_data.inc:1580
+#: ../setup/config_data.inc:1600
 msgid "Number of results displayed"
 msgstr "Numero di risultati visualizzati"
 
-#: ../setup/config_data.inc:1581
+#: ../setup/config_data.inc:1601
 #, php-format
 msgid "If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"
 msgstr "Se %s &egrave; %s, visualizza un grafico che mostri questi risultati pi&ugrave; alti. (I risultati totali saranno disponibili in una pagina separata)"
 
-#: ../setup/config_data.inc:1588
+#: ../setup/config_data.inc:1608
 msgid "Orientation of vote choices?"
 msgstr "Orientamento delle scelte di voto?"
 
-#: ../setup/config_data.inc:1589
+#: ../setup/config_data.inc:1609
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr "La classifica le scelte della votazione pu&ograve; essere visualizzata accanto a ciascuna di esse (orizzontalmente) oppure al di sotto (verticalmente). La scelta non ha effetto sul voto critico, che &egrave; un menu a discesa."
 
-#: ../setup/config_data.inc:1592
+#: ../setup/config_data.inc:1612
 msgid "Horizontal"
 msgstr "Orizzontale"
 
-#: ../setup/config_data.inc:1593
+#: ../setup/config_data.inc:1613
 msgid "Vertical"
 msgstr "Verticale"
 
-#: ../setup/config_data.inc:1595 ../setup/functions.inc:1038
-#: ../setup/functions.inc:1047 ../setup/functions.inc:1052
+#: ../setup/config_data.inc:1615 ../setup/functions.inc:1039
+#: ../setup/functions.inc:1048 ../setup/functions.inc:1053
 msgid "Vote words and values"
 msgstr "Parole del voto e valori"
 
-#: ../setup/config_data.inc:1596
+#: ../setup/config_data.inc:1616
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "Questo permette di configurare il testo che sar&agrave; visualizzato per ogni opzione di voto, oltre al numero di punti che ogni opzione vale."
 
-#: ../setup/config_data.inc:1598
+#: ../setup/config_data.inc:1618
 msgid "Excellent"
 msgstr "Eccellente"
 
-#: ../setup/config_data.inc:1599
+#: ../setup/config_data.inc:1619
 msgid "Very Good"
 msgstr "Molto Buono"
 
-#: ../setup/config_data.inc:1600
+#: ../setup/config_data.inc:1620
 msgid "Good"
 msgstr "Buono"
 
-#: ../setup/config_data.inc:1601
+#: ../setup/config_data.inc:1621
 msgid "Average"
 msgstr "Mediocre"
 
-#: ../setup/config_data.inc:1602
+#: ../setup/config_data.inc:1622
 msgid "Poor"
 msgstr "Scarso"
 
-#: ../setup/config_data.inc:1613
+#: ../setup/config_data.inc:1633
 msgid "Album Slideshow"
 msgstr "Presentazione dell'Album"
 
-#: ../setup/config_data.inc:1617
+#: ../setup/config_data.inc:1637
 msgid "Slideshow Type"
 msgstr "Tipo di Presentazione"
 
-#: ../setup/config_data.inc:1634
+#: ../setup/config_data.inc:1654
 msgid "Recursive slideshow"
 msgstr "Presentazione ricorsiva"
 
-#: ../setup/config_data.inc:1635
+#: ../setup/config_data.inc:1655
 #, php-format
 msgid "Set to %s if you want to include images in sub albums as part of the slideshow."
 msgstr "Imposta a %s se vuoi includere nella presentazione le immagini dei sotto-album."
 
-#: ../setup/config_data.inc:1641
+#: ../setup/config_data.inc:1661
 #, php-format
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "Questa opzione permette agli utenti di vedere da capo la presentazione finche non chiudono la finestra o non navigano in un'altra pagina. Impostala a %s per risparmiare banda."
 
-#: ../setup/config_data.inc:1660 ../setup/frame_test.php:29
+#: ../setup/config_data.inc:1680 ../setup/frame_test.php:29
 msgid "Frames"
 msgstr "Cornici"
 
-#: ../setup/config_data.inc:1661
+#: ../setup/config_data.inc:1681
 #, php-format
 msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"
 msgstr "Ogni immagine (anteprima, ridimensionata e a dimensione piena) in %s pu&ograve; avere una cornice. Sono disponibili i seguenti stili:"
 
-#: ../setup/config_data.inc:1665
+#: ../setup/config_data.inc:1685
 msgid "Subalbum frames"
 msgstr "Cornici sotto-album"
 
-#: ../setup/config_data.inc:1666
+#: ../setup/config_data.inc:1686
 msgid "This frame will appear around the thumbnail image representing a subalbum."
 msgstr "Questa cornice apparir&agrave; intorno all'immagine di anteprima che rappresenta un sotto-album."
 
-#: ../setup/config_data.inc:1671
+#: ../setup/config_data.inc:1691
 msgid "Frame around thumbs"
 msgstr "Cornice intorno alle anteprime"
 
-#: ../setup/config_data.inc:1672
+#: ../setup/config_data.inc:1692
 msgid "This frame will appear around the thumbnail image representing a photo or movie."
 msgstr "Questa cornice comparir&agrave; intorno all'immagine di anteprima corrispondente a una foto o un filmato."
 
-#: ../setup/config_data.inc:1678
+#: ../setup/config_data.inc:1698
 msgid "Frame around images"
 msgstr "Cornice intorno alle immagini"
 
-#: ../setup/config_data.inc:1679
+#: ../setup/config_data.inc:1699
 msgid "This frame will appear around fulled sized and resized photos."
 msgstr "Questa cornice apparir&agrave; intorno alle immagini ridimensionate e a dimensione piena."
-
-#: ../setup/confirm.inc:36
-msgid "documentation"
-msgstr "documentazione"
 
 #: ../setup/confirm.inc:44
 #, php-format
@@ -2345,97 +2376,102 @@ msgstr "%s: %s esiste, ma il webserver non pu&ograve; scriverci. Prova: %s oppur
 msgid "%s: <b>%s</b> must be an enabled for this feature to function!"
 msgstr "%s: <b>%s</b> deve essere attivato per utilizzare questa funzione!"
 
-#: ../setup/confirm.inc:362
+#: ../setup/confirm.inc:365
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "%s non trovato. Controlla la directory di NetPBM per vedere quale convertitore PNG->JPEG hai (oppure prova semplicemente a usare %s). Controlla la tua configurazione (oppure usa ImageMagick)."
 
-#: ../setup/confirm.inc:374
+#: ../setup/confirm.inc:373
+#, fuzzy, php-format
+msgid "Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
+msgstr "%s non trovato. Controlla la directory di NetPBM per vedere quale convertitore PNG->JPEG hai (oppure prova semplicemente a usare %s). Controlla la tua configurazione (oppure usa ImageMagick)."
+
+#: ../setup/confirm.inc:385
 #, php-format
 msgid "You must specify a path for %s or %s for Gallery to function!!"
 msgstr "Devi inserire un path per %s oppure %s per far funzionare Gallery!!"
 
-#: ../setup/confirm.inc:377 ../setup/confirm.inc:380
+#: ../setup/confirm.inc:388 ../setup/confirm.inc:391
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr "%s non &egrave; correttamente configurato per essere usato come package grafico. Assicurati di aver inserito un path per i binari di %s al passo 2."
 
-#: ../setup/confirm.inc:386
+#: ../setup/confirm.inc:397
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr "Il tuo server ha delle restrizioni su open_basedir di PHP, e alcuni path non sono nella lista dei path con restrizioni."
 
-#: ../setup/confirm.inc:388
+#: ../setup/confirm.inc:399
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
 msgstr "Questo non significa che non funzioneranno, tuttavia vuol dire che non possiamo verificare che i path siano corretti. Se non riesci a fare correttamente l'upload delle immagini, fa' riferimento alla FAQ e alla %sdiagnostica%s per risolvere il problema."
 
-#: ../setup/confirm.inc:458
+#: ../setup/confirm.inc:469
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it."
 msgstr "Conferma che i settaggi che hai impostato sono stati correttamente accettati. Se questa pagina ti confonde, puoi tranquillamente ignorarla."
 
-#: ../setup/confirm.inc:460
+#: ../setup/confirm.inc:471
 msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
 msgstr "Conferma che i settaggi che hai impostato sono stati correttamente accettati. Ci sono degli errori evidenziati di seguito in rosso che devono essere risolti prima di salvare le impostazioni."
 
-#: ../setup/confirm.inc:465 ../setup/confirm.inc:484
+#: ../setup/confirm.inc:476 ../setup/confirm.inc:495
 msgid "Edit Config"
 msgstr "Modifica configurazione"
 
-#: ../setup/confirm.inc:467 ../setup/confirm.inc:486
+#: ../setup/confirm.inc:478 ../setup/confirm.inc:497
 msgid "Save Config"
 msgstr "Salva configurazione"
 
-#: ../setup/confirm.inc:469 ../setup/login.inc:71
+#: ../setup/confirm.inc:480 ../setup/login.inc:71
 msgid "Refresh"
 msgstr "Aggiorna"
 
-#: ../setup/confirm.inc:471
+#: ../setup/confirm.inc:482
 #, php-format
 msgid "One error."
 msgid_plural "%d errors."
 msgstr[0] "Un errore."
 msgstr[1] "%d errori."
 
-#: ../setup/confirm.inc:471
+#: ../setup/confirm.inc:482
 msgid "No errors."
 msgstr "Nessun errore."
 
-#: ../setup/confirm.inc:473
+#: ../setup/confirm.inc:484
 msgid "See Details below."
 msgstr "Vedi Dettagli qui di seguito."
 
-#: ../setup/confirm.inc:489
+#: ../setup/confirm.inc:500
 msgid "There are errors in your configuration."
 msgstr "Ci sono errori nella configurazione."
 
-#: ../setup/confirm.inc:490
+#: ../setup/confirm.inc:501
 msgid "Please go back and fix them!"
 msgstr "Per favore torna indietro e correggi!"
 
-#: ../setup/constants.inc:35
+#: ../setup/constants.inc:34
 msgid "In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
 msgstr "In questa fase dovrai personalizzare diversi settaggi di Gallery. Se questa &egrave; la prima volta che personalizzi Gallery, ti accorgerai che abbiamo cercato di preimpostare dei valori ragionevoli per te. Anche cos&igrave;, probabilmente dovrai fare dei piccoli cambiamenti. Se hai gi&agrave; configurato Gallery in precedenza, ti accorgerai che la pagina ha gi&agrave; caricato la tua precedente configurazione, cos&igrave; non avrai molto da cambiare."
 
-#: ../setup/constants.inc:37 ../setup/defaults.inc:36
+#: ../setup/constants.inc:36 ../setup/defaults.inc:36
 msgid "Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step."
 msgstr "Controlla le tabelle corrispondenti e riempile con i valori di cui hai bisogno. Alcuni, ma non tutti, sono obbligatori. Se hai completato questa fase, usa il pulsante per passare alla Fase successiva."
 
-#: ../setup/constants.inc:42 ../setup/constants.inc:157
+#: ../setup/constants.inc:41 ../setup/constants.inc:156
 #: ../setup/defaults.inc:43 ../setup/defaults.inc:131
 msgid "Previous Step"
 msgstr "Passo Precedente"
 
-#: ../setup/constants.inc:43 ../setup/constants.inc:158
+#: ../setup/constants.inc:42 ../setup/constants.inc:157
 #: ../setup/defaults.inc:44 ../setup/defaults.inc:132
 msgid "Previous Tab"
 msgstr "Tab Precedente"
 
-#: ../setup/constants.inc:44 ../setup/constants.inc:159
+#: ../setup/constants.inc:43 ../setup/constants.inc:158
 #: ../setup/defaults.inc:45 ../setup/defaults.inc:133
 msgid "Next Tab"
 msgstr "Tab Successiva"
 
-#: ../setup/constants.inc:46 ../setup/constants.inc:161
+#: ../setup/constants.inc:45 ../setup/constants.inc:160
 #: ../setup/defaults.inc:47 ../setup/defaults.inc:135
 msgid "Use Defaults"
 msgstr "Usa valori predefiniti"
@@ -2593,11 +2629,11 @@ msgstr "Chiudi finestra"
 msgid "Please retype your password here"
 msgstr "Inserisci di nuovo la password qui"
 
-#: ../setup/functions.inc:158 ../setup/functions.inc:1039
+#: ../setup/functions.inc:158 ../setup/functions.inc:1040
 msgid "Name"
 msgstr "Nome"
 
-#: ../setup/functions.inc:159 ../setup/functions.inc:1039
+#: ../setup/functions.inc:159 ../setup/functions.inc:1040
 msgid "Value"
 msgstr "Valore"
 
@@ -2634,365 +2670,371 @@ msgstr "binario di <b>jhead</b> individuato."
 msgid "NetPBM not being used in this installation."
 msgstr "NetPBM non &egrave; in uso in questa installazione."
 
-#: ../setup/functions.inc:443 ../setup/functions.inc:544
+#: ../setup/functions.inc:443 ../setup/functions.inc:545
 msgid "Cannot verify this path (it's not in your open_basedir list)."
 msgstr "Non riesco a verificare il percorso (non &egrave; compreso nella lista open_basedir)."
 
-#: ../setup/functions.inc:471
-msgid "Without pnmcomp gallery will not be able to watermark images, except you use ImageMagick and have the composite binary installed."
+#: ../setup/functions.inc:472
+#, fuzzy
+msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr "Senza pnmcomp Gallery non sar&agrave; in grado di marchiare le immagini, a meno che tu non usi ImageMagick e sia in possesso dei binari compositi installati."
 
-#: ../setup/functions.inc:499 ../setup/functions.inc:571
+#: ../setup/functions.inc:500 ../setup/functions.inc:572
 #, php-format
 msgid "Missing optional binary %s. %s"
 msgstr "Manca il binaro opzionale %s. %s"
 
-#: ../setup/functions.inc:503 ../setup/functions.inc:574
+#: ../setup/functions.inc:504 ../setup/functions.inc:575
 #, php-format
 msgid "Can't find %s!"
 msgstr "Impossibile trovare %s!"
 
-#: ../setup/functions.inc:508 ../setup/functions.inc:580
+#: ../setup/functions.inc:509 ../setup/functions.inc:581
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s non &egrave; eseguibile!"
 
-#: ../setup/functions.inc:517 ../setup/functions.inc:524
+#: ../setup/functions.inc:518 ../setup/functions.inc:525
 #, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr "%d binari su %d di NetPBM individuati."
 
-#: ../setup/functions.inc:558
+#: ../setup/functions.inc:540
+#, fuzzy
+msgid "ImageMagick not being used in this installation."
+msgstr "NetPBM non &egrave; in uso in questa installazione."
+
+#: ../setup/functions.inc:559
 msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
 msgstr "Senza composite Gallery non sar&agrave; in grado di marchiare le immagini, a meno che tu non usi NetPBM e il binario pnmcomp non sia installato."
 
-#: ../setup/functions.inc:587 ../setup/functions.inc:594
+#: ../setup/functions.inc:588 ../setup/functions.inc:595
 #, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr "%d binari su %d di ImageMagick individuati."
 
-#: ../setup/functions.inc:616
+#: ../setup/functions.inc:617
 msgid "Can't find <i>jpegtran</i>!"
 msgstr "<i>jpegtran</i> non trovato!"
 
-#: ../setup/functions.inc:618
+#: ../setup/functions.inc:619
 msgid "<b>jpegtran</b> binary located."
 msgstr "Binario di <b>jpegtran</b> individuato."
 
-#: ../setup/functions.inc:629
+#: ../setup/functions.inc:630
 msgid "PHP has <b>GNU gettext</b> support."
 msgstr "PHP ha il supporto a <b>GNU gettext</b>."
 
-#: ../setup/functions.inc:631
+#: ../setup/functions.inc:632
 msgid "PHP does not have <b>GNU gettext</b> support."
 msgstr "PHP non ha il supporto a <b>GNU gettext</b>."
 
-#: ../setup/functions.inc:645
+#: ../setup/functions.inc:646
 msgid "No languages found."
 msgstr "Nessuna lingua trovata."
 
-#: ../setup/functions.inc:647
+#: ../setup/functions.inc:648
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
 msgstr "Sembra che tu non abbia scaricato alcuna lingua aggiuntiva. Questo non &egrave; un problema! Gallery sar&agrave; visualizzata solo in inglese. Nota: se non &egrave; vero, controlla che tutti i file nella cartella 'locale' siano leggibili dal webserver, oppure contatta il Team di Gallery."
 
-#: ../setup/functions.inc:650
+#: ../setup/functions.inc:651
 #, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
 msgstr "Sono disponibili %d lingue. Se cerchi una traduzione visita %sGallery download page%s."
 
-#: ../setup/functions.inc:672
+#: ../setup/functions.inc:673
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr "Per controllare se ci sono versioni pi&ugrave; recenti, visita %s."
 
-#: ../setup/functions.inc:674
+#: ../setup/functions.inc:675
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr "Questa versione di %s &egrave; stata rilasciata il %s."
 
-#: ../setup/functions.inc:676
+#: ../setup/functions.inc:677
 #, php-format
 msgid "This is a development build of %s that was released on %s."
 msgstr "Questa &egrave; una build di sviluppo di %s rilasciata il %s."
 
-#: ../setup/functions.inc:685
+#: ../setup/functions.inc:686
 msgid "Please check regularly for updates."
 msgstr "Verifica regolarmente la presenza di aggiornamenti."
 
-#: ../setup/functions.inc:704
+#: ../setup/functions.inc:705
 msgid "All gallery locales are available on this host."
 msgstr "Tutti i locale di gallery sono disponibili nel sistema."
 
-#: ../setup/functions.inc:707
+#: ../setup/functions.inc:708
 #, php-format
 msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
 msgstr "Ci sono %d locale che Gallery non &egrave; stata in grado di trovare. Forse dovrai selezionare manualmente i formati della data."
 
-#: ../setup/functions.inc:713
+#: ../setup/functions.inc:714
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
 msgstr "Le date in %d lingua non possono essere formattate correttamente, perch&eacute; mancano i locale corrispondenti. Forse dovrai selezionare manualmente i formati della data per queste."
 
-#: ../setup/functions.inc:718
+#: ../setup/functions.inc:719
 #, php-format
 msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
 msgstr "Non &egrave; stata trovata alcuna locale. Tuttavia, la tua installazione PHP &egrave; configurata con la restrizione %s, e forse &egrave; questo ci&ograve; che interferisce col metodo che noi usiamo per trovare i locale. Sfortunatamente ci&ograve; vuol dire che il formato della data non cambier&agrave; in base alle diverse lingue. In ogni caso va bene continuare lo stesso."
 
-#: ../setup/functions.inc:722
+#: ../setup/functions.inc:723
 #, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
 msgstr "Non &egrave; stata trovata alcuna locale. Le funzioni multi-lingua verranno disabilitate. Installa i corrispondenti locale oppure chiedi all'amministratore di farlo. Questo problema &egrave; noto nei sistemi %s. In questo caso da' un'occhiata a questo %sDebian locale HowTo%s."
 
-#: ../setup/functions.inc:724
+#: ../setup/functions.inc:725
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "Su questa macchina &egrave; disponibile solo l'internazionalizzazione predefinita, quindi il formato della data non cambier&agrave; in funzione della lingua scelta."
 
-#: ../setup/functions.inc:883
+#: ../setup/functions.inc:884
 #, php-format
 msgid "<b>System</b> locale selection required"
 msgstr "Selezione <b>System</b> locale richiesta"
 
-#: ../setup/functions.inc:884
+#: ../setup/functions.inc:885
 msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "C'&egrave; pi&ugrave; di un <b>system</b> locale installato nel tuo sistema adatto alle seguenti lingue. Seleziona quello che ritieni pi&ugrave; adatto."
 
-#: ../setup/functions.inc:886 ../setup/functions.inc:966
+#: ../setup/functions.inc:887 ../setup/functions.inc:967
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
 msgstr "Questo &egrave; <b>solo</b> per il formato di data e ora. Devi solo modificare le lingue che hai attivato prima"
 
-#: ../setup/functions.inc:897 ../setup/functions.inc:921
+#: ../setup/functions.inc:898 ../setup/functions.inc:922
 msgid "System locale"
 msgstr "System locale"
 
-#: ../setup/functions.inc:963
+#: ../setup/functions.inc:964
 #, php-format
 msgid "<b>System</b> locale problems"
 msgstr "Problemi con <b>System</b> locale"
 
-#: ../setup/functions.inc:964
+#: ../setup/functions.inc:965
 msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "Non ci sono <b>system</b> locale installati nella tua macchina apparentemente adatti alle lingue seguenti. Seleziona quello che ti sembra pi&ugrave; adatto."
 
-#: ../setup/functions.inc:1007
+#: ../setup/functions.inc:1008
 msgid "<b>safe_mode</b> is off."
 msgstr "<b>safe_mode</b> &egrave; disattivata."
 
-#: ../setup/functions.inc:1019
+#: ../setup/functions.inc:1020
 msgid "<b>magic_quotes</b> are off."
 msgstr "<b>magic_quotes</b> sono disattivate."
 
-#: ../setup/functions.inc:1037
+#: ../setup/functions.inc:1038
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr "In %s, manca %s alla riga %d con %s %s."
 
-#: ../setup/functions.inc:1046
+#: ../setup/functions.inc:1047
 #, php-format
 msgid "In %s, blank in row %d."
 msgstr "In %s, c'&egrave; uno spazio vuoto alla riga %d."
 
-#: ../setup/functions.inc:1051
+#: ../setup/functions.inc:1052
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "In %s, per il nome %s (riga %d) il valore %s dovrebbe essere un numero intero positivo"
 
-#: ../setup/functions.inc:1073
+#: ../setup/functions.inc:1074
 msgid "<b>register_globals</b> is off."
 msgstr "<b>register_globals</b> &egrave; disattivata."
 
-#: ../setup/functions.inc:1241
+#: ../setup/functions.inc:1242
 #, fuzzy
 msgid "Your passwords do not match!"
 msgstr "Le password di amministrazione non corrispondono!"
 
-#: ../setup/functions.inc:1257
+#: ../setup/functions.inc:1258
 msgid "Valid admin email address given."
 msgstr "Inserito un valido indirizzo email per l'amministratore."
 
-#: ../setup/functions.inc:1264
+#: ../setup/functions.inc:1265
 msgid "You must specify valid admin email addresses"
 msgstr "Devi specificare indirizzi email per l'amministratore validi"
 
-#: ../setup/functions.inc:1272
+#: ../setup/functions.inc:1273
 #, php-format
 msgid "%s is not a valid email address."
 msgstr "%s non &egrave; un indirizzo email valido."
 
-#: ../setup/functions.inc:1281
+#: ../setup/functions.inc:1282
 msgid "Valid sender email address given."
 msgstr "Inserito un valido indirizzo email per il mittente."
 
-#: ../setup/functions.inc:1283
+#: ../setup/functions.inc:1284
 msgid "You must specify a valid sender email address"
 msgstr "Devi speficare un indirizzo email per il mittente valido"
 
-#: ../setup/functions.inc:1286
+#: ../setup/functions.inc:1287
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr "Devi includere %s nell'email di benvenuto"
 
-#: ../setup/functions.inc:1291
+#: ../setup/functions.inc:1292
 #, php-format
 msgid "You must include %s or %s in your welcome email"
 msgstr "Devi includere %s o %s nell'email di benvenuto"
 
-#: ../setup/functions.inc:1315
+#: ../setup/functions.inc:1316
 #, php-format
 msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 msgstr "I seguenti files sono obsoleti, danneggiati o mancanti:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 
-#: ../setup/functions.inc:1317
+#: ../setup/functions.inc:1318
 msgid "This should be fixed before proceeding"
 msgstr "Questo problema dovrebbe essere risolto prima di continuare"
 
-#: ../setup/functions.inc:1318 ../setup/functions.inc:1322
+#: ../setup/functions.inc:1319 ../setup/functions.inc:1323
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
 msgstr "Guarda %sControllo Versioni%s per ulteriori dettagli."
 
-#: ../setup/functions.inc:1321
+#: ../setup/functions.inc:1322
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
 msgstr "%d file sono pi&ugrave; recenti del previsto. &Egrave; tutto ok se stai usando codice di pre-release, beta, CVS o modificato."
 
-#: ../setup/functions.inc:1326
+#: ../setup/functions.inc:1327
 #, php-format
 msgid "All tested files up-to-date."
 msgstr "Tutti i file verificati sono aggiornati."
 
-#: ../setup/functions.inc:1328
+#: ../setup/functions.inc:1329
 #, php-format
 msgid "All %d tested files up-to-date."
 msgstr "Tutti i %d file verificati sono aggiornati."
 
-#: ../setup/functions.inc:1337
+#: ../setup/functions.inc:1338
 #, php-format
 msgid "this is new in version %s"
 msgstr "questo &egrave; nuovo nella versione %s"
 
-#: ../setup/functions.inc:1342
+#: ../setup/functions.inc:1343
 #, php-format
 msgid "Return to %s."
 msgstr "Ritorna a %s."
 
-#: ../setup/functions.inc:1343
+#: ../setup/functions.inc:1344
 msgid "Configuration Wizard"
 msgstr "Configurazione Guidata"
 
-#: ../setup/functions.inc:1392
+#: ../setup/functions.inc:1393
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr "Devi inserire una password per l'account di %s."
 
-#: ../setup/functions.inc:1397
+#: ../setup/functions.inc:1398
 #, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
 msgstr "Sembra che tu abbia gi&agrave; configurato Gallery, perch&eacute; c'&egrave; un account di amministratore, ma non si chiama %s."
 
-#: ../setup/functions.inc:1400
+#: ../setup/functions.inc:1401
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr "Sembra che tu abbia gi&agrave; configurato Gallery, perch&eacute; ci sono %d account di amministrazione, ma nessuno di essi si chiama %s."
 
-#: ../setup/functions.inc:1402
+#: ../setup/functions.inc:1403
 #, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr "Non sei obbligato a inserire una password. Ma se lo fai, Gallery creer&agrave; un account di amministrazione chiamato %s con quella password."
 
-#: ../setup/functions.inc:1411
+#: ../setup/functions.inc:1412
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr "Sembra che tu abbia gi&agrave; configurato Gallery, perch&eacute; l'utente %s esiste gi&agrave;. Non sei obbligato ad inserire una password. Ma se lo fai, Gallery cambier&agrave; la password dell'utente %s."
 
-#: ../setup/functions.inc:1418
+#: ../setup/functions.inc:1419
 msgid "Admin password"
 msgstr "Password dell'amministratore"
 
-#: ../setup/functions.inc:1433 ../setup/functions.inc:1435
-#: ../setup/functions.inc:1437 ../setup/functions.inc:1445
+#: ../setup/functions.inc:1434 ../setup/functions.inc:1436
+#: ../setup/functions.inc:1438 ../setup/functions.inc:1446
 msgid "Full Name"
 msgstr "Nome Completo"
 
-#: ../setup/functions.inc:1433 ../setup/functions.inc:1435
-#: ../setup/functions.inc:1439 ../setup/functions.inc:1447
+#: ../setup/functions.inc:1434 ../setup/functions.inc:1436
+#: ../setup/functions.inc:1440 ../setup/functions.inc:1448
 #: ../setup/login.inc:93
 msgid "Username"
 msgstr "Nome Utente"
 
-#: ../setup/functions.inc:1441
+#: ../setup/functions.inc:1442
 msgid "Full name that you can click on to send email (mailto:)"
 msgstr "Nome completo che puoi cliccare per mandare un'email (mailto:)"
 
-#: ../setup/functions.inc:1443
+#: ../setup/functions.inc:1444
 msgid "Username that you can click on to send email (mailto:)"
 msgstr "Username che puoi cliccare per mandare un'email (mailto:)"
 
-#: ../setup/functions.inc:1445 ../setup/functions.inc:1447
+#: ../setup/functions.inc:1446 ../setup/functions.inc:1448
 msgid "email address"
 msgstr "Indirizzo email"
 
-#: ../setup/functions.inc:1458
+#: ../setup/functions.inc:1459
 msgid "Your version of PHP handles this issue properly."
 msgstr "La tua versione di PHP gestisce adeguatamente questo problema."
 
-#: ../setup/functions.inc:1475
+#: ../setup/functions.inc:1476
 msgid "File missing or unreadable.  Please install then re-run this test."
 msgstr "Manca un file oppure &egrave; illeggibile. Installa e riesegui questo test."
 
-#: ../setup/functions.inc:1479
+#: ../setup/functions.inc:1480
 #, php-format
 msgid "Please ensure that %s is the latest version."
 msgstr "Assicurati che %s sia l'ultima versione."
 
-#: ../setup/functions.inc:1484
+#: ../setup/functions.inc:1485
 #, php-format
 msgid "Testing status of %d files."
 msgstr "Test dello stato di %d file in corso."
 
-#: ../setup/functions.inc:1491
+#: ../setup/functions.inc:1492
 #, php-format
 msgid "Cannot read file %s."
 msgstr "Il file %s non èegrave; leggibile."
 
-#: ../setup/functions.inc:1493
+#: ../setup/functions.inc:1494
 msgid "File missing or unreadable."
 msgstr "Manca un file oppure &egrave; illeggibile."
 
-#: ../setup/functions.inc:1498
+#: ../setup/functions.inc:1499
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
 msgstr "In %s non sono state trovate informazioni sulla versione. Il file sar&agrave; vecchio o corrotto."
 
-#: ../setup/functions.inc:1500
+#: ../setup/functions.inc:1501
 msgid "Missing version"
 msgstr "Versione mancante"
 
-#: ../setup/functions.inc:1507
+#: ../setup/functions.inc:1508
 #, php-format
 msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr "Problema riscontrato con %s. Era prevista la versione %s (o successiva) ma &egrave; stata trovata la %s."
 
-#: ../setup/functions.inc:1509
+#: ../setup/functions.inc:1510
 #, php-format
 msgid "Expected version %s (or greater) but found %s."
 msgstr "Era prevista la versione %s (o successiva) ma &egrave; stata trovata la %s."
 
-#: ../setup/functions.inc:1513
+#: ../setup/functions.inc:1514
 #, php-format
 msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
 msgstr "%s OK. La versione trovata (%s) &egrave; pi&ugrave; recente di quella prevista (%s)"
 
-#: ../setup/functions.inc:1515
+#: ../setup/functions.inc:1516
 #, php-format
 msgid "Expected version %s but found %s."
 msgstr "Era prevista la versione %s ma &egrave; stata trovata la %s."
 
-#: ../setup/functions.inc:1519
+#: ../setup/functions.inc:1520
 #, php-format
 msgid "%s OK"
 msgstr "%s OK"
 
-#: ../setup/functions.inc:1521
+#: ../setup/functions.inc:1522
 #, php-format
 msgid "Found expected version %s."
 msgstr "Trovata la versione prevista %s."
@@ -3220,3 +3262,12 @@ msgstr "Cornice in Legno"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr "Una cornice ricoperta di legno"
+
+#~ msgid "Local Host Name"
+#~ msgstr "Nome del Host Locale"
+
+#~ msgid "The local hostname of the server as a reverse DNS lookup of the IP would show. If you are behind a NAT, this would be the DNS name of your router. If you don't know what to do here, 'localhost' is probably ok in most situations."
+#~ msgstr "Dovrebbe comparire il nome del server locale come risultato di un DNS lookup dell'indirizzo IP. Se sei dietro un NAT, questo potrebbe essere il nome del tuo router. Se non sai cosa fare, 'localhost' di solito dovrebbe andare bene."
+
+#~ msgid "You usually don't need to change anything in this section."
+#~ msgstr "Di solito non c'&egrave; bisogno di modificare niente in questa sezione."
