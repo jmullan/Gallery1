@@ -206,7 +206,7 @@ function acceptableFormatRegexp() {
 }
 
 function acceptableFormatList() {
-	return array("jpg", "gif", "png", "avi", "mpg", "wmv", "mov");
+	return array("jpg", "gif", "png", "avi", "mpg", "mpeg","wmv", "mov");
 }
 
 function isImage($tag) {
@@ -221,6 +221,7 @@ function isImage($tag) {
 function isMovie($tag) {
 	return (!strcmp($tag, "avi") ||
 		!strcmp($tag, "mpg") ||
+		!strcmp($tag, "mpeg") ||
 		!strcmp($tag, "mov") ||
 		!strcmp($tag, "wmv"));
 }
