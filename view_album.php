@@ -722,6 +722,7 @@ if ($numPhotos) {
 				$myAlbum = $gallery->album->getNestedAlbum($i);
 				list($iWidth, $iHeight) = $myAlbum->getHighlightDimensions($scaleTo);
 			} else {
+				unset($myAlbum);
 				$scaleTo=0;  // thumbs already the right 
 					    //	size for this album
 				list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i, $scaleTo);

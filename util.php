@@ -1953,7 +1953,7 @@ function printChildren($albumName,$depth=0) {
 	for ($i=1; $i <= $numPhotos; $i++) {
 		set_time_limit($gallery->app->timeLimit);
 		if ($myAlbum->isAlbum($i) && !$myAlbum->isHidden($i)) {
-			$myName = $myAlbum->getAlbumName($i);
+			$myName = $myAlbum->getAlbumName($i, false);
 		        $nestedAlbum = new Album();
 			$nestedAlbum->load($myName);
 			if ($gallery->user->canReadAlbum($nestedAlbum)) {
@@ -1972,7 +1972,7 @@ function printChildren($albumName,$depth=0) {
 				echo "<a href=\"";
 				echo makeAlbumUrl($myName);
 				echo "\">$val2 $val3</a>\n";
-				printChildren($myName,$depth+1);
+				printChildren($myName, $depth+1);
 				echo "</span>";
 				echo "</div>";
 			}
