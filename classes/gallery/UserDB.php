@@ -195,7 +195,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 					continue;
 				}
 
-				if (fs_is_dir($file)) {
+				if (fs_is_dir($gallery->app->userDir . "/" . $file)) {
 					continue;
 				}
 
