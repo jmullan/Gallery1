@@ -71,26 +71,44 @@ if (!$gallery->register_globals) {
      * to overwrite HTTP_POST_VARS when it extracts HTTP_GET_VARS
      */
     $scrubList = array('HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_COOKIE_VARS', 'HTTP_POST_FILES');
+    if (function_exists("version_compare") && version_compare(phpversion(), "4.1.0", ">=")) {
+	array_push($scrubList, "_GET", "_POST", "_COOKIE", "_FILES", "_REQUEST");
+    }
+
     foreach ($scrubList as $outer) {
 	foreach ($scrubList as $inner) {
 	    unset(${$outer}[$inner]);
 	}
     }
     
-    if (is_array($HTTP_GET_VARS)) {
-	extract($HTTP_GET_VARS);
+    if (is_array($_REQUEST)) {
+	extract($_REQUEST);
+    }
+    else {
+        if (is_array($HTTP_GET_VARS)) {
+	    extract($HTTP_GET_VARS);
+	}
+
+	if (is_array($HTTP_POST_VARS)) {
+            extract($HTTP_POST_VARS);
+	}
+
+	if (is_array($HTTP_COOKIE_VARS)) {
+            extract($HTTP_COOKIE_VARS);
+	}
     }
 
-    if (is_array($HTTP_POST_VARS)) {
-	extract($HTTP_POST_VARS);
-    }
-
-    if (is_array($HTTP_COOKIE_VARS)) {
-	extract($HTTP_COOKIE_VARS);
-    }
 
     if (is_array($HTTP_POST_FILES)) {
 	foreach($HTTP_POST_FILES as $key => $value) {
+	    ${$key."_name"} = $value["name"];
+	    ${$key."_size"} = $value["size"];
+	    ${$key."_type"} = $value["type"];
+	    ${$key} = $value["tmp_name"];
+	}
+    }
+    elseif (is_array($_FILES)) {
+	foreach($_FILES as $key => $value) {
 	    ${$key."_name"} = $value["name"];
 	    ${$key."_size"} = $value["size"];
 	    ${$key."_type"} = $value["type"];
