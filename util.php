@@ -2480,11 +2480,14 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 			// Set the keepProfiles parameter based on the version
 			// of ImageMagick being used.  6.0.0 changed the
 			// parameters again.
-			if ($ImVersion == '5' && $keepProfiles) {
-				$keepProfiles = ' +profile \'*\' ';
-			} elseif ($ImVersion == '6' && $keepProfiles) {
-				$keepProfiles = ' -strip ';
-			} else {
+			switch ($ImVersion) {
+			    case '5':
+				$keepProfiles = ($keepProfiles) ? ' +profile \'*\' ' : '';
+				break;
+			    case '6':
+				$keepProfiles = ($keepProfiles) ? '' : ' -strip ';
+				break;
+			    default:
 				$keepProfiles = '';
 			}
 
