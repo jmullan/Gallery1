@@ -1,7 +1,12 @@
+2004-11-02  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-pl4-cvs-b2
+
+	* Fix: Adding $GLOBALS to the scrubList turned out to be...
+	  paranoia, basically.  GLOBALS is always a recursive array, and
+	  always ended up being scrubbed.
+
 2004-11-03  Jens A. Tkotz <jens@peino.de>  1.4.4-pl4-cvs-b1
 
-	* Fix: $GLOBALS is now in the sensitiv list. 
-	       $photo was defined twice in view_photo.php.
+	* Fix: $photo was defined twice in view_photo.php.
 	       Second time it was relying on $GLOBALS and failed.
 
 2004-11-02  Chris Kelly <ckdake@users.sf.net> 1.4.4-pl3

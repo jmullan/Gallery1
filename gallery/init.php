@@ -72,7 +72,7 @@ if (!$gallery->register_globals) {
      * appending "?HTTP_POST_VARS[gallery]=xxx" to the url would cause extract
      * to overwrite HTTP_POST_VARS when it extracts HTTP_GET_VARS
      */
-    $scrubList = array('HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_COOKIE_VARS', 'HTTP_POST_FILES', 'GLOBALS');
+    $scrubList = array('HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_COOKIE_VARS', 'HTTP_POST_FILES');
     if (function_exists("version_compare") && version_compare(phpversion(), "4.1.0", ">=")) {
 	array_push($scrubList, "_GET", "_POST", "_COOKIE", "_FILES", "_REQUEST");
     }
