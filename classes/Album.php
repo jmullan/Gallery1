@@ -342,6 +342,28 @@ class Album {
 		    $this->fields["perms"] = $newPerms;
 		}
 		
+		/* 
+	         * Added for album revision 26:
+		 * Changes "." to "-" in gallery names
+		 *  Since we're not sure how the .'s are appearing in gallery names
+		 *  this is worth running on any DB upgrade, for now
+	         */
+		if (strpos($this->fields["name"], ".") !== false) {
+			$oldName = $this->fields["name"];
+			$newName = strtr($this->fields["name"], ".", "-");
+
+			global $albumDB;
+			$albumDB->renameAlbum($oldName, $newName);
+			$albumDB->save();
+			printf(_("Renaming album from %s to %s..."), $oldName, $newName);
+
+			// AlbumDB will set this value .. but it will be set in a different
+			// instance of this album, so we have to do it here also so that
+			// when *this* instance gets saved the value is right
+			$this->fields["name"] = $newName;
+			$changed = 1;
+		}
+
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
 			if ($gallery->app->use_exif) {
@@ -355,13 +377,6 @@ class Album {
 		/* Special case for serial number */
 		if (!$this->fields["serial_number"]) {
 			$this->fields["serial_number"] = 0;
-			$changed = 1;
-		}
-
-		if (strpos($this->fields['name'], '.') !== false) {
-			$albumDB->renameAlbum($this->fields['name'], strtr($this->fields['name'], '.', '-')); 
-			print _('Renaming album from ') . $this->fields['name'] . _(' to ') . 
-				strtr($this->fields['name'], '.', '-');
 			$changed = 1;
 		}
 
