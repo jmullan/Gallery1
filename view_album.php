@@ -219,31 +219,34 @@ $numPhotos = $album->numPhotos(1);
 if ($numPhotos) {
 
 	$rowCount = 0;
+
+	// Find the correct starting point, accounting for hidden photos
+	$rowStart = 0;
+	$cnt = 0;
+	while ($cnt < $start) {
+		$rowStart = getNextPhoto($rowStart);
+		$cnt++;
+	}
+
 	while ($rowCount < $rows) {
 		/* Do the inline_albumthumb header row */
 		echo("<tr>");
-		$i = $start + $rowCount * $cols;
+		$i = $rowStart;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td>");
 			includeHtmlWrap("inline_albumthumb.header");
 			echo("</td>");
-			$j++; $i++;
+			$j++; 
+			$i = getNextPhoto($i);
 		}
 		echo("</tr>");
 
 		/* Do the picture row */
 		echo("<tr>");
-		$i = $start + $rowCount * $cols;
+		$i = $rowStart;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
-			if (!$user->canWriteToAlbum($album) && $album->isHidden($i)) {
-				$i++;
-				if ($i >= $numPhotos) {
-					break;
-				}
-			}
-
 			echo("<td width=$imageCellWidth align=center valign=middle>");
 
 			echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
@@ -275,22 +278,16 @@ if ($numPhotos) {
 
 
 			echo("</td>");
-			$j++; $i++;
+			$j++; 
+			$i = getNextPhoto($i);
 		}
 		echo("</tr>");
 	
 		/* Now do the caption row */
 		echo("<tr>");
-		$i = $start + $rowCount * $cols;
+		$i = $rowStart;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
-			if (!$user->canWriteToAlbum($album) && $album->isHidden($i)) {
-				$i++;
-				if ($i >= $numPhotos) {
-					break;
-				}
-			}
-
 			echo("<td width=$imageCellWidth valign=bottom align=center>");
 			echo("<form name='image_form_$i'>"); // put form outside caption to compress lines
 			echo "<center><span class=\"caption\">";
@@ -328,22 +325,25 @@ if ($numPhotos) {
 				echo('</select>');
 			}
 			echo('</form></td>');
-			$j++; $i++;
+			$j++;
+			$i = getNextPhoto($i);
 		}
 		echo "</tr>";
 
 		/* Now do the inline_albumthumb footer row */
 		echo("<tr>");
-		$i = $start + $rowCount * $cols;
+		$i = $rowStart;
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td>");
 			includeHtmlWrap("inline_albumthumb.footer");
 			echo("</td>");
-			$j++; $i++;
+			$j++;
+			$i = getNextPhoto($i);
 		}
 		echo("</tr>");
 		$rowCount++;
+		$rowStart = $i;
 	}
 } else {
 ?>
@@ -376,5 +376,3 @@ includeHtmlWrap("album.footer");
 ?>
 </body>
 </html>
-
-
