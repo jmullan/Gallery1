@@ -149,3 +149,16 @@ function dismissAndLoad($url) {
 	echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
 }
 
+function resize_image($src, $dest, $target) {
+	global $app;				
+
+	exec("$app->pnmDir/anytopnm $src | " .
+	     "$app->pnmDir/pnmscale -xysize $target $target | ".
+	     "$app->pnmDir/ppmtojpeg > $dest");
+
+	if (file_exists("$dest") && filesize("$dest") > 0) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
