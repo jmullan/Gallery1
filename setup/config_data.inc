@@ -336,6 +336,7 @@ $constants = array_merge(
 		"prompt" => _("Which language do you want as your default language"), 
 		"optional" => 1, 
 		"desc" => sprintf(_("This is what you will see as %s, and what users will see if no other preference is set."), 'admin'),
+		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"choices" => gallery_languages(),
 		"value" => $gallery->language
 	),
@@ -343,16 +344,16 @@ $constants = array_merge(
 		"prompt" => _("Multi language mode"), 
 		"desc" => _("Gallery has three multi language modes.  These affect the language that a user will see when visiting the site") .
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.3.5") . ")</b></font>",
-		"choices" => (sizeof(gallery_languages()) > 1) ? 
-			array(
+		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
+		"choices" => array(
 				1 => "1: " . _("Gallery is only displayed in one language"), 
 				2 => "2: " . _("Gallery is displayed in the language the browser sends"), 
-				3 => "3: " . _("The User can choose the language via select Box."))
-			: array(1 => "1: " . _("Gallery is only displayed in one language")),
-		"value" => 3
+				3 => "3: " . _("The User can choose the language via select Box.")),
+		"value" => (sizeof(gallery_languages()) > 1) ? 3 : 1
 	),
 	"available_lang" => array(
 		"prompt" => _("Available languages in mode 3"), 
+		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
 		"desc" => _("These languages will be available as user choices in a drop down menu, if you have chosen language mode 3") .
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.3.5") . ")</b></font>",

@@ -35,7 +35,9 @@ function make_attrs($attrList) {
 
 function make_fields($key, $arr) {
 	$col1 = $arr["prompt"];
-	if (isset($arr["choices"])) {
+	if (!strcmp($arr["type"], "hidden")) {
+		$col2 = form_input($key, $arr);
+	} else if (isset($arr["choices"])) {
 		$col2 = form_choice($key, $arr);
 	} else if (isset($arr["multiple_choices"])) {
 		$col2 = form_multiple_choice($key, $arr);
