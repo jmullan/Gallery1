@@ -310,21 +310,20 @@ function defaults($key, $value) {
 function use_feature($feature) {
 	return "\$gallery->app->feature[\"$feature\"] = 1;\n";
 }
+
 function no_feature($feature, $cause) {
 	return "\$gallery->app->feature[\"$feature\"] = 0; // ($cause)\n";
 }
+
 function error_missing($desc, $key) {
 	if (empty($desc)) {
 		$desc=$key;
 	}
-	return gallery_error(_("Missing value").": <b>$desc</b>!<br>");
-}
-function row_wrap($buf) {
-	return "<code>$buf</code><br>";
+	return gallery_error("// " . _("Missing value") . ": <b>$desc</b>!");
 }
 
 function error_row_wrap($buf) {
-	return "</pre>$buf</pre><br>";
+	return "// $buf";
 }
 
 function check_exec() {

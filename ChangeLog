@@ -1,3 +1,12 @@
+2004-07-21  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b50
+
+	* Change:  Simplify the output for the confirm page of the 
+	  config wizard.  This allows us to use only one output buffer,
+	  requiring less memory, and chance for error.
+
+	  Errors are now placed inline with the normal config.php data,
+	  and prepended with //, just like the "optional" lines.
+
 2004-07-20  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b49
 
 	* Change: getRequestVar, getEnvVar, getFilesVar now accept string arrays

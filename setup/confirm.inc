@@ -34,25 +34,24 @@
 require(GALLERY_BASE. '/Version.php');
 $docs=galleryDocs() ? galleryDocs() : _("documentation");
 $error = 0;
-$view = "";
+$viewheader = "";
 $outfile_list=array("config.php", ".htaccess");
 foreach ($outfile_list as $outfile) {
 	if (!fs_file_exists(GALLERY_CONFDIR . "/$outfile")) {
 		$error++;
-		$view .= "<p>" . gallery_error(sprintf(_("You must create an empty file named %s and chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
+		$viewheader .= "<p>" . gallery_error(sprintf(_("You must create an empty file named %s and chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
 	}
 	elseif ($fd = @fs_fopen(GALLERY_CONFDIR ."/$outfile", "a")) {
 		fclose($fd);
 	} else {
 		$error++;
-		$view .= gallery_error(sprintf(_("File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
+		$viewheader .= gallery_error(sprintf(_("File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
 	}
 }
 
-$data = "<" . "?php\n";
-$view .= "<pre>";
+$header = "<" . "?php\n";
 
-$data .= "/* \n"
+$header .= "/* \n"
         ." * Protect against very old versions of 4.0 (like 4.0RC1) which  \n"
         ." * don't implicitly create a new stdClass() when you use a variable \n"
         ." * like a class. \n"
@@ -64,17 +63,11 @@ $data .= "/* \n"
         ."        \$gallery->app = new stdClass(); \n"
         ."}\n\n";
 
-$data .= "/* Version  */\n";
-$view .= row_wrap("/* Version  */");
-
+$data = "/* Version  */\n";
 $data .= "\$gallery->app->config_version = '$gallery->config_version';\n";
-$view .= row_wrap("\$gallery->app->config_version = '$gallery->config_version';");
-
 $data .= "\n";
-$view .= row_wrap("&nbsp;");
 
 $data .= "/* Features */\n";
-$view .= row_wrap("/* Features */");
 foreach ($features as $feature => $dependents) {
 	$use = 1;
 	$cause = "";
@@ -90,18 +83,14 @@ foreach ($features as $feature => $dependents) {
 
 	if ($use) {
 		$data .= use_feature($feature);
-		$view .= row_wrap(use_feature($feature));
 	} else {
 		$data .= no_feature($feature, $cause);
-		$view .= row_wrap(no_feature($feature, $cause));
 	}
 }
 
 
 $data .= "\n";
-$view .= row_wrap("&nbsp;");
 $data .= "/* Constants */\n";
-$view .= row_wrap("/* Constants */\n");
 
 $graphtool = "";
 $graphpath = "";
@@ -166,7 +155,6 @@ foreach ($constants as $key => $val) {
 		if (isset($constants[$key]["allow_empty"])) {
 			$line = one_constant($key, $real);
 			$data .= $line;
-			$view .= row_wrap($line);
 			continue;
 		}
 		if (!strcmp($key, "pnmDir")) {
@@ -177,9 +165,8 @@ foreach ($constants as $key => $val) {
 		}
 		if (isset($constants[$key]["optional"])) {
 			$data .= "// ". _("optional") . " <i>$key</i> ". _("missing") ."\n";
-			$view .= row_wrap("// ". _("optional") ." <i>$key</i> ". _("missing"));
 		} else {
-			$view .= error_missing($constants[$key]["prompt"], $key)."<br>";
+			$data .= error_missing($constants[$key]["prompt"], $key)."<br>";
 			$error++;
 		}
 	} else {
@@ -196,7 +183,7 @@ foreach ($constants as $key => $val) {
 
 		if (isset($constants[$key]["must-be-url"])) {
 			if (!ereg("^http", $real)) {
-				$view .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must be an absolute URL!"), $key, $real)));
+				$data .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must be an absolute URL!"), $key, $real)));
 				$error++;
 				continue;
 			}
@@ -208,7 +195,7 @@ foreach ($constants as $key => $val) {
 				$warn_about_open_basedir = 1;
 			} else {
 				if (!@is_file($real)) {
-					$view .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must be a valid file (not a directory)!"), $key, $real)));
+					$data .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must be a valid file (not a directory)!"), $key, $real)));
 					$error++;
 					continue;
 				}
@@ -217,7 +204,7 @@ foreach ($constants as $key => $val) {
 
 		if (isset($constants[$key]["must-be-number"])) {
 			if (ereg("[^0-9]",$real)) {
-				$view .= error_row_wrap(gallery_error(sprintf(_("%s: <b>&quot;%s&quot;</b> must be a positive number"), $key, $real)));
+				$data .= error_row_wrap(gallery_error(sprintf(_("%s: <b>&quot;%s&quot;</b> must be a positive number"), $key, $real)));
 				$error++;
 				continue;
 			}
@@ -225,7 +212,7 @@ foreach ($constants as $key => $val) {
 
 		if (isset($constants[$key]["must-not-be-zero"])) {
 			if ($real == 0) {
-				$view .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must not be zero"), $key, $real)));
+				$data .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must not be zero"), $key, $real)));
 				$error++;
 				continue;
 			}
@@ -235,7 +222,7 @@ foreach ($constants as $key => $val) {
 			if (!inOpenBasedir($dir)) {
 				$warn_about_open_basedir = 1;
 			} else if (!fs_is_executable($real)) {
-				$view .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must be an executable file!"), $key, $real)));
+				$data .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must be an executable file!"), $key, $real)));
 				$error++;
 				continue;
 			}
@@ -244,20 +231,20 @@ foreach ($constants as $key => $val) {
 		if (isset($constants[$key]["require-write-dir"])) {
 			$dir = $real;
 			if (!file_exists($dir)) {
-				$view .= error_row_wrap(gallery_error(sprintf(_("Directory %s does not exist.  Please create it."), "<b>$dir</b>")));
+				$data .= error_row_wrap(gallery_error(sprintf(_("Directory %s does not exist.  Please create it."), "<b>$dir</b>")));
 				$error++;
 				continue;
 			}
 
 			if (!is_dir($dir)) {
-				$view .= error_row_wrap(gallery_error(sprintf(_("%s exists but is not a directory.  Please fix this."), "<b>$dir</b>")));
+				$data .= error_row_wrap(gallery_error(sprintf(_("%s exists but is not a directory.  Please fix this."), "<b>$dir</b>")));
 				$error++;
 				continue;
 			}
 
 			if (!is_writeable($dir) ||
 			    !test_write_to_dir($dir)) {
-				$view .= error_row_wrap(gallery_error(sprintf(_("%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
+				$data .= error_row_wrap(gallery_error(sprintf(_("%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
 						$key, $dir,
 						"<br><b><code>" .
 						"chown -R " . $webserver_user . " $dir" .
@@ -279,7 +266,6 @@ foreach ($constants as $key => $val) {
 				$line = one_constant($key, $real);
 			}
 			$data .= $line;
-			$view .= row_wrap($line);
 		}
 
 		if (isset($constants[$key]["verify-func"])) {
@@ -292,14 +278,14 @@ foreach ($constants as $key => $val) {
 			
 			foreach ($fail as $fkey => $fval) {
 				if (isset($fkey) && isset($constants[$key][$fkey])) {
-					$view .= error_row_wrap(gallery_error($constants[$key][$fkey]));
+					$data .= error_row_wrap(gallery_error($constants[$key][$fkey]));
 				}
 				if (is_string($fval)) {
-					$view .= error_row_wrap(gallery_error($fval));
+					$data .= error_row_wrap(gallery_error($fval));
 				} else if (is_array($fval)) {
 					foreach ($fval as $msg) {
 						if ($val) {
-							$view .= error_row_wrap(gallery_error($msg));
+							$data .= error_row_wrap(gallery_error($msg));
 						}
 					}
 				}
@@ -321,8 +307,8 @@ foreach ($constants as $key => $val) {
 			$reqFeatures = $constants[$key]['requires-features'];
 			foreach ($reqFeatures as $reqFeatKey => $desc) {
 				if ($$reqFeatKey  == 'no') {
-					$view .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must be an enabled for this feature to function!"), $key, $desc)));
-                                	$error++;
+					$data .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must be an enabled for this feature to function!"), $key, $desc)));
+					$error++;
 				}
 			}
 		}
@@ -342,7 +328,7 @@ if (!strcmp($graphtool, "NetPBM") && empty($graphtest['pnmDir'])) {
 	if (inOpenBasedir($graphpath)) {
 		if (!fs_file_exists(fs_executable($graphpath . "/" . $pnmtojpeg))) {
 			$error++;
-			$view .= error_row_wrap(gallery_error(
+			$data .= error_row_wrap(gallery_error(
 				sprintf(_("Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
 					"<i>$graphpath/$pnmtojpeg</i>",
 					($pnmtojpeg == "pnmtojpeg" ? "ppmtojpeg" : "pnmtojpeg"))));
@@ -355,29 +341,27 @@ if (!strcmp($graphtool, "NetPBM") && empty($graphtest['pnmDir'])) {
  * chose is configured properly.
  */
 if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
-    $view .= error_row_wrap(gallery_error(sprintf(_("You must specify a path for %s or %s for Gallery to function!!"), "<i>netpbm</i>",  "<i>ImageMagick</i>")));  
+    $data .= error_row_wrap(gallery_error(sprintf(_("You must specify a path for %s or %s for Gallery to function!!"), "<i>netpbm</i>",  "<i>ImageMagick</i>")));  
     $error++;
 } else if (!strcmp($graphtool, "ImageMagick") && !empty($graphtest['ImPath'])) {
-    $view .= error_row_wrap(gallery_error(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),"ImageMagick","ImageMagick")));
+    $data .= error_row_wrap(gallery_error(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),"ImageMagick","ImageMagick")));
     $error++;
 } else if (!strcmp($graphtool, "NetPBM") && !empty($graphtest['pnmDir'])) {
-    $view .= error_row_wrap(gallery_error(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),"NetPBM","NetPBM")));
+    $data .= error_row_wrap(gallery_error(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),"NetPBM","NetPBM")));
     $error++;
 }
 
 if (isset($warn_about_open_basedir)) {
-	$view .= row_wrap("<hr><b>". _("Note:") ."</b> ". 
+	$viewheader .= "<code><hr><b>". _("Note:") ."</b> ". 
 			_("Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths") .
 			" (" . ini_get('open_basedir') . ")  " .
 			sprintf(_("This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."),
- 			'<a href="diagnostics.php">', '</a>').
-			  "<hr>");
+			'<a href="diagnostics.php">', '</a>').
+			  "<hr></code>";
 }
 
 $data .= "\n";
-$view .= row_wrap("&nbsp;");
 $data .= "/* Defaults */\n";
-$view .= row_wrap("/* Defaults */\n");
 foreach ($defaults as $key => $val) {
 	if (isset($val["type"]) && 
 			($val["type"] == "block_start" || 
@@ -390,7 +374,7 @@ foreach ($defaults as $key => $val) {
 	if (isset($val["type"]) && $val["type"] == "separator") continue;
 
 	if (!isset($$key) && !isset($defaults[$key]["optional"])) {
-		$view .= error_missing($defaults[$key]["prompt"], $key);
+		$data .= error_missing($defaults[$key]["prompt"], $key);
 		$error++;
 	} else {
 	        if (get_magic_quotes_gpc()) {
@@ -411,24 +395,22 @@ foreach ($defaults as $key => $val) {
 							$string="\$gallery->app->default[\"$key\"][$sub_key][\"$sub_sub_key\"] = \"$sub_sub_value\";\n";
 						}
 						$data .= $string;
-						$view .= row_wrap($string);
 					}
 				}
 			}
 		} else {
 			$data .= defaults($key, $$key);
-			$view .= row_wrap(defaults($key, $$key));
 		}
 		if (isset($defaults[$key]["verify-func"])) {
 			$func = $defaults[$key]["verify-func"];
 			list($success, $fail) = $func($$key);
 			foreach ($fail as $fkey => $fval) {
 				if (is_string($fval)) {
-					$view .= error_row_wrap(gallery_error($fval));
+					$data .= error_row_wrap(gallery_error($fval));
 				} else if (is_array($fval)) {
 					foreach ($fval as $msg) {
 						if ($val) {
-							$view .= error_row_wrap(gallery_error($msg));
+							$data .= error_row_wrap(gallery_error($msg));
 						}
 					}
 				}
@@ -438,11 +420,10 @@ foreach ($defaults as $key => $val) {
 	}
 
 }
-$data .= "?" . ">\n";
+$footer = "?" . ">\n";
 ?>
 <div class="sitedesc">
 <?php 
-$view .= "</pre>";
 if (!$error) { 
 	echo _("Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it.");
 } else {
@@ -458,14 +439,15 @@ if (!$error) {
 		echo '<input type="button" name="refresh" disabled="disabled" value="' . _("Refresh") . '" onclick="location.reload()">';
 		echo '<br><div class="error" id="top">';
 		echo pluralize_n2(ngettext("One error.", "%d errors.", $error), $error, _("No errors."));
+                echo ' ';
 		echo _("See Details below.");
 		echo '</div>';
 	}
 ?>
 </p>
 
-<?php echo $view; ?>
-<input type="hidden" name="data" value="<?php echo urlencode($data) ?>">
+<?php echo "$viewheader<pre><code>$data</code></pre>"; ?>
+<input type="hidden" name="data" value="<?php echo urlencode($header . $data . $footer) ?>">
 
 <p align="center">
 <input type="submit" name="go_back" disabled="disabled" value="&lt;- <?php echo _("Edit Config") ?>">
