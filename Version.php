@@ -69,4 +69,3 @@ if (!isset($modname) && isset($name)) {
 }
 $modversion['securityschema'] = array("$modname::" => '::'); // Permission Component
 ?>
- 
