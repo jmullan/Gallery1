@@ -36,7 +36,12 @@ if ($gallery->session->albumName == "") {
         return;
 }
 
-$bordercolor = $gallery->album->fields["bordercolor"];
+$borderColor = $gallery->album->fields["bordercolor"];
+$borderwidth = $gallery->album->fields["border"];
+if (!strcmp($borderwidth, "off")) {
+        $borderwidth = 1;
+}
+$bgcolor = $gallery->album->fields['bgcolor'];
 $title = $gallery->album->fields["title"];
 ?>
 <? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
@@ -138,21 +143,22 @@ while ($index <= $numPhotos) {
 ?>
 var photo_count = <?=$photo_count?>; 
 
-function start_stop() {
-    if (onoff == 0) {
-	onoff = 1;
-	document.TopForm.mode.value = " Stop ";
-	go_to_next_photo();
-    } else {
-	onoff = 0;
-	document.TopForm.mode.value = " Start ";
+function stop() {
+    onoff = 0;
 	status = "The slide show is stopped, click Start to resume.";
+	document.TopForm.buttonForward.disabled = false;
+	document.TopForm.buttonReverse.disabled = false;
+	document.TopForm.buttonStop.disabled = true;
 	clearTimeout(timer);
-    }
 }
 
-function change_direction() {
-    direction = document.TopForm.direction.value;
+function change_direction(newDir) {
+    onoff = 1;
+    direction = newDir;
+    document.TopForm.buttonStop.disabled = false;
+    document.TopForm.buttonForward.disabled = true;
+    document.TopForm.buttonReverse.disabled = true;
+    go_to_next_photo();
 }
 
 function skip_to() {
@@ -167,7 +173,7 @@ function preload_complete() {
 
 function reset_timer() {
     clearTimeout(timer);
-    timeout_value = document.TopForm.time.options[document.TopForm.time.selectedIndex].text * 1000;
+    timeout_value = document.TopForm.time.options[document.TopForm.time.selectedIndex].value * 1000;
     timer = setTimeout('go_to_next_photo()', timeout_value);
 }
 
@@ -273,64 +279,60 @@ function preload_photo(index) {
 
 
 <? includeHtmlWrap("slideshow.header"); ?>
-
-<form name="TopForm">
-<table width="100%" height="1" border="0" cellspacing="0" cellpadding="0" valign="bottom">
-  <tr><td bgcolor="000000"></td></tr>
-</table>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" valign="bottom">
-  <tr>
 <?
 $imageDir = $gallery->app->photoAlbumURL."/images"; 
-$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"; ?>
-    <td bgcolor="000000" width="1" height="18"><?=$pixelImage?></td>
-    <td width="30%" valign="bottom" align="left">&nbsp;
-      <Input type="button" name="mode" value=" Start " onClick='start_stop()'>
-<?=
-drawSelect("direction",
-	   array(1 => "forward", -1 => "reverse"),
-	   1, // default value
-	   1, // select size
-	   array("onchange" => "change_direction()\""));
+$pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">";
 ?>
-    </td>
-    <td>
-<?=
-drawSelect("time", array(1 => 1,
-			 2 => 2,
-			 3 => 3,
-			 4 => 4,
-			 5 => 4,
-			 10 => 10,
-			 15 => 15,
-			 30 => 30,
-			 45 => 45,
-			 60 => 60),
-	   3, // default value
-	   1, // select size
-	   array("onchange=\"reset_timer()\""));
-?>
-    <span class=admin>
-      seconds between photos
-    </span>
-    </td>
+
+<form name="TopForm">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="3" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+  </tr>
+  <tr>
+    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
     <td align="right">
      <span class="admin">
        <a href=<?=makeGalleryUrl("view_album.php",
 				 array("set_albumName" => $gallery->session->albumName))?>>[back to album]</a>
      </span>
+     &nbsp;
     </td>
-    <td bgcolor="000000" width="1" height="18"><?=$pixelImage?></td>
+    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
   </tr>
-</table>
-<table width="100%" height="1" border="0" cellspacing="0" cellpadding="0" valign="bottom">
-  <tr><td bgcolor="000000"></td></tr>
-</table>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td bgcolor="000000" width="1" height="18"><?=$pixelImage?></td>
-    <td width="100%" valign="top" align="center">
-     Now Viewing Photo
+    <td colspan="3" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+  </tr>
+  <tr>
+    <td height=3 bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+    <td><?= $pixelImage ?></td>
+    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+  </tr>
+  <tr>
+    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+    <td valign="bottom" align="left">&nbsp;
+    <span class=admin>
+    Slide Show:&nbsp;&nbsp;
+      <Input style="font-size=10px;" type="button" name="buttonReverse" value="<< Rev" onClick='change_direction(-1)'>
+      <Input style="font-size=10px;" type="button" name="buttonStop" value=" Stop " onClick='stop()'>
+      <Input style="font-size=10px;" type="button" name="buttonForward" value="Fwd >>" onClick='change_direction(1)'>
+      &nbsp;&nbsp;
+<?=
+drawSelect("time", array(1 => "1 second pause",
+			 2 => "2 second pause",
+			 3 => "3 second pause",
+			 4 => "4 second pause",
+			 5 => "5 second pause",
+			 10 => "10 second pause",
+			 15 => "15 second pause",
+			 30 => "30 second pause",
+			 45 => "45 second pause",
+			 60 => "60 second pause"),
+	   3, // default value
+	   1, // select size
+	   array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
+?>
+    &nbsp;&nbsp;Current Photo
 <?
 	$photoCountArray = array();
 	for ($i = 1; $i <= $numVisible; $i++) {
@@ -340,31 +342,47 @@ drawSelect("time", array(1 => 1,
 			$photoCountArray, 
 			1, // default value 
 			1, // select size
-			array("onchange" => "skip_to()\""));
-?> of <?= $numVisible ?>
-     <br>
-      <textarea name="captions" cols="50" rows=3>
-      </textarea>
+			array("onchange" => "skip_to()", 'style' => 'font-size=10px;'));
+?> (of <?= $numVisible ?>)
+     </span>
     </td>
-    <td bgcolor="000000" width="1" height="18"><?=$pixelImage?></td>
+    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
   </tr>
-</table>
-<table width="100%" height="1" border="0" cellspacing="0" cellpadding="0" valign="bottom">
-  <tr><td bgcolor="000000"></td></tr>
-</table>
-</form>
-<table width="100%" height="100%">
   <tr>
-    <td valign="top">
-     <div align="center">
-        <script language="JavaScript">
-	   document.write("<img src="+photo_urls[1]+" name=slide>");
-	   document.TopForm.captions.value = photo_captions[1];
-        </script>
-     </div>
-    </td>
+    <td height=3 bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+    <td><?= $pixelImage ?></td>
+    <td bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
+  </tr>
+  <tr>
+    <td colspan="3" bgcolor="<?= $borderColor ?>"><?= $pixelImage ?></td>
   </tr>
 </table>
+
+<br>
+<div align="center">
+
+
+<table width=1% border=0 cellspacing=0 cellpadding=0>
+  <tr bgcolor="<?=$borderColor?>">
+    <td colspan=3 height=<?=$borderwidth?>><?=$pixelImage?></td>
+  </tr>
+  <tr>
+    <td bgcolor="<?=$borderColor?>" width=<?=$borderwidth?>><?=$pixelImage?></td>
+    <script language="JavaScript">
+    document.write("<td><img border=0 src="+photo_urls[1]+" name=slide></td>");
+    </script>
+    <td bgcolor="<?=$borderColor?>" width=<?=$borderwidth?>><?=$pixelImage?></td>
+  </tr>
+  <tr bgcolor="<?=$borderColor?>">
+    <td colspan=3 height=<?=$borderwidth?>><?=$pixelImage?></td>
+  </tr>
+</table>
+
+<br>
+<textarea name="captions" cols="50" rows=3 disabled="true" align="center"></textarea>
+</div>
+
+</form>
 
 <script language="JavaScript">
 if (photo_count == 0) {
@@ -375,10 +393,11 @@ if (photo_count == 0) {
     document.write("This album is empty.");
 } else {
     /* Load the first picture */
+    document.TopForm.captions.value = photo_captions[1];
     preload_photo(1);
 
     /* Start the show. */
-    start_stop();
+    change_direction(1);
 }
 </script>		  
 
