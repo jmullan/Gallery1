@@ -84,7 +84,8 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	        $albumDB->moveAlbum($user, $numAlbums, 1);
 	        $albumDB->save();
 
-		header("Location: $return?set_albumName=$albumName");
+		$url = addUrlArg($return, "set_albumName=$albumName");
+		header("Location: $url");
 	} else {
 		header("Location: albums.php");
 	}
