@@ -532,8 +532,8 @@ function check_gallery_version()
 	/* how many days old is the gallery version? */
 	$age = (time() - $gallery->last_change)/86400;
 
-	/* is this a beta version? */
-	$beta = ereg('-b[0-9]*$', $gallery->version);
+	/* is this a beta or RC version? */
+	$beta = ereg('-(b|RC)[0-9]*$', $gallery->version);
 
 	$link="<a href=\"$gallery->url\">$gallery->url</a>";
 
