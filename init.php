@@ -21,7 +21,9 @@
 <?
 /* Load bootstrap code */
 require('version.php');
-require('config.php');
+if (file_exists('config.php')) {
+	require('config.php');
+}
 require('util.php');
 
 /* Make sure that Gallery is set up properly */
