@@ -108,7 +108,7 @@ if (!empty($urls)) {
 		$url = eregi_replace("^[[:space:]]+", "", $url);
 
 		$tag = parse_url($url);
-		$tag = pathinfo($url['path']);
+		$tag = pathinfo($tag['path']);
 		$tag = isset($tag['extension']) ? strtolower($tag['extension']) : '';
 
 		/* If the URI doesn't start with a scheme, prepend 'http://' */
