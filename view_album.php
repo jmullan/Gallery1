@@ -862,6 +862,11 @@ if ($numPhotos) {
 			if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 				echo "(" . _("hidden") .")<br>";
 			}
+			$photo    = $gallery->album->getPhoto($i);
+			if ($gallery->user->canWriteToAlbum($gallery->album) && 
+					$photo->isHighlight() && !$gallery->session->offline) {
+				echo "(" . _("highlight") .")<br>";
+			}
 			if (isset($myAlbum)) {
 				$myDescription = $myAlbum->fields['description'];
 				$buf = "";
