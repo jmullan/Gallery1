@@ -1226,7 +1226,10 @@ $defaults = array(
 				'url'     => 'http://www.fotokasten.de/'),    
 			'ezprints'    => array(
 				'name'    => 'EZ Prints',
-				'url'     => 'http://www.ezprints.com/')
+				'url'     => 'http://www.ezprints.com/'),
+			'mpush'       => array(
+				'name'    => 'mPUSH',
+				'url'	  => 'http://www.mpush.cc/'),
 		),
 		'value' => array(
 			'ezprints' => array(
@@ -1236,6 +1239,8 @@ $defaults = array(
 			'photoaccess' => array(
 				'checked' => true),
 			'shutterfly' => array(
+				'checked' => true),
+			'mpush' => array(
 				'checked' => true),
 		),
 		'optional' => true

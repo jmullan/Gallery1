@@ -221,7 +221,10 @@ $services = array(
 		'url'     => 'http://www.fotokasten.de/'),
 	'ezprints'    => array(
 		'name'    => 'EZ Prints',
-		'url'     => 'http://www.ezprints.com/')                  
+		'url'     => 'http://www.ezprints.com/'),
+	'mpush'       => array(
+		'name'	  => 'mPUSH',
+		'url'     => 'http://www.mpush.cc/'),
 );
 foreach ($services as $item => $data) {
 	if (isset($gallery->album->fields['print_photos'][$item])) {
