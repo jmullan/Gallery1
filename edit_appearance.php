@@ -38,6 +38,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 }
 	
 if ($save) {
+    $gallery->album->fields["summary"] = $summary;
 	$gallery->album->fields["title"] = $title;
 	$gallery->album->fields["bgcolor"] = $bgcolor;
 	$gallery->album->fields["textcolor"] = $textcolor;
@@ -84,6 +85,14 @@ Album Properties
 				"method" => "POST")); ?>
 <input type=hidden name="save" value=1>
 <table>
+<tr>
+<td colspan="2">Album Summary</td>
+</tr>
+<tr>
+<td colspan="2" align="left">
+<textarea cols=50 rows=4 name="summary"><?php echo $gallery->album->fields["summary"] ?></textarea>
+</td>
+</tr>
 <tr>
 <td>Album Title</td>
 <td><input type=text name="title" value="<?php echo $gallery->album->fields["title"]?>"></td>
@@ -177,7 +186,7 @@ if ($gallery->app->use_exif) {
 </table>
 
 <br>
-<input type=checkbox name=setNested value="1">Apply values to nested Albums (except Album Title).
+<input type=checkbox name=setNested value="1">Apply values to nested Albums (except Album Title and Summary).
 <br>
 <br>
 <input type=submit name="submit" value="Apply">

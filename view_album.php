@@ -257,9 +257,12 @@ if ($gallery->user->canAddToAlbum($gallery->album)) {
 	$adminCommands .= popup_link("[add photos]", 
 		"add_photos.php?set_albumName=" .
 		$gallery->session->albumName);
-	$adminCommands .= popup_link("[add photo]", 
-		"add_photo.php?set_albumName=" .
-		$gallery->session->albumName);
+	$extraFields = $gallery->album->getExtraFields();
+	if (!empty($extraFields)) {
+	    $adminCommands .= popup_link("[add photo]", 
+		    "add_photo.php?set_albumName=" .
+		    $gallery->session->albumName);
+	}
 }
 if ($gallery->user->canCreateSubAlbum($gallery->album) 
 	&& !$gallery->session->offline) {
@@ -280,9 +283,6 @@ if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
 				"page" => $page, 
 				"perPage" => $perPage)) .
 			'>[captions]</a>&nbsp;';
-		$adminCommands .= popup_link("[edit summary]", 
-			"edit_field.php?set_albumName=" .
-			$gallery->session->albumName."&field=summary");
 	}
 }
 
