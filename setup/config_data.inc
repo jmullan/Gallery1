@@ -144,7 +144,7 @@ $checklist = array(
 	"missing-locales" => array (
 		"optional" => 1,
 		"enabled" => (sizeof(gallery_languages()) > 1) ? "yes" :"no",
-		"desc" => _("Testing to see which locales (if any) are absent."),
+		"desc" => _("Testing to see which <b>system</b> locales (if any) are absent."),
 		"func" => "check_absent_locales",
 		"serious" => ( $elawisyl == "no" ) ? 1 : 0 ,
 	),

@@ -760,6 +760,11 @@ function check_locale() {
 		setlocale(LC_ALL,"");
 	}
 
+	/* DAMN, there are no suitable locales, we use Linux and our PHP uses gettext*/
+        if( sizeof($available_locales) == 0 && getOS() == OS_LINUX && gettext_installed()) {
+                return NULL;
+        }
+
 	return array(
 		"available_locales" => $available_locales,
 		"maybe_locales" => $maybe_locales,
@@ -805,8 +810,8 @@ function config_maybe_locales() {
 			$block_start_done=true;
 			$results[] = array (
 					"type" => "block_start", 
-					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("Locale Selection required")),
-					"desc" => _("There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
+					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("<b>System</b> locale selection required")),
+					"desc" => _("There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
 					"<p></p>" .
 					_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
 					);
@@ -878,8 +883,8 @@ function config_maybe_locales() {
 			$block_start_done=true;
 			$results[] = array (
 					"type" => "block_start", 
-					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("Locale problems")),
-						"desc" => _("There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
+					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("<b>System</b> locale problems")),
+						"desc" => _("There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
 							"<p></p>" .
 							_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
 							);
