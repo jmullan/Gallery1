@@ -598,8 +598,10 @@ function getStyleSheetLink() {
 
 function _getStyleSheetLink($filename) {
 	global $gallery;
+	global $GALLERY_BASEDIR;
 
         $sheetname = "css/$filename.css";
+	$sheetpath = "${GALLERY_BASEDIR}$sheetname";
 
 	if ($gallery->app && $gallery->app->photoAlbumURL) {
 		$base = $gallery->app->photoAlbumURL;
@@ -607,7 +609,7 @@ function _getStyleSheetLink($filename) {
 		$base = ".";
 	}
 
-	if (fs_file_exists($sheetname) && !broken_link($sheetname)) {
+	if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
 		$url = "$base/$sheetname";
 	} else {
 		$url = "$base/$sheetname.default";
@@ -616,8 +618,6 @@ function _getStyleSheetLink($filename) {
 	return '<link rel="stylesheet" type="text/css" href="' .
 		$url .
 		'">';
-
-	return 1;
 }
 
 function pluralize($amt, $noun, $none="") {
