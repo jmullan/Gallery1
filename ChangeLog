@@ -1,3 +1,26 @@
+2000-12-29  Bharat Mediratta  <bharat@sinia.com>
+
+	* Fixed several small bugs involving uploading movies.  
+
+	* We now include the error details when an error occurs adding a
+	  photo or movie to an album.
+
+	* Minor page navigator cleanup
+
+	* Fixed the config wizard to request the movie thumbnail image as
+	  a filesystem path instead of a URL (since we copy it into the
+	  album instead of linking to it)
+
+	* Added config version numbering.  During the Gallery upgrade
+	  process, this will alert you if it's necessary to re-run the
+	  configuration wizard.
+
+	* the generated config.php now contains the GPL license
+
+	* Config wizard now locates the 'mv' binary and uses it via it's
+	  full path to avoid a weird bug where the webserver looks for it
+	  in /
+
 2000-12-28  Bharat Mediratta  <bharat@harmony.menalto.com>
 
 	* Fixed bug #126982; the wizard won't save config.php if you don't
