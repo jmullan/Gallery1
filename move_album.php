@@ -54,7 +54,7 @@ $albumDB = new AlbumDB(FALSE);
 if ($gallery->session->albumName && isset($index)) {
 
 	if (isset($newAlbum)) { // moving album to a nested location
-		if ($gallery->album->fields[name] != $newAlbum) {
+		if ($gallery->album->fields['name'] != $newAlbum) {
 			$old_parent=$gallery->album->fields['parentAlbumName'];
 			$gallery->album->fields['parentAlbumName'] = $newAlbum;
 			_("Album moved from %s to %s");
@@ -62,10 +62,10 @@ if ($gallery->session->albumName && isset($index)) {
 						$old_parent,
 						$newAlbum));
 			$newAlbum = $albumDB->getAlbumbyName($newAlbum);
-			$newAlbum->addNestedAlbum($gallery->album->fields[name]);
+			$newAlbum->addNestedAlbum($gallery->album->fields['name']);
 			_("New subalbum %s, moved from %s");
 			$newAlbum->save(array("New subalbum %s, moved from %s",
-						$gallery->album->fields[name], 
+						$gallery->album->fields['name'], 
 						$old_parent));
 		}
 		dismissAndReload();
