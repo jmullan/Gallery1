@@ -1,3 +1,14 @@
+2004-01-30  Bharat Mediratta  <bharat@menalto.com> 1.4.3-cvss-b18
+
+	* Fixed several issues in add_photos:
+	  - Removed ob_start/ob_end buffering code; if includes are leaking
+	    text we want to know about it and fix it.
+	  - Got rid of a warning when add_photos_mode cookie isn't set
+	  - Fixed warnings in save_photos.php when you submit an empty form
+	  - Added window.focus() to add_photos.php so that it doesn't pop under
+	  - Fixed Javascript to display progress dialog in upload forms so that
+	    they refer to the proper object
+
 2004-01-30 Jens Tkotz <jens@peino.de> 1.4.3-cvs-b17
 	
 	* Change: Skin Update

@@ -38,7 +38,7 @@
 <input type="checkbox" name="setCaption" checked value="1"><?php echo _("Set photo captions with original filenames.") ?>
 <br>
 <center>
-<input type="button" value="<?php echo _("Submit URL or directory") ?>" onClick='opener.showProgress(); document.uploadurl_form.submit()'>
+<input type="button" value="<?php echo _("Submit URL or directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()'>
 <input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </center>
 </form>

@@ -19,12 +19,7 @@
  *
  * $Id$
  */
-?><?php
-// we need to turn on output buffering because all the includes leak 
-// some text before we're ready to set the cookies!
-ob_start();
-?>
-<?php
+
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -34,7 +29,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 
 if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
+    $GALLERY_BASEDIR = '';
 }
 
 require($GALLERY_BASEDIR . 'init.php');
@@ -43,10 +38,9 @@ require($GALLERY_BASEDIR . 'init.php');
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
-?>
-<?php
+
 $cookieName = $gallery->app->sessionVar."add_photos_mode";
-$modeCookie = $HTTP_COOKIE_VARS[$cookieName];
+$modeCookie = isset($HTTP_COOKIE_VARS[$cookieName]) ? $HTTP_COOKIE_VARS[$cookieName] : null;
 if (isset($mode)) {
 	if ($modeCookie != $mode) {
 	    setcookie($cookieName, $mode, time()+60*60*24*365, "/" );
@@ -56,7 +50,6 @@ if (isset($mode)) {
 	    $mode = $modeCookie;
 	}
 }
-ob_end_flush();
 ?>
 
 <html>
@@ -128,7 +121,7 @@ ob_end_flush();
 // -->
 </script>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body dir="<?php echo $gallery->direction ?>" onload="window.focus()">
 
 <?php
 

@@ -75,7 +75,7 @@ if (!isset($boxes)) {
 <input type=checkbox name=setCaption checked value="1"><?php echo _("Use filename as caption if no caption is specified.") ?>
 <br>
 <center>
-<input type="button" value="<?php echo _("Upload Now") ?>" onClick='opener.showProgress(); document.upload_form.submit()'>
+<input type="button" value="<?php echo _("Upload Now") ?>" onClick='parent.opener.showProgress(); document.upload_form.submit()'>
 <input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </center>
 </form>

@@ -27,11 +27,11 @@
 <p>
 <?php echo _("You can use one of these desktop agents to drag and drop photos from your desktop") ?>:
 <br>
-&nbsp;&nbsp;&nbsp;<b><a href="#" onClick="opener.location = 'http://gallery.menalto.com/modules.php?op=modload&name=Downloads&file=index&req=getit&lid=20'; parent.close();">Gallery Remote</a></b>
+&nbsp;&nbsp;&nbsp;<b><a href="#" onClick="parent.opener.location = 'http://gallery.menalto.com/modules.php?op=modload&name=Downloads&file=index&req=getit&lid=20'; parent.close();">Gallery Remote</a></b>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo _("A Java application that runs on Mac, Windows and Unix") ?>
 <br>
-&nbsp;&nbsp;&nbsp;<b><a href="#" onClick="opener.location = 'http://gallery.menalto.com/modules.php?op=modload&name=phpWiki&file=index&pagename=Other%20methods'; parent.close();"><?php echo _("Other methods") ?></a></b>
+&nbsp;&nbsp;&nbsp;<b><a href="#" onClick="parent.opener.location = 'http://gallery.menalto.com/modules.php?op=modload&name=phpWiki&file=index&pagename=Other%20methods'; parent.close();"><?php echo _("Other methods") ?></a></b>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo _("Methods for adding pictures to your Gallery") ?>
 <br>

@@ -106,7 +106,7 @@ if (!empty($urls)) {
 		$tag = strtolower($tag);
 
 		/* If the URI doesn't start with a scheme, prepend 'http://' */
-		if (!fs_is_file($url)) {
+		if (!empty($url) && !fs_is_file($url)) {
 			if (!ereg("^(http|ftp)", $url)) {
 				$url = "http://$url";
 			}
@@ -267,7 +267,7 @@ while (isset($userfile) && sizeof($userfile)) {
 
 $gallery->album->save(array(i18n("%d files uploaded"), $image_count));
 
-if ($temp_files) {
+if (!empty($temp_files)) {
 	/* Clean up the temporary url file */
 	foreach ($temp_files as $tf => $junk) {
 		fs_unlink($tf);
@@ -277,7 +277,7 @@ if ($temp_files) {
 
 <span class="popup">
 <?php
-if (!$msgcount) {
+if (empty($msgcount)) {
 	print _("No images uploaded!");
 }
 ?>
