@@ -93,10 +93,10 @@ if (!empty($Vote)) {
        {
                for ($index=$start; $index < $start+$perPage; $index ++)
                {
-                       $id=$gallery->album->getPhotoId($index);
-                       if (!$votes[$id])
+		       $id=$gallery->album->getPhotoId($index);
+		       if (!$votes[$id])
                        {
-                               $votes[$id]=null;
+			       $votes[$id]=null;
                        }
 
                }
@@ -530,7 +530,7 @@ if (($gallery->album->getPollType() == "rank") && canVote())
         $my_choices=array();
         if ( $gallery->album->fields["votes"])
 	{
-            foreach ($gallery->album->fields["votes"] as $id => $image_votes)
+	    foreach ($gallery->album->fields["votes"] as $id => $image_votes)
             {
 		$index=$gallery->album->getIndexByVotingId($id);
 		if ($index < 0)
@@ -542,7 +542,7 @@ if (($gallery->album->getPollType() == "rank") && canVote())
 
                 if (isset($image_votes[getVotingID()]))
                 {
-                        $my_choices[$image_votes[getVotingID()]] = $id;
+			$my_choices[$image_votes[getVotingID()]] = $id;
                 }
             }
 	}
@@ -558,7 +558,7 @@ if (($gallery->album->getPollType() == "rank") && canVote())
                 print _("Your current choices are");
                 print "<table>\n";
                 $nv_pairs=$gallery->album->getVoteNVPairs();
-                foreach ($my_choices as $key => $id)
+		foreach ($my_choices as $key => $id)
                 {
                         print "<tr><td>".
                                 $nv_pairs[$key]["name"].
@@ -698,7 +698,7 @@ if ($numPhotos) {
 			echo("</td>");
 			$j++; 
 			$visibleItemIndex++;
-			$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
+			$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		}
 		if ($printTableRow) {
 			echo('</tr>');
@@ -780,36 +780,6 @@ if ($numPhotos) {
 			       	/*end backwards compatibility*/
       
 				includeHtmlWrap('inline_photothumb.frame');
-
-				if (!strcmp($gallery->album->fields['showDimensions'], 'yes')) {
-					$photo    = $gallery->album->getPhoto($i);
-					$image    = $photo->image;
-					$viewFull = $gallery->user->canViewFullImages($gallery->album);
-					$fullOnly = (isset($gallery->session->fullOnly) &&
-						!strcmp($gallery->session->fullOnly, 'on') &&
-						!strcmp($gallery->album->fields['use_fullOnly'], 'yes'));
-					list($wr, $hr) = $image->getDimensions();
-					list($wf, $hf) = $image->getRawDimensions();
-					/* display file sizes if dimensions are identical */
-					if ($wr == $wf && $hr == $hf && $viewFull && $photo->isResized()) {
-					    $fsr = ' ' . sprintf(_('%dkB'), (int) $photo->getFileSize(0) >> 10);
-					    $fsf = ' ' . sprintf(_('%dkB'), (int) $photo->getFileSize(1) >> 10);
-					} else {
-					    $fsr = '';
-					    $fsf = '';
-					}
-					if (($photo->isResized() && !$fullOnly) || !$viewFull) {
-						echo '<a href="'.
-							makeAlbumUrl($gallery->session->albumName, $id) .
-								"\">[${wr}x{$hr}${fsr}]</a>&nbsp;";
-					}
-					if ($viewFull) {
-						echo '<a href="'.
-							makeAlbumUrl($gallery->session->albumName,
-							$id, array('full' => 1)) .
-							"\">[${wf}x${hf}${fsf}]</a>";
-					}
-				}
 			}
 
 			echo("</td>");
@@ -820,7 +790,54 @@ if ($numPhotos) {
 		if ($printTableRow) {
 			echo('</tr>');
 		}
-	
+		
+		/* Do the clickable-dimensions row */
+		if (!strcmp($gallery->album->fields['showDimensions'], 'yes')) {
+			$visibleItemIndex = $rowStart;
+			$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
+			$j = 1;
+			if ($printTableRow) {
+				echo('<tr>');
+			}
+			while ($j <= $cols && $i <= $numPhotos) {
+				echo("<td width=\"$imageCellWidth\" align=\"center\" valign=\"middle\">");
+				$photo    = $gallery->album->getPhoto($i);
+				$image    = $photo->image;
+				$viewFull = $gallery->user->canViewFullImages($gallery->album);
+				$fullOnly = (isset($gallery->session->fullOnly) &&
+					!strcmp($gallery->session->fullOnly, 'on') &&
+					!strcmp($gallery->album->fields['use_fullOnly'], 'yes'));
+				list($wr, $hr) = $image->getDimensions();
+				list($wf, $hf) = $image->getRawDimensions();
+				/* display file sizes if dimensions are identical */
+				if ($wr == $wf && $hr == $hf && $viewFull && $photo->isResized()) {
+				    $fsr = ' ' . sprintf(_('%dkB'), (int) $photo->getFileSize(0) >> 10);
+				    $fsf = ' ' . sprintf(_('%dkB'), (int) $photo->getFileSize(1) >> 10);
+				} else {
+				    $fsr = '';
+				    $fsf = '';
+				}
+				if (($photo->isResized() && !$fullOnly) || !$viewFull) {
+					echo '<a href="'.
+						makeAlbumUrl($gallery->session->albumName, $image->name) .
+							"\">[${wr}x{$hr}${fsr}]</a>&nbsp;";
+				}
+				if ($viewFull) {
+					echo '<a href="'.
+						makeAlbumUrl($gallery->session->albumName,
+						$image->name, array('full' => 1)) .
+						"\">[${wf}x${hf}${fsf}]</a>";
+				}
+				echo("</td>");
+				$j++; 
+				$visibleItemIndex++;
+				$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
+			}
+			if ($printTableRow) {
+				echo('</tr>');
+			}
+		}
+				
 		/* Now do the caption row */
 		$visibleItemIndex = $rowStart;
 		$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
