@@ -18,6 +18,8 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
+ *
+ * Version: 1_4_1_RC2
  */
 /**
  * NLS (National Language System) array.
