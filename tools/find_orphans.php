@@ -31,70 +31,106 @@ if (!$gallery->user->isAdmin()) {
 	header("Location: " . makeGalleryHeaderUrl());
 	exit;
 }
+
+$albumDB = new AlbumDB();
+
+function attachOrphans($orphans) {
+	global $albumDB;
+	foreach ($orphans as $childname => $parentname) {
+		if ($parentname == 0) {
+			// Parent was deleted - attach it to root
+			$child = $albumDB->getAlbumByName($childname);
+			$child->fields['parentAlbumName'] = 0;
+			while ($child->save() != true);
+			continue;
+		}
+		
+		$parent = $albumDB->getAlbumByName($parentname);
+		$parent->addNestedAlbum($childname);
+	
+		// Set a default highlight if appropriate, for the parent
+		if ($parent->numPhotos(1) == 1) {
+			$parent->setHighlight(1);
+		}
+	
+		// If the machine is fast, it can find a new album before it
+		// has time to finish physically saving the last one.
+		// Keep trying to save until it works.
+		while ($parent->save() != true);
+	}
+}
+
+function findOrphans() {
+	global $albumDB;
+	$orphaned = Array();
+	foreach ($albumDB->albumList as $album) {
+		
+		// Root albums can't be orphans
+		if ($album->isRoot()) {
+			continue;
+		}
+	
+		$parent = $album->getParentAlbum();
+	
+		if (!isset($parent)) {
+			// Orphaned, but the parent album is missing - link it to root
+			$orphaned[$album->fields['name']] = 0;
+			continue;
+		}
+	
+		// Search for a filename match in the parent album
+		if (!empty($parent->photos)) {
+			foreach ($parent->photos as $photo) {
+				if ($photo->isAlbum() && ($photo->getAlbumName() == $album->fields['name'])) {
+					// Found a matching name - this is not an orphaned album
+					// continue from outer loop
+					continue 2;
+				}
+			}
+		}
+	
+		// "Orphaned Album => Parent Album"
+		$orphaned[$album->fields['name']] = $parent->fields['name'];
+	}
+	
+	// Sort the array by value (parent) so it can be displayed to the user
+	asort($orphaned);
+	return $orphaned;
+}
 ?>
 <html>
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?></title>
-  <?php 
-        common_header() ;
-  ?>
+<title><?php echo $gallery->app->galleryTitle ?></title>
+<?php 
+	common_header() ;
+?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php  
         includeHtmlWrap("gallery.header");
 ?>
-<table>
-<tr><th>Orpaned Album</th><th>&nbsp;</th><th>Parent Album</th></tr>
+<?php if (!isset($update)) { ?>
+	<table>
+	<tr><th>Orphaned Album</th><th>&nbsp;</th><th>Parent Album</th></tr>
 <?php
-$albumDB = new AlbumDB();
-foreach ($albumDB->albumList as $album) {
-	
-	// Root albums can't be orphans
-	if ($album->isRoot()) {
-		continue;
+	$orphans = findOrphans();
+
+	foreach ($orphans as $childname => $parentname) {
+		echo "\t<tr><td>" . $childname . "</td><td>=&gt;</td><td>" . ($parentname ? $parentname : "Gallery Root") . "</td></tr>\n";
 	}
-
-	$parent = $album->getParentAlbum();
-
-	if (!isset($parent)) {
-		// Orphaned, but the parent album is missing.
-		// Move it to root
-		echo "<tr><td>" . $album->fields['name'] . "</td><td>=&gt;</td><td>Gallery Root</td></tr>\n";
-		$album->fields['parentAlbumName'] = 0;
-		while ($album->save() != true);
-		continue;
-	}
-
-	$ret = 0;
-	if (!empty($parent->photos)) {
-		foreach ($parent->photos as $photo) {
-			if ($photo->isAlbum() && ($photo->getAlbumName() == $album->fields['name'])) {
-				// Found a matching name - this is not an orphaned album
-				$ret = 1;
-				break;
-			}
-		}
-	}
-
-	if ($ret == 0) {
-		// "Orphaned Album => Parent Album"
-		echo "<tr><td>" . $album->fields['name'] . "</td><td>=&gt;</td><td>" . $parent->fields['name'] . "</td></tr>\n";
-
-		// Attach the album to its parent
-		$parent->addNestedAlbum($album->fields['name']);
-
-		// Set a default highlight if appropriate
-		if ($parent->numPhotos(1) == 1) {
-			$parent->setHighlight(1);
-		}
-
-		// If the machine is fast, it can find a new album before it
-		// has time to finish saving the last one.
-		// Keep trying to save until it works.
-		while ($parent->save() != true);
-	}
+?>
+	</table>
+<?php echo makeFormIntro("tools/find_orphans.php", array("method" => "GET")); ?>
+	<input type="hidden" name="update" value="1">
+	<input type="submit" value="Correct Them!">
+	</form>	
+<?php 
+} // !isset(update) 
+else { 
+	// attachOrphans();
+	echo "attachOrphans();<br /><br />";
+	echo "<a href='" . makeAlbumUrl() . "'>Return to Gallery</a>";
 }
 ?>
-</table>
 <hr>
 <?php includeHtmlWrap("gallery.footer"); ?>
