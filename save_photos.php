@@ -94,7 +94,7 @@ while (sizeof($userfile)) {
 			continue;
 		}
 		/* Figure out what files we can handle */
-		exec("$app->zipinfo -1 $file", $files);
+		list($files, $status) = exec_internal("$app->zipinfo -1 $file");
 		foreach ($files as $pic_path) {
 			$pic = basename($pic_path);
 			$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
