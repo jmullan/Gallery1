@@ -1014,7 +1014,8 @@ function gallerySanityCheck() {
 		 *       the directory anyway.
 		 */
 		$perms = sprintf("%o", fileperms($GALLERY_BASEDIR . "setup"));
-		if (strstr($perms, "755")) {
+		if (strstr($perms, "755")||
+                        ( getOS()== OS_WINDOWS && ! fs_file_exists($GALLERY_BASEDIR. "setup/SECURE"))) {
 			include($GALLERY_BASEDIR . "errors/configmode.php");
 			exit;
 		}
