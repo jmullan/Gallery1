@@ -420,60 +420,78 @@ function rotate_image($src, $dest, $target) {
 		$out = $dest;
 	}
 
-	switch($gallery->app->graphics)
-	{
-	case "NetPBM":
+	if (isset ($gallery->app->use_jpegtran)) {
 		if (!strcmp($target, "90")) {
-			$args = "-r90";
+			$args = "-rotate 270";
 		} else if (!strcmp($target, "-90")) {
-			$args = "-r270";
+			$args = "-rotate 90";
 		} else if (!strcmp($target, "fv")) {
-			$args = "-tb";
-		} else if (!strcmp($target, "fh")){
-			$args = "-lr";
-		} else {
-			$args = "-r180";
-		}
-
-		$err = exec_wrapper(toPnmCmd($src) .
-				" | " .
-				NetPBM("pnmflip", $args) .
-				" | " . fromPnmCmd($out));
-
-		// copy exif headers from original image to rotated image
-		if (isset($gallery->app->use_exif)) {
-			$path = $gallery->app->use_exif;
-			exec_internal(fs_import_filename($path, 1) . " -te $src $out");
-		}
-		break;
-	case "ImageMagick":
-	        if (!strcmp($target, "90")) {
-		    $target = "-90";
-		    $im_cmd = "-rotate";             
-		} else if (!strcmp($target, "-90")) {
-		    $target = "90";
-		    $im_cmd = "-rotate";
-		} else if (!strcmp($target, "180")) {
-		    $target = "180";
-		    $im_cmd = "-rotate";
-		} else if (!strcmp($target, "fv")) {
-		    $target = "";
-		    $im_cmd = "-flip";
+			$args = "-flip vertical";
 		} else if (!strcmp($target, "fh")) {
-		    $target = "";
-		    $im_cmd = "-flop";
+			$args = "-flip horizontal";
+		} else {
+			$args = "-rotate 180";
 		}
-		
-	  
-		$src = fs_import_filename($src);
-		$out = fs_import_filename($out);
-		$err = exec_wrapper(ImCmd("convert", "$im_cmd $target $src $out"));
-		break;
-	default:
-		if (isDebugging())
-			echo "<br>You have no graphics package configured for use!<br>";
-		return 0;
-		break;
+
+		$path = $gallery->app->use_jpegtran;
+		// -copy all ensures all headers (i.e. EXIF) are copied to the rotated image
+		exec_internal(fs_import_filename($path, 1) . " $args -copy all -outfile $out $src");
+	} else {
+		switch($gallery->app->graphics)
+		{
+		case "NetPBM":
+			if (!strcmp($target, "90")) {
+				$args = "-r90";
+			} else if (!strcmp($target, "-90")) {
+				$args = "-r270";
+			} else if (!strcmp($target, "fv")) {
+				$args = "-tb";
+			} else if (!strcmp($target, "fh")){
+				$args = "-lr";
+			} else {
+				$args = "-r180";
+			}		
+
+			$err = exec_wrapper(toPnmCmd($src) .
+					" | " .
+					NetPBM("pnmflip", $args) .
+					" | " . fromPnmCmd($out));	
+
+			// copy exif headers from original image to rotated image	
+			if (isset($gallery->app->use_exif)) {
+				$path = $gallery->app->use_exif;
+				exec_internal(fs_import_filename($path, 1) . " -te $src $out");
+			}
+			break;
+		case "ImageMagick":
+		        if (!strcmp($target, "90")) {
+			    $target = "-90";
+			    $im_cmd = "-rotate";             
+			} else if (!strcmp($target, "-90")) {
+			    $target = "90";
+			    $im_cmd = "-rotate";
+			} else if (!strcmp($target, "180")) {
+			    $target = "180";
+			    $im_cmd = "-rotate";
+			} else if (!strcmp($target, "fv")) {
+			    $target = "";
+			    $im_cmd = "-flip";
+			} else if (!strcmp($target, "fh")) {
+			    $target = "";
+			    $im_cmd = "-flop";
+			}
+			
+		  	
+			$src = fs_import_filename($src);
+			$out = fs_import_filename($out);
+			$err = exec_wrapper(ImCmd("convert", "$im_cmd $target $src $out"));
+			break;
+		default:
+			if (isDebugging())
+				echo "<br>You have no graphics package configured for use!<br>";
+			return 0;
+			break;
+		}	
 	}
 
 	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {

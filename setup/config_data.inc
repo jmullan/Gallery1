@@ -167,7 +167,23 @@ $checklist = array(
 			"<a href=http://www.sentex.net/~mwandel/jhead/index.html>the jhead " .
 			"homepage</a>.",
 		"open-basedir-note" => $common_messages["open-basedir-active"],
-	)
+	),
+	"jpegtran" => array (
+		"optional" => 1,
+		"desc" => "Check to see if jpegtran is installed so that Gallery " .
+			"can perform lossless rotations",
+		"func" => "check_jpegtran",
+		"fail-jpegtran" => "I can't find jpegtran.  If it's installed and not in " .
+			"the path of the webserver user that's OK -- you can specify the " .
+             		"path to jpegtran by hand on the following page.  If it's not " .
+			"installed, you can install it yourself.  " .
+			"jpegtran is a freely distributable tool distributed by the " .
+			"Independent JPEG Group as part of libjpeg. Source may be found at " .
+			"<a href=http://www.ijg.org/>the IJG homepage. Binaries may be " .
+			"found at <a href=http://jpegclub.org/>the JPEG club website</a> " .
+			"or in the libjpeg package of Linux distributions.",
+		"open-basedir-note" => $common_messages["open-basedir-active"],
+	),	
 );
 
 $features = array(
@@ -283,6 +299,18 @@ $constants = array(
 		"filename" => 1,
 		"attrs" => array("size" => 50),
 	),
+	"use_jpegtran" => array (
+		"prompt" => "Jpegtran",
+		"desc" => "The filesystem path to the 'jpegtran' utility.  This is optional " .	
+			"so if you don't have it, don't worry about it too much.  Eg. <i> " .
+			"/usr/local/bin/jpegtran</i> or <i>c:\\bin\\jpegtran.exe</i>",
+		"value" => locateFile("jpegtran"),
+		"must-be-file" => 1,
+		"must-be-executable" => 1,
+		"optional" => 1,
+		"filename" => 1,
+		"attrs" => array ("size" => 50),
+	),		
 	"movieThumbnail" => array(
 		"prompt" => "Thumbnail image",
 		"desc" => "The filesystem path to the thumbnail image to show for movies.  Eg. " .

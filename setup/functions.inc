@@ -358,6 +358,29 @@ function check_graphics_im($location="", $graphtool="")
 	return array($success, $fail);
 }
 
+function check_jpegtran($location="")
+{
+	global $gallery;
+
+	$fail = array();
+	$success = array();
+
+	$bin = fs_executable("jpegtran");
+
+	if ($location) {
+		$d = locateDir($bin, $location);
+	} else {
+		$d = locateDir($bin, $gallery->app ? $gallery->app->pnmDir : "");
+	}
+	if (!$d) {
+		$fail["fail-jpegtran"] = "Could not locate jpegtran";
+	} else {
+		$success[] = "jpegtran binary located";
+	}
+
+	return array($success, $fail);
+}
+
 function default_graphics()
 {
 	list ($imageMagick,) = check_graphics_im();
