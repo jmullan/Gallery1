@@ -29,11 +29,16 @@ function row_choice($key, $arr) {
 	return $buf;
 }
 
-function locateDir($filename) {
+function locateDir($filename, $extraDir="") {
+
 	foreach (explode(":", getenv("PATH")) as $path) {
 		if (file_exists("$path/$filename")) {
 			return $path;
 		}
+	}
+
+	if (file_exists("$extraDir/$filename")) {
+		return $extraDir;
 	}
 }
 
@@ -75,39 +80,125 @@ function check_htaccess()
 	 * auto_prepend the got-htaccess.php file.  If that worked, 
 	 * then GALLERY_GOT_HTACCESS will be set. 
 	 */
-	return isset($GALLERY_GOT_HTACCESS);
-}
+	$success = array();
+	$fail = array();
+	if (isset($GALLERY_GOT_HTACCESS)) {
+		$success[] = "I can read your .htaccess file";
+	} else {
+		$fail["fail-htaccess"]++;
+	}
 
-function check_netpbm() {
-	return locateDir("anytopnm");
+	return array($success, $fail);
 }
 
 function check_php()
 {
 	global $MIN_PHP_MAJOR_VERSION;
 
-	return floor(phpversion()) >= floor($MIN_PHP_MAJOR_VERSION);
+	$version = phpversion();
+	$success = array();
+	$fail = array();
+	if (floor($version) < floor($MIN_PHP_MAJOR_VERSION)) {
+		$fail["fail-too-old"]++;
+	} else if (!strncmp($version, "4.0.3", 5)) {
+		$fail["fail-incompatible"]++;
+	} else {
+		$success[] = "PHP v" . phpversion() . " is OK";
+	}
+
+	return array($success, $fail);
 }
 
 function check_mod_rewrite() 
 {
 	global $GALLERY_REWRITE;
-	return $GALLERY_REWRITE;
+
+	$success = array();
+	$fail = array();
+	if ($GALLERY_REWRITE) {
+		$success[] = "";
+	} else {
+		$fail["fail-mod-rewrite"]++;
+	}
+
+	return array($success, $fail);
 }
 
-function check_jpeg()
+function check_graphics()
 {
-	return function_exists("ImageCreateFromJPEG");
+	global $app;
+
+	$fail = array();
+	$success = array();
+
+/*
+ * We'll use this code when we do multiple graphics package support
+ *
+	if (function_exists("ImageCreateFromJPEG")) {
+		$success[] = "JPEG is installed";
+	} else {
+		$fail[["fail-jpeg"]++;
+	}
+
+	if (function_exists("ImageCreate")) {
+		$success[] = "GD is installed";
+	} else {
+		$fail["fail-gd"]++;
+	}
+*/
+
+	$dirs = array();
+	$missing = array();
+	$netpbm = array(
+		"anytopnm",
+		"giftopnm", 
+		"pngtopnm", 
+		"jpegtopnm", 
+		"ppmtojpeg", 
+		"pnmscale", 
+		"pnmfile",
+	);
+
+	foreach ($netpbm as $bin) {
+		$d = locateDir($bin, $app ? $app->pnmDir : "");
+		if (!$d) {
+			$missing[$bin] = "Can't find <i>$bin</i>!";
+		}
+	}
+	
+	if (count($missing)) {
+		if ($missing[$netpbm[0]]) {
+			$fail["fail-netpbm"]++;
+		} else {
+			$fail["fail-netpbm-partial"] = array_values($missing);
+		}
+	} else {
+		$success[] = "";
+	}
+
+	return array($success, $fail);
 }
 
-function check_gd()
+function graphics_choices()
 {
-	return function_exists("ImageCreate");
+	$choices = array("netpbm");
+	if (function_exists("ImageCreateFromJPEG") && function_exists("ImageCreate")) {
+		$choices[] = "gd-and-jpeg";
+	}
+	return $choices;	
 }
 
 function check_magic_quotes()
 {
-	return !get_magic_quotes_gpc();
+	$fail = array();
+	$success = array();
+	if (!get_magic_quotes_gpc()) {
+		$success[] = "";
+	} else {
+		$fail[] = "fail-magic-quotes";
+	}
+
+	return array($success, $fail);
 }
 
 function makePathWrapper($path, $app)
