@@ -1,17 +1,17 @@
-<table border=0 width=<?=$navigator["fullWidth"]?>>
-<tr width=<?=$navigator["fullWidth"]/4?>>
-<td>
+<table border=0 width=<?=$navigator["fullWidth"] . $navigator["widthUnits"]?>>
+<tr>
+<td width=<?=$navigator["fullWidth"]/4 . $navigator["widthUnits"]?>>
 <font size=+0 face=<?=$album->fields["font"]?>>
 <?
 if ($navigator["page"] == 1) {
 	echo "&nbsp;";
 } else {
-	echo "<a href=view_album.php?set_page=1><< first page</a>";
+	echo "<a href=$navigator[url]?set_$navigator[pageVar]=1><< first page</a>";
 }
 ?>
 
 </td>
-<td width=<?=$navigator["fullWidth"]/2?> align=center>
+<td width=<?=$navigator["fullWidth"]/2 . $navigator["widthUnits"]?> align=center>
 
 <?
 // Calculate the beginning and ending of the navigator range
@@ -37,20 +37,24 @@ if ($end > $begin) {
 	
 		?>
 			<font size=<?=$size?> face=<?=$album->fields["font"]?>>
-			<a href=view_album.php?set_page=<?=$i?>><?=$i?></a>
+			<a href=<?=$navigator[url]?>?set_<?=$navigator[pageVar]?>=<?=$i?>><?=$i?></a>
 		<?
 	}
+?>
+	<br>
+	<font size=-1>Click here to switch to a new page</font>
+<?	
 }
 ?>
 
 </td>
-<td width=<?=$navigator["fullWidth"]/4?> align=right>
+<td width=<?=$navigator["fullWidth"]/4 . $navigator["widthUnits"]?> align=right>
 <font size=+0 face=<?=$album->fields["font"]?>>
 <?
 if ($navigator["page"] == $navigator["maxPages"]) {
         echo "&nbsp;";
 } else {
-	echo "<a href=view_album.php?set_page=$navigator[maxPages]>last page >></a>";
+	echo "<a href=$navigator[url]?set_$navigator[pageVar]=$navigator[maxPages]>last page >></a>";
 }
 ?>
 </td>
