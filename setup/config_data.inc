@@ -224,5 +224,9 @@ $defaults = array(
 		choices => array("yes", "no"),
 		value => "no",
 	),
+	"albumsPerPage" => array(
+		desc => "How many albums should be displayed per Gallery page?",
+		value => "5",
+	),
 );
 ?>
