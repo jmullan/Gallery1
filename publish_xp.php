@@ -209,7 +209,7 @@ if (!strcmp($cmd, "select-album")) {
 			    $gallery->album->fields[title]);
 	}
 
-	if ($error) {
+	if (!empty($error)) {
 		echo gallery_error($error). "<br>";
 		echo _("Press the 'Back' button and try again!");
 		$ONBACK_SCRIPT="window.location.href = \"publish_xp.php?cmd=fetch-albums\";";
@@ -308,7 +308,7 @@ if (!strcmp($cmd, "new-album")) {
                 $WIZARD_BUTTONS="true,true,true";
 	}
 
-        if ($error) {
+        if (!empty($error)) {
                 echo gallery_error($error);
 		echo _("Press the 'Back' button and try again!");
 		echo "<form id=\"folder\">";
@@ -340,23 +340,23 @@ if (!strcmp($cmd, "add-item")) {
 	    $error = _("User cannot add to album");
 	}
 
-	else if (!$userfile_name) {
+	else if (empty($_FILES['userfile']['name'])) {
 	    	$error = _("No file specified");
 	}
 
 	else {
-		$name = $userfile_name;
-		$file = $userfile;
+		$name = $_FILES['userfile']['name'];
+		$file = $_FILES['userfile']['tmp_name'];
 		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);
 		$tag = strtolower($tag);
 
-		if ($name) {
-    			processNewImage($userfile, $tag, $userfile_name,"",$setCaption);
+		if (!empty($name)) {
+    			processNewImage($file, $tag, $name, "", $setCaption);
 		}
 
 		$gallery->album->save(array(i18n("Image added")));
 
-		if ($temp_files) {
+		if (!empty($temp_files)) {
     			/* Clean up the temporary url file */
     			foreach ($temp_files as $tf => $junk) {
         			fs_unlink($tf);
@@ -364,7 +364,7 @@ if (!strcmp($cmd, "add-item")) {
 		}
 	}
 
-	if ($error) {
+	if (!empty($error)) {
 	    	echo gallery_error($error);
 	} else {
     		echo "SUCCESS";
