@@ -126,7 +126,7 @@ $upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height
 if ($gallery->album->fields['returnto'] != 'no') {
 	$breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" . 
 		$gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
-	foreach ($gallery->album->getParentAlbums(true) as $name => $title) {
+	foreach ($gallery->album->getParentAlbums() as $name => $title) {
 		$breadcrumb["text"][] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($name) . "\">" . 
 			$title. "&nbsp;" . $upArrowURL . "</a>";
 	}
