@@ -481,7 +481,9 @@ if ($numPhotos) {
                         if (!$gallery->session->offline &&
 				(($gallery->user->canDeleteFromAlbum($gallery->album)) ||
                                     ($gallery->user->canWriteToAlbum($gallery->album)) ||
-                                    ($gallery->user->canChangeTextOfAlbum($gallery->album)))) {
+                                    ($gallery->user->canChangeTextOfAlbum($gallery->album)) ||
+				    ($gallery->album->getItemOwnerModify() && 
+				     $gallery->album->isItemOwner($gallery->user->getUid(), $i)))) {
 				$showAdminForm = 1;
 			} else { 
 				$showAdminForm = 0;
@@ -516,6 +518,7 @@ if ($numPhotos) {
 <?php
 			} else {
 				echo($gallery->album->getCaption($i));
+				echo($gallery->album->getCaptionName($i));
 				// indicate with * if we have a comment for a given photo
 				if ((!strcmp($gallery->album->fields["public_comments"], "yes")) && 
 				   ($gallery->album->numComments($i) > 0)) {
@@ -540,6 +543,10 @@ if ($numPhotos) {
 				echo("<select style='FONT-SIZE: 10px;' name='s' ".
 					"onChange='imageEditChoice(document.image_form_$i.s)'>");
 				echo("<option value=''><< Edit $label>></option>");
+			}
+			if ($gallery->album->getItemOwnerModify() && $gallery->album->isItemOwner($gallery->user->getUid(), $i) && !$gallery->album->isAlbumName($i)) { 
+				showChoice("Edit Text", "edit_caption.php", array("index" => $i));
+				showChoice("Delete $label", "delete_photo.php", array("id" => $id));
 			}
 			if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
 				if ($gallery->album->isAlbumName($i)) {
@@ -604,6 +611,11 @@ if ($numPhotos) {
 					   array("set_albumName" => $myAlbum->fields["name"]));
 			    }
 			}
+                       if ($gallery->user->isAdmin())
+                       {
+                               showChoice("Change owner", "photo_owner.php", array("id" => $id));
+                       }
+
 			if ($showAdminForm) {
 				echo('</select></form>');
 			}

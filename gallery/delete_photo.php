@@ -32,13 +32,16 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
-// Hack check
-if (!$gallery->user->canDeleteFromAlbum($gallery->album)) {
-	exit;
-}
 
 if (isset($id)) {
         $index = $gallery->album->getPhotoIndex($id);
+}
+
+// Hack check
+if (!$gallery->user->canDeleteFromAlbum($gallery->album) 
+	&& (!$gallery->album->getItemOwnerModify()
+	|| !$gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
+	exit;
 }
 
 if ($confirm && isset($id)) {
@@ -57,10 +60,10 @@ if ($confirm && isset($id)) {
 
 	$gallery->album->deletePhoto($index);
 	$gallery->album->save();
-	if (isset($id2) && $id2 = $gallery->album->getPhotoId($id2)) {
+	if (isset($id2) && strlen($id2) > 0 && $id2 = $gallery->album->getPhotoId($id2)) {
 	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName, $id2));
 	} else {
-	dismissAndReload();
+		dismissAndReload();
 	}
 	return;
 }

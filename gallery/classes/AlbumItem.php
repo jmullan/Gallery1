@@ -34,6 +34,7 @@ class AlbumItem {
 	var $itemCaptureDate;	// associative array of date the item was captured 
 				// not in EPOCH so we can support dates < 1970
 	var $exifData;
+	var $owner;		// UID of item owner.
 	var $extraFields;
 	var $version;
 
@@ -143,6 +144,11 @@ class AlbumItem {
 				$this->extraFields=array();
 			}
 		}
+		if ($this->version < 11) { 
+			$nobody = $gallery->userDB->getNobody(); 
+			$nobodyUid = $nobody->getUid();
+			$this->owner = $nobodyUid;
+		}
 		if ($this->image) {
 			if ($this->image->integrityCheck($dir)) {
 				$changed = 1;
@@ -195,6 +201,17 @@ class AlbumItem {
 		return $this->keywords;
         }
 
+	function setOwner($owner) {
+		$this->owner = $owner;
+	}
+	function getOwner() {
+		if (!isset($this->owner)) {
+			$nobody = $gallery->userDB->getNobody(); 
+			$nobodyUid = $nobody->getUid();
+			$this->setOwner($nobodyUid);
+		}
+		return $this->owner;
+	}
 	function resetItemClicks() {
 		$this->clicks = 0;
 	}

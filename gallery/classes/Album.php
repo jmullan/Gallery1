@@ -77,7 +77,11 @@ class Album {
 		}
 		$this->fields["cached_photo_count"] = 0;
 		$this->fields["photos_separate"] = FALSE;
-		$this->transient->photosloaded = TRUE;
+		$this->transient->photosloaded = TRUE; 
+		
+		$this->fields["show_item_owner"]="yes"; 
+		$this->fields["item_owner_modify"]="yes";
+
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
 	}
@@ -594,7 +598,7 @@ class Album {
 		}
 	}
 
-	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array() ) {
+	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="") {
 		global $gallery;
 
 		$this->updateSerial = 1;
@@ -645,6 +649,11 @@ class Album {
 			{
 				$item->setExtraField($field, $value);
 			}
+			if (!strcmp($owner, "")) {
+				$nobody = $gallery->userDB->getNobody();
+				$owner = $nobody->getUid();
+			}
+			$item->setOwner($owner);
 		}
 		$this->photos[] = $item;
 
@@ -880,6 +889,16 @@ class Album {
 		$photo->setCaption($caption);
 	}
 
+	function getItemOwner($index) {
+		$photo = $this->getPhoto($index);
+		return $photo->getOwner();
+	}
+
+	function setItemOwner($index, $owner) {
+		$photo = &$this->getPhoto($index);
+		$photo->setOwner($owner);
+	}
+
 	function getUploadDate($index) {
 		$photo = $this->getPhoto($index);
 		$uploadDate = $photo->getUploadDate();
@@ -974,6 +993,19 @@ class Album {
 		return $photo->isMovie();
 	}
 
+	function isItemOwner($uid, $index)
+	{
+		global $gallery;
+		$nobody = $gallery->userDB->getNobody();
+		$nobodyUid = $nobody->getUid();
+		$everybody = $gallery->userDB->getEverybody();
+		$everybodyUid = $everybody->getUid();
+
+		if ($uid == $nobodyUid || $uid == $everybodyUid) {
+			return false;
+		}
+		return ($uid == $this->getItemOwner($index));
+	}
 	function isAlbumName($index) {
 		$photo = $this->getPhoto($index);
 		return $photo->isAlbumName;
@@ -1315,6 +1347,54 @@ class Album {
 		$photo = &$this->getPhoto($index);
 		$photo->setExtraField($field, $value);
 	}
+	function getItemOwnerById($id) 
+	{ 
+		return $this->getItemOwner($this->getPhotoIndex($id)); 
+	}
+
+	function setItemOwnerById($id, $owner) {
+		$index=$this->getPhotoIndex($id);
+		$this->setItemOwner($index, $owner);
+	}
+	function getShowItemOwner() {
+		if (isset($this->fields["show_item_owner"])) {
+			if (strcmp($this->fields["show_item_owner"], "yes"))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	function getItemOwnerModify() {
+		if (isset($this->fields["item_owner_modify"])) {
+			if (strcmp($this->fields["item_owner_modify"], "yes"))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	function getCaptionName($index) {
+                global $gallery;
+		if (!$this->getShowItemOwner()) {
+			return "";
+		}
+		$nobody = $gallery->userDB->getNobody();
+		$nobodyUid = $nobody->getUid();
+		$everybody = $gallery->userDB->getEverybody();
+		$everybodyUid = $everybody->getUid();
+
+		if (!strcmp($this->getItemOwner($index), $nobodyUid) || !strcmp($this->getItemOwner($index), $everybodyUid)) {
+			return "";
+		}
+                $user=$gallery->userDB->getUserByUid($this->getItemOwner($index));
+		if (!$user) {
+			return "";
+		}
+		return " - ".$user->getFullname()." (". $user->getUsername().")";
+        }
+
+
 }
 
 ?>

@@ -111,6 +111,11 @@ class Abstract_User {
 			return true;
 		}
 
+		if (!$album)
+		{
+			return false;
+		}
+
 		// If they can write, they can add
 		if ($this->canWriteToAlbum($album)) {
 			return true;

@@ -58,6 +58,8 @@ if ($save) {
 	$gallery->album->fields["use_exif"] = $use_exif;
 	$gallery->album->fields["display_clicks"] = $display_clicks;
 	$gallery->album->fields["public_comments"] = $public_comments;
+	$gallery->album->fields["item_owner_modify"] = $item_owner_modify;
+	$gallery->album->fields["show_item_owner"] = $show_item_owner;
 	$gallery->album->save();
 
 	if ($setNested) {
@@ -178,6 +180,14 @@ if ($gallery->app->use_exif) {
 <tr>
 <td>Display click counter for this album?</td>
 <td><select name="display_clicks"><?php echo selectOptions($gallery->album, "display_clicks", array("yes", "no")) ?></select></td>
+</tr>
+<tr>
+<td>Display owners name with caption
+<td><select name="show_item_owner"><?=selectOptions($gallery->album, "show_item_owner", array("yes", "no")) ?></select></td>
+</tr>
+<tr>
+<td>Allow item owners to modify/delete their images</td>
+<td><select name="item_owner_modify"><?=selectOptions($gallery->album, "item_owner_modify", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Allow public commenting for photos in this album?</td>

@@ -49,7 +49,10 @@ function editCaption($album, $index) {
 	global $gallery;
 
 	$buf = $album->getCaption($index);
-	if ($gallery->user->canChangeTextOfAlbum($album) 
+	$buf .= $album->getCaptionName($index);
+	if (($gallery->user->canChangeTextOfAlbum($album) ||
+               ($gallery->album->getItemOwnerModify() && 
+	         $gallery->album->isItemOwner($gallery->user->getUid(), $index))) 
 		&& !$gallery->session->offline) {
 		if (!strcmp($buf, "")) {
 			$buf = "<i>&lt;No Caption&gt;</i>";
@@ -1500,7 +1503,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 			if (!$extra_fields) {
 			    $extra_fields=array();
 			}
-			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $extra_fields);
+			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $extra_fields, $gallery->user->uid);
 			if (!$err) {
 				/* resize the photo if needed */
 				if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
