@@ -211,7 +211,7 @@ include("layout/navphoto.inc");
 if (!$album->isMovie($index)) {
 	if ($album->isResized($index)) { 
 		if ($full) { 
-			echo "<a href=" . makeGalleryUrl($albumName, $id, "full=0") . ">";
+			echo "<a href=" . makeGalleryUrl($albumName, $id) . ">";
 	 	} else {
 			echo "<a href=" . makeGalleryUrl($albumName, $id, "full=1") . ">";
 		}
