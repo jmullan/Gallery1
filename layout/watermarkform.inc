@@ -21,6 +21,8 @@
  */
 ?>
 <?php
+  global $askRecursive;
+
   $err = "";	
   if (!isset($wmAlignX) || ($wmAlignX <= 0))
   {
@@ -94,32 +96,32 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 <p><b><?php echo _("Alignment") ?>:</b></p>
 <table border="1" width="100%">
 <tr>
- <td><input <?php if ($wmAlign==1) echo checked ?> type="radio" name="wmAlign" value="1">
+ <td><input <?php if ($wmAlign==1) echo " checked"; ?> type="radio" name="wmAlign" value="1">
      <?php echo _("Upper&nbsp;Left") ?></td>
- <td><input <?php if ($wmAlign==2) echo checked ?> type="radio" name="wmAlign" value="2">
+ <td><input <?php if ($wmAlign==2) echo " checked"; ?> type="radio" name="wmAlign" value="2">
      <?php echo _("Top") ?></td>
- <td><input <?php if ($wmAlign==3) echo checked ?> type="radio" name="wmAlign" value="3">
+ <td><input <?php if ($wmAlign==3) echo " checked"; ?> type="radio" name="wmAlign" value="3">
      <?php echo _("Upper&nbsp;Right") ?></td>
 </tr>
 <tr>
- <td><input <?php if ($wmAlign==4) echo checked ?> type="radio" name="wmAlign" value="4">
+ <td><input <?php if ($wmAlign==4) echo " checked"; ?> type="radio" name="wmAlign" value="4">
      <?php echo _("Left") ?></td>
- <td><input <?php if ($wmAlign==5) echo checked ?> type="radio" name="wmAlign" value="5">
+ <td><input <?php if ($wmAlign==5) echo " checked"; ?> type="radio" name="wmAlign" value="5">
      <?php echo _("Center") ?></td>
- <td><input <?php if ($wmAlign==6) echo checked ?> type="radio" name="wmAlign" value="6">
+ <td><input <?php if ($wmAlign==6) echo " checked"; ?> type="radio" name="wmAlign" value="6">
      <?php echo _("Right") ?></td>
 </tr>
 <tr>
- <td><input <?php if ($wmAlign==7) echo checked ?> type="radio" name="wmAlign" value="7">
+ <td><input <?php if ($wmAlign==7) echo " checked"; ?> type="radio" name="wmAlign" value="7">
      <?php echo _("Lower&nbsp;Left") ?></td>
- <td><input <?php if ($wmAlign==8) echo checked ?> type="radio" name="wmAlign" value="8">
+ <td><input <?php if ($wmAlign==8) echo " checked"; ?> type="radio" name="wmAlign" value="8">
      <?php echo _("Bottom") ?></td>
- <td><input <?php if ($wmAlign==9) echo checked ?> type="radio" name="wmAlign" value="9">
+ <td><input <?php if ($wmAlign==9) echo " checked"; ?> type="radio" name="wmAlign" value="9">
      <?php echo _("Lower&nbsp;Right") ?></td>
 </tr>
 <tr>
   <td colspan="3">
-    <input <?php if ($wmAlign==10) echo checked ?> type="radio" name="wmAlign" value="10">
+    <input <?php if ($wmAlign==10) echo " checked"; ?> type="radio" name="wmAlign" value="10">
     <?php echo _("Other") ?>
     X=<input type="text" name="wmAlignX" value="<?php echo $wmAlignX ?>">
     Y=<input type="text" name="wmAlignY" value="<?php echo $wmAlignY ?>">
@@ -130,9 +132,9 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 <?php if ($gallery->user->canViewFullImages($gallery->album)) { ?>
 <b><?php echo _("Preview Size") ?>:</b><br>
 <table border="0">
-<tr><td><input type="radio" name="previewFull" value="0"<?php if ($previewFull==0) echo checked ?>>
+<tr><td><input type="radio" name="previewFull" value="0"<?php if ($previewFull==0) echo " checked"; ?>>
 <?php echo _("Resized"); ?> </input></td></tr>
-<tr><td><input type="radio" name="previewFull" value="1"<?php if ($previewFull==1) echo checked ?>>
+<tr><td><input type="radio" name="previewFull" value="1"<?php if ($previewFull==1) echo " checked"; ?>>
 <?php echo _("Full"); ?> </input></td></tr>
 </table>
 <?php } // end if canViewFullImages ?>

@@ -549,6 +549,7 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
       $useTemp = true;
       $out = "$dest.tmp";
    } else {
+      $useTemp = false;
       $out = $dest;
    }
    if (isDebugging())
