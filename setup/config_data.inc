@@ -28,6 +28,19 @@ $checklist = array(
 		"fail-incompatible" => "You're running version " . phpversion() .
 			" which has known bugs that cause Gallery to fail.",
 	),
+	"safe_mode" => array(
+		"desc" => "Check to see if PHP is running in <b>Safe Mode</b>.  Safe mode is a ".
+			  "PHP security feature commonly used in shared environments.  Gallery ".
+			  "cannot run when safe mode is enabled because it imposes too many ".
+			  "restrictions.",
+		"func" => "check_safe_mode",
+		"fail-safe-mode" => "<b>Safe Mode</b> is enabled on this server.  You must ".
+			  "disable it before you can use Gallery.  Refer to the FAQ and the ".
+			  "mailing lists on the <a href='http://gallery.sourceforge.net'>".
+			  "Gallery website</a>, and the ".
+			  "<a href='http://www.php.net/manual/en/features.safe-mode.php'>".
+			  "PHP website</a> for assistance.",
+	),
 	"htaccess" => array(
 		"desc" => "Allow the Gallery <b>.htaccess</b> file to set " .
 			  "application specific configuration options " .
