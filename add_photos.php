@@ -131,9 +131,11 @@ Alternatively, you can use one of these desktop agents to drag and drop photos f
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A Java application that runs on Mac, Windows and Unix
 <br>
+<?php if (empty($GALLERY_EMBEDDED_INSIDE)) { ?>
 &nbsp;&nbsp;&nbsp;<b><a href="<?php echo makeGalleryUrl("publish_xp_docs.php") ?>">Windows XP Publishing Agent</a></b>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note:</i> this feature is still experimental!
+<?php } ?>					 
 </span>
 
 </body>

@@ -46,7 +46,7 @@ if(empty($cmd)){
   $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\' . $gallery->app->galleryTitle . ']';
   $lines[] = '"displayname"="' . $gallery->app->galleryTitle . '"';
   $lines[] = '"description"="Publish and Share Your Windows XP Files via ' . $gallery->app->galleryTitle . ' on the Web."';
-  $lines[] = '"href"="' . $gallery->app->photoAlbumURL . '/publish_xp.php?cmd=publish"';
+  $lines[] = '"href"="' . makeGalleryUrl("publish_xp.php", array("cmd" => "publish")) . '"';
   $lines[] = '"icon"="' . $proto . '://' . $HTTP_SERVER_VARS['SERVER_NAME'] . '/favicon.ico"';
   print join("\r\n", $lines);
   print "\r\n";
@@ -123,7 +123,7 @@ if (!strcmp($cmd,"publish") || $returnval == "Login Incorrect") {?>
 if (!strcmp($cmd, "fetch-albums")) {
 	echo "<center>"; ?>
 <span class="popuphead">Logged in to <?php echo $gallery->app->galleryTitle?></span>
-<br>If this is not "<b><i><?php echo $gallery->session->username?></i></b>" please click <a href="publish_xp.php">here</a>.
+<br>If this is not "<b><i><?php echo $gallery->session->username?></i></b>" please click <a href="<?php echo makeGalleryUrl("publish_xp.php", array("cmd" => "publish"))?>">here</a>.
 <br>
 <?php	echo "<form id='folder'>";
 	echo "<select id='album' name='albumName' size=10 width=40>";
@@ -324,6 +324,15 @@ function process($file, $tag, $name, $setCaption="") {
 <div id="content"/>
 
 </div>
+<?php
+function forceQuestionMark($url) {
+    if (!strstr("?", $url)) {
+	$url .= "?";
+    }
+    return $url;
+}
+?>
+
 <script>
 function DOIT() {
 var xml = window.external.Property("TransferManifest");
@@ -331,7 +340,7 @@ var files = xml.selectNodes("transfermanifest/filelist/file");
 
 for (i = 0; i < files.length; i++) {
 var postTag = xml.createNode(1, "post", "");
-postTag.setAttribute("href", "<?php echo $gallery->app->photoAlbumURL?>/publish_xp.php?set_albumName=" + folder.album.value);
+postTag.setAttribute("href", "<?php echo forceQuestionMark(makeGalleryUrl("publish_xp.php"))?>&set_albumName=" + folder.album.value);
 postTag.setAttribute("name", "userfile");
 
 var dataTag = xml.createNode(1, "formdata", "");

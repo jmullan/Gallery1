@@ -82,6 +82,8 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 		       "move_album.php",
 		       "move_photo.php",
 		       "progress_uploading.php",
+		       "publish_xp.php",
+		       "publish_xp_docs.php",
 		       "rename_album.php",
 		       "resize_photo.php",
 		       "rotate_photo.php",
