@@ -466,6 +466,11 @@ function GRcreateNewAlbum( $parentName, $newAlbumName, $newAlbumTitle, $newAlbum
 	// get parent album name
 	$albumDB = new AlbumDB(FALSE);
 	
+	// Make sure no album $newAlbumName exists
+	if ($newAlbumName && $albumDB->getAlbumbyName($newAlbumName)) {
+		$newAlbumName = null;
+	}
+	
 	// set new album name from param or default
 	if ($newAlbumName) {
 		$gallery->session->albumName = $newAlbumName;
