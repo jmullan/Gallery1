@@ -197,7 +197,7 @@ if (isset($message)) {
 
 <br><br><br><br>
 
-<img src="../skins/default/images/gallery-tag.png">
+<img src="../images/gallery-tag.png">
 
 </div>
 

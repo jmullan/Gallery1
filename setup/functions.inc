@@ -637,7 +637,7 @@ function check_absent_locales()
 		if (sizeof($unavailable) >0) {
 			if(sizeof($maybe) >0) $msg.="<p></p>";
 
-			$msg .= sprintf(_("Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manyally the date formats for these."),sizeof($unavailable));
+			$msg .= sprintf(_("Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."),sizeof($unavailable));
 		}
 		$warn[] = $msg;
 	} else {

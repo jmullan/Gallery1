@@ -761,7 +761,7 @@ function getImagePath($name, $skinname='') {
                 $skinname = $gallery->app->skinname;
         }
 
-	$defaultname = $gallery->app->photoAlbumURL . "/skins/default/images/$name";
+	$defaultname = $gallery->app->photoAlbumURL . "/images/$name";
 	$fullname = $gallery->app->photoAlbumURL . "/skins/$skinname/images/$name";
 
 	if (fs_file_exists($fullname) && !broken_link($fullname)) {
@@ -851,13 +851,13 @@ function _getStyleSheetLink($filename, $skinname='') {
 		if (isset($gallery->app) && isset($gallery->app->skinname)) {
 			$skinname = $gallery->app->skinname;
 		} else {
-			$skinname = "default";
+			$skinname = 'none';
 		}
 	}
 
         $sheetname = "skins/$skinname/css/$filename.css";
 	$sheetpath = "${GALLERY_BASEDIR}$sheetname";
-	$sheetdefaultname = "skins/default/css/$filename.css";
+	$sheetdefaultname = "css/$filename.css";
 	$sheetdefaultpath = "${GALLERY_BASEDIR}$sheetname";
 
 	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
@@ -873,10 +873,12 @@ function _getStyleSheetLink($filename, $skinname='') {
 	} else {
 	    if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
 		$url = "$base/$sheetname";
-	    } elseif (fs_file_exists($sheetdefaultpath) && !broken_line($sheetdefaultpath)) {
+	    } elseif (fs_file_exists($sheetdefaultpath) && !broken_link($sheetdefaultpath)) {
 		$url = "$base/$sheetdefaultpath";
-	    } else {
+	    } elseif (fs_file_exists($sheetdefaultname) && !broken_link($sheetdefaultname)) {
 		$url = "$base/$sheetdefaultname";
+	    } else {
+		$url = "$base/${sheetdefaultname}.default";
 	    }
 	}
 
@@ -2875,8 +2877,9 @@ function available_skins($description_only=false) {
 	global $GALLERY_BASEDIR;
 
 	$dir = "${GALLERY_BASEDIR}skins";
-	$opts['default'] = 'default';
+	$opts['none'] = 'None';
 	$descriptions="<dl>";
+	$descriptions .= _('<dt>None</dt><dd>The original look and feel.</dd>');
 	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
                 while ($file = readdir($fd)) {
 			$subdir="$dir/$file/css";
