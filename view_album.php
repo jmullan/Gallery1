@@ -124,6 +124,11 @@ if ($album->fields["textcolor"]) {
 	}
   }
 
+  function addSize(a) {
+	a.href += (a.href.indexOf("?") < 0) ? "?" : "&";
+	a.href += "ww=" + window.innerWidth + "&wh=" + window.innerHeight;
+  }
+
   // --> 
   </script>
 </head>
@@ -245,7 +250,7 @@ if ($numPhotos) {
 					$album->getThumbnailTag($i) .
 					"</a>");
 			} else {
-				echo("<a href=" . makeGalleryUrl($albumName, $album->getPhotoId($i)) . ">" .
+				echo("<a href=" . makeGalleryUrl($albumName, $album->getPhotoId($i)) . " onClick=\"addSize(this)\">" .
 					$album->getThumbnailTag($i) .
 					"</a>");
 			}

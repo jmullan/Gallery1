@@ -41,6 +41,7 @@ class Album {
 		$this->fields["resize_size"] = $app->default["resize_size"];
 		$this->fields["rows"] = $app->default["rows"];
 		$this->fields["cols"] = $app->default["cols"];
+		$this->fields["fit_to_window"] = $app->default["fit_to_window"];
 
 		$everybody = $userDB->getEverybody();
 		$this->setPerm("canRead", $everybody->getUid(), 1);
@@ -50,7 +51,8 @@ class Album {
 		global $app;
 
 		$changed = 0;
-		$check = array("thumb_size", "resize_size", "rows", "cols");
+		$check = array("thumb_size", "resize_size",
+				"rows", "cols", "fit_to_window");
 		foreach ($check as $field) {
 			if (!$this->fields[$field]) {
 				$this->fields[$field] = $app->default[$field];

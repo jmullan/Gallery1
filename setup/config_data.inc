@@ -198,6 +198,11 @@ $defaults = array(
 		"value" => 600,
 		"choices" => array("off", 400, 500, 600, 700, 800)
 	),
+	"fit_to_window" => array(
+		"desc" => "Auto fit-to-window for images without a resized copy",
+		"value" => "no",
+		"choices" => array("yes", "no")
+	),
 	"page" => array(
 		"desc" => "Starting page",
 		"value" => 1

@@ -136,6 +136,16 @@ if ($album->fields["textcolor"]) {
 }       
 ?> 
   </style> 
+  <script language="javascript1.2">
+  // <!--
+
+  function addSize(a) {
+	a.href += (a.href.indexOf("?") < 0) ? "?" : "&";
+	a.href += "ww=" + window.innerWidth + "&wh=" + window.innerHeight;
+  }
+
+  // -->
+  </script>
 </head>
 
 <body>
@@ -191,18 +201,18 @@ include("layout/navphoto.inc");
 
 </table>
 <table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
-<!-- image row -->
+<tr><td colspan=3>
 <?
-echo("<tr><td colspan=3>");
 includeHtmlWrap("inline_photo.header");
-echo("</td></tr>");
 ?>
+</td></tr>
+</table>
 
-<tr>
-<td colspan=3 align=center>
+<!-- image -->
 <?
-
-
+/* Fit-to-window doesn't work when image is inside a <table>, so removed
+ * table around image.. this also means the image has NO border.
+ * mindless 23-Feb-2001
                         echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
                         echo("<tr bgcolor=$bordercolor>");
                         echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
@@ -216,6 +226,10 @@ echo("</td></tr>");
 			}
                         echo("</td>");
                         echo("<td>");
+ */
+echo "<center>";
+
+$photoTag = $album->getPhotoTag($index, $full);
 
 if (!$album->isMovie($index)) {
 	if ($album->isResized($index)) { 
@@ -225,19 +239,41 @@ if (!$album->isMovie($index)) {
 			echo "<a href=" . makeGalleryUrl($albumName, $id, "full=1") . ">";
 		}
 		$openAnchor = 1;
+	} else if (strcmp($album->fields["fit_to_window"], "no")
+		   && !$full && $ww > 0 && $wh > 0) {
+		# Fit to browser window:
+		$photo = $album->getPhoto($index);
+		list($iw, $ih) = $photo->image->getDimensions();
+		$diffx = $ww - $iw - 5;
+		$diffy = $wh - $ih - 80;
+
+		if ($diffx < 0 || $diffy < 0)
+		{
+			echo "<a href=" . makeGalleryUrl($albumName, $id, "full=1") . ">";
+			$openAnchor = 1;
+			$photoTag = "<img src=" . $album->getAlbumDirURL() . "/" . $photo->image->name . "." . $photo->image->type . " border=0 ";
+
+			if ($diffx < $diffy)
+			{
+				$photoTag .= "width=\"100%\">";
+			} else {
+				$photoTag .= "height=\"88%\">";
+			}
+		}
 	}
 } else {
 	echo "<a href=" . $album->getPhotoPath($index) . " target=other>";
 	$openAnchor = 1;
 }
-?>
-<?=$album->getPhotoTag($index, $full)?>
-<?
+
+echo $photoTag;
+
 if ($openAnchor) {
 	echo "</a>";
  	$openAnchor = 0;
 }
 
+/* Removed table around image (NO border now):
 			echo("</td>");
 			echo("<td bgcolor=$bordercolor width=$borderwidth>");
 			for ($k=0; $k<$borderwidth; $k++) {
@@ -251,11 +287,12 @@ if ($openAnchor) {
                         echo("<td height=$borderwidth width=$borderwidth><img src=$top/images/pixel_trans.gif></td>");
                         echo("</tr>");
                         echo("</table>");
-
+ */
+echo "</center><br>";
 ?>
 
-</td>
-</tr>
+<table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
+<!-- caption -->
 <tr>
 <td colspan=3 align=center>
 <span class="caption">

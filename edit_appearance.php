@@ -39,6 +39,7 @@ if ($save) {
 	$album->fields["returnto"] = $returnto;
 	$album->fields["rows"] = $rows;
 	$album->fields["cols"] = $cols;
+	$album->fields["fit_to_window"] = $fit_to_window;
 	$album->save();
 
 	reload();
@@ -88,6 +89,9 @@ You can modify the appearance of your photo album here.
 <td><select name="border"><?= selectOptions($album, "border", array("off", 1, 2, 3, 4)) ?></select></td>
 </tr>
 <tr>
+<td>Border color</td>
+<td><input type=text name="bordercolor" value="<?=$album->fields["bordercolor"]?>"></td>
+</tr>
 <tr>
 <td>Thumbnail size</td>
 <td><input type=text name="thumb_size" value="<?=$album->fields["thumb_size"]?>"></td>
@@ -95,10 +99,6 @@ You can modify the appearance of your photo album here.
 <tr>
 <td>Auto-Resize</td>
 <td><select name="resize_size"><?= selectOptions($album, "resize_size", array("off", 400, 500, 600, 700, 800)) ?></select></td>
-</tr>
-<tr>
-<td>Border color</td>
-<td><input type=text name="bordercolor" value="<?=$album->fields["bordercolor"]?>"></td>
 </tr>
 <tr>
 <td>Show <i>Return to</i> link</td>
@@ -111,6 +111,7 @@ You can modify the appearance of your photo album here.
   <?= selectOptions($album, "rows", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
  </select>
 </td>
+</tr>
 <tr>
 <td>Columns</td>
 <td>
@@ -118,6 +119,10 @@ You can modify the appearance of your photo album here.
   <?= selectOptions($album, "cols", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
  </select>
 </td>
+</tr>
+<tr>
+<td>Auto fit-to-window for<br>images w/o resized copy</td>
+<td><select name="fit_to_window"><?= selectOptions($album, "fit_to_window", array("yes", "no")) ?></select></td>
 </tr>
 </table>
 
