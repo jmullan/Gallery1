@@ -35,7 +35,7 @@ set_magic_quotes_runtime(0);
 /*
  * Init prepend file for setup directory.
  */
-$GALLERY_DIR = dirname(dirname(__FILE__));
+$GALLERY_DIR = dirname(dirname(realpath(__FILE__)));
 if (!strcmp($GALLERY_DIR, ".") || !strcmp($GALLERY_DIR, "/")) {
     $tmp = $HTTP_SERVER_VARS["PATH_TRANSLATED"];
     if (!$tmp) {
