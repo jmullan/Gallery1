@@ -128,6 +128,7 @@ class Album {
 	}
 
 	function delete() {
+		$safe_to_scrub = 0;
 		$dir = $this->getAlbumDir();
 
 		/* Delete all pictures */
@@ -137,7 +138,30 @@ class Album {
 
 		/* Delete data file */
 		if (file_exists("$dir/album.dat")) {
+			$safe_to_scrub = 1;
 			unlink("$dir/album.dat");
+		}
+
+		/* 
+		 * Clean out everything else in the album dir.  I was
+		 * trying to avoid having to do this, but now that we're
+		 * no longer forcing the resize/thumbnail type to be a jpg 
+		 * it's possible that we're going strand some old JPGs
+		 * in the system.
+		 *
+		 * Don't scrub things unless we've removed an album.dat
+		 * file (which lets us know that 'dir' is a valid album
+		 * directory.
+		 */
+		if ($safe_to_scrub) {
+			if ($fd = opendir($dir)) {
+				while (($file = readdir($fd)) != false) {
+					if (!is_dir("$dir/$file")) {
+						unlink("$dir/$file");
+					}
+				}
+				closedir($fd);
+			}
 		}
 
 		/* Delete album dir */
@@ -174,7 +198,7 @@ class Album {
 		$this->photos[] = $item;
 
 		/* If this is the only photo, make it the highlight */
-		if ($this->numPhotos(1) == 1) {
+		if ($this->numPhotos(1) == 1 && !$this->isMovie(1)) {
 			$this->setHighlight(1);
 		}
 
