@@ -119,9 +119,8 @@ for ($i = 1; $i <= $numAlbums; $i++) {
 if (empty($reorder)) { // Reorder, trans-album move
 	echo _("Nest within another Album:") 
 ?>
-
 <?php echo makeFormIntro("move_album.php", 
-	array("name" => "move_to_album_form"),
+	array("name" => "theform"),
 	array("type" => "popup"));
 ?>
 <input type="hidden" name="index" value="<?php echo $index ?>">
