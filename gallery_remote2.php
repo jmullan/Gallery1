@@ -86,6 +86,8 @@ function check_proto_version( &$response ) {
 			if ( $major_ver != $GR_VER['MAJ'] ) {
 				$response->setProperty( "status", $GR_STAT['PROTOCOL_MAJOR_VERSION_INVALID'] );
 				$response->setProperty( "status_text", "Protocol major version invalid." );
+
+				// return the response
 				echo $response->listprops();
 				exit;
 			}
@@ -93,6 +95,9 @@ function check_proto_version( &$response ) {
 		} else {
 			$response->setProperty( "status", $GR_STAT['PROTOCOL_VERSION_FORMAT_INVALID'] );
 			$response->setProperty( "status_text", "Protocol version format invalid." );
+
+
+			// return the response
 			echo $response->listprops();
 			exit;
 		}
@@ -100,6 +105,8 @@ function check_proto_version( &$response ) {
 		// must specify protocol_version
 		$response->setProperty( "status", $GR_STAT['PROTOCOL_VERSION_MISSING'] );
 		$response->setProperty( "status_text", "Protocol version not found." );
+
+		// return the response
 		echo $response->listprops();
 		exit;
 	}
@@ -130,6 +137,7 @@ if (!strcmp($cmd, "login")) {
 		$response->setProperty( "status_text", "Login parameters not found." );
 	}
 	
+	// return the response
 	echo $response->listprops();
 	exit;
 }
@@ -162,6 +170,8 @@ if (!strcmp($cmd, "fetch-albums")) {
 	// add status and repond
 	$response->setProperty( "status", $GR_STAT['SUCCESS'] );
 	$response->setProperty( "status_text", "Fetch albums successful." );
+
+	// return the response
 	echo $response->listprops();
 	exit;
 }
@@ -209,10 +219,11 @@ if (!strcmp($cmd, "add-item")) {
 			$response->setProperty( "status", $GR_STAT['SUCCESS'] );
 			$response->setProperty( "status_text", "Add photo successful." );
 		}
-		
-		echo $response->listprops();
-		exit;
 	}
+
+	// return the response
+	echo $response->listprops();
+	exit;
 }
 
 
@@ -234,6 +245,7 @@ if (!strcmp($cmd, "album-properties")) {
 	$response->setProperty( "status", $GR_STAT['SUCCESS'] );
 	$response->setProperty( "status_text", "Album properties retrieved successfully." );
 	
+	// return the response
 	echo $response->listprops();
 	exit;
 }
@@ -247,9 +259,7 @@ if (!strcmp($cmd, "new-album")) {
 	
 	// Hack check
 	if ( $gallery->user->canCreateAlbums()
-			|| $gallery->user->canCreateSubAlbum($gallery->album) ) {
-
-
+			&& $gallery->user->canCreateSubAlbum($gallery->album) ) {
 		// add the album
 		if (createNewAlbum( $gallery->session->albumName,
 				$newAlbumName, $newAlbumTitle, $newAlbumDesc )) {

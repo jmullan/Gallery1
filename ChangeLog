@@ -1,11 +1,19 @@
+2003-05-25  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.4-cvs-b39
+
+	* Fixed a security problem in gallery_remote2.php, where users
+	  could create new nested albums inside albums where they didn't
+	  have that permission.
+
+	* Fixed some error reporting in gallery_remote2.php.
+
 2003-05-24  Bharat Mediratta  <bharat@menalto.com> 1.3.4-cvs-b38
 
 	* Refactored add_photo.php to use util.php's processNewImage()
 	  so that, among other things, it gets autorotation for free.
 
-	* Fixed bug where add_photo.php's variable names conflict with 
+	* Fixed bug where add_photo.php's variable names conflict with
 	  PostNuke's
-	
+
 2003-05-24  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.4-cvs-b37
 
 	* Changed "Extra Fields" to "Custom Fields" (GUI only)
