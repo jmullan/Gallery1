@@ -1077,4 +1077,32 @@ function broken_link($file) {
     }
 }
 
+function printChildren($albumName,$depth=0) {
+	global $gallery;
+	$printedHeader = 0;
+	$myAlbum = new Album();
+	$myAlbum->load($albumName);
+	$numPhotos = $myAlbum->numPhotos(1);
+	for ($i=1; $i <= $numPhotos; $i++) {
+		$myName = $myAlbum->isAlbumName($i);
+		if ($myName) {
+		        $nestedAlbum = new Album();
+			$nestedAlbum->load($myName);
+			if ($gallery->user->canReadAlbum($nestedAlbum)) {
+				$val2 = $nestedAlbum->fields['title'];
+				$val3 = pluralize($nestedAlbum->getClicks(), "hit", "0");
+				if ($depth==0 && !$printedHeader++) {
+					echo "<strong>Child albums:</strong>";
+				}
+				echo "<div style=\"margin: 0px 0px 0px 20px\">";
+				echo "<span class=fineprint>";
+				echo "<a href=\"$myName\">$val2 ($val3)</a>\n";
+				printChildren($myName,$depth+1);
+				echo "</span>";
+				echo "</div>";
+			}
+		}
+	}
+}
+
 ?>
