@@ -105,6 +105,11 @@ function check_gd()
 	return function_exists("ImageCreate");
 }
 
+function check_magic_quotes()
+{
+	return !get_magic_quotes_gpc();
+}
+
 function makePathWrapper($path, $app)
 {
 	return "/bin/csh -c &#039;(setenv PATH $path:" . 
