@@ -102,9 +102,9 @@ if ($gallery->album->fields["textcolor"]) {
 includeHtmlWrap("album.header");
 $breadcrumb["top"] = true;
 $breadcrumb["bordercolor"] = $bordercolor;
-$breadcrumb["text"][] = "Return to  <a href=\"" . 
-		makeAlbumUrl($gallery->session->albumName) .
-      		"\">" . $pAlbum->fields['title'] . "</a>";
+$breadcrumb["text"][] = sprintf(_("Return to  %s"), 
+		"<a href=\"" .  makeAlbumUrl($gallery->session->albumName) .
+      		"\">" . $pAlbum->fields['title'] . "</a>");
 
 include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 
@@ -128,52 +128,54 @@ include($GALLERY_BASEDIR . "layout/navigator.inc");
 	$ranks=array_keys($results);
 	print $buf;
 		?>
-		<p><span class=title>Results Breakdown</span>
-		<table width=<?php print $fullWidth?> border=0 cellspacing=0 cellpadding=7>
-		<?
-	
-		$rowStart = 0;
-		$i = 0;
-		$numPhotos = sizeof($ranks);
-	
-		while ($i < $numPhotos) {
-			/* Do the inline_albumthumb header row */
-			echo("<tr>");
-			$i = $rowStart;
-			$j = 1;
-	
-			while ($j <= $cols && $i < $numPhotos) {
-				echo("<td>");
+			<p><span class=title>
+			<?php echo _("Results Breakdown") ?>
+			</span>
+			<table width=<?php print $fullWidth?> border=0 cellspacing=0 cellpadding=7>
+			<?
+		
+			$rowStart = 0;
+			$i = 0;
+			$numPhotos = sizeof($ranks);
+		
+			while ($i < $numPhotos) {
+				/* Do the inline_albumthumb header row */
+				echo("<tr>");
+				$i = $rowStart;
+				$j = 1;
+		
+				while ($j <= $cols && $i < $numPhotos) {
+					echo("<td>");
 
-				$index=$gallery->album->getIndexByVotingId($ranks[$i]);
-				if ($index < 0) {
+					$index=$gallery->album->getIndexByVotingId($ranks[$i]);
+					if ($index < 0) {
+						$i++;
+						continue;
+					}
+					$albumName=$gallery->album->isAlbumName($index);
+					if ($albumName) {
+						$album=$gallery->album->getSubAlbum($index);
+						print sprintf(_("Album: %s"),$album->fields['title'])."<Br>";
+					} else {
+						print $gallery->album->getCaption($index)."<br>";
+					}
+
+					print showResults($ranks[$i]);
+					echo("</td>");
+					$j++; 
 					$i++;
-					continue;
 				}
-				$albumName=$gallery->album->isAlbumName($index);
-				if ($albumName) {
-					$album=$gallery->album->getSubAlbum($index);
-					print sprintf(_("Album: %s"),$album->fields['title'])."<Br>";
-				} else {
-					print $gallery->album->getCaption($index)."<br>";
-				}
-
-				print showResults($ranks[$i]);
-				echo("</td>");
-				$j++; 
-				$i++;
+				echo("</tr>");
+		
+				$rowCount++;
+				$rowStart = $i;
 			}
-			echo("</tr>");
-	
-			$rowCount++;
-			$rowStart = $i;
-		}
-	?>
-	
-	</table>
-	
-<?
-includeHtmlWrap("album.footer");
+		?>
+		
+		</table>
+		
+	<?
+	includeHtmlWrap("album.footer");
 ?>
 
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
