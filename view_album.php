@@ -297,106 +297,163 @@ if ($gallery->user->canWriteToAlbum($gallery->album) &&
 	}
 } 
 $adminText .="</span>";
-$adminCommands = "";
-$userCommands = "";
 
-if ($gallery->user->canAddToAlbum($gallery->album)) {
-	$userCommands .= popup_link("[". _("add photos") ."]", 
-		"add_photos.php?set_albumName=" .
-		$gallery->session->albumName);
-	$extraFields = $gallery->album->getExtraFields();
-	if (!empty($extraFields)) {
-	    $userCommands .= popup_link("[". _("add photo") ."]",
-		    "add_photo.php?set_albumName=" .
-		    $gallery->session->albumName);
+/* admin items for drop-down menu */
+$adminOptions = array(
+		      'add_photos'      => array('name' => _('add photos'),
+						 'requirements' => array('canAddToAlbum'),
+						 'action' => 'popup',
+						 'value' => 'add_photos.php?set_albumName=' . $gallery->session->albumName),
+		      'add_photo'       => array('name' => _('add photo'),
+						 'requirements' => array('canAddToAlbum',
+									 'extraFieldsExist'),
+						 'action' => 'popup',
+						 'value' => 'add_photo.php?set_albumName=' . $gallery->session->albumName),
+		      'rename_album'    => array('name' => _('rename album'),
+						 'requirements' => array('isAlbumOwner'),
+						 'action' => 'popup',
+						 'value' => 'rename_album.php?set_albumName=' . $gallery->session->albumName . "&index=$i&useLoad=1"),
+		      'nested_album'    => array('name' => _('new nested album'),
+						 'requirements' => array('canCreateSubAlbum',
+									 'notOffline'),
+						 'action' => 'url',
+						 'value' => doCommand('new-album', array('parentName' => $gallery->session->albumName),
+								      'view_album.php')),
+		      'custom_fields'   => array('name' => _('custom fields'),
+						 'requirements' => array('canChangeText',
+									 'notOffline'),
+						 'action' => 'popup',
+						 'value' => 'extra_fields.php?set_albumName=' . $gallery->session->albumName),
+		      'edit_captions'   => array('name' => _('edit captions'),
+						 'requirements' => array('canChangeText',
+									 'notOffline'),
+						 'action' => 'url',
+						 'value' => makeGalleryUrl('captionator.php',
+									   array('set_albumName' => $gallery->session->albumName,
+										 'page' => $page, 'perPage' => $perPage))),
+		      'sort_items'      => array('name' => _('sort items'),
+						 'requirements' => array('canWriteToAlbum',
+									 'photosExist'),
+						 'action' => 'popup',
+						 'value' => 'sort_album.php?set_albumName=' . $gallery->session->albumName),
+		      'resize_all'      => array('name' => _('resize all'),
+						 'requirements' => array('canWriteToAlbum',
+									 'photosExist'),
+						 'action' => 'popup',
+						 'value' => 'resize_photo.php?set_albumName=' . $gallery->session->albumName . '&index=all'),
+		      'rebuild_thumbs'  => array('name' => _('rebuild thumbs'),
+						 'requirements' => array('canWriteToAlbum',
+									 'photosExist'),
+						 'action' => 'popup',
+						 'value' => doCommand('remake-thumbnail', array('set_albumName' => $galery->session->albumName, 'index' => 'all'),
+								      'view_album.php')),
+		      'properties'      => array('name' => _('properties'),
+						 'requirements' => array('canWriteToAlbum'),
+						 'action' => 'popup',
+						 'value' => 'edit_appearance.php?set_albumName=' . $gallery->session->albumName),
+		      'permissions'     => array('name' => _('permissions'),
+						 'requirements' => array('isAdminOrAlbumOwner'),
+						 'action' => 'popup',
+						 'value' => 'album_permissions.php?set_albumName=' . $gallery->session->albumName),
+		      'poll_properties' => array('name' => _('poll properties'),
+						 'requirements' => array('isAdminOrAlbumOwner'),
+						 'action' => 'popup',
+						 'value' => 'poll_properties.php?set_albumName=' . $gallery->session->albumName),
+		      'poll_results'    => array('name' => _('poll results'),
+						 'requirements' => array('isAdminOrAlbumOwner'),
+						 'action' => 'url',
+						 'value' => makeGalleryUrl('poll_results.php', array('set_albumName' => $gallery->session->albumName))),
+		      'poll_reset'      => array('name' => _('poll reset'),
+						 'requirements' => array('isAdminOrAlbumOwner'),
+						 'action' => 'popup',
+						 'value' => 'reset_votes.php?set_albumName=' . $gallery->session->albumName),
+		      'view_comments'   => array('name' => _('view comments'),
+						 'requirements' => array('isAdminOrAlbumOwner',
+									 'allowComments'),
+						 'action' => 'url',
+						 'value' => makeGalleryUrl('view_comments.php', array('set_albumName' => $gallery->session->albumName)))
+);
+
+/* sort the drop-down array by translated name */
+$cmp = create_function('$a, $b', "return strcmp(\$a['name'], \$b['name']);");
+uasort($adminOptions, $cmp);
+reset($adminOptions);
+
+$adminOptionHTML = '';
+$adminJavaScript = '';
+/* determine which options to include in admin drop-down menu */
+foreach ($adminOptions as $key => $data) {
+    $enabled = true;
+    while ($enabled && $test = array_shift($data['requirements'])) {
+	$success = testRequirement($test);
+	if (!$success) {
+	    $enabled = false;
 	}
+    }
+    if ($enabled) {
+	$adminOptionHTML .= "\t\t<option value=\"$key\">${data['name']}</option>\n";
+	$adminJavaScript .= "adminOptions.$key = new Object;\n";
+	$adminJavaScript .= "adminOptions.$key.action = \"${data['action']}\";\n";
+	$adminJavaScript .= "adminOptions.$key.value = \"${data['value']}\";\n";
+    }
 }
 
-if ($gallery->user->isOwnerOfAlbum($gallery->album)) {
-	$adminCommands .= popup_link("[" . _("rename album") ."]",
-		"rename_album.php?set_albumName=" .
-		$gallery->session->albumName .
-		"&index=". $i ."&useLoad=1");
-}
-if ($gallery->user->canCreateSubAlbum($gallery->album) 
-	&& !$gallery->session->offline) {
-	$adminCommands .= '<a href="' . doCommand("new-album", 
-						array("parentName" => $gallery->session->albumName),
-						 "view_album.php") .
-						 '">['. _("new nested album") . ']</a> ';
-}
-
-if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
-	if (!$gallery->session->offline)
-	{
-		$adminCommands .= popup_link("[" . _("custom fields") ."]", 
-			"extra_fields.php?set_albumName=" .
-			$gallery->session->albumName);
-		$adminCommands .= '<a href="' . makeGalleryUrl("captionator.php", 
-			array("set_albumName" => $gallery->session->albumName, 
-				"page" => $page, 
-				"perPage" => $perPage)) .
-			'">['. _("captions") . ']</a>&nbsp;';
-	}
-}
-
-if ($gallery->user->canWriteToAlbum($gallery->album)) {
-	if ($gallery->album->numPhotos(1)) {
-	        $adminCommands .= popup_link("[". _("sort") . "]", "sort_album.php?set_albumName=" .
-				$gallery->session->albumName);
-	        $adminCommands .= popup_link("[" . _("resize all") . "]", 
-			"resize_photo.php?set_albumName=" .
-			$gallery->session->albumName . "&index=all");
-	        $adminCommands .= popup_link("[" . _("rebuild thumbs") . "]",
-			"do_command.php?cmd=remake-thumbnail&set_albumName=" .
-				$gallery->session->albumName . "&index=all");
-	}
-        $adminCommands .= popup_link("[" . _("properties") . "]", 
-				"edit_appearance.php?set_albumName=" .
-				$gallery->session->albumName);
+$adminCommands = '';
+$adminJSFrame = '';
+/* build up drop-down menu and related javascript */
+if (!empty($adminOptionHTML)) {
+    $adminJSFrame .= "<script language=\"javascript1.2\">\n"
+	    . "adminOptions = new Object;\n"
+	    . $adminJavaScript
+	    . "\nfunction execAdminOption() {\n"
+	    . "\tkey = document.forms.admin_options_form.admin_select.value;\n"
+	    . "\tswitch (adminOptions[key].action) {\n"
+	    . "\tcase 'popup':\n"
+	    . "\t\tnw = window.open(adminOptions[key].value, 'Edit', 'height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');\n"
+	    . "\t\tnw.opener=self;\n"
+	    . "\t\tbreak;\n"
+	    . "\tcase 'url':\n"
+	    . "\t\tdocument.location = adminOptions[key].value;\n"
+	    . "\t\tbreak;\n"
+	    . "\t}\n"
+	    . "\tdocument.forms.admin_options_form.admin_select.selectedIndex = 0;\n"
+	    . "\tdocument.forms.admin_options_form.admin_select.blur();\n"
+	    . "}\n"
+	    . "</script>\n\n";
+    
+    $adminCommands .= "\n\t<select style=\"font-size: 10px;\" name=\"admin_select\" onChange=\"execAdminOption()\">\n";
+    $adminCommands .= "\t\t<option value=\"\">&laquo; " . _('admin options') . " &raquo;</option>\n";
+    $adminCommands .= $adminOptionHTML;
+    $adminCommands .= "\t</select>\n";
 }
 
-if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) {
-        $adminCommands .= popup_link("[" . _("permissions") . "]", 
-			"album_permissions.php?set_albumName=" .
-			$gallery->session->albumName);
-	
-        $adminCommands .= popup_link("[" . _("poll properties") . "]", 
-			"poll_properties.php?set_albumName=" .
-                       $gallery->session->albumName);
-	$adminCommands .= '<a href=' . makeGalleryUrl("poll_results.php",
-		array("set_albumName" => $gallery->session->albumName)) .
-		'>['. _("poll results") . ']</a>&nbsp;';
-
-        $adminCommands .= popup_link("[" . _("reset poll") . "]",
-			"reset_votes.php?set_albumName=" .
-                       $gallery->session->albumName);
-}
-if (($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) &&
-	!strcmp($gallery->album->fields["public_comments"],"yes")) { 
-    $adminCommands .= '<a href="' . makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)) . '">[' . _("view&nbsp;all&nbsp;comments") . ']</a>&nbsp;';
-}
+$userCommands = '';
 if ($gallery->album->fields["slideshow_type"] != "off") {
-       	$userCommands .= '<a href="' . 
+       	$userCommands .= "\t<a href=\"" . 
 	       	makeGalleryUrl("slideshow.php",
 			       	array("set_albumName" => $albumName)) .
-	      	'">['. _("slideshow") .']</a> ';
+	      	'">['. _("slideshow") ."]</a>\n";
 }
-
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 	if ($gallery->user->isLoggedIn()) {
-	        $userCommands .= "<a href=\"" .
+	        $userCommands .= "\t<a href=\"" .
 					doCommand("logout", array(), "view_album.php", array("page" => $page)) .
-				  "\">[" . _("logout") . "]</a>";
+				  "\">[" . _("logout") . "]</a>\n";
 	} else {
-		$userCommands .= popup_link("[". _("login") ."]", "login.php", 0);
+		$userCommands .= "\t" . popup_link("[". _("login") ."]", "login.php", 0) . "\n";
 	} 
 }
 $adminbox["text"] = $adminText;
-$adminbox["commands"] =	"<span class =\"admin\">" .  $userCommands . 
-			$adminCommands .  "</span>";
+$adminbox["commands"] =	"<span class =\"admin\">" .  $adminCommands . 
+			$userCommands .  "</span>";
 $adminbox["bordercolor"] = $bordercolor;
 $adminbox["top"] = true;
+
+if (!empty($adminOptionHTML)) {
+    print $adminJSFrame;
+    print "<form name=\"admin_options_form\">\n";
+}
+
 include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 ?>
 
@@ -409,6 +466,10 @@ if (strcmp($gallery->album->fields["returnto"], "no")
 	include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 }
 include($GALLERY_BASEDIR . "layout/navigator.inc");
+
+if (!empty($adminOptionHTML)) {
+    print "</form>\n";
+}
 
 #-- if borders are off, just make them the bgcolor ----
 $borderwidth = $gallery->album->fields["border"];
@@ -745,7 +806,7 @@ if ($numPhotos) {
 				}
 				echo("<select style='FONT-SIZE: 10px;' name='s$i' ".
 					"onChange='imageEditChoice(document.vote_form.s$i)'>");
-				echo("<option value=''><< ". _("Edit") . " $label >></option>");
+				echo("<option value=''>&laquo; ". _("Edit") . " $label &raquo;</option>");
 			}
 			if ($gallery->album->getItemOwnerModify() && 
 			    $gallery->album->isItemOwner($gallery->user->getUid(), $i) && 
@@ -906,7 +967,6 @@ if (strcmp($gallery->album->fields["returnto"], "no")) {
 	$breadcrumb["top"] = false;
 	include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 }
-
 
 include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
 includeHtmlWrap("album.footer");

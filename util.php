@@ -139,7 +139,7 @@ function popup($url, $url_is_complete=0, $height=500,$width=500) {
 }
 
 function popup_js($url, $window, $attrs) {
-	return "javascript:nw=window.open($url,'$window','$attrs');nw.opener=self;return false;";
+	return "nw=window.open($url,'$window','$attrs');nw.opener=self;return false;";
 }
 
 function popup_status($url, $height=150, $width=350) {
@@ -160,7 +160,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
     $link_name = "popuplink_".$popup_counter;
     $url = build_popup_url($url, $url_is_complete);
     
-    $a1 = "<a id=\"$link_name\" target=\"Edit\" href=$url onClick=\"".
+    $a1 = "<a id=\"$link_name\" target=\"Edit\" href=$url onClick=\"javascript:".
 	popup_js("document.getElementById('$link_name').href", "Edit",
 		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes").
 	"\">";
@@ -2824,6 +2824,47 @@ function available_frames($description_only=false) {
 	} else {
 	       	return $opts;
 	}
+}
+
+/* simplify condition tests */
+function testRequirement($test) {
+    global $gallery;
+    switch ($test) {
+    case 'isAdminOrAlbumOwner':
+	return $gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album);
+	break;
+    case 'allowComments':
+	return $gallery->album->fields['public_comments'] === 'yes';
+	break;
+    case 'canAddToAlbum':
+	return $gallery->user->canAddToAlbum($gallery->album);
+	break;
+    case 'extraFieldsExist':
+	$extraFields = $gallery->album->getExtraFields();
+	return !empty($extraFields);
+	break;
+    case 'isAlbumOwner':
+	return $gallery->user->isOwnerOfAlbum($gallery->album);
+	break;
+    case 'canCreateSubAlbum':
+	return $gallery->user->canCreateSubAlbum($gallery->album);
+	break;
+    case 'notOffline':
+	return !$gallery->session->offline;
+	break;
+    case 'canChangeText':
+	return $gallery->user->canChangeTextOfAlbum($gallery->album);
+	break;
+    case 'canWriteToAlbum':
+	return $gallery->user->canWriteToAlbum($gallery->album);
+	break;
+    case 'photosExist':
+	return $gallery->album->numPhotos(true);
+	break;
+    default:
+	return false;
+    }
+    return false;
 }
 
 ?>

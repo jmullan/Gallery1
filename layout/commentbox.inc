@@ -12,7 +12,7 @@
 <?php
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	$url = "do_command.php?cmd=delete-comment&index=$index&comment_index=$j";
-	$buf = '<span class="admin"> <a href="#" onClick="' . popup($url) . '">[' . _("delete comment") .']</a></span>';
+	$buf = '<span class="admin"> <a href="#" onClick="javascript:' . popup($url) . '">[' . _("delete comment") .']</a></span>';
 	echo "<tr><td>$buf</td></tr>";
 }
 ?>

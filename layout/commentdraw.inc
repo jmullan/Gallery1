@@ -35,7 +35,7 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
 <?php
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	$url = "do_command.php?cmd=delete-comment&index=$index&comment_index=$i";
-	$buf = '<a href="#" onClick="' . popup($url) . '">['. _("delete comment") . ']</a>';
+	$buf = '<a href="#" onClick="javascript:' . popup($url) . '">['. _("delete comment") . ']</a>';
 	echo "$buf";
 }
 ?>
