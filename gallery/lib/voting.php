@@ -63,7 +63,7 @@ function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",  $c
 	$counter = 0;
 	foreach ($array as $name => $value) {
 		$bar_width = $value * $pixels_per_value;
-		$img_url= $gallery->app->photoAlbumURL .'/images/bar.gif';
+		$img_url= getImagePath('bar.gif');
 		$string_to_return .= "\n\t<tr>"
 			. "\n\t<td>(". ++$counter .")</td>"
 			. "\n\t<td>$name ($value)</td>"
