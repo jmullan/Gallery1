@@ -119,6 +119,11 @@ if ($changed) {
 $nobody = $gallery->userDB->getNobody();
 $ownerUid = $nobody->getUid();
 
+if (empty($gallery->album) && !empty($set_albumName)) {
+	$gallery->album = new Album();
+	$gallery->album->load($set_albumName);
+}
+
 $uRead = $gallery->album->getPermUids("canRead");
 $uText = $gallery->album->getPermUids("canChangeText");
 $uAdd = $gallery->album->getPermUids("canAddTo");
