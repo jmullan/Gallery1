@@ -63,7 +63,7 @@ doctype();
 <b><?php echo _("Step 2") ?></b>
 <br>
 <?php 	echo _("Open your Windows explorer and browse to a folder containing supported images.") ."  ";
-	echo _("Select the image(s) or a folder and there should be a link on the left that says &quot;Publish this file to the web...&quot; ") ;
+	echo _("Select the image(s) or a folder and there should be a link on the left that says &quot;Publish this file to the web...&quot;");
 	echo _("Click this link and then follow the instructions to log into your Gallery, select an album and publish the image.") ?>
 <br>
 <br>

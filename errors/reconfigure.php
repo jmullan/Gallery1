@@ -18,16 +18,12 @@
 <p class="header"><?php echo _("Gallery needs Reconfiguration") ?></p>
 
 <p class="sitedesc">
-	<?php echo _("Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard! Here's how:") ?>
-</p>
-
-<p>
-	<?php configure("configure"); ?>
+	<?php echo _("Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!") ?>
 </p>
 
 <p>
 <?php 
-	echo sprintf(_("Then launch the %sConfiguration Wizard%s."),
+	echo sprintf(_("Launch the %sConfiguration Wizard%s."),
 		'<a href="'. GALLERY_URL . 'setup/index.php">', '</a>') . ' ';
 	
 	include(dirname(__FILE__) . "/configure_help.php"); ?>
