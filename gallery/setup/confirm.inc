@@ -96,7 +96,7 @@ foreach ($constants as $key => $val) {
 
 	if ($constants[$key]["eval"]) {
 		$tmp = $constants[$key]["eval"];
-		eval("\$$key = $tmp;");
+		eval("\$real = $tmp;");
 	}
 
 	if (!strcmp($key, "graphics")) {
