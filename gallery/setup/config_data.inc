@@ -1,8 +1,11 @@
 <?
 $checklist = array(
 	"php4" => array(
-		"desc" => "Check to see if you are running PHP 4.  Note that Gallery does " .
-			"not function optimally with either 4.0.3 or 4.0.3pl1",
+		"desc" => "Check to see if you are running PHP 4.  Note that some versions of PHP ".
+			  "have bugs that cause Gallery to fail.  PHP4.0.0 uses a different file " .
+			  "upload protocol, versions 4.0.2, 4.0.3 and 4.0.3pl1 have a bug in the " .
+			  "unserialization code that cause Gallery to be unable to read its own " .
+			  "database.  Upgrade to at least PHP 4.0.4pl1 if you can.",
 	     	"func" => "check_php",
 		"fail-too-old" => "You're running version " . phpversion() .
 			". You need to upgrade to PHP ${MIN_PHP_MAJOR_VERSION}",
