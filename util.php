@@ -479,12 +479,13 @@ function correctEverybody($array) {
 function makeSearchFormIntro() {
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
+	global $GALLERY_MODULENAME;
 	switch ($GALLERY_EMBEDDED_INSIDE) {
 		case "nuke":
             $form = "<form action=modules.php>";
 			$form .= "<input type=hidden name=op value=modload>";
 			$form .= "<input type=hidden name=file value=index>";
-			$form .= "<input type=hidden name=name value=gallery>";
+			$form .= "<input type=hidden name=name value=$GALLERY_MODULENAME>";
 			$form .= "<input type=hidden name=include value=search.php>";
 			break;
 		default:
@@ -497,10 +498,11 @@ function makeSearchFormIntro() {
 function makeGalleryUrl($albumName="", $photoId="", $extra="") {
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
+	global $GALLERY_MODULENAME;
 
 	switch ($GALLERY_EMBEDDED_INSIDE) {
 		case "nuke":
-			$url = "modules.php?op=modload&name=gallery&file=index";
+			$url = "modules.php?op=modload&name=$GALLERY_MODULENAME&file=index";
 			if ($albumName) {
 				$inc = "&include=view_album.php";
 				$url .= "&set_albumName=$albumName";
@@ -722,13 +724,15 @@ function printNestedVals($level, $albumName, $val, $movePhoto) {
 
 function doCommand($command, $args="", $returnFile="", $returnArgs="") {
 	global $GALLERY_EMBEDDED_INSIDE;
+	global $GALLERY_MODULENAME;
+
 	switch ($GALLERY_EMBEDDED_INSIDE) {
 		case "nuke":
-			$url = "modules.php?op=modload&name=gallery&file=index" .
+			$url = "modules.php?op=modload&name=$GALLERY_MODULENAME&file=index" .
 				"&include=do_command.php&cmd=$command";
 
 			if ($returnFile) {
-				$returnFile = "modules.php?op=modload&name=gallery&file=index" .
+				$returnFile = "modules.php?op=modload&name=$GALLERY_MODULENAME&file=index" .
 				"&include=$returnFile&$returnArgs";
 			}
 			break;
