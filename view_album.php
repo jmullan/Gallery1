@@ -272,6 +272,7 @@ Admin:
 <a href=<?= popup("add_photos.php?albumName=$albumName") ?>>[Add Photos] </a>
 <a href=<?= popup("shuffle_album.php?albumName=$albumName") ?>>[Shuffle Photos] </a>
 <a href=<?= popup("resize_photo.php?albumName=$albumName&index=all") ?>>[Resize All] </a>
+<a href=<?= popup("do_command?cmd=remake-thumbnail&albumName=$albumName&index=all") ?>>[Rebuild Thumbs]</a>
 <a href=<?= popup("edit_appearance.php?albumName=$albumName") ?>>[Edit Appearance] </a>
 <a href=do_command?cmd=leave-edit&return=view_album.php>[Leave edit mode]</a>
 </font>
@@ -279,4 +280,3 @@ Admin:
 <a href=<?= popup("edit_mode.php")?>>[Enter edit mode]</a>
 <? } ?>
 </font>
-
