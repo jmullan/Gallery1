@@ -60,7 +60,7 @@ if ($save || $next || $prev) {
 }
 
 if ($cancel || $save) {
-	header("Location: view_album.php");
+	header("Location: " . makeGalleryUrl("view_album.php"));
 	return;
 }
 
@@ -166,7 +166,7 @@ if ($bordercolor) {
 
 <!-- image grid table -->
 <br>
-<form action=captionator.php method=POST>
+<?= makeFormIntro("captionator.php", array("method" => "POST")) ?>
 <center>
 <input type=submit name="save" value="Save and Exit">
 
