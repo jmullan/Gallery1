@@ -79,6 +79,7 @@ function slideshow_image() {
 			"slideshowMaxPictures" => $number
 		),
 		array("toSysOut" => "true"),
+		dirname(__FILE__) . "/applet.cfg",
 		_("Your browser doesn't support applets; you should use one of the other slideshow methods.")
 	);
 ?>

@@ -35,6 +35,7 @@
 		$gallery->album->fields["name"],
 		array(),
 		array("toSysOut" => "true"),
+		dirname(__FILE__) . "/add_applet.cfg",
 		_("Your browser doesn't support applets; you should use one of the other upload methods.")
 	);
 ?>

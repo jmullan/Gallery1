@@ -1143,9 +1143,16 @@ function drawSelect($name, $array, $selected, $size, $attrList=array()) {
 	return $buf;
 }
 
-function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $errorMsg) {
+function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $configFile, $errorMsg) {
 	global $gallery;
 	$cookieInfo = session_get_cookie_params();
+
+	if (file_exists($configFile)) {
+		include($configFile);
+
+		$defaults = array_merge($defaults, $configDefaults);
+		$overrides = array_merge($overrides, $configOverrides);
+	}
 ?>
 <object
 		classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
