@@ -149,7 +149,7 @@ if (isset($forgot)) {
 			time() - $tmpUser->lastActionDate < $wait_time * 60) {
 		       	echo gallery_error(sprintf(_("The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."), $wait_time));
 			
-		} else if (validate_email($tmpUser->getEmail())) {
+		} else if (gallery_validate_email($tmpUser->getEmail())) {
 		       	if (gallery_mail( $tmpUser->email,
 				_("New password request"),
 			       	sprintf(_("Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $uname, $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .

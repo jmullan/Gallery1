@@ -88,7 +88,7 @@ if (isset($create)) {
 		$errorCount++;
 	}
 
-	if (!validate_email($email)) {
+	if (!gallery_validate_email($email)) {
 		$gErrors['email'] = _("You must specify a valid email address.");
 		$errorCount++;
 	}

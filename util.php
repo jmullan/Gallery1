@@ -2474,11 +2474,17 @@ function getOS () {
 	}
 }
 
-// if $multiples is true, look to see if it's a list of comma separated addresses.
-function validate_email($email, $multiples=false)
+/*
+** The functions checks if the given email(s) is(are) in a valid format.
+** 
+** if $multiples is true, look to see if it's a list of comma separated addresses.
+**
+** Return email(s) when email(s) is(are) correct, else false.
+*/
+
+function gallery_validate_email($email, $multiples=false)
 {
-       	if (eregi('^([a-z0-9_]|\-|\.)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,4}$', 
-				$email)) {
+       	if (eregi('^([a-z0-9_]|\-|\.)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,4}$', $email)) {
 	       	return $email;
        	} else if (!$multiples) {
 	       	return false;
@@ -2492,7 +2498,7 @@ function validate_email($email, $multiples=false)
 			$email="";
 			$join="";
 		       	foreach ($emails as $email) {
-			       	if (validate_email($email)) {
+			       	if (gallery_validate_email($email)) {
 				       	$email .= "$join$email";
 				       	$join=", ";
 			       	} else {
@@ -2589,7 +2595,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 				       	"<i>" . $to . "</i>"));
 		return false;
 	}
-       	if (!validate_email($to, true)) {
+       	if (!gallery_validate_email($to, true)) {
 	       	gallery_error(sprintf(_("Email not sent to %s as it is not a valid address"),
 				       	"<i>" . $to . "</i>"));
 		return false;
@@ -2603,7 +2609,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 		$join="";
 	}
 	global $gallery, $HTTP_SERVER_VARS;
-	if (!validate_email($from)) {
+	if (!gallery_validate_email($from)) {
 		if (isDebugging() && $from) {
 			gallery_error( sprintf(_("Sender address %s is invalid, using %s."),
 				       	$from, $gallery->app->senderEmail));
