@@ -79,53 +79,38 @@ function end_file() {
 	print "</html>";
 }
 
-function process($arr) {
+function process($album=null) {
+	global $albumDB;
+
 	print "<br>";
 	print "<b>" . _("Progress") .":</b>";
 	print "<ul>";
-	foreach ($arr as $album) {
+	if ($album) {
 		print "<b>". _("Album") . ": " . $album->fields["title"] . "</b><br>";
+		// Upgrade the album
 		if ($album->integrityCheck()) {
 			$album->save(array(), 0);
 		}
 		print "<br>";
+	} else {
+		foreach ($albumDB->outOfDateAlbums as $albumName) {
+
+			// Retrieve the album
+			$album = $albumDB->getAlbumByName($albumName);
+
+			print "<b>". _("Album") . ": " . $album->fields["title"] . "</b><br>";
+
+			// Upgrade the album
+			if ($album->integrityCheck()) {
+				$album->save(array(), 0);
+			}
+
+			print "<br>";
+		}
 	}
 	print "</ul>";
 }
 
-function find_albums(&$results, $album="") {
-	global $gallery;
-	global $albumDB;
-
-	foreach ($albumDB->outOfDateAlbums as $albumName) {
-		$results[] = $albumDB->getAlbumByName($albumName);
-	}
-
-	// All this recursive calling isn't necessary, since we already have a list (above)
-	/*
-	if ($album) {
-		if ($album->versionOutOfDate()) {
-			$results[] = $album;
-		}
-
-		$count = $album->numPhotos(1);
-		for ($j = 1; $j <= $count; $j++) {
-			$name = $album->getAlbumName($j);
-			if ($album->isAlbum($j) && $albumDB->getAlbumByName($name)) {
-				find_albums($results, $albumDB->getAlbumByName($name));
-			}
-		}
-	} else {
-		$numAlbums = $albumDB->numAlbums($gallery->user);
-		for ($i = 1; $i <= $numAlbums; $i++) {
-			$album = $albumDB->getAlbum($gallery->user, $i);
-			if ($album) {
-				find_albums($results, $album);
-			}
-		}
-	} 
-	*/
-}
 doctype();
 ?>
 <html>
@@ -157,23 +142,20 @@ if (isset($upgrade_albumname)) {
 }
 
 if (isset($album) && $album->versionOutOfDate()) {
-	process(array($album));
+	process($album);
 	reload_button();
 	end_file();
 	exit;
 }
 
-$ood = array();
-find_albums($ood);
-
-if (isset($upgradeall) && sizeof($ood)) {
-	process($ood);
+if (isset($upgradeall) && sizeof($albumDB->outOfDateAlbums)) {
+	process();
 	reload_button();
 	end_file();
 	exit;
 }
 	
-if (!$ood) {
+if (!sizeof($albumDB->outOfDateAlbums)) {
 	print "<center>";
 	print "<b>". _("All albums are up to date.") ."</b>";
 	print "</center>";
@@ -184,7 +166,8 @@ if (!$ood) {
 		'<a href="' . makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1)) . '">' . _("upgrade them all at once") . '</a>') ?>
 <ul>
 <?php
-	foreach ($ood as $album) {
+	foreach ($albumDB->outOfDateAlbums as $albumName) {
+		$album = $albumDB->getAlbumByName($albumName);
 		print "<a href=\"";
 		print makeGalleryUrl("upgrade_album.php", 
 			array("upgrade_albumname" => $album->fields["name"]));
