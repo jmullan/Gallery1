@@ -72,7 +72,7 @@ $gallery->album = new Album;
 if ($gallery->session->albumName) {
 	$gallery->album->load($gallery->session->albumName);
 	if ($gallery->album->versionOutOfDate()) {
-		require("upgrade_album.php");
+		require($GALLERY_BASEDIR . "upgrade_album.php");
 		exit;
 	}
 }
