@@ -57,7 +57,7 @@ function make_fields($key, $arr) {
 	} else if (isset($arr["type"]) && $arr["type"] == "text") {
 		$col2 = form_input($key, $arr);
 	} else if (isset($arr["type"]) && $arr["type"] == "password") {
-		$col2 = form_input($key, $arr);
+		$col2 = form_password($key, $arr);
 	} else if (isset($arr["type"]) && $arr["type"] == "nv_pairs") {
 		$col2 = form_nv_pairs($key, $arr);
 	} else if (isset($arr['type']) && $arr['type'] == 'print_services') {
@@ -90,6 +90,18 @@ function form_input($key, $arr) {
 	}
 
 	return "<input $type name=$key value=\"$arr[value]\" $attrs>";
+}
+
+function form_password($key, $arr) {
+	if (isset($arr["attrs"])) {
+		$attrs = make_attrs($arr["attrs"]);
+	} else {
+		$attrs = '';
+	}
+	return "<input type=\"password\" name=${key}[0] value=\"\" $attrs> "
+		. '<br>'
+		. "<input type=\"password\" name=${key}[1] value=\"\" $attrs> "
+		. _('Please retype your password here');
 }
 
 function form_nv_pairs($key, $arr) {
@@ -1071,6 +1083,17 @@ function array_str_replace($search, $replace, $subject) {
 	return $ret;
 }
 
+function verify_password($passwords) {
+	$success = array();
+	$fail = array();
+	if ($passwords[0] === $passwords[1]) {
+		$success[] = true;
+	} else {
+		$fail[] = _('Your admin passwords do not match!');
+	}
+	return array($success, $fail);
+}
+
 function verify_email($emailMaster)
 {
 	global $adminEmail, $senderEmail, $emailGreeting;
@@ -1212,8 +1235,9 @@ $result=array_merge($result,array(
 	"prompt" => _("Admin password"),
 	"type" => "password",
 	"dont-write" => 1,
+	'verify-func' => 'verify_password',
 	"value" => "",
-	"attrs" => array("size" => 50)
+	"attrs" => array("size" => 20)
 ));
 return $result;
 }

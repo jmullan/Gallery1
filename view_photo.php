@@ -438,9 +438,17 @@ if (!$gallery->album->isMovie($id)) {
 
 		$photo = $gallery->album->getPhoto($GLOBALS["index"]);
 		$photoPath = $gallery->album->getAlbumDirURL("full");
-		$rawImage = $photoPath . "/" . $photo->image->name . "." . $photo->image->type;
+		$prependURL = '';
+		if (!ereg('^https?://', $photoPath)) {
+		    $prependURL = 'http';
+		    if  (stristr($HTTP_SERVER_VARS['HTTPS'], "on")) {
+			$prependURL .= 's';
+		    }
+		    $prependURL .= '://'. $HTTP_SERVER_VARS['HTTP_HOST'];
+		}
+		$rawImage = $prependURL . $photoPath . "/" . $photo->image->name . "." . $photo->image->type;
 
-		$thumbImage= $photoPath . "/";
+		$thumbImage= $prependURL . $photoPath . "/";
 		if ($photo->thumbnail) {
 			$thumbImage .= $photo->image->name . "." . "thumb" . "." . $photo->image->type;
 		} else if ($photo->image->resizedName) {

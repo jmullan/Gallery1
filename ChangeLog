@@ -1,3 +1,25 @@
+2003-10-06  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b131
+
+	* The ImageCrop Java applet now works with relative URLs.
+
+	* Print services now work with relative URLs, provided the server
+	  hostname is valid.
+	
+	* Added admin password confirmation in Config. Wizard, so we're now
+	  safe to have a "password" type input field.
+
+	* Zip files can now contain image names with spaces. (Bug #809978)
+
+	* Task #80093: Filename--->caption now replaces '_' with ' ' to look
+	  cooler. If people want other characters replaced, it's just a matter
+	  of adding more replacements to the transliterate strtr() line in
+	  util.php's processNewImage():
+
+		$caption = strtr($originalFilename, '_', ' ');
+
+	* Replaced some old lines in util.php which were mysteriously
+	  re-introduced in -b129. I am now entirely dubious of "cvs up -j".
+
 2003-09-05  Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.1-cvs-b130
 	
 	* Fixed a cut and paste error in check_jpegtran().  Bug #818041

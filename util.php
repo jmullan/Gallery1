@@ -374,7 +374,7 @@ function my_flush() {
 	print str_repeat(" ", 4096);	// force a flush
 }
 
-function resize_image($src, $dest, $target, $target_fs=0) {
+function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 	global $gallery;				
 
 	if (!strcmp($src,$dest)) {
@@ -387,13 +387,17 @@ function resize_image($src, $dest, $target, $target_fs=0) {
 	}
 
 	$regs = getimagesize($src);
-	if ($regs[2] !== 2 && $regs[2] !== 3)
+	if ($regs[2] !== 2 && $regs[2] !== 3) {
 		$target_fs = 0; // can't compress other images
-
+	}
+	if ($target === 'off') {
+	    $target = 0;
+	}
+		
 	/* Check for images smaller then target size, don't blow them up. */
 	$regs = getDimensions($src, $regs);
-	if ($regs[0] <= $target && $regs[1] <= $target && 
-			($target_fs == 0 || fs_filesize($src)/1000 < $target_fs)) {
+	if ((empty($target) || ($regs[0] <= $target && $regs[1] <= $target))
+			&& (empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs)) {
 		if ($useTemp == false) {
 			fs_copy($src, $dest);
 		}
@@ -403,9 +407,9 @@ function resize_image($src, $dest, $target, $target_fs=0) {
 	$target=min($target, max($regs[0],$regs[1]));
 
 	if ($target_fs == 0) {
-		compress_image($src, $out, $target, $gallery->app->jpegImageQuality);
+		compress_image($src, $out, $target, $gallery->app->jpegImageQuality, $keepProfiles);
 	} else {
-		$filesize = fs_filesize($src)/1000;
+		$filesize = (int) fs_filesize($src) >> 10;
 		$max_quality=$gallery->app->jpegImageQuality;
 		$min_quality=5;
 		$max_filesize=$filesize;
@@ -417,13 +421,13 @@ function resize_image($src, $dest, $target, $target_fs=0) {
 					$target_fs)."\n");
 
 		do {
-			compress_image($src, $out, $target, $quality);
+			compress_image($src, $out, $target, $quality, $keepProfiles);
 			$prev_quality=$quality;
 			printf(_("- file size %d kbytes"), round($filesize));
 			processingMsg(sprintf(_("trying quality %d%%"), 
 						$quality));
 			clearstatcache();
-			$filesize= fs_filesize($out)/1000;
+			$filesize= (int) fs_filesize($out) >> 10;
 			if ($filesize < $target_fs) {
 				$min_quality=$quality;
 				$min_filesize=$filesize;
@@ -2075,13 +2079,13 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 
 			if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
 				$cmd_pic_path = str_replace("[", "\[", $pic_path); 
-				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path); 
+				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
 				exec_wrapper(fs_import_filename($gallery->app->unzip, 1) . 
 					     " -j -o " .
 					     fs_import_filename($file, 1) .
-					     " \"" .
+					     ' ' .
 					     fs_import_filename($cmd_pic_path) .
-					     "\" -d " .
+					     ' -d ' .
 					     fs_import_filename($gallery->app->tmpDir, 1));
 					     
 					     /*
@@ -2135,7 +2139,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 		    
 			processingMsg("- ". sprintf(_("Adding %s"),$name));
 			if ($setCaption and $caption == "") {
-				$caption = $originalFilename;
+				$caption = strtr($originalFilename, '_', ' ');
 			}
 	
 			if (!$extra_fields) {
@@ -2521,14 +2525,27 @@ function galleryDocs() {
 
 function compress_image($src, $out, $target, $quality) {
 	global $gallery;
-	switch($gallery->app->graphics)
-	{
+
+	if ($target === 'off') {
+		$target = '';
+	}
+	switch($gallery->app->graphics)	{
 		case "NetPBM":
 			$err = exec_wrapper(toPnmCmd($src) .
-					(($target > 0) ?  (" | " . NetPBM("pnmscale",
-						" -xysize $target $target") ) :
-					"")  .
-					" | " . fromPnmCmd($out, $quality));
+				(($target > 0) ? (' | ' .NetPBM('pnmscale',
+				' -xysize $target $target')) : '')
+				. ' | ' . fromPnmCmd($out, $quality));
+			/* copy over EXIF data if a JPEG if $keepProfiles is
+			 * set. Unfortunately, we can't also keep comments. */ 
+			if ($keepProfiles && eregi('\.jpe?g$', $src)) {
+				if (isset($gallery->app->use_exif)) {
+					exec_wrapper(fs_import_filename($gallery->app->use_exif, 1) . ' -te '
+						. fs_import_filename($src, 1) . ' '
+						. fs_import_filename($out, 1));
+				} else {
+					processingMsg(_('Unable to preserve EXIF data (jhead not installed)') . "\n");
+				}
+			}
 			break;
 		case "ImageMagick":
 			$src = fs_import_filename($src);

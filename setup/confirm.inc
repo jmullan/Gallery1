@@ -117,7 +117,7 @@ foreach ($constants as $key => $val) {
 		$graphtool = $real;
 	}
 	
-	if ($real === "") {
+	if ((is_array($real) && join('', $real) === '') || $real === '') {
 		if (isset($constants[$key]["remove_empty"])) {
 			continue;
 		}
