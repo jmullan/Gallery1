@@ -1734,10 +1734,13 @@ function getNLS () {
 	$nls['languages']['en_US'] = 'English (US)';
 	$nls['languages']['es_ES'] = 'Espa&ntilde;ol';
 	$nls['languages']['fr_FR'] = 'Fran&ccedil;ais';
+	$nls['languages']['fr_CA'] = 'Canadien Fran&ccedil;ais';
 	$nls['languages']['it_IT'] = 'Italiano';
+	$nls['languages']['he_IL'] = 'Hebrew';
 	$nls['languages']['is_IS'] = '&Iacute;slenska';
 	$nls['languages']['lt_LT'] = 'Lietuvi&#x0173;';
 	$nls['languages']['nl_NL'] = 'Nederlands';
+	$nls['languages']['nl_BE'] = 'Dutch';
 	$nls['languages']['no_NO'] = 'Norsk';
 	$nls['languages']['pl_PL'] = 'Polski';
 	$nls['languages']['ru_RU'] = 'Russian (&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;) (Windows)';
@@ -1945,8 +1948,7 @@ if (in_array("gettext", get_loaded_extensions())) {
         header('Content-Type: text/html; charset=' . $gallery->charset);
 	if (!in_array("gettext", get_loaded_extensions()) 
 		|| ! function_exists(gettext)) {
-		$filename=$GALLERY_BASEDIR ."locale/" . $gallery->language . "/" . $gallery->language . "-gallery.po";
-	
+		$filename=$GALLERY_BASEDIR ."locale/" . $gallery->language . "/gallery.po";
 		if (file_exists($filename)) {
 			$lines=file($filename);
 	
