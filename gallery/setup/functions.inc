@@ -613,7 +613,7 @@ function check_locale() {
 	/* There were at least one system locale
 	** Now lets test if our languages are supported by the system
 	*/
-	
+
 	foreach ($gallery_languages as $locale => $locale_name) {
 		$aliases=array();
 		
@@ -628,14 +628,13 @@ function check_locale() {
 		*/
 		if (in_array($locale,$nls['alias'])) {
                         $keylist = array_keys($nls['alias'],$locale);
+                        $aliases = $keylist;
                         if (getOS() != OS_WINDOWS) {
 			    foreach ($system_locales as $key => $value) {
 				if (ereg('^(' . substr($locale,0,2) . '|' . implode('|', $keylist) . ')', $value)) {
 				    $aliases[$key] = $value;
 				}
 			    }
-                        } else {
-                                $aliases=$keylist;
                         }
                 } else {
 		    foreach ($system_locales as $key => $value) {
