@@ -1,7 +1,11 @@
 
 <?
 function row_text($key, $arr) {
-	$buf = "<tr><td width=75% valign=top align=right>$arr[desc]</td><td valign=top>";
+	if (strcmp($arr["type"], "hidden")) {
+		$buf = "<tr><td width=75% valign=top align=right>$arr[desc]</td><td valign=top>";
+	} else {
+		$buf = "<tr><td width=75% valign=top align=right>&nbsp;</td><td valign=top>";
+	}
 	if ($arr["type"]) {
 		$type = "type=$arr[type]";
 	}
@@ -64,13 +68,14 @@ function row_wrap($buf) {
 
 function check_htaccess()
 {
-	global $GALLERY_URL; 
+	global $GALLERY_GOT_HTACCESS; 
 
 	/*
-	 * the .htaccess file in the parent directory tries to auto_prepend the 
-	 * init.php file.  If that worked, then GALLERY_URL will be set. 
+	 * the .htaccess file in the parent directory tries to
+	 * auto_prepend the got-htaccess.php file.  If that worked, 
+	 * then GALLERY_GOT_HTACCESS will be set. 
 	 */
-	return isset($GALLERY_URL);
+	return isset($GALLERY_GOT_HTACCESS);
 }
 
 function check_netpbm() {
