@@ -143,7 +143,7 @@ function printSlideshowPhotos($slide_full, $what = PHOTO_ALL) {
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html> 
 <head>
-  <title><?php echo _("Slide Show for album :: ") . $gallery->album->fields["title"] ?></title>
+  <title><?php echo _("Slide Show for album") ?> :: <?php echo $gallery->album->fields["title"] ?></title>
   <?php echo getStyleSheetLink() ?>
   <style type="text/css">
 <?php
@@ -250,10 +250,12 @@ print "var transition_count = $transitionCount;\n";
 var photo_count = <?php echo $photo_count ?>; 
 
 <?php if (!$gallery->session->offline) { ?>
-var slideShowLow = "<?php echo makeGalleryUrl('slideshow_low.php', array('set_albumName' => $gallery->session->albumName)); ?>";
+var slideShowLow = "<?php echo makeGalleryUrl('slideshow_low.php', 
+array('set_albumName' => $gallery->session->albumName)); ?>";
 <?php } else { ?>
 var slideShowLow = "<?php echo "view_album.php?set_albumName=".$gallery->session->albumName; ?>";
 <?php } ?>
+
 
 // Browser capabilities detection ---
 // - assume only IE4+ and NAV6+ can do image resizing, others redirect to low 
@@ -289,19 +291,19 @@ function changeElementText(id, newText) {
 }
 
 function stop() {
-    changeElementText("stopOrStartText", <?php echo '"' ._("play") . '"' ?>);
+    changeElementText("stopOrStartText", "<?php echo _("play") ?>");
 
     onoff = 0;
-<?php echo 'status = "' . _("The slide show is stopped, Click [play] to resume.") . '" ;'  ?>
+    status = "<?php echo _("The slide show is stopped, Click [play] to resume.") ?>";
     clearTimeout(timer);
 
 }
 
 function play() {
-    changeElementText("stopOrStartText",<?php echo '"'. _("stop") .'"' ?>);
+    changeElementText("stopOrStartText", <?php echo '"'. _("stop") .'"' ?>);
 
     onoff = 1;
-<?php echo 'status = "' . _("The Slidshow is running ...") . '" ;'  ?>
+    status = "<?php echo _("Slide show is running...") ?>";
     go_to_next_photo();
 }
 
@@ -341,13 +343,13 @@ function wait_for_current_photo() {
 	 * The current photo isn't loaded yet.  Set a short timer just to wait
 	 * until the current photo is loaded.
 	 */
-	<?php echo 'status= "' . _("Picture is loading...") . '(" + current_location + " ' . _("of") .'" + photo_count + ") '. 
-		_("Please Wait...") . '";'  ?>
+	status = "<?php echo _("Picture is loading...") ?>(" + current_location + " ' . _("of") .' " + photo_count +  
+		").  " + "<?php echo _("Please Wait...") ?>" ;
 	clearTimeout(timer);
 	timer = setTimeout('wait_for_current_photo()', 500);
 	return 0;
     } else {
-   <?php echo 'status = "'. _("The Slidshow is running ...") .'" ;' ?>
+   	status = "<?php echo _("Slide show is running...") ?>" ;
 	preload_next_photo();
 	reset_timer();
     }
@@ -457,7 +459,6 @@ if (!$gallery->session->offline
       	"\">" . $gallery->album->fields['title'] . "</a>";
 	$breadCount++;
 }
-
 $pAlbum = $gallery->album;
 do {
   if (!strcmp($pAlbum->fields["returnto"], "no")) {
@@ -472,7 +473,7 @@ do {
       "\">" . $pAlbum->fields['title'] . "</a>";
   } elseif (!$gallery->session->offline || $gallery->session->offlineAlbums["albums.php"]) {
     //-- we're at the top! ---
-    $breadtext[$breadCount] =  _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") .
+    $breadtext[$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") .
       "\">" . $gallery->app->galleryTitle . "</a>";
   }
   $breadCount++;
@@ -552,17 +553,17 @@ drawSelect("time", array(1 => "1 ". _("second"),
     <script language="Javascript">
     /* show the blend select if appropriate */
     if (browserCanBlend) {
-	document.write('&nbsp;<?php echo _("Transition: ") ?><?php print ereg_replace("\n", ' ', drawSelect("transitionType", $transitionNames,$defaultTransition,1,array('onchange' => 'change_transition()', 'style' => 'font-size=10px;'))); ?>');
-
-
-
-
-
-
+	document.write('&nbsp;<?php echo _("Transition: ") ?><?php 
+		print ereg_replace("\n", ' ', drawSelect("transitionType", 
+		$transitionNames,
+		$defaultTransition,
+		1,
+		array('onchange' => 'change_transition()', 'style' => 'font-size=10px;'))); 
+		?>');
     }
-    
+
     </script>
-    &nbsp;<?php echo _("Loop: ") ?><input type="checkbox" name="loopCheck" <?php echo ($defaultLoop) ? "checked" : "" ?> onclick='toggleLoop();'>
+    &nbsp;<?php echo _("Loop") ?>:<input type="checkbox" name="loopCheck" <?php echo ($defaultLoop) ? "checked" : "" ?> onclick='toggleLoop();'>
     </span>
     </td>
     <td width="1" bgcolor="<?php echo $borderColor ?>"><?php echo $pixelImage ?></td>
@@ -619,8 +620,8 @@ play();
 <br><b><?php echo _("This album has no photos to show in a slide show.") ?></b>
 <br><br>
 <span class="admin">
-<a href="<?php echo makeGalleryUrl("view_album.php",array("set_albumName" => $gallery->session->albumName)) ?>">[<?php echo _("back to album") ?>]</a>
-
+<a href="<?php echo makeGalleryUrl("view_album.php",
+array("set_albumName" => $gallery->session->albumName)) ?>">[<?php echo _("back to album") ?>]</a>
 </span>
 
 <?php
