@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-29 13:30+0200\n"
+"POT-Creation-Date: 2004-06-10 19:18+0200\n"
 "PO-Revision-Date: 2004-01-05 13:21+0100\n"
 "Last-Translator: Gunnlaugur Thor Briem <gthb@hi.is>\n"
 "Language-Team:  <>\n"
@@ -64,8 +64,8 @@ msgstr "Bæta við athugasemd"
 msgid "Enter your comment for this picture in the text box below."
 msgstr "Sláðu inn athugasemd í kassann fyrir neðan myndina."
 
-#: ../add_comment.php:99 ../copy_photo.php:194 ../create_user.php:145
-#: ../delete_album.php:60 ../delete_photo.php:105 ../delete_photo.php:130
+#: ../add_comment.php:99 ../copy_photo.php:194 ../create_user.php:146
+#: ../delete_album.php:60 ../delete_photo.php:106 ../delete_photo.php:131
 #: ../delete_user.php:73 ../edit_caption.php:183 ../edit_field.php:68
 #: ../edit_watermark.php:104 ../includes/add_photos/add_form.inc:128
 #: ../includes/add_photos/add_form_one.inc:72
@@ -119,7 +119,7 @@ msgstr "Aðgangsheimildir í albúm"
 msgid "Changing permissions for %s"
 msgstr "Breyti aðgangsheimildum fyrir %s"
 
-#: ../album_permissions.php:180 ../albums.php:323
+#: ../album_permissions.php:180 ../albums.php:324
 msgid "Owner:"
 msgstr "Eigandi:"
 
@@ -172,7 +172,7 @@ msgstr "Vista"
 msgid "Done"
 msgstr "Lokið"
 
-#: ../albums.php:110 ../html_wrap/search.header.default:27 ../search.php:40
+#: ../albums.php:110 ../html_wrap/search.header.default:28 ../search.php:40
 msgid "Search"
 msgstr "Leita"
 
@@ -252,192 +252,202 @@ msgstr "%s, %s"
 msgid "Welcome, %s"
 msgstr "Velkomin(n), %s"
 
-#: ../albums.php:154 ../view_album.php:457
+#: ../albums.php:154 ../view_album.php:467
 msgid "slideshow"
 msgstr "myndasýning"
 
-#: ../albums.php:165
+#: ../albums.php:162
+#, fuzzy
+msgid "Configuration Wizard"
+msgstr "Skilgreina sérsniðin svæði"
+
+#: ../albums.php:166
 msgid "new album"
 msgstr "nýtt albúm"
 
-#: ../albums.php:172
+#: ../albums.php:173
 msgid "manage users"
 msgstr "Notendur"
 
-#: ../albums.php:180
+#: ../albums.php:181
 msgid "preferences"
 msgstr "Stillingar"
 
-#: ../albums.php:186 ../view_album.php:463
+#: ../albums.php:187 ../view_album.php:473
 msgid "logout"
 msgstr "skrá út"
 
-#: ../albums.php:190 ../view_album.php:465
+#: ../albums.php:191 ../view_album.php:475
 msgid "login"
 msgstr "skrá inn"
 
-#: ../albums.php:194
+#: ../albums.php:195
 msgid "register"
 msgstr "nýskrá"
 
-#: ../albums.php:220
+#: ../albums.php:221
 msgid "Attention Gallery Administrator!"
 msgstr "Stjórnandi taktu eftir!"
 
-#: ../albums.php:222
+#: ../albums.php:223
 #, fuzzy, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "%s hefur fundið eftirfarandi möppur: %s í albúmamöppu þinni (%s)."
 
-#: ../albums.php:228
+#: ../albums.php:229
 #, fuzzy
 msgid "Please move it/them out of the albums directory."
 msgstr "Þessar möppur eru ekki gild albúm. Vinsamlega færðu þær út úr albúmamöppunni."
 
-#: ../albums.php:279 ../view_album.php:731
-msgid "Highlight for Album: "
+#: ../albums.php:280 ../view_album.php:741
+#, fuzzy
+msgid "Highlight for Album:"
 msgstr "Forsíðumynd fyrir albúm:"
 
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../albums.php:296
+#: ../albums.php:297
 msgid "title"
 msgstr "titli"
 
-#: ../albums.php:328
+#: ../albums.php:329
 msgid "url:"
 msgstr "Vefslóð:"
 
-#: ../albums.php:339
+#: ../albums.php:340
 msgid "Hey!"
 msgstr "Halló!"
 
-#: ../albums.php:340
+#: ../albums.php:341
 #, php-format
 msgid "%s this album so that the URL is not so generic!"
 msgstr "%s þetta albúm svo að vefslóðin sé ekki svona almenn!"
 
-#: ../albums.php:341 ../rename_album.php:117
+#: ../albums.php:342 ../rename_album.php:117
 msgid "Rename"
 msgstr "Endurnefna"
 
-#: ../albums.php:349
+#: ../albums.php:350
 msgid "Note:  This album is out of date!"
 msgstr "Ath: Þetta albúm er úrelt!"
 
-#: ../albums.php:349
+#: ../albums.php:350
 msgid "upgrade album"
 msgstr "uppfæra albúm"
 
-#: ../albums.php:359
+#: ../albums.php:360
 #, php-format
 msgid "Last changed on %s."
 msgstr "Síðast breytt %s."
 
-#: ../albums.php:361
+#: ../albums.php:363
 #, fuzzy, php-format
 msgid "This album contains one item"
 msgid_plural "This album contains %d items"
 msgstr[0] "Þetta albúm inniheldur %s."
 msgstr[1] "Þetta albúm inniheldur %s."
 
-#: ../albums.php:366
+#: ../albums.php:368
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Þetta albúm hefur verið skoðað %s síðan %s."
 
-#: ../albums.php:367 ../view_album.php:869 ../view_album.php:892
+#: ../albums.php:369 ../view_album.php:879 ../view_album.php:902
 #, fuzzy, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "einu sinni"
 msgstr[1] "einu sinni"
 
-#: ../albums.php:367
+#: ../albums.php:369
 msgid "0 times"
 msgstr "0 sinnum"
 
-#: ../albums.php:373
+#: ../albums.php:375
 msgid "reset counter"
 msgstr "núllstilla teljara"
 
-#: ../albums.php:407 ../view_album.php:1086
+#: ../albums.php:409 ../view_album.php:1096
 msgid "Comments available for this item."
 msgstr "Athugasemdir eru til fyrir þessa mynd."
 
-#: ../captionator.php:120
+#: ../captionator.php:47
+msgid "Captioned album does not match current album - aborting changes!"
+msgstr ""
+
+#: ../captionator.php:127
 msgid "Captionator"
 msgstr "Myndatextari"
 
-#: ../captionator.php:162
+#: ../captionator.php:169
 msgid "Multiple Caption Editor."
 msgstr "Ritill fyrir marga myndatexta"
 
-#: ../captionator.php:164
+#: ../captionator.php:171
 msgid "1 photo in this album"
 msgstr "Ein mynd í þessu albúmi"
 
-#: ../captionator.php:166
+#: ../captionator.php:173
 msgid "items in this album"
 msgstr "myndir í þessu albúmi"
 
-#: ../captionator.php:168
+#: ../captionator.php:175
 msgid "on"
 msgstr "á"
 
-#: ../captionator.php:168
+#: ../captionator.php:175
 #, fuzzy, php-format
 msgid "one page"
 msgid_plural "%d pages"
 msgstr[0] "engum síðum"
 msgstr[1] "engum síðum"
 
-#: ../captionator.php:196 ../captionator.php:304
+#: ../captionator.php:204 ../captionator.php:312
 msgid "Save and Exit"
 msgstr "Vista og hætta"
 
-#: ../captionator.php:199 ../captionator.php:307
+#: ../captionator.php:207 ../captionator.php:315
 #, php-format
 msgid "Save and Edit Next %d"
 msgstr "Vista og breyta næsta %d"
 
-#: ../captionator.php:203 ../captionator.php:311
+#: ../captionator.php:211 ../captionator.php:319
 #, php-format
 msgid "Save and Edit Previous %d"
 msgstr "Vista og breyta fyrri %d"
 
-#: ../captionator.php:207 ../captionator.php:315
+#: ../captionator.php:215 ../captionator.php:323
 msgid "Exit"
 msgstr "Hætta"
 
-#: ../captionator.php:245
+#: ../captionator.php:253
 #, fuzzy
 msgid "Album Caption"
 msgstr "Lýsing albúms:"
 
-#: ../captionator.php:252
+#: ../captionator.php:260
 #, fuzzy
 msgid "Movie Caption"
 msgstr "Engin Myndatexti"
 
-#: ../captionator.php:254
+#: ../captionator.php:262
 #, fuzzy
 msgid "Photo Caption"
 msgstr "Engin Myndatexti"
 
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../captionator.php:264 ../extra_fields.php:101 ../lib/lang.php:593
+#: ../captionator.php:272 ../extra_fields.php:101 ../lib/lang.php:609
 msgid "Title"
 msgstr "Titill"
 
-#: ../captionator.php:273 ../edit_caption.php:117
+#: ../captionator.php:281 ../edit_caption.php:117
 msgid "Keywords"
 msgstr "Leitarorð"
 
-#: ../captionator.php:285 ../lib/lang.php:583
+#: ../captionator.php:293 ../lib/lang.php:599
 msgid "Capture Date"
 msgstr "Mynd tekin"
 
-#: ../captionator.php:296
+#: ../captionator.php:304
 msgid "NO PHOTOS!"
 msgstr "ENGAR MYNDIR!"
 
@@ -445,79 +455,79 @@ msgstr "ENGAR MYNDIR!"
 msgid "Untitled"
 msgstr "Ónafngreint"
 
-#: ../classes/Album.php:216
+#: ../classes/Album.php:217
 msgid "Album up to date."
 msgstr "Albúm uppfært."
 
-#: ../classes/Album.php:220
+#: ../classes/Album.php:221
 msgid "Upgrading album properties..."
 msgstr "Uppfæri stillingar albúms ..."
 
-#: ../classes/Album.php:363
+#: ../classes/Album.php:364
 #, fuzzy, php-format
 msgid "Renaming album from %s to %s..."
 msgstr "endurnefna albúm"
 
-#: ../classes/Album.php:401 ../classes/Album.php:418
+#: ../classes/Album.php:402 ../classes/Album.php:419
 msgid "done"
 msgstr "lokið"
 
-#: ../classes/Album.php:409
+#: ../classes/Album.php:410
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "Uppfæri mynd %d af %d..."
 
-#: ../classes/Album.php:824
+#: ../classes/Album.php:825
 msgid "msg should be an array!"
 msgstr "Breytan msg ætti að vera array"
 
-#: ../classes/Album.php:845 ../util.php:3169
+#: ../classes/Album.php:846 ../util.php:3159
 msgid "No email sent as no valid email addresses were found"
 msgstr "Enginn tölvupóstur sendur, því að engin gild tölvupóstföng fundust"
 
-#: ../classes/Album.php:942
+#: ../classes/Album.php:943
 msgid "Resizing/compressing original image"
 msgstr "Breyti stærð/þjöppun upprunalegrar myndar"
 
-#: ../classes/Album.php:946
+#: ../classes/Album.php:947
 msgid "Cannot resize/compress this filetype"
 msgstr "Get ekki breytt stærð/þjöppun þessarar skráagerðar"
 
-#: ../classes/Album.php:994
+#: ../classes/Album.php:995
 #, php-format
 msgid "Resizing %s"
 msgstr "Breyti stærð %s"
 
-#: ../classes/Album.php:1035
+#: ../classes/Album.php:1036
 msgid "Photo auto-rotated/transformed"
 msgstr "Mynd snúið/varpað sjálfkrafa"
 
-#: ../classes/Album.php:1044
+#: ../classes/Album.php:1045
 #, fuzzy
 msgid "Watermarking Image"
 msgstr "Frá albúmi"
 
-#: ../classes/Album.php:1190 ../classes/Album.php:1200
+#: ../classes/Album.php:1191 ../classes/Album.php:1201
 #: ../classes/AlbumItem.php:622
 msgid "No highlight"
 msgstr "Engin forsíðumynd"
 
-#: ../classes/Album.php:1339
+#: ../classes/Album.php:1340
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr ""
 
-#: ../classes/Album.php:1644
+#: ../classes/Album.php:1645
 #, php-format
 msgid "Error %s getting EXIF data"
 msgstr ""
 
-#: ../classes/Album.php:2146
+#: ../classes/Album.php:2147
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2284
+#: ../classes/Album.php:2285
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Tölvupóstvandamál: sleppi %s (UID %s) vegna þess að tölvupóstfangið %s er ógilt."
@@ -559,45 +569,45 @@ msgstr "Get ekki búið til möppu"
 msgid "%s exists, but is not a directory!"
 msgstr "%s er til, en er ekki mappa!"
 
-#: ../classes/gallery/UserDB.php:268
+#: ../classes/gallery/UserDB.php:271
 #, php-format
 msgid "Illegal username %s: must at least 2 characters"
 msgstr "Ólöglegt notandanafn %s: verður að innihalda tvo stafi hið minnsta"
 
-#: ../classes/gallery/UserDB.php:273
+#: ../classes/gallery/UserDB.php:276
 #, php-format
 msgid "Illegal username %s: must at most 15 characters"
 msgstr "Ólöglegt notandanafn %s: má innihalda 15 stafi hið mesta"
 
-#: ../classes/gallery/UserDB.php:279
+#: ../classes/gallery/UserDB.php:282
 #, php-format
 msgid "Illegal username %s: must contain only letters or digits"
 msgstr "Ólöglegt notandanafn %s: má aðeins innihalda bókstafi og tölustafi"
 
-#: ../classes/gallery/UserDB.php:286
+#: ../classes/gallery/UserDB.php:289
 #, php-format
 msgid "%s is reserved and cannot be used."
 msgstr "%s er frátekið og má ekki nota."
 
-#: ../classes/gallery/UserDB.php:292
+#: ../classes/gallery/UserDB.php:295
 #, php-format
 msgid "A user with the username of %s already exists"
 msgstr "Notandi með nafnið %s er nú þegar til"
 
-#: ../classes/gallery/UserDB.php:301
+#: ../classes/gallery/UserDB.php:304
 msgid "Password must be at least 3 characters"
 msgstr "Lykilorð verður að vera minnst 3 stafir"
 
-#: ../classes/gallery/UserDB.php:332
+#: ../classes/gallery/UserDB.php:335
 #, php-format
 msgid "Checking user %d of %d . . . . "
 msgstr "Aðgæti notanda %d af %d . . . . "
 
-#: ../classes/gallery/UserDB.php:337
+#: ../classes/gallery/UserDB.php:340
 msgid "skipped"
 msgstr "sleppt"
 
-#: ../classes/gallery/UserDB.php:383
+#: ../classes/gallery/UserDB.php:386
 #, php-format
 msgid "Problem adding %s:"
 msgstr "Tókst ekki að bæta við %s:"
@@ -630,9 +640,9 @@ msgstr "Bý til smámynd"
 msgid "Skipping Album #%d"
 msgstr "Sleppi albúmi #%d"
 
-#: ../copy_photo.php:119 ../create_user.php:96 ../do_command.php:161
+#: ../copy_photo.php:119 ../create_user.php:97 ../do_command.php:161
 #: ../login.php:154 ../multi_create_user.php:117 ../register.php:45
-#: ../register.php:118 ../save_photos.php:357
+#: ../register.php:118 ../save_photos.php:360
 msgid "Dismiss"
 msgstr "Loka"
 
@@ -673,7 +683,7 @@ msgstr "Uppfæra núna"
 msgid "Copy to Album!"
 msgstr "Afrita yfir í albúm!"
 
-#: ../copy_photo.php:198 ../delete_photo.php:136 ../edit_thumb.php:131
+#: ../copy_photo.php:198 ../delete_photo.php:137 ../edit_thumb.php:131
 #: ../move_album.php:145 ../move_photo.php:346 ../resize_photo.php:133
 #: ../rotate_photo.php:94 ../view_photo_properties.php:130
 msgid "no album / index specified"
@@ -684,30 +694,30 @@ msgstr "Ekkert albúm / yfirlit valið"
 msgid "Passwords do not match!"
 msgstr "Lykilorð eru mismunandi!"
 
-#: ../create_user.php:56 ../create_user.php:107 ../create_user.php:113
+#: ../create_user.php:56 ../create_user.php:108 ../create_user.php:114
 msgid "Create User"
 msgstr "Búa til notanda"
 
-#: ../create_user.php:72
+#: ../create_user.php:73
 #, php-format
 msgid "User %s created"
 msgstr "Notandi %s búinn til"
 
-#: ../create_user.php:80 ../multi_create_user.php:91
+#: ../create_user.php:81 ../multi_create_user.php:91
 #, php-format
 msgid "%s has registered by %s.  Email has been sent to %s."
 msgstr "%s var nýskráður af %s.  Tölvupóstur hefur verið sendur til %s."
 
-#: ../create_user.php:88 ../multi_create_user.php:99
+#: ../create_user.php:89 ../multi_create_user.php:99
 msgid "Gallery Registration"
 msgstr "Nýskráning notanda í Gallery"
 
-#: ../create_user.php:91
+#: ../create_user.php:92
 #, php-format
 msgid "Email sent to %s."
 msgstr "Tölvupóstur sendur til %s."
 
-#: ../create_user.php:117 ../edit_appearance.php:226
+#: ../create_user.php:118 ../edit_appearance.php:226
 #: ../edit_appearance.php:247 ../edit_appearance.php:254
 #: ../edit_appearance.php:313 ../edit_appearance.php:320
 #: ../edit_appearance.php:355 ../edit_appearance.php:365
@@ -718,7 +728,7 @@ msgstr "Tölvupóstur sendur til %s."
 msgid "yes"
 msgstr "já"
 
-#: ../create_user.php:117 ../edit_appearance.php:226
+#: ../create_user.php:118 ../edit_appearance.php:226
 #: ../edit_appearance.php:247 ../edit_appearance.php:254
 #: ../edit_appearance.php:313 ../edit_appearance.php:320
 #: ../edit_appearance.php:355 ../edit_appearance.php:365
@@ -729,17 +739,17 @@ msgstr "já"
 msgid "no"
 msgstr "nei"
 
-#: ../create_user.php:131
+#: ../create_user.php:132
 msgid "Create a new user here."
 msgstr "Búa til nýjan notanda hér."
 
-#: ../create_user.php:144 ../manage_users.php:99 ../multi_create_user.php:163
+#: ../create_user.php:145 ../manage_users.php:99 ../multi_create_user.php:163
 #: ../register.php:136
 msgid "Create"
 msgstr "Búa til"
 
-#: ../delete_album.php:45 ../delete_album.php:51 ../delete_photo.php:69
-#: ../delete_photo.php:80
+#: ../delete_album.php:45 ../delete_album.php:51 ../delete_photo.php:70
+#: ../delete_photo.php:81
 msgid "Delete Album"
 msgstr "Eyða albúmi"
 
@@ -747,7 +757,7 @@ msgstr "Eyða albúmi"
 msgid "Do you really want to delete this album?"
 msgstr "Viltu virkilega eyða þessu albúmi?"
 
-#: ../delete_album.php:59 ../delete_photo.php:104 ../delete_photo.php:129
+#: ../delete_album.php:59 ../delete_photo.php:105 ../delete_photo.php:130
 #: ../delete_user.php:68 ../manage_users.php:105
 msgid "Delete"
 msgstr "Eyða"
@@ -756,15 +766,15 @@ msgstr "Eyða"
 msgid "no album specified"
 msgstr "ekkert albúm valið"
 
-#: ../delete_photo.php:69 ../delete_photo.php:113
+#: ../delete_photo.php:70 ../delete_photo.php:114
 msgid "Delete Photo"
 msgstr "Eyða mynd"
 
-#: ../delete_photo.php:83
+#: ../delete_photo.php:84
 msgid "Do you really want to delete this Album?"
 msgstr "Viltu virkilega eyða þessu albúmi?"
 
-#: ../delete_photo.php:115
+#: ../delete_photo.php:116
 msgid "Do you really want to delete this photo?"
 msgstr "Viltu virkilega eyða þessari mynd?"
 
@@ -1007,7 +1017,7 @@ msgstr "Loka"
 msgid "Year must be between 1000 and 3000"
 msgstr "Ártalið verður að vera á milli 1000 og 3000"
 
-#: ../edit_caption.php:71 ../view_album.php:964
+#: ../edit_caption.php:71 ../view_album.php:974
 msgid "Edit Text"
 msgstr "Breyta texta"
 
@@ -1049,7 +1059,7 @@ msgstr "Mínútur"
 msgid "Seconds"
 msgstr "Sekúndur"
 
-#: ../edit_field.php:47 ../edit_field.php:53 ../view_album.php:920
+#: ../edit_field.php:47 ../edit_field.php:53 ../view_album.php:930
 #, php-format
 msgid "Edit %s"
 msgstr "Breyta %s"
@@ -1095,8 +1105,8 @@ msgstr "Vinsamlegast veljið notanda"
 msgid "Please select an alignment."
 msgstr "Vinsamlegast veljið notanda"
 
-#: ../edit_watermark.php:69 ../edit_watermark.php:75 ../view_album.php:936
-#: ../view_album.php:972
+#: ../edit_watermark.php:69 ../edit_watermark.php:75 ../view_album.php:946
+#: ../view_album.php:982
 msgid "Edit Watermark"
 msgstr ""
 
@@ -1114,7 +1124,7 @@ msgstr "Ónafngreint"
 msgid "Configure Custom Fields"
 msgstr "Skilgreina sérsniðin svæði"
 
-#: ../extra_fields.php:122 ../lib/lang.php:595
+#: ../extra_fields.php:122 ../lib/lang.php:611
 msgid "Alt Text / onMouseOver"
 msgstr ""
 
@@ -1595,13 +1605,13 @@ msgid "add comment"
 msgstr "bæta við athugasemd"
 
 #: ../layout/commentboxtop.inc:17 ../slideshow.php:182 ../slideshow.php:196
-#: ../upgrade_album.php:87 ../view_album.php:135 ../view_album.php:909
+#: ../upgrade_album.php:87 ../view_album.php:135 ../view_album.php:919
 #: ../view_comments.php:64 ../view_photo.php:158 ../view_photo.php:174
 msgid "Album"
 msgstr "albúm"
 
 #: ../layout/commentboxtop.inc:20 ../layout/commentboxtop.inc:46
-#: ../view_album.php:838
+#: ../view_album.php:848
 msgid "hidden"
 msgstr "falið"
 
@@ -1655,7 +1665,7 @@ msgstr "%d af %d"
 msgid "Watermark"
 msgstr ""
 
-#: ../layout/watermarkform.inc:76 ../util.php:2723 ../util.php:2728
+#: ../layout/watermarkform.inc:76 ../util.php:2710 ../util.php:2715
 msgid "None"
 msgstr "Enginn"
 
@@ -1741,26 +1751,26 @@ msgstr "Hreinsa allar"
 msgid "Invert Selection"
 msgstr "Snúa vali við"
 
-#: ../lib/lang.php:582
+#: ../lib/lang.php:598
 msgid "Upload Date"
 msgstr "Dagur innsendingar"
 
-#: ../lib/lang.php:584
+#: ../lib/lang.php:600
 msgid "Image Size"
 msgstr "Stærð myndar"
 
-#: ../lib/lang.php:585 ../util.php:3118
+#: ../lib/lang.php:601 ../util.php:3108
 msgid "Additional EXIF Data"
 msgstr "Frekari EXIF upplýsingar"
 
 # Neccessary infact of hardcoded function editField() in util.php
-#: ../lib/lang.php:594
+#: ../lib/lang.php:610
 #, fuzzy
 msgid "Description"
 msgstr "lýsingu"
 
-#: ../lib/voting.php:215 ../view_album.php:607 ../view_album.php:636
-#: ../view_album.php:1092
+#: ../lib/voting.php:215 ../view_album.php:617 ../view_album.php:646
+#: ../view_album.php:1102
 msgid "Vote"
 msgstr "Atkvæði"
 
@@ -1772,8 +1782,8 @@ msgstr ""
 msgid "Average points in brackets"
 msgstr ""
 
-#: ../lib/voting.php:275 ../poll_results.php:149 ../view_album.php:549
-#: ../view_album.php:843
+#: ../lib/voting.php:275 ../poll_results.php:149 ../view_album.php:559
+#: ../view_album.php:853
 #, php-format
 msgid "Album: %s"
 msgstr "Albúm: %s"
@@ -1831,7 +1841,7 @@ msgid_plural "%d votes"
 msgstr[0] "Engin atkv´ði"
 msgstr[1] "Engin atkv´ði"
 
-#: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
+#: ../login.php:37 ../login.php:43 ../publish_xp.php:54 ../publish_xp.php:97
 #, php-format
 msgid "Login to %s"
 msgstr "Innskráning í myndasafn: %s"
@@ -2131,7 +2141,7 @@ msgstr "Þú getur breytt upplýsingum um þig hér."
 msgid "You must enter the new password twice."
 msgstr "Þú verður að gefa upp nýja lykilorðið tvisvar."
 
-#: ../photo_owner.php:76 ../photo_owner.php:82 ../view_album.php:1032
+#: ../photo_owner.php:76 ../photo_owner.php:82 ../view_album.php:1042
 msgid "Change Owner"
 msgstr "Breyta eiganda"
 
@@ -2239,23 +2249,19 @@ msgstr "Þessi gluggi lokast sjálfkrafa þegar sendingu er lokið. Vinsamlega dokið
 msgid "Publish Your Photos and Movies to %s."
 msgstr "Senda ljósmyndir þínar og kvikmyndir til %s."
 
-#: ../publish_xp.php:83
+#: ../publish_xp.php:84
 msgid "Username and Password are not correct."
 msgstr "Notandanafn og lykilorð eru ekki rétt."
 
-#: ../publish_xp.php:88
+#: ../publish_xp.php:89
 msgid "Please Enter Username and Password"
 msgstr "Sláðu inn notandanafn og lykilorð"
-
-#: ../publish_xp.php:89 ../publish_xp.php:95
-msgid "Login Incorrect"
-msgstr "Röng innskráning"
 
 #: ../publish_xp.php:103
 msgid "Username:"
 msgstr "Notanda nafn:"
 
-#: ../publish_xp.php:106
+#: ../publish_xp.php:107
 msgid "Password:"
 msgstr "Lykilorð:"
 
@@ -2263,15 +2269,15 @@ msgstr "Lykilorð:"
 msgid "Select the Album to which to Publish"
 msgstr "Veljið albúm sem þið viljið bæta myndum í"
 
-#: ../publish_xp.php:153
+#: ../publish_xp.php:152
 msgid "Use filenames as captions"
 msgstr "Nota skráaheiti sem myndatexta"
 
-#: ../publish_xp.php:154 ../publish_xp.php:280
+#: ../publish_xp.php:155 ../publish_xp.php:269
 msgid "Create New Album"
 msgstr "Búa til nýtt albúm"
 
-#: ../publish_xp.php:198 ../publish_xp.php:235
+#: ../publish_xp.php:200 ../publish_xp.php:233
 msgid "Not Logged In!"
 msgstr "Ekki skráður inn!"
 
@@ -2279,53 +2285,53 @@ msgstr "Ekki skráður inn!"
 msgid "No album specified!"
 msgstr "Ekkert albúm valið!"
 
-#: ../publish_xp.php:208
+#: ../publish_xp.php:206
 #, php-format
 msgid "This user cannot add photos in %s."
 msgstr "Þessi notandi getur ekki bætt við myndum í %s,"
 
-#: ../publish_xp.php:215 ../publish_xp.php:319
+#: ../publish_xp.php:212 ../publish_xp.php:311
 msgid "Press the 'Back' button and try again!"
 msgstr "Smellið á 'Back' hnappinn og prófið aftur!"
 
-#: ../publish_xp.php:244
+#: ../publish_xp.php:238
 msgid "User cannot create ROOT level album."
 msgstr "Notandi getur ekki búið til albúm á forsíðu."
 
-#: ../publish_xp.php:249
+#: ../publish_xp.php:246
 #, php-format
 msgid "User cannot create nested album in %s."
 msgstr "Notandi getur ekki búið til undiralbúm í %s."
 
-#: ../publish_xp.php:254
+#: ../publish_xp.php:249
 msgid "No Parent Album Specified!"
 msgstr "Ekkert yfiralbúm valið!"
 
-#: ../publish_xp.php:282
+#: ../publish_xp.php:273
 msgid "Enter New Album Title"
 msgstr "Skrifið titil nýs albúms"
 
-#: ../publish_xp.php:286
+#: ../publish_xp.php:276
 msgid "Select Parent Album"
 msgstr "Veljið yfiralbúm"
 
-#: ../publish_xp.php:292
+#: ../publish_xp.php:283
 msgid "NEW TOP LEVEL ALBUM"
 msgstr "Nýtt forsíðu albúm"
 
-#: ../publish_xp.php:345
+#: ../publish_xp.php:338
 msgid "User cannot add to album"
 msgstr "Notandi getur ekki búið til albúm"
 
-#: ../publish_xp.php:349
+#: ../publish_xp.php:342
 msgid "No file specified"
 msgstr "Engin skrá valin"
 
-#: ../publish_xp.php:457
+#: ../publish_xp.php:439
 msgid "Photo Upload"
 msgstr "Sending myndar"
 
-#: ../publish_xp.php:457
+#: ../publish_xp.php:439
 msgid "Upload Photos to"
 msgstr "Sendi inn myndir til"
 
@@ -2337,12 +2343,12 @@ msgstr "Innsending með Windows XP"
 msgid "Using the Windows XP <i>Publish To the Web</i> feature"
 msgstr "Notkun á Windows XP <i>Publish To the Web</i> möguleikanum"
 
-#: ../publish_xp_docs.php:40
+#: ../publish_xp_docs.php:41
 #, php-format
 msgid "Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.  %s <b>has experimental</b> support for this feature."
 msgstr "Windows XP kemur með innbyggðum möguleika á að senda inn efni beint af skjáborðinu þínu inn á vefþjón. %s  hefur stuðning á <b>tilraunarstigi</b> fyrir þennan möguleika."
 
-#: ../publish_xp_docs.php:41
+#: ../publish_xp_docs.php:42
 msgid "It's relatively easy to configure."
 msgstr "Þetta er frekar einfalt í uppsetningu."
 
@@ -2350,61 +2356,63 @@ msgstr "Þetta er frekar einfalt í uppsetningu."
 msgid "Step 1"
 msgstr "Skref 1"
 
-#: ../publish_xp_docs.php:49
+#: ../publish_xp_docs.php:50
 #, php-format
 msgid "Download the %sXP Configuration File%s"
 msgstr "Hlaða niður %sXP uppsetningarskrá%s"
 
-#: ../publish_xp_docs.php:51
+#: ../publish_xp_docs.php:52
 #, php-format
 msgid "Save this file on your PC and rename it %s."
 msgstr "Vistaðu þessa skrá á vélina hjá þér og endurnefndu hana %s."
 
-#: ../publish_xp_docs.php:52
+#: ../publish_xp_docs.php:53
 msgid "If it asks you for confirmation about changing the file type, answer &quot;yes&quot;."
 msgstr "Ef beðið er um staðfestingu á endurnefningunni skaltu svara &quot;Já&quot;."
 
-#: ../publish_xp_docs.php:53
+#: ../publish_xp_docs.php:54
 msgid "Right click on this file and you should see a menu appear."
 msgstr "Hægrismelltu á þessa skrá og þú ættir að sjá valmynd birtast."
 
-#: ../publish_xp_docs.php:54
+#: ../publish_xp_docs.php:55
 msgid "Select the <b>Merge</b> option (this should be at the top of the menu)."
 msgstr "Veldu <b>Merge</b> möguleikann (ætti að vera efst í valmyndinni)."
 
-#: ../publish_xp_docs.php:55
+#: ../publish_xp_docs.php:56
 msgid "It will ask you if you want to import these values into your registry."
 msgstr "Það mun spyrja þig hvort þú viljir leggja þessar breytinar i registry."
 
-#: ../publish_xp_docs.php:56
+#: ../publish_xp_docs.php:57
 msgid "Click &quot;ok&quot;."
 msgstr "Smelltu á &quot;ok&quot;."
 
-#: ../publish_xp_docs.php:57
+#: ../publish_xp_docs.php:58
 msgid "It will tell you that the files were imported successfully."
 msgstr "Upp kemur gluggi sem segir að þetta hafi heppnast."
 
-#: ../publish_xp_docs.php:58
+#: ../publish_xp_docs.php:59
 msgid "Click &quot;ok&quot; again."
 msgstr "Smelltu á &quot;ok&quot; aftur."
 
-#: ../publish_xp_docs.php:62
+#: ../publish_xp_docs.php:63
 msgid "Step 2"
 msgstr "Skref 2"
 
-#: ../publish_xp_docs.php:64
-msgid "Open your Windows explorer and browse to a folder containing a JPG image."
+#: ../publish_xp_docs.php:65
+#, fuzzy
+msgid "Open your Windows explorer and browse to a folder containing supported images."
 msgstr "Opnaðu Explorer og finndu möppu sem inniheldur jpg mynd."
 
-#: ../publish_xp_docs.php:65
-msgid "Select the image and there should be a link on the left that says &quot;Publish this file to the web...&quot; "
+#: ../publish_xp_docs.php:66
+#, fuzzy
+msgid "Select the image(s) or a folder and there should be a link on the left that says &quot;Publish this file to the web...&quot;"
 msgstr "Veldu myndina og það ætti að vera tengill vinstra megin sem segir &quot;Publish this file to the web...&quot;"
 
-#: ../publish_xp_docs.php:66
+#: ../publish_xp_docs.php:67
 msgid "Click this link and then follow the instructions to log into your Gallery, select an album and publish the image."
 msgstr "Smelltu á þennan tengil og farðu eftir leiðbeiningunum til að tengjast myndasafninu, velja albúm og senda inn myndina."
 
-#: ../publish_xp_docs.php:71
+#: ../publish_xp_docs.php:72
 msgid "Return to Add Photos"
 msgstr "Til baka í Bæta við myndum"
 
@@ -2456,7 +2464,7 @@ msgstr "Aðgangsupplýsingar þínar verða sendar á tölvupóstfangið sem þú gefur upp
 msgid "You are not allowed to perform this action !"
 msgstr "Það eru engin atkvæði greidd í þessari atkvæðagreiðslu."
 
-#: ../rename_album.php:37 ../rename_album.php:42 ../view_album.php:958
+#: ../rename_album.php:37 ../rename_album.php:42 ../view_album.php:968
 msgid "Rename Album"
 msgstr "Breyta nafni albúms"
 
@@ -2593,109 +2601,109 @@ msgstr "Réttsælis (til hægri)"
 msgid "Flip"
 msgstr "Spegla"
 
-#: ../save_photos.php:48
+#: ../save_photos.php:51
 msgid "Processing and Saving Photos"
 msgstr "Meðhöndla og vista myndir"
 
-#: ../save_photos.php:59
+#: ../save_photos.php:62
 msgid "Fetching Urls..."
 msgstr "Sæki frá vefslóðum..."
 
-#: ../save_photos.php:76
+#: ../save_photos.php:79
 #, php-format
 msgid "Processing %s as a local directory."
 msgstr "Meðhöndla %s sem möppu á netþjóninum."
 
-#: ../save_photos.php:145
+#: ../save_photos.php:148
 #, php-format
 msgid "Could not open url: %s"
 msgstr "Gat ekki opnað vefslóðina: %s"
 
-#: ../save_photos.php:172
+#: ../save_photos.php:175
 #, php-format
 msgid "Parsing %s for images..."
 msgstr "Leita í %s eftir myndum..."
 
-#: ../save_photos.php:237
+#: ../save_photos.php:240
 #, php-format
 msgid "Found %d images"
 msgstr "Fann %d myndir"
 
-#: ../save_photos.php:245
+#: ../save_photos.php:248
 msgid "Processing status..."
 msgstr "Staða vinnslu..."
 
-#: ../save_photos.php:352
+#: ../save_photos.php:355
 msgid "No images uploaded!"
 msgstr "Engar myndir sendar inn!"
 
-#: ../save_photos.php:403
+#: ../save_photos.php:406
 #, php-format
 msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
 msgstr ""
 
-#: ../save_photos.php:434
+#: ../save_photos.php:437
 msgid "Add Files"
 msgstr "Bæta við skrám"
 
-#: ../search.php:60
+#: ../search.php:57
 msgid "Search Again"
 msgstr "Leita aftur"
 
-#: ../search.php:73 ../search.php:293 ../slideshow.php:200
+#: ../search.php:70 ../search.php:290 ../slideshow.php:200
 #: ../slideshow.php:215 ../view_album.php:139 ../view_photo.php:178
 msgid "Gallery"
 msgstr "Myndasafn"
 
-#: ../search.php:97
+#: ../search.php:94
 #, php-format
 msgid "Albums containing %s"
 msgstr "Albúm sem innihalda %s"
 
-#: ../search.php:152
+#: ../search.php:149
 msgid "No Album Matches"
 msgstr "Engin albúm fundust"
 
-#: ../search.php:159
+#: ../search.php:156
 #, php-format
 msgid "Photos containing %s"
 msgstr "Myndir sem innihalda %s"
 
-#: ../search.php:178
+#: ../search.php:175
 #, fuzzy
 msgid "Caption:"
 msgstr "Myndatexti"
 
-#: ../search.php:194
+#: ../search.php:191
 msgid "Matching Comments"
 msgstr "Samstæðar athugasemdir"
 
-#: ../search.php:232
+#: ../search.php:229
 msgid "From Album"
 msgstr "Frá albúmi"
 
-#: ../search.php:237 ../view_photo_properties.php:112
+#: ../search.php:234 ../view_photo_properties.php:112
 msgid "KEYWORDS"
 msgstr "LEITARORÐ"
 
-#: ../search.php:250
+#: ../search.php:247
 msgid "No Photo Matches"
 msgstr "Engar myndir fundust"
 
-#: ../search.php:255
+#: ../search.php:252
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
 msgstr "Ekki leitað í sumum albúmu þar sem þau þarf fyrst að uppfæra í útgáfu %s"
 
-#: ../search.php:258
+#: ../search.php:255
 msgid "upgrade all albums"
 msgstr "uppfæra öll albúm"
 
-#: ../search.php:279
+#: ../search.php:276
 msgid "Search the Gallery's Album and Photo<br> titles, descriptions and comments"
 msgstr "Leita í titlum, lýsingum og<br>athugasemdum mynda og albúma"
 
-#: ../search.php:285
+#: ../search.php:282
 msgid "Go"
 msgstr "Af stað"
 
@@ -2956,7 +2964,8 @@ msgid "none"
 msgstr "enga"
 
 #: ../util.php:244
-msgid "Error messages:"
+#, fuzzy
+msgid "Debug messages:"
 msgstr "Villuboð:"
 
 #: ../util.php:255
@@ -2975,7 +2984,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP %s gat ekki ákvarðað stærð myndar."
 
 #: ../util.php:297 ../util.php:595 ../util.php:850 ../util.php:896
-#: ../util.php:2371
+#: ../util.php:2358
 msgid "You have no graphics package configured for use!"
 msgstr "Þú hefur engan myndapakka uppsettan í augnablikinu!"
 
@@ -3031,161 +3040,166 @@ msgstr "Það kom upp óþekkt villa í %s kalli"
 msgid "Unknown file type: %s"
 msgstr "Óþekkt skráargerð: %s"
 
-#: ../util.php:1541
+#: ../util.php:1524
 #, php-format
 msgid "Can't write to %s."
 msgstr "Get ekki skrifað í %s."
 
-#: ../util.php:1548
+#: ../util.php:1531
 #, php-format
 msgid "Can't read %s."
 msgstr "Get ekki lesið %s."
 
-#: ../util.php:1661
+#: ../util.php:1644
 msgid "Select Album"
 msgstr "Veldu Albúm"
 
-#: ../util.php:1667
+#: ../util.php:1650
 msgid "Top Level"
 msgstr "Efst"
 
-#: ../util.php:1688 ../util.php:1739
+#: ../util.php:1671 ../util.php:1722
 msgid "current location"
 msgstr "Núverandi staðsetning"
 
-#: ../util.php:1742
+#: ../util.php:1725
 msgid "self"
 msgstr "sjálf"
 
-#: ../util.php:1882
+#: ../util.php:1821
+#, php-format
+msgid "IN UTIL ITEMCAPTUREDATE = %s"
+msgstr ""
+
+#: ../util.php:1865
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Gat ekki opnað læsi skrá (%s)!"
 
-#: ../util.php:1887
+#: ../util.php:1870
 #, fuzzy, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Gat ekki opnað læsi skrá (%s)!"
 
-#: ../util.php:1971
+#: ../util.php:1954
 #, fuzzy, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "ein skoðun"
 msgstr[1] "ein skoðun"
 
-#: ../util.php:1976
+#: ../util.php:1959
 msgid "Sub-albums"
 msgstr "Undir-albúm"
 
-#: ../util.php:2015
+#: ../util.php:1998
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Sleppi %s (ZIP stuðningur ekki virkur)"
 
-#: ../util.php:2160
+#: ../util.php:2143
 #, php-format
 msgid "Adding %s"
 msgstr "Bæti við %s"
 
-#: ../util.php:2178
+#: ../util.php:2161
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Vantar þig hjálp? Kíktu á %s%s FAQ%s"
 
-#: ../util.php:2184
+#: ../util.php:2167
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Sleppi %s (get ekki unnið úr %s formati)"
 
-#: ../util.php:2330
+#: ../util.php:2317
 #, fuzzy
 msgid "documentation"
 msgstr "Núverandi staðsetning"
 
-#: ../util.php:2356
+#: ../util.php:2343
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr ""
 
-#: ../util.php:2381
+#: ../util.php:2368
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Búið til af %s útgafa %s"
 
-#: ../util.php:2383
+#: ../util.php:2370
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Keyrt á %s útgáfu %s"
 
-#: ../util.php:2433
+#: ../util.php:2420
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Sleppi ógilda tölvupóstfanginu %s"
 
-#: ../util.php:2499
+#: ../util.php:2486
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr ""
 
-#: ../util.php:2501
+#: ../util.php:2488
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Látið vita af misnotkun með því að senda tölvupóst á %s."
 
-#: ../util.php:2517
+#: ../util.php:2504
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Tölvupóstur ekki sendur, því að hann var gerður óvirkur fyrir þetta myndasafn"
 
-#: ../util.php:2521
+#: ../util.php:2508
 #, php-format
 msgid "Email not sent as no address provided"
 msgstr "Tölvupóstur ekki sendur, því að ekkert tölvupóstfang var gefið upp"
 
-#: ../util.php:2526
+#: ../util.php:2513
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Tölvupóstur ekki sendur til %s, því að það er ekki gilt tölvupóstfang"
 
-#: ../util.php:2541
+#: ../util.php:2528
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Tölvupóstfang sendanda %s er ógilt, nota %s."
 
-#: ../util.php:2565 ../util.php:2570
+#: ../util.php:2552 ../util.php:2557
 msgid "not shown"
 msgstr "ekki birt"
 
-#: ../util.php:2574
+#: ../util.php:2561
 msgid "Message"
 msgstr "Skilaboð"
 
-#: ../util.php:2578
+#: ../util.php:2565
 msgid "Email sent"
 msgstr "Tölvupóstur sendur"
 
-#: ../util.php:2580
+#: ../util.php:2567
 msgid "Email not sent"
 msgstr "Tölvupóstur ekki sendur"
 
-#: ../util.php:2594
+#: ../util.php:2581
 #, php-format
 msgid "Last comment %s."
 msgstr "Síðasta athugasemd %s."
 
-#: ../util.php:2606
+#: ../util.php:2593
 msgid "FAILED"
 msgstr "TÓKST EKKI"
 
-#: ../util.php:2615
+#: ../util.php:2602
 msgid "Email activity"
 msgstr "Tölvupóstvirkni"
 
-#: ../util.php:2633
+#: ../util.php:2620
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Gat ekki opnað log-skrá (%s)!"
 
-#: ../util.php:2640
+#: ../util.php:2627
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3197,57 +3211,52 @@ msgid ""
 "Gallery @ %s Administrator."
 msgstr ""
 
-#: ../util.php:2649 ../util.php:2651
+#: ../util.php:2636 ../util.php:2638
 msgid "gallery title"
 msgstr "titill myndasafns"
 
-#: ../util.php:2650
+#: ../util.php:2637
 msgid "gallery URL"
 msgstr "vefslóð myndasafns"
 
-#: ../util.php:2677
+#: ../util.php:2664
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>Ekkert</dt><dd>Nota upprunalegan útlitspakka.</dd>"
 
-#: ../util.php:2724 ../util.php:2729
+#: ../util.php:2711 ../util.php:2716
 msgid "Dots"
 msgstr "Punktalína"
 
-#: ../util.php:2725 ../util.php:2730
+#: ../util.php:2712 ../util.php:2717
 msgid "Solid"
 msgstr "Heil lína"
 
-#: ../util.php:2728
+#: ../util.php:2715
 msgid "No frames"
 msgstr "Enginn rammi"
 
-#: ../util.php:2729
+#: ../util.php:2716
 msgid "Just a simple dashed border around the thumb."
 msgstr "Bara einföld brotin lína umhverfis smámyndina."
 
-#: ../util.php:2730
+#: ../util.php:2717
 msgid "Just a simple solid border around the thumb."
 msgstr "Bara einföld heil lína umhverfis smámyndina."
 
-#: ../util.php:2751
+#: ../util.php:2738
 #, php-format
 msgid "Skipping %s."
 msgstr "Sleppi albúmi %s."
 
-#: ../util.php:2757
+#: ../util.php:2744
 #, php-format
 msgid "Can't open %s"
 msgstr "Get ekki opnað %s"
 
-#: ../util.php:2855 ../util.php:2874
+#: ../util.php:2845 ../util.php:2864
 #, fuzzy
 msgid "Not valid yet"
 msgstr "Rangur notandi"
-
-#: ../util.php:3105
-#, fuzzy
-msgid "Custom Fields"
-msgstr "sérsniðin svæði"
 
 #: ../view_album.php:124 ../view_photo.php:156
 msgid "navigate UP"
@@ -3342,179 +3351,184 @@ msgstr "núllstilla atkvæðagreiðslu"
 msgid "view comments"
 msgstr "skoða athugasemdir"
 
-#: ../view_album.php:447
+#: ../view_album.php:392
+#, fuzzy
+msgid "watermark album"
+msgstr "Frá albúmi"
+
+#: ../view_album.php:457
 msgid "admin options"
 msgstr "umsjónarskipanir"
 
-#: ../view_album.php:528
+#: ../view_album.php:538
 msgid "You have no votes recorded for this poll."
 msgstr "Það eru engin atkvæði greidd í þessari atkvæðagreiðslu."
 
-#: ../view_album.php:534
+#: ../view_album.php:544
 msgid "Your current choices are"
 msgstr "Þitt val er:"
 
-#: ../view_album.php:576
+#: ../view_album.php:586
 msgid "See full poll results"
 msgstr "Sjá niðurstöður atkvæðagreiðslu"
 
-#: ../view_album.php:598
+#: ../view_album.php:608
 msgid ", "
 msgstr ","
 
-#: ../view_album.php:600
+#: ../view_album.php:610
 msgid " or "
 msgstr " eða"
 
-#: ../view_album.php:605
+#: ../view_album.php:615
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "Til að greiða atkvæði, smellið á %s"
 
-#: ../view_album.php:606
+#: ../view_album.php:616
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr ""
 
-#: ../view_album.php:611
+#: ../view_album.php:621
 #, fuzzy, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Þú getur breytt vali þínu ef þú vilt."
 
-#: ../view_album.php:612
+#: ../view_album.php:622
 #, fuzzy, php-format
 msgid "1 vote"
 msgid_plural "%d votes"
 msgstr[0] "eitt atkvæði"
 msgstr[1] "eitt atkvæði"
 
-#: ../view_album.php:617
+#: ../view_album.php:627
 msgid "You can change your choices if you wish."
 msgstr "Þú getur breytt vali þínu ef þú vilt."
 
-#: ../view_album.php:771 ../view_album.php:772
+#: ../view_album.php:781 ../view_album.php:782
 #, php-format
 msgid "%dkB"
 msgstr ""
 
-#: ../view_album.php:844
+#: ../view_album.php:854
 msgid "No description"
 msgstr "Engin lýsing"
 
-#: ../view_album.php:852
+#: ../view_album.php:862
 msgid "Changed: "
 msgstr "Breytt:"
 
-#: ../view_album.php:855
+#: ../view_album.php:865
 msgid "Contains: "
 msgstr "Inniheldur:"
 
-#: ../view_album.php:855
+#: ../view_album.php:865
 #, fuzzy, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "eina mynd"
 msgstr[1] "eina mynd"
 
-#: ../view_album.php:869 ../view_album.php:892
+#: ../view_album.php:879 ../view_album.php:902
 msgid "Viewed:"
 msgstr "Skoðað:"
 
-#: ../view_album.php:907
+#: ../view_album.php:917
 msgid "Movie"
 msgstr "kvikmynd"
 
-#: ../view_album.php:911
+#: ../view_album.php:921
 msgid "Photo"
 msgstr "ljósmynd"
 
-#: ../view_album.php:933 ../view_album.php:969
+#: ../view_album.php:943 ../view_album.php:979
 msgid "Edit Thumbnail"
 msgstr "Breyta smámynd"
 
-#: ../view_album.php:934 ../view_album.php:970
+#: ../view_album.php:944 ../view_album.php:980
 #, fuzzy, php-format
 msgid "Rotate/Flip %s"
 msgstr "Snúa"
 
-#: ../view_album.php:943 ../view_album.php:1006 ../view_album.php:1011
+#: ../view_album.php:953 ../view_album.php:1016 ../view_album.php:1021
 #, fuzzy, php-format
 msgid "Delete %s"
 msgstr "Eyða"
 
-#: ../view_album.php:948
+#: ../view_album.php:958
 msgid "Edit Title"
 msgstr "Breyta Titli"
 
-#: ../view_album.php:952
+#: ../view_album.php:962
 msgid "Edit Description"
 msgstr "Breyta Lýsingu"
 
-#: ../view_album.php:979
+#: ../view_album.php:989
 #, fuzzy, php-format
 msgid "Highlight %s"
 msgstr "Gera forsíðumynd úr "
 
-#: ../view_album.php:983
+#: ../view_album.php:993
 msgid "Reset Counter"
 msgstr "Endurstilla teljara"
 
-#: ../view_album.php:988
+#: ../view_album.php:998
 #, fuzzy, php-format
 msgid "Move %s"
 msgstr "Færa"
 
-#: ../view_album.php:989
+#: ../view_album.php:999
 #, fuzzy, php-format
 msgid "Reorder %s"
 msgstr "Endurraða "
 
-#: ../view_album.php:991
+#: ../view_album.php:1001
 #, fuzzy, php-format
 msgid "Copy %s"
 msgstr "Afrita "
 
-#: ../view_album.php:998
+#: ../view_album.php:1008
 #, fuzzy, php-format
 msgid "Show %s"
 msgstr "Sýna"
 
-#: ../view_album.php:1000
+#: ../view_album.php:1010
 #, fuzzy, php-format
 msgid "Hide %s"
 msgstr "Fela"
 
-#: ../view_album.php:1017
+#: ../view_album.php:1027
 msgid "Permissions"
 msgstr "Aðgangsleyfi"
 
-#: ../view_album.php:1022 ../watermark_album.php:77 ../watermark_album.php:83
+#: ../view_album.php:1032 ../watermark_album.php:77 ../watermark_album.php:83
 #, fuzzy
 msgid "Watermark Album"
 msgstr "Frá albúmi"
 
-#: ../view_album.php:1027
+#: ../view_album.php:1037
 #, fuzzy
 msgid "View Comments"
 msgstr "skoða athugasemdir"
 
-#: ../view_album.php:1073
+#: ../view_album.php:1083
 msgid "Hey! Add some photos."
 msgstr "Heyrðu! Settu inn nokkrar myndir."
 
-#: ../view_album.php:1075
+#: ../view_album.php:1085
 msgid "This album is empty."
 msgstr "Þetta Albúm er tómt."
 
-#: ../view_album.php:1117 ../view_photo.php:645
+#: ../view_album.php:1127 ../view_photo.php:645
 msgid "Email me when:"
 msgstr "Senda mér tölvupóst þegar:"
 
-#: ../view_album.php:1118 ../view_photo.php:646
+#: ../view_album.php:1128 ../view_photo.php:646
 msgid "Comments are added"
 msgstr "athugasemdum er bætt við"
 
-#: ../view_album.php:1121
+#: ../view_album.php:1131
 msgid "Other changes are made"
 msgstr "aðrar breytingar eru gerðar"
 
@@ -3584,6 +3598,13 @@ msgstr ""
 #, fuzzy
 msgid "No items to watermark."
 msgstr "Engin atkvæði enn."
+
+#~ msgid "Login Incorrect"
+#~ msgstr "Röng innskráning"
+
+#, fuzzy
+#~ msgid "Custom Fields"
+#~ msgstr "sérsniðin svæði"
 
 #~ msgid "Edit"
 #~ msgstr "Breyta"
