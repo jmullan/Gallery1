@@ -25,7 +25,7 @@
 require(dirname(__FILE__) . '/nls.php');
 
 function getRequestVar($str) {
-	if (!isset($_REQUEST[$str]) {
+	if (!isset($_REQUEST[$str])) {
 		return null;
 	}
 	$ret = $_REQUEST[$str];
@@ -36,7 +36,7 @@ function getRequestVar($str) {
 }
 
 function getFilesVar($str) {
-	if (!isset($_FILES[$str]) {
+	if (!isset($_FILES[$str])) {
 		return null;
 	}
 	$ret = $_FILES[$str];
@@ -47,7 +47,7 @@ function getFilesVar($str) {
 }
 
 function getEnvVar($str) {
-	if (!isset($_ENV[$str]) {
+	if (!isset($_ENV[$str])) {
 		return null;
 	}
 	$ret = $_ENV[$str];
