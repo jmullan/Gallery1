@@ -349,7 +349,8 @@ ADD OR EDIT WHATEVER YOU WANT, AS LONG AS IT'S NOT A DRASTIC CHANGE
        </listitem>
        <listitem>
         <para>
-         <emphasis>Abort trap</emphasis> or <emphasis>Segmentation Fault</emphasis>
+         <emphasis>Abort trap</emphasis> or <emphasis>Segmentation Fault</emphasis> or
+         <emphasis>Cannot execute binary file</emphasis>
          -- probably means you installed the wrong binaries for your system (e.g.
          installed the FreeBSD binaries on a Linux system) or you uploaded the binaries
          in <literal>ASCII FTP mode</literal> instead of <literal>BINARY FTP mode</literal>.
@@ -367,10 +368,7 @@ ADD OR EDIT WHATEVER YOU WANT, AS LONG AS IT'S NOT A DRASTIC CHANGE
         <para>
          <emphasis>/usr/bin/convert: Not a JPEG file: starts with 0x0a 0x4d
          (/home/uspalmer/public_html/gallery/AUTHORS).</emphasis> -- This is a bug
-         that has been fixed with the latest version of Gallery, please upgrade
-         (FIXME: Has this really been fixed???)  If you are using FreeBSD and
-         installed ImageMagick from the ports collection, see
-         <link linkend="gallery1-install.faq.c.30">FAQ C.30</link>.
+         that has been fixed with the latest version of Gallery, please upgrade.
         </para>
        </listitem>
        <listitem>
@@ -381,7 +379,9 @@ ADD OR EDIT WHATEVER YOU WANT, AS LONG AS IT'S NOT A DRASTIC CHANGE
          a type of image format (in this case JPEG).  If you have root access, make
          sure the appropriate image libraries are installed or ask your host to
          verify this.  If not, you can try using NetPBM from the Gallery Download
-         Page, which has all major image formats already included.
+         Page, which has all major image formats already included.  If you are using
+         FreeBSD and installed ImageMagick from the ports collection, see
+         <link linkend="gallery1-install.faq.c.30">FAQ C.30</link>.
         </para>
        </listitem>
       </itemizedlist>
