@@ -272,9 +272,9 @@ function toPnmCmd($file) {
 		$cmd = "pngtopnm";
 	} else if (preg_match("/.jpg/i", $file)) {
 		if (isDebugging()) {
-			$cmd = "jpegtopnm --quiet";
-		} else {
 			$cmd = "jpegtopnm";
+		} else {
+			$cmd = "jpegtopnm --quiet";
 		}
 	} else if (preg_match("/.gif/i", $file)) {
 		$cmd = "giftopnm";
@@ -536,4 +536,20 @@ function addUrlArg($url, $arg) {
 	} else {
 		return "$url?$arg";
 	}
+}
+
+function getNextPhoto($idx) {
+	global $user, $album;
+
+	$idx++;
+	if ($user->canWriteToAlbum($album)) {
+		return $idx;
+	}
+
+	$numPhotos = $album->numPhotos(1);
+	while ($idx <= $numPhotos && $album->isHidden($idx)) {
+		$idx++;
+	}
+
+	return $idx;
 }
