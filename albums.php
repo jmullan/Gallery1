@@ -21,8 +21,28 @@
  */
 ?>
 <?php
-
 require(dirname(__FILE__) . '/init.php');
+
+if (empty($gallery->session->username)) {
+    /* Get the cached version if possible */
+    if (!$HTTP_GET_VARS['gallery_nocache']) {
+	$cache_file = "cache.html";
+	$cache_now = time();
+	$cache_stat = @stat("cache.html");
+	if ($cache_now - $cache_stat[9] < (20 * 60)) {
+	    if ($fp = fopen("cache.html", "rb")) {
+		while (!feof($fp)) {
+		    print fread($fp, 4096);
+		}
+		fclose($fp);
+	    }
+
+	    printf("<!-- From cache, created at %s -->",
+		   strftime("%D %T", $cache_stat[9]));
+	    return;
+	}
+    }
+}
 
 $gallery->session->offlineAlbums["albums.php"]=true;
 
@@ -165,6 +185,7 @@ if ($gallery->user->isAdmin()) {
 	}
 	$adminCommands .= '<a style="white-space:nowrap;" href="' . $gallery->app->photoAlbumURL . '/setup/index.php">[' . _("configuration wizard") .']</a> ';
 	$adminCommands .= '<a style="white-space:nowrap;" href="' . makeGalleryUrl('tools/find_orphans.php') . '">[' . _("find orphans") .']</a> ';
+	$adminCommands .= '<a style="white-space:nowrap;" href="' . makeGalleryUrl('tools/despam-comments.php') . '">[' . _("find comment spam") .']</a> ';
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
