@@ -41,6 +41,12 @@ $photoURL = $album->getAlbumDirURL() . "/" . $photo->image->name . "." . $photo-
 $fitToWindow = !strcmp($album->fields["fit_to_window"], "yes") && !$album->isResized($index);
 list($imageWidth, $imageHeight) = $photo->image->getDimensions();
 
+$do_fullOnly = !strcmp($fullOnly,"on") &&
+               !strcmp($album->fields["use_fullOnly"],"yes");
+if ($do_fullOnly) {
+	$full = 1;
+}
+
 if ($full) {
 	$fullTag = "?full=1";
 }
@@ -229,6 +235,25 @@ if (!$album->isMovie($index)) {
 		$adminCommands .= '<a href="#" onClick="'.popup("$top/delete_photo.php?index=$index").'">[delete photo]</a>';
 	}
 
+	if (!strcmp($album->fields["use_fullOnly"], "yes")) {
+		$link = strcmp($fullOnly,"on") ? "on" : "off";
+		if (preg_match("/[?&]set_fullOnly=(off|on)/", $REQUEST_URI)) {
+			$link = preg_replace("/([?&]set_fullOnly=)(off|on)/",
+			                     '$1'.$link, $REQUEST_URI);
+		} else if (strpos($REQUEST_URI,"?")) {
+			$link = "$REQUEST_URI&set_fullOnly=$link";
+		} else {
+			$link = "$REQUEST_URI?set_fullOnly=$link";
+		}
+		$adminCommands .= " View Images: [ ";
+		if (strcmp($fullOnly,"on"))
+		{
+			$adminCommands .= "normal | <a href=\"$link\">full</a> ]";
+		} else {
+			$adminCommands .= "<a href=\"$link\">normal</a> | full ]";
+		}
+	}
+
 	$adminbox["text"] = "&nbsp;";
 	if ($adminCommands) {
 		$adminCommands = "<span class=\"admin\">$adminCommands</span>";
@@ -295,21 +320,15 @@ $photoTag = $album->getPhotoTag($index, $full);
 
 if (!$album->isMovie($index)) {
 	if ($fitToWindow) {
-		echo "<a href=" . makeGalleryUrl($albumName, $id) . ">";
 		$photoTag = "<img name=photo src=$photoURL border=0 width=$imageWidth height=$imageHeight>";
-		$openAnchor = 1;
-	} else if ($album->isResized($index)) { 
+	} else if ($album->isResized($index) && !$do_fullOnly) { 
 		if ($full) { 
 			echo "<a href=" . makeGalleryUrl($albumName, $id) . ">";
 	 	} else {
 			echo "<a href=" . makeGalleryUrl($albumName, $id, "full=1") . ">";
 		}
 		$openAnchor = 1;
-	} else if (!$full) {
-		echo "<a href=" . makeGalleryUrl($albumName, $id, "full=1") . ">";
-		$openAnchor = 1;
-		$photoTag = "<img src=$photoURL border=0 width=$imageWidth height=$imageHeight>";
-	} 
+	}
 } else {
 	echo "<a href=" . $album->getPhotoPath($index) . " target=other>";
 	$openAnchor = 1;
