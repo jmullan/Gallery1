@@ -227,17 +227,6 @@ function form_print_services($key, $arr) {
 	    }
 	    $checked = $value['checked'] ? ' checked' : '';
 	    $buf .= "\n\t\t<tr><td valign=\"top\">\n\t\t\t<input name=\"${key}[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a href=\"${data['url']}\">${data['name']}</a>";
-	    if (isset($data['radio'])) {
-		if (!isset($value['donation'])) {
-		    $value['donation'] = 'yes';
-		}
-		$buf .= "\n\t\t\t</td><td valign=\"top\">";
-		foreach ($data['radio'] as $radio => $values) {
-		    $checked = $value['donation'] === $radio
-			? ' checked' : '';
-		    $buf .= "\n\t\t\t<input name=\"${key}[$item][donation]\" value=\"$radio\" type=\"radio\"$checked>" . $values;
-		}
-	    }
 	    $buf .= "\n\t\t</td></tr>";
 	}
 	$buf .="\n\t</table>\n\t";

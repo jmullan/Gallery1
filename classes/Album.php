@@ -323,10 +323,10 @@ class Album {
 				$this->fields['print_photos'] = array($this->fields['print_photos'] => array('checked' => true));
 				break;
 			case 'shutterfly':
-				$this->fields['print_photos'] = array('shutterfly' => array('checked' => true, 'donation' => 'yes'));
+				$this->fields['print_photos'] = array('shutterfly' => array('checked' => true));
 				break;
 			case 'shutterfly without donation':
-				$this->fields['print_photos'] = array('shutterfly' => array('checked' => true, 'donation' => 'no'));
+				$this->fields['print_photos'] = array('shutterfly' => array('checked' => true));
 				break;
 			default:
 				$this->fields['print_photos'] = array();
@@ -404,6 +404,13 @@ class Album {
 		if ($this->version <30) {
 			if ($this->fields["border"] == 'off') {
 				$this->fields["border"] = 0;
+			}
+		}
+
+		// Shutterfly now uses affiliate pricing - the donation option is unnecessary.
+		if ($this->version < 31) {
+			if (isset($this->fields['print_photos']['shutterfly']['donation'])) {
+				unset($this->fields['print_photos']['shutterfly']['donation']);
 			}
 		}
 

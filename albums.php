@@ -232,7 +232,7 @@ if ( (sizeof($albumDB->brokenAlbums) || sizeof($albumDB->outOfDateAlbums)) && $g
 	}
 
 	if(sizeof($albumDB->outOfDateAlbums)) {
-		echo sprintf(_("%s has detected that %d of your album are out of Date"),
+		echo sprintf(_("%s has detected that %d of your albums are out of date."),
 			Gallery(), sizeof($albumDB->outOfDateAlbums));
 
 		echo "\n<br>";

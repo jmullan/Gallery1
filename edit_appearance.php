@@ -225,10 +225,6 @@ $services = array(
 	'shutterfly'  => array(
 		'name'    => 'Shutterfly',
 		'url'     => 'http://www.shutterfly.com/',
-		'radio'   => array(
-			'yes' => _('with donation'),
-			'no'  => _('without donation')
-		)
 	),
 	'fotokasten'  => array(
 		'name'    => 'Fotokasten',
@@ -245,16 +241,6 @@ foreach ($services as $item => $data) {
 	}
 	$checked = !empty($value['checked']) ? ' checked' : '';
 	print "\t<input name=\"print_photos[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a target=\"_blank\" href=\"${data['url']}\">${data['name']}</a><br>\n";
-	if (isset($data['radio'])) {
-		if (!isset($value['donation'])) {
-			$value['donation'] = 'yes';
-		}
-		foreach ($data['radio'] as $radio => $values) {
-			$checked = $value['donation'] === $radio
-				? ' checked' : '';
-			print "\t&nbsp;&nbsp;&nbsp;<input name=\"print_photos[$item][donation]\" value=\"$radio\" type=\"radio\"$checked>" . $values . "<br>\n";
-		}
-	}
 }
 ?>
 	</td>
