@@ -347,6 +347,9 @@ if ($numPhotos) {
 			echo("<form name='image_form_$i'>"); // put form outside caption to compress lines
 			echo "<center><span class=\"caption\">";
 			$id = $gallery->album->getPhotoId($i);
+			if ($gallery->album->isHidden($i)) {
+				echo "(hidden)<br>";
+			}
 			if ($gallery->album->isAlbumName($i)) {
 				$myAlbum = $albumDB->getAlbumbyName($gallery->album->isAlbumName($i));
 				$myDescription = $myAlbum->fields[description];
