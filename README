@@ -4,7 +4,8 @@ CONTENTS
   3. How do I install Gallery if I only have FTP access?
   4. My webserver doesn't have NetPBM!  Help!  Aiee!
   5. How do I customize Gallery?
-  6. I can't upload large files!
+  6. How do I use Gallery as a PHP-Nuke 5.0 Module?
+  7. I can't upload large files!
 
 1. WHAT IS GALLERY?
 
@@ -138,8 +139,24 @@ If you come up with cool themes feel free to send them to me and I'll
 include them in the gallery package (or create a theme library of some
 kind).  
 
+6. HOW DO I USE GALLERY AS A PHP-NUKE 5.0 MODULE?
 
-6. I CAN'T UPLOAD LARGE FILES!
+It's very easy to make Gallery work with PHP-Nuke 5.0.  All you have
+to do is either move your Gallery directory into the modules directory
+under PHP-Nuke, or create a symlink, ie:
+
+	% cd php-nuke/modules
+	% ln -s /path/to/my/gallery gallery
+
+If you move your gallery, be sure to run through the config wizard to
+make sure that all your paths are correct.
+
+Now, you'll be able to get to your gallery directly via its new URL
+(ie, http://your.server.com/nuke/modules/gallery) or from your Nuke
+site (ie http://your.server.com/nuke/ -- then look for the "gallery"
+listing on the main menu).
+
+7. I CAN'T UPLOAD LARGE FILES!
 
 PHP imposes a restriction on the size of a file upload.  This may get
 in the way of uploading large zip files.  To increase the limit, you
