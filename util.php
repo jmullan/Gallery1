@@ -2646,6 +2646,13 @@ function available_skins($description_only=false) {
 
 	global $gallery;
 
+	if (isset($gallery->app->photoAlbumURL)) {
+		$base_url = $gallery->app->photoAlbumURL;
+	}
+	else {
+		$base_url = "..";
+	}
+
 	$dir = dirname(__FILE__) . '/skins';
 	$opts['none'] = 'None';
 	$descriptions="<dl>";
@@ -2666,9 +2673,9 @@ function available_skins($description_only=false) {
 			       	}
 				$opts[$file]=$name;
 				if (fs_file_exists("$dir/$file/images/screenshot.jpg")) {
-					$screenshot=$gallery->app->photoAlbumURL. "/skins/$file/images/screenshot.jpg";
+					$screenshot=$base_url . "/skins/$file/images/screenshot.jpg";
 				} else if (fs_file_exists("$dir/$file/images/screenshot.gif")) {
-					$screenshot=$gallery->app->photoAlbumURL ."/skins/$file/images/screenshot.gif";
+					$screenshot=$base_url . "/skins/$file/images/screenshot.gif";
 				} else {
 					$screenshot="";
 				}

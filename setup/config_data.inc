@@ -696,7 +696,7 @@ $constants = array_merge($constants,
 		"value" => "no"),
 	"multiple_create" => array(
 		"prompt" => _("Enable bulk account creation"),
-		"desc" => _("This option allows your to create many new user accounts at one time by creating a file of new users.") .
+		"desc" => _("This option allows you to create many new user accounts at one time by creating a file of new users.") .
 		"<br>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
@@ -854,6 +854,12 @@ $constants = array_merge($constants,
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
+	"devMode" => array(
+		"prompt" => _("Developer Mode"),
+		"desc" => _("Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."),
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no",
+	), 
 	"useSyslog" => array(
 		"prompt" => _("Use Syslog"),
 		"desc" => _("Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"),
@@ -891,13 +897,6 @@ $constants = array_merge($constants,
 		"eval" => '"$albumDir/.users"',
 		"persistent" => 1,
 		"filename" => 1
-		),
-	"devMode" => array(
-		"desc" => "Developers should switch this to yes, to see all warnings and notices",
-		"prompt" => "Developer Mode",
-		"type" => "hidden",
-		"persistent" => 1,
-		"value" => "no"
 		),
 	"adminCommentsEmail" => array(
 		"desc" => "This is allows the \"admin\" account to get email whenever a comment is added to any album",
