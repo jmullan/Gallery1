@@ -207,7 +207,7 @@ foreach ($files as $file) {
        	if (!$version) {
 	       	print "skipping $file\n";
        	} else {
-	       	fwrite($fd, "\$versions[\"$file\"]=\"$version\";\n");
+	       	fwrite($fd, "\$versions['$file']='$version';\n");
        	}
 }	
 
@@ -217,7 +217,7 @@ foreach ($setup as $file) {
        	if (!$version) {
 	       	print "skipping $file\n";
        	} else {
-	       	fwrite($fd, "\t\$versions[\"$file\"]=\"$version\";\n");
+	       	fwrite($fd, "\t\$versions['$file']='$version';\n");
        	}
 }
 
