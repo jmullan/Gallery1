@@ -118,6 +118,7 @@ $orphans = findOrphans();
 
 if (!empty($orphans)) {
 	if (!isset($update)) { ?>
+		<p><?php echo _("Orphans will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there.") ?></p>
 		<table>
 		<tr><th><?php echo _("Orphaned Album") ?></th><th>&nbsp;</th><th><?php echo _("Parent Album") ?></th></tr>
 <?php
