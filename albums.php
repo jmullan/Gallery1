@@ -48,7 +48,6 @@ $page = 0;
 $numAlbums = $albumDB->numAlbums();
 for ($i = 0; $i < $numAlbums; $i++) {
         $album = $albumDB->getAlbum($i);
-        $highlight = $album->getHighlight();
         $tmpAlbumName = $album->fields["name"];
         $albumURL = $app->photoAlbumURL . "/" . $tmpAlbumName;
 
@@ -61,7 +60,7 @@ for ($i = 0; $i < $numAlbums; $i++) {
   <a href=<?=$albumURL?>>
   <?   
         if ($album->numPhotos()) {
-                echo $album->getThumbnailTag($highlight);
+                echo $album->getHighlightTag();
         } else {
                 echo "<font size=+3> Empty! </font>";
         }
@@ -73,7 +72,7 @@ for ($i = 0; $i < $numAlbums; $i++) {
   <td align=left valign=top>
   <hr size=1>
   <font size=+1 face=arial>
-  <a href=view_album.php?set_albumName=<?= $tmpAlbumName?>>
+  <a href=<?=$albumURL?>>
   <?= editField($album, "title", $edit) ?></a>
   </font>
   <br>
