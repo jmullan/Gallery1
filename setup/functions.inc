@@ -182,9 +182,13 @@ function check_graphics()
 function graphics_choices()
 {
 	$choices = array("netpbm");
+/*
+ * 	commented out until we support multiple graphics packages
+ *
 	if (function_exists("ImageCreateFromJPEG") && function_exists("ImageCreate")) {
 		$choices[] = "gd-and-jpeg";
 	}
+ */
 	return $choices;	
 }
 
