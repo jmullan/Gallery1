@@ -166,7 +166,7 @@ foreach ($checklist as $check) {
 			echo _("Your installation passed with flying colors!  Go go go!");
 		}
 		echo '</p><p>';
-		echo '<input type=submit name="go_next" value="'. _("Next Page") . ' ->">';
+		echo '<input type=submit name="go_next" value="'. _("Next Step") . ' ->">';
 		echo '</p><div>';
 }
 ?>
