@@ -56,7 +56,7 @@ $navigator["bordercolor"] = "#DDDDDD";
 <title><?= $app->galleryTitle ?></title>
 <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
 </head>
-
+<body>
 
 <!-- gallery.header begin -->
 <?
@@ -208,3 +208,6 @@ And then go <a href=setup>here</a>
 includeHtmlWrap("gallery.footer");
 ?>
 <!-- gallery.footer end -->
+
+</body>
+</html>
