@@ -37,13 +37,13 @@ if (!isset($metaboxes)) {
 	echo _("Supported file types") ?>: <?php echo join(", ", acceptableFormatList());
 	echo '</p>';
 
-	if ($gallery->app->feature["zip"]) {
+	if ($gallery->app->feature["zip"] || $gallery->app->rar) {
 		echo '<p><b>'. _("Tip:") . '</b> ';
-		echo _("Upload a ZIP file full of photos and movies!");
+		echo _("Upload a compressed file (zip, rar, ace ...) full of photos and movies!");
 		echo "</p>\n\t";
 	}
 
-echo makeFormIntro("add_photos.php", array("name" => "count_form", "method" => "POST"), array('type' => 'popup')); ?>
+	echo makeFormIntro("add_photos.php", array("name" => "count_form", "method" => "POST"), array('type' => 'popup')); ?>
 	<input type="hidden" name="mode" value="<?php echo $mode ?>"/>
 
 	<table>

@@ -42,13 +42,6 @@ if (!empty($_FILES['userfile']['name'])) {
 	}
 }
 
-/*
-if (!isset($wmName)) $wmName = "";
-if (!isset($wmAlign)) $wmAlign = "";
-if (!isset($wmAlignX)) $wmAlignX = "";
-if (!isset($wmAlignY)) $wmAlignY = "";
-*/
-
 doctype();
 ?>
 <html>
@@ -67,34 +60,36 @@ if (!empty($urls)) {
 <div class="popuphead"><?php echo _("Fetching Urls...") ?></div>
 <div class="popup" align="center">
 <?php
-	/* Process all urls first */
+	/* Process all urls first.
+	** $urls contains all URLs given by the "URL Upload".
+	** $urls should be empty when using the "Form Upload".
+	*/
 	$temp_files = array();
 	
 	foreach ($urls as $url) {
 
-	        /* Get rid of any extra white space */
-	        $url = trim($url);
+	/* Get rid of any extra white space */
+	$url = trim($url);
 		
-		/*
-		 * Check to see if the URL is a local directory (inspired by
-		 * code from Jared (hogalot))
-		 */
-		if (fs_is_dir($url)) {
-			processingMsg(sprintf(_("Processing %s as a local directory."),
-						"<i>$url</i>"));
-			$handle = fs_opendir($url);
-			while (($file = readdir($handle)) != false) {
-				if ($file != "." && $file != "..") {
-					$tag = pathinfo($file);
-					$tag = strtolower(isset($tag['extension']) ? $tag['extension'] : '');
-					if (acceptableFormat($tag)) {
-						/* Tack it onto userfile */
-						if (substr($url,-1) == "/") {
-							$image_tags[] = fs_export_filename($url . $file);
+	/*
+	** Check to see if the URL is a local directory (inspired by
+	** code from Jared (hogalot))
+	*/
+	if (fs_is_dir($url)) {
+		processingMsg(sprintf(_("Processing %s as a local directory."), "<i>$url</i>"));
+		$handle = fs_opendir($url);
+		while (($file = readdir($handle)) != false) {
+			if ($file != "." && $file != "..") {
+				$tag = pathinfo($file);
+				$tag = strtolower(isset($tag['extension']) ? $tag['extension'] : '');
+				if (acceptableFormat($tag)) {
+					/* Add to userfile */
+					if (substr($url,-1) == "/") {
+						$image_tags[] = fs_export_filename($url . $file);
 						} else {
-							$image_tags[] = fs_export_filename($url . "/" . $file);
-						}
+						$image_tags[] = fs_export_filename($url . "/" . $file);
 					}
+				}
 					if ($tag == "csv") {
 						if (substr($url,-1) == "/") {
 							$info_tags[] = fs_export_filename($url . $file);
@@ -109,12 +104,12 @@ if (!empty($urls)) {
 		}
 
 		/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
-		$url = eregi_replace("^[[:space:]]+", "", $url);
-
-		$tag = parse_url($url);
-		$tag = pathinfo($tag['path']);
-		$tag = isset($tag['extension']) ? strtolower($tag['extension']) : '';
-
+		$url = ltrim($url);
+		
+		$urlParts = parse_url($url);
+		$urlPathInfo = pathinfo($urlParts['path']);
+		$urlExt = isset($urlPathInfo['extension']) ? strtolower($urlPathInfo['extension']) : '';
+		
 		/* If the URI doesn't start with a scheme, prepend 'http://' */
 		if (!empty($url) && !fs_is_file($url)) {
 			if (!ereg("^(http|ftp)", $url)) {
@@ -149,8 +144,7 @@ if (!empty($urls)) {
 		if ($id) {
 			processingMsg(urldecode($url));
 		} else {
-			processingMsg(sprintf(_("Could not open url: %s"), 
-							$url));
+			processingMsg(sprintf(_("Could not open url: %s"), $url));
 			continue;
 		} 
 
@@ -172,14 +166,13 @@ if (!empty($urls)) {
 		$temp_files[$file]=1;
 	
 		/* If this is an image or movie - add it to the processor array */
-		if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
-			/* Tack it onto userfile */
+		if (acceptableFormat($urlExt) || acceptableArchive($urlExt)) {
+			/* Add it to userfile */
 			$_FILES['userfile']['name'][] = $name;
 			$_FILES['userfile']['tmp_name'][] = $file;
 		} else {
 			/* Slurp the file */
-			processingMsg(sprintf(_("Parsing %s for images..."),
-						$url));
+			processingMsg(sprintf(_("Parsing %s for images..."), $url));
 			$fd = fs_fopen ($file, "r");
 			$contents = fread ($fd, fs_filesize ($file));
 			fclose ($fd);
@@ -188,7 +181,7 @@ if (!empty($urls)) {
 			$base_url = $url_stuff["scheme"] . '://' . $url_stuff["host"];
 			$base_dir = '';
 			if (isset($url_stuff["port"])) {
-			  $base_url .= ':' . $url_stuff["port"];
+				$base_url .= ':' . $url_stuff["port"];
 			}
 	
 			/* Hack to account for broken dirname 
@@ -209,6 +202,8 @@ if (!empty($urls)) {
 			}
 
 			$things = array();
+			$results =array();
+			
 			while ($cnt = eregi('(src|href)="?([^" >]+\.' . acceptableFormatRegexp() . ')[" >]',
 					    $contents, 
 					    $results)) {
@@ -258,6 +253,7 @@ $image_count=0;
 $image_info = array();
 // Get meta data
 if (isset($meta)) {
+	processingMsg("Metainfo found");
 	foreach ($meta as $data) {
 		$image_info = array_merge($image_info, parse_csv(fs_export_filename($data),";"));
 	}
@@ -291,6 +287,7 @@ if ($gallery->app->debug == "yes") {
 // $captionMetaFields will store the names (in order of priority to set caption to)
 $captionMetaFields = array("Caption", "Title", "Description", "Persons");
 
+/* Now we start processing the given Files */
 while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp_name'])) {
 	$name = array_shift($_FILES['userfile']['name']);
 	$file = array_shift($_FILES['userfile']['tmp_name']);
@@ -306,9 +303,6 @@ while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp
 		$caption=stripslashes($caption);    
 	}
 
-	$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);
-	$tag = strtolower($tag);
-
 	if ($name) {
 		$extra_fields = array();
 		if (!isset($setCaption)) {
@@ -317,7 +311,7 @@ while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp
 		// Find in meta data array
 		$firstRow = 1;
 		$fileNameKey = "File Name";
-                foreach ( $image_info as $info ) {
+		foreach ($image_info as $info) {
 			if ($firstRow) {
 				// Find the name of the file name field
 				foreach (array_keys($info) as $currKey) {
@@ -327,7 +321,8 @@ while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp
 				}
 				$firstRow = 0;
 			}
-                        if ($info[$fileNameKey] == $name) {
+
+			if ($info[$fileNameKey] == $name) {
 				// Loop through fields
 				foreach ($captionMetaFields as $field) {
 					// If caption isn't populated and current field is
@@ -336,10 +331,14 @@ while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp
 					}
 				}
 				$extra_fields = $info;
-                        }
-                }
+			}
+		}
+
+		$path_parts = pathinfo($name);
+		$ext = strtolower($path_parts["extension"]);
+
 		// Add new image
-		processNewImage($file, $tag, $name, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY);
+		processNewImage($file, $ext, $name, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY);
 		$image_count++;
 	}
 }

@@ -1096,7 +1096,8 @@ if ($numPhotos) {
 </table>
 
 <?php if ($displayCommentLegend) { //display legend for comments ?>
-<span class="error">*</span><span class="fineprint"> <?php echo _("Comments available for this item.") ?></span>
+<span class="commentIndication">*</span>
+<span class="fineprint"> <?php echo _("Comments available for this item.") ?></span>
 <br>
 <?php }
 

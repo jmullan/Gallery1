@@ -226,7 +226,7 @@ $checklist = array(
 $features = array(
 	"zip" => array("zipinfo", "unzip"),
 	"rewrite" => array("GALLERY_REWRITE_OK", "htaccess_file"),
-	"mirror" => array("mirrorSites")
+	"mirror" => array("mirrorSites"),
 );
 
 $constants =  array_merge(
@@ -266,7 +266,7 @@ $constants =  array_merge(
 	"group_mandatory_end" => array (
 		"type"		=> "group_end",
 	),
-	"group1"	=> array (
+	"groupLocations" => array (
 		"type"		=> "group_start",
 		"name"		=> "group_URLS",
 		"default"	=> "none",
@@ -350,28 +350,11 @@ $constants =  array_merge(
 		"value" => NULL,
 		"attrs" => array("cols" => 50, "rows" => 5)
 	),
-	"group1_end"	=> array (
+	"groupLocations_end"=> array (
 		"type"		=> "group_end",
 	),
-	"group_embedded" => array (
-		"type"		=> "group_start",
-		"name"		=> "group_embedded",
-		"default"	=> "none",
-	       	"title" => _("Embedded Gallery"),
-		"desc" => _("Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."),
-	),
-	"geeklog_dir" => array(
-		"prompt" => _("GeekLog Dir"),
-		"optional" => 1,
-		"desc" => _("If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"),
-		"attrs" => array("size" => 80),
-		"type" => "text",
-		"value" => ""
-	),
-	"group_embedded_end"	=> array (
-			"type"	=> "group_end"
-	),
-	"group2"	=> array (
+
+	"groupToolkits"	=> array (
 		"type"		=> "group_start",
 		"name"		=> "group_toolkits",
 		"default"	=> "none",
@@ -443,8 +426,26 @@ $constants =  array_merge(
 				   90 => 90, 95 => 95, 100 => 100),
 		"value" => 90
 	),
-	"group2_end"	=> array (
+	"groupToolkits_end" => array (
 		"type"		=> "group_end",
+	),
+	"group_embedded" => array (
+		"type"		=> "group_start",
+		"name"		=> "group_embedded",
+		"default"	=> "none",
+	       	"title" => _("Embedded Gallery"),
+		"desc" => _("Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."),
+	),
+	"geeklog_dir" => array(
+		"prompt" => _("GeekLog Dir"),
+		"optional" => 1,
+		"desc" => _("If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"),
+		"attrs" => array("size" => 80),
+		"type" => "text",
+		"value" => ""
+	),
+	"group_embedded_end"	=> array (
+			"type"	=> "group_end"
 	),
 	"group3"	=> array (
 		"type"		=> "group_start",
@@ -524,6 +525,18 @@ $constants =  array_merge(
 		"desc" => sprintf(_("The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
 		'unzip', '<i>/usr/local/bin/unzip</i>', '<i>c:\\bin\\unzip.exe</i>'),
 		"value" => locateFile("unzip"),
+		"must-be-file" => 1,
+		"must-be-executable" => 1,
+		"optional" => 1,
+		"filename" => 1,
+		"type" => "text",
+		"attrs" => array("size" => 50)
+	),
+	"rar" => array(
+		"prompt" => "rar",
+		"desc" => sprintf(_("The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
+			'rar', '<i>/usr/local/bin/rar</i>', '<i>c:\\bin\\rar.exe</i>'),
+		"value" => locateFile("rar"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
 		"optional" => 1,

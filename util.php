@@ -325,6 +325,21 @@ function exec_internal($cmd) {
 	return array($results, $status);
 }
 
+function exec_wrapper($cmd) {
+	global $gallery;
+
+	list($results, $status) = exec_internal($cmd);
+
+	if ($status == $gallery->app->expectedExecStatus) {
+		return 0;
+	} else {
+		if ($results) {
+			echo gallery_error(join("<br>", $results));
+		}
+		return 1;
+	}
+}
+
 function getDimensions($file, $regs=false) {
 	global $gallery;				
 
@@ -523,6 +538,9 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 	}
 	$target=min($target, max($regs[0],$regs[1]));
 
+	/* Jens Tkotz, 02.10.2004.
+	** Lines with $min_filesize commented because never used.
+	*/
 	if ($target_fs == 0) {
 		compress_image($src, $out, $target, $gallery->app->jpegImageQuality, $keepProfiles);
 	} else {
@@ -530,7 +548,7 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 		$max_quality=$gallery->app->jpegImageQuality;
 		$min_quality=5;
 		$max_filesize=$filesize;
-		$min_filesize=0;
+		//$min_filesize=0;
 		if (!isset($quality)) {
 			$quality=$gallery->album->fields['last_quality'];
 		}
@@ -547,14 +565,14 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 			$filesize= (int) fs_filesize($out) >> 10;
 			if ($filesize < $target_fs) {
 				$min_quality=$quality;
-				$min_filesize=$filesize;
+				//$min_filesize=$filesize;
 			} else if ($filesize > $target_fs){
 				$max_quality=$quality;
 				$max_filesize=$filesize;
 			} else if ($filesize == $target_fs){
 				$min_quality=$quality;
 				$max_quality=$quality;
-				$min_filesize=$filesize;
+				// $min_filesize=$filesize;
 				$max_filesize=$filesize;
 			}
 			$quality=($max_quality + $min_quality)/2;
@@ -781,13 +799,10 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
    switch($gallery->app->graphics)
    {
    case "ImageMagick":
-      $err = exec_wrapper(ImCmd("composite", $args));
+      exec_wrapper(ImCmd("composite", $args));
       break;
    case "NetPBM":
-      $err = exec_wrapper(toPnmCmd($src) .
-                          " | " .
-                          NetPBM("pnmcomp", $args) .
-                          " | " . fromPnmCmd($out));
+      exec_wrapper(toPnmCmd($src) ." | ". NetPBM("pnmcomp", $args) ." | " . fromPnmCmd($out));
       break;
    }
 
@@ -887,7 +902,7 @@ function rotate_image($src, $dest, $target, $type) {
 				$args = '';
 			}		
 
-			$err = exec_wrapper(toPnmCmd($src) . ' | ' .
+			exec_wrapper(toPnmCmd($src) . ' | ' .
 					    NetPBM('pnmflip', $args) .
 					    $args2 .
 					    ' | ' . fromPnmCmd($out));	
@@ -917,7 +932,7 @@ function rotate_image($src, $dest, $target, $type) {
 			    $im_cmd = '';
 			}
 			
-			$err = exec_wrapper(ImCmd('convert', "$im_cmd $srcFile $outFile"));
+			exec_wrapper(ImCmd('convert', "$im_cmd $srcFile $outFile"));
 			break;
 		default:
 			if (isDebugging())
@@ -951,7 +966,7 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 	switch($gallery->app->graphics)
 	{
 	case "NetPBM":
-		$err = exec_wrapper(toPnmCmd($src) .
+		exec_wrapper(toPnmCmd($src) .
 				" | " .
 				NetPBM("pnmcut") .
 				" $x $y $width $height" .
@@ -961,7 +976,7 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 	case "ImageMagick":
 		$srcFile = fs_import_filename($src);
 		$outFile = fs_import_filename($out);
-		$err = exec_wrapper(ImCmd("convert", "-crop " .
+		exec_wrapper(ImCmd("convert", "-crop " .
 				$width ."x". $height ."+". $x ."+". $y .
 				" $srcFile $outFile"));
 		break;
@@ -1080,21 +1095,6 @@ function ImCmd($cmd, $args = "") {
 	$cmd = fs_import_filename($gallery->app->ImPath . "/$cmd");
 	$cmd .= " $args";
 	return $cmd;
-}
-
-function exec_wrapper($cmd) {
-	global $gallery;
-
-	list($results, $status) = exec_internal($cmd);
-
-	if ($status == $gallery->app->expectedExecStatus) {
-		return 0;
-	} else {
-		if ($results) {
-			echo gallery_error(join("<br>", $results));
-		}
-		return 1;
-	}
 }
 
 function getImagePath($name, $skinname='') {
@@ -1418,6 +1418,9 @@ function makeGalleryUrl($target, $args=array()) {
 	/* Needed for phpBB2 */
 	global $userdata;
 	global $board_config;
+	
+	/* Needed for Mambo */
+	global $MOS_GALLERY_PARAMS;
 
 	if( isset($GALLERY_EMBEDDED_INSIDE)) {
                 switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
@@ -1649,7 +1652,6 @@ function addUrlArg($url, $arg) {
 		return "$url?$arg";
 	}
 }
-
 
 function getNextPhoto($idx, $album=NULL) {
 	global $gallery;
@@ -2061,77 +2063,174 @@ function ordinal($num=1)
 	return "$val" . $ords[$num];
 }
 
-function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fields=array(), $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0) {
+function printMetaData($image_info) {
+	// Print meta data
+	print "<table border=\"1\">\n";
+	$row = 0;
+	foreach ($image_info as $info) {
+		print "<tr>";
+		if ($row == 0) {
+			$keys = array_keys($info);
+			foreach ($keys as $key) {
+				print "<th>$key</th>";
+			}
+			print "</tr>\n<tr>";
+		}
+		
+		foreach ($keys as $key) {
+			print "<td>".$info[$key]."</td>";
+		}
+		$row++;
+		print "</tr>\n";
+	}
+	print "</table>\n";
+}	
+function getExtension($filename) {
+	$ext = ereg_replace(".*\.([^\.]*)$", "\\1", $filename);
+	$ext = strtolower($ext);
+	
+	return $ext;
+}
+
+function acceptableArchiveList() {
+	return array('zip', 'rar', 'cab', 'arj', 'lzh', 'tar', 'gz', 'bz2', 'ace', 'uue', 'jar', 'z');
+}
+
+function AcceptableArchive($ext) {
+	if (in_array($ext, acceptableArchiveList())) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/* This function checks wether and archive can be handled via Gallery
+** It just uses the filename extension.
+** If the extension is handable the decompressing tool is returned
+** This was done, because e.g. zipfiles can be handled by rar also.
+** So zipinfo and unzip are not needed.
+*/
+function canHandleArchive($ext) {
+	global $gallery;
+
+	switch ($ext) {
+		case 'zip':
+			if ($gallery->app->feature["zip"] == 1) {
+				return 'zip';
+			}
+
+		case 'rar':
+		case 'cab':
+		case 'arj':
+		case 'lzh':
+		case 'tar':
+		case 'gz' :
+		case 'bz2':
+		case 'ace':
+		case 'uue':
+		case 'jar':
+		case 'z':
+			if (!empty($gallery->app->rar)) {
+				return 'rar';
+			}
+		break;
+
+		default:
+			return false;
+		break;
+	}
+}
+
+function getArchiveFileNames($archive, $ext) {
+	global $gallery;
+
+	$cmd="";
+	$files=array();
+	
+	switch (canHandleArchive($ext)) {
+		case 'zip':
+			$cmd = fs_import_filename($gallery->app->zipinfo, 1) ." -1 ". fs_import_filename($archive, 1);
+		break;
+
+		case 'rar':
+			$cmd = fs_import_filename($gallery->app->rar, 1) ." lb ". fs_import_filename($archive, 1);
+		break;
+	}
+	
+	list($files, $status) = exec_internal($cmd);
+
+	if (!empty($files)) {
+		sort($files);
+	}
+
+	return $files;
+}
+
+/* extract a file into Gallery temp dir */
+function extractFileFromArchive($archive, $ext, $file) {
+	global $gallery;
+
+	$cmd_pic_path = str_replace("[", "\[", $file);
+	$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
+	
+	$tool=canHandleArchive($ext);
+	switch($tool) {
+		case 'zip':
+			$cmd = fs_import_filename($gallery->app->unzip, 1) . " -j -o " .
+				fs_import_filename($archive, 1) . ' ' . fs_import_filename($cmd_pic_path) .
+				' -d ' . fs_import_filename($gallery->app->tmpDir, 1);
+		break;
+		
+		case 'rar':
+			$cmd = fs_import_filename($gallery->app->rar, 1) ." x ".
+				fs_import_filename($archive, 1) .' -x '. fs_import_filename($cmd_pic_path) .' '.
+				fs_import_filename($gallery->app->tmpDir, 1);
+		break;
+	}
+	exec_wrapper($cmd);
+}
+
+function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fields=array(), $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0) {
 	global $gallery;
 	global $temp_files;
-	if (!strcmp($tag, "zip")) {
-		if (!$gallery->app->feature["zip"]) {
-			processingMsg(sprintf(_("Skipping %s (ZIP support not enabled)"), $name));
+	
+	if (acceptableArchive($ext)) {
+		$tool=canHandleArchive($ext);
+		if (!empty($tool)) {
+			processingMsg(sprintf(_("Skipping %s (%s support not enabled)"), $name, $ext));
 			return;
 		}
-		/* Figure out what files we can handle */
-		list($files, $status) = exec_internal(
-			fs_import_filename($gallery->app->zipinfo, 1) . " -1 " . fs_import_filename($file, 1));
-		sort($files);
-		// Get meta data
+
+		/* Figure out what files we can handle.
+		** Put all Filenames into $files.
+		*/
+		$files=getArchiveFileNames($file, $ext);
+
+		/* Get meta data */
+
 		$image_info = array();
 		foreach ($files as $pic_path) {
 			$pic = basename($pic_path);
 			$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
 			$tag = strtolower($tag);
 			if (!strcmp($tag, "csv")) {
-				$cmd_pic_path = str_replace("[", "\[", $pic_path); 
-				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
-				exec_wrapper(fs_import_filename($gallery->app->unzip, 1) .
-					     " -j -o " .
-					     fs_import_filename($file, 1) .
-					     ' ' .
-					     fs_import_filename($cmd_pic_path) .
-					     ' -d ' .
-					     fs_import_filename($gallery->app->tmpDir, 1));
-
+				extractFileFromArchive($file, $ext, $pic_path);
 				$image_info = array_merge($image_info, parse_csv($gallery->app->tmpDir . "/$pic",";"));
 			}
 		}
 
 		if ($gallery->app->debug == "yes") {
-			// Print meta data
-			print "<table border=\"1\">\n";
-			$row = 0;
-			foreach ($image_info as $info) {
-				print "<tr>";
-				if ($row == 0) {
-					$keys = array_keys($info);
-					foreach ($keys as $key) {
-						print "<th>$key</th>";
-					}
-					print "</tr>\n<tr>";
-				}
-				foreach ($keys as $key) {
-					print "<td>".$info[$key]."</td>";
-				}
-				$row++;
-				print "</tr>\n";
-			}
-			print "</table>\n";
+		printMetaData($image_info);
 		}
 
 		foreach ($files as $pic_path) {
 			$pic = basename($pic_path);
-			$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
-			$tag = strtolower($tag);
+			$tag = getExtension($pic);
+			if (acceptableFormat($tag) || acceptableArchive($tag)) {
+				extractFileFromArchive($file, $ext, $pic_path);
 
-		 	if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
-				$cmd_pic_path = str_replace("[", "\[", $pic_path); 
-				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
-				exec_wrapper(fs_import_filename($gallery->app->unzip, 1) . 
-					     " -j -o " .
-					     fs_import_filename($file, 1) .
-					     ' ' .
-					     fs_import_filename($cmd_pic_path) .
-					     ' -d ' .
-					     fs_import_filename($gallery->app->tmpDir, 1));
-					     
+				/* Now process the metadates. */
+
 				$extra_fields = array();
 				// Find in meta data array
 				$firstRow = 1;
@@ -2140,30 +2239,29 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				$captionMetaFields = array("Caption", "Title", "Description", "Persons");
 				foreach ( $image_info as $info ) {
 					if ($firstRow) {
-						// Find the name of the file name field
+					// Find the name of the file name field
 						foreach (array_keys($info) as $currKey) {
 							if (eregi("^\"?file\ ?name\"?$", $currKey)) {
-								$fileNameKey = $currKey;
-							}
+							$fileNameKey = $currKey;
 						}
-						$firstRow = 0;
+					}
+					$firstRow = 0;
 					}
 					if ($info[$fileNameKey] == $pic) {
 						// Loop through fields
 						foreach ($captionMetaFields as $field) {
-							// If caption isn't populated and current field is
-							if (!strlen($caption) && strlen($info[$field])) {
-								$caption = $info[$field];
-							}
+						// If caption isn't populated and current field is
+						if (!strlen($caption) && strlen($info[$field])) {
+							$caption = $info[$field];
 						}
-						$extra_fields = $info;
+					}
+					$extra_fields = $info;
 					}
 				}
-					     /*
-					      Don't use the second argument for $cmd_pic_path, because it is
-					      already quoted.
-					     */
 
+				/*
+				** Don't use the second argument for $cmd_pic_path, because it is already quoted.
+				*/
 				processNewImage($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY);
 				fs_unlink($gallery->app->tmpDir . "/$pic");
 			}
@@ -2172,7 +2270,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 		// remove %20 and the like from name
 		$name = urldecode($name);
 		// parse out original filename without extension
-		$originalFilename = eregi_replace(".$tag$", "", $name);
+		$originalFilename = eregi_replace(".$ext$", "", $name);
 		// replace multiple non-word characters with a single "_"
 		$mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
 
@@ -2192,7 +2290,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 		}
 	
 		set_time_limit($gallery->app->timeLimit);
-		if (acceptableFormat($tag)) {
+		if (acceptableFormat($ext)) {
 
 		        /*
 			 * Move the uploaded image to our temporary directory
@@ -2240,7 +2338,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 			if (!$extra_fields) {
 			    $extra_fields=array();
 			}
-			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $extra_fields, $gallery->user->uid, NULL, $wmName, $wmAlign, $wmAlignX, $wmAlignY);
+			$err = $gallery->album->addPhoto($file, $ext, $mangledFilename, $caption, "", $extra_fields, $gallery->user->uid, NULL, $wmName, $wmAlign, $wmAlignX, $wmAlignY);
 			if ($err) {
 				processingMsg(gallery_error($err));
 				processingMsg("<b>". sprintf(_("Need help?  Look in the  %s%s FAQ%s"),
@@ -2249,8 +2347,7 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 				    '</a>')."</b>");
 			}
 		} else {
-			processingMsg(sprintf(_("Skipping %s (can't handle %s format)"),
-						$name, $tag));
+			processingMsg(sprintf(_("Skipping %s (can't handle %s format)"), $name, $ext));
 		}
 	}
 }
@@ -2415,7 +2512,7 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 	
 	switch($gallery->app->graphics)	{
 		case "NetPBM":
-			$err = exec_wrapper(toPnmCmd($src) .
+			exec_wrapper(toPnmCmd($src) .
 				(($target > 0) ? (' | ' .NetPBM('pnmscale',
 				" -xysize $target $target")) : '')
 				. ' | ' . fromPnmCmd($out, $quality));
@@ -2432,7 +2529,7 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 			break;
 		case "ImageMagick":
 			/* Preserve comment, EXIF data if a JPEG if $keepProfiles is set. */
-			$err = exec_wrapper(ImCmd('convert', "-quality $quality "
+			exec_wrapper(ImCmd('convert', "-quality $quality "
 					. ($target ? "-size ${target}x${target} " : '')
 					. ($keepProfiles ? ' ' : ' +profile \'*\' ')					
 					. $srcFile
@@ -2748,7 +2845,7 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 			}
 	            }
 	       }
-	       $done = @fgets($fp, 1024);
+	       @fgets($fp, 1024);
 	       // close socket
 	       @fclose($fp);
 	}
@@ -2859,6 +2956,8 @@ Gallery @ %s Administrator.");
 function available_skins($description_only=false) {
 
 	global $gallery;
+	$version="";
+	$last_update="";
 
 	if (isset($gallery->app->photoAlbumURL)) {
 		$base_url = $gallery->app->photoAlbumURL;

@@ -1,6 +1,21 @@
+2004-10-02  Jens A. Tkotz <jens@peino.de>  1.4.5-cvs-b221
+
+	* New: Added rar support. This means Gallery can now handle following archive formats:
+		'zip', 'rar', 'cab', 'arj', 'lzh', 'tar', 'gz', 'bz2', 'ace', 'uue', 'jar', 'z'
+
+	* New: Added archive handling functions.
+
+	* Change: Added some Comments in save_photos and adjust to rar support.
+
+	* Change: Replaced some
+			$url = eregi_replace("^[[:space:]]+", "", $url);
+		with	$url = ltrim($url)
+
+	* Change: removed some unused vars.
+
 2004-10-01  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.5-cvs-b212
 
-	* index.php: Added "rss.php" to $safe_to_include
+	* Change: index.php: Added "rss.php" to $safe_to_include
 
 2004-09-27  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b211
 
