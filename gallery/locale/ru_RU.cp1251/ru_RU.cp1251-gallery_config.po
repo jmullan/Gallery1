@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_4
+# Version: 1_4_4-u1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-08-03 14:45+0200\n"
-"PO-Revision-Date: 2004-05-11 01:35+0600\n"
+"POT-Creation-Date: 2004-08-12 16:53+0200\n"
+"PO-Revision-Date: 2004-08-04 23:09+0600\n"
 "Last-Translator: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "Language-Team: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "MIME-Version: 1.0\n"
@@ -36,9 +36,9 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../errors/configure_help.php:2
-#, fuzzy, php-format
+#, php-format
 msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
-msgstr "Если у вас возникают проблемы, вы можете найти подсказку на %s странице помощи галереи%s."
+msgstr "Если вы испытываете проблемы, вы можете найти подсказку на %sстранице помощи галереи%s."
 
 #
 #: ../errors/reconfigure.php:10 ../errors/reconfigure.php:16
@@ -56,7 +56,6 @@ msgstr "Настройки вашей галереи были сконфигурированы в старой версии галереи и 
 msgid "Launch the %sConfiguration Wizard%s."
 msgstr "Запустить %sмастер конфигурации%s."
 
-#
 #: ../errors/unconfigured.php:10
 msgid "Gallery Configuration Error"
 msgstr "Ошибка конфигурации галереи"
@@ -67,29 +66,28 @@ msgid "Gallery has not been configured!"
 msgstr "Галерея не была сконфигурирована!"
 
 #: ../errors/unconfigured.php:20
-#, fuzzy
 msgid "Gallery must be configured before you can use it."
-msgstr "Вы должны устранить их прежде чем вы сможете продолжить."
+msgstr "Галерея должна быть сконфигурирована до того как вы сможете ее использовать."
 
 #: ../errors/unconfigured.php:25
 msgid "1."
-msgstr ""
+msgstr "1."
 
 #: ../errors/unconfigured.php:26
 msgid "Create an empty file .htaccess and an empty file config.php"
-msgstr ""
+msgstr "Создайте пустой файл .htaccess и пустой файл config.php"
 
 #: ../errors/unconfigured.php:28
 msgid "2."
-msgstr ""
+msgstr "2."
 
 #: ../errors/unconfigured.php:29
 msgid "Create an albums folder for your pictures and movies."
-msgstr ""
+msgstr "Создайте каталог альбомов для ваших изображений и фильмов."
 
 #: ../errors/unconfigured.php:32
 msgid "Make sure that both files and the folder are read and writeable for your webserver !"
-msgstr ""
+msgstr "Убедитесь, что как файлы так и каталог доступны на чтение и запись вашим веб сервером!"
 
 #
 #: ../errors/unconfigured.php:37
@@ -109,7 +107,6 @@ msgstr "Галерея: Мастер конфигурации: Шаг %d"
 msgid "This is the Gallery system check page."
 msgstr "Это контрольная страница системы галереи."
 
-#
 #: ../setup/check.inc:32
 msgid "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably."
 msgstr "Эта страница подтвердит вашу установку, чтобы убедиться, что вы имеете все необходимые компоненты и разрешения в этой системе и что все сконфигурировано корректно."
@@ -155,7 +152,6 @@ msgstr "Предупреждение"
 msgid "Failed"
 msgstr "Неудачно!"
 
-#
 #: ../setup/check.inc:151
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr "Многоязычный режим"
@@ -415,17 +411,16 @@ msgid "%sClick here%s to see more details"
 msgstr "%sЩелкните здесь%s чтобы увидеть подробности "
 
 #: ../setup/check_versions.php:71
-#, fuzzy, php-format
+#, php-format
 msgid "One file is missing, corrupt or older than expected."
 msgid_plural "%d files are missing, corrupt or older than expected."
-msgstr[0] "%s отсутствует, поврежден или версия старее чем ожидалось."
-msgstr[1] "%s отсутствует, поврежден или версия старее чем ожидалось."
-msgstr[2] ""
+msgstr[0] "%d отсутствует, поврежден или версия старее чем ожидалось."
+msgstr[1] "%d отсутствуют, повреждены или версия старее чем ожидалось."
+msgstr[2] "%d отсутствуют, повреждены или версия старее чем ожидалось."
 
 #: ../setup/check_versions.php:73 ../setup/check_versions.php:104
-#, fuzzy
 msgid "All files okay."
-msgstr "%s соответсвует версии."
+msgstr "Все файлы в норме."
 
 #: ../setup/check_versions.php:80
 #, php-format
@@ -433,12 +428,12 @@ msgid "There are problems with the following files.  Please correct them before 
 msgstr "Имеются проблемы со следующими файлами. Пожалуйста решите эту проблему перед настройкой %s."
 
 #: ../setup/check_versions.php:102
-#, fuzzy, php-format
+#, php-format
 msgid "One file is more recent than expected."
 msgid_plural "%d files are more recent than expected."
-msgstr[0] "%s новее чем ожидалось."
-msgstr[1] "%s новее чем ожидалось."
-msgstr[2] ""
+msgstr[0] "%d файл новее чем ожидалось."
+msgstr[1] "%d файла новее чем ожидалось."
+msgstr[2] "%d файлов новее чем ожидалось."
 
 #: ../setup/check_versions.php:112
 #, php-format
@@ -446,17 +441,16 @@ msgid "The following files are more up-to-date than expected for this version of
 msgstr "Следующие файлы новее чем ожидалось для этой версии %s. Если вы используете код pre-release, то все нормально."
 
 #: ../setup/check_versions.php:130
-#, fuzzy, php-format
+#, php-format
 msgid "One file is up-to-date."
 msgid_plural "%d files are up-to-date."
-msgstr[0] "%s соответсвует версии."
-msgstr[1] "%s соответсвует версии."
-msgstr[2] ""
+msgstr[0] "%d файл соответсвует версии."
+msgstr[1] "%d файла соответсвуют версии."
+msgstr[2] "%d файлов соответсвуют версии."
 
 #: ../setup/check_versions.php:132
-#, fuzzy
 msgid "No files are up-to-date."
-msgstr "Следующие файлы обновлены."
+msgstr "Нет обновленых файлов."
 
 #: ../setup/check_versions.php:138
 msgid "The following files are up-to-date."
@@ -471,7 +465,6 @@ msgstr "неизвестный"
 msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
 msgstr "Галерея предпочитает NetPBM версии 9.9 и выше. Вы можете установить уже готовые испоняемые файлы достаточные для галереи со %sстраницы загрузки галереи%s, либо самим откомпилировать и установить целый пакет NetPBM с %sсайта NetPBM%s."
 
-#
 #: ../setup/config_data.inc:67 ../setup/config_data.inc:77
 #: ../setup/config_data.inc:650 ../setup/confirm.inc:370
 msgid "Note:"
@@ -549,18 +542,16 @@ msgid "The <b>exec()</b> function is disabled on your server.  Gallery will not 
 msgstr ""
 
 #: ../setup/config_data.inc:132
-#, fuzzy
 msgid "Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."
-msgstr "Файл <b>.htaccess</b> позволяет галереи устанавливать специальный режим конфигурации для приложений. Управлять этим может только владелец вебсервера, что не для всех возможно, чтобы это изменить. Если это не работает, то в этом случае возникают основные недостатки - нельзя загружать файлы > 2Мб (например, большие ZIP файлы) и исключается возможность использовать <b>mod_rewrite</b> (см. ниже)."
+msgstr "Файл <b>.htaccess</b> позволяет галереи устанавливать специальный режим конфигурации для приложений. Не каждый имеет возможность для корректировки, управлять этим может только владелец веб сервера. Если это нельзя сделать, то основным недостатком будет отсутствие возможности загружать файлы > 2Мб (например, большие ZIP файлы или фильмы)."
 
 #: ../setup/config_data.inc:134
-#, fuzzy
 msgid "Apache is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:"
-msgstr "Apache не обрабатывает ваш <b>.htaccess</b> файл. Попробуйте ввести следующие строки в файл <b>httpd.conf</b> вашего вебсервера:"
+msgstr "Apache не обрабатывает строки 'php_value' в вашем <b>.htaccess</b> файле. Попробуйте ввести следующие строки в файл <b>httpd.conf</b> вашего веб сервера:"
 
 #: ../setup/config_data.inc:138
 msgid "If you are running PHP in CGI mode, this message is unavoidable."
-msgstr ""
+msgstr "Если ваш PHP работает в режиме CGI, это сообщение неизбежно."
 
 #: ../setup/config_data.inc:143
 #, php-format
@@ -570,11 +561,11 @@ msgstr "Проверьте не включен ли %smagic quotes%s в PHP вашего сервера. Если он в
 #: ../setup/config_data.inc:147
 #, php-format
 msgid "Magic quotes are on.  Your webserver administrator can turn them off by putting %s in your <b>php.ini</b> file."
-msgstr "Magic quotes включен. Администратор вашего вебсервера может его выключить установив%s в вашем файле <b>php.ini</b>."
+msgstr "Magic quotes включен. Администратор вашего веб сервера может его выключить установив%s в вашем файле <b>php.ini</b>."
 
 #: ../setup/config_data.inc:151
 msgid "Check to see if your webserver is compiled with <b>mod_rewrite</b>.  This Apache module allows Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."
-msgstr "Проверьте откомпилирован ли ваш вебсервер с <b>mod_rewrite</b>. Этот модуль Apache позволяет галереи использовать короткие URL, что намного легче читается и хорошо смотрится когда вы пересылаете веб-ссылку вашим родственникам. Но это не настолько важная функция."
+msgstr "Проверьте откомпилирован ли ваш веб сервер с <b>mod_rewrite</b>. Этот модуль Apache позволяет галереи использовать короткие URL, что намного легче читается и хорошо смотрится когда вы пересылаете веб-ссылку вашим родственникам. Но это не настолько важная функция."
 
 #: ../setup/config_data.inc:153
 msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: "
@@ -586,7 +577,7 @@ msgstr "Проверьте установлен ли пакет NetPBM позволяющий манипулировать изображе
 
 #: ../setup/config_data.inc:161
 msgid "I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: "
-msgstr "Я не могу найти NetPBM. Если он был установлен, но не в пользовательском каталоге вебсервера&#8212;на следующей странице вы можете указать путь к NetPBM вручную. Если же он не установлен, у вас есть два варианта: "
+msgstr "Я не могу найти NetPBM. Если он был установлен, но не в пользовательском каталоге веб сервера&#8212;на следующей странице вы можете указать путь к NetPBM вручную. Если же он не установлен, у вас есть два варианта: "
 
 #: ../setup/config_data.inc:166
 msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page."
@@ -598,7 +589,7 @@ msgstr "Проверьте установлен ли пакет ImageMagick позволяющий манипулировать изо
 
 #: ../setup/config_data.inc:174
 msgid "I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  "
-msgstr "Я не могу найти ImageMagick. Если он был установлен, но не в пользовательском каталоге вебсервера&#8212;на следующей странице вы можете указать путь к ImageMagick вручную."
+msgstr "Я не могу найти ImageMagick. Если он был установлен, но не в пользовательском каталоге веб сервера&#8212;на следующей странице вы можете указать путь к ImageMagick вручную."
 
 #: ../setup/config_data.inc:180
 msgid "Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
@@ -607,7 +598,7 @@ msgstr "Проверьте установлен ли <b>jhead</b> позволяющий галереи изучить вставле
 #: ../setup/config_data.inc:182
 #, php-format
 msgid "I can't find <b>jhead</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."
-msgstr "Я не могу найти <b>jhead</b>. Если он был установлен, но не в пользовательском каталоге вебсервера&#8212;на следующей странице вы можете указать путь вручную. Если он не установлен, вы можете это сделать сами. Jhead - общедоступный EXIF анализатор. Исходные коды, исполняемые файлы для linux и windows можно найти на %sдомашней странице jhead%s."
+msgstr "Я не могу найти <b>jhead</b>. Если он был установлен, но не в пользовательском каталоге веб сервера&#8212;на следующей странице вы можете указать путь вручную. Если он не установлен, вы можете это сделать сами. Jhead - общедоступный EXIF анализатор. Исходные коды, исполняемые файлы для linux и windows можно найти на %sдомашней странице jhead%s."
 
 #: ../setup/config_data.inc:189
 msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."
@@ -616,7 +607,7 @@ msgstr "Проверьте установлен ли <b>jpegtran</b> позволяющий галереи выполнять по
 #: ../setup/config_data.inc:191
 #, php-format
 msgid "I can't find <b>jpegtran</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."
-msgstr "Я не могу найти <b>jpegtran</b>. Если он был установлен, но не в пользовательском каталоге вебсервера-на следующей странице вы можете указать путь вручную. Если он не установлен, вы можете это сделать сами. Jpegtran - бесплатный инструмент распространяемый Independent JPEG Group как часть <i>libjpeg</i>.Исходные коды можно найти на %sдомашней странице IJG%s. Бинарные файлы можно найти на %sсайте JPEG Club%s или в пакете <i>libjpeg</i> включенный в Linux."
+msgstr "Я не могу найти <b>jpegtran</b>. Если он был установлен, но не в пользовательском каталоге веб сервера-на следующей странице вы можете указать путь вручную. Если он не установлен, вы можете это сделать сами. Jpegtran - бесплатный инструмент распространяемый Independent JPEG Group как часть <i>libjpeg</i>.Исходные коды можно найти на %sдомашней странице IJG%s. Бинарные файлы можно найти на %sсайте JPEG Club%s или в пакете <i>libjpeg</i> включенный в Linux."
 
 #: ../setup/config_data.inc:198
 msgid "Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."
@@ -670,31 +661,29 @@ msgstr "Имя шкурки"
 msgid "Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4."
 msgstr "Выберите шкурку (skin) для галереи. У вас теперь есть широкий выбор &quot;шкурок&quot;, которые влияют на внешний вид вашей галереи. Вы можете хорошо провести время экспериментируя доступными шкурками. При выборе &quot;None&quot; будет использоваться внешний вид из версии v1.4."
 
-#
 #: ../setup/config_data.inc:253
-#, fuzzy
 msgid "Default upload method"
-msgstr "Шрифт по умолчанию"
+msgstr "Метод загрузки по умолчанию"
 
 #: ../setup/config_data.inc:254
 msgid "Which method of uploading photos should be defaulted to for users who don't specify?"
-msgstr ""
+msgstr "Какой метод загрузки фотографий должен быть выбран сразу, для тех пользователей, кто не определил его специально?"
 
 #: ../setup/config_data.inc:255
 msgid "Form-based Upload"
-msgstr ""
+msgstr "Основная форма загрузки"
 
 #: ../setup/config_data.inc:256
 msgid "Mini-Applet"
-msgstr ""
+msgstr "Мини-Апплет"
 
 #: ../setup/config_data.inc:257
 msgid "Full-Applet"
-msgstr ""
+msgstr "Полный-Апплет"
 
 #: ../setup/config_data.inc:258
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ../setup/config_data.inc:268
 msgid "Locations and URLs"
@@ -976,11 +965,9 @@ msgstr "Поисковый движок"
 msgid "Display search engine on main Gallery page?"
 msgstr "Показывать поле для поиска на главной странице галереи?"
 
-#
 #: ../setup/config_data.inc:487
-#, fuzzy
 msgid "Frame around albums"
-msgstr "Рамка вокруг макетов"
+msgstr "Рамка вокруг альбомов"
 
 #: ../setup/config_data.inc:488
 msgid "On the main page, the image representing each album has a frame around it.  The following styles are available:"
@@ -992,14 +979,14 @@ msgid "Optional tools"
 msgstr "Дополнительные инструмнтальные средства"
 
 #: ../setup/config_data.inc:505 ../setup/config_data.inc:517
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
-msgstr "Путь к <b>unzip</b>. Это не обязательно, если у вас нет в наличии этого файла, то особо не беспокойтесь об этом."
+msgstr "Путь к <b>%s</b>. Например: %s или %s. Это не обязательно, если у вас нет в наличии этого файла, то особо не беспокойтесь об этом."
 
 #: ../setup/config_data.inc:529
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the <b>jhead</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
-msgstr "Путь к анализатору <b>jhead</b> EXIF. Это не обязательно, если у вас нет в наличии этого файла, то особо не беспокойтесь об этом. Например: %s или %s"
+msgstr "Путь к анализатору <b>jhead</b> EXIF. Например: %s или %s. Это не обязательно, если у вас нет в наличии этого файла, то особо не беспокойтесь об этом."
 
 #
 #: ../setup/config_data.inc:540
@@ -1011,9 +998,9 @@ msgid "The EXIF data extracted from JPEG files can be cached after it is read th
 msgstr "EXIF данные извлеченные из JPEG файлов могут быть кешированы после того как будут прочитаны первый раз. Если вы кешируете эти данные, то может так случиться, что файл данных альбома получиться слишком большой, что замедлит просмотр ваших альбомов. Но, если не кешировать эти данные, то они будут извлекаться каждый раз после просмотра пользователем свойств фотографии, что также может замедлять просмотр."
 
 #: ../setup/config_data.inc:547
-#, fuzzy, php-format
+#, php-format
 msgid "The filesystem path to the <b>jpegtran</b> utility.  E.g. %s or %s.  This is optional so if you don't have it, don't worry about it too much."
-msgstr "Путь к утилите <b>jpegtran</b>. Это не обязательно, если у вас нет в наличии этой утилиты, то особо не беспокойтесь об этом. Например: %s или %s"
+msgstr "Путь к утилите <b>jpegtran</b>. Например: %s или %s. Это не обязательно, если у вас нет в наличии этой утилиты, то особо не беспокойтесь об этом."
 
 #: ../setup/config_data.inc:570
 msgid "Languages and locales"
@@ -1027,7 +1014,7 @@ msgstr "Встроенный язык"
 #: ../setup/config_data.inc:575
 #, php-format
 msgid "This is the language you will see as %s, and what users will see if no other preference is set."
-msgstr "Это язык, который вы увидите как %s, а также пользователи у которых никаких возможностей не установлено."
+msgstr "Это язык, который вы увидите как %s, а также для пользователей у которых нет установленных настроек."
 
 #: ../setup/config_data.inc:582
 msgid "Multi language mode"
@@ -1212,29 +1199,29 @@ msgid "Enable bulk account creation"
 msgstr "Разрешить массовое создание учетных записей"
 
 #: ../setup/config_data.inc:717
-#, fuzzy
 msgid "This option allows you to create many new user accounts at one time by creating a file of new users."
 msgstr "Эта опция позволяет вам создавать сразу несколько новых учетных записей создавая файл с новыми пользователяи."
 
 #: ../setup/config_data.inc:723
+#, fuzzy
 msgid "This is allows the &quot;admin&quot; account to get email whenever a comment is added to any album"
-msgstr ""
+msgstr "Позволяет получать на e-mail учетной записи &quot;admin&quot; сообщение, всякий раз, при добавлении комментария в любом альбоме"
 
 #: ../setup/config_data.inc:724
 msgid "Admin comment email"
-msgstr ""
+msgstr "Комментарии на email администратора"
 
 #: ../setup/config_data.inc:729
 msgid "This is allows the &quot;admin&quot; account to get email whenever a change is made to any album"
-msgstr ""
+msgstr "Позволяет получать на e-mail учетной записи &quot;admin&quot; сообщение, всякий раз, когда были сделаны изменения в любом альбоме"
 
 #: ../setup/config_data.inc:730
 msgid "Admin Other Changes email"
-msgstr ""
+msgstr "Другие изменения на email администратора"
 
 #: ../setup/config_data.inc:736
 msgid "Admin notification of email activity"
-msgstr "Уведомлять администратора об email активности"
+msgstr "Уведомлять администратора на email об активности"
 
 #: ../setup/config_data.inc:737
 msgid "You can keep a record of every email that is sent by Gallery."
@@ -1325,7 +1312,7 @@ msgstr "Режим показа слайдов"
 
 #: ../setup/config_data.inc:789
 msgid "This allows you to set the default mode for the slideshow.  &quot;Java Applet&quot; requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. &quot;JavaScript&quot; is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."
-msgstr ""
+msgstr "Позвоялет вам установить способ показа слайдов по умолчанию. &quot;Java Applet&quot; требует от пользователя установки Java Runtime Environment в своем браузере, но имеет возможность просматривать во весь экран. &quot;JavaScript&quot; поддерживается всеми современными браузерами без дополнительных плагинов, но имеет множество ограничений в отличии от Java Applet."
 
 #: ../setup/config_data.inc:790
 msgid "Java Applet"
@@ -1432,15 +1419,15 @@ msgstr "Максимальная длина комментариев"
 
 #: ../setup/config_data.inc:858
 msgid "Enter a suitable value for the maximum length of comments to prevent abuse. Gallery limits comments to no more than 1000 characters.  This value will be used if less than 1000."
-msgstr ""
+msgstr "Введите допустимое значение для максимальной длины комментариев, чтобы предотвратить злоупотребления. Галерея ограничивает ввод комментариев не более чем 1000 символами. Это значение будет использоваться, если не превышает 1000."
 
 #: ../setup/config_data.inc:864
 msgid "Can everybody see a Comments overview"
-msgstr ""
+msgstr "Возможность любому видеть обзор комментариев"
 
 #: ../setup/config_data.inc:865
 msgid "Do you want to allow everybody to see a complete overview of all Comments of an Album. Set this to &quot;no&quot; if only admin and owners can use this feature."
-msgstr ""
+msgstr "Позволяет любому видеть полный обзор всех комментариев. Установите &quot;нет&quot;, если только администратор и владельцы могут использовать эту функцию."
 
 #: ../setup/config_data.inc:877
 msgid "Technical"
@@ -1497,24 +1484,23 @@ msgstr "Включить режим отладки, чтобы можно было диагностировать возникающие про
 
 #: ../setup/config_data.inc:898
 msgid "Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system then you want!"
-msgstr ""
+msgstr "Примечание: Не оставляйте этот режим включенным в эксплуатируемой системе! Иначе вы даете возможность пользователям увидеть больше информации о вашей галерее и системе, чем хотели бы!"
 
 #: ../setup/config_data.inc:903
 msgid "Developer Mode"
-msgstr ""
+msgstr "Режим разработчика"
 
 #: ../setup/config_data.inc:904
 msgid "Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."
-msgstr ""
+msgstr "Включает режим разработчика, чтобы видеть все предупреждения и уведомления PHP. Включение этого режима не рекомендуется для пользователей, которые не знакомы с PHP."
 
 #: ../setup/config_data.inc:909
-#, fuzzy
 msgid "Use Syslog"
-msgstr "Использовать %s"
+msgstr "Использовать Syslog"
 
 #: ../setup/config_data.inc:910
 msgid "Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"
-msgstr ""
+msgstr "Отчет о начале и окончании сеансов пользователей, и о серьезных ошибках через syslog (UNIX) или cистемный журнал событий (Windows)"
 
 #: ../setup/config_data.inc:915
 #, php-format
@@ -1545,65 +1531,58 @@ msgstr "Это переменная сессии используется для всей информации о сеансе галереи.
 
 #: ../setup/config_data.inc:940
 msgid "RSS Publisher"
-msgstr ""
+msgstr "RSS издатель"
 
 #: ../setup/config_data.inc:941
 msgid "Options for the Gallery RSS Publisher"
-msgstr ""
+msgstr "Настройки для RSS издателя галереи"
 
 #: ../setup/config_data.inc:944
 msgid "Enable RSS Generator"
-msgstr ""
+msgstr "Включить генератор RSS"
 
 #: ../setup/config_data.inc:945
 msgid "Enable or Disable the Gallery RSS Generator"
-msgstr ""
+msgstr "Включить или отключить генератор RSS галереи"
 
-#
 #: ../setup/config_data.inc:947 ../setup/config_data.inc:988
 #: ../setup/config_data.inc:996 ../setup/config_data.inc:1004
-#, fuzzy
 msgid "Yes"
-msgstr "да"
+msgstr "Да"
 
-#
 #: ../setup/config_data.inc:948 ../setup/config_data.inc:989
 #: ../setup/config_data.inc:997 ../setup/config_data.inc:1005
-#, fuzzy
 msgid "No"
-msgstr "Примечание"
+msgstr "Нет"
 
 #: ../setup/config_data.inc:952
 msgid "RSS Content"
-msgstr ""
+msgstr "Содержимое RSS"
 
 #: ../setup/config_data.inc:953
 msgid "Specifies which information is to be included in your RSS feed."
-msgstr ""
+msgstr "Определяет какая информация должна быть включена в вашу RSS подачу."
 
 #: ../setup/config_data.inc:955
 msgid "Basic information only"
-msgstr ""
+msgstr "Только основная информация"
 
-#
 #: ../setup/config_data.inc:956
-#, fuzzy
 msgid "Album highlight"
-msgstr "Показ слайдов альбома"
+msgstr "Обложка альбома"
 
 #: ../setup/config_data.inc:957
 msgid "All image thumbnails"
-msgstr ""
+msgstr "Все макеты фотографий"
 
 #: ../setup/config_data.inc:958
 msgid "All image thumbnails and captions"
-msgstr ""
+msgstr "Все макеты фотографий и заголовки"
 
 #
 #: ../setup/config_data.inc:962
-#, fuzzy
 msgid "RSS Highlight"
-msgstr "размер обложки"
+msgstr "RSS обложка"
 
 #: ../setup/config_data.inc:963
 msgid "Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."
@@ -1619,7 +1598,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:977
 msgid "Visible Albums Only"
-msgstr ""
+msgstr "Только видимые альбомы"
 
 #: ../setup/config_data.inc:978
 msgid "Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."
@@ -1627,17 +1606,15 @@ msgstr ""
 
 #: ../setup/config_data.inc:980
 msgid "Display Visible Albums Only"
-msgstr ""
+msgstr "Отображать только видимые альбомы"
 
-#
 #: ../setup/config_data.inc:981
-#, fuzzy
 msgid "Display Hidden Albums"
-msgstr "Показывать счетчик кликов внутри альбомов?"
+msgstr "Отображать скрытые альбомы"
 
 #: ../setup/config_data.inc:985
 msgid "Use dc:date"
-msgstr ""
+msgstr "Использовать dc:date"
 
 #: ../setup/config_data.inc:986
 msgid "(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."
@@ -1645,7 +1622,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:993
 msgid "Use Big Photo"
-msgstr ""
+msgstr "Использовать большое фото"
 
 #: ../setup/config_data.inc:994
 msgid "(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."
@@ -1653,7 +1630,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:1001
 msgid "Use Photo Tag"
-msgstr ""
+msgstr "Использовать фото тег"
 
 #: ../setup/config_data.inc:1002
 msgid "(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
@@ -2150,14 +2127,14 @@ msgid "documentation"
 msgstr "документация"
 
 #: ../setup/confirm.inc:42
-#, fuzzy, php-format
+#, php-format
 msgid "You must create an empty file named %s and chmod it 777 before proceeding.  See %s for more details."
-msgstr "Вы должны создать пустой файл %s и установить аттрибут 777 перед тем как продолжить. Смотри %s для подробной информации."
+msgstr "Вы должны создать пустой файл с именем %s и установить атрибут 777 перед тем как продолжить. Смотри %s для подробной информации."
 
 #: ../setup/confirm.inc:48
-#, fuzzy, php-format
+#, php-format
 msgid "File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."
-msgstr "Вы должны создать пустой файл %s и установить аттрибут 777 перед тем как продолжить. Смотри %s для подробной информации."
+msgstr "Файл %s не разрешен на запись веб сервером - установить атрибут 777 перед тем как продолжить. Смотри %s для подробной информации."
 
 #
 #: ../setup/confirm.inc:87 ../setup/confirm.inc:179 ../setup/confirm.inc:180
@@ -2268,28 +2245,27 @@ msgstr "Редактировать конфигурацию"
 msgid "Save Config"
 msgstr "Сохранить конфигурацию"
 
-#: ../setup/confirm.inc:459 ../setup/login.inc:68
+#: ../setup/confirm.inc:459 ../setup/login.inc:69
 msgid "Refresh"
-msgstr ""
+msgstr "Обновить"
 
+#
 #: ../setup/confirm.inc:461
-#, fuzzy, php-format
+#, php-format
 msgid "One error."
 msgid_plural "%d errors."
-msgstr[0] "Одна ошибка"
-msgstr[1] "Одна ошибка"
-msgstr[2] ""
+msgstr[0] "%d ошибка"
+msgstr[1] "%d ошибки"
+msgstr[2] "%d ошибок"
 
 #: ../setup/confirm.inc:461
 msgid "No errors."
-msgstr "нет ошибок."
+msgstr "Нет ошибок."
 
 #: ../setup/confirm.inc:462
-#, fuzzy
 msgid "See Details below."
-msgstr "%s. Подробности ниже."
+msgstr "Смотри подробности ниже."
 
-#
 #: ../setup/confirm.inc:477
 msgid "There are errors in your configuration."
 msgstr "Обнаружены ошибки в вашей конфигурации."
@@ -2313,14 +2289,13 @@ msgstr "Предыдущий шаг"
 
 #: ../setup/constants.inc:43 ../setup/constants.inc:153
 #: ../setup/defaults.inc:44 ../setup/defaults.inc:132
-#, fuzzy
 msgid "Previous Tab"
-msgstr "Предыдущий шаг"
+msgstr "Предыдущая таб."
 
 #: ../setup/constants.inc:44 ../setup/constants.inc:154
 #: ../setup/defaults.inc:45 ../setup/defaults.inc:133
 msgid "Next Tab"
-msgstr ""
+msgstr "Следующая таб."
 
 #
 #: ../setup/constants.inc:46 ../setup/constants.inc:156
@@ -2445,7 +2420,6 @@ msgstr "Позволяет вам проверить правильная ли версия у всех файлов вашей %s."
 msgid "Gallery Configuration"
 msgstr "Конфигурация галереи"
 
-#
 #: ../setup/frame_test.php:59
 msgid "None"
 msgstr "Ничто"
@@ -2538,7 +2512,7 @@ msgstr "Не могу проверить этот путь (нет в вашем списке open_basedir)."
 
 #: ../setup/functions.inc:471
 msgid "Without pnmcomp gallery will not be able to watermark images, except you use ImageMagick and have the composite binary installed."
-msgstr "Без pnmcomp галерея не сможет создавать изображения водяных знаков, если только вы не используете ImageMagick и установили комплексный исполняемый файл."
+msgstr "Без pnmcomp галерея не сможет создавать изображения водяных знаков, если только вы не используете ImageMagick и не установили исполняемый файл composite."
 
 #: ../setup/functions.inc:499 ../setup/functions.inc:572
 #, php-format
@@ -2562,7 +2536,7 @@ msgstr "%d из %d исполняемых файлов NetPBM установлено."
 
 #: ../setup/functions.inc:559
 msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
-msgstr ""
+msgstr "Без composite галерея не сможет создавать изображения водяных знаков, если только вы не используете NetPBM и не установили исполняемый файл pnmcomp."
 
 #: ../setup/functions.inc:588 ../setup/functions.inc:595
 #, php-format
@@ -2814,7 +2788,7 @@ msgstr "Полное имя"
 
 #: ../setup/functions.inc:1431 ../setup/functions.inc:1433
 #: ../setup/functions.inc:1437 ../setup/functions.inc:1445
-#: ../setup/login.inc:89
+#: ../setup/login.inc:90
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -2901,57 +2875,52 @@ msgstr "Обнаружена ожидаемая версия %s."
 msgid "Security violation"
 msgstr "Нарушение безопасности"
 
-#: ../setup/login.inc:34
-#, fuzzy
+#: ../setup/login.inc:35
 msgid "Please enter username and password."
-msgstr "Пожалуйста введите ваш пароль еще раз"
+msgstr "Пожалуйста введите имя пользователя и пароль."
 
-#: ../setup/login.inc:52
+#: ../setup/login.inc:53
 msgid "Invalid username or password"
-msgstr ""
+msgstr "Неверные имя или пароль"
 
-#: ../setup/login.inc:57
+#: ../setup/login.inc:58
 msgid "User is not an admin - access denied"
-msgstr ""
-
-#: ../setup/login.inc:65
-#, php-format
-msgid "Reset %s Password"
 msgstr ""
 
 #: ../setup/login.inc:66
 #, php-format
+msgid "Reset %s Password"
+msgstr "Сбросить пароль %s"
+
+#: ../setup/login.inc:67
+#, php-format
 msgid "To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;.  Once you have done that, press the refresh button below.  If you know your current admin password, please remove the &quot;%s&quot; file from the server."
 msgstr ""
 
-#
-#: ../setup/login.inc:79
-#, fuzzy, php-format
-msgid "%s configuration"
-msgstr "Конфигурация опроса"
-
 #: ../setup/login.inc:80
+#, php-format
+msgid "%s configuration"
+msgstr "Конфигурация %s"
+
+#: ../setup/login.inc:81
 msgid "You must log in as an administrator to edit this server's configuration."
-msgstr ""
+msgstr "Вы должны войти под администратором, чтобы редактировать конфигурацию этого сервера."
 
-#: ../setup/login.inc:93
-#, fuzzy
+#: ../setup/login.inc:94
 msgid "Password"
-msgstr "Пароль администратора"
-
-#
-#: ../setup/login.inc:99
-#, fuzzy
-msgid "Login"
-msgstr "Пользователям"
+msgstr "Пароль"
 
 #: ../setup/login.inc:100
-msgid "Reset"
-msgstr ""
+msgid "Login"
+msgstr "Вход"
 
 #: ../setup/login.inc:101
+msgid "Reset"
+msgstr "Сброс"
+
+#: ../setup/login.inc:102
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 #
 #: ../setup/session_test.php:47
@@ -3022,8 +2991,9 @@ msgid "Your configuration has been successfully saved!"
 msgstr "Ваша конфигурация успешно сохранена!"
 
 #: ../setup/write.inc:201
+#, fuzzy
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
-msgstr ""
+msgstr "Мы советуем вам изменить атрибуты файлов .htacces и config.php на 644 для повышения безопасности."
 
 #
 #: ../setup/write.inc:208
@@ -3137,49 +3107,3 @@ msgstr "Текстурная дереянная рамка"
 #
 #~ msgid "without donation"
 #~ msgstr "без взноса"
-
-#~ msgid "Enter a suitable value for the maximum length of comments to prevent abuse."
-#~ msgstr "Введите допустимое значение для максимальной длины комментариев, чтобы предохранить от злоупотреблений."
-
-#~ msgid "The filesystem path to the <b>zipinfo</b> binary.  This is optional so if you don't have it, don't worry about it too much."
-#~ msgstr "Путь к <b>zipinfo</b>. Это не обязательно, если у вас нет в наличии этого файла, то особо не беспокойтесь об этом."
-
-#
-#~ msgid "Gallery in Configuration Mode"
-#~ msgstr "Галерея в режиме конфигурации"
-
-#
-#~ msgid "Gallery: Configuration Mode"
-#~ msgstr "Галерея: Режим конфигурации"
-
-#
-#~ msgid "To configure gallery, run the %sConfiguration Wizard%s."
-#~ msgstr "И затем запустите %sмастер конфигурации%s"
-
-#~ msgid "If you've finished your configuration but you're still seeing this page, that's because for safety's sake we don't let you run Gallery in an insecure mode."
-#~ msgstr "Если вы закончили конфигурирование, но вы все еще видите эту страницу, это сделано для безопасности. Мы не позволяем запустить Галлерею в небузопасном режиме.  "
-
-#~ msgid "You need to switch to secure mode before you can use it.  Here's how:"
-#~ msgstr "Вам необходимо переключиться в безопасный режим до того как вы сможете использовать ее. Здесь вы увидите как это сделать:"
-
-#
-#~ msgid "Then just reload this page and all should be well."
-#~ msgstr "Затем просто перезагрузите эту страницу и все будет хорошо."
-
-#~ msgid "%s with shell access"
-#~ msgstr "%s с shell доступом"
-
-#~ msgid "/path/to/your/gallery"
-#~ msgstr "/path/to/your/gallery"
-
-#~ msgid "%s with FTP access"
-#~ msgstr "%s с FTP доступом"
-
-#~ msgid "Gallery must be configured before you can use it. First, you must put Gallery in Configuration Mode. Here's how:"
-#~ msgstr "Галерея должна быть сконфигурирована до того как вы сможете ее использовать. Сначала, вы должны установить Галерею в режим конфигурирования. Как это сделать:"
-
-#~ msgid "Don't forget to run this to make your Gallery secure!"
-#~ msgstr "Не забывайте запустить это, чтобы сделать вашу галерею безопасной!"
-
-#~ msgid "Gallery won't run if it is not in secure mode."
-#~ msgstr "Галерея не будет работать пока находится в не безопасном режиме."
