@@ -109,6 +109,7 @@ switch ($cmd) {
 		gallery_syslog("Logout by ". $gallery->session->username ." from ". $HTTP_SERVER_VARS['REMOTE_ADDR']);
 		$gallery->session->username = "";
 		$gallery->session->language = "";
+		destroyGallerySession();
 		if (!ereg("^http|^{$gallery->app->photoAlbumURL}", $return)) {
 			$return = makeGalleryHeaderUrl($return);
 		}
