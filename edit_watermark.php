@@ -30,20 +30,30 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 }
 
 $err = "";	
-if (isset($save)) {
+if (isset($save) || isset($preview)) {
         if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12))
         {
 		if (isset($wmName) && !empty($wmName)) {
 		
-	                echo "<center> ". _("Watermarking photo.")."<br/>(". _("this may take a while"). ")</center>\n";
-	                my_flush();
-	                set_time_limit($gallery->app->timeLimit);
-	                $gallery->album->watermarkPhoto($index, $wmName, "", $wmAlign,
+			if (isset($save)) {
+	                	echo "<center> ". _("Watermarking photo.")."<br/>(". _("this may take a while"). ")</center>\n";
+	                	my_flush();
+	                	set_time_limit($gallery->app->timeLimit);
+	        	        $gallery->album->watermarkPhoto($index, $wmName, "", $wmAlign,
 	                                               isset($wmAlignX) ? $wmAlignX : 0, 
 	                                               isset($wmAlignY) ? $wmAlignY : 0);
-	                $gallery->album->save();
-	                dismissAndReload();
-	                return;
+	            		$gallery->album->save();
+	               		dismissAndReload();
+	                	return;
+			}
+			else
+			{
+	        	        $gallery->album->watermarkPhoto($index, $wmName, "", $wmAlign,
+	                                               isset($wmAlignX) ? $wmAlignX : 0, 
+	                                               isset($wmAlignY) ? $wmAlignY : 0,
+	                                               1, // set as preview
+	                                               isset($previewFull) ? $previewFull : 0);
+			}
 		} else {
 			$err = _("Please select a watermark.");
 		}
@@ -63,8 +73,15 @@ doctype();
 
 <div align="center">
 <p class="popuphead"><?php echo _("Edit Watermark") ?></p>
-<p><?php echo $gallery->album->getThumbnailTag($index) ?></p>
-
+<p>
+<?php
+if (isset($preview)) {
+        echo $gallery->album->getPreviewTag($index);
+} else {
+        echo $gallery->album->getThumbnailTag($index);
+}
+?>
+</p>
 <?php 
 
 if (!empty($err)) {
@@ -80,6 +97,7 @@ include (dirname(__FILE__) .'/layout/watermarkform.inc');
 <p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
 	<input type="submit" name="save" value="<?php echo _("Save") ?>">
+	<input type="submit" name="preview" value="<?php echo _("Preview") ?>">
 	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </p>
 </form>

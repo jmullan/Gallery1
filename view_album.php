@@ -1009,7 +1009,7 @@ if ($numPhotos) {
 					   array("set_albumName" => $myAlbum->fields["name"]));
 
 				/* Watermarking support is enabled and user is allowed to watermark images/albums */
-				if (strlen($gallery->app->watermarkDir)) {
+				if (strlen($gallery->app->watermarkDir) && $myAlbum->numPhotos(1)) {
 					showChoice(_("Watermark Album"), "watermark_album.php", array("set_albumName" => $myAlbum->fields["name"]));
 				}
                                 if ($gallery->user->canViewComments($myAlbum) &&

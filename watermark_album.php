@@ -33,25 +33,35 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 if (empty($index)) {
 	$index='';
 }
+$highlightIndex = $gallery->album->getHighlight();
 
 if (!isset($recursive)) {
 	$recursive = 1;
 }
 
 $err = "";	
-if (isset($save)) {
+if (isset($save) || isset($preview)) {
 	if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12)) {
 		if (isset($wmName) && !empty($wmName)) {
-			print "<html><body>\n";
-	                echo "<center> ". _("Watermarking album.")."<br>(". _("this may take a while"). ")</center>\n";
+			if (isset($save)) {
+				print "<html><body>\n";
+	        	        echo "<center> ". _("Watermarking album.")."<br>(". _("this may take a while"). ")</center>\n";
+        	        	my_flush();
+               			set_time_limit($gallery->app->timeLimit);
+	                	$gallery->album->watermarkAlbum($wmName, "",
+					$wmAlign, $wmAlignX, $wmAlignY, $recursive);
+        	        	$gallery->album->save();
+                		dismissAndReload();
+	                	return;
+			} else {
+				// create a preview of the highlight image
+				$gallery->album->watermarkPhoto($highlightIndex, $wmName, "", $wmAlign,
+                                                       isset($wmAlignX) ? $wmAlignX : 0,
+                                                       isset($wmAlignY) ? $wmAlignY : 0,
+                                                       1, // set as preview
+                                                       isset($previewFull) ? $previewFull : 0);
 
-        	        my_flush();
-                	set_time_limit($gallery->app->timeLimit);
-	                $gallery->album->watermarkAlbum($wmName, "",
-				$wmAlign, $wmAlignX, $wmAlignY, $recursive);
-        	        $gallery->album->save();
-                	dismissAndReload();
-	                return;
+			}
 		} else {
 			$err = _("Please select a watermark.");
 		}
@@ -72,9 +82,21 @@ doctype();
 <p align="center" class="popuphead"><?php echo _("Watermark Album") ?></p>
 
 <?php
-if (!empty($err)) {
-	echo "\n<p>". gallery_error($err) . "</p>";
-}
+if (!$gallery->album->numPhotos(1)) {
+	echo "\n<p>". gallery_error(_("No items to watermark.")) . "</p>";
+} else {
+   $highlightIndex = $gallery->album->getHighlight();
+   if (isset($highlightIndex)) {
+      if (isset($preview)) {
+         echo $gallery->album->getPreviewTag($highlightIndex);
+      } else {
+         echo $gallery->album->getThumbnailTag($highlightIndex);
+      }
+   }
+
+   if (!empty($err)) {
+      echo "\n<p>". gallery_error($err) . "</p>";
+   }
    echo makeFormIntro("watermark_album.php",
                       array("name" => "theform",
                             "method" => "POST"));
@@ -85,6 +107,10 @@ if (!empty($err)) {
 <p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
 	<input type="submit" name="save" value="<?php echo _("Save") ?>">
+<?php // only allow preview if there is a highlight
+ if (isset($highlightIndex)) { ?>
+	<input type="submit" name="preview" value="<?php echo _("Preview") ?>">
+<?php } ?>
 	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </p>
 </form>
@@ -96,7 +122,7 @@ if (!empty($err)) {
 document.theform.data.focus();
 //-->
 </script>
-
+<?php } // end if numPhotos() ?>
 <?php print gallery_validation_link("watermark_album.php"); ?>
 </body>
 </html>

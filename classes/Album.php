@@ -1095,6 +1095,20 @@ class Album {
 		return $this->fields["nextname"]++;
 	}
 
+	function getPreviewTag($index, $size=0, $attrs="") {
+		if ($index === null) {
+			return "";
+		}
+		$photo = $this->getPhoto($index);
+		if ($photo->isAlbum()) {
+			return "";
+			//$myAlbum = $this->getNestedAlbum($index);
+			//return $myAlbum->getHighlightAsThumbnailTag($size, $attrs);
+		} else {
+			return $photo->getPreviewTag($this->getAlbumDirURL("preview"), $size, $attrs);
+		}
+	}
+
 	function getThumbnailTag($index, $size=0, $attrs="") {
 		if ($index === null) {
 			return "";
@@ -1412,11 +1426,11 @@ class Album {
 		}
 	}
 
-        function watermarkPhoto($index, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY) {
+        function watermarkPhoto($index, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview=0, $previewSize=0) {
                 $this->updateSerial = 1;
                 $photo = &$this->getPhoto($index);
                 $retval = $photo->watermark($this->getAlbumDir(),
-                                            $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY);
+                                            $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview,$previewSize);
                 if (!$retval) {
                         return $retval;
                 }

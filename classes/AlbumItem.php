@@ -24,6 +24,7 @@
 class AlbumItem {
 	var $image;
 	var $thumbnail;
+	var $preview;
 	var $caption;
 	var $hidden;
 	var $highlight;
@@ -197,6 +198,12 @@ class AlbumItem {
 
 			if ($this->thumbnail) {
 				if ($this->thumbnail->integrityCheck($dir)) {
+					$changed = 1;
+				}
+			}
+
+			if ($this->preview) {
+				if ($this->preview->integrityCheck($dir)) {
 					$changed = 1;
 				}
 			}
@@ -448,7 +455,7 @@ class AlbumItem {
 		return 1;
 	}
 
-        function watermark($dir, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY) {
+        function watermark($dir, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview=0, $previewSize=0) {
                 global $gallery;
                 $type = $this->image->type;
 		if (isMovie($type))
@@ -457,18 +464,38 @@ class AlbumItem {
 			return (0);
 		}
                 $name = $this->image->name;
-                $retval = watermark_image("$dir/$name.$type", "$dir/$name.$type",
+		if ($preview) {
+			if (($previewSize == 0) && $this->isResized()) {
+				$src_image = "$dir/" . $this->image->resizedName . ".$type";
+			} else {
+				$src_image = "$dir/$name.$type";
+			}
+                        $retval = watermark_image($src_image, "$dir/$name.preview.$type",
                                           $gallery->app->watermarkDir."/$wmName",
                                           $gallery->app->watermarkDir."/$wmAlphaName",
                                           $wmAlign, $wmAlignX, $wmAlignY);
-                if ($retval) {
+			if ($retval) {
+                                list($w, $h) = getDimensions("$dir/$name.preview.$type");
+                                                                                                                           
+                                $high = new Image;
+                                $high->setFile($dir, "$name.preview", "$type");
+                                $high->setDimensions($w, $h);
+                                $this->preview = $high;
+			}
+		} else {
+                	$retval = watermark_image("$dir/$name.$type", "$dir/$name.$type",
+                                          $gallery->app->watermarkDir."/$wmName",
+                                          $gallery->app->watermarkDir."/$wmAlphaName",
+                                          $wmAlign, $wmAlignX, $wmAlignY);
+                	if ($retval) {
 
-                    if ($this->isResized()) {
-                        $retval = watermark_image("$dir/$name.sized.$type", "$dir/$name.sized.$type",
+                	    if ($this->isResized()) {
+                        	$retval = watermark_image("$dir/$name.sized.$type", "$dir/$name.sized.$type",
                                                   $gallery->app->watermarkDir."/$wmName",
                                                   $gallery->app->watermarkDir."/$wmAlphaName",
                                                   $wmAlign, $wmAlignX, $wmAlignY);
-                    }
+                    	    }
+                        }
                 }
 		return ($retval);
         }
@@ -546,6 +573,14 @@ class AlbumItem {
 		return 0;
 	}
 
+	function getPreviewTag($dir, $size=0, $attrs="") {
+		if ($this->preview) {
+			return $this->preview->getTag($dir, 0, $size, $attrs);
+		} else {
+			return "<i>". _("No preview") ."</i>";
+		}
+	}
+
 	function getAlttext() {
 		if (!empty($this->extraFields['AltText'])) {
 			return $this->extraFields['AltText'];
@@ -613,6 +648,9 @@ class AlbumItem {
 
 		if ($this->thumbnail) {
 			$this->thumbnail->delete($dir);
+		}
+		if ($this->preview) {
+			$this->preview->delete($dir);
 		}
 	}
 

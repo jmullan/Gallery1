@@ -35,7 +35,10 @@
     $wmName = "";
   }
   if (!isset($wmAlign)) {
-    $wmAlign=0;
+    $wmAlign=9;
+  }
+  if (!isset($previewFull)) {
+    $previewFull=0;
   }
 ?>
 <p>
@@ -124,7 +127,17 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 </tr>
 </table>
 <br>
-<?php if (isset($askRecursive)) {
+<?php if ($gallery->user->canViewFullImages($gallery->album)) { ?>
+<b><?php echo _("Preview Size") ?>:</b><br>
+<table border="0">
+<tr><td><input type="radio" name="previewFull" value="0"<?php if ($previewFull==0) echo checked ?>>
+<?php echo _("Resized"); ?> </input></td></tr>
+<tr><td><input type="radio" name="previewFull" value="1"<?php if ($previewFull==1) echo checked ?>>
+<?php echo _("Full"); ?> </input></td></tr>
+</table>
+<?php } // end if canViewFullImages ?>
+<br>
+<?php if ($askRecursive) {
   print '<input type="checkbox" name="recursive"';
   if (isset($recursive)) echo " checked";
   print ">" . _("Watermark subalbums") . "</input><br><br>";

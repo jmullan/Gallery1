@@ -639,6 +639,27 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
       $wmAlignY = ($srcSize[1] - $overlaySize[1]);
       break;
    case 10: // Other
+      // Check for percents
+      if (ereg('([0-9]+)(\%?)', $wmAlignX, $regs)) {
+         if ($regs[2] == '%') {
+            $wmAlignX = round($regs[1] / 100 * ($srcSize[0] - $overlaySize[0]));
+         } else {
+            $wmAlignX = $regs[1];
+         }
+      } else {
+         $wmAlignX = 0;
+      }
+                                                                                                                    
+      if (ereg('([0-9]+)(\%?)', $wmAlignY, $regs)) {
+         if ($regs[2] == '%') {
+            $wmAlignY = round($regs[1] / 100 * ($srcSize[1] - $overlaySize[1]));
+         } else {
+            $wmAlignY = $regs[1];
+         }
+      } else {
+         $wmAlignY = 0;
+      }
+
       if ($wmAlignX < 1)
       { // clip left side
          $wmAlignX = 0;
@@ -653,7 +674,7 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
       }
       else if ($wmAlignY > ($srcSize[1] - $overlaySize[1]))
       { // clip bottom
-        $wmAlignX = ($srcSize[1] - $overlaySize[1]);
+        $wmAlignY = ($srcSize[1] - $overlaySize[1]);
       }
       break;
    } // end switch ($wmAlign)
