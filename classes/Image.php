@@ -103,7 +103,6 @@ class Image {
 
 		/* getting rid of the resized image */
 		if ( strcmp(htmlentities($target), _("Get rid of resized")) == 0  || (stristr($target, "orig")) ) {
-			echo "delete";
 			list($w, $h) = getDimensions("$dir/$this->name.$this->type");
 			$this->width = $w;
 			$this->height = $h;
