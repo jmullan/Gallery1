@@ -1,4 +1,4 @@
-<title> Gallery Setup: Step 1 </title>
+<title> Gallery Setup: Step 2 </title>
 <center>
 <font size=+2>This is the Gallery setup page. </font>
 <br>
@@ -8,6 +8,7 @@ You can use this page to customize the default values for
 <table>
 <input type=hidden name=this_page value="form">
 <input type=hidden name=next_page value="confirm">
+<input type=hidden name=prev_page value="check">
 <?
 foreach ($constants as $key => $val) {
 	if ($app->$key) {
@@ -43,5 +44,6 @@ foreach ($defaults as $key => $val) {
 ?>
 </table>
 <p>
-<input type=submit name="go_next" value="Next ->">
+<input type=submit name="go_back" value="<- Back to Check Page">
+<input type=submit name="go_next" value="Save Settings ->">
 <input type=submit name="go_defaults" value="Use Defaults">
