@@ -543,6 +543,21 @@ function i18n($buf) {
        	return $buf;
 }
 
+function isSupportedCharset($charset) {
+	$unsupported=array(
+			'ISO-8859-2',
+			'EUC-KR', 
+			'windows-1257', 
+			'cp1250',
+			'KOI8-U',
+			'ISO-8859-9');
+	if (in_array($charset,$unsupported)) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
 /*
 ** Convert all HTML entities to their applicable characters
 */
@@ -557,17 +572,7 @@ function unhtmlentities ($string) {
 			$charset=$nls['default']['charset'];
 		}
 
-		$diashowProblemCharsets=array(
-			'UTF-8',
-			'ISO-8859-9',
-			'ISO-8859-2',
-			'EUC-KR',
-			'windows-1257',
-			'KOI8-U',
-			'cp1250',
-			'windows-1256'
-		);
-		if (! in_array($charset, $diashowProblemCharsets)) {
+		if (isSupportedCharset($charset)) {
 			$return = html_entity_decode($string,ENT_COMPAT ,$charset);
 		}
 		else {
@@ -606,5 +611,7 @@ function translateableFields() {
 		'AltText'	=> _("Alt Text / onMouseOver")
 	);
 }
+
+
 
 ?>

@@ -156,7 +156,11 @@ class Image {
 		global $gallery;
 
 		$name = $this->getName($dir);
-		$alttext = htmlentities(unhtmlentities(strip_tags($alttext)));
+		if (isSupportedCharset($gallery->charset)) {
+			$alttext = htmlentities(unhtmlentities(strip_tags($alttext)),ENT_COMPAT,$gallery->charset);
+		} else {
+			$alttext = htmlentities(unhtmlentities(strip_tags($alttext)));
+		}
 
 		$attrs .= ' border="0"';
 		if ($size) {

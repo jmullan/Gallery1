@@ -53,8 +53,6 @@ doctype();
 
 </center>
 
-</script>
-
 </span>
 </body>
 </html>

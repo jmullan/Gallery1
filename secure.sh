@@ -9,7 +9,7 @@ if [ -f .htaccess ]; then
     chmod 644 .htaccess
 fi
 
-if [ -f setup/resetadmin]; then
+if [ -f setup/resetadmin ]; then
     rm -f setup/resetadmin
 fi
 

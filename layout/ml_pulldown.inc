@@ -92,11 +92,18 @@ if($gallery->app->show_flags !='yes') {
 			echo "\n\t\t<option value=\"$url\" $selected>" . $nls['language'][$value] ."</option>";
 		} else {
 			$flagname=$value;
-			echo "\n\t\t<a href=\"$url\">";
-			if ($gallery->language == $value) $style="style=\"margin:7px\""; else $style="";
-
-			echo "<img $style src=\"". $gallery->app->photoAlbumURL . "/locale/$flagname/flagimage/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a>";
-
+			echo "\n\t\t";
+			if ($gallery->language != $value) {
+				$style="";
+				echo "<a href=\"$url\">";
+			}
+			else {
+				$style="style=\"margin:7px\"";
+			}
+			echo "<img $style src=\"". $gallery->app->photoAlbumURL . "/locale/$flagname/flagimage/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\">";
+			if ($gallery->language != $value) {
+				echo "</a>";
+			}
 			if ($count > $half && $half >10) {
 				echo "<br>";
 				$count=0;

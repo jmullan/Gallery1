@@ -40,6 +40,9 @@ if (isset($userfile_name)) {
 }
 
 if (!isset($wmName)) $wmName = "";
+if (!isset($wmAlign)) $wmAlign = "";
+if (!isset($wmAlignX)) $wmAlignX = "";
+if (!isset($wmAlignY)) $wmAlignY = "";
 
 doctype();
 ?>

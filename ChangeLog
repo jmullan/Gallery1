@@ -1,3 +1,15 @@
+2004-06-10 Jens Tkotz <jens@peino.de>  1.4.4-cvs-b185
+
+	* Fix: Secure.sh contained a little bug (missing space)
+	
+	* Fix: progress Status popup was broken when Gallery is embedded
+
+	* Fix: Added new function isSupportedCharset and 3rd Paramater for htmlentities
+	  Fixes: #964327
+
+	* Change: Removed link on actual language flag according to:
+		http://www.useit.com/alertbox/20031222.html # 10
+
 2004-06-09  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b184
 
 	* Add:  Re-add secure.sh and configure.sh ... should never
@@ -9,9 +21,6 @@
 2004-06-09 Jens Tkotz <jens@peino.de>  1.4.4-cvs-b183
 
 	* New: Add Link to Config Wizard for logged in Admins on Startpage
-
-	* Change: Removed link on actual language flag according to:
-		http://www.useit.com/alertbox/20031222.html # 10
 
 	* Fix: Gallery didnt work when Users have NO language installed an PHP <= 4.2.0 and/or without gettext
 

@@ -49,15 +49,15 @@ case "solid":
 ?>
   <table width="1%" border="0" cellspacing="0" cellpadding="0">
     <tr bgcolor="<?php echo $borderColor ?>">
-      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" height="1" alt=""></td>
+      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" height="1" alt="transpixel"></td>
     </tr>
     <tr>
-      <td bgcolor="<?php echo $borderColor ?>" width="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>"  alt=""></td>
+      <td bgcolor="<?php echo $borderColor ?>" width="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" alt="transpixel"></td>
       <td align="center"><?php echo $href_tag ?></td>
-      <td bgcolor="<?php echo $borderColor ?>" width="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1" alt=""></td>
+      <td bgcolor="<?php echo $borderColor ?>" width="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1" alt="transpixel"></td>
     </tr>
     <tr bgcolor="<?php echo $borderColor ?>">
-      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1" alt=""></td>
+      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1" alt="transpixel"></td>
     </tr>
   </table>
   <?php
