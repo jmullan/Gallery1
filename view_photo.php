@@ -84,8 +84,6 @@ $do_fullOnly = isset($gallery->session->fullOnly) &&
                !strcmp($gallery->album->fields["use_fullOnly"],"yes");
 if ($do_fullOnly) {
 	$full = 1;
-} else {
-	$full = '';
 }
     
 $fitToWindow = !strcmp($gallery->album->fields["fit_to_window"], "yes") && !$gallery->album->isResized($index) && !$full;
