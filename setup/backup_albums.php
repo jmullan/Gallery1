@@ -106,10 +106,10 @@ if ($error_text) {
 <?php
 if (!isset($backup_method)) { $backup_method="zip";}
 if (!isset($target_files)) { $target_files="dat";}
-if (!isset($tar_path)) { $tar_path="/usr/bin/tar";}
-if (!isset($find_path)) { $find_path="/usr/bin/find";}
-if (!isset($xargs_path)) { $xargs_path="/usr/bin/xargs";}
-if (!isset($gzip_path)) { $gzip_path="/usr/bin/gzip";}
+if (!isset($tar_path)) { $tar_path= ( ($path = findInPath ("tar")) ? $path : "/usr/bin/tar" );}
+if (!isset($find_path)) { $find_path=( ($path = findInPath ("find")) ? $path : "/usr/bin/find" );}
+if (!isset($xargs_path)) { $xargs_path=( ($path = findInPath ("xargs")) ? $path : "/usr/bin/xargs");}
+if (!isset($gzip_path)) { $gzip_path=( ($path = findInPath ("gzip")) ? $path : "/usr/bin/gzip");}
 if (!isset($zip_path)) { $zip_path="C:\bin\zip.exe";}
 ?>
 <center>

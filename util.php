@@ -1633,4 +1633,16 @@ function escapeEregChars($string)
 	return ereg_replace ('(\.|\\\\|\+|\*|\?|\[|\]|\^|\$|\(|\)|\{|\}|\=|\!|\<|\>|\||\:)', '\\\\1', $string);
 }
 
+function findInPath($program)
+{
+	$path = explode (':', getenv ('PATH'));
+	
+	foreach ($path as $dir) {
+		if (fs_file_exists ("$dir/$program")) {
+			return "$dir/$program";
+		}
+	}
+	
+	return false;
+}
 ?>
