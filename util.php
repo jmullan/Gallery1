@@ -231,3 +231,14 @@ function getGalleryStyleSheetName() {
 	return 1;
 }
 
+function pluralize($amt, $noun, $none="") {
+	if ($amt == 1) {
+		return "$amt $noun";
+	}
+
+	if ($amt == 0 && $none) {
+		$amt = $none;
+	}
+
+	return "$amt ${noun}s";
+}
