@@ -67,13 +67,19 @@ var end_pad = 2;
 var sel = 0;
 var mod = 3;
 var timer;
+
+var image_on = new Image();
+    image_on.src = 'images/nav_dot_left.gif';
+var image_off = new Image();
+    image_off.src = 'images/pixel_trans.gif';
+
 function animate() {
 
 	for (var i = start_pad; i < document.images.length - end_pad; i++) {
 		if (i % mod == sel) {
-			document.images[i].src = "images/nav_dot_left.gif";
+			document.images[i].src = image_on.src;
 		} else {
-			document.images[i].src = "images/pixel_trans.gif";
+			document.images[i].src = image_off.src;
 		}
 	}
 
