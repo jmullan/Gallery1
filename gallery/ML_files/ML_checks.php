@@ -28,11 +28,14 @@
 // *****************************
 // Check the local Support
 
-if (stristr(PHP_OS,"linux") or stristr(PHP_OS,"unix")) {
+if (strncasecmp(PHP_OS,"win", 3)) {
 	# Unix / Linux
-	# Check wich locales are installed
+	# Check which locales are installed
 	if (is_readable("/etc/locale.gen")) {
 		$list=split("\n",shell_exec('cat /etc/locale.gen | cut -d " " -f 1'));
+	}
+	else if (is_readable("/usr/share/locale/")) {
+		$list=split("\n",shell_exec('ls /usr/share/locale/'));
 	}
 	else {
 		$list=split("\n", shell_exec("locale -a")) ;
