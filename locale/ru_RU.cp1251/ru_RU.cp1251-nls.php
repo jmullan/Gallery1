@@ -19,7 +19,7 @@
  *
  * $Id$
  *
- * Version: 1_4_3-cvs
+ * Version: 1_4_4-cvs
  */
 /**
  * NLS (National Language System) array.
@@ -35,36 +35,35 @@
 /**
  ** Native languagename
  **/
-	$nls['language']['ru_RU'] = 		'&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)';
+	$nls['language']['ru_RU.cp1251'] = 		'&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)';
 
 /**
  ** Alias for languages with different browser and gettext codes
  **/
 
-	$nls['alias']['ru'] = 			'ru_RU';
+	$nls['alias']['ru'] = 			'ru_RU.cp1251';
 
 /**
  ** Alias for languages which we substitte or send by NUKE
  **/
 
-	$nls['alias']['russian'] =		'ru_RU';
-	$nls['alias']['rus'] =			'ru_RU';
+	$nls['alias']['russian'] =		'ru_RU.cp1251';
+	$nls['alias']['rus'] =			'ru_RU.cp1251';
 
 /**
  ** Charset
  **
  **/	
 	
-//	$nls['charset']['ru_RU'] = 		'ru_RU.ISO8859-5';
-	$nls['charset']['ru_RU'] = 		'cp1251';
+	$nls['charset']['ru_RU.cp1251'] = 		'cp1251';
 
 /**
  ** phpNuke
  **/
-	$nls['phpnuke']['ru_RU'] = 		'russian';
+	$nls['phpnuke']['ru_RU.cp1251'] = 		'russian';
 
 /**
  ** postNuke
  **/
-	$nls['postnuke']['ru_RU'] = 		'rus';
+	$nls['postnuke']['ru_RU.cp1251'] = 		'rus';
 ?>
