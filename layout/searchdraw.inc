@@ -25,7 +25,8 @@ $pixel30Image = "<img src=\"$imageDir/pixel_trans.gif\" width=\"30\" height=\"1\
     <td valign=top>
       <?=$searchdraw["Text1"]?><br>
       <?=$searchdraw["Text2"]?><br><br>
-      <?=$searchdraw["Text3"]?>
+      <?=$searchdraw["Text3"]?><br>
+      <?=$searchdraw["Text4"]?>
     </td>
   </tr>
   <tr>

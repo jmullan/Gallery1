@@ -3,6 +3,24 @@
 	  a.  Put keywords in photo-properties popup
 	  b.  Only show keywords in search if there was a keyword match.
 
+	* Only display "* comments available" text at the bottom
+	  of an album if there was actually a comment for a photo
+	  on that page.
+
+	* Only display "Viewed n time(s)" if a photo has actually been
+	  viewed before.
+
+	* Fixed bug in [reset counter] functionality in do_command.php
+	  where it wouldn't work for a non-admin user because $gallery->admin
+	  wasnt' defined yet.
+
+	* Added default settings for photo commenting and click counting
+	  in the setup wizard.
+
+	* Search will search comments if they exist for a given photo.
+	  A given comment will only be displayed in the search engine
+	  if it matches.
+
 
 2001-07-11  John Kirkland  <jpk@bl.org>
 	* Fixed a bug whereby resetting click counts was timing out for

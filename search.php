@@ -126,9 +126,24 @@ if ($searchstring) {
 			for ($j = 1; $j <= $numPhotos; $j++) {
 				$searchCaption = $searchAlbum->getCaption($j);
 				$searchKeywords = $searchAlbum->getKeywords($j);
+				$commentMatch = 0;
+				$commentText = "";
+				for ($k = 1; $k <= $searchAlbum->numComments($j); $k++) {
+					// check to see if there are any comment matches
+					$comment = $searchAlbum->getComment($j, $k);
+					$searchComment = $comment->getCommentText();
+					if (eregi($searchstring, $searchComment)) {
+						if (!$commentMatch) {
+							$commentText = "Matching Comments:<br>";
+							$commentMatch = 1;
+						} 
+						$searchComment = eregi_replace($searchstring, "<b>$searchstring</b>",$searchComment);
+						$commentText .= $searchComment . "<br><br>";
+					}
+				}
 				$captionMatch = eregi($searchstring, $searchCaption);
 				$keywordMatch = eregi($searchstring, $searchKeywords);
-				if ($captionMatch || $keywordMatch) {
+				if ($captionMatch || $keywordMatch || $commentMatch) {
 					if (!$searchAlbum->isHidden($j) || 
 				    	$searchAlbum->isOwner($uid) || 
 			    	    	$gallery->user->isAdmin()) {
@@ -146,10 +161,11 @@ if ($searchstring) {
                                 			makeGalleryUrl($searchAlbum->fields['name']) . ">" .
                                 			$searchAlbum->fields['title'] . "</a></span>";
 						if ($keywordMatch) { // only display Keywords if there was a keyword match
-							$searchdraw["Text3"] = "<span class=fineprint>KEYWORDS:&nbsp&nbsp $searchKeywords</span>";
+							$searchdraw["Text3"] = "<span class=fineprint>KEYWORDS:&nbsp&nbsp $searchKeywords</span><br>";
 						} else {
 							$searchdraw["Text3"] = "";
 						}
+						$searchdraw["Text4"] = $commentText;
 						include($GALLERY_BASEDIR . "layout/searchdraw.inc");
 					}
 				}

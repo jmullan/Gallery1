@@ -55,8 +55,8 @@ class Album {
 		$this->fields["parentAlbumName"] = 0;
 		$this->fields["clicks"] = 0;
 		$this->fields["clicks_date"] = time();
-		$this->fields["display_clicks"] = "yes";
-		$this->fields["public_comments"] = "no";
+		$this->fields["display_clicks"] = $gallery->app->default["display_clicksDefault"];
+		$this->fields["public_comments"] = $gallery->app->default["photo_commentsDisplay"];
 	}
 
 	function isRoot() {
@@ -526,7 +526,6 @@ class Album {
 	function resetClicks() {
 		$this->fields["clicks"] = 0;
 		$this->fields["clicks_date"] = time();
-		$this->fields["display_clicks"] = "yes"; // we need to turn this sucker on for older albums
 		$resetModDate=0;
 		$this->save($resetModDate);
 

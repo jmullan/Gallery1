@@ -290,6 +290,16 @@ $defaults = array(
                 desc => "Use original files names for gallery storage?",
                 choices => array("yes", "no"),
                 value => "no",
+	),
+	"display_clicksDefault" => array(
+		desc => "Display click counts within Albums?",
+		choices => array("yes", "no"),
+		value => "yes",
+	),
+	"photo_commentsDisplay" => array(
+		desc => "Allow public photo commenting?",
+		choices => array("yes", "no"),
+		value => "yes",
 	)
 );
 ?>

@@ -258,6 +258,7 @@ if ($bordercolor) {
 <table width=<?=$fullWidth?> border=0>
 <?
 $numPhotos = $gallery->album->numPhotos(1);
+$displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
 if ($numPhotos) {
 
 	$rowCount = 0;
@@ -358,7 +359,7 @@ if ($numPhotos) {
 				<span class="fineprint">
 				   Changed: <?=$myAlbum->getLastModificationDate()?>.  <br>
 				   Contains: <?=pluralize($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), "item", "no")?>.<br>
-				   <? if (!($gallery->album->fields["display_clicks"] == "no")) { ?>
+				   <? if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && ($myAlbum->getClicks() > 0)) { ?>
 				   	Viewed: <?=pluralize($myAlbum->getClicks(), "time", "0")?>.<br>
 				   <? } ?>
 				</span>
@@ -369,8 +370,9 @@ if ($numPhotos) {
 				if ((!strcmp($gallery->album->fields["public_comments"], "yes")) && 
 				   ($gallery->album->numComments($i) > 0)) {
 					echo("<span class=error>*</span>");
+					$displayCommentLegend = 1;
 				}
-				if (!($gallery->album->fields["display_clicks"] == "no")) {
+				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && ($gallery->album->getItemClicks($i) > 0)) {
 					echo("<br>Viewed: ".pluralize($gallery->album->getItemClicks($i), "time", "0").".<br>");
 				}
 			}
@@ -475,7 +477,7 @@ if ($numPhotos) {
 
 </table>
 
-<? if (!strcmp($gallery->album->fields["public_comments"], "yes")) { //display legend for comments ?>
+<? if (!strcmp($gallery->album->fields["public_comments"], "yes") && $displayCommentLegend) { //display legend for comments ?>
 <span class=error>*</span><span class=fineprint> Comments available for this item.</span>
 <br><br>
 <? } ?>
