@@ -1,0 +1,26 @@
+<?php
+// $Id$
+// This is the default photo footer (for the gallery slideshow
+// page: slideshow.php). It's companion is slideshow.header.default.
+//
+// To override this header, create a file called slideshow.footer
+// in this directory.
+//
+// NOTE: This header gets inserted above the </body> tag. 
+?>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <!-- The Gallery code version number, linked to the Gallery home page -->
+    <span class="fineprint">
+    <?php $gallery->session->offline ? print "Generated" : print "Powered"; ?> by <a href=<?php echo $gallery->url ?>>Gallery v<?php echo $gallery->version ?></a>
+    </span>
+    </td>
+  </tr>
+</table>
+<?php
+includeHtmlWrap("wrapper.footer");
+?>
+

@@ -1,0 +1,30 @@
+<?php
+// $Id$
+// This is the default photo header (for the gallery photo
+// page: view_photo.php). It's companion is photo.footer.default.
+//
+// To override this header, create a file called photo.header
+// in this directory.
+//
+// NOTE: This header gets inserted below the <body> tag.
+//
+// Some tips:
+// * Some application variables:
+//      - Gallery Title: $gallery->app->galleryTitle
+//      - Album Title: $gallery->album->fields["title"] 
+//
+?>
+<?php
+includeHtmlWrap("wrapper.header");
+?>
+
+<table width=100% border=0>
+  <tr>
+    <td>
+      <span class="head">
+        <?php echo $gallery->album->fields["title"] ?>
+      </span>
+    </td>
+  </tr>
+  <tr>
+    <td  align="center" valign="top">

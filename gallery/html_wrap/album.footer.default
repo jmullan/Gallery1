@@ -1,0 +1,46 @@
+<?php
+// This is the default album footer (for the gallery album
+// page: view_album.php). It's companion is album.header.default.
+//
+// To override this header, create a file called album.footer
+// in this directory.
+//
+// NOTE: This header gets inserted above the </body> tag. 
+// $Id$
+?>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width=100% cellspacing=0 cellpadding=0>
+        <tr>
+          <td valign=top>
+            <!-- The Gallery code version number, linked to the Gallery home page -->
+            <span class="fineprint">
+              <?php $gallery->session->offline ? print "Generated" : print "Powered"; ?> by <a href=<?php echo $gallery->url ?>>Gallery v<?php echo $gallery->version ?></a>
+            </span>
+          </td>
+          <!-- PayPal donation block -->
+          <?php if ($gallery->user->isAdmin()) { ?>
+          <td width=300 align=right>
+            <span class="fineprint">
+              Are you happy with Gallery?<br>
+	      Make us happy too!  Donate!<br>
+	      (only admins see this message and button)<br>
+            </span>
+          </td>
+          <td width="90" align="right">
+            <a href="<?php echo $gallery->url ?>/donate.php?donate_tag=v<?php echo $gallery->version ?>"><img align="right"
+              src="<?php echo $gallery->app->photoAlbumURL ?>/images/donate.jpg" width="88" height="31" border="0"></a>
+          </td><?php } ?>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<?php
+includeHtmlWrap("wrapper.footer");
+?>
+
