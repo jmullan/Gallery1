@@ -125,8 +125,8 @@ $nv_pairs=$gallery->album->getVoteNVPairs();
 for ($i=0; $i<$gallery->album->getPollScale() ; $i++) {
 ?>
 <tr>
-	<td><input type="text" name="<?php echo $nv_pairs[$i]["name"] ?>" value="<?php echo $nv_pairs[$i]["name"] ?>"></td>
-	<td><input type=text name="<?php echo $nv_pairs[$i]["value"] ?>" value="<?php echo $nv_pairs[$i]["value"] ?>"></td>
+	<td><input type="text" name="nv_pairs[<?php echo $i?>][name]" value="<?php echo $nv_pairs[$i]["name"] ?>"></td>
+	<td><input type=text name="nv_pairs[<?php echo $i?>][value]" value="<?php echo $nv_pairs[$i]["value"] ?>"></td>
 </tr>
 <?php
 }
