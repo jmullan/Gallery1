@@ -25,28 +25,45 @@ session_start();
 /*
  * Are we resuming an existing session?  Determine this by checking
  * to see if a pre-existing session variable is already associated
- * (before we register it, below).  I arbitrarily choose $albumName
+ * (before we register it, below).  
  */
-if (session_is_registered("albumName")) {
+
+if (session_is_registered($gallery->app->sessionVar)) {
+	/* Get a simple reference to the session container (for convenience) */
+	$gallery->session =& ${$gallery->app->sessionVar};
+
 	/* Make sure our session is current.  If not, nuke it and restart. */
-	if (strcmp($galleryVersion, $gallery->version)) {
+	if (strcmp($gallery->session->version, $gallery->version)) {
 		session_destroy();
-		header("Location: $app->photoAlbumURL");
+		header("Location: " . $gallery->app->photoAlbumURL);
 		exit;
 	}	
+} else {
+	/* Register the session variable */
+	session_register($gallery->app->sessionVar);
+
+	/* Create a new session container */
+	${$gallery->app->sessionVar} = new stdClass();
+
+	/* Get a simple reference to the session container (for convenience) */
+	$gallery->session =& ${$gallery->app->sessionVar};
+
+	/* Tag this session with the gallery version */
+	$gallery->session->version = $gallery->version;
 }
 
-session_register_and_set("albumName");
-session_register_and_set("galleryVersion");
-session_register_and_set("albumListPage");
-session_register_and_set("fullOnly");
-session_register_and_set("username", 1);
+update_session_var("albumName");
+update_session_var("version");
+update_session_var("albumListPage");
+update_session_var("fullOnly");
+update_session_var("username", 1);
 
-/* Tag this session with the gallery version */
-$galleryVersion = $gallery->version;
-
-function session_register_and_set($name, $protected=0) {
-	session_register($name);
+/*
+ * Process changes to session variables via parameters submitted in a 
+ * POST or GET.
+ */
+function update_session_var($name, $protected=0) {
+	global $gallery;
 
 	// If this is a protected session variable, don't allow it
 	// to be changed by data from POST or GET requests.
@@ -55,15 +72,8 @@ function session_register_and_set($name, $protected=0) {
 	}
 
 	$setname = "set_$name";
-	global $$name;
-	global $$setname;
-	if (!empty($$setname)) {
-		$$name = $$setname;
-	} if (!$$name) {
-		global $app;
-		if (strcmp($app->default["$name"], "")) {
-			$$name = $app->default["$name"];
-		}
-	}
+	if (!emptyFormVar($setname)) {
+		$gallery->session->{$name} = formVar($setname);
+	} 
 }
 ?>
