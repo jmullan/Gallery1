@@ -1632,6 +1632,13 @@ function configLogin($target) {
 		require_once(GALLERY_BASE . '/classes/gallery/User.php');
 		$gallery->userDB = new Gallery_UserDB();
 
+		// Check the UserDB for upgrades before trying to make someone login
+		if ($gallery->userDB->versionOutOfDate())
+		{
+			include(dirname(dirname(__FILE__)) . "/upgrade_users.php");
+			exit;
+		}
+
 		include(dirname(__FILE__) . "/login.inc");
 	}
 }
