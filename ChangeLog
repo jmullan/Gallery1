@@ -1,3 +1,11 @@
+2004-09-16  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b193
+
+	* Add: Flesh out the findOrphanedImages(), add deleteOrphanedImages()
+
+	* Change:  find_orphans can now identify and delete orphaned images
+	  which were the result of a failed upload, or other catastrophic issue.
+	  For some users, this could clear up a lot of space.
+
 2004-09-15  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b192
 
 	* Fix: Use of dirname(dirname()) in setup was incorrect.  GALLERY_BASE
