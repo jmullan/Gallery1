@@ -129,6 +129,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option) || iss
 		       "reset_votes.php",
 		       "resize_photo.php",
 		       "rotate_photo.php",
+		       "rss.php",
 		       "save_photos.php",
 		       "search.php",
 		       "slideshow.php",
