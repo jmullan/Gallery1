@@ -19,7 +19,7 @@
  *
  * $Id$
  *
- * Version: 1.4.4-pl2
+ * Version: 1.4.4-pl4
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
@@ -55,11 +55,11 @@
  **
  **/	
 	
-	$nls['charset']['cs_CZ'] =              'ISO-8859-2';
+	$nls['charset']['cs_CZ.iso-8859-2'] =	'ISO-8859-2';
 
 /**
  ** phpNuke
  **/
-	$nls['phpnuke']['cs_CZ'] = 		'czech' ;
+	$nls['phpnuke']['cs_CZ.iso-8859-2'] =	'czech' ;
 
 ?>
