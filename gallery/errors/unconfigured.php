@@ -23,13 +23,13 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 
 <p class="sitedesc">
 <?php 
-	echo _("Gallery must be configured before you can use it.  First, you must put it into configuration mode.  Here's how.");
+	echo _("Gallery must be configured before you can use it. First, you must put Gallery in Configuration Mode. Here's how:");
 	echo configure("configure"); 
 ?>
 </p>
 
 <p>
-<?php echo sprintf(_("And then start the %sConfiguration Wizard%s."), 
+<?php echo sprintf(_("Then start the %sConfiguration Wizard%s."), 
 		'<a href="'. $GALLERY_BASEDIR . 'setup/index.php">', '</a>'); 
 	print "  ";
 	include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>

@@ -242,7 +242,7 @@ if ($albumName) {
 <?php } ?>
 <?php includeHtmlWrap("slideshow.header"); ?>
 
-<?
+<?php
 $url=array();
 $full_urls=array();
 $caption=array();

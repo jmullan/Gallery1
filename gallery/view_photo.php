@@ -582,7 +582,10 @@ includeHtmlWrap("inline_photo.header");
 </table>
 
 <!-- image -->
-<?
+<a name="image"></a>
+
+<?php
+
 $href="";
 if (!$gallery->album->isMovie($id)) {
 	if ($gallery->album->isResized($index) && !$do_fullOnly) { 

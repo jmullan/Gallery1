@@ -3,7 +3,7 @@
 <input type="hidden" name="back_page" value="defaults">
 <input type="hidden" name="next_page" value="write">
 
-<div class="header"><?php echo sprintf (_("Gallery Setup: Step %d"),4); ?></div>
+<div class="header"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),4); ?></div>
 
 <?php
 require("../Version.php");

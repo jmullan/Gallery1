@@ -2582,12 +2582,13 @@ function compress_image($src, $out, $target, $quality) {
 		case "ImageMagick":
 			$src = fs_import_filename($src);
 			$out = fs_import_filename($out);
-			$err = exec_wrapper(ImCmd("convert", "-quality ".
-					$quality . 
-					" -size ". $target ."x". $target .
-					" $src".
-					" -geometry ". $target ."x" . $target .
-					" +profile icm +profile iptc $out"));
+			/* Preserve comment, EXIF data if a JPEG if $keepProfiles is set. */
+			$err = exec_wrapper(ImCmd('convert', "-quality $quality "
+					. ($target ? "-size ${target}x${target} " : '')
+					. $src
+					. ($target ? " -geometry ${target}x${target}" : '')
+					. ($keepProfiles ? ' ' : ' +profile \'*\' ')
+					. $out));
 			break;
 		default:
 			if (isDebugging())

@@ -1,3 +1,22 @@
+2003-09-30  Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.1-cvs-b114
+
+	* Reverted back to +profile '*' when using ImageMagick.  The way
+	  we "fixed" the problem with wasn't working and was just making
+	  thumbnails extremely large.
+
+2003-09-30  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b113
+
+	* Added an <a name="image"></a> link to view_photo.php directly above
+	  the image. (RFE #560423)
+
+	* Removed some short PHP tags. ('<?' ---> '<?php')
+
+	* Grammar re-work of Config. Wizard. Translation updates should
+	  follow. Any further changes are welcome.
+
+	* Made setup/diagnostics.php conform to Config. Wizard style. We should
+	  now go ahead and do the same for each of the tests on that page.
+	
 2003-09-29  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b112
 
 	* Added support to resize original images on upload (either by
@@ -24,7 +43,7 @@
 	* Fixed bug in recursive slideshow so link now works without
 	  mod-rewrite.
 
-	* Self register now send a link to create a new password.
+	* Self register now sends a link to create a new password.
 
 	* Tweaked lost password text.
 
@@ -36,7 +55,7 @@
 	* Added explicit $GALLERY_BASEDIR to the frame include files
        	  because of user error.
 
-	* Added missing CVS Ids
+	* Added missing CVS Ids.
 
 2003-09-29  Jens Tkotz <jens@peino.de> 1.4.1-cvs-b110
 
@@ -44,19 +63,19 @@
 	
 	* Languages: Update German (de_DE)
 
-	* Bugfix: css was not loaded correctly for error/ pages
+	* Bugfix: CSS was not loaded correctly for error/ pages.
 
-	* New: Admin Password is only requiredd when no admin is present
-	  Thanks to Vallimar
+	* New: Admin Password is only required when no admin is present.
+	  (Thanks to Vallimar)
 
 	* Change: Pretty printing in html_wrap/inline_imagewrap.inc
 
-	* "Bugfix": Corrected layout for frametyp "solid" (IE doesnt like spaces in <td></td>)
-	  shawow frame layout still a little broken 
+	* "Bugfix": Corrected layout for frametype "solid" (IE doesnt like
+	  spaces in <td></td>). Shadow frame layout still a little broken.
 
 2003-09-28 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b109
 
-	* Removed all the pretty printing from html_wrap/inline_imagewrap.inc 
+	* Removed all the pretty printing from html_wrap/inline_imagewrap.inc
 	  so it displays correctly in IE 6.
 
 2003-09-28  Beckett Madden-Woods  <beckett@beckettmw.com> 1.4.1-cvs-b108
@@ -107,7 +126,7 @@
 
 2003-09-26  Jens Tkotz <jens@peino.de> 1.4.1-cvs-b102
 
-	* Bugfix: Count ouf maybe and unavailable locales
+	* Bugfix: Count of 'maybe' and 'unavailable' locales
 
 	* Bugfix: Remove \" inside a _()
 
@@ -132,7 +151,8 @@
 
 2003-09-26  Jens Tkotz <jens@peino.de> 1.4.1-cvs-b98
 
-	* Change: Use $borderColor instead of white when album_thumb_frame_style="dots"
+	* Change: Use $borderColor instead of white when
+	  album_thumb_frame_style == "dots".
 
 2003-09-26  Jens Tkotz <jens@peino.de> 1.4.1-cvs-b97
 
@@ -142,7 +162,8 @@
 
 	* Language: Synced against changes
 
-	* Change: Tweaked ml_pulldown.inc for flags to see which language is current.
+	* Change: Tweaked ml_pulldown.inc for flags to see which language is
+	  current.
 
 2003-09-26 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b96
 	
@@ -153,10 +174,10 @@
 
 	* Bugfix: "send password" link was not visible in login.php
 
-	* Bugfix: Anker Tag <a ...></a> around a table is not allowed.
-		  Caused albums thumbs to be no link
+	* Bugfix: Anchor Tag <a ...></a> around a table is not allowed.
+		  Caused albums thumbs to not link.
 
-	* Change: Startpage is valid html again.
+	* Change: Startpage is valid HTML again.
 
 	* New: Frame around album thumbs is now configurable
 
@@ -173,7 +194,8 @@
 	  - Added "remove_empty" and "allow_empty" for constants
 	  - removed function test_locale() from setup/functions.inc
 
-	* Added function gettext_installed() in util.php which returns true or false
+	* Added function gettext_installed() in util.php which returns true or
+	  false
 
 	* Use "allow_empty" for slideshow length
 
@@ -290,7 +312,8 @@
 
 	* Number of warnings reduced.
 
-	* Changed user pref variable $dontChange[] to $allowChange[] (Vallimar).
+	* Changed user pref variable $dontChange[] to $allowChange[].
+	  (Vallimar)
 
 	* Removed session compatibility warning.
 
@@ -347,8 +370,9 @@
 	* Language updates: German (de_DE)
 
 	* Modified add_photo.php. 
-	  Now progressbar only appear when a filename was given and this file exist.
-	  If a filename was given, but the file does not exist an error message appears.
+	  Now progress bar only appears when a filename was given and this file
+	  exists.  If a filename was given, but the file does not exist an
+	  error message appears.
 
 	* Synced .po files against change.
 

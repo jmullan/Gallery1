@@ -56,6 +56,8 @@ function make_fields($key, $arr) {
 		$col2 = form_textarea($key, $arr);
 	} else if (isset($arr["type"]) && $arr["type"] == "text") {
 		$col2 = form_input($key, $arr);
+	} else if (isset($arr["type"]) && $arr["type"] == "password") {
+		$col2 = form_input($key, $arr);
 	} else if (isset($arr["type"]) && $arr["type"] == "nv_pairs") {
 		$col2 = form_nv_pairs($key, $arr);
 	} else if (isset($arr['type']) && $arr['type'] == 'print_services') {
@@ -278,7 +280,7 @@ function check_htaccess()
 	$fail = array();
 	$warn = array();
 	if ($GALLERY_PHP_VALUE_OK) {
-		$success[] = _("I can read your .htaccess file");
+		$success[] = _("I can read your <b>.htaccess</b> file.");
 	} else {
 		$fail["fail-htaccess"] = 1;
 	}
@@ -307,7 +309,7 @@ function check_php()
         } elseif ($version_ml[0] == 4 && $version_ml[1] < 1) {
 		$warn["warn-too-old-ml"] = 1;
         } else {
-		$success[] = sprintf(_("PHP v%s is OK"), phpversion());
+		$success[] = sprintf(_("PHP v%s is OK."), phpversion());
 	}
 
 	return array($success, $fail, $warn);
@@ -320,7 +322,7 @@ function check_mod_rewrite()
 	$fail = array();
 	$warn = array();
 	if ($GALLERY_REWRITE_OK) {
-		$success[] = _("mod_rewrite is enabled");
+		$success[] = _("<b>mod_rewrite</b> is enabled.");
 	} else {
 		$fail["fail-mod-rewrite"] = 1;
 	}
@@ -344,9 +346,9 @@ function check_exif($location="")
 		$d = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
 	}
 	if (!$d) {
-		$fail["fail-exif"] = _("Could not locate jhead");
+		$fail["fail-exif"] = array(sprintf(_("Can't find %s!"), '<i>jhead</i>'));
 	} else {
-		$success[] = _("jhead binary located");
+		$success[] = _("<b>jhead</b> binary located.");
 	}
 
 	return array($success, $fail, $warn);
@@ -360,12 +362,12 @@ function check_graphics($location="", $graphtool = "")
 	$success = array();
 	$warn = array();
 	if (!strcmp($graphtool, "ImageMagick")) {
-		$success[] = _("NetPBM not being used in this installation");
+		$success[] = _("NetPBM not being used in this installation.");
 	    	return array($success, $fail);
 	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
-	    $success[] = _("Cannot verify this path (it's not in your open_basedir list)");
+	    $success[] = _("Cannot verify this path (it's not in your open_basedir list).");
 	    return array($success, $fail);
 	}
 
@@ -430,8 +432,8 @@ function check_graphics($location="", $graphtool = "")
 	} else if (count($missing)) {
 		$fail["fail-netpbm-partial"] = array_values($missing);
 	} else {
-		$success[] = sprintf(_("All %d NetPBM binaries located"),
-				count($netpbm) );
+		$success[] = sprintf(_("%d of %d NetPBM binaries located."),
+				count($netpbm), count($netpbm) );
 	}
 
 	return array($success, $fail, $warn);
@@ -446,12 +448,12 @@ function check_graphics_im($location="", $graphtool="")
 	$warn = array();
 
 	if (!strcmp($graphtool, "NetPBM")) {
-		$success[] = "ImageMagick not being used in this installation";
+		$success[] = "ImageMagick not being used in this installation.";
 	    	return array($success, $fail);
 	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
-	    $success[] = _("Cannot verify this path (it's not in your open_basedir list)");
+	    $success[] = _("Cannot verify this path (it's not in your open_basedir list).");
 	    return array($success, $fail);
 	}
 
@@ -486,8 +488,8 @@ function check_graphics_im($location="", $graphtool="")
 	} else if (count($missing)) {
 		$fail["fail-imagemagick"] = array_values($missing);
 	} else {
-		$success[] = sprintf(_("All %d ImageMagick binaries located"),
-				count($imagick));
+		$success[] = sprintf(_("%d of %d ImageMagick binaries located."),
+				count($imagick), count($imagick));
 	}
 
 	return array($success, $fail, $warn);
@@ -509,9 +511,9 @@ function check_jpegtran($location="")
 		$d = locateDir($bin, isset($gallery->app->pnmDir) ? $gallery->app->pnmDir : "");
 	}
 	if (!$d) {
-		$fail["fail-jpegtran"] = _("Could not locate jpegtran");
+		$fail["fail-jpegtran"] = array(sprintf(_("Can't find %s!"), '<i>jpegtran</i>'));
 	} else {
-		$success[] = _("jpegtran binary located");
+		$success[] = _("<b>jpegtran</b> binary located.");
 	}
 
 	return array($success, $fail, $warn);
@@ -523,7 +525,7 @@ function check_gettext()
 	$success = array();
 	$warn = array();
 	if (in_array ("gettext", get_loaded_extensions()) && function_exists('gettext')) {
-		$success[] = _("gettext installed");
+		$success[] = _("<b>GNU gettext</b> installed.");
 	} else {
 		$fail["fail-gettext"] = 1;
 	}
@@ -544,13 +546,13 @@ function check_gallery_languages()
 		$fail["fail-gallery-languages"] = _("No languages found."); // should never occur!
 	} else if (sizeof($languages) < sizeof($nls['language'])) {
 		$fail["fail-gallery-languages"] 
-			= sprintf(_("Only %d of %d possible languages are available.  If you want the missing languages, download a fresh copy of %s from %s."),
+			= sprintf(_("Only %d of %d possible languages are available.  If you want the missing languages, download a fresh copy of Gallery from the %sGallery download page%s."),
 					sizeof($languages),
 					sizeof($nls['language']),
-					Gallery(),
-					"<a href=\"$gallery->url\">$gallery->url</a>");
+					"<a href=\"$gallery->url\">",
+					'</a>');
 	} else {
-		$success[] = sprintf(_("All %d languages found"), sizeof($languages));
+		$success[] = sprintf(_("All %d languages found."), sizeof($languages));
 	}
 	return array($success, $fail, $warn);
 }
@@ -605,25 +607,25 @@ function check_absent_locales()
 	$unavailable=$locale_check["unavailable_locales"];
 
 	if($locale_check != NULL && sizeof($unavailable) ==0) {
-		$success[] = _("All gallery locales are available on this host");
+		$success[] = _("All gallery locales are available on this host.");
 	} else if( (sizeof($maybe) + sizeof($unavailable)) >0) {
 		if (sizeof($maybe) >0) {
-			$msg = sprintf(_("There are %d locales where Gallery was not able to identify them correct. You need to choose manually the correct value."),sizeof($maybe));
+			$msg = sprintf(_("There are %d locales that Gallery was unable to locate. You will need to manually select date formats. "),sizeof($maybe));
 		}
 
 		if (sizeof($unavailable) >0) {
 			if(sizeof($maybe) >0) $msg.="<p></p>";
 
-			$msg .= sprintf(_("Dates in %d languages may not be formatted properly, because the corresponding locales are missing. But you can choose another locale for those."),sizeof($unavailable));
+			$msg .= sprintf(_("Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You will need to manually select date formats for these."),sizeof($unavailable));
 		}
 		$fail[] = $msg;
 	} else {
 		if (ini_get('open_basedir') && getOS() != OS_LINUX) {
-			$fail[] = sprintf(_("We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."),
-				'<a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir">open_basedir</a>');
+			$fail[] = sprintf(_("We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."),
+				'<b><a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir" target="_blank">open_basedir</a></b>');
 		} else {
 			if (getOS() == OS_LINUX) {
-				$fail[] = sprintf(_("We were unable to detect any system locales. Multilanguage functions will be disabled. Please install the corresponding locales or ask your Provider to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s"),"Debian", '<a href="http://people.debian.org/~schultmc/locales.html">', "</a>");
+				$fail[] = sprintf(_("We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."),"Debian", '<a href="http://people.debian.org/~schultmc/locales.html" target="_blank">', "</a>");
 			} else {
 				$fail[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
 			}
@@ -772,7 +774,7 @@ function config_maybe_locales() {
 			$block_start_done=true;
 			$results[] = array (
 					"type" => "block_start", 
-					"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Locale Selection required")),
+					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("Locale Selection required")),
 					"desc" => _("There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
 					"<p></p>" .
 					_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
@@ -842,7 +844,7 @@ function config_maybe_locales() {
 			$block_start_done=true;
 			$results[] = array (
 					"type" => "block_start", 
-					"prompt" => "<b>(" . _("Advanced") . ")</b> ".sprintf(_("Locale problems")),
+					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("Locale problems")),
 						"desc" => _("There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
 							"<p></p>" .
 							_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
@@ -888,7 +890,7 @@ function check_safe_mode()
 	    !strcasecmp($safe_mode, "off") ||
 	    !strcasecmp($safe_mode, "0") ||
 	    !strcasecmp($safe_mode, "false")) {
-		$success[] = _("safe mode is off");
+		$success[] = _("<b>safe_mode</b> is off.");
 	} else {
 		$fail["fail-safe-mode"] = 1;
 	}
@@ -901,7 +903,7 @@ function check_magic_quotes()
 	$success = array();
 	$warn = array();
 	if (!get_magic_quotes_gpc()) {
-		$success[] = _("magic quotes are off");
+		$success[] = _("<b>magic_quotes</b> are off.");
 	} else {
 		$fail["fail-magic-quotes"] = 1;
 	}
@@ -1202,19 +1204,19 @@ function check_admins() {
 
 	if (empty($admins)) {
 		$result=array(
-			"desc" => sprintf(_("You must enter a password for the %s account. This is only needed the first time you configure your gallery.  If you reconfigure your gallery its not needed to enter it again."), "'admin'") . newIn("1.4.1")
+			'desc' => sprintf(_('You must enter a password for the %s account.'), '<b>admin</b>') . newIn('1.4.1')
 		);
 	}
 	else if (! in_array("admin",$admins)) {
 		$result=array(
-			"desc" => sprintf(_("It seems you already configured gallery, because there are %d admin accounts.  But not a user called %s.  You dont have to enter a password.  But if you do so Gallery will create a user called %s with that password."), sizeof($admin), "'admin'", "'admin'") . newIn("1.4.1"),
+			"desc" => sprintf(_("It seems you've already configured Gallery, because there are %d admin accounts, but not a user called %s.  You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."), sizeof($admin), '<b>admin</b>', '<b>admin</b>') . newIn('1.4.1'),
 			"optional" => 1,
 			"remove_empty" => true
 		);
 	}
 	else {
 		$result=array(
-			"desc" => sprintf(_("It seems you already configured gallery, because the %s user exists.  You dont have to enter a password.  But if you do so Gallery will change the password for the user called %s."), "'admin'", "'admin'") . newIn("1.4.1"),
+			"desc" => sprintf(_("It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."), '<b>admin</b>', '<b>admin</b>') . newIn("1.4.1"),
 			"optional" => 1,
 			"remove_empty" => true
 		);
@@ -1222,7 +1224,7 @@ function check_admins() {
 
 $result=array_merge($result,array(
 	"prompt" => _("Admin password"),
-	"type" => "text",
+	"type" => "password",
 	"dont-write" => 1,
 	"value" => "",
 	"attrs" => array("size" => 50)

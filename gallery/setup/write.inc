@@ -139,7 +139,7 @@ $userDB = new Gallery_UserDB();
 $admin = $userDB->getOrCreateUser("admin");
 
 if (strlen($editPassword) >0) {
-	$message=sprintf(_("The Password for user %s was changed"),"'admin'");
+	$message=sprintf(_("The password for user %s was changed."), '<b>admin</b>');
 	$admin->setPassword($editPassword);
 	
 	if (! $admin->isAdmin()) {
@@ -164,12 +164,12 @@ if (strlen($editPassword) >0) {
 <div class="header"><?php echo _("Your configuration has been successfully saved!") ?></div>
 <?php
 if (isset($message)) {
-	echo '<p><table cellspacing="1" cellpadding="4" border="1">';
-	echo "\n\t<tr><td>$message</td></tr>";
-	echo "\n</table></p>";
+	echo '<div class="sitedesc">';
+	echo "\n\t$message";
+	echo "\n</div>";
 }
 ?>
-<div class="sitedesc"><span style="font-size: 1.2em; color:red"><?php echo _("Note") ?>!</span>
+<div class="sitedesc"><br><span style="font-size: 1.2em; color:red"><?php echo _("Note") ?>!</span>
 
 <br>
 <?php 

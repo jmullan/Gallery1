@@ -40,14 +40,14 @@ if (!isset($gallery)) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = "BRANCH_1_4_1_skins-b3";
-$gallery->config_version = "67.1";
+$gallery->version = "DEV_1_4_1_skins-cvs-b4";
+$gallery->config_version = "68.1";
 $gallery->album_version = 22;
 $gallery->user_version = 3;
 $gallery->url = "http://gallery.sourceforge.net";
 
 /* do not edit the date!! modified by CVS */
-$gallery->last_change=strtotime(substr('$Date$', 7, -1));	 
+$gallery->last_change=strtotime(substr('$Date$', 7, -1));
 /*
  * PostNuke version info
  */
