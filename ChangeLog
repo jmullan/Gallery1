@@ -1,3 +1,11 @@
+2001-12-04  Bharat Mediratta  <bharat@menalto.com> (1.2.4-p1-cvs-b1)
+
+	* PostNuke now has the capability for using encrypted database
+	  username/password information, which works just fine with the ADODB
+	  database abstraction layer but breaks our layer.  I've updated the
+	  PostNuke User and UserDB classes to use the PostNuke database object
+	  to fix this problem.
+
 2001-11-29  Bharat Mediratta  <bharat@menalto.com> (1.2.4)
 
 	* v1.2.4 ships!
