@@ -767,18 +767,24 @@ function check_locale() {
 			continue;
 		}
 		
-		/* we use the first 2 letter to build an alias list
-		**  e.G. nl to find nl_BE or nl_NL
+		/* 
+		** First, we try using the full lang, (first 5 chars) if 
+		** that doesn't match then 
+		** we use the first 2 letter to build an alias list
+		**  e.g. nl to find nl_BE or nl_NL
 		*/
 		if (in_array($locale,$nls['alias'])) {
 			$keylist = array_keys($nls['alias'],$locale);
 			$aliases = $keylist;
 			if (getOS() != OS_WINDOWS) {
-				$sub='^(' . substr($locale,0,2) . '|' . implode('|', $keylist) . ')';
+				$sub='^(' . implode('|', $keylist) . '|' . substr($locale,0,5) . ')';
                                 foreach ($system_locales as $key => $value) {
                                         if (ereg($sub, $value)) {
                                                 $aliases[] = $value;
                                         }
+					elseif (ereg("^" . substr($locale,0,2))) {
+						$aliases[] = $value;
+					}
                                 }
 			}
 		} else {
