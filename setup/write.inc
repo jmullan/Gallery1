@@ -2,7 +2,6 @@
 require("../classes/User.php");
 require("../classes/NobodyUser.php");
 require("../classes/EverybodyUser.php");
-require("../classes/UserDB.php");
 
 $GALLERY_DIR = dirname(dirname(getenv("SCRIPT_FILENAME")));
 $GALLERY_URL = dirname(dirname(getenv("SCRIPT_NAME")));
@@ -35,6 +34,13 @@ if ($fd = @fopen($outfile, "w")) {
 	fail($outfile);	
 	return;
 }
+
+/*
+ * Don't require UserDB before we've written and included config.php or it will
+ * have a cow when it tries to verify that the $app->userDir exists.
+ */
+include("../config.php");
+include("../classes/UserDB.php");
 
 $userDB = new UserDB();
 $admin = $userDB->getOrCreateUser("admin");
