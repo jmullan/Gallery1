@@ -65,8 +65,7 @@ $checklist = array(
 		"fail-htaccess" => "Apache is not obeying your .htaccess file.  Try ".
 			"entering the following into your web server's httpd.conf " .
 			 "file: <br><pre>" .
-			 "&lt;Directory " .
-			 dirname(dirname(getenv("SCRIPT_FILENAME"))) .
+			 "&lt;Directory $GALLERY_DIR" .
 			 "&gt;\n\tAllowOverride Options FileInfo\n" .
 			 "&lt;/Directory&gt;",
 		"optional" => 1,
