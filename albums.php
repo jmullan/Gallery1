@@ -18,17 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 ?>
-<?
-if ($GALLERY_INIT != 1) {
-	if (file_exists("config.php")) {
-		require("config.php");
-	}
-	require("util.php");
-	gallerySanityCheck();
-}
-?>
-
-<? if (file_exists("config.php")) { ?>
+<? require('init.php'); ?>
 
 <?
 /* Read the album list */
@@ -199,50 +189,13 @@ for ($i = $start; $i <= $end; $i++) {
   <!-- End Album Column Block -->
 
 <?
-}      
+} // for() loop      
 ?>
 </table>
 <!-- album table end -->
 <!-- bottom nav -->
 <?
 include("layout/navigator.inc");
-?>
-
-<?
-} 
-
-else {
-	if (file_exists("setup") && is_readable("setup")) {
-		header("Location: setup/index.php");
-		return;
-	}
-
-?>
-
-<<html>
-<head>
-  <title>Gallery Configuration Error</title>
-  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
-</head>
-<body>
-center>
-<span class="error">
-Gallery has not been configured!
-<p>
-To configure it, type:
-	<table><tr><td>
-		<code>
-		% cd <?=dirname(getenv("SCRIPT_FILENAME"))?>
-		<br>
-		% sh ./configure.sh
-	</td></tr></table>
-<p>
-And then go <a href="setup/index.php">here</a>
-</span>
-</body>
-</html>
-<?
-} 
 ?>
 
 <!-- gallery.footer begin -->
