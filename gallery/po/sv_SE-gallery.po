@@ -1,14 +1,33 @@
 # $Id$
-# Copyright (C) 2002 2003
-# This file is distributed under the same license as the PACKAGE package.
+# 
+# v1.4-pl1-sv_SE-lang1 , 2003/10/01
+#
+# Gallery - a web based photo album viewer and editor
+# Copyright (C) 2000-2003 Bharat Mediratta
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or (at
+# your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+#
 # Christian Wallin <crille@swipnet.se>, 2002.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-09-08 23:25+0200\n"
-"PO-Revision-Date: 2003-09-08 22:38+0100\n"
-"Last-Translator: Mikael Gustafsson <mikael@escacena.se>\n"
+"Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
+"POT-Creation-Date: 2003-09-30 22:59+0200\n"
+"PO-Revision-Date: 2003-09-28 22:49+0100\n"
+"Last-Translator: Christian Wallin <crille@swipnet.se>\n"
 "Language-Team: SWEDISH <crille@swipnet.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -347,7 +366,7 @@ msgstr "Hej!"
 #: ../albums.php:335
 #, php-format
 msgid "%s this album so that the URL is not so generic!"
-msgstr "detta album så att URL'en inte är så vanlig!"
+msgstr "%s detta album så att URL'en inte är så vanlig!"
 
 #: ../albums.php:336 ../rename_album.php:120
 msgid "Rename"
@@ -375,7 +394,7 @@ msgstr "Detta album innehåller %s."
 msgid "item"
 msgstr "objekt"
 
-#: ../albums.php:353 ../upgrade_album.php:186 ../view_album.php:524
+#: ../albums.php:353 ../upgrade_album.php:188 ../view_album.php:524
 msgid "items"
 msgstr "objekt"
 
@@ -1138,7 +1157,7 @@ msgstr "Logga in"
 
 #: ../manage_users.php:45
 msgid "Please select a user"
-msgstr ""
+msgstr "Var god välj en användare"
 
 #: ../manage_users.php:65 ../manage_users.php:71
 msgid "Manage Users"
@@ -1417,7 +1436,7 @@ msgstr "Steg 2"
 #: ../publish_xp_docs.php:58
 #, php-format
 msgid "Download the %sXP Configuration File%s"
-msgstr "Ladda ned %sXP konfigurationsfil%s"
+msgstr "Ladda ned %sXP konfigurationsfil%s."
 
 #: ../publish_xp_docs.php:60
 #, php-format
@@ -1432,11 +1451,9 @@ msgstr "Om den ber dig godkänna förändringen av filtyp, välj &quot;ja&quot;."
 msgid "Right click on this file and you should see a menu appear."
 msgstr "Högerklicka på denna fil och en meny kommer att visas."
 
-# Hur ska Merge översättas? Måste kolla i WinXP.
 #: ../publish_xp_docs.php:63
-#, fuzzy
 msgid "Select the <b>Merge</b> option (this should be at the top of the menu)."
-msgstr "Välj <b>Merge</b> alternativet (det bör vara det översta alternativet i menyn)."
+msgstr "Välj <b>Infoga i registret</b> alternativet (det bör vara det översta alternativet i menyn)."
 
 #: ../publish_xp_docs.php:64
 msgid "It will ask you if you want to import these values into your registry."
@@ -1691,9 +1708,8 @@ msgid "upgrade all albums"
 msgstr "uppgradera alla album"
 
 #: ../search.php:253
-#, fuzzy
 msgid "Search the Gallery's Album and Photo<br> titles, descriptions and comments"
-msgstr "Sök i Galleriets album och foton<br> titlar och beskrivningar"
+msgstr "Sök i Galleriets album och foton<br> titlar, beskrivningar och kommentarer"
 
 #: ../search.php:258
 msgid "Go"
@@ -2103,7 +2119,7 @@ msgstr "Sökväg till NetPBM"
 #: ../setup/config_data.inc:194
 #, php-format
 msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  Eg. %s or %s or %s"
-msgstr ""
+msgstr "Sökvägen till NetPBM på ditt system. Om du har laddat ner NetPBM från Gallery nedladdningssida, glöm inte att göra filerna exekverbara. Alltså %s or %s or %s."
 
 #: ../setup/config_data.inc:200
 msgid "I can't find NetPBM at the location you provided."
@@ -2115,7 +2131,7 @@ msgstr "PNM till JPEG konverterare"
 
 #: ../setup/config_data.inc:211
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
-msgstr ""
+msgstr "Detta värde är endast relevant om du använder NetPBM. NetPBM använder ett verktyg för att koda sitt interna bildformat till JPEG. Dett averktyg är antingen kallat för <i>ppmtojpeg</i> eller <i>pnmtojpeg</i> beroende på vilken version utav NetPBM du har installerat. Kontrollera din NetPBM katalog för att se vilket du har installerat och ange detta här. Om du inte vet hur du ska göra, prova dig fram så ska vi försöka tala om ifall det är rätt."
 
 #: ../setup/config_data.inc:217
 msgid "Path to ImageMagick"
@@ -2236,7 +2252,7 @@ msgstr "Rotera bilder automatiskt"
 
 #: ../setup/config_data.inc:351
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.  Requires Jhead EXIF parser v.1.9 or greater (see above)."
-msgstr ""
+msgstr "Om du väljer detta alternativ kommer Gallery automatiskt att förksa rotera bilder när du laddar upp, baserat på information i JPEG EXIF data som lagras i bilder tagna av nyare digitalkameror. Kräver Jhead EXIF läsare version 1.9 eller senare (se ovan)."
 
 #: ../setup/config_data.inc:356
 msgid "Which language do you want as your default language"
@@ -2245,7 +2261,7 @@ msgstr "Vilket språk vill du använda som förvalt språk"
 #: ../setup/config_data.inc:358
 #, php-format
 msgid "This is what you will see as %s, and what users will see if no other preference is set."
-msgstr ""
+msgstr "Detta är vad du kommer att se som %s, och vad andra användare kommer se om inga andra inställningar är gjorda."
 
 #: ../setup/config_data.inc:365
 msgid "Multi language mode"
@@ -2253,7 +2269,7 @@ msgstr "Flerspråksstöd"
 
 #: ../setup/config_data.inc:366
 msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site"
-msgstr ""
+msgstr "Gallery har tre olika flerspråkslägen. Dessa påverkar vilket språk en besökare kommer se när dom tittar på webbsiten."
 
 #: ../setup/config_data.inc:370
 msgid "Gallery is only displayed in one language"
@@ -2265,7 +2281,7 @@ msgstr "Gallery visas på det språk som webbläsaren är inställd på."
 
 #: ../setup/config_data.inc:372
 msgid "The User can choose the language via select Box."
-msgstr "Användareen kan välja språk via en dropdown meny."
+msgstr "Användaren kan välja språk via en dropdown meny."
 
 #: ../setup/config_data.inc:377
 msgid "Available languages in mode 3 and user preferences"
@@ -2273,7 +2289,7 @@ msgstr "Tillgängliga språk i läge 3 och användarinställningar"
 
 #: ../setup/config_data.inc:380
 msgid "These languages will be available as user choices in a drop down menu, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3."
-msgstr ""
+msgstr "Dessa språk kommer vara tillgängliga som en &quot;drop-down&quot; meny, om du har valt felspårksläge 3, och kommer vara tillgängliga för registrerade användare som standardspråk i flerspråksläge 2 eller 3"
 
 #: ../setup/config_data.inc:387 ../setup/config_data.inc:393
 #: ../setup/config_data.inc:401 ../setup/config_data.inc:410
@@ -2289,7 +2305,7 @@ msgstr "Cacha EXIF data"
 
 #: ../setup/config_data.inc:388
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow.  Set to <b>no</b> by default."
-msgstr ""
+msgstr "EXIF data som är läst ifrån JPEG filer kan mellanlagras efter att det lästs in första gången. Nackdelen är att om du mellanlagrar är det möjligt att dina albumdatafiler blir så stora att det kommer göra det långsammare att titta på dina album. Men, om du inte mellanlagrar denna data kommer EXIF data behöva läsas varje gång en användare tittar på ett foto vilket också kan slöa ner tittandet. Är satt till <b>nej</b> som standard."
 
 #: ../setup/config_data.inc:393
 msgid "JPEG Quality"
@@ -2489,7 +2505,6 @@ msgid "Custom fields that are available to describe each image.  They should be 
 msgstr "Egenvalda fält är tillgängliga för att beskriva varje bild. Fälten ska kommasepareras. T.ex. <i>Beskrivning, Plats, Filmtyp</i>"
 
 #: ../setup/config_data.inc:582
-#, fuzzy
 msgid "Photo owner modification"
 msgstr "Ändra ägare till fotot"
 
@@ -2537,7 +2552,7 @@ msgstr "saknas"
 msgid "it's optional"
 msgstr "detta är valbart"
 
-#: ../setup/confirm.inc:70 ../util.php:2050
+#: ../setup/confirm.inc:70 ../util.php:2053
 msgid "documentation"
 msgstr "dokumentation"
 
@@ -2590,9 +2605,9 @@ msgid "%s exists but is not a directory.  Please fix this."
 msgstr "%s finns men är ej en katalog.  Var vänlig och ordna det."
 
 #: ../setup/confirm.inc:224
-#, fuzzy, php-format
+#, php-format
 msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
-msgstr "%s: %s finns, men webserverns användare kan inte skriva till den.  Försök: %s eller om det inte fungerar: %s.  Observera också att om du har en  %s restriktion så måste denna tmp-katalog finnas under %s sökväg."
+msgstr "%s: %s finns, men webserverns användare kan inte skriva till den.  Försök: %s eller om det inte fungerar: %s.  Observera också att om du har en  %s restriktion så måste tmp-katalogen finnas under %s sökväg."
 
 #: ../setup/confirm.inc:291
 #, php-format
@@ -2861,7 +2876,7 @@ msgstr "Vi kunde inte hitta några nationella inställningar. Din server är konfig
 #: ../setup/functions.inc:547
 #, php-format
 msgid "We were unable to detect any system locales. Multilanguage functions will be disabled. Please install the corresponding locales or ask your Provider to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s"
-msgstr ""
+msgstr "Vi kunde inte detektera några nationella inställningar på systemet. Flerspråksstöd kommer deaktiveras. Var god installera nödvändiga nationella inställningar eller tala med serveransvarige. Detta problem är känt på %s system. I dessa fall var god titta på %sDebian locale HowTo%s"
 
 #: ../setup/functions.inc:549
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
@@ -2892,11 +2907,9 @@ msgstr "Det finns inga lämpliga nationella inställningar installerade för följan
 msgid "safe mode is off"
 msgstr "säkert läge är avstängt"
 
-# magiska.. näää det kan inte stämma /Crille
 #: ../setup/functions.inc:797
-#, fuzzy
 msgid "magic quotes are off"
-msgstr "magiska kommentarer är avslagna"
+msgstr "magic quotes är avslagna"
 
 #: ../setup/session_test.php:30
 msgid "Gallery Session Test"
@@ -2985,7 +2998,7 @@ msgstr "Din data kommer att sparas så att du inte behöver skriva in allt igen"
 # Hoppa in, kolla in, klurigt /Crille
 #: ../setup/write.inc:109
 msgid "Enter the Gallery"
-msgstr "Hoppa in i Gallery"
+msgstr "Gå till mitt Gallery"
 
 #: ../setup/write.inc:122
 msgid "Failure"
@@ -3163,74 +3176,71 @@ msgid "Sort"
 msgstr "Sortera"
 
 #: ../upgrade_users.php:41 ../upgrade_users.php:47
-#, fuzzy
 msgid "Upgrading Users"
-msgstr "administrera användare"
+msgstr "Uppgraderar användare"
 
 #: ../upgrade_users.php:50
-#, fuzzy
 msgid "The user database in your Gallery was created with an older version of the software and is out of date."
-msgstr "Följande album i Gallery är skapade av en äldre version av programmet och är ej uppgraderade."
+msgstr "Användardatabasen i Gallery är skapad av en äldre version av programmet och är ej uppgraderade."
 
-#: ../upgrade_users.php:51 ../upgrade_album.php:139
+#: ../upgrade_users.php:51 ../upgrade_album.php:141
 msgid "This is not a problem!"
 msgstr "Detta är inte ett problem!"
 
 #: ../upgrade_users.php:52
 msgid "We will upgrade it.  This may take some time."
-msgstr ""
+msgstr "Vi kommer uppgrdaera det. Detta kan en stund."
 
 #: ../upgrade_users.php:53
-#, fuzzy
 msgid "Your data will not be harmed in any way by this process."
-msgstr "Inga foton kommer att skadas av denna åtgärd."
+msgstr "Ingen data kommer att skadas av denna åtgärd."
 
-#: ../upgrade_users.php:54 ../upgrade_album.php:142
+#: ../upgrade_users.php:54 ../upgrade_album.php:144
 msgid "Rest assured, that if this process takes a long time now, it's going to make your Gallery run more efficiently in the future."
 msgstr "Ha tålamod om detta tar tid, uppgraderingen kommer göra att Gallery kan köras mer effektivt i framtiden."
 
 #: ../upgrade_users.php:62
 msgid "There was a problem upgrading users.  Please check messages above, and try again"
-msgstr ""
+msgstr "Det uppstod ett problem med att uppgradera användarna. Var god kontrollera meddelandena ovan, och försök igen"
 
 #: ../upgrade_users.php:63
 msgid "Retry"
-msgstr ""
+msgstr "Försök igen"
 
 #: ../upgrade_users.php:67
 msgid "Users upgraded successfully."
-msgstr ""
+msgstr "Användarna korrekt uppgraderade"
 
 #: ../upgrade_album.php:88
 msgid "Progress"
 msgstr "Framsteg"
 
-#: ../upgrade_album.php:128 ../upgrade_album.php:134
+#: ../upgrade_album.php:130 ../upgrade_album.php:136
 msgid "Upgrade Albums"
 msgstr "Uppgradera album"
 
-#: ../upgrade_album.php:138
+#: ../upgrade_album.php:140
 msgid "The following albums in your Gallery were created with an older version of the software and are out of date."
 msgstr "Följande album i Gallery är skapade av en äldre version av programmet och är ej uppgraderade."
 
-#: ../upgrade_album.php:140
+#: ../upgrade_album.php:142
 msgid "We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed."
 msgstr "Vi kan uppgradera dem. Detta kan ta en stund för stora album, men vi håller dig informerad under tiden."
 
-#: ../upgrade_album.php:141
+#: ../upgrade_album.php:143
 msgid "None of your photos will be harmed in any way by this process."
 msgstr "Inga foton kommer att skadas av denna åtgärd."
 
-#: ../upgrade_album.php:171
+#: ../upgrade_album.php:173
 msgid "All albums are up to date."
 msgstr "Alla album är uppdaterade."
 
-#: ../upgrade_album.php:176
+#: ../upgrade_album.php:178
 #, php-format
 msgid "The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %supgrade them all at once%s"
 msgstr "Följande album behöver uppgraderas. Du kan uppgradera dom individuellt genom att klicka på uppgraderingslänken vid ditt album, eller så kan du helt enkelt %suppgradera alla på en gång%s"
 
-#: ../upgrade_album.php:184
+#: ../upgrade_album.php:186
 msgid "upgrade"
 msgstr "uppgradera"
 
@@ -3299,7 +3309,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP's %s kan inte kan inte bestämma dimensioner."
 
 # Osäker på var denna text återfinns. Om den bara visas för admin så kan det vara bättre att använda det engelska uttrycket "package". Det svenska ordet paket används sällan i detta sammanhang. / mikgus
-#: ../util.php:226 ../util.php:529 ../util.php:575 ../util.php:2078
+#: ../util.php:226 ../util.php:533 ../util.php:579 ../util.php:2081
 msgid "You have no graphics package configured for use!"
 msgstr "Du har inga grafikprogram  konfigurerade för att användas!"
 
@@ -3339,112 +3349,112 @@ msgstr "försöker med kvalité %d%%"
 msgid "Done."
 msgstr "Klart."
 
-#: ../util.php:608
+#: ../util.php:612
 #, php-format
 msgid "There was an unknown failure in the %s call!"
 msgstr "Ett okänt fel har uppstått i %s anropet!"
 
-#: ../util.php:632 ../util.php:655
+#: ../util.php:636 ../util.php:659
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Okänd filtyp: %s"
 
-#: ../util.php:1068
+#: ../util.php:1072
 #, php-format
 msgid "Can't write to %s."
 msgstr "Kan inte skriva till %s."
 
-#: ../util.php:1075
+#: ../util.php:1079
 #, php-format
 msgid "Can't read %s."
 msgstr "Kan inte läsa %s."
 
-#: ../util.php:1167
+#: ../util.php:1171
 msgid "Select Album"
 msgstr "Välj album"
 
-#: ../util.php:1173
+#: ../util.php:1177
 msgid "Top Level"
 msgstr "Toppnivå"
 
-#: ../util.php:1194 ../util.php:1241
+#: ../util.php:1198 ../util.php:1245
 msgid "current location"
 msgstr "nuvarande placering"
 
-#: ../util.php:1243
+#: ../util.php:1247
 msgid "self"
 msgstr "själv"
 
-#: ../util.php:1411
+#: ../util.php:1414
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Kunde inte öpnna låst fil (%s)!"
 
-#: ../util.php:1416
+#: ../util.php:1419
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Kan inte låsa (%s)!"
 
-#: ../util.php:1499
+#: ../util.php:1502
 msgid "hit"
 msgstr "träff"
 
-#: ../util.php:1499
+#: ../util.php:1502
 msgid "hits"
 msgstr "träffar"
 
-#: ../util.php:1499
+#: ../util.php:1502
 msgid "0 hits"
 msgstr "0 träffar"
 
-#: ../util.php:1504
+#: ../util.php:1507
 msgid "Sub-albums"
 msgstr "Underliggande album"
 
-#: ../util.php:1533
+#: ../util.php:1536
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Hoppar över %s (ZIP stöd är inte aktiverat)"
 
-#: ../util.php:1607
+#: ../util.php:1610
 #, php-format
 msgid "Adding %s"
 msgstr "Lägger till %s"
 
-#: ../util.php:1627
+#: ../util.php:1630
 #, php-format
 msgid "Resizing %s"
 msgstr "Ändrar storlek %s"
 
-#: ../util.php:1655
+#: ../util.php:1658
 #, php-format
 msgid "Photo auto-rotated %s&deg;"
 msgstr "Fotot autoroterat %s&grader;"
 
-#: ../util.php:1666
+#: ../util.php:1669
 #, php-format
 msgid "Error: %s!"
 msgstr "Fel: %s!"
 
-#: ../util.php:1668
+#: ../util.php:1671
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Behöver du hjälp? Titta i  %s%s FAQ%s"
 
-#: ../util.php:1674
+#: ../util.php:1677
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Hoppar över %s (accepterar inte %s format)"
 
-#: ../util.php:2088
+#: ../util.php:2091
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Skapad med hjälp av %s v%s"
 
-#: ../util.php:2090
+#: ../util.php:2093
 #, php-format
 msgid "Powered by %s v%s"
-msgstr "Körs med hjälp av %s v%s"
+msgstr "Visas med hjälp av %s v%s"
 
 #: ../view_album.php:251
 msgid "sub-album"

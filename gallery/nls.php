@@ -24,7 +24,7 @@
  *
  * This array was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist and it was 
- * maintained by Jan Schneider (mail@janschneider.de)
+ * maintained by Jan Schneider (jan@horde.org)
  * The modifications to fit it for Gallery were made by Jens Tkotz 
  * (jens@peino.de)
  *
@@ -42,6 +42,7 @@
 function getNLS () {
 	$nls['language']['zh_CN'] = 'Simplified Chinese (&#31616;&#20307;&#20013;&#25991;)';
 	$nls['language']['zh_TW'] = 'Traditional Chinese (&#32321;&#39636;&#20013;&#25991;)';
+	$nls['language']['bg_BG'] = '&#x0411;&#x044a;&#x043b;&#x0433;&#x0430;&#x0440;&#x0441;&#x043a;&#x0438;';
 	$nls['language']['cs_CZ'] = '&#x010c;esky';
 	$nls['language']['da_DK'] = 'Dansk';
 	$nls['language']['de_DE'] = 'Deutsch';
@@ -53,11 +54,14 @@ function getNLS () {
 	$nls['language']['he_IL'] = 'Hebrew';
 	$nls['language']['is_IS'] = '&#205;slenska';
 	$nls['language']['ja_JP'] = '&#x65e5;&#x672c;&#x8a9e; (EUC-JP)';
+	$nls['language']['ko_KR'] = '&#xd55c;&#xad6d;&#xc5b4;';
 	$nls['language']['lt_LT'] = 'Lietuvi&#x0173;';
+	$nls['language']['hu_HU'] = 'Magyar';
 	$nls['language']['nl_NL'] = 'Nederlands';
 	$nls['language']['no_NO'] = 'Norsk bokm&#229;l';
 	$nls['language']['pl_PL'] = 'Polski';
 	$nls['language']['pt_PT'] = 'Portugu&#234;s';
+	$nls['language']['pt_BR'] = 'Portugu&ecirc;s Brasileiro';
 	$nls['language']['ru_RU'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)';
 	$nls['language']['ru_RU.koi8r'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (KOI8-R)';
 	$nls['language']['sl_SI'] = 'Sloven&#x0161;&#x010d;ina';
@@ -77,9 +81,11 @@ function getNLS () {
 	$nls['alias']['es'] = 'es_ES';
 	$nls['alias']['fi'] = 'fi_FI';
 	$nls['alias']['fr'] = 'fr_FR';
+	$nls['alias']['hu'] = 'hu_HU';
 	$nls['alias']['is'] = 'is_IS';
 	$nls['alias']['it'] = 'it_IT';
 	$nls['alias']['ja'] = 'ja_JP';
+	$nls['alias']['ko'] = 'ko_KR';
 	$nls['alias']['lt'] = 'lt_LT';
 	$nls['alias']['nl'] = 'nl_NL';
 	$nls['alias']['no'] = 'no_NO';
@@ -103,11 +109,11 @@ function getNLS () {
 	$nls['alias']['danish'] =		'da_DK' ;
 	$nls['alias']['da_DK.ISO8859-1'] =	'da_DK' ;
 
+	$nls['alias']['german'] =		'de_DE' ;
 	$nls['alias']['de_LI'] = 		'de_DE' ;
 	$nls['alias']['de_LU'] = 		'de_DE' ;
 	$nls['alias']['de_CH'] = 		'de_DE' ;
 	$nls['alias']['de_AT'] = 		'de_DE' ;
-	$nls['alias']['german'] =		'de_DE' ;
 	$nls['alias']['de_DE.ISO8859-1'] =	'de_DE' ;
 
 	$nls['alias']['spanish'] =		'es_ES' ;
@@ -119,11 +125,12 @@ function getNLS () {
 	$nls['alias']['english'] = 		'en_US' ;
 	$nls['alias']['en_US.ISO8859-1'] =	'en_US' ;
 	
+	$nls['alias']['french'] =		'fr_FR' ;
 	$nls['alias']['fr_BE'] = 		'fr_FR' ;
 	$nls['alias']['fr_CA'] = 		'fr_FR' ;
 	$nls['alias']['fr_LU'] = 		'fr_FR' ;
 	$nls['alias']['fr_CH'] = 		'fr_FR' ;
-	$nls['alias']['french'] =		'fr_FR' ;
+
 	$nls['alias']['fr_FR.ISO8859-1'] =	'fr_FR' ;
 
 	$nls['alias']['finnish'] =		'fi_FI' ;
@@ -135,12 +142,16 @@ function getNLS () {
 	$nls['alias']['italian'] =		'it_IT' ;
 	$nls['alias']['it_IT.ISO8859-1'] =	'it_IT' ;
 	
-	$nls['alias']['he_HE'] = 		'he_IL' ;
 	$nls['alias']['hebrew'] =		'he_IL' ;
+	$nls['alias']['he_HE'] = 		'he_IL' ;
 	$nls['alias']['he_IL.ISO8859-8'] =	'he_IL' ;
+
+	$nls['alias']['hungarian'] =		'hu_HU' ;
 
 	$nls['alias']['ja_JP.EUC-JP'] =		'ja_JP' ;
 	$nls['alias']['ja_JP.EUC'] =		'ja_JP' ;
+
+	$nls['alias']['ko_KR.EUC-KR'] =		'ko_KR' ;
 	
 	$nls['alias']['lt_LT.ISO8859-4'] =	'lt_LT' ;
 	$nls['alias']['lt_LT.ISO8859-13'] =	'lt_LT' ;
@@ -155,9 +166,13 @@ function getNLS () {
 	$nls['alias']['polish'] =		'pl_PL' ;
 	$nls['alias']['pl_PL.ISO8859-2'] =	'pl_PL' ;
 
+	$nls['alias']['brazilian'] =		'pt_BR' ;
+	$nls['alias']['pt_BR.ISO8859-1'] =	'pt_BR' ;
+	$nls['alias']['pt_BR.ISO8859-15'] =	'pt_BR' ;
+
 	$nls['alias']['portuguese'] =		'pt_PT' ;
-	$nls['alias']['pt_PT.ISO8859-2'] =	'pt_PT' ;
 	$nls['alias']['pt_PT.ISO8859-1'] =	'pt_PT' ;
+	$nls['alias']['pt_PT.ISO8859-15'] =	'pt_PT' ;
 	
 	$nls['alias']['russian'] =		'ru_RU';
 	//$nls['alias']['russian'] =		'ru_RU.koi8r';
@@ -179,9 +194,10 @@ function getNLS () {
 
 	$nls['alias']['zh_CN.EUC'] =            'zh_CN' ;
 
+	$nls['alias']['chinese'] = 		'zh_TW' ;
 	$nls['alias']['zh_TW.GB2312'] =         'zh_TW' ;
 	$nls['alias']['zh_TW.Big5']      =	'zh_TW' ;
-	$nls['alias']['chinese'] = 		'zh_TW' ;
+
 	
 /**
  ** Charsets
@@ -192,11 +208,14 @@ function getNLS () {
 	
 	$nls['default']['charset'] =	 	'ISO-8859-1';
 
-	$nls['charset']['cs_CZ'] = 		'ISO-8859-2';	
+	$nls['charset']['bg_BG'] = 		'windows-1251';
+	$nls['charset']['cs_CZ'] = 		'windows-1250';	
 	$nls['charset']['he_IL'] = 		'windows-1255';
+	$nls['charset']['hu_HU'] =		'ISO-8859-2';
 	$nls['charset']['ja_JP'] = 		'EUC-JP';
 	$nls['charset']['lt_LT'] = 		'windows-1257';
 	$nls['charset']['ja_JP'] = 		'EUC-JP';
+	$nls['charset']['ko_KR'] = 		'EUC-KR';
 	$nls['charset']['pl_PL'] = 		'ISO-8859-2';
 	$nls['charset']['ru_RU'] = 		'windows-1251';
 	$nls['charset']['ru_RU.KOI8-R'] = 	'KOI8-R';
@@ -216,6 +235,7 @@ function getNLS () {
 	$nls['multibyte']['BIG5'] = 	true;
 	$nls['multibyte']['GB2312'] =   true;
 	$nls['multibyte']['EUC-JP'] = 	true;
+	$nls['multibyte']['EUC-KR'] = 	true;
 	$nls['multibyte']['UTF-8'] = 	true;	
 
 /**
@@ -235,6 +255,7 @@ function getNLS () {
 /**
  ** Nuke
  **/
+	$nls['nuke']['pt_BR'] = 'brazilian' ;
 	$nls['nuke']['zh_TW'] = 'chinese' ;
 	$nls['nuke']['cs_CZ'] = 'czech' ;
 	$nls['nuke']['de_DE'] = 'german';
@@ -243,6 +264,7 @@ function getNLS () {
 	$nls['nuke']['es_ES'] = 'spanish';
 	$nls['nuke']['fr_FR'] = 'french';
 	$nls['nuke']['fi_FI'] = 'finnish';
+	$nls['nuke']['hu_HU'] = 'hungarian';
 	$nls['nuke']['it_IT'] = 'italian';
 	$nls['nuke']['is_IS'] = 'icelandic';
 	$nls['nuke']['nl_NL'] = 'dutch';

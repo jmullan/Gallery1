@@ -29,17 +29,18 @@ while ($file = readdir($handle)) {
 				$obsolete++;
 			}
 		}
-		$all=$translated+$fuzzy+$untranslated;
-		$percent_done=round($translated/$all*100,2);
+		$all=$translated+$untranslated;
+		$percent_done=round(($translated-$fuzzy)/$all*100,2);
 		$rpd=round($percent_done,0);
-		$report[$locale]=array ($percent_done,$translated,$fuzzy,$untranslated,$bgcolor);
+
 		if($rpd <50) {
 			$color=dechex(255-$rpd*2). "0000";
 		} else {
 			$color="00" . dechex(55+$rpd*2). "00";
 		}
 		if (strlen($color) <6) $color="0". $color;
-		$report[$locale]=array ($color,$percent_done,$translated,$fuzzy,$untranslated,$obsolete);
+
+		$report[$locale]=array ($color,$percent_done,$all, $translated,$fuzzy,$untranslated,$obsolete);
         }
 }
 closedir($handle);
@@ -67,6 +68,7 @@ uasort ($report, 'my_usort_function');
 	<th>Language</th>
 	<th>Locale</th>
 	<th>Status</th>
+	<th valign="bottom" style="width: 30px;">A<br/>l<br/>l<br/></th>
 	<th valign="bottom" style="width: 30px;">T<br/>r<br/>a<br/>n<br/>s<br/>l<br/>a<br/>t<br/>e<br/>d</th>
 	<th valign="bottom" style="width: 30px;">F<br/>u<br/>z<br/>z<br/>y</th>
 	<th valign="bottom" style="width: 30px;">U<br/>n<br/>t<br/>r<br/>a<br/>n<br/>s<br/>l<br/>a<br/>t<br/>e<br/>d</th>
@@ -96,10 +98,11 @@ foreach ($report as $key => $value) {
 	echo "\n\t<td style=\"background-color:$color\">". $nls['language'][$key] . "</td>";
 	echo "\n\t<td style=\"background-color:$color\">". $key ."</td>";
 	echo "\n\t<td style=\"background-color:#". $value[0] . "\">". $value[1] ."% done</td>";
-	echo "\n\t<td class=\"translated$nr\">". $value[2] ."</td>";
-	echo "\n\t<td class=\"fuzzy$nr\">". $value [3] . "</td>";
-	echo "\n\t<td class=\"untranslated$nr\">". $value[4] ."</td>";
-	echo "\n\t<td class=\"obsolete$nr\">". $value[5] ."</td>";
+	echo "\n\t<td style=\"background-color:$color\">". $value[2] ."</td>";
+	echo "\n\t<td class=\"translated$nr\">". $value[3] ."</td>";
+	echo "\n\t<td class=\"fuzzy$nr\">". $value [4] . "</td>";
+	echo "\n\t<td class=\"untranslated$nr\">". $value[5] ."</td>";
+	echo "\n\t<td class=\"obsolete$nr\">". $value[6] ."</td>";
 	echo "\t</tr>";
 	$last_key=$key;
 }

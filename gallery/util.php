@@ -1800,6 +1800,10 @@ function initLanguage() {
 	// Detect Browser Language
 	$lang = explode (",", $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"]);
 	$lang_pieces=explode ("-",$lang[0]);
+	$spos=strpos($lang[0],";");
+                if ($spos >0) {
+                        $lang[0]=substr($lang[0],0,$spos);
+                }
 
 	if (strlen($lang[0]) ==2) {
 		$gallery->browser_language=$lang[0] ."_".strtoupper($lang[0]);

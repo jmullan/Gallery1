@@ -1,10 +1,30 @@
-# Copyright (C) 2003
-# This file is distributed under the same license as the PACKAGE package.
+# $Id$
+# 
+# v1.4-pl1-da_DK-lang1 , 2003/10/01
+#
+# Gallery - a web based photo album viewer and editor
+# Copyright (C) 2000-2003 Bharat Mediratta
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or (at
+# your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-09-05 14:53+0200\n"
+"Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
+"POT-Creation-Date: 2003-09-30 22:58+0200\n"
 "PO-Revision-Date: 2003-08-21 07:04+0200\n"
 "Last-Translator: Niels Elgaard Larsen <elgaard@agol.dk>\n"
 "Language-Team: Niels Elgaard Larsen <elgaard@agol.dk>\n"
@@ -377,7 +397,7 @@ msgstr "Dette album indeholder %s."
 msgid "item"
 msgstr "objekt"
 
-#: ../albums.php:353 ../upgrade_album.php:186 ../view_album.php:524
+#: ../albums.php:353 ../upgrade_album.php:188 ../view_album.php:524
 msgid "items"
 msgstr "objekter"
 
@@ -1678,9 +1698,9 @@ msgid "No Photo Matches"
 msgstr "Ingen billeder passede"
 
 #: ../search.php:229
-#, fuzzy, php-format
+#, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
-msgstr "ADVARSEL: Enkelte album skal opgraderes til aktuel version af Gallery"
+msgstr ""
 
 #: ../search.php:232
 #, fuzzy
@@ -2028,7 +2048,7 @@ msgstr "Check at jhead er installeret så Gallery kan undersøge EXIF headers i bi
 #: ../setup/config_data.inc:127
 #, php-format
 msgid "I can't find jhead.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jhead by hand on the following page.  If it's not installed, you can install it yourself.  jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at %sthe jhead homepage%s."
-msgstr "Jeg kan ikke finde jhead. Hvis den er installeret og ikke i webserverbrugerens sti, er det OK. Hvis den ikke er installeret, kan du installere den selv. jhead er en public domain EXIF fortolker."
+msgstr ""
 
 #: ../setup/config_data.inc:134
 msgid "Check to see if jpegtran is installed so that Gallery can perform lossless rotations (only works on JPEG images)"
@@ -2037,7 +2057,7 @@ msgstr "Check at jpegtran er installeret så Gallery kan rotere billeder uden tab
 #: ../setup/config_data.inc:136
 #, php-format
 msgid "I can't find jpegtran.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jpegtran by hand on the following page.  If it's not installed, you can install it yourself.  jpegtran is a freely distributable tool distributed by the Independent JPEG Group as part of libjpeg.  Source may be found at %sthe IJG homepage%s.  Binaries may be found at %sthe JPEG club website%s or in the libjpeg package of Linux distributions."
-msgstr "Jeg kan ikke finde jpegtran. Hvis den er installeret og ikke er i webserverbrugerens sti, er det OK--Du kan angive stien til jpegtran i hånden på næste side. Hvis den ikke er installeret, er du nødt til at installere den."
+msgstr ""
 
 #: ../setup/config_data.inc:143
 msgid "Check to see if PHP is compiled with gettext for fast translations."
@@ -2201,7 +2221,7 @@ msgstr "Spejle"
 #: ../setup/config_data.inc:334
 #, php-format
 msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  Eg.%s."
-msgstr "En liste af URL'er som er spejle af dit albumskatalog. Angiv een URL per linie med de mest pålidelige øverst."
+msgstr ""
 
 #: ../setup/config_data.inc:344
 msgid "Show the album tree"
@@ -2261,8 +2281,8 @@ msgstr "Disse sprog vil kan vælges af brugere, hvis du har valgt tilstand 3. De 
 #: ../setup/config_data.inc:387 ../setup/config_data.inc:393
 #: ../setup/config_data.inc:401 ../setup/config_data.inc:410
 #: ../setup/config_data.inc:416 ../setup/config_data.inc:421
-#: ../setup/config_data.inc:428 ../setup/functions.inc:702
-#: ../setup/functions.inc:743
+#: ../setup/config_data.inc:428 ../setup/functions.inc:701
+#: ../setup/functions.inc:742
 msgid "Advanced"
 msgstr "Avanceret"
 
@@ -2517,7 +2537,7 @@ msgstr "mangler"
 msgid "it's optional"
 msgstr "det er valgfrit"
 
-#: ../setup/confirm.inc:70 ../util.php:2050
+#: ../setup/confirm.inc:70 ../util.php:2053
 #, fuzzy
 msgid "documentation"
 msgstr "dokumentation"
@@ -2836,7 +2856,7 @@ msgstr "Alle gallery regionaldata er tilgængelige på denne maskine"
 #: ../setup/functions.inc:543
 #, php-format
 msgid "We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."
-msgstr "Kunne ikke finde nogen regionaldata."
+msgstr ""
 
 #: ../setup/functions.inc:547
 #, php-format
@@ -2851,27 +2871,27 @@ msgstr "Kun standard regionaldata er tilgængelig på denne maskine, så datoformat
 msgid "Dates in these languages may not be formatted properly, because the corresponding locales are missing:"
 msgstr "Datoer i disse sprog bliver muligvis ikke vist i det rigtige format fordi det tilsvarende regionaldata mangler."
 
-#: ../setup/functions.inc:702
+#: ../setup/functions.inc:701
 msgid "Locale Selection required"
 msgstr "Regionaldata skal vælges"
 
-#: ../setup/functions.inc:703
+#: ../setup/functions.inc:702
 msgid "There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable"
 msgstr "Der er mere end et brugbart regionaldata installeret på din maskine for følgende sprog."
 
-#: ../setup/functions.inc:743
+#: ../setup/functions.inc:742
 msgid "Locale problems"
 msgstr "Locale problemer"
 
-#: ../setup/functions.inc:744
+#: ../setup/functions.inc:743
 msgid "There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "Der er tilsyneladende ikke noget regionaldata installeret på din maskine for følgende sprog. Vælg venligst det som du mener er bedst."
 
-#: ../setup/functions.inc:786
+#: ../setup/functions.inc:785
 msgid "safe mode is off"
 msgstr "sikker tilstand slået fra"
 
-#: ../setup/functions.inc:798
+#: ../setup/functions.inc:797
 msgid "magic quotes are off"
 msgstr "magic quotes er slået fra"
 
@@ -3146,7 +3166,7 @@ msgstr "Håndter brugere"
 msgid "The user database in your Gallery was created with an older version of the software and is out of date."
 msgstr "De følgende albums i dit Gallery blev lavet med en gammel version og er forældede."
 
-#: ../upgrade_users.php:51 ../upgrade_album.php:139
+#: ../upgrade_users.php:51 ../upgrade_album.php:141
 msgid "This is not a problem!"
 msgstr "Dette er ikke et problem"
 
@@ -3159,7 +3179,7 @@ msgstr ""
 msgid "Your data will not be harmed in any way by this process."
 msgstr "Ingen af dine billeder vil tage skade ved dette."
 
-#: ../upgrade_users.php:54 ../upgrade_album.php:142
+#: ../upgrade_users.php:54 ../upgrade_album.php:144
 msgid "Rest assured, that if this process takes a long time now, it's going to make your Gallery run more efficiently in the future."
 msgstr "Du kan regne med at hvis denne opgradering tager lang tid nu, så vil det gøre dit Gallery mere effektivt i fremtiden"
 
@@ -3179,32 +3199,32 @@ msgstr ""
 msgid "Progress"
 msgstr "Fremgang"
 
-#: ../upgrade_album.php:128 ../upgrade_album.php:134
+#: ../upgrade_album.php:130 ../upgrade_album.php:136
 msgid "Upgrade Albums"
 msgstr "Opgradér album"
 
-#: ../upgrade_album.php:138
+#: ../upgrade_album.php:140
 msgid "The following albums in your Gallery were created with an older version of the software and are out of date."
 msgstr "De følgende albums i dit Gallery blev lavet med en gammel version og er forældede."
 
-#: ../upgrade_album.php:140
+#: ../upgrade_album.php:142
 msgid "We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed."
 msgstr "Vi kan opgradere dem. Det kan tage nogen tid for store albums, men vi vil holde dig orienteret mens vi gør det."
 
-#: ../upgrade_album.php:141
+#: ../upgrade_album.php:143
 msgid "None of your photos will be harmed in any way by this process."
 msgstr "Ingen af dine billeder vil tage skade ved dette."
 
-#: ../upgrade_album.php:171
+#: ../upgrade_album.php:173
 msgid "All albums are up to date."
 msgstr "Alle albums er ajourført"
 
-#: ../upgrade_album.php:176
+#: ../upgrade_album.php:178
 #, php-format
 msgid "The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %supgrade them all at once%s"
 msgstr "De følgende albums skal opgraderes. Du kan behandle dem en ad gangen ved at trykke på henvisningen ved siden af det album, du ønsker, eller du kan bare opgradere %sdem alle på én gang. %s"
 
-#: ../upgrade_album.php:184
+#: ../upgrade_album.php:186
 msgid "upgrade"
 msgstr "opgradér"
 
@@ -3271,7 +3291,7 @@ msgstr "Status: %s (forventet %s)"
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP's %s kan ikke afgøre dimensionerne"
 
-#: ../util.php:226 ../util.php:529 ../util.php:575 ../util.php:2078
+#: ../util.php:226 ../util.php:533 ../util.php:579 ../util.php:2081
 msgid "You have no graphics package configured for use!"
 msgstr "Du har ikke en brugbar konfigureret grafikpakke!"
 
@@ -3311,109 +3331,109 @@ msgstr "Prøver kvalitet %d%%"
 msgid "Done."
 msgstr "Udført"
 
-#: ../util.php:608
+#: ../util.php:612
 #, php-format
 msgid "There was an unknown failure in the %s call!"
 msgstr "Der var en ukendt fejl i %s kaldet!"
 
-#: ../util.php:632 ../util.php:655
+#: ../util.php:636 ../util.php:659
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Ukendt filtype: %s"
 
-#: ../util.php:1068
+#: ../util.php:1072
 #, php-format
 msgid "Can't write to %s."
 msgstr "Kan ikke skrive til %s."
 
-#: ../util.php:1075
+#: ../util.php:1079
 #, php-format
 msgid "Can't read %s."
 msgstr "Kan ikke læse %s."
 
-#: ../util.php:1167
+#: ../util.php:1171
 msgid "Select Album"
 msgstr "Vælg album"
 
-#: ../util.php:1173
+#: ../util.php:1177
 msgid "Top Level"
 msgstr "Øverste niveau"
 
-#: ../util.php:1194 ../util.php:1241
+#: ../util.php:1198 ../util.php:1245
 msgid "current location"
 msgstr "aktuel placering"
 
-#: ../util.php:1243
+#: ../util.php:1247
 msgid "self"
 msgstr "selv"
 
-#: ../util.php:1411
+#: ../util.php:1414
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Kunne ikke åbne låsfil (%s)!"
 
-#: ../util.php:1416
+#: ../util.php:1419
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Kunne ikke tage lås (%s)!"
 
-#: ../util.php:1499
+#: ../util.php:1502
 msgid "hit"
 msgstr "træf"
 
-#: ../util.php:1499
+#: ../util.php:1502
 msgid "hits"
 msgstr "træffere"
 
-#: ../util.php:1499
+#: ../util.php:1502
 msgid "0 hits"
 msgstr "0 træffere"
 
-#: ../util.php:1504
+#: ../util.php:1507
 msgid "Sub-albums"
 msgstr "Underalbum"
 
-#: ../util.php:1533
+#: ../util.php:1536
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Springer over %s (ZIP-understøttelse ikke slået til)"
 
-#: ../util.php:1607
+#: ../util.php:1610
 #, php-format
 msgid "Adding %s"
 msgstr "Tilføjer %s"
 
-#: ../util.php:1627
+#: ../util.php:1630
 #, php-format
 msgid "Resizing %s"
 msgstr "Ændrer størrelse på %s"
 
-#: ../util.php:1655
+#: ../util.php:1658
 #, php-format
 msgid "Photo auto-rotated %s&deg;"
 msgstr "Billede autoroteret %s&deg;"
 
-#: ../util.php:1666
+#: ../util.php:1669
 #, php-format
 msgid "Error: %s!"
 msgstr "Fejl: %s!"
 
-#: ../util.php:1668
+#: ../util.php:1671
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Har du brug for hjælp?  Se i  %s%s FAQ%s"
 
-#: ../util.php:1674
+#: ../util.php:1677
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Springer %s over (Kan ikke håndtere %s formatet)"
 
-#: ../util.php:2088
+#: ../util.php:2091
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Genereret af %s v%s"
 
-#: ../util.php:2090
+#: ../util.php:2093
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
