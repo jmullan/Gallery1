@@ -1228,13 +1228,15 @@ class Album {
 		}
 		$photo[0]->delete($this->getAlbumDir());
 		if (($needToRehighlight) || ($forceResetHighlight==1)){
-			if ($this->numPhotos(1) > 0) {
-				$newHighlight = $this->getPhoto(1);
-				// make sure not to try on a movie or subalbum
-				if (!$newHighlight->isMovie() && !$newHighlight->isAlbum()) {
-					$this->setHighlight(1);
-				}
-			}
+		    // Prevent hidden items, albums, and movies from
+		    // automatically becoming the new highlight.
+		    for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+			    $newHighlight = $this->getPhoto($i);
+			    if (!$newHighlight->isMovie() && !$newHighlight->isAlbum() && !$newHighlight->isHidden()) {
+				$this->setHighlight($i);
+				break;
+			    }
+		    }
 		}
 	}
 
