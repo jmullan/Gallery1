@@ -1213,28 +1213,12 @@ function commentdatesort($a, $b) {
 
 function capturedatesort($a, $b) {
 	global $retSortGreater, $retSortLesser;
-	$capDate1 = $a['capturedate'];
-	$capDate2 = $b['capturedate'];
 
-	if ($capDate1['year'] == $capDate2['year']) {
-		if ($capDate1['mon'] == $capDate2['mon']) {
-			$capDateSecs1 = getCaptureDateMthSecs( $capDate1 );
-			$capDateSecs2 = getCaptureDateMthSecs( $capDate2 );
-			if ( $capDateSecs1 == $capDateSecs2 ) {
-				return 0;
-			}
-			else {
-				return ($capDateSecs1 > $capDateSecs2) ? $retSortGreater : $retSortLesser;
-			}
-		}
-		return ( $capDate1['mon'] > $capDate2['mon']) ? $retSortGreater : $retSortLesser;
+	if($a['capturedate'] == $b['capturedate']) {
+		return 0;
 	}
-	return ($capDate1['year'] > $capDate2['year']) ? $retSortGreater : $retSortLesser;
-}
 
-function getCaptureDateMthSecs( $capdate ) {
-	return $capdate["seconds"] + $capdate["minutes"] * 60 +
-	$capdate["hours"] * 3600 + $capdate["mday"] * 86400;
+	return ($a['capturedate'] > $b['capturedate']) ? $retSortGreater : $retSortLesser;
 }
 
 function randomsort($a, $b) {
