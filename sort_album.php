@@ -64,7 +64,7 @@ if ($gallery->session->albumName) {
 ?>
 
 <center>
-<?php echo _("Select your sorting criteria for this album below?") ?>
+<?php echo _("Select your sorting criteria for this album below") ?>
 <br>
 <?php echo _("Warning:  This operation can't be undone.") ?>
 <br>

@@ -1,4 +1,4 @@
-<?php if ($gallery->app->ML_mode == 3) { ?>
+<?php if ($gallery->app->ML_mode == 3 && !$gallery->session->offline) { ?>
 <script language="JavaScript">
 function ML_reload() {
 	var newlang=document.MLForm.newlang[document.MLForm.newlang.selectedIndex].value ;

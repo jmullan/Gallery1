@@ -757,10 +757,14 @@ function errorRow($key) {
 }
 
 function drawSelect($name, $array, $selected, $size, $attrList=array()) {
-
 	if (!empty($attrList)) {
 	    	foreach ($attrList as $key => $value) {
-			$attrs .= " $key=\"$value\"";
+			if ($value == NULL) {
+				$attrs .= " $key";
+			}
+			else {
+				$attrs .= " $key=\"$value\"";
+			}
 		}
 	}
 
@@ -768,7 +772,12 @@ function drawSelect($name, $array, $selected, $size, $attrList=array()) {
 	$buf .= "<select name=\"$name\" size=$size $attrs>\n";
 	foreach ($array as $uid => $username) {
 		$sel = "";
-		if (!strcmp($uid, $selected)) {
+		if (is_array($selected)) {
+			if (in_array($uid, $selected)) {
+				$sel = "selected";
+			}
+		} 
+		else if (!strcmp($uid, $selected)) {
 			$sel = "selected";
 		} 
 		$buf .= "<option value=$uid $sel>". $username ."</option>\n";
@@ -1110,18 +1119,20 @@ function getNextPhoto($idx) {
 //
 // -jpk
 
-function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
+function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $readOnly=false) {
 	global $gallery, $albumDB, $index;
 
 	$uptodate=true;
 	
 	$mynumalbums = $albumDB->numAlbums($gallery->user);
 
-	echo "<option value=0 selected> << ". _("Select Album") ." >> </option>\n";
+	if (!$readOnly) {
+		echo "<option value=0 selected> << ". _("Select Album") ." >> </option>\n";
+	}
 
 	// create a ROOT option for the user to move the 
 	// album to the main display
-	if ($gallery->user->canCreateAlbums() && $rootDisplay) {
+	if ($gallery->user->canCreateAlbums() && $rootDisplay && !$readOnly) {
 		echo "<option value=ROOT>". _("Top Level") ."</option>";
 	}
 
@@ -1132,14 +1143,15 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 		$myAlbumName = $myAlbum->fields['name'];
 		$myAlbumTitle = $myAlbum->fields['title'];
 
-		if ($gallery->user->canWriteToAlbum($myAlbum)) {
+		if ($gallery->user->canWriteToAlbum($myAlbum) || 
+		   ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
 
 			if ($myAlbum->versionOutOfDate()) {
 				$uptodate=false;
 				continue;
 			}
 
-			if ($myAlbum == $gallery->album) {
+			if (!$readOnly && ($myAlbum == $gallery->album)) {
 				// Don't allow the user to move to the current location with
 				// value=0, but notify them that this is the current location
 				echo "<option value=0>-- $myAlbumTitle (". _("current location"). ")</option>\n";
@@ -1148,18 +1160,18 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 			}
 		}
 
-		if ( $moveRootAlbum && ($myAlbum == $gallery->album) && !$movePhoto )  {
+		if ( !$readOnly && $moveRootAlbum && ($myAlbum == $gallery->album) && !$movePhoto )  {
 
 			// do nothing -- we are moving a root album, and we don't
 			// want to move it into its own album tree
 
-		} elseif ( ($myAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto )  {
+		} elseif ( !$readOnly && ($myAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto )  {
 
 			// do nothing -- we are moving an album, and we don't
 			// want to move it into its own album tree
 
 		} else {
-			printNestedVals(1, $myAlbumName, $myAlbumTitle, $movePhoto);
+			printNestedVals(1, $myAlbumName, $myAlbumTitle, $movePhoto, $readOnly);
 		}
 	}
 
@@ -1167,7 +1179,7 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0) {
 }
 
 
-function printNestedVals($level, $albumName, $val, $movePhoto) {
+function printNestedVals($level, $albumName, $val, $movePhoto, $readOnly) {
 	global $gallery, $index;
 	
 	$myAlbum = new Album();
@@ -1180,28 +1192,29 @@ function printNestedVals($level, $albumName, $val, $movePhoto) {
 		if ($myName) {
 			$nestedAlbum = new Album();
 			$nestedAlbum->load($myName);
-			if ($gallery->user->canWriteToAlbum($nestedAlbum)) {
+			if ($gallery->user->canWriteToAlbum($nestedAlbum) ||
+			    ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
 
 				$val2 = str_repeat("-- ", $level+1);
 				$val2 = $val2 . $nestedAlbum->fields['title'];
 				
-				if ($nestedAlbum == $gallery->album) {
+				if (!$readOnly && ($nestedAlbum == $gallery->album)) {
 					// don't allow user to move to here (value=0), but
 					// notify them that this is their current location
 					echo "<option value=0> $val2 (". _("current location") .")</option>\n";
-				} elseif ($nestedAlbum == $gallery->album->getNestedAlbum($index)) {
+				} elseif (!$readOnly && $nestedAlbum == $gallery->album->getNestedAlbum($index)) {
 					echo "<option value=0> $val2 (". _("self"). ")</option>\n";
 				} else {
 					echo "<option value=\"$myName\"> $val2</option>\n";
 				}
 			}
 
-			if ( ($nestedAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto ) {
+			if ( !$readOnly && ($nestedAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto ) {
 
 				// do nothing -- don't allow album move into its own tree
 
 			} else {
-				printNestedVals($level + 1, $myName, $val2, $movePhoto);
+				printNestedVals($level + 1, $myName, $val2, $movePhoto, $readOnly);
 			}
 		}
 	}
