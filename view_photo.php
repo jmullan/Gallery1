@@ -477,8 +477,7 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 echo("</tr><tr>");
 echo("<td $bordercolor width=$borderwidth>");
 echo("<img src=$top/images/pixel_trans.gif width=$borderwidth height=1>");
-echo("</td><td>");
-echo "<center>";
+echo("</td><td align='center'>");
 
 $photoTag = $gallery->album->getPhotoTag($index, $full);
 if (!$gallery->album->isMovie($id)) {
@@ -648,7 +647,7 @@ include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 </td>
 </tr>
 </table>
-</center>
+
 <?php
 includeHtmlWrap("photo.footer");
 ?>
