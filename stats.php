@@ -745,7 +745,7 @@ if ($numPhotos) {
 				$i++;
 			}
 			else {
-				echo("<td width=\"$imageCellWidth\" align=\"center\" valign=\"middle\">");
+				echo '<td width="'. $imageCellWidth .'" align="center" valign="middle">';
 
 				#-- if borders are off, just make them the bgcolor ----
 				$borderwidth = $statsAlbum->fields["border"];
@@ -897,7 +897,7 @@ if ($numPhotos) {
 }
 else {
 	/* Start of album layout style. */
-	echo "<table width=\"".$navigator["fullWidth"] . $navigator["widthUnits"]."\" border=\"0\" cellspacing=\"7\">";
+	echo '<table width="'. $navigator["fullWidth"] . $navigator["widthUnits"] .'" border="0" cellspacing="7>';
 
 	for ($j = $startPhoto; $j < $totalPhotosToDisplay && $j < $startPhoto + $photosPerPage; $j+=1) {
 		$photoInfo = $arrPhotos[$j];
@@ -987,7 +987,7 @@ if (isset($stm)) {
 if ($cacheReloadRequired) {
 	$url = makeStatsUrl( $page );
 	$url .= "&refreshcache";
-	$urlhref = "<a href=\"" . $url  . "\">[Update]</a>";
+	$urlhref = '<a href="'. $url .'">['. _("Update") .']</a>';
 	echo gallery_error(_("Cache update required. ").$urlhref);
 }
 
@@ -1001,8 +1001,7 @@ if (sizeof($skip) > 0) {
 		foreach($skip as $stalbum) {
 			$link = makeGalleryUrl("view_album.php",
 			array("set_albumName" => $stalbum->fields["name"]));
-			echo $join_text."<a href=\"$link\">".$stalbum->fields["name"]
-			."</a>";
+			echo $join_text .'<a href="'. $link .'">'. $stalbum->fields["name"] .'</a>';
 			$join_text=", ";
 		}
 		print ")";
@@ -1332,7 +1331,7 @@ function showAddVoteLink( $photoId, $page ) {
 	$urlargs['id'] = $photoId;
 	$urlargs['url'] = urlencode(makeStatsUrl( $page ));
 	echo '<span class="fineprint">';
-	echo "<a href=\"" . makeGalleryUrl("vote.php", $urlargs) . "\">";
+	echo '<a href="'. makeGalleryUrl("vote.php", $urlargs) . '">';
 	echo "[". _("add vote") ."]";
 	echo "</a></span>";
 }
@@ -1380,20 +1379,20 @@ if ( $showCaption && !$showGrid ) {
                            <td class="mod_title_left" align="right"></td>
                            <td wrap class="title" align="left">
 <?php
-$statsCaption = $statsAlbum->getCaption($photoIndex);
-$statsCaption .= $statsAlbum->getCaptionName($photoIndex);
-$statsUrl = makeAlbumUrl($statsAlbum->fields['name'], $photoId);
-echo "<a href=\"" . $statsUrl . "\">" . $statsCaption . "</a>&nbsp;&nbsp;";
-if ( $addLinksPos == 'oncaptionline' ) {
-	echo '<span class="fineprint">&nbsp;&nbsp;';
-                if ( $showAddComment ) {
-                        showAddCommentLink( $photoId );
-                }
-	if ( $showAddVote ) {
-		echo "&nbsp;";
-		showAddVoteLink( $photoId, $page );
-	}
-	echo '</span>';
+	$statsCaption = $statsAlbum->getCaption($photoIndex);
+	$statsCaption .= $statsAlbum->getCaptionName($photoIndex);
+	$statsUrl = makeAlbumUrl($statsAlbum->fields['name'], $photoId);
+	echo '<a href="'. $statsUrl .'">'. $statsCaption .'</a>&nbsp;&nbsp;';
+	if ( $addLinksPos == 'oncaptionline' ) {
+		echo '<span class="fineprint">&nbsp;&nbsp;';
+                	if ( $showAddComment ) {
+                        	showAddCommentLink( $photoId );
+	                }
+		if ( $showAddVote ) {
+			echo "&nbsp;";
+			showAddVoteLink( $photoId, $page );
+		}
+		echo '</span>';
 }
 
 ?>
@@ -1444,11 +1443,7 @@ if ( $showAlbumOwner == 1 ) {
 	$owner_var = showOwner($statsAlbum->getOwner());
 }
 
-echo "<a href=\"" .
-makeAlbumUrl($statsAlbum->fields['name']) .
-"\">" .
-$statsAlbum->fields['title'] .
-"</a>" . $owner_var;
+echo '<a href="'. makeAlbumUrl($statsAlbum->fields['name']) .'">'. $statsAlbum->fields['title'] .'</a>'. $owner_var;
 ?>
          </span>
          <br clear all>
@@ -1497,8 +1492,10 @@ if ( $addLinksPos == 'abovestats' ) {
 if ( $showCaptureDate ) {
 	$captureDate = strftime($gallery->app->dateTimeString, $statsAlbum->getItemCaptureDate($photoIndex));
 
-	echo "<tr><td width=\"105\"><span class=\"fineprint\">". _("Capture Date:") ."</span></td>";
-	echo "<td><span class=\"fineprint\">$captureDate</span></td></tr>";
+	echo '<tr>';
+	echo '<td width="105" class="fineprint">'. _("Capture Date:") .'</td>';
+	echo '<td class="fineprint">'. $captureDate .'</td>';
+	echo '</tr>';
 }
 
 if ( $showUploadDate ) {
@@ -1506,8 +1503,10 @@ if ( $showUploadDate ) {
 	// Older albums may not have this field.
 	if ($time) {
 		$time = strftime($gallery->app->dateString,$time);
-		echo "<tr><td width=\"105\"><span class=\"fineprint\">". _("Upload Date:") ."</span></td>";
-		echo "<td><span class=\"fineprint\">". $time. "</span></td></tr>";
+		echo '<tr>';
+		echo '<td width="105" class="fineprint">'. _("Upload Date:") .'</td>';
+		echo '<td class="fineprint">'. $time. '</td>';
+		echo '</tr>';
 	}
 }
 
@@ -1526,7 +1525,7 @@ if ( $showViews &&
 if ( $showVotes ) {
 	echo "\n<tr>";
 	echo "\n\t". '<td width="105" class="fineprint">' . _("Votes:") .'</td>';
-	echo "\n\t". '<td class="fineprint">'. $statsAlbum->getItemSVotes($photoIndex) .'/td';
+	echo "\n\t". '<td class="fineprint">'. $statsAlbum->getItemSVotes($photoIndex) .'</td>';
 	echo "\n</tr>";
 }
 
@@ -1548,17 +1547,22 @@ if ( $showRatings ) {
 	}
 
 	if ( $showGrid ) {
-		echo "<tr><td valign=\"top\" width=\"105\"><span class=\"fineprint\">Rating:</span></td>";
-		echo "<td><span class=\"fineprint\">".$photoRate;
-		echo "</span></td></tr>";
-		echo "<tr><td width=\"105\"><span class=\"fineprint\"></span></td>";
-		echo "<td><span class=\"fineprint\">".$photoRateCounts;
-		echo "</span></td></tr>";
+		echo "<tr>";
+		echo '<td valign="top" width="105" class="fineprint">'. _("Rating:") .'</td>';
+		echo '<td class="fineprint">'. $photoRate .'</td>';
+		echo "</tr>";
+
+		echo "<tr>";
+		echo '<td width="105" class="fineprint"></td>';
+		echo '<td class="fineprint">'. $photoRateCounts .'</td>';
+		echo "</tr>";
 	}
 	else {
-		echo "<tr><td valign=\"top\" width=\"105\"><span class=\"fineprint\">Rating:</span></td>";
-		echo "<td><span class=\"fineprint\">".$photoRate.$photoRateCounts;
-		echo "</span></td></tr>";
+		echo "<tr>";
+		echo '<td valign="top" width="105" class="fineprint">'. _("Rating:") .'</td>';
+		echo '<td class="fineprint">' .$photoRate.$photoRateCounts;
+		echo "</td>";
+		echo "</tr>";
 	}
 }
 
