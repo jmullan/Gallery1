@@ -106,6 +106,7 @@ if (!strcmp($cmd,"publish") || $returnval == _("Login Incorrect")) { ?>
 <center>
 <span class="popuphead"> <?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?> </span>
 <br>
+<span class="popup">
 <?php echo  makeFormIntro("publish_xp.php", array("id" => "login", "method" => "POST")); ?>
 <table>
  <tr>
@@ -124,6 +125,7 @@ $SCRIPT_CMD="this.login.uname.focus();";
 ?>
 </form>
 </center>
+</span>
 <?php 
 }
 
@@ -133,6 +135,7 @@ $SCRIPT_CMD="this.login.uname.focus();";
 if (!strcmp($cmd, "fetch-albums")) {
     echo "<center>"; ?>
 <span class='popuphead'><?php echo _("Select the Album to which to Publish") ?></span>
+<span class="popup">
 <?php	
     echo "<form id=\"folder\">";
     echo "<table border=\"0\">";
@@ -162,7 +165,7 @@ if (!strcmp($cmd, "fetch-albums")) {
     echo "</td></tr>\n";
     echo "</table>\n";
     echo "<input type=\"hidden\" name=\"cmd\" value=\"select-album\">\n";
-    echo "</form></center>\n";
+    echo "</form></center></span>\n";
     $ONNEXT_SCRIPT="folder.submit();"; 
     $ONBACK_SCRIPT="window.location.href = \"publish_xp.php?cmd=publish\";";
     $WIZARD_BUTTONS="true,true,true";
@@ -285,6 +288,7 @@ if (!strcmp($cmd, "new-album")) {
                 echo "<table border=0>";
                 echo "<tr><td align=center>\n";
 		echo "<span class='popuphead'>". _("Create New Album") ."</span>";
+		echo "<span class='popup'>";
                 echo "<br><br>". _("Enter New Album Title") .":  ";
                 echo "<input id='newAlbumTitle' type='text' name=newAlbumTitle value=\"$newAlbumTitle\" size=25><br>\n";
                 echo "</td></tr>\n";
@@ -313,7 +317,7 @@ if (!strcmp($cmd, "new-album")) {
                 echo "</table>\n";
                 echo "<input type=hidden name='cmd' value='new-album'/>\n";
                 echo "<input type=hidden name='createNewAlbum' value='1'/>\n";
-                echo "</form></center>\n";
+                echo "</form></center></span>\n";
 		$SCRIPT_CMD = "this.folder.newAlbumTitle.focus();this.folder.newAlbumTitle.select();";
                 $ONNEXT_SCRIPT="folder.submit();";
 		$ONBACK_SCRIPT="window.location.href = \"publish_xp.php?cmd=fetch-albums\";";

@@ -99,7 +99,7 @@ $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;
 $breadcrumb["bottom"] = true;
-include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
+includeLayout('breadcrumb.inc');
 ?>
 <!-- end Top Nav -->
 <?php
@@ -144,7 +144,7 @@ if (isset($go)) {
 	$adminbox["text"] .= "</span>";
         $adminbox["bordercolor"] = $borderColor;
         $adminbox["top"] = false;
-        include($GALLERY_BASEDIR . "layout/adminbox.inc");
+	includeLayout('adminbox.inc');
         echo "<br>";
         echo "<table width=\"".$navigator["fullWidth"] . $navigator["widthUnits"]."\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
 
@@ -166,7 +166,7 @@ if (isset($go)) {
 				$searchdraw["photoURL"] = $photoURL;
 				$searchdraw["Text1"] = "<span class=title><a href=\"$photoURL\">$searchTitle</a></span>";
 				$searchdraw["Text2"] = "<span class=desc>$searchDescription</span>";
-				include($GALLERY_BASEDIR . "layout/searchdraw.inc");
+				includeLayout('searchdraw.inc');	
 			}
 		}
 	
@@ -181,7 +181,7 @@ if (isset($go)) {
     if ($searchstring || $item_owners) {
 	$breadtext[0] = "";
         $breadcrumb["text"] = $breadtext;
-        include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
+	includeLayout('breadcrumb.inc');
 	$adminbox["text"] = "<span class=\"admin\">Photos";
 	if ($item_owners) {
 		$adminbox["text"] .= " owned by ".getOwnerString($item_owners);
@@ -195,7 +195,7 @@ if (isset($go)) {
 	$adminbox["text"] .= ".</span>";
         $adminbox["bordercolor"] = $borderColor;
         $adminbox["top"] = false;
-        include($GALLERY_BASEDIR . "layout/adminbox.inc");
+	includeLayout('adminbox.inc');
         echo "<br>";
         echo "<table width=\"".$navigator["fullWidth"] . $navigator["widthUnits"]."\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
 
@@ -225,7 +225,7 @@ if (isset($go)) {
 						$searchdraw["Text3"] = "";
 						$searchdraw["Text4"] = "";
 						$searchdraw["Text5"] = "";
-						include($GALLERY_BASEDIR . "layout/searchdraw.inc");
+						includeLayout('searchdraw.inc');
 					}     
 
 					
@@ -247,7 +247,7 @@ if (isset($go)) {
     if ($searchstring || $commenters) {
 	$breadtext[0] = "";
         $breadcrumb["text"] = $breadtext;
-        include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
+	includeLayout('breadcrumb.inc');
 	$adminbox["text"] = "<span class=\"admin\">Comments";
 	if ($commenters) {
 		$adminbox["text"] .= " made by ".getOwnerString($commenters);
@@ -261,7 +261,7 @@ if (isset($go)) {
 	$adminbox["text"] .= ".</span>";
         $adminbox["bordercolor"] = $borderColor;
         $adminbox["top"] = false;
-        include($GALLERY_BASEDIR . "layout/adminbox.inc");
+	includeLayout('adminbox.inc');
         echo "<br>";
         echo "<table width=\"".$navigator["fullWidth"] . $navigator["widthUnits"]."\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
 
@@ -303,7 +303,7 @@ if (isset($go)) {
 					$searchdraw["Text3"] = "";
 					$searchdraw["Text4"] = "";
 					$searchdraw["Text5"] = $commentText;
-					include($GALLERY_BASEDIR . "layout/searchdraw.inc");
+					includeLayout('searchdraw.inc');
 			}     
 
 					
@@ -371,10 +371,10 @@ $breadcrumb["text"] = $breadtext;
 $breadcrumb["bordercolor"] = $borderColor;
 $breadcrumb["top"] = true;
 $breadcrumb["bottom"] = true;
-include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
+includeLayout('breadcrumb.inc');
 ?>
 <?php 
-include($GALLERY_BASEDIR . "layout/ml_pulldown.inc"); 
+includeLayout('ml_pulldown.inc');
 includeHtmlWrap("search.footer");
 ?>
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>

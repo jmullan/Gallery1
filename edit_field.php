@@ -59,6 +59,7 @@ if (isset($save)) {
 <body dir="<?php echo $gallery->direction ?>">
 
 <center>
+<span class="popup">
 <?php echo sprintf(_("Edit the %s and click %s when you're done"),
 		_($field), '<b>' . _("Save") . '</b>') ?>
 
@@ -82,5 +83,6 @@ document.theform.data.focus();
 //-->
 </script>
 
+</span>
 </body>
 </html>

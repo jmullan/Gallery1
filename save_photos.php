@@ -61,7 +61,8 @@ if (isset($userfile_name)) {
 $image_tags = array();
 if (!empty($urls)) {
 ?>
-<span class="title"><?php echo _("Fetching Urls...") ?></span>
+<span class="popuphead"><?php echo _("Fetching Urls...") ?></span>
+<span class="popup">
 <br>
 <?php
 	/* Process all urls first */
@@ -232,9 +233,9 @@ if (!empty($urls)) {
 } /* if ($urls) */
 ?>
 
-
+</span>
 <br>
-<span class="title"><?php echo _("Processing status...") ?></span>
+<span class="popuphead"><?php echo _("Processing status...") ?></span>
 <br>
 
 <?php
@@ -269,6 +270,7 @@ if ($temp_files) {
 }
 ?>
 
+<span class="popup">
 <?php
 if (!$msgcount) {
 	print _("No images uploaded!");
@@ -308,8 +310,8 @@ function invertCheck() {
 }
 // -->
 </script>
-
-<p><span class="fineprint">
+</span>
+<p><span class="popup">
 <a href="javascript:setCheck(1)"><?php echo _("Check All") ?></a>
 -
 <a href="javascript:setCheck(0)"><?php echo _("Clear All") ?></a>
@@ -317,7 +319,7 @@ function invertCheck() {
 <a href="javascript:invertCheck()"><?php echo _("Invert Selection") ?></a>
 </span></p>
 
-<table><tr><td>
+<table><tr><td class="popup">
 <?php echo makeFormIntro("save_photos.php", 
 		array("name" => $uploadUrlFormName, 
 			"method" => "POST")); ?>
@@ -333,7 +335,7 @@ function invertCheck() {
 <?php /* REVISIT - it'd be nice to have these functions get shoved
   into util.php at some time - maybe added functionality to the makeFormIntro? */ ?>
 
-<p><span class="fineprint">
+<p><span class="popup">
 <a href="javascript:setCheck(1)"><?php echo _("Check All") ?></a>
 -
 <a href="javascript:setCheck(0)"><?php echo _("Clear All") ?></a>

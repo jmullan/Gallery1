@@ -1,4 +1,3 @@
-<?php /* $Id$ */ ?>
 <html><head><title>How to create new frames</title></head>
 <body bgcolor="#DDAAAA">
 <!--

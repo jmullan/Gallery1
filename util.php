@@ -75,6 +75,7 @@ function editCaption($album, $index) {
 function viewComments($index) {
         global $gallery;
 	global $GALLERY_BASEDIR;
+	global $commentdraw;
 
 	// get number of comments to use as counter for display loop
 	$numComments = $gallery->album->numComments($index);
@@ -88,10 +89,10 @@ function viewComments($index) {
 		$commentdraw["name"] = $comment->getName();
 		$commentdraw["UID"] = $comment->getUID();
 		$commentdraw["bordercolor"] = $borderColor;
-		include($GALLERY_BASEDIR . "layout/commentdraw.inc");
+		includeLayout('commentdraw.inc');
 	}
         $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&index=$index";
-        $buf = "<tr><td><span class=editlink>";
+        $buf = "<tr><td align=\"center\"><span class=\"editlink\">";
         $buf .= popup_link('[' . _("add comment") . ']', $url, 0);
         $buf .= "</span></td></tr>";
         echo $buf;
@@ -373,7 +374,7 @@ function my_flush() {
 	print str_repeat(" ", 4096);	// force a flush
 }
 
-function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
+function resize_image($src, $dest, $target, $target_fs=0) {
 	global $gallery;				
 
 	if (!strcmp($src,$dest)) {
@@ -386,16 +387,13 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 	}
 
 	$regs = getimagesize($src);
-	if ($regs[2] !== 2 && $regs[2] !== 3) {
+	if ($regs[2] !== 2 && $regs[2] !== 3)
 		$target_fs = 0; // can't compress other images
-	}
-	if ($target === 'off') {
-	    $target = 0;
-	}
+
 	/* Check for images smaller then target size, don't blow them up. */
 	$regs = getDimensions($src, $regs);
-	if ((empty($target) || ($regs[0] <= $target && $regs[1] <= $target))
-			&& (empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs)) {
+	if ($regs[0] <= $target && $regs[1] <= $target && 
+			($target_fs == 0 || fs_filesize($src)/1000 < $target_fs)) {
 		if ($useTemp == false) {
 			fs_copy($src, $dest);
 		}
@@ -405,9 +403,9 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 	$target=min($target, max($regs[0],$regs[1]));
 
 	if ($target_fs == 0) {
-		compress_image($src, $out, $target, $gallery->app->jpegImageQuality, $keepProfiles);
+		compress_image($src, $out, $target, $gallery->app->jpegImageQuality);
 	} else {
-		$filesize = (int) fs_filesize($src) >> 10;
+		$filesize = fs_filesize($src)/1000;
 		$max_quality=$gallery->app->jpegImageQuality;
 		$min_quality=5;
 		$max_filesize=$filesize;
@@ -419,13 +417,13 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 					$target_fs)."\n");
 
 		do {
-			compress_image($src, $out, $target, $quality, $keepProfiles);
+			compress_image($src, $out, $target, $quality);
 			$prev_quality=$quality;
 			printf(_("- file size %d kbytes"), round($filesize));
 			processingMsg(sprintf(_("trying quality %d%%"), 
 						$quality));
 			clearstatcache();
-			$filesize= (int) fs_filesize($out) >> 10;
+			$filesize= fs_filesize($out)/1000;
 			if ($filesize < $target_fs) {
 				$min_quality=$quality;
 				$min_filesize=$filesize;
@@ -746,7 +744,44 @@ function exec_wrapper($cmd) {
 		return 1;
 	}
 }
-function includeHtmlWrap($name) {
+
+function getImagePath($name, $skinname='') {
+	global $gallery;
+
+	if (!$skinname) {
+                $skinname = $gallery->app->skinname;
+        }
+
+	$defaultname = $gallery->app->photoAlbumURL . "/skins/default/images/$name";
+	$fullname = $gallery->app->photoAlbumURL . "/skins/$skinname/images/$name";
+
+	if (fs_file_exists($fullname) && !broken_link($fullname)) {
+		return "$fullname";
+	} else {
+		return "$defaultname";
+	}
+}
+
+function includeLayout($name, $skinname='') {
+	global $GALLERY_BASEDIR;
+	global $HTTP_SERVER_VARS;
+	global $gallery;
+
+	if (!$skinname) {
+                $skinname = $gallery->app->skinname;
+        }
+
+	$defaultname = $GALLERY_BASEDIR . "layout/$name";
+	$fullname = $GALLERY_BASEDIR . "skins/$skinname/layout/$name";
+
+	if (fs_file_exists($fullname) && !broken_link($fullname)) {
+		include ($fullname);
+	} else {
+		include ($defaultname);
+	}
+}
+
+function includeHtmlWrap($name, $skinname='') {
 	global $GALLERY_BASEDIR;
 
 	// define these globals to make them available to custom text
@@ -754,15 +789,23 @@ function includeHtmlWrap($name) {
 
 	global $HTTP_SERVER_VARS;
 	$domainname = $GALLERY_BASEDIR . "html_wrap/" . $HTTP_SERVER_VARS['HTTP_HOST'] . "/$name";
+
+	if (!$skinname) {
+		$skinname = $gallery->app->skinname;
+	}
+
 	if (fs_file_exists($domainname) && !broken_link($domainname)) {
 	    include ($domainname);
 	} else {
-	    $fullname = $GALLERY_BASEDIR . "html_wrap/$name";
+	    $defaultname = $GALLERY_BASEDIR . "html_wrap/$name";
+	    $fullname = $GALLERY_BASEDIR . "skins/$skinname/html_wrap/$name";
 	    
 	    if (fs_file_exists($fullname) && !broken_link($fullname)) {
 		include ($fullname);
+	    } elseif (fs_file_exists($defaultname) && !broken_link($defaultname)) {
+		include ($defaultname);
 	    } else {
-		include ("$fullname.default");
+		include ("$defaultname.default");
 	    }
 	}
 
@@ -787,7 +830,7 @@ function getStyleSheetLink() {
 	}
 }
 
-function _getStyleSheetLink($filename) {
+function _getStyleSheetLink($filename, $skinname='') {
 	global $gallery;
 	global $GALLERY_BASEDIR;
 	global $HTTP_SERVER_VARS;
@@ -795,8 +838,18 @@ function _getStyleSheetLink($filename) {
         $sheetdomainname = "css/$HTTP_SERVER_VARS[HTTP_HOST]/$filename.css";
 	$sheetdomainpath = "${GALLERY_BASEDIR}$sheetdomainname";
 
-        $sheetname = "css/$filename.css";
+	if (!$skinname) {
+		if (isset($gallery->app) && isset($gallery->app->skinname)) {
+			$skinname = $gallery->app->skinname;
+		} else {
+			$skinname = "default";
+		}
+	}
+
+        $sheetname = "skins/$skinname/css/$filename.css";
 	$sheetpath = "${GALLERY_BASEDIR}$sheetname";
+	$sheetdefaultname = "skins/default/css/$filename.css";
+	$sheetdefaultpath = "${GALLERY_BASEDIR}$sheetname";
 
 	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
 		$base = $gallery->app->photoAlbumURL;
@@ -811,8 +864,10 @@ function _getStyleSheetLink($filename) {
 	} else {
 	    if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
 		$url = "$base/$sheetname";
+	    } elseif (fs_file_exists($sheetdefaultpath) && !broken_line($sheetdefaultpath)) {
+		$url = "$base/$sheetdefaultpath";
 	    } else {
-		$url = "$base/$sheetname.default";
+		$url = "$base/$sheetdefaultname.default";
 	    }
 	}
 
@@ -2168,7 +2223,6 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 		$gallery->album->fields["item_owner_modify"]  = $parentAlbum->fields["item_owner_modify"];
 		$gallery->album->fields["item_owner_delete"]  = $parentAlbum->fields["item_owner_delete"];
 		$gallery->album->fields["add_to_beginning"]   = $parentAlbum->fields["add_to_beginning"];
-		$gallery->album->fields["showDimensions"]     = $parentAlbum->fields["showDimensions"];
 
                 $returnVal = $gallery->album->save();
         } else {
@@ -2465,29 +2519,16 @@ function galleryDocs() {
 	return NULL;
 }
 
-function compress_image($src, $out, $target=0, $quality, $keepProfiles=0) {
+function compress_image($src, $out, $target, $quality) {
 	global $gallery;
-
-	if ($target === 'off') {
-	    $target = '';
-	}
-	switch($gallery->app->graphics) {
+	switch($gallery->app->graphics)
+	{
 		case "NetPBM":
 			$err = exec_wrapper(toPnmCmd($src) .
-					(($target > 0) ?  (' | ' . NetPBM('pnmscale',
-					" -xysize $target $target") ) : '')
-					. ' | ' . fromPnmCmd($out, $quality));
-			/* Copy over EXIF data if a JPEG if $keepProfiles is set.
-			 * Unfortunately, we can't also keep comments. */
-			if ($keepProfiles && eregi('\.jpe?g$', $src)) {
-				if (isset($gallery->app->use_exif)) {
-					exec_wrapper(fs_import_filename($gallery->app->use_exif, 1) . ' -te '
-						. fs_import_filename($src, 1) . ' '
-						. fs_import_filename($out, 1));
-				} else {
-					processingMsg(_('Unable to preserve EXIF data (jhead not installed)') . "\n");
-				}
-			}
+					(($target > 0) ?  (" | " . NetPBM("pnmscale",
+						" -xysize $target $target") ) :
+					"")  .
+					" | " . fromPnmCmd($out, $quality));
 			break;
 		case "ImageMagick":
 			$src = fs_import_filename($src);
@@ -2746,6 +2787,26 @@ function gettext_installed() {
 	else {
 		return false;
 	}
+}
+
+function available_skins() {
+	global $GALLERY_BASEDIR;
+
+	$dir = "${GALLERY_BASEDIR}skins";
+	print $dir;
+	$opts['default'] = 'default';
+	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
+                while ($file = readdir($fd)) {
+			$subdir="$dir/$file/css";
+			$skincss="$subdir/embedded_style.css";
+			if (fs_is_dir($subdir) && fs_file_exists($skincss)) {
+				$opts[$file]=$file;
+			}
+		}
+	} else {
+		gallery_error(sprintf(_("Can't open %s"), $dir));
+	}
+	return $opts;
 }
 
 function available_frames($description_only=false) {

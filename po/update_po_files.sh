@@ -49,7 +49,7 @@ if [ $1 = "-all" ] ; then
 
 		echo "$tab Language = $lang"
 		echo "$tab Module = $module"
-		
+
 		echo "$tab Updating ..."
 		msgmerge -U $all_po gallery-$module.pot --no-wrap -v || exit
 	done

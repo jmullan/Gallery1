@@ -137,12 +137,12 @@ if (!isset($GALLERY_NO_SESSIONS)) {
     require($GALLERY_BASEDIR . "session.php");
 }
 
-$gallerySanity=gallerySanityCheck();
+$gallerySanity = gallerySanityCheck();
 initLanguage();
 
 /* Make sure that Gallery is set up properly */
-if($gallerySanity != NULL) {
-	include ($GALLERY_BASEDIR. "errors/". $gallerySanity);
+if ($gallerySanity != NULL) {
+	include ("${GALLERY_BASEDIR}errors/$gallerySanity");
 	exit;
 }
 

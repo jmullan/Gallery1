@@ -269,7 +269,7 @@ if ($gallery->album->fields["linkcolor"]) {
 if ($gallery->album->fields["bgcolor"]) {
         echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
 }       
-if (isset($gallery->album->fields["background"])) {
+if (isset($gallery->album->fields["background"]) && $gallery->album->fields["background"]) {
         echo "BODY { background-image:url(".$gallery->album->fields['background']."); } ";
 } 
 if ($gallery->album->fields["textcolor"]) {
@@ -543,21 +543,21 @@ if (!$gallery->album->isMovie($id)) {
 
 		$adminbox["bordercolor"] = $bordercolor;
 		$adminbox["top"] = true;
-		include ($GALLERY_BASEDIR . "layout/adminbox.inc");
+		includeLayout('adminbox.inc');
 	}
 }
 
 $breadcrumb["bordercolor"] = $bordercolor;
 $breadcrumb["top"] = true;
 $breadcrumb['bottom'] = false;
-include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
+includeLayout('breadcrumb.inc');
 ?>
 </td>
 </tr>
 <tr>
 <td>
 <?php
-include($GALLERY_BASEDIR . "layout/navphoto.inc");
+includeLayout('navphoto.inc');
 
 #-- if borders are off, just make them the bgcolor ----
 if (!strcmp($gallery->album->fields["border"], "off")) {
@@ -622,7 +622,7 @@ $gallery->html_wrap['imageWidth'] = $width;
 $gallery->html_wrap['imageHeight'] = $height;
 $gallery->html_wrap['imageHref'] = $href;
 $gallery->html_wrap['imageTag'] = $photoTag;
-$gallery->html_wrap['pixelImage'] = $imageDir . "/pixel_trans.gif";
+$gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 
 includeHtmlWrap("inline_photo.frame");
 ?>
@@ -631,8 +631,7 @@ includeHtmlWrap("inline_photo.frame");
 <!-- caption -->
 <tr>
 <td colspan=3 align=center>
-<span class="caption"><?php echo editCaption($gallery->album, $index) ?>
-</span>
+<span class="modcaption"><?php echo editCaption($gallery->album, $index) ?>
 <?php
 if ( canVote() )
 {
@@ -752,6 +751,7 @@ if ($table) {
 	print "<table>$table</table>\n";
 }
 ?>
+</span>
 </td>
 </tr>
 <?php if (!strcmp($gallery->album->fields["public_comments"], "yes")) { ?>
@@ -833,16 +833,16 @@ echo("</td></tr>");
 <tr>
 <td>
 <?php
-include($GALLERY_BASEDIR . "layout/navphoto.inc");
+includeLayout('navphoto.inc');
 $breadcrumb["top"] = false;
-include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
+includeLayout('breadcrumb.inc');
 ?>
 </td>
 </tr>
 </table>
 
 <?php
-include($GALLERY_BASEDIR . "layout/ml_pulldown.inc");
+includeLayout('ml_pulldown.inc');
 includeHtmlWrap("photo.footer");
 ?>
 

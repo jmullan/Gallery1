@@ -1,5 +1,6 @@
 <?php /* $Id$ */ ?>
-<?php if(!$embeddedAlbum == 1)
+<?php global $embeddedAlbum, $index;
+if(!$embeddedAlbum == 1)
 {
 ?>
 </td>
@@ -8,7 +9,7 @@
 <?php
         $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&index=$index";
         $buf = "<span class=editlink>";
-	$buf .= '<a href="#" onClick="javascript:' . popup($url) . '">[' . _("add comment") .']</a>';
+	$buf .= '<br><a href="#" onClick="javascript:' . popup($url) . '">[' . _("add comment") .']</a>';
         $buf .= "</span>";
         echo "<br>$buf<br>";
 ?>

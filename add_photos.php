@@ -65,14 +65,13 @@ if (!isset($boxes)) {
 <br>
 <span class="popup">
 <?php echo _("Click the <b>Browse</b> button to locate a photo to upload.") ?>
-<span class="admin">
+
 <?php if ($gallery->app->feature["zip"]) { ?>
 <br>
 &nbsp;&nbsp;<?php echo _("Tip:  Upload a ZIP file full of photos and movies!") ?>
 <?php } ?>
 <br>
 &nbsp;&nbsp;(<?php echo _("Supported file types") ?>: <?php echo join(", ", acceptableFormatList()) ?>)
-</span>
 
 <br><br>
 <?php echo makeFormIntro("add_photos.php",
@@ -121,9 +120,8 @@ if (!isset($boxes)) {
 <?php echo _("Or, upload any images found at this location.") ?>
 <?php echo _("The location can either be a URL or a directory on the server.") ?>
 <br>
-<span class="admin">
+
 &nbsp;&nbsp;<?php echo _("Tip: FTP images to a directory on your server then provide that path here!") ?>
-</span>
 <br>
 
 <input type="text" name="urls[]" size=40>
@@ -146,7 +144,7 @@ if (!isset($boxes)) {
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo _("<i>Note:</i> this feature is still experimental!") ?>
 <?php } ?>					 
-</span>
 
+</span>
 </body>
 </html>

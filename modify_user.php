@@ -138,6 +138,7 @@ $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
 <span class="popuphead"><?php echo _("Modify User") ?></span>
 <br>
 <br>
+<span class="popup">
 <?php echo _("You can change any information about the user using this form.") ?>
 <p>
 
@@ -164,5 +165,6 @@ document.usermodify_form.uname.focus();
 //--> 
 </script>
 
+</span>
 </body>
 </html>

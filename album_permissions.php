@@ -156,6 +156,7 @@ correctPseudoUsers($uAdd, $ownerUid);
 <center>
 <span class="popuphead"><?php echo _("Album Permissions") ?></span>
 <br>
+<span class="popup">
 <?php echo sprintf(_("Changing permissions for %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
 
 echo makeFormIntro("album_permissions.php", 
@@ -176,7 +177,7 @@ echo makeFormIntro("album_permissions.php",
   <td valign=top>
    <table border="0" cellspacing="3" cellpadding="0">
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
       <?php echo _("Users who can see the album") ?>
      </td>
     </tr>
@@ -191,7 +192,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
       <?php echo _("Users who can change album text.") ?>
      </td>
     </tr>
@@ -206,7 +207,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
       <?php echo _("Users who can add photos.") ?>
      </td>
     </tr>
@@ -221,7 +222,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
 	<?php echo _("Users who can modify photos.") ?>
      </td>
     </tr>
@@ -236,7 +237,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
 	<?php echo _("Users who can delete photos.") ?>
      </td>
     </tr>
@@ -251,7 +252,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
 	<?php echo _("Users who can create sub albums.") ?>
      </td>
     </tr>
@@ -266,7 +267,7 @@ echo makeFormIntro("album_permissions.php",
     </tr>
 
     <tr>
-     <td colspan="2">
+     <td colspan="2" class="popup">
       <?php echo _("Users who can view full (original) images.") ?>
      </td>
     </tr>
@@ -289,5 +290,6 @@ echo makeFormIntro("album_permissions.php",
 <input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
 
+</span>
 </body>
 </html>
