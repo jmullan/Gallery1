@@ -1002,6 +1002,11 @@ if ($numPhotos) {
 			    if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum) && $showAdminForm) {
 				showChoice(_("Permissions"), "album_permissions.php",
 					   array("set_albumName" => $myAlbum->fields["name"]));
+
+				/* Watermarking support is enabled and user is allowed to watermark images/albums */
+				if (strlen($gallery->app->watermarkDir)) {
+					showChoice(_("watermark&nbsp;album"),"watermark_album.php",array("set_albumName" => $myAlbum->fields["name"]));
+				}
 			    }
 			}
                        if ($gallery->user->isAdmin() && !$gallery->album->getAlbumName($i)) {

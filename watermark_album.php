@@ -39,6 +39,10 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	exit;
 }
 
+if (empty($index)) {
+	$index='';
+}
+
 $err = "";	
 if (isset($save)) {
 	if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12)) {

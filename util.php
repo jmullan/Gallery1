@@ -671,7 +671,7 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
          fs_copy($out, $dest);
          fs_unlink($out);
       }
-      if ($tmpOverlay) {
+      if (!empty($tmpOverlay)) {
          fs_unlink($overlayFile);
          if ($alphaFile) {
             fs_unlink($alphaFile);
