@@ -28,18 +28,19 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print "Security violation\n";
 	exit;
 }
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
+
+if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = '';
 }
-require($GALLERY_BASEDIR . 'init.php'); ?>
-<?php
+require($GALLERY_BASEDIR . 'init.php');
+
 if (!$gallery->user->isAdmin()) {
-	exit;	
+    print "You must be logged on as a Gallery admin to use this feature.";
+    exit;
 }
 set_time_limit(0);
-
-if (!strcmp($submit, "Backup"))
+$showForce = false;
+if (!empty($submit) || !empty($force))
 {
 	$error_text='';
 	switch ($backup_method) {
@@ -53,28 +54,35 @@ if (!strcmp($submit, "Backup"))
 			if (!fs_file_exists($gzip_path))
 			{
 				$error_text .= "Gzip file \"$gzip_path\" does not exist or is not readable.<br>";
-				break;
 			}
 			if (!fs_file_exists($tar_path))
 			{
 				$error_text .= "Tar file \"$tar_path\" does not exist or is not readable.<br>";
-				break;
 			}
 			if (!strcmp($target_files, "dat")) { 
 				if (!fs_file_exists($find_path)) {
 					$error_text .= "Find file \"$find_path\" does not exist or is not readable.<br>";
-					break;
 				}
 				if (!fs_file_exists($xargs_path)) {
 					$error_text .= "Xargs file \"$xargs_path\" does not exist or is not readable.<br>";
-					break;
 				}
 			}
 	}
-	if (strlen($error_text) == 0)
+
+	if ($force || strlen($error_text) == 0)
 	{
 		backup();
 		exit;
+	} else {
+	    if (ini_get('open_basedir')) {
+		$error_text = " <b>Note:</b> Your webserver is configured with the 
+ <a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\">
+ open_basedir</a> restriction.  This may make it difficult for Gallery to detect 
+ and verify your binaries, even if they exist and function properly.  If you know
+ that the paths you entered are correct, you must click the \"force\" button.  We
+ detected the following error(s):<ul>$error_text</ul>";
+		$showForce = true;
+	    }
 	}
 } 
 ?>
@@ -123,6 +131,9 @@ Choose archiving option and which files you wish to archive.
 </table>
 <p>
 <input type=submit name="submit" value="Backup">
+<?php if ($showForce) { ?>
+<input type=submit name="force" value="Force Backup">
+<?php } ?>
 <input type=button value="Cancel" onclick='parent.close()'>
 
 </form>
@@ -148,9 +159,9 @@ function backup() {
 		!strcmp($target_files, "all")) {
 		$cmd=fs_import_filename($tar_path) .  " cf - ".  
 			$gallery->app->albumDir. " " . $gallery->app->userDir . 
-			" | ".  fs_import_filename($gzip_path) . " -c "; 
-		header( "Content-type: application/zip" );
-		header( "Content-Disposition: attachment; filename=gallery_dump.tgz" );
+			" | ".  fs_import_filename($gzip_path) . " -c ";
+		header( "Content-type: application/x-gzip" );
+		header( "Content-Disposition: attachment; filename=gallery_dump.tar" );
 		header( "Content-Description: PHP Generated Data" );
 		passthru("$cmd");
 		//echo ("$cmd<p>");
@@ -162,12 +173,12 @@ function backup() {
 			' ' .  fs_import_filename($tar_path) .  " cf - " .
 			$gallery->app->userDir .
 			" | ".  fs_import_filename($gzip_path) . " -c ";
-		header( "Content-type: application/zip" );
-		header( "Content-Disposition: attachment; filename=gallery_dump.tgz" );
+		// echo ("$cmd<p>");
+		header( "Content-type: application/x-gzip" );
+		header( "Content-Disposition: attachment; filename=gallery_dump.tar" );
 		header( "Content-Description: PHP Generated Data" );
 		passthru("$cmd");
 		// echo ("$cmd<p>");
-
 	}
 	else if  (!strcmp($backup_method, "zip") && 
 		!strcmp($target_files, "dat")) {
