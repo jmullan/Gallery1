@@ -51,7 +51,7 @@ if ($photo->isMovie()) {
 } else {
 	$image = $photo->image;
 }
-$photoURL = $gallery->album->getAlbumDirURL() . "/" . $image->name . "." . $image->type;
+$photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $image->name . "." . $image->type;
 list($imageWidth, $imageHeight) = $image->getDimensions();
 
 $do_fullOnly = !strcmp($gallery->session->fullOnly,"on") &&
@@ -421,7 +421,7 @@ if (!strcmp($gallery->album->fields["print_photos"],"none") ||
 $hostname = $GLOBALS["SERVER_NAME"];
 $protocol = "http";
 $photo = $gallery->album->getPhoto($GLOBALS["index"]);
-$photoPath = $protocol . "://" . $hostname . $gallery->album->getAlbumDirURL();
+$photoPath = $protocol . "://" . $hostname . $gallery->album->getAlbumDirURL("full");
 $rawImage = $photoPath . "/" . $photo->image->name . "." . $photo->image->type;
 
 $thumbImage= $photoPath . "/";

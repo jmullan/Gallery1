@@ -69,7 +69,7 @@ if ($action == "doit") {
 		$photo = $gallery->album->getPhoto($index);
 	
 		#-- the url to the image ---
-		$photoURL = $gallery->album->getAlbumDirURL() . "/";
+		$photoURL = $gallery->album->getAlbumDirURL("thumb") . "/";
 		if ($photo->image->resizedName) {
 			$photoURL .= $photo->image->resizedName . "." . $photo->image->type;
 		} else {
