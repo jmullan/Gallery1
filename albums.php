@@ -32,7 +32,7 @@ $numAlbums = $albumDB->numAlbums();
 if (!$albumListPage) {
 	$albumListPage = 1;
 }
-$perPage = 2;
+$perPage = 5;
 $maxPages = max(ceil($numAlbums / $perPage), 1);
 
 if ($albumListPage > $maxPages) {
