@@ -25,24 +25,30 @@
 <?php 
 global $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && !empty($gallery->app->available_lang)) {
+/* This "block" inserts either a combobox with available languages or show flags for them.
+** Both are only displayed if at least 2 languages are available.
+*/
+
+if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery->app->available_lang) > 1) {
     
-if($gallery->app->show_flags !='yes') {?>
+	if($gallery->app->show_flags !='yes') {?>
 <script language="JavaScript" type="text/javascript">
 function ML_reload() {
 	var newlang=document.MLForm.newlang[document.MLForm.newlang.selectedIndex].value ;
 	window.location.href=newlang;
 }
 </script>
-<?php } ?>
+<?php 
+	}
+?>
 	<form name="MLForm" action="#" style="margin-bottom: 0px;">
 	<table width="100%" cellpadding="0" cellspacing="0">
-	<tr><td valign="top" align="right">
+	<tr>
+		<td valign="top" align="right">
 <?php
-
-if($gallery->app->show_flags !='yes') {
-	echo '<select style="font-size:8pt;" name="newlang" onChange="ML_reload()" size="1">';
-}
+	if($gallery->app->show_flags !='yes') {
+		echo "\t\t". '<select style="font-size:8pt;" name="newlang" onChange="ML_reload()" size="1">';
+	}
 	$nls = getNLS();
 
 	$count=0;
@@ -112,9 +118,12 @@ if($gallery->app->show_flags !='yes') {
 	}
 
 if($gallery->app->show_flags !='yes') {
-	echo "</select>";
+	echo "\n\t\t</select>";
 }
 ?>
-	</td></tr></table>
+
+		</td>
+	</tr>
+	</table>
 	</form>
 <?php } ?>
