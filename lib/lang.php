@@ -120,8 +120,7 @@ function getEnvLang() {
 		break;
 
 		default:
-			echo "false";
-			return FALSE;
+			return NULL;
 		break;
 	}
 }
