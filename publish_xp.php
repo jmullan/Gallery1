@@ -122,11 +122,15 @@ if (!strcmp($cmd,"publish") || $returnval == "Login Incorrect") {?>
 
 if (!strcmp($cmd, "fetch-albums")) {
 	echo "<center>"; ?>
-<span class="popuphead">Logged in to <?php echo $gallery->app->galleryTitle?></span>
-<br>If you are not "<b><i><?php echo $gallery->session->username?></i></b>" please click <a href="<?php echo makeGalleryUrl("publish_xp.php", array("cmd" => "publish"))?>">here</a>.
-<br>
-<?php	echo "<form id='folder'>";
-	echo "<select id='album' name='albumName' size=10 width=40>";
+<span class='popuphead'>Logged in to <?php echo $gallery->app->galleryTitle?></span>
+<br>If you are not "<b><i><?php echo $gallery->session->username?></i></b>" please click <a href="<?php echo makeGalleryUrl("publish_xp.php", array("cmd" => "publish"))?>">here</a>.<br><br>
+<?php	echo "<span class='admin'>";
+        echo "Select the folder to which to publish, or <br>";
+        echo "select a new folder location and enter the name.</span>";
+	echo "<form id='folder'>";
+	echo "<table border=0>";
+	echo "<tr><td align=center>";
+	echo "<select id='album' name='set_albumName' size=10 width=40>";
 
 	$albumDB = new AlbumDB(FALSE);
     $mynumalbums = $albumDB->numAlbums($gallery->user);
@@ -136,17 +140,27 @@ if (!strcmp($cmd, "fetch-albums")) {
         $myAlbum=$albumDB->getAlbum($gallery->user, $i);
         $albumName = $myAlbum->fields[name];
         $albumTitle = $myAlbum->fields[title];
-        if ($gallery->user->canWriteToAlbum($myAlbum)) {
+        if ($gallery->user->canAddToAlbum($myAlbum)) {
 				echo "<option value='$albumName'>\t$albumTitle</option>\n";
         }
         appendNestedAlbums(0, $albumName, $albumString);
     }
 
-    echo "</select><br>";
-    echo "<input id='setCaption' type=checkbox name=setCaption checked value=\"1\">Use filenames as caption ";
-    echo "</form></center>";
-   $ONNEXT_SCRIPT="DOIT();"; 
-   $WIZARD_BUTTONS="true,true,true";
+    echo "</select><br>\n";
+    echo "</td><td>\n";
+    echo "<input id='setCaption' type=checkbox name=setCaption checked value=1>Use filenames as caption<br>\n";
+    echo "<input id='createNewFolder' type=checkbox name=createNewFolder value=1>Create new folder\n";
+    echo "</td></tr>\n";
+    echo "<tr><td colspan=2 align=center>\n";
+    echo "New folder name:\n";
+    //echo "</td><td>\n";
+    echo "<input id='newFolderName' type='text' name=newFolderName value='' size=25><br>\n";
+    echo "</td></tr></table>\n";
+    echo "<input type=hidden name='cmd' value='check-error'/>\n";
+    echo "</form></center>\n";
+    #$ONNEXT_SCRIPT="DOIT();"; 
+    $ONNEXT_SCRIPT="folder.submit();"; 
+    $WIZARD_BUTTONS="true,true,true";
 }
 
 function appendNestedAlbums($level, $albumName, $albumString) {
@@ -162,7 +176,7 @@ function appendNestedAlbums($level, $albumName, $albumString) {
         if ($myName) {
             $nestedAlbum = new Album();
             $nestedAlbum->load($myName);
-            if ($gallery->user->canWriteToAlbum($nestedAlbum)) {
+            if ($gallery->user->canAddToAlbum($nestedAlbum)) {
                 $nextTitle = str_repeat("-- ", $level+1);
                 $nextTitle .= $nestedAlbum->fields[title];
 				$nextTitle = $nextTitle;
@@ -173,6 +187,93 @@ function appendNestedAlbums($level, $albumName, $albumString) {
         }
     }
 }
+
+//---------------------------------------------------------
+//-- check-error --
+
+if (!strcmp($cmd, "check-error")) {
+
+	// Permissions checks
+	if (!$gallery->album) {
+	    $error = "No album specified!<br>\n";
+	} elseif (!$gallery->user->canAddToAlbum($gallery->album) && $set_albumName) {
+	    $error = "User cannot add photos in " . $gallery->album->fields[name] . ".<br>\n";
+	} elseif ($createNewFolder && !$set_albumName && !($gallery->user->canCreateAlbums()) ) {
+	    $error = "User cannot create ROOT level album.<br>\n";
+	} elseif ($createNewFolder && $set_albumName && !($gallery->user->canCreateSubAlbum($gallery->album)) ) {
+	    $error = "User cannot create nested album in " . $gallery->album->fields[name] . ".<br>\n";
+	} elseif ($createNewFolder) {
+		$parentName = $set_albumName;
+		
+		$albumDB = new AlbumDB(FALSE);
+                $gallery->session->albumName = $albumDB->newAlbumName();
+                $gallery->album = new Album();
+                $gallery->album->fields["name"] = $gallery->session->albumName;
+		if ($newFolderName) {
+                	$gallery->album->fields["title"] = $newFolderName;
+		}
+                $gallery->album->setOwner($gallery->user->getUid());
+                $gallery->album->save();
+
+		/* if this is a nested album, set nested parameters */
+		// la la la... code replication... la la la...  
+		// this next section should be put in a subroutine in 
+		// the main gallery code and called from here...
+		// else, this has to be maintained when new attribs are added to albums
+		if ($parentName) {
+			$gallery->album->fields[parentAlbumName] = $parentName;
+			$parentAlbum = $albumDB->getAlbumbyName($parentName);
+			$parentAlbum->addNestedAlbum($gallery->session->albumName);
+			$parentAlbum->save();
+			// Set default values in nested album to match settings of parent.
+			$gallery->album->fields["perms"]           = $parentAlbum->fields["perms"];
+			$gallery->album->fields["bgcolor"]         = $parentAlbum->fields["bgcolor"];
+			$gallery->album->fields["textcolor"]       = $parentAlbum->fields["textcolor"];
+			$gallery->album->fields["linkcolor"]       = $parentAlbum->fields["linkcolor"];
+			$gallery->album->fields["font"]            = $parentAlbum->fields["font"];
+			$gallery->album->fields["border"]          = $parentAlbum->fields["border"];
+			$gallery->album->fields["bordercolor"]     = $parentAlbum->fields["bordercolor"];
+			$gallery->album->fields["returnto"]        = $parentAlbum->fields["returnto"];
+			$gallery->album->fields["thumb_size"]      = $parentAlbum->fields["thumb_size"];
+			$gallery->album->fields["resize_size"]     = $parentAlbum->fields["resize_size"];
+			$gallery->album->fields["rows"]            = $parentAlbum->fields["rows"];
+			$gallery->album->fields["cols"]            = $parentAlbum->fields["cols"];
+			$gallery->album->fields["fit_to_window"]   = $parentAlbum->fields["fit_to_window"];
+			$gallery->album->fields["use_fullOnly"]    = $parentAlbum->fields["use_fullOnly"];
+			$gallery->album->fields["print_photos"]    = $parentAlbum->fields["print_photos"];
+			$gallery->album->fields["use_exif"]        = $parentAlbum->fields["use_exif"];
+			$gallery->album->fields["display_clicks"]  = $parentAlbum->fields["display_clicks"];
+			$gallery->album->fields["public_comments"] = $parentAlbum->fields["public_comments"];
+
+			$gallery->album->save();
+		} else {
+			/*
+			* Get a new albumDB because our old copy is not up to
+			* date after we created a new album
+			*/
+			$albumDB = new AlbumDB(FALSE);
+
+			/* move the album to the top if not a nested album*/
+			$numAlbums = $albumDB->numAlbums($gallery->user);
+			$albumDB->moveAlbum($gallery->user, $numAlbums, 1);
+			$albumDB->save();
+		}
+	}
+
+	if ($error) {
+		print "$error<br>";
+		$ONBACK_SCRIPT="history.go(-2);";
+    		$WIZARD_BUTTONS="true,true,true";
+	} else {
+		echo "<form id='folder'>\n";
+		echo "<input type=hidden name=album value=" . $gallery->album->fields[name] . ">\n";
+		echo "<input type=hidden name=setCaption value=$setCaption>\n";
+		echo "</form>\n";
+
+		$doit = 1;
+	}
+}
+
 
 //---------------------------------------------------------
 //-- add-photo --
@@ -189,7 +290,6 @@ if (!strcmp($cmd, "add-item")) {
 	}
 
 	else {
-
 		$name = $userfile_name;
 		$file = $userfile;
 		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);
@@ -355,12 +455,11 @@ dataTag.setAttribute("name", "cmd");
 dataTag.text = "add-item";
 postTag.appendChild(dataTag);
 
-if (folder.setCaption.checked == true){
 var dataTag = xml.createNode(1, "formdata", "");
 dataTag.setAttribute("name", "setCaption");
-dataTag.text = folder.setCaption;
+dataTag.text = folder.setCaption.value;
 postTag.appendChild(dataTag);
-}
+
 var dataTag = xml.createNode(1, "formdata", "");
 dataTag.setAttribute("name", "userfile_name");
 dataTag.text = files[i].getAttribute("destination");
@@ -403,6 +502,11 @@ function window.onload() {
    window.external.SetHeaderText("<?php echo $gallery->app->galleryTitle?> Photo Upload","Upload Photos to <?php echo $gallery->app->galleryTitle?>");
    window.external.SetWizardButtons(<?php echo $WIZARD_BUTTONS; ?>);
 }
+<?php
+if ($doit) {
+	echo "DOIT()";
+}
+?>
 </script>
 </body>
 </html>
