@@ -399,9 +399,9 @@ if (!strcmp($gallery->album->fields["print_photos"],"none") ||
     $gallery->album->isMovie($id)) {
 } else {
 $hostname = $GLOBALS["SERVER_NAME"];
-$protocal = "http";
+$protocol = "http";
 $photo = $gallery->album->getPhoto($GLOBALS["index"]);
-$photoPath = $protocal . "://" . $hostname . $gallery->album->getAlbumDirURL();
+$photoPath = $protocol . "://" . $hostname . $gallery->album->getAlbumDirURL();
 $rawImage = $photoPath . "/" . $photo->image->name . "." . $photo->image->type;
 
 $thumbImage= $photoPath . "/";
