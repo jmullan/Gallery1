@@ -20,14 +20,14 @@
 ?>
 <? require_once('init.php'); ?>
 <?
-if (!$user->isAdmin()) {
+if (!$gallery->user->isAdmin()) {
 	exit;	
 }
 
 if ($submit) {
 	if (!strcmp($submit, "Save")) {
 		if (strcmp($old_uname, $uname)) {
-			$gErrors["uname"] = $userDB->validNewUserName($uname);
+			$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 			if ($gErrors["uname"]) {
 				$errorCount++;
 			}
@@ -38,7 +38,8 @@ if ($submit) {
 				$gErrors["new_password2"] = "Passwords do not match!";
 				$errorCount++;
 			} else {
-				$gErrors["new_password1"] = $userDB->validPassword($new_password1);
+				$gErrors["new_password1"] = 
+					$gallery->userDB->validPassword($new_password1);
 				if ($gErrors["new_password1"]) {
 					$errorCount++;
 				}
@@ -46,7 +47,7 @@ if ($submit) {
 		}
 
 		if (!$errorCount) {
-			$tmpUser = $userDB->getUserByUsername($old_uname);
+			$tmpUser = $gallery->userDB->getUserByUsername($old_uname);
 			$tmpUser->setUsername($uname);
 			$tmpUser->setFullname($fullname);
 			$tmpUser->setEmail($email);
@@ -66,7 +67,7 @@ if ($submit) {
 	}
 }
 
-$tmpUser = $userDB->getUserByUsername($uname);
+$tmpUser = $gallery->userDB->getUserByUsername($uname);
 if (!$tmpUser) {
 	error("Invalid user <i>$uname</i>");
 	exit;

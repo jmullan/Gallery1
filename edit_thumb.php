@@ -22,7 +22,7 @@
 require_once('init.php');
 
 // Hack check
-if (!$user->canWriteToAlbum($album)) {
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 ?>
@@ -40,12 +40,12 @@ if ($action == "doit") {
 	#-- rebuild the thumbnail, cropped) ---
 	echo("Remaking the Thumbnail...");
 	my_flush();
-	if ($albumName && isset($index)) { 
-		$photo = $album->getPhoto($index);
+	if ($gallery->session->albumName && isset($index)) { 
+		$photo = $gallery->album->getPhoto($index);
 		$photo->image->setThumbRectangle($crop_x, $crop_y, $crop_w, $crop_h);
-		$photo->makeThumbnail($album->getAlbumDir(), $album->fields["thumb_size"]);
-		$album->setPhoto($photo, $index);
-		$album->save();
+		$photo->makeThumbnail($gallery->album->getAlbumDir(), $gallery->album->fields["thumb_size"]);
+		$gallery->album->setPhoto($photo, $index);
+		$gallery->album->save();
 	}	
 	
 	#-- close and reload parent ---
@@ -64,12 +64,12 @@ if ($action == "doit") {
 
 <?
 	#-- are we a go? ---
-	if ($albumName && isset($index)) { 
+	if ($gallery->session->albumName && isset($index)) { 
 
-		$photo = $album->getPhoto($index);
+		$photo = $gallery->album->getPhoto($index);
 	
 		#-- the url to the image ---
-		$photoURL = $album->getAlbumDirURL() . "/";
+		$photoURL = $gallery->album->getAlbumDirURL() . "/";
 		if ($photo->image->resizedName) {
 			$photoURL .= $photo->image->resizedName . "." . $photo->image->type;
 		} else {
@@ -77,7 +77,7 @@ if ($action == "doit") {
 		}
 
 		#-- the dimensions of the raw image ---
-		list($image_w, $image_h) = $photo->image->getRawDimensions($album->getAlbumDir());
+		list($image_w, $image_h) = $photo->image->getRawDimensions($gallery->album->getAlbumDir());
 		list($t_x, $t_y, $t_w, $t_h) = $photo->image->getThumbRectangle();
 	
 		$bgcolor = "#FFFFFF";
@@ -99,7 +99,7 @@ Choose which part of the image will compose your thumbnail:
   <PARAM NAME=crop_y   VALUE="<?= $t_y ?>">
   <PARAM NAME=crop_w   VALUE="<?= $t_w ?>">
   <PARAM NAME=crop_h   VALUE="<?= $t_h ?>">
-  <PARAM NAME=crop_to_size  VALUE="<?= $album->fields["thumb_size"] ?>">
+  <PARAM NAME=crop_to_size  VALUE="<?= $gallery->album->fields["thumb_size"] ?>">
 </APPLET>
 
 <? 

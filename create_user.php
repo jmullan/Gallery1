@@ -20,13 +20,13 @@
 ?>
 <? require_once('init.php'); ?>
 <?
-if (!$user->isAdmin()) {
+if (!$gallery->user->isAdmin()) {
 	exit;	
 }
 
 if ($submit) {
 	if (!strcmp($submit, "Create")) {
-		$gErrors["uname"] = $userDB->validNewUserName($uname);
+		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 		if ($gErrors["uname"]) {
 			$errorCount++;
 		}
@@ -35,7 +35,8 @@ if ($submit) {
 			$gErrors["new_password2"] = "Passwords do not match!";
 			$errorCount++;
 		} else {
-			$gErrors["new_password1"] = $userDB->validPassword($new_password1);
+			$gErrors["new_password1"] = 
+				$gallery->userDB->validPassword($new_password1);
 			if ($gErrors["new_password1"]) {
 				$errorCount++;
 			}

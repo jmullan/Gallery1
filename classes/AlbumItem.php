@@ -41,7 +41,7 @@ class AlbumItem {
 	}
 
 	function setHighlight($dir, $bool) {
-		global $app,$albumDB;
+		global $gallery;
 		
 		$this->highlight = $bool;
 		
@@ -87,13 +87,13 @@ class AlbumItem {
 				if ($ret) {
 					$ret = resize_image("$setDir/$name.tmp.$tag", 
 							    "$setDir/$name.highlight.$tag",
-							    $app->highlight_size);
+							    $gallery->app->highlight_size);
 				}
 				unlink("$setDir/$name.tmp.$tag");
 			} else {
 				$ret = resize_image("$dir/$name.$tag", 
 						    "$setDir/$name.highlight.$tag",
-						    $app->highlight_size);
+						    $gallery->app->highlight_size);
 			}
 
 			if ($ret) {
@@ -138,7 +138,7 @@ class AlbumItem {
 	}
 
 	function rotate($dir, $direction, $thumb_size) {
-		global $app;
+		global $gallery;
 
 		$name = $this->image->name;
 		$type = $this->image->type;
@@ -155,7 +155,7 @@ class AlbumItem {
 	}
 
 	function setPhoto($dir, $name, $tag, $thumb_size) {
-		global $app;
+		global $gallery;
 
 		/*
 	 	 * Sanity: make sure we can handle the file first.
@@ -175,13 +175,13 @@ class AlbumItem {
 
 	function makeThumbnail($dir, $thumb_size)
 	{
-		global $app;
+		global $gallery;
 		$name = $this->image->name;
 		$tag = $this->image->type;
 
 		if (isMovie($tag)) {
 			/* Use a preset thumbnail */
-			copy($app->movieThumbnail, "$dir/$name.thumb.jpg");
+			copy($gallery->app->movieThumbnail, "$dir/$name.thumb.jpg");
 			$this->thumbnail = new Image;
 			$this->thumbnail->setFile($dir, "$name.thumb", "jpg");
 

@@ -28,16 +28,16 @@
 <body>
 
 <?
-if ($albumName && isset($index)) {
+if ($gallery->session->albumName && !$index) {
 ?>
 
 <center>
 Photo Properties<br>
 <br>
 
-<?= $album->getThumbnailTag($index) ?>
+<?= $gallery->album->getThumbnailTag($index) ?>
 <br>
-<?= $album->getCaption($index) ?>
+<?= $gallery->album->getCaption($index) ?>
 <br>
 
 <?
@@ -79,15 +79,15 @@ program, I build the functionality using 'jhead'.
 
 */
 
-$mydir = $album->getAlbumDir();
-$myphoto = $album->getPhoto($index);
+$mydir = $gallery->album->getAlbumDir();
+$myphoto = $gallery->album->getPhoto($index);
 $myname = $myphoto->image->name;
 $mytype=$myphoto->image->type;
 $myfile="$mydir/$myname.$mytype";
 				   
 /* display exif data with jhead */
 $return = array();
-$path = "$app->use_exif";
+$path = $gallery->app->use_exif;
 exec("$path $myfile",$return);
 							  
 while (list($key,$value) = each ($return)) {

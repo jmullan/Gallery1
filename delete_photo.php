@@ -21,17 +21,17 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canDeleteFromAlbum($album)) {
+if (!$gallery->user->canDeleteFromAlbum($gallery->album)) {
 	exit;
 }
 	
 if ($confirm && isset($index)) {
 	if ($albumDelete) {
-		$myAlbum = $album->getNestedAlbum($index);
+		$myAlbum = $gallery->album->getNestedAlbum($index);
 		$myAlbum->delete();
 	}
-	$album->deletePhoto($index);
-	$album->save();
+	$gallery->album->deletePhoto($index);
+	$gallery->album->save();
 	dismissAndReload();
 	return;
 }
@@ -46,7 +46,7 @@ if ($confirm && isset($index)) {
 
 
 <?
-if ($album && isset($index)) {
+if ($gallery->album && isset($index)) {
 	if (isset($albumDelete)) {
 ?>
 
@@ -58,7 +58,7 @@ Do you really want to delete this Album?
 <br>
 <br>
 <?
-$myAlbum = $album->getNestedAlbum($index);
+$myAlbum = $gallery->album->getNestedAlbum($index);
 ?>
 <?= $myAlbum->getHighlightTag() ?>
 <br>
@@ -86,9 +86,9 @@ $myAlbum = $album->getNestedAlbum($index);
 Do you really want to delete this photo?
 <br>
 <br>
-<?= $album->getThumbnailTag($index) ?>
+<?= $gallery->album->getThumbnailTag($index) ?>
 <br>
-<?= $album->getCaption($index) ?>
+<?= $gallery->album->getCaption($index) ?>
 <br>
 <form action=delete_photo.php>
 <input type=hidden name=index value=<?= $index?>>

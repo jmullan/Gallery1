@@ -21,7 +21,7 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canWriteToAlbum($album)) {
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 ?>
@@ -33,17 +33,17 @@ if (!$user->canWriteToAlbum($album)) {
 <body>
 
 <?
-if ($albumName) {
+if ($gallery->session->albumName) {
 	if ($confirm) {
-		$album->shufflePhotos();
-		$album->save();
+		$gallery->album->shufflePhotos();
+		$gallery->album->save();
 		dismissAndReload();
 		return;
 	} else {
 ?>
 
 <center>
-Do you really want to shuffle all the photos in this album?  This can't be undone.  You'll also need to reset the highlight photo (shown below).
+Do you really want to shuffle all the photos in this album?  This operation can't be undone.
 <br>
 <form>
 <input type=submit name=confirm value="Yes">
@@ -53,12 +53,12 @@ Do you really want to shuffle all the photos in this album?  This can't be undon
 
 <p>
 <?
-if ($album->getHighlight()) {
-	print $album->getThumbnailTag($album->getHighlight());
+if ($gallery->album->getHighlight()) {
+	print $gallery->album->getThumbnailTag($gallery->album->getHighlight());
 }
 ?>
 <br>
-<?= $album->fields["caption"] ?>
+<?= $gallery->album->fields["caption"] ?>
 
 <?
 	}

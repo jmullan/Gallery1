@@ -25,7 +25,7 @@ class Album {
 	var $dir;
 
 	function Album() {
-		global $app, $userDB;
+		global $gallery;
 
 		$this->fields["title"] = "Untitled";
 		$this->fields["description"] = "No description";
@@ -33,24 +33,24 @@ class Album {
         	$this->fields["bgcolor"] = "";
         	$this->fields["textcolor"] = "";
         	$this->fields["linkcolor"] = "";
-		$this->fields["font"] = $app->default["font"];
-		$this->fields["border"] = $app->default["border"];
-		$this->fields["bordercolor"] = $app->default["bordercolor"];
-		$this->fields["returnto"] = $app->default["returnto"];
-		$this->fields["thumb_size"] = $app->default["thumb_size"];
-		$this->fields["resize_size"] = $app->default["resize_size"];
-		$this->fields["rows"] = $app->default["rows"];
-		$this->fields["cols"] = $app->default["cols"];
-		$this->fields["fit_to_window"] = $app->default["fit_to_window"];
-		$this->fields["use_fullOnly"] = $app->default["use_fullOnly"];
-		$this->fields["print_photos"] = $app->default["print_photos"];
-		if ($app->use_exif) {
+		$this->fields["font"] = $gallery->app->default["font"];
+		$this->fields["border"] = $gallery->app->default["border"];
+		$this->fields["bordercolor"] = $gallery->app->default["bordercolor"];
+		$this->fields["returnto"] = $gallery->app->default["returnto"];
+		$this->fields["thumb_size"] = $gallery->app->default["thumb_size"];
+		$this->fields["resize_size"] = $gallery->app->default["resize_size"];
+		$this->fields["rows"] = $gallery->app->default["rows"];
+		$this->fields["cols"] = $gallery->app->default["cols"];
+		$this->fields["fit_to_window"] = $gallery->app->default["fit_to_window"];
+		$this->fields["use_fullOnly"] = $gallery->app->default["use_fullOnly"];
+		$this->fields["print_photos"] = $gallery->app->default["print_photos"];
+		if ($gallery->app->use_exif) {
 			$this->fields["use_exif"] = "yes";
 		} else {
 			$this->fields["use_exif"] = "no";
 		}
 
-		$everybody = $userDB->getEverybody();
+		$everybody = $gallery->userDB->getEverybody();
 		$this->setPerm("canRead", $everybody->getUid(), 1);
 		$this->fields["parentAlbumName"] = 0;
 	}
@@ -82,14 +82,14 @@ class Album {
 	}
 				
 	function integrityCheck() {
-		global $app;
+		global $gallery;
 
 		$changed = 0;
 		$check = array("thumb_size", "resize_size", "rows", "cols",
 		               "fit_to_window", "use_fullOnly", "print_photos");
 		foreach ($check as $field) {
 			if (!$this->fields[$field]) {
-				$this->fields[$field] = $app->default[$field];
+				$this->fields[$field] = $gallery->app->default[$field];
 				$changed = 1;
 			}
 		}
@@ -128,9 +128,9 @@ class Album {
 	}
 
 	function load($name) {
-		global $app;
+		global $gallery;
 
-		$dir = "$app->albumDir/$name";
+		$dir = $gallery->app->albumDir . "/$name";
 		
 		$tmp = getFile("$dir/album.dat");
 		if ($tmp) {
@@ -153,7 +153,7 @@ class Album {
 	}
 
 	function save() {
-		global $app;
+		global $gallery;
 		$dir = $this->getAlbumDir();
 
 		$this->fields["last_mod_time"] = time();
@@ -333,15 +333,15 @@ class Album {
 	}
 
 	function getAlbumDir() {
-		global $app;
+		global $gallery;
 
-		return "$app->albumDir/{$this->fields[name]}";
+		return $gallery->app->albumDir . "/{$this->fields[name]}";
 	}
 
 	function getAlbumDirURL() {
-		global $app;
+		global $gallery;
 
-		return "$app->albumDirURL/{$this->fields[name]}";
+		return $gallery->app->albumDirURL . "/{$this->fields[name]}";
 	}
 
 	function numHidden() {
@@ -443,7 +443,7 @@ class Album {
 
 
 	function getLastModificationDate() {
-		global $app;
+		global $gallery;
 		$dir = $this->getAlbumDir();
 
 		$time = $this->fields["last_mod_time"];
@@ -463,8 +463,8 @@ class Album {
 			return true;
 		}
 
-		global $userDB;
-		$everybody = $userDB->getEverybody();
+		global $gallery;
+		$everybody = $gallery->userDB->getEverybody();
 		if ($perm[$everybody->getUid()]) {
 			return true;
 		}
@@ -569,8 +569,8 @@ class Album {
 	}
 
 	function getOwner() {
-		global $userDB;
-		return $userDB->getUserByUid($this->fields["owner"]);
+		global $gallery;
+		return $gallery->userDB->getUserByUid($this->fields["owner"]);
 	}
 }
 

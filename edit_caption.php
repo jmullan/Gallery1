@@ -21,13 +21,13 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canChangeTextOfAlbum($album)) {
+if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	exit;
 }
 	
 if ($save) {
-	$album->setCaption($index, stripslashes($data));
-	$album->save();
+	$gallery->album->setCaption($index, stripslashes($data));
+	$gallery->album->save();
 	dismissAndReload();
 	return;
 }
@@ -43,13 +43,13 @@ if ($save) {
 Enter a caption for this picture in the text
 box below.
 <br><br>
-<?= $album->getThumbnailTag($index) ?>
+<?= $gallery->album->getThumbnailTag($index) ?>
 
 <form name="theform" action=edit_caption.php method=POST>
 <input type=hidden name="save" value=1>
 <input type=hidden name="index" value="<?= $index ?>">
 <textarea name="data" rows=5 cols=40>
-<?= $album->getCaption($index) ?>
+<?= $gallery->album->getCaption($index) ?>
 </textarea>
 
 <br><br>

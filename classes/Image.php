@@ -36,7 +36,7 @@ class Image {
 	}
 
 	function resize($dir, $target) {
-		global $app;
+		global $gallery;
 
 		/* getting rid of the resized image */
 		if (stristr($target, "orig")) {
@@ -77,7 +77,7 @@ class Image {
 	}
 
 	function getTag($dir, $full=0, $attrs="") {
-		global $app;
+		global $gallery;
 
 		$name = $this->getName($dir);
 		

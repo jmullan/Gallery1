@@ -22,21 +22,21 @@
 
 <html>
 <head>
-  <title>Login to <?=$app->galleryTitle?></title>
+  <title>Login to <?=$gallery->app->galleryTitle?></title>
   <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
 </head>
 <body>
 
 <center>
-<span class="popuphead">Login to <?=$app->galleryTitle?></span>
+<span class="popuphead">Login to <?=$gallery->app->galleryTitle?></span>
 <br>
 <br>
 <?
 if ($submit) {
 	if ($uname && $password) {
-		$tmpUser = $userDB->getUserByUsername($uname);
+		$tmpUser = $gallery->userDB->getUserByUsername($uname);
 		if ($tmpUser && $tmpUser->isCorrectPassword($password)) {
-			$username = $uname;
+			$gallery->session->username = $uname;
 			dismissAndReload();
 		} else {
 			$invalid = 1;

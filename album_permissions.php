@@ -21,63 +21,64 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->isAdmin() && !$user->isOwnerOfAlbum($album)) {
+if (!$gallery->user->isAdmin() && 
+    !$gallery->user->isOwnerOfAlbum($gallery->album)) {
 	exit;
 }
 ?>
 <?
 if (isset($allUid) && strchr($submit_read, ">")) {
-	$album->setRead($allUid, 1);
+	$gallery->album->setRead($allUid, 1);
 	$changed++;
 } else if (isset($readUid) && strchr($submit_read, "<")) {
-	$album->setRead($readUid, 0);
+	$gallery->album->setRead($readUid, 0);
 	$changed++;
 }
 
 if (isset($allUid) && strchr($submit_text, ">")) {
-	$album->setChangeText($allUid, 1);
+	$gallery->album->setChangeText($allUid, 1);
 	$changed++;
 } else if (isset($textUid) && strchr($submit_text, "<")) {
-	$album->setChangeText($textUid, 0);
+	$gallery->album->setChangeText($textUid, 0);
 	$changed++;
 }
 
 if (isset($allUid) && strchr($submit_add, ">")) {
-	$album->setAddTo($allUid, 1);
+	$gallery->album->setAddTo($allUid, 1);
 	$changed++;
 } else if (isset($addUid) && strchr($submit_add, "<")) {
-	$album->setAddTo($addUid, 0);
+	$gallery->album->setAddTo($addUid, 0);
 	$changed++;
 }
 
 if (isset($allUid) && strchr($submit_write, ">")) {
-	$album->setWrite($allUid, 1);
+	$gallery->album->setWrite($allUid, 1);
 	$changed++;
 } else if (isset($writeUid) && strchr($submit_write, "<")) {
-	$album->setWrite($writeUid, 0);
+	$gallery->album->setWrite($writeUid, 0);
 	$changed++;
 }
 
 if (isset($allUid) && strchr($submit_delete, ">")) {
-	$album->setDeleteFrom($allUid, 1);
+	$gallery->album->setDeleteFrom($allUid, 1);
 	$changed++;
 } else if (isset($deleteUid) && strchr($submit_delete, "<")) {
-	$album->setDeleteFrom($deleteUid, 0);
+	$gallery->album->setDeleteFrom($deleteUid, 0);
 	$changed++;
 }
 
 if (!strcmp($submit, "Save") && $ownerUid) {
-	$album->setOwner($ownerUid);
+	$gallery->album->setOwner($ownerUid);
 	$changed++;
 }
 
 if ($changed) {
-	$album->save();
+	$gallery->album->save();
 }
 
 // Start with a default owner of nobody -- if there is an
 // owner it'll get filled in below.
-$nobody = $userDB->getNobody();
+$nobody = $gallery->userDB->getNobody();
 $ownerUid = $nobody->getUid();
 
 $uRead = array();
@@ -86,8 +87,8 @@ $uAdd = array();
 $uWrite = array();
 $uDelete = array();
 
-foreach ($userDB->getUidList() as $uid) {
-	$tmpUser = $userDB->getUserByUid($uid);
+foreach ($gallery->userDB->getUidList() as $uid) {
+	$tmpUser = $gallery->userDB->getUserByUid($uid);
 	$uname = $tmpUser->getUsername();
 
 	// Skip the admin user
@@ -97,27 +98,27 @@ foreach ($userDB->getUidList() as $uid) {
 	
 	$uAll[$uid] = $uname;
 
-	if ($album->isOwner($uid)) {
+	if ($gallery->album->isOwner($uid)) {
 		$ownerUid = $uid;
 	}
 
-	if ($album->canRead($uid)) {
+	if ($gallery->album->canRead($uid)) {
 		$uRead[$uid] = $uname;
 	}
 
-	if ($album->canChangeText($uid)) {
+	if ($gallery->album->canChangeText($uid)) {
 		$uText[$uid] = $uname;
 	}
 
-	if ($album->canAddTo($uid)) {
+	if ($gallery->album->canAddTo($uid)) {
 		$uAdd[$uid] = $uname;
 	}
 
-	if ($album->canWrite($uid)) {
+	if ($gallery->album->canWrite($uid)) {
 		$uWrite[$uid] = $uname;
 	}
 
-	if ($album->canDeleteFrom($uid)) {
+	if ($gallery->album->canDeleteFrom($uid)) {
 		$uDelete[$uid] = $uname;
 	}
 }
@@ -152,11 +153,11 @@ correctEverybody(&$uAdd);
 <center>
 <span class="popuphead">Album Permissions</span>
 <br>
-Changing permissions for <b><?=$album->fields["title"]?></b>
+Changing permissions for <b><?=$gallery->album->fields["title"]?></b>
 
 <form name=albumperms_form method=GET>
 
-<? if ($user->isAdmin) { ?>
+<? if ($gallery->user->isAdmin) { ?>
 Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1, $uNobody); ?>
 <? } ?>
 

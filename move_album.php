@@ -21,7 +21,7 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canWriteToAlbum($album)) {
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 ?>
@@ -37,30 +37,30 @@ if (!$user->canWriteToAlbum($album)) {
 /* Read the album list */
 $albumDB = new AlbumDB();
 
-if ($albumName && isset($index)) {
+if ($gallery->session->albumName && isset($index)) {
 
 	if ($newAlbum) { // moving album to a nested location
-		if ($album->fields[name] != $newAlbum) {
-			$album->fields[parentAlbumName] = $newAlbum;
-			$album->save();
+		if ($gallery->album->fields[name] != $newAlbum) {
+			$gallery->album->fields[parentAlbumName] = $newAlbum;
+			$gallery->album->save();
 			$newAlbum = $albumDB->getAlbumbyName($newAlbum);
-			$newAlbum->addNestedAlbum($album->fields[name]);
+			$newAlbum->addNestedAlbum($gallery->album->fields[name]);
 			$newAlbum->save();
 		}
 		dismissAndReload();
 		return;
 	}
 	if (isset($newIndex)) {
-		$albumDB->moveAlbum($user, $index, $newIndex);
+		$albumDB->moveAlbum($gallery->user, $index, $newIndex);
 		$albumDB->save();
 		dismissAndReload();
 		return;
 	} else {
-		$numAlbums = $albumDB->numAlbums($user);
+		$numAlbums = $albumDB->numAlbums($gallery->user);
 ?>
 
 <center>
-Select the new location of album <?=$album->fields["title"]?>:
+Select the new location of album <?=$gallery->album->fields["title"]?>:
 <form name="theform">
 <input type=hidden name="index" value="<?=$index?>">
 <select name="newIndex">
@@ -80,8 +80,8 @@ for ($i = 1; $i <= $numAlbums; $i++) {
 
 <p>
 <?
-if ($album->numPhotos(1)) {
-	echo $album->getThumbnailTag($album->getHighlight());
+if ($gallery->album->numPhotos(1)) {
+	echo $gallery->album->getThumbnailTag($gallery->album->getHighlight());
 }
 ?>
 <p>

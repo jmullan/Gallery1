@@ -21,17 +21,17 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canDeleteAlbum($album)) {
+if (!$gallery->user->canDeleteAlbum($gallery->album)) {
 	exit;
 }
 
 if ($confirm) {
-	$album->delete();
+	$gallery->album->delete();
 	dismissAndReload();
 	return;
 }
 
-if ($album) {
+if ($gallery->album) {
 ?>
 
 <html>
@@ -46,7 +46,7 @@ if ($album) {
 <br><br>
 Do you really want to delete this album?
 <br>
-<b><?= $album->fields["title"] ?></b>
+<b><?= $gallery->album->fields["title"] ?></b>
 <p>
 <form action=delete_album.php>
 <input type=submit name=confirm value="Delete">
@@ -54,8 +54,8 @@ Do you really want to delete this album?
 </form>
 <p>
 <?
-	if ($album->numPhotos(1)) {
-		echo $album->getThumbnailTag($album->getHighlight());
+	if ($gallery->album->numPhotos(1)) {
+		echo $gallery->album->getThumbnailTag($gallery->album->getHighlight());
 	}
 } else {
 	error("no album specified");

@@ -188,21 +188,21 @@ class User {
 	}
 
 	function load($uid) {
-		global $app;
+		global $gallery;
 
-		$dir = $app->userDir;
+		$dir = $gallery->app->userDir;
 		
-		$tmp = getFile("$app->userDir/$uid");
+		$tmp = getFile("$dir/$uid");
 		if ($tmp) {
 			$this = unserialize($tmp);
 		}
 	}
 
 	function save() {
-		global $app;
+		global $gallery;
 		$success = 0;
 
-		$dir = $app->userDir;
+		$dir = $gallery->app->userDir;
 		$tmpfile = tempnam($dir, $this->uid);
 
 		if ($fd = fopen($tmpfile, "w")) {

@@ -20,19 +20,19 @@
 ?>
 <? require_once('init.php'); ?>
 <?
-if (!$user->isLoggedIn()) {
+if (!$gallery->user->isLoggedIn()) {
 	exit;	
 }
 
 if (!strcmp($submit, "Save")) {
-	if (strcmp($user->getUsername(), $uname)) {
-		$gErrors["uname"] = $userDB->validNewUserName($uname);
+	if (strcmp($gallery->user->getUsername(), $uname)) {
+		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 		if ($gErrors["uname"]) {
 			$errorCount++;
 		}
 	}
 
-	if ($old_password && !$user->isCorrectPassword($old_password)) {
+	if ($old_password && !$gallery->user->isCorrectPassword($old_password)) {
 		$gErrors["old_password"] = "Incorrect password";
 		$errorCount++;
 	}
@@ -47,7 +47,7 @@ if (!strcmp($submit, "Save")) {
 			$gErrors["new_password2"] = "Passwords do not match!";
 			$errorCount++;
 		} else {
-			$gErrors["new_password1"] = $userDB->validPassword($new_password1);
+			$gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
 			if ($gErrors["new_password1"]) {
 				$errorCount++;
 			}
@@ -55,24 +55,24 @@ if (!strcmp($submit, "Save")) {
 	}
 
 	if (!$errorCount) {
-		$user->setUsername($uname);
-		$user->setFullname($fullname);
-		$user->setEmail($email);
+		$gallery->user->setUsername($uname);
+		$gallery->user->setFullname($fullname);
+		$gallery->user->setEmail($email);
 		// If a new password was entered, use it.  Otherwise leave it the same.
 		if ($new_password1) {
-			$user->setPassword($new_password1);
+ 			$gallery->user->setPassword($new_password1);
 		}
-		$user->save();
+		$gallery->user->save();
 		dismiss();
 	}
 }
 
 $askForOldPassword = 1;
-$uname = $user->getUsername();
-$fullname = $user->getFullname();
-$email = $user->getEmail();
+$uname = $gallery->user->getUsername();
+$fullname = $gallery->user->getFullname();
+$email = $gallery->user->getEmail();
 
-if ($user->isAdmin()) {
+if ($gallery->user->isAdmin()) {
 	$dontChangeUsername = 1;
 }
 

@@ -21,7 +21,7 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canAddToAlbum($album)) {
+if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
 	
@@ -52,7 +52,7 @@ if (!$boxes) {
 <span class="popup">
 Click the <b>Browse</b> button to locate a photo to upload.
 <span class="admin">
-<? if ($app->feature["zip"]) { ?>
+<? if ($gallery->app->feature["zip"]) { ?>
 <br>
 &nbsp;&nbsp;Tip:  Upload a ZIP file full of photos and movies!
 <? } ?>

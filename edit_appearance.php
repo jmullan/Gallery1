@@ -21,29 +21,29 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canWriteToAlbum($album)) {
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 	
 if ($save) {
-	$album->fields["title"] = $title;
-	$album->fields["bgcolor"] = $bgcolor;
-	$album->fields["textcolor"] = $textcolor;
-	$album->fields["linkcolor"] = $linkcolor;
-	$album->fields["font"] = $font;
-	$album->fields["bordercolor"] = $bordercolor;
-	$album->fields["border"] = $border;
-	$album->fields["background"] = $background;
-	$album->fields["thumb_size"] = $thumb_size;
-	$album->fields["resize_size"] = $resize_size;
-	$album->fields["returnto"] = $returnto;
-	$album->fields["rows"] = $rows;
-	$album->fields["cols"] = $cols;
-	$album->fields["fit_to_window"] = $fit_to_window;
-	$album->fields["use_fullOnly"] = $use_fullOnly;
-	$album->fields["print_photos"] = $print_photos;
-	$album->fields["use_exif"] = $use_exif;
-	$album->save();
+	$gallery->album->fields["title"] = $title;
+	$gallery->album->fields["bgcolor"] = $bgcolor;
+	$gallery->album->fields["textcolor"] = $textcolor;
+	$gallery->album->fields["linkcolor"] = $linkcolor;
+	$gallery->album->fields["font"] = $font;
+	$gallery->album->fields["bordercolor"] = $bordercolor;
+	$gallery->album->fields["border"] = $border;
+	$gallery->album->fields["background"] = $background;
+	$gallery->album->fields["thumb_size"] = $thumb_size;
+	$gallery->album->fields["resize_size"] = $resize_size;
+	$gallery->album->fields["returnto"] = $returnto;
+	$gallery->album->fields["rows"] = $rows;
+	$gallery->album->fields["cols"] = $cols;
+	$gallery->album->fields["fit_to_window"] = $fit_to_window;
+	$gallery->album->fields["use_fullOnly"] = $use_fullOnly;
+	$gallery->album->fields["print_photos"] = $print_photos;
+	$gallery->album->fields["use_exif"] = $use_exif;
+	$gallery->album->save();
 
 	reload();
 }
@@ -64,53 +64,53 @@ Album Properties
 <table>
 <tr>
 <td>Album Title</td>
-<td><input type=text name="title" value="<?=$album->fields["title"]?>"></td>
+<td><input type=text name="title" value="<?=$gallery->album->fields["title"]?>"></td>
 </tr>
 <tr>
 <td>Background Color</td>
-<td><input type=text name="bgcolor" value="<?=$album->fields["bgcolor"]?>"></td>
+<td><input type=text name="bgcolor" value="<?=$gallery->album->fields["bgcolor"]?>"></td>
 </tr>
 <tr>
 <td>Text Color</td>
-<td><input type=text name="textcolor" value="<?=$album->fields["textcolor"]?>"></td>
+<td><input type=text name="textcolor" value="<?=$gallery->album->fields["textcolor"]?>"></td>
 </tr>
 <tr>
 <td>Link Color</td>
-<td><input type=text name="linkcolor" value="<?=$album->fields["linkcolor"]?>"></td>
+<td><input type=text name="linkcolor" value="<?=$gallery->album->fields["linkcolor"]?>"></td>
 </tr>
 <tr>
 <td>Background Image (URL)</td>
-<td><input type=text name="background" value="<?=$album->fields["background"]?>"></td>
+<td><input type=text name="background" value="<?=$gallery->album->fields["background"]?>"></td>
 </tr>
 <tr>
 <td>Font</td>
-<td><input type=text name="font" value="<?=$album->fields["font"]?>"></td>
+<td><input type=text name="font" value="<?=$gallery->album->fields["font"]?>"></td>
 </tr>
 <tr>
 <td>Borders</td>
-<td><select name="border"><?= selectOptions($album, "border", array("off", 1, 2, 3, 4)) ?></select></td>
+<td><select name="border"><?= selectOptions($gallery->album, "border", array("off", 1, 2, 3, 4)) ?></select></td>
 </tr>
 <tr>
 <td>Border color</td>
-<td><input type=text name="bordercolor" value="<?=$album->fields["bordercolor"]?>"></td>
+<td><input type=text name="bordercolor" value="<?=$gallery->album->fields["bordercolor"]?>"></td>
 </tr>
 <tr>
 <td>Thumbnail size</td>
-<td><input type=text name="thumb_size" value="<?=$album->fields["thumb_size"]?>"></td>
+<td><input type=text name="thumb_size" value="<?=$gallery->album->fields["thumb_size"]?>"></td>
 </tr>
 <tr>
 <td>Auto-Resize</td>
-<td><select name="resize_size"><?= selectOptions($album, "resize_size", array("off", 400, 500, 600, 700, 800)) ?></select></td>
+<td><select name="resize_size"><?= selectOptions($gallery->album, "resize_size", array("off", 400, 500, 600, 700, 800)) ?></select></td>
 </tr>
 <tr>
 <td>Show <i>Return to</i> link</td>
-<td><select name="returnto"><?= selectOptions($album, "returnto", array("yes", "no")) ?></select></td>
+<td><select name="returnto"><?= selectOptions($gallery->album, "returnto", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Rows</td>
 <td>
  <select name="rows">
-  <?= selectOptions($album, "rows", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
+  <?= selectOptions($gallery->album, "rows", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
  </select>
 </td>
 </tr>
@@ -118,27 +118,27 @@ Album Properties
 <td>Columns</td>
 <td>
  <select name="cols">
-  <?= selectOptions($album, "cols", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
+  <?= selectOptions($gallery->album, "cols", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
  </select>
 </td>
 </tr>
 <tr>
 <td>Auto fit-to-window for<br>images without a resized copy</td>
-<td><select name="fit_to_window"><?= selectOptions($album, "fit_to_window", array("yes", "no")) ?></select></td>
+<td><select name="fit_to_window"><?= selectOptions($gallery->album, "fit_to_window", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Offer visitors ability to specify<br>preference for full-size or resized images</td>
-<td><select name="use_fullOnly"><?= selectOptions($album, "use_fullOnly", array("yes", "no")) ?></select></td>
+<td><select name="use_fullOnly"><?= selectOptions($gallery->album, "use_fullOnly", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
 <td>Which photo printing service<br>do you want to let visitors use?</td>
-<td><select name="print_photos"><?= selectOptions($album, "print_photos", array("none", "shutterfly")) ?></select></td>
+<td><select name="print_photos"><?= selectOptions($gallery->album, "print_photos", array("none", "shutterfly")) ?></select></td>
 </tr>
 <?
-if ($app->use_exif) {
+if ($gallery->app->use_exif) {
 ?>
 <td>Display EXIF data?</td>
-<td><select name="use_exif"><?=selectOptions($album, "use_exif", array("no", "yes")) ?></select></td>
+<td><select name="use_exif"><?=selectOptions($gallery->album, "use_exif", array("no", "yes")) ?></select></td>
 </tr>
 <?
 } // end if

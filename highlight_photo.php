@@ -21,7 +21,7 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canWriteToAlbum($album)) {
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 ?>
@@ -34,10 +34,10 @@ if (!$user->canWriteToAlbum($album)) {
 <body>
 
 <?
-if ($albumName && isset($index)) {
+if ($gallery->session->albumName && isset($index)) {
 	if ($confirm) {
-		$album->setHighlight($index);
-		$album->save();
+		$gallery->album->setHighlight($index);
+		$gallery->album->save();
 		dismissAndReload();
 		return;
 	} else {
@@ -50,9 +50,9 @@ gallery page, representing this album?
 <br>
 <br>
 
-<?= $album->getThumbnailTag($index) ?>
+<?= $gallery->album->getThumbnailTag($index) ?>
 <br>
-<?= $album->getCaption($index) ?>
+<?= $gallery->album->getCaption($index) ?>
 <br>
 <form action=highlight_photo.php>
 <input type=hidden name=index value=<?= $index?>>

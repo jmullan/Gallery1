@@ -21,7 +21,7 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canWriteToAlbum($album)) {
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 
@@ -36,8 +36,8 @@ $albumDB = new AlbumDB(); // read album database
 <body>
 
 <?
-if ($albumName && isset($index)) {
-	$numPhotos = $album->numPhotos(1);
+if ($gallery->session->albumName && isset($index)) {
+	$numPhotos = $gallery->album->numPhotos(1);
 
 	// Here we are "moving" a photo from one album to another by "adding" it to the new album
 	// and then deleting it from the old one.  This could be optimized because our thumnails 
@@ -46,7 +46,7 @@ if ($albumName && isset($index)) {
 
         if (isset($newAlbum)) {	// we are moving from one album to another
             	$postAlbum = $albumDB->getAlbumbyName($newAlbum);
-	    	if ($album != $postAlbum) {
+	    	if ($gallery->album != $postAlbum) {
 			//$startPhoto=$index;
 			//$endPhoto=$startPhoto+max($numPhotosToMove,1);
 
@@ -55,32 +55,32 @@ if ($albumName && isset($index)) {
 			//	return;
 			//}
 			
-			if ($album->isAlbumName($index)) { // moving "album" to another location
+			if ($gallery->album->isAlbumName($index)) { // moving "album" to another location
 				if ($newAlbum == "ROOT") { // moving "album" to ROOT location
-					$myAlbum = $album->getNestedAlbum($index);
+					$myAlbum = $gallery->album->getNestedAlbum($index);
 					$myAlbum->fields[parentAlbumName] = 0;
-					$album->deletePhoto($index); 
+					$gallery->album->deletePhoto($index); 
 					$myAlbum->save();
-					$album->save();
+					$gallery->album->save();
 				} else { // moving "album" to another album
-					$myAlbum = $album->getNestedAlbum($index);
+					$myAlbum = $gallery->album->getNestedAlbum($index);
 					if ($postAlbum != $myAlbum) { // we don't ever want to point an album back at itself!!!
-						$postAlbum->addNestedAlbum($album->isAlbumName($index)); // copy "album" to new album
+						$postAlbum->addNestedAlbum($gallery->album->isAlbumName($index)); // copy "album" to new album
 						$myAlbum->fields[parentAlbumName] = $postAlbum->fields[name];
-						$album->deletePhoto($index); // delete "album" from original album
+						$gallery->album->deletePhoto($index); // delete "album" from original album
 						$postAlbum->save();
-						$album->save();
+						$gallery->album->save();
 						$myAlbum->save();
 					}
 				}
 			} else { // moving "picture" to another album
 				$index = $startPhoto; // set the index to the first photo that we are moving.	
 				while ($startPhoto <= $endPhoto) {
-					if (!$album->isAlbumName($index)) {
+					if (!$gallery->album->isAlbumName($index)) {
 						print "<br>Moving photo #".$startPhoto."<br>";
 						my_flush();
-						$mydir = $album->getAlbumDir();
-						$myphoto = $album->getPhoto($index);
+						$mydir = $gallery->album->getAlbumDir();
+						$myphoto = $gallery->album->getPhoto($index);
 						$myname = $myphoto->image->name;
 						$mytype=$myphoto->image->type;
 						$myfile="$mydir/$myname.$mytype";
@@ -93,7 +93,7 @@ if ($albumName && isset($index)) {
 						if (!$err) {
 							$newPhotoIndex = $postAlbum->numPhotos(1);
 							// Set the caption of the new photo
-							$postAlbum->setCaption($newPhotoIndex, $album->getCaption($index));
+							$postAlbum->setCaption($newPhotoIndex, $gallery->album->getCaption($index));
 							$postAlbum->save();
 							/* resize the photo if needed */
 							if ($postAlbum->fields["resize_size"] > 0 ) {
@@ -106,8 +106,8 @@ if ($albumName && isset($index)) {
 								}
 							}
 							$postAlbum->save();
-							$album->deletePhoto($index);
-							$album->save();
+							$gallery->album->deletePhoto($index);
+							$gallery->album->save();
 						} else {
 							print "<font color=red>Error: $err!</font>";
 							return;
@@ -119,14 +119,14 @@ if ($albumName && isset($index)) {
 					$startPhoto++;
 	    			} //end while
 			} //end else
-		} //end if ($album != $postAlbum)
+		} //end if ($gallery->album != $postAlbum)
 		dismissAndReload();
 		return;
 	} //end if (isset($newAlbum))
 
         if (isset($newIndex)) {
-		$album->movePhoto($index, $newIndex);
-		$album->save();
+		$gallery->album->movePhoto($index, $newIndex);
+		$gallery->album->save();
 		dismissAndReload();
 		return;
 	} else {
@@ -134,7 +134,7 @@ if ($albumName && isset($index)) {
 
 <center>
 <?
-if ($album->isAlbumName($index)) {
+if ($gallery->album->isAlbumName($index)) {
 ?>
 Move this album within the album:<br>
 <? } else { ?>
@@ -142,7 +142,7 @@ Move this photo within the album:<br>
 <? } ?>
 <i>(Current Location is <?=$index?>)</i>
 <p>
-<?= $album->getThumbnailTag($index) ?>
+<?= $gallery->album->getThumbnailTag($index) ?>
 <p>
 <form name="theform">
 Select the new location:
@@ -172,7 +172,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 
 
 <?
-if ($album->isAlbumName($index)) {
+if ($gallery->album->isAlbumName($index)) {
 ?>
 Move the album to a new album:<br>
 <form name=move_to_album_form>

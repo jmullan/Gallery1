@@ -15,8 +15,8 @@ that this has your current config information already in it.
 <input type=hidden name=prev_page value="check">
 <?
 foreach ($constants as $key => $val) {
-	if ($app->$key) {
-		$val["value"] = $app->$key;
+	if ($gallery->app->$key) {
+		$val["value"] = $gallery->app->$key;
 	}
 
 	if (!$go_defaults && isset($$key)) {
@@ -31,8 +31,8 @@ foreach ($constants as $key => $val) {
 }
 
 foreach ($defaults as $key => $val) {
-	if ($app->default[$key]) {
-		$val["value"] = $app->default[$key];
+	if ($gallery->app->default[$key]) {
+		$val["value"] = $gallery->app->default[$key];
 	}
 
 	if (!$go_defaults && isset($$key)) {

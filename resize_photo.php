@@ -21,7 +21,7 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canWriteToAlbum($album)) {
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 ?>
@@ -35,25 +35,25 @@ if (!$user->canWriteToAlbum($album)) {
 
 <?
 $all = !strcmp($index, "all");
-if ($albumName && isset($index)) {
+if ($gallery->session->albumName && isset($index)) {
 	if ($resize) {
 		if (!strcmp($index, "all")) {
-			$np = $album->numPhotos();
+			$np = $gallery->album->numPhotos();
 			echo("<br> Resizing $np photos...");
 			my_flush();
 			for ($i = 1; $i <= $np; $i++) {
 				echo("<br> Processing image $i...");
 				my_flush();
 				set_time_limit(90);
-				$album->resizePhoto($i, $resize);
+				$gallery->album->resizePhoto($i, $resize);
 			}
 		} else {
 			echo("<br> Resizing 1 photo...");
 			my_flush();
 			set_time_limit(90);
-			$album->resizePhoto($index, $resize);
+			$gallery->album->resizePhoto($index, $resize);
 		}
-		$album->save();
+		$gallery->album->save();
 		dismissAndReload();
 		return;
 	} else {
@@ -83,7 +83,7 @@ What is the target size for <?= $all ? "all the photos in this album" : "this ph
 <br><br>
 <?
 if (!$all) {
-	echo $album->getThumbnailTag($index);
+	echo $gallery->album->getThumbnailTag($index);
 } 
 ?>
 

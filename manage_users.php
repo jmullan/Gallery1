@@ -20,7 +20,7 @@
 ?>
 <? require_once('init.php'); ?>
 <?
-if (!$user->isAdmin()) {
+if (!$gallery->user->isAdmin()) {
 	exit;	
 }
 
@@ -35,8 +35,8 @@ if ($action) {
 }
 
 $displayUsers = array();
-foreach ($userDB->getUidList() as $uid) {
-	$tmpUser = $userDB->getUserByUid($uid);
+foreach ($gallery->userDB->getUidList() as $uid) {
+	$tmpUser = $gallery->userDB->getUserByUid($uid);
 	if ($tmpUser->isAdmin() || $tmpUser->isPseudo()) {
 		continue;
 	}

@@ -21,8 +21,8 @@ $data .= "<" . "?\n";
 $data .= "/* Version  */\n";
 $view .= row_wrap("/* Version  */");
 
-$data .= "\$app->config_version = $gallery->config_version;\n";
-$view .= row_wrap("\$app->config_version = $gallery->config_version;");
+$data .= "\$gallery->app->config_version = $gallery->config_version;\n";
+$view .= row_wrap("\$gallery->app->config_version = $gallery->config_version;");
 
 $data .= "\n";
 $view .= row_wrap("&nbsp;");

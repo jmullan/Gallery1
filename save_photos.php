@@ -21,7 +21,7 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canAddToAlbum($album)) {
+if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
 
@@ -84,7 +84,7 @@ if ($urls) {
 		}
 	
 		/* copy file locally */
-		$file = "$app->tmpDir/photo.$name";
+		$file = $gallery->app->tmpDir . "/photo.$name";
 		$od = fopen($file, "w");
 		if ($id && $od) {
 			while (!feof($id)) {
@@ -171,12 +171,12 @@ while (sizeof($userfile)) {
 	$tag = strtolower($tag);
 
 	if (!strcmp($tag, "zip")) {
-		if (!$app->feature["zip"]) {
+		if (!$gallery->app->feature["zip"]) {
 			msg("Skipping $name (ZIP support not enabled)");
 			continue;
 		}
 		/* Figure out what files we can handle */
-		list($files, $status) = exec_internal("$app->zipinfo -1 $file");
+		list($files, $status) = exec_internal($gallery->app->zipinfo . " -1 $file");
 		sort($files);
 		foreach ($files as $pic_path) {
 			$pic = basename($pic_path);
@@ -186,9 +186,11 @@ while (sizeof($userfile)) {
 			if (acceptableFormat($tag)) {
 				$cmd_pic_path = str_replace("[", "\[", $pic_path); 
 				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path); 
-				exec_wrapper("$app->unzip -j -o $file '$cmd_pic_path' -d $app->tmpDir");
-				process("$app->tmpDir/$pic", $tag, $pic);
-				unlink("$app->tmpDir/$pic");
+				exec_wrapper($gallery->app->unzip . 
+					     " -j -o $file '$cmd_pic_path' -d " .
+					     $gallery->app->tmpDir);
+				process($gallery->app->tmpDir . "/$pic", $tag, $pic);
+				unlink($gallery->app->tmpDir . "/$pic");
 			}
 		}
 	} else {
@@ -200,25 +202,25 @@ while (sizeof($userfile)) {
 
 
 function process($file, $tag, $name) {
-	global $album;
+	global $gallery;
 
 	set_time_limit(30);
 	if (acceptableFormat($tag)) {
 		msg("- Adding $name");
 		my_flush();
 
-		$err = $album->addPhoto($file, $tag);
+		$err = $gallery->album->addPhoto($file, $tag);
 		if (!$err) {
 			/* resize the photo if needed */
-			if ($album->fields["resize_size"] > 0 && isImage($tag)) {
-				$index = $album->numPhotos(1);
-				$photo = $album->getPhoto($index);
+			if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
+				$index = $gallery->album->numPhotos(1);
+				$photo = $gallery->album->getPhoto($index);
 				list($w, $h) = $photo->getDimensions();
-				if ($w > $album->fields["resize_size"] ||
-				    $h > $album->fields["resize_size"]) {
+				if ($w > $gallery->album->fields["resize_size"] ||
+				    $h > $gallery->album->fields["resize_size"]) {
 					msg("- Resizing $name"); 
 					my_flush();
-					$album->resizePhoto($index, $album->fields["resize_size"]);
+					$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
 				}
 			}
 		} else {
@@ -230,7 +232,7 @@ function process($file, $tag, $name) {
 	}
 }
 
-$album->save();
+$gallery->album->save();
 
 if ($temp_files) {
 	/* Clean up the temporary url file */

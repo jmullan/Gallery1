@@ -21,7 +21,7 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canWriteToAlbum($album)) {
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 ?>
@@ -34,7 +34,7 @@ if (!$user->canWriteToAlbum($album)) {
 <body>
 
 <?
-if ($albumName && isset($index)) {
+if ($gallery->session->albumName && isset($index)) {
 	if ($rotate) {
 ?>
 	<center>
@@ -44,8 +44,8 @@ if ($albumName && isset($index)) {
 	</center>
 <?
 		my_flush();
-		$album->rotatePhoto($index, $rotate);
-		$album->save();
+		$gallery->album->rotatePhoto($index, $rotate);
+		$gallery->album->save();
 		dismissAndReload();
 		return;
 	} else {
@@ -54,17 +54,17 @@ if ($albumName && isset($index)) {
 <center>
 How do you want to rotate this photo?
 <br>
-<a href=rotate_photo.php?rotate=90&albumName=<?= $album->fields["name"] ?>&index=<?= $index ?>>Counter-Clockwise 90&ordm;</a>
+<a href=rotate_photo.php?rotate=90&albumName=<?= $gallery->album->fields["name"] ?>&index=<?= $index ?>>Counter-Clockwise 90&ordm;</a>
 /
-<a href=rotate_photo.php?rotate=180&albumName=<?= $album->fields["name"] ?>&index=<?= $index ?>>Flip 180&ordm;</a>
+<a href=rotate_photo.php?rotate=180&albumName=<?= $gallery->album->fields["name"] ?>&index=<?= $index ?>>Flip 180&ordm;</a>
 /
-<a href=rotate_photo.php?rotate=-90&albumName=<?= $album->fields["name"] ?>&index=<?= $index ?>>Clockwise 90&ordm;</a>
+<a href=rotate_photo.php?rotate=-90&albumName=<?= $gallery->album->fields["name"] ?>&index=<?= $index ?>>Clockwise 90&ordm;</a>
 /
 <a href="javascript:void(parent.close())">Cancel</a>
 <br>
 
 <p>
-<?= $album->getThumbnailTag($index) ?>
+<?= $gallery->album->getThumbnailTag($index) ?>
 
 <?
 	}

@@ -25,30 +25,31 @@ class UserDB {
 	var $everybody;
 	
 	function UserDB() {
-		global $app;
+		global $gallery;
+		$userDir = $gallery->app->userDir;
 
 		$this->userMap = array();
 
-		if (!file_exists($app->userDir)) {
-			if (!mkdir($app->userDir, 0777)) {
-				error("Unable to create dir: $app->userDir");
+		if (!file_exists($userDir)) {
+			if (!mkdir($userDir, 0777)) {
+				error("Unable to create dir: $userDir");
 				return;
 			}
 		} else {
-			if (!is_dir($app->userDir)) {
-				error("$app->userDir exists, but is not a directory!");
+			if (!is_dir($userDir)) {
+				error("$userDir exists, but is not a directory!");
 				return;
 			}
 		}
 
-		if (!file_exists("$app->userDir/.htaccess")) {
-			$fd = fopen("$app->userDir/.htaccess", "w");
+		if (!file_exists("$userDir/.htaccess")) {
+			$fd = fopen("$userDir/.htaccess", "w");
 			fwrite($fd, "Order deny, allow\nDeny from all\n");
 			fclose($fd);
 		}
 
-		if (file_exists("$app->userDir/userdb.dat")) {
-			$tmp = getFile("$app->userDir/userdb.dat");
+		if (file_exists("$userDir/userdb.dat")) {
+			$tmp = getFile("$userDir/userdb.dat");
 			$this = unserialize($tmp);
 		}
 
@@ -62,7 +63,7 @@ class UserDB {
 	}
 
 	function getUserByUsername($username, $level=0) {
-		global $app;
+		global $gallery;
 
 		if ($level > 1) {
 			// We've recursed too many times.  Abort;
@@ -98,7 +99,8 @@ class UserDB {
 	}
 
 	function getUserByUid($uid) {
-		global $app;
+		global $gallery;
+		$userDir = $gallery->app->userDir;
 
 		if (!$uid || !strcmp($uid, $this->nobody->getUid())) {
 			return $this->nobody;
@@ -106,7 +108,7 @@ class UserDB {
 			return $this->everybody;
 		}
 
-		if (file_exists("$app->userDir/$uid")) {
+		if (file_exists("$userDir/$uid")) {
 			$user = new User();
 			$user->load($uid);
 			return $user;
@@ -133,13 +135,14 @@ class UserDB {
 	}
 
 	function deleteUserByUsername($username) {
-		global $app;
+		global $gallery;
+		$userDir = $gallery->app->userDir;
 
 		$user = $this->getUserByUsername($username);
 		if ($user) {
 			$uid = $user->getUid();
-			if (file_exists("$app->userDir/$uid")) {
-				return unlink("$app->userDir/$uid");
+			if (file_exists("$userDir/$uid")) {
+				return unlink("$userDir/$uid");
 			}
 		}
 		$this->rebuildUserMap();
@@ -148,7 +151,8 @@ class UserDB {
 	}
 
 	function rebuildUserMap() {
-		global $app;
+		global $gallery;
+		$userDir = $gallery->app->userDir;
 
 		foreach ($this->getUidList() as $uid) {
 			$tmpUser = $this->getUserByUid($uid);
@@ -158,22 +162,21 @@ class UserDB {
 		}
 
 		$success = 0;
-		$dir = $app->userDir;
-		$tmpfile = tempnam($dir, "userdb.dat");
+		$tmpfile = tempnam($userDir, "userdb.dat");
 		if ($fd = fopen($tmpfile, "w")) {
 			fwrite($fd, serialize($this));
 			fclose($fd);
-			$success = rename($tmpfile, "$dir/userdb.dat");
+			$success = rename($tmpfile, "$userDir/userdb.dat");
 		}
 
 		return $success;
 	}
 
 	function getUidList() {
-		global $app;
+		global $gallery;
 		
 		$uidList = array();
-		if ($fd = opendir($app->userDir)) {
+		if ($fd = opendir($gallery->app->userDir)) {
 			while ($file = readdir($fd)) {
 				if (!strchr($file, ":")) {
 					continue;

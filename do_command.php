@@ -21,7 +21,7 @@
 <? require_once('init.php'); ?>
 <?
 if (!strcmp($cmd, "remake-thumbnail")) {
-	if ($user->canWriteToAlbum($album)) {
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 ?>
 <html>
 <head>
@@ -30,18 +30,18 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 </head>
 <body>
 <?
-		if ($albumName && isset($index)) {
+		if ($gallery->session->albumName && isset($index)) {
 			if (!strcmp($index, "all")) {
-				$np = $album->numPhotos(1);
+				$np = $gallery->album->numPhotos(1);
 				echo ("<br> Rebuilding $np thumbnails...");
 				my_flush();
 				for ($i = 1; $i <= $np; $i++) {
-					$isAlbumName = $album->isAlbumName($i);
+					$isAlbumName = $gallery->album->isAlbumName($i);
 					if (!$isAlbumName) { // process the images
 						echo("<br> Processing image $i...");
 						my_flush();
 						set_time_limit(90);
-						$album->makeThumbnail($i);
+						$gallery->album->makeThumbnail($i);
 					} else { 
 						// we just skip albums... we could have
 						// recursively created new thumbnails in each
@@ -55,55 +55,56 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 				echo ("<br> Rebuilding 1 thumbnail...");
 				my_flush();
 				set_time_limit(90);
-				$album->makeThumbnail($index);
+				$gallery->album->makeThumbnail($index);
 			}
-			$album->save();
+			$gallery->album->save();
 			//-- this is expected to be loaded in a popup, so dismiss ---
 			dismissAndReload();
 		}
 	}
 } else if (!strcmp($cmd, "logout")) {
-	$username = "";
+	$gallery->session->username = "";
 	header("Location: $return");	
 } else if (!strcmp($cmd, "hide")) {
-	if ($user->canWriteToAlbum($album)) {
-		$album->hidePhoto($index);
-		$album->save();
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		$gallery->album->hidePhoto($index);
+		$gallery->album->save();
 	}
 	//-- this is expected to be loaded in a popup, so dismiss ---
 	dismissAndReload();
 } else if (!strcmp($cmd, "show")) {
-	if ($user->canWriteToAlbum($album)) {
-		$album->unhidePhoto($index);
-		$album->save();
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		$gallery->album->unhidePhoto($index);
+		$gallery->album->save();
 	}
 	//-- this is expected to be loaded in a popup, so dismiss ---
 	dismissAndReload();
 } else if (!strcmp($cmd, "new-album")) {
-	if ($user->canCreateAlbums()) {
+	if ($gallery->user->canCreateAlbums()) {
 		$albumDB = new AlbumDB();
-		$albumName = $albumDB->newAlbumName();
-		$album = new Album();
-		$album->fields["name"] = $albumName;
-		$album->setOwner($user->getUid());
-		$album->save();
+		$gallery->session->albumName = $albumDB->newAlbumName();
+		$gallery->album = new Album();
+		$gallery->album->fields["name"] = $gallery->session->albumName;
+		$gallery->album->setOwner($gallery->user->getUid());
+		$gallery->album->save();
 		/* if this is a nested album, set nested parameters */
 		if ($parentName) {
-			$album->fields[parentAlbumName] = $parentName;
+			$gallery->album->fields[parentAlbumName] = $parentName;
 			$myAlbum = $albumDB->getAlbumbyName($parentName);
-			$myAlbum->addNestedAlbum($albumName);
+			$myAlbum->addNestedAlbum($gallery->session->albumName);
 			$myAlbum->save();
-			$album->fields["perms"] = $myAlbum->fields["perms"];
-			$album->save();
+			$gallery->album->fields["perms"] = $myAlbum->fields["perms"];
+			$gallery->album->save();
 		} else {
 			/* move the album to the top if not a nested album*/
 			$albumDB = new AlbumDB();
-                	$numAlbums = $albumDB->numAlbums($user);
-                	$albumDB->moveAlbum($user, $numAlbums, 1);
+                	$numAlbums = $albumDB->numAlbums($gallery->user);
+                	$albumDB->moveAlbum($gallery->user, $numAlbums, 1);
                 	$albumDB->save();
 		}
 	
-		$url = addUrlArg($return, "set_albumName=$albumName");
+		$url = addUrlArg($return, "set_albumName=" .
+				 $gallery->session->albumName);
 		header("Location: $url");
 	} else {
 		header("Location: albums.php");

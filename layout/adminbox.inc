@@ -8,7 +8,7 @@ if ($adminbox["bordercolor"]) {
 } else {
 	$borderIn = "#FFFFFF";
 }
-$imageDir = $app->photoAlbumURL."/images";
+$imageDir = $gallery->app->photoAlbumURL."/images";
 $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">";
 
 ?>

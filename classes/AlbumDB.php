@@ -24,9 +24,9 @@ class AlbumDB {
 	var $albumOrder;
 
 	function AlbumDB() {
-		global $app;
+		global $gallery;
 
-		$dir = $app->albumDir;
+		$dir = $gallery->app->albumDir;
 
 		$tmp = getFile("$dir/albumdb.dat");
 		if (strcmp($tmp, "")) {
@@ -68,9 +68,14 @@ class AlbumDB {
 	}
 
 	function renameAlbum($oldName, $newName) {
-		global $app;
+		global $gallery;
 
-		$dir = $app->albumDir;
+		$dir = $gallery->app->albumDir;
+
+		if (is_dir("$dir/$newName")) {
+			return 0;
+		}
+
 		if (is_dir("$dir/$oldName")) {
 			$success = rename("$dir/$oldName", "$dir/$newName");
 			if (!$success) {
@@ -88,10 +93,10 @@ class AlbumDB {
 	}
 
 	function newAlbumName() {
-		global $app;
+		global $gallery;
 
 		$name = "album01";
-		$albumDir = $app->albumDir;
+		$albumDir = $gallery->app->albumDir;
 		while (file_exists("$albumDir/$name")) {
 			$name++;
 		}
@@ -179,10 +184,10 @@ class AlbumDB {
 	}
 
 	function save() {
-		global $app;
+		global $gallery;
 		$success = 0;
 
-		$dir = $app->albumDir;
+		$dir = $gallery->app->albumDir;
 		if ($fd = fopen("$dir/albumdb.dat.new", "w")) {
 			fwrite($fd, serialize($this->albumOrder));
 			fclose($fd);

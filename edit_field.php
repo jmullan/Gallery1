@@ -21,13 +21,13 @@
 <? require_once('init.php'); ?>
 <?
 // Hack check
-if (!$user->canChangeTextOfAlbum($album)) {
+if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	exit;
 }
 	
 if ($save) {
-	$album->fields[$field] = stripslashes($data);
-	$album->save();
+	$gallery->album->fields[$field] = stripslashes($data);
+	$gallery->album->save();
 	dismissAndReload();
 	return;
 }
@@ -48,7 +48,7 @@ Edit the <?= $field ?> and click <b>Save</b> when you're done.
 <input type=hidden name="save" value=1>
 <input type=hidden name="field" value="<?= $field ?>">
 <textarea name="data" rows=5 cols=40>
-<?= $album->fields[$field] ?>
+<?= $gallery->album->fields[$field] ?>
 </textarea>
 <p>
 <input type=submit name="submit" value="Save">

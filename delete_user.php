@@ -20,13 +20,13 @@
 ?>
 <? require_once('init.php'); ?>
 <?
-if (!$user->isAdmin()) {
+if (!$gallery->user->isAdmin()) {
 	exit;	
 }
 
 if ($submit) {
 	if (!strcmp($submit, "Delete")) {
-		$userDB->deleteUserByUsername($uname);
+		$gallery->userDB->deleteUserByUsername($uname);
 		header("Location: manage_users.php");
 	} else if (!strcmp($submit, "Cancel")) {
 		header("Location: manage_users.php");
