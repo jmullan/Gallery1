@@ -70,11 +70,14 @@ if (isset($$sessionVar)) {
 	$gallery->session =& $$sessionVar;
 
 	/* Make sure our session is current.  If not, nuke it and restart. */
-	if (strcmp($gallery->session->version, $gallery->version)) {
+	/* Disabled this code -- it has too many repercussions */
+	if (false) {
+	    if (strcmp($gallery->session->version, $gallery->version)) {
 		session_destroy();
 		header("Location: index.php");
 		exit;
-	}	
+	    }
+	}
 } else {
 	/* Register the session variable */
 	session_register($sessionVar);
