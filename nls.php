@@ -62,8 +62,8 @@ function getNLS () {
 	$nls['aliases']['lt'] = 'lt_LT';
 	$nls['aliases']['nl'] = 'nl_NL';
 	$nls['aliases']['no'] = 'nb_NO';
-	$nls['aliases']['pl'] = 'pl_PL'
-	$nls['aliases']['pt'] = 'pt_PT'
+	$nls['aliases']['pl'] = 'pl_PL';
+	$nls['aliases']['pt'] = 'pt_PT';
 	$nls['aliases']['ru'] = 'ru_RU';
 	$nls['aliases']['sv'] = 'sv_SE';
 	
