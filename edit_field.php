@@ -40,6 +40,9 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 }
 	
 if (isset($save)) {
+	if (!strcmp($field, 'title')) {
+		$data = removeTags($data);
+	}
 	$gallery->album->fields[$field] = stripslashes($data);
 	$gallery->album->save();
 	dismissAndReload();
