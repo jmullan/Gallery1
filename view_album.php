@@ -255,7 +255,7 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
 }
 if (($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) &&
 	!strcmp($gallery->album->fields["public_comments"],"yes")) { 
-    $adminCommands .= '<a href=' . makeGalleryUrl("view_comments.php") . '>[view&nbsp;all&nbsp;comments]</a>&nbsp;';
+    $adminCommands .= '<a href=' . makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)) . '>[view&nbsp;all&nbsp;comments]</a>&nbsp;';
 }
 $adminCommands .= '<a href=' . 
 	 makeGalleryUrl("slideshow.php",
@@ -340,7 +340,8 @@ if ($numPhotos) {
 			$gallery->html_wrap['borderColor'] = $bordercolor;
 			$gallery->html_wrap['borderWidth'] = $borderwidth;
 			$gallery->html_wrap['pixelImage'] = $imageDir . "/pixel_trans.gif";
-			list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i);
+			$scaleTo = $gallery->album->fields["thumb_size"];
+			list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i, $scaleTo);
 			$gallery->html_wrap['thumbWidth'] = $iWidth;
 			$gallery->html_wrap['thumbHeight'] = $iHeight;
 
@@ -354,12 +355,8 @@ if ($numPhotos) {
 				$myAlbum = new Album();
 				$myAlbum->load($myAlbumName);
 
-				$gallery->html_wrap['thumbTag'] = $myAlbum->getHighlightAsThumbnailTag();
+				$gallery->html_wrap['thumbTag'] = $myAlbum->getHighlightAsThumbnailTag($scaleTo);
 				$gallery->html_wrap['thumbHref'] = makeAlbumUrl($myAlbumName);
-				$higlightIndex = $myAlbum->getHighlight();
-				list($iWidth, $iHeight) = array($gallery->album->fields['thumb_size'], 50);
-				$gallery->html_wrap['thumbWidth'] = $iWidth;
-				$gallery->html_wrap['thumbHeight'] = $iHeight;
 				includeHtmlWrap('inline_albumthumb.frame');
 
 			} else {
