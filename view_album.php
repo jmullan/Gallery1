@@ -847,23 +847,25 @@ if ($numPhotos) {
 					$myDescription != "") {
 					$buf = $buf."<br>".$myDescription."";
 				}
-				echo($buf."<br>");
-?>
-				<br>
-				<span class="fineprint">
-				   <?php echo _("Changed: ") ?><?php echo $myAlbum->getLastModificationDate() ?>.  <br>
-				   <?php echo _("Contains: ") ?><?php echo pluralize_n(array_sum($myAlbum->numVisibleItems($gallery->user)), _("1 item"), _("items"), _("0 items")) ?>.
-				   <?php 
-				   $lastCommentDate = $myAlbum->lastCommentDate();
-				   if ($lastCommentDate > 0) {
-					   print lastCommentString($lastCommentDate, $displayCommentLegend);
-				   } ?><br>
-				   <?php if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) { ?>
-				   	<?php echo _("Viewed:") ?> <?php echo pluralize_n($myAlbum->getClicks(), _("1 time") , _("times"), _("0 times")) ?>.<br>
-				   <?php } ?>
-				</span>
-<?php
-			} else {
+				echo $buf;
+
+				echo '<br><br><span class="fineprint">';
+				echo _("Changed: ") ." ". $myAlbum->getLastModificationDate();
+ 				echo "\n<br>";
+				echo _("Contains: ") ." ". pluralize_n(array_sum($myAlbum->numVisibleItems($gallery->user)), _("1 item"), _("items"), _("0 items")) . '.';
+				$lastCommentDate = $myAlbum->lastCommentDate();
+				if ($lastCommentDate > 0) {
+					print lastCommentString($lastCommentDate, $displayCommentLegend);
+				}
+				echo '</span><br>';
+				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) {
+					echo '<span class="viewcounter">';
+					echo _("Viewed:") . " ". pluralize_n($myAlbum->getClicks(), _("1 time") , _("times"), _("0 times"));
+					echo ".<br></span>";
+				}
+				echo '</span>';
+			} 
+			else {
 				echo(nl2br($gallery->album->getCaption($i)));
 				echo($gallery->album->getCaptionName($i));
 				// indicate with * if we have a comment for a given photo
@@ -874,9 +876,10 @@ if ($numPhotos) {
 				}
 				echo("<br>");
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
-					echo _("Viewed:") ." ".pluralize_n($gallery->album->getItemClicks($i), _("1 time"), _("times") ,_("0 times")).".<br>";
+					echo '<span class="viewcounter">';
+					echo _("Viewed:") ." ". pluralize_n($gallery->album->getItemClicks($i), _("1 time"), _("times") ,_("0 times")) ;
+					echo ".<br></span>";
 				}
-
 			}
 		       	echo "</td></tr></table>";
 		       	if (canVote()) {
