@@ -169,6 +169,20 @@ foreach ($constants as $key => $val) {
 	}
 }
 
+/*
+ * In NetPBM 9.19, they renamed "ppmtojpeg" to "pnmtojpeg".  !@#$%
+ * Add a special case constant to tell us which binary we located on
+ * the machine (so we know which one to use!).  It sucks that we
+ * have to do this!
+ */
+if (fs_file_exists($constants["pnmDir"]["value"] . "/pnmtojpeg")) {
+	$data .= one_constant("pnmtojpeg", "pnmtojpeg");
+	$view .= row_wrap(one_constant("pnmtojpeg", "pnmtojpeg"));
+} else {
+	$data .= one_constant("pnmtojpeg", "ppmtojpeg");
+	$view .= row_wrap(one_constant("pnmtojpeg", "ppmtojpeg"));
+}
+
 $data .= "\n";
 $view .= row_wrap("&nbsp;");
 $data .= "/* Defaults */\n";

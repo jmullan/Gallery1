@@ -221,11 +221,31 @@ function check_graphics($location="")
 		fs_executable("pnmflip")
 	);
 
+	$fallback = array(
+		fs_executable("ppmtojpeg") => fs_executable("pnmtojpeg")
+	);
+
 	foreach ($netpbm as $bin) {
 		if ($location) {
 			$d = locateDir($bin, $location, 1);
 		} else {
 			$d = locateDir($bin, $gallery->app ? $gallery->app->pnmDir : "");
+		}
+
+		/*
+		 * If we can't find the primary file, look for the fallback file
+		 * instead.
+		 */
+		if (!$d && $fallback[$bin]) {
+			$newbin = $fallback[$bin];
+			if ($location) {
+				$d = locateDir($newbin, $location, 1);
+			} else {
+				$d = locateDir($newbin, $gallery->app ? $gallery->app->pnmDir : "");
+			}
+			if ($d) {
+				$bin = $newbin;
+			}
 		}
 
 		if (!$d) {
