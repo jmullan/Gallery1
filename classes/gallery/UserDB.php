@@ -64,7 +64,9 @@ class Gallery_UserDB extends Abstract_UserDB {
 			 * the old cache file (it'll get rebuilt automatically).
 			 */
 			if (strcmp(substr($tmp, 0, 12), 'O:6:"userdb"')) {
-				$this = unserialize($tmp);
+				foreach (unserialize($tmp) as $k => $v) {
+					$this->$k = $v;
+				}
 			}
 		}
 

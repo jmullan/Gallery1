@@ -51,10 +51,14 @@ class Gallery_User extends Abstract_User {
 		 */
 		if (!strcmp(substr($tmp, 0, 10), 'O:4:"user"')) {
 			$tmp = ereg_replace('O:4:"user"', 'O:12:"gallery_user"', $tmp);
-			$this = unserialize($tmp);
+			foreach (unserialize($tmp) as $k => $v) {
+				$this->$k = $v;
+			}
 			$this->save();
 		} else {
-			$this = unserialize($tmp);
+			foreach (unserialize($tmp) as $k => $v) {
+				$this->$k = $v;
+			}
 		}
 	}
 

@@ -696,7 +696,9 @@ class Album {
 			}
 		}
 
-		$this = $tmp;
+		foreach (unserialize($tmp) as $k => $v) {
+			$this->$k = $v;
+		}
 		return 1;
 	}
 
