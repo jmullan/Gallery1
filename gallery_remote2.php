@@ -251,7 +251,7 @@ if (!strcmp($cmd, "login")) {
 		$response->setProperty( "status_text", "Filename not specified." );
 	} else {
 		if(isset($auto_rotate)) {
-			if($autoRotate == 'yes') {
+			if($auto_rotate == 'yes') {
 				$gallery->app->autorotate = 'yes';
 			} else {
 				$gallery->app->autorotate = 'no';
