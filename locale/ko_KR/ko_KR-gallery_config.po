@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-03-02 12:01+0100\n"
-"PO-Revision-Date: 2005-03-07 17:58+0900\n"
+"POT-Creation-Date: 2005-03-22 13:57+0100\n"
+"PO-Revision-Date: 2005-03-18 17:58+0900\n"
 "Last-Translator: The Darkness <xgate32 AT hotmail DOT com>\n"
 "Language-Team: Gallery Korean Translation <xgate32 AT hotmail DOT com>\n"
 "MIME-Version: 1.0\n"
@@ -99,11 +99,11 @@ msgstr "갤러리 설정마법사 : %d 단계"
 
 #: ../setup/check.inc:31
 msgid "This is the Gallery system check page."
-msgstr "이것은 갤러리 시스템 확인 페이지입니다."
+msgstr "갤러리 시스템 확인 페이지입니다."
 
 #: ../setup/check.inc:32
 msgid "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably."
-msgstr "여기에서 갤러리가 동작하기 위해 시스템에 필요한 컴포넌트와 퍼미션 설정 등을 확인하고 모든 것이 제대로 설정되었는지 확인합니다."
+msgstr "이 페이지는 설치과정에 필수적인 컴퍼넌트, 이 시스템의 퍼미션, 모든 것이 제대로 설정되었는지 확인하게됩니다."
 
 #: ../setup/check.inc:37 ../setup/diagnostics.php:30
 msgid "Gallery Diagnostics Page"
@@ -116,7 +116,7 @@ msgstr "Gallery 도움말"
 #: ../setup/check.inc:42
 #, php-format
 msgid "Having problems?  Try the %s, %s and %s."
-msgstr "문제가 있나요? %s, %s 와 %s를 시도하세요."
+msgstr "문제가 있나요? %s, %s, %s을 시도해 보세요."
 
 #: ../setup/check.inc:43 ../setup/confirm.inc:36
 msgid "documentation"
@@ -135,7 +135,7 @@ msgstr "성공"
 msgid "Serious Warning"
 msgstr "심각한 경고"
 
-#: ../setup/check.inc:83 ../setup/check.inc:123 ../setup/check_mail.php:76
+#: ../setup/check.inc:83 ../setup/check.inc:123 ../setup/check_mail.php:78
 msgid "Warning"
 msgstr "경고"
 
@@ -251,7 +251,7 @@ msgstr "open_basedir 목록은 php.ini에 정의되어 있습니다."
 
 #: ../setup/check_imagemagick.php:132 ../setup/check_netpbm.php:132
 msgid "The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
-msgstr "결과는, that we can't perform all of our basic checks on the files to make sure that 그들이 존재하고 실행하능하도록 파일에서 우리의 기본."
+msgstr "실행 안되는 결과가  나타난다면, 파일이 존재하고 실행가능한지 확인부터 하시기 바랍니다."
 
 #: ../setup/check_imagemagick.php:143 ../setup/check_netpbm.php:144
 #, php-format
@@ -275,7 +275,7 @@ msgstr "이것에 대해 시스템 관리자에게 말해보거나, %s갤러리 도움말 페이지%s를 보�
 #: ../setup/check_imagemagick.php:190 ../setup/check_netpbm.php:224
 #, php-format
 msgid "For other errors, please refer to the list of possible responses in %s to get more information."
-msgstr ""
+msgstr "에러에 대해, 더 많은 정보를 얻기 위해 %s에서 가능한 응답의 목록을 조회하시기 바랍니다."
 
 #: ../setup/check_imagemagick.php:218 ../setup/check_netpbm.php:252
 #, php-format
@@ -300,56 +300,56 @@ msgstr "OK!  버젼: %s"
 msgid "Check Mail"
 msgstr "메일 확인"
 
-#: ../setup/check_mail.php:44
+#: ../setup/check_mail.php:46
 #, php-format
 msgid "Test email from %s"
 msgstr "%s 에서 테스트 이메일"
 
-#: ../setup/check_mail.php:45
+#: ../setup/check_mail.php:47
 msgid "This email was automatically generated."
 msgstr "이 이메일은 자동 생성되었습니다."
 
-#: ../setup/check_mail.php:46
+#: ../setup/check_mail.php:48
 msgid "If you recevied this in error, then please disregard, as you should not receive any similar emails."
 msgstr "에러로 이것을 받게 되셨다면, 다른 비슷한 이메일을 받지 않는 것처럼 무시하세요."
 
-#: ../setup/check_mail.php:47
+#: ../setup/check_mail.php:49
 #, php-format
 msgid "If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."
 msgstr "%2$s 의 %1$s 설치에서 기대했던 이메일을 받으셨다면 축하드립니다! 이메일은 작동하고 있고, %3$s 이메일 펑션에서 사용하실 수 있습니다."
 
-#: ../setup/check_mail.php:51
+#: ../setup/check_mail.php:53
 msgid "SUCCESS!"
 msgstr "성공!"
 
-#: ../setup/check_mail.php:52
+#: ../setup/check_mail.php:54
 #, php-format
 msgid "Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
 msgstr "테스트 이메일은 <b>%s</b>에게 전송되고, 몇 분안에 도착하게 됩니다. 받지 못하면, 사용된 이메일주소를 확인하세요. 만약 이메일을 받을 수 없다면, 서버에 의해 사용금지 되었거나, 수정되기 전까지 %s 이메일 기능이 사용금지된 것입니다."
 
-#: ../setup/check_mail.php:54
+#: ../setup/check_mail.php:56
 msgid "You must use a valid email address"
 msgstr "올바른 이메일 주소를 사용하세요."
 
-#: ../setup/check_mail.php:55
+#: ../setup/check_mail.php:57
 msgid "Try again?"
 msgstr "다시 시도?"
 
-#: ../setup/check_mail.php:61
+#: ../setup/check_mail.php:63
 #, php-format
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "이것은 이메일이 당신의 시스템에서 올바르게 작동하는지 확인하는 것입니다. 아래에 당신의 이메일주소를 적으시고, 당신에게 이메일을 보내보세요. 받게 되면 당신의 시스템이 작동하고 있는 겁니다"
 
-#: ../setup/check_mail.php:65 ../setup/check_mail.php:70
+#: ../setup/check_mail.php:67 ../setup/check_mail.php:72
 #, php-format
 msgid "%s not set."
 msgstr "%s 가 정해지지 않았습니다."
 
-#: ../setup/check_mail.php:90
+#: ../setup/check_mail.php:92
 msgid "Your email address:"
 msgstr "이메일 주소:"
 
-#: ../setup/check_mail.php:92
+#: ../setup/check_mail.php:94
 msgid "Send Email"
 msgstr "이메일 전송"
 
@@ -1502,7 +1502,7 @@ msgstr "통계"
 
 #: ../setup/config_data.inc:1013
 msgid "Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information."
-msgstr ""
+msgstr "캐싱은 정렬에서 벗어나거나 점수 정보에 어긋난 사진을 표시하는데 무리가 따르는 대형 갤러리 성능을 향상시킵니다."
 
 #: ../setup/config_data.inc:1014
 msgid "There's a different cache for each stats type supported with the exception of random."
@@ -1813,18 +1813,16 @@ msgid "Use Big Photo"
 msgstr "대형 사진 사용"
 
 #: ../setup/config_data.inc:1246
-#, fuzzy
 msgid "(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."
-msgstr "(고급) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."
+msgstr "(고급) 사용자가 그들의 RSS 리더에서 채널 미리보기가 안된다고 불평한다면, 이 기능을 켜시기 바랍니다.  이 기능을 켜면 당신의 피드는 정확하지 않은 RSS 2.0의 원인이 됩니다."
 
 #: ../setup/config_data.inc:1253
 msgid "Use Photo Tag"
 msgstr "사진 꼬리말 사용"
 
 #: ../setup/config_data.inc:1254
-#, fuzzy
 msgid "(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
-msgstr "(고급) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
+msgstr "(고급) 이 기능을 끄는 것은 항목을 재표현하는 이미지를 위해 허용된 두 개의 RSS 확장자를 피드에서 삭제되는 원인이 됩니다. 문제가 없다면 사용가능하게 놔 두세요."
 
 #: ../setup/config_data.inc:1282
 msgid "Layout"
@@ -2721,7 +2719,7 @@ msgstr "언어가 발견되지 않았습니다."
 
 #: ../setup/functions.inc:648
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr ""
+msgstr "다른 추가적인 언어를 다운로드 하지 않은 것처럼 보입니다. 이것은 문제가 아닙니다! 갤러리는 영문으로 표시되어 질 겁니다. 주의: 이것이 사실이 아니라면, locale 폴더내의 모든 파일들이 웹서버에서 읽기가능한지 또는 갤러리팀에 접촉할 수 있는지 확인하세요."
 
 #: ../setup/functions.inc:651
 #, php-format
@@ -2731,7 +2729,7 @@ msgstr "%d개의 언어가  가능합니다. 빠진 언어가 있다면 %s갤러리 다운로드 페이지%s
 #: ../setup/functions.inc:673
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
-msgstr "%s를 방문하여 가장 최근 버전을 확인할 수 있습니다."
+msgstr "%s를 방문하여 최신 버전을 확인할 수 있습니다."
 
 #: ../setup/functions.inc:675
 #, php-format
@@ -2754,7 +2752,7 @@ msgstr "이 호스트에서 모든 갤러리 로케일이 가능합니다"
 #: ../setup/functions.inc:708
 #, php-format
 msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
-msgstr ""
+msgstr "갤러리가 정하기 어려운 %d개의 로케일이 있습니다. 수동으로 날짜 형식을 선택하셔야 합니다."
 
 #: ../setup/functions.inc:714
 #, php-format
@@ -2880,7 +2878,7 @@ msgstr "상세한 설명을 숨기기 위해 %s여기를 클릭%s."
 #: ../setup/functions.inc:1322
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-msgstr "%d 파일은 기대한 것보다 최신입니다. 당신이 pre-release, 베타, CVS 또는 수정된 코드를 사용하신 다면 관계없습니다."
+msgstr "%d개 파일은 기대한 것보다 최신입니다. 당신이 pre-release, 베타, CVS 또는 수정된 코드를 사용하신다면 관계없습니다."
 
 #: ../setup/functions.inc:1327
 #, php-format
