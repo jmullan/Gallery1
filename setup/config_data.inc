@@ -325,7 +325,7 @@ $constants =  array_merge(
 		"prompt" => _("Show Owner"),
 		"desc" => _("Show album owner's name on the top level Gallery page?"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
-		"value" => "no",
+		"value" => "no"
 	),
 	"albumsPerPage" => array(
 		"prompt" => _("Albums per page"),
@@ -338,10 +338,24 @@ $constants =  array_merge(
 		"prompt" => _("Search Engine"),
 		"desc" => _("Display search engine on main Gallery page?"),
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
-		"value" => "yes",
+		"value" => "yes"
 	),
 
-	"separator4" => array (
+	"separator4" => array(
+		"type" => "separator",
+		"title" => _("Layout")
+	),
+
+	"album_thumb_frame_style" => array(
+		"prompt" => "Frame around album thumb",
+		"desc" => sprintf(_("%s marks an album with a special frame.  There are %d different styles:"),Gallery(),2) .
+			"<dl><dt>". _("Polaroid") ."</dt><dd>". _("This draws a frame which make the thumb look like a polaroid"). "</dd>".
+			"<dt>". _("Dots") ."</dt><dd>" . _("Just draw a simple dashed border around the thumb.") . "</dd></dl>",
+		"choices" => array("polaroid" => _("Polaroid"), "dots" => _("Dots")),
+		"value" => "yes"
+	),
+	
+	"separator5" => array (
 		"type" => "separator",
 		"title" => _("Optional tools")
 	),
@@ -398,7 +412,7 @@ $constants =  array_merge(
 		"type" => "text",
 		"attrs" => array ("size" => 50)
 	),		
-	"separator5" => array (
+	"separator6" => array (
 		"type" => "separator",
 		"title" => _("Languages and locales"),
 	),
@@ -547,7 +561,7 @@ $constants = array_merge($constants,
 		"optional" => 1,
 		"value" => array()
 	),
-       	"separator6" => array (
+       	"separator7" => array (
 		       	"type" => "separator",
 		       	"title" => _("Gallery wide slideshow"),
 			"desc" => newIn("1.4.1") . "<br>" .
@@ -611,7 +625,7 @@ $constants = array_merge($constants,
 			"choices" => array("yes" => _("yes"), "no" => _("no")),
 		       	"value" => "no",
 			),
-	"separator7" => array (
+	"separator8" => array (
 		"type" => "separator",
 		"title" => _("Technical"),
 		"desc" => _("You usually don't need to change anything in this section.")

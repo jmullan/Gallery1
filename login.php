@@ -96,7 +96,7 @@ if (isset($uname) && isset($gallerypassword)) {
    <?php echo _("Username") ?>
   </td>
   <td>
-   <input type=text name="uname" value=<?php echo $uname ?>>
+   <input type=text name="uname" value="<?php echo $uname ?>">
   </td>
  </tr>
 
@@ -181,12 +181,12 @@ if (isset($forgot)) {
    <?php echo _("Username") ?>
   </td>
   <td>
-   <input type=text name="uname" value=<?php echo $uname ?>>
+   <input type="text" name="uname" value="<?php echo $uname ?>">
   </td>
  </tr>
  </table>
  <p>
-<input type=submit name="forgot" value="<?php _("Send me my password") ?>">
+<input type="submit" name="forgot" value="<?php echo _("Send me my password") ?>">
 
 <script language="javascript1.2">
 <!--

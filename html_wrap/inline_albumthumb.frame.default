@@ -1,48 +1,67 @@
 <?php
-//-- draw a table which looks like  a book.
-//-- This uses the album's border color/size to draw.
+// $Id$
 
 //-- shorten the variables for convinience ---
-// $Id$
 $borderWidth = $gallery->html_wrap['borderWidth'];
 $borderColor = $gallery->html_wrap['borderColor'];
 $pixelImage = $gallery->html_wrap['pixelImage'];
 $thumbWidth = $gallery->html_wrap['thumbWidth'];
 $thumbHeight = $gallery->html_wrap['thumbHeight'];
-$tag = $gallery->html_wrap['thumbTag'];
+
 $href = $gallery->html_wrap['thumbHref'];
+$tag = $gallery->html_wrap['thumbTag'];
 $base = $gallery->app->photoAlbumURL . '/images';
 
-$imageTT = "$base/TT1.gif";
-$imageLL = "$base/LL1.gif";
-$imageTR = "$base/TR1.gif";
-$imageRR = "$base/RR1.gif";
-$imageBL = "$base/BL1.gif";
+switch ($gallery->app->album_thumb_frame_style) {
+
+case "dots":
+	echo "<table style=\"border-width:1px; border-style:dashed; border-color:white;\">";
+	echo "<tr><td><a href=\"$href\">$tag</a></td></tr>";
+	echo "</table>";
+break;
+
+//case "polaroid":
+default:
+
+//-- draw a table which looks like a polaroid.
+//-- This uses the album's border color/size to draw.
+
 $imageTL = "$base/TL1.gif";
+$imageTT = "$base/TT1.gif";
+$imageTR = "$base/TR1.gif";
+
+$imageLL = "$base/LL1.gif";
+$imageRR = "$base/RR1.gif";
+
+$imageBL = "$base/BL1.gif";
 $imageBB = "$base/BB1.gif";
 $imageBR = "$base/BR1.gif";
 ?>
-	<a href="<?php echo $href ?>">
+
 <table width="1" border="0" cellspacing="0" cellpadding="0">
 
-<TR>
-    <td width="10" height="10"><img src="<?php echo $imageTL ?>" border="0" width="10" height="10"></td>
-    <td background="<?php echo $imageTT ?>" width="<?php echo $thumbWidth ?>"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1"></td>
-    <td><img src="<?php echo $imageTR ?>" border="0" width="18" height="10"></td>
-  </tr>
-  <TR>
-  <td width="10" height="<?php echo $thumbHeight ?>" background="<?php echo $imageLL ?>"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1"></td>
-        <td width="<?php echo $thumbWidth ?>" height="<?php echo $thumbHeight ?>">
-	<?php echo $tag ?>
-	</td>
+<tr>
+    <td width="10" height="10"><img src="<?php echo $imageTL ?>" border="0" width="10" height="10" alt="TL"></td>
+    <td width="<?php echo $thumbWidth ?>" style="background-image:url(<?php echo $imageTT ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1" alt="trans"></td>
+    <td><img src="<?php echo $imageTR ?>" border="0" width="18" height="10" alt="TR"></td>
+</tr>
+<tr>
+   <td width="10" height="<?php echo $thumbHeight ?>" style="background-image:url(<?php echo $imageLL ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1"  height="1" alt="trans"></td>
+   <td width="<?php echo $thumbWidth ?>" height="<?php echo $thumbHeight ?>"><a href="<?php echo $href ?>"><?php echo $tag ?></a></td>
+   <td width="5" height="<?php echo $thumbHeight ?>" style="background-image:url(<?php echo $imageRR ?>)"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1" alt="trans"></td>
+</tr>
 
- <td width="5" height="<?php echo $thumbHeight ?>" background="<?php echo $imageRR ?>"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1"></td>
-  </tr>
+<tr>
+    <td width="5" height="3"><img src="<?php echo $imageBL ?>" border="0" width="10" height="39" alt="BL"></td>
+    <td style="background-image:url(<?php echo $imageBB ?>)" width="<?php echo $thumbWidth ?>"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1" alt="trans"></td>
+    <td><img src="<?php echo $imageBR ?>" border="0" width="19" height="39" alt="BR"></td>
+</tr>
 
-  <tr>
-    <td width="5" height="3"><img src="<?php echo $imageBL ?>" border="0" width="10" height="39"></td>
-    <td background="<?php echo $imageBB ?>" width="<?php echo $thumbWidth ?>"><img src="<?php echo $pixelImage ?>" border="0" width="1" height="1"></td>
-    <td><img src="<?php echo $imageBR ?>" border="0" width="19" height="39"></td>
-  </tr>
 </table>
-	</a>
+
+<?php
+break;
+
+
+}
+?>
