@@ -58,8 +58,20 @@
 		}
 	}
 
+	function localGetElementsByTagName(tagName) {
+		var eleArray;
+		if (window.opera) eleArray = document.body.getElementsByTagName(tagName);
+		else if (document.getElementsByTagName) eleArray = document.getElementsByTagName(tagName);
+		else if (document.all) eleArray = document.all.tags(tagName);
+		else if (document.layers) {
+			eleArray = new Array();
+			nnGetAllLayers(window, eleArray, 0);
+		}
+		return eleArray;
+	}
+
 	function enableButtons() {
-		var buttons = document.getElementsByTagName("input");
+		var buttons = localGetElementsByTagName("input");
 
 		var i = 0;
 		while (buttons[i]) {
