@@ -97,20 +97,24 @@ function process($file, $tag, $name) {
 
 	set_time_limit(30);
 	if (acceptableFormat($tag)) {
-		echo "- Adding $name<br>";
-		$album->addPhoto($file, $tag);
-		flush();
+		echo "<br> - Adding $name";
+		my_flush();
 
-		/* resize the photo if needed */
-		if ($album->fields["resize_size"] > 0) {
-			echo "- Resizing $name<br>";	
-			flush();
-			$index = $album->numPhotos(1);
-			$album->resizePhoto($index, $album->fields["resize_size"]);
+		$result = $album->addPhoto($file, $tag);
+		if ($result) {
+			/* resize the photo if needed */
+			if ($album->fields["resize_size"] > 0) {
+				echo "<br> - Resizing $name"; 
+				my_flush();
+				$index = $album->numPhotos(1);
+				$album->resizePhoto($index, $album->fields["resize_size"]);
+			}
+		} else {
+			print "<font color=red>Error!</font>";
 		}
 	} else {
 		echo "Skipping $name (can't handle '$tag' format)<br>";
-		flush();
+		my_flush();
 	}
 }
 
