@@ -136,7 +136,7 @@ $constants = array(
 	),
 	"pnmDir" => array(
 		"desc" => "The filesystem path to your NetPBM binaries.",
-		"value" => locateDir("jpegtopnm", $app ? $app->pnmDir : ""),
+		"value" => locateDir("jpegtopnm", $gallery->app ? $gallery->app->pnmDir : ""),
 		"verify_func" => "check_graphics",
 		"fail-netpbm" => "I can't find NetPBM at the location you provided.  " .
 			$common_messages["getting-netpbm"],
@@ -209,6 +209,13 @@ $constants = array(
 		desc => "(Advanced) Status code returned by a successful exec() call." .
 			"  You probably won't need to change this value",
 		value => detect_exec_status()
+	),
+	"sessionVar" => array(
+		desc => "(Advanced) The session variable used to " .
+			"contain all Gallery session information. " .
+			"Change this if there is a conflict between
+			"Gallery and another PHP app on your website.",
+		value => "x_gallery_x",
 	),
 );
 
