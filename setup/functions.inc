@@ -546,7 +546,7 @@ function check_gallery_version()
 			$link);
 	$this_version = sprintf(_("This version of %s was released on %s."),
 			Gallery(), strftime("%x", $gallery->last_change));
-	$this_beta_version = sprintf(_("This is a beta version of %s that was released on %s."),
+	$this_beta_version = sprintf(_("This is a development build of %s that was released on %s."),
 			Gallery(), strftime("%x", $gallery->last_change));
 
 	if ($age > 180) {
@@ -663,14 +663,13 @@ function check_locale() {
 		*/
 		if (in_array($locale,$nls['alias'])) {
 			$keylist = array_keys($nls['alias'],$locale);
+			$aliases = $keylist;
 			if (getOS() != OS_WINDOWS) {
                                 foreach ($system_locales as $key => $value) {
                                         if (ereg('^(' . substr($locale,0,2) . '|' . implode('|', $keylist) . ')', $value)) {
                                                 $aliases[$key] = $value;
                                         }
                                 }
-			} else {
-				$aliases=$keylist;
 			}
 		} else {
                         foreach ($system_locales as $key => $value) {

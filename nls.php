@@ -99,6 +99,7 @@ function getNLS () {
 
 	$nls['alias']['czech'] =                'cs_CZ' ;
 	$nls['alias']['cs_CZ.ISO8859-1'] =      'cs_CZ' ;
+ 	$nls['alias']['cs_CZ.ISO8859-2'] =	'cs_CZ' ;
 
 	$nls['alias']['danish'] =               'da_DK' ;
         $nls['alias']['da_DK.ISO8859-1'] =      'da_DK' ;
@@ -146,6 +147,7 @@ function getNLS () {
 	$nls['alias']['it_IT.ISO8859-1'] =	'it_IT' ;
 
 	$nls['alias']['ja_JP.EUC-JP'] =		'ja_JP' ;	
+ 	$nls['alias']['ja_JP.EUC'] =		'ja_JP' ;
 	
 	$nls['alias']['lt_LT.ISO8859-4'] =	'lt_LT' ;
 	$nls['alias']['lt_LT.ISO8859-13'] =	'lt_LT' ;
@@ -186,8 +188,9 @@ function getNLS () {
 	$nls['alias']['ukrainian'] =            'uk_UA' ;
 	$nls['alias']['uk_UA.KOI8-U'] =         'uk_UA' ;
 
-	$nls['alias']['zh_TW.GB2312'] =         'zh_CN' ;
+	$nls['alias']['zh_CN.EUC'] =            'zh_CN' ;
 
+	$nls['alias']['zh_TW.GB2312'] =         'zh_TW' ;
 	$nls['alias']['zh_TW.Big5']      =	'zh_TW' ;
 	$nls['alias']['chinese'] = 		'zh_TW' ;
 	
