@@ -893,7 +893,7 @@ class Album {
 			$this->updateSerial = 0;
 		    }
 		}
-		if ($success && $msg) { // send email
+		if ($gallery->app->emailOn == 'yes' && $success && $msg) { // send email
 			if (!is_array($msg)) {
 				echo gallery_error(_("msg should be an array!"));
 				vd($msg);

@@ -151,12 +151,12 @@ switch ($cmd) {
 		if ($gallery->user->canCreateAlbums() ||
 	    	$gallery->user->canCreateSubAlbum($gallery->album)) {
 			if (!isset($parentName)) {
-				$parentName=null;
+				$parentName = null;
 			}
 			createNewAlbum($parentName);
-		header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
+			header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
 		} else {
-	        header("Location: " . makeAlbumHeaderUrl());
+		        header("Location: " . makeAlbumHeaderUrl());
 		}
 	break;
 		
