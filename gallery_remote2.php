@@ -78,10 +78,11 @@ $GR_STAT['UNKNOWN_COMMAND']		= 301;
 $GR_STAT['NO_ADD_PERMISSION']	= 401;
 $GR_STAT['NO_FILENAME']			= 402;
 $GR_STAT['UPLOAD_PHOTO_FAIL']	= 403;
+$GR_STAT['NO_WRITE_PERMISSION']	= 404;
 
 $GR_STAT['NO_CREATE_ALBUM_PERMISSION']	= 501;
 $GR_STAT['CREATE_ALBUM_FAILED']			= 502;
-
+$GR_STAT['MOVE_ALBUM_FAILED']	= 503;
 
 /*
  * Check protocol version
@@ -310,8 +311,12 @@ if (!strcmp($cmd, "login")) {
 	//}
 
 	// Hack check
-	if ( $gallery->user->canCreateAlbums()
-			&& $gallery->user->canCreateSubAlbum($gallery->album) ) {
+	if(isset($gallery->album)) {
+		$canAddAlbum = $gallery->user->canCreateSubAlbum($gallery->album);
+	} else {
+		$canAddAlbum = $gallery->user->canCreateAlbums();
+	}
+	if($canAddAlbum) {
 		// add the album
 		if ($returnVal = createNewAlbum( $gallery->session->albumName,
 				$newAlbumName, $newAlbumTitle, $newAlbumDesc )) {
@@ -365,14 +370,32 @@ if (!strcmp($cmd, "login")) {
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Fetch images successful.' );
 } else if (!strcmp($cmd, 'move-item')) {
-//	if(isset($set_destalbumName) {
-//
-//	} else {
-//                $gallery->album->movePhoto($index, $newIndex-1);
-//                $gallery->album->save();
-//		$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
-//		$response->setProperty( 'status_text', 'Change Index Successful' );
-//	}
+	// This is NOT complete, has not been tested and should NOT be used
+	if($gallery->user->canWriteToAlbum($gallery->album)) {
+		if(isset($set_destalbumName)) {
+			$albumDB = new AlbumDB(FALSE);
+			$postAlbum = $albumDB->getAlbumbyName($set_destalbumName);
+			if ($gallery->album->fields['name'] != $postAlbum->fields['name']) { //if not moving to same album
+				
+			}
+			print_r($postAlbum);
+			echo "\n\n";
+			print_r($gallery);
+		} else {
+			if(!$gallery->album->isAlbumName($index)) { //make sure not moving an album
+		                $gallery->album->movePhoto($index, $newIndex-1);
+		                $gallery->album->save();
+				$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+				$response->setProperty( 'status_text', 'Change image index successful.' );
+			} else {
+				$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
+				$response->setProperty( 'status_text', 'Cannot move album index yet.' );
+			}
+		}
+	} else {
+		$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
+		$response->setProperty( 'status_text', 'User does not have permission to write to album.' );
+	}
 } else {
 	// if the command hasn't been handled yet, we don't recognize it
 	$response->setProperty( "status", $GR_STAT['UNKNOWN_COMMAND'] );
