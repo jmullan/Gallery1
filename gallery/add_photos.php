@@ -61,26 +61,24 @@ if (!$boxes) {
 </head>
 <body dir=<?php echo $gallery->direction ?>>
 
-<center><span class="popuphead"><?php echo _("Add Photos") ?></span></center>
+<span class="popuphead"><?php echo _("Add Photos") ?></span>
 <br>
 <span class="popup">
 <?php echo _("Click the <b>Browse</b> button to locate a photo to upload.") ?>
 <span class="admin">
 <?php if ($gallery->app->feature["zip"]) { ?>
 <br>
-&nbsp;&nbsp;
-<?php echo _(" Tip:  Upload a ZIP file full of photos and movies!") ?>
+&nbsp;&nbsp;<?php echo _("Tip:  Upload a ZIP file full of photos and movies!") ?>
 <?php } ?>
 <br>
-&nbsp;&nbsp;
-<?php echo _("Supported file types") . ": ". join(", ", acceptableFormatList()) ?>
+&nbsp;&nbsp;(<?php echo _("Supported file types") ?>: <?php echo join(", ", acceptableFormatList()) ?>)
 </span>
 
 <br><br>
 <?php echo makeFormIntro("add_photos.php",
 			array("name" => "count_form",
 				"method" => "POST")); ?>
-<?php echo _("1. Select the number of files you want to upload: ") ?>
+<?php echo _("1. Select the number of files you want to upload:") ?>
 <select name="boxes" onChange='reloadPage()'>
 <?php for ($i = 1; $i <= 10;  $i++) {
 	echo "<option ";
@@ -112,38 +110,39 @@ if (!$boxes) {
 <input type=checkbox name=setCaption checked value="1"><?php echo _("Use filename as caption if no caption is specified.") ?>
 <br>
 <center>
-<input type="button" value=<?php echo '"' ._("Upload Now") .'"' ?> onClick='opener.showProgress(); document.upload_form.submit()'>
-<input type=submit value=<?php echo _("Cancel") ?> onclick='parent.close()'>
+<input type="button" value="<?php echo _("Upload Now") ?>" onClick='opener.showProgress(); document.upload_form.submit()'>
+<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </center>
 </form>
 
 <?php echo makeFormIntro("save_photos.php",
 			array("name" => "uploadurl_form",
 				"method" => "POST")); ?>
-<?php echo _("Or, upload any images found at this location.") ?><br>
+<?php echo _("Or, upload any images found at this location.") ?>
 <?php echo _("The location can either be a URL or a directory on the server.") ?>
 <br>
 <span class="admin">
-<?php echo _("  Tip: FTP images to a directory on your server then provide that path here!") ?>
+&nbsp;&nbsp;<?php echo _("Tip: FTP images to a directory on your server then provide that path here!") ?>
 </span>
 <br>
 
 <input type="text" name="urls[]" size=40>
 <br>
-<input type=checkbox name=setCaption checked value="1"> <?php echo _("Set photo captions with original filenames.") ?>
-<br><br>
+<input type=checkbox name=setCaption checked value="1"><?php echo _("Set photo captions with original filenames.") ?>
+<br>
 <center>
-<input type="button" value=<?php echo '"' . _("Submit URL or directory") . '"' ?> onClick='opener.showProgress(); document.uploadurl_form.submit()'>
-<input type=submit value=<?php echo '"' . _("Cancel") . '"' ?>onclick='parent.close()'>
+<input type="button" value="<?php echo _("Submit URL or directory") ?>" onClick='opener.showProgress(); document.uploadurl_form.submit()'>
+<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </center>
 </form>
 <?php echo _("Alternatively, you can use one of these desktop agents to drag and drop photos from your desktop") ?>:
-<br><br>
+<br>
 &nbsp;&nbsp;&nbsp;<b><a href="#" onClick="opener.location = 'http://gallery.sourceforge.net/gallery_remote.php?protocol_version=<?php echo $gallery->remote_protocol_version ?>'; parent.close();">Gallery Remote</a></b>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo _("A Java application that runs on Mac, Windows and Unix") ?>
-<br><br>
-<?php if (empty($GALLERY_EMBEDDED_INSIDE)) { ?> &nbsp;&nbsp;&nbsp;<b><a href="<?php echo makeGalleryUrl("publish_xp_docs.php") ?>">Windows XP Publishing Agent</a></b>
+<br>
+<?php if (empty($GALLERY_EMBEDDED_INSIDE)) { ?>
+&nbsp;&nbsp;&nbsp;<b><a href="<?php echo makeGalleryUrl("publish_xp_docs.php") ?>">Windows XP Publishing Agent</a></b>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><?php echo _("Note") ?>:</i> <?php echo _("this feature is still experimental") ?>!
 <?php } ?>					 

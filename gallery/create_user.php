@@ -98,8 +98,8 @@ $canCreate = 1;
 <?php include($GALLERY_BASEDIR . "html/userData.inc"); ?>
 <p>
 
-<input type=submit name="submit" value=<?php echo '"'. _("Create") .'"' ?>>
-<input type=submit name="submit" value=<?php echo '"'. _("Cancel") .'"' ?>>
+<input type=submit name="submit" value="<?php echo _("Create") ?>">
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>">
 </form>
 
 <script language="javascript1.2">

@@ -82,6 +82,7 @@ if ($save) {
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir=<?php echo $gallery->direction ?>>
+
 <center>
 <?php echo _("Album Properties") ?>
 
@@ -185,23 +186,23 @@ if ($gallery->app->use_exif) {
 <td><select name="display_clicks"><?php echo selectOptions($gallery->album, "display_clicks", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Display owners name with caption") ; ?></td>
+<td><?php echo _("Display owners name with caption") ?></td>
 <td><select name="item_owner_display"><?php echo selectOptions($gallery->album, "item_owner_display", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Allow item owners to modify their images") ; ?></td>
+<td><?php echo _("Allow item owners to modify their images") ?></td>
 <td><select name="item_owner_modify"><?php echo selectOptions($gallery->album, "item_owner_modify", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Allow item owners to delete their images") ; ?></td>
+<td><?php echo _("Allow item owners to delete their images") ?></td>
 <td><select name="item_owner_delete"><?php echo selectOptions($gallery->album, "item_owner_delete", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Add new items at beginning of album") ; ?></td>
+<td><?php echo _("Add new items at beginning of album") ?></td>
 <td><select name="add_to_beginning"><?php echo selectOptions($gallery->album, "add_to_beginning", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Allow public commenting for photos in this album?") ; ?></td>
+<td><?php echo _("Allow public commenting for photos in this album?") ?></td>
 <td><select name="public_comments"><?php echo selectOptions($gallery->album, "public_comments", array("no", "yes")) ?></select></td>
 </tr>
 </table>
@@ -210,9 +211,10 @@ if ($gallery->app->use_exif) {
 <input type=checkbox name=setNested value="1"><?php echo _("Apply values to nested Albums (except Album Title and Summary).") ?>
 <br>
 <br>
-<input type=submit name="submit" value=<?php echo '"' . _("Apply") .'"' ?>>
-<input type=reset value=<?php echo _("Undo") ?>>
-<input type=submit name="submit" value=<?php echo '"' . _("Close") . '"' ?> onclick='parent.close()'>
+<input type=submit name="submit" value="<?php echo _("Apply") ?>">
+<input type=reset value="<?php echo _("Undo") ?>">
+<input type=submit name="submit" value="<?php echo _("Close") ?>" onclick='parent.close()'>
+
 </form>
 
 <script language="javascript1.2">

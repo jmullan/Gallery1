@@ -47,12 +47,12 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		if ($gallery->session->albumName && isset($index)) {
 			if (!strcmp($index, "all")) {
 				$np = $gallery->album->numPhotos(1);
-				echo "<br>" . _("Rebuilding ") . " $np " . _("thumbnails...");
+				echo ("<br> " . _("Rebuilding") . " $np " . _("thumbnails..."));
 				my_flush();
 				for ($i = 1; $i <= $np; $i++) {
 					$isAlbumName = $gallery->album->isAlbumName($i);
 					if (!$isAlbumName) { // process the images
-						echo "<br>". _("Processing image ") . " $i ...";
+						echo("<br> ". _("Processing image") . " $i...");
 						my_flush();
 						set_time_limit($gallery->app->timeLimit);
 						$gallery->album->makeThumbnail($i);
@@ -61,12 +61,12 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 						// recursively created new thumbnails in each
 						// album that we ran across, but skipping them
 						// might be preferred.
-						echo "<br>" . _("Skipping album ") . " $i ...";
+						echo("<br> " . _("Skipping album") . " $i...");
 						my_flush();
 					}
 				}
 			} else {
-				echo "<br>" . _("Rebuilding 1 thumbnail...");
+				echo ("<br> " . _("Rebuilding 1 thumbnail..."));
 				my_flush();
 				set_time_limit($gallery->app->timeLimit);
 				$gallery->album->makeThumbnail($index);
@@ -131,7 +131,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 
 <center>
 <form>
-<input type=submit value=<?php echo '"' . _("Dismiss") . '"' ?> onclick='parent.close()'>
+<input type=submit value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
 </form>
 </body>
 </html>

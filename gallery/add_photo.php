@@ -70,7 +70,7 @@ if ($userfile_name) {
 	reload();
 	?>
 	<p><center><form>
-	<input type=submit value=<?php echo '"' . _("Dismiss") . '"' ?> onClick='parent.close()'>
+	<input type=submit value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
 	</form></center>
 <script language="Javascript">
 <!--
@@ -87,7 +87,7 @@ else
 
 
 <span class="popuphead"><?php echo _("Add Photo") ?></span>
-<br><br>
+<br>
 <span class="popup">
 <?php echo _("Click the <b>Browse</b> button to locate a photo to upload.") ?>
 <span class="admin">
@@ -132,8 +132,8 @@ foreach ($gallery->album->getExtraFields() as $field) {
 <input type=checkbox name=setCaption checked value="1"><?php echo _("Use filename as caption if no caption is specified.") ?>
 <br>
 <center>
-<input type="button" value=<?php echo '"' . _("Upload Now") . '"' ?> onClick='opener.showProgress(); document.upload_form.submit()'>
-<input type=submit value=<?php echo '"' . _("Cancel") .'"' ?> onclick='parent.close()'>
+<input type="button" value="<?php echo _("Upload Now") ?>" onClick='opener.showProgress(); document.upload_form.submit()'>
+<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </center>
 </form>
 <?php } ?>

@@ -138,15 +138,7 @@ if (!isset($GALLERY_NO_SESSIONS)) {
 }
 
 // Include ML stuff
-	@include ($GALLERY_BASEDIR . "ML_files/ML_config.php");
-
-// If not configured start ML wizard
-/*
-if (! $gallery->ML) {
-        include ($GALLERY_BASEDIR . "setup/ML_wizard.php");
-//        exit;
-}
-*/
+@include ($GALLERY_BASEDIR . "ML_files/ML_config.php");
 
 if (isset($GALLERY_EMBEDDED_INSIDE) &&
     !strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {

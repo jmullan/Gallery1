@@ -169,7 +169,7 @@ if (!strcmp($borderwidth, "off")) {
     $bordercolor = "black";
 }
 
-$adminText = "<span class=\"admin\">". _("Multiple Caption Editor.") ."<br>&nbsp;";
+$adminText = "<span class=\"admin\">". _("Multiple Caption Editor.") . " ";
 if ($numPhotos == 1) {
         $adminText .= _("1 photo in this album") ;
 } else {
@@ -204,17 +204,17 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 <table width=100% border=0 cellspacing=4 cellpadding=0>
 <tr>
 <td colspan="3" align="right">
-<input type=submit name="save" value=<?php echo '"' . _("Save and Exit") . '"' ?>>
+<input type=submit name="save" value="<?php echo _("Save and Exit") ?>">
 
 <?php if (!$last) { ?>
-    <input type=submit name="next" value=<?php echo '"' . _("Save and Edit Next") . ' '. $perPage .'"' ?>>
+    <input type=submit name="next" value="<?php echo _("Save and Edit Next") ?> <?php echo $perPage ?>">
 <?php } ?>
 
 <?php if ($page != 1) { ?>
-    <input type=submit name="prev" value=<?php echo '"' . _("Save and Edit Previous") . ' ' . $perPage . '"' ?>>
+    <input type=submit name="prev" value="<?php echo _("Save and Edit Previous") ?> <?php echo $perPage ?>">
 <?php } ?>
 
-<input type=submit name="cancel" value=<?php echo _("Exit") ?>>
+<input type=submit name="cancel" value="<?php echo _("Exit") ?>">
 </td>
 </tr>
 <?php
@@ -272,7 +272,6 @@ if ($numPhotos) {
 			continue;
 		}
 		$value=$gallery->album->getExtraField($i, $field);
-
         	if ($field == "Title") {
 			print "<br><span class=\"admin\">" . _("Title") .":</span><br>";
                 	print "<input type=text name=\"extra_fields[$i][$field]\" value=\"$value\" size=\"40\">";
@@ -285,6 +284,8 @@ if ($numPhotos) {
 ?>
       	<span class="admin"><br><?php echo _("Keywords") ?>:</span><br>
       	<input type=text name="new_keywords_<?php echo $i ?>" size=65 value="<?php echo $oldKeywords ?>">
+
+	// this needs to be translated automatically.  Add it as a todo.
        	<span class="admin"><br><?php echo _("Capture Date") ?>:</span>
 <?php
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($i);
@@ -306,7 +307,7 @@ if ($numPhotos) {
 } else {
     echo("<tr>");
     echo("  <td>");
-    echo _("NO PHOTOS!");
+    echo(_("  NO PHOTOS!"));
     echo("  </td>");
     echo("</tr>");
 }
@@ -314,17 +315,17 @@ if ($numPhotos) {
 
 <tr>
 <td colspan=3 align="right">
-<input type=submit name="save" value=<?php echo '"' . _("Save and Exit") . '"' ?>>
+<input type=submit name="save" value="<?php echo _("Save and Exit") ?>">
 
 <?php if (!$last) { ?>
-    <input type=submit name="next" value=<?php echo '"' . _("Save and Edit Next") . ' '. $perPage .'"' ?>>
+    <input type=submit name="next" value="<?php echo _("Save and Edit Next") ?> <?php echo $perPage ?>">
 <?php } ?>
 
 <?php if ($page != 1) { ?>
-    <input type=submit name="prev" value=<?php echo '"' . _("Save and Edit Previous") . ' ' . $perPage . '"' ?>>
+    <input type=submit name="prev" value="<?php echo _("Save and Edit Previous") ?> <?php echo $perPage ?>">
 <?php } ?>
 
-<input type=submit name="cancel" value=<?php echo _("Exit") ?>>
+<input type=submit name="cancel" value="<?php echo _("Exit") ?>">
 </td>
 </tr>
 </table>

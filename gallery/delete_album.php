@@ -58,13 +58,13 @@ if ($gallery->album) {
 <center>
 <span class="popuphead"><?php echo _("Delete Album") ?></span>
 <br><br>
-<?php echo _("Do you really want to delete this Album?") ?>
+<?php echo _("Do you really want to delete this album?") ?>
 <br>
 <b><?php echo $gallery->album->fields["title"] ?></b>
 <p>
 <?php echo makeFormIntro("delete_album.php"); ?>
-<input type=submit name=confirm value=<?php echo '"'. _("Delete") .'"' ?>>
-<input type=submit value=<?php echo '"'. _("Cancel") .'"' ?> onclick='parent.close()'>
+<input type=submit name=confirm value="<?php echo _("Delete") ?>">
+<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <p>
 <?php

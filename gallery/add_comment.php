@@ -62,6 +62,7 @@ if (!strcmp($submit, _("Save"))) {
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir=<?php echo $gallery->direction ?>>
+
 <center>
 <?php echo _("Enter your comment for this picture in the text box below.") ?>
 <br><br>
@@ -80,7 +81,7 @@ if ($error_text) {
 <input type=hidden name="index" value="<?php echo $index ?>">
 <table border=0 cellpadding=5>
 <tr>
-  <td><?php echo _("Name or email: ") ?></td>
+  <td><?php echo _("Name or email:") ?></td>
   <td><input name="commenter_name" value="<?php echo $commenter_name ?>" size=30></td>
 </tr>
 <tr>
@@ -88,8 +89,8 @@ if ($error_text) {
 </tr>
 </table>
 <br>
-<input type=submit name="submit" value=<?php echo _("Save") ?>>
-<input type=button value='<?php echo _("Cancel") ?>' onclick='parent.close()'>
+<input type=submit name="submit" value="<?php echo _("Save") ?>">
+<input type=button value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 
 </form>
 

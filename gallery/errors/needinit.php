@@ -19,26 +19,21 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
   <title><?php echo _("Gallery is misconfigured") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
-<body dir=<?php echo $gallery->direction ;?>>
-<?php
-        include ($gallery->path ."ML_files/ML_info_addon.inc");
-?>
+<body dir=<?php echo $gallery->direction ?>>
+<?php include ($gallery->path ."ML_files/ML_info_addon.inc"); ?>
 <center>
-<span class="error"><?php  _("Uh oh!") ?></span>
+<span class="error"> <?php echo _("Uh oh!") ?> </span>
 <p>
 <center>
 <table width=80%><tr><td>
 <?php echo _("Gallery is not configured correctly.") ?>
-<br>
 <?php echo _("There could be a variety of reasons for this.") ?>
-<br>
-<?php echo _("The easiest way to fix this problem is to re-run the configuration wizard.")
-<br>
-<_("First, put Gallery in configuration mode") ?>:
+<?php echo _("The easiest way to fix this problem is to re-run the configuration wizard.") ?>
+<?php echo _("First, put Gallery in configuration mode") ?>:
 <p>
 <?php echo configure("configure"); ?>
 <p>
-<?php echo _("Then launch the") ?> <a href="<?php echo $GALLERY_BASEDIR ?>setup/index.php"><?php echo _("Configuration Wizard") ?></a>.
+<?php echo _("Then launch the") ?> <a href="<?php echo $GALLERY_BASEDIR ?>setup/index.php"><?php echo _("configuration wizard") ?></a>.
 
 <?php include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 

@@ -49,7 +49,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isIt
 if ($action == "doit") {
 	
 	#-- rebuild the thumbnail, cropped) ---
-	echo _("Remaking the Thumbnail...");
+	echo(_("Remaking the Thumbnail..."));
 	my_flush();
 	if ($gallery->session->albumName && isset($index)) { 
 		$photo = $gallery->album->getPhoto($index);
@@ -69,6 +69,7 @@ if ($action == "doit") {
 	#-- show the applet ---
 ?>
 <body dir=<?php echo $gallery->direction ?>>
+
 <span class="popuphead"><?php echo _("Custom Thumbnail") ?></span>
 <br>
 
@@ -111,7 +112,7 @@ if ($action == "doit") {
 ?>
 
 <span class="popup">
-<?php echo _("Choose which part of the image will compose your thumbnail: ") ?>
+<?php echo _("Choose which part of the image will compose your thumbnail:") ?>
 </span>
 
 <APPLET CODE="ImageCrop" WIDTH=460 HEIGHT=430 CODEBASE="<?php echo $GALLERY_BASEDIR ?>java" ARCHIVE="ImageTools.jar">

@@ -68,26 +68,20 @@ if (!strcmp($gallery->user->getUsername(), $uname)) {
 	print "<p>";
 } else {
 ?>
-<div align="left"; style="margin-left:30px">
 <?php echo _("Users can have special permissions in each album.") ?>
-<br>
 <?php echo _("If you delete this user, any such permissions go away.") ?>
-<br>
 <?php echo _("Users cannot be recreated.") ?>
-<br>
 <?php echo _("Even if this user is recreated, those permissions are gone.") ?>
-<br>
 <?php echo _("Do you really want to delete user") ?> <b><?php echo $uname ?></b>?
-</div>
 <p>
 <p>
 
-<input type=submit name="submit" value=<?php echo '"' . _("Delete") . '"' ?>>
+<input type=submit name="submit" value="<?php echo _("Delete") ?>">
 <?php
 }
 ?>
 
-<input type=submit name="submit" value=<?php echo '"' . _("Cancel") . '"' ?>>
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>">
 </form> 
 
 </body>

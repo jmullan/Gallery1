@@ -152,18 +152,18 @@ correctPseudoUsers($uAdd, $ownerUid);
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir=<?php echo $gallery->direction ?>>
+
 <center>
 <span class="popuphead"><?php echo _("Album Permissions") ?></span>
 <br>
-<?php echo _("Changing permissions for ") ?><br><b><?php echo $gallery->album->fields["title"] ?></b>
+<?php echo _("Changing permissions for ") ?><b><?php echo $gallery->album->fields["title"] ?></b>
 
 <?php echo makeFormIntro("album_permissions.php", 
 			array("name" => "albumperms_form")) ?>
-<br>
+
 <?php if ($gallery->user->isAdmin) { ?>
-<?php echo _("Owner: ") . drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
+<?php echo _("Owner:") ?> <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
 <?php } ?>
-<br><br>
 
 <table border=0 cellspacing=0 cellpadding=0>
  <tr>
@@ -285,8 +285,8 @@ correctPseudoUsers($uAdd, $ownerUid);
  </tr>
 </table>
 
-<input type=submit name="submit" value=<?php echo _("Save") ?>>
-<input type=submit name="submit" value=<?php echo _("Done") ?> onclick='parent.close()'>
+<input type=submit name="submit" value="<?php echo _("Save") ?>">
+<input type=submit name="submit" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
 
 </body>

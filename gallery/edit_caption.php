@@ -92,7 +92,6 @@ foreach ($gallery->album->getExtraFields() as $field)
 		continue;
 	}
         $value=$gallery->album->getExtraField($index, $field);
-
 	if ($field == "Title")
 	{
 		print "<tr><td valign=top><b>" . _("Title") .":<b></td><td>";
@@ -131,8 +130,8 @@ $year = $itemCaptureDate["year"];
 	<td colspan="6" align="center"><?php echo _("Photo Capture Date") ?></td>
   </tr>
   <tr>
-    <td><?php echo _("Day") ?></td>
     <td><?php echo _("Month") ?></td>
+    <td><?php echo _("Day") ?></td>
     <td><?php echo _("Year") ?></td>
     <td><?php echo _("Hours") ?></td>
     <td><?php echo _("Minutes") ?></td>
@@ -141,13 +140,12 @@ $year = $itemCaptureDate["year"];
   <tr>
 <?php
 // start making drop downs
-
 echo "<td>";
-echo drawSelect("capture_mday", padded_range_array(1, 31), $mday, 1);
+echo drawSelect("capture_mon", padded_range_array(1, 12), $mon, 1);
 echo "</td>";
 
 echo "<td>";
-echo drawSelect("capture_mon", padded_range_array(1, 12), $mon, 1);
+echo drawSelect("capture_mday", padded_range_array(1, 31), $mday, 1);
 echo "</td>";
 
 echo "<td>";
@@ -169,8 +167,8 @@ echo "</td>";
   </tr>
 </table>
 <br><br>
-<input type=submit name="submit" value=<?php echo _("Save") ?>>
-<input type=submit name="submit" value=<?php echo _("Cancel") ?> onclick='parent.close()'>
+<input type=submit name="submit" value="<?php echo _("Save") ?>">
+<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 
 
 </form>
