@@ -406,6 +406,8 @@ if (!empty($adminOptionHTML)) {
 	    . $adminJavaScript
 	    . "\nfunction execAdminOption() {\n"
 	    . "\tkey = document.forms.admin_options_form.admin_select.value;\n"
+            . "\tdocument.forms.admin_options_form.admin_select.selectedIndex = 0;\n"
+            . "\tdocument.forms.admin_options_form.admin_select.blur();\n"
 	    . "\tswitch (adminOptions[key].action) {\n"
 	    . "\tcase 'popup':\n"
 	    . "\t\tnw = window.open(adminOptions[key].value, 'Edit', 'height=500,width=600,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');\n"
@@ -415,8 +417,6 @@ if (!empty($adminOptionHTML)) {
 	    . "\t\tdocument.location = adminOptions[key].value;\n"
 	    . "\t\tbreak;\n"
 	    . "\t}\n"
-	    . "\tdocument.forms.admin_options_form.admin_select.selectedIndex = 0;\n"
-	    . "\tdocument.forms.admin_options_form.admin_select.blur();\n"
 	    . "}\n"
 	    . "</script>\n\n";
     
