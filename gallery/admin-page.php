@@ -47,6 +47,10 @@ if ($gallery->user->isAdmin()) {
 	$adminOptions[] = array( 'text' => _("find comment spam"),
 				 'url' => makeGalleryUrl('tools/despam-comments.php'),
 				 'longtext' => _("Find and remove comments that contains spam."));
+	$adminOptions[] = array( 'text' => _('validate albums'),
+				 'url' => makeGalleryUrl('tools/validate_albums.php'),
+				 'longtext' => _('Identify invalid albums, missing files, and other errors that may prevent you
+from migrating to Gallery 2'));
 }
 
 
