@@ -1523,12 +1523,16 @@ class Album {
 		}
 
 		/*
-		 * If loggedIn has the perm and we're logged in, then
-		 * we're ok also.
-		 */
+		** If loggedIn has the perm and we're logged in, then
+		** we're ok also.
+		**
+		** phpBB2's anonymous user are also "logged in", but we have to ignore this.
+		*/
+		global $GALLERY_EMBEDDED_INSIDE_TYPE;
+
 		$loggedIn = $gallery->userDB->getLoggedIn();
-		if (isset($perm[$loggedIn->getUid()]) &&
-		    strcmp($gallery->user->getUid(), $everybody->getUid())) {
+		if (isset($perm[$loggedIn->getUid()]) && strcmp($gallery->user->getUid(), $everybody->getUid()) &&
+			! ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2' && $gallery->user->uid == -1)) {
 		        return true;
 		}
 
