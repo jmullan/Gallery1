@@ -64,12 +64,8 @@ do {
   if ($pAlbumName) {
     $pAlbum = new Album();
     $pAlbum->load($pAlbumName);
-    $breadtext[$breadCount] = "Album: <a href=\"" . makeAlbumUrl($pAlbumName) .
+    $breadtext[$breadCount] = "Album: <a href=\"" . makeGalleryUrl("view_comments.php", array("set_albumName" => $pAlbumName)) .
       "\">" . $pAlbum->fields['title'] . "</a>";
-  } else {
-    //-- we're at the top! ---
-    $breadtext[$breadCount] = "Gallery: <a href=\"" . makeGalleryUrl("albums.php") .
-      "\">" . $gallery->app->galleryTitle . "</a>"; 
   }
   $breadCount++;
 } while ($pAlbumName);
@@ -79,6 +75,8 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
 	$breadcrumb["text"][] = $breadtext[$i];
 }
 $breadcrumb["bordercolor"] = $bordercolor;
+$breadcrumb["top"] = true;
+$breadcrumb["bottom"] = true;
 ?>
 
 <? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
@@ -116,28 +114,13 @@ if ($gallery->album->fields["textcolor"]) {
 includeHtmlWrap("album.header");
 $adminText = "<span class=\"admin\">Comments for this Album</span>";
 $adminCommands = "<span class=\"admin\">";
-if (!$GALLERY_EMBEDDED_INSIDE) {
-	if ($gallery->user->isLoggedIn()) {
-	        $adminCommands .= "<a href=\"" .
-					//doCommand("logout", array(), "view_comments.php", array("page" => $page)) .
-					doCommand("logout", array(), "view_comments.php") .
-				  "\">[logout]</a>";
-	} else {
-		$adminCommands .= '<a href="#" onClick="'.popup("login.php").'">[login]</a>';
-	} 
-}
+$adminCommands .= "<a href=\"" . makeAlbumUrl($gallery->session->albumName) . "\">[return to album]</a>&nbsp;"; 
 $adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $bordercolor;
 $adminbox["top"] = true;
 include ($GALLERY_BASEDIR . "layout/adminbox.inc");
-?>
-<table width=100% border="0" cellspacing="0" cellpadding=0>
-<tr>
-<td colspan="6" bgcolor="black"><img src="<?= $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" width="1" height="1"></td>
-</tr>
-</table><?
 include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 ?><br><?
 if(strcmp($gallery->album->fields["public_comments"], "yes"))
@@ -181,6 +164,9 @@ else
         $i = getNextPhoto($i);
     }
 }
+$breadcrumb["top"] = true;
+$breadcrumb["bottom"] = true;
+include($GALLERY_BASEDIR . "layout/breadcrumb.inc");
 
 includeHtmlWrap("album.footer");
 ?>
