@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_4
+# Version: 1_4_4-u1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -20,16 +20,16 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 #
-# Marjan <marjan@slo-foto.com>, 2003
+# Marjan Laznik <marjan@slo-foto.com>, 2003,2004
 # Anže Jesenko <jeso@users.sourceforge.net>, 2004
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-08-03 14:45+0200\n"
-"PO-Revision-Date: 2004-01-21 20:57+0100\n"
-"Last-Translator: An¾e Jesenko <jeso AT sourceforge DOT net>\n"
+"POT-Creation-Date: 2004-08-12 16:10+0200\n"
+"PO-Revision-Date: 2004-08-06 15:03+0100\n"
+"Last-Translator: Marjan Laznik <marjan@slo-foto.com>\n"
 "Language-Team: Slovenian <marjan AT slo-foto DOT com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-2\n"
@@ -57,7 +57,7 @@ msgstr "Ime in komentar morata biti vpisana!"
 #: ../add_comment.php:58 ../view_photo.php:208
 #, php-format
 msgid "Your comment is too long, the admin set maximum length to %d chars"
-msgstr ""
+msgstr "Va¹ komentar je predolg, maksimalna dol¾ina teksta je %d znakov"
 
 #: ../add_comment.php:74 ../add_comment.php:80
 msgid "Add Comment"
@@ -96,13 +96,12 @@ msgid "Applet (big)"
 msgstr "Sprejmi"
 
 #: ../add_photos.php:130
-#, fuzzy
 msgid "Form"
-msgstr "ali"
+msgstr "Obrazec"
 
 #: ../add_photos.php:133
 msgid "URL"
-msgstr ""
+msgstr "Naslov"
 
 #: ../add_photos.php:134 ../layout/watermarkform.inc:132
 #, fuzzy
@@ -111,7 +110,7 @@ msgstr "Lastnik"
 
 #: ../add_photos.php:137
 msgid "Admin"
-msgstr ""
+msgstr "Upravnik"
 
 #: ../album_permissions.php:166 ../album_permissions.php:172
 msgid "Album Permissions"
@@ -190,9 +189,8 @@ msgstr[2] "en album"
 msgstr[3] "en album"
 
 #: ../albums.php:123
-#, fuzzy
 msgid "no albums"
-msgstr "Nobenega albuma"
+msgstr "ni albumov"
 
 #: ../albums.php:125
 #, fuzzy, php-format
@@ -306,9 +304,9 @@ msgid "Attention Gallery Administrator!"
 msgstr "Pozor administartor galerije!"
 
 #: ../albums.php:225
-#, fuzzy, php-format
+#, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
-msgstr "%s je na¹el naslednje mape: %s v tvojih mapah v albumu (%s)."
+msgstr "%s je na¹el mape %d v tvojih mapah v albumu<br>(%s):"
 
 #: ../albums.php:231
 #, fuzzy
@@ -318,12 +316,12 @@ msgstr "Tole ni (pravi) album. Prosim premakni ga iz mape albumov."
 #: ../albums.php:235
 #, php-format
 msgid "%s has detected that %d of your albums are out of date."
-msgstr ""
+msgstr "%s je zaznal, da je %d albumov poteklih oz. starej¹e verzije."
 
 #: ../albums.php:239
-#, fuzzy, php-format
+#, php-format
 msgid "Please %s."
-msgstr "Poèakaj prosim ..."
+msgstr "Prosim %s."
 
 #: ../albums.php:239
 #, fuzzy
@@ -341,7 +339,7 @@ msgstr "naslov"
 
 #: ../albums.php:340
 msgid "url:"
-msgstr "url:"
+msgstr "naslov:"
 
 #: ../albums.php:351
 msgid "Hey!"
@@ -387,7 +385,7 @@ msgstr[3] "enkrat"
 
 #: ../albums.php:373
 msgid "0 times"
-msgstr "nikoli"
+msgstr "0 krat"
 
 #: ../albums.php:379
 msgid "reset counter"
@@ -492,9 +490,9 @@ msgid "Upgrading album properties..."
 msgstr "Nadgrajujem lastnosti albuma ..."
 
 #: ../classes/Album.php:382
-#, fuzzy, php-format
+#, php-format
 msgid "Renaming album from %s to %s..."
-msgstr "preimenuj album"
+msgstr "preimenuj album iz %s v %s..."
 
 #: ../classes/Album.php:433 ../classes/Album.php:450
 msgid "done"
@@ -537,7 +535,7 @@ msgid "Watermarking Image"
 msgstr "Iz albuma"
 
 #: ../classes/Album.php:1223 ../classes/Album.php:1233
-#: ../classes/AlbumItem.php:627
+#: ../classes/AlbumItem.php:630
 msgid "No highlight"
 msgstr "Ni poudarka"
 
@@ -549,7 +547,7 @@ msgstr ""
 #: ../classes/Album.php:1698
 #, php-format
 msgid "Error %s getting EXIF data"
-msgstr ""
+msgstr "Napaka %s pri zahtevi po EXIF podatkih"
 
 #: ../classes/Album.php:2203
 #, php-format
@@ -561,23 +559,23 @@ msgstr "#%d"
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Problem s po¹iljanjem e-po¹te: po¹ta za %s (UID %s) ni poslana ker naslov %s ni pravilen"
 
-#: ../classes/AlbumItem.php:526
+#: ../classes/AlbumItem.php:529
 msgid "Invalid image"
 msgstr "Napaka v sliki"
 
-#: ../classes/AlbumItem.php:584
+#: ../classes/AlbumItem.php:587
 msgid "Unable to make thumbnail"
 msgstr "Ne morem zmanj¹ati slik"
 
-#: ../classes/AlbumItem.php:595
+#: ../classes/AlbumItem.php:598
 msgid "No preview"
-msgstr ""
+msgstr "Ni predogleda"
 
-#: ../classes/AlbumItem.php:605 ../util.php:61
+#: ../classes/AlbumItem.php:608 ../util.php:61
 msgid "No Caption"
 msgstr "Ni naslova"
 
-#: ../classes/AlbumItem.php:614
+#: ../classes/AlbumItem.php:617
 msgid "No thumbnail"
 msgstr "Ni slièic"
 
@@ -1134,7 +1132,7 @@ msgstr "Prosim izberi uporabnika"
 #: ../edit_watermark.php:69 ../edit_watermark.php:75 ../view_album.php:986
 #: ../view_album.php:1022
 msgid "Edit Watermark"
-msgstr ""
+msgstr "Uredi vodni ¾ig"
 
 #: ../edit_watermark.php:103 ../watermark_album.php:116
 #, fuzzy
@@ -1168,7 +1166,7 @@ msgstr "Sprejmi tudi za vse pod-albume"
 
 #: ../includes/add_photos/add_admin.inc:28
 msgid "Admin help"
-msgstr ""
+msgstr "Administratorska pomoè"
 
 #: ../includes/add_photos/add_admin.inc:32
 msgid "To install or upgrade the Gallery Remote Applets, please refer to "
@@ -1326,14 +1324,14 @@ msgid "Submit URL or directory"
 msgstr "Vpi¹i URL ali mapo"
 
 #: ../includes/slideshow/applet.inc:28 ../includes/slideshow/high.inc:73
-#, fuzzy, php-format
+#, php-format
 msgid "Slide Show for Gallery :: %s"
-msgstr "Diaprojekcija za album"
+msgstr "Diaprojekcija za album :: %s"
 
 #: ../includes/slideshow/applet.inc:31 ../includes/slideshow/high.inc:82
-#, fuzzy, php-format
+#, php-format
 msgid "Slide Show for album :: %s"
-msgstr "Diaprojekcija za album"
+msgstr "Diaprojekcija za album :: %s"
 
 #: ../includes/slideshow/applet.inc:47
 msgid "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions."
@@ -1613,12 +1611,11 @@ msgstr "prika¾i&nbsp;komentarje"
 
 #: ../layout/adminAlbumCommands.inc:39
 msgid "watermark&nbsp;album"
-msgstr ""
+msgstr "vodni&nbsp;¾ig"
 
 #: ../layout/breadcrumb.inc:34
-#, fuzzy
 msgid "Logged in as:"
-msgstr "Prijava"
+msgstr "Prijavljen kot:"
 
 #: ../layout/commentbox.inc:7 ../layout/commentdraw.inc:19
 msgid "From:"
@@ -1649,9 +1646,8 @@ msgid "view comments for this nested album"
 msgstr "poglej komentarje za ta album"
 
 #: ../layout/commentboxtop.inc:28
-#, fuzzy
 msgid "Album contains no comments"
-msgstr "Album vsebuje %s"
+msgstr "V albumu ni komentarjev"
 
 #: ../layout/navigator.inc:32
 msgid "First Page"
@@ -1692,7 +1688,7 @@ msgstr "%d od %d"
 
 #: ../layout/watermarkform.inc:73
 msgid "Watermark"
-msgstr ""
+msgstr "Vodni ¾ig"
 
 #: ../layout/watermarkform.inc:76 ../util.php:2747 ../util.php:2752
 msgid "None"
@@ -1704,9 +1700,9 @@ msgid "No files matching %s found in %s"
 msgstr ""
 
 #: ../layout/watermarkform.inc:97
-#, fuzzy, php-format
+#, php-format
 msgid "Could not open directory %s"
-msgstr "Ne morem odpreti url: %s"
+msgstr "Ne morem odpreti mape %s"
 
 #: ../layout/watermarkform.inc:103
 msgid "Alignment"
@@ -1729,9 +1725,8 @@ msgid "Left"
 msgstr ""
 
 #: ../layout/watermarkform.inc:117
-#, fuzzy
 msgid "Center"
-msgstr "Dodaj"
+msgstr "Sredina"
 
 #: ../layout/watermarkform.inc:119
 msgid "Right"
@@ -1759,9 +1754,8 @@ msgid "Resized"
 msgstr "Spremeni velikost slike"
 
 #: ../layout/watermarkform.inc:145
-#, fuzzy
 msgid "Full"
-msgstr "polno"
+msgstr "Polno"
 
 #: ../layout/watermarkform.inc:153
 #, fuzzy
@@ -2013,14 +2007,12 @@ msgid "Move to Album!"
 msgstr "Premakni v album!"
 
 #: ../move_photo.php:40
-#, fuzzy
 msgid "Reorder Album"
-msgstr "prestavi album"
+msgstr "Prestavi album"
 
 #: ../move_photo.php:42
-#, fuzzy
 msgid "Reorder Photo"
-msgstr "Premesti "
+msgstr "Premesti fotko"
 
 #: ../move_photo.php:42
 msgid "Move Photo"
@@ -2063,9 +2055,8 @@ msgid "Select the new location:"
 msgstr "Izberi novo lokacijo:"
 
 #: ../move_photo.php:253
-#, fuzzy
 msgid "Reorder it!"
-msgstr "Premesti "
+msgstr "Premesti zdaj!"
 
 #: ../move_photo.php:260
 msgid "Move the album to a new album:"
@@ -2103,14 +2094,14 @@ msgid "Upload failed: %s."
 msgstr "Nalaganje prekinjeno: %s."
 
 #: ../multi_create_user.php:77
-#, fuzzy, php-format
+#, php-format
 msgid "adding %s"
-msgstr "Nalagam %s"
+msgstr "nalagam %s"
 
 #: ../multi_create_user.php:84
-#, fuzzy, php-format
+#, php-format
 msgid "Send email to %s"
-msgstr "Problem z email za %s"
+msgstr "Po¹lji e-po¹to za %s"
 
 #: ../multi_create_user.php:100
 #, php-format
@@ -2465,14 +2456,12 @@ msgid "This Gallery does not support self-registration by visitors."
 msgstr ""
 
 #: ../register.php:74
-#, fuzzy
 msgid "You must specify a name."
-msgstr "Vpi¹i uporabni¹ko ime"
+msgstr "Vpi¹i ime."
 
 #: ../register.php:79
-#, fuzzy
 msgid "You must specify a valid email address."
-msgstr "Vpi¹i uporabni¹ko ime"
+msgstr "Vpi¹i veljaven e-po¹tni naslov."
 
 #: ../register.php:101
 #, php-format
@@ -2480,9 +2469,8 @@ msgid "%s has registered.  Email has been sent to %s."
 msgstr "%s se je registriral.  Na %s je bila poslana e-po¹ta."
 
 #: ../register.php:109
-#, fuzzy
 msgid "Gallery Self Registration"
-msgstr "Galerijo je potrebno ponovno konfigurirati"
+msgstr "Samo-registracija"
 
 #: ../register.php:111
 #, php-format
@@ -2502,9 +2490,8 @@ msgid "Your account information will be sent to the email address you provide."
 msgstr ""
 
 #: ../rename_album.php:29
-#, fuzzy
 msgid "You are not allowed to perform this action !"
-msgstr "Na tem ocenjevanju ¹e ni ocen."
+msgstr "Nimate dostopa za izvedbo ukaza !"
 
 #: ../rename_album.php:37 ../rename_album.php:42 ../view_album.php:1008
 msgid "Rename Album"
@@ -2710,12 +2697,11 @@ msgstr ""
 #: ../search.php:156
 #, php-format
 msgid "Photos containing %s"
-msgstr ""
+msgstr "Fotke vsebujejo %s"
 
 #: ../search.php:175
-#, fuzzy
 msgid "Caption:"
-msgstr "Naslov"
+msgstr "Naslov:"
 
 #: ../search.php:191
 msgid "Matching Comments"
@@ -2748,7 +2734,7 @@ msgstr ""
 
 #: ../search.php:282
 msgid "Go"
-msgstr ""
+msgstr "Pojdi"
 
 #: ../slideshow.php:91
 msgid "Fullscreen applet"
@@ -2819,42 +2805,36 @@ msgid "Sort"
 msgstr "Razvrsti"
 
 #: ../tools/find_orphans.php:117
-#, fuzzy
 msgid "Orphaned Albums"
-msgstr "Nadgradi album"
+msgstr "Albumi z napako"
 
 #: ../tools/find_orphans.php:124
 msgid "Orphans will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
 msgstr ""
 
 #: ../tools/find_orphans.php:126
-#, fuzzy
 msgid "Orphaned Album"
-msgstr "Nadgradi album"
+msgstr "Album z napako"
 
 #: ../tools/find_orphans.php:126
-#, fuzzy
 msgid "Parent Album"
-msgstr "Razvrsti album"
+msgstr "Album"
 
 #: ../tools/find_orphans.php:130
-#, fuzzy
 msgid "Gallery Root"
-msgstr "Galerija"
+msgstr "Osnovna galerija"
 
 #: ../tools/find_orphans.php:136
 msgid "Correct Them!"
 msgstr ""
 
 #: ../tools/find_orphans.php:142
-#, fuzzy
 msgid "Return to Gallery"
-msgstr "Vstopi v galerijo"
+msgstr "Vrnitev v galerijo"
 
 #: ../tools/find_orphans.php:146
-#, fuzzy
 msgid "There are no orphaned albums in this Gallery."
-msgstr "Neznana napaka v klicu %s !"
+msgstr "V tej galeriji ni izgubljenih albumov."
 
 #: ../upgrade_album.php:86
 msgid "Progress"
@@ -2971,24 +2951,20 @@ msgid "edit"
 msgstr "uredi"
 
 #: ../util.php:122
-#, fuzzy
 msgid "Add your comment"
-msgstr "dodaj komentar"
+msgstr "Dodaj komentar"
 
 #: ../util.php:125
-#, fuzzy
 msgid "Commenter:"
-msgstr "Dodaj"
+msgstr "Zapisal:"
 
 #: ../util.php:142
-#, fuzzy
 msgid "Message:"
-msgstr "Sporoèilo"
+msgstr "Sporoèilo:"
 
 #: ../util.php:146
-#, fuzzy
 msgid "Post"
-msgstr "sliko"
+msgstr "Objava"
 
 #: ../util.php:153
 msgid "Error:"
@@ -3017,9 +2993,9 @@ msgid "Status: %s (expected %s)"
 msgstr "Stanje: %s (narejeno %s)"
 
 #: ../util.php:272
-#, fuzzy, php-format
+#, php-format
 msgid "The file %s does not exist ?!"
-msgstr "Datoteka %s ne obstaja"
+msgstr "Datoteka %s ne obstaja ?!"
 
 #: ../util.php:282
 #, php-format
@@ -3059,14 +3035,13 @@ msgid "Done."
 msgstr "Zakljuèeno."
 
 #: ../util.php:608
-#, fuzzy
 msgid "No watermark name specified!"
-msgstr "Noben album ni izbran!"
+msgstr "Noben vodni ¾ig ni izbran!"
 
 #: ../util.php:924
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
-msgstr "Klic %1$s datoteke %3$s v %2$s ni uspel!"
+msgstr "Klic %s datoteke %s v %s ni uspel!"
 
 #: ../util.php:930
 #, php-format
@@ -3135,7 +3110,7 @@ msgstr[3] "en klik"
 
 #: ../util.php:1995
 msgid "Sub-albums"
-msgstr "Pod-album"
+msgstr "Pod-albumi"
 
 #: ../util.php:2034
 #, php-format
@@ -3176,9 +3151,9 @@ msgid "Powered by %s v%s"
 msgstr "Uporablja %s v%s"
 
 #: ../util.php:2456
-#, fuzzy, php-format
+#, php-format
 msgid "Skipping invalid email address %s"
-msgstr "Preskoèil napaèen naslov %s"
+msgstr "Preskok napaèen e-po¹tni naslov %s"
 
 #: ../util.php:2522
 #, php-format
@@ -3222,9 +3197,8 @@ msgid "Email sent"
 msgstr "Email poslan"
 
 #: ../util.php:2604
-#, fuzzy
 msgid "Email not sent"
-msgstr "Email ni bil poslan"
+msgstr "Email ni poslan"
 
 #: ../util.php:2618
 #, php-format
@@ -3301,19 +3275,17 @@ msgid "Skipping %s."
 msgstr "Preskakujem %s."
 
 #: ../util.php:2781
-#, fuzzy, php-format
+#, php-format
 msgid "Can't open %s"
-msgstr "Ne morem brati %s."
+msgstr "Ne morem brati %s"
 
 #: ../util.php:2882 ../util.php:2901
-#, fuzzy
 msgid "Not valid yet"
-msgstr "Ni veljavno uporabni¹ko ime"
+msgstr "©e ni v veljavi"
 
 #: ../util.php:3145
-#, fuzzy
 msgid "EXIF Data"
-msgstr "Dodatni EXIF podatki"
+msgstr "EXIF podatki"
 
 #: ../view_album.php:125 ../view_photo.php:156
 msgid "navigate UP"
@@ -3330,7 +3302,7 @@ msgstr[3] "1 pod-album"
 
 #: ../view_album.php:267
 msgid "No albums"
-msgstr "Nobenega albuma"
+msgstr "Ni albumov"
 
 #: ../view_album.php:269
 msgid "0 pages"
@@ -3411,9 +3383,8 @@ msgid "view comments"
 msgstr "poglej komentarje"
 
 #: ../view_album.php:393
-#, fuzzy
 msgid "watermark album"
-msgstr "Iz albuma"
+msgstr "podpi¹i album z vodnim ¾igom"
 
 #: ../view_album.php:458
 msgid "admin options"
@@ -3428,9 +3399,8 @@ msgid "Your current choices are"
 msgstr "Tvoj trenutni izbor "
 
 #: ../view_album.php:600
-#, fuzzy
 msgid "See full poll results"
-msgstr "Rezultat:"
+msgstr "Poglej statistiko glasovanj"
 
 #: ../view_album.php:622
 msgid ", "
@@ -3466,7 +3436,7 @@ msgstr[3] "ena ocena"
 
 #: ../view_album.php:641
 msgid "You can change your choices if you wish."
-msgstr "Èe hoèe¹ lahko spremeni¹ svoje nastavitve."
+msgstr "Èe hoèe¹ lahko spremeni¹ svoj izbor."
 
 #: ../view_album.php:815 ../view_album.php:816
 #, php-format
@@ -3496,7 +3466,7 @@ msgstr[3] "1 pod-album ali slika"
 
 #: ../view_album.php:918 ../view_album.php:941
 msgid "Viewed:"
-msgstr "Pogledov:"
+msgstr "Ogledov:"
 
 #: ../view_album.php:957
 msgid "Movie"
@@ -3511,14 +3481,14 @@ msgid "Edit Thumbnail"
 msgstr "Uredi slièico"
 
 #: ../view_album.php:984 ../view_album.php:1020
-#, fuzzy, php-format
+#, php-format
 msgid "Rotate/Flip %s"
-msgstr "Obrni/preslikaj"
+msgstr "Obrni/preslikaj %s"
 
 #: ../view_album.php:993 ../view_album.php:1056 ../view_album.php:1061
-#, fuzzy, php-format
+#, php-format
 msgid "Delete %s"
-msgstr "Brisanje"
+msgstr "Brisi %s"
 
 #: ../view_album.php:998
 msgid "Edit Title"
@@ -3529,52 +3499,50 @@ msgid "Edit Description"
 msgstr "Uredi zaznamek"
 
 #: ../view_album.php:1029
-#, fuzzy, php-format
+#, php-format
 msgid "Highlight %s"
-msgstr "Uporabi za naslovnico"
+msgstr "Uporabi %s za naslovnico"
 
 #: ../view_album.php:1033
 msgid "Reset Counter"
 msgstr "Ponastavi ¹tevec"
 
 #: ../view_album.php:1038
-#, fuzzy, php-format
+#, php-format
 msgid "Move %s"
-msgstr "Premakni"
+msgstr "Premakni %s"
 
 #: ../view_album.php:1039
-#, fuzzy, php-format
+#, php-format
 msgid "Reorder %s"
-msgstr "Premesti "
+msgstr "Premesti %s"
 
 #: ../view_album.php:1041
-#, fuzzy, php-format
+#, php-format
 msgid "Copy %s"
-msgstr "Kopiraj"
+msgstr "Kopiraj %s"
 
 #: ../view_album.php:1048
-#, fuzzy, php-format
+#, php-format
 msgid "Show %s"
-msgstr "Prika¾i"
+msgstr "Prika¾i %s"
 
 #: ../view_album.php:1050
-#, fuzzy, php-format
+#, php-format
 msgid "Hide %s"
-msgstr "Skrij"
+msgstr "Skrij %s"
 
 #: ../view_album.php:1067
 msgid "Permissions"
 msgstr "Pravice"
 
 #: ../view_album.php:1072 ../watermark_album.php:77 ../watermark_album.php:83
-#, fuzzy
 msgid "Watermark Album"
-msgstr "Iz albuma"
+msgstr "Oznaèi album z vodnim ¾igom"
 
 #: ../view_album.php:1077
-#, fuzzy
 msgid "View Comments"
-msgstr "poglej komentarje"
+msgstr "Poglej komentarje"
 
 #: ../view_album.php:1126
 msgid "Hey! Add some photos."
@@ -3585,9 +3553,8 @@ msgid "This album is empty."
 msgstr "Ta album je prazen."
 
 #: ../view_album.php:1170 ../view_photo.php:643
-#, fuzzy
 msgid "Email me when:"
-msgstr "Po¹lji mi e-po¹to ko:"
+msgstr "Po¹lji mi epo¹to ko:"
 
 #: ../view_album.php:1171 ../view_photo.php:644
 msgid "Comments are added"
@@ -3634,9 +3601,8 @@ msgid "photo properties"
 msgstr "lastnosti fotografije"
 
 #: ../view_photo.php:413
-#, fuzzy
 msgid "Select service"
-msgstr "Izbri¹i uporabnika"
+msgstr "Izberi storitev"
 
 #: ../view_photo.php:433 ../view_photo.php:449
 #, php-format
@@ -3657,152 +3623,8 @@ msgstr "(èe je datoteka enaka se ne bo niè spremenilo)"
 
 #: ../watermark_album.php:44
 msgid "Watermarking album."
-msgstr ""
+msgstr "Album vodni ¾ig."
 
 #: ../watermark_album.php:87
-#, fuzzy
 msgid "No items to watermark."
-msgstr "Ni ocen."
-
-#~ msgid "with donation"
-#~ msgstr "z donacijo"
-
-#~ msgid "without donation"
-#~ msgstr "brez donacije"
-
-#, fuzzy
-#~ msgid ""
-#~ "\n"
-#~ "<br>No email sent as no valid email addresses were found"
-#~ msgstr "Vpi¹i uporabni¹ko ime"
-
-#~ msgid "Note:  This album is out of date!"
-#~ msgstr "Opozorilo: album je potekel!"
-
-#~ msgid "upgrade album"
-#~ msgstr "nadgrajujem album"
-
-#~ msgid "Login Incorrect"
-#~ msgstr "Prijava neuspe¹na"
-
-#, fuzzy
-#~ msgid "Custom Fields"
-#~ msgstr "posamezna polja"
-
-#~ msgid "Edit"
-#~ msgstr "Uredi"
-
-#~ msgid "description"
-#~ msgstr "opis"
-
-#~ msgid "pages"
-#~ msgstr "straneh"
-
-#~ msgid "voters"
-#~ msgstr "ocenjevalci"
-
-#~ msgid "0 voters"
-#~ msgstr "0 ocenjevalcev"
-
-#~ msgid "votes"
-#~ msgstr "ocen"
-
-#~ msgid "0 votes"
-#~ msgstr "brez ocen"
-
-#~ msgid "users"
-#~ msgstr "uporabnikov"
-
-#~ msgid "0 users"
-#~ msgstr "0 uporabnikov"
-
-#~ msgid "hits"
-#~ msgstr "klikov"
-
-#~ msgid "0 hits"
-#~ msgstr "nobenega klika"
-
-#~ msgid "albums"
-#~ msgstr "albumi"
-
-#~ msgid "images"
-#~ msgstr "slik"
-
-#~ msgid "no items"
-#~ msgstr "ni podalbumov ali slik"
-
-#~ msgid "times"
-#~ msgstr "krat"
-
-#~ msgid "sub-albums"
-#~ msgstr "pod-albumi"
-
-#~ msgid "no votes"
-#~ msgstr "ni ocen"
-
-#~ msgid "0 items"
-#~ msgstr "0 datotek"
-
-#~ msgid "Name or email:"
-#~ msgstr "Ime ali naslov e-po¹te:"
-
-#~ msgid "File Upload Date"
-#~ msgstr "Datum/èas objave slike"
-
-#~ msgid "Item Capture Date"
-#~ msgstr "Datum/èas fotografiranja"
-
-#, fuzzy
-#~ msgid "Keywords:"
-#~ msgstr "Kategorija"
-
-#, fuzzy
-#~ msgid "Capture Date:"
-#~ msgstr "Datum/èas posnetka"
-
-#~ msgid "Error"
-#~ msgstr "Napaka"
-
-#~ msgid "Error: %s!"
-#~ msgstr "Napaka: %s!"
-
-#~ msgid "no image"
-#~ msgstr "ni slik"
-
-#~ msgid "Skipping album %d..."
-#~ msgstr "Preskok albuma %d ..."
-
-#, fuzzy
-#~ msgid " to "
-#~ msgstr " ali "
-
-#~ msgid "File missing or unreadable.  Please install then re-run this test."
-#~ msgstr "Datoteka ne obstaja ali pa ni berljiva.  Prosim nalo¾ite in spet za¾enite ta test."
-
-#~ msgid "Please ensure that %s is the latest version."
-#~ msgstr "Prepriæajte se da je %s najnovej¹a razlièica."
-
-#~ msgid "Testing status of %d files."
-#~ msgstr "Preverjam stanje %d datotek."
-
-#, fuzzy
-#~ msgid "Cannot read file %s."
-#~ msgstr "Ne morem brati %s."
-
-#~ msgid "File missing or unreadable."
-#~ msgstr "Datoteka ne obstaja ali pa ni berljiva."
-
-#~ msgid "Version information not found in %s.  File must be old version or corrupted."
-#~ msgstr "Nisem na¹el podatkov o razlièici v %s. Datoteka je prestara ali pokvarjena. "
-
-#~ msgid "Missing version"
-#~ msgstr "Ne najdem razlièice"
-
-#~ msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-#~ msgstr "Te¾ava z %s.  Prièakoval razlièico %s (ali novej¹o) ampak na¹el %s."
-
-#~ msgid "Expected version %s (or greater) but found %s."
-#~ msgstr "Prièakoval razlièico %s (ali novej¹o) ampak na¹el %s."
-
-#~ msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-#~ msgstr "%s je v redu. Dejanska razlièica (%s) je novej¹a kakor prièakovana (%s)."
+msgstr "Ni predmetov za vodni ¾ig."
