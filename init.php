@@ -39,7 +39,10 @@ foreach ($sensitiveList as $sensitive) {
  */
 error_reporting(E_ALL & ~E_NOTICE);
 
-/* emulate register_globals for all but session (which is done elsewhere) */
+/*
+ * Figure out if register_globals is on or off and save that info
+ * for later
+ */
 $register_globals = ini_get("register_globals");
 if (empty($register_globals) ||
         !strcasecmp($register_globals, "off") ||
@@ -49,17 +52,20 @@ if (empty($register_globals) ||
     $gallery->register_globals = 1;
 }
 
+/*
+ * If register_globals is off, then extract all HTTP variables into the global
+ * namespace.  
+ */
 if (!$gallery->register_globals) {
-    if (function_exists("import_request_variables")) {
-	import_request_variables("gpc");
-	foreach($HTTP_POST_FILES as $key => $value) {
-	    ${$key."_name"} = $value["name"];
-	    ${$key."_size"} = $value["size"];
-	    ${$key."_type"} = $value["type"];
-	    ${$key} = $value["tmp_name"];
-	}
-	extract($HTTP_SERVER_VARS);
-	extract($HTTP_ENV_VARS);
+    extract($HTTP_GET_VARS);
+    extract($HTTP_POST_VARS);
+    extract($HTTP_COOKIE_VARS);
+    
+    foreach($HTTP_POST_FILES as $key => $value) {
+	${$key."_name"} = $value["name"];
+	${$key."_size"} = $value["size"];
+	${$key."_type"} = $value["type"];
+	${$key} = $value["tmp_name"];
     }
 }
 
