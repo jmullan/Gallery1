@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-04 20:04+0200\n"
+"POT-Creation-Date: 2004-05-13 12:23+0200\n"
 "PO-Revision-Date: 2004-04-06 22:01+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m@yahoo.co.jp>\n"
 "Language-Team: Japanese <ken_w3m@yahoo.co.jp>\n"
@@ -48,11 +48,11 @@ msgstr ""
 msgid "You are no allowed to perform this action !"
 msgstr "あなたがこの行為をすることは許可されていません。"
 
-#: ../add_comment.php:56 ../view_photo.php:208
+#: ../add_comment.php:56 ../view_photo.php:207
 msgid "Name and comment are both required to save a new comment!"
 msgstr "コメントするには名前とコメント内容の両方が必要です。"
 
-#: ../add_comment.php:58 ../view_photo.php:210
+#: ../add_comment.php:58 ../view_photo.php:209
 #, php-format
 msgid "Your comment is too long, the admin set maximum length to %d chars"
 msgstr ""
@@ -70,9 +70,9 @@ msgstr "この画像に対するコメントを下のテキストボックスに入力してください。"
 #: ../delete_user.php:73 ../edit_caption.php:183 ../edit_field.php:68
 #: ../edit_watermark.php:83 ../includes/add_photos/add_form.inc:120
 #: ../includes/add_photos/add_form_one.inc:72
-#: ../includes/add_photos/add_url.inc:52 ../login.php:121
-#: ../modify_user.php:149 ../move_album.php:106 ../move_album.php:126
-#: ../move_photo.php:242 ../move_photo.php:328 ../multi_create_user.php:164
+#: ../includes/add_photos/add_url.inc:52 ../login.php:123
+#: ../modify_user.php:149 ../move_album.php:117 ../move_album.php:137
+#: ../move_photo.php:254 ../move_photo.php:340 ../multi_create_user.php:164
 #: ../new_password.php:126 ../register.php:137 ../rename_album.php:118
 #: ../reset_votes.php:64 ../resize_photo.php:126 ../sort_album.php:114
 #: ../user_preferences.php:126 ../watermark_album.php:83
@@ -116,7 +116,7 @@ msgstr "アルバム パーミッション"
 msgid "Changing permissions for %s"
 msgstr "%s に対するパーミッションを変更"
 
-#: ../album_permissions.php:180 ../albums.php:316
+#: ../album_permissions.php:180 ../albums.php:321
 msgid "Owner:"
 msgstr "所有者:"
 
@@ -173,198 +173,189 @@ msgstr "完了"
 msgid "Search"
 msgstr "検索"
 
-#: ../albums.php:122
-msgid "1 top-level album"
-msgstr "1個のトップレベルアルバム"
-
-#: ../albums.php:122
+#: ../albums.php:123
+#, fuzzy, php-format
 msgid "1 album"
-msgstr "1個のアルバム"
-
-#: ../albums.php:122
-msgid "top-level albums"
-msgstr "トップレベルアルバム"
-
-#: ../albums.php:122
-msgid "albums"
-msgstr "アルバム"
-
-#: ../albums.php:122 ../view_album.php:267
-msgid "No albums"
-msgstr "アルバムなしアルバムなし"
+msgid_plural "%d albums"
+msgstr[0] "1個のアルバム"
+msgstr[1] "1個のアルバム"
 
 #: ../albums.php:123
+#, fuzzy
+msgid "no albums"
+msgstr "アルバムなしアルバムなし"
+
+#: ../albums.php:125
+#, fuzzy, php-format
+msgid "1 top-level album"
+msgid_plural "%d top-level albums"
+msgstr[0] "1個のトップレベルアルバム"
+msgstr[1] "1個のトップレベルアルバム"
+
+#: ../albums.php:125
+#, fuzzy
+msgid "No top-level albums"
+msgstr "トップレベルアルバム"
+
+#: ../albums.php:128
 #, php-format
 msgid "%d total"
 msgstr "総計 %d"
 
-#: ../albums.php:124 ../view_album.php:268
+#: ../albums.php:129 ../view_album.php:268
+#, fuzzy, php-format
 msgid "1 image"
-msgstr "1枚の画像"
+msgid_plural "%d images"
+msgstr[0] "1枚の画像"
+msgstr[1] "1枚の画像"
 
-#: ../albums.php:124 ../view_album.php:268
-msgid "images"
-msgstr "画像"
-
-#: ../albums.php:124 ../view_album.php:268
+#: ../albums.php:129 ../view_album.php:268
 msgid "no images"
 msgstr "画像なし"
 
-#: ../albums.php:125 ../captionator.php:168 ../view_album.php:269
+#: ../albums.php:130 ../view_album.php:269
+#, fuzzy, php-format
 msgid "1 page"
-msgstr "1ページ"
+msgid_plural "%d pages"
+msgstr[0] "1ページ"
+msgstr[1] "1ページ"
 
-#: ../albums.php:125 ../captionator.php:168 ../view_album.php:269
-msgid "pages"
-msgstr "ページ"
-
-#: ../albums.php:125 ../captionator.php:168
+#: ../albums.php:130
 msgid "no pages"
 msgstr "ページなし"
 
-#: ../albums.php:128
+#: ../albums.php:133
 #, php-format
 msgid "%s (%s), %s on %s"
 msgstr "%4$s 上に %1$s (%2$s), %3$s"
 
-#: ../albums.php:131
+#: ../albums.php:136
 #, php-format
 msgid "%s (%s), %s"
 msgstr "%s (%s), %s"
 
-#: ../albums.php:133
+#: ../albums.php:138
 #, php-format
 msgid "%s, %s on %s"
 msgstr "%3$s 上に %1$s, %2$s"
 
-#: ../albums.php:135
+#: ../albums.php:140
 #, php-format
 msgid "%s, %s"
 msgstr "%s, %s"
 
-#: ../albums.php:143
+#: ../albums.php:148
 #, php-format
 msgid "Welcome, %s"
 msgstr "ようこそ、 %s さん"
 
-#: ../albums.php:149 ../view_album.php:458
+#: ../albums.php:154 ../view_album.php:458
 msgid "slideshow"
 msgstr "スライドショー"
 
-#: ../albums.php:158
+#: ../albums.php:163
 msgid "new album"
 msgstr "新しいアルバム"
 
-#: ../albums.php:165
+#: ../albums.php:170
 msgid "manage users"
 msgstr "ユーザ管理"
 
-#: ../albums.php:173
+#: ../albums.php:178
 msgid "preferences"
 msgstr "個別設定"
 
-#: ../albums.php:179 ../view_album.php:464
+#: ../albums.php:184 ../view_album.php:464
 msgid "logout"
 msgstr "ログアウト"
 
-#: ../albums.php:183 ../view_album.php:466
+#: ../albums.php:188 ../view_album.php:466
 msgid "login"
 msgstr "ログイン"
 
-#: ../albums.php:187
+#: ../albums.php:192
 msgid "register"
 msgstr "登録"
 
-#: ../albums.php:213
+#: ../albums.php:218
 msgid "Attention Gallery Administrator!"
 msgstr "Gallery 管理者は注意して!"
 
-#: ../albums.php:215
+#: ../albums.php:220
 #, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "%s は以下の %d の無効なアルバムをあなたのアルバムディレクトリで検出しました。<br>(%s):"
 
-#: ../albums.php:221
+#: ../albums.php:226
 msgid "Please move it/them out of the albums directory."
 msgstr "それらをアルバムディレクトリから移動してください。"
 
-#: ../albums.php:272 ../view_album.php:733
+#: ../albums.php:277 ../view_album.php:732
 msgid "Highlight for Album: "
 msgstr "アルバムのハイライト画像: "
 
-#: ../albums.php:289 ../view_album.php:937
+#: ../albums.php:294 ../view_album.php:937
 msgid "title"
 msgstr "タイトル"
 
-#: ../albums.php:321
+#: ../albums.php:326
 msgid "url:"
 msgstr "URL:"
 
-#: ../albums.php:332
+#: ../albums.php:337
 msgid "Hey!"
 msgstr "ヘイ!"
 
-#: ../albums.php:333
+#: ../albums.php:338
 #, php-format
 msgid "%s this album so that the URL is not so generic!"
 msgstr "このURLは余り一般的ではないため %s してください。"
 
-#: ../albums.php:334 ../rename_album.php:117
+#: ../albums.php:339 ../rename_album.php:117
 msgid "Rename"
 msgstr "名前変更"
 
-#: ../albums.php:342
+#: ../albums.php:347
 msgid "Note:  This album is out of date!"
 msgstr "注意: このアルバムは古い形式です。"
 
-#: ../albums.php:342
+#: ../albums.php:347
 msgid "upgrade album"
 msgstr "アルバムアップグレード"
 
-#: ../albums.php:352
+#: ../albums.php:357
 #, php-format
 msgid "Last changed on %s."
 msgstr "最終更新日 %s"
 
-#: ../albums.php:353
-#, php-format
-msgid "This album contains %s."
-msgstr "このアルバムの内容は %s です。"
+#: ../albums.php:359
+#, fuzzy, php-format
+msgid "This album contains one item"
+msgid_plural "This album contains %d items"
+msgstr[0] "このアルバムの内容は %s です。"
+msgstr[1] "このアルバムの内容は %s です。"
 
-#: ../albums.php:353 ../view_album.php:857
-msgid "1 item"
-msgstr "1個のアイテム"
-
-#: ../albums.php:353 ../upgrade_album.php:184 ../view_album.php:857
-msgid "items"
-msgstr "個のアイテム"
-
-#: ../albums.php:353
-msgid "no items"
-msgstr "0 個のアイテム"
-
-#: ../albums.php:356
+#: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "このアルバムの閲覧回数 %s (%s から)"
 
-#: ../albums.php:357 ../view_album.php:865 ../view_album.php:882
+#: ../albums.php:365 ../view_album.php:865 ../view_album.php:882
+#, fuzzy, php-format
 msgid "1 time"
-msgstr "1回"
+msgid_plural "%d times"
+msgstr[0] "1回"
+msgstr[1] "1回"
 
-#: ../albums.php:357 ../view_album.php:865 ../view_album.php:882
-msgid "times"
-msgstr "回"
-
-#: ../albums.php:357 ../view_album.php:865 ../view_album.php:882
+#: ../albums.php:365
 msgid "0 times"
 msgstr "0 回"
 
-#: ../albums.php:363
+#: ../albums.php:371
 msgid "reset counter"
 msgstr "カウンタリセット"
 
-#: ../albums.php:393 ../view_album.php:1077
+#: ../albums.php:401 ../view_album.php:1077
 msgid "Comments available for this item."
 msgstr "このアイテムに対するコメントが有効です。"
 
@@ -421,7 +412,7 @@ msgstr "説明なし"
 msgid "Photo Caption"
 msgstr "説明なし"
 
-#: ../captionator.php:264 ../extra_fields.php:101 ../lib/lang.php:493
+#: ../captionator.php:264 ../extra_fields.php:101 ../lib/lang.php:594
 msgid "Title"
 msgstr "タイトル"
 
@@ -429,7 +420,7 @@ msgstr "タイトル"
 msgid "Keywords"
 msgstr "キーワード"
 
-#: ../captionator.php:285 ../lib/lang.php:482
+#: ../captionator.php:285 ../lib/lang.php:584
 msgid "Capture Date"
 msgstr "キャプチャー日"
 
@@ -467,7 +458,7 @@ msgstr "アイテム %d / %d をアップグレード . . . "
 msgid "msg should be an array!"
 msgstr "msg は配列であるべきです!"
 
-#: ../classes/Album.php:843 ../util.php:3097
+#: ../classes/Album.php:843 ../util.php:3120
 msgid "No email sent as no valid email addresses were found"
 msgstr "有効なメールアドレスがみつからなかったため、メールは送信されませんでした。"
 
@@ -493,22 +484,22 @@ msgstr "自動回転/変換済 画像"
 msgid "No highlight"
 msgstr "ハイライトなし"
 
-#: ../classes/Album.php:1269
+#: ../classes/Album.php:1286
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr ""
 
-#: ../classes/Album.php:1561
+#: ../classes/Album.php:1578
 #, php-format
 msgid "Error %s getting EXIF data"
 msgstr ""
 
-#: ../classes/Album.php:2045
+#: ../classes/Album.php:2062
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2183
+#: ../classes/Album.php:2200
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "メールの問題: メールアドレス %3$s は無効なため、%1$s (UID %2$s) をスキップ。"
@@ -608,17 +599,17 @@ msgstr "アルバムのコピーができません #%d"
 msgid "Copying photo #%d"
 msgstr "画像コピー #%d"
 
-#: ../copy_photo.php:78 ../move_photo.php:136
+#: ../copy_photo.php:78 ../move_photo.php:148
 msgid "Creating Thumbnail"
 msgstr "サムネイル作成中"
 
-#: ../copy_photo.php:112 ../move_photo.php:190
+#: ../copy_photo.php:112 ../move_photo.php:202
 #, php-format
 msgid "Skipping Album #%d"
 msgstr "アルバム #%d をスキップ"
 
-#: ../copy_photo.php:119 ../create_user.php:96 ../do_command.php:155
-#: ../login.php:152 ../multi_create_user.php:117 ../register.php:45
+#: ../copy_photo.php:119 ../create_user.php:96 ../do_command.php:161
+#: ../login.php:154 ../multi_create_user.php:117 ../register.php:45
 #: ../register.php:118 ../save_photos.php:355
 msgid "Dismiss"
 msgstr "閉じる"
@@ -631,28 +622,28 @@ msgstr "特定の範囲の画像を新しいアルバムにコピーする:"
 msgid "To copy just one photo, make First and Last the same"
 msgstr "一画像だけコピーするには最初と最後の番号を同じにしてください。"
 
-#: ../copy_photo.php:135 ../move_photo.php:261
+#: ../copy_photo.php:135 ../move_photo.php:273
 msgid "Nested albums in this range will be ignored"
 msgstr "この範囲のネストアルバムは無視されます。"
 
-#: ../copy_photo.php:144 ../move_photo.php:270
+#: ../copy_photo.php:144 ../move_photo.php:282
 msgid "First"
 msgstr "最初"
 
-#: ../copy_photo.php:145 ../move_photo.php:271
+#: ../copy_photo.php:145 ../move_photo.php:283
 msgid "Last"
 msgstr "最後"
 
-#: ../copy_photo.php:146 ../move_photo.php:272
+#: ../copy_photo.php:146 ../move_photo.php:284
 msgid "New Album"
 msgstr "新しいアルバム"
 
-#: ../copy_photo.php:188 ../move_photo.php:322
+#: ../copy_photo.php:188 ../move_photo.php:334
 #, php-format
 msgid "WARNING: Some of the albums need to be upgraded to the current version of %s."
 msgstr "警告: いくつかのアルバムは現在の%sのバージョンに合わせてアップグレードする必要があります。"
 
-#: ../copy_photo.php:189 ../move_photo.php:323
+#: ../copy_photo.php:189 ../move_photo.php:335
 msgid "Upgrade now"
 msgstr "いますぐアップグレード"
 
@@ -661,7 +652,7 @@ msgid "Copy to Album!"
 msgstr "アルバムにコピーする"
 
 #: ../copy_photo.php:198 ../delete_photo.php:136 ../edit_thumb.php:131
-#: ../move_album.php:134 ../move_photo.php:334 ../resize_photo.php:133
+#: ../move_album.php:145 ../move_photo.php:346 ../resize_photo.php:133
 #: ../rotate_photo.php:94 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "アルバム / インデックスが指定されていません"
@@ -1092,7 +1083,7 @@ msgstr "名称未設定"
 msgid "Configure Custom Fields"
 msgstr "カスタムフィールドを設定"
 
-#: ../extra_fields.php:122 ../lib/lang.php:495
+#: ../extra_fields.php:122 ../lib/lang.php:596
 msgid "Alt Text / onMouseOver"
 msgstr ""
 
@@ -1448,7 +1439,7 @@ msgstr "アルバムのスライドショー"
 msgid "Member file"
 msgstr "メンバーファイル"
 
-#: ../html/userData.inc:26 ../login.php:86 ../login.php:171
+#: ../html/userData.inc:26 ../login.php:88 ../login.php:173
 msgid "Username"
 msgstr "ユーザ名"
 
@@ -1560,7 +1551,7 @@ msgid "Album"
 msgstr "アルバム"
 
 #: ../layout/commentboxtop.inc:20 ../layout/commentboxtop.inc:46
-#: ../view_album.php:841
+#: ../view_album.php:840
 msgid "hidden"
 msgstr "隠されています"
 
@@ -1676,28 +1667,23 @@ msgstr "全てクリア"
 msgid "Invert Selection"
 msgstr "選択を反転"
 
-#: ../lib/Form.php:195
-#, php-format
-msgid "%s is not allowed to be empty."
-msgstr ""
-
-#: ../lib/lang.php:481
+#: ../lib/lang.php:583
 msgid "Upload Date"
 msgstr "アップロード日"
 
-#: ../lib/lang.php:483
+#: ../lib/lang.php:585
 msgid "Image Size"
 msgstr "画像のサイズ"
 
-#: ../lib/lang.php:484 ../util.php:3046
+#: ../lib/lang.php:586 ../util.php:3069
 msgid "Additional EXIF Data"
 msgstr "拡張 EXIF データ"
 
-#: ../lib/lang.php:494
+#: ../lib/lang.php:595
 msgid "Description"
 msgstr "詳細"
 
-#: ../lib/voting.php:215 ../view_album.php:608 ../view_album.php:638
+#: ../lib/voting.php:215 ../view_album.php:608 ../view_album.php:637
 #: ../view_album.php:1083
 msgid "Vote"
 msgstr "投票"
@@ -1711,149 +1697,141 @@ msgid "Average points in brackets"
 msgstr "括弧内に平均得点"
 
 #: ../lib/voting.php:275 ../poll_results.php:149 ../view_album.php:550
-#: ../view_album.php:846
+#: ../view_album.php:845
 #, php-format
 msgid "Album: %s"
 msgstr "アルバム: %s"
 
-#: ../lib/voting.php:303 ../lib/voting.php:319
+#: ../lib/voting.php:303
+#, fuzzy, php-format
 msgid "1 voter"
-msgstr "1人の投票者"
+msgid_plural "%d voters"
+msgstr[0] "1人の投票者"
+msgstr[1] "1人の投票者"
 
-#: ../lib/voting.php:304 ../lib/voting.php:319
-msgid "voters"
-msgstr "人の投票者"
+#: ../lib/voting.php:315
+#, fuzzy, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "%s からの結果"
+msgstr[1] "%s からの結果"
 
-#: ../lib/voting.php:305 ../lib/voting.php:320
-msgid "0 voters"
-msgstr "投票者なし"
-
-#: ../lib/voting.php:317
-#, php-format
-msgid "Results from %s."
-msgstr "%s からの結果"
-
-#: ../lib/voting.php:328
+#: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
 msgstr "%s: %s 点"
 
-#: ../lib/voting.php:333
+#: ../lib/voting.php:329
 #, php-format
 msgid "Key - %s"
 msgstr "キー - %s"
 
-#: ../lib/voting.php:339 ../poll_results.php:164
+#: ../lib/voting.php:335 ../poll_results.php:164
 msgid "No votes so far."
 msgstr "今のところ投票はありません。"
 
-#: ../lib/voting.php:360
+#: ../lib/voting.php:356
 msgid "Poll results:"
 msgstr "投票結果:"
 
-#: ../lib/voting.php:363
+#: ../lib/voting.php:359
 msgid "No votes"
 msgstr "投票なし"
 
-#: ../lib/voting.php:367
+#: ../lib/voting.php:363
 #, php-format
 msgid "Number %d overall."
 msgstr "全体で %d 位"
 
-#: ../lib/voting.php:371
+#: ../lib/voting.php:367
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: ../lib/voting.php:372 ../view_album.php:613
-msgid "1 vote"
-msgstr "1票"
-
-#: ../lib/voting.php:372 ../view_album.php:613
-msgid "votes"
-msgstr "票"
-
-#: ../lib/voting.php:372
-msgid "0 votes"
-msgstr "0票"
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "投票なし"
+msgstr[1] "投票なし"
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
 msgid "Login to %s"
 msgstr "%s にログイン"
 
-#: ../login.php:73
+#: ../login.php:75
 msgid "Logging in gives you greater permission to view, create, modify and delete albums."
 msgstr "ログインするとアルバムの閲覧や作成や変更、削除についてより大きな権限があたえられます。"
 
-#: ../login.php:79
+#: ../login.php:81
 msgid "Invalid username or password"
 msgstr "ユーザ名あるいはパスワードが無効です"
 
-#: ../login.php:96
+#: ../login.php:98
 msgid "You must specify a username"
 msgstr "ユーザ名を指定してください"
 
-#: ../login.php:103
+#: ../login.php:105
 msgid "Password"
 msgstr "パスワード"
 
-#: ../login.php:113
+#: ../login.php:115
 msgid "You must specify a password"
 msgstr "パスワードを指定してください"
 
-#: ../login.php:120
+#: ../login.php:122
 msgid "Login"
 msgstr "ログイン"
 
-#: ../login.php:129
+#: ../login.php:131
 msgid "Forgotten your password?"
 msgstr "パスワードを忘れましたか?"
 
-#: ../login.php:139
+#: ../login.php:141
 #, php-format
 msgid "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."
 msgstr "最後のパスワード要求は%d分以内前です。以前のメールをチェックするか、もう少し待ってから試してください。"
 
-#: ../login.php:143
+#: ../login.php:145
 msgid "New password request"
 msgstr "新しいパスワードを設定"
 
-#: ../login.php:144
+#: ../login.php:146
 #, php-format
 msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "
 msgstr "誰かがユーザ %1$sのパスワードを%3$s上のGallery %2$sから要求しました。リンク先に飛べば新しいパスワードを作成することができます。パスワード要求をしていないのでしたら、このメールは無視してください。"
 
-#: ../login.php:145
+#: ../login.php:147
 #, php-format
 msgid "Click to reset your password: %s"
 msgstr "パスワードをリセットするにはクリックしてください: %s"
 
-#: ../login.php:147
+#: ../login.php:149
 #, php-format
 msgid "New password request %s"
 msgstr "新しいパスワードを要求 %s"
 
-#: ../login.php:150
+#: ../login.php:152
 #, php-format
 msgid "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."
 msgstr "%sのアドレスにメールを送りました。パスワードを変更するには指示に従ってください。このメールを受け取らなければ、Gallery管理者に連絡してください。"
 
-#: ../login.php:155
+#: ../login.php:157
 #, php-format
 msgid "Email could not be sent.  Please contact %s administrators for a new password"
 msgstr "メールが送信できませんでした。新しいパスワードを設定するため、%s管理者に連絡してください。"
 
-#: ../login.php:159
+#: ../login.php:161
 #, php-format
 msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
 msgstr "このアカウントは有効なメールがありません。新しいパスワードを設定するため、%s管理者に連絡してください。"
 
-#: ../login.php:162 ../new_password.php:32 ../new_password.php:36
+#: ../login.php:164 ../new_password.php:32 ../new_password.php:36
 msgid "Not a valid username"
 msgstr "無効なユーザ名"
 
-#: ../login.php:179
+#: ../login.php:181
 msgid "Send me my password"
 msgstr "パスワード送信"
 
@@ -1893,23 +1871,23 @@ msgstr "ユーザ変更"
 msgid "You can change any information about the user using this form."
 msgstr "このフォームからユーザの情報を変更できます。"
 
-#: ../move_album.php:41 ../move_album.php:81 ../move_photo.php:40
+#: ../move_album.php:41 ../move_album.php:92 ../move_photo.php:40
 msgid "Move Album"
 msgstr "アルバム移動"
 
-#: ../move_album.php:84
+#: ../move_album.php:95
 msgid "Select the new location of album"
 msgstr "アルバムの新しい場所を選択してください"
 
-#: ../move_album.php:105 ../move_photo.php:241
+#: ../move_album.php:116 ../move_photo.php:253
 msgid "Move it!"
 msgstr "移動させる"
 
-#: ../move_album.php:113
+#: ../move_album.php:124
 msgid "Nest within another Album:"
 msgstr "他のアルバムにネストアルバムとして移動:"
 
-#: ../move_album.php:125 ../move_photo.php:327
+#: ../move_album.php:136 ../move_photo.php:339
 msgid "Move to Album!"
 msgstr "アルバムに移動させる"
 
@@ -1935,52 +1913,52 @@ msgstr ""
 msgid "You do not have the required permissions to write to %s!"
 msgstr "%s に書き込み権限がありません。"
 
-#: ../move_photo.php:122
+#: ../move_photo.php:134
 msgid "Moving photo #"
 msgstr "画像移動 #"
 
-#: ../move_photo.php:174
+#: ../move_photo.php:186
 msgid "- Creating New Album Highlight"
 msgstr "- 新しいアルバムのハイライトを作成"
 
-#: ../move_photo.php:217
+#: ../move_photo.php:229
 msgid "Reorder this album within the album:"
 msgstr "このアルバムをアルバム内で並べ替える:"
 
-#: ../move_photo.php:219
+#: ../move_photo.php:231
 msgid "Reorder this photo within the album:"
 msgstr "この画像をアルバム内で並べ替える:"
 
-#: ../move_photo.php:222
+#: ../move_photo.php:234
 #, php-format
 msgid "Current Location is %s"
 msgstr "現在の場所は %s"
 
-#: ../move_photo.php:226
+#: ../move_photo.php:238
 msgid "Select the new location:"
 msgstr "新しい場所を選択:"
 
-#: ../move_photo.php:241
+#: ../move_photo.php:253
 msgid "Reorder it!"
 msgstr "並べ替える"
 
-#: ../move_photo.php:248
+#: ../move_photo.php:260
 msgid "Move the album to a new album:"
 msgstr "アルバムを新しいアルバムに移動:"
 
-#: ../move_photo.php:259
+#: ../move_photo.php:271
 msgid "Move a range of photos to a new album:"
 msgstr "特定の範囲の画像を新しいアルバムに移動する:"
 
-#: ../move_photo.php:260
+#: ../move_photo.php:272
 msgid "To move just one photo, make First and Last the same"
 msgstr "一画像だけ移動するには最初と最後の番号を同じにしてください。"
 
-#: ../move_photo.php:315
+#: ../move_photo.php:327
 msgid "Note: items that have votes will lose these votes when moved to another album"
 msgstr "注意: 投票されているアイテムを他のアルバムへ移動させるとそれらの投票情報は失われます"
 
-#: ../move_photo.php:317
+#: ../move_photo.php:329
 #, php-format
 msgid "Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."
 msgstr "注意: 投票されているアイテムを投票の互換性のないアルバムへ移動させるとそれらの投票情報は失われます。互換性のアルバムは &quot;%s&quot; でマークされています。"
@@ -2019,16 +1997,11 @@ msgid "%s added, %s skipped"
 msgstr "追加 %s, スキップ %s"
 
 #: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, fuzzy, php-format
 msgid "1 user"
-msgstr "1人のユーザ"
-
-#: ../multi_create_user.php:113 ../multi_create_user.php:114
-msgid "users"
-msgstr "人のユーザ"
-
-#: ../multi_create_user.php:113 ../multi_create_user.php:114
-msgid "0 users"
-msgstr "ユーザなし"
+msgid_plural "%d users"
+msgstr[0] "1人のユーザ"
+msgstr[1] "1人のユーザ"
 
 #: ../multi_create_user.php:136
 msgid "Create Users"
@@ -2758,6 +2731,10 @@ msgstr "一度に全てのアルバムをアップグレード"
 msgid "upgrade"
 msgstr "アップグレード"
 
+#: ../upgrade_album.php:184
+msgid "items"
+msgstr "個のアイテム"
+
 #: ../upgrade_users.php:35 ../upgrade_users.php:41
 msgid "Upgrading Users"
 msgstr "ユーザをアップグレード"
@@ -2833,7 +2810,7 @@ msgstr "コメント追加"
 msgid "Commenter:"
 msgstr "中央"
 
-#: ../util.php:137 ../util.php:2509
+#: ../util.php:137 ../util.php:2532
 msgid "Message"
 msgstr "メッセージ"
 
@@ -2846,247 +2823,243 @@ msgstr "画像"
 msgid "Error:"
 msgstr "エラー:"
 
-#: ../util.php:219
+#: ../util.php:228
 msgid "Executing:"
 msgstr "実行中:"
 
-#: ../util.php:226
+#: ../util.php:235
 msgid "Results:"
 msgstr "結果:"
 
-#: ../util.php:230
+#: ../util.php:239
 msgid "none"
 msgstr "なし"
 
-#: ../util.php:235
+#: ../util.php:244
 msgid "Error messages:"
 msgstr "エラーメッセージ:"
 
-#: ../util.php:246
+#: ../util.php:255
 #, php-format
 msgid "Status: %s (expected %s)"
 msgstr "ステータス: %s (予測 %s)"
 
-#: ../util.php:258
+#: ../util.php:267
 #, php-format
 msgid "The file %s does not exist ?!"
 msgstr "ファイル%sは存在しません"
 
-#: ../util.php:268
+#: ../util.php:277
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHPの%sは容量を測定できません。"
 
-#: ../util.php:288 ../util.php:584 ../util.php:818 ../util.php:864
-#: ../util.php:2306
+#: ../util.php:297 ../util.php:594 ../util.php:828 ../util.php:874
+#: ../util.php:2329
 msgid "You have no graphics package configured for use!"
 msgstr "使用するグラフィックパッケージが設定されていません。"
 
-#: ../util.php:369 ../util.php:387
+#: ../util.php:378 ../util.php:397
 msgid "Not closing this window because debug mode is on"
 msgstr "デバッグモードになっているのでウィンドウは閉じません"
 
-#: ../util.php:432
+#: ../util.php:442
 msgid "No resizing required"
 msgstr "リサイズ不要"
 
-#: ../util.php:455
+#: ../util.php:465
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "ターゲットファイルサイズ %d kB"
 
-#: ../util.php:461 ../util.php:491
+#: ../util.php:471 ../util.php:501
 #, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> ファイルサイズ %d kB"
 
-#: ../util.php:462
+#: ../util.php:472
 #, php-format
 msgid "trying quality %d%%"
 msgstr "画質 %d%%で試行"
 
-#: ../util.php:492
+#: ../util.php:502
 msgid "Done."
 msgstr "完了"
 
-#: ../util.php:588
+#: ../util.php:598
 msgid "No watermark name specified!"
 msgstr "透かし名が指定されていません。"
 
-#: ../util.php:883
+#: ../util.php:893
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "ファイル %3$s の %2$s 中の %1$s のコールに失敗しました"
 
-#: ../util.php:889
+#: ../util.php:899
 #, php-format
 msgid "File %s type %d."
 msgstr "ファイル %s タイプ %d."
 
-#: ../util.php:904
+#: ../util.php:914
 #, php-format
 msgid "There was an unknown failure in the %s call!"
 msgstr "%sコールにおいて不明な失敗がありました。"
 
-#: ../util.php:928 ../util.php:951
+#: ../util.php:938 ../util.php:961
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "認識できないファイルタイプ: %s"
 
-#: ../util.php:1483
+#: ../util.php:1501
 #, php-format
 msgid "Can't write to %s."
 msgstr "%s に書き込みできません。"
 
-#: ../util.php:1490
+#: ../util.php:1508
 #, php-format
 msgid "Can't read %s."
 msgstr "%s が読み込みできません。"
 
-#: ../util.php:1600
+#: ../util.php:1618
 msgid "Select Album"
 msgstr "アルバム選択"
 
-#: ../util.php:1606
+#: ../util.php:1624
 msgid "Top Level"
 msgstr "トップレベル"
 
-#: ../util.php:1627 ../util.php:1678
+#: ../util.php:1645 ../util.php:1696
 msgid "current location"
 msgstr "現在の場所"
 
-#: ../util.php:1681
+#: ../util.php:1699
 msgid "self"
 msgstr "自身"
 
-#: ../util.php:1821
+#: ../util.php:1839
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "ロックファイル(%s)を開けません。"
 
-#: ../util.php:1826
+#: ../util.php:1844
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "ロックできませんでした (%s)"
 
-#: ../util.php:1910
+#: ../util.php:1928
+#, fuzzy, php-format
 msgid "1 hit"
-msgstr "1 ヒット"
+msgid_plural "%d hits"
+msgstr[0] "1 ヒット"
+msgstr[1] "1 ヒット"
 
-#: ../util.php:1910
-msgid "hits"
-msgstr "ヒット"
-
-#: ../util.php:1910
-msgid "0 hits"
-msgstr "0 ヒット"
-
-#: ../util.php:1915
+#: ../util.php:1933
 msgid "Sub-albums"
 msgstr "サブアルバム"
 
-#: ../util.php:1955
+#: ../util.php:1973
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "スキップ %s (ZIPはサポートが有効ではありません)"
 
-#: ../util.php:2100
+#: ../util.php:2118
 #, php-format
 msgid "Adding %s"
 msgstr "追加 %s"
 
-#: ../util.php:2118
+#: ../util.php:2136
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "困ったら %s%s FAQ%sを見てください"
 
-#: ../util.php:2124
+#: ../util.php:2142
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "スキップ %s (%s フォーマットは取り扱えません)"
 
-#: ../util.php:2265
+#: ../util.php:2288
 msgid "documentation"
 msgstr "ドキュメント"
 
-#: ../util.php:2291
+#: ../util.php:2314
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "EXIFデータを保存することができません。(jheadがインストールされていません)"
 
-#: ../util.php:2316
+#: ../util.php:2339
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generated by %s v%s"
 
-#: ../util.php:2318
+#: ../util.php:2341
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2368
+#: ../util.php:2391
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "無効なメールアドレスのスキップ %s"
 
-#: ../util.php:2434
+#: ../util.php:2457
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "注意: これは %s ウェブサイトから自動的に生成されて送られたメールです。エラーを受け取っても、無視してください。"
 
-#: ../util.php:2436
+#: ../util.php:2459
 #, php-format
 msgid "Report abuse to %s"
 msgstr "%sに不正使用報告する"
 
-#: ../util.php:2452
+#: ../util.php:2475
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "このGalleryではメール機能は無効ですので、メールは送信されませんでした。"
 
-#: ../util.php:2456
+#: ../util.php:2479
+#, php-format
 msgid "Email not sent as no address provided"
 msgstr "アドレスが指定されなかったのでメールは送信されませんでした。"
 
-#: ../util.php:2461
+#: ../util.php:2484
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "メールアドレスが正しくなかったので、%s にメールは送信されませんでした。"
 
-#: ../util.php:2476
+#: ../util.php:2499
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "送信者アドレス %s は無効です。%s を使ってください"
 
-#: ../util.php:2500 ../util.php:2505
+#: ../util.php:2523 ../util.php:2528
 msgid "not shown"
 msgstr "非表示"
 
-#: ../util.php:2513
+#: ../util.php:2536
 msgid "Email sent"
 msgstr "メールを送りました"
 
-#: ../util.php:2515
+#: ../util.php:2538
 msgid "Email not sent"
 msgstr "メールは送信されませんでした。"
 
-#: ../util.php:2529
+#: ../util.php:2552
 #, php-format
 msgid "Last comment %s."
 msgstr "最後のコメント %s"
 
-#: ../util.php:2541
+#: ../util.php:2564
 msgid "FAILED"
 msgstr "失敗"
 
-#: ../util.php:2550
+#: ../util.php:2573
 msgid "Email activity"
 msgstr "メールの動作"
 
-#: ../util.php:2568
+#: ../util.php:2591
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "ログファイルを開けません: %s"
 
-#: ../util.php:2575
+#: ../util.php:2598
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3106,57 +3079,57 @@ msgstr ""
 "\n"
 "Gallery @ %s 管理者"
 
-#: ../util.php:2584 ../util.php:2586
+#: ../util.php:2607 ../util.php:2609
 msgid "gallery title"
 msgstr "gallery タイトル"
 
-#: ../util.php:2585
+#: ../util.php:2608
 msgid "gallery URL"
 msgstr "gallery リンク"
 
-#: ../util.php:2605
+#: ../util.php:2628
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>None</dt><dd>オリジナルのルック&amp;フィール</dd>"
 
-#: ../util.php:2651 ../util.php:2656
+#: ../util.php:2674 ../util.php:2679
 msgid "None"
 msgstr "なし"
 
-#: ../util.php:2652 ../util.php:2657
+#: ../util.php:2675 ../util.php:2680
 msgid "Dots"
 msgstr "ドット"
 
-#: ../util.php:2653 ../util.php:2658
+#: ../util.php:2676 ../util.php:2681
 msgid "Solid"
 msgstr "ソリッド"
 
-#: ../util.php:2656
+#: ../util.php:2679
 msgid "No frames"
 msgstr "フレームなし"
 
-#: ../util.php:2657
+#: ../util.php:2680
 msgid "Just a simple dashed border around the thumb."
 msgstr "サムネイルの回りに単にダッシュの枠線を描きます。"
 
-#: ../util.php:2658
+#: ../util.php:2681
 msgid "Just a simple solid border around the thumb."
 msgstr "サムネイルの回りに単にダッシュの枠線を描きます。"
 
-#: ../util.php:2679
+#: ../util.php:2702
 #, php-format
 msgid "Skipping %s."
 msgstr "%sをスキップ"
 
-#: ../util.php:2685
+#: ../util.php:2708
 #, php-format
 msgid "Can't open %s"
 msgstr "%sが開けません"
 
-#: ../util.php:2783 ../util.php:2802
+#: ../util.php:2806 ../util.php:2825
 msgid "Not valid yet"
 msgstr "未検証"
 
-#: ../util.php:3033
+#: ../util.php:3056
 #, fuzzy
 msgid "Custom Fields"
 msgstr "カスタムフィールド"
@@ -3167,12 +3140,15 @@ msgid "navigate UP"
 msgstr "上へ"
 
 #: ../view_album.php:267
+#, fuzzy, php-format
 msgid "1 sub-album"
-msgstr "1個のサブアルバム"
+msgid_plural "%d sub-albums"
+msgstr[0] "1個のサブアルバム"
+msgstr[1] "1個のサブアルバム"
 
 #: ../view_album.php:267
-msgid "sub-albums"
-msgstr "サブアルバム"
+msgid "No albums"
+msgstr "アルバムなしアルバムなし"
 
 #: ../view_album.php:269
 msgid "0 pages"
@@ -3286,29 +3262,32 @@ msgstr "画像に投票するには、%sをクリック"
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "投票を記録するには%sをクリックしなければいけません。"
 
-#: ../view_album.php:611
+#: ../view_album.php:612
 #, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr "あなたは全部で%sのを持っていて、それらは変更可能です。"
 
-#: ../view_album.php:614
-msgid "no votes"
-msgstr "投票なし"
+#: ../view_album.php:613
+#, fuzzy, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] "1票"
+msgstr[1] "1票"
 
-#: ../view_album.php:619
+#: ../view_album.php:618
 msgid "You can change your choices if you wish."
 msgstr "お望みならばあなたの選択を変更できます。"
 
-#: ../view_album.php:773 ../view_album.php:774
+#: ../view_album.php:772 ../view_album.php:773
 #, php-format
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:847
+#: ../view_album.php:846
 msgid "No description"
 msgstr "詳細なし"
 
-#: ../view_album.php:855
+#: ../view_album.php:854
 msgid "Changed: "
 msgstr "変更: "
 
@@ -3317,8 +3296,11 @@ msgid "Contains: "
 msgstr "内容: "
 
 #: ../view_album.php:857
-msgid "0 items"
-msgstr "0 アイテム"
+#, fuzzy, php-format
+msgid "1 item"
+msgid_plural "%d items"
+msgstr[0] "1個のアイテム"
+msgstr[1] "1個のアイテム"
 
 #: ../view_album.php:865 ../view_album.php:882
 msgid "Viewed:"
@@ -3406,11 +3388,11 @@ msgstr "何か画像を追加してください。"
 msgid "This album is empty."
 msgstr "このアルバムは空です。"
 
-#: ../view_album.php:1108 ../view_photo.php:640
+#: ../view_album.php:1108 ../view_photo.php:637
 msgid "Email me when:"
 msgstr "このときにメールを送る:"
 
-#: ../view_album.php:1109 ../view_photo.php:641
+#: ../view_album.php:1109 ../view_photo.php:638
 msgid "Comments are added"
 msgstr "コメント追加"
 
@@ -3430,31 +3412,31 @@ msgstr "アルバムに戻る"
 msgid "Sorry.  This album does not allow comments."
 msgstr "申し訳ありません。このアルバムはコメントが許可されていません。"
 
-#: ../view_photo.php:312
+#: ../view_photo.php:309
 msgid "resize photo"
 msgstr "画像リサイズ"
 
-#: ../view_photo.php:336
+#: ../view_photo.php:333
 msgid "delete photo"
 msgstr "画像削除"
 
-#: ../view_photo.php:351
+#: ../view_photo.php:348
 msgid "View Images"
 msgstr "画像閲覧"
 
-#: ../view_photo.php:355 ../view_photo.php:357
+#: ../view_photo.php:352 ../view_photo.php:354
 msgid "normal"
 msgstr "通常"
 
-#: ../view_photo.php:355 ../view_photo.php:357
+#: ../view_photo.php:352 ../view_photo.php:354
 msgid "full"
 msgstr "完全"
 
-#: ../view_photo.php:368
+#: ../view_photo.php:365
 msgid "photo properties"
 msgstr "画像のプロパティ"
 
-#: ../view_photo.php:436 ../view_photo.php:451
+#: ../view_photo.php:433 ../view_photo.php:448
 #, php-format
 msgid "print this photo with %s"
 msgstr "この画像を%sで印刷"
@@ -3474,6 +3456,54 @@ msgstr "(もしデータが最新のものであれば、ここにはすべきことは何も現れません。)"
 #: ../watermark_album.php:43
 msgid "Watermarking album."
 msgstr "透かしアルバムにしています。"
+
+#~ msgid "pages"
+#~ msgstr "ページ"
+
+#~ msgid "voters"
+#~ msgstr "人の投票者"
+
+#~ msgid "0 voters"
+#~ msgstr "投票者なし"
+
+#~ msgid "votes"
+#~ msgstr "票"
+
+#~ msgid "0 votes"
+#~ msgstr "0票"
+
+#~ msgid "users"
+#~ msgstr "人のユーザ"
+
+#~ msgid "0 users"
+#~ msgstr "ユーザなし"
+
+#~ msgid "hits"
+#~ msgstr "ヒット"
+
+#~ msgid "0 hits"
+#~ msgstr "0 ヒット"
+
+#~ msgid "albums"
+#~ msgstr "アルバム"
+
+#~ msgid "images"
+#~ msgstr "画像"
+
+#~ msgid "no items"
+#~ msgstr "0 個のアイテム"
+
+#~ msgid "times"
+#~ msgstr "回"
+
+#~ msgid "sub-albums"
+#~ msgstr "サブアルバム"
+
+#~ msgid "no votes"
+#~ msgstr "投票なし"
+
+#~ msgid "0 items"
+#~ msgstr "0 アイテム"
 
 #~ msgid "Name or email:"
 #~ msgstr "名前かメールアドレス:"
