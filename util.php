@@ -604,6 +604,9 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
       break;
    } // end switch ($wmAlign)
 
+   $wmAlignX = floor($wmAlignX);
+   $wmAlignY = floor($wmAlignY);
+
    // Build command lines arguements
    switch($gallery->app->graphics)
    {
