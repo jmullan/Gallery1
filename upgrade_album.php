@@ -119,26 +119,28 @@ function find_albums(&$results, $album="") {
 		}
 	} 
 }
+doctype();
 ?>
-
 <html>
 <head>
   <title><?php echo _("Upgrade Albums") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<center>
-<span class="title">
-<?php echo _("Upgrade Albums") ?>
-</span>
-</center>
-<p>
-<?php echo _("The following albums in your gallery were created with an older version of the software and are out of date.") ?>  
-<?php echo _("This is not a problem!") ?>  
-<?php echo _("We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed.") ?>  
-<?php echo _("None of your photos will be harmed in any way by this process.") ?>  
-<?php echo _("Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future.") ?>  
 
+<p align="center" class="popuphead"><?php echo _("Upgrade Albums") ?></p>
+<p>
+<?php 
+	echo _("The following albums in your gallery were created with an older version of the software and are out of date.");
+	echo '<br>';
+	echo _("This is not a problem!");
+	echo '<br><br>';
+	echo _("We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed.");
+	echo '<br>';
+	echo _("None of your photos will be harmed in any way by this process.");
+	echo '<br>';
+	echo _("Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future.");
+?>  
 <p>
 
 <?php

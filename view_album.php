@@ -121,8 +121,7 @@ $breadCount = 0;
 $breadtext = array();
 $pAlbum = $gallery->album;
 $depth=0;
-$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" alt="' . _("navigate UP") .'" title="' .
-_("navigate UP") .'" border="0">';
+$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
 do {
   if (!strcmp($pAlbum->fields["returnto"], "no")) {
     break;
@@ -900,13 +899,14 @@ if ($numPhotos) {
 				} else {
 					$label = _("Photo");
 				}
+
 			       	if (canVote()) {
 				       	echo '</td></tr>';
 					echo "\n" . '<tr><td align="center">';
 				}
 				echo("\n\t<select style='FONT-SIZE: 10px;' name='s$i' ".
 					"onChange='imageEditChoice(document.vote_form.s$i)'>");
-				echo("\n\t\t<option value=''>&laquo; ". _("Edit") . " $label &raquo;</option>");
+				echo("\n\t\t<option value=''>&laquo; ". sprintf(_("Edit %s"), $label) . " &raquo;</option>");
 			}
 			if ($gallery->album->getItemOwnerModify() && 
 			    $gallery->album->isItemOwner($gallery->user->getUid(), $i) && 
@@ -919,8 +919,8 @@ if ($numPhotos) {
 			    !$gallery->album->isAlbum($i) &&
 			    !$gallery->album->isMovie($id) &&
 			    !$gallery->user->canWriteToAlbum($gallery->album)) {
-				showChoice("Edit Thumbnail", "edit_thumb.php", array("index" => $i));
-				showChoice("Rotate/Flip $label", "rotate_photo.php", array("index" => $i));
+				showChoice(_("Edit Thumbnail"), "edit_thumb.php", array("index" => $i));
+				showChoice(sprintf(_("Rotate/Flip %s"),$label), "rotate_photo.php", array("index" => $i));
 				if (strlen($gallery->app->watermarkDir)) {
 					showChoice(_("Edit Watermark"), "edit_watermark.php", array("index" => $i));
 				}
@@ -929,17 +929,15 @@ if ($numPhotos) {
 			    $gallery->album->isItemOwner($gallery->user->getUid(), $i) && 
 			    !$gallery->album->isAlbum($i) &&
 			    !$gallery->user->canDeleteFromAlbum($gallery->album)) {
-				showChoice("Delete $label", "delete_photo.php", array("id" => $id));
+				showChoice(sprintf(_("Delete %s"), $label), "delete_photo.php", array("id" => $id));
 			}
 			if ($gallery->user->canChangeTextOfAlbum($gallery->album) && $showAdminForm) {
 				if (isset($myAlbum)) {
 					if ($gallery->user->canChangeTextOfAlbum($myAlbum)) {	
-						_("title");
 						showChoice(_("Edit Title"),
 							"edit_field.php", 
 							array("set_albumName" => $myAlbum->fields["name"],
 								"field" => "title")) . 
-						_("description");
 						showChoice(_("Edit Description"),
 							"edit_field.php",
 							array("set_albumName" => $myAlbum->fields["name"],
@@ -958,7 +956,7 @@ if ($numPhotos) {
 			if ($gallery->user->canWriteToAlbum($gallery->album) && $showAdminForm) {
 				if (!$gallery->album->isMovie($id) && !$gallery->album->isAlbum($i)) {
 					showChoice(_("Edit Thumbnail"), "edit_thumb.php", array("index" => $i));
-					showChoice(_("Rotate/Flip") ." $label", "rotate_photo.php", array("index" => $i));
+					showChoice(sprintf(_("Rotate/Flip %s"), $label), "rotate_photo.php", array("index" => $i));
 					if (!empty($gallery->app->watermarkDir)) {
 						showChoice(_("Edit Watermark"), "edit_watermark.php", array("index" => $i));
 					}
@@ -967,7 +965,7 @@ if ($numPhotos) {
 					 /* Show Highlight Album/Photo only when this i a photo, or Album has a highlight */
 					$nestedAlbum=$gallery->album->getNestedAlbum($i);
 					if (!$gallery->album->isAlbum($i) || $nestedAlbum->hasHighlight()) {
-						showChoice(_('Highlight') . " $label", 'do_command.php', array('cmd' => 'highlight', 'index' => $i));
+						showChoice(sprintf(_("Highlight %s"),$label), 'do_command.php', array('cmd' => 'highlight', 'index' => $i));
 					}
 				}
 				if ($gallery->album->isAlbum($i)) {
@@ -976,30 +974,30 @@ if ($numPhotos) {
 						      "set_albumName" => $gallery->album->getAlbumName($i),
 							"return" => urlencode(makeGalleryUrl("view_album.php"))));
 				}
-				showChoice(_("Move ") . $label, "move_photo.php", array("index" => $i, 'reorder' => 0));
-				showChoice(_("Reorder ") . $label, "move_photo.php", array("index" => $i, 'reorder' => 1));
+				showChoice(sprintf(_("Move %s"),$label), "move_photo.php", array("index" => $i, 'reorder' => 0));
+				showChoice(sprintf(_("Reorder %s"),$label), "move_photo.php", array("index" => $i, 'reorder' => 1));
 				if (!$gallery->album->isAlbum($i)) {
-					showChoice(_("Copy ") . $label, "copy_photo.php", array("index" => $i));
+					showChoice(sprintf(_("Copy %s"),$label), "copy_photo.php", array("index" => $i));
 				}
 			}
 			if ($gallery->user->isAdmin() || ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) || 
 				$gallery->album->isItemOwner($gallery->user->getUid(), $i)) && 
 				$showAdminForm) {
 				if ($gallery->album->isHidden($i)) {
- 					showChoice(_("Show") . " $label", "do_command.php", array("cmd" => "show", "index" => $i));
+ 					showChoice(sprintf(_("Show %s"), $label), "do_command.php", array("cmd" => "show", "index" => $i));
 				} else {
-					showChoice(_("Hide") . " $label", "do_command.php", array("cmd" => "hide", "index" => $i));
+					showChoice(sprintf(_("Hide %s"), $label), "do_command.php", array("cmd" => "hide", "index" => $i));
 				}
 			}
 			if ($gallery->user->canDeleteFromAlbum($gallery->album) && $showAdminForm) {
 				if($gallery->album->isAlbum($i)) {
 					if($gallery->user->canDeleteAlbum($myAlbum)) {
-						showChoice(_("Delete") . " $label", "delete_photo.php",
+						showChoice(sprintf(_("Delete %s"),$label), "delete_photo.php",
 							array("id" => $myAlbum->fields["name"],
 							      "albumDelete" => 1));
 					}
 				} else {
-					showChoice(_("Delete") ." $label", "delete_photo.php",
+					showChoice(sprintf(_("Delete %s"), $label), "delete_photo.php",
 						   array("id" => $id));
 				}
 			}

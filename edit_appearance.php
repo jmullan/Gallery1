@@ -146,6 +146,7 @@ doctype();
 			'KOI8-R'
 	);
 	
+/*
 	if (function_exists('version_compare')) {
 		if ( in_array($gallery->charset, $supportedCharsets) ||		// PHP >=4.1.0, but < 4.3.2
 		   ( version_compare(phpversion(), "4.3.2") >=0 && in_array($gallery->charset, $supportedCharsetsNewerPHP) ) ) {
@@ -157,8 +158,10 @@ doctype();
 	else {
 		$album_title=htmlentities($gallery->album->fields["title"]);
 	}
+*/
+$album_title=$gallery->album->fields["title"];
 ?>
-	<td><input type="text" name="title" value="<?php echo $album_title; ?>"></td>
+	<td><input type="text" name="title" value="<?php echo $gallery->album->fields["title"]; ?>"></td>
 </tr>
 <tr>
 	<td class="popup"><?php echo _("Background Color") ?></td>
