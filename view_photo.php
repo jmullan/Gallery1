@@ -241,24 +241,26 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   <style type="text/css">
 <?php
 	// the link colors have to be done here to override the style sheet
-	if ($gallery->album->fields["linkcolor"]) {
+	if (!empty($gallery->album->fields["linkcolor"])) {
 ?>      
     A:link, A:visited, A:active
-      { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
+      { color: <?php echo $gallery->album->fields['linkcolor'] ?>; }
     A:hover
       { color: #ff6600; }
 <?php 
 	}       
-	if ($gallery->album->fields["bgcolor"]) {
-        	echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
+	if (!empty($gallery->album->fields["bgcolor"])) {
+        	echo "BODY { background-color:" . $gallery->album->fields['bgcolor'] . "; }";
 	}       
-	if (isset($gallery->album->fields["background"]) && $gallery->album->fields["background"]) {
-        	echo "BODY { background-image:url(".$gallery->album->fields['background']."); } ";
+	if (!empty($gallery->album->fields["background"])) {
+        	echo "BODY { background-image:url(" . $gallery->album->fields['background'] . "); } ";
 	} 
-	if ($gallery->album->fields["textcolor"]) {
-        	echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
-		echo ".head {color:".$gallery->album->fields[textcolor]."; }";
-		echo ".headbox {background-color:".$gallery->album->fields[bgcolor]."; }";
+	if (!empty($gallery->album->fields["textcolor"])) {
+        	echo "BODY, TD, P, DIV, SPAN { color:" . $gallery->album->fields['textcolor'] . "; }\n";
+		echo ".head { color:" . $gallery->album->fields['textcolor'] . "; }\n";
+		if (!empty($gallery->album->fields["bgcolor"])) {
+			echo ".headbox { background-color:" . $gallery->album->fields['bgcolor'] . "; }\n";
+		}
 	}       
 ?> 
   </style> 

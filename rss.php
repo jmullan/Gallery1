@@ -60,10 +60,6 @@ function bestDate($album) {
 	}
 }
 
-function removeUnprintable($string) {
-	return ereg_replace("[^[:print:]]", "", $string);
-}
-
 function getThumbs($album) {
 	$tags = "border=0 vspace=2 hspace=0 align=top";
 	
@@ -129,7 +125,7 @@ foreach ($albumDB->albumList as $album) {
 		"link" => makeAlbumUrl($album->fields["name"]),
 		"guid" => array($album->fields['guid'], array("isPermaLink" => "false")),
 		"!date" => bestDate($album),
-		"title" => htmlspecialchars(removeUnprintable($album->fields["title"])));
+		"title" => htmlspecialchars($album->fields["title"]));
 
 	// DATE TAGS
 
@@ -196,22 +192,22 @@ foreach ($albumDB->albumList as $album) {
 			$album->load($album->fields["name"], TRUE);
 		}
 		
-		$albumInfo["description"]  = removeUnprintable($album->fields["description"]) . '<p />';
+		$albumInfo["description"]  = $album->fields["description"] . '<p />';
 		$albumInfo["description"] .= getThumbs($album);
 	} elseif ($gallery->app->rssMode == "thumbs-with-captions") {
 		if (!$album->transient->photosloaded) {
 			$album->load($album->fields["name"], TRUE);
 		}
 
-		$albumInfo["description"]  = removeUnprintable($album->fields["description"]) . '<p />';
+		$albumInfo["description"]  = $album->fields["description"] . '<p />';
 		$albumInfo["description"] .= getThumbsAndCaptions($album);
 	} elseif ($gallery->app->rssMode == "highlight" && isset($highlight)) {
 		$url = makeAlbumUrl($album->fields["name"]);
 		$imgtag = $highlight->thumbnail->getTag($base, 0, 0, 'border=0');
 		$albumInfo["description"]  = "<a href=\"$url\">$imgtag</a><br>";
-		$albumInfo["description"] .= removeUnprintable($album->fields["description"]);      
+		$albumInfo["description"] .= $album->fields["description"];
 	} else { # mode = "basic"
-		$albumInfo["description"] = removeUnprintable($album->fields["description"]);
+		$albumInfo["description"] = $album->fields["description"];
 	}
 
 	$albumInfo["description"] = htmlspecialchars($albumInfo["description"]);
