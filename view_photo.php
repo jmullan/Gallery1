@@ -23,7 +23,7 @@ $numPhotos = $album->numPhotos(editMode());
 $next = $index+1;
 if ($next >= $numPhotos) $next = 1;
 $prev = $index-1;
-if ($prev <= 0) $prev = $numPhotos - 1;
+if ($prev <= 0) $prev = $numPhotos;
 
 /*
  * We might be prev/next navigating using this page
@@ -60,7 +60,7 @@ if ($album->fields["linkcolor"]) {
 </td>
 <td width=33% align=center>
 <font size=+1 face=<?=$album->fields["font"]?>>
-<?=$index+1?> of <?=$numPhotos?>
+<?=$index?> of <?=$numPhotos?>
 </td>
 <td width=33% align=right>
 <font size=+2 face=<?=$album->fields["font"]?>>

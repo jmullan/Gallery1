@@ -32,7 +32,7 @@ if ($page > $maxPages) {
 	$page = $maxPages;
 }
 
-$start = ($page - 1) * $perPage;
+$start = ($page - 1) * $perPage + 1;
 $end = $start + $perPage;
 
 $nextPage = $page + 1;
@@ -114,8 +114,8 @@ if ($numPhotos) {
 		/* Do the picture row */
 		echo("<tr>");
 		$i = $start + $rowCount * $cols;
-		$j = 0;
-		while ($j < $cols && $i < $numPhotos) {
+		$j = 1;
+		while ($j <= $cols && $i <= $numPhotos) {
 			if (!editMode() && $album->isHidden($i)) {
 				$i++;
 				if ($i >= $numPhotos) {
@@ -123,7 +123,6 @@ if ($numPhotos) {
 				}
 			}
 
-			echo("<!-- $i / $j / $numPhotos -->");
 			echo("<td width=$width align=center valign=middle>");
 			if ($album->isMovie($i)) {
 				echo("<a href=" . $album->getPhotoPath($i) . " target=other>" . 
@@ -142,8 +141,8 @@ if ($numPhotos) {
 		/* Now do the caption row */
 		echo("<tr>");
 		$i = $start + $rowCount * $cols;
-		$j = 0;
-		while ($j < $cols && $i < $numPhotos) {
+		$j = 1;
+		while ($j <= $cols && $i <= $numPhotos) {
 			if (!editMode() && $album->isHidden($i)) {
 				$i++;
 				if ($i >= $numPhotos) {
