@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.3.5_ML10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-23 12:48+0100\n"
+"POT-Creation-Date: 2003-07-28 09:34+0100\n"
 "PO-Revision-Date: 2003-07-16 14:18+0100\n"
 "Last-Translator: Joan McGalliard <jefmcg@users.sourceforge.net>\n"
 "Language-Team: UK_English <jefmcg@users.sourceforge.net>\n"
@@ -143,7 +143,7 @@ msgid "A Java application that runs on Mac, Windows and Unix"
 msgstr ""
 
 #: ../add_photos.php:147 ../setup/check_netpbm.php:65
-#: ../setup/check_imagemagick.php:66 ../setup/confirm.inc:293
+#: ../setup/check_imagemagick.php:66 ../setup/confirm.inc:290
 #: ../setup/write.inc:95
 msgid "Note"
 msgstr ""
@@ -255,7 +255,8 @@ msgid "no pages"
 msgstr ""
 
 #: ../albums.php:128
-msgid "Welcome"
+#, php-format
+msgid "Welcome, %s"
 msgstr ""
 
 #: ../albums.php:132
@@ -467,12 +468,8 @@ msgid "done"
 msgstr ""
 
 #: ../classes/Album.php:210
-msgid "Upgrading item"
-msgstr ""
-
-#: ../classes/Album.php:210 ../layout/navphoto.inc:99 ../slideshow.php:346
-#: ../slideshow.php:440 ../slideshow_low.php:266 ../slideshow_low.php:481
-msgid "of"
+#, php-format
+msgid "Upgrading item %d of %d . . . "
 msgstr ""
 
 #: ../classes/Album.php:761 ../classes/Album.php:770
@@ -517,34 +514,35 @@ msgid "Unable to create dir"
 msgstr ""
 
 #: ../classes/gallery/UserDB.php:43
-msgid "exists, but is not a directory!"
+#, php-format
+msgid "%s exists, but is not a directory!"
 msgstr ""
 
-#: ../classes/gallery/UserDB.php:239
+#: ../classes/gallery/UserDB.php:240
 msgid "Username must be at least 2 characters"
 msgstr ""
 
-#: ../classes/gallery/UserDB.php:243
+#: ../classes/gallery/UserDB.php:244
 msgid "Username must be at most 15 characters"
 msgstr ""
 
-#: ../classes/gallery/UserDB.php:247
+#: ../classes/gallery/UserDB.php:248
 msgid "Username must contain only letters or digits"
 msgstr ""
 
-#: ../classes/gallery/UserDB.php:253
+#: ../classes/gallery/UserDB.php:254
 msgid "is reserved and cannot be used."
 msgstr ""
 
-#: ../classes/gallery/UserDB.php:258
+#: ../classes/gallery/UserDB.php:259
 msgid "A user with the username of"
 msgstr ""
 
-#: ../classes/gallery/UserDB.php:258
+#: ../classes/gallery/UserDB.php:259
 msgid "already exists"
 msgstr ""
 
-#: ../classes/gallery/UserDB.php:266
+#: ../classes/gallery/UserDB.php:267
 msgid "Password must be at least 3 characters"
 msgstr ""
 
@@ -557,28 +555,28 @@ msgid "Passwords do not match!"
 msgstr ""
 
 #: ../create_user.php:74 ../edit_appearance.php:145 ../modify_user.php:110
-#: ../modify_user.php:113 ../setup/config_data.inc:312
-#: ../setup/config_data.inc:318 ../setup/config_data.inc:353
-#: ../setup/config_data.inc:376 ../setup/config_data.inc:382
-#: ../setup/config_data.inc:461 ../setup/config_data.inc:467
-#: ../setup/config_data.inc:479 ../setup/config_data.inc:484
-#: ../setup/config_data.inc:496 ../setup/config_data.inc:502
-#: ../setup/config_data.inc:508 ../setup/config_data.inc:514
-#: ../setup/config_data.inc:528 ../setup/config_data.inc:535
-#: ../setup/config_data.inc:542 ../setup/config_data.inc:549
+#: ../modify_user.php:113 ../setup/config_data.inc:310
+#: ../setup/config_data.inc:316 ../setup/config_data.inc:351
+#: ../setup/config_data.inc:374 ../setup/config_data.inc:380
+#: ../setup/config_data.inc:460 ../setup/config_data.inc:466
+#: ../setup/config_data.inc:483 ../setup/config_data.inc:488
+#: ../setup/config_data.inc:500 ../setup/config_data.inc:506
+#: ../setup/config_data.inc:512 ../setup/config_data.inc:518
+#: ../setup/config_data.inc:532 ../setup/config_data.inc:539
+#: ../setup/config_data.inc:546 ../setup/config_data.inc:553
 msgid "yes"
 msgstr ""
 
 #: ../create_user.php:74 ../edit_appearance.php:145 ../modify_user.php:110
-#: ../modify_user.php:113 ../setup/config_data.inc:312
-#: ../setup/config_data.inc:318 ../setup/config_data.inc:353
-#: ../setup/config_data.inc:376 ../setup/config_data.inc:382
-#: ../setup/config_data.inc:461 ../setup/config_data.inc:467
-#: ../setup/config_data.inc:479 ../setup/config_data.inc:484
-#: ../setup/config_data.inc:496 ../setup/config_data.inc:502
-#: ../setup/config_data.inc:508 ../setup/config_data.inc:514
-#: ../setup/config_data.inc:528 ../setup/config_data.inc:535
-#: ../setup/config_data.inc:542 ../setup/config_data.inc:549
+#: ../modify_user.php:113 ../setup/config_data.inc:310
+#: ../setup/config_data.inc:316 ../setup/config_data.inc:351
+#: ../setup/config_data.inc:374 ../setup/config_data.inc:380
+#: ../setup/config_data.inc:460 ../setup/config_data.inc:466
+#: ../setup/config_data.inc:483 ../setup/config_data.inc:488
+#: ../setup/config_data.inc:500 ../setup/config_data.inc:506
+#: ../setup/config_data.inc:512 ../setup/config_data.inc:518
+#: ../setup/config_data.inc:532 ../setup/config_data.inc:539
+#: ../setup/config_data.inc:546 ../setup/config_data.inc:553
 msgid "no"
 msgstr ""
 
@@ -714,16 +712,16 @@ msgstr ""
 msgid "Borders"
 msgstr ""
 
-#: ../edit_appearance.php:128 ../setup/config_data.inc:424
-#: ../setup/config_data.inc:454
+#: ../edit_appearance.php:128 ../setup/config_data.inc:423
+#: ../setup/config_data.inc:453
 msgid "off"
 msgstr ""
 
-#: ../edit_appearance.php:132 ../setup/config_data.inc:410
+#: ../edit_appearance.php:132 ../setup/config_data.inc:409
 msgid "Border color"
 msgstr "Border colour"
 
-#: ../edit_appearance.php:136 ../setup/config_data.inc:445
+#: ../edit_appearance.php:136 ../setup/config_data.inc:444
 msgid "Thumbnail size"
 msgstr ""
 
@@ -755,11 +753,11 @@ msgstr ""
 msgid "Which photo printing service<br>do you want to let visitors use?"
 msgstr ""
 
-#: ../edit_appearance.php:174 ../setup/config_data.inc:473 ../util.php:174
+#: ../edit_appearance.php:174 ../setup/config_data.inc:472 ../util.php:174
 msgid "none"
 msgstr ""
 
-#: ../edit_appearance.php:174 ../setup/config_data.inc:473
+#: ../edit_appearance.php:174
 msgid "shutterfly without donation"
 msgstr ""
 
@@ -1075,7 +1073,7 @@ msgstr ""
 msgid "Album"
 msgstr ""
 
-#: ../layout/commentboxtop.inc:19 ../view_album.php:270 ../view_album.php:500
+#: ../layout/commentboxtop.inc:19 ../view_album.php:500
 msgid "hidden"
 msgstr ""
 
@@ -1109,6 +1107,10 @@ msgstr ""
 
 #: ../layout/navphoto.inc:76 ../layout/navphoto.inc:81
 msgid "Previous Photo"
+msgstr ""
+
+#: ../layout/navphoto.inc:99
+msgid "%i of %i"
 msgstr ""
 
 #: ../layout/navphoto.inc:117 ../layout/navphoto.inc:121
@@ -1324,7 +1326,7 @@ msgstr ""
 msgid "Use filenames as captions"
 msgstr ""
 
-#: ../publish_xp.php:161 ../publish_xp.php:285
+#: ../publish_xp.php:161 ../publish_xp.php:286
 msgid "Create New Album"
 msgstr ""
 
@@ -1332,7 +1334,7 @@ msgstr ""
 msgid "No album specified!"
 msgstr ""
 
-#: ../publish_xp.php:221 ../publish_xp.php:323
+#: ../publish_xp.php:221 ../publish_xp.php:324
 msgid "Press the 'Back' button and try again!"
 msgstr ""
 
@@ -1345,30 +1347,31 @@ msgid "User cannot create ROOT level album."
 msgstr ""
 
 #: ../publish_xp.php:255
-msgid "User cannot create nested album in"
+#, php-format
+msgid "User cannot create nested album in %s."
 msgstr ""
 
-#: ../publish_xp.php:259
+#: ../publish_xp.php:260
 msgid "No Parent Album Specified!"
 msgstr ""
 
-#: ../publish_xp.php:286
+#: ../publish_xp.php:287
 msgid "Enter New Album Title"
 msgstr ""
 
-#: ../publish_xp.php:290
+#: ../publish_xp.php:291
 msgid "Select Parent Album"
 msgstr ""
 
-#: ../publish_xp.php:296
+#: ../publish_xp.php:297
 msgid "NEW TOP LEVEL ALBUM"
 msgstr ""
 
-#: ../publish_xp.php:461
+#: ../publish_xp.php:462
 msgid "Photo Upload"
 msgstr ""
 
-#: ../publish_xp.php:461
+#: ../publish_xp.php:462
 msgid "Upload Photos to"
 msgstr ""
 
@@ -1622,7 +1625,7 @@ msgstr ""
 msgid "Search Again"
 msgstr ""
 
-#: ../search.php:74 ../search.php:236 ../setup/config_data.inc:157
+#: ../search.php:74 ../search.php:236 ../setup/config_data.inc:154
 #: ../slideshow.php:476 ../slideshow_low.php:374 ../view_album.php:128
 #: ../view_photo.php:182
 msgid "Gallery"
@@ -1830,7 +1833,8 @@ msgid "to see more details"
 msgstr ""
 
 #: ../setup/check_netpbm.php:119 ../setup/check_imagemagick.php:111
-msgid "Checking"
+#, php-format
+msgid "Checking %s"
 msgstr ""
 
 #: ../setup/check_netpbm.php:126 ../setup/check_imagemagick.php:118
@@ -1933,6 +1937,10 @@ msgstr ""
 msgid "Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from %s."
 msgstr ""
 
+#: ../setup/config_data.inc:21
+msgid "<b>Note</b>:  They also have binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead."
+msgstr ""
+
 #: ../setup/config_data.inc:26
 #, php-format
 msgid "<b>Note:</b> Your webserver is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."
@@ -1980,546 +1988,532 @@ msgid "Allow the Gallery <b>.htaccess</b> file to set application specific confi
 msgstr ""
 
 #: ../setup/config_data.inc:61
-msgid "Apache is not obeying your .htaccess file."
+msgid "Apache is not obeying your .htaccess file.  Try entering the following into your web server's httpd.conf file"
 msgstr ""
 
-#: ../setup/config_data.inc:62
-msgid "Try entering the following into your web server's httpd.conf file"
-msgstr ""
-
-#: ../setup/config_data.inc:70
+#: ../setup/config_data.inc:69
 #, php-format
 msgid "Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behaviour if you put ' (single-quote), \" (double quote) or \\ (backslash) characters in titles or captions in the gallery."
 msgstr ""
 
-#: ../setup/config_data.inc:74
+#: ../setup/config_data.inc:73
 msgid "Magic quotes are on.  Your webserver owner can turn them off by putting"
 msgstr ""
 
-#: ../setup/config_data.inc:77
+#: ../setup/config_data.inc:76
 msgid "in your php.ini file"
 msgstr ""
 
-#: ../setup/config_data.inc:80
+#: ../setup/config_data.inc:79
 msgid "Check to see if your webserver is compiled with <b>mod_rewrite</b>.  Mod_rewrite allows the Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."
 msgstr ""
 
-#: ../setup/config_data.inc:82
+#: ../setup/config_data.inc:81
 msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on I'd suggest that you make sure that your <b>.htaccess</b> file works and then if it still doesn't work you may need to reconfigure and rebuild Apache with this flag:"
 msgstr ""
 
-#: ../setup/config_data.inc:88
+#: ../setup/config_data.inc:87
 msgid "Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc).  You need to have NetPBM <b>or</b> ImageMagick installed."
 msgstr ""
 
-#: ../setup/config_data.inc:90
+#: ../setup/config_data.inc:89
 msgid "I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK --  you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices:"
 msgstr ""
 
-#: ../setup/config_data.inc:95
+#: ../setup/config_data.inc:94
 msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK -- that just means you'll have to specify the path to NetPBM by hand on the following page"
 msgstr ""
 
-#: ../setup/config_data.inc:101
-msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images"
+#: ../setup/config_data.inc:100
+msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc).  You need to have ImageMagick <b>or</b> NetPBM installed."
 msgstr ""
 
 #: ../setup/config_data.inc:102
-msgid "rotate, resize, make thumbnails, etc"
-msgstr ""
-
-#: ../setup/config_data.inc:103
-msgid "You need to have ImageMagick <b>or</b> NetPBM installed."
-msgstr ""
-
-#: ../setup/config_data.inc:105
 msgid "I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  "
 msgstr ""
 
-#: ../setup/config_data.inc:111
+#: ../setup/config_data.inc:108
 msgid "Check to see if jhead is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
 msgstr ""
 
-#: ../setup/config_data.inc:113
+#: ../setup/config_data.inc:110
 #, php-format
 msgid "I can't find jhead.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jhead by hand on the following page.  If it's not installed, you can install it yourself.  jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at %sthe jhead homepage%s."
 msgstr ""
 
-#: ../setup/config_data.inc:120
+#: ../setup/config_data.inc:117
 msgid "Check to see if jpegtran is installed so that Gallery can perform lossless rotations"
 msgstr ""
 
-#: ../setup/config_data.inc:122
+#: ../setup/config_data.inc:119
 #, php-format
 msgid "I can't find jpegtran.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jpegtran by hand on the following page.  If it's not installed, you can install it yourself.  jpegtran is a freely distributable tool distributed by the Independent JPEG Group as part of libjpeg.  Source may be found at %sthe IJG homepage%s.  Binaries may be found at %sthe JPEG club website%s or in the libjpeg package of Linux distributions."
 msgstr ""
 
-#: ../setup/config_data.inc:129
+#: ../setup/config_data.inc:126
 msgid "Check to see if Apache is compiled with gettext so that Gallery can run in many languages"
 msgstr ""
 
-#: ../setup/config_data.inc:131
+#: ../setup/config_data.inc:128
 #, php-format
 msgid "gettext in not installed.  To include gettext support, you need to recompile apache.  For more information see %s.  However, multilanguage support is still available in Gallery without gettext, but the pages may take slightly longer to load."
 msgstr ""
 
-#: ../setup/config_data.inc:136
+#: ../setup/config_data.inc:133
 msgid "Check to see what languages are available"
 msgstr ""
 
-#: ../setup/config_data.inc:141
+#: ../setup/config_data.inc:138
 msgid "Testing to see if which locales are absent"
 msgstr ""
 
-#: ../setup/config_data.inc:155
+#: ../setup/config_data.inc:152
 msgid "Gallery Title"
 msgstr ""
 
-#: ../setup/config_data.inc:156
+#: ../setup/config_data.inc:153
 msgid "The name of your gallery.  Eg. <i>My Cool Photos</i>"
 msgstr ""
 
-#: ../setup/config_data.inc:161
+#: ../setup/config_data.inc:158
 msgid "Admin password"
 msgstr ""
 
-#: ../setup/config_data.inc:162
+#: ../setup/config_data.inc:159
+msgid "REQUIRED"
+msgstr ""
+
+#: ../setup/config_data.inc:160
 msgid "The password for the <i>admin</i> account.  Unfortunately, you're required to re-enter this every time you reconfigure Gallery.  We'll fix this in a future release!"
 msgstr ""
 
-#: ../setup/config_data.inc:168
+#: ../setup/config_data.inc:166
 msgid "Graphics suite to use?"
 msgstr ""
 
-#: ../setup/config_data.inc:169
+#: ../setup/config_data.inc:167
 msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
 msgstr ""
 
-#: ../setup/config_data.inc:170
+#: ../setup/config_data.inc:168
 msgid "NetPBM"
 msgstr ""
 
-#: ../setup/config_data.inc:170
+#: ../setup/config_data.inc:168
 msgid "ImageMagick"
 msgstr ""
 
-#: ../setup/config_data.inc:175
+#: ../setup/config_data.inc:173
 msgid "Path to NetPBM"
 msgstr ""
 
-#: ../setup/config_data.inc:176
+#: ../setup/config_data.inc:174
 msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  Eg. <i>/usr/local/netpbm</i> or <i>/usr/local/bin</i> or <i>c:\\apps\\netpbm</i>"
 msgstr ""
 
-#: ../setup/config_data.inc:179
+#: ../setup/config_data.inc:177
 msgid "I can't find NetPBM at the location you provided."
 msgstr ""
 
-#: ../setup/config_data.inc:188
+#: ../setup/config_data.inc:186
 msgid "PNM to JPEG converter"
 msgstr ""
 
-#: ../setup/config_data.inc:189
+#: ../setup/config_data.inc:187
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr ""
 
-#: ../setup/config_data.inc:190
+#: ../setup/config_data.inc:188
 msgid "pnmtojpeg"
 msgstr ""
 
-#: ../setup/config_data.inc:190
+#: ../setup/config_data.inc:188
 msgid "ppmtojpeg"
 msgstr ""
 
-#: ../setup/config_data.inc:195
+#: ../setup/config_data.inc:193
 msgid "Path to ImageMagick"
 msgstr ""
 
-#: ../setup/config_data.inc:196
+#: ../setup/config_data.inc:194
 msgid "The path to the directory containing ImageMagick on your system."
 msgstr ""
 
-#: ../setup/config_data.inc:200
+#: ../setup/config_data.inc:198
 msgid "I can't find ImageMagick at the location you provided."
 msgstr ""
 
-#: ../setup/config_data.inc:208
+#: ../setup/config_data.inc:206
 msgid "Highlight size"
 msgstr ""
 
-#: ../setup/config_data.inc:209
+#: ../setup/config_data.inc:207
 msgid "The target size (in pixels) of thumbnails shown in the gallery page (highlight images)"
 msgstr ""
 
-#: ../setup/config_data.inc:215
+#: ../setup/config_data.inc:213
 msgid "The filesystem path to the 'zipinfo' binary.  This is optional so if you don't have it, don't worry about it too much."
 msgstr ""
 
-#: ../setup/config_data.inc:225
+#: ../setup/config_data.inc:223
 msgid "The filesystem path to the 'unzip' binary.  This is optional so if you don't have it, don't worry about it too much."
 msgstr ""
 
-#: ../setup/config_data.inc:235
+#: ../setup/config_data.inc:233
 #, php-format
 msgid "The filesystem path to the 'jhead' exif parser.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."
 msgstr ""
 
-#: ../setup/config_data.inc:246
+#: ../setup/config_data.inc:244
 #, php-format
 msgid "The filesystem path to the 'jpegtran' utility.  This is optional so if you don't have it, don't worry about it too much.  Eg. %s or %s."
 msgstr ""
 
-#: ../setup/config_data.inc:249 ../setup/config_data.inc:331
-#: ../setup/config_data.inc:344 ../setup/config_data.inc:527
-#: ../setup/config_data.inc:534 ../setup/config_data.inc:541
-#: ../setup/config_data.inc:548
+#: ../setup/config_data.inc:247 ../setup/config_data.inc:329
+#: ../setup/config_data.inc:342 ../setup/config_data.inc:531
+#: ../setup/config_data.inc:538 ../setup/config_data.inc:545
+#: ../setup/config_data.inc:552 ../setup/functions.inc:651
+#: ../setup/functions.inc:679
 #, php-format
 msgid "this is new in version %s"
 msgstr ""
 
-#: ../setup/config_data.inc:258
+#: ../setup/config_data.inc:256
 msgid "Thumbnail image"
 msgstr ""
 
-#: ../setup/config_data.inc:259
+#: ../setup/config_data.inc:257
 #, php-format
 msgid "The filesystem path to the thumbnail image to show for movies.  Eg. %s"
 msgstr ""
 
-#: ../setup/config_data.inc:264
+#: ../setup/config_data.inc:262
 msgid "Album directory"
 msgstr ""
 
-#: ../setup/config_data.inc:265
+#: ../setup/config_data.inc:263
 #, php-format
 msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty -- Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s.)"
 msgstr ""
 
-#: ../setup/config_data.inc:273
+#: ../setup/config_data.inc:271
 msgid "Temporary directory"
 msgstr ""
 
-#: ../setup/config_data.inc:274
+#: ../setup/config_data.inc:272
 #, php-format
 msgid "The filesystem path to a temporary directory.  Eg. %s or %s.  Note that if you have open_basedir configured on your system, then this temporary directory must be inside the open_basedir path!  In that case you may need to create the tmp directory yourself and make sure that it's writable by the webserver process."
 msgstr ""
 
-#: ../setup/config_data.inc:283
+#: ../setup/config_data.inc:281
 #, php-format
 msgid "The full URL to the Gallery web application.  Eg. %s."
 msgstr ""
 
-#: ../setup/config_data.inc:291
+#: ../setup/config_data.inc:289
 msgid "Albums"
 msgstr ""
 
-#: ../setup/config_data.inc:292
+#: ../setup/config_data.inc:290
 #, php-format
 msgid "The full URL to your album directory (specified above) on your web server.  Eg. %s."
 msgstr ""
 
-#: ../setup/config_data.inc:300
+#: ../setup/config_data.inc:298
 msgid "Mirror sites"
 msgstr ""
 
-#: ../setup/config_data.inc:301
+#: ../setup/config_data.inc:299
 #, php-format
 msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  Eg.%s."
 msgstr ""
 
-#: ../setup/config_data.inc:310
+#: ../setup/config_data.inc:308
 msgid "Show the album tree"
 msgstr ""
 
-#: ../setup/config_data.inc:311
+#: ../setup/config_data.inc:309
 msgid "If you turn this option on, you'll see a complete list of all sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier (although it can severely clutter the appearance of the top Gallery page).  Set to <b>no</b> by default."
 msgstr ""
 
-#: ../setup/config_data.inc:316
+#: ../setup/config_data.inc:314
 msgid "Auto-rotate images"
 msgstr ""
 
-#: ../setup/config_data.inc:317
+#: ../setup/config_data.inc:315
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.  Requires Jhead EXIF parser v.1.9 or greater (see above)."
 msgstr ""
 
-#: ../setup/config_data.inc:322
+#: ../setup/config_data.inc:320
 msgid "Which language do you want as your default language"
 msgstr ""
 
-#: ../setup/config_data.inc:324
-msgid "This is what you will see as admin, and what users will see no other preference is set."
+#: ../setup/config_data.inc:322
+msgid "This is what you will see as admin, and what users will see if no other preference is set."
 msgstr ""
 
-#: ../setup/config_data.inc:329
+#: ../setup/config_data.inc:327
 msgid "Multi language mode"
 msgstr ""
 
-#: ../setup/config_data.inc:330
+#: ../setup/config_data.inc:328
 msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site"
 msgstr ""
 
-#: ../setup/config_data.inc:334 ../setup/config_data.inc:337
+#: ../setup/config_data.inc:332 ../setup/config_data.inc:335
 msgid "Gallery is only displayed in one language"
 msgstr ""
 
-#: ../setup/config_data.inc:335
+#: ../setup/config_data.inc:333
 msgid "Gallery is displayed in the language the browser sends"
 msgstr ""
 
-#: ../setup/config_data.inc:336
+#: ../setup/config_data.inc:334
 msgid "The User can choose the language via select Box."
 msgstr ""
 
-#: ../setup/config_data.inc:341
+#: ../setup/config_data.inc:339
 msgid "Available languages in mode 3"
 msgstr ""
 
-#: ../setup/config_data.inc:343
+#: ../setup/config_data.inc:341
 msgid "These languages will be available as user choices in a drop down menu, if you have chosen language mode 3"
 msgstr ""
 
-#: ../setup/config_data.inc:351 ../setup/config_data.inc:357
-#: ../setup/config_data.inc:365 ../setup/config_data.inc:374
-#: ../setup/config_data.inc:380 ../setup/config_data.inc:385
-#: ../setup/config_data.inc:391
+#: ../setup/config_data.inc:349 ../setup/config_data.inc:355
+#: ../setup/config_data.inc:363 ../setup/config_data.inc:372
+#: ../setup/config_data.inc:378 ../setup/config_data.inc:383
+#: ../setup/config_data.inc:389
 msgid "Advanced"
 msgstr ""
 
-#: ../setup/config_data.inc:351
+#: ../setup/config_data.inc:349
 msgid "Cache EXIF data"
 msgstr ""
 
-#: ../setup/config_data.inc:352
+#: ../setup/config_data.inc:350
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow.  Set to <b>no</b> by default."
 msgstr ""
 
-#: ../setup/config_data.inc:357
+#: ../setup/config_data.inc:355
 msgid "JPEG Quality"
 msgstr ""
 
-#: ../setup/config_data.inc:358
+#: ../setup/config_data.inc:356
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
 msgstr ""
 
-#: ../setup/config_data.inc:365
+#: ../setup/config_data.inc:363
 msgid "Time Limit"
 msgstr ""
 
-#: ../setup/config_data.inc:366
+#: ../setup/config_data.inc:364
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr ""
 
-#: ../setup/config_data.inc:375
+#: ../setup/config_data.inc:373
 msgid "Turn debug mode on so that you can diagnose problems?"
 msgstr ""
 
-#: ../setup/config_data.inc:380
+#: ../setup/config_data.inc:378
 msgid "Use"
 msgstr ""
 
-#: ../setup/config_data.inc:381
+#: ../setup/config_data.inc:379
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>"
 msgstr ""
 
-#: ../setup/config_data.inc:385
+#: ../setup/config_data.inc:383
 msgid "Status code"
 msgstr ""
 
-#: ../setup/config_data.inc:386
+#: ../setup/config_data.inc:384
 msgid "The status code Gallery expects to see after a successful exec() call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr ""
 
-#: ../setup/config_data.inc:391
+#: ../setup/config_data.inc:389
 msgid "Session variable"
 msgstr ""
 
-#: ../setup/config_data.inc:392
+#: ../setup/config_data.inc:390
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr ""
 
-#: ../setup/config_data.inc:411
+#: ../setup/config_data.inc:410
 #, php-format
 msgid "Default color of image borders. You can learn about %scolors%s here."
 msgstr "Default colour of image borders. You can learn about %scolours%s here."
 
-#: ../setup/config_data.inc:421
+#: ../setup/config_data.inc:420
 msgid "Border width"
 msgstr ""
 
-#: ../setup/config_data.inc:422
+#: ../setup/config_data.inc:421
 msgid "Default width of image borders"
 msgstr ""
 
-#: ../setup/config_data.inc:427
+#: ../setup/config_data.inc:426
 msgid "Default Font"
 msgstr ""
 
-#: ../setup/config_data.inc:428
+#: ../setup/config_data.inc:427
 msgid "Default font face.  Eg. <i>arial</i> or <i>trebuchet</i>"
 msgstr ""
 
-#: ../setup/config_data.inc:433
+#: ../setup/config_data.inc:432
 msgid "Default Columns"
 msgstr ""
 
-#: ../setup/config_data.inc:434
+#: ../setup/config_data.inc:433
 msgid "The default number of columns in an album"
 msgstr ""
 
-#: ../setup/config_data.inc:439
+#: ../setup/config_data.inc:438
 msgid "Default Rows"
 msgstr ""
 
-#: ../setup/config_data.inc:440
+#: ../setup/config_data.inc:439
 msgid "The default number of rows in an album"
 msgstr ""
 
-#: ../setup/config_data.inc:446
+#: ../setup/config_data.inc:445
 msgid "The default target size (in pixels) of album thumbnails."
 msgstr ""
 
-#: ../setup/config_data.inc:451
+#: ../setup/config_data.inc:450
 msgid "Resized image size"
 msgstr ""
 
-#: ../setup/config_data.inc:452
+#: ../setup/config_data.inc:451
 msgid "When large images are added to an album, an intermediary version will automatically be generated at this size"
 msgstr ""
 
-#: ../setup/config_data.inc:457
+#: ../setup/config_data.inc:456
 msgid "Fit-to-window"
 msgstr ""
 
-#: ../setup/config_data.inc:458
+#: ../setup/config_data.inc:457
 msgid "When viewing photos which don't have an intermediary version"
 msgstr ""
 
-#: ../setup/config_data.inc:459
+#: ../setup/config_data.inc:458
 msgid "Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke"
 msgstr ""
 
-#: ../setup/config_data.inc:464
+#: ../setup/config_data.inc:463
 msgid "Visitor size prefs"
 msgstr ""
 
-#: ../setup/config_data.inc:465
+#: ../setup/config_data.inc:464
 msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediary size.  This setting only lasts for the visitor's session."
 msgstr ""
 
-#: ../setup/config_data.inc:470
+#: ../setup/config_data.inc:469
 msgid "Printing Service"
 msgstr ""
 
-#: ../setup/config_data.inc:471
+#: ../setup/config_data.inc:470
 msgid "Allow visitors to print photos directly from the album.  If you choose shutterfly, Gallery will charge an extra 2 cents (US) for every photo printed (a 4x6 print normally costs 49 cents US) and 1.8 cents of that will get donated back to the Gallery project.  This is one great way for you to help support this free software."
 msgstr ""
 
-#: ../setup/config_data.inc:473
-msgid "shutterfly"
+#: ../setup/config_data.inc:477
+#, php-format
+msgid "%s without donation"
 msgstr ""
 
-#: ../setup/config_data.inc:473
-msgid "photoaccess"
-msgstr ""
-
-#: ../setup/config_data.inc:473
-msgid "fotokasten"
-msgstr ""
-
-#: ../setup/config_data.inc:476
+#: ../setup/config_data.inc:480
 msgid "Gallery Link"
 msgstr ""
 
-#: ../setup/config_data.inc:477
+#: ../setup/config_data.inc:481
 msgid "Display the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery"
 msgstr ""
 
-#: ../setup/config_data.inc:482
+#: ../setup/config_data.inc:486
 msgid "Show Owner"
 msgstr ""
 
-#: ../setup/config_data.inc:483
+#: ../setup/config_data.inc:487
 msgid "Show album owner's name on the top level Gallery page?"
 msgstr ""
 
-#: ../setup/config_data.inc:488
+#: ../setup/config_data.inc:492
 msgid "Albums per page"
 msgstr ""
 
-#: ../setup/config_data.inc:489
+#: ../setup/config_data.inc:493
 msgid "How many albums should be displayed per Gallery page?"
 msgstr ""
 
-#: ../setup/config_data.inc:494
+#: ../setup/config_data.inc:498
 msgid "Search Engine"
 msgstr ""
 
-#: ../setup/config_data.inc:495
+#: ../setup/config_data.inc:499
 msgid "Display search engine on main Gallery page?"
 msgstr ""
 
-#: ../setup/config_data.inc:500
+#: ../setup/config_data.inc:504
 msgid "Preserve Names"
 msgstr ""
 
-#: ../setup/config_data.inc:501
+#: ../setup/config_data.inc:505
 msgid "When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."
 msgstr ""
 
-#: ../setup/config_data.inc:506
+#: ../setup/config_data.inc:510
 msgid "Click counts"
 msgstr ""
 
-#: ../setup/config_data.inc:507
+#: ../setup/config_data.inc:511
 msgid "Display click counts within Albums?"
 msgstr ""
 
-#: ../setup/config_data.inc:512
+#: ../setup/config_data.inc:516
 msgid "Comments"
 msgstr ""
 
-#: ../setup/config_data.inc:513
+#: ../setup/config_data.inc:517
 msgid "Allow the public to add comments to your photos?"
 msgstr ""
 
-#: ../setup/config_data.inc:518
+#: ../setup/config_data.inc:522
 msgid "Custom Fields"
 msgstr ""
 
-#: ../setup/config_data.inc:520
+#: ../setup/config_data.inc:524
 msgid "Custom fields that are available to describe each image.  They should be separated by commas.  Eg. <i>Description, Location, Film Type</i>"
 msgstr ""
 
-#: ../setup/config_data.inc:525
+#: ../setup/config_data.inc:529
 msgid "Photo owner modification"
 msgstr ""
 
-#: ../setup/config_data.inc:526
+#: ../setup/config_data.inc:530
 msgid "Allow photo owners to edit and rotate/flip their own photos?"
 msgstr ""
 
-#: ../setup/config_data.inc:532
+#: ../setup/config_data.inc:536
 msgid "Photo owner deletion"
 msgstr ""
 
-#: ../setup/config_data.inc:533
+#: ../setup/config_data.inc:537
 msgid "Allow photo owners to delete their own photos?"
 msgstr ""
 
-#: ../setup/config_data.inc:539
+#: ../setup/config_data.inc:543
 msgid "Photo owner display"
 msgstr ""
 
-#: ../setup/config_data.inc:540
+#: ../setup/config_data.inc:544
 msgid "Display the name of photo owners with the caption?"
 msgstr ""
 
-#: ../setup/config_data.inc:546
+#: ../setup/config_data.inc:550
 msgid "Add to beginning"
 msgstr ""
 
-#: ../setup/config_data.inc:547
+#: ../setup/config_data.inc:551
 msgid "New images added to beginning rather than end of albums"
 msgstr ""
 
@@ -2596,55 +2590,44 @@ msgid "then this tmp directory should be under the open_basedir path"
 msgstr ""
 
 #: ../setup/confirm.inc:267
-msgid "Could not find"
+#, php-format
+msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr ""
 
-#: ../setup/confirm.inc:268
-msgid "Check your NetPBM directory to see which PNG->JPEG converter you have"
-msgstr ""
-
-#: ../setup/confirm.inc:271
-msgid "instead"
-msgstr ""
-
-#: ../setup/confirm.inc:272
-msgid "Please check your configuration (or use ImageMagick)."
-msgstr ""
-
-#: ../setup/confirm.inc:282
+#: ../setup/confirm.inc:279
 msgid "You must specify one of <i>pnmDir</i> or <i>ImPath</i> for Gallery to function!!"
 msgstr ""
 
-#: ../setup/confirm.inc:285
+#: ../setup/confirm.inc:282
 msgid "ImageMagick is not properly configured for use as a graphics package.  Make sure you entered a path to the ImageMagick binaries in step 2."
 msgstr ""
 
-#: ../setup/confirm.inc:288
+#: ../setup/confirm.inc:285
 msgid "NetPBM is not properly configured for use as a graphics package.  Make sure you entered a path to the NetPBM binaries in step 2."
 msgstr ""
 
-#: ../setup/confirm.inc:294
+#: ../setup/confirm.inc:291
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr ""
 
-#: ../setup/confirm.inc:296
+#: ../setup/confirm.inc:293
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
 msgstr ""
 
-#: ../setup/confirm.inc:339 ../setup/confirm.inc:354
+#: ../setup/confirm.inc:336 ../setup/confirm.inc:351
 msgid "Edit Config"
 msgstr ""
 
-#: ../setup/confirm.inc:341 ../setup/confirm.inc:356
+#: ../setup/confirm.inc:338 ../setup/confirm.inc:353
 msgid "Save Config"
 msgstr ""
 
-#: ../setup/confirm.inc:359
+#: ../setup/confirm.inc:356
 msgid "There are errors in your configuration."
 msgstr ""
 
-#: ../setup/confirm.inc:361
+#: ../setup/confirm.inc:358
 msgid "Please go back and fix them!"
 msgstr ""
 
@@ -2656,15 +2639,15 @@ msgstr ""
 msgid "In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much."
 msgstr "In this step you'll customise various settings for Gallery.  If this is the first time you've customised Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current config information in it so you probably won't need to do much."
 
-#: ../setup/constants.inc:11 ../setup/constants.inc:72
+#: ../setup/constants.inc:11 ../setup/constants.inc:76
 msgid "System Check Page"
 msgstr ""
 
-#: ../setup/constants.inc:12 ../setup/constants.inc:73
+#: ../setup/constants.inc:12 ../setup/constants.inc:77
 msgid "Album Defaults"
 msgstr ""
 
-#: ../setup/constants.inc:13 ../setup/constants.inc:74
+#: ../setup/constants.inc:13 ../setup/constants.inc:78
 #: ../setup/defaults.inc:13 ../setup/defaults.inc:73
 msgid "Use Defaults"
 msgstr ""
@@ -2757,7 +2740,7 @@ msgstr ""
 msgid "Save Settings"
 msgstr ""
 
-#: ../setup/index.php:15
+#: ../setup/index.php:19
 msgid "Gallery Configuration"
 msgstr ""
 
@@ -2794,84 +2777,92 @@ msgstr ""
 msgid "NetPBM not being used in this installation"
 msgstr ""
 
-#: ../setup/functions.inc:279 ../setup/functions.inc:362
+#: ../setup/functions.inc:279 ../setup/functions.inc:363
 msgid "Cannot verify this path (it's not in your open_basedir list)"
 msgstr ""
 
-#: ../setup/functions.inc:328 ../setup/functions.inc:381
+#: ../setup/functions.inc:328 ../setup/functions.inc:382
 msgid "Can't find"
 msgstr ""
 
-#: ../setup/functions.inc:333 ../setup/functions.inc:386
+#: ../setup/functions.inc:333 ../setup/functions.inc:387
 msgid "is not executable"
 msgstr ""
 
-#: ../setup/functions.inc:343 ../setup/functions.inc:396
-msgid "All"
-msgstr ""
-
 #: ../setup/functions.inc:343
-msgid "NetPBM binaries located"
+#, php-format
+msgid "All %d NetPBM binaries located"
 msgstr ""
 
-#: ../setup/functions.inc:396
-msgid "ImageMagick binaries located"
-msgstr ""
-
-#: ../setup/functions.inc:417
-msgid "Could not locate jpegtran"
+#: ../setup/functions.inc:397
+#, php-format
+msgid "All %d ImageMagick binaries located"
 msgstr ""
 
 #: ../setup/functions.inc:419
+msgid "Could not locate jpegtran"
+msgstr ""
+
+#: ../setup/functions.inc:421
 msgid "jpegtran binary located"
 msgstr ""
 
-#: ../setup/functions.inc:430
+#: ../setup/functions.inc:432
 msgid "gettext installed"
 msgstr ""
 
-#: ../setup/functions.inc:478
+#: ../setup/functions.inc:480
 msgid "No languages found."
 msgstr ""
 
-#: ../setup/functions.inc:480
+#: ../setup/functions.inc:482
 msgid "Only US English version is available.  If you want other languages, download language packs from gallery site"
 msgstr ""
 
-#: ../setup/functions.inc:482
+#: ../setup/functions.inc:484
 #, php-format
 msgid "%d languages found"
 msgstr ""
 
-#: ../setup/functions.inc:498
+#: ../setup/functions.inc:500
 msgid "All gallery locales are available on this host"
 msgstr ""
 
-#: ../setup/functions.inc:502
-msgid "Unfortunately dates in these languages may not work, because the corresponding locales are missing:"
+#: ../setup/functions.inc:503
+msgid "We were unable to detect any locales.  However, your server is configured with the <a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\">open_basedir</a> restriction so this may be interfering with the way that we detect locales.  If you don't have any locales installed, the date format will not change for different languages.  Either way, it is ok to continue."
 msgstr ""
 
-#: ../setup/functions.inc:642
-msgid "Possible language problems with"
+#: ../setup/functions.inc:505
+msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr ""
 
-#: ../setup/functions.inc:644
-msgid "This language maybe available, but there seems to be a locale problem."
+#: ../setup/functions.inc:508
+msgid "Dates in these languages may not be formatted properly, because the corresponding locales are missing:"
 msgstr ""
 
-#: ../setup/functions.inc:645
-msgid "Please select a locale with which you think it might work."
+#: ../setup/functions.inc:648
+#, php-format
+msgid "Possible locale problems with %s."
 msgstr ""
 
-#: ../setup/functions.inc:646
-msgid "this is new in version"
+#: ../setup/functions.inc:650
+msgid "This language is available, but there seems to be a locale problem.  Please select a locale for date format style."
+msgstr ""
+
+#: ../setup/functions.inc:676
+#, php-format
+msgid "Locale problems with %s."
 msgstr ""
 
 #: ../setup/functions.inc:678
+msgid "This language is available, but we can't identified a suitable locale for it.  Please select a locale for date format style."
+msgstr ""
+
+#: ../setup/functions.inc:713
 msgid "safe mode is off"
 msgstr ""
 
-#: ../setup/functions.inc:690
+#: ../setup/functions.inc:725
 msgid "magic quotes are off"
 msgstr ""
 
@@ -2993,6 +2984,11 @@ msgstr ""
 
 #: ../slideshow.php:346 ../slideshow_low.php:266
 msgid "Picture is loading..."
+msgstr ""
+
+#: ../slideshow.php:346 ../slideshow.php:440 ../slideshow_low.php:266
+#: ../slideshow_low.php:481
+msgid "of"
 msgstr ""
 
 #: ../slideshow.php:347 ../slideshow_low.php:267
@@ -3337,11 +3333,13 @@ msgid "0 pages"
 msgstr ""
 
 #: ../view_album.php:265
-msgid "are"
+#, php-format
+msgid "%s are hidden"
 msgstr ""
 
 #: ../view_album.php:267
-msgid "is"
+#, php-format
+msgid "%s is hidden"
 msgstr ""
 
 #: ../view_album.php:277
