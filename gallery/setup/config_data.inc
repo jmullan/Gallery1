@@ -395,6 +395,7 @@ $constants = array_merge(
 	/* Keep this one at the end of the list because it's hidden */
 	"userDir" => array(
 		"desc" => "Filesystem location of user information",
+		"prompt" => ".users directory",
 		"type" => "hidden",
 		"value" => "",
 		"eval" => '"$albumDir/.users"',
