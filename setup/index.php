@@ -1,5 +1,7 @@
 <? require("../style.php") ?>
 <?
+require("functions.inc");
+
 if (file_exists("../config.php")) {
 	include("../config.php");
 }
@@ -16,7 +18,6 @@ if (function_exists("posix_getpwuid")) {
 	}
 }
 
-require("functions.inc");
 require("config_data.inc");
 
 if ($go_defaults) {
