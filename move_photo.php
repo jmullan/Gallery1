@@ -32,6 +32,7 @@ if ($albumName && isset($index)) {
 ?>
 
 <center>
+<font size=+0>
 Select the new location of photo #<?=$index+1?>:
 <form>
 <input type=hidden name="index" value="<?=$index?>">
@@ -60,3 +61,4 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 	error("no album / index specified");
 }
 ?>
+</font>
