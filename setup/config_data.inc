@@ -137,6 +137,11 @@ $defaults = array(
 			"shown in the albums",
 		"value" => 150 
 	),
+	"resize_size" => array(
+		"desc" => "The size images will be resized to upon upload. " .
+			"Set to 0 for no resize.",
+		"value" => 600 
+	),
 	"imageborders" => array(
 		"desc" => "Show image borders",
 		"value" => "no",
