@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.3\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-03-09 13:38+0100\n"
+"POT-Creation-Date: 2004-03-21 17:55+0100\n"
 "PO-Revision-Date: 2004-02-20 09:29+0200\n"
 "Last-Translator: Olli Salo <salo@norssi.jyu.fi>\n"
 "Language-Team: Olli Salo <salo@norssi.jyu.fi>\n"
@@ -39,21 +39,21 @@ msgstr ""
 #: ../create_user.php:28 ../delete_album.php:28 ../delete_photo.php:28
 #: ../delete_user.php:28 ../do_command.php:28 ../edit_appearance.php:28
 #: ../edit_caption.php:28 ../edit_field.php:28 ../edit_thumb.php:28
-#: ../extra_fields.php:30 ../login.php:28 ../manage_users.php:28
-#: ../modify_user.php:28 ../move_album.php:28 ../move_photo.php:28
-#: ../multi_create_user.php:31 ../new_password.php:28 ../photo_owner.php:30
-#: ../poll_properties.php:30 ../poll_results.php:30
-#: ../progress_uploading.php:28 ../publish_xp.php:28 ../publish_xp_docs.php:28
-#: ../register.php:30 ../rename_album.php:28 ../reset_votes.php:30
-#: ../resize_photo.php:28 ../rotate_photo.php:28 ../save_photos.php:28
-#: ../search.php:28 ../sort_album.php:28 ../upgrade_album.php:28
-#: ../upgrade_users.php:28 ../util.php:28 ../view_album.php:28
-#: ../view_comments.php:31 ../view_photo.php:28
+#: ../extra_fields.php:30 ../html_wrap/wrapper.header.default:98
+#: ../login.php:28 ../manage_users.php:28 ../modify_user.php:28
+#: ../move_album.php:28 ../move_photo.php:28 ../multi_create_user.php:31
+#: ../new_password.php:28 ../photo_owner.php:30 ../poll_properties.php:30
+#: ../poll_results.php:30 ../progress_uploading.php:28 ../publish_xp.php:28
+#: ../publish_xp_docs.php:28 ../register.php:30 ../rename_album.php:28
+#: ../reset_votes.php:30 ../resize_photo.php:28 ../rotate_photo.php:28
+#: ../save_photos.php:28 ../search.php:28 ../sort_album.php:28
+#: ../upgrade_album.php:28 ../upgrade_users.php:28 ../util.php:28
+#: ../view_album.php:28 ../view_comments.php:31 ../view_photo.php:28
 #: ../view_photo_properties.php:28 ../view_photo_properties.php:40
 msgid "Security violation"
 msgstr "Turvallisuusrike"
 
-#: ../add_comment.php:64 ../classes/Album.php:804
+#: ../add_comment.php:64 ../classes/Album.php:841
 msgid "No email sent as no valid email addresses were found"
 msgstr "Sähköpostia ei lähetetty koska hyväksyttyä sähköpostiosoitetta ei löytynyt"
 
@@ -73,7 +73,7 @@ msgstr "Lis&auml;&auml; kommentti kuvalle alapuolella olevan tekstialueen avulla
 msgid "Name or email:"
 msgstr "Nimi tai s&auml;hk&ouml;postiosoite:"
 
-#: ../add_comment.php:150 ../album_permissions.php:344 ../edit_caption.php:184
+#: ../add_comment.php:150 ../album_permissions.php:344 ../edit_caption.php:190
 #: ../edit_field.php:66 ../edit_field.php:77 ../modify_user.php:158
 #: ../new_password.php:135 ../photo_owner.php:109 ../user_preferences.php:125
 msgid "Save"
@@ -81,10 +81,10 @@ msgstr "Tallenna"
 
 #: ../add_comment.php:151 ../copy_photo.php:206 ../create_user.php:156
 #: ../delete_album.php:69 ../delete_photo.php:111 ../delete_photo.php:132
-#: ../delete_user.php:85 ../edit_caption.php:185 ../edit_field.php:78
-#: ../includes/add_photos/add_form.inc:79
+#: ../delete_user.php:85 ../edit_caption.php:191 ../edit_field.php:78
+#: ../includes/add_photos/add_form.inc:118
 #: ../includes/add_photos/add_form_one.inc:72
-#: ../includes/add_photos/add_url.inc:42 ../login.php:132
+#: ../includes/add_photos/add_url.inc:50 ../login.php:132
 #: ../modify_user.php:159 ../move_album.php:111 ../move_album.php:131
 #: ../move_photo.php:238 ../move_photo.php:325 ../multi_create_user.php:173
 #: ../new_password.php:136 ../register.php:147 ../rename_album.php:122
@@ -213,9 +213,9 @@ msgstr "yksi valokuva"
 msgid "images"
 msgstr "valokuvaa"
 
-#: ../albums.php:132
-msgid "no image"
-msgstr "ei valokuvia"
+#: ../albums.php:132 ../view_album.php:273
+msgid "no images"
+msgstr "ei yhtään kuvaa"
 
 #: ../albums.php:133 ../captionator.php:180 ../view_album.php:274
 msgid "1 page"
@@ -417,21 +417,21 @@ msgstr "Poistu"
 msgid "Album Caption:"
 msgstr "Albumin kuvateksti:"
 
-#: ../captionator.php:270 ../edit_caption.php:90
-#: ../includes/add_photos/add_form.inc:71
+#: ../captionator.php:270 ../edit_caption.php:91
+#: ../includes/add_photos/add_form.inc:95
 #: ../includes/add_photos/add_form_one.inc:45
 msgid "Caption"
 msgstr "Kuvateksti"
 
-#: ../captionator.php:281 ../edit_caption.php:108 ../extra_fields.php:116
+#: ../captionator.php:281 ../extra_fields.php:116 ../lib/lang.php:479
 msgid "Title"
 msgstr "Otsikko"
 
-#: ../captionator.php:290 ../edit_caption.php:120
+#: ../captionator.php:290 ../edit_caption.php:127
 msgid "Keywords"
 msgstr "Avainsanat"
 
-#: ../captionator.php:293 ../util.php:322
+#: ../captionator.php:293 ../lib/lang.php:468
 msgid "Capture Date"
 msgstr "Kuvanottop&auml;iv&auml;m&auml;&auml;r&auml;"
 
@@ -465,38 +465,38 @@ msgstr "valmis"
 msgid "Upgrading item %d of %d . . . "
 msgstr "P&auml;ivitet&auml;&auml;n kuvaa %d / %d . . ."
 
-#: ../classes/Album.php:783
+#: ../classes/Album.php:820
 msgid "msg should be an array!"
 msgstr "msg pitäisi olla jono!"
 
-#: ../classes/Album.php:899
+#: ../classes/Album.php:936
 msgid "Resizing/compressing original image"
 msgstr "Venytetään/pakataan alkuperäistä kuvaa"
 
-#: ../classes/Album.php:903
+#: ../classes/Album.php:940
 msgid "Cannot resize/compress this filetype"
 msgstr "Tämän tyypisiä tiedostoja ei voi venyttää/pakata"
 
-#: ../classes/Album.php:951
+#: ../classes/Album.php:988
 #, php-format
 msgid "Resizing %s"
 msgstr "Muutetaan %s:n koko"
 
-#: ../classes/Album.php:991
+#: ../classes/Album.php:1028
 msgid "Photo auto-rotated/transformed"
 msgstr "Kuva on automaattisesti k&auml;&auml;nnetty/muunnettu"
 
-#: ../classes/Album.php:1097 ../classes/Album.php:1107
+#: ../classes/Album.php:1135 ../classes/Album.php:1145
 #: ../classes/AlbumItem.php:528
 msgid "No highlight"
 msgstr "Ei esittelykuvaa"
 
-#: ../classes/Album.php:1965
+#: ../classes/Album.php:2003
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2103
+#: ../classes/Album.php:2141
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Sähköpostiongelma: hypätään %s (UID %s) yli, koska sähköpostiosoite %s ei ole käypä."
@@ -607,7 +607,7 @@ msgstr "Hypätään albumin #%d yli"
 
 #: ../copy_photo.php:126 ../create_user.php:105 ../do_command.php:165
 #: ../login.php:163 ../multi_create_user.php:126 ../register.php:55
-#: ../register.php:128 ../save_photos.php:292
+#: ../register.php:128 ../save_photos.php:364
 msgid "Dismiss"
 msgstr "Poistu"
 
@@ -991,31 +991,31 @@ msgstr "Muokkaa teksti&auml;"
 msgid "Edit Caption"
 msgstr "Muokkaa kuvatekstiä"
 
-#: ../edit_caption.php:144
+#: ../edit_caption.php:150
 msgid "Photo Capture Date"
 msgstr "Kuvanottop&auml;iv&auml;m&auml;&auml;r&auml;"
 
-#: ../edit_caption.php:147
+#: ../edit_caption.php:153
 msgid "Month"
 msgstr "Kuukausi"
 
-#: ../edit_caption.php:148
+#: ../edit_caption.php:154
 msgid "Day"
 msgstr "P&auml;iv&auml;"
 
-#: ../edit_caption.php:149
+#: ../edit_caption.php:155
 msgid "Year"
 msgstr "Vuosi"
 
-#: ../edit_caption.php:150
+#: ../edit_caption.php:156
 msgid "Hours"
 msgstr "Tuntia"
 
-#: ../edit_caption.php:151
+#: ../edit_caption.php:157
 msgid "Minutes"
 msgstr "Minuuttia"
 
-#: ../edit_caption.php:152
+#: ../edit_caption.php:158
 msgid "Seconds"
 msgstr "Sekuntia"
 
@@ -1091,84 +1091,120 @@ msgstr "Selaimesi ei tue appletteja, joten sinun tulee käyttää jotakin muuta kuv
 msgid "Use the Gallery Remote Mini Applet to upload pictures. It will take a short while to download."
 msgstr "Käytä Gallery Remote Mini -applettia lisätäksesi kuvia Galleriaan. Huom: appletin latautuminen kestää hetken."
 
-#: ../includes/add_photos/add_form.inc:32
+#: ../includes/add_photos/add_form.inc:33
 #: ../includes/add_photos/add_form_one.inc:27
 msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr "Klikkaa <b>Selaa</b> painiketta paikallistaaksesi palvelimelle kopioitavan kuvan."
 
-#: ../includes/add_photos/add_form.inc:36
-msgid "Tip:  Upload a ZIP file full of photos and movies!"
-msgstr "Vihje: kopioi palvelimelle Zip-tiedosto, joka on t&auml;ynn&auml; kuvia tai videonp&auml;tki&auml;!"
-
-#: ../includes/add_photos/add_form.inc:39
+#: ../includes/add_photos/add_form.inc:35
 #: ../includes/add_photos/add_form_one.inc:31
 msgid "Supported file types"
 msgstr "Tuetut tiedostotyypit"
 
-#: ../includes/add_photos/add_form.inc:45
+#: ../includes/add_photos/add_form.inc:39
+#: ../includes/add_photos/add_url.inc:31
+msgid "Tip:"
+msgstr ""
+
+#: ../includes/add_photos/add_form.inc:40
+#, fuzzy
+msgid "Upload a ZIP file full of photos and movies!"
+msgstr "Vihje: kopioi palvelimelle Zip-tiedosto, joka on t&auml;ynn&auml; kuvia tai videonp&auml;tki&auml;!"
+
+#: ../includes/add_photos/add_form.inc:50
 msgid "1. Select the number of files you want to upload:"
 msgstr "1. Valitse palvelimelle kopioitavien tiedostojen m&auml;&auml;r&auml;:"
 
-#: ../includes/add_photos/add_form.inc:64
+#: ../includes/add_photos/add_form.inc:62
+#, fuzzy
+msgid "Optional:"
+msgstr "Kuvateksti"
+
+#: ../includes/add_photos/add_form.inc:63
+#, fuzzy
+msgid "Select the number of meta data files you want to upload:"
+msgstr "1. Valitse palvelimelle kopioitavien tiedostojen m&auml;&auml;r&auml;:"
+
+#: ../includes/add_photos/add_form.inc:86
 msgid "2. Use the Browse button to find the photos on your computer"
 msgstr "2. K&auml;yt&auml; Selaa-painiketta l&ouml;yt&auml;&auml;ksesi kuvat tietokoneestasi"
 
-#: ../includes/add_photos/add_form.inc:69
+#: ../includes/add_photos/add_form.inc:91
+#: ../includes/add_photos/add_form.inc:103
 #: ../includes/add_photos/add_form_one.inc:43
 msgid "File"
 msgstr "Tiedosto"
 
-#: ../includes/add_photos/add_form.inc:75
+#: ../includes/add_photos/add_form.inc:100
+#, fuzzy
+msgid "3. Use the Browse button to find the meta data files on your computer"
+msgstr "2. K&auml;yt&auml; Selaa-painiketta l&ouml;yt&auml;&auml;ksesi kuvat tietokoneestasi"
+
+#: ../includes/add_photos/add_form.inc:112
 #: ../includes/add_photos/add_form_one.inc:68
 msgid "Use filename as caption if no caption is specified."
 msgstr "K&auml;yt&auml; tiedostonime&auml; kuvatekstin&auml; jos kuvateksti&auml; ei ole m&auml;&auml;ritetty."
 
-#: ../includes/add_photos/add_form.inc:78
+#: ../includes/add_photos/add_form.inc:114
+#, fuzzy
+msgid "Use file creation date stamp as caption if no caption is specified."
+msgstr "K&auml;yt&auml; tiedostonime&auml; kuvatekstin&auml; jos kuvateksti&auml; ei ole m&auml;&auml;ritetty."
+
+#: ../includes/add_photos/add_form.inc:117
 #: ../includes/add_photos/add_form_one.inc:71
 msgid "Upload Now"
 msgstr "Kopioi palvelimelle"
 
-#: ../includes/add_photos/add_other.inc:28
+#: ../includes/add_photos/add_other.inc:25
 msgid "You can use one of these desktop agents to drag and drop photos from your desktop"
 msgstr "Voit k&auml;ytt&auml;&auml; jotakin n&auml;ist&auml; ty&ouml;p&ouml;yt&auml;agenteista raahataksesi kuvia ty&ouml;p&ouml;yd&auml;lt&auml;si"
 
-#: ../includes/add_photos/add_other.inc:32
+#: ../includes/add_photos/add_other.inc:29
 msgid "A Java application that runs on Mac, Windows and Unix"
 msgstr "Java-ohjelma, joka toimii niin Mac-, Windows- kuin Unix-koneissakin"
 
-#: ../includes/add_photos/add_other.inc:34
+#: ../includes/add_photos/add_other.inc:32
 msgid "Other methods"
 msgstr "Muut tavat"
 
-#: ../includes/add_photos/add_other.inc:36
-msgid "Methods for adding pictures to your Gallery"
+#: ../includes/add_photos/add_other.inc:33
+#, fuzzy
+msgid "See a couple of other Methods for adding pictures to your Gallery on Gallerys Website."
 msgstr "Tavat, joilla voit lisätä kuvia Galleriaan"
 
-#: ../includes/add_photos/add_other.inc:39
+#: ../includes/add_photos/add_other.inc:37
 msgid "Windows XP Publishing Agent"
 msgstr "Windows XP julkaisuagentti"
 
-#: ../includes/add_photos/add_other.inc:41
+#: ../includes/add_photos/add_other.inc:38
 msgid "<i>Note:</i> this feature is still experimental!"
 msgstr "<i>Huom:</i> t&auml;m&auml; toiminto on viel&auml; kokeiluasteella!"
 
-#: ../includes/add_photos/add_url.inc:29
-msgid "Or, upload any images found at this location."
+#: ../includes/add_photos/add_url.inc:26
+#, fuzzy
+msgid "Upload any images found at this location."
 msgstr "Tai kopioi t&auml;st&auml; sijainnista l&ouml;ytyvi&auml; kuvia palvelimelle."
 
-#: ../includes/add_photos/add_url.inc:30
-msgid "The location can either be a URL or a directory on the server."
+#: ../includes/add_photos/add_url.inc:27
+#, fuzzy
+msgid "The location can either be a URL or a local directory on the server."
 msgstr "Sijainti voi olla joko URL tai palvelimella sijaitseva hakemisto."
 
-#: ../includes/add_photos/add_url.inc:33
-msgid "Tip: FTP images to a directory on your server then provide that path here!"
+#: ../includes/add_photos/add_url.inc:32
+#, fuzzy
+msgid "FTP images to a directory on your server then provide that path here!"
 msgstr "Vinkki: kopioi valokuvat FTP:ll&auml; palvelimelle ja liit&auml; kuvahakemiston polku t&auml;h&auml;n!"
 
-#: ../includes/add_photos/add_url.inc:38
+#: ../includes/add_photos/add_url.inc:43
 msgid "Set photo captions with original filenames."
 msgstr "Aseta kuvien nimiksi kuvien alkuper&auml;iset tiedostonimet."
 
-#: ../includes/add_photos/add_url.inc:41
+#: ../includes/add_photos/add_url.inc:45
+#, fuzzy
+msgid "Set photo captions with file creation times."
+msgstr "Aseta kuvien nimiksi kuvien alkuper&auml;iset tiedostonimet."
+
+#: ../includes/add_photos/add_url.inc:49
 msgid "Submit URL or directory"
 msgstr "L&auml;het&auml; URL tai hakemistopolku"
 
@@ -1264,25 +1300,25 @@ msgstr "Venytä"
 msgid "RANDOM!"
 msgstr "Satunnainen"
 
-#: ../includes/slideshow/high.inc:316 ../includes/slideshow/low.inc:295
+#: ../includes/slideshow/high.inc:316 ../includes/slideshow/low.inc:301
 msgid "play"
 msgstr "toista"
 
-#: ../includes/slideshow/high.inc:319 ../includes/slideshow/low.inc:164
+#: ../includes/slideshow/high.inc:319 ../includes/slideshow/low.inc:170
 msgid "The slide show is stopped, Click [play] to resume."
 msgstr "Diashow on pys&auml;htynyt. Klikkaa [toista] jatkaaksesi."
 
 #: ../includes/slideshow/high.inc:325 ../includes/slideshow/high.inc:506
-#: ../includes/slideshow/low.inc:294
+#: ../includes/slideshow/low.inc:300
 msgid "stop"
 msgstr "pys&auml;yt&auml;"
 
 #: ../includes/slideshow/high.inc:328 ../includes/slideshow/high.inc:387
-#: ../includes/slideshow/low.inc:170
+#: ../includes/slideshow/low.inc:176
 msgid "Slide show is running..."
 msgstr "Diashow meneill&auml;&auml;n..."
 
-#: ../includes/slideshow/high.inc:333 ../includes/slideshow/low.inc:310
+#: ../includes/slideshow/high.inc:333 ../includes/slideshow/low.inc:316
 msgid "normal size"
 msgstr "normaalikoko"
 
@@ -1291,7 +1327,7 @@ msgid "The slide is showing full sized images, Click [normal size] to view resiz
 msgstr "Diashow näyttää täysikokoisia kuvia. Jos haluat näydä venytettyjä kuvia, klikkaa [normal size]."
 
 #: ../includes/slideshow/high.inc:339 ../includes/slideshow/high.inc:510
-#: ../includes/slideshow/low.inc:313
+#: ../includes/slideshow/low.inc:319
 msgid "full size"
 msgstr "t&auml;yskoko"
 
@@ -1299,34 +1335,34 @@ msgstr "t&auml;yskoko"
 msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
 msgstr "Diaesitys näyttää normaalikokoisia kuvia, klikkaa [full size] nähdäksesi alkuperäiset koot kuvista."
 
-#: ../includes/slideshow/high.inc:348 ../includes/slideshow/low.inc:302
+#: ../includes/slideshow/high.inc:348 ../includes/slideshow/low.inc:308
 msgid "forward direction"
 msgstr "my&ouml;t&auml;p&auml;iv&auml;&auml;n"
 
 #: ../includes/slideshow/high.inc:351 ../includes/slideshow/high.inc:507
-#: ../includes/slideshow/low.inc:299
+#: ../includes/slideshow/low.inc:305
 msgid "reverse direction"
 msgstr "vastap&auml;iv&auml;&auml;n"
 
-#: ../includes/slideshow/high.inc:381 ../includes/slideshow/low.inc:199
+#: ../includes/slideshow/high.inc:381 ../includes/slideshow/low.inc:205
 msgid "Picture is loading..."
 msgstr "Kuva latautuu..."
 
 #: ../includes/slideshow/high.inc:381 ../includes/slideshow/high.inc:479
-#: ../includes/slideshow/low.inc:199 ../includes/slideshow/low.inc:384
+#: ../includes/slideshow/low.inc:205 ../includes/slideshow/low.inc:390
 msgid "of"
 msgstr "/"
 
-#: ../includes/slideshow/high.inc:382 ../includes/slideshow/low.inc:200
+#: ../includes/slideshow/high.inc:382 ../includes/slideshow/low.inc:206
 #: ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "Ole hyv&auml; ja odota..."
 
-#: ../includes/slideshow/high.inc:516 ../includes/slideshow/low.inc:318
+#: ../includes/slideshow/high.inc:516 ../includes/slideshow/low.inc:324
 msgid "Delay:"
 msgstr "Viive:"
 
-#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:320
+#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:326
 msgid "second"
 msgstr "sekunti"
 
@@ -1334,11 +1370,11 @@ msgstr "sekunti"
 #: ../includes/slideshow/high.inc:521 ../includes/slideshow/high.inc:522
 #: ../includes/slideshow/high.inc:523 ../includes/slideshow/high.inc:524
 #: ../includes/slideshow/high.inc:525 ../includes/slideshow/high.inc:526
-#: ../includes/slideshow/high.inc:527 ../includes/slideshow/low.inc:321
-#: ../includes/slideshow/low.inc:322 ../includes/slideshow/low.inc:323
-#: ../includes/slideshow/low.inc:324 ../includes/slideshow/low.inc:325
-#: ../includes/slideshow/low.inc:326 ../includes/slideshow/low.inc:327
+#: ../includes/slideshow/high.inc:527 ../includes/slideshow/low.inc:327
 #: ../includes/slideshow/low.inc:328 ../includes/slideshow/low.inc:329
+#: ../includes/slideshow/low.inc:330 ../includes/slideshow/low.inc:331
+#: ../includes/slideshow/low.inc:332 ../includes/slideshow/low.inc:333
+#: ../includes/slideshow/low.inc:334 ../includes/slideshow/low.inc:335
 msgid "seconds"
 msgstr "sekuntia"
 
@@ -1346,15 +1382,15 @@ msgstr "sekuntia"
 msgid "Transition:"
 msgstr "Siirtym&auml;:"
 
-#: ../includes/slideshow/high.inc:550 ../includes/slideshow/low.inc:335
+#: ../includes/slideshow/high.inc:550 ../includes/slideshow/low.inc:341
 msgid "Loop"
 msgstr "Silmukka"
 
-#: ../includes/slideshow/high.inc:617 ../includes/slideshow/low.inc:395
+#: ../includes/slideshow/high.inc:617 ../includes/slideshow/low.inc:401
 msgid "This album has no photos to show in a slide show."
 msgstr "T&auml;ss&auml; albumissa ei ole kuvia n&auml;ytett&auml;v&auml;ksi diaesityst&auml; ajatellen."
 
-#: ../includes/slideshow/high.inc:621 ../includes/slideshow/low.inc:399
+#: ../includes/slideshow/high.inc:621 ../includes/slideshow/low.inc:405
 msgid "back to album"
 msgstr "takaisin albumiin"
 
@@ -1417,6 +1453,34 @@ msgstr "Huom: P&auml;&auml;k&auml;ytt&auml;j&auml;t voivat aina luoda kuva-album
 #: ../html_wrap/album.footer.default:35 ../html_wrap/gallery.footer.default:48
 msgid "Donate to Gallery now!!"
 msgstr "Rahoita Galleriaa!!"
+
+#: ../layout/adminAlbumCommands.inc:6
+msgid "delete album"
+msgstr "poista albumi"
+
+#: ../layout/adminAlbumCommands.inc:11
+msgid "move album"
+msgstr "siirr&auml; albumi"
+
+#: ../layout/adminAlbumCommands.inc:12
+msgid "reorder album"
+msgstr "sijoita albumi uudelleen"
+
+#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:310
+msgid "rename album"
+msgstr "nime&auml; albumi uudelleen"
+
+#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:328
+msgid "edit captions"
+msgstr "muokkaa kuvatekstej&auml;"
+
+#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:360
+msgid "permissions"
+msgstr "oikeudet"
+
+#: ../layout/adminAlbumCommands.inc:32
+msgid "view&nbsp;comments"
+msgstr "n&auml;yt&auml;&nbsp;kommentit"
 
 #: ../layout/commentbox.inc:7 ../layout/commentdraw.inc:20
 msgid "From:"
@@ -1493,6 +1557,23 @@ msgstr "Vapauta kaikki"
 #: ../lib/Form.php:62
 msgid "Invert Selection"
 msgstr "K&auml;&auml;nteinen valinta"
+
+#: ../lib/lang.php:467
+msgid "Upload Date"
+msgstr "Palvelimelle kopioinnin p&auml;iv&auml;m&auml;&auml;r&auml;"
+
+#: ../lib/lang.php:469
+msgid "Image Size"
+msgstr "Kuvan koko"
+
+#: ../lib/lang.php:470
+msgid "Additional EXIF Data"
+msgstr "EXIF-lis&auml;tiedot"
+
+#: ../lib/lang.php:480
+#, fuzzy
+msgid "Description"
+msgstr "kuvausta"
 
 #: ../login.php:48 ../login.php:54 ../publish_xp.php:64 ../publish_xp.php:108
 #, php-format
@@ -2261,39 +2342,44 @@ msgstr "Peilaa"
 msgid "Processing and Saving Photos"
 msgstr "Prosessoidaan ja tallennetaan kuvat"
 
-#: ../save_photos.php:65
+#: ../save_photos.php:66
 msgid "Fetching Urls..."
 msgstr "Haetaan osoitteet..."
 
-#: ../save_photos.php:82
+#: ../save_photos.php:83
 #, php-format
 msgid "Processing %s as a local directory."
 msgstr "Prosessoidaan %s paikallisena hakemistona."
 
-#: ../save_photos.php:144
+#: ../save_photos.php:152
 #, php-format
 msgid "Could not open url: %s"
 msgstr "URL %s ei voitu avata"
 
-#: ../save_photos.php:171
+#: ../save_photos.php:179
 #, php-format
 msgid "Parsing %s for images..."
 msgstr "Parseroidaan %s kuville..."
 
-#: ../save_photos.php:236
+#: ../save_photos.php:244
 #, php-format
 msgid "Found %d images"
 msgstr "L&ouml;ydettiin %d kuvaa"
 
-#: ../save_photos.php:244
+#: ../save_photos.php:252
 msgid "Processing status..."
 msgstr "Prosessoidaan tilaa..."
 
-#: ../save_photos.php:287
+#: ../save_photos.php:359
 msgid "No images uploaded!"
 msgstr "Kuvia ei ole kopioitu palvelimelle!"
 
-#: ../save_photos.php:337
+#: ../save_photos.php:410
+#, php-format
+msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
+msgstr ""
+
+#: ../save_photos.php:437
 msgid "Add Files"
 msgstr "Lis&auml;&auml; tiedostoja"
 
@@ -2566,65 +2652,53 @@ msgstr "Tiedostoa %s ei ole olemassa."
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP:n %s ei onnistunut m&auml;&auml;ritt&auml;m&auml;&auml;n mittasuhteita."
 
-#: ../util.php:253 ../util.php:590 ../util.php:636 ../util.php:2459
+#: ../util.php:253 ../util.php:587 ../util.php:633 ../util.php:2537
 msgid "You have no graphics package configured for use!"
 msgstr "Sinulla ei ole asennettuna / konfiguroituna grafiikkapakettia!"
 
-#: ../util.php:321
-msgid "Upload Date"
-msgstr "Palvelimelle kopioinnin p&auml;iv&auml;m&auml;&auml;r&auml;"
-
-#: ../util.php:323
-msgid "Image Size"
-msgstr "Kuvan koko"
-
-#: ../util.php:324
-msgid "Additional EXIF Data"
-msgstr "EXIF-lis&auml;tiedot"
-
-#: ../util.php:360 ../util.php:376
+#: ../util.php:347 ../util.php:363
 msgid "Not closing this window because debug mode is on"
 msgstr "Ikkunaa ei suljeta koska debug-tila on p&auml;&auml;ll&auml;"
 
-#: ../util.php:418
+#: ../util.php:408
 msgid "No resizing required"
 msgstr "Koonmuutosta ei tarvita"
 
-#: ../util.php:434
+#: ../util.php:431
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "tavoiteltu tiedostokoko %d kilotavuina"
 
-#: ../util.php:440 ../util.php:470
+#: ../util.php:437 ../util.php:467
 #, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> tiedostokoko %d kilotavua"
 
-#: ../util.php:441
+#: ../util.php:438
 #, php-format
 msgid "trying quality %d%%"
 msgstr "yritet&auml;&auml;n laatua %d%%"
 
-#: ../util.php:471
+#: ../util.php:468
 msgid "Done."
 msgstr "Valmis."
 
-#: ../util.php:655
+#: ../util.php:652
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "Kutsu %s epäonnistui! %s tiedostolle %s!"
 
-#: ../util.php:661
+#: ../util.php:658
 #, php-format
 msgid "File %s type %d."
 msgstr "Tiedoston %s tyyppi on %d."
 
-#: ../util.php:676
+#: ../util.php:673
 #, php-format
 msgid "There was an unknown failure in the %s call!"
 msgstr "Tapahtui odottamaton virhetilanne %s kutsussa!"
 
-#: ../util.php:700 ../util.php:723
+#: ../util.php:697 ../util.php:720
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Tuntematon tiedostotyyppi: %s"
@@ -2756,112 +2830,112 @@ msgstr "0 ääntä"
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Ohitetaan %s (ZIP-tuki ei ole p&auml;&auml;ll&auml;)"
 
-#: ../util.php:2260
+#: ../util.php:2331
 #, php-format
 msgid "Adding %s"
 msgstr "Lis&auml;t&auml;&auml;n %s"
 
-#: ../util.php:2271
+#: ../util.php:2349
 #, php-format
 msgid "Error: %s!"
 msgstr "Virhe: %s!"
 
-#: ../util.php:2273
+#: ../util.php:2351
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Tarvitsetko apua? Katso %s%s FAQ%s"
 
-#: ../util.php:2279
+#: ../util.php:2357
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Ohitetaan %s (Galleria ei kykene k&auml;sittelem&auml;&auml;n %s tiedostomuotoa)"
 
-#: ../util.php:2418
+#: ../util.php:2496
 msgid "documentation"
 msgstr "dokumentaatio"
 
-#: ../util.php:2444
+#: ../util.php:2522
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "EXIF -dataa ei voitu säilöä (jhead:ia ei ole asennettu)"
 
-#: ../util.php:2469
+#: ../util.php:2547
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Loi %s v%s"
 
-#: ../util.php:2471
+#: ../util.php:2549
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Moottorina %s v%s"
 
-#: ../util.php:2521
+#: ../util.php:2599
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Ohitetaan kelvoton sähköpostiosoite %s"
 
-#: ../util.php:2587
+#: ../util.php:2665
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Huomaa: Tämä on automaattisesti generoitu sähköposti sivulta %s.  Jos et tiedä mistä tämä sähköposti on peräisin, se on tullut sinulle luultavasti vahingossa."
 
-#: ../util.php:2589
+#: ../util.php:2667
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Raportoi väärinkäytökset %s."
 
-#: ../util.php:2605
+#: ../util.php:2683
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Sähköpostia ei lähetetty, koska sähköpostiominaisuus ei ole käytössä tässä galleriassa. "
 
-#: ../util.php:2609
+#: ../util.php:2687
 msgid "Email not sent as no address provided"
 msgstr "Sähköpostia ei lähetetty, koska osoite puuttui"
 
-#: ../util.php:2614
+#: ../util.php:2692
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Sähköpostia ei lähetetty, koska %s ei ole kelvollinen osoite"
 
-#: ../util.php:2629
+#: ../util.php:2707
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Lähettäjän osoite %s ei ole kelvollinen, käytetään %s sen sijaan."
 
-#: ../util.php:2653 ../util.php:2658
+#: ../util.php:2731 ../util.php:2736
 msgid "not shown"
 msgstr "ei näytetty"
 
-#: ../util.php:2662
+#: ../util.php:2740
 msgid "Message"
 msgstr "Viesti"
 
-#: ../util.php:2666
+#: ../util.php:2744
 msgid "Email sent"
 msgstr "Sähköposti lähetetty"
 
-#: ../util.php:2668
+#: ../util.php:2746
 msgid "Email not sent"
 msgstr "Sähköpostia ei lähetetty"
 
-#: ../util.php:2682
+#: ../util.php:2760
 #, php-format
 msgid "Last comment %s."
 msgstr "Viimeisin kommentti %s."
 
-#: ../util.php:2693
+#: ../util.php:2771
 msgid "FAILED"
 msgstr "EPÄONNISTUI"
 
-#: ../util.php:2702
+#: ../util.php:2780
 msgid "Email activity"
 msgstr "Sähköpostin aktiivisuus"
 
-#: ../util.php:2720
+#: ../util.php:2798
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Ei voi avata lokitiedostoa: %s"
 
-#: ../util.php:2727
+#: ../util.php:2805
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -2880,53 +2954,53 @@ msgstr ""
 "\n"
 "Terveisin, %s ylläpitäjä."
 
-#: ../util.php:2736 ../util.php:2738
+#: ../util.php:2814 ../util.php:2816
 msgid "gallery title"
 msgstr "gallerian otsikko"
 
-#: ../util.php:2737
+#: ../util.php:2815
 msgid "gallery URL"
 msgstr "gallerian osoite"
 
-#: ../util.php:2758
+#: ../util.php:2836
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>None</dt><dd>Alkuperäinen ulkoasu.</dd>"
 
-#: ../util.php:2804 ../util.php:2809
+#: ../util.php:2882 ../util.php:2887
 msgid "None"
 msgstr "Tyhjä"
 
-#: ../util.php:2805 ../util.php:2810
+#: ../util.php:2883 ../util.php:2888
 msgid "Dots"
 msgstr "Pisteet"
 
-#: ../util.php:2806 ../util.php:2811
+#: ../util.php:2884 ../util.php:2889
 msgid "Solid"
 msgstr "Kiinteä"
 
-#: ../util.php:2809
+#: ../util.php:2887
 msgid "No frames"
 msgstr "Ei raameja"
 
-#: ../util.php:2810
+#: ../util.php:2888
 msgid "Just a simple dashed border around the thumb."
 msgstr "Yksinkertainen katkoviiva esikatselukuvan ympärillä."
 
-#: ../util.php:2811
+#: ../util.php:2889
 msgid "Just a simple solid border around the thumb."
 msgstr "Yksinkertainen viiva esikatselukuvan ympärillä."
 
-#: ../util.php:2832
+#: ../util.php:2910
 #, php-format
 msgid "Skipping %s."
 msgstr "Hypätään %s yli"
 
-#: ../util.php:2838
+#: ../util.php:2916
 #, php-format
 msgid "Can't open %s"
 msgstr "Ei voitu avata %s"
 
-#: ../util.php:2926 ../util.php:2945
+#: ../util.php:3004 ../util.php:3023
 msgid "Not valid yet"
 msgstr "Ei vielä käytössä"
 
@@ -2942,10 +3016,6 @@ msgstr "yksi alialbumi"
 #: ../view_album.php:272
 msgid "sub-albums"
 msgstr "alialbumia"
-
-#: ../view_album.php:273
-msgid "no images"
-msgstr "ei yhtään kuvaa"
 
 #: ../view_album.php:274
 msgid "0 pages"
@@ -2985,10 +3055,6 @@ msgstr "%s on piilotettu"
 msgid "add photos"
 msgstr "lis&auml;&auml; kuvia"
 
-#: ../view_album.php:310
-msgid "rename album"
-msgstr "nime&auml; albumi uudelleen"
-
 #: ../view_album.php:316
 msgid "new nested album"
 msgstr "uusi sis&auml;kk&auml;inen albumi"
@@ -2996,10 +3062,6 @@ msgstr "uusi sis&auml;kk&auml;inen albumi"
 #: ../view_album.php:322
 msgid "custom fields"
 msgstr "k&auml;ytt&auml;j&auml;kohtaiset kent&auml;t"
-
-#: ../view_album.php:328
-msgid "edit captions"
-msgstr "muokkaa kuvatekstej&auml;"
 
 #: ../view_album.php:335
 msgid "sort items"
@@ -3016,10 +3078,6 @@ msgstr "luo esikatselukuvat uudelleen"
 #: ../view_album.php:355
 msgid "properties"
 msgstr "ominaisuudet"
-
-#: ../view_album.php:360
-msgid "permissions"
-msgstr "oikeudet"
 
 #: ../view_album.php:365
 msgid "poll properties"
@@ -3181,15 +3239,15 @@ msgstr "Hei! Lis&auml;&auml; kuvia albumiisi."
 msgid "This album is empty."
 msgstr "T&auml;m&auml; albumi on tyhj&auml;."
 
-#: ../view_album.php:1091 ../view_photo.php:764
+#: ../view_album.php:1091 ../view_photo.php:769
 msgid "Email me when:"
 msgstr "Ilmoita minulle sähköpostilla kun:"
 
-#: ../view_album.php:1092 ../view_photo.php:765
+#: ../view_album.php:1092 ../view_photo.php:770
 msgid "Comments are added"
 msgstr "Kommentti on lisätty"
 
-#: ../view_album.php:1095 ../view_photo.php:769
+#: ../view_album.php:1095 ../view_photo.php:774
 msgid "Other changes are made"
 msgstr "Muita muutoksia on tehty"
 
@@ -3209,27 +3267,27 @@ msgstr "Tämä albumi ei salli kommentointia."
 msgid "resize photo"
 msgstr "muuta kuvan kokoa"
 
-#: ../view_photo.php:322
+#: ../view_photo.php:327
 msgid "delete photo"
 msgstr "poista kuva"
 
-#: ../view_photo.php:337
+#: ../view_photo.php:342
 msgid "View Images"
 msgstr "N&auml;yt&auml; valokuvat"
 
-#: ../view_photo.php:341 ../view_photo.php:343
+#: ../view_photo.php:346 ../view_photo.php:348
 msgid "normal"
 msgstr "normaali"
 
-#: ../view_photo.php:341 ../view_photo.php:343
+#: ../view_photo.php:346 ../view_photo.php:348
 msgid "full"
 msgstr "t&auml;ysi"
 
-#: ../view_photo.php:354
+#: ../view_photo.php:359
 msgid "photo properties"
 msgstr "kuvan ominaisuudet"
 
-#: ../view_photo.php:422 ../view_photo.php:437
+#: ../view_photo.php:427 ../view_photo.php:442
 #, php-format
 msgid "print this photo with %s"
 msgstr "tulosta t&auml;m&auml; kuva %s avulla"
@@ -3254,17 +3312,8 @@ msgstr "Lataa EXIF-data uudelleen tiedostosta"
 msgid "(if the data is current, this will not appear to do anything)"
 msgstr "(jos tiedot ovat ajan tasalla, t&auml;m&auml; toiminto ei n&auml;y k&auml;ytt&auml;j&auml;lle)"
 
-#~ msgid "delete album"
-#~ msgstr "poista albumi"
-
-#~ msgid "move album"
-#~ msgstr "siirr&auml; albumi"
-
-#~ msgid "reorder album"
-#~ msgstr "sijoita albumi uudelleen"
-
-#~ msgid "view&nbsp;comments"
-#~ msgstr "n&auml;yt&auml;&nbsp;kommentit"
+#~ msgid "no image"
+#~ msgstr "ei valokuvia"
 
 #~ msgid "Skipping album %d..."
 #~ msgstr "Ohitetaan albumi %d..."

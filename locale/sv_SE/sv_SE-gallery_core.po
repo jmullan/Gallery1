@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.3nReport-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-03-09 15:11+0100\n"
+"POT-Creation-Date: 2004-03-21 17:55+0100\n"
 "PO-Revision-Date: 2004-03-05 20:46+0100\n"
 "Last-Translator: Peter Liversten <skansberget@telia.com>\n"
 "Language-Team: Swedish <crille@swipnet.se>\n"
@@ -41,21 +41,21 @@ msgstr ""
 #: ../create_user.php:28 ../delete_album.php:28 ../delete_photo.php:28
 #: ../delete_user.php:28 ../do_command.php:28 ../edit_appearance.php:28
 #: ../edit_caption.php:28 ../edit_field.php:28 ../edit_thumb.php:28
-#: ../extra_fields.php:30 ../login.php:28 ../manage_users.php:28
-#: ../modify_user.php:28 ../move_album.php:28 ../move_photo.php:28
-#: ../multi_create_user.php:31 ../new_password.php:28 ../photo_owner.php:30
-#: ../poll_properties.php:30 ../poll_results.php:30
-#: ../progress_uploading.php:28 ../publish_xp.php:28 ../publish_xp_docs.php:28
-#: ../register.php:30 ../rename_album.php:28 ../reset_votes.php:30
-#: ../resize_photo.php:28 ../rotate_photo.php:28 ../save_photos.php:28
-#: ../search.php:28 ../sort_album.php:28 ../upgrade_album.php:28
-#: ../upgrade_users.php:28 ../util.php:28 ../view_album.php:28
-#: ../view_comments.php:31 ../view_photo.php:28
+#: ../extra_fields.php:30 ../html_wrap/wrapper.header.default:98
+#: ../login.php:28 ../manage_users.php:28 ../modify_user.php:28
+#: ../move_album.php:28 ../move_photo.php:28 ../multi_create_user.php:31
+#: ../new_password.php:28 ../photo_owner.php:30 ../poll_properties.php:30
+#: ../poll_results.php:30 ../progress_uploading.php:28 ../publish_xp.php:28
+#: ../publish_xp_docs.php:28 ../register.php:30 ../rename_album.php:28
+#: ../reset_votes.php:30 ../resize_photo.php:28 ../rotate_photo.php:28
+#: ../save_photos.php:28 ../search.php:28 ../sort_album.php:28
+#: ../upgrade_album.php:28 ../upgrade_users.php:28 ../util.php:28
+#: ../view_album.php:28 ../view_comments.php:31 ../view_photo.php:28
 #: ../view_photo_properties.php:28 ../view_photo_properties.php:40
 msgid "Security violation"
 msgstr "Säkerhetsintrång"
 
-#: ../add_comment.php:64 ../classes/Album.php:804
+#: ../add_comment.php:64 ../classes/Album.php:841
 msgid "No email sent as no valid email addresses were found"
 msgstr "Ingen e-post skickades eftersom inga giltiga e-postadresser hittades"
 
@@ -75,7 +75,7 @@ msgstr "Skriv in din kommentar till denna bild i textrutan nedan."
 msgid "Name or email:"
 msgstr "Namn och/eller E-post:"
 
-#: ../add_comment.php:150 ../album_permissions.php:344 ../edit_caption.php:184
+#: ../add_comment.php:150 ../album_permissions.php:344 ../edit_caption.php:190
 #: ../edit_field.php:66 ../edit_field.php:77 ../modify_user.php:158
 #: ../new_password.php:135 ../photo_owner.php:109 ../user_preferences.php:125
 msgid "Save"
@@ -83,10 +83,10 @@ msgstr "Spara"
 
 #: ../add_comment.php:151 ../copy_photo.php:206 ../create_user.php:156
 #: ../delete_album.php:69 ../delete_photo.php:111 ../delete_photo.php:132
-#: ../delete_user.php:85 ../edit_caption.php:185 ../edit_field.php:78
-#: ../includes/add_photos/add_form.inc:79
+#: ../delete_user.php:85 ../edit_caption.php:191 ../edit_field.php:78
+#: ../includes/add_photos/add_form.inc:118
 #: ../includes/add_photos/add_form_one.inc:72
-#: ../includes/add_photos/add_url.inc:42 ../login.php:132
+#: ../includes/add_photos/add_url.inc:50 ../login.php:132
 #: ../modify_user.php:159 ../move_album.php:111 ../move_album.php:131
 #: ../move_photo.php:238 ../move_photo.php:325 ../multi_create_user.php:173
 #: ../new_password.php:136 ../register.php:147 ../rename_album.php:122
@@ -215,9 +215,9 @@ msgstr "1 bild"
 msgid "images"
 msgstr "bilder"
 
-#: ../albums.php:132
-msgid "no image"
-msgstr "ingen bild"
+#: ../albums.php:132 ../view_album.php:273
+msgid "no images"
+msgstr "inga bilder"
 
 #: ../albums.php:133 ../captionator.php:180 ../view_album.php:274
 msgid "1 page"
@@ -356,7 +356,7 @@ msgstr "inga objekt"
 #: ../albums.php:373
 #, php-format
 msgid "This album has been viewed %s since %s."
-msgstr "Detta album har visats %s sedan%s."
+msgstr "Detta album har visats %s sedan %s."
 
 #: ../albums.php:374 ../view_album.php:861 ../view_album.php:875
 msgid "1 time"
@@ -422,21 +422,21 @@ msgstr "Avsluta"
 msgid "Album Caption:"
 msgstr "Albumbeskrivning:"
 
-#: ../captionator.php:270 ../edit_caption.php:90
-#: ../includes/add_photos/add_form.inc:71
+#: ../captionator.php:270 ../edit_caption.php:91
+#: ../includes/add_photos/add_form.inc:95
 #: ../includes/add_photos/add_form_one.inc:45
 msgid "Caption"
 msgstr "Objektrubrik"
 
-#: ../captionator.php:281 ../edit_caption.php:108 ../extra_fields.php:116
+#: ../captionator.php:281 ../extra_fields.php:116 ../lib/lang.php:479
 msgid "Title"
 msgstr "Titel"
 
-#: ../captionator.php:290 ../edit_caption.php:120
+#: ../captionator.php:290 ../edit_caption.php:127
 msgid "Keywords"
 msgstr "Nyckelord"
 
-#: ../captionator.php:293 ../util.php:322
+#: ../captionator.php:293 ../lib/lang.php:468
 msgid "Capture Date"
 msgstr "Fotodatum"
 
@@ -470,38 +470,38 @@ msgstr "Klar"
 msgid "Upgrading item %d of %d . . . "
 msgstr "Uppgraderar objekt %d av %d . . . "
 
-#: ../classes/Album.php:783
+#: ../classes/Album.php:820
 msgid "msg should be an array!"
 msgstr "meddelande bör vara en ordnad rad!"
 
-#: ../classes/Album.php:899
+#: ../classes/Album.php:936
 msgid "Resizing/compressing original image"
 msgstr "Storleksändrar/komprimerar originalbild"
 
-#: ../classes/Album.php:903
+#: ../classes/Album.php:940
 msgid "Cannot resize/compress this filetype"
 msgstr "Kan inte storleksändra/komprimera denna filtyp"
 
-#: ../classes/Album.php:951
+#: ../classes/Album.php:988
 #, php-format
 msgid "Resizing %s"
 msgstr "Storleksändrar %s"
 
-#: ../classes/Album.php:991
+#: ../classes/Album.php:1028
 msgid "Photo auto-rotated/transformed"
 msgstr "Foto automatiskt roterat/omvandlat"
 
-#: ../classes/Album.php:1097 ../classes/Album.php:1107
+#: ../classes/Album.php:1135 ../classes/Album.php:1145
 #: ../classes/AlbumItem.php:528
 msgid "No highlight"
 msgstr "Ingen förgrundsbild"
 
-#: ../classes/Album.php:1965
+#: ../classes/Album.php:2003
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2103
+#: ../classes/Album.php:2141
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "E-post problem: utesluter %s (UID %s) eftersom e-postadress %s inte är giltig."
@@ -612,7 +612,7 @@ msgstr "Utesluter album #%d"
 
 #: ../copy_photo.php:126 ../create_user.php:105 ../do_command.php:165
 #: ../login.php:163 ../multi_create_user.php:126 ../register.php:55
-#: ../register.php:128 ../save_photos.php:292
+#: ../register.php:128 ../save_photos.php:364
 msgid "Dismiss"
 msgstr "Stäng"
 
@@ -997,31 +997,31 @@ msgstr "Redigera text"
 msgid "Edit Caption"
 msgstr "Redigera objekttexter"
 
-#: ../edit_caption.php:144
+#: ../edit_caption.php:150
 msgid "Photo Capture Date"
 msgstr "Fotodatum"
 
-#: ../edit_caption.php:147
+#: ../edit_caption.php:153
 msgid "Month"
 msgstr "Månad"
 
-#: ../edit_caption.php:148
+#: ../edit_caption.php:154
 msgid "Day"
 msgstr "Dag"
 
-#: ../edit_caption.php:149
+#: ../edit_caption.php:155
 msgid "Year"
 msgstr "År"
 
-#: ../edit_caption.php:150
+#: ../edit_caption.php:156
 msgid "Hours"
 msgstr "Timmar"
 
-#: ../edit_caption.php:151
+#: ../edit_caption.php:157
 msgid "Minutes"
 msgstr "Minuter"
 
-#: ../edit_caption.php:152
+#: ../edit_caption.php:158
 msgid "Seconds"
 msgstr "Sekunder"
 
@@ -1098,84 +1098,120 @@ msgstr "Din webläsare stöder inte appletprogram; du bör använda någon av de andr
 msgid "Use the Gallery Remote Mini Applet to upload pictures. It will take a short while to download."
 msgstr "Använd Gallery Remote Mini Applet för att ladda upp bilder.  Den kommer att ta en liten stund att hämta."
 
-#: ../includes/add_photos/add_form.inc:32
+#: ../includes/add_photos/add_form.inc:33
 #: ../includes/add_photos/add_form_one.inc:27
 msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr "Klicka på <b>Bläddra</b> knappen för att lokalisera foto eller film att ladda upp."
 
-#: ../includes/add_photos/add_form.inc:36
-msgid "Tip:  Upload a ZIP file full of photos and movies!"
-msgstr "Tips:  Ladda upp en ZIP-fil med foton och filmer!"
-
-#: ../includes/add_photos/add_form.inc:39
+#: ../includes/add_photos/add_form.inc:35
 #: ../includes/add_photos/add_form_one.inc:31
 msgid "Supported file types"
 msgstr "Filtyper som stöds"
 
-#: ../includes/add_photos/add_form.inc:45
+#: ../includes/add_photos/add_form.inc:39
+#: ../includes/add_photos/add_url.inc:31
+msgid "Tip:"
+msgstr ""
+
+#: ../includes/add_photos/add_form.inc:40
+#, fuzzy
+msgid "Upload a ZIP file full of photos and movies!"
+msgstr "Tips:  Ladda upp en ZIP-fil med foton och filmer!"
+
+#: ../includes/add_photos/add_form.inc:50
 msgid "1. Select the number of files you want to upload:"
 msgstr "1. Välj det antal filer du vill ladda upp: "
 
-#: ../includes/add_photos/add_form.inc:64
+#: ../includes/add_photos/add_form.inc:62
+#, fuzzy
+msgid "Optional:"
+msgstr "Objektrubrik"
+
+#: ../includes/add_photos/add_form.inc:63
+#, fuzzy
+msgid "Select the number of meta data files you want to upload:"
+msgstr "1. Välj det antal filer du vill ladda upp: "
+
+#: ../includes/add_photos/add_form.inc:86
 msgid "2. Use the Browse button to find the photos on your computer"
 msgstr "2. Använd Bläddra-knappen för att hitta fotona på din dator"
 
-#: ../includes/add_photos/add_form.inc:69
+#: ../includes/add_photos/add_form.inc:91
+#: ../includes/add_photos/add_form.inc:103
 #: ../includes/add_photos/add_form_one.inc:43
 msgid "File"
 msgstr "Fil"
 
-#: ../includes/add_photos/add_form.inc:75
+#: ../includes/add_photos/add_form.inc:100
+#, fuzzy
+msgid "3. Use the Browse button to find the meta data files on your computer"
+msgstr "2. Använd Bläddra-knappen för att hitta fotona på din dator"
+
+#: ../includes/add_photos/add_form.inc:112
 #: ../includes/add_photos/add_form_one.inc:68
 msgid "Use filename as caption if no caption is specified."
 msgstr "Använd filnamn som objektrubrik om ingen objektrubrik är specificerad."
 
-#: ../includes/add_photos/add_form.inc:78
+#: ../includes/add_photos/add_form.inc:114
+#, fuzzy
+msgid "Use file creation date stamp as caption if no caption is specified."
+msgstr "Använd filnamn som objektrubrik om ingen objektrubrik är specificerad."
+
+#: ../includes/add_photos/add_form.inc:117
 #: ../includes/add_photos/add_form_one.inc:71
 msgid "Upload Now"
 msgstr "Ladda upp nu"
 
-#: ../includes/add_photos/add_other.inc:28
+#: ../includes/add_photos/add_other.inc:25
 msgid "You can use one of these desktop agents to drag and drop photos from your desktop"
 msgstr "Du kan använda en av dessa skrivbordsagenter för att dra och släppa foton från ditt skrivbord"
 
-#: ../includes/add_photos/add_other.inc:32
+#: ../includes/add_photos/add_other.inc:29
 msgid "A Java application that runs on Mac, Windows and Unix"
 msgstr "En Java-applikation som körs på Mac, Windows och Unix"
 
-#: ../includes/add_photos/add_other.inc:34
+#: ../includes/add_photos/add_other.inc:32
 msgid "Other methods"
 msgstr "Andra metoder"
 
-#: ../includes/add_photos/add_other.inc:36
-msgid "Methods for adding pictures to your Gallery"
+#: ../includes/add_photos/add_other.inc:33
+#, fuzzy
+msgid "See a couple of other Methods for adding pictures to your Gallery on Gallerys Website."
 msgstr "Metoder för uppladdning av bilder till ditt Gallery"
 
-#: ../includes/add_photos/add_other.inc:39
+#: ../includes/add_photos/add_other.inc:37
 msgid "Windows XP Publishing Agent"
 msgstr "Windows XP Publiseringsverktyg"
 
-#: ../includes/add_photos/add_other.inc:41
+#: ../includes/add_photos/add_other.inc:38
 msgid "<i>Note:</i> this feature is still experimental!"
 msgstr "<i>Observera:</i> Denna egenskap är fortfarande i experimentstadiet!"
 
-#: ../includes/add_photos/add_url.inc:29
-msgid "Or, upload any images found at this location."
+#: ../includes/add_photos/add_url.inc:26
+#, fuzzy
+msgid "Upload any images found at this location."
 msgstr "Eller, ladda upp bilder/filmer som finns på denna plats. "
 
-#: ../includes/add_photos/add_url.inc:30
-msgid "The location can either be a URL or a directory on the server."
+#: ../includes/add_photos/add_url.inc:27
+#, fuzzy
+msgid "The location can either be a URL or a local directory on the server."
 msgstr "Platsen kan antingen vara en Webbadress eller en Katalog på servern."
 
-#: ../includes/add_photos/add_url.inc:33
-msgid "Tip: FTP images to a directory on your server then provide that path here!"
+#: ../includes/add_photos/add_url.inc:32
+#, fuzzy
+msgid "FTP images to a directory on your server then provide that path here!"
 msgstr "Tips: Ladda upp bilder/filmer med ett FTP-program till en katalog på din server och skriv in sökvägen här!"
 
-#: ../includes/add_photos/add_url.inc:38
+#: ../includes/add_photos/add_url.inc:43
 msgid "Set photo captions with original filenames."
 msgstr "Använd objektrubriker med filernas originalnamn."
 
-#: ../includes/add_photos/add_url.inc:41
+#: ../includes/add_photos/add_url.inc:45
+#, fuzzy
+msgid "Set photo captions with file creation times."
+msgstr "Använd objektrubriker med filernas originalnamn."
+
+#: ../includes/add_photos/add_url.inc:49
 msgid "Submit URL or directory"
 msgstr "Lägg till Webbadress eller Katalog"
 
@@ -1271,25 +1307,25 @@ msgstr "Dragning"
 msgid "RANDOM!"
 msgstr "SLUMPMÄSSIGT!"
 
-#: ../includes/slideshow/high.inc:316 ../includes/slideshow/low.inc:295
+#: ../includes/slideshow/high.inc:316 ../includes/slideshow/low.inc:301
 msgid "play"
 msgstr "Starta"
 
-#: ../includes/slideshow/high.inc:319 ../includes/slideshow/low.inc:164
+#: ../includes/slideshow/high.inc:319 ../includes/slideshow/low.inc:170
 msgid "The slide show is stopped, Click [play] to resume."
 msgstr "Bildspelet är stoppat, Klicka [Starta] för att återuppta."
 
 #: ../includes/slideshow/high.inc:325 ../includes/slideshow/high.inc:506
-#: ../includes/slideshow/low.inc:294
+#: ../includes/slideshow/low.inc:300
 msgid "stop"
 msgstr "Stoppa"
 
 #: ../includes/slideshow/high.inc:328 ../includes/slideshow/high.inc:387
-#: ../includes/slideshow/low.inc:170
+#: ../includes/slideshow/low.inc:176
 msgid "Slide show is running..."
 msgstr "Bildspelet är igång..."
 
-#: ../includes/slideshow/high.inc:333 ../includes/slideshow/low.inc:310
+#: ../includes/slideshow/high.inc:333 ../includes/slideshow/low.inc:316
 msgid "normal size"
 msgstr "Normalstorlek"
 
@@ -1299,7 +1335,7 @@ msgstr "Bildspelet visar hel orginalstorlek på bilder, Klicka [Normalstorlek] fö
 
 # Ingen bra översättning  men jag kan ingen bättre. Ex på ratade översättning: hel storlek (full screen = helskärm), orginal storlek (min favorit, full heter ju egentligen inte full på svenska utan snarare hel, som det ska vara, orginal etc). / mikgus
 #: ../includes/slideshow/high.inc:339 ../includes/slideshow/high.inc:510
-#: ../includes/slideshow/low.inc:313
+#: ../includes/slideshow/low.inc:319
 msgid "full size"
 msgstr "Orginalstorlek"
 
@@ -1307,34 +1343,34 @@ msgstr "Orginalstorlek"
 msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
 msgstr "Bildspelet visar normalstorlek på bilder, Klicka [Orginalstorlek] för att visa hel orginalstorlek på bilder."
 
-#: ../includes/slideshow/high.inc:348 ../includes/slideshow/low.inc:302
+#: ../includes/slideshow/high.inc:348 ../includes/slideshow/low.inc:308
 msgid "forward direction"
 msgstr "Framåt"
 
 #: ../includes/slideshow/high.inc:351 ../includes/slideshow/high.inc:507
-#: ../includes/slideshow/low.inc:299
+#: ../includes/slideshow/low.inc:305
 msgid "reverse direction"
 msgstr "Bakåt"
 
-#: ../includes/slideshow/high.inc:381 ../includes/slideshow/low.inc:199
+#: ../includes/slideshow/high.inc:381 ../includes/slideshow/low.inc:205
 msgid "Picture is loading..."
 msgstr "Bild laddas..."
 
 #: ../includes/slideshow/high.inc:381 ../includes/slideshow/high.inc:479
-#: ../includes/slideshow/low.inc:199 ../includes/slideshow/low.inc:384
+#: ../includes/slideshow/low.inc:205 ../includes/slideshow/low.inc:390
 msgid "of"
 msgstr "av"
 
-#: ../includes/slideshow/high.inc:382 ../includes/slideshow/low.inc:200
+#: ../includes/slideshow/high.inc:382 ../includes/slideshow/low.inc:206
 #: ../upgrade_users.php:58
 msgid "Please Wait..."
 msgstr "Vänligen vänta..."
 
-#: ../includes/slideshow/high.inc:516 ../includes/slideshow/low.inc:318
+#: ../includes/slideshow/high.inc:516 ../includes/slideshow/low.inc:324
 msgid "Delay:"
 msgstr "Fördröjning: "
 
-#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:320
+#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:326
 msgid "second"
 msgstr "Sekund"
 
@@ -1342,11 +1378,11 @@ msgstr "Sekund"
 #: ../includes/slideshow/high.inc:521 ../includes/slideshow/high.inc:522
 #: ../includes/slideshow/high.inc:523 ../includes/slideshow/high.inc:524
 #: ../includes/slideshow/high.inc:525 ../includes/slideshow/high.inc:526
-#: ../includes/slideshow/high.inc:527 ../includes/slideshow/low.inc:321
-#: ../includes/slideshow/low.inc:322 ../includes/slideshow/low.inc:323
-#: ../includes/slideshow/low.inc:324 ../includes/slideshow/low.inc:325
-#: ../includes/slideshow/low.inc:326 ../includes/slideshow/low.inc:327
+#: ../includes/slideshow/high.inc:527 ../includes/slideshow/low.inc:327
 #: ../includes/slideshow/low.inc:328 ../includes/slideshow/low.inc:329
+#: ../includes/slideshow/low.inc:330 ../includes/slideshow/low.inc:331
+#: ../includes/slideshow/low.inc:332 ../includes/slideshow/low.inc:333
+#: ../includes/slideshow/low.inc:334 ../includes/slideshow/low.inc:335
 msgid "seconds"
 msgstr "Sekunder"
 
@@ -1354,15 +1390,15 @@ msgstr "Sekunder"
 msgid "Transition:"
 msgstr "Övergång:"
 
-#: ../includes/slideshow/high.inc:550 ../includes/slideshow/low.inc:335
+#: ../includes/slideshow/high.inc:550 ../includes/slideshow/low.inc:341
 msgid "Loop"
 msgstr "Slinga"
 
-#: ../includes/slideshow/high.inc:617 ../includes/slideshow/low.inc:395
+#: ../includes/slideshow/high.inc:617 ../includes/slideshow/low.inc:401
 msgid "This album has no photos to show in a slide show."
 msgstr "Detta album har inga foton att visa i ett bildspel."
 
-#: ../includes/slideshow/high.inc:621 ../includes/slideshow/low.inc:399
+#: ../includes/slideshow/high.inc:621 ../includes/slideshow/low.inc:405
 msgid "back to album"
 msgstr "Tillbaka till album"
 
@@ -1425,6 +1461,38 @@ msgstr "Observera: administratörer kan alltid skapa album"
 #: ../html_wrap/album.footer.default:35 ../html_wrap/gallery.footer.default:48
 msgid "Donate to Gallery now!!"
 msgstr "Donera till Gallery nu!!"
+
+#: ../layout/adminAlbumCommands.inc:6
+#, fuzzy
+msgid "delete album"
+msgstr "Ta bort album"
+
+#: ../layout/adminAlbumCommands.inc:11
+#, fuzzy
+msgid "move album"
+msgstr "Flytta album"
+
+#: ../layout/adminAlbumCommands.inc:12
+#, fuzzy
+msgid "reorder album"
+msgstr "Döp om album"
+
+#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:310
+msgid "rename album"
+msgstr "Döp om album"
+
+#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:328
+msgid "edit captions"
+msgstr "Redigera objekttexter"
+
+#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:360
+msgid "permissions"
+msgstr "Rättigheter"
+
+#: ../layout/adminAlbumCommands.inc:32
+#, fuzzy
+msgid "view&nbsp;comments"
+msgstr "Visa kommentarer"
 
 #: ../layout/commentbox.inc:7 ../layout/commentdraw.inc:20
 msgid "From:"
@@ -1501,6 +1569,25 @@ msgstr "Avmarkera alla"
 #: ../lib/Form.php:62
 msgid "Invert Selection"
 msgstr "Invertera markering"
+
+#: ../lib/lang.php:467
+msgid "Upload Date"
+msgstr "Uppladdningsdatum"
+
+#: ../lib/lang.php:469
+msgid "Image Size"
+msgstr "Bildstorlek"
+
+# ska det vara : Ytterligare EXIF Data, eller Fler, Mer ? / mikgus
+#: ../lib/lang.php:470
+msgid "Additional EXIF Data"
+msgstr "Ytterligare EXIF-information"
+
+# Neccessary infact of hardcoded function editField() in util.php
+#: ../lib/lang.php:480
+#, fuzzy
+msgid "Description"
+msgstr "Beskrivning"
 
 # till eller på?
 #: ../login.php:48 ../login.php:54 ../publish_xp.php:64 ../publish_xp.php:108
@@ -2272,39 +2359,44 @@ msgstr "Vänd "
 msgid "Processing and Saving Photos"
 msgstr "Bearbetar och sparar foton"
 
-#: ../save_photos.php:65
+#: ../save_photos.php:66
 msgid "Fetching Urls..."
 msgstr "Hämtar URLs..."
 
-#: ../save_photos.php:82
+#: ../save_photos.php:83
 #, php-format
 msgid "Processing %s as a local directory."
 msgstr "Bearbetar %s som en lokal katalog."
 
-#: ../save_photos.php:144
+#: ../save_photos.php:152
 #, php-format
 msgid "Could not open url: %s"
 msgstr "Kunde inte öppna webbadress: %s"
 
-#: ../save_photos.php:171
+#: ../save_photos.php:179
 #, php-format
 msgid "Parsing %s for images..."
 msgstr "Analyserar %s efter bilder..."
 
-#: ../save_photos.php:236
+#: ../save_photos.php:244
 #, php-format
 msgid "Found %d images"
 msgstr "Hittade %d bilder"
 
-#: ../save_photos.php:244
+#: ../save_photos.php:252
 msgid "Processing status..."
 msgstr "Bearbetningsstatus..."
 
-#: ../save_photos.php:287
+#: ../save_photos.php:359
 msgid "No images uploaded!"
 msgstr "Inga bilder upladdade!"
 
-#: ../save_photos.php:337
+#: ../save_photos.php:410
+#, php-format
+msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
+msgstr ""
+
+#: ../save_photos.php:437
 msgid "Add Files"
 msgstr "Ladda upp filer"
 
@@ -2579,66 +2671,53 @@ msgstr "Filen %s finns inte ?!"
 msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP's %s kan inte fastställa storlek."
 
-#: ../util.php:253 ../util.php:590 ../util.php:636 ../util.php:2459
+#: ../util.php:253 ../util.php:587 ../util.php:633 ../util.php:2537
 msgid "You have no graphics package configured for use!"
 msgstr "Du har inga grafikpaket konfigurerade för att användas!"
 
-#: ../util.php:321
-msgid "Upload Date"
-msgstr "Uppladdningsdatum"
-
-#: ../util.php:323
-msgid "Image Size"
-msgstr "Bildstorlek"
-
-# ska det vara : Ytterligare EXIF Data, eller Fler, Mer ? / mikgus
-#: ../util.php:324
-msgid "Additional EXIF Data"
-msgstr "Ytterligare EXIF-information"
-
-#: ../util.php:360 ../util.php:376
+#: ../util.php:347 ../util.php:363
 msgid "Not closing this window because debug mode is on"
 msgstr "Stänger inte detta fönster eftersom felsökningsläge är på"
 
-#: ../util.php:418
+#: ../util.php:408
 msgid "No resizing required"
 msgstr "Ingen storleksändring krävs"
 
-#: ../util.php:434
+#: ../util.php:431
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "Målfilens storlek %d kbyte"
 
-#: ../util.php:440 ../util.php:470
+#: ../util.php:437 ../util.php:467
 #, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> filstorlek %d kbyte"
 
-#: ../util.php:441
+#: ../util.php:438
 #, php-format
 msgid "trying quality %d%%"
 msgstr "Försöker med kvalité %d%%"
 
-#: ../util.php:471
+#: ../util.php:468
 msgid "Done."
 msgstr "Klar."
 
-#: ../util.php:655
+#: ../util.php:652
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "Anrop till %s misslyckades på %s för fil %s!"
 
-#: ../util.php:661
+#: ../util.php:658
 #, php-format
 msgid "File %s type %d."
 msgstr "Fil %s typ %d."
 
-#: ../util.php:676
+#: ../util.php:673
 #, php-format
 msgid "There was an unknown failure in the %s call!"
 msgstr "Ett okänt fel har uppstått i %s anropet!"
 
-#: ../util.php:700 ../util.php:723
+#: ../util.php:697 ../util.php:720
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Okänd filtyp: %s"
@@ -2770,112 +2849,112 @@ msgstr "0 röster"
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Utesluter %s (ZIP stöd är inte aktiverat)"
 
-#: ../util.php:2260
+#: ../util.php:2331
 #, php-format
 msgid "Adding %s"
 msgstr "Lägger till %s"
 
-#: ../util.php:2271
+#: ../util.php:2349
 #, php-format
 msgid "Error: %s!"
 msgstr "Felmeddelande: %s!"
 
-#: ../util.php:2273
+#: ../util.php:2351
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Behöver du hjälp?  Titta i  %s%s Frågor och Svar%s"
 
-#: ../util.php:2279
+#: ../util.php:2357
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Utesluter %s (kan inte hantera %s format)"
 
-#: ../util.php:2418
+#: ../util.php:2496
 msgid "documentation"
 msgstr "Dokumentation"
 
-#: ../util.php:2444
+#: ../util.php:2522
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Kunde inte bevara EXIF-information (jhead är inte installerat)"
 
-#: ../util.php:2469
+#: ../util.php:2547
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Utvecklat av %s v%s"
 
-#: ../util.php:2471
+#: ../util.php:2549
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Med stöd av %s v%s"
 
-#: ../util.php:2521
+#: ../util.php:2599
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Utesluter ogiltig e-postadress %s"
 
-#: ../util.php:2587
+#: ../util.php:2665
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Observera: Detta är ett automatiskt skapat e-postmeddelande som har skickats från webbsidan %s.  Om du mottagit detta av misstag, vänligen ignorera detta meddelande."
 
-#: ../util.php:2589
+#: ../util.php:2667
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Rapportera missbruk (abuse) till %s"
 
-#: ../util.php:2605
+#: ../util.php:2683
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "E-post skickades inte eftersom det är inte aktiverat för detta Gallery"
 
-#: ../util.php:2609
+#: ../util.php:2687
 msgid "Email not sent as no address provided"
 msgstr "E-post skickades inte eftersom ingen e-postadress tillhandahölls"
 
-#: ../util.php:2614
+#: ../util.php:2692
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "E-post skickades inte till %s eftersom det inte är en giltig e-postadress"
 
-#: ../util.php:2629
+#: ../util.php:2707
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Avsändarens e-postadress %s är ogiltig, användandes %s."
 
-#: ../util.php:2653 ../util.php:2658
+#: ../util.php:2731 ../util.php:2736
 msgid "not shown"
 msgstr "visas inte"
 
-#: ../util.php:2662
+#: ../util.php:2740
 msgid "Message"
 msgstr "Meddelande"
 
-#: ../util.php:2666
+#: ../util.php:2744
 msgid "Email sent"
 msgstr "E-post skickad"
 
-#: ../util.php:2668
+#: ../util.php:2746
 msgid "Email not sent"
 msgstr "E-post inte skickad"
 
-#: ../util.php:2682
+#: ../util.php:2760
 #, php-format
 msgid "Last comment %s."
 msgstr "Senaste kommentar %s."
 
-#: ../util.php:2693
+#: ../util.php:2771
 msgid "FAILED"
 msgstr "MISSLYCKADES"
 
-#: ../util.php:2702
+#: ../util.php:2780
 msgid "Email activity"
 msgstr "E-post aktivering"
 
-#: ../util.php:2720
+#: ../util.php:2798
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kan inte öppna loggfil: %s"
 
-#: ../util.php:2727
+#: ../util.php:2805
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -2895,53 +2974,53 @@ msgstr ""
 "\n"
 "Gallery @ %s Administratör."
 
-#: ../util.php:2736 ../util.php:2738
+#: ../util.php:2814 ../util.php:2816
 msgid "gallery title"
 msgstr "Gallery titel"
 
-#: ../util.php:2737
+#: ../util.php:2815
 msgid "gallery URL"
 msgstr "Gallery URL"
 
-#: ../util.php:2758
+#: ../util.php:2836
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>Ingen</dt><dd>Original utseende..</dd>"
 
-#: ../util.php:2804 ../util.php:2809
+#: ../util.php:2882 ../util.php:2887
 msgid "None"
 msgstr "Ingen"
 
-#: ../util.php:2805 ../util.php:2810
+#: ../util.php:2883 ../util.php:2888
 msgid "Dots"
 msgstr "Punkter"
 
-#: ../util.php:2806 ../util.php:2811
+#: ../util.php:2884 ../util.php:2889
 msgid "Solid"
 msgstr "Enfärgad"
 
-#: ../util.php:2809
+#: ../util.php:2887
 msgid "No frames"
 msgstr "Inga ramar"
 
-#: ../util.php:2810
+#: ../util.php:2888
 msgid "Just a simple dashed border around the thumb."
 msgstr "Endast en enkel streckad kant runt miniatyrbilden."
 
-#: ../util.php:2811
+#: ../util.php:2889
 msgid "Just a simple solid border around the thumb."
 msgstr "Endast en enkel enfärgad kant runt miniatyrbilden."
 
-#: ../util.php:2832
+#: ../util.php:2910
 #, php-format
 msgid "Skipping %s."
 msgstr "Utesluter %s."
 
-#: ../util.php:2838
+#: ../util.php:2916
 #, php-format
 msgid "Can't open %s"
 msgstr "Kan inte öppna %s"
 
-#: ../util.php:2926 ../util.php:2945
+#: ../util.php:3004 ../util.php:3023
 msgid "Not valid yet"
 msgstr "Inte giltigt ännu"
 
@@ -2957,10 +3036,6 @@ msgstr "1 underliggande album"
 #: ../view_album.php:272
 msgid "sub-albums"
 msgstr "underliggande album"
-
-#: ../view_album.php:273
-msgid "no images"
-msgstr "inga bilder"
 
 #: ../view_album.php:274
 msgid "0 pages"
@@ -3000,10 +3075,6 @@ msgstr "%s är dold"
 msgid "add photos"
 msgstr "Ladda upp foton"
 
-#: ../view_album.php:310
-msgid "rename album"
-msgstr "Döp om album"
-
 #: ../view_album.php:316
 msgid "new nested album"
 msgstr "Nytt underliggande album"
@@ -3011,10 +3082,6 @@ msgstr "Nytt underliggande album"
 #: ../view_album.php:322
 msgid "custom fields"
 msgstr "Anpassade fält"
-
-#: ../view_album.php:328
-msgid "edit captions"
-msgstr "Redigera objekttexter"
 
 #: ../view_album.php:335
 msgid "sort items"
@@ -3031,10 +3098,6 @@ msgstr "Återskapa miniatyrbilder"
 #: ../view_album.php:355
 msgid "properties"
 msgstr "Egenskaper"
-
-#: ../view_album.php:360
-msgid "permissions"
-msgstr "Rättigheter"
 
 #: ../view_album.php:365
 msgid "poll properties"
@@ -3197,15 +3260,15 @@ msgstr "Hallå! Ladda upp några foton."
 msgid "This album is empty."
 msgstr "Detta album är tomt."
 
-#: ../view_album.php:1091 ../view_photo.php:764
+#: ../view_album.php:1091 ../view_photo.php:769
 msgid "Email me when:"
 msgstr "E-posta mig när:"
 
-#: ../view_album.php:1092 ../view_photo.php:765
+#: ../view_album.php:1092 ../view_photo.php:770
 msgid "Comments are added"
 msgstr "Kommentarer är lämnade"
 
-#: ../view_album.php:1095 ../view_photo.php:769
+#: ../view_album.php:1095 ../view_photo.php:774
 msgid "Other changes are made"
 msgstr "Andra ändringar är gjorda"
 
@@ -3225,27 +3288,27 @@ msgstr "Tyvärr.  Detta album tillåter inga kommentarer."
 msgid "resize photo"
 msgstr "Storleksändra foto"
 
-#: ../view_photo.php:322
+#: ../view_photo.php:327
 msgid "delete photo"
 msgstr "Ta bort foto"
 
-#: ../view_photo.php:337
+#: ../view_photo.php:342
 msgid "View Images"
 msgstr "Visa bilder"
 
-#: ../view_photo.php:341 ../view_photo.php:343
+#: ../view_photo.php:346 ../view_photo.php:348
 msgid "normal"
 msgstr "normalt"
 
-#: ../view_photo.php:341 ../view_photo.php:343
+#: ../view_photo.php:346 ../view_photo.php:348
 msgid "full"
 msgstr "original"
 
-#: ../view_photo.php:354
+#: ../view_photo.php:359
 msgid "photo properties"
 msgstr "Fotoegenskaper"
 
-#: ../view_photo.php:422 ../view_photo.php:437
+#: ../view_photo.php:427 ../view_photo.php:442
 #, php-format
 msgid "print this photo with %s"
 msgstr "Skriv ut detta foto med %s"
@@ -3269,3 +3332,6 @@ msgstr "Ladda om EXIF-information från fil"
 #: ../view_photo_properties.php:174
 msgid "(if the data is current, this will not appear to do anything)"
 msgstr "(om informationen är aktuell, kommer detta inte att orsaka någon ändring)"
+
+#~ msgid "no image"
+#~ msgstr "ingen bild"
