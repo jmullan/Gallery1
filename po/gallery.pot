@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-05 00:07+0200\n"
+"POT-Creation-Date: 2003-08-05 19:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,8 +68,8 @@ msgstr ""
 #: ../delete_user.php:45 ../delete_user.php:84 ../edit_caption.php:174
 #: ../edit_field.php:69 ../login.php:124 ../modify_user.php:88
 #: ../modify_user.php:144 ../move_album.php:93 ../move_album.php:119
-#: ../move_photo.php:224 ../move_photo.php:309 ../rename_album.php:119
-#: ../resize_photo.php:95 ../sort_album.php:116 ../user_preferences.php:120
+#: ../move_photo.php:224 ../rename_album.php:119 ../resize_photo.php:95
+#: ../sort_album.php:116 ../user_preferences.php:120
 msgid "Cancel"
 msgstr ""
 
@@ -626,7 +626,7 @@ msgid "Do you really want to delete this photo?"
 msgstr ""
 
 #: ../delete_photo.php:139 ../edit_thumb.php:135 ../move_album.php:124
-#: ../move_photo.php:314 ../resize_photo.php:108 ../rotate_photo.php:99
+#: ../resize_photo.php:108 ../rotate_photo.php:99
 #: ../view_photo_properties.php:164
 msgid "no album / index specified"
 msgstr ""
@@ -1177,7 +1177,7 @@ msgstr ""
 msgid "Nest within another Album:"
 msgstr ""
 
-#: ../move_album.php:118 ../move_photo.php:308
+#: ../move_album.php:118
 msgid "Move to Album!"
 msgstr ""
 
@@ -1253,6 +1253,10 @@ msgstr ""
 
 #: ../move_photo.php:261
 msgid "New Album"
+msgstr ""
+
+#: ../move_photo.php:302
+msgid "WARNING: Some of the albums need to be upgraded to the current version of gallery."
 msgstr ""
 
 #: ../progress_uploading.php:44
@@ -2192,8 +2196,8 @@ msgstr ""
 #: ../setup/config_data.inc:364 ../setup/config_data.inc:370
 #: ../setup/config_data.inc:378 ../setup/config_data.inc:387
 #: ../setup/config_data.inc:393 ../setup/config_data.inc:398
-#: ../setup/config_data.inc:405 ../setup/functions.inc:683
-#: ../setup/functions.inc:724
+#: ../setup/config_data.inc:405 ../setup/functions.inc:695
+#: ../setup/functions.inc:736
 msgid "Advanced"
 msgstr ""
 
@@ -2644,122 +2648,122 @@ msgstr ""
 msgid "unknown"
 msgstr ""
 
-#: ../setup/functions.inc:180
+#: ../setup/functions.inc:192
 msgid "Missing value"
 msgstr ""
 
-#: ../setup/functions.inc:198
+#: ../setup/functions.inc:210
 msgid "I can read your .htaccess file"
 msgstr ""
 
-#: ../setup/functions.inc:222 ../setup/functions.inc:242
+#: ../setup/functions.inc:234 ../setup/functions.inc:254
 #, php-format
 msgid "PHP v%s is OK"
 msgstr ""
 
-#: ../setup/functions.inc:254
+#: ../setup/functions.inc:266
 msgid "mod_rewrite is enabled"
 msgstr ""
 
-#: ../setup/functions.inc:277
+#: ../setup/functions.inc:289
 msgid "Could not locate jhead"
 msgstr ""
 
-#: ../setup/functions.inc:279
+#: ../setup/functions.inc:291
 msgid "jhead binary located"
 msgstr ""
 
-#: ../setup/functions.inc:292
+#: ../setup/functions.inc:304
 msgid "NetPBM not being used in this installation"
 msgstr ""
 
-#: ../setup/functions.inc:297 ../setup/functions.inc:382
+#: ../setup/functions.inc:309 ../setup/functions.inc:394
 msgid "Cannot verify this path (it's not in your open_basedir list)"
 msgstr ""
 
-#: ../setup/functions.inc:346 ../setup/functions.inc:401
+#: ../setup/functions.inc:358 ../setup/functions.inc:413
 #, php-format
 msgid "Can't find %s!"
 msgstr ""
 
-#: ../setup/functions.inc:351 ../setup/functions.inc:406
+#: ../setup/functions.inc:363 ../setup/functions.inc:418
 #, php-format
 msgid "%s is not executable!"
 msgstr ""
 
-#: ../setup/functions.inc:362
+#: ../setup/functions.inc:374
 #, php-format
 msgid "All %d NetPBM binaries located"
 msgstr ""
 
-#: ../setup/functions.inc:417
+#: ../setup/functions.inc:429
 #, php-format
 msgid "All %d ImageMagick binaries located"
 msgstr ""
 
-#: ../setup/functions.inc:439
+#: ../setup/functions.inc:451
 msgid "Could not locate jpegtran"
 msgstr ""
 
-#: ../setup/functions.inc:441
+#: ../setup/functions.inc:453
 msgid "jpegtran binary located"
 msgstr ""
 
-#: ../setup/functions.inc:452
+#: ../setup/functions.inc:464
 msgid "gettext installed"
 msgstr ""
 
-#: ../setup/functions.inc:500
+#: ../setup/functions.inc:512
 msgid "No languages found."
 msgstr ""
 
-#: ../setup/functions.inc:502
+#: ../setup/functions.inc:514
 msgid "Only US English version is available.  If you want other languages, download language packs from gallery site"
 msgstr ""
 
-#: ../setup/functions.inc:504
+#: ../setup/functions.inc:516
 #, php-format
 msgid "%d languages found"
 msgstr ""
 
-#: ../setup/functions.inc:520
+#: ../setup/functions.inc:532
 msgid "All gallery locales are available on this host"
 msgstr ""
 
-#: ../setup/functions.inc:523
+#: ../setup/functions.inc:535
 #, php-format
 msgid "We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."
 msgstr ""
 
-#: ../setup/functions.inc:526
+#: ../setup/functions.inc:538
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr ""
 
-#: ../setup/functions.inc:529
+#: ../setup/functions.inc:541
 msgid "Dates in these languages may not be formatted properly, because the corresponding locales are missing:"
 msgstr ""
 
-#: ../setup/functions.inc:683
+#: ../setup/functions.inc:695
 msgid "Locale Selection required"
 msgstr ""
 
-#: ../setup/functions.inc:684
+#: ../setup/functions.inc:696
 msgid "There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable"
 msgstr ""
 
-#: ../setup/functions.inc:724
+#: ../setup/functions.inc:736
 msgid "Locale problems"
 msgstr ""
 
-#: ../setup/functions.inc:725
+#: ../setup/functions.inc:737
 msgid "There are no apparently suitable locales installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr ""
 
-#: ../setup/functions.inc:767
+#: ../setup/functions.inc:779
 msgid "safe mode is off"
 msgstr ""
 
-#: ../setup/functions.inc:779
+#: ../setup/functions.inc:791
 msgid "magic quotes are off"
 msgstr ""
 

@@ -553,7 +553,7 @@ if ($numPhotos) {
 				}
 				echo("<select style='FONT-SIZE: 10px;' name='s' ".
 					"onChange='imageEditChoice(document.image_form_$i.s)'>");
-				echo("<option value=''><< ". _("Edit") . " $label>></option>");
+				echo("<option value=''><< ". _("Edit") . " $label >></option>");
 			}
 			if ($gallery->album->getItemOwnerModify() && 
 			    $gallery->album->isItemOwner($gallery->user->getUid(), $i) && 

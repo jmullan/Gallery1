@@ -299,9 +299,8 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <?php
 } // end else
 if (!$uptodate) {
-	print '<span class="error"> <br>WARNING: Some of the albums need to be upgraded '.		
-	      'to the current version of gallery.</span>  <a href='.  
-	      makeGalleryUrl("upgrade_album.php").'><br>Upgrade now</a>.<p>';
+	print '<span class="error"> <br>' _("WARNING: Some of the albums need to be upgraded to the current version of gallery.") . '</span>  ' .
+	<a href='. makeGalleryUrl("upgrade_album.php").'><br>'. _("Upgrade now") . '</a>.<p>';
 }
 ?>
 <br>
