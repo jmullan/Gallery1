@@ -38,10 +38,9 @@ doctype();
 	<title><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popup">
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></div>
-<div class="popupcontent">
+<div class="popup">
 <?php
 
 if (!empty($username) && !empty($gallerypassword)) {
@@ -70,41 +69,39 @@ if (!empty($username) && !empty($gallerypassword)) {
 	$error=_("Please enter username and password.");
 }
 ?>
-<div class="popuptd">
 <?php echo makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
 <?php echo _("Logging in gives you greater permission to view, create, modify and delete albums.") ?>
 <p>
-<table>
+<table align="center">
 <?php if (isset($error)) { ?>
 <tr>
-	<td colspan="2"><?php echo gallery_error($error); ?></td>
+	<td colspan="2" align="left"><?php echo gallery_error($error); ?></td>
 </tr>
 <?php } ?>
 
 <tr>
-	<td class="popuptd"><?php echo _("Username") ?></td>
-	<td><input type="text" name="username" value="<?php echo $username ?>"></td>
+	<td><?php echo _("Username") ?></td>
+	<td><input type="text" name="username"  class="popupform" value="<?php echo $username ?>"></td>
 </tr>
 <tr>
-	<td class="popuptd"><?php echo _("Password") ?></td>
-	<td><input type="password" name="gallerypassword"></td>
+	<td><?php echo _("Password") ?></td>
+	<td><input type="password" name="gallerypassword" class="popupform"></td>
 </tr>
 </table>
 
 <p>
+<div align="center">
 	<input type="submit" name="login" value="<?php echo _("Login") ?>">
 	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+</div>
 </p>
 </form>
-</div>
-</div>
 </div>
 <?php 
 if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
 ?>
-<div class="popup">
 <div class="popuphead"><?php echo _("Forgotten your password?") ?></div>
-<div class="popupcontent">
+<div class="popup">
 <?php
 	echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST"));
 
@@ -143,18 +140,18 @@ if (!empty($forgot)) {
 ?>
 
 <p>
-<table>
+<table align="center">
 <tr>
-	<td class="popuptd"><?php echo _("Username") ?></td>
-	<td><input type="text" name="username" value="<?php echo $username ?>"></td>
+	<td><?php echo _("Username") ?></td>
+	<td><input type="text" name="username"  class="popupform" value="<?php echo $username ?>"></td>
 </tr>
 </table>
 </p>
 
 <p>
-<input type="submit" name="forgot" value="<?php echo _("Send me my password") ?>">
+<div align="center"><input type="submit" name="forgot" value="<?php echo _("Send me my password") ?>"></div>
 </form>
-</div>
+
 </div>
 <?php } /* End if-email-on */ ?>
 
@@ -165,9 +162,9 @@ document.login_form.username.focus();
 //--> 
 </script>
 
-</div>
 
 <?php print gallery_validation_link("login.php"); ?>
-</div>
+
 </body>
 </html>
+
