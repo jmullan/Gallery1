@@ -145,9 +145,13 @@ printAlbumOptionList(0,1)
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--   
+<?php if (!empty($reorder)) { ?>
 // position cursor in top form field
 document.theform.newIndex.focus();
-//-->
+<?php } else { ?>
+document.theform.newAlbum.focus();
+<?php } ?>
+// -->
 </script>
 </div>
 
