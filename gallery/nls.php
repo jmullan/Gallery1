@@ -57,6 +57,7 @@ function getNLS () {
 	$nls['languages']['ru_RU'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)';
 	$nls['languages']['ru_RU.koi8r'] = '&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (KOI8-R)';
 	$nls['languages']['sv_SE'] = 'Svenska';
+	$nls['languages']['tr_TR'] = 'T&uuml;rk&ccedil;e';
 
 /**
  ** Aliases for languages with different browser and gettext codes
@@ -76,6 +77,7 @@ function getNLS () {
 	$nls['aliases']['pt'] = 'pt_PT';
 	$nls['aliases']['ru'] = 'ru_RU';
 	$nls['aliases']['sv'] = 'sv_SE';
+	$nls['aliases']['tr'] = 'tr_TR';
 
 /**
  ** Aliases for languages which we substitte or send by NUKE
@@ -143,7 +145,10 @@ function getNLS () {
 	$nls['aliases']['sv_SV'] = 		'sv_SE' ;
 	$nls['aliases']['swedish'] =		'sv_SE' ;
 	$nls['aliases']['sv_SE.ISO8859-1'] =    'sv_SE' ;
-	
+
+	$nls['aliases']['turkish'] =		'tr_TR' ;	
+	$nls['aliases']['tr_TR.ISO8859-9'] =    'tr_TR' ;
+
 	$nls['aliases']['spanish'] = 		'es_ES' ;
 
 	$nls['aliases']['zh_TW.Big5']      =    'zh_TW' ;
@@ -163,6 +168,7 @@ function getNLS () {
 	$nls['charset']['ru_RU.KOI8-R'] = 'KOI8-R';
 	$nls['charset']['lt_LT'] = 'windows-1257';
 	$nls['charset']['he_IL'] = 'windows-1255';
+	$nls['charset']['tr_TR'] = 'ISO-8859-9';
 	
 	//$nls['charset']['de_DE']='de_DE.ISO-8859-15@euro' ;
 	//$nls['charset']['lt_LT'] = 'ISO-8859-13';
@@ -207,6 +213,7 @@ function getNLS () {
 	$nls['nuke']['pt_PT'] = 'portuguese';
 	$nls['nuke']['ru_RU'] = 'russian';
 	$nls['nuke']['sv_SE'] = 'swedish';
+	$nls['nuke']['sv_SE'] = 'turkish';
 
 return $nls;
 }
