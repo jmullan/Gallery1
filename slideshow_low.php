@@ -36,6 +36,16 @@ if ($gallery->session->albumName == "") {
         return;
 }
 
+if (!$slide_index) {
+    $slide_index = 1;
+}
+if (!$slide_dir) {
+    $slide_dir = 1;
+}
+if (!$slide_pause) {
+    $slide_pause = 3;
+}
+
 $borderColor = $gallery->album->fields["bordercolor"];
 $borderwidth = $gallery->album->fields["border"];
 if (!strcmp($borderwidth, "off")) {
@@ -72,20 +82,17 @@ if ($gallery->album->fields["textcolor"]) {
 }
 ?>
   </style>
-
 </head>
 
 <body>
 <? } ?>
 
 
-  <script language="JavaScript" SRC="<? echo $gallery->app->photoAlbumURL ?>/js/client_sniff.js">
-  </script>
 <script language="JavaScript">
 var timer; 
-var current_location = 1;
-var next_location = 1; 
-var direction = 1; 
+var current_location = <?= $slide_index ?>;
+var next_location = <?= $slide_index ?>; 
+var direction = <?= $slide_dir ?>; 
 var pics_loaded = 0;
 var onoff = 0;
 var timeout_value;
@@ -146,21 +153,6 @@ while ($index <= $numPhotos) {
 ?>
 var photo_count = <?=$photo_count?>; 
 
-var slideShowLow = "<?= makeGalleryUrl('slideshow_low.php',
-                           array('set_albumName' => $gallery->session->albumName)); ?>";
-
-// Browser capabilities detection ---
-// - assume only IE4+ and NAV6+ can do image resizing, others redirect to low 
-if (is_ie4up || is_nav6up) {
-    //-- it's all good ---
-} else {
-    //-- any other browser we go low-tech ---
-    document.location = slideShowLow;
-}
-
-// - IE5.5 and up can do the blending transition.
-var browserCanBlend = (is_ie5_5up);
-
 function stop() {
     onoff = 0;
 	status = "The slide show is stopped, Click Fwd or Rev to resume.";
@@ -185,7 +177,7 @@ function preload_complete() {
 function reset_timer() {
     clearTimeout(timer);
     timeout_value = document.TopForm.time.options[document.TopForm.time.selectedIndex].value * 1000;
-    timer = setTimeout('go_to_next_photo()', timeout_value);
+    timer = setTimeout('go_to_next_page()', timeout_value);
 }
 
 function wait_for_current_photo() {
@@ -210,6 +202,16 @@ function wait_for_current_photo() {
     }
 }
 
+function go_to_next_page() {
+
+    var slideShowUrl = "<?= makeGalleryUrl('slideshow_low.php',
+				array('set_albumName' => $gallery->session->albumName)); ?>";
+
+    document.location = slideShowUrl + "&slide_index=" + next_location 
+	+ "&slide_dir=" + direction + "&slide_pause=" + (timeout_value / 1000);
+    return 0;
+}
+
 function go_to_next_photo() {
     /* Go to the next location */
     current_location = next_location;
@@ -222,6 +224,7 @@ function go_to_next_photo() {
 
     preload_next_photo();
     reset_timer();
+
 }
 
 function preload_next_photo() {
@@ -250,23 +253,6 @@ function show_current_photo() {
     }
     
     status = "Slide show running...(" + current_location + " of " + photo_count + ")...";
-
-    /* Update our current location in the dropdown */
-    document.TopForm.currentPhoto.selectedIndex = current_location-1;
-
-    /* transistion effects */
-    if (browserCanBlend){
-	document.images.slide.style.filter="blendTrans(duration=2)"
-	document.images.slide.style.filter="blendTrans(duration=crossFadeDuration)"
-	document.images.slide.filters.blendTrans.Apply()      
-    }
-    document.slide.src = images[current_location].src;
-    setCaption(photo_captions[current_location]);
-
-    if (browserCanBlend) {
-	document.images.slide.filters.blendTrans.Play();
-    }
-
     return 1;
 }
 
@@ -283,11 +269,6 @@ function preload_photo(index) {
 	    pics_loaded++;
 	}
     } 
-}
-
-function setCaption(text) {
-    captionBlock = document.getElementById("caption");
-    captionBlock.innerHTML = text;
 }
 
 </Script>
@@ -309,10 +290,6 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
     <td>
     <span class=desc>
     &nbsp;&nbsp;Slide Show:&nbsp;&nbsp;
-    </span>
-    <span class="admin">
-    [not working for you? Try the <a href="<?=makeGalleryUrl("slideshow_low.php",
-                                 array("set_albumName" => $gallery->session->albumName))?>">low-tech slide show</a>]
     </span>
     </td>
     <td align="right">
@@ -351,7 +328,7 @@ drawSelect("time", array(1 => "1 second pause",
 			 30 => "30 second pause",
 			 45 => "45 second pause",
 			 60 => "60 second pause"),
-	   3, // default value
+	   $slide_pause, // default value
 	   1, // select size
 	   array('onchange' => 'reset_timer()', 'style' => 'font-size=10px;' ));
 ?>
@@ -363,7 +340,7 @@ drawSelect("time", array(1 => "1 second pause",
 	}
 	print drawSelect("currentPhoto", 
 			$photoCountArray, 
-			1, // default value 
+			$slide_index, // default value 
 			1, // select size
 			array("onchange" => "skip_to()", 'style' => 'font-size=10px;'));
 ?> (of <?= $numVisible ?>)
@@ -395,7 +372,7 @@ if ($photo_count > 0) {
   <tr>
     <td bgcolor="<?=$borderColor?>" width=<?=$borderwidth?>><?=$pixelImage?></td>
     <script language="JavaScript">
-    document.write("<td><img border=0 src="+photo_urls[1]+" name=slide></td>");
+    document.write("<td><img border=0 src="+photo_urls[<?= $slide_index ?>]+" name=slide></td>");
     </script>
     <td bgcolor="<?=$borderColor?>" width=<?=$borderwidth?>><?=$pixelImage?></td>
   </tr>
@@ -406,15 +383,14 @@ if ($photo_count > 0) {
 <br>
 
 <script language="Javascript">
-/* show the caption */
-document.write("<div class='desc' id='caption'></div>");
+/* show the caption either in a nice div or an ugly form textarea */
+document.write("<div class='desc'>" + photo_captions[<?= $slide_index ?>] + "</div>");
 
 /* Load the first picture */
-setCaption(photo_captions[1]);
-preload_photo(1);
+preload_photo(<?= $slide_index ?>);
 
 /* Start the show. */
-change_direction(1);
+change_direction(<?= $slide_dir ?>);
 
 </script>
 
