@@ -32,7 +32,7 @@ foreach ($features as $feature => $dependents) {
 			if ($cause) {
 				$cause .= ", ";
 			}
-			$cause .= "missing <i>$dep</i>";
+			$cause .= "missing <i>$dep</i> -- it's optional";
 		}
 	}
 
