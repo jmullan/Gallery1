@@ -247,6 +247,7 @@ while (sizeof($userfile)) {
 
 function process($file, $tag, $name, $setCaption="") {
 	global $gallery;
+	global $temp_files;
 
 	if (!strcmp($tag, "zip")) {
 		if (!$gallery->app->feature["zip"]) {
@@ -303,6 +304,20 @@ function process($file, $tag, $name, $setCaption="") {
 	
 		set_time_limit(30);
 		if (acceptableFormat($tag)) {
+
+		        /*
+			 * Move the uploaded image to our temporary directory
+			 * using move_uploaded_file so that we work around
+			 * issues with the open_basedir restriction.
+			 */
+		        $newFile = tempnam($gallery->app->tmpDir, "gallery");
+			if (move_uploaded_file($file, $newFile)) {
+			    $file = $newFile;
+
+			    /* Make sure we remove this file when we're done */
+			    $temp_files[$file]++;
+			}
+		    
 			msg("- Adding $name");
 			if ($setCaption) {
 				$caption = $originalFilename;
