@@ -52,6 +52,31 @@ function editCaption($album, $index, $edit) {
 	return $buf;
 }
 
+function viewComments($index) {
+        global $gallery;
+
+	// get number of comments to use as counter for display loop
+	$numComments = $gallery->album->numComments($index);
+	$borderColor = $gallery->app->default["bordercolor"];
+	for ($i=1; $i <= $numComments; $i++) {
+		// get comments in this loop and then use layout/commentdraw.inc to display
+		$comment = $gallery->album->getComment($index, $i);
+		$commentdraw["comment"] = $comment->getCommentText();
+		$commentdraw["IPNumber"] = $comment->getIPNumber();
+		$commentdraw["datePosted"] = $comment->getDatePosted();
+		$commentdraw["name"] = $comment->getName();
+		$commentdraw["UID"] = $comment->getUID();
+		$commentdraw["bordercolor"] = $borderColor;
+		include("layout/commentdraw.inc");
+	}
+        $url = "add_comment.php?set_albumName={$album->fields[name]}&index=$index";
+        $buf = "<span class=editlink>";
+        $buf .= '<a href="#" onClick="' . popup($url) . '">[add comment]</a>';
+        $buf .= "</span>";
+        echo "<tr align=center><td colspan=3>$buf<br><br></td></tr>";
+}
+
+
 function error($message) {
 	echo error_format($message);
 }

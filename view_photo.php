@@ -404,6 +404,15 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 <span class="caption"><?= editCaption($gallery->album, $index, $edit) ?></span>
 <br><br>
 </td>
+<!-- comments -->
+<? if (!strcmp($gallery->album->fields["public_comments"], "yes")) { ?>
+<tr>
+<td colspan=3 align=center>
+<span class="caption"><?= viewComments($index) ?></span>
+<br><br>
+</td>
+</tr>
+<? } ?>
 <?
 if (!strcmp($gallery->album->fields["print_photos"],"none") ||
     $gallery->album->isMovie($id)) {

@@ -120,6 +120,15 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		header("Location: albums.php");
 	}
 
+} else if (!strcmp($cmd, "delete-comment")) {
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		$gallery->album->deleteComment($index, $comment_index);
+		$gallery->album->save();
+		dismissAndReload();
+	} else {
+		header("Location: albums.php");
+	}
+
 } else if (!empty($return)) {
 	// No command; Can be used to set a session variable
 	header("Location: $return");

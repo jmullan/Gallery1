@@ -29,6 +29,35 @@ class AlbumItem {
 	var $isAlbumName;
 	var $clicks;
 	var $keywords;
+	var $comments;  // array of comment objects
+
+	function numComments() {
+		return sizeof($this->comments);
+	}
+
+	function getComment($commentIndex) {
+		return $this->comments[$commentIndex-1];
+	}
+
+	function addComment($comment, $IPNumber, $name) {
+		global $gallery;
+
+		if ($gallery->user) {
+			$UID = $gallery->user->getUID();
+		} else {
+			$UID = "";
+		}
+
+		$comment = new Comment($comment, $IPNumber, $name, $UID);
+
+		$this->comments[] = $comment;
+
+		return 0;
+	}
+
+	function deleteComment($comment_index) {
+		array_splice($this->comments, $comment_index-1, 1);
+	}
 
 	function setKeyWords($kw) {
 		$this->keywords = $kw;

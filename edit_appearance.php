@@ -44,6 +44,7 @@ if ($save) {
 	$gallery->album->fields["print_photos"] = $print_photos;
 	$gallery->album->fields["use_exif"] = $use_exif;
 	$gallery->album->fields["display_clicks"] = $display_clicks;
+	$gallery->album->fields["public_comments"] = $public_comments;
 	$gallery->album->save();
 
 	reload();
@@ -148,6 +149,10 @@ if ($gallery->app->use_exif) {
 <tr>
 <td>Display click counter for this album?</td>
 <td><select name="display_clicks"><?=selectOptions($gallery->album, "display_clicks", array("yes", "no")) ?></select></td>
+</tr>
+<tr>
+<td>Allow public commenting for photos in this album?</td>
+<td><select name="public_comments"><?=selectOptions($gallery->album, "public_comments", array("no", "yes")) ?></select></td>
 </tr>
 </table>
 

@@ -364,9 +364,14 @@ if ($numPhotos) {
 				</span>
 <?
 			} else {
-				echo($gallery->album->getCaption($i)."<br>");
+				echo($gallery->album->getCaption($i));
+				// indicate with * if we have a comment for a given photo
+				if ((!strcmp($gallery->album->fields["public_comments"], "yes")) && 
+				   ($gallery->album->numComments($i) > 0)) {
+					echo("<span class=error>*</span>");
+				}
 				if (!($gallery->album->fields["display_clicks"] == "no")) {
-					echo("Viewed: ".pluralize($gallery->album->getItemClicks($i), "time", "0").".<br>");
+					echo("<br>Viewed: ".pluralize($gallery->album->getItemClicks($i), "time", "0").".<br>");
 				}
 			}
 			echo "</span>";
@@ -437,6 +442,7 @@ if ($numPhotos) {
 		}
 		echo "</tr>";
 
+
 		/* Now do the inline_albumthumb footer row */
 		echo("<tr>");
 		$i = $rowStart;
@@ -467,9 +473,13 @@ if ($numPhotos) {
 }
 ?>
 
-
 </table>
-<br>
+
+<? if (!strcmp($gallery->album->fields["public_comments"], "yes")) { //display legend for comments ?>
+<span class=error>*</span><span class=fineprint> Comments available for this item.</span>
+<br><br>
+<? } ?>
+
 <!-- bottom nav -->
 <? 
 include($GALLERY_BASEDIR . "layout/navigator.inc");

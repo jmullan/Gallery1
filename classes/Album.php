@@ -56,6 +56,7 @@ class Album {
 		$this->fields["clicks"] = 0;
 		$this->fields["clicks_date"] = time();
 		$this->fields["display_clicks"] = "yes";
+		$this->fields["public_comments"] = "no";
 	}
 
 	function isRoot() {
@@ -447,6 +448,28 @@ class Album {
 		$photo->setCaption($caption);
 		$this->setPhoto($photo, $index);
 	}
+	
+	function numComments($index) {
+		$photo = $this->getPhoto($index);
+		return $photo->numComments();
+	}
+
+	function getComment($photoIndex, $commentIndex) {
+		$photo = $this->getPhoto($photoIndex);
+		return $photo->getComment($commentIndex);
+	}
+
+	function addComment($index, $comment, $IPNumber, $name) {
+		$photo = $this->getPhoto($index);
+		$photo->addComment($comment, $IPNumber, $name); 
+		$this->setPhoto($photo, $index);
+	}
+
+	function deleteComment($index, $comment_index) {
+		$photo = $this->getPhoto($index);
+		$photo->deleteComment($comment_index);
+		$this->setPhoto($photo, $index);
+	}
 
 	function getKeywords($index) {
 		$photo = $this->getPhoto($index);
@@ -514,6 +537,8 @@ class Album {
 		for ($i=1; $i<=$this->numPhotos(1); $i++) {
 			$this->resetItemClicks($i);
 		}	
+		$resetModDate=0;
+		$this->save($resetModDate);
 	}
 
 	function getClicks() {
@@ -559,8 +584,6 @@ class Album {
 		$photo = $this->getPhoto($index);
 		$photo->resetItemClicks();
 		$this->setPhoto($photo,$index);
-		$resetModDate=0;
-		$this->save($resetModDate);
 	}
 
 	function getLastModificationDate() {
