@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_3-cvs
+# Version: 1_4_3-RC1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.3\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-03-25 17:24+0100\n"
+"POT-Creation-Date: 2004-03-30 11:16+0200\n"
 "PO-Revision-Date: 2004-01-26 12:30+0300\n"
 "Last-Translator: A.L.T <leanh@airland.kiev.ua>\n"
 "Language-Team: AIRLAND <admin@airland.kiev.ua>\n"
@@ -74,7 +74,7 @@ msgstr "Tên hoặc email: "
 #: ../add_comment.php:151 ../album_permissions.php:344 ../edit_caption.php:190
 #: ../edit_field.php:66 ../edit_field.php:77 ../edit_watermark.php:81
 #: ../modify_user.php:158 ../new_password.php:135 ../photo_owner.php:109
-#: ../user_preferences.php:125 ../watermark_album.php:84
+#: ../user_preferences.php:125 ../watermark_album.php:88
 msgid "Save"
 msgstr "Lưu"
 
@@ -88,7 +88,7 @@ msgstr "Lưu"
 #: ../move_photo.php:238 ../move_photo.php:325 ../multi_create_user.php:173
 #: ../new_password.php:136 ../register.php:147 ../rename_album.php:122
 #: ../reset_votes.php:70 ../resize_photo.php:125 ../sort_album.php:122
-#: ../user_preferences.php:126 ../watermark_album.php:85
+#: ../user_preferences.php:126 ../watermark_album.php:89
 msgid "Cancel"
 msgstr "Kết&nbsp;thúc"
 
@@ -375,7 +375,7 @@ msgstr "0 lần"
 msgid "reset counter"
 msgstr "xóa bộ đếm"
 
-#: ../albums.php:409 ../view_album.php:1063
+#: ../albums.php:409 ../view_album.php:1068
 msgid "Comments available for this item."
 msgstr "Có thể ghi bình luận cho ảnh này."
 
@@ -1055,17 +1055,17 @@ msgstr "Bạn không có bình chọn nào cho mục bình chọn này."
 msgid "Watermarking photo."
 msgstr ""
 
-#: ../edit_watermark.php:38 ../watermark_album.php:47
+#: ../edit_watermark.php:38 ../watermark_album.php:51
 #, fuzzy
 msgid "this may take a while"
 msgstr "(có thể phải đợi 1 chút)"
 
-#: ../edit_watermark.php:48 ../watermark_album.php:56
+#: ../edit_watermark.php:48 ../watermark_album.php:60
 #, fuzzy
 msgid "Please select a watermark."
 msgstr "Hãy chọn một thành viên"
 
-#: ../edit_watermark.php:51 ../watermark_album.php:59
+#: ../edit_watermark.php:51 ../watermark_album.php:63
 #, fuzzy
 msgid "Please select an alignment."
 msgstr "Hãy chọn một thành viên"
@@ -1118,8 +1118,8 @@ msgstr ""
 msgid "If you don't have the Java Plugin 1.4 or later, you can use one of the other methods."
 msgstr ""
 
-#: ../includes/add_photos/add_applet.inc:38
-#: ../includes/add_photos/add_applet_mini.inc:38
+#: ../includes/add_photos/add_applet.inc:39
+#: ../includes/add_photos/add_applet_mini.inc:39
 msgid "Your browser doesn't support applets; you should use one of the other upload methods."
 msgstr ""
 
@@ -1264,7 +1264,7 @@ msgstr "Trình diễn ảnh cho album :: %s"
 msgid "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions."
 msgstr ""
 
-#: ../includes/slideshow/applet.inc:82
+#: ../includes/slideshow/applet.inc:83
 msgid "Your browser doesn't support applets; you should use one of the other slideshow methods."
 msgstr ""
 
@@ -1529,7 +1529,7 @@ msgstr "quyền hạn"
 msgid "view&nbsp;comments"
 msgstr "xem&nbsp;lời&nbsp;bình"
 
-#: ../layout/adminAlbumCommands.inc:38
+#: ../layout/adminAlbumCommands.inc:38 ../view_album.php:1008
 msgid "watermark&nbsp;album"
 msgstr ""
 
@@ -1981,7 +1981,7 @@ msgstr "Bạn có thể thay đổi thông tin thành viên ở đây."
 msgid "You must enter the new password twice."
 msgstr "Bạn phải ghi mật khẩu mới hai lần."
 
-#: ../photo_owner.php:86 ../photo_owner.php:92 ../view_album.php:1008
+#: ../photo_owner.php:86 ../photo_owner.php:92 ../view_album.php:1013
 msgid "Change Owner"
 msgstr "Đổi người sở hữu"
 
@@ -2071,13 +2071,13 @@ msgstr "Quay lại  %s"
 msgid "Results Breakdown"
 msgstr "Phân chia kết quả"
 
-#: ../poll_results.php:157 ../util.php:2276 ../view_album.php:544
+#: ../poll_results.php:157 ../util.php:2287 ../view_album.php:544
 #: ../view_album.php:844
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
 
-#: ../poll_results.php:172 ../util.php:2343
+#: ../poll_results.php:172 ../util.php:2354
 msgid "No votes so far."
 msgstr "Không có bình chọn nào."
 
@@ -2759,7 +2759,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "Chức năng PHP's %s không thể xác định kích thước."
 
 #: ../util.php:254 ../util.php:561 ../util.php:792 ../util.php:838
-#: ../util.php:2742
+#: ../util.php:2753
 msgid "You have no graphics package configured for use!"
 msgstr "Bạn không có gói graphic đã cấu hình nào để sử dụng!"
 
@@ -2814,239 +2814,239 @@ msgstr "Có 1 lỗi không nhận diện trong truy xuất %s!"
 msgid "Unknown file type: %s"
 msgstr "Không rõ loại file: %s"
 
-#: ../util.php:1500
+#: ../util.php:1507
 #, php-format
 msgid "Can't write to %s."
 msgstr "Không thể viết vào %s."
 
-#: ../util.php:1507
+#: ../util.php:1514
 #, php-format
 msgid "Can't read %s."
 msgstr "Không thể đọc %s."
 
-#: ../util.php:1619
+#: ../util.php:1626
 msgid "Select Album"
 msgstr "Chọn Album"
 
-#: ../util.php:1625
+#: ../util.php:1632
 msgid "Top Level"
 msgstr "Chính"
 
-#: ../util.php:1646 ../util.php:1696
+#: ../util.php:1653 ../util.php:1703
 msgid "current location"
 msgstr "vị trí hiện tại"
 
-#: ../util.php:1698
+#: ../util.php:1705
 msgid "self"
 msgstr "tự"
 
-#: ../util.php:1865
+#: ../util.php:1872
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Không thể mở file khóa (%s)!"
 
-#: ../util.php:1870
+#: ../util.php:1877
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Không thể thu được khóa (%s)!"
 
-#: ../util.php:1954
+#: ../util.php:1961
 msgid "1 hit"
 msgstr "1 lần"
 
-#: ../util.php:1954
+#: ../util.php:1961
 msgid "hits"
 msgstr "lần"
 
-#: ../util.php:1954
+#: ../util.php:1961
 msgid "0 hits"
 msgstr "0 lần"
 
-#: ../util.php:1959
+#: ../util.php:1966
 msgid "Sub-albums"
 msgstr "Album bên trong"
 
-#: ../util.php:2209 ../view_album.php:602 ../view_album.php:632
-#: ../view_album.php:1073
+#: ../util.php:2220 ../view_album.php:602 ../view_album.php:632
+#: ../view_album.php:1078
 msgid "Vote"
 msgstr "Bình chọn"
 
-#: ../util.php:2252
+#: ../util.php:2263
 msgid "Total points in brackets"
 msgstr "Điểm tổng cộng trong ngoặc"
 
-#: ../util.php:2257
+#: ../util.php:2268
 msgid "Average points in brackets"
 msgstr "Điểm trung bình trong ngoặc"
 
-#: ../util.php:2304 ../util.php:2319
+#: ../util.php:2315 ../util.php:2330
 msgid "1 voter"
 msgstr "1 người bình chọn"
 
-#: ../util.php:2305 ../util.php:2319
+#: ../util.php:2316 ../util.php:2330
 msgid "voters"
 msgstr "người bình chọn"
 
-#: ../util.php:2306 ../util.php:2320
+#: ../util.php:2317 ../util.php:2331
 msgid "0 voters"
 msgstr "0 người bình chọn"
 
-#: ../util.php:2317
+#: ../util.php:2328
 #, php-format
 msgid "Results from %s."
 msgstr "Kết quả từ %s."
 
-#: ../util.php:2330
+#: ../util.php:2341
 #, php-format
 msgid "%s: %s points; "
 msgstr "%s: %s điểm; "
 
-#: ../util.php:2336
+#: ../util.php:2347
 #, php-format
 msgid "Key - %s"
 msgstr "Thang điểm - %s"
 
-#: ../util.php:2367
+#: ../util.php:2378
 msgid "Poll results:"
 msgstr "Kết quả bình chọn:"
 
-#: ../util.php:2370
+#: ../util.php:2381
 msgid "No votes"
 msgstr "Không bình chọn"
 
-#: ../util.php:2374
+#: ../util.php:2385
 #, php-format
 msgid "Number %d overall."
 msgstr "Số lượng %d toàn bộ."
 
-#: ../util.php:2379
+#: ../util.php:2390
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: ../util.php:2380 ../view_album.php:607
+#: ../util.php:2391 ../view_album.php:607
 msgid "1 vote"
 msgstr "1 bình chọn"
 
-#: ../util.php:2380 ../view_album.php:607
+#: ../util.php:2391 ../view_album.php:607
 msgid "votes"
 msgstr "bình chọn"
 
-#: ../util.php:2380
+#: ../util.php:2391
 msgid "0 votes"
 msgstr "0 bình chọn"
 
-#: ../util.php:2391
+#: ../util.php:2402
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "Bỏ qua %s (chức năng trợ giúp ZIP không được bật)"
 
-#: ../util.php:2536
+#: ../util.php:2547
 #, php-format
 msgid "Adding %s"
 msgstr "Thêm %s"
 
-#: ../util.php:2554
+#: ../util.php:2565
 #, php-format
 msgid "Error: %s!"
 msgstr "Lỗi: %s!"
 
-#: ../util.php:2556
+#: ../util.php:2567
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Cần trợ giúp? Hãy xem %s%s Hỏi đáp%s"
 
-#: ../util.php:2562
+#: ../util.php:2573
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Bỏ qua %s (không thể giữ định dạng %s)"
 
-#: ../util.php:2701
+#: ../util.php:2712
 msgid "documentation"
 msgstr "tài liệu"
 
-#: ../util.php:2727
+#: ../util.php:2738
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Không thể nhận dữ liệu EXIF (jhead không được cài đặt)"
 
-#: ../util.php:2752
+#: ../util.php:2763
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Được tạo bằng %s v%s"
 
-#: ../util.php:2754
+#: ../util.php:2765
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2804
+#: ../util.php:2815
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Bỏ qua địa chỉ email không hợp lệ %s"
 
-#: ../util.php:2870
+#: ../util.php:2881
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Chú ý: Đây là email tin được tự động tạo ra gửi đến từ website %s. Nếu khi bạn nhận và có lỗi, hãy bỏ qua nó."
 
-#: ../util.php:2872
+#: ../util.php:2883
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Báo cáo tới %s"
 
-#: ../util.php:2888
+#: ../util.php:2899
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Email không được gửi vì chức năng gửi không hiệu lực cho thư viện ảnh"
 
-#: ../util.php:2892
+#: ../util.php:2903
 msgid "Email not sent as no address provided"
 msgstr "Email không được gửi vì không cung cấp địa chỉ"
 
-#: ../util.php:2897
+#: ../util.php:2908
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Email không được gửi tới %s vì đó là địa chỉ không hợp lệ"
 
-#: ../util.php:2912
+#: ../util.php:2923
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Địa chỉ người gửi %s không hợp lệ, sử dụng %s."
 
-#: ../util.php:2936 ../util.php:2941
+#: ../util.php:2947 ../util.php:2952
 msgid "not shown"
 msgstr "không hiển thị"
 
-#: ../util.php:2945
+#: ../util.php:2956
 msgid "Message"
 msgstr "Thông điệp"
 
-#: ../util.php:2949
+#: ../util.php:2960
 msgid "Email sent"
 msgstr "Email đã được gửi"
 
-#: ../util.php:2951
+#: ../util.php:2962
 msgid "Email not sent"
 msgstr "Email không được gửi"
 
-#: ../util.php:2965
+#: ../util.php:2976
 #, php-format
 msgid "Last comment %s."
 msgstr "Lời bình cuối %s."
 
-#: ../util.php:2976
+#: ../util.php:2987
 msgid "FAILED"
 msgstr "LỖI"
 
-#: ../util.php:2985
+#: ../util.php:2996
 msgid "Email activity"
 msgstr "Kích hoạt Email"
 
-#: ../util.php:3003
+#: ../util.php:3014
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Không thể mở logfile: %s"
 
-#: ../util.php:3010
+#: ../util.php:3021
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3065,53 +3065,53 @@ msgstr ""
 "\n"
 "Thư viện ảnh @ %s Administrator."
 
-#: ../util.php:3019 ../util.php:3021
+#: ../util.php:3030 ../util.php:3032
 msgid "gallery title"
 msgstr "tiêu đề thư viện ảnh"
 
-#: ../util.php:3020
+#: ../util.php:3031
 msgid "gallery URL"
 msgstr "URL thư viện ảnh"
 
-#: ../util.php:3041
+#: ../util.php:3052
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>Không</dt><dd>Kiểu dáng nguyên gốc.</dd>"
 
-#: ../util.php:3087 ../util.php:3092
+#: ../util.php:3098 ../util.php:3103
 msgid "None"
 msgstr "Không"
 
-#: ../util.php:3088 ../util.php:3093
+#: ../util.php:3099 ../util.php:3104
 msgid "Dots"
 msgstr "Gạch"
 
-#: ../util.php:3089 ../util.php:3094
+#: ../util.php:3100 ../util.php:3105
 msgid "Solid"
 msgstr "Khối"
 
-#: ../util.php:3092
+#: ../util.php:3103
 msgid "No frames"
 msgstr "Không khung"
 
-#: ../util.php:3093
+#: ../util.php:3104
 msgid "Just a simple dashed border around the thumb."
 msgstr "Đây chỉ là một viền mảnh xung quanh thumb."
 
-#: ../util.php:3094
+#: ../util.php:3105
 msgid "Just a simple solid border around the thumb."
 msgstr "Đây chỉ là một viền đậm xung quanh thumb."
 
-#: ../util.php:3115
+#: ../util.php:3126
 #, php-format
 msgid "Skipping %s."
 msgstr "Bỏ qua %s."
 
-#: ../util.php:3121
+#: ../util.php:3132
 #, php-format
 msgid "Can't open %s"
 msgstr "Không thể mở %s"
 
-#: ../util.php:3212 ../util.php:3231
+#: ../util.php:3223 ../util.php:3242
 msgid "Not valid yet"
 msgstr "Chưa chính xác"
 
@@ -3342,23 +3342,23 @@ msgstr "Ẩn"
 msgid "Permissions"
 msgstr "Quyền hạn"
 
-#: ../view_album.php:1050
+#: ../view_album.php:1055
 msgid "Hey! Add some photos."
 msgstr "Hãy thêm vài ảnh."
 
-#: ../view_album.php:1052
+#: ../view_album.php:1057
 msgid "This album is empty."
 msgstr "Album này không có gì"
 
-#: ../view_album.php:1099 ../view_photo.php:793
+#: ../view_album.php:1104 ../view_photo.php:793
 msgid "Email me when:"
 msgstr "Email cho tôi khi:"
 
-#: ../view_album.php:1100 ../view_photo.php:794
+#: ../view_album.php:1105 ../view_photo.php:794
 msgid "Comments are added"
 msgstr "Lời bình đã được thêm"
 
-#: ../view_album.php:1103 ../view_photo.php:798
+#: ../view_album.php:1108 ../view_photo.php:798
 msgid "Other changes are made"
 msgstr "Những thay đổi khác đã được tạo"
 
@@ -3423,11 +3423,11 @@ msgstr "Tải lại dữ liệu EXIF từ file"
 msgid "(if the data is current, this will not appear to do anything)"
 msgstr "(nếu là dữ liệu hiện tại, nó sẽ không biểu lộ để làm bất cứ cái gì)"
 
-#: ../watermark_album.php:47
+#: ../watermark_album.php:51
 msgid "Watermarking album."
 msgstr ""
 
-#: ../watermark_album.php:65 ../watermark_album.php:70
+#: ../watermark_album.php:69 ../watermark_album.php:74
 #, fuzzy
 msgid "Watermark Album"
 msgstr "Từ Album"

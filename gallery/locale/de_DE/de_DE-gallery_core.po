@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1_4_3-cvs
+# Version: 1_4_3-RC1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4.3\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-03-25 17:46+0100\n"
+"POT-Creation-Date: 2004-03-30 11:17+0200\n"
 "PO-Revision-Date: 2003-12-16 16:00+0100\n"
 "Last-Translator: Jens Tkotz <jens@f2h9.de>\n"
 "Language-Team: German <jens@f2h9.de\n"
@@ -75,7 +75,7 @@ msgstr "Name oder Email: "
 #: ../add_comment.php:151 ../album_permissions.php:344 ../edit_caption.php:190
 #: ../edit_field.php:66 ../edit_field.php:77 ../edit_watermark.php:81
 #: ../modify_user.php:158 ../new_password.php:135 ../photo_owner.php:109
-#: ../user_preferences.php:125 ../watermark_album.php:84
+#: ../user_preferences.php:125 ../watermark_album.php:88
 msgid "Save"
 msgstr "Speichern"
 
@@ -89,7 +89,7 @@ msgstr "Speichern"
 #: ../move_photo.php:238 ../move_photo.php:325 ../multi_create_user.php:173
 #: ../new_password.php:136 ../register.php:147 ../rename_album.php:122
 #: ../reset_votes.php:70 ../resize_photo.php:125 ../sort_album.php:122
-#: ../user_preferences.php:126 ../watermark_album.php:85
+#: ../user_preferences.php:126 ../watermark_album.php:89
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -371,7 +371,7 @@ msgstr "noch nie"
 msgid "reset counter"
 msgstr "Z&auml;hler zur&uuml;cksetzen"
 
-#: ../albums.php:409 ../view_album.php:1063
+#: ../albums.php:409 ../view_album.php:1068
 msgid "Comments available for this item."
 msgstr "Es sind Kommentare vorhanden."
 
@@ -1049,15 +1049,15 @@ msgstr "Es ist Ihnen nicht gestattet, diese Aktion durchzuf&uuml;hren."
 msgid "Watermarking photo."
 msgstr "Wasserzeichen Bild."
 
-#: ../edit_watermark.php:38 ../watermark_album.php:47
+#: ../edit_watermark.php:38 ../watermark_album.php:51
 msgid "this may take a while"
 msgstr "Dies k&ouml;nnte eine Weile dauern"
 
-#: ../edit_watermark.php:48 ../watermark_album.php:56
+#: ../edit_watermark.php:48 ../watermark_album.php:60
 msgid "Please select a watermark."
 msgstr "Bitten w&auml;hlen Sie ein Wasserzeichen."
 
-#: ../edit_watermark.php:51 ../watermark_album.php:59
+#: ../edit_watermark.php:51 ../watermark_album.php:63
 msgid "Please select an alignment."
 msgstr "Bitten w&auml;hlen Sie die Ausrichtung."
 
@@ -1107,8 +1107,8 @@ msgstr "Das Gallery Remote Applet ist eine Alternative f&uuml;r den Bilderupload
 msgid "If you don't have the Java Plugin 1.4 or later, you can use one of the other methods."
 msgstr "Falls Sie das Java Plugin 1.4 oder neuer nicht installiert haben, k&ouml;nnen Sie problemlos eine der anderen M&ouml;glichkeiten nutzen."
 
-#: ../includes/add_photos/add_applet.inc:38
-#: ../includes/add_photos/add_applet_mini.inc:38
+#: ../includes/add_photos/add_applet.inc:39
+#: ../includes/add_photos/add_applet_mini.inc:39
 msgid "Your browser doesn't support applets; you should use one of the other upload methods."
 msgstr "Ihr Browser unterst&uuml;tzt keine Appletts"
 
@@ -1242,7 +1242,7 @@ msgstr "Diashow f&uuml;r Album  :: %s"
 msgid "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions."
 msgstr "Falls Sie das Java Plugin 1.4 oder neuer nicht installiert haben, oder Sie nicht auf das Applet warten wollen, k&ouml;nnen Sie problemlos eine der anderen M&ouml;glichkeiten nutzen."
 
-#: ../includes/slideshow/applet.inc:82
+#: ../includes/slideshow/applet.inc:83
 msgid "Your browser doesn't support applets; you should use one of the other slideshow methods."
 msgstr "Ihr Browser unterst&uuml;tzt keine Applets. Verwenden Sie eine der anderen Diashow Varianten."
 
@@ -1502,7 +1502,7 @@ msgstr "Berechtigungen"
 msgid "view&nbsp;comments"
 msgstr "Kommentare betrachten"
 
-#: ../layout/adminAlbumCommands.inc:38
+#: ../layout/adminAlbumCommands.inc:38 ../view_album.php:1008
 msgid "watermark&nbsp;album"
 msgstr "Wasserzeichen auf Album setzen"
 
@@ -1575,9 +1575,9 @@ msgid "Watermark"
 msgstr "Wasserzeichen"
 
 #: ../layout/watermarkform.inc:75
-#, fuzzy, php-format
+#, php-format
 msgid "Error: No files matching %s found in %s"
-msgstr "Fehler:  Es wurden keine Datein in $2% gefunden, die dem Typ $1%s entsprechen"
+msgstr "Fehler: Es wurden keine Datein in $2%s gefunden, die dem Typ $1%s entsprechen."
 
 #: ../layout/watermarkform.inc:84
 #, php-format
@@ -1948,7 +1948,7 @@ msgstr "Hier k&ouml;nnen Sie Ihre Angaben &auml;ndern."
 msgid "You must enter the new password twice."
 msgstr "Sie m&uuml;ssen Ihr neues Passwort zweimal eingeben."
 
-#: ../photo_owner.php:86 ../photo_owner.php:92 ../view_album.php:1008
+#: ../photo_owner.php:86 ../photo_owner.php:92 ../view_album.php:1013
 msgid "Change Owner"
 msgstr "&Auml;ndere Besitzer/in"
 
@@ -2038,13 +2038,13 @@ msgstr "R&uuml;ckkehr zu %s"
 msgid "Results Breakdown"
 msgstr "Zusammenfassung der Ergebnisse"
 
-#: ../poll_results.php:157 ../util.php:2276 ../view_album.php:544
+#: ../poll_results.php:157 ../util.php:2287 ../view_album.php:544
 #: ../view_album.php:844
 #, php-format
 msgid "Album: %s"
 msgstr "Alben: %s"
 
-#: ../poll_results.php:172 ../util.php:2343
+#: ../poll_results.php:172 ../util.php:2354
 msgid "No votes so far."
 msgstr "Keine Stimmen bisher."
 
@@ -2726,7 +2726,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP's %s war es nicht m&ouml;glich, die Dimensionen zu erkennen."
 
 #: ../util.php:254 ../util.php:561 ../util.php:792 ../util.php:838
-#: ../util.php:2742
+#: ../util.php:2753
 msgid "You have no graphics package configured for use!"
 msgstr "Sie haben kein Bearbeitungsprogramm f&uuml;r Graphiken angegeben"
 
@@ -2781,239 +2781,239 @@ msgstr "Es trat ein unbekannter Fehler beim Funktionsaufruf von %s auf"
 msgid "Unknown file type: %s"
 msgstr "Unbekannter Dateityp : %s"
 
-#: ../util.php:1500
+#: ../util.php:1507
 #, php-format
 msgid "Can't write to %s."
 msgstr "Fehler beim Schreiben nach %s"
 
-#: ../util.php:1507
+#: ../util.php:1514
 #, php-format
 msgid "Can't read %s."
 msgstr "Fehler beim Lesen von %s"
 
-#: ../util.php:1619
+#: ../util.php:1626
 msgid "Select Album"
 msgstr "W&auml;hlen Sie das Album"
 
-#: ../util.php:1625
+#: ../util.php:1632
 msgid "Top Level"
 msgstr "Oberste Ebene"
 
-#: ../util.php:1646 ../util.php:1696
+#: ../util.php:1653 ../util.php:1703
 msgid "current location"
 msgstr "Aktuelles Album"
 
-#: ../util.php:1698
+#: ../util.php:1705
 msgid "self"
 msgstr "Selber"
 
-#: ../util.php:1865
+#: ../util.php:1872
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Konnte die lock Datei (%s) nicht &ouml;ffnen!"
 
-#: ../util.php:1870
+#: ../util.php:1877
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Konnte die Datei nicht entsperren (%s)!"
 
-#: ../util.php:1954
+#: ../util.php:1961
 msgid "1 hit"
 msgstr "1 mal gesehen"
 
-#: ../util.php:1954
+#: ../util.php:1961
 msgid "hits"
 msgstr "mal gesehen"
 
-#: ../util.php:1954
+#: ../util.php:1961
 msgid "0 hits"
 msgstr "kein mal gesehen"
 
-#: ../util.php:1959
+#: ../util.php:1966
 msgid "Sub-albums"
 msgstr "Unteralben"
 
-#: ../util.php:2209 ../view_album.php:602 ../view_album.php:632
-#: ../view_album.php:1073
+#: ../util.php:2220 ../view_album.php:602 ../view_album.php:632
+#: ../view_album.php:1078
 msgid "Vote"
 msgstr "Vote !"
 
-#: ../util.php:2252
+#: ../util.php:2263
 msgid "Total points in brackets"
 msgstr "Gesamtpunkte in Klammern"
 
-#: ../util.php:2257
+#: ../util.php:2268
 msgid "Average points in brackets"
 msgstr "Durchschnittliche Punkte in Klammern"
 
-#: ../util.php:2304 ../util.php:2319
+#: ../util.php:2315 ../util.php:2330
 msgid "1 voter"
 msgstr "1 Stimme"
 
-#: ../util.php:2305 ../util.php:2319
+#: ../util.php:2316 ../util.php:2330
 msgid "voters"
 msgstr "Abstimmer"
 
-#: ../util.php:2306 ../util.php:2320
+#: ../util.php:2317 ../util.php:2331
 msgid "0 voters"
 msgstr "0 Abstimmer"
 
-#: ../util.php:2317
+#: ../util.php:2328
 #, php-format
 msgid "Results from %s."
 msgstr "Ergebnis von %s."
 
-#: ../util.php:2330
+#: ../util.php:2341
 #, php-format
 msgid "%s: %s points; "
 msgstr "%s: %s Punkte; "
 
-#: ../util.php:2336
+#: ../util.php:2347
 #, php-format
 msgid "Key - %s"
 msgstr "Schl&uuml;ssel - %s"
 
-#: ../util.php:2367
+#: ../util.php:2378
 msgid "Poll results:"
 msgstr "Abstimmungsergebnis:"
 
-#: ../util.php:2370
+#: ../util.php:2381
 msgid "No votes"
 msgstr "Keine Stimmen"
 
-#: ../util.php:2374
+#: ../util.php:2385
 #, php-format
 msgid "Number %d overall."
 msgstr "%d insgesamt."
 
-#: ../util.php:2379
+#: ../util.php:2390
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: ../util.php:2380 ../view_album.php:607
+#: ../util.php:2391 ../view_album.php:607
 msgid "1 vote"
 msgstr "1 Stimme"
 
-#: ../util.php:2380 ../view_album.php:607
+#: ../util.php:2391 ../view_album.php:607
 msgid "votes"
 msgstr "Stimmen"
 
-#: ../util.php:2380
+#: ../util.php:2391
 msgid "0 votes"
 msgstr "0 Stimmen"
 
-#: ../util.php:2391
+#: ../util.php:2402
 #, php-format
 msgid "Skipping %s (ZIP support not enabled)"
 msgstr "%s wird &uuml;bersprungen (ZIP-Unterst&uuml;tzung nicht aktiviert)"
 
-#: ../util.php:2536
+#: ../util.php:2547
 #, php-format
 msgid "Adding %s"
 msgstr "F&uuml;ge hinzu: %s"
 
-#: ../util.php:2554
+#: ../util.php:2565
 #, php-format
 msgid "Error: %s!"
 msgstr "Fehler: %s !"
 
-#: ../util.php:2556
+#: ../util.php:2567
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Brauchen Sie Hilfe? Schauen Sie in die %s%s F.A.Q.%s."
 
-#: ../util.php:2562
+#: ../util.php:2573
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "%s wird &uuml;bersprungen (%s Format kann nicht verarbeitet werden)"
 
-#: ../util.php:2701
+#: ../util.php:2712
 msgid "documentation"
 msgstr "Dokumentation"
 
-#: ../util.php:2727
+#: ../util.php:2738
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Die EXIF Daten konnten nicht gespeichert werden (jhead nicht installiert)"
 
-#: ../util.php:2752
+#: ../util.php:2763
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Generiert von %s v%s"
 
-#: ../util.php:2754
+#: ../util.php:2765
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
 
-#: ../util.php:2804
+#: ../util.php:2815
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Die ung&uuml;ltige Emailadresse %s wird &uuml;bersprungen"
 
-#: ../util.php:2870
+#: ../util.php:2881
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Hinweis:  Dies ist eine automatisch generierete Email der Webseite %s.  Falls Sie sie nicht angefordert haben, ignorieren Sie sie bitte."
 
-#: ../util.php:2872
+#: ../util.php:2883
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Bitte melden Sie Missbrauch an %s."
 
-#: ../util.php:2888
+#: ../util.php:2899
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Es wurde keine Email gesendet, da dieses Feature ausgeschaltet wurde."
 
-#: ../util.php:2892
+#: ../util.php:2903
 msgid "Email not sent as no address provided"
 msgstr "Es wurde keine Email gesendet, da keine Emaildresse angegeben wurde."
 
-#: ../util.php:2897
+#: ../util.php:2908
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Es wurde keine Email an %s gesendet, da die Adresse ung&uuml;ltig ist."
 
-#: ../util.php:2912
+#: ../util.php:2923
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Die Absenderadresse %s ist ung&uuml;ltig, es wird %s benutzt."
 
-#: ../util.php:2936 ../util.php:2941
+#: ../util.php:2947 ../util.php:2952
 msgid "not shown"
 msgstr "wird nicht angezeigt"
 
-#: ../util.php:2945
+#: ../util.php:2956
 msgid "Message"
 msgstr "Meldung"
 
-#: ../util.php:2949
+#: ../util.php:2960
 msgid "Email sent"
 msgstr "Email wurde gesendet"
 
-#: ../util.php:2951
+#: ../util.php:2962
 msgid "Email not sent"
 msgstr "Email wurde nicht gesendet"
 
-#: ../util.php:2965
+#: ../util.php:2976
 #, php-format
 msgid "Last comment %s."
 msgstr "Letzter Kommentar am %s."
 
-#: ../util.php:2976
+#: ../util.php:2987
 msgid "FAILED"
 msgstr "FEHLGESCHLAGEN"
 
-#: ../util.php:2985
+#: ../util.php:2996
 msgid "Email activity"
 msgstr "Email Aktivit&auml;t"
 
-#: ../util.php:3003
+#: ../util.php:3014
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Konnte die Logdatei: %s nicht &ouml;ffnen"
 
-#: ../util.php:3010
+#: ../util.php:3021
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -3032,53 +3032,53 @@ msgstr ""
 "\n"
 "Gallery @ %s Administrator."
 
-#: ../util.php:3019 ../util.php:3021
+#: ../util.php:3030 ../util.php:3032
 msgid "gallery title"
 msgstr "Galerietitel"
 
-#: ../util.php:3020
+#: ../util.php:3031
 msgid "gallery URL"
 msgstr "Gallery URL"
 
-#: ../util.php:3041
+#: ../util.php:3052
 msgid "<dt>None</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>None</dt><dd>Original Look and feel.</dd>"
 
-#: ../util.php:3087 ../util.php:3092
+#: ../util.php:3098 ../util.php:3103
 msgid "None"
 msgstr "Keinen"
 
-#: ../util.php:3088 ../util.php:3093
+#: ../util.php:3099 ../util.php:3104
 msgid "Dots"
 msgstr "Gestrichelte Linie"
 
-#: ../util.php:3089 ../util.php:3094
+#: ../util.php:3100 ../util.php:3105
 msgid "Solid"
 msgstr "Durchgezogene Linie"
 
-#: ../util.php:3092
+#: ../util.php:3103
 msgid "No frames"
 msgstr "Keinen Rahmen"
 
-#: ../util.php:3093
+#: ../util.php:3104
 msgid "Just a simple dashed border around the thumb."
 msgstr "Zeichnet eine einfache gestrichelte Linie um das Thumbnail."
 
-#: ../util.php:3094
+#: ../util.php:3105
 msgid "Just a simple solid border around the thumb."
 msgstr "Zeichnet eine einfache durchgezogene Linie um das Thumbnail."
 
-#: ../util.php:3115
+#: ../util.php:3126
 #, php-format
 msgid "Skipping %s."
 msgstr "&Uuml;berspringe %s."
 
-#: ../util.php:3121
+#: ../util.php:3132
 #, php-format
 msgid "Can't open %s"
 msgstr "Fehler beim &Ouml;ffnen von %s"
 
-#: ../util.php:3212 ../util.php:3231
+#: ../util.php:3223 ../util.php:3242
 msgid "Not valid yet"
 msgstr "Noch nicht validiert."
 
@@ -3309,23 +3309,23 @@ msgstr "Verstecke"
 msgid "Permissions"
 msgstr "Berechtigungen"
 
-#: ../view_album.php:1050
+#: ../view_album.php:1055
 msgid "Hey! Add some photos."
 msgstr "F&uuml;gen Sie Photos hinzu !"
 
-#: ../view_album.php:1052
+#: ../view_album.php:1057
 msgid "This album is empty."
 msgstr "Dieses Album ist leer."
 
-#: ../view_album.php:1099 ../view_photo.php:793
+#: ../view_album.php:1104 ../view_photo.php:793
 msgid "Email me when:"
 msgstr "Ich m&ouml;chte per Email benachrichtigt werden, wenn:"
 
-#: ../view_album.php:1100 ../view_photo.php:794
+#: ../view_album.php:1105 ../view_photo.php:794
 msgid "Comments are added"
 msgstr "Kommentare abgegeben wurden"
 
-#: ../view_album.php:1103 ../view_photo.php:798
+#: ../view_album.php:1108 ../view_photo.php:798
 msgid "Other changes are made"
 msgstr "Sonstige Ver&auml;nderungen gemacht wurden"
 
@@ -3390,10 +3390,10 @@ msgstr "Lade EXIF-Daten erneut "
 msgid "(if the data is current, this will not appear to do anything)"
 msgstr "(Wenn die Daten aktuell sind, wird nichts passieren)"
 
-#: ../watermark_album.php:47
+#: ../watermark_album.php:51
 msgid "Watermarking album."
 msgstr "Lege Wasserzeichen auf alle Bilder des Albums."
 
-#: ../watermark_album.php:65 ../watermark_album.php:70
+#: ../watermark_album.php:69 ../watermark_album.php:74
 msgid "Watermark Album"
 msgstr "Album mit Wasserzeichen versehen."
