@@ -78,7 +78,11 @@ $width = floor(100 / $cols) . "%";
 <td align=left>
 <font size=+3> <?= editField($album, "title", $edit)?> </font>
 <br>
-There are <font size=-1> <?= $numPhotos ?> photos in this album
+<? if ($numPhotos == 1) { ?> 
+There is 1 photo in this album
+<? } else { ?>
+There are <?= $numPhotos ?> photos in this album
+<? } ?>
 <?
 if (editMode()) {
 	$hidden = $album->numHidden();
