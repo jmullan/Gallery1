@@ -179,7 +179,7 @@ function getFile($fname) {
 function dismissAndReload() {
 	if (isDebugging()) {
 		echo "<BODY onLoad='opener.location.reload();'>";
-		echo("Not closing this window because debug mode is on");
+		echo("<b>Not closing this window because debug mode is on</b>");
 	} else {
 		echo "<BODY onLoad='opener.location.reload(); parent.close()'>";
 	}
@@ -192,7 +192,7 @@ function reload() {
 function dismissAndLoad($url) {
 	if (isDebugging()) {
 		echo("<BODY onLoad='opener.location = \"$url\"; '>");
-		echo("Not closing this window because debug mode is on");
+		echo("<b>Not closing this window because debug mode is on</b>");
 	} else {
 		echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
 	}
