@@ -236,15 +236,9 @@ if (!$album->isMovie($index)) {
 	}
 
 	if (!strcmp($album->fields["use_fullOnly"], "yes")) {
-		$link = strcmp($fullOnly,"on") ? "on" : "off";
-		if (preg_match("/[?&]set_fullOnly=(off|on)/", $REQUEST_URI)) {
-			$link = preg_replace("/([?&]set_fullOnly=)(off|on)/",
-			                     '$1'.$link, $REQUEST_URI);
-		} else if (strpos($REQUEST_URI,"?")) {
-			$link = "$REQUEST_URI&set_fullOnly=$link";
-		} else {
-			$link = "$REQUEST_URI?set_fullOnly=$link";
-		}
+		$link = "$top/do_command.php?cmd=set_fullOnly&value=" .
+		        (strcmp($fullOnly,"on") ? "on" : "off") .
+		        "&return=" . urlencode($REQUEST_URI);
 		$adminCommands .= " View Images: [ ";
 		if (strcmp($fullOnly,"on"))
 		{

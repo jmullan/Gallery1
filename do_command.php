@@ -85,6 +85,11 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	} else {
 		header("Location: albums.php");
 	}
+} else if (!strcmp($cmd, "set_fullOnly")) {
+	if (!empty($value)) {
+		$fullOnly = $value;
+	}
+	header("Location: $return");
 }
 ?>
 
