@@ -1,4 +1,4 @@
-<!-- $Id$ -->
+<?php /* $Id$ */ ?>
 <h1> Check ImageMagick </h1>
 
 This script is designed to examine your ImageMagick installation to see if

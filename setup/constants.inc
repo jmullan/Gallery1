@@ -1,4 +1,4 @@
-<!-- $Id$ -->
+<?php /* $Id$ */ ?>
 <center>
 <font size=+2> Gallery Setup: Step 2 </font>
 <table width=80%><tr><td>

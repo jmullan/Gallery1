@@ -1,4 +1,4 @@
-<!-- $Id$ -->
+<?php /* $Id$ */ ?>
 <?php
 require("../classes/User.php");
 require("../classes/gallery/User.php");

@@ -1,4 +1,4 @@
-<!-- $Id$ -->
+<?php /* $Id$ */ ?>
 <?php
 
 function evenOdd_row($fields, $evenOdd) {

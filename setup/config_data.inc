@@ -1,4 +1,4 @@
-<!-- $Id$ -->
+<?php /* $Id$ */ ?>
 <?php
 
 $common_messages["getting-netpbm"] =
@@ -597,7 +597,7 @@ $defaults = array(
 	),
 	"item_owner_display" => array(
 		"prompt" => "Photo owner display",
-		"desc" => "Display  the name of photo owners with the caption?".
+		"desc" => "Display the name of photo owners with the caption?".
 			  "<br><font color=blue><b>(this is new in version 1.3.5)</b></font>",
 		"choices" => array("yes", "no"),
 		"value" => "no",

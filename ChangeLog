@@ -1,10 +1,17 @@
+2003-06-26  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.5-cvs-b35
+
+	* Fixed HTML error in layout/breadcrumb.inc. (Bug #760294)
+
+	* Fixed CVS Id variables that were displaying in HTML. Some of
+	  these were generating PHP premature header errors.
+
 2003-06-26  Pierre-Luc Paour <paour@users.sourceforge.net> 1.3.5-cvs-b34
 
 	* Fixed erroneous error message when authentication fails in gallery_remote2.
 
 2003-06-26  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b33
 
-	* Added missing </td>
+	* Added missing </td> to edit_appearence.php.
 
 2003-06-26  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b32
 
@@ -15,7 +22,7 @@
 
 2003-06-26  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b31
 
-	* added CVS variable <dollary>Id$ to every file except:
+	* added CVS "Id" variable to every file except:
 		./configure.bat   ./secure.bat ./setup/.htaccess
 		./setup/mod_rewrite.template ./setup/php_value.template
 
@@ -58,9 +65,9 @@
 
 2003-06-23  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b23
 
-	* bug in the delete/id2 code.  When delete is called from the pulldown
-	  menu in view_album.php, id2 is defaulting to an empty string, so test
-	  for that explicitly.
+	* bug in the delete/id2 code.  When delete is called from the
+	  pulldown menu in view_album.php, id2 is defaulting to an empty
+	  string, so test for that explicitly.
 
 2003-06-19  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.5-cvs-b22
 

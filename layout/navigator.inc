@@ -1,4 +1,4 @@
-<!-- $Id$ -->
+<?php /* $Id$ */ ?>
 <?php
 // Calculate the beginning and ending of the navigator range
 $begin = max($navigator["page"] - $navigator["spread"], 1);

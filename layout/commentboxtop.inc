@@ -1,4 +1,4 @@
-<!-- $Id$ -->
+<?php /* $Id$ */ ?>
 <table width=100% border="0" cellspacing="0" cellpadding=0>
 <tr>
 <td colspan="2"><img src="<?php echo $gallery->app->photoAlbumURL ?>/images/pixel_trans.gif" width="1" height="1"></td>
