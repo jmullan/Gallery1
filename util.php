@@ -204,7 +204,7 @@ function toPnmCmd($file) {
 	if (preg_match("/.png/i", $file)) {
 		$cmd = "pngtopnm";
 	} else if (preg_match("/.jpg/i", $file)) {
-		$cmd = "jpegtopnm";
+		$cmd = "jpegtopnm --quiet";
 	} else if (preg_match("/.gif/i", $file)) {
 		$cmd = "giftopnm";
 	}
