@@ -39,7 +39,7 @@ if (!$gallery->user->canDeleteFromAlbum($gallery->album)
 doctype();
 echo "\n<html>";
 
-if (isset($deleteItem) && $deleteItem=='yes' && isset($id)) {
+if (isset($action) && $action == 'delete' && isset($id)) {
 	if (!empty($albumDelete)) {
 		/* Track down the corresponding photo index and remove it */
 		$index = 0;
@@ -85,7 +85,7 @@ if (isset($deleteItem) && $deleteItem=='yes' && isset($id)) {
 <?php
 if ($gallery->album && isset($id)) {
 	echo makeFormIntro("delete_photo.php", array('name' => 'deletephoto_form', 
-			'onsubmit' => "deletephoto_form.confirm.disabled = true; deletephoto_form.deleteItem.value='yes'"));
+			'onsubmit' => "deletephoto_form.confirm.disabled = true;"));
 	if (isset($albumDelete)) {
 ?>
 
@@ -130,8 +130,8 @@ $myAlbum->load($id);
 		} 
 	}
 ?>
-<input type="hidden" name="deleteItem" value="no">
-<input type="submit" name="confirm" value="<?php echo _("Delete") ?>">
+<input type="hidden" name="action" value="">
+<input type="submit" name="confirm" value="<?php echo _("Delete") ?>" onclick="deletephoto_form.action.value='delete'">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <br>
