@@ -626,6 +626,7 @@ $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 
 includeHtmlWrap("inline_photo.frame");
 ?>
+<br><br>
 <table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
 <!-- caption -->
 <tr>

@@ -92,7 +92,7 @@ function viewComments($index) {
 		includeLayout('commentdraw.inc');
 	}
         $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&index=$index";
-        $buf = "<tr><td><span class=editlink>";
+        $buf = "<tr align=\"center\"><td></td><td><span class=editlink>";
         $buf .= popup_link('[' . _("add comment") . ']', $url, 0);
         $buf .= "</span></td></tr>";
         echo $buf;
