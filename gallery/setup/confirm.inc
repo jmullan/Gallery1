@@ -4,7 +4,6 @@
 <br>
 <table width=80%><tr><td>
 <?php 
-vd($locale_alias);
 echo _("Confirm that the settings you entered came through correctly.  If you find this page confusing, you can probably safely ignore it  (unless you see stuff in red which indicates an error)")
 ?>
 </td></tr></table>
