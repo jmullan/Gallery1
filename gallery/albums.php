@@ -149,32 +149,31 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 }
 
 if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
-    	 $adminCommands .= "\n". '<a class="admin" href="' . makeGalleryUrl("slideshow.php",
+    	 $adminCommands .= "\n". '<a class="admin" style="white-space:nowrap;" href="' . makeGalleryUrl("slideshow.php",
 	 array("set_albumName" => null)) .
-	       	'">['._("slideshow") . ']</a>&nbsp;';
+	       	'">['._("slideshow") . ']</a> ';
 }
 
 if ($gallery->user->isAdmin()) {
 	$doc = galleryDocs('admin');
 	if ($doc) {
-		$adminCommands .= "$doc&nbsp;";
+		$adminCommands .= "$doc ";
 	}
-	$adminCommands .= '<a href="' . makeGalleryUrl('setup/index.php') . '">[' . _("configuration wizard") .']</a>';
-	$adminCommands .= '&nbsp;';
-	$adminCommands .= '<a href="' . makeGalleryUrl('tools/find_orphans.php') . '">[' . _("find orphans") .']</a>';
+	$adminCommands .= '<a style="white-space:nowrap;" href="' . $gallery->app->photoAlbumUrl . 'setup/index.php">[' . _("configuration wizard") .']</a> ';
+	$adminCommands .= '<a style="white-space:nowrap;" href="' . makeGalleryUrl('tools/find_orphans.php') . '>[' . _("find orphans") .']</a> ';
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
-	$adminCommands .= "\n<a class=\"admin\" href=\"" . doCommand("new-album", array(), "view_album.php") . "\">[". _("new album") ."]</a>&nbsp;";
+	$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . doCommand("new-album", array(), "view_album.php") . '">[' . _("new album") . ']</a> ';
 }
 
 if ($gallery->user->isAdmin()) {
 	if ($gallery->userDB->canModifyUser() ||
 	    $gallery->userDB->canCreateUser() ||
 	    $gallery->userDB->canDeleteUser()) {
-		$adminCommands .= popup_link("[" . _("manage users") ."]", 
+		$adminCommands .= popup_link("[" . _("manage users") . "]", 
 			"manage_users.php", false, true, 500, 500, 'admin')
-			. '&nbsp;';
+			. ' ';
 	}
 }
 
@@ -182,18 +181,18 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	if ($gallery->userDB->canModifyUser()) {
 		$adminCommands .= popup_link("[". _("preferences") ."]", 
 			"user_preferences.php", false, true, 500, 500, 'admin')
-			. '&nbsp;';
+			. ' ';
 	}
 	
 	if (!$GALLERY_EMBEDDED_INSIDE) {
-		$adminCommands .= "\n<a class=\"admin\" href=\"". doCommand("logout", array(), "albums.php"). "\">[". _("logout") ."]</a>";
+		$adminCommands .= '<a class="admin" style="white-space:nowrap;" href="' . doCommand("logout", array(), "albums.php"). '">[' . _("logout") .']</a>';
 	}
 } else {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
 	        $adminCommands .= popup_link("[" . _("login") . "]", "login.php", false, true, 500, 500, 'admin');
 		
             if (!strcmp($gallery->app->selfReg, 'yes')) {
-                $adminCommands .= '&nbsp;';
+                $adminCommands .= ' ';
                 $adminCommands .= popup_link('[' . _("register") . ']', 'register.php', false, true, 500, 500, 'admin');
             }
 	}
@@ -365,7 +364,7 @@ for ($i = $start; $i <= $end; $i++) {
 	echo sprintf(_("Last changed on %s."), $gallery->album->getLastModificationDate() );
 	$visibleItems=array_sum($gallery->album->numVisibleItems($gallery->user));
 	echo " "; // Need a space between these two text blocks
-	echo pluralize_n2(ngettext("This album contains one item", "This album contains %d items", $visibleItems), $visibleItems);	
+	echo pluralize_n2(ngettext("This album contains 1 item", "This album contains %d items", $visibleItems), $visibleItems);
 	if (!($gallery->album->fields["display_clicks"] == "no") && !$gallery->session->offline) {
 ?>
    <br><br><?php

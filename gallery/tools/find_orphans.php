@@ -98,7 +98,9 @@ function findOrphans() {
 	return $orphaned;
 }
 
-doctype();
+global $GALLERY_EMBEDDED_INSIDE;
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	doctype();
 ?>
 <html>
 <head>
@@ -109,6 +111,7 @@ doctype();
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php  
+}
         includeHtmlWrap("gallery.header");
 ?>
 <p align="center" class="popuphead"><?php echo _("Orphaned Albums") ?></p>
@@ -144,6 +147,10 @@ if (!empty($orphans)) {
 }
 ?>
 <hr>
-<?php includeHtmlWrap("gallery.footer"); ?>
+<?php 
+	includeHtmlWrap("gallery.footer"); 
+if (!$GALLERY_EMBEDDED_INSIDE) {
+?>
 </body>
 </html>
+<?php } ?>

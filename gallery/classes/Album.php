@@ -409,7 +409,7 @@ class Album {
 
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
-			if ($gallery->app->use_exif) {
+			if (!empty($gallery->app->use_exif)) {
 				$this->fields["use_exif"] = "yes";
 			} else {
 				$this->fields["use_exif"] = "no";
