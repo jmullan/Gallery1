@@ -30,6 +30,16 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 require($GALLERY_BASEDIR . "init.php");
 
 //---------------------------------------------------------
+//-- check that we are not being called from the browser --
+if (empty ($HTTP_SERVER_VARS['QUERY_STRING'])) {
+	echo 'This page is not meant to be accessed from your browser.  ';
+	echo 'If you would like to use Gallery Remote, please refer to ';
+	echo 'Gallery\'s website located at ';
+	echo "<a href='$gallery->url'>$gallery->url</a>";
+	exit;
+}
+
+//---------------------------------------------------------
 //-- check version --
 if (strcmp($protocal_version, $gallery->remote_protocol_version)) {
 	echo "Protocol out of Date. $protocal_version < $gallery->remote_protocol_version."; 

@@ -161,7 +161,7 @@ function backup() {
 			$gallery->app->albumDir. " " . $gallery->app->userDir . 
 			" | ".  fs_import_filename($gzip_path) . " -c ";
 		header( "Content-type: application/x-gzip" );
-		header( "Content-Disposition: attachment; filename=gallery_dump.tar" );
+		header( "Content-Disposition: attachment; filename=gallery_dump.tar.gz" );
 		header( "Content-Description: PHP Generated Data" );
 		passthru("$cmd");
 		//echo ("$cmd<p>");
@@ -175,7 +175,7 @@ function backup() {
 			" | ".  fs_import_filename($gzip_path) . " -c ";
 		// echo ("$cmd<p>");
 		header( "Content-type: application/x-gzip" );
-		header( "Content-Disposition: attachment; filename=gallery_dump.tar" );
+		header( "Content-Disposition: attachment; filename=gallery_dump.tar.gz" );
 		header( "Content-Description: PHP Generated Data" );
 		passthru("$cmd");
 		// echo ("$cmd<p>");

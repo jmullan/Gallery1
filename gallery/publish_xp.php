@@ -27,6 +27,9 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	exit;
 }
 
+if (!isset($GALLERY_BASEDIR)) {
+    $GALLERY_BASEDIR = '';
+}
 require($GALLERY_BASEDIR . "init.php");
 
 if (stristr($HTTP_SERVER_VARS["HTTPS"], "on")) {
