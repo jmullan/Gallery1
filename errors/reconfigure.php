@@ -18,7 +18,7 @@ re-run the configuration wizard!  In a shell do this:
 <p>
 Then launch the <a href="<?=$GALLERY_BASEDIR?>setup/index.php">configuration wizard</a>.
 
-<? include("errors/configure_help.php"); ?>
+<? include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 
 </table>
 </body>

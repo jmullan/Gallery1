@@ -28,7 +28,7 @@ use it.  Here's how:
 <p>
 Then just reload this page and all should be well.  
 
-<? include("errors/configure_help.php"); ?>
+<? include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 
 </table>
 </body>

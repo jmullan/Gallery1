@@ -18,7 +18,7 @@ into configuration mode.  Here's how:
 <p>
 And then start the <a href="<?=$GALLERY_BASEDIR?>setup/index.php">Configuration Wizard</a>
 
-<? include("errors/configure_help.php"); ?>
+<? include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 </table>
 </body>
 </html>
