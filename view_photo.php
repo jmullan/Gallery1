@@ -56,7 +56,7 @@ if ($album->fields["linkcolor"]) {
 <tr>
 <td width=33% align=left>
 <font size=+2 face=<?=$album->fields["font"]?>>
-<a href=view_photo.php?index=<?=$prev?>>Previous Photo</a>
+<a href=<?=$prev?>>Previous Photo</a>
 </td>
 <td width=33% align=center>
 <font size=+1 face=<?=$album->fields["font"]?>>
@@ -64,7 +64,7 @@ if ($album->fields["linkcolor"]) {
 </td>
 <td width=33% align=right>
 <font size=+2 face=<?=$album->fields["font"]?>>
-<a href=view_photo.php?index=<?=$next?>>Next Photo</a>
+<a href=<?=$next?>>Next Photo</a>
 </td>
 </tr>
 
@@ -83,7 +83,7 @@ if ($album->fields["linkcolor"]) {
 <tr>
 <td align=left>
 <font size=+2 face=<?=$album->fields["font"]?>>
-<a href=view_photo.php?index=<?=$prev?>>Previous Photo</a>
+<a href=<?=$prev?>>Previous Photo</a>
 </td>
 <td align=center>
 <font size=+2 face=<?=$album->fields["font"]?>>
@@ -92,9 +92,9 @@ if (!$album->isMovie($index)) {
 	if ($album->isResized($index)) { 
 		if ($full) { 
 ?>
-<a href=view_photo.php?index=<?=$index?>&full=0>Scaled Version</a>
+<a href=<?=$index?>?full=0>Scaled Version</a>
 <?	 	} else { ?>
-<a href=view_photo.php?index=<?=$index?>&full=1>Full Version</a>
+<a href=<?=$index?>?full=1>Full Version</a>
 <?
 	}
 }
@@ -104,7 +104,7 @@ if (!$album->isMovie($index)) {
 </td>
 <td align=right>
 <font size=+2 face=<?=$album->fields["font"]?>>
-<a href=view_photo.php?index=<?=$next?>>Next Photo</a>
+<a href=<?=$next?>>Next Photo</a>
 </td>
 </tr>
 
@@ -115,7 +115,7 @@ if (!$album->isMovie($index)) {
 <br>
 <? } ?>
 <font size=+3 face=<?=$album->fields["font"]?>>
-<a href=view_album.php> Return to <b><?= $album->fields["title"] ?></b> </a>
+<a href=../view_album.php> Return to <b><?= $album->fields["title"] ?></b> </a>
 </td>
 </tr>
 
