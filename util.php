@@ -1265,7 +1265,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 			$cookie_value = $_COOKIE[$cookie_name];
 		} else if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2') {
 			$cookie_name = $board_config['cookie_name'] . '_sid';
-			$cookie_value = $HTTP_COOKIE_VARS[$cookie_name];
+			$cookie_value = $_COOKIE[$cookie_name];
 		}
 	}
 
