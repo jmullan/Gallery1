@@ -440,7 +440,6 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			if (isset($gallery->session->username)) {
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 			}
-
 		break;
 	}
 } 

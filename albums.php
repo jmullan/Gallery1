@@ -22,7 +22,6 @@
 ?>
 <?php
 
-
 require(dirname(__FILE__) . '/init.php');
 
 $gallery->session->offlineAlbums["albums.php"]=true;
