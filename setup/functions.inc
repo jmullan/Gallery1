@@ -131,32 +131,16 @@ function check_graphics()
 	$fail = array();
 	$success = array();
 
-/*
- * We'll use this code when we do multiple graphics package support
- *
-	if (function_exists("ImageCreateFromJPEG")) {
-		$success[] = "JPEG is installed";
-	} else {
-		$fail[["fail-jpeg"]++;
-	}
-
-	if (function_exists("ImageCreate")) {
-		$success[] = "GD is installed";
-	} else {
-		$fail["fail-gd"]++;
-	}
-*/
-
 	$dirs = array();
 	$missing = array();
 	$netpbm = array(
-		"anytopnm",
+		"jpegtopnm", 
 		"giftopnm", 
 		"pngtopnm", 
-		"jpegtopnm", 
 		"ppmtojpeg", 
 		"pnmscale", 
 		"pnmfile",
+		"pnmrotate",
 	);
 
 	foreach ($netpbm as $bin) {
@@ -166,30 +150,15 @@ function check_graphics()
 		}
 	}
 	
-	if (count($missing)) {
-		if ($missing[$netpbm[0]]) {
-			$fail["fail-netpbm"]++;
-		} else {
-			$fail["fail-netpbm-partial"] = array_values($missing);
-		}
+	if (count($missing) == count($netpbm)) {
+		$fail["fail-netpbm"]++;
+	} else if (count($missing)) {
+		$fail["fail-netpbm-partial"] = array_values($missing);
 	} else {
 		$success[] = "";
 	}
 
 	return array($success, $fail);
-}
-
-function graphics_choices()
-{
-	$choices = array("netpbm");
-/*
- * 	commented out until we support multiple graphics packages
- *
-	if (function_exists("ImageCreateFromJPEG") && function_exists("ImageCreate")) {
-		$choices[] = "gd-and-jpeg";
-	}
- */
-	return $choices;	
 }
 
 function check_magic_quotes()
