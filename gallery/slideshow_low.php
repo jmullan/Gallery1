@@ -263,7 +263,7 @@ function wait_for_current_photo() {
 	 * The current photo isn't loaded yet.  Set a short timer just to wait
 	 * until the current photo is loaded.
 	 */
-	status = "<?php echo _("Picture is loading...") ?>(" + current_location + " '. _("of") .' " + photo_count + 
+	status = "<?php echo _("Picture is loading...") ?>(" + current_location + " <?php echo _("of") ?> " + photo_count + 
 		").  <?php echo _("Please Wait...") ?>" ;
 	clearTimeout(timer);
 	timer = setTimeout('wait_for_current_photo()', 500);
