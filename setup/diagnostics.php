@@ -2,8 +2,8 @@
 <?php 
 
 $GALLERY_BASEDIR="../";
-@include("../config.php"); 
-require("../util.php");
+@include($GALLERY_BASEDIR . "config.php"); 
+require($GALLERY_BASEDIR . "util.php");
 initLanguage();
 ?>
 <html>

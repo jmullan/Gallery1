@@ -251,6 +251,12 @@ if (!isset($gallery->session->offline)) {
     $gallery->session->offline = FALSE;
 }
 
+if ($gallery->userDB->versionOutOfDate()) 
+{
+	include($GALLERY_BASEDIR . "upgrade_users.php");
+	exit;
+}
+
 /* Load the correct album object */
 if ($gallery->session->albumName) {
 	$gallery->album = new Album;

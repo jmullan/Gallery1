@@ -36,6 +36,14 @@ class Abstract_User {
 		$this->uid = time() . ":" . mt_rand();
 	}
 
+	function integrityCheck() {
+		return 0;
+	}
+	function versionOutOfDate() {
+		return false();
+	}
+
+
 	function setPassword($password) {
 		$this->password = md5($password);
 	}
@@ -216,6 +224,11 @@ class Abstract_User {
 
 	function isLoggedIn() {
 		return true;
+	}
+	function getDefaultLanguage() {
+		return "";
+	}
+	function setDefaultLanguage($var) {
 	}
 }
 

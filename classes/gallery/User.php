@@ -23,6 +23,16 @@
 <?php
 class Gallery_User extends Abstract_User {
 
+	var $defaultLanguage;
+	var $version;
+
+	function Gallery_User() {
+		global $gallery;
+		Abstract_User::Abstract_User();
+		$this->setDefaultLanguage("");
+		$this->version = $gallery->user_version;
+	}
+
 	function load($uid) {
 		global $gallery;
 
@@ -49,6 +59,47 @@ class Gallery_User extends Abstract_User {
 
 		$dir = $gallery->app->userDir;
 		return safe_serialize($this, "$dir/$this->uid");
+	}
+
+	/*
+	 * Whenever you change this code, you should bump the $gallery->user_version
+	 * appropriately.
+	 */	
+	function integrityCheck() {
+		global $gallery;
+
+		if (!isset($this->version)) {
+			$this->version == "0";
+		}
+		if (!strcmp($this->version, $gallery->user_version)) {
+			processingMsg (sprintf(_("%s is up to date."),
+						$this->username));
+			return true;
+		}
+
+		print (sprintf(_("Upgrading user %s..."), $this->username));
+
+		if ($this->version < 1) 
+		{
+			$this->setDefaultLanguage("");
+		}
+		$this->version = $gallery->user_version;
+		if ($this->save()) {
+			print (_("done"));
+			processingMsg ("");
+			$success=true;
+		} else {
+			$success = false;
+		}
+
+		return $success;
+	}
+	function setDefaultLanguage($defaultLanguage) {
+		$this->defaultLanguage = $defaultLanguage;
+	}
+
+	function getDefaultLanguage() {
+		return $this->defaultLanguage;
 	}
 }
 

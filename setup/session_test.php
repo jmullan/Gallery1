@@ -2,7 +2,7 @@
 <?php
 
 $GALLERY_BASEDIR="../";
-require("../util.php");
+require($GALLERY_BASEDIR . "util.php");
 initLanguage();
 
 // Pull the $destroy variable into the global namespace

@@ -36,15 +36,19 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
  * don't implicitly create a new stdClass() when you use a variable
  * like a class.
  */
-if (!$gallery) {
+if (!isset($gallery)) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = "1.3.5-cvs-b114";
+$gallery->version = "1.3.5-cvs-b115";
 $gallery->config_version = 42;
 $gallery->album_version = 14;
 $gallery->remote_protocol_version = 1;
+$gallery->user_version = 1;
 $gallery->url = "http://gallery.sourceforge.net";
+
+/* do not edit this line!!  modified by CVS */
+$gallery->last_change='$Date$';	 
 
 /*
  * PostNuke version info

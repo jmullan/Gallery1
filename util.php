@@ -1817,7 +1817,12 @@ function initLanguage() {
 				break;
 			case 2:
 				// Use Browser Language
-				$gallery->language=$gallery->browser_language;
+				if (!empty($gallery->user) && 
+						$gallery->user->getDefaultLanguage() != "") {
+					$gallery->language = $gallery->user->getDefaultLanguage();
+				} else {
+					$gallery->language=$gallery->browser_language;
+				}
 				break;
 			case 3:
 				// Does the user want a new language ?

@@ -30,7 +30,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 ?>
 <?php if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = '';
+    $GALLERY_BASEDIR = './';
 }
 require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
@@ -63,6 +63,7 @@ if ($submit) {
 			$tmpUser->setFullname($fullname);
 			$tmpUser->setCanCreateAlbums($canCreate);
 			$tmpUser->setEmail($email);
+			$tmpUser->setDefaultLanguage($defaultLanguage);
 			$tmpUser->save();
 			header("Location: manage_users.php");
 		}

@@ -135,11 +135,11 @@ function find_albums(&$results, $album="") {
 </span>
 </center>
 <p>
-<?php echo _("The following albums in your Gallery were created with an older version of the software and are out of date.") ?>
-<?php echo _("This is not a problem!") ?>
-<?php echo _("We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed.") ?>
-<?php echo _("None of your photos will be harmed in any way by this process.") ?>
-<?php echo _("Rest assured, that if this process takes a long time now, it's going to make your Gallery run more efficiently in the future.") ?>
+<?php echo _("The following albums in your Gallery were created with an older version of the software and are out of date.") ?>  
+<?php echo _("This is not a problem!") ?>  
+<?php echo _("We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed.") ?>  
+<?php echo _("None of your photos will be harmed in any way by this process.") ?>  
+<?php echo _("Rest assured, that if this process takes a long time now, it's going to make your Gallery run more efficiently in the future.") ?>  
 
 <p>
 

@@ -5,11 +5,12 @@ if (!isset($GALLERY_BASEDIR)) {
 }
 
 
-	require ('init.php');
-	require ('functions.inc');
+	require ('./init.php');
+	require ('./functions.inc');
 	require ($GALLERY_BASEDIR . 'util.php');
-if (fs_file_exists("../config.php")) {
-	include("../config.php");
+	require ($GALLERY_BASEDIR . 'Version.php');
+if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
+	include($GALLERY_BASEDIR . "config.php");
 }
 
 initLanguage();
@@ -39,7 +40,7 @@ if (function_exists("posix_getpwuid")) {
 	}
 }
 
-require("config_data.inc");
+require("./config_data.inc");
 
 if (isset ($go_defaults)) {
 	$setup_page = $this_page;

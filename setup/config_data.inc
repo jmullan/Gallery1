@@ -27,6 +27,12 @@ $common_messages["open-basedir-active"] =
 			"<a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\">open_basedir</a>" );
 			
 $checklist = array(
+	"gallery_version" => array(
+		"optional" => 1,
+		"desc" => sprintf(_("Check to see how old %s of gallery is."),
+			"<i>$gallery->version</i>"),
+	     	"func" => "check_gallery_version",
+	),
 	"php4" => array(
 		"desc" => _("Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP4.0.0 uses a different file upload protocol, versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can."),
 	     	"func" => "check_php",
@@ -352,10 +358,10 @@ $constants = array_merge(
 		"value" => (sizeof(gallery_languages()) > 1) ? 3 : 1
 	),
 	"available_lang" => array(
-		"prompt" => _("Available languages in mode 3"), 
+		"prompt" => _("Available languages in mode 3 and user preferences"), 
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
-		"desc" => _("These languages will be available as user choices in a drop down menu, if you have chosen language mode 3") .
+		"desc" => _("These languages will be available as user choices in a drop down menu, if you have chosen language mode 3, and will be available to registered users as their default language in mode 2 or 3.") .
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
 		"multiple_choices" => gallery_languages(),
 		"value" => array_keys(gallery_languages())

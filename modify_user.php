@@ -30,7 +30,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 ?>
 <?php if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = '';
+    $GALLERY_BASEDIR = './';
 }
 require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
@@ -65,6 +65,7 @@ if ($submit) {
 			$tmpUser->setUsername($uname);
 			$tmpUser->setFullname($fullname);
 			$tmpUser->setEmail($email);
+			$tmpUser->setDefaultLanguage($defaultLanguage);
 			if (isset($canCreate)) {
 				$tmpUser->setCanCreateAlbums($canCreate);
 			}
@@ -106,6 +107,7 @@ if (!strcmp($tmpUser->getUsername(), $gallery->user->getUsername())) {
 
 $fullname = $tmpUser->getFullname();
 $email = $tmpUser->getEmail();
+$defaultLanguage = $tmpUser->getDefaultLanguage();
 
 $canCreateChoices = array(1 => _("yes"), 0 => _("no"));
 $canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;

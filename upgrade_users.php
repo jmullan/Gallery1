@@ -25,56 +25,48 @@
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation"). "\n";
+	print _("Security violation") ."\n";
 	exit;
 }
 ?>
-<?php if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
-require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
-// Hack check
-if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
-	exit;
-}
-	
-if (!strcmp($submit, _("Save"))) {
-	$gallery->album->fields[$field] = stripslashes($data);
-	$gallery->album->save();
-	dismissAndReload();
-	return;
-}
 
+/* should only be called from init.php
+*/
+if (!$gallery->version) { exit; }
 ?>
 
 <html>
 <head>
-  <title><?php echo sprintf(_("Edit %s"), _($field)) ?></title>
+  <title><?php echo _("Upgrading Users") ?></title>
   <?php echo getStyleSheetLink() ?>
 </head>
 <body dir=<?php echo $gallery->direction ?>>
-
 <center>
-<?php echo sprintf(_("Edit the %s and click %s when you're done"),
-		_($field), '<b>' . _("Save") . '</b>') ?>
-
-<?php echo makeFormIntro("edit_field.php", array("name" => "theform", "method" => "POST")); ?>
-<input type=hidden name="field" value="<?php echo $field ?>">
-<textarea name="data" rows=5 cols=40>
-<?php echo $gallery->album->fields[$field] ?>
-</textarea>
+<span class="title">
+<?php echo _("Upgrading Users") ?>
+</span>
+</center>
+<?php echo _("The user database in your Gallery was created with an older version of the software and is out of date.") ?>  
+<?php echo _("This is not a problem!") ?>  
+<?php echo _("We will upgrade it.  This may take some time, but we'll try to keep you informed as we proceed.") ?>  
+<?php echo _("Your data will not be harmed in any way by this process.") ?>  
+<?php echo _("Rest assured, that if this process takes a long time now, it's going to make your Gallery run more efficiently in the future.") ?>  
 <p>
-<input type=submit name="submit" value="<?php echo _("Save") ?>">
-<input type=submit name="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</form>
 
-<script language="javascript1.2">
-<!--   
-// position cursor in top form field
-document.theform.data.focus();
-//-->
-</script>
+<?php 
+$button= _("Done");
+if (!$gallery->userDB->integrityCheck() ) {
+	print "<p>";
+	print error_format(_("There was a problem upgrading users.  Please check messages above, and try again"));
+	$button = _("Retry");
+}
+?>
 
-</body>
-</html>
+	<center>
+	<form>
+	<input type=submit value="<?php echo $button ?>" onclick='location.reload()'>
+	</form>
+	</center>
+	</body>
+	</html>

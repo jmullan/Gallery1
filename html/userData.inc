@@ -79,6 +79,35 @@
 
  <?php echo errorRow("email") ?>
 
+<?php
+	if (!$GALLERY_EMBEDDED_INSIDE && $gallery->app->ML_mode > 1) {
+		?>
+			<tr> <td> <?php echo _("Gallery language") ?>
+			</td><td>
+    <select name="defaultLanguage" size="1">
+    <?php
+		$nls = getNLS();
+		foreach ($gallery->app->available_lang as $value) {
+			// Only use language from config.php if its defined in nls.php
+			if (! isset($nls['languages'][$value])) continue;
+		
+			if (!language_exists($value)) {
+				continue;
+			}
+			if ( $defaultLanguage == $value) $selected="selected"; else $selected="";
+			echo "\n\t\t<option value=\"$value\" $selected>" 
+				. $nls['languages'][$value] ."</option>";
+		}
+?>
+	</select>
+	</td></tr>
+	<?php } ?>
+
+
+
+
+
+
 <?php if ($gallery->user->isAdmin() && isset($canCreate)) { ?>
  <tr>
   <td>
@@ -110,3 +139,4 @@
 <?php } ?>
 
 </table>
+

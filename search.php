@@ -89,6 +89,7 @@ $list = $albumDB->albumList;
 $numAlbums = count($list);
 $photoMatch = 0;
 $albumMatch = 0;
+$skip = array();
 if ($searchstring) {
 	$origstr = $searchstring;
 	$searchstring = escapeEregChars ($searchstring);
@@ -101,7 +102,11 @@ if ($searchstring) {
 	echo "<br>";
 	echo "<table width=\"".$navigator["fullWidth"] . $navigator["widthUnits"]."\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
 	for ($i = 0; $i<$numAlbums; $i++) {
-    	$searchAlbum = $list[$i];
+		$searchAlbum = $list[$i];
+		if ($searchAlbum->versionOutOfDate()) {
+			$skip[] = $searchAlbum;
+			continue;
+		}
 		$searchTitle = $searchAlbum->fields['title'];
 		$searchDescription = $searchAlbum->fields['description'];
 		$searchSummary = $searchAlbum->fields['summary'];
@@ -147,6 +152,9 @@ if ($searchstring) {
 	
 	for ($i = 0; $i<$numAlbums; $i++) {
 		$searchAlbum = $list[$i]; 
+		if ($searchAlbum->versionOutOfDate()) {
+			continue;
+		}
 		$uid = $gallery->user->getUid();
 		if ($searchAlbum->canRead($uid) || $gallery->user->isAdmin()) {
 			$numPhotos = $searchAlbum->numPhotos(1);
@@ -217,6 +225,28 @@ if ($searchstring) {
 	}
 	echo "</table>";
 	
+	if (sizeof($skip) > 0) {
+		echo error_format(_("Some albums not searched as they require up grading to the latest version of gallery first"));
+		if ($gallery->user->isAdmin()) {
+			print ":<br>";
+			echo popup_link(_("upgrade all albums"), "upgrade_album.php");
+			print "<br>(";
+			$join_text='';
+			foreach($skip as $album) {
+				$link = makeGalleryUrl("view_album.php", 
+						array("set_albumName" => $album->fields["name"]));
+				echo $join_text."<a href=\"$link\">".$album->fields["name"]
+					."</a>";
+				$join_text=", ";
+			}
+			print ")";
+		}
+		else {
+			print ".";
+		}
+		echo "<p>";
+	}
+
 }
 else {
 ?>

@@ -38,6 +38,10 @@ class Abstract_UserDB {
 		return false;
 	}
 
+	function save() {
+		return false;
+	}
+
 	function getNobody() {
 		return $this->nobody;
 	}

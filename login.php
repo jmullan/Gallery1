@@ -30,7 +30,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 ?>
 <?php if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = '';
+    $GALLERY_BASEDIR = './';
 }
 require($GALLERY_BASEDIR . 'init.php'); ?>
 
@@ -56,6 +56,10 @@ if ($submit) {
 		$tmpUser = $gallery->userDB->getUserByUsername($uname);
 		if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword)) {
 			$gallery->session->username = $uname;
+			if ($tmpUser->getDefaultLanguage() != "") {
+				$gallery->session->language = 
+					$tmpUser->getDefaultLanguage();
+			}
 			if (!$gallery->session->offline) {
 				dismissAndReload();
 			} else {

@@ -30,7 +30,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 ?>
 <?php if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = '';
+    $GALLERY_BASEDIR = './';
 }
 require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
@@ -78,6 +78,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 	}
 } else if (!strcmp($cmd, "logout")) {
 	$gallery->session->username = "";
+	$gallery->session->language = "";
 	header("Location: $return");
 } else if (!strcmp($cmd, "hide")) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {

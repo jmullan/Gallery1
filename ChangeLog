@@ -1,3 +1,26 @@
+2003-08-11  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b115
+
+	* Replace "$GALLERY_BASEDIR = ''" with "$GALLERY_BASEDIR = './'"; 
+	  added explicit path to setup/.htaccess; changed some setup require 
+	  statements to require("./filename") so we don't need "." in php 
+	  include path.
+
+	* Added defaultLanguage as a user preference for loggedin users in 
+	  non-embedded environments.
+
+	* This means that users and userdb now have a version number.
+
+	* Upgrade code implemented for users.
+
+	* Couple  more warnings removed.
+
+	* $gallery->last_change added to Versions.php, so we can see how old 
+	  the current version installed is, and flag during configuration if 
+	  it might need updating.
+
+	* Added spaces between the sentences at the beginning of 
+	  upgrade_album.php, so they are not all jammed together.
+
 2003-08-11  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b114
 
 	* This change is Vallimar's tidy up patch, with some modifcations.  
@@ -3457,6 +3480,9 @@ v1.3 release
 	  always correctly treating all thumbnails as JPGs.  This would
 	  mean that we'd sometimes leave cruft files lying around which
 	  would prevent deleting albums.
+
+	* Modified search.php so it doesn't search albums that aren't
+	  up-to-date.
 
 2000-07-05  Bharat Mediratta  <bharat@menalto.com>
 

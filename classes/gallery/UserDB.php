@@ -26,6 +26,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 	var $nobody;
 	var $everybody;
 	var $loggedIn;
+	var $version;
 	
 	function Gallery_UserDB() {
 		global $gallery;
@@ -196,6 +197,12 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		return safe_serialize($this, "$userDir/userdb.dat");
 	}
+	function save() {
+		global $gallery;
+		$userDir = $gallery->app->userDir;
+
+		return safe_serialize($this, "$userDir/userdb.dat");
+	}
 
 	function getUidList() {
 		global $gallery;
@@ -270,6 +277,48 @@ class Gallery_UserDB extends Abstract_UserDB {
 		}
 
 		return null;
+	}
+
+	function versionOutOfDate() {
+		global $gallery;
+		if (strcmp($this->version, $gallery->user_version)) {
+			return 1;
+		}
+		return 0;
+	}
+	function integrityCheck() {
+		global $gallery;
+
+		if (!isset($this->version)) {
+			$this->version == "0";
+		}
+		if (!strcmp($this->version, $gallery->user_version)) {
+			return 0;
+		}
+
+		$success = true;
+		$nobody = $this->nobody->getUsername();
+		$everybody = $this->everybody->getUsername();
+		$loggedin = $this->loggedIn->getUsername();
+		foreach ($this->getUidList() as $uid) {
+			$user=$this->getUserByUid($uid);
+			if ($user->username == $nobody ||
+			    $user->username == $everybody ||
+			    $user->username == $loggedin) {
+				continue;
+			}
+			if (!$user->integrityCheck()) {
+				$success = false;
+			}
+		}
+		$this->version=$gallery->user_version;
+		if ($success) {
+			if (!$this->save()) {
+				$success = false;
+			}
+		}
+
+		return $success;
 	}
 }
 

@@ -62,7 +62,7 @@ foreach ($features as $feature => $dependents) {
 		$view .= row_wrap(no_feature($feature, $cause));
 	}
 }
-$GALLERY_BASEDIR="..";
+$GALLERY_BASEDIR = "..";
 $outfile_list=array("config.php", ".htaccess");
 foreach ($outfile_list as $outfile) {
 	if ($fd = @fs_fopen("$GALLERY_BASEDIR/$outfile", "a")) {
@@ -96,7 +96,7 @@ foreach ($constants as $key => $val) {
         if (get_magic_quotes_gpc()) {
 		if (is_array($real)) {
 			if (function_exists('array_map')) {
-				$real = array_map(stripslashes, $real);
+				$real = array_map('stripslashes', $real);
 			}
 		} else {
 			$real = stripslashes($real);

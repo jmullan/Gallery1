@@ -522,6 +522,43 @@ function check_gallery_languages()
 	return array($success, $fail);
 }
 
+function check_gallery_version()
+{
+	global $GALLERY_BASEDIR;
+	global $gallery;
+	$fail = array();
+	$success = array();
+
+	/* how many days old is the gallery version? */
+	$age = (time() - strtotime (substr($gallery->last_change, 7, -1)))/86400;
+	/* is this a beta version? */
+	$beta = ereg('-b[0-9]*$', $gallery->version);
+
+	$link="<a href=\"$gallery->url\">$gallery->url</a>";
+
+	$visit=sprintf(_("Visit %s to upgrade to the latest version."), $link);
+
+	if ($age > 365) {
+		$fail["too_old"] = sprintf(_("Your installation of gallery is %.1f years old."), $age/365). "  " . $visit; 
+	} else if ($age > 180) {
+		$fail["too_old"] = sprintf(_("Your installation of gallery is %.0d months old."), $age/30) . "  " . $visit;
+	} else if ($age > 60 && $beta) {
+		$fail["too_old"] = sprintf(_("Your installation of gallery looks like a beta that is %.0d days old."), $age) . "  " . $visit;
+	} else if ($age > 60) {
+		$success["ok"] = sprintf(_("Your installation of gallery is %.0d months old.  You can visit %s to see if there's a more recent version."),
+				$age/30, $link);
+	} else if ($age > 14 && $beta) {
+		$fail["too_old"] = sprintf(_("Your installation of gallery looks like a beta that is %.0d days old.  There's almost certainly a more recent version.  Visit %s to upgrade to the latest version."), 
+				$age, $link);
+	} else if ($beta) {
+		$success["ok"] = sprintf(_("You are using a beta version that is %.0d days old.  Please visit %s regularly, to ensure you have the latest version."),
+				$age, $link);
+	} else {
+		$success["ok"] = sprintf(_("Your version of gallery is %.0d days old"), $age);
+	}
+	return array($success, $fail);
+}
+
 function check_absent_locales()
 {
 	global $GALLERY_BASEDIR;

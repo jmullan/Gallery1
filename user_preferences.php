@@ -30,7 +30,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 }
 ?>
 <?php if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = '';
+    $GALLERY_BASEDIR = './';
 }
 require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
@@ -72,6 +72,10 @@ if (!strcmp($submit, _("Save"))) {
 		$gallery->user->setUsername($uname);
 		$gallery->user->setFullname($fullname);
 		$gallery->user->setEmail($email);
+		if (isset($defaultLanguage)) {
+			$gallery->user->setDefaultLanguage($defaultLanguage);
+			$gallery->session->language=$defaultLanguage;
+		}
 		// If a new password was entered, use it.  Otherwise leave it the same.
 		if ($new_password1) {
  			$gallery->user->setPassword($new_password1);
@@ -80,7 +84,7 @@ if (!strcmp($submit, _("Save"))) {
 
 		// Switch over to the new username in the session
 		$gallery->session->username = $uname;
-		dismiss();
+		dismissAndReload();
 	}
 }
 
@@ -88,6 +92,7 @@ $askForOldPassword = 1;
 $uname = $gallery->user->getUsername();
 $fullname = $gallery->user->getFullname();
 $email = $gallery->user->getEmail();
+$defaultLanguage = $gallery->user->getDefaultLanguage();
 
 ?>
 <html>
