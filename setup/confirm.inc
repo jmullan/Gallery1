@@ -276,8 +276,10 @@ foreach ($constants as $key => $val) {
 		}
 
 		if (!isset($constants[$key]["dont-write"])) {
-			if (is_array($real)) {
+			if (is_array($real) && !$constants[$key]['type'] == 'password') {
 				$line = array_constant($key, $real);
+			} elseif (is_array($real) && $constants[$key]['type'] == 'password') {
+				$line = one_constant($key, $real[2]);
 			} else {
 				$line = one_constant($key, $real);
 			}

@@ -127,6 +127,11 @@ if (isset($editPassword) && (!empty($editPassword[0]) || !empty($editPassword[1]
 	$editPassword[3] = $editPassword[1];
 	$_REQUEST['editPassword'] = $editPassword;
 }
+if (isset($smtpPassword) && (!empty($smtpPassword[0]) || !empty($smtpPassword[1]))) {
+        $smtpPassword[2] = $smtpPassword[0];
+        $smtpPassword[3] = $smtpPassword[1];
+        $_REQUEST['smtpPassword'] = $smtpPassword;
+}
 
 ?>
 

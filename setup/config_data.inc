@@ -824,6 +824,7 @@ $constants = array_merge($constants,
 		"<br>",
                 'type' => "password",
                 'value' => "",
+		'verify-func' => 'verify_password',
                 'attrs' => array('size' => 20),
                 'optional' => 1
         ),

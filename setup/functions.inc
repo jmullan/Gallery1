@@ -133,7 +133,9 @@ function form_password($key, $arr) {
 
 	if (empty($arr['value'])) {
 	    $arr['value'] = array('', '', '', '');
-	}
+	} elseif (!is_array($arr['value'])) {
+	    $arr['value'] = array($arr['value'], $arr['value'], $arr['value'], $arr['value']);
+        }
 	return "<input type=\"password\" name=\"${key}[0]\" value=\"{$arr['value'][0]}\" $attrs> "
 		. '<br>'
 		. "<input type=\"password\" name=\"${key}[1]\" value=\"{$arr['value'][1]}\" $attrs> "
@@ -1249,7 +1251,7 @@ function verify_password($passwords) {
 	if ($passwords[2] === $passwords[3]) {
 		$success[] = true;
 	} else {
-		$fail[] = _('Your admin passwords do not match!');
+		$fail[] = _('Your passwords do not match!');
 	}
 	return array($success, $fail);
 }
