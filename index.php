@@ -77,6 +77,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 		       "edit_thumb.php",
 		       "extra_fields.php",
 		       "gallery_remote.php",
+		       "gallery_remote2.php",
 		       "highlight_photo.php",
 		       "login.php",
 		       "manage_users.php",
