@@ -36,8 +36,8 @@ Make sure that the value above makes sense to you.
 
 Look for keywords like "Linux", "Windows", "FreeBSD", etc. in the
 output above.  If both the attempts above failed, you should ask your
-ISP what operating system you're using.  You can also try entering
-your website hostname into <a href="http://www.netcraft.com">Netcraft</a>,
+ISP what operating system you're using.  You can check via
+<a href="http://www.netcraft.com/whats?host=<?php echo $HTTP_HOST?>">Netcraft</a>,
 they can often tell you.  
 <p>
 
