@@ -19,5 +19,22 @@
  */
 ?>
 <?
-header("Location: albums.php");
+global $GALLERY_BASEDIR;
+global $GALLERY_EMBEDDED_INSIDE;
+global $op;
+global $include;
+
+/* Detect PHP-Nuke and react accordingly */
+if (!strcmp($op, "modload")) {
+	$GALLERY_BASEDIR = "modules/gallery/";
+	$GALLERY_EMBEDDED_INSIDE = "nuke";
+
+	if (!$include) {
+		$include = "albums.php";
+	}
+
+	include(${GALLERY_BASEDIR} . $include);
+} else {
+	include("albums.php");
+}
 ?>
