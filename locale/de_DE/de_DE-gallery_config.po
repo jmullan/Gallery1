@@ -24,7 +24,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.4.1\n"
+"Project-Id-Version: Gallery 1.4.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
 "POT-Creation-Date: 2003-11-27 21:33+0100\n"
 "PO-Revision-Date: 2003-11-11 20:33+0100\n"
@@ -359,9 +359,9 @@ msgid "This enables you to confirm that email is working correctly on your syste
 msgstr "Dies gibt Ihnen die M&ouml;glichkeit zu testen, ob Emailing auf Ihrem Server korrekt funktioniert.  Es wird versucht eine Testemail an die von Ihnen anzugebende Adresse zu schicken.  Falls Sie ankommt, wissen Sie das das Emailing funktioniert."
 
 #: ../setup/check_mail.php:44 ../setup/check_mail.php:49
-#, fuzzy, php-format
+#, php-format
 msgid "%s not set."
-msgstr "Fehler! %s nicht angegeben."
+msgstr "%s nicht angegeben."
 
 #: ../setup/check_mail.php:69
 msgid "Your email address:"
@@ -390,13 +390,13 @@ msgid "Check Versions"
 msgstr "Versions Test"
 
 #: ../setup/check_versions.php:20
-#, fuzzy, php-format
+#, php-format
 msgid "This page gives you information about the version of each necessary %s file"
-msgstr "Diese Seite gibt Ihnen Informationen &uuml;ber Ihre ImageMagick-Binaries."
+msgstr "Diese Seite gibt Ihnen Informationen &uuml;ber die Version der von %s ben&ouml;tigten Dateien."
 
 #: ../setup/check_versions.php:21
 msgid "If you see error, we highly suggest to get the actual version of that file/s"
-msgstr ""
+msgstr "Falls hier Fehler auftreten empfehlen wir dringend, dass Sie die aktuellen Dateien aufspielen."
 
 #: ../setup/check_versions.php:34
 #, php-format
@@ -406,32 +406,32 @@ msgstr "%sKlicken Sie hier%s, um Details zu sehen."
 #: ../setup/check_versions.php:47
 #, php-format
 msgid "%s missing, corrupt or older than expected."
-msgstr ""
+msgstr "Die Datei %s fehlt, ist defekt, oder viel &auml;lter als erwartet."
 
 #: ../setup/check_versions.php:48 ../setup/check_versions.php:73
 #: ../setup/check_versions.php:97
 msgid "1 file"
-msgstr ""
+msgstr "Eine Datei"
 
 #: ../setup/check_versions.php:49 ../setup/check_versions.php:73
 #: ../setup/check_versions.php:98
 msgid "files"
-msgstr ""
+msgstr "Dateien"
 
 #: ../setup/check_versions.php:49 ../setup/check_versions.php:73
 #: ../setup/check_versions.php:98
 msgid "No files"
-msgstr ""
+msgstr "Keine Datei"
 
 #: ../setup/check_versions.php:54
 #, php-format
 msgid "There are problems with the following files.  Please correct them before configuring %s."
-msgstr ""
+msgstr "Es gibt Probleme mit folgenden Dateien.  Bitte korrigieren Sie dies bevor Sie Ihre %s konfigurieren."
 
 #: ../setup/check_versions.php:72
 #, php-format
 msgid "%s more recent than expected."
-msgstr ""
+msgstr "Die Datei %s is neuer als erwartet."
 
 #: ../setup/check_versions.php:79
 #, php-format
@@ -439,14 +439,13 @@ msgid "The following files are more up-to-date than expected for this version of
 msgstr "Die folgenden Dateien scheinen neuer zu sein als erwartet.  Dies ist OK wenn Sie eine Vorabversion, CVS-Version oder sonstig modifizierten Code verwenden."
 
 #: ../setup/check_versions.php:96
-#, fuzzy, php-format
+#, php-format
 msgid "%s up-to-date."
-msgstr "%d Dateien sind aktuell."
+msgstr "%s Dateien sind aktuell."
 
 #: ../setup/check_versions.php:102
-#, fuzzy
 msgid "The following files are up-to-date."
-msgstr "%d Dateien sind aktuell."
+msgstr "Die folgenden Dateien sind aktuell."
 
 #: ../setup/config_data.inc:17
 #, php-format
@@ -586,9 +585,8 @@ msgid "Check to see what languages are available."
 msgstr "Pr&uuml;fung, welche Sprachen verf&uuml;gbar sind."
 
 #: ../setup/config_data.inc:147
-#, fuzzy
 msgid "Testing to see which <b>system</b> locales (if any) are absent."
-msgstr "Test, welche locales fehlen"
+msgstr "Test, welche <System> locales fehlen."
 
 #: ../setup/config_data.inc:152
 msgid "Checking to see if you have the latest versions of all gallery files."
@@ -638,9 +636,8 @@ msgid "The full URL to the Gallery web application.  E.g. %s"
 msgstr "Die vollst&auml;ndige URL zur Gallery. Zum Beispiel: %s."
 
 #: ../setup/config_data.inc:212
-#, fuzzy
 msgid "Albums URL"
-msgstr "Alben"
+msgstr "URL zum Albums Ordner"
 
 #: ../setup/config_data.inc:213
 #, php-format
@@ -1062,7 +1059,7 @@ msgstr "F&uuml;gt einen Diashow-Link auf der Gallery Startseite.  Bei grossen Ga
 
 #: ../setup/config_data.inc:577 ../setup/config_data.inc:1036
 msgid "These settings do not apply to the low tech slideshow."
-msgstr ""
+msgstr "Diese Einstellungen gelten nicht f&uuml;r die einfache Variante der Diashow."
 
 #: ../setup/config_data.inc:580
 msgid "Slideshow preferences"
@@ -1891,19 +1888,17 @@ msgid "This allows you to see if you can use the email functions in %s."
 msgstr "Dies dient dazu, um zu pr&uuml;fen, ob Sie die Email Funktion der %s nutzen k&ouml;nnen."
 
 #: ../setup/diagnostics.php:83
-#, fuzzy
 msgid "Check versions"
 msgstr "Versions Test"
 
 #: ../setup/diagnostics.php:86
 #, php-format
 msgid "This page is for %s upgrades that have problems."
-msgstr ""
+msgstr "Diese Seite ist f&uuml;r %s Aktualisierungen in den Probleme aufgetreten sind."
 
 #: ../setup/diagnostics.php:87
-#, fuzzy, php-format
 msgid "This allows you to check you have the correct version of all your %s files."
-msgstr "Pr&uuml;fung ob Sie die jeweils aktuelle Version der Gallery Dateien installiert haben."
+msgstr "Pr&uuml;fung ob Sie die jeweils aktuelle Version der %s Dateien installiert haben."
 
 #: ../setup/functions.inc:110
 msgid "Please retype your password here"
@@ -2047,14 +2042,12 @@ msgid "Only the default locale for this machine is available, so date format wil
 msgstr "Nur die default locale dieses Systems ist verf&uuml;gbar, dadurch wird sich die Datumsanzeige nicht &auml;ndern f&uuml;r andere Sprachen."
 
 #: ../setup/functions.inc:813
-#, fuzzy
 msgid "<b>System</b> locale selection required"
-msgstr "Locale Auswahl ben&ouml;tigt"
+msgstr "<b>System</b> Locale Auswahl ben&ouml;tigt"
 
 #: ../setup/functions.inc:814
-#, fuzzy
 msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
-msgstr "Es ist mehr als eine passende locale information auf Ihrem System vorhanden f&uuml;r die folgenden Sprachen vorhanden. Bitte w&auml;hlen Sie das naheliegenste aus."
+msgstr "Es ist mehr als eine passende <b>System</b> locale Information auf Ihrem System vorhanden f&uuml;r die folgenden Sprachen vorhanden. Bitte w&auml;hlen Sie das naheliegenste aus."
 
 #: ../setup/functions.inc:816 ../setup/functions.inc:889
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
@@ -2066,14 +2059,12 @@ msgid "System locale"
 msgstr "System locale"
 
 #: ../setup/functions.inc:886
-#, fuzzy
 msgid "<b>System</b> locale problems"
-msgstr "Es besteht ein locale Problem."
+msgstr "Es besteht ein <b>System</b> locale Problem."
 
 #: ../setup/functions.inc:887
-#, fuzzy
 msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
-msgstr "Es sind offensichtloch keine passenden locales auf Ihren System f&uuml;r die folgenden Sprachen vorhanden. Bitte w&auml;hlen Sie das naheliegenste aus."
+msgstr "Es sind offensichtloch keine passenden <b>System</b> locales auf Ihren System f&uuml;r die folgenden Sprachen vorhanden. Bitte w&auml;hlen Sie das naheliegenste aus."
 
 #: ../setup/functions.inc:932
 msgid "<b>safe_mode</b> is off."
@@ -2177,19 +2168,16 @@ msgid "You must enter a password for the %s account."
 msgstr "Sie m&uuml;ssen das Passwort f&uuml;r den %s Benutzer zweimal eingeben."
 
 #: ../setup/functions.inc:1288
-#, fuzzy, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
-msgstr "Es scheint als w&auml;re die Gallery schon mal konfiguriert worden, da der %s Account existiert.  Sie m&uuml;ssen kein Passwort angeben, falls Sie es aber tun, wird das Passwort des Benutzers %s ge&auml;ndert."
+msgstr "Es scheint als w&auml;re die Gallery schon mal konfiguriert worden, da ein Admin Account existiert.  Es ist jedoch nicht der Benutzer %s."
 
 #: ../setup/functions.inc:1291
-#, fuzzy, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-msgstr "Es scheint als w&auml;re die Gallery schon mal konfiguriert worden, da der %s Account existiert.  Sie m&uuml;ssen kein Passwort angeben, falls Sie es aber tun, wird das Passwort des Benutzers %s ge&auml;ndert."
+msgstr "Es scheint als w&auml;re die Gallery schon mal konfiguriert worden, da %d Admin Account existieren.  Allerdings nicht der Benutzer %s."
 
 #: ../setup/functions.inc:1293
-#, fuzzy, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "Es scheint als w&auml;re die Gallery schon mal konfiguriert worden, da bereits %d Admin Accounts eingericht sind.  Allerdings kein Benutzer namens %s.  Sie m&uml;ssen kein Passwort angeben, falls Sie es aber tun, wird der Benutzer %s angelegt mit diesem."
+msgstr "Sie m&uml;ssen kein Passwort angeben, falls Sie es aber tun, wird der Benutzer %s angelegt mit diesem."
 
 #: ../setup/functions.inc:1302
 #, php-format
