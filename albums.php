@@ -186,7 +186,13 @@ for ($i = $start; $i <= $end; $i++) {
       $gallery->html_wrap['borderWidth'] = 1;
       $gallery->html_wrap['pixelImage'] = $imageDir . "/pixel_trans.gif";
       $scaleTo = $gallery->app->highlight_size;
-      list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($gallery->album->getHighlight(), $scaleTo);
+      $highlightIndex = $gallery->album->getHighlight();
+      if (isset($highlightIndex)) {
+	  list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($highlightIndex, $scaleTo);
+      } else {
+	  $iWidth = 0;
+	  $iHeight = 0;
+      }
       $gallery->html_wrap['thumbWidth'] = $iWidth;
       $gallery->html_wrap['thumbHeight'] = $iHeight;
       $gallery->html_wrap['thumbTag'] = $gallery->album->getHighlightTag($scaleTo);
