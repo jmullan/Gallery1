@@ -79,7 +79,7 @@ function viewComments($index) {
 		$commentdraw["bordercolor"] = $borderColor;
 		include($GALLERY_BASEDIR . "layout/commentdraw.inc");
 	}
-        $url = "add_comment.php?set_albumName={$album->fields[name]}&index=$index";
+        $url = "add_comment.php?set_albumName={$gallery->album->fields[name]}&index=$index";
         $buf = "<span class=editlink>";
         $buf .= '<a href="#" onClick="' . popup($url) . '">[add comment]</a>';
         $buf .= "</span>";
