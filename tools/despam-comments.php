@@ -52,13 +52,17 @@ doctype();
         includeHtmlWrap("gallery.header");
 ?>
 <p align="center" class="popuphead"><?php echo _("Find and remove comment spam") ?></p>
-<div align="right"><a href="<?php echo makeAlbumUrl(); ?>"><?php echo _("Return to Gallery"); ?></a></div>
-
+<div style="text-align:right"><a href="<?php echo makeAlbumUrl(); ?>"><?php echo _("Return to Gallery"); ?></a></div>
+<table width="100%">
+<tr>
 <?php
+echo '<td style="vertical-align:top; white-space:nowrap; width:280px;">';
 offerOptions();
+echo "</td>";
 
 $g1_mode=getRequestVar('g1_mode');
 
+echo "<td>";
 switch($g1_mode) {
 	case 'deleteComments':
 		deleteComments();
@@ -87,9 +91,14 @@ switch($g1_mode) {
 	default:
 	break;
 }
+echo "</td>";
+echo '<div style="clear:left">';
 ?>
+</table>
+<br>
 <hr>
 <?php includeHtmlWrap("gallery.footer"); ?>
+</div> 
 </body>
 </html>
 <?php
@@ -181,11 +190,11 @@ function findBlacklistedComments() {
 	printf("<h3>%s</h3>", _("No spam comments"));
     } else {
 	print makeFormIntro("tools/despam-comments.php", array("method" => "POST"));
-	print "<table border=\"1\">";
-	printf("<tr> <th> %s </th> <th> %s </th> </tr>",
+	print "\n<table>";
+	printf("\n\t<tr> <th> %s </th> <th>%s</th> </tr>",
 	       _("Entry"), _("Delete"));
 	foreach ($list as $entry) {
-	    print "<tr>";
+	    print "\n\t<tr>";
 	    print "<td>";
 	    printf("%s: <a href=\"%s\">%s/%s</a> <br/>\n", _("Location"),
 		   makeAlbumUrl($entry['albumName'], $entry['imageId']),
@@ -204,7 +213,8 @@ function findBlacklistedComments() {
 			   $entry['imageId'],
 			   $entry['key']));
 	    print "</td>";
-	    print "</tr>";
+	    print "\n\t</tr>";
+	    print "\n\t" . '<tr><td colspan="2"><hr></td></tr>';
 	}
 	print("<input type=\"hidden\" name=\"g1_mode\" value=\"deleteComments\"/>");
 	print "</table>";
@@ -224,8 +234,8 @@ function getCommentKey(&$comment) {
 function isBlacklistedComment(&$comment) {
     $blacklist = loadBlacklist();
     foreach ($blacklist['entries'] as $key => $entry) {
-	if (ereg("#$entry#", $comment->getCommentText()) ||
-	    ereg("#$entry#", $comment->getName())) {
+	if (ereg("$entry", $comment->getCommentText()) ||
+	    ereg("$entry", $comment->getName())) {
 	    return true;
 	}
     }
@@ -326,41 +336,41 @@ function updateBlacklist() {
 }
 
 function viewBlacklist() {
-    $blacklist = loadBlacklist();
-    printf("<h2>%s (%d) </h2>", _("Current blacklist"), sizeof($blacklist['entries']));
-    if (empty($blacklist['entries'])) {
-	print _("Your blacklist is empty.  You must add new entries to your blacklist for it to be useful.");
-    } else {
-	print makeFormIntro("tools/despam-comments.php", array("method" => "POST"));
-	print "<table>";
-	printf("<tr> <th> %s </th> <th> %s </th> </tr>",
-	       _("Entry"), _("Delete"));
-	$i = 0;
-	foreach ($blacklist['entries'] as $key => $regex) {
-	    $i++;
-	    printf("<td> %s </td>", wordwrap($regex, 80, "<br/>", true));
-	    printf("<td> <input type=\"checkbox\" name=\"delete[]\" value=\"%s\"/> </td>", $key);
-	    print "</tr>\n";
-	}
-	print "</table>";
-	print("<input type=\"hidden\" name=\"g1_mode\" value=\"editBlacklist\"/>");
-	printf("<input type=\"submit\" value=\"%s\"/>", _("Update Blacklist"));
-	print "</form>";
+	$blacklist = loadBlacklist();
+	printf("<h3>%s (%d) </h3>", _("Current blacklist"), sizeof($blacklist['entries']));
+	if (empty($blacklist['entries'])) {
+		print _("Your blacklist is empty.  You must add new entries to your blacklist for it to be useful.");
+	} else {
+		print makeFormIntro("tools/despam-comments.php", array("method" => "POST"));
+		print "\n<table align=\"center\" width=\"60%\">";
+		printf("\n\t<tr><th>%s</th><th>%s</th></tr>", ("Entry"), _("Delete"));
+		$i = 0;
+		foreach ($blacklist['entries'] as $key => $regex) {
+			$i++;
+			print "\n\t<tr>";
+			printf("<td>%s</td>", wordwrap($regex, 80, "<br>", true));
+			printf("<td align=\"center\"><input type=\"checkbox\" name=\"delete[]\" value=\"%s\"></td>", $key);
+			print "</tr>";
+		}
+		print "\n</table><br>";
+		print "\n<input type=\"hidden\" name=\"g1_mode\" value=\"editBlacklist\">";
+		printf("\n<input type=\"submit\" value=\"%s\">", _("Update Blacklist"));
+		print "\n</form>";
     }
 }
 
 function showAddBox() {
     print makeFormIntro("tools/despam-comments.php", array("method" => "POST"));
     printf("<h2>%s</h2>", _("Enter new blacklist entries"));
-    print _("Useful blacklists: <ul> ");
+    print _("Useful blacklists: "). "<ul>";
     foreach (array("http://www.jayallen.org/comment_spam/blacklist.txt") as $url) {
 	printf("<li> <a href=\"%s\">%s</a> ", $url, $url);
     }
     print "</ul>";
     print _("You can just cut and paste these blacklists into the text box, or add new entries of your own.");
-    print "<textarea rows=\"10\" cols=\"80\" name=\"newBlacklistEntries\"></textarea>";
-    print "<br />";
-    print("<input type=\"hidden\" name=\"g1_mode\" value=\"updateBlacklist\"/>");
+    print "<br><textarea rows=\"10\" cols=\"80\" name=\"newBlacklistEntries\"></textarea>";
+    print "<br>";
+    print "<input type=\"hidden\" name=\"g1_mode\" value=\"updateBlacklist\">";
     printf("<input type=\"submit\" value=\"%s\"/>", _("Update Blacklist"));
     print "</form>";
 }
@@ -383,18 +393,20 @@ function loadBlacklist() {
 }
 
 function offerOptions() {
-    printf("<h2> %s </h2>", _("Options"));
-    print "<ol>";
-    foreach (array(
-		   "findBlacklistedComments" => _("Find blacklisted comments"),
-		   "viewBlacklist" => _("View/Edit blacklist"),
-		   "addBlacklistEntries" => _("Add blacklist entries"),
-		   )
-	     as $key => $text) {
-	printf("<li> <a href=\"%s\">%s</a> </li>",
-	       makeGalleryUrl('tools/despam-comments.php', array('g1_mode' => $key)),
-	       $text);
-    }
-    print "</ol>";
+	$options = array(
+                "findBlacklistedComments" => _("Find blacklisted comments"),
+                "viewBlacklist" => _("View/Edit blacklist"),
+                "addBlacklistEntries" => _("Add blacklist entries")
+	);
+
+	printf("\n<div style=\"padding-right:5px; border-right: 1px solid #000000;\">%s", _("Options"));
+	print "\n<ol>";
+	foreach ($options as $key => $text) {
+		printf("\n\t<li><a href=\"%s\">%s</a></li>",
+			makeGalleryUrl('tools/despam-comments.php', array('g1_mode' => $key)),
+			$text);
+	}
+	print "\n</ol>";
+	print "\n</div>";
 }
 ?>
