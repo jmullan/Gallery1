@@ -29,8 +29,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 echo configure("configure"); ?>
 <p>
 <?php echo sprintf(_("And then start the %sConfiguration Wizard%s."), 
-		'<a href="<?php echo $GALLERY_BASEDIR ?>setup/index.php">',
-		'</a>');
+		'<a href="'. $GALLERY_BASEDIR . 'setup/index.php">', '</a>'); 
 print "  ";
 include($GALLERY_BASEDIR . "errors/configure_help.php"); ?>
 </table>
