@@ -63,6 +63,9 @@ if (!strcmp($submit, "Save")) {
  			$gallery->user->setPassword($new_password1);
 		}
 		$gallery->user->save();
+
+		// Switch over to the new username in the session
+		$gallery->session->username = $uname;
 		dismiss();
 	}
 }
