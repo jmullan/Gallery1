@@ -23,10 +23,10 @@
 <?php
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
+        !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
+        !empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
+    print _("Security violation") ."\n";
+    exit;
 }
 ?>
 <?php if (!isset($GALLERY_BASEDIR)) {
@@ -94,80 +94,80 @@ program, I build the functionality using 'jhead'.
 
 -John Kirkland
 
-PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
-	but we have not yet worked out the code that will detect if
-	we're using the fixed version and use it instead of the
-	jhead binary -- BM 2/23/2002
+PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
+    but we have not yet worked out the code that will detect if
+    we're using the fixed version and use it instead of the
+    jhead binary -- BM 2/23/2002
 
 */
-	$forceRefresh = 0;
-	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		if (isset($reloadExifFromFile)) {
-			$forceRefresh = 1;
-		}
-	}
+    $forceRefresh = 0;
+    if ($gallery->user->canWriteToAlbum($gallery->album)) {
+        if (isset($reloadExifFromFile)) {
+            $forceRefresh = 1;
+        }
+    }
 
-	$myExif = $gallery->album->getExif($index, $forceRefresh);
+    $myExif = $gallery->album->getExif($index, $forceRefresh);
 
-	if ($myExif) {
-		// following line commented out because we were losing
-		// comments from the Exif array.  This is probably due
-		// to differences in versions of jhead.
-		// array_pop($myExif); // get rid of empty element at end
-		array_shift($myExif); // get rid of file name at beginning
-		$sizeOfExif = sizeof($myExif);
-		$sizeOfTable = $sizeOfExif / 2;
-		$i = 1;
-		$column = 1;
-		echo ("<table width=\"100%\" class=\"popup\">\n");
-		echo ("<tr valign=top>\n");
-		echo ("<td>\n");
-		while (list($key, $value) = each ($myExif)) {
-			echo "<b>$key</b>:  $value<br>\n";
-			if (($i >= $sizeOfTable) && ($column == 1)) {
-				echo ("</td>\n");
-				echo ("<td>\n");
-				$column = 2;
-			}
-    		$i++;
-		}
-		echo ("</td>\n</table><br><span class=\"popup\">");
-	}
+    if ($myExif) {
+        // following line commented out because we were losing
+        // comments from the Exif array.  This is probably due
+        // to differences in versions of jhead.
+        // array_pop($myExif); // get rid of empty element at end
+        array_shift($myExif); // get rid of file name at beginning
+        $sizeOfExif = sizeof($myExif);
+        $sizeOfTable = $sizeOfExif / 2;
+        $i = 1;
+        $column = 1;
+        echo ("<table class=\"popup\">\n");
+        echo ("<tr valign=top>\n");
+        echo ("<td>\n");
+        while (list($key, $value) = each ($myExif)) {
+            echo "<b>$key</b>:  $value<br>\n";
+            if (($i >= $sizeOfTable) && ($column == 1)) {
+                echo ("</td>\n");
+                echo ("<td>\n");
+                $column = 2;
+            }
+            $i++;
+        }
+        echo ("</td>\n</table><br><span class=\"popup\">");
+    }
 
-	echo _("File Upload Date") .":&nbsp;&nbsp; " . 
-		strftime($gallery->app->dateTimeString , 
-				$gallery->album->getUploadDate($index)) 
-		. "<br>";
-	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-	echo _("Item Capture Date") . ":&nbsp;&nbsp; " . 
-		strftime($gallery->app->dateTimeString, 
-			mktime($itemCaptureDate['hours'], 
-				$itemCaptureDate['minutes'],
-				$itemCaptureDate['seconds'], 
-				$itemCaptureDate['mon'],
-				$itemCaptureDate['mday'],
-				$itemCaptureDate['year']));
+    echo _("File Upload Date") .":&nbsp;&nbsp; " . 
+        strftime($gallery->app->dateTimeString , 
+                $gallery->album->getUploadDate($index)) 
+        . "<br>";
+    $itemCaptureDate = $gallery->album->getItemCaptureDate($index);
+    echo _("Item Capture Date") . ":&nbsp;&nbsp; " . 
+        strftime($gallery->app->dateTimeString, 
+            mktime($itemCaptureDate['hours'], 
+                $itemCaptureDate['minutes'],
+                $itemCaptureDate['seconds'], 
+                $itemCaptureDate['mon'],
+                $itemCaptureDate['mday'],
+                $itemCaptureDate['year']));
 
-	if ($gallery->album->getKeyWords($index)) {
-		echo "<br><b>". _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
-	}
+    if ($gallery->album->getKeyWords($index)) {
+        echo "<br><b>". _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
+    }
 
-	if ($gallery->user->canWriteToAlbum($gallery->album) &&
-	    !strcmp($gallery->app->cacheExif, "yes")) {
-		echo "<br>";
-		echo "<a href=\"" .
-			makeGalleryUrl("view_photo_properties.php",
-					array("reloadExifFromFile" => 1,
-						"set_albumName" => $gallery->session->albumName,
-						"index" => $index)) .
-			"\">[". _("Reload EXIF Data From File") ."]</a>";
-		echo "<br></span>";
-		echo "<span class=popup>";
-		echo _("(if the data is current, this will not appear to do anything)");
-		echo "</span>";
-	}
+    if ($gallery->user->canWriteToAlbum($gallery->album) &&
+        !strcmp($gallery->app->cacheExif, "yes")) {
+        echo "<br>";
+        echo "<a href=\"" .
+            makeGalleryUrl("view_photo_properties.php",
+                    array("reloadExifFromFile" => 1,
+                        "set_albumName" => $gallery->session->albumName,
+                        "index" => $index)) .
+            "\">[". _("Reload EXIF Data From File") ."]</a>";
+        echo "<br></span>";
+        echo "<span class=popup>";
+        echo _("(if the data is current, this will not appear to do anything)");
+        echo "</span>";
+    }
 } else {
-	gallery_error(_("no album / index specified"));
+    gallery_error(_("no album / index specified"));
 }
 ?>
 <br><br>
