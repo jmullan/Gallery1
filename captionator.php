@@ -48,20 +48,20 @@ if ($save || $next || $prev) {
    
     $count = 0;
     while ($count < $perPage && $i <= $numPhotos) {
-
-    if ($gallery->album->isAlbumName($i)) {
+      if ($gallery->album->isAlbumName($i)) {
         $myAlbumName = $gallery->album->isAlbumName($i);
         $myAlbum = new Album();
         $myAlbum->load($myAlbumName);
-        $myAlbum->fields['description'] = stripslashes($new_captions[$count]);
+        $myAlbum->fields['description'] = stripslashes(${"new_captions_" . $i});
 	$myAlbum->save();
 
-    } else {
-        $gallery->album->setCaption($i, stripslashes($new_captions[$count]));
-        $gallery->album->setKeywords($i, stripslashes($new_keywords[$count]));
-    }
-        $i++;
-        $count++;
+      } else {
+        $gallery->album->setCaption($i, stripslashes(${"new_captions_" . $i}));
+        $gallery->album->setKeywords($i, stripslashes(${"new_keywords_" . $i}));
+      }
+
+      $i++;
+      $count++;
     }
 
     $gallery->album->save();
@@ -233,7 +233,7 @@ if ($numPhotos) {
         $oldCaption = $myAlbum->fields['description'];
 ?>
       <span class="admin">Album Caption:</span><br>
-      <textarea name="new_captions[]" rows=3 cols=60><?= $oldCaption ?></textarea><br>
+      <textarea name="new_captions_<?=$i?>" rows=3 cols=60><?= $oldCaption ?></textarea><br>
 
 <?
     } else {
@@ -241,9 +241,9 @@ if ($numPhotos) {
         $oldKeywords = $gallery->album->getKeywords($i);
 ?>
       <span class="admin">Caption:</span><br>
-      <textarea name="new_captions[]" rows=3 cols=60><?= $oldCaption ?></textarea><br>
+      <textarea name="new_captions_<?=$i?>" rows=3 cols=60><?= $oldCaption ?></textarea><br>
       <span class="admin">Keywords:</span><br>
-      <input type=text name="new_keywords[]" size=65 value="<?= $oldKeywords ?>">
+      <input type=text name="new_keywords_<?=$i?>" size=65 value="<?= $oldKeywords ?>">
 
 <?
     }
