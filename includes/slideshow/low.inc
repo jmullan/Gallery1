@@ -37,117 +37,68 @@
 
 ?>
 <?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-                !empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-                !empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-        exit;
-}
-
-if (!isset($GALLERY_BASEDIR)) {
-       	$GALLERY_BASEDIR = './';
-}
-require($GALLERY_BASEDIR . 'init.php'); 
-// Hack check
- 
-if ($gallery->session->albumName == "") {
-        header("Location: albums.php");
-        return;
-}
-
-if (!$gallery->user->canReadAlbum($gallery->album)) {
-	header("Location: " . makeAlbumUrl());
-	return;
-}
-
-if (!$gallery->album->isLoaded()) {
-	header("Location: " . makeAlbumUrl());
-	return;
-}
-
-// default settings ---
-$defaultLoop = 0;
-$defaultPause = 3;
-$defaultFull = 0;
-$defaultDir = 1;
-
-if (!isset($slide_index)) {
-    $slide_index = 1;
-}
-if (!isset($slide_pause)) {
-    $slide_pause = $defaultPause;
-}
-if (!isset($slide_loop)) {
-    $slide_loop = $defaultLoop;
-}
-if (!isset($slide_full)) {
-    $slide_full = $defaultFull;
-}
-if (!isset($slide_dir)) {
-    $slide_dir = $defaultDir;
-}
-
-if ($slide_full && !$gallery->user->canViewFullImages($gallery->album)) {
-    $slide_full = 0;
+function slideshow_initialize() {
+	global $defaultLoop, $defaultPause, $defaultFull, $defaultDir,
+			$slide_index, $slide_pause, $slide_loop, $slide_full,
+			$slide_dir, $borderColor, $borderwidth, $loop,
+			$bgcolor, $title, $gallery;
+	// default settings ---
+	$defaultLoop = 0;
+	$defaultPause = 3;
+	$defaultFull = 0;
+	$defaultDir = 1;
+	
+	if (!isset($slide_index)) {
+	    $slide_index = 1;
+	}
+	if (!isset($slide_pause)) {
+	    $slide_pause = $defaultPause;
+	}
+	if (!isset($slide_loop)) {
+	    $slide_loop = $defaultLoop;
+	}
+	if (!isset($slide_full)) {
+	    $slide_full = $defaultFull;
+	}
+	if (!isset($slide_dir)) {
+	    $slide_dir = $defaultDir;
+	}
+	
+	if ($slide_full && !$gallery->user->canViewFullImages($gallery->album)) {
+	    $slide_full = 0;
+	}
+	
+	$borderColor = $gallery->album->fields["bordercolor"];
+	$borderwidth = $gallery->album->fields["border"];
+	$loop=($gallery->album->fields["slideshow_loop"] == "yes");
+	if (!strcmp($borderwidth, "off")) {
+	        $borderwidth = 1;
+	}
+	$bgcolor = $gallery->album->fields['bgcolor'];
+	$title = _("Slide Show for album") ." :: ". $gallery->album->fields["title"];
 }
 
 function makeSlideLowUrl($index, $loop, $pause, $full, $dir) {
 	global $gallery;
 
-    return makeGalleryUrl('slideshow_low.php',
+    return makeGalleryUrl('slideshow.php',
 	array('set_albumName' => $gallery->session->albumName,
 	      'slide_index' => $index,
 	      'slide_loop' => $loop,
 	      'slide_pause' => $pause,
 	      'slide_full' => $full,
-	      'slide_dir' => $dir));
+	      'slide_dir' => $dir,
+		  'mode' => 'low'));
 }
 
-$borderColor = $gallery->album->fields["bordercolor"];
-$borderwidth = $gallery->album->fields["border"];
-$loop=($gallery->album->fields["slideshow_loop"] == "yes");
-if (!strcmp($borderwidth, "off")) {
-        $borderwidth = 1;
-}
-$bgcolor = $gallery->album->fields['bgcolor'];
-$title = $gallery->album->fields["title"];
+function slideshow_body() {
+	global $defaultLoop, $defaultPause, $defaultFull, $defaultDir,
+			$slide_index, $slide_pause, $slide_loop, $slide_full,
+			$slide_dir, $borderColor, $borderwidth, $loop,
+			$bgcolor, $title, $gallery, $numPhotos, $numDisplayed,
+			$index, $photo_count, $photo, $image, $thumbImage,
+			$photoURL, $caption, $imageDir, $pixelImage;
 ?>
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
-<html> 
-<head>
-  <title><?php echo _("Slide Show for album") ?> :: <?php echo $gallery->album->fields["title"] ?></title>
-  <?php echo getStyleSheetLink() ?>
-  <style type="text/css">
-<?php
-// the link colors have to be done here to override the style sheet
-if ($gallery->album->fields["linkcolor"]) {
-?>
-    A:link, A:visited, A:active
-      { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
-    A:hover
-      { color: #ff6600; }
-<?php
-}
-if ($gallery->album->fields["bgcolor"]) {
-        echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
-}
-if (!empty($gallery->album->fields["background"])) {
-        echo "BODY { background-image:url(".$gallery->album->fields[background]."); } ";
-}
-if ($gallery->album->fields["textcolor"]) {
-        echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
-        echo ".head {color:".$gallery->album->fields[textcolor]."; }";
-        echo ".headbox {background-color:".$gallery->album->fields[bgcolor]."; }";
-}
-?>
-  </style>
-</head>
-
-<body dir="<?php echo $gallery->direction ?>">
-<?php } ?>
-<?php includeHtmlWrap("slideshow.header"); ?>
-
 <script language="JavaScript">
 var timer; 
 var current_location = <?php echo $slide_index ?>;
@@ -268,8 +219,8 @@ function wait_for_current_photo() {
 
 function go_to_next_page() {
 
-    var slideShowUrl = "<?php echo makeGalleryUrl('slideshow_low.php',
-				array('set_albumName' => $gallery->session->albumName)); ?>";
+    var slideShowUrl = "<?php echo makeGalleryUrl('slideshow.php',
+				array('set_albumName' => $gallery->session->albumName, 'mode' => 'low')); ?>";
 
     document.location = slideShowUrl + "&slide_index=" + next_location + "&slide_full=" + full
 	+ "&slide_loop=" + loop + "&slide_pause=" + (timeout_value / 1000) 
@@ -345,62 +296,38 @@ function preload_photo(index) {
 </Script>
 
 <?php
-$imageDir = $gallery->app->photoAlbumURL."/images"; 
-$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"\">";
+}
 ?>
-
-<form name="TopForm">
 
 <?php
-
-#-- breadcrumb text ---
-$breadCount = 0;
-$breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($gallery->session->albumName) .
-      "\">" . $gallery->album->fields['title'] . "</a>";
-$breadCount++;
-$pAlbum = $gallery->album;
-do {
-  if (!strcmp($pAlbum->fields["returnto"], "no")) {
-    break;
-  }
-  $pAlbumName = $pAlbum->fields['parentAlbumName'];
-  if ($pAlbumName) {
-    $pAlbum = new Album();
-    $pAlbum->load($pAlbumName);
-    $breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($pAlbumName) .
-      "\">" . $pAlbum->fields['title'] . "</a>";
-  } else {
-    //-- we're at the top! ---
-    $breadtext[$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") .
-      "\">" . $gallery->app->galleryTitle . "</a>";
-  }
-  $breadCount++;
-} while ($pAlbumName);
-
-//-- we built the array backwards, so reverse it now ---
-for ($i = count($breadtext) - 1; $i >= 0; $i--) {
-    $breadcrumb["text"][] = $breadtext[$i];
-}
-$breadcrumb["bordercolor"] = $borderColor;
-$breadcrumb["top"] = true;
-
-$adminbox["commands"] = "";
-$adminbox["text"] = _("Slide Show");
-$adminbox["bordercolor"] = $borderColor;
-$adminbox["top"] = true;
-includeLayout('navtablebegin.inc');
-includeLayout('adminbox.inc');
-includeLayout('navtablemiddle.inc');
-includeLayout('breadcrumb.inc');
-includeLayout('navtablemiddle.inc');
+function slideshow_controlPanel() {
+	global $defaultLoop, $defaultPause, $defaultFull, $defaultDir,
+			$slide_index, $slide_pause, $slide_loop, $slide_full,
+			$slide_dir, $borderColor, $borderwidth, $loop,
+			$bgcolor, $title, $gallery, $numPhotos, $numDisplayed,
+			$index, $photo_count, $photo, $image, $thumbImage,
+			$photoURL, $caption, $imageDir, $pixelImage;
 ?>
-
+<form name="TopForm">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="modnavboxmid">
   <tr>
+    <td colspan="3"><?php echo $pixelImage ?></td>
+  </tr>
+  <tr>
+    <td height="25" width="1"><?php echo $pixelImage ?></td>
     <td width="5000" align="left" valign="middle">
     <span class=admin>
     &nbsp;<a class="admin" href="#" onClick='stop(); return false;'>[<?php echo _("stop") ?>]</a>
     <a class="admin" href="#" onClick='play(); return false;'>[<?php echo _("play") ?>]</a>
+<?php
+if ($slide_dir == 1) {
+    echo "<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, -1) 
+	. "\">[". _("reverse direction") ."]</a>";
+} else {
+    echo "<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, 1)
+        . "\">[". _("forward direction") ."]</a>";
+}
+?>
 
 <?php
 if ($gallery->user->canViewFullImages($gallery->album)) {
@@ -408,21 +335,12 @@ if ($gallery->user->canViewFullImages($gallery->album)) {
 	    echo "<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0, $slide_dir) 
 	   . "\">[". _("normal size") ."]</a>";
     } else {
-	echo "<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1, $slide_dir)
-            . "\">[". _("full size") ."]</a>";
+		echo "<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1, $slide_dir)
+	            . "\">[". _("full size") ."]</a>";
     }
 }
 ?>
-<?php
-if ($slide_dir == 1) {
-    echo "&nbsp;<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, -1) 
-	. "\">[". _("reverse direction") ."]</a>";
-} else {
-    echo "&nbsp;<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, 1)
-        . "\">[". _("forward direction") ."]</a>";
-}
-?>
-    &nbsp;&nbsp;||
+&nbsp;&nbsp;||
     &nbsp;<?php echo _('Delay:') . '&nbsp;' ?>
 <?php echo 
 drawSelect("time", array(1 => "1 ". _("second"),
@@ -444,12 +362,26 @@ drawSelect("time", array(1 => "1 ". _("second"),
     <?php } ?>
     </span>
     </td>
+    <td width="1"><?php echo $pixelImage ?></td>
+  </tr>
+  <tr>
+    <td colspan="3"><?php echo $pixelImage ?></td>
   </tr>
 </table>
+</form>
 <?php
-    includeLayout('navtableend.inc');
+}
 ?>
-<br>
+
+<?php
+function slideshow_image() {
+	global $defaultLoop, $defaultPause, $defaultFull, $defaultDir,
+			$slide_index, $slide_pause, $slide_loop, $slide_full,
+			$slide_dir, $borderColor, $borderwidth, $loop,
+			$bgcolor, $title, $gallery, $numPhotos, $numDisplayed,
+			$index, $photo_count, $photo, $image, $thumbImage,
+			$photoURL, $caption, $imageDir, $pixelImage;
+?>
 <div align="center">
 
 <?php
@@ -501,15 +433,5 @@ array("set_albumName" => $gallery->session->albumName)) ?>">[<?php echo _("back 
 ?> 
 
 </div>
-</form>
 
-
-<?php
-includeLayout('ml_pulldown.inc');
-includeHtmlWrap("slideshow.footer"); ?>
-
-
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
-</body>
-</html>
 <?php } ?>

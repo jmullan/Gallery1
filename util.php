@@ -938,6 +938,72 @@ function drawSelect($name, $array, $selected, $size, $attrList=array()) {
 	return $buf;
 }
 
+function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $errorMsg) {
+	global $gallery;
+	$cookieInfo = session_get_cookie_params();
+?>
+<object
+		classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+		codebase="http://java.sun.com/products/plugin/autodl/jinstall-1_4-windows-i586.cab#Version=1,4,0,0"
+		width="<?php echo $width ?>" height="<?php echo $height ?>">
+	<param name="code" value="<?php echo $code ?>">
+	<param name="archive" value="<?php echo $archive ?>">
+	<param name="type" value="application/x-java-applet;version=1.4">
+	<param name="scriptable" value="false">
+	<param name="progressbar" value="true">
+	<param name="boxmessage" value="Downloading the Gallery Remote Applet">
+	<param name="gr_url" value="<?php echo $gallery->app->photoAlbumURL ?>">
+	<param name="gr_cookie_name" value="<?php echo session_name() ?>">
+	<param name="gr_cookie_value" value="<?php echo session_id() ?>">
+	<param name="gr_cookie_domain" value="<?php echo $cookieInfo['domain'] ?>">
+	<param name="gr_cookie_path" value="<?php echo $cookieInfo['path'] ?>">
+	<param name="gr_album" value="<?php echo $album ?>">
+<?php
+	foreach($defaults as $key => $value) {
+		echo "\t<param name=\"GRDefault_". $key ."\" value=\"". $value ."\">\n";
+	}
+
+	foreach($overrides as $key => $value) {
+		echo "\t<param name=\"GROverride_". $key ."\" value=\"". $value ."\">\n";
+	}
+?>
+
+	<comment>
+		<embed
+				type="application/x-java-applet;version=1.4"
+				code="<?php echo $code ?>"
+				archive="<?php echo $archive ?>"
+				width="<?php echo $width ?>"
+				height="<?php echo $height ?>"
+				scriptable="false"
+				progressbar="true"
+				boxmessage="Downloading the Gallery Remote Applet"
+				pluginspage="http://java.sun.com/j2se/1.4.1/download.html"
+				gr_url="<?php echo $gallery->app->photoAlbumURL ?>"
+				gr_cookie_name="<?php echo session_name() ?>"
+				gr_cookie_value="<?php echo session_id() ?>"
+				gr_cookie_domain"<?php echo $cookieInfo['domain'] ?>"
+				gr_cookie_path="<?php echo $cookieInfo['path'] ?>"
+				gr_album="<?php echo $album ?>"
+<?php
+	foreach($defaults as $key => $value) {
+		echo "\t\t\t\tGRDefault_". $key ."=\"". $value ."\"\n";
+	}
+
+	foreach($overrides as $key => $value) {
+		echo "\t\t\t\tGROverride_". $key ."=\"". $value ."\"\n";
+	}
+?>
+			<noembed
+					alt="<?php echo $errorMsg ?>">
+				<?php echo $errorMsg ?>
+			</noembed>
+		</embed>
+	</comment>
+</object>
+<?php
+}
+
 function correctPseudoUsers(&$array, $ownerUid) {
 	global $gallery;
 

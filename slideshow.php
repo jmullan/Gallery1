@@ -32,7 +32,20 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <?php if (!isset($GALLERY_BASEDIR)) {
     $GALLERY_BASEDIR = './';
 }
-require($GALLERY_BASEDIR . 'init.php'); ?>
+require($GALLERY_BASEDIR . 'init.php');
+
+$cookieName = $gallery->app->sessionVar."slideshow_mode";
+$modeCookie = isset($HTTP_COOKIE_VARS[$cookieName]) ? $HTTP_COOKIE_VARS[$cookieName] : null;
+if (isset($mode)) {
+	if ($modeCookie != $mode) {
+	    setcookie($cookieName, $mode, time()+60*60*24*365, "/" );
+	}
+} else {
+	if (isset($modeCookie)) {
+	    $mode = $modeCookie;
+	}
+}
+?>
 <?php
 // Hack check
 
@@ -41,13 +54,59 @@ if ($gallery->session->albumName == "" &&
         header("Location: albums.php");
         return;
 }
-$albumName=$gallery->session->albumName;
+
+if (!$gallery->user->canReadAlbum($gallery->album)) {
+	header("Location: " . makeAlbumUrl());
+	return;
+}
+
+$albumName = $gallery->session->albumName;
+
+if (!empty($albumName)) {
+    $album = new Album();
+    $album->load($albumName);
+    if ($album->fields["slideshow_type"] == "off") {
+        header("Location: " . makeAlbumUrl($gallery->session->albumName));
+        return;
+    } 
+
+	if (!$gallery->album->isLoaded()) {
+		header("Location: " . makeAlbumUrl());
+		return;
+	}
+}
+?>
+
+<?php
+// in offline mode, only high is available, because it's the only
+// one where the photos can be spidered...
+if (file_exists("java/GalleryRemoteAppletMini.jar") &&
+	file_exists("java/GalleryRemoteHTTPClient.jar") &&
+	! $gallery->session->offline) {
+    $modes["applet"] = _("Fullscreen applet");
+}
+
+$modes["high"] = _("For modern browsers");
+
+if (!empty($albumName) && !$gallery->session->offline) {
+    $modes["low"] = _("Compatible but limited");
+}
+
+if (!isset($mode) || !isset($modes[$mode])) {
+	$mode = key($modes);
+}
+
+// todo: on the client, prevent old browsers from using High, and remove High from the bar
+
+include($GALLERY_BASEDIR . "includes/slideshow/$mode.inc");
+
+slideshow_initialize();
 ?>
 
 <?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 <html>
 <head>
-  <title><?php echo _("Slideshow") ?></title>
+  <title><?php echo $title; ?></title>
   <?php echo getStyleSheetLink() ?>
   <style type="text/css">
 <?php
@@ -79,16 +138,33 @@ if ($albumName) {
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
+
 <?php } ?>
+
 <?php includeHtmlWrap("slideshow.header"); ?>
+
+<script language="JavaScript" SRC="<?php echo $gallery->app->photoAlbumURL ?>/js/client_sniff.js"></script>
+<script language="JavaScript">
+<?php
+if ($mode != 'low') {
+?>
+// Browser capabilities detection ---
+// - assume only IE4+ and NAV6+ can do image resizing, others redirect to low
+if ( (is_ie && !is_ie4up) || (is_opera && !is_opera5up) || (is_nav && !is_nav6up)) {
+	document.location = "<?php echo makeGalleryUrl('slideshow.php',array('mode' => 'low', "set_albumName" => $gallery->session->albumName)); ?>";
+}
+<?php
+}
+?>
+</script>
+
+<?php
+	slideshow_body();
+?>
 
 <?php
 $imageDir = $gallery->app->photoAlbumURL."/images";
 $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"\">";
-
-?>
-<form name="TopForm">
-<?php
 
 #-- breadcrumb text ---
 $breadCount = 0;
@@ -141,14 +217,17 @@ $breadcrumb["top"] = true;
 
 $adminbox["commands"] = "<span class=\"admin\">";
 
-// Low-tech version is just for online. It does not work offline (because the
-// URLs are generated dynamically by JavaScript and were therfore not
-// downloaded by Wget).
-if ( !$gallery->session->offline && isset($gallery->session->albumName)) {
-    $adminbox["commands"] .= "&nbsp;<a class=\"admin\" href=\"" . makeGalleryUrl("slideshow_low.php",
-        array("set_albumName" => $gallery->session->albumName)) .
-	"\">[" ._("not working for you? try the low-tech") ."]</a>";
+if ( !$gallery->session->offline) {
+	foreach ($modes as $m => $mt) {
+		$url=makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));
+		if ($m != $mode) {
+			$adminbox["commands"] .= "&nbsp;<a class=\"admin\" href=\"$url\">[" .$modes[$m] ."]</a>";
+		} else {
+			$adminbox["commands"] .= "&nbsp;" .$modes[$m];
+		}
+	}
 }
+
 $adminbox["commands"] .= "</span>";
 $adminbox["text"] = _("Slide Show");
 $adminbox["bordercolor"] = $borderColor;
@@ -161,103 +240,19 @@ includeLayout('navtablemiddle.inc');
 
 ?>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="modnavboxmid">
-  <tr>
-    <td colspan="3"><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td height="25" width="1"><?php echo $pixelImage ?></td>
-    <td align="left" valign="middle">
-    </td>
-    <td width="1"><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td colspan="3"><?php echo $pixelImage ?></td>
-  </tr>
-</table>
+<?php
+	slideshow_controlPanel();
+?>
+
 <?php
     includeLayout('navtableend.inc');
 ?>
 
 <br>
-<div align="center">
-
-<?php // hack
-$photo_count = 1; ?>
-
-<?php echo _("<p>If you don't have the Java Plugin 1.3 or later, or you don't want to wait for the applet to
-download, you can use the") . " <a class=\"admin\" href=\"" . makeGalleryUrl("slideshow_high.php",
-        array("set_albumName" => $gallery->session->albumName)) .
-	"\">[" ._("non-fullscreen version") ."]</a>" ?>.</p>
-<?php if ($photo_count > 0) { ?>
-<?php $cookieInfo = session_get_cookie_params(); ?>
-
-<object
-		classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
-		codebase="http://java.sun.com/products/plugin/autodl/jinstall-1_4-windows-i586.cab#Version=1,4,0,0"
-		width="300" height="430">
-	<param name="code" value="com.gallery.GalleryRemote.GRAppletSlideshow">
-	<param name="archive" value="java/GalleryRemoteAppletMini.jar,java/GalleryRemoteHTTPClient.jar,java/applet_img.jar">
-	<param name="type" value="application/x-java-applet;version=1.4">
-	<param name="scriptable" value="false">
-	<param name="progressbar" value="true">
-	<param name="boxmessage" value="Downloading the Gallery Remote Applet">
-	<param name="gr_url" value="<?php echo $gallery->app->photoAlbumURL ?>">
-	<param name="gr_cookie_name" value="<?php echo session_name() ?>">
-	<param name="gr_cookie_value" value="<?php echo session_id() ?>">
-	<param name="gr_cookie_domain" value="<?php echo $cookieInfo['domain'] ?>">
-	<param name="gr_cookie_path" value="<?php echo $cookieInfo['path'] ?>">
-	<param name="gr_album" value="<?php echo $gallery->album->fields["name"] ?>">
-	<param name="GRDefault_slideshowDelay" value="10">
-	<param name="GROverride_slideshowLowRez" value="true">
-	<param name="GROverride_toSysOut" value="true">
-
-	<comment>
-		<embed
-				type="application/x-java-applet;version=1.4"
-				code="com.gallery.GalleryRemote.GRAppletSlideshow"
-				archive="java/GalleryRemoteAppletMini.jar,java/GalleryRemoteHTTPClient.jar,java/applet_img.jar"
-				width="300"
-				height="430"
-				scriptable="false"
-				progressbar="true"
-				boxmessage="Downloading the Gallery Remote Applet"
-				pluginspage="http://java.sun.com/j2se/1.4.1/download.html"
-				gr_url="<?php echo $gallery->app->photoAlbumURL ?>"
-				gr_cookie_name="<?php echo session_name() ?>"
-				gr_cookie_value="<?php echo session_id() ?>"
-				gr_cookie_domain"<?php echo $cookieInfo['domain'] ?>"
-				gr_cookie_path="<?php echo $cookieInfo['path'] ?>"
-				gr_album="<?php echo $gallery->album->fields["name"] ?>"
-				GRDefault_slideshowDelay="10"
-				GROverride_slideshowLowRez="true"
-				GROverride_toSysOut="true">
-			<noembed
-					alt="Your browser understands the &lt;APPLET&gt; tag but isn't running the applet, for some reason.">
-				Your browser doesn't support applets; you should use one of the other upload methods.
-			</noembed>
-
-		</embed>
-	</comment>
-</object>
-<br>
 
 <?php
-} else {
+slideshow_image();
 ?>
-
-<br><b><?php echo _("This album has no photos to show in a slide show.") ?></b>
-<br><br>
-<span class="admin">
-<a href="<?php echo makeGalleryUrl("view_album.php",
-array("set_albumName" => $gallery->session->albumName)) ?>">[<?php echo _("back to album") ?>]</a>
-</span>
-
-<?php
-}
-?>
-
-</div>
 
 <?php
 includeLayout('ml_pulldown.inc');
