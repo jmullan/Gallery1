@@ -36,84 +36,6 @@ require($GALLERY_BASEDIR . "init.php"); ?>
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
-
-
-function process($file, $tag, $name, $caption, $setCaption="", $extra_fields=array()) {
-	global $gallery;
-	global $temp_files;
-
-	/* Figure out what files we can handle */
-	// remove %20 and the like from name
-	$name = urldecode($name);
-	// parse out original filename without extension
-	$originalFilename = eregi_replace(".$tag$", "", $name);
-	// replace multiple non-word characters with a single "_"
-	$mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
-
-	/* Get rid of extra underscores */
-	$mangledFilename = ereg_replace("_+", "_", $mangledFilename);
-	$mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
-
-	/* 
-	need to prevent users from using original filenames that are purely numeric.
-	Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
-	specifically:
-	RewriteRule ^([^\.\?/]+)/([0-9]+)$	/~jpk/gallery/view_photo.php?set_albumName=$1&index=$2	[QSA]
-	*/
-
-	if (ereg("^([0-9]+)$", $mangledFilename)) {
-		$mangledFilename .= "_G";
-	}
-
-	set_time_limit($gallery->app->timeLimit);
-	if (acceptableFormat($tag)) {
-
-	        /*
-		 * Move the uploaded image to our temporary directory
-		 * using move_uploaded_file so that we work around
-		 * issues with the open_basedir restriction.
-		 */
-		if (function_exists('move_uploaded_file')) {
-		        $newFile = tempnam($gallery->app->tmpDir, "gallery");
-			if (move_uploaded_file($file, $newFile)) {
-			    $file = $newFile;
-			}
-			
-			/* Make sure we remove this file when we're done */
-			$temp_files[$newFile]++;
-		}
-	    
-		processingMsg("- Adding $name");
-		if ($setCaption and $caption == "") {
-			$caption = $originalFilename;
-		}
-
-		if (!$extra_fields)
-		{
-			$extra_fields=array();
-		}
-		$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "",  $extra_fields);
-		if (!$err) {
-			/* resize the photo if needed */
-			if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
-				$index = $gallery->album->numPhotos(1);
-				$photo = $gallery->album->getPhoto($index);
-				list($w, $h) = $photo->image->getRawDimensions();
-				if ($w > $gallery->album->fields["resize_size"] ||
-				    $h > $gallery->album->fields["resize_size"]) {
-					processingMsg("- Resizing $name"); 
-					$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
-				}
-			}
-		} else {
-			processingMsg("<font color=red>Error: $err!</font>");
-			processingMsg("<b>Need help?  Look in the " .
-			    "<a href=http://gallery.sourceforge.net/faq.php target=_new>Gallery FAQ</a></b>");
-		}
-	} else {
-		processingMsg("Skipping $name (can't handle '$tag' format)");
-	}
-}
 ?>
 <html>
 <head>
@@ -131,16 +53,16 @@ function process($file, $tag, $name, $caption, $setCaption="", $extra_fields=arr
 </head>
 <body>
 <?php
-if ($file_name) {
-        $tag = ereg_replace(".*\.([^\.]*)$", "\\1", $file_name);
+if ($userfile_name) {
+        $tag = ereg_replace(".*\.([^\.]*)$", "\\1", $userfile_name);
         $tag = strtolower($tag); 
-	process($file, $tag, $file_name, $caption, $setCaption, $extra_fields);
+	processNewImage($userfile, $tag, $userfile_name, $caption, $setCaption, $extra_fields);
 	$gallery->album->save();
 
 	if ($temp_files) {
 		/* Clean up the temporary url file */
 		foreach ($temp_files as $tf => $junk) {
-				fs_unlink($tf);
+		    fs_unlink($tf);
 		}
 	}
 	reload();
@@ -181,11 +103,10 @@ Click the <b>Browse</b> button to locate a photo to upload.
 <table>
 <tr><td>
 File</td>
-<td><input name="file" type="file" size=40></td></tr>
+<td><input name="userfile" type="file" size=40></td></tr>
 <td>Caption</td><td> <textarea name="caption" rows=2 cols=40></textarea></td></tr>
 <?php
-foreach ($gallery->album->getExtraFields() as $field)
-{
+foreach ($gallery->album->getExtraFields() as $field) {
         if ($field == "Capture Date" || $field == "Upload Date")
         {
                 continue;

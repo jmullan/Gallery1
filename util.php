@@ -1390,7 +1390,7 @@ function mostRecentComment($album, $i)
         return $recentcomment->getDatePosted();
 }
 
-function processNewImage($file, $tag, $name, $caption, $setCaption="") {
+function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fields=array()) {
 	global $gallery;
 	global $temp_files;
 
@@ -1470,7 +1470,10 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="") {
 				$caption = $originalFilename;
 			}
 	
-			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption);
+			if (!$extra_fields) {
+			    $extra_fields=array();
+			}
+			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $extra_fields);
 			if (!$err) {
 				/* resize the photo if needed */
 				if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
