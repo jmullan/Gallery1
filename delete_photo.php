@@ -27,7 +27,6 @@ if (!$user->canDeleteFromAlbum($album)) {
 	
 if ($confirm && isset($index)) {
 	if ($albumDelete) {
-		print "entering sub";
 		$myAlbum = $album->getNestedAlbum($index);
 		$myAlbum->delete();
 	}
