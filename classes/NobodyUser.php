@@ -22,7 +22,7 @@
 class NobodyUser extends User {
 	function NobodyUser() {
 		$this->username = "NOBODY";
-		$this->fullname = "No user";
+		$this->fullname = "Nobody";
 		$this->setIsAdmin(false);
 		$this->setCanCreateAlbums(false);
 		$this->uid = "nobody";
