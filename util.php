@@ -52,13 +52,13 @@ function getFilesVar($str) {
 		if (get_magic_quotes_gpc()) {
 			$ret = stripslashes($ret);
 		}
-		return $ret;
 	}
 	else {
 		foreach ($str as $reqvar) {
 			$ret[] = getFilesVar($reqvar);
 		}
 	}
+	return $ret;
 }
 
 function getEnvVar($str) {
@@ -70,13 +70,13 @@ function getEnvVar($str) {
 		if (get_magic_quotes_gpc()) {
 			$ret = stripslashes($ret);
 		}
-		return $ret;
 	}
 	else {
 		foreach ($str as $reqvar) {
 			$ret[] = getEnvVar($reqvar);
 		}
 	}
+	return $ret;
 }
 
 function editField($album, $field, $link=null) {
@@ -230,6 +230,7 @@ function build_popup_url($url, $url_is_complete=0) {
 	}
 
 	/* Parse the query string arguments */
+	$args=array();
 	parse_str($arglist, $args);
 	$args['gallery_popup'] = 'true';
 	
@@ -263,7 +264,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
     global $gallery;
 
     if ( !empty($gallery->session->offline) && $online_only ) {
-	return;
+	return null;
     }
 	$cssclass = empty($cssclass) ? '' : "class=\"$cssclass\"";
 
@@ -284,6 +285,9 @@ function exec_internal($cmd) {
 	global $gallery;
 
 	$debugfile = "";
+	$status="";
+	$results=array();
+	
 	if (isDebugging()) {
 		print "<p><b>". _("Executing:") ."<ul>$cmd</ul></b>";
 		$debugfile = tempnam($gallery->app->tmpDir, "dbg");
@@ -329,15 +333,17 @@ function getDimensions($file, $regs=false) {
 		exit;
 	}
 
-	if ($regs === false)
+	if ($regs === false) {
 		$regs = getimagesize($file);
-	if (($regs[0] > 1) && ($regs[1] > 1))
+	}
+	if (($regs[0] > 1) && ($regs[1] > 1)) {
 		return array($regs[0], $regs[1]);
-	else if (isDebugging())
+	}
+	else if (isDebugging()) {
 		echo "<br>" .sprintf(_("PHP's %s unable to determine dimensions."),
 				"getimagesize()") ."<br>";
+	}
 		
-
 	/* Just in case php can't determine dimensions. */
 	switch($gallery->app->graphics)
 	{
@@ -586,6 +592,8 @@ Returns a list of 2 temporary files (overlay, and alphamask), these files should
   by the calling function
 */
 {
+
+	global $gallery;	
    $overlay = tempnam($gallery->app->tmpDir, "netpbm_");
    $alpha = tempnam($gallery->app->tmpDir, "netpbm_");
    switch ($format) {
@@ -996,9 +1004,13 @@ function valid_image($file) {
 			break;
 	}
 
+/* Code is unreachable.
+** Commenting out till someone finds a solution
+** Jens Tkotz, 17.08.2004 
 	if (isDebugging())
 		echo "<br>". sprintf(_("There was an unknown failure in the %s call!"), 'valid_image()') ."<br>";
 	return 0;
+*/
 }
 
 function toPnmCmd($file) {
@@ -1839,31 +1851,29 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 }
 
 function getExif($file) {
-		global $gallery;
+	global $gallery;
 
-        $return = array();
-        $path = $gallery->app->use_exif;
-        list($return, $status) = exec_internal(fs_import_filename($path, 1) .
-						" " .
-						fs_import_filename($file, 1));
+	$return = array();
+	$path = $gallery->app->use_exif;
+	list($return, $status) = exec_internal(fs_import_filename($path, 1) .
+		" " . fs_import_filename($file, 1));
 
 	$myExif = array();
 	if ($status == 0) {
-	        while (list($key,$value) = each ($return)) {
-		    if (trim($value)) {
-			$explodeReturn = explode(':', $value, 2);
-			if (isset($myExif[trim($explodeReturn[0])])) { 
-			    $myExif[trim($explodeReturn[0])] .= "<br>" . 
-				    trim($explodeReturn[1]);
-			} else {
-			    $myExif[trim($explodeReturn[0])] = 
-				    trim($explodeReturn[1]);
-			}
-		    }
+	        foreach ($return as $value) {
+	        	$value=trim($value);
+		    	if (!empty($value)) {
+					$explodeReturn = explode(':', $value, 2);
+					if (isset($myExif[trim($explodeReturn[0])])) { 
+			    		$myExif[trim($explodeReturn[0])] .= "<br>" . trim($explodeReturn[1]);
+					} else {
+			    		$myExif[trim($explodeReturn[0])] = trim($explodeReturn[1]);
+					}
+		    	}
 	        }
 	}
 
-        return array($status, $myExif);
+	return array($status, $myExif);
 }
 
 function getItemCaptureDate($file) {
@@ -2066,13 +2076,11 @@ function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fi
 	if (!strcmp($tag, "zip")) {
 		if (!$gallery->app->feature["zip"]) {
 			processingMsg(sprintf(_("Skipping %s (ZIP support not enabled)"), $name));
-			continue;
+			return;
 		}
 		/* Figure out what files we can handle */
 		list($files, $status) = exec_internal(
-			fs_import_filename($gallery->app->zipinfo, 1) . 
-			" -1 " .
-			fs_import_filename($file, 1));
+			fs_import_filename($gallery->app->zipinfo, 1) . " -1 " . fs_import_filename($file, 1));
 		sort($files);
 		// Get meta data
 		$image_info = array();
@@ -2413,6 +2421,7 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 	}
 	$srcFile = fs_import_filename($src);
 	$outFile = fs_import_filename($out);
+	
 	switch($gallery->app->graphics)	{
 		case "NetPBM":
 			$err = exec_wrapper(toPnmCmd($src) .
@@ -2440,10 +2449,11 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 					. $outFile));
 			break;
 		default:
-			if (isDebugging())
+			if (isDebugging()) {
 				echo "<br>" . _("You have no graphics package configured for use!")."<br>";
-			return 0;
+			}
 			break;
+			
 	}
 }
 
@@ -2537,7 +2547,7 @@ function generate_password($len = 10)
 	return $result;
 }
 
-function pretty_password($pass, $print, $pre = '    ', $post = '')
+function pretty_password($pass, $print, $pre = '    ')
 {
 	$idx = -1;
 	$len = strlen($pass);
@@ -2713,7 +2723,6 @@ function gallery_mail($to, $subject, $msg, $logmsg,
 	        $banner = @fgets($fp, 1024);
 	        // perform the SMTP dialog with all lines of the list
 	        foreach($smtp as $req){
-	            $r = $req[0];
 	            // send request
 	            @fputs($fp, $req[0]);
 	            // get available server messages and stop on errors
@@ -2951,52 +2960,64 @@ function available_frames($description_only=false) {
 
 /* simplify condition tests */
 function testRequirement($test) {
-    global $gallery;
-    switch ($test) {
-    case 'isAdminOrAlbumOwner':
-	return $gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album);
-	break;
-    case 'comments_enabled':
-	return $gallery->app->comments_enabled == 'yes';
-	break;
-    case 'allowComments':
-	return $gallery->album->fields["perms"]['canAddComments'];
-       	break;
-    case 'hasComments':
-        return ($gallery->album->lastCommentDate("no") != -1);
-        break;
-    case 'canAddToAlbum':
-	return $gallery->user->canAddToAlbum($gallery->album);
-	break;
-    case 'extraFieldsExist':
-	$extraFields = $gallery->album->getExtraFields();
-	return !empty($extraFields);
-	break;
-    case 'isAlbumOwner':
-	return $gallery->user->isOwnerOfAlbum($gallery->album);
-	break;
-    case 'canCreateSubAlbum':
-	return $gallery->user->canCreateSubAlbum($gallery->album);
-	break;
-    case 'notOffline':
-	return !$gallery->session->offline;
-	break;
-    case 'canChangeText':
-	return $gallery->user->canChangeTextOfAlbum($gallery->album);
-	break;
-    case 'canWriteToAlbum':
-	return $gallery->user->canWriteToAlbum($gallery->album);
-	break;
-    case 'photosExist':
-	return $gallery->album->numPhotos(true);
-	break;
-    case 'watermarkingEnabled':
-	return isset($gallery->app->watermarkDir);
-	break;
-    default:
-	return false;
-    }
-    return false;
+	global $gallery;
+	switch ($test) {
+		case 'isAdminOrAlbumOwner':
+			return $gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album);
+		break;
+		
+		case 'comments_enabled':
+			return $gallery->app->comments_enabled == 'yes';
+		break;
+		
+		case 'allowComments':
+			return $gallery->album->fields["perms"]['canAddComments'];
+		break;
+		
+		case 'hasComments':
+			return ($gallery->album->lastCommentDate("no") != -1);
+		break;
+		
+		case 'canAddToAlbum':
+			return $gallery->user->canAddToAlbum($gallery->album);
+		break;
+		
+		case 'extraFieldsExist':
+			$extraFields = $gallery->album->getExtraFields();
+			return !empty($extraFields);
+		break;
+		
+		case 'isAlbumOwner':
+			return $gallery->user->isOwnerOfAlbum($gallery->album);
+		break;
+		
+		case 'canCreateSubAlbum':
+			return $gallery->user->canCreateSubAlbum($gallery->album);
+		break;
+		
+		case 'notOffline':
+			return !$gallery->session->offline;
+		break;
+		
+		case 'canChangeText':
+			return $gallery->user->canChangeTextOfAlbum($gallery->album);
+		break;
+		
+		case 'canWriteToAlbum':
+			return $gallery->user->canWriteToAlbum($gallery->album);
+		break;
+		
+		case 'photosExist':
+			return $gallery->album->numPhotos(true);
+		break;
+		
+		case 'watermarkingEnabled':
+			return isset($gallery->app->watermarkDir);
+		break;
+		
+		default:
+			return false;
+	}
 }
 
 function doctype() {
@@ -3145,6 +3166,8 @@ function contextHelp ($link) {
 	
 	if ($gallery->app->showContextHelp == 'yes') {
 		return popup_link ('?', 'docs/context-help/' . $link, false, true, 500, 500);
+	} else {
+		return null;
 	}
 }
 
@@ -3194,21 +3217,22 @@ function key_strip_slashes (&$arr) {
 /*
 ** Define Constants for Gallery pathes.
 */ 
-
 function getGalleryPaths() {
+	if (defined('GALLERY_BASE')) {
+		return;
+	}
 
-if (defined('GALLERY_BASE')) return;
+	$currentFile = __FILE__;
+	if ( $currentFile == '/usr/share/gallery/util.php') {
+		/* Gallery runs on as Debian Package */
+		define ("GALLERY_CONFDIR", "/etc/gallery");
+		define ("GALLERY_SETUPDIR", "/var/lib/gallery/setup");
+	} else {
+		define ("GALLERY_CONFDIR", dirname(__FILE__));
+		define ("GALLERY_SETUPDIR", dirname(__FILE__) . "/setup");
+	}
 
-if ( __FILE__ == '/usr/share/gallery/util.php') {
-	/* Gallery runs on a Debian System */
-	define ("GALLERY_CONFDIR", "/etc/gallery");
-	define ("GALLERY_SETUPDIR", "/var/lib/gallery/setup");
-} else {
-	define ("GALLERY_CONFDIR", dirname(__FILE__));
-	define ("GALLERY_SETUPDIR", dirname(__FILE__) . "/setup");
-}	
-
-define ("GALLERY_BASE", dirname(__FILE__));
+	define ("GALLERY_BASE", dirname(__FILE__));
 }
 
 function showOwner($owner) {
