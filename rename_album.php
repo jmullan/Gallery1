@@ -51,6 +51,7 @@ if (!isset($useLoad)) {
 $albumDB = new AlbumDB(FALSE);
 
 if (!empty($newName)) {
+	$dismiss = 0;
 	$newName = str_replace("'", "", $newName);
 	$newName = str_replace("`", "", $newName);
 	$newName = strtr($newName, "\\/*?\"<>|& .+#()", "---------------");
@@ -58,7 +59,9 @@ if (!empty($newName)) {
 	$newName = ereg_replace("\-+$", "", $newName);
 	$newName = ereg_replace("^\-", "", $newName);
 	$newName = ereg_replace("\-$", "", $newName);
-	if ($albumDB->renameAlbum($oldName, $newName)) {
+	if ($oldName == $newName) {
+		$dismiss = 1;
+	} elseif ($albumDB->renameAlbum($oldName, $newName)) {
 		$albumDB->save();
 		// need to account for nested albums by updating
 		// the parent album when renaming an album
@@ -86,6 +89,13 @@ if (!empty($newName)) {
 				$childAlbum->save();
 			}
 		}
+		$dismiss = 1;
+	} else {
+		echo gallery_error(_("There is already an album with that name!"));
+	}
+
+	// Dismiss and reload if requested
+	if ($dismiss) {
 		if ($useLoad == 1) {
 			dismissAndLoad(makeAlbumUrl($newName));
 		}
@@ -93,9 +103,8 @@ if (!empty($newName)) {
 			dismissAndReload();
 		}
 		return;
-	} else {
-		echo gallery_error(_("There is already an album with that name!"));
 	}
+
 } else {
 	$newName = $gallery->session->albumName;
 }
