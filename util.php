@@ -766,14 +766,15 @@ function getImagePath($name, $skinname='') {
 	global $gallery;
 
 	if (!$skinname) {
-                $skinname = $gallery->app->skinname;
-        }
+		$skinname = $gallery->app->skinname;
+	}
 
 	$defaultname = $gallery->app->photoAlbumURL . "/images/$name";
-	$fullname = $gallery->app->photoAlbumURL . "/skins/$skinname/images/$name";
+	$fullname = dirname(__FILE__) . "/skins/$skinname/images/$name";
+	$fullURL = $gallery->app->photoAlbumURL . "/skins/$skinname/images/$name";
 
 	if (fs_file_exists($fullname) && !broken_link($fullname)) {
-		return "$fullname";
+		return "$fullURL";
 	} else {
 		return "$defaultname";
 	}
