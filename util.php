@@ -1213,6 +1213,7 @@ function errorRow($key) {
 function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $configFile, $errorMsg) {
 	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $_CONF; // for geeklog
+	global $board_config; // for phpBB2
 
 	if (file_exists($configFile)) {
 		include($configFile);
@@ -1241,8 +1242,8 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 			$cookie_name = $_CONF['cookie_session'];
 			$cookie_value = $_COOKIE[$cookie_name];
 		} else if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2') {
-			$cookie_name = $_CONF['phpbb2mysql_sid'];
-			$cookie_value = $_COOKIE[$cookie_name];
+			$cookie_name = $board_config['cookie_name'] . '_sid';
+			$cookie_value = $HTTP_COOKIE_VARS[$cookie_name];
 		}
 	}
 
