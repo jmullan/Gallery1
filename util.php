@@ -71,12 +71,27 @@ function popup_help($entry, $group) {
 	return "javascript:void(open('http://www.menalto.com/projects/gallery/help?group=$group&entry=$entry','Help','$attrs'));";
 }
 
+function exec_internal($cmd) {
+	$debug = 0;
+	if ($debug) {
+		print "<p><b> About to exec [$cmd]</b>";
+	}
+
+	exec($cmd, $results, $status);
+
+	if ($debug) {
+		print "<br> Results: <pre>" . join("\n", $results);
+		print "<br> Status: $status";
+	}
+
+	return array($results, $status);
+}
+
 function getDimensions($file) {
 	global $app;				
 
-	exec(toPnmCmd($file) . "| $app->pnmDir/pnmfile ",
-	     $lines,
-	     $status);
+	list($lines, $status) = 
+		exec_internal(toPnmCmd($file) . "| $app->pnmDir/pnmfile ");
 
 	if ($status == 0) {
 		foreach ($lines as $line) {
@@ -221,17 +236,7 @@ function fromPnmCmd($file) {
 function exec_wrapper($cmd) {
 	global $app;
 
-	$debug = 0;
-	if ($debug) {
-		print "<p><b> About to exec [$cmd]</b>";
-	}
-
-	exec($cmd, $results, $status);
-
-	if ($debug) {
-		print "<br> Results: <pre>" . join("\n", $results);
-		print "<br> Status: $status";
-	}
+	list($results, $status) = exec_internal($cmd);
 
 	if ($status == 0) {
 		return 0;
