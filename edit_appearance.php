@@ -54,8 +54,7 @@ if ($save) {
 <body>
 
 <center>
-
-You can modify the appearance of your photo album here.
+Album Properties
 
 <form name="theform" action=edit_appearance.php method=POST>
 <input type=hidden name="save" value=1>
@@ -121,10 +120,12 @@ You can modify the appearance of your photo album here.
 </td>
 </tr>
 <tr>
-<td>Auto fit-to-window for<br>images w/o resized copy</td>
+<td>Auto fit-to-window for<br>images without a resized copy</td>
 <td><select name="fit_to_window"><?= selectOptions($album, "fit_to_window", array("yes", "no")) ?></select></td>
 </tr>
 </table>
+
+<br>
 
 <input type=submit name="submit" value="Apply">
 <input type=reset value="Undo">
