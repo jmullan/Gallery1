@@ -114,13 +114,8 @@ $albumDB = new AlbumDB(FALSE);
 $gallery->session->albumName = "";
 $page = 1;
 
-$numAlbums = 0;
 $albumList = array();
-if (method_exists($albumDB, "getCachedNumPhotos")) {
-	$numPhotos = $albumDB->getCachedNumPhotos($gallery->user);
-} else {
-	$numPhotos = $albumDB->numPhotos($gallery->user);
-}
+list($numPhotos, $numAlbums,) = $albumDB->numAccessibleItems($gallery->user);
 
 foreach ($albumDB->albumList as $album) {
 	if (isset($gallery->app->rssVisibleOnly)) {
@@ -132,8 +127,6 @@ foreach ($albumDB->albumList as $album) {
 			continue;
 		}
 	}
-
-	$numAlbums++;
 
 	$albumInfo = array(
 		"!name" => $album->fields["name"],
@@ -250,14 +243,8 @@ if (isset($ha)) {
 	$channel_image_height = $ha["pb:thumb"][1]["height"];
 }
 
-if (function_exists('pluralize_n2')) {
-	$total_str = pluralize_n2($numAlbums, _("1 album"), _("albums"), _("no albums"));
-	$image_str = pluralize_n2($numPhotos, _("1 photo"), _("photos"), _("no photos"));
-} else {
-	/* Probably older version of Gallery */
-	$total_str = pluralize($numAlbums, "album", "no");
-	$image_str = pluralize($numPhotos, "photo", "no");
-}
+$total_str = pluralize_n2(ngettext(_("1 album"), _("%s albums"), $numAlbums), $numAlbums, _("no albums"));
+$image_str = pluralize_n2(ngettext(_("1 photo"), _("%s photos"), $numPhotos), $numPhotos, _("no photos"));
 
 $description = sprintf(_("%s in %s"), $image_str, $total_str);
 
