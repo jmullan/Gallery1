@@ -78,7 +78,7 @@ $checklist = array(
 		"fail-incompatible" => sprintf(_("You're running PHP version %s which has known bugs that cause Gallery to fail."),  phpversion()),
 	),
 	"buggy_php" => array(
-		"desc" => _("Were are using a predefined Variable and the output it buggy in some PHP Version."),
+		"desc" => _("Were are using predefined variables, and some older PHP versions have problems with this."),
 	     	"func" => "check_filedirective",
 		"buggy__FILE__" => _("It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"),
 		"serious" => 1
@@ -178,12 +178,12 @@ $checklist = array(
 		"optional" => 1,
 		"enabled" => (sizeof(gallery_languages()) > 1) ? "yes" :"no",
 		"desc" => _("Testing to see which <b>system</b> locales (if any) are absent.") . "<br>".
-				_("These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext suport. They are also needed to show date and time in the according format to the language."),
+				_("These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext support. They are also needed to show date and time in the according format to the language."),
 		"func" => "check_absent_locales",
 		"serious" => ( $elawisyl == "no" ) ? 1 : 0 ,
 	),
 	"check-versions" => array (
-		"desc" => _("Checking to see if you have the latest versions of all gallery files."),
+		"desc" => _("Checking to see if you have the latest versions of all Gallery files."),
 		"func" => "check_gallery_versions",
 		"serious" => 1,
 		"optional" => 1,
@@ -200,7 +200,7 @@ $constants =  array_merge(
   array(
 	"galleryTitle" => array(
 		"prompt" => _("Gallery Title"),
-		"desc" => _("The name of your gallery.  E.g. <i>My Cool Photos</i>"),
+		"desc" => _("The name of your Gallery.  E.g. <i>My Cool Photos</i>"),
 		"value" => _("Gallery"),
 		"type" => "text",
 		"attrs" => array("size" => 50)
@@ -237,7 +237,7 @@ $constants =  array_merge(
 		"prompt" => "Gallery URL",
 		"desc" => '(<span class="attention">' . _('REQUIRED') . '</span>) ' .
 				sprintf(_("The full URL to the Gallery web application.  E.g. %s"),
-				'<i>http://www.foo.com/gallery</i>'),
+				'<i>http://www.example.com/gallery</i>'),
 		"value" => "http://" . getenv("SERVER_NAME") . $GALLERY_URL,
 		"no-trailing-slash" => 1,
 		"must-be-url" => 1,
@@ -248,7 +248,7 @@ $constants =  array_merge(
 		"prompt" => _("Albums URL"),
 		"desc" => '(<span class="attention">' . _('REQUIRED') . '</span>) ' .
 			sprintf(_("The full URL to your album directory (specified above) on your web server.  E.g. %s"), 
-			'<i>http://www.foo.com/albums</i>'),
+			'<i>http://www.example.com/albums</i>'),
 		"value" => "http://" . getenv("SERVER_NAME") . "/albums",
 		"no-trailing-slash" => 1,
 		"must-be-url" => 1,
@@ -400,13 +400,13 @@ $constants =  array_merge(
 	),
 	"skinname" => array(
 		"prompt" => _("Skin Name"),
-		"desc" => _("Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4.") . available_skins(true),
+		"desc" => _("Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4.") . available_skins(true),
 		"choices" => available_skins(),
 		"value" => "none"
 	),
 	"gallery_thumb_frame_style" => array(
 		"prompt" => "Frame around albums",
-		"desc" => _("On the main page, the image representing each album has a frame arount it.  The following styles are available:") .
+		"desc" => _("On the main page, the image representing each album has a frame around it.  The following styles are available:") .
 			available_frames(true),
 		"choices" => available_frames(),
 		"value" => "simple_book"
@@ -502,7 +502,7 @@ $constants =  array_merge(
 		"prompt" => _("Available languages"), 
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
-		"desc" => _("These languages will be available as user choices in a pulldown menu or flags, if you have chosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."), 
+		"desc" => _("These languages will be available as user choices in a pulldown menu or flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."), 
 		"multiple_choices" => array_merge(gallery_languages(), array('addon' => insertFormJSLinks())),
 		"value" => array_keys(gallery_languages()),
 		"enabled" => $elawisyl
@@ -553,7 +553,7 @@ $constants = array_merge($constants,
 		"verify-func" => "verify_email",
 	       	"desc" => sprintf(_("Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."), '<i>' . _("no") . '</i>' ) .  '<br>' .
 					'<span class="emphasis">' . _("Note:") . '</span> ' .
-					_("If you enable this settings you give your users the opportunity to let Gallery sent them their lost password via email.") . '<br>'. 
+					_("If you enable these settings you give your users the opportunity to let Gallery send them their lost password via email.") . '<br>'. 
 					'<span class="attention">' . _("You need to enable this setting if you want to enable Self Registration.") . '</span>',
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
@@ -578,7 +578,7 @@ $constants = array_merge($constants,
 	),
 	"emailSubjPrefix" => array(
 		"prompt" => _("Email subject prefix"),
-		"desc" => _("All gallery emails will have this as the first part of their subject."),
+		"desc" => _("All Gallery emails will have this as the first part of their subject."),
 		"type" => "text",
 		"attrs" => array("size" => 50),
 		"value" => (!empty( $gallery->app->galleryTitle)) ?

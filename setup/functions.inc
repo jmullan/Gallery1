@@ -1377,7 +1377,7 @@ function check_filedirective() {
 
 	if (strstr(__FILE__, 'setup/functions.inc') ||
 		strstr(__FILE__, 'setup\\functions.inc')) {
-		$success[]=_("Predefined Variable works fine");
+		$success[]=_("Your PHP version is ok.");
 	} else {
 		$fail['buggy__FILE__']=1;
 	}
