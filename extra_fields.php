@@ -32,10 +32,9 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 
-if (!empty($save)) {
+if (isset($apply)) {
 	$count=0;
-	if (!isset($extra_fields))
-	{
+	if (!isset($extra_fields)) {
 		$extra_fields = array();
 	}
 
@@ -47,27 +46,25 @@ if (!empty($save)) {
 	}
 	
 	$num_fields=$num_user_fields+num_special_fields($extra_fields);
+
 	$gallery->album->setExtraFields($extra_fields);
-	if ($num_fields > 0 && !$gallery->album->getExtraFields())
-	{
+
+	if ($num_fields > 0 && !$gallery->album->getExtraFields()) {
 		$gallery->album->setExtraFields(array());
 	}
-	if (sizeof ($gallery->album->getExtraFields()) < $num_fields)
-	{
-		$gallery->album->setExtraFields( array_pad(
-			$gallery->album->getExtraFields(), $num_fields, 
-			"untitled field"));
+
+	if (sizeof ($gallery->album->getExtraFields()) < $num_fields) {
+		$gallery->album->setExtraFields(array_pad($gallery->album->getExtraFields(), $num_fields, _("untitled field")));
 	}
-	if (sizeof ($gallery->album->getExtraFields()) > $num_fields)
-	{
-		$gallery->album->setExtraFields(
-			array_slice($gallery->album->getExtraFields(), 
-			0, $num_fields));
+	
+	if (sizeof ($gallery->album->getExtraFields()) > $num_fields) {
+		$gallery->album->setExtraFields(array_slice($gallery->album->getExtraFields(), 0, $num_fields));
 	}
-	if (!empty($setNested)) 
-	{
+
+	if (!empty($setNested)) {
 		$gallery->album->setNestedExtraFields();
 	}
+
 	$gallery->album->save(array(i18n("Custom fields modified")));
 
 	reload();
@@ -89,12 +86,9 @@ doctype();
 <?php echo makeFormIntro("extra_fields.php", array(
 				"name" => "theform", 
 				"method" => "POST")); 
+
+	$num_user_fields=sizeof($gallery->album->getExtraFields()) - num_special_fields($gallery->album->getExtraFields());
 ?>
-<input type="hidden" name="save" value="1">
-
-
-<?php $num_user_fields=sizeof($gallery->album->getExtraFields()) - 
-	num_special_fields($gallery->album->getExtraFields()); ?>
 
 <table>
 
@@ -144,12 +138,12 @@ foreach (automaticFieldsList() as $automatic => $printable_automatic) {
 <?php
 $i=0;
 
-foreach ($extra_fields as $value)
-{
+foreach ($extra_fields as $value) {
 	if (in_array($value, array_keys(automaticFieldsList())))
 		continue;
-	if (!strcmp($value, "Title") or !strcmp($value, "AltText"))
+	if (!strcmp($value, "Title") or !strcmp($value, "AltText")) {
 		continue;
+	}
 	print "\n<tr>";
 	print "\n\t<td>". _("Field").($i+1).": </td>";
 	print "\n\t<td align=\"right\"><input type=\"text\" name=\"extra_fields[]\" value=\"".$value."\"></td>";
@@ -157,18 +151,19 @@ foreach ($extra_fields as $value)
 	$i++;
 }
 
-function num_special_fields($extra_fields)
-{
+function num_special_fields($extra_fields) {
 	global $special_fields;
+
 	$num_special_fields=0;
 	foreach (array_keys(automaticFieldsList()) as $special_field) {
 		if (in_array($special_field, $extra_fields))
 			$num_special_fields++;
 	}
+
 	if (in_array("Title", $extra_fields) || in_array("AltText", $extra_fields)) {
 		$num_special_fields++;
 	}
-
+ 
 	return $num_special_fields;  
 }
 ?>
@@ -184,6 +179,6 @@ function num_special_fields($extra_fields)
 </form>
 </center>
 
-<?php print gallery_validation_link("manage_users.php"); ?>
+<?php print gallery_validation_link("extra_fields.php"); ?>
 </body>
 </html>

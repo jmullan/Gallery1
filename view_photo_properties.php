@@ -55,7 +55,6 @@ if ($gallery->session->albumName && $index) {
 	<br><br>
 </span>
 
-<table class="popup">
 <?php
 /* 
 Here is the EXIF parsing code...
@@ -106,55 +105,8 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
         }
     }
 
-    $myExif = $gallery->album->getExif($index, $forceRefresh);
-
-    if ($myExif) {
-
-        // following line commented out because we were losing
-        // comments from the Exif array.  This is probably due
-        // to differences in versions of jhead.
-        // array_pop($myExif); // get rid of empty element at end
-        array_shift($myExif); // get rid of file name at beginning
-
-
-	$i=0;
-	echo "\n<tr>";
-	foreach ($myExif as $key => $value) {
-		$i++;
-		echo "\n\t<td>$key</td><td>:</td><td>$value</td>";
-		if ($i != sizeof($myExif)) {
-			if ($i%2 == 0) {
-				echo "\n</tr>\n<tr>";
-			}
-			else {
-				echo '<td width="5">&nbsp;</td>';
-			}
-		}
-	}
-	echo "\n</tr>";
-    }
-
-
-	echo "\n<tr>";
-	echo "\n\t<td>". _("File Upload Date") ."</td><td>:</td><td>".
-        strftime($gallery->app->dateTimeString , 
-                $gallery->album->getUploadDate($index)) 
-        . "\n\t</td>";
-	
-	echo '<td width="5">&nbsp;</td>';
-
-    $itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-        echo "\n\t<td>". _("Item Capture Date") . "</td><td>:</td><td>".
-        strftime($gallery->app->dateTimeString, 
-            mktime($itemCaptureDate['hours'], 
-                $itemCaptureDate['minutes'],
-                $itemCaptureDate['seconds'], 
-                $itemCaptureDate['mon'],
-                $itemCaptureDate['mday'],
-                $itemCaptureDate['year'])) . "\n\t</td>";
-
-	echo "\n</tr>";
-	echo "\n</table>";
+    $extra_fields=$gallery->album->getExtraFields(false);
+    displayPhotoFields($index, $extra_fields, false, true,NULL,$forceRefresh);
 
     if ($gallery->album->getKeyWords($index)) {
         echo "<br><b>". _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);

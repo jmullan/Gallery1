@@ -30,8 +30,7 @@ if (!$gallery->user->canReadAlbum($gallery->album)) {
 	return;
 }
 if (isset($full) && !$gallery->user->canViewFullImages($gallery->album)) {
-	header("Location: " . makeAlbumUrl($gallery->session->albumName,
-				$id));
+	header("Location: " . makeAlbumUrl($gallery->session->albumName, $id));
 	return;
 }
 if (!isset($full)) {
@@ -202,8 +201,7 @@ for ($i = count($breadtext) - 1; $i >= 0; $i--) {
 }
 $extra_fields=$gallery->album->getExtraFields(false);
 $title=NULL;
-if (in_array("Title", $extra_fields))
-{
+if (in_array("Title", $extra_fields)) {
 	$title=$gallery->album->getExtraField($index, "Title");
 }
 if (!$title) {
@@ -549,26 +547,20 @@ $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 
 includeHtmlWrap("inline_photo.frame");
 ?>
-<br><br>
+
+<!-- caption -->
+<p align="center" class="modcaption" width="<?php echo $mainWidth ?>">
+	<?php echo editCaption($gallery->album, $index) ?>
+</p>
 
 <?php
+
 /*
-** Block for Caption, extra fields, comments and votes.
+** Block for Voting
 */
-?>
-<table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
-<!-- caption -->
-<tr>
-	<td colspan="3" align="center" class="modcaption">
-	<?php echo editCaption($gallery->album, $index) ?>
-	<br><br>
-	</td>
-</tr>
-	<?php
+
 if ( canVote()) {
-	echo "\n<!-- Voting pulldown -->";
-	echo "\n<tr>";
-	echo "\n\t". '<td colspan="3" align="center">';
+	echo "\n<!-- Voting pulldown -->\n";
 	echo makeFormIntro("view_photo.php", array("name" => "vote_form",
                                        "method" => "POST"));
 ?>
@@ -582,127 +574,39 @@ if ( canVote()) {
 		document.vote_form.submit("Vote");
 	}
 	</script>
-       <?php
-       print '<input type="hidden" name="id" value="'. $id .'">' . addPolling("item.$id");
-       print '</form>';
-	echo "\n\t</td>";
-	echo "\n</tr>";
+	<p width="<?php echo $mainWidth; ?>" align="center">
+	<?php
+	       print '<input type="hidden" name="id" value="'. $id .'">' . addPolling("item.$id");
+	?>
+	</form>
+	</p>
+<?php
 }
 
-if ($gallery->album->getPollShowResults())
-{
+if ($gallery->album->getPollShowResults()) {
 	echo "\n<!-- Voting Results -->";
-	echo "\n<tr>";
-	echo "\n\t". '<td colspan="3" align="center">';
+	echo "\n". '<p width="'. $mainWidth .'" align="center">';
 	echo showResults("item.$id");
-	echo "\n\t</td>";
-	echo "\n</tr>";
-}
-echo "\n<!-- Custom Fields -->";
-echo "\n<tr>";
-echo "\n\t". '<td colspan="3" align="center">';
-
-$automaticFields=automaticFieldsList();
-$field="Upload Date";
-$table='';
-$key=array_search($field, $extra_fields);
-if (is_int($key))
-{
-	$table .= "<tr><td valign=top align=right><b>".$automaticFields[$field].":</b></td><td>".
-		strftime($gallery->app->dateTimeString , $gallery->album->getUploadDate($index)).
-		"</td></tr>";
-	unSet($extra_fields[$key]);
+	echo "\n</p>";
 }
 
-$field="Capture Date";
-$key=array_search($field, $extra_fields);
-if (is_int($key))
-{
-	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-	$table .= "<tr><td valign=top align=right><b>".$automaticFields[$field].":</b></td><td>".
-		strftime($gallery->app->dateTimeString , mktime ($itemCaptureDate['hours'],
-					$itemCaptureDate['minutes'],
-					$itemCaptureDate['seconds'],
-					$itemCaptureDate['mon'],
-					$itemCaptureDate['mday'],
-					$itemCaptureDate['year'])).  
-		"</td></tr>";
-	unSet($extra_fields[$key]);
-}
 
-$field="Dimensions";
-$key=array_search($field, $extra_fields);
-if (is_int($key))
-{
+echo "\n\n<!-- Custom Fields -->";
+displayPhotoFields($index, $extra_fields, true, in_array('EXIF', $extra_fields), $full);
 
-	$dimensions=$photo->getDimensions($full);
-	$table .= "<tr><td valign=top align=right><b>".$automaticFields[$field].":</b></td><td>".
-	$dimensions[0]." x ".$dimensions[1]." (". ((int) $photo->getFileSize($full) >> 10) ."k)</td></tr>";
-	unSet($extra_fields[$key]);
-}
-
-// skip title - only for header display
-$field="Title";
-$key=array_search($field, $extra_fields);
-if (is_int($key))
-{
-	unSet($extra_fields[$key]);
-}
-$field="EXIF";
-$do_exif=false;
-$key=array_search($field, $extra_fields);
-if (is_int($key))
-{
-	unSet($extra_fields[$key]);
-	if ( ($gallery->album->fields["use_exif"] === "yes") 
-		&& $gallery->app->use_exif &&
-		(eregi("jpe?g\$", $photo->image->type))) {
-		$do_exif=true;
-	}
-
-}
-
-foreach ($extra_fields as $field)
-{
-	$value=$gallery->album->getExtraField($index, $field);
-	if ($value)
-	{
-		$table .= "<tr><td valign=top align=right><b>$field:</b></td><td>".
-			str_replace("\n", "<br>", $value).
-			"</td></tr>";
-	}
-}
-if ($do_exif) {
-	$myExif = $gallery->album->getExif($index, isset($forceRefresh));
-	// we dont want to show the full system path to the file
-	array_shift($myExif);
-	foreach ($myExif as $field => $value) {
-		$table .= "<tr><td valign=top align=right><b>$field:</b></td><td>".
-			str_replace("\n", "<p>", $value).
-			"</td></tr>";
-	}
-}
-if ($table) {
-	print "<table>$table</table>\n";
-}
 ?>
-</td>
-</tr>
+
 <!-- Comments -->
 <?php 
 	if ($gallery->user->canViewComments($gallery->album)
 		 && $gallery->app->comments_enabled == 'yes') {
+			echo "\n". '<table align="center" border="0">';
 			echo viewComments($index, $gallery->user->canAddComments($gallery->album));
+			echo "\n</table>";
 	}
-?>
-<?php
 
-echo("<tr><td colspan=3 align=center>");
 includeHtmlWrap("inline_photo.footer");
-echo("</td></tr>");
 ?>
-
-</table>
 
 <?php if ($gallery->user->isLoggedIn() &&  
 		$gallery->user->getEmail() &&
@@ -726,16 +630,11 @@ echo("</td></tr>");
        	print _("Email me when:") . "  ";
        	print _("Comments are added");
        	?>
-	<input type="checkbox" name="comments" <?php echo ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? "checked" : "" ?>
-		        onclick="document.email_me.submit()" >
-		<!-- <?php print _("Other changes are made") ?>
-		<input type="checkbox" name="other" <?php echo ($gallery->album->getEmailMe('other', $gallery->user, $id)) ? "checked" : "" ?>
-		        onclick="document.email_me.submit()" > -->
-	       	<input type="hidden" name="submitEmailMe">
+	<input type="checkbox" name="comments" <?php echo ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? "checked" : "" ?> onclick="document.email_me.submit()" >
+	<input type="hidden" name="submitEmailMe">
 		</form>
-<?php } ?>
+<?php }
 
-<?php
 includeLayout('navtablebegin.inc');
 includeLayout('navphoto.inc');
 $breadcrumb["top"] = false;
@@ -782,8 +681,8 @@ includeHtmlWrap("photo.footer");
   ?>
   <input type=hidden name=imbkprnta-1 value="<?php echo strip_tags($imbkprnt) ?>">
 </form>
-<?php } ?>
-<?php if (isset($printPhotoAccessForm)) { ?>
+<?php }
+if (isset($printPhotoAccessForm)) { ?>
   <form method="post" name="photoAccess" action="http://www.photoaccess.com/buy/anonCart.jsp">
   <input type="hidden" name="cb" value="CB_GP">
   <input type="hidden" name="redir" value="true">
@@ -794,8 +693,8 @@ includeHtmlWrap("photo.footer");
   <input type="hidden" name="imgWidth" value="<?php echo $imageWidth ?>">
   <input type="hidden" name="imgHeight" value="<?php echo $imageHeight ?>">
 </form>
-<?php } ?> 
-<?php if (isset($printEZPrintsForm)) { ?>
+<?php }
+if (isset($printEZPrintsForm)) { ?>
 <form method="post" name="ezPrintsForm" action="http://gallery.mye-pix.com/partner.asp">
   <?php
      /* Print the caption on back of photo. If no caption,

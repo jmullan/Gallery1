@@ -137,13 +137,9 @@ else if ($numAccess != $numAlbums) {
 $adminText .= "</span>";
 $adminCommands = "<span class=\"admin\">";
 
-if ($gallery->user->isLoggedIn() && !$gallery->session->offline && 
-	! ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2' && $gallery->user->uid == -1)) {
+if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 
-	$displayName = $gallery->user->getFullname();
-	if (empty($displayName)) {
-		$displayName = $gallery->user->getUsername();
-	}
+	$displayName = $gallery->user->displayName();
 	$adminCommands .= sprintf(_("Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br>";
 }
 
