@@ -1,5 +1,6 @@
 <?
 require("../classes/User.php");
+require("../classes/gallery/User.php");
 require("../classes/NobodyUser.php");
 require("../classes/EverybodyUser.php");
 
@@ -65,8 +66,9 @@ if ($GALLERY_REWRITE_OK) {
  */
 include("../config.php");
 include("../classes/UserDB.php");
+include("../classes/gallery/UserDB.php");
 
-$userDB = new UserDB();
+$userDB = new Gallery_UserDB();
 $admin = $userDB->getOrCreateUser("admin");
 $admin->setPassword($editPassword);
 $admin->setIsAdmin(true);
