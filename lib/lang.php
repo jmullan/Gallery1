@@ -90,6 +90,7 @@ function getEnvLang() {
 	global $board_config;				/* Needed for phpBB2 	*/
 	global $_CONF;					/* Needed for GeekLog	*/
 	global $mosConfig_locale;			/* Needed for Mambo	*/
+	global $currentlang;				/* Needed for CPGNuke	*/
 
 	switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 		case 'postnuke':
@@ -123,6 +124,12 @@ function getEnvLang() {
 		case 'mambo':
 			if (isset($mosConfig_locale)){
 				return $mosConfig_locale;
+			}				
+		break;
+
+		case 'cpgnuke':
+			if (isset($currentlang)){
+				return $currentlang;
 			}				
 		break;
 

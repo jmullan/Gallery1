@@ -438,6 +438,51 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 			}
 		break;
+
+		case 'cpgnuke':
+			/* we're in CPG-Nuke */
+			include_once(dirname(__FILE__) . "/classes/Database.php");
+			include_once(dirname(__FILE__) . "/classes/database/mysql/Database.php");
+			include_once(dirname(__FILE__) . "/classes/cpgnuke/UserDB.php");
+			include_once(dirname(__FILE__) . "/classes/cpgnuke/User.php");
+
+	   		 $gallery->database{"cpgnuke"} = new MySQL_Database(
+				$GLOBALS['dbhost'],
+				$GLOBALS['dbuname'],
+				$GLOBALS['dbpass'],
+				$GLOBALS['dbname']);
+	    
+			if (isset($GLOBALS['user_prefix'])) {
+                                $gallery->database{"user_prefix"} = $GLOBALS['prefix'] . '_';
+			}
+			else {
+				$gallery->database{"user_prefix"} = 'cms';
+			}
+			$gallery->database{"prefix"} = $GLOBALS['prefix'] . '_';
+			$gallery->database{"admin_prefix"} = $GLOBALS['prefix'] . 'b_';
+
+			/* Select the appropriate field names */
+				$gallery->database{'fields'} =
+					array ('name'  => 'name',
+			       			'uname' => 'username',
+						'email' => 'user_email',
+			       			'uid'   => 'user_id');
+	    
+	   		/* Load our user database (and user object) */
+			$gallery->userDB = new CPGNuke_UserDB;
+	    		if (is_user()) {
+				$gallery->session->username = $userinfo['username'];
+				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username); 
+			}
+	    
+			if (is_admin()) {
+				include_once(dirname(__FILE__) . "/classes/cpgnuke/AdminUser.php");
+				
+				$gallery->user = new CPGNuke_AdminUser($userinfo);
+				$gallery->session->username = $gallery->user->getUsername();
+			}	    		
+
+		break;
 	}
 } 
 else {

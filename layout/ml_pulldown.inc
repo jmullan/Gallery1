@@ -64,7 +64,7 @@ if($gallery->app->show_flags !='yes') {
 				$new_lang=$nls['postnuke'][$value];
 			}
 			else {
-				/* phpnuke */ 
+				/* phpNuke, nsnNuke or cpgNuke */ 
 				if (! isset($nls['phpnuke'][$value])) continue;
 				$new_lang=$nls['phpnuke'][$value];
 			} 

@@ -29,6 +29,9 @@ function makeGalleryUrl($target, $args=array()) {
 	/* Needed for Mambo */
 	global $MOS_GALLERY_PARAMS;
 
+	/* Needed for CPGNuke */
+	global $mainindex;
+
 	if( isset($GALLERY_EMBEDDED_INSIDE)) {
 		switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 			case 'phpBB2':
@@ -78,6 +81,17 @@ function makeGalleryUrl($target, $args=array()) {
 				}
 			break;
 
+			case 'cpgnuke':
+				$args["name"] = "$GALLERY_MODULENAME";
+				$args["file"] = "index";
+
+				/*
+				 * include *must* be last so that the JavaScript code in
+				 * view_album.php can append a filename to the resulting URL.
+				 */
+				$args["include"] = $target;
+				$target = "index.php";
+			break;
 			// Maybe something went wrong, then we assume we are like standalone.
 			default:
 				$target = $gallery->app->photoAlbumURL . "/" . $target;
