@@ -611,14 +611,17 @@ function unhtmlentities ($string) {
 			$charset=$nls['default']['charset'];
 		}
 
-		if (isSupportedCharset($charset)) {
+		if (isSupportedCharset($charset) && strtolower($charset) != 'utf-8') {
 			$return = html_entity_decode($string,ENT_COMPAT ,$charset);
 		}
 		else {
-			$return = $string;
+			// For unsupported charsets you may do this:
+			$trans_tbl = get_html_translation_table (HTML_ENTITIES);
+			$trans_tbl = array_flip ($trans_tbl);
+			$return = strtr ($string, $trans_tbl);
 		}
 	} else {
-		// For users prior to PHP 4.3.0 you may do this:
+		// For users with PHP prior to 4.3.0 you may do this:
 		$trans_tbl = get_html_translation_table (HTML_ENTITIES);
 		$trans_tbl = array_flip ($trans_tbl);
 		$return = strtr ($string, $trans_tbl);
