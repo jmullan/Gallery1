@@ -478,29 +478,28 @@ if (isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_o
 	&& ! $gallery->user->isOwnerOfAlbum($gallery->album)
         && ($gallery->app->comments_enabled == 'yes')
         && ($gallery->album->lastCommentDate("no") != -1)) {
-                $userCommands .= "\n\t". '<a href="'. makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)) . '">' .
-                        '[' . _("view&nbsp;comments") . ']</a>';
+                $userCommands .= "\t". '<a href="'. makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)) . '">' .
+                        '[' . _("view&nbsp;comments") . ']</a>\n';
 }
 
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 	if ($gallery->user->isLoggedIn()) {
-	        $userCommands .= "<a class=\"admin\" href=\"" .
+	        $userCommands .= "\t<a class=\"admin\" href=\"" .
 					doCommand("logout", array(), "view_album.php", array("page" => $page)) .
 				  "\">[" . _("logout") . "]</a>\n";
 	} else {
-		$userCommands .= popup_link("[". _("login") ."]", "login.php", false, true, 500, 500, 'admin') . "\n";
+		$userCommands .= "\t" . popup_link("[". _("login") ."]", "login.php", false, true, 500, 500, 'admin') . "\n";
 	} 
 }
 
 $adminbox["text"] = $adminText;
 $adminbox["commands"] =	"<span class =\"admin\">" .  $adminCommands . 
-			$userCommands .  "</span>";
+			$userCommands .  "\t</span>\n";
 $adminbox["bordercolor"] = $bordercolor;
 $adminbox["top"] = true;
 
 if (!empty($adminOptionHTML)) {
     print $adminJSFrame;
-    print "<form name=\"admin_options_form\" action=\"view_album.php\">\n";
 }
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
@@ -518,9 +517,6 @@ includeLayout('navtablemiddle.inc');
 includeLayout('navigator.inc');
 includeLayout('navtableend.inc');
 
-if (!empty($adminOptionHTML)) {
-    print "</form>\n";
-}
 
 #-- if borders are off, just make them the bgcolor ----
 $borderwidth = $gallery->album->fields["border"];
@@ -613,7 +609,7 @@ if ($gallery->album->getPollShowResults())
 }
 
 echo makeFormIntro("view_album.php",
-	       	array("name" => "vote_form", "method" => "POST"));
+	       	array("name" => "vote_form", "method" => "POST", "style" => "margin-bottom: 0px;"));
 if (canVote())
 { 
  echo '<div align="left" class="vapoll">';
@@ -1155,7 +1151,7 @@ if (canVote()) { ?>
 		}
 	}
 	echo makeFormIntro("view_album.php",
-	       	array("name" => "email_me", "method" => "POST"));
+	       	array("name" => "email_me", "method" => "POST", "style" => "margin-bottom: 0px;"));
        	print _("Email me when:")."  ";
        	print _("Comments are added"); ?>
 	<input type="checkbox" name="comments" <?php echo ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ?>
@@ -1170,7 +1166,7 @@ if (canVote()) { ?>
 <?php 
 includeLayout('navtablebegin.inc');
 includeLayout('navigator.inc');
-if (strcmp($gallery->album->fields["returnto"], "no")) {
+if ($breadCount) {
 	$breadcrumb["top"] = false;
 	includeLayout('navtablemiddle.inc');
 	includeLayout('breadcrumb.inc');

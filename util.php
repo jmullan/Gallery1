@@ -280,7 +280,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
 		 "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes") .
 	"\">$title</a>";
 
-    return "\n$a1\n";
+    return "$a1";
 }
 
 function exec_internal($cmd) {

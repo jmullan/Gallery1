@@ -15,8 +15,6 @@ if(!includeTemplate('breadcrumb.tpl')) {
 	}
 	$pixelImage = '<img src="' . getImagePath('pixel_trans.gif') .'" width="1" height="1" alt="transpixel">';
 	
-	global $navigator, $adminbox, $adminText;
-
 	if (!isset($navigator)) {
 		$navigator["fullWidth"] = 100;
 		$navigator["widthUnits"] = "%";
