@@ -46,10 +46,7 @@ if ($show_details) {
 }
 print "<p>";
 
-$results=checkVersions($show_details);
-$errors=$results[0];
-$warnings=$results[1];
-$oks=$results[2];
+list($oks, $errors, $warnings)=checkVersions($show_details);
 if  ($errors) {
 	print "<p>";
 	print '<span class="errorlong">';

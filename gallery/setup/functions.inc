@@ -1185,6 +1185,28 @@ function check_ecards($num)
     }
 	return array($success, $fail);
 }
+function check_gallery_versions()  {
+	$fail = array();
+	$success = array();
+	$warn = array();
+       	list($oks, $errors, $warnings) = checkVersions(false);
+	if ($errors)  {
+		$fail[]=sprintf(_("The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."), 
+				implode('<br>&nbsp;&nbsp;&nbsp;&nbsp;', array_keys($errors))). "<p>" .
+			"<br>" . _("This should be fixed before proceeding") . 
+		      	"<br>" . sprintf(_("Look at %sCheck Versions%s for more details."), 
+					"<a href=check_versions.php>", "</a>");
+	} else if ($warnings) {
+		$warn[]=sprintf(_("%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."), count($warnings)) .
+		      	"<br>" . sprintf(_("Look at %sCheck Versions%s for more details."), 
+					"<a href=check_versions.php>", "</a>");
+		$warn['nocolor'] = true;
+	} else {
+		$success[]=sprintf(_("%d files up-to-date."), count($oks));
+	}
+	return array($success, $fail, $warn);
+}
+
 
 function newIn($version) {
 	$buf = "\n\t<br><font color=blue><b>(";

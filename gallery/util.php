@@ -3165,7 +3165,7 @@ function compareVersions($old_str, $new_str) {
 		if ($old_number > $new_number) {
 			return -1;
 		}
-		// if ($old_number < $new_number) {
+		// if ($old_number < $new_number)
 		return 1;
 	}
 	if (count($new) == 0) {
@@ -3177,19 +3177,21 @@ function compareVersions($old_str, $new_str) {
 function checkVersions($verbose=false) {
 	global $GALLERY_BASEDIR, $gallery;
 	$manifest=$GALLERY_BASEDIR."manifest.inc";
-	$errors=array();
-	$warnings=array();
-	$oks=array();
+	$success=array();
+	$fail=array();
+	$warn=array();
 	if (!fs_file_exists($manifest)) {
-	       	$errors["manifest.inc"]=_("File missing or unreadable.  Please install then re-run this test.");
-		return array($errors, $warnings, $oks);
+	       	$fail["manifest.inc"]=_("File missing or unreadable.  Please install then re-run this test.");
+		return array($success, $fail, $warn);
 	}
 	if (!function_exists('getCVSVersion')) {
-		$errors['util.php']=sprintf(_("Please ensure that %s is the latest version."), "util.php");
-		return array($errors, $warnings, $oks);
+		$fail['util.php']=sprintf(_("Please ensure that %s is the latest version."), "util.php");
+		return array($success, $fail, $warn);
 	}
 	include $manifest;
-	print sprintf(_("Testing status of %d files."), count($versions));
+       	if ($verbose) {
+	       	print sprintf(_("Testing status of %d files."), count($versions));
+	}
 	foreach ($versions as $file => $version) {
 		$found_version=getCVSVersion($file);
 		if ($found_version === NULL) {
@@ -3197,14 +3199,14 @@ function checkVersions($verbose=false) {
 			       	print "<br>\n";
 			       	print sprintf(_("Cannot read file %s."), $file);
 			}
-			$errors[$file]=_("File missing or unreadable.");
+			$fail[$file]=_("File missing or unreadable.");
 			continue;
 		} else if ($found_version === "") {
 			if ($verbose) {
 			       	print "<br>\n";
 			       	print sprintf(_("Version information not found in %s.  File must be old version or corrupted."), $file);
 		       	}
-		       	$errors[$file]=_("Missing version");
+		       	$fail[$file]=_("Missing version");
 		       	continue;
 	       	} 
 		$compare=compareVersions($version, $found_version);
@@ -3213,22 +3215,22 @@ function checkVersions($verbose=false) {
 			       	print "<br>\n";
 			       	print sprintf(_("Problem with %s.  Expected version %s (or greater) but found %s."), $file, $version, $found_version);
 		       	}
-		       	$errors[$file]=sprintf(_("Expected version %s (or greater) but found %s."), $version, $found_version);
+		       	$fail[$file]=sprintf(_("Expected version %s (or greater) but found %s."), $version, $found_version);
 	       	} else if ($compare > 0) {
 			if ($verbose) {
 			       	print "<br>\n";
 				print sprintf(_("%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
 			}
-			$warnings[$file]=sprintf(_("%s is a more recent version than expected.  Expected version %s but found %s."), $file, $version, $found_version);
+			$warn[$file]=sprintf(_("%s is a more recent version than expected.  Expected version %s but found %s."), $file, $version, $found_version);
 		} else {
 			if ($verbose) {
 			       	print "<br>\n";
 			       	print sprintf(_("%s OK"), $file);
 		       	}
-			$oks[$file]="OK";
+			$success[$file]="OK";
 		}
 			
 	}
-       	return array($errors, $warnings, $oks);
+       	return array($success, $fail, $warn);
 }
 ?>

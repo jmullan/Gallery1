@@ -147,7 +147,13 @@ $checklist = array(
 		"desc" => _("Testing to see which locales (if any) are absent."),
 		"func" => "check_absent_locales",
 		"serious" => ( $elawisyl == "no" ) ? 1 : 0 ,
-	)
+	),
+	"check-versions" => array (
+		"desc" => _("Checking to see if you have the latest versions of all gallery files."),
+		"func" => "check_gallery_versions",
+		"serious" => 1,
+		"optional" => 1,
+	),
 );
 
 $features = array(
