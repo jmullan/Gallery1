@@ -306,7 +306,7 @@ class Image {
 		global $app;
 
 		/* getting rid of the resized image */
-		if (!strcmp($target, "orig")) {
+		if (stristr($target, "orig")) {
 			$img = loadImage($dir, $this->name, $this->type);
 			$this->width = imagesx($img);
 			$this->height = imagesy($img);
