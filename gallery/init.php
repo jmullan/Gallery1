@@ -232,7 +232,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$GLOBALS['dbname']);
 	    
 			if (isset($GLOBALS['user_prefix'])) {
-				$gallery->database{"user_prefix"} = 'nuke_';
+				$gallery->database{"user_prefix"} = $GLOBALS['user_prefix'] . '_';
 			}
 			else {
 				$gallery->database{"user_prefix"} = 'nuke_';
@@ -288,7 +288,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$GLOBALS['dbname']);
 	    
 			if (isset($GLOBALS['user_prefix'])) {
-				$gallery->database{"user_prefix"} = 'nukea_';
+				$gallery->database{"user_prefix"} = $GLOBALS['user_prefix'] . '_';
 			}
 			else {
 				$gallery->database{"user_prefix"} = 'nukea_';
