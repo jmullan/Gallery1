@@ -153,8 +153,8 @@ if ($fitToWindow) {
 
   function fitToWindow(do_resize) {
 	var changed = 0;
-	var heightMargin = 150;
-	var widthMargin = 30;
+	var heightMargin = 160;
+	var widthMargin = 40;
 	var imageHeight = <?=$imageHeight?>;
 	var imageWidth = <?=$imageWidth?>;
 	var aspect = imageHeight / imageWidth;
@@ -173,14 +173,19 @@ if ($fitToWindow) {
 	windowWidth = windowWidth - widthMargin;
 	windowHeight = windowHeight - heightMargin;
 
-	if (imageWidth > windowWidth) {
+	var diffx = windowWidth - imageWidth,
+	    diffy = windowHeight - imageHeight;
+
+	if (diffx < 0 || diffy < 0) {
+	    if (diffx < diffy) {
 		imageWidth = windowWidth;
 		imageHeight = aspect * imageWidth;
 		changed = 1;
-	} else if (imageHeight > windowHeight) {
+	    } else {
 		imageHeight = windowHeight;
 		imageWidth = imageHeight / aspect;
 		changed = 1;
+	    }
 	}
 
 	if (do_resize) {
