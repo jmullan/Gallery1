@@ -442,6 +442,26 @@ function gr_move_album( &$gallery, &$response, &$set_destalbumName ) {
 
 	global $GR_STAT;
 
+	// check that source and destination albums exist
+	$albumDB = new AlbumDB(FALSE);
+	$sourceAlbum = $albumDB->getAlbumByName($gallery->album->fields["name"]);
+
+	if (empty($sourceAlbum)) {
+		$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
+		$response->setProperty( 'status_text', 'Source album doesnt exist' );
+		return 0;
+	}
+
+	if ($set_destalbumName != '0') {
+		$destAlbum = $albumDB->getAlbumByName($set_destalbumName);
+
+		if (empty($destAlbum)) {
+			$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
+			$response->setProperty( 'status_text', 'Destination album doesnt exist' );
+			return 0;
+		}
+	}
+
 	if(empty($set_destalbumName) && $set_destalbumName != '0') {
 		$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
 		$response->setProperty( 'status_text', 'You must specify a destination album.' );
@@ -453,12 +473,6 @@ function gr_move_album( &$gallery, &$response, &$set_destalbumName ) {
 		return 0;
 	}
 
-	$destAlbum = new Album();
-	if($set_destalbumName != '0') { //destalbum can be 0 when moving to root
-		$destAlbum->load($set_destalbumName);
-	}
-
-	
 	if($gallery->album->isRoot()) {
 		if($set_destalbumName == '0') {
 			$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
