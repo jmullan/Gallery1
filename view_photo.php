@@ -60,6 +60,8 @@ if ($index > $numPhotos) {
  * We might be prev/next navigating using this page
  *  so recalculate the 'page' variable
  */
+$rows = $album->fields["rows"];
+$cols = $album->fields["cols"];
 $perPage = $rows * $cols;
 $page = ceil($index / ($rows * $cols));
 

@@ -31,6 +31,8 @@ if (!$album->isLoaded()) {
 	return;
 }
 
+$rows = $album->fields["rows"];
+$cols = $album->fields["cols"];
 $numPhotos = $album->numPhotos($user->canWriteToAlbum($album));
 $perPage = $rows * $cols;
 $maxPages = max(ceil($numPhotos / $perPage), 1);
