@@ -103,27 +103,27 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body dir="<?php echo $gallery->direction ?>">
 <?php }
 	includeHtmlWrap("gallery.header");
-	if (!$gallery->session->offline && !strcmp($gallery->app->showSearchEngine, "yes")) {
+	if (!$gallery->session->offline && 
+		( (!strcmp($gallery->app->showSearchEngine, "yes") && $numPhotos != 0 ) || $GALLERY_EMBEDDED_INSIDE =='phpBB2')) {
 ?>
 <table width="100%" border="0" cellspacing="0" style="margin-bottom:2px">
 <tr>
 <?php
 	if ($GALLERY_EMBEDDED_INSIDE =='phpBB2') {
-		echo '<td class="nav"><a href="index.php">'. sprintf($lang['Forum_Index'], $board_config['sitename']) . '</a></td>';
+		echo '<td class="nav"><a href="index.php">'. sprintf($lang['Forum_Index'], $board_config['sitename']) . '</a></td';
 }
+	if ($numPhotos != 0) {
+		echo '<td valign="middle" align="right">';
+		echo makeFormIntro("search.php");
+		echo '<span class="search">'. _("Search") .': </span>';
+		echo '<input style="font-size:10px;" type="text" name="searchstring" value="" size="25">';
+		echo '</form></td>';
+	}
 ?>
-<td valign="middle" align="right">
-<?php echo makeFormIntro("search.php"); ?>
-<span class="search"> <?php echo _("Search") ?>: </span>
-<input style="font-size:10px;" type="text" name="searchstring" value="" size="25">
-</form>
-</td>
 </tr>
 </table>
+<?php	} ?>
 
-<?php
-}
-?>
 <!-- admin section begin -->
 <?php 
 $adminText = "<span class=\"admin\">";
@@ -155,7 +155,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline &&
 	$adminCommands .= sprintf(_("Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br>";
 }
 
-if ($gallery->app->gallery_slideshow_type != "off") {
+if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
     	 $adminCommands .= "\n". '<a class="admin" href="' . makeGalleryUrl("slideshow.php",
 	 array("set_albumName" => null)) .
 	       	'">['._("slideshow") . ']</a>&nbsp;';
@@ -365,10 +365,10 @@ for ($i = $start; $i <= $end; $i++) {
 
   <br>
   <span class="fineprint">
-   <?php echo sprintf(_("Last changed on %s."), $gallery->album->getLastModificationDate() )?>  
-   <?php echo sprintf(_("This album contains %s." ), pluralize_n(array_sum($gallery->album->numVisibleItems($gallery->user)), _("1 item"), _("items"), _("no items")));
-if (!($gallery->album->fields["display_clicks"] == "no") && 
-	!$gallery->session->offline) {
+   <?php 
+	echo sprintf(_("Last changed on %s."), $gallery->album->getLastModificationDate() );
+	echo sprintf(_("This album contains %s." ), pluralize_n(array_sum($gallery->album->numVisibleItems($gallery->user)), _("1 item"), _("items"), _("no items")));
+	if (!($gallery->album->fields["display_clicks"] == "no") && !$gallery->session->offline) {
 ?>
    <br><br><?php echo sprintf(_("This album has been viewed %s since %s."),
 		   pluralize_n($gallery->album->getClicks(), _("1 time"), _("times") , _("0 times")),
@@ -377,11 +377,9 @@ if (!($gallery->album->fields["display_clicks"] == "no") &&
 $albumName=$gallery->album->fields["name"];
 if ($gallery->user->canWriteToAlbum($gallery->album) &&
    (!($gallery->album->fields["display_clicks"] == "no"))) {
-?>
-<?php echo " ".popup_link("[" . _("reset counter") ."]", doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php"), 1) ?>
-
-<?php
+	echo " ".popup_link("[" . _("reset counter") ."]", doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php"), 1);
 }
+
 if($gallery->app->comments_enabled == 'yes') {
 	$lastCommentDate = $gallery->album->lastCommentDate();
 	print lastCommentString($lastCommentDate, $displayCommentLegend);
@@ -405,10 +403,13 @@ if($gallery->app->comments_enabled == 'yes') {
 ?>
 </table>
 <!-- album table end -->
-<?php if ($displayCommentLegend) { //display legend for comments ?>
-<span class=error>*</span><span class=fineprint> <?php echo _("Comments available for this item.") ?></span>
-<br><br>
-<?php } ?>
+<?php 
+if ($displayCommentLegend) { 
+	//display legend for comments
+	echo '<p><span class="error">*</span>';
+	echo '<span class="fineprint">'. _("Comments available for this item.") .'</span></p>';
+} 
+?>
 <!-- bottom nav -->
 <?php
 includeLayout('navtablebegin.inc');
@@ -427,4 +428,3 @@ includeHtmlWrap("gallery.footer");
 </body>
 </html>
 <?php } ?>
-
