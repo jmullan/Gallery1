@@ -187,14 +187,9 @@ if ($numPhotos) {
 					echo(" <a href=");
 					echo(popup("rotate_photo.php?index=$i"));
 					echo(">[rotate]</a>");
-					/*
-					 * This will remake the thumbnail, which is rarely needed (mostly
-					 * during development) so I've turned it off for now.
-					 *
 					echo(" <a href=");
 					echo(popup("do_command.php?cmd=remake-thumbnail&index=$i"));
 					echo(">[thumbnail]</a>");
-					 */
 				}
 				echo(" <a href=");
 				echo(popup("move_photo.php?index=$i"));
