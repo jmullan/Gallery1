@@ -39,6 +39,7 @@ function msg($buf) {
 
 	if ($msgcount) {
 		print "<br>";
+		my_flush();
 	}
 	print $buf;
 	$msgcount++;
@@ -49,8 +50,9 @@ function msg($buf) {
 <head>
   <title>Processing and Saving Photos</title>
   <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
+
 </head>
-<body onLoad='opener.location.reload(); '>
+<body onLoad='opener.hideProgressAndReload();'>
 
 <?
 if ($urls) {
@@ -233,7 +235,6 @@ function process($file, $tag, $name) {
 	set_time_limit(30);
 	if (acceptableFormat($tag)) {
 		msg("- Adding $name");
-		my_flush();
 
 		$err = $gallery->album->addPhoto($file, $tag);
 		if (!$err) {
@@ -245,16 +246,14 @@ function process($file, $tag, $name) {
 				if ($w > $gallery->album->fields["resize_size"] ||
 				    $h > $gallery->album->fields["resize_size"]) {
 					msg("- Resizing $name"); 
-					my_flush();
 					$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
 				}
 			}
 		} else {
-			print "<font color=red>Error: $err!</font>";
+			msg("<font color=red>Error: $err!</font>");
 		}
 	} else {
 		msg("Skipping $name (can't handle '$tag' format)");
-		my_flush();
 	}
 }
 
