@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2003-11-13 14:56+0100\n"
+"POT-Creation-Date: 2003-11-17 17:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -310,7 +310,8 @@ msgstr ""
 msgid "OK!  Version: %s"
 msgstr ""
 
-#: ../setup/check_mail.php:12 ../setup/session_test.php:17
+#: ../setup/check_mail.php:12 ../setup/check_versions.php:10
+#: ../setup/session_test.php:17
 msgid "You cannot access this file while gallery is in secure mode."
 msgstr ""
 
@@ -374,7 +375,7 @@ msgstr ""
 msgid "Gallery NetPBM Check"
 msgstr ""
 
-#: ../setup/check_netpbm.php:131
+#: ../setup/check_netpbm.php:131 ../setup/check_versions.php:95
 #, php-format
 msgid "%sClick here%s to hide the details"
 msgstr ""
@@ -382,6 +383,87 @@ msgstr ""
 #: ../setup/check_netpbm.php:134
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
+msgstr ""
+
+#: ../setup/check_versions.php:28
+msgid "File missing or unreadable.  Please install then re-run this test."
+msgstr ""
+
+#: ../setup/check_versions.php:32
+#, php-format
+msgid "Please ensure that %s is the latest version."
+msgstr ""
+
+#: ../setup/check_versions.php:36
+#, php-format
+msgid "Testing status of %d files."
+msgstr ""
+
+#: ../setup/check_versions.php:42
+#, php-format
+msgid "Cannot read file %s."
+msgstr ""
+
+#: ../setup/check_versions.php:44
+msgid "File missing or unreadable."
+msgstr ""
+
+#: ../setup/check_versions.php:49
+#, php-format
+msgid "Version information not found in %s.  File must be old version or corrupted."
+msgstr ""
+
+#: ../setup/check_versions.php:51
+msgid "Missing version"
+msgstr ""
+
+#: ../setup/check_versions.php:56
+#, php-format
+msgid "Problem with %s.  Expected version %s (or greater) but found %s."
+msgstr ""
+
+#: ../setup/check_versions.php:58
+#, php-format
+msgid "Expected version %s (or greater) but found %s."
+msgstr ""
+
+#: ../setup/check_versions.php:62
+#, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgstr ""
+
+#: ../setup/check_versions.php:64
+#, php-format
+msgid "%s is a more recent version than expected.  Expected version %s but found %s."
+msgstr ""
+
+#: ../setup/check_versions.php:68
+#, php-format
+msgid "%s OK"
+msgstr ""
+
+#: ../setup/check_versions.php:86 ../setup/check_versions.php:91
+msgid "Check Versions"
+msgstr ""
+
+#: ../setup/check_versions.php:98
+#, php-format
+msgid "%sClick here%s to see more details"
+msgstr ""
+
+#: ../setup/check_versions.php:110
+#, php-format
+msgid "The following files are missing or not the correct version for this version of %s.  Please replace them with the correct version."
+msgstr ""
+
+#: ../setup/check_versions.php:120
+#, php-format
+msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is expected."
+msgstr ""
+
+#: ../setup/check_versions.php:128
+#, php-format
+msgid "%d files up-to-date."
 msgstr ""
 
 #: ../setup/config_data.inc:17
@@ -1823,7 +1905,8 @@ msgid "This page is for %s upgrades that have problems."
 msgstr ""
 
 #: ../setup/diagnostics.php:98
-msgid "This allows you to check you have the correct version of all your Gallery files."
+#, php-format
+msgid "This allows you to check you have the correct version of all your %s files."
 msgstr ""
 
 #: ../setup/functions.inc:108
