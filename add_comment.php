@@ -74,7 +74,7 @@ if ($error_text) {
 
 <?php echo makeFormIntro("add_comment.php", array("name" => "theform", "method" => "POST")); ?>
 <input type=hidden name="index" value="<?php echo $index ?>">
-<input type=hidden name="IPNumber" value="<?php echo $REMOTE_ADDR ?>">
+<input type=hidden name="IPNumber" value="<?php echo $HTTP_SERVER_VARS['REMOTE_ADDR'] ?>">
 <table border=0 cellpadding=5>
 <tr>
   <td>Name or email:</td>
