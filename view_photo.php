@@ -551,11 +551,12 @@ echo("<td colspan=3 height=$borderwidth><img src=$top/images/pixel_trans.gif></t
 <table>
 <?php
 
+$automaticFields=automaticFieldsList();
 $field="Upload Date";
 $key=array_search($field, $extra_fields);
 if (is_int($key))
 {
-	print "<tr><td valign=top><b>Upload Date:<b></td><td>".
+	print "<tr><td valign=top align=right><b>".$automaticFields[$field].":<b></td><td>".
 		date("m-d-Y H:i:s" , $gallery->album->getUploadDate($index)).
 		"</td></tr>";
 	unSet($extra_fields[$key]);
@@ -566,11 +567,22 @@ $key=array_search($field, $extra_fields);
 if (is_int($key))
 {
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-	print "<tr><td valign=top><b>Capture Date:<b></td><td>".
+	print "<tr><td valign=top align=right><b>".$automaticFields[$field].":<b></td><td>".
 	       $itemCaptureDate[mon] . "-" . $itemCaptureDate[mday] . "-" . 
 	       $itemCaptureDate[year] . " ".  $itemCaptureDate[hours] . ":" . 
 	       $itemCaptureDate[minutes] . ":" . $itemCaptureDate[seconds].
 	       "</td></tr>";
+	unSet($extra_fields[$key]);
+}
+
+$field="Dimensions";
+$key=array_search($field, $extra_fields);
+if (is_int($key))
+{
+	$dimensions=$photo->getDimensions();
+	$stat = fs_stat($photo->image->getPath($gallery->app->albumDir . '/' . $gallery->album->fields['name'],1));
+	print "<tr><td valign=top align=right><b>".$automaticFields[$field].":<b></td><td>".
+	$dimensions[0]." x ".$dimensions[1]." (".ceil($stat[7]/1000)."k)</td></tr>";
 	unSet($extra_fields[$key]);
 }
 
@@ -600,7 +612,7 @@ foreach ($extra_fields as $field)
 	$value=$gallery->album->getExtraField($index, $field);
 	if ($value)
 	{
-		print "<tr><td valign=top><b>$field:<b></td><td>".
+		print "<tr><td valign=top align=right><b>$field:<b></td><td>".
 			str_replace("\n", "<p>", $value).
 			"</td></tr>";
 	}
@@ -608,7 +620,7 @@ foreach ($extra_fields as $field)
 if ($do_exif) {
 	$myExif = $gallery->album->getExif($index, $forceRefresh);
 	foreach ($myExif as $field => $value) {
-		print "<tr><td valign=top><b>$field:<b></td><td>".
+		print "<tr><td valign=top align=right><b>$field:<b></td><td>".
 			str_replace("\n", "<p>", $value).
 			"</td></tr>";
 	}

@@ -287,6 +287,7 @@ function acceptableFormatList() {
 function automaticFieldsList() {
 	return array("Upload Date" => "Upload Date", 
 	      "Capture Date" => "Capture Date", 
+	      "Dimensions" => "Image Size",
 	      "EXIF" => "Additional EXIF Data");
 }
 
