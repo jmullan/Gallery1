@@ -76,14 +76,14 @@ function popup_help($entry, $group) {
 }
 
 function exec_internal($cmd) {
-	$debug = 0;
-	if ($debug) {
+	global $app;
+	if (isDebugging()) {
 		print "<p><b> About to exec [$cmd]</b>";
 	}
 
 	exec($cmd, $results, $status);
 
-	if ($debug) {
+	if (isDebugging()) {
 		print "<br> Results: <pre>" . join("\n", $results);
 		print "<br> Status: $status";
 	}
@@ -210,7 +210,11 @@ function toPnmCmd($file) {
 	if (preg_match("/.png/i", $file)) {
 		$cmd = "pngtopnm";
 	} else if (preg_match("/.jpg/i", $file)) {
-		$cmd = "jpegtopnm --quiet";
+		if (isDebugging()) {
+			$cmd = "jpegtopnm --quiet";
+		} else {
+			$cmd = "jpegtopnm";
+		}
 	} else if (preg_match("/.gif/i", $file)) {
 		$cmd = "giftopnm";
 	}
@@ -458,4 +462,9 @@ function preprocessImage($dir, $file) {
 	}
 
 	return 1;
+}
+
+function isDebugging() {
+	global $app;
+	return !strcmp($app->debug, "yes");
 }
