@@ -143,7 +143,7 @@ if ($gallery->session->albumName && isset($index)) {
 							if ($postAlbum->fields["resize_size"] > 0  || $postAlbum->fields["resize_file_size"] > 0) {
 								$photo = $postAlbum->getPhoto($newPhotoIndex);
 								list($w, $h) = $photo->image->getRawDimensions();
-								$size = $photo->image->getRawFilesize();
+								$size = ($photo->image->getRawFilesize() / 1000);
 								if ($w > $postAlbum->fields["resize_size"] ||
 								    $h > $postAlbum->fields["resize_size"] ||
 								    $size > $postAlbum->fields["resize_file_size"]) {

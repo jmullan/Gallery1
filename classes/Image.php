@@ -54,7 +54,7 @@ class Image {
 			$this->width = $w;
 			$this->height = $h;
 			clearstatcache();
-			$this->raw_filesize= fs_filesize("$dir/$this->name.$this->type")/1000;
+			$this->raw_filesize= fs_filesize("$dir/$this->name.$this->type");
 		}
 	}
 
