@@ -55,6 +55,6 @@ foreach ($constants as $key => $val) {
 ?>
 </table>
 <p>
-<input type=submit name="go_back" value=<?php echo '"<- ' . _("System Check Page") . '"' ?>>
-<input type=submit name="go_next" value=<?php echo '"' . _("Album Defaults") . ' ->"' ?>>
-<input type=submit name="go_defaults" value=<?php echo '"' . _("Use Defaults") . '"' ?>>
+<input type=submit name="go_back" value="<- <?php echo _("System Check Page") ?>">
+<input type=submit name="go_next" value="<?php echo _("Album Defaults") ?> ->">
+<input type=submit name="go_defaults" value="<?php echo _("Use Defaults") ?>">
