@@ -453,6 +453,11 @@ class Album {
 	function setOwner($uid) {
 		$this->fields["owner"] = $uid;
 	}
+
+	function getOwner() {
+		global $userDB;
+		return $userDB->getUserByUid($this->fields["owner"]);
+	}
 }
 
 ?>
