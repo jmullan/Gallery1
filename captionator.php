@@ -30,7 +30,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <?php require($GALLERY_BASEDIR . "init.php"); ?>
 <?php 
 // Hack check
-if (!$gallery->user->canWriteToAlbum($gallery->album)) {
+if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
     header("Location: albums.php");
     return;
 }
