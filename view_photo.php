@@ -495,10 +495,8 @@ if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 }
 includeLayout('navtablebegin.inc');
 	
-$adminbox["text"] = "";
 $adminbox["commands"] = $adminCommands . $userCommands;
 $adminbox["bordercolor"] = $bordercolor;
-$adminbox["top"] = true;
 includeLayout('adminbox.inc');
 includeLayout('navtablemiddle.inc');
 

@@ -24,7 +24,7 @@
 <?php
 
 if (!isset($gallery->version)) {
-        require_once(dirname(__FILE__) . '/init.php');
+	require_once(dirname(__FILE__) . '/init.php');
 }
 
 // Security check
@@ -33,37 +33,7 @@ if (!$gallery->user->isAdmin()) {
 	exit;
 }
 
-/* Layout function */
-function stats_showBlock($block, $caption=null) {
-	echo "\n<table>";
-	if (isset($caption)) {
-		echo "\n<caption>$caption</caption>"; 
-	}
-	foreach ($block as $option => $attr) {
-		echo "\n<tr>";
-		switch ($attr['type']) {
-			case 'radio':
-					echo "\n\t". '<td><input type="'. $attr['type'] .'" name="'. $attr['name'] .'" value="'. $option .'" '. $attr['checked'] .'></td>';
-			break;
-			case 'checkbox':
-					echo "\n\t". '<td><input type="'. $attr['type'] .'" name="'. $option .'" value="1" '. $attr['checked'] .'></td>';
-			break;
-			case 'select':
-					echo "\n\t". '<td><select name="'. $option .'">';
-					foreach ($attr['options'] as $optkey => $optvalue) {
-							echo "\n\t\t<option value=\"$optkey\">$optvalue</option>";
-					}
-					echo "\n\t</select></td>";
-			break;
-			default:
-				echo "\n\t". '<td><input type="'. $attr['type'] .'" name="'. $option .'" value="'. $attr['default'] .'" size="5"></td>';
-			break;
-		}
-		echo "\n\t<td>". $attr['text'] ."</td>";
-		echo "\n</tr>";
-	}
-	echo "\n</table>";
-}
+require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
 doctype();
 ?>
@@ -79,7 +49,51 @@ doctype();
 	caption	{ font-weight:bold; margin-bottom: 5px}
   </style>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body dir="<?php echo $gallery->direction ?>" onLoad="updateUrl()">
+<script type="text/javascript">
+  function updateUrl() {
+	var value;
+	var url;
+	url='<?php echo makeGalleryUrl('stats.php') .'?'; ?>';
+
+	/* This javascript goes through all elements of the form 'stats_form'
+	** depending if set or not it generates an string that represents the parameters for stats.php
+	*/
+	for(var i=0;i<document.stats_form.length; i++) {
+		value = false;
+		/* special case */
+		if ((document.stats_form.elements[i].name == 'cols' || document.stats_form.elements[i].name == 'rows') &&
+			document.stats_form.sgr.checked == false) {
+			continue;
+		}
+		switch(document.stats_form.elements[i].type) {
+			case 'submit':
+				continue;
+			break;
+			
+			case 'checkbox':
+				if(document.stats_form.elements[i].checked) {
+					value = 1;
+				}
+			break;
+
+			case 'radio':
+				if (document.stats_form.elements[i].checked) {
+					value = document.stats_form.elements[i].value;
+				}
+			break;
+			
+			default:
+				value = document.stats_form.elements[i].value;
+			break;
+		}
+		if (value) {
+			url = url + '&'+ document.stats_form.elements[i].name +'=' + value;
+		}
+	}
+	document.url_form.stats_url.value = url;
+}
+</script>
 <?php  
 	$stats_title = " - " . _("Wizard");
         includeHtmlWrap("stats.header");
@@ -87,73 +101,36 @@ doctype();
 <div style="text-align:right"><a href="<?php echo makeAlbumUrl(); ?>"><?php echo _("Return to Gallery"); ?></a></div>
 
 <?php
-	$types = array (
-		'views'		=> array ('name' =>'type', 'type' => 'radio', 'checked' => 'checked',	'text' => _("Sort by most viewed image first")),
-		'date'		=> array ('name' =>'type', 'type' => 'radio', 'checked' => '', 		'text' => _("Sort by the latest added image first")),
-		'cdate'		=> array ('name' =>'type', 'type' => 'radio', 'checked' => '', 		'text' => _("Sort by image capture date")),
-		'comments'	=> array ('name' =>'type', 'type' => 'radio', 'checked' => '', 		'text' => _("Show images with comments - latest are shown first")),
-		'ratings'	=> array ('name' =>'type', 'type' => 'radio', 'checked' => '', 		'text' => _("Show images with the highest ratings first")),
-		'random'	=> array ('name' =>'type', 'type' => 'radio', 'checked' => '', 		'text' => _("Show random images"))
-	);
-
-
-	$options = array (
-		'sca'	=> array('type' => 'checkbox', 'checked' => 'checked', 	'text' => _("Show caption")),
-		'sal'	=> array('type' => 'checkbox', 'checked' => 'checked', 	'text' => _("Show album link")),
-		'sde'	=> array('type' => 'checkbox', 'checked' => 'checked', 	'text' => _("Show description")),
-		'sco'	=> array('type' => 'checkbox', 'checked' => '', 	'text' => _("Show comments")),
-		'scd'	=> array('type' => 'checkbox', 'checked' => '', 	'text' => _("Show capture date")),
-		'sud'	=> array('type' => 'checkbox', 'checked' => '', 	'text' => _("Show upload date")),
-		'svi'   => array('type' => 'checkbox', 'checked' => '', 	'text' => _("Show number of views")),
-		'sac'	=> array('type' => 'checkbox', 'checked' => 'checked', 	'text' => _("Show the add comment link")),
-//		'svo'   => array('type' => 'checkbox', 'checked' => '', 	'text' => _("Show the number of 'simplified' votes an image has")),
-		'sav'	=> array('type' => 'checkbox', 'checked' => '', 	'text' => _("Show the add vote link")),
-		'sao'	=> array('type' => 'checkbox', 'checked' => '', 	'text' => _("Show the album owners")),
-		'stm'	=> array('type' => 'checkbox', 'checked' => '', 	'text' => _("Show timing basic information"))
-	);
-	
-	$layout = array(
-		'rev'	=> array('type' => 'checkbox', 'checked' => '', 	'text' => _("Reverses sort order - see above")),
-		'tsz'	=> array('type' => 'text', 'default' => (isset($gallery->app->default["thumb_size"])) ? $gallery->app->default["thumb_size"]:100,	'text' => _("Thumb size in pixels")),
-		'ppp'	=> array('type' => 'text', 'default' => '5', 		'text' => _("Controls the number of photos displayed on one page")),
-		'total'	=> array('type' => 'text', 'default' => '-1', 		'text' => _("Controls the maximum number of photos listed, -1 for all")),
-		'sgr'	=> array('type' => 'checkbox', 'checked' => '', 	'text' => _("Use Grid Layout")),
-		'rows'	=> array('type' => 'text', 'default' => (isset($gallery->app->default["rows"])) ? $gallery->app->default["rows"] : 3, 		'text' => _("Controls the number of rows to display in grid mode")),
-		'cols'	=> array('type' => 'text', 'default' => (isset($gallery->app->default["cols"])) ? $gallery->app->default["cols"] : 3, 		'text' => _("Controls the number of columns to display in grid mode")),
-		'addLinksPos' => array ('type' => 'select', 'options' => array ('abovecomments'	=> _("Above the comments"), 
-										'oncaptionline'	=> _("In the caption line"),
-										'abovestats'	=> _("Above the stats"),
-										'belowcomments'	=> _("Below the comments")), 	'text' => _("Position of the add vote and add comment links")));
-
-	$filters = array(
-		'ty'	=> array('type' => 'text', 'default' => '', 'text' => _("Filter by year")),
-		'tm'	=> array('type' => 'text', 'default' => '', 'text' => _("Filter by month")),
-		'td'	=> array('type' => 'text', 'default' => '', 'text' => _("Filter by day")),
-	);
-
-	echo makeFormIntro("stats.php", array("name" => "stats_form", "method" => "POST"));
+	echo makeFormIntro("stats.php", array("name" => "stats_form", 
+						"method" => "POST", 
+						"onChange" => 'updateUrl()'));
 	echo "\n<table width=\"100%\" border=\"0\">";
 	echo "\n<tr>";
 	echo "\n<td class=\"blockcell\">";
-		stats_showBlock($types, _("Type"));
+		stats_showBlock($stats['types'], _("Type"));
 	echo "\n</td>";
 
 	echo "\n<td class=\"blockcell\">";
-		stats_showBlock($options, _("Options"));
+		stats_showBlock($stats['options'], _("Options"));
 	echo "\n\t</td>";
 	echo "\n</tr>";
 	echo "\n<tr>";
 	echo "\n<td class=\"blockcell\">";
-		stats_showBlock($layout, _("Layout"));
+		stats_showBlock($stats['layout'], _("Layout"));
 	echo "\n\t</td>";
 	
 	echo "\n<td class=\"blockcell\">";
-		stats_showBlock($filters, _("Filter by Capture Date"));
+		stats_showBlock($stats['filter'], _("Filter by Capture Date"));
 	echo "\n\t</td>";
 	
 	echo "\n</tr>";
 	echo "\n</table>";
-	echo "\n". '<input type="submit" value="'. _("Show statistics") . '">';
+	echo "\n". '<input type="submit" name="submitbutton" value="'. _("Show statistics") . '">';
+	echo "\n</form>";
+
+	echo _("Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox.");
+	echo "\n<br>". '<form name="url_form" action="#">';
+	echo "\n". '<input type=text" name="stats_url" size="150" value="" readonly';
 	echo "\n</form>";
 
 

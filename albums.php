@@ -22,6 +22,7 @@
 ?>
 <?php
 require_once(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
 if (empty($gallery->session->username)) {
     /* Get the cached version if possible */
@@ -144,7 +145,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 <!-- admin section begin -->
 <?php 
-$adminText = "<span class=\"admin\">";
+/* Admin Text (left side) */
+$adminText = "";
 if ($numAccess == $numAlbums) {
 	$toplevel_str= pluralize_n2(ngettext("1 album","%d albums",$numAlbums), $numAlbums, _("no albums"));
 } else {
@@ -165,8 +167,13 @@ else if ($numAccess != $numAlbums) {
 } else {
 	$adminText .= sprintf(_("%s, %s"), $toplevel_str, $image_str);
 }
-$adminText .= "</span>";
-$adminCommands = "<span class=\"admin\">";
+
+if (!empty($gallery->app->stats_foruser)) {
+	$adminText .= "\n<br>&nbsp;". generateStatsLinks();
+}
+
+/* Admin Text (right side) */
+$adminCommands = "";
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 
@@ -219,11 +226,10 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	}
 }
 
-$adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $borderColor;
-$adminbox["top"] = true;
+
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
 includeLayout('navtablemiddle.inc');

@@ -1,3 +1,18 @@
+2004-12-13  Jens A. Tkotz <jens@peino.de>  1.5-cvs-b307
+
+	* Change: removed unnecessary <span class="admin"> around admin text and commands.
+
+	* Change: removed unneeded $adminbox["top"]
+
+	* Change: removed permission check in stats.php. Now EVERYBODY can access it.
+
+	* Stats changes:
+	  - New: Added possibility in config setup to define public links to stats. (config version bump)
+		 Links are displayed on mainpage.
+		 Links are created with a function that can be placed by the user.
+	  - New: Added Javascript in stats-wizard that generates statsURL for copy/paste
+	  - Moved definitions and function into a separate files. (includes/stats/stats.inc.php)
+
 2004-12-11  Jens A. Tkotz <jens@peino.de>  1.5-cvs-b306
 
 	* New: Added support for exiftags. (RFE #810284)

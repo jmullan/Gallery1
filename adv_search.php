@@ -138,7 +138,7 @@ if (!isset ($commenters)) {
 }
 if (isset($go)) {
   if ($searchstring || $album_owners) {
-	$adminbox["text"] = "<span class=\"admin\">Albums";
+	$adminbox["text"] = "Albums";
 	if ($album_owners) {
 		$adminbox["text"] .= " owned by ".getOwnerString($album_owners);
 	}
@@ -148,9 +148,8 @@ if (isset($go)) {
 	if (isset($searchstring)) {
 		$adminbox["text"] .= " containing \"$searchstring\"";
 	}
-	$adminbox["text"] .= "</span>";
+
         $adminbox["bordercolor"] = $borderColor;
-        $adminbox["top"] = false;
 	includeLayout('adminbox.inc');
         echo "<br>";
         echo "<table width=\"".$navigator["fullWidth"] . $navigator["widthUnits"]."\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
@@ -189,7 +188,7 @@ if (isset($go)) {
 	$breadtext[0] = "";
         $breadcrumb["text"] = $breadtext;
 	includeLayout('breadcrumb.inc');
-	$adminbox["text"] = "<span class=\"admin\">Photos";
+	$adminbox["text"] = "Photos";
 	if ($item_owners) {
 		$adminbox["text"] .= " owned by ".getOwnerString($item_owners);
 	}
@@ -199,9 +198,7 @@ if (isset($go)) {
 	if (isset($searchstring)) {
 		$adminbox["text"] .= " containing \"$searchstring\"";
 	}
-	$adminbox["text"] .= ".</span>";
         $adminbox["bordercolor"] = $borderColor;
-        $adminbox["top"] = false;
 	includeLayout('adminbox.inc');
         echo "<br>";
         echo "<table width=\"".$navigator["fullWidth"] . $navigator["widthUnits"]."\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
@@ -254,7 +251,7 @@ if (isset($go)) {
 	$breadtext[0] = "";
         $breadcrumb["text"] = $breadtext;
 	includeLayout('breadcrumb.inc');
-	$adminbox["text"] = "<span class=\"admin\">Comments";
+	$adminbox["text"] = "Comments";
 	if ($commenters) {
 		$adminbox["text"] .= " made by ".getOwnerString($commenters);
 	}
@@ -264,9 +261,7 @@ if (isset($go)) {
 	if (isset($searchstring)) {
 		$adminbox["text"] .= " containing \"$searchstring\"";
 	}
-	$adminbox["text"] .= ".</span>";
         $adminbox["bordercolor"] = $borderColor;
-        $adminbox["top"] = false;
 	includeLayout('adminbox.inc');
         echo "<br>";
         echo "<table width=\"".$navigator["fullWidth"] . $navigator["widthUnits"]."\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";

@@ -22,6 +22,14 @@
 ?>
 <?php
 
+require_once(dirname(dirname(__FILE__)) . '/includes/stats/stats.inc.php');
+$stats_choices = array();
+foreach ($stats['types'] as $key => $trash) {
+	if(!empty($stats['types'][$key]['linktext'])) {
+		$stats_choices[$key] = $key;
+	}
+}
+	
 $locale_check=check_locale();
 /* $elawisyl <=> Enable LAnguages WIthout SYstem Locales
 ** is set to "no" when we have no system locales and are in linux
@@ -994,71 +1002,77 @@ $constants = array_merge($constants,
 				   _("If the expire time is set to -1 then the cache will not auto refresh.")
 		),
 
+	'stats_foruser'	=> array(
+		'prompt'		=> _("Available Stats for 'normal' users"),
+		'desc'			=> _("Gallery can give a lot of statistics for admins, however you can enable some of them to normal users.") ."\n<br>".
+					   sprintf(_("For every selected item Gallery will create a link on the mainpage. The stats are based on the defaults defined in %s."), "'<i>includes/stats/stats.inc.php</i>'"),
+		'multiple_choices' 	=> $stats_choices
+	),
 	'stats_viewsCacheOn'	=> array(
-				'prompt' => _("View cache"),
-				'choices' => array(1 => _("On"), 0 => _("Off")),
-				'value' => 0,
+		'prompt' => _("View cache"),
+		'choices' => array(1 => _("On"), 0 => _("Off")),
+		'value' => 0,
 	),
 	'stats_viewsCacheExpireSecs' => array(
-				'prompt' => _("View cache expiration"),
-				'type' => "text",
-				'must-be-number' => 1,
-				'value' => 60
+		'prompt' => _("View cache expiration"),
+		'type' => "text",
+		'must-be-number' => 1,
+		'value' => 60
 	),
 	'stats_commentsCacheOn'	=> array(
-				'prompt' => _("Comment cache"),
-				'choices' => array(1 => _("On"), 0 => _("Off")),
-				'value' => 0,
+		'prompt' => _("Comment cache"),
+		'choices' => array(1 => _("On"), 0 => _("Off")),
+		'value' => 0,
 	),
 	'stats_commentsCacheExpireSecs' => array(
-				'prompt' => _("Comment cache expiration"),
-				'type' => "text",
-				'must-be-number' => 1,
-				'value' => 600
+		'prompt' => _("Comment cache expiration"),
+		'type' => "text",
+		'must-be-number' => 1,
+		'value' => 600
 	),
 	'stats_dateCacheOn'	=> array(
-				'prompt' => _("Date cache"),
-				'choices' => array(1 => _("On"), 0 => _("Off")),
-				'value' => 0,
+		'prompt' => _("Date cache"),
+		'choices' => array(1 => _("On"), 0 => _("Off")),
+		'value' => 0,
 	),
 	'stats_dateCacheExpireSecs' => array(
-				'prompt' => _("Date cache expiration"),
-				'type' => "text",
-				'must-be-number' => 1,
-				'value' => -1
+		'prompt' => _("Date cache expiration"),
+		'type' => "text",
+		'must-be-number' => 1,
+		'value' => -1
 	),
 	'stats_votesCacheOn'	=> array(
-				'prompt' => _("Vote cache"),
-				'choices' => array(1 => _("On"), 0 => _("Off")),
-				'value' => 0,
+		'prompt' => _("Vote cache"),
+		'choices' => array(1 => _("On"), 0 => _("Off")),
+		'value' => 0,
 	),
 	'stats_votesCacheExpireSecs' => array(
-				'prompt' => _("Vote cache expiration"),
-				'type' => "text",
-				'must-be-number' => 1,
-				'value' => 3600
+		'prompt' => _("Vote cache expiration"),
+		'type' => "text",
+		'must-be-number' => 1,
+		'value' => 3600
 	),
 	'stats_ratingsCacheOn'	=> array(
-				'prompt' => _("Rating cache"),
-				'choices' => array(1 => _("On"), 0 => _("Off")),
-				'value' => 0,
+		'prompt' => _("Rating cache"),
+		'choices' => array(1 => _("On"), 0 => _("Off")),
+		'value' => 0,
 	),
 	'stats_ratingsCacheExpireSecs' => array(
-				'prompt' => _("Rating cache expiration"),
-				'type' => "text",
-				'must-be-number' => 1,
-				'value' => 3600
+		'prompt' => _("Rating cache expiration"),
+		'type' => "text",
+		'must-be-number' => 1,
+		'value' => 3600
 	),
 	'stats_cDateCacheOn'	=> array(
-				'prompt' => _("Capturedate cache"),
-				'choices' => array(1 => _("On"), 0 => _("Off")),
-				'value' => 0,
+		'prompt' => _("Capturedate cache"),
+		'choices' => array(1 => _("On"), 0 => _("Off")),
+		'value' => 0,
 	),
 	'stats_cDateCacheExpireSecs' => array(
-				'prompt' => _("Capturedate cache expiration"),
-				'type' => "text",
-				'must-be-number' => 1,
-				'value' => -1
+		'prompt' => _("Capturedate cache expiration"),
+		'type' => "text",
+		'must-be-number' => 1,
+		'value' => -1
 	),
 	'group_stats_end' => array(
 		'type'		=> 'group_end'

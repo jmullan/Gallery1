@@ -129,14 +129,10 @@ if (!empty($comment_index)) {
 }
 
 includeHtmlWrap("album.header");
-$adminText = "<span class=\"admin\">". _("Comments for this Album") ."</span>";
-$adminCommands = "<span class=\"admin\">";
-$adminCommands .= "<a class=\"admin\" href=\"" . makeAlbumUrl($gallery->session->albumName) . "\">[". _("return to album") ."]</a>";
-$adminCommands .= "</span>";
-$adminbox["text"] = $adminText;
-$adminbox["commands"] = $adminCommands;
+$adminbox["text"] = _("Comments for this Album");
+$adminbox["commands"] = "<a class=\"admin\" href=\"" . makeAlbumUrl($gallery->session->albumName) . "\">[". _("return to album") ."]</a>";
 $adminbox["bordercolor"] = $bordercolor;
-$adminbox["top"] = true;
+
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
 includeLayout('navtablemiddle.inc');

@@ -192,9 +192,8 @@ if (isset($gallery->album)) {
 }
 
 $breadcrumb["bordercolor"] = $borderColor;
-$breadcrumb["top"] = true;
 
-$adminbox["commands"] = "<span class=\"admin\">";
+$adminbox["commands"] = "";
 
 // todo: on the client, prevent old browsers from using High, and remove High from the bar
 if ( !$gallery->session->offline) {
@@ -208,10 +207,8 @@ if ( !$gallery->session->offline) {
 	}
 }
 
-$adminbox["commands"] .= "</span>";
 $adminbox["text"] = _("Slide Show");
 $adminbox["bordercolor"] = $borderColor;
-$adminbox["top"] = true;
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
 includeLayout('navtablemiddle.inc');

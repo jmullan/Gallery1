@@ -51,12 +51,7 @@ if (!isset($gallery->version)) {
 	require_once(dirname(__FILE__) . '/init.php');
 }
 
-if (!$gallery->user->isAdmin()) {
-	header("Location: " . makeAlbumHeaderUrl());
-	exit;
-}
-
-$statsVersion = "2.03j";
+$statsVersion = "2.03j-2";
 $debug = 0;
 //$album="album01";
 
@@ -592,7 +587,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <head>
   <title><?php echo $gallery->app->galleryTitle . $stats_title; ?></title>
 <?php
-common_header() ;
+	common_header() ;
 ?>
 </head>
    <body dir="<?php echo $gallery->direction ?>">
@@ -608,7 +603,7 @@ includeHtmlWrap("stats.header");
 $navigator["fullWidth"] = 100;
 $navigator["widthUnits"] = "%";
 
-$adminText = "<span class=\"admin\">";
+$adminText = "";
 
 if (isset($album)) {
 	if (isset($albumobj)) {
@@ -630,15 +625,14 @@ else {
 	}
 }
 
-$adminText .= "</span>";
-$adminCommands = '[<a href="'. makeGalleryURL('stats-wizard.php') .'">'. _("Back to stats-wizard") .'</a>] ' .
-'[<a href="'. makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>] ';
+$adminbox["commands"] = '';
+if ($gallery->user->isAdmin()) {
+	$adminbox["commands"] = '[<a href="'. makeGalleryURL('stats-wizard.php') .'">'. _("Back to stats-wizard") .'</a>] ';
+}
+$adminbox["commands"] .= '[<a href="'. makeAlbumUrl() .'">'. _("Return to Gallery") .'</a>]';
 
-
-$adminbox["text"] = $adminText;
-$adminbox["commands"] = $adminCommands;
+$adminText['text'] = $adminText;
 $adminbox["bordercolor"] = $borderColor;
-$adminbox["top"] = true;
 
 $navigator["page"] = $page;
 $navigator["pageVar"] = "set_albumListPage";
@@ -1249,26 +1243,26 @@ function makeStatsUrl( $urlpage ) {
 	global $photosPerPage, $totalPhotosReq, $reverseOrder;
 	global $timeMonth, $timeYear, $timeDay;
 	$urlParams = array( "type" => $type,
-	"page" => $urlpage,
-	"sca" => $showCaption,
-	"sal" => $showAlbumLink,
-	"sde" => $showDescription,
-	"sud" => $showUploadDate,
-	"svi" => $showViews,
-	"svo" => $showVotes,
-	"sra" => $showRatings,
-	"sco" => $showComments,
-	"scd" => $showCaptureDate,
-	"sac" => $showAddComment,
-	"sav" => $showAddVote,
-	"sao" => $showAlbumOwner,
-	"sgr" => $showGrid,
-	"rev" => $reverseOrder,
-	"tsz" => $thumbSize,
-	"ppp" => $photosPerPage,
-	"rows" => $numRows,
-	"cols" => $numCols,
-	"total" => $totalPhotosReq);
+		"page" => $urlpage,
+		"sca" => $showCaption,
+		"sal" => $showAlbumLink,
+		"sde" => $showDescription,
+		"sud" => $showUploadDate,
+		"svi" => $showViews,
+		"svo" => $showVotes,
+		"sra" => $showRatings,
+		"sco" => $showComments,
+		"scd" => $showCaptureDate,
+		"sac" => $showAddComment,
+		"sav" => $showAddVote,
+		"sao" => $showAlbumOwner,
+		"sgr" => $showGrid,
+		"rev" => $reverseOrder,
+		"tsz" => $thumbSize,
+		"ppp" => $photosPerPage,
+		"rows" => $numRows,
+		"cols" => $numCols,
+		"total" => $totalPhotosReq);
 	if ( isset($period) ) {
 		$urlParams["period"] = $period;
 	}
@@ -1398,7 +1392,7 @@ $statsCaption .= $statsAlbum->getCaptionName($photoIndex);
 $statsUrl = makeAlbumUrl($statsAlbum->fields['name'], $photoId);
 echo "<a href=\"" . $statsUrl . "\">" . $statsCaption . "</a>&nbsp;&nbsp;";
 if ( $addLinksPos == 'oncaptionline' ) {
-	echo "<span class=fineprint>&nbsp;&nbsp;";
+	echo '<span class="fineprint">&nbsp;&nbsp;';
                 if ( $showAddComment ) {
                         showAddCommentLink( $photoId );
                 }
@@ -1406,7 +1400,7 @@ if ( $addLinksPos == 'oncaptionline' ) {
 		echo "&nbsp;";
 		showAddVoteLink( $photoId, $page );
 	}
-	echo "</span>";
+	echo '</span>';
 }
 
 ?>
@@ -1435,22 +1429,22 @@ if ( $showCaption && $showGrid ) {
 	$statsUrl = makeAlbumUrl($statsAlbum->fields['name'], $photoId);
 	echo "$statsCaption";
 	if ( $addLinksPos == 'oncaptionline' ) {
-		echo "<span class=fineprint>&nbsp;&nbsp;";
+		echo '<span class="fineprint">&nbsp;&nbsp;';
 		if ( $showAddComment ) {
 			showAddCommentLink( $photoId );
 		}
 		if ( $showAddVote ) {
-			echo "&nbsp;";
+			echo '&nbsp;';
 			showAddVoteLink( $photoId, $page );
 		}
-		echo "</span>";
+		echo '</span>';
 	}
-	echo "</td></table>";
+	echo '</td></table>';
 }
 
 if ( $showAlbumLink ) {
 ?>
-         <span class=fineprint><br clear=all>From album
+         <span class="fineprint"><br clear="all"><?php echo _("From album"); ?>
 <?php
 $owner_var = '';
 if ( $showAlbumOwner == 1 ) {

@@ -460,7 +460,6 @@ if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 $adminbox["text"] = $adminText;
 $adminbox["commands"] =	$adminCommands . $userCommands;
 $adminbox["bordercolor"] = $bordercolor;
-$adminbox["top"] = true;
 
 if (!empty($adminOptionHTML)) {
     print $adminJSFrame;

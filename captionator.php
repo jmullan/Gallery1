@@ -175,7 +175,7 @@ if ($borderwidth == 0) {
     $bordercolor = "black";
 }
 
-$adminText = "<span>". _("Multiple Caption Editor.") . " ";
+$adminText = _("Multiple Caption Editor.") . " ";
 if ($numPhotos == 1) {
         $adminText .= _("1 photo in this album") ;
 } else {
@@ -185,26 +185,11 @@ if ($numPhotos == 1) {
     }
 }
 
-$adminText .="</span>";
-$adminCommands = "";
 $adminbox["text"] = $adminText;
-$adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $bordercolor;
-$adminbox["top"] = true;
-includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
-includeLayout('navtablemiddle.inc');
 
-$adminbox["text"] = "";
-$adminbox["commands"] = "";
-$adminbox["bordercolor"] = $bordercolor;
-$adminbox["top"] = false;
-includeLayout('adminbox.inc');
-includeLayout('navtableend.inc');
-
-?>
-
-<?php echo makeFormIntro("captionator.php", array("method" => "POST")) ?>
+echo makeFormIntro("captionator.php", array("method" => "POST")) ?>
 <input type="hidden" name="page" value="<?php echo $page ?>">
 <input type="hidden" name="perPage" value="<?php echo $perPage ?>">
 <input type="hidden" name="captionedAlbum" value="<?php echo $gallery->album->fields['name']; ?>">
@@ -345,10 +330,11 @@ if ($page != 1) {
 
 <?php
 includeLayout('ml_pulldown.inc');
-includeHtmlWrap("album.footer");
-?>
 
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+$validation_file = 'captionator.php';
+includeHtmlWrap('general.footer');
+
+if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
 <?php } ?>
