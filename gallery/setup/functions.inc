@@ -433,6 +433,7 @@ function check_gettext()
 	}
 	return array($success, $fail);
 }
+/*
 function check_locale()
 {
 
@@ -464,6 +465,7 @@ function check_locale()
 	}
 	return array($success, $fail);
 }
+*/
 
 function check_gallery_locale()
 {
@@ -471,11 +473,13 @@ function check_gallery_locale()
 	$fail = array();
 	$success = array();
 
-	$locale_path=$GALLERY_BASEDIR . "locale";
-	if (is_dir($locale_path)) {
-		$success[] = _("locale directory found");
+	$locales=gallery_locales();
+	if (sizeof($locales) == 0) {
+		$fail["fail-gallery-locale"] = _("No languages found."); // should never occur!
+	} else if (sizeof($locales) == 1) {
+		$fail["fail-gallery-locale"] = _("Only US English version is available.  If you want other languages, download language packs from gallery site");
 	} else {
-		$fail["fail-gallery-locale"] = _("locale directory not found");
+		$success[] = sprintf(_("%d languages found"), sizeof($locales));
 	}
 	return array($success, $fail);
 }
@@ -487,59 +491,102 @@ function check_absent_locales()
 	$success = array();
 
 	$missing_locales=unavailable_locales();
+	$avail_locales=available_locales();
+	sort($missing_locales);
+	sort($avail_locales);
 	if (sizeof($missing_locales) == 0 ) {
 		$success[] = _("All gallery locales are available on this host");
+	} else if (sizeof($avail_locales) <= 1 || $missing_locales == $avail_locales) {
+		$fail[] = "Only the default locale for this machine is available";
 	} else {
-		$msg = _("Unfortunately these languages won't work, because the corresponding locales are missing:") . "<br>";
+		$msg = _("Unfortunately dates in these languages may not work, because the corresponding locales are missing:") . "<br>";
 		$nls=getNLS();
 		foreach ($missing_locales as $value) {
 			$msg .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 			$msg .= $nls['languages'][$value];
-			$msg .= "<br>";
+			$msg .= " ($value)<br>";
 		}
 		$fail[] = $msg;
 	}
 	return array($success, $fail);
 }
 
-function all_locales ($set) {
-	$list = array();
-	if (strncasecmp(PHP_OS,"win", 3)) {
-		# Unix / Linux
-		# Check which locales are installed
-		if (is_readable("/etc/locale.gen")) {
-			$list=split("\n",shell_exec('cat /etc/locale.gen | cut -d " " -f 1'));
-		}
-		if (sizeof($list) == 0 && is_readable("/usr/share/locale/")) {
-			$list=split("\n",shell_exec('ls /usr/share/locale/'));
-		}
-		if (sizeof($list) == 0) {
-			$list=split("\n", shell_exec("locale -a")) ;
+//returns all languages in this gallery installation
+
+function gallery_locales() {
+	$locale_dir = "../locale/";
+	$locales = array('en_US');
+	if (is_dir($locale_dir)) {
+		if ($dh = opendir($locale_dir)) {
+			while (($file = readdir($dh)) !== false) {
+				if ($file != "CVS" && !ereg("^\.", $file)) {
+					$locales[]=$file;
+				}
+			}
+			closedir($dh);
 		}
 	}
+	return $locales;
+}
+
+function test_locale($locale) {
+	if (setlocale(LC_ALL, $locale)) {
+		return true;
+	}
+	return false;
+}
+function all_locales ($set) {
+	$list = array();
 	$nls=getNLS();
+	$gallery_locales=gallery_locales();
 	$available_locales=array();
 	$maybe_locales=array();
 	$non_available_locales=array();
-	foreach ($nls['languages'] as $key => $value) {
-		if (in_array($key,$nls['aliases'])) {
-                        $keylist=array_keys($nls['aliases'],$key);
-                        $aliases = preg_grep ("/^(". substr($key,0,2) 
+
+	$current_local=setlocale(LC_ALL, 0);
+	$available_locales['en_US']=$nls['languages']['en_US'];
+
+	if (strncasecmp(PHP_OS,"win", 3)) {
+		# Unix / Linux
+		# Check which locales are installed
+		if (@is_readable("/etc/locale.gen")) {
+			$list=array_merge($list, split("\n",shell_exec('cat /etc/locale.gen | cut -d " " -f 1')));
+		}
+		if (@is_readable("/usr/share/locale/")) {
+			$list=array_merge($list, split("\n",shell_exec('ls /usr/share/locale/')));
+		}
+		$list=array_merge($list, split("\n", shell_exec("locale -a")) );
+	}
+	foreach ($gallery_locales as $locale) {
+		if (in_array($locale,$nls['aliases'])) {
+                        $keylist=array_keys($nls['aliases'],$locale);
+                        $aliases = preg_grep ("/^(". substr($locale,0,2) 
 						."|" . implode ("|", $keylist) 
 						.")/",$list);
                 } else {
                         $aliases =
-				preg_grep ("/^". substr($key,0,2) ."/",$list);
+				preg_grep ("/^". substr($locale,0,2) ."/",$list);
+		}
+		if (in_array($locale,$nls['aliases'])) {
+                        $keylist=array_keys($nls['aliases'],$locale);
+			foreach($keylist as $item) {
+				if (setlocale(LC_ALL, $item)) {
+					$aliases[]=$item;
+				}
+			}
                 } 
-		if (in_array ($key, $list)) { 
-			$available_locales[$key]=$value;
+		$aliases=array_filter(array_unique($aliases), test_locale);
+		$locale_name=$nls['languages'][$locale];
+		if (setlocale(LC_ALL, $locale)) {
+			$available_locales[$locale]=$locale_name;
 		} else if ($aliases) {
-			$available_locales[$key]=$value;
-			$maybe_locales[$key]=$aliases;
+			$available_locales[$locale]=$locale_name;
+			$maybe_locales[$locale]=$aliases;
 		} else {
-			$non_available_locales[]=$key;
+			$non_available_locales[]=$locale;
 		}
 	}
+	setlocale(LC_ALL, $currrent_locale);
 	switch ($set) {
 		case 0:
 			return $available_locales;
@@ -565,6 +612,11 @@ function unavailable_locales () {
 	return all_locales(2);
 }
 
+function vd($x, $string="") {
+	print "$string <pre>";
+	var_dump($x);
+	print "</pre>";
+}
 function config_maybe_locales() {
 	$results=array();
 	$maybe=maybe_locales();
