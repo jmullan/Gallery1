@@ -1968,8 +1968,8 @@ if (in_array("gettext", get_loaded_extensions())) {
         header('Content-Type: text/html; charset=' . $gallery->charset);
 	if (!in_array("gettext", get_loaded_extensions()) 
 		|| ! function_exists(gettext)) {
-		$filename=$GALLERY_BASEDIR ."locale/" . $gallery->language . "/gallery.po";
-		if (file_exists($filename)) {
+		$filename=po_filename();
+		if ($filename) {
 			$lines=file($filename);
 	
 			foreach ($lines as $key => $value) {
@@ -1998,6 +1998,18 @@ if (in_array("gettext", get_loaded_extensions())) {
 	}
 	
 
+}
+function po_filename() {
+	global $GALLERY_BASEDIR, $gallery;
+	$filename=$GALLERY_BASEDIR ."locale/" . $gallery->language . "/gallery.po";
+	if (file_exists($filename)) {
+			return $filename;
+	}
+	$filename=$GALLERY_BASEDIR ."po/" . $gallery->language . "-gallery.po";
+	if (file_exists($filename)) {
+			return $filename;
+	}
+	return NULL;
 }
 function vd($x, $string="") {
 	print "<pre>\n$string: ";
