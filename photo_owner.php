@@ -33,6 +33,8 @@ if (!$gallery->user->isAdmin() &&
 	exit;
 }
 
+list($save, $owner, $id) = getRequestVar(array('save', 'owner', 'id'));
+
 doctype();
 echo "\n<html>";
 

@@ -37,6 +37,11 @@ global $MOS_GALLERY_PARAMS;
 // sure that the option var has been extracted into the environment
 // otherwise it just won't work.
 $option = $_REQUEST['option'];
+$op = $_REQUEST['op'];
+$mop = $_REQUEST['mop'];
+$name = $_REQUEST['name'];
+$include = $_REQUEST['include'];
+
 
 /* Detect PHP-Nuke, Postnuke, phpBB2 or Mambo and react accordingly.
  * Gallery can run embedded in GeekLog too, but to catch this we need
@@ -79,15 +84,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option)) {
 	}
 
 	if (empty($include)) {
-		if (!empty($_GET['include'])) {
-			$include = $_GET['include'];
-		}
-		elseif (!empty($_POST['include'])) {
-			$include = $_POST['include'];
-		}
-		else {
-			$include = "albums.php";
-		}
+		$include = "albums.php";
 	}
 
 	/*

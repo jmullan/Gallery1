@@ -29,8 +29,12 @@ if (!$gallery->user->isLoggedIn()) {
 	exit;	
 }
 
+list($save, $old_password, $new_password1, $new_password2) = getRequestVar(array('save', 'uname',
+'old_password', 'new_password1', 'new_password2', 'defaultLanguage'));
+list($uname, $email, $fullname, $defaultLanguage) = getRequestVar(array('email', 'fullname'));
+
 $errorCount=0;
-if ( isset($save)) {
+if (isset($save)) {
 	if (strcmp($gallery->user->getUsername(), $uname)) {
 		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 		if ($gErrors["uname"]) {

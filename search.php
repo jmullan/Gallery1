@@ -45,10 +45,11 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 includeHtmlWrap("search.header");
 
+$searchstring = removeTags(getRequestVar('searchstring'));
 if (!isset($searchstring)) {
 	$searchstring="";
 }
-$searchstring = removeTags($searchstring);
+
 if ($searchstring) {
 	echo makeFormIntro("search.php");
 ?>
