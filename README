@@ -1,11 +1,12 @@
 CONTENTS
   1. What is Gallery?
-  2. How do I install Gallery if I have shell access?
-  3. How do I install Gallery if I only have FTP access?
-  4. My webserver doesn't have NetPBM!  Help!  Aiee!
-  5. How do I customize Gallery?
-  6. How do I use Gallery as a PHP-Nuke 5.0 Module?
-  7. I can't upload large files!
+  2. How do I install Gallery on Unix if I have shell access?
+  3. How do I install Gallery on Unix if I only have FTP access?
+  4. How do I install Gallery on Windows?
+  5. My webserver doesn't have NetPBM!  Help!  Aiee!
+  6. How do I customize Gallery?
+  7. How do I use Gallery as a PHP-Nuke 5.0 Module?
+  8. I can't upload large files!
 
 1. WHAT IS GALLERY?
 
@@ -72,6 +73,7 @@ can do this:
 	ftp> cd gallery
 	ftp> chmod 777 .htaccess
 	ftp> chmod 777 config.php
+	ftp> chmod 755 setup
 
 Now you're all set to configure gallery so go to the Gallery web
 page.  When you're done and it prompts you to make the gallery secure
@@ -84,7 +86,25 @@ again, you need to change your permissions back again:
 
 That's all it takes!
 
-4. MY WEBSERVER DOESN'T HAVE NETPBM!  HELP!  AIEE!
+4. HOW DO I INSTALL GALLERY ON WINDOWS?
+
+Assuming, of course that you have Apache and PHP4 installed, installing
+and configuring Gallery on Windows is easy.  Start up a command prompt,
+go to the gallery directory and run the "configure.bat" script:
+
+	c:\> cd gallery
+	c:\gallery> configure.bat
+
+Then go to the main Gallery URL and it will drop you into the
+configuration wizard.  This will walk you through the process of 
+configuring Gallery.  When you're done, type:
+
+	c:\gallery> secure.bat
+
+And it will turn off the configuration application.  Gallery won't run
+if it is not in secure mode.
+
+5. MY WEBSERVER DOESN'T HAVE NETPBM!  HELP!  AIEE!
 
 Many servers don't have NetPBM installed on them.  Or if they do, they
 have an old version.  Gallery has been tested with version 9.9 and up.
@@ -117,7 +137,7 @@ then tell Gallery where to find them in the config wizard.
 
 Don't forget to make these files executable!
 
-5. HOW DO I CUSTOMIZE GALLERY?
+6. HOW DO I CUSTOMIZE GALLERY?
 
 Documentation on this is a bit sketchy right now, sorry.  Online
 context-sensitive help is on the way.  But in the meantime, it'd
@@ -140,7 +160,7 @@ If you come up with cool themes feel free to send them to me and I'll
 include them in the gallery package (or create a theme library of some
 kind).  
 
-6. HOW DO I USE GALLERY AS A PHP-NUKE 5.0 MODULE?
+7. HOW DO I USE GALLERY AS A PHP-NUKE 5.0 MODULE?
 
 It's very easy to make Gallery work with PHP-Nuke 5.0.  All you have
 to do is either move your Gallery directory into the modules directory
@@ -163,7 +183,7 @@ on a single Nuke site) you can rename the module or the symbolic link.
 However, you must then edit the index.php inside the Gallery and
 set $GALLERY_MODULENAME appropriately.
 
-7. I CAN'T UPLOAD LARGE FILES!
+8. I CAN'T UPLOAD LARGE FILES!
 
 PHP imposes a restriction on the size of a file upload.  This may get
 in the way of uploading large zip files.  To increase the limit, you
