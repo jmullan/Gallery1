@@ -20,7 +20,6 @@
  * $Id$
  */
 ?>
-
 <input type="hidden" name="this_page" value="defaults">
 <input type="hidden" name="next_page" value="confirm">
 <input type="hidden" name="back_page" value="constants">
@@ -41,13 +40,14 @@
 </div>
 
 <p align="center">
-<input type=submit name="go_back" disabled="disabled" value="<- <?php echo _("Previous Step") ?>">
-<input type=submit name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> ->">
-<input type=submit name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
+	<input type="submit" name="go_back" disabled="disabled" value="<-- <?php echo _("Previous Step") ?>">
+	<input type="button" name="go_backTab" value="<- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">
+	<input type="button" name="go_nextTab" value="<?php echo _("Next Tab") ?> ->" onClick="section_tabs.nextTab()">
+	<input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> -->">
+	<input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
 </p>
 
 <?php
-
 	makeSectionTabs($defaults);
 
 $i = 0;
@@ -128,7 +128,9 @@ foreach ($defaults as $key => $val) {
 ?>
 
 <p align="center">
-	<input type=submit name="go_back" disabled="disabled" value="<- <?php echo _("Previous Step") ?>">
-	<input type=submit name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> ->">
+	<input type=submit name="go_back" disabled="disabled" value="<-- <?php echo _("Previous Step") ?>">
+	<input type="button" name="go_backTab" value="<- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">
+	<input type="button" name="go_nextTab" value="<?php echo _("Next Tab") ?> ->" onClick="section_tabs.nextTab()">
+	<input type=submit name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> -->">
 	<input type=submit name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
 </p>

@@ -30,6 +30,7 @@
 	
 	require (dirname(__FILE__) . '/functions.inc');
 	require (dirname(__FILE__) . '/config_data.inc');
+	require (dirname(dirname(__FILE__)) . '/js/sectionTabs.js.php');
 ?>
 <?php doctype(); ?>
 <html>
@@ -37,25 +38,8 @@
 	<title><?php echo _("Gallery Configuration") ?></title>
 	<?php common_header(); ?>
 
-	<!--
-		This Javascript and the Tabs are inspired by the Horde Forms code
-	-->
 	<script language="JavaScript" type="text/javascript">
-	<!--
-	function configSection(inittab) {
-
-		this.oldtab=inittab;
-
-		this.toggle = function(id) {
-			document.getElementById(this.oldtab).style.display = 'none';
-			document.getElementById('tab_' + this.oldtab).className = 'tab';
-	
-			document.getElementById(id).style.display = 'inline';
-			document.getElementById('tab_' + id).className = 'tab-hi';
-
-			this.oldtab=id;
-		}
-	}
+        <!--
 
 	function localGetElementsByTagName(tagName) {
 		var eleArray;

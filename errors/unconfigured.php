@@ -20,12 +20,16 @@
 	echo _("Gallery must be configured before you can use it.");
 ?>
 </p>
-<table>
+<table class="sitedesc">
 <tr>
-	<td><?php echo _("Create an empty file .htaccess and an empty file config.php");?></td>
+	<td><?php echo _("1."); ?></td>
+	<td><?php echo _("Create an empty file .htaccess and an empty file config.php"); ?></td>
+</tr>
+	<td><?php echo _("2."); ?></td>
+	<td><?php echo _("Create an albums folder for your pictures and movies."); ?></td>
 </tr>
 <tr>
-	<td><?php echo _("Make sure that both files are read and writeable for your webserver !"); ?></td>
+	<td colspan="2" class="emphasis"><?php echo _("Make sure that both files and the folder are read and writeable for your webserver !"); ?></td>
 </tr>
 </table>
 

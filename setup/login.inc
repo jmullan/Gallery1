@@ -61,9 +61,10 @@ elseif (isset($GLOBALS['login'])) {
 
 if (isset($gallery->session->resetAdminGuid)) {
 ?>
-<div align="center>
+<div align="center">
 <div class="header"><?php echo sprintf(_("Reset %s Password"), "admin"); ?></div>
 <div class="desc"><?php echo sprintf(_("To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;.  Once you have done that, press the refresh button below.  If you know your current admin password, please remove the &quot;%s&quot; file from the server."), GALLERY_SETUPDIR . "/resetadmin", $gallery->session->resetAdminGuid, GALLERY_SETUPDIR . "/resetadmin"); ?></div>
+<br>
 <input type="button" onclick="location.reload()" value="<?php echo _("Refresh"); ?>">
 </body>
 </html>

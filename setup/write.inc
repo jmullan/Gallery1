@@ -192,23 +192,28 @@ if (strlen($editPassword[2]) > 0) {
 <center>
 <div style="width:60%; text-align:center">
 	<div class="header"><?php echo _("Your configuration has been successfully saved!") ?></div>
-<?php
-	if (isset($message)) {
-		echo '<div class="sitedesc">';
-		echo "\n\t$message";
-		echo "\n</div>";
-	}
 
-	// Inform the user that their gallery is not secure until they remove the 'resetadmin' file
-	if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
+<?php
+if (! empty($message)) $message .="<br><br>";
+$message.= _("We highly suggest that you chmod your .htacces and config.php to 644 for increased security.");
+
+// Inform the user that their gallery is not secure until they remove the 'resetadmin' file
+if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
+	if (! empty($message)) $message .="<br><br>";
+	$message .= '<span class="attention">'
+			. _("Note") 
+			. ':<br>'
+			. sprintf(_("You must remove the '%s' file from the setup directory to make your Gallery configuration secure"), "resetadmin")
+			. '</span>' ;
+}
+if (isset($message)) {
+	echo '<p class="sitedesc">';
+	echo "\n\t$message";
+	echo "\n</p>";
+}
 ?>
-	<div class="sitedesc">
-		<span style="font-size: 1.2em; color:red"><?php echo _("Note") ?>!</span>
-		<br>
-		<span style='font-size: 1.2em; color:red'><?php printf(_("You must remove the '%s' file from the setup directory to make your Gallery configuration secure"), "resetpass"); ?></span>
-	</div>
-<?php } ?>
 </div>
+
 <p style="width:80%; text-align:center">
 <?php 
 	echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.");

@@ -1547,7 +1547,20 @@ function makeSectionTabs($array) {
 	echo "\n</table>\n";	
 
 	echo "\n". '<script language="JavaScript" type="text/javascript">';
+
+        $i=0;
+	echo "\n\t". 'var Sections=new Array()';
+
+        foreach ($array as $key => $var) {
+                if(isset($var['type']) && $var['type'] == 'group_start') {
+                        echo "\n\tSections[$i] ='". $var['name'] ."' ;";
+                        $i++;
+                }
+        }
+
 	echo "\n\t section_tabs = new configSection('$initialtab')";
+	insertSectionToggle();
+
 	echo "\n</script>\n";
 }
 
