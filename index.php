@@ -32,11 +32,12 @@ global $GALLERY_BASEDIR;
 global $GALLERY_EMBEDDED_INSIDE;
 global $GALLERY_MODULENAME;
 global $op;
+global $mop;
 global $include;
 global $name;
 
 /* Detect PHP-Nuke and react accordingly */
-if (!strcmp($op, "modload")) {
+if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 
 	/* 
 	 * Change this variable if your Gallery module has a different
