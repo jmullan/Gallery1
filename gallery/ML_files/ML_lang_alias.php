@@ -15,6 +15,7 @@
 
 $nls['languages']['da_DK'] = 'Dansk';
 $nls['languages']['de_DE'] = 'Deutsch';
+$nls['languages']['en_GB'] = 'English (UK)';
 $nls['languages']['en_US'] = 'English (US)';
 $nls['languages']['es_ES'] = 'Espa&ntilde;ol';
 $nls['languages']['fr_FR'] = 'Fran&ccedil;ais';
