@@ -52,6 +52,11 @@ if (empty ($cmd)) {
 header("Content-type: text/plain");
 
 /*
+ * Start buffering output
+ */
+@ob_start();
+
+/*
  * Gallery remote protocol version 2.10
  */
 $GR_VER['MAJ'] = 2;
@@ -136,6 +141,7 @@ switch($cmd === 0 ? '' : $cmd) {
 		break;
 }
 
+@ob_end_clean();
 echo $response->listprops();
 //end of processing
 
@@ -245,11 +251,6 @@ function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, &$capt
 		$response->setProperty( 'status_text', 'User cannot add to album.' );
 		return 0;
 	}
-	if (!$userfile_name) {
-		$response->setProperty( 'status', $GR_STAT['NO_FILENAME'] );
-		$response->setProperty( 'status_text', 'Filename not specified.' );
-		return 0;
-	}
 
 	if(!empty($auto_rotate)) {
 		if($auto_rotate == 'yes') {
@@ -257,6 +258,45 @@ function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, &$capt
 		} else {
 			$gallery->app->autorotate = 'no';
 		}
+	}
+
+	if(strtolower(substr($userfile,0,7)) == 'http://') {
+		if(!$gallery->user->isAdmin()) {
+			$response->setProperty( 'status', $GR_STAT['NO_ADD_PERMISSION'] );
+			$response->setProperty( 'status_text', 'Only administrators can fetch remote images.' );
+			return 0;
+		}
+		$acceptable = array_merge(acceptableMovieList(),acceptableImageList());
+		foreach($acceptable as $imagetype) {
+			if(strtolower(substr($userfile,strlen($imagetype) * -1)) == $imagetype) {
+				$userfile_name = substr(md5(microtime()),0,8).'.'.$imagetype;
+			}
+		}
+		if($tmpImage = file_get_contents($userfile)) {
+			$userfile = tempnam($gallery->app->tmpDir,'img');
+			if(!$fhandle = fopen($userfile,'wb')) {
+				$response->setProperty( 'status', $GR_STAT['UPLOAD_PHOTO_FAIL'] );
+				$response->setProperty( 'status_text', 'Could not open tmp file to write remote image.' );
+				return 0;
+			}
+			if(!fwrite($fhandle,$tmpImage)) {
+				$response->setProperty( 'status', $GR_STAT['UPLOAD_PHOTO_FAIL'] );
+				$response->setProperty( 'status_text', 'Could not write to tmp file.' );
+				fclose($fhandle);
+				return 0;
+			}
+			fclose($fhandle);
+		} else {
+			$response->setProperty( 'status', $GR_STAT['UPLOAD_PHOTO_FAIL'] );
+			$response->setProperty( 'status_text', 'Could not fetch image, HTTP wrapper may be disabled or invalid URL' );
+			return 0;
+		}
+	}
+
+	if (!$userfile_name) {
+		$response->setProperty( 'status', $GR_STAT['NO_FILENAME'] );
+		$response->setProperty( 'status_text', 'Filename not specified.' );
+		return 0;
 	}
 
 	if(!empty($force_filename)) {
@@ -277,6 +317,7 @@ function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, &$capt
 			fs_unlink($tf);
 		}
 	}
+	@fs_unlink($userfile);
 
 	if ($error) {
 		$response->setProperty( 'status', $GR_STAT['UPLOAD_PHOTO_FAIL'] );
