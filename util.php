@@ -411,7 +411,7 @@ function fromPnmCmd($file) {
 	if (eregi("\.png", $file)) {
 		$cmd = NetPBM("pnmtopng");
 	} else if (eregi("\.(jpg|jpeg)", $file)) {
-		$cmd = NetPBM("ppmtojpeg", "--quality=95");
+		$cmd = NetPBM($gallery->app->pnmtojpeg, "--quality=95");
 	} else if (eregi(".gif", $file)) {
 		$cmd = NetPBM("ppmquant", "256") . " | " . NetPBM("ppmtogif");
 	}
