@@ -27,6 +27,8 @@ require_once(dirname(__FILE__) . '/init.php');
 list($full, $id, $index, $votes) = getRequestVar(array('full', 'id', 'index', 'votes'));
 list($save, $commenter_name, $comment_text) = getRequestVar(array('save', 'commenter_name', 'comment_text'));
 
+unset($_POST);
+
 // Hack check and prevent errors
 if (empty($gallery->session->albumName) || !$gallery->user->canReadAlbum($gallery->album) || !$gallery->album->isLoaded()) {
         header("Location: " . makeAlbumHeaderUrl('', '', array('gRedir' => 1)));
@@ -637,29 +639,25 @@ includeHtmlWrap("inline_photo.footer");
 		$gallery->user->getEmail() &&
 		!$gallery->session->offline &&
 		$gallery->app->emailOn == "yes") {
-	if (getRequestVar('submitEmailMe')) {
-		if (getRequestVar('comments')) {
+	$emailMeComments = getRequestVar('emailMeComments');
+	if (!empty($emailMeComments)) {
+		if ($emailMeComments == 'true') {
 			$gallery->album->setEmailMe('comments', $gallery->user, $id);
 		} else {
 			$gallery->album->unsetEmailMe('comments', $gallery->user, $id);
 		}
-		/* if (isset($other)) {
-			$gallery->album->setEmailMe('other', $gallery->user, $id);
-		} else {
-			$gallery->album->unsetEmailMe('other', $gallery->user, $id);
-		} */
-	} else {
 	}
 
 	if (! $gallery->album->getEmailMe('comments', $gallery->user)) {
-		echo makeFormIntro("view_photo.php",
-			       	array("name" => "email_me", "method" => "POST"));
-		echo "\n\t<input type=\"hidden\" name=\"id\" value=\"$id\">\n\t";
-		echo _("Email me when comments are added");
-       	?>
+		echo "\n<form name=\"emailMe\" action=\"#\">";
 
-	<input type="checkbox" name="comments" <?php echo ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? "checked" : "" ?> onclick="document.email_me.submit()" >
-	<input type="hidden" name="submitEmailMe" value="true">
+ 		$url= makeAlbumUrl($gallery->session->albumName, $id, array(
+			'emailMeComments' => ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? 'false' : 'true')
+		);
+
+		echo _("Email me when comments are added");
+?>
+	<input type="checkbox" name="comments" <?php echo ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? "checked" : "" ?> onclick="location.href='<?php echo $url; ?>'" >
 	</form>
 <?php
 	} 

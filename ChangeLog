@@ -1,3 +1,10 @@
+2004-12-09  Jens A. Tkotz <jens@peino.de>  1.5-cvs-b301
+
+	* Fix: do not reload page when clicking on Emailme in view_photo.
+	       Instead load the page new.
+	       This fixes an "out of bound" error on Macs.
+	Thanks to: Randy J.
+
 2004-12-09  Jens A. Tkotz <jens@peino.de>  1.5-cvs-b300
 
 	* Change: Layout
@@ -25,6 +32,8 @@
 
 
 	* New: Added function getImVersion() to detect version of ImageMagick.
+
+	* Change: removed Config Option for that Version.
 
 	* Change: Checkbox for emailing in view_photo is only visible, when disabled in album view.	
 
