@@ -37,7 +37,10 @@ if ($save) {
 	$album->fields["thumb_size"] = $thumb_size;
 	$album->fields["resize_size"] = $resize_size;
 	$album->fields["returnto"] = $returnto;
+	$album->fields["rows"] = $rows;
+	$album->fields["cols"] = $cols;
 	$album->save();
+
 	reload();
 }
 
@@ -102,9 +105,21 @@ You can modify the appearance of your photo album here.
 <td><select name="returnto"><?= selectOptions($album, "returnto", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
+<td>Rows</td>
+<td>
+ <select name="rows">
+  <?= selectOptions($album, "rows", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
+ </select>
+</td>
+<tr>
+<td>Columns</td>
+<td>
+ <select name="cols">
+  <?= selectOptions($album, "cols", array(1, 2, 3, 4, 5, 6, 7, 8, 9)) ?>
+ </select>
+</td>
+</tr>
 </table>
-
-<br><br>
 
 <input type=submit name="submit" value="Apply">
 <input type=reset value="Undo">
