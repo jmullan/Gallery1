@@ -72,10 +72,6 @@ $uname = $gallery->user->getUsername();
 $fullname = $gallery->user->getFullname();
 $email = $gallery->user->getEmail();
 
-if ($gallery->user->isAdmin()) {
-	$dontChange["uname"] = 1;
-}
-
 ?>
 <html>
 <head>
@@ -111,11 +107,8 @@ and digits.
 <script language="javascript1.2">
 <!--
 // position cursor in top form field
-<? if ($dontChange["uname"]) { ?>
 document.usermodify_form.fullname.focus();
-<? } else { ?>
 document.usermodify_form.uname.focus();
-<? } ?>
 //--> 
 </script>
 
