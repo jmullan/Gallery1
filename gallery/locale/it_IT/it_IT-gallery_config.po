@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1.4.4-pl2
+# Version: 1.4.4-pl2-u1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2004 Bharat Mediratta
@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: Gallery 1.4.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
 "POT-Creation-Date: 2004-08-30 01:16+0200\n"
-"PO-Revision-Date: 2004-08-30 11:56+0200\n"
+"PO-Revision-Date: 2004-10-12 11:56+0200\n"
 "Last-Translator: Ermanno Baschiera <ermannob AT inwind DOT it>\n"
 "Language-Team: italiano <Italian <gallery-devel@lists.sourceforge.net>>\n"
 "MIME-Version: 1.0\n"
@@ -284,7 +284,7 @@ msgstr "Il file %s non esiste."
 #: ../setup/check_imagemagick.php:229 ../setup/check_netpbm.php:262
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
-msgstr "Stato atteso: %s, in effetti lo stato risultante &egrave; %s."
+msgstr "Stato atteso: %s, in realt&agrave; lo stato risultante &egrave; %s."
 
 #: ../setup/check_imagemagick.php:242 ../setup/check_netpbm.php:276
 msgid "can't detect version on Windows"
@@ -332,7 +332,7 @@ msgstr "Devi speficare un indirizzo email valido"
 
 #: ../setup/check_mail.php:55
 msgid "Try again?"
-msgstr "Tentare ancora?"
+msgstr "Vuoi riprovare?"
 
 #: ../setup/check_mail.php:61
 #, php-format
@@ -506,7 +506,7 @@ msgstr "<b>Nota</b>: In alcune rare circonstanze, Gallery pensa che sia attiva l
 
 #: ../setup/config_data.inc:126
 msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
-msgstr "La funzione <b>exec()</b> &egrave; quella che Gallery usa per lanciare programmi come NetPBM, ImageMagick e jhead. Se <b>exec()</b> &grave; disabilitata nel tuo server, allora Gallery non sar&agrave; in grado di operare."
+msgstr "La funzione <b>exec()</b> &egrave; quella che Gallery usa per lanciare programmi come NetPBM, ImageMagick e jhead. Se <b>exec()</b> &egrave; disabilitata nel tuo server, allora Gallery non sar&agrave; in grado di operare."
 
 #: ../setup/config_data.inc:128
 msgid "The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."
@@ -556,7 +556,7 @@ msgstr "Se NetPBM &egrave; installato e Gallery non lo trova automaticamente non
 
 #: ../setup/config_data.inc:172
 msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."
-msgstr "Verifica se ImageMagick &egrave; installato cos&igrave; che Gallery possa manipolare le immagini (ruotare, ridimensionare, creare anteprime, ecc). &Egrave; necessario installare solamente ImageMagick <b>oppure</b> NetPBM."
+msgstr "Verifica se ImageMagick &egrave; installato cosicch&eacute; Gallery possa manipolare le immagini (ruotare, ridimensionare, creare anteprime, ecc). &Egrave; necessario installare solamente ImageMagick <b>oppure</b> NetPBM."
 
 #: ../setup/config_data.inc:174
 msgid "I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  "
@@ -701,7 +701,7 @@ msgstr "Directory marchio (watermark)"
 #: ../setup/config_data.inc:316
 #, php-format
 msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
-msgstr "Il percorso completo sul disco della directory che conterr&agrave; le tue immagini-marchio. Questa directory pu&ograve; contenere immagini .png, .tif e .gif che saranno sovraposte alle foto. Sono supportati questi formati perch&eacute; possono contenere dati sulla trasparenza o canali alpha. <b>Lasciando vuoti questi campi, la marchiatura sar&agrave; disabilitata</b>. Nota che l'utente che sta facendo eseguire il webserver dovr&agrave; avere permessi di scrittura in questa directory (nel tuo caso l'utente &egrave; %s)."
+msgstr "Il percorso completo sul disco della directory che conterr&agrave; le tue immagini-marchio. Questa directory pu&ograve; contenere immagini .png, .tif e .gif che saranno sovrapposte alle foto. Sono supportati questi formati perch&eacute; possono contenere dati sulla trasparenza o canali alpha. <b>Lasciando vuoti questi campi, la marchiatura sar&agrave; disabilitata</b>. Nota che l'utente che sta facendo eseguire il webserver dovr&agrave; avere permessi di scrittura in questa directory (nel tuo caso l'utente &egrave; %s)."
 
 #: ../setup/config_data.inc:326
 msgid "Thumbnail image"
@@ -864,7 +864,7 @@ msgstr "Qualit&agrave; JPEG"
 
 #: ../setup/config_data.inc:438
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
-msgstr "Il formato JPEG diminuisce la dimensione del file a scapito della qualit&agrave;. Gallery pu&ograve; controllare la qualit&agrave; del JPEG prodotto quando ridimensioni, ruoti o prepari delle anteprime dalle immagini JPEG. Immagini di maggior qualit&agrave; hanno delle dimensioni maggiori rispetto a quelle di una qualit&agrave; pi&ugrave; bassa. Tuttavia, in molti casi c'&egrave; un punto nel quale l'incremento della qualit&agrave; incrementa la dimensione del file senza un apprezzabile miglioramento visivo. Se noti che le anteprime e le immagini ridimensionate sono pi&ugrave; pesanti degli originali e non vuoi che questo accada, prova allora ad abbassare questo valore. <b>Nota</b> che la modifica di questo valore avr&agrave; effetto solo sulle immagini cambiate in <i>futuro</i>."
+msgstr "Il formato JPEG diminuisce la dimensione del file a scapito della qualit&agrave;. Gallery pu&ograve; controllare la qualit&agrave; del JPEG prodotto quando ridimensioni, ruoti o prepari delle anteprime dalle immagini JPEG. Immagini di maggior qualit&agrave; hanno delle dimensioni maggiori rispetto a quelle di qualit&agrave; pi&ugrave; bassa. Tuttavia, in molti casi c'&egrave; un punto nel quale l'incremento della qualit&agrave; incrementa la dimensione del file senza un apprezzabile miglioramento visivo. Se noti che le anteprime e le immagini ridimensionate sono pi&ugrave; pesanti degli originali e non vuoi che questo accada, prova allora ad abbassare questo valore. <b>Nota</b> che la modifica di questo valore avr&agrave; effetto solo sulle immagini modificate in <i>futuro</i>."
 
 #: ../setup/config_data.inc:451
 msgid "Main Gallery page"
@@ -884,7 +884,7 @@ msgstr "Dimensione copertina "
 
 #: ../setup/config_data.inc:461
 msgid "The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."
-msgstr "La dimensione voluta (in pixel) delle anteprime mostrate nella galleria (immagini evidenziate)."
+msgstr "La dimensione voluta (in pixel) delle anteprime mostrate nella galleria (immagini copertina)."
 
 #: ../setup/config_data.inc:467
 msgid "Show Owner"
@@ -900,7 +900,7 @@ msgstr "Album per pagina"
 
 #: ../setup/config_data.inc:474
 msgid "How many albums should be displayed per Gallery page?"
-msgstr "Quanti album devono essere mostrati su ogni pagina di Gallery?"
+msgstr "Quanti album devono essere mostrati in ogni pagina di Gallery?"
 
 #: ../setup/config_data.inc:480
 msgid "Search Engine"
@@ -912,11 +912,11 @@ msgstr "Mostrare il motore di ricerca nella pagina principale di Gallery?"
 
 #: ../setup/config_data.inc:486
 msgid "Accurate Photo Count"
-msgstr ""
+msgstr "Conteggio Foto Accurato"
 
 #: ../setup/config_data.inc:487
 msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
-msgstr ""
+msgstr "Visualizza il numero di album e foto nella homepage di Gallery utilizzando un sistema di conteggio accurato, ma incredibilmente lento. Questo &egrave; stato aggiunto in seguito alle richieste di numerosi utenti, tuttavia non si raccomanda per gallerie che hanno grandi quantit&agrave; di album e foto. Alcuni esempi hanno dimostrato che il caricamento della pagina index impiega fino a 30 secondi con questa opzione attiva."
 
 #: ../setup/config_data.inc:492
 msgid "Frame around albums"
@@ -1147,7 +1147,7 @@ msgstr "Questa opzione ti permette di creare tanti account in una volta usando u
 
 #: ../setup/config_data.inc:728
 msgid "This is allows the &quot;admin&quot; account to get email whenever a comment is added to any album"
-msgstr "Questo permette che l'account &quot; admin&quot; riceva un'email ogni qualvolta venga inserito un commento in un album"
+msgstr "Questo permette che l'account &quot;admin&quot; riceva un'email ogni qualvolta venga inserito un commento in un album"
 
 #: ../setup/config_data.inc:729
 msgid "Admin comment email"
@@ -1155,7 +1155,7 @@ msgstr "Admin comment email"
 
 #: ../setup/config_data.inc:734
 msgid "This is allows the &quot;admin&quot; account to get email whenever a change is made to any album"
-msgstr "Questo permette che l'account &quot; admin&quot; riceva un'email ogni qualvolta venga effettuato un cambiamento in un album"
+msgstr "Questo permette che l'account &quot;admin&quot; riceva un'email ogni qualvolta venga effettuato un cambiamento in un album"
 
 #: ../setup/config_data.inc:735
 msgid "Admin Other Changes email"
@@ -2451,7 +2451,7 @@ msgstr "Questa &egrave; una build di sviluppo di %s rilasciata il %s."
 
 #: ../setup/functions.inc:691
 msgid "Please check regularly for updates."
-msgstr "Per favore verifica regolarmente la presenza di aggiornamenti."
+msgstr "Verifica regolarmente la presenza di aggiornamenti."
 
 #: ../setup/functions.inc:711
 msgid "All gallery locales are available on this host."
@@ -2582,7 +2582,7 @@ msgstr "Guarda %sControllo Versioni%s per ulteriori dettagli."
 #: ../setup/functions.inc:1319
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-msgstr "%d file sono pi&ugrave; recenti del previsto. E' tutto ok se stai usando codice di pre-release, beta, CVS o modificato."
+msgstr "%d file sono pi&ugrave; recenti del previsto. &Egrave; tutto ok se stai usando codice di pre-release, beta, CVS o modificato."
 
 #: ../setup/functions.inc:1325
 #, php-format
