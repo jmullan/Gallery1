@@ -152,7 +152,9 @@ do {
 } while ($pAlbumName);
 
 //-- we built the array backwards, so reverse it now ---
-$breadcrumb["text"] = array_reverse($breadtext, false);
+for ($i = count($breadtext) - 1; $i >= 0; $i--) {
+    $breadcrumb["text"][] = $breadtext[$i];
+}
 ?>
 
 <? if (!$GALLERY_EMBEDDED_INSIDE) { ?>
