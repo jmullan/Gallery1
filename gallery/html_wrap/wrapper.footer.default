@@ -1,0 +1,24 @@
+<?php
+// This header file detects whether Gallery is embedded in any 
+// known PHP applications and then decorates Gallery appropriately.
+
+global $GALLERY_EMBEDDED_INSIDE;
+switch($GALLERY_EMBEDDED_INSIDE) {
+	case "nuke":
+
+		/*
+		 * We can control whether we see the right side blocks
+		 * by setting the value of the $index variable.  To
+		 * see the blocks, set $index to 1.  To hide them set
+		 * $index to 0.  We default to 0 to leave more room for
+		 * the photos.  If you change this value, you should
+		 * also change it in wrapper.header
+		 */
+		global $index;
+		$index = 0;
+
+		CloseTable();
+		include('footer.php');
+		break;
+}
+?>
