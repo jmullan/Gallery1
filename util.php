@@ -476,6 +476,24 @@ function correctEverybody($array) {
 	}
 }
 
+function makeSearchFormIntro() {
+	global $gallery;
+	global $GALLERY_EMBEDDED_INSIDE;
+	switch ($GALLERY_EMBEDDED_INSIDE) {
+		case "nuke":
+            $form = "<form action=modules.php>";
+			$form .= "<input type=hidden name=op value=modload>";
+			$form .= "<input type=hidden name=file value=index>";
+			$form .= "<input type=hidden name=name value=gallery>";
+			$form .= "<input type=hidden name=include value=search.php>";
+			break;
+		default:
+			$form = "<form action=search.php>";
+	}
+	return $form;
+}
+
+
 function makeGalleryUrl($albumName="", $photoId="", $extra="") {
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
