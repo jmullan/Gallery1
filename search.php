@@ -167,11 +167,11 @@ if ($searchstring) {
 						$searchdraw["photolink"] = $searchAlbum->getThumbnailTag($j, $thumbSize);
 						$searchdraw["photoURL"] = makeAlbumUrl($searchAlbum->fields['name'], $id);
 						$searchdraw["Text2"] = "<span class=desc>$searchCaption</span>";
-						$searchdraw["Text1"] = "<span class=fineprint>From Album:&nbsp&nbsp<a href=" .
+						$searchdraw["Text1"] = "<span class=fineprint>From Album:&nbsp;&nbsp;<a href=" .
                                 			makeAlbumUrl($searchAlbum->fields['name']) . ">" .
                                 			$searchAlbum->fields['title'] . "</a></span>";
 						if ($keywordMatch) { // only display Keywords if there was a keyword match
-							$searchdraw["Text3"] = "<span class=fineprint>KEYWORDS:&nbsp&nbsp $searchKeywords</span><br>";
+							$searchdraw["Text3"] = "<span class=fineprint>KEYWORDS:&nbsp;&nbsp; $searchKeywords</span><br>";
 						} else {
 							$searchdraw["Text3"] = "";
 						}

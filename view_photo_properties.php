@@ -112,13 +112,13 @@ program, I build the functionality using 'jhead'.
 		echo ("</td>\n</table><br>");
 	}
 
-	echo ("File Upload Date: &nbsp;&nbsp " . date("m-d-Y H:i:s" , $gallery->album->getUploadDate($index)) . "<br>");
+	echo ("File Upload Date: &nbsp;&nbsp; " . date("m-d-Y H:i:s" , $gallery->album->getUploadDate($index)) . "<br>");
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-	echo ("Item Capture Date: &nbsp;&nbsp " . $itemCaptureDate[mon] . "-" . $itemCaptureDate[mday] . "-" . $itemCaptureDate[year] . "&nbsp;&nbsp;");
+	echo ("Item Capture Date: &nbsp;&nbsp; " . $itemCaptureDate[mon] . "-" . $itemCaptureDate[mday] . "-" . $itemCaptureDate[year] . "&nbsp;&nbsp;");
 	echo ($itemCaptureDate[hours] . ":" . $itemCaptureDate[minutes] . ":" . $itemCaptureDate[seconds] . "<br>");
 
 	if ($gallery->album->getKeyWords($index)) {
-		echo "<b>KEYWORDS</b>: &nbsp;&nbsp " . $gallery->album->getKeyWords($index);
+		echo "<b>KEYWORDS</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
 	}
 } else {
 	error("no album / index specified");
