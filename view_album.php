@@ -283,12 +283,14 @@ if ($numPhotos) {
 				echo(" <a href=");
 				echo(popup("move_photo.php?index=$i"));
 				echo("><img src=\"images/admin_move.gif\" width=11 height=11 border=0 alt=\"Move Photo\"></a>");
-				echo(" <a href=");
-				echo(popup("rotate_photo.php?index=$i"));
-				echo("><img src=\"images/admin_rotate.gif\" width=11 height=11 border=0 alt=\"Rotate Photo\"></a>");
-				echo(" <a href=");
-				echo(popup("highlight_photo.php?index=$i"));
-				echo("><img src=\"images/admin_highlight.gif\" width=11 height=11 border=0 alt=\"Highlight Photo\"></a>");
+				if (!$album->isMovie($i)) {
+					echo(" <a href=");
+					echo(popup("rotate_photo.php?index=$i"));
+					echo("><img src=\"images/admin_rotate.gif\" width=11 height=11 border=0 alt=\"Rotate Photo\"></a>");
+					echo(" <a href=");
+					echo(popup("highlight_photo.php?index=$i"));
+					echo("><img src=\"images/admin_highlight.gif\" width=11 height=11 border=0 alt=\"Highlight Photo\"></a>");
+				}
 				if ($album->isHidden($i)) {
 					echo("<a href=do_command.php?cmd=show&index=$i&return=view_album.php><img src=\"images/admin_unhide.gif\" width=11 height=11 border=0 alt=\"Show Photo\"></a>");
 				} else {
