@@ -48,6 +48,7 @@ if (substr(PHP_OS, 0, 3) == 'WIN') {
 
 
 if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
+        global $gallery;
 	include($GALLERY_BASEDIR . "config.php");
 }
 require($GALLERY_BASEDIR . "Version.php");
