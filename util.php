@@ -223,6 +223,50 @@ function drawCommentAddForm($commenter_name='', $cols=50) {
 <?php 
 }
 
+function getBlacklistFilename() {
+    global $gallery;
+    return sprintf("%s/blacklist.dat", $gallery->app->albumDir);
+}
+
+function loadBlacklist() {
+    static $blacklist;
+
+    if (!isset($blacklist)) {
+        $tmp = getFile(getBlacklistFilename());
+        $blacklist = unserialize($tmp);
+
+        if (empty($blacklist)) {
+            // Initialize the blacklist
+            $blacklist = array();
+            $blacklist['entries'] = array();
+        }
+    }
+
+    return $blacklist;
+}
+
+function isBlacklistedComment($comment, $existingComment = true) {
+	$blacklist = loadBlacklist();
+	if ($existingComment) {
+		foreach ($blacklist['entries'] as $key => $entry) {
+			if (ereg($entry, $comment->getCommentText()) ||
+			    ereg($entry, $comment->getName())) {
+				return true;
+			}
+		}
+	} else {
+		foreach ($blacklist['entries'] as $key => $entry) {
+			if (ereg($entry, $comment['commenter_name']) ||
+			    ereg($entry, $comment['comment_text'])) {
+				return true;
+			}
+		}
+	}
+		
+	return false;
+}
+
+
 function gallery_error($message) {
 	return '<span class="error">'. _("Error:") . " $message</span>\n";
 }

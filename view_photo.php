@@ -194,6 +194,8 @@ if (!empty($save)) {
 		$error_text = _("Name and comment are both required to save a new comment!");
 	} elseif ($maxlength >0 && strlen($comment_text) > $maxlength) {
 		$error_text = sprintf(_("Your comment is too long, the admin set maximum length to %d chars"), $maxlength);
+	} elseif (isBlacklistedComment(array('commenter_name' => $commenter_name, 'comment_text' => $comment_text), false)) {
+		$error_text = _("Your Comment contains forbidden words. It will not be added.");
 	} else {
 		$comment_text = removeTags($comment_text);
 		$commenter_name = removeTags($commenter_name);

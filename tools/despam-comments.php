@@ -231,18 +231,6 @@ function getCommentKey(&$comment) {
 	       $comment->getUID());
 }
 
-function isBlacklistedComment(&$comment) {
-    $blacklist = loadBlacklist();
-    foreach ($blacklist['entries'] as $key => $entry) {
-	if (ereg($entry, $comment->getCommentText()) ||
-	    ereg($entry, $comment->getName())) {
-	    return true;
-	}
-    }
-
-    return false;
-}
-
 function editBlacklist() {
     $blacklist = loadBlacklist();
     printf("<h2>%s</h2>", _("Delete from blacklist"));
@@ -273,11 +261,6 @@ function editBlacklist() {
 	    }
 	}
     }
-}
-
-function getBlacklistFilename() {
-    global $gallery;
-    return sprintf("%s/blacklist.dat", $gallery->app->albumDir);
 }
 
 function saveBlacklist($blacklist) {
@@ -373,23 +356,6 @@ function showAddBox() {
     print "<input type=\"hidden\" name=\"g1_mode\" value=\"updateBlacklist\">";
     printf("<input type=\"submit\" value=\"%s\"/>", _("Update Blacklist"));
     print "</form>";
-}
-
-function loadBlacklist() {
-    static $blacklist;
-
-    if (!isset($blacklist)) {
-	$tmp = getFile(getBlacklistFilename());
-	$blacklist = unserialize($tmp);
-
-	if (empty($blacklist)) {
-	    // Initialize the blacklist
-	    $blacklist = array();
-	    $blacklist['entries'] = array();
-	}
-    }
-
-    return $blacklist;
 }
 
 function offerOptions() {

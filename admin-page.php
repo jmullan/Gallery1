@@ -42,7 +42,6 @@ doctype();
 <?php 
 	common_header() ;
 ?>
-  <style> a:hover { text-decoration:underline } </style>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php  
@@ -76,7 +75,13 @@ if ($gallery->userDB->canModifyUser() ||
 		$adminOptions[]  = array('text' => _("manage users"),
 					 'popupFile' => 'manage_users.php',
 				 	 'longtext' => _("Manage your users."));
-	}
+}
+
+function cmp ($a, $b) {
+   return strcmp($a["text"], $b["text"]);
+}
+
+usort($adminOptions, "cmp");
 
 $breadcrumb["bordercolor"] = $gallery->app->default["bordercolor"];
 
@@ -92,14 +97,15 @@ if(!empty($adminOptions)) {
 		} else {
 			$link = popup_link($option['text'], $option['popupFile'], false, true, 500, 500, 'admin');
 		}
-		echo "\n<td>$link</a></td>";
-		echo "\n<td>". $option['longtext'] ."</a></td>";
+		echo "\n<td>$link</td>";
+		echo "\n<td>". $option['longtext'] ."</td>";
 		echo "\n</tr>";
 	}
 	echo "\n</table>";
 }
 
-includeHtmlWrap("gallery.footer");
+$validation_file = basename(__FILE__);
+includeHtmlWrap("general.footer");
 ?>
 <!-- gallery.footer end -->
 
