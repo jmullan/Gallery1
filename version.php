@@ -59,5 +59,3 @@ $modversion['author'] = 'Bharat Mediratta'; // Author
 $modversion['contact'] = $gallery->url; // The Authors Website or Contact Email Address
 $modversion['admin'] = 0; // Leave at 0
 ?>
-
-
