@@ -40,7 +40,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 			}
 		} else {
 			if (!fs_is_dir($userDir)) {
-				gallery_error("$userDir". _("exists, but is not a directory !"));
+				gallery_error("$userDir". " "  . _("exists, but is not a directory!"));
 				return;
 			}
 		}
