@@ -112,9 +112,9 @@ for ($i = 0; $i < $numAlbums; $i++) {
 
 <? if (isCorrectPassword($edit)) { ?>
 <font size=+2 face=arial>
-<a href=do_command?cmd=new-album&return=view_album.php target=_top>Create a New Album</a>
+<a href=do_command.php?cmd=new-album&return=view_album.php target=_top>Create a New Album</a>
 <br>
-<a href=do_command?cmd=leave-edit&return=albums.php target=_top>Leave edit mode</a>
+<a href=do_command.php?cmd=leave-edit&return=albums.php target=_top>Leave edit mode</a>
 </font>
 <? }  else { ?>
 <font size=+2 face=arial>
