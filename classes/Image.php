@@ -124,11 +124,14 @@ class Image {
 			}
 			
 			#-- resized image is not always a jpeg ---
-			if ($ret) {
+			if ($ret == 1) {
 				$this->resizedName = "$name.sized";
 				list($w, $h) = getDimensions("$dir/$name.sized.$this->type");
 				$this->width = $w;
 				$this->height = $h;
+			}
+			elseif ($ret == 2) {
+				$this->resize($dir, "orig", 0, $pathToResized);
 			}
 		}	
 	}

@@ -389,6 +389,12 @@ function my_flush() {
 }
 
 function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
+	/*
+	 *  Valid return codes:
+	 *  0:  File was not resized, no processing to be done
+	 *  1:  File resized, process normally
+	 *  2:  Existing resized file should be removed
+	 */
 	global $gallery;				
 
 	if (!strcmp($src,$dest)) {
@@ -412,11 +418,15 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 	$regs = getDimensions($src, $regs);
 	if ((empty($target) || ($regs[0] <= $target && $regs[1] <= $target))
 			&& (empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs)) {
-		if ($useTemp == false) {
-			fs_copy($src, $dest);
-		}
 		processingMsg("&nbsp;&nbsp;&nbsp;". _("No resizing required"));
-		return 1;
+		if ($useTemp == false && !strstr($dest, ".sized.")) {
+			fs_copy($src, $dest);
+			return 1;
+		}
+		elseif (fs_file_exists($dest) && strstr($dest, ".sized.")) {
+			return 2;
+		}
+		return 0;
 	}
 	$target=min($target, max($regs[0],$regs[1]));
 
