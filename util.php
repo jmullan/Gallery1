@@ -114,13 +114,19 @@ function popup_help($entry, $group) {
 function exec_internal($cmd) {
 	global $gallery;
 	if (isDebugging()) {
-		print "<p><b> About to exec [$cmd]</b>";
+		print "<p><b>Executing:<ul>$cmd</ul></b>";
 	}
 
-	exec($cmd, $results, $status);
+	fs_exec($cmd, $results, $status);
 
 	if (isDebugging()) {
-		print "<br> Results: <pre>" . join("\n", $results);
+		print "<br> Results: <pre>";
+		if ($results) {
+			print join("\n", $results);
+		} else {
+			print "<b>none</b>";
+		}
+		print "</pre>";
 		print "<br> Status: $status (expected " . $gallery->app->expectedExecStatus . ")";
 	}
 
@@ -132,9 +138,8 @@ function getDimensions($file) {
 
 	list($lines, $status) = 
 		exec_internal(toPnmCmd($file) . 
-			"| " .
-			$gallery->app->pnmDir . 
-			"/pnmfile ");
+			" | " .
+			NetPBM("pnmfile" /*, "--allimages" */ )); 
 
 	if ($status == $gallery->app->expectedExecStatus) {
 		foreach ($lines as $line) {
@@ -188,11 +193,11 @@ function isMovie($tag) {
 function getFile($fname) {
 	$tmp = "";
 
-	if (!file_exists($fname)) {
+	if (!fs_file_exists($fname)) {
 		return $tmp;
 	}
 
-	if ($fd = fopen($fname, "r")) {
+	if ($fd = fs_fopen($fname, "r")) {
 		while (!feof($fd)) {
 			$tmp .= fread($fd, 65536);
 		}
@@ -241,15 +246,16 @@ function resize_image($src, $dest, $target) {
 		$out = $dest;
 	}
 	$err = exec_wrapper(toPnmCmd($src) .
-		     "| " . 
-		     $gallery->app->pnmDir .
-		     "/pnmscale --quiet -xysize $target $target".
-		     "| " . fromPnmCmd($out));
+		     " | " . 
+		     NetPBM("pnmscale", 
+				(isDebugging() ? " --quiet" : " ") .
+				" -xysize $target $target") .
+		     " | " . fromPnmCmd($out));
 
-	if (file_exists("$out") && filesize("$out") > 0) {
+	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
 		if ($useTemp) {
-			copy($out, $dest);
-			unlink($out);
+			fs_copy($out, $dest);
+			fs_unlink($out);
 		}
 		return 1;
 	} else {
@@ -276,15 +282,14 @@ function rotate_image($src, $dest, $target) {
 	}
 
 	$err = exec_wrapper(toPnmCmd($src) .
-		     "| " .
-		     $gallery->app->pnmDir .
-		     "/pnmflip $args".
-		     "| " . fromPnmCmd($out));
+		     " | " .
+		     NetPBM("pnmflip", $args) .
+		     " | " . fromPnmCmd($out));
 
-	if (file_exists("$out") && filesize("$out") > 0) {
+	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
 		if ($useTemp) {
-			copy($out, $dest);
-			unlink($out);
+			fs_copy($out, $dest);
+			fs_unlink($out);
 		}
 		return 1;
 	} else {
@@ -302,15 +307,16 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 		$out = $dest;
 	}
 	$err = exec_wrapper(toPnmCmd($src) .
-		     "| " .
-		     $gallery->app->pnmDir .
-		     "/pnmcut $x $y $width $height" .
-		     "| " . fromPnmCmd($out));
+			" | " .
+			NetPBM("pnmcut") .
+			" $x $y $width $height") .
+			" | " . 
+			fromPnmCmd($out);
 
-	if (file_exists("$out") && filesize("$out") > 0) {
+	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
 		if ($useTemp) {
-			copy($out, $dest);
-			unlink($out);
+			fs_copy($out, $dest);
+			fs_unlink($out);
 		}
 		return 1;
 	} else {
@@ -323,9 +329,8 @@ function valid_image($file) {
 	
 	list($results, $status) = 
 		exec_internal(toPnmCmd($file) . 
-			"| " .
-			$gallery->app->pnmDir .
-			"/pnmfile");
+			" | " .
+			NetPBM("pnmfile" /*, "--allimages" */));
 
 	if ($status == $gallery->app->expectedExecStatus) {
 		return 1;
@@ -343,14 +348,20 @@ function toPnmCmd($file) {
 		if (isDebugging()) {
 			$cmd = "jpegtopnm";
 		} else {
-			$cmd = "jpegtopnm --quiet";
+			$cmd = "jpegtopnm";
 		}
 	} else if (preg_match("/.gif/i", $file)) {
 		$cmd = "giftopnm";
 	}
 
+	if (!isDebugging()) {
+		$args = "--quiet";
+	}
+
 	if ($cmd) {
-		return $gallery->app->pnmDir . "/$cmd $file";
+		return NetPBM($cmd, $args) .
+		 	" " .
+			fs_import_filename($file);
 	} else {
 		error("Unknown file type: $file");
 		return "";
@@ -361,19 +372,27 @@ function fromPnmCmd($file) {
 	global $gallery;
 
 	if (preg_match("/.png/i", $file)) {
-		$cmd = "pnmtopng";
+		$cmd = NetPBM("pnmtopng");
 	} else if (preg_match("/.(jpg|jpeg)/i", $file)) {
-		$cmd = "ppmtojpeg";
+		$cmd = NetPBM("ppmtojpeg");
 	} else if (preg_match("/.gif/i", $file)) {
-		$cmd = "ppmquant 256| " . $gallery->app->pnmDir . "/ppmtogif";
+		$cmd = NetPBM("ppmquant", "256") . " | " . NetPBM("ppmtogif");
 	}
 
 	if ($cmd) {
-		return $gallery->app->pnmDir . "/$cmd > $file";
+		return "$cmd > " . fs_import_filename($file);
 	} else {
 		error("Unknown file type: $file");
 		return "";
 	}
+}
+
+function netPbm($cmd, $args="") {
+	global $gallery;
+
+	$cmd = fs_import_filename($gallery->app->pnmDir . "/$cmd");
+	$cmd .= " $args";
+	return $cmd;
 }
 
 function exec_wrapper($cmd) {
@@ -397,7 +416,7 @@ function includeHtmlWrap($name) {
         global $gallery;
 	$fullname = $GALLERY_BASEDIR . "html_wrap/$name";
 
-	if (file_exists($fullname)) {
+	if (fs_file_exists($fullname)) {
 		include ($fullname);
 	} else {
 		include ("$fullname.default");
@@ -429,7 +448,7 @@ function _getStyleSheetLink($filename) {
 		$base = ".";
 	}
 
-	if (file_exists($sheetname)) {
+	if (fs_file_exists($sheetname)) {
 		$url = "$base/$sheetname";
 	} else {
 		$url = "$base/$sheetname.default";
@@ -581,12 +600,12 @@ function gallerySanityCheck() {
 	global $gallery;
 	global $GALLERY_BASEDIR;
 
-	if (!file_exists($GALLERY_BASEDIR . "config.php") || !$gallery->app) {
+	if (!fs_file_exists($GALLERY_BASEDIR . "config.php") || !$gallery->app) {
 		include($GALLERY_BASEDIR . "errors/unconfigured.php");
 		exit;
 	}
 
-	if (file_exists($GALLERY_BASEDIR . "setup") && 
+	if (fs_file_exists($GALLERY_BASEDIR . "setup") && 
 		is_readable($GALLERY_BASEDIR . "setup")) {
 		/* 
 		 * on some systems, PHP's is_readable returns false
@@ -607,7 +626,7 @@ function gallerySanityCheck() {
 
 function preprocessImage($dir, $file) {
 
-	if (!file_exists("$dir/$file")) {
+	if (!fs_file_exists("$dir/$file")) {
 		return 0;
 	}
 
@@ -620,7 +639,7 @@ function preprocessImage($dir, $file) {
 	 * newline
 	 */
 
-	if ($fd = fopen("$dir/$file", "r")) {
+	if ($fd = fs_fopen("$dir/$file", "r")) {
 		// Read the first line
 		$line = fgets($fd, 4096);
 
@@ -633,7 +652,7 @@ function preprocessImage($dir, $file) {
 
 			// Dump the rest to a file
 			$tempfile = tempnam($dir, $file);
-			if ($newfd = fopen($tempfile, "w", 0777)) {
+			if ($newfd = fs_fopen($tempfile, "w", 0777)) {
 				while (!feof($fd)) {
 					/*
 					 * Copy the rest of the file.  Specify a length
@@ -642,10 +661,10 @@ function preprocessImage($dir, $file) {
 					fwrite($newfd, fread($fd, 64*1024), 64*1024+1);
 				}
 				fclose($newfd);
-				$success = rename($tempfile, "$dir/$file");
+				$success = fs_rename($tempfile, "$dir/$file");
 				if (!$success) {
 					error("Couldn't move $tempfile -> $dir/$file");
-					unlink($tempfile);
+					fs_unlink($tempfile);
 				}
 			} else {
 				error("Can't write to $tempfile");

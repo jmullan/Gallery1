@@ -205,10 +205,10 @@ class User {
 		$dir = $gallery->app->userDir;
 		$tmpfile = tempnam($dir, $this->uid);
 
-		if ($fd = fopen($tmpfile, "w")) {
+		if ($fd = fs_fopen($tmpfile, "w")) {
 			fwrite($fd, serialize($this));
 			fclose($fd);
-			$success = rename($tmpfile, "$dir/$this->uid");
+			$success = fs_rename($tmpfile, "$dir/$this->uid");
 		}
 
 		return $success;

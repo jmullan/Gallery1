@@ -20,7 +20,12 @@
 ?>
 <?
 /* Load bootstrap code */
-if (file_exists($GALLERY_BASEDIR . "config.php")) {
+if (substr(PHP_OS, 0, 3) == 'WIN') {
+	require($GALLERY_BASEDIR . "platform/fs_win32.php");
+} else {
+	require($GALLERY_BASEDIR . "platform/fs_unix.php");
+}
+if (fs_file_exists($GALLERY_BASEDIR . "config.php")) {
 	require($GALLERY_BASEDIR . "config.php");
 }
 require($GALLERY_BASEDIR . "version.php");

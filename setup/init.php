@@ -1,4 +1,10 @@
 <?
+if (substr(PHP_OS, 0, 3) == 'WIN') {
+	require("../platform/fs_win32.php");
+} else {
+	require("../platform/fs_unix.php");
+}
+
 /* 
  * Turn off magic quotes runtime as they interfere with saving and
  * restoring data from our file-based database files

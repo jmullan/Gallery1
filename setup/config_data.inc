@@ -132,7 +132,9 @@ $constants = array(
 	),
 	"tmpDir" => array(
 		"desc" => "The filesystem path of a temp directory",
-		"value" => "/var/tmp"
+		"value" => getenv("TMP"),
+		"filename" => 1,
+		"require-write-dir" => 1,
 	),
 	"pnmDir" => array(
 		"desc" => "The filesystem path to your NetPBM binaries.",
@@ -141,6 +143,7 @@ $constants = array(
 		"fail-netpbm" => "I can't find NetPBM at the location you provided.  " .
 			$common_messages["getting-netpbm"],
 		"fail-netpbm-partial" => $common_messages["fail-netpbm-partial"],
+		"filename" => 1,
 	),
 	"highlight_size" => array(
 		"desc" => "The target size (in pixels) of thumbnails " .
@@ -152,21 +155,24 @@ $constants = array(
 		"value" => locateFile("zipinfo"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
-		"optional" => 1
+		"optional" => 1,
+		"filename" => 1,
 	),
 	"unzip" => array(
 		"desc" => "The filesystem path to the 'unzip' binary",
 		"value" => locateFile("unzip"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
-		"optional" => 1
+		"optional" => 1,
+		"filename" => 1,
 	),
 	"use_exif" => array(
 		desc => "The filesystem path to the 'jhead' exif parser (optional)",
 		"value" => locateFile("jhead"),
 		"must-be-file" => 1,
 		"must-be-executable" => 1,
-		"optional" => 1
+		"optional" => 1,
+		"filename" => 1,
 	),
 	"movieThumbnail" => array(
 		"desc" => "The filesystem path to the thumbnail image to show for movies",
@@ -181,13 +187,15 @@ $constants = array(
 			"is running the web server (in your case this user is <b>" .
 			$webserver_user . "</b>)",
 		"value" => getenv("DOCUMENT_ROOT") . "/albums",
-			"require-write-dir" => 1
+		"require-write-dir" => 1,
+		"filename" => 1,
 	),
 	"userDir" => array(
 		"desc" => "Filesystem location of user information",
 		"type" => "hidden",
 		"value" => "",
 		"eval" => '"$albumDir/.users"',
+		"filename" => 1,
 	),
 	"photoAlbumURL" => array(
 		"desc" => "The full URL to the Gallery web app",

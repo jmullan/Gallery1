@@ -69,9 +69,9 @@ if ($urls) {
 		 * Check to see if the URL is a local directory (inspired by
 		 * code from Jared (hogalot)
 		 */
-		if (is_dir($url)) {
+		if (fs_is_dir($url)) {
 			msg("Processing <i>$url</i> as a local directory.");
-			$handle = opendir($url);
+			$handle = fs_opendir($url);
 			while (($file = readdir($handle)) != false) {
 				if ($file != "." && $file != "..") {
 					$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $file);
@@ -79,9 +79,9 @@ if ($urls) {
 					if (acceptableFormat($tag)) {
 						/* Tack it onto userfile */
 						if (substr($url,-1) == "/") {
-							$image_tags[] = $url . $file;
+							$image_tags[] = fs_export_filename($url . $file);
 						} else {
-							$image_tags[] = $url . "/" . $file;
+							$image_tags[] = fs_export_filename($url . "/" . $file);
 						}
 					}
 				}
@@ -101,7 +101,7 @@ if ($urls) {
 		$tag = strtolower($tag);
 	
 		/* Dont output warning messages if we cant open url */
-		$id = @fopen($url, "r");
+		$id = @fs_fopen($url, "r");
 	
 		/* Manual check - was the url accessible? */
 		if (!$id) {
@@ -113,7 +113,7 @@ if ($urls) {
 	
 		/* copy file locally */
 		$file = $gallery->app->tmpDir . "/photo.$name";
-		$od = fopen($file, "w");
+		$od = fs_fopen($file, "w");
 		if ($id && $od) {
 			while (!feof($id)) {
 				fwrite($od, fread($id, 65536));
@@ -133,7 +133,7 @@ if ($urls) {
 		} else {
 			/* Slurp the file */
 			msg("Parsing $url for images...");
-			$fd = fopen ($file, "r");
+			$fd = fs_fopen ($file, "r");
 			$contents = fread ($fd, filesize ($file));
 			fclose ($fd);
 	
@@ -204,7 +204,10 @@ while (sizeof($userfile)) {
 			continue;
 		}
 		/* Figure out what files we can handle */
-		list($files, $status) = exec_internal($gallery->app->zipinfo . " -1 $file");
+		list($files, $status) = exec_internal(
+			fs_import_filename($gallery->app->zipinfo) . 
+			" -1 " .
+			fs_import_filename($file));
 		sort($files);
 		foreach ($files as $pic_path) {
 			$pic = basename($pic_path);
@@ -214,11 +217,15 @@ while (sizeof($userfile)) {
 			if (acceptableFormat($tag)) {
 				$cmd_pic_path = str_replace("[", "\[", $pic_path); 
 				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path); 
-				exec_wrapper($gallery->app->unzip . 
-					     " -j -o $file '$cmd_pic_path' -d " .
-					     $gallery->app->tmpDir);
+				exec_wrapper(fs_import_filename($gallery->app->unzip) . 
+					     " -j -o " .
+					     fs_import_filename($file) .
+					     " '" .
+					     fs_import_filename($cmd_pic_path) .
+					     "' -d " .
+					     fs_import_filename($gallery->app->tmpDir));
 				process($gallery->app->tmpDir . "/$pic", $tag, $pic, $setCaption);
-				unlink($gallery->app->tmpDir . "/$pic");
+				fs_unlink($gallery->app->tmpDir . "/$pic");
 			}
 		}
 	} else {
@@ -285,7 +292,7 @@ $gallery->album->save();
 if ($temp_files) {
 	/* Clean up the temporary url file */
 	foreach ($temp_files as $tf => $junk) {
-		unlink($tf);
+		fs_unlink($tf);
 	}
 }
 ?>

@@ -146,7 +146,7 @@ class AlbumItem {
 							    "$setDir/$name.highlight.$tag",
 							    $gallery->app->highlight_size);
 				}
-				unlink("$setDir/$name.tmp.$tag");
+				fs_unlink("$setDir/$name.tmp.$tag");
 			} else {
 				$ret = resize_image("$dir/$name.$tag", 
 						    "$setDir/$name.highlight.$tag",
@@ -163,8 +163,8 @@ class AlbumItem {
 			}
 		}
 		else {
-			if (file_exists("$dir/$name.highlight.$tag")) {
-				unlink("$dir/$name.highlight.$tag");
+			if (fs_file_exists("$dir/$name.highlight.$tag")) {
+				fs_unlink("$dir/$name.highlight.$tag");
 			}
 		}	
 	}
@@ -238,7 +238,7 @@ class AlbumItem {
 
 		if (isMovie($tag)) {
 			/* Use a preset thumbnail */
-			copy($gallery->app->movieThumbnail, "$dir/$name.thumb.jpg");
+			fs_copy($gallery->app->movieThumbnail, "$dir/$name.thumb.jpg");
 			$this->thumbnail = new Image;
 			$this->thumbnail->setFile($dir, "$name.thumb", "jpg");
 

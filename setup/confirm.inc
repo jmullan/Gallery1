@@ -84,6 +84,10 @@ foreach ($constants as $key => $val) {
 			$error = 1;
 		}
 	} else {
+		if ($constants[$key]["filename"]) {
+			$$key = fs_export_filename($$key);
+		}
+
 		if ($constants[$key]["no-trailing-slash"]) {
 			$$key = preg_replace("/\/$/", "", $$key);
 		}

@@ -30,25 +30,25 @@ class UserDB {
 
 		$this->userMap = array();
 
-		if (!file_exists($userDir)) {
+		if (!fs_file_exists($userDir)) {
 			if (!mkdir($userDir, 0777)) {
 				error("Unable to create dir: $userDir");
 				return;
 			}
 		} else {
-			if (!is_dir($userDir)) {
+			if (!fs_is_dir($userDir)) {
 				error("$userDir exists, but is not a directory!");
 				return;
 			}
 		}
 
-		if (!file_exists("$userDir/.htaccess")) {
-			$fd = fopen("$userDir/.htaccess", "w");
+		if (!fs_file_exists("$userDir/.htaccess")) {
+			$fd = fs_fopen("$userDir/.htaccess", "w");
 			fwrite($fd, "Order deny, allow\nDeny from all\n");
 			fclose($fd);
 		}
 
-		if (file_exists("$userDir/userdb.dat")) {
+		if (fs_file_exists("$userDir/userdb.dat")) {
 			$tmp = getFile("$userDir/userdb.dat");
 			$this = unserialize($tmp);
 		}
@@ -108,7 +108,7 @@ class UserDB {
 			return $this->everybody;
 		}
 
-		if (file_exists("$userDir/$uid")) {
+		if (fs_file_exists("$userDir/$uid")) {
 			$user = new User();
 			$user->load($uid);
 			return $user;
@@ -141,8 +141,8 @@ class UserDB {
 		$user = $this->getUserByUsername($username);
 		if ($user) {
 			$uid = $user->getUid();
-			if (file_exists("$userDir/$uid")) {
-				return unlink("$userDir/$uid");
+			if (fs_file_exists("$userDir/$uid")) {
+				return fs_unlink("$userDir/$uid");
 			}
 		}
 		$this->rebuildUserMap();
@@ -163,10 +163,10 @@ class UserDB {
 
 		$success = 0;
 		$tmpfile = tempnam($userDir, "userdb.dat");
-		if ($fd = fopen($tmpfile, "w")) {
+		if ($fd = fs_fopen($tmpfile, "w")) {
 			fwrite($fd, serialize($this));
 			fclose($fd);
-			$success = rename($tmpfile, "$userDir/userdb.dat");
+			$success = fs_rename($tmpfile, "$userDir/userdb.dat");
 		}
 
 		return $success;
@@ -176,13 +176,13 @@ class UserDB {
 		global $gallery;
 		
 		$uidList = array();
-		if ($fd = opendir($gallery->app->userDir)) {
+		if ($fd = fs_opendir($gallery->app->userDir)) {
 			while ($file = readdir($fd)) {
-				if (!strchr($file, ":")) {
+				if (!ereg("^[0-9].*[0-9]$", $file)) {
 					continue;
 				}
 
-				if (is_dir($file)) {
+				if (fs_is_dir($file)) {
 					continue;
 				}
 

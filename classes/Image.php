@@ -43,8 +43,8 @@ class Image {
 			list($w, $h) = getDimensions("$dir/$this->name.$this->type");
 			$this->width = $w;
 			$this->height = $h;
-			if (file_exists("$dir/$this->resizedName.$this->type")) {
-				unlink("$dir/$this->resizedName.$this->type");
+			if (fs_file_exists("$dir/$this->resizedName.$this->type")) {
+				fs_unlink("$dir/$this->resizedName.$this->type");
 			}
 			$this->resizedName = "";
 		/* doing a resize */
@@ -71,13 +71,13 @@ class Image {
 	}
 
 	function delete($dir) {
-		if (file_exists("$dir/$this->resizedName.$this->type")) {
-			unlink("$dir/$this->resizedName.$this->type");
+		if (fs_file_exists("$dir/$this->resizedName.$this->type")) {
+			fs_unlink("$dir/$this->resizedName.$this->type");
 		}
-		if (file_exists("$dir/$this->name.highlight.$this->type")) {
-			unlink("$dir/$this->name.highlight.$this->type");
+		if (fs_file_exists("$dir/$this->name.highlight.$this->type")) {
+			fs_unlink("$dir/$this->name.highlight.$this->type");
 		}
-		unlink("$dir/$this->name.$this->type");
+		fs_unlink("$dir/$this->name.$this->type");
 	}
 
 	function getTag($dir, $full=0, $size=0, $attrs="") {
@@ -113,7 +113,7 @@ class Image {
 	}
 
 	function getName($dir, $full=0) {
-		if ((!$full) && (file_exists("$dir/$this->resizedName.$this->type"))) {
+		if ((!$full) && (fs_file_exists("$dir/$this->resizedName.$this->type"))) {
 			return $this->resizedName;
 		} else {
 			return $this->name;

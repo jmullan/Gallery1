@@ -31,12 +31,12 @@ function row_choice($key, $arr) {
 
 function locateDir($filename, $extraDir="") {
 
-	if (file_exists("$extraDir/$filename")) {
+	if (fs_file_exists("$extraDir/$filename")) {
 		return $extraDir;
 	}
 
 	foreach (explode(":", getenv("PATH")) as $path) {
-		if (file_exists("$path/$filename")) {
+		if (fs_file_exists("$path/$filename")) {
 			return $path;
 		}
 	}
@@ -44,7 +44,7 @@ function locateDir($filename, $extraDir="") {
 
 function locateFile($filename) {
 	foreach (explode(":", getenv("PATH")) as $path) {
-		if (file_exists("$path/$filename")) {
+		if (fs_file_exists("$path/$filename")) {
 			return "$path/$filename";
 		}
 	}
@@ -161,18 +161,18 @@ function check_graphics($location="")
 	$dirs = array();
 	$missing = array();
 	$netpbm = array(
-		"jpegtopnm", 
-		"giftopnm", 
-		"pngtopnm", 
-		"ppmtojpeg", 
-		"ppmtogif", 
-		"pnmtopng", 
-		"pnmscale", 
-		"pnmfile",
-		"ppmquant",
-		"pnmcut",
-		"pnmrotate",
-		"pnmflip"
+		fs_executable("jpegtopnm"), 
+		fs_executable("giftopnm"), 
+		fs_executable("pngtopnm"), 
+		fs_executable("ppmtojpeg"), 
+		fs_executable("ppmtogif"), 
+		fs_executable("pnmtopng"), 
+		fs_executable("pnmscale"), 
+		fs_executable("pnmfile"),
+		fs_executable("ppmquant"),
+		fs_executable("pnmcut"),
+		fs_executable("pnmrotate"),
+		fs_executable("pnmflip")
 	);
 
 	foreach ($netpbm as $bin) {
@@ -236,7 +236,7 @@ function detect_exec_status()
 		$dir = locateDir($prog);
 		if ($dir) {
 			$file = "$dir/$prog";
-			if (is_executable($file)) {
+			if (fs_is_executable($file)) {
 				exec($file, $results, $status);
 				$count[$status]++;
 			} 

@@ -39,7 +39,7 @@ class AlbumDB {
 		$i = 0;
 		while ($i < sizeof($this->albumOrder)) {
 			$name = $this->albumOrder[$i];
-			if (is_dir("$dir/$name")) {
+			if (fs_is_dir("$dir/$name")) {
 				$album = new Album;
 				$album->load($name);
 				array_push($this->albumList, $album);
@@ -50,10 +50,10 @@ class AlbumDB {
 			}
 		}
 
-		if ($fd = opendir($dir)) {
+		if ($fd = fs_opendir($dir)) {
 			while ($file = readdir($fd)) {
 				if (!ereg("^\.", $file) && 
-				    is_dir("$dir/$file") &&
+				    fs_is_dir("$dir/$file") &&
 				    !in_array($file, $this->albumOrder)) {
 					$album = new Album;
 					$album->load($file);
@@ -72,12 +72,12 @@ class AlbumDB {
 
 		$dir = $gallery->app->albumDir;
 
-		if (is_dir("$dir/$newName")) {
+		if (fs_is_dir("$dir/$newName")) {
 			return 0;
 		}
 
-		if (is_dir("$dir/$oldName")) {
-			$success = rename("$dir/$oldName", "$dir/$newName");
+		if (fs_is_dir("$dir/$oldName")) {
+			$success = fs_rename("$dir/$oldName", "$dir/$newName");
 			if (!$success) {
 				return 0;
 			}
@@ -97,7 +97,7 @@ class AlbumDB {
 
 		$name = "album01";
 		$albumDir = $gallery->app->albumDir;
-		while (file_exists("$albumDir/$name")) {
+		while (fs_file_exists("$albumDir/$name")) {
 			$name++;
 		}
 		return $name;
@@ -188,10 +188,10 @@ class AlbumDB {
 		$success = 0;
 
 		$dir = $gallery->app->albumDir;
-		if ($fd = fopen("$dir/albumdb.dat.new", "w")) {
+		if ($fd = fs_fopen("$dir/albumdb.dat.new", "w")) {
 			fwrite($fd, serialize($this->albumOrder));
 			fclose($fd);
-			$success = rename("$dir/albumdb.dat.new", "$dir/albumdb.dat");
+			$success = fs_rename("$dir/albumdb.dat.new", "$dir/albumdb.dat");
 		}
 
 		return $success;

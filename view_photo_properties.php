@@ -88,7 +88,10 @@ $myfile="$mydir/$myname.$mytype";
 /* display exif data with jhead */
 $return = array();
 $path = $gallery->app->use_exif;
-exec("$path $myfile",$return);
+exec_wrapper(fs_convert_filename($path) .
+	     " " .
+	     fs_convert_filename($myfile),
+	     $return);
 							  
 while (list($key,$value) = each ($return)) {
 	$explodeReturn = explode(':', $value, 2);

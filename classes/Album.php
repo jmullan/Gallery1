@@ -178,14 +178,14 @@ class Album {
 			$this->fields["last_mod_time"] = time();
 		}
 
-		if (!file_exists($dir)) {
+		if (!fs_file_exists($dir)) {
 			mkdir($dir, 0777);
 		}
 
-		if ($fd = fopen("$dir/album.dat.new", "w")) {
+		if ($fd = fs_fopen("$dir/album.dat.new", "w")) {
 			fwrite($fd, serialize($this));
 			fclose($fd);
-			rename("$dir/album.dat.new", "$dir/album.dat");
+			fs_rename("$dir/album.dat.new", "$dir/album.dat");
 		}
 	}
 
@@ -199,9 +199,9 @@ class Album {
 		}
 
 		/* Delete data file */
-		if (file_exists("$dir/album.dat")) {
+		if (fs_file_exists("$dir/album.dat")) {
 			$safe_to_scrub = 1;
-			unlink("$dir/album.dat");
+			fs_unlink("$dir/album.dat");
 		}
 
 		/* 
@@ -216,10 +216,10 @@ class Album {
 		 * directory.
 		 */
 		if ($safe_to_scrub) {
-			if ($fd = opendir($dir)) {
+			if ($fd = fs_opendir($dir)) {
 				while (($file = readdir($fd)) != false) {
-					if (!is_dir("$dir/$file")) {
-						unlink("$dir/$file");
+					if (!fs_is_dir("$dir/$file")) {
+						fs_unlink("$dir/$file");
 					}
 				}
 				closedir($fd);
@@ -264,7 +264,7 @@ class Album {
 			}
 		}
 		/* Get the file */
-		copy($file, "$dir/$name.$tag");
+		fs_copy($file, "$dir/$name.$tag");
 
 		/* Do any preprocessing necessary on the image file */
 		preprocessImage($dir, "$name.$tag");
@@ -273,8 +273,8 @@ class Album {
 		$item = new AlbumItem();
 		$err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $pathToThumb);
 		if ($err) {
-			if (file_exists("$dir/$name.$tag")) {
-				unlink("$dir/$name.$tag");
+			if (fs_file_exists("$dir/$name.$tag")) {
+				fs_unlink("$dir/$name.$tag");
 			}
 			return $err;
 		} else {
@@ -593,7 +593,7 @@ class Album {
 
 		// Older albums may not have this field.
 		if (!$time) {
-			$stat = stat("$dir/album.dat");
+			$stat = fs_stat("$dir/album.dat");
 			$time = $stat[9];
 		}
 
