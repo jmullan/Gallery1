@@ -557,7 +557,7 @@ $gallery->html_wrap['imageWidth'] = $width;
 $gallery->html_wrap['imageHeight'] = $height;
 $gallery->html_wrap['imageHref'] = $href;
 $gallery->html_wrap['imageTag'] = $photoTag;
-if ($gallery->user->canViewFullImages($gallery->album)) {
+if ($fitToWindow && $gallery->user->canViewFullImages($gallery->album)) {
 	$gallery->html_wrap['attr'] = 'onclick="sizeChange.toggle()"';
 }
 $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
