@@ -871,7 +871,7 @@ function _getStyleSheetLink($filename, $skinname='') {
 	    } elseif (fs_file_exists($sheetdefaultpath) && !broken_line($sheetdefaultpath)) {
 		$url = "$base/$sheetdefaultpath";
 	    } else {
-		$url = "$base/$sheetdefaultname.default";
+		$url = "$base/$sheetdefaultname";
 	    }
 	}
 
