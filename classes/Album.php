@@ -347,8 +347,13 @@ class Album {
 			 * v1.2.1 and prior had a bug where high volume albums
 			 * would lose album.dat files.  Deal with that by loading
 			 * the backup file silently.
+			 *
+			 * Oh, and Win32 has a bug (?) where you can't
+			 * rename a file to album.dat.bak so win32 now
+			 * uses album.bak for it's backup file names.
 			 */
-			if (!$this->loadFromFile("$dir/album.dat.bak")) {
+			if (!$this->loadFromFile("$dir/album.dat.bak") &&
+			    !$this->loadFromFile("$dir/album.bak")) {
 				/* Uh oh */
 				return 0;
 			}

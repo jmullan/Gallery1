@@ -66,6 +66,14 @@ function fs_opendir($path) {
 function fs_rename($oldname, $newname) {
 	$oldname = fs_import_filename($oldname, 0);
 	$newname = fs_import_filename($newname, 0);
+
+	/* 
+	 * It appears that win32 doesn't like it when you rename 
+	 * a file to end with ".dat.bak".  Why?  This is very 
+	 * annoying.
+	 */
+	$newname = str_replace(".dat.bak", ".bak", $newname);
+
 	debug("Rename $oldname -> $newname");
 	if (file_exists("$newname.bak")) {
 		unlink("$newname.bak");
