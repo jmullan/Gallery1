@@ -102,8 +102,8 @@ if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
 
 	/* Load their user object with their username as the key */
 	if ($gallery->session->username) {
-		$gallery->user = $gallery->userDB->
-			getUserByUsername($gallery->session->username);
+		$gallery->user = 
+			$gallery->userDB->getUserByUsername($gallery->session->username);
 	}
 }
 
