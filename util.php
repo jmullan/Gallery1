@@ -530,8 +530,10 @@ function errorRow($key) {
 
 function drawSelect($name, $array, $selected, $size, $attrList=array()) {
 
-    	foreach ($attrList as $key => $value) {
-		$attrs .= " $key=\"$value\"";
+	if (!empty($attrList)) {
+	    	foreach ($attrList as $key => $value) {
+			$attrs .= " $key=\"$value\"";
+		}
 	}
 
 	$buf = "";
