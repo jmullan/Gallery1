@@ -37,6 +37,7 @@ class AlbumDB {
 
 		$this->albumList = array();
 		$i = 0;
+		$changed = 0;
 		while ($i < sizeof($this->albumOrder)) {
 			$name = $this->albumOrder[$i];
 			if (fs_is_dir("$dir/$name")) {
@@ -47,6 +48,7 @@ class AlbumDB {
 			} else {
 				/* Couldn't find the album -- delete it from order */
 				array_splice($this->albumOrder, $i, 1);
+				$changed = 1;
 			}
 		}
 
@@ -54,17 +56,21 @@ class AlbumDB {
 			while ($file = readdir($fd)) {
 				if (!ereg("^\.", $file) && 
 				    fs_is_dir("$dir/$file") &&
+				    strcmp($file, "_vti_cnf") &&
 				    !in_array($file, $this->albumOrder)) {
 					$album = new Album;
 					$album->load($file);
 					array_push($this->albumList, $album);
 					array_push($this->albumOrder, $file);
+					$changed = 1;
 				}
 			}
 			closedir($fd);
 		}
 
-		$this->save();
+		if ($changed) {
+			$this->save();
+		}
 	}
 
 	function renameAlbum($oldName, $newName) {
