@@ -421,7 +421,9 @@ function rotate_image($src, $dest, $target) {
 		$out = $dest;
 	}
 
-	if (isset ($gallery->app->use_jpegtran)) {
+        $pathinfo = pathinfo ($src);
+
+	if (isset ($gallery->app->use_jpegtran) && ($pathinfo['extension'] == "jpg" || $pathinfo['extension'] == "jpeg")) {
 		if (!strcmp($target, "90")) {
 			$args = "-rotate 270";
 		} else if (!strcmp($target, "-90")) {
