@@ -68,9 +68,9 @@ if ($album) {
 if (isset($index)) {
 	$id = $album->getPhotoId($index);
 	echo ""
-		."<a href=" .makeAlbumUrl($album->fields["name"], $id) .">"
-		.$album->getThumbnailTag($index)
-		."</a>";
+		. "<center><a href=" . makeAlbumUrl($album->fields["name"], $id) . ">"
+		. $album->getThumbnailTag($index)
+		. "</a></center>";
 
 	$caption = $album->getCaption($index);
 	if ($caption) {
