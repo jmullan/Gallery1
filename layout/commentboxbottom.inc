@@ -2,7 +2,6 @@
 {
 ?>
 </td>
-<td bgcolor="<?=$commentbox["bordercolor"] ?>"><img src="<?= $GALLERY_BASEDIR ?>/images/pizel_trans.gif" width="1" height="1"></td>
 </tr>
 </table>
 <?
@@ -14,12 +13,8 @@
 ?>
 <br>
 </td>
-<td width="20"></td>
+<td width="20">&nbsp;</td>
 <?}?>
-<td bgcolor="<?=$commentbox["bordercolor"]?>"><img src="<?= $GALLERY_BASEDIR ?>/images/pizel_trans.gif" width="1" height="1"></td>
-</tr>
-<tr>
-<td colspan="6" bgcolor="<?=$commentbox["bordercolor"]?>"><img src="<?= $GALLERY_BASEDIR ?>/images/pizel_trans.gif" width="1" height="1"></td>
 </tr>
 </table>
 <br>

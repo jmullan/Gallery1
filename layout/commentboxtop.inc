@@ -1,18 +1,18 @@
 <table width=100% border="0" cellspacing="0" cellpadding=0>
 <tr>
-<td colspan="6" bgcolor="<?=$commentbox["bordercolor"] ?>"><img src="<?= $GALLERY_BASEDIR ?>/images/pizel_trans.gif" width="1" height="1"></td>
+<td colspan="2"><img src="<?= $GALLERY_BASEDIR ?>/images/pixel_trans.gif" width="1" height="1"></td>
+<td colspan="2" bgcolor="<?=$commentbox["bordercolor"] ?>"><img src="<?= $GALLERY_BASEDIR ?>/images/pixel_trans.gif" width="1" height="1"></td>
 </tr>
 <tr>
-<td bgcolor="<?=$commentbox["bordercolor"] ?>"><img src="<?= $GALLERY_BASEDIR ?>/images/pizel_trans.gif" width="1" height="1"></td>
 <?if ($embeddedAlbum == 1)
 {
     ?>
-    <td width="150"align="center" ><a href="<?= makeAlbumUrl($myAlbumName)?>"><?= $myHighlightTag ?></a></td>
-    <td width="20"></td>
+    <td width="150" valign="top" ><a href="<?= makeAlbumUrl($myAlbumName)?>"><?= $myHighlightTag ?></a></td>
+    <td width="20">&nbsp;</td>
     <td valign="top">
     <table width=100% height=95% border="0" cellspacing="0" cellpadding=0 valign="top">
     <tr>
-    <td valign="top" width="3000"><span class="title"><a href="<?= makeAlbumUrl($myAlbumName) ?>"><?=$myAlbum->fields["title"] ?></a></span>
+    <td valign="top" width="3000"><span class="title">Album: <a href="<?= makeAlbumUrl($myAlbumName) ?>"><?=$myAlbum->fields["title"] ?></a></span>
     <?if ($gallery->album->isHidden($i)) 
     {
         echo "  (hidden)";
@@ -48,19 +48,18 @@
 else
 {
 ?>
-<td width="150"align="center" ><a href="<?= makeAlbumUrl($gallery->session->albumName, $id) ?>"><?= $gallery->album->getThumbnailTag($i) ?></a></td>
-<td width="20"></td>
+<td width="150" valign="top" ><a href="<?= makeAlbumUrl($gallery->session->albumName, $id) ?>"><?= $gallery->album->getThumbnailTag($i) ?></a></td>
+<td width="20">&nbsp;</td>
 <td valign="top">
 <?if ($gallery->album->isHidden($i)) 
 {
     echo "(hidden)";
 }?>
-<br/>
-<table width=95% border="0" cellspacing="0" cellpadding=0>
+<table width=100% border="0" cellspacing="0" cellpadding=0>
 <tr>
-<td colspan="5" bgcolor="<?=$commentbox["bordercolor"] ?>"><img src="<?= $GALLERY_BASEDIR ?>/images/pizel_trans.gif" width="1" height="1"></td>
+<td colspan="2"><img src="<?= $GALLERY_BASEDIR ?>/images/pixel_trans.gif" width="1" height="1"></td>
+<td colspan="2" bgcolor="<?=$commentbox["bordercolor"] ?>"><img src="<?= $GALLERY_BASEDIR ?>/images/pixel_trans.gif" width="1" height="1"></td>
 </tr>
 <tr>
-<td bgcolor="<?=$commentbox["bordercolor"] ?>"><img src="<?= $GALLERY_BASEDIR ?>/images/pizel_trans.gif" width="1" height="1"></td>
 <td>
 <?}?>

@@ -114,6 +114,8 @@ if ($gallery->album->fields["textcolor"]) {
 <body> 
 <? } 
 includeHtmlWrap("album.header");
+$adminText = "<span class=\"admin\">Comments for this Album</span>";
+$adminCommands = "<span class=\"admin\"";
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	if ($gallery->user->isLoggedIn()) {
 	        $adminCommands .= "<a href=" .
