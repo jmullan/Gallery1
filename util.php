@@ -2636,9 +2636,9 @@ function available_frames($description_only=false) {
 			'solid' => _("Solid"), 
 			);
 	$descriptions="<dl>" .
-		"<dt>". _("None")  . "</dt><dd>". _("No frames")."</dd>" .
-		"<dt>". _("Dots")  . "</dt><dd>". _("Just a simple dashed border around the thumb.")."</dd>" .
-		"<dt>". _("Solid") . "</dt><dd>". _("Just a simple solid border around the thumb.")."</dd>" ;
+		"<dt>" . popup_link(_("None"), "frame_test.php?frame=none", 1)  . "</dt><dd>". _("No frames")."</dd>" .
+		"<dt>" . popup_link(_("Dots"), "frame_test.php?frame=dots", 1)  . "</dt><dd>". _("Just a simple dashed border around the thumb.")."</dd>" .
+		"<dt>" . popup_link(_("Solid"), "frame_test.php?frame=solid", 1) . "</dt><dd>". _("Just a simple solid border around the thumb.")."</dd>" ;
 	$dir = $GALLERY_BASE . '/html_wrap/frames';
        	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
 	       	while ($file = readdir($fd)) {
@@ -2655,7 +2655,7 @@ function available_frames($description_only=false) {
 					$description=$file;
 				}
 				$opts[$file]=$name;
-				$descriptions.="\n<dt>$name</dt><dd>$description</dd>";
+				$descriptions.="\n<dt>" . popup_link($name, "frame_test.php?frame=$file", 1) . "</a></dt><dd>$description</dd>";
 			} else {
 				if (false && isDebugging()) 
 				{
