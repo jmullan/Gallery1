@@ -31,7 +31,12 @@
 		400,
 		120,
 		"com.gallery.GalleryRemote.GRApplet",
-		"java/GalleryRemoteApplet.jar,java/GalleryRemoteAppletMini.jar,java/GalleryRemoteHTTPClient.jar,java/applet_img.jar,java/metadata-extractor-2.1.jar,java/JSX1.0.7.4.jar",
+                $gallery->app->photoAlbumURL . "/java/GalleryRemoteApplet.jar," .
+                        $gallery->app->photoAlbumURL . "/java/GalleryRemoteAppletMini.jar," .
+                        $gallery->app->photoAlbumURL . "/java/GalleryRemoteHTTPClient.jar," .
+                        $gallery->app->photoAlbumURL . "/java/applet_img.jar," .
+                        $gallery->app->photoAlbumURL . "/java/metadata-extractor-2.1.jar," .
+                        $gallery->app->photoAlbumURL . "/java/JSX1.0.7.4.jar",
 		$gallery->album->fields["name"],
 		array(),
 		array("toSysOut" => "true"),

@@ -70,7 +70,9 @@ function slideshow_image() {
 		300,
 		430,
 		"com.gallery.GalleryRemote.GRAppletSlideshow",
-		"java/GalleryRemoteAppletMini.jar,java/GalleryRemoteHTTPClient.jar,java/applet_img.jar",
+                $gallery->app->photoAlbumURL . "/java/GalleryRemoteAppletMini.jar," . 
+                        $gallery->app->photoAlbumURL . "/java/GalleryRemoteHTTPClient.jar," . 
+                        $gallery->app->photoAlbumURL . "/java/applet_img.jar",
 		$gallery->album->fields["name"],
 		array(
 			"slideshowLowRez" => "true",
