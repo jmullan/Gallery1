@@ -149,9 +149,9 @@ if (!strcmp($cmd, "fetch-albums")) {
     }
 
     echo "</select><br>\n";
-    echo "</td></tr><tr><td align=\"center\">\n";
+    echo "</td></tr><tr><td align=center>\n";
     echo "<input id='setCaption' type=checkbox name=setCaption checked value=1>". _("Use filenames as captions") ."<br><br>\n";
-    echo "<input type=\"button\" value='" . _("Create New Album") ."' onclick=\"folder.cmd.value='new-album';folder.submit();\">\n";
+    echo "<input type=\"button\" value='" . _("Create New Album") ."' onClick=\"folder.cmd.value='new-album';folder.submit();\">\n";
     echo "</td></tr>\n";
     echo "</table>\n";
     echo "<input type=\"hidden\" name=\"cmd\" value=\"select-album\">\n";
@@ -276,13 +276,13 @@ if (!strcmp($cmd, "new-album")) {
                 echo "<center>";
                 echo "<form id='folder'>";
                 echo "<table border=0>";
-                echo "<tr><td align=\"center\">\n";
+                echo "<tr><td align=center>\n";
 		echo "<span class='popuphead'>". _("Create New Album") ."</span>";
 		echo "<span class='popup'>";
                 echo "<br><br>". _("Enter New Album Title") .":  ";
                 echo "<input id='newAlbumTitle' type='text' name=newAlbumTitle value=\"$newAlbumTitle\" size=25><br>\n";
                 echo "</td></tr>\n";
-                echo "<tr><td align=\"center\">\n";
+                echo "<tr><td align=center>\n";
                 echo "<br>" . _("Select Parent Album") .":<br><br>\n";
                 echo "<select id='album' name='set_albumName' size=10 width=40>";
 

@@ -44,7 +44,7 @@ if ($gallery->session->albumListPage > $maxPages) {
 	$gallery->session->albumListPage = $maxPages;
 }
 
-$pixelImage = '<img src="' . getImagePath('pixel_trans.gif') . '" width="1" height="1" alt="pixel_trans" />';
+$pixelImage = '<img src="' . getImagePath('pixel_trans.gif') . '" width="1" height="1" alt="pixel_trans">';
 $borderColor = $gallery->app->default["bordercolor"];
 
 $navigator["page"] = $gallery->session->albumListPage;
@@ -108,7 +108,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 							'name'		=> 'search_form',
 							'method'	=> 'post'));
 		echo '<span class="search">'. _("Search") .': </span>';
-		echo '<input style="font-size:10px;" type="text" name="searchstring" value="" size="25" />';
+		echo '<input style="font-size:10px;" type="text" name="searchstring" value="" size="25">';
 		echo '</form></td>';
 	}
 ?>
@@ -145,7 +145,7 @@ $adminCommands = "<span class=\"admin\">";
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 
 	$displayName = $gallery->user->displayName();
-	$adminCommands .= sprintf(_("Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br />";
+	$adminCommands .= sprintf(_("Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br>";
 }
 
 if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
@@ -217,11 +217,11 @@ if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
     echo "\n<center><div style=\"margin:3px; width:60%; border-style:outset; border-width:5px; border-color:red\">";
     echo "\n<p class=\"head\"><u>". _("Attention Gallery Administrator!") ."</u></p>";
 
-    echo sprintf(_("%s has detected the following %d invalid album(s) in your albums directory<br />(%s):"),
+    echo sprintf(_("%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"),
 		    Gallery(), sizeof($albumDB->brokenAlbums), $gallery->app->albumDir);
     echo "\n<p>";
     foreach ($albumDB->brokenAlbums as $tmpAlbumName) {
-	echo "<br />$tmpAlbumName\n";
+	echo "<br>$tmpAlbumName\n";
     }
     echo "\n</p>". _("Please move it/them out of the albums directory.") ;
     echo "\n</p></div></center>\n";
@@ -229,7 +229,7 @@ if (sizeof($albumDB->brokenAlbums) && $gallery->user->isAdmin()) {
 ?>
 
 <!-- album table begin -->
-<table width="100%" border="0" cellpadding="0" cellspacing="7">
+<table width="100%" border="0" cellpadding=0 cellspacing=7>
 
 <?php
 $start = ($gallery->session->albumListPage - 1) * $perPage + 1;
@@ -290,7 +290,7 @@ for ($i = $start; $i <= $end; $i++) {
           <table cellspacing="0" cellpadding="0" border="0" class="mod_title_bg">
             <tr>
               <td class="mod_title_left"></td>
-              <td nowrap="nowrap" class="title">
+              <td nowrap class="title">
                 <?php _("title") ?>
                 <?php echo editField($gallery->album, "title", $albumURL) ?>
               </td>
@@ -333,7 +333,7 @@ for ($i = $start; $i <= $end; $i++) {
 
 		if (ereg("album[[:digit:]]+$", $albumURL)) {
 			if (!$gallery->session->offline) {
-				echo '<br /><span class="error">' .
+				echo '<br><span class="error">' .
 				_("Hey!") .
 				sprintf(_("%s this album so that the URL is not so generic!"), 
 					popup_link(_("Rename"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i"));
@@ -343,7 +343,7 @@ for ($i = $start; $i <= $end; $i++) {
 
 		if ($gallery->album->versionOutOfDate()) {
 			if ($gallery->user->isAdmin()) {
-  				echo '<br /><span class="error">';
+  				echo '<br><span class="error">';
 				echo _("Note:  This album is out of date!") ?> <?php echo popup_link("[" . _("upgrade album") ."]", "upgrade_album.php");
 				echo '</span>';
 			}
@@ -351,7 +351,7 @@ for ($i = $start; $i <= $end; $i++) {
 	} 
 	?>
 
-  <br />
+  <br>
   <span class="fineprint">
    <?php 
 	echo sprintf(_("Last changed on %s."), $gallery->album->getLastModificationDate() );
@@ -359,7 +359,7 @@ for ($i = $start; $i <= $end; $i++) {
 	echo pluralize_n2(ngettext("This album contains one item", "This album contains %d items", $visibleItems), $visibleItems);	
 	if (!($gallery->album->fields["display_clicks"] == "no") && !$gallery->session->offline) {
 ?>
-   <br /><br /><?php
+   <br><br><?php
 	$clickCount=$gallery->album->getClicks();
 	echo sprintf(_("This album has been viewed %s since %s."),
 		pluralize_n2(ngettext("1 time", "%d times", $clickCount), $clickCount, _("0 times")),
@@ -384,7 +384,7 @@ if($gallery->app->comments_enabled == 'yes') {
   </span>
   </td>
 <?php if (!strcmp($gallery->app->showAlbumTree, "yes")) { ?>
-  <td align="left" valign="top" class="albumdesc">
+  <td align=left valign=top class="albumdesc">
    <?php echo printChildren($albumName); ?>
   </td>
 <?php } ?>

@@ -13,11 +13,11 @@
 <?php
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	$url = doCommand("delete-comment", array("index" => $index, "comment_index" => $j), "view_comments.php", array("set_albumName" => $gallery->session->albumName));
-	$buf = '<span class="admin"> <a href="#" onclick="javascript:' . popup($url, 1) . '">[' . _("delete comment") .']</a></span>';
+	$buf = '<span class="admin"> <a href="#" onClick="javascript:' . popup($url, 1) . '">[' . _("delete comment") .']</a></span>';
 	echo "<tr><td>$buf</td></tr>";
 }
 ?>
 <tr>
-<td width=100%><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="6" alt="&nbsp;" /></td>
+<td width=100%><img src="<?php echo getImagePath('pixel_trans.gif') ?>" width="1" height="6" alt=""></td>
 </tr>
 </table>

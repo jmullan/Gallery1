@@ -295,8 +295,8 @@ function slideshow_controlPanel() {
     <td height="25" width="1"><?php echo $pixelImage ?></td>
     <td width="5000" align="left" valign="middle">
     <span class=admin>
-    &nbsp;<a class="admin" href="#" onclick='stop(); return false;'>[<?php echo _("stop") ?>]</a>
-    <a class="admin" href="#" onclick='play(); return false;'>[<?php echo _("play") ?>]</a>
+    &nbsp;<a class="admin" href="#" onClick='stop(); return false;'>[<?php echo _("stop") ?>]</a>
+    <a class="admin" href="#" onClick='play(); return false;'>[<?php echo _("play") ?>]</a>
 <?php
 if ($slide_dir == 1) {
     echo "<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, -1) 

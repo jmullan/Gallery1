@@ -145,7 +145,7 @@ if ($searchstring) {
 	
 	}
 	if (!$albumMatch) {
-		echo "<tr><td valign=\"top\"><span class=desc>". _("No Album Matches") .".</span></td></tr>";
+		echo "<tr><td valign=top><span class=desc>". _("No Album Matches") .".</span></td></tr>";
 	}
 	echo "</table><br>";
 
@@ -236,7 +236,7 @@ if ($searchstring) {
 		}
 	}
 	if (!$photoMatch) {
-		echo "<tr><td valign=\"top\"><span class=desc>" . _("No Photo Matches") .".</span></td></tr>";
+		echo "<tr><td valign=top><span class=desc>" . _("No Photo Matches") .".</span></td></tr>";
 	}
 	echo "</table>";
 	

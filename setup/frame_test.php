@@ -121,7 +121,7 @@
            if ($col) {
               print "<td class=\"tabspacer\">&nbsp;</td>\n";
            }
-           print "<td class=\"$tab\" id=\"tab_group_$key\" onclick=\"section_tabs.toggle('group_$key')\">".$names[$key]."</td>\n";
+           print "<td class=\"$tab\" id=\"tab_group_$key\" onClick=\"section_tabs.toggle('group_$key')\">".$names[$key]."</td>\n";
            $count++;
            $col++;
            if ($col > 3) {
@@ -168,7 +168,7 @@
    }
 ?>
 <p align="center">
-	<input type="button" name="close" value="<?php echo _("Close Window") ?>" onclick="window.close()">
+	<input type="button" name="close" value="<?php echo _("Close Window") ?>" onClick="window.close()">
 </p>
 </body>
 </html>

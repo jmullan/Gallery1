@@ -45,18 +45,18 @@ $lastPage = $navigator["allIds"][$navcount-1];
 #-- 'first' and 'previous button cell ---
 if ($navpage > 0) {
 	$fpContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $firstPage) .'">';
-	$fpContent .='<img src="'. $fpImgUrl . '" border="0" width="27" height="11" alt="'. $fpAltText .'" title="'. $fpAltText .'" />';
+	$fpContent .='<img src="'. $fpImgUrl . '" border="0" width="27" height="11" alt="'. $fpAltText .'" title="'. $fpAltText .'">';
 	$fpContent .='</a>';
 
 	$prevPage = $navigator["allIds"][$navpage-1];
 	$ppContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $prevPage).'">';
-	$ppContent .='<img src="'. $ppImgUrl . '" border="0" width="72" height="11" alt="'. $ppAltText .'" title="'. $ppAltText .'" />';
+	$ppContent .='<img src="'. $ppImgUrl . '" border="0" width="72" height="11" alt="'. $ppAltText .'" title="'. $ppAltText .'">';
 	$ppContent .='</a>';
 
 	$pClass='borderright';
 } else {
-	$fpContent='&nbsp;';
-	$ppContent='&nbsp;';
+	$fpContent='&nbsp';
+	$ppContent='&nbsp';
 
 	$pClass='';
 }
@@ -69,17 +69,17 @@ if ($navpage < $navcount-1) {
 	
 	$nextPage = $navigator["allIds"][$navpage+1];
 	$npContent ='<a href="'. makeAlbumUrl($gallery->session->albumName, $nextPage) .'">';
-	$npContent .='<img src="'. $npImgUrl . '" border="0" width="72" height="11" alt="'. $npAltText .'" title="'. $npAltText .'" />';
+	$npContent .='<img src="'. $npImgUrl . '" border="0" width="72" height="11" alt="'. $npAltText .'" title="'. $npAltText .'">';
 	$npContent .='</a>';
 
 	$lpContent ='<a href="'. makeAlbumUrl($gallery->session->albumName, $lastPage) .'">';
-	$lpContent .='<img src="'. $lpImgUrl . '" border="0" width="27" height="11" alt="'. $lpAltText .'" title="'. $lpAltText .'" />';
+	$lpContent .='<img src="'. $lpImgUrl . '" border="0" width="27" height="11" alt="'. $lpAltText .'" title="'. $lpAltText .'">';
 	$lpContent .='</a>';
 
 	$nClass='borderleft';
 } else {   
-        $npContent='&nbsp;';
-        $lpContent='&nbsp;';
+        $npContent='&nbsp';
+        $lpContent='&nbsp';
 
         $nClass='';
 } 

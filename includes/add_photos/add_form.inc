@@ -116,7 +116,7 @@ if (!isset($metaboxes)) {
 <input type="radio" name="setCaption" value="2" id="setCaption2"><label for="setCaption2"><?php echo _("Use file creation date stamp as caption if no caption is specified.") ?></label>
 
 <p align="center">
-<input type="button" value="<?php echo _("Upload Now") ?>" onclick='parent.opener.showProgress(); document.upload_form.submit()'>
+<input type="button" value="<?php echo _("Upload Now") ?>" onClick='parent.opener.showProgress(); document.upload_form.submit()'>
 <input type="submit" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </p>
 

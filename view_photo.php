@@ -409,7 +409,7 @@ if (!$gallery->album->isMovie($id)) {
 		);
 		/* display a <select> menu if more than one option */
 		if ($numServices > 1) {
-			$selectCommand = '<select name="print_services" class="admin" onchange="doPrintService()">';
+			$selectCommand = '<select name="print_services" class="admin" onChange="doPrintService()">';
 			$selectCommand .= "<option value=''>&laquo; select service &raquo;</option>";
 			foreach ($printServices as $name => $data) {
 				/* skip if it's not actually selected */
@@ -445,7 +445,7 @@ if (!$gallery->album->isMovie($id)) {
 				$printShutterflyForm = true;
 				break;
 			}
-			$adminCommands .= "<a class=\"admin\" href=\"#\" onclick=\"doPrintService('$name');\">[" . sprintf(_('print this photo with %s'), $fullName[$name]) . ']</a>';
+			$adminCommands .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" . sprintf(_('print this photo with %s'), $fullName[$name]) . ']</a>';
 		}
 	}
 ?>

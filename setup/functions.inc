@@ -1536,7 +1536,7 @@ function makeSectionTabs($array) {
 		else { 
 			$class = 'class="tab"';
 		}
-		echo "\n\t<td $class id=\"tab_". $cell['name'] ."\" onclick=\"section_tabs.toggle('" . $cell['name'] ."')\">". $cell['title'] ."</td>";
+		echo "\n\t<td $class id=\"tab_". $cell['name'] ."\" onClick=\"section_tabs.toggle('" . $cell['name'] ."')\">". $cell['title'] ."</td>";
 		echo "\n\t<td class=\"tabspacer\">&nbsp;</td>";
 		if ($tabcount %6 ==0) {
 			echo "\n</tr>\n</table>";
