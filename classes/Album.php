@@ -1096,7 +1096,7 @@ class Album {
 	       	}
 
 		/* auto-rotate the photo if needed */
-	       	if ($gallery->app->autorotate == 'yes' && $gallery->app->use_exif && empty($item->extraFields['autoRotated'])) {
+	       	if ($gallery->app->autorotate == 'yes' && $gallery->app->use_exif) {
 		       	$index = $this->numPhotos(1);
 		       	$exifData = $this->getExif($index);
 		       	if (isset($exifData['Orientation']) && $orientation = trim($exifData['Orientation'])) {
@@ -1127,8 +1127,7 @@ class Album {
 				       	$rotate = 0;
 			       	}
 			       	if ($rotate) {
-				       	$this->rotatePhoto($index, $rotate);
-					$item->extraFields['autoRotated'] = true;
+				       	$this->rotatePhoto($index, $rotate, true);
 				       	processingMsg("- ". _("Photo auto-rotated/transformed"));
 			       	}
 		       	}
@@ -1577,11 +1576,10 @@ class Album {
 		$photo->setKeywords($keywords);
         }
 
-	function rotatePhoto($index, $direction) {
+	function rotatePhoto($index, $direction, $clearexifrotate=false) {
 		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);
-		$retval = $photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"], $this);
-		$photo->extraFields['autoRotated'] = true;
+		$retval = $photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"], $this, $clearexifrotate);
 		if (!$retval) {
 			return $retval;
 		}

@@ -189,27 +189,26 @@ class AlbumItem {
 		    }
 		}
 
-		if ($this->version < 29) {
-			if ($gallery->app->autorotate == 'yes' && !empty($gallery->app->use_exif)) {
-				$this->extraFields['autoRotated'] = true;
-			}
-		}
-		
-
 		// Use TimeStamp for capture Date instead of assoziative Array
-
 		if ($this->version < 32) {
-		if (isset($this->itemCaptureDate)) {
+			if (isset($this->itemCaptureDate)) {
                                 $this->itemCaptureDate = mktime(
-                                        $this->itemCaptureDate['hours'],
-                                        $this->itemCaptureDate['minutes'],
-                                        $this->itemCaptureDate['seconds'],
+					$this->itemCaptureDate['hours'],
+					$this->itemCaptureDate['minutes'],
+					$this->itemCaptureDate['seconds'],
                                         $this->itemCaptureDate['mon'],
-                                        $this->itemCaptureDate['mday'],
-                                        $this->itemCaptureDate['year']
-                                        );
+					$this->itemCaptureDate['mday'],
+					$this->itemCaptureDate['year']
+				);
+				$changed = 1;
                         }
                 }
+
+		/* autoRotated field depricated as of 1.5-cvs-b258 */
+		if ($this->version < 33 && !empty($this->extraFields['autoRotated'])) {
+			unset($this->extraFields['autoRotated']);
+			$changed = 1;
+		}
 
 		if ($this->image) {
 			if ($this->image->integrityCheck($dir)) {
@@ -454,12 +453,17 @@ class AlbumItem {
 		return $im->isResized();
 	}
 
-	function rotate($dir, $direction, $thumb_size, &$album) {
+	function rotate($dir, $direction, $thumb_size, &$album, $clearexifrotate=false) {
 		global $gallery;
 
 		$name = $this->image->name;
 		$type = $this->image->type;
 		$retval = rotate_image("$dir/$name.$type", "$dir/$name.$type", $direction, $type);
+		if ($clearexifrotate && isset($gallery->app->use_exif) && ($type === 'jpg' || $type === 'jpeg')) {
+		    $path = $gallery->app->use_exif;
+		    exec_internal(fs_import_filename($path, 1) . " -norot '$dir/$name.$type'");
+		}
+
 		if (!$retval) {
 			return $retval;
 		}
@@ -468,6 +472,11 @@ class AlbumItem {
 
 		if ($this->isResized()) {
 			rotate_image("$dir/$name.sized.$type", "$dir/$name.sized.$type", $direction, $type);
+			if ($clearexifrotate && isset($gallery->app->use_exif) && ($type === 'jpg' || $type === 'jpeg')) {
+			    $path = $gallery->app->use_exif;
+			    exec_internal(fs_import_filename($path, 1) . " -norot '$dir/$name.sized.$type'");
+			}
+
 			list($w, $h) = getDimensions("$dir/$name.sized.$type");
 			$this->image->setDimensions($w, $h);	
 		} else {

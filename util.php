@@ -451,6 +451,7 @@ function resize_image($src, $dest, $target=0, $target_fs=0, $keepProfiles=0) {
 	}
 
 	$regs = getimagesize($src);
+	echo $src;
 	if ($regs[2] !== 2 && $regs[2] !== 3) {
 		$target_fs = 0; // can't compress other images
 	}
@@ -2079,7 +2080,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
 				$temp_files[$newFile]=1;
 			}
 		    
-			processingMsg("<p>- ". sprintf(_("Adding %s"),$name));
+			processingMsg("<p>- ". sprintf(_("Adding %s"), $mangledFilename));
 
 			/* What should the caption be, if no caption was given by user ?
 			** See captionOptions.inc.php for options

@@ -32,14 +32,8 @@ if (empty($gallery->album) || !$gallery->user->canReadAlbum($gallery->album)) {
         header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
-if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
-	header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName, $id));
-	return;
-}
-if (!isset($full)) {
-	$full=NULL;
-}
 
+// Set $index from $id
 if (isset($id)) {
 	$index = $gallery->album->getPhotoIndex($id);
 	if ($index == -1) {
@@ -50,6 +44,22 @@ if (isset($id)) {
 } else {
 	$id = $gallery->album->getPhotoId($index);
 }
+
+// Determine if user has the rights to view full-sized images
+if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
+	header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName, $id));
+	return;
+} elseif (!$gallery->album->isResized($index) && !$gallery->user->canViewFullImages($gallery->album)) {
+	header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
+	return;
+}
+
+
+if (!isset($full)) {
+	$full=NULL;
+}
+
+
 
 if (!empty($votes))
 {
