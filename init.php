@@ -72,7 +72,7 @@ $gallery->album = new Album;
 if ($gallery->session->albumName) {
 	$gallery->album->load($gallery->session->albumName);
 	if ($gallery->album->integrityCheck()) {
-		$gallery->album->save();
+		$gallery->album->save(0);
 	}
 }
 ?>
