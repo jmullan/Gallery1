@@ -348,6 +348,8 @@ foreach ($constants as $key => $val) {
 /*
  * In NetPBM 9.19, they renamed "ppmtojpeg" to "pnmtojpeg".  !@#$%
  *
+ * In NetPBM 10.21 (March 2004), they renamed "pnmcomp" to "pamcomp".
+ *
  * Don't bother if we are configuring for ImageMagick.
  */
 if (!strcmp($graphtool, "NetPBM") && empty($graphtest['pnmDir'])) {
@@ -356,12 +358,21 @@ if (!strcmp($graphtool, "NetPBM") && empty($graphtest['pnmDir'])) {
          * Assume whatever they entered is correct and hope for the best
 	 */
 	if (inOpenBasedir($graphpath)) {
+		$pnmtojpeg = $gallery->session->configForm->pnmtojpeg;
 		if (!fs_file_exists(fs_executable($graphpath . "/" . $pnmtojpeg))) {
 			$error++;
 			$gallery->session->configData .= error_row_wrap(gallery_error(
 				sprintf(_("Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
 					"<i>$graphpath/$pnmtojpeg</i>",
 					($pnmtojpeg == "pnmtojpeg" ? "ppmtojpeg" : "pnmtojpeg"))));
+		}
+		$pnmcomp = $gallery->session->configForm->pnmcomp;
+		if (!fs_file_exists(fs_executable($graphpath . "/" . $pnmcomp))) {
+			$error++;
+			$gallery->session->configData .= error_row_wrap(gallery_error(
+				sprintf(_("Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
+					"<i>$graphpath/$pnmcomp</i>",
+					($pnmcomp == "pnmcomp" ? "pamcomp" : "pnmcomp"))));
 		}
 	}
 }

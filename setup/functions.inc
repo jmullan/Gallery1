@@ -463,12 +463,13 @@ function check_graphics($location="", $graphtool = "") {
 	);
 
 	$fallback = array(
-		fs_executable("pnmtojpeg") => fs_executable("ppmtojpeg")
+		fs_executable("pnmtojpeg") => fs_executable("ppmtojpeg"),
+		fs_executable("pnmcomp")   => fs_executable("pamcomp")
 	);
 
 	$optional = array(
 		fs_executable("pnmcomp") => 
-			_("Without pnmcomp gallery will not be able to watermark images, except you use ImageMagick and have the composite binary installed."),
+			_("Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
 	);
 	$missing_optional = 0;
 
@@ -536,7 +537,7 @@ function check_graphics_im($location="", $graphtool="") {
 	$warn = array();
 
 	if (!strcmp($graphtool, "NetPBM")) {
-		$success[] = "ImageMagick not being used in this installation.";
+		$success[] = _("ImageMagick not being used in this installation.");
 	    	return array($success, $fail);
 	}
 

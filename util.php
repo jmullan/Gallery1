@@ -792,7 +792,6 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
    switch($gallery->app->graphics)
    {
    case "ImageMagick":
-      //$args = "-geometry +".$wmAlignX."+"."$wmAlignY -stegano 1 $overlayFile $src $out";
       $args = "-geometry +".$wmAlignX."+"."$wmAlignY $overlayFile $src $out";
       break;
    case "NetPBM":
@@ -817,7 +816,7 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
       exec_wrapper(ImCmd("composite", $args));
       break;
    case "NetPBM":
-      exec_wrapper(toPnmCmd($src) ." | ". NetPBM("pnmcomp", $args) ." | " . fromPnmCmd($out));
+      exec_wrapper(toPnmCmd($src) ." | ". NetPBM($gallery->app->pnmcomp, $args) ." | " . fromPnmCmd($out));
       break;
    }
 

@@ -171,6 +171,7 @@ $binaries = array("giftopnm",
 		  "ppmquant",
 		  "ppmtogif",
 		  $gallery->app->pnmtojpeg,
+		  $gallery->app->pnmcomp,
 	    );
 
 foreach ($binaries as $bin) {

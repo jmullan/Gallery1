@@ -45,7 +45,8 @@ if ($locale_check == NULL) {
 $netpbm_check=check_graphics();
 $IM_check=check_graphics_im();
 
-if ( isset($netpbm_check[2]['pnmcomp']) && isset($IM_check[2]['composite']) ) {
+/* If all watermarking/overlay applications are missing */
+if ( isset($netpbm_check[2]['pnmcomp']) && isset($netpbm_check[2]['pamcomp']) && isset($IM_check[2]['composite']) ) {
 	$enablewatermark = "no";
 } else {
 	$enablewatermark = "yes";
@@ -398,6 +399,12 @@ $constants =  array_merge(
 		'desc' => _("This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."),
 		'choices' => array('pnmtojpeg' => "pnmtojpeg", 'ppmtojpeg' => "ppmtojpeg"),
 		'value' => "pnmtojpeg"
+	),
+	'pnmcomp' => array(
+		'prompt' => _("PNM Composite (Overlay)"),
+		'desc' => _("This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."),
+		'choices' => array('pnmcomp' => "pnmcomp", 'pamcomp' => "pamcomp"),
+		'value' => "pnmcomp",
 	),
 	'ImPath' => array(
 		'optional' => 1,
