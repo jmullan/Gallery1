@@ -1826,22 +1826,20 @@ function initLanguage() {
 		}
 	}
 
-	// If we have no Mode, use Browserlanguage
-	if (!isset($gallery->app->ML_mode)) {
-		$gallery->app->ML_mode = 2;
-	}
 
 	$nls = getNLS();
 
-	/**
-	 ** We have 2+1 Ways. PostNuke, phpNuke or not Nuke
-	 ** If we are in Nuke this override the Mode
-	 **/
+	// Does the user wants a new lanuage ?
 	if (isset($HTTP_GET_VARS['newlang'])) {
 		$newlang=$HTTP_GET_VARS['newlang'];
 	}
 
-	// Check if we are in Nuke or in which Mode and set language
+	/**
+	 ** We have now 2+1 Ways. PostNuke, phpNuke or not Nuke
+	 ** Now we (try) to do the language settings
+	 ** 
+	 ** Note: ML_mode is only used when not in *Nuke
+	 **/
 
 	if (isset($GALLERY_EMBEDDED_INSIDE)) {
 		//We're in NUKE";
@@ -1870,34 +1868,40 @@ function initLanguage() {
 			$gallery->language=$nls['alias'][$gallery->nuke_language];
 		}
 	} else {
-		//We're not in Nuke
-		switch ($gallery->app->ML_mode) {
+		// We're not in Nuke
+		// If we got a ML_mode from config.php we use it
+
+		if (isset($gallery->app->ML_mode)) {
+			$ML_mode=$gallery->app->ML_mode;
+		}
+
+		switch ($ML_mode) {
 			case 1:
 				//Static Language
 				$gallery->language = $gallery->app->default_language;
-				break;
-			case 2:
-				// Use Browser Language
-				if (!empty($gallery->user) && 
-						$gallery->user->getDefaultLanguage() != "") {
-					$gallery->language = $gallery->user->getDefaultLanguage();
-				} elseif (isset($gallery->browser_language)) {
-					$gallery->language=$gallery->browser_language;
-				}
 				break;
 			case 3:
 				// Does the user want a new language ?
 				if (!empty($newlang)) {
 					// Use Alias if
-					if ($nls['alias'][$newlang]) $newlang=$nls['alias'][$newlang] ;
-					// use Language if its okay
-					// Set Language to the User selected language (if this language is defined
-					if ($nls['language'][$newlang]) {
+					if (isset($nls['alias'][$newlang])) $newlang=$nls['alias'][$newlang] ;
+					// Set Language to the User selected language (if this language is defined)
+					if (isset($nls['language'][$newlang])) {
 						$gallery->language=$newlang;
 					}
 				} elseif (isset($gallery->session->language)) {
 					//maybe we already have a language
 					$gallery->language=$gallery->session->language;
+				}
+				break;
+			default:
+				// Use Browser Language or Userlanguage 
+				// when mode 2 or any other (wrong) mode
+				if (!empty($gallery->user) && 
+						$gallery->user->getDefaultLanguage() != "") {
+					$gallery->language = $gallery->user->getDefaultLanguage();
+				} elseif (isset($gallery->browser_language)) {
+					$gallery->language=$gallery->browser_language;
 				}
 				break;
 		}

@@ -300,7 +300,7 @@ function stop() {
 }
 
 function play() {
-    changeElementText("stopOrStartText", <?php echo '"'. _("stop") .'"' ?>);
+    changeElementText("stopOrStartText", "<?php echo _("stop") ?>");
 
     onoff = 1;
     status = "<?php echo _("Slide show is running...") ?>";
@@ -310,10 +310,10 @@ function play() {
 function changeDirection() {
     if (direction == 1) {
 	direction = -1;
-	changeElementText("changeDirText", <?php echo '"'. _("forward") .'"' ?>);
+	changeElementText("changeDirText", "<?php echo _("forward direction") ?>");
     } else {
 	direction = 1;
-	changeElementText("changeDirText", <?php echo '"'. _("reverse") .'"' ?>);
+	changeElementText("changeDirText", "<?php echo _("reverse direction") ?>");
     }
     preload_next_photo();
 
@@ -518,7 +518,7 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 
 <?php
 echo "&nbsp;<a href='#' onClick='stopOrStart(); return false;'>[<span id='stopOrStartText'>". _("stop") ."</span>]</a>";
-echo "&nbsp;<a href='#' onClick='changeDirection(); return false;'>[<span id='changeDirText'>". _("reverse") ."</span> ". _("direction") ."]</a>";
+echo "&nbsp;<a href='#' onClick='changeDirection(); return false;'>[<span id='changeDirText'>". _("reverse direction") ."</span>]</a>";
 
 if ($gallery->user->canViewFullImages($gallery->album)) {
     if ($slide_full) {
