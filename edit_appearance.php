@@ -185,7 +185,7 @@ if ($gallery->app->use_exif) {
 <td><select name="display_clicks"><?php echo selectOptions($gallery->album, "display_clicks", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
-<td>Display owners name with caption
+<td>Display owners name with caption</td>
 <td><select name="item_owner_display"><?=selectOptions($gallery->album, "item_owner_display", array("yes", "no")) ?></select></td>
 </tr>
 <tr>
