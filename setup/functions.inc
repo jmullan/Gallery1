@@ -76,6 +76,10 @@ function check_htaccess()
 	return isset($GALLERY_URL);
 }
 
+function check_netpbm() {
+	return locateDir("anytopnm");
+}
+
 function check_php()
 {
 	global $MIN_PHP_MAJOR_VERSION;
