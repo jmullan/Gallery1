@@ -526,8 +526,8 @@ if ($borderwidth == 0) {
 	$borderwidth = 1;
 }
 
-if ($page == 1) {
-	echo '<div align="center"><p class="vasummary">'. $gallery->album->fields["summary"] . '</div></p>';
+if ($page == 1 && !empty($gallery->album->fields)) {
+	echo '<div align="center"><p class="vasummary">'. $gallery->album->fields["summary"] . '</p></div>';
 }
 
 if (($gallery->album->getPollType() == "rank") && canVote())
