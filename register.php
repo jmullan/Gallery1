@@ -70,8 +70,6 @@ $allowChange['create_albums'] = false;
 $allowChange["send_email"] = false;
 $allowChange["member_file"] = false;
 
-$canCreate = (!strcmp($gallery->app->selfRegCreate, 'yes') ? 1 : 0);
-
 $errorCount=0;
 if (isset($create)) {
 	// Security check.
@@ -99,7 +97,7 @@ if (isset($create)) {
 	       	$tmpUser->setUsername($uname);
 	       	$tmpUser->setPassword($password);
 	       	$tmpUser->setFullname($fullname);
-	       	$tmpUser->setCanCreateAlbums($canCreate);
+	       	$tmpUser->setCanCreateAlbums(($gallery->app->selfRegCreate == 'yes'));
 	       	$tmpUser->setEmail($email);
 	       	$tmpUser->origEmail=$email;
 	       	$tmpUser->log("self_register");
