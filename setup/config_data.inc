@@ -60,8 +60,7 @@ $checklist = array(
 		"optional" => 1,
 		"desc" => "Check to see if NetPBM is installed so that " .
 			"Gallery can manipulate images (rotate, resize, make " .
-			"thumbnails, etc).  NetPBM is way better than GD for some " .
-			"operations.",
+			"thumbnails, etc).",
 		"func" => "check_netpbm",
 		"why" => "I can't find NetPBM.  If it's installed, it's not in " .
 			  "the path of the webserver user.  If it's not installed, " .
@@ -86,7 +85,7 @@ $constants = array(
 	),
 	"editPassword" => array(
 		"desc" => "The password for the <i>admin</i> account",
-		"type" => "password",
+		"type" => "text",
 		"dont-write" => 1,
 	),
 	"tmpDir" => array(
