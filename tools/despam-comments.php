@@ -51,37 +51,40 @@ doctype();
 <?php  
         includeHtmlWrap("gallery.header");
 ?>
-<span class="admin"> [<a href="<?php print makeGalleryUrl('albums.php'); ?>"><?php print _("gallery") ?></a>] </span>
-<p align="center" class="popuphead"><H1><?php echo _("Find and remove comment spam") ?></H1></p>
+<p align="center" class="popuphead"><?php echo _("Find and remove comment spam") ?></p>
+<div align="right"><a href="<?php echo makeAlbumUrl(); ?>"><?php echo _("Return to Gallery"); ?></a></div>
 
 <?php
 offerOptions();
-switch($_REQUEST['g1_mode']) {
-case 'deleteComments':
-    deleteComments();
-    break;
+
+$g1_mode=getRequestVar('g1_mode');
+
+switch($g1_mode) {
+	case 'deleteComments':
+		deleteComments();
+	break;
     
-case 'findBlacklistedComments':
-    findBlacklistedComments();
-    break;
+	case 'findBlacklistedComments':
+		findBlacklistedComments();
+	break;
     
-case 'updateBlacklist':
-    updateBlacklist();
-    break;
+	case 'updateBlacklist':
+		updateBlacklist();
+	break;
     
-case 'viewBlacklist':
-    viewBlacklist();
-    break;
+	case 'viewBlacklist':
+		viewBlacklist();
+	break;
     
-case 'editBlacklist':
-    editBlacklist();
-    break;
+	case 'editBlacklist':
+		editBlacklist();
+	break;
     
-case 'addBlacklistEntries':
-    showAddBox();
-    break;
+	case 'addBlacklistEntries':
+		showAddBox();
+	break;
     
-default:
+	default:
 }
 ?>
 <hr>
