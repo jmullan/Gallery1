@@ -533,7 +533,7 @@ $constants = array_merge($constants,
 			),
 	"gallery_slideshow_length" => array(
 		"prompt" => _("slideshowLength "),
-		"desc" => _("") .
+		"desc" => "" .
 			newIn("1.4.1"),
 		"type" => "text",
 		"value" => "20",
