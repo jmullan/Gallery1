@@ -106,14 +106,14 @@ if (isset($save)) {
 <?php echo makeFormIntro("edit_appearance.php", 
 			array("name" => "theform", 
 				"method" => "POST")); ?>
-<input type=hidden name="save" value="1">
+<input type="hidden" name="save" value="1">
 <table>
 <tr>
 <td colspan="2"><?php echo _("Album Summary") ?></td>
 </tr>
 <tr>
 <td colspan="2" align="left">
-<textarea cols=60 rows=8 name="summary"><?php echo $gallery->album->fields["summary"] ?></textarea>
+<textarea cols="60" rows="8" name="summary"><?php echo $gallery->album->fields["summary"] ?></textarea>
 </td>
 </tr>
 <tr>
@@ -127,34 +127,32 @@ if (isset($save)) {
 
 	if (function_exists('version_compare')) {
 		$album_title=htmlentities($gallery->album->fields["title"],ENT_COMPAT, $gallery->charset);
-		echo"yes";
 	}
 	else {
 		$album_title=htmlentities($gallery->album->fields["title"]);
-		echo "no";
 	}
 ?>
 <td><input type="text" name="title" value="<?php echo $album_title; ?>"></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Background Color") ?></td>
-<td><input type=text name="bgcolor" value="<?php echo $gallery->album->fields["bgcolor"] ?>"></td>
+<td><input type="text" name="bgcolor" value="<?php echo $gallery->album->fields["bgcolor"] ?>"></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Text Color") ?></td>
-<td><input type=text name="textcolor" value="<?php echo $gallery->album->fields["textcolor"] ?>"></td>
+<td><input type="text" name="textcolor" value="<?php echo $gallery->album->fields["textcolor"] ?>"></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Link Color") ?></td>
-<td><input type=text name="linkcolor" value="<?php echo $gallery->album->fields["linkcolor"] ?>"></td>
+<td><input type="text" name="linkcolor" value="<?php echo $gallery->album->fields["linkcolor"] ?>"></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Background Image") ?> (URL)</td>
-<td><input type=text name="background" value="<?php echo $gallery->album->fields["background"] ?>"></td>
+<td><input type="text" name="background" value="<?php echo $gallery->album->fields["background"] ?>"></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Font") ?></td>
-<td><input type=text name="font" value="<?php echo $gallery->album->fields["font"] ?>"></td>
+<td><input type="text" name="font" value="<?php echo $gallery->album->fields["font"] ?>"></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Borders") ?></td>
@@ -163,11 +161,11 @@ if (isset($save)) {
 </tr>
 <tr>
 <td class="popup"><?php echo _("Border color") ?></td>
-<td><input type=text name="bordercolor" value="<?php echo $gallery->album->fields["bordercolor"] ?>"></td>
+<td><input type="text" name="bordercolor" value="<?php echo $gallery->album->fields["bordercolor"] ?>"></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Thumbnail size") ?></td>
-<td><input type=text name="thumb_size" value="<?php echo $gallery->album->fields["thumb_size"] ?>"></td>
+<td><input type="text" name="thumb_size" value="<?php echo $gallery->album->fields["thumb_size"] ?>"></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Maximum dimensions of intermediate sized images") ?></td>
@@ -175,7 +173,7 @@ if (isset($save)) {
 </tr>
 <tr>
 <td class="popup"><?php echo _("Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)") ?></td>
-<td><input type=text name="resize_file_size" value="<?php echo $gallery->album->fields["resize_file_size"] ?>"></td>
+<td><input type="text" name="resize_file_size" value="<?php echo $gallery->album->fields["resize_file_size"] ?>"></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Maximum dimensions of full sized images") ?></td>
@@ -183,7 +181,7 @@ if (isset($save)) {
 </tr>
 <tr>
 <td class="popup"><?php echo _("Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)") ?></td>
-<td><input type=text name="max_file_size" value="<?php echo $gallery->album->fields['max_file_size'] ?>"></td>
+<td><input type="text" name="max_file_size" value="<?php echo $gallery->album->fields['max_file_size'] ?>"></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Show <i>Return to</i> link") ?></td>
@@ -273,7 +271,7 @@ foreach ($services as $item => $data) {
 <tr>
 <tr>
 <td class="popup"><?php echo _("Slideshow Length") ?></td>
-<td><input type=text name="slideshow_length" value="<?php echo $gallery->album->fields["slideshow_length"] ?>"></td>
+<td><input type="text" name="slideshow_length" value="<?php echo $gallery->album->fields["slideshow_length"] ?>"></td>
 </tr>
 <tr>
 <td class="popup"><?php echo _("Album Frame") ?></td>
@@ -343,4 +341,3 @@ document.theform.title.focus();
 </span>
 </body>
 </html>
-
