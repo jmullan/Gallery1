@@ -232,7 +232,7 @@ function showChoice($label, $target, $args, $class="") {
     echo "\t<option class=\"$class\" value='" . makeGalleryUrl($target, $args) . "'>$label</option>\n";
 }
 
-$adminText = "<span class=\"admin\">";
+$adminText = '';
 $albums_str= pluralize_n2(ngettext("1 sub-album", "%d sub-albums",$numAlbums), $numAlbums, _("No albums"));
 $imags_str= pluralize_n2(ngettext("1 image", "%d images", $numPhotos), $numPhotos, _("no images"));
 $pages_str=pluralize_n2(ngettext("1 page", "%d pages", $maxPages), $maxPages, _("0 pages"));
@@ -262,7 +262,6 @@ if ($gallery->user->canWriteToAlbum($gallery->album) &&
 		$adminText .= "(".sprintf($verb, $hidden).")";
 	}
 } 
-$adminText .="</span>";
 
 /* admin items for drop-down menu */
 $adminOptions = array(

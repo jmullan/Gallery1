@@ -40,7 +40,7 @@
 
 	if ($docs_page) {
 		echo sprintf(_("Having problems?  Try the %s, %s and %s."),
-				$docs_page, $diagnostics_page, $help_page);
+				'<a href="'. $docs_page .'">'. _("documentation") .'</a>', $diagnostics_page, $help_page);
 	} else {
 		echo sprintf(_("Having problems?  Try the %s and %s."),
 			$diagnostics_page, $help_page);
