@@ -126,8 +126,7 @@ function build_popup_url($url, $url_is_complete=0) {
 	$args['gallery_popup'] = 'true';
 	
 	if (!$url_is_complete) {
-		$url = makeGalleryUrl($target, $args);
-		$url = "'$url'";
+		$url = htmlspecialchars(makeGalleryUrl($target, $args));
 	}
 
 	return $url;
@@ -160,7 +159,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
     $popup_counter++;
 
     $link_name = "popuplink_".$popup_counter;
-    $url = htmlspecialchars(build_popup_url($url, $url_is_complete));
+    $url = build_popup_url($url, $url_is_complete);
     
 	$a1 = "<a $cssclass id=\"$link_name\" target=\"Edit\" href=\"$url\" onClick=\"javascript:".
 	popup_js("document.getElementById('$link_name').href", "Edit",
