@@ -78,7 +78,8 @@ foreach ($defaults as $key => $val) {
 }
 ?>
 </table>
-<p>
-<input type=submit name="go_back" value="<- <?php echo _("Gallery Settings") ?>">
-<input type=submit name="go_next" value="<?php echo _("Save Settings") ?> ->">
-<input type=submit name="go_defaults" value="<?php echo _("Use Defaults") ?>">
+<p align="center">
+	<input type=submit name="go_back" value="<- <?php echo _("Gallery Settings") ?>">
+	<input type=submit name="go_next" value="<?php echo _("Save Settings") ?> ->">
+	<input type=submit name="go_defaults" value="<?php echo _("Use Defaults") ?>">
+</p>
