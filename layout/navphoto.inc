@@ -32,7 +32,7 @@ if ($navigator["page"] == 1) {
 	$firstPage = $album->getPhotoId(1);
 ?>
     <td align="center" width="27" height="18"> 
-      <a href="<?=$navigator[url]?>/<?=$firstPage?>"><img src="<?=$imageDir?>/nav_first.gif" border="0" width="27" height="11" alt="First Photo"></a>
+      <a href="<?=makeGalleryUrl($albumName, $firstPage)?>"><img src="<?=$imageDir?>/nav_first.gif" border="0" width="27" height="11" alt="First Photo"></a>
       </td>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
 <?
@@ -45,7 +45,7 @@ if ($prevPage >= 1) {
 	$prevPage = $album->getPhotoId($prevPage);
 ?>
     <td align="center" width="72" height="18">
-      <a href="<?=$navigator[url]?>/<?=$prevPage?>"><img src="<?=$imageDir?>/nav_prev.gif" border="0" width="72" height="11" alt="Previous Photo"></a>
+      <a href="<?=makeGalleryUrl($albumName, $prevPage)?>"><img src="<?=$imageDir?>/nav_prev.gif" border="0" width="72" height="11" alt="Previous Photo"></a>
       </td>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
 <?
@@ -73,7 +73,7 @@ if ($nextPage <= $navigator["maxPages"]) {
 ?>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
     <td align="center" width="72" height="18">
-      <a href="<?=$navigator[url]?>/<?=$nextPage?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo"></a>
+      <a href="<?=makeGalleryUrl($albumName, $nextPage)?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo"></a>
       </td>
 <?
 } else {   
@@ -95,7 +95,7 @@ if ($navigator["page"] == $navigator["maxPages"]) {
 ?>
     <td bgcolor="<?=$borderIn?>" width="1" height="1"><?=$pixelImage?></td>
     <td align="center" width="27" height="18">
-      <a href="<?=$navigator[url]?>/<?=$lastPage?>"><img src="<?=$imageDir?>/nav_last.gif" border="0" width="27" height="11" alt="Last Photo"></a>
+      <a href="<?=makeGalleryUrl($albumName, $lastPage)?>"><img src="<?=$imageDir?>/nav_last.gif" border="0" width="27" height="11" alt="Last Photo"></a>
     </td>
 <?
 } 
