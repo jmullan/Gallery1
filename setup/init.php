@@ -40,9 +40,8 @@ if (!$tmp) {
 }
 
 $GALLERY_URL = dirname(dirname($tmp));
-
 // Make sure GALLERY_URL doesn't end in a slash
-$GALLERY_URL = preg_replace("/\/$/", "", $GALLERY_URL);
+$GALLERY_URL = ereg_replace("\/$", "", $GALLERY_URL);
 
 $MIN_PHP_MAJOR_VERSION = 4;
 
