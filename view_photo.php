@@ -384,10 +384,13 @@ if (!$gallery->album->isMovie($id)) {
 			$adminCommands .= "<a href=\"$link\">normal</a> | full ]";
 		}
 		$adminCommands .= "</nobr>";
-	}
-
-    
-	if (!strcmp($gallery->album->fields["use_exif"],"yes") && (eregi("jpe?g\$", $photo->image->type)) &&
+	} 
+	
+	$field="EXIF";
+	$key=array_search($field, $extra_fields);
+	if (!is_int($key) && 
+	    !strcmp($gallery->album->fields["use_exif"],"yes") && 
+	    (eregi("jpe?g\$", $photo->image->type)) &&
 	    ($gallery->app->use_exif)) {
 		$albumName = $gallery->session->albumName;
 		$adminCommands .= popup_link("[photo properties]", "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false);
@@ -566,12 +569,33 @@ if (is_int($key))
 {
 	unSet($extra_fields[$key]);
 }
+$field="EXIF";
+$do_exif=false;
+$key=array_search($field, $extra_fields);
+if (is_int($key))
+{
+	unSet($extra_fields[$key]);
+	if ( ($gallery->album->fields["use_exif"] === "yes") 
+		&& $gallery->app->use_exif &&
+		(eregi("jpe?g\$", $photo->image->type))) {
+		$do_exif=true;
+	}
+
+}
 
 foreach ($extra_fields as $field)
 {
 	$value=$gallery->album->getExtraField($index, $field);
 	if ($value)
 	{
+		print "<tr><td valign=top><b>$field:<b></td><td>".
+			str_replace("\n", "<p>", $value).
+			"</td></tr>";
+	}
+}
+if ($do_exif) {
+	$myExif = $gallery->album->getExif($index, $forceRefresh);
+	foreach ($myExif as $field => $value) {
 		print "<tr><td valign=top><b>$field:<b></td><td>".
 			str_replace("\n", "<p>", $value).
 			"</td></tr>";

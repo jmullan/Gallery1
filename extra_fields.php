@@ -41,8 +41,6 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 
-$special_fields=array("Title", "Upload Date", "Capture Date");
-	
 if ($save) {
 	$count=0;
 	if (!$extra_fields)
@@ -109,13 +107,24 @@ Number of user defined custom fields
 
 <?php
 $extra_fields=$gallery->album->getExtraFields();
-foreach ($special_fields as $special_field)
-{
+
+// Translate the first "Title" in the line below only
 ?>
-	<tr><td><?php print $special_field ?></td><td><input type=checkbox 
+<tr><td>Title</td><td> 
+<input type=checkbox name="extra_fields[]" value="Title"
+<?php print in_array("Title", $extra_fields) ?  "checked" : ""; 
+?> > </td></tr>
+<?php
+foreach (automaticFieldsList() as $automatic => $printable_automatic) {
+	if ($automatic === "EXIF" && (($gallery->album->fields["use_exif"] !== "yes") || !$gallery->app->use_exif)) {
+		continue;
+	}
+?>
+	<tr><td><?php print $printable_automatic ?></td>
+	<td><input type=checkbox 
 	name="extra_fields[]"
-	value="<?php print $special_field ?>"
-	<?php print in_array($special_field, $extra_fields) ?  "checked" : ""; 
+	value="<?php print $automatic ?>"
+	<?php print in_array($automatic, $extra_fields) ?  "checked" : ""; 
 	?> > </td></tr>
 <?php
 }
@@ -126,7 +135,9 @@ $i=0;
 
 foreach ($extra_fields as $value)
 {
-	if (in_array($value, $special_fields))
+	if (in_array($value, array_keys(automaticFieldsList())))
+		continue;
+	if (!strcmp($value, "Title"))
 		continue;
 	print "<tr><td>Field".($i+1).": </td><td>";
 	print "<input type=text name=\"extra_fields[]\"";
@@ -138,11 +149,11 @@ function num_special_fields($extra_fields)
 {
 	global $special_fields;
 	$num_special_fields=0;
-	foreach ($special_fields as $special_field) {
+	foreach (array_keys(automaticFieldsList()) as $special_field) {
 		if (in_array($special_field, $extra_fields))
 			$num_special_fields++;
 	}
-	return $num_special_fields;
+	return $num_special_fields+1;  //extra 1 for title
 }
 ?>
 </table>

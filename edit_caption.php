@@ -87,7 +87,7 @@ if (!strcmp($submit, "Save")) {
 <?php
 foreach ($gallery->album->getExtraFields() as $field)
 {
-	if ($field == "Capture Date" || $field == "Upload Date")
+	if (in_array($field, array_keys(automaticFieldsList())))
 	{
 		continue;
 	}

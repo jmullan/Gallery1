@@ -267,7 +267,7 @@ if ($numPhotos) {
       <br>
 <?php
 	foreach ($gallery->album->getExtraFields() as $field) { 
-		if ($field == "Capture Date" || $field == "Upload Date")
+		if (in_array($field, array_keys(automaticFieldsList())))
 		{
 			continue;
 		}
@@ -284,6 +284,8 @@ if ($numPhotos) {
 ?>
       	<span class="admin"><br>Keywords:</span><br>
       	<input type=text name="new_keywords_<?php echo $i?>" size=65 value="<?php echo $oldKeywords ?>">
+
+	// this needs to be translated automatically.  Add it as a todo.
        	<span class="admin"><br>Capture Date:</span>
 <?php
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($i);

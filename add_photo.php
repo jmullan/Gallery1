@@ -109,7 +109,7 @@ File</td>
 <td>Caption</td><td> <textarea name="caption" rows=2 cols=40></textarea></td></tr>
 <?php
 foreach ($gallery->album->getExtraFields() as $field) {
-        if ($field == "Capture Date" || $field == "Upload Date")
+        if (in_array($field, array_keys(automaticFieldsList())))
         {
                 continue;
         }
