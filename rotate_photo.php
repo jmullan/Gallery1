@@ -53,6 +53,7 @@ if ($gallery->session->albumName && isset($index)) {
 	</center>
 <?
 		my_flush();
+                set_time_limit($gallery->app->timeLimit);
 		$gallery->album->rotatePhoto($index, $rotate);
 		$gallery->album->save();
 		dismissAndReload();
