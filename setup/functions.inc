@@ -717,7 +717,9 @@ function check_absent_locales()
 			}
 		}
 	}
-	$warn['nocolor'] = true;	
+	if (sizeof($warn)) {
+		$warn['nocolor'] = true;
+	}
 	return array($success, $fail, $warn);
 }
 
