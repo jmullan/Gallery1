@@ -21,7 +21,13 @@ $pixelImage = "<img src=\"$imageDir/pixel_trans.gif\" width=\"1\" height=\"1\">"
       <span class=caption>
       <br>
       From: &nbsp <b><?php echo $commentdraw["name"]?></b> &nbsp
-        @ &nbsp <?php echo $commentdraw["IPNumber"]?> &nbsp
+<?php
+  if ($gallery->user->isAdmin()) {
+      echo "@ &nbsp";
+      echo $commentdraw["IPNumber"];
+      echo "&nbsp";
+  }
+?>
         (<?php echo $commentdraw["datePosted"]?>)
       <br>
       <?php echo $commentdraw["comment"]?> 
