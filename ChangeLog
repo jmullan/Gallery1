@@ -1,3 +1,14 @@
+2001-11-15  Bharat Mediratta  <bharat@menalto.com> (1.2.3-cvs-b7)
+
+	* The following characters can no longer be used in an album name:
+ 	  . (dot) # (pound) + (plus) 
+	  This fixes bugs 461799, 466789, and 469346.
+
+	* Fixed two bugs having to do with URL and local file uploads on
+	  Win32.  We were accidentally trying to convert urls to win32 file
+	  format (leading to urls like "http;\\foo\bar" -- eek) and we were not
+	  opening binary files with the "b" flag (thanks trantori@users.sf.net)
+
 2001-11-12  Matthew McEachen  <mceachen@users.sourceforge.net> (1.2.3-cvs-b6)
 
 	* Added "check all - clear all - invert selection" functionality
