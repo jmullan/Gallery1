@@ -41,7 +41,7 @@ class AlbumItem {
 	}
 
 	function setHighlight($dir, $bool) {
-		global $app;
+		global $app,$albumDB;
 		
 		$this->highlight = $bool;
 		
@@ -51,35 +51,56 @@ class AlbumItem {
 		 */
 		$name = $this->image->name;
 		$tag = $this->image->type;
+		$setDir = $dir;
 
 		if ($this->highlight) {
-			if ($this->image->thumb_width > 0) {
+			if ($this->isAlbumName) {
+				$albumDB = new AlbumDB();
+				$nestedAlbum = $albumDB->getAlbumByName($this->isAlbumName);
+				$dir = $nestedAlbum->getAlbumDir();
+				$nestedHighlightIndex = $nestedAlbum->getHighlight();
+				$nestedHighlight = $nestedAlbum->getPhoto($nestedHighlightIndex);
+				$name = $nestedHighlight->image->name;
+				$tag  = $nestedHighlight->image->type;
+			}
+
+
+			if (($this->image->thumb_width > 0) || ($nestedHighlight->image->thumb_width > 0)) {
 				// Crop it first
-				$ret = cut_image("$dir/$name.$tag", 
-						 "$dir/$name.tmp.$tag", 
-						 $this->image->thumb_x, 
-						 $this->image->thumb_y,
-						 $this->image->thumb_width, 
-						 $this->image->thumb_height);
+				if ($this->isAlbumName) {
+					$ret = cut_image("$dir/$name.$tag",
+                                                 	"$setDir/$name.tmp.$tag",
+                                                 	$nestedHighlight->image->thumb_x,
+                                                 	$nestedHighlight->image->thumb_y,
+                                                 	$nestedHighlight->image->thumb_width,
+                                                 	$nestedHighlight->image->thumb_height);
+				} else {
+					$ret = cut_image("$dir/$name.$tag", 
+						 	"$setDir/$name.tmp.$tag", 
+						 	$this->image->thumb_x, 
+						 	$this->image->thumb_y,
+						 	$this->image->thumb_width, 
+						 	$this->image->thumb_height);
+				}
 
 				// Then resize it down
 				if ($ret) {
-					$ret = resize_image("$dir/$name.tmp.$tag", 
-							    "$dir/$name.highlight.$tag",
+					$ret = resize_image("$setDir/$name.tmp.$tag", 
+							    "$setDir/$name.highlight.$tag",
 							    $app->highlight_size);
 				}
-				unlink("$dir/$name.tmp.$tag");
+				unlink("$setDir/$name.tmp.$tag");
 			} else {
 				$ret = resize_image("$dir/$name.$tag", 
-						    "$dir/$name.highlight.$tag",
+						    "$setDir/$name.highlight.$tag",
 						    $app->highlight_size);
 			}
 
 			if ($ret) {
-				list($w, $h) = getDimensions("$dir/$name.highlight.$tag");
+				list($w, $h) = getDimensions("$setDir/$name.highlight.$tag");
 
 				$high = new Image;
-				$high->setFile($dir, "$name.highlight", "$tag");
+				$high->setFile($setDir, "$name.highlight", "$tag");
 				$high->setDimensions($w, $h);
 				$this->highlightImage = $high;
 			}
