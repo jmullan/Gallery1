@@ -28,7 +28,8 @@ if (!$user->canReadAlbum($album)) {
 if ($id) {
 	$index = $album->getPhotoIndex($id);
 	if ($index == -1) {
-		$index = 1;
+		// That photo no longer exists.
+		header("Location: $app->photoAlbumURL/$albumName");
 	}
 } else {
 	$id = $album->getPhotoId($index);
