@@ -26,6 +26,18 @@
  */
 class GallerySession {}
 
+if (session_id()) {
+	/* 
+	 * The session is being created externally.  This means that if
+	 * we store our data in a GallerySession class, we won't be able
+	 * to deserialize it (because it's not being defined before the
+	 * external session starts).  So, we'll have to fall back on using
+	 * stdClass() which will cause problems on older PHP4 servers.
+	 * oh well.
+	 */
+	$useStdClass = 1;
+}
+
 /* Start a new session, or resume our current one */
 session_start();
 
@@ -49,7 +61,11 @@ if (session_is_registered($gallery->app->sessionVar)) {
 	session_register($gallery->app->sessionVar);
 
 	/* Create a new session container */
-	${$gallery->app->sessionVar} = new GallerySession();
+	if ($useStdClass) {
+		${$gallery->app->sessionVar} = new stdClass();
+	} else {
+		${$gallery->app->sessionVar} = new GallerySession();
+	}
 
 	/* Get a simple reference to the session container (for convenience) */
 	$gallery->session =& ${$gallery->app->sessionVar};
