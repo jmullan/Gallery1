@@ -135,7 +135,7 @@ if (!$album->isMovie($index)) {
 <td colspan=3 align=left>
 <hr size=1>
 <? if (!$album->isMovie($index) && isCorrectPassword($edit)) { ?>
-<a href=<?= popup("../resize_photo.php?index=$index") ?>>[resize photo]</a>
+Admin: <a href=<?= popup("../resize_photo.php?index=$index") ?>>[resize photo]</a>
 <br>
 <? } ?>
 <font size=+0 face=<?=$album->fields["font"]?>>
