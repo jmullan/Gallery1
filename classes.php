@@ -217,9 +217,9 @@ class Album {
 
 	function numPhotos($show_hidden=0) {
 		if ($show_hidden) {
-			return sizeof($this->photos) - 1;
+			return sizeof($this->photos);
 		} else {
-			return sizeof($this->photos) - $this->numHidden() - 1;
+			return sizeof($this->photos) - $this->numHidden();
 		}
 	}
 
