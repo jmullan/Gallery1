@@ -1911,6 +1911,7 @@ function showResultsGraph($num_rows)
 {
 	global $gallery;
 	$results=array();
+	$results_count=array();
 	$nv_pairs=$gallery->album->getVoteNVPairs();
 	$buf='';
 
@@ -1931,6 +1932,7 @@ function showResultsGraph($num_rows)
 	    }
 	    if ($accum_votes > 0) 
 	    {
+	        $results_count[$element]=$count;
 		if ($gallery->album->getPollType() == "rank" || $gallery->album->getPollScale() == 1)
 		{
 	    		$results[$element]=$accum_votes;
@@ -1943,7 +1945,7 @@ function showResultsGraph($num_rows)
 		}
 	    }
 	}
-	arsort($results);
+	array_multisort($results, SORT_NUMERIC, SORT_DESC, $results_count, SORT_NUMERIC, SORT_DESC);
 	$rank=0;
 	$graph=array();
 	$needs_saving=false;
@@ -1953,7 +1955,6 @@ function showResultsGraph($num_rows)
 		if ($index < 0) 
 		{
 			// image has been deleted!
-			// unset($gallery->album->fields["votes"][$element]);
 			continue;
 		} 
 		$isAlbumName=$gallery->album->isAlbumName($index);
@@ -1987,7 +1988,11 @@ function showResultsGraph($num_rows)
 		$name_string.= '">';
 		$name_string.= $desc;
 		$name_string.= "</a>";
-		$graph[$name_string]=$count;
+		$name_string.= " - ".
+		      	pluralize_n($results_count[$element], _("1 voter"), 
+					_("voters"), 
+					_("0 voters"));
+	       	$graph[$name_string]=$count;
 	}
 	if ($needs_saving)
 	{
