@@ -324,7 +324,14 @@ class Image {
 	}
 
 	function getTag($dir, $full=0, $attrs="") {
+		global $app;
+
 		$name = $this->getName($dir);
+		
+		if (strcmp($app->imageborders, "no")) {
+			$attrs .= " border=0";
+		}
+		
 		if ($this->resizedName) {
 			if ($full) {
 				return "<img src=$dir/$this->name.$this->type $attrs>";
