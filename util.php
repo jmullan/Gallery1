@@ -3420,7 +3420,46 @@ function includeTemplate($tplName, $skinname='') {
 function genGUID() {
 	return md5(uniqid(mt_rand(), true));
 }
+
+function calcVAdivDimension($frame, $iHeight, $iWidth, $borderWidth) {
+	global $gallery;
+	$thumbsize= $gallery->album->fields["thumb_size"];
+
+	switch ($frame) {
+		// special cases
+		case "none":
+			$divCellWidth = $thumbsize + 3;
+			$divCellAdd =  3;
+		break;
+
+		case "dots":
+			$divCellWidth = $thumbsize + 7;
+			$divCellAdd =  7;
+		break;
 	
+		case "solid":
+			$divCellWidth = $thumbsize + $borderWidth +3;
+			$divCellAdd =  $borderwidth +3;
+		break;
+                  
+
+		default: // use frames directory
+			require(dirname(__FILE__) . "/html_wrap/frames/$frame/frame.def");
+                    
+			$divCellWidth = $thumbsize + $widthTL + $widthTR;
+			$divCellAdd = $heightTT + $heightBB;
+		break;
+	} // end of switch
+
+	// This is needed to keep smaller images centered
+		$padding=round(($thumbsize-$iHeight)/2,0);
+		$divCellHeight=$thumbsize-$padding*2+$divCellAdd;
+
+	/* For Debugging */
+	// echo "$divCellWidth, $divCellHeight, $padding";
+	return array ($divCellWidth, $divCellHeight, $padding);
+}
+
 require (dirname(__FILE__) . '/lib/lang.php');
 require (dirname(__FILE__) . '/lib/Form.php');
 require (dirname(__FILE__) . '/lib/voting.php');

@@ -672,43 +672,11 @@ if (canVote())
 <tr>
 <td valign="top">
 <!-- image grid table -->
-<?php 
-/* Set DivCell cases */
-$frame = $gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
-$frameThumb = $gallery->album->fields['thumb_frame'];
-$borderWidth = $gallery->html_wrap['borderWidth'];
-$divImage = $gallery->album->fields["thumb_size"];
-
-switch ($frame) {
-
-// special cases
-case "none":
-  $divCellWidth = ($divImage + 3);
-  $divCellAdd = 3;
-  break;
-case "dots":
-  $divCellWidth = ($divImage + 7);
-  $divCellAdd = 7;
-  break;
-case "solid":
-  $divCellWidth = ($divImage + $borderWidth +3);
-  $divCellAdd = 3;
-  break;
-default: // use frames directory
-
-  require(dirname(__FILE__) . "/html_wrap/frames/$frameThumb/frame.def");
-
-  $divCellWidth = $widthTL + $divImage + $widthTR;
-  $divCellAdd = $heightTT + $heightBB;
-  break;
-  } // end of switch 
-
-/* End DivCell cases */
-?>
 <table border="0" cellspacing="5" cellpadding="0" width="100%" class="vatable" align="center">
 <?php
 $numPhotos = $gallery->album->numPhotos(1);
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
+
 if ($numPhotos) {
 	$rowCount = 0;
 
@@ -747,8 +715,11 @@ if ($numPhotos) {
 
 			//-- put some parameters for the wrap files in the global object ---
 			$gallery->html_wrap['borderColor'] = $bordercolor;
-			$gallery->html_wrap['borderWidth'] = $borderwidth;
+			$borderwidth= $gallery->html_wrap['borderWidth'] = $borderwidth;
 			$gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
+
+
+
 			if ($gallery->album->isAlbum($i)) {
 				$scaleTo = 0; //$gallery->album->fields["thumb_size"];
 				$myAlbum = $gallery->album->getNestedAlbum($i);
@@ -770,7 +741,6 @@ if ($numPhotos) {
 			$padding=round(($divImage-$iHeight)/2,0);
 			$divCellHeight=$divImage-$padding*2+$divCellAdd;
 
-			echo "<div style=\"padding-top: {$padding}px; padding-bottom:{$padding}px; width: {$divCellWidth}px; height: {$divCellHeight}px;\" align=\"center\" class=\"vafloat2\">\n";
 			$gallery->html_wrap['imageWidth'] = $iWidth;
 			$gallery->html_wrap['imageHeight'] = $iHeight;
 
@@ -778,51 +748,48 @@ if ($numPhotos) {
 			if ($gallery->album->isMovieByIndex($i)) {
 				$gallery->html_wrap['imageTag'] = $gallery->album->getThumbnailTag($i);
 				$gallery->html_wrap['imageHref'] = $gallery->album->getPhotoPath($i);
-				$gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
+				$frame= $gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
 			       	/*begin backwards compatibility */
-			       	$gallery->html_wrap['thumbTag'] = 
-					$gallery->html_wrap['imageTag'];
-			       	$gallery->html_wrap['thumbHref'] = 
-					$gallery->html_wrap['imageHref'];
+				       	$gallery->html_wrap['thumbTag']	= $gallery->html_wrap['imageTag'];
+				       	$gallery->html_wrap['thumbHref'] = $gallery->html_wrap['imageHref'];
 				/*end backwards compatibility*/
+				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderWidth);
+				echo "<div style=\"padding-top: {$padding}px; padding-bottom:{$padding}px; width: {$divCellWidth}px; height: {$divCellHeight}px;\" align=\"center\" class=\"vafloat2\">\n";
+
 				includeHtmlWrap('inline_moviethumb.frame');
 			} elseif (isset($myAlbum)) {
 				// We already loaded this album - don't do it again, for performance reasons.
 				
 				$gallery->html_wrap['imageTag'] = $myAlbum->getHighlightTag($scaleTo,'',_("Highlight for Album:"). " ". gallery_htmlentities(removeTags($myAlbum->fields['title'])));
 				$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->album->getAlbumName($i));
-				$gallery->html_wrap['frame'] = $gallery->album->fields['album_frame'];
+				$frame= $gallery->html_wrap['frame'] = $gallery->album->fields['album_frame'];
 			       	/*begin backwards compatibility */
-				$gallery->html_wrap['thumbWidth'] = 
-					$gallery->html_wrap['imageWidth'];
-			       	$gallery->html_wrap['thumbHeight'] = 
-					$gallery->html_wrap['imageHeight'];
-			       	$gallery->html_wrap['thumbTag'] = 
-					$gallery->html_wrap['imageTag'];
-			       	$gallery->html_wrap['thumbHref'] = 
-					$gallery->html_wrap['imageHref'];
+					$gallery->html_wrap['thumbWidth'] =  $gallery->html_wrap['imageWidth'];
+				       	$gallery->html_wrap['thumbHeight'] = $gallery->html_wrap['imageHeight'];
+				       	$gallery->html_wrap['thumbTag'] = $gallery->html_wrap['imageTag'];
+				       	$gallery->html_wrap['thumbHref'] = $gallery->html_wrap['imageHref'];
 			       	/*end backwards compatibility*/
-      
-				includeHtmlWrap('inline_albumthumb.frame');
 
+				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderWidth);
+				echo "<div style=\"padding-top: {$padding}px; padding-bottom:{$padding}px; width: {$divCellWidth}px; height: {$divCellHeight}px;\" align=\"center\" class=\"vafloat2\">\n";      
+				includeHtmlWrap('inline_albumthumb.frame');
 			} else {
 				$gallery->html_wrap['imageTag'] = $gallery->album->getThumbnailTag($i);
 				$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->session->albumName, $id);
-				$gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
+				$frame= $gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
 			       	/*begin backwards compatibility */
-			       	$gallery->html_wrap['thumbTag'] =
-				       	$gallery->html_wrap['imageTag'];
-			       	$gallery->html_wrap['thumbHref'] =
-				       	$gallery->html_wrap['imageHref'];
+				       	$gallery->html_wrap['thumbTag'] = $gallery->html_wrap['imageTag'];
+					$gallery->html_wrap['thumbHref'] = $gallery->html_wrap['imageHref'];
 			       	/*end backwards compatibility*/
-      
-				includeHtmlWrap('inline_photothumb.frame');
-						}
 
+				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderWidth);
+				echo "<div style=\"padding-top: {$padding}px; padding-bottom:{$padding}px; width: {$divCellWidth}px; height: {$divCellHeight}px;\" align=\"center\" class=\"vafloat2\">\n";
+				includeHtmlWrap('inline_photothumb.frame');
+			}
 
 		echo "\n";
-		echo("</div>\n");
-		echo("<div style=\"width: {$divCellWidth}px;\"  align=\"center\" class=\"vafloat\">\n");
+		echo "</div>\n";
+		echo "<div style=\"width: {$divCellWidth}px;\"  align=\"center\" class=\"vafloat\">\n";
 		/* Do the clickable-dimensions row */
 		if (!strcmp($gallery->album->fields['showDimensions'], 'yes')) {
 				$photo    = $gallery->album->getPhoto($i);
@@ -889,9 +856,7 @@ if ($numPhotos) {
 			}
 
 			// Caption itself
-			echo "\n";		
-			echo '<div align="center" class="modcaption">';
-			echo "\n";
+			echo "\n<div align=\"center\" class=\"modcaption\">\n";
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 				echo "(" . _("hidden") .")<br>";
@@ -919,6 +884,7 @@ if ($numPhotos) {
 				echo _("Contains: ") ." ". pluralize_n2(ngettext("1 item", "%d items", $visItems), $visItems) . '. ';
 				// If comments indication for either albums or both
 				switch ($gallery->app->comments_indication) {
+
 				case "albums":
 				case "both":
 					$lastCommentDate = $myAlbum->lastCommentDate(
@@ -936,7 +902,7 @@ if ($numPhotos) {
 				}
 			} 
 			else {
-				echo("<div align=\"center\">\n");
+				echo "<div align=\"center\">\n";
 				echo nl2br($gallery->album->getCaption($i));
 				echo $gallery->album->getCaptionName($i) . ' ';
 				// indicate with * if we have a comment for a given photo
@@ -949,8 +915,10 @@ if ($numPhotos) {
 						$lastCommentDate = $gallery->album->itemLastCommentDate($i);
 						print lastCommentString($lastCommentDate, $displayCommentLegend);
 					}
+
 				}
-				echo ".</div>\n";
+				echo "</div>\n";
+
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
 					echo '<div class="viewcounter" style="margin-top:3px">';
 					echo _("Viewed:") ." ". pluralize_n2(ngettext("1 time", "%d times", $gallery->album->getItemClicks($i)), $gallery->album->getItemClicks($i));

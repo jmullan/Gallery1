@@ -28,7 +28,7 @@ A:hover	{ color: #C51B1B; }
 /* 
    text styles 
 */
-.title                          /* album titles on main page */
+.title   /* album titles on main page */
 	{ 
 	  line-height:140%;
 	  padding-right:2px;
@@ -102,35 +102,34 @@ A:hover	{ color: #C51B1B; }
 
 .pview /* brackets both the image and all text in one frame */
 	{
-       margin:7px;
-	   padding: 7px;
+	  border: 2px groove #ff0000;
+	  width: 200px;
 	}
 .pcaption /* brackets all text below photo */
 	{ 
-	  padding:2px;
-	  margin-top:2px;
+	  border: 2px groove #E6E9F2;
 	}
 .presults /* text for poll results under photo  */
 	{
 	}
 .vatable /* width of the div set for all photo sets - view albums  */
 	{ 
-	width: 100%;
 	}
-
 .vathumbs /* full background bracket for images and text - veiw albums  */
 	{ 
-    margin:17px;
+	border: 2px solid #c0c0c0;
+	background-color: #f0f0f0;
+	padding: 3px;
 	}
-
 .vafloat /* float for view album - text */
 	{
-	float: none; 
+	float: left; 
+	border: 0px solid #c0c0c0;
+	width: 250px;
 	}
-
 .vafloat2 /* float for view album - images */
 	{
-	float: none; 
+	float: left;
 	}
 .error  /* all error text */
 	{ 
@@ -192,12 +191,17 @@ A:hover	{ color: #C51B1B; }
 	}
 .popuphead
 	{
+	  text-align:center;
+	  margin: 10px;
 	  font-size: 16px;
  	  font-weight: bold;
 	  color: #202020;
+
+ 	  background-image: url(../images/topbar.jpg);
 	}
 .popup
 	{
+	  margin: 3px;
 	  font-size: 12px;
 	  font-weight: bold;
 	  color: #202020;	  
