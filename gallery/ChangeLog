@@ -1,3 +1,7 @@
+2003-12-02 Jens Tkotz <jens@peino.de> 1.4.2-phpBB2-cvs-j14
+
+	* Change: Synced against HEAD
+
 2003-11-28 Jens Tkotz <jens@peino.de> 1.4.2-phpBB2-cvs-j13
 
 	* Change: Synced against HEAD (contains the bugfix)
@@ -55,11 +59,60 @@
 
 ****************************************************************************
 
-2003-11-18 Jens Tkotz <jens@peino.de> 1.4.2-phpBB2-cvs-j1
+2003-11-18 Jens Tkotz <jens@peino.de> 1.4.2-phpBB2-cvs-j1 /  1.4.2-cvs-b22
 
-	* SNew: Start phpBB2 branch (again)
+	* New: Start phpBB2 branch (again)
 
 ****************************************************************************
+
+2003-12-01  Chris Schwerdt    <muti@afterglo.ws> 1.4.2-cvs-b49
+
+	* fetch-albums & fetch-albums-prune will now return whether
+	  or not the user is allowed to create albums at the root
+	  level.
+
+2003-12-01  Chris Schwerdt    <muti@afterglo.ws> 1.4.2-cvs-b48
+
+	* Added another property to album-properties command to return
+	  whether images will be added to the front or back.
+
+2003-12-01  Chris Schwerdt    <muti@afterglo.ws> 1.4.2-cvs-b47
+
+	* Changed fetch-album-images command in gallery remote 2 to return
+	  the album url based on mirror album directories.
+
+2003-11-30  Bharat Mediratta  <bharat@menalto.com> 1.4.2-cvs-b46
+
+	* Additional part of fix made in -b44.  We were correctly checking to
+	  see if we should remove the old serial file, but incorrectly checking
+	  to see if we should create the new one.
+
+2003-11-30  Bharat Mediratta  <bharat@menalto.com> 1.4.2-cvs-b45
+
+	* Fix a bug where we cache the EXIF data in AlbumItems even when the
+	  feature is not enabled.  This was triggered by the auto-rotation
+	  code, so there will be plenty of galleries out there that have extra,
+	  unwanted cached EXIF data.  If we notice that EXIF data is cached but
+	  the feature is off, we will now get rid of the cache.  Thanks to
+	  Quentin Smith.
+
+2003-11-29  Bharat Mediratta  <bharat@menalto.com> 1.4.2-cvs-b44
+
+	* Fixed a bug in classes/Album.php where we were incrementing the
+	  serial number on every album save, thanks to Quentin Smith.
+
+2003-11-29  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.2-cvs-b43
+
+	* Fixed bug were reset clicks did not work in albums.php (bug found
+	  by Nick Rembis).
+
+	* Commenter name format is configurable.
+
+	* Fixed bug were top navbox was missing a line (or had it double 
+	  thickness) in view_photo.php when there was no adminbox (bug found
+	  by Sevein). 
+
+	* Removed setup/.htaccess from manifest.
 
 2003-11-28 Jens Tkotz <jens@peino.de> 1.4.2-cvs-b42
 

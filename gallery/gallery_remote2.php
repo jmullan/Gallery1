@@ -52,10 +52,10 @@ if (empty ($cmd)) {
 header("Content-type: text/plain");
 
 /*
- * Gallery remote protocol version 2.9
+ * Gallery remote protocol version 2.10
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 9;
+$GR_VER['MIN'] = 11;
 
 
 /*
@@ -199,6 +199,7 @@ function gr_fetch_albums( &$gallery, &$response ) {
 
 	// add album count
 	$response->setProperty( 'album_count', $album_index );
+	$response->setProperty( 'can_create_root', $gallery->user->canCreateAlbums() ? 'yes' : 'no' );
 
 	// add status and repond
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
@@ -225,6 +226,8 @@ function gr_fetch_albums_prune( &$gallery, &$response ) {
 	// add album count
 	$response->setProperty( "album_count", $album_count );
 
+	$response->setProperty( 'can_create_root', $gallery->user->canCreateAlbums() ? 'yes' : 'no' );
+
 	// add status and repond
 	$response->setProperty( "status", $GR_STAT['SUCCESS'] );
 	$response->setProperty( "status_text", "Fetch albums successful." );
@@ -233,7 +236,6 @@ function gr_fetch_albums_prune( &$gallery, &$response ) {
 }
 
 function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, &$caption, &$force_filename, &$auto_rotate ) {
-
 	global $GR_STAT, $temp_files;
 
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
@@ -298,6 +300,7 @@ function gr_album_properties( &$gallery, &$response ) {
 
 	$response->setProperty( 'auto_resize', $max_dimension );
 	$response->setProperty( 'extra_fields', $gallery->album->getExtraFields() );
+	$response->setProperty( 'add_to_beginning', $gallery->album->fields['add_to_beginning'] );
 
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Album properties retrieved successfully.' );
@@ -341,7 +344,6 @@ function gr_fetch_album_images( &$gallery, &$response ) {
 
 	global $GR_STAT;
 
-	$tmpURL = $gallery->app->albumDirURL;
 	$tmpImageNum = 0;
 	foreach($gallery->album->photos as $albumItemObj) {
 		if(empty($albumItemObj->isAlbumName)) { //Make sure this object is a picture, not an album
@@ -383,7 +385,7 @@ function gr_fetch_album_images( &$gallery, &$response ) {
 		}
 	}
 	$response->setProperty( 'image_count', $tmpImageNum );
-	$response->setProperty( 'baseurl', $tmpURL.'/'.$gallery->session->albumName.'/' );
+	$response->setProperty( 'baseurl', $gallery->album->getAlbumDirURL('full').'/' );
 
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Fetch images successful.' );

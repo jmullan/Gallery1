@@ -112,21 +112,27 @@ class AlbumItem {
 		 * Otherwise return what we have.
 		 */
 		$needToSave = 0;
-		if (!empty($this->exifData) && !$forceRefresh) {
-		    $status = 0;
-		} else {
-		    list($status, $exifData) = getExif($file);
-		    if ($status == 0) {
-			$this->exifData = $exifData;
-			if (!strcmp($gallery->app->cacheExif, "yes")) {
-				$needToSave = 1;
-			} else {
-				$needToSave = 0;
-			}
+		if (!strcmp($gallery->app->cacheExif, "yes")) {
+		    if (empty($this->exifData) || $forceRefresh) {
+			/* Cache the current EXIF data and update the item capture date */
+			list($status, $this->exifData) = getExif($file);
+			$this->setItemCaptureDate();
+			$needToSave = 1;
+		    } else {
+			/* We have a cached value and are not forcing a refresh */
+			$status = 0;
 		    }
-		    $this->setItemCaptureDate();
+		    $returnExifData = $this->exifData;
+		} else {
+		    /* If the data is cached but the feature is disabled, remove the cache */
+		    if (!empty($this->exifData)) {
+			unset($this->exifData);
+			$needToSave = 1;
+		    }
+		    list($status, $returnExifData) = getExif($file);
 		}
-		return array($status, $this->exifData, $needToSave);
+		
+		return array($status, $returnExifData, $needToSave);
 	}
 
 	function numComments() {

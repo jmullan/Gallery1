@@ -663,7 +663,7 @@ class Album {
 			fs_mkdir($dir, 0775);
 		}
 
-		if (isset($this->updateSerial)) {
+		if (!empty($this->updateSerial)) {
 			/* Remove the old serial file, if it exists */
 			$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
 			if (fs_file_exists($serial)) {
@@ -703,7 +703,7 @@ class Album {
 		    $this->photos = $transient_photos;
 
 		    /* Create the new album serial file */
-		    if (isset($this->updateSerial)) {
+		    if (!empty($this->updateSerial)) {
 			$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
 			if ($fd = fs_fopen($serial, "w")) {
 			    /* This space intentionally left blank */
@@ -731,7 +731,8 @@ class Album {
 		       	if (strlen($to) > 0) {
 			       	$text = sprintf("A change has been made to %s by %s (IP %s).  The change is: %s",
 					       	makeAlbumUrl($this->fields['name']),
-						user_name_string($gallery->user->getUID()),
+						user_name_string($gallery->user->getUID(),
+							$gallery->app->comments_display_name),
 						$HTTP_SERVER_VARS['REMOTE_ADDR'],
 					       	$msg_str);
 			       	$text .= "\n\n". "If you no longer wish to receive emails about this image, follow the links above and ensure that \"Email me when other changes are made\" is unchecked (You'll need to login first).";

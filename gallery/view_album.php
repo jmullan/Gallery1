@@ -724,10 +724,6 @@ if ($numPhotos) {
 				$gallery->html_wrap['imageHref'] = $gallery->album->getPhotoPath($i);
 				$gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
 			       	/*begin backwards compatibility */
-			       	// $gallery->html_wrap['thumbWidth'] = 
-					// $gallery->html_wrap['imageWidth'];
-			       	// $gallery->html_wrap['thumbHeight'] = 
-					// $gallery->html_wrap['imageHeight'];
 			       	$gallery->html_wrap['thumbTag'] = 
 					$gallery->html_wrap['imageTag'];
 			       	$gallery->html_wrap['thumbHref'] = 

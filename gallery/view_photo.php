@@ -470,23 +470,23 @@ if (!$gallery->album->isMovie($id)) {
 	}
 </script>
 <?php
+}
 includeLayout('navtablebegin.inc');
-	if ($adminCommands) {
-	    
-		$adminCommands = "<span class=\"admin\">$adminCommands</span>";
-		$adminbox["commands"] = $adminCommands;
-		$adminbox["text"] = "&nbsp;";
+if ($adminCommands) {
 
-		$adminbox["bordercolor"] = $bordercolor;
-		$adminbox["top"] = true;
-		includeLayout('adminbox.inc');
-	}
+	$adminCommands = "<span class=\"admin\">$adminCommands</span>";
+       	$adminbox["commands"] = $adminCommands;
+       	$adminbox["text"] = "&nbsp;";
+
+	$adminbox["bordercolor"] = $bordercolor;
+       	$adminbox["top"] = true;
+       	includeLayout('adminbox.inc');
+       	includeLayout('navtablemiddle.inc');
 }
 
 $breadcrumb["bordercolor"] = $bordercolor;
 $breadcrumb["top"] = true;
 $breadcrumb['bottom'] = false;
-includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
 includeLayout('navtablemiddle.inc');
 includeLayout('navphoto.inc');
