@@ -877,6 +877,7 @@ function _getStyleSheetLink($filename, $skinname='') {
         $sheetname = "skins/$skinname/css/$filename.css";
 	$sheetpath = dirname(__FILE__) . "/$sheetname";
 
+	$sheetdefaultdomainname = "css/$HTTP_SERVER_VARS[HTTP_HOST]/$filename.css";
 	$sheetdefaultname = "css/$filename.css";
 	$sheetdefaultpath = $sheetname;
 
@@ -894,6 +895,8 @@ function _getStyleSheetLink($filename, $skinname='') {
 		$url = "$base/$sheetname";
 	} elseif (fs_file_exists($sheetdefaultpath) && !broken_link($sheetdefaultpath)) {
 		$url = "$base/$sheetdefaultpath";
+	} elseif (fs_file_exists($sheetdefaultdomainname) && !broken_link($sheetdefaultdomainname)) {
+		$url = "$base/$sheetdefaultdomainname";
 	} elseif (fs_file_exists($sheetdefaultname) && !broken_link($sheetdefaultname)) {
 		$url = "$base/$sheetdefaultname";
 	} else {
