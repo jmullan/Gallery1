@@ -97,13 +97,21 @@ if (!$GALLERY_NO_SESSIONS) {
 if (!strcmp($GALLERY_EMBEDDED_INSIDE, "nuke")) {
         include($GALLERY_BASEDIR . "classes/Database.php");
 
-	/* Check for PostNuke 0.7's new methodology */
+	/* Check for PostNuke */
 	if (isset($GLOBALS['pnconfig']) && function_exists("authorised")) {
-	    include($GALLERY_BASEDIR . "classes/postnuke/UserDB.php");
-	    include($GALLERY_BASEDIR . "classes/postnuke/User.php");
 
-	    $gallery->database{"db"} = $GLOBALS['dbconn'];
-	    $gallery->database{"prefix"} = $GLOBALS['pnconfig']['prefix'] . "_";
+	    if (!function_exists("pnUserGetVar")) {
+		/* pre 0.7.1 */
+		include($GALLERY_BASEDIR . "classes/postnuke/UserDB.php");
+		include($GALLERY_BASEDIR . "classes/postnuke/User.php");
+		
+		$gallery->database{"db"} = $GLOBALS['dbconn'];
+		$gallery->database{"prefix"} = $GLOBALS['pnconfig']['prefix'] . "_";
+	    } else {
+		/* 0.7.1 and beyond */
+		include($GALLERY_BASEDIR . "classes/postnuke0.7.1/UserDB.php");
+		include($GALLERY_BASEDIR . "classes/postnuke0.7.1/User.php");
+	    }
 
 	    /* Load our user database (and user object) */
 	    $gallery->userDB = new PostNuke_UserDB;
