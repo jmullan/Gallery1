@@ -95,12 +95,11 @@ foreach ($checklist as $check) {
 		foreach ($warn as $key => $val) {
         	        echo "\t\t\t\t". '<p class="warning">'. _("Warning") . '</p>';
                 	echo "\n\t\t\t\t<p>";
-		       	if (isset($check[$key])) {
-			       	echo $check[$key];
-			} else {
-				echo $val;
+			if (isset($check[$key])) {
+				echo "\t\t\t\t<p>". $check[$key] . "</p>";
 			}
-		       	echo "</p>";
+			echo "\n\t\t\t\t". '<p class="warning">'. $val . '</p>';
+
 	        }
 	}
 ?>

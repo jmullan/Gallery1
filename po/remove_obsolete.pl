@@ -3,11 +3,12 @@
 # Don Willingham, for Tim_j in #gallery irc.freenode.net
 # 2003-08-13 19:00EST
 use strict;
-my @files = glob("*");
+use File::Find::Rule;
+my @files = File::Find::Rule->file()->name('*.po')->in('../locale');
 my $curr_file;
 foreach $curr_file (@files)
 {
-  if ($curr_file =~ /^(.{2}_.{2})(\..+)?\-gallery_.+\.po$/)
+  if ($curr_file =~ /(.{2}_.{2})(\..+)?\-gallery_.+\.po$/)
   {
     print "processing : $curr_file \n";
     my @lines;

@@ -2992,63 +2992,42 @@ function album_validation_link($album, $photo='', $args=array()) {
 
 //returns all languages in this gallery installation
 function gallery_languages() {
-
-	global $GALLERY_BASEDIR;
 	$nls=getNLS();
-
-	$modules=array('config','core');
-	$handle=fs_opendir($GALLERY_BASEDIR. "locale");
-	$available=array('en_US' => 'English (US)');
-	
-	while ($dirname = readdir($handle)) {
-		if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
-			$locale=$dirname;
-			$fc=0;
-			foreach ($modules as $module) {
-				if (gettext_installed()) {
-					if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-gallery_$module.po")) $fc++;
-				} else {
-					if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
-				}
-			}
-			if ($fc == sizeof($modules)) {
-				$available[$dirname]=$nls['language'][$dirname];
-			}
-		}
-	}
-	closedir($handle);
-
-return $available;
+	return $nls['language'];
 }
 
 function getNLS() {
-
 	global $GALLERY_BASEDIR;
+	static $nls;
 
-	$nls=array();
+	if (empty($nls)) {
 
-	$modules=array('config','core');
-	$handle=fs_opendir($GALLERY_BASEDIR. "locale");
-	$available=array('en_US' => 'English (US)');
+		$nls=array();
+		// Load defaults
+		include ($GALLERY_BASEDIR. "nls.php");
+
+		$modules=array('config','core');
+		$handle=fs_opendir($GALLERY_BASEDIR. "locale");
 	
-	while ($dirname = readdir($handle)) {
-		if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
-			$locale=$dirname;
-			$fc=0;
-			foreach ($modules as $module) {
-				if (gettext_installed()) {
-					if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-gallery_$module.po")) $fc++;
-				} else {
-					if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
+		while ($dirname = readdir($handle)) {
+			if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
+				$locale=$dirname;
+				$fc=0;
+				foreach ($modules as $module) {
+					if (gettext_installed()) {
+						if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-gallery_$module.po")) $fc++;
+					} else {
+						if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
+					}
+				}
+				if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-nls.php") && $fc==sizeof($modules)) {
+					include ($GALLERY_BASEDIR . "locale/$dirname/$locale-nls.php");
 				}
 			}
-			if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-nls.php")) {
-				include ($GALLERY_BASEDIR . "locale/$dirname/$locale-nls.php");
-			}
 		}
+		closedir($handle);
 	}
-	closedir($handle);
-	include ($GALLERY_BASEDIR. "nls.php");
+
 //print_r($nls);
 return $nls;
 }

@@ -24,7 +24,7 @@ while ($dirname = readdir($handle)) {
 		$tpd=0;
 		$cc=0;
 		while ($file = readdir($dir)) {
-		        if (ereg("^([a-z]{2}_[A-Z]{2})(\.[a-zA-Z0-9]+)?(\-gallery.+\.po)$", $file, $matches)) {
+		        if (ereg("^([a-z]{2}_[A-Z]{2})(\.[a-zA-Z0-9\-]+)?(\-gallery.+\.po)$", $file, $matches)) {
 				$pos=strpos($file,"gallery_");
 				$component=substr($file,$pos+8,-3);
 
@@ -66,18 +66,19 @@ while ($dirname = readdir($handle)) {
 				$report[$locale][$component]=array ($color,$percent_done,$all,$translated,$fuzzy,$untranslated,$obsolete);
 				$total['percent_done'] = $total['percent_done'] + $percent_done;
 				$cc++;
-		        }
-		}
 
-		$rtpd=round($tpd/$cc,0);
-		if($rtpd <50) {
-			$color=dechex(255-$rtpd*2). "0000";
-		} else {
-			$color="00" . dechex(55+$rtpd*2). "00";
+
+				$rtpd=round($tpd/$cc,0);
+				if($rtpd <50) {
+					$color=dechex(255-$rtpd*2). "0000";
+				} else {
+					$color="00" . dechex(55+$rtpd*2). "00";
+				}
+				if (strlen($color) <6) $color="0". $color;
+				$report[$locale]['tpd']=$tpd/$cc;
+				$report[$locale]['color']=$color;
+			}
 		}
-		if (strlen($color) <6) $color="0". $color;
-		$report[$locale]['tpd']=$tpd/$cc;
-		$report[$locale]['color']=$color;
 		closedir($dir);
 	}
 }

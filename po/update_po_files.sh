@@ -30,36 +30,32 @@ echo -e "Done.\n"
 
 #find all .po files or use only one
 
+echo -n "checking for .po files ...."
+find ../locale/ -iname "??_??*.po" >/dev/null 2>/dev/null || {
+	echo $rc_failed	
+	echo "$tab No valid .po files found"
+	exit 0
+}
+
 if [ $1 = "-all" ] ; then
-	echo -n "checking for .po files ...."
-	find ../locale/ -name ??_??*.po >/dev/null 2>/dev/null || {
-		echo $rc_failed	
-		echo "$tab No valid .po files found"
-		exit 0
-	}
-
-	for all_po in $(find ../locale/ -name ??_??*.po) ; do
-		echo -e "\nFound : $all_po"
-		
-		lang1=${all_po%-*}
-		lang=${lang1##*/}
-		module1=${all_po##*_}
-		module=${module1/.po}
-
-		echo "$tab Language = $lang"
-		echo "$tab Module = $module"
-
-		echo "$tab Updating ..."
-		msgmerge -U $all_po gallery-$module.pot --no-wrap -v || exit
-	done
+	pofiles=$(find ../locale/ -iname "??_??*.po")
 else
-	echo "$tab Updating ../locale/$2/$2-gallery_config.po ..."
-	msgmerge -U ../locale/$2/$2-gallery_config.po gallery-config.pot --no-wrap -v
-
-	echo -e "\n-----------------------------\n"
-
-	echo "$tab Updating ../locale/$2/$2-gallery_core.po ..."
-	msgmerge -U ../locale/$2/$2-gallery_core.po gallery-core.pot --no-wrap -v
+	pofiles=$(find ../locale/$2 -iname "??_??*.po")
 fi
+
+for all_po in $pofiles ; do
+	echo -e "\nFound : $all_po"
+		
+	lang1=${all_po%-*}
+	lang=${lang1##*/}
+	module1=${all_po##*_}
+	module=${module1/.po}
+
+	echo "$tab Language = $lang"
+	echo "$tab Module = $module"
+
+	echo "$tab Updating ..."
+	msgmerge -U $all_po gallery-$module.pot --no-wrap -v || exit
+done
 
 find ../locale/ -iname "*~" -exec rm {} \;

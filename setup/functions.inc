@@ -360,7 +360,7 @@ function check_exif($location="")
 		$d = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
 	}
 	if (!$d) {
-		$fail["fail-exif"] = array(sprintf(_("Can't find %s!"), '<i>jhead</i>'));
+		$warn["fail-exif"] = _("Can't find <i>jhead</i>");
 	} else {
 		$success[] = _("<b>jhead</b> binary located.");
 	}
@@ -525,7 +525,7 @@ function check_jpegtran($location="")
 		$d = locateDir($bin, isset($gallery->app->use_jpegtran) ? $gallery->app->use_jpegtran : "");
 	}
 	if (!$d) {
-		$fail["fail-jpegtran"] = array(sprintf(_("Can't find %s!"), '<i>jpegtran</i>'));
+		$warn["fail-jpegtran"] = _("Can't find <i>jpegtran</i>!");
 	} else {
 		$success[] = _("<b>jpegtran</b> binary located.");
 	}
@@ -541,7 +541,7 @@ function check_gettext()
 	if (gettext_installed()) {
 		$success[] = _("PHP has <b>GNU gettext</b> support.");
 	} else {
-		$fail["fail-gettext"] = 1;
+		$warn["fail-gettext"] = 1;
 	}
 	return array($success, $fail, $warn);
 }
@@ -559,7 +559,7 @@ function check_gallery_languages()
 	if (sizeof($languages) == 0) {
 		$fail["fail-gallery-languages"] = _("No languages found."); // should never occur!
 	} else if (sizeof($languages) == 1 ) {
-		$warn['only_english']= _("It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English.");
+		$warn['only_english']= _("It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team.");
 	}
 	else {
 	$success[] = sprintf(_("%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
@@ -673,8 +673,10 @@ function check_locale() {
 			$system_locales=$tmp;
 		} elseif (@is_readable("/etc/locale.gen")) {
 			$system_locales=explode("\n",shell_exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1'));
-		} elseif (@is_readable("/usr/share/locale/")) {
+		} elseif (@is_readable("/usr/share/locale")) {
 			$system_locales=explode("\n",shell_exec("ls /usr/share/locale"));
+		} elseif (@is_readable("/usr/local/share/locale")) {
+			$system_locales=explode("\n",shell_exec("ls /usr/local/share/locale"));
 		}
 	}
 
@@ -721,7 +723,7 @@ function check_locale() {
 		$noway=Array ('zh_TW.eucTW'); 
 		if ($aliases) {
 			foreach ($aliases as $test) {
-				// We do this because all locales in $noway seem to crash at least NetBSD
+				// We do this because all locales in $noway seem to crash at least some NetBSD
 				// Maybe changed in future
 				if (!in_array($test,$noway)) {
 					if (setlocale(LC_ALL,$test)) {

@@ -1,3 +1,20 @@
+2003-10-14 Jens Tkotz <jens@peino.de> 1.4.1-cvs-b157
+
+	* Change: 2nd try for Optimization.
+		  - modified getNLS() to use a static var.
+		  - modified gallery_languages() to use getNLS() 
+		    instead of own searching.
+
+	* Change: Added another dir where might locales (OpenBSD related)
+
+	* Language: Readded Czech
+
+	* Language: Updated German (de_DE), Lithuanian (lt_LT), Swedish (sv_SE)
+
+	* Change: Removed <span>....</span> inside a translation.
+
+	* Language: adjust scripts.
+
 2003-10-13 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b156
 
 	* Comment viewing and adding now controlled by permissions (thanks 
@@ -175,10 +192,8 @@
 	Note: We are now ready for language packs, because all language related
 	      information is bundled into one folder per language.
 
-	Todo: - Code cleanup and optimization.
-	      - Improve handling of multiple same languages which just have
+	Todo: - Improve handling of multiple same languages which just have
 	        different charset.
-	      - Adjust scripts
 
 2003-10-07 Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b136
 
