@@ -1,9 +1,10 @@
 <?php /* $Id$ */ ?>
 <?php
 
-require("../config.php"); 
+$GALLERY_BASEDIR="../";
 require("../util.php");
-emulate_gettext();
+initLanguage();
+
 // Pull the $destroy variable into the global namespace
 extract($HTTP_GET_VARS);
 
@@ -32,7 +33,7 @@ $count++;
       <H1><?php echo _("Session Test") ?></H1>
 
 	<?php echo _("If sessions are configured properly in your PHP installation, then you should see a session id below.") ?>  
-	<?php echo _("The \"page views\" number should increase every time you reload the page.") ?>  
+	<?php echo _("The &quot;page views&quot; number should increase every time you reload the page.") ?>  
 	<?php echo sprintf(_("Clicking %s should reset the page view number back to 1."), '"Start over"') ?>
 
       <p>

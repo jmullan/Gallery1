@@ -32,11 +32,11 @@ while ($file = readdir($handle)) {
 		echo "<td>$locale</td>";
 		$lines=file("../po/$file");
 		$fuzzy=0;
-		$untranslated=0;
+		$untranslated=-1;
 		$translated=0;
 		foreach ($lines as $line) {
-			if(stristr($line,', fuzzy')) $fuzzy++;
-			if(stristr($line,'msgstr')) {
+			if(strpos($line,'#, fuzzy') === 0) $fuzzy++;
+			if(strpos($line,'msgstr') === 0) {
 				if(stristr($line,'msgstr ""')) {
 					$untranslated++;
 				} else {

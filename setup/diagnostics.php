@@ -1,8 +1,10 @@
 <?php /* $Id$ */ ?>
 <?php 
-require("../config.php"); 
+
+$GALLERY_BASEDIR="../";
+@include("../config.php"); 
 require("../util.php");
-emulate_gettext();
+initLanguage();
 ?>
 <html>
     <head>

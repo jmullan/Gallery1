@@ -171,7 +171,7 @@ foreach ($constants as $key => $val) {
 
 		if (isset($constants[$key]["must-be-number"])) {
 			if (ereg("[^0-9]",$real)) {
-				$view .= row_wrap(error_format(sprintf(_("%s: <b>\"%s\"</b> must be a positive number"), $key, $real)));
+				$view .= row_wrap(error_format(sprintf(_("%s: <b>&quot;%s&quot;</b> must be a positive number"), $key, $real)));
 				$error = 1;
 				continue;
 			}

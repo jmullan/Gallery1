@@ -1,8 +1,8 @@
 <?php /* $Id$ */ ?>
 <?php 
-require("../config.php"); 
+$GALLERY_BASEDIR="../";
 require("../util.php");
-emulate_gettext();
+initLanguage();
 ?>
 <html>
 <body dir=<?php echo $gallery->direction ?>>
@@ -20,6 +20,12 @@ echo sprintf(_("You should run this script <b>after</b> you have run the config 
 
 <?php
 require('init.php'); 
+if (! file_exists("../config.php")) {
+        echo "<p style=\"color:red\">". _("It seems that you did not configure your GALLERY. Please run and finish the configuration wizard") ." </p>";
+	echo sprintf(_("Return to the %sconfig wizard%s."), '<a href="../index.php">', '</a>');
+	echo "</body></html>";
+        exit;
+}
 require("../config.php"); 
 ?>
 

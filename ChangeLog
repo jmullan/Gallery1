@@ -1,3 +1,29 @@
+2003-08-10 Jens Tkotz  <jens@peino.de> 1.3.5-cvs-b111
+
+	* Changed some texts in config_data.inc 
+	  which caused error in config wizard when php has no gettext support
+	  " and \ shouldnt be used in any _()
+	
+	* replaced all \" with &quot; and \\ with &#92; when used in _()
+
+	* changed Next XX and Prev XX Buttins in captionator.php to use sprintf
+	  not all languages have the numbers at the end.
+
+	* Added po analyzer / report for po files.
+	  Call it via http://path_to/gallery/tools/g1-report.php
+
+	* Updated gallery.pot and synced all languages
+
+	* Updated german
+
+	* Updated french
+
+	* Changed call of initLanguage() to emulate _() only if php has no gettext support
+
+	* Tweaked diagnostics page, check_netpbm, check_imagemagick and session_test
+	  1.) They now call initLanguage and are now translated
+	  2.) Added error messages if no config.php is there, but needed (only check_netpbm & check_imagemagick)
+
 2003-08-08  Joan McGalliard <gallery@joanhenge.plus.com> 1.3.5-cvs-b110
 
 	* Jens' one word fix so language setting now holds when you click

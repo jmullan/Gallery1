@@ -147,7 +147,7 @@ if (isset($save)) {
 <td><select name="resize_size"><?php echo selectOptions($gallery->album, "resize_size", array("off", 400, 500, 600, 640, 700, 800, 1024)) ?></select></td>
 </tr>
 <tr>
-<td><?php echo _("Auto-Resize file size kilobytes (\"0\" or blank for no size restriction)") ?></td>
+<td><?php echo _("Auto-Resize file size kilobytes (0 or blank for no size restriction)") ?></td>
 <td><input type=text name="resize_file_size" value="<?php echo $gallery->album->fields["resize_file_size"] ?>"></td>
 </tr>
 <tr>

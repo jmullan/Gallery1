@@ -210,11 +210,11 @@ include ($GALLERY_BASEDIR . "layout/adminbox.inc");
 <input type=submit name="save" value="<?php echo _("Save and Exit") ?>">
 
 <?php if (!$last) { ?>
-    <input type=submit name="next" value="<?php echo _("Save and Edit Next") ?> <?php echo $perPage ?>">
+    <input type=submit name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
 <?php } ?>
 
 <?php if ($page != 1) { ?>
-    <input type=submit name="prev" value="<?php echo _("Save and Edit Previous") ?> <?php echo $perPage ?>">
+    <input type=submit name="prev" value="<?php echo sprintf(_("Save and Edit Previous %d"), $perPage) ?>">
 <?php } ?>
 
 <input type=submit name="cancel" value="<?php echo _("Exit") ?>">
@@ -320,11 +320,11 @@ if ($numPhotos) {
 <input type=submit name="save" value="<?php echo _("Save and Exit") ?>">
 
 <?php if (!$last) { ?>
-    <input type=submit name="next" value="<?php echo _("Save and Edit Next") ?> <?php echo $perPage ?>">
+    <input type=submit name="next" value="<?php echo sprintf(_("Save and Edit Next %d"),$perPage) ?>">
 <?php } ?>
 
 <?php if ($page != 1) { ?>
-    <input type=submit name="prev" value="<?php echo _("Save and Edit Previous") ?> <?php echo $perPage ?>">
+    <input type=submit name="prev" value="<?php echo sprintf(_("Save and Edit Previous %d"), $perPage) ?>">
 <?php } ?>
 
 <input type=submit name="cancel" value="<?php echo _("Exit") ?>">

@@ -1906,19 +1906,20 @@ function initLanguage() {
 	 ** if yes, do some gettext settings.
 	 ** if not emulate _() function
 	 **/
-	emulate_gettext();
-}
 
-function emulate_gettext() {
-	global $translation, $GALLERY_BASEDIR;
 	$check=(in_array("gettext", get_loaded_extensions()) && 
 			function_exists('gettext'));
 	if ($check) {
-		$bindtextdomain=bindtextdomain("gallery", 
-				$GALLERY_BASEDIR."locale");
+		$bindtextdomain=bindtextdomain("gallery", $GALLERY_BASEDIR."locale");
 		textdomain("gallery");
-		return;
-	} 
+	}  else {
+		emulate_gettext();
+	}
+}
+
+function emulate_gettext() {
+	global $translation;
+
 	$filename=po_filename();
 	if ($filename) {
 		$lines=file($filename);
@@ -1931,7 +1932,7 @@ function emulate_gettext() {
 		}
 		// Substitute _() gettext function
 		function _($search) {
-			if ($GLOBALS['translation'][$search]) {
+			if (! empty($GLOBALS['translation'][$search])) {
 				return $GLOBALS['translation'][$search] ;
 			}
 			else {

@@ -66,7 +66,7 @@ $checklist = array(
 	),
 	"magic-quotes" => array(
 		"optional" => 1,
-		"desc" => sprintf(_("Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behaviour if you put ' (single-quote), \" (double quote) or \\ (backslash) characters in titles or captions in the gallery."),
+		"desc" => sprintf(_("Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behaviour if you put ' (single-quote), &quot; (double quote) or &#92; (backslash) characters in titles or captions in the gallery."),
 		 '<a href="http://www.php.net/manual/en/configuration.php#ini.magic-quotes-gpc target=_top">',
 		'</a>'),
 	     	"func" => "check_magic_quotes",
@@ -475,7 +475,7 @@ $defaults = array(
 	),
 	"resize_file_size" => array(
 		"prompt" => _("Resized images file size"),
-		"desc" => _("The default target size (in kilobyte) of resized JPEG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to \"0\" for no target size.").
+		"desc" => _("The default target size (in kilobyte) of resized JPEG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size.").
 			  "<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4") . ")</b></font>",
 		"value" => 0,
 		"optional" => 1,
