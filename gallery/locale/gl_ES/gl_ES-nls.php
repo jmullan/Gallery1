@@ -19,7 +19,7 @@
  *
  * $Id$
  *
- * Version: 1_4_3-cvs
+ * Version: 1_4_4-RC2
  */
 /**
  * NLS (National Language System) array.
