@@ -152,7 +152,6 @@ $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>">
 </form>
 </div>
-</center>
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--
@@ -162,6 +161,6 @@ document.usermodify_form.uname.focus();
 </script>
 
 <?php print gallery_validation_link("modify_user.php"); ?>
-</div>
+
 </body>
 </html>

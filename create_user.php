@@ -53,16 +53,15 @@ if (!empty($formaction) && $formaction == 'create') {
 	if (!$errorCount) {
 		doctype();
 		?>
-	       	<html>
-		<head>
-		<title><?php echo _("Create User") ?></title>
-		<?php common_header(); ?>
-		</head>
-		<body dir="<?php echo $gallery->direction ?>">
-		<div class="popup">
+<html>
+<head>
+  <title><?php echo _("Create User") ?></title>
+  <?php common_header(); ?>
+</head>
+<body dir="<?php echo $gallery->direction ?>">
+	<div class="popup" align="center">
 		<div class="popuphead"><?php echo _("Create User") ?></div>
-		<div class="popupcontent">
-		<?php
+	<?php
 		$tmpUser = new Gallery_User();
 		$tmpUser->setUsername($uname);
 		$tmpUser->setPassword($new_password1);
@@ -97,8 +96,14 @@ if (!empty($formaction) && $formaction == 'create') {
 			       	print "<br><br>";
 		       	}
 	       	} 
-		?>
-		<br><form><input type="submit" name="dismiss" value="<?php echo _("Dismiss") ?>"></form>
+	?>
+	<br>
+	<form>
+		<input type="submit" name="dismiss" value="<?php echo _("Dismiss") ?>">
+	</form>
+	</div>
+</body>
+</html>
 		<?php
 		exit;
        	}
@@ -158,6 +163,6 @@ document.usercreate_form.uname.focus();
 </script>
 
 <?php print gallery_validation_link("create_user.php"); ?>
-</div>
+
 </body>
 </html>

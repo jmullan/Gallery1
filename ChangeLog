@@ -1,3 +1,45 @@
+2004-12-09  Jens A. Tkotz <jens@peino.de>  1.5-cvs-b300
+
+	* Change: Layout
+		- admin page.
+		- Checkbox for emailing in view album page
+		- layout/navigator.inc (we use now a table for the numbers)
+		- tools/find_orphans.php (added nicer errormessages)
+
+	* Change: Code cleanup for
+		 - create_user.php
+		 - slideshow.php (BIG changes)
+		 - includes/slideshow/high.inc
+		 - includes/slideshow/low.inc
+	
+	* Fix: Made valid html 4.01:
+		- create_users.php
+		- delete_user.php
+		- manage_users.php
+		- modify_user.php
+		- includes/slideshow/high.inc
+
+ 	* Fix: Mambo calls rss.php in the way that HTTP_USER_AGENT is not set.
+	  Check added in init.php to prevent warning message which causes rss.php 
+	  to produce invalid rss.
+
+
+	* New: Added function getImVersion() to detect version of ImageMagick.
+
+	* Change: Checkbox for emailing in view_photo is only visible, when disabled in album view.	
+
+	* Change: function getEmailMe() from classes/Album.php return now true 
+		  when emailMe is set for photo OR album. 
+
+	* Fix: Slideshow low was broken (register globals)
+
+	* Change: fs_unlink surpresses now the warning message. So we can show our own (nice) message.	
+
+	* Change: Configwizard:
+		  - Added Tab own tab for watermarking.
+		  - Text changes in statistics tab
+		  - Added possibility for empty desc
+	
 2004-12-03  Andrew Lindeman <alindeman@users.sf.net>    1.5-cvs-b299
 
 	* Use htmlentities() on the caption fields for photo print 

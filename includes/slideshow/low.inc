@@ -33,10 +33,12 @@
  *
  *       Thanks
  */
-
-
 ?>
 <?php
+
+list($slide_index, $slide_pause, $slide_full, $slide_dir, $slide_loop) = 
+  getRequestVar(array('slide_index', 'slide_pause', 'slide_full', 'slide_dir', 'slide_loop'));
+
 function slideshow_initialize() {
 	global $defaultLoop, $defaultPause, $defaultFull, $defaultDir,
 			$slide_index, $slide_pause, $slide_loop, $slide_full,
@@ -93,7 +95,7 @@ function slideshow_body() {
 			$index, $photo_count, $photo, $image, $thumbImage,
 			$photoURL, $caption, $imageDir, $pixelImage, $number;
 ?>
-<script language="JavaScript">
+<script type="text/javascript">
 var timer; 
 var current_location = <?php echo $slide_index ?>;
 var next_location = <?php echo $slide_index ?>; 
@@ -273,7 +275,7 @@ function preload_photo(index) {
     } 
 }
 
-</Script>
+</script>
 
 <?php
 }
@@ -293,16 +295,15 @@ function slideshow_controlPanel() {
   </tr>
   <tr>
     <td height="25" width="1"><?php echo $pixelImage ?></td>
-    <td width="5000" align="left" valign="middle">
-    <span class=admin>
-    &nbsp;<a class="admin" href="#" onClick='stop(); return false;'>[<?php echo _("stop") ?>]</a>
-    <a class="admin" href="#" onClick='play(); return false;'>[<?php echo _("play") ?>]</a>
+    <td width="5000" align="left" valign="middle" style="font-size:10px">&nbsp;
+    <a href="#" onClick='stop(); return false;'>[<?php echo _("stop") ?>]</a>
+    <a href="#" onClick='play(); return false;'>[<?php echo _("play") ?>]</a>
 <?php
 if ($slide_dir == 1) {
-    echo "<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, -1) 
+    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, -1) 
 	. "\">[". _("reverse direction") ."]</a>";
 } else {
-    echo "<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, 1)
+    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, $slide_full, 1)
         . "\">[". _("forward direction") ."]</a>";
 }
 ?>
@@ -310,18 +311,16 @@ if ($slide_dir == 1) {
 <?php
 if ($gallery->user->canViewFullImages($gallery->album)) {
     if ($slide_full) {
-	    echo "<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0, $slide_dir) 
+	    echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 0, $slide_dir) 
 	   . "\">[". _("normal size") ."]</a>";
     } else {
-		echo "<a class=\"admin\" href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1, $slide_dir)
+		echo "<a href=\"" . makeSlideLowUrl($slide_index, $slide_loop, $slide_pause, 1, $slide_dir)
 	            . "\">[". _("full size") ."]</a>";
     }
 }
-?>
-&nbsp;&nbsp;||
-    &nbsp;<?php echo _('Delay:') . '&nbsp;' ?>
-<?php echo 
-drawSelect("time", array(1 => "1 ". _("second"),
+
+echo '&nbsp;&nbsp;||&nbsp;'. _('Delay:') . '&nbsp;';
+echo drawSelect("time", array(1 => "1 ". _("second"),
 		       	2 => "2 ". _("seconds"),
 		       	3 => "3 ". _("seconds"),
 		       	4 => "4 ". _("seconds"),
@@ -333,7 +332,7 @@ drawSelect("time", array(1 => "1 ". _("second"),
 		       	60 => "60 ". _("seconds")),
 	       	$slide_pause, // default value
 	       	1, // select size
-	       	array('onchange' => 'reset_timer()', 'style' => 'font-size:10px;' ));
+	       	array('onchange' => 'reset_timer()', 'class' => 'adminform' ));
 ?>
     <?php if ($loop) { ?>
     &nbsp;<?php echo _('Loop') ?>:&nbsp;<input type="checkbox" name="loopCheck" <?php echo ($slide_loop) ? "checked" : "" ?> onclick='toggleLoop();'>
@@ -367,7 +366,7 @@ if ($photo_count > 0) {
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 	<td>
-	<script language="JavaScript">
+	<script type="text/javascript">
 	    document.write("<img border==<?php echo $borderwidth ?> bgcolor=<?php echo $borderColor ?> src="+photo_urls[<?php echo $slide_index ?>]+" name=slide>");
 	</script>
 </tr>
@@ -375,7 +374,7 @@ if ($photo_count > 0) {
 
 <br>
 
-<script language="Javascript">
+<script type="text/javascript">
 /* show the caption either in a nice div or an ugly form textarea */
 document.write("<div class='pcaption'>" + "[" + current_location + " <?php echo _("of") ?> " + photo_count + "] " + photo_captions[<?php echo $slide_index ?>] + "</div>");
 

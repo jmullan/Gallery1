@@ -108,7 +108,7 @@ include(dirname(__FILE__) . "/includes/slideshow/$mode.inc");
 slideshow_initialize();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-doctype();
+	doctype();
 ?>
 <html>
 <head>
@@ -149,8 +149,8 @@ if ($albumName) {
 
 includeHtmlWrap("slideshow.header"); ?>
 
-<script language="JavaScript" SRC="<?php echo $gallery->app->photoAlbumURL ?>/js/client_sniff.js"></script>
-<script language="JavaScript">
+<script src="<?php echo $gallery->app->photoAlbumURL ?>/js/client_sniff.js" type="text/javascript"></script>
+<script type="text/javascript">
 <?php
 if ($mode != 'low') {
 ?>
@@ -166,55 +166,29 @@ if ( (is_ie && !is_ie4up) || (is_opera && !is_opera5up) || (is_nav && !is_nav6up
 
 <?php
 	slideshow_body();
-?>
 
-<?php
 $imageDir = $gallery->app->photoAlbumURL."/images";
-$pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" height=\"1\" alt=\"\">";
+$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
+		'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
 
 #-- breadcrumb text ---
 $breadCount = 0;
 $breadtext=array();
-if ($albumName) {
-if (!$gallery->session->offline
-	|| isset($gallery->session->offlineAlbums[$gallery->session->albumName])) {
-	$breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($gallery->session->albumName) .
-      	"\">" . $gallery->album->fields['title'] . "</a>";
-	$breadCount++;
-}
-$pAlbum = $gallery->album;
-do {
-  if (!strcmp($pAlbum->fields["returnto"], "no")) {
-    break;
-  }
-  $pAlbumName = $pAlbum->fields['parentAlbumName'];
-  if ($pAlbumName && (!$gallery->session->offline
-  	|| isset($gallery->session->offlineAlbums[$pAlbumName]))) {
-    $pAlbum = new Album();
-    $pAlbum->load($pAlbumName);
-    $breadtext[$breadCount] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($pAlbumName) .
-      "\">" . $pAlbum->fields['title'] . "</a>";
-  } elseif (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
-    //-- we're at the top! ---
-    $breadtext[$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") .
-      "\">" . $gallery->app->galleryTitle . "</a>";
-  } else {
-	  break;
-  }
-  $breadCount++;
-} while ($pAlbumName);
 
-//-- we built the array backwards, so reverse it now ---
-for ($i = count($breadtext) - 1; $i >= 0; $i--) {
-    $breadcrumb["text"][] = $breadtext[$i];
-}
-} else {
-	if (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])) {
-		//-- we're at the top! ---
-		$breadcrumb["text"][$breadCount] = _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") .
-			"\">" . $gallery->app->galleryTitle . "</a>";
-		$breadCount++;
+if (isset($gallery->album)) {
+	/* We are inside an album */
+	if ($gallery->album->fields['returnto'] != 'no') {
+		$breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" .
+		  $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
+		foreach ($gallery->album->getParentAlbums(true) as $name => $title) {
+			$breadcrumb["text"][] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($name) . "\">" .
+			  $title. "&nbsp;" . $upArrowURL . "</a>";
+		}
 	}
+} else {
+	/* We're on mainpage */
+	$breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" .
+	  $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
 }
 
 $breadcrumb["bordercolor"] = $borderColor;
@@ -244,25 +218,18 @@ includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
 includeLayout('navtablemiddle.inc');
 
-?>
+slideshow_controlPanel();
 
-<?php
-	slideshow_controlPanel();
-?>
+includeLayout('navtableend.inc');
 
-<?php
-    includeLayout('navtableend.inc');
-?>
+echo "\n<br>";
 
-<br>
-<?php
 slideshow_image();
-?>
-<?php
-includeLayout('ml_pulldown.inc');
-includeHtmlWrap("slideshow.footer"); ?>
 
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+includeLayout('ml_pulldown.inc');
+includeHtmlWrap("slideshow.footer");
+
+if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
 <?php } ?>

@@ -45,8 +45,10 @@ function evenOdd_row($fields, $evenOdd) {
 		$buf .= "\n\t<td class=\"shortdesc\" width=\"90%\" valign=\"top\">$fields[1]</td>";
 		$buf .= "\n</tr>";
 		$buf .= "\n<tr>";
-		$buf .= "\n\t<td class=\"desc\" colspan=\"2\" valign=\"top\">$fields[2]</td>";
-		$buf .= "\n</tr>\n";
+		if (!empty($fields[2])) {
+			$buf .= "\n\t<td class=\"desc\" colspan=\"2\" valign=\"top\">$fields[2]</td>";
+			$buf .= "\n</tr>\n";
+		}
 	}
 
 	return $buf;
@@ -352,8 +354,7 @@ function check_exec() {
 	return array($success, $fail, $warn);
 }
 
-function check_htaccess()
-{
+function check_htaccess() {
 	global $GALLERY_PHP_VALUE_OK;
 
 	/*
@@ -373,8 +374,7 @@ function check_htaccess()
 	return array($success, $fail, $warn);
 }
 
-function check_php()
-{
+function check_php() {
 	global $MIN_PHP_MAJOR_VERSION;
 
 	$version = phpversion();
@@ -390,8 +390,7 @@ function check_php()
 
 	return array($success, $fail, $warn);
 }
-function check_mod_rewrite() 
-{
+function check_mod_rewrite()  {
 	global $GALLERY_REWRITE_OK;
 
 	$success = array();
@@ -406,8 +405,7 @@ function check_mod_rewrite()
 	return array($success, $fail, $warn);
 }
 
-function check_exif($location="")
-{
+function check_exif($location="") {
 	global $gallery;
 
 	$fail = array();
@@ -430,8 +428,7 @@ function check_exif($location="")
 	return array($success, $fail, $warn);
 }
 
-function check_graphics($location="", $graphtool = "")
-{
+function check_graphics($location="", $graphtool = "") {
 	global $gallery;
 
 	$fail = array();
@@ -531,8 +528,7 @@ function check_graphics($location="", $graphtool = "")
 	return array($success, $fail, $warn);
 }
 
-function check_graphics_im($location="", $graphtool="")
-{
+function check_graphics_im($location="", $graphtool="") {
 	global $gallery;
 
 	$fail = array();
@@ -602,8 +598,7 @@ function check_graphics_im($location="", $graphtool="")
 	return array($success, $fail, $warn);
 }
 
-function check_jpegtran($location="")
-{
+function check_jpegtran($location="") {
 	global $gallery;
 
 	$fail = array();
@@ -626,8 +621,7 @@ function check_jpegtran($location="")
 	return array($success, $fail, $warn);
 }
 
-function check_gettext()
-{
+function check_gettext() {
 	$fail = array();
 	$success = array();
 	$warn = array();
@@ -639,8 +633,7 @@ function check_gettext()
 	return array($success, $fail, $warn);
 }
 
-function check_gallery_languages()
-{
+function check_gallery_languages() {
 	global $gallery;
 	$fail = array();
 	$success = array();
@@ -662,8 +655,7 @@ function check_gallery_languages()
 	return array($success, $fail, $warn);
 }
 
-function check_gallery_version()
-{
+function check_gallery_version() {
 	global $gallery;
 	$fail = array();
 	$success = array();
@@ -697,8 +689,7 @@ function check_gallery_version()
 	return array($success, $fail, $warn);
 }
 
-function check_absent_locales()
-{
+function check_absent_locales() {
 	global $locale_check;
 	$fail = array();
 	$success = array();
@@ -994,8 +985,7 @@ function config_maybe_locales() {
 	return $results;
 }
 
-function default_graphics()
-{
+function default_graphics() {
 	list ($imageMagick,) = check_graphics_im();
         
 	if (count ($imageMagick)) {
@@ -1005,8 +995,7 @@ function default_graphics()
 	}
 }
 
-function check_safe_mode()
-{
+function check_safe_mode() {
 	$fail = array();
 	$success = array();
 	$warn = array();
@@ -1022,8 +1011,7 @@ function check_safe_mode()
 	return array($success, $fail,$warn);
 }
 
-function check_magic_quotes()
-{
+function check_magic_quotes() {
 	$fail = array();
 	$success = array();
 	$warn = array();
@@ -1088,8 +1076,7 @@ function check_register_globals() {
 	return array($success, $fail, $warn);
 }
 
-function detect_exec_status() 
-{
+function detect_exec_status() {
 	global $gallery;
 
 	if (isset($gallery->app) && isset($gallery->app->expectedExecStatus)) {
@@ -1256,8 +1243,7 @@ function verify_password($passwords) {
 	return array($success, $fail);
 }
 
-function verify_email($emailMaster)
-{
+function verify_email($emailMaster) {
 	global $gallery;
 
 	$fail = array();
@@ -1309,8 +1295,7 @@ function verify_email($emailMaster)
        	return array($success, $fail);
 }
 
-function check_ecards($num)
-{
+function check_ecards($num) {
     if ($num < 15 || $num > 365) {
 		$fail = array();
 		$fail["fail-ecardPrune"]++;
@@ -1475,7 +1460,7 @@ function check_filedirective() {
 		$fail['buggy__FILE__'] = 1;
 	}
 
-return array($success, $fail, $warn);
+	return array($success, $fail, $warn);
 }
 
 function checkVersions($verbose=false) {

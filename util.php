@@ -2350,6 +2350,15 @@ function galleryDocs($class='') {
 	return NULL;
 }
 
+function getImVersion() {
+	$version = array();
+
+	exec($gallery->app->ImPath .' -version', $results);
+	$pieces = explode(' ', $results[0]);
+	$version = $pieces[2];
+
+	return $version;
+}
 function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 	global $gallery;
 
@@ -2377,12 +2386,14 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 			}
 			break;
 		case "ImageMagick":
+			/* we just need the first digit = major version */
+			$ImVersion = floor(getImVersion());
 			// Set the keepProfiles parameter based on the version
 			// of ImageMagick being used.  6.0.0 changed the
 			// parameters again.
-			if ($gallery->app->ImVersion == '5x' && $keepProfiles) {
+			if ($ImVersion == '5' && $keepProfiles) {
 				$keepProfiles = ' +profile \'*\' ';
-			} elseif ($gallery->app->ImVersion == '6x' && $keepProfiles) {
+			} elseif ($ImVersion == '6' && $keepProfiles) {
 				$keepProfiles = ' -strip ';
 			} else {
 				$keepProfiles = '';

@@ -637,8 +637,8 @@ includeHtmlWrap("inline_photo.footer");
 		$gallery->user->getEmail() &&
 		!$gallery->session->offline &&
 		$gallery->app->emailOn == "yes") {
-	if (isset($submitEmailMe)) {
-		if (isset($comments)) {
+	if (getRequestVar('submitEmailMe')) {
+		if (getRequestVar('comments')) {
 			$gallery->album->setEmailMe('comments', $gallery->user, $id);
 		} else {
 			$gallery->album->unsetEmailMe('comments', $gallery->user, $id);
@@ -648,17 +648,22 @@ includeHtmlWrap("inline_photo.footer");
 		} else {
 			$gallery->album->unsetEmailMe('other', $gallery->user, $id);
 		} */
+	} else {
 	}
-	echo makeFormIntro("view_photo.php",
-		       	array("name" => "email_me", "method" => "POST"));
-       	print "<input type=hidden name=id value=$id>";
-       	print _("Email me when:") . "  ";
-       	print _("Comments are added");
+
+	if (! $gallery->album->getEmailMe('comments', $gallery->user)) {
+		echo makeFormIntro("view_photo.php",
+			       	array("name" => "email_me", "method" => "POST"));
+		echo "\n\t<input type=\"hidden\" name=\"id\" value=\"$id\">\n\t";
+		echo _("Email me when comments are added");
        	?>
+
 	<input type="checkbox" name="comments" <?php echo ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? "checked" : "" ?> onclick="document.email_me.submit()" >
-	<input type="hidden" name="submitEmailMe">
-		</form>
-<?php }
+	<input type="hidden" name="submitEmailMe" value="true">
+	</form>
+<?php
+	} 
+}
 echo "</div>";
 includeLayout('navtablebegin.inc');
 includeLayout('navphoto.inc');

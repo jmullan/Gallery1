@@ -1118,17 +1118,22 @@ if (canVote()) { ?>
 			$gallery->album->unsetEmailMe('other', $gallery->user);
 		}
 	}
+	echo "<ul>";
 	echo makeFormIntro("view_album.php",
 	       	array("name" => "email_me", "method" => "POST", "style" => "margin-bottom: 0px;"));
-       	print _("Email me when:")."  ";
-       	print _("Comments are added"); ?>
-	<input type="checkbox" name="comments" <?php echo ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ?>
-	       	onclick="document.email_me.submit()" >
-		<?php print _("Other changes are made") ?>
-		<input type="checkbox" name="other" <?php echo ($gallery->album->getEmailMe('other', $gallery->user)) ? "checked" : "" ?>
-		        onclick="document.email_me.submit()" >
-	       	<input type="hidden" name="submitEmailMe">
-		</form>
+	echo _("Email me when one of the following actions are done to this album:")."  ";
+	$checked_com = ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ;
+	$checked_other = ($gallery->album->getEmailMe('other', $gallery->user)) ? "checked" : "";
+	?>
+	<li><?php echo _("Comments are added"); ?>
+		<input type="checkbox" name="comments" <?php echo $checked_com; ?> onclick="document.email_me.submit()">
+	</li>
+	<li><?php print _("Other changes are made") ?>
+		<input type="checkbox" name="other" <?php echo $checked_other; ?> onclick="document.email_me.submit()">
+	</li>
+	<input type="hidden" name="submitEmailMe" value="true">
+	</form>
+	</ul>
 <?php } ?>
 <!-- bottom nav -->
 <?php 

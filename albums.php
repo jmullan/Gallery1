@@ -139,7 +139,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </tr>
 </table>
-<?php	} ?>
+<?php	}
+?>
 
 <!-- admin section begin -->
 <?php 

@@ -42,6 +42,9 @@ doctype();
 <?php 
 	common_header() ;
 ?>
+  <style>
+	td.adm_options { vertical-align:top; height:30px; padding: 5px; }
+  </style>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php  
@@ -89,7 +92,7 @@ includeLayout('breadcrumb.inc');
 includeLayout('ml_pulldown.inc');
 
 if(!empty($adminOptions)) {
-	echo "\n" .'<table style="width:80%; margin: 20px;">';
+	echo "\n" .'<table style="width:80%; margin:10px; margin-bottom:50px">';
 	foreach ($adminOptions as $option) {
 		echo "\n<tr>";
 		if (isset($option['url'])) {
@@ -97,8 +100,8 @@ if(!empty($adminOptions)) {
 		} else {
 			$link = popup_link($option['text'], $option['popupFile'], false, true, 500, 500, 'admin');
 		}
-		echo "\n<td>$link</td>";
-		echo "\n<td>". $option['longtext'] ."</td>";
+		echo "\n<td class=\"adm_options\">$link</td>";
+		echo "\n<td class=\"adm_options\">". $option['longtext'] ."</td>";
 		echo "\n</tr>";
 	}
 	echo "\n</table>";

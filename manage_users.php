@@ -107,6 +107,6 @@ if (count($displayUsers)) { ?>
 
 </div>
 <?php print gallery_validation_link("manage_users.php"); ?>
-</div>
+
 </body>
 </html>

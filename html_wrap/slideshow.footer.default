@@ -21,9 +21,9 @@ includeTemplate('slideshow.footer.tpl');
 global $GALLERY_EMBEDDED_INSIDE;
        	if (! isset($GALLERY_EMBEDDED_INSIDE)) {
 		if (!empty($gallery->album)) {
-			print gallery_validation_link("slideshow.php", true, array("set_albumName" => $gallery->album->fields['name']));
+			print gallery_validation_link("slideshow.php", false, array("set_albumName" => $gallery->album->fields['name']));
 		} else {
-			print gallery_validation_link("slideshow.php", true);
+			print gallery_validation_link("slideshow.php", false);
 		}
        	} ?>
           </td>

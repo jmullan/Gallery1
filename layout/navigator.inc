@@ -76,7 +76,7 @@ if(!includeTemplate('navigator.tpl')) {
 		$ndrUrl=getImagePath('nav_dot_right.gif');
 		$ndUrl=getImagePath('nav_dot.gif');
 	
-		$mpContent = "\n\t\t";
+		$mpContent = "\n\t\t<table border=0 cellpadding=0 cellspacing=0><tr>";
 		for ($i = $begin; $i <= $end; $i++) {
 			if ($i == $current) {
 				$number = "<b>$i</b>";
@@ -89,16 +89,16 @@ if(!includeTemplate('navigator.tpl')) {
 					$leftdot = '<img src="'. $ndUrl .'"  alt="leftdot">';
 				}
 			}
-			$mpContent .= "&nbsp;$leftdot&nbsp;$number";
+			$mpContent .= "\n\t<td>&nbsp;$leftdot&nbsp;$number</td>";
 		}
 
 		if ($end == $current) {
-			$rightdot = '<img src="'. $ndrUrl .'"  alt="rightdot">';
+			$rightdot = '<img src="'. $ndrUrl .'" alt="rightdot">';
 		} else {
-			$rightdot = '<img src="'. $ndUrl .'"  alt="rightdot">';
+			$rightdot = '<img src="'. $ndUrl .'" alt="rightdot">';
 		}
 
-		$mpContent .="&nbsp;$rightdot&nbsp;";
+		$mpContent .="\n\t<td>&nbsp;$rightdot&nbsp;</td></tr></table>";
 	} else {
 		$mpContent ='';
 	}

@@ -2413,13 +2413,14 @@ class Album {
 
 	//values for type "comment" and "other"
 	function getEmailMe($type, $user, $id=null) {
-		$uid=$user->getUid();
+		$uid = $user->getUid();
 	       	if ($id) {
 		       	$index = $this->getPhotoIndex($id);
 		       	$photo = $this->getPhoto($index);
-			return $photo->getEmailMe($type, $user);
-	       	} else if (isset($this->fields['email_me'][$type]) && 
-				isset($this->fields['email_me'][$type][$uid])) {
+		}
+		if ( (isset($this->fields['email_me'][$type]) && 
+			isset($this->fields['email_me'][$type][$uid])) ||
+		     (isset ($photo) && $photo->getEmailMe($type, $user))) {
 		       	return true;
 	       	} else {
 			return false;

@@ -174,13 +174,17 @@ function findOrphanedImages() {
 
 function deleteOrphanedImages($orphans) {
 	global $gallery;
+	$unwriteableFiles = array();
 
 	foreach ($orphans as $albumName => $imageVal) {
 		foreach (array_keys($imageVal) as $fileName) {
-			fs_unlink($gallery->app->albumDir . "/" . $albumName . "/" . $fileName);
+			$deleteFile = $gallery->app->albumDir . "/" . $albumName . "/" . $fileName;
+			if (! fs_unlink($deleteFile)) {
+				$unwriteableFiles[] = $deleteFile;
+			}
 		}
 	}
-
+	return $unwriteableFiles;
 }
 
 clearstatcache() ;
@@ -292,10 +296,23 @@ if (empty($action)) {
 	}
 } // !isset(update) 
 else { 
-	echo "\n<p align=\"center\" class=\"warning\">" .  sprintf(_("Orphan %s Repaired"), ($action == "albums") ? _("Albums") :
-_("Files")) . "</p>";
-	if ($action == "albums") attachOrphanedAlbums($orphanAlbums);
-	if ($action == "images") deleteOrphanedImages($orphanImages);
+	echo "\n<p align=\"center\" class=\"warning\">" .  sprintf(_("Orphan %s Repaired"), ($action == "albums") ? _("Albums") : _("Files")) . "</p>";
+	if ($action == "albums") {
+		attachOrphanedAlbums($orphanAlbums);
+	}
+	if ($action == "images") {
+		$unwriteableFiles = deleteOrphanedImages($orphanImages);
+                if (!empty($unwriteableFiles)) {
+			echo "<p>". gallery_error(_("The Webserver has not enough permission to delete the following files:")) . "</p>";
+			echo "\n<ul>";
+			foreach ($unwriteableFiles as $filename) {
+				echo "<li>$filename</li>";
+			}
+			echo "\n</ul>";
+			echo "\n<p align=\"center\">". _("Please check the permission of these files and the folder above. chmod them, or ask your admin to do this.") . "<br>";
+			echo '<button name="Klickmich" type="button" onClick="location.reload()">'. _("Reload") . '</button></p>';
+		}
+	}
 }
 
 	includeHtmlWrap("gallery.footer"); 

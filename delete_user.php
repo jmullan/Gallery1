@@ -69,8 +69,9 @@ if (! isset($error)) {
 	_("Users cannot be recreated.") .
 	ngettext ("Even if this user is recreated, those permissions are gone.", "Even if you recreate one of those users, the permissions are gone.", sizeof($unames));
 ?>
-<p><b><?php echo ngettext("Do you really want to delete user", "Do you really want to delete these users", sizeof($unames)); ?>:
+<p>
 <?php 
+	echo ngettext("Do you really want to delete user", "Do you really want to delete these users", sizeof($unames)) .":";
 	foreach ($unames as $key => $value) { 
 		echo "<input type=\"hidden\" name=\"unames[$key]\" value=\"$value\"><br>$value\n";
 	}
@@ -83,7 +84,8 @@ if (! isset($error)) {
 <input type="hidden" name="formaction" value="">
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick="deleteuser_form.formaction.value='cancel'">
 </form> 
-<?php print gallery_validation_link("delete_user.php"); ?>
 </div>
+
+<?php print gallery_validation_link("delete_user.php"); ?>
 </body>
 </html>

@@ -100,9 +100,12 @@ function fs_stat($filename) {
 	return stat($filename);
 }
 
+/* This function deletes a file.
+** The errormessage is surpressed !
+*/
 function fs_unlink($filename) {
 	$filename = fs_import_filename($filename, 0);
-	return unlink($filename);
+	return @unlink($filename);
 }
 
 function fs_executable($filename) {

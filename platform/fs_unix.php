@@ -79,8 +79,11 @@ function fs_stat($filename) {
 	return stat($filename);
 }
 
+/* This function deletes a file.
+** The errormessage is surpressed !
+*/
 function fs_unlink($filename) {
-	return unlink($filename);
+	return @unlink($filename);
 }
 
 function fs_is_executable($filename) {

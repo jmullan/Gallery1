@@ -133,7 +133,7 @@ if(isset($gallery->app)) {
 	/*
 	 * We have a Coral (http://www.scs.cs.nyu.edu/coral/) request coming in, adjust outbound links
 	 */
-	if(strstr($_SERVER['HTTP_USER_AGENT'], 'CoralWebPrx')) {
+	if(isset($_SERVER['HTTP_USER_AGENT']) && strstr($_SERVER['HTTP_USER_AGENT'], 'CoralWebPrx')) {
 		if (ereg("^(http://[^:]+):(\d+)(.*)$", $gallery->app->photoAlbumURL)) {
 			$gallery->app->photoAlbumURL = ereg_replace("^(http://[^:]+):(\d+)(.*)$", "\1.\2\3", $galllery->app->photoAlbumURL);
 		}

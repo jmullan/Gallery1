@@ -43,7 +43,6 @@ if ( isset($netpbm_check[2]['pnmcomp']) && isset($IM_check[2]['composite']) ) {
 	$enablewatermark = "yes";
 }
 
-
 if (function_exists("posix_getpwuid")) {
 	$rec = @posix_getpwuid(posix_getuid());
 	$webserver_user = $rec["name"];
@@ -263,6 +262,7 @@ $constants =  array_merge(
 					'url' => _("URL")),
 		'value' => "form",
 	),
+
 	'group_mandatory_end' => array (
 		'type' => "group_end",
 	),
@@ -319,29 +319,7 @@ $constants =  array_merge(
 		'attrs' => array('size' => 50),
 		'required' => true,
 	),
-	'watermarkDir' => array(
-	'prompt' => _("Watermark directory"),
-	'desc' => sprintf(_("The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."),
-			"<b>". $webserver_user . "</b>"),
-		'value' => "",
-		'enabled' => $enablewatermark,
-		'optional' => 1,
-		'filename' => 1,
-		'type' => "text",
-		'attrs' => array('size' => 50)
-	),
-	'watermarkSizes' => array(
-	'prompt' => _("Watermark sizes"),
-	'desc' => _("The default selected images to watermark."),
-	'value' => 0,
-	'enabled' => $enablewatermark,
-	'optional' => 1,
-	'choices' => array(
-		0 => _("Watermark both resized an full images"),
-		1 => _("Watermark resized image only"),
-		2 => _("Watermark full sized image only")),
-	'value' => 0,
-	),
+
 	'movieThumbnail' => array(
 		'prompt' => _("Thumbnail image"),
 		'desc' => sprintf(_('The filesystem path to the thumbnail image to show for movies. E.g. %s'), '<i>/home/foo/thumbnail.jpg</i>'),
@@ -418,12 +396,6 @@ $constants =  array_merge(
 		'no-trailing-slash' => 1,
 		'type' => "text",
 		'verify-func-takes-graphics-type' => true,
-		'required' => true,
-	),
-	'ImVersion' => array(
-		'prompt' => _("Version of ImageMagick being used"),
-		'desc' => sprintf(_("This setting is only required when using the ImageMagick graphics package.  Due to changes in the ImageMagick commandline parameters, we need to know which version is being used so that we can accurately tell it what to do. If you are not sure which version you are using, you can run the %sCheck ImageMagick%s diagnostic."), "<a href=\"check_imagemagick.php\">", "</a>"),
-		'choices' => array('5x' => 'Version 5.x', '6x' => 'Version 6.x'),
 		'required' => true,
 	),
 	'autorotate' => array(
@@ -580,12 +552,7 @@ $constants =  array_merge(
 		'type' => "text",
 		'attrs' => array('size' => 50)
 	),
-	'cacheExif' => array(
-		'prompt' => "<b>(" . _("Advanced") . ")</b><br> ". _("Cache EXIF data"),
-		'desc' => _("The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
-		'value' => "no"
-	),
+
 	'use_jpegtran' => array (
 		'prompt' => "Jpegtran",
 		'desc' => sprintf(_("The filesystem path to the <b>jpegtran</b> utility.  E.g. %s or %s.  This is optional so if you don't have it, don't worry about it too much."), 
@@ -968,6 +935,41 @@ $constants = array_merge($constants,
 	'group_comments_end' => array (
 		'type' => "group_end",
         ),
+	'group_watermark_start' => array(
+		'type'		=> 'group_start',
+		'name'		=> 'group_watermark',
+		'default'	=> 'none',
+		'title'		=> _("Watermarking"),
+		'desc'		=> ($enablewatermark == 'yes') ? 
+					_("Choose wether you want to enable or disable watermarking. And set the defaults") :
+				'<span class="attention">' . _("Watermarking is not possible in this installation !") . '</span>'
+	),
+	'watermarkDir' => array(
+		'prompt' => _("Watermark directory"),
+		'desc' => sprintf(_("The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."),
+			"<b>". $webserver_user . "</b>"),
+		'value' => "",
+		'enabled' => $enablewatermark,
+		'optional' => 1,
+		'filename' => 1,
+		'type' => "text",
+		'attrs' => array('size' => 50)
+	),
+	'watermarkSizes' => array(
+		'prompt' => _("Which Imagetyp is watermarked"),
+		'desc' => _("Here you can choose which of the images should be watermarked per default."),
+		'value' => 0,
+		'enabled' => $enablewatermark,
+		'optional' => 1,
+		'choices' => array(
+			0 => _("Watermark both resized an full images"),
+			1 => _("Watermark resized image only"),
+			2 => _("Watermark full sized image only")),
+		'value' => 0,
+	),
+	'group_watermark_end' => array (
+		'type' => "group_end",
+        ),
 	'group_stats_start' => array(
 		'type'		=> 'group_start',
 		'name'		=> 'group_stats',
@@ -983,78 +985,66 @@ $constants = array_merge($constants,
 
 	'stats_viewsCacheOn'	=> array(
 				'prompt' => _("View cache"),
-				'desc' => _("Enable caching for views"),
 				'choices' => array(1 => _("On"), 0 => _("Off")),
 				'value' => 0,
 	),
 	'stats_viewsCacheExpireSecs' => array(
 				'prompt' => _("View cache expiration"),
-				'desc' => _("If caching for views is enabled, how long should the cache last ?"),
 				'type' => "text",
 				'must-be-number' => 1,
 				'value' => 60
 	),
 	'stats_commentsCacheOn'	=> array(
 				'prompt' => _("Comment cache"),
-				'desc' => _("Enable caching for comments"),
 				'choices' => array(1 => _("On"), 0 => _("Off")),
 				'value' => 0,
 	),
 	'stats_commentsCacheExpireSecs' => array(
 				'prompt' => _("Comment cache expiration"),
-				'desc' => _("If caching for comments is enabled, how long should the cache last ?"),
 				'type' => "text",
 				'must-be-number' => 1,
 				'value' => 600
 	),
 	'stats_dateCacheOn'	=> array(
 				'prompt' => _("Date cache"),
-				'desc' => _("Enable caching for dates"),
 				'choices' => array(1 => _("On"), 0 => _("Off")),
 				'value' => 0,
 	),
 	'stats_dateCacheExpireSecs' => array(
 				'prompt' => _("Date cache expiration"),
-				'desc' => _("If caching for dates is enabled, how long should the cache last ?"),
 				'type' => "text",
 				'must-be-number' => 1,
 				'value' => -1
 	),
 	'stats_votesCacheOn'	=> array(
 				'prompt' => _("Vote cache"),
-				'desc' => _("Enable caching for votes"),
 				'choices' => array(1 => _("On"), 0 => _("Off")),
 				'value' => 0,
 	),
 	'stats_votesCacheExpireSecs' => array(
 				'prompt' => _("Vote cache expiration"),
-				'desc' => _("If caching for votes is enabled, how long should the cache last ?"),
 				'type' => "text",
 				'must-be-number' => 1,
 				'value' => 3600
 	),
 	'stats_ratingsCacheOn'	=> array(
 				'prompt' => _("Rating cache"),
-				'desc' => _("Enable caching for ratings"),
 				'choices' => array(1 => _("On"), 0 => _("Off")),
 				'value' => 0,
 	),
 	'stats_ratingsCacheExpireSecs' => array(
 				'prompt' => _("Rating cache expiration"),
-				'desc' => _("If caching for ratings is enabled, how long should the cache last ?"),
 				'type' => "text",
 				'must-be-number' => 1,
 				'value' => 3600
 	),
 	'stats_cDateCacheOn'	=> array(
 				'prompt' => _("Capturedate cache"),
-				'desc' => _("Enable caching for capture dates"),
 				'choices' => array(1 => _("On"), 0 => _("Off")),
 				'value' => 0,
 	),
 	'stats_cDateCacheExpireSecs' => array(
 				'prompt' => _("Capturedate cache expiration"),
-				'desc' => _("If caching for capture dates is enabled, how long should the cache last ?"),
 				'type' => "text",
 				'must-be-number' => 1,
 				'value' => -1
@@ -1068,6 +1058,12 @@ $constants = array_merge($constants,
 		'default' => "none",
 		'title' => _("Technical"),
 		'desc' => _("You usually don't need to change anything in this section."),
+	),
+	'debug' => array(
+		'prompt' => _("Debug mode"),
+		'desc' => _("Turn debug mode on so that you can diagnose problems?") .'<br><span class="emphasis">'. _("Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system then you want!") . '</span>',
+		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'value' => "no",
 	),
         'timeLimit' => array(
 		'prompt' => _("Time Limit"),
@@ -1098,12 +1094,13 @@ $constants = array_merge($constants,
 		'must-not-be-zero' => 1,
 		'type' => "text",
 	),
-	'debug' => array(
-		'prompt' => _("Debug mode"),
-		'desc' => _("Turn debug mode on so that you can diagnose problems?") .'<br><span class="emphasis">'. _("Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system then you want!") . '</span>',
+	'cacheExif' => array(
+		'prompt' => "<b>(" . _("Advanced") . ")</b><br> ". _("Cache EXIF data"),
+		'desc' => _("The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."),
 		'choices' => array('yes' => _("yes"), 'no' => _("no")),
-		'value' => "no",
+		'value' => "no"
 	),
+
 	'devMode' => array(
 		'prompt' => _("Developer Mode"),
 		'desc' => _("Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."),
