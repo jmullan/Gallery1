@@ -1,3 +1,26 @@
+2001-02-24  Alan Harder <mindless@moshpit.org>, Bharat <bharat@menalto.com>, 
+
+	* Added fit-to-window feature.  This feature will automatically
+	  resize images to match the size of the user's browser.  It only
+	  functions when:
+		- You enable it in album properties
+		- The image you're viewing has no resized image.
+	  The config wizard enables this by default.
+
+2001-02-22  Bharat Mediratta  <bharat@menalto.com>
+
+	* Moved all exec() calls into exec_internal() in util.php.  This
+	  bottleneck will make it easier to debug issues stemming from
+	  exec'ing code.  Just turn on the $debug variable in
+	  exec_internal() to see what it's doing.
+
+	* Incorporated patches from Alan Harder:
+	  * Don't display "on n pages" if there's only 1 page.
+	  * fixed a bug where we weren't properly obeying the "showOwners"
+	    flag
+	  * Albums can now control their rows/cols individually, although
+	    they draw their default value from the Gallery.
+
 2001-02-22  Chris Smith <chris@jacko.com>
 
 	* Added inline photo header and footer to the view_photo page. This
@@ -5,7 +28,7 @@
 	  inline_photo.header/footer. The view_album file now uses:
           inline_albumthumb.header/footer.
 
-2001-02-15  Bharat Mediratta  <bharat@sinia.com>
+2001-02-15  Bharat Mediratta  <bharat@menalto.com>
 
 	* Fixed a bug in preprocessImage() which was causing the function
 	  to fail to do anything.  Doh!
@@ -20,13 +43,13 @@
 	* Don't show the [shuffle], [resize all], or [remake thumbnails]
 	  commands if there are no photos in the album.
 
-2001-02-14  Bharat Mediratta  <bharat@sinia.com>
+2001-02-14  Bharat Mediratta  <bharat@menalto.com>
 
 	* Added inline_photo headers and footers so that you can customize
 	  an action for each photo.  This is good for shopping cart
 	  integration. 
 
-2001-02-13  Bharat Mediratta  <bharat@sinia.com>
+2001-02-13  Bharat Mediratta  <bharat@menalto.com>
 
 	* Gallery 1.0b7 release.  Bumped config version to 9 due to 
 	  setup wizard changes. 
@@ -69,12 +92,12 @@
 	  possibly have some legitimately stranded files in an album, and
 	  we don't want that to prevent an album from getting deleted.	
 
-2001-02-11  Bharat Mediratta  <bharat@sinia.com>
+2001-02-11  Bharat Mediratta  <bharat@menalto.com>
 
 	* Removed the executable bit from chmod commands in configure.sh
 	  and secure.sh
 
-2001-02-10  Bharat Mediratta  <bharat@sinia.com>
+2001-02-10  Bharat Mediratta  <bharat@menalto.com>
 
 	* It appears that certain flavors of PHP4 prepend "Content-Type"
 	  info to upload images.  This totally confuses NetPBM because
@@ -87,7 +110,7 @@
 	  I fixed this by preprocessing upload images and looking for
 	  the Content-Type string and removing it.
 
-2001-02-09  Bharat Mediratta  <bharat@sinia.com>
+2001-02-09  Bharat Mediratta  <bharat@menalto.com>
 
 	* Fixed a bug in the UserDB code where we were not forcibly
 	  creating an Everybody user.  This was causing users to get 
@@ -98,7 +121,7 @@
 
 	* Made the magic_quotes check optional.
 
-2001-02-08  Bharat Mediratta  <bharat@sinia.com>
+2001-02-08  Bharat Mediratta  <bharat@menalto.com>
 
 	* Updated the README file to have better instructions for
 	  installing and configuring the gallery, including on ftp-only
@@ -128,12 +151,12 @@
 	* Changed the config_version to 8...you'll need to re-run the
 	  wizard. 
 
-2001-01-23  Bharat Mediratta  <bharat@sinia.com>
+2001-01-23  Bharat Mediratta  <bharat@menalto.com>
 
 	* Fixed a bug in makePathWrapper() where it was (ugh) ignoring 
 	  the path!
 
-2001-01-16  Bharat Mediratta  <bharat@sinia.com>
+2001-01-16  Bharat Mediratta  <bharat@menalto.com>
 
 	* Cleaned up the way that save-photo detail text was being
 	  displayed. 
@@ -148,13 +171,13 @@
 	  up letting you know that it's working.  The window goes away
 	  when the upload is complete.
 
-2001-01-10  Bharat Mediratta  <bharat@sinia.com>
+2001-01-10  Bharat Mediratta  <bharat@menalto.com>
 
 	* mod_rewrite is now totally optional.  If your Apache server does
 	  not support it, Gallery will not attempt to use the shorter URL
 	  style. 
 
-2001-01-09  Bharat Mediratta  <bharat@sinia.com>
+2001-01-09  Bharat Mediratta  <bharat@menalto.com>
 
 	* User support is in!  The config wizard will now create an
 	  account by the name of "admin" with the password you provide in
@@ -170,7 +193,7 @@
 	  with this new setup, all albums will by default be visible to
 	  the public, but modifiable only by the admin account.  
 
-2001-01-06  Bharat Mediratta  <bharat@sinia.com>
+2001-01-06  Bharat Mediratta  <bharat@menalto.com>
 
 	* Fixed bug in the setup code that generates the anytopnm wrapper.
 	  It was not basing the wrapper on the path the user provided --
@@ -211,7 +234,7 @@
         * All popups now use the gallery style sheet and when 
           appropriate have a default focus. 
 
-2001-01-02  Bharat Mediratta  <bharat@sinia.com>
+2001-01-02  Bharat Mediratta  <bharat@menalto.com>
 
 	* Made the NetPBM check optional since now it doesn't need to be
 	  in the path and you can specify it by hand during the config process.
@@ -237,7 +260,7 @@
 
 	* Revamped the admin photo controls. You guessed it, fancy icons.
 
-2001-01-01  Bharat Mediratta  <bharat@sinia.com>
+2001-01-01  Bharat Mediratta  <bharat@menalto.com>
 
 	* Switched from using system("mv") to using rename() for greater
 	  portability (thanks Andreas Fuchs [fox@tcnet.ch])
@@ -247,7 +270,7 @@
 	  path.  This should ease the pain on most standard Linux
 	  configurations. 
 
-2000-12-29  Bharat Mediratta  <bharat@sinia.com>
+2000-12-29  Bharat Mediratta  <bharat@menalto.com>
 
 	* Fixed several small bugs involving uploading movies.  
 
