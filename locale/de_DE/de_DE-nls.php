@@ -19,8 +19,8 @@
  *
  * $Id$
  */
-
 /**
+ * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist and it was 
@@ -30,29 +30,38 @@
  *
  */
 
-/**
- **
- **/
-
-	$nls['language']['en_US'] =	'English (US)';
-/**
- ** Defaults
- **/	
-
-/** 
- ** Charset
- **/
-	
-	$nls['default']['charset'] = 	'ISO-8859-1';
-/**
- ** Direction
- **/
-	
-	$nls['default']['direction'] =	'ltr';
 
 /**
- ** Alignment
+ ** Native languagename
  **/
+	$nls['language']['de_DE'] = 		'Deutsch';
+
+/**
+ ** Aliases for languages with different browser and gettext codes
+ **/
+
+	$nls['alias']['de'] = 			'de_DE';
+
+/**
+ ** Aliases for languages which we substitte or send by NUKE
+ **/
+
+	$nls['alias']['german'] =		'de_DE' ;
+	$nls['alias']['deu'] =			'de_DE' ;
+	$nls['alias']['de_LI'] = 		'de_DE' ;
+	$nls['alias']['de_LU'] = 		'de_DE' ;
+	$nls['alias']['de_CH'] = 		'de_DE' ;
+	$nls['alias']['de_AT'] = 		'de_DE' ;
+	$nls['alias']['de_DE.ISO8859-1'] =	'de_DE' ;
 	
-	$nls['default']['alignment'] =	'left';
+/**
+ ** phpNuke
+ **/
+	$nls['phpnuke']['de_DE'] = 'german';
+
+/**
+ ** postNuke
+ **/
+	$nls['postnuke']['de_DE'] = 'deu';
+
 ?>

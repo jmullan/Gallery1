@@ -19,8 +19,8 @@
  *
  * $Id$
  */
-
 /**
+ * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist and it was 
@@ -31,28 +31,32 @@
  */
 
 /**
- **
+ ** Native languagename
+ **/
+	$nls['language']['sl_SI'] = 'Sloven&#x0161;&#x010d;ina';
+
+/**
+ ** Alias for languages with different browser and gettext codes
  **/
 
-	$nls['language']['en_US'] =	'English (US)';
-/**
- ** Defaults
- **/	
+	$nls['alias']['sl'] = 'sl_SI';
 
-/** 
+/**
+ ** Alias for languages which we substitte or send by NUKE
+ **/
+
+	$nls['alias']['slovenian'] =    	'sl_SI' ;
+	$nls['alias']['sl_SI.ISO8859-2'] =	'sl_SI' ;
+	
+/**
  ** Charset
- **/
+ **
+ **/	
 	
-	$nls['default']['charset'] = 	'ISO-8859-1';
-/**
- ** Direction
- **/
-	
-	$nls['default']['direction'] =	'ltr';
+	$nls['charset']['sl_SI'] = 		'ISO-8859-2';
 
 /**
- ** Alignment
+ ** phpNuke
  **/
-	
-	$nls['default']['alignment'] =	'left';
+	$nls['phpnuke']['sl_SI'] = 'slovenian';
 ?>

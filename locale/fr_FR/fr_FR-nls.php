@@ -19,8 +19,8 @@
  *
  * $Id$
  */
-
 /**
+ * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist and it was 
@@ -30,29 +30,37 @@
  *
  */
 
-/**
- **
- **/
-
-	$nls['language']['en_US'] =	'English (US)';
-/**
- ** Defaults
- **/	
-
-/** 
- ** Charset
- **/
-	
-	$nls['default']['charset'] = 	'ISO-8859-1';
-/**
- ** Direction
- **/
-	
-	$nls['default']['direction'] =	'ltr';
 
 /**
- ** Alignment
+ ** Native languagename
  **/
-	
-	$nls['default']['alignment'] =	'left';
+	$nls['language']['fr_FR'] = 'Fran&#231;ais'; // French
+
+/**
+ ** Alias for languages with different browser and gettext codes
+ **/
+
+	$nls['alias']['fr'] = 'fr_FR';
+
+/**
+ ** Aliases for languages which we substitte or send by NUKE
+ **/
+
+	$nls['alias']['french'] =		'fr_FR' ;
+	$nls['alias']['fra'] =			'fr_FR' ;
+	$nls['alias']['fr_BE'] = 		'fr_FR' ;
+	$nls['alias']['fr_CA'] = 		'fr_FR' ;
+	$nls['alias']['fr_LU'] = 		'fr_FR' ;
+	$nls['alias']['fr_CH'] = 		'fr_FR' ;
+	$nls['alias']['fr_FR.ISO8859-1'] =	'fr_FR' ;
+
+/**
+ ** phpNuke
+ **/
+	$nls['phpnuke']['fr_FR'] = 'french';
+
+/**
+ ** postNuke
+ **/
+	$nls['postnuke']['fr_FR'] = 'fra';
 ?>

@@ -19,8 +19,8 @@
  *
  * $Id$
  */
-
 /**
+ * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist and it was 
@@ -30,29 +30,32 @@
  *
  */
 
+
 /**
- **
+ ** Native languagename
+ **/
+	$nls['language']['uk_UA'] = '&#x0423;&#x043a;&#x0440;&#x0430;&#x0457;&#x043d;&#x0441;&#x044c;&#x043a;&#x0430;';
+
+/**
+ ** Alias for languages with different browser and gettext codes
  **/
 
-	$nls['language']['en_US'] =	'English (US)';
-/**
- ** Defaults
- **/	
+	$nls['alias']['uk'] = 'uk_UA';
 
-/** 
+/**
+ ** Alias for languages which we substitte or send by NUKE
+ **/
+
+	$nls['alias']['ukrainian'] =            'uk_UA' ;
+	$nls['alias']['uk_UA.KOI8-U'] =         'uk_UA' ;
+
+/**
  ** Charset
- **/
-	
-	$nls['default']['charset'] = 	'ISO-8859-1';
-/**
- ** Direction
- **/
-	
-	$nls['default']['direction'] =	'ltr';
+ **/	
+	$nls['charset']['uk_UA'] =              'KOI8-U';
 
 /**
- ** Alignment
+ ** phpNuke
  **/
-	
-	$nls['default']['alignment'] =	'left';
+	$nls['phpnuke']['uk_UA'] = 'ukrainian';
 ?>

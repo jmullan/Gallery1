@@ -19,8 +19,8 @@
  *
  * $Id$
  */
-
 /**
+ * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist and it was 
@@ -30,29 +30,36 @@
  *
  */
 
+
 /**
- **
+ ** Native languagename
+ **/
+	$nls['language']['ja_JP'] = 		'&#x65e5;&#x672c;&#x8a9e; (EUC-JP)';
+
+/**
+ ** Alias for languages with different browser and gettext codes
  **/
 
-	$nls['language']['en_US'] =	'English (US)';
-/**
- ** Defaults
- **/	
+	$nls['alias']['ja'] = 			'ja_JP';
 
-/** 
+/**
+ ** Alias for languages which we substitte or send by NUKE
+ **/
+
+	$nls['alias']['ja_JP.EUC-JP'] =		'ja_JP' ;	
+ 	$nls['alias']['ja_JP.EUC'] =		'ja_JP' ;
+	
+/**
  ** Charset
- **/
+ **
+ **/	
 	
-	$nls['default']['charset'] = 	'ISO-8859-1';
+	$nls['charset']['ja_JP'] = 		'EUC-JP';
+	
 /**
- ** Direction
+ ** Multibyte charset
  **/
-	
-	$nls['default']['direction'] =	'ltr';
 
-/**
- ** Alignment
- **/
-	
-	$nls['default']['alignment'] =	'left';
+	$nls['multibyte']['EUC-JP'] =   	true;
+
 ?>

@@ -2979,10 +2979,11 @@ function album_validation_link($album, $photo='', $args=array()) {
 function gallery_languages() {
 
 	global $GALLERY_BASEDIR;
+	$nls=getNLS();
+
 	$modules=array('config','core');
 	$handle=fs_opendir($GALLERY_BASEDIR. "locale");
 	$available=array('en_US' => 'English (US)');
-	$nls=getNLS();
 	
 	while ($dirname = readdir($handle)) {
 		if (preg_match("/^([a-z]{2}_[A-Z]{2})/", $dirname)) {
@@ -2990,9 +2991,9 @@ function gallery_languages() {
 			$fc=0;
 			foreach ($modules as $module) {
 				if (gettext_installed()) {
-					if (file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-gallery_$module.po")) $fc++;
+					if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-gallery_$module.po")) $fc++;
 				} else {
-					if (file_exists($GALLERY_BASEDIR . "locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
+					if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
 				}
 			}
 			if ($fc == sizeof($modules)) {
@@ -3004,6 +3005,39 @@ function gallery_languages() {
 
 return $available;
 }
+
+function getNLS() {
+
+	global $GALLERY_BASEDIR;
+
+	$nls=array();
+
+	$modules=array('config','core');
+	$handle=fs_opendir($GALLERY_BASEDIR. "locale");
+	$available=array('en_US' => 'English (US)');
+	
+	while ($dirname = readdir($handle)) {
+		if (preg_match("/^([a-z]{2}_[A-Z]{2})/", $dirname)) {
+			$locale=$dirname;
+			$fc=0;
+			foreach ($modules as $module) {
+				if (gettext_installed()) {
+					if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-gallery_$module.po")) $fc++;
+				} else {
+					if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
+				}
+			}
+			if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-nls.php")) {
+				include ($GALLERY_BASEDIR . "locale/$dirname/$locale-nls.php");
+			}
+		}
+	}
+	closedir($handle);
+	include ($GALLERY_BASEDIR. "nls.php");
+//print_r($nls);
+return $nls;
+}
+
 
 function where_i_am() {
 	global $GALLERY_OK;

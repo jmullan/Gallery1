@@ -19,8 +19,8 @@
  *
  * $Id$
  */
-
 /**
+ * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist and it was 
@@ -30,29 +30,33 @@
  *
  */
 
+
 /**
- **
+ ** Native languagename
  **/
+	$nls['language']['zh_TW'] = 		'&#32321;&#39636;&#20013;&#25991; (Big5)'; // Traditional Chinese
 
-	$nls['language']['en_US'] =	'English (US)';
 /**
- ** Defaults
- **/	
+ ** Alias for languages which we substitte or send by NUKE
+ **/
+	$nls['alias']['chinese'] = 		'zh_TW' ;
+	$nls['alias']['zh_TW.Big5'] =		'zh_TW' ;
 
-/** 
+/**
  ** Charset
- **/
+ **/	
 	
-	$nls['default']['charset'] = 	'ISO-8859-1';
+	$nls['charset']['zh_TW'] = 		'BIG5';	
+	
 /**
- ** Direction
+ ** Multibyte charsets
  **/
-	
-	$nls['default']['direction'] =	'ltr';
+
+	$nls['multibyte']['BIG5'] = 		true;
 
 /**
- ** Alignment
+ ** phpNuke
  **/
+	$nls['phpnuke']['zh_TW'] = 		'chinese' ;
 	
-	$nls['default']['alignment'] =	'left';
 ?>

@@ -123,9 +123,6 @@
 			// defined in nls.php
 			if (!isset($nls['language'][$value])) continue;
 		
-			if (!language_exists($value)) {
-				continue;
-			}
 			if ( $defaultLanguage == $value) $selected="selected"; else $selected="";
 			echo "\n\t\t<option value=\"$value\" $selected>" 
 				. $nls['language'][$value] ."</option>";
