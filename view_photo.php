@@ -40,8 +40,8 @@ if ($id) {
 	$id = $gallery->album->getPhotoId($index);
 }
 $albumName = $gallery->session->albumName;
-if (!$viewedItem[$gallery->session->albumName][$id]) {
-	setcookie("viewedItem[$albumName][$id]", "1");
+if (!$gallery->session->viewedItem[$gallery->session->albumName][$id]) {
+	$gallery->session->viewedItem[$albumName][$id] = 1;
 	$gallery->album->incrementItemClicks($index);
 }
 

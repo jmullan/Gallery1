@@ -35,8 +35,8 @@ if (!$page) {
 }
 $albumName = $gallery->session->albumName;
 
-if (!$viewedAlbum[$albumName]) {
-	setcookie("viewedAlbum[$albumName]","1");
+if (!$gallery->session->viewedAlbum[$albumName]) {
+	$gallery->session->viewedAlbum[$albumName] = 1;
 	$gallery->album->incrementClicks();
 } 
 
