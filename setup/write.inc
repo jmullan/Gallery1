@@ -1,10 +1,30 @@
 <?
-$outfile = dirname(getenv("SCRIPT_FILENAME")) . "/../config.php";
+$GALLERY_DIR = dirname(dirname(getenv("SCRIPT_FILENAME")));
+$outfile = "$GALLERY_DIR/config.php";
 copy("gpl.txt", $outfile);
-if ($fd = @fopen($outfile, "a")) {
+if ($fd = @fopen($outfile, "w")) {
 	fwrite($fd, urldecode($data));
 	fclose($fd);
+} else {
+	fail($outfile);
+	return;
+}
+
+$outfile = "$GALLERY_DIR/.htaccess";
+$htaccess = file("htaccess.template");
+if ($fd = @fopen($outfile, "w")) {
+	foreach ($htaccess as $line) {
+		eval("\$line = \"$line\";");
+		fwrite($fd, $line);
+	}
+	fclose($fd);
+} else {
+	fail($outfile);	
+	return;
+}
+
 ?>
+
 <title> Success! </title>
 <center>
 <font size=+2> Your configuration has been successfully saved! </font>
@@ -26,11 +46,14 @@ to the setup URL.
 <center>
 <a href=../albums.php>Enter the Gallery</a>
 
+
+
 <?
-} else {
+function fail($file) {
 ?>
-<title> Failure! </title>
-<font size=+2> Unable to write to <?=$outfile?> </font>
+	<title> Failure! </title>
+	<font size=+2> Unable to write to <?=$file?> </font>
 <?
+	return;
 }
 ?>
