@@ -66,11 +66,9 @@ if (isset($create))
 	if (!$errorCount) {
 		$users=file($membersfile);
 		// Simple test to see if it's a windows file
-		if (sizeof($users)==1 and ereg("
-", $users[0]))
+		if (sizeof($users)==1 and ereg("", $users[0]))
 		{
-			$users=explode("
-", $users[0]);
+			$users=explode("", $users[0]);
 		}
 		unlink($membersfile);
 		$total_added=0;
@@ -84,14 +82,14 @@ if (isset($create))
 				continue;
 			$email=strtok(' 	');
 			$fullname=trim(strtok(''));
-			processingMsg("- adding $uname");
+			processingMsg("- ". sprintf (_("adding %s"),$uname));
 			$password=generate_password(10);
 			$tmpUser= $gallery->userDB->CreateUser($uname, $email, $password, $fullname,
 				$canCreate, $defaultLanguage, "bulk_register");
 			if ($tmpUser) {
 				$total_added++;
 				if ($send_email=="on") {
-				       	processingMsg("- emailing $email");
+				       	processingMsg("- " . sprintf(_("Send email to %s"),$email));
 				       	$msg = ereg_replace("!!PASSWORD!!", $password,
 						       	ereg_replace("!!USERNAME!!", $uname,
 							       	ereg_replace("!!FULLNAME!!", $fullname,
@@ -173,7 +171,7 @@ echo makeFormIntro("multi_create_user.php", array(
 </form>
 
 </center>
-<b>Notes: </b>
+<b><?php echo _("Notes:") ?> </b>
 <ul>
 <li>
 <?php echo _("The members file should be one user per line, and the fields should be space separated.  Each line is of the form:<br> <i>username emailaddress fullname</i>.<br>  Only username is required. Everything after the email address is the full name, so there can be spaces in it.<p>") ?>
