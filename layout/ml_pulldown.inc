@@ -23,9 +23,8 @@
 ?>
 
 <?php 
-global $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
+global $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE, $HTTP_SERVER_VARS;
 
-$gallery_languages = gallery_languages();
 if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery->app->available_lang) > 1) {
     
 if($gallery->app->show_flags !='yes') {?>
@@ -46,25 +45,17 @@ function ML_reload() {
 if($gallery->app->show_flags !='yes') {
 	echo '<select style="font-size:8pt;" name="newlang" onChange="ML_reload()" size="1">';
 }
-
-	// we have 2+1 ways: phpnuke, postnuke or standalone
-	if (!empty($GALLERY_EMBEDDED_INSIDE)) {
-		$urlTemp = (!empty($HTTP_GET_VARS['include']) ? $HTTP_GET_VARS['include'] : '');        
-	} else {
-        	$urlTemp = end(explode("/", $HTTP_SERVER_VARS["PHP_SELF"]));
-	}
 	$nls = getNLS();
 
 	$count=0;
 	$half=sizeof($gallery->app->available_lang)/2;
 	foreach ($gallery->app->available_lang as $value) {
 
-		// Only use language from config.php if it's available
+		/* 
+		** We only allow show languages which are available in gallery.
+		** These could differ to the languages defined in config.php.
+		*/
 		if (! isset($nls['language'][$value])) continue;
-
-		if (!in_array($value, array_keys($gallery_languages))) {
-			continue;
-		}
 
 		$count++;
 		$args = isset($HTTP_GET_VARS) ? $HTTP_GET_VARS : array();
@@ -72,32 +63,40 @@ if($gallery->app->show_flags !='yes') {
 			if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
 				/* postnuke */
 				if (! isset($nls['postnuke'][$value])) continue;
-				$args["newlang"]=$nls['postnuke'][$value];
+				$new_lang=$nls['postnuke'][$value];
 			}
 			else {
 				/* phpnuke */ 
 				if (! isset($nls['phpnuke'][$value])) continue;
-				$args["newlang"]=$nls['phpnuke'][$value];
+				$new_lang=$nls['phpnuke'][$value];
 			} 
 		} else {
-			$args["newlang"]=$value;
+			$new_lang=$value;
 		}
 
+		/* now we buil the URL according to the new language */
+		$request_url=$HTTP_SERVER_VARS['REQUEST_URI'];
+		$pos=strpos($request_url, "newlang");
+		if ($pos >0) {
+			$request_url=substr($request_url,0,$pos-1);
+		}
+	        if (stristr($request_url,"?")) {
+			$url=$request_url ."&newlang=". $new_lang;
+		}
+		else {
+			$url=$request_url ."?newlang=". $new_lang;
+		}
+	
+		/* Show pulldown or flags */
 		if($gallery->app->show_flags !='yes') {
 			if ($gallery->language == $value) $selected="selected"; else $selected="";
-			echo "\n\t\t<option value=\"".makeGalleryUrl(
-					$urlTemp,
-					$args)."\" $selected>" . $nls['language'][$value] ."</option>";
+			echo "\n\t\t<option value=\"$url\" $selected>" . $nls['language'][$value] ."</option>";
 		} else {
-			if (isset($nls['flag'][$value])) {
-				$flagname=$nls['flag'][$value];
-			} else {
-				$flagname=$value;
-			}
-			echo "\n\t\t<a href=\"". makeGalleryUrl( $urlTemp, $args) . "\">";
+			$flagname=$value;
+			echo "\n\t\t<a href=\"$url\">";
 			if ($gallery->language == $value) $style="style=\"margin:7px\""; else $style="";
 
-			echo "<img $style src=\"" .$GALLERY_BASEDIR ."locale/$flagname/flagimage/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a>";
+			echo "<img $style src=\"". $gallery->app->photoAlbumURL . "/locale/$flagname/flagimage/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a>";
 
 			if ($count > $half && $half >10) {
 				echo "<br>";
