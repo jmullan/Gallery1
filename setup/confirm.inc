@@ -376,8 +376,8 @@ foreach ($defaults as $key => $val) {
 	if (!isset($$key) && !isset($defaults[$key]["optional"])) {
 		$data .= error_missing($defaults[$key]["prompt"], $key);
 		$error++;
-	} else {
-	        if (get_magic_quotes_gpc()) {
+	} elseif (isset($$key)) {
+		if (get_magic_quotes_gpc()) {
 			$$key = array_stripslashes($$key);
 		}
 		// Protect quote characters to avoid screwing up HTML forms
