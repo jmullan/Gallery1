@@ -410,7 +410,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			$results = $db->query('SELECT id FROM ' . $gallery->database{'user_prefix'} . "components WHERE link='option=$GALLERY_MODULENAME'");
 			$row = $db->fetch_row($results);
 			$componentId = $row[0];
-			$results = $db->query('SELECT id FROM ' . $gallery->database{'user_prefix'} . "menu WHERE componentid='$componentId'");
+			$results = $db->query('SELECT id FROM ' . $gallery->database{'user_prefix'} . "menu WHERE componentid='$componentId' AND type = 'components' AND published = 1");
 			$row = $db->fetch_row($results);
 			$MOS_GALLERY_PARAMS['itemid'] = $row[0]; // pick the first one
 		break;
