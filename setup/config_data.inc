@@ -118,7 +118,8 @@ $defaults = array(
 	),
 	"border" => array(
 		"desc" => "Size of borders",
-		"value" => 1
+		"value" => 1,
+		"choices" => array("off", 1, 2, 3)
 	),
 	"font" => array(
 		"desc" => "Font face",
@@ -138,9 +139,10 @@ $defaults = array(
 		"value" => 150 
 	),
 	"resize_size" => array(
-		"desc" => "The size images will be resized to upon upload. " .
-			"Set to 0 for no resize.",
-		"value" => 600 
+		"desc" => "The size images will be resized to this size ".
+			"upon upload. ",
+		"value" => 600,
+		"choices" => array("off", 400, 500, 600, 700, 800)
 	),
 	"imageborders" => array(
 		"desc" => "Show image borders",
