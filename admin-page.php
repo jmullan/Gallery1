@@ -28,7 +28,11 @@ if (!isset($gallery->version)) {
 }
 
 // Security check
-if (!$gallery->user->isAdmin()) {
+if (!$gallery->user->isAdmin() &&
+       ! ($gallery->userDB->canModifyUser() ||
+        $gallery->userDB->canCreateUser() ||
+        $gallery->userDB->canDeleteUser())
+    ) {
 	header("Location: " . makeAlbumHeaderUrl());
 	exit;
 }
