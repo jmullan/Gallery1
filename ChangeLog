@@ -1,3 +1,20 @@
+2003-01-29  John Kirkland <jpk@bl.org> 1.3.4-cvs-b11
+
+	* Moved process() from save_photos.php to util.php - processNewImage()
+	  so it could be used by the xp publishing wizard.
+
+	* Moved msg() from save_photos.php to util.php - processingMsg() so it 
+	  could be used by the xp publishing wizard.
+	
+	* Created a createNewAlbum($parentName) function in util.php from
+	  code extracted from do_command.php.
+
+	* Modified xp publishing wizard to use new functions in util.php, 
+	  removing duplicated code.
+
+	* Modified UI and logic flow for xp publishing wizard with regard
+	  to creation of new albums.
+
 2003-01-28  Bharat Mediratta  <bharat@menalto.com> 1.3.4-cvs-b10
 
 	* Improved the global extraction code in init.php not to throw warnings

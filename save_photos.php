@@ -43,17 +43,6 @@ if ($userfile_name) {
 	}
 }
 
-function msg($buf) {
-	global $msgcount;
-
-	if ($msgcount) {
-		print "<br>";
-	}
-	print $buf;
-	my_flush();
-	$msgcount++;
-}
-
 ?>
 <html>
 <head>
@@ -82,7 +71,7 @@ if ($urls) {
 		 * code from Jared (hogalot)
 		 */
 		if (fs_is_dir($url)) {
-			msg("Processing <i>$url</i> as a local directory.");
+			processingMsg("Processing <i>$url</i> as a local directory.");
 			$handle = fs_opendir($url);
 			while (($file = readdir($handle)) != false) {
 				if ($file != "." && $file != "..") {
@@ -133,9 +122,9 @@ if ($urls) {
 		if (!$id) $id = @fopen("$url/", "rb");
 
 		if ($id) {
-			msg(urldecode($url));
+			processingMsg(urldecode($url));
 		} else {
-			msg("Could not open url: '$url'");
+			processingMsg("Could not open url: '$url'");
 			continue;
 		} 
 	
@@ -161,7 +150,7 @@ if ($urls) {
 			$userfile[] = $file;
 		} else {
 			/* Slurp the file */
-			msg("Parsing $url for images...");
+			processingMsg("Parsing $url for images...");
 			$fd = fs_fopen ($file, "r");
 			$contents = fread ($fd, fs_filesize ($file));
 			fclose ($fd);
@@ -220,7 +209,7 @@ if ($urls) {
 			}
 	
 			/* Tell user how many links we found, but delay processing */
-			msg("Found " . count($image_tags) . " Images.");
+			processingMsg("Found " . count($image_tags) . " Images.");
 		}
 	}
 } /* if ($urls) */
@@ -243,112 +232,7 @@ while (sizeof($userfile)) {
 	$tag = strtolower($tag);
 
 	if ($name) {
-		process($file, $tag, $name, $caption, $setCaption);
-	}
-}
-
-
-function process($file, $tag, $name, $caption, $setCaption="") {
-	global $gallery;
-	global $temp_files;
-
-	if (!strcmp($tag, "zip")) {
-		if (!$gallery->app->feature["zip"]) {
-			msg("Skipping $name (ZIP support not enabled)");
-			continue;
-		}
-		/* Figure out what files we can handle */
-		list($files, $status) = exec_internal(
-			fs_import_filename($gallery->app->zipinfo, 1) . 
-			" -1 " .
-			fs_import_filename($file, 1));
-		sort($files);
-		foreach ($files as $pic_path) {
-			$pic = basename($pic_path);
-			$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
-			$tag = strtolower($tag);
-
-			if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
-				$cmd_pic_path = str_replace("[", "\[", $pic_path); 
-				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path); 
-				exec_wrapper(fs_import_filename($gallery->app->unzip, 1) . 
-					     " -j -o " .
-					     fs_import_filename($file, 1) .
-					     " \"" .
-					     fs_import_filename($cmd_pic_path, 1) .
-					     "\" -d " .
-					     fs_import_filename($gallery->app->tmpDir, 1));
-				process($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption);
-				fs_unlink($gallery->app->tmpDir . "/$pic");
-			}
-		}
-	} else {
-		// remove %20 and the like from name
-		$name = urldecode($name);
-		// parse out original filename without extension
-		$originalFilename = eregi_replace(".$tag$", "", $name);
-		// replace multiple non-word characters with a single "_"
-		$mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
-
-		/* Get rid of extra underscores */
-		$mangledFilename = ereg_replace("_+", "_", $mangledFilename);
-		$mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
-	
-		/* 
-		need to prevent users from using original filenames that are purely numeric.
-		Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
-		specifically:
-		RewriteRule ^([^\.\?/]+)/([0-9]+)$	/~jpk/gallery/view_photo.php?set_albumName=$1&index=$2	[QSA]
-		*/
-	
-		if (ereg("^([0-9]+)$", $mangledFilename)) {
-			$mangledFilename .= "_G";
-		}
-	
-		set_time_limit($gallery->app->timeLimit);
-		if (acceptableFormat($tag)) {
-
-		        /*
-			 * Move the uploaded image to our temporary directory
-			 * using move_uploaded_file so that we work around
-			 * issues with the open_basedir restriction.
-			 */
-			if (function_exists('move_uploaded_file')) {
-			        $newFile = tempnam($gallery->app->tmpDir, "gallery");
-				if (move_uploaded_file($file, $newFile)) {
-				    $file = $newFile;
-				}
-				
-				/* Make sure we remove this file when we're done */
-				$temp_files[$newFile]++;
-			}
-		    
-			msg("- Adding $name");
-			if ($setCaption and $caption == "") {
-				$caption = $originalFilename;
-			}
-	
-			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption);
-			if (!$err) {
-				/* resize the photo if needed */
-				if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
-					$index = $gallery->album->numPhotos(1);
-					$photo = $gallery->album->getPhoto($index);
-					list($w, $h) = $photo->image->getRawDimensions();
-					if ($w > $gallery->album->fields["resize_size"] ||
-					    $h > $gallery->album->fields["resize_size"]) {
-						msg("- Resizing $name"); 
-						$gallery->album->resizePhoto($index, $gallery->album->fields["resize_size"]);
-					}
-				}
-			} else {
-				msg("<font color=red>Error: $err!</font>");
-				msg("<b>Need help?  Look in the " .
-				    "<a href=http://gallery.sourceforge.net/faq.php target=_new>Gallery FAQ</a></b>");
-			}
-		} else {
-			msg("Skipping $name (can't handle '$tag' format)");
-		}
+		processNewImage($file, $tag, $name, $caption, $setCaption);
 	}
 }
 

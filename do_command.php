@@ -91,52 +91,9 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 } else if (!strcmp($cmd, "new-album")) {
 	if ($gallery->user->canCreateAlbums() ||
 	    $gallery->user->canCreateSubAlbum($gallery->album)) {
-		$albumDB = new AlbumDB(FALSE);
-		$gallery->session->albumName = $albumDB->newAlbumName();
-		$gallery->album = new Album();
-		$gallery->album->fields["name"] = $gallery->session->albumName;
-		$gallery->album->setOwner($gallery->user->getUid());
-		$gallery->album->save();
-		/* if this is a nested album, set nested parameters */
-		if ($parentName) {
-			$gallery->album->fields[parentAlbumName] = $parentName;
-			$parentAlbum = $albumDB->getAlbumbyName($parentName);
-			$parentAlbum->addNestedAlbum($gallery->session->albumName);
-			$parentAlbum->save();
-			// Set default values in nested album to match settings of parent.
-			$gallery->album->fields["perms"] 	= $parentAlbum->fields["perms"];
-			$gallery->album->fields["bgcolor"] 	= $parentAlbum->fields["bgcolor"];
-			$gallery->album->fields["textcolor"] 	= $parentAlbum->fields["textcolor"];
-			$gallery->album->fields["linkcolor"]	= $parentAlbum->fields["linkcolor"];
-			$gallery->album->fields["font"]		= $parentAlbum->fields["font"];
-			$gallery->album->fields["border"]	= $parentAlbum->fields["border"];
-			$gallery->album->fields["bordercolor"]	= $parentAlbum->fields["bordercolor"];
-			$gallery->album->fields["returnto"]	= $parentAlbum->fields["returnto"];
-			$gallery->album->fields["thumb_size"]	= $parentAlbum->fields["thumb_size"];
-			$gallery->album->fields["resize_size"]	= $parentAlbum->fields["resize_size"];
-			$gallery->album->fields["rows"]		= $parentAlbum->fields["rows"];
-			$gallery->album->fields["cols"]		= $parentAlbum->fields["cols"];
-			$gallery->album->fields["fit_to_window"]= $parentAlbum->fields["fit_to_window"];
-			$gallery->album->fields["use_fullOnly"]	= $parentAlbum->fields["use_fullOnly"];
-			$gallery->album->fields["print_photos"]	= $parentAlbum->fields["print_photos"];
-			$gallery->album->fields["use_exif"]	= $parentAlbum->fields["use_exif"];
-			$gallery->album->fields["display_clicks"]=$parentAlbum->fields["display_clicks"];
-			$gallery->album->fields["public_comments"]=$parentAlbum->fields["public_comments"];
 
-			$gallery->album->save();
-		} else {
-		        /*
-			 * Get a new albumDB because our old copy is not up to
-		         * date after we created a new album
-			 */
-		        $albumDB = new AlbumDB(FALSE);
-			
-			/* move the album to the top if not a nested album*/
-                	$numAlbums = $albumDB->numAlbums($gallery->user);
-                	$albumDB->moveAlbum($gallery->user, $numAlbums, 1);
-                	$albumDB->save();
-		}
-	
+		createNewAlbum($parentName);
+
 		$url = addUrlArg($return, "set_albumName=" .
 				 $gallery->session->albumName);
 		header("Location: $url");
