@@ -47,7 +47,7 @@ class PostNuke_UserDB extends Abstract_UserDB {
 		
 		array_push($uidList, $this->nobody->getUid());
 		array_push($uidList, $this->everybody->getUid());
-		array_push($uidList, $this->everybody->getLoggedIn());
+		array_push($uidList, $this->loggedIn->getUid());
 
 		sort($uidList);
 		return $uidList;
