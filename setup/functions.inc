@@ -232,6 +232,9 @@ function form_print_services($key, $arr) {
 	    }
 	    $checked = $value['checked'] ? ' checked' : '';
 	    $buf .= "\n\t\t<tr><td valign=\"top\">\n\t\t\t<input name=\"${key}[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a href=\"${data['url']}\">${data['name']}</a>";
+            if (!empty($data['desc'])) {
+		$buf .= ' - ' . $data['desc'];
+	    }
 	    $buf .= "\n\t\t</td></tr>";
 	}
 	$buf .="\n\t</table>\n\t";

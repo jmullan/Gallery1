@@ -32,8 +32,8 @@
 	require (dirname(__FILE__) . '/config_data.inc');
 	require (GALLERY_BASE . '/js/sectionTabs.js.php');
 
-	list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults) =
-	  getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults'));
+	list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults, $refresh) =
+	  getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));
 
 ?>
 <?php doctype(); ?>
@@ -91,11 +91,12 @@
 configLogin(basename(__FILE__));
 
 
-if (isset ($go_defaults)) {
+if (isset($go_defaults) || isset($refresh)) {
 	$setup_page = $this_page;
-} else if (isset ($go_next)) {
+	echo "<!-- setup_page = $this_page -->";
+} else if (isset($go_next)) {
 	$setup_page = $next_page;
-} else if (isset ($go_back)) {
+} else if (isset($go_back)) {
 	$setup_page = $back_page;
 }	
 

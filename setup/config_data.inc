@@ -1259,7 +1259,9 @@ $defaults = array(
 				'url'     => 'http://www.ezprints.com/'),
 			'mpush'       => array(
 				'name'    => 'mPUSH',
-				'url'	  => 'http://www.mpush.cc/'),
+				'url'	  => 'http://www.mpush.cc/',
+				'desc'    => _("mPUSH is a photo service that adds the ability to send thumbnail images to your, or
+a friend's, cellphone for a small fee."),),
 		),
 		'value' => array(
 			'ezprints' => array(
@@ -1271,7 +1273,8 @@ $defaults = array(
 			'shutterfly' => array(
 				'checked' => true),
 			'mpush' => array(
-				'checked' => true),
+				'checked' => true,
+				'account' => 'gallery'),
 		),
 		'optional' => true
 	),

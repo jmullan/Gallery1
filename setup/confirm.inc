@@ -23,6 +23,7 @@
 
 <input type="hidden" name="back_page" value="defaults">
 <input type="hidden" name="next_page" value="write">
+<input type="hidden" name="this_page" value="confirm">
 
 <div class="header"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),4); ?></div>
 
@@ -451,7 +452,7 @@ if (!$error) {
 <?php if (!$error) {
 		echo '<input type="submit" name="go_next" disabled="disabled" value="' . _("Save Config") .' -&gt;">';
 	} else {
-		echo '<input type="button" name="refresh" disabled="disabled" value="' . _("Refresh") . '" onclick="location.reload()">';
+		echo '<input type="submit" name="refresh" disabled="disabled" value="' . _("Refresh") . '">';
 		echo '<br><div class="error" id="top">';
 		echo pluralize_n2(ngettext("One error.", "%d errors.", $error), $error, _("No errors."));
                 echo ' ';
