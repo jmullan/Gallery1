@@ -61,6 +61,7 @@ if (!strcmp($op, "modload")) {
 		       "albums.php",
 		       "view_photo.php",
 		       "view_album.php",
+		       "search.php",
 		       );
 	
 	if (!in_array($include, $safe_to_include)) {
