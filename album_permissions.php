@@ -90,42 +90,20 @@ if ($changed) {
 $nobody = $gallery->userDB->getNobody();
 $ownerUid = $nobody->getUid();
 
-$uRead = array();
-$uText = array();
-$uAdd = array();
-$uWrite = array();
-$uDelete = array();
+$uRead = $gallery->album->getPermUids("canRead");
+$uText = $gallery->album->getPermUids("canChangeText");
+$uAdd = $gallery->album->getPermUids("canAddTo");
+$uWrite = $gallery->album->getPermUids("canWrite");
+$uDelete = $gallery->album->getPermUids("canDeleteFrom");
 
 foreach ($gallery->userDB->getUidList() as $uid) {
 	$tmpUser = $gallery->userDB->getUserByUid($uid);
 	$uname = $tmpUser->getUsername();
-
 	$uAll[$uid] = $uname;
-
-	if ($gallery->album->isOwner($uid)) {
-		$ownerUid = $uid;
-	}
-
-	if ($gallery->album->canRead($uid)) {
-		$uRead[$uid] = $uname;
-	}
-
-	if ($gallery->album->canChangeText($uid)) {
-		$uText[$uid] = $uname;
-	}
-
-	if ($gallery->album->canAddTo($uid)) {
-		$uAdd[$uid] = $uname;
-	}
-
-	if ($gallery->album->canWrite($uid)) {
-		$uWrite[$uid] = $uname;
-	}
-
-	if ($gallery->album->canDeleteFrom($uid)) {
-		$uDelete[$uid] = $uname;
-	}
 }
+
+$owner = $gallery->album->getOwner();
+$ownerUid = $owner->getUid();
 
 asort($uRead);
 asort($uText);
@@ -134,17 +112,11 @@ asort($uDelete);
 asort($uAdd);
 asort($uAll);
 
-correctNobody($uRead);
-correctNobody($uText);
-correctNobody($uWrite);
-correctNobody($uDelete);
-correctNobody($uAdd);
-
-correctEverybody($uRead);
-correctEverybody($uText);
-correctEverybody($uWrite);
-correctEverybody($uDelete);
-correctEverybody($uAdd);
+correctPseudoUsers($uRead);
+correctPseudoUsers($uText);
+correctPseudoUsers($uWrite);
+correctPseudoUsers($uDelete);
+correctPseudoUsers($uAdd);
 
 ?>
 <html>
@@ -163,13 +135,13 @@ Changing permissions for <b><?=$gallery->album->fields["title"]?></b>
 			array("name" => "albumperms_form")) ?>
 
 <? if ($gallery->user->isAdmin) { ?>
-Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1, $uNobody); ?>
+Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
 <? } ?>
 
 <table border=0 cellspacing=0 cellpadding=0>
  <tr>
   <td align=center>
-   <?= drawSelect("allUid", $uAll, $allUid, 23, $uPubUser); ?>
+   <?= drawSelect("allUid", $uAll, $allUid, 23); ?>
   </td>
 
   <td> &nbsp; </td>
