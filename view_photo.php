@@ -257,6 +257,8 @@ if (!$title) {
 			   isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">	 
 	  <?php }?>
+  <?php $metakeywords = ereg_replace("[[:space:]]+",' ',$gallery->album->getKeywords($index)); ?>
+  <meta name="Keywords" content="<?php echo $metakeywords; ?>">
   <style type="text/css">
 <?php
 // the link colors have to be done here to override the style sheet
