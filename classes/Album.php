@@ -1064,7 +1064,7 @@ class Album {
                         $this->resetClicks();
 			$time = $this->fields["clicks_date"];
                 }
-		return strftime("%x",$time);
+		return strftime($gallery->app->dateString,$time);
 
         }
 
@@ -1138,7 +1138,7 @@ class Album {
 			$time = $stat[9];
 		}
 
-		return strftime("%x",$time);
+		return strftime($gallery->app->dateString,$time);
 	}
 
 	function setNestedProperties() {

@@ -132,9 +132,13 @@ PS:	Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 		echo ("</td>\n</table><br>");
 	}
 
-	echo _("File Upload Date") .":&nbsp;&nbsp; " . strftime("%c" , $gallery->album->getUploadDate($index)) . "<br>";
+	echo _("File Upload Date") .":&nbsp;&nbsp; " . 
+		strftime($gallery->app->dateTimeString , 
+				$gallery->album->getUploadDate($index)) 
+		. "<br>";
 	$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-	echo _("Item Capture Date") . ":&nbsp;&nbsp; " . strftime("%c", 
+	echo _("Item Capture Date") . ":&nbsp;&nbsp; " . 
+		strftime($gallery->app->dateTimeString, 
 			mktime($itemCaptureDate['hours'], 
 				$itemCaptureDate['minutes'],
 				$itemCaptureDate['seconds'], 

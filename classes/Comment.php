@@ -43,7 +43,7 @@ class Comment {
 
 	function getDatePosted() {
 		$time = $this->datePosted;
-		return strftime("%c", $time);
+		return strftime($gallery->app->dateTimeString, $time);
 	}
 
 	function getIPNumber() {

@@ -297,7 +297,7 @@ if ($numPhotos) {
 	$mon = $itemCaptureDate["mon"];
 	$mday = $itemCaptureDate["mday"];
 	$year = $itemCaptureDate["year"];
-	print strftime("%c" , mktime ($hours,$minutes,$seconds,$mon,$mday,$year));
+	print strftime($gallery->app->dateTimeString , mktime ($hours,$minutes,$seconds,$mon,$mday,$year));
     }
 ?>
       </td>

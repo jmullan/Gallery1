@@ -423,6 +423,27 @@ $constants = array_merge(
 		"type" => "text",
 		"attrs" => array("size" => 20),
 	),
+	"dateString" => array(
+		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Format to use for date strings."),
+		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at <a href=\"http://uk.php.net/manual/en/function.strftime.php\">http://uk.php.net/manual/en/function.strftime.php</a>."),
+			_("date without time"), Gallery(), "<b>%x</b>") .
+			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>" . "<p>" .
+			sprintf(_("For example, %s will display date like this: %s."), "<b>%b %d, %Y</b>", "<b>" . strftime("%b %d, %Y") . "</b>"), 
+		"value" => "%x",
+		"type" => "text",
+		"attrs" => array("size" => 20),
+	),
+	"dateTimeString" => array(
+		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Format to use for date/time strings."),
+		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at <a href=\"http://uk.php.net/manual/en/function.strftime.php\">http://uk.php.net/manual/en/function.strftime.php</a>."),
+			_("date with time"), Gallery(), "<b>%c</b>") . 
+			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>" ."<p>" .
+			sprintf(_("For example, %s will display date and time like this: %s."), "<b>%H:%M, %b %d, %Y</b>", "<b>" . strftime("%H:%M, %b %d, %Y") . "</b>"), 
+		"value" => "%c",
+		"type" => "text",
+		"attrs" => array("size" => 20),
+	),
+
 
 	/* Keep this one at the end of the list because it's hidden */
 	"userDir" => array(
