@@ -190,7 +190,7 @@ function resize_image($src, $dest, $target) {
 		$out = $dest;
 	}
 	$err = exec_wrapper(toPnmCmd($src) .
-		     "| $app->pnmDir/pnmscale -xysize $target $target".
+		     "| $app->pnmDir/pnmscale --quiet -xysize $target $target".
 		     "| " . fromPnmCmd($out));
 
 	if (file_exists("$out") && filesize("$out") > 0) {
