@@ -103,8 +103,10 @@ if ($urls) {
 		$url = eregi_replace("^[[:space:]]+", "", $url);
 
 		/* If the URI doesn't start with a scheme, prepend 'http://' */
-		if (!ereg("^(http|ftp)", $url)) {
-			$url = "http://$url";
+		if (!fs_is_file($url)) {
+			if (!ereg("^(http|ftp)", $url)) {
+				$url = "http://$url";
+			}
 		}
 
 		/* Parse URL for name and file type */
