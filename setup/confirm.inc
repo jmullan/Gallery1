@@ -96,13 +96,23 @@ foreach ($constants as $key => $val) {
 	$bracketStart = strpos($key, '[');
 	$bracketEnd = strpos($key, ']');
 
+/* 
+** This is a somewhat strange workaround i made for a strange SunOS with
+** register global On an Magic Quotes On.
+** The problem is that we have send/get hidden fields which are named like
+** foo[bar]. So the result is, the $key=foo[bar] and $$key seems to fail.
+** The former solution were to do create a string which is like the value 
+** of $key and put it in $real via eval().
+** This also seems not to work.
+** May Solution is this:
+** if $key contains [] then we know its an array. What we have to do is
+** to catch the first element.
+** So i get the array name via substr. Infact array could be an associative,
+** i use array_keys to get the keys. 
+** This only works an onedimensional arrays !
+** 02/2004 , Jens Tkotz
+*/
 	if ($bracketStart > 0 && $bracketEnd > 0) {
-	/* This is a somewhat strange workaround i made for
-	** a strange SunOS with 
-	** register global On an Magic Quotes On
-	** This only works an onedimensional arrays !
-	** 02/2004 , Jens Tkotz
-	*/
 		$subKey=substr($key,0, $bracketStart);
 		$newKey=$$subKey;
 		$arrKeys=(array_keys($newKey));
