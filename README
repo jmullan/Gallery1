@@ -17,15 +17,16 @@ information, check out the web site:
 
 Installing and configuring Gallery is done via a set of web pages.
 To enable these web pages you need to log onto your web server using
-telnet or (preferably) ssh, go to the gallery directory and type:
+telnet or (preferably) ssh, go to the gallery directory and at the
+prompt (which usually ends in '%' or '$') type:
 
-	% sh configure.sh
+	sh configure.sh
 
 Then go to the main Gallery URL and it will drop you into the
 configuration wizard.  This will walk you through the process of 
 configuring Gallery.  When you're done, type:
 
-	% sh secure.sh
+	sh secure.sh
 
 And it will turn off the configuration application.  Gallery won't run
 if it is not in secure mode.
