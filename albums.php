@@ -179,15 +179,21 @@ for ($i = $start; $i <= $end; $i++) {
   </tr>
   <tr>
   <!-- Begin Image Cell -->
-  <td width=<?=$gallery->app->highlight_size?> align=center valign=middle>
-  <a href=<?=$albumURL?>>
-  <?   
-        if ($gallery->album->numPhotos(1)) {
-                echo $gallery->album->getHighlightTag();
-        } else {
-                echo "<span class=title>Empty!</span>";
-        }
-  ?></a> </td>
+  <td align="center" valign="middle">
+
+<?
+      $gallery->html_wrap['borderColor'] = $borderColor;
+      $gallery->html_wrap['borderWidth'] = 1;
+      $gallery->html_wrap['pixelImage'] = $imageDir . "/pixel_trans.gif";
+      $scaleTo = $gallery->app->highlight_size;
+      list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($gallery->album->getHighlight(), $scaleTo);
+      $gallery->html_wrap['thumbWidth'] = $iWidth;
+      $gallery->html_wrap['thumbHeight'] = $iHeight;
+      $gallery->html_wrap['thumbTag'] = $gallery->album->getHighlightTag($scaleTo);
+      $gallery->html_wrap['thumbHref'] = $albumURL;
+      includeHtmlWrap('inline_gallerythumb.frame');
+?>
+  </td>
   <!-- End Image Cell -->
   <!-- Begin Text Cell -->
   <td align=left valign=top>
