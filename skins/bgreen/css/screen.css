@@ -1,32 +1,42 @@
 /* 
-	skin bblue
    default text styles - background and colors overriden by
    album 'bgcolor', 'background', and 'textcolor' properties.
 */
-BODY  
-	{ 
-	  font-family: Verdana, Arial, Helvetica, sans-serif;
-	  font-size: 10pt;
-	  color:#404040;
-	  font-weight:bold;
-	  background-color: #ffffff;
-	  margin-top: 25px;
-	  margin-left: 0px;
-	  margin-right: 0px;
-	}
-TD, P 
-	{ 
-	  font-family: Verdana, Arial, Helvetica, sans-serif;
-	  font-size: 10pt; 
-	}
+
+BODY { 
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    color:#404040;
+    font-weight:bold;
+    background-color: #ffffff;
+    margin-top: 15px;
+    margin-left: 0px;
+    margin-right: 0px;
+
+}
+TD, P { 
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10pt; 
+}
+
 /* 
    link colors - overridden by the album 'linkcolor' property.
 */
-A   	{ color: #404040; text-decoration: none; }
+A   	{ color: #404040; }
 A:link	{ color: #404040; text-decoration: none; }
 A:visited { color: #404040; text-decoration: none; }
 A:active { color: #404040; }
 A:hover	{ color: #C0C0C0; }
+
+
+textarea:focus, select:focus {
+    background-color: #FFFFFF;
+}
+
+input:focus {
+    background-color: #FFFFDA;
+}
+
 /* 
    text styles 
 */
@@ -49,7 +59,6 @@ A:hover	{ color: #C0C0C0; }
 	}
 .title a:hover {
 	  color: #C0C0C0;
-	  text-decoration: none;
 	} 
 	
 .mod_title	/* album title  Text is controled by .title */ 
@@ -128,16 +137,9 @@ A:hover	{ color: #C0C0C0; }
 	  border:0px dashed #404040;
 	}
 
-
 .pview /* brackets both the image and all text in one frame */
 	{
-		margin:7px;
-		padding: 7px;
 	}
-
-.presults /* text for poll results under photo  */
-	 {
-	 }
 .commentbox
 	{
 	}
@@ -153,14 +155,19 @@ A:hover	{ color: #C0C0C0; }
 
 .vatable /* width of the div set for all photo sets - view albums  */
 	 { 
+	 	width: 100%;
 	 }
+
 .vathumbs /* full background bracket for images and text - veiw albums  */
 	 { 
+		margin:17px;
 	 }
+
 .vafloat /* float for view album - text */
 	 {
 		float: none; 
 	 }
+
 .vafloat2 /* float for view album - images */
 	 {
 	 	float: none; 
@@ -184,7 +191,6 @@ A:hover	{ color: #C0C0C0; }
 	  color: red; 
 	  font-size: 12px; 
 	}
-
 .error  /* all error text */
 	{ 
 	  color: red; 
@@ -254,6 +260,25 @@ A:hover	{ color: #C0C0C0; }
 	{ 
 	  font-size: 10px; 
 	}
+.viewcounter
+	{
+	  font-size: 10px;
+	}
+
+.popuphead {
+    font-size: 16px;
+    font-weight: bold;
+    color: #404040;
+    background-image: url(../images/mod_navbar.jpg);
+}
+
+.popup
+	{
+	  font-size: 12px;
+	  font-weight: bold;
+	  color: #404040;	  
+	}
+
 .editlink,  /* Used for the [edit] tags */
 .editlink a,
 .editlink a:link,
@@ -264,6 +289,7 @@ A:hover	{ color: #C0C0C0; }
 	  font-weight: normal;
 	  color: #404040;	  
 	}
+
 .modnavbox  /* main navigation bar next and previous */ 
 	{ 
 	  font-family:verdana, arial, sans-serif;	
@@ -290,18 +316,19 @@ A:hover	{ color: #C0C0C0; }
 	  color: #C0C0C0;
 	  text-decoration: underline;
 	}
-.admin
+.admin  /* used in admin bars - the serch text*/
 	{ 
 	  font-size: 10px;
+	  color: #70FA2C; 
 	  font-weight: bold;
-	  color: #65B4FF; 
 	}
 
-.adminform {
-	  font-size: 10px;
-	  font-weight: bold;
-	  color: #6666FF ;
-	}
+.adminform 
+	{
+       font-size: 10px;
+       font-weight: bold;
+       color: #00B41C ;
+     }
 .search  /* used in admin bars - the search text*/
 	{ 
 	  font-size: 10px;
@@ -315,11 +342,10 @@ A:hover	{ color: #C0C0C0; }
 	{
 	  width: 50px;
 	}
-
 .pollresults /* poll result text */
 	{
 	  font-size: 12px;
-	  color: #404040; 
+	  color: #202020; 
 	  font-weight: bold;
 	}
 .modnavboxtop  /*navagation bar top of screen where admin buttons show*/
@@ -345,7 +371,6 @@ A:hover	{ color: #C0C0C0; }
 .modnavboxtop a:hover {
 	  font-weight: normal;
 	  color: #C0C0C0;
-	  text-decoration: none;
 	}
 .modnavboxmid  /*navagation bar middle where the link for the albums show*/
 	{ 
@@ -392,7 +417,6 @@ A:hover	{ color: #C0C0C0; }
 	}
 .modfooter a:hover {
 	  color: #C0C0C0;
-	  text-decoration: none;
 	}
 
 /* popups */
@@ -442,54 +466,35 @@ A:hover	{ color: #C0C0C0; }
 
 /* CSS ID for the add photos popup */
 
-#container
-	{
-		padding: 2px;
-	}
-
-#tabnav
-	{
-		height: 20px;
-		margin: 0;
-		padding-left: 5px;
-		background: url(images/tab_bottom.gif) repeat-x bottom;
-	}
-
-#tabnav li
-	{
-		margin: 0; 
-		padding: 0;
-  		display: inline;
-  		list-style-type: none;
-  	}
+#container {
+    padding: 2px;
 	
-#tabnav a:link, #tabnav a:visited
-	{
-		float: left;
-		font-size: 11px;
-		line-height: 14px;
-		font-weight: bold;
-		padding: 2px 5px 2px 5px;
-		margin-right: 4px;
-		text-decoration: none;
-		color: #666;
-	        border-width:1px;
-	        border-style: solid; border-color: #000000;
-		-Moz-Border-Radius-TopLeft: 20px;
-		-Moz-Border-Radius-TopRight: 20px;
-	}
+}
 
-#tabnav a:link.active, #tabnav a:visited.active
-	{
-	  background-color: #FCFCF3 ; padding:2px 5px 2px 5px; font-size:12px;
-	  margin-right: 4px;
-	  border-style: solid; border-color: #000000;
-	  -Moz-Border-Radius-TopLeft: 20px;
-	  -Moz-Border-Radius-TopRight: 20px;
-	  color:#000000;
-	}
+#tabnav {
+}
 
-#tabnav a:hover
-	{
-		color: #444
-	}
+#tabnav li {
+}
+	
+#tabnav a:link, #tabnav a:visited {
+}
+
+#tabnav a:link.active, #tabnav a:visited.active {
+}
+
+#tabnav a:hover {
+}
+
+#adminbox {
+}
+
+#adminbox td {
+    font-family:verdana, arial, sans-serif;
+    color: #202020;
+    background-color: #c0c0c0;
+}
+
+#adminbox a:hover {
+    color: #FFFFFF;
+}

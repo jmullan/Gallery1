@@ -21,11 +21,10 @@ TD, P
 /* 
    link colors - overridden by the album 'linkcolor' property.
 */
-A   	{ color: #404040; text-decoration: none; }
-A:link	{ color: #404040; text-decoration: none; }
-A:visited { color: #404040; text-decoration: none; }
-A:active { color: #404040; }
-A:hover	{ color: #C0C0C0; }
+A   	{ color: #C0C0C0; text-decoration: none; }
+A:link	{ color: #C0C0C0; text-decoration: none; }
+A:active { color: #C0C0C0; }
+A:hover	{ color: #FFFFFF; }
 /* 
    text styles 
 */
@@ -41,16 +40,11 @@ A:hover	{ color: #C0C0C0; }
 .title a:visited,
 .title a:active {
 	  font-family:verdana, arial, sans-serif;
-	  color:#ffffff;
 	  font-size:x-small;
 	  font-weight:bold;
 	  letter-spacing: .2em;  
-	  text-decoration: none;
-	}
-.title a:hover {
-	  color: #C0C0C0;
-	  text-decoration: none;
-	} 
+}
+
 .mod_title	/* album title  Text is controled by .title */ 
 	{ 
           background-image: url(../images/mod_titlebar.jpg);
@@ -128,21 +122,10 @@ A:hover	{ color: #C0C0C0; }
 	  border:0px dashed #000000;
 	  height: 28px;  
 	}
-.head a,
-.head a:link,
-.head a:visited,
-.head a:active 
-	{
-	  font-weight: normal;
-	  color:#ffffff;
-	  text-decoration: none;
-	}
-.head a:hover
-	{
-	  font-weight: normal;
-	  color: #C0C0C0;
-	  text-decoration: underline;
-	}
+
+.head a {
+}
+
 .mod_headliner  /* Gallery & Album titles. Text is controled by .head */ 
 	{ 
           background-image: url(../images/mod_titlebar.jpg);
@@ -175,14 +158,20 @@ A:hover	{ color: #C0C0C0; }
 	{ 
 	  font-size: 10px; 
 	}
-.popuphead
-	{
-	  font-size: 16px;
- 	  font-weight: bold;
-	  color: #ffffff;
-	}
-.popup
-	{
+
+.popupbody {
+    color: #FFFFFF;
+}
+
+.popuphead{
+    background-image: url(../images/mod_titlebar.jpg);
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 2px;
+}
+
+.popup {
 	  font-size: 12px;
 	  font-weight: bold;
 	  color: #BBBBBB;	  
@@ -197,6 +186,7 @@ A:hover	{ color: #C0C0C0; }
 	  font-weight: normal;
 	  color: #ffffff;	  
 	}
+
 .modnavbox  /* main navigation bar next and previous */ 
 	{ 
 	  font-family:verdana, arial, sans-serif;	
@@ -210,19 +200,9 @@ A:hover	{ color: #C0C0C0; }
 	  width: 100%;
 	  height: 14px;
 	}
-.modnavbox a,
-.modnavbox a:link,
-.modnavbox a:visited,
-.modnavbox a:active {
-	  font-weight: normal;
-	  color:#ffffff;
-	  text-decoration: none;
-	}
-.modnavbox a:hover {
-	  font-weight: normal;
-	  color: #C0C0C0;
-	  text-decoration: underline;
-	}
+.modnavbox a
+}
+
 .admin  /* used in admin bars - the serch text*/
 	{ 
 	  font-size: 10px;
@@ -257,19 +237,9 @@ A:hover	{ color: #C0C0C0; }
 	  border:0px dashed #000000;
 	  width: 100%  
 	}
-.modnavboxtop a,
-.modnavboxtop a:link,
-.modnavboxtop a:visited,
-.modnavboxtop a:active {
-	  font-weight: normal;
-	  color: #ffffff;
-	  text-decoration: none;
-	}
-.modnavboxtop a:hover {
-	  font-weight: normal;
-	  color: #C0C0C0;
-	  text-decoration: none;
-	}
+.modnavboxtop a {
+}
+
 .modnavboxmid  /*navagation bar middle where the link for the albums show*/
 	{ 
 	  font-family:verdana, arial, sans-serif;
@@ -281,19 +251,10 @@ A:hover	{ color: #C0C0C0; }
 	  border:0px dashed #000000;
 	  width: 100%  
 	}
-.modnavboxmid a,
-.modnavboxmid a:link,
-.modnavboxmid a:visited,
-.modnavboxmid a:active {
-	  font-weight: normal;
-	  color:#ffffff;
-	  text-decoration: none;
+
+.modnavboxmid {
 	}
-.modnavboxmid a:hover {
-	  font-weight: normal;
-	  color: #C0C0C0;
-	  text-decoration: underline;
-	}
+
 .modfooter  /*footer where the Gallery version is located*/
 	{ 
 	  font-family:verdana, arial, sans-serif;
@@ -330,10 +291,6 @@ A:hover	{ color: #C0C0C0; }
 	margin-top:2px;
  }
 
-.presults /* text for poll results under photo  */
- {
- }
-
 .vatable /* width of the div set for all photo sets - view albums  */
  { 
  	width: 100%;
@@ -359,4 +316,13 @@ A:hover	{ color: #C0C0C0; }
         padding:2px;
         margin-top:10px;
         width:80%;
+}
+
+#adminbox {
+}
+
+#adminbox td {
+    color:#ffffff;
+    font-size: 12px;
+    background-color: #490D03;
 }

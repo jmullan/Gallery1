@@ -109,7 +109,6 @@ includeLayout('navigator.inc');
 
 ?>
 
-
 <!-- image grid table -->
 <br>
 <?php
@@ -118,9 +117,8 @@ includeLayout('navigator.inc');
 	$ranks=array_keys($results);
 	print $buf;
 		?>
-			<p><span class=pollresults>
-			<?php echo _("Results Breakdown") ?>
-			</span>
+			<p>
+			    <span class="pollresults"><?php echo _("Results Breakdown") ?></span>
 			<table width="<?php print $fullWidth?>" border="0" cellspacing="0" cellpadding="7">
 			<?php
 		

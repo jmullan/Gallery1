@@ -517,44 +517,43 @@ function ngettext_installed() {
 
 /* returns all languages in this gallery installation */
 function gallery_languages() {
-	$nls=getNLS();
+	$nls = getNLS();
 	return $nls['language'];
 }
 
 /* returns all language relative that gallery could collect. */
 function getNLS() {
-	static $nls;
+    static $nls;
 
-	if (empty($nls)) {
+    if (empty($nls)) {
+    	$nls = array();
+	// Load defaults
+	include (dirname(dirname(__FILE__)) . '/nls.php');
 
-		$nls=array();
-		// Load defaults
-		include (dirname(dirname(__FILE__)) . '/nls.php');
-
-		$modules=array('config','core');
-		$dir=dirname(dirname(__FILE__)) . '/locale';
-	       	if (fs_is_dir($dir) && is_readable($dir) && $handle = fs_opendir($dir)) {
-			while ($dirname = readdir($handle)) {
-				if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
-					$locale=$dirname;
-					$fc=0;
-					foreach ($modules as $module) {
-						if (gettext_installed()) {
-							if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-gallery_$module.po")) $fc++;
-						} else {
-							if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
-						}
-					}
-					if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php") && $fc==sizeof($modules)) {
-						include (dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php");
-					}
-				}
+	$modules = array('config','core');
+	$dir = dirname(dirname(__FILE__)) . '/locale';
+	if (fs_is_dir($dir) && is_readable($dir) && $handle = fs_opendir($dir)) {
+	    while ($dirname = readdir($handle)) {
+	    	if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
+		    $locale = $dirname;
+		    $fc = 0;
+		    foreach ($modules as $module) {
+		    	if (gettext_installed()) {
+			    if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-gallery_$module.po")) $fc++;
+			} else {
+			    if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
 			}
-		closedir($handle);
+		    }
+		    if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php") && $fc==sizeof($modules)) {
+		    	include (dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php");
+		    }
 		}
+	    }
+	    closedir($handle);
 	}
+    }
 
-return $nls;
+    return $nls;
 }
 
 function i18n($buf) {

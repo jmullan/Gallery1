@@ -6,9 +6,9 @@ BODY
 	{ 
 	  font-family: Verdana, Arial, Helvetica, sans-serif;
 	  font-size: 10pt;
-	  color:#404040;
+	  color:#ffffff;
 	  font-weight:bold;
-	  background-image: url(../images/mod_background.jpg);
+	  background-color: #000000;
 	  margin-top: 25px;
 	  margin-left: 0px;
 	  margin-right: 0px;
@@ -21,74 +21,67 @@ TD, P
 /* 
    link colors - overridden by the album 'linkcolor' property.
 */
-A   	{ color: #404040; text-decoration: none; }
-A:link	{ color: #404040; text-decoration: none; }
-A:visited { color: #404040; text-decoration: none; }
-A:active { color: #404040; }
-A:hover	{ color: #C0C0C0; }
+A   	{ color: #ffffff; text-decoration: none; }
+A:link	{ color: #ffffff; text-decoration: none; }
+A:visited { color: #ffffff; text-decoration: none; }
+A:active { color: #ffffff; }
+A:hover	{ color: #E91414; }
 /* 
    text styles 
 */
 .title                          /* album titles on main page */
 	{ 
 	  line-height:140%;
-	  padding-right:2px;
-	  padding-left:3px;
+	  padding:2px;
+	  margin-top:2px;
+	  width: 100%;
 	}
 .title a,
 .title a:link,
 .title a:visited,
 .title a:active {
 	  font-family:verdana, arial, sans-serif;
-	  color:#000000;
+	  color:#ffffff;
 	  font-size:x-small;
 	  font-weight:bold;
 	  letter-spacing: .2em;  
 	  text-decoration: none;
 	}
 .title a:hover {
-	  color: #C0C0C0;
-	  text-decoration: none;
-	} 
-	
+      color: #E91414;
+} 
+
 .mod_title	/* album title  Text is controled by .title */ 
 	{ 
-	  width: 100%;
-	  height: 26px;
+          background-image: url(../images/mod_titlebar.jpg);
+          width: 100%;
+          height: 28px;
 	}
 .mod_title_bg	/* album title hightlight Text is controled by .title */ 
 	{ 
-	  direction: ltr;
-	  height: 26px;
 	}
 .mod_title_right  /* album title hightlight  Text is controled by .title*/ 
 	{ 
-	  background-image: url(../images/mod_toplight_right.gif);
-	  height: 26px;
-	  width: 26px;
 	}
 .mod_title_left  /* album title hightlight  Text is controled by .title */ 
 	{ 
-	  background-image: url(../images/mod_toplight_left.gif);
-	  height: 26px;
-	  width: 26px;
 	}
 .albumdesc  /*album description includes all text and background*/
 	{
 	  font-family:verdana, arial, sans-serif;
-	  color:#404040;
+	  color:#ffffff;
 	  font-size:x-small;
 	  font-weight:bold;
-	  background-image: url(../images/mod_descbg.jpg);
+	  background-color: #363636;
 	  line-height:140%;
 	  padding:2px;
 	  margin-top:2px;		
-	  border:0px solid #404040;
+	  border:0px dashed #000000;
 	}
 .desc  /* album descriptions on main page just description and author*/
 	{ 
 	  font-family:verdana, arial, sans-serif;
-	  color:#404040;
+	  color:#ffffff;
 	  font-size:x-small;
 	  font-weight:bold;
 	  line-height:140%;
@@ -106,11 +99,11 @@ A:hover	{ color: #C0C0C0; }
 	  color: #ffffff;
 	  font-size: 10px;
 	  font-weight:bold;
-	  background-image: url(../images/mod_descbg.jpg);
+	  background-color: #363636;
 	  line-height:140%;
 	  padding:2px;
 	  margin-top:2px;		
-	  border:0px dashed #404040;
+	  border:0px dashed #000000;
 	}
 .error  /* all error text */
 	{ 
@@ -126,38 +119,44 @@ A:hover	{ color: #C0C0C0; }
 .head  /* page headers behind the Gallery title*/
 	{ 
 	  font-family:verdana, arial, sans-serif;
-	  color:#000000;
+	  color:#ffffff;
 	  font-size: 16px;
 	  font-weight:bold;
-	  padding-left:2px;
-	  padding-right:0px;
+	  background-image: url(../images/mod_titlebar.jpg);
 	  line-height:140%;
 	  letter-spacing: .2em;
-	  border:0px dashed #404040;
-	  height: 24px;  
+	  border:0px dashed #000000;
+	  height: 28px;  
+	}
+.head a,
+.head a:link,
+.head a:visited,
+.head a:active 
+	{
+	  font-weight: normal;
+	  color:#ffffff;
+	  text-decoration: none;
+	}
+.head a:hover
+	{
+	  font-weight: normal;
+	  color: #E91414;
+	  text-decoration: underline;
 	}
 .mod_headliner  /* Gallery & Album titles. Text is controled by .head */ 
 	{ 
-	  width: 100%;
-	  height: 26px;
+          background-image: url(../images/mod_titlebar.jpg);
+          width: 100%;
+          height: 28px;
 	}
 .mod_toplight_bg  /* Gallery & Album titles. Text is controled by .head */ 
 	{ 
-	  direction: ltr;
-	  background-image: url(../images/mod_toplight_bg.jpg);
-	  height: 26px;
 	}
 .mod_toplight_right  /* Gallery & Album titles. Text is controled by .head*/ 
 	{ 
-	  background-image: url(../images/mod_toplight_right.gif);
-	  height: 26px;
-	  width: 26px;
 	}
 .mod_toplight_left  /* Gallery & Album titles. Text is controled by .head */ 
 	{ 
-	  background-image: url(../images/mod_toplight_left.gif);
-	  height: 26px;
-	  width: 26px
 	}
 .bread  /* used in breadcrumb bars */
 	{ 
@@ -176,18 +175,23 @@ A:hover	{ color: #C0C0C0; }
 	{ 
 	  font-size: 10px; 
 	}
-.popuphead
-	{
-	  font-size: 16px;
- 	  font-weight: bold;
-	  color: #404040;
-	}
-.popup
-	{
-	  font-size: 12px;
-	  font-weight: bold;
-	  color: #404040;	  
-	}
+
+.popupbody {
+    padding: 10px;
+    color: #FFFFFF;
+}
+.popuphead {
+    font-size: 16px; font-weight: bold;
+    color: #ffffff;
+    background-image: url(../images/mod_titlebar.jpg);
+}
+	
+.popup {
+    font-size: 12px; font-weight: bold;
+    color: #ffffff;
+    background-color: #363636;
+}
+
 .editlink,  /* Used for the [edit] tags */
 .editlink a,
 .editlink a:link,
@@ -195,33 +199,38 @@ A:hover	{ color: #C0C0C0; }
 .editlink a:active
 	{
 	  font-size: 10px;
-	  font-weight: normal;
-	  color: #404040;
+	  font-weight: bold;
+	  color: #ffffff;	  
 	}
+
+.editlink a:hover {
+    color: #E91414;
+}
+
 .modnavbox  /* main navigation bar next and previous */ 
 	{ 
 	  font-family:verdana, arial, sans-serif;	
-	  color:#404040;
+	  color:#ffffff;
 	  font-size: 12px; 
 	  font-weight:bold;
 	  background-image: url(../images/mod_navbar.jpg);
 	  line-height:140%;
 	  letter-spacing: .2em;
-	  border:0px dashed #404040;
+	  border:0px dashed #000000;
 	  width: 100%;
-	  height: 18px;
+	  height: 14px;
 	}
 .modnavbox a,
 .modnavbox a:link,
 .modnavbox a:visited,
 .modnavbox a:active {
 	  font-weight: normal;
-	  color:#404040;
+	  color:#ffffff;
 	  text-decoration: none;
 	}
 .modnavbox a:hover {
 	  font-weight: normal;
-	  color: #C0C0C0;
+	  color: #E91414;
 	  text-decoration: underline;
 	}
 .admin  /* used in admin bars - the serch text*/
@@ -230,11 +239,11 @@ A:hover	{ color: #C0C0C0; }
 	  color: #ffffff; 
 	  font-weight: bold;
 	}
-.adminform
-        {
+
+.adminform {
           font-size: 10px;
           font-weight: bold;
-          color: #000000;
+          color: #000000 ;
         }
 .search  /* used in admin bars - the serch text*/
 	{ 
@@ -252,10 +261,10 @@ A:hover	{ color: #C0C0C0; }
 	  color: #ffffff;
 	  font-size: 10px;
 	  font-weight:bold;
-	  background-image: url(../images/mod_descbg.jpg);
+	  background-color: #000000;
 	  line-height:140%;
 	  letter-spacing: .1em;
-	  border:0px dashed #404040;
+	  border:0px dashed #000000;
 	  width: 100%  
 	}
 .modnavboxtop a,
@@ -268,7 +277,7 @@ A:hover	{ color: #C0C0C0; }
 	}
 .modnavboxtop a:hover {
 	  font-weight: normal;
-	  color: #C0C0C0;
+	  color: #E91414;
 	  text-decoration: none;
 	}
 .modnavboxmid  /*navagation bar middle where the link for the albums show*/
@@ -277,9 +286,9 @@ A:hover	{ color: #C0C0C0; }
 	  color: #ffffff;
 	  font-size: 10px;
 	  font-weight:bold;
-	  background-color: #99A5D3;
+	  background-color: #363636;
 	  line-height:140%;
-	  border:0px dashed #404040;
+	  border:0px dashed #000000;
 	  width: 100%  
 	}
 .modnavboxmid a,
@@ -292,7 +301,7 @@ A:hover	{ color: #C0C0C0; }
 	}
 .modnavboxmid a:hover {
 	  font-weight: normal;
-	  color: #606060;
+	  color: #E91414;
 	  text-decoration: underline;
 	}
 .modfooter  /*footer where the Gallery version is located*/
@@ -301,21 +310,21 @@ A:hover	{ color: #C0C0C0; }
 	  color:#ffffff;
 	  font-size: 8px;
 	  font-weight:normal;
-	  background-image: url(../images/mod_descbg.jpg);
+	  background-color: #000000;
 	  line-height:140%;
 	  padding:2px;
-	  border:0px dashed #404040;
+	  border:0px dashed #000000;
 	  width:100%   
 	}
 .modfooter a,
 .modfooter a:link,
 .modfooter a:visited,
 .modfooter a:active {
-	  color:#ffffff;
 	  text-decoration: none;
+	  color:#ffffff;
 	}
 .modfooter a:hover {
-	  color: #C0C0C0;
+	  color: #E91414;
 	  text-decoration: none;
 	}
 
@@ -357,4 +366,11 @@ A:hover	{ color: #C0C0C0; }
         padding:2px;
         margin-top:10px;
         width:80%;
+}
+
+#adminbox {
+}
+
+#adminbox td {
+    background-color: #363636;
 }

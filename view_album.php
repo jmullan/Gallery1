@@ -820,7 +820,7 @@ if ($numPhotos) {
 			if (isset($myAlbum)) {
 				$myDescription = $myAlbum->fields['description'];
 				$buf = "";
-				$buf = $buf."<center><b>". sprintf(_("Album: %s"), '<a href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>'). '</b></center>';
+				$buf = $buf."<center><b>". sprintf(_("Album: %s"), '<a class="modcaption" href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>'). '</b></center>';
 				if ($myDescription != _("No description") &&
 					$myDescription != "No description" && 
 					$myDescription != "") {
