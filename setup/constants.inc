@@ -42,103 +42,109 @@
 	<input type="submit" name="go_defaults" value="<?php echo _("Use Defaults") ?>">
 
 </p>
-
 <?php
-$i = 0;
+	makeSectionTabs($constants);
 
+$i=0;
 foreach ($constants as $key => $val) {
 	if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
 	
-	if( isset($val["type"]) && ($val["type"] === "separator")) {
-		echo "\n<table width=\"100%\">";
+	if (isset($val["type"]) && ($val["type"] === "block_start" )) {
+		echo "\n<table width=\"100%\" class=\"inner\">";
+		echo evenOdd_row(make_fields($key, $val), $i % 2);
+		continue;
+	}
+
+	if (isset($val["type"]) && ($val["type"] === "block_end" )) {
+		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
+		echo "\n<tr><td colspan=\"2\"> &nbsp; </td></tr>";
+		echo "\n</table>";
+		continue;
+	}
+
+	if (isset($val["type"]) && ($val["type"] === 'group_start' )) {
+		echo "\n<div id=\"". $val["name"] ."\" style=\"display: ". $val["default"] ."\">";
 		echo make_separator($key, $val);
 		continue;
+	
+	}
+	
+	if (isset($val["type"]) && ($val["type"] === 'group_end' )) {
+		echo "\n</div>";
+		continue;
+	}
+
+	$onThisPage[$key] = 1;
+	$preserve[$key] = 1;
+
+	/* if the variable is hidden, lock it in as we don't want to use previous values*/
+	if (isset($val["type"]) && ($val["type"] === "hidden")) {
+	       	if (!empty($val["persistent"]) && 
+				isset($gallery->app->$key)) {
+			$val["value"] = $gallery->app->$key;
+		}
+		else if (is_array($val["value"])) {
+			$key=$key."[]";
+			$val["value"]=$val["value"][0];
+		}
+		if (ereg("^(..*)\[.*\]$", $key, $matches)) {
+			unset($preserve[$key]);
+			$preserve[$matches[1]] = 1;
+			unset($onThisPage[$key]);
+			$onThisPage[$matches[1]] = 1;
+		}
+		list($f1, $f2) = make_fields($key, $val);
+		echo $f2;
 	} else {
-		if (isset($val["type"]) && ($val["type"] === "block_start" )) {
-			echo "\n<table width=\"100%\" class=\"inner\">";
-			echo evenOdd_row(make_fields($key, $val), $i % 2);
-			continue;
+		echo "\n<table width=\"100%\" class=\"inner\">";
+		/* Support $app-> for backwards compatibility */
+		if (isset($app->$key)) {
+			$val["value"] = $app->$key;
 		}
-		if (isset($val["type"]) && ($val["type"] === "block_end" )) {
-			echo evenOdd_row(make_fields($key, $val), $i++ % 2);
-			echo "\n<tr><td colspan=\"2\"> &nbsp; </td></tr>";
-			echo "\n</table>";
-			continue;
+	
+		/* $gallery->app-> is the desired container, however */
+		if (isset($gallery->app->$key)) {
+			$val["value"] = $gallery->app->$key;
 		}
-
-
-		$onThisPage[$key] = 1;
-		$preserve[$key] = 1;
-
-		/* if the variable is hidden, lock it in as we don't want to use previous values*/
-		if (isset($val["type"]) && ($val["type"] === "hidden")) {
-		       	if (!empty($val["persistent"]) && 
-					isset($gallery->app->$key)) {
+		else {
+			$defn=$gallery->app->$key;
+			if ($defn) {
 				$val["value"] = $gallery->app->$key;
 			}
-			else if (is_array($val["value"])) {
-				$key=$key."[]";
-				$val["value"]=$val["value"][0];
-			}
+		}
+		if (!isset($go_defaults)) {
 			if (ereg("^(..*)\[.*\]$", $key, $matches)) {
+				if (isset ($$key)) {
+					$val['value'] = $$key;
+				}
+
 				unset($preserve[$key]);
 				$preserve[$matches[1]] = 1;
 				unset($onThisPage[$key]);
 				$onThisPage[$matches[1]] = 1;
 			}
-			list($f1, $f2) = make_fields($key, $val);
-			echo $f2;
-		} else {
-			echo "\n<table width=\"100%\" class=\"inner\">";
-			/* Support $app-> for backwards compatibility */
-			if (isset($app->$key)) {
-				$val["value"] = $app->$key;
-			}
+			else if( isset($$key)) {
+				$val["value"] = $$key;
 	
-			/* $gallery->app-> is the desired container, however */
-			if (isset($gallery->app->$key)) {
-				$val["value"] = $gallery->app->$key;
 			}
-			else {
-				$defn=$gallery->app->$key;
-				if ($defn) {
-					$val["value"] = $gallery->app->$key;
-				}
-			}
-			if (!isset($go_defaults)) {
-				if (ereg("^(..*)\[.*\]$", $key, $matches)) {
-					if (isset ($$key)) {
-						$val['value'] = $$key;
+			if (get_magic_quotes_gpc()) {
+				if (is_array($val["value"])) {
+					if (function_exists('array_map')) { 
+						$val["value"] = array_map("stripslashes", $val["value"]);
 					}
-
-					unset($preserve[$key]);
-					$preserve[$matches[1]] = 1;
-					unset($onThisPage[$key]);
-					$onThisPage[$matches[1]] = 1;
-				}
-				else if( isset($$key)) {
-					$val["value"] = $$key;
-	
-				}
-				if (get_magic_quotes_gpc()) {
-					if (is_array($val["value"])) {
-						if (function_exists('array_map')) { 
-							$val["value"] = array_map("stripslashes", $val["value"]);
-						}
-					} else {
-						$val["value"] = stripslashes($val["value"]);
-					}
+				} else {
+					$val["value"] = stripslashes($val["value"]);
 				}
 			}
-
-			// Protect quote characters to avoid screwing up HTML forms
-			$val["value"] = str_replace('"', "&quot;", $val["value"]);
-	
-			echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 		}
+
+		// Protect quote characters to avoid screwing up HTML forms
+		$val["value"] = str_replace('"', "&quot;", $val["value"]);
+	
+		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 	}
+
 	if (isset($val["type"]) && ($val["type"] === "hidden")) {
-		// aasd
 	} else {
 		echo "\n</table>";
 	}

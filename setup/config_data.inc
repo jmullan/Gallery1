@@ -212,6 +212,12 @@ $features = array(
 
 $constants =  array_merge(
   array(
+	"group0"	=> array (
+		"type"		=> "group_start",
+		"name"		=> "group_mandatory",
+		"default"	=> "inline",
+		"title" => _("Main settings")
+	),
 	"galleryTitle" => array(
 		"prompt" => _("Gallery Title"),
 		"desc" => _("The name of your Gallery.  E.g. <i>My Cool Photos</i>"),
@@ -220,9 +226,19 @@ $constants =  array_merge(
 		"attrs" => array("size" => 50)
 	),
 	"editPassword" => check_admins(),
-
-	"separator1" => array (
-		"type" => "separator",
+	"skinname" => array(
+		"prompt" => _("Skin Name"),
+		"desc" => _("Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4.") . available_skins(true),
+		"choices" => available_skins(),
+		"value" => "none"
+	),
+	"group0_end"	=> array (
+		"type"		=> "group_end",
+	),
+	"group1"	=> array (
+		"type"		=> "group_start",
+		"name"		=> "group_URLS",
+		"default"	=> "none",
 		"title" => _("Locations and URLs")
 	),
 	"albumDir" => array(
@@ -297,11 +313,17 @@ $constants =  array_merge(
 		"value" => NULL,
 		"attrs" => array("cols" => 50, "rows" => 5)
 	),
-	"separator_embeded" => array (
-	       	"type" => "separator",
+	"group1_end"	=> array (
+		"type"		=> "group_end",
+	),
+	"group_embedded" => array (
+		"type"		=> "group_start",
+		"name"		=> "group_embedded",
+		"default"	=> "none",
 	       	"title" => _("Embedded Gallery"),
 	       	"desc" => _("Use this section to set options to configure gallery to be embedded in another web application."),
 	),
+
 	"embedded_inside_type" => array(
 		"prompt" => _("Embed Gallery"),
 		"desc"   => sprintf(_("If you would like to run %s in another web application (such as *Nuke, phpBB2 or GeekLog) you have to choose the environment here."),gallery()),
@@ -323,8 +345,13 @@ $constants =  array_merge(
 		"type" => "text",
 		"value" => "/path/to/geeklog/public_html"
 	),
-	"separator2" => array (
-		"type" => "separator",
+	"group_embedded_end"	=> array (
+			"type"	=> "group_end"
+	),
+	"group2"	=> array (
+		"type"		=> "group_start",
+		"name"		=> "group_toolkits",
+		"default"	=> "none",
 		"title" => _("Toolkits / image processing")
 	),
 	"graphics" => array(
@@ -387,8 +414,13 @@ $constants =  array_merge(
 				   90 => 90, 95 => 95, 100 => 100),
 		"value" => 90
 	),
-	"separator3" => array (
-		"type" => "separator",
+	"group2_end"	=> array (
+		"type"		=> "group_end",
+	),
+	"group3"	=> array (
+		"type"		=> "group_start",
+		"name"		=> "group_mainpage",
+		"default"	=> "none",
 		"title" => _("Main Gallery page"),
 	),
 	"showAlbumTree" => array(
@@ -423,12 +455,7 @@ $constants =  array_merge(
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes"
 	),
-	"skinname" => array(
-		"prompt" => _("Skin Name"),
-		"desc" => _("Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4.") . available_skins(true),
-		"choices" => available_skins(),
-		"value" => "none"
-	),
+
 	"gallery_thumb_frame_style" => array(
 		"prompt" => "Frame around albums",
 		"desc" => _("On the main page, the image representing each album has a frame around it.  The following styles are available:") .
@@ -436,9 +463,13 @@ $constants =  array_merge(
 		"choices" => available_frames(),
 		"value" => "simple_book"
 	),
-	
-	"separator5" => array (
-		"type" => "separator",
+	"group3_end"	=> array (
+		"type"		=> "group_end",
+	),
+	"group5" => array (
+		"type"		=> "group_start",
+		"name"		=> "group_optionals",
+		"default"	=> "none",
 		"title" => _("Optional tools")
 	),
 	"zipinfo" => array(
@@ -500,8 +531,13 @@ $constants =  array_merge(
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes"
 	),*/
-	"separator6" => array (
-		"type" => "separator",
+	"group5_end" => array (
+		"type"		=> "group_end",
+	),
+	"group6" => array (
+		"type"		=> "group_start",
+		"name"		=> "group_languages",
+		"default"	=> "none",
 		"title" => _("Languages and locales"),
 	),
 	"default_language" => array(
@@ -567,11 +603,16 @@ $constants =  array_merge(
 // Continue constants ...
 $constants = array_merge($constants,
   array(
-	"separator_email" => array (
-		"type" => "separator",
+	"group6_end" => array (
+		"type"		=> "group_end",
+	),
+	"group_email" => array (
+		"type"		=> "group_start",
+		"name"		=> "group_email",
+		"default"	=> "none",
 	       	"title" => _("Email and Registration"),
 	       	"desc" => sprintf(_("If you are having problems with email, please run the %s diagnostic."),
-		       	'<a href="check_mail.php">' . _("Check Email") . '</a>')
+		       	'<a href="check_mail.php">' . _("Check Email") . '</a>'),
 	),
 	"emailOn" => array(
 		"prompt" => _("Enable email"),
@@ -659,13 +700,17 @@ $constants = array_merge($constants,
 		"optional" => 1,
 		"value" => array()
 	),
-       	"separator7" => array (
-		       	"type" => "separator",
-		       	"title" => _("Gallery wide slideshow"),
-			"desc" => "<br>" .
-				_("Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources.") . "  " .
-				_("These settings do not apply to the low tech slideshow.")
-			),
+	"group_email_end" => array (
+		"type"          => "group_end",
+        ),
+	"group7" => array (
+		"type"		=> "group_start",
+		"name"		=> "group_slideshow",
+		"default"	=> "none",
+		"title" => _("Gallery wide slideshow"),
+		"desc" => _("Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources.") . "  " .
+			  _("These settings do not apply to the low tech slideshow."),
+	),
 	"gallery_slideshow_type" => array(
 		       	"prompt" => _("Slideshow preferences"),
 		       	"desc" => "<dl>"
@@ -697,10 +742,15 @@ $constants = array_merge($constants,
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 	       	"value" => "yes"
 		),
-       	"separator_comments" => array (
-		       	"type" => "separator",
-		       	"title" => _("Comments")
-			),
+	"group7_end" => array (
+		"type"          => "group_end",
+        ),
+	"group_comments" => array (
+		"type"          => "group_start",
+		"name"          => "group_comments",
+		"default"       => "none",
+		"title" => _("Comments"),
+	),
 	"comments_enabled" => array(
 			"prompt"	=> _("Enable commenting"),
 			"desc"		=> _("This option will enable or disbale the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."),
@@ -750,12 +800,16 @@ $constants = array_merge($constants,
 			"choices" => displayNameOptions(), 
 			"value" => "!!FULLNAME!! (!!USERNAME!!)",
 			),
-	"separator8" => array (
-		"type" => "separator",
+	"group_comments_end" => array (
+		"type"          => "group_end",
+        ),
+	"group_technical" => array (
+		"type"          => "group_start",
+		"name"          => "group_technical",
+		"default"       => "none",
 		"title" => _("Technical"),
-		"desc" => _("You usually don't need to change anything in this section.")
+		"desc" => _("You usually don't need to change anything in this section."),
 	),
-
         "timeLimit" => array(
 		"prompt" => _("Time Limit"),
 		"desc" => _("The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."),
@@ -790,6 +844,9 @@ $constants = array_merge($constants,
 		"type" => "text",
 		"attrs" => array("size" => 20),
 	),
+	"group_technical_end"	=> array (
+		"type"          => "group_end",
+        ),
 	/* Keep these two at the end of the list because they're hidden */
 	"userDir" => array(
 		"desc" => "Filesystem location of user information",
@@ -832,8 +889,10 @@ $constants = array_merge($constants,
 );
 
 $defaults = array(
-	"separator1" => array (
-               	"type" => "separator",
+	"group1" => array (
+		"type" => 'group_start',
+		"name" => 'group_appearance',
+		"default" => 'none',
 		"title" => _("Appearance")
         ),
 	"bordercolor" => array(
@@ -861,10 +920,15 @@ $defaults = array(
 		"attrs" => array("size" => 10),
 		"type" => "text"
 	),
-	"separator2" => array (
-               	"type" => "separator",
+	"group1_end" => array (
+		"type" => 'group_end',
+	),
+	"group2" => array (
+		"type" => 'group_start',
+		"name" => 'group_layout',
+		"default" => 'inline',
 		"title" => _("Layout")
-        ),
+	),
 	"cols" => array(
 		"prompt" => _("Default Columns"),
 		"desc" => _("The default number of columns in an album."),
@@ -877,10 +941,15 @@ $defaults = array(
 		"value" => 3,
 		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9),
 	),
-	"separator3" => array (
-               	"type" => "separator",
+	"group2_end" => array (
+               	"type" => 'group_end',
+	),
+	"group3" => array (
+		"type" => 'group_start',
+		"name" => 'group_display',
+		"default" => 'none',
 		"title" => _("Image Processing and Display")
-        ),
+	),
 	"thumb_size" => array(
 		"prompt" => _("Thumbnail size"),
 		"desc" => _("The default target size (in pixels) of album thumbnails."),
@@ -939,10 +1008,15 @@ $defaults = array(
 		"value" => "no",
 		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),
-	"separator4" => array (
-               	"type" => "separator",
+	"group3_end" => array (
+		"type" => 'group_end',
+	),
+	"group4" => array (
+		"type" => 'group_start',
+		"name" => 'group_options',
+		"default" => 'none',
 		"title" => _("Options")
-        ),
+	),
 	"print_photos" => array(
 		"prompt" => _("Printing Services"),
  		"desc" => _("Allow visitors to print photos directly from the album.  Fotokasten is a print service based in Germany so is good for the European market. EZ Prints, PhotoAccess and Shutterfly are based in the United States. All services will give a small donation to the Gallery project for every print you make. If you choose Shutterfly's &quot;with donation&quot; option, Gallery will charge an extra 2 cents (US) for every photo printed, and 1.8 cents of that will get donated back to the Gallery project. EZ Prints, PhotoAccess and Fotokasten do not charge extra for the Gallery donation. Using these services is a great way for you to help support this free software."),
@@ -985,10 +1059,15 @@ $defaults = array(
 		"value" => "yes",
 		"choices" => array("yes" => _("yes"), "no" => _("no"))
 	),
-	"separator5" => array (
-               	"type" => "separator",
+	"group4_end" => array (
+		"type" => 'group_end',
+	),
+	"group5" => array (
+		"type" => 'group_start',
+		"name" => 'group_displayed_data',
+		"default" => 'none',
 		"title" => _("Data displayed")
-        ),
+	),
 	"display_clicks" => array(
 		"prompt" => _("Click counts"),
 		"desc" => _("Display click counts within Albums?"),
@@ -1009,10 +1088,15 @@ $defaults = array(
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no"
 	),
-	"separator6" => array (
-               	"type" => "separator",
+	"group5_end" => array (
+		"type" => 'group_end',
+	),
+	"group6" => array (
+		"type" => 'group_start',
+		"name" => 'group_itemOwner',
+		"default" => 'none',
 		"title" => _("Item Owner")
-        ),
+	),
 	"item_owner_modify" => array(
 		"prompt" => _("Photo owner modification"),
 		"desc" => _("Allow photo owners to edit and rotate/flip their own photos?"),
@@ -1031,8 +1115,13 @@ $defaults = array(
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 	),
-	"separator7" => array (
-		"type" => "separator",
+	"group6_end" => array (
+		"type" => 'group_end'
+	),
+	"group7" => array (
+		"type" => 'group_start',
+		"name" => 'group_polling',
+		"default" => 'none',
 		"title" => _("Polling configuration"),
 		"desc"  => 
 			sprintf(_("It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."),
@@ -1122,11 +1211,16 @@ $defaults = array(
 			"type" => "nv_pairs",
 			"verify-func" => "check_poll_nv_pairs",
 			"size" => 9),
-       	"separator8" => array (
-		       	"type" => "separator",
-		       	"title" => _("Album Slideshow"),
-			"desc" => _("These settings do not apply to the low tech slideshow.")
-			),
+	"group7_end" => array (
+		"type" => 'group_end',
+	),
+	"group8" => array (
+		"type" => 'group_start',
+		"name" => 'group_albumSlidshow',
+		"default" => 'none',
+		"title" => _("Album Slideshow"),
+		"desc" => _("These settings do not apply to the low tech slideshow.")
+	),
 	"slideshow_type" => array(
 		       	"prompt" => _("Slideshow Type"),
 		       	"desc" => "<dl>"
@@ -1164,12 +1258,17 @@ $defaults = array(
 		"optional" => 1,
 		"attrs" => array("size" => 5)
 	),
-       	"separator_frames" => array (
-		       	"type" => "separator",
-		       	"title" => _("Frames"),
-		       	"desc" => sprintf(_("Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"),Gallery()) .
+	"group8_end" => array (
+		"type" => 'group_end',
+	),
+	"group_frames" => array (
+		"type" => 'group_start',
+		"name" => 'group_frames',
+		"default" => 'none',
+		"title" => _("Frames"),
+		"desc" => sprintf(_("Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"),Gallery()) .
 		available_frames(true),
-			),
+	),
 	"album_frame" => array(
 		"prompt" => _("Subalbum frames"),
 		"desc" => _("This frame will appear around the thumbnail image representing a subalbum."),
@@ -1189,8 +1288,9 @@ $defaults = array(
 		"choices" => available_frames(),
 		"value" => "solid"
 	),
-	
-	
+	"group_frames_end" => array (
+		"type" => 'group_end',
+	)
 );
 
 ?>

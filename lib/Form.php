@@ -24,10 +24,8 @@
 
 function insertFormJS($formName) {
 
-/* Note: the w3c-suggested "text/javascript" doesn't work with Navigator 4 */
-
 ?>
-<script language="javascript">
+<script type="text/javascript" language="javascript">
 // <!-- 
 function setCheck(val,elementName) {
 	ufne=document.<?php echo $formName; ?>;

@@ -111,8 +111,10 @@ foreach ($constants as $key => $val) {
 
 	if (isset($val["type"]) && 
 			($val["type"] == "block_start" || 
-			 $val["type"] == "block_end" || 
-			 $val["type"] == "separator")) { 
+			 $val["type"] == "block_end" ||
+			 $val["type"] == "separator" ||
+			 $val["type"] == "group_start" ||
+			 $val["type"] == "group_end")) { 
 		continue;
 	}
 
@@ -381,8 +383,10 @@ $view .= row_wrap("/* Defaults */\n");
 foreach ($defaults as $key => $val) {
 	if (isset($val["type"]) && 
 			($val["type"] == "block_start" || 
-			 $val["type"] == "block_end" || 
-			 $val["type"] == "separator")) { 
+			 $val["type"] == "block_end" ||
+			 $val["type"] == "separator" ||
+			 $val["type"] == "group_start" ||
+			 $val["type"] == "group_end")) { 
 		continue;
 	}
 	if (isset($val["type"]) && $val["type"] == "separator") continue;

@@ -75,9 +75,8 @@ if (isset($save)) {
 
 <?php
 if (!empty($err)) {
-	echo gallery_error($err)
+	echo "\n<p>". gallery_error($err) . "</p>";
 }
-
    echo makeFormIntro("watermark_album.php",
                       array("name" => "theform",
                             "method" => "POST"));

@@ -45,14 +45,22 @@
 </p>
 
 <?php
+
+	makeSectionTabs($defaults);
+
 $i = 0;
 foreach ($defaults as $key => $val) {
 
-	if( isset($val["type"]) && ($val["type"] === "separator")) {
-		echo '<table width="100%">';
-		echo make_separator($key, $val);
-		echo "\n</table>";
-		continue;
+	if (isset($val["type"]) && ($val["type"] === 'group_start' )) {
+                echo "\n<div id=\"". $val["name"] ."\" style=\"display: ". $val["default"] ."\">";
+                echo make_separator($key, $val);
+                continue;
+
+        }
+
+        if (isset($val["type"]) && ($val["type"] === 'group_end' )) {
+                echo "\n</div>";
+                continue;
         }
 
 	echo "\n<table width=\"100%\" class=\"inner\">";

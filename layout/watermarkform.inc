@@ -74,7 +74,7 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 	closedir($wmDir);
 
 	if ($found == 0) {
-		$err=printf(_("Error: No files matching %s found in %s"),
+		$err=printf(_("No files matching %s found in %s"),
 			"<b>" . $extensions_string . "</b>",
 			"<b>" . $gallery->app->watermarkDir . "</b>");
 		echo gallery_error($err);

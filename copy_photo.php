@@ -197,11 +197,11 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 } // end else
 
 if (!$uptodate) {
-	echo gallery_error(sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery())) ;
-	echo '<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>.<p>';
+	echo '<span class="error"><br>'. sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>';
+	echo '<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>';
 }
 ?>
-<br>
+<p>
 <input type="submit" value="<?php echo _("Copy to Album!") ?>">
 <input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
