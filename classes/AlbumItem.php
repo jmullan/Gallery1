@@ -38,6 +38,7 @@ class AlbumItem {
 	var $exifData;
 	var $owner;		// UID of item owner.
 	var $extraFields;
+	var $rank;
 	var $version;
 
 	function AlbumItem() {
@@ -162,6 +163,9 @@ class AlbumItem {
 				$changed = 1;
 			}
 		}
+		if ($this->version < 16) {
+			$this->setRank(0);
+		}
 		if ($this->image) {
 			if ($this->image->integrityCheck($dir)) {
 				$changed = 1;
@@ -245,6 +249,12 @@ class AlbumItem {
 		}
 		$this->clicks++;
 	}
+       function setRank($rank) {
+               $this->rank = $rank;
+       }
+       function getRank() {
+               return $this->rank;
+       }
 
 	function hide() {
 		$this->hidden = 1;

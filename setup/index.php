@@ -95,9 +95,17 @@ function embed_hidden($key) {
 	}
 	if (is_array($real)) {
 		foreach ($real as $real_key => $value) {
-			$buf .= "<input type=hidden name=${key}[$real_key] value=\"";
-			$buf .= urlencode($value);
-			$buf .= "\">\n";
+			if (is_array($value)) {
+				foreach($value as $sub_key => $sub_value) {
+					$buf .= "<input type=hidden name=${key}[$real_key][$sub_key]=\"";
+					$buf .= urlencode($sub_value);
+					$buf .= "\">\n";
+				}
+			} else {
+				$buf .= "<input type=hidden name=${key}[$real_key] value=\"";
+				$buf .= urlencode($value);
+				$buf .= "\">\n";
+			}
 		}
 	} else {
 		$buf .= "<input type=hidden name=$key value=\"";

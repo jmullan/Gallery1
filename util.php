@@ -595,24 +595,31 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 }
 
 function valid_image($file) {
-    if (($type = getimagesize($file)) == FALSE)
-        return 0;
+	if (($type = getimagesize($file)) == FALSE) {
+		if (isDebugging()) {
+			echo "<br>". sprintf(_("Call to %s failed in %s for file %s!"), 'getimagesize()', 'valid_image()', $file) ."<br>";
+		}
+		return 0;
+	}
 
-    switch($type[2])
-    {
-    case 1: // GIF
-    case 2: // JPEG
-    case 3: // PNG
-        return 1;
-        break;
-    default:
-        return 0;
-        break;
-    }
+	if (isDebugging()) {
+		echo "<br>". sprintf(_("File %s type %d."), $file, $type[2]) ."<br>";
+	}
+	switch($type[2])
+	{
+		case 1: // GIF
+		case 2: // JPEG
+		case 3: // PNG
+			return 1;
+			break;
+		default:
+			return 0;
+			break;
+	}
 
 	if (isDebugging())
 		echo "<br>". sprintf(_("There was an unknown failure in the %s call!"), 'valid_image()') ."<br>";
-    return 0;
+	return 0;
 }
 
 function toPnmCmd($file) {
@@ -1544,6 +1551,388 @@ function mostRecentComment($album, $i)
         $index = $album->getPhotoIndex($id); 
         $recentcomment = $album->getComment($index, $album->numComments($i));
         return $recentcomment->getDatePosted();
+}
+
+
+/*
+ * expects as input an array where the keys
+ * are string labels and the values are
+ * numbers.  Values must be non-negative
+ * returns an HTML bar graph as a string
+ * assumes bar.gif, located in images/
+ * modified from example in PHP Bible
+ */
+function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5", 
+	$col_1_head=null, $col_2_head=null) 
+{
+	foreach ($array as $value) 
+	{
+		if ((IsSet($max_value) && ($value > $max_value)) ||
+				(!IsSet($max_value))) 
+		{
+			$max_value = $value;
+		}
+	}
+	if (!isSet($max_value))
+	{
+		// no results!
+		return null;
+	}
+	$string_to_return = "<TABLE $table_values>";
+	if ($col_1_head || $col_2_head)
+	{
+		$string_to_return.="<tr><td></td><td><span class=\"admin\">$col_1_head</span></td><td><span class=\"admin\">$col_2_head</span></td></tr>";
+	}
+	if ($max_value > 0)
+	{
+		$pixels_per_value = ((double) $max_width)
+			/ $max_value;
+	}
+	else 
+	{
+		$pixels_per_value = 0;
+	}
+	$counter = 0;
+	foreach ($array as $name => $value) {
+		$bar_width = $value * $pixels_per_value;
+		$string_to_return .= 
+		 "<tr>
+			<td>".(++$counter)."</td>
+			<td>$name ($value)</td>
+			<td><IMG SRC=\"images/bar.gif\" 
+			     BORDER=1
+			     WIDTH=$bar_width 
+			     HEIGHT=10>
+			</td></tr>";
+	}
+	$string_to_return .= "</TABLE>";
+	return($string_to_return);
+}
+
+/*not used*/
+function ordinal($num=1)
+{
+	$ords = array("th","st","nd","rd");
+	$val = $num;
+	if ((($num%=100)>9 && $num<20) || ($num%=10)>3) $num=0;
+	return "$val" . $ords[$num];
+}
+
+function saveResults($votes)
+{
+	global $gallery;
+	if (!$votes)
+	{
+		return;
+	}
+	if (!$gallery->album->fields["votes"])
+		$gallery->album->fields["votes"]=array();
+	if ($gallery->album->getPollType() == "critique")
+	{
+		foreach ($votes as $vote_key => $vote_value)
+		{
+			if ($vote_value == null || $vote_value == "NULL")
+			{
+				unset($gallery->album->fields["votes"]
+					[$vote_key]
+					[getVotingID()]);
+			}
+			else
+			{
+				$gallery->album->fields["votes"]
+					[$vote_key]
+					[getVotingID()]=$vote_value;
+			}
+		}
+	}
+	else
+	{
+		krsort($votes, SORT_NUMERIC);
+		foreach ($votes as $vote_value => $vote_key)
+		{
+			if ($gallery->album->fields["votes"]
+				[$vote_key]
+				[getVotingID()]==$vote_value)
+			{
+				//vote hasn't changed, so skip to next one
+				continue;
+			}
+			foreach ($gallery->album->fields["votes"] as $previous_key => $previous_vote)
+			{
+				if ($previous_vote[getVotingID()] == $vote_value)
+				{
+					unset($gallery->album->fields["votes"]
+						[$previous_key]
+						[getVotingID()]);
+				}
+			}
+			$gallery->album->fields["votes"][$vote_key][getVotingID()]
+				=$vote_value;
+		}
+		
+	}
+	$gallery->album->save();
+}
+
+function getVotingID()
+{
+	global $gallery;
+	if ($gallery->album->getVoterClass() ==  "Logged in")
+	{
+		return $gallery->user->getUid();
+	}
+	else if ($gallery->album->getVoterClass() ==  "Everybody")
+	{
+		return session_id();
+	}
+	else 
+	{
+		return NULL;
+	}
+
+}
+function canVote()
+{
+	global $gallery;
+	if ($gallery->album->getVoterClass() == "Everybody")
+	{
+		return true;
+	}
+	if ($gallery->album->getVoterClass() == "Logged in" 
+		&& $gallery->user->isLoggedIn())
+	{
+		return true;
+	}
+	return false;
+}
+function addPolling ($id, $form_pos=-1, $immediate=true)
+{
+	global $gallery;
+	if ( !canVote())
+	{
+		return;
+	}
+	$current_vote=$gallery->album->fields["votes"][$id][getVotingID()];
+	if ($current_vote == NULL) { 
+		$current_vote = -1;
+	}
+	$nv_pairs=$gallery->album->getVoteNVPairs();
+	print $gallery->album->getPollHint();
+	if ($gallery->album->getPollScale() == 1 && $gallery->album->getPollType() == "critique")
+	{
+		print "\n<input type=checkbox name=\"votes[$id]\" value=\"1\"";
+		if ($current_vote > 0)
+		{
+			print "checked";
+		}
+		print ">".$nv_pairs[0]["name"];
+	}
+	else if ($gallery->album->getPollType() == "rank")
+	{
+	    if ($gallery->album->getPollHorizontal())
+	    {
+		print "<table><tr>";
+		for ($i = 1; $i <= $gallery->album->getPollScale() ; $i++)
+		{
+			print "\n<td align=center><input type=radio name=\"votes[$i]\" value=$id onclick=\"chooseOnlyOne($i, $form_pos,".
+			$gallery->album->getPollScale().")\" ";
+			if ($current_vote == $i)
+			{
+				print "checked";
+			}
+			print "></td>";
+		}
+		print "</tr><tr>";
+		for ($i = 0; $i < $gallery->album->getPollScale() ; $i++)
+		{
+			print "<td align=center>".$nv_pairs[$i]["name"]."</td>";
+		}
+		print "</tr></table>";
+	    }
+	    else
+	    {
+		print "<table>";
+		for ($i = 0; $i < $gallery->album->getPollScale() ; $i++)
+		{
+			print "<tr>";
+			print "\n<td align=center><input type=radio name=\"votes[$i]\" value=$id onclick=\"chooseOnlyOne($i, $form_pos,".
+			$gallery->album->getPollScale().")\" ";
+			if ($current_vote == $i)
+			{
+				print "checked";
+			}
+			print "></td>";
+			print "<td >".$nv_pairs[$i]["name"]."</td>";
+			print "</tr><tr>";
+		}
+		print "</table>";
+	    }
+	}
+	else // "critique"
+	{
+		if ($immediate)
+		{
+			print "\n<br><select name=\"votes[$id]\" ";
+			print "onChange='this.form.submit();'>";
+		}
+		else
+		{
+			print "\n<br><select name=\"votes[$id]\">";
+		}
+		if ($current_vote == -1)
+		{
+			print "<option value=NULL><< VOTE >></option>\n";
+		}
+		for ($i = 0; $i < $gallery->album->getPollScale() ; $i++)
+		{
+			$sel="";
+			if ($current_vote == $i) {
+				$sel="selected";
+			}
+			print "<option value=$i $sel>".$nv_pairs[$i]["name"]."</option>\n";
+		}
+		print "</select>";
+	}
+}
+
+function showResultsGraph($num_rows)
+{
+	global $gallery;
+	$results=array();
+	$nv_pairs=$gallery->album->getVoteNVPairs();
+	if (!$gallery->album->fields["votes"])
+		$gallery->album->fields["votes"]=array();
+
+	$voters=array();
+	foreach ($gallery->album->fields["votes"] as $id => $image_votes)
+	{
+       	    if ($gallery->album->getPhotoIndex($id) < 0)
+       	    {
+                // image has been deleted!
+                unset($gallery->album->fields["votes"][$id]);
+                continue;
+       	    }
+	    $accum_votes=0;
+	    $count=0;
+	    foreach ($image_votes as $voter => $vote_value )
+	    {
+		$voters[$voter]=true;
+		if ($vote_value> $gallery->album->getPollScale()) // scale has changed
+		{
+			$vote_value=$gallery->album->getPollScale();
+		}
+		$accum_votes+=$nv_pairs[$vote_value]["value"];
+		$count++;
+	    }
+	    if ($accum_votes > 0) 
+	    {
+		if ($gallery->album->getPollType() == "rank" || $gallery->album->getPollScale() == 1)
+		{
+	    		$results[$id]=$accum_votes;
+		}
+	    	else
+		{
+			$results[$id]=number_format(((double)$accum_votes)/$count, 2);
+		}
+	    }
+	}
+	arsort($results);
+	$rank=0;
+	$graph=array();
+	$needs_saving=false;
+	foreach ($results as $id => $count)
+	{
+		$rank++;
+		if ($rank != $gallery->album->getRankById($id))
+		{
+			$needs_saving = true;
+			$gallery->album->setRankById($id, $rank);
+		}
+		if ($rank > $num_rows)
+		{
+			continue;
+		}
+		$index=$gallery->album->getPhotoIndex($id);
+	    	$name_string="<a href=";
+		$name_string.= makeAlbumUrl($gallery->session->albumName, $id);
+		$name_string.= ">";
+		$name_string.= $gallery->album->getCaption($index);
+		$name_string.= "</a>";
+		$graph[$name_string]=$count;
+	}
+	if ($needs_saving)
+	{
+		$gallery->album->save();
+	}
+	$graph=arrayToBarGraph($graph, 300, "border=0");
+	if ($graph)
+        {
+                print "<span class=\"title\">".
+			sprintf(_("Results from %s."),
+					pluralize_n(sizeof($voters), 
+						_("voter"), _("voters"), 
+						_("0 voters"))).
+                        "</span>";
+                if ($gallery->album->getPollType() == "critique")
+                {
+                        $key_string="";
+                        foreach ($nv_pairs as $nv_pair)
+                        {
+                                if ($nv_pair["value"] != $nv_pair["name"])
+                                {       
+                                        $key_string .= sprintf(_("%s: %s; "), 
+						$nv_pair["value"],
+                                                $nv_pair["name"]);
+                                }
+                        }
+                        if (strlen($key_string) > 0)
+                        {       
+                                print "<br>". sprintf(_("Key - %s"), 
+						$key_string)."<br>";
+                        }
+                }
+                print $graph;
+        }
+	
+	else if ($num_rows > 0)
+	{
+		print "<span class=\"title\">"._("No votes so far.")."<br></span>";
+	}
+	return $results;
+}
+function showResults($id)
+{
+	global $gallery;
+	$vote_tally=array();
+	$nv_pairs=$gallery->album->getVoteNVPairs();
+	if (isSet ($gallery->album->fields["votes"][$id]))
+	{
+	    foreach ($gallery->album->fields["votes"][$id] as $vote)
+	    {
+		if (!isSet($vote_tally[$vote]))
+		{
+			$vote_tally[$vote]=1;
+		}
+		else
+		{
+			$vote_tally[$vote]++;
+		}
+	    }
+	}
+	print "<span class=\"admin\">"._("Poll results:")."</span> ";
+	if (sizeof($vote_tally) == 0)
+	{
+		print _("No votes")."<br>";
+		return;
+	}
+	print sprintf(_("Number %d overall."), 
+			$gallery->album->getRankById($id)) ."<br>";
+	ksort($vote_tally);
+	foreach ($vote_tally as $key => $value)
+	{
+		printf(_("%s: %s"), $nv_pairs[$key]["name"],
+			pluralize_n($value, _("vote"), _("votes"), _("0 votes"))). "<br>";
+	}
 }
 
 function processNewImage($file, $tag, $name, $caption, $setCaption="", $extra_fields=array()) {

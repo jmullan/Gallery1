@@ -64,6 +64,21 @@ if (!isset($page)) {
 	$gallery->session->albumPage[$gallery->album->fields["name"]] = $page;
 }
 
+if (!canVote())
+{
+	$showPolling=false;
+}
+else if (!isset($showPolling))
+{
+	$showPolling = $gallery->session->albumPolling[$gallery->album->fields["name"]];
+	if (!isset($showPolling))
+	{
+		$showPolling = true;
+	}
+}
+
+$gallery->session->albumPolling[$gallery->album->fields["name"]] = $showPolling;
+
 $albumName = $gallery->session->albumName;
 
 if (!isset($gallery->session->viewedAlbum[$albumName]) && !$gallery->session->offline) {
@@ -95,6 +110,26 @@ if ($previousPage == 0) {
 	$previousPage = $maxPages;
 	$first = 1;
 }
+
+
+if ($Vote)
+{
+       if ($gallery->album->getPollScale() == 1 && $gallery->album->getPollType() != "rank")
+       {
+               for ($index=$start; $index < $start+$perPage; $index ++)
+               {
+                       $id=$gallery->album->getPhotoId($index);
+                       if (!$votes[$id])
+                       {
+                               $votes[$id]=null;
+                       }
+
+               }
+       }
+       saveResults($votes);
+}
+
+
 
 $bordercolor = $gallery->album->fields["bordercolor"];
 
@@ -279,19 +314,21 @@ if ($gallery->user->canWriteToAlbum($gallery->album) &&
 	}
 } 
 $adminText .="</span>";
-$adminCommands = "<span class =\"admin\">";
+$adminCommands = "";
+$userCommands = "";
 
 if ($gallery->user->canAddToAlbum($gallery->album)) {
-	$adminCommands .= popup_link("[". _("add photos") ."]", 
+	$userCommands .= popup_link("[". _("add photos") ."]", 
 		"add_photos.php?set_albumName=" .
 		$gallery->session->albumName);
 	$extraFields = $gallery->album->getExtraFields();
 	if (!empty($extraFields)) {
-	    $adminCommands .= popup_link("[". _("add photo") ."]",
+	    $userCommands .= popup_link("[". _("add photo") ."]",
 		    "add_photo.php?set_albumName=" .
 		    $gallery->session->albumName);
 	}
 }
+
 if ($gallery->user->isOwnerOfAlbum($gallery->album)) {
 	$adminCommands .= popup_link("[" . _("rename album") ."]",
 		"rename_album.php?set_albumName=" .
@@ -340,29 +377,52 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
         $adminCommands .= popup_link("[" . _("permissions") . "]", 
 			"album_permissions.php?set_albumName=" .
 			$gallery->session->albumName);
+	
+        $adminCommands .= popup_link("[" . _("poll properties") . "]", 
+			"poll_properties.php?set_albumName=" .
+                       $gallery->session->albumName);
+	$adminCommands .= '<a href=' . makeGalleryUrl("poll_results.php",
+		array("set_albumName" => $gallery->session->albumName)) .
+		'>['. _("poll results") . ']</a>&nbsp;';
+
+        $adminCommands .= popup_link("[" . _("reset poll") . "]",
+			"reset_votes.php?set_albumName=" .
+                       $gallery->session->albumName);
 }
 if (($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) &&
 	!strcmp($gallery->album->fields["public_comments"],"yes")) { 
     $adminCommands .= '<a href="' . makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)) . '">[' . _("view&nbsp;all&nbsp;comments") . ']</a>&nbsp;';
 }
-$adminCommands .= '<a href="' . 
+$userCommands .= '<a href="' . 
 	 makeGalleryUrl("slideshow.php",
 		array("set_albumName" => $albumName)) .
 	'">['. _("slideshow") .']</a> ';
 
+if ($showPolling)
+{
+      $userCommands .= '<a href="'.  makeGalleryUrl("view_album.php",
+              array("set_albumName" => $gallery->session->albumName,
+              "showPolling" => false)).  '">[' . _("hide polling") . ']</a>';
+}
+else if (canVote())
+{
+      $userCommands .= '<a href="'.  makeGalleryUrl("view_album.php",
+              array("set_albumName" => $gallery->session->albumName,
+              "showPolling" => true)).  '">[' . _("show polling") . ']</a>';
+}
+
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 	if ($gallery->user->isLoggedIn()) {
-	        $adminCommands .= "<a href=\"" .
+	        $userCommands .= "<a href=\"" .
 					doCommand("logout", array(), "view_album.php", array("page" => $page)) .
 				  "\">[" . _("logout") . "]</a>";
 	} else {
-	//	$adminCommands .= popup_link("[". _("login") ."]", "login.php", 0, true, 250, 500);
-		$adminCommands .= popup_link("[". _("login") ."]", "login.php", 0);
+		$userCommands .= popup_link("[". _("login") ."]", "login.php", 0);
 	} 
 }
-$adminCommands .= "</span>";
 $adminbox["text"] = $adminText;
-$adminbox["commands"] = $adminCommands;
+$adminbox["commands"] =	"<span class =\"admin\">" .  $userCommands . 
+			$adminCommands .  "</span>";
 $adminbox["bordercolor"] = $bordercolor;
 $adminbox["top"] = true;
 include ($GALLERY_BASEDIR . "layout/adminbox.inc");
@@ -384,6 +444,139 @@ if (!strcmp($borderwidth, "off")) {
 	$bordercolor = $gallery->album->fields["bgcolor"];
 	$borderwidth = 1;
 }
+if ((($gallery->user->canDeleteFromAlbum($gallery->album)) ||
+   ($gallery->user->canWriteToAlbum($gallery->album)) || 
+   ($gallery->user->canChangeTextOfAlbum($gallery->album))) &&
+   $showPolling )
+   {
+        echo '<span class="error">' . 
+		_("Note: To edit images, hide polling.  After you have made your changes you can show polling again.") . '</span><p>';
+
+   }
+if (($gallery->album->getPollType() == "rank") && $showPolling)
+{
+        $my_choices=array();
+        if ( $gallery->album->fields["votes"])
+	{
+            foreach ($gallery->album->fields["votes"] as $id => $image_votes)
+            {
+		if ($gallery->album->getPhotoIndex($id) < 0)
+		{
+			// image has been deleted!
+			unset($gallery->album->fields["votes"][$id]);
+			continue;
+		}
+
+                if (isset($image_votes[getVotingID()]))
+                {
+                        $my_choices[$image_votes[getVotingID()]] = $id;
+                }
+            }
+	}
+        if (sizeof($my_choices) == 0
+		&& $gallery->album->getVoterClass() ==  "Logged in")
+        {
+		print _("You have no votes recorded for this poll."). '<br>';
+
+        }
+        else if (sizeof($my_choices) > 0)
+        {
+                ksort($my_choices);
+                print _("Your current choices are");
+                print "<table>\n";
+                $nv_pairs=$gallery->album->getVoteNVPairs();
+                foreach ($my_choices as $key => $id)
+                {
+                        print "<tr><td>".
+                                $nv_pairs[$key]["name"].
+                                ":</td>\n";
+                        $index=$gallery->album->getPhotoIndex($id);
+                        print "<td><a href=\n";
+                        print makeAlbumUrl($gallery->session->albumName, $id);
+                        print  ">\n";
+                        print  $gallery->album->getCaption($index);
+                        print  "</a></td></tr>\n";
+                }
+                print "</table>\n";
+        }
+
+}
+$results=1;
+if ($gallery->album->getPollShowResults())
+{
+        $results=showResultsGraph( $gallery->album->getPollNumResults());
+}
+if ($gallery->album->getPollShowResults() && $results)
+{
+	print '<a href=' . makeGalleryUrl("poll_results.php",
+		array("set_albumName" => $gallery->session->albumName)).
+		'>See full poll results</a><br>';
+}
+
+if ($showPolling)
+{ 
+ 		$nv_pairs=$gallery->album->getVoteNVPairs();
+ 		if ($gallery->album->getPollScale()==1)
+ 		{
+ 			$options = $nv_pairs[0]["name"];
+ 		}
+ 		else
+ 		{
+			/* note to translators:
+			   This produces (in English) a list of the form: "a, b, c or d".  Correct translation
+			   of ", " and " or  " should produce a version that makes sense in your language.
+			   */
+			$options = "";
+ 			for ($count=0; $count < $gallery->album->getPollScale()-2 ; $count++)
+ 			{
+ 				$options .= $nv_pairs[$count]["name"]._(", ");
+ 			}
+ 			$options .= $nv_pairs[$count++]["name"]._(" or ");  
+ 			$options .= $nv_pairs[$count]["name"];
+ 			
+ 		}
+		print '<span class="attention">';
+		print sprintf(_("To vote for an image, click on %s."), $options);
+ 		print "  ".sprintf(_("You MUST click on %s for your vote to be recorded."), 
+				"<b>"._("Vote")."</b>");
+ 		if ($gallery->album->getPollType() == "rank")
+ 		{
+ 		    print "  ".sprintf(_("You have a total of %s and can change them if you wish."),
+				    pluralize($gallery->album->getPollScale(), vote, "no")) .
+				    '</span><p>';
+ 		}
+ 		else
+ 		{
+ 		    print "  "._("You can change your choices if you wish."). "</span><p>";
+ 			
+ 		}
+                if ($showPolling) {
+                        echo makeFormIntro("view_album.php",
+                                array("name" => "vote_form", "method" => "POST"));
+                }
+
+ ?>
+   <script language="javascript1.2">
+ function chooseOnlyOne(i, form_pos, scale)
+ {
+   for(var j=1;j<=scale;j++)
+     {
+         if(j != i)
+ 	    {
+ 		eval("document.vote_form['votes["+j+"]']["+form_pos+"].checked=false");
+ 	    }
+     }
+ }
+   </script>
+ 		<table width=100%><tr><td align=center>
+                <?php if ($showPolling) { ?>
+ 		<input type=submit name="Vote" value="<?php print _("Vote") ?>">
+                <?php } ?>
+ 		</td></tr></table>
+ <?php
+ 	}
+ 
+
 ?>
 <?php
 if ($page == 1)
@@ -399,12 +592,12 @@ if ($page == 1)
 $numPhotos = $gallery->album->numPhotos(1);
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
 if ($numPhotos) {
-
 	$rowCount = 0;
 
 	// Find the correct starting point, accounting for hidden photos
 	$rowStart = 0;
 	$cnt = 0;
+	$form_pos=0; // counts number of images that have votes below, ie withou albums;
 	while ($cnt < $start) {
 		$rowStart = getNextPhoto($rowStart);
 		$cnt++;
@@ -490,6 +683,7 @@ if ($numPhotos) {
 
 
                         if (!$gallery->session->offline &&
+			    !$showPolling &&
 				(($gallery->user->canDeleteFromAlbum($gallery->album)) ||
                                     ($gallery->user->canWriteToAlbum($gallery->album)) ||
                                     ($gallery->user->canChangeTextOfAlbum($gallery->album)) ||
@@ -541,6 +735,12 @@ if ($numPhotos) {
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
 					echo _("Viewed:") ." ".pluralize_n($gallery->album->getItemClicks($i), _("time"), _("times") ,_("0 times")).".<br>";
 				}
+				if ($showPolling)
+				{
+               				addPolling($id, $form_pos, false);
+					$form_pos++;
+				}
+
 			}
 			echo "</span></td></tr></table>";
 
@@ -576,7 +776,7 @@ if ($numPhotos) {
 			    !$gallery->user->canDeleteFromAlbum($gallery->album)) {
 				showChoice("Delete $label", "delete_photo.php", array("id" => $id));
 			}
-			if ($gallery->user->canChangeTextOfAlbum($gallery->album)) {
+			if ($gallery->user->canChangeTextOfAlbum($gallery->album) && $showAdminForm) {
 				if ($gallery->album->isAlbumName($i)) {
 					if ($gallery->user->canChangeTextOfAlbum($myAlbum)) {	
 						_("title");
@@ -600,7 +800,7 @@ if ($numPhotos) {
 					showChoice(_("Edit Text"), "edit_caption.php", array("index" => $i));
 				}
 			}
-			if ($gallery->user->canWriteToAlbum($gallery->album)) {
+			if ($gallery->user->canWriteToAlbum($gallery->album) && $showAdminForm) {
 				if (!$gallery->album->isMovie($id) && !$gallery->album->isAlbumName($i)) {
 					showChoice(_("Edit Thumbnail"), "edit_thumb.php", array("index" => $i));
 					showChoice(_("Rotate/Flip") ." $label", "rotate_photo.php", array("index" => $i));
@@ -623,7 +823,7 @@ if ($numPhotos) {
 			                showChoice(_("Hide") . " $label", "do_command.php", array("cmd" => "hide", "index" => $i));
 				}
 			}
-			if ($gallery->user->canDeleteFromAlbum($gallery->album)) {
+			if ($gallery->user->canDeleteFromAlbum($gallery->album) && $showAdminForm) {
 				if($gallery->album->isAlbumName($i)) { 
 					if($gallery->user->canDeleteAlbum($myAlbum)) {
 						showChoice(_("Delete") . " $label", "delete_photo.php",
@@ -693,6 +893,19 @@ if ($numPhotos) {
 <br><br>
 <?php } ?>
 
+<?php
+if ($showPolling)
+{
+?>
+	<table width=100%><tr><td align=center>
+ 	<input type=submit name="Vote" value="<?php print _("Vote") ?>">
+	</td></tr></table>
+	</form>
+
+<?php
+}
+
+?>
 <!-- bottom nav -->
 <?php 
 include($GALLERY_BASEDIR . "layout/navigator.inc");

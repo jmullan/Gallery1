@@ -76,6 +76,19 @@ if (!function_exists('array_search')) {
 }
 
 
+if ($votes)
+{
+       if (!$votes[$id] && $gallery->album->getPollScale() == 1 && $gallery->album->getPollType() == "critique")
+       {
+               $votes[$id]=null;
+       }
+       saveResults($votes);
+       if ($gallery->album->getPollShowResults()) 
+       {
+       		showResultsGraph(0);
+       }
+}
+
 // is photo hidden?  should user see it anyway?
 if (($gallery->album->isHidden($index))
     && (!$gallery->user->canWriteToAlbum($gallery->album))){
@@ -267,6 +280,7 @@ if ($gallery->album->fields["textcolor"]) {
   // <!--
 
 <?php
+
 if ($fitToWindow) { 
 ?>
 
@@ -337,6 +351,7 @@ if ($fitToWindow) {
 
 <?php 
 } // if ($fitToWindow)
+
 ?>
 
   // -->
@@ -554,7 +569,40 @@ echo("<td colspan=3 height=$borderwidth><img src=\"$top/images/pixel_trans.gif\"
 <!-- caption -->
 <tr>
 <td colspan=3 align=center>
-<span class="caption"><?php echo editCaption($gallery->album, $index) ?></span>
+<span class="caption"><?php echo editCaption($gallery->album, $index) ?>
+<?php
+if ( canVote() )
+{
+       echo makeFormIntro("view_photo.php", array("name" => "vote_form",
+                                       "method" => "POST"));
+   ?>
+   <script language="javascript1.2">
+ function chooseOnlyOne(i, form_pos, scale)
+ {     
+   for(var j=1;j<=scale;j++)
+     { 
+         if(j != i)
+           {
+               eval("document.vote_form['votes["+j+"]'].checked=false");
+           }
+    }                                 
+    document.vote_form.submit("Vote");
+ }
+   </script>
+       <?php
+       print "<input type=hidden name=id value=$id>";
+       addPolling($id);
+       print '</form>';
+}
+if ($gallery->album->getPollShowResults())
+{
+       print "<p>\n";
+       showResults($id);
+       print "<p>\n";
+}
+?>
+
+</span>
 <br><br>
 <table>
 <?php

@@ -1,3 +1,34 @@
+2003-08-28  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b48
+	* Add voting
+		- Requires upgrade to config.php and albums.
+		- Added name-value pairs to Config. Wizard code.
+		- Added graph drawing functions to display results.
+		- Many other associated additions and changes.
+
+	* Removed table from Step 4 of Config. Wizard, as the
+	  displayed text should look like what is written to the
+	  file.
+
+	* Added make_separator() to Config. Wizard.
+
+	* Modified error_missing in Config. Wizard, to get a useful
+	  message, even if there is no description.
+
+	* Fixed spelling mistake in Step 3 of Wizard.
+
+	* Added more debugging messages for adding photos, to help
+	  us identify failures and problems.
+
+	* Fixed bug in search code (caused by missing default in
+	  getHighlightTag()).  Bug introduced in 1.4.1-cvs-b23.
+
+	* Separated $adminCommands int $adminCommands and $userCommands
+	  in preparation for adding an admin menu.  Not implemented
+	  as yet.
+
+	* Added block_start and block end code to defaults.inc,
+	  but it is not used as yet.
+
 2003-09-01  Andrew Lindeman  <joyoflinux@yahoo.com> 1.4.1-cvs-b47
 
         * Remove UPGRADING file, in favor of using the README to point

@@ -627,7 +627,7 @@ $defaults = array(
 	),
 	"separator4" => array (
                	"type" => "separator",
-		"title" => _("Optionales")
+		"title" => _("Options")
         ),
 	"print_photos" => array(
 		"prompt" => _("Printing Service"),
@@ -694,8 +694,85 @@ $defaults = array(
 			  "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4") .")</b></font>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
-	)
+	),
+	"separator8" => array (
+		"type" => "separator",
+		"title" => _("Polling configuration")
+	),
+	"voter_class" => array(
+		"prompt" => _("Voter class"),
+		"desc" => _("Voting is available to:") . 
+		"<dl><dt>"._("Nobody")."</dt><dd>" . 
+		_("Voting is off.") .
+		"</dd><dt>"._("Everybody")."</dt><dd>" . 
+		_("Anyone can vote.  Votes are recorded against session id.") .
+		"</dd><dt>"._("Logged in")."</dt><dd>" . 
+		_("Registered users can vote.  Votes are recorded against UserID, and voters can come back and change their choices.") .
+		"</dl>" .
+			"<font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+		"choices" => array("Nobody" => _("Nobody"), 
+			"Everybody" => _("Everybody"), 
+			"Logged in" => _("Logged in")),
+		"value" => "Nobody"),
+	"poll_type" => array(
+		"prompt" => _("Poll type"),
+	       	"desc" => _("Gallery offers two sorts of polls for voting for images.") . 
+		"<dl><dt>"._("Rank")."</dt><dd>" . 
+		_("Allows users to vote for one image as their favourite, another image as  their second choice, etc etc.  Only one image can be number 1.") . 
+		"<dd><dt>"._("Critique")."</dt><dd>" . 
+		_("Enables users to give all images points.  In this mode, users can give all images 10 points if desired") .
+		"</dl>" .
+	      	 	"<font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+		"choices" => array("rank" => _("Rank"), 
+			"critique" => _("Critique")),
+		"value" => "critique"
+			),
+	"poll_scale" => array(
+		"prompt" => _("Number of choices to offer voters"),
+		"desc" => _("") . 
+			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+		"value" => 3,
+		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)
+			),
+	"poll_hint" => array(
+		"prompt" => _("Vote hint"),
+		"desc" => _("This is displayed above the voting options for each image.") .
+			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+		"type" => "text",
+		"value" => _("Vote for this image"),
+		"optional" => 1
+			),
+	"poll_show_results" => array(
+		"prompt" => _("Show vote results"),
+		"desc" => _("A summary results graph and breakdown will be displayed on the album page and a link to full results if this is yes.") .
+			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+		"choices" => array("yes" => _("yes"), "no" => _("no")),
+		"value" => "no",
+			), 
+	"poll_num_results" => array(
+		"prompt" => _("Number of lines of graph to show on the album page"),
+		"desc" => _("How many results you want to display on the actual thumbnail page when results are shown.") . 
+			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+		"value" => 3,
+		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)),
 
+	"poll_orientation" => array(
+		"prompt" => _("Orientation of vote choices?"),
+		"desc" => _("Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu.") . 
+			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+		"value" => "vertical",
+		"choices" => array(
+			"horizontal" => _("Horizontal"), 
+			"vertical" => _("Vertical"))) ,
+	"poll_nv_pairs" => array(
+			"prompt" => _("Vote words and values"), 
+			"desc" => _("This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."),
+			"value" => array (
+				array("name" => _("1st"), "value" => 3),
+				array("name" => _("2nd"), "value" => 2), 
+				array("name" => _("3rd"), "value" => 1)),
+			"type" => "nv_pairs",
+			"size" => 9)
 );
 
 ?>

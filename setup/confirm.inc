@@ -89,9 +89,11 @@ $graphtest = array();
 foreach ($constants as $key => $val) {
 
 	if (isset($val["enabled"]) && $val["enabled"] == "no") continue;
-	if (isset($val["type"]) && $val["type"] == "separator") continue;
 
-	if (isset($val["type"]) && ($val["type"] == "block_start" || $val["type"] == "block_end")) { 
+	if (isset($val["type"]) && 
+			($val["type"] == "block_start" || 
+			 $val["type"] == "block_end" || 
+			 $val["type"] == "separator")) { 
 		continue;
 	}
 	if (ereg("^(..*)\[(.*)\]$", $key, $matches)) {
@@ -141,7 +143,7 @@ foreach ($constants as $key => $val) {
 			$data .= "// ". _("optional") . " <i>$key</i> ". _("missing") ."\n";
 			$view .= row_wrap("// ". _("optional") ." <i>$key</i> ". _("missing"));
 		} else {
-			$view .= row_wrap(error_missing($constants[$key]["prompt"]));
+			$view .= row_wrap(error_missing($constants[$key]["prompt"], $key));
 			$error = 1;
 		}
 	} else {
@@ -321,11 +323,16 @@ $view .= row_wrap("&nbsp;");
 $data .= "/* Defaults */\n";
 $view .= row_wrap("/* Defaults */\n");
 foreach ($defaults as $key => $val) {
-
+	if (isset($val["type"]) && 
+			($val["type"] == "block_start" || 
+			 $val["type"] == "block_end" || 
+			 $val["type"] == "separator")) { 
+		continue;
+	}
 	if (isset($val["type"]) && $val["type"] == "separator") continue;
 
 	if (!$$key && !isset($defaults[$key]["optional"])) {
-		$view .= error_missing($defaults[$key]["prompt"]);
+		$view .= error_missing($defaults[$key]["prompt"], $key);
 		$error = 1;
 	} else {
 	        if (get_magic_quotes_gpc()) {
@@ -340,8 +347,21 @@ foreach ($defaults as $key => $val) {
 		// Protect quote characters to avoid screwing up HTML forms
 		$$key = str_replace('"', '&quot;', $$key);
 		
-		$data .= defaults($key, $$key);
-		$view .= row_wrap(defaults($key, $$key));
+		if (is_array($$key)) {
+			foreach ($$key as $sub_key => $sub_value) {
+				if (is_array ($sub_value)) {
+					foreach ($sub_value as $sub_sub_key
+							=> $sub_sub_value) {
+			$string="\$gallery->app->default[\"$key\"][$sub_key][\"$sub_sub_key\"] = \"$sub_sub_value\";\n";
+			$data .= $string;
+			$view .= row_wrap($string);
+					}
+				}
+			}
+		} else {
+			$data .= defaults($key, $$key);
+			$view .= row_wrap(defaults($key, $$key));
+		}
 		if (isset($defaults[$key]["verify-func"])) {
 			$func = $defaults[$key]["verify-func"];
 			list($success, $fail) = $func($$key);
@@ -370,13 +390,11 @@ $data .= "?" . ">\n";
 <?php } ?>
 </p>
 
-<table width="90%" border="1">
 <pre>
 <?php echo $view; ?>
 
 <input type="hidden" name="data" value="<?php echo urlencode($data) ?>">
 </pre>
-</table>
 
 <div align="center">
 <input type="submit" name="go_back" value="<- <?php echo _("Edit Config") ?>">

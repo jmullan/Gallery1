@@ -56,6 +56,8 @@ function make_fields($key, $arr) {
 		$col2 = form_textarea($key, $arr);
 	} else if (isset($arr["type"]) && $arr["type"] == "text") {
 		$col2 = form_input($key, $arr);
+	} else if (isset($arr["type"]) && $arr["type"] == "nv_pairs") {
+		$col2 = form_nv_pairs($key, $arr);
 	} else {
 		$col2 ="";
 	}
@@ -84,6 +86,32 @@ function form_input($key, $arr) {
 	}
 
 	return "<input $type name=$key value=\"$arr[value]\" $attrs>";
+}
+
+function form_nv_pairs($key, $arr) {
+	if (isset($arr["attrs"])) {
+		$attrs = make_attrs($arr["attrs"]);
+	} else {
+		$attrs = '';
+	}
+	$x=0;
+	$buf="\n<table><tr><td><b>"._("Name")."</b></td><td><b>"._("Value")."</b></td></tr>";
+	foreach ($arr["value"] as $result) {
+		$name=$result["name"];
+		$value=$result["value"];
+		$buf .= '<tr><td><input type="text" name="' . $key ."[$x][name]\" value=\"$name\" $attrs></td>\n";
+		$buf .= '<td><input type="text" name="' . $key . "[$x][value]\" value=\"$value\" $attrs></td></tr>\n";
+		$x++;
+		if ($x >= $arr["size"]) {
+			break;
+		}
+	}
+	for (; $x<$arr["size"]; $x++) {
+		$buf .= '<tr><td><input type="text" name="' . $key ."[$x][name]\" $attrs></td>\n";
+		$buf .= '<td><input type="text" name="' . $key ."[$x][value]\" $attrs></td></tr>\n";
+	}
+	$buf.="</table>";
+	return $buf;
 }
 
 function form_choice($key, $arr) {
@@ -190,11 +218,14 @@ function use_feature($feature) {
 function no_feature($feature, $cause) {
 	return "\$gallery->app->feature[\"$feature\"] = 0; // ($cause)\n";
 }
-function error_missing($desc) {
-	return error_format(_("Missing value").": <b>$desc</b>!");
+function error_missing($desc, $key) {
+	if (empty($desc)) {
+		$desc=$key;
+	}
+	return error_format(_("Missing value").": <b>$desc</b>!<br>");
 }
 function row_wrap($buf) {
-	return "<tr><td><code>$buf</code></td></tr>";
+	return "<code>$buf</code><br>";
 }
 
 function check_htaccess()
@@ -894,5 +925,14 @@ function inOpenBasedir($dir) {
     }
     
     return false;
+}
+
+function make_separator($key, $arr)  {
+		$buf="\n<tr><td class=\"separator\" colspan=\"2\"><b>". $arr["title"] ."</b></td><tr>";
+		if( isset($arr["descripion"])) {
+			$buf .= "\n<tr><td class=\"separator\" colspan=\"2\">". $arr["description"] ."</td><tr>";
+		}
+		$buf .= "\n<tr><td>&nbsp;</td></tr>";
+		return $buf;
 }
 ?>

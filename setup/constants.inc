@@ -28,13 +28,8 @@ foreach ($constants as $key => $val) {
 	if( isset($val["enabbled"]) && $val["enabled"] == "no") continue;
 	
 	if( isset($val["type"]) && ($val["type"] === "separator")) {
-		echo "\n<tr><td class=\"separator\" colspan=\"2\"><b>". $val["title"] ."</b></td><tr>";
-		if( isset($val["descripion"])) {
-			echo "\n<tr><td class=\"separator\" colspan=\"2\">". $val["description"] ."</td><tr>";
-		}
-		echo "\n<tr><td>&nbsp;</td></tr>";
+		echo make_separator($key, $val);
 	} else {
-
 		if (isset($val["type"]) && ($val["type"] === "block_start" )) {
 			echo evenOdd_row(make_fields($key, $val), $i % 2);
 			continue;

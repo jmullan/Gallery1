@@ -24,14 +24,20 @@
 <?php
 $i = 0;
 foreach ($defaults as $key => $val) {
+	if (isset($val["type"]) && ($val["type"] === "block_start" )) {
+		echo evenOdd_row(make_fields($key, $val), $i % 2);
+		continue;
+	}
+	if (isset($val["type"]) && ($val["type"] === "block_end" )) {
+		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
+		echo "\n<tr><td colspan=\"2\"> &nbsp; </td></tr>";
+		continue;
+	}
 
 	if( isset($val["type"]) && ($val["type"] === "separator")) {
-                echo "\n<tr><td class=\"separator\" colspan=\"2\"><b>". $val["title"] ."</b></td><tr>";
-                if( isset($val["descripion"])) {
-                        echo "\n<tr><td class=\"separator\" colspan=\"2\">". $val["description"] ."</td><tr>";
-                }
-                echo "\n<tr><td>&nbsp;</td></tr>";
-        } else {
+		echo make_separator($key, $val);
+		continue;
+        }
 
 	/* Support $app-> for backwards compatibility */
 	if (isset($app->default[$key])) {
@@ -79,12 +85,13 @@ foreach ($defaults as $key => $val) {
 	} else {
 		echo evenOdd_row(make_fields($key, $val),
 				$i++ % 2);
-		echo "<tr><td colspan=2> &nbsp; </td></tr>";
+		if (!isset($val["type"]) || ($val["type"] !== "block_element" )) {
+			echo "<tr><td colspan=2> &nbsp; </td></tr>";
+		}
 	}
 
 	$onThisPage[$key] = 1;
 	$preserve[$key] = 1;
-	}
 }
 ?>
 </table>

@@ -61,14 +61,6 @@ if ($gallery->session->albumName && isset($index)) {
         if (isset($newAlbum)) {	// we are moving from one album to another
             	$postAlbum = $albumDB->getAlbumbyName($newAlbum);
 	    	if ($gallery->album->fields['name'] != $postAlbum->fields['name']) {
-			//$startPhoto=$index;
-			//$endPhoto=$startPhoto+max($numPhotosToMove,1);
-
-			//if ($startPhoto > $endPhoto) { // the end photo value needs to be greater than the start value
-			//	dismissAndReload();
-			//	return;
-			//}
-			
 			if ($gallery->album->isAlbumName($index)) { // moving "album" to another location
 				if ($newAlbum == "ROOT") { // moving "album" to ROOT location
 					$myAlbum = $gallery->album->getNestedAlbum($index);
@@ -91,6 +83,9 @@ if ($gallery->session->albumName && isset($index)) {
 				}
 			} else { // moving "picture" to another album
 				$index = $startPhoto; // set the index to the first photo that we are moving.	
+				$votes_transferable=
+					$gallery->album->pollsCompatible($postAlbum);
+
 				while ($startPhoto <= $endPhoto) {
 					if (!$gallery->album->isAlbumName($index)) {
 					        set_time_limit($gallery->app->timeLimit);
@@ -103,11 +98,6 @@ if ($gallery->session->albumName && isset($index)) {
 						$mytype=$myphoto->image->type;
 						$myfile="$mydir/$myname.$mytype";
 						$myhidden=$myphoto->isHidden();
-						//print "mydir=".$mydir."<br>";
-						//print "myphoto=".$myphoto."<br>";
-						//print "myname=".$myname."<br>";
-						//print "mytype=".$mytype."<br>";
-						//print "myfile=".$myfile."<br>";
 						if (($postAlbum->fields["thumb_size"] == $gallery->album->fields["thumb_size"]) &&
 						    (!$myphoto->isMovie())) {
 							$pathToThumb="$mydir/$myname.thumb.$mytype";
@@ -118,7 +108,20 @@ if ($gallery->session->albumName && isset($index)) {
 						}
 						$photo=$gallery->album->getPhoto($index);
 
-						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, $gallery->album->getCaption($index), $pathToThumb, $photo->extraFields, $gallery->album->getItemOwner($index));
+						$id=$gallery->album->getPhotoId($index);
+
+						if (isset($gallery->album->fields["votes"][$id]) && 
+								$votes_transferable) {
+							$votes=$gallery->album->fields["votes"][$id];
+						} else {
+							$votes=NULL;
+						}
+
+						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, 
+								$gallery->album->getCaption($index), 
+								$pathToThumb, $photo->extraFields, 
+								$gallery->album->getItemOwner($index),
+								$votes);
 						if (!$err) {
 							$newPhotoIndex = $postAlbum->numPhotos(1);
 
@@ -300,9 +303,17 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 </tr>
 </table>
 <?php
+	if (sizeof($gallery->album->fields["votes"]> 0)) {
+		if ($gallery->album->fields["poll_type"] == "rank") {
+			echo "<font color=red>". _("Note: images that have votes will lose these votes when moved to another album") . "</font>"; // can't move rank votes, doesn't  make sense.
+		} else {
+			echo "<font color=red>". _("Note: images that have votes may lose these votes when moved to another album") . "</font>";
+		}
+	}
+
 } // end else
 if (!$uptodate) {
-	print '<span class="error"> <br>' . _("WARNING: Some of the albums need to be upgraded to the current version of gallery.") . '</span>  ' .
+	print '<span class="error"> <br>' . sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>  ' .
 	'<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>.<p>';
 }
 ?>
