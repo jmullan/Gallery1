@@ -89,8 +89,10 @@ $skip = array();
 $text = array();
 if ($searchstring) {
 	$origstr = $searchstring;
-	$searchstring = escapeEregChars ($searchstring);
+	$searchstring = escapeEregChars($searchstring);
 	$searchstring = str_replace ("\\*", ".*", $searchstring);
+	$searchExpr = "{(<a (?:[^>]+){$searchstring}(?:[^>]+)>)(.*(?=</a>))(</a>)|((?:<a [^>]+>))(.*)((?:{$searchstring}))(.*)(?=</a>)(</a>)|({$searchstring})}Usi";
+	$searchRepl = '\1\4\5<b>\2\6\9</b>\7\3\8';
 
 	$uid = $gallery->user->getUid();
 	for ($i = 0; $i<$numAlbums; $i++) {
@@ -122,9 +124,10 @@ if ($searchstring) {
 		$matchSummary = eregi("$searchstring", $searchSummary);
 
        		if ($matchTitle || $matchDescription || $matchSummary) {
-			$searchTitle = eregi_replace("($searchstring)", "<b>\\1</b>", $searchTitle); // cause search word to be bolded
-			$searchDescription = eregi_replace("($searchstring)", "<b>\\1</b>", $searchDescription); // cause search word to be bolded
-			$searchSummary = eregi_replace("($searchstring)", "<b>\\1</b>", $searchSummary); // cause search word to be bolded
+			$searchTitle = preg_replace($searchExpr, $searchRepl, $searchTitle); // cause search word to be bolded
+
+			$searchDescription = preg_replace($searchExpr, $searchRepl, $searchDescription); // cause search word to be bolded
+			$searchSummary = preg_replace($searchExpr, $searchRepl, $searchSummary); // cause search word to be bolded
 			$photoURL = makeAlbumUrl($searchAlbum->fields['name']);
 
 			$text[] = '<div class="desc"><a href="'. $photoURL .'">'. $searchTitle .'</a></div>';
@@ -171,7 +174,7 @@ if ($searchstring) {
 							$commentText = _("Matching Comments").":<br>";
 							$commentMatch = 1;
 						} 
-						$searchComment = eregi_replace("($searchstring)", "<b>\\1</b>", $searchComment);
+						$searchComment = preg_replace($searchExpr, $searchRepl, $searchComment);
 						$commentText .= "\n". $searchComment . "<br><br>";
 					}
 				}
@@ -182,7 +185,7 @@ if ($searchstring) {
 			foreach ($searchAlbum->getExtraFields() as $field) {
 				$fieldValue=$searchAlbum->getExtraField($j, $field);
 				if (eregi($searchstring, $fieldValue)) {
-					$fieldValue = eregi_replace("($searchstring)", "<b>\\1</b>", $fieldValue);
+					$fieldValue = preg_replace($searchExpr, $searchRepl, $fieldValue);
 					$extraFieldsText .= "<b>$field:</b> $fieldValue<br><br>";
 					$extraFieldsMatch = 1;
 				}
@@ -196,8 +199,8 @@ if ($searchstring) {
 			if ($captionMatch || $keywordMatch || $commentMatch || $extraFieldsMatch) {
 				$id = $searchAlbum->getPhotoId($j);
 				// cause search word to be bolded
-				$searchCaption = eregi_replace("($searchstring)", "<b>\\1</b>", $searchCaption);
-				$searchKeywords = eregi_replace("($searchstring)", "<b>\\1</b>", $searchKeywords);
+				$searchCaption = preg_replace($searchExpr, $searchRepl, $searchCaption);
+				$searchKeywords = preg_replace($searchExpr, $searchRepl, $searchKeywords);
 
 				$text[] = '<div class="desc">'. _("From Album") .":&nbsp;&nbsp;<a href=\"" .
 		                              	makeAlbumUrl($searchAlbum->fields['name']) . "\">" .
@@ -211,7 +214,7 @@ if ($searchstring) {
 
 				$searchResult['images'][]=array(
 					'photolink'	=> $searchAlbum->getThumbnailTag($j, $thumbSize),
-					'photoUrl'	=> makeAlbumUrl($searchAlbum->fields['name'], $id),
+					'photoURL'	=> makeAlbumUrl($searchAlbum->fields['name'], $id),
 					'Text'		=> $text
 				);
 			}
