@@ -85,7 +85,8 @@ if ($votes)
        saveResults($votes);
        if ($gallery->album->getPollShowResults()) 
        {
-       		showResultsGraph(0);
+       		list($buf, $rank)=showResultsGraph(0);
+		print $buf;
        }
 }
 
@@ -579,7 +580,7 @@ if ( canVote() )
    <script language="javascript1.2">
  function chooseOnlyOne(i, form_pos, scale)
  {     
-   for(var j=1;j<=scale;j++)
+   for(var j=0;j<scale;j++)
      { 
          if(j != i)
            {
@@ -597,7 +598,7 @@ if ( canVote() )
 if ($gallery->album->getPollShowResults())
 {
        print "<p>\n";
-       showResults($id);
+       print showResults($id);
        print "<p>\n";
 }
 ?>

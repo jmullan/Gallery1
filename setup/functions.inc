@@ -228,6 +228,9 @@ function row_wrap($buf) {
 	return "<code>$buf</code><br>";
 }
 
+function error_row_wrap($buf) {
+	return "</pre>$buf</pre><br>";
+}
 function check_htaccess()
 {
 	global $GALLERY_PHP_VALUE_OK; 
@@ -837,6 +840,40 @@ function check_magic_quotes()
 	return array($success, $fail);
 }
 
+function check_poll_nv_pairs($var) {
+	$fail = array();
+	$success = array();
+	$finished = false;
+	$rownum=0;
+	foreach ($var as $element) {
+		$rownum++;
+		if (!$element["name"]) {
+			$finished=true;
+			if ($element["value"]) {
+				$fail[]=sprintf(_("In %s, missing %s in row %d with %s %s."),
+					_("Vote words and values"), 
+					_("Name"), $rownum, _("Value"), 
+					$element["value"]);
+				break;
+			}
+			continue;
+		} else {
+			if ($finished) {
+				$fail[]=sprintf(_("In %s, blank in row %d."),
+					_("Vote words and values"), 
+					$rownum-1); 
+				break;
+			} else if (!ereg("^[1-9][0-9]*$", $element["value"])) {
+				$fail[]=sprintf(_("In %s, %s (row %d) %s should be a positive whole number"), 
+					_("Vote words and values"), 
+					$element["name"], 
+					$rownum, $element["value"]);
+				break;
+			}
+		}
+	}
+	return array($success, $fail);
+}
 function detect_exec_status() 
 {
 	global $gallery;
@@ -928,9 +965,9 @@ function inOpenBasedir($dir) {
 }
 
 function make_separator($key, $arr)  {
-		$buf="\n<tr><td class=\"separator\" colspan=\"2\"><b>". $arr["title"] ."</b></td><tr>";
-		if( isset($arr["descripion"])) {
-			$buf .= "\n<tr><td class=\"separator\" colspan=\"2\">". $arr["description"] ."</td><tr>";
+		$buf="\n<tr><td class=\"separator\" colspan=\"2\"><b>". $arr["title"] ."</b></td></tr>";
+		if( isset($arr["desc"])) {
+			$buf .= "\n<tr><td class=\"desc\" colspan=\"2\">". $arr["desc"] ."</td></tr>";
 		}
 		$buf .= "\n<tr><td>&nbsp;</td></tr>";
 		return $buf;

@@ -132,7 +132,7 @@ foreach ($constants as $key => $val) {
 			$data .= "// ". _("optional") . " <i>$key</i> ". _("missing") ."\n";
 			$view .= row_wrap("// ". _("optional") ." <i>$key</i> ". _("missing"));
 		} else {
-			$view .= row_wrap(error_missing($constants[$key]["prompt"], $key));
+			$view .= error_missing($constants[$key]["prompt"], $key)."<br>";
 			$error = 1;
 		}
 	} else {
@@ -149,7 +149,7 @@ foreach ($constants as $key => $val) {
 
 		if (isset($constants[$key]["must-be-url"])) {
 			if (!ereg("^http", $real)) {
-				$view .= row_wrap(error_format(sprintf(_("%s: <b>%s</b> must be an absolute URL!"), $key, $real)));
+				$view .= error_row_wrap(error_format(sprintf(_("%s: <b>%s</b> must be an absolute URL!"), $key, $real)));
 				$error = 1;
 				continue;
 			}
@@ -161,7 +161,7 @@ foreach ($constants as $key => $val) {
 				$warn_about_open_basedir = 1;
 			} else {
 				if (!@is_file($real)) {
-					$view .= row_wrap(error_format(sprintf(_("%s: <b>%s</b> must be a valid file (not a directory)!"), $key, $real)));
+					$view .= error_row_wrap(error_format(sprintf(_("%s: <b>%s</b> must be a valid file (not a directory)!"), $key, $real)));
 					$error = 1;
 					continue;
 				}
@@ -170,7 +170,7 @@ foreach ($constants as $key => $val) {
 
 		if (isset($constants[$key]["must-be-number"])) {
 			if (ereg("[^0-9]",$real)) {
-				$view .= row_wrap(error_format(sprintf(_("%s: <b>&quot;%s&quot;</b> must be a positive number"), $key, $real)));
+				$view .= error_row_wrap(error_format(sprintf(_("%s: <b>&quot;%s&quot;</b> must be a positive number"), $key, $real)));
 				$error = 1;
 				continue;
 			}
@@ -178,7 +178,7 @@ foreach ($constants as $key => $val) {
 
 		if (isset($constants[$key]["must-not-be-zero"])) {
 			if ($real == 0) {
-				$view .= row_wrap(error_format(sprintf(_("%s: <b>%s</b> must not be zero"), $key, $real)));
+				$view .= error_row_wrap(error_format(sprintf(_("%s: <b>%s</b> must not be zero"), $key, $real)));
 				$error = 1;
 				continue;
 			}
@@ -188,7 +188,7 @@ foreach ($constants as $key => $val) {
 			if (!inOpenBasedir($dir)) {
 				$warn_about_open_basedir = 1;
 			} else if (!fs_is_executable($real)) {
-				$view .= row_wrap(error_format(sprintf(_("%s: <b>%s</b> must be an executable file!"), $key, $real)));
+				$view .= error_row_wrap(error_format(sprintf(_("%s: <b>%s</b> must be an executable file!"), $key, $real)));
 				$error = 1;
 				continue;
 			}
@@ -197,20 +197,20 @@ foreach ($constants as $key => $val) {
 		if (isset($constants[$key]["require-write-dir"])) {
 			$dir = $real;
 			if (!file_exists($dir)) {
-				$view .= row_wrap(error_format(sprintf(_("Directory %s does not exist.  Please create it."), "<b>$dir</b>")));
+				$view .= error_row_wrap(error_format(sprintf(_("Directory %s does not exist.  Please create it."), "<b>$dir</b>")));
 				$error = 1;
 				continue;
 			}
 
 			if (!is_dir($dir)) {
-				$view .= row_wrap(error_format(sprintf(_("%s exists but is not a directory.  Please fix this."), "<b>$dir</b>")));
+				$view .= error_row_wrap(error_format(sprintf(_("%s exists but is not a directory.  Please fix this."), "<b>$dir</b>")));
 				$error = 1;
 				continue;
 			}
 
 			if (!is_writeable($dir) ||
 			    !test_write_to_dir($dir)) {
-				$view .= row_wrap(error_format(sprintf(_("%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
+				$view .= error_row_wrap(error_format(sprintf(_("%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
 						$key, $dir,
 						"<br><b><code>" .
 						"chown -R " . $webserver_user . " $dir" .
@@ -244,11 +244,11 @@ foreach ($constants as $key => $val) {
 			}
 			
 			foreach ($fail as $fkey => $fval) {
-				$view .= row_wrap(error_format($constants[$key][$fkey]));
+				$view .= error_row_wrap(error_format($constants[$key][$fkey]));
 				if (is_array($fval)) {
 					foreach ($fval as $msg) {
 						if ($val) {
-							$view .= row_wrap(error_format($msg));
+							$view .= error_row_wrap(error_format($msg));
 						}
 					}
 				}
@@ -276,7 +276,7 @@ if (!strcmp($graphtool, "NetPBM") && empty($graphtest['pnmDir'])) {
 	if (inOpenBasedir($graphpath)) {
 		if (!fs_file_exists(fs_executable($graphpath . "/" . $pnmtojpeg))) {
 			$error = 1;
-			$view .= row_wrap(error_format(
+			$view .= error_row_wrap(error_format(
 				sprintf(_("Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
 					"<i>$graphpath/$pnmtojpeg</i>",
 					($pnmtojpeg == "pnmtojpeg" ? "ppmtojpeg" : "pnmtojpeg"))));
@@ -289,13 +289,13 @@ if (!strcmp($graphtool, "NetPBM") && empty($graphtest['pnmDir'])) {
  * chose is configured properly.
  */
 if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
-    $view .= row_wrap(error_format(_("You must specify one of <i>pnmDir</i> or <i>ImPath</i> for Gallery to function!!")));
+    $view .= error_row_wrap(error_format(_("You must specify one of <i>pnmDir</i> or <i>ImPath</i> for Gallery to function!!")));
     $error = 1;
 } else if (!strcmp($graphtool, "ImageMagick") && !empty($graphtest['ImPath'])) {
-    $view .= row_wrap(error_format(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),"ImageMagick","ImageMagick")));
+    $view .= error_row_wrap(error_format(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),"ImageMagick","ImageMagick")));
     $error = 1;
 } else if (!strcmp($graphtool, "NetPBM") && !empty($graphtest['pnmDir'])) {
-    $view .= row_wrap(error_format(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),"NetPBM","NetPBM"))); 
+    $view .= error_row_wrap(error_format(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),"NetPBM","NetPBM")));
     $error = 1;
 }
 
@@ -350,10 +350,11 @@ foreach ($defaults as $key => $val) {
 			$func = $defaults[$key]["verify-func"];
 			list($success, $fail) = $func($$key);
 			foreach ($fail as $fkey => $fval) {
+				$view .= error_row_wrap(error_format($fval));
 				if (is_array($fval)) {
 					foreach ($fval as $msg) {
 						if ($val) {
-							$view .= row_wrap(error_format($msg));
+							$view .= error_row_wrap(error_format($msg));
 						}
 					}
 				}

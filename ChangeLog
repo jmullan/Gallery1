@@ -1,3 +1,39 @@
+2003-09-05  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b62
+
+	* You can now vote for subalbums.   Votes are now recorded
+	  against "item.$id" or "album.$albumName".   Existing
+	  albums are migrated to new vote id. (If you move subalbums,
+	  you will lose your votes currenlty.)
+
+	* Added http://www.php.net/manual/en/function.strftime.php
+	  to translations, so translators could pick the best
+	  language version.
+
+	* In Config. Wizard replaced row_wrap() with error_row_wrap()
+	  for errors, so they can get line breaks as necessary.
+
+	* Added test check_poll_nv_pairs() to make sure valid values
+	  are entered.
+
+	* Changed CSS for errors in config to make it easier to
+	  read. This can be changed, but black on red is hard to read, 
+	  and these are very important messages.
+
+	* Fixed bug so you can now cast votes on view_photo.php.
+
+	* Changed "Gallery" to "gallery" when you are talking about
+	  "your gallery" not the software.
+
+	* Tweak of text relating to voting hopefully to make it
+	  clearer.  Added introductory text in config wizard.
+
+	* Added isset($GALLERY_BASEDIR) test to edit_thumbs.php.
+
+	* Removed function pluralize() as function pluralize_n()
+	  should be used.
+
+	* Tidy up of (as yet) unused file, adv_search.php.
+
 2003-09-05  Joan McGalliard  <gallery@joanhenge.plus.com> 1.4.1-cvs-b61
 
 	* This is Bharat Mediratta's change: 1.4-RC3-cvs-b11
@@ -974,7 +1010,7 @@
 2003-08-01  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b80
 
 	* Fixed bug with Nuke integration where we could generate an incorrect
-	URL, so language changing didn't work. (Thanks Warren)
+	  URL, so language changing didn't work. (Thanks Warren)
 
 2003-08-01  Andrew Lindeman  <joyoflinux@yahoo.com> 1.3.5-cvs-b79
 

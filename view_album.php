@@ -278,8 +278,9 @@ function showChoice($label, $target, $args) {
 }
 
 for ($i = 1, $numAlbums = 0; $i <= $numPhotos; ++$i) {
-	if ($gallery->album->isAlbumName($i))
-	$numAlbums++;
+	if ($gallery->album->isAlbumName($i)){
+		$numAlbums++;
+	}
 }
 
 $adminText = "<span class=\"admin\">";
@@ -503,7 +504,8 @@ if (($gallery->album->getPollType() == "rank") && $showPolling)
 $results=1;
 if ($gallery->album->getPollShowResults())
 {
-        $results=showResultsGraph( $gallery->album->getPollNumResults());
+        list($buf, $results)=showResultsGraph( $gallery->album->getPollNumResults());
+	print $buf;
 }
 if ($gallery->album->getPollShowResults() && $results)
 {
@@ -541,7 +543,9 @@ if ($showPolling)
  		if ($gallery->album->getPollType() == "rank")
  		{
  		    print "  ".sprintf(_("You have a total of %s and can change them if you wish."),
-				    pluralize($gallery->album->getPollScale(), vote, "no")) .
+				    pluralize_n($gallery->album->getPollScale(),
+					    _("vote"), _("votes"), 
+					    _("no votes"))) .
 				    '</span><p>';
  		}
  		else
@@ -558,7 +562,7 @@ if ($showPolling)
    <script language="javascript1.2">
  function chooseOnlyOne(i, form_pos, scale)
  {
-   for(var j=1;j<=scale;j++)
+   for(var j=0;j<scale;j++)
      {
          if(j != i)
  	    {
@@ -706,7 +710,7 @@ if ($numPhotos) {
 				$myAlbum->load($gallery->album->isAlbumName($i));
 				$myDescription = $myAlbum->fields['description'];
 				$buf = "";
-				$buf = $buf."<b>". _("Album") .": ".$myAlbum->fields['title']."</b>";
+				$buf = $buf."<b>". sprintf(_("Album: %s"), $myAlbum->fields['title'])."</b>";
 				if ($myDescription != _("No description") &&
 					$myDescription != "No description" && 
 					$myDescription != "") {
@@ -723,6 +727,11 @@ if ($numPhotos) {
 				   <?php } ?>
 				</span>
 <?php
+				if ($showPolling) {
+					addPolling("album.".$gallery->album->isAlbumName($i),
+							$form_pos, false);
+					$form_pos++;
+				}
 			} else {
 				echo(nl2br($gallery->album->getCaption($i)));
 				echo($gallery->album->getCaptionName($i));
@@ -736,9 +745,8 @@ if ($numPhotos) {
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
 					echo _("Viewed:") ." ".pluralize_n($gallery->album->getItemClicks($i), _("time"), _("times") ,_("0 times")).".<br>";
 				}
-				if ($showPolling)
-				{
-               				addPolling($id, $form_pos, false);
+				if ($showPolling) {
+					addPolling("item.$id", $form_pos, false);
 					$form_pos++;
 				}
 

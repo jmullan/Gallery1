@@ -452,7 +452,7 @@ $constants =  array_merge(
 		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Format to use for date strings."),
 		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
 			_("date without time"), Gallery(), "<b>%x</b>",
-			"<a href=\"http://uk.php.net/manual/en/function.strftime.php\">http://uk.php.net/manual/en/function.strftime.php</a>.") .
+			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '">'._("http://www.php.net/manual/en/function.strftime.php").'</a>') .
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>" . "<p>" .
 			sprintf(_("For example, %s will display date like this: %s."), "<b>%b %d, %Y</b>", "<b>" . strftime("%b %d, %Y") . "</b>"), 
 		"value" => "%x",
@@ -463,7 +463,7 @@ $constants =  array_merge(
 		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Format to use for date/time strings."),
 		"desc" => sprintf(_("This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at %s."),
 			_("date with time"), Gallery(), "<b>%c</b>",
-			"<a href=\"http://uk.php.net/manual/en/function.strftime.php\">http://uk.php.net/manual/en/function.strftime.php</a>.") .
+			'<a href="'._("http://www.php.net/manual/en/function.strftime.php"). '">'._("http://www.php.net/manual/en/function.strftime.php").'</a>') .
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.4.1") . ")</b></font>" ."<p>" .
 			sprintf(_("For example, %s will display date and time like this: %s."), "<b>%H:%M, %b %d, %Y</b>", "<b>" . strftime("%H:%M, %b %d, %Y") . "</b>"), 
 		"value" => "%c",
@@ -697,7 +697,18 @@ $defaults = array(
 	),
 	"separator7" => array (
 		"type" => "separator",
-		"title" => _("Polling configuration")
+		"title" => _("Polling configuration"),
+		"desc"  => sprintf(_("Polling is a new feature in %s.  It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."),
+				"1.4.1", 
+				"1.4.1") .
+			"<p>" .
+			_("In each album, voting can be switched off, restricted to logged in users or open to all visitors.") 
+			. "<p>" .
+			sprintf(_("There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc; and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."),
+				"<b>"._("Rank")."</b>",
+				"<b>"._("Critique")."</b>",
+				_("Critique"),
+				_("Rank")) 
 	),
 	"voter_class" => array(
 		"prompt" => _("Voter class"),
@@ -716,11 +727,11 @@ $defaults = array(
 		"value" => "Nobody"),
 	"poll_type" => array(
 		"prompt" => _("Poll type"),
-	       	"desc" => _("Gallery offers two sorts of polls for voting for images.") . 
+	       	"desc" => _("Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation.") . 
 		"<dl><dt>"._("Rank")."</dt><dd>" . 
-		_("Allows users to vote for one image as their favourite, another image as  their second choice, etc etc.  Only one image can be number 1.") . 
+		_("Users have a set of votes than can allocate to the images.") . 
 		"<dd><dt>"._("Critique")."</dt><dd>" . 
-		_("Enables users to give all images points.  In this mode, users can give all images 10 points if desired") .
+		_("Enables users to give all images points without restriction.") .
 		"</dl>" .
 	      	 	"<font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
 		"choices" => array("rank" => _("Rank"), 
@@ -728,14 +739,15 @@ $defaults = array(
 		"value" => "critique"
 			),
 	"poll_scale" => array(
-		"prompt" => _("Number of choices to offer voters"),
-		"desc" => "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+		"prompt" => _("Number of choices"),
+		"desc" => _("Number of choices that will be available to voters as radio buttons or in a pulldown menu") .
+			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
 		"value" => 3,
 		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)
 			),
 	"poll_hint" => array(
 		"prompt" => _("Vote hint"),
-		"desc" => _("This is displayed above the voting options for each image.") .
+		"desc" => _("This is displayed above the voting options under each image.") .
 			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
 		"type" => "text",
 		"value" => _("Vote for this image"),
@@ -743,14 +755,17 @@ $defaults = array(
 			),
 	"poll_show_results" => array(
 		"prompt" => _("Show vote results"),
-		"desc" => _("A summary results graph and breakdown will be displayed on the album page and a link to full results if this is yes.") .
+		"desc" => sprintf(_("Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."),
+			_("no")) .
 			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "no",
 			), 
 	"poll_num_results" => array(
-		"prompt" => _("Number of lines of graph to show on the album page"),
-		"desc" => _("How many results you want to display on the actual thumbnail page when results are shown.") . 
+		"prompt" => _("Number of results displayed"),
+		"desc" => sprintf(_("If %s is %s, display this many top images on the thumbnail page.  (Full results will be available on a linked page.)"),
+			'"'. _("Show vote results").'"' ,
+			'"'. _("yes").'"') .
 			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
 		"value" => 3,
 		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)),
@@ -767,10 +782,13 @@ $defaults = array(
 			"prompt" => _("Vote words and values"), 
 			"desc" => _("This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."),
 			"value" => array (
-				array("name" => _("1st"), "value" => 3),
-				array("name" => _("2nd"), "value" => 2), 
-				array("name" => _("3rd"), "value" => 1)),
+				array("name" => _("Excellent"), "value" => 5),
+				array("name" => _("Very Good"), "value" => 4),
+				array("name" => _("Good"), "value" => 3),
+				array("name" => _("Average"), "value" => 2), 
+				array("name" => _("Poor"), "value" => 1)),
 			"type" => "nv_pairs",
+			"verify-func" => "check_poll_nv_pairs",
 			"size" => 9)
 );
 

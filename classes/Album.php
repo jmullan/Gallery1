@@ -220,8 +220,13 @@ class Album {
 			$changed = 1;
 		    }
 		}
-
-
+		if ($this->version < 17) {
+			foreach ($this->fields['votes'] as $key => $value) {
+				unset($this->fields['votes'][$key]);
+				$this->fields['votes']["item.$key"]=$value;
+				$changed = 1;
+			}
+		}
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
 			if ($gallery->app->use_exif) {
@@ -931,6 +936,15 @@ class Album {
 		return -1;
 	}
 
+	function getAlbumIndex($albumName) {
+		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+			if ($albumName === $this->isAlbumName($i)) {
+				return $i;
+			}
+		}
+		return -1;
+	}
+
 	function setPhoto($photo, $index) {
 		$this->updateSerial = 1;
 		$this->photos[$index-1] = $photo;		
@@ -956,14 +970,6 @@ class Album {
 		$photo->setOwner($owner);
 	}
 
-       function getRankById($id) {
-               $index = $this->getPhotoIndex($id);
-               return $this->getRank($index);
-       }
-       function setRankById($id, $rank) {
-               $index = $this->getPhotoIndex($id);
-               $this->setRank($index, $rank);
-       }
        function getRank($index) {
                $photo = $this->getPhoto($index);
                return $photo->getRank();
@@ -1614,5 +1620,35 @@ class Album {
 
 	}
 
+	function getIndexByVotingId($vote_id) {
+		global $gallery;
+		if (ereg("^item\.(.*)$", $vote_id, $matches)) {
+			$index=$this->getPhotoIndex($matches[1]);
+		} else if (ereg("^album\.(.*)$", $vote_id, $matches)) {
+			$index=$this->getAlbumIndex($matches[1]);
+			if ($index > 0) {
+				$myAlbum = new Album();
+				$myAlbum->load($matches[1]);
+				if (!$gallery->user->canReadAlbum($myAlbum)) {
+					$index=-1;
+				}
+			}
+		} else {
+			$index=-1;
+		}
+		if ($index > 0 && $this->isHidden($index) &&
+				!$gallery->user->isAdmin() && 
+				!$gallery->user->isOwnerOfAlbum($myAlbum)) {
+			$index=-1;
+
+		}
+		return $index;
+																			 
+	}
+	function getSubAlbum($index) {
+		$myAlbum = new Album();
+		$myAlbum->load($this->isAlbumName($index));
+		return $myAlbum;
+	}
 }
 ?>

@@ -309,7 +309,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 		if ($gallery->album->fields["poll_type"] == "rank") {
 			echo "<font color=red>". _("Note: images that have votes will lose these votes when moved to another album") . "</font>"; // can't move rank votes, doesn't  make sense.
 		} else {
-			echo "<font color=red>". _("Note: images that have votes may lose these votes when moved to another album") . "</font>";
+			echo "<font color=red>". _("Note: images that have votes will lose these votes if moved to an album with in compatible polling implemented.") . "</font>";
 		}
 	}
 
