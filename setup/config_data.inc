@@ -169,6 +169,11 @@ $constants = array(
 		"value" => "/albums",
 		"no-trailing-slash" => 1,
 	),
+	"debug" => array(
+		desc => "Turn debug mode on so that you can diagnose problems?",
+		choices => array("yes", "no"),
+		value => "no",
+	),
 );
 
 $defaults = array(
