@@ -78,7 +78,7 @@ $checklist = array(
 		"fail-incompatible" => sprintf(_("You're running PHP version %s which has known bugs that cause Gallery to fail."),  phpversion()),
 	),
 	"buggy_php" => array(
-		"desc" => _("Were are using predefined variables, and some older PHP versions have problems with this."),
+		"desc" => _("We are using predefined variables which some older version of PHP have problems with."),
 	     	"func" => "check_filedirective",
 		"buggy__FILE__" => _("It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"),
 		"serious" => 1
