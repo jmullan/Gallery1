@@ -1,3 +1,46 @@
+2001-02-13  Bharat Mediratta  <bharat@sinia.com>
+
+	* Gallery 1.0b7 release.  Bumped config version to 9 due to 
+	  setup wizard changes. 
+
+	* Radically changed the way that the check_XXX methods work in the
+	  config wizard.  Now we are able to be much more granular in what
+	  is configured right and wrong on the specific system.  We also
+	  check more rigorously for NetPBM.
+
+	* Fixed a bug where init.php was getting loaded twice (this should
+	  only happen in the case when you embed a newer Gallery inside an
+	  older one).  Thanks to John Taber <john.taber@cntcorp.com> for
+	  finding this one 
+
+	* Fixed off-by-one error in the code that tells you the photo
+	  number.  Thanks to Alan Harder <alan.harder@sun.com> for this
+	  find. 
+
+	* Fixed bug that was preventing password changes.  Thanks to Alan
+	  Harder <alan.harder@sun.com> for this find. 
+
+	* Added code to allow you to (optionally) display the album owner
+	  at the Gallery level.
+
+	* Only show the rotate command if the user has album write
+	  permission. 
+
+	* Overhauled the way that we were using NetPBM.  Before we were
+	  depending on the (unreliable) anytopnm script to suck images
+	  into a standard format.  Then we would output them and maintain
+	  them as JPGs.  Now we examine the image tag and run the right
+	  binary by hand, then keep that binary format when we generate
+	  thumbnails, highlights and resizes.  While adding some
+	  complexity to the system, this allows us to much more carefully
+	  track what we're doing with images.
+
+	* Album delete code now cleans up the directory before
+	  removing it.  I was trying to avoid this, but because resized
+	  and thumbnail images are no longer forced to be JPGs we can
+	  possibly have some legitimately stranded files in an album, and
+	  we don't want that to prevent an album from getting deleted.	
+
 2001-02-11  Bharat Mediratta  <bharat@sinia.com>
 
 	* Removed the executable bit from chmod commands in configure.sh
