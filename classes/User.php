@@ -187,6 +187,18 @@ class Abstract_User {
 		return false;
 	}
 
+	function canViewFullImages($album) {
+		if ($this->isAdmin()) {
+			return true;
+		}
+
+		if ($album->canViewFullImages($this->uid)) {
+			return true;
+		}
+
+		return false;
+	}
+	
 	function isOwnerOfAlbum($album) {
 		if ($album->isOwner($this->uid)) {
 			return true;

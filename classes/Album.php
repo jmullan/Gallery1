@@ -40,9 +40,9 @@ class Album {
 		$this->fields["title"] = "Untitled";
 		$this->fields["description"] = "No description";
 		$this->fields["nextname"] = "aaa";
-        	$this->fields["bgcolor"] = "";
-        	$this->fields["textcolor"] = "";
-        	$this->fields["linkcolor"] = "";
+		$this->fields["bgcolor"] = "";
+		$this->fields["textcolor"] = "";
+		$this->fields["linkcolor"] = "";
 		$this->fields["font"] = $gallery->app->default["font"];
 		$this->fields["border"] = $gallery->app->default["border"];
 		$this->fields["bordercolor"] = $gallery->app->default["bordercolor"];
@@ -136,6 +136,17 @@ class Album {
 				$this->fields[$field] = $gallery->app->default[$field];
 				$changed = 1;
 			}
+		}
+
+		/* 
+		 * Copy the canRead permissions to viewFullImage if
+		 * the album version is older than the feature.
+		 */
+		if ($this->version < 5) {
+			foreach ($this->fields['perms']['canRead'] as $uid => $p) {
+				$this->fields['perms']['canViewFullImages'][$uid] = $p;
+			}
+			$changed = 1;
 		}
 
 		/* Special case for EXIF :-( */
@@ -1153,6 +1164,18 @@ class Album {
 
 	function setCreateSubAlbum($uid, $bool) {
 		$this->setPerm("canCreateSubAlbum", $uid, $bool);
+	}
+
+	// ------------- 
+	function canViewFullImages($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+		return $this->getPerm("canViewFullImages", $uid);
+	}
+
+	function setViewFullImages($uid, $bool) {
+		$this->setPerm("canViewFullImages", $uid, $bool);
 	}
 
 	// ------------- 

@@ -35,6 +35,12 @@ if (!$gallery->user->canReadAlbum($gallery->album)) {
 	return;
 }
 
+if ($full && !$gallery->user->canViewFullImages($gallery->album)) {
+    header("Location: " . makeAlbumUrl($gallery->session->albumName,
+				       $id));
+    return;
+}
+
 if ($id) {
 	$index = $gallery->album->getPhotoIndex($id);
 	if ($index == -1) {
@@ -389,12 +395,11 @@ echo("</td><td>");
 echo "<center>";
 
 $photoTag = $gallery->album->getPhotoTag($index, $full);
-
 if (!$gallery->album->isMovie($id)) {
 	if ($gallery->album->isResized($index) && !$do_fullOnly) { 
 		if ($full) { 
 			echo "<a href=" . makeAlbumUrl($gallery->session->albumName, $id) . ">";
-	 	} else {
+	 	} else if ($gallery->user->canViewFullImages($gallery->album)) {
 			echo "<a href=" . makeAlbumUrl($gallery->session->albumName, $id, array("full" => 1)) . ">";
 		}
 		$openAnchor = 1;

@@ -84,6 +84,14 @@ if (isset($allUid) && strchr($submit_createSub, ">")) {
 	$changed++;
 }
 
+if (isset($allUid) && strchr($submit_viewFullImages, ">")) {
+	$gallery->album->setViewFullImages($allUid, 1);
+	$changed++;
+} else if (isset($viewFullImagesUid) && strchr($submit_viewFullImages, "<")) {
+	$gallery->album->setViewFullImages($viewFullImagesUid, 0);
+	$changed++;
+}
+
 if (!strcmp($submit, "Save") && $ownerUid) {
 	$gallery->album->setOwner($ownerUid);
 	$changed++;
@@ -104,6 +112,7 @@ $uAdd = $gallery->album->getPermUids("canAddTo");
 $uWrite = $gallery->album->getPermUids("canWrite");
 $uDelete = $gallery->album->getPermUids("canDeleteFrom");
 $uCreateSub = $gallery->album->getPermUids("canCreateSubAlbum");
+$uViewFullImages = $gallery->album->getPermUids("canViewFullImages");
 
 foreach ($gallery->userDB->getUidList() as $uid) {
 	$tmpUser = $gallery->userDB->getUserByUid($uid);
@@ -119,6 +128,7 @@ asort($uText);
 asort($uWrite);
 asort($uDelete);
 asort($uCreateSub);
+asort($uViewFullImages);
 asort($uAdd);
 asort($uAll);
 
@@ -127,6 +137,7 @@ correctPseudoUsers($uText, $ownerUid);
 correctPseudoUsers($uWrite, $ownerUid);
 correctPseudoUsers($uDelete, $ownerUid);
 correctPseudoUsers($uCreateSub, $ownerUid);
+correctPseudoUsers($uViewFullImages, $ownerUid);
 correctPseudoUsers($uAdd, $ownerUid);
 
 ?>
@@ -246,6 +257,21 @@ Owner: <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
      </td>
      <td>
       <?php echo drawSelect("createSubUid", $uCreateSub, $createSubUid, 3); ?>
+     </td>
+    </tr>
+
+    <tr>
+     <td colspan=2>
+      Users who can view full (original) images.
+     </td>
+    </tr>
+    <tr>
+     <td>   
+           <input type=submit name="submit_viewFullImages" value="-->">
+      <br> <input type=submit name="submit_viewFullImages" value="<--">
+     </td>
+     <td>
+      <?php echo drawSelect("viewFullImagesUid", $uViewFullImages, $viewFullImagesUid, 3); ?>
      </td>
     </tr>
 

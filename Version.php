@@ -40,7 +40,7 @@ if (!$gallery) {
 
 $gallery->version = "1.3.2-cvs-b9";
 $gallery->config_version = 31;
-$gallery->album_version = 4;
+$gallery->album_version = 5;
 $gallery->remote_protocol_version = 1;
 $gallery->url = "http://gallery.sourceforge.net";
 
