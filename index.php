@@ -52,7 +52,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 	}
 
 	/*
-	 * As a security precaution, only allow allow one of the following files to be included.
+	 * As a security precaution, only allow one of the following files to be included.
 	 * If you want Gallery to allow you to include other files (such as the random photo block)
 	 * then you need to add the name of the file including any relevant path components to this
 	 * array.
