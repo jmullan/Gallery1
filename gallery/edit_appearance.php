@@ -156,10 +156,13 @@ if (isset($save)) {
 			'KOI8-R'
 	);
 
-	if (function_exists('version_compare') && 
-		( version_compare(phpversion(), "4.1.0") >=0 && in_array($gallery->charset, $supportedCharsets) ) || 
-		( version_compare(phpversion(), "4.3.2") >=0 && in_array($gallery->charset, $supportedCharsetsNewerPHP) ) ) {
-		$album_title=htmlentities($gallery->album->fields["title"],ENT_COMPAT, $gallery->charset);
+	if (function_exists('version_compare')) {
+		if ( in_array($gallery->charset, $supportedCharsets) || // PHP >=4.1.0, but < 4.3.2
+		   ( version_compare(phpversion(), "4.3.2") >=0 && in_array($gallery->charset, $supportedCharsetsNewerPHP) ) ) {
+			$album_title=htmlentities($gallery->album->fields["title"],ENT_COMPAT, $gallery->charset);
+		} else {
+			$album_title=htmlentities($gallery->album->fields["title"]);
+		}
 	}
 	else {
 		$album_title=htmlentities($gallery->album->fields["title"]);
