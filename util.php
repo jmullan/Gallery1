@@ -2732,7 +2732,7 @@ function available_skins($description_only=false) {
 			$subdir="$dir/$file/css";
 			$skininc="$dir/$file/style.def";
 		       	$name="";
-		       	$description="";
+			$description="";
 			$skincss="$subdir/embedded_style.css";
 			if (fs_is_dir($subdir) && fs_file_exists($skincss)) {
 				if (fs_file_exists($skininc)) {
@@ -2754,7 +2754,19 @@ function available_skins($description_only=false) {
 							   $screenshot, 1, false,
 							   500, 800);
 				}
-			       	$descriptions.="\n<dt>$name</dt><dd>$description</dd>";
+
+				$descriptions.="\n<dt style=\"margin-top:5px;\">$name";
+				if (!isset ($version)) {
+					$version= _("unknown");
+				}
+				if (!isset($last_update)) {
+					$last_update=_("unknown");
+				}
+				$descriptions .= '<span style="margin-left:10px; font-size:x-small">';
+				$descriptions .= _("Version") .": $version";
+				$descriptions .= "&nbsp;&nbsp;&nbsp;";
+				$descriptions .= _("Last Update") . ": $last_update</span></dt>";
+				$descriptions .= "<dd style=\"font-weight:bold; background-color:white;\">$description<br></dd>";
 			}
 		}
 	}
