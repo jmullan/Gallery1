@@ -61,7 +61,7 @@ function fs_is_file($filename) {
 }
 
 function fs_opendir($path) {
-	$filename = fs_import_filename($filename, 0);
+	$path = fs_import_filename($path, 0);
 	return opendir($path);
 }
 
