@@ -517,7 +517,7 @@ $constants =  array_merge(
 		"type" => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
 		"optional" => 1, 
 		"desc" => _("These languages will be available as user choices in a pulldown menu or national flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."), 
-		"multiple_choices" => array_merge(gallery_languages(), array('addon' => insertFormJSLinks("avalable_lang[]"))),
+		"multiple_choices" => array_merge(gallery_languages(), array('addon' => insertFormJSLinks("available_lang[]"))),
 		"value" => array_keys(gallery_languages()),
 		"enabled" => $elawisyl
 	),
