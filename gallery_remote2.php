@@ -56,7 +56,7 @@ header("Content-type: text/plain");
  * Gallery remote protocol version 2.3
  */
 $GR_VER['MAJ'] = 2;
-$GR_VER['MIN'] = 4;
+$GR_VER['MIN'] = 5;
 
 
 /*
@@ -373,6 +373,13 @@ if (!strcmp($cmd, "login")) {
 	// This is NOT complete, has not been tested and should NOT be used
 	if($gallery->user->canWriteToAlbum($gallery->album)) {
 		if(isset($set_destalbumName)) {
+			if($set_destalbumName == $gallery->session->albumName) {
+
+				$gallery->album->movePhoto($index,$newIndex-1);
+				$gallery->album->save();
+				$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
+				$response->setProperty( 'status_text', 'Change image index successful.' );
+			}
 			$albumDB = new AlbumDB(FALSE);
 			$postAlbum = $albumDB->getAlbumbyName($set_destalbumName);
 			if ($gallery->album->fields['name'] != $postAlbum->fields['name']) { //if not moving to same album
