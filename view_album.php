@@ -170,7 +170,9 @@ if ($numPhotos) {
 					$album->getThumbnailTag($i) .
 					"</a>");
 			} else {
-				echo("<a href=$albumName/$i>" . 
+				echo("<a href=$albumName/" .
+					$album->getPhotoId($i) .
+					">" .
 					$album->getThumbnailTag($i) .
 					"</a>");
 			}
