@@ -1113,7 +1113,7 @@ function printChildren($albumName,$depth=0) {
 				    $val3 = "";
 				}
 				if ($depth==0 && !$printedHeader++) {
-					echo "<strong>Child albums:</strong>";
+					echo "<strong>Sub-albums:</strong>";
 				}
 				echo "<div style=\"margin: 0px 0px 0px 20px\">";
 				echo "<span class=fineprint>";
