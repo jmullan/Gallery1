@@ -96,7 +96,7 @@ if (!isset($mode) || !isset($modes[$mode])) {
 foreach ($modes as $m => $mt) {
 	$url = makeGalleryUrl('add_photos.php', array('mode' => $m, 'type' => 'popup'));
 	if ($m == $mode) {
-		echo "\t\t<li><a href=\"$url\">$mt</a></li>\n";
+		echo "\t\t<li><a href=\"$url\" class=\"active\">$mt</a></li>\n";
 	} else {
 		echo "\t\t<li><a href=\"$url\">$mt</a></li>\n";
 	}
