@@ -583,9 +583,6 @@ function rotate_image($src, $dest, $target, $type) {
 			    $im_cmd = '';
 			}
 			
-		  	
-			$src = fs_import_filename($src);
-			$out = fs_import_filename($out);
 			$err = exec_wrapper(ImCmd('convert', "$im_cmd $srcFile $outFile"));
 			break;
 		default:
@@ -628,11 +625,11 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 				fromPnmCmd($out));
 		break;
 	case "ImageMagick":
-		$psrc = fs_import_filename($src);
-		$pout = fs_import_filename($out);
+		$srcFile = fs_import_filename($src);
+		$outFile = fs_import_filename($out);
 		$err = exec_wrapper(ImCmd("convert", "-crop " .
 				$width ."x". $height ."+". $x ."+". $y .
-				" $psrc $pout"));
+				" $srcFile $outFile"));
 		break;
 	default:
 		if (isDebugging())
@@ -2430,6 +2427,8 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 	if ($target === 'off') {
 		$target = '';
 	}
+	$srcFile = fs_import_filename($src);
+	$outFile = fs_import_filename($out);
 	switch($gallery->app->graphics)	{
 		case "NetPBM":
 			$err = exec_wrapper(toPnmCmd($src) .
@@ -2441,23 +2440,20 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 			if ($keepProfiles && eregi('\.jpe?g$', $src)) {
 				if (isset($gallery->app->use_exif)) {
 					exec_wrapper(fs_import_filename($gallery->app->use_exif, 1) . ' -te '
-						. fs_import_filename($src, 1) . ' '
-						. fs_import_filename($out, 1));
+						. $srcFile . ' ' . $outFile);
 				} else {
 					processingMsg(_('Unable to preserve EXIF data (jhead not installed)') . "\n");
 				}
 			}
 			break;
 		case "ImageMagick":
-			$src = fs_import_filename($src);
-			$out = fs_import_filename($out);
 			/* Preserve comment, EXIF data if a JPEG if $keepProfiles is set. */
 			$err = exec_wrapper(ImCmd('convert', "-quality $quality "
 					. ($target ? "-size ${target}x${target} " : '')
 					. ($keepProfiles ? ' ' : ' +profile \'*\' ')					
-					. $src
-					. ($target ? " -geometry ${target}x${target} " : '')
-					. $out));
+					. $srcFile
+					. ($target ? " -geometry ${target}x${target} " : ' ')
+					. $outFile));
 			break;
 		default:
 			if (isDebugging())

@@ -399,7 +399,7 @@ class AlbumItem {
 		return $im->isResized();
 	}
 
-	function rotate($dir, $direction, $thumb_size) {
+	function rotate($dir, $direction, $thumb_size, $highlight_size) {
 		global $gallery;
 
 		$name = $this->image->name;
@@ -421,11 +421,11 @@ class AlbumItem {
 
 		/* Reset the thumbnail to the default before regenerating thumb */
 		$this->image->setThumbRectangle(0, 0, 0, 0);
-		$this->makeThumbnail($dir, $thumb_size);
+		$this->makeThumbnail($dir, $thumb_size, $highlight_size);
 		return 1;
 	}
 
-	function setPhoto($dir, $name, $tag, $thumb_size, $pathToThumb="") {
+	function setPhoto($dir, $name, $tag, $thumb_size, $highlight_size, $pathToThumb="") {
 		global $gallery;
 
 		/*
@@ -440,11 +440,11 @@ class AlbumItem {
 		$this->image = new Image;
 		$this->image->setFile($dir, $name, $tag);
 
-		$ret = $this->makeThumbnail($dir, $thumb_size, $pathToThumb);
+		$ret = $this->makeThumbnail($dir, $thumb_size, $highlight_size, $pathToThumb);
 		return $ret;
 	}
 
-	function makeThumbnail($dir, $thumb_size, $pathToThumb="")
+	function makeThumbnail($dir, $thumb_size, $highlight_size, $pathToThumb="")
 	{
 		global $gallery;
 		$name = $this->image->name;
@@ -488,7 +488,7 @@ class AlbumItem {
 
 				/* if this is the highlight, remake it */
 				if ($this->highlight) {
-					$this->setHighlight($dir, 1);
+					$this->setHighlight($dir, 1, $highlight_size);
 				}
 			} else {
 				return _("Unable to make thumbnail") ." ($ret)";

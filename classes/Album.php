@@ -574,10 +574,8 @@ class Album {
 		return 1;
 	}
 
-	function setHighlight($index) {
+	function getHighlightSize() {
 		global $gallery;
-		$this->updateSerial = 1;
-
 		$parent = $this->fields['parentAlbumName'];
 		if ($parent) {
 			$pAlbum = new Album();
@@ -586,10 +584,15 @@ class Album {
 		} else {
 			$size = $gallery->app->highlight_size;
 		}
+		return $size;
+	}
+
+	function setHighlight($index) {
+		$this->updateSerial = 1;
 
 		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			$photo = &$this->getPhoto($i);
-			$photo->setHighlight($this->getAlbumDir(), $i == $index, $size);
+			$photo->setHighlight($this->getAlbumDir(), $i == $index, $this->getHighlightSize());
 		}
 	}
 
@@ -896,7 +899,7 @@ class Album {
 
 		/* Add the photo to the photo list */
 		$item = new AlbumItem();
-		$err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $pathToThumb);
+		$err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $this->getHighlightSize(), $pathToThumb);
 		if ($err) {
 			if (fs_file_exists($newFile)) {
 				fs_unlink($newFile);
@@ -1340,21 +1343,25 @@ class Album {
 	function rotatePhoto($index, $direction) {
 		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);
-		$retval = $photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"]);
+		$retval = $photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"], $this->getHighlightSize());
 		if (!$retval) {
 			return $retval;
-		}
-
-		/* Are we rotating the highlight?  If so, rebuild the highlight. */
-		if ($photo->isHighlight()) {
-			$this->setHighlight($index);
 		}
 	}
 
 	function makeThumbnail($index) {
 		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);
-		$photo->makeThumbnail($this->getAlbumDir(), $this->fields["thumb_size"]);
+		if (!$photo->isAlbumName) {
+			$photo->makeThumbnail($this->getAlbumDir(), $this->fields["thumb_size"], $this->getHighlightSize());
+		} else {
+			// Reselect highlight of subalbum..
+			$album = $this->getNestedAlbum($index);
+			$i = $album->getHighlight();
+			if (isset($i)) {
+				$album->setHighlight($i);
+			}
+		}
 	}
 
 	function movePhoto($index, $newIndex) {

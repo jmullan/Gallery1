@@ -51,20 +51,10 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 				echo ("<br> " . sprintf(_("Rebuilding %d thumbnails..."), $np));
 				my_flush();
 				for ($i = 1; $i <= $np; $i++) {
-					$isAlbumName = $gallery->album->isAlbumName($i);
-					if (!$isAlbumName) { // process the images
-						echo("<br> ". sprintf(_("Processing image %d..."), $i));
-						my_flush();
-						set_time_limit($gallery->app->timeLimit);
-						$gallery->album->makeThumbnail($i);
-					} else { 
-						// we just skip albums... we could have
-						// recursively created new thumbnails in each
-						// album that we ran across, but skipping them
-						// might be preferred.
-						echo("<br> " . sprintf(_("Skipping album %d..."), $i));
-						my_flush();
-					}
+					echo("<br> ". sprintf(_("Processing image %d..."), $i));
+					my_flush();
+					set_time_limit($gallery->app->timeLimit);
+					$gallery->album->makeThumbnail($i);
 				}
 			} else {
 				echo ("<br> " . _("Rebuilding 1 thumbnail..."));

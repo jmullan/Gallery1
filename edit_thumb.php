@@ -58,8 +58,8 @@ if (isset($action)) {
 		if ($gallery->session->albumName && isset($index)) { 
 			$photo = $gallery->album->getPhoto($index);
 			$photo->image->setThumbRectangle($crop_x, $crop_y, $crop_w, $crop_h);
-			$photo->makeThumbnail($gallery->album->getAlbumDir(), $gallery->album->fields["thumb_size"]);
 			$gallery->album->setPhoto($photo, $index);
+			$gallery->album->makeThumbnail($index);
 			$gallery->album->save(array(i18n("Thumbnail modified for %s"), 
 						makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index))));
 		}	
