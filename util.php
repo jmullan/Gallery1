@@ -3334,7 +3334,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 	}
 
 	foreach ($tables as $caption => $fields) {
-		echo "\n". '<table border="0" align="center" class="popup">';
+		echo "\n". '<table border="0" align="center">';
 		echo "\n". '<tr><th colspan="3" align="center">'. $caption .'</th></tr>';
 
 	        $i=0;
