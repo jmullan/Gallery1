@@ -72,8 +72,9 @@ $constants = array(
 			"have NetPBM, you won't be able to support GIF images.",
 		"value" => locateDir("anytopnm")
 	),
-	"thumb_size" => array(
-		"desc" => "The target size (in pixels) of thumbnails",
+	"highlight_size" => array(
+		"desc" => "The target size (in pixels) of thumbnails " .
+			"shown in the gallery page (highlight images)",
 		"value" => 200
 	),
 	"zipinfo" => array(
@@ -130,6 +131,11 @@ $defaults = array(
 	"rows" => array(
 		"desc" => "Number of rows",
 		"value" => 3
+	),
+	"thumb_size" => array(
+		"desc" => "The target size (in pixels) of thumbnails " .
+			"shown in the albums",
+		"value" => 150 
 	),
 	"imageborders" => array(
 		"desc" => "Show image borders",
