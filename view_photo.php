@@ -31,6 +31,10 @@ if ($prev <= 0) {
         $first = 1;
 }
 
+if ($index > $numPhotos) {
+	$index = $numPhotos;
+}
+
 /*
  * We might be prev/next navigating using this page
  *  so recalculate the 'page' variable
@@ -189,6 +193,7 @@ if (!$album->isMovie($index) && isCorrectPassword($edit)) {
 <tr>
 <td colspan=3 align=left>
 Admin: <a href=<?= popup("../resize_photo.php?index=$index") ?>>[resize photo]</a>
+<a href=<?= popup("../delete_photo.php?index=$index") ?>>[delete photo]</a>
 <br>
 </td>
 </tr>
