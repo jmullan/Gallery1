@@ -225,10 +225,16 @@ function getGalleryStyleSheetName() {
 	global $app;
         $sheetname = "css/gallery_style.css";
 
-	if (file_exists($sheetname)) {
-		return ("$app->photoAlbumURL/$sheetname");
+	if ($app) {
+		$base = $app->photoAlbumURL;
 	} else {
-		return ("$app->photoAlbumURL/$sheetname.default");
+		$base = ".";
+	}
+
+	if (file_exists($sheetname)) {
+		return ("$base/$sheetname");
+	} else {
+		return ("$base/$sheetname.default");
 	}
 
 	return 1;
@@ -339,8 +345,13 @@ function galleryInit() {
 function gallerySanityCheck() {
 	global $GALLERY_INIT, $app, $gallery;
 
+	if (!file_exists("config.php") || !$app) {
+		include("errors/unconfigured.php");
+		exit;
+	}
+
 	if (file_exists("setup") && is_readable("setup")) {
-		include("errors/configmode.php");
+		header("Location: setup/index.php");
 		exit;
 	}
 
@@ -348,10 +359,4 @@ function gallerySanityCheck() {
 		include("errors/reconfigure.php");
 		exit;
 	}
-
-	if ($GALLERY_INIT != 1) {
-		include("errors/needinit.php");
-		exit;
-	}
 }
-
