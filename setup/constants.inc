@@ -53,7 +53,11 @@ foreach ($constants as $key => $val) {
 
 		}
 		if (get_magic_quotes_gpc()) {
-			$val["value"] = stripslashes($val["value"]);
+			if (is_array($val["value"])) { 
+				$val["value"]=array_map(stripslashes, $val["value"]);
+			} else {
+				$val["value"] = stripslashes($val["value"]);
+			}
 	    }
 	}
 

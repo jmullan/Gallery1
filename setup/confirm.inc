@@ -80,7 +80,11 @@ foreach ($constants as $key => $val) {
 	}
 
         if (get_magic_quotes_gpc()) {
-	    $real = stripslashes($real);
+		if (is_array($real)) {
+			$real=array_map(stripslashes, $real);
+		} else {
+			$real = stripslashes($real);
+		}
 	}
 
 	// Protect quote characters to avoid screwing up HTML forms
@@ -299,7 +303,11 @@ foreach ($defaults as $key => $val) {
 		$error = 1;
 	} else {
 	        if (get_magic_quotes_gpc()) {
-		    $$key = stripslashes($$key);
+			if (is_array($$key)) {
+				$$key=array_map(stripslashes, $$key);
+			} else {
+				$$key = stripslashes($$key);
+			}
 		}
 		// Protect quote characters to avoid screwing up HTML forms
 		$$key = str_replace('"', '&quot;', $$key);
