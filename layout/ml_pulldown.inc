@@ -25,7 +25,7 @@
 <?php 
 global $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery->app->available_lang) > 1) {
+if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && !empty($gallery->app->available_lang)) {
     
 if($gallery->app->show_flags !='yes') {?>
 <script language="JavaScript" type="text/javascript">

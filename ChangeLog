@@ -1,3 +1,15 @@
+2004-10-18  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b238
+
+	* Change: Extra security for sessions.
+	  When the initial session is created, we store the REMOTE_ADDR
+	  taken from the server, on each load, we compare the stored address
+	  against the information in the current request.  If the address
+	  has changed, we die with an attempted security breach.  This prevents
+	  hijacking of sessions simply by knowing/sniffing the PHPSESSID from
+	  cookies.
+
+	* Change: Use !empty() instead of "sizeof() > 1" in ml_pulldown
+
 2004-10-18  Jens A. Tkotz <jens@peino.de>  1.4.5-cvs-b237
 
 	* Fix: Modified Skins to look better in rtl languages. Fixes partly bug #869641.

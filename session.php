@@ -66,6 +66,10 @@ if (empty($gallery->app->sessionVar)) {
 if (isset($_SESSION[$gSessionVar])) {
 	/* Get a simple reference to the session container (for convenience) */
 	$gallery->session =& $_SESSION[$gSessionVar];
+
+	if ($gallery->session->remoteHost != $_SERVER['REMOTE_ADDR']) {
+		exit("Attempted security breach");
+	}
 } else {
 	/* Create a new session container */
 	if (!empty($useStdClass)) {
@@ -80,6 +84,7 @@ if (isset($_SESSION[$gSessionVar])) {
 	/* Tag this session with the gallery version */
 	$gallery->session->version = $gallery->version;
 	$gallery->session->sessionStart = time();
+	$gallery->session->remoteHost = $_SERVER['REMOTE_ADDR'];
 }
 
 update_session_var("albumName");
