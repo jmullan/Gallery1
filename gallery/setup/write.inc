@@ -98,12 +98,10 @@ $admin->save();
 <?php echo configure("secure") ?>
 </center>
 <br>
-<?php echo _("to make your Gallery secure!") ?> <font size=+1>
+<?php echo _("to make your Gallery secure!") ?>  <font size=+1>
 <?php echo _("Gallery won't run if it is not in secure mode") ?></font>.
-<br>
-<?php echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.") ?>
-<br>
-<?php echo _("it will save your data so you won't have to enter it all again!") ?>
+<?php echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.") ?>  
+<?php echo _("It will save your data so you won't have to enter it all again!") ?>
 
 <p>
 <center>

@@ -288,7 +288,7 @@ function check_graphics($location="", $graphtool = "")
 
 		if (!empty($d) && inOpenBasedir($d)) {
 		    if (!fs_is_executable("$d/$bin")) {
-			$missing[$bin] = "<i>$bin</i> ". _("is not executable") ." !";
+			$missing[$bin] = "<i>$bin</i> ". _("is not executable") ."!";
 		    }
 		}
 	}
@@ -341,7 +341,7 @@ function check_graphics_im($location="", $graphtool="")
 
 		if (!empty($d) && inOpenBasedir($d)) {
 		    if (!fs_is_executable("$d/$bin")) {
-			$missing[$bin] = "<i>$bin</i> ". _("is not executable"). " !";
+			$missing[$bin] = "<i>$bin</i> ". _("is not executable"). "!";
 		    }
 		}
 	}
