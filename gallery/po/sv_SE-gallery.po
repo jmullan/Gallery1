@@ -1,14 +1,13 @@
 # $Id$
-# SWEDISH 1.3.3 Gallery Translation
-# Copyright (C) 2002
+# Copyright (C) 2002 2003
 # This file is distributed under the same license as the PACKAGE package.
 # Christian Wallin <crille@swipnet.se>, 2002.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-09-05 14:53+0200\n"
-"PO-Revision-Date: 2003-09-04 18:41+0100\n"
+"POT-Creation-Date: 2003-09-08 23:25+0200\n"
+"PO-Revision-Date: 2003-09-08 22:38+0100\n"
 "Last-Translator: Mikael Gustafsson <mikael@escacena.se>\n"
 "Language-Team: SWEDISH <crille@swipnet.se>\n"
 "MIME-Version: 1.0\n"
@@ -735,7 +734,7 @@ msgstr "Byt storlek automatiskt"
 
 #: ../edit_appearance.php:150
 msgid "Auto-Resize file size kilobytes (0 or blank for no size restriction)"
-msgstr ""
+msgstr "Filstorlek på de filer som automatisk storleksändring skapar (0 eller blankt för ingen begränsning)"
 
 #: ../edit_appearance.php:154
 msgid "Show <i>Return to</i> link"
@@ -881,7 +880,7 @@ msgid "Gallery: Configuration Mode"
 msgstr "Gallery: Konfigurationsläge"
 
 #: ../errors/configmode.php:26
-#, fuzzy, php-format
+#, php-format
 msgid "To configure gallery, %sStart the configuration wizard%s"
 msgstr "För att konfigurera Gallery, %sStarta konfigurationsguiden%s"
 
@@ -1527,19 +1526,16 @@ msgstr "Ändrar storlek på foton"
 
 # kontrollera i GUI om detta fungerar.
 #: ../resize_photo.php:79
-#, fuzzy
 msgid "This will resize your photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size. "
 msgstr "Detta kommer att ändra storleken på dina foton så att den längsta sidan av fotot är lika med den angivna storleken nedan."
 
 #: ../resize_photo.php:81
-#, fuzzy
 msgid "What is the target size for all the photos in this album?"
-msgstr "alla fotografier i detta album"
+msgstr "Vilken storlek ska alla foton i detta album ha?"
 
 #: ../resize_photo.php:81
-#, fuzzy
 msgid "What is the target size for this photo?"
-msgstr "Vilken storlek önskar du på"
+msgstr "Vilken storlek ska detta foto ha?"
 
 #: ../resize_photo.php:85
 msgid "Target filesize"
@@ -1612,9 +1608,9 @@ msgid "Could not open url: %s"
 msgstr "Kunde inte öppna URL: %s"
 
 #: ../save_photos.php:165
-#, fuzzy, php-format
+#, php-format
 msgid "Parsing %s for images..."
-msgstr "för bilder..."
+msgstr "Analyserar %s för bilder..."
 
 #: ../save_photos.php:225
 #, php-format
@@ -1893,9 +1889,9 @@ msgid "Error! %s"
 msgstr "Fel! %s"
 
 #: ../setup/check_netpbm.php:221 ../setup/check_imagemagick.php:195
-#, fuzzy, php-format
+#, php-format
 msgid "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."
-msgstr "Om du har felmeddelanden ovan beträffande problem med att läsa eller skriva till %s rör det sig troligtvis om ett behörighets- eller konfigutrationsproblem på ditt system. Om det nämner %s beror det på att ditt system är konfigurerat med %s påslaget.then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."
+msgstr "Om du har felmeddelanden ovan beträffande problem med att läsa eller skriva till %s rör det sig troligtvis om ett behörighets- eller konfigutrationsproblem på ditt system. Om det nämner %s beror det på att ditt system är konfigurerat med %s påslaget."
 
 #: ../setup/check_netpbm.php:227 ../setup/check_imagemagick.php:201
 #, php-format
@@ -1993,12 +1989,12 @@ msgstr "Apache lyder inte din .htaccess fil. Prova att skriva in detta i din web
 #: ../setup/config_data.inc:88
 #, php-format
 msgid "Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behaviour if you put ' (single-quote), &quot; (double quote) or &#92; (backslash) characters in titles or captions in the gallery."
-msgstr ""
+msgstr "Kontrollera att %smagic quotes%s är aktiverat på din PHP server. Om de är på kan du märka konstiga effekter om du skriver ' (single-quote), &quot; (double quote) eller &#92; (backslash) tecken i dina titlar eller beskrivningar i galleriet."
 
 #: ../setup/config_data.inc:92
 #, php-format
 msgid "Magic quotes are on.  Your webserver owner can turn them off by putting %s in your php.ini file"
-msgstr ""
+msgstr "Magic quotes är på. Din webbservers ägare kan slå av dom genom att skriva in %s i din php.ini fil"
 
 #: ../setup/config_data.inc:96
 msgid "Check to see if your webserver is compiled with <b>mod_rewrite</b>.  Mod_rewrite allows the Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."
@@ -2006,19 +2002,19 @@ msgstr "Kontrollera ifall din webbserver är kompilerad med <b>mod_rewrite</b> Mo
 
 #: ../setup/config_data.inc:98
 msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on I'd suggest that you make sure that your <b>.htaccess</b> file works and then if it still doesn't work you may need to reconfigure and rebuild Apache with this flag:"
-msgstr ""
+msgstr "Antingen är <b>mod_rewrite</b> inte installerat eller så är din <b>.htaccess</b> inte aktiv (se ovan). Hursomhelst så måste vi använda oss utav långa URL:er i ditt galleri. Om du vill använda korta URL:er förslår vi att du ser till att din <b>.htaccess</b> fil fungerar och om inte det fungerar att konfigurera och kompliera om Apache med denna flagga:"
 
 #: ../setup/config_data.inc:104
 msgid "Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc).  You need to have NetPBM <b>or</b> ImageMagick installed."
-msgstr ""
+msgstr "Kontroller att NetPBM är installerat så att Gallery kan manipulera bilder (rotera, ändra storlek, skapa ikoner, etc). Du behever ha antingen NetPBM eller ImageMagick installerat."
 
 # path of the webserver
 # sökvägen UTAV webbservern
 # ??? /Crille
+# i sökvägen för webbserverns användare - tror jag att det ska översättas. / Micke
 #: ../setup/config_data.inc:106
-#, fuzzy
 msgid "I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK --  you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices:"
-msgstr "Jag kan inte hitta NetPBM. Om det är installerat men inte i sökvägen utav webbservers användare så är det OK -- du kan specificera sökvägen till NetPBM för hand på nästa sida. Om det inte är installerat har du två val:"
+msgstr "Jag kan inte hitta NetPBM. Om det är installerat men inte finns i sökvägen för webbservers användare så är det OK -- du kan specificera sökvägen till NetPBM för hand på nästa sida. Om det inte är installerat har du två val:"
 
 #: ../setup/config_data.inc:111
 msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK -- that just means you'll have to specify the path to NetPBM by hand on the following page"
@@ -2032,9 +2028,8 @@ msgstr "Kontrollera om ImageMagick är installerat så att Gallery kan manipulera 
 # sökvägen UTAV webbservern
 # ??? /Crille
 #: ../setup/config_data.inc:119
-#, fuzzy
 msgid "I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  "
-msgstr "Jag kan inte hitta ImageMagick. Om det är installerat men inte i sökvägen utav webbservers användare så är det OK -- du kan specificera sökvägen till ImageMagick för hand på nästa sida. Om det inte är installerat så måste du göra det"
+msgstr "Jag kan inte hitta ImageMagick. Om det är installerat men inte finns i sökvägen för webbservers användare så är det OK -- du kan specificera sökvägen till ImageMagick för hand på nästa sida. Om det inte är installerat så måste du göra det"
 
 # header - huvud ? /Crille
 #: ../setup/config_data.inc:125
@@ -2044,16 +2039,16 @@ msgstr "Kontrollera att jhead är installerat så att Gallery kan undersöka EXIF h
 #: ../setup/config_data.inc:127
 #, php-format
 msgid "I can't find jhead.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jhead by hand on the following page.  If it's not installed, you can install it yourself.  jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at %sthe jhead homepage%s."
-msgstr ""
+msgstr "Jag kan inte hitta jhead. Om det är installerat men inte i din webbservrs sökväg är det OK -- du kan specificera sökvägen till jehad manueltt på följande sida. Om det inte är installerat så kan du installera det själv. jhead är en gratis programvara för att extrahera EXIF data. Binärer och källkod kan hittas på %sthe jhead homepage%s."
 
 #: ../setup/config_data.inc:134
 msgid "Check to see if jpegtran is installed so that Gallery can perform lossless rotations (only works on JPEG images)"
-msgstr ""
+msgstr "Kontrollera att jpegtran är installerat så att Gallery kan åstadkomma roteringar utan att försämra bilden (funkar endast på JPEG bilder)"
 
 #: ../setup/config_data.inc:136
 #, php-format
 msgid "I can't find jpegtran.  If it's installed and not in the path of the webserver user that's OK -- you can specify the path to jpegtran by hand on the following page.  If it's not installed, you can install it yourself.  jpegtran is a freely distributable tool distributed by the Independent JPEG Group as part of libjpeg.  Source may be found at %sthe IJG homepage%s.  Binaries may be found at %sthe JPEG club website%s or in the libjpeg package of Linux distributions."
-msgstr ""
+msgstr "Jag kan inte hitta jpegtran. Om det är installerat men inte i din webbservers sökväg så är det OK .. du kan specificera sökvägen till jpegtran manuellt på följande sida. Om det inte är installerat kan du göra det själv. jpegtran är en gratis programvara som distribueras utav Independent JPEG Group som en del av libjpeg. Källkod kan hittas på %sthe IJG homepage%s. Binärer kan hittas på  %sthe JPEG club website%s eller i libjepg paketet i Linux distributioner."
 
 #: ../setup/config_data.inc:143
 msgid "Check to see if PHP is compiled with gettext for fast translations."
@@ -2062,7 +2057,7 @@ msgstr "Kontrollera så att PHP är kompilerat med gettext för snabba översättning
 #: ../setup/config_data.inc:145
 #, php-format
 msgid "Your PHP does not have gettext support.  To include gettext support, you need to recompile PHP.  For more information see %s.  However, multilanguage support is still available in Gallery without gettext, but the pages may take slightly longer to load."
-msgstr ""
+msgstr "Ditt PHP har inte gettext support. För att inkludera gettext support behöver du kompilera om PHP. För mer information se %s. Hursom, flerspråksstöd finns fortfarande tillgängligt i Gallery utan gettext, men sidorna tar lite längre att ladda."
 
 #: ../setup/config_data.inc:150
 msgid "Check to see what languages are available"
@@ -2091,7 +2086,7 @@ msgstr "OBLIGATORISK"
 #: ../setup/config_data.inc:179
 #, php-format
 msgid "The password for the %s account.  Unfortunately, you're required to re-enter this every time you reconfigure Gallery.  We'll fix this in a future release!"
-msgstr ""
+msgstr "Lösenrodet för %s kontot. Tyvärr måste du skriva in detta varje gång du konfigurerar Gallery. Vi kommer lösa detta i en framtida version utav Gallery!"
 
 #: ../setup/config_data.inc:186
 msgid "Graphics suite to use?"
@@ -2099,7 +2094,7 @@ msgstr "Grafiksystem att använda?"
 
 #: ../setup/config_data.inc:187
 msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
-msgstr ""
+msgstr "Denna inställning talar om för Gallery vilken uppsättning av grafikverktyg du vill använda. Om Gallery säger att båda är OK (på förstasidan utav konfigurationen) så kan du välja vilken som. Annars väljr du den som Gallery fann utan felmeddelanden."
 
 #: ../setup/config_data.inc:193
 msgid "Path to NetPBM"
@@ -2140,7 +2135,7 @@ msgstr "Storlek för albumsymbol"
 
 #: ../setup/config_data.inc:231
 msgid "The target size (in pixels) of thumbnails shown in the gallery page (highlight images)"
-msgstr ""
+msgstr "Målstorleken (i pixlar) för ikoner som visas på Gallerysidan (huvudobjekt)"
 
 # Sista meningen e lite småsvår.
 # "This is optional" - översatte jag med "Denna funktion är valbar" /Crille
@@ -2283,8 +2278,8 @@ msgstr ""
 #: ../setup/config_data.inc:387 ../setup/config_data.inc:393
 #: ../setup/config_data.inc:401 ../setup/config_data.inc:410
 #: ../setup/config_data.inc:416 ../setup/config_data.inc:421
-#: ../setup/config_data.inc:428 ../setup/functions.inc:702
-#: ../setup/functions.inc:743
+#: ../setup/config_data.inc:428 ../setup/functions.inc:701
+#: ../setup/functions.inc:742
 msgid "Advanced"
 msgstr "Avancerad"
 
@@ -2302,7 +2297,7 @@ msgstr "JPEG kvalité"
 
 #: ../setup/config_data.inc:394
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
-msgstr ""
+msgstr "JEPG filformatet vinner storlek genom att försämra kvalitetetn. Gallery kan kontrollera kvaliteten i de JPEG:ar som den producerar när du ändrar storlek, roterar eller skapar ikoner ifrån JEPG bilder. Högkvalitetsbilder har större storlek än lågkvalitetsbilder. Men i många fall finns det en gräns när man genom att öka JPEG kvaliteten gör filstorleken större utan att få nämnvärd ökad kvalietet på bilden. Om du märker att din ikoner och stoleksändrade bilder har större filstorlek än din a original och du inte gillar detta, så kan du åtgärda detta genom att sänka detta värde. <b>Notera</b> att genom att ändra detta värde endast kommer påverka bilder som behandlas i <i>framtiden</i>."
 
 #: ../setup/config_data.inc:401
 msgid "Time Limit"
@@ -2310,7 +2305,7 @@ msgstr "Tidsgräns"
 
 #: ../setup/config_data.inc:402
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
-msgstr ""
+msgstr "Maximalt antal sekunder en specifik operation får ta. Om du märker att får <b>Maximum execution time exceeded</b> felmmeddelanden, så kan du prova att öka detta värde. Tänk på att om du sätter detta för högt kan du få processor som är låsta under en lång tid utan att åstadkomma något. Stanardvärdet är 30 sekunder vilket passar bra i de flesta fall."
 
 #: ../setup/config_data.inc:411
 msgid "Turn debug mode on so that you can diagnose problems?"
@@ -2323,7 +2318,7 @@ msgstr "Använd %s?"
 
 #: ../setup/config_data.inc:417
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>"
-msgstr ""
+msgstr "Gallery använder ett låssytem som kallas flock() för att lägga till skydd mot korrupt data. Detta stöds inte på alla plattfromar. Om du ser fel i stil med <i>Could not acquire lock</i> så sätt detta värde till <i>no</i>"
 
 #: ../setup/config_data.inc:421
 msgid "Status code"
@@ -2331,7 +2326,7 @@ msgstr "Statuskod"
 
 #: ../setup/config_data.inc:422
 msgid "The status code Gallery expects to see after a successful exec() call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
-msgstr ""
+msgstr "Statuskoden som Gallery förväntar sig att se efter en lyckad exec() anrop. Gallery kommer försöka lista ut detta själv så du behöver inte ändra detta värde såvida du inte har problem."
 
 #: ../setup/config_data.inc:428
 msgid "Session variable"
@@ -2339,12 +2334,12 @@ msgstr "Sessions variabel"
 
 #: ../setup/config_data.inc:429
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
-msgstr ""
+msgstr "Detta är sessionvaribeln som används för att innehålla all Gallery sessionsinformation. Ändra detta om det är en konflikt mellan Gallery och en annan PHP applikation på din webbplats."
 
 #: ../setup/config_data.inc:451
 #, php-format
 msgid "Default color of image borders. You can learn about %scolors%s here."
-msgstr ""
+msgstr "Standardfärg för bildkantramar. Du kan lära dig om färger %scolors%s här"
 
 #: ../setup/config_data.inc:462
 msgid "Border width"
@@ -2380,26 +2375,25 @@ msgstr "Antal rader i ett album som standard"
 
 #: ../setup/config_data.inc:488
 msgid "The default target size (in pixels) of album thumbnails."
-msgstr ""
+msgstr "Standardstorlek (i pixlar) för albumikoner"
 
 #: ../setup/config_data.inc:494
 msgid "Resized image size"
 msgstr "Bildstorlek efter ändring"
 
 # Inte så nöjd med denna /Crille
+# Jag översätter 'intermediary ' med 'mellanlagrad'. / Micke
 #: ../setup/config_data.inc:495
-#, fuzzy
 msgid "When large images are added to an album, an intermediary version will automatically be generated at this size"
-msgstr "När stora bilder läggs till ett album, kommer en mindre kopia bli skapad med denna storlek"
+msgstr "När stora bilder läggs till ett album, kommer en mellanlagrad kopia att bli skapad med denna storlek"
 
 #: ../setup/config_data.inc:500
-#, fuzzy
 msgid "Resized images file size"
-msgstr "Storleksändrad bilds filstorlek"
+msgstr "Storleksförändrad bilds filstorlek"
 
 #: ../setup/config_data.inc:501
 msgid "The default target size (in kilobyte) of resized JPEG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
-msgstr ""
+msgstr "Standard storlek (i kilobyte) för storleksändrade JPEG bilder. Om du anger ett värde kan det förslöa bilduppladdningar, men kommer snabba upp sidvisningar speciellt för folk med uppringda förbindelser. Sätt till 0 för ingen standardstorlek."
 
 #: ../setup/config_data.inc:508
 msgid "Fit-to-window"
@@ -2407,7 +2401,7 @@ msgstr "Anpassa för fönstret"
 
 #: ../setup/config_data.inc:509
 msgid "When viewing photos which don't have an intermediary version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke"
-msgstr ""
+msgstr "När du visar foton som inte har en anpassad version, kan Gallery automatiskt anpassa bilden att passa i besökarens webbläsare (med Javascript). Detta funkar eventuellt inte i inbäddade miljöer såsom Nuke"
 
 #: ../setup/config_data.inc:514
 msgid "Visitor size prefs"
@@ -2415,7 +2409,7 @@ msgstr "Storleksinställning för besökare"
 
 #: ../setup/config_data.inc:515
 msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediary size.  This setting only lasts for the visitor's session."
-msgstr ""
+msgstr "Tillåt besökare att välja om de vill se den fulla versionen eller den anpassade versionen av ett foto. Denna inställning varar endast under besökaren session."
 
 #: ../setup/config_data.inc:520
 msgid "Printing Service"
@@ -2423,7 +2417,7 @@ msgstr "Utskrivningsservice"
 
 #: ../setup/config_data.inc:521
 msgid "Allow visitors to print photos directly from the album.  If you choose shutterfly, Gallery will charge an extra 2 cents (US) for every photo printed (a 4x6 print normally costs 49 cents US) and 1.8 cents of that will get donated back to the Gallery project.  This is one great way for you to help support this free software."
-msgstr ""
+msgstr "Tillåt användare att skriva ut foton direkt innifrån ett album. Om du väljer shutterfly kommer Gallery att lägga på 2 cent (US) extra för varje utskrivet foto (ett 4x6 foto kostar 49 censt(US) och 1.8 cents utav det kommer doneras tillbaka till Gallery projektet. Detta är ett utmärkt sätt att stödja denna fria programvara."
 
 #: ../setup/config_data.inc:528
 #, php-format
@@ -2436,7 +2430,7 @@ msgstr "Gallery länk"
 
 #: ../setup/config_data.inc:532
 msgid "Display the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery"
-msgstr ""
+msgstr "Visa Gallerys toppnivålänk innifrån album? Om du stänger av denna funktion, kan inte användaren enkelt navigera utanför ablumet. Detta är endast nädvöndigt när du vill bädda in ett album i en webbplats och inte vill att användaren (enkelt) ska kunna visa de andra albumen i galleriet"
 
 #: ../setup/config_data.inc:537
 msgid "Show Owner"
@@ -2492,7 +2486,7 @@ msgstr "Egna fält"
 
 #: ../setup/config_data.inc:576
 msgid "Custom fields that are available to describe each image.  They should be separated by commas.  Eg. <i>Description, Location, Film Type</i>"
-msgstr ""
+msgstr "Egenvalda fält är tillgängliga för att beskriva varje bild. Fälten ska kommasepareras. T.ex. <i>Beskrivning, Plats, Filmtyp</i>"
 
 #: ../setup/config_data.inc:582
 #, fuzzy
@@ -2508,14 +2502,12 @@ msgid "Photo owner deletion"
 msgstr "Radera fotoägare"
 
 #: ../setup/config_data.inc:590
-#, fuzzy
 msgid "Allow photo owners to delete their own photos?"
-msgstr "Vill du verkligen ta bort detta fotografi?"
+msgstr "Tillåta ägare av foto att ta bort deras egna foton?"
 
 #: ../setup/config_data.inc:596
-#, fuzzy
 msgid "Photo owner display"
-msgstr "Fotoegenskaper"
+msgstr "Visa ägare till fotot"
 
 #: ../setup/config_data.inc:597
 msgid "Display the name of photo owners with the caption?"
@@ -2563,19 +2555,19 @@ msgid "optional"
 msgstr "valbart"
 
 #: ../setup/confirm.inc:163
-#, fuzzy, php-format
+#, php-format
 msgid "%s: <b>%s</b> must be an absolute URL!"
-msgstr "finns, men är inte en katalog!"
+msgstr "%s: <b>%s</b> måste vara en absolut URL!"
 
 #: ../setup/confirm.inc:175
-#, fuzzy, php-format
+#, php-format
 msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
-msgstr "finns, men är inte en katalog!"
+msgstr "%s: <b>%s</b> måste vara en giltig fil (inte en katalog)!"
 
 #: ../setup/confirm.inc:184
-#, fuzzy, php-format
+#, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
-msgstr "finns, men är inte en katalog!"
+msgstr "%s: <b>&quot;%s&quot;</b> måste vara ett positivt värde (nummer >0)"
 
 #: ../setup/confirm.inc:192
 #, php-format
@@ -2829,9 +2821,9 @@ msgid "No languages found."
 msgstr "Inga språk funna."
 
 #: ../setup/functions.inc:484
-#, fuzzy, php-format
+#, php-format
 msgid "Only %d of %d possible languages are available.  If you want the missing languages, download a fresh copy of %s from %s."
-msgstr "Endast den amerikanskengelskaversionen (US English) är tillgänglig. Om du vill ha ett annat språk, ladda ned språkpaket från Gallerys sajt"
+msgstr "Endast %d av %d möjliga språk är tillgängliga. Om du vill ha de saknade språken, ladda ned en ny fräsch kopia av %s från %s."
 
 #: ../setup/functions.inc:490
 #, php-format
@@ -2876,34 +2868,32 @@ msgid "Only the default locale for this machine is available, so date format wil
 msgstr "Endast standard teckenuppsättningen för denna maskin finns, så datumformatet kommer inte ändras för olika språk"
 
 #: ../setup/functions.inc:553
-#, fuzzy
 msgid "Dates in these languages may not be formatted properly, because the corresponding locales are missing:"
-msgstr "Datum i dessa språk kan eventuellt bli felaktigt formaterade, eftersom den överensstämmande teckenuppsättningen inte finns:"
+msgstr "Datum i dessa språk kan eventuellt bli felaktigt formaterade, eftersom det saknas nationella inställningar:"
 
-#: ../setup/functions.inc:702
+#: ../setup/functions.inc:701
 msgid "Locale Selection required"
 msgstr "Välj teckenuppsättning"
 
-#: ../setup/functions.inc:703
+#: ../setup/functions.inc:702
 msgid "There is more than one suitable locale installed on your machine for the following languages.  Please chose the one you think is most suitable"
 msgstr "Det finns fler än ett "
 
-#: ../setup/functions.inc:743
+#: ../setup/functions.inc:742
 msgid "Locale problems"
 msgstr "Teckenuppsättningsproblem"
 
 # inte så säker på denna /Crille
-#: ../setup/functions.inc:744
-#, fuzzy
+#: ../setup/functions.inc:743
 msgid "There are no apparently suitable locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
-msgstr "Det finns inga lämpliga teckenuppsättningar installerade för följande språk. Var god välj den som du tycker passar mest."
+msgstr "Det finns inga lämpliga nationella inställningar installerade för följande språk. Var god välj den som du tycker passar bäst."
 
-#: ../setup/functions.inc:786
+#: ../setup/functions.inc:785
 msgid "safe mode is off"
 msgstr "säkert läge är avstängt"
 
 # magiska.. näää det kan inte stämma /Crille
-#: ../setup/functions.inc:798
+#: ../setup/functions.inc:797
 #, fuzzy
 msgid "magic quotes are off"
 msgstr "magiska kommentarer är avslagna"
@@ -2921,14 +2911,13 @@ msgid "If sessions are configured properly in your PHP installation, then you sh
 msgstr "Om sessioner är korrekt konfigurerade i din PHP installation så ska du se ett sessionsnummer nedan."
 
 #: ../setup/session_test.php:36
-#, fuzzy
 msgid "The &quot;page views&quot; number should increase every time you reload the page."
-msgstr "\"page views\" nummret ska öka varje gång du laddar om sidan"
+msgstr "&quot;Sidvisningsnummret&quot; ska ökas varje gång du laddar om sidan."
 
 #: ../setup/session_test.php:37
 #, php-format
 msgid "Clicking %s should reset the page view number back to 1."
-msgstr "Om du klickar på %s ska sidnummret ställas tillbaka till 1"
+msgstr "Om du klickar på %s återställs sidvisningsnummret tillbaka till 1"
 
 #: ../setup/session_test.php:41
 msgid "If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation."
@@ -2944,7 +2933,7 @@ msgstr "Ditt sessions id är"
 
 #: ../setup/session_test.php:57
 msgid "Page views in this session"
-msgstr "Sidvisnigar i denna session"
+msgstr "Sidvisningar i denna session"
 
 #: ../setup/session_test.php:65
 msgid "Server IP address"
