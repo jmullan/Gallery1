@@ -34,68 +34,8 @@ require('classes/UserDB.php');
 require('util.php');
 require('session.php');
 
-if (file_exists("setup") && is_readable("setup")) {
-?>
-	<html>
-	<head>
-	  <title>Gallery in Configuration Mode</title>
-	  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
-	</head>
-	<body>	
-	<center>
-	<span class="error"> Uh oh! </span>
-	<p>
-	<table width=80%><tr><td>
-	Gallery is still in configuration mode which means it's
-	anybody out there can mess with it.  
-	For safety's sake we don't let you run the app in this mode.
-	You need to put it in secure mode before you can use it.  Put
-	it in secure mode by doing this:
-
-	<p><center>
-	<table><tr><td>
-		<code>
-		% cd <?=dirname(getenv("SCRIPT_FILENAME"))?>
-		<br>
-		% sh ./secure.sh
-	</td></tr></table>
-	<p>
-	When you've done this, just reload this page and all should
-	be well.
-	</table>
-<?
-	exit;
-}
-
-if ($app->config_version != $gallery->config_version) {
-?>
-	<html>
-	<head>
-	  <title>Gallery needs Re-Configuration</title>
-	  <link rel="stylesheet" type="text/css" href="<?= getGalleryStyleSheetName() ?>">
-	</head>
-	<body>	
-	<center>
-	<span class="error"> Uh oh! </span>
-	<p>
-	<center>
-	<table width=80%><tr><td>
-	Your Gallery configuration was created using the config wizard
-	from an older version of Gallery.  It is out of date.  Please
-	re-run the configuration wizard!  In a shell do this:
-	<p><center>
-	<table><tr><td>
-		<code>
-		% cd <?=dirname(getenv("SCRIPT_FILENAME"))?>
-		<br>
-		% sh ./configure.sh
-	</td></tr></table>
-	<p>
-	Then launch the <a href=<?=$app->photoAlbumURL?>/setup/index.php>configuration wizard</a>.
-	</table>
-<?
-	exit;
-}
+galleryInit();
+gallerySanityCheck();
 
 /* Load our user database (and user object) */
 $userDB = new UserDB;
@@ -116,5 +56,4 @@ if ($albumName) {
 		$album->save();
 	}
 }
-
 ?>
