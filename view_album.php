@@ -294,9 +294,6 @@ if (!strcmp($borderwidth, "off")) {
 	$bordercolor = $gallery->album->fields["bgcolor"];
 	$borderwidth = 1;
 }
-if ($bordercolor) {
-	$bordercolor = "bgcolor=$bordercolor";
-}
 ?>
 
 <!-- image grid table -->
@@ -338,41 +335,42 @@ if ($numPhotos) {
 		$j = 1;
 		while ($j <= $cols && $i <= $numPhotos) {
 			echo("<td width=$imageCellWidth align=center valign=middle>");
-			echo("<table width=1% border=0 cellspacing=0 cellpadding=0>");
-			echo("<tr $bordercolor>"); 
-			echo("<td colspan=3 height=$borderwidth><img src=".$gallery->app->photoAlbumURL."/images/pixel_trans.gif></td>");
-			echo("</tr><tr>");
-			echo("<td $bordercolor width=$borderwidth>");
-			echo("<img src=".$gallery->app->photoAlbumURL."/images/pixel_trans.gif width=$borderwidth height=1>");
-			echo("</td><td>");
+
+			//-- put some parameters for the wrap files in the global object ---
+			$gallery->html_wrap['borderColor'] = $bordercolor;
+			$gallery->html_wrap['borderWidth'] = $borderwidth;
+			$gallery->html_wrap['pixelImage'] = $imageDir . "/pixel_trans.gif";
+			list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i);
+			$gallery->html_wrap['thumbWidth'] = $iWidth;
+			$gallery->html_wrap['thumbHeight'] = $iHeight;
 
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isMovie($id)) {
-				echo("<a href=" . $gallery->album->getPhotoPath($i) . " target=other>" . 
-					$gallery->album->getThumbnailTag($i) .
-					"</a>");
+				$gallery->html_wrap['thumbTag'] = $gallery->album->getThumbnailTag($i);
+				$gallery->html_wrap['thumbHref'] = $gallery->album->getPhotoPath($i);
+				includeHtmlWrap('inline_moviethumb.frame');
 			} elseif ($gallery->album->isAlbumName($i)) {
 				$myAlbumName = $gallery->album->isAlbumName($i);
 				$myAlbum = new Album();
 				$myAlbum->load($myAlbumName);
-				$myHighlightTag = $myAlbum->getHighlightAsThumbnailTag();
-				echo("<a href=" . makeAlbumUrl($myAlbumName) . ">" . 
-					$myHighlightTag . "</a>");
-			} else {
-				echo("<a href=" . makeAlbumUrl($gallery->session->albumName, $id) . ">" .
-					$gallery->album->getThumbnailTag($i) .
-					"</a>");
-			}
-			echo("</td>");
-			echo("<td $bordercolor width=$borderwidth>");
-			echo("<img src=".$gallery->app->photoAlbumURL."/images/pixel_trans.gif width=$borderwidth height=1>");
-			echo("</td>");
-			echo("</tr>");	
-			echo("<tr $bordercolor>"); 
-			echo("<td colspan=3 height=$borderwidth><img src=".$gallery->app->photoAlbumURL."/images/pixel_trans.gif></td>");
-			echo("</tr>");
-			echo("</table>");
 
+				$gallery->html_wrap['thumbTag'] = $myAlbum->getHighlightAsThumbnailTag();
+				$gallery->html_wrap['thumbHref'] = makeAlbumUrl($myAlbumName);
+				$higlightIndex = $myAlbum->getHighlight();
+				if ($myAlbum->getHighlight()) {
+				    list($iWidth, $iHeight) = $myAlbum->getThumbDimensions($myAlbum->getHighlight());
+				} else {
+				    list($iWidth, $iHeight) = array(150, 50);
+				}
+				$gallery->html_wrap['thumbWidth'] = $iWidth;
+				$gallery->html_wrap['thumbHeight'] = $iHeight;
+				includeHtmlWrap('inline_albumthumb.frame');
+
+			} else {
+				$gallery->html_wrap['thumbTag'] = $gallery->album->getThumbnailTag($i);
+				$gallery->html_wrap['thumbHref'] = makeAlbumUrl($gallery->session->albumName, $id);
+				includeHtmlWrap('inline_photothumb.frame');
+			}
 
 			echo("</td>");
 			$j++; 
