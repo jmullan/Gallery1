@@ -26,6 +26,8 @@ if (!isset($gallery->version)) {
         require(dirname(dirname(__FILE__)) . '/init.php');
 }
 
+$update = getRequestVar('update');
+
 // Security check
 if (!$gallery->user->isAdmin()) {
 	header("Location: " . makeAlbumHeaderUrl());
