@@ -159,60 +159,59 @@ if (strlen($editPassword[2]) > 0) {
 
 <title><?php echo _("Success!") ?></title>
 <center>
-<div style="width:600px;text-align:center">
-
-<div class="header"><?php echo _("Your configuration has been successfully saved!") ?></div>
+<div style="width:60%; text-align:center">
+	<div class="header"><?php echo _("Your configuration has been successfully saved!") ?></div>
 <?php
 if (isset($message)) {
 	echo '<div class="sitedesc">';
 	echo "\n\t$message";
 	echo "\n</div>";
 }
-?>
-<div class="sitedesc"><br><span style="font-size: 1.2em; color:red"><?php echo _("Note") ?>!</span>
-
-<br>
+?>	
+	<div class="sitedesc">
+		<span style="font-size: 1.2em; color:red"><?php echo _("Note") ?>!</span>
+		<br>
 <?php 
 	echo _("Don't forget to run this to make your Gallery secure!");
 	configure("secure");
 ?>
+	</div>
 </div>
-<br>
-<font size=+1>
-<?php echo _("Gallery won't run if it is not in secure mode.") ?></font>
-<?php echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.") ?>  
-<?php echo _("It will save your data so you won't have to enter it all again!") ?>
-
-<br>
-<font size=+1>
-<?php echo sprintf(_("Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),  
+<p style="width:80%; text-align:center">
+	<span class="emphasis"><?php echo _("Gallery won't run if it is not in secure mode.") ?></span>
+	<br>
+<?php 
+	echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.");
+	echo '<br>';
+	echo _("It will save your data so you won't have to enter it all again!"); 
+	echo '<br>';
+	echo '<span class="emphasis">';
+	echo sprintf(_("Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),  
 		'<a href="http://gallery.sourceforge.net/lists.php" class="namedurl">gallery-announce</a>', 
-	       Gallery()) ?>
-</font>
-<p>
-<center>
-<font size=+2>
-<a href="../albums.php"><?php echo _("Enter the Gallery") ?></a>
-</font>
+	       Gallery());
+?>
+	</span>
+	<p>
 
-<br><br><br><br>
+	<font size=+2><a href="../albums.php"><?php echo _("Enter the Gallery") ?></a></font>
 
-<img src="../images/gallery-tag.png">
-
+	<p><img src="../images/gallery-tag.png"></p>
 </div>
+</body>
+</html>
 
 <?php
 function fail($file) {
 ?>
-	<title><?php echo _("Failure") ?>! </title>
-	<font size=+2><?php printf(_("Unable to write to %s."), $file )?> </font>
+	<title><?php echo _("Failure") ?>!</title>
+	<font size="+2"><?php printf(_("Unable to write to %s."), $file )?></font>
 	<p>
-<font color=red>
+	<font color="red">
 	<?php printf (_("You are missing either %s or %s."), "<i>config.php</i>", "<i>.htaccess</i>") ?>
 	</font>
 	<p>
-	<input type=hidden name=back_page value="confirm">
-	<input type=submit name="go_back" value="<- <?php echo _("Review Settings") ?>">
+	<input type="hidden" name="back_page" value="confirm">
+	<input type="submit" name="go_back" value="<- <?php echo _("Review Settings") ?>">
 
 <?php
 	return;

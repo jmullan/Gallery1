@@ -674,21 +674,16 @@ function check_locale() {
 		# Unix / Linux
 		# Check which locales are installed
 
-		// PHP on NetBSD seems to crash when explode on empty string
-		$se_locale=shell_exec("locale -a");
-		if ($se_locale != NULL) {
-			$tmp=explode("\n", $se_locale);
-		} else {
-			$tmp=array();
-		}
-		if(count($tmp) >3) {
-			$system_locales=$tmp;
+		exec("locale -a",$results,$status);
+
+		if(count($results) >3) {
+			$system_locales=$results;
 		} elseif (@is_readable("/etc/locale.gen")) {
-			$system_locales=explode("\n",shell_exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1'));
+			exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1', $system_locales);
 		} elseif (@is_readable("/usr/share/locale")) {
-			$system_locales=explode("\n",shell_exec("ls /usr/share/locale"));
+			exec("ls /usr/share/locale", $system_locales);
 		} elseif (@is_readable("/usr/local/share/locale")) {
-			$system_locales=explode("\n",shell_exec("ls /usr/local/share/locale"));
+			exec("ls /usr/local/share/locale", $system_locales);
 		}
 	}
 
