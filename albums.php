@@ -337,7 +337,7 @@ for ($i = $start; $i <= $end; $i++) {
 	if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) {
 		echo _("url:") . '<a href="'. $albumURL . '">';
 		if (!$gallery->session->offline) {
-			echo breakString($albumURL, 60, '&', 5);
+			echo breakString(urldecode($albumURL), 60, '&', 5);
 		} else {
 			echo $tmpAlbumName;
 		}

@@ -38,7 +38,7 @@ class Comment {
 	}
 
 	function getCommentText() {
-		return $this->commentText;
+		return nl2br($this->commentText);
 	}
 
 	function getDatePosted() {
