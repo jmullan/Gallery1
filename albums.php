@@ -88,6 +88,10 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   if ($navigator['page'] < $maxPages) { ?>
       <link rel="next" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1)) ?>" />
       <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>" />
+  <?php	}
+	if ($gallery->app->rssEnabled == "yes") {
+  ?>
+      <link rel="alternate" title="<?php echo sprintf(_("%s RSS"), $gallery->app->galleryTitle) ?>" href="<?php echo $gallery->app->photoAlbumURL . "/rss.php" ?>" type="application/rss+xml" />
   <?php } ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">

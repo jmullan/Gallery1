@@ -1146,7 +1146,8 @@ function getStyleSheetLink() {
 	} else {
 		return _getStyleSheetLink("embedded_style") . 
 			"\n" .
-		       _getStyleSheetLink("standalone_style");
+		       _getStyleSheetLink("standalone_style").
+			"\n";
 	}
 }
 
