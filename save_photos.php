@@ -39,9 +39,9 @@ function msg($buf) {
 
 	if ($msgcount) {
 		print "<br>";
-		my_flush();
 	}
 	print $buf;
+	my_flush();
 	$msgcount++;
 }
 
@@ -337,7 +337,7 @@ if (count($image_tags)) {
 ?>
 </table>
 <input type=hidden name="setCaption" value="<?=$setCaption?>">
-<input type=submit value="Add Files" onClick="opener.showProgress(); document.uploadurl_form.submit()">
+<input type=button value="Add Files" onClick="opener.showProgress(); document.uploadurl_form.submit()">
 </form>
 <? } /* End if links slurped */ ?>
 </body>
