@@ -20,7 +20,9 @@
 ?>
 <?
 function fs_copy($source, $dest) {
-	return copy($source, $dest);
+	$umask = umask(0133);
+	$results = copy($source, $dest);
+	umask($umask);
 }
 
 function fs_exec($cmd, &$results, &$status) {
@@ -79,4 +81,10 @@ function fs_executable($filename) {
 	return $filename;
 }
 
+function fs_mkdir($filename, $perms) {
+	$umask = umask(0);
+	$results = mkdir(fs_import_filename($filename, 0), $perms);
+	umask($umask);
+	return $results;
+}
 ?>

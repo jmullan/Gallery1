@@ -20,9 +20,11 @@
 ?>
 <?
 function fs_copy($source, $dest) {
-	return copy(
+	$umask = umask(0133);
+	$results = copy(
 		fs_import_filename($source, 0), 
 		fs_import_filename($dest, 0));
+	umask($umask);
 }
 
 function fs_file_exists($filename) {
@@ -82,6 +84,13 @@ function fs_executable($filename) {
 		$filename .= ".exe";
 	}
 	return $filename;
+}
+
+function fs_mkdir($filename, $perms) {
+	$umask = umask(0);
+	$results = mkdir(fs_import_filename($filename, 0), $perms);
+	umask($umask);
+	return $results;
 }
 
 function fs_import_filename($filename, $for_exec=1) {
