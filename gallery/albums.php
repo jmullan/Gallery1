@@ -324,7 +324,7 @@ for ($i = $start; $i <= $end; $i++) {
 
   <br>
   <span class="fineprint">
-   <?php echo _("Last changed on ") ?><?php echo $gallery->album->getLastModificationDate() ?>.  
+   <?php echo _("Last changed on") ?> <?php echo $gallery->album->getLastModificationDate() ?>.  
    <?php echo _("This album contains" ) ?> <?php echo pluralize_n($gallery->album->numPhotos(0), _("item"), _("items"), _("no items")) ?>.
 <?php
 if (!($gallery->album->fields["display_clicks"] == "no") && 

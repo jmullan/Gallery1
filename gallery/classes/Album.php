@@ -1131,7 +1131,7 @@ class Album {
 			$time = $stat[9];
 		}
 
-		return strftime("%d. %b %Y",$time);
+		return strftime("%x",$time);
 	}
 
 	function setNestedProperties() {
