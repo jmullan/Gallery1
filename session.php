@@ -46,9 +46,10 @@ session_start();
  * to see if a pre-existing session variable is already associated
  * (before we register it, below).  
  */
-if (session_is_registered($gallery->app->sessionVar)) {
+$sessionVar = $gallery->app->sessionVar . "_" . md5($gallery->app->userDir);
+if (session_is_registered($sessionVar)) {
 	/* Get a simple reference to the session container (for convenience) */
-	$gallery->session =& ${$gallery->app->sessionVar};
+	$gallery->session =& $$sessionVar;
 
 	/* Make sure our session is current.  If not, nuke it and restart. */
 	if (strcmp($gallery->session->version, $gallery->version)) {
@@ -58,17 +59,17 @@ if (session_is_registered($gallery->app->sessionVar)) {
 	}	
 } else {
 	/* Register the session variable */
-	session_register($gallery->app->sessionVar);
+	session_register($sessionVar);
 
 	/* Create a new session container */
 	if ($useStdClass) {
-		${$gallery->app->sessionVar} = new stdClass();
+		$$sessionVar = new stdClass();
 	} else {
-		${$gallery->app->sessionVar} = new GallerySession();
+		$$sessionVar = new GallerySession();
 	}
 
 	/* Get a simple reference to the session container (for convenience) */
-	$gallery->session =& ${$gallery->app->sessionVar};
+	$gallery->session =& $$sessionVar;
 
 	/* Tag this session with the gallery version */
 	$gallery->session->version = $gallery->version;
