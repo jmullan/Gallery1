@@ -44,6 +44,14 @@ if (isset($allUid) && strchr($submit_add, ">")) {
 	$changed++;
 }
 
+if (isset($allUid) && strchr($submit_write, ">")) {
+	$album->setWrite($allUid, 1);
+	$changed++;
+} else if (isset($writeUid) && strchr($submit_write, "<")) {
+	$album->setWrite($writeUid, 0);
+	$changed++;
+}
+
 if (isset($allUid) && strchr($submit_delete, ">")) {
 	$album->setDeleteFrom($allUid, 1);
 	$changed++;
@@ -69,6 +77,7 @@ $ownerUid = $nobody->getUid();
 $uRead = array();
 $uText = array();
 $uAdd = array();
+$uWrite = array();
 $uDelete = array();
 
 foreach ($userDB->getUidList() as $uid) {
@@ -98,6 +107,10 @@ foreach ($userDB->getUidList() as $uid) {
 		$uAdd[$uid] = $uname;
 	}
 
+	if ($album->canWrite($uid)) {
+		$uWrite[$uid] = $uname;
+	}
+
 	if ($album->canDeleteFrom($uid)) {
 		$uDelete[$uid] = $uname;
 	}
@@ -105,17 +118,20 @@ foreach ($userDB->getUidList() as $uid) {
 
 asort($uRead);
 asort($uText);
+asort($uWrite);
 asort($uDelete);
 asort($uAdd);
 asort($uAll);
 
 correctNobody(&$uRead);
 correctNobody(&$uText);
+correctNobody(&$uWrite);
 correctNobody(&$uDelete);
 correctNobody(&$uAdd);
 
 correctEverybody(&$uRead);
 correctEverybody(&$uText);
+correctEverybody(&$uWrite);
 correctEverybody(&$uDelete);
 correctEverybody(&$uAdd);
 
@@ -131,7 +147,6 @@ correctEverybody(&$uAdd);
 <span class="popuphead">Album Permissions</span>
 <br>
 Changing permissions for <b><?=$album->fields["title"]?></b>
-<br>
 
 <form name=albumperms_form method=GET>
 
@@ -142,7 +157,7 @@ Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1, $uNobody); ?>
 <table border=0 cellspacing=0 cellpadding=0>
  <tr>
   <td align=center>
-   <?= drawSelect("allUid", $uAll, $allUid, 18, $uPubUser); ?>
+   <?= drawSelect("allUid", $uAll, $allUid, 23, $uPubUser); ?>
   </td>
 
   <td> &nbsp; </td>
@@ -196,6 +211,21 @@ Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1, $uNobody); ?>
 
     <tr>
      <td colspan=2>
+      Users who can modify photos.
+     </td>
+    </tr>
+    <tr>
+     <td>   
+           <input type=submit name="submit_write" value="-->">
+      <br> <input type=submit name="submit_write" value="<--">
+     </td>
+     <td>
+      <?= drawSelect("writeUid", $uWrite, $writeUid, 3); ?>
+     </td>
+    </tr>
+
+    <tr>
+     <td colspan=2>
       Users who can delete photos.
      </td>
     </tr>
@@ -213,8 +243,6 @@ Owner: <?= drawSelect("ownerUid", $uAll, $ownerUid, 1, $uNobody); ?>
   </td>
  </tr>
 </table>
-
-<br>
 
 <input type=submit name="submit" value="Save">
 <input type=submit name="submit" value="Done" onclick='parent.close()'>
