@@ -29,8 +29,8 @@ function fs_copy($source, $dest) {
 
 function fs_file_exists($filename) {
 	$filename = fs_import_filename($filename, 0);
-	debug("Checking for [$filename] == " . file_exists($filename));
-	return file_exists($filename);
+	debug("Checking for [$filename] == " . @file_exists($filename));
+	return @file_exists($filename);
 }
 
 function fs_is_link($filename) {

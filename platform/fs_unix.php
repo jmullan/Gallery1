@@ -37,7 +37,7 @@ function fs_tempdir() {
 }
 
 function fs_file_exists($filename) {
-	return file_exists($filename);
+	return @file_exists($filename);
 }
 
 function fs_is_link($filename) {
