@@ -65,7 +65,7 @@ class Properties {
 	function listprops() {	// list is a php reserved word
 		$ret = "#__GR2PROTO__\n";
 		foreach (array_keys($this->map) as $k) {
-			$ret .= "$k=" . $this->map[$k] . "\n";
+			$ret .= "$k=" . $this->escape($this->map[$k]) . "\n";
 		}
 		return $ret;
 	}
@@ -74,6 +74,15 @@ class Properties {
 		if ( $key != null ) {
 			$this->map[$key] = $value;	
 		}
+	}
+
+	function escape( $value ) {
+		// TODO: real Java properties escaping...
+		$result = str_replace("\r\n", "\\n", $value);
+		$result = str_replace("\n", "\\n", $result);
+		$result = str_replace("\r", "\\n", $result);
+		
+		return $result;
 	}
 }
 ?>
