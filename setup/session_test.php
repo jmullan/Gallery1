@@ -1,9 +1,10 @@
 <?php /* $Id$ */ ?>
 <?php
-
-$GALLERY_BASEDIR="../";
-require($GALLERY_BASEDIR . "util.php");
-initLanguage();
+	$GALLERY_BASEDIR="../";
+	require($GALLERY_BASEDIR . 'util.php');
+	require($GALLERY_BASEDIR . 'setup/init.php');
+	require($GALLERY_BASEDIR . 'setup/functions.inc');
+	initLanguage();
 
 // Pull the $destroy variable into the global namespace
 extract($HTTP_GET_VARS);

@@ -1,8 +1,10 @@
 <?php /* $Id$ */ ?>
 <?php 
-$GALLERY_BASEDIR="../";
-require($GALLERY_BASEDIR . "util.php");
-initLanguage();
+	$GALLERY_BASEDIR="../";
+	require($GALLERY_BASEDIR . 'util.php');
+	require($GALLERY_BASEDIR . 'setup/init.php'); 
+	require($GALLERY_BASEDIR . 'setup/functions.inc'); 
+	initLanguage();
 ?>
 
 <html>
@@ -18,10 +20,8 @@ echo sprintf(_("You should run this script <b>after</b> you have run the config 
 <ol>
 
 <li> <?php echo _("Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard.") ?>
-
 <?php
-require('./init.php'); 
-require("functions.inc"); 
+
 if (! file_exists("../config.php")) {
 	echo "<p style=\"color:red\">". _("It seems that you did not configure your GALLERY. Please run and finish the configuration wizard.") . "</p>";
 	echo returnToConfig();
