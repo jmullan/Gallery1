@@ -26,6 +26,7 @@
   global $wmAlignX;
   global $wmAlignY;
   global $previewFull;
+  global $wmName;
 
   $err = "";	
   if (!isset($wmAlignX) || ($wmAlignX <= 0))

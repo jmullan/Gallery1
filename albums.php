@@ -199,7 +199,6 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	}
 
 	if ($gallery->user->isAdmin() ||
-		$gallery->userDB->canModifyUser() ||
 	        $gallery->userDB->canCreateUser() ||
         	$gallery->userDB->canDeleteUser()) {
 		
