@@ -48,6 +48,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 				$album->makeThumbnail($index);
 			}
 			$album->save();
+			//-- this is expected to be loaded in a popup, so dismiss ---
 			dismissAndReload();
 		}
 	}
@@ -59,13 +60,15 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		$album->hidePhoto($index);
 		$album->save();
 	}
-	header("Location: $return");	
+	//-- this is expected to be loaded in a popup, so dismiss ---
+	dismissAndReload();
 } else if (!strcmp($cmd, "show")) {
 	if ($user->canWriteToAlbum($album)) {
 		$album->unhidePhoto($index);
 		$album->save();
 	}
-	header("Location: $return");	
+	//-- this is expected to be loaded in a popup, so dismiss ---
+	dismissAndReload();
 } else if (!strcmp($cmd, "new-album")) {
 	if ($user->canCreateAlbums()) {
 		$albumDB = new AlbumDB();
