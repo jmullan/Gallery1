@@ -3044,6 +3044,9 @@ function common_header() {
 	
 // Import CSS Style_sheet
 	echo getStyleSheetLink();
+
+// Set the Gallery Icon 
+	echo "\n  <link rel=\"shortcut icon\" href=\"". makeGalleryUrl('images/favicon.ico') . "\">\n";
 }
 
 function metatags() {

@@ -163,29 +163,29 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <html> 
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
-  <?php common_header(); ?>
+  <?php common_header();
 
-  <?php /* prefetching/navigation */
+  /* prefetching/navigation */
   if (!isset($first)) { ?>
-      <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => 1)) ?>" >
-      <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $previousPage)) ?>" >
-  <?php }
+  <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => 1)) ?>" >
+  <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $previousPage)) ?>" >
+<?php }
   if (!isset($last)) { ?>
-      <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $nextPage)) ?>" >
-      <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $maxPages)) ?>" >
-  <?php } if ($gallery->album->isRoot() && 
+  <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $nextPage)) ?>" >
+  <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $maxPages)) ?>" >
+<?php } if ($gallery->album->isRoot() && 
   	(!$gallery->session->offline || 
 	 isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
   <link rel="up" href="<?php echo makeAlbumUrl(); ?>" >
-      <?php
+<?php
       } else if (!$gallery->session->offline || 
 	 isset($gallery->session->offlineAlbums[$pAlbum->fields['parentAlbumName']])) { ?>
   <link rel="up" href="<?php echo makeAlbumUrl($gallery->album->fields['parentAlbumName']); ?>" >
-  <?php } 
+<?php } 
   	if (!$gallery->session->offline || 
 	 isset($gallery->session->offlineAlbums["albums.php"])) { ?>
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" >
-  <?php } ?>
+<?php } ?>
   <style type="text/css">
 <?php
 // the link colors have to be done here to override the style sheet 
