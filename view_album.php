@@ -238,7 +238,7 @@ if ($numPhotos) {
 				echo(popup("highlight_photo.php?index=$i"));
 				echo("><img src=\"images/admin_highlight.gif\" width=11 height=11 border=0 alt=\"Highlight Photo\"></a>");
 				if ($album->isHidden($i)) {
-					echo("<a href=do_command.php?cmd=show&index=$i&return=view_album.php><img src=\"images/admin_show.gif\" width=11 height=11 border=0 alt=\"Show Photo\"></a>");
+					echo("<a href=do_command.php?cmd=show&index=$i&return=view_album.php><img src=\"images/admin_unhide.gif\" width=11 height=11 border=0 alt=\"Show Photo\"></a>");
 				} else {
 					echo("<a href=do_command.php?cmd=hide&index=$i&return=view_album.php><img src=\"images/admin_hide.gif\" width=11 height=11 border=0 alt=\"Hide Photo\"></a>");
 				}
