@@ -1,3 +1,13 @@
+2004-02-02  Christian Mohn <ch-moh@online.no> 1.4.3-cvs-b20
+
+        * Removed cmd.exe call in platform/fs_win32.php as PHP itself calls
+          this when executing binaries in Win32. 
+          This caused two cmd.exe processes running every time a binary 
+          was called on that platform.
+        
+        * Added VBS as a valid executable extension in platform/fs_win32.php
+          VBScript files are valid executables in Windows. :)
+
 2004-02-01  Bharat Mediratta  <bharat@menalto.com> 1.4.3-cvs-b19
 
 	* Fixed a bug in save_photos caused by the new tabbed interface.  We
