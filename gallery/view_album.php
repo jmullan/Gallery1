@@ -117,16 +117,19 @@ do {
     break;
   }
   $pAlbumName = $pAlbum->fields['parentAlbumName'];
-  if ($pAlbumName && (!$gallery->session->offline || $gallery->session->offlineAlbums[$pAlbumName])) {
+  if ($pAlbumName && (!$gallery->session->offline 
+     || $gallery->session->offlineAlbums[$pAlbumName])) {
 	$pAlbum = new Album();
 	$pAlbum->load($pAlbumName);
-	$breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($pAlbumName) . "\">" . $pAlbum->fields['title'] . "</a>\n";
+	$breadtext[$breadCount] = _("Album") .": <a href=\"" . makeAlbumUrl($pAlbumName) . 
+	"\">" . $pAlbum->fields['title'] . "</a>";
   } elseif (!$gallery->session->offline || $gallery->session->offlineAlbums["albums.php"]) {
 	//-- we're at the top! --- 
-	$breadtext[$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") . "\">" . $gallery->app->galleryTitle . "</a>\n"; 
-  } elseif ($gallery->session->offline) {	
-	// test is redundant.  offline must be 
-  	// true if you reach this line.
+	$breadtext[$breadCount] = _("Gallery") .": <a href=\"" . makeGalleryUrl("albums.php") . 
+	"\">" . $gallery->app->galleryTitle . "</a>"; 
+  } 
+  elseif ($gallery->session->offline) {	// test is redundant.  offline must be 
+  					// true if you reach this line.
 	break; 
   }
 
@@ -236,7 +239,7 @@ function showChoice($label, $target, $args) {
     if (empty($args['set_albumName'])) {
 	$args['set_albumName'] = $gallery->session->albumName;
     }
-	echo "\n<option value='" . makeGalleryUrl($target, $args) . "'>$label</option>";
+	echo "<option value='" . makeGalleryUrl($target, $args) . "'>$label</option>";
 }
 
 for ($i = 1, $numAlbums = 0; $i <= $numPhotos; ++$i) {
@@ -274,7 +277,6 @@ if ($gallery->user->canAddToAlbum($gallery->album)) {
 	$adminCommands .= popup_link("[". _("add photos") ."]", 
 		"add_photos.php?set_albumName=" .
 		$gallery->session->albumName);
-
 	$extraFields = $gallery->album->getExtraFields();
 	if (!empty($extraFields)) {
 	    $adminCommands .= popup_link("[". _("add photo") ."]",
@@ -314,11 +316,9 @@ if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	if ($gallery->album->numPhotos(1)) {
 	        $adminCommands .= popup_link("[". _("sort") . "]", "sort_album.php?set_albumName=" .
 				$gallery->session->albumName);
-
 	        $adminCommands .= popup_link("[" . _("resize all") . "]", 
 			"resize_photo.php?set_albumName=" .
 			$gallery->session->albumName . "&index=all");
-
 	        $adminCommands .= popup_link("[" . _("rebuild thumbs") . "]",
 			"do_command.php?cmd=remake-thumbnail&set_albumName=" .
 				$gallery->session->albumName . "&index=all");
@@ -333,7 +333,7 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
 			"album_permissions.php?set_albumName=" .
 			$gallery->session->albumName);
 }
-if (($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->comment_hack == "yes") &&
+if (($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) &&
 	!strcmp($gallery->album->fields["public_comments"],"yes")) { 
     $adminCommands .= '<a href=' . makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)) . '>[' . _("view&nbsp;all&nbsp;comments") . ']</a>&nbsp;';
 }
@@ -348,7 +348,7 @@ if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 					doCommand("logout", array(), "view_album.php", array("page" => $page)) .
 				  ">[" . _("logout") . "]</a>";
 	} else {
-		$adminCommands .= popup_link("[". _("login") ."]", "login.php", 0,true,250,500);
+		$adminCommands .= popup_link("[". _("login") ."]", "login.php", 0);
 	} 
 }
 $adminCommands .= "</span>";
@@ -506,16 +506,16 @@ if ($numPhotos) {
 				$buf = "";
 				$buf = $buf."<b>". _("Album") .": ".$myAlbum->fields['title']."</b>";
 				if ($myDescription != _("No description") or $myDescription != "No description") {
-					$buf = $buf."<br>".$myDescription ."";
+					$buf = $buf."<br>".$myDescription."";
 				}
 				echo($buf."<br>");
 ?>
 				<br>
 				<span class="fineprint">
-				   <?php echo _("Changed : ") ?><?php echo $myAlbum->getLastModificationDate() ?>.  <br>
-				   <?php echo _("Contains : ") ?><?php echo pluralize_n($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), _("item"), _("items"), _("0 items")) ?>.<br>
+				   <?php echo _("Changed: ") ?><?php echo $myAlbum->getLastModificationDate() ?>.  <br>
+				   <?php echo _("Contains: ") ?><?php echo pluralize_n($myAlbum->numPhotos($gallery->user->canWriteToAlbum($myAlbum)), _("item"), _("items"), _("0 items")) ?>.<br>
 				   <?php if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) { ?>
-				   	<?php echo _("Viewed :") ?> <?php echo pluralize_n($myAlbum->getClicks(), _("time") , _("times"), _("0 times")) ?>.<br>
+				   	<?php echo _("Viewed:") ?> <?php echo pluralize_n($myAlbum->getClicks(), _("time") , _("times"), _("0 times")) ?>.<br>
 				   <?php } ?>
 				</span>
 <?php
@@ -530,7 +530,7 @@ if ($numPhotos) {
 				}
 				echo("<br>");
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
-					echo _("Viewed :") ." ".pluralize_n($gallery->album->getItemClicks($i), _("time"), _("times") ,_("0 times")).".<br>";
+					echo _("Viewed:") ." ".pluralize_n($gallery->album->getItemClicks($i), _("time"), _("times") ,_("0 times")).".<br>";
 				}
 			}
 			echo "</span></td></tr></table>";
@@ -545,7 +545,7 @@ if ($numPhotos) {
 				}
 				echo("<select style='FONT-SIZE: 10px;' name='s' ".
 					"onChange='imageEditChoice(document.image_form_$i.s)'>");
-				echo("\n<option value=''><< ". _("Edit") . " $label>></option>");
+				echo("<option value=''><< ". _("Edit") . " $label>></option>");
 			}
 			if ($gallery->album->getItemOwnerModify() && 
 			    $gallery->album->isItemOwner($gallery->user->getUid(), $i) && 
@@ -624,14 +624,12 @@ if ($numPhotos) {
 						   array("id" => $id));
 				}
 			}
-
 			if($gallery->album->isAlbumName($i)) { 
 			    if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum) && $showAdminForm) {
 				showChoice(_("Permissions"), "album_permissions.php",
 					   array("set_albumName" => $myAlbum->fields["name"]));
 			    }
 			}
-
                        if ($gallery->user->isAdmin())
                        {
                                showChoice(_("Change owner"), "photo_owner.php", array("id" => $id));
@@ -680,7 +678,7 @@ if ($numPhotos) {
 </table>
 
 <?php if (!strcmp($gallery->album->fields["public_comments"], "yes") && $displayCommentLegend) { //display legend for comments ?>
-<span class=error>*</span><span class=fineprint><?php echo _("Comments available for this item.") ?></span>
+<span class=error>*</span><span class=fineprint> <?php echo _("Comments available for this item.") ?></span>
 <br><br>
 <?php } ?>
 
