@@ -58,6 +58,7 @@ function form_input($key, $arr) {
 }
 
 function form_choice($key, $arr) {
+	
 	$buf .= "<select name=$key>";
 	foreach ($arr["choices"] as $choice) {
 		$selected = "";
@@ -238,7 +239,7 @@ function check_graphics($location="")
 		fs_executable("jpegtopnm"), 
 		fs_executable("giftopnm"), 
 		fs_executable("pngtopnm"), 
-		fs_executable("ppmtojpeg"), 
+		fs_executable("pnmtojpeg"), 
 		fs_executable("ppmtogif"), 
 		fs_executable("pnmtopng"), 
 		fs_executable("pnmscale"), 
@@ -250,7 +251,7 @@ function check_graphics($location="")
 	);
 
 	$fallback = array(
-		fs_executable("ppmtojpeg") => fs_executable("pnmtojpeg")
+		fs_executable("pnmtojpeg") => fs_executable("ppmtojpeg")
 	);
 
 	foreach ($netpbm as $bin) {

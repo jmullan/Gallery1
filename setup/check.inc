@@ -42,6 +42,7 @@ foreach ($checklist as $check) {
 		echo "<font color=green><b>$msg</b></font><br>";
 	}
 
+	$openBasedir = ini_get('open_basedir');
 	foreach ($fail as $key => $val) {
 		if ($check["optional"]) {
 			if ($check["serious"]) {
@@ -60,6 +61,11 @@ foreach ($checklist as $check) {
 			echo "<br>$check[$key]<p>";
 			$error = 1;
 		}
+
+		if ($check["open-basedir-note"] && !empty($openBasedir)) {
+			print $check["open-basedir-note"];
+		}
+
 		if (is_array($val)) {
 			foreach ($val as $msg) {
 				if ($val) {

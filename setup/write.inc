@@ -83,14 +83,14 @@ $admin->save();
 
 <title> Success! </title>
 <center>
-<table width=450><tr><td>
+<table width=600><tr><td>
 <center>
 <font size=+2> Your configuration has been successfully saved! </font>
-</center>
 <p>
+<table cellspacing="1" cellpadding="4" border="1"><tr><td>
 An account called <i>admin</i> has been created for you with the password you specified.
+</td></tr></table>
 <p>
-<center>
 <font size=+2 color=red>Note!</font>
 <br>
 Don't forget to run:

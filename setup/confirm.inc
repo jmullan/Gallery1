@@ -221,6 +221,7 @@ foreach ($constants as $key => $val) {
 				}
 				$error = 1;
 			}
+
 			/* Needed for the pnmtojpeg<->ppmtojpeg silliness */
 			if (!strcmp($key, "pnmDir")) {
 				$graphpath  = $$key;
@@ -231,29 +232,23 @@ foreach ($constants as $key => $val) {
 
 /*
  * In NetPBM 9.19, they renamed "ppmtojpeg" to "pnmtojpeg".  !@#$%
- * Add a special case constant to tell us which binary we located on
- * the machine (so we know which one to use!).  It sucks that we
- * have to do this!
  *
  * Don't bother if we are configuring for ImageMagick.
  */
 if (empty($graphtest['pnmDir'])) {
-	if (!inOpenBasedir($graphpath)) {
-		/* Can't tell -- assume they're using pnmtojpeg and hope for the best */
-		$data .= one_constant("pnmtojpeg", "pnmtojpeg");
-		$view .= row_wrap(one_constant("pnmtojpeg", "pnmtojpeg"));
-		$warn_about_open_basedir = 1;
-	} else {
-		if (fs_file_exists(fs_executable($graphpath . "/pnmtojpeg"))) {
-			$data .= one_constant("pnmtojpeg", "pnmtojpeg");
-			$view .= row_wrap(one_constant("pnmtojpeg", "pnmtojpeg"));
-		} else if (fs_file_exists(fs_executable($graphpath . "/ppmtojpeg"))) {
-			$data .= one_constant("pnmtojpeg", "ppmtojpeg");
-			$view .= row_wrap(one_constant("pnmtojpeg", "ppmtojpeg"));
-		} else {
+	/* 
+	 * If the graph path is not in the open_basedir list, then we can't tell.
+         * Assume whatever they entered is correct and hope for the best
+	 */
+	if (inOpenBasedir($graphpath)) {
+		if (!fs_file_exists(fs_executable($graphpath . "/" . $pnmtojpeg))) {
 			$error = 1;
 			$view .= row_wrap(error_format(
-				"Could not find <i>pnmtojpeg</i> or <i>ppmtojpeg</i>. ".
+				"Could not find <i>$graphpath/$pnmtojpeg</i>  Check your ".
+				"NetPBM directory to see which PNG->JPEG converter you have " .
+				"(or just try using " .
+				($pnmtojpeg == "pnmtojpeg" ? "ppmtojpeg" : "pnmtojpeg") .
+			        " instead). " .
 				"Please check your configuration (or use ImageMagick)."));
 		}
 	}

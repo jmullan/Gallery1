@@ -6,7 +6,7 @@ $common_messages["getting-netpbm"] =
 			"<a href=http://sourceforge.net/projects/gallery>Gallery on SourceForge</a> ".
 			"or, you can compile and install the entire NetPBM package from " .
 			"<a href=http://sourceforge.net/projects/netpbm>NetPBM on SourceForge</a>. " .
-			"<b>Note:</b> You can install the binaries from the Gallery site even ".
+			"<br><b>Note:</b> You can install the binaries from the Gallery site even ".
 			"if you don't have root access on your box!  If you can't get it working, " .
                         "try leaving the NetPBM path blank and using ImageMagick intead.";
 			
@@ -19,9 +19,17 @@ $common_messages["getting-imagemagick"] =
 			"Gallery prefers ImageMagick version 5.4.8 and up.  " .
 			"You can compile and install the entire ImageMagick package from " .
 			"<a href=http://www.imagemagick.org>www.ImageMagick.org</a>. " .
-			"Note:  They also have binaries available for assorted operating systems. " .
+			"<br><b>Note</b>:  They also have binaries available for assorted operating systems. " .
                         "If you can't get it working, try leaving the ImageMagick path blank " .
                         "and using NetPBM instead.";
+
+$common_messages["open-basedir-active"] =
+			"<b>Note:</b> Your webserver is configured with the " .
+			"<a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\"> " .
+			"open_basedir</a> restriction.  This may make it difficult for Gallery to detect " .
+			"and verify your binaries, even if you've already successfully used the Config " .
+			"Wizard in the past.  Don't worry too much if this page gives warnings; your " .
+			"settings will still be saved properly.";
 			
 $checklist = array(
 	"php4" => array(
@@ -126,6 +134,8 @@ $checklist = array(
 			"<p><b> If NetPBM is installed and Gallery isn't finding it automatically " .
 			"that's OK -- that just means you'll have to specify the path to NetPBM " .
 			"by hand on the following page </b>",
+
+		"open-basedir-note" => $common_messages["open-basedir-active"],
 	),
 	"ImageMagick" => array(
 		"optional" => 1,
@@ -139,6 +149,7 @@ $checklist = array(
 			"path to ImageMagick by hand on the following page.  If it's not " .
 			"installed, you must install it.  " .
 			$common_messages["getting-imagemagick"],
+		"open-basedir-note" => $common_messages["open-basedir-active"],
 	),
 	"exif" => array(
 		"optional" => 1,
@@ -154,6 +165,7 @@ $checklist = array(
 			"windows binaries can be found at " .
 			"<a href=http://www.sentex.net/~mwandel/jhead/index.html>the jhead " .
 			"homepage</a>.",
+		"open-basedir-note" => $common_messages["open-basedir-active"],
 	)
 );
 
@@ -194,6 +206,20 @@ $constants = array(
 		"filename" => 1,
 		"attrs" => array("size" => 50),
 		"no-trailing-slash" => 1,
+	),
+	"pnmtojpeg" => array(
+		"prompt" => "PNM to JPEG converter",
+		"desc" => "This value is only relevant if you use NetPBM.  " .
+			  "NetPBM uses a tool to encode its internal image format into JPEG. " .
+			  "This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> " .
+			  "depending on the version of NetPBM that you have installed.  " .
+			  "Check your NetPBM directory to see which one you have installed and " .
+			  "specify it here.  If you aren't sure, just take a guess and we'll " .
+			  "try to verify it for you.  " .
+			  "<br><font color=blue><b>(this is new in version 1.3.4)</b></font>",
+
+		"choices" => array("pnmtojpeg", "ppmtojpeg"),
+		"value" => "pnmtojpeg",
 	),
 	"ImPath" => array(
 		"optional" => 1,
@@ -301,9 +327,7 @@ $constants = array(
 	"albumDirURL" => array(
 		"prompt" => "Albums URL",
 		"desc" => "The full URL to your album directory (specified above) " .
-			"on your web server.  Eg. <i>http://www.foo.com/albums</i>" .
-			"<br><font color=blue><b>Note that the requirements for this " .
-			"value have changed since v1.1</b></font>",
+			"on your web server.  Eg. <i>http://www.foo.com/albums</i>",
 		"value" => "http://" . getenv("SERVER_NAME") . "/albums",
 		"no-trailing-slash" => 1,
 		"must-be-url" => 1,
