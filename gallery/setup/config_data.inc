@@ -340,7 +340,7 @@ $constants = array_merge(
 		"desc" => _("These languages will be available as user choices in a drop down menu, if you have chosen language mode 3") .
 			"\n\t<br><font color=blue><b>(". sprintf(_("this is new in version %s"), "1.3.5") . ")</b></font>",
 		"multiple_choices" => gallery_languages(),
-		"value" => array('en_US')
+		"value" => array_keys(gallery_languages())
 	)),
 	config_maybe_locales(),
     array(
@@ -466,8 +466,13 @@ $defaults = array(
 	"print_photos" => array(
 		"prompt" => _("Printing Service"),
 		"desc" => _("Allow visitors to print photos directly from the album.  If you choose shutterfly, Gallery will charge an extra 2 cents (US) for every photo printed (a 4x6 print normally costs 49 cents US) and 1.8 cents of that will get donated back to the Gallery project.  This is one great way for you to help support this free software."),
-		"value" => "shutterfly",
-		"choices" => array("none" => _("none"), "shutterfly" => _("shutterfly"), "shutterfly without donation" => _("shutterfly without donation"), "photoaccess" => _("photoaccess"), "fotokasten" => _("fotokasten"))
+		"value" => "photoaccess",
+		"choices" => array("none" => _("none"), 
+			"photoaccess" => "photoaccess", 
+			"fotokasten" => "fotokasten",
+			"shutterfly" => "shutterfly", 
+			"shutterfly without donation" => 
+				sprintf(_("%s without donation"),shutterfly))
 	),
 	"returnto" => array(
 		"prompt" => _("Gallery Link"),

@@ -499,9 +499,9 @@ function check_absent_locales()
 	if (sizeof($missing_locales) == 0 ) {
 		$success[] = _("All gallery locales are available on this host");
 	} else if (sizeof($avail_locales) <= 1 || $missing_locales == $avail_locales) {
-		$fail[] = "Only the default locale for this machine is available, so dates format will not change for different languages.";
+		$fail[] = "Only the default locale for this machine is available, so date format will not change for different languages.";
 	} else {
-		$msg = _("Dates in these languages may be formatted properly, because the corresponding locales are missing:") . "<br>";
+		$msg = _("Dates in these languages may not be formatted properly, because the corresponding locales are missing:") . "<br>";
 		$nls=getNLS();
 		foreach ($missing_locales as $value) {
 			$msg .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -624,7 +624,6 @@ function config_maybe_locales() {
 	$maybe=maybe_locales();
 	$unavailable=unavailable_locales();
 	$available=available_locales();
-	vd($available);
 	$nls=getNLS();
 
         foreach ($maybe as $key => $aliases) {

@@ -207,7 +207,7 @@ class Album {
 		$count = $this->numPhotos(1);
 		for ($i = 1; $i <= $count; $i++) {
 			set_time_limit(30);
-			print _("Upgrading item") . " $i ". _("of") . " $count...";
+			print sprintf(_("Upgrading item %d of %d . . . "), $i, $count);
 			my_flush();
 
 			$photo = &$this->getPhoto($i);

@@ -172,7 +172,7 @@ if (isset($save)) {
 <tr>
 <td><?php echo _("Which photo printing service<br>do you want to let visitors use?") ?></td>
 <?php _("none"); _("shutterfly without donation"); ?>
-<td><select name="print_photos"><?php echo selectOptions($gallery->album, "print_photos", array("none", "shutterfly", "shutterfly without donation", "photoaccess", "fotokasten")) ?></select></td>
+<td><select name="print_photos"><?php echo selectOptions($gallery->album, "print_photos", array("none", "photoaccess", "fotokasten", "shutterfly", "shutterfly without donation")) ?></select></td>
 </tr>
 <?php
 if ($gallery->app->use_exif) {

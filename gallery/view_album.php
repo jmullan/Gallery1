@@ -262,12 +262,12 @@ $adminText .= " " . _("in this album");
 if ($gallery->user->canWriteToAlbum($gallery->album) && 
 	!$gallery->session->offline) {
 	$hidden = $gallery->album->numHidden();
-	$verb = _("are");
+	$verb = _("%s are hidden");
 	if ($hidden == 1) {
-		$verb = _("is");
+		$verb = _("%s is hidden");
 	}
 	if ($hidden) {
-		$adminText .= " ($hidden $verb ". _("hidden") .")";
+		$adminText .= "(".sprintf($verb, $hiddden).")";
 	}
 } 
 $adminText .="</span>";
