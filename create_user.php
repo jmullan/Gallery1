@@ -76,7 +76,7 @@ if (!empty($formaction) && $formaction == 'create') {
 		$tmpUser->log("register");
 		$tmpUser->save();
 		print sprintf(_("User %s created"), $uname) . "<br><br>";
-		if (isset($send_email)) {
+		if (!empty($send_email)) {
 		       	$msg = ereg_replace("!!PASSWORD!!", $new_password1,
 				ereg_replace("!!USERNAME!!", $uname,
 				       	ereg_replace("!!FULLNAME!!", $fullname,
