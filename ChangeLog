@@ -1,3 +1,17 @@
+2003-02-23  Bharat Mediratta  <bharat@menalto.com> 1.3.4-cvs-b12
+
+	* Fix boneheaded mistake in getAlbumbyName(): inverted logic 
+	  on strcasecmp
+
+	* Added <IfModule> calls around php_value flags in setup/.htaccess.
+	  This will make Gallery work better on systems that have PHP as CGI
+	  only.
+
+	* Added Troy Edwards (vallimar) to the AUTHORS file.
+
+	* Added a fix to handle porting from pre-v1.2 Galleries when the
+	  Gallery_User class was simply called User. 
+
 2003-01-29  John Kirkland <jpk@bl.org> 1.3.4-cvs-b11
 
 	* Moved process() from save_photos.php to util.php - processNewImage()
