@@ -102,6 +102,7 @@ function getNLS () {
 /**
  ** Aliases for languages which we substitte or send by NUKE
  **/
+	$nls['alias']['bg_BG.CP1251'] =         'bg_BG' ;
 
 	$nls['alias']['czech'] =                'cs_CZ' ;
 	$nls['alias']['cs_CZ.ISO8859-1'] =      'cs_CZ' ;
@@ -145,7 +146,8 @@ function getNLS () {
 	$nls['alias']['he_IL.ISO8859-8'] =	'he_IL' ;
 
 	$nls['alias']['hungarian'] =		'hu_HU' ;
-	$nls['alias']['hu_HU.ISO859-8'] =	'hu_HU' ;
+	$nls['alias']['hu_HU.ISO8859-8'] =	'hu_HU' ;
+	$nls['alias']['hu_HU.ISO8859-2'] =	'hu_HU' ;
 
 	$nls['alias']['icelandic']=		'is_IS' ;
 	$nls['alias']['isl']=			'is_IS' ;
@@ -159,6 +161,7 @@ function getNLS () {
  	$nls['alias']['ja_JP.EUC'] =		'ja_JP' ;
 	
 	$nls['alias']['ko_KR.EUC-KR'] =         'ko_KR' ;
+	$nls['alias']['ko_KR.EUC'] =            'ko_KR' ;
 
 	$nls['alias']['lt_LT.ISO8859-4'] =	'lt_LT' ;
 	$nls['alias']['lt_LT.ISO8859-13'] =	'lt_LT' ;

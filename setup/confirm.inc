@@ -121,7 +121,7 @@ foreach ($constants as $key => $val) {
 		$graphtool = $real;
 	}
 	
-	if ($real === "") {
+	if (!isset($real)) {
 		if (!strcmp($key, "pnmDir")) {
 		        $graphtest['pnmDir'] = 1;
 		}
