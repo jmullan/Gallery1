@@ -55,7 +55,7 @@ for all_po in $pofiles ; do
 	echo "$tab Module = $module"
 
 	echo "$tab Updating ..."
-	msgmerge -U $all_po gallery-$module.pot --no-wrap -v || exit
+	msgmerge -U $all_po gallery-$module.pot --no-wrap || exit
 done
 
 find ../locale/ -iname "*~" -exec rm {} \;

@@ -3485,6 +3485,24 @@ function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 	return array ($divCellWidth, $divCellHeight, $padding);
 }
 
+/* counts all Elements of an Array, but not the array(s) itself
+** Code by A. Lindeman
+*/
+function recursiveCount (&$arr) {
+	$count = 0;
+	foreach ($arr as $element) {
+		if (is_array ($element)) {
+			$count += recursiveCount ($element);
+		} else {
+			$count++;
+		}
+	}
+
+return $count;
+
+}
+
+
 require_once(dirname(__FILE__) . '/lib/lang.php');
 require_once(dirname(__FILE__) . '/lib/Form.php');
 require_once(dirname(__FILE__) . '/lib/voting.php');
