@@ -58,7 +58,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		}
 	}
 } else if (!strcmp($cmd, "logout")) {
-	gallery_syslog("Logout by $gallery->session->username from $_SERVER['REMOTE_ADDR']";
+	gallery_syslog("Logout by ". $gallery->session->username ." from ". $HTTP_SERVER_VARS['REMOTE_ADDR']);
 	$gallery->session->username = "";
 	$gallery->session->language = "";
 	if (!ereg("^http", $return)) {
