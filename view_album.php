@@ -722,7 +722,7 @@ if ($numPhotos) {
 			$id = $gallery->album->getPhotoId($i);
 			if ($gallery->album->isMovieByIndex($i)) {
 				$gallery->html_wrap['imageTag'] = $gallery->album->getThumbnailTag($i);
-				$gallery->html_wrap['imageHref'] = $gallery->album->getPhotoPath($i);
+				$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->session->albumName, $id);
 				$frame= $gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
 			       	/*begin backwards compatibility */
 				       	$gallery->html_wrap['thumbTag']	= $gallery->html_wrap['imageTag'];

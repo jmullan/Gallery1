@@ -2030,6 +2030,11 @@ function printChildren($albumName,$depth=0) {
 	$myAlbum = new Album();
 	$myAlbum->load($albumName);
 	$numPhotos = $myAlbum->numPhotos(1);
+
+	if ($depth > $gallery->app->maximumAlbumDepth) {
+		return;
+	}
+
 	for ($i=1; $i <= $numPhotos; $i++) {
 		set_time_limit($gallery->app->timeLimit);
 		if ($myAlbum->isAlbum($i) && !$myAlbum->isHidden($i)) {
@@ -2045,16 +2050,14 @@ function printChildren($albumName,$depth=0) {
 				    $val3 = "";
 				}
 				if ($depth==0 && !$printedHeader++) {
-					echo "<strong>". _("Sub-albums") .":</strong>";
+					echo "<strong>". _("Sub-albums") .":</strong>\n";
 				}
-				echo "<div style=\"margin: 0px 0px 0px 20px\">";
-				echo "<span class=fineprint>";
+				echo "<div class='fineprint' style=\"margin: 0px 0px 0px " . 20 * ($depth + 1) . "px\">";
 				echo "<a href=\"";
 				echo makeAlbumUrl($myName);
-				echo "\">$val2 $val3</a>\n";
+				echo "\">$val2 $val3</a>";
+				echo "</div>\n";
 				printChildren($myName, $depth+1);
-				echo "</span>";
-				echo "</div>";
 			}
 		}
 	}

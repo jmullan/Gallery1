@@ -129,13 +129,19 @@ function findOrphanedImages() {
 			$albumFiles[$file['basename']] = 1;
 		} 
 
-		// Don't bother doing anything if there are no files
+		// Don't bother doing anything if there are no orphans
 		if (sizeof($albumFiles)) {
+
+			// Only check subkeys if the album has photos
 			if (!empty($album->photos)) {
 				foreach ($album->photos as $photo) {
 					foreach ($photo as $image) {
 
-						// Since we're iterating through the entire AlbumItem class looking for files
+						// Theoretically we know which keys hold image locations, 
+						// however this is to be absolutely safe as we go forward
+						// in case any new keys are added
+
+   						// Since we're iterating through the entire AlbumItem class looking for files
 						// we know we can skip any objects that aren't of the class "Image"
 						if (strcasecmp(get_class($image), "Image")) {
 							continue;
@@ -153,7 +159,9 @@ function findOrphanedImages() {
 					}
 				}
 			}
-			// Check the size again so that we don't assign a null array
+
+			// Make sure the array isn't empty
+			// It is valid to get here even if the album has no _valid_ photos
 			if (sizeof($albumFiles)) {
 				$orphans[$albumName] = $albumFiles;
 			}
@@ -236,7 +244,6 @@ if (empty($action)) {
 ?>
 
 		<p class="popup"><?php echo _("Orphaned Files:") . " " . recursiveCount($orphanImages) ?></p>
-		<?php //print_r($orphanImages); ?>
 
 		<p><?php echo _("Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information.") ?></p>
 		<center>
