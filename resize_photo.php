@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($index, $manual, $resize, $resize_file_size, $remove_resized) = getRequestVar(array('index', 'manual', 'resize', 'resize_file_size', 'remove_resized'));
+list($index, $manual, $resize, $resize_file_size, $remove_resized, $resizeRecursive) = getRequestVar(array('index', 'manual', 'resize', 'resize_file_size', 'remove_resized', 'resizeRecursive'));
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
@@ -38,6 +38,9 @@ doctype();
 <head>
   <title><?php echo _("Resize Photo") ?></title>
   <?php common_header(); ?>
+  <style>
+	.nowrap { white-space:nowrap; }
+  </style>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Resizing photos") ?></div>
@@ -53,15 +56,7 @@ if ($gallery->session->albumName && isset($index)) {
 	}
 	if (!empty($resize)) {
 		if (!strcmp($index, "all")) {
-			$np = $gallery->album->numPhotos(1);
-			echo("<br> ". sprintf(_("Resizing %d photos..."),$np));
-			my_flush();
-			for ($i = 1; $i <= $np; $i++) {
-				echo("<p> ". _("Processing image") . " $i...");
-				my_flush();
-				set_time_limit($gallery->app->timeLimit);
-				$gallery->album->resizePhoto($i, $resize, $resize_file_size);
-			}
+			$gallery->album->resizeAllPhotos($resize,$resize_file_size,"", $resizeRecursive);
 		} else {
 			echo("<br> ". _("Resizing 1 photo..."));
 			my_flush();
@@ -105,19 +100,28 @@ if ($gallery->session->albumName && isset($index)) {
 		$choices=array(1280,1024,700,800,640,600,500,400);
 		for ($i=0; $i<count($choices); $i=$i+2) {
 			echo "\n\t<tr>";
-			echo "\n\t\t". '<td><input type="radio" name="resize" value="' . $choices[$i] .'" id="size_' . $choices[$i] .'">'. '<label for="size_' . $choices[$i] .'">'. $choices[$i] .'</label></td>';
-			echo "\n\t\t". '<td><input type="radio" name="resize" value="' .$choices[$i+1].'" id="size_' .$choices[$i+1].'">'. '<label for="size_' .$choices[$i+1].'">'.$choices[$i+1].'</label></td>';
+			echo "\n\t\t". '<td class="nowrap"><input type="radio" name="resize" value="' . $choices[$i] .'" id="size_' . $choices[$i] .'">'. '<label for="size_' . $choices[$i] .'">'. $choices[$i] .'</label></td>';
+			echo "\n\t\t". '<td class="nowrap"><input type="radio" name="resize" value="' .$choices[$i+1].'" id="size_' .$choices[$i+1].'">'. '<label for="size_' .$choices[$i+1].'">'.$choices[$i+1].'</label></td>';
 			echo "\n\t</tr>\n";
 		}
 ?>
 	<tr>
-		<td><input id="none" type="radio" name="resize" value="manual"></td>
-		<td><input type="text" size="5" name="manual" onFocus="document.getElementById('none').checked=true;"><label for="none"> <?php echo _("(manual value)"); ?></label></td>
+		<td colspan="2">
+			<input id="none" type="radio" name="resize" value="manual">
+			<input type="text" size="5" name="manual" onFocus="document.getElementById('none').checked=true;"><label for="none"> <?php echo _("(manual value)"); ?></label>
+		</td>
 	</tr>
+
+
 	</table>
 	</td>
 </tr>
 </table>
+
+<p>
+	<?php echo _("Apply to nested albums ?"); ?>
+	<input type="checkbox" name="resizeRecursive" value="false">
+</p>
 
 <p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">

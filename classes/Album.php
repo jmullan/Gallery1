@@ -972,6 +972,26 @@ class Album {
 		$photo = &$this->getPhoto($index);
 		if (!$photo->isMovie()) {
 			$photo->resize($this->getAlbumDir(), $target, $filesize, $pathToResized);
+		} else {
+			echo ("Skipping Movie");
+		}
+	}
+
+	function resizeAllPhotos($target,$filesize=0,$pathToResized="", $recursive=false) {
+		for ($i=1; $i <= $this->numPhotos(1); $i++) {
+			if ($this->isAlbum($i) && $recursive == true) {
+				$nestedAlbum = new Album();
+				$nestedAlbum->load($this->getAlbumName($i));
+				$np = $nestedAlbum->numPhotos(1);
+				echo "\n<br>". sprintf (_("Entering album %s, processing %d photos"), $this->getAlbumName($i), $np);
+				$nestedAlbum->resizeAllPhotos($target,$filesize=0,$pathToResized="", $recursive);
+				$nestedAlbum->save();
+			}
+			else {
+				echo "<br>". sprintf(_("Processing element %d..."), $i);
+				my_flush();
+				$this->resizePhoto($i, $target, $filesize=0, $pathToResized="");
+			}
 		}
 	}
 
