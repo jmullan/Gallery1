@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($uname, $password, $langid, $lcid, $cmd) = getRequestVar(array('uname', 'password', 'langid', 'lcid', 'cmd'));
+list($uname, $password, $langid, $lcid, $cmd, $set_albumName, $setCaption, $newAlbumTitle, $createNewAlbum, $album ) = getRequestVar(array('uname', 'password', 'langid', 'lcid', 'cmd', 'set_albumName', 'setCaption', 'newAlbumTitle', 'createNewAlbum', 'album'));
 
 if (isset($_SERVER["HTTPS"] ) && stristr($_SERVER["HTTPS"], "on")) {
     $proto = "https";
