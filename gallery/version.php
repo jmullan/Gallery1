@@ -1,5 +1,5 @@
 <? 
-$gallery->version = "1.0beta10";
-$gallery->config_version = 14;
+$gallery->version = "1.0";
+$gallery->config_version = 15;
 $gallery->url = "http://gallery.sourceforge.net";
 ?>
