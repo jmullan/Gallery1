@@ -63,8 +63,14 @@ function error_format($message) {
 function popup($url, $no_expand_url=0) {
 	global $GALLERY_BASEDIR;
 
+	$dir = $GALLERY_BASEDIR;
+	if (!$dir) {
+		global $gallery;
+		$dir = $gallery->app->photoAlbumURL . "/";
+	}
+
 	if (!$no_expand_url) {
-		$url = "'$GALLERY_BASEDIR$url'";
+		$url = "'$dir$url'";
 	}
 	$attrs = "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes";
 	return "javascript:nw=window.open($url,'Edit','$attrs');nw.opener=self;return false;";
