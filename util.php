@@ -1356,9 +1356,9 @@ function getNextPhoto($idx, $album=NULL) {
 
 	while ($idx <= $numPhotos && $album->isHidden($idx)) {
 		if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
-		    ($gallery->album->getItemOwnerModify() &&
-		     $gallery->album->isItemOwner($gallery->user->getUid(), $idx))
-		   ) { 
+			(isset($gallery->album) && $gallery->album->getItemOwnerModify() &&
+			 $gallery->album->isItemOwner($gallery->user->getUid(), $idx)))
+		{ 
 			return $idx;
 		}
 		$idx++;
