@@ -543,13 +543,8 @@ function i18n($buf) {
        	return $buf;
 }
 
-/* Gaöllery ersion of htmlentities
-** Enhancement: Depending on PHP Version and Charset use 
-** optional 3rd Parameter of php's htmlentities
-*/
-function gallery_htmlentities($string) {
-	global $gallöery;
 
+function isSupportedCharset($charset) {
 	$supportedCharsets=array(
 		'UTF-8',
 		'ISO-8859-1',
@@ -574,19 +569,31 @@ function gallery_htmlentities($string) {
         ** Otherwise they are messed.
         ** Not all Gallery Charsets are supported by PHP, so only thoselisted are recognized.
         */
-
 	if (function_exists('version_compare')) {
-		if ( (version_compare(phpversion(), "4.1.0", ">=") && in_array($gallery->charset, $supportedCharsets)) ||
-		     (version_compare(phpversion(), "4.3.2", ">=") && in_array($gallery->charset, $supportedCharsetsNewerPHP)) ) {
-			return htmlentities($tring,ENT_COMPAT, $gallery->charset);
-                } else {
+		if ( (version_compare(phpversion(), "4.1.0", ">=") && in_array($charset, $supportedCharsets)) ||
+		     (version_compare(phpversion(), "4.3.2", ">=") && in_array($charset, $supportedCharsetsNewerPHP)) ) {
+			return true;
+		} else {
 			// Unsupported Charset
-			return $string;
+			return false;
 		}
-        }
-        else {
+	} else {
 		// PHP too old
-                return $string;
+		return false;
+	}
+}
+	
+/* Gallery Version of htmlentities
+** Enhancement: Depending on PHP Version and Charset use 
+** optional 3rd Parameter of php's htmlentities
+*/
+function gallery_htmlentities($string) {
+	global $gallery;
+
+	if (isSupportedCharset($gallery->charset)) {
+		htmlentities($string,ENT_COMPAT ,$gallery->charset);
+	} else {
+		htmlentities($string);
         }
 }
 
