@@ -20,7 +20,11 @@ function ML_reload() {
 	$nls = getNLS();
 	foreach ($gallery->app->available_lang as $value) {
 		if ($gallery->language == $value) $selected="selected"; else $selected="";
-		$args=$_GET;
+		if (isset($_GET)) {
+			$args=$_GET;
+		} else {
+			$args = $HTTP_GET_VARS;
+		}
 		$args["newlang"]=$value;
 		echo "\n\t\t<option value=\"".makeGalleryUrl(
 				end(explode("/", $_SERVER["PHP_SELF"])),

@@ -150,6 +150,7 @@ $constants = array_merge(
 		"prompt" => _("Gallery Title"),
 		"desc" => _("The name of your gallery.  Eg. <i>My Cool Photos</i>"),
 		"value" => _("Gallery"),
+		"type" => "text",
 		"attrs" => array("size" => 50),
 	),
 	"editPassword" => array(
@@ -158,6 +159,7 @@ $constants = array_merge(
 		sprintf(_("The password for the %s account.  Unfortunately, you're required to re-enter this every time you reconfigure Gallery.  We'll fix this in a future release!"), '<i>admin</i>'),
 		"type" => "text",
 		"dont-write" => 1,
+		"value" => "",
 		"attrs" => array("size" => 50),
 	),
 	"graphics" => array(
@@ -181,6 +183,7 @@ $constants = array_merge(
 		"filename" => 1,
 		"attrs" => array("size" => 50),
 		"no-trailing-slash" => 1,
+		"type" => "text",
 		"verify-func-takes-graphics-type" => true,
 	),
 	"pnmtojpeg" => array(
@@ -194,19 +197,20 @@ $constants = array_merge(
 		"prompt" => _("Path to ImageMagick"),
 		"desc" => _("The path to the directory containing ImageMagick on your system."),
 		"verify-func" => "check_graphics_im",
-		"value" => locateDir("convert", $gallery->app ? $gallery->app->ImPath :
- ""),
+		"value" => locateDir("convert", $gallery->app ? $gallery->app->ImPath : ""),
 		"fail-imagemagick" => _("I can't find ImageMagick at the location you provided.") . "  " .
 			$common_messages["getting-imagemagick"],
 		"filename" => 1,
 		"attrs" => array("size" => 50),
 		"no-trailing-slash" => 1,
+		"type" => "text",
 		"verify-func-takes-graphics-type" => true,
 	),
 	"highlight_size" => array(
 		"prompt" => _("Highlight size"),
 		"desc" => _("The target size (in pixels) of thumbnails shown in the gallery page (highlight images)"),
  		"value" => 200,
+		"type" => "text",
 		"attrs" => array("size" => 5),
 	),
 	"zipinfo" => array(
@@ -217,6 +221,7 @@ $constants = array_merge(
 		"must-be-executable" => 1,
 		"optional" => 1,
 		"filename" => 1,
+		"type" => "text",
 		"attrs" => array("size" => 50),
 	),
 	"unzip" => array(
@@ -227,6 +232,7 @@ $constants = array_merge(
 		"must-be-executable" => 1,
 		"optional" => 1,
 		"filename" => 1,
+		"type" => "text",
 		"attrs" => array("size" => 50),
 	),
 	"use_exif" => array(
@@ -238,6 +244,7 @@ $constants = array_merge(
 		"must-be-executable" => 1,
 		"optional" => 1,
 		"filename" => 1,
+		"type" => "text",
 		"attrs" => array("size" => 50),
 	),
 	"use_jpegtran" => array (
@@ -251,12 +258,14 @@ $constants = array_merge(
 		"must-be-executable" => 1,
 		"optional" => 1,
 		"filename" => 1,
+		"type" => "text",
 		"attrs" => array ("size" => 50),
 	),		
 	"movieThumbnail" => array(
 		"prompt" => _("Thumbnail image"),
 		"desc" => sprintf(_("The filesystem path to the thumbnail image to show for movies.  Eg. %s"), "/home/foo/thumbnail.jpg"),
 		"value" => $GALLERY_DIR . "/images/movie.thumb.jpg",
+		"type" => "text",
 		"attrs" => array("size" => 50),
 	),
 	"albumDir" => array(
@@ -266,6 +275,7 @@ $constants = array_merge(
 		"value" => getenv("DOCUMENT_ROOT") . "/albums",
 		"require-write-dir" => 1,
 		"filename" => 1,
+		"type" => "text",
 		"attrs" => array("size" => 50),
 	),
 	"tmpDir" => array(
@@ -275,6 +285,7 @@ $constants = array_merge(
 		"value" => getenv("TMP"),
 		"filename" => 1,
 		"require-write-dir" => 1,
+		"type" => "text",
 		"attrs" => array("size" => 50),
 	),
 	"photoAlbumURL" => array(
@@ -284,6 +295,7 @@ $constants = array_merge(
 		"value" => "http://" . getenv("SERVER_NAME") . $GALLERY_URL,
 		"no-trailing-slash" => 1,
 		"must-be-url" => 1,
+		"type" => "text",
 		"attrs" => array("size" => 50),
 	),
 	"albumDirURL" => array(
@@ -293,6 +305,7 @@ $constants = array_merge(
 		"value" => "http://" . getenv("SERVER_NAME") . "/albums",
 		"no-trailing-slash" => 1,
 		"must-be-url" => 1,
+		"type" => "text",
 		"attrs" => array("size" => 50),
 	),
 	"mirrorSites" => array(
@@ -303,6 +316,7 @@ $constants = array_merge(
 			'</center>'),
 		"optional" => 1,
 		"type" => "textarea",
+		"value" => NULL,
 		"attrs" => array("cols" => 50, "rows" => 5),
 	),
 	"showAlbumTree" => array(
@@ -363,7 +377,7 @@ $constants = array_merge(
         "timeLimit" => array(
 		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Time Limit"),
 		"desc" => _("The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."),
-		"type" => text,
+		"type" => "text",
 		"must-be-number" => 1,
 		"must-not-be-zero" => 1,
 		"value" => 30,
@@ -384,12 +398,14 @@ $constants = array_merge(
 		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Status code"),
 		"desc" => _("The status code Gallery expects to see after a successful exec() call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."),
 		"value" => detect_exec_status(),
+		"type" => "text",
 		"attrs" => array("size" => 5),
 	),
 	"sessionVar" => array(
 		"prompt" => "<b>(" . _("Advanced") .")</b> ". _("Session variable"),
 		"desc" => _("This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."),
 		"value" => "gallery_session",
+		"type" => "text",
 		"attrs" => array("size" => 20),
 	),
 
@@ -415,6 +431,7 @@ $defaults = array(
 
 		// <a href="http://www.w3.org/TR/REC-html40/types.html#h-6.5">W3.org</a>',
  		"value" => "black",
+		"type" => "text",
 		"attrs" => array("size" => 10),
 	),
 	"border" => array(
@@ -428,6 +445,7 @@ $defaults = array(
 		"desc" => _("Default font face.  Eg. <i>arial</i> or <i>trebuchet</i>"),
 		"value" => "arial",
 		"attrs" => array("size" => 10),
+		"type" => "text"
 	),
 	"cols" => array(
 		"prompt" => _("Default Columns"),
@@ -446,6 +464,7 @@ $defaults = array(
 		"desc" => _("The default target size (in pixels) of album thumbnails."),
 		"value" => 150,
 		"attrs" => array("size" => 10),
+		"type" => "text"
 	),
 	"resize_size" => array(
 		"prompt" => _("Resized image size"),
@@ -474,7 +493,7 @@ $defaults = array(
 			"fotokasten" => "fotokasten",
 			"shutterfly" => "shutterfly", 
 			"shutterfly without donation" => 
-				sprintf(_("%s without donation"),shutterfly))
+				sprintf(_("%s without donation"),'shutterfly'))
 	),
 	"returnto" => array(
 		"prompt" => _("Gallery Link"),
@@ -493,6 +512,7 @@ $defaults = array(
 		"desc" => _("How many albums should be displayed per Gallery page?"),
 		"value" => "5",
 		"attrs" => array("size" => 10),
+		"type" => "text"
 	),
 	"showSearchEngine" => array(
 		"prompt" => _("Search Engine"),
@@ -523,6 +543,7 @@ $defaults = array(
 		"optional" => 1,
 		"desc" => _("Custom fields that are available to describe each image.  They should be separated by commas.  Eg. <i>Description, Location, Film Type</i>"),
 		"attrs" => array("size" => 80),
+		"type" => "text",
 		"value" => "Description"
 	),
 	"item_owner_modify" => array(

@@ -45,27 +45,30 @@ if (function_exists("posix_getpwuid")) {
 
 require("config_data.inc");
 
-if ($go_defaults) {
+if (isset ($go_defaults)) {
 	$setup_page = $this_page;
-} else if ($go_next) {
+} else if (isset ($go_next)) {
 	$setup_page = $next_page;
-} else if ($go_back) {
+} else if (isset ($go_back)) {
 	$setup_page = $back_page;
 }
 
-if (!$setup_page) {
+if (!isset($setup_page)) {
 	$setup_page = "check";
 }
 
 /* Array-ize the preserve list */
-$tmp = split(" ", urldecode($preserve));
-$preserve = array();
-foreach ($tmp as $key) {
-	$preserve[$key] = 1;
+if (isset($preserve)) {
+	$tmp = split(" ", urldecode($preserve));
+	$preserve = array();
+	foreach ($tmp as $key) {
+		$preserve[$key] = 1;
+	}
+} else {
+	$preserve=array();
 }
-
 foreach (array_keys($preserve) as $key) {
-	if ($$key && !is_array($$key)) {
+	if (isset($$key) && !is_array($$key)) {
 		$$key = urldecode($$key);
 	}
 }
@@ -109,7 +112,7 @@ function embed_hidden($key) {
 }
 
 foreach ($preserve as $key => $val) {
-	if ($key && !$onThisPage[$key]) {
+	if ($key && !isset($onThisPage[$key])) {
 		print embed_hidden($key);
 	}
 }

@@ -2,6 +2,7 @@
 <?php
 
 function evenOdd_row($fields, $evenOdd) {
+	$buf='';
 	if ($evenOdd) {
 		$bgColor = "#88cccc";
 	} else {
@@ -20,8 +21,9 @@ function evenOdd_row($fields, $evenOdd) {
 }
 
 function make_attrs($attrList) {
+	$attrs = '';
 	if ($attrList) {
-		if (!$attrList["size"]) {
+		if (!isset($attrList["size"])) {
 			$attrList["size"] = 40;
 		}
 		foreach ($attrList as $attrKey => $attrVal) {
@@ -55,7 +57,11 @@ function form_input($key, $arr) {
 	if ($arr["type"]) {
 		$type = "type=$arr[type]";
 	}
-	$attrs = make_attrs($arr["attrs"]);
+	if (isset($arr["attrs"])) {
+		$attrs = make_attrs($arr["attrs"]);
+	} else {
+		$attrs = '';
+	}
 
 	return "<input $type name=$key value=\"$arr[value]\" $attrs>";
 }
@@ -430,7 +436,7 @@ function check_gettext()
 {
 	$fail = array();
 	$success = array();
-	if (in_array ("gettext", get_loaded_extensions()) && function_exists(gettext)) {
+	if (in_array ("gettext", get_loaded_extensions()) && function_exists('gettext')) {
 		$success[] = _("gettext installed");
 	} else {
 		$fail["fail-gettext"]++;
@@ -530,7 +536,11 @@ function gallery_languages() {
 		if ($dh = opendir($locale_dir)) {
 			while (($file = readdir($dh)) !== false) {
 				if ($file != "CVS" && !ereg("^\.", $file)) {
-					$locales[$file]=$nls['languages'][$file];
+					if (isset($nls['languages'][$file])) {
+						$locales[$file]=$nls['languages'][$file];
+					} else {
+						$locales[$file] = "Unknown Language ($file)";
+					}
 				}
 			}
 			closedir($dh);
@@ -557,7 +567,7 @@ function all_locales ($set) {
 	$maybe_locales=array();
 	$non_available_locales=array();
 
-	$current_local=setlocale(LC_ALL, 0);
+	$current_locale=setlocale(LC_ALL, 0);
 	$available_locales['en_US']=$nls['languages']['en_US'];
 
 	if (strncasecmp(PHP_OS,"win", 3)) {
@@ -589,7 +599,14 @@ function all_locales ($set) {
 				}
 			}
                 } 
-		$aliases=array_filter(array_unique($aliases), test_locale);
+		// $aliases=array_filter(array_unique($aliases), "test_locale");
+		$tmp=array();
+		foreach ($aliases as $alias) {
+			if (test_locale($alias)) {
+					$tmp[]=$alias;
+			}
+		}
+		$aliases=$tmp;
 		if (setlocale(LC_ALL, $locale)) {
 			$available_locales[$locale]=$locale_name;
 		} else if ($aliases) {
@@ -599,7 +616,7 @@ function all_locales ($set) {
 			$non_available_locales[]=$locale;
 		}
 	}
-	setlocale(LC_ALL, $currrent_locale);
+	setlocale(LC_ALL, $current_locale);
 	switch ($set) {
 		case 0:
 			return $available_locales;
@@ -638,7 +655,7 @@ function config_maybe_locales() {
 			continue;
 		}
 		if (sizeof($aliases) == 1) {
-			$results["locale_alias[$key]"] = array (
+			$results["locale_alias['$key']"] = array (
 				"type" => "hidden", 
 				"value" => array_pop($aliases),
 				"desc" => "locale_alias[$key]",
@@ -651,7 +668,7 @@ function config_maybe_locales() {
 		foreach ($aliases as $value) { 
 			$choices[$value]=$value;
 		}
-		$results["locale_alias[$key]"] = array (
+		$results["locale_alias['$key']"] = array (
 			"prompt" => sprintf(_("Possible locale problems with %s."),
 				$nls['languages'][$key]),
 			"desc" => _("This language is available, but there seems to be a locale problem.  Please select a locale for date format style.") .
@@ -666,7 +683,7 @@ function config_maybe_locales() {
         }
         foreach ($unavailable as $key) {
 		if (sizeof($available) == 1) {
-			$results["locale_alias[$key]"] = array (
+			$results["locale_alias['$key']"] = array (
 				"type" => "hidden", 
 				"value" => 0,
 				"desc" => "locale_alias[$key]",
@@ -679,7 +696,7 @@ function config_maybe_locales() {
 		foreach ($available as $value) { 
 			$choices[$value]=$value;
 		}
-		$results["locale_alias[$key]"] = array (
+		$results["locale_alias['$key']"] = array (
 			"prompt" => sprintf(_("Locale problems with %s."),
 				$nls['languages'][$key]),
 			"desc" => _("This language is available, but we can't identified a suitable locale for it.  Please select a locale for date format style.") .

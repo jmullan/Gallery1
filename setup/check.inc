@@ -26,6 +26,7 @@
 <input type=hidden name=next_page value="constants">
 
 <?php
+$warning =0;
 foreach ($checklist as $check) {
 ?> 
 	<tr>
@@ -47,7 +48,7 @@ foreach ($checklist as $check) {
 	$openBasedir = ini_get('open_basedir');
 	foreach ($fail as $key => $val) {
 		if ($check["optional"]) {
-			if ($check["serious"]) {
+			if (isset($check["serious"])) {
 				$serious_warning++;
 				$text = _("Serious Warning");
 				$color = "red";
@@ -56,7 +57,7 @@ foreach ($checklist as $check) {
 				$color = "yellow";
 			}
 			echo "<font color=$color><b>$text!</b></font>";
-			if ($check) {
+			if (isset($check) && isset($check[$key])) {
 				echo "<br>$check[$key]<p>";
 			}
 			$warning++;
@@ -66,7 +67,7 @@ foreach ($checklist as $check) {
 			$error = 1;
 		}
 
-		if ($check["open-basedir-note"] && !empty($openBasedir)) {
+		if (isset($check["open-basedir-note"]) && !empty($openBasedir)) {
 			print $check["open-basedir-note"] . "<br><br>";
 		}
 
@@ -92,13 +93,13 @@ foreach ($checklist as $check) {
 
 </table>
 <p>
-<?php if ($error) { ?>
+<?php if (isset($error)) { ?>
 	<?php echo _("There are errors in your configuration that will prevent Gallery from functioning properly.") ?>
 	<br>
 	<?php echo _("You must fix them before you can continue.") ?>
 <?php } else { ?>
 <?php if ($warning) { ?>
-		<?php if ($serious_warning) { ?>
+		<?php if (isset($serious_warning)) { ?>
 			<?php echo _("Your installation has <b>serious warnings</b>!  Continue at your own risk...") ?>
  		<?php } else { ?>
 			<?php echo _("Your installation has warnings, but this is usually OK.  Keep going!") ?>

@@ -22,16 +22,16 @@ echo _("In this step you'll customize various settings for Gallery.  If this is 
 $i = 0;
 foreach ($constants as $key => $val) {
 	/* Support $app-> for backwards compatibility */
-	if ($app->$key) {
+	if (isset($app->$key)) {
 		$val["value"] = $app->$key;
 	}
 
 	/* $gallery->app-> is the desired container, however */
-	if ($gallery->app->$key) {
+	if (isset($gallery->app->$key)) {
 		$val["value"] = $gallery->app->$key;
 	}
 	else {
-		eval ("\$defn=\$gallery->app->$key;");
+		@eval ("\$defn=\$gallery->app->$key;");
 		if ($defn) {
 			eval ('$val["value"] = $gallery->app->'.$key.';');
 		}
@@ -39,7 +39,7 @@ foreach ($constants as $key => $val) {
 	$onThisPage[$key] = 1;
 	$preserve[$key] = 1;
 
-	if (!$go_defaults) {
+	if (!isset($go_defaults)) {
 		if (ereg("^(..*)\[.*\]$", $key, $matches)) {
 			$line='if (isset($'.$key.')) $val["value"] = $'.$key . ';';
 			eval($line);
@@ -53,19 +53,20 @@ foreach ($constants as $key => $val) {
 
 		}
 		if (get_magic_quotes_gpc()) {
-			if (is_array($val["value"]) && 
-					function_exists('array_map')) { 
-				$val["value"] = array_map(stripslashes, $val["value"]);
+			if (is_array($val["value"])) {
+				if (function_exists('array_map')) { 
+					$val["value"] = array_map(stripslashes, $val["value"]);
+				}
 			} else {
 				$val["value"] = stripslashes($val["value"]);
 			}
-	    }
+		}
 	}
 
 	// Protect quote characters to avoid screwing up HTML forms
 	$val["value"] = str_replace('"', "&quot;", $val["value"]);
 
-	if (!strcmp($val["type"], "hidden")) {
+	if (isset($val["type"]) && !strcmp($val["type"], "hidden")) {
 		list($f1, $f2) = make_fields($key, $val);
 		echo $f2;
 	} else {

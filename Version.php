@@ -40,7 +40,7 @@ if (!$gallery) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = "1.3.5-cvs-b69";
+$gallery->version = "1.3.5-cvs-b70";
 $gallery->config_version = 40;
 $gallery->album_version = 13;
 $gallery->remote_protocol_version = 1;
@@ -60,8 +60,10 @@ $modversion['official'] = 0; // Official PostNuke Approved Module? 1 = yes, 0 = 
 $modversion['author'] = 'Bharat Mediratta'; // Author
 $modversion['contact'] = $gallery->url; // The Authors Website or Contact Email Address
 $modversion['admin'] = 0; // Leave at 0
-if (!isset($modname)) {
+if (!isset($modname) && isset($name)) {
     $modname = $name;
+} else {
+	$modname = '';
 }
 $modversion['securityschema'] = array("$modname::" => '::'); // Permission Component
 ?>

@@ -1746,7 +1746,7 @@ function initLanguage() {
 		$gallery->app->ML_mode = 2;
 	}
 
-	if ($gallery->app->ML_mode > 1) {
+	if ($gallery->app->ML_mode > 1 && isset($gallery->session)) {
 		$gallery->language=$gallery->session->language;
 	}
 
@@ -1756,7 +1756,7 @@ function initLanguage() {
 	$nls = getNLS();
 	if ($gallery->app->ML_mode == 1) {
 		$gallery->language = $gallery->app->default_language;
-	} elseif ($gallery->app->ML_mode == 2 and ! $gallery->language) {
+	} elseif ($gallery->app->ML_mode == 2 and !isset( $gallery->language)) {
 		// Use Browser Language
 		$gallery->language=$gallery->browser_language;
 	} elseif ($gallery->app->ML_mode == 3 and ($newlang)) {
@@ -1787,8 +1787,9 @@ function initLanguage() {
 
 // if an alias for a language is given, use it
 //
-	if ($nls['alias'][$gallery->language]) {
-		$gallery->language = $nls['alias'][$gallery->language] ;
+	if (isset ($gallery->language) && 
+			isset($nls['aliases'][$gallery->language])) {
+		$gallery->language = $nls['aliases'][$gallery->language] ;
 	}
 
 // And now set this language into session
@@ -1807,21 +1808,21 @@ function initLanguage() {
 		$locale=$gallery->locale;
 
 // if no direction is present, use default
-        if ( ! $nls['direction'][$gallery->language]) {
+        if ( !isset( $nls['direction'][$gallery->language])) {
 		$gallery->direction=$nls['default']['direction'] ;
 	} else {
 		$gallery->direction = $nls['direction'][$gallery->language] ;
 	}
 
 //If no Charset is given use default
-        if ( ! $nls['charset'][$gallery->language] ) {
+        if ( !isset( $nls['charset'][$gallery->language] ) ) {
 		$gallery->charset=$nls['default']['charset'];
 	} else {
 		$gallery->charset=$nls['charset'][$gallery->language] ;
 	}
 
 // if no alignment is given use default
-        if ( ! $nls['align'][$gallery->language] ) {
+        if ( !isset ($nls['align'][$gallery->language] )) {
 		$gallery->align=$nls['default']['align'];
 	} else {
 		$gallery->align=$nls['align'][$gallery->language] ; 
@@ -1846,7 +1847,7 @@ if (in_array("gettext", get_loaded_extensions())) {
 //Set Charset
         header('Content-Type: text/html; charset=' . $gallery->charset);
 	if (!in_array("gettext", get_loaded_extensions()) 
-		|| ! function_exists(gettext)) {
+		|| ! function_exists('gettext')) {
 		$filename=po_filename();
 		if ($filename) {
 			$lines=file($filename);

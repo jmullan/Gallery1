@@ -16,7 +16,7 @@ require("../Version.php");
 
 $error = 0;
 
-$data .= "<" . "?php\n";
+$data = "<" . "?php\n";
 
 $data .= "/* \n"
         ." * Protect against very old versions of 4.0 (like 4.0RC1) which  \n"
@@ -31,7 +31,7 @@ $data .= "/* \n"
         ."}\n\n";
 
 $data .= "/* Version  */\n";
-$view .= row_wrap("/* Version  */");
+$view = row_wrap("/* Version  */");
 
 $data .= "\$gallery->app->config_version = $gallery->config_version;\n";
 $view .= row_wrap("\$gallery->app->config_version = $gallery->config_version;");
@@ -73,15 +73,17 @@ $graphpath = "";
 $graphtest = array();
 
 foreach ($constants as $key => $val) {
-	$real = $$key;
 	if (ereg("^(..*)\[(.*)\]$", $key, $matches)) {
 		$line='$real = $'. $matches[1] . '["' . $matches[2] . '"];';
 		eval($line);
+	} else {
+		$real = $$key;
 	}
-
         if (get_magic_quotes_gpc()) {
-		if (is_array($real) && function_exists('array_map')) {
-			$real = array_map(stripslashes, $real);
+		if (is_array($real)) {
+			if (function_exists('array_map')) {
+				$real = array_map(stripslashes, $real);
+			}
 		} else {
 			$real = stripslashes($real);
 		}
@@ -98,7 +100,7 @@ foreach ($constants as $key => $val) {
 		echo "<input type=hidden name=$key value=\"{$real}\">";
 	}
 
-	if ($constants[$key]["eval"]) {
+	if (isset($constants[$key]["eval"])) {
 		$tmp = $constants[$key]["eval"];
 		eval("\$real = $tmp;");
 	}
@@ -107,14 +109,14 @@ foreach ($constants as $key => $val) {
 		$graphtool = $real;
 	}
 	
-	if (!strcmp($real, "")) {
+	if ($real === "") {
 		if (!strcmp($key, "pnmDir")) {
 		        $graphtest['pnmDir'] = 1;
 		}
 		else if (!strcmp($key, "ImPath")) {
 		        $graphtest['ImPath'] = 1;
 		}
-		if ($constants[$key]["optional"]) {
+		if (isset($constants[$key]["optional"])) {
 			$data .= "// ". _("optional") . " <i>$key</i> ". _("missing") ."\n";
 			$view .= row_wrap("// ". _("optional") ." <i>$key</i> ". _("missing"));
 		} else {
@@ -122,17 +124,17 @@ foreach ($constants as $key => $val) {
 			$error = 1;
 		}
 	} else {
-		if ($constants[$key]["filename"]) {
+		if (isset($constants[$key]["filename"])) {
 			$real = fs_export_filename($real);
 		}
 
-		if ($constants[$key]["no-trailing-slash"]) {
+		if (isset($constants[$key]["no-trailing-slash"])) {
 			$real = ereg_replace("\/$", "", $real);
 			/* Catch windows paths too. */
 			$real = ereg_replace("\\$", "", $real);
 		}
 
-		if ($constants[$key]["must-be-url"]) {
+		if (isset($constants[$key]["must-be-url"])) {
 			if (!ereg("^http", $real)) {
 				$view .= row_wrap(error_format(sprintf(_("%s: <b>%s</b> must be an absolute URL!"), $key, $real)));
 				$error = 1;
@@ -140,7 +142,7 @@ foreach ($constants as $key => $val) {
 			}
 		}
 
-		if ($constants[$key]["must-be-file"]) {
+		if (isset($constants[$key]["must-be-file"])) {
 			$dir = dirname($real);
 			if (!inOpenBasedir($dir)) {
 				$warn_about_open_basedir = 1;
@@ -153,7 +155,7 @@ foreach ($constants as $key => $val) {
 			}
 		}
 
-		if ($constants[$key]["must-be-number"]) {
+		if (isset($constants[$key]["must-be-number"])) {
 			if (ereg("[^0-9]",$real)) {
 				$view .= row_wrap(error_format(sprintf(_("%s: <b>\"%s\"</b> must be a positive number"), $key, $real)));
 				$error = 1;
@@ -161,7 +163,7 @@ foreach ($constants as $key => $val) {
 			}
 		}
 
-		if ($constants[$key]["must-not-be-zero"]) {
+		if (isset($constants[$key]["must-not-be-zero"])) {
 			if ($real == 0) {
 				$view .= row_wrap(error_format(sprintf(_("%s: <b>%s</b> must not be zero"), $key, $real)));
 				$error = 1;
@@ -169,7 +171,7 @@ foreach ($constants as $key => $val) {
 			}
 		}
 
-		if ($constants[$key]["must-be-executable"]) {
+		if (isset($constants[$key]["must-be-executable"])) {
 			if (!inOpenBasedir($dir)) {
 				$warn_about_open_basedir = 1;
 			} else if (!fs_is_executable($real)) {
@@ -179,7 +181,7 @@ foreach ($constants as $key => $val) {
 			}
 		}
 
-		if ($constants[$key]["require-write-dir"]) {
+		if (isset($constants[$key]["require-write-dir"])) {
 			$dir = $real;
 			if (!file_exists($dir)) {
 				$view .= row_wrap(error_format(sprintf(_("Directory %s does not exist.  Please create it."), "<b>$dir</b>")));
@@ -210,7 +212,7 @@ foreach ($constants as $key => $val) {
 			}
 		}
 
-		if (!$constants[$key]["dont-write"]) {
+		if (!isset($constants[$key]["dont-write"])) {
 			if (is_array($real)) {
 				$line = array_constant($key, $real);
 			} else {
@@ -220,7 +222,7 @@ foreach ($constants as $key => $val) {
 			$view .= row_wrap($line);
 		}
 
-		if ($constants[$key]["verify-func"]) {
+		if (isset($constants[$key]["verify-func"])) {
 			$func = $constants[$key]["verify-func"];
 			if ($constants[$key]["verify-func-takes-graphics-type"]) {
 			    list($success, $fail) = $func($real, $graphtool);
@@ -284,7 +286,7 @@ if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
     $error = 1;
 }
 
-if ($warn_about_open_basedir) {
+if (isset($warn_about_open_basedir)) {
 	$view .= row_wrap("<hr><b>". _("Note:") ."</b> ". 
 			_("Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths") .
 			" (" . ini_get('open_basedir') . ")  " .
@@ -303,8 +305,10 @@ foreach ($defaults as $key => $val) {
 		$error = 1;
 	} else {
 	        if (get_magic_quotes_gpc()) {
-			if (is_array($$key) && function_exists('array_map')) {
-				$$key = array_map(stripslashes, $$key);
+			if (is_array($$key)) {
+				if (function_exists('array_map')) {
+					$$key = array_map(stripslashes, $$key);
+				}
 			} else {
 				$$key = stripslashes($$key);
 			}
@@ -314,7 +318,7 @@ foreach ($defaults as $key => $val) {
 		
 		$data .= defaults($key, $$key);
 		$view .= row_wrap(defaults($key, $$key));
-		if ($defaults[$key]["verify-func"]) {
+		if (isset($defaults[$key]["verify-func"])) {
 			$func = $defaults[$key]["verify-func"];
 			list($success, $fail) = $func($$key);
 			foreach ($fail as $fkey => $fval) {
