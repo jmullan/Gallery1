@@ -150,14 +150,14 @@ class AlbumItem {
 			$this->owner = $gallery->album->fields["owner"];
 			$changed = 1;
 		}
-		if ($this->version < 12) { 
-			if (!strcmp($this->owner, "nobody" ) &&
-			    strcmp($gallery->album->fields["owner"], "nobody")) {
-			    {
+		if ($this->version < 12) {
+		    	$nobody = $gallery->userDB->getNobody();
+			$nobodyUid = $nobody->getUid();
+			if (!strcmp($this->owner, $nobodyUid) && 
+			    strcmp($gallery->album->fields["owner"], $nobodyUid)) {
 				$this->owner = $gallery->album->fields["owner"];
 				$changed = 1;
-		}
-			    }
+			}
 		}
 		if ($this->image) {
 			if ($this->image->integrityCheck($dir)) {
