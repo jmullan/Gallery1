@@ -56,7 +56,7 @@ for ($i = 0; $i < $numAlbums; $i++) {
   <!-- Begin Album Column Block -->
   <tr>
   <!-- Begin Image Cell -->
-  <td width=<?=$app->thumb_size?> align=center valign=middle>
+  <td width=<?=$app->highlight_size?> align=center valign=middle>
   <a href=<?=$albumURL?>>
   <?   
         if ($album->numPhotos()) {
