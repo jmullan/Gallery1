@@ -1,3 +1,33 @@
+2001-02-08  Bharat Mediratta  <bharat@sinia.com>
+
+	* Updated the README file to have better instructions for
+	  installing and configuring the gallery, including on ftp-only
+	  virtual servers.  Also added directions for customizing the
+	  appearance.
+
+	* Dropped the dependency on having a working .htaccess file, since
+	  it is becoming apparent that many people don't have this
+	  privilege.  It wasn't absolutely necessary anyway now that the
+	  mod_rewrite code is optional also.  The only problem is that you
+	  can't force the server to allow really large file uploads
+	  without .htaccess working...but that'll keep for now.
+
+	* Since we don't require .htacces anymore, we now manually load
+	  init.php at the beginning of each entry point PHP file.
+
+	* General improvements of the config wizard including better help
+	  text, better layout (well, more readable but perhaps less
+	  attractive in some cases), additional checks (we check
+	  magic_quotes).  Removed the unused "mv" and "edit" constants.
+
+	* We're now being a lot smarter about detecting when the Gallery
+	  has not been configured and showing the user a sane error
+	  message (instead of allowing it to bomb on a missing  global
+	  variable) 
+
+	* Changed the config_version to 8...you'll need to re-run the
+	  wizard. 
+
 2001-01-23  Bharat Mediratta  <bharat@sinia.com>
 
 	* Fixed a bug in makePathWrapper() where it was (ugh) ignoring 
