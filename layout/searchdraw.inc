@@ -13,25 +13,20 @@ $pixel30Image = "<img src=\"$imageDir/pixel_trans.gif\" width=\"30\" height=\"1\
 
 ?>
   <tr>
-    <td width=150><?=$pixelImage?></td>
-    <td width=30><?=$pixelImage?></td>
+    <td width=100><?=$pixelImage?></td>
+    <td width=10><?=$pixelImage?></td>
     <td bgcolor="<?=$borderIn?>"><?=$pixelImage?></td>
   </tr>
-<?
-?>
   <tr>
-    <td width=152>
+    <td width=100>
       <a href="<?=$searchdraw["photoURL"]?>"><?=$searchdraw["photolink"]?></a>
     </td>
-<?
-?>
-    <td width=30><?=$pixelImage?></td>
+    <td width=10><?=$pixelImage?></td>
     <td valign=top>
       <?=$searchdraw["Text1"]?><br>
       <?=$searchdraw["Text2"]?>
     </td>
-<?
-?>
   </tr>
-<?
-?>
+  <tr>
+    <td colspan=3 height=5><?=$pixelImage?></td>
+  </tr>
