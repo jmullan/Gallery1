@@ -74,7 +74,7 @@ function popup_help($entry, $group) {
 function getDimensions($file) {
 	global $app;				
 
-	exec(getAnyToPnmCmd($file, "| $app->pnmDir/pnmfile "),
+	exec(toPnmCmd($file, "| $app->pnmDir/pnmfile "),
 	     $lines,
 	     $status);
 
@@ -155,7 +155,7 @@ function my_flush() {
 function resize_image($src, $dest, $target) {
 	global $app;				
 
-	$err = exec_wrapper(getAnyToPnmCmd($src,
+	$err = exec_wrapper(toPnmCmd($src,
 		     "| $app->pnmDir/pnmscale -xysize $target $target ".
 		     "| $app->pnmDir/ppmtojpeg > $dest"));
 
@@ -169,7 +169,7 @@ function resize_image($src, $dest, $target) {
 function valid_image($file) {
 	global $app;
 	
-	exec(getAnyToPnmCmd($file, "| $app->pnmDir/pnmfile"),
+	exec(toPnmCmd($file, "| $app->pnmDir/pnmfile"),
 	     $results,
 	     $status);
 
@@ -180,13 +180,23 @@ function valid_image($file) {
 	}
 }
 
-function getAnyToPnmCmd($file, $args) {
+function toPnmCmd($file, $args) {
 	global $app;
 
-	return sprintf($app->anytopnm,
-			$file . 
-			// " >&/dev/null " . 
-			$args);
+	if (preg_match("/.png/i", $file)) {
+		$cmd = "pngtopnm";
+	} else if (preg_match("/.jpg/i", $file)) {
+		$cmd = "jpegtopnm";
+	} else if (preg_match("/.gif/i", $file)) {
+		$cmd = "giftopnm";
+	}
+
+	if ($cmd) {
+		return "$app->pnmDir/$cmd $file $args";
+	} else {
+		error("Unknown file type: $file");
+		return "";
+	}
 }
 
 function exec_wrapper($cmd) {
