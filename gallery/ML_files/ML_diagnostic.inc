@@ -62,7 +62,7 @@ if ($gallery->ML->gettext_ok == 2) {
 <?php 
 switch ($gallery->ML->locale_ok) {
 	case 0:
-        	echo _("You dont have a sufficient locale Support !");
+        	echo _("You don't have a sufficient locale Support!");
         break;
 	case 1:
 		echo _("ML Gallery could be displayed in ") . count($nls['languages']) . 
