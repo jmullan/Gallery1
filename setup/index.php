@@ -26,10 +26,6 @@ initLanguage();
 <body dir=<?php echo $gallery->direction ?>>
 <?php
 
-if (!isset($gallery->ML)) {
-	$gallery->ML->mode = 2;
-}
-
 if (function_exists("posix_getpwuid")) {
 	$rec = posix_getpwuid(posix_getuid());
 	$webserver_user = $rec["name"];
