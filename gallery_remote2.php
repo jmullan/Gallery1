@@ -224,8 +224,8 @@ function gr_fetch_albums_prune( &$gallery, &$response, $check_writeable ) {
 	$albumDB = new AlbumDB(FALSE);
 	$album_count = 0;
 
-	if ($check_writeable == 'yes') {
-	    mark_and_sweep($albumDB);
+	if ($check_writeable != 'no') {
+	    mark_and_sweep($albumDB, TRUE);
 	} else {
 		mark_and_sweep($albumDB, FALSE);
 	}
