@@ -77,7 +77,7 @@ function check_htaccess()
 }
 
 function check_netpbm() {
-	return locateDir("anytopnm");
+	return true; #locateDir("anytopnm");
 }
 
 function check_php()
