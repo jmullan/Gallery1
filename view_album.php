@@ -135,7 +135,8 @@ $adminText = "<span class=\"admin\">";
 if ($numPhotos == 1) {  
 	$adminText .= "1 photo in this album";
 } else {
-	$adminText .= "$numPhotos photos in this album on $maxPages pages";
+	$adminText .= "$numPhotos photos in this album on " .
+		pluralize($maxPages, "page");
 }
 
 if ($user->canWriteToAlbum($album)) {
