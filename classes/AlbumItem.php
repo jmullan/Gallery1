@@ -110,6 +110,18 @@ class AlbumItem {
 			if ($this->image->integrityCheck($dir)) {
 				$changed = 1;
 			}
+
+			if ($this->thumbnail) {
+				if ($this->thumbnail->integrityCheck($dir)) {
+					$changed = 1;
+				}
+			}
+
+			if ($this->highlight && $this->highlightImage)  {
+				if ($this->highlightImage->integrityCheck($dir)) {
+					$changed = 1;
+				}
+			}
 		}
 		return $changed;
 	}
