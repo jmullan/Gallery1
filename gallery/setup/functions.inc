@@ -615,9 +615,9 @@ function unavailable_locales () {
 }
 
 function vd($x, $string="") {
-	print "$string <pre>";
+	print "\n$string <pre>";
 	var_dump($x);
-	print "</pre>";
+	print "</pre>\n";
 }
 function config_maybe_locales() {
 	$results=array();
@@ -634,7 +634,9 @@ function config_maybe_locales() {
 		if (sizeof($aliases) == 1) {
 			$results["locale_alias[$key]"] = array (
 				"type" => "hidden", 
-				"value" => array_pop($aliases)
+				"value" => array_pop($aliases),
+				"desc" => "locale_alias[$key]",
+				"prompt" => "locale_alias[$key]"
 					);
 			continue;
 		}
@@ -660,7 +662,9 @@ function config_maybe_locales() {
 		if (sizeof($available) == 1) {
 			$results["locale_alias[$key]"] = array (
 				"type" => "hidden", 
-				"value" => 0
+				"value" => 0,
+				"desc" => "locale_alias[$key]",
+				"prompt" => "locale_alias[$key]"
 					);
 			continue;
 		}
