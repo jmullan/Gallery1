@@ -148,7 +148,7 @@ function forceStaticLang() {
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $gallery;
 
-	$useStatic=array('phpBB2', 'GeekLog');
+	$useStatic=array('mambo', 'phpBB2', 'GeekLog');
 
 	if (in_array($GALLERY_EMBEDDED_INSIDE_TYPE, $useStatic)) {
 		$gallery->app->ML_mode=1;
@@ -591,9 +591,9 @@ function gallery_htmlentities($string) {
 	global $gallery;
 
 	if (isSupportedCharset($gallery->charset)) {
-		htmlentities($string,ENT_COMPAT ,$gallery->charset);
+		return htmlentities($string,ENT_COMPAT ,$gallery->charset);
 	} else {
-		htmlentities($string);
+		return htmlentities($string);
         }
 }
 
