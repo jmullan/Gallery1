@@ -18,7 +18,6 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-
 // Hack prevention.
 if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
@@ -30,10 +29,12 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 require($GALLERY_BASEDIR . "init.php");
 require($GALLERY_BASEDIR . "classes/remote/GalleryRemoteProperties.php");
 
+
 /*
  * Set content type
  */
 header("Content-type: text/plain");
+
 
 /*
  * Gallery remote protocol version 2.0
@@ -66,6 +67,8 @@ $GR_STAT['UNKNOWN_COMMAND']		= 301;
 $GR_STAT['NO_ADD_PERMISSION']	= 401;
 $GR_STAT['NO_FILENAME']			= 402;
 $GR_STAT['UPLOAD_PHOTO_FAIL']	= 403;
+
+$GR_STAT['NO_CREATE_ALBUM_PERMISSION']	= 501;
 
 
 /*
@@ -174,11 +177,13 @@ if (!strcmp($cmd, "fetch-albums")) {
 
 
 //---------------------------------------------------------
-//-- add-photo --
+//-- add-item --
 
 if (!strcmp($cmd, "add-item")) {
 	$response = new Properties();
 	check_proto_version( $response );
+	
+	// current album is set by the "set_albumName" form data and session.php
 	
 	// Hack check
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
@@ -221,12 +226,14 @@ if (!strcmp($cmd, "add-item")) {
 
 
 //---------------------------------------------------------
-//-- album-info --
+//-- album-properties --
 
 if (!strcmp($cmd, "album-properties")) {
 	$response = new Properties();
 	check_proto_version( $response );
-
+	
+	// current album is set by the "set_albumName" form data and session.php
+	
 	$max_dimension = $gallery->album->fields["resize_size"];
 	if ( $max_dimension == "off" ) {
 		$max_dimension = 0;	
@@ -240,6 +247,37 @@ if (!strcmp($cmd, "album-properties")) {
 	exit;
 }
 
+//---------------------------------------------------------
+//-- new-album --
+
+if (!strcmp($cmd, "new-album")) {
+	$response = new Properties();
+	check_proto_version( $response );
+	
+	// Hack check
+	if ( $gallery->user->canCreateAlbums()
+			|| $gallery->user->canCreateSubAlbum($gallery->album) ) {
+
+
+		// add the album
+		createNewAlbum( $newAlbumName, $newAlbumTitle, $newAlbumDesc, $response );
+		
+		// set status and message
+		$response->setProperty( "status", $GR_STAT['SUCCESS'] );
+		$response->setProperty( "status_text", "New album created successfully." );
+		
+	} else {
+		$response->setProperty( "status", $GR_STAT['NO_CREATE_ALBUM_PERMISSION'] );
+		$response->setProperty( "status_text", "A new album could not be created because the user does not have permission to do so." );
+	}
+	
+	// return the response
+	echo $response->listprops();
+	exit;
+}
+
+
+//============================================================================
 
 //------------------------------------------------
 //-- if the command hasn't been handled yet, we don't recognize it
@@ -289,8 +327,8 @@ function add_album( &$myAlbum, &$album_index, $parent_index, &$response ){
     $albumTitle = $myAlbum->fields[title];
 	
 	// write name, title and parent
-	$response->setProperty( "album.name.$album_index", urlencode( $albumName ) );
-	$response->setProperty( "album.title.$album_index", urlencode( $albumTitle ) );
+	$response->setProperty( "album.name.$album_index", $albumName );
+	$response->setProperty( "album.title.$album_index", $albumTitle );
 	$response->setProperty( "album.parent.$album_index", $parent_index );
 	
 	// write permissions
@@ -420,6 +458,75 @@ function processFile($file, $tag, $name, $setCaption="") {
     }
     
     return $error;
+}
+
+
+//---------------------------------------------------------
+// this is an edited version of code in do_command.php
+//
+function createNewAlbum( $newAlbumName, $newAlbumTitle, $newAlbumDesc, &$response ) {
+	global $gallery;
+	
+    // get parent album name
+	$parentName = $gallery->session->albumName;
+	$albumDB = new AlbumDB(FALSE);
+	
+	// set new album name from param or default
+	if ($newAlbumName) {
+		$gallery->session->albumName = $newAlbumName;
+	} else {
+		$gallery->session->albumName = $albumDB->newAlbumName();
+	}
+	
+	$gallery->album = new Album();
+	$gallery->album->fields["name"] = $gallery->session->albumName;
+	
+	// set title and description
+	if ($newAlbumTitle) {
+		$gallery->album->fields["title"] = $newAlbumTitle;
+	}
+	if ($newAlbumDesc) {
+		$gallery->album->fields["description"] = $newAlbumDesc;
+	}
+	
+	$gallery->album->setOwner($gallery->user->getUid());
+	$gallery->album->save();
+	
+	/* if this is a nested album, set nested parameters */
+	if ($parentName) {
+		$gallery->album->fields[parentAlbumName] = $parentName;
+		$parentAlbum = $albumDB->getAlbumbyName($parentName);
+		$parentAlbum->addNestedAlbum($gallery->session->albumName);
+		$parentAlbum->save();
+		// Set default values in nested album to match settings of parent.
+		$gallery->album->fields["perms"]           = $parentAlbum->fields["perms"];
+		$gallery->album->fields["bgcolor"]         = $parentAlbum->fields["bgcolor"];
+		$gallery->album->fields["textcolor"]       = $parentAlbum->fields["textcolor"];
+		$gallery->album->fields["linkcolor"]       = $parentAlbum->fields["linkcolor"];
+		$gallery->album->fields["font"]            = $parentAlbum->fields["font"];
+		$gallery->album->fields["border"]          = $parentAlbum->fields["border"];
+		$gallery->album->fields["bordercolor"]     = $parentAlbum->fields["bordercolor"];
+		$gallery->album->fields["returnto"]        = $parentAlbum->fields["returnto"];
+		$gallery->album->fields["thumb_size"]      = $parentAlbum->fields["thumb_size"];
+		$gallery->album->fields["resize_size"]     = $parentAlbum->fields["resize_size"];
+		$gallery->album->fields["rows"]            = $parentAlbum->fields["rows"];
+		$gallery->album->fields["cols"]            = $parentAlbum->fields["cols"];
+		$gallery->album->fields["fit_to_window"]   = $parentAlbum->fields["fit_to_window"];
+		$gallery->album->fields["use_fullOnly"]    = $parentAlbum->fields["use_fullOnly"];
+		$gallery->album->fields["print_photos"]    = $parentAlbum->fields["print_photos"];
+		$gallery->album->fields["use_exif"]        = $parentAlbum->fields["use_exif"];
+		$gallery->album->fields["display_clicks"]  = $parentAlbum->fields["display_clicks"];
+		$gallery->album->fields["public_comments"] = $parentAlbum->fields["public_comments"];
+
+		$gallery->album->save();
+	} else {
+		/* move the album to the top if not a nested album*/
+    	$numAlbums = $albumDB->numAlbums($gallery->user);
+    	$albumDB->moveAlbum($gallery->user, $numAlbums, 1);
+    	$albumDB->save();
+	}
+	
+	return true;
 }
 
 ?>
