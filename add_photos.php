@@ -83,6 +83,8 @@ Click the <b>Browse</b> button to locate a photo to upload.
 <br> <input name="userfile[]" type="file" size=40>
 <? } ?>
 <br><br>
+<input type=checkbox name=setCaption checked value="1">Set photo captions with original filenames.
+<br><br>
 <center>
 <input type="button" value="Upload Now" onClick='opener.showProgress(); document.upload_form.submit()'>
 <input type=submit value="Cancel" onclick='parent.close()'>

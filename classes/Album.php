@@ -237,7 +237,7 @@ class Album {
 		}
 	}
 
-	function addPhoto($file, $tag, $originalFilename, $pathToThumb="") {
+	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="") {
 		global $gallery;
 
 		$dir = $this->getAlbumDir();
@@ -276,6 +276,8 @@ class Album {
 				unlink("$dir/$name.$tag");
 			}
 			return $err;
+		} else {
+			$item->setCaption("$caption");
 		}
 		$this->photos[] = $item;
 

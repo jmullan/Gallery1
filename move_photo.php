@@ -98,12 +98,9 @@ if ($gallery->session->albumName && isset($index)) {
 							echo "- Creating Thumbnail<br>";
 							my_flush();
 						}
-						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, $pathToThumb);
+						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, $gallery->album->getCaption($index), $pathToThumb);
 						if (!$err) {
 							$newPhotoIndex = $postAlbum->numPhotos(1);
-							// Set the caption of the new photo
-							$postAlbum->setCaption($newPhotoIndex, $gallery->album->getCaption($index));
-							$postAlbum->save();
 							/* resize the photo if needed */
 							if ($postAlbum->fields["resize_size"] > 0 ) {
 								$photo = $postAlbum->getPhoto($newPhotoIndex);

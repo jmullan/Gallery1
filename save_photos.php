@@ -217,19 +217,19 @@ while (sizeof($userfile)) {
 				exec_wrapper($gallery->app->unzip . 
 					     " -j -o $file '$cmd_pic_path' -d " .
 					     $gallery->app->tmpDir);
-				process($gallery->app->tmpDir . "/$pic", $tag, $pic);
+				process($gallery->app->tmpDir . "/$pic", $tag, $pic, $setCaption);
 				unlink($gallery->app->tmpDir . "/$pic");
 			}
 		}
 	} else {
 		if ($name) {
-			process($file, $tag, $name);
+			process($file, $tag, $name, $setCaption);
 		}
 	}
 }
 
 
-function process($file, $tag, $name) {
+function process($file, $tag, $name, $setCaption="") {
 	global $gallery;
 
 	// parse out original filename without extension
@@ -239,8 +239,10 @@ function process($file, $tag, $name) {
 	set_time_limit(30);
 	if (acceptableFormat($tag)) {
 		msg("- Adding $name");
-
-		$err = $gallery->album->addPhoto($file, $tag, $originalFilename);
+		if ($setCaption) {
+			$caption = $name;
+		}	
+		$err = $gallery->album->addPhoto($file, $tag, $originalFilename, $caption);
 		if (!$err) {
 			/* resize the photo if needed */
 			if ($gallery->album->fields["resize_size"] > 0 && isImage($tag)) {
