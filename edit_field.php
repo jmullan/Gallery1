@@ -23,7 +23,7 @@ if ($save) {
 	$album->fields[$field] = $data;
 	$album->save();
 	dismissAndReload();
-	return;
+	exit;
 }
 
 require('style.php');

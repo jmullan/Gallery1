@@ -26,7 +26,7 @@ if ($albumName && isset($index)) {
 		$album->setHighlight($index);
 		$album->save();
 		dismissAndReload();
-		return;
+		exit;
 	} else {
 ?>
 

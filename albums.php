@@ -128,8 +128,8 @@ Admin:
 
 else {
 	if (file_exists("setup") && is_readable("setup")) {
-		header("Location: setup");
-		return;
+		header("Location: setup/");
+		exit;
 	}
 
 	require("style.php");

@@ -26,7 +26,7 @@ if ($albumName && isset($index)) {
 		$album->rotatePhoto($index, $rotate);
 		$album->save();
 		dismissAndReload();
-		return;
+		exit;
 	} else {
 ?>
 

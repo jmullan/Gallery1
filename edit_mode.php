@@ -27,7 +27,7 @@ if ($password) {
 	if (isCorrectPassword($password)) {
 		$edit = $password;
 		dismissAndReload();
-		return;
+		exit;
 	} else {
 		echo("<font size=+2 color=red>Wrong password!</font><p>");
 	}

@@ -42,7 +42,7 @@ if ($albumName && isset($index)) {
 		}
 		$album->save();
 		dismissAndReload();
-		return;
+		exit;
 	} else {
 ?>
 

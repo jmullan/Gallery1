@@ -43,7 +43,7 @@ if (file_exists("setup") && is_readable("setup")) {
 	When you've done this, just reload this page and all should
 	be well.
 <?
-	return;
+	exit;
 }
 
 /* Load defaults */

@@ -26,7 +26,7 @@ if ($albumName) {
 		$album->shufflePhotos();
 		$album->save();
 		dismissAndReload();
-		return;
+		exit;
 	} else {
 ?>
 

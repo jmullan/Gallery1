@@ -34,7 +34,7 @@ if ($newName) {
 	$albumDB->renameAlbum($oldName, $newName);
 	$albumDB->save();
 	dismissAndReload();
-	return;
+	exit;
 } else {
 }
 
