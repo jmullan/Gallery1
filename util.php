@@ -2514,9 +2514,11 @@ function emulate_gettext() {
 		$lines=file($filename);
 
 		foreach ($lines as $key => $value) {
+			/* We trim the String to get rid of cr/lf */
+			$value=trim($value);
 			if (stristr($value, "msgid") && ! stristr($lines[$key-1],"fuzzy")) {
-				$new_key=substr($value, 7,-2);
-				$translation[$new_key]=substr($lines[$key+1],8,-2);
+				$new_key=substr($value, 7,-1);
+				$translation[$new_key]=substr(trim($lines[$key+1]),8,-1);
 			}
 		}
 		// Substitute _() gettext function
