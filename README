@@ -5,9 +5,10 @@ CONTENTS
   4. How do I install Gallery on Windows?
   5. My webserver doesn't have NetPBM!  Help!  Aiee!
   6. How do I customize Gallery?
-  7. How do I use Gallery as a PHP-Nuke 5.0 Module?
+  7. How do I use Gallery as a PHP-Nuke 5.0 / Post-Nuke Module?
   8. I can't upload large files!
   9. Known problems
+ 10. HELP!!  WHERE DO I GO FOR HELP?
 
 1. WHAT IS GALLERY?
 
@@ -83,7 +84,8 @@ again, you need to change your permissions back again:
 
 That's all it takes!  If you use CuteFTP or some other FTP program,
 you may need to hunt around a bit to find the CHMOD command.  In
-CuteFTP it's a menu option.  
+CuteFTP it's a menu option.  If you can't figure it out, try asking
+your ISP or reading the documentation for your FTP client.
 
 4. HOW DO I INSTALL GALLERY ON WINDOWS?
 
@@ -161,13 +163,13 @@ If you come up with cool themes feel free to send them to me and I'll
 include them in the gallery package (or create a theme library of some
 kind).  
 
-7. HOW DO I USE GALLERY AS A PHP-NUKE 5.0 MODULE?
+7. HOW DO I USE GALLERY AS A PHP-NUKE 5.0 / POST-NUKE MODULE?
 
-It's very easy to make Gallery work with PHP-Nuke 5.0.  All you have
-to do is either move your Gallery directory into the modules directory
-under PHP-Nuke, or create a symlink, ie:
+It's very easy to make Gallery work with PHP-Nuke 5.0 or Post-Nuke.
+All you have to do is either move your Gallery directory into the
+modules directory under Nuke, or create a symlink, ie:
 
-	% cd php-nuke/modules
+	% cd nuke/modules
 	% ln -s /path/to/my/gallery gallery
 
 If you move your gallery, be sure to run through the config wizard to
@@ -180,9 +182,9 @@ listing on the main menu).
 
 NOTE:  If you want your module to be called something other than
 "gallery" (which especially occurs when you have multiple galleries
-on a single Nuke site) you can rename the module or the symbolic link.
-However, you must then edit the index.php inside the Gallery and
-set $GALLERY_MODULENAME appropriately.
+on a single Nuke site) you can rename the directory or the symbolic 
+link.  Gallery will automatically detect the name change and Do The
+Right Thing.
 
 8. I CAN'T UPLOAD LARGE FILES!
 
@@ -209,3 +211,46 @@ uploading files greater than 20MB.  Your mileage may vary.
   fix them as fast as we can.  You can find (and add to) the bug list at:
 
   	http://sourceforge.net/tracker/?group_id=7130&atid=107130
+
+10. HELP!!  WHERE DO I GO FOR HELP?
+
+We're here to help you.  We want you to get Gallery up and running.
+But please remember that Gallery is installed on many websites and
+the Gallery authors get bombarded with lots of emails every day.
+Be kind to us and try to use the resources we make available before
+you fire off an email to us.
+
+The first thing you should do is to read the Gallery Frequently
+Asked Questions page, which is found here:
+
+    http://gallery.sourceforge.net/faq.php
+
+If you can't find your answer there, send your help requests to the
+mailing lists.
+
+The Gallery users mailing list is here:
+
+    http://lists.sourceforge.net/lists/listinfo/gallery-users
+
+there's an archive of all the emails for the past few months here:
+
+    http://marc.theaimsgroup.com/?l=gallery-users&r=1&w=2
+
+We respond to each and every request for help.  There are very few
+problems that we have not been able to work through.  We *will* get
+you up and running.  But, remember that every email we respond to robs
+us of time that we could be spending improving the quality of Gallery
+and adding new features.
+
+Speaking of quality and features, if you find a bug you can file
+it in our Bug Tracker:
+
+    http://sourceforge.net/tracker/?group_id=7130&atid=107130
+
+and if you think of a new feature, you can file it in our Feature
+Tracker:
+
+    http://sourceforge.net/tracker/?atid=357130&group_id=7130&func=browse
+
+It's a good idea to check through these databases to see if the
+bug/feature that you're referring to is already in there.
