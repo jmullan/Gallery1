@@ -144,7 +144,7 @@ class Image {
 	}
 
 	function simpleDelete($dir) {
-		if (fs_file_exists("$dir/$this->name.$this->type") {
+		if (fs_file_exists("$dir/$this->name.$this->type")) {
 			fs_unlink("$dir/$this->name.$this->type");
 		}
 	}
