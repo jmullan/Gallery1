@@ -48,7 +48,7 @@ if (isset($save)) {
 		$dateArray["seconds"] = $capture_seconds;
 
 		$timestamp=mktime($capture_hours, $capture_minutes, $capture_seconds, $capture_mon, $capture_mday, $capture_year);
-		$gallery->album->setItemCaptureDate($index, $dateArray );
+		$gallery->album->setItemCaptureDate($index, $timestamp);
 		if (isset($extra_fields)) {
 			foreach ($extra_fields as $field => $value)
 			{
