@@ -37,6 +37,7 @@ class Album {
 		$this->fields["border"] = $app->default["border"];
 		$this->fields["bordercolor"] = $app->default["bordercolor"];
 		$this->fields["returnto"] = $app->default["returnto"];
+		$this->fields["thumb_size"] = $app->default["thumb_size"];
 	}
 
 	function shufflePhotos() {
@@ -61,7 +62,7 @@ class Album {
 	function setHighlight($index) {
 		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			$photo = $this->getPhoto($i);
-			$photo->setHighlight($i == $index);
+			$photo->setHighlight($this->getAlbumDir(), $i == $index);
 			$this->setPhoto($photo, $i);
 		}
 	}
@@ -146,8 +147,13 @@ class Album {
 		
 		/* Add the photo to the photo list */
 		$item = new AlbumItem();
-		$item->setPhoto($dir, $name, $tag);
+		$item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"]);
 		$this->photos[] = $item;
+
+		/* If this is the only photo, make it the highlight */
+		if ($this->numPhotos(1) == 1) {
+			$this->setHighlight(1);
+		}
 	}
 
 	function hidePhoto($index) {
@@ -169,6 +175,11 @@ class Album {
 
 	function deletePhoto($index) {
 		$photo = array_splice($this->photos, $index-1, 1);
+		                
+                /* are we deleteing the highlight? pick a new one */
+		if ($photo[0]->isHighlight() && ($this->numPhotos(1) > 0)) {
+			$this->setHighlight(1);
+		}
 		$photo[0]->delete($this->getAlbumDir());
 	}
 
@@ -179,6 +190,11 @@ class Album {
 	function getThumbnailTag($index, $attrs="") {
 		$photo = $this->getPhoto($index);
 		return $photo->getThumbnailTag($this->getAlbumDirURL(), $attrs);
+	}
+
+	function getHighlightTag($attrs="") {
+		$photo = $this->getPhoto($this->getHighlight());
+		return $photo->getHighlightTag($this->getAlbumDirURL(), $attrs);
 	}
 
 	function getPhotoTag($index, $full) {
@@ -247,13 +263,13 @@ class Album {
 
 	function rotatePhoto($index, $direction) {
 		$photo = $this->getPhoto($index);
-		$photo->rotate($this->getAlbumDir(), $direction);
+		$photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"]);
 		$this->setPhoto($photo, $index);
 	}
 
 	function makeThumbnail($index) {
 		$photo = $this->getPhoto($index);
-		$photo->makeThumbnail($this->getAlbumDir());
+		$photo->makeThumbnail($this->getAlbumDir(), $this->fields["thumb_size"]);
 		$this->setPhoto($photo, $index);
 	}
 
@@ -375,6 +391,7 @@ class AlbumItem {
 	var $caption;
 	var $hidden;
 	var $highlight;
+	var $highlightImage;
 
 	function hide() {
 		$this->hidden = 1;
@@ -388,8 +405,47 @@ class AlbumItem {
 		return $this->hidden;
 	}
 
-	function setHighlight($bool) {
+	function setHighlight($dir, $bool) {
+		global $app;
+		
 		$this->highlight = $bool;
+		
+		/*
+		 * if it is now the highlight make sure it has a highlight
+                 * thumb otherwise get rid of it's thumb (ouch!).
+		 */
+		$name = $this->image->name;
+		$tag = $this->image->type;
+		if ($this->highlight) {
+                        $img = loadImage($dir, $name, $tag);
+			$orig_width = imagesx($img);
+			$orig_height = imagesy($img);
+
+			$target = $app->highlight_size;
+			$aspect = $orig_width / $orig_height;
+			if ($aspect > 1) {
+				$new_width = $target;
+				$new_height = ceil($new_width / $aspect);
+			} else {
+				$new_height = $target;
+				$new_width = ceil($new_height * $aspect);
+			}
+
+			$highImg = ImageCreate($new_width, $new_height);
+			ImageCopyResized($highImg, $img, 0, 0, 0, 0, 
+					 $new_width, $new_height, 
+					 $orig_width, $orig_height);
+			ImageJpeg($highImg, "$dir/$name.highlight.jpg");
+
+			$this->highlightImage = new Image;
+			$this->highlightImage->setFile($dir, "$name.highlight", "jpg");
+			$this->highlightImage->setDimensions($new_width, $new_height);
+		}
+		else {
+			if (file_exists("$dir/$name.highlight.jpg")) {
+				unlink("$dir/$name.highlight.jpg");
+			}
+		}	
 	}
 
 	function isHighlight() {
@@ -404,11 +460,11 @@ class AlbumItem {
 		}
 	}
 
-	function makeThumbnail($dir) {
+	function makeThumbnail($dir, $size) {
 		$name = $this->image->name;
 		$type = $this->image->type;
 
-		$this->setPhoto($dir, $name, $type);
+		$this->setPhoto($dir, $name, $type, $size);
 	}
 
 	function isResized() {
@@ -419,7 +475,7 @@ class AlbumItem {
 		}
 	}
 
-	function rotate($dir, $direction) {
+	function rotate($dir, $direction, $thumb_size) {
 		global $app;
 
 		$name = $this->image->name;
@@ -443,10 +499,10 @@ class AlbumItem {
 		}
 
 		/* And rebuild the thumbnail */
-		$this->setPhoto($dir, $name, $type);
+		$this->setPhoto($dir, $name, $type, $thumb_size);
 	}
 
-	function setPhoto($dir, $name, $tag) {
+	function setPhoto($dir, $name, $tag, $thumb_size) {
 		global $app;
 
 		/*
@@ -482,7 +538,7 @@ class AlbumItem {
 				$orig_width = imagesx($img);
 				$orig_height = imagesy($img);
 
-				$target = $app->thumb_size;
+				$target = $thumb_size;
 				$aspect = $orig_width / $orig_height;
 				if ($aspect > 1) {
 					$new_width = $target;
@@ -512,6 +568,14 @@ class AlbumItem {
 			return $this->thumbnail->getTag($dir, 0, $attrs);
 		} else {
 			return "<i>No thumbnail</i>";
+		}
+	}
+
+	function getHighlightTag($dir, $attrs) {
+		if ($this->highlightImage) {
+			return $this->highlightImage->getTag($dir, 0, $attrs);
+		} else {
+			return "<i>No highlight</i>";
 		}
 	}
 
