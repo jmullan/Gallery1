@@ -309,9 +309,9 @@ function cut_image($src, $dest, $x, $y, $width, $height) {
 	$err = exec_wrapper(toPnmCmd($src) .
 			" | " .
 			NetPBM("pnmcut") .
-			" $x $y $width $height") .
+			" $x $y $width $height" .
 			" | " . 
-			fromPnmCmd($out);
+			fromPnmCmd($out));
 
 	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
 		if ($useTemp) {
