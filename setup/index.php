@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>Gallery Configuration</title>
-  <link rel="stylesheet" type="text/css" href="../css/gallery_style.css.default">
+  <link rel="stylesheet" type="text/css" href="../css/standalone_style.css.default">
 </head>
 <body>
 
