@@ -46,10 +46,10 @@ if ($navpage == 0) {
 <?
 	if ($firstAlbumName) {
 ?>
-      <a href="<?=makeGalleryUrl($firstAlbumName)?>"><img src="<?=$imageDir?>/nav_first.gif" border="0" width="27" height="11" alt="First Photo"></a>
+      <a href="<?=makeAlbumUrl($firstAlbumName)?>"><img src="<?=$imageDir?>/nav_first.gif" border="0" width="27" height="11" alt="First Photo"></a>
 <?	} else {
 ?>
-      <a href="<?=makeGalleryUrl($gallery->session->albumName, $firstPage)?>"><img src="<?=$imageDir?>/nav_first.gif" border="0" width="27" height="11" alt="First Photo"></a>
+      <a href="<?=makeAlbumUrl($gallery->session->albumName, $firstPage)?>"><img src="<?=$imageDir?>/nav_first.gif" border="0" width="27" height="11" alt="First Photo"></a>
 <?
 	}
 ?>
@@ -72,12 +72,12 @@ if ($prevPage >= 0) {
 <?
         if ($prevAlbumName) {
 ?>
-      <a href="<?=makeGalleryUrl($prevAlbumName)?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo">
+      <a href="<?=makeAlbumUrl($prevAlbumName)?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo">
 </a>
 <?
         } else {
 ?>
-      <a href="<?=makeGalleryUrl($gallery->session->albumName, $prevPage)?>"><img src="<?=$imageDir?>/nav_prev.gif" border="0" width="72" height="11" alt="Previous Photo"></a>
+      <a href="<?=makeAlbumUrl($gallery->session->albumName, $prevPage)?>"><img src="<?=$imageDir?>/nav_prev.gif" border="0" width="72" height="11" alt="Previous Photo"></a>
 <?
 }
 ?>
@@ -113,11 +113,11 @@ if ($navpage+1 != $navcount) {
 <? 
 	if ($nextAlbumName) {
 ?>
-      <a href="<?=makeGalleryUrl($nextAlbumName)?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo"></a>
+      <a href="<?=makeAlbumUrl($nextAlbumName)?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo"></a>
 <?
 	} else {
 ?>
-      <a href="<?=makeGalleryUrl($gallery->session->albumName, $nextPage)?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo">
+      <a href="<?=makeAlbumUrl($gallery->session->albumName, $nextPage)?>"><img src="<?=$imageDir?>/nav_next.gif" border="0" width="72" height="11" alt="Next Photo">
 </a>
 <?
 }
@@ -150,10 +150,10 @@ if ($navpage+1 == $navcount) {
 <?
 	if ($lastAlbumName) {
 ?>
-      <a href="<?=makeGalleryUrl($lastAlbumName)?>"><img src="<?=$imageDir?>/nav_last.gif" border="0" width="27" height="11" alt="Last Photo"></a>
+      <a href="<?=makeAlbumUrl($lastAlbumName)?>"><img src="<?=$imageDir?>/nav_last.gif" border="0" width="27" height="11" alt="Last Photo"></a>
 <? 	} else {
 ?>
-      <a href="<?=makeGalleryUrl($gallery->session->albumName, $lastPage)?>"><img src="<?=$imageDir?>/nav_last.gif" border="0" width="27" height="11" alt="Last Photo"></a>
+      <a href="<?=makeAlbumUrl($gallery->session->albumName, $lastPage)?>"><img src="<?=$imageDir?>/nav_last.gif" border="0" width="27" height="11" alt="Last Photo"></a>
 <?
 }
 ?>
