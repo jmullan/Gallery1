@@ -65,7 +65,6 @@ if (file_exists("setup") && is_readable("setup")) {
 
 if ($app->config_version != $gallery->config_version) {
 ?>
-?>
 	<html>
 	<head>
 	  <title>Gallery needs Re-Configuration</title>
