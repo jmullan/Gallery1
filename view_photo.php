@@ -146,6 +146,7 @@ includeHtmlWrap("photo.header");
 
 <!-- Top Nav Bar -->
 <table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
+
 <tr>
 <td>
 <?
@@ -191,6 +192,12 @@ include("layout/navphoto.inc");
 </table>
 <table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
 <!-- image row -->
+<?
+echo("<tr><td colspan=3>");
+includeHtmlWrap("inline_photo.header");
+echo("</td></tr>");
+?>
+
 <tr>
 <td colspan=3 align=center>
 <?
@@ -258,6 +265,13 @@ if ($openAnchor) {
 <br>
 </td>
 </tr>
+
+<?
+echo("<tr><td colspan=3>");
+includeHtmlWrap("inline_photo.footer");
+echo("</td></tr>");
+?>
+
 </table>
 <table border=0 width=<?=$mainWidth?> cellpadding=0 cellspacing=0>
 <tr>
