@@ -91,8 +91,11 @@ if (isset($save) || isset($next) || isset($prev)) {
 }
 
 if (isset($cancel) || isset($save)) {
-    header("Location: " . makeAlbumHeaderUrl($captionedAlbum));
-    return;
+	if (!isDebugging())
+		header("Location: " . makeAlbumHeaderUrl($captionedAlbum));
+	else
+		echo "<br><a href='" . makeAlbumUrl($captionedAlbum) . "'>" . _("Debugging: Click here to return to the album") . "</a><br>";
+	return;
 }
 
 #-- did they hit next? ---

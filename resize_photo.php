@@ -24,7 +24,7 @@
 
 require(dirname(__FILE__) . '/init.php');
 
-list($index, $manual, $resize, $resize_full_size) = getRequestVar(array('index', 'manual', 'resize', 'resize_full_size'));
+list($index, $manual, $resize, $resize_file_size) = getRequestVar(array('index', 'manual', 'resize', 'resize_file_size'));
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
