@@ -341,7 +341,7 @@ class AlbumItem {
 			}
 			$size = $album->getHighlightSize();
 
-			if ($srcitem->image->thumb_width > 0) {
+			if ($srcitem->image->thumb_width > 0  && !this->isMovie()) {
 				// Crop it first
 				$ret = cut_image("$srcdir/".$srcitem->image->name.".$tag",
 						"$dir/$name.tmp.$tag",
@@ -540,7 +540,7 @@ class AlbumItem {
 		$name = $this->image->name;
 		$tag = $this->image->type;
 
-		if (isMovie($tag)) {
+		if ($this->isMovie()) {
 			/* Use a preset thumbnail */
 			fs_copy($gallery->app->movieThumbnail, "$dir/$name.thumb.jpg");
 			$this->thumbnail = new Image;
@@ -551,9 +551,9 @@ class AlbumItem {
 		} else {
 			/* Make thumbnail (first crop it spec) */
 			if ($pathToThumb) {
-				$ret = copy ($pathToThumb,"$dir/$name.thumb.$tag");
-			} else if ($this->image->thumb_width > 0)
-			{
+				$ret = copy($pathToThumb,"$dir/$name.thumb.$tag");
+			} 
+			else if ($this->image->thumb_width > 0) {
 				$ret = cut_image("$dir/$name.$tag", 
 								 "$dir/$name.thumb.$tag", 
 								 $this->image->thumb_x, 

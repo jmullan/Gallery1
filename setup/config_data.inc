@@ -887,6 +887,13 @@ $constants = array_merge($constants,
 		"value" => 30,
 		"attrs" => array("size" => 5),
 	),
+	"blockRandomCache" => array(
+		"prompt" => _("Random Block Cache Time"),
+		"desc" => _("This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."),
+		"value" => 86400,
+		"choices" => array(86400 => _("24 Hours"), 43200 => _("12 Hours"), 21600 => _("6 Hours"), 1440 => _("1 Hour"), 720
+=> _("30 Minutes")),
+	),
 	"debug" => array(
 		"prompt" => _("Debug mode"),
 		"desc" => _("Turn debug mode on so that you can diagnose problems?") .'<br><span class="emphasis">'. _("Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system then you want!") . '</span>',

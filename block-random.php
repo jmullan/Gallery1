@@ -39,8 +39,8 @@ if (!empty($profile)) {
 /* Initializing the seed */
 srand ((double) microtime() * 1000000);
 
-define('CACHE_FILE', $gallery->app->albumDir . "/block-random.cache");
-define('CACHE_EXPIRED', 86400);
+define('CACHE_FILE', $gallery->app->albumDir . "/block-random.dat");
+define('CACHE_EXPIRED', $gallery->app->blockRandomCache);
 
 // Check the cache file to see if it's up to date
 $rebuild = 1;
