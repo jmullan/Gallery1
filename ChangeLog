@@ -1,6 +1,15 @@
+2003-06-06  Bharat Mediratta  <bharat@menalto.com> 1.3.5-cvs-b13
+
+	* Adjusted the way that we gather and store the extra field info
+	  in config.php.  Now we store it as a comma delimited value instead
+	  of a set of quoted values.  If magic quotes is on, we strip off
+	  slashes and replace quotes with an html entity.  Fully backwards
+	  compatible with the format introduced in 1.3.4-b30, though you
+	  must re-run the config wizard.
+
 2003-06-06  Beckett Madden-Woods  <beckett@beckettmw.com> 1.3.5-cvs-b12
 
-	* Applied a varaiation on Joan McGalliard's fix for custom fields,
+	* Applied a variation on Joan McGalliard's fix for custom fields,
 	  which were broken if magic_quotes_gpc was enabled.
 
 	* Fixed issue where PostNuke-embedded Gallery administrators

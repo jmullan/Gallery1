@@ -1615,23 +1615,6 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 
         return $returnVal;
 }
-function stripQuotes($string)
-{
-	if (empty($string)) {
-		return '';
-	}
-	if (get_magic_quotes_gpc()) {
-		$string = stripslashes($string);
-	}
-	return str_replace('"', '&quot;', $string);
-}
-function restoreQuotes($string)
-{
-	if (empty($string)) {
-		return '';
-	}
-	return str_replace('&quot;', '"', $string);
-}
 
 function escapeEregChars($string)
 {

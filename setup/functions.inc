@@ -221,22 +221,6 @@ function check_exif($location="")
 	return array($success, $fail);
 }
 
-function check_generate_array($string)
-{
-	if (ini_get ('magic_quotes_gpc')) {
-		$string = stripslashes ($string);
-	}
-	
-	$fail = array();
-	$success = array();
-	eval ("\$array=array(".restoreQuotes($string).");");
-	if (!is_array($array))
-	{
-		$fail[]=array("<i>$string</i> is not of the form <i>\"field one\", \"field two\", \"field three\"");
-	}
-	return array($success, $fail);
-}
-
 function check_graphics($location="")
 {
 	global $gallery;

@@ -47,6 +47,14 @@ if ($save) {
 	{
 		$extra_fields = array();
 	}
+
+	for ($i = 0; $i < sizeof($extra_fields); $i++) {
+	    if (get_magic_quotes_gpc()) {
+		$extra_fields[$i] = stripslashes($extra_fields[$i]);
+	    }
+	    $extra_fields[$i] = str_replace('"', '&quot;', $extra_fields[$i]);
+	}
+	
 	$num_fields=$num_user_fields+num_special_fields($extra_fields);
 	$gallery->album->setExtraFields($extra_fields);
 	if ($num_fields > 0 && !$gallery->album->getExtraFields())

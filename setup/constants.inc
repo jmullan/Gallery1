@@ -21,7 +21,6 @@ so you probably won't need to do much.
 <?php
 $i = 0;
 foreach ($constants as $key => $val) {
-
 	/* Support $app-> for backwards compatibility */
 	if ($app->$key) {
 		$val["value"] = $app->$key;
@@ -33,8 +32,15 @@ foreach ($constants as $key => $val) {
 	}
 
 	if (!$go_defaults && isset($$key)) {
-		$val["value"] = $$key;
+	    $val["value"] = $$key;
+
+	    if (get_magic_quotes_gpc()) {
+		$val["value"] = stripslashes($val["value"]);
+	    }
 	}
+
+	// Protect quote characters to avoid screwing up HTML forms
+	$val["value"] = str_replace('"', "&quot;", $val["value"]);
 
 	if (!strcmp($val["type"], "hidden")) {
 		list($f1, $f2) = make_fields($key, $val);

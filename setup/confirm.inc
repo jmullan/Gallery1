@@ -73,6 +73,13 @@ $graphpath = "";
 $graphtest = array();
 
 foreach ($constants as $key => $val) {
+        if (get_magic_quotes_gpc()) {
+	    $$key = stripslashes($$key);
+	}
+
+	// Protect quote characters to avoid screwing up HTML forms
+	$$key = str_replace('"', '&quot;', $$key);
+
 	echo "<input type=hidden name=$key value=\"{$$key}\">";
 
 	if ($constants[$key]["eval"]) {
@@ -294,7 +301,12 @@ foreach ($defaults as $key => $val) {
 		$view .= error_missing($defaults[$key]["desc"]);
 		$error = 1;
 	} else {
-		$$key = stripQuotes($$key);
+	        if (get_magic_quotes_gpc()) {
+		    $$key = stripslashes($$key);
+		}
+		// Protect quote characters to avoid screwing up HTML forms
+		$$key = str_replace('"', '&quot;', $$key);
+		
 		$data .= defaults($key, $$key);
 		$view .= row_wrap(defaults($key, $$key));
 		if ($defaults[$key]["verify-func"]) {

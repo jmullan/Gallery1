@@ -573,13 +573,12 @@ $defaults = array(
 	"extra_fields" => array(
 		"prompt" => "Custom Fields",
 		"optional" => 1,
-		"verify-func" => "check_generate_array",
 		"desc" => "Custom fields that are available to describe each image.  ".
-			  "Quoted and comma separated ".
-			  "Eg. <i>\"Description\", \"Location\", \"Film Type\"<i>".
+			  "They should be separated by commas ".
+			  "Eg. <i>Description, Location, Film Type<i>".
 			  "<br><font color=blue><b>(this is new in version 1.3.4)</b></font>",
 		"attrs" => array("size" => 80),
-		"value" => "&quot;Description&quot;"
+		"value" => "Description"
 	)
 );
 
