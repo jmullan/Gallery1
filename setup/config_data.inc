@@ -1,5 +1,14 @@
 <?
 $checklist = array(
+	"php4" => array(
+		"desc" => "Check to see if you are running PHP 4.  Note that Gallery does " .
+			"not function optimally with either 4.0.3 or 4.0.3pl1",
+	     	"func" => "check_php",
+		"fail-too-old" => "You're running version " . phpversion() .
+			". You need to upgrade to PHP ${MIN_PHP_MAJOR_VERSION}",
+		"fail-incompatible" => "You're running version " . phpversion() .
+			" which has known bugs that cause Gallery to fail.",
+	),
 	"htaccess" => array(
 		"desc" => "Allow the Gallery <b>.htaccess</b> file to set " .
 			  "application specific configuration options " .
@@ -10,7 +19,8 @@ $checklist = array(
 			  "files > 2MB (eg, big ZIP files) and you may not be " .
 			  "able to use mod_rewrite (see below).",
 	     	"func" => "check_htaccess",
-		"why" => "Enter the following into your web server's httpd.conf " .
+		"fail-htaccess" => "Apache is not obeying your .htaccess file.  Try ".
+			"entering the following into your web server's httpd.conf " .
 			 "file: <br><pre>" .
 			 "&lt;Directory " .
 			 dirname(dirname(getenv("SCRIPT_FILENAME"))) .
@@ -18,14 +28,7 @@ $checklist = array(
 			 "&lt;/Directory&gt;",
 		"optional" => 1,
 	),
-	"php4" => array(
-		"desc" => "Check to see if you are running PHP 4.  Note that Gallery does " .
-			"not function optimally with either 4.0.3 or 4.0.3pl1",
-	     	"func" => "check_php",
-		"why" => "You're running version " . phpversion() .
-			". You need to upgrade to PHP ${MIN_PHP_MAJOR_VERSION}"
-	),
-	"magic_quotes" => array(
+	"magic-quotes" => array(
 		"optional" => 1,
 		"desc" => "Check to see if <a href=" .
 			"http://www.php.net/manual/en/configuration.php#ini.magic-quotes-gpc " .
@@ -34,42 +37,59 @@ $checklist = array(
 			" \" (double quote) or \\ (backslash) characters in titles or " .
 			"captions in the gallery.",
 	     	"func" => "check_magic_quotes",
-		"why" => "Magic quotes are on.  Your webserver owner can turn them off" .
+		"fail-magic-quotes" => "Magic quotes are on.  Your webserver owner can turn them off " .
 			 "by putting: <pre>\n\t" .
 			 "magic_quotes_gpc = Off" .
 			 "</pre> in your php.ini file",
 	),
-	"mod_rewrite" => array(
+	"mod-rewrite" => array(
 		"desc" => "Check to see if your webserver is compiled with " .
 			"<b>mod_rewrite</b>.  Mod_rewrite allows the Gallery to use ".
 			"shorter URLs that are easier to read and look nicer when " .
 			"you mail them to your web-challenged relatives. " .
 			"It's not an essential feature.",
 	     	"func" => "check_mod_rewrite",
-		"why" => "Either <b>mod_rewrite</b> is not installed or your " .
+		"fail-mod-rewrite" => "Either <b>mod_rewrite</b> is not installed or your " .
 			"<b>.htaccess</b> file is not enabled (see above).  Either " .
 			"way, we'll have to use longer URLs in the Gallery.  If you " .
 			"want to turn it on I'd suggest that you make sure that your " .
 			"<b>.htaccess</b> file works and then if it still doesn't work " .
-			" you may need to reconfigure Apache with the <ul>" .
-			"<b>--enable-module=rewrite</b> </ul> flag and then " .
-			"rebuild and reinstall Apache.",
+			" you may need to reconfigure and rebuild Apache with this flag:<br>" .
+			"<b>--enable-module=rewrite</b>",
 		"optional" => 1,
-	), 
-	"NetPBM" => array(
+	),
+	"Graphics" => array(
 		"optional" => 1,
 		"desc" => "Check to see if NetPBM is installed so that " .
 			"Gallery can manipulate images (rotate, resize, make " .
 			"thumbnails, etc).",
-		"func" => "check_netpbm",
-		"why" => "I can't find NetPBM.  If it's installed, it's not in " .
+/*
+ * We'll use this when we go to supporting multiple graphics packages.
+ *
+		"desc" => "Check to see what graphics packages are available for your use. ".
+			"The graphics package allows Gallery to manipulate images (rotate, " .
+			"resize, make thumbnails, etc).  NetPBM produces higher quality " .
+			"thumbnails than GD.  Gallery can support two configurations: <ol> " .
+			"<li> GD and JPEG compiled into PHP " .
+			"<li> NetPBM installed on your system " .
+			"</ol> You must have one of these package for Gallery to work.",
+*/
+		"func" => "check_graphics",
+		"fail-gd" => "GD support is not compiled into PHP.  To use GD, you'll need to ".
+			"rebuild PHP with this flag: <br><b>--with-gd=/path/to/gd</b>",
+		"fail-jpeg" => "JPEG support is not compiled into PHP.  To use JPEG, you'll need to ".
+			"rebuild PHP with this flag: <br><b>--with-jpeg=/path/to/jpeg</b>",
+		"fail-netpbm" => "I can't find NetPBM.  If it's installed, it's not in " .
 			  "the path of the webserver user.  If it's not installed, " .
-			  "you'll need to <a href=http://sourceforge.net/projects/netpbm>install it</a>." .
+			  "you'll need to <a href=http://sourceforge.net/projects/netpbm>install it</a>. " .
 			  "Gallery detects NetPBM by looking for the <i>anytopnm</i> script." .
 			  "<p>" .
 			  "<b> If it's installed and Gallery isn't finding it that's OK -- " .
 			  "that just means you'll have to specify the path to NetPBM by hand " .
 			  " on the following page </b>",
+		"fail-netpbm-partial" => "I've found part of NetPBM, but some critical components " .
+			"are missing (see below).  Perhaps your version of NetPBM is out of date?  " .
+			"Gallery prefers NetPBM version 9.9 and up",
 	),
 );
 
@@ -92,10 +112,14 @@ $constants = array(
 		"desc" => "The location of a temp directory",
 		"value" => "/var/tmp"
 	),
+	"graphics" => array(
+		"desc" => "Which graphics package do you want to use: ",
+		"choices" => graphics_choices(),
+	),
 	"pnmDir" => array(
-		"desc" => "The location of your NetPBM package.  If you don't " .
-			  "have NetPBM, Gallery won't work at all.",
-		"value" => locateDir("anytopnm")
+		"desc" => "The location of your NetPBM package.  If you select NetPBM " .
+			  "above, then this <b>must</b> be the path to the 'anytopnm' script.",
+		"value" => locateDir("anytopnm", $app ? $app->pnmDir : "")
 	),
 	"anytopnm" => array(
 		"desc" => "anytopnm wrapper",
