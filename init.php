@@ -19,6 +19,13 @@
  */
 ?>
 <?
+/*
+ * Turn down the error reporting to just critical errors for now.
+ * In v1.2, we know that we'll have lots and lots of warnings if
+ * error reporting is turned all the way up.  We'll fix this in v2.0
+ */
+error_reporting(E_ALL & ~E_NOTICE);
+
 /* Load bootstrap code */
 if (substr(PHP_OS, 0, 3) == 'WIN') {
 	include($GALLERY_BASEDIR . "platform/fs_win32.php");
@@ -34,7 +41,7 @@ require($GALLERY_BASEDIR . "util.php");
 /*
  * Detect if we're running under SSL and adjust the URL accordingly.
  */
-if ($HTTP_SERVER_VARS["HTTPS"]) {
+if (stristr($HTTP_SERVER_VARS["HTTPS"], "on")) {
 	$gallery->app->photoAlbumURL = 
 		eregi_replace("^http:", "https:", $gallery->app->photoAlbumURL);
 	$gallery->app->albumDirURL = 
