@@ -132,7 +132,7 @@ function build_popup_url($url, $url_is_complete=0) {
 	
 	if (!$url_is_complete) {
 		$url = makeGalleryUrl($target, $args);
-		$url = "'$url'";
+		$url = "$url";
 	}
 
 	return $url;
