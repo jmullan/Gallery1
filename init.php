@@ -420,8 +420,12 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 
 			global $_USER;
 
+			/* Check if user is logged in, else explicit log him/her out */
 			if (isset($_USER["username"])) {
 				$gallery->session->username = $_USER['username'];
+			} else {
+				unset($gallery->session->username);
+				unset($gallery->session->language);
 			}
 
 			/* Implement GeekLogUserDB and User class. */
@@ -433,9 +437,10 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			$gallery->userDB = new Geeklog_UserDB;
 
 			/* Load their user object with their username as the key */
-			if ($gallery->session->username) {
+			if (isset($gallery->session->username)) {
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 			}
+
 		break;
 	}
 } 
